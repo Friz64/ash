@@ -14,9 +14,15 @@ use ash::extensions::ext; // portability extensions
 ///
 /// # Safety
 ///
-/// In order for the created [`vk::SurfaceKHR`] to be valid for the duration of its
-/// usage, the [`Instance`] this was called on must be dropped later than the
-/// resulting [`vk::SurfaceKHR`].
+/// The resulting [`vk::SurfaceKHR`] **must** be destroyed through
+/// [`khr::Surface::destroy_surface()`] (_not_ [dropped][drop()]) before the [`Instance`] and
+/// [`Entry`] this was called on is [destroyed][Instance::destroy_instance()], in the broad sense
+/// of the word. That is, valid Vulkan usage requires the [`vk::SurfaceKHR`] to be destroyed, and
+/// it otherwise becomes invalid to use after the [`Instance`] was
+/// [destroyed][Instance::destroy_instance()] and/or the [`Entry`] was [dropped][drop()].
+///
+/// See the [`Entry::create_instance()`] documentation for more destruction ordering rules on
+/// [`Instance`].
 pub unsafe fn create_surface(
     entry: &Entry,
     instance: &Instance,

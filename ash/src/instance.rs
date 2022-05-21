@@ -1,3 +1,5 @@
+#[cfg(doc)]
+use super::Entry;
 use crate::device::Device;
 use crate::prelude::*;
 use crate::vk;
@@ -335,9 +337,16 @@ impl Instance {
     /// <https://www.khronos.org/registry/vulkan/specs/1.3-extensions/man/html/vkCreateDevice.html>
     ///
     /// # Safety
-    /// In order for the created [`Device`] to be valid for the duration of its
-    /// usage, the [`Instance`] this was called on must be dropped later than the
-    /// resulting [`Device`].
+    ///
+    /// The resulting [`Device`] **must** be destroyed through [`Device::destroy_device()`] (_not_
+    /// [dropped][drop()]) before the [`Instance`] this was called on is
+    /// [destroyed][Instance::destroy_instance()], in the broad sense of the word. That is, valid
+    /// Vulkan usage requires the [`Device`] to be destroyed, and it otherwise becomes invalid to
+    /// use after the [`Instance`] was [destroyed][Instance::destroy_instance()] and/or the
+    /// [`Entry`] this [`Instance`] was created from is [dropped][drop()].
+    ///
+    /// See the [`Entry::create_instance()`] documentation for more destruction ordering rules on
+    /// [`Instance`].
     #[inline]
     pub unsafe fn create_device(
         &self,
