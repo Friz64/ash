@@ -15,49 +15,50 @@ pub trait UnwrapBorrowed<'a, B>
 where
     B: ToOwned + ?Sized,
 {
-    fn unwrap_borrowed(&self) -> &'a B;
+    fn unwrap_borrowed_or_leak_owned(self) -> &'a B;
 }
 
 impl<'a, B> UnwrapBorrowed<'a, B> for Cow<'a, B>
 where
-    B: ToOwned + ?Sized,
+    B: ToOwned + ?Sized + std::fmt::Debug,
 {
-    fn unwrap_borrowed(&self) -> &'a B {
+    fn unwrap_borrowed_or_leak_owned(self) -> &'a B {
         match self {
             Cow::Borrowed(b) => b,
-            Cow::Owned(_) => panic!("Called `unwrap_borrowed` on `Owned` value"),
+            Cow::Owned(o) => {
+                let leaked = std::borrow::Borrow::borrow(Box::leak(Box::new(o)));
+                debug!("unwrap_borrowed_or_leak_owned: leaking `Owned({leaked:?})`");
+                leaked
+            }
         }
     }
 }
 
 /// Converts `roxmltree`'s `StringStorage` to a `XmlStr`
-fn make_xml_str(string_storage: StringStorage<'static>) -> XmlStr {
+fn make_xml_str(string_storage: &StringStorage<'static>) -> XmlStr {
     match string_storage {
         StringStorage::Borrowed(s) => Cow::Borrowed(s),
-        StringStorage::Owned(s) => Cow::Owned((*s).into()),
+        StringStorage::Owned(s) => Cow::Owned((**s).into()),
     }
 }
 
 /// Retrieves the value of the `node`'s attribute named `name`.
 fn attribute(node: Node, name: &str) -> Option<XmlStr> {
     node.attribute_node(name)
-        .map(|attr| make_xml_str(attr.value_storage().clone()))
+        .map(|attr| make_xml_str(attr.value_storage()))
 }
 
 /// Retrieves the ','-separated values of the `node`'s attribute named `name`.
 fn attribute_comma_separated(node: Node, name: &str) -> Vec<&'static str> {
     attribute(node, name)
-        .map(|value| value.unwrap_borrowed().split(',').collect())
+        .map(|value| value.unwrap_borrowed_or_leak_owned().split(',').collect())
         .unwrap_or_default()
 }
 
 /// Retrieves the text inside the next child element of `node` named `name`.
 fn child_text(node: Node, name: &str) -> Option<XmlStr> {
     let child = node.children().find(|node| node.has_tag_name(name));
-    child.map(|node| match node.text_storage().unwrap().clone() {
-        StringStorage::Borrowed(s) => Cow::Borrowed(s),
-        StringStorage::Owned(s) => Cow::Owned((*s).into()),
-    })
+    child.map(|node| make_xml_str(node.text_storage().unwrap()))
 }
 
 /// Returns [`true`] when the `node`'s "api" attribute matches the `expected` API.
@@ -81,7 +82,8 @@ impl CDecl<'static> {
     fn from_xml(mode: CDeclMode, children: roxmltree::Children<'_, 'static>) -> CDecl<'static> {
         let mut c_tokens = vec![];
         for child in children {
-            let text = || make_xml_str(child.text_storage().unwrap().clone()).unwrap_borrowed();
+            let text =
+                || make_xml_str(child.text_storage().unwrap()).unwrap_borrowed_or_leak_owned();
             match child.node_type() {
                 NodeType::Text => {
                     CTok::lex_into(text(), &mut c_tokens).unwrap();
@@ -424,7 +426,7 @@ pub struct StructureMember {
     pub c_decl: CDecl<'static>,
     pub values: Option<XmlStr>,
     pub len: Vec<&'static str>,
-    pub altlen: Option<XmlStr>,
+    pub altlen: Vec<&'static str>,
     pub optional: Vec<&'static str>,
 }
 
@@ -434,7 +436,7 @@ impl StructureMember {
             c_decl: CDecl::from_xml(CDeclMode::StructMember, node.children()),
             values: attribute(node, "values"),
             len: attribute_comma_separated(node, "len"),
-            altlen: attribute(node, "altlen"),
+            altlen: attribute_comma_separated(node, "altlen"),
             optional: attribute_comma_separated(node, "optional"),
         }
     }
@@ -581,8 +583,8 @@ impl BitMask {
 #[derive(Debug)]
 pub struct CommandParam {
     pub c_decl: CDecl<'static>,
-    pub len: Option<XmlStr>,
-    pub altlen: Option<XmlStr>,
+    pub len: Vec<&'static str>,
+    pub altlen: Vec<&'static str>,
     pub optional: Vec<&'static str>,
 }
 
@@ -590,8 +592,8 @@ impl CommandParam {
     fn from_node(node: Node) -> CommandParam {
         CommandParam {
             c_decl: CDecl::from_xml(CDeclMode::FuncParam, node.children()),
-            len: attribute(node, "len"),
-            altlen: attribute(node, "altlen"),
+            len: attribute_comma_separated(node, "len"),
+            altlen: attribute_comma_separated(node, "altlen"),
             optional: attribute_comma_separated(node, "optional"),
         }
     }
@@ -747,7 +749,13 @@ impl Require {
     fn from_node(node: Node, api: &str) -> Require {
         let mut value = Require {
             depends: attribute(node, "depends")
-                .map(|value| (value.unwrap_borrowed().split(',').map(Depends::from_str)).collect())
+                .map(|value| {
+                    (value
+                        .unwrap_borrowed_or_leak_owned()
+                        .split(',')
+                        .map(Depends::from_str))
+                    .collect()
+                })
                 .unwrap_or_default(),
             ..Default::default()
         };

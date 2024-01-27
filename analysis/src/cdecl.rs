@@ -390,4 +390,92 @@ impl<'a> CDecl<'a> {
             bitfield_width,
         })
     }
+
+    pub fn to_pseudo_rust(&self) -> String {
+        self.to_pseudo_rust_with_external_lengths(&[])
+    }
+    pub fn to_pseudo_rust_with_external_lengths(&self, external_lengths: &[&str]) -> String {
+        let CDecl {
+            ty,
+            name,
+            bitfield_width,
+        } = self;
+        let decl = format!(
+            "{name}: {}",
+            ty.to_pseudo_rust_with_external_lengths(external_lengths)
+        );
+        match bitfield_width {
+            Some(width) => format!("#[bitfield({width})] {decl}"),
+            None => decl,
+        }
+    }
+}
+
+impl CType<'_> {
+    pub fn to_pseudo_rust_with_external_lengths(&self, external_lengths: &[&str]) -> String {
+        if let Some((len, remaining_lengths)) = external_lengths.split_first() {
+            match self {
+                CType::Ptr {
+                    implicit_for_decay: false,
+                    is_const,
+                    pointee,
+                } => {
+                    let const_or_mut = if *is_const { "const" } else { "mut" };
+                    format!(
+                        "*{const_or_mut} [{}; dyn {len}]",
+                        pointee.to_pseudo_rust_with_external_lengths(remaining_lengths)
+                    )
+                }
+                _ => unreachable!(),
+            }
+        } else {
+            self.to_pseudo_rust()
+        }
+    }
+    pub fn to_pseudo_rust(&self) -> String {
+        match self {
+            &CType::Base(CBaseType { struct_tag, name }) => {
+                if struct_tag {
+                    format!("/*struct*/{name}")
+                } else {
+                    name.to_string()
+                }
+            }
+            CType::Ptr {
+                implicit_for_decay,
+                is_const,
+                pointee,
+            } => {
+                if let CType::Func { ret_ty, params } = &**pointee {
+                    assert!(!implicit_for_decay);
+                    assert!(!is_const);
+                    let params = if params.is_empty() {
+                        "".to_string()
+                    } else {
+                        params.iter().fold("\n".to_string(), |params, param| {
+                            params + "    " + &param.to_pseudo_rust() + ",\n"
+                        })
+                    };
+                    format!(
+                        "unsafe extern fn({params}){}",
+                        ret_ty
+                            .as_ref()
+                            .map(|ty| format!(" -> {}", ty.to_pseudo_rust()))
+                            .unwrap_or_default()
+                    )
+                } else {
+                    let const_or_mut = if *is_const { "const" } else { "mut" };
+                    format!("*{const_or_mut} {}", pointee.to_pseudo_rust())
+                }
+            }
+            CType::Array { element, len } => {
+                let len = match len {
+                    CArrayLen::Named(name) => name.to_string(),
+                    CArrayLen::Literal(len) => len.to_string(),
+                };
+                format!("[{}; {len}]", element.to_pseudo_rust())
+            }
+            CType::Func { .. } => unreachable!(),
+        }
+    }
 }
