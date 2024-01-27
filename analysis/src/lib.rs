@@ -18,6 +18,45 @@ impl Analysis {
             video: Library::new(vulkan_headers_path.join("registry/video.xml")),
         }
     }
+
+    pub fn dump_as_pseudo_rust(&self) {
+        for fp in &self.vk._xml.funcpointers {
+            eprintln!(
+                "type {} = {};",
+                fp.c_decl.name,
+                fp.c_decl.ty.to_pseudo_rust()
+            );
+        }
+        for st in &self.vk._xml.structs {
+            eprintln!("struct {} {{", st.name);
+            for m in &st.members {
+                let len = (m.altlen.as_deref().map(|l| l.to_string()))
+                    .or((!m.len.is_empty()).then(|| m.len.join(",")));
+                eprint!(
+                    "    {}",
+                    m.c_decl.to_pseudo_rust_with_external_len(len.as_deref())
+                );
+                if let Some(val) = &m.values {
+                    eprint!(" = {val}");
+                }
+                eprintln!(",");
+            }
+            eprintln!("}}");
+        }
+        for cmd in &self.vk._xml.commands {
+            eprintln!("unsafe extern fn {}(", cmd.name);
+            for p in &cmd.params {
+                let len = p.altlen.as_deref().or(p.len.as_deref());
+                eprint!("    {}", p.c_decl.to_pseudo_rust_with_external_len(len));
+                eprintln!(",");
+            }
+            eprint!(")");
+            if let Some(ret_ty) = &cmd.return_type {
+                eprint!(" -> {}", ret_ty.to_pseudo_rust());
+            }
+            eprintln!(";");
+        }
+    }
 }
 
 #[derive(Debug)]
