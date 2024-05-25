@@ -1,4 +1,5 @@
-use roxmltree::StringStorage;
+use crate::cdecl::{CDecl, CDeclMode, CTok, CType};
+use roxmltree::{NodeType, StringStorage};
 use std::{borrow::Cow, fmt::Write};
 use tracing::{debug, info_span, trace};
 
@@ -14,60 +15,50 @@ pub trait UnwrapBorrowed<'a, B>
 where
     B: ToOwned + ?Sized,
 {
-    fn unwrap_borrowed(&self) -> &'a B;
+    fn unwrap_borrowed_or_leak_owned(self) -> &'a B;
 }
 
 impl<'a, B> UnwrapBorrowed<'a, B> for Cow<'a, B>
 where
-    B: ToOwned + ?Sized,
+    B: ToOwned + ?Sized + std::fmt::Debug,
 {
-    fn unwrap_borrowed(&self) -> &'a B {
+    fn unwrap_borrowed_or_leak_owned(self) -> &'a B {
         match self {
             Cow::Borrowed(b) => b,
-            Cow::Owned(_) => panic!("Called `unwrap_borrowed` on `Owned` value"),
+            Cow::Owned(o) => {
+                let leaked = std::borrow::Borrow::borrow(Box::leak(Box::new(o)));
+                debug!("unwrap_borrowed_or_leak_owned: leaking `Owned({leaked:?})`");
+                leaked
+            }
         }
     }
 }
 
 /// Converts `roxmltree`'s `StringStorage` to a `XmlStr`
-fn make_xml_str(string_storage: StringStorage<'static>) -> XmlStr {
+fn make_xml_str(string_storage: &StringStorage<'static>) -> XmlStr {
     match string_storage {
         StringStorage::Borrowed(s) => Cow::Borrowed(s),
-        StringStorage::Owned(s) => Cow::Owned((*s).into()),
+        StringStorage::Owned(s) => Cow::Owned((**s).into()),
     }
 }
 
 /// Retrieves the value of the `node`'s attribute named `name`.
 fn attribute(node: Node, name: &str) -> Option<XmlStr> {
     node.attribute_node(name)
-        .map(|attr| make_xml_str(attr.value_storage().clone()))
+        .map(|attr| make_xml_str(attr.value_storage()))
 }
 
 /// Retrieves the ','-separated values of the `node`'s attribute named `name`.
 fn attribute_comma_separated(node: Node, name: &str) -> Vec<&'static str> {
     attribute(node, name)
-        .map(|value| value.unwrap_borrowed().split(',').collect())
+        .map(|value| value.unwrap_borrowed_or_leak_owned().split(',').collect())
         .unwrap_or_default()
 }
 
 /// Retrieves the text inside the next child element of `node` named `name`.
 fn child_text(node: Node, name: &str) -> Option<XmlStr> {
     let child = node.children().find(|node| node.has_tag_name(name));
-    child.map(|node| match node.text_storage().unwrap().clone() {
-        StringStorage::Borrowed(s) => Cow::Borrowed(s),
-        StringStorage::Owned(s) => Cow::Owned((*s).into()),
-    })
-}
-
-/// Retrieves the text of all of `node`'s descendants, concatenated.
-/// Anything within a `<comment>` element will be ignored.
-fn descendant_text(node: Node) -> String {
-    node.descendants()
-        .filter(Node::is_text)
-        // Ignore any text within a <comment> element.
-        .filter(|node| !node.ancestors().any(|node| node.has_tag_name("comment")))
-        .map(|node| node.text().unwrap())
-        .collect::<String>()
+    child.map(|node| make_xml_str(node.text_storage().unwrap()))
 }
 
 /// Returns [`true`] when the `node`'s "api" attribute matches the `expected` API.
@@ -85,6 +76,66 @@ fn node_span_field(node: &Node) -> String {
     }
 
     output + ">"
+}
+
+impl CDecl<'static> {
+    fn from_xml(mode: CDeclMode, children: roxmltree::Children<'_, 'static>) -> CDecl<'static> {
+        let mut c_tokens = vec![];
+        for child in children {
+            let text =
+                || make_xml_str(child.text_storage().unwrap()).unwrap_borrowed_or_leak_owned();
+            match child.node_type() {
+                NodeType::Text => {
+                    CTok::lex_into(text(), &mut c_tokens).unwrap();
+                }
+                NodeType::Element => {
+                    assert_eq!(child.attributes().len(), 0);
+                    let text = || {
+                        assert_eq!(child.children().count(), 1);
+                        text()
+                    };
+                    c_tokens.push(match child.tag_name().name() {
+                        "comment" => continue,
+                        "type" => CTok::TypeName(text()),
+                        "enum" => CTok::ValueName(text()),
+                        "name" => CTok::DeclName(text()),
+                        tag => unreachable!("unexpected `<{tag}>` in C declaration"),
+                    })
+                }
+                NodeType::Root | NodeType::PI | NodeType::Comment => unreachable!(),
+            }
+        }
+
+        c_tokens.retain_mut(|tok| {
+            if let CTok::StrayIdent(name) = tok {
+                match &name[..] {
+                    // HACK(eddyb) work around `video.xml` spec bug (missing `<enum>`).
+                    "STD_VIDEO_H264_MAX_NUM_LIST_REF" | "STD_VIDEO_H265_MAX_NUM_LIST_REF" => {
+                        *tok = CTok::ValueName(name);
+                    }
+
+                    // HACK(eddyb) work around `vk.xml` spec bug (missing `<type>`).
+                    "VkBool32" | "PFN_vkVoidFunction" => {
+                        *tok = CTok::TypeName(name);
+                    }
+
+                    _ => {}
+                }
+            }
+
+            match tok {
+                // HACK(eddyb) ideally we'd expand this to something using the
+                // C++11/C23 `[[...]]` attribute syntax, but that'd need support
+                // in `cdecl`, and it's redundant since all function pointers
+                // equally get it, so we can just remove it here.
+                CTok::StrayIdent("VKAPI_PTR") => false,
+
+                _ => true,
+            }
+        });
+
+        CDecl::parse(mode, &c_tokens).unwrap()
+    }
 }
 
 /// Raw representation of Vulkan XML files (`vk.xml`, `video.xml`).
@@ -357,16 +408,14 @@ impl EnumType {
 
 #[derive(Debug)]
 pub struct FuncPointer {
-    pub name: XmlStr,
-    pub c_declaration: String,
+    pub c_decl: CDecl<'static>,
     pub requires: Option<XmlStr>,
 }
 
 impl FuncPointer {
     fn from_node(node: Node) -> FuncPointer {
         FuncPointer {
-            name: child_text(node, "name").unwrap(),
-            c_declaration: descendant_text(node),
+            c_decl: CDecl::from_xml(CDeclMode::TypeDef, node.children()),
             requires: attribute(node, "requires"),
         }
     }
@@ -374,22 +423,20 @@ impl FuncPointer {
 
 #[derive(Debug)]
 pub struct StructureMember {
-    pub name: XmlStr,
-    pub c_declaration: String,
+    pub c_decl: CDecl<'static>,
     pub values: Option<XmlStr>,
     pub len: Vec<&'static str>,
-    pub altlen: Option<XmlStr>,
+    pub altlen: Vec<&'static str>,
     pub optional: Vec<&'static str>,
 }
 
 impl StructureMember {
     fn from_node(node: Node) -> StructureMember {
         StructureMember {
-            name: child_text(node, "name").unwrap(),
-            c_declaration: descendant_text(node),
+            c_decl: CDecl::from_xml(CDeclMode::StructMember, node.children()),
             values: attribute(node, "values"),
             len: attribute_comma_separated(node, "len"),
-            altlen: attribute(node, "altlen"),
+            altlen: attribute_comma_separated(node, "altlen"),
             optional: attribute_comma_separated(node, "optional"),
         }
     }
@@ -535,20 +582,18 @@ impl BitMask {
 
 #[derive(Debug)]
 pub struct CommandParam {
-    pub name: XmlStr,
-    pub c_declaration: String,
-    pub len: Option<XmlStr>,
-    pub altlen: Option<XmlStr>,
+    pub c_decl: CDecl<'static>,
+    pub len: Vec<&'static str>,
+    pub altlen: Vec<&'static str>,
     pub optional: Vec<&'static str>,
 }
 
 impl CommandParam {
     fn from_node(node: Node) -> CommandParam {
         CommandParam {
-            name: child_text(node, "name").unwrap(),
-            c_declaration: descendant_text(node),
-            len: attribute(node, "len"),
-            altlen: attribute(node, "altlen"),
+            c_decl: CDecl::from_xml(CDeclMode::FuncParam, node.children()),
+            len: attribute_comma_separated(node, "len"),
+            altlen: attribute_comma_separated(node, "altlen"),
             optional: attribute_comma_separated(node, "optional"),
         }
     }
@@ -556,7 +601,7 @@ impl CommandParam {
 
 #[derive(Debug)]
 pub struct Command {
-    pub return_type: XmlStr,
+    pub return_type: Option<CType<'static>>,
     pub name: XmlStr,
     pub params: Vec<CommandParam>,
 }
@@ -568,9 +613,11 @@ impl Command {
             .find(|child| child.has_tag_name("proto"))
             .filter(|node| api_matches(node, api))
             .unwrap();
+        // FIXME(eddyb) `CDeclMode::StructMember` should work but isn't accurate.
+        let proto_cdecl = CDecl::from_xml(CDeclMode::StructMember, proto.children());
         Command {
-            return_type: child_text(proto, "type").unwrap(),
-            name: child_text(proto, "name").unwrap(),
+            return_type: Some(proto_cdecl.ty).filter(|ty| *ty != CType::VOID),
+            name: proto_cdecl.name.into(),
             params: node
                 .children()
                 .filter(|child| child.has_tag_name("param"))
@@ -702,7 +749,13 @@ impl Require {
     fn from_node(node: Node, api: &str) -> Require {
         let mut value = Require {
             depends: attribute(node, "depends")
-                .map(|value| (value.unwrap_borrowed().split(',').map(Depends::from_str)).collect())
+                .map(|value| {
+                    (value
+                        .unwrap_borrowed_or_leak_owned()
+                        .split(',')
+                        .map(Depends::from_str))
+                    .collect()
+                })
                 .unwrap_or_default(),
             ..Default::default()
         };
