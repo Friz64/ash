@@ -1,7 +1,9 @@
 pub mod cdecl;
+pub mod items;
 pub mod xml;
 
-use std::{fs, path::Path};
+use items::{Items, RequiredBy};
+use std::{collections::HashMap, fs, path::Path};
 use tracing::{debug, error_span};
 
 /// Holds the analysis results for easy querying.
@@ -9,6 +11,7 @@ use tracing::{debug, error_span};
 pub struct Analysis {
     vk: Library,
     video: Library,
+    items: Items,
 }
 
 impl Analysis {
@@ -16,20 +19,26 @@ impl Analysis {
     /// [Vulkan-Headers](https://github.com/KhronosGroup/Vulkan-Headers) repo.
     pub fn new(vulkan_headers_path: impl AsRef<Path>) -> Analysis {
         let vulkan_headers_path = vulkan_headers_path.as_ref();
-        Analysis {
-            vk: Library::new(vulkan_headers_path.join("registry/vk.xml")),
-            video: Library::new(vulkan_headers_path.join("registry/video.xml")),
-        }
+        let vk = Library::new(vulkan_headers_path.join("registry/vk.xml"));
+        let video = Library::new(vulkan_headers_path.join("registry/video.xml"));
+
+        let mut items = Items::default();
+        vk.collect_into(&mut items);
+        video.collect_into(&mut items);
+
+        Analysis { vk, video, items }
     }
 
-    /// Get "raw" Vulkan XML registry.
     pub fn vk_xml(&self) -> &xml::Registry {
         &self.vk.xml
     }
 
-    /// Get "raw" Vulkan Video XML registry.
     pub fn video_xml(&self) -> &xml::Registry {
         &self.video.xml
+    }
+
+    pub fn items(&self) -> &Items {
+        &self.items
     }
 }
 
@@ -49,5 +58,36 @@ impl Library {
         });
 
         Library { xml }
+    }
+
+    fn collect_into(&self, items: &mut Items) {
+        let mut types_require_map = HashMap::new();
+
+        for feature in &self.xml.features {
+            let required_by = RequiredBy::Feature {
+                major: feature.version.major,
+                minor: feature.version.minor,
+            };
+
+            for require in &feature.requires {
+                for require_type in &require.types {
+                    types_require_map.insert(require_type.name, required_by);
+                }
+            }
+        }
+
+        for extension in &self.xml.extensions {
+            let required_by = RequiredBy::Extension {
+                name: extension.name,
+            };
+
+            for require in &extension.requires {
+                for require_type in &require.types {
+                    types_require_map.insert(require_type.name, required_by);
+                }
+            }
+        }
+
+        items.collect(self, types_require_map);
     }
 }
