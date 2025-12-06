@@ -1,8 +1,8 @@
 pub mod cdecl;
-pub mod items;
+pub mod item;
 pub mod xml;
 
-use items::{Items, RequiredBy};
+use item::{Items, RequiredBy};
 use std::{collections::HashMap, fs, path::Path};
 use tracing::{debug, error_span};
 

@@ -1,8 +1,9 @@
 mod items;
+mod vfs;
 
 use analysis::{
-    items::{Origin, RequiredBy},
-    Analysis, LibraryId,
+    item::{RequiredBy as Origin, RequiredBy}, // todo
+    Analysis,
 };
 use proc_macro2::TokenStream;
 use quote::{format_ident, quote};
@@ -18,19 +19,20 @@ pub struct Destination(pub Origin);
 impl Destination {
     fn path(&self) -> PathBuf {
         let mut path = PathBuf::new();
-        path.push(self.0.library_id.to_string());
-        path.push(match self.0.required_by {
+        // path.push(self.0.library_id.to_string());
+        path.push(match self.0 {
             RequiredBy::Feature { major, minor } => format!("version{major}_{minor}.rs"),
-            RequiredBy::Extension { name } => {
-                let prefix = match self.0.library_id {
-                    LibraryId::Vk => "vk_",
-                    LibraryId::Video => "vulkan_video_",
-                };
+            RequiredBy::Extension { name: _ } => {
+                // let prefix = match self.0.library_id {
+                //     LibraryId::Vk => "vk_",
+                //     LibraryId::Video => "vulkan_video_",
+                // };
 
-                format!(
-                    "extension/{}.rs",
-                    name.to_ascii_lowercase().strip_prefix(prefix).unwrap()
-                )
+                todo!()
+                // format!(
+                //     "extension/{}.rs",
+                //     name.to_ascii_lowercase().strip_prefix(prefix).unwrap()
+                // )
             }
         });
 
