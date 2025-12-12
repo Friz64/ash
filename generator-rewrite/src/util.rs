@@ -1,10 +1,12 @@
+use heck::ToSnekCase;
 use quote::format_ident;
 use std::fmt::Display;
 use syn::Ident;
 
 /// Tries to prepend an underscore in case the name is not a valid identifier
-pub fn snake_case_escape_ident(name: &str) -> Ident {
-    syn::parse_str(name).unwrap_or_else(|_| format_ident!("_{name}"))
+pub fn to_snake_case_escape_ident(name: &str) -> Ident {
+    let snek = name.to_snek_case();
+    syn::parse_str(&snek).unwrap_or_else(|_| format_ident!("_{snek}"))
 }
 
 pub fn refpage_doc(target: &str, description: impl Display) -> String {

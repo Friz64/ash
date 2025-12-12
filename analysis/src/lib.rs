@@ -1,5 +1,7 @@
 pub mod cdecl;
+pub mod decl;
 pub mod item;
+pub mod name;
 pub mod xml;
 
 use item::Items;

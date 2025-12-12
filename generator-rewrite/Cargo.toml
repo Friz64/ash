@@ -1,7 +1,7 @@
 [package]
 name = "generator-rewrite"
 version = "2.0.0"
-edition = "2021"
+edition = "2024"
 publish = false
 
 [dependencies]
@@ -13,3 +13,5 @@ quote = { version = "1", default-features = false }
 syn = { version = "2", default-features = false, features = ["parsing"] }
 prettyplease = "0.2"
 indexmap = "2"
+petgraph = "*"
+heck = "0.5.0"
