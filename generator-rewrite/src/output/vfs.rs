@@ -29,7 +29,7 @@ impl VirtualRustFs {
     /// then removes/adds only what is necessary.
     ///
     /// This is nicer than running a `fs::remove_dir_all` and then recreating everything.
-    /// Also editors watching the file for changes will react/update correctly.
+    /// Also editors watching a file for changes will react/update correctly.
     pub fn sync_to(self, target: impl AsRef<Path>) -> io::Result<()> {
         debug!("writing {} files to disk", self.0.len());
 
@@ -81,11 +81,11 @@ impl VirtualRustFs {
         for (file_path, file_tokens) in self.0 {
             let target_path = target.join(file_path);
 
-            if let Some(parent) = target_path.parent() {
-                if !parent.exists() {
-                    trace!(?parent, "creating dir");
-                    fs::create_dir_all(parent)?;
-                }
+            if let Some(parent) = target_path.parent()
+                && !parent.exists()
+            {
+                trace!(?parent, "creating dir");
+                fs::create_dir_all(parent)?;
             }
 
             trace!(?target_path, "writing file");

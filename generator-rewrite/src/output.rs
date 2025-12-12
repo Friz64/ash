@@ -36,7 +36,7 @@ impl Destination {
                             doc_comment: format!("Extensions tagged {ext_tag}"),
                         },
                         DestinationPathComponent {
-                            module_name: util::snake_case_escape_ident(ext_name),
+                            module_name: util::to_snake_case_escape_ident(ext_name),
                             doc_comment: util::refpage_doc(name, "Vulkan extension"),
                         },
                     ]
