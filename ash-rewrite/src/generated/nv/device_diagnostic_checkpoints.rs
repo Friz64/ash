@@ -3,27 +3,27 @@
 //![Vulkan Manual Page](https://docs.vulkan.org/refpages/latest/refpages/source/VK_NV_device_diagnostic_checkpoints.html) · Vulkan extension
 #[repr(C)]
 pub struct QueueFamilyCheckpointPropertiesNV {
-    s_type: crate::vk::StructureType,
-    p_next: *mut core::ffi::c_void,
-    checkpoint_execution_stage_mask: crate::vk::PipelineStageFlags,
+    pub s_type: crate::vk::StructureType,
+    pub p_next: *mut core::ffi::c_void,
+    pub checkpoint_execution_stage_mask: crate::vk::PipelineStageFlags,
 }
 #[repr(C)]
 pub struct CheckpointDataNV {
-    s_type: crate::vk::StructureType,
-    p_next: *mut core::ffi::c_void,
-    stage: crate::vk::PipelineStageFlagBits,
-    p_checkpoint_marker: *mut core::ffi::c_void,
+    pub s_type: crate::vk::StructureType,
+    pub p_next: *mut core::ffi::c_void,
+    pub stage: crate::vk::PipelineStageFlagBits,
+    pub p_checkpoint_marker: *mut core::ffi::c_void,
 }
 #[repr(C)]
 pub struct QueueFamilyCheckpointProperties2NV {
-    s_type: crate::vk::StructureType,
-    p_next: *mut core::ffi::c_void,
-    checkpoint_execution_stage_mask: crate::vk::PipelineStageFlags2,
+    pub s_type: crate::vk::StructureType,
+    pub p_next: *mut core::ffi::c_void,
+    pub checkpoint_execution_stage_mask: crate::vk::PipelineStageFlags2,
 }
 #[repr(C)]
 pub struct CheckpointData2NV {
-    s_type: crate::vk::StructureType,
-    p_next: *mut core::ffi::c_void,
-    stage: crate::vk::PipelineStageFlags2,
-    p_checkpoint_marker: *mut core::ffi::c_void,
+    pub s_type: crate::vk::StructureType,
+    pub p_next: *mut core::ffi::c_void,
+    pub stage: crate::vk::PipelineStageFlags2,
+    pub p_checkpoint_marker: *mut core::ffi::c_void,
 }

@@ -3,87 +3,87 @@
 //![Vulkan Manual Page](https://docs.vulkan.org/refpages/latest/refpages/source/VK_AMD_shader_core_properties.html) · Vulkan extension
 #[repr(C)]
 pub struct PhysicalDeviceShaderCorePropertiesAMD {
-    s_type: crate::vk::StructureType,
-    p_next: *mut core::ffi::c_void,
-    shader_engine_count: crate::External<
+    pub s_type: crate::vk::StructureType,
+    pub p_next: *mut core::ffi::c_void,
+    pub shader_engine_count: crate::External<
         {
             "uint32_t";
             0
         },
     >,
-    shader_arrays_per_engine_count: crate::External<
+    pub shader_arrays_per_engine_count: crate::External<
         {
             "uint32_t";
             0
         },
     >,
-    compute_units_per_shader_array: crate::External<
+    pub compute_units_per_shader_array: crate::External<
         {
             "uint32_t";
             0
         },
     >,
-    simd_per_compute_unit: crate::External<
+    pub simd_per_compute_unit: crate::External<
         {
             "uint32_t";
             0
         },
     >,
-    wavefronts_per_simd: crate::External<
+    pub wavefronts_per_simd: crate::External<
         {
             "uint32_t";
             0
         },
     >,
-    wavefront_size: crate::External<
+    pub wavefront_size: crate::External<
         {
             "uint32_t";
             0
         },
     >,
-    sgprs_per_simd: crate::External<
+    pub sgprs_per_simd: crate::External<
         {
             "uint32_t";
             0
         },
     >,
-    min_sgpr_allocation: crate::External<
+    pub min_sgpr_allocation: crate::External<
         {
             "uint32_t";
             0
         },
     >,
-    max_sgpr_allocation: crate::External<
+    pub max_sgpr_allocation: crate::External<
         {
             "uint32_t";
             0
         },
     >,
-    sgpr_allocation_granularity: crate::External<
+    pub sgpr_allocation_granularity: crate::External<
         {
             "uint32_t";
             0
         },
     >,
-    vgprs_per_simd: crate::External<
+    pub vgprs_per_simd: crate::External<
         {
             "uint32_t";
             0
         },
     >,
-    min_vgpr_allocation: crate::External<
+    pub min_vgpr_allocation: crate::External<
         {
             "uint32_t";
             0
         },
     >,
-    max_vgpr_allocation: crate::External<
+    pub max_vgpr_allocation: crate::External<
         {
             "uint32_t";
             0
         },
     >,
-    vgpr_allocation_granularity: crate::External<
+    pub vgpr_allocation_granularity: crate::External<
         {
             "uint32_t";
             0

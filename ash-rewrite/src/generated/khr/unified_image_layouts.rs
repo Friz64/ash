@@ -3,14 +3,14 @@
 //![Vulkan Manual Page](https://docs.vulkan.org/refpages/latest/refpages/source/VK_KHR_unified_image_layouts.html) · Vulkan extension
 #[repr(C)]
 pub struct PhysicalDeviceUnifiedImageLayoutsFeaturesKHR {
-    s_type: crate::vk::StructureType,
-    p_next: *mut core::ffi::c_void,
-    unified_image_layouts: crate::vk::Bool32,
-    unified_image_layouts_video: crate::vk::Bool32,
+    pub s_type: crate::vk::StructureType,
+    pub p_next: *mut core::ffi::c_void,
+    pub unified_image_layouts: crate::vk::Bool32,
+    pub unified_image_layouts_video: crate::vk::Bool32,
 }
 #[repr(C)]
 pub struct AttachmentFeedbackLoopInfoEXT {
-    s_type: crate::vk::StructureType,
-    p_next: *const core::ffi::c_void,
-    feedback_loop_enable: crate::vk::Bool32,
+    pub s_type: crate::vk::StructureType,
+    pub p_next: *const core::ffi::c_void,
+    pub feedback_loop_enable: crate::vk::Bool32,
 }

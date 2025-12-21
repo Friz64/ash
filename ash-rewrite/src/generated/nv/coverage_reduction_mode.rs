@@ -3,25 +3,27 @@
 //![Vulkan Manual Page](https://docs.vulkan.org/refpages/latest/refpages/source/VK_NV_coverage_reduction_mode.html) · Vulkan extension
 #[repr(C)]
 pub struct PhysicalDeviceCoverageReductionModeFeaturesNV {
-    s_type: crate::vk::StructureType,
-    p_next: *mut core::ffi::c_void,
-    coverage_reduction_mode: crate::vk::Bool32,
+    pub s_type: crate::vk::StructureType,
+    pub p_next: *mut core::ffi::c_void,
+    pub coverage_reduction_mode: crate::vk::Bool32,
 }
 #[repr(C)]
 pub struct PipelineCoverageReductionStateCreateInfoNV {
-    s_type: crate::vk::StructureType,
-    p_next: *const core::ffi::c_void,
-    flags: crate::vk::PipelineCoverageReductionStateCreateFlagsNV,
-    coverage_reduction_mode: crate::vk::CoverageReductionModeNV,
+    pub s_type: crate::vk::StructureType,
+    pub p_next: *const core::ffi::c_void,
+    pub flags: crate::vk::PipelineCoverageReductionStateCreateFlagsNV,
+    pub coverage_reduction_mode: crate::vk::CoverageReductionModeNV,
 }
 #[repr(C)]
 pub struct FramebufferMixedSamplesCombinationNV {
-    s_type: crate::vk::StructureType,
-    p_next: *mut core::ffi::c_void,
-    coverage_reduction_mode: crate::vk::CoverageReductionModeNV,
-    rasterization_samples: crate::vk::SampleCountFlagBits,
-    depth_stencil_samples: crate::vk::SampleCountFlags,
-    color_samples: crate::vk::SampleCountFlags,
+    pub s_type: crate::vk::StructureType,
+    pub p_next: *mut core::ffi::c_void,
+    pub coverage_reduction_mode: crate::vk::CoverageReductionModeNV,
+    pub rasterization_samples: crate::vk::SampleCountFlagBits,
+    pub depth_stencil_samples: crate::vk::SampleCountFlags,
+    pub color_samples: crate::vk::SampleCountFlags,
 }
 #[repr(C)]
 pub struct CoverageReductionModeNV {}
+#[repr(C)]
+pub struct PipelineCoverageReductionStateCreateFlagsNV {}

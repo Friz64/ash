@@ -3,16 +3,16 @@
 //![Vulkan Manual Page](https://docs.vulkan.org/refpages/latest/refpages/source/VK_EXT_debug_marker.html) · Vulkan extension
 #[repr(C)]
 pub struct DebugMarkerObjectNameInfoEXT {
-    s_type: crate::vk::StructureType,
-    p_next: *const core::ffi::c_void,
-    object_type: crate::vk::DebugReportObjectTypeEXT,
-    object: crate::External<
+    pub s_type: crate::vk::StructureType,
+    pub p_next: *const core::ffi::c_void,
+    pub object_type: crate::vk::DebugReportObjectTypeEXT,
+    pub object: crate::External<
         {
             "uint64_t";
             0
         },
     >,
-    p_object_name: *const crate::External<
+    pub p_object_name: *const crate::External<
         {
             "char";
             0
@@ -21,40 +21,40 @@ pub struct DebugMarkerObjectNameInfoEXT {
 }
 #[repr(C)]
 pub struct DebugMarkerObjectTagInfoEXT {
-    s_type: crate::vk::StructureType,
-    p_next: *const core::ffi::c_void,
-    object_type: crate::vk::DebugReportObjectTypeEXT,
-    object: crate::External<
+    pub s_type: crate::vk::StructureType,
+    pub p_next: *const core::ffi::c_void,
+    pub object_type: crate::vk::DebugReportObjectTypeEXT,
+    pub object: crate::External<
         {
             "uint64_t";
             0
         },
     >,
-    tag_name: crate::External<
+    pub tag_name: crate::External<
         {
             "uint64_t";
             0
         },
     >,
-    tag_size: crate::External<
+    pub tag_size: crate::External<
         {
             "size_t";
             0
         },
     >,
-    p_tag: *const core::ffi::c_void,
+    pub p_tag: *const core::ffi::c_void,
 }
 #[repr(C)]
 pub struct DebugMarkerMarkerInfoEXT {
-    s_type: crate::vk::StructureType,
-    p_next: *const core::ffi::c_void,
-    p_marker_name: *const crate::External<
+    pub s_type: crate::vk::StructureType,
+    pub p_next: *const core::ffi::c_void,
+    pub p_marker_name: *const crate::External<
         {
             "char";
             0
         },
     >,
-    color: [crate::External<
+    pub color: [crate::External<
         {
             "float";
             0

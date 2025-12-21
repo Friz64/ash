@@ -3,20 +3,20 @@
 //![Vulkan Manual Page](https://docs.vulkan.org/refpages/latest/refpages/source/VK_NV_inherited_viewport_scissor.html) · Vulkan extension
 #[repr(C)]
 pub struct PhysicalDeviceInheritedViewportScissorFeaturesNV {
-    s_type: crate::vk::StructureType,
-    p_next: *mut core::ffi::c_void,
-    inherited_viewport_scissor2_d: crate::vk::Bool32,
+    pub s_type: crate::vk::StructureType,
+    pub p_next: *mut core::ffi::c_void,
+    pub inherited_viewport_scissor2_d: crate::vk::Bool32,
 }
 #[repr(C)]
 pub struct CommandBufferInheritanceViewportScissorInfoNV {
-    s_type: crate::vk::StructureType,
-    p_next: *const core::ffi::c_void,
-    viewport_scissor2_d: crate::vk::Bool32,
-    viewport_depth_count: crate::External<
+    pub s_type: crate::vk::StructureType,
+    pub p_next: *const core::ffi::c_void,
+    pub viewport_scissor2_d: crate::vk::Bool32,
+    pub viewport_depth_count: crate::External<
         {
             "uint32_t";
             0
         },
     >,
-    p_viewport_depths: *const crate::vk::Viewport,
+    pub p_viewport_depths: *const crate::vk::Viewport,
 }

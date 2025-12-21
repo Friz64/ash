@@ -3,19 +3,21 @@
 //![Vulkan Manual Page](https://docs.vulkan.org/refpages/latest/refpages/source/VK_KHR_win32_surface.html) · Vulkan extension
 #[repr(C)]
 pub struct Win32SurfaceCreateInfoKHR {
-    s_type: crate::vk::StructureType,
-    p_next: *const core::ffi::c_void,
-    flags: crate::vk::Win32SurfaceCreateFlagsKHR,
-    hinstance: crate::External<
+    pub s_type: crate::vk::StructureType,
+    pub p_next: *const core::ffi::c_void,
+    pub flags: crate::vk::Win32SurfaceCreateFlagsKHR,
+    pub hinstance: crate::External<
         {
             "HINSTANCE";
             0
         },
     >,
-    hwnd: crate::External<
+    pub hwnd: crate::External<
         {
             "HWND";
             0
         },
     >,
 }
+#[repr(C)]
+pub struct Win32SurfaceCreateFlagsKHR {}

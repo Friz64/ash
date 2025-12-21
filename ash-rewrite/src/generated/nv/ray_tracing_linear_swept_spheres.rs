@@ -3,40 +3,40 @@
 //![Vulkan Manual Page](https://docs.vulkan.org/refpages/latest/refpages/source/VK_NV_ray_tracing_linear_swept_spheres.html) · Vulkan extension
 #[repr(C)]
 pub struct AccelerationStructureGeometryLinearSweptSpheresDataNV {
-    s_type: crate::vk::StructureType,
-    p_next: *const core::ffi::c_void,
-    vertex_format: crate::vk::Format,
-    vertex_data: crate::vk::DeviceOrHostAddressConstKHR,
-    vertex_stride: crate::vk::DeviceSize,
-    radius_format: crate::vk::Format,
-    radius_data: crate::vk::DeviceOrHostAddressConstKHR,
-    radius_stride: crate::vk::DeviceSize,
-    index_type: crate::vk::IndexType,
-    index_data: crate::vk::DeviceOrHostAddressConstKHR,
-    index_stride: crate::vk::DeviceSize,
-    indexing_mode: crate::vk::RayTracingLssIndexingModeNV,
-    end_caps_mode: crate::vk::RayTracingLssPrimitiveEndCapsModeNV,
+    pub s_type: crate::vk::StructureType,
+    pub p_next: *const core::ffi::c_void,
+    pub vertex_format: crate::vk::Format,
+    pub vertex_data: crate::vk::DeviceOrHostAddressConstKHR,
+    pub vertex_stride: crate::vk::DeviceSize,
+    pub radius_format: crate::vk::Format,
+    pub radius_data: crate::vk::DeviceOrHostAddressConstKHR,
+    pub radius_stride: crate::vk::DeviceSize,
+    pub index_type: crate::vk::IndexType,
+    pub index_data: crate::vk::DeviceOrHostAddressConstKHR,
+    pub index_stride: crate::vk::DeviceSize,
+    pub indexing_mode: crate::vk::RayTracingLssIndexingModeNV,
+    pub end_caps_mode: crate::vk::RayTracingLssPrimitiveEndCapsModeNV,
 }
 #[repr(C)]
 pub struct AccelerationStructureGeometrySpheresDataNV {
-    s_type: crate::vk::StructureType,
-    p_next: *const core::ffi::c_void,
-    vertex_format: crate::vk::Format,
-    vertex_data: crate::vk::DeviceOrHostAddressConstKHR,
-    vertex_stride: crate::vk::DeviceSize,
-    radius_format: crate::vk::Format,
-    radius_data: crate::vk::DeviceOrHostAddressConstKHR,
-    radius_stride: crate::vk::DeviceSize,
-    index_type: crate::vk::IndexType,
-    index_data: crate::vk::DeviceOrHostAddressConstKHR,
-    index_stride: crate::vk::DeviceSize,
+    pub s_type: crate::vk::StructureType,
+    pub p_next: *const core::ffi::c_void,
+    pub vertex_format: crate::vk::Format,
+    pub vertex_data: crate::vk::DeviceOrHostAddressConstKHR,
+    pub vertex_stride: crate::vk::DeviceSize,
+    pub radius_format: crate::vk::Format,
+    pub radius_data: crate::vk::DeviceOrHostAddressConstKHR,
+    pub radius_stride: crate::vk::DeviceSize,
+    pub index_type: crate::vk::IndexType,
+    pub index_data: crate::vk::DeviceOrHostAddressConstKHR,
+    pub index_stride: crate::vk::DeviceSize,
 }
 #[repr(C)]
 pub struct PhysicalDeviceRayTracingLinearSweptSpheresFeaturesNV {
-    s_type: crate::vk::StructureType,
-    p_next: *mut core::ffi::c_void,
-    spheres: crate::vk::Bool32,
-    linear_swept_spheres: crate::vk::Bool32,
+    pub s_type: crate::vk::StructureType,
+    pub p_next: *mut core::ffi::c_void,
+    pub spheres: crate::vk::Bool32,
+    pub linear_swept_spheres: crate::vk::Bool32,
 }
 #[repr(C)]
 pub struct RayTracingLssIndexingModeNV {}

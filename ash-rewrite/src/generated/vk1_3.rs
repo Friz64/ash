@@ -3,9 +3,9 @@
 //!Vulkan version 1.3
 #[repr(C)]
 pub struct DevicePrivateDataCreateInfo {
-    s_type: crate::vk::StructureType,
-    p_next: *const core::ffi::c_void,
-    private_data_slot_request_count: crate::External<
+    pub s_type: crate::vk::StructureType,
+    pub p_next: *const core::ffi::c_void,
+    pub private_data_slot_request_count: crate::External<
         {
             "uint32_t";
             0
@@ -14,65 +14,65 @@ pub struct DevicePrivateDataCreateInfo {
 }
 #[repr(C)]
 pub struct PrivateDataSlotCreateInfo {
-    s_type: crate::vk::StructureType,
-    p_next: *const core::ffi::c_void,
-    flags: crate::vk::PrivateDataSlotCreateFlags,
+    pub s_type: crate::vk::StructureType,
+    pub p_next: *const core::ffi::c_void,
+    pub flags: crate::vk::PrivateDataSlotCreateFlags,
 }
 #[repr(C)]
 pub struct PhysicalDevicePrivateDataFeatures {
-    s_type: crate::vk::StructureType,
-    p_next: *mut core::ffi::c_void,
-    private_data: crate::vk::Bool32,
+    pub s_type: crate::vk::StructureType,
+    pub p_next: *mut core::ffi::c_void,
+    pub private_data: crate::vk::Bool32,
 }
 #[repr(C)]
 pub struct DeviceBufferMemoryRequirements {
-    s_type: crate::vk::StructureType,
-    p_next: *const core::ffi::c_void,
-    p_create_info: *const crate::vk::BufferCreateInfo,
+    pub s_type: crate::vk::StructureType,
+    pub p_next: *const core::ffi::c_void,
+    pub p_create_info: *const crate::vk::BufferCreateInfo,
 }
 #[repr(C)]
 pub struct DeviceImageMemoryRequirements {
-    s_type: crate::vk::StructureType,
-    p_next: *const core::ffi::c_void,
-    p_create_info: *const crate::vk::ImageCreateInfo,
-    plane_aspect: crate::vk::ImageAspectFlagBits,
+    pub s_type: crate::vk::StructureType,
+    pub p_next: *const core::ffi::c_void,
+    pub p_create_info: *const crate::vk::ImageCreateInfo,
+    pub plane_aspect: crate::vk::ImageAspectFlagBits,
 }
 #[repr(C)]
 pub struct PhysicalDeviceInlineUniformBlockFeatures {
-    s_type: crate::vk::StructureType,
-    p_next: *mut core::ffi::c_void,
-    inline_uniform_block: crate::vk::Bool32,
-    descriptor_binding_inline_uniform_block_update_after_bind: crate::vk::Bool32,
+    pub s_type: crate::vk::StructureType,
+    pub p_next: *mut core::ffi::c_void,
+    pub inline_uniform_block: crate::vk::Bool32,
+    pub descriptor_binding_inline_uniform_block_update_after_bind: crate::vk::Bool32,
 }
 #[repr(C)]
 pub struct PhysicalDeviceInlineUniformBlockProperties {
-    s_type: crate::vk::StructureType,
-    p_next: *mut core::ffi::c_void,
-    max_inline_uniform_block_size: crate::External<
+    pub s_type: crate::vk::StructureType,
+    pub p_next: *mut core::ffi::c_void,
+    pub max_inline_uniform_block_size: crate::External<
         {
             "uint32_t";
             0
         },
     >,
-    max_per_stage_descriptor_inline_uniform_blocks: crate::External<
+    pub max_per_stage_descriptor_inline_uniform_blocks: crate::External<
         {
             "uint32_t";
             0
         },
     >,
-    max_per_stage_descriptor_update_after_bind_inline_uniform_blocks: crate::External<
+    pub max_per_stage_descriptor_update_after_bind_inline_uniform_blocks: crate::External<
         {
             "uint32_t";
             0
         },
     >,
-    max_descriptor_set_inline_uniform_blocks: crate::External<
+    pub max_descriptor_set_inline_uniform_blocks: crate::External<
         {
             "uint32_t";
             0
         },
     >,
-    max_descriptor_set_update_after_bind_inline_uniform_blocks: crate::External<
+    pub max_descriptor_set_update_after_bind_inline_uniform_blocks: crate::External<
         {
             "uint32_t";
             0
@@ -81,21 +81,21 @@ pub struct PhysicalDeviceInlineUniformBlockProperties {
 }
 #[repr(C)]
 pub struct WriteDescriptorSetInlineUniformBlock {
-    s_type: crate::vk::StructureType,
-    p_next: *const core::ffi::c_void,
-    data_size: crate::External<
+    pub s_type: crate::vk::StructureType,
+    pub p_next: *const core::ffi::c_void,
+    pub data_size: crate::External<
         {
             "uint32_t";
             0
         },
     >,
-    p_data: *const core::ffi::c_void,
+    pub p_data: *const core::ffi::c_void,
 }
 #[repr(C)]
 pub struct DescriptorPoolInlineUniformBlockCreateInfo {
-    s_type: crate::vk::StructureType,
-    p_next: *const core::ffi::c_void,
-    max_inline_uniform_block_bindings: crate::External<
+    pub s_type: crate::vk::StructureType,
+    pub p_next: *const core::ffi::c_void,
+    pub max_inline_uniform_block_bindings: crate::External<
         {
             "uint32_t";
             0
@@ -104,26 +104,26 @@ pub struct DescriptorPoolInlineUniformBlockCreateInfo {
 }
 #[repr(C)]
 pub struct PhysicalDeviceMaintenance4Features {
-    s_type: crate::vk::StructureType,
-    p_next: *mut core::ffi::c_void,
-    maintenance4: crate::vk::Bool32,
+    pub s_type: crate::vk::StructureType,
+    pub p_next: *mut core::ffi::c_void,
+    pub maintenance4: crate::vk::Bool32,
 }
 #[repr(C)]
 pub struct PhysicalDeviceMaintenance4Properties {
-    s_type: crate::vk::StructureType,
-    p_next: *mut core::ffi::c_void,
-    max_buffer_size: crate::vk::DeviceSize,
+    pub s_type: crate::vk::StructureType,
+    pub p_next: *mut core::ffi::c_void,
+    pub max_buffer_size: crate::vk::DeviceSize,
 }
 #[repr(C)]
 pub struct PhysicalDeviceTextureCompressionASTCHDRFeatures {
-    s_type: crate::vk::StructureType,
-    p_next: *mut core::ffi::c_void,
-    texture_compression_astc_hdr: crate::vk::Bool32,
+    pub s_type: crate::vk::StructureType,
+    pub p_next: *mut core::ffi::c_void,
+    pub texture_compression_astc_hdr: crate::vk::Bool32,
 }
 #[repr(C)]
 pub struct PipelineCreationFeedback {
-    flags: crate::vk::PipelineCreationFeedbackFlags,
-    duration: crate::External<
+    pub flags: crate::vk::PipelineCreationFeedbackFlags,
+    pub duration: crate::External<
         {
             "uint64_t";
             0
@@ -132,68 +132,68 @@ pub struct PipelineCreationFeedback {
 }
 #[repr(C)]
 pub struct PipelineCreationFeedbackCreateInfo {
-    s_type: crate::vk::StructureType,
-    p_next: *const core::ffi::c_void,
-    p_pipeline_creation_feedback: *mut crate::vk::PipelineCreationFeedback,
-    pipeline_stage_creation_feedback_count: crate::External<
+    pub s_type: crate::vk::StructureType,
+    pub p_next: *const core::ffi::c_void,
+    pub p_pipeline_creation_feedback: *mut crate::vk::PipelineCreationFeedback,
+    pub pipeline_stage_creation_feedback_count: crate::External<
         {
             "uint32_t";
             0
         },
     >,
-    p_pipeline_stage_creation_feedbacks: *mut crate::vk::PipelineCreationFeedback,
+    pub p_pipeline_stage_creation_feedbacks: *mut crate::vk::PipelineCreationFeedback,
 }
 #[repr(C)]
 pub struct PhysicalDeviceShaderDemoteToHelperInvocationFeatures {
-    s_type: crate::vk::StructureType,
-    p_next: *mut core::ffi::c_void,
-    shader_demote_to_helper_invocation: crate::vk::Bool32,
+    pub s_type: crate::vk::StructureType,
+    pub p_next: *mut core::ffi::c_void,
+    pub shader_demote_to_helper_invocation: crate::vk::Bool32,
 }
 #[repr(C)]
 pub struct PhysicalDeviceTexelBufferAlignmentProperties {
-    s_type: crate::vk::StructureType,
-    p_next: *mut core::ffi::c_void,
-    storage_texel_buffer_offset_alignment_bytes: crate::vk::DeviceSize,
-    storage_texel_buffer_offset_single_texel_alignment: crate::vk::Bool32,
-    uniform_texel_buffer_offset_alignment_bytes: crate::vk::DeviceSize,
-    uniform_texel_buffer_offset_single_texel_alignment: crate::vk::Bool32,
+    pub s_type: crate::vk::StructureType,
+    pub p_next: *mut core::ffi::c_void,
+    pub storage_texel_buffer_offset_alignment_bytes: crate::vk::DeviceSize,
+    pub storage_texel_buffer_offset_single_texel_alignment: crate::vk::Bool32,
+    pub uniform_texel_buffer_offset_alignment_bytes: crate::vk::DeviceSize,
+    pub uniform_texel_buffer_offset_single_texel_alignment: crate::vk::Bool32,
 }
 #[repr(C)]
 pub struct PhysicalDeviceSubgroupSizeControlFeatures {
-    s_type: crate::vk::StructureType,
-    p_next: *mut core::ffi::c_void,
-    subgroup_size_control: crate::vk::Bool32,
-    compute_full_subgroups: crate::vk::Bool32,
+    pub s_type: crate::vk::StructureType,
+    pub p_next: *mut core::ffi::c_void,
+    pub subgroup_size_control: crate::vk::Bool32,
+    pub compute_full_subgroups: crate::vk::Bool32,
 }
 #[repr(C)]
 pub struct PhysicalDeviceSubgroupSizeControlProperties {
-    s_type: crate::vk::StructureType,
-    p_next: *mut core::ffi::c_void,
-    min_subgroup_size: crate::External<
+    pub s_type: crate::vk::StructureType,
+    pub p_next: *mut core::ffi::c_void,
+    pub min_subgroup_size: crate::External<
         {
             "uint32_t";
             0
         },
     >,
-    max_subgroup_size: crate::External<
+    pub max_subgroup_size: crate::External<
         {
             "uint32_t";
             0
         },
     >,
-    max_compute_workgroup_subgroups: crate::External<
+    pub max_compute_workgroup_subgroups: crate::External<
         {
             "uint32_t";
             0
         },
     >,
-    required_subgroup_size_stages: crate::vk::ShaderStageFlags,
+    pub required_subgroup_size_stages: crate::vk::ShaderStageFlags,
 }
 #[repr(C)]
 pub struct PipelineShaderStageRequiredSubgroupSizeCreateInfo {
-    s_type: crate::vk::StructureType,
-    p_next: *const core::ffi::c_void,
-    required_subgroup_size: crate::External<
+    pub s_type: crate::vk::StructureType,
+    pub p_next: *const core::ffi::c_void,
+    pub required_subgroup_size: crate::External<
         {
             "uint32_t";
             0
@@ -202,149 +202,149 @@ pub struct PipelineShaderStageRequiredSubgroupSizeCreateInfo {
 }
 #[repr(C)]
 pub struct PhysicalDevicePipelineCreationCacheControlFeatures {
-    s_type: crate::vk::StructureType,
-    p_next: *mut core::ffi::c_void,
-    pipeline_creation_cache_control: crate::vk::Bool32,
+    pub s_type: crate::vk::StructureType,
+    pub p_next: *mut core::ffi::c_void,
+    pub pipeline_creation_cache_control: crate::vk::Bool32,
 }
 #[repr(C)]
 pub struct PhysicalDeviceVulkan13Features {
-    s_type: crate::vk::StructureType,
-    p_next: *mut core::ffi::c_void,
-    robust_image_access: crate::vk::Bool32,
-    inline_uniform_block: crate::vk::Bool32,
-    descriptor_binding_inline_uniform_block_update_after_bind: crate::vk::Bool32,
-    pipeline_creation_cache_control: crate::vk::Bool32,
-    private_data: crate::vk::Bool32,
-    shader_demote_to_helper_invocation: crate::vk::Bool32,
-    shader_terminate_invocation: crate::vk::Bool32,
-    subgroup_size_control: crate::vk::Bool32,
-    compute_full_subgroups: crate::vk::Bool32,
-    synchronization2: crate::vk::Bool32,
-    texture_compression_astc_hdr: crate::vk::Bool32,
-    shader_zero_initialize_workgroup_memory: crate::vk::Bool32,
-    dynamic_rendering: crate::vk::Bool32,
-    shader_integer_dot_product: crate::vk::Bool32,
-    maintenance4: crate::vk::Bool32,
+    pub s_type: crate::vk::StructureType,
+    pub p_next: *mut core::ffi::c_void,
+    pub robust_image_access: crate::vk::Bool32,
+    pub inline_uniform_block: crate::vk::Bool32,
+    pub descriptor_binding_inline_uniform_block_update_after_bind: crate::vk::Bool32,
+    pub pipeline_creation_cache_control: crate::vk::Bool32,
+    pub private_data: crate::vk::Bool32,
+    pub shader_demote_to_helper_invocation: crate::vk::Bool32,
+    pub shader_terminate_invocation: crate::vk::Bool32,
+    pub subgroup_size_control: crate::vk::Bool32,
+    pub compute_full_subgroups: crate::vk::Bool32,
+    pub synchronization2: crate::vk::Bool32,
+    pub texture_compression_astc_hdr: crate::vk::Bool32,
+    pub shader_zero_initialize_workgroup_memory: crate::vk::Bool32,
+    pub dynamic_rendering: crate::vk::Bool32,
+    pub shader_integer_dot_product: crate::vk::Bool32,
+    pub maintenance4: crate::vk::Bool32,
 }
 #[repr(C)]
 pub struct PhysicalDeviceVulkan13Properties {
-    s_type: crate::vk::StructureType,
-    p_next: *mut core::ffi::c_void,
-    min_subgroup_size: crate::External<
+    pub s_type: crate::vk::StructureType,
+    pub p_next: *mut core::ffi::c_void,
+    pub min_subgroup_size: crate::External<
         {
             "uint32_t";
             0
         },
     >,
-    max_subgroup_size: crate::External<
+    pub max_subgroup_size: crate::External<
         {
             "uint32_t";
             0
         },
     >,
-    max_compute_workgroup_subgroups: crate::External<
+    pub max_compute_workgroup_subgroups: crate::External<
         {
             "uint32_t";
             0
         },
     >,
-    required_subgroup_size_stages: crate::vk::ShaderStageFlags,
-    max_inline_uniform_block_size: crate::External<
+    pub required_subgroup_size_stages: crate::vk::ShaderStageFlags,
+    pub max_inline_uniform_block_size: crate::External<
         {
             "uint32_t";
             0
         },
     >,
-    max_per_stage_descriptor_inline_uniform_blocks: crate::External<
+    pub max_per_stage_descriptor_inline_uniform_blocks: crate::External<
         {
             "uint32_t";
             0
         },
     >,
-    max_per_stage_descriptor_update_after_bind_inline_uniform_blocks: crate::External<
+    pub max_per_stage_descriptor_update_after_bind_inline_uniform_blocks: crate::External<
         {
             "uint32_t";
             0
         },
     >,
-    max_descriptor_set_inline_uniform_blocks: crate::External<
+    pub max_descriptor_set_inline_uniform_blocks: crate::External<
         {
             "uint32_t";
             0
         },
     >,
-    max_descriptor_set_update_after_bind_inline_uniform_blocks: crate::External<
+    pub max_descriptor_set_update_after_bind_inline_uniform_blocks: crate::External<
         {
             "uint32_t";
             0
         },
     >,
-    max_inline_uniform_total_size: crate::External<
+    pub max_inline_uniform_total_size: crate::External<
         {
             "uint32_t";
             0
         },
     >,
-    integer_dot_product8_bit_unsigned_accelerated: crate::vk::Bool32,
-    integer_dot_product8_bit_signed_accelerated: crate::vk::Bool32,
-    integer_dot_product8_bit_mixed_signedness_accelerated: crate::vk::Bool32,
-    integer_dot_product4x8_bit_packed_unsigned_accelerated: crate::vk::Bool32,
-    integer_dot_product4x8_bit_packed_signed_accelerated: crate::vk::Bool32,
-    integer_dot_product4x8_bit_packed_mixed_signedness_accelerated: crate::vk::Bool32,
-    integer_dot_product16_bit_unsigned_accelerated: crate::vk::Bool32,
-    integer_dot_product16_bit_signed_accelerated: crate::vk::Bool32,
-    integer_dot_product16_bit_mixed_signedness_accelerated: crate::vk::Bool32,
-    integer_dot_product32_bit_unsigned_accelerated: crate::vk::Bool32,
-    integer_dot_product32_bit_signed_accelerated: crate::vk::Bool32,
-    integer_dot_product32_bit_mixed_signedness_accelerated: crate::vk::Bool32,
-    integer_dot_product64_bit_unsigned_accelerated: crate::vk::Bool32,
-    integer_dot_product64_bit_signed_accelerated: crate::vk::Bool32,
-    integer_dot_product64_bit_mixed_signedness_accelerated: crate::vk::Bool32,
-    integer_dot_product_accumulating_saturating8_bit_unsigned_accelerated: crate::vk::Bool32,
-    integer_dot_product_accumulating_saturating8_bit_signed_accelerated: crate::vk::Bool32,
-    integer_dot_product_accumulating_saturating8_bit_mixed_signedness_accelerated: crate::vk::Bool32,
-    integer_dot_product_accumulating_saturating4x8_bit_packed_unsigned_accelerated: crate::vk::Bool32,
-    integer_dot_product_accumulating_saturating4x8_bit_packed_signed_accelerated: crate::vk::Bool32,
-    integer_dot_product_accumulating_saturating4x8_bit_packed_mixed_signedness_accelerated: crate::vk::Bool32,
-    integer_dot_product_accumulating_saturating16_bit_unsigned_accelerated: crate::vk::Bool32,
-    integer_dot_product_accumulating_saturating16_bit_signed_accelerated: crate::vk::Bool32,
-    integer_dot_product_accumulating_saturating16_bit_mixed_signedness_accelerated: crate::vk::Bool32,
-    integer_dot_product_accumulating_saturating32_bit_unsigned_accelerated: crate::vk::Bool32,
-    integer_dot_product_accumulating_saturating32_bit_signed_accelerated: crate::vk::Bool32,
-    integer_dot_product_accumulating_saturating32_bit_mixed_signedness_accelerated: crate::vk::Bool32,
-    integer_dot_product_accumulating_saturating64_bit_unsigned_accelerated: crate::vk::Bool32,
-    integer_dot_product_accumulating_saturating64_bit_signed_accelerated: crate::vk::Bool32,
-    integer_dot_product_accumulating_saturating64_bit_mixed_signedness_accelerated: crate::vk::Bool32,
-    storage_texel_buffer_offset_alignment_bytes: crate::vk::DeviceSize,
-    storage_texel_buffer_offset_single_texel_alignment: crate::vk::Bool32,
-    uniform_texel_buffer_offset_alignment_bytes: crate::vk::DeviceSize,
-    uniform_texel_buffer_offset_single_texel_alignment: crate::vk::Bool32,
-    max_buffer_size: crate::vk::DeviceSize,
+    pub integer_dot_product8_bit_unsigned_accelerated: crate::vk::Bool32,
+    pub integer_dot_product8_bit_signed_accelerated: crate::vk::Bool32,
+    pub integer_dot_product8_bit_mixed_signedness_accelerated: crate::vk::Bool32,
+    pub integer_dot_product4x8_bit_packed_unsigned_accelerated: crate::vk::Bool32,
+    pub integer_dot_product4x8_bit_packed_signed_accelerated: crate::vk::Bool32,
+    pub integer_dot_product4x8_bit_packed_mixed_signedness_accelerated: crate::vk::Bool32,
+    pub integer_dot_product16_bit_unsigned_accelerated: crate::vk::Bool32,
+    pub integer_dot_product16_bit_signed_accelerated: crate::vk::Bool32,
+    pub integer_dot_product16_bit_mixed_signedness_accelerated: crate::vk::Bool32,
+    pub integer_dot_product32_bit_unsigned_accelerated: crate::vk::Bool32,
+    pub integer_dot_product32_bit_signed_accelerated: crate::vk::Bool32,
+    pub integer_dot_product32_bit_mixed_signedness_accelerated: crate::vk::Bool32,
+    pub integer_dot_product64_bit_unsigned_accelerated: crate::vk::Bool32,
+    pub integer_dot_product64_bit_signed_accelerated: crate::vk::Bool32,
+    pub integer_dot_product64_bit_mixed_signedness_accelerated: crate::vk::Bool32,
+    pub integer_dot_product_accumulating_saturating8_bit_unsigned_accelerated: crate::vk::Bool32,
+    pub integer_dot_product_accumulating_saturating8_bit_signed_accelerated: crate::vk::Bool32,
+    pub integer_dot_product_accumulating_saturating8_bit_mixed_signedness_accelerated: crate::vk::Bool32,
+    pub integer_dot_product_accumulating_saturating4x8_bit_packed_unsigned_accelerated: crate::vk::Bool32,
+    pub integer_dot_product_accumulating_saturating4x8_bit_packed_signed_accelerated: crate::vk::Bool32,
+    pub integer_dot_product_accumulating_saturating4x8_bit_packed_mixed_signedness_accelerated: crate::vk::Bool32,
+    pub integer_dot_product_accumulating_saturating16_bit_unsigned_accelerated: crate::vk::Bool32,
+    pub integer_dot_product_accumulating_saturating16_bit_signed_accelerated: crate::vk::Bool32,
+    pub integer_dot_product_accumulating_saturating16_bit_mixed_signedness_accelerated: crate::vk::Bool32,
+    pub integer_dot_product_accumulating_saturating32_bit_unsigned_accelerated: crate::vk::Bool32,
+    pub integer_dot_product_accumulating_saturating32_bit_signed_accelerated: crate::vk::Bool32,
+    pub integer_dot_product_accumulating_saturating32_bit_mixed_signedness_accelerated: crate::vk::Bool32,
+    pub integer_dot_product_accumulating_saturating64_bit_unsigned_accelerated: crate::vk::Bool32,
+    pub integer_dot_product_accumulating_saturating64_bit_signed_accelerated: crate::vk::Bool32,
+    pub integer_dot_product_accumulating_saturating64_bit_mixed_signedness_accelerated: crate::vk::Bool32,
+    pub storage_texel_buffer_offset_alignment_bytes: crate::vk::DeviceSize,
+    pub storage_texel_buffer_offset_single_texel_alignment: crate::vk::Bool32,
+    pub uniform_texel_buffer_offset_alignment_bytes: crate::vk::DeviceSize,
+    pub uniform_texel_buffer_offset_single_texel_alignment: crate::vk::Bool32,
+    pub max_buffer_size: crate::vk::DeviceSize,
 }
 #[repr(C)]
 pub struct PhysicalDeviceToolProperties {
-    s_type: crate::vk::StructureType,
-    p_next: *mut core::ffi::c_void,
-    name: [crate::External<
+    pub s_type: crate::vk::StructureType,
+    pub p_next: *mut core::ffi::c_void,
+    pub name: [crate::External<
         {
             "char";
             0
         },
     >; 1337],
-    version: [crate::External<
+    pub version: [crate::External<
         {
             "char";
             0
         },
     >; 1337],
-    purposes: crate::vk::ToolPurposeFlags,
-    description: [crate::External<
+    pub purposes: crate::vk::ToolPurposeFlags,
+    pub description: [crate::External<
         {
             "char";
             0
         },
     >; 1337],
-    layer: [crate::External<
+    pub layer: [crate::External<
         {
             "char";
             0
@@ -353,271 +353,271 @@ pub struct PhysicalDeviceToolProperties {
 }
 #[repr(C)]
 pub struct PhysicalDeviceZeroInitializeWorkgroupMemoryFeatures {
-    s_type: crate::vk::StructureType,
-    p_next: *mut core::ffi::c_void,
-    shader_zero_initialize_workgroup_memory: crate::vk::Bool32,
+    pub s_type: crate::vk::StructureType,
+    pub p_next: *mut core::ffi::c_void,
+    pub shader_zero_initialize_workgroup_memory: crate::vk::Bool32,
 }
 #[repr(C)]
 pub struct PhysicalDeviceImageRobustnessFeatures {
-    s_type: crate::vk::StructureType,
-    p_next: *mut core::ffi::c_void,
-    robust_image_access: crate::vk::Bool32,
+    pub s_type: crate::vk::StructureType,
+    pub p_next: *mut core::ffi::c_void,
+    pub robust_image_access: crate::vk::Bool32,
 }
 #[repr(C)]
 pub struct BufferCopy2 {
-    s_type: crate::vk::StructureType,
-    p_next: *const core::ffi::c_void,
-    src_offset: crate::vk::DeviceSize,
-    dst_offset: crate::vk::DeviceSize,
-    size: crate::vk::DeviceSize,
+    pub s_type: crate::vk::StructureType,
+    pub p_next: *const core::ffi::c_void,
+    pub src_offset: crate::vk::DeviceSize,
+    pub dst_offset: crate::vk::DeviceSize,
+    pub size: crate::vk::DeviceSize,
 }
 #[repr(C)]
 pub struct ImageCopy2 {
-    s_type: crate::vk::StructureType,
-    p_next: *const core::ffi::c_void,
-    src_subresource: crate::vk::ImageSubresourceLayers,
-    src_offset: crate::vk::Offset3D,
-    dst_subresource: crate::vk::ImageSubresourceLayers,
-    dst_offset: crate::vk::Offset3D,
-    extent: crate::vk::Extent3D,
+    pub s_type: crate::vk::StructureType,
+    pub p_next: *const core::ffi::c_void,
+    pub src_subresource: crate::vk::ImageSubresourceLayers,
+    pub src_offset: crate::vk::Offset3D,
+    pub dst_subresource: crate::vk::ImageSubresourceLayers,
+    pub dst_offset: crate::vk::Offset3D,
+    pub extent: crate::vk::Extent3D,
 }
 #[repr(C)]
 pub struct ImageBlit2 {
-    s_type: crate::vk::StructureType,
-    p_next: *const core::ffi::c_void,
-    src_subresource: crate::vk::ImageSubresourceLayers,
-    src_offsets: [crate::vk::Offset3D; 1337],
-    dst_subresource: crate::vk::ImageSubresourceLayers,
-    dst_offsets: [crate::vk::Offset3D; 1337],
+    pub s_type: crate::vk::StructureType,
+    pub p_next: *const core::ffi::c_void,
+    pub src_subresource: crate::vk::ImageSubresourceLayers,
+    pub src_offsets: [crate::vk::Offset3D; 1337],
+    pub dst_subresource: crate::vk::ImageSubresourceLayers,
+    pub dst_offsets: [crate::vk::Offset3D; 1337],
 }
 #[repr(C)]
 pub struct BufferImageCopy2 {
-    s_type: crate::vk::StructureType,
-    p_next: *const core::ffi::c_void,
-    buffer_offset: crate::vk::DeviceSize,
-    buffer_row_length: crate::External<
+    pub s_type: crate::vk::StructureType,
+    pub p_next: *const core::ffi::c_void,
+    pub buffer_offset: crate::vk::DeviceSize,
+    pub buffer_row_length: crate::External<
         {
             "uint32_t";
             0
         },
     >,
-    buffer_image_height: crate::External<
+    pub buffer_image_height: crate::External<
         {
             "uint32_t";
             0
         },
     >,
-    image_subresource: crate::vk::ImageSubresourceLayers,
-    image_offset: crate::vk::Offset3D,
-    image_extent: crate::vk::Extent3D,
+    pub image_subresource: crate::vk::ImageSubresourceLayers,
+    pub image_offset: crate::vk::Offset3D,
+    pub image_extent: crate::vk::Extent3D,
 }
 #[repr(C)]
 pub struct ImageResolve2 {
-    s_type: crate::vk::StructureType,
-    p_next: *const core::ffi::c_void,
-    src_subresource: crate::vk::ImageSubresourceLayers,
-    src_offset: crate::vk::Offset3D,
-    dst_subresource: crate::vk::ImageSubresourceLayers,
-    dst_offset: crate::vk::Offset3D,
-    extent: crate::vk::Extent3D,
+    pub s_type: crate::vk::StructureType,
+    pub p_next: *const core::ffi::c_void,
+    pub src_subresource: crate::vk::ImageSubresourceLayers,
+    pub src_offset: crate::vk::Offset3D,
+    pub dst_subresource: crate::vk::ImageSubresourceLayers,
+    pub dst_offset: crate::vk::Offset3D,
+    pub extent: crate::vk::Extent3D,
 }
 #[repr(C)]
 pub struct CopyBufferInfo2 {
-    s_type: crate::vk::StructureType,
-    p_next: *const core::ffi::c_void,
-    src_buffer: crate::vk::Buffer,
-    dst_buffer: crate::vk::Buffer,
-    region_count: crate::External<
+    pub s_type: crate::vk::StructureType,
+    pub p_next: *const core::ffi::c_void,
+    pub src_buffer: crate::vk::Buffer,
+    pub dst_buffer: crate::vk::Buffer,
+    pub region_count: crate::External<
         {
             "uint32_t";
             0
         },
     >,
-    p_regions: *const crate::vk::BufferCopy2,
+    pub p_regions: *const crate::vk::BufferCopy2,
 }
 #[repr(C)]
 pub struct CopyImageInfo2 {
-    s_type: crate::vk::StructureType,
-    p_next: *const core::ffi::c_void,
-    src_image: crate::vk::Image,
-    src_image_layout: crate::vk::ImageLayout,
-    dst_image: crate::vk::Image,
-    dst_image_layout: crate::vk::ImageLayout,
-    region_count: crate::External<
+    pub s_type: crate::vk::StructureType,
+    pub p_next: *const core::ffi::c_void,
+    pub src_image: crate::vk::Image,
+    pub src_image_layout: crate::vk::ImageLayout,
+    pub dst_image: crate::vk::Image,
+    pub dst_image_layout: crate::vk::ImageLayout,
+    pub region_count: crate::External<
         {
             "uint32_t";
             0
         },
     >,
-    p_regions: *const crate::vk::ImageCopy2,
+    pub p_regions: *const crate::vk::ImageCopy2,
 }
 #[repr(C)]
 pub struct BlitImageInfo2 {
-    s_type: crate::vk::StructureType,
-    p_next: *const core::ffi::c_void,
-    src_image: crate::vk::Image,
-    src_image_layout: crate::vk::ImageLayout,
-    dst_image: crate::vk::Image,
-    dst_image_layout: crate::vk::ImageLayout,
-    region_count: crate::External<
+    pub s_type: crate::vk::StructureType,
+    pub p_next: *const core::ffi::c_void,
+    pub src_image: crate::vk::Image,
+    pub src_image_layout: crate::vk::ImageLayout,
+    pub dst_image: crate::vk::Image,
+    pub dst_image_layout: crate::vk::ImageLayout,
+    pub region_count: crate::External<
         {
             "uint32_t";
             0
         },
     >,
-    p_regions: *const crate::vk::ImageBlit2,
-    filter: crate::vk::Filter,
+    pub p_regions: *const crate::vk::ImageBlit2,
+    pub filter: crate::vk::Filter,
 }
 #[repr(C)]
 pub struct CopyBufferToImageInfo2 {
-    s_type: crate::vk::StructureType,
-    p_next: *const core::ffi::c_void,
-    src_buffer: crate::vk::Buffer,
-    dst_image: crate::vk::Image,
-    dst_image_layout: crate::vk::ImageLayout,
-    region_count: crate::External<
+    pub s_type: crate::vk::StructureType,
+    pub p_next: *const core::ffi::c_void,
+    pub src_buffer: crate::vk::Buffer,
+    pub dst_image: crate::vk::Image,
+    pub dst_image_layout: crate::vk::ImageLayout,
+    pub region_count: crate::External<
         {
             "uint32_t";
             0
         },
     >,
-    p_regions: *const crate::vk::BufferImageCopy2,
+    pub p_regions: *const crate::vk::BufferImageCopy2,
 }
 #[repr(C)]
 pub struct CopyImageToBufferInfo2 {
-    s_type: crate::vk::StructureType,
-    p_next: *const core::ffi::c_void,
-    src_image: crate::vk::Image,
-    src_image_layout: crate::vk::ImageLayout,
-    dst_buffer: crate::vk::Buffer,
-    region_count: crate::External<
+    pub s_type: crate::vk::StructureType,
+    pub p_next: *const core::ffi::c_void,
+    pub src_image: crate::vk::Image,
+    pub src_image_layout: crate::vk::ImageLayout,
+    pub dst_buffer: crate::vk::Buffer,
+    pub region_count: crate::External<
         {
             "uint32_t";
             0
         },
     >,
-    p_regions: *const crate::vk::BufferImageCopy2,
+    pub p_regions: *const crate::vk::BufferImageCopy2,
 }
 #[repr(C)]
 pub struct ResolveImageInfo2 {
-    s_type: crate::vk::StructureType,
-    p_next: *const core::ffi::c_void,
-    src_image: crate::vk::Image,
-    src_image_layout: crate::vk::ImageLayout,
-    dst_image: crate::vk::Image,
-    dst_image_layout: crate::vk::ImageLayout,
-    region_count: crate::External<
+    pub s_type: crate::vk::StructureType,
+    pub p_next: *const core::ffi::c_void,
+    pub src_image: crate::vk::Image,
+    pub src_image_layout: crate::vk::ImageLayout,
+    pub dst_image: crate::vk::Image,
+    pub dst_image_layout: crate::vk::ImageLayout,
+    pub region_count: crate::External<
         {
             "uint32_t";
             0
         },
     >,
-    p_regions: *const crate::vk::ImageResolve2,
+    pub p_regions: *const crate::vk::ImageResolve2,
 }
 #[repr(C)]
 pub struct PhysicalDeviceShaderTerminateInvocationFeatures {
-    s_type: crate::vk::StructureType,
-    p_next: *mut core::ffi::c_void,
-    shader_terminate_invocation: crate::vk::Bool32,
+    pub s_type: crate::vk::StructureType,
+    pub p_next: *mut core::ffi::c_void,
+    pub shader_terminate_invocation: crate::vk::Bool32,
 }
 #[repr(C)]
 pub struct MemoryBarrier2 {
-    s_type: crate::vk::StructureType,
-    p_next: *const core::ffi::c_void,
-    src_stage_mask: crate::vk::PipelineStageFlags2,
-    src_access_mask: crate::vk::AccessFlags2,
-    dst_stage_mask: crate::vk::PipelineStageFlags2,
-    dst_access_mask: crate::vk::AccessFlags2,
+    pub s_type: crate::vk::StructureType,
+    pub p_next: *const core::ffi::c_void,
+    pub src_stage_mask: crate::vk::PipelineStageFlags2,
+    pub src_access_mask: crate::vk::AccessFlags2,
+    pub dst_stage_mask: crate::vk::PipelineStageFlags2,
+    pub dst_access_mask: crate::vk::AccessFlags2,
 }
 #[repr(C)]
 pub struct ImageMemoryBarrier2 {
-    s_type: crate::vk::StructureType,
-    p_next: *const core::ffi::c_void,
-    src_stage_mask: crate::vk::PipelineStageFlags2,
-    src_access_mask: crate::vk::AccessFlags2,
-    dst_stage_mask: crate::vk::PipelineStageFlags2,
-    dst_access_mask: crate::vk::AccessFlags2,
-    old_layout: crate::vk::ImageLayout,
-    new_layout: crate::vk::ImageLayout,
-    src_queue_family_index: crate::External<
+    pub s_type: crate::vk::StructureType,
+    pub p_next: *const core::ffi::c_void,
+    pub src_stage_mask: crate::vk::PipelineStageFlags2,
+    pub src_access_mask: crate::vk::AccessFlags2,
+    pub dst_stage_mask: crate::vk::PipelineStageFlags2,
+    pub dst_access_mask: crate::vk::AccessFlags2,
+    pub old_layout: crate::vk::ImageLayout,
+    pub new_layout: crate::vk::ImageLayout,
+    pub src_queue_family_index: crate::External<
         {
             "uint32_t";
             0
         },
     >,
-    dst_queue_family_index: crate::External<
+    pub dst_queue_family_index: crate::External<
         {
             "uint32_t";
             0
         },
     >,
-    image: crate::vk::Image,
-    subresource_range: crate::vk::ImageSubresourceRange,
+    pub image: crate::vk::Image,
+    pub subresource_range: crate::vk::ImageSubresourceRange,
 }
 #[repr(C)]
 pub struct BufferMemoryBarrier2 {
-    s_type: crate::vk::StructureType,
-    p_next: *const core::ffi::c_void,
-    src_stage_mask: crate::vk::PipelineStageFlags2,
-    src_access_mask: crate::vk::AccessFlags2,
-    dst_stage_mask: crate::vk::PipelineStageFlags2,
-    dst_access_mask: crate::vk::AccessFlags2,
-    src_queue_family_index: crate::External<
+    pub s_type: crate::vk::StructureType,
+    pub p_next: *const core::ffi::c_void,
+    pub src_stage_mask: crate::vk::PipelineStageFlags2,
+    pub src_access_mask: crate::vk::AccessFlags2,
+    pub dst_stage_mask: crate::vk::PipelineStageFlags2,
+    pub dst_access_mask: crate::vk::AccessFlags2,
+    pub src_queue_family_index: crate::External<
         {
             "uint32_t";
             0
         },
     >,
-    dst_queue_family_index: crate::External<
+    pub dst_queue_family_index: crate::External<
         {
             "uint32_t";
             0
         },
     >,
-    buffer: crate::vk::Buffer,
-    offset: crate::vk::DeviceSize,
-    size: crate::vk::DeviceSize,
+    pub buffer: crate::vk::Buffer,
+    pub offset: crate::vk::DeviceSize,
+    pub size: crate::vk::DeviceSize,
 }
 #[repr(C)]
 pub struct DependencyInfo {
-    s_type: crate::vk::StructureType,
-    p_next: *const core::ffi::c_void,
-    dependency_flags: crate::vk::DependencyFlags,
-    memory_barrier_count: crate::External<
+    pub s_type: crate::vk::StructureType,
+    pub p_next: *const core::ffi::c_void,
+    pub dependency_flags: crate::vk::DependencyFlags,
+    pub memory_barrier_count: crate::External<
         {
             "uint32_t";
             0
         },
     >,
-    p_memory_barriers: *const crate::vk::MemoryBarrier2,
-    buffer_memory_barrier_count: crate::External<
+    pub p_memory_barriers: *const crate::vk::MemoryBarrier2,
+    pub buffer_memory_barrier_count: crate::External<
         {
             "uint32_t";
             0
         },
     >,
-    p_buffer_memory_barriers: *const crate::vk::BufferMemoryBarrier2,
-    image_memory_barrier_count: crate::External<
+    pub p_buffer_memory_barriers: *const crate::vk::BufferMemoryBarrier2,
+    pub image_memory_barrier_count: crate::External<
         {
             "uint32_t";
             0
         },
     >,
-    p_image_memory_barriers: *const crate::vk::ImageMemoryBarrier2,
+    pub p_image_memory_barriers: *const crate::vk::ImageMemoryBarrier2,
 }
 #[repr(C)]
 pub struct SemaphoreSubmitInfo {
-    s_type: crate::vk::StructureType,
-    p_next: *const core::ffi::c_void,
-    semaphore: crate::vk::Semaphore,
-    value: crate::External<
+    pub s_type: crate::vk::StructureType,
+    pub p_next: *const core::ffi::c_void,
+    pub semaphore: crate::vk::Semaphore,
+    pub value: crate::External<
         {
             "uint64_t";
             0
         },
     >,
-    stage_mask: crate::vk::PipelineStageFlags2,
-    device_index: crate::External<
+    pub stage_mask: crate::vk::PipelineStageFlags2,
+    pub device_index: crate::External<
         {
             "uint32_t";
             0
@@ -626,10 +626,10 @@ pub struct SemaphoreSubmitInfo {
 }
 #[repr(C)]
 pub struct CommandBufferSubmitInfo {
-    s_type: crate::vk::StructureType,
-    p_next: *const core::ffi::c_void,
-    command_buffer: crate::vk::CommandBuffer,
-    device_mask: crate::External<
+    pub s_type: crate::vk::StructureType,
+    pub p_next: *const core::ffi::c_void,
+    pub command_buffer: crate::vk::CommandBuffer,
+    pub device_mask: crate::External<
         {
             "uint32_t";
             0
@@ -638,174 +638,204 @@ pub struct CommandBufferSubmitInfo {
 }
 #[repr(C)]
 pub struct SubmitInfo2 {
-    s_type: crate::vk::StructureType,
-    p_next: *const core::ffi::c_void,
-    flags: crate::vk::SubmitFlags,
-    wait_semaphore_info_count: crate::External<
+    pub s_type: crate::vk::StructureType,
+    pub p_next: *const core::ffi::c_void,
+    pub flags: crate::vk::SubmitFlags,
+    pub wait_semaphore_info_count: crate::External<
         {
             "uint32_t";
             0
         },
     >,
-    p_wait_semaphore_infos: *const crate::vk::SemaphoreSubmitInfo,
-    command_buffer_info_count: crate::External<
+    pub p_wait_semaphore_infos: *const crate::vk::SemaphoreSubmitInfo,
+    pub command_buffer_info_count: crate::External<
         {
             "uint32_t";
             0
         },
     >,
-    p_command_buffer_infos: *const crate::vk::CommandBufferSubmitInfo,
-    signal_semaphore_info_count: crate::External<
+    pub p_command_buffer_infos: *const crate::vk::CommandBufferSubmitInfo,
+    pub signal_semaphore_info_count: crate::External<
         {
             "uint32_t";
             0
         },
     >,
-    p_signal_semaphore_infos: *const crate::vk::SemaphoreSubmitInfo,
+    pub p_signal_semaphore_infos: *const crate::vk::SemaphoreSubmitInfo,
 }
 #[repr(C)]
 pub struct PhysicalDeviceSynchronization2Features {
-    s_type: crate::vk::StructureType,
-    p_next: *mut core::ffi::c_void,
-    synchronization2: crate::vk::Bool32,
+    pub s_type: crate::vk::StructureType,
+    pub p_next: *mut core::ffi::c_void,
+    pub synchronization2: crate::vk::Bool32,
 }
 #[repr(C)]
 pub struct PhysicalDeviceShaderIntegerDotProductFeatures {
-    s_type: crate::vk::StructureType,
-    p_next: *mut core::ffi::c_void,
-    shader_integer_dot_product: crate::vk::Bool32,
+    pub s_type: crate::vk::StructureType,
+    pub p_next: *mut core::ffi::c_void,
+    pub shader_integer_dot_product: crate::vk::Bool32,
 }
 #[repr(C)]
 pub struct PhysicalDeviceShaderIntegerDotProductProperties {
-    s_type: crate::vk::StructureType,
-    p_next: *mut core::ffi::c_void,
-    integer_dot_product8_bit_unsigned_accelerated: crate::vk::Bool32,
-    integer_dot_product8_bit_signed_accelerated: crate::vk::Bool32,
-    integer_dot_product8_bit_mixed_signedness_accelerated: crate::vk::Bool32,
-    integer_dot_product4x8_bit_packed_unsigned_accelerated: crate::vk::Bool32,
-    integer_dot_product4x8_bit_packed_signed_accelerated: crate::vk::Bool32,
-    integer_dot_product4x8_bit_packed_mixed_signedness_accelerated: crate::vk::Bool32,
-    integer_dot_product16_bit_unsigned_accelerated: crate::vk::Bool32,
-    integer_dot_product16_bit_signed_accelerated: crate::vk::Bool32,
-    integer_dot_product16_bit_mixed_signedness_accelerated: crate::vk::Bool32,
-    integer_dot_product32_bit_unsigned_accelerated: crate::vk::Bool32,
-    integer_dot_product32_bit_signed_accelerated: crate::vk::Bool32,
-    integer_dot_product32_bit_mixed_signedness_accelerated: crate::vk::Bool32,
-    integer_dot_product64_bit_unsigned_accelerated: crate::vk::Bool32,
-    integer_dot_product64_bit_signed_accelerated: crate::vk::Bool32,
-    integer_dot_product64_bit_mixed_signedness_accelerated: crate::vk::Bool32,
-    integer_dot_product_accumulating_saturating8_bit_unsigned_accelerated: crate::vk::Bool32,
-    integer_dot_product_accumulating_saturating8_bit_signed_accelerated: crate::vk::Bool32,
-    integer_dot_product_accumulating_saturating8_bit_mixed_signedness_accelerated: crate::vk::Bool32,
-    integer_dot_product_accumulating_saturating4x8_bit_packed_unsigned_accelerated: crate::vk::Bool32,
-    integer_dot_product_accumulating_saturating4x8_bit_packed_signed_accelerated: crate::vk::Bool32,
-    integer_dot_product_accumulating_saturating4x8_bit_packed_mixed_signedness_accelerated: crate::vk::Bool32,
-    integer_dot_product_accumulating_saturating16_bit_unsigned_accelerated: crate::vk::Bool32,
-    integer_dot_product_accumulating_saturating16_bit_signed_accelerated: crate::vk::Bool32,
-    integer_dot_product_accumulating_saturating16_bit_mixed_signedness_accelerated: crate::vk::Bool32,
-    integer_dot_product_accumulating_saturating32_bit_unsigned_accelerated: crate::vk::Bool32,
-    integer_dot_product_accumulating_saturating32_bit_signed_accelerated: crate::vk::Bool32,
-    integer_dot_product_accumulating_saturating32_bit_mixed_signedness_accelerated: crate::vk::Bool32,
-    integer_dot_product_accumulating_saturating64_bit_unsigned_accelerated: crate::vk::Bool32,
-    integer_dot_product_accumulating_saturating64_bit_signed_accelerated: crate::vk::Bool32,
-    integer_dot_product_accumulating_saturating64_bit_mixed_signedness_accelerated: crate::vk::Bool32,
+    pub s_type: crate::vk::StructureType,
+    pub p_next: *mut core::ffi::c_void,
+    pub integer_dot_product8_bit_unsigned_accelerated: crate::vk::Bool32,
+    pub integer_dot_product8_bit_signed_accelerated: crate::vk::Bool32,
+    pub integer_dot_product8_bit_mixed_signedness_accelerated: crate::vk::Bool32,
+    pub integer_dot_product4x8_bit_packed_unsigned_accelerated: crate::vk::Bool32,
+    pub integer_dot_product4x8_bit_packed_signed_accelerated: crate::vk::Bool32,
+    pub integer_dot_product4x8_bit_packed_mixed_signedness_accelerated: crate::vk::Bool32,
+    pub integer_dot_product16_bit_unsigned_accelerated: crate::vk::Bool32,
+    pub integer_dot_product16_bit_signed_accelerated: crate::vk::Bool32,
+    pub integer_dot_product16_bit_mixed_signedness_accelerated: crate::vk::Bool32,
+    pub integer_dot_product32_bit_unsigned_accelerated: crate::vk::Bool32,
+    pub integer_dot_product32_bit_signed_accelerated: crate::vk::Bool32,
+    pub integer_dot_product32_bit_mixed_signedness_accelerated: crate::vk::Bool32,
+    pub integer_dot_product64_bit_unsigned_accelerated: crate::vk::Bool32,
+    pub integer_dot_product64_bit_signed_accelerated: crate::vk::Bool32,
+    pub integer_dot_product64_bit_mixed_signedness_accelerated: crate::vk::Bool32,
+    pub integer_dot_product_accumulating_saturating8_bit_unsigned_accelerated: crate::vk::Bool32,
+    pub integer_dot_product_accumulating_saturating8_bit_signed_accelerated: crate::vk::Bool32,
+    pub integer_dot_product_accumulating_saturating8_bit_mixed_signedness_accelerated: crate::vk::Bool32,
+    pub integer_dot_product_accumulating_saturating4x8_bit_packed_unsigned_accelerated: crate::vk::Bool32,
+    pub integer_dot_product_accumulating_saturating4x8_bit_packed_signed_accelerated: crate::vk::Bool32,
+    pub integer_dot_product_accumulating_saturating4x8_bit_packed_mixed_signedness_accelerated: crate::vk::Bool32,
+    pub integer_dot_product_accumulating_saturating16_bit_unsigned_accelerated: crate::vk::Bool32,
+    pub integer_dot_product_accumulating_saturating16_bit_signed_accelerated: crate::vk::Bool32,
+    pub integer_dot_product_accumulating_saturating16_bit_mixed_signedness_accelerated: crate::vk::Bool32,
+    pub integer_dot_product_accumulating_saturating32_bit_unsigned_accelerated: crate::vk::Bool32,
+    pub integer_dot_product_accumulating_saturating32_bit_signed_accelerated: crate::vk::Bool32,
+    pub integer_dot_product_accumulating_saturating32_bit_mixed_signedness_accelerated: crate::vk::Bool32,
+    pub integer_dot_product_accumulating_saturating64_bit_unsigned_accelerated: crate::vk::Bool32,
+    pub integer_dot_product_accumulating_saturating64_bit_signed_accelerated: crate::vk::Bool32,
+    pub integer_dot_product_accumulating_saturating64_bit_mixed_signedness_accelerated: crate::vk::Bool32,
 }
 #[repr(C)]
 pub struct FormatProperties3 {
-    s_type: crate::vk::StructureType,
-    p_next: *mut core::ffi::c_void,
-    linear_tiling_features: crate::vk::FormatFeatureFlags2,
-    optimal_tiling_features: crate::vk::FormatFeatureFlags2,
-    buffer_features: crate::vk::FormatFeatureFlags2,
+    pub s_type: crate::vk::StructureType,
+    pub p_next: *mut core::ffi::c_void,
+    pub linear_tiling_features: crate::vk::FormatFeatureFlags2,
+    pub optimal_tiling_features: crate::vk::FormatFeatureFlags2,
+    pub buffer_features: crate::vk::FormatFeatureFlags2,
 }
 #[repr(C)]
 pub struct PipelineRenderingCreateInfo {
-    s_type: crate::vk::StructureType,
-    p_next: *const core::ffi::c_void,
-    view_mask: crate::External<
+    pub s_type: crate::vk::StructureType,
+    pub p_next: *const core::ffi::c_void,
+    pub view_mask: crate::External<
         {
             "uint32_t";
             0
         },
     >,
-    color_attachment_count: crate::External<
+    pub color_attachment_count: crate::External<
         {
             "uint32_t";
             0
         },
     >,
-    p_color_attachment_formats: *const crate::vk::Format,
-    depth_attachment_format: crate::vk::Format,
-    stencil_attachment_format: crate::vk::Format,
+    pub p_color_attachment_formats: *const crate::vk::Format,
+    pub depth_attachment_format: crate::vk::Format,
+    pub stencil_attachment_format: crate::vk::Format,
 }
 #[repr(C)]
 pub struct RenderingInfo {
-    s_type: crate::vk::StructureType,
-    p_next: *const core::ffi::c_void,
-    flags: crate::vk::RenderingFlags,
-    render_area: crate::vk::Rect2D,
-    layer_count: crate::External<
+    pub s_type: crate::vk::StructureType,
+    pub p_next: *const core::ffi::c_void,
+    pub flags: crate::vk::RenderingFlags,
+    pub render_area: crate::vk::Rect2D,
+    pub layer_count: crate::External<
         {
             "uint32_t";
             0
         },
     >,
-    view_mask: crate::External<
+    pub view_mask: crate::External<
         {
             "uint32_t";
             0
         },
     >,
-    color_attachment_count: crate::External<
+    pub color_attachment_count: crate::External<
         {
             "uint32_t";
             0
         },
     >,
-    p_color_attachments: *const crate::vk::RenderingAttachmentInfo,
-    p_depth_attachment: *const crate::vk::RenderingAttachmentInfo,
-    p_stencil_attachment: *const crate::vk::RenderingAttachmentInfo,
+    pub p_color_attachments: *const crate::vk::RenderingAttachmentInfo,
+    pub p_depth_attachment: *const crate::vk::RenderingAttachmentInfo,
+    pub p_stencil_attachment: *const crate::vk::RenderingAttachmentInfo,
 }
 #[repr(C)]
 pub struct RenderingAttachmentInfo {
-    s_type: crate::vk::StructureType,
-    p_next: *const core::ffi::c_void,
-    image_view: crate::vk::ImageView,
-    image_layout: crate::vk::ImageLayout,
-    resolve_mode: crate::vk::ResolveModeFlagBits,
-    resolve_image_view: crate::vk::ImageView,
-    resolve_image_layout: crate::vk::ImageLayout,
-    load_op: crate::vk::AttachmentLoadOp,
-    store_op: crate::vk::AttachmentStoreOp,
-    clear_value: crate::vk::ClearValue,
+    pub s_type: crate::vk::StructureType,
+    pub p_next: *const core::ffi::c_void,
+    pub image_view: crate::vk::ImageView,
+    pub image_layout: crate::vk::ImageLayout,
+    pub resolve_mode: crate::vk::ResolveModeFlagBits,
+    pub resolve_image_view: crate::vk::ImageView,
+    pub resolve_image_layout: crate::vk::ImageLayout,
+    pub load_op: crate::vk::AttachmentLoadOp,
+    pub store_op: crate::vk::AttachmentStoreOp,
+    pub clear_value: crate::vk::ClearValue,
 }
 #[repr(C)]
 pub struct PhysicalDeviceDynamicRenderingFeatures {
-    s_type: crate::vk::StructureType,
-    p_next: *mut core::ffi::c_void,
-    dynamic_rendering: crate::vk::Bool32,
+    pub s_type: crate::vk::StructureType,
+    pub p_next: *mut core::ffi::c_void,
+    pub dynamic_rendering: crate::vk::Bool32,
 }
 #[repr(C)]
 pub struct CommandBufferInheritanceRenderingInfo {
-    s_type: crate::vk::StructureType,
-    p_next: *const core::ffi::c_void,
-    flags: crate::vk::RenderingFlags,
-    view_mask: crate::External<
+    pub s_type: crate::vk::StructureType,
+    pub p_next: *const core::ffi::c_void,
+    pub flags: crate::vk::RenderingFlags,
+    pub view_mask: crate::External<
         {
             "uint32_t";
             0
         },
     >,
-    color_attachment_count: crate::External<
+    pub color_attachment_count: crate::External<
         {
             "uint32_t";
             0
         },
     >,
-    p_color_attachment_formats: *const crate::vk::Format,
-    depth_attachment_format: crate::vk::Format,
-    stencil_attachment_format: crate::vk::Format,
-    rasterization_samples: crate::vk::SampleCountFlagBits,
+    pub p_color_attachment_formats: *const crate::vk::Format,
+    pub depth_attachment_format: crate::vk::Format,
+    pub stencil_attachment_format: crate::vk::Format,
+    pub rasterization_samples: crate::vk::SampleCountFlagBits,
 }
+#[repr(C)]
+pub struct PrivateDataSlotCreateFlags {}
+#[repr(C)]
+pub struct PipelineCreationFeedbackFlags {}
+#[repr(C)]
+pub struct AccessFlags2 {}
+#[repr(C)]
+pub struct PipelineStageFlags2 {}
+#[repr(C)]
+pub struct FormatFeatureFlags2 {}
+#[repr(C)]
+pub struct RenderingFlags {}
+#[repr(C)]
+pub struct ToolPurposeFlags {}
+#[repr(C)]
+pub struct SubmitFlags {}
+#[repr(C)]
+pub struct PipelineCreationFeedbackFlagBits {}
+#[repr(C)]
+pub struct ToolPurposeFlagBits {}
+#[repr(C)]
+pub struct AccessFlagBits2 {}
+#[repr(C)]
+pub struct PipelineStageFlagBits2 {}
+#[repr(C)]
+pub struct SubmitFlagBits {}
+#[repr(C)]
+pub struct FormatFeatureFlagBits2 {}
+#[repr(C)]
+pub struct RenderingFlagBits {}
 #[repr(C)]
 pub struct PrivateDataSlot {}

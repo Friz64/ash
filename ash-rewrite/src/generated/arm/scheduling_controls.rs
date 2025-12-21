@@ -3,9 +3,9 @@
 //![Vulkan Manual Page](https://docs.vulkan.org/refpages/latest/refpages/source/VK_ARM_scheduling_controls.html) · Vulkan extension
 #[repr(C)]
 pub struct DeviceQueueShaderCoreControlCreateInfoARM {
-    s_type: crate::vk::StructureType,
-    p_next: *mut core::ffi::c_void,
-    shader_core_count: crate::External<
+    pub s_type: crate::vk::StructureType,
+    pub p_next: *mut core::ffi::c_void,
+    pub shader_core_count: crate::External<
         {
             "uint32_t";
             0
@@ -14,13 +14,17 @@ pub struct DeviceQueueShaderCoreControlCreateInfoARM {
 }
 #[repr(C)]
 pub struct PhysicalDeviceSchedulingControlsFeaturesARM {
-    s_type: crate::vk::StructureType,
-    p_next: *mut core::ffi::c_void,
-    scheduling_controls: crate::vk::Bool32,
+    pub s_type: crate::vk::StructureType,
+    pub p_next: *mut core::ffi::c_void,
+    pub scheduling_controls: crate::vk::Bool32,
 }
 #[repr(C)]
 pub struct PhysicalDeviceSchedulingControlsPropertiesARM {
-    s_type: crate::vk::StructureType,
-    p_next: *mut core::ffi::c_void,
-    scheduling_controls_flags: crate::vk::PhysicalDeviceSchedulingControlsFlagsARM,
+    pub s_type: crate::vk::StructureType,
+    pub p_next: *mut core::ffi::c_void,
+    pub scheduling_controls_flags: crate::vk::PhysicalDeviceSchedulingControlsFlagsARM,
 }
+#[repr(C)]
+pub struct PhysicalDeviceSchedulingControlsFlagsARM {}
+#[repr(C)]
+pub struct PhysicalDeviceSchedulingControlsFlagBitsARM {}

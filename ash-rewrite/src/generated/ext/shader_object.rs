@@ -3,39 +3,39 @@
 //![Vulkan Manual Page](https://docs.vulkan.org/refpages/latest/refpages/source/VK_EXT_shader_object.html) · Vulkan extension
 #[repr(C)]
 pub struct ColorBlendEquationEXT {
-    src_color_blend_factor: crate::vk::BlendFactor,
-    dst_color_blend_factor: crate::vk::BlendFactor,
-    color_blend_op: crate::vk::BlendOp,
-    src_alpha_blend_factor: crate::vk::BlendFactor,
-    dst_alpha_blend_factor: crate::vk::BlendFactor,
-    alpha_blend_op: crate::vk::BlendOp,
+    pub src_color_blend_factor: crate::vk::BlendFactor,
+    pub dst_color_blend_factor: crate::vk::BlendFactor,
+    pub color_blend_op: crate::vk::BlendOp,
+    pub src_alpha_blend_factor: crate::vk::BlendFactor,
+    pub dst_alpha_blend_factor: crate::vk::BlendFactor,
+    pub alpha_blend_op: crate::vk::BlendOp,
 }
 #[repr(C)]
 pub struct ColorBlendAdvancedEXT {
-    advanced_blend_op: crate::vk::BlendOp,
-    src_premultiplied: crate::vk::Bool32,
-    dst_premultiplied: crate::vk::Bool32,
-    blend_overlap: crate::vk::BlendOverlapEXT,
-    clamp_results: crate::vk::Bool32,
+    pub advanced_blend_op: crate::vk::BlendOp,
+    pub src_premultiplied: crate::vk::Bool32,
+    pub dst_premultiplied: crate::vk::Bool32,
+    pub blend_overlap: crate::vk::BlendOverlapEXT,
+    pub clamp_results: crate::vk::Bool32,
 }
 #[repr(C)]
 pub struct VertexInputBindingDescription2EXT {
-    s_type: crate::vk::StructureType,
-    p_next: *mut core::ffi::c_void,
-    binding: crate::External<
+    pub s_type: crate::vk::StructureType,
+    pub p_next: *mut core::ffi::c_void,
+    pub binding: crate::External<
         {
             "uint32_t";
             0
         },
     >,
-    stride: crate::External<
+    pub stride: crate::External<
         {
             "uint32_t";
             0
         },
     >,
-    input_rate: crate::vk::VertexInputRate,
-    divisor: crate::External<
+    pub input_rate: crate::vk::VertexInputRate,
+    pub divisor: crate::External<
         {
             "uint32_t";
             0
@@ -44,22 +44,22 @@ pub struct VertexInputBindingDescription2EXT {
 }
 #[repr(C)]
 pub struct VertexInputAttributeDescription2EXT {
-    s_type: crate::vk::StructureType,
-    p_next: *mut core::ffi::c_void,
-    location: crate::External<
+    pub s_type: crate::vk::StructureType,
+    pub p_next: *mut core::ffi::c_void,
+    pub location: crate::External<
         {
             "uint32_t";
             0
         },
     >,
-    binding: crate::External<
+    pub binding: crate::External<
         {
             "uint32_t";
             0
         },
     >,
-    format: crate::vk::Format,
-    offset: crate::External<
+    pub format: crate::vk::Format,
+    pub offset: crate::External<
         {
             "uint32_t";
             0
@@ -68,21 +68,21 @@ pub struct VertexInputAttributeDescription2EXT {
 }
 #[repr(C)]
 pub struct PhysicalDeviceShaderObjectFeaturesEXT {
-    s_type: crate::vk::StructureType,
-    p_next: *mut core::ffi::c_void,
-    shader_object: crate::vk::Bool32,
+    pub s_type: crate::vk::StructureType,
+    pub p_next: *mut core::ffi::c_void,
+    pub shader_object: crate::vk::Bool32,
 }
 #[repr(C)]
 pub struct PhysicalDeviceShaderObjectPropertiesEXT {
-    s_type: crate::vk::StructureType,
-    p_next: *mut core::ffi::c_void,
-    shader_binary_uuid: [crate::External<
+    pub s_type: crate::vk::StructureType,
+    pub p_next: *mut core::ffi::c_void,
+    pub shader_binary_uuid: [crate::External<
         {
             "uint8_t";
             0
         },
     >; 1337],
-    shader_binary_version: crate::External<
+    pub shader_binary_version: crate::External<
         {
             "uint32_t";
             0
@@ -91,42 +91,47 @@ pub struct PhysicalDeviceShaderObjectPropertiesEXT {
 }
 #[repr(C)]
 pub struct ShaderCreateInfoEXT {
-    s_type: crate::vk::StructureType,
-    p_next: *const core::ffi::c_void,
-    flags: crate::vk::ShaderCreateFlagsEXT,
-    stage: crate::vk::ShaderStageFlagBits,
-    next_stage: crate::vk::ShaderStageFlags,
-    code_type: crate::vk::ShaderCodeTypeEXT,
-    code_size: crate::External<
+    pub s_type: crate::vk::StructureType,
+    pub p_next: *const core::ffi::c_void,
+    pub flags: crate::vk::ShaderCreateFlagsEXT,
+    pub stage: crate::vk::ShaderStageFlagBits,
+    pub next_stage: crate::vk::ShaderStageFlags,
+    pub code_type: crate::vk::ShaderCodeTypeEXT,
+    pub code_size: crate::External<
         {
             "size_t";
             0
         },
     >,
-    p_code: *const core::ffi::c_void,
-    p_name: *const crate::External<
+    pub p_code: *const core::ffi::c_void,
+    pub p_name: *const crate::External<
         {
             "char";
             0
         },
     >,
-    set_layout_count: crate::External<
+    pub set_layout_count: crate::External<
         {
             "uint32_t";
             0
         },
     >,
-    p_set_layouts: *const crate::vk::DescriptorSetLayout,
-    push_constant_range_count: crate::External<
+    pub p_set_layouts: *const crate::vk::DescriptorSetLayout,
+    pub push_constant_range_count: crate::External<
         {
             "uint32_t";
             0
         },
     >,
-    p_push_constant_ranges: *const crate::vk::PushConstantRange,
-    p_specialization_info: *const crate::vk::SpecializationInfo,
+    pub p_push_constant_ranges: *const crate::vk::PushConstantRange,
+    pub p_specialization_info: *const crate::vk::SpecializationInfo,
 }
+pub type ShaderRequiredSubgroupSizeCreateInfoEXT = crate::vk::PipelineShaderStageRequiredSubgroupSizeCreateInfo;
 #[repr(C)]
 pub struct ShaderCodeTypeEXT {}
+#[repr(C)]
+pub struct ShaderCreateFlagsEXT {}
+#[repr(C)]
+pub struct ShaderCreateFlagBitsEXT {}
 #[repr(C)]
 pub struct ShaderEXT {}

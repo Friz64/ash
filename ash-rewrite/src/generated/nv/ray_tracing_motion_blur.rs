@@ -3,122 +3,122 @@
 //![Vulkan Manual Page](https://docs.vulkan.org/refpages/latest/refpages/source/VK_NV_ray_tracing_motion_blur.html) · Vulkan extension
 #[repr(C)]
 pub struct PhysicalDeviceRayTracingMotionBlurFeaturesNV {
-    s_type: crate::vk::StructureType,
-    p_next: *mut core::ffi::c_void,
-    ray_tracing_motion_blur: crate::vk::Bool32,
-    ray_tracing_motion_blur_pipeline_trace_rays_indirect: crate::vk::Bool32,
+    pub s_type: crate::vk::StructureType,
+    pub p_next: *mut core::ffi::c_void,
+    pub ray_tracing_motion_blur: crate::vk::Bool32,
+    pub ray_tracing_motion_blur_pipeline_trace_rays_indirect: crate::vk::Bool32,
 }
 #[repr(C)]
 pub struct AccelerationStructureGeometryMotionTrianglesDataNV {
-    s_type: crate::vk::StructureType,
-    p_next: *const core::ffi::c_void,
-    vertex_data: crate::vk::DeviceOrHostAddressConstKHR,
+    pub s_type: crate::vk::StructureType,
+    pub p_next: *const core::ffi::c_void,
+    pub vertex_data: crate::vk::DeviceOrHostAddressConstKHR,
 }
 #[repr(C)]
 pub struct AccelerationStructureMotionInfoNV {
-    s_type: crate::vk::StructureType,
-    p_next: *const core::ffi::c_void,
-    max_instances: crate::External<
+    pub s_type: crate::vk::StructureType,
+    pub p_next: *const core::ffi::c_void,
+    pub max_instances: crate::External<
         {
             "uint32_t";
             0
         },
     >,
-    flags: crate::vk::AccelerationStructureMotionInfoFlagsNV,
+    pub flags: crate::vk::AccelerationStructureMotionInfoFlagsNV,
 }
 #[repr(C)]
 pub struct SRTDataNV {
-    sx: crate::External<
+    pub sx: crate::External<
         {
             "float";
             0
         },
     >,
-    a: crate::External<
+    pub a: crate::External<
         {
             "float";
             0
         },
     >,
-    b: crate::External<
+    pub b: crate::External<
         {
             "float";
             0
         },
     >,
-    pvx: crate::External<
+    pub pvx: crate::External<
         {
             "float";
             0
         },
     >,
-    sy: crate::External<
+    pub sy: crate::External<
         {
             "float";
             0
         },
     >,
-    c: crate::External<
+    pub c: crate::External<
         {
             "float";
             0
         },
     >,
-    pvy: crate::External<
+    pub pvy: crate::External<
         {
             "float";
             0
         },
     >,
-    sz: crate::External<
+    pub sz: crate::External<
         {
             "float";
             0
         },
     >,
-    pvz: crate::External<
+    pub pvz: crate::External<
         {
             "float";
             0
         },
     >,
-    qx: crate::External<
+    pub qx: crate::External<
         {
             "float";
             0
         },
     >,
-    qy: crate::External<
+    pub qy: crate::External<
         {
             "float";
             0
         },
     >,
-    qz: crate::External<
+    pub qz: crate::External<
         {
             "float";
             0
         },
     >,
-    qw: crate::External<
+    pub qw: crate::External<
         {
             "float";
             0
         },
     >,
-    tx: crate::External<
+    pub tx: crate::External<
         {
             "float";
             0
         },
     >,
-    ty: crate::External<
+    pub ty: crate::External<
         {
             "float";
             0
         },
     >,
-    tz: crate::External<
+    pub tz: crate::External<
         {
             "float";
             0
@@ -127,28 +127,28 @@ pub struct SRTDataNV {
 }
 #[repr(C)]
 pub struct AccelerationStructureSRTMotionInstanceNV {
-    transform_t0: crate::vk::SRTDataNV,
-    transform_t1: crate::vk::SRTDataNV,
-    instance_custom_index: crate::External<
+    pub transform_t0: crate::vk::SRTDataNV,
+    pub transform_t1: crate::vk::SRTDataNV,
+    pub instance_custom_index: crate::External<
         {
             "uint32_t";
             0
         },
     >,
-    mask: crate::External<
+    pub mask: crate::External<
         {
             "uint32_t";
             0
         },
     >,
-    instance_shader_binding_table_record_offset: crate::External<
+    pub instance_shader_binding_table_record_offset: crate::External<
         {
             "uint32_t";
             0
         },
     >,
-    flags: crate::vk::GeometryInstanceFlagsKHR,
-    acceleration_structure_reference: crate::External<
+    pub flags: crate::vk::GeometryInstanceFlagsKHR,
+    pub acceleration_structure_reference: crate::External<
         {
             "uint64_t";
             0
@@ -157,28 +157,28 @@ pub struct AccelerationStructureSRTMotionInstanceNV {
 }
 #[repr(C)]
 pub struct AccelerationStructureMatrixMotionInstanceNV {
-    transform_t0: crate::vk::TransformMatrixKHR,
-    transform_t1: crate::vk::TransformMatrixKHR,
-    instance_custom_index: crate::External<
+    pub transform_t0: crate::vk::TransformMatrixKHR,
+    pub transform_t1: crate::vk::TransformMatrixKHR,
+    pub instance_custom_index: crate::External<
         {
             "uint32_t";
             0
         },
     >,
-    mask: crate::External<
+    pub mask: crate::External<
         {
             "uint32_t";
             0
         },
     >,
-    instance_shader_binding_table_record_offset: crate::External<
+    pub instance_shader_binding_table_record_offset: crate::External<
         {
             "uint32_t";
             0
         },
     >,
-    flags: crate::vk::GeometryInstanceFlagsKHR,
-    acceleration_structure_reference: crate::External<
+    pub flags: crate::vk::GeometryInstanceFlagsKHR,
+    pub acceleration_structure_reference: crate::External<
         {
             "uint64_t";
             0
@@ -187,9 +187,19 @@ pub struct AccelerationStructureMatrixMotionInstanceNV {
 }
 #[repr(C)]
 pub struct AccelerationStructureMotionInstanceNV {
-    _type: crate::vk::AccelerationStructureMotionInstanceTypeNV,
-    flags: crate::vk::AccelerationStructureMotionInstanceFlagsNV,
-    data: crate::vk::AccelerationStructureMotionInstanceDataNV,
+    pub _type: crate::vk::AccelerationStructureMotionInstanceTypeNV,
+    pub flags: crate::vk::AccelerationStructureMotionInstanceFlagsNV,
+    pub data: crate::vk::AccelerationStructureMotionInstanceDataNV,
+}
+#[repr(C)]
+pub struct AccelerationStructureMotionInstanceDataNV {
+    static_instance: crate::vk::AccelerationStructureInstanceKHR,
+    matrix_motion_instance: crate::vk::AccelerationStructureMatrixMotionInstanceNV,
+    srt_motion_instance: crate::vk::AccelerationStructureSRTMotionInstanceNV,
 }
 #[repr(C)]
 pub struct AccelerationStructureMotionInstanceTypeNV {}
+#[repr(C)]
+pub struct AccelerationStructureMotionInfoFlagsNV {}
+#[repr(C)]
+pub struct AccelerationStructureMotionInstanceFlagsNV {}

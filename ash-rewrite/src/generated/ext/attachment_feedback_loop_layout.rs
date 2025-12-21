@@ -3,7 +3,7 @@
 //![Vulkan Manual Page](https://docs.vulkan.org/refpages/latest/refpages/source/VK_EXT_attachment_feedback_loop_layout.html) · Vulkan extension
 #[repr(C)]
 pub struct PhysicalDeviceAttachmentFeedbackLoopLayoutFeaturesEXT {
-    s_type: crate::vk::StructureType,
-    p_next: *mut core::ffi::c_void,
-    attachment_feedback_loop_layout: crate::vk::Bool32,
+    pub s_type: crate::vk::StructureType,
+    pub p_next: *mut core::ffi::c_void,
+    pub attachment_feedback_loop_layout: crate::vk::Bool32,
 }

@@ -3,23 +3,23 @@
 //![Vulkan Manual Page](https://docs.vulkan.org/refpages/latest/refpages/source/VK_EXT_fragment_density_map2.html) · Vulkan extension
 #[repr(C)]
 pub struct PhysicalDeviceFragmentDensityMap2FeaturesEXT {
-    s_type: crate::vk::StructureType,
-    p_next: *mut core::ffi::c_void,
-    fragment_density_map_deferred: crate::vk::Bool32,
+    pub s_type: crate::vk::StructureType,
+    pub p_next: *mut core::ffi::c_void,
+    pub fragment_density_map_deferred: crate::vk::Bool32,
 }
 #[repr(C)]
 pub struct PhysicalDeviceFragmentDensityMap2PropertiesEXT {
-    s_type: crate::vk::StructureType,
-    p_next: *mut core::ffi::c_void,
-    subsampled_loads: crate::vk::Bool32,
-    subsampled_coarse_reconstruction_early_access: crate::vk::Bool32,
-    max_subsampled_array_layers: crate::External<
+    pub s_type: crate::vk::StructureType,
+    pub p_next: *mut core::ffi::c_void,
+    pub subsampled_loads: crate::vk::Bool32,
+    pub subsampled_coarse_reconstruction_early_access: crate::vk::Bool32,
+    pub max_subsampled_array_layers: crate::External<
         {
             "uint32_t";
             0
         },
     >,
-    max_descriptor_set_subsampled_samplers: crate::External<
+    pub max_descriptor_set_subsampled_samplers: crate::External<
         {
             "uint32_t";
             0

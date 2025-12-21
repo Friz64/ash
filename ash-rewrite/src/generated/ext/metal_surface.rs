@@ -3,10 +3,12 @@
 //![Vulkan Manual Page](https://docs.vulkan.org/refpages/latest/refpages/source/VK_EXT_metal_surface.html) · Vulkan extension
 #[repr(C)]
 pub struct MetalSurfaceCreateInfoEXT {
-    s_type: crate::vk::StructureType,
-    p_next: *const core::ffi::c_void,
-    flags: crate::vk::MetalSurfaceCreateFlagsEXT,
-    p_layer: *const crate::vk::CAMetalLayer,
+    pub s_type: crate::vk::StructureType,
+    pub p_next: *const core::ffi::c_void,
+    pub flags: crate::vk::MetalSurfaceCreateFlagsEXT,
+    pub p_layer: *const crate::vk::CAMetalLayer,
 }
+#[repr(C)]
+pub struct MetalSurfaceCreateFlagsEXT {}
 #[repr(C)]
 pub struct CAMetalLayer {}

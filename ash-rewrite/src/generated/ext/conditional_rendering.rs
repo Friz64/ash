@@ -3,22 +3,26 @@
 //![Vulkan Manual Page](https://docs.vulkan.org/refpages/latest/refpages/source/VK_EXT_conditional_rendering.html) · Vulkan extension
 #[repr(C)]
 pub struct ConditionalRenderingBeginInfoEXT {
-    s_type: crate::vk::StructureType,
-    p_next: *const core::ffi::c_void,
-    buffer: crate::vk::Buffer,
-    offset: crate::vk::DeviceSize,
-    flags: crate::vk::ConditionalRenderingFlagsEXT,
+    pub s_type: crate::vk::StructureType,
+    pub p_next: *const core::ffi::c_void,
+    pub buffer: crate::vk::Buffer,
+    pub offset: crate::vk::DeviceSize,
+    pub flags: crate::vk::ConditionalRenderingFlagsEXT,
 }
 #[repr(C)]
 pub struct CommandBufferInheritanceConditionalRenderingInfoEXT {
-    s_type: crate::vk::StructureType,
-    p_next: *const core::ffi::c_void,
-    conditional_rendering_enable: crate::vk::Bool32,
+    pub s_type: crate::vk::StructureType,
+    pub p_next: *const core::ffi::c_void,
+    pub conditional_rendering_enable: crate::vk::Bool32,
 }
 #[repr(C)]
 pub struct PhysicalDeviceConditionalRenderingFeaturesEXT {
-    s_type: crate::vk::StructureType,
-    p_next: *mut core::ffi::c_void,
-    conditional_rendering: crate::vk::Bool32,
-    inherited_conditional_rendering: crate::vk::Bool32,
+    pub s_type: crate::vk::StructureType,
+    pub p_next: *mut core::ffi::c_void,
+    pub conditional_rendering: crate::vk::Bool32,
+    pub inherited_conditional_rendering: crate::vk::Bool32,
 }
+#[repr(C)]
+pub struct ConditionalRenderingFlagsEXT {}
+#[repr(C)]
+pub struct ConditionalRenderingFlagBitsEXT {}

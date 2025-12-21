@@ -3,176 +3,176 @@
 //![Vulkan Manual Page](https://docs.vulkan.org/refpages/latest/refpages/source/VK_EXT_descriptor_buffer.html) · Vulkan extension
 #[repr(C)]
 pub struct PhysicalDeviceDescriptorBufferFeaturesEXT {
-    s_type: crate::vk::StructureType,
-    p_next: *mut core::ffi::c_void,
-    descriptor_buffer: crate::vk::Bool32,
-    descriptor_buffer_capture_replay: crate::vk::Bool32,
-    descriptor_buffer_image_layout_ignored: crate::vk::Bool32,
-    descriptor_buffer_push_descriptors: crate::vk::Bool32,
+    pub s_type: crate::vk::StructureType,
+    pub p_next: *mut core::ffi::c_void,
+    pub descriptor_buffer: crate::vk::Bool32,
+    pub descriptor_buffer_capture_replay: crate::vk::Bool32,
+    pub descriptor_buffer_image_layout_ignored: crate::vk::Bool32,
+    pub descriptor_buffer_push_descriptors: crate::vk::Bool32,
 }
 #[repr(C)]
 pub struct PhysicalDeviceDescriptorBufferPropertiesEXT {
-    s_type: crate::vk::StructureType,
-    p_next: *mut core::ffi::c_void,
-    combined_image_sampler_descriptor_single_array: crate::vk::Bool32,
-    bufferless_push_descriptors: crate::vk::Bool32,
-    allow_sampler_image_view_post_submit_creation: crate::vk::Bool32,
-    descriptor_buffer_offset_alignment: crate::vk::DeviceSize,
-    max_descriptor_buffer_bindings: crate::External<
+    pub s_type: crate::vk::StructureType,
+    pub p_next: *mut core::ffi::c_void,
+    pub combined_image_sampler_descriptor_single_array: crate::vk::Bool32,
+    pub bufferless_push_descriptors: crate::vk::Bool32,
+    pub allow_sampler_image_view_post_submit_creation: crate::vk::Bool32,
+    pub descriptor_buffer_offset_alignment: crate::vk::DeviceSize,
+    pub max_descriptor_buffer_bindings: crate::External<
         {
             "uint32_t";
             0
         },
     >,
-    max_resource_descriptor_buffer_bindings: crate::External<
+    pub max_resource_descriptor_buffer_bindings: crate::External<
         {
             "uint32_t";
             0
         },
     >,
-    max_sampler_descriptor_buffer_bindings: crate::External<
+    pub max_sampler_descriptor_buffer_bindings: crate::External<
         {
             "uint32_t";
             0
         },
     >,
-    max_embedded_immutable_sampler_bindings: crate::External<
+    pub max_embedded_immutable_sampler_bindings: crate::External<
         {
             "uint32_t";
             0
         },
     >,
-    max_embedded_immutable_samplers: crate::External<
+    pub max_embedded_immutable_samplers: crate::External<
         {
             "uint32_t";
             0
         },
     >,
-    buffer_capture_replay_descriptor_data_size: crate::External<
+    pub buffer_capture_replay_descriptor_data_size: crate::External<
         {
             "size_t";
             0
         },
     >,
-    image_capture_replay_descriptor_data_size: crate::External<
+    pub image_capture_replay_descriptor_data_size: crate::External<
         {
             "size_t";
             0
         },
     >,
-    image_view_capture_replay_descriptor_data_size: crate::External<
+    pub image_view_capture_replay_descriptor_data_size: crate::External<
         {
             "size_t";
             0
         },
     >,
-    sampler_capture_replay_descriptor_data_size: crate::External<
+    pub sampler_capture_replay_descriptor_data_size: crate::External<
         {
             "size_t";
             0
         },
     >,
-    acceleration_structure_capture_replay_descriptor_data_size: crate::External<
+    pub acceleration_structure_capture_replay_descriptor_data_size: crate::External<
         {
             "size_t";
             0
         },
     >,
-    sampler_descriptor_size: crate::External<
+    pub sampler_descriptor_size: crate::External<
         {
             "size_t";
             0
         },
     >,
-    combined_image_sampler_descriptor_size: crate::External<
+    pub combined_image_sampler_descriptor_size: crate::External<
         {
             "size_t";
             0
         },
     >,
-    sampled_image_descriptor_size: crate::External<
+    pub sampled_image_descriptor_size: crate::External<
         {
             "size_t";
             0
         },
     >,
-    storage_image_descriptor_size: crate::External<
+    pub storage_image_descriptor_size: crate::External<
         {
             "size_t";
             0
         },
     >,
-    uniform_texel_buffer_descriptor_size: crate::External<
+    pub uniform_texel_buffer_descriptor_size: crate::External<
         {
             "size_t";
             0
         },
     >,
-    robust_uniform_texel_buffer_descriptor_size: crate::External<
+    pub robust_uniform_texel_buffer_descriptor_size: crate::External<
         {
             "size_t";
             0
         },
     >,
-    storage_texel_buffer_descriptor_size: crate::External<
+    pub storage_texel_buffer_descriptor_size: crate::External<
         {
             "size_t";
             0
         },
     >,
-    robust_storage_texel_buffer_descriptor_size: crate::External<
+    pub robust_storage_texel_buffer_descriptor_size: crate::External<
         {
             "size_t";
             0
         },
     >,
-    uniform_buffer_descriptor_size: crate::External<
+    pub uniform_buffer_descriptor_size: crate::External<
         {
             "size_t";
             0
         },
     >,
-    robust_uniform_buffer_descriptor_size: crate::External<
+    pub robust_uniform_buffer_descriptor_size: crate::External<
         {
             "size_t";
             0
         },
     >,
-    storage_buffer_descriptor_size: crate::External<
+    pub storage_buffer_descriptor_size: crate::External<
         {
             "size_t";
             0
         },
     >,
-    robust_storage_buffer_descriptor_size: crate::External<
+    pub robust_storage_buffer_descriptor_size: crate::External<
         {
             "size_t";
             0
         },
     >,
-    input_attachment_descriptor_size: crate::External<
+    pub input_attachment_descriptor_size: crate::External<
         {
             "size_t";
             0
         },
     >,
-    acceleration_structure_descriptor_size: crate::External<
+    pub acceleration_structure_descriptor_size: crate::External<
         {
             "size_t";
             0
         },
     >,
-    max_sampler_descriptor_buffer_range: crate::vk::DeviceSize,
-    max_resource_descriptor_buffer_range: crate::vk::DeviceSize,
-    sampler_descriptor_buffer_address_space_size: crate::vk::DeviceSize,
-    resource_descriptor_buffer_address_space_size: crate::vk::DeviceSize,
-    descriptor_buffer_address_space_size: crate::vk::DeviceSize,
+    pub max_sampler_descriptor_buffer_range: crate::vk::DeviceSize,
+    pub max_resource_descriptor_buffer_range: crate::vk::DeviceSize,
+    pub sampler_descriptor_buffer_address_space_size: crate::vk::DeviceSize,
+    pub resource_descriptor_buffer_address_space_size: crate::vk::DeviceSize,
+    pub descriptor_buffer_address_space_size: crate::vk::DeviceSize,
 }
 #[repr(C)]
 pub struct PhysicalDeviceDescriptorBufferDensityMapPropertiesEXT {
-    s_type: crate::vk::StructureType,
-    p_next: *mut core::ffi::c_void,
-    combined_image_sampler_density_map_descriptor_size: crate::External<
+    pub s_type: crate::vk::StructureType,
+    pub p_next: *mut core::ffi::c_void,
+    pub combined_image_sampler_density_map_descriptor_size: crate::External<
         {
             "size_t";
             0
@@ -181,66 +181,79 @@ pub struct PhysicalDeviceDescriptorBufferDensityMapPropertiesEXT {
 }
 #[repr(C)]
 pub struct DescriptorAddressInfoEXT {
-    s_type: crate::vk::StructureType,
-    p_next: *mut core::ffi::c_void,
-    address: crate::vk::DeviceAddress,
-    range: crate::vk::DeviceSize,
-    format: crate::vk::Format,
+    pub s_type: crate::vk::StructureType,
+    pub p_next: *mut core::ffi::c_void,
+    pub address: crate::vk::DeviceAddress,
+    pub range: crate::vk::DeviceSize,
+    pub format: crate::vk::Format,
 }
 #[repr(C)]
 pub struct DescriptorBufferBindingInfoEXT {
-    s_type: crate::vk::StructureType,
-    p_next: *const core::ffi::c_void,
-    address: crate::vk::DeviceAddress,
-    usage: crate::vk::BufferUsageFlags,
+    pub s_type: crate::vk::StructureType,
+    pub p_next: *const core::ffi::c_void,
+    pub address: crate::vk::DeviceAddress,
+    pub usage: crate::vk::BufferUsageFlags,
 }
 #[repr(C)]
 pub struct DescriptorBufferBindingPushDescriptorBufferHandleEXT {
-    s_type: crate::vk::StructureType,
-    p_next: *const core::ffi::c_void,
-    buffer: crate::vk::Buffer,
+    pub s_type: crate::vk::StructureType,
+    pub p_next: *const core::ffi::c_void,
+    pub buffer: crate::vk::Buffer,
 }
 #[repr(C)]
 pub struct DescriptorGetInfoEXT {
-    s_type: crate::vk::StructureType,
-    p_next: *const core::ffi::c_void,
-    _type: crate::vk::DescriptorType,
-    data: crate::vk::DescriptorDataEXT,
+    pub s_type: crate::vk::StructureType,
+    pub p_next: *const core::ffi::c_void,
+    pub _type: crate::vk::DescriptorType,
+    pub data: crate::vk::DescriptorDataEXT,
 }
 #[repr(C)]
 pub struct BufferCaptureDescriptorDataInfoEXT {
-    s_type: crate::vk::StructureType,
-    p_next: *const core::ffi::c_void,
-    buffer: crate::vk::Buffer,
+    pub s_type: crate::vk::StructureType,
+    pub p_next: *const core::ffi::c_void,
+    pub buffer: crate::vk::Buffer,
 }
 #[repr(C)]
 pub struct ImageCaptureDescriptorDataInfoEXT {
-    s_type: crate::vk::StructureType,
-    p_next: *const core::ffi::c_void,
-    image: crate::vk::Image,
+    pub s_type: crate::vk::StructureType,
+    pub p_next: *const core::ffi::c_void,
+    pub image: crate::vk::Image,
 }
 #[repr(C)]
 pub struct ImageViewCaptureDescriptorDataInfoEXT {
-    s_type: crate::vk::StructureType,
-    p_next: *const core::ffi::c_void,
-    image_view: crate::vk::ImageView,
+    pub s_type: crate::vk::StructureType,
+    pub p_next: *const core::ffi::c_void,
+    pub image_view: crate::vk::ImageView,
 }
 #[repr(C)]
 pub struct SamplerCaptureDescriptorDataInfoEXT {
-    s_type: crate::vk::StructureType,
-    p_next: *const core::ffi::c_void,
-    sampler: crate::vk::Sampler,
+    pub s_type: crate::vk::StructureType,
+    pub p_next: *const core::ffi::c_void,
+    pub sampler: crate::vk::Sampler,
 }
 #[repr(C)]
 pub struct AccelerationStructureCaptureDescriptorDataInfoEXT {
-    s_type: crate::vk::StructureType,
-    p_next: *const core::ffi::c_void,
-    acceleration_structure: crate::vk::AccelerationStructureKHR,
-    acceleration_structure_nv: crate::vk::AccelerationStructureNV,
+    pub s_type: crate::vk::StructureType,
+    pub p_next: *const core::ffi::c_void,
+    pub acceleration_structure: crate::vk::AccelerationStructureKHR,
+    pub acceleration_structure_nv: crate::vk::AccelerationStructureNV,
 }
 #[repr(C)]
 pub struct OpaqueCaptureDescriptorDataCreateInfoEXT {
-    s_type: crate::vk::StructureType,
-    p_next: *const core::ffi::c_void,
-    opaque_capture_descriptor_data: *const core::ffi::c_void,
+    pub s_type: crate::vk::StructureType,
+    pub p_next: *const core::ffi::c_void,
+    pub opaque_capture_descriptor_data: *const core::ffi::c_void,
+}
+#[repr(C)]
+pub struct DescriptorDataEXT {
+    p_sampler: *const crate::vk::Sampler,
+    p_combined_image_sampler: *const crate::vk::DescriptorImageInfo,
+    p_input_attachment_image: *const crate::vk::DescriptorImageInfo,
+    p_sampled_image: *const crate::vk::DescriptorImageInfo,
+    p_storage_image: *const crate::vk::DescriptorImageInfo,
+    p_uniform_texel_buffer: *const crate::vk::DescriptorAddressInfoEXT,
+    p_storage_texel_buffer: *const crate::vk::DescriptorAddressInfoEXT,
+    p_uniform_buffer: *const crate::vk::DescriptorAddressInfoEXT,
+    p_storage_buffer: *const crate::vk::DescriptorAddressInfoEXT,
+    acceleration_structure: crate::vk::DeviceAddress,
 }

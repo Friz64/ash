@@ -3,9 +3,9 @@
 //![Vulkan Manual Page](https://docs.vulkan.org/refpages/latest/refpages/source/VK_EXT_discard_rectangles.html) · Vulkan extension
 #[repr(C)]
 pub struct PhysicalDeviceDiscardRectanglePropertiesEXT {
-    s_type: crate::vk::StructureType,
-    p_next: *mut core::ffi::c_void,
-    max_discard_rectangles: crate::External<
+    pub s_type: crate::vk::StructureType,
+    pub p_next: *mut core::ffi::c_void,
+    pub max_discard_rectangles: crate::External<
         {
             "uint32_t";
             0
@@ -14,17 +14,19 @@ pub struct PhysicalDeviceDiscardRectanglePropertiesEXT {
 }
 #[repr(C)]
 pub struct PipelineDiscardRectangleStateCreateInfoEXT {
-    s_type: crate::vk::StructureType,
-    p_next: *const core::ffi::c_void,
-    flags: crate::vk::PipelineDiscardRectangleStateCreateFlagsEXT,
-    discard_rectangle_mode: crate::vk::DiscardRectangleModeEXT,
-    discard_rectangle_count: crate::External<
+    pub s_type: crate::vk::StructureType,
+    pub p_next: *const core::ffi::c_void,
+    pub flags: crate::vk::PipelineDiscardRectangleStateCreateFlagsEXT,
+    pub discard_rectangle_mode: crate::vk::DiscardRectangleModeEXT,
+    pub discard_rectangle_count: crate::External<
         {
             "uint32_t";
             0
         },
     >,
-    p_discard_rectangles: *const crate::vk::Rect2D,
+    pub p_discard_rectangles: *const crate::vk::Rect2D,
 }
 #[repr(C)]
 pub struct DiscardRectangleModeEXT {}
+#[repr(C)]
+pub struct PipelineDiscardRectangleStateCreateFlagsEXT {}

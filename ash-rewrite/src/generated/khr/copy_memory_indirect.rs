@@ -3,75 +3,79 @@
 //![Vulkan Manual Page](https://docs.vulkan.org/refpages/latest/refpages/source/VK_KHR_copy_memory_indirect.html) · Vulkan extension
 #[repr(C)]
 pub struct StridedDeviceAddressRangeKHR {
-    address: crate::vk::DeviceAddress,
-    size: crate::vk::DeviceSize,
-    stride: crate::vk::DeviceSize,
+    pub address: crate::vk::DeviceAddress,
+    pub size: crate::vk::DeviceSize,
+    pub stride: crate::vk::DeviceSize,
 }
 #[repr(C)]
 pub struct CopyMemoryIndirectCommandKHR {
-    src_address: crate::vk::DeviceAddress,
-    dst_address: crate::vk::DeviceAddress,
-    size: crate::vk::DeviceSize,
+    pub src_address: crate::vk::DeviceAddress,
+    pub dst_address: crate::vk::DeviceAddress,
+    pub size: crate::vk::DeviceSize,
 }
 #[repr(C)]
 pub struct CopyMemoryIndirectInfoKHR {
-    s_type: crate::vk::StructureType,
-    p_next: *const core::ffi::c_void,
-    src_copy_flags: crate::vk::AddressCopyFlagsKHR,
-    dst_copy_flags: crate::vk::AddressCopyFlagsKHR,
-    copy_count: crate::External<
+    pub s_type: crate::vk::StructureType,
+    pub p_next: *const core::ffi::c_void,
+    pub src_copy_flags: crate::vk::AddressCopyFlagsKHR,
+    pub dst_copy_flags: crate::vk::AddressCopyFlagsKHR,
+    pub copy_count: crate::External<
         {
             "uint32_t";
             0
         },
     >,
-    copy_address_range: crate::vk::StridedDeviceAddressRangeKHR,
+    pub copy_address_range: crate::vk::StridedDeviceAddressRangeKHR,
 }
 #[repr(C)]
 pub struct CopyMemoryToImageIndirectCommandKHR {
-    src_address: crate::vk::DeviceAddress,
-    buffer_row_length: crate::External<
+    pub src_address: crate::vk::DeviceAddress,
+    pub buffer_row_length: crate::External<
         {
             "uint32_t";
             0
         },
     >,
-    buffer_image_height: crate::External<
+    pub buffer_image_height: crate::External<
         {
             "uint32_t";
             0
         },
     >,
-    image_subresource: crate::vk::ImageSubresourceLayers,
-    image_offset: crate::vk::Offset3D,
-    image_extent: crate::vk::Extent3D,
+    pub image_subresource: crate::vk::ImageSubresourceLayers,
+    pub image_offset: crate::vk::Offset3D,
+    pub image_extent: crate::vk::Extent3D,
 }
 #[repr(C)]
 pub struct CopyMemoryToImageIndirectInfoKHR {
-    s_type: crate::vk::StructureType,
-    p_next: *const core::ffi::c_void,
-    src_copy_flags: crate::vk::AddressCopyFlagsKHR,
-    copy_count: crate::External<
+    pub s_type: crate::vk::StructureType,
+    pub p_next: *const core::ffi::c_void,
+    pub src_copy_flags: crate::vk::AddressCopyFlagsKHR,
+    pub copy_count: crate::External<
         {
             "uint32_t";
             0
         },
     >,
-    copy_address_range: crate::vk::StridedDeviceAddressRangeKHR,
-    dst_image: crate::vk::Image,
-    dst_image_layout: crate::vk::ImageLayout,
-    p_image_subresources: *const crate::vk::ImageSubresourceLayers,
+    pub copy_address_range: crate::vk::StridedDeviceAddressRangeKHR,
+    pub dst_image: crate::vk::Image,
+    pub dst_image_layout: crate::vk::ImageLayout,
+    pub p_image_subresources: *const crate::vk::ImageSubresourceLayers,
 }
 #[repr(C)]
 pub struct PhysicalDeviceCopyMemoryIndirectFeaturesKHR {
-    s_type: crate::vk::StructureType,
-    p_next: *mut core::ffi::c_void,
-    indirect_memory_copy: crate::vk::Bool32,
-    indirect_memory_to_image_copy: crate::vk::Bool32,
+    pub s_type: crate::vk::StructureType,
+    pub p_next: *mut core::ffi::c_void,
+    pub indirect_memory_copy: crate::vk::Bool32,
+    pub indirect_memory_to_image_copy: crate::vk::Bool32,
 }
 #[repr(C)]
 pub struct PhysicalDeviceCopyMemoryIndirectPropertiesKHR {
-    s_type: crate::vk::StructureType,
-    p_next: *mut core::ffi::c_void,
-    supported_queues: crate::vk::QueueFlags,
+    pub s_type: crate::vk::StructureType,
+    pub p_next: *mut core::ffi::c_void,
+    pub supported_queues: crate::vk::QueueFlags,
 }
+#[repr(C)]
+pub struct AddressCopyFlagsKHR {}
+#[repr(C)]
+pub struct AddressCopyFlagBitsKHR {}

@@ -3,7 +3,7 @@
 //![Vulkan Manual Page](https://docs.vulkan.org/refpages/latest/refpages/source/VK_EXT_rgba10x6_formats.html) · Vulkan extension
 #[repr(C)]
 pub struct PhysicalDeviceRGBA10X6FormatsFeaturesEXT {
-    s_type: crate::vk::StructureType,
-    p_next: *mut core::ffi::c_void,
-    format_rgba10x6_without_y_cb_cr_sampler: crate::vk::Bool32,
+    pub s_type: crate::vk::StructureType,
+    pub p_next: *mut core::ffi::c_void,
+    pub format_rgba10x6_without_y_cb_cr_sampler: crate::vk::Bool32,
 }

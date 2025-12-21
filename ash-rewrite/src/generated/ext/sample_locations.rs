@@ -3,13 +3,13 @@
 //![Vulkan Manual Page](https://docs.vulkan.org/refpages/latest/refpages/source/VK_EXT_sample_locations.html) · Vulkan extension
 #[repr(C)]
 pub struct SampleLocationEXT {
-    x: crate::External<
+    pub x: crate::External<
         {
             "float";
             0
         },
     >,
-    y: crate::External<
+    pub y: crate::External<
         {
             "float";
             0
@@ -18,87 +18,87 @@ pub struct SampleLocationEXT {
 }
 #[repr(C)]
 pub struct SampleLocationsInfoEXT {
-    s_type: crate::vk::StructureType,
-    p_next: *const core::ffi::c_void,
-    sample_locations_per_pixel: crate::vk::SampleCountFlagBits,
-    sample_location_grid_size: crate::vk::Extent2D,
-    sample_locations_count: crate::External<
+    pub s_type: crate::vk::StructureType,
+    pub p_next: *const core::ffi::c_void,
+    pub sample_locations_per_pixel: crate::vk::SampleCountFlagBits,
+    pub sample_location_grid_size: crate::vk::Extent2D,
+    pub sample_locations_count: crate::External<
         {
             "uint32_t";
             0
         },
     >,
-    p_sample_locations: *const crate::vk::SampleLocationEXT,
+    pub p_sample_locations: *const crate::vk::SampleLocationEXT,
 }
 #[repr(C)]
 pub struct AttachmentSampleLocationsEXT {
-    attachment_index: crate::External<
+    pub attachment_index: crate::External<
         {
             "uint32_t";
             0
         },
     >,
-    sample_locations_info: crate::vk::SampleLocationsInfoEXT,
+    pub sample_locations_info: crate::vk::SampleLocationsInfoEXT,
 }
 #[repr(C)]
 pub struct SubpassSampleLocationsEXT {
-    subpass_index: crate::External<
+    pub subpass_index: crate::External<
         {
             "uint32_t";
             0
         },
     >,
-    sample_locations_info: crate::vk::SampleLocationsInfoEXT,
+    pub sample_locations_info: crate::vk::SampleLocationsInfoEXT,
 }
 #[repr(C)]
 pub struct RenderPassSampleLocationsBeginInfoEXT {
-    s_type: crate::vk::StructureType,
-    p_next: *const core::ffi::c_void,
-    attachment_initial_sample_locations_count: crate::External<
+    pub s_type: crate::vk::StructureType,
+    pub p_next: *const core::ffi::c_void,
+    pub attachment_initial_sample_locations_count: crate::External<
         {
             "uint32_t";
             0
         },
     >,
-    p_attachment_initial_sample_locations: *const crate::vk::AttachmentSampleLocationsEXT,
-    post_subpass_sample_locations_count: crate::External<
+    pub p_attachment_initial_sample_locations: *const crate::vk::AttachmentSampleLocationsEXT,
+    pub post_subpass_sample_locations_count: crate::External<
         {
             "uint32_t";
             0
         },
     >,
-    p_post_subpass_sample_locations: *const crate::vk::SubpassSampleLocationsEXT,
+    pub p_post_subpass_sample_locations: *const crate::vk::SubpassSampleLocationsEXT,
 }
 #[repr(C)]
 pub struct PipelineSampleLocationsStateCreateInfoEXT {
-    s_type: crate::vk::StructureType,
-    p_next: *const core::ffi::c_void,
-    sample_locations_enable: crate::vk::Bool32,
-    sample_locations_info: crate::vk::SampleLocationsInfoEXT,
+    pub s_type: crate::vk::StructureType,
+    pub p_next: *const core::ffi::c_void,
+    pub sample_locations_enable: crate::vk::Bool32,
+    pub sample_locations_info: crate::vk::SampleLocationsInfoEXT,
 }
 #[repr(C)]
 pub struct PhysicalDeviceSampleLocationsPropertiesEXT {
-    s_type: crate::vk::StructureType,
-    p_next: *mut core::ffi::c_void,
-    sample_location_sample_counts: crate::vk::SampleCountFlags,
-    max_sample_location_grid_size: crate::vk::Extent2D,
-    sample_location_coordinate_range: [crate::External<
+    pub s_type: crate::vk::StructureType,
+    pub p_next: *mut core::ffi::c_void,
+    pub sample_location_sample_counts: crate::vk::SampleCountFlags,
+    pub max_sample_location_grid_size: crate::vk::Extent2D,
+    pub sample_location_coordinate_range: [crate::External<
         {
             "float";
             0
         },
     >; 1337],
-    sample_location_sub_pixel_bits: crate::External<
+    pub sample_location_sub_pixel_bits: crate::External<
         {
             "uint32_t";
             0
         },
     >,
-    variable_sample_locations: crate::vk::Bool32,
+    pub variable_sample_locations: crate::vk::Bool32,
 }
 #[repr(C)]
 pub struct MultisamplePropertiesEXT {
-    s_type: crate::vk::StructureType,
-    p_next: *mut core::ffi::c_void,
-    max_sample_location_grid_size: crate::vk::Extent2D,
+    pub s_type: crate::vk::StructureType,
+    pub p_next: *mut core::ffi::c_void,
+    pub max_sample_location_grid_size: crate::vk::Extent2D,
 }

@@ -4,6 +4,7 @@
 pub mod clip_space_w_scaling;
 pub mod cluster_acceleration_structure;
 pub mod command_buffer_inheritance;
+pub mod compute_shader_derivatives;
 pub mod cooperative_matrix;
 pub mod cooperative_matrix2;
 pub mod cooperative_vector;
@@ -27,6 +28,7 @@ pub mod external_memory_capabilities;
 pub mod external_memory_rdma;
 pub mod external_memory_win32;
 pub mod fragment_coverage_to_color;
+pub mod fragment_shader_barycentric;
 pub mod fragment_shading_rate_enums;
 pub mod framebuffer_mixed_samples;
 pub mod inherited_viewport_scissor;

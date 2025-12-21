@@ -3,66 +3,66 @@
 //![Vulkan Manual Page](https://docs.vulkan.org/refpages/latest/refpages/source/VK_KHR_swapchain_maintenance1.html) · Vulkan extension
 #[repr(C)]
 pub struct PhysicalDeviceSwapchainMaintenance1FeaturesKHR {
-    s_type: crate::vk::StructureType,
-    p_next: *mut core::ffi::c_void,
-    swapchain_maintenance1: crate::vk::Bool32,
+    pub s_type: crate::vk::StructureType,
+    pub p_next: *mut core::ffi::c_void,
+    pub swapchain_maintenance1: crate::vk::Bool32,
 }
 #[repr(C)]
 pub struct SwapchainPresentFenceInfoKHR {
-    s_type: crate::vk::StructureType,
-    p_next: *const core::ffi::c_void,
-    swapchain_count: crate::External<
+    pub s_type: crate::vk::StructureType,
+    pub p_next: *const core::ffi::c_void,
+    pub swapchain_count: crate::External<
         {
             "uint32_t";
             0
         },
     >,
-    p_fences: *const crate::vk::Fence,
+    pub p_fences: *const crate::vk::Fence,
 }
 #[repr(C)]
 pub struct SwapchainPresentModesCreateInfoKHR {
-    s_type: crate::vk::StructureType,
-    p_next: *const core::ffi::c_void,
-    present_mode_count: crate::External<
+    pub s_type: crate::vk::StructureType,
+    pub p_next: *const core::ffi::c_void,
+    pub present_mode_count: crate::External<
         {
             "uint32_t";
             0
         },
     >,
-    p_present_modes: *const crate::vk::PresentModeKHR,
+    pub p_present_modes: *const crate::vk::PresentModeKHR,
 }
 #[repr(C)]
 pub struct SwapchainPresentModeInfoKHR {
-    s_type: crate::vk::StructureType,
-    p_next: *const core::ffi::c_void,
-    swapchain_count: crate::External<
+    pub s_type: crate::vk::StructureType,
+    pub p_next: *const core::ffi::c_void,
+    pub swapchain_count: crate::External<
         {
             "uint32_t";
             0
         },
     >,
-    p_present_modes: *const crate::vk::PresentModeKHR,
+    pub p_present_modes: *const crate::vk::PresentModeKHR,
 }
 #[repr(C)]
 pub struct SwapchainPresentScalingCreateInfoKHR {
-    s_type: crate::vk::StructureType,
-    p_next: *const core::ffi::c_void,
-    scaling_behavior: crate::vk::PresentScalingFlagsKHR,
-    present_gravity_x: crate::vk::PresentGravityFlagsKHR,
-    present_gravity_y: crate::vk::PresentGravityFlagsKHR,
+    pub s_type: crate::vk::StructureType,
+    pub p_next: *const core::ffi::c_void,
+    pub scaling_behavior: crate::vk::PresentScalingFlagsKHR,
+    pub present_gravity_x: crate::vk::PresentGravityFlagsKHR,
+    pub present_gravity_y: crate::vk::PresentGravityFlagsKHR,
 }
 #[repr(C)]
 pub struct ReleaseSwapchainImagesInfoKHR {
-    s_type: crate::vk::StructureType,
-    p_next: *const core::ffi::c_void,
-    swapchain: crate::vk::SwapchainKHR,
-    image_index_count: crate::External<
+    pub s_type: crate::vk::StructureType,
+    pub p_next: *const core::ffi::c_void,
+    pub swapchain: crate::vk::SwapchainKHR,
+    pub image_index_count: crate::External<
         {
             "uint32_t";
             0
         },
     >,
-    p_image_indices: *const crate::External<
+    pub p_image_indices: *const crate::External<
         {
             "uint32_t";
             0

@@ -3,13 +3,14 @@
 //![Vulkan Manual Page](https://docs.vulkan.org/refpages/latest/refpages/source/VK_NV_ray_tracing_invocation_reorder.html) · Vulkan extension
 #[repr(C)]
 pub struct PhysicalDeviceRayTracingInvocationReorderFeaturesNV {
-    s_type: crate::vk::StructureType,
-    p_next: *mut core::ffi::c_void,
-    ray_tracing_invocation_reorder: crate::vk::Bool32,
+    pub s_type: crate::vk::StructureType,
+    pub p_next: *mut core::ffi::c_void,
+    pub ray_tracing_invocation_reorder: crate::vk::Bool32,
 }
 #[repr(C)]
 pub struct PhysicalDeviceRayTracingInvocationReorderPropertiesNV {
-    s_type: crate::vk::StructureType,
-    p_next: *mut core::ffi::c_void,
-    ray_tracing_invocation_reorder_reordering_hint: crate::vk::RayTracingInvocationReorderModeEXT,
+    pub s_type: crate::vk::StructureType,
+    pub p_next: *mut core::ffi::c_void,
+    pub ray_tracing_invocation_reorder_reordering_hint: crate::vk::RayTracingInvocationReorderModeEXT,
 }
+pub type RayTracingInvocationReorderModeNV = crate::vk::RayTracingInvocationReorderModeEXT;

@@ -3,19 +3,21 @@
 //![Vulkan Manual Page](https://docs.vulkan.org/refpages/latest/refpages/source/VK_QNX_screen_surface.html) · Vulkan extension
 #[repr(C)]
 pub struct ScreenSurfaceCreateInfoQNX {
-    s_type: crate::vk::StructureType,
-    p_next: *const core::ffi::c_void,
-    flags: crate::vk::ScreenSurfaceCreateFlagsQNX,
-    context: *mut crate::External<
+    pub s_type: crate::vk::StructureType,
+    pub p_next: *const core::ffi::c_void,
+    pub flags: crate::vk::ScreenSurfaceCreateFlagsQNX,
+    pub context: *mut crate::External<
         {
             "_screen_context";
             0
         },
     >,
-    window: *mut crate::External<
+    pub window: *mut crate::External<
         {
             "_screen_window";
             0
         },
     >,
 }
+#[repr(C)]
+pub struct ScreenSurfaceCreateFlagsQNX {}

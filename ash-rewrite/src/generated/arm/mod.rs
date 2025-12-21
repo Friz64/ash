@@ -5,6 +5,7 @@ pub mod data_graph;
 pub mod format_pack;
 pub mod performance_counters_by_region;
 pub mod pipeline_opacity_micromap;
+pub mod rasterization_order_attachment_access;
 pub mod render_pass_striped;
 pub mod scheduling_controls;
 pub mod shader_core_builtins;

@@ -3,31 +3,41 @@
 //![Vulkan Manual Page](https://docs.vulkan.org/refpages/latest/refpages/source/VK_KHR_video_decode_queue.html) · Vulkan extension
 #[repr(C)]
 pub struct VideoDecodeCapabilitiesKHR {
-    s_type: crate::vk::StructureType,
-    p_next: *mut core::ffi::c_void,
-    flags: crate::vk::VideoDecodeCapabilityFlagsKHR,
+    pub s_type: crate::vk::StructureType,
+    pub p_next: *mut core::ffi::c_void,
+    pub flags: crate::vk::VideoDecodeCapabilityFlagsKHR,
 }
 #[repr(C)]
 pub struct VideoDecodeUsageInfoKHR {
-    s_type: crate::vk::StructureType,
-    p_next: *const core::ffi::c_void,
-    video_usage_hints: crate::vk::VideoDecodeUsageFlagsKHR,
+    pub s_type: crate::vk::StructureType,
+    pub p_next: *const core::ffi::c_void,
+    pub video_usage_hints: crate::vk::VideoDecodeUsageFlagsKHR,
 }
 #[repr(C)]
 pub struct VideoDecodeInfoKHR {
-    s_type: crate::vk::StructureType,
-    p_next: *const core::ffi::c_void,
-    flags: crate::vk::VideoDecodeFlagsKHR,
-    src_buffer: crate::vk::Buffer,
-    src_buffer_offset: crate::vk::DeviceSize,
-    src_buffer_range: crate::vk::DeviceSize,
-    dst_picture_resource: crate::vk::VideoPictureResourceInfoKHR,
-    p_setup_reference_slot: *const crate::vk::VideoReferenceSlotInfoKHR,
-    reference_slot_count: crate::External<
+    pub s_type: crate::vk::StructureType,
+    pub p_next: *const core::ffi::c_void,
+    pub flags: crate::vk::VideoDecodeFlagsKHR,
+    pub src_buffer: crate::vk::Buffer,
+    pub src_buffer_offset: crate::vk::DeviceSize,
+    pub src_buffer_range: crate::vk::DeviceSize,
+    pub dst_picture_resource: crate::vk::VideoPictureResourceInfoKHR,
+    pub p_setup_reference_slot: *const crate::vk::VideoReferenceSlotInfoKHR,
+    pub reference_slot_count: crate::External<
         {
             "uint32_t";
             0
         },
     >,
-    p_reference_slots: *const crate::vk::VideoReferenceSlotInfoKHR,
+    pub p_reference_slots: *const crate::vk::VideoReferenceSlotInfoKHR,
 }
+#[repr(C)]
+pub struct VideoDecodeUsageFlagsKHR {}
+#[repr(C)]
+pub struct VideoDecodeCapabilityFlagsKHR {}
+#[repr(C)]
+pub struct VideoDecodeFlagsKHR {}
+#[repr(C)]
+pub struct VideoDecodeUsageFlagBitsKHR {}
+#[repr(C)]
+pub struct VideoDecodeCapabilityFlagBitsKHR {}

@@ -3,14 +3,20 @@
 //![Vulkan Manual Page](https://docs.vulkan.org/refpages/latest/refpages/source/VK_KHR_maintenance8.html) · Vulkan extension
 #[repr(C)]
 pub struct PhysicalDeviceMaintenance8FeaturesKHR {
-    s_type: crate::vk::StructureType,
-    p_next: *mut core::ffi::c_void,
-    maintenance8: crate::vk::Bool32,
+    pub s_type: crate::vk::StructureType,
+    pub p_next: *mut core::ffi::c_void,
+    pub maintenance8: crate::vk::Bool32,
 }
 #[repr(C)]
 pub struct MemoryBarrierAccessFlags3KHR {
-    s_type: crate::vk::StructureType,
-    p_next: *const core::ffi::c_void,
-    src_access_mask3: crate::vk::AccessFlags3KHR,
-    dst_access_mask3: crate::vk::AccessFlags3KHR,
+    pub s_type: crate::vk::StructureType,
+    pub p_next: *const core::ffi::c_void,
+    pub src_access_mask3: crate::vk::AccessFlags3KHR,
+    pub dst_access_mask3: crate::vk::AccessFlags3KHR,
 }
+#[repr(C)]
+pub struct AccessFlags3KHR {}
+#[repr(C)]
+pub struct PipelineCacheCreateFlagBits {}
+#[repr(C)]
+pub struct AccessFlagBits3KHR {}

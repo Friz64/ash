@@ -3,19 +3,19 @@
 //![Vulkan Manual Page](https://docs.vulkan.org/refpages/latest/refpages/source/VK_KHR_get_surface_capabilities2.html) · Vulkan extension
 #[repr(C)]
 pub struct PhysicalDeviceSurfaceInfo2KHR {
-    s_type: crate::vk::StructureType,
-    p_next: *const core::ffi::c_void,
-    surface: crate::vk::SurfaceKHR,
+    pub s_type: crate::vk::StructureType,
+    pub p_next: *const core::ffi::c_void,
+    pub surface: crate::vk::SurfaceKHR,
 }
 #[repr(C)]
 pub struct SurfaceCapabilities2KHR {
-    s_type: crate::vk::StructureType,
-    p_next: *mut core::ffi::c_void,
-    surface_capabilities: crate::vk::SurfaceCapabilitiesKHR,
+    pub s_type: crate::vk::StructureType,
+    pub p_next: *mut core::ffi::c_void,
+    pub surface_capabilities: crate::vk::SurfaceCapabilitiesKHR,
 }
 #[repr(C)]
 pub struct SurfaceFormat2KHR {
-    s_type: crate::vk::StructureType,
-    p_next: *mut core::ffi::c_void,
-    surface_format: crate::vk::SurfaceFormatKHR,
+    pub s_type: crate::vk::StructureType,
+    pub p_next: *mut core::ffi::c_void,
+    pub surface_format: crate::vk::SurfaceFormatKHR,
 }

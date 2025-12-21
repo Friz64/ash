@@ -3,66 +3,66 @@
 //![Vulkan Manual Page](https://docs.vulkan.org/refpages/latest/refpages/source/VK_KHR_ray_tracing_pipeline.html) · Vulkan extension
 #[repr(C)]
 pub struct RayTracingShaderGroupCreateInfoKHR {
-    s_type: crate::vk::StructureType,
-    p_next: *const core::ffi::c_void,
-    _type: crate::vk::RayTracingShaderGroupTypeKHR,
-    general_shader: crate::External<
+    pub s_type: crate::vk::StructureType,
+    pub p_next: *const core::ffi::c_void,
+    pub _type: crate::vk::RayTracingShaderGroupTypeKHR,
+    pub general_shader: crate::External<
         {
             "uint32_t";
             0
         },
     >,
-    closest_hit_shader: crate::External<
+    pub closest_hit_shader: crate::External<
         {
             "uint32_t";
             0
         },
     >,
-    any_hit_shader: crate::External<
+    pub any_hit_shader: crate::External<
         {
             "uint32_t";
             0
         },
     >,
-    intersection_shader: crate::External<
+    pub intersection_shader: crate::External<
         {
             "uint32_t";
             0
         },
     >,
-    p_shader_group_capture_replay_handle: *const core::ffi::c_void,
+    pub p_shader_group_capture_replay_handle: *const core::ffi::c_void,
 }
 #[repr(C)]
 pub struct RayTracingPipelineCreateInfoKHR {
-    s_type: crate::vk::StructureType,
-    p_next: *const core::ffi::c_void,
-    flags: crate::vk::PipelineCreateFlags,
-    stage_count: crate::External<
+    pub s_type: crate::vk::StructureType,
+    pub p_next: *const core::ffi::c_void,
+    pub flags: crate::vk::PipelineCreateFlags,
+    pub stage_count: crate::External<
         {
             "uint32_t";
             0
         },
     >,
-    p_stages: *const crate::vk::PipelineShaderStageCreateInfo,
-    group_count: crate::External<
+    pub p_stages: *const crate::vk::PipelineShaderStageCreateInfo,
+    pub group_count: crate::External<
         {
             "uint32_t";
             0
         },
     >,
-    p_groups: *const crate::vk::RayTracingShaderGroupCreateInfoKHR,
-    max_pipeline_ray_recursion_depth: crate::External<
+    pub p_groups: *const crate::vk::RayTracingShaderGroupCreateInfoKHR,
+    pub max_pipeline_ray_recursion_depth: crate::External<
         {
             "uint32_t";
             0
         },
     >,
-    p_library_info: *const crate::vk::PipelineLibraryCreateInfoKHR,
-    p_library_interface: *const crate::vk::RayTracingPipelineInterfaceCreateInfoKHR,
-    p_dynamic_state: *const crate::vk::PipelineDynamicStateCreateInfo,
-    layout: crate::vk::PipelineLayout,
-    base_pipeline_handle: crate::vk::Pipeline,
-    base_pipeline_index: crate::External<
+    pub p_library_info: *const crate::vk::PipelineLibraryCreateInfoKHR,
+    pub p_library_interface: *const crate::vk::RayTracingPipelineInterfaceCreateInfoKHR,
+    pub p_dynamic_state: *const crate::vk::PipelineDynamicStateCreateInfo,
+    pub layout: crate::vk::PipelineLayout,
+    pub base_pipeline_handle: crate::vk::Pipeline,
+    pub base_pipeline_index: crate::External<
         {
             "int32_t";
             0
@@ -71,61 +71,61 @@ pub struct RayTracingPipelineCreateInfoKHR {
 }
 #[repr(C)]
 pub struct PhysicalDeviceRayTracingPipelineFeaturesKHR {
-    s_type: crate::vk::StructureType,
-    p_next: *mut core::ffi::c_void,
-    ray_tracing_pipeline: crate::vk::Bool32,
-    ray_tracing_pipeline_shader_group_handle_capture_replay: crate::vk::Bool32,
-    ray_tracing_pipeline_shader_group_handle_capture_replay_mixed: crate::vk::Bool32,
-    ray_tracing_pipeline_trace_rays_indirect: crate::vk::Bool32,
-    ray_traversal_primitive_culling: crate::vk::Bool32,
+    pub s_type: crate::vk::StructureType,
+    pub p_next: *mut core::ffi::c_void,
+    pub ray_tracing_pipeline: crate::vk::Bool32,
+    pub ray_tracing_pipeline_shader_group_handle_capture_replay: crate::vk::Bool32,
+    pub ray_tracing_pipeline_shader_group_handle_capture_replay_mixed: crate::vk::Bool32,
+    pub ray_tracing_pipeline_trace_rays_indirect: crate::vk::Bool32,
+    pub ray_traversal_primitive_culling: crate::vk::Bool32,
 }
 #[repr(C)]
 pub struct PhysicalDeviceRayTracingPipelinePropertiesKHR {
-    s_type: crate::vk::StructureType,
-    p_next: *mut core::ffi::c_void,
-    shader_group_handle_size: crate::External<
+    pub s_type: crate::vk::StructureType,
+    pub p_next: *mut core::ffi::c_void,
+    pub shader_group_handle_size: crate::External<
         {
             "uint32_t";
             0
         },
     >,
-    max_ray_recursion_depth: crate::External<
+    pub max_ray_recursion_depth: crate::External<
         {
             "uint32_t";
             0
         },
     >,
-    max_shader_group_stride: crate::External<
+    pub max_shader_group_stride: crate::External<
         {
             "uint32_t";
             0
         },
     >,
-    shader_group_base_alignment: crate::External<
+    pub shader_group_base_alignment: crate::External<
         {
             "uint32_t";
             0
         },
     >,
-    shader_group_handle_capture_replay_size: crate::External<
+    pub shader_group_handle_capture_replay_size: crate::External<
         {
             "uint32_t";
             0
         },
     >,
-    max_ray_dispatch_invocation_count: crate::External<
+    pub max_ray_dispatch_invocation_count: crate::External<
         {
             "uint32_t";
             0
         },
     >,
-    shader_group_handle_alignment: crate::External<
+    pub shader_group_handle_alignment: crate::External<
         {
             "uint32_t";
             0
         },
     >,
-    max_ray_hit_attribute_size: crate::External<
+    pub max_ray_hit_attribute_size: crate::External<
         {
             "uint32_t";
             0
@@ -134,25 +134,25 @@ pub struct PhysicalDeviceRayTracingPipelinePropertiesKHR {
 }
 #[repr(C)]
 pub struct StridedDeviceAddressRegionKHR {
-    device_address: crate::vk::DeviceAddress,
-    stride: crate::vk::DeviceSize,
-    size: crate::vk::DeviceSize,
+    pub device_address: crate::vk::DeviceAddress,
+    pub stride: crate::vk::DeviceSize,
+    pub size: crate::vk::DeviceSize,
 }
 #[repr(C)]
 pub struct TraceRaysIndirectCommandKHR {
-    width: crate::External<
+    pub width: crate::External<
         {
             "uint32_t";
             0
         },
     >,
-    height: crate::External<
+    pub height: crate::External<
         {
             "uint32_t";
             0
         },
     >,
-    depth: crate::External<
+    pub depth: crate::External<
         {
             "uint32_t";
             0
@@ -161,15 +161,15 @@ pub struct TraceRaysIndirectCommandKHR {
 }
 #[repr(C)]
 pub struct RayTracingPipelineInterfaceCreateInfoKHR {
-    s_type: crate::vk::StructureType,
-    p_next: *const core::ffi::c_void,
-    max_pipeline_ray_payload_size: crate::External<
+    pub s_type: crate::vk::StructureType,
+    pub p_next: *const core::ffi::c_void,
+    pub max_pipeline_ray_payload_size: crate::External<
         {
             "uint32_t";
             0
         },
     >,
-    max_pipeline_ray_hit_attribute_size: crate::External<
+    pub max_pipeline_ray_hit_attribute_size: crate::External<
         {
             "uint32_t";
             0

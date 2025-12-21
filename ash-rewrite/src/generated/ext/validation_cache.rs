@@ -3,24 +3,26 @@
 //![Vulkan Manual Page](https://docs.vulkan.org/refpages/latest/refpages/source/VK_EXT_validation_cache.html) · Vulkan extension
 #[repr(C)]
 pub struct ValidationCacheCreateInfoEXT {
-    s_type: crate::vk::StructureType,
-    p_next: *const core::ffi::c_void,
-    flags: crate::vk::ValidationCacheCreateFlagsEXT,
-    initial_data_size: crate::External<
+    pub s_type: crate::vk::StructureType,
+    pub p_next: *const core::ffi::c_void,
+    pub flags: crate::vk::ValidationCacheCreateFlagsEXT,
+    pub initial_data_size: crate::External<
         {
             "size_t";
             0
         },
     >,
-    p_initial_data: *const core::ffi::c_void,
+    pub p_initial_data: *const core::ffi::c_void,
 }
 #[repr(C)]
 pub struct ShaderModuleValidationCacheCreateInfoEXT {
-    s_type: crate::vk::StructureType,
-    p_next: *const core::ffi::c_void,
-    validation_cache: crate::vk::ValidationCacheEXT,
+    pub s_type: crate::vk::StructureType,
+    pub p_next: *const core::ffi::c_void,
+    pub validation_cache: crate::vk::ValidationCacheEXT,
 }
 #[repr(C)]
 pub struct ValidationCacheHeaderVersionEXT {}
+#[repr(C)]
+pub struct ValidationCacheCreateFlagsEXT {}
 #[repr(C)]
 pub struct ValidationCacheEXT {}

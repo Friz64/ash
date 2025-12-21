@@ -3,10 +3,12 @@
 //![Vulkan Manual Page](https://docs.vulkan.org/refpages/latest/refpages/source/VK_KHR_android_surface.html) · Vulkan extension
 #[repr(C)]
 pub struct AndroidSurfaceCreateInfoKHR {
-    s_type: crate::vk::StructureType,
-    p_next: *const core::ffi::c_void,
-    flags: crate::vk::AndroidSurfaceCreateFlagsKHR,
-    window: *mut crate::vk::ANativeWindow,
+    pub s_type: crate::vk::StructureType,
+    pub p_next: *const core::ffi::c_void,
+    pub flags: crate::vk::AndroidSurfaceCreateFlagsKHR,
+    pub window: *mut crate::vk::ANativeWindow,
 }
+#[repr(C)]
+pub struct AndroidSurfaceCreateFlagsKHR {}
 #[repr(C)]
 pub struct ANativeWindow {}

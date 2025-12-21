@@ -3,13 +3,13 @@
 //![Vulkan Manual Page](https://docs.vulkan.org/refpages/latest/refpages/source/VK_EXT_hdr_metadata.html) · Vulkan extension
 #[repr(C)]
 pub struct XYColorEXT {
-    x: crate::External<
+    pub x: crate::External<
         {
             "float";
             0
         },
     >,
-    y: crate::External<
+    pub y: crate::External<
         {
             "float";
             0
@@ -18,31 +18,31 @@ pub struct XYColorEXT {
 }
 #[repr(C)]
 pub struct HdrMetadataEXT {
-    s_type: crate::vk::StructureType,
-    p_next: *const core::ffi::c_void,
-    display_primary_red: crate::vk::XYColorEXT,
-    display_primary_green: crate::vk::XYColorEXT,
-    display_primary_blue: crate::vk::XYColorEXT,
-    white_point: crate::vk::XYColorEXT,
-    max_luminance: crate::External<
+    pub s_type: crate::vk::StructureType,
+    pub p_next: *const core::ffi::c_void,
+    pub display_primary_red: crate::vk::XYColorEXT,
+    pub display_primary_green: crate::vk::XYColorEXT,
+    pub display_primary_blue: crate::vk::XYColorEXT,
+    pub white_point: crate::vk::XYColorEXT,
+    pub max_luminance: crate::External<
         {
             "float";
             0
         },
     >,
-    min_luminance: crate::External<
+    pub min_luminance: crate::External<
         {
             "float";
             0
         },
     >,
-    max_content_light_level: crate::External<
+    pub max_content_light_level: crate::External<
         {
             "float";
             0
         },
     >,
-    max_frame_average_light_level: crate::External<
+    pub max_frame_average_light_level: crate::External<
         {
             "float";
             0

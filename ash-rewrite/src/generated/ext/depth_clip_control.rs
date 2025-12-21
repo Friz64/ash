@@ -3,13 +3,13 @@
 //![Vulkan Manual Page](https://docs.vulkan.org/refpages/latest/refpages/source/VK_EXT_depth_clip_control.html) · Vulkan extension
 #[repr(C)]
 pub struct PhysicalDeviceDepthClipControlFeaturesEXT {
-    s_type: crate::vk::StructureType,
-    p_next: *mut core::ffi::c_void,
-    depth_clip_control: crate::vk::Bool32,
+    pub s_type: crate::vk::StructureType,
+    pub p_next: *mut core::ffi::c_void,
+    pub depth_clip_control: crate::vk::Bool32,
 }
 #[repr(C)]
 pub struct PipelineViewportDepthClipControlCreateInfoEXT {
-    s_type: crate::vk::StructureType,
-    p_next: *const core::ffi::c_void,
-    negative_one_to_one: crate::vk::Bool32,
+    pub s_type: crate::vk::StructureType,
+    pub p_next: *const core::ffi::c_void,
+    pub negative_one_to_one: crate::vk::Bool32,
 }

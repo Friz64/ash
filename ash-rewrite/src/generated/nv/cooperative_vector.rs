@@ -3,30 +3,30 @@
 //![Vulkan Manual Page](https://docs.vulkan.org/refpages/latest/refpages/source/VK_NV_cooperative_vector.html) · Vulkan extension
 #[repr(C)]
 pub struct PhysicalDeviceCooperativeVectorFeaturesNV {
-    s_type: crate::vk::StructureType,
-    p_next: *mut core::ffi::c_void,
-    cooperative_vector: crate::vk::Bool32,
-    cooperative_vector_training: crate::vk::Bool32,
+    pub s_type: crate::vk::StructureType,
+    pub p_next: *mut core::ffi::c_void,
+    pub cooperative_vector: crate::vk::Bool32,
+    pub cooperative_vector_training: crate::vk::Bool32,
 }
 #[repr(C)]
 pub struct CooperativeVectorPropertiesNV {
-    s_type: crate::vk::StructureType,
-    p_next: *mut core::ffi::c_void,
-    input_type: crate::vk::ComponentTypeKHR,
-    input_interpretation: crate::vk::ComponentTypeKHR,
-    matrix_interpretation: crate::vk::ComponentTypeKHR,
-    bias_interpretation: crate::vk::ComponentTypeKHR,
-    result_type: crate::vk::ComponentTypeKHR,
-    transpose: crate::vk::Bool32,
+    pub s_type: crate::vk::StructureType,
+    pub p_next: *mut core::ffi::c_void,
+    pub input_type: crate::vk::ComponentTypeKHR,
+    pub input_interpretation: crate::vk::ComponentTypeKHR,
+    pub matrix_interpretation: crate::vk::ComponentTypeKHR,
+    pub bias_interpretation: crate::vk::ComponentTypeKHR,
+    pub result_type: crate::vk::ComponentTypeKHR,
+    pub transpose: crate::vk::Bool32,
 }
 #[repr(C)]
 pub struct PhysicalDeviceCooperativeVectorPropertiesNV {
-    s_type: crate::vk::StructureType,
-    p_next: *mut core::ffi::c_void,
-    cooperative_vector_supported_stages: crate::vk::ShaderStageFlags,
-    cooperative_vector_training_float16_accumulation: crate::vk::Bool32,
-    cooperative_vector_training_float32_accumulation: crate::vk::Bool32,
-    max_cooperative_vector_components: crate::External<
+    pub s_type: crate::vk::StructureType,
+    pub p_next: *mut core::ffi::c_void,
+    pub cooperative_vector_supported_stages: crate::vk::ShaderStageFlags,
+    pub cooperative_vector_training_float16_accumulation: crate::vk::Bool32,
+    pub cooperative_vector_training_float32_accumulation: crate::vk::Bool32,
+    pub max_cooperative_vector_components: crate::External<
         {
             "uint32_t";
             0
@@ -35,50 +35,60 @@ pub struct PhysicalDeviceCooperativeVectorPropertiesNV {
 }
 #[repr(C)]
 pub struct ConvertCooperativeVectorMatrixInfoNV {
-    s_type: crate::vk::StructureType,
-    p_next: *const core::ffi::c_void,
-    src_size: crate::External<
+    pub s_type: crate::vk::StructureType,
+    pub p_next: *const core::ffi::c_void,
+    pub src_size: crate::External<
         {
             "size_t";
             0
         },
     >,
-    src_data: crate::vk::DeviceOrHostAddressConstKHR,
-    p_dst_size: *mut crate::External<
+    pub src_data: crate::vk::DeviceOrHostAddressConstKHR,
+    pub p_dst_size: *mut crate::External<
         {
             "size_t";
             0
         },
     >,
-    dst_data: crate::vk::DeviceOrHostAddressKHR,
-    src_component_type: crate::vk::ComponentTypeKHR,
-    dst_component_type: crate::vk::ComponentTypeKHR,
-    num_rows: crate::External<
+    pub dst_data: crate::vk::DeviceOrHostAddressKHR,
+    pub src_component_type: crate::vk::ComponentTypeKHR,
+    pub dst_component_type: crate::vk::ComponentTypeKHR,
+    pub num_rows: crate::External<
         {
             "uint32_t";
             0
         },
     >,
-    num_columns: crate::External<
+    pub num_columns: crate::External<
         {
             "uint32_t";
             0
         },
     >,
-    src_layout: crate::vk::CooperativeVectorMatrixLayoutNV,
-    src_stride: crate::External<
+    pub src_layout: crate::vk::CooperativeVectorMatrixLayoutNV,
+    pub src_stride: crate::External<
         {
             "size_t";
             0
         },
     >,
-    dst_layout: crate::vk::CooperativeVectorMatrixLayoutNV,
-    dst_stride: crate::External<
+    pub dst_layout: crate::vk::CooperativeVectorMatrixLayoutNV,
+    pub dst_stride: crate::External<
         {
             "size_t";
             0
         },
     >,
+}
+#[repr(C)]
+pub struct DeviceOrHostAddressKHR {
+    device_address: crate::vk::DeviceAddress,
+    host_address: *mut core::ffi::c_void,
+}
+#[repr(C)]
+pub struct DeviceOrHostAddressConstKHR {
+    device_address: crate::vk::DeviceAddress,
+    host_address: *const core::ffi::c_void,
 }
 #[repr(C)]
 pub struct CooperativeVectorMatrixLayoutNV {}

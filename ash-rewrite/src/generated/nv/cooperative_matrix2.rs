@@ -3,33 +3,33 @@
 //![Vulkan Manual Page](https://docs.vulkan.org/refpages/latest/refpages/source/VK_NV_cooperative_matrix2.html) · Vulkan extension
 #[repr(C)]
 pub struct PhysicalDeviceCooperativeMatrix2FeaturesNV {
-    s_type: crate::vk::StructureType,
-    p_next: *mut core::ffi::c_void,
-    cooperative_matrix_workgroup_scope: crate::vk::Bool32,
-    cooperative_matrix_flexible_dimensions: crate::vk::Bool32,
-    cooperative_matrix_reductions: crate::vk::Bool32,
-    cooperative_matrix_conversions: crate::vk::Bool32,
-    cooperative_matrix_per_element_operations: crate::vk::Bool32,
-    cooperative_matrix_tensor_addressing: crate::vk::Bool32,
-    cooperative_matrix_block_loads: crate::vk::Bool32,
+    pub s_type: crate::vk::StructureType,
+    pub p_next: *mut core::ffi::c_void,
+    pub cooperative_matrix_workgroup_scope: crate::vk::Bool32,
+    pub cooperative_matrix_flexible_dimensions: crate::vk::Bool32,
+    pub cooperative_matrix_reductions: crate::vk::Bool32,
+    pub cooperative_matrix_conversions: crate::vk::Bool32,
+    pub cooperative_matrix_per_element_operations: crate::vk::Bool32,
+    pub cooperative_matrix_tensor_addressing: crate::vk::Bool32,
+    pub cooperative_matrix_block_loads: crate::vk::Bool32,
 }
 #[repr(C)]
 pub struct PhysicalDeviceCooperativeMatrix2PropertiesNV {
-    s_type: crate::vk::StructureType,
-    p_next: *mut core::ffi::c_void,
-    cooperative_matrix_workgroup_scope_max_workgroup_size: crate::External<
+    pub s_type: crate::vk::StructureType,
+    pub p_next: *mut core::ffi::c_void,
+    pub cooperative_matrix_workgroup_scope_max_workgroup_size: crate::External<
         {
             "uint32_t";
             0
         },
     >,
-    cooperative_matrix_flexible_dimensions_max_dimension: crate::External<
+    pub cooperative_matrix_flexible_dimensions_max_dimension: crate::External<
         {
             "uint32_t";
             0
         },
     >,
-    cooperative_matrix_workgroup_scope_reserved_shared_memory: crate::External<
+    pub cooperative_matrix_workgroup_scope_reserved_shared_memory: crate::External<
         {
             "uint32_t";
             0
@@ -38,33 +38,33 @@ pub struct PhysicalDeviceCooperativeMatrix2PropertiesNV {
 }
 #[repr(C)]
 pub struct CooperativeMatrixFlexibleDimensionsPropertiesNV {
-    s_type: crate::vk::StructureType,
-    p_next: *mut core::ffi::c_void,
-    m_granularity: crate::External<
+    pub s_type: crate::vk::StructureType,
+    pub p_next: *mut core::ffi::c_void,
+    pub m_granularity: crate::External<
         {
             "uint32_t";
             0
         },
     >,
-    n_granularity: crate::External<
+    pub n_granularity: crate::External<
         {
             "uint32_t";
             0
         },
     >,
-    k_granularity: crate::External<
+    pub k_granularity: crate::External<
         {
             "uint32_t";
             0
         },
     >,
-    a_type: crate::vk::ComponentTypeKHR,
-    b_type: crate::vk::ComponentTypeKHR,
-    c_type: crate::vk::ComponentTypeKHR,
-    result_type: crate::vk::ComponentTypeKHR,
-    saturating_accumulation: crate::vk::Bool32,
-    scope: crate::vk::ScopeKHR,
-    workgroup_invocations: crate::External<
+    pub a_type: crate::vk::ComponentTypeKHR,
+    pub b_type: crate::vk::ComponentTypeKHR,
+    pub c_type: crate::vk::ComponentTypeKHR,
+    pub result_type: crate::vk::ComponentTypeKHR,
+    pub saturating_accumulation: crate::vk::Bool32,
+    pub scope: crate::vk::ScopeKHR,
+    pub workgroup_invocations: crate::External<
         {
             "uint32_t";
             0

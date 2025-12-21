@@ -3,20 +3,26 @@
 //![Vulkan Manual Page](https://docs.vulkan.org/refpages/latest/refpages/source/VK_EXT_graphics_pipeline_library.html) · Vulkan extension
 #[repr(C)]
 pub struct PhysicalDeviceGraphicsPipelineLibraryFeaturesEXT {
-    s_type: crate::vk::StructureType,
-    p_next: *mut core::ffi::c_void,
-    graphics_pipeline_library: crate::vk::Bool32,
+    pub s_type: crate::vk::StructureType,
+    pub p_next: *mut core::ffi::c_void,
+    pub graphics_pipeline_library: crate::vk::Bool32,
 }
 #[repr(C)]
 pub struct PhysicalDeviceGraphicsPipelineLibraryPropertiesEXT {
-    s_type: crate::vk::StructureType,
-    p_next: *mut core::ffi::c_void,
-    graphics_pipeline_library_fast_linking: crate::vk::Bool32,
-    graphics_pipeline_library_independent_interpolation_decoration: crate::vk::Bool32,
+    pub s_type: crate::vk::StructureType,
+    pub p_next: *mut core::ffi::c_void,
+    pub graphics_pipeline_library_fast_linking: crate::vk::Bool32,
+    pub graphics_pipeline_library_independent_interpolation_decoration: crate::vk::Bool32,
 }
 #[repr(C)]
 pub struct GraphicsPipelineLibraryCreateInfoEXT {
-    s_type: crate::vk::StructureType,
-    p_next: *const core::ffi::c_void,
-    flags: crate::vk::GraphicsPipelineLibraryFlagsEXT,
+    pub s_type: crate::vk::StructureType,
+    pub p_next: *const core::ffi::c_void,
+    pub flags: crate::vk::GraphicsPipelineLibraryFlagsEXT,
 }
+#[repr(C)]
+pub struct GraphicsPipelineLibraryFlagsEXT {}
+#[repr(C)]
+pub struct PipelineLayoutCreateFlagBits {}
+#[repr(C)]
+pub struct GraphicsPipelineLibraryFlagBitsEXT {}

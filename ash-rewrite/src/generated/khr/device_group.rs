@@ -3,28 +3,28 @@
 //![Vulkan Manual Page](https://docs.vulkan.org/refpages/latest/refpages/source/VK_KHR_device_group.html) · Vulkan extension
 #[repr(C)]
 pub struct DeviceGroupPresentCapabilitiesKHR {
-    s_type: crate::vk::StructureType,
-    p_next: *mut core::ffi::c_void,
-    present_mask: [crate::External<
+    pub s_type: crate::vk::StructureType,
+    pub p_next: *mut core::ffi::c_void,
+    pub present_mask: [crate::External<
         {
             "uint32_t";
             0
         },
     >; 1337],
-    modes: crate::vk::DeviceGroupPresentModeFlagsKHR,
+    pub modes: crate::vk::DeviceGroupPresentModeFlagsKHR,
 }
 #[repr(C)]
 pub struct ImageSwapchainCreateInfoKHR {
-    s_type: crate::vk::StructureType,
-    p_next: *const core::ffi::c_void,
-    swapchain: crate::vk::SwapchainKHR,
+    pub s_type: crate::vk::StructureType,
+    pub p_next: *const core::ffi::c_void,
+    pub swapchain: crate::vk::SwapchainKHR,
 }
 #[repr(C)]
 pub struct BindImageMemorySwapchainInfoKHR {
-    s_type: crate::vk::StructureType,
-    p_next: *const core::ffi::c_void,
-    swapchain: crate::vk::SwapchainKHR,
-    image_index: crate::External<
+    pub s_type: crate::vk::StructureType,
+    pub p_next: *const core::ffi::c_void,
+    pub swapchain: crate::vk::SwapchainKHR,
+    pub image_index: crate::External<
         {
             "uint32_t";
             0
@@ -33,18 +33,18 @@ pub struct BindImageMemorySwapchainInfoKHR {
 }
 #[repr(C)]
 pub struct AcquireNextImageInfoKHR {
-    s_type: crate::vk::StructureType,
-    p_next: *const core::ffi::c_void,
-    swapchain: crate::vk::SwapchainKHR,
-    timeout: crate::External<
+    pub s_type: crate::vk::StructureType,
+    pub p_next: *const core::ffi::c_void,
+    pub swapchain: crate::vk::SwapchainKHR,
+    pub timeout: crate::External<
         {
             "uint64_t";
             0
         },
     >,
-    semaphore: crate::vk::Semaphore,
-    fence: crate::vk::Fence,
-    device_mask: crate::External<
+    pub semaphore: crate::vk::Semaphore,
+    pub fence: crate::vk::Fence,
+    pub device_mask: crate::External<
         {
             "uint32_t";
             0
@@ -53,25 +53,40 @@ pub struct AcquireNextImageInfoKHR {
 }
 #[repr(C)]
 pub struct DeviceGroupPresentInfoKHR {
-    s_type: crate::vk::StructureType,
-    p_next: *const core::ffi::c_void,
-    swapchain_count: crate::External<
+    pub s_type: crate::vk::StructureType,
+    pub p_next: *const core::ffi::c_void,
+    pub swapchain_count: crate::External<
         {
             "uint32_t";
             0
         },
     >,
-    p_device_masks: *const crate::External<
+    pub p_device_masks: *const crate::External<
         {
             "uint32_t";
             0
         },
     >,
-    mode: crate::vk::DeviceGroupPresentModeFlagBitsKHR,
+    pub mode: crate::vk::DeviceGroupPresentModeFlagBitsKHR,
 }
 #[repr(C)]
 pub struct DeviceGroupSwapchainCreateInfoKHR {
-    s_type: crate::vk::StructureType,
-    p_next: *const core::ffi::c_void,
-    modes: crate::vk::DeviceGroupPresentModeFlagsKHR,
+    pub s_type: crate::vk::StructureType,
+    pub p_next: *const core::ffi::c_void,
+    pub modes: crate::vk::DeviceGroupPresentModeFlagsKHR,
 }
+pub type MemoryAllocateFlagsInfoKHR = crate::vk::MemoryAllocateFlagsInfo;
+pub type BindBufferMemoryDeviceGroupInfoKHR = crate::vk::BindBufferMemoryDeviceGroupInfo;
+pub type BindImageMemoryDeviceGroupInfoKHR = crate::vk::BindImageMemoryDeviceGroupInfo;
+pub type DeviceGroupRenderPassBeginInfoKHR = crate::vk::DeviceGroupRenderPassBeginInfo;
+pub type DeviceGroupCommandBufferBeginInfoKHR = crate::vk::DeviceGroupCommandBufferBeginInfo;
+pub type DeviceGroupSubmitInfoKHR = crate::vk::DeviceGroupSubmitInfo;
+pub type DeviceGroupBindSparseInfoKHR = crate::vk::DeviceGroupBindSparseInfo;
+pub type PeerMemoryFeatureFlagBitsKHR = crate::vk::PeerMemoryFeatureFlagBits;
+pub type MemoryAllocateFlagBitsKHR = crate::vk::MemoryAllocateFlagBits;
+#[repr(C)]
+pub struct DeviceGroupPresentModeFlagsKHR {}
+pub type PeerMemoryFeatureFlagsKHR = crate::vk::PeerMemoryFeatureFlags;
+pub type MemoryAllocateFlagsKHR = crate::vk::MemoryAllocateFlags;
+#[repr(C)]
+pub struct DeviceGroupPresentModeFlagBitsKHR {}

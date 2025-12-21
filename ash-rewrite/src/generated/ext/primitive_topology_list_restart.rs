@@ -3,8 +3,8 @@
 //![Vulkan Manual Page](https://docs.vulkan.org/refpages/latest/refpages/source/VK_EXT_primitive_topology_list_restart.html) · Vulkan extension
 #[repr(C)]
 pub struct PhysicalDevicePrimitiveTopologyListRestartFeaturesEXT {
-    s_type: crate::vk::StructureType,
-    p_next: *mut core::ffi::c_void,
-    primitive_topology_list_restart: crate::vk::Bool32,
-    primitive_topology_patch_list_restart: crate::vk::Bool32,
+    pub s_type: crate::vk::StructureType,
+    pub p_next: *mut core::ffi::c_void,
+    pub primitive_topology_list_restart: crate::vk::Bool32,
+    pub primitive_topology_patch_list_restart: crate::vk::Bool32,
 }

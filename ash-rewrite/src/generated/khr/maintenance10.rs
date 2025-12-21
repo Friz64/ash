@@ -3,34 +3,42 @@
 //![Vulkan Manual Page](https://docs.vulkan.org/refpages/latest/refpages/source/VK_KHR_maintenance10.html) · Vulkan extension
 #[repr(C)]
 pub struct PhysicalDeviceMaintenance10PropertiesKHR {
-    s_type: crate::vk::StructureType,
-    p_next: *mut core::ffi::c_void,
-    rgba4_opaque_black_swizzled: crate::vk::Bool32,
-    resolve_srgb_format_applies_transfer_function: crate::vk::Bool32,
-    resolve_srgb_format_supports_transfer_function_control: crate::vk::Bool32,
+    pub s_type: crate::vk::StructureType,
+    pub p_next: *mut core::ffi::c_void,
+    pub rgba4_opaque_black_swizzled: crate::vk::Bool32,
+    pub resolve_srgb_format_applies_transfer_function: crate::vk::Bool32,
+    pub resolve_srgb_format_supports_transfer_function_control: crate::vk::Bool32,
 }
 #[repr(C)]
 pub struct PhysicalDeviceMaintenance10FeaturesKHR {
-    s_type: crate::vk::StructureType,
-    p_next: *mut core::ffi::c_void,
-    maintenance10: crate::vk::Bool32,
+    pub s_type: crate::vk::StructureType,
+    pub p_next: *mut core::ffi::c_void,
+    pub maintenance10: crate::vk::Bool32,
 }
 #[repr(C)]
 pub struct RenderingEndInfoKHR {
-    s_type: crate::vk::StructureType,
-    p_next: *const core::ffi::c_void,
+    pub s_type: crate::vk::StructureType,
+    pub p_next: *const core::ffi::c_void,
 }
 #[repr(C)]
 pub struct RenderingAttachmentFlagsInfoKHR {
-    s_type: crate::vk::StructureType,
-    p_next: *const core::ffi::c_void,
-    flags: crate::vk::RenderingAttachmentFlagsKHR,
+    pub s_type: crate::vk::StructureType,
+    pub p_next: *const core::ffi::c_void,
+    pub flags: crate::vk::RenderingAttachmentFlagsKHR,
 }
 #[repr(C)]
 pub struct ResolveImageModeInfoKHR {
-    s_type: crate::vk::StructureType,
-    p_next: *const core::ffi::c_void,
-    flags: crate::vk::ResolveImageFlagsKHR,
-    resolve_mode: crate::vk::ResolveModeFlagBits,
-    stencil_resolve_mode: crate::vk::ResolveModeFlagBits,
+    pub s_type: crate::vk::StructureType,
+    pub p_next: *const core::ffi::c_void,
+    pub flags: crate::vk::ResolveImageFlagsKHR,
+    pub resolve_mode: crate::vk::ResolveModeFlagBits,
+    pub stencil_resolve_mode: crate::vk::ResolveModeFlagBits,
 }
+#[repr(C)]
+pub struct RenderingAttachmentFlagsKHR {}
+#[repr(C)]
+pub struct ResolveImageFlagsKHR {}
+#[repr(C)]
+pub struct RenderingAttachmentFlagBitsKHR {}
+#[repr(C)]
+pub struct ResolveImageFlagBitsKHR {}

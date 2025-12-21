@@ -3,13 +3,13 @@
 //![Vulkan Manual Page](https://docs.vulkan.org/refpages/latest/refpages/source/VK_AMD_display_native_hdr.html) · Vulkan extension
 #[repr(C)]
 pub struct DisplayNativeHdrSurfaceCapabilitiesAMD {
-    s_type: crate::vk::StructureType,
-    p_next: *mut core::ffi::c_void,
-    local_dimming_support: crate::vk::Bool32,
+    pub s_type: crate::vk::StructureType,
+    pub p_next: *mut core::ffi::c_void,
+    pub local_dimming_support: crate::vk::Bool32,
 }
 #[repr(C)]
 pub struct SwapchainDisplayNativeHdrCreateInfoAMD {
-    s_type: crate::vk::StructureType,
-    p_next: *const core::ffi::c_void,
-    local_dimming_enable: crate::vk::Bool32,
+    pub s_type: crate::vk::StructureType,
+    pub p_next: *const core::ffi::c_void,
+    pub local_dimming_enable: crate::vk::Bool32,
 }

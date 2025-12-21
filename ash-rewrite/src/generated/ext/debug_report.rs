@@ -3,11 +3,17 @@
 //![Vulkan Manual Page](https://docs.vulkan.org/refpages/latest/refpages/source/VK_EXT_debug_report.html) · Vulkan extension
 #[repr(C)]
 pub struct DebugReportCallbackCreateInfoEXT {
-    s_type: crate::vk::StructureType,
-    p_next: *const core::ffi::c_void,
-    flags: crate::vk::DebugReportFlagsEXT,
-    pfn_callback: crate::vk::PFN_vkDebugReportCallbackEXT,
-    p_user_data: *mut core::ffi::c_void,
+    pub s_type: crate::vk::StructureType,
+    pub p_next: *const core::ffi::c_void,
+    pub flags: crate::vk::DebugReportFlagsEXT,
+    pub pfn_callback: crate::vk::PFN_vkDebugReportCallbackEXT,
+    pub p_user_data: *mut core::ffi::c_void,
 }
 #[repr(C)]
+pub struct DebugReportFlagsEXT {}
+#[repr(C)]
+pub struct DebugReportFlagBitsEXT {}
+#[repr(C)]
 pub struct DebugReportCallbackEXT {}
+#[repr(C)]
+pub struct PFN_vkDebugReportCallbackEXT {}

@@ -3,19 +3,21 @@
 //![Vulkan Manual Page](https://docs.vulkan.org/refpages/latest/refpages/source/VK_KHR_xcb_surface.html) · Vulkan extension
 #[repr(C)]
 pub struct XcbSurfaceCreateInfoKHR {
-    s_type: crate::vk::StructureType,
-    p_next: *const core::ffi::c_void,
-    flags: crate::vk::XcbSurfaceCreateFlagsKHR,
-    connection: *mut crate::External<
+    pub s_type: crate::vk::StructureType,
+    pub p_next: *const core::ffi::c_void,
+    pub flags: crate::vk::XcbSurfaceCreateFlagsKHR,
+    pub connection: *mut crate::External<
         {
             "xcb_connection_t";
             0
         },
     >,
-    window: crate::External<
+    pub window: crate::External<
         {
             "xcb_window_t";
             0
         },
     >,
 }
+#[repr(C)]
+pub struct XcbSurfaceCreateFlagsKHR {}

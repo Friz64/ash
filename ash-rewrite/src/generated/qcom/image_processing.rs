@@ -3,11 +3,11 @@
 //![Vulkan Manual Page](https://docs.vulkan.org/refpages/latest/refpages/source/VK_QCOM_image_processing.html) · Vulkan extension
 #[repr(C)]
 pub struct ImageViewSampleWeightCreateInfoQCOM {
-    s_type: crate::vk::StructureType,
-    p_next: *const core::ffi::c_void,
-    filter_center: crate::vk::Offset2D,
-    filter_size: crate::vk::Extent2D,
-    num_phases: crate::External<
+    pub s_type: crate::vk::StructureType,
+    pub p_next: *const core::ffi::c_void,
+    pub filter_center: crate::vk::Offset2D,
+    pub filter_size: crate::vk::Extent2D,
+    pub num_phases: crate::External<
         {
             "uint32_t";
             0
@@ -16,23 +16,23 @@ pub struct ImageViewSampleWeightCreateInfoQCOM {
 }
 #[repr(C)]
 pub struct PhysicalDeviceImageProcessingFeaturesQCOM {
-    s_type: crate::vk::StructureType,
-    p_next: *mut core::ffi::c_void,
-    texture_sample_weighted: crate::vk::Bool32,
-    texture_box_filter: crate::vk::Bool32,
-    texture_block_match: crate::vk::Bool32,
+    pub s_type: crate::vk::StructureType,
+    pub p_next: *mut core::ffi::c_void,
+    pub texture_sample_weighted: crate::vk::Bool32,
+    pub texture_box_filter: crate::vk::Bool32,
+    pub texture_block_match: crate::vk::Bool32,
 }
 #[repr(C)]
 pub struct PhysicalDeviceImageProcessingPropertiesQCOM {
-    s_type: crate::vk::StructureType,
-    p_next: *mut core::ffi::c_void,
-    max_weight_filter_phases: crate::External<
+    pub s_type: crate::vk::StructureType,
+    pub p_next: *mut core::ffi::c_void,
+    pub max_weight_filter_phases: crate::External<
         {
             "uint32_t";
             0
         },
     >,
-    max_weight_filter_dimension: crate::vk::Extent2D,
-    max_block_match_region: crate::vk::Extent2D,
-    max_box_filter_block_size: crate::vk::Extent2D,
+    pub max_weight_filter_dimension: crate::vk::Extent2D,
+    pub max_block_match_region: crate::vk::Extent2D,
+    pub max_box_filter_block_size: crate::vk::Extent2D,
 }

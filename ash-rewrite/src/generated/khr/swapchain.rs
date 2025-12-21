@@ -3,70 +3,74 @@
 //![Vulkan Manual Page](https://docs.vulkan.org/refpages/latest/refpages/source/VK_KHR_swapchain.html) · Vulkan extension
 #[repr(C)]
 pub struct SwapchainCreateInfoKHR {
-    s_type: crate::vk::StructureType,
-    p_next: *const core::ffi::c_void,
-    flags: crate::vk::SwapchainCreateFlagsKHR,
-    surface: crate::vk::SurfaceKHR,
-    min_image_count: crate::External<
+    pub s_type: crate::vk::StructureType,
+    pub p_next: *const core::ffi::c_void,
+    pub flags: crate::vk::SwapchainCreateFlagsKHR,
+    pub surface: crate::vk::SurfaceKHR,
+    pub min_image_count: crate::External<
         {
             "uint32_t";
             0
         },
     >,
-    image_format: crate::vk::Format,
-    image_color_space: crate::vk::ColorSpaceKHR,
-    image_extent: crate::vk::Extent2D,
-    image_array_layers: crate::External<
+    pub image_format: crate::vk::Format,
+    pub image_color_space: crate::vk::ColorSpaceKHR,
+    pub image_extent: crate::vk::Extent2D,
+    pub image_array_layers: crate::External<
         {
             "uint32_t";
             0
         },
     >,
-    image_usage: crate::vk::ImageUsageFlags,
-    image_sharing_mode: crate::vk::SharingMode,
-    queue_family_index_count: crate::External<
+    pub image_usage: crate::vk::ImageUsageFlags,
+    pub image_sharing_mode: crate::vk::SharingMode,
+    pub queue_family_index_count: crate::External<
         {
             "uint32_t";
             0
         },
     >,
-    p_queue_family_indices: *const crate::External<
+    pub p_queue_family_indices: *const crate::External<
         {
             "uint32_t";
             0
         },
     >,
-    pre_transform: crate::vk::SurfaceTransformFlagBitsKHR,
-    composite_alpha: crate::vk::CompositeAlphaFlagBitsKHR,
-    present_mode: crate::vk::PresentModeKHR,
-    clipped: crate::vk::Bool32,
-    old_swapchain: crate::vk::SwapchainKHR,
+    pub pre_transform: crate::vk::SurfaceTransformFlagBitsKHR,
+    pub composite_alpha: crate::vk::CompositeAlphaFlagBitsKHR,
+    pub present_mode: crate::vk::PresentModeKHR,
+    pub clipped: crate::vk::Bool32,
+    pub old_swapchain: crate::vk::SwapchainKHR,
 }
 #[repr(C)]
 pub struct PresentInfoKHR {
-    s_type: crate::vk::StructureType,
-    p_next: *const core::ffi::c_void,
-    wait_semaphore_count: crate::External<
+    pub s_type: crate::vk::StructureType,
+    pub p_next: *const core::ffi::c_void,
+    pub wait_semaphore_count: crate::External<
         {
             "uint32_t";
             0
         },
     >,
-    p_wait_semaphores: *const crate::vk::Semaphore,
-    swapchain_count: crate::External<
+    pub p_wait_semaphores: *const crate::vk::Semaphore,
+    pub swapchain_count: crate::External<
         {
             "uint32_t";
             0
         },
     >,
-    p_swapchains: *const crate::vk::SwapchainKHR,
-    p_image_indices: *const crate::External<
+    pub p_swapchains: *const crate::vk::SwapchainKHR,
+    pub p_image_indices: *const crate::External<
         {
             "uint32_t";
             0
         },
     >,
-    p_results: *mut crate::vk::Result,
+    pub p_results: *mut crate::vk::Result,
 }
+#[repr(C)]
+pub struct SwapchainCreateFlagsKHR {}
+#[repr(C)]
+pub struct SwapchainCreateFlagBitsKHR {}
 #[repr(C)]
 pub struct SwapchainKHR {}

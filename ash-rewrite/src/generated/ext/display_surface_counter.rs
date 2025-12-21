@@ -3,32 +3,36 @@
 //![Vulkan Manual Page](https://docs.vulkan.org/refpages/latest/refpages/source/VK_EXT_display_surface_counter.html) · Vulkan extension
 #[repr(C)]
 pub struct SurfaceCapabilities2EXT {
-    s_type: crate::vk::StructureType,
-    p_next: *mut core::ffi::c_void,
-    min_image_count: crate::External<
+    pub s_type: crate::vk::StructureType,
+    pub p_next: *mut core::ffi::c_void,
+    pub min_image_count: crate::External<
         {
             "uint32_t";
             0
         },
     >,
-    max_image_count: crate::External<
+    pub max_image_count: crate::External<
         {
             "uint32_t";
             0
         },
     >,
-    current_extent: crate::vk::Extent2D,
-    min_image_extent: crate::vk::Extent2D,
-    max_image_extent: crate::vk::Extent2D,
-    max_image_array_layers: crate::External<
+    pub current_extent: crate::vk::Extent2D,
+    pub min_image_extent: crate::vk::Extent2D,
+    pub max_image_extent: crate::vk::Extent2D,
+    pub max_image_array_layers: crate::External<
         {
             "uint32_t";
             0
         },
     >,
-    supported_transforms: crate::vk::SurfaceTransformFlagsKHR,
-    current_transform: crate::vk::SurfaceTransformFlagBitsKHR,
-    supported_composite_alpha: crate::vk::CompositeAlphaFlagsKHR,
-    supported_usage_flags: crate::vk::ImageUsageFlags,
-    supported_surface_counters: crate::vk::SurfaceCounterFlagsEXT,
+    pub supported_transforms: crate::vk::SurfaceTransformFlagsKHR,
+    pub current_transform: crate::vk::SurfaceTransformFlagBitsKHR,
+    pub supported_composite_alpha: crate::vk::CompositeAlphaFlagsKHR,
+    pub supported_usage_flags: crate::vk::ImageUsageFlags,
+    pub supported_surface_counters: crate::vk::SurfaceCounterFlagsEXT,
 }
+#[repr(C)]
+pub struct SurfaceCounterFlagsEXT {}
+#[repr(C)]
+pub struct SurfaceCounterFlagBitsEXT {}

@@ -3,25 +3,25 @@
 //![Vulkan Manual Page](https://docs.vulkan.org/refpages/latest/refpages/source/VK_NV_fragment_shading_rate_enums.html) · Vulkan extension
 #[repr(C)]
 pub struct PhysicalDeviceFragmentShadingRateEnumsFeaturesNV {
-    s_type: crate::vk::StructureType,
-    p_next: *mut core::ffi::c_void,
-    fragment_shading_rate_enums: crate::vk::Bool32,
-    supersample_fragment_shading_rates: crate::vk::Bool32,
-    no_invocation_fragment_shading_rates: crate::vk::Bool32,
+    pub s_type: crate::vk::StructureType,
+    pub p_next: *mut core::ffi::c_void,
+    pub fragment_shading_rate_enums: crate::vk::Bool32,
+    pub supersample_fragment_shading_rates: crate::vk::Bool32,
+    pub no_invocation_fragment_shading_rates: crate::vk::Bool32,
 }
 #[repr(C)]
 pub struct PhysicalDeviceFragmentShadingRateEnumsPropertiesNV {
-    s_type: crate::vk::StructureType,
-    p_next: *mut core::ffi::c_void,
-    max_fragment_shading_rate_invocation_count: crate::vk::SampleCountFlagBits,
+    pub s_type: crate::vk::StructureType,
+    pub p_next: *mut core::ffi::c_void,
+    pub max_fragment_shading_rate_invocation_count: crate::vk::SampleCountFlagBits,
 }
 #[repr(C)]
 pub struct PipelineFragmentShadingRateEnumStateCreateInfoNV {
-    s_type: crate::vk::StructureType,
-    p_next: *const core::ffi::c_void,
-    shading_rate_type: crate::vk::FragmentShadingRateTypeNV,
-    shading_rate: crate::vk::FragmentShadingRateNV,
-    combiner_ops: [crate::vk::FragmentShadingRateCombinerOpKHR; 1337],
+    pub s_type: crate::vk::StructureType,
+    pub p_next: *const core::ffi::c_void,
+    pub shading_rate_type: crate::vk::FragmentShadingRateTypeNV,
+    pub shading_rate: crate::vk::FragmentShadingRateNV,
+    pub combiner_ops: [crate::vk::FragmentShadingRateCombinerOpKHR; 1337],
 }
 #[repr(C)]
 pub struct FragmentShadingRateNV {}

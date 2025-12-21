@@ -3,13 +3,13 @@
 //![Vulkan Manual Page](https://docs.vulkan.org/refpages/latest/refpages/source/VK_NV_clip_space_w_scaling.html) · Vulkan extension
 #[repr(C)]
 pub struct ViewportWScalingNV {
-    xcoeff: crate::External<
+    pub xcoeff: crate::External<
         {
             "float";
             0
         },
     >,
-    ycoeff: crate::External<
+    pub ycoeff: crate::External<
         {
             "float";
             0
@@ -18,14 +18,14 @@ pub struct ViewportWScalingNV {
 }
 #[repr(C)]
 pub struct PipelineViewportWScalingStateCreateInfoNV {
-    s_type: crate::vk::StructureType,
-    p_next: *const core::ffi::c_void,
-    viewport_w_scaling_enable: crate::vk::Bool32,
-    viewport_count: crate::External<
+    pub s_type: crate::vk::StructureType,
+    pub p_next: *const core::ffi::c_void,
+    pub viewport_w_scaling_enable: crate::vk::Bool32,
+    pub viewport_count: crate::External<
         {
             "uint32_t";
             0
         },
     >,
-    p_viewport_w_scalings: *const crate::vk::ViewportWScalingNV,
+    pub p_viewport_w_scalings: *const crate::vk::ViewportWScalingNV,
 }

@@ -3,15 +3,16 @@
 //![Vulkan Manual Page](https://docs.vulkan.org/refpages/latest/refpages/source/VK_QCOM_tile_properties.html) · Vulkan extension
 #[repr(C)]
 pub struct PhysicalDeviceTilePropertiesFeaturesQCOM {
-    s_type: crate::vk::StructureType,
-    p_next: *mut core::ffi::c_void,
-    tile_properties: crate::vk::Bool32,
+    pub s_type: crate::vk::StructureType,
+    pub p_next: *mut core::ffi::c_void,
+    pub tile_properties: crate::vk::Bool32,
 }
 #[repr(C)]
 pub struct TilePropertiesQCOM {
-    s_type: crate::vk::StructureType,
-    p_next: *mut core::ffi::c_void,
-    tile_size: crate::vk::Extent3D,
-    apron_size: crate::vk::Extent2D,
-    origin: crate::vk::Offset2D,
+    pub s_type: crate::vk::StructureType,
+    pub p_next: *mut core::ffi::c_void,
+    pub tile_size: crate::vk::Extent3D,
+    pub apron_size: crate::vk::Extent2D,
+    pub origin: crate::vk::Offset2D,
 }
+pub type RenderingInfoKHR = crate::vk::RenderingInfo;

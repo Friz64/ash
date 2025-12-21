@@ -3,7 +3,9 @@
 //![Vulkan Manual Page](https://docs.vulkan.org/refpages/latest/refpages/source/VK_EXT_headless_surface.html) · Vulkan extension
 #[repr(C)]
 pub struct HeadlessSurfaceCreateInfoEXT {
-    s_type: crate::vk::StructureType,
-    p_next: *const core::ffi::c_void,
-    flags: crate::vk::HeadlessSurfaceCreateFlagsEXT,
+    pub s_type: crate::vk::StructureType,
+    pub p_next: *const core::ffi::c_void,
+    pub flags: crate::vk::HeadlessSurfaceCreateFlagsEXT,
 }
+#[repr(C)]
+pub struct HeadlessSurfaceCreateFlagsEXT {}

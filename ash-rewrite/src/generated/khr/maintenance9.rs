@@ -3,22 +3,22 @@
 //![Vulkan Manual Page](https://docs.vulkan.org/refpages/latest/refpages/source/VK_KHR_maintenance9.html) · Vulkan extension
 #[repr(C)]
 pub struct PhysicalDeviceMaintenance9FeaturesKHR {
-    s_type: crate::vk::StructureType,
-    p_next: *mut core::ffi::c_void,
-    maintenance9: crate::vk::Bool32,
+    pub s_type: crate::vk::StructureType,
+    pub p_next: *mut core::ffi::c_void,
+    pub maintenance9: crate::vk::Bool32,
 }
 #[repr(C)]
 pub struct PhysicalDeviceMaintenance9PropertiesKHR {
-    s_type: crate::vk::StructureType,
-    p_next: *mut core::ffi::c_void,
-    image2_d_view_of3_d_sparse: crate::vk::Bool32,
-    default_vertex_attribute_value: crate::vk::DefaultVertexAttributeValueKHR,
+    pub s_type: crate::vk::StructureType,
+    pub p_next: *mut core::ffi::c_void,
+    pub image2_d_view_of3_d_sparse: crate::vk::Bool32,
+    pub default_vertex_attribute_value: crate::vk::DefaultVertexAttributeValueKHR,
 }
 #[repr(C)]
 pub struct QueueFamilyOwnershipTransferPropertiesKHR {
-    s_type: crate::vk::StructureType,
-    p_next: *mut core::ffi::c_void,
-    optimal_image_transfer_to_queue_families: crate::External<
+    pub s_type: crate::vk::StructureType,
+    pub p_next: *mut core::ffi::c_void,
+    pub optimal_image_transfer_to_queue_families: crate::External<
         {
             "uint32_t";
             0

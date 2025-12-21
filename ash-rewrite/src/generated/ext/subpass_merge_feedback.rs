@@ -3,13 +3,13 @@
 //![Vulkan Manual Page](https://docs.vulkan.org/refpages/latest/refpages/source/VK_EXT_subpass_merge_feedback.html) · Vulkan extension
 #[repr(C)]
 pub struct RenderPassCreationControlEXT {
-    s_type: crate::vk::StructureType,
-    p_next: *const core::ffi::c_void,
-    disallow_merging: crate::vk::Bool32,
+    pub s_type: crate::vk::StructureType,
+    pub p_next: *const core::ffi::c_void,
+    pub disallow_merging: crate::vk::Bool32,
 }
 #[repr(C)]
 pub struct RenderPassCreationFeedbackInfoEXT {
-    post_merge_subpass_count: crate::External<
+    pub post_merge_subpass_count: crate::External<
         {
             "uint32_t";
             0
@@ -18,20 +18,20 @@ pub struct RenderPassCreationFeedbackInfoEXT {
 }
 #[repr(C)]
 pub struct RenderPassCreationFeedbackCreateInfoEXT {
-    s_type: crate::vk::StructureType,
-    p_next: *const core::ffi::c_void,
-    p_render_pass_feedback: *mut crate::vk::RenderPassCreationFeedbackInfoEXT,
+    pub s_type: crate::vk::StructureType,
+    pub p_next: *const core::ffi::c_void,
+    pub p_render_pass_feedback: *mut crate::vk::RenderPassCreationFeedbackInfoEXT,
 }
 #[repr(C)]
 pub struct RenderPassSubpassFeedbackInfoEXT {
-    subpass_merge_status: crate::vk::SubpassMergeStatusEXT,
-    description: [crate::External<
+    pub subpass_merge_status: crate::vk::SubpassMergeStatusEXT,
+    pub description: [crate::External<
         {
             "char";
             0
         },
     >; 1337],
-    post_merge_index: crate::External<
+    pub post_merge_index: crate::External<
         {
             "uint32_t";
             0
@@ -40,15 +40,15 @@ pub struct RenderPassSubpassFeedbackInfoEXT {
 }
 #[repr(C)]
 pub struct RenderPassSubpassFeedbackCreateInfoEXT {
-    s_type: crate::vk::StructureType,
-    p_next: *const core::ffi::c_void,
-    p_subpass_feedback: *mut crate::vk::RenderPassSubpassFeedbackInfoEXT,
+    pub s_type: crate::vk::StructureType,
+    pub p_next: *const core::ffi::c_void,
+    pub p_subpass_feedback: *mut crate::vk::RenderPassSubpassFeedbackInfoEXT,
 }
 #[repr(C)]
 pub struct PhysicalDeviceSubpassMergeFeedbackFeaturesEXT {
-    s_type: crate::vk::StructureType,
-    p_next: *mut core::ffi::c_void,
-    subpass_merge_feedback: crate::vk::Bool32,
+    pub s_type: crate::vk::StructureType,
+    pub p_next: *mut core::ffi::c_void,
+    pub subpass_merge_feedback: crate::vk::Bool32,
 }
 #[repr(C)]
 pub struct SubpassMergeStatusEXT {}

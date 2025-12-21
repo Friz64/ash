@@ -3,7 +3,7 @@
 //![Vulkan Manual Page](https://docs.vulkan.org/refpages/latest/refpages/source/VK_HUAWEI_invocation_mask.html) · Vulkan extension
 #[repr(C)]
 pub struct PhysicalDeviceInvocationMaskFeaturesHUAWEI {
-    s_type: crate::vk::StructureType,
-    p_next: *mut core::ffi::c_void,
-    invocation_mask: crate::vk::Bool32,
+    pub s_type: crate::vk::StructureType,
+    pub p_next: *mut core::ffi::c_void,
+    pub invocation_mask: crate::vk::Bool32,
 }

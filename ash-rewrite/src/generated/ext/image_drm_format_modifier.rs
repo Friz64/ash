@@ -3,50 +3,50 @@
 //![Vulkan Manual Page](https://docs.vulkan.org/refpages/latest/refpages/source/VK_EXT_image_drm_format_modifier.html) · Vulkan extension
 #[repr(C)]
 pub struct DrmFormatModifierPropertiesListEXT {
-    s_type: crate::vk::StructureType,
-    p_next: *mut core::ffi::c_void,
-    drm_format_modifier_count: crate::External<
+    pub s_type: crate::vk::StructureType,
+    pub p_next: *mut core::ffi::c_void,
+    pub drm_format_modifier_count: crate::External<
         {
             "uint32_t";
             0
         },
     >,
-    p_drm_format_modifier_properties: *mut crate::vk::DrmFormatModifierPropertiesEXT,
+    pub p_drm_format_modifier_properties: *mut crate::vk::DrmFormatModifierPropertiesEXT,
 }
 #[repr(C)]
 pub struct DrmFormatModifierPropertiesEXT {
-    drm_format_modifier: crate::External<
+    pub drm_format_modifier: crate::External<
         {
             "uint64_t";
             0
         },
     >,
-    drm_format_modifier_plane_count: crate::External<
+    pub drm_format_modifier_plane_count: crate::External<
         {
             "uint32_t";
             0
         },
     >,
-    drm_format_modifier_tiling_features: crate::vk::FormatFeatureFlags,
+    pub drm_format_modifier_tiling_features: crate::vk::FormatFeatureFlags,
 }
 #[repr(C)]
 pub struct PhysicalDeviceImageDrmFormatModifierInfoEXT {
-    s_type: crate::vk::StructureType,
-    p_next: *const core::ffi::c_void,
-    drm_format_modifier: crate::External<
+    pub s_type: crate::vk::StructureType,
+    pub p_next: *const core::ffi::c_void,
+    pub drm_format_modifier: crate::External<
         {
             "uint64_t";
             0
         },
     >,
-    sharing_mode: crate::vk::SharingMode,
-    queue_family_index_count: crate::External<
+    pub sharing_mode: crate::vk::SharingMode,
+    pub queue_family_index_count: crate::External<
         {
             "uint32_t";
             0
         },
     >,
-    p_queue_family_indices: *const crate::External<
+    pub p_queue_family_indices: *const crate::External<
         {
             "uint32_t";
             0
@@ -55,15 +55,15 @@ pub struct PhysicalDeviceImageDrmFormatModifierInfoEXT {
 }
 #[repr(C)]
 pub struct ImageDrmFormatModifierListCreateInfoEXT {
-    s_type: crate::vk::StructureType,
-    p_next: *const core::ffi::c_void,
-    drm_format_modifier_count: crate::External<
+    pub s_type: crate::vk::StructureType,
+    pub p_next: *const core::ffi::c_void,
+    pub drm_format_modifier_count: crate::External<
         {
             "uint32_t";
             0
         },
     >,
-    p_drm_format_modifiers: *const crate::External<
+    pub p_drm_format_modifiers: *const crate::External<
         {
             "uint64_t";
             0
@@ -72,27 +72,27 @@ pub struct ImageDrmFormatModifierListCreateInfoEXT {
 }
 #[repr(C)]
 pub struct ImageDrmFormatModifierExplicitCreateInfoEXT {
-    s_type: crate::vk::StructureType,
-    p_next: *const core::ffi::c_void,
-    drm_format_modifier: crate::External<
+    pub s_type: crate::vk::StructureType,
+    pub p_next: *const core::ffi::c_void,
+    pub drm_format_modifier: crate::External<
         {
             "uint64_t";
             0
         },
     >,
-    drm_format_modifier_plane_count: crate::External<
+    pub drm_format_modifier_plane_count: crate::External<
         {
             "uint32_t";
             0
         },
     >,
-    p_plane_layouts: *const crate::vk::SubresourceLayout,
+    pub p_plane_layouts: *const crate::vk::SubresourceLayout,
 }
 #[repr(C)]
 pub struct ImageDrmFormatModifierPropertiesEXT {
-    s_type: crate::vk::StructureType,
-    p_next: *mut core::ffi::c_void,
-    drm_format_modifier: crate::External<
+    pub s_type: crate::vk::StructureType,
+    pub p_next: *mut core::ffi::c_void,
+    pub drm_format_modifier: crate::External<
         {
             "uint64_t";
             0
@@ -101,29 +101,29 @@ pub struct ImageDrmFormatModifierPropertiesEXT {
 }
 #[repr(C)]
 pub struct DrmFormatModifierPropertiesList2EXT {
-    s_type: crate::vk::StructureType,
-    p_next: *mut core::ffi::c_void,
-    drm_format_modifier_count: crate::External<
+    pub s_type: crate::vk::StructureType,
+    pub p_next: *mut core::ffi::c_void,
+    pub drm_format_modifier_count: crate::External<
         {
             "uint32_t";
             0
         },
     >,
-    p_drm_format_modifier_properties: *mut crate::vk::DrmFormatModifierProperties2EXT,
+    pub p_drm_format_modifier_properties: *mut crate::vk::DrmFormatModifierProperties2EXT,
 }
 #[repr(C)]
 pub struct DrmFormatModifierProperties2EXT {
-    drm_format_modifier: crate::External<
+    pub drm_format_modifier: crate::External<
         {
             "uint64_t";
             0
         },
     >,
-    drm_format_modifier_plane_count: crate::External<
+    pub drm_format_modifier_plane_count: crate::External<
         {
             "uint32_t";
             0
         },
     >,
-    drm_format_modifier_tiling_features: crate::vk::FormatFeatureFlags2,
+    pub drm_format_modifier_tiling_features: crate::vk::FormatFeatureFlags2,
 }

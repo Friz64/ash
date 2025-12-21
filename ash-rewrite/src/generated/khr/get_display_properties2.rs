@@ -3,28 +3,28 @@
 //![Vulkan Manual Page](https://docs.vulkan.org/refpages/latest/refpages/source/VK_KHR_get_display_properties2.html) · Vulkan extension
 #[repr(C)]
 pub struct DisplayProperties2KHR {
-    s_type: crate::vk::StructureType,
-    p_next: *mut core::ffi::c_void,
-    display_properties: crate::vk::DisplayPropertiesKHR,
+    pub s_type: crate::vk::StructureType,
+    pub p_next: *mut core::ffi::c_void,
+    pub display_properties: crate::vk::DisplayPropertiesKHR,
 }
 #[repr(C)]
 pub struct DisplayPlaneProperties2KHR {
-    s_type: crate::vk::StructureType,
-    p_next: *mut core::ffi::c_void,
-    display_plane_properties: crate::vk::DisplayPlanePropertiesKHR,
+    pub s_type: crate::vk::StructureType,
+    pub p_next: *mut core::ffi::c_void,
+    pub display_plane_properties: crate::vk::DisplayPlanePropertiesKHR,
 }
 #[repr(C)]
 pub struct DisplayModeProperties2KHR {
-    s_type: crate::vk::StructureType,
-    p_next: *mut core::ffi::c_void,
-    display_mode_properties: crate::vk::DisplayModePropertiesKHR,
+    pub s_type: crate::vk::StructureType,
+    pub p_next: *mut core::ffi::c_void,
+    pub display_mode_properties: crate::vk::DisplayModePropertiesKHR,
 }
 #[repr(C)]
 pub struct DisplayPlaneInfo2KHR {
-    s_type: crate::vk::StructureType,
-    p_next: *const core::ffi::c_void,
-    mode: crate::vk::DisplayModeKHR,
-    plane_index: crate::External<
+    pub s_type: crate::vk::StructureType,
+    pub p_next: *const core::ffi::c_void,
+    pub mode: crate::vk::DisplayModeKHR,
+    pub plane_index: crate::External<
         {
             "uint32_t";
             0
@@ -33,7 +33,7 @@ pub struct DisplayPlaneInfo2KHR {
 }
 #[repr(C)]
 pub struct DisplayPlaneCapabilities2KHR {
-    s_type: crate::vk::StructureType,
-    p_next: *mut core::ffi::c_void,
-    capabilities: crate::vk::DisplayPlaneCapabilitiesKHR,
+    pub s_type: crate::vk::StructureType,
+    pub p_next: *mut core::ffi::c_void,
+    pub capabilities: crate::vk::DisplayPlaneCapabilitiesKHR,
 }

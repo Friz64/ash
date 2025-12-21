@@ -3,18 +3,22 @@
 //![Vulkan Manual Page](https://docs.vulkan.org/refpages/latest/refpages/source/VK_EXT_device_address_binding_report.html) · Vulkan extension
 #[repr(C)]
 pub struct PhysicalDeviceAddressBindingReportFeaturesEXT {
-    s_type: crate::vk::StructureType,
-    p_next: *mut core::ffi::c_void,
-    report_address_binding: crate::vk::Bool32,
+    pub s_type: crate::vk::StructureType,
+    pub p_next: *mut core::ffi::c_void,
+    pub report_address_binding: crate::vk::Bool32,
 }
 #[repr(C)]
 pub struct DeviceAddressBindingCallbackDataEXT {
-    s_type: crate::vk::StructureType,
-    p_next: *mut core::ffi::c_void,
-    flags: crate::vk::DeviceAddressBindingFlagsEXT,
-    base_address: crate::vk::DeviceAddress,
-    size: crate::vk::DeviceSize,
-    binding_type: crate::vk::DeviceAddressBindingTypeEXT,
+    pub s_type: crate::vk::StructureType,
+    pub p_next: *mut core::ffi::c_void,
+    pub flags: crate::vk::DeviceAddressBindingFlagsEXT,
+    pub base_address: crate::vk::DeviceAddress,
+    pub size: crate::vk::DeviceSize,
+    pub binding_type: crate::vk::DeviceAddressBindingTypeEXT,
 }
 #[repr(C)]
 pub struct DeviceAddressBindingTypeEXT {}
+#[repr(C)]
+pub struct DeviceAddressBindingFlagsEXT {}
+#[repr(C)]
+pub struct DeviceAddressBindingFlagBitsEXT {}

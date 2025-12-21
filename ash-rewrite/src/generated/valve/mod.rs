@@ -3,4 +3,5 @@
 //!Extensions tagged VALVE
 pub mod descriptor_set_host_mapping;
 pub mod fragment_density_map_layered;
+pub mod mutable_descriptor_type;
 pub mod video_encode_rgb_conversion;

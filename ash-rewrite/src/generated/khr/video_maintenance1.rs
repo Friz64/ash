@@ -3,22 +3,22 @@
 //![Vulkan Manual Page](https://docs.vulkan.org/refpages/latest/refpages/source/VK_KHR_video_maintenance1.html) · Vulkan extension
 #[repr(C)]
 pub struct PhysicalDeviceVideoMaintenance1FeaturesKHR {
-    s_type: crate::vk::StructureType,
-    p_next: *mut core::ffi::c_void,
-    video_maintenance1: crate::vk::Bool32,
+    pub s_type: crate::vk::StructureType,
+    pub p_next: *mut core::ffi::c_void,
+    pub video_maintenance1: crate::vk::Bool32,
 }
 #[repr(C)]
 pub struct VideoInlineQueryInfoKHR {
-    s_type: crate::vk::StructureType,
-    p_next: *const core::ffi::c_void,
-    query_pool: crate::vk::QueryPool,
-    first_query: crate::External<
+    pub s_type: crate::vk::StructureType,
+    pub p_next: *const core::ffi::c_void,
+    pub query_pool: crate::vk::QueryPool,
+    pub first_query: crate::External<
         {
             "uint32_t";
             0
         },
     >,
-    query_count: crate::External<
+    pub query_count: crate::External<
         {
             "uint32_t";
             0

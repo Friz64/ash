@@ -3,15 +3,17 @@
 //![Vulkan Manual Page](https://docs.vulkan.org/refpages/latest/refpages/source/VK_EXT_buffer_device_address.html) · Vulkan extension
 #[repr(C)]
 pub struct PhysicalDeviceBufferDeviceAddressFeaturesEXT {
-    s_type: crate::vk::StructureType,
-    p_next: *mut core::ffi::c_void,
-    buffer_device_address: crate::vk::Bool32,
-    buffer_device_address_capture_replay: crate::vk::Bool32,
-    buffer_device_address_multi_device: crate::vk::Bool32,
+    pub s_type: crate::vk::StructureType,
+    pub p_next: *mut core::ffi::c_void,
+    pub buffer_device_address: crate::vk::Bool32,
+    pub buffer_device_address_capture_replay: crate::vk::Bool32,
+    pub buffer_device_address_multi_device: crate::vk::Bool32,
 }
 #[repr(C)]
 pub struct BufferDeviceAddressCreateInfoEXT {
-    s_type: crate::vk::StructureType,
-    p_next: *const core::ffi::c_void,
-    device_address: crate::vk::DeviceAddress,
+    pub s_type: crate::vk::StructureType,
+    pub p_next: *const core::ffi::c_void,
+    pub device_address: crate::vk::DeviceAddress,
 }
+pub type PhysicalDeviceBufferAddressFeaturesEXT = crate::vk::PhysicalDeviceBufferDeviceAddressFeaturesEXT;
+pub type BufferDeviceAddressInfoEXT = crate::vk::BufferDeviceAddressInfo;

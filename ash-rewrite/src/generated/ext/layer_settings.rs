@@ -3,38 +3,38 @@
 //![Vulkan Manual Page](https://docs.vulkan.org/refpages/latest/refpages/source/VK_EXT_layer_settings.html) · Vulkan extension
 #[repr(C)]
 pub struct LayerSettingsCreateInfoEXT {
-    s_type: crate::vk::StructureType,
-    p_next: *const core::ffi::c_void,
-    setting_count: crate::External<
+    pub s_type: crate::vk::StructureType,
+    pub p_next: *const core::ffi::c_void,
+    pub setting_count: crate::External<
         {
             "uint32_t";
             0
         },
     >,
-    p_settings: *const crate::vk::LayerSettingEXT,
+    pub p_settings: *const crate::vk::LayerSettingEXT,
 }
 #[repr(C)]
 pub struct LayerSettingEXT {
-    p_layer_name: *const crate::External<
+    pub p_layer_name: *const crate::External<
         {
             "char";
             0
         },
     >,
-    p_setting_name: *const crate::External<
+    pub p_setting_name: *const crate::External<
         {
             "char";
             0
         },
     >,
-    _type: crate::vk::LayerSettingTypeEXT,
-    value_count: crate::External<
+    pub _type: crate::vk::LayerSettingTypeEXT,
+    pub value_count: crate::External<
         {
             "uint32_t";
             0
         },
     >,
-    p_values: *const core::ffi::c_void,
+    pub p_values: *const core::ffi::c_void,
 }
 #[repr(C)]
 pub struct LayerSettingTypeEXT {}

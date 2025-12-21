@@ -3,45 +3,45 @@
 //![Vulkan Manual Page](https://docs.vulkan.org/refpages/latest/refpages/source/VK_NV_optical_flow.html) · Vulkan extension
 #[repr(C)]
 pub struct PhysicalDeviceOpticalFlowFeaturesNV {
-    s_type: crate::vk::StructureType,
-    p_next: *mut core::ffi::c_void,
-    optical_flow: crate::vk::Bool32,
+    pub s_type: crate::vk::StructureType,
+    pub p_next: *mut core::ffi::c_void,
+    pub optical_flow: crate::vk::Bool32,
 }
 #[repr(C)]
 pub struct PhysicalDeviceOpticalFlowPropertiesNV {
-    s_type: crate::vk::StructureType,
-    p_next: *mut core::ffi::c_void,
-    supported_output_grid_sizes: crate::vk::OpticalFlowGridSizeFlagsNV,
-    supported_hint_grid_sizes: crate::vk::OpticalFlowGridSizeFlagsNV,
-    hint_supported: crate::vk::Bool32,
-    cost_supported: crate::vk::Bool32,
-    bidirectional_flow_supported: crate::vk::Bool32,
-    global_flow_supported: crate::vk::Bool32,
-    min_width: crate::External<
+    pub s_type: crate::vk::StructureType,
+    pub p_next: *mut core::ffi::c_void,
+    pub supported_output_grid_sizes: crate::vk::OpticalFlowGridSizeFlagsNV,
+    pub supported_hint_grid_sizes: crate::vk::OpticalFlowGridSizeFlagsNV,
+    pub hint_supported: crate::vk::Bool32,
+    pub cost_supported: crate::vk::Bool32,
+    pub bidirectional_flow_supported: crate::vk::Bool32,
+    pub global_flow_supported: crate::vk::Bool32,
+    pub min_width: crate::External<
         {
             "uint32_t";
             0
         },
     >,
-    min_height: crate::External<
+    pub min_height: crate::External<
         {
             "uint32_t";
             0
         },
     >,
-    max_width: crate::External<
+    pub max_width: crate::External<
         {
             "uint32_t";
             0
         },
     >,
-    max_height: crate::External<
+    pub max_height: crate::External<
         {
             "uint32_t";
             0
         },
     >,
-    max_num_regions_of_interest: crate::External<
+    pub max_num_regions_of_interest: crate::External<
         {
             "uint32_t";
             0
@@ -50,74 +50,90 @@ pub struct PhysicalDeviceOpticalFlowPropertiesNV {
 }
 #[repr(C)]
 pub struct OpticalFlowImageFormatInfoNV {
-    s_type: crate::vk::StructureType,
-    p_next: *const core::ffi::c_void,
-    usage: crate::vk::OpticalFlowUsageFlagsNV,
+    pub s_type: crate::vk::StructureType,
+    pub p_next: *const core::ffi::c_void,
+    pub usage: crate::vk::OpticalFlowUsageFlagsNV,
 }
 #[repr(C)]
 pub struct OpticalFlowImageFormatPropertiesNV {
-    s_type: crate::vk::StructureType,
-    p_next: *mut core::ffi::c_void,
-    format: crate::vk::Format,
+    pub s_type: crate::vk::StructureType,
+    pub p_next: *mut core::ffi::c_void,
+    pub format: crate::vk::Format,
 }
 #[repr(C)]
 pub struct OpticalFlowSessionCreateInfoNV {
-    s_type: crate::vk::StructureType,
-    p_next: *mut core::ffi::c_void,
-    width: crate::External<
+    pub s_type: crate::vk::StructureType,
+    pub p_next: *mut core::ffi::c_void,
+    pub width: crate::External<
         {
             "uint32_t";
             0
         },
     >,
-    height: crate::External<
+    pub height: crate::External<
         {
             "uint32_t";
             0
         },
     >,
-    image_format: crate::vk::Format,
-    flow_vector_format: crate::vk::Format,
-    cost_format: crate::vk::Format,
-    output_grid_size: crate::vk::OpticalFlowGridSizeFlagsNV,
-    hint_grid_size: crate::vk::OpticalFlowGridSizeFlagsNV,
-    performance_level: crate::vk::OpticalFlowPerformanceLevelNV,
-    flags: crate::vk::OpticalFlowSessionCreateFlagsNV,
+    pub image_format: crate::vk::Format,
+    pub flow_vector_format: crate::vk::Format,
+    pub cost_format: crate::vk::Format,
+    pub output_grid_size: crate::vk::OpticalFlowGridSizeFlagsNV,
+    pub hint_grid_size: crate::vk::OpticalFlowGridSizeFlagsNV,
+    pub performance_level: crate::vk::OpticalFlowPerformanceLevelNV,
+    pub flags: crate::vk::OpticalFlowSessionCreateFlagsNV,
 }
 #[repr(C)]
 pub struct OpticalFlowSessionCreatePrivateDataInfoNV {
-    s_type: crate::vk::StructureType,
-    p_next: *mut core::ffi::c_void,
-    id: crate::External<
+    pub s_type: crate::vk::StructureType,
+    pub p_next: *mut core::ffi::c_void,
+    pub id: crate::External<
         {
             "uint32_t";
             0
         },
     >,
-    size: crate::External<
+    pub size: crate::External<
         {
             "uint32_t";
             0
         },
     >,
-    p_private_data: *const core::ffi::c_void,
+    pub p_private_data: *const core::ffi::c_void,
 }
 #[repr(C)]
 pub struct OpticalFlowExecuteInfoNV {
-    s_type: crate::vk::StructureType,
-    p_next: *mut core::ffi::c_void,
-    flags: crate::vk::OpticalFlowExecuteFlagsNV,
-    region_count: crate::External<
+    pub s_type: crate::vk::StructureType,
+    pub p_next: *mut core::ffi::c_void,
+    pub flags: crate::vk::OpticalFlowExecuteFlagsNV,
+    pub region_count: crate::External<
         {
             "uint32_t";
             0
         },
     >,
-    p_regions: *const crate::vk::Rect2D,
+    pub p_regions: *const crate::vk::Rect2D,
 }
 #[repr(C)]
 pub struct OpticalFlowPerformanceLevelNV {}
 #[repr(C)]
 pub struct OpticalFlowSessionBindingPointNV {}
+#[repr(C)]
+pub struct OpticalFlowGridSizeFlagsNV {}
+#[repr(C)]
+pub struct OpticalFlowUsageFlagsNV {}
+#[repr(C)]
+pub struct OpticalFlowSessionCreateFlagsNV {}
+#[repr(C)]
+pub struct OpticalFlowExecuteFlagsNV {}
+#[repr(C)]
+pub struct OpticalFlowGridSizeFlagBitsNV {}
+#[repr(C)]
+pub struct OpticalFlowUsageFlagBitsNV {}
+#[repr(C)]
+pub struct OpticalFlowSessionCreateFlagBitsNV {}
+#[repr(C)]
+pub struct OpticalFlowExecuteFlagBitsNV {}
 #[repr(C)]
 pub struct OpticalFlowSessionNV {}

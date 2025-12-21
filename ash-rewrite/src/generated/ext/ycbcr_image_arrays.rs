@@ -3,7 +3,7 @@
 //![Vulkan Manual Page](https://docs.vulkan.org/refpages/latest/refpages/source/VK_EXT_ycbcr_image_arrays.html) · Vulkan extension
 #[repr(C)]
 pub struct PhysicalDeviceYcbcrImageArraysFeaturesEXT {
-    s_type: crate::vk::StructureType,
-    p_next: *mut core::ffi::c_void,
-    ycbcr_image_arrays: crate::vk::Bool32,
+    pub s_type: crate::vk::StructureType,
+    pub p_next: *mut core::ffi::c_void,
+    pub ycbcr_image_arrays: crate::vk::Bool32,
 }

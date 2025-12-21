@@ -3,18 +3,18 @@
 //![Vulkan Manual Page](https://docs.vulkan.org/refpages/latest/refpages/source/VK_KHR_external_fence_win32.html) · Vulkan extension
 #[repr(C)]
 pub struct ImportFenceWin32HandleInfoKHR {
-    s_type: crate::vk::StructureType,
-    p_next: *const core::ffi::c_void,
-    fence: crate::vk::Fence,
-    flags: crate::vk::FenceImportFlags,
-    handle_type: crate::vk::ExternalFenceHandleTypeFlagBits,
-    handle: crate::External<
+    pub s_type: crate::vk::StructureType,
+    pub p_next: *const core::ffi::c_void,
+    pub fence: crate::vk::Fence,
+    pub flags: crate::vk::FenceImportFlags,
+    pub handle_type: crate::vk::ExternalFenceHandleTypeFlagBits,
+    pub handle: crate::External<
         {
             "HANDLE";
             0
         },
     >,
-    name: crate::External<
+    pub name: crate::External<
         {
             "LPCWSTR";
             0
@@ -23,21 +23,21 @@ pub struct ImportFenceWin32HandleInfoKHR {
 }
 #[repr(C)]
 pub struct ExportFenceWin32HandleInfoKHR {
-    s_type: crate::vk::StructureType,
-    p_next: *const core::ffi::c_void,
-    p_attributes: *const crate::External<
+    pub s_type: crate::vk::StructureType,
+    pub p_next: *const core::ffi::c_void,
+    pub p_attributes: *const crate::External<
         {
             "SECURITY_ATTRIBUTES";
             0
         },
     >,
-    dw_access: crate::External<
+    pub dw_access: crate::External<
         {
             "DWORD";
             0
         },
     >,
-    name: crate::External<
+    pub name: crate::External<
         {
             "LPCWSTR";
             0
@@ -46,8 +46,8 @@ pub struct ExportFenceWin32HandleInfoKHR {
 }
 #[repr(C)]
 pub struct FenceGetWin32HandleInfoKHR {
-    s_type: crate::vk::StructureType,
-    p_next: *const core::ffi::c_void,
-    fence: crate::vk::Fence,
-    handle_type: crate::vk::ExternalFenceHandleTypeFlagBits,
+    pub s_type: crate::vk::StructureType,
+    pub p_next: *const core::ffi::c_void,
+    pub fence: crate::vk::Fence,
+    pub handle_type: crate::vk::ExternalFenceHandleTypeFlagBits,
 }

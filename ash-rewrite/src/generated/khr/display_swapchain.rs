@@ -3,9 +3,9 @@
 //![Vulkan Manual Page](https://docs.vulkan.org/refpages/latest/refpages/source/VK_KHR_display_swapchain.html) · Vulkan extension
 #[repr(C)]
 pub struct DisplayPresentInfoKHR {
-    s_type: crate::vk::StructureType,
-    p_next: *const core::ffi::c_void,
-    src_rect: crate::vk::Rect2D,
-    dst_rect: crate::vk::Rect2D,
-    persistent: crate::vk::Bool32,
+    pub s_type: crate::vk::StructureType,
+    pub p_next: *const core::ffi::c_void,
+    pub src_rect: crate::vk::Rect2D,
+    pub dst_rect: crate::vk::Rect2D,
+    pub persistent: crate::vk::Bool32,
 }

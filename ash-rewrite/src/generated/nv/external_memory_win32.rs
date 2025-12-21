@@ -3,10 +3,10 @@
 //![Vulkan Manual Page](https://docs.vulkan.org/refpages/latest/refpages/source/VK_NV_external_memory_win32.html) · Vulkan extension
 #[repr(C)]
 pub struct ImportMemoryWin32HandleInfoNV {
-    s_type: crate::vk::StructureType,
-    p_next: *const core::ffi::c_void,
-    handle_type: crate::vk::ExternalMemoryHandleTypeFlagsNV,
-    handle: crate::External<
+    pub s_type: crate::vk::StructureType,
+    pub p_next: *const core::ffi::c_void,
+    pub handle_type: crate::vk::ExternalMemoryHandleTypeFlagsNV,
+    pub handle: crate::External<
         {
             "HANDLE";
             0
@@ -15,15 +15,15 @@ pub struct ImportMemoryWin32HandleInfoNV {
 }
 #[repr(C)]
 pub struct ExportMemoryWin32HandleInfoNV {
-    s_type: crate::vk::StructureType,
-    p_next: *const core::ffi::c_void,
-    p_attributes: *const crate::External<
+    pub s_type: crate::vk::StructureType,
+    pub p_next: *const core::ffi::c_void,
+    pub p_attributes: *const crate::External<
         {
             "SECURITY_ATTRIBUTES";
             0
         },
     >,
-    dw_access: crate::External<
+    pub dw_access: crate::External<
         {
             "DWORD";
             0

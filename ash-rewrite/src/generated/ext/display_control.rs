@@ -3,27 +3,27 @@
 //![Vulkan Manual Page](https://docs.vulkan.org/refpages/latest/refpages/source/VK_EXT_display_control.html) · Vulkan extension
 #[repr(C)]
 pub struct DisplayPowerInfoEXT {
-    s_type: crate::vk::StructureType,
-    p_next: *const core::ffi::c_void,
-    power_state: crate::vk::DisplayPowerStateEXT,
+    pub s_type: crate::vk::StructureType,
+    pub p_next: *const core::ffi::c_void,
+    pub power_state: crate::vk::DisplayPowerStateEXT,
 }
 #[repr(C)]
 pub struct DeviceEventInfoEXT {
-    s_type: crate::vk::StructureType,
-    p_next: *const core::ffi::c_void,
-    device_event: crate::vk::DeviceEventTypeEXT,
+    pub s_type: crate::vk::StructureType,
+    pub p_next: *const core::ffi::c_void,
+    pub device_event: crate::vk::DeviceEventTypeEXT,
 }
 #[repr(C)]
 pub struct DisplayEventInfoEXT {
-    s_type: crate::vk::StructureType,
-    p_next: *const core::ffi::c_void,
-    display_event: crate::vk::DisplayEventTypeEXT,
+    pub s_type: crate::vk::StructureType,
+    pub p_next: *const core::ffi::c_void,
+    pub display_event: crate::vk::DisplayEventTypeEXT,
 }
 #[repr(C)]
 pub struct SwapchainCounterCreateInfoEXT {
-    s_type: crate::vk::StructureType,
-    p_next: *const core::ffi::c_void,
-    surface_counters: crate::vk::SurfaceCounterFlagsEXT,
+    pub s_type: crate::vk::StructureType,
+    pub p_next: *const core::ffi::c_void,
+    pub surface_counters: crate::vk::SurfaceCounterFlagsEXT,
 }
 #[repr(C)]
 pub struct DisplayPowerStateEXT {}

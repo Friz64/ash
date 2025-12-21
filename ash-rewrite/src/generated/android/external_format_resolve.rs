@@ -3,21 +3,21 @@
 //![Vulkan Manual Page](https://docs.vulkan.org/refpages/latest/refpages/source/VK_ANDROID_external_format_resolve.html) · Vulkan extension
 #[repr(C)]
 pub struct PhysicalDeviceExternalFormatResolveFeaturesANDROID {
-    s_type: crate::vk::StructureType,
-    p_next: *mut core::ffi::c_void,
-    external_format_resolve: crate::vk::Bool32,
+    pub s_type: crate::vk::StructureType,
+    pub p_next: *mut core::ffi::c_void,
+    pub external_format_resolve: crate::vk::Bool32,
 }
 #[repr(C)]
 pub struct PhysicalDeviceExternalFormatResolvePropertiesANDROID {
-    s_type: crate::vk::StructureType,
-    p_next: *mut core::ffi::c_void,
-    null_color_attachment_with_external_format_resolve: crate::vk::Bool32,
-    external_format_resolve_chroma_offset_x: crate::vk::ChromaLocation,
-    external_format_resolve_chroma_offset_y: crate::vk::ChromaLocation,
+    pub s_type: crate::vk::StructureType,
+    pub p_next: *mut core::ffi::c_void,
+    pub null_color_attachment_with_external_format_resolve: crate::vk::Bool32,
+    pub external_format_resolve_chroma_offset_x: crate::vk::ChromaLocation,
+    pub external_format_resolve_chroma_offset_y: crate::vk::ChromaLocation,
 }
 #[repr(C)]
 pub struct AndroidHardwareBufferFormatResolvePropertiesANDROID {
-    s_type: crate::vk::StructureType,
-    p_next: *mut core::ffi::c_void,
-    color_attachment_format: crate::vk::Format,
+    pub s_type: crate::vk::StructureType,
+    pub p_next: *mut core::ffi::c_void,
+    pub color_attachment_format: crate::vk::Format,
 }

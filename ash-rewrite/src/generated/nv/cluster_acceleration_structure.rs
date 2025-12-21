@@ -3,57 +3,57 @@
 //![Vulkan Manual Page](https://docs.vulkan.org/refpages/latest/refpages/source/VK_NV_cluster_acceleration_structure.html) · Vulkan extension
 #[repr(C)]
 pub struct PhysicalDeviceClusterAccelerationStructureFeaturesNV {
-    s_type: crate::vk::StructureType,
-    p_next: *mut core::ffi::c_void,
-    cluster_acceleration_structure: crate::vk::Bool32,
+    pub s_type: crate::vk::StructureType,
+    pub p_next: *mut core::ffi::c_void,
+    pub cluster_acceleration_structure: crate::vk::Bool32,
 }
 #[repr(C)]
 pub struct PhysicalDeviceClusterAccelerationStructurePropertiesNV {
-    s_type: crate::vk::StructureType,
-    p_next: *mut core::ffi::c_void,
-    max_vertices_per_cluster: crate::External<
+    pub s_type: crate::vk::StructureType,
+    pub p_next: *mut core::ffi::c_void,
+    pub max_vertices_per_cluster: crate::External<
         {
             "uint32_t";
             0
         },
     >,
-    max_triangles_per_cluster: crate::External<
+    pub max_triangles_per_cluster: crate::External<
         {
             "uint32_t";
             0
         },
     >,
-    cluster_scratch_byte_alignment: crate::External<
+    pub cluster_scratch_byte_alignment: crate::External<
         {
             "uint32_t";
             0
         },
     >,
-    cluster_byte_alignment: crate::External<
+    pub cluster_byte_alignment: crate::External<
         {
             "uint32_t";
             0
         },
     >,
-    cluster_template_byte_alignment: crate::External<
+    pub cluster_template_byte_alignment: crate::External<
         {
             "uint32_t";
             0
         },
     >,
-    cluster_bottom_level_byte_alignment: crate::External<
+    pub cluster_bottom_level_byte_alignment: crate::External<
         {
             "uint32_t";
             0
         },
     >,
-    cluster_template_bounds_byte_alignment: crate::External<
+    pub cluster_template_bounds_byte_alignment: crate::External<
         {
             "uint32_t";
             0
         },
     >,
-    max_cluster_geometry_index: crate::External<
+    pub max_cluster_geometry_index: crate::External<
         {
             "uint32_t";
             0
@@ -62,30 +62,30 @@ pub struct PhysicalDeviceClusterAccelerationStructurePropertiesNV {
 }
 #[repr(C)]
 pub struct StridedDeviceAddressNV {
-    start_address: crate::vk::DeviceAddress,
-    stride_in_bytes: crate::vk::DeviceSize,
+    pub start_address: crate::vk::DeviceAddress,
+    pub stride_in_bytes: crate::vk::DeviceSize,
 }
 #[repr(C)]
 pub struct RayTracingPipelineClusterAccelerationStructureCreateInfoNV {
-    s_type: crate::vk::StructureType,
-    p_next: *mut core::ffi::c_void,
-    allow_cluster_acceleration_structure: crate::vk::Bool32,
+    pub s_type: crate::vk::StructureType,
+    pub p_next: *mut core::ffi::c_void,
+    pub allow_cluster_acceleration_structure: crate::vk::Bool32,
 }
 #[repr(C)]
 pub struct ClusterAccelerationStructureGeometryIndexAndGeometryFlagsNV {
-    geometry_index: crate::External<
+    pub geometry_index: crate::External<
         {
             "uint32_t";
             0
         },
     >,
-    reserved: crate::External<
+    pub reserved: crate::External<
         {
             "uint32_t";
             0
         },
     >,
-    geometry_flags: crate::External<
+    pub geometry_flags: crate::External<
         {
             "uint32_t";
             0
@@ -94,203 +94,203 @@ pub struct ClusterAccelerationStructureGeometryIndexAndGeometryFlagsNV {
 }
 #[repr(C)]
 pub struct ClusterAccelerationStructureMoveObjectsInfoNV {
-    src_acceleration_structure: crate::vk::DeviceAddress,
+    pub src_acceleration_structure: crate::vk::DeviceAddress,
 }
 #[repr(C)]
 pub struct ClusterAccelerationStructureBuildClustersBottomLevelInfoNV {
-    cluster_references_count: crate::External<
+    pub cluster_references_count: crate::External<
         {
             "uint32_t";
             0
         },
     >,
-    cluster_references_stride: crate::External<
+    pub cluster_references_stride: crate::External<
         {
             "uint32_t";
             0
         },
     >,
-    cluster_references: crate::vk::DeviceAddress,
+    pub cluster_references: crate::vk::DeviceAddress,
 }
 #[repr(C)]
 pub struct ClusterAccelerationStructureGetTemplateIndicesInfoNV {
-    cluster_template_address: crate::vk::DeviceAddress,
+    pub cluster_template_address: crate::vk::DeviceAddress,
 }
 #[repr(C)]
 pub struct ClusterAccelerationStructureBuildTriangleClusterInfoNV {
-    cluster_id: crate::External<
+    pub cluster_id: crate::External<
         {
             "uint32_t";
             0
         },
     >,
-    cluster_flags: crate::vk::ClusterAccelerationStructureClusterFlagsNV,
-    triangle_count: crate::External<
+    pub cluster_flags: crate::vk::ClusterAccelerationStructureClusterFlagsNV,
+    pub triangle_count: crate::External<
         {
             "uint32_t";
             0
         },
     >,
-    vertex_count: crate::External<
+    pub vertex_count: crate::External<
         {
             "uint32_t";
             0
         },
     >,
-    position_truncate_bit_count: crate::External<
+    pub position_truncate_bit_count: crate::External<
         {
             "uint32_t";
             0
         },
     >,
-    index_type: crate::External<
+    pub index_type: crate::External<
         {
             "uint32_t";
             0
         },
     >,
-    opacity_micromap_index_type: crate::External<
+    pub opacity_micromap_index_type: crate::External<
         {
             "uint32_t";
             0
         },
     >,
-    base_geometry_index_and_geometry_flags: crate::vk::ClusterAccelerationStructureGeometryIndexAndGeometryFlagsNV,
-    index_buffer_stride: crate::External<
+    pub base_geometry_index_and_geometry_flags: crate::vk::ClusterAccelerationStructureGeometryIndexAndGeometryFlagsNV,
+    pub index_buffer_stride: crate::External<
         {
             "uint16_t";
             0
         },
     >,
-    vertex_buffer_stride: crate::External<
+    pub vertex_buffer_stride: crate::External<
         {
             "uint16_t";
             0
         },
     >,
-    geometry_index_and_flags_buffer_stride: crate::External<
+    pub geometry_index_and_flags_buffer_stride: crate::External<
         {
             "uint16_t";
             0
         },
     >,
-    opacity_micromap_index_buffer_stride: crate::External<
+    pub opacity_micromap_index_buffer_stride: crate::External<
         {
             "uint16_t";
             0
         },
     >,
-    index_buffer: crate::vk::DeviceAddress,
-    vertex_buffer: crate::vk::DeviceAddress,
-    geometry_index_and_flags_buffer: crate::vk::DeviceAddress,
-    opacity_micromap_array: crate::vk::DeviceAddress,
-    opacity_micromap_index_buffer: crate::vk::DeviceAddress,
+    pub index_buffer: crate::vk::DeviceAddress,
+    pub vertex_buffer: crate::vk::DeviceAddress,
+    pub geometry_index_and_flags_buffer: crate::vk::DeviceAddress,
+    pub opacity_micromap_array: crate::vk::DeviceAddress,
+    pub opacity_micromap_index_buffer: crate::vk::DeviceAddress,
 }
 #[repr(C)]
 pub struct ClusterAccelerationStructureBuildTriangleClusterTemplateInfoNV {
-    cluster_id: crate::External<
+    pub cluster_id: crate::External<
         {
             "uint32_t";
             0
         },
     >,
-    cluster_flags: crate::vk::ClusterAccelerationStructureClusterFlagsNV,
-    triangle_count: crate::External<
+    pub cluster_flags: crate::vk::ClusterAccelerationStructureClusterFlagsNV,
+    pub triangle_count: crate::External<
         {
             "uint32_t";
             0
         },
     >,
-    vertex_count: crate::External<
+    pub vertex_count: crate::External<
         {
             "uint32_t";
             0
         },
     >,
-    position_truncate_bit_count: crate::External<
+    pub position_truncate_bit_count: crate::External<
         {
             "uint32_t";
             0
         },
     >,
-    index_type: crate::External<
+    pub index_type: crate::External<
         {
             "uint32_t";
             0
         },
     >,
-    opacity_micromap_index_type: crate::External<
+    pub opacity_micromap_index_type: crate::External<
         {
             "uint32_t";
             0
         },
     >,
-    base_geometry_index_and_geometry_flags: crate::vk::ClusterAccelerationStructureGeometryIndexAndGeometryFlagsNV,
-    index_buffer_stride: crate::External<
+    pub base_geometry_index_and_geometry_flags: crate::vk::ClusterAccelerationStructureGeometryIndexAndGeometryFlagsNV,
+    pub index_buffer_stride: crate::External<
         {
             "uint16_t";
             0
         },
     >,
-    vertex_buffer_stride: crate::External<
+    pub vertex_buffer_stride: crate::External<
         {
             "uint16_t";
             0
         },
     >,
-    geometry_index_and_flags_buffer_stride: crate::External<
+    pub geometry_index_and_flags_buffer_stride: crate::External<
         {
             "uint16_t";
             0
         },
     >,
-    opacity_micromap_index_buffer_stride: crate::External<
+    pub opacity_micromap_index_buffer_stride: crate::External<
         {
             "uint16_t";
             0
         },
     >,
-    index_buffer: crate::vk::DeviceAddress,
-    vertex_buffer: crate::vk::DeviceAddress,
-    geometry_index_and_flags_buffer: crate::vk::DeviceAddress,
-    opacity_micromap_array: crate::vk::DeviceAddress,
-    opacity_micromap_index_buffer: crate::vk::DeviceAddress,
-    instantiation_bounding_box_limit: crate::vk::DeviceAddress,
+    pub index_buffer: crate::vk::DeviceAddress,
+    pub vertex_buffer: crate::vk::DeviceAddress,
+    pub geometry_index_and_flags_buffer: crate::vk::DeviceAddress,
+    pub opacity_micromap_array: crate::vk::DeviceAddress,
+    pub opacity_micromap_index_buffer: crate::vk::DeviceAddress,
+    pub instantiation_bounding_box_limit: crate::vk::DeviceAddress,
 }
 #[repr(C)]
 pub struct ClusterAccelerationStructureInstantiateClusterInfoNV {
-    cluster_id_offset: crate::External<
+    pub cluster_id_offset: crate::External<
         {
             "uint32_t";
             0
         },
     >,
-    geometry_index_offset: crate::External<
+    pub geometry_index_offset: crate::External<
         {
             "uint32_t";
             0
         },
     >,
-    reserved: crate::External<
+    pub reserved: crate::External<
         {
             "uint32_t";
             0
         },
     >,
-    cluster_template_address: crate::vk::DeviceAddress,
-    vertex_buffer: crate::vk::StridedDeviceAddressNV,
+    pub cluster_template_address: crate::vk::DeviceAddress,
+    pub vertex_buffer: crate::vk::StridedDeviceAddressNV,
 }
 #[repr(C)]
 pub struct ClusterAccelerationStructureClustersBottomLevelInputNV {
-    s_type: crate::vk::StructureType,
-    p_next: *mut core::ffi::c_void,
-    max_total_cluster_count: crate::External<
+    pub s_type: crate::vk::StructureType,
+    pub p_next: *mut core::ffi::c_void,
+    pub max_total_cluster_count: crate::External<
         {
             "uint32_t";
             0
         },
     >,
-    max_cluster_count_per_acceleration_structure: crate::External<
+    pub max_cluster_count_per_acceleration_structure: crate::External<
         {
             "uint32_t";
             0
@@ -299,46 +299,46 @@ pub struct ClusterAccelerationStructureClustersBottomLevelInputNV {
 }
 #[repr(C)]
 pub struct ClusterAccelerationStructureTriangleClusterInputNV {
-    s_type: crate::vk::StructureType,
-    p_next: *mut core::ffi::c_void,
-    vertex_format: crate::vk::Format,
-    max_geometry_index_value: crate::External<
+    pub s_type: crate::vk::StructureType,
+    pub p_next: *mut core::ffi::c_void,
+    pub vertex_format: crate::vk::Format,
+    pub max_geometry_index_value: crate::External<
         {
             "uint32_t";
             0
         },
     >,
-    max_cluster_unique_geometry_count: crate::External<
+    pub max_cluster_unique_geometry_count: crate::External<
         {
             "uint32_t";
             0
         },
     >,
-    max_cluster_triangle_count: crate::External<
+    pub max_cluster_triangle_count: crate::External<
         {
             "uint32_t";
             0
         },
     >,
-    max_cluster_vertex_count: crate::External<
+    pub max_cluster_vertex_count: crate::External<
         {
             "uint32_t";
             0
         },
     >,
-    max_total_triangle_count: crate::External<
+    pub max_total_triangle_count: crate::External<
         {
             "uint32_t";
             0
         },
     >,
-    max_total_vertex_count: crate::External<
+    pub max_total_vertex_count: crate::External<
         {
             "uint32_t";
             0
         },
     >,
-    min_position_truncate_bit_count: crate::External<
+    pub min_position_truncate_bit_count: crate::External<
         {
             "uint32_t";
             0
@@ -347,39 +347,45 @@ pub struct ClusterAccelerationStructureTriangleClusterInputNV {
 }
 #[repr(C)]
 pub struct ClusterAccelerationStructureMoveObjectsInputNV {
-    s_type: crate::vk::StructureType,
-    p_next: *mut core::ffi::c_void,
-    _type: crate::vk::ClusterAccelerationStructureTypeNV,
-    no_move_overlap: crate::vk::Bool32,
-    max_moved_bytes: crate::vk::DeviceSize,
+    pub s_type: crate::vk::StructureType,
+    pub p_next: *mut core::ffi::c_void,
+    pub _type: crate::vk::ClusterAccelerationStructureTypeNV,
+    pub no_move_overlap: crate::vk::Bool32,
+    pub max_moved_bytes: crate::vk::DeviceSize,
 }
 #[repr(C)]
 pub struct ClusterAccelerationStructureInputInfoNV {
-    s_type: crate::vk::StructureType,
-    p_next: *mut core::ffi::c_void,
-    max_acceleration_structure_count: crate::External<
+    pub s_type: crate::vk::StructureType,
+    pub p_next: *mut core::ffi::c_void,
+    pub max_acceleration_structure_count: crate::External<
         {
             "uint32_t";
             0
         },
     >,
-    flags: crate::vk::BuildAccelerationStructureFlagsKHR,
-    op_type: crate::vk::ClusterAccelerationStructureOpTypeNV,
-    op_mode: crate::vk::ClusterAccelerationStructureOpModeNV,
-    op_input: crate::vk::ClusterAccelerationStructureOpInputNV,
+    pub flags: crate::vk::BuildAccelerationStructureFlagsKHR,
+    pub op_type: crate::vk::ClusterAccelerationStructureOpTypeNV,
+    pub op_mode: crate::vk::ClusterAccelerationStructureOpModeNV,
+    pub op_input: crate::vk::ClusterAccelerationStructureOpInputNV,
 }
 #[repr(C)]
 pub struct ClusterAccelerationStructureCommandsInfoNV {
-    s_type: crate::vk::StructureType,
-    p_next: *mut core::ffi::c_void,
-    input: crate::vk::ClusterAccelerationStructureInputInfoNV,
-    dst_implicit_data: crate::vk::DeviceAddress,
-    scratch_data: crate::vk::DeviceAddress,
-    dst_addresses_array: crate::vk::StridedDeviceAddressRegionKHR,
-    dst_sizes_array: crate::vk::StridedDeviceAddressRegionKHR,
-    src_infos_array: crate::vk::StridedDeviceAddressRegionKHR,
-    src_infos_count: crate::vk::DeviceAddress,
-    address_resolution_flags: crate::vk::ClusterAccelerationStructureAddressResolutionFlagsNV,
+    pub s_type: crate::vk::StructureType,
+    pub p_next: *mut core::ffi::c_void,
+    pub input: crate::vk::ClusterAccelerationStructureInputInfoNV,
+    pub dst_implicit_data: crate::vk::DeviceAddress,
+    pub scratch_data: crate::vk::DeviceAddress,
+    pub dst_addresses_array: crate::vk::StridedDeviceAddressRegionKHR,
+    pub dst_sizes_array: crate::vk::StridedDeviceAddressRegionKHR,
+    pub src_infos_array: crate::vk::StridedDeviceAddressRegionKHR,
+    pub src_infos_count: crate::vk::DeviceAddress,
+    pub address_resolution_flags: crate::vk::ClusterAccelerationStructureAddressResolutionFlagsNV,
+}
+#[repr(C)]
+pub struct ClusterAccelerationStructureOpInputNV {
+    p_clusters_bottom_level: *mut crate::vk::ClusterAccelerationStructureClustersBottomLevelInputNV,
+    p_triangle_clusters: *mut crate::vk::ClusterAccelerationStructureTriangleClusterInputNV,
+    p_move_objects: *mut crate::vk::ClusterAccelerationStructureMoveObjectsInputNV,
 }
 #[repr(C)]
 pub struct ClusterAccelerationStructureTypeNV {}
@@ -387,3 +393,19 @@ pub struct ClusterAccelerationStructureTypeNV {}
 pub struct ClusterAccelerationStructureOpTypeNV {}
 #[repr(C)]
 pub struct ClusterAccelerationStructureOpModeNV {}
+#[repr(C)]
+pub struct ClusterAccelerationStructureGeometryFlagsNV {}
+#[repr(C)]
+pub struct ClusterAccelerationStructureClusterFlagsNV {}
+#[repr(C)]
+pub struct ClusterAccelerationStructureAddressResolutionFlagsNV {}
+#[repr(C)]
+pub struct ClusterAccelerationStructureIndexFormatFlagsNV {}
+#[repr(C)]
+pub struct ClusterAccelerationStructureIndexFormatFlagBitsNV {}
+#[repr(C)]
+pub struct ClusterAccelerationStructureClusterFlagBitsNV {}
+#[repr(C)]
+pub struct ClusterAccelerationStructureGeometryFlagBitsNV {}
+#[repr(C)]
+pub struct ClusterAccelerationStructureAddressResolutionFlagBitsNV {}

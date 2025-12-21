@@ -3,13 +3,13 @@
 //!Items provided by `vulkan_video_codec_av1std_encode`
 #[repr(C)]
 pub struct StdVideoEncodeAV1ExtensionHeader {
-    temporal_id: crate::External<
+    pub temporal_id: crate::External<
         {
             "uint8_t";
             0
         },
     >,
-    spatial_id: crate::External<
+    pub spatial_id: crate::External<
         {
             "uint8_t";
             0
@@ -18,31 +18,31 @@ pub struct StdVideoEncodeAV1ExtensionHeader {
 }
 #[repr(C)]
 pub struct StdVideoEncodeAV1DecoderModelInfo {
-    buffer_delay_length_minus_1: crate::External<
+    pub buffer_delay_length_minus_1: crate::External<
         {
             "uint8_t";
             0
         },
     >,
-    buffer_removal_time_length_minus_1: crate::External<
+    pub buffer_removal_time_length_minus_1: crate::External<
         {
             "uint8_t";
             0
         },
     >,
-    frame_presentation_time_length_minus_1: crate::External<
+    pub frame_presentation_time_length_minus_1: crate::External<
         {
             "uint8_t";
             0
         },
     >,
-    reserved1: crate::External<
+    pub reserved1: crate::External<
         {
             "uint8_t";
             0
         },
     >,
-    num_units_in_decoding_tick: crate::External<
+    pub num_units_in_decoding_tick: crate::External<
         {
             "uint32_t";
             0
@@ -51,25 +51,25 @@ pub struct StdVideoEncodeAV1DecoderModelInfo {
 }
 #[repr(C)]
 pub struct StdVideoEncodeAV1OperatingPointInfoFlags {
-    decoder_model_present_for_this_op: crate::External<
+    pub decoder_model_present_for_this_op: crate::External<
         {
             "uint32_t";
             0
         },
     >,
-    low_delay_mode_flag: crate::External<
+    pub low_delay_mode_flag: crate::External<
         {
             "uint32_t";
             0
         },
     >,
-    initial_display_delay_present_for_this_op: crate::External<
+    pub initial_display_delay_present_for_this_op: crate::External<
         {
             "uint32_t";
             0
         },
     >,
-    reserved: crate::External<
+    pub reserved: crate::External<
         {
             "uint32_t";
             0
@@ -78,38 +78,38 @@ pub struct StdVideoEncodeAV1OperatingPointInfoFlags {
 }
 #[repr(C)]
 pub struct StdVideoEncodeAV1OperatingPointInfo {
-    flags: crate::vk::StdVideoEncodeAV1OperatingPointInfoFlags,
-    operating_point_idc: crate::External<
+    pub flags: crate::vk::StdVideoEncodeAV1OperatingPointInfoFlags,
+    pub operating_point_idc: crate::External<
         {
             "uint16_t";
             0
         },
     >,
-    seq_level_idx: crate::External<
+    pub seq_level_idx: crate::External<
         {
             "uint8_t";
             0
         },
     >,
-    seq_tier: crate::External<
+    pub seq_tier: crate::External<
         {
             "uint8_t";
             0
         },
     >,
-    decoder_buffer_delay: crate::External<
+    pub decoder_buffer_delay: crate::External<
         {
             "uint32_t";
             0
         },
     >,
-    encoder_buffer_delay: crate::External<
+    pub encoder_buffer_delay: crate::External<
         {
             "uint32_t";
             0
         },
     >,
-    initial_display_delay_minus_1: crate::External<
+    pub initial_display_delay_minus_1: crate::External<
         {
             "uint8_t";
             0
@@ -118,181 +118,181 @@ pub struct StdVideoEncodeAV1OperatingPointInfo {
 }
 #[repr(C)]
 pub struct StdVideoEncodeAV1PictureInfoFlags {
-    error_resilient_mode: crate::External<
+    pub error_resilient_mode: crate::External<
         {
             "uint32_t";
             0
         },
     >,
-    disable_cdf_update: crate::External<
+    pub disable_cdf_update: crate::External<
         {
             "uint32_t";
             0
         },
     >,
-    use_superres: crate::External<
+    pub use_superres: crate::External<
         {
             "uint32_t";
             0
         },
     >,
-    render_and_frame_size_different: crate::External<
+    pub render_and_frame_size_different: crate::External<
         {
             "uint32_t";
             0
         },
     >,
-    allow_screen_content_tools: crate::External<
+    pub allow_screen_content_tools: crate::External<
         {
             "uint32_t";
             0
         },
     >,
-    is_filter_switchable: crate::External<
+    pub is_filter_switchable: crate::External<
         {
             "uint32_t";
             0
         },
     >,
-    force_integer_mv: crate::External<
+    pub force_integer_mv: crate::External<
         {
             "uint32_t";
             0
         },
     >,
-    frame_size_override_flag: crate::External<
+    pub frame_size_override_flag: crate::External<
         {
             "uint32_t";
             0
         },
     >,
-    buffer_removal_time_present_flag: crate::External<
+    pub buffer_removal_time_present_flag: crate::External<
         {
             "uint32_t";
             0
         },
     >,
-    allow_intrabc: crate::External<
+    pub allow_intrabc: crate::External<
         {
             "uint32_t";
             0
         },
     >,
-    frame_refs_short_signaling: crate::External<
+    pub frame_refs_short_signaling: crate::External<
         {
             "uint32_t";
             0
         },
     >,
-    allow_high_precision_mv: crate::External<
+    pub allow_high_precision_mv: crate::External<
         {
             "uint32_t";
             0
         },
     >,
-    is_motion_mode_switchable: crate::External<
+    pub is_motion_mode_switchable: crate::External<
         {
             "uint32_t";
             0
         },
     >,
-    use_ref_frame_mvs: crate::External<
+    pub use_ref_frame_mvs: crate::External<
         {
             "uint32_t";
             0
         },
     >,
-    disable_frame_end_update_cdf: crate::External<
+    pub disable_frame_end_update_cdf: crate::External<
         {
             "uint32_t";
             0
         },
     >,
-    allow_warped_motion: crate::External<
+    pub allow_warped_motion: crate::External<
         {
             "uint32_t";
             0
         },
     >,
-    reduced_tx_set: crate::External<
+    pub reduced_tx_set: crate::External<
         {
             "uint32_t";
             0
         },
     >,
-    skip_mode_present: crate::External<
+    pub skip_mode_present: crate::External<
         {
             "uint32_t";
             0
         },
     >,
-    delta_q_present: crate::External<
+    pub delta_q_present: crate::External<
         {
             "uint32_t";
             0
         },
     >,
-    delta_lf_present: crate::External<
+    pub delta_lf_present: crate::External<
         {
             "uint32_t";
             0
         },
     >,
-    delta_lf_multi: crate::External<
+    pub delta_lf_multi: crate::External<
         {
             "uint32_t";
             0
         },
     >,
-    segmentation_enabled: crate::External<
+    pub segmentation_enabled: crate::External<
         {
             "uint32_t";
             0
         },
     >,
-    segmentation_update_map: crate::External<
+    pub segmentation_update_map: crate::External<
         {
             "uint32_t";
             0
         },
     >,
-    segmentation_temporal_update: crate::External<
+    pub segmentation_temporal_update: crate::External<
         {
             "uint32_t";
             0
         },
     >,
-    segmentation_update_data: crate::External<
+    pub segmentation_update_data: crate::External<
         {
             "uint32_t";
             0
         },
     >,
-    uses_lr: crate::External<
+    pub uses_lr: crate::External<
         {
             "uint32_t";
             0
         },
     >,
-    uses_chroma_lr: crate::External<
+    pub uses_chroma_lr: crate::External<
         {
             "uint32_t";
             0
         },
     >,
-    show_frame: crate::External<
+    pub show_frame: crate::External<
         {
             "uint32_t";
             0
         },
     >,
-    showable_frame: crate::External<
+    pub showable_frame: crate::External<
         {
             "uint32_t";
             0
         },
     >,
-    reserved: crate::External<
+    pub reserved: crate::External<
         {
             "uint32_t";
             0
@@ -301,103 +301,103 @@ pub struct StdVideoEncodeAV1PictureInfoFlags {
 }
 #[repr(C)]
 pub struct StdVideoEncodeAV1PictureInfo {
-    flags: crate::vk::StdVideoEncodeAV1PictureInfoFlags,
-    frame_type: crate::vk::StdVideoAV1FrameType,
-    frame_presentation_time: crate::External<
+    pub flags: crate::vk::StdVideoEncodeAV1PictureInfoFlags,
+    pub frame_type: crate::vk::StdVideoAV1FrameType,
+    pub frame_presentation_time: crate::External<
         {
             "uint32_t";
             0
         },
     >,
-    current_frame_id: crate::External<
+    pub current_frame_id: crate::External<
         {
             "uint32_t";
             0
         },
     >,
-    order_hint: crate::External<
+    pub order_hint: crate::External<
         {
             "uint8_t";
             0
         },
     >,
-    primary_ref_frame: crate::External<
+    pub primary_ref_frame: crate::External<
         {
             "uint8_t";
             0
         },
     >,
-    refresh_frame_flags: crate::External<
+    pub refresh_frame_flags: crate::External<
         {
             "uint8_t";
             0
         },
     >,
-    coded_denom: crate::External<
+    pub coded_denom: crate::External<
         {
             "uint8_t";
             0
         },
     >,
-    render_width_minus_1: crate::External<
+    pub render_width_minus_1: crate::External<
         {
             "uint16_t";
             0
         },
     >,
-    render_height_minus_1: crate::External<
+    pub render_height_minus_1: crate::External<
         {
             "uint16_t";
             0
         },
     >,
-    interpolation_filter: crate::vk::StdVideoAV1InterpolationFilter,
-    tx_mode: crate::vk::StdVideoAV1TxMode,
-    delta_q_res: crate::External<
+    pub interpolation_filter: crate::vk::StdVideoAV1InterpolationFilter,
+    pub tx_mode: crate::vk::StdVideoAV1TxMode,
+    pub delta_q_res: crate::External<
         {
             "uint8_t";
             0
         },
     >,
-    delta_lf_res: crate::External<
+    pub delta_lf_res: crate::External<
         {
             "uint8_t";
             0
         },
     >,
-    ref_order_hint: [crate::External<
+    pub ref_order_hint: [crate::External<
         {
             "uint8_t";
             0
         },
     >; 1337],
-    ref_frame_idx: [crate::External<
+    pub ref_frame_idx: [crate::External<
         {
             "int8_t";
             0
         },
     >; 1337],
-    reserved1: [crate::External<
+    pub reserved1: [crate::External<
         {
             "uint8_t";
             0
         },
     >; 1337],
-    delta_frame_id_minus_1: [crate::External<
+    pub delta_frame_id_minus_1: [crate::External<
         {
             "uint32_t";
             0
         },
     >; 1337],
-    p_tile_info: *const crate::vk::StdVideoAV1TileInfo,
-    p_quantization: *const crate::vk::StdVideoAV1Quantization,
-    p_segmentation: *const crate::vk::StdVideoAV1Segmentation,
-    p_loop_filter: *const crate::vk::StdVideoAV1LoopFilter,
-    p_cdef: *const crate::vk::StdVideoAV1CDEF,
-    p_loop_restoration: *const crate::vk::StdVideoAV1LoopRestoration,
-    p_global_motion: *const crate::vk::StdVideoAV1GlobalMotion,
-    p_extension_header: *const crate::vk::StdVideoEncodeAV1ExtensionHeader,
-    p_buffer_removal_times: *const crate::External<
+    pub p_tile_info: *const crate::vk::StdVideoAV1TileInfo,
+    pub p_quantization: *const crate::vk::StdVideoAV1Quantization,
+    pub p_segmentation: *const crate::vk::StdVideoAV1Segmentation,
+    pub p_loop_filter: *const crate::vk::StdVideoAV1LoopFilter,
+    pub p_cdef: *const crate::vk::StdVideoAV1CDEF,
+    pub p_loop_restoration: *const crate::vk::StdVideoAV1LoopRestoration,
+    pub p_global_motion: *const crate::vk::StdVideoAV1GlobalMotion,
+    pub p_extension_header: *const crate::vk::StdVideoEncodeAV1ExtensionHeader,
+    pub p_buffer_removal_times: *const crate::External<
         {
             "uint32_t";
             0
@@ -406,19 +406,19 @@ pub struct StdVideoEncodeAV1PictureInfo {
 }
 #[repr(C)]
 pub struct StdVideoEncodeAV1ReferenceInfoFlags {
-    disable_frame_end_update_cdf: crate::External<
+    pub disable_frame_end_update_cdf: crate::External<
         {
             "uint32_t";
             0
         },
     >,
-    segmentation_enabled: crate::External<
+    pub segmentation_enabled: crate::External<
         {
             "uint32_t";
             0
         },
     >,
-    reserved: crate::External<
+    pub reserved: crate::External<
         {
             "uint32_t";
             0
@@ -427,25 +427,25 @@ pub struct StdVideoEncodeAV1ReferenceInfoFlags {
 }
 #[repr(C)]
 pub struct StdVideoEncodeAV1ReferenceInfo {
-    flags: crate::vk::StdVideoEncodeAV1ReferenceInfoFlags,
-    ref_frame_id: crate::External<
+    pub flags: crate::vk::StdVideoEncodeAV1ReferenceInfoFlags,
+    pub ref_frame_id: crate::External<
         {
             "uint32_t";
             0
         },
     >,
-    frame_type: crate::vk::StdVideoAV1FrameType,
-    order_hint: crate::External<
+    pub frame_type: crate::vk::StdVideoAV1FrameType,
+    pub order_hint: crate::External<
         {
             "uint8_t";
             0
         },
     >,
-    reserved1: [crate::External<
+    pub reserved1: [crate::External<
         {
             "uint8_t";
             0
         },
     >; 1337],
-    p_extension_header: *const crate::vk::StdVideoEncodeAV1ExtensionHeader,
+    pub p_extension_header: *const crate::vk::StdVideoEncodeAV1ExtensionHeader,
 }

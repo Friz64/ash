@@ -3,8 +3,16 @@
 //![Vulkan Manual Page](https://docs.vulkan.org/refpages/latest/refpages/source/VK_NV_external_memory_capabilities.html) · Vulkan extension
 #[repr(C)]
 pub struct ExternalImageFormatPropertiesNV {
-    image_format_properties: crate::vk::ImageFormatProperties,
-    external_memory_features: crate::vk::ExternalMemoryFeatureFlagsNV,
-    export_from_imported_handle_types: crate::vk::ExternalMemoryHandleTypeFlagsNV,
-    compatible_handle_types: crate::vk::ExternalMemoryHandleTypeFlagsNV,
+    pub image_format_properties: crate::vk::ImageFormatProperties,
+    pub external_memory_features: crate::vk::ExternalMemoryFeatureFlagsNV,
+    pub export_from_imported_handle_types: crate::vk::ExternalMemoryHandleTypeFlagsNV,
+    pub compatible_handle_types: crate::vk::ExternalMemoryHandleTypeFlagsNV,
 }
+#[repr(C)]
+pub struct ExternalMemoryHandleTypeFlagsNV {}
+#[repr(C)]
+pub struct ExternalMemoryFeatureFlagsNV {}
+#[repr(C)]
+pub struct ExternalMemoryHandleTypeFlagBitsNV {}
+#[repr(C)]
+pub struct ExternalMemoryFeatureFlagBitsNV {}

@@ -3,27 +3,37 @@
 //![Vulkan Manual Page](https://docs.vulkan.org/refpages/latest/refpages/source/VK_EXT_image_compression_control.html) · Vulkan extension
 #[repr(C)]
 pub struct ImageCompressionControlEXT {
-    s_type: crate::vk::StructureType,
-    p_next: *const core::ffi::c_void,
-    flags: crate::vk::ImageCompressionFlagsEXT,
-    compression_control_plane_count: crate::External<
+    pub s_type: crate::vk::StructureType,
+    pub p_next: *const core::ffi::c_void,
+    pub flags: crate::vk::ImageCompressionFlagsEXT,
+    pub compression_control_plane_count: crate::External<
         {
             "uint32_t";
             0
         },
     >,
-    p_fixed_rate_flags: *mut crate::vk::ImageCompressionFixedRateFlagsEXT,
+    pub p_fixed_rate_flags: *mut crate::vk::ImageCompressionFixedRateFlagsEXT,
 }
 #[repr(C)]
 pub struct PhysicalDeviceImageCompressionControlFeaturesEXT {
-    s_type: crate::vk::StructureType,
-    p_next: *mut core::ffi::c_void,
-    image_compression_control: crate::vk::Bool32,
+    pub s_type: crate::vk::StructureType,
+    pub p_next: *mut core::ffi::c_void,
+    pub image_compression_control: crate::vk::Bool32,
 }
 #[repr(C)]
 pub struct ImageCompressionPropertiesEXT {
-    s_type: crate::vk::StructureType,
-    p_next: *mut core::ffi::c_void,
-    image_compression_flags: crate::vk::ImageCompressionFlagsEXT,
-    image_compression_fixed_rate_flags: crate::vk::ImageCompressionFixedRateFlagsEXT,
+    pub s_type: crate::vk::StructureType,
+    pub p_next: *mut core::ffi::c_void,
+    pub image_compression_flags: crate::vk::ImageCompressionFlagsEXT,
+    pub image_compression_fixed_rate_flags: crate::vk::ImageCompressionFixedRateFlagsEXT,
 }
+pub type ImageSubresource2EXT = crate::vk::ImageSubresource2;
+pub type SubresourceLayout2EXT = crate::vk::SubresourceLayout2;
+#[repr(C)]
+pub struct ImageCompressionFlagsEXT {}
+#[repr(C)]
+pub struct ImageCompressionFixedRateFlagsEXT {}
+#[repr(C)]
+pub struct ImageCompressionFlagBitsEXT {}
+#[repr(C)]
+pub struct ImageCompressionFixedRateFlagBitsEXT {}

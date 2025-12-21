@@ -9,8 +9,11 @@ use quote::quote;
 use syn::Ident;
 use tracing::debug;
 
+mod alias;
 mod basetype;
+mod bitmask;
 mod enumeration;
+mod funcpointer;
 mod handle;
 mod structure;
 
@@ -21,10 +24,15 @@ pub trait Code {
 impl Code for TypeItem {
     fn code(&self, ctx: &Context) -> CodeMap {
         match self {
-            TypeItem::Structure(structure) => structure.code(ctx),
-            TypeItem::Enumeration(enumeration) => enumeration.code(ctx),
+            TypeItem::Alias(alias) => alias.code(ctx),
+            TypeItem::Struct(structure) => structure.code(ctx),
+            TypeItem::Union(union) => union.code(ctx),
+            TypeItem::Enum(enumeration) => enumeration.code(ctx),
+            TypeItem::BitMask(bitmask) => bitmask.code(ctx),
+            TypeItem::BitMaskBits(bitmask_bits) => bitmask_bits.code(ctx),
             TypeItem::BaseType(basetype) => basetype.code(ctx),
             TypeItem::Handle(handle) => handle.code(ctx),
+            TypeItem::FuncPointer(funcpointer) => funcpointer.code(ctx),
         }
     }
 }

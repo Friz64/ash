@@ -3,21 +3,21 @@
 //![Vulkan Manual Page](https://docs.vulkan.org/refpages/latest/refpages/source/VK_ARM_shader_core_builtins.html) · Vulkan extension
 #[repr(C)]
 pub struct PhysicalDeviceShaderCoreBuiltinsPropertiesARM {
-    s_type: crate::vk::StructureType,
-    p_next: *mut core::ffi::c_void,
-    shader_core_mask: crate::External<
+    pub s_type: crate::vk::StructureType,
+    pub p_next: *mut core::ffi::c_void,
+    pub shader_core_mask: crate::External<
         {
             "uint64_t";
             0
         },
     >,
-    shader_core_count: crate::External<
+    pub shader_core_count: crate::External<
         {
             "uint32_t";
             0
         },
     >,
-    shader_warps_per_core: crate::External<
+    pub shader_warps_per_core: crate::External<
         {
             "uint32_t";
             0
@@ -26,7 +26,7 @@ pub struct PhysicalDeviceShaderCoreBuiltinsPropertiesARM {
 }
 #[repr(C)]
 pub struct PhysicalDeviceShaderCoreBuiltinsFeaturesARM {
-    s_type: crate::vk::StructureType,
-    p_next: *mut core::ffi::c_void,
-    shader_core_builtins: crate::vk::Bool32,
+    pub s_type: crate::vk::StructureType,
+    pub p_next: *mut core::ffi::c_void,
+    pub shader_core_builtins: crate::vk::Bool32,
 }

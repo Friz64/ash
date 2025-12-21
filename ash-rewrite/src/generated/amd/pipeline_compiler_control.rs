@@ -3,7 +3,11 @@
 //![Vulkan Manual Page](https://docs.vulkan.org/refpages/latest/refpages/source/VK_AMD_pipeline_compiler_control.html) · Vulkan extension
 #[repr(C)]
 pub struct PipelineCompilerControlCreateInfoAMD {
-    s_type: crate::vk::StructureType,
-    p_next: *const core::ffi::c_void,
-    compiler_control_flags: crate::vk::PipelineCompilerControlFlagsAMD,
+    pub s_type: crate::vk::StructureType,
+    pub p_next: *const core::ffi::c_void,
+    pub compiler_control_flags: crate::vk::PipelineCompilerControlFlagsAMD,
 }
+#[repr(C)]
+pub struct PipelineCompilerControlFlagsAMD {}
+#[repr(C)]
+pub struct PipelineCompilerControlFlagBitsAMD {}

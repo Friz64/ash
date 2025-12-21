@@ -3,44 +3,44 @@
 //![Vulkan Manual Page](https://docs.vulkan.org/refpages/latest/refpages/source/VK_ARM_tensors.html) · Vulkan extension
 #[repr(C)]
 pub struct TensorDescriptionARM {
-    s_type: crate::vk::StructureType,
-    p_next: *const core::ffi::c_void,
-    tiling: crate::vk::TensorTilingARM,
-    format: crate::vk::Format,
-    dimension_count: crate::External<
+    pub s_type: crate::vk::StructureType,
+    pub p_next: *const core::ffi::c_void,
+    pub tiling: crate::vk::TensorTilingARM,
+    pub format: crate::vk::Format,
+    pub dimension_count: crate::External<
         {
             "uint32_t";
             0
         },
     >,
-    p_dimensions: *const crate::External<
+    pub p_dimensions: *const crate::External<
         {
             "int64_t";
             0
         },
     >,
-    p_strides: *const crate::External<
+    pub p_strides: *const crate::External<
         {
             "int64_t";
             0
         },
     >,
-    usage: crate::vk::TensorUsageFlagsARM,
+    pub usage: crate::vk::TensorUsageFlagsARM,
 }
 #[repr(C)]
 pub struct TensorCreateInfoARM {
-    s_type: crate::vk::StructureType,
-    p_next: *const core::ffi::c_void,
-    flags: crate::vk::TensorCreateFlagsARM,
-    p_description: *const crate::vk::TensorDescriptionARM,
-    sharing_mode: crate::vk::SharingMode,
-    queue_family_index_count: crate::External<
+    pub s_type: crate::vk::StructureType,
+    pub p_next: *const core::ffi::c_void,
+    pub flags: crate::vk::TensorCreateFlagsARM,
+    pub p_description: *const crate::vk::TensorDescriptionARM,
+    pub sharing_mode: crate::vk::SharingMode,
+    pub queue_family_index_count: crate::External<
         {
             "uint32_t";
             0
         },
     >,
-    p_queue_family_indices: *const crate::External<
+    pub p_queue_family_indices: *const crate::External<
         {
             "uint32_t";
             0
@@ -49,206 +49,206 @@ pub struct TensorCreateInfoARM {
 }
 #[repr(C)]
 pub struct TensorViewCreateInfoARM {
-    s_type: crate::vk::StructureType,
-    p_next: *const core::ffi::c_void,
-    flags: crate::vk::TensorViewCreateFlagsARM,
-    tensor: crate::vk::TensorARM,
-    format: crate::vk::Format,
+    pub s_type: crate::vk::StructureType,
+    pub p_next: *const core::ffi::c_void,
+    pub flags: crate::vk::TensorViewCreateFlagsARM,
+    pub tensor: crate::vk::TensorARM,
+    pub format: crate::vk::Format,
 }
 #[repr(C)]
 pub struct TensorMemoryRequirementsInfoARM {
-    s_type: crate::vk::StructureType,
-    p_next: *const core::ffi::c_void,
-    tensor: crate::vk::TensorARM,
+    pub s_type: crate::vk::StructureType,
+    pub p_next: *const core::ffi::c_void,
+    pub tensor: crate::vk::TensorARM,
 }
 #[repr(C)]
 pub struct BindTensorMemoryInfoARM {
-    s_type: crate::vk::StructureType,
-    p_next: *const core::ffi::c_void,
-    tensor: crate::vk::TensorARM,
-    memory: crate::vk::DeviceMemory,
-    memory_offset: crate::vk::DeviceSize,
+    pub s_type: crate::vk::StructureType,
+    pub p_next: *const core::ffi::c_void,
+    pub tensor: crate::vk::TensorARM,
+    pub memory: crate::vk::DeviceMemory,
+    pub memory_offset: crate::vk::DeviceSize,
 }
 #[repr(C)]
 pub struct WriteDescriptorSetTensorARM {
-    s_type: crate::vk::StructureType,
-    p_next: *const core::ffi::c_void,
-    tensor_view_count: crate::External<
+    pub s_type: crate::vk::StructureType,
+    pub p_next: *const core::ffi::c_void,
+    pub tensor_view_count: crate::External<
         {
             "uint32_t";
             0
         },
     >,
-    p_tensor_views: *const crate::vk::TensorViewARM,
+    pub p_tensor_views: *const crate::vk::TensorViewARM,
 }
 #[repr(C)]
 pub struct TensorFormatPropertiesARM {
-    s_type: crate::vk::StructureType,
-    p_next: *mut core::ffi::c_void,
-    optimal_tiling_tensor_features: crate::vk::FormatFeatureFlags2,
-    linear_tiling_tensor_features: crate::vk::FormatFeatureFlags2,
+    pub s_type: crate::vk::StructureType,
+    pub p_next: *mut core::ffi::c_void,
+    pub optimal_tiling_tensor_features: crate::vk::FormatFeatureFlags2,
+    pub linear_tiling_tensor_features: crate::vk::FormatFeatureFlags2,
 }
 #[repr(C)]
 pub struct PhysicalDeviceTensorPropertiesARM {
-    s_type: crate::vk::StructureType,
-    p_next: *mut core::ffi::c_void,
-    max_tensor_dimension_count: crate::External<
+    pub s_type: crate::vk::StructureType,
+    pub p_next: *mut core::ffi::c_void,
+    pub max_tensor_dimension_count: crate::External<
         {
             "uint32_t";
             0
         },
     >,
-    max_tensor_elements: crate::External<
+    pub max_tensor_elements: crate::External<
         {
             "uint64_t";
             0
         },
     >,
-    max_per_dimension_tensor_elements: crate::External<
+    pub max_per_dimension_tensor_elements: crate::External<
         {
             "uint64_t";
             0
         },
     >,
-    max_tensor_stride: crate::External<
+    pub max_tensor_stride: crate::External<
         {
             "int64_t";
             0
         },
     >,
-    max_tensor_size: crate::External<
+    pub max_tensor_size: crate::External<
         {
             "uint64_t";
             0
         },
     >,
-    max_tensor_shader_access_array_length: crate::External<
+    pub max_tensor_shader_access_array_length: crate::External<
         {
             "uint32_t";
             0
         },
     >,
-    max_tensor_shader_access_size: crate::External<
+    pub max_tensor_shader_access_size: crate::External<
         {
             "uint32_t";
             0
         },
     >,
-    max_descriptor_set_storage_tensors: crate::External<
+    pub max_descriptor_set_storage_tensors: crate::External<
         {
             "uint32_t";
             0
         },
     >,
-    max_per_stage_descriptor_set_storage_tensors: crate::External<
+    pub max_per_stage_descriptor_set_storage_tensors: crate::External<
         {
             "uint32_t";
             0
         },
     >,
-    max_descriptor_set_update_after_bind_storage_tensors: crate::External<
+    pub max_descriptor_set_update_after_bind_storage_tensors: crate::External<
         {
             "uint32_t";
             0
         },
     >,
-    max_per_stage_descriptor_update_after_bind_storage_tensors: crate::External<
+    pub max_per_stage_descriptor_update_after_bind_storage_tensors: crate::External<
         {
             "uint32_t";
             0
         },
     >,
-    shader_storage_tensor_array_non_uniform_indexing_native: crate::vk::Bool32,
-    shader_tensor_supported_stages: crate::vk::ShaderStageFlags,
+    pub shader_storage_tensor_array_non_uniform_indexing_native: crate::vk::Bool32,
+    pub shader_tensor_supported_stages: crate::vk::ShaderStageFlags,
 }
 #[repr(C)]
 pub struct TensorMemoryBarrierARM {
-    s_type: crate::vk::StructureType,
-    p_next: *const core::ffi::c_void,
-    src_stage_mask: crate::vk::PipelineStageFlags2,
-    src_access_mask: crate::vk::AccessFlags2,
-    dst_stage_mask: crate::vk::PipelineStageFlags2,
-    dst_access_mask: crate::vk::AccessFlags2,
-    src_queue_family_index: crate::External<
+    pub s_type: crate::vk::StructureType,
+    pub p_next: *const core::ffi::c_void,
+    pub src_stage_mask: crate::vk::PipelineStageFlags2,
+    pub src_access_mask: crate::vk::AccessFlags2,
+    pub dst_stage_mask: crate::vk::PipelineStageFlags2,
+    pub dst_access_mask: crate::vk::AccessFlags2,
+    pub src_queue_family_index: crate::External<
         {
             "uint32_t";
             0
         },
     >,
-    dst_queue_family_index: crate::External<
+    pub dst_queue_family_index: crate::External<
         {
             "uint32_t";
             0
         },
     >,
-    tensor: crate::vk::TensorARM,
+    pub tensor: crate::vk::TensorARM,
 }
 #[repr(C)]
 pub struct TensorDependencyInfoARM {
-    s_type: crate::vk::StructureType,
-    p_next: *const core::ffi::c_void,
-    tensor_memory_barrier_count: crate::External<
+    pub s_type: crate::vk::StructureType,
+    pub p_next: *const core::ffi::c_void,
+    pub tensor_memory_barrier_count: crate::External<
         {
             "uint32_t";
             0
         },
     >,
-    p_tensor_memory_barriers: *const crate::vk::TensorMemoryBarrierARM,
+    pub p_tensor_memory_barriers: *const crate::vk::TensorMemoryBarrierARM,
 }
 #[repr(C)]
 pub struct PhysicalDeviceTensorFeaturesARM {
-    s_type: crate::vk::StructureType,
-    p_next: *mut core::ffi::c_void,
-    tensor_non_packed: crate::vk::Bool32,
-    shader_tensor_access: crate::vk::Bool32,
-    shader_storage_tensor_array_dynamic_indexing: crate::vk::Bool32,
-    shader_storage_tensor_array_non_uniform_indexing: crate::vk::Bool32,
-    descriptor_binding_storage_tensor_update_after_bind: crate::vk::Bool32,
-    tensors: crate::vk::Bool32,
+    pub s_type: crate::vk::StructureType,
+    pub p_next: *mut core::ffi::c_void,
+    pub tensor_non_packed: crate::vk::Bool32,
+    pub shader_tensor_access: crate::vk::Bool32,
+    pub shader_storage_tensor_array_dynamic_indexing: crate::vk::Bool32,
+    pub shader_storage_tensor_array_non_uniform_indexing: crate::vk::Bool32,
+    pub descriptor_binding_storage_tensor_update_after_bind: crate::vk::Bool32,
+    pub tensors: crate::vk::Bool32,
 }
 #[repr(C)]
 pub struct DeviceTensorMemoryRequirementsARM {
-    s_type: crate::vk::StructureType,
-    p_next: *const core::ffi::c_void,
-    p_create_info: *const crate::vk::TensorCreateInfoARM,
+    pub s_type: crate::vk::StructureType,
+    pub p_next: *const core::ffi::c_void,
+    pub p_create_info: *const crate::vk::TensorCreateInfoARM,
 }
 #[repr(C)]
 pub struct CopyTensorInfoARM {
-    s_type: crate::vk::StructureType,
-    p_next: *const core::ffi::c_void,
-    src_tensor: crate::vk::TensorARM,
-    dst_tensor: crate::vk::TensorARM,
-    region_count: crate::External<
+    pub s_type: crate::vk::StructureType,
+    pub p_next: *const core::ffi::c_void,
+    pub src_tensor: crate::vk::TensorARM,
+    pub dst_tensor: crate::vk::TensorARM,
+    pub region_count: crate::External<
         {
             "uint32_t";
             0
         },
     >,
-    p_regions: *const crate::vk::TensorCopyARM,
+    pub p_regions: *const crate::vk::TensorCopyARM,
 }
 #[repr(C)]
 pub struct TensorCopyARM {
-    s_type: crate::vk::StructureType,
-    p_next: *const core::ffi::c_void,
-    dimension_count: crate::External<
+    pub s_type: crate::vk::StructureType,
+    pub p_next: *const core::ffi::c_void,
+    pub dimension_count: crate::External<
         {
             "uint32_t";
             0
         },
     >,
-    p_src_offset: *const crate::External<
+    pub p_src_offset: *const crate::External<
         {
             "uint64_t";
             0
         },
     >,
-    p_dst_offset: *const crate::External<
+    pub p_dst_offset: *const crate::External<
         {
             "uint64_t";
             0
         },
     >,
-    p_extent: *const crate::External<
+    pub p_extent: *const crate::External<
         {
             "uint64_t";
             0
@@ -257,27 +257,27 @@ pub struct TensorCopyARM {
 }
 #[repr(C)]
 pub struct MemoryDedicatedAllocateInfoTensorARM {
-    s_type: crate::vk::StructureType,
-    p_next: *const core::ffi::c_void,
-    tensor: crate::vk::TensorARM,
+    pub s_type: crate::vk::StructureType,
+    pub p_next: *const core::ffi::c_void,
+    pub tensor: crate::vk::TensorARM,
 }
 #[repr(C)]
 pub struct PhysicalDeviceDescriptorBufferTensorPropertiesARM {
-    s_type: crate::vk::StructureType,
-    p_next: *mut core::ffi::c_void,
-    tensor_capture_replay_descriptor_data_size: crate::External<
+    pub s_type: crate::vk::StructureType,
+    pub p_next: *mut core::ffi::c_void,
+    pub tensor_capture_replay_descriptor_data_size: crate::External<
         {
             "size_t";
             0
         },
     >,
-    tensor_view_capture_replay_descriptor_data_size: crate::External<
+    pub tensor_view_capture_replay_descriptor_data_size: crate::External<
         {
             "size_t";
             0
         },
     >,
-    tensor_descriptor_size: crate::External<
+    pub tensor_descriptor_size: crate::External<
         {
             "size_t";
             0
@@ -286,62 +286,74 @@ pub struct PhysicalDeviceDescriptorBufferTensorPropertiesARM {
 }
 #[repr(C)]
 pub struct PhysicalDeviceDescriptorBufferTensorFeaturesARM {
-    s_type: crate::vk::StructureType,
-    p_next: *mut core::ffi::c_void,
-    descriptor_buffer_tensor_descriptors: crate::vk::Bool32,
+    pub s_type: crate::vk::StructureType,
+    pub p_next: *mut core::ffi::c_void,
+    pub descriptor_buffer_tensor_descriptors: crate::vk::Bool32,
 }
 #[repr(C)]
 pub struct TensorCaptureDescriptorDataInfoARM {
-    s_type: crate::vk::StructureType,
-    p_next: *const core::ffi::c_void,
-    tensor: crate::vk::TensorARM,
+    pub s_type: crate::vk::StructureType,
+    pub p_next: *const core::ffi::c_void,
+    pub tensor: crate::vk::TensorARM,
 }
 #[repr(C)]
 pub struct TensorViewCaptureDescriptorDataInfoARM {
-    s_type: crate::vk::StructureType,
-    p_next: *const core::ffi::c_void,
-    tensor_view: crate::vk::TensorViewARM,
+    pub s_type: crate::vk::StructureType,
+    pub p_next: *const core::ffi::c_void,
+    pub tensor_view: crate::vk::TensorViewARM,
 }
 #[repr(C)]
 pub struct DescriptorGetTensorInfoARM {
-    s_type: crate::vk::StructureType,
-    p_next: *const core::ffi::c_void,
-    tensor_view: crate::vk::TensorViewARM,
+    pub s_type: crate::vk::StructureType,
+    pub p_next: *const core::ffi::c_void,
+    pub tensor_view: crate::vk::TensorViewARM,
 }
 #[repr(C)]
 pub struct FrameBoundaryTensorsARM {
-    s_type: crate::vk::StructureType,
-    p_next: *const core::ffi::c_void,
-    tensor_count: crate::External<
+    pub s_type: crate::vk::StructureType,
+    pub p_next: *const core::ffi::c_void,
+    pub tensor_count: crate::External<
         {
             "uint32_t";
             0
         },
     >,
-    p_tensors: *const crate::vk::TensorARM,
+    pub p_tensors: *const crate::vk::TensorARM,
 }
 #[repr(C)]
 pub struct PhysicalDeviceExternalTensorInfoARM {
-    s_type: crate::vk::StructureType,
-    p_next: *const core::ffi::c_void,
-    flags: crate::vk::TensorCreateFlagsARM,
-    p_description: *const crate::vk::TensorDescriptionARM,
-    handle_type: crate::vk::ExternalMemoryHandleTypeFlagBits,
+    pub s_type: crate::vk::StructureType,
+    pub p_next: *const core::ffi::c_void,
+    pub flags: crate::vk::TensorCreateFlagsARM,
+    pub p_description: *const crate::vk::TensorDescriptionARM,
+    pub handle_type: crate::vk::ExternalMemoryHandleTypeFlagBits,
 }
 #[repr(C)]
 pub struct ExternalTensorPropertiesARM {
-    s_type: crate::vk::StructureType,
-    p_next: *const core::ffi::c_void,
-    external_memory_properties: crate::vk::ExternalMemoryProperties,
+    pub s_type: crate::vk::StructureType,
+    pub p_next: *const core::ffi::c_void,
+    pub external_memory_properties: crate::vk::ExternalMemoryProperties,
 }
 #[repr(C)]
 pub struct ExternalMemoryTensorCreateInfoARM {
-    s_type: crate::vk::StructureType,
-    p_next: *const core::ffi::c_void,
-    handle_types: crate::vk::ExternalMemoryHandleTypeFlags,
+    pub s_type: crate::vk::StructureType,
+    pub p_next: *const core::ffi::c_void,
+    pub handle_types: crate::vk::ExternalMemoryHandleTypeFlags,
 }
 #[repr(C)]
 pub struct TensorTilingARM {}
+#[repr(C)]
+pub struct TensorCreateFlagsARM {}
+#[repr(C)]
+pub struct TensorUsageFlagsARM {}
+#[repr(C)]
+pub struct TensorViewCreateFlagsARM {}
+#[repr(C)]
+pub struct TensorCreateFlagBitsARM {}
+#[repr(C)]
+pub struct TensorUsageFlagBitsARM {}
+#[repr(C)]
+pub struct TensorViewCreateFlagBitsARM {}
 #[repr(C)]
 pub struct TensorARM {}
 #[repr(C)]

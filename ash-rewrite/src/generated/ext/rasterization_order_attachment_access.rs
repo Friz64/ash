@@ -3,9 +3,13 @@
 //![Vulkan Manual Page](https://docs.vulkan.org/refpages/latest/refpages/source/VK_EXT_rasterization_order_attachment_access.html) · Vulkan extension
 #[repr(C)]
 pub struct PhysicalDeviceRasterizationOrderAttachmentAccessFeaturesEXT {
-    s_type: crate::vk::StructureType,
-    p_next: *mut core::ffi::c_void,
-    rasterization_order_color_attachment_access: crate::vk::Bool32,
-    rasterization_order_depth_attachment_access: crate::vk::Bool32,
-    rasterization_order_stencil_attachment_access: crate::vk::Bool32,
+    pub s_type: crate::vk::StructureType,
+    pub p_next: *mut core::ffi::c_void,
+    pub rasterization_order_color_attachment_access: crate::vk::Bool32,
+    pub rasterization_order_depth_attachment_access: crate::vk::Bool32,
+    pub rasterization_order_stencil_attachment_access: crate::vk::Bool32,
 }
+#[repr(C)]
+pub struct PipelineColorBlendStateCreateFlagBits {}
+#[repr(C)]
+pub struct PipelineDepthStencilStateCreateFlagBits {}

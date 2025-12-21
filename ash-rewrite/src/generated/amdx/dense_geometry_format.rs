@@ -3,41 +3,41 @@
 //![Vulkan Manual Page](https://docs.vulkan.org/refpages/latest/refpages/source/VK_AMDX_dense_geometry_format.html) · Vulkan extension
 #[repr(C)]
 pub struct PhysicalDeviceDenseGeometryFormatFeaturesAMDX {
-    s_type: crate::vk::StructureType,
-    p_next: *mut core::ffi::c_void,
-    dense_geometry_format: crate::vk::Bool32,
+    pub s_type: crate::vk::StructureType,
+    pub p_next: *mut core::ffi::c_void,
+    pub dense_geometry_format: crate::vk::Bool32,
 }
 #[repr(C)]
 pub struct AccelerationStructureDenseGeometryFormatTrianglesDataAMDX {
-    s_type: crate::vk::StructureType,
-    p_next: *const core::ffi::c_void,
-    compressed_data: crate::vk::DeviceOrHostAddressConstKHR,
-    data_size: crate::vk::DeviceSize,
-    num_triangles: crate::External<
+    pub s_type: crate::vk::StructureType,
+    pub p_next: *const core::ffi::c_void,
+    pub compressed_data: crate::vk::DeviceOrHostAddressConstKHR,
+    pub data_size: crate::vk::DeviceSize,
+    pub num_triangles: crate::External<
         {
             "uint32_t";
             0
         },
     >,
-    num_vertices: crate::External<
+    pub num_vertices: crate::External<
         {
             "uint32_t";
             0
         },
     >,
-    max_primitive_index: crate::External<
+    pub max_primitive_index: crate::External<
         {
             "uint32_t";
             0
         },
     >,
-    max_geometry_index: crate::External<
+    pub max_geometry_index: crate::External<
         {
             "uint32_t";
             0
         },
     >,
-    format: crate::vk::CompressedTriangleFormatAMDX,
+    pub format: crate::vk::CompressedTriangleFormatAMDX,
 }
 #[repr(C)]
 pub struct CompressedTriangleFormatAMDX {}

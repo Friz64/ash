@@ -3,9 +3,9 @@
 //![Vulkan Manual Page](https://docs.vulkan.org/refpages/latest/refpages/source/VK_AMD_memory_overallocation_behavior.html) · Vulkan extension
 #[repr(C)]
 pub struct DeviceMemoryOverallocationCreateInfoAMD {
-    s_type: crate::vk::StructureType,
-    p_next: *const core::ffi::c_void,
-    overallocation_behavior: crate::vk::MemoryOverallocationBehaviorAMD,
+    pub s_type: crate::vk::StructureType,
+    pub p_next: *const core::ffi::c_void,
+    pub overallocation_behavior: crate::vk::MemoryOverallocationBehaviorAMD,
 }
 #[repr(C)]
 pub struct MemoryOverallocationBehaviorAMD {}

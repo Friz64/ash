@@ -120,7 +120,7 @@ impl CDecl<'static> {
 pub struct Registry {
     pub externals: Vec<External>,
     pub basetypes: Vec<BaseType>,
-    pub bitmask_types: Vec<BitMaskType>,
+    pub bitmasks: Vec<BitMask>,
     pub bitmask_aliases: Vec<Alias>,
     pub handles: Vec<Handle>,
     pub handle_aliases: Vec<Alias>,
@@ -133,7 +133,7 @@ pub struct Registry {
     pub constants: Vec<Constant>,
     pub constant_aliases: Vec<Alias>,
     pub enums: Vec<Enum>,
-    pub bitmasks: Vec<BitMask>,
+    pub bitmask_bits: Vec<BitMaskBits>,
     pub commands: Vec<Command>,
     pub command_aliases: Vec<Alias>,
     pub features: Vec<Feature>,
@@ -182,9 +182,9 @@ impl Registry {
                                 Some("basetype") => {
                                     registry.basetypes.push(BaseType::from_node(type_node))
                                 }
-                                Some("bitmask") => registry
-                                    .bitmask_types
-                                    .push(BitMaskType::from_node(type_node)),
+                                Some("bitmask") => {
+                                    registry.bitmasks.push(BitMask::from_node(type_node))
+                                }
                                 Some("handle") => {
                                     registry.handles.push(Handle::from_node(type_node))
                                 }
@@ -214,8 +214,8 @@ impl Registry {
                     match registry_child.attribute("type") {
                         Some("enum") => registry.enums.push(Enum::from_node(registry_child, api)),
                         Some("bitmask") => registry
-                            .bitmasks
-                            .push(BitMask::from_node(registry_child, api)),
+                            .bitmask_bits
+                            .push(BitMaskBits::from_node(registry_child, api)),
                         None if registry_child.attribute("name") == Some("API Constants") => {
                             for enum_node in registry_child
                                 .children()
@@ -288,15 +288,15 @@ impl Registry {
 
 #[derive(Debug)]
 pub struct Alias {
-    pub name: &'static str,
-    pub alias: &'static str,
+    pub name: TypeName,
+    pub alias: TypeName,
 }
 
 impl Alias {
     fn from_node(node: Node) -> Alias {
         Alias {
-            name: attribute(node, "name").unwrap(),
-            alias: attribute(node, "alias").unwrap(),
+            name: TypeName(attribute(node, "name").unwrap()),
+            alias: TypeName(attribute(node, "alias").unwrap()),
         }
     }
 }
@@ -333,20 +333,20 @@ impl BaseType {
 }
 
 #[derive(Debug)]
-pub struct BitMaskType {
+pub struct BitMask {
     pub requires: Option<&'static str>,
     pub bitvalues: Option<&'static str>,
     pub ty: &'static str,
-    pub name: &'static str,
+    pub name: TypeName,
 }
 
-impl BitMaskType {
-    fn from_node(node: Node) -> BitMaskType {
-        BitMaskType {
+impl BitMask {
+    fn from_node(node: Node) -> BitMask {
+        BitMask {
             requires: attribute(node, "requires"),
             bitvalues: attribute(node, "bitvalues"),
             ty: child_text(node, "type").unwrap(),
-            name: child_text(node, "name").unwrap(),
+            name: TypeName(child_text(node, "name").unwrap()),
         }
     }
 }
@@ -520,8 +520,8 @@ impl BitMaskBit {
 }
 
 #[derive(Debug)]
-pub struct BitMask {
-    pub name: &'static str,
+pub struct BitMaskBits {
+    pub name: TypeName,
     pub bits: Vec<BitMaskBit>,
     /// Some bitmask variants represent literal values instead of specific
     /// individual bits, e.g. a combination of bits, or no bits at all. A good
@@ -530,10 +530,10 @@ pub struct BitMask {
     pub aliases: Vec<Alias>,
 }
 
-impl BitMask {
-    fn from_node(node: Node, api: &str) -> BitMask {
-        let mut value = BitMask {
-            name: attribute(node, "name").unwrap(),
+impl BitMaskBits {
+    fn from_node(node: Node, api: &str) -> BitMaskBits {
+        let mut value = BitMaskBits {
+            name: TypeName(attribute(node, "name").unwrap()),
             bits: Vec::new(),
             values: Vec::new(),
             aliases: Vec::new(),

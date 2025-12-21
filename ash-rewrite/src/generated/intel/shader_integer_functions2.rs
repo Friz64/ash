@@ -3,7 +3,7 @@
 //![Vulkan Manual Page](https://docs.vulkan.org/refpages/latest/refpages/source/VK_INTEL_shader_integer_functions2.html) · Vulkan extension
 #[repr(C)]
 pub struct PhysicalDeviceShaderIntegerFunctions2FeaturesINTEL {
-    s_type: crate::vk::StructureType,
-    p_next: *mut core::ffi::c_void,
-    shader_integer_functions2: crate::vk::Bool32,
+    pub s_type: crate::vk::StructureType,
+    pub p_next: *mut core::ffi::c_void,
+    pub shader_integer_functions2: crate::vk::Bool32,
 }

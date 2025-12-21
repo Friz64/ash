@@ -3,22 +3,22 @@
 //![Vulkan Manual Page](https://docs.vulkan.org/refpages/latest/refpages/source/VK_NV_cuda_kernel_launch.html) · Vulkan extension
 #[repr(C)]
 pub struct CudaModuleCreateInfoNV {
-    s_type: crate::vk::StructureType,
-    p_next: *const core::ffi::c_void,
-    data_size: crate::External<
+    pub s_type: crate::vk::StructureType,
+    pub p_next: *const core::ffi::c_void,
+    pub data_size: crate::External<
         {
             "size_t";
             0
         },
     >,
-    p_data: *const core::ffi::c_void,
+    pub p_data: *const core::ffi::c_void,
 }
 #[repr(C)]
 pub struct CudaFunctionCreateInfoNV {
-    s_type: crate::vk::StructureType,
-    p_next: *const core::ffi::c_void,
-    module: crate::vk::CudaModuleNV,
-    p_name: *const crate::External<
+    pub s_type: crate::vk::StructureType,
+    pub p_next: *const core::ffi::c_void,
+    pub module: crate::vk::CudaModuleNV,
+    pub p_name: *const crate::External<
         {
             "char";
             0
@@ -27,83 +27,83 @@ pub struct CudaFunctionCreateInfoNV {
 }
 #[repr(C)]
 pub struct CudaLaunchInfoNV {
-    s_type: crate::vk::StructureType,
-    p_next: *const core::ffi::c_void,
-    function: crate::vk::CudaFunctionNV,
-    grid_dim_x: crate::External<
+    pub s_type: crate::vk::StructureType,
+    pub p_next: *const core::ffi::c_void,
+    pub function: crate::vk::CudaFunctionNV,
+    pub grid_dim_x: crate::External<
         {
             "uint32_t";
             0
         },
     >,
-    grid_dim_y: crate::External<
+    pub grid_dim_y: crate::External<
         {
             "uint32_t";
             0
         },
     >,
-    grid_dim_z: crate::External<
+    pub grid_dim_z: crate::External<
         {
             "uint32_t";
             0
         },
     >,
-    block_dim_x: crate::External<
+    pub block_dim_x: crate::External<
         {
             "uint32_t";
             0
         },
     >,
-    block_dim_y: crate::External<
+    pub block_dim_y: crate::External<
         {
             "uint32_t";
             0
         },
     >,
-    block_dim_z: crate::External<
+    pub block_dim_z: crate::External<
         {
             "uint32_t";
             0
         },
     >,
-    shared_mem_bytes: crate::External<
+    pub shared_mem_bytes: crate::External<
         {
             "uint32_t";
             0
         },
     >,
-    param_count: crate::External<
+    pub param_count: crate::External<
         {
             "size_t";
             0
         },
     >,
-    p_params: *const *const core::ffi::c_void,
-    extra_count: crate::External<
+    pub p_params: *const *const core::ffi::c_void,
+    pub extra_count: crate::External<
         {
             "size_t";
             0
         },
     >,
-    p_extras: *const *const core::ffi::c_void,
+    pub p_extras: *const *const core::ffi::c_void,
 }
 #[repr(C)]
 pub struct PhysicalDeviceCudaKernelLaunchFeaturesNV {
-    s_type: crate::vk::StructureType,
-    p_next: *mut core::ffi::c_void,
-    cuda_kernel_launch_features: crate::vk::Bool32,
+    pub s_type: crate::vk::StructureType,
+    pub p_next: *mut core::ffi::c_void,
+    pub cuda_kernel_launch_features: crate::vk::Bool32,
 }
 #[repr(C)]
 pub struct PhysicalDeviceCudaKernelLaunchPropertiesNV {
-    s_type: crate::vk::StructureType,
-    p_next: *mut core::ffi::c_void,
-    compute_capability_minor: crate::External<
+    pub s_type: crate::vk::StructureType,
+    pub p_next: *mut core::ffi::c_void,
+    pub compute_capability_minor: crate::External<
         {
             "uint32_t";
             0
         },
     >,
-    compute_capability_major: crate::External<
+    pub compute_capability_major: crate::External<
         {
             "uint32_t";
             0

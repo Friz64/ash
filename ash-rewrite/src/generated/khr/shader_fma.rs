@@ -3,9 +3,9 @@
 //![Vulkan Manual Page](https://docs.vulkan.org/refpages/latest/refpages/source/VK_KHR_shader_fma.html) · Vulkan extension
 #[repr(C)]
 pub struct PhysicalDeviceShaderFmaFeaturesKHR {
-    s_type: crate::vk::StructureType,
-    p_next: *mut core::ffi::c_void,
-    shader_fma_float16: crate::vk::Bool32,
-    shader_fma_float32: crate::vk::Bool32,
-    shader_fma_float64: crate::vk::Bool32,
+    pub s_type: crate::vk::StructureType,
+    pub p_next: *mut core::ffi::c_void,
+    pub shader_fma_float16: crate::vk::Bool32,
+    pub shader_fma_float32: crate::vk::Bool32,
+    pub shader_fma_float64: crate::vk::Bool32,
 }

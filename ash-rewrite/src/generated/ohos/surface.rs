@@ -3,10 +3,12 @@
 //![Vulkan Manual Page](https://docs.vulkan.org/refpages/latest/refpages/source/VK_OHOS_surface.html) · Vulkan extension
 #[repr(C)]
 pub struct SurfaceCreateInfoOHOS {
-    s_type: crate::vk::StructureType,
-    p_next: *const core::ffi::c_void,
-    flags: crate::vk::SurfaceCreateFlagsOHOS,
-    window: *mut crate::vk::OHNativeWindow,
+    pub s_type: crate::vk::StructureType,
+    pub p_next: *const core::ffi::c_void,
+    pub flags: crate::vk::SurfaceCreateFlagsOHOS,
+    pub window: *mut crate::vk::OHNativeWindow,
 }
+#[repr(C)]
+pub struct SurfaceCreateFlagsOHOS {}
 #[repr(C)]
 pub struct OHNativeWindow {}

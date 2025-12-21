@@ -3,16 +3,16 @@
 //![Vulkan Manual Page](https://docs.vulkan.org/refpages/latest/refpages/source/VK_EXT_external_memory_metal.html) · Vulkan extension
 #[repr(C)]
 pub struct ImportMemoryMetalHandleInfoEXT {
-    s_type: crate::vk::StructureType,
-    p_next: *const core::ffi::c_void,
-    handle_type: crate::vk::ExternalMemoryHandleTypeFlagBits,
-    handle: *mut core::ffi::c_void,
+    pub s_type: crate::vk::StructureType,
+    pub p_next: *const core::ffi::c_void,
+    pub handle_type: crate::vk::ExternalMemoryHandleTypeFlagBits,
+    pub handle: *mut core::ffi::c_void,
 }
 #[repr(C)]
 pub struct MemoryMetalHandlePropertiesEXT {
-    s_type: crate::vk::StructureType,
-    p_next: *mut core::ffi::c_void,
-    memory_type_bits: crate::External<
+    pub s_type: crate::vk::StructureType,
+    pub p_next: *mut core::ffi::c_void,
+    pub memory_type_bits: crate::External<
         {
             "uint32_t";
             0
@@ -21,8 +21,8 @@ pub struct MemoryMetalHandlePropertiesEXT {
 }
 #[repr(C)]
 pub struct MemoryGetMetalHandleInfoEXT {
-    s_type: crate::vk::StructureType,
-    p_next: *const core::ffi::c_void,
-    memory: crate::vk::DeviceMemory,
-    handle_type: crate::vk::ExternalMemoryHandleTypeFlagBits,
+    pub s_type: crate::vk::StructureType,
+    pub p_next: *const core::ffi::c_void,
+    pub memory: crate::vk::DeviceMemory,
+    pub handle_type: crate::vk::ExternalMemoryHandleTypeFlagBits,
 }

@@ -3,10 +3,10 @@
 //![Vulkan Manual Page](https://docs.vulkan.org/refpages/latest/refpages/source/VK_FUCHSIA_external_memory.html) · Vulkan extension
 #[repr(C)]
 pub struct ImportMemoryZirconHandleInfoFUCHSIA {
-    s_type: crate::vk::StructureType,
-    p_next: *const core::ffi::c_void,
-    handle_type: crate::vk::ExternalMemoryHandleTypeFlagBits,
-    handle: crate::External<
+    pub s_type: crate::vk::StructureType,
+    pub p_next: *const core::ffi::c_void,
+    pub handle_type: crate::vk::ExternalMemoryHandleTypeFlagBits,
+    pub handle: crate::External<
         {
             "zx_handle_t";
             0
@@ -15,9 +15,9 @@ pub struct ImportMemoryZirconHandleInfoFUCHSIA {
 }
 #[repr(C)]
 pub struct MemoryZirconHandlePropertiesFUCHSIA {
-    s_type: crate::vk::StructureType,
-    p_next: *mut core::ffi::c_void,
-    memory_type_bits: crate::External<
+    pub s_type: crate::vk::StructureType,
+    pub p_next: *mut core::ffi::c_void,
+    pub memory_type_bits: crate::External<
         {
             "uint32_t";
             0
@@ -26,8 +26,8 @@ pub struct MemoryZirconHandlePropertiesFUCHSIA {
 }
 #[repr(C)]
 pub struct MemoryGetZirconHandleInfoFUCHSIA {
-    s_type: crate::vk::StructureType,
-    p_next: *const core::ffi::c_void,
-    memory: crate::vk::DeviceMemory,
-    handle_type: crate::vk::ExternalMemoryHandleTypeFlagBits,
+    pub s_type: crate::vk::StructureType,
+    pub p_next: *const core::ffi::c_void,
+    pub memory: crate::vk::DeviceMemory,
+    pub handle_type: crate::vk::ExternalMemoryHandleTypeFlagBits,
 }

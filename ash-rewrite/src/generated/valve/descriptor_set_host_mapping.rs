@@ -3,16 +3,16 @@
 //![Vulkan Manual Page](https://docs.vulkan.org/refpages/latest/refpages/source/VK_VALVE_descriptor_set_host_mapping.html) · Vulkan extension
 #[repr(C)]
 pub struct PhysicalDeviceDescriptorSetHostMappingFeaturesVALVE {
-    s_type: crate::vk::StructureType,
-    p_next: *mut core::ffi::c_void,
-    descriptor_set_host_mapping: crate::vk::Bool32,
+    pub s_type: crate::vk::StructureType,
+    pub p_next: *mut core::ffi::c_void,
+    pub descriptor_set_host_mapping: crate::vk::Bool32,
 }
 #[repr(C)]
 pub struct DescriptorSetBindingReferenceVALVE {
-    s_type: crate::vk::StructureType,
-    p_next: *const core::ffi::c_void,
-    descriptor_set_layout: crate::vk::DescriptorSetLayout,
-    binding: crate::External<
+    pub s_type: crate::vk::StructureType,
+    pub p_next: *const core::ffi::c_void,
+    pub descriptor_set_layout: crate::vk::DescriptorSetLayout,
+    pub binding: crate::External<
         {
             "uint32_t";
             0
@@ -21,15 +21,15 @@ pub struct DescriptorSetBindingReferenceVALVE {
 }
 #[repr(C)]
 pub struct DescriptorSetLayoutHostMappingInfoVALVE {
-    s_type: crate::vk::StructureType,
-    p_next: *mut core::ffi::c_void,
-    descriptor_offset: crate::External<
+    pub s_type: crate::vk::StructureType,
+    pub p_next: *mut core::ffi::c_void,
+    pub descriptor_offset: crate::External<
         {
             "size_t";
             0
         },
     >,
-    descriptor_size: crate::External<
+    pub descriptor_size: crate::External<
         {
             "uint32_t";
             0

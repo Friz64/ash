@@ -3,30 +3,30 @@
 //![Vulkan Manual Page](https://docs.vulkan.org/refpages/latest/refpages/source/VK_KHR_ray_tracing_maintenance1.html) · Vulkan extension
 #[repr(C)]
 pub struct TraceRaysIndirectCommand2KHR {
-    raygen_shader_record_address: crate::vk::DeviceAddress,
-    raygen_shader_record_size: crate::vk::DeviceSize,
-    miss_shader_binding_table_address: crate::vk::DeviceAddress,
-    miss_shader_binding_table_size: crate::vk::DeviceSize,
-    miss_shader_binding_table_stride: crate::vk::DeviceSize,
-    hit_shader_binding_table_address: crate::vk::DeviceAddress,
-    hit_shader_binding_table_size: crate::vk::DeviceSize,
-    hit_shader_binding_table_stride: crate::vk::DeviceSize,
-    callable_shader_binding_table_address: crate::vk::DeviceAddress,
-    callable_shader_binding_table_size: crate::vk::DeviceSize,
-    callable_shader_binding_table_stride: crate::vk::DeviceSize,
-    width: crate::External<
+    pub raygen_shader_record_address: crate::vk::DeviceAddress,
+    pub raygen_shader_record_size: crate::vk::DeviceSize,
+    pub miss_shader_binding_table_address: crate::vk::DeviceAddress,
+    pub miss_shader_binding_table_size: crate::vk::DeviceSize,
+    pub miss_shader_binding_table_stride: crate::vk::DeviceSize,
+    pub hit_shader_binding_table_address: crate::vk::DeviceAddress,
+    pub hit_shader_binding_table_size: crate::vk::DeviceSize,
+    pub hit_shader_binding_table_stride: crate::vk::DeviceSize,
+    pub callable_shader_binding_table_address: crate::vk::DeviceAddress,
+    pub callable_shader_binding_table_size: crate::vk::DeviceSize,
+    pub callable_shader_binding_table_stride: crate::vk::DeviceSize,
+    pub width: crate::External<
         {
             "uint32_t";
             0
         },
     >,
-    height: crate::External<
+    pub height: crate::External<
         {
             "uint32_t";
             0
         },
     >,
-    depth: crate::External<
+    pub depth: crate::External<
         {
             "uint32_t";
             0
@@ -35,8 +35,8 @@ pub struct TraceRaysIndirectCommand2KHR {
 }
 #[repr(C)]
 pub struct PhysicalDeviceRayTracingMaintenance1FeaturesKHR {
-    s_type: crate::vk::StructureType,
-    p_next: *mut core::ffi::c_void,
-    ray_tracing_maintenance1: crate::vk::Bool32,
-    ray_tracing_pipeline_trace_rays_indirect2: crate::vk::Bool32,
+    pub s_type: crate::vk::StructureType,
+    pub p_next: *mut core::ffi::c_void,
+    pub ray_tracing_maintenance1: crate::vk::Bool32,
+    pub ray_tracing_pipeline_trace_rays_indirect2: crate::vk::Bool32,
 }

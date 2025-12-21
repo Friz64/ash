@@ -3,26 +3,26 @@
 //![Vulkan Manual Page](https://docs.vulkan.org/refpages/latest/refpages/source/VK_EXT_depth_clamp_control.html) · Vulkan extension
 #[repr(C)]
 pub struct PhysicalDeviceDepthClampControlFeaturesEXT {
-    s_type: crate::vk::StructureType,
-    p_next: *mut core::ffi::c_void,
-    depth_clamp_control: crate::vk::Bool32,
+    pub s_type: crate::vk::StructureType,
+    pub p_next: *mut core::ffi::c_void,
+    pub depth_clamp_control: crate::vk::Bool32,
 }
 #[repr(C)]
 pub struct PipelineViewportDepthClampControlCreateInfoEXT {
-    s_type: crate::vk::StructureType,
-    p_next: *const core::ffi::c_void,
-    depth_clamp_mode: crate::vk::DepthClampModeEXT,
-    p_depth_clamp_range: *const crate::vk::DepthClampRangeEXT,
+    pub s_type: crate::vk::StructureType,
+    pub p_next: *const core::ffi::c_void,
+    pub depth_clamp_mode: crate::vk::DepthClampModeEXT,
+    pub p_depth_clamp_range: *const crate::vk::DepthClampRangeEXT,
 }
 #[repr(C)]
 pub struct DepthClampRangeEXT {
-    min_depth_clamp: crate::External<
+    pub min_depth_clamp: crate::External<
         {
             "float";
             0
         },
     >,
-    max_depth_clamp: crate::External<
+    pub max_depth_clamp: crate::External<
         {
             "float";
             0
