@@ -2,139 +2,79 @@
 #![cfg_attr(rustfmt, rustfmt_skip)]
 //![Vulkan Manual Page](https://docs.vulkan.org/refpages/latest/refpages/source/VK_KHR_video_decode_h265.html) · Vulkan extension
 #[repr(C)]
-pub struct VkVideoDecodeH265ProfileInfoKHR {
-    pub s_type: crate::External<
-        {
-            "VkStructureType";
-            0
-        },
-    >,
-    pub p_next: *const core::ffi::c_void,
-    pub std_profile_idc: crate::External<
-        {
-            "StdVideoH265ProfileIdc";
-            0
-        },
-    >,
+pub struct VideoDecodeH265ProfileInfoKHR {
+    s_type: crate::vk::StructureType,
+    p_next: *const core::ffi::c_void,
+    std_profile_idc: crate::vk::StdVideoH265ProfileIdc,
 }
 #[repr(C)]
-pub struct VkVideoDecodeH265CapabilitiesKHR {
-    pub s_type: crate::External<
-        {
-            "VkStructureType";
-            0
-        },
-    >,
-    pub p_next: *mut core::ffi::c_void,
-    pub max_level_idc: crate::External<
-        {
-            "StdVideoH265LevelIdc";
-            0
-        },
-    >,
+pub struct VideoDecodeH265CapabilitiesKHR {
+    s_type: crate::vk::StructureType,
+    p_next: *mut core::ffi::c_void,
+    max_level_idc: crate::vk::StdVideoH265LevelIdc,
 }
 #[repr(C)]
-pub struct VkVideoDecodeH265SessionParametersAddInfoKHR {
-    pub s_type: crate::External<
-        {
-            "VkStructureType";
-            0
-        },
-    >,
-    pub p_next: *const core::ffi::c_void,
-    pub std_vps_count: crate::External<
+pub struct VideoDecodeH265SessionParametersAddInfoKHR {
+    s_type: crate::vk::StructureType,
+    p_next: *const core::ffi::c_void,
+    std_vps_count: crate::External<
         {
             "uint32_t";
             0
         },
     >,
-    pub p_std_vp_ss: *const crate::External<
-        {
-            "StdVideoH265VideoParameterSet";
-            0
-        },
-    >,
-    pub std_sps_count: crate::External<
+    p_std_vp_ss: *const crate::vk::StdVideoH265VideoParameterSet,
+    std_sps_count: crate::External<
         {
             "uint32_t";
             0
         },
     >,
-    pub p_std_sp_ss: *const crate::External<
-        {
-            "StdVideoH265SequenceParameterSet";
-            0
-        },
-    >,
-    pub std_pps_count: crate::External<
+    p_std_sp_ss: *const crate::vk::StdVideoH265SequenceParameterSet,
+    std_pps_count: crate::External<
         {
             "uint32_t";
             0
         },
     >,
-    pub p_std_pp_ss: *const crate::External<
-        {
-            "StdVideoH265PictureParameterSet";
-            0
-        },
-    >,
+    p_std_pp_ss: *const crate::vk::StdVideoH265PictureParameterSet,
 }
 #[repr(C)]
-pub struct VkVideoDecodeH265SessionParametersCreateInfoKHR {
-    pub s_type: crate::External<
-        {
-            "VkStructureType";
-            0
-        },
-    >,
-    pub p_next: *const core::ffi::c_void,
-    pub max_std_vps_count: crate::External<
+pub struct VideoDecodeH265SessionParametersCreateInfoKHR {
+    s_type: crate::vk::StructureType,
+    p_next: *const core::ffi::c_void,
+    max_std_vps_count: crate::External<
         {
             "uint32_t";
             0
         },
     >,
-    pub max_std_sps_count: crate::External<
+    max_std_sps_count: crate::External<
         {
             "uint32_t";
             0
         },
     >,
-    pub max_std_pps_count: crate::External<
+    max_std_pps_count: crate::External<
         {
             "uint32_t";
             0
         },
     >,
-    pub p_parameters_add_info: *const crate::External<
-        {
-            "VkVideoDecodeH265SessionParametersAddInfoKHR";
-            0
-        },
-    >,
+    p_parameters_add_info: *const crate::vk::VideoDecodeH265SessionParametersAddInfoKHR,
 }
 #[repr(C)]
-pub struct VkVideoDecodeH265PictureInfoKHR {
-    pub s_type: crate::External<
-        {
-            "VkStructureType";
-            0
-        },
-    >,
-    pub p_next: *const core::ffi::c_void,
-    pub p_std_picture_info: *const crate::External<
-        {
-            "StdVideoDecodeH265PictureInfo";
-            0
-        },
-    >,
-    pub slice_segment_count: crate::External<
+pub struct VideoDecodeH265PictureInfoKHR {
+    s_type: crate::vk::StructureType,
+    p_next: *const core::ffi::c_void,
+    p_std_picture_info: *const crate::vk::StdVideoDecodeH265PictureInfo,
+    slice_segment_count: crate::External<
         {
             "uint32_t";
             0
         },
     >,
-    pub p_slice_segment_offsets: *const crate::External<
+    p_slice_segment_offsets: *const crate::External<
         {
             "uint32_t";
             0
@@ -142,18 +82,8 @@ pub struct VkVideoDecodeH265PictureInfoKHR {
     >,
 }
 #[repr(C)]
-pub struct VkVideoDecodeH265DpbSlotInfoKHR {
-    pub s_type: crate::External<
-        {
-            "VkStructureType";
-            0
-        },
-    >,
-    pub p_next: *const core::ffi::c_void,
-    pub p_std_reference_info: *const crate::External<
-        {
-            "StdVideoDecodeH265ReferenceInfo";
-            0
-        },
-    >,
+pub struct VideoDecodeH265DpbSlotInfoKHR {
+    s_type: crate::vk::StructureType,
+    p_next: *const core::ffi::c_void,
+    p_std_reference_info: *const crate::vk::StdVideoDecodeH265ReferenceInfo,
 }

@@ -2,54 +2,29 @@
 #![cfg_attr(rustfmt, rustfmt_skip)]
 //![Vulkan Manual Page](https://docs.vulkan.org/refpages/latest/refpages/source/VK_NVX_binary_import.html) · Vulkan extension
 #[repr(C)]
-pub struct VkCuModuleCreateInfoNVX {
-    pub s_type: crate::External<
-        {
-            "VkStructureType";
-            0
-        },
-    >,
-    pub p_next: *const core::ffi::c_void,
-    pub data_size: crate::External<
+pub struct CuModuleCreateInfoNVX {
+    s_type: crate::vk::StructureType,
+    p_next: *const core::ffi::c_void,
+    data_size: crate::External<
         {
             "size_t";
             0
         },
     >,
-    pub p_data: *const core::ffi::c_void,
+    p_data: *const core::ffi::c_void,
 }
 #[repr(C)]
-pub struct VkCuModuleTexturingModeCreateInfoNVX {
-    pub s_type: crate::External<
-        {
-            "VkStructureType";
-            0
-        },
-    >,
-    pub p_next: *const core::ffi::c_void,
-    pub use64bit_texturing: crate::External<
-        {
-            "VkBool32";
-            0
-        },
-    >,
+pub struct CuModuleTexturingModeCreateInfoNVX {
+    s_type: crate::vk::StructureType,
+    p_next: *const core::ffi::c_void,
+    use64bit_texturing: crate::vk::Bool32,
 }
 #[repr(C)]
-pub struct VkCuFunctionCreateInfoNVX {
-    pub s_type: crate::External<
-        {
-            "VkStructureType";
-            0
-        },
-    >,
-    pub p_next: *const core::ffi::c_void,
-    pub module: crate::External<
-        {
-            "VkCuModuleNVX";
-            0
-        },
-    >,
-    pub p_name: *const crate::External<
+pub struct CuFunctionCreateInfoNVX {
+    s_type: crate::vk::StructureType,
+    p_next: *const core::ffi::c_void,
+    module: crate::vk::CuModuleNVX,
+    p_name: *const crate::External<
         {
             "char";
             0
@@ -57,74 +32,68 @@ pub struct VkCuFunctionCreateInfoNVX {
     >,
 }
 #[repr(C)]
-pub struct VkCuLaunchInfoNVX {
-    pub s_type: crate::External<
-        {
-            "VkStructureType";
-            0
-        },
-    >,
-    pub p_next: *const core::ffi::c_void,
-    pub function: crate::External<
-        {
-            "VkCuFunctionNVX";
-            0
-        },
-    >,
-    pub grid_dim_x: crate::External<
+pub struct CuLaunchInfoNVX {
+    s_type: crate::vk::StructureType,
+    p_next: *const core::ffi::c_void,
+    function: crate::vk::CuFunctionNVX,
+    grid_dim_x: crate::External<
         {
             "uint32_t";
             0
         },
     >,
-    pub grid_dim_y: crate::External<
+    grid_dim_y: crate::External<
         {
             "uint32_t";
             0
         },
     >,
-    pub grid_dim_z: crate::External<
+    grid_dim_z: crate::External<
         {
             "uint32_t";
             0
         },
     >,
-    pub block_dim_x: crate::External<
+    block_dim_x: crate::External<
         {
             "uint32_t";
             0
         },
     >,
-    pub block_dim_y: crate::External<
+    block_dim_y: crate::External<
         {
             "uint32_t";
             0
         },
     >,
-    pub block_dim_z: crate::External<
+    block_dim_z: crate::External<
         {
             "uint32_t";
             0
         },
     >,
-    pub shared_mem_bytes: crate::External<
+    shared_mem_bytes: crate::External<
         {
             "uint32_t";
             0
         },
     >,
-    pub param_count: crate::External<
+    param_count: crate::External<
         {
             "size_t";
             0
         },
     >,
-    pub p_params: *const *const core::ffi::c_void,
-    pub extra_count: crate::External<
+    p_params: *const *const core::ffi::c_void,
+    extra_count: crate::External<
         {
             "size_t";
             0
         },
     >,
-    pub p_extras: *const *const core::ffi::c_void,
+    p_extras: *const *const core::ffi::c_void,
 }
+#[repr(C)]
+pub struct CuModuleNVX {}
+#[repr(C)]
+pub struct CuFunctionNVX {}

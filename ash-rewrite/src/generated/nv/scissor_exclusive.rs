@@ -2,40 +2,20 @@
 #![cfg_attr(rustfmt, rustfmt_skip)]
 //![Vulkan Manual Page](https://docs.vulkan.org/refpages/latest/refpages/source/VK_NV_scissor_exclusive.html) · Vulkan extension
 #[repr(C)]
-pub struct VkPhysicalDeviceExclusiveScissorFeaturesNV {
-    pub s_type: crate::External<
-        {
-            "VkStructureType";
-            0
-        },
-    >,
-    pub p_next: *mut core::ffi::c_void,
-    pub exclusive_scissor: crate::External<
-        {
-            "VkBool32";
-            0
-        },
-    >,
+pub struct PhysicalDeviceExclusiveScissorFeaturesNV {
+    s_type: crate::vk::StructureType,
+    p_next: *mut core::ffi::c_void,
+    exclusive_scissor: crate::vk::Bool32,
 }
 #[repr(C)]
-pub struct VkPipelineViewportExclusiveScissorStateCreateInfoNV {
-    pub s_type: crate::External<
-        {
-            "VkStructureType";
-            0
-        },
-    >,
-    pub p_next: *const core::ffi::c_void,
-    pub exclusive_scissor_count: crate::External<
+pub struct PipelineViewportExclusiveScissorStateCreateInfoNV {
+    s_type: crate::vk::StructureType,
+    p_next: *const core::ffi::c_void,
+    exclusive_scissor_count: crate::External<
         {
             "uint32_t";
             0
         },
     >,
-    pub p_exclusive_scissors: *const crate::External<
-        {
-            "VkRect2D";
-            0
-        },
-    >,
+    p_exclusive_scissors: *const crate::vk::Rect2D,
 }

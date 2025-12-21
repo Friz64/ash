@@ -2,40 +2,15 @@
 #![cfg_attr(rustfmt, rustfmt_skip)]
 //![Vulkan Manual Page](https://docs.vulkan.org/refpages/latest/refpages/source/VK_QCOM_ycbcr_degamma.html) · Vulkan extension
 #[repr(C)]
-pub struct VkPhysicalDeviceYcbcrDegammaFeaturesQCOM {
-    pub s_type: crate::External<
-        {
-            "VkStructureType";
-            0
-        },
-    >,
-    pub p_next: *mut core::ffi::c_void,
-    pub ycbcr_degamma: crate::External<
-        {
-            "VkBool32";
-            0
-        },
-    >,
+pub struct PhysicalDeviceYcbcrDegammaFeaturesQCOM {
+    s_type: crate::vk::StructureType,
+    p_next: *mut core::ffi::c_void,
+    ycbcr_degamma: crate::vk::Bool32,
 }
 #[repr(C)]
-pub struct VkSamplerYcbcrConversionYcbcrDegammaCreateInfoQCOM {
-    pub s_type: crate::External<
-        {
-            "VkStructureType";
-            0
-        },
-    >,
-    pub p_next: *mut core::ffi::c_void,
-    pub enable_y_degamma: crate::External<
-        {
-            "VkBool32";
-            0
-        },
-    >,
-    pub enable_cb_cr_degamma: crate::External<
-        {
-            "VkBool32";
-            0
-        },
-    >,
+pub struct SamplerYcbcrConversionYcbcrDegammaCreateInfoQCOM {
+    s_type: crate::vk::StructureType,
+    p_next: *mut core::ffi::c_void,
+    enable_y_degamma: crate::vk::Bool32,
+    enable_cb_cr_degamma: crate::vk::Bool32,
 }

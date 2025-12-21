@@ -2,34 +2,14 @@
 #![cfg_attr(rustfmt, rustfmt_skip)]
 //![Vulkan Manual Page](https://docs.vulkan.org/refpages/latest/refpages/source/VK_EXT_legacy_vertex_attributes.html) · Vulkan extension
 #[repr(C)]
-pub struct VkPhysicalDeviceLegacyVertexAttributesFeaturesEXT {
-    pub s_type: crate::External<
-        {
-            "VkStructureType";
-            0
-        },
-    >,
-    pub p_next: *mut core::ffi::c_void,
-    pub legacy_vertex_attributes: crate::External<
-        {
-            "VkBool32";
-            0
-        },
-    >,
+pub struct PhysicalDeviceLegacyVertexAttributesFeaturesEXT {
+    s_type: crate::vk::StructureType,
+    p_next: *mut core::ffi::c_void,
+    legacy_vertex_attributes: crate::vk::Bool32,
 }
 #[repr(C)]
-pub struct VkPhysicalDeviceLegacyVertexAttributesPropertiesEXT {
-    pub s_type: crate::External<
-        {
-            "VkStructureType";
-            0
-        },
-    >,
-    pub p_next: *mut core::ffi::c_void,
-    pub native_unaligned_performance: crate::External<
-        {
-            "VkBool32";
-            0
-        },
-    >,
+pub struct PhysicalDeviceLegacyVertexAttributesPropertiesEXT {
+    s_type: crate::vk::StructureType,
+    p_next: *mut core::ffi::c_void,
+    native_unaligned_performance: crate::vk::Bool32,
 }

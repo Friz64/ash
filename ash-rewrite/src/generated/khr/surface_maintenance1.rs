@@ -2,80 +2,30 @@
 #![cfg_attr(rustfmt, rustfmt_skip)]
 //![Vulkan Manual Page](https://docs.vulkan.org/refpages/latest/refpages/source/VK_KHR_surface_maintenance1.html) · Vulkan extension
 #[repr(C)]
-pub struct VkSurfacePresentModeKHR {
-    pub s_type: crate::External<
-        {
-            "VkStructureType";
-            0
-        },
-    >,
-    pub p_next: *mut core::ffi::c_void,
-    pub present_mode: crate::External<
-        {
-            "VkPresentModeKHR";
-            0
-        },
-    >,
+pub struct SurfacePresentModeKHR {
+    s_type: crate::vk::StructureType,
+    p_next: *mut core::ffi::c_void,
+    present_mode: crate::vk::PresentModeKHR,
 }
 #[repr(C)]
-pub struct VkSurfacePresentScalingCapabilitiesKHR {
-    pub s_type: crate::External<
-        {
-            "VkStructureType";
-            0
-        },
-    >,
-    pub p_next: *mut core::ffi::c_void,
-    pub supported_present_scaling: crate::External<
-        {
-            "VkPresentScalingFlagsKHR";
-            0
-        },
-    >,
-    pub supported_present_gravity_x: crate::External<
-        {
-            "VkPresentGravityFlagsKHR";
-            0
-        },
-    >,
-    pub supported_present_gravity_y: crate::External<
-        {
-            "VkPresentGravityFlagsKHR";
-            0
-        },
-    >,
-    pub min_scaled_image_extent: crate::External<
-        {
-            "VkExtent2D";
-            0
-        },
-    >,
-    pub max_scaled_image_extent: crate::External<
-        {
-            "VkExtent2D";
-            0
-        },
-    >,
+pub struct SurfacePresentScalingCapabilitiesKHR {
+    s_type: crate::vk::StructureType,
+    p_next: *mut core::ffi::c_void,
+    supported_present_scaling: crate::vk::PresentScalingFlagsKHR,
+    supported_present_gravity_x: crate::vk::PresentGravityFlagsKHR,
+    supported_present_gravity_y: crate::vk::PresentGravityFlagsKHR,
+    min_scaled_image_extent: crate::vk::Extent2D,
+    max_scaled_image_extent: crate::vk::Extent2D,
 }
 #[repr(C)]
-pub struct VkSurfacePresentModeCompatibilityKHR {
-    pub s_type: crate::External<
-        {
-            "VkStructureType";
-            0
-        },
-    >,
-    pub p_next: *mut core::ffi::c_void,
-    pub present_mode_count: crate::External<
+pub struct SurfacePresentModeCompatibilityKHR {
+    s_type: crate::vk::StructureType,
+    p_next: *mut core::ffi::c_void,
+    present_mode_count: crate::External<
         {
             "uint32_t";
             0
         },
     >,
-    pub p_present_modes: *mut crate::External<
-        {
-            "VkPresentModeKHR";
-            0
-        },
-    >,
+    p_present_modes: *mut crate::vk::PresentModeKHR,
 }

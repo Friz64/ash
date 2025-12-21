@@ -2,24 +2,9 @@
 #![cfg_attr(rustfmt, rustfmt_skip)]
 //![Vulkan Manual Page](https://docs.vulkan.org/refpages/latest/refpages/source/VK_EXT_memory_budget.html) · Vulkan extension
 #[repr(C)]
-pub struct VkPhysicalDeviceMemoryBudgetPropertiesEXT {
-    pub s_type: crate::External<
-        {
-            "VkStructureType";
-            0
-        },
-    >,
-    pub p_next: *mut core::ffi::c_void,
-    pub heap_budget: [crate::External<
-        {
-            "VkDeviceSize";
-            0
-        },
-    >; 1337],
-    pub heap_usage: [crate::External<
-        {
-            "VkDeviceSize";
-            0
-        },
-    >; 1337],
+pub struct PhysicalDeviceMemoryBudgetPropertiesEXT {
+    s_type: crate::vk::StructureType,
+    p_next: *mut core::ffi::c_void,
+    heap_budget: [crate::vk::DeviceSize; 1337],
+    heap_usage: [crate::vk::DeviceSize; 1337],
 }

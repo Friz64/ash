@@ -2,30 +2,10 @@
 #![cfg_attr(rustfmt, rustfmt_skip)]
 //![Vulkan Manual Page](https://docs.vulkan.org/refpages/latest/refpages/source/VK_KHR_display_swapchain.html) · Vulkan extension
 #[repr(C)]
-pub struct VkDisplayPresentInfoKHR {
-    pub s_type: crate::External<
-        {
-            "VkStructureType";
-            0
-        },
-    >,
-    pub p_next: *const core::ffi::c_void,
-    pub src_rect: crate::External<
-        {
-            "VkRect2D";
-            0
-        },
-    >,
-    pub dst_rect: crate::External<
-        {
-            "VkRect2D";
-            0
-        },
-    >,
-    pub persistent: crate::External<
-        {
-            "VkBool32";
-            0
-        },
-    >,
+pub struct DisplayPresentInfoKHR {
+    s_type: crate::vk::StructureType,
+    p_next: *const core::ffi::c_void,
+    src_rect: crate::vk::Rect2D,
+    dst_rect: crate::vk::Rect2D,
+    persistent: crate::vk::Bool32,
 }

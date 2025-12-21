@@ -2,18 +2,8 @@
 #![cfg_attr(rustfmt, rustfmt_skip)]
 //![Vulkan Manual Page](https://docs.vulkan.org/refpages/latest/refpages/source/VK_EXT_non_seamless_cube_map.html) · Vulkan extension
 #[repr(C)]
-pub struct VkPhysicalDeviceNonSeamlessCubeMapFeaturesEXT {
-    pub s_type: crate::External<
-        {
-            "VkStructureType";
-            0
-        },
-    >,
-    pub p_next: *mut core::ffi::c_void,
-    pub non_seamless_cube_map: crate::External<
-        {
-            "VkBool32";
-            0
-        },
-    >,
+pub struct PhysicalDeviceNonSeamlessCubeMapFeaturesEXT {
+    s_type: crate::vk::StructureType,
+    p_next: *mut core::ffi::c_void,
+    non_seamless_cube_map: crate::vk::Bool32,
 }

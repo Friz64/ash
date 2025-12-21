@@ -2,21 +2,11 @@
 #![cfg_attr(rustfmt, rustfmt_skip)]
 //![Vulkan Manual Page](https://docs.vulkan.org/refpages/latest/refpages/source/VK_AMD_shader_core_properties2.html) · Vulkan extension
 #[repr(C)]
-pub struct VkPhysicalDeviceShaderCoreProperties2AMD {
-    pub s_type: crate::External<
-        {
-            "VkStructureType";
-            0
-        },
-    >,
-    pub p_next: *mut core::ffi::c_void,
-    pub shader_core_features: crate::External<
-        {
-            "VkShaderCorePropertiesFlagsAMD";
-            0
-        },
-    >,
-    pub active_compute_unit_count: crate::External<
+pub struct PhysicalDeviceShaderCoreProperties2AMD {
+    s_type: crate::vk::StructureType,
+    p_next: *mut core::ffi::c_void,
+    shader_core_features: crate::vk::ShaderCorePropertiesFlagsAMD,
+    active_compute_unit_count: crate::External<
         {
             "uint32_t";
             0

@@ -1,4 +1,5 @@
 use crate::cdecl::{CDecl, CDeclMode, CTok, CType};
+use crate::name::TypeName;
 use roxmltree::NodeType;
 use roxmltree::StringStorage;
 use std::fmt::Write;
@@ -317,7 +318,7 @@ impl External {
 
 #[derive(Debug)]
 pub struct BaseType {
-    pub name: &'static str,
+    pub name: TypeName,
     /// [`None`] indicates this being a platform-specific type.
     pub ty: Option<&'static str>,
 }
@@ -325,7 +326,7 @@ pub struct BaseType {
 impl BaseType {
     fn from_node(node: Node) -> BaseType {
         BaseType {
-            name: child_text(node, "name").unwrap(),
+            name: TypeName(child_text(node, "name").unwrap()),
             ty: child_text(node, "type"),
         }
     }
@@ -355,7 +356,7 @@ pub struct Handle {
     pub parent: Option<&'static str>,
     pub objtypeenum: &'static str,
     pub ty: &'static str,
-    pub name: &'static str,
+    pub name: TypeName,
 }
 
 impl Handle {
@@ -364,7 +365,7 @@ impl Handle {
             parent: attribute(node, "parent"),
             objtypeenum: attribute(node, "objtypeenum").unwrap(),
             ty: child_text(node, "type").unwrap(),
-            name: child_text(node, "name").unwrap(),
+            name: TypeName(child_text(node, "name").unwrap()),
         }
     }
 }
@@ -420,7 +421,7 @@ impl StructureMember {
 
 #[derive(Debug)]
 pub struct Structure {
-    pub name: &'static str,
+    pub name: TypeName,
     pub structextends: Vec<&'static str>,
     pub members: Vec<StructureMember>,
 }
@@ -428,7 +429,7 @@ pub struct Structure {
 impl Structure {
     fn from_node(node: Node, api: &str) -> Structure {
         Structure {
-            name: attribute(node, "name").unwrap(),
+            name: TypeName(attribute(node, "name").unwrap()),
             structextends: attribute_comma_separated(node, "structextends"),
             members: node
                 .children()
@@ -474,7 +475,7 @@ impl EnumValue {
 
 #[derive(Debug)]
 pub struct Enum {
-    pub name: &'static str,
+    pub name: TypeName,
     pub values: Vec<EnumValue>,
     pub aliases: Vec<Alias>,
 }
@@ -482,7 +483,7 @@ pub struct Enum {
 impl Enum {
     fn from_node(node: Node, api: &str) -> Enum {
         let mut value = Enum {
-            name: attribute(node, "name").unwrap(),
+            name: TypeName(attribute(node, "name").unwrap()),
             values: Vec::new(),
             aliases: Vec::new(),
         };
@@ -656,13 +657,13 @@ impl RequireBitPos {
 
 #[derive(Debug)]
 pub struct RequireType {
-    pub name: &'static str,
+    pub name: TypeName,
 }
 
 impl RequireType {
     fn from_node(node: Node) -> RequireType {
         RequireType {
-            name: attribute(node, "name").unwrap(),
+            name: TypeName(attribute(node, "name").unwrap()),
         }
     }
 }

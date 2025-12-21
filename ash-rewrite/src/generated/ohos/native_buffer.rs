@@ -2,50 +2,22 @@
 #![cfg_attr(rustfmt, rustfmt_skip)]
 //![Vulkan Manual Page](https://docs.vulkan.org/refpages/latest/refpages/source/VK_OHOS_native_buffer.html) · Vulkan extension
 #[repr(C)]
-pub struct VkNativeBufferOHOS {
-    pub s_type: crate::External<
-        {
-            "VkStructureType";
-            0
-        },
-    >,
-    pub p_next: *const core::ffi::c_void,
-    pub handle: *mut crate::External<
-        {
-            "OHBufferHandle";
-            0
-        },
-    >,
+pub struct NativeBufferOHOS {
+    s_type: crate::vk::StructureType,
+    p_next: *const core::ffi::c_void,
+    handle: *mut crate::vk::OHBufferHandle,
 }
 #[repr(C)]
-pub struct VkSwapchainImageCreateInfoOHOS {
-    pub s_type: crate::External<
-        {
-            "VkStructureType";
-            0
-        },
-    >,
-    pub p_next: *const core::ffi::c_void,
-    pub usage: crate::External<
-        {
-            "VkSwapchainImageUsageFlagsOHOS";
-            0
-        },
-    >,
+pub struct SwapchainImageCreateInfoOHOS {
+    s_type: crate::vk::StructureType,
+    p_next: *const core::ffi::c_void,
+    usage: crate::vk::SwapchainImageUsageFlagsOHOS,
 }
 #[repr(C)]
-pub struct VkPhysicalDevicePresentationPropertiesOHOS {
-    pub s_type: crate::External<
-        {
-            "VkStructureType";
-            0
-        },
-    >,
-    pub p_next: *mut core::ffi::c_void,
-    pub shared_image: crate::External<
-        {
-            "VkBool32";
-            0
-        },
-    >,
+pub struct PhysicalDevicePresentationPropertiesOHOS {
+    s_type: crate::vk::StructureType,
+    p_next: *mut core::ffi::c_void,
+    shared_image: crate::vk::Bool32,
 }
+#[repr(C)]
+pub struct OHBufferHandle {}

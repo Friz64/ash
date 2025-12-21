@@ -2,30 +2,10 @@
 #![cfg_attr(rustfmt, rustfmt_skip)]
 //![Vulkan Manual Page](https://docs.vulkan.org/refpages/latest/refpages/source/VK_EXT_primitives_generated_query.html) · Vulkan extension
 #[repr(C)]
-pub struct VkPhysicalDevicePrimitivesGeneratedQueryFeaturesEXT {
-    pub s_type: crate::External<
-        {
-            "VkStructureType";
-            0
-        },
-    >,
-    pub p_next: *mut core::ffi::c_void,
-    pub primitives_generated_query: crate::External<
-        {
-            "VkBool32";
-            0
-        },
-    >,
-    pub primitives_generated_query_with_rasterizer_discard: crate::External<
-        {
-            "VkBool32";
-            0
-        },
-    >,
-    pub primitives_generated_query_with_non_zero_streams: crate::External<
-        {
-            "VkBool32";
-            0
-        },
-    >,
+pub struct PhysicalDevicePrimitivesGeneratedQueryFeaturesEXT {
+    s_type: crate::vk::StructureType,
+    p_next: *mut core::ffi::c_void,
+    primitives_generated_query: crate::vk::Bool32,
+    primitives_generated_query_with_rasterizer_discard: crate::vk::Bool32,
+    primitives_generated_query_with_non_zero_streams: crate::vk::Bool32,
 }

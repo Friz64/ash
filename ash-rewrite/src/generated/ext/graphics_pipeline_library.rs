@@ -2,56 +2,21 @@
 #![cfg_attr(rustfmt, rustfmt_skip)]
 //![Vulkan Manual Page](https://docs.vulkan.org/refpages/latest/refpages/source/VK_EXT_graphics_pipeline_library.html) · Vulkan extension
 #[repr(C)]
-pub struct VkPhysicalDeviceGraphicsPipelineLibraryFeaturesEXT {
-    pub s_type: crate::External<
-        {
-            "VkStructureType";
-            0
-        },
-    >,
-    pub p_next: *mut core::ffi::c_void,
-    pub graphics_pipeline_library: crate::External<
-        {
-            "VkBool32";
-            0
-        },
-    >,
+pub struct PhysicalDeviceGraphicsPipelineLibraryFeaturesEXT {
+    s_type: crate::vk::StructureType,
+    p_next: *mut core::ffi::c_void,
+    graphics_pipeline_library: crate::vk::Bool32,
 }
 #[repr(C)]
-pub struct VkPhysicalDeviceGraphicsPipelineLibraryPropertiesEXT {
-    pub s_type: crate::External<
-        {
-            "VkStructureType";
-            0
-        },
-    >,
-    pub p_next: *mut core::ffi::c_void,
-    pub graphics_pipeline_library_fast_linking: crate::External<
-        {
-            "VkBool32";
-            0
-        },
-    >,
-    pub graphics_pipeline_library_independent_interpolation_decoration: crate::External<
-        {
-            "VkBool32";
-            0
-        },
-    >,
+pub struct PhysicalDeviceGraphicsPipelineLibraryPropertiesEXT {
+    s_type: crate::vk::StructureType,
+    p_next: *mut core::ffi::c_void,
+    graphics_pipeline_library_fast_linking: crate::vk::Bool32,
+    graphics_pipeline_library_independent_interpolation_decoration: crate::vk::Bool32,
 }
 #[repr(C)]
-pub struct VkGraphicsPipelineLibraryCreateInfoEXT {
-    pub s_type: crate::External<
-        {
-            "VkStructureType";
-            0
-        },
-    >,
-    pub p_next: *const core::ffi::c_void,
-    pub flags: crate::External<
-        {
-            "VkGraphicsPipelineLibraryFlagsEXT";
-            0
-        },
-    >,
+pub struct GraphicsPipelineLibraryCreateInfoEXT {
+    s_type: crate::vk::StructureType,
+    p_next: *const core::ffi::c_void,
+    flags: crate::vk::GraphicsPipelineLibraryFlagsEXT,
 }

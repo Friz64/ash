@@ -2,40 +2,15 @@
 #![cfg_attr(rustfmt, rustfmt_skip)]
 //![Vulkan Manual Page](https://docs.vulkan.org/refpages/latest/refpages/source/VK_KHR_compute_shader_derivatives.html) · Vulkan extension
 #[repr(C)]
-pub struct VkPhysicalDeviceComputeShaderDerivativesFeaturesKHR {
-    pub s_type: crate::External<
-        {
-            "VkStructureType";
-            0
-        },
-    >,
-    pub p_next: *mut core::ffi::c_void,
-    pub compute_derivative_group_quads: crate::External<
-        {
-            "VkBool32";
-            0
-        },
-    >,
-    pub compute_derivative_group_linear: crate::External<
-        {
-            "VkBool32";
-            0
-        },
-    >,
+pub struct PhysicalDeviceComputeShaderDerivativesFeaturesKHR {
+    s_type: crate::vk::StructureType,
+    p_next: *mut core::ffi::c_void,
+    compute_derivative_group_quads: crate::vk::Bool32,
+    compute_derivative_group_linear: crate::vk::Bool32,
 }
 #[repr(C)]
-pub struct VkPhysicalDeviceComputeShaderDerivativesPropertiesKHR {
-    pub s_type: crate::External<
-        {
-            "VkStructureType";
-            0
-        },
-    >,
-    pub p_next: *mut core::ffi::c_void,
-    pub mesh_and_task_shader_derivatives: crate::External<
-        {
-            "VkBool32";
-            0
-        },
-    >,
+pub struct PhysicalDeviceComputeShaderDerivativesPropertiesKHR {
+    s_type: crate::vk::StructureType,
+    p_next: *mut core::ffi::c_void,
+    mesh_and_task_shader_derivatives: crate::vk::Bool32,
 }

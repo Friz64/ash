@@ -2,30 +2,15 @@
 #![cfg_attr(rustfmt, rustfmt_skip)]
 //![Vulkan Manual Page](https://docs.vulkan.org/refpages/latest/refpages/source/VK_AMD_mixed_attachment_samples.html) · Vulkan extension
 #[repr(C)]
-pub struct VkAttachmentSampleCountInfoAMD {
-    pub s_type: crate::External<
-        {
-            "VkStructureType";
-            0
-        },
-    >,
-    pub p_next: *const core::ffi::c_void,
-    pub color_attachment_count: crate::External<
+pub struct AttachmentSampleCountInfoAMD {
+    s_type: crate::vk::StructureType,
+    p_next: *const core::ffi::c_void,
+    color_attachment_count: crate::External<
         {
             "uint32_t";
             0
         },
     >,
-    pub p_color_attachment_samples: *const crate::External<
-        {
-            "VkSampleCountFlagBits";
-            0
-        },
-    >,
-    pub depth_stencil_attachment_samples: crate::External<
-        {
-            "VkSampleCountFlagBits";
-            0
-        },
-    >,
+    p_color_attachment_samples: *const crate::vk::SampleCountFlagBits,
+    depth_stencil_attachment_samples: crate::vk::SampleCountFlagBits,
 }

@@ -2,27 +2,22 @@
 #![cfg_attr(rustfmt, rustfmt_skip)]
 //![Vulkan Manual Page](https://docs.vulkan.org/refpages/latest/refpages/source/VK_EXT_depth_bias_control.html) · Vulkan extension
 #[repr(C)]
-pub struct VkDepthBiasInfoEXT {
-    pub s_type: crate::External<
-        {
-            "VkStructureType";
-            0
-        },
-    >,
-    pub p_next: *const core::ffi::c_void,
-    pub depth_bias_constant_factor: crate::External<
+pub struct DepthBiasInfoEXT {
+    s_type: crate::vk::StructureType,
+    p_next: *const core::ffi::c_void,
+    depth_bias_constant_factor: crate::External<
         {
             "float";
             0
         },
     >,
-    pub depth_bias_clamp: crate::External<
+    depth_bias_clamp: crate::External<
         {
             "float";
             0
         },
     >,
-    pub depth_bias_slope_factor: crate::External<
+    depth_bias_slope_factor: crate::External<
         {
             "float";
             0
@@ -30,58 +25,20 @@ pub struct VkDepthBiasInfoEXT {
     >,
 }
 #[repr(C)]
-pub struct VkDepthBiasRepresentationInfoEXT {
-    pub s_type: crate::External<
-        {
-            "VkStructureType";
-            0
-        },
-    >,
-    pub p_next: *const core::ffi::c_void,
-    pub depth_bias_representation: crate::External<
-        {
-            "VkDepthBiasRepresentationEXT";
-            0
-        },
-    >,
-    pub depth_bias_exact: crate::External<
-        {
-            "VkBool32";
-            0
-        },
-    >,
+pub struct DepthBiasRepresentationInfoEXT {
+    s_type: crate::vk::StructureType,
+    p_next: *const core::ffi::c_void,
+    depth_bias_representation: crate::vk::DepthBiasRepresentationEXT,
+    depth_bias_exact: crate::vk::Bool32,
 }
 #[repr(C)]
-pub struct VkPhysicalDeviceDepthBiasControlFeaturesEXT {
-    pub s_type: crate::External<
-        {
-            "VkStructureType";
-            0
-        },
-    >,
-    pub p_next: *mut core::ffi::c_void,
-    pub depth_bias_control: crate::External<
-        {
-            "VkBool32";
-            0
-        },
-    >,
-    pub least_representable_value_force_unorm_representation: crate::External<
-        {
-            "VkBool32";
-            0
-        },
-    >,
-    pub float_representation: crate::External<
-        {
-            "VkBool32";
-            0
-        },
-    >,
-    pub depth_bias_exact: crate::External<
-        {
-            "VkBool32";
-            0
-        },
-    >,
+pub struct PhysicalDeviceDepthBiasControlFeaturesEXT {
+    s_type: crate::vk::StructureType,
+    p_next: *mut core::ffi::c_void,
+    depth_bias_control: crate::vk::Bool32,
+    least_representable_value_force_unorm_representation: crate::vk::Bool32,
+    float_representation: crate::vk::Bool32,
+    depth_bias_exact: crate::vk::Bool32,
 }
+#[repr(C)]
+pub struct DepthBiasRepresentationEXT {}

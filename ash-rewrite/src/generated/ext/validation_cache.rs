@@ -2,41 +2,25 @@
 #![cfg_attr(rustfmt, rustfmt_skip)]
 //![Vulkan Manual Page](https://docs.vulkan.org/refpages/latest/refpages/source/VK_EXT_validation_cache.html) · Vulkan extension
 #[repr(C)]
-pub struct VkValidationCacheCreateInfoEXT {
-    pub s_type: crate::External<
-        {
-            "VkStructureType";
-            0
-        },
-    >,
-    pub p_next: *const core::ffi::c_void,
-    pub flags: crate::External<
-        {
-            "VkValidationCacheCreateFlagsEXT";
-            0
-        },
-    >,
-    pub initial_data_size: crate::External<
+pub struct ValidationCacheCreateInfoEXT {
+    s_type: crate::vk::StructureType,
+    p_next: *const core::ffi::c_void,
+    flags: crate::vk::ValidationCacheCreateFlagsEXT,
+    initial_data_size: crate::External<
         {
             "size_t";
             0
         },
     >,
-    pub p_initial_data: *const core::ffi::c_void,
+    p_initial_data: *const core::ffi::c_void,
 }
 #[repr(C)]
-pub struct VkShaderModuleValidationCacheCreateInfoEXT {
-    pub s_type: crate::External<
-        {
-            "VkStructureType";
-            0
-        },
-    >,
-    pub p_next: *const core::ffi::c_void,
-    pub validation_cache: crate::External<
-        {
-            "VkValidationCacheEXT";
-            0
-        },
-    >,
+pub struct ShaderModuleValidationCacheCreateInfoEXT {
+    s_type: crate::vk::StructureType,
+    p_next: *const core::ffi::c_void,
+    validation_cache: crate::vk::ValidationCacheEXT,
 }
+#[repr(C)]
+pub struct ValidationCacheHeaderVersionEXT {}
+#[repr(C)]
+pub struct ValidationCacheEXT {}

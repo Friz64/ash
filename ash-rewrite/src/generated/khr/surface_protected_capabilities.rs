@@ -2,18 +2,8 @@
 #![cfg_attr(rustfmt, rustfmt_skip)]
 //![Vulkan Manual Page](https://docs.vulkan.org/refpages/latest/refpages/source/VK_KHR_surface_protected_capabilities.html) · Vulkan extension
 #[repr(C)]
-pub struct VkSurfaceProtectedCapabilitiesKHR {
-    pub s_type: crate::External<
-        {
-            "VkStructureType";
-            0
-        },
-    >,
-    pub p_next: *mut core::ffi::c_void,
-    pub supports_protected: crate::External<
-        {
-            "VkBool32";
-            0
-        },
-    >,
+pub struct SurfaceProtectedCapabilitiesKHR {
+    s_type: crate::vk::StructureType,
+    p_next: *mut core::ffi::c_void,
+    supports_protected: crate::vk::Bool32,
 }

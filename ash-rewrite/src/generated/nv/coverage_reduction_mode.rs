@@ -2,74 +2,26 @@
 #![cfg_attr(rustfmt, rustfmt_skip)]
 //![Vulkan Manual Page](https://docs.vulkan.org/refpages/latest/refpages/source/VK_NV_coverage_reduction_mode.html) · Vulkan extension
 #[repr(C)]
-pub struct VkPhysicalDeviceCoverageReductionModeFeaturesNV {
-    pub s_type: crate::External<
-        {
-            "VkStructureType";
-            0
-        },
-    >,
-    pub p_next: *mut core::ffi::c_void,
-    pub coverage_reduction_mode: crate::External<
-        {
-            "VkBool32";
-            0
-        },
-    >,
+pub struct PhysicalDeviceCoverageReductionModeFeaturesNV {
+    s_type: crate::vk::StructureType,
+    p_next: *mut core::ffi::c_void,
+    coverage_reduction_mode: crate::vk::Bool32,
 }
 #[repr(C)]
-pub struct VkPipelineCoverageReductionStateCreateInfoNV {
-    pub s_type: crate::External<
-        {
-            "VkStructureType";
-            0
-        },
-    >,
-    pub p_next: *const core::ffi::c_void,
-    pub flags: crate::External<
-        {
-            "VkPipelineCoverageReductionStateCreateFlagsNV";
-            0
-        },
-    >,
-    pub coverage_reduction_mode: crate::External<
-        {
-            "VkCoverageReductionModeNV";
-            0
-        },
-    >,
+pub struct PipelineCoverageReductionStateCreateInfoNV {
+    s_type: crate::vk::StructureType,
+    p_next: *const core::ffi::c_void,
+    flags: crate::vk::PipelineCoverageReductionStateCreateFlagsNV,
+    coverage_reduction_mode: crate::vk::CoverageReductionModeNV,
 }
 #[repr(C)]
-pub struct VkFramebufferMixedSamplesCombinationNV {
-    pub s_type: crate::External<
-        {
-            "VkStructureType";
-            0
-        },
-    >,
-    pub p_next: *mut core::ffi::c_void,
-    pub coverage_reduction_mode: crate::External<
-        {
-            "VkCoverageReductionModeNV";
-            0
-        },
-    >,
-    pub rasterization_samples: crate::External<
-        {
-            "VkSampleCountFlagBits";
-            0
-        },
-    >,
-    pub depth_stencil_samples: crate::External<
-        {
-            "VkSampleCountFlags";
-            0
-        },
-    >,
-    pub color_samples: crate::External<
-        {
-            "VkSampleCountFlags";
-            0
-        },
-    >,
+pub struct FramebufferMixedSamplesCombinationNV {
+    s_type: crate::vk::StructureType,
+    p_next: *mut core::ffi::c_void,
+    coverage_reduction_mode: crate::vk::CoverageReductionModeNV,
+    rasterization_samples: crate::vk::SampleCountFlagBits,
+    depth_stencil_samples: crate::vk::SampleCountFlags,
+    color_samples: crate::vk::SampleCountFlags,
 }
+#[repr(C)]
+pub struct CoverageReductionModeNV {}

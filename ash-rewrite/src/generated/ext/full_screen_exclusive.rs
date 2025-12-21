@@ -2,31 +2,16 @@
 #![cfg_attr(rustfmt, rustfmt_skip)]
 //![Vulkan Manual Page](https://docs.vulkan.org/refpages/latest/refpages/source/VK_EXT_full_screen_exclusive.html) · Vulkan extension
 #[repr(C)]
-pub struct VkSurfaceFullScreenExclusiveInfoEXT {
-    pub s_type: crate::External<
-        {
-            "VkStructureType";
-            0
-        },
-    >,
-    pub p_next: *mut core::ffi::c_void,
-    pub full_screen_exclusive: crate::External<
-        {
-            "VkFullScreenExclusiveEXT";
-            0
-        },
-    >,
+pub struct SurfaceFullScreenExclusiveInfoEXT {
+    s_type: crate::vk::StructureType,
+    p_next: *mut core::ffi::c_void,
+    full_screen_exclusive: crate::vk::FullScreenExclusiveEXT,
 }
 #[repr(C)]
-pub struct VkSurfaceFullScreenExclusiveWin32InfoEXT {
-    pub s_type: crate::External<
-        {
-            "VkStructureType";
-            0
-        },
-    >,
-    pub p_next: *const core::ffi::c_void,
-    pub hmonitor: crate::External<
+pub struct SurfaceFullScreenExclusiveWin32InfoEXT {
+    s_type: crate::vk::StructureType,
+    p_next: *const core::ffi::c_void,
+    hmonitor: crate::External<
         {
             "HMONITOR";
             0
@@ -34,18 +19,10 @@ pub struct VkSurfaceFullScreenExclusiveWin32InfoEXT {
     >,
 }
 #[repr(C)]
-pub struct VkSurfaceCapabilitiesFullScreenExclusiveEXT {
-    pub s_type: crate::External<
-        {
-            "VkStructureType";
-            0
-        },
-    >,
-    pub p_next: *mut core::ffi::c_void,
-    pub full_screen_exclusive_supported: crate::External<
-        {
-            "VkBool32";
-            0
-        },
-    >,
+pub struct SurfaceCapabilitiesFullScreenExclusiveEXT {
+    s_type: crate::vk::StructureType,
+    p_next: *mut core::ffi::c_void,
+    full_screen_exclusive_supported: crate::vk::Bool32,
 }
+#[repr(C)]
+pub struct FullScreenExclusiveEXT {}

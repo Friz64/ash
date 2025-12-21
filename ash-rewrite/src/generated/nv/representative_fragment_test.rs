@@ -2,34 +2,14 @@
 #![cfg_attr(rustfmt, rustfmt_skip)]
 //![Vulkan Manual Page](https://docs.vulkan.org/refpages/latest/refpages/source/VK_NV_representative_fragment_test.html) · Vulkan extension
 #[repr(C)]
-pub struct VkPhysicalDeviceRepresentativeFragmentTestFeaturesNV {
-    pub s_type: crate::External<
-        {
-            "VkStructureType";
-            0
-        },
-    >,
-    pub p_next: *mut core::ffi::c_void,
-    pub representative_fragment_test: crate::External<
-        {
-            "VkBool32";
-            0
-        },
-    >,
+pub struct PhysicalDeviceRepresentativeFragmentTestFeaturesNV {
+    s_type: crate::vk::StructureType,
+    p_next: *mut core::ffi::c_void,
+    representative_fragment_test: crate::vk::Bool32,
 }
 #[repr(C)]
-pub struct VkPipelineRepresentativeFragmentTestStateCreateInfoNV {
-    pub s_type: crate::External<
-        {
-            "VkStructureType";
-            0
-        },
-    >,
-    pub p_next: *const core::ffi::c_void,
-    pub representative_fragment_test_enable: crate::External<
-        {
-            "VkBool32";
-            0
-        },
-    >,
+pub struct PipelineRepresentativeFragmentTestStateCreateInfoNV {
+    s_type: crate::vk::StructureType,
+    p_next: *const core::ffi::c_void,
+    representative_fragment_test_enable: crate::vk::Bool32,
 }

@@ -2,30 +2,10 @@
 #![cfg_attr(rustfmt, rustfmt_skip)]
 //![Vulkan Manual Page](https://docs.vulkan.org/refpages/latest/refpages/source/VK_EXT_extended_dynamic_state2.html) · Vulkan extension
 #[repr(C)]
-pub struct VkPhysicalDeviceExtendedDynamicState2FeaturesEXT {
-    pub s_type: crate::External<
-        {
-            "VkStructureType";
-            0
-        },
-    >,
-    pub p_next: *mut core::ffi::c_void,
-    pub extended_dynamic_state2: crate::External<
-        {
-            "VkBool32";
-            0
-        },
-    >,
-    pub extended_dynamic_state2_logic_op: crate::External<
-        {
-            "VkBool32";
-            0
-        },
-    >,
-    pub extended_dynamic_state2_patch_control_points: crate::External<
-        {
-            "VkBool32";
-            0
-        },
-    >,
+pub struct PhysicalDeviceExtendedDynamicState2FeaturesEXT {
+    s_type: crate::vk::StructureType,
+    p_next: *mut core::ffi::c_void,
+    extended_dynamic_state2: crate::vk::Bool32,
+    extended_dynamic_state2_logic_op: crate::vk::Bool32,
+    extended_dynamic_state2_patch_control_points: crate::vk::Bool32,
 }

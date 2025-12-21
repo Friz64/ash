@@ -2,27 +2,22 @@
 #![cfg_attr(rustfmt, rustfmt_skip)]
 //![Vulkan Manual Page](https://docs.vulkan.org/refpages/latest/refpages/source/VK_ARM_shader_core_properties.html) · Vulkan extension
 #[repr(C)]
-pub struct VkPhysicalDeviceShaderCorePropertiesARM {
-    pub s_type: crate::External<
-        {
-            "VkStructureType";
-            0
-        },
-    >,
-    pub p_next: *mut core::ffi::c_void,
-    pub pixel_rate: crate::External<
+pub struct PhysicalDeviceShaderCorePropertiesARM {
+    s_type: crate::vk::StructureType,
+    p_next: *mut core::ffi::c_void,
+    pixel_rate: crate::External<
         {
             "uint32_t";
             0
         },
     >,
-    pub texel_rate: crate::External<
+    texel_rate: crate::External<
         {
             "uint32_t";
             0
         },
     >,
-    pub fma_rate: crate::External<
+    fma_rate: crate::External<
         {
             "uint32_t";
             0

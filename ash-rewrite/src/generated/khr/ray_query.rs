@@ -2,18 +2,8 @@
 #![cfg_attr(rustfmt, rustfmt_skip)]
 //![Vulkan Manual Page](https://docs.vulkan.org/refpages/latest/refpages/source/VK_KHR_ray_query.html) · Vulkan extension
 #[repr(C)]
-pub struct VkPhysicalDeviceRayQueryFeaturesKHR {
-    pub s_type: crate::External<
-        {
-            "VkStructureType";
-            0
-        },
-    >,
-    pub p_next: *mut core::ffi::c_void,
-    pub ray_query: crate::External<
-        {
-            "VkBool32";
-            0
-        },
-    >,
+pub struct PhysicalDeviceRayQueryFeaturesKHR {
+    s_type: crate::vk::StructureType,
+    p_next: *mut core::ffi::c_void,
+    ray_query: crate::vk::Bool32,
 }

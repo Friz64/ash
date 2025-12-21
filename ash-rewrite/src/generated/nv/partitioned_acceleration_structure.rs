@@ -2,31 +2,16 @@
 #![cfg_attr(rustfmt, rustfmt_skip)]
 //![Vulkan Manual Page](https://docs.vulkan.org/refpages/latest/refpages/source/VK_NV_partitioned_acceleration_structure.html) · Vulkan extension
 #[repr(C)]
-pub struct VkPhysicalDevicePartitionedAccelerationStructureFeaturesNV {
-    pub s_type: crate::External<
-        {
-            "VkStructureType";
-            0
-        },
-    >,
-    pub p_next: *mut core::ffi::c_void,
-    pub partitioned_acceleration_structure: crate::External<
-        {
-            "VkBool32";
-            0
-        },
-    >,
+pub struct PhysicalDevicePartitionedAccelerationStructureFeaturesNV {
+    s_type: crate::vk::StructureType,
+    p_next: *mut core::ffi::c_void,
+    partitioned_acceleration_structure: crate::vk::Bool32,
 }
 #[repr(C)]
-pub struct VkPhysicalDevicePartitionedAccelerationStructurePropertiesNV {
-    pub s_type: crate::External<
-        {
-            "VkStructureType";
-            0
-        },
-    >,
-    pub p_next: *mut core::ffi::c_void,
-    pub max_partition_count: crate::External<
+pub struct PhysicalDevicePartitionedAccelerationStructurePropertiesNV {
+    s_type: crate::vk::StructureType,
+    p_next: *mut core::ffi::c_void,
+    max_partition_count: crate::External<
         {
             "uint32_t";
             0
@@ -34,129 +19,89 @@ pub struct VkPhysicalDevicePartitionedAccelerationStructurePropertiesNV {
     >,
 }
 #[repr(C)]
-pub struct VkBuildPartitionedAccelerationStructureIndirectCommandNV {
-    pub op_type: crate::External<
-        {
-            "VkPartitionedAccelerationStructureOpTypeNV";
-            0
-        },
-    >,
-    pub arg_count: crate::External<
+pub struct BuildPartitionedAccelerationStructureIndirectCommandNV {
+    op_type: crate::vk::PartitionedAccelerationStructureOpTypeNV,
+    arg_count: crate::External<
         {
             "uint32_t";
             0
         },
     >,
-    pub arg_data: crate::External<
-        {
-            "VkStridedDeviceAddressNV";
-            0
-        },
-    >,
+    arg_data: crate::vk::StridedDeviceAddressNV,
 }
 #[repr(C)]
-pub struct VkPartitionedAccelerationStructureFlagsNV {
-    pub s_type: crate::External<
-        {
-            "VkStructureType";
-            0
-        },
-    >,
-    pub p_next: *mut core::ffi::c_void,
-    pub enable_partition_translation: crate::External<
-        {
-            "VkBool32";
-            0
-        },
-    >,
+pub struct PartitionedAccelerationStructureFlagsNV {
+    s_type: crate::vk::StructureType,
+    p_next: *mut core::ffi::c_void,
+    enable_partition_translation: crate::vk::Bool32,
 }
 #[repr(C)]
-pub struct VkPartitionedAccelerationStructureWriteInstanceDataNV {
-    pub transform: crate::External<
-        {
-            "VkTransformMatrixKHR";
-            0
-        },
-    >,
-    pub explicit_aabb: [crate::External<
+pub struct PartitionedAccelerationStructureWriteInstanceDataNV {
+    transform: crate::vk::TransformMatrixKHR,
+    explicit_aabb: [crate::External<
         {
             "float";
             0
         },
     >; 1337],
-    pub instance_id: crate::External<
+    instance_id: crate::External<
         {
             "uint32_t";
             0
         },
     >,
-    pub instance_mask: crate::External<
+    instance_mask: crate::External<
         {
             "uint32_t";
             0
         },
     >,
-    pub instance_contribution_to_hit_group_index: crate::External<
+    instance_contribution_to_hit_group_index: crate::External<
         {
             "uint32_t";
             0
         },
     >,
-    pub instance_flags: crate::External<
-        {
-            "VkPartitionedAccelerationStructureInstanceFlagsNV";
-            0
-        },
-    >,
-    pub instance_index: crate::External<
+    instance_flags: crate::vk::PartitionedAccelerationStructureInstanceFlagsNV,
+    instance_index: crate::External<
         {
             "uint32_t";
             0
         },
     >,
-    pub partition_index: crate::External<
+    partition_index: crate::External<
         {
             "uint32_t";
             0
         },
     >,
-    pub acceleration_structure: crate::External<
-        {
-            "VkDeviceAddress";
-            0
-        },
-    >,
+    acceleration_structure: crate::vk::DeviceAddress,
 }
 #[repr(C)]
-pub struct VkPartitionedAccelerationStructureUpdateInstanceDataNV {
-    pub instance_index: crate::External<
+pub struct PartitionedAccelerationStructureUpdateInstanceDataNV {
+    instance_index: crate::External<
         {
             "uint32_t";
             0
         },
     >,
-    pub instance_contribution_to_hit_group_index: crate::External<
+    instance_contribution_to_hit_group_index: crate::External<
         {
             "uint32_t";
             0
         },
     >,
-    pub acceleration_structure: crate::External<
-        {
-            "VkDeviceAddress";
-            0
-        },
-    >,
+    acceleration_structure: crate::vk::DeviceAddress,
 }
 #[repr(C)]
-pub struct VkPartitionedAccelerationStructureWritePartitionTranslationDataNV {
-    pub partition_index: crate::External<
+pub struct PartitionedAccelerationStructureWritePartitionTranslationDataNV {
+    partition_index: crate::External<
         {
             "uint32_t";
             0
         },
     >,
-    pub partition_translation: [crate::External<
+    partition_translation: [crate::External<
         {
             "float";
             0
@@ -164,61 +109,41 @@ pub struct VkPartitionedAccelerationStructureWritePartitionTranslationDataNV {
     >; 1337],
 }
 #[repr(C)]
-pub struct VkWriteDescriptorSetPartitionedAccelerationStructureNV {
-    pub s_type: crate::External<
-        {
-            "VkStructureType";
-            0
-        },
-    >,
-    pub p_next: *mut core::ffi::c_void,
-    pub acceleration_structure_count: crate::External<
+pub struct WriteDescriptorSetPartitionedAccelerationStructureNV {
+    s_type: crate::vk::StructureType,
+    p_next: *mut core::ffi::c_void,
+    acceleration_structure_count: crate::External<
         {
             "uint32_t";
             0
         },
     >,
-    pub p_acceleration_structures: *const crate::External<
-        {
-            "VkDeviceAddress";
-            0
-        },
-    >,
+    p_acceleration_structures: *const crate::vk::DeviceAddress,
 }
 #[repr(C)]
-pub struct VkPartitionedAccelerationStructureInstancesInputNV {
-    pub s_type: crate::External<
-        {
-            "VkStructureType";
-            0
-        },
-    >,
-    pub p_next: *mut core::ffi::c_void,
-    pub flags: crate::External<
-        {
-            "VkBuildAccelerationStructureFlagsKHR";
-            0
-        },
-    >,
-    pub instance_count: crate::External<
+pub struct PartitionedAccelerationStructureInstancesInputNV {
+    s_type: crate::vk::StructureType,
+    p_next: *mut core::ffi::c_void,
+    flags: crate::vk::BuildAccelerationStructureFlagsKHR,
+    instance_count: crate::External<
         {
             "uint32_t";
             0
         },
     >,
-    pub max_instance_per_partition_count: crate::External<
+    max_instance_per_partition_count: crate::External<
         {
             "uint32_t";
             0
         },
     >,
-    pub partition_count: crate::External<
+    partition_count: crate::External<
         {
             "uint32_t";
             0
         },
     >,
-    pub max_instance_in_global_partition_count: crate::External<
+    max_instance_in_global_partition_count: crate::External<
         {
             "uint32_t";
             0
@@ -226,48 +151,15 @@ pub struct VkPartitionedAccelerationStructureInstancesInputNV {
     >,
 }
 #[repr(C)]
-pub struct VkBuildPartitionedAccelerationStructureInfoNV {
-    pub s_type: crate::External<
-        {
-            "VkStructureType";
-            0
-        },
-    >,
-    pub p_next: *mut core::ffi::c_void,
-    pub input: crate::External<
-        {
-            "VkPartitionedAccelerationStructureInstancesInputNV";
-            0
-        },
-    >,
-    pub src_acceleration_structure_data: crate::External<
-        {
-            "VkDeviceAddress";
-            0
-        },
-    >,
-    pub dst_acceleration_structure_data: crate::External<
-        {
-            "VkDeviceAddress";
-            0
-        },
-    >,
-    pub scratch_data: crate::External<
-        {
-            "VkDeviceAddress";
-            0
-        },
-    >,
-    pub src_infos: crate::External<
-        {
-            "VkDeviceAddress";
-            0
-        },
-    >,
-    pub src_infos_count: crate::External<
-        {
-            "VkDeviceAddress";
-            0
-        },
-    >,
+pub struct BuildPartitionedAccelerationStructureInfoNV {
+    s_type: crate::vk::StructureType,
+    p_next: *mut core::ffi::c_void,
+    input: crate::vk::PartitionedAccelerationStructureInstancesInputNV,
+    src_acceleration_structure_data: crate::vk::DeviceAddress,
+    dst_acceleration_structure_data: crate::vk::DeviceAddress,
+    scratch_data: crate::vk::DeviceAddress,
+    src_infos: crate::vk::DeviceAddress,
+    src_infos_count: crate::vk::DeviceAddress,
 }
+#[repr(C)]
+pub struct PartitionedAccelerationStructureOpTypeNV {}

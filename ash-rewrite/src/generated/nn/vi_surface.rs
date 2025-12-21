@@ -2,19 +2,9 @@
 #![cfg_attr(rustfmt, rustfmt_skip)]
 //![Vulkan Manual Page](https://docs.vulkan.org/refpages/latest/refpages/source/VK_NN_vi_surface.html) · Vulkan extension
 #[repr(C)]
-pub struct VkViSurfaceCreateInfoNN {
-    pub s_type: crate::External<
-        {
-            "VkStructureType";
-            0
-        },
-    >,
-    pub p_next: *const core::ffi::c_void,
-    pub flags: crate::External<
-        {
-            "VkViSurfaceCreateFlagsNN";
-            0
-        },
-    >,
-    pub window: *mut core::ffi::c_void,
+pub struct ViSurfaceCreateInfoNN {
+    s_type: crate::vk::StructureType,
+    p_next: *const core::ffi::c_void,
+    flags: crate::vk::ViSurfaceCreateFlagsNN,
+    window: *mut core::ffi::c_void,
 }

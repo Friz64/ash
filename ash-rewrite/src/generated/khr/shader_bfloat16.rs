@@ -2,30 +2,10 @@
 #![cfg_attr(rustfmt, rustfmt_skip)]
 //![Vulkan Manual Page](https://docs.vulkan.org/refpages/latest/refpages/source/VK_KHR_shader_bfloat16.html) · Vulkan extension
 #[repr(C)]
-pub struct VkPhysicalDeviceShaderBfloat16FeaturesKHR {
-    pub s_type: crate::External<
-        {
-            "VkStructureType";
-            0
-        },
-    >,
-    pub p_next: *mut core::ffi::c_void,
-    pub shader_b_float16_type: crate::External<
-        {
-            "VkBool32";
-            0
-        },
-    >,
-    pub shader_b_float16_dot_product: crate::External<
-        {
-            "VkBool32";
-            0
-        },
-    >,
-    pub shader_b_float16_cooperative_matrix: crate::External<
-        {
-            "VkBool32";
-            0
-        },
-    >,
+pub struct PhysicalDeviceShaderBfloat16FeaturesKHR {
+    s_type: crate::vk::StructureType,
+    p_next: *mut core::ffi::c_void,
+    shader_b_float16_type: crate::vk::Bool32,
+    shader_b_float16_dot_product: crate::vk::Bool32,
+    shader_b_float16_cooperative_matrix: crate::vk::Bool32,
 }

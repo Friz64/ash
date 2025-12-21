@@ -2,24 +2,9 @@
 #![cfg_attr(rustfmt, rustfmt_skip)]
 //![Vulkan Manual Page](https://docs.vulkan.org/refpages/latest/refpages/source/VK_EXT_shader_image_atomic_int64.html) · Vulkan extension
 #[repr(C)]
-pub struct VkPhysicalDeviceShaderImageAtomicInt64FeaturesEXT {
-    pub s_type: crate::External<
-        {
-            "VkStructureType";
-            0
-        },
-    >,
-    pub p_next: *mut core::ffi::c_void,
-    pub shader_image_int64_atomics: crate::External<
-        {
-            "VkBool32";
-            0
-        },
-    >,
-    pub sparse_image_int64_atomics: crate::External<
-        {
-            "VkBool32";
-            0
-        },
-    >,
+pub struct PhysicalDeviceShaderImageAtomicInt64FeaturesEXT {
+    s_type: crate::vk::StructureType,
+    p_next: *mut core::ffi::c_void,
+    shader_image_int64_atomics: crate::vk::Bool32,
+    sparse_image_int64_atomics: crate::vk::Bool32,
 }

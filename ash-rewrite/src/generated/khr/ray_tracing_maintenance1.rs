@@ -2,86 +2,31 @@
 #![cfg_attr(rustfmt, rustfmt_skip)]
 //![Vulkan Manual Page](https://docs.vulkan.org/refpages/latest/refpages/source/VK_KHR_ray_tracing_maintenance1.html) · Vulkan extension
 #[repr(C)]
-pub struct VkTraceRaysIndirectCommand2KHR {
-    pub raygen_shader_record_address: crate::External<
-        {
-            "VkDeviceAddress";
-            0
-        },
-    >,
-    pub raygen_shader_record_size: crate::External<
-        {
-            "VkDeviceSize";
-            0
-        },
-    >,
-    pub miss_shader_binding_table_address: crate::External<
-        {
-            "VkDeviceAddress";
-            0
-        },
-    >,
-    pub miss_shader_binding_table_size: crate::External<
-        {
-            "VkDeviceSize";
-            0
-        },
-    >,
-    pub miss_shader_binding_table_stride: crate::External<
-        {
-            "VkDeviceSize";
-            0
-        },
-    >,
-    pub hit_shader_binding_table_address: crate::External<
-        {
-            "VkDeviceAddress";
-            0
-        },
-    >,
-    pub hit_shader_binding_table_size: crate::External<
-        {
-            "VkDeviceSize";
-            0
-        },
-    >,
-    pub hit_shader_binding_table_stride: crate::External<
-        {
-            "VkDeviceSize";
-            0
-        },
-    >,
-    pub callable_shader_binding_table_address: crate::External<
-        {
-            "VkDeviceAddress";
-            0
-        },
-    >,
-    pub callable_shader_binding_table_size: crate::External<
-        {
-            "VkDeviceSize";
-            0
-        },
-    >,
-    pub callable_shader_binding_table_stride: crate::External<
-        {
-            "VkDeviceSize";
-            0
-        },
-    >,
-    pub width: crate::External<
+pub struct TraceRaysIndirectCommand2KHR {
+    raygen_shader_record_address: crate::vk::DeviceAddress,
+    raygen_shader_record_size: crate::vk::DeviceSize,
+    miss_shader_binding_table_address: crate::vk::DeviceAddress,
+    miss_shader_binding_table_size: crate::vk::DeviceSize,
+    miss_shader_binding_table_stride: crate::vk::DeviceSize,
+    hit_shader_binding_table_address: crate::vk::DeviceAddress,
+    hit_shader_binding_table_size: crate::vk::DeviceSize,
+    hit_shader_binding_table_stride: crate::vk::DeviceSize,
+    callable_shader_binding_table_address: crate::vk::DeviceAddress,
+    callable_shader_binding_table_size: crate::vk::DeviceSize,
+    callable_shader_binding_table_stride: crate::vk::DeviceSize,
+    width: crate::External<
         {
             "uint32_t";
             0
         },
     >,
-    pub height: crate::External<
+    height: crate::External<
         {
             "uint32_t";
             0
         },
     >,
-    pub depth: crate::External<
+    depth: crate::External<
         {
             "uint32_t";
             0
@@ -89,24 +34,9 @@ pub struct VkTraceRaysIndirectCommand2KHR {
     >,
 }
 #[repr(C)]
-pub struct VkPhysicalDeviceRayTracingMaintenance1FeaturesKHR {
-    pub s_type: crate::External<
-        {
-            "VkStructureType";
-            0
-        },
-    >,
-    pub p_next: *mut core::ffi::c_void,
-    pub ray_tracing_maintenance1: crate::External<
-        {
-            "VkBool32";
-            0
-        },
-    >,
-    pub ray_tracing_pipeline_trace_rays_indirect2: crate::External<
-        {
-            "VkBool32";
-            0
-        },
-    >,
+pub struct PhysicalDeviceRayTracingMaintenance1FeaturesKHR {
+    s_type: crate::vk::StructureType,
+    p_next: *mut core::ffi::c_void,
+    ray_tracing_maintenance1: crate::vk::Bool32,
+    ray_tracing_pipeline_trace_rays_indirect2: crate::vk::Bool32,
 }

@@ -2,59 +2,29 @@
 #![cfg_attr(rustfmt, rustfmt_skip)]
 //![Vulkan Manual Page](https://docs.vulkan.org/refpages/latest/refpages/source/VK_KHR_device_group.html) · Vulkan extension
 #[repr(C)]
-pub struct VkDeviceGroupPresentCapabilitiesKHR {
-    pub s_type: crate::External<
-        {
-            "VkStructureType";
-            0
-        },
-    >,
-    pub p_next: *mut core::ffi::c_void,
-    pub present_mask: [crate::External<
+pub struct DeviceGroupPresentCapabilitiesKHR {
+    s_type: crate::vk::StructureType,
+    p_next: *mut core::ffi::c_void,
+    present_mask: [crate::External<
         {
             "uint32_t";
             0
         },
     >; 1337],
-    pub modes: crate::External<
-        {
-            "VkDeviceGroupPresentModeFlagsKHR";
-            0
-        },
-    >,
+    modes: crate::vk::DeviceGroupPresentModeFlagsKHR,
 }
 #[repr(C)]
-pub struct VkImageSwapchainCreateInfoKHR {
-    pub s_type: crate::External<
-        {
-            "VkStructureType";
-            0
-        },
-    >,
-    pub p_next: *const core::ffi::c_void,
-    pub swapchain: crate::External<
-        {
-            "VkSwapchainKHR";
-            0
-        },
-    >,
+pub struct ImageSwapchainCreateInfoKHR {
+    s_type: crate::vk::StructureType,
+    p_next: *const core::ffi::c_void,
+    swapchain: crate::vk::SwapchainKHR,
 }
 #[repr(C)]
-pub struct VkBindImageMemorySwapchainInfoKHR {
-    pub s_type: crate::External<
-        {
-            "VkStructureType";
-            0
-        },
-    >,
-    pub p_next: *const core::ffi::c_void,
-    pub swapchain: crate::External<
-        {
-            "VkSwapchainKHR";
-            0
-        },
-    >,
-    pub image_index: crate::External<
+pub struct BindImageMemorySwapchainInfoKHR {
+    s_type: crate::vk::StructureType,
+    p_next: *const core::ffi::c_void,
+    swapchain: crate::vk::SwapchainKHR,
+    image_index: crate::External<
         {
             "uint32_t";
             0
@@ -62,39 +32,19 @@ pub struct VkBindImageMemorySwapchainInfoKHR {
     >,
 }
 #[repr(C)]
-pub struct VkAcquireNextImageInfoKHR {
-    pub s_type: crate::External<
-        {
-            "VkStructureType";
-            0
-        },
-    >,
-    pub p_next: *const core::ffi::c_void,
-    pub swapchain: crate::External<
-        {
-            "VkSwapchainKHR";
-            0
-        },
-    >,
-    pub timeout: crate::External<
+pub struct AcquireNextImageInfoKHR {
+    s_type: crate::vk::StructureType,
+    p_next: *const core::ffi::c_void,
+    swapchain: crate::vk::SwapchainKHR,
+    timeout: crate::External<
         {
             "uint64_t";
             0
         },
     >,
-    pub semaphore: crate::External<
-        {
-            "VkSemaphore";
-            0
-        },
-    >,
-    pub fence: crate::External<
-        {
-            "VkFence";
-            0
-        },
-    >,
-    pub device_mask: crate::External<
+    semaphore: crate::vk::Semaphore,
+    fence: crate::vk::Fence,
+    device_mask: crate::External<
         {
             "uint32_t";
             0
@@ -102,46 +52,26 @@ pub struct VkAcquireNextImageInfoKHR {
     >,
 }
 #[repr(C)]
-pub struct VkDeviceGroupPresentInfoKHR {
-    pub s_type: crate::External<
-        {
-            "VkStructureType";
-            0
-        },
-    >,
-    pub p_next: *const core::ffi::c_void,
-    pub swapchain_count: crate::External<
+pub struct DeviceGroupPresentInfoKHR {
+    s_type: crate::vk::StructureType,
+    p_next: *const core::ffi::c_void,
+    swapchain_count: crate::External<
         {
             "uint32_t";
             0
         },
     >,
-    pub p_device_masks: *const crate::External<
+    p_device_masks: *const crate::External<
         {
             "uint32_t";
             0
         },
     >,
-    pub mode: crate::External<
-        {
-            "VkDeviceGroupPresentModeFlagBitsKHR";
-            0
-        },
-    >,
+    mode: crate::vk::DeviceGroupPresentModeFlagBitsKHR,
 }
 #[repr(C)]
-pub struct VkDeviceGroupSwapchainCreateInfoKHR {
-    pub s_type: crate::External<
-        {
-            "VkStructureType";
-            0
-        },
-    >,
-    pub p_next: *const core::ffi::c_void,
-    pub modes: crate::External<
-        {
-            "VkDeviceGroupPresentModeFlagsKHR";
-            0
-        },
-    >,
+pub struct DeviceGroupSwapchainCreateInfoKHR {
+    s_type: crate::vk::StructureType,
+    p_next: *const core::ffi::c_void,
+    modes: crate::vk::DeviceGroupPresentModeFlagsKHR,
 }

@@ -2,27 +2,17 @@
 #![cfg_attr(rustfmt, rustfmt_skip)]
 //![Vulkan Manual Page](https://docs.vulkan.org/refpages/latest/refpages/source/VK_EXT_directfb_surface.html) · Vulkan extension
 #[repr(C)]
-pub struct VkDirectFBSurfaceCreateInfoEXT {
-    pub s_type: crate::External<
-        {
-            "VkStructureType";
-            0
-        },
-    >,
-    pub p_next: *const core::ffi::c_void,
-    pub flags: crate::External<
-        {
-            "VkDirectFBSurfaceCreateFlagsEXT";
-            0
-        },
-    >,
-    pub dfb: *mut crate::External<
+pub struct DirectFBSurfaceCreateInfoEXT {
+    s_type: crate::vk::StructureType,
+    p_next: *const core::ffi::c_void,
+    flags: crate::vk::DirectFBSurfaceCreateFlagsEXT,
+    dfb: *mut crate::External<
         {
             "IDirectFB";
             0
         },
     >,
-    pub surface: *mut crate::External<
+    surface: *mut crate::External<
         {
             "IDirectFBSurface";
             0

@@ -2,52 +2,19 @@
 #![cfg_attr(rustfmt, rustfmt_skip)]
 //![Vulkan Manual Page](https://docs.vulkan.org/refpages/latest/refpages/source/VK_EXT_device_address_binding_report.html) · Vulkan extension
 #[repr(C)]
-pub struct VkPhysicalDeviceAddressBindingReportFeaturesEXT {
-    pub s_type: crate::External<
-        {
-            "VkStructureType";
-            0
-        },
-    >,
-    pub p_next: *mut core::ffi::c_void,
-    pub report_address_binding: crate::External<
-        {
-            "VkBool32";
-            0
-        },
-    >,
+pub struct PhysicalDeviceAddressBindingReportFeaturesEXT {
+    s_type: crate::vk::StructureType,
+    p_next: *mut core::ffi::c_void,
+    report_address_binding: crate::vk::Bool32,
 }
 #[repr(C)]
-pub struct VkDeviceAddressBindingCallbackDataEXT {
-    pub s_type: crate::External<
-        {
-            "VkStructureType";
-            0
-        },
-    >,
-    pub p_next: *mut core::ffi::c_void,
-    pub flags: crate::External<
-        {
-            "VkDeviceAddressBindingFlagsEXT";
-            0
-        },
-    >,
-    pub base_address: crate::External<
-        {
-            "VkDeviceAddress";
-            0
-        },
-    >,
-    pub size: crate::External<
-        {
-            "VkDeviceSize";
-            0
-        },
-    >,
-    pub binding_type: crate::External<
-        {
-            "VkDeviceAddressBindingTypeEXT";
-            0
-        },
-    >,
+pub struct DeviceAddressBindingCallbackDataEXT {
+    s_type: crate::vk::StructureType,
+    p_next: *mut core::ffi::c_void,
+    flags: crate::vk::DeviceAddressBindingFlagsEXT,
+    base_address: crate::vk::DeviceAddress,
+    size: crate::vk::DeviceSize,
+    binding_type: crate::vk::DeviceAddressBindingTypeEXT,
 }
+#[repr(C)]
+pub struct DeviceAddressBindingTypeEXT {}

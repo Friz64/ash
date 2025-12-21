@@ -2,93 +2,45 @@
 #![cfg_attr(rustfmt, rustfmt_skip)]
 //![Vulkan Manual Page](https://docs.vulkan.org/refpages/latest/refpages/source/VK_EXT_device_memory_report.html) · Vulkan extension
 #[repr(C)]
-pub struct VkPhysicalDeviceDeviceMemoryReportFeaturesEXT {
-    pub s_type: crate::External<
-        {
-            "VkStructureType";
-            0
-        },
-    >,
-    pub p_next: *mut core::ffi::c_void,
-    pub device_memory_report: crate::External<
-        {
-            "VkBool32";
-            0
-        },
-    >,
+pub struct PhysicalDeviceDeviceMemoryReportFeaturesEXT {
+    s_type: crate::vk::StructureType,
+    p_next: *mut core::ffi::c_void,
+    device_memory_report: crate::vk::Bool32,
 }
 #[repr(C)]
-pub struct VkDeviceDeviceMemoryReportCreateInfoEXT {
-    pub s_type: crate::External<
-        {
-            "VkStructureType";
-            0
-        },
-    >,
-    pub p_next: *const core::ffi::c_void,
-    pub flags: crate::External<
-        {
-            "VkDeviceMemoryReportFlagsEXT";
-            0
-        },
-    >,
-    pub pfn_user_callback: crate::External<
-        {
-            "PFN_vkDeviceMemoryReportCallbackEXT";
-            0
-        },
-    >,
-    pub p_user_data: *mut core::ffi::c_void,
+pub struct DeviceDeviceMemoryReportCreateInfoEXT {
+    s_type: crate::vk::StructureType,
+    p_next: *const core::ffi::c_void,
+    flags: crate::vk::DeviceMemoryReportFlagsEXT,
+    pfn_user_callback: crate::vk::PFN_vkDeviceMemoryReportCallbackEXT,
+    p_user_data: *mut core::ffi::c_void,
 }
 #[repr(C)]
-pub struct VkDeviceMemoryReportCallbackDataEXT {
-    pub s_type: crate::External<
-        {
-            "VkStructureType";
-            0
-        },
-    >,
-    pub p_next: *mut core::ffi::c_void,
-    pub flags: crate::External<
-        {
-            "VkDeviceMemoryReportFlagsEXT";
-            0
-        },
-    >,
-    pub _type: crate::External<
-        {
-            "VkDeviceMemoryReportEventTypeEXT";
-            0
-        },
-    >,
-    pub memory_object_id: crate::External<
+pub struct DeviceMemoryReportCallbackDataEXT {
+    s_type: crate::vk::StructureType,
+    p_next: *mut core::ffi::c_void,
+    flags: crate::vk::DeviceMemoryReportFlagsEXT,
+    _type: crate::vk::DeviceMemoryReportEventTypeEXT,
+    memory_object_id: crate::External<
         {
             "uint64_t";
             0
         },
     >,
-    pub size: crate::External<
-        {
-            "VkDeviceSize";
-            0
-        },
-    >,
-    pub object_type: crate::External<
-        {
-            "VkObjectType";
-            0
-        },
-    >,
-    pub object_handle: crate::External<
+    size: crate::vk::DeviceSize,
+    object_type: crate::vk::ObjectType,
+    object_handle: crate::External<
         {
             "uint64_t";
             0
         },
     >,
-    pub heap_index: crate::External<
+    heap_index: crate::External<
         {
             "uint32_t";
             0
         },
     >,
 }
+#[repr(C)]
+pub struct DeviceMemoryReportEventTypeEXT {}

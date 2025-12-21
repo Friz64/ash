@@ -2,46 +2,21 @@
 #![cfg_attr(rustfmt, rustfmt_skip)]
 //![Vulkan Manual Page](https://docs.vulkan.org/refpages/latest/refpages/source/VK_NV_inherited_viewport_scissor.html) · Vulkan extension
 #[repr(C)]
-pub struct VkPhysicalDeviceInheritedViewportScissorFeaturesNV {
-    pub s_type: crate::External<
-        {
-            "VkStructureType";
-            0
-        },
-    >,
-    pub p_next: *mut core::ffi::c_void,
-    pub inherited_viewport_scissor2_d: crate::External<
-        {
-            "VkBool32";
-            0
-        },
-    >,
+pub struct PhysicalDeviceInheritedViewportScissorFeaturesNV {
+    s_type: crate::vk::StructureType,
+    p_next: *mut core::ffi::c_void,
+    inherited_viewport_scissor2_d: crate::vk::Bool32,
 }
 #[repr(C)]
-pub struct VkCommandBufferInheritanceViewportScissorInfoNV {
-    pub s_type: crate::External<
-        {
-            "VkStructureType";
-            0
-        },
-    >,
-    pub p_next: *const core::ffi::c_void,
-    pub viewport_scissor2_d: crate::External<
-        {
-            "VkBool32";
-            0
-        },
-    >,
-    pub viewport_depth_count: crate::External<
+pub struct CommandBufferInheritanceViewportScissorInfoNV {
+    s_type: crate::vk::StructureType,
+    p_next: *const core::ffi::c_void,
+    viewport_scissor2_d: crate::vk::Bool32,
+    viewport_depth_count: crate::External<
         {
             "uint32_t";
             0
         },
     >,
-    pub p_viewport_depths: *const crate::External<
-        {
-            "VkViewport";
-            0
-        },
-    >,
+    p_viewport_depths: *const crate::vk::Viewport,
 }

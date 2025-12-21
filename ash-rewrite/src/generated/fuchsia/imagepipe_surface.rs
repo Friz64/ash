@@ -2,21 +2,11 @@
 #![cfg_attr(rustfmt, rustfmt_skip)]
 //![Vulkan Manual Page](https://docs.vulkan.org/refpages/latest/refpages/source/VK_FUCHSIA_imagepipe_surface.html) · Vulkan extension
 #[repr(C)]
-pub struct VkImagePipeSurfaceCreateInfoFUCHSIA {
-    pub s_type: crate::External<
-        {
-            "VkStructureType";
-            0
-        },
-    >,
-    pub p_next: *const core::ffi::c_void,
-    pub flags: crate::External<
-        {
-            "VkImagePipeSurfaceCreateFlagsFUCHSIA";
-            0
-        },
-    >,
-    pub image_pipe_handle: crate::External<
+pub struct ImagePipeSurfaceCreateInfoFUCHSIA {
+    s_type: crate::vk::StructureType,
+    p_next: *const core::ffi::c_void,
+    flags: crate::vk::ImagePipeSurfaceCreateFlagsFUCHSIA,
+    image_pipe_handle: crate::External<
         {
             "zx_handle_t";
             0

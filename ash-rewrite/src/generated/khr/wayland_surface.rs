@@ -2,27 +2,17 @@
 #![cfg_attr(rustfmt, rustfmt_skip)]
 //![Vulkan Manual Page](https://docs.vulkan.org/refpages/latest/refpages/source/VK_KHR_wayland_surface.html) · Vulkan extension
 #[repr(C)]
-pub struct VkWaylandSurfaceCreateInfoKHR {
-    pub s_type: crate::External<
-        {
-            "VkStructureType";
-            0
-        },
-    >,
-    pub p_next: *const core::ffi::c_void,
-    pub flags: crate::External<
-        {
-            "VkWaylandSurfaceCreateFlagsKHR";
-            0
-        },
-    >,
-    pub display: *mut crate::External<
+pub struct WaylandSurfaceCreateInfoKHR {
+    s_type: crate::vk::StructureType,
+    p_next: *const core::ffi::c_void,
+    flags: crate::vk::WaylandSurfaceCreateFlagsKHR,
+    display: *mut crate::External<
         {
             "wl_display";
             0
         },
     >,
-    pub surface: *mut crate::External<
+    surface: *mut crate::External<
         {
             "wl_surface";
             0

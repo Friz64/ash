@@ -2,27 +2,12 @@
 #![cfg_attr(rustfmt, rustfmt_skip)]
 //![Vulkan Manual Page](https://docs.vulkan.org/refpages/latest/refpages/source/VK_QCOM_image_processing.html) · Vulkan extension
 #[repr(C)]
-pub struct VkImageViewSampleWeightCreateInfoQCOM {
-    pub s_type: crate::External<
-        {
-            "VkStructureType";
-            0
-        },
-    >,
-    pub p_next: *const core::ffi::c_void,
-    pub filter_center: crate::External<
-        {
-            "VkOffset2D";
-            0
-        },
-    >,
-    pub filter_size: crate::External<
-        {
-            "VkExtent2D";
-            0
-        },
-    >,
-    pub num_phases: crate::External<
+pub struct ImageViewSampleWeightCreateInfoQCOM {
+    s_type: crate::vk::StructureType,
+    p_next: *const core::ffi::c_void,
+    filter_center: crate::vk::Offset2D,
+    filter_size: crate::vk::Extent2D,
+    num_phases: crate::External<
         {
             "uint32_t";
             0
@@ -30,64 +15,24 @@ pub struct VkImageViewSampleWeightCreateInfoQCOM {
     >,
 }
 #[repr(C)]
-pub struct VkPhysicalDeviceImageProcessingFeaturesQCOM {
-    pub s_type: crate::External<
-        {
-            "VkStructureType";
-            0
-        },
-    >,
-    pub p_next: *mut core::ffi::c_void,
-    pub texture_sample_weighted: crate::External<
-        {
-            "VkBool32";
-            0
-        },
-    >,
-    pub texture_box_filter: crate::External<
-        {
-            "VkBool32";
-            0
-        },
-    >,
-    pub texture_block_match: crate::External<
-        {
-            "VkBool32";
-            0
-        },
-    >,
+pub struct PhysicalDeviceImageProcessingFeaturesQCOM {
+    s_type: crate::vk::StructureType,
+    p_next: *mut core::ffi::c_void,
+    texture_sample_weighted: crate::vk::Bool32,
+    texture_box_filter: crate::vk::Bool32,
+    texture_block_match: crate::vk::Bool32,
 }
 #[repr(C)]
-pub struct VkPhysicalDeviceImageProcessingPropertiesQCOM {
-    pub s_type: crate::External<
-        {
-            "VkStructureType";
-            0
-        },
-    >,
-    pub p_next: *mut core::ffi::c_void,
-    pub max_weight_filter_phases: crate::External<
+pub struct PhysicalDeviceImageProcessingPropertiesQCOM {
+    s_type: crate::vk::StructureType,
+    p_next: *mut core::ffi::c_void,
+    max_weight_filter_phases: crate::External<
         {
             "uint32_t";
             0
         },
     >,
-    pub max_weight_filter_dimension: crate::External<
-        {
-            "VkExtent2D";
-            0
-        },
-    >,
-    pub max_block_match_region: crate::External<
-        {
-            "VkExtent2D";
-            0
-        },
-    >,
-    pub max_box_filter_block_size: crate::External<
-        {
-            "VkExtent2D";
-            0
-        },
-    >,
+    max_weight_filter_dimension: crate::vk::Extent2D,
+    max_block_match_region: crate::vk::Extent2D,
+    max_box_filter_block_size: crate::vk::Extent2D,
 }

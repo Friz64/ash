@@ -2,52 +2,39 @@
 #![cfg_attr(rustfmt, rustfmt_skip)]
 //![Vulkan Manual Page](https://docs.vulkan.org/refpages/latest/refpages/source/VK_EXT_layer_settings.html) · Vulkan extension
 #[repr(C)]
-pub struct VkLayerSettingsCreateInfoEXT {
-    pub s_type: crate::External<
-        {
-            "VkStructureType";
-            0
-        },
-    >,
-    pub p_next: *const core::ffi::c_void,
-    pub setting_count: crate::External<
+pub struct LayerSettingsCreateInfoEXT {
+    s_type: crate::vk::StructureType,
+    p_next: *const core::ffi::c_void,
+    setting_count: crate::External<
         {
             "uint32_t";
             0
         },
     >,
-    pub p_settings: *const crate::External<
-        {
-            "VkLayerSettingEXT";
-            0
-        },
-    >,
+    p_settings: *const crate::vk::LayerSettingEXT,
 }
 #[repr(C)]
-pub struct VkLayerSettingEXT {
-    pub p_layer_name: *const crate::External<
+pub struct LayerSettingEXT {
+    p_layer_name: *const crate::External<
         {
             "char";
             0
         },
     >,
-    pub p_setting_name: *const crate::External<
+    p_setting_name: *const crate::External<
         {
             "char";
             0
         },
     >,
-    pub _type: crate::External<
-        {
-            "VkLayerSettingTypeEXT";
-            0
-        },
-    >,
-    pub value_count: crate::External<
+    _type: crate::vk::LayerSettingTypeEXT,
+    value_count: crate::External<
         {
             "uint32_t";
             0
         },
     >,
-    pub p_values: *const core::ffi::c_void,
+    p_values: *const core::ffi::c_void,
 }
+#[repr(C)]
+pub struct LayerSettingTypeEXT {}

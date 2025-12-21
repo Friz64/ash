@@ -2,80 +2,41 @@
 #![cfg_attr(rustfmt, rustfmt_skip)]
 //![Vulkan Manual Page](https://docs.vulkan.org/refpages/latest/refpages/source/VK_KHR_surface.html) · Vulkan extension
 #[repr(C)]
-pub struct VkSurfaceCapabilitiesKHR {
-    pub min_image_count: crate::External<
+pub struct SurfaceCapabilitiesKHR {
+    min_image_count: crate::External<
         {
             "uint32_t";
             0
         },
     >,
-    pub max_image_count: crate::External<
+    max_image_count: crate::External<
         {
             "uint32_t";
             0
         },
     >,
-    pub current_extent: crate::External<
-        {
-            "VkExtent2D";
-            0
-        },
-    >,
-    pub min_image_extent: crate::External<
-        {
-            "VkExtent2D";
-            0
-        },
-    >,
-    pub max_image_extent: crate::External<
-        {
-            "VkExtent2D";
-            0
-        },
-    >,
-    pub max_image_array_layers: crate::External<
+    current_extent: crate::vk::Extent2D,
+    min_image_extent: crate::vk::Extent2D,
+    max_image_extent: crate::vk::Extent2D,
+    max_image_array_layers: crate::External<
         {
             "uint32_t";
             0
         },
     >,
-    pub supported_transforms: crate::External<
-        {
-            "VkSurfaceTransformFlagsKHR";
-            0
-        },
-    >,
-    pub current_transform: crate::External<
-        {
-            "VkSurfaceTransformFlagBitsKHR";
-            0
-        },
-    >,
-    pub supported_composite_alpha: crate::External<
-        {
-            "VkCompositeAlphaFlagsKHR";
-            0
-        },
-    >,
-    pub supported_usage_flags: crate::External<
-        {
-            "VkImageUsageFlags";
-            0
-        },
-    >,
+    supported_transforms: crate::vk::SurfaceTransformFlagsKHR,
+    current_transform: crate::vk::SurfaceTransformFlagBitsKHR,
+    supported_composite_alpha: crate::vk::CompositeAlphaFlagsKHR,
+    supported_usage_flags: crate::vk::ImageUsageFlags,
 }
 #[repr(C)]
-pub struct VkSurfaceFormatKHR {
-    pub format: crate::External<
-        {
-            "VkFormat";
-            0
-        },
-    >,
-    pub color_space: crate::External<
-        {
-            "VkColorSpaceKHR";
-            0
-        },
-    >,
+pub struct SurfaceFormatKHR {
+    format: crate::vk::Format,
+    color_space: crate::vk::ColorSpaceKHR,
 }
+#[repr(C)]
+pub struct PresentModeKHR {}
+#[repr(C)]
+pub struct ColorSpaceKHR {}
+#[repr(C)]
+pub struct SurfaceKHR {}

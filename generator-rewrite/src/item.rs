@@ -1,78 +1,60 @@
-use std::ops::Deref;
-
-use crate::{item, output::CodeMap, util};
+use crate::output::CodeMap;
 use analysis::{
-    decl::{BaseTy, Mutability, Ty},
-    item::{ItemInfo, Items},
+    item::{Items, TypeItem},
+    name::TypeName,
+    to_rust::NameTranslate,
 };
 use proc_macro2::TokenStream;
 use quote::quote;
 use syn::Ident;
 use tracing::debug;
 
+mod basetype;
+mod enumeration;
+mod handle;
 mod structure;
 
 pub trait Code {
-    fn code(&self) -> CodeMap;
+    fn code(&self, ctx: &Context) -> CodeMap;
+}
+
+impl Code for TypeItem {
+    fn code(&self, ctx: &Context) -> CodeMap {
+        match self {
+            TypeItem::Structure(structure) => structure.code(ctx),
+            TypeItem::Enumeration(enumeration) => enumeration.code(ctx),
+            TypeItem::BaseType(basetype) => basetype.code(ctx),
+            TypeItem::Handle(handle) => handle.code(ctx),
+        }
+    }
 }
 
 impl CodeMap {
     pub fn extend_from_items<'a, C: Code + 'a>(
         &mut self,
+        ctx: &Context,
         item_iter: impl IntoIterator<Item = &'a C>,
     ) {
         for item in item_iter {
-            self.extend(item.code());
+            self.extend(item.code(ctx));
         }
     }
 }
 
-fn ty_to_rust(ty: &Ty) -> TokenStream {
-    match ty {
-        Ty::Item(item) => {
-            let ident: Ident = syn::parse_str(item.name()).unwrap();
-            quote! { crate::vk::#ident }
-        }
-        Ty::Base(base_ty) => match base_ty {
-            BaseTy::Void => quote! { core::ffi::c_void },
-        },
-        Ty::External(external) => quote! { crate::External<{ #external; 0 }> },
-        Ty::Ptr(ty, mutability) => {
-            let mutability = match mutability {
-                Mutability::Not => quote! { const },
-                Mutability::Mut => quote! { mut },
-            };
+pub struct Context {}
 
-            let ty = ty_to_rust(ty);
-            quote! { * #mutability #ty }
-        }
-        Ty::Ref(ty, mutability) => {
-            let mutability = match mutability {
-                Mutability::Not => quote! {},
-                Mutability::Mut => quote! { mut },
-            };
+impl NameTranslate for Context {
+    fn variable_to_rust(&self, raw: &'static str) -> Ident {
+        crate::to_snake_case_escape_ident(raw)
+    }
 
-            let ty = ty_to_rust(ty);
-            quote! { & #mutability #ty }
-        }
-        Ty::Array(ty, _array_len) => {
-            let ty = ty_to_rust(ty);
-            quote! { [#ty; 1337] }
-        }
-        Ty::Func { ret_ty, params } => {
-            let ret = ret_ty.map(|ty| {
-                let ty = ty_to_rust(ty);
-                quote! { -> #ty }
-            });
+    fn spec_type_to_rust(&self, name: TypeName) -> TokenStream {
+        let ident: Ident = syn::parse_str(name.prefix_trimmed()).unwrap();
+        quote! { crate::vk::#ident }
+    }
 
-            let params = params.iter().map(|decl| {
-                let name = util::to_snake_case_escape_ident(decl.name);
-                let ty = item::ty_to_rust(&decl.ty);
-                quote! { #name: #ty, }
-            });
-
-            quote! { unsafe extern "system" fn( #( #params )* ) #ret }
-        }
+    fn ext_type_to_rust(&self, raw: &'static str) -> TokenStream {
+        quote! { crate::External<{ #raw; 0 }> }
     }
 }
 
@@ -81,7 +63,8 @@ pub fn build_items_codemap(items: &Items) -> CodeMap {
     let mut codemap = CodeMap::default();
 
     debug!("generating structures code");
-    codemap.extend_from_items(items.structures.iter().map(Deref::deref));
+    let ctx = Context {};
+    codemap.extend_from_items(&ctx, items.types.values());
 
     codemap
 }

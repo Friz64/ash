@@ -2,27 +2,17 @@
 #![cfg_attr(rustfmt, rustfmt_skip)]
 //![Vulkan Manual Page](https://docs.vulkan.org/refpages/latest/refpages/source/VK_QNX_screen_surface.html) · Vulkan extension
 #[repr(C)]
-pub struct VkScreenSurfaceCreateInfoQNX {
-    pub s_type: crate::External<
-        {
-            "VkStructureType";
-            0
-        },
-    >,
-    pub p_next: *const core::ffi::c_void,
-    pub flags: crate::External<
-        {
-            "VkScreenSurfaceCreateFlagsQNX";
-            0
-        },
-    >,
-    pub context: *mut crate::External<
+pub struct ScreenSurfaceCreateInfoQNX {
+    s_type: crate::vk::StructureType,
+    p_next: *const core::ffi::c_void,
+    flags: crate::vk::ScreenSurfaceCreateFlagsQNX,
+    context: *mut crate::External<
         {
             "_screen_context";
             0
         },
     >,
-    pub window: *mut crate::External<
+    window: *mut crate::External<
         {
             "_screen_window";
             0

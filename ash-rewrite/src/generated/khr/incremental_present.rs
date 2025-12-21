@@ -2,57 +2,32 @@
 #![cfg_attr(rustfmt, rustfmt_skip)]
 //![Vulkan Manual Page](https://docs.vulkan.org/refpages/latest/refpages/source/VK_KHR_incremental_present.html) · Vulkan extension
 #[repr(C)]
-pub struct VkPresentRegionsKHR {
-    pub s_type: crate::External<
-        {
-            "VkStructureType";
-            0
-        },
-    >,
-    pub p_next: *const core::ffi::c_void,
-    pub swapchain_count: crate::External<
+pub struct PresentRegionsKHR {
+    s_type: crate::vk::StructureType,
+    p_next: *const core::ffi::c_void,
+    swapchain_count: crate::External<
         {
             "uint32_t";
             0
         },
     >,
-    pub p_regions: *const crate::External<
-        {
-            "VkPresentRegionKHR";
-            0
-        },
-    >,
+    p_regions: *const crate::vk::PresentRegionKHR,
 }
 #[repr(C)]
-pub struct VkPresentRegionKHR {
-    pub rectangle_count: crate::External<
+pub struct PresentRegionKHR {
+    rectangle_count: crate::External<
         {
             "uint32_t";
             0
         },
     >,
-    pub p_rectangles: *const crate::External<
-        {
-            "VkRectLayerKHR";
-            0
-        },
-    >,
+    p_rectangles: *const crate::vk::RectLayerKHR,
 }
 #[repr(C)]
-pub struct VkRectLayerKHR {
-    pub offset: crate::External<
-        {
-            "VkOffset2D";
-            0
-        },
-    >,
-    pub extent: crate::External<
-        {
-            "VkExtent2D";
-            0
-        },
-    >,
-    pub layer: crate::External<
+pub struct RectLayerKHR {
+    offset: crate::vk::Offset2D,
+    extent: crate::vk::Extent2D,
+    layer: crate::External<
         {
             "uint32_t";
             0

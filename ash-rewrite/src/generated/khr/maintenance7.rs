@@ -2,73 +2,48 @@
 #![cfg_attr(rustfmt, rustfmt_skip)]
 //![Vulkan Manual Page](https://docs.vulkan.org/refpages/latest/refpages/source/VK_KHR_maintenance7.html) · Vulkan extension
 #[repr(C)]
-pub struct VkPhysicalDeviceMaintenance7FeaturesKHR {
-    pub s_type: crate::External<
-        {
-            "VkStructureType";
-            0
-        },
-    >,
-    pub p_next: *mut core::ffi::c_void,
-    pub maintenance7: crate::External<
-        {
-            "VkBool32";
-            0
-        },
-    >,
+pub struct PhysicalDeviceMaintenance7FeaturesKHR {
+    s_type: crate::vk::StructureType,
+    p_next: *mut core::ffi::c_void,
+    maintenance7: crate::vk::Bool32,
 }
 #[repr(C)]
-pub struct VkPhysicalDeviceMaintenance7PropertiesKHR {
-    pub s_type: crate::External<
-        {
-            "VkStructureType";
-            0
-        },
-    >,
-    pub p_next: *mut core::ffi::c_void,
-    pub robust_fragment_shading_rate_attachment_access: crate::External<
-        {
-            "VkBool32";
-            0
-        },
-    >,
-    pub separate_depth_stencil_attachment_access: crate::External<
-        {
-            "VkBool32";
-            0
-        },
-    >,
-    pub max_descriptor_set_total_uniform_buffers_dynamic: crate::External<
+pub struct PhysicalDeviceMaintenance7PropertiesKHR {
+    s_type: crate::vk::StructureType,
+    p_next: *mut core::ffi::c_void,
+    robust_fragment_shading_rate_attachment_access: crate::vk::Bool32,
+    separate_depth_stencil_attachment_access: crate::vk::Bool32,
+    max_descriptor_set_total_uniform_buffers_dynamic: crate::External<
         {
             "uint32_t";
             0
         },
     >,
-    pub max_descriptor_set_total_storage_buffers_dynamic: crate::External<
+    max_descriptor_set_total_storage_buffers_dynamic: crate::External<
         {
             "uint32_t";
             0
         },
     >,
-    pub max_descriptor_set_total_buffers_dynamic: crate::External<
+    max_descriptor_set_total_buffers_dynamic: crate::External<
         {
             "uint32_t";
             0
         },
     >,
-    pub max_descriptor_set_update_after_bind_total_uniform_buffers_dynamic: crate::External<
+    max_descriptor_set_update_after_bind_total_uniform_buffers_dynamic: crate::External<
         {
             "uint32_t";
             0
         },
     >,
-    pub max_descriptor_set_update_after_bind_total_storage_buffers_dynamic: crate::External<
+    max_descriptor_set_update_after_bind_total_storage_buffers_dynamic: crate::External<
         {
             "uint32_t";
             0
         },
     >,
-    pub max_descriptor_set_update_after_bind_total_buffers_dynamic: crate::External<
+    max_descriptor_set_update_after_bind_total_buffers_dynamic: crate::External<
         {
             "uint32_t";
             0
@@ -76,55 +51,35 @@ pub struct VkPhysicalDeviceMaintenance7PropertiesKHR {
     >,
 }
 #[repr(C)]
-pub struct VkPhysicalDeviceLayeredApiPropertiesListKHR {
-    pub s_type: crate::External<
-        {
-            "VkStructureType";
-            0
-        },
-    >,
-    pub p_next: *mut core::ffi::c_void,
-    pub layered_api_count: crate::External<
+pub struct PhysicalDeviceLayeredApiPropertiesListKHR {
+    s_type: crate::vk::StructureType,
+    p_next: *mut core::ffi::c_void,
+    layered_api_count: crate::External<
         {
             "uint32_t";
             0
         },
     >,
-    pub p_layered_apis: *mut crate::External<
-        {
-            "VkPhysicalDeviceLayeredApiPropertiesKHR";
-            0
-        },
-    >,
+    p_layered_apis: *mut crate::vk::PhysicalDeviceLayeredApiPropertiesKHR,
 }
 #[repr(C)]
-pub struct VkPhysicalDeviceLayeredApiPropertiesKHR {
-    pub s_type: crate::External<
-        {
-            "VkStructureType";
-            0
-        },
-    >,
-    pub p_next: *mut core::ffi::c_void,
-    pub vendor_id: crate::External<
+pub struct PhysicalDeviceLayeredApiPropertiesKHR {
+    s_type: crate::vk::StructureType,
+    p_next: *mut core::ffi::c_void,
+    vendor_id: crate::External<
         {
             "uint32_t";
             0
         },
     >,
-    pub device_id: crate::External<
+    device_id: crate::External<
         {
             "uint32_t";
             0
         },
     >,
-    pub layered_api: crate::External<
-        {
-            "VkPhysicalDeviceLayeredApiKHR";
-            0
-        },
-    >,
-    pub device_name: [crate::External<
+    layered_api: crate::vk::PhysicalDeviceLayeredApiKHR,
+    device_name: [crate::External<
         {
             "char";
             0
@@ -132,18 +87,10 @@ pub struct VkPhysicalDeviceLayeredApiPropertiesKHR {
     >; 1337],
 }
 #[repr(C)]
-pub struct VkPhysicalDeviceLayeredApiVulkanPropertiesKHR {
-    pub s_type: crate::External<
-        {
-            "VkStructureType";
-            0
-        },
-    >,
-    pub p_next: *mut core::ffi::c_void,
-    pub properties: crate::External<
-        {
-            "VkPhysicalDeviceProperties2";
-            0
-        },
-    >,
+pub struct PhysicalDeviceLayeredApiVulkanPropertiesKHR {
+    s_type: crate::vk::StructureType,
+    p_next: *mut core::ffi::c_void,
+    properties: crate::vk::PhysicalDeviceProperties2,
 }
+#[repr(C)]
+pub struct PhysicalDeviceLayeredApiKHR {}

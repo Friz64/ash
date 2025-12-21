@@ -2,40 +2,20 @@
 #![cfg_attr(rustfmt, rustfmt_skip)]
 //![Vulkan Manual Page](https://docs.vulkan.org/refpages/latest/refpages/source/VK_QCOM_multiview_per_view_render_areas.html) · Vulkan extension
 #[repr(C)]
-pub struct VkPhysicalDeviceMultiviewPerViewRenderAreasFeaturesQCOM {
-    pub s_type: crate::External<
-        {
-            "VkStructureType";
-            0
-        },
-    >,
-    pub p_next: *mut core::ffi::c_void,
-    pub multiview_per_view_render_areas: crate::External<
-        {
-            "VkBool32";
-            0
-        },
-    >,
+pub struct PhysicalDeviceMultiviewPerViewRenderAreasFeaturesQCOM {
+    s_type: crate::vk::StructureType,
+    p_next: *mut core::ffi::c_void,
+    multiview_per_view_render_areas: crate::vk::Bool32,
 }
 #[repr(C)]
-pub struct VkMultiviewPerViewRenderAreasRenderPassBeginInfoQCOM {
-    pub s_type: crate::External<
-        {
-            "VkStructureType";
-            0
-        },
-    >,
-    pub p_next: *const core::ffi::c_void,
-    pub per_view_render_area_count: crate::External<
+pub struct MultiviewPerViewRenderAreasRenderPassBeginInfoQCOM {
+    s_type: crate::vk::StructureType,
+    p_next: *const core::ffi::c_void,
+    per_view_render_area_count: crate::External<
         {
             "uint32_t";
             0
         },
     >,
-    pub p_per_view_render_areas: *const crate::External<
-        {
-            "VkRect2D";
-            0
-        },
-    >,
+    p_per_view_render_areas: *const crate::vk::Rect2D,
 }

@@ -2,21 +2,11 @@
 #![cfg_attr(rustfmt, rustfmt_skip)]
 //![Vulkan Manual Page](https://docs.vulkan.org/refpages/latest/refpages/source/VK_NV_external_memory_win32.html) · Vulkan extension
 #[repr(C)]
-pub struct VkImportMemoryWin32HandleInfoNV {
-    pub s_type: crate::External<
-        {
-            "VkStructureType";
-            0
-        },
-    >,
-    pub p_next: *const core::ffi::c_void,
-    pub handle_type: crate::External<
-        {
-            "VkExternalMemoryHandleTypeFlagsNV";
-            0
-        },
-    >,
-    pub handle: crate::External<
+pub struct ImportMemoryWin32HandleInfoNV {
+    s_type: crate::vk::StructureType,
+    p_next: *const core::ffi::c_void,
+    handle_type: crate::vk::ExternalMemoryHandleTypeFlagsNV,
+    handle: crate::External<
         {
             "HANDLE";
             0
@@ -24,21 +14,16 @@ pub struct VkImportMemoryWin32HandleInfoNV {
     >,
 }
 #[repr(C)]
-pub struct VkExportMemoryWin32HandleInfoNV {
-    pub s_type: crate::External<
-        {
-            "VkStructureType";
-            0
-        },
-    >,
-    pub p_next: *const core::ffi::c_void,
-    pub p_attributes: *const crate::External<
+pub struct ExportMemoryWin32HandleInfoNV {
+    s_type: crate::vk::StructureType,
+    p_next: *const core::ffi::c_void,
+    p_attributes: *const crate::External<
         {
             "SECURITY_ATTRIBUTES";
             0
         },
     >,
-    pub dw_access: crate::External<
+    dw_access: crate::External<
         {
             "DWORD";
             0

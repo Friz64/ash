@@ -2,51 +2,36 @@
 #![cfg_attr(rustfmt, rustfmt_skip)]
 //![Vulkan Manual Page](https://docs.vulkan.org/refpages/latest/refpages/source/VK_NV_win32_keyed_mutex.html) · Vulkan extension
 #[repr(C)]
-pub struct VkWin32KeyedMutexAcquireReleaseInfoNV {
-    pub s_type: crate::External<
-        {
-            "VkStructureType";
-            0
-        },
-    >,
-    pub p_next: *const core::ffi::c_void,
-    pub acquire_count: crate::External<
+pub struct Win32KeyedMutexAcquireReleaseInfoNV {
+    s_type: crate::vk::StructureType,
+    p_next: *const core::ffi::c_void,
+    acquire_count: crate::External<
         {
             "uint32_t";
             0
         },
     >,
-    pub p_acquire_syncs: *const crate::External<
-        {
-            "VkDeviceMemory";
-            0
-        },
-    >,
-    pub p_acquire_keys: *const crate::External<
+    p_acquire_syncs: *const crate::vk::DeviceMemory,
+    p_acquire_keys: *const crate::External<
         {
             "uint64_t";
             0
         },
     >,
-    pub p_acquire_timeout_milliseconds: *const crate::External<
+    p_acquire_timeout_milliseconds: *const crate::External<
         {
             "uint32_t";
             0
         },
     >,
-    pub release_count: crate::External<
+    release_count: crate::External<
         {
             "uint32_t";
             0
         },
     >,
-    pub p_release_syncs: *const crate::External<
-        {
-            "VkDeviceMemory";
-            0
-        },
-    >,
-    pub p_release_keys: *const crate::External<
+    p_release_syncs: *const crate::vk::DeviceMemory,
+    p_release_keys: *const crate::External<
         {
             "uint64_t";
             0

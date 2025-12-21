@@ -2,52 +2,24 @@
 #![cfg_attr(rustfmt, rustfmt_skip)]
 //![Vulkan Manual Page](https://docs.vulkan.org/refpages/latest/refpages/source/VK_LUNARG_direct_driver_loading.html) · Vulkan extension
 #[repr(C)]
-pub struct VkDirectDriverLoadingInfoLUNARG {
-    pub s_type: crate::External<
-        {
-            "VkStructureType";
-            0
-        },
-    >,
-    pub p_next: *mut core::ffi::c_void,
-    pub flags: crate::External<
-        {
-            "VkDirectDriverLoadingFlagsLUNARG";
-            0
-        },
-    >,
-    pub pfn_get_instance_proc_addr: crate::External<
-        {
-            "PFN_vkGetInstanceProcAddrLUNARG";
-            0
-        },
-    >,
+pub struct DirectDriverLoadingInfoLUNARG {
+    s_type: crate::vk::StructureType,
+    p_next: *mut core::ffi::c_void,
+    flags: crate::vk::DirectDriverLoadingFlagsLUNARG,
+    pfn_get_instance_proc_addr: crate::vk::PFN_vkGetInstanceProcAddrLUNARG,
 }
 #[repr(C)]
-pub struct VkDirectDriverLoadingListLUNARG {
-    pub s_type: crate::External<
-        {
-            "VkStructureType";
-            0
-        },
-    >,
-    pub p_next: *const core::ffi::c_void,
-    pub mode: crate::External<
-        {
-            "VkDirectDriverLoadingModeLUNARG";
-            0
-        },
-    >,
-    pub driver_count: crate::External<
+pub struct DirectDriverLoadingListLUNARG {
+    s_type: crate::vk::StructureType,
+    p_next: *const core::ffi::c_void,
+    mode: crate::vk::DirectDriverLoadingModeLUNARG,
+    driver_count: crate::External<
         {
             "uint32_t";
             0
         },
     >,
-    pub p_drivers: *const crate::External<
-        {
-            "VkDirectDriverLoadingInfoLUNARG";
-            0
-        },
-    >,
+    p_drivers: *const crate::vk::DirectDriverLoadingInfoLUNARG,
 }
+#[repr(C)]
+pub struct DirectDriverLoadingModeLUNARG {}

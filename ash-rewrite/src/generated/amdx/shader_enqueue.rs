@@ -2,51 +2,46 @@
 #![cfg_attr(rustfmt, rustfmt_skip)]
 //![Vulkan Manual Page](https://docs.vulkan.org/refpages/latest/refpages/source/VK_AMDX_shader_enqueue.html) · Vulkan extension
 #[repr(C)]
-pub struct VkPhysicalDeviceShaderEnqueuePropertiesAMDX {
-    pub s_type: crate::External<
-        {
-            "VkStructureType";
-            0
-        },
-    >,
-    pub p_next: *mut core::ffi::c_void,
-    pub max_execution_graph_depth: crate::External<
+pub struct PhysicalDeviceShaderEnqueuePropertiesAMDX {
+    s_type: crate::vk::StructureType,
+    p_next: *mut core::ffi::c_void,
+    max_execution_graph_depth: crate::External<
         {
             "uint32_t";
             0
         },
     >,
-    pub max_execution_graph_shader_output_nodes: crate::External<
+    max_execution_graph_shader_output_nodes: crate::External<
         {
             "uint32_t";
             0
         },
     >,
-    pub max_execution_graph_shader_payload_size: crate::External<
+    max_execution_graph_shader_payload_size: crate::External<
         {
             "uint32_t";
             0
         },
     >,
-    pub max_execution_graph_shader_payload_count: crate::External<
+    max_execution_graph_shader_payload_count: crate::External<
         {
             "uint32_t";
             0
         },
     >,
-    pub execution_graph_dispatch_address_alignment: crate::External<
+    execution_graph_dispatch_address_alignment: crate::External<
         {
             "uint32_t";
             0
         },
     >,
-    pub max_execution_graph_workgroup_count: [crate::External<
+    max_execution_graph_workgroup_count: [crate::External<
         {
             "uint32_t";
             0
         },
     >; 1337],
-    pub max_execution_graph_workgroups: crate::External<
+    max_execution_graph_workgroups: crate::External<
         {
             "uint32_t";
             0
@@ -54,73 +49,28 @@ pub struct VkPhysicalDeviceShaderEnqueuePropertiesAMDX {
     >,
 }
 #[repr(C)]
-pub struct VkPhysicalDeviceShaderEnqueueFeaturesAMDX {
-    pub s_type: crate::External<
-        {
-            "VkStructureType";
-            0
-        },
-    >,
-    pub p_next: *mut core::ffi::c_void,
-    pub shader_enqueue: crate::External<
-        {
-            "VkBool32";
-            0
-        },
-    >,
-    pub shader_mesh_enqueue: crate::External<
-        {
-            "VkBool32";
-            0
-        },
-    >,
+pub struct PhysicalDeviceShaderEnqueueFeaturesAMDX {
+    s_type: crate::vk::StructureType,
+    p_next: *mut core::ffi::c_void,
+    shader_enqueue: crate::vk::Bool32,
+    shader_mesh_enqueue: crate::vk::Bool32,
 }
 #[repr(C)]
-pub struct VkExecutionGraphPipelineCreateInfoAMDX {
-    pub s_type: crate::External<
-        {
-            "VkStructureType";
-            0
-        },
-    >,
-    pub p_next: *const core::ffi::c_void,
-    pub flags: crate::External<
-        {
-            "VkPipelineCreateFlags";
-            0
-        },
-    >,
-    pub stage_count: crate::External<
+pub struct ExecutionGraphPipelineCreateInfoAMDX {
+    s_type: crate::vk::StructureType,
+    p_next: *const core::ffi::c_void,
+    flags: crate::vk::PipelineCreateFlags,
+    stage_count: crate::External<
         {
             "uint32_t";
             0
         },
     >,
-    pub p_stages: *const crate::External<
-        {
-            "VkPipelineShaderStageCreateInfo";
-            0
-        },
-    >,
-    pub p_library_info: *const crate::External<
-        {
-            "VkPipelineLibraryCreateInfoKHR";
-            0
-        },
-    >,
-    pub layout: crate::External<
-        {
-            "VkPipelineLayout";
-            0
-        },
-    >,
-    pub base_pipeline_handle: crate::External<
-        {
-            "VkPipeline";
-            0
-        },
-    >,
-    pub base_pipeline_index: crate::External<
+    p_stages: *const crate::vk::PipelineShaderStageCreateInfo,
+    p_library_info: *const crate::vk::PipelineLibraryCreateInfoKHR,
+    layout: crate::vk::PipelineLayout,
+    base_pipeline_handle: crate::vk::Pipeline,
+    base_pipeline_index: crate::External<
         {
             "int32_t";
             0
@@ -128,21 +78,16 @@ pub struct VkExecutionGraphPipelineCreateInfoAMDX {
     >,
 }
 #[repr(C)]
-pub struct VkPipelineShaderStageNodeCreateInfoAMDX {
-    pub s_type: crate::External<
-        {
-            "VkStructureType";
-            0
-        },
-    >,
-    pub p_next: *const core::ffi::c_void,
-    pub p_name: *const crate::External<
+pub struct PipelineShaderStageNodeCreateInfoAMDX {
+    s_type: crate::vk::StructureType,
+    p_next: *const core::ffi::c_void,
+    p_name: *const crate::External<
         {
             "char";
             0
         },
     >,
-    pub index: crate::External<
+    index: crate::External<
         {
             "uint32_t";
             0
@@ -150,54 +95,29 @@ pub struct VkPipelineShaderStageNodeCreateInfoAMDX {
     >,
 }
 #[repr(C)]
-pub struct VkExecutionGraphPipelineScratchSizeAMDX {
-    pub s_type: crate::External<
-        {
-            "VkStructureType";
-            0
-        },
-    >,
-    pub p_next: *mut core::ffi::c_void,
-    pub min_size: crate::External<
-        {
-            "VkDeviceSize";
-            0
-        },
-    >,
-    pub max_size: crate::External<
-        {
-            "VkDeviceSize";
-            0
-        },
-    >,
-    pub size_granularity: crate::External<
-        {
-            "VkDeviceSize";
-            0
-        },
-    >,
+pub struct ExecutionGraphPipelineScratchSizeAMDX {
+    s_type: crate::vk::StructureType,
+    p_next: *mut core::ffi::c_void,
+    min_size: crate::vk::DeviceSize,
+    max_size: crate::vk::DeviceSize,
+    size_granularity: crate::vk::DeviceSize,
 }
 #[repr(C)]
-pub struct VkDispatchGraphInfoAMDX {
-    pub node_index: crate::External<
+pub struct DispatchGraphInfoAMDX {
+    node_index: crate::External<
         {
             "uint32_t";
             0
         },
     >,
-    pub payload_count: crate::External<
+    payload_count: crate::External<
         {
             "uint32_t";
             0
         },
     >,
-    pub payloads: crate::External<
-        {
-            "VkDeviceOrHostAddressConstAMDX";
-            0
-        },
-    >,
-    pub payload_stride: crate::External<
+    payloads: crate::vk::DeviceOrHostAddressConstAMDX,
+    payload_stride: crate::External<
         {
             "uint64_t";
             0
@@ -205,20 +125,15 @@ pub struct VkDispatchGraphInfoAMDX {
     >,
 }
 #[repr(C)]
-pub struct VkDispatchGraphCountInfoAMDX {
-    pub count: crate::External<
+pub struct DispatchGraphCountInfoAMDX {
+    count: crate::External<
         {
             "uint32_t";
             0
         },
     >,
-    pub infos: crate::External<
-        {
-            "VkDeviceOrHostAddressConstAMDX";
-            0
-        },
-    >,
-    pub stride: crate::External<
+    infos: crate::vk::DeviceOrHostAddressConstAMDX,
+    stride: crate::External<
         {
             "uint64_t";
             0

@@ -2,84 +2,19 @@
 #![cfg_attr(rustfmt, rustfmt_skip)]
 //![Vulkan Manual Page](https://docs.vulkan.org/refpages/latest/refpages/source/VK_EXT_shader_atomic_float2.html) · Vulkan extension
 #[repr(C)]
-pub struct VkPhysicalDeviceShaderAtomicFloat2FeaturesEXT {
-    pub s_type: crate::External<
-        {
-            "VkStructureType";
-            0
-        },
-    >,
-    pub p_next: *mut core::ffi::c_void,
-    pub shader_buffer_float16_atomics: crate::External<
-        {
-            "VkBool32";
-            0
-        },
-    >,
-    pub shader_buffer_float16_atomic_add: crate::External<
-        {
-            "VkBool32";
-            0
-        },
-    >,
-    pub shader_buffer_float16_atomic_min_max: crate::External<
-        {
-            "VkBool32";
-            0
-        },
-    >,
-    pub shader_buffer_float32_atomic_min_max: crate::External<
-        {
-            "VkBool32";
-            0
-        },
-    >,
-    pub shader_buffer_float64_atomic_min_max: crate::External<
-        {
-            "VkBool32";
-            0
-        },
-    >,
-    pub shader_shared_float16_atomics: crate::External<
-        {
-            "VkBool32";
-            0
-        },
-    >,
-    pub shader_shared_float16_atomic_add: crate::External<
-        {
-            "VkBool32";
-            0
-        },
-    >,
-    pub shader_shared_float16_atomic_min_max: crate::External<
-        {
-            "VkBool32";
-            0
-        },
-    >,
-    pub shader_shared_float32_atomic_min_max: crate::External<
-        {
-            "VkBool32";
-            0
-        },
-    >,
-    pub shader_shared_float64_atomic_min_max: crate::External<
-        {
-            "VkBool32";
-            0
-        },
-    >,
-    pub shader_image_float32_atomic_min_max: crate::External<
-        {
-            "VkBool32";
-            0
-        },
-    >,
-    pub sparse_image_float32_atomic_min_max: crate::External<
-        {
-            "VkBool32";
-            0
-        },
-    >,
+pub struct PhysicalDeviceShaderAtomicFloat2FeaturesEXT {
+    s_type: crate::vk::StructureType,
+    p_next: *mut core::ffi::c_void,
+    shader_buffer_float16_atomics: crate::vk::Bool32,
+    shader_buffer_float16_atomic_add: crate::vk::Bool32,
+    shader_buffer_float16_atomic_min_max: crate::vk::Bool32,
+    shader_buffer_float32_atomic_min_max: crate::vk::Bool32,
+    shader_buffer_float64_atomic_min_max: crate::vk::Bool32,
+    shader_shared_float16_atomics: crate::vk::Bool32,
+    shader_shared_float16_atomic_add: crate::vk::Bool32,
+    shader_shared_float16_atomic_min_max: crate::vk::Bool32,
+    shader_shared_float32_atomic_min_max: crate::vk::Bool32,
+    shader_shared_float64_atomic_min_max: crate::vk::Bool32,
+    shader_image_float32_atomic_min_max: crate::vk::Bool32,
+    sparse_image_float32_atomic_min_max: crate::vk::Bool32,
 }

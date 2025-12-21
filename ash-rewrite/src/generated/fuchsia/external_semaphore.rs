@@ -2,33 +2,13 @@
 #![cfg_attr(rustfmt, rustfmt_skip)]
 //![Vulkan Manual Page](https://docs.vulkan.org/refpages/latest/refpages/source/VK_FUCHSIA_external_semaphore.html) · Vulkan extension
 #[repr(C)]
-pub struct VkImportSemaphoreZirconHandleInfoFUCHSIA {
-    pub s_type: crate::External<
-        {
-            "VkStructureType";
-            0
-        },
-    >,
-    pub p_next: *const core::ffi::c_void,
-    pub semaphore: crate::External<
-        {
-            "VkSemaphore";
-            0
-        },
-    >,
-    pub flags: crate::External<
-        {
-            "VkSemaphoreImportFlags";
-            0
-        },
-    >,
-    pub handle_type: crate::External<
-        {
-            "VkExternalSemaphoreHandleTypeFlagBits";
-            0
-        },
-    >,
-    pub zircon_handle: crate::External<
+pub struct ImportSemaphoreZirconHandleInfoFUCHSIA {
+    s_type: crate::vk::StructureType,
+    p_next: *const core::ffi::c_void,
+    semaphore: crate::vk::Semaphore,
+    flags: crate::vk::SemaphoreImportFlags,
+    handle_type: crate::vk::ExternalSemaphoreHandleTypeFlagBits,
+    zircon_handle: crate::External<
         {
             "zx_handle_t";
             0
@@ -36,24 +16,9 @@ pub struct VkImportSemaphoreZirconHandleInfoFUCHSIA {
     >,
 }
 #[repr(C)]
-pub struct VkSemaphoreGetZirconHandleInfoFUCHSIA {
-    pub s_type: crate::External<
-        {
-            "VkStructureType";
-            0
-        },
-    >,
-    pub p_next: *const core::ffi::c_void,
-    pub semaphore: crate::External<
-        {
-            "VkSemaphore";
-            0
-        },
-    >,
-    pub handle_type: crate::External<
-        {
-            "VkExternalSemaphoreHandleTypeFlagBits";
-            0
-        },
-    >,
+pub struct SemaphoreGetZirconHandleInfoFUCHSIA {
+    s_type: crate::vk::StructureType,
+    p_next: *const core::ffi::c_void,
+    semaphore: crate::vk::Semaphore,
+    handle_type: crate::vk::ExternalSemaphoreHandleTypeFlagBits,
 }

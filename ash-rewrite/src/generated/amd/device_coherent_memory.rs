@@ -2,18 +2,8 @@
 #![cfg_attr(rustfmt, rustfmt_skip)]
 //![Vulkan Manual Page](https://docs.vulkan.org/refpages/latest/refpages/source/VK_AMD_device_coherent_memory.html) · Vulkan extension
 #[repr(C)]
-pub struct VkPhysicalDeviceCoherentMemoryFeaturesAMD {
-    pub s_type: crate::External<
-        {
-            "VkStructureType";
-            0
-        },
-    >,
-    pub p_next: *mut core::ffi::c_void,
-    pub device_coherent_memory: crate::External<
-        {
-            "VkBool32";
-            0
-        },
-    >,
+pub struct PhysicalDeviceCoherentMemoryFeaturesAMD {
+    s_type: crate::vk::StructureType,
+    p_next: *mut core::ffi::c_void,
+    device_coherent_memory: crate::vk::Bool32,
 }

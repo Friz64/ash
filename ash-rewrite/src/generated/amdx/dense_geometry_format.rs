@@ -2,70 +2,42 @@
 #![cfg_attr(rustfmt, rustfmt_skip)]
 //![Vulkan Manual Page](https://docs.vulkan.org/refpages/latest/refpages/source/VK_AMDX_dense_geometry_format.html) · Vulkan extension
 #[repr(C)]
-pub struct VkPhysicalDeviceDenseGeometryFormatFeaturesAMDX {
-    pub s_type: crate::External<
-        {
-            "VkStructureType";
-            0
-        },
-    >,
-    pub p_next: *mut core::ffi::c_void,
-    pub dense_geometry_format: crate::External<
-        {
-            "VkBool32";
-            0
-        },
-    >,
+pub struct PhysicalDeviceDenseGeometryFormatFeaturesAMDX {
+    s_type: crate::vk::StructureType,
+    p_next: *mut core::ffi::c_void,
+    dense_geometry_format: crate::vk::Bool32,
 }
 #[repr(C)]
-pub struct VkAccelerationStructureDenseGeometryFormatTrianglesDataAMDX {
-    pub s_type: crate::External<
-        {
-            "VkStructureType";
-            0
-        },
-    >,
-    pub p_next: *const core::ffi::c_void,
-    pub compressed_data: crate::External<
-        {
-            "VkDeviceOrHostAddressConstKHR";
-            0
-        },
-    >,
-    pub data_size: crate::External<
-        {
-            "VkDeviceSize";
-            0
-        },
-    >,
-    pub num_triangles: crate::External<
+pub struct AccelerationStructureDenseGeometryFormatTrianglesDataAMDX {
+    s_type: crate::vk::StructureType,
+    p_next: *const core::ffi::c_void,
+    compressed_data: crate::vk::DeviceOrHostAddressConstKHR,
+    data_size: crate::vk::DeviceSize,
+    num_triangles: crate::External<
         {
             "uint32_t";
             0
         },
     >,
-    pub num_vertices: crate::External<
+    num_vertices: crate::External<
         {
             "uint32_t";
             0
         },
     >,
-    pub max_primitive_index: crate::External<
+    max_primitive_index: crate::External<
         {
             "uint32_t";
             0
         },
     >,
-    pub max_geometry_index: crate::External<
+    max_geometry_index: crate::External<
         {
             "uint32_t";
             0
         },
     >,
-    pub format: crate::External<
-        {
-            "VkCompressedTriangleFormatAMDX";
-            0
-        },
-    >,
+    format: crate::vk::CompressedTriangleFormatAMDX,
 }
+#[repr(C)]
+pub struct CompressedTriangleFormatAMDX {}

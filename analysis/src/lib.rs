@@ -2,6 +2,7 @@ pub mod cdecl;
 pub mod decl;
 pub mod item;
 pub mod name;
+pub mod to_rust;
 pub mod xml;
 
 use item::Items;
@@ -24,9 +25,7 @@ impl Analysis {
         let vk = Library::new(vulkan_headers_path.join("registry/vk.xml"));
         let video = Library::new(vulkan_headers_path.join("registry/video.xml"));
 
-        let mut items = Items::default();
-        items.collect(&vk);
-        items.collect(&video);
+        let items = Items::collect(&[&vk, &video]);
 
         Analysis { vk, video, items }
     }

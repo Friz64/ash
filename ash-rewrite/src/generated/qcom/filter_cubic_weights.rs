@@ -2,50 +2,22 @@
 #![cfg_attr(rustfmt, rustfmt_skip)]
 //![Vulkan Manual Page](https://docs.vulkan.org/refpages/latest/refpages/source/VK_QCOM_filter_cubic_weights.html) · Vulkan extension
 #[repr(C)]
-pub struct VkPhysicalDeviceCubicWeightsFeaturesQCOM {
-    pub s_type: crate::External<
-        {
-            "VkStructureType";
-            0
-        },
-    >,
-    pub p_next: *mut core::ffi::c_void,
-    pub selectable_cubic_weights: crate::External<
-        {
-            "VkBool32";
-            0
-        },
-    >,
+pub struct PhysicalDeviceCubicWeightsFeaturesQCOM {
+    s_type: crate::vk::StructureType,
+    p_next: *mut core::ffi::c_void,
+    selectable_cubic_weights: crate::vk::Bool32,
 }
 #[repr(C)]
-pub struct VkSamplerCubicWeightsCreateInfoQCOM {
-    pub s_type: crate::External<
-        {
-            "VkStructureType";
-            0
-        },
-    >,
-    pub p_next: *const core::ffi::c_void,
-    pub cubic_weights: crate::External<
-        {
-            "VkCubicFilterWeightsQCOM";
-            0
-        },
-    >,
+pub struct SamplerCubicWeightsCreateInfoQCOM {
+    s_type: crate::vk::StructureType,
+    p_next: *const core::ffi::c_void,
+    cubic_weights: crate::vk::CubicFilterWeightsQCOM,
 }
 #[repr(C)]
-pub struct VkBlitImageCubicWeightsInfoQCOM {
-    pub s_type: crate::External<
-        {
-            "VkStructureType";
-            0
-        },
-    >,
-    pub p_next: *const core::ffi::c_void,
-    pub cubic_weights: crate::External<
-        {
-            "VkCubicFilterWeightsQCOM";
-            0
-        },
-    >,
+pub struct BlitImageCubicWeightsInfoQCOM {
+    s_type: crate::vk::StructureType,
+    p_next: *const core::ffi::c_void,
+    cubic_weights: crate::vk::CubicFilterWeightsQCOM,
 }
+#[repr(C)]
+pub struct CubicFilterWeightsQCOM {}

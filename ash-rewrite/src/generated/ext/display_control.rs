@@ -2,66 +2,32 @@
 #![cfg_attr(rustfmt, rustfmt_skip)]
 //![Vulkan Manual Page](https://docs.vulkan.org/refpages/latest/refpages/source/VK_EXT_display_control.html) · Vulkan extension
 #[repr(C)]
-pub struct VkDisplayPowerInfoEXT {
-    pub s_type: crate::External<
-        {
-            "VkStructureType";
-            0
-        },
-    >,
-    pub p_next: *const core::ffi::c_void,
-    pub power_state: crate::External<
-        {
-            "VkDisplayPowerStateEXT";
-            0
-        },
-    >,
+pub struct DisplayPowerInfoEXT {
+    s_type: crate::vk::StructureType,
+    p_next: *const core::ffi::c_void,
+    power_state: crate::vk::DisplayPowerStateEXT,
 }
 #[repr(C)]
-pub struct VkDeviceEventInfoEXT {
-    pub s_type: crate::External<
-        {
-            "VkStructureType";
-            0
-        },
-    >,
-    pub p_next: *const core::ffi::c_void,
-    pub device_event: crate::External<
-        {
-            "VkDeviceEventTypeEXT";
-            0
-        },
-    >,
+pub struct DeviceEventInfoEXT {
+    s_type: crate::vk::StructureType,
+    p_next: *const core::ffi::c_void,
+    device_event: crate::vk::DeviceEventTypeEXT,
 }
 #[repr(C)]
-pub struct VkDisplayEventInfoEXT {
-    pub s_type: crate::External<
-        {
-            "VkStructureType";
-            0
-        },
-    >,
-    pub p_next: *const core::ffi::c_void,
-    pub display_event: crate::External<
-        {
-            "VkDisplayEventTypeEXT";
-            0
-        },
-    >,
+pub struct DisplayEventInfoEXT {
+    s_type: crate::vk::StructureType,
+    p_next: *const core::ffi::c_void,
+    display_event: crate::vk::DisplayEventTypeEXT,
 }
 #[repr(C)]
-pub struct VkSwapchainCounterCreateInfoEXT {
-    pub s_type: crate::External<
-        {
-            "VkStructureType";
-            0
-        },
-    >,
-    pub p_next: *const core::ffi::c_void,
-    pub surface_counters: crate::External<
-        {
-            "VkSurfaceCounterFlagsEXT";
-            0
-        },
-    >,
+pub struct SwapchainCounterCreateInfoEXT {
+    s_type: crate::vk::StructureType,
+    p_next: *const core::ffi::c_void,
+    surface_counters: crate::vk::SurfaceCounterFlagsEXT,
 }
+#[repr(C)]
+pub struct DisplayPowerStateEXT {}
+#[repr(C)]
+pub struct DeviceEventTypeEXT {}
+#[repr(C)]
+pub struct DisplayEventTypeEXT {}

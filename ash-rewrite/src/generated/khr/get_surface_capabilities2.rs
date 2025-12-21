@@ -2,50 +2,20 @@
 #![cfg_attr(rustfmt, rustfmt_skip)]
 //![Vulkan Manual Page](https://docs.vulkan.org/refpages/latest/refpages/source/VK_KHR_get_surface_capabilities2.html) · Vulkan extension
 #[repr(C)]
-pub struct VkPhysicalDeviceSurfaceInfo2KHR {
-    pub s_type: crate::External<
-        {
-            "VkStructureType";
-            0
-        },
-    >,
-    pub p_next: *const core::ffi::c_void,
-    pub surface: crate::External<
-        {
-            "VkSurfaceKHR";
-            0
-        },
-    >,
+pub struct PhysicalDeviceSurfaceInfo2KHR {
+    s_type: crate::vk::StructureType,
+    p_next: *const core::ffi::c_void,
+    surface: crate::vk::SurfaceKHR,
 }
 #[repr(C)]
-pub struct VkSurfaceCapabilities2KHR {
-    pub s_type: crate::External<
-        {
-            "VkStructureType";
-            0
-        },
-    >,
-    pub p_next: *mut core::ffi::c_void,
-    pub surface_capabilities: crate::External<
-        {
-            "VkSurfaceCapabilitiesKHR";
-            0
-        },
-    >,
+pub struct SurfaceCapabilities2KHR {
+    s_type: crate::vk::StructureType,
+    p_next: *mut core::ffi::c_void,
+    surface_capabilities: crate::vk::SurfaceCapabilitiesKHR,
 }
 #[repr(C)]
-pub struct VkSurfaceFormat2KHR {
-    pub s_type: crate::External<
-        {
-            "VkStructureType";
-            0
-        },
-    >,
-    pub p_next: *mut core::ffi::c_void,
-    pub surface_format: crate::External<
-        {
-            "VkSurfaceFormatKHR";
-            0
-        },
-    >,
+pub struct SurfaceFormat2KHR {
+    s_type: crate::vk::StructureType,
+    p_next: *mut core::ffi::c_void,
+    surface_format: crate::vk::SurfaceFormatKHR,
 }

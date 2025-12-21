@@ -2,24 +2,9 @@
 #![cfg_attr(rustfmt, rustfmt_skip)]
 //![Vulkan Manual Page](https://docs.vulkan.org/refpages/latest/refpages/source/VK_EXT_4444_formats.html) · Vulkan extension
 #[repr(C)]
-pub struct VkPhysicalDevice4444FormatsFeaturesEXT {
-    pub s_type: crate::External<
-        {
-            "VkStructureType";
-            0
-        },
-    >,
-    pub p_next: *mut core::ffi::c_void,
-    pub format_a4r4g4b4: crate::External<
-        {
-            "VkBool32";
-            0
-        },
-    >,
-    pub format_a4b4g4r4: crate::External<
-        {
-            "VkBool32";
-            0
-        },
-    >,
+pub struct PhysicalDevice4444FormatsFeaturesEXT {
+    s_type: crate::vk::StructureType,
+    p_next: *mut core::ffi::c_void,
+    format_a4r4g4b4: crate::vk::Bool32,
+    format_a4b4g4r4: crate::vk::Bool32,
 }

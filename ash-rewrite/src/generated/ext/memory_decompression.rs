@@ -2,37 +2,17 @@
 #![cfg_attr(rustfmt, rustfmt_skip)]
 //![Vulkan Manual Page](https://docs.vulkan.org/refpages/latest/refpages/source/VK_EXT_memory_decompression.html) · Vulkan extension
 #[repr(C)]
-pub struct VkPhysicalDeviceMemoryDecompressionFeaturesEXT {
-    pub s_type: crate::External<
-        {
-            "VkStructureType";
-            0
-        },
-    >,
-    pub p_next: *mut core::ffi::c_void,
-    pub memory_decompression: crate::External<
-        {
-            "VkBool32";
-            0
-        },
-    >,
+pub struct PhysicalDeviceMemoryDecompressionFeaturesEXT {
+    s_type: crate::vk::StructureType,
+    p_next: *mut core::ffi::c_void,
+    memory_decompression: crate::vk::Bool32,
 }
 #[repr(C)]
-pub struct VkPhysicalDeviceMemoryDecompressionPropertiesEXT {
-    pub s_type: crate::External<
-        {
-            "VkStructureType";
-            0
-        },
-    >,
-    pub p_next: *mut core::ffi::c_void,
-    pub decompression_methods: crate::External<
-        {
-            "VkMemoryDecompressionMethodFlagsEXT";
-            0
-        },
-    >,
-    pub max_decompression_indirect_count: crate::External<
+pub struct PhysicalDeviceMemoryDecompressionPropertiesEXT {
+    s_type: crate::vk::StructureType,
+    p_next: *mut core::ffi::c_void,
+    decompression_methods: crate::vk::MemoryDecompressionMethodFlagsEXT,
+    max_decompression_indirect_count: crate::External<
         {
             "uint64_t";
             0
@@ -40,57 +20,22 @@ pub struct VkPhysicalDeviceMemoryDecompressionPropertiesEXT {
     >,
 }
 #[repr(C)]
-pub struct VkDecompressMemoryRegionEXT {
-    pub src_address: crate::External<
-        {
-            "VkDeviceAddress";
-            0
-        },
-    >,
-    pub dst_address: crate::External<
-        {
-            "VkDeviceAddress";
-            0
-        },
-    >,
-    pub compressed_size: crate::External<
-        {
-            "VkDeviceSize";
-            0
-        },
-    >,
-    pub decompressed_size: crate::External<
-        {
-            "VkDeviceSize";
-            0
-        },
-    >,
+pub struct DecompressMemoryRegionEXT {
+    src_address: crate::vk::DeviceAddress,
+    dst_address: crate::vk::DeviceAddress,
+    compressed_size: crate::vk::DeviceSize,
+    decompressed_size: crate::vk::DeviceSize,
 }
 #[repr(C)]
-pub struct VkDecompressMemoryInfoEXT {
-    pub s_type: crate::External<
-        {
-            "VkStructureType";
-            0
-        },
-    >,
-    pub p_next: *const core::ffi::c_void,
-    pub decompression_method: crate::External<
-        {
-            "VkMemoryDecompressionMethodFlagsEXT";
-            0
-        },
-    >,
-    pub region_count: crate::External<
+pub struct DecompressMemoryInfoEXT {
+    s_type: crate::vk::StructureType,
+    p_next: *const core::ffi::c_void,
+    decompression_method: crate::vk::MemoryDecompressionMethodFlagsEXT,
+    region_count: crate::External<
         {
             "uint32_t";
             0
         },
     >,
-    pub p_regions: *const crate::External<
-        {
-            "VkDecompressMemoryRegionEXT";
-            0
-        },
-    >,
+    p_regions: *const crate::vk::DecompressMemoryRegionEXT,
 }

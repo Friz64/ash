@@ -2,27 +2,17 @@
 #![cfg_attr(rustfmt, rustfmt_skip)]
 //![Vulkan Manual Page](https://docs.vulkan.org/refpages/latest/refpages/source/VK_KHR_xlib_surface.html) · Vulkan extension
 #[repr(C)]
-pub struct VkXlibSurfaceCreateInfoKHR {
-    pub s_type: crate::External<
-        {
-            "VkStructureType";
-            0
-        },
-    >,
-    pub p_next: *const core::ffi::c_void,
-    pub flags: crate::External<
-        {
-            "VkXlibSurfaceCreateFlagsKHR";
-            0
-        },
-    >,
-    pub dpy: *mut crate::External<
+pub struct XlibSurfaceCreateInfoKHR {
+    s_type: crate::vk::StructureType,
+    p_next: *const core::ffi::c_void,
+    flags: crate::vk::XlibSurfaceCreateFlagsKHR,
+    dpy: *mut crate::External<
         {
             "Display";
             0
         },
     >,
-    pub window: crate::External<
+    window: crate::External<
         {
             "Window";
             0

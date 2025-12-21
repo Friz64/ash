@@ -2,27 +2,12 @@
 #![cfg_attr(rustfmt, rustfmt_skip)]
 //![Vulkan Manual Page](https://docs.vulkan.org/refpages/latest/refpages/source/VK_NV_low_latency2.html) · Vulkan extension
 #[repr(C)]
-pub struct VkLatencySleepModeInfoNV {
-    pub s_type: crate::External<
-        {
-            "VkStructureType";
-            0
-        },
-    >,
-    pub p_next: *const core::ffi::c_void,
-    pub low_latency_mode: crate::External<
-        {
-            "VkBool32";
-            0
-        },
-    >,
-    pub low_latency_boost: crate::External<
-        {
-            "VkBool32";
-            0
-        },
-    >,
-    pub minimum_interval_us: crate::External<
+pub struct LatencySleepModeInfoNV {
+    s_type: crate::vk::StructureType,
+    p_next: *const core::ffi::c_void,
+    low_latency_mode: crate::vk::Bool32,
+    low_latency_boost: crate::vk::Bool32,
+    minimum_interval_us: crate::External<
         {
             "uint32_t";
             0
@@ -30,21 +15,11 @@ pub struct VkLatencySleepModeInfoNV {
     >,
 }
 #[repr(C)]
-pub struct VkLatencySleepInfoNV {
-    pub s_type: crate::External<
-        {
-            "VkStructureType";
-            0
-        },
-    >,
-    pub p_next: *const core::ffi::c_void,
-    pub signal_semaphore: crate::External<
-        {
-            "VkSemaphore";
-            0
-        },
-    >,
-    pub value: crate::External<
+pub struct LatencySleepInfoNV {
+    s_type: crate::vk::StructureType,
+    p_next: *const core::ffi::c_void,
+    signal_semaphore: crate::vk::Semaphore,
+    value: crate::External<
         {
             "uint64_t";
             0
@@ -52,137 +27,112 @@ pub struct VkLatencySleepInfoNV {
     >,
 }
 #[repr(C)]
-pub struct VkSetLatencyMarkerInfoNV {
-    pub s_type: crate::External<
-        {
-            "VkStructureType";
-            0
-        },
-    >,
-    pub p_next: *const core::ffi::c_void,
-    pub present_id: crate::External<
+pub struct SetLatencyMarkerInfoNV {
+    s_type: crate::vk::StructureType,
+    p_next: *const core::ffi::c_void,
+    present_id: crate::External<
         {
             "uint64_t";
             0
         },
     >,
-    pub marker: crate::External<
-        {
-            "VkLatencyMarkerNV";
-            0
-        },
-    >,
+    marker: crate::vk::LatencyMarkerNV,
 }
 #[repr(C)]
-pub struct VkGetLatencyMarkerInfoNV {
-    pub s_type: crate::External<
-        {
-            "VkStructureType";
-            0
-        },
-    >,
-    pub p_next: *const core::ffi::c_void,
-    pub timing_count: crate::External<
+pub struct GetLatencyMarkerInfoNV {
+    s_type: crate::vk::StructureType,
+    p_next: *const core::ffi::c_void,
+    timing_count: crate::External<
         {
             "uint32_t";
             0
         },
     >,
-    pub p_timings: *mut crate::External<
-        {
-            "VkLatencyTimingsFrameReportNV";
-            0
-        },
-    >,
+    p_timings: *mut crate::vk::LatencyTimingsFrameReportNV,
 }
 #[repr(C)]
-pub struct VkLatencyTimingsFrameReportNV {
-    pub s_type: crate::External<
-        {
-            "VkStructureType";
-            0
-        },
-    >,
-    pub p_next: *mut core::ffi::c_void,
-    pub present_id: crate::External<
+pub struct LatencyTimingsFrameReportNV {
+    s_type: crate::vk::StructureType,
+    p_next: *mut core::ffi::c_void,
+    present_id: crate::External<
         {
             "uint64_t";
             0
         },
     >,
-    pub input_sample_time_us: crate::External<
+    input_sample_time_us: crate::External<
         {
             "uint64_t";
             0
         },
     >,
-    pub sim_start_time_us: crate::External<
+    sim_start_time_us: crate::External<
         {
             "uint64_t";
             0
         },
     >,
-    pub sim_end_time_us: crate::External<
+    sim_end_time_us: crate::External<
         {
             "uint64_t";
             0
         },
     >,
-    pub render_submit_start_time_us: crate::External<
+    render_submit_start_time_us: crate::External<
         {
             "uint64_t";
             0
         },
     >,
-    pub render_submit_end_time_us: crate::External<
+    render_submit_end_time_us: crate::External<
         {
             "uint64_t";
             0
         },
     >,
-    pub present_start_time_us: crate::External<
+    present_start_time_us: crate::External<
         {
             "uint64_t";
             0
         },
     >,
-    pub present_end_time_us: crate::External<
+    present_end_time_us: crate::External<
         {
             "uint64_t";
             0
         },
     >,
-    pub driver_start_time_us: crate::External<
+    driver_start_time_us: crate::External<
         {
             "uint64_t";
             0
         },
     >,
-    pub driver_end_time_us: crate::External<
+    driver_end_time_us: crate::External<
         {
             "uint64_t";
             0
         },
     >,
-    pub os_render_queue_start_time_us: crate::External<
+    os_render_queue_start_time_us: crate::External<
         {
             "uint64_t";
             0
         },
     >,
-    pub os_render_queue_end_time_us: crate::External<
+    os_render_queue_end_time_us: crate::External<
         {
             "uint64_t";
             0
         },
     >,
-    pub gpu_render_start_time_us: crate::External<
+    gpu_render_start_time_us: crate::External<
         {
             "uint64_t";
             0
         },
     >,
-    pub gpu_render_end_time_us: crate::External<
+    gpu_render_end_time_us: crate::External<
         {
             "uint64_t";
             0
@@ -190,31 +140,16 @@ pub struct VkLatencyTimingsFrameReportNV {
     >,
 }
 #[repr(C)]
-pub struct VkOutOfBandQueueTypeInfoNV {
-    pub s_type: crate::External<
-        {
-            "VkStructureType";
-            0
-        },
-    >,
-    pub p_next: *const core::ffi::c_void,
-    pub queue_type: crate::External<
-        {
-            "VkOutOfBandQueueTypeNV";
-            0
-        },
-    >,
+pub struct OutOfBandQueueTypeInfoNV {
+    s_type: crate::vk::StructureType,
+    p_next: *const core::ffi::c_void,
+    queue_type: crate::vk::OutOfBandQueueTypeNV,
 }
 #[repr(C)]
-pub struct VkLatencySubmissionPresentIdNV {
-    pub s_type: crate::External<
-        {
-            "VkStructureType";
-            0
-        },
-    >,
-    pub p_next: *const core::ffi::c_void,
-    pub present_id: crate::External<
+pub struct LatencySubmissionPresentIdNV {
+    s_type: crate::vk::StructureType,
+    p_next: *const core::ffi::c_void,
+    present_id: crate::External<
         {
             "uint64_t";
             0
@@ -222,40 +157,24 @@ pub struct VkLatencySubmissionPresentIdNV {
     >,
 }
 #[repr(C)]
-pub struct VkSwapchainLatencyCreateInfoNV {
-    pub s_type: crate::External<
-        {
-            "VkStructureType";
-            0
-        },
-    >,
-    pub p_next: *const core::ffi::c_void,
-    pub latency_mode_enable: crate::External<
-        {
-            "VkBool32";
-            0
-        },
-    >,
+pub struct SwapchainLatencyCreateInfoNV {
+    s_type: crate::vk::StructureType,
+    p_next: *const core::ffi::c_void,
+    latency_mode_enable: crate::vk::Bool32,
 }
 #[repr(C)]
-pub struct VkLatencySurfaceCapabilitiesNV {
-    pub s_type: crate::External<
-        {
-            "VkStructureType";
-            0
-        },
-    >,
-    pub p_next: *const core::ffi::c_void,
-    pub present_mode_count: crate::External<
+pub struct LatencySurfaceCapabilitiesNV {
+    s_type: crate::vk::StructureType,
+    p_next: *const core::ffi::c_void,
+    present_mode_count: crate::External<
         {
             "uint32_t";
             0
         },
     >,
-    pub p_present_modes: *mut crate::External<
-        {
-            "VkPresentModeKHR";
-            0
-        },
-    >,
+    p_present_modes: *mut crate::vk::PresentModeKHR,
 }
+#[repr(C)]
+pub struct LatencyMarkerNV {}
+#[repr(C)]
+pub struct OutOfBandQueueTypeNV {}

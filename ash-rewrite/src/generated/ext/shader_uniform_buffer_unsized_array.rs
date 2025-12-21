@@ -2,18 +2,8 @@
 #![cfg_attr(rustfmt, rustfmt_skip)]
 //![Vulkan Manual Page](https://docs.vulkan.org/refpages/latest/refpages/source/VK_EXT_shader_uniform_buffer_unsized_array.html) · Vulkan extension
 #[repr(C)]
-pub struct VkPhysicalDeviceShaderUniformBufferUnsizedArrayFeaturesEXT {
-    pub s_type: crate::External<
-        {
-            "VkStructureType";
-            0
-        },
-    >,
-    pub p_next: *mut core::ffi::c_void,
-    pub shader_uniform_buffer_unsized_array: crate::External<
-        {
-            "VkBool32";
-            0
-        },
-    >,
+pub struct PhysicalDeviceShaderUniformBufferUnsizedArrayFeaturesEXT {
+    s_type: crate::vk::StructureType,
+    p_next: *mut core::ffi::c_void,
+    shader_uniform_buffer_unsized_array: crate::vk::Bool32,
 }

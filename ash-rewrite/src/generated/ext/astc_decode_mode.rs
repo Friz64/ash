@@ -2,34 +2,14 @@
 #![cfg_attr(rustfmt, rustfmt_skip)]
 //![Vulkan Manual Page](https://docs.vulkan.org/refpages/latest/refpages/source/VK_EXT_astc_decode_mode.html) · Vulkan extension
 #[repr(C)]
-pub struct VkImageViewASTCDecodeModeEXT {
-    pub s_type: crate::External<
-        {
-            "VkStructureType";
-            0
-        },
-    >,
-    pub p_next: *const core::ffi::c_void,
-    pub decode_mode: crate::External<
-        {
-            "VkFormat";
-            0
-        },
-    >,
+pub struct ImageViewASTCDecodeModeEXT {
+    s_type: crate::vk::StructureType,
+    p_next: *const core::ffi::c_void,
+    decode_mode: crate::vk::Format,
 }
 #[repr(C)]
-pub struct VkPhysicalDeviceASTCDecodeFeaturesEXT {
-    pub s_type: crate::External<
-        {
-            "VkStructureType";
-            0
-        },
-    >,
-    pub p_next: *mut core::ffi::c_void,
-    pub decode_mode_shared_exponent: crate::External<
-        {
-            "VkBool32";
-            0
-        },
-    >,
+pub struct PhysicalDeviceASTCDecodeFeaturesEXT {
+    s_type: crate::vk::StructureType,
+    p_next: *mut core::ffi::c_void,
+    decode_mode_shared_exponent: crate::vk::Bool32,
 }

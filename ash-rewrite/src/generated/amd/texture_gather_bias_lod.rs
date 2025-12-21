@@ -2,18 +2,8 @@
 #![cfg_attr(rustfmt, rustfmt_skip)]
 //![Vulkan Manual Page](https://docs.vulkan.org/refpages/latest/refpages/source/VK_AMD_texture_gather_bias_lod.html) · Vulkan extension
 #[repr(C)]
-pub struct VkTextureLODGatherFormatPropertiesAMD {
-    pub s_type: crate::External<
-        {
-            "VkStructureType";
-            0
-        },
-    >,
-    pub p_next: *mut core::ffi::c_void,
-    pub supports_texture_gather_lod_bias_amd: crate::External<
-        {
-            "VkBool32";
-            0
-        },
-    >,
+pub struct TextureLODGatherFormatPropertiesAMD {
+    s_type: crate::vk::StructureType,
+    p_next: *mut core::ffi::c_void,
+    supports_texture_gather_lod_bias_amd: crate::vk::Bool32,
 }

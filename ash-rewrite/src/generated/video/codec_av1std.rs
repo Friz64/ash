@@ -3,31 +3,31 @@
 //!Items provided by `vulkan_video_codec_av1std`
 #[repr(C)]
 pub struct StdVideoAV1ColorConfigFlags {
-    pub mono_chrome: crate::External<
+    mono_chrome: crate::External<
         {
             "uint32_t";
             0
         },
     >,
-    pub color_range: crate::External<
+    color_range: crate::External<
         {
             "uint32_t";
             0
         },
     >,
-    pub separate_uv_delta_q: crate::External<
+    separate_uv_delta_q: crate::External<
         {
             "uint32_t";
             0
         },
     >,
-    pub color_description_present_flag: crate::External<
+    color_description_present_flag: crate::External<
         {
             "uint32_t";
             0
         },
     >,
-    pub reserved: crate::External<
+    reserved: crate::External<
         {
             "uint32_t";
             0
@@ -36,70 +36,45 @@ pub struct StdVideoAV1ColorConfigFlags {
 }
 #[repr(C)]
 pub struct StdVideoAV1ColorConfig {
-    pub flags: crate::External<
-        {
-            "StdVideoAV1ColorConfigFlags";
-            0
-        },
-    >,
-    pub bit_depth: crate::External<
+    flags: crate::vk::StdVideoAV1ColorConfigFlags,
+    bit_depth: crate::External<
         {
             "uint8_t";
             0
         },
     >,
-    pub subsampling_x: crate::External<
+    subsampling_x: crate::External<
         {
             "uint8_t";
             0
         },
     >,
-    pub subsampling_y: crate::External<
+    subsampling_y: crate::External<
         {
             "uint8_t";
             0
         },
     >,
-    pub reserved1: crate::External<
+    reserved1: crate::External<
         {
             "uint8_t";
             0
         },
     >,
-    pub color_primaries: crate::External<
-        {
-            "StdVideoAV1ColorPrimaries";
-            0
-        },
-    >,
-    pub transfer_characteristics: crate::External<
-        {
-            "StdVideoAV1TransferCharacteristics";
-            0
-        },
-    >,
-    pub matrix_coefficients: crate::External<
-        {
-            "StdVideoAV1MatrixCoefficients";
-            0
-        },
-    >,
-    pub chroma_sample_position: crate::External<
-        {
-            "StdVideoAV1ChromaSamplePosition";
-            0
-        },
-    >,
+    color_primaries: crate::vk::StdVideoAV1ColorPrimaries,
+    transfer_characteristics: crate::vk::StdVideoAV1TransferCharacteristics,
+    matrix_coefficients: crate::vk::StdVideoAV1MatrixCoefficients,
+    chroma_sample_position: crate::vk::StdVideoAV1ChromaSamplePosition,
 }
 #[repr(C)]
 pub struct StdVideoAV1TimingInfoFlags {
-    pub equal_picture_interval: crate::External<
+    equal_picture_interval: crate::External<
         {
             "uint32_t";
             0
         },
     >,
-    pub reserved: crate::External<
+    reserved: crate::External<
         {
             "uint32_t";
             0
@@ -108,25 +83,20 @@ pub struct StdVideoAV1TimingInfoFlags {
 }
 #[repr(C)]
 pub struct StdVideoAV1TimingInfo {
-    pub flags: crate::External<
-        {
-            "StdVideoAV1TimingInfoFlags";
-            0
-        },
-    >,
-    pub num_units_in_display_tick: crate::External<
+    flags: crate::vk::StdVideoAV1TimingInfoFlags,
+    num_units_in_display_tick: crate::External<
         {
             "uint32_t";
             0
         },
     >,
-    pub time_scale: crate::External<
+    time_scale: crate::External<
         {
             "uint32_t";
             0
         },
     >,
-    pub num_ticks_per_picture_minus_1: crate::External<
+    num_ticks_per_picture_minus_1: crate::External<
         {
             "uint32_t";
             0
@@ -135,121 +105,121 @@ pub struct StdVideoAV1TimingInfo {
 }
 #[repr(C)]
 pub struct StdVideoAV1SequenceHeaderFlags {
-    pub still_picture: crate::External<
+    still_picture: crate::External<
         {
             "uint32_t";
             0
         },
     >,
-    pub reduced_still_picture_header: crate::External<
+    reduced_still_picture_header: crate::External<
         {
             "uint32_t";
             0
         },
     >,
-    pub use_128x128_superblock: crate::External<
+    use_128x128_superblock: crate::External<
         {
             "uint32_t";
             0
         },
     >,
-    pub enable_filter_intra: crate::External<
+    enable_filter_intra: crate::External<
         {
             "uint32_t";
             0
         },
     >,
-    pub enable_intra_edge_filter: crate::External<
+    enable_intra_edge_filter: crate::External<
         {
             "uint32_t";
             0
         },
     >,
-    pub enable_interintra_compound: crate::External<
+    enable_interintra_compound: crate::External<
         {
             "uint32_t";
             0
         },
     >,
-    pub enable_masked_compound: crate::External<
+    enable_masked_compound: crate::External<
         {
             "uint32_t";
             0
         },
     >,
-    pub enable_warped_motion: crate::External<
+    enable_warped_motion: crate::External<
         {
             "uint32_t";
             0
         },
     >,
-    pub enable_dual_filter: crate::External<
+    enable_dual_filter: crate::External<
         {
             "uint32_t";
             0
         },
     >,
-    pub enable_order_hint: crate::External<
+    enable_order_hint: crate::External<
         {
             "uint32_t";
             0
         },
     >,
-    pub enable_jnt_comp: crate::External<
+    enable_jnt_comp: crate::External<
         {
             "uint32_t";
             0
         },
     >,
-    pub enable_ref_frame_mvs: crate::External<
+    enable_ref_frame_mvs: crate::External<
         {
             "uint32_t";
             0
         },
     >,
-    pub frame_id_numbers_present_flag: crate::External<
+    frame_id_numbers_present_flag: crate::External<
         {
             "uint32_t";
             0
         },
     >,
-    pub enable_superres: crate::External<
+    enable_superres: crate::External<
         {
             "uint32_t";
             0
         },
     >,
-    pub enable_cdef: crate::External<
+    enable_cdef: crate::External<
         {
             "uint32_t";
             0
         },
     >,
-    pub enable_restoration: crate::External<
+    enable_restoration: crate::External<
         {
             "uint32_t";
             0
         },
     >,
-    pub film_grain_params_present: crate::External<
+    film_grain_params_present: crate::External<
         {
             "uint32_t";
             0
         },
     >,
-    pub timing_info_present_flag: crate::External<
+    timing_info_present_flag: crate::External<
         {
             "uint32_t";
             0
         },
     >,
-    pub initial_display_delay_present_flag: crate::External<
+    initial_display_delay_present_flag: crate::External<
         {
             "uint32_t";
             0
         },
     >,
-    pub reserved: crate::External<
+    reserved: crate::External<
         {
             "uint32_t";
             0
@@ -258,106 +228,86 @@ pub struct StdVideoAV1SequenceHeaderFlags {
 }
 #[repr(C)]
 pub struct StdVideoAV1SequenceHeader {
-    pub flags: crate::External<
-        {
-            "StdVideoAV1SequenceHeaderFlags";
-            0
-        },
-    >,
-    pub seq_profile: crate::External<
-        {
-            "StdVideoAV1Profile";
-            0
-        },
-    >,
-    pub frame_width_bits_minus_1: crate::External<
+    flags: crate::vk::StdVideoAV1SequenceHeaderFlags,
+    seq_profile: crate::vk::StdVideoAV1Profile,
+    frame_width_bits_minus_1: crate::External<
         {
             "uint8_t";
             0
         },
     >,
-    pub frame_height_bits_minus_1: crate::External<
+    frame_height_bits_minus_1: crate::External<
         {
             "uint8_t";
             0
         },
     >,
-    pub max_frame_width_minus_1: crate::External<
+    max_frame_width_minus_1: crate::External<
         {
             "uint16_t";
             0
         },
     >,
-    pub max_frame_height_minus_1: crate::External<
+    max_frame_height_minus_1: crate::External<
         {
             "uint16_t";
             0
         },
     >,
-    pub delta_frame_id_length_minus_2: crate::External<
+    delta_frame_id_length_minus_2: crate::External<
         {
             "uint8_t";
             0
         },
     >,
-    pub additional_frame_id_length_minus_1: crate::External<
+    additional_frame_id_length_minus_1: crate::External<
         {
             "uint8_t";
             0
         },
     >,
-    pub order_hint_bits_minus_1: crate::External<
+    order_hint_bits_minus_1: crate::External<
         {
             "uint8_t";
             0
         },
     >,
-    pub seq_force_integer_mv: crate::External<
+    seq_force_integer_mv: crate::External<
         {
             "uint8_t";
             0
         },
     >,
-    pub seq_force_screen_content_tools: crate::External<
+    seq_force_screen_content_tools: crate::External<
         {
             "uint8_t";
             0
         },
     >,
-    pub reserved1: [crate::External<
+    reserved1: [crate::External<
         {
             "uint8_t";
             0
         },
     >; 1337],
-    pub p_color_config: *const crate::External<
-        {
-            "StdVideoAV1ColorConfig";
-            0
-        },
-    >,
-    pub p_timing_info: *const crate::External<
-        {
-            "StdVideoAV1TimingInfo";
-            0
-        },
-    >,
+    p_color_config: *const crate::vk::StdVideoAV1ColorConfig,
+    p_timing_info: *const crate::vk::StdVideoAV1TimingInfo,
 }
 #[repr(C)]
 pub struct StdVideoAV1LoopFilterFlags {
-    pub loop_filter_delta_enabled: crate::External<
+    loop_filter_delta_enabled: crate::External<
         {
             "uint32_t";
             0
         },
     >,
-    pub loop_filter_delta_update: crate::External<
+    loop_filter_delta_update: crate::External<
         {
             "uint32_t";
             0
         },
     >,
-    pub reserved: crate::External<
+    reserved: crate::External<
         {
             "uint32_t";
             0
@@ -366,43 +316,38 @@ pub struct StdVideoAV1LoopFilterFlags {
 }
 #[repr(C)]
 pub struct StdVideoAV1LoopFilter {
-    pub flags: crate::External<
-        {
-            "StdVideoAV1LoopFilterFlags";
-            0
-        },
-    >,
-    pub loop_filter_level: [crate::External<
+    flags: crate::vk::StdVideoAV1LoopFilterFlags,
+    loop_filter_level: [crate::External<
         {
             "uint8_t";
             0
         },
     >; 1337],
-    pub loop_filter_sharpness: crate::External<
+    loop_filter_sharpness: crate::External<
         {
             "uint8_t";
             0
         },
     >,
-    pub update_ref_delta: crate::External<
+    update_ref_delta: crate::External<
         {
             "uint8_t";
             0
         },
     >,
-    pub loop_filter_ref_deltas: [crate::External<
+    loop_filter_ref_deltas: [crate::External<
         {
             "int8_t";
             0
         },
     >; 1337],
-    pub update_mode_delta: crate::External<
+    update_mode_delta: crate::External<
         {
             "uint8_t";
             0
         },
     >,
-    pub loop_filter_mode_deltas: [crate::External<
+    loop_filter_mode_deltas: [crate::External<
         {
             "int8_t";
             0
@@ -411,19 +356,19 @@ pub struct StdVideoAV1LoopFilter {
 }
 #[repr(C)]
 pub struct StdVideoAV1QuantizationFlags {
-    pub using_qmatrix: crate::External<
+    using_qmatrix: crate::External<
         {
             "uint32_t";
             0
         },
     >,
-    pub diff_uv_delta: crate::External<
+    diff_uv_delta: crate::External<
         {
             "uint32_t";
             0
         },
     >,
-    pub reserved: crate::External<
+    reserved: crate::External<
         {
             "uint32_t";
             0
@@ -432,61 +377,56 @@ pub struct StdVideoAV1QuantizationFlags {
 }
 #[repr(C)]
 pub struct StdVideoAV1Quantization {
-    pub flags: crate::External<
-        {
-            "StdVideoAV1QuantizationFlags";
-            0
-        },
-    >,
-    pub base_q_idx: crate::External<
+    flags: crate::vk::StdVideoAV1QuantizationFlags,
+    base_q_idx: crate::External<
         {
             "uint8_t";
             0
         },
     >,
-    pub delta_qy_dc: crate::External<
+    delta_qy_dc: crate::External<
         {
             "int8_t";
             0
         },
     >,
-    pub delta_qu_dc: crate::External<
+    delta_qu_dc: crate::External<
         {
             "int8_t";
             0
         },
     >,
-    pub delta_qu_ac: crate::External<
+    delta_qu_ac: crate::External<
         {
             "int8_t";
             0
         },
     >,
-    pub delta_qv_dc: crate::External<
+    delta_qv_dc: crate::External<
         {
             "int8_t";
             0
         },
     >,
-    pub delta_qv_ac: crate::External<
+    delta_qv_ac: crate::External<
         {
             "int8_t";
             0
         },
     >,
-    pub qm_y: crate::External<
+    qm_y: crate::External<
         {
             "uint8_t";
             0
         },
     >,
-    pub qm_u: crate::External<
+    qm_u: crate::External<
         {
             "uint8_t";
             0
         },
     >,
-    pub qm_v: crate::External<
+    qm_v: crate::External<
         {
             "uint8_t";
             0
@@ -495,13 +435,13 @@ pub struct StdVideoAV1Quantization {
 }
 #[repr(C)]
 pub struct StdVideoAV1Segmentation {
-    pub feature_enabled: [crate::External<
+    feature_enabled: [crate::External<
         {
             "uint8_t";
             0
         },
     >; 1337],
-    pub feature_data: [[crate::External<
+    feature_data: [[crate::External<
         {
             "int16_t";
             0
@@ -510,13 +450,13 @@ pub struct StdVideoAV1Segmentation {
 }
 #[repr(C)]
 pub struct StdVideoAV1TileInfoFlags {
-    pub uniform_tile_spacing_flag: crate::External<
+    uniform_tile_spacing_flag: crate::External<
         {
             "uint32_t";
             0
         },
     >,
-    pub reserved: crate::External<
+    reserved: crate::External<
         {
             "uint32_t";
             0
@@ -525,61 +465,56 @@ pub struct StdVideoAV1TileInfoFlags {
 }
 #[repr(C)]
 pub struct StdVideoAV1TileInfo {
-    pub flags: crate::External<
-        {
-            "StdVideoAV1TileInfoFlags";
-            0
-        },
-    >,
-    pub tile_cols: crate::External<
+    flags: crate::vk::StdVideoAV1TileInfoFlags,
+    tile_cols: crate::External<
         {
             "uint8_t";
             0
         },
     >,
-    pub tile_rows: crate::External<
+    tile_rows: crate::External<
         {
             "uint8_t";
             0
         },
     >,
-    pub context_update_tile_id: crate::External<
+    context_update_tile_id: crate::External<
         {
             "uint16_t";
             0
         },
     >,
-    pub tile_size_bytes_minus_1: crate::External<
+    tile_size_bytes_minus_1: crate::External<
         {
             "uint8_t";
             0
         },
     >,
-    pub reserved1: [crate::External<
+    reserved1: [crate::External<
         {
             "uint8_t";
             0
         },
     >; 1337],
-    pub p_mi_col_starts: *const crate::External<
+    p_mi_col_starts: *const crate::External<
         {
             "uint16_t";
             0
         },
     >,
-    pub p_mi_row_starts: *const crate::External<
+    p_mi_row_starts: *const crate::External<
         {
             "uint16_t";
             0
         },
     >,
-    pub p_width_in_sbs_minus1: *const crate::External<
+    p_width_in_sbs_minus1: *const crate::External<
         {
             "uint16_t";
             0
         },
     >,
-    pub p_height_in_sbs_minus1: *const crate::External<
+    p_height_in_sbs_minus1: *const crate::External<
         {
             "uint16_t";
             0
@@ -588,37 +523,37 @@ pub struct StdVideoAV1TileInfo {
 }
 #[repr(C)]
 pub struct StdVideoAV1CDEF {
-    pub cdef_damping_minus_3: crate::External<
+    cdef_damping_minus_3: crate::External<
         {
             "uint8_t";
             0
         },
     >,
-    pub cdef_bits: crate::External<
+    cdef_bits: crate::External<
         {
             "uint8_t";
             0
         },
     >,
-    pub cdef_y_pri_strength: [crate::External<
+    cdef_y_pri_strength: [crate::External<
         {
             "uint8_t";
             0
         },
     >; 1337],
-    pub cdef_y_sec_strength: [crate::External<
+    cdef_y_sec_strength: [crate::External<
         {
             "uint8_t";
             0
         },
     >; 1337],
-    pub cdef_uv_pri_strength: [crate::External<
+    cdef_uv_pri_strength: [crate::External<
         {
             "uint8_t";
             0
         },
     >; 1337],
-    pub cdef_uv_sec_strength: [crate::External<
+    cdef_uv_sec_strength: [crate::External<
         {
             "uint8_t";
             0
@@ -627,13 +562,8 @@ pub struct StdVideoAV1CDEF {
 }
 #[repr(C)]
 pub struct StdVideoAV1LoopRestoration {
-    pub frame_restoration_type: [crate::External<
-        {
-            "StdVideoAV1FrameRestorationType";
-            0
-        },
-    >; 1337],
-    pub loop_restoration_size: [crate::External<
+    frame_restoration_type: [crate::vk::StdVideoAV1FrameRestorationType; 1337],
+    loop_restoration_size: [crate::External<
         {
             "uint16_t";
             0
@@ -642,13 +572,13 @@ pub struct StdVideoAV1LoopRestoration {
 }
 #[repr(C)]
 pub struct StdVideoAV1GlobalMotion {
-    pub gm_type: [crate::External<
+    gm_type: [crate::External<
         {
             "uint8_t";
             0
         },
     >; 1337],
-    pub gm_params: [[crate::External<
+    gm_params: [[crate::External<
         {
             "int32_t";
             0
@@ -657,31 +587,31 @@ pub struct StdVideoAV1GlobalMotion {
 }
 #[repr(C)]
 pub struct StdVideoAV1FilmGrainFlags {
-    pub chroma_scaling_from_luma: crate::External<
+    chroma_scaling_from_luma: crate::External<
         {
             "uint32_t";
             0
         },
     >,
-    pub overlap_flag: crate::External<
+    overlap_flag: crate::External<
         {
             "uint32_t";
             0
         },
     >,
-    pub clip_to_restricted_range: crate::External<
+    clip_to_restricted_range: crate::External<
         {
             "uint32_t";
             0
         },
     >,
-    pub update_grain: crate::External<
+    update_grain: crate::External<
         {
             "uint32_t";
             0
         },
     >,
-    pub reserved: crate::External<
+    reserved: crate::External<
         {
             "uint32_t";
             0
@@ -690,154 +620,171 @@ pub struct StdVideoAV1FilmGrainFlags {
 }
 #[repr(C)]
 pub struct StdVideoAV1FilmGrain {
-    pub flags: crate::External<
-        {
-            "StdVideoAV1FilmGrainFlags";
-            0
-        },
-    >,
-    pub grain_scaling_minus_8: crate::External<
+    flags: crate::vk::StdVideoAV1FilmGrainFlags,
+    grain_scaling_minus_8: crate::External<
         {
             "uint8_t";
             0
         },
     >,
-    pub ar_coeff_lag: crate::External<
+    ar_coeff_lag: crate::External<
         {
             "uint8_t";
             0
         },
     >,
-    pub ar_coeff_shift_minus_6: crate::External<
+    ar_coeff_shift_minus_6: crate::External<
         {
             "uint8_t";
             0
         },
     >,
-    pub grain_scale_shift: crate::External<
+    grain_scale_shift: crate::External<
         {
             "uint8_t";
             0
         },
     >,
-    pub grain_seed: crate::External<
+    grain_seed: crate::External<
         {
             "uint16_t";
             0
         },
     >,
-    pub film_grain_params_ref_idx: crate::External<
+    film_grain_params_ref_idx: crate::External<
         {
             "uint8_t";
             0
         },
     >,
-    pub num_y_points: crate::External<
+    num_y_points: crate::External<
         {
             "uint8_t";
             0
         },
     >,
-    pub point_y_value: [crate::External<
+    point_y_value: [crate::External<
         {
             "uint8_t";
             0
         },
     >; 1337],
-    pub point_y_scaling: [crate::External<
+    point_y_scaling: [crate::External<
         {
             "uint8_t";
             0
         },
     >; 1337],
-    pub num_cb_points: crate::External<
+    num_cb_points: crate::External<
         {
             "uint8_t";
             0
         },
     >,
-    pub point_cb_value: [crate::External<
+    point_cb_value: [crate::External<
         {
             "uint8_t";
             0
         },
     >; 1337],
-    pub point_cb_scaling: [crate::External<
+    point_cb_scaling: [crate::External<
         {
             "uint8_t";
             0
         },
     >; 1337],
-    pub num_cr_points: crate::External<
+    num_cr_points: crate::External<
         {
             "uint8_t";
             0
         },
     >,
-    pub point_cr_value: [crate::External<
+    point_cr_value: [crate::External<
         {
             "uint8_t";
             0
         },
     >; 1337],
-    pub point_cr_scaling: [crate::External<
+    point_cr_scaling: [crate::External<
         {
             "uint8_t";
             0
         },
     >; 1337],
-    pub ar_coeffs_y_plus_128: [crate::External<
+    ar_coeffs_y_plus_128: [crate::External<
         {
             "int8_t";
             0
         },
     >; 1337],
-    pub ar_coeffs_cb_plus_128: [crate::External<
+    ar_coeffs_cb_plus_128: [crate::External<
         {
             "int8_t";
             0
         },
     >; 1337],
-    pub ar_coeffs_cr_plus_128: [crate::External<
+    ar_coeffs_cr_plus_128: [crate::External<
         {
             "int8_t";
             0
         },
     >; 1337],
-    pub cb_mult: crate::External<
+    cb_mult: crate::External<
         {
             "uint8_t";
             0
         },
     >,
-    pub cb_luma_mult: crate::External<
+    cb_luma_mult: crate::External<
         {
             "uint8_t";
             0
         },
     >,
-    pub cb_offset: crate::External<
+    cb_offset: crate::External<
         {
             "uint16_t";
             0
         },
     >,
-    pub cr_mult: crate::External<
+    cr_mult: crate::External<
         {
             "uint8_t";
             0
         },
     >,
-    pub cr_luma_mult: crate::External<
+    cr_luma_mult: crate::External<
         {
             "uint8_t";
             0
         },
     >,
-    pub cr_offset: crate::External<
+    cr_offset: crate::External<
         {
             "uint16_t";
             0
         },
     >,
 }
+#[repr(C)]
+pub struct StdVideoAV1Profile {}
+#[repr(C)]
+pub struct StdVideoAV1Level {}
+#[repr(C)]
+pub struct StdVideoAV1FrameType {}
+#[repr(C)]
+pub struct StdVideoAV1ReferenceName {}
+#[repr(C)]
+pub struct StdVideoAV1InterpolationFilter {}
+#[repr(C)]
+pub struct StdVideoAV1TxMode {}
+#[repr(C)]
+pub struct StdVideoAV1FrameRestorationType {}
+#[repr(C)]
+pub struct StdVideoAV1ColorPrimaries {}
+#[repr(C)]
+pub struct StdVideoAV1TransferCharacteristics {}
+#[repr(C)]
+pub struct StdVideoAV1MatrixCoefficients {}
+#[repr(C)]
+pub struct StdVideoAV1ChromaSamplePosition {}

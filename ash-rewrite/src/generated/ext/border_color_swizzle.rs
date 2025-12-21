@@ -2,46 +2,16 @@
 #![cfg_attr(rustfmt, rustfmt_skip)]
 //![Vulkan Manual Page](https://docs.vulkan.org/refpages/latest/refpages/source/VK_EXT_border_color_swizzle.html) · Vulkan extension
 #[repr(C)]
-pub struct VkSamplerBorderColorComponentMappingCreateInfoEXT {
-    pub s_type: crate::External<
-        {
-            "VkStructureType";
-            0
-        },
-    >,
-    pub p_next: *const core::ffi::c_void,
-    pub components: crate::External<
-        {
-            "VkComponentMapping";
-            0
-        },
-    >,
-    pub srgb: crate::External<
-        {
-            "VkBool32";
-            0
-        },
-    >,
+pub struct SamplerBorderColorComponentMappingCreateInfoEXT {
+    s_type: crate::vk::StructureType,
+    p_next: *const core::ffi::c_void,
+    components: crate::vk::ComponentMapping,
+    srgb: crate::vk::Bool32,
 }
 #[repr(C)]
-pub struct VkPhysicalDeviceBorderColorSwizzleFeaturesEXT {
-    pub s_type: crate::External<
-        {
-            "VkStructureType";
-            0
-        },
-    >,
-    pub p_next: *mut core::ffi::c_void,
-    pub border_color_swizzle: crate::External<
-        {
-            "VkBool32";
-            0
-        },
-    >,
-    pub border_color_swizzle_from_image: crate::External<
-        {
-            "VkBool32";
-            0
-        },
-    >,
+pub struct PhysicalDeviceBorderColorSwizzleFeaturesEXT {
+    s_type: crate::vk::StructureType,
+    p_next: *mut core::ffi::c_void,
+    border_color_swizzle: crate::vk::Bool32,
+    border_color_swizzle_from_image: crate::vk::Bool32,
 }

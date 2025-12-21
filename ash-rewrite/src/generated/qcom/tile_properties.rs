@@ -2,46 +2,16 @@
 #![cfg_attr(rustfmt, rustfmt_skip)]
 //![Vulkan Manual Page](https://docs.vulkan.org/refpages/latest/refpages/source/VK_QCOM_tile_properties.html) · Vulkan extension
 #[repr(C)]
-pub struct VkPhysicalDeviceTilePropertiesFeaturesQCOM {
-    pub s_type: crate::External<
-        {
-            "VkStructureType";
-            0
-        },
-    >,
-    pub p_next: *mut core::ffi::c_void,
-    pub tile_properties: crate::External<
-        {
-            "VkBool32";
-            0
-        },
-    >,
+pub struct PhysicalDeviceTilePropertiesFeaturesQCOM {
+    s_type: crate::vk::StructureType,
+    p_next: *mut core::ffi::c_void,
+    tile_properties: crate::vk::Bool32,
 }
 #[repr(C)]
-pub struct VkTilePropertiesQCOM {
-    pub s_type: crate::External<
-        {
-            "VkStructureType";
-            0
-        },
-    >,
-    pub p_next: *mut core::ffi::c_void,
-    pub tile_size: crate::External<
-        {
-            "VkExtent3D";
-            0
-        },
-    >,
-    pub apron_size: crate::External<
-        {
-            "VkExtent2D";
-            0
-        },
-    >,
-    pub origin: crate::External<
-        {
-            "VkOffset2D";
-            0
-        },
-    >,
+pub struct TilePropertiesQCOM {
+    s_type: crate::vk::StructureType,
+    p_next: *mut core::ffi::c_void,
+    tile_size: crate::vk::Extent3D,
+    apron_size: crate::vk::Extent2D,
+    origin: crate::vk::Offset2D,
 }

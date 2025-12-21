@@ -2,154 +2,71 @@
 #![cfg_attr(rustfmt, rustfmt_skip)]
 //![Vulkan Manual Page](https://docs.vulkan.org/refpages/latest/refpages/source/VK_KHR_swapchain.html) · Vulkan extension
 #[repr(C)]
-pub struct VkSwapchainCreateInfoKHR {
-    pub s_type: crate::External<
-        {
-            "VkStructureType";
-            0
-        },
-    >,
-    pub p_next: *const core::ffi::c_void,
-    pub flags: crate::External<
-        {
-            "VkSwapchainCreateFlagsKHR";
-            0
-        },
-    >,
-    pub surface: crate::External<
-        {
-            "VkSurfaceKHR";
-            0
-        },
-    >,
-    pub min_image_count: crate::External<
+pub struct SwapchainCreateInfoKHR {
+    s_type: crate::vk::StructureType,
+    p_next: *const core::ffi::c_void,
+    flags: crate::vk::SwapchainCreateFlagsKHR,
+    surface: crate::vk::SurfaceKHR,
+    min_image_count: crate::External<
         {
             "uint32_t";
             0
         },
     >,
-    pub image_format: crate::External<
-        {
-            "VkFormat";
-            0
-        },
-    >,
-    pub image_color_space: crate::External<
-        {
-            "VkColorSpaceKHR";
-            0
-        },
-    >,
-    pub image_extent: crate::External<
-        {
-            "VkExtent2D";
-            0
-        },
-    >,
-    pub image_array_layers: crate::External<
+    image_format: crate::vk::Format,
+    image_color_space: crate::vk::ColorSpaceKHR,
+    image_extent: crate::vk::Extent2D,
+    image_array_layers: crate::External<
         {
             "uint32_t";
             0
         },
     >,
-    pub image_usage: crate::External<
-        {
-            "VkImageUsageFlags";
-            0
-        },
-    >,
-    pub image_sharing_mode: crate::External<
-        {
-            "VkSharingMode";
-            0
-        },
-    >,
-    pub queue_family_index_count: crate::External<
+    image_usage: crate::vk::ImageUsageFlags,
+    image_sharing_mode: crate::vk::SharingMode,
+    queue_family_index_count: crate::External<
         {
             "uint32_t";
             0
         },
     >,
-    pub p_queue_family_indices: *const crate::External<
+    p_queue_family_indices: *const crate::External<
         {
             "uint32_t";
             0
         },
     >,
-    pub pre_transform: crate::External<
-        {
-            "VkSurfaceTransformFlagBitsKHR";
-            0
-        },
-    >,
-    pub composite_alpha: crate::External<
-        {
-            "VkCompositeAlphaFlagBitsKHR";
-            0
-        },
-    >,
-    pub present_mode: crate::External<
-        {
-            "VkPresentModeKHR";
-            0
-        },
-    >,
-    pub clipped: crate::External<
-        {
-            "VkBool32";
-            0
-        },
-    >,
-    pub old_swapchain: crate::External<
-        {
-            "VkSwapchainKHR";
-            0
-        },
-    >,
+    pre_transform: crate::vk::SurfaceTransformFlagBitsKHR,
+    composite_alpha: crate::vk::CompositeAlphaFlagBitsKHR,
+    present_mode: crate::vk::PresentModeKHR,
+    clipped: crate::vk::Bool32,
+    old_swapchain: crate::vk::SwapchainKHR,
 }
 #[repr(C)]
-pub struct VkPresentInfoKHR {
-    pub s_type: crate::External<
-        {
-            "VkStructureType";
-            0
-        },
-    >,
-    pub p_next: *const core::ffi::c_void,
-    pub wait_semaphore_count: crate::External<
+pub struct PresentInfoKHR {
+    s_type: crate::vk::StructureType,
+    p_next: *const core::ffi::c_void,
+    wait_semaphore_count: crate::External<
         {
             "uint32_t";
             0
         },
     >,
-    pub p_wait_semaphores: *const crate::External<
-        {
-            "VkSemaphore";
-            0
-        },
-    >,
-    pub swapchain_count: crate::External<
+    p_wait_semaphores: *const crate::vk::Semaphore,
+    swapchain_count: crate::External<
         {
             "uint32_t";
             0
         },
     >,
-    pub p_swapchains: *const crate::External<
-        {
-            "VkSwapchainKHR";
-            0
-        },
-    >,
-    pub p_image_indices: *const crate::External<
+    p_swapchains: *const crate::vk::SwapchainKHR,
+    p_image_indices: *const crate::External<
         {
             "uint32_t";
             0
         },
     >,
-    pub p_results: *mut crate::External<
-        {
-            "VkResult";
-            0
-        },
-    >,
+    p_results: *mut crate::vk::Result,
 }
+#[repr(C)]
+pub struct SwapchainKHR {}

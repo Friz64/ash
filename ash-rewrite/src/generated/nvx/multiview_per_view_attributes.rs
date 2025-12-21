@@ -2,40 +2,15 @@
 #![cfg_attr(rustfmt, rustfmt_skip)]
 //![Vulkan Manual Page](https://docs.vulkan.org/refpages/latest/refpages/source/VK_NVX_multiview_per_view_attributes.html) · Vulkan extension
 #[repr(C)]
-pub struct VkPhysicalDeviceMultiviewPerViewAttributesPropertiesNVX {
-    pub s_type: crate::External<
-        {
-            "VkStructureType";
-            0
-        },
-    >,
-    pub p_next: *mut core::ffi::c_void,
-    pub per_view_position_all_components: crate::External<
-        {
-            "VkBool32";
-            0
-        },
-    >,
+pub struct PhysicalDeviceMultiviewPerViewAttributesPropertiesNVX {
+    s_type: crate::vk::StructureType,
+    p_next: *mut core::ffi::c_void,
+    per_view_position_all_components: crate::vk::Bool32,
 }
 #[repr(C)]
-pub struct VkMultiviewPerViewAttributesInfoNVX {
-    pub s_type: crate::External<
-        {
-            "VkStructureType";
-            0
-        },
-    >,
-    pub p_next: *const core::ffi::c_void,
-    pub per_view_attributes: crate::External<
-        {
-            "VkBool32";
-            0
-        },
-    >,
-    pub per_view_attributes_position_x_only: crate::External<
-        {
-            "VkBool32";
-            0
-        },
-    >,
+pub struct MultiviewPerViewAttributesInfoNVX {
+    s_type: crate::vk::StructureType,
+    p_next: *const core::ffi::c_void,
+    per_view_attributes: crate::vk::Bool32,
+    per_view_attributes_position_x_only: crate::vk::Bool32,
 }

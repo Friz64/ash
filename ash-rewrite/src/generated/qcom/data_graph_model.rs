@@ -2,32 +2,22 @@
 #![cfg_attr(rustfmt, rustfmt_skip)]
 //![Vulkan Manual Page](https://docs.vulkan.org/refpages/latest/refpages/source/VK_QCOM_data_graph_model.html) · Vulkan extension
 #[repr(C)]
-pub struct VkPipelineCacheHeaderVersionDataGraphQCOM {
-    pub header_size: crate::External<
+pub struct PipelineCacheHeaderVersionDataGraphQCOM {
+    header_size: crate::External<
         {
             "uint32_t";
             0
         },
     >,
-    pub header_version: crate::External<
-        {
-            "VkPipelineCacheHeaderVersion";
-            0
-        },
-    >,
-    pub cache_type: crate::External<
-        {
-            "VkDataGraphModelCacheTypeQCOM";
-            0
-        },
-    >,
-    pub cache_version: crate::External<
+    header_version: crate::vk::PipelineCacheHeaderVersion,
+    cache_type: crate::vk::DataGraphModelCacheTypeQCOM,
+    cache_version: crate::External<
         {
             "uint32_t";
             0
         },
     >,
-    pub toolchain_version: [crate::External<
+    toolchain_version: [crate::External<
         {
             "uint32_t";
             0
@@ -35,34 +25,16 @@ pub struct VkPipelineCacheHeaderVersionDataGraphQCOM {
     >; 1337],
 }
 #[repr(C)]
-pub struct VkDataGraphPipelineBuiltinModelCreateInfoQCOM {
-    pub s_type: crate::External<
-        {
-            "VkStructureType";
-            0
-        },
-    >,
-    pub p_next: *const core::ffi::c_void,
-    pub p_operation: *const crate::External<
-        {
-            "VkPhysicalDeviceDataGraphOperationSupportARM";
-            0
-        },
-    >,
+pub struct DataGraphPipelineBuiltinModelCreateInfoQCOM {
+    s_type: crate::vk::StructureType,
+    p_next: *const core::ffi::c_void,
+    p_operation: *const crate::vk::PhysicalDeviceDataGraphOperationSupportARM,
 }
 #[repr(C)]
-pub struct VkPhysicalDeviceDataGraphModelFeaturesQCOM {
-    pub s_type: crate::External<
-        {
-            "VkStructureType";
-            0
-        },
-    >,
-    pub p_next: *mut core::ffi::c_void,
-    pub data_graph_model: crate::External<
-        {
-            "VkBool32";
-            0
-        },
-    >,
+pub struct PhysicalDeviceDataGraphModelFeaturesQCOM {
+    s_type: crate::vk::StructureType,
+    p_next: *mut core::ffi::c_void,
+    data_graph_model: crate::vk::Bool32,
 }
+#[repr(C)]
+pub struct DataGraphModelCacheTypeQCOM {}

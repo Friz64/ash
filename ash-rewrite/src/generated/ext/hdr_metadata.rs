@@ -2,14 +2,14 @@
 #![cfg_attr(rustfmt, rustfmt_skip)]
 //![Vulkan Manual Page](https://docs.vulkan.org/refpages/latest/refpages/source/VK_EXT_hdr_metadata.html) · Vulkan extension
 #[repr(C)]
-pub struct VkXYColorEXT {
-    pub x: crate::External<
+pub struct XYColorEXT {
+    x: crate::External<
         {
             "float";
             0
         },
     >,
-    pub y: crate::External<
+    y: crate::External<
         {
             "float";
             0
@@ -17,57 +17,32 @@ pub struct VkXYColorEXT {
     >,
 }
 #[repr(C)]
-pub struct VkHdrMetadataEXT {
-    pub s_type: crate::External<
-        {
-            "VkStructureType";
-            0
-        },
-    >,
-    pub p_next: *const core::ffi::c_void,
-    pub display_primary_red: crate::External<
-        {
-            "VkXYColorEXT";
-            0
-        },
-    >,
-    pub display_primary_green: crate::External<
-        {
-            "VkXYColorEXT";
-            0
-        },
-    >,
-    pub display_primary_blue: crate::External<
-        {
-            "VkXYColorEXT";
-            0
-        },
-    >,
-    pub white_point: crate::External<
-        {
-            "VkXYColorEXT";
-            0
-        },
-    >,
-    pub max_luminance: crate::External<
+pub struct HdrMetadataEXT {
+    s_type: crate::vk::StructureType,
+    p_next: *const core::ffi::c_void,
+    display_primary_red: crate::vk::XYColorEXT,
+    display_primary_green: crate::vk::XYColorEXT,
+    display_primary_blue: crate::vk::XYColorEXT,
+    white_point: crate::vk::XYColorEXT,
+    max_luminance: crate::External<
         {
             "float";
             0
         },
     >,
-    pub min_luminance: crate::External<
+    min_luminance: crate::External<
         {
             "float";
             0
         },
     >,
-    pub max_content_light_level: crate::External<
+    max_content_light_level: crate::External<
         {
             "float";
             0
         },
     >,
-    pub max_frame_average_light_level: crate::External<
+    max_frame_average_light_level: crate::External<
         {
             "float";
             0

@@ -2,269 +2,159 @@
 #![cfg_attr(rustfmt, rustfmt_skip)]
 //![Vulkan Manual Page](https://docs.vulkan.org/refpages/latest/refpages/source/VK_KHR_video_encode_h264.html) · Vulkan extension
 #[repr(C)]
-pub struct VkVideoEncodeH264CapabilitiesKHR {
-    pub s_type: crate::External<
-        {
-            "VkStructureType";
-            0
-        },
-    >,
-    pub p_next: *mut core::ffi::c_void,
-    pub flags: crate::External<
-        {
-            "VkVideoEncodeH264CapabilityFlagsKHR";
-            0
-        },
-    >,
-    pub max_level_idc: crate::External<
-        {
-            "StdVideoH264LevelIdc";
-            0
-        },
-    >,
-    pub max_slice_count: crate::External<
+pub struct VideoEncodeH264CapabilitiesKHR {
+    s_type: crate::vk::StructureType,
+    p_next: *mut core::ffi::c_void,
+    flags: crate::vk::VideoEncodeH264CapabilityFlagsKHR,
+    max_level_idc: crate::vk::StdVideoH264LevelIdc,
+    max_slice_count: crate::External<
         {
             "uint32_t";
             0
         },
     >,
-    pub max_p_picture_l0_reference_count: crate::External<
+    max_p_picture_l0_reference_count: crate::External<
         {
             "uint32_t";
             0
         },
     >,
-    pub max_b_picture_l0_reference_count: crate::External<
+    max_b_picture_l0_reference_count: crate::External<
         {
             "uint32_t";
             0
         },
     >,
-    pub max_l1_reference_count: crate::External<
+    max_l1_reference_count: crate::External<
         {
             "uint32_t";
             0
         },
     >,
-    pub max_temporal_layer_count: crate::External<
+    max_temporal_layer_count: crate::External<
         {
             "uint32_t";
             0
         },
     >,
-    pub expect_dyadic_temporal_layer_pattern: crate::External<
-        {
-            "VkBool32";
-            0
-        },
-    >,
-    pub min_qp: crate::External<
+    expect_dyadic_temporal_layer_pattern: crate::vk::Bool32,
+    min_qp: crate::External<
         {
             "int32_t";
             0
         },
     >,
-    pub max_qp: crate::External<
+    max_qp: crate::External<
         {
             "int32_t";
             0
         },
     >,
-    pub prefers_gop_remaining_frames: crate::External<
-        {
-            "VkBool32";
-            0
-        },
-    >,
-    pub requires_gop_remaining_frames: crate::External<
-        {
-            "VkBool32";
-            0
-        },
-    >,
-    pub std_syntax_flags: crate::External<
-        {
-            "VkVideoEncodeH264StdFlagsKHR";
-            0
-        },
-    >,
+    prefers_gop_remaining_frames: crate::vk::Bool32,
+    requires_gop_remaining_frames: crate::vk::Bool32,
+    std_syntax_flags: crate::vk::VideoEncodeH264StdFlagsKHR,
 }
 #[repr(C)]
-pub struct VkVideoEncodeH264QualityLevelPropertiesKHR {
-    pub s_type: crate::External<
-        {
-            "VkStructureType";
-            0
-        },
-    >,
-    pub p_next: *mut core::ffi::c_void,
-    pub preferred_rate_control_flags: crate::External<
-        {
-            "VkVideoEncodeH264RateControlFlagsKHR";
-            0
-        },
-    >,
-    pub preferred_gop_frame_count: crate::External<
+pub struct VideoEncodeH264QualityLevelPropertiesKHR {
+    s_type: crate::vk::StructureType,
+    p_next: *mut core::ffi::c_void,
+    preferred_rate_control_flags: crate::vk::VideoEncodeH264RateControlFlagsKHR,
+    preferred_gop_frame_count: crate::External<
         {
             "uint32_t";
             0
         },
     >,
-    pub preferred_idr_period: crate::External<
+    preferred_idr_period: crate::External<
         {
             "uint32_t";
             0
         },
     >,
-    pub preferred_consecutive_b_frame_count: crate::External<
+    preferred_consecutive_b_frame_count: crate::External<
         {
             "uint32_t";
             0
         },
     >,
-    pub preferred_temporal_layer_count: crate::External<
+    preferred_temporal_layer_count: crate::External<
         {
             "uint32_t";
             0
         },
     >,
-    pub preferred_constant_qp: crate::External<
-        {
-            "VkVideoEncodeH264QpKHR";
-            0
-        },
-    >,
-    pub preferred_max_l0_reference_count: crate::External<
+    preferred_constant_qp: crate::vk::VideoEncodeH264QpKHR,
+    preferred_max_l0_reference_count: crate::External<
         {
             "uint32_t";
             0
         },
     >,
-    pub preferred_max_l1_reference_count: crate::External<
+    preferred_max_l1_reference_count: crate::External<
         {
             "uint32_t";
             0
         },
     >,
-    pub preferred_std_entropy_coding_mode_flag: crate::External<
-        {
-            "VkBool32";
-            0
-        },
-    >,
+    preferred_std_entropy_coding_mode_flag: crate::vk::Bool32,
 }
 #[repr(C)]
-pub struct VkVideoEncodeH264SessionCreateInfoKHR {
-    pub s_type: crate::External<
-        {
-            "VkStructureType";
-            0
-        },
-    >,
-    pub p_next: *const core::ffi::c_void,
-    pub use_max_level_idc: crate::External<
-        {
-            "VkBool32";
-            0
-        },
-    >,
-    pub max_level_idc: crate::External<
-        {
-            "StdVideoH264LevelIdc";
-            0
-        },
-    >,
+pub struct VideoEncodeH264SessionCreateInfoKHR {
+    s_type: crate::vk::StructureType,
+    p_next: *const core::ffi::c_void,
+    use_max_level_idc: crate::vk::Bool32,
+    max_level_idc: crate::vk::StdVideoH264LevelIdc,
 }
 #[repr(C)]
-pub struct VkVideoEncodeH264SessionParametersAddInfoKHR {
-    pub s_type: crate::External<
-        {
-            "VkStructureType";
-            0
-        },
-    >,
-    pub p_next: *const core::ffi::c_void,
-    pub std_sps_count: crate::External<
+pub struct VideoEncodeH264SessionParametersAddInfoKHR {
+    s_type: crate::vk::StructureType,
+    p_next: *const core::ffi::c_void,
+    std_sps_count: crate::External<
         {
             "uint32_t";
             0
         },
     >,
-    pub p_std_sp_ss: *const crate::External<
-        {
-            "StdVideoH264SequenceParameterSet";
-            0
-        },
-    >,
-    pub std_pps_count: crate::External<
+    p_std_sp_ss: *const crate::vk::StdVideoH264SequenceParameterSet,
+    std_pps_count: crate::External<
         {
             "uint32_t";
             0
         },
     >,
-    pub p_std_pp_ss: *const crate::External<
-        {
-            "StdVideoH264PictureParameterSet";
-            0
-        },
-    >,
+    p_std_pp_ss: *const crate::vk::StdVideoH264PictureParameterSet,
 }
 #[repr(C)]
-pub struct VkVideoEncodeH264SessionParametersCreateInfoKHR {
-    pub s_type: crate::External<
-        {
-            "VkStructureType";
-            0
-        },
-    >,
-    pub p_next: *const core::ffi::c_void,
-    pub max_std_sps_count: crate::External<
+pub struct VideoEncodeH264SessionParametersCreateInfoKHR {
+    s_type: crate::vk::StructureType,
+    p_next: *const core::ffi::c_void,
+    max_std_sps_count: crate::External<
         {
             "uint32_t";
             0
         },
     >,
-    pub max_std_pps_count: crate::External<
+    max_std_pps_count: crate::External<
         {
             "uint32_t";
             0
         },
     >,
-    pub p_parameters_add_info: *const crate::External<
-        {
-            "VkVideoEncodeH264SessionParametersAddInfoKHR";
-            0
-        },
-    >,
+    p_parameters_add_info: *const crate::vk::VideoEncodeH264SessionParametersAddInfoKHR,
 }
 #[repr(C)]
-pub struct VkVideoEncodeH264SessionParametersGetInfoKHR {
-    pub s_type: crate::External<
-        {
-            "VkStructureType";
-            0
-        },
-    >,
-    pub p_next: *const core::ffi::c_void,
-    pub write_std_sps: crate::External<
-        {
-            "VkBool32";
-            0
-        },
-    >,
-    pub write_std_pps: crate::External<
-        {
-            "VkBool32";
-            0
-        },
-    >,
-    pub std_sps_id: crate::External<
+pub struct VideoEncodeH264SessionParametersGetInfoKHR {
+    s_type: crate::vk::StructureType,
+    p_next: *const core::ffi::c_void,
+    write_std_sps: crate::vk::Bool32,
+    write_std_pps: crate::vk::Bool32,
+    std_sps_id: crate::External<
         {
             "uint32_t";
             0
         },
     >,
-    pub std_pps_id: crate::External<
+    std_pps_id: crate::External<
         {
             "uint32_t";
             0
@@ -272,149 +162,74 @@ pub struct VkVideoEncodeH264SessionParametersGetInfoKHR {
     >,
 }
 #[repr(C)]
-pub struct VkVideoEncodeH264SessionParametersFeedbackInfoKHR {
-    pub s_type: crate::External<
-        {
-            "VkStructureType";
-            0
-        },
-    >,
-    pub p_next: *mut core::ffi::c_void,
-    pub has_std_sps_overrides: crate::External<
-        {
-            "VkBool32";
-            0
-        },
-    >,
-    pub has_std_pps_overrides: crate::External<
-        {
-            "VkBool32";
-            0
-        },
-    >,
+pub struct VideoEncodeH264SessionParametersFeedbackInfoKHR {
+    s_type: crate::vk::StructureType,
+    p_next: *mut core::ffi::c_void,
+    has_std_sps_overrides: crate::vk::Bool32,
+    has_std_pps_overrides: crate::vk::Bool32,
 }
 #[repr(C)]
-pub struct VkVideoEncodeH264DpbSlotInfoKHR {
-    pub s_type: crate::External<
-        {
-            "VkStructureType";
-            0
-        },
-    >,
-    pub p_next: *const core::ffi::c_void,
-    pub p_std_reference_info: *const crate::External<
-        {
-            "StdVideoEncodeH264ReferenceInfo";
-            0
-        },
-    >,
+pub struct VideoEncodeH264DpbSlotInfoKHR {
+    s_type: crate::vk::StructureType,
+    p_next: *const core::ffi::c_void,
+    p_std_reference_info: *const crate::vk::StdVideoEncodeH264ReferenceInfo,
 }
 #[repr(C)]
-pub struct VkVideoEncodeH264PictureInfoKHR {
-    pub s_type: crate::External<
-        {
-            "VkStructureType";
-            0
-        },
-    >,
-    pub p_next: *const core::ffi::c_void,
-    pub nalu_slice_entry_count: crate::External<
+pub struct VideoEncodeH264PictureInfoKHR {
+    s_type: crate::vk::StructureType,
+    p_next: *const core::ffi::c_void,
+    nalu_slice_entry_count: crate::External<
         {
             "uint32_t";
             0
         },
     >,
-    pub p_nalu_slice_entries: *const crate::External<
-        {
-            "VkVideoEncodeH264NaluSliceInfoKHR";
-            0
-        },
-    >,
-    pub p_std_picture_info: *const crate::External<
-        {
-            "StdVideoEncodeH264PictureInfo";
-            0
-        },
-    >,
-    pub generate_prefix_nalu: crate::External<
-        {
-            "VkBool32";
-            0
-        },
-    >,
+    p_nalu_slice_entries: *const crate::vk::VideoEncodeH264NaluSliceInfoKHR,
+    p_std_picture_info: *const crate::vk::StdVideoEncodeH264PictureInfo,
+    generate_prefix_nalu: crate::vk::Bool32,
 }
 #[repr(C)]
-pub struct VkVideoEncodeH264ProfileInfoKHR {
-    pub s_type: crate::External<
-        {
-            "VkStructureType";
-            0
-        },
-    >,
-    pub p_next: *const core::ffi::c_void,
-    pub std_profile_idc: crate::External<
-        {
-            "StdVideoH264ProfileIdc";
-            0
-        },
-    >,
+pub struct VideoEncodeH264ProfileInfoKHR {
+    s_type: crate::vk::StructureType,
+    p_next: *const core::ffi::c_void,
+    std_profile_idc: crate::vk::StdVideoH264ProfileIdc,
 }
 #[repr(C)]
-pub struct VkVideoEncodeH264NaluSliceInfoKHR {
-    pub s_type: crate::External<
-        {
-            "VkStructureType";
-            0
-        },
-    >,
-    pub p_next: *const core::ffi::c_void,
-    pub constant_qp: crate::External<
+pub struct VideoEncodeH264NaluSliceInfoKHR {
+    s_type: crate::vk::StructureType,
+    p_next: *const core::ffi::c_void,
+    constant_qp: crate::External<
         {
             "int32_t";
             0
         },
     >,
-    pub p_std_slice_header: *const crate::External<
-        {
-            "StdVideoEncodeH264SliceHeader";
-            0
-        },
-    >,
+    p_std_slice_header: *const crate::vk::StdVideoEncodeH264SliceHeader,
 }
 #[repr(C)]
-pub struct VkVideoEncodeH264RateControlInfoKHR {
-    pub s_type: crate::External<
-        {
-            "VkStructureType";
-            0
-        },
-    >,
-    pub p_next: *const core::ffi::c_void,
-    pub flags: crate::External<
-        {
-            "VkVideoEncodeH264RateControlFlagsKHR";
-            0
-        },
-    >,
-    pub gop_frame_count: crate::External<
+pub struct VideoEncodeH264RateControlInfoKHR {
+    s_type: crate::vk::StructureType,
+    p_next: *const core::ffi::c_void,
+    flags: crate::vk::VideoEncodeH264RateControlFlagsKHR,
+    gop_frame_count: crate::External<
         {
             "uint32_t";
             0
         },
     >,
-    pub idr_period: crate::External<
+    idr_period: crate::External<
         {
             "uint32_t";
             0
         },
     >,
-    pub consecutive_b_frame_count: crate::External<
+    consecutive_b_frame_count: crate::External<
         {
             "uint32_t";
             0
         },
     >,
-    pub temporal_layer_count: crate::External<
+    temporal_layer_count: crate::External<
         {
             "uint32_t";
             0
@@ -422,20 +237,20 @@ pub struct VkVideoEncodeH264RateControlInfoKHR {
     >,
 }
 #[repr(C)]
-pub struct VkVideoEncodeH264QpKHR {
-    pub qp_i: crate::External<
+pub struct VideoEncodeH264QpKHR {
+    qp_i: crate::External<
         {
             "int32_t";
             0
         },
     >,
-    pub qp_p: crate::External<
+    qp_p: crate::External<
         {
             "int32_t";
             0
         },
     >,
-    pub qp_b: crate::External<
+    qp_b: crate::External<
         {
             "int32_t";
             0
@@ -443,54 +258,20 @@ pub struct VkVideoEncodeH264QpKHR {
     >,
 }
 #[repr(C)]
-pub struct VkVideoEncodeH264FrameSizeKHR {
-    pub frame_i_size: crate::External<
+pub struct VideoEncodeH264FrameSizeKHR {
+    frame_i_size: crate::External<
         {
             "uint32_t";
             0
         },
     >,
-    pub frame_p_size: crate::External<
+    frame_p_size: crate::External<
         {
             "uint32_t";
             0
         },
     >,
-    pub frame_b_size: crate::External<
-        {
-            "uint32_t";
-            0
-        },
-    >,
-}
-#[repr(C)]
-pub struct VkVideoEncodeH264GopRemainingFrameInfoKHR {
-    pub s_type: crate::External<
-        {
-            "VkStructureType";
-            0
-        },
-    >,
-    pub p_next: *const core::ffi::c_void,
-    pub use_gop_remaining_frames: crate::External<
-        {
-            "VkBool32";
-            0
-        },
-    >,
-    pub gop_remaining_i: crate::External<
-        {
-            "uint32_t";
-            0
-        },
-    >,
-    pub gop_remaining_p: crate::External<
-        {
-            "uint32_t";
-            0
-        },
-    >,
-    pub gop_remaining_b: crate::External<
+    frame_b_size: crate::External<
         {
             "uint32_t";
             0
@@ -498,48 +279,37 @@ pub struct VkVideoEncodeH264GopRemainingFrameInfoKHR {
     >,
 }
 #[repr(C)]
-pub struct VkVideoEncodeH264RateControlLayerInfoKHR {
-    pub s_type: crate::External<
+pub struct VideoEncodeH264GopRemainingFrameInfoKHR {
+    s_type: crate::vk::StructureType,
+    p_next: *const core::ffi::c_void,
+    use_gop_remaining_frames: crate::vk::Bool32,
+    gop_remaining_i: crate::External<
         {
-            "VkStructureType";
+            "uint32_t";
             0
         },
     >,
-    pub p_next: *const core::ffi::c_void,
-    pub use_min_qp: crate::External<
+    gop_remaining_p: crate::External<
         {
-            "VkBool32";
+            "uint32_t";
             0
         },
     >,
-    pub min_qp: crate::External<
+    gop_remaining_b: crate::External<
         {
-            "VkVideoEncodeH264QpKHR";
+            "uint32_t";
             0
         },
     >,
-    pub use_max_qp: crate::External<
-        {
-            "VkBool32";
-            0
-        },
-    >,
-    pub max_qp: crate::External<
-        {
-            "VkVideoEncodeH264QpKHR";
-            0
-        },
-    >,
-    pub use_max_frame_size: crate::External<
-        {
-            "VkBool32";
-            0
-        },
-    >,
-    pub max_frame_size: crate::External<
-        {
-            "VkVideoEncodeH264FrameSizeKHR";
-            0
-        },
-    >,
+}
+#[repr(C)]
+pub struct VideoEncodeH264RateControlLayerInfoKHR {
+    s_type: crate::vk::StructureType,
+    p_next: *const core::ffi::c_void,
+    use_min_qp: crate::vk::Bool32,
+    min_qp: crate::vk::VideoEncodeH264QpKHR,
+    use_max_qp: crate::vk::Bool32,
+    max_qp: crate::vk::VideoEncodeH264QpKHR,
+    use_max_frame_size: crate::vk::Bool32,
+    max_frame_size: crate::vk::VideoEncodeH264FrameSizeKHR,
 }

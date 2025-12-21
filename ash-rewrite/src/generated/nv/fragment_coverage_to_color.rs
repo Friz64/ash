@@ -2,27 +2,12 @@
 #![cfg_attr(rustfmt, rustfmt_skip)]
 //![Vulkan Manual Page](https://docs.vulkan.org/refpages/latest/refpages/source/VK_NV_fragment_coverage_to_color.html) · Vulkan extension
 #[repr(C)]
-pub struct VkPipelineCoverageToColorStateCreateInfoNV {
-    pub s_type: crate::External<
-        {
-            "VkStructureType";
-            0
-        },
-    >,
-    pub p_next: *const core::ffi::c_void,
-    pub flags: crate::External<
-        {
-            "VkPipelineCoverageToColorStateCreateFlagsNV";
-            0
-        },
-    >,
-    pub coverage_to_color_enable: crate::External<
-        {
-            "VkBool32";
-            0
-        },
-    >,
-    pub coverage_to_color_location: crate::External<
+pub struct PipelineCoverageToColorStateCreateInfoNV {
+    s_type: crate::vk::StructureType,
+    p_next: *const core::ffi::c_void,
+    flags: crate::vk::PipelineCoverageToColorStateCreateFlagsNV,
+    coverage_to_color_enable: crate::vk::Bool32,
+    coverage_to_color_location: crate::External<
         {
             "uint32_t";
             0

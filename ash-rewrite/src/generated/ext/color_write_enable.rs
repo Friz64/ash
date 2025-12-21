@@ -2,40 +2,20 @@
 #![cfg_attr(rustfmt, rustfmt_skip)]
 //![Vulkan Manual Page](https://docs.vulkan.org/refpages/latest/refpages/source/VK_EXT_color_write_enable.html) · Vulkan extension
 #[repr(C)]
-pub struct VkPhysicalDeviceColorWriteEnableFeaturesEXT {
-    pub s_type: crate::External<
-        {
-            "VkStructureType";
-            0
-        },
-    >,
-    pub p_next: *mut core::ffi::c_void,
-    pub color_write_enable: crate::External<
-        {
-            "VkBool32";
-            0
-        },
-    >,
+pub struct PhysicalDeviceColorWriteEnableFeaturesEXT {
+    s_type: crate::vk::StructureType,
+    p_next: *mut core::ffi::c_void,
+    color_write_enable: crate::vk::Bool32,
 }
 #[repr(C)]
-pub struct VkPipelineColorWriteCreateInfoEXT {
-    pub s_type: crate::External<
-        {
-            "VkStructureType";
-            0
-        },
-    >,
-    pub p_next: *const core::ffi::c_void,
-    pub attachment_count: crate::External<
+pub struct PipelineColorWriteCreateInfoEXT {
+    s_type: crate::vk::StructureType,
+    p_next: *const core::ffi::c_void,
+    attachment_count: crate::External<
         {
             "uint32_t";
             0
         },
     >,
-    pub p_color_write_enables: *const crate::External<
-        {
-            "VkBool32";
-            0
-        },
-    >,
+    p_color_write_enables: *const crate::vk::Bool32,
 }

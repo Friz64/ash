@@ -2,32 +2,17 @@
 #![cfg_attr(rustfmt, rustfmt_skip)]
 //![Vulkan Manual Page](https://docs.vulkan.org/refpages/latest/refpages/source/VK_EXT_external_memory_metal.html) · Vulkan extension
 #[repr(C)]
-pub struct VkImportMemoryMetalHandleInfoEXT {
-    pub s_type: crate::External<
-        {
-            "VkStructureType";
-            0
-        },
-    >,
-    pub p_next: *const core::ffi::c_void,
-    pub handle_type: crate::External<
-        {
-            "VkExternalMemoryHandleTypeFlagBits";
-            0
-        },
-    >,
-    pub handle: *mut core::ffi::c_void,
+pub struct ImportMemoryMetalHandleInfoEXT {
+    s_type: crate::vk::StructureType,
+    p_next: *const core::ffi::c_void,
+    handle_type: crate::vk::ExternalMemoryHandleTypeFlagBits,
+    handle: *mut core::ffi::c_void,
 }
 #[repr(C)]
-pub struct VkMemoryMetalHandlePropertiesEXT {
-    pub s_type: crate::External<
-        {
-            "VkStructureType";
-            0
-        },
-    >,
-    pub p_next: *mut core::ffi::c_void,
-    pub memory_type_bits: crate::External<
+pub struct MemoryMetalHandlePropertiesEXT {
+    s_type: crate::vk::StructureType,
+    p_next: *mut core::ffi::c_void,
+    memory_type_bits: crate::External<
         {
             "uint32_t";
             0
@@ -35,24 +20,9 @@ pub struct VkMemoryMetalHandlePropertiesEXT {
     >,
 }
 #[repr(C)]
-pub struct VkMemoryGetMetalHandleInfoEXT {
-    pub s_type: crate::External<
-        {
-            "VkStructureType";
-            0
-        },
-    >,
-    pub p_next: *const core::ffi::c_void,
-    pub memory: crate::External<
-        {
-            "VkDeviceMemory";
-            0
-        },
-    >,
-    pub handle_type: crate::External<
-        {
-            "VkExternalMemoryHandleTypeFlagBits";
-            0
-        },
-    >,
+pub struct MemoryGetMetalHandleInfoEXT {
+    s_type: crate::vk::StructureType,
+    p_next: *const core::ffi::c_void,
+    memory: crate::vk::DeviceMemory,
+    handle_type: crate::vk::ExternalMemoryHandleTypeFlagBits,
 }

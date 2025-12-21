@@ -2,102 +2,57 @@
 #![cfg_attr(rustfmt, rustfmt_skip)]
 //![Vulkan Manual Page](https://docs.vulkan.org/refpages/latest/refpages/source/VK_KHR_pipeline_binary.html) · Vulkan extension
 #[repr(C)]
-pub struct VkPipelineBinaryCreateInfoKHR {
-    pub s_type: crate::External<
-        {
-            "VkStructureType";
-            0
-        },
-    >,
-    pub p_next: *const core::ffi::c_void,
-    pub p_keys_and_data_info: *const crate::External<
-        {
-            "VkPipelineBinaryKeysAndDataKHR";
-            0
-        },
-    >,
-    pub pipeline: crate::External<
-        {
-            "VkPipeline";
-            0
-        },
-    >,
-    pub p_pipeline_create_info: *const crate::External<
-        {
-            "VkPipelineCreateInfoKHR";
-            0
-        },
-    >,
+pub struct PipelineBinaryCreateInfoKHR {
+    s_type: crate::vk::StructureType,
+    p_next: *const core::ffi::c_void,
+    p_keys_and_data_info: *const crate::vk::PipelineBinaryKeysAndDataKHR,
+    pipeline: crate::vk::Pipeline,
+    p_pipeline_create_info: *const crate::vk::PipelineCreateInfoKHR,
 }
 #[repr(C)]
-pub struct VkPipelineBinaryHandlesInfoKHR {
-    pub s_type: crate::External<
-        {
-            "VkStructureType";
-            0
-        },
-    >,
-    pub p_next: *const core::ffi::c_void,
-    pub pipeline_binary_count: crate::External<
+pub struct PipelineBinaryHandlesInfoKHR {
+    s_type: crate::vk::StructureType,
+    p_next: *const core::ffi::c_void,
+    pipeline_binary_count: crate::External<
         {
             "uint32_t";
             0
         },
     >,
-    pub p_pipeline_binaries: *mut crate::External<
-        {
-            "VkPipelineBinaryKHR";
-            0
-        },
-    >,
+    p_pipeline_binaries: *mut crate::vk::PipelineBinaryKHR,
 }
 #[repr(C)]
-pub struct VkPipelineBinaryDataKHR {
-    pub data_size: crate::External<
+pub struct PipelineBinaryDataKHR {
+    data_size: crate::External<
         {
             "size_t";
             0
         },
     >,
-    pub p_data: *mut core::ffi::c_void,
+    p_data: *mut core::ffi::c_void,
 }
 #[repr(C)]
-pub struct VkPipelineBinaryKeysAndDataKHR {
-    pub binary_count: crate::External<
+pub struct PipelineBinaryKeysAndDataKHR {
+    binary_count: crate::External<
         {
             "uint32_t";
             0
         },
     >,
-    pub p_pipeline_binary_keys: *const crate::External<
-        {
-            "VkPipelineBinaryKeyKHR";
-            0
-        },
-    >,
-    pub p_pipeline_binary_data: *const crate::External<
-        {
-            "VkPipelineBinaryDataKHR";
-            0
-        },
-    >,
+    p_pipeline_binary_keys: *const crate::vk::PipelineBinaryKeyKHR,
+    p_pipeline_binary_data: *const crate::vk::PipelineBinaryDataKHR,
 }
 #[repr(C)]
-pub struct VkPipelineBinaryKeyKHR {
-    pub s_type: crate::External<
-        {
-            "VkStructureType";
-            0
-        },
-    >,
-    pub p_next: *mut core::ffi::c_void,
-    pub key_size: crate::External<
+pub struct PipelineBinaryKeyKHR {
+    s_type: crate::vk::StructureType,
+    p_next: *mut core::ffi::c_void,
+    key_size: crate::External<
         {
             "uint32_t";
             0
         },
     >,
-    pub key: [crate::External<
+    key: [crate::External<
         {
             "uint8_t";
             0
@@ -105,138 +60,55 @@ pub struct VkPipelineBinaryKeyKHR {
     >; 1337],
 }
 #[repr(C)]
-pub struct VkPipelineBinaryInfoKHR {
-    pub s_type: crate::External<
-        {
-            "VkStructureType";
-            0
-        },
-    >,
-    pub p_next: *const core::ffi::c_void,
-    pub binary_count: crate::External<
+pub struct PipelineBinaryInfoKHR {
+    s_type: crate::vk::StructureType,
+    p_next: *const core::ffi::c_void,
+    binary_count: crate::External<
         {
             "uint32_t";
             0
         },
     >,
-    pub p_pipeline_binaries: *const crate::External<
-        {
-            "VkPipelineBinaryKHR";
-            0
-        },
-    >,
+    p_pipeline_binaries: *const crate::vk::PipelineBinaryKHR,
 }
 #[repr(C)]
-pub struct VkReleaseCapturedPipelineDataInfoKHR {
-    pub s_type: crate::External<
-        {
-            "VkStructureType";
-            0
-        },
-    >,
-    pub p_next: *mut core::ffi::c_void,
-    pub pipeline: crate::External<
-        {
-            "VkPipeline";
-            0
-        },
-    >,
+pub struct ReleaseCapturedPipelineDataInfoKHR {
+    s_type: crate::vk::StructureType,
+    p_next: *mut core::ffi::c_void,
+    pipeline: crate::vk::Pipeline,
 }
 #[repr(C)]
-pub struct VkPipelineBinaryDataInfoKHR {
-    pub s_type: crate::External<
-        {
-            "VkStructureType";
-            0
-        },
-    >,
-    pub p_next: *mut core::ffi::c_void,
-    pub pipeline_binary: crate::External<
-        {
-            "VkPipelineBinaryKHR";
-            0
-        },
-    >,
+pub struct PipelineBinaryDataInfoKHR {
+    s_type: crate::vk::StructureType,
+    p_next: *mut core::ffi::c_void,
+    pipeline_binary: crate::vk::PipelineBinaryKHR,
 }
 #[repr(C)]
-pub struct VkPipelineCreateInfoKHR {
-    pub s_type: crate::External<
-        {
-            "VkStructureType";
-            0
-        },
-    >,
-    pub p_next: *mut core::ffi::c_void,
+pub struct PipelineCreateInfoKHR {
+    s_type: crate::vk::StructureType,
+    p_next: *mut core::ffi::c_void,
 }
 #[repr(C)]
-pub struct VkPhysicalDevicePipelineBinaryFeaturesKHR {
-    pub s_type: crate::External<
-        {
-            "VkStructureType";
-            0
-        },
-    >,
-    pub p_next: *mut core::ffi::c_void,
-    pub pipeline_binaries: crate::External<
-        {
-            "VkBool32";
-            0
-        },
-    >,
+pub struct PhysicalDevicePipelineBinaryFeaturesKHR {
+    s_type: crate::vk::StructureType,
+    p_next: *mut core::ffi::c_void,
+    pipeline_binaries: crate::vk::Bool32,
 }
 #[repr(C)]
-pub struct VkDevicePipelineBinaryInternalCacheControlKHR {
-    pub s_type: crate::External<
-        {
-            "VkStructureType";
-            0
-        },
-    >,
-    pub p_next: *const core::ffi::c_void,
-    pub disable_internal_cache: crate::External<
-        {
-            "VkBool32";
-            0
-        },
-    >,
+pub struct DevicePipelineBinaryInternalCacheControlKHR {
+    s_type: crate::vk::StructureType,
+    p_next: *const core::ffi::c_void,
+    disable_internal_cache: crate::vk::Bool32,
 }
 #[repr(C)]
-pub struct VkPhysicalDevicePipelineBinaryPropertiesKHR {
-    pub s_type: crate::External<
-        {
-            "VkStructureType";
-            0
-        },
-    >,
-    pub p_next: *mut core::ffi::c_void,
-    pub pipeline_binary_internal_cache: crate::External<
-        {
-            "VkBool32";
-            0
-        },
-    >,
-    pub pipeline_binary_internal_cache_control: crate::External<
-        {
-            "VkBool32";
-            0
-        },
-    >,
-    pub pipeline_binary_prefers_internal_cache: crate::External<
-        {
-            "VkBool32";
-            0
-        },
-    >,
-    pub pipeline_binary_precompiled_internal_cache: crate::External<
-        {
-            "VkBool32";
-            0
-        },
-    >,
-    pub pipeline_binary_compressed_data: crate::External<
-        {
-            "VkBool32";
-            0
-        },
-    >,
+pub struct PhysicalDevicePipelineBinaryPropertiesKHR {
+    s_type: crate::vk::StructureType,
+    p_next: *mut core::ffi::c_void,
+    pipeline_binary_internal_cache: crate::vk::Bool32,
+    pipeline_binary_internal_cache_control: crate::vk::Bool32,
+    pipeline_binary_prefers_internal_cache: crate::vk::Bool32,
+    pipeline_binary_precompiled_internal_cache: crate::vk::Bool32,
+    pipeline_binary_compressed_data: crate::vk::Bool32,
 }
+#[repr(C)]
+pub struct PipelineBinaryKHR {}

@@ -2,40 +2,15 @@
 #![cfg_attr(rustfmt, rustfmt_skip)]
 //![Vulkan Manual Page](https://docs.vulkan.org/refpages/latest/refpages/source/VK_EXT_depth_clip_enable.html) · Vulkan extension
 #[repr(C)]
-pub struct VkPhysicalDeviceDepthClipEnableFeaturesEXT {
-    pub s_type: crate::External<
-        {
-            "VkStructureType";
-            0
-        },
-    >,
-    pub p_next: *mut core::ffi::c_void,
-    pub depth_clip_enable: crate::External<
-        {
-            "VkBool32";
-            0
-        },
-    >,
+pub struct PhysicalDeviceDepthClipEnableFeaturesEXT {
+    s_type: crate::vk::StructureType,
+    p_next: *mut core::ffi::c_void,
+    depth_clip_enable: crate::vk::Bool32,
 }
 #[repr(C)]
-pub struct VkPipelineRasterizationDepthClipStateCreateInfoEXT {
-    pub s_type: crate::External<
-        {
-            "VkStructureType";
-            0
-        },
-    >,
-    pub p_next: *const core::ffi::c_void,
-    pub flags: crate::External<
-        {
-            "VkPipelineRasterizationDepthClipStateCreateFlagsEXT";
-            0
-        },
-    >,
-    pub depth_clip_enable: crate::External<
-        {
-            "VkBool32";
-            0
-        },
-    >,
+pub struct PipelineRasterizationDepthClipStateCreateInfoEXT {
+    s_type: crate::vk::StructureType,
+    p_next: *const core::ffi::c_void,
+    flags: crate::vk::PipelineRasterizationDepthClipStateCreateFlagsEXT,
+    depth_clip_enable: crate::vk::Bool32,
 }

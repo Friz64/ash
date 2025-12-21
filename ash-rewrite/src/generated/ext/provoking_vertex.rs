@@ -2,62 +2,24 @@
 #![cfg_attr(rustfmt, rustfmt_skip)]
 //![Vulkan Manual Page](https://docs.vulkan.org/refpages/latest/refpages/source/VK_EXT_provoking_vertex.html) · Vulkan extension
 #[repr(C)]
-pub struct VkPhysicalDeviceProvokingVertexFeaturesEXT {
-    pub s_type: crate::External<
-        {
-            "VkStructureType";
-            0
-        },
-    >,
-    pub p_next: *mut core::ffi::c_void,
-    pub provoking_vertex_last: crate::External<
-        {
-            "VkBool32";
-            0
-        },
-    >,
-    pub transform_feedback_preserves_provoking_vertex: crate::External<
-        {
-            "VkBool32";
-            0
-        },
-    >,
+pub struct PhysicalDeviceProvokingVertexFeaturesEXT {
+    s_type: crate::vk::StructureType,
+    p_next: *mut core::ffi::c_void,
+    provoking_vertex_last: crate::vk::Bool32,
+    transform_feedback_preserves_provoking_vertex: crate::vk::Bool32,
 }
 #[repr(C)]
-pub struct VkPhysicalDeviceProvokingVertexPropertiesEXT {
-    pub s_type: crate::External<
-        {
-            "VkStructureType";
-            0
-        },
-    >,
-    pub p_next: *mut core::ffi::c_void,
-    pub provoking_vertex_mode_per_pipeline: crate::External<
-        {
-            "VkBool32";
-            0
-        },
-    >,
-    pub transform_feedback_preserves_triangle_fan_provoking_vertex: crate::External<
-        {
-            "VkBool32";
-            0
-        },
-    >,
+pub struct PhysicalDeviceProvokingVertexPropertiesEXT {
+    s_type: crate::vk::StructureType,
+    p_next: *mut core::ffi::c_void,
+    provoking_vertex_mode_per_pipeline: crate::vk::Bool32,
+    transform_feedback_preserves_triangle_fan_provoking_vertex: crate::vk::Bool32,
 }
 #[repr(C)]
-pub struct VkPipelineRasterizationProvokingVertexStateCreateInfoEXT {
-    pub s_type: crate::External<
-        {
-            "VkStructureType";
-            0
-        },
-    >,
-    pub p_next: *const core::ffi::c_void,
-    pub provoking_vertex_mode: crate::External<
-        {
-            "VkProvokingVertexModeEXT";
-            0
-        },
-    >,
+pub struct PipelineRasterizationProvokingVertexStateCreateInfoEXT {
+    s_type: crate::vk::StructureType,
+    p_next: *const core::ffi::c_void,
+    provoking_vertex_mode: crate::vk::ProvokingVertexModeEXT,
 }
+#[repr(C)]
+pub struct ProvokingVertexModeEXT {}

@@ -2,33 +2,13 @@
 #![cfg_attr(rustfmt, rustfmt_skip)]
 //![Vulkan Manual Page](https://docs.vulkan.org/refpages/latest/refpages/source/VK_KHR_external_fence_fd.html) · Vulkan extension
 #[repr(C)]
-pub struct VkImportFenceFdInfoKHR {
-    pub s_type: crate::External<
-        {
-            "VkStructureType";
-            0
-        },
-    >,
-    pub p_next: *const core::ffi::c_void,
-    pub fence: crate::External<
-        {
-            "VkFence";
-            0
-        },
-    >,
-    pub flags: crate::External<
-        {
-            "VkFenceImportFlags";
-            0
-        },
-    >,
-    pub handle_type: crate::External<
-        {
-            "VkExternalFenceHandleTypeFlagBits";
-            0
-        },
-    >,
-    pub fd: crate::External<
+pub struct ImportFenceFdInfoKHR {
+    s_type: crate::vk::StructureType,
+    p_next: *const core::ffi::c_void,
+    fence: crate::vk::Fence,
+    flags: crate::vk::FenceImportFlags,
+    handle_type: crate::vk::ExternalFenceHandleTypeFlagBits,
+    fd: crate::External<
         {
             "int";
             0
@@ -36,24 +16,9 @@ pub struct VkImportFenceFdInfoKHR {
     >,
 }
 #[repr(C)]
-pub struct VkFenceGetFdInfoKHR {
-    pub s_type: crate::External<
-        {
-            "VkStructureType";
-            0
-        },
-    >,
-    pub p_next: *const core::ffi::c_void,
-    pub fence: crate::External<
-        {
-            "VkFence";
-            0
-        },
-    >,
-    pub handle_type: crate::External<
-        {
-            "VkExternalFenceHandleTypeFlagBits";
-            0
-        },
-    >,
+pub struct FenceGetFdInfoKHR {
+    s_type: crate::vk::StructureType,
+    p_next: *const core::ffi::c_void,
+    fence: crate::vk::Fence,
+    handle_type: crate::vk::ExternalFenceHandleTypeFlagBits,
 }

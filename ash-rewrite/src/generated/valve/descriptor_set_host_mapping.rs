@@ -2,37 +2,17 @@
 #![cfg_attr(rustfmt, rustfmt_skip)]
 //![Vulkan Manual Page](https://docs.vulkan.org/refpages/latest/refpages/source/VK_VALVE_descriptor_set_host_mapping.html) · Vulkan extension
 #[repr(C)]
-pub struct VkPhysicalDeviceDescriptorSetHostMappingFeaturesVALVE {
-    pub s_type: crate::External<
-        {
-            "VkStructureType";
-            0
-        },
-    >,
-    pub p_next: *mut core::ffi::c_void,
-    pub descriptor_set_host_mapping: crate::External<
-        {
-            "VkBool32";
-            0
-        },
-    >,
+pub struct PhysicalDeviceDescriptorSetHostMappingFeaturesVALVE {
+    s_type: crate::vk::StructureType,
+    p_next: *mut core::ffi::c_void,
+    descriptor_set_host_mapping: crate::vk::Bool32,
 }
 #[repr(C)]
-pub struct VkDescriptorSetBindingReferenceVALVE {
-    pub s_type: crate::External<
-        {
-            "VkStructureType";
-            0
-        },
-    >,
-    pub p_next: *const core::ffi::c_void,
-    pub descriptor_set_layout: crate::External<
-        {
-            "VkDescriptorSetLayout";
-            0
-        },
-    >,
-    pub binding: crate::External<
+pub struct DescriptorSetBindingReferenceVALVE {
+    s_type: crate::vk::StructureType,
+    p_next: *const core::ffi::c_void,
+    descriptor_set_layout: crate::vk::DescriptorSetLayout,
+    binding: crate::External<
         {
             "uint32_t";
             0
@@ -40,21 +20,16 @@ pub struct VkDescriptorSetBindingReferenceVALVE {
     >,
 }
 #[repr(C)]
-pub struct VkDescriptorSetLayoutHostMappingInfoVALVE {
-    pub s_type: crate::External<
-        {
-            "VkStructureType";
-            0
-        },
-    >,
-    pub p_next: *mut core::ffi::c_void,
-    pub descriptor_offset: crate::External<
+pub struct DescriptorSetLayoutHostMappingInfoVALVE {
+    s_type: crate::vk::StructureType,
+    p_next: *mut core::ffi::c_void,
+    descriptor_offset: crate::External<
         {
             "size_t";
             0
         },
     >,
-    pub descriptor_size: crate::External<
+    descriptor_size: crate::External<
         {
             "uint32_t";
             0

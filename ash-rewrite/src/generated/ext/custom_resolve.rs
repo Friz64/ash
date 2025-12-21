@@ -2,68 +2,28 @@
 #![cfg_attr(rustfmt, rustfmt_skip)]
 //![Vulkan Manual Page](https://docs.vulkan.org/refpages/latest/refpages/source/VK_EXT_custom_resolve.html) · Vulkan extension
 #[repr(C)]
-pub struct VkBeginCustomResolveInfoEXT {
-    pub s_type: crate::External<
-        {
-            "VkStructureType";
-            0
-        },
-    >,
-    pub p_next: *mut core::ffi::c_void,
+pub struct BeginCustomResolveInfoEXT {
+    s_type: crate::vk::StructureType,
+    p_next: *mut core::ffi::c_void,
 }
 #[repr(C)]
-pub struct VkPhysicalDeviceCustomResolveFeaturesEXT {
-    pub s_type: crate::External<
-        {
-            "VkStructureType";
-            0
-        },
-    >,
-    pub p_next: *mut core::ffi::c_void,
-    pub custom_resolve: crate::External<
-        {
-            "VkBool32";
-            0
-        },
-    >,
+pub struct PhysicalDeviceCustomResolveFeaturesEXT {
+    s_type: crate::vk::StructureType,
+    p_next: *mut core::ffi::c_void,
+    custom_resolve: crate::vk::Bool32,
 }
 #[repr(C)]
-pub struct VkCustomResolveCreateInfoEXT {
-    pub s_type: crate::External<
-        {
-            "VkStructureType";
-            0
-        },
-    >,
-    pub p_next: *const core::ffi::c_void,
-    pub custom_resolve: crate::External<
-        {
-            "VkBool32";
-            0
-        },
-    >,
-    pub color_attachment_count: crate::External<
+pub struct CustomResolveCreateInfoEXT {
+    s_type: crate::vk::StructureType,
+    p_next: *const core::ffi::c_void,
+    custom_resolve: crate::vk::Bool32,
+    color_attachment_count: crate::External<
         {
             "uint32_t";
             0
         },
     >,
-    pub p_color_attachment_formats: *const crate::External<
-        {
-            "VkFormat";
-            0
-        },
-    >,
-    pub depth_attachment_format: crate::External<
-        {
-            "VkFormat";
-            0
-        },
-    >,
-    pub stencil_attachment_format: crate::External<
-        {
-            "VkFormat";
-            0
-        },
-    >,
+    p_color_attachment_formats: *const crate::vk::Format,
+    depth_attachment_format: crate::vk::Format,
+    stencil_attachment_format: crate::vk::Format,
 }

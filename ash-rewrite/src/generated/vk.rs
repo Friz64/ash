@@ -307,6 +307,8 @@ pub use super::valve::video_encode_rgb_conversion::*;
 pub use super::ext::shader_64bit_indexing::*;
 pub use super::ohos::external_memory::*;
 pub use super::arm::performance_counters_by_region::*;
+pub use super::khr::synchronization2::*;
+pub use super::khr::deferred_host_operations::*;
 pub use super::video::codec_h264std::*;
 pub use super::video::codec_h264std_decode::*;
 pub use super::video::codec_h264std_encode::*;

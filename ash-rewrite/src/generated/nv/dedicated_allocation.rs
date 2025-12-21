@@ -2,56 +2,21 @@
 #![cfg_attr(rustfmt, rustfmt_skip)]
 //![Vulkan Manual Page](https://docs.vulkan.org/refpages/latest/refpages/source/VK_NV_dedicated_allocation.html) · Vulkan extension
 #[repr(C)]
-pub struct VkDedicatedAllocationImageCreateInfoNV {
-    pub s_type: crate::External<
-        {
-            "VkStructureType";
-            0
-        },
-    >,
-    pub p_next: *const core::ffi::c_void,
-    pub dedicated_allocation: crate::External<
-        {
-            "VkBool32";
-            0
-        },
-    >,
+pub struct DedicatedAllocationImageCreateInfoNV {
+    s_type: crate::vk::StructureType,
+    p_next: *const core::ffi::c_void,
+    dedicated_allocation: crate::vk::Bool32,
 }
 #[repr(C)]
-pub struct VkDedicatedAllocationBufferCreateInfoNV {
-    pub s_type: crate::External<
-        {
-            "VkStructureType";
-            0
-        },
-    >,
-    pub p_next: *const core::ffi::c_void,
-    pub dedicated_allocation: crate::External<
-        {
-            "VkBool32";
-            0
-        },
-    >,
+pub struct DedicatedAllocationBufferCreateInfoNV {
+    s_type: crate::vk::StructureType,
+    p_next: *const core::ffi::c_void,
+    dedicated_allocation: crate::vk::Bool32,
 }
 #[repr(C)]
-pub struct VkDedicatedAllocationMemoryAllocateInfoNV {
-    pub s_type: crate::External<
-        {
-            "VkStructureType";
-            0
-        },
-    >,
-    pub p_next: *const core::ffi::c_void,
-    pub image: crate::External<
-        {
-            "VkImage";
-            0
-        },
-    >,
-    pub buffer: crate::External<
-        {
-            "VkBuffer";
-            0
-        },
-    >,
+pub struct DedicatedAllocationMemoryAllocateInfoNV {
+    s_type: crate::vk::StructureType,
+    p_next: *const core::ffi::c_void,
+    image: crate::vk::Image,
+    buffer: crate::vk::Buffer,
 }

@@ -2,37 +2,17 @@
 #![cfg_attr(rustfmt, rustfmt_skip)]
 //![Vulkan Manual Page](https://docs.vulkan.org/refpages/latest/refpages/source/VK_ARM_render_pass_striped.html) · Vulkan extension
 #[repr(C)]
-pub struct VkPhysicalDeviceRenderPassStripedFeaturesARM {
-    pub s_type: crate::External<
-        {
-            "VkStructureType";
-            0
-        },
-    >,
-    pub p_next: *mut core::ffi::c_void,
-    pub render_pass_striped: crate::External<
-        {
-            "VkBool32";
-            0
-        },
-    >,
+pub struct PhysicalDeviceRenderPassStripedFeaturesARM {
+    s_type: crate::vk::StructureType,
+    p_next: *mut core::ffi::c_void,
+    render_pass_striped: crate::vk::Bool32,
 }
 #[repr(C)]
-pub struct VkPhysicalDeviceRenderPassStripedPropertiesARM {
-    pub s_type: crate::External<
-        {
-            "VkStructureType";
-            0
-        },
-    >,
-    pub p_next: *mut core::ffi::c_void,
-    pub render_pass_stripe_granularity: crate::External<
-        {
-            "VkExtent2D";
-            0
-        },
-    >,
-    pub max_render_pass_stripes: crate::External<
+pub struct PhysicalDeviceRenderPassStripedPropertiesARM {
+    s_type: crate::vk::StructureType,
+    p_next: *mut core::ffi::c_void,
+    render_pass_stripe_granularity: crate::vk::Extent2D,
+    max_render_pass_stripes: crate::External<
         {
             "uint32_t";
             0
@@ -40,62 +20,32 @@ pub struct VkPhysicalDeviceRenderPassStripedPropertiesARM {
     >,
 }
 #[repr(C)]
-pub struct VkRenderPassStripeInfoARM {
-    pub s_type: crate::External<
-        {
-            "VkStructureType";
-            0
-        },
-    >,
-    pub p_next: *const core::ffi::c_void,
-    pub stripe_area: crate::External<
-        {
-            "VkRect2D";
-            0
-        },
-    >,
+pub struct RenderPassStripeInfoARM {
+    s_type: crate::vk::StructureType,
+    p_next: *const core::ffi::c_void,
+    stripe_area: crate::vk::Rect2D,
 }
 #[repr(C)]
-pub struct VkRenderPassStripeBeginInfoARM {
-    pub s_type: crate::External<
-        {
-            "VkStructureType";
-            0
-        },
-    >,
-    pub p_next: *const core::ffi::c_void,
-    pub stripe_info_count: crate::External<
+pub struct RenderPassStripeBeginInfoARM {
+    s_type: crate::vk::StructureType,
+    p_next: *const core::ffi::c_void,
+    stripe_info_count: crate::External<
         {
             "uint32_t";
             0
         },
     >,
-    pub p_stripe_infos: *const crate::External<
-        {
-            "VkRenderPassStripeInfoARM";
-            0
-        },
-    >,
+    p_stripe_infos: *const crate::vk::RenderPassStripeInfoARM,
 }
 #[repr(C)]
-pub struct VkRenderPassStripeSubmitInfoARM {
-    pub s_type: crate::External<
-        {
-            "VkStructureType";
-            0
-        },
-    >,
-    pub p_next: *const core::ffi::c_void,
-    pub stripe_semaphore_info_count: crate::External<
+pub struct RenderPassStripeSubmitInfoARM {
+    s_type: crate::vk::StructureType,
+    p_next: *const core::ffi::c_void,
+    stripe_semaphore_info_count: crate::External<
         {
             "uint32_t";
             0
         },
     >,
-    pub p_stripe_semaphore_infos: *const crate::External<
-        {
-            "VkSemaphoreSubmitInfo";
-            0
-        },
-    >,
+    p_stripe_semaphore_infos: *const crate::vk::SemaphoreSubmitInfo,
 }

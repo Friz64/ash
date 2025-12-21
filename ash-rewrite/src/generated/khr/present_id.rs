@@ -2,37 +2,22 @@
 #![cfg_attr(rustfmt, rustfmt_skip)]
 //![Vulkan Manual Page](https://docs.vulkan.org/refpages/latest/refpages/source/VK_KHR_present_id.html) · Vulkan extension
 #[repr(C)]
-pub struct VkPhysicalDevicePresentIdFeaturesKHR {
-    pub s_type: crate::External<
-        {
-            "VkStructureType";
-            0
-        },
-    >,
-    pub p_next: *mut core::ffi::c_void,
-    pub present_id: crate::External<
-        {
-            "VkBool32";
-            0
-        },
-    >,
+pub struct PhysicalDevicePresentIdFeaturesKHR {
+    s_type: crate::vk::StructureType,
+    p_next: *mut core::ffi::c_void,
+    present_id: crate::vk::Bool32,
 }
 #[repr(C)]
-pub struct VkPresentIdKHR {
-    pub s_type: crate::External<
-        {
-            "VkStructureType";
-            0
-        },
-    >,
-    pub p_next: *const core::ffi::c_void,
-    pub swapchain_count: crate::External<
+pub struct PresentIdKHR {
+    s_type: crate::vk::StructureType,
+    p_next: *const core::ffi::c_void,
+    swapchain_count: crate::External<
         {
             "uint32_t";
             0
         },
     >,
-    pub p_present_ids: *const crate::External<
+    p_present_ids: *const crate::External<
         {
             "uint64_t";
             0

@@ -1,13 +1,14 @@
 use crate::{
-    decl::Decl,
-    item::{EmergeCtx, ItemInfo, RequiredBy},
+    decl::{self, Decl},
+    item::{ItemInfo, RequiredBy},
+    name::TypeName,
     xml,
 };
 
 #[derive(Debug)]
 pub struct Structure {
     pub required_by: RequiredBy,
-    pub name: &'static str,
+    pub name: TypeName,
     pub members: Vec<Decl>,
 }
 
@@ -16,14 +17,14 @@ impl ItemInfo for Structure {
         self.required_by
     }
 
-    fn name(&self) -> &'static str {
+    fn name(&self) -> TypeName {
         self.name
     }
 }
 
 impl Structure {
     pub(crate) fn new(
-        emerge_ctx: &mut EmergeCtx,
+        decl_ctx: &decl::Context,
         required_by: RequiredBy,
         xml: &xml::Structure,
     ) -> Structure {
@@ -31,7 +32,7 @@ impl Structure {
             required_by,
             name: xml.name,
             members: (xml.members.iter())
-                .map(|member| Decl::from_c(emerge_ctx, &member.c_decl))
+                .map(|member| Decl::from_c(decl_ctx, &member.c_decl))
                 .collect(),
         }
     }

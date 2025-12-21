@@ -2,238 +2,183 @@
 #![cfg_attr(rustfmt, rustfmt_skip)]
 //![Vulkan Manual Page](https://docs.vulkan.org/refpages/latest/refpages/source/VK_EXT_mesh_shader.html) · Vulkan extension
 #[repr(C)]
-pub struct VkPhysicalDeviceMeshShaderFeaturesEXT {
-    pub s_type: crate::External<
-        {
-            "VkStructureType";
-            0
-        },
-    >,
-    pub p_next: *mut core::ffi::c_void,
-    pub task_shader: crate::External<
-        {
-            "VkBool32";
-            0
-        },
-    >,
-    pub mesh_shader: crate::External<
-        {
-            "VkBool32";
-            0
-        },
-    >,
-    pub multiview_mesh_shader: crate::External<
-        {
-            "VkBool32";
-            0
-        },
-    >,
-    pub primitive_fragment_shading_rate_mesh_shader: crate::External<
-        {
-            "VkBool32";
-            0
-        },
-    >,
-    pub mesh_shader_queries: crate::External<
-        {
-            "VkBool32";
-            0
-        },
-    >,
+pub struct PhysicalDeviceMeshShaderFeaturesEXT {
+    s_type: crate::vk::StructureType,
+    p_next: *mut core::ffi::c_void,
+    task_shader: crate::vk::Bool32,
+    mesh_shader: crate::vk::Bool32,
+    multiview_mesh_shader: crate::vk::Bool32,
+    primitive_fragment_shading_rate_mesh_shader: crate::vk::Bool32,
+    mesh_shader_queries: crate::vk::Bool32,
 }
 #[repr(C)]
-pub struct VkPhysicalDeviceMeshShaderPropertiesEXT {
-    pub s_type: crate::External<
-        {
-            "VkStructureType";
-            0
-        },
-    >,
-    pub p_next: *mut core::ffi::c_void,
-    pub max_task_work_group_total_count: crate::External<
+pub struct PhysicalDeviceMeshShaderPropertiesEXT {
+    s_type: crate::vk::StructureType,
+    p_next: *mut core::ffi::c_void,
+    max_task_work_group_total_count: crate::External<
         {
             "uint32_t";
             0
         },
     >,
-    pub max_task_work_group_count: [crate::External<
+    max_task_work_group_count: [crate::External<
         {
             "uint32_t";
             0
         },
     >; 1337],
-    pub max_task_work_group_invocations: crate::External<
+    max_task_work_group_invocations: crate::External<
         {
             "uint32_t";
             0
         },
     >,
-    pub max_task_work_group_size: [crate::External<
-        {
-            "uint32_t";
-            0
-        },
-    >; 1337],
-    pub max_task_payload_size: crate::External<
-        {
-            "uint32_t";
-            0
-        },
-    >,
-    pub max_task_shared_memory_size: crate::External<
-        {
-            "uint32_t";
-            0
-        },
-    >,
-    pub max_task_payload_and_shared_memory_size: crate::External<
-        {
-            "uint32_t";
-            0
-        },
-    >,
-    pub max_mesh_work_group_total_count: crate::External<
-        {
-            "uint32_t";
-            0
-        },
-    >,
-    pub max_mesh_work_group_count: [crate::External<
+    max_task_work_group_size: [crate::External<
         {
             "uint32_t";
             0
         },
     >; 1337],
-    pub max_mesh_work_group_invocations: crate::External<
+    max_task_payload_size: crate::External<
         {
             "uint32_t";
             0
         },
     >,
-    pub max_mesh_work_group_size: [crate::External<
+    max_task_shared_memory_size: crate::External<
+        {
+            "uint32_t";
+            0
+        },
+    >,
+    max_task_payload_and_shared_memory_size: crate::External<
+        {
+            "uint32_t";
+            0
+        },
+    >,
+    max_mesh_work_group_total_count: crate::External<
+        {
+            "uint32_t";
+            0
+        },
+    >,
+    max_mesh_work_group_count: [crate::External<
         {
             "uint32_t";
             0
         },
     >; 1337],
-    pub max_mesh_shared_memory_size: crate::External<
+    max_mesh_work_group_invocations: crate::External<
         {
             "uint32_t";
             0
         },
     >,
-    pub max_mesh_payload_and_shared_memory_size: crate::External<
+    max_mesh_work_group_size: [crate::External<
+        {
+            "uint32_t";
+            0
+        },
+    >; 1337],
+    max_mesh_shared_memory_size: crate::External<
         {
             "uint32_t";
             0
         },
     >,
-    pub max_mesh_output_memory_size: crate::External<
+    max_mesh_payload_and_shared_memory_size: crate::External<
         {
             "uint32_t";
             0
         },
     >,
-    pub max_mesh_payload_and_output_memory_size: crate::External<
+    max_mesh_output_memory_size: crate::External<
         {
             "uint32_t";
             0
         },
     >,
-    pub max_mesh_output_components: crate::External<
+    max_mesh_payload_and_output_memory_size: crate::External<
         {
             "uint32_t";
             0
         },
     >,
-    pub max_mesh_output_vertices: crate::External<
+    max_mesh_output_components: crate::External<
         {
             "uint32_t";
             0
         },
     >,
-    pub max_mesh_output_primitives: crate::External<
+    max_mesh_output_vertices: crate::External<
         {
             "uint32_t";
             0
         },
     >,
-    pub max_mesh_output_layers: crate::External<
+    max_mesh_output_primitives: crate::External<
         {
             "uint32_t";
             0
         },
     >,
-    pub max_mesh_multiview_view_count: crate::External<
+    max_mesh_output_layers: crate::External<
         {
             "uint32_t";
             0
         },
     >,
-    pub mesh_output_per_vertex_granularity: crate::External<
+    max_mesh_multiview_view_count: crate::External<
         {
             "uint32_t";
             0
         },
     >,
-    pub mesh_output_per_primitive_granularity: crate::External<
+    mesh_output_per_vertex_granularity: crate::External<
         {
             "uint32_t";
             0
         },
     >,
-    pub max_preferred_task_work_group_invocations: crate::External<
+    mesh_output_per_primitive_granularity: crate::External<
         {
             "uint32_t";
             0
         },
     >,
-    pub max_preferred_mesh_work_group_invocations: crate::External<
+    max_preferred_task_work_group_invocations: crate::External<
         {
             "uint32_t";
             0
         },
     >,
-    pub prefers_local_invocation_vertex_output: crate::External<
+    max_preferred_mesh_work_group_invocations: crate::External<
         {
-            "VkBool32";
+            "uint32_t";
             0
         },
     >,
-    pub prefers_local_invocation_primitive_output: crate::External<
-        {
-            "VkBool32";
-            0
-        },
-    >,
-    pub prefers_compact_vertex_output: crate::External<
-        {
-            "VkBool32";
-            0
-        },
-    >,
-    pub prefers_compact_primitive_output: crate::External<
-        {
-            "VkBool32";
-            0
-        },
-    >,
+    prefers_local_invocation_vertex_output: crate::vk::Bool32,
+    prefers_local_invocation_primitive_output: crate::vk::Bool32,
+    prefers_compact_vertex_output: crate::vk::Bool32,
+    prefers_compact_primitive_output: crate::vk::Bool32,
 }
 #[repr(C)]
-pub struct VkDrawMeshTasksIndirectCommandEXT {
-    pub group_count_x: crate::External<
+pub struct DrawMeshTasksIndirectCommandEXT {
+    group_count_x: crate::External<
         {
             "uint32_t";
             0
         },
     >,
-    pub group_count_y: crate::External<
+    group_count_y: crate::External<
         {
             "uint32_t";
             0
         },
     >,
-    pub group_count_z: crate::External<
+    group_count_z: crate::External<
         {
             "uint32_t";
             0
