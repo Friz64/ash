@@ -2,68 +2,28 @@
 #![cfg_attr(rustfmt, rustfmt_skip)]
 //![Vulkan Manual Page](https://docs.vulkan.org/refpages/latest/refpages/source/VK_EXT_image_compression_control.html) · Vulkan extension
 #[repr(C)]
-pub struct VkImageCompressionControlEXT {
-    pub s_type: crate::External<
-        {
-            "VkStructureType";
-            0
-        },
-    >,
-    pub p_next: *const core::ffi::c_void,
-    pub flags: crate::External<
-        {
-            "VkImageCompressionFlagsEXT";
-            0
-        },
-    >,
-    pub compression_control_plane_count: crate::External<
+pub struct ImageCompressionControlEXT {
+    s_type: crate::vk::StructureType,
+    p_next: *const core::ffi::c_void,
+    flags: crate::vk::ImageCompressionFlagsEXT,
+    compression_control_plane_count: crate::External<
         {
             "uint32_t";
             0
         },
     >,
-    pub p_fixed_rate_flags: *mut crate::External<
-        {
-            "VkImageCompressionFixedRateFlagsEXT";
-            0
-        },
-    >,
+    p_fixed_rate_flags: *mut crate::vk::ImageCompressionFixedRateFlagsEXT,
 }
 #[repr(C)]
-pub struct VkPhysicalDeviceImageCompressionControlFeaturesEXT {
-    pub s_type: crate::External<
-        {
-            "VkStructureType";
-            0
-        },
-    >,
-    pub p_next: *mut core::ffi::c_void,
-    pub image_compression_control: crate::External<
-        {
-            "VkBool32";
-            0
-        },
-    >,
+pub struct PhysicalDeviceImageCompressionControlFeaturesEXT {
+    s_type: crate::vk::StructureType,
+    p_next: *mut core::ffi::c_void,
+    image_compression_control: crate::vk::Bool32,
 }
 #[repr(C)]
-pub struct VkImageCompressionPropertiesEXT {
-    pub s_type: crate::External<
-        {
-            "VkStructureType";
-            0
-        },
-    >,
-    pub p_next: *mut core::ffi::c_void,
-    pub image_compression_flags: crate::External<
-        {
-            "VkImageCompressionFlagsEXT";
-            0
-        },
-    >,
-    pub image_compression_fixed_rate_flags: crate::External<
-        {
-            "VkImageCompressionFixedRateFlagsEXT";
-            0
-        },
-    >,
+pub struct ImageCompressionPropertiesEXT {
+    s_type: crate::vk::StructureType,
+    p_next: *mut core::ffi::c_void,
+    image_compression_flags: crate::vk::ImageCompressionFlagsEXT,
+    image_compression_fixed_rate_flags: crate::vk::ImageCompressionFixedRateFlagsEXT,
 }

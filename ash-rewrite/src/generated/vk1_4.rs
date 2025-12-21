@@ -2,47 +2,22 @@
 #![cfg_attr(rustfmt, rustfmt_skip)]
 //!Vulkan version 1.4
 #[repr(C)]
-pub struct VkBufferUsageFlags2CreateInfo {
-    pub s_type: crate::External<
-        {
-            "VkStructureType";
-            0
-        },
-    >,
-    pub p_next: *const core::ffi::c_void,
-    pub usage: crate::External<
-        {
-            "VkBufferUsageFlags2";
-            0
-        },
-    >,
+pub struct BufferUsageFlags2CreateInfo {
+    s_type: crate::vk::StructureType,
+    p_next: *const core::ffi::c_void,
+    usage: crate::vk::BufferUsageFlags2,
 }
 #[repr(C)]
-pub struct VkPipelineCreateFlags2CreateInfo {
-    pub s_type: crate::External<
-        {
-            "VkStructureType";
-            0
-        },
-    >,
-    pub p_next: *const core::ffi::c_void,
-    pub flags: crate::External<
-        {
-            "VkPipelineCreateFlags2";
-            0
-        },
-    >,
+pub struct PipelineCreateFlags2CreateInfo {
+    s_type: crate::vk::StructureType,
+    p_next: *const core::ffi::c_void,
+    flags: crate::vk::PipelineCreateFlags2,
 }
 #[repr(C)]
-pub struct VkPhysicalDevicePushDescriptorProperties {
-    pub s_type: crate::External<
-        {
-            "VkStructureType";
-            0
-        },
-    >,
-    pub p_next: *mut core::ffi::c_void,
-    pub max_push_descriptors: crate::External<
+pub struct PhysicalDevicePushDescriptorProperties {
+    s_type: crate::vk::StructureType,
+    p_next: *mut core::ffi::c_void,
+    max_push_descriptors: crate::External<
         {
             "uint32_t";
             0
@@ -50,214 +25,94 @@ pub struct VkPhysicalDevicePushDescriptorProperties {
     >,
 }
 #[repr(C)]
-pub struct VkPhysicalDeviceMaintenance5Features {
-    pub s_type: crate::External<
-        {
-            "VkStructureType";
-            0
-        },
-    >,
-    pub p_next: *mut core::ffi::c_void,
-    pub maintenance5: crate::External<
-        {
-            "VkBool32";
-            0
-        },
-    >,
+pub struct PhysicalDeviceMaintenance5Features {
+    s_type: crate::vk::StructureType,
+    p_next: *mut core::ffi::c_void,
+    maintenance5: crate::vk::Bool32,
 }
 #[repr(C)]
-pub struct VkPhysicalDeviceMaintenance5Properties {
-    pub s_type: crate::External<
-        {
-            "VkStructureType";
-            0
-        },
-    >,
-    pub p_next: *mut core::ffi::c_void,
-    pub early_fragment_multisample_coverage_after_sample_counting: crate::External<
-        {
-            "VkBool32";
-            0
-        },
-    >,
-    pub early_fragment_sample_mask_test_before_sample_counting: crate::External<
-        {
-            "VkBool32";
-            0
-        },
-    >,
-    pub depth_stencil_swizzle_one_support: crate::External<
-        {
-            "VkBool32";
-            0
-        },
-    >,
-    pub polygon_mode_point_size: crate::External<
-        {
-            "VkBool32";
-            0
-        },
-    >,
-    pub non_strict_single_pixel_wide_lines_use_parallelogram: crate::External<
-        {
-            "VkBool32";
-            0
-        },
-    >,
-    pub non_strict_wide_lines_use_parallelogram: crate::External<
-        {
-            "VkBool32";
-            0
-        },
-    >,
+pub struct PhysicalDeviceMaintenance5Properties {
+    s_type: crate::vk::StructureType,
+    p_next: *mut core::ffi::c_void,
+    early_fragment_multisample_coverage_after_sample_counting: crate::vk::Bool32,
+    early_fragment_sample_mask_test_before_sample_counting: crate::vk::Bool32,
+    depth_stencil_swizzle_one_support: crate::vk::Bool32,
+    polygon_mode_point_size: crate::vk::Bool32,
+    non_strict_single_pixel_wide_lines_use_parallelogram: crate::vk::Bool32,
+    non_strict_wide_lines_use_parallelogram: crate::vk::Bool32,
 }
 #[repr(C)]
-pub struct VkPhysicalDeviceMaintenance6Features {
-    pub s_type: crate::External<
-        {
-            "VkStructureType";
-            0
-        },
-    >,
-    pub p_next: *mut core::ffi::c_void,
-    pub maintenance6: crate::External<
-        {
-            "VkBool32";
-            0
-        },
-    >,
+pub struct PhysicalDeviceMaintenance6Features {
+    s_type: crate::vk::StructureType,
+    p_next: *mut core::ffi::c_void,
+    maintenance6: crate::vk::Bool32,
 }
 #[repr(C)]
-pub struct VkPhysicalDeviceMaintenance6Properties {
-    pub s_type: crate::External<
-        {
-            "VkStructureType";
-            0
-        },
-    >,
-    pub p_next: *mut core::ffi::c_void,
-    pub block_texel_view_compatible_multiple_layers: crate::External<
-        {
-            "VkBool32";
-            0
-        },
-    >,
-    pub max_combined_image_sampler_descriptor_count: crate::External<
+pub struct PhysicalDeviceMaintenance6Properties {
+    s_type: crate::vk::StructureType,
+    p_next: *mut core::ffi::c_void,
+    block_texel_view_compatible_multiple_layers: crate::vk::Bool32,
+    max_combined_image_sampler_descriptor_count: crate::External<
         {
             "uint32_t";
             0
         },
     >,
-    pub fragment_shading_rate_clamp_combiner_inputs: crate::External<
-        {
-            "VkBool32";
-            0
-        },
-    >,
+    fragment_shading_rate_clamp_combiner_inputs: crate::vk::Bool32,
 }
 #[repr(C)]
-pub struct VkRenderingAreaInfo {
-    pub s_type: crate::External<
-        {
-            "VkStructureType";
-            0
-        },
-    >,
-    pub p_next: *const core::ffi::c_void,
-    pub view_mask: crate::External<
+pub struct RenderingAreaInfo {
+    s_type: crate::vk::StructureType,
+    p_next: *const core::ffi::c_void,
+    view_mask: crate::External<
         {
             "uint32_t";
             0
         },
     >,
-    pub color_attachment_count: crate::External<
+    color_attachment_count: crate::External<
         {
             "uint32_t";
             0
         },
     >,
-    pub p_color_attachment_formats: *const crate::External<
-        {
-            "VkFormat";
-            0
-        },
-    >,
-    pub depth_attachment_format: crate::External<
-        {
-            "VkFormat";
-            0
-        },
-    >,
-    pub stencil_attachment_format: crate::External<
-        {
-            "VkFormat";
-            0
-        },
-    >,
+    p_color_attachment_formats: *const crate::vk::Format,
+    depth_attachment_format: crate::vk::Format,
+    stencil_attachment_format: crate::vk::Format,
 }
 #[repr(C)]
-pub struct VkDeviceQueueGlobalPriorityCreateInfo {
-    pub s_type: crate::External<
-        {
-            "VkStructureType";
-            0
-        },
-    >,
-    pub p_next: *const core::ffi::c_void,
-    pub global_priority: crate::External<
-        {
-            "VkQueueGlobalPriority";
-            0
-        },
-    >,
+pub struct DeviceQueueGlobalPriorityCreateInfo {
+    s_type: crate::vk::StructureType,
+    p_next: *const core::ffi::c_void,
+    global_priority: crate::vk::QueueGlobalPriority,
 }
 #[repr(C)]
-pub struct VkPhysicalDeviceGlobalPriorityQueryFeatures {
-    pub s_type: crate::External<
-        {
-            "VkStructureType";
-            0
-        },
-    >,
-    pub p_next: *mut core::ffi::c_void,
-    pub global_priority_query: crate::External<
-        {
-            "VkBool32";
-            0
-        },
-    >,
+pub struct PhysicalDeviceGlobalPriorityQueryFeatures {
+    s_type: crate::vk::StructureType,
+    p_next: *mut core::ffi::c_void,
+    global_priority_query: crate::vk::Bool32,
 }
 #[repr(C)]
-pub struct VkQueueFamilyGlobalPriorityProperties {
-    pub s_type: crate::External<
-        {
-            "VkStructureType";
-            0
-        },
-    >,
-    pub p_next: *mut core::ffi::c_void,
-    pub priority_count: crate::External<
+pub struct QueueFamilyGlobalPriorityProperties {
+    s_type: crate::vk::StructureType,
+    p_next: *mut core::ffi::c_void,
+    priority_count: crate::External<
         {
             "uint32_t";
             0
         },
     >,
-    pub priorities: [crate::External<
-        {
-            "VkQueueGlobalPriority";
-            0
-        },
-    >; 1337],
+    priorities: [crate::vk::QueueGlobalPriority; 1337],
 }
 #[repr(C)]
-pub struct VkVertexInputBindingDivisorDescription {
-    pub binding: crate::External<
+pub struct VertexInputBindingDivisorDescription {
+    binding: crate::External<
         {
             "uint32_t";
             0
         },
     >,
-    pub divisor: crate::External<
+    divisor: crate::External<
         {
             "uint32_t";
             0
@@ -265,143 +120,58 @@ pub struct VkVertexInputBindingDivisorDescription {
     >,
 }
 #[repr(C)]
-pub struct VkPipelineVertexInputDivisorStateCreateInfo {
-    pub s_type: crate::External<
-        {
-            "VkStructureType";
-            0
-        },
-    >,
-    pub p_next: *const core::ffi::c_void,
-    pub vertex_binding_divisor_count: crate::External<
+pub struct PipelineVertexInputDivisorStateCreateInfo {
+    s_type: crate::vk::StructureType,
+    p_next: *const core::ffi::c_void,
+    vertex_binding_divisor_count: crate::External<
         {
             "uint32_t";
             0
         },
     >,
-    pub p_vertex_binding_divisors: *const crate::External<
-        {
-            "VkVertexInputBindingDivisorDescription";
-            0
-        },
-    >,
+    p_vertex_binding_divisors: *const crate::vk::VertexInputBindingDivisorDescription,
 }
 #[repr(C)]
-pub struct VkPhysicalDeviceVertexAttributeDivisorProperties {
-    pub s_type: crate::External<
-        {
-            "VkStructureType";
-            0
-        },
-    >,
-    pub p_next: *mut core::ffi::c_void,
-    pub max_vertex_attrib_divisor: crate::External<
+pub struct PhysicalDeviceVertexAttributeDivisorProperties {
+    s_type: crate::vk::StructureType,
+    p_next: *mut core::ffi::c_void,
+    max_vertex_attrib_divisor: crate::External<
         {
             "uint32_t";
             0
         },
     >,
-    pub supports_non_zero_first_instance: crate::External<
-        {
-            "VkBool32";
-            0
-        },
-    >,
+    supports_non_zero_first_instance: crate::vk::Bool32,
 }
 #[repr(C)]
-pub struct VkPhysicalDeviceVertexAttributeDivisorFeatures {
-    pub s_type: crate::External<
-        {
-            "VkStructureType";
-            0
-        },
-    >,
-    pub p_next: *mut core::ffi::c_void,
-    pub vertex_attribute_instance_rate_divisor: crate::External<
-        {
-            "VkBool32";
-            0
-        },
-    >,
-    pub vertex_attribute_instance_rate_zero_divisor: crate::External<
-        {
-            "VkBool32";
-            0
-        },
-    >,
+pub struct PhysicalDeviceVertexAttributeDivisorFeatures {
+    s_type: crate::vk::StructureType,
+    p_next: *mut core::ffi::c_void,
+    vertex_attribute_instance_rate_divisor: crate::vk::Bool32,
+    vertex_attribute_instance_rate_zero_divisor: crate::vk::Bool32,
 }
 #[repr(C)]
-pub struct VkPhysicalDeviceIndexTypeUint8Features {
-    pub s_type: crate::External<
-        {
-            "VkStructureType";
-            0
-        },
-    >,
-    pub p_next: *mut core::ffi::c_void,
-    pub index_type_uint8: crate::External<
-        {
-            "VkBool32";
-            0
-        },
-    >,
+pub struct PhysicalDeviceIndexTypeUint8Features {
+    s_type: crate::vk::StructureType,
+    p_next: *mut core::ffi::c_void,
+    index_type_uint8: crate::vk::Bool32,
 }
 #[repr(C)]
-pub struct VkPhysicalDeviceLineRasterizationFeatures {
-    pub s_type: crate::External<
-        {
-            "VkStructureType";
-            0
-        },
-    >,
-    pub p_next: *mut core::ffi::c_void,
-    pub rectangular_lines: crate::External<
-        {
-            "VkBool32";
-            0
-        },
-    >,
-    pub bresenham_lines: crate::External<
-        {
-            "VkBool32";
-            0
-        },
-    >,
-    pub smooth_lines: crate::External<
-        {
-            "VkBool32";
-            0
-        },
-    >,
-    pub stippled_rectangular_lines: crate::External<
-        {
-            "VkBool32";
-            0
-        },
-    >,
-    pub stippled_bresenham_lines: crate::External<
-        {
-            "VkBool32";
-            0
-        },
-    >,
-    pub stippled_smooth_lines: crate::External<
-        {
-            "VkBool32";
-            0
-        },
-    >,
+pub struct PhysicalDeviceLineRasterizationFeatures {
+    s_type: crate::vk::StructureType,
+    p_next: *mut core::ffi::c_void,
+    rectangular_lines: crate::vk::Bool32,
+    bresenham_lines: crate::vk::Bool32,
+    smooth_lines: crate::vk::Bool32,
+    stippled_rectangular_lines: crate::vk::Bool32,
+    stippled_bresenham_lines: crate::vk::Bool32,
+    stippled_smooth_lines: crate::vk::Bool32,
 }
 #[repr(C)]
-pub struct VkPhysicalDeviceLineRasterizationProperties {
-    pub s_type: crate::External<
-        {
-            "VkStructureType";
-            0
-        },
-    >,
-    pub p_next: *mut core::ffi::c_void,
-    pub line_sub_pixel_precision_bits: crate::External<
+pub struct PhysicalDeviceLineRasterizationProperties {
+    s_type: crate::vk::StructureType,
+    p_next: *mut core::ffi::c_void,
+    line_sub_pixel_precision_bits: crate::External<
         {
             "uint32_t";
             0
@@ -409,33 +179,18 @@ pub struct VkPhysicalDeviceLineRasterizationProperties {
     >,
 }
 #[repr(C)]
-pub struct VkPipelineRasterizationLineStateCreateInfo {
-    pub s_type: crate::External<
-        {
-            "VkStructureType";
-            0
-        },
-    >,
-    pub p_next: *const core::ffi::c_void,
-    pub line_rasterization_mode: crate::External<
-        {
-            "VkLineRasterizationMode";
-            0
-        },
-    >,
-    pub stippled_line_enable: crate::External<
-        {
-            "VkBool32";
-            0
-        },
-    >,
-    pub line_stipple_factor: crate::External<
+pub struct PipelineRasterizationLineStateCreateInfo {
+    s_type: crate::vk::StructureType,
+    p_next: *const core::ffi::c_void,
+    line_rasterization_mode: crate::vk::LineRasterizationMode,
+    stippled_line_enable: crate::vk::Bool32,
+    line_stipple_factor: crate::External<
         {
             "uint32_t";
             0
         },
     >,
-    pub line_stipple_pattern: crate::External<
+    line_stipple_pattern: crate::External<
         {
             "uint16_t";
             0
@@ -443,921 +198,336 @@ pub struct VkPipelineRasterizationLineStateCreateInfo {
     >,
 }
 #[repr(C)]
-pub struct VkPhysicalDeviceVulkan14Features {
-    pub s_type: crate::External<
-        {
-            "VkStructureType";
-            0
-        },
-    >,
-    pub p_next: *mut core::ffi::c_void,
-    pub global_priority_query: crate::External<
-        {
-            "VkBool32";
-            0
-        },
-    >,
-    pub shader_subgroup_rotate: crate::External<
-        {
-            "VkBool32";
-            0
-        },
-    >,
-    pub shader_subgroup_rotate_clustered: crate::External<
-        {
-            "VkBool32";
-            0
-        },
-    >,
-    pub shader_float_controls2: crate::External<
-        {
-            "VkBool32";
-            0
-        },
-    >,
-    pub shader_expect_assume: crate::External<
-        {
-            "VkBool32";
-            0
-        },
-    >,
-    pub rectangular_lines: crate::External<
-        {
-            "VkBool32";
-            0
-        },
-    >,
-    pub bresenham_lines: crate::External<
-        {
-            "VkBool32";
-            0
-        },
-    >,
-    pub smooth_lines: crate::External<
-        {
-            "VkBool32";
-            0
-        },
-    >,
-    pub stippled_rectangular_lines: crate::External<
-        {
-            "VkBool32";
-            0
-        },
-    >,
-    pub stippled_bresenham_lines: crate::External<
-        {
-            "VkBool32";
-            0
-        },
-    >,
-    pub stippled_smooth_lines: crate::External<
-        {
-            "VkBool32";
-            0
-        },
-    >,
-    pub vertex_attribute_instance_rate_divisor: crate::External<
-        {
-            "VkBool32";
-            0
-        },
-    >,
-    pub vertex_attribute_instance_rate_zero_divisor: crate::External<
-        {
-            "VkBool32";
-            0
-        },
-    >,
-    pub index_type_uint8: crate::External<
-        {
-            "VkBool32";
-            0
-        },
-    >,
-    pub dynamic_rendering_local_read: crate::External<
-        {
-            "VkBool32";
-            0
-        },
-    >,
-    pub maintenance5: crate::External<
-        {
-            "VkBool32";
-            0
-        },
-    >,
-    pub maintenance6: crate::External<
-        {
-            "VkBool32";
-            0
-        },
-    >,
-    pub pipeline_protected_access: crate::External<
-        {
-            "VkBool32";
-            0
-        },
-    >,
-    pub pipeline_robustness: crate::External<
-        {
-            "VkBool32";
-            0
-        },
-    >,
-    pub host_image_copy: crate::External<
-        {
-            "VkBool32";
-            0
-        },
-    >,
-    pub push_descriptor: crate::External<
-        {
-            "VkBool32";
-            0
-        },
-    >,
+pub struct PhysicalDeviceVulkan14Features {
+    s_type: crate::vk::StructureType,
+    p_next: *mut core::ffi::c_void,
+    global_priority_query: crate::vk::Bool32,
+    shader_subgroup_rotate: crate::vk::Bool32,
+    shader_subgroup_rotate_clustered: crate::vk::Bool32,
+    shader_float_controls2: crate::vk::Bool32,
+    shader_expect_assume: crate::vk::Bool32,
+    rectangular_lines: crate::vk::Bool32,
+    bresenham_lines: crate::vk::Bool32,
+    smooth_lines: crate::vk::Bool32,
+    stippled_rectangular_lines: crate::vk::Bool32,
+    stippled_bresenham_lines: crate::vk::Bool32,
+    stippled_smooth_lines: crate::vk::Bool32,
+    vertex_attribute_instance_rate_divisor: crate::vk::Bool32,
+    vertex_attribute_instance_rate_zero_divisor: crate::vk::Bool32,
+    index_type_uint8: crate::vk::Bool32,
+    dynamic_rendering_local_read: crate::vk::Bool32,
+    maintenance5: crate::vk::Bool32,
+    maintenance6: crate::vk::Bool32,
+    pipeline_protected_access: crate::vk::Bool32,
+    pipeline_robustness: crate::vk::Bool32,
+    host_image_copy: crate::vk::Bool32,
+    push_descriptor: crate::vk::Bool32,
 }
 #[repr(C)]
-pub struct VkPhysicalDeviceVulkan14Properties {
-    pub s_type: crate::External<
-        {
-            "VkStructureType";
-            0
-        },
-    >,
-    pub p_next: *mut core::ffi::c_void,
-    pub line_sub_pixel_precision_bits: crate::External<
+pub struct PhysicalDeviceVulkan14Properties {
+    s_type: crate::vk::StructureType,
+    p_next: *mut core::ffi::c_void,
+    line_sub_pixel_precision_bits: crate::External<
         {
             "uint32_t";
             0
         },
     >,
-    pub max_vertex_attrib_divisor: crate::External<
+    max_vertex_attrib_divisor: crate::External<
         {
             "uint32_t";
             0
         },
     >,
-    pub supports_non_zero_first_instance: crate::External<
-        {
-            "VkBool32";
-            0
-        },
-    >,
-    pub max_push_descriptors: crate::External<
+    supports_non_zero_first_instance: crate::vk::Bool32,
+    max_push_descriptors: crate::External<
         {
             "uint32_t";
             0
         },
     >,
-    pub dynamic_rendering_local_read_depth_stencil_attachments: crate::External<
-        {
-            "VkBool32";
-            0
-        },
-    >,
-    pub dynamic_rendering_local_read_multisampled_attachments: crate::External<
-        {
-            "VkBool32";
-            0
-        },
-    >,
-    pub early_fragment_multisample_coverage_after_sample_counting: crate::External<
-        {
-            "VkBool32";
-            0
-        },
-    >,
-    pub early_fragment_sample_mask_test_before_sample_counting: crate::External<
-        {
-            "VkBool32";
-            0
-        },
-    >,
-    pub depth_stencil_swizzle_one_support: crate::External<
-        {
-            "VkBool32";
-            0
-        },
-    >,
-    pub polygon_mode_point_size: crate::External<
-        {
-            "VkBool32";
-            0
-        },
-    >,
-    pub non_strict_single_pixel_wide_lines_use_parallelogram: crate::External<
-        {
-            "VkBool32";
-            0
-        },
-    >,
-    pub non_strict_wide_lines_use_parallelogram: crate::External<
-        {
-            "VkBool32";
-            0
-        },
-    >,
-    pub block_texel_view_compatible_multiple_layers: crate::External<
-        {
-            "VkBool32";
-            0
-        },
-    >,
-    pub max_combined_image_sampler_descriptor_count: crate::External<
+    dynamic_rendering_local_read_depth_stencil_attachments: crate::vk::Bool32,
+    dynamic_rendering_local_read_multisampled_attachments: crate::vk::Bool32,
+    early_fragment_multisample_coverage_after_sample_counting: crate::vk::Bool32,
+    early_fragment_sample_mask_test_before_sample_counting: crate::vk::Bool32,
+    depth_stencil_swizzle_one_support: crate::vk::Bool32,
+    polygon_mode_point_size: crate::vk::Bool32,
+    non_strict_single_pixel_wide_lines_use_parallelogram: crate::vk::Bool32,
+    non_strict_wide_lines_use_parallelogram: crate::vk::Bool32,
+    block_texel_view_compatible_multiple_layers: crate::vk::Bool32,
+    max_combined_image_sampler_descriptor_count: crate::External<
         {
             "uint32_t";
             0
         },
     >,
-    pub fragment_shading_rate_clamp_combiner_inputs: crate::External<
-        {
-            "VkBool32";
-            0
-        },
-    >,
-    pub default_robustness_storage_buffers: crate::External<
-        {
-            "VkPipelineRobustnessBufferBehavior";
-            0
-        },
-    >,
-    pub default_robustness_uniform_buffers: crate::External<
-        {
-            "VkPipelineRobustnessBufferBehavior";
-            0
-        },
-    >,
-    pub default_robustness_vertex_inputs: crate::External<
-        {
-            "VkPipelineRobustnessBufferBehavior";
-            0
-        },
-    >,
-    pub default_robustness_images: crate::External<
-        {
-            "VkPipelineRobustnessImageBehavior";
-            0
-        },
-    >,
-    pub copy_src_layout_count: crate::External<
+    fragment_shading_rate_clamp_combiner_inputs: crate::vk::Bool32,
+    default_robustness_storage_buffers: crate::vk::PipelineRobustnessBufferBehavior,
+    default_robustness_uniform_buffers: crate::vk::PipelineRobustnessBufferBehavior,
+    default_robustness_vertex_inputs: crate::vk::PipelineRobustnessBufferBehavior,
+    default_robustness_images: crate::vk::PipelineRobustnessImageBehavior,
+    copy_src_layout_count: crate::External<
         {
             "uint32_t";
             0
         },
     >,
-    pub p_copy_src_layouts: *mut crate::External<
-        {
-            "VkImageLayout";
-            0
-        },
-    >,
-    pub copy_dst_layout_count: crate::External<
+    p_copy_src_layouts: *mut crate::vk::ImageLayout,
+    copy_dst_layout_count: crate::External<
         {
             "uint32_t";
             0
         },
     >,
-    pub p_copy_dst_layouts: *mut crate::External<
-        {
-            "VkImageLayout";
-            0
-        },
-    >,
-    pub optimal_tiling_layout_uuid: [crate::External<
+    p_copy_dst_layouts: *mut crate::vk::ImageLayout,
+    optimal_tiling_layout_uuid: [crate::External<
         {
             "uint8_t";
             0
         },
     >; 1337],
-    pub identical_memory_type_requirements: crate::External<
-        {
-            "VkBool32";
-            0
-        },
-    >,
+    identical_memory_type_requirements: crate::vk::Bool32,
 }
 #[repr(C)]
-pub struct VkPhysicalDeviceHostImageCopyFeatures {
-    pub s_type: crate::External<
-        {
-            "VkStructureType";
-            0
-        },
-    >,
-    pub p_next: *mut core::ffi::c_void,
-    pub host_image_copy: crate::External<
-        {
-            "VkBool32";
-            0
-        },
-    >,
+pub struct PhysicalDeviceHostImageCopyFeatures {
+    s_type: crate::vk::StructureType,
+    p_next: *mut core::ffi::c_void,
+    host_image_copy: crate::vk::Bool32,
 }
 #[repr(C)]
-pub struct VkPhysicalDeviceHostImageCopyProperties {
-    pub s_type: crate::External<
-        {
-            "VkStructureType";
-            0
-        },
-    >,
-    pub p_next: *mut core::ffi::c_void,
-    pub copy_src_layout_count: crate::External<
+pub struct PhysicalDeviceHostImageCopyProperties {
+    s_type: crate::vk::StructureType,
+    p_next: *mut core::ffi::c_void,
+    copy_src_layout_count: crate::External<
         {
             "uint32_t";
             0
         },
     >,
-    pub p_copy_src_layouts: *mut crate::External<
-        {
-            "VkImageLayout";
-            0
-        },
-    >,
-    pub copy_dst_layout_count: crate::External<
+    p_copy_src_layouts: *mut crate::vk::ImageLayout,
+    copy_dst_layout_count: crate::External<
         {
             "uint32_t";
             0
         },
     >,
-    pub p_copy_dst_layouts: *mut crate::External<
-        {
-            "VkImageLayout";
-            0
-        },
-    >,
-    pub optimal_tiling_layout_uuid: [crate::External<
+    p_copy_dst_layouts: *mut crate::vk::ImageLayout,
+    optimal_tiling_layout_uuid: [crate::External<
         {
             "uint8_t";
             0
         },
     >; 1337],
-    pub identical_memory_type_requirements: crate::External<
-        {
-            "VkBool32";
-            0
-        },
-    >,
+    identical_memory_type_requirements: crate::vk::Bool32,
 }
 #[repr(C)]
-pub struct VkMemoryToImageCopy {
-    pub s_type: crate::External<
-        {
-            "VkStructureType";
-            0
-        },
-    >,
-    pub p_next: *const core::ffi::c_void,
-    pub p_host_pointer: *const core::ffi::c_void,
-    pub memory_row_length: crate::External<
+pub struct MemoryToImageCopy {
+    s_type: crate::vk::StructureType,
+    p_next: *const core::ffi::c_void,
+    p_host_pointer: *const core::ffi::c_void,
+    memory_row_length: crate::External<
         {
             "uint32_t";
             0
         },
     >,
-    pub memory_image_height: crate::External<
+    memory_image_height: crate::External<
         {
             "uint32_t";
             0
         },
     >,
-    pub image_subresource: crate::External<
-        {
-            "VkImageSubresourceLayers";
-            0
-        },
-    >,
-    pub image_offset: crate::External<
-        {
-            "VkOffset3D";
-            0
-        },
-    >,
-    pub image_extent: crate::External<
-        {
-            "VkExtent3D";
-            0
-        },
-    >,
+    image_subresource: crate::vk::ImageSubresourceLayers,
+    image_offset: crate::vk::Offset3D,
+    image_extent: crate::vk::Extent3D,
 }
 #[repr(C)]
-pub struct VkImageToMemoryCopy {
-    pub s_type: crate::External<
-        {
-            "VkStructureType";
-            0
-        },
-    >,
-    pub p_next: *const core::ffi::c_void,
-    pub p_host_pointer: *mut core::ffi::c_void,
-    pub memory_row_length: crate::External<
+pub struct ImageToMemoryCopy {
+    s_type: crate::vk::StructureType,
+    p_next: *const core::ffi::c_void,
+    p_host_pointer: *mut core::ffi::c_void,
+    memory_row_length: crate::External<
         {
             "uint32_t";
             0
         },
     >,
-    pub memory_image_height: crate::External<
+    memory_image_height: crate::External<
         {
             "uint32_t";
             0
         },
     >,
-    pub image_subresource: crate::External<
-        {
-            "VkImageSubresourceLayers";
-            0
-        },
-    >,
-    pub image_offset: crate::External<
-        {
-            "VkOffset3D";
-            0
-        },
-    >,
-    pub image_extent: crate::External<
-        {
-            "VkExtent3D";
-            0
-        },
-    >,
+    image_subresource: crate::vk::ImageSubresourceLayers,
+    image_offset: crate::vk::Offset3D,
+    image_extent: crate::vk::Extent3D,
 }
 #[repr(C)]
-pub struct VkCopyMemoryToImageInfo {
-    pub s_type: crate::External<
-        {
-            "VkStructureType";
-            0
-        },
-    >,
-    pub p_next: *const core::ffi::c_void,
-    pub flags: crate::External<
-        {
-            "VkHostImageCopyFlags";
-            0
-        },
-    >,
-    pub dst_image: crate::External<
-        {
-            "VkImage";
-            0
-        },
-    >,
-    pub dst_image_layout: crate::External<
-        {
-            "VkImageLayout";
-            0
-        },
-    >,
-    pub region_count: crate::External<
+pub struct CopyMemoryToImageInfo {
+    s_type: crate::vk::StructureType,
+    p_next: *const core::ffi::c_void,
+    flags: crate::vk::HostImageCopyFlags,
+    dst_image: crate::vk::Image,
+    dst_image_layout: crate::vk::ImageLayout,
+    region_count: crate::External<
         {
             "uint32_t";
             0
         },
     >,
-    pub p_regions: *const crate::External<
-        {
-            "VkMemoryToImageCopy";
-            0
-        },
-    >,
+    p_regions: *const crate::vk::MemoryToImageCopy,
 }
 #[repr(C)]
-pub struct VkCopyImageToMemoryInfo {
-    pub s_type: crate::External<
-        {
-            "VkStructureType";
-            0
-        },
-    >,
-    pub p_next: *const core::ffi::c_void,
-    pub flags: crate::External<
-        {
-            "VkHostImageCopyFlags";
-            0
-        },
-    >,
-    pub src_image: crate::External<
-        {
-            "VkImage";
-            0
-        },
-    >,
-    pub src_image_layout: crate::External<
-        {
-            "VkImageLayout";
-            0
-        },
-    >,
-    pub region_count: crate::External<
+pub struct CopyImageToMemoryInfo {
+    s_type: crate::vk::StructureType,
+    p_next: *const core::ffi::c_void,
+    flags: crate::vk::HostImageCopyFlags,
+    src_image: crate::vk::Image,
+    src_image_layout: crate::vk::ImageLayout,
+    region_count: crate::External<
         {
             "uint32_t";
             0
         },
     >,
-    pub p_regions: *const crate::External<
-        {
-            "VkImageToMemoryCopy";
-            0
-        },
-    >,
+    p_regions: *const crate::vk::ImageToMemoryCopy,
 }
 #[repr(C)]
-pub struct VkCopyImageToImageInfo {
-    pub s_type: crate::External<
-        {
-            "VkStructureType";
-            0
-        },
-    >,
-    pub p_next: *const core::ffi::c_void,
-    pub flags: crate::External<
-        {
-            "VkHostImageCopyFlags";
-            0
-        },
-    >,
-    pub src_image: crate::External<
-        {
-            "VkImage";
-            0
-        },
-    >,
-    pub src_image_layout: crate::External<
-        {
-            "VkImageLayout";
-            0
-        },
-    >,
-    pub dst_image: crate::External<
-        {
-            "VkImage";
-            0
-        },
-    >,
-    pub dst_image_layout: crate::External<
-        {
-            "VkImageLayout";
-            0
-        },
-    >,
-    pub region_count: crate::External<
+pub struct CopyImageToImageInfo {
+    s_type: crate::vk::StructureType,
+    p_next: *const core::ffi::c_void,
+    flags: crate::vk::HostImageCopyFlags,
+    src_image: crate::vk::Image,
+    src_image_layout: crate::vk::ImageLayout,
+    dst_image: crate::vk::Image,
+    dst_image_layout: crate::vk::ImageLayout,
+    region_count: crate::External<
         {
             "uint32_t";
             0
         },
     >,
-    pub p_regions: *const crate::External<
-        {
-            "VkImageCopy2";
-            0
-        },
-    >,
+    p_regions: *const crate::vk::ImageCopy2,
 }
 #[repr(C)]
-pub struct VkHostImageLayoutTransitionInfo {
-    pub s_type: crate::External<
-        {
-            "VkStructureType";
-            0
-        },
-    >,
-    pub p_next: *const core::ffi::c_void,
-    pub image: crate::External<
-        {
-            "VkImage";
-            0
-        },
-    >,
-    pub old_layout: crate::External<
-        {
-            "VkImageLayout";
-            0
-        },
-    >,
-    pub new_layout: crate::External<
-        {
-            "VkImageLayout";
-            0
-        },
-    >,
-    pub subresource_range: crate::External<
-        {
-            "VkImageSubresourceRange";
-            0
-        },
-    >,
+pub struct HostImageLayoutTransitionInfo {
+    s_type: crate::vk::StructureType,
+    p_next: *const core::ffi::c_void,
+    image: crate::vk::Image,
+    old_layout: crate::vk::ImageLayout,
+    new_layout: crate::vk::ImageLayout,
+    subresource_range: crate::vk::ImageSubresourceRange,
 }
 #[repr(C)]
-pub struct VkSubresourceHostMemcpySize {
-    pub s_type: crate::External<
-        {
-            "VkStructureType";
-            0
-        },
-    >,
-    pub p_next: *mut core::ffi::c_void,
-    pub size: crate::External<
-        {
-            "VkDeviceSize";
-            0
-        },
-    >,
+pub struct SubresourceHostMemcpySize {
+    s_type: crate::vk::StructureType,
+    p_next: *mut core::ffi::c_void,
+    size: crate::vk::DeviceSize,
 }
 #[repr(C)]
-pub struct VkHostImageCopyDevicePerformanceQuery {
-    pub s_type: crate::External<
-        {
-            "VkStructureType";
-            0
-        },
-    >,
-    pub p_next: *mut core::ffi::c_void,
-    pub optimal_device_access: crate::External<
-        {
-            "VkBool32";
-            0
-        },
-    >,
-    pub identical_memory_layout: crate::External<
-        {
-            "VkBool32";
-            0
-        },
-    >,
+pub struct HostImageCopyDevicePerformanceQuery {
+    s_type: crate::vk::StructureType,
+    p_next: *mut core::ffi::c_void,
+    optimal_device_access: crate::vk::Bool32,
+    identical_memory_layout: crate::vk::Bool32,
 }
 #[repr(C)]
-pub struct VkPhysicalDevicePipelineProtectedAccessFeatures {
-    pub s_type: crate::External<
-        {
-            "VkStructureType";
-            0
-        },
-    >,
-    pub p_next: *mut core::ffi::c_void,
-    pub pipeline_protected_access: crate::External<
-        {
-            "VkBool32";
-            0
-        },
-    >,
+pub struct PhysicalDevicePipelineProtectedAccessFeatures {
+    s_type: crate::vk::StructureType,
+    p_next: *mut core::ffi::c_void,
+    pipeline_protected_access: crate::vk::Bool32,
 }
 #[repr(C)]
-pub struct VkImageSubresource2 {
-    pub s_type: crate::External<
-        {
-            "VkStructureType";
-            0
-        },
-    >,
-    pub p_next: *mut core::ffi::c_void,
-    pub image_subresource: crate::External<
-        {
-            "VkImageSubresource";
-            0
-        },
-    >,
+pub struct ImageSubresource2 {
+    s_type: crate::vk::StructureType,
+    p_next: *mut core::ffi::c_void,
+    image_subresource: crate::vk::ImageSubresource,
 }
 #[repr(C)]
-pub struct VkSubresourceLayout2 {
-    pub s_type: crate::External<
-        {
-            "VkStructureType";
-            0
-        },
-    >,
-    pub p_next: *mut core::ffi::c_void,
-    pub subresource_layout: crate::External<
-        {
-            "VkSubresourceLayout";
-            0
-        },
-    >,
+pub struct SubresourceLayout2 {
+    s_type: crate::vk::StructureType,
+    p_next: *mut core::ffi::c_void,
+    subresource_layout: crate::vk::SubresourceLayout,
 }
 #[repr(C)]
-pub struct VkPhysicalDevicePipelineRobustnessFeatures {
-    pub s_type: crate::External<
-        {
-            "VkStructureType";
-            0
-        },
-    >,
-    pub p_next: *mut core::ffi::c_void,
-    pub pipeline_robustness: crate::External<
-        {
-            "VkBool32";
-            0
-        },
-    >,
+pub struct PhysicalDevicePipelineRobustnessFeatures {
+    s_type: crate::vk::StructureType,
+    p_next: *mut core::ffi::c_void,
+    pipeline_robustness: crate::vk::Bool32,
 }
 #[repr(C)]
-pub struct VkPipelineRobustnessCreateInfo {
-    pub s_type: crate::External<
-        {
-            "VkStructureType";
-            0
-        },
-    >,
-    pub p_next: *const core::ffi::c_void,
-    pub storage_buffers: crate::External<
-        {
-            "VkPipelineRobustnessBufferBehavior";
-            0
-        },
-    >,
-    pub uniform_buffers: crate::External<
-        {
-            "VkPipelineRobustnessBufferBehavior";
-            0
-        },
-    >,
-    pub vertex_inputs: crate::External<
-        {
-            "VkPipelineRobustnessBufferBehavior";
-            0
-        },
-    >,
-    pub images: crate::External<
-        {
-            "VkPipelineRobustnessImageBehavior";
-            0
-        },
-    >,
+pub struct PipelineRobustnessCreateInfo {
+    s_type: crate::vk::StructureType,
+    p_next: *const core::ffi::c_void,
+    storage_buffers: crate::vk::PipelineRobustnessBufferBehavior,
+    uniform_buffers: crate::vk::PipelineRobustnessBufferBehavior,
+    vertex_inputs: crate::vk::PipelineRobustnessBufferBehavior,
+    images: crate::vk::PipelineRobustnessImageBehavior,
 }
 #[repr(C)]
-pub struct VkPhysicalDevicePipelineRobustnessProperties {
-    pub s_type: crate::External<
-        {
-            "VkStructureType";
-            0
-        },
-    >,
-    pub p_next: *mut core::ffi::c_void,
-    pub default_robustness_storage_buffers: crate::External<
-        {
-            "VkPipelineRobustnessBufferBehavior";
-            0
-        },
-    >,
-    pub default_robustness_uniform_buffers: crate::External<
-        {
-            "VkPipelineRobustnessBufferBehavior";
-            0
-        },
-    >,
-    pub default_robustness_vertex_inputs: crate::External<
-        {
-            "VkPipelineRobustnessBufferBehavior";
-            0
-        },
-    >,
-    pub default_robustness_images: crate::External<
-        {
-            "VkPipelineRobustnessImageBehavior";
-            0
-        },
-    >,
+pub struct PhysicalDevicePipelineRobustnessProperties {
+    s_type: crate::vk::StructureType,
+    p_next: *mut core::ffi::c_void,
+    default_robustness_storage_buffers: crate::vk::PipelineRobustnessBufferBehavior,
+    default_robustness_uniform_buffers: crate::vk::PipelineRobustnessBufferBehavior,
+    default_robustness_vertex_inputs: crate::vk::PipelineRobustnessBufferBehavior,
+    default_robustness_images: crate::vk::PipelineRobustnessImageBehavior,
 }
 #[repr(C)]
-pub struct VkDeviceImageSubresourceInfo {
-    pub s_type: crate::External<
-        {
-            "VkStructureType";
-            0
-        },
-    >,
-    pub p_next: *const core::ffi::c_void,
-    pub p_create_info: *const crate::External<
-        {
-            "VkImageCreateInfo";
-            0
-        },
-    >,
-    pub p_subresource: *const crate::External<
-        {
-            "VkImageSubresource2";
-            0
-        },
-    >,
+pub struct DeviceImageSubresourceInfo {
+    s_type: crate::vk::StructureType,
+    p_next: *const core::ffi::c_void,
+    p_create_info: *const crate::vk::ImageCreateInfo,
+    p_subresource: *const crate::vk::ImageSubresource2,
 }
 #[repr(C)]
-pub struct VkMemoryMapInfo {
-    pub s_type: crate::External<
-        {
-            "VkStructureType";
-            0
-        },
-    >,
-    pub p_next: *const core::ffi::c_void,
-    pub flags: crate::External<
-        {
-            "VkMemoryMapFlags";
-            0
-        },
-    >,
-    pub memory: crate::External<
-        {
-            "VkDeviceMemory";
-            0
-        },
-    >,
-    pub offset: crate::External<
-        {
-            "VkDeviceSize";
-            0
-        },
-    >,
-    pub size: crate::External<
-        {
-            "VkDeviceSize";
-            0
-        },
-    >,
+pub struct MemoryMapInfo {
+    s_type: crate::vk::StructureType,
+    p_next: *const core::ffi::c_void,
+    flags: crate::vk::MemoryMapFlags,
+    memory: crate::vk::DeviceMemory,
+    offset: crate::vk::DeviceSize,
+    size: crate::vk::DeviceSize,
 }
 #[repr(C)]
-pub struct VkMemoryUnmapInfo {
-    pub s_type: crate::External<
-        {
-            "VkStructureType";
-            0
-        },
-    >,
-    pub p_next: *const core::ffi::c_void,
-    pub flags: crate::External<
-        {
-            "VkMemoryUnmapFlags";
-            0
-        },
-    >,
-    pub memory: crate::External<
-        {
-            "VkDeviceMemory";
-            0
-        },
-    >,
+pub struct MemoryUnmapInfo {
+    s_type: crate::vk::StructureType,
+    p_next: *const core::ffi::c_void,
+    flags: crate::vk::MemoryUnmapFlags,
+    memory: crate::vk::DeviceMemory,
 }
 #[repr(C)]
-pub struct VkBindMemoryStatus {
-    pub s_type: crate::External<
-        {
-            "VkStructureType";
-            0
-        },
-    >,
-    pub p_next: *const core::ffi::c_void,
-    pub p_result: *mut crate::External<
-        {
-            "VkResult";
-            0
-        },
-    >,
+pub struct BindMemoryStatus {
+    s_type: crate::vk::StructureType,
+    p_next: *const core::ffi::c_void,
+    p_result: *mut crate::vk::Result,
 }
 #[repr(C)]
-pub struct VkBindDescriptorSetsInfo {
-    pub s_type: crate::External<
-        {
-            "VkStructureType";
-            0
-        },
-    >,
-    pub p_next: *const core::ffi::c_void,
-    pub stage_flags: crate::External<
-        {
-            "VkShaderStageFlags";
-            0
-        },
-    >,
-    pub layout: crate::External<
-        {
-            "VkPipelineLayout";
-            0
-        },
-    >,
-    pub first_set: crate::External<
+pub struct BindDescriptorSetsInfo {
+    s_type: crate::vk::StructureType,
+    p_next: *const core::ffi::c_void,
+    stage_flags: crate::vk::ShaderStageFlags,
+    layout: crate::vk::PipelineLayout,
+    first_set: crate::External<
         {
             "uint32_t";
             0
         },
     >,
-    pub descriptor_set_count: crate::External<
+    descriptor_set_count: crate::External<
         {
             "uint32_t";
             0
         },
     >,
-    pub p_descriptor_sets: *const crate::External<
-        {
-            "VkDescriptorSet";
-            0
-        },
-    >,
-    pub dynamic_offset_count: crate::External<
+    p_descriptor_sets: *const crate::vk::DescriptorSet,
+    dynamic_offset_count: crate::External<
         {
             "uint32_t";
             0
         },
     >,
-    pub p_dynamic_offsets: *const crate::External<
+    p_dynamic_offsets: *const crate::External<
         {
             "uint32_t";
             0
@@ -1365,195 +535,95 @@ pub struct VkBindDescriptorSetsInfo {
     >,
 }
 #[repr(C)]
-pub struct VkPushConstantsInfo {
-    pub s_type: crate::External<
-        {
-            "VkStructureType";
-            0
-        },
-    >,
-    pub p_next: *const core::ffi::c_void,
-    pub layout: crate::External<
-        {
-            "VkPipelineLayout";
-            0
-        },
-    >,
-    pub stage_flags: crate::External<
-        {
-            "VkShaderStageFlags";
-            0
-        },
-    >,
-    pub offset: crate::External<
+pub struct PushConstantsInfo {
+    s_type: crate::vk::StructureType,
+    p_next: *const core::ffi::c_void,
+    layout: crate::vk::PipelineLayout,
+    stage_flags: crate::vk::ShaderStageFlags,
+    offset: crate::External<
         {
             "uint32_t";
             0
         },
     >,
-    pub size: crate::External<
+    size: crate::External<
         {
             "uint32_t";
             0
         },
     >,
-    pub p_values: *const core::ffi::c_void,
+    p_values: *const core::ffi::c_void,
 }
 #[repr(C)]
-pub struct VkPushDescriptorSetInfo {
-    pub s_type: crate::External<
-        {
-            "VkStructureType";
-            0
-        },
-    >,
-    pub p_next: *const core::ffi::c_void,
-    pub stage_flags: crate::External<
-        {
-            "VkShaderStageFlags";
-            0
-        },
-    >,
-    pub layout: crate::External<
-        {
-            "VkPipelineLayout";
-            0
-        },
-    >,
-    pub set: crate::External<
+pub struct PushDescriptorSetInfo {
+    s_type: crate::vk::StructureType,
+    p_next: *const core::ffi::c_void,
+    stage_flags: crate::vk::ShaderStageFlags,
+    layout: crate::vk::PipelineLayout,
+    set: crate::External<
         {
             "uint32_t";
             0
         },
     >,
-    pub descriptor_write_count: crate::External<
+    descriptor_write_count: crate::External<
         {
             "uint32_t";
             0
         },
     >,
-    pub p_descriptor_writes: *const crate::External<
-        {
-            "VkWriteDescriptorSet";
-            0
-        },
-    >,
+    p_descriptor_writes: *const crate::vk::WriteDescriptorSet,
 }
 #[repr(C)]
-pub struct VkPushDescriptorSetWithTemplateInfo {
-    pub s_type: crate::External<
-        {
-            "VkStructureType";
-            0
-        },
-    >,
-    pub p_next: *const core::ffi::c_void,
-    pub descriptor_update_template: crate::External<
-        {
-            "VkDescriptorUpdateTemplate";
-            0
-        },
-    >,
-    pub layout: crate::External<
-        {
-            "VkPipelineLayout";
-            0
-        },
-    >,
-    pub set: crate::External<
+pub struct PushDescriptorSetWithTemplateInfo {
+    s_type: crate::vk::StructureType,
+    p_next: *const core::ffi::c_void,
+    descriptor_update_template: crate::vk::DescriptorUpdateTemplate,
+    layout: crate::vk::PipelineLayout,
+    set: crate::External<
         {
             "uint32_t";
             0
         },
     >,
-    pub p_data: *const core::ffi::c_void,
+    p_data: *const core::ffi::c_void,
 }
 #[repr(C)]
-pub struct VkPhysicalDeviceShaderSubgroupRotateFeatures {
-    pub s_type: crate::External<
-        {
-            "VkStructureType";
-            0
-        },
-    >,
-    pub p_next: *mut core::ffi::c_void,
-    pub shader_subgroup_rotate: crate::External<
-        {
-            "VkBool32";
-            0
-        },
-    >,
-    pub shader_subgroup_rotate_clustered: crate::External<
-        {
-            "VkBool32";
-            0
-        },
-    >,
+pub struct PhysicalDeviceShaderSubgroupRotateFeatures {
+    s_type: crate::vk::StructureType,
+    p_next: *mut core::ffi::c_void,
+    shader_subgroup_rotate: crate::vk::Bool32,
+    shader_subgroup_rotate_clustered: crate::vk::Bool32,
 }
 #[repr(C)]
-pub struct VkPhysicalDeviceShaderExpectAssumeFeatures {
-    pub s_type: crate::External<
-        {
-            "VkStructureType";
-            0
-        },
-    >,
-    pub p_next: *mut core::ffi::c_void,
-    pub shader_expect_assume: crate::External<
-        {
-            "VkBool32";
-            0
-        },
-    >,
+pub struct PhysicalDeviceShaderExpectAssumeFeatures {
+    s_type: crate::vk::StructureType,
+    p_next: *mut core::ffi::c_void,
+    shader_expect_assume: crate::vk::Bool32,
 }
 #[repr(C)]
-pub struct VkPhysicalDeviceShaderFloatControls2Features {
-    pub s_type: crate::External<
-        {
-            "VkStructureType";
-            0
-        },
-    >,
-    pub p_next: *mut core::ffi::c_void,
-    pub shader_float_controls2: crate::External<
-        {
-            "VkBool32";
-            0
-        },
-    >,
+pub struct PhysicalDeviceShaderFloatControls2Features {
+    s_type: crate::vk::StructureType,
+    p_next: *mut core::ffi::c_void,
+    shader_float_controls2: crate::vk::Bool32,
 }
 #[repr(C)]
-pub struct VkPhysicalDeviceDynamicRenderingLocalReadFeatures {
-    pub s_type: crate::External<
-        {
-            "VkStructureType";
-            0
-        },
-    >,
-    pub p_next: *mut core::ffi::c_void,
-    pub dynamic_rendering_local_read: crate::External<
-        {
-            "VkBool32";
-            0
-        },
-    >,
+pub struct PhysicalDeviceDynamicRenderingLocalReadFeatures {
+    s_type: crate::vk::StructureType,
+    p_next: *mut core::ffi::c_void,
+    dynamic_rendering_local_read: crate::vk::Bool32,
 }
 #[repr(C)]
-pub struct VkRenderingAttachmentLocationInfo {
-    pub s_type: crate::External<
-        {
-            "VkStructureType";
-            0
-        },
-    >,
-    pub p_next: *const core::ffi::c_void,
-    pub color_attachment_count: crate::External<
+pub struct RenderingAttachmentLocationInfo {
+    s_type: crate::vk::StructureType,
+    p_next: *const core::ffi::c_void,
+    color_attachment_count: crate::External<
         {
             "uint32_t";
             0
         },
     >,
-    pub p_color_attachment_locations: *const crate::External<
+    p_color_attachment_locations: *const crate::External<
         {
             "uint32_t";
             0
@@ -1561,36 +631,39 @@ pub struct VkRenderingAttachmentLocationInfo {
     >,
 }
 #[repr(C)]
-pub struct VkRenderingInputAttachmentIndexInfo {
-    pub s_type: crate::External<
-        {
-            "VkStructureType";
-            0
-        },
-    >,
-    pub p_next: *const core::ffi::c_void,
-    pub color_attachment_count: crate::External<
+pub struct RenderingInputAttachmentIndexInfo {
+    s_type: crate::vk::StructureType,
+    p_next: *const core::ffi::c_void,
+    color_attachment_count: crate::External<
         {
             "uint32_t";
             0
         },
     >,
-    pub p_color_attachment_input_indices: *const crate::External<
+    p_color_attachment_input_indices: *const crate::External<
         {
             "uint32_t";
             0
         },
     >,
-    pub p_depth_input_attachment_index: *const crate::External<
+    p_depth_input_attachment_index: *const crate::External<
         {
             "uint32_t";
             0
         },
     >,
-    pub p_stencil_input_attachment_index: *const crate::External<
+    p_stencil_input_attachment_index: *const crate::External<
         {
             "uint32_t";
             0
         },
     >,
 }
+#[repr(C)]
+pub struct QueueGlobalPriority {}
+#[repr(C)]
+pub struct LineRasterizationMode {}
+#[repr(C)]
+pub struct PipelineRobustnessBufferBehavior {}
+#[repr(C)]
+pub struct PipelineRobustnessImageBehavior {}

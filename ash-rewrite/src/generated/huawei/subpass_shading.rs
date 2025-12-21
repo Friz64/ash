@@ -2,21 +2,11 @@
 #![cfg_attr(rustfmt, rustfmt_skip)]
 //![Vulkan Manual Page](https://docs.vulkan.org/refpages/latest/refpages/source/VK_HUAWEI_subpass_shading.html) · Vulkan extension
 #[repr(C)]
-pub struct VkSubpassShadingPipelineCreateInfoHUAWEI {
-    pub s_type: crate::External<
-        {
-            "VkStructureType";
-            0
-        },
-    >,
-    pub p_next: *mut core::ffi::c_void,
-    pub render_pass: crate::External<
-        {
-            "VkRenderPass";
-            0
-        },
-    >,
-    pub subpass: crate::External<
+pub struct SubpassShadingPipelineCreateInfoHUAWEI {
+    s_type: crate::vk::StructureType,
+    p_next: *mut core::ffi::c_void,
+    render_pass: crate::vk::RenderPass,
+    subpass: crate::External<
         {
             "uint32_t";
             0
@@ -24,15 +14,10 @@ pub struct VkSubpassShadingPipelineCreateInfoHUAWEI {
     >,
 }
 #[repr(C)]
-pub struct VkPhysicalDeviceSubpassShadingPropertiesHUAWEI {
-    pub s_type: crate::External<
-        {
-            "VkStructureType";
-            0
-        },
-    >,
-    pub p_next: *mut core::ffi::c_void,
-    pub max_subpass_shading_workgroup_size_aspect_ratio: crate::External<
+pub struct PhysicalDeviceSubpassShadingPropertiesHUAWEI {
+    s_type: crate::vk::StructureType,
+    p_next: *mut core::ffi::c_void,
+    max_subpass_shading_workgroup_size_aspect_ratio: crate::External<
         {
             "uint32_t";
             0
@@ -40,18 +25,8 @@ pub struct VkPhysicalDeviceSubpassShadingPropertiesHUAWEI {
     >,
 }
 #[repr(C)]
-pub struct VkPhysicalDeviceSubpassShadingFeaturesHUAWEI {
-    pub s_type: crate::External<
-        {
-            "VkStructureType";
-            0
-        },
-    >,
-    pub p_next: *mut core::ffi::c_void,
-    pub subpass_shading: crate::External<
-        {
-            "VkBool32";
-            0
-        },
-    >,
+pub struct PhysicalDeviceSubpassShadingFeaturesHUAWEI {
+    s_type: crate::vk::StructureType,
+    p_next: *mut core::ffi::c_void,
+    subpass_shading: crate::vk::Bool32,
 }

@@ -2,104 +2,48 @@
 #![cfg_attr(rustfmt, rustfmt_skip)]
 //![Vulkan Manual Page](https://docs.vulkan.org/refpages/latest/refpages/source/VK_KHR_cooperative_matrix.html) · Vulkan extension
 #[repr(C)]
-pub struct VkPhysicalDeviceCooperativeMatrixFeaturesKHR {
-    pub s_type: crate::External<
-        {
-            "VkStructureType";
-            0
-        },
-    >,
-    pub p_next: *mut core::ffi::c_void,
-    pub cooperative_matrix: crate::External<
-        {
-            "VkBool32";
-            0
-        },
-    >,
-    pub cooperative_matrix_robust_buffer_access: crate::External<
-        {
-            "VkBool32";
-            0
-        },
-    >,
+pub struct PhysicalDeviceCooperativeMatrixFeaturesKHR {
+    s_type: crate::vk::StructureType,
+    p_next: *mut core::ffi::c_void,
+    cooperative_matrix: crate::vk::Bool32,
+    cooperative_matrix_robust_buffer_access: crate::vk::Bool32,
 }
 #[repr(C)]
-pub struct VkCooperativeMatrixPropertiesKHR {
-    pub s_type: crate::External<
-        {
-            "VkStructureType";
-            0
-        },
-    >,
-    pub p_next: *mut core::ffi::c_void,
-    pub m_size: crate::External<
+pub struct CooperativeMatrixPropertiesKHR {
+    s_type: crate::vk::StructureType,
+    p_next: *mut core::ffi::c_void,
+    m_size: crate::External<
         {
             "uint32_t";
             0
         },
     >,
-    pub n_size: crate::External<
+    n_size: crate::External<
         {
             "uint32_t";
             0
         },
     >,
-    pub k_size: crate::External<
+    k_size: crate::External<
         {
             "uint32_t";
             0
         },
     >,
-    pub a_type: crate::External<
-        {
-            "VkComponentTypeKHR";
-            0
-        },
-    >,
-    pub b_type: crate::External<
-        {
-            "VkComponentTypeKHR";
-            0
-        },
-    >,
-    pub c_type: crate::External<
-        {
-            "VkComponentTypeKHR";
-            0
-        },
-    >,
-    pub result_type: crate::External<
-        {
-            "VkComponentTypeKHR";
-            0
-        },
-    >,
-    pub saturating_accumulation: crate::External<
-        {
-            "VkBool32";
-            0
-        },
-    >,
-    pub scope: crate::External<
-        {
-            "VkScopeKHR";
-            0
-        },
-    >,
+    a_type: crate::vk::ComponentTypeKHR,
+    b_type: crate::vk::ComponentTypeKHR,
+    c_type: crate::vk::ComponentTypeKHR,
+    result_type: crate::vk::ComponentTypeKHR,
+    saturating_accumulation: crate::vk::Bool32,
+    scope: crate::vk::ScopeKHR,
 }
 #[repr(C)]
-pub struct VkPhysicalDeviceCooperativeMatrixPropertiesKHR {
-    pub s_type: crate::External<
-        {
-            "VkStructureType";
-            0
-        },
-    >,
-    pub p_next: *mut core::ffi::c_void,
-    pub cooperative_matrix_supported_stages: crate::External<
-        {
-            "VkShaderStageFlags";
-            0
-        },
-    >,
+pub struct PhysicalDeviceCooperativeMatrixPropertiesKHR {
+    s_type: crate::vk::StructureType,
+    p_next: *mut core::ffi::c_void,
+    cooperative_matrix_supported_stages: crate::vk::ShaderStageFlags,
 }
+#[repr(C)]
+pub struct ScopeKHR {}
+#[repr(C)]
+pub struct ComponentTypeKHR {}

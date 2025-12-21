@@ -2,21 +2,16 @@
 #![cfg_attr(rustfmt, rustfmt_skip)]
 //![Vulkan Manual Page](https://docs.vulkan.org/refpages/latest/refpages/source/VK_EXT_image_sliced_view_of_3d.html) · Vulkan extension
 #[repr(C)]
-pub struct VkImageViewSlicedCreateInfoEXT {
-    pub s_type: crate::External<
-        {
-            "VkStructureType";
-            0
-        },
-    >,
-    pub p_next: *const core::ffi::c_void,
-    pub slice_offset: crate::External<
+pub struct ImageViewSlicedCreateInfoEXT {
+    s_type: crate::vk::StructureType,
+    p_next: *const core::ffi::c_void,
+    slice_offset: crate::External<
         {
             "uint32_t";
             0
         },
     >,
-    pub slice_count: crate::External<
+    slice_count: crate::External<
         {
             "uint32_t";
             0
@@ -24,18 +19,8 @@ pub struct VkImageViewSlicedCreateInfoEXT {
     >,
 }
 #[repr(C)]
-pub struct VkPhysicalDeviceImageSlicedViewOf3DFeaturesEXT {
-    pub s_type: crate::External<
-        {
-            "VkStructureType";
-            0
-        },
-    >,
-    pub p_next: *mut core::ffi::c_void,
-    pub image_sliced_view_of3_d: crate::External<
-        {
-            "VkBool32";
-            0
-        },
-    >,
+pub struct PhysicalDeviceImageSlicedViewOf3DFeaturesEXT {
+    s_type: crate::vk::StructureType,
+    p_next: *mut core::ffi::c_void,
+    image_sliced_view_of3_d: crate::vk::Bool32,
 }

@@ -2,32 +2,32 @@
 #![cfg_attr(rustfmt, rustfmt_skip)]
 //![Vulkan Manual Page](https://docs.vulkan.org/refpages/latest/refpages/source/VK_AMD_shader_info.html) · Vulkan extension
 #[repr(C)]
-pub struct VkShaderResourceUsageAMD {
-    pub num_used_vgprs: crate::External<
+pub struct ShaderResourceUsageAMD {
+    num_used_vgprs: crate::External<
         {
             "uint32_t";
             0
         },
     >,
-    pub num_used_sgprs: crate::External<
+    num_used_sgprs: crate::External<
         {
             "uint32_t";
             0
         },
     >,
-    pub lds_size_per_local_work_group: crate::External<
+    lds_size_per_local_work_group: crate::External<
         {
             "uint32_t";
             0
         },
     >,
-    pub lds_usage_size_in_bytes: crate::External<
+    lds_usage_size_in_bytes: crate::External<
         {
             "size_t";
             0
         },
     >,
-    pub scratch_mem_usage_in_bytes: crate::External<
+    scratch_mem_usage_in_bytes: crate::External<
         {
             "size_t";
             0
@@ -35,47 +35,39 @@ pub struct VkShaderResourceUsageAMD {
     >,
 }
 #[repr(C)]
-pub struct VkShaderStatisticsInfoAMD {
-    pub shader_stage_mask: crate::External<
-        {
-            "VkShaderStageFlags";
-            0
-        },
-    >,
-    pub resource_usage: crate::External<
-        {
-            "VkShaderResourceUsageAMD";
-            0
-        },
-    >,
-    pub num_physical_vgprs: crate::External<
+pub struct ShaderStatisticsInfoAMD {
+    shader_stage_mask: crate::vk::ShaderStageFlags,
+    resource_usage: crate::vk::ShaderResourceUsageAMD,
+    num_physical_vgprs: crate::External<
         {
             "uint32_t";
             0
         },
     >,
-    pub num_physical_sgprs: crate::External<
+    num_physical_sgprs: crate::External<
         {
             "uint32_t";
             0
         },
     >,
-    pub num_available_vgprs: crate::External<
+    num_available_vgprs: crate::External<
         {
             "uint32_t";
             0
         },
     >,
-    pub num_available_sgprs: crate::External<
+    num_available_sgprs: crate::External<
         {
             "uint32_t";
             0
         },
     >,
-    pub compute_work_group_size: [crate::External<
+    compute_work_group_size: [crate::External<
         {
             "uint32_t";
             0
         },
     >; 1337],
 }
+#[repr(C)]
+pub struct ShaderInfoTypeAMD {}

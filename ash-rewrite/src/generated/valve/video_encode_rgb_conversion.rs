@@ -2,102 +2,32 @@
 #![cfg_attr(rustfmt, rustfmt_skip)]
 //![Vulkan Manual Page](https://docs.vulkan.org/refpages/latest/refpages/source/VK_VALVE_video_encode_rgb_conversion.html) · Vulkan extension
 #[repr(C)]
-pub struct VkPhysicalDeviceVideoEncodeRgbConversionFeaturesVALVE {
-    pub s_type: crate::External<
-        {
-            "VkStructureType";
-            0
-        },
-    >,
-    pub p_next: *mut core::ffi::c_void,
-    pub video_encode_rgb_conversion: crate::External<
-        {
-            "VkBool32";
-            0
-        },
-    >,
+pub struct PhysicalDeviceVideoEncodeRgbConversionFeaturesVALVE {
+    s_type: crate::vk::StructureType,
+    p_next: *mut core::ffi::c_void,
+    video_encode_rgb_conversion: crate::vk::Bool32,
 }
 #[repr(C)]
-pub struct VkVideoEncodeRgbConversionCapabilitiesVALVE {
-    pub s_type: crate::External<
-        {
-            "VkStructureType";
-            0
-        },
-    >,
-    pub p_next: *mut core::ffi::c_void,
-    pub rgb_models: crate::External<
-        {
-            "VkVideoEncodeRgbModelConversionFlagsVALVE";
-            0
-        },
-    >,
-    pub rgb_ranges: crate::External<
-        {
-            "VkVideoEncodeRgbRangeCompressionFlagsVALVE";
-            0
-        },
-    >,
-    pub x_chroma_offsets: crate::External<
-        {
-            "VkVideoEncodeRgbChromaOffsetFlagsVALVE";
-            0
-        },
-    >,
-    pub y_chroma_offsets: crate::External<
-        {
-            "VkVideoEncodeRgbChromaOffsetFlagsVALVE";
-            0
-        },
-    >,
+pub struct VideoEncodeRgbConversionCapabilitiesVALVE {
+    s_type: crate::vk::StructureType,
+    p_next: *mut core::ffi::c_void,
+    rgb_models: crate::vk::VideoEncodeRgbModelConversionFlagsVALVE,
+    rgb_ranges: crate::vk::VideoEncodeRgbRangeCompressionFlagsVALVE,
+    x_chroma_offsets: crate::vk::VideoEncodeRgbChromaOffsetFlagsVALVE,
+    y_chroma_offsets: crate::vk::VideoEncodeRgbChromaOffsetFlagsVALVE,
 }
 #[repr(C)]
-pub struct VkVideoEncodeProfileRgbConversionInfoVALVE {
-    pub s_type: crate::External<
-        {
-            "VkStructureType";
-            0
-        },
-    >,
-    pub p_next: *const core::ffi::c_void,
-    pub perform_encode_rgb_conversion: crate::External<
-        {
-            "VkBool32";
-            0
-        },
-    >,
+pub struct VideoEncodeProfileRgbConversionInfoVALVE {
+    s_type: crate::vk::StructureType,
+    p_next: *const core::ffi::c_void,
+    perform_encode_rgb_conversion: crate::vk::Bool32,
 }
 #[repr(C)]
-pub struct VkVideoEncodeSessionRgbConversionCreateInfoVALVE {
-    pub s_type: crate::External<
-        {
-            "VkStructureType";
-            0
-        },
-    >,
-    pub p_next: *const core::ffi::c_void,
-    pub rgb_model: crate::External<
-        {
-            "VkVideoEncodeRgbModelConversionFlagBitsVALVE";
-            0
-        },
-    >,
-    pub rgb_range: crate::External<
-        {
-            "VkVideoEncodeRgbRangeCompressionFlagBitsVALVE";
-            0
-        },
-    >,
-    pub x_chroma_offset: crate::External<
-        {
-            "VkVideoEncodeRgbChromaOffsetFlagBitsVALVE";
-            0
-        },
-    >,
-    pub y_chroma_offset: crate::External<
-        {
-            "VkVideoEncodeRgbChromaOffsetFlagBitsVALVE";
-            0
-        },
-    >,
+pub struct VideoEncodeSessionRgbConversionCreateInfoVALVE {
+    s_type: crate::vk::StructureType,
+    p_next: *const core::ffi::c_void,
+    rgb_model: crate::vk::VideoEncodeRgbModelConversionFlagBitsVALVE,
+    rgb_range: crate::vk::VideoEncodeRgbRangeCompressionFlagBitsVALVE,
+    x_chroma_offset: crate::vk::VideoEncodeRgbChromaOffsetFlagBitsVALVE,
+    y_chroma_offset: crate::vk::VideoEncodeRgbChromaOffsetFlagBitsVALVE,
 }

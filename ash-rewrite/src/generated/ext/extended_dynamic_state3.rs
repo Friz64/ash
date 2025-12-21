@@ -2,214 +2,44 @@
 #![cfg_attr(rustfmt, rustfmt_skip)]
 //![Vulkan Manual Page](https://docs.vulkan.org/refpages/latest/refpages/source/VK_EXT_extended_dynamic_state3.html) · Vulkan extension
 #[repr(C)]
-pub struct VkPhysicalDeviceExtendedDynamicState3FeaturesEXT {
-    pub s_type: crate::External<
-        {
-            "VkStructureType";
-            0
-        },
-    >,
-    pub p_next: *mut core::ffi::c_void,
-    pub extended_dynamic_state3_tessellation_domain_origin: crate::External<
-        {
-            "VkBool32";
-            0
-        },
-    >,
-    pub extended_dynamic_state3_depth_clamp_enable: crate::External<
-        {
-            "VkBool32";
-            0
-        },
-    >,
-    pub extended_dynamic_state3_polygon_mode: crate::External<
-        {
-            "VkBool32";
-            0
-        },
-    >,
-    pub extended_dynamic_state3_rasterization_samples: crate::External<
-        {
-            "VkBool32";
-            0
-        },
-    >,
-    pub extended_dynamic_state3_sample_mask: crate::External<
-        {
-            "VkBool32";
-            0
-        },
-    >,
-    pub extended_dynamic_state3_alpha_to_coverage_enable: crate::External<
-        {
-            "VkBool32";
-            0
-        },
-    >,
-    pub extended_dynamic_state3_alpha_to_one_enable: crate::External<
-        {
-            "VkBool32";
-            0
-        },
-    >,
-    pub extended_dynamic_state3_logic_op_enable: crate::External<
-        {
-            "VkBool32";
-            0
-        },
-    >,
-    pub extended_dynamic_state3_color_blend_enable: crate::External<
-        {
-            "VkBool32";
-            0
-        },
-    >,
-    pub extended_dynamic_state3_color_blend_equation: crate::External<
-        {
-            "VkBool32";
-            0
-        },
-    >,
-    pub extended_dynamic_state3_color_write_mask: crate::External<
-        {
-            "VkBool32";
-            0
-        },
-    >,
-    pub extended_dynamic_state3_rasterization_stream: crate::External<
-        {
-            "VkBool32";
-            0
-        },
-    >,
-    pub extended_dynamic_state3_conservative_rasterization_mode: crate::External<
-        {
-            "VkBool32";
-            0
-        },
-    >,
-    pub extended_dynamic_state3_extra_primitive_overestimation_size: crate::External<
-        {
-            "VkBool32";
-            0
-        },
-    >,
-    pub extended_dynamic_state3_depth_clip_enable: crate::External<
-        {
-            "VkBool32";
-            0
-        },
-    >,
-    pub extended_dynamic_state3_sample_locations_enable: crate::External<
-        {
-            "VkBool32";
-            0
-        },
-    >,
-    pub extended_dynamic_state3_color_blend_advanced: crate::External<
-        {
-            "VkBool32";
-            0
-        },
-    >,
-    pub extended_dynamic_state3_provoking_vertex_mode: crate::External<
-        {
-            "VkBool32";
-            0
-        },
-    >,
-    pub extended_dynamic_state3_line_rasterization_mode: crate::External<
-        {
-            "VkBool32";
-            0
-        },
-    >,
-    pub extended_dynamic_state3_line_stipple_enable: crate::External<
-        {
-            "VkBool32";
-            0
-        },
-    >,
-    pub extended_dynamic_state3_depth_clip_negative_one_to_one: crate::External<
-        {
-            "VkBool32";
-            0
-        },
-    >,
-    pub extended_dynamic_state3_viewport_w_scaling_enable: crate::External<
-        {
-            "VkBool32";
-            0
-        },
-    >,
-    pub extended_dynamic_state3_viewport_swizzle: crate::External<
-        {
-            "VkBool32";
-            0
-        },
-    >,
-    pub extended_dynamic_state3_coverage_to_color_enable: crate::External<
-        {
-            "VkBool32";
-            0
-        },
-    >,
-    pub extended_dynamic_state3_coverage_to_color_location: crate::External<
-        {
-            "VkBool32";
-            0
-        },
-    >,
-    pub extended_dynamic_state3_coverage_modulation_mode: crate::External<
-        {
-            "VkBool32";
-            0
-        },
-    >,
-    pub extended_dynamic_state3_coverage_modulation_table_enable: crate::External<
-        {
-            "VkBool32";
-            0
-        },
-    >,
-    pub extended_dynamic_state3_coverage_modulation_table: crate::External<
-        {
-            "VkBool32";
-            0
-        },
-    >,
-    pub extended_dynamic_state3_coverage_reduction_mode: crate::External<
-        {
-            "VkBool32";
-            0
-        },
-    >,
-    pub extended_dynamic_state3_representative_fragment_test_enable: crate::External<
-        {
-            "VkBool32";
-            0
-        },
-    >,
-    pub extended_dynamic_state3_shading_rate_image_enable: crate::External<
-        {
-            "VkBool32";
-            0
-        },
-    >,
+pub struct PhysicalDeviceExtendedDynamicState3FeaturesEXT {
+    s_type: crate::vk::StructureType,
+    p_next: *mut core::ffi::c_void,
+    extended_dynamic_state3_tessellation_domain_origin: crate::vk::Bool32,
+    extended_dynamic_state3_depth_clamp_enable: crate::vk::Bool32,
+    extended_dynamic_state3_polygon_mode: crate::vk::Bool32,
+    extended_dynamic_state3_rasterization_samples: crate::vk::Bool32,
+    extended_dynamic_state3_sample_mask: crate::vk::Bool32,
+    extended_dynamic_state3_alpha_to_coverage_enable: crate::vk::Bool32,
+    extended_dynamic_state3_alpha_to_one_enable: crate::vk::Bool32,
+    extended_dynamic_state3_logic_op_enable: crate::vk::Bool32,
+    extended_dynamic_state3_color_blend_enable: crate::vk::Bool32,
+    extended_dynamic_state3_color_blend_equation: crate::vk::Bool32,
+    extended_dynamic_state3_color_write_mask: crate::vk::Bool32,
+    extended_dynamic_state3_rasterization_stream: crate::vk::Bool32,
+    extended_dynamic_state3_conservative_rasterization_mode: crate::vk::Bool32,
+    extended_dynamic_state3_extra_primitive_overestimation_size: crate::vk::Bool32,
+    extended_dynamic_state3_depth_clip_enable: crate::vk::Bool32,
+    extended_dynamic_state3_sample_locations_enable: crate::vk::Bool32,
+    extended_dynamic_state3_color_blend_advanced: crate::vk::Bool32,
+    extended_dynamic_state3_provoking_vertex_mode: crate::vk::Bool32,
+    extended_dynamic_state3_line_rasterization_mode: crate::vk::Bool32,
+    extended_dynamic_state3_line_stipple_enable: crate::vk::Bool32,
+    extended_dynamic_state3_depth_clip_negative_one_to_one: crate::vk::Bool32,
+    extended_dynamic_state3_viewport_w_scaling_enable: crate::vk::Bool32,
+    extended_dynamic_state3_viewport_swizzle: crate::vk::Bool32,
+    extended_dynamic_state3_coverage_to_color_enable: crate::vk::Bool32,
+    extended_dynamic_state3_coverage_to_color_location: crate::vk::Bool32,
+    extended_dynamic_state3_coverage_modulation_mode: crate::vk::Bool32,
+    extended_dynamic_state3_coverage_modulation_table_enable: crate::vk::Bool32,
+    extended_dynamic_state3_coverage_modulation_table: crate::vk::Bool32,
+    extended_dynamic_state3_coverage_reduction_mode: crate::vk::Bool32,
+    extended_dynamic_state3_representative_fragment_test_enable: crate::vk::Bool32,
+    extended_dynamic_state3_shading_rate_image_enable: crate::vk::Bool32,
 }
 #[repr(C)]
-pub struct VkPhysicalDeviceExtendedDynamicState3PropertiesEXT {
-    pub s_type: crate::External<
-        {
-            "VkStructureType";
-            0
-        },
-    >,
-    pub p_next: *mut core::ffi::c_void,
-    pub dynamic_primitive_topology_unrestricted: crate::External<
-        {
-            "VkBool32";
-            0
-        },
-    >,
+pub struct PhysicalDeviceExtendedDynamicState3PropertiesEXT {
+    s_type: crate::vk::StructureType,
+    p_next: *mut core::ffi::c_void,
+    dynamic_primitive_topology_unrestricted: crate::vk::Bool32,
 }

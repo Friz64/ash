@@ -2,248 +2,95 @@
 #![cfg_attr(rustfmt, rustfmt_skip)]
 //![Vulkan Manual Page](https://docs.vulkan.org/refpages/latest/refpages/source/VK_EXT_metal_objects.html) · Vulkan extension
 #[repr(C)]
-pub struct VkExportMetalObjectCreateInfoEXT {
-    pub s_type: crate::External<
-        {
-            "VkStructureType";
-            0
-        },
-    >,
-    pub p_next: *const core::ffi::c_void,
-    pub export_object_type: crate::External<
-        {
-            "VkExportMetalObjectTypeFlagBitsEXT";
-            0
-        },
-    >,
+pub struct ExportMetalObjectCreateInfoEXT {
+    s_type: crate::vk::StructureType,
+    p_next: *const core::ffi::c_void,
+    export_object_type: crate::vk::ExportMetalObjectTypeFlagBitsEXT,
 }
 #[repr(C)]
-pub struct VkExportMetalObjectsInfoEXT {
-    pub s_type: crate::External<
-        {
-            "VkStructureType";
-            0
-        },
-    >,
-    pub p_next: *const core::ffi::c_void,
+pub struct ExportMetalObjectsInfoEXT {
+    s_type: crate::vk::StructureType,
+    p_next: *const core::ffi::c_void,
 }
 #[repr(C)]
-pub struct VkExportMetalDeviceInfoEXT {
-    pub s_type: crate::External<
-        {
-            "VkStructureType";
-            0
-        },
-    >,
-    pub p_next: *const core::ffi::c_void,
-    pub mtl_device: crate::External<
-        {
-            "MTLDevice_id";
-            0
-        },
-    >,
+pub struct ExportMetalDeviceInfoEXT {
+    s_type: crate::vk::StructureType,
+    p_next: *const core::ffi::c_void,
+    mtl_device: crate::vk::MTLDevice_id,
 }
 #[repr(C)]
-pub struct VkExportMetalCommandQueueInfoEXT {
-    pub s_type: crate::External<
-        {
-            "VkStructureType";
-            0
-        },
-    >,
-    pub p_next: *const core::ffi::c_void,
-    pub queue: crate::External<
-        {
-            "VkQueue";
-            0
-        },
-    >,
-    pub mtl_command_queue: crate::External<
-        {
-            "MTLCommandQueue_id";
-            0
-        },
-    >,
+pub struct ExportMetalCommandQueueInfoEXT {
+    s_type: crate::vk::StructureType,
+    p_next: *const core::ffi::c_void,
+    queue: crate::vk::Queue,
+    mtl_command_queue: crate::vk::MTLCommandQueue_id,
 }
 #[repr(C)]
-pub struct VkExportMetalBufferInfoEXT {
-    pub s_type: crate::External<
-        {
-            "VkStructureType";
-            0
-        },
-    >,
-    pub p_next: *const core::ffi::c_void,
-    pub memory: crate::External<
-        {
-            "VkDeviceMemory";
-            0
-        },
-    >,
-    pub mtl_buffer: crate::External<
-        {
-            "MTLBuffer_id";
-            0
-        },
-    >,
+pub struct ExportMetalBufferInfoEXT {
+    s_type: crate::vk::StructureType,
+    p_next: *const core::ffi::c_void,
+    memory: crate::vk::DeviceMemory,
+    mtl_buffer: crate::vk::MTLBuffer_id,
 }
 #[repr(C)]
-pub struct VkImportMetalBufferInfoEXT {
-    pub s_type: crate::External<
-        {
-            "VkStructureType";
-            0
-        },
-    >,
-    pub p_next: *const core::ffi::c_void,
-    pub mtl_buffer: crate::External<
-        {
-            "MTLBuffer_id";
-            0
-        },
-    >,
+pub struct ImportMetalBufferInfoEXT {
+    s_type: crate::vk::StructureType,
+    p_next: *const core::ffi::c_void,
+    mtl_buffer: crate::vk::MTLBuffer_id,
 }
 #[repr(C)]
-pub struct VkExportMetalTextureInfoEXT {
-    pub s_type: crate::External<
-        {
-            "VkStructureType";
-            0
-        },
-    >,
-    pub p_next: *const core::ffi::c_void,
-    pub image: crate::External<
-        {
-            "VkImage";
-            0
-        },
-    >,
-    pub image_view: crate::External<
-        {
-            "VkImageView";
-            0
-        },
-    >,
-    pub buffer_view: crate::External<
-        {
-            "VkBufferView";
-            0
-        },
-    >,
-    pub plane: crate::External<
-        {
-            "VkImageAspectFlagBits";
-            0
-        },
-    >,
-    pub mtl_texture: crate::External<
-        {
-            "MTLTexture_id";
-            0
-        },
-    >,
+pub struct ExportMetalTextureInfoEXT {
+    s_type: crate::vk::StructureType,
+    p_next: *const core::ffi::c_void,
+    image: crate::vk::Image,
+    image_view: crate::vk::ImageView,
+    buffer_view: crate::vk::BufferView,
+    plane: crate::vk::ImageAspectFlagBits,
+    mtl_texture: crate::vk::MTLTexture_id,
 }
 #[repr(C)]
-pub struct VkImportMetalTextureInfoEXT {
-    pub s_type: crate::External<
-        {
-            "VkStructureType";
-            0
-        },
-    >,
-    pub p_next: *const core::ffi::c_void,
-    pub plane: crate::External<
-        {
-            "VkImageAspectFlagBits";
-            0
-        },
-    >,
-    pub mtl_texture: crate::External<
-        {
-            "MTLTexture_id";
-            0
-        },
-    >,
+pub struct ImportMetalTextureInfoEXT {
+    s_type: crate::vk::StructureType,
+    p_next: *const core::ffi::c_void,
+    plane: crate::vk::ImageAspectFlagBits,
+    mtl_texture: crate::vk::MTLTexture_id,
 }
 #[repr(C)]
-pub struct VkExportMetalIOSurfaceInfoEXT {
-    pub s_type: crate::External<
-        {
-            "VkStructureType";
-            0
-        },
-    >,
-    pub p_next: *const core::ffi::c_void,
-    pub image: crate::External<
-        {
-            "VkImage";
-            0
-        },
-    >,
-    pub io_surface: crate::External<
-        {
-            "IOSurfaceRef";
-            0
-        },
-    >,
+pub struct ExportMetalIOSurfaceInfoEXT {
+    s_type: crate::vk::StructureType,
+    p_next: *const core::ffi::c_void,
+    image: crate::vk::Image,
+    io_surface: crate::vk::IOSurfaceRef,
 }
 #[repr(C)]
-pub struct VkImportMetalIOSurfaceInfoEXT {
-    pub s_type: crate::External<
-        {
-            "VkStructureType";
-            0
-        },
-    >,
-    pub p_next: *const core::ffi::c_void,
-    pub io_surface: crate::External<
-        {
-            "IOSurfaceRef";
-            0
-        },
-    >,
+pub struct ImportMetalIOSurfaceInfoEXT {
+    s_type: crate::vk::StructureType,
+    p_next: *const core::ffi::c_void,
+    io_surface: crate::vk::IOSurfaceRef,
 }
 #[repr(C)]
-pub struct VkExportMetalSharedEventInfoEXT {
-    pub s_type: crate::External<
-        {
-            "VkStructureType";
-            0
-        },
-    >,
-    pub p_next: *const core::ffi::c_void,
-    pub semaphore: crate::External<
-        {
-            "VkSemaphore";
-            0
-        },
-    >,
-    pub event: crate::External<
-        {
-            "VkEvent";
-            0
-        },
-    >,
-    pub mtl_shared_event: crate::External<
-        {
-            "MTLSharedEvent_id";
-            0
-        },
-    >,
+pub struct ExportMetalSharedEventInfoEXT {
+    s_type: crate::vk::StructureType,
+    p_next: *const core::ffi::c_void,
+    semaphore: crate::vk::Semaphore,
+    event: crate::vk::Event,
+    mtl_shared_event: crate::vk::MTLSharedEvent_id,
 }
 #[repr(C)]
-pub struct VkImportMetalSharedEventInfoEXT {
-    pub s_type: crate::External<
-        {
-            "VkStructureType";
-            0
-        },
-    >,
-    pub p_next: *const core::ffi::c_void,
-    pub mtl_shared_event: crate::External<
-        {
-            "MTLSharedEvent_id";
-            0
-        },
-    >,
+pub struct ImportMetalSharedEventInfoEXT {
+    s_type: crate::vk::StructureType,
+    p_next: *const core::ffi::c_void,
+    mtl_shared_event: crate::vk::MTLSharedEvent_id,
 }
+#[repr(C)]
+pub struct MTLDevice_id {}
+#[repr(C)]
+pub struct MTLCommandQueue_id {}
+#[repr(C)]
+pub struct MTLBuffer_id {}
+#[repr(C)]
+pub struct MTLTexture_id {}
+#[repr(C)]
+pub struct MTLSharedEvent_id {}
+#[repr(C)]
+pub struct IOSurfaceRef {}

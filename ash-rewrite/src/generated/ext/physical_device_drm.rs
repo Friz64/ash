@@ -2,45 +2,30 @@
 #![cfg_attr(rustfmt, rustfmt_skip)]
 //![Vulkan Manual Page](https://docs.vulkan.org/refpages/latest/refpages/source/VK_EXT_physical_device_drm.html) · Vulkan extension
 #[repr(C)]
-pub struct VkPhysicalDeviceDrmPropertiesEXT {
-    pub s_type: crate::External<
-        {
-            "VkStructureType";
-            0
-        },
-    >,
-    pub p_next: *mut core::ffi::c_void,
-    pub has_primary: crate::External<
-        {
-            "VkBool32";
-            0
-        },
-    >,
-    pub has_render: crate::External<
-        {
-            "VkBool32";
-            0
-        },
-    >,
-    pub primary_major: crate::External<
+pub struct PhysicalDeviceDrmPropertiesEXT {
+    s_type: crate::vk::StructureType,
+    p_next: *mut core::ffi::c_void,
+    has_primary: crate::vk::Bool32,
+    has_render: crate::vk::Bool32,
+    primary_major: crate::External<
         {
             "int64_t";
             0
         },
     >,
-    pub primary_minor: crate::External<
+    primary_minor: crate::External<
         {
             "int64_t";
             0
         },
     >,
-    pub render_major: crate::External<
+    render_major: crate::External<
         {
             "int64_t";
             0
         },
     >,
-    pub render_minor: crate::External<
+    render_minor: crate::External<
         {
             "int64_t";
             0

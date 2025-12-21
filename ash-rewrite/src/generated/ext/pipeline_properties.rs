@@ -2,15 +2,10 @@
 #![cfg_attr(rustfmt, rustfmt_skip)]
 //![Vulkan Manual Page](https://docs.vulkan.org/refpages/latest/refpages/source/VK_EXT_pipeline_properties.html) · Vulkan extension
 #[repr(C)]
-pub struct VkPipelinePropertiesIdentifierEXT {
-    pub s_type: crate::External<
-        {
-            "VkStructureType";
-            0
-        },
-    >,
-    pub p_next: *mut core::ffi::c_void,
-    pub pipeline_identifier: [crate::External<
+pub struct PipelinePropertiesIdentifierEXT {
+    s_type: crate::vk::StructureType,
+    p_next: *mut core::ffi::c_void,
+    pipeline_identifier: [crate::External<
         {
             "uint8_t";
             0
@@ -18,18 +13,8 @@ pub struct VkPipelinePropertiesIdentifierEXT {
     >; 1337],
 }
 #[repr(C)]
-pub struct VkPhysicalDevicePipelinePropertiesFeaturesEXT {
-    pub s_type: crate::External<
-        {
-            "VkStructureType";
-            0
-        },
-    >,
-    pub p_next: *mut core::ffi::c_void,
-    pub pipeline_properties_identifier: crate::External<
-        {
-            "VkBool32";
-            0
-        },
-    >,
+pub struct PhysicalDevicePipelinePropertiesFeaturesEXT {
+    s_type: crate::vk::StructureType,
+    p_next: *mut core::ffi::c_void,
+    pipeline_properties_identifier: crate::vk::Bool32,
 }

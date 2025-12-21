@@ -2,74 +2,28 @@
 #![cfg_attr(rustfmt, rustfmt_skip)]
 //![Vulkan Manual Page](https://docs.vulkan.org/refpages/latest/refpages/source/VK_NV_fragment_shading_rate_enums.html) · Vulkan extension
 #[repr(C)]
-pub struct VkPhysicalDeviceFragmentShadingRateEnumsFeaturesNV {
-    pub s_type: crate::External<
-        {
-            "VkStructureType";
-            0
-        },
-    >,
-    pub p_next: *mut core::ffi::c_void,
-    pub fragment_shading_rate_enums: crate::External<
-        {
-            "VkBool32";
-            0
-        },
-    >,
-    pub supersample_fragment_shading_rates: crate::External<
-        {
-            "VkBool32";
-            0
-        },
-    >,
-    pub no_invocation_fragment_shading_rates: crate::External<
-        {
-            "VkBool32";
-            0
-        },
-    >,
+pub struct PhysicalDeviceFragmentShadingRateEnumsFeaturesNV {
+    s_type: crate::vk::StructureType,
+    p_next: *mut core::ffi::c_void,
+    fragment_shading_rate_enums: crate::vk::Bool32,
+    supersample_fragment_shading_rates: crate::vk::Bool32,
+    no_invocation_fragment_shading_rates: crate::vk::Bool32,
 }
 #[repr(C)]
-pub struct VkPhysicalDeviceFragmentShadingRateEnumsPropertiesNV {
-    pub s_type: crate::External<
-        {
-            "VkStructureType";
-            0
-        },
-    >,
-    pub p_next: *mut core::ffi::c_void,
-    pub max_fragment_shading_rate_invocation_count: crate::External<
-        {
-            "VkSampleCountFlagBits";
-            0
-        },
-    >,
+pub struct PhysicalDeviceFragmentShadingRateEnumsPropertiesNV {
+    s_type: crate::vk::StructureType,
+    p_next: *mut core::ffi::c_void,
+    max_fragment_shading_rate_invocation_count: crate::vk::SampleCountFlagBits,
 }
 #[repr(C)]
-pub struct VkPipelineFragmentShadingRateEnumStateCreateInfoNV {
-    pub s_type: crate::External<
-        {
-            "VkStructureType";
-            0
-        },
-    >,
-    pub p_next: *const core::ffi::c_void,
-    pub shading_rate_type: crate::External<
-        {
-            "VkFragmentShadingRateTypeNV";
-            0
-        },
-    >,
-    pub shading_rate: crate::External<
-        {
-            "VkFragmentShadingRateNV";
-            0
-        },
-    >,
-    pub combiner_ops: [crate::External<
-        {
-            "VkFragmentShadingRateCombinerOpKHR";
-            0
-        },
-    >; 1337],
+pub struct PipelineFragmentShadingRateEnumStateCreateInfoNV {
+    s_type: crate::vk::StructureType,
+    p_next: *const core::ffi::c_void,
+    shading_rate_type: crate::vk::FragmentShadingRateTypeNV,
+    shading_rate: crate::vk::FragmentShadingRateNV,
+    combiner_ops: [crate::vk::FragmentShadingRateCombinerOpKHR; 1337],
 }
+#[repr(C)]
+pub struct FragmentShadingRateNV {}
+#[repr(C)]
+pub struct FragmentShadingRateTypeNV {}

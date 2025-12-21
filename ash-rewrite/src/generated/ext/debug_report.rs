@@ -2,25 +2,12 @@
 #![cfg_attr(rustfmt, rustfmt_skip)]
 //![Vulkan Manual Page](https://docs.vulkan.org/refpages/latest/refpages/source/VK_EXT_debug_report.html) · Vulkan extension
 #[repr(C)]
-pub struct VkDebugReportCallbackCreateInfoEXT {
-    pub s_type: crate::External<
-        {
-            "VkStructureType";
-            0
-        },
-    >,
-    pub p_next: *const core::ffi::c_void,
-    pub flags: crate::External<
-        {
-            "VkDebugReportFlagsEXT";
-            0
-        },
-    >,
-    pub pfn_callback: crate::External<
-        {
-            "PFN_vkDebugReportCallbackEXT";
-            0
-        },
-    >,
-    pub p_user_data: *mut core::ffi::c_void,
+pub struct DebugReportCallbackCreateInfoEXT {
+    s_type: crate::vk::StructureType,
+    p_next: *const core::ffi::c_void,
+    flags: crate::vk::DebugReportFlagsEXT,
+    pfn_callback: crate::vk::PFN_vkDebugReportCallbackEXT,
+    p_user_data: *mut core::ffi::c_void,
 }
+#[repr(C)]
+pub struct DebugReportCallbackEXT {}

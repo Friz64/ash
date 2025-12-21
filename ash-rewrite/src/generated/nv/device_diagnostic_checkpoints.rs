@@ -2,68 +2,28 @@
 #![cfg_attr(rustfmt, rustfmt_skip)]
 //![Vulkan Manual Page](https://docs.vulkan.org/refpages/latest/refpages/source/VK_NV_device_diagnostic_checkpoints.html) · Vulkan extension
 #[repr(C)]
-pub struct VkQueueFamilyCheckpointPropertiesNV {
-    pub s_type: crate::External<
-        {
-            "VkStructureType";
-            0
-        },
-    >,
-    pub p_next: *mut core::ffi::c_void,
-    pub checkpoint_execution_stage_mask: crate::External<
-        {
-            "VkPipelineStageFlags";
-            0
-        },
-    >,
+pub struct QueueFamilyCheckpointPropertiesNV {
+    s_type: crate::vk::StructureType,
+    p_next: *mut core::ffi::c_void,
+    checkpoint_execution_stage_mask: crate::vk::PipelineStageFlags,
 }
 #[repr(C)]
-pub struct VkCheckpointDataNV {
-    pub s_type: crate::External<
-        {
-            "VkStructureType";
-            0
-        },
-    >,
-    pub p_next: *mut core::ffi::c_void,
-    pub stage: crate::External<
-        {
-            "VkPipelineStageFlagBits";
-            0
-        },
-    >,
-    pub p_checkpoint_marker: *mut core::ffi::c_void,
+pub struct CheckpointDataNV {
+    s_type: crate::vk::StructureType,
+    p_next: *mut core::ffi::c_void,
+    stage: crate::vk::PipelineStageFlagBits,
+    p_checkpoint_marker: *mut core::ffi::c_void,
 }
 #[repr(C)]
-pub struct VkQueueFamilyCheckpointProperties2NV {
-    pub s_type: crate::External<
-        {
-            "VkStructureType";
-            0
-        },
-    >,
-    pub p_next: *mut core::ffi::c_void,
-    pub checkpoint_execution_stage_mask: crate::External<
-        {
-            "VkPipelineStageFlags2";
-            0
-        },
-    >,
+pub struct QueueFamilyCheckpointProperties2NV {
+    s_type: crate::vk::StructureType,
+    p_next: *mut core::ffi::c_void,
+    checkpoint_execution_stage_mask: crate::vk::PipelineStageFlags2,
 }
 #[repr(C)]
-pub struct VkCheckpointData2NV {
-    pub s_type: crate::External<
-        {
-            "VkStructureType";
-            0
-        },
-    >,
-    pub p_next: *mut core::ffi::c_void,
-    pub stage: crate::External<
-        {
-            "VkPipelineStageFlags2";
-            0
-        },
-    >,
-    pub p_checkpoint_marker: *mut core::ffi::c_void,
+pub struct CheckpointData2NV {
+    s_type: crate::vk::StructureType,
+    p_next: *mut core::ffi::c_void,
+    stage: crate::vk::PipelineStageFlags2,
+    p_checkpoint_marker: *mut core::ffi::c_void,
 }

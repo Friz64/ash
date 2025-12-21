@@ -2,24 +2,9 @@
 #![cfg_attr(rustfmt, rustfmt_skip)]
 //![Vulkan Manual Page](https://docs.vulkan.org/refpages/latest/refpages/source/VK_EXT_shader_float8.html) · Vulkan extension
 #[repr(C)]
-pub struct VkPhysicalDeviceShaderFloat8FeaturesEXT {
-    pub s_type: crate::External<
-        {
-            "VkStructureType";
-            0
-        },
-    >,
-    pub p_next: *mut core::ffi::c_void,
-    pub shader_float8: crate::External<
-        {
-            "VkBool32";
-            0
-        },
-    >,
-    pub shader_float8_cooperative_matrix: crate::External<
-        {
-            "VkBool32";
-            0
-        },
-    >,
+pub struct PhysicalDeviceShaderFloat8FeaturesEXT {
+    s_type: crate::vk::StructureType,
+    p_next: *mut core::ffi::c_void,
+    shader_float8: crate::vk::Bool32,
+    shader_float8_cooperative_matrix: crate::vk::Bool32,
 }

@@ -2,94 +2,34 @@
 #![cfg_attr(rustfmt, rustfmt_skip)]
 //![Vulkan Manual Page](https://docs.vulkan.org/refpages/latest/refpages/source/VK_QCOM_tile_memory_heap.html) · Vulkan extension
 #[repr(C)]
-pub struct VkTileMemoryBindInfoQCOM {
-    pub s_type: crate::External<
-        {
-            "VkStructureType";
-            0
-        },
-    >,
-    pub p_next: *const core::ffi::c_void,
-    pub memory: crate::External<
-        {
-            "VkDeviceMemory";
-            0
-        },
-    >,
+pub struct TileMemoryBindInfoQCOM {
+    s_type: crate::vk::StructureType,
+    p_next: *const core::ffi::c_void,
+    memory: crate::vk::DeviceMemory,
 }
 #[repr(C)]
-pub struct VkPhysicalDeviceTileMemoryHeapFeaturesQCOM {
-    pub s_type: crate::External<
-        {
-            "VkStructureType";
-            0
-        },
-    >,
-    pub p_next: *mut core::ffi::c_void,
-    pub tile_memory_heap: crate::External<
-        {
-            "VkBool32";
-            0
-        },
-    >,
+pub struct PhysicalDeviceTileMemoryHeapFeaturesQCOM {
+    s_type: crate::vk::StructureType,
+    p_next: *mut core::ffi::c_void,
+    tile_memory_heap: crate::vk::Bool32,
 }
 #[repr(C)]
-pub struct VkPhysicalDeviceTileMemoryHeapPropertiesQCOM {
-    pub s_type: crate::External<
-        {
-            "VkStructureType";
-            0
-        },
-    >,
-    pub p_next: *mut core::ffi::c_void,
-    pub queue_submit_boundary: crate::External<
-        {
-            "VkBool32";
-            0
-        },
-    >,
-    pub tile_buffer_transfers: crate::External<
-        {
-            "VkBool32";
-            0
-        },
-    >,
+pub struct PhysicalDeviceTileMemoryHeapPropertiesQCOM {
+    s_type: crate::vk::StructureType,
+    p_next: *mut core::ffi::c_void,
+    queue_submit_boundary: crate::vk::Bool32,
+    tile_buffer_transfers: crate::vk::Bool32,
 }
 #[repr(C)]
-pub struct VkTileMemorySizeInfoQCOM {
-    pub s_type: crate::External<
-        {
-            "VkStructureType";
-            0
-        },
-    >,
-    pub p_next: *const core::ffi::c_void,
-    pub size: crate::External<
-        {
-            "VkDeviceSize";
-            0
-        },
-    >,
+pub struct TileMemorySizeInfoQCOM {
+    s_type: crate::vk::StructureType,
+    p_next: *const core::ffi::c_void,
+    size: crate::vk::DeviceSize,
 }
 #[repr(C)]
-pub struct VkTileMemoryRequirementsQCOM {
-    pub s_type: crate::External<
-        {
-            "VkStructureType";
-            0
-        },
-    >,
-    pub p_next: *mut core::ffi::c_void,
-    pub size: crate::External<
-        {
-            "VkDeviceSize";
-            0
-        },
-    >,
-    pub alignment: crate::External<
-        {
-            "VkDeviceSize";
-            0
-        },
-    >,
+pub struct TileMemoryRequirementsQCOM {
+    s_type: crate::vk::StructureType,
+    p_next: *mut core::ffi::c_void,
+    size: crate::vk::DeviceSize,
+    alignment: crate::vk::DeviceSize,
 }

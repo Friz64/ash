@@ -2,18 +2,8 @@
 #![cfg_attr(rustfmt, rustfmt_skip)]
 //![Vulkan Manual Page](https://docs.vulkan.org/refpages/latest/refpages/source/VK_QCOM_rotated_copy_commands.html) · Vulkan extension
 #[repr(C)]
-pub struct VkCopyCommandTransformInfoQCOM {
-    pub s_type: crate::External<
-        {
-            "VkStructureType";
-            0
-        },
-    >,
-    pub p_next: *const core::ffi::c_void,
-    pub transform: crate::External<
-        {
-            "VkSurfaceTransformFlagBitsKHR";
-            0
-        },
-    >,
+pub struct CopyCommandTransformInfoQCOM {
+    s_type: crate::vk::StructureType,
+    p_next: *const core::ffi::c_void,
+    transform: crate::vk::SurfaceTransformFlagBitsKHR,
 }

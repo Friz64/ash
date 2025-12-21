@@ -2,36 +2,25 @@
 #![cfg_attr(rustfmt, rustfmt_skip)]
 //![Vulkan Manual Page](https://docs.vulkan.org/refpages/latest/refpages/source/VK_EXT_validation_features.html) · Vulkan extension
 #[repr(C)]
-pub struct VkValidationFeaturesEXT {
-    pub s_type: crate::External<
-        {
-            "VkStructureType";
-            0
-        },
-    >,
-    pub p_next: *const core::ffi::c_void,
-    pub enabled_validation_feature_count: crate::External<
+pub struct ValidationFeaturesEXT {
+    s_type: crate::vk::StructureType,
+    p_next: *const core::ffi::c_void,
+    enabled_validation_feature_count: crate::External<
         {
             "uint32_t";
             0
         },
     >,
-    pub p_enabled_validation_features: *const crate::External<
-        {
-            "VkValidationFeatureEnableEXT";
-            0
-        },
-    >,
-    pub disabled_validation_feature_count: crate::External<
+    p_enabled_validation_features: *const crate::vk::ValidationFeatureEnableEXT,
+    disabled_validation_feature_count: crate::External<
         {
             "uint32_t";
             0
         },
     >,
-    pub p_disabled_validation_features: *const crate::External<
-        {
-            "VkValidationFeatureDisableEXT";
-            0
-        },
-    >,
+    p_disabled_validation_features: *const crate::vk::ValidationFeatureDisableEXT,
 }
+#[repr(C)]
+pub struct ValidationFeatureEnableEXT {}
+#[repr(C)]
+pub struct ValidationFeatureDisableEXT {}

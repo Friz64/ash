@@ -2,57 +2,27 @@
 #![cfg_attr(rustfmt, rustfmt_skip)]
 //![Vulkan Manual Page](https://docs.vulkan.org/refpages/latest/refpages/source/VK_INTEL_performance_query.html) · Vulkan extension
 #[repr(C)]
-pub struct VkPerformanceValueINTEL {
-    pub _type: crate::External<
-        {
-            "VkPerformanceValueTypeINTEL";
-            0
-        },
-    >,
-    pub data: crate::External<
-        {
-            "VkPerformanceValueDataINTEL";
-            0
-        },
-    >,
+pub struct PerformanceValueINTEL {
+    _type: crate::vk::PerformanceValueTypeINTEL,
+    data: crate::vk::PerformanceValueDataINTEL,
 }
 #[repr(C)]
-pub struct VkInitializePerformanceApiInfoINTEL {
-    pub s_type: crate::External<
-        {
-            "VkStructureType";
-            0
-        },
-    >,
-    pub p_next: *const core::ffi::c_void,
-    pub p_user_data: *mut core::ffi::c_void,
+pub struct InitializePerformanceApiInfoINTEL {
+    s_type: crate::vk::StructureType,
+    p_next: *const core::ffi::c_void,
+    p_user_data: *mut core::ffi::c_void,
 }
 #[repr(C)]
-pub struct VkQueryPoolPerformanceQueryCreateInfoINTEL {
-    pub s_type: crate::External<
-        {
-            "VkStructureType";
-            0
-        },
-    >,
-    pub p_next: *const core::ffi::c_void,
-    pub performance_counters_sampling: crate::External<
-        {
-            "VkQueryPoolSamplingModeINTEL";
-            0
-        },
-    >,
+pub struct QueryPoolPerformanceQueryCreateInfoINTEL {
+    s_type: crate::vk::StructureType,
+    p_next: *const core::ffi::c_void,
+    performance_counters_sampling: crate::vk::QueryPoolSamplingModeINTEL,
 }
 #[repr(C)]
-pub struct VkPerformanceMarkerInfoINTEL {
-    pub s_type: crate::External<
-        {
-            "VkStructureType";
-            0
-        },
-    >,
-    pub p_next: *const core::ffi::c_void,
-    pub marker: crate::External<
+pub struct PerformanceMarkerInfoINTEL {
+    s_type: crate::vk::StructureType,
+    p_next: *const core::ffi::c_void,
+    marker: crate::External<
         {
             "uint64_t";
             0
@@ -60,15 +30,10 @@ pub struct VkPerformanceMarkerInfoINTEL {
     >,
 }
 #[repr(C)]
-pub struct VkPerformanceStreamMarkerInfoINTEL {
-    pub s_type: crate::External<
-        {
-            "VkStructureType";
-            0
-        },
-    >,
-    pub p_next: *const core::ffi::c_void,
-    pub marker: crate::External<
+pub struct PerformanceStreamMarkerInfoINTEL {
+    s_type: crate::vk::StructureType,
+    p_next: *const core::ffi::c_void,
+    marker: crate::External<
         {
             "uint32_t";
             0
@@ -76,27 +41,12 @@ pub struct VkPerformanceStreamMarkerInfoINTEL {
     >,
 }
 #[repr(C)]
-pub struct VkPerformanceOverrideInfoINTEL {
-    pub s_type: crate::External<
-        {
-            "VkStructureType";
-            0
-        },
-    >,
-    pub p_next: *const core::ffi::c_void,
-    pub _type: crate::External<
-        {
-            "VkPerformanceOverrideTypeINTEL";
-            0
-        },
-    >,
-    pub enable: crate::External<
-        {
-            "VkBool32";
-            0
-        },
-    >,
-    pub parameter: crate::External<
+pub struct PerformanceOverrideInfoINTEL {
+    s_type: crate::vk::StructureType,
+    p_next: *const core::ffi::c_void,
+    _type: crate::vk::PerformanceOverrideTypeINTEL,
+    enable: crate::vk::Bool32,
+    parameter: crate::External<
         {
             "uint64_t";
             0
@@ -104,18 +54,20 @@ pub struct VkPerformanceOverrideInfoINTEL {
     >,
 }
 #[repr(C)]
-pub struct VkPerformanceConfigurationAcquireInfoINTEL {
-    pub s_type: crate::External<
-        {
-            "VkStructureType";
-            0
-        },
-    >,
-    pub p_next: *const core::ffi::c_void,
-    pub _type: crate::External<
-        {
-            "VkPerformanceConfigurationTypeINTEL";
-            0
-        },
-    >,
+pub struct PerformanceConfigurationAcquireInfoINTEL {
+    s_type: crate::vk::StructureType,
+    p_next: *const core::ffi::c_void,
+    _type: crate::vk::PerformanceConfigurationTypeINTEL,
 }
+#[repr(C)]
+pub struct PerformanceConfigurationTypeINTEL {}
+#[repr(C)]
+pub struct QueryPoolSamplingModeINTEL {}
+#[repr(C)]
+pub struct PerformanceOverrideTypeINTEL {}
+#[repr(C)]
+pub struct PerformanceParameterTypeINTEL {}
+#[repr(C)]
+pub struct PerformanceValueTypeINTEL {}
+#[repr(C)]
+pub struct PerformanceConfigurationINTEL {}

@@ -2,92 +2,32 @@
 #![cfg_attr(rustfmt, rustfmt_skip)]
 //![Vulkan Manual Page](https://docs.vulkan.org/refpages/latest/refpages/source/VK_KHR_video_decode_queue.html) · Vulkan extension
 #[repr(C)]
-pub struct VkVideoDecodeCapabilitiesKHR {
-    pub s_type: crate::External<
-        {
-            "VkStructureType";
-            0
-        },
-    >,
-    pub p_next: *mut core::ffi::c_void,
-    pub flags: crate::External<
-        {
-            "VkVideoDecodeCapabilityFlagsKHR";
-            0
-        },
-    >,
+pub struct VideoDecodeCapabilitiesKHR {
+    s_type: crate::vk::StructureType,
+    p_next: *mut core::ffi::c_void,
+    flags: crate::vk::VideoDecodeCapabilityFlagsKHR,
 }
 #[repr(C)]
-pub struct VkVideoDecodeUsageInfoKHR {
-    pub s_type: crate::External<
-        {
-            "VkStructureType";
-            0
-        },
-    >,
-    pub p_next: *const core::ffi::c_void,
-    pub video_usage_hints: crate::External<
-        {
-            "VkVideoDecodeUsageFlagsKHR";
-            0
-        },
-    >,
+pub struct VideoDecodeUsageInfoKHR {
+    s_type: crate::vk::StructureType,
+    p_next: *const core::ffi::c_void,
+    video_usage_hints: crate::vk::VideoDecodeUsageFlagsKHR,
 }
 #[repr(C)]
-pub struct VkVideoDecodeInfoKHR {
-    pub s_type: crate::External<
-        {
-            "VkStructureType";
-            0
-        },
-    >,
-    pub p_next: *const core::ffi::c_void,
-    pub flags: crate::External<
-        {
-            "VkVideoDecodeFlagsKHR";
-            0
-        },
-    >,
-    pub src_buffer: crate::External<
-        {
-            "VkBuffer";
-            0
-        },
-    >,
-    pub src_buffer_offset: crate::External<
-        {
-            "VkDeviceSize";
-            0
-        },
-    >,
-    pub src_buffer_range: crate::External<
-        {
-            "VkDeviceSize";
-            0
-        },
-    >,
-    pub dst_picture_resource: crate::External<
-        {
-            "VkVideoPictureResourceInfoKHR";
-            0
-        },
-    >,
-    pub p_setup_reference_slot: *const crate::External<
-        {
-            "VkVideoReferenceSlotInfoKHR";
-            0
-        },
-    >,
-    pub reference_slot_count: crate::External<
+pub struct VideoDecodeInfoKHR {
+    s_type: crate::vk::StructureType,
+    p_next: *const core::ffi::c_void,
+    flags: crate::vk::VideoDecodeFlagsKHR,
+    src_buffer: crate::vk::Buffer,
+    src_buffer_offset: crate::vk::DeviceSize,
+    src_buffer_range: crate::vk::DeviceSize,
+    dst_picture_resource: crate::vk::VideoPictureResourceInfoKHR,
+    p_setup_reference_slot: *const crate::vk::VideoReferenceSlotInfoKHR,
+    reference_slot_count: crate::External<
         {
             "uint32_t";
             0
         },
     >,
-    pub p_reference_slots: *const crate::External<
-        {
-            "VkVideoReferenceSlotInfoKHR";
-            0
-        },
-    >,
+    p_reference_slots: *const crate::vk::VideoReferenceSlotInfoKHR,
 }

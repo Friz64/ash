@@ -2,62 +2,22 @@
 #![cfg_attr(rustfmt, rustfmt_skip)]
 //![Vulkan Manual Page](https://docs.vulkan.org/refpages/latest/refpages/source/VK_ANDROID_external_format_resolve.html) · Vulkan extension
 #[repr(C)]
-pub struct VkPhysicalDeviceExternalFormatResolveFeaturesANDROID {
-    pub s_type: crate::External<
-        {
-            "VkStructureType";
-            0
-        },
-    >,
-    pub p_next: *mut core::ffi::c_void,
-    pub external_format_resolve: crate::External<
-        {
-            "VkBool32";
-            0
-        },
-    >,
+pub struct PhysicalDeviceExternalFormatResolveFeaturesANDROID {
+    s_type: crate::vk::StructureType,
+    p_next: *mut core::ffi::c_void,
+    external_format_resolve: crate::vk::Bool32,
 }
 #[repr(C)]
-pub struct VkPhysicalDeviceExternalFormatResolvePropertiesANDROID {
-    pub s_type: crate::External<
-        {
-            "VkStructureType";
-            0
-        },
-    >,
-    pub p_next: *mut core::ffi::c_void,
-    pub null_color_attachment_with_external_format_resolve: crate::External<
-        {
-            "VkBool32";
-            0
-        },
-    >,
-    pub external_format_resolve_chroma_offset_x: crate::External<
-        {
-            "VkChromaLocation";
-            0
-        },
-    >,
-    pub external_format_resolve_chroma_offset_y: crate::External<
-        {
-            "VkChromaLocation";
-            0
-        },
-    >,
+pub struct PhysicalDeviceExternalFormatResolvePropertiesANDROID {
+    s_type: crate::vk::StructureType,
+    p_next: *mut core::ffi::c_void,
+    null_color_attachment_with_external_format_resolve: crate::vk::Bool32,
+    external_format_resolve_chroma_offset_x: crate::vk::ChromaLocation,
+    external_format_resolve_chroma_offset_y: crate::vk::ChromaLocation,
 }
 #[repr(C)]
-pub struct VkAndroidHardwareBufferFormatResolvePropertiesANDROID {
-    pub s_type: crate::External<
-        {
-            "VkStructureType";
-            0
-        },
-    >,
-    pub p_next: *mut core::ffi::c_void,
-    pub color_attachment_format: crate::External<
-        {
-            "VkFormat";
-            0
-        },
-    >,
+pub struct AndroidHardwareBufferFormatResolvePropertiesANDROID {
+    s_type: crate::vk::StructureType,
+    p_next: *mut core::ffi::c_void,
+    color_attachment_format: crate::vk::Format,
 }

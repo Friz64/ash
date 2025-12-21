@@ -2,18 +2,8 @@
 #![cfg_attr(rustfmt, rustfmt_skip)]
 //![Vulkan Manual Page](https://docs.vulkan.org/refpages/latest/refpages/source/VK_AMD_pipeline_compiler_control.html) · Vulkan extension
 #[repr(C)]
-pub struct VkPipelineCompilerControlCreateInfoAMD {
-    pub s_type: crate::External<
-        {
-            "VkStructureType";
-            0
-        },
-    >,
-    pub p_next: *const core::ffi::c_void,
-    pub compiler_control_flags: crate::External<
-        {
-            "VkPipelineCompilerControlFlagsAMD";
-            0
-        },
-    >,
+pub struct PipelineCompilerControlCreateInfoAMD {
+    s_type: crate::vk::StructureType,
+    p_next: *const core::ffi::c_void,
+    compiler_control_flags: crate::vk::PipelineCompilerControlFlagsAMD,
 }

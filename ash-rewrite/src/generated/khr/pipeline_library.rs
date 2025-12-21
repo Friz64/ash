@@ -2,24 +2,14 @@
 #![cfg_attr(rustfmt, rustfmt_skip)]
 //![Vulkan Manual Page](https://docs.vulkan.org/refpages/latest/refpages/source/VK_KHR_pipeline_library.html) · Vulkan extension
 #[repr(C)]
-pub struct VkPipelineLibraryCreateInfoKHR {
-    pub s_type: crate::External<
-        {
-            "VkStructureType";
-            0
-        },
-    >,
-    pub p_next: *const core::ffi::c_void,
-    pub library_count: crate::External<
+pub struct PipelineLibraryCreateInfoKHR {
+    s_type: crate::vk::StructureType,
+    p_next: *const core::ffi::c_void,
+    library_count: crate::External<
         {
             "uint32_t";
             0
         },
     >,
-    pub p_libraries: *const crate::External<
-        {
-            "VkPipeline";
-            0
-        },
-    >,
+    p_libraries: *const crate::vk::Pipeline,
 }

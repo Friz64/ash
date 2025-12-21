@@ -2,236 +2,78 @@
 #![cfg_attr(rustfmt, rustfmt_skip)]
 //![Vulkan Manual Page](https://docs.vulkan.org/refpages/latest/refpages/source/VK_KHR_fragment_shading_rate.html) · Vulkan extension
 #[repr(C)]
-pub struct VkFragmentShadingRateAttachmentInfoKHR {
-    pub s_type: crate::External<
-        {
-            "VkStructureType";
-            0
-        },
-    >,
-    pub p_next: *const core::ffi::c_void,
-    pub p_fragment_shading_rate_attachment: *const crate::External<
-        {
-            "VkAttachmentReference2";
-            0
-        },
-    >,
-    pub shading_rate_attachment_texel_size: crate::External<
-        {
-            "VkExtent2D";
-            0
-        },
-    >,
+pub struct FragmentShadingRateAttachmentInfoKHR {
+    s_type: crate::vk::StructureType,
+    p_next: *const core::ffi::c_void,
+    p_fragment_shading_rate_attachment: *const crate::vk::AttachmentReference2,
+    shading_rate_attachment_texel_size: crate::vk::Extent2D,
 }
 #[repr(C)]
-pub struct VkPipelineFragmentShadingRateStateCreateInfoKHR {
-    pub s_type: crate::External<
-        {
-            "VkStructureType";
-            0
-        },
-    >,
-    pub p_next: *const core::ffi::c_void,
-    pub fragment_size: crate::External<
-        {
-            "VkExtent2D";
-            0
-        },
-    >,
-    pub combiner_ops: [crate::External<
-        {
-            "VkFragmentShadingRateCombinerOpKHR";
-            0
-        },
-    >; 1337],
+pub struct PipelineFragmentShadingRateStateCreateInfoKHR {
+    s_type: crate::vk::StructureType,
+    p_next: *const core::ffi::c_void,
+    fragment_size: crate::vk::Extent2D,
+    combiner_ops: [crate::vk::FragmentShadingRateCombinerOpKHR; 1337],
 }
 #[repr(C)]
-pub struct VkPhysicalDeviceFragmentShadingRateFeaturesKHR {
-    pub s_type: crate::External<
-        {
-            "VkStructureType";
-            0
-        },
-    >,
-    pub p_next: *mut core::ffi::c_void,
-    pub pipeline_fragment_shading_rate: crate::External<
-        {
-            "VkBool32";
-            0
-        },
-    >,
-    pub primitive_fragment_shading_rate: crate::External<
-        {
-            "VkBool32";
-            0
-        },
-    >,
-    pub attachment_fragment_shading_rate: crate::External<
-        {
-            "VkBool32";
-            0
-        },
-    >,
+pub struct PhysicalDeviceFragmentShadingRateFeaturesKHR {
+    s_type: crate::vk::StructureType,
+    p_next: *mut core::ffi::c_void,
+    pipeline_fragment_shading_rate: crate::vk::Bool32,
+    primitive_fragment_shading_rate: crate::vk::Bool32,
+    attachment_fragment_shading_rate: crate::vk::Bool32,
 }
 #[repr(C)]
-pub struct VkPhysicalDeviceFragmentShadingRatePropertiesKHR {
-    pub s_type: crate::External<
-        {
-            "VkStructureType";
-            0
-        },
-    >,
-    pub p_next: *mut core::ffi::c_void,
-    pub min_fragment_shading_rate_attachment_texel_size: crate::External<
-        {
-            "VkExtent2D";
-            0
-        },
-    >,
-    pub max_fragment_shading_rate_attachment_texel_size: crate::External<
-        {
-            "VkExtent2D";
-            0
-        },
-    >,
-    pub max_fragment_shading_rate_attachment_texel_size_aspect_ratio: crate::External<
+pub struct PhysicalDeviceFragmentShadingRatePropertiesKHR {
+    s_type: crate::vk::StructureType,
+    p_next: *mut core::ffi::c_void,
+    min_fragment_shading_rate_attachment_texel_size: crate::vk::Extent2D,
+    max_fragment_shading_rate_attachment_texel_size: crate::vk::Extent2D,
+    max_fragment_shading_rate_attachment_texel_size_aspect_ratio: crate::External<
         {
             "uint32_t";
             0
         },
     >,
-    pub primitive_fragment_shading_rate_with_multiple_viewports: crate::External<
-        {
-            "VkBool32";
-            0
-        },
-    >,
-    pub layered_shading_rate_attachments: crate::External<
-        {
-            "VkBool32";
-            0
-        },
-    >,
-    pub fragment_shading_rate_non_trivial_combiner_ops: crate::External<
-        {
-            "VkBool32";
-            0
-        },
-    >,
-    pub max_fragment_size: crate::External<
-        {
-            "VkExtent2D";
-            0
-        },
-    >,
-    pub max_fragment_size_aspect_ratio: crate::External<
+    primitive_fragment_shading_rate_with_multiple_viewports: crate::vk::Bool32,
+    layered_shading_rate_attachments: crate::vk::Bool32,
+    fragment_shading_rate_non_trivial_combiner_ops: crate::vk::Bool32,
+    max_fragment_size: crate::vk::Extent2D,
+    max_fragment_size_aspect_ratio: crate::External<
         {
             "uint32_t";
             0
         },
     >,
-    pub max_fragment_shading_rate_coverage_samples: crate::External<
+    max_fragment_shading_rate_coverage_samples: crate::External<
         {
             "uint32_t";
             0
         },
     >,
-    pub max_fragment_shading_rate_rasterization_samples: crate::External<
-        {
-            "VkSampleCountFlagBits";
-            0
-        },
-    >,
-    pub fragment_shading_rate_with_shader_depth_stencil_writes: crate::External<
-        {
-            "VkBool32";
-            0
-        },
-    >,
-    pub fragment_shading_rate_with_sample_mask: crate::External<
-        {
-            "VkBool32";
-            0
-        },
-    >,
-    pub fragment_shading_rate_with_shader_sample_mask: crate::External<
-        {
-            "VkBool32";
-            0
-        },
-    >,
-    pub fragment_shading_rate_with_conservative_rasterization: crate::External<
-        {
-            "VkBool32";
-            0
-        },
-    >,
-    pub fragment_shading_rate_with_fragment_shader_interlock: crate::External<
-        {
-            "VkBool32";
-            0
-        },
-    >,
-    pub fragment_shading_rate_with_custom_sample_locations: crate::External<
-        {
-            "VkBool32";
-            0
-        },
-    >,
-    pub fragment_shading_rate_strict_multiply_combiner: crate::External<
-        {
-            "VkBool32";
-            0
-        },
-    >,
+    max_fragment_shading_rate_rasterization_samples: crate::vk::SampleCountFlagBits,
+    fragment_shading_rate_with_shader_depth_stencil_writes: crate::vk::Bool32,
+    fragment_shading_rate_with_sample_mask: crate::vk::Bool32,
+    fragment_shading_rate_with_shader_sample_mask: crate::vk::Bool32,
+    fragment_shading_rate_with_conservative_rasterization: crate::vk::Bool32,
+    fragment_shading_rate_with_fragment_shader_interlock: crate::vk::Bool32,
+    fragment_shading_rate_with_custom_sample_locations: crate::vk::Bool32,
+    fragment_shading_rate_strict_multiply_combiner: crate::vk::Bool32,
 }
 #[repr(C)]
-pub struct VkPhysicalDeviceFragmentShadingRateKHR {
-    pub s_type: crate::External<
-        {
-            "VkStructureType";
-            0
-        },
-    >,
-    pub p_next: *mut core::ffi::c_void,
-    pub sample_counts: crate::External<
-        {
-            "VkSampleCountFlags";
-            0
-        },
-    >,
-    pub fragment_size: crate::External<
-        {
-            "VkExtent2D";
-            0
-        },
-    >,
+pub struct PhysicalDeviceFragmentShadingRateKHR {
+    s_type: crate::vk::StructureType,
+    p_next: *mut core::ffi::c_void,
+    sample_counts: crate::vk::SampleCountFlags,
+    fragment_size: crate::vk::Extent2D,
 }
 #[repr(C)]
-pub struct VkRenderingFragmentShadingRateAttachmentInfoKHR {
-    pub s_type: crate::External<
-        {
-            "VkStructureType";
-            0
-        },
-    >,
-    pub p_next: *const core::ffi::c_void,
-    pub image_view: crate::External<
-        {
-            "VkImageView";
-            0
-        },
-    >,
-    pub image_layout: crate::External<
-        {
-            "VkImageLayout";
-            0
-        },
-    >,
-    pub shading_rate_attachment_texel_size: crate::External<
-        {
-            "VkExtent2D";
-            0
-        },
-    >,
+pub struct RenderingFragmentShadingRateAttachmentInfoKHR {
+    s_type: crate::vk::StructureType,
+    p_next: *const core::ffi::c_void,
+    image_view: crate::vk::ImageView,
+    image_layout: crate::vk::ImageLayout,
+    shading_rate_attachment_texel_size: crate::vk::Extent2D,
 }
+#[repr(C)]
+pub struct FragmentShadingRateCombinerOpKHR {}

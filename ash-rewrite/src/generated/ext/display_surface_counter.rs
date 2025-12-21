@@ -2,78 +2,33 @@
 #![cfg_attr(rustfmt, rustfmt_skip)]
 //![Vulkan Manual Page](https://docs.vulkan.org/refpages/latest/refpages/source/VK_EXT_display_surface_counter.html) · Vulkan extension
 #[repr(C)]
-pub struct VkSurfaceCapabilities2EXT {
-    pub s_type: crate::External<
-        {
-            "VkStructureType";
-            0
-        },
-    >,
-    pub p_next: *mut core::ffi::c_void,
-    pub min_image_count: crate::External<
+pub struct SurfaceCapabilities2EXT {
+    s_type: crate::vk::StructureType,
+    p_next: *mut core::ffi::c_void,
+    min_image_count: crate::External<
         {
             "uint32_t";
             0
         },
     >,
-    pub max_image_count: crate::External<
+    max_image_count: crate::External<
         {
             "uint32_t";
             0
         },
     >,
-    pub current_extent: crate::External<
-        {
-            "VkExtent2D";
-            0
-        },
-    >,
-    pub min_image_extent: crate::External<
-        {
-            "VkExtent2D";
-            0
-        },
-    >,
-    pub max_image_extent: crate::External<
-        {
-            "VkExtent2D";
-            0
-        },
-    >,
-    pub max_image_array_layers: crate::External<
+    current_extent: crate::vk::Extent2D,
+    min_image_extent: crate::vk::Extent2D,
+    max_image_extent: crate::vk::Extent2D,
+    max_image_array_layers: crate::External<
         {
             "uint32_t";
             0
         },
     >,
-    pub supported_transforms: crate::External<
-        {
-            "VkSurfaceTransformFlagsKHR";
-            0
-        },
-    >,
-    pub current_transform: crate::External<
-        {
-            "VkSurfaceTransformFlagBitsKHR";
-            0
-        },
-    >,
-    pub supported_composite_alpha: crate::External<
-        {
-            "VkCompositeAlphaFlagsKHR";
-            0
-        },
-    >,
-    pub supported_usage_flags: crate::External<
-        {
-            "VkImageUsageFlags";
-            0
-        },
-    >,
-    pub supported_surface_counters: crate::External<
-        {
-            "VkSurfaceCounterFlagsEXT";
-            0
-        },
-    >,
+    supported_transforms: crate::vk::SurfaceTransformFlagsKHR,
+    current_transform: crate::vk::SurfaceTransformFlagBitsKHR,
+    supported_composite_alpha: crate::vk::CompositeAlphaFlagsKHR,
+    supported_usage_flags: crate::vk::ImageUsageFlags,
+    supported_surface_counters: crate::vk::SurfaceCounterFlagsEXT,
 }

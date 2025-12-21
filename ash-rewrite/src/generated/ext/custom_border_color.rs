@@ -2,37 +2,17 @@
 #![cfg_attr(rustfmt, rustfmt_skip)]
 //![Vulkan Manual Page](https://docs.vulkan.org/refpages/latest/refpages/source/VK_EXT_custom_border_color.html) · Vulkan extension
 #[repr(C)]
-pub struct VkSamplerCustomBorderColorCreateInfoEXT {
-    pub s_type: crate::External<
-        {
-            "VkStructureType";
-            0
-        },
-    >,
-    pub p_next: *const core::ffi::c_void,
-    pub custom_border_color: crate::External<
-        {
-            "VkClearColorValue";
-            0
-        },
-    >,
-    pub format: crate::External<
-        {
-            "VkFormat";
-            0
-        },
-    >,
+pub struct SamplerCustomBorderColorCreateInfoEXT {
+    s_type: crate::vk::StructureType,
+    p_next: *const core::ffi::c_void,
+    custom_border_color: crate::vk::ClearColorValue,
+    format: crate::vk::Format,
 }
 #[repr(C)]
-pub struct VkPhysicalDeviceCustomBorderColorPropertiesEXT {
-    pub s_type: crate::External<
-        {
-            "VkStructureType";
-            0
-        },
-    >,
-    pub p_next: *mut core::ffi::c_void,
-    pub max_custom_border_color_samplers: crate::External<
+pub struct PhysicalDeviceCustomBorderColorPropertiesEXT {
+    s_type: crate::vk::StructureType,
+    p_next: *mut core::ffi::c_void,
+    max_custom_border_color_samplers: crate::External<
         {
             "uint32_t";
             0
@@ -40,24 +20,9 @@ pub struct VkPhysicalDeviceCustomBorderColorPropertiesEXT {
     >,
 }
 #[repr(C)]
-pub struct VkPhysicalDeviceCustomBorderColorFeaturesEXT {
-    pub s_type: crate::External<
-        {
-            "VkStructureType";
-            0
-        },
-    >,
-    pub p_next: *mut core::ffi::c_void,
-    pub custom_border_colors: crate::External<
-        {
-            "VkBool32";
-            0
-        },
-    >,
-    pub custom_border_color_without_format: crate::External<
-        {
-            "VkBool32";
-            0
-        },
-    >,
+pub struct PhysicalDeviceCustomBorderColorFeaturesEXT {
+    s_type: crate::vk::StructureType,
+    p_next: *mut core::ffi::c_void,
+    custom_border_colors: crate::vk::Bool32,
+    custom_border_color_without_format: crate::vk::Bool32,
 }

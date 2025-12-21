@@ -2,34 +2,14 @@
 #![cfg_attr(rustfmt, rustfmt_skip)]
 //![Vulkan Manual Page](https://docs.vulkan.org/refpages/latest/refpages/source/VK_NV_external_memory.html) · Vulkan extension
 #[repr(C)]
-pub struct VkExternalMemoryImageCreateInfoNV {
-    pub s_type: crate::External<
-        {
-            "VkStructureType";
-            0
-        },
-    >,
-    pub p_next: *const core::ffi::c_void,
-    pub handle_types: crate::External<
-        {
-            "VkExternalMemoryHandleTypeFlagsNV";
-            0
-        },
-    >,
+pub struct ExternalMemoryImageCreateInfoNV {
+    s_type: crate::vk::StructureType,
+    p_next: *const core::ffi::c_void,
+    handle_types: crate::vk::ExternalMemoryHandleTypeFlagsNV,
 }
 #[repr(C)]
-pub struct VkExportMemoryAllocateInfoNV {
-    pub s_type: crate::External<
-        {
-            "VkStructureType";
-            0
-        },
-    >,
-    pub p_next: *const core::ffi::c_void,
-    pub handle_types: crate::External<
-        {
-            "VkExternalMemoryHandleTypeFlagsNV";
-            0
-        },
-    >,
+pub struct ExportMemoryAllocateInfoNV {
+    s_type: crate::vk::StructureType,
+    p_next: *const core::ffi::c_void,
+    handle_types: crate::vk::ExternalMemoryHandleTypeFlagsNV,
 }

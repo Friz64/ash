@@ -2,31 +2,16 @@
 #![cfg_attr(rustfmt, rustfmt_skip)]
 //![Vulkan Manual Page](https://docs.vulkan.org/refpages/latest/refpages/source/VK_EXT_shader_module_identifier.html) · Vulkan extension
 #[repr(C)]
-pub struct VkPhysicalDeviceShaderModuleIdentifierFeaturesEXT {
-    pub s_type: crate::External<
-        {
-            "VkStructureType";
-            0
-        },
-    >,
-    pub p_next: *mut core::ffi::c_void,
-    pub shader_module_identifier: crate::External<
-        {
-            "VkBool32";
-            0
-        },
-    >,
+pub struct PhysicalDeviceShaderModuleIdentifierFeaturesEXT {
+    s_type: crate::vk::StructureType,
+    p_next: *mut core::ffi::c_void,
+    shader_module_identifier: crate::vk::Bool32,
 }
 #[repr(C)]
-pub struct VkPhysicalDeviceShaderModuleIdentifierPropertiesEXT {
-    pub s_type: crate::External<
-        {
-            "VkStructureType";
-            0
-        },
-    >,
-    pub p_next: *mut core::ffi::c_void,
-    pub shader_module_identifier_algorithm_uuid: [crate::External<
+pub struct PhysicalDeviceShaderModuleIdentifierPropertiesEXT {
+    s_type: crate::vk::StructureType,
+    p_next: *mut core::ffi::c_void,
+    shader_module_identifier_algorithm_uuid: [crate::External<
         {
             "uint8_t";
             0
@@ -34,21 +19,16 @@ pub struct VkPhysicalDeviceShaderModuleIdentifierPropertiesEXT {
     >; 1337],
 }
 #[repr(C)]
-pub struct VkPipelineShaderStageModuleIdentifierCreateInfoEXT {
-    pub s_type: crate::External<
-        {
-            "VkStructureType";
-            0
-        },
-    >,
-    pub p_next: *const core::ffi::c_void,
-    pub identifier_size: crate::External<
+pub struct PipelineShaderStageModuleIdentifierCreateInfoEXT {
+    s_type: crate::vk::StructureType,
+    p_next: *const core::ffi::c_void,
+    identifier_size: crate::External<
         {
             "uint32_t";
             0
         },
     >,
-    pub p_identifier: *const crate::External<
+    p_identifier: *const crate::External<
         {
             "uint8_t";
             0
@@ -56,21 +36,16 @@ pub struct VkPipelineShaderStageModuleIdentifierCreateInfoEXT {
     >,
 }
 #[repr(C)]
-pub struct VkShaderModuleIdentifierEXT {
-    pub s_type: crate::External<
-        {
-            "VkStructureType";
-            0
-        },
-    >,
-    pub p_next: *mut core::ffi::c_void,
-    pub identifier_size: crate::External<
+pub struct ShaderModuleIdentifierEXT {
+    s_type: crate::vk::StructureType,
+    p_next: *mut core::ffi::c_void,
+    identifier_size: crate::External<
         {
             "uint32_t";
             0
         },
     >,
-    pub identifier: [crate::External<
+    identifier: [crate::External<
         {
             "uint8_t";
             0

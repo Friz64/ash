@@ -2,73 +2,38 @@
 #![cfg_attr(rustfmt, rustfmt_skip)]
 //![Vulkan Manual Page](https://docs.vulkan.org/refpages/latest/refpages/source/VK_KHR_maintenance6.html) · Vulkan extension
 #[repr(C)]
-pub struct VkSetDescriptorBufferOffsetsInfoEXT {
-    pub s_type: crate::External<
-        {
-            "VkStructureType";
-            0
-        },
-    >,
-    pub p_next: *const core::ffi::c_void,
-    pub stage_flags: crate::External<
-        {
-            "VkShaderStageFlags";
-            0
-        },
-    >,
-    pub layout: crate::External<
-        {
-            "VkPipelineLayout";
-            0
-        },
-    >,
-    pub first_set: crate::External<
+pub struct SetDescriptorBufferOffsetsInfoEXT {
+    s_type: crate::vk::StructureType,
+    p_next: *const core::ffi::c_void,
+    stage_flags: crate::vk::ShaderStageFlags,
+    layout: crate::vk::PipelineLayout,
+    first_set: crate::External<
         {
             "uint32_t";
             0
         },
     >,
-    pub set_count: crate::External<
+    set_count: crate::External<
         {
             "uint32_t";
             0
         },
     >,
-    pub p_buffer_indices: *const crate::External<
+    p_buffer_indices: *const crate::External<
         {
             "uint32_t";
             0
         },
     >,
-    pub p_offsets: *const crate::External<
-        {
-            "VkDeviceSize";
-            0
-        },
-    >,
+    p_offsets: *const crate::vk::DeviceSize,
 }
 #[repr(C)]
-pub struct VkBindDescriptorBufferEmbeddedSamplersInfoEXT {
-    pub s_type: crate::External<
-        {
-            "VkStructureType";
-            0
-        },
-    >,
-    pub p_next: *const core::ffi::c_void,
-    pub stage_flags: crate::External<
-        {
-            "VkShaderStageFlags";
-            0
-        },
-    >,
-    pub layout: crate::External<
-        {
-            "VkPipelineLayout";
-            0
-        },
-    >,
-    pub set: crate::External<
+pub struct BindDescriptorBufferEmbeddedSamplersInfoEXT {
+    s_type: crate::vk::StructureType,
+    p_next: *const core::ffi::c_void,
+    stage_flags: crate::vk::ShaderStageFlags,
+    layout: crate::vk::PipelineLayout,
+    set: crate::External<
         {
             "uint32_t";
             0

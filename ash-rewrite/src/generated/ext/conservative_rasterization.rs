@@ -2,94 +2,46 @@
 #![cfg_attr(rustfmt, rustfmt_skip)]
 //![Vulkan Manual Page](https://docs.vulkan.org/refpages/latest/refpages/source/VK_EXT_conservative_rasterization.html) · Vulkan extension
 #[repr(C)]
-pub struct VkPhysicalDeviceConservativeRasterizationPropertiesEXT {
-    pub s_type: crate::External<
-        {
-            "VkStructureType";
-            0
-        },
-    >,
-    pub p_next: *mut core::ffi::c_void,
-    pub primitive_overestimation_size: crate::External<
+pub struct PhysicalDeviceConservativeRasterizationPropertiesEXT {
+    s_type: crate::vk::StructureType,
+    p_next: *mut core::ffi::c_void,
+    primitive_overestimation_size: crate::External<
         {
             "float";
             0
         },
     >,
-    pub max_extra_primitive_overestimation_size: crate::External<
+    max_extra_primitive_overestimation_size: crate::External<
         {
             "float";
             0
         },
     >,
-    pub extra_primitive_overestimation_size_granularity: crate::External<
+    extra_primitive_overestimation_size_granularity: crate::External<
         {
             "float";
             0
         },
     >,
-    pub primitive_underestimation: crate::External<
+    primitive_underestimation: crate::vk::Bool32,
+    conservative_point_and_line_rasterization: crate::vk::Bool32,
+    degenerate_triangles_rasterized: crate::vk::Bool32,
+    degenerate_lines_rasterized: crate::vk::Bool32,
+    fully_covered_fragment_shader_input_variable: crate::vk::Bool32,
+    conservative_rasterization_post_depth_coverage: crate::vk::Bool32,
+}
+#[repr(C)]
+pub struct PipelineRasterizationConservativeStateCreateInfoEXT {
+    s_type: crate::vk::StructureType,
+    p_next: *const core::ffi::c_void,
+    flags: crate::vk::PipelineRasterizationConservativeStateCreateFlagsEXT,
+    conservative_rasterization_mode: crate::vk::ConservativeRasterizationModeEXT,
+    extra_primitive_overestimation_size: crate::External<
         {
-            "VkBool32";
-            0
-        },
-    >,
-    pub conservative_point_and_line_rasterization: crate::External<
-        {
-            "VkBool32";
-            0
-        },
-    >,
-    pub degenerate_triangles_rasterized: crate::External<
-        {
-            "VkBool32";
-            0
-        },
-    >,
-    pub degenerate_lines_rasterized: crate::External<
-        {
-            "VkBool32";
-            0
-        },
-    >,
-    pub fully_covered_fragment_shader_input_variable: crate::External<
-        {
-            "VkBool32";
-            0
-        },
-    >,
-    pub conservative_rasterization_post_depth_coverage: crate::External<
-        {
-            "VkBool32";
+            "float";
             0
         },
     >,
 }
 #[repr(C)]
-pub struct VkPipelineRasterizationConservativeStateCreateInfoEXT {
-    pub s_type: crate::External<
-        {
-            "VkStructureType";
-            0
-        },
-    >,
-    pub p_next: *const core::ffi::c_void,
-    pub flags: crate::External<
-        {
-            "VkPipelineRasterizationConservativeStateCreateFlagsEXT";
-            0
-        },
-    >,
-    pub conservative_rasterization_mode: crate::External<
-        {
-            "VkConservativeRasterizationModeEXT";
-            0
-        },
-    >,
-    pub extra_primitive_overestimation_size: crate::External<
-        {
-            "float";
-            0
-        },
-    >,
-}
+pub struct ConservativeRasterizationModeEXT {}

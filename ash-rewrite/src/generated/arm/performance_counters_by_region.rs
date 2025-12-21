@@ -2,71 +2,41 @@
 #![cfg_attr(rustfmt, rustfmt_skip)]
 //![Vulkan Manual Page](https://docs.vulkan.org/refpages/latest/refpages/source/VK_ARM_performance_counters_by_region.html) · Vulkan extension
 #[repr(C)]
-pub struct VkPhysicalDevicePerformanceCountersByRegionFeaturesARM {
-    pub s_type: crate::External<
-        {
-            "VkStructureType";
-            0
-        },
-    >,
-    pub p_next: *mut core::ffi::c_void,
-    pub performance_counters_by_region: crate::External<
-        {
-            "VkBool32";
-            0
-        },
-    >,
+pub struct PhysicalDevicePerformanceCountersByRegionFeaturesARM {
+    s_type: crate::vk::StructureType,
+    p_next: *mut core::ffi::c_void,
+    performance_counters_by_region: crate::vk::Bool32,
 }
 #[repr(C)]
-pub struct VkPhysicalDevicePerformanceCountersByRegionPropertiesARM {
-    pub s_type: crate::External<
-        {
-            "VkStructureType";
-            0
-        },
-    >,
-    pub p_next: *mut core::ffi::c_void,
-    pub max_per_region_performance_counters: crate::External<
+pub struct PhysicalDevicePerformanceCountersByRegionPropertiesARM {
+    s_type: crate::vk::StructureType,
+    p_next: *mut core::ffi::c_void,
+    max_per_region_performance_counters: crate::External<
         {
             "uint32_t";
             0
         },
     >,
-    pub performance_counter_region_size: crate::External<
-        {
-            "VkExtent2D";
-            0
-        },
-    >,
-    pub row_stride_alignment: crate::External<
+    performance_counter_region_size: crate::vk::Extent2D,
+    row_stride_alignment: crate::External<
         {
             "uint32_t";
             0
         },
     >,
-    pub region_alignment: crate::External<
+    region_alignment: crate::External<
         {
             "uint32_t";
             0
         },
     >,
-    pub identity_transform_order: crate::External<
-        {
-            "VkBool32";
-            0
-        },
-    >,
+    identity_transform_order: crate::vk::Bool32,
 }
 #[repr(C)]
-pub struct VkPerformanceCounterARM {
-    pub s_type: crate::External<
-        {
-            "VkStructureType";
-            0
-        },
-    >,
-    pub p_next: *mut core::ffi::c_void,
-    pub counter_id: crate::External<
+pub struct PerformanceCounterARM {
+    s_type: crate::vk::StructureType,
+    p_next: *mut core::ffi::c_void,
+    counter_id: crate::External<
         {
             "uint32_t";
             0
@@ -74,21 +44,11 @@ pub struct VkPerformanceCounterARM {
     >,
 }
 #[repr(C)]
-pub struct VkPerformanceCounterDescriptionARM {
-    pub s_type: crate::External<
-        {
-            "VkStructureType";
-            0
-        },
-    >,
-    pub p_next: *mut core::ffi::c_void,
-    pub flags: crate::External<
-        {
-            "VkPerformanceCounterDescriptionFlagsARM";
-            0
-        },
-    >,
-    pub name: [crate::External<
+pub struct PerformanceCounterDescriptionARM {
+    s_type: crate::vk::StructureType,
+    p_next: *mut core::ffi::c_void,
+    flags: crate::vk::PerformanceCounterDescriptionFlagsARM,
+    name: [crate::External<
         {
             "char";
             0
@@ -96,39 +56,24 @@ pub struct VkPerformanceCounterDescriptionARM {
     >; 1337],
 }
 #[repr(C)]
-pub struct VkRenderPassPerformanceCountersByRegionBeginInfoARM {
-    pub s_type: crate::External<
-        {
-            "VkStructureType";
-            0
-        },
-    >,
-    pub p_next: *mut core::ffi::c_void,
-    pub counter_address_count: crate::External<
+pub struct RenderPassPerformanceCountersByRegionBeginInfoARM {
+    s_type: crate::vk::StructureType,
+    p_next: *mut core::ffi::c_void,
+    counter_address_count: crate::External<
         {
             "uint32_t";
             0
         },
     >,
-    pub p_counter_addresses: *const crate::External<
-        {
-            "VkDeviceAddress";
-            0
-        },
-    >,
-    pub serialize_regions: crate::External<
-        {
-            "VkBool32";
-            0
-        },
-    >,
-    pub counter_index_count: crate::External<
+    p_counter_addresses: *const crate::vk::DeviceAddress,
+    serialize_regions: crate::vk::Bool32,
+    counter_index_count: crate::External<
         {
             "uint32_t";
             0
         },
     >,
-    pub p_counter_indices: *mut crate::External<
+    p_counter_indices: *mut crate::External<
         {
             "uint32_t";
             0

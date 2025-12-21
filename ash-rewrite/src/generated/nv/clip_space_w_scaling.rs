@@ -2,14 +2,14 @@
 #![cfg_attr(rustfmt, rustfmt_skip)]
 //![Vulkan Manual Page](https://docs.vulkan.org/refpages/latest/refpages/source/VK_NV_clip_space_w_scaling.html) · Vulkan extension
 #[repr(C)]
-pub struct VkViewportWScalingNV {
-    pub xcoeff: crate::External<
+pub struct ViewportWScalingNV {
+    xcoeff: crate::External<
         {
             "float";
             0
         },
     >,
-    pub ycoeff: crate::External<
+    ycoeff: crate::External<
         {
             "float";
             0
@@ -17,30 +17,15 @@ pub struct VkViewportWScalingNV {
     >,
 }
 #[repr(C)]
-pub struct VkPipelineViewportWScalingStateCreateInfoNV {
-    pub s_type: crate::External<
-        {
-            "VkStructureType";
-            0
-        },
-    >,
-    pub p_next: *const core::ffi::c_void,
-    pub viewport_w_scaling_enable: crate::External<
-        {
-            "VkBool32";
-            0
-        },
-    >,
-    pub viewport_count: crate::External<
+pub struct PipelineViewportWScalingStateCreateInfoNV {
+    s_type: crate::vk::StructureType,
+    p_next: *const core::ffi::c_void,
+    viewport_w_scaling_enable: crate::vk::Bool32,
+    viewport_count: crate::External<
         {
             "uint32_t";
             0
         },
     >,
-    pub p_viewport_w_scalings: *const crate::External<
-        {
-            "VkViewportWScalingNV";
-            0
-        },
-    >,
+    p_viewport_w_scalings: *const crate::vk::ViewportWScalingNV,
 }

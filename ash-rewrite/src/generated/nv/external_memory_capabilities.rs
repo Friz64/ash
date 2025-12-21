@@ -2,29 +2,9 @@
 #![cfg_attr(rustfmt, rustfmt_skip)]
 //![Vulkan Manual Page](https://docs.vulkan.org/refpages/latest/refpages/source/VK_NV_external_memory_capabilities.html) · Vulkan extension
 #[repr(C)]
-pub struct VkExternalImageFormatPropertiesNV {
-    pub image_format_properties: crate::External<
-        {
-            "VkImageFormatProperties";
-            0
-        },
-    >,
-    pub external_memory_features: crate::External<
-        {
-            "VkExternalMemoryFeatureFlagsNV";
-            0
-        },
-    >,
-    pub export_from_imported_handle_types: crate::External<
-        {
-            "VkExternalMemoryHandleTypeFlagsNV";
-            0
-        },
-    >,
-    pub compatible_handle_types: crate::External<
-        {
-            "VkExternalMemoryHandleTypeFlagsNV";
-            0
-        },
-    >,
+pub struct ExternalImageFormatPropertiesNV {
+    image_format_properties: crate::vk::ImageFormatProperties,
+    external_memory_features: crate::vk::ExternalMemoryFeatureFlagsNV,
+    export_from_imported_handle_types: crate::vk::ExternalMemoryHandleTypeFlagsNV,
+    compatible_handle_types: crate::vk::ExternalMemoryHandleTypeFlagsNV,
 }

@@ -2,40 +2,15 @@
 #![cfg_attr(rustfmt, rustfmt_skip)]
 //![Vulkan Manual Page](https://docs.vulkan.org/refpages/latest/refpages/source/VK_KHR_maintenance8.html) · Vulkan extension
 #[repr(C)]
-pub struct VkPhysicalDeviceMaintenance8FeaturesKHR {
-    pub s_type: crate::External<
-        {
-            "VkStructureType";
-            0
-        },
-    >,
-    pub p_next: *mut core::ffi::c_void,
-    pub maintenance8: crate::External<
-        {
-            "VkBool32";
-            0
-        },
-    >,
+pub struct PhysicalDeviceMaintenance8FeaturesKHR {
+    s_type: crate::vk::StructureType,
+    p_next: *mut core::ffi::c_void,
+    maintenance8: crate::vk::Bool32,
 }
 #[repr(C)]
-pub struct VkMemoryBarrierAccessFlags3KHR {
-    pub s_type: crate::External<
-        {
-            "VkStructureType";
-            0
-        },
-    >,
-    pub p_next: *const core::ffi::c_void,
-    pub src_access_mask3: crate::External<
-        {
-            "VkAccessFlags3KHR";
-            0
-        },
-    >,
-    pub dst_access_mask3: crate::External<
-        {
-            "VkAccessFlags3KHR";
-            0
-        },
-    >,
+pub struct MemoryBarrierAccessFlags3KHR {
+    s_type: crate::vk::StructureType,
+    p_next: *const core::ffi::c_void,
+    src_access_mask3: crate::vk::AccessFlags3KHR,
+    dst_access_mask3: crate::vk::AccessFlags3KHR,
 }

@@ -2,15 +2,10 @@
 #![cfg_attr(rustfmt, rustfmt_skip)]
 //![Vulkan Manual Page](https://docs.vulkan.org/refpages/latest/refpages/source/VK_QNX_external_memory_screen_buffer.html) · Vulkan extension
 #[repr(C)]
-pub struct VkImportScreenBufferInfoQNX {
-    pub s_type: crate::External<
-        {
-            "VkStructureType";
-            0
-        },
-    >,
-    pub p_next: *const core::ffi::c_void,
-    pub buffer: *mut crate::External<
+pub struct ImportScreenBufferInfoQNX {
+    s_type: crate::vk::StructureType,
+    p_next: *const core::ffi::c_void,
+    buffer: *mut crate::External<
         {
             "_screen_buffer";
             0
@@ -18,21 +13,11 @@ pub struct VkImportScreenBufferInfoQNX {
     >,
 }
 #[repr(C)]
-pub struct VkScreenBufferPropertiesQNX {
-    pub s_type: crate::External<
-        {
-            "VkStructureType";
-            0
-        },
-    >,
-    pub p_next: *mut core::ffi::c_void,
-    pub allocation_size: crate::External<
-        {
-            "VkDeviceSize";
-            0
-        },
-    >,
-    pub memory_type_bits: crate::External<
+pub struct ScreenBufferPropertiesQNX {
+    s_type: crate::vk::StructureType,
+    p_next: *mut core::ffi::c_void,
+    allocation_size: crate::vk::DeviceSize,
+    memory_type_bits: crate::External<
         {
             "uint32_t";
             0
@@ -40,79 +25,34 @@ pub struct VkScreenBufferPropertiesQNX {
     >,
 }
 #[repr(C)]
-pub struct VkScreenBufferFormatPropertiesQNX {
-    pub s_type: crate::External<
-        {
-            "VkStructureType";
-            0
-        },
-    >,
-    pub p_next: *mut core::ffi::c_void,
-    pub format: crate::External<
-        {
-            "VkFormat";
-            0
-        },
-    >,
-    pub external_format: crate::External<
+pub struct ScreenBufferFormatPropertiesQNX {
+    s_type: crate::vk::StructureType,
+    p_next: *mut core::ffi::c_void,
+    format: crate::vk::Format,
+    external_format: crate::External<
         {
             "uint64_t";
             0
         },
     >,
-    pub screen_usage: crate::External<
+    screen_usage: crate::External<
         {
             "uint64_t";
             0
         },
     >,
-    pub format_features: crate::External<
-        {
-            "VkFormatFeatureFlags";
-            0
-        },
-    >,
-    pub sampler_ycbcr_conversion_components: crate::External<
-        {
-            "VkComponentMapping";
-            0
-        },
-    >,
-    pub suggested_ycbcr_model: crate::External<
-        {
-            "VkSamplerYcbcrModelConversion";
-            0
-        },
-    >,
-    pub suggested_ycbcr_range: crate::External<
-        {
-            "VkSamplerYcbcrRange";
-            0
-        },
-    >,
-    pub suggested_x_chroma_offset: crate::External<
-        {
-            "VkChromaLocation";
-            0
-        },
-    >,
-    pub suggested_y_chroma_offset: crate::External<
-        {
-            "VkChromaLocation";
-            0
-        },
-    >,
+    format_features: crate::vk::FormatFeatureFlags,
+    sampler_ycbcr_conversion_components: crate::vk::ComponentMapping,
+    suggested_ycbcr_model: crate::vk::SamplerYcbcrModelConversion,
+    suggested_ycbcr_range: crate::vk::SamplerYcbcrRange,
+    suggested_x_chroma_offset: crate::vk::ChromaLocation,
+    suggested_y_chroma_offset: crate::vk::ChromaLocation,
 }
 #[repr(C)]
-pub struct VkExternalFormatQNX {
-    pub s_type: crate::External<
-        {
-            "VkStructureType";
-            0
-        },
-    >,
-    pub p_next: *mut core::ffi::c_void,
-    pub external_format: crate::External<
+pub struct ExternalFormatQNX {
+    s_type: crate::vk::StructureType,
+    p_next: *mut core::ffi::c_void,
+    external_format: crate::External<
         {
             "uint64_t";
             0
@@ -120,18 +60,8 @@ pub struct VkExternalFormatQNX {
     >,
 }
 #[repr(C)]
-pub struct VkPhysicalDeviceExternalMemoryScreenBufferFeaturesQNX {
-    pub s_type: crate::External<
-        {
-            "VkStructureType";
-            0
-        },
-    >,
-    pub p_next: *mut core::ffi::c_void,
-    pub screen_buffer_import: crate::External<
-        {
-            "VkBool32";
-            0
-        },
-    >,
+pub struct PhysicalDeviceExternalMemoryScreenBufferFeaturesQNX {
+    s_type: crate::vk::StructureType,
+    p_next: *mut core::ffi::c_void,
+    screen_buffer_import: crate::vk::Bool32,
 }

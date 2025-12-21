@@ -2,56 +2,26 @@
 #![cfg_attr(rustfmt, rustfmt_skip)]
 //![Vulkan Manual Page](https://docs.vulkan.org/refpages/latest/refpages/source/VK_EXT_fragment_density_map_offset.html) · Vulkan extension
 #[repr(C)]
-pub struct VkPhysicalDeviceFragmentDensityMapOffsetFeaturesEXT {
-    pub s_type: crate::External<
-        {
-            "VkStructureType";
-            0
-        },
-    >,
-    pub p_next: *mut core::ffi::c_void,
-    pub fragment_density_map_offset: crate::External<
-        {
-            "VkBool32";
-            0
-        },
-    >,
+pub struct PhysicalDeviceFragmentDensityMapOffsetFeaturesEXT {
+    s_type: crate::vk::StructureType,
+    p_next: *mut core::ffi::c_void,
+    fragment_density_map_offset: crate::vk::Bool32,
 }
 #[repr(C)]
-pub struct VkPhysicalDeviceFragmentDensityMapOffsetPropertiesEXT {
-    pub s_type: crate::External<
-        {
-            "VkStructureType";
-            0
-        },
-    >,
-    pub p_next: *mut core::ffi::c_void,
-    pub fragment_density_offset_granularity: crate::External<
-        {
-            "VkExtent2D";
-            0
-        },
-    >,
+pub struct PhysicalDeviceFragmentDensityMapOffsetPropertiesEXT {
+    s_type: crate::vk::StructureType,
+    p_next: *mut core::ffi::c_void,
+    fragment_density_offset_granularity: crate::vk::Extent2D,
 }
 #[repr(C)]
-pub struct VkRenderPassFragmentDensityMapOffsetEndInfoEXT {
-    pub s_type: crate::External<
-        {
-            "VkStructureType";
-            0
-        },
-    >,
-    pub p_next: *const core::ffi::c_void,
-    pub fragment_density_offset_count: crate::External<
+pub struct RenderPassFragmentDensityMapOffsetEndInfoEXT {
+    s_type: crate::vk::StructureType,
+    p_next: *const core::ffi::c_void,
+    fragment_density_offset_count: crate::External<
         {
             "uint32_t";
             0
         },
     >,
-    pub p_fragment_density_offsets: *const crate::External<
-        {
-            "VkOffset2D";
-            0
-        },
-    >,
+    p_fragment_density_offsets: *const crate::vk::Offset2D,
 }

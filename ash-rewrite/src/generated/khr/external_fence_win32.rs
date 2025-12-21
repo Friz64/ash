@@ -2,39 +2,19 @@
 #![cfg_attr(rustfmt, rustfmt_skip)]
 //![Vulkan Manual Page](https://docs.vulkan.org/refpages/latest/refpages/source/VK_KHR_external_fence_win32.html) · Vulkan extension
 #[repr(C)]
-pub struct VkImportFenceWin32HandleInfoKHR {
-    pub s_type: crate::External<
-        {
-            "VkStructureType";
-            0
-        },
-    >,
-    pub p_next: *const core::ffi::c_void,
-    pub fence: crate::External<
-        {
-            "VkFence";
-            0
-        },
-    >,
-    pub flags: crate::External<
-        {
-            "VkFenceImportFlags";
-            0
-        },
-    >,
-    pub handle_type: crate::External<
-        {
-            "VkExternalFenceHandleTypeFlagBits";
-            0
-        },
-    >,
-    pub handle: crate::External<
+pub struct ImportFenceWin32HandleInfoKHR {
+    s_type: crate::vk::StructureType,
+    p_next: *const core::ffi::c_void,
+    fence: crate::vk::Fence,
+    flags: crate::vk::FenceImportFlags,
+    handle_type: crate::vk::ExternalFenceHandleTypeFlagBits,
+    handle: crate::External<
         {
             "HANDLE";
             0
         },
     >,
-    pub name: crate::External<
+    name: crate::External<
         {
             "LPCWSTR";
             0
@@ -42,27 +22,22 @@ pub struct VkImportFenceWin32HandleInfoKHR {
     >,
 }
 #[repr(C)]
-pub struct VkExportFenceWin32HandleInfoKHR {
-    pub s_type: crate::External<
-        {
-            "VkStructureType";
-            0
-        },
-    >,
-    pub p_next: *const core::ffi::c_void,
-    pub p_attributes: *const crate::External<
+pub struct ExportFenceWin32HandleInfoKHR {
+    s_type: crate::vk::StructureType,
+    p_next: *const core::ffi::c_void,
+    p_attributes: *const crate::External<
         {
             "SECURITY_ATTRIBUTES";
             0
         },
     >,
-    pub dw_access: crate::External<
+    dw_access: crate::External<
         {
             "DWORD";
             0
         },
     >,
-    pub name: crate::External<
+    name: crate::External<
         {
             "LPCWSTR";
             0
@@ -70,24 +45,9 @@ pub struct VkExportFenceWin32HandleInfoKHR {
     >,
 }
 #[repr(C)]
-pub struct VkFenceGetWin32HandleInfoKHR {
-    pub s_type: crate::External<
-        {
-            "VkStructureType";
-            0
-        },
-    >,
-    pub p_next: *const core::ffi::c_void,
-    pub fence: crate::External<
-        {
-            "VkFence";
-            0
-        },
-    >,
-    pub handle_type: crate::External<
-        {
-            "VkExternalFenceHandleTypeFlagBits";
-            0
-        },
-    >,
+pub struct FenceGetWin32HandleInfoKHR {
+    s_type: crate::vk::StructureType,
+    p_next: *const core::ffi::c_void,
+    fence: crate::vk::Fence,
+    handle_type: crate::vk::ExternalFenceHandleTypeFlagBits,
 }

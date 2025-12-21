@@ -2,13 +2,8 @@
 #![cfg_attr(rustfmt, rustfmt_skip)]
 //![Vulkan Manual Page](https://docs.vulkan.org/refpages/latest/refpages/source/VK_NV_low_latency.html) · Vulkan extension
 #[repr(C)]
-pub struct VkQueryLowLatencySupportNV {
-    pub s_type: crate::External<
-        {
-            "VkStructureType";
-            0
-        },
-    >,
-    pub p_next: *const core::ffi::c_void,
-    pub p_queried_low_latency_data: *mut core::ffi::c_void,
+pub struct QueryLowLatencySupportNV {
+    s_type: crate::vk::StructureType,
+    p_next: *const core::ffi::c_void,
+    p_queried_low_latency_data: *mut core::ffi::c_void,
 }

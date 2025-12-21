@@ -2,8 +2,8 @@
 #![cfg_attr(rustfmt, rustfmt_skip)]
 //![Vulkan Manual Page](https://docs.vulkan.org/refpages/latest/refpages/source/VK_GOOGLE_display_timing.html) · Vulkan extension
 #[repr(C)]
-pub struct VkRefreshCycleDurationGOOGLE {
-    pub refresh_duration: crate::External<
+pub struct RefreshCycleDurationGOOGLE {
+    refresh_duration: crate::External<
         {
             "uint64_t";
             0
@@ -11,32 +11,32 @@ pub struct VkRefreshCycleDurationGOOGLE {
     >,
 }
 #[repr(C)]
-pub struct VkPastPresentationTimingGOOGLE {
-    pub present_id: crate::External<
+pub struct PastPresentationTimingGOOGLE {
+    present_id: crate::External<
         {
             "uint32_t";
             0
         },
     >,
-    pub desired_present_time: crate::External<
+    desired_present_time: crate::External<
         {
             "uint64_t";
             0
         },
     >,
-    pub actual_present_time: crate::External<
+    actual_present_time: crate::External<
         {
             "uint64_t";
             0
         },
     >,
-    pub earliest_present_time: crate::External<
+    earliest_present_time: crate::External<
         {
             "uint64_t";
             0
         },
     >,
-    pub present_margin: crate::External<
+    present_margin: crate::External<
         {
             "uint64_t";
             0
@@ -44,36 +44,26 @@ pub struct VkPastPresentationTimingGOOGLE {
     >,
 }
 #[repr(C)]
-pub struct VkPresentTimesInfoGOOGLE {
-    pub s_type: crate::External<
-        {
-            "VkStructureType";
-            0
-        },
-    >,
-    pub p_next: *const core::ffi::c_void,
-    pub swapchain_count: crate::External<
+pub struct PresentTimesInfoGOOGLE {
+    s_type: crate::vk::StructureType,
+    p_next: *const core::ffi::c_void,
+    swapchain_count: crate::External<
         {
             "uint32_t";
             0
         },
     >,
-    pub p_times: *const crate::External<
-        {
-            "VkPresentTimeGOOGLE";
-            0
-        },
-    >,
+    p_times: *const crate::vk::PresentTimeGOOGLE,
 }
 #[repr(C)]
-pub struct VkPresentTimeGOOGLE {
-    pub present_id: crate::External<
+pub struct PresentTimeGOOGLE {
+    present_id: crate::External<
         {
             "uint32_t";
             0
         },
     >,
-    pub desired_present_time: crate::External<
+    desired_present_time: crate::External<
         {
             "uint64_t";
             0

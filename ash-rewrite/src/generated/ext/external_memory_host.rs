@@ -2,32 +2,17 @@
 #![cfg_attr(rustfmt, rustfmt_skip)]
 //![Vulkan Manual Page](https://docs.vulkan.org/refpages/latest/refpages/source/VK_EXT_external_memory_host.html) · Vulkan extension
 #[repr(C)]
-pub struct VkImportMemoryHostPointerInfoEXT {
-    pub s_type: crate::External<
-        {
-            "VkStructureType";
-            0
-        },
-    >,
-    pub p_next: *const core::ffi::c_void,
-    pub handle_type: crate::External<
-        {
-            "VkExternalMemoryHandleTypeFlagBits";
-            0
-        },
-    >,
-    pub p_host_pointer: *mut core::ffi::c_void,
+pub struct ImportMemoryHostPointerInfoEXT {
+    s_type: crate::vk::StructureType,
+    p_next: *const core::ffi::c_void,
+    handle_type: crate::vk::ExternalMemoryHandleTypeFlagBits,
+    p_host_pointer: *mut core::ffi::c_void,
 }
 #[repr(C)]
-pub struct VkMemoryHostPointerPropertiesEXT {
-    pub s_type: crate::External<
-        {
-            "VkStructureType";
-            0
-        },
-    >,
-    pub p_next: *mut core::ffi::c_void,
-    pub memory_type_bits: crate::External<
+pub struct MemoryHostPointerPropertiesEXT {
+    s_type: crate::vk::StructureType,
+    p_next: *mut core::ffi::c_void,
+    memory_type_bits: crate::External<
         {
             "uint32_t";
             0
@@ -35,18 +20,8 @@ pub struct VkMemoryHostPointerPropertiesEXT {
     >,
 }
 #[repr(C)]
-pub struct VkPhysicalDeviceExternalMemoryHostPropertiesEXT {
-    pub s_type: crate::External<
-        {
-            "VkStructureType";
-            0
-        },
-    >,
-    pub p_next: *mut core::ffi::c_void,
-    pub min_imported_host_pointer_alignment: crate::External<
-        {
-            "VkDeviceSize";
-            0
-        },
-    >,
+pub struct PhysicalDeviceExternalMemoryHostPropertiesEXT {
+    s_type: crate::vk::StructureType,
+    p_next: *mut core::ffi::c_void,
+    min_imported_host_pointer_alignment: crate::vk::DeviceSize,
 }

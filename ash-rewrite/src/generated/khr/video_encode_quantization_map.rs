@@ -2,37 +2,22 @@
 #![cfg_attr(rustfmt, rustfmt_skip)]
 //![Vulkan Manual Page](https://docs.vulkan.org/refpages/latest/refpages/source/VK_KHR_video_encode_quantization_map.html) · Vulkan extension
 #[repr(C)]
-pub struct VkVideoEncodeQuantizationMapCapabilitiesKHR {
-    pub s_type: crate::External<
-        {
-            "VkStructureType";
-            0
-        },
-    >,
-    pub p_next: *mut core::ffi::c_void,
-    pub max_quantization_map_extent: crate::External<
-        {
-            "VkExtent2D";
-            0
-        },
-    >,
+pub struct VideoEncodeQuantizationMapCapabilitiesKHR {
+    s_type: crate::vk::StructureType,
+    p_next: *mut core::ffi::c_void,
+    max_quantization_map_extent: crate::vk::Extent2D,
 }
 #[repr(C)]
-pub struct VkVideoEncodeH264QuantizationMapCapabilitiesKHR {
-    pub s_type: crate::External<
-        {
-            "VkStructureType";
-            0
-        },
-    >,
-    pub p_next: *mut core::ffi::c_void,
-    pub min_qp_delta: crate::External<
+pub struct VideoEncodeH264QuantizationMapCapabilitiesKHR {
+    s_type: crate::vk::StructureType,
+    p_next: *mut core::ffi::c_void,
+    min_qp_delta: crate::External<
         {
             "int32_t";
             0
         },
     >,
-    pub max_qp_delta: crate::External<
+    max_qp_delta: crate::External<
         {
             "int32_t";
             0
@@ -40,21 +25,16 @@ pub struct VkVideoEncodeH264QuantizationMapCapabilitiesKHR {
     >,
 }
 #[repr(C)]
-pub struct VkVideoEncodeH265QuantizationMapCapabilitiesKHR {
-    pub s_type: crate::External<
-        {
-            "VkStructureType";
-            0
-        },
-    >,
-    pub p_next: *mut core::ffi::c_void,
-    pub min_qp_delta: crate::External<
+pub struct VideoEncodeH265QuantizationMapCapabilitiesKHR {
+    s_type: crate::vk::StructureType,
+    p_next: *mut core::ffi::c_void,
+    min_qp_delta: crate::External<
         {
             "int32_t";
             0
         },
     >,
-    pub max_qp_delta: crate::External<
+    max_qp_delta: crate::External<
         {
             "int32_t";
             0
@@ -62,21 +42,16 @@ pub struct VkVideoEncodeH265QuantizationMapCapabilitiesKHR {
     >,
 }
 #[repr(C)]
-pub struct VkVideoEncodeAV1QuantizationMapCapabilitiesKHR {
-    pub s_type: crate::External<
-        {
-            "VkStructureType";
-            0
-        },
-    >,
-    pub p_next: *mut core::ffi::c_void,
-    pub min_q_index_delta: crate::External<
+pub struct VideoEncodeAV1QuantizationMapCapabilitiesKHR {
+    s_type: crate::vk::StructureType,
+    p_next: *mut core::ffi::c_void,
+    min_q_index_delta: crate::External<
         {
             "int32_t";
             0
         },
     >,
-    pub max_q_index_delta: crate::External<
+    max_q_index_delta: crate::External<
         {
             "int32_t";
             0
@@ -84,104 +59,39 @@ pub struct VkVideoEncodeAV1QuantizationMapCapabilitiesKHR {
     >,
 }
 #[repr(C)]
-pub struct VkVideoFormatQuantizationMapPropertiesKHR {
-    pub s_type: crate::External<
-        {
-            "VkStructureType";
-            0
-        },
-    >,
-    pub p_next: *mut core::ffi::c_void,
-    pub quantization_map_texel_size: crate::External<
-        {
-            "VkExtent2D";
-            0
-        },
-    >,
+pub struct VideoFormatQuantizationMapPropertiesKHR {
+    s_type: crate::vk::StructureType,
+    p_next: *mut core::ffi::c_void,
+    quantization_map_texel_size: crate::vk::Extent2D,
 }
 #[repr(C)]
-pub struct VkVideoFormatH265QuantizationMapPropertiesKHR {
-    pub s_type: crate::External<
-        {
-            "VkStructureType";
-            0
-        },
-    >,
-    pub p_next: *mut core::ffi::c_void,
-    pub compatible_ctb_sizes: crate::External<
-        {
-            "VkVideoEncodeH265CtbSizeFlagsKHR";
-            0
-        },
-    >,
+pub struct VideoFormatH265QuantizationMapPropertiesKHR {
+    s_type: crate::vk::StructureType,
+    p_next: *mut core::ffi::c_void,
+    compatible_ctb_sizes: crate::vk::VideoEncodeH265CtbSizeFlagsKHR,
 }
 #[repr(C)]
-pub struct VkVideoFormatAV1QuantizationMapPropertiesKHR {
-    pub s_type: crate::External<
-        {
-            "VkStructureType";
-            0
-        },
-    >,
-    pub p_next: *mut core::ffi::c_void,
-    pub compatible_superblock_sizes: crate::External<
-        {
-            "VkVideoEncodeAV1SuperblockSizeFlagsKHR";
-            0
-        },
-    >,
+pub struct VideoFormatAV1QuantizationMapPropertiesKHR {
+    s_type: crate::vk::StructureType,
+    p_next: *mut core::ffi::c_void,
+    compatible_superblock_sizes: crate::vk::VideoEncodeAV1SuperblockSizeFlagsKHR,
 }
 #[repr(C)]
-pub struct VkVideoEncodeQuantizationMapInfoKHR {
-    pub s_type: crate::External<
-        {
-            "VkStructureType";
-            0
-        },
-    >,
-    pub p_next: *const core::ffi::c_void,
-    pub quantization_map: crate::External<
-        {
-            "VkImageView";
-            0
-        },
-    >,
-    pub quantization_map_extent: crate::External<
-        {
-            "VkExtent2D";
-            0
-        },
-    >,
+pub struct VideoEncodeQuantizationMapInfoKHR {
+    s_type: crate::vk::StructureType,
+    p_next: *const core::ffi::c_void,
+    quantization_map: crate::vk::ImageView,
+    quantization_map_extent: crate::vk::Extent2D,
 }
 #[repr(C)]
-pub struct VkVideoEncodeQuantizationMapSessionParametersCreateInfoKHR {
-    pub s_type: crate::External<
-        {
-            "VkStructureType";
-            0
-        },
-    >,
-    pub p_next: *const core::ffi::c_void,
-    pub quantization_map_texel_size: crate::External<
-        {
-            "VkExtent2D";
-            0
-        },
-    >,
+pub struct VideoEncodeQuantizationMapSessionParametersCreateInfoKHR {
+    s_type: crate::vk::StructureType,
+    p_next: *const core::ffi::c_void,
+    quantization_map_texel_size: crate::vk::Extent2D,
 }
 #[repr(C)]
-pub struct VkPhysicalDeviceVideoEncodeQuantizationMapFeaturesKHR {
-    pub s_type: crate::External<
-        {
-            "VkStructureType";
-            0
-        },
-    >,
-    pub p_next: *mut core::ffi::c_void,
-    pub video_encode_quantization_map: crate::External<
-        {
-            "VkBool32";
-            0
-        },
-    >,
+pub struct PhysicalDeviceVideoEncodeQuantizationMapFeaturesKHR {
+    s_type: crate::vk::StructureType,
+    p_next: *mut core::ffi::c_void,
+    video_encode_quantization_map: crate::vk::Bool32,
 }

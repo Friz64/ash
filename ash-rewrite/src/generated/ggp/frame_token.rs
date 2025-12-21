@@ -2,15 +2,10 @@
 #![cfg_attr(rustfmt, rustfmt_skip)]
 //![Vulkan Manual Page](https://docs.vulkan.org/refpages/latest/refpages/source/VK_GGP_frame_token.html) · Vulkan extension
 #[repr(C)]
-pub struct VkPresentFrameTokenGGP {
-    pub s_type: crate::External<
-        {
-            "VkStructureType";
-            0
-        },
-    >,
-    pub p_next: *const core::ffi::c_void,
-    pub frame_token: crate::External<
+pub struct PresentFrameTokenGGP {
+    s_type: crate::vk::StructureType,
+    p_next: *const core::ffi::c_void,
+    frame_token: crate::External<
         {
             "GgpFrameToken";
             0

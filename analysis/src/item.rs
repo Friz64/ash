@@ -1,7 +1,15 @@
+pub mod basetype;
+pub mod enumeration;
+pub mod handle;
 pub mod structure;
 
 use self::structure::Structure;
-use crate::{xml, Library};
+use crate::{
+    decl,
+    item::{basetype::BaseType, enumeration::Enumeration, handle::Handle},
+    name::TypeName,
+    Library,
+};
 use indexmap::IndexMap;
 use std::collections::HashMap;
 
@@ -14,114 +22,104 @@ pub enum RequiredBy {
 pub trait ItemInfo {
     fn required_by(&self) -> RequiredBy;
 
-    fn name(&self) -> &'static str;
+    fn name(&self) -> TypeName;
 }
 
 #[derive(Debug)]
-pub enum Item {
+pub enum TypeItem {
     Structure(Structure),
-}
-
-impl ItemInfo for Item {
-    fn required_by(&self) -> RequiredBy {
-        match self {
-            Item::Structure(i) => i.required_by(),
-        }
-    }
-
-    fn name(&self) -> &'static str {
-        match self {
-            Item::Structure(i) => i.name(),
-        }
-    }
-}
-
-impl Item {
-    pub(crate) fn emerge(emerge_ctx: &mut EmergeCtx, name: &'static str) -> Option<&'static Item> {
-        if let Some(value) = emerge_ctx.name_item_map.get(name) {
-            return *value;
-        }
-
-        let v = (|| {
-            let required_by = emerge_ctx.name_require_map.get(name)?;
-            // really??
-            let xml = emerge_ctx
-                .registry
-                .structs
-                .iter()
-                .find(|structure| structure.name == name)?;
-
-            Some(&*Box::leak(Box::new(Item::Structure(Structure::new(
-                emerge_ctx,
-                *required_by,
-                xml,
-            )))))
-        })();
-
-        emerge_ctx.name_item_map.insert(name, v);
-        *emerge_ctx.name_item_map.get(name).unwrap()
-    }
-}
-
-pub(crate) struct EmergeCtx<'a> {
-    registry: &'a xml::Registry,
-    name_require_map: &'a HashMap<&'static str, RequiredBy>,
-    name_item_map: HashMap<&'static str, Option<&'static Item>>,
+    Enumeration(Enumeration),
+    BaseType(BaseType),
+    Handle(Handle),
 }
 
 #[derive(Default, Debug)]
 pub struct Items {
-    pub structures: Vec<&'static Structure>,
+    pub types: IndexMap<TypeName, TypeItem>,
 }
 
 impl Items {
-    pub(super) fn collect(&mut self, library: &Library) {
-        let name_require_map = build_name_require_map(library);
-        let mut emerge_ctx = EmergeCtx {
-            registry: &library.xml,
-            name_require_map: &name_require_map,
-            name_item_map: HashMap::new(),
-        };
+    pub(super) fn collect(libraries: &[&Library]) -> Items {
+        let mut items = Items::default();
 
-        for structure in &library.xml.structs {
-            let name = structure.name;
-            let Some(&required_by) = name_require_map.get(name) else {
-                continue;
-            };
+        let type_require_map = build_type_require_map(libraries);
+        let decl_ctx = decl::Context::new(&type_require_map);
 
-            let structure = Structure::new(&mut emerge_ctx, required_by, structure);
-            self.structures.push(structure)
+        for library in libraries {
+            for structure in &library.xml.structs {
+                let name = structure.name;
+                let Some(&required_by) = type_require_map.get(&name) else {
+                    continue;
+                };
+
+                let structure = Structure::new(&decl_ctx, required_by, structure);
+                items.types.insert(name, TypeItem::Structure(structure));
+            }
+
+            for enumeration in &library.xml.enums {
+                let name = enumeration.name;
+                let Some(&required_by) = type_require_map.get(&name) else {
+                    continue;
+                };
+
+                let enumeration = Enumeration::new(required_by, enumeration);
+                items.types.insert(name, TypeItem::Enumeration(enumeration));
+            }
+
+            for basetype in &library.xml.basetypes {
+                let name = basetype.name;
+                let Some(&required_by) = type_require_map.get(&name) else {
+                    continue;
+                };
+
+                let basetype = BaseType::new(required_by, basetype);
+                items.types.insert(name, TypeItem::BaseType(basetype));
+            }
+
+            for handle in &library.xml.handles {
+                let name = handle.name;
+                let Some(&required_by) = type_require_map.get(&name) else {
+                    continue;
+                };
+
+                let handle = Handle::new(required_by, handle);
+                items.types.insert(name, TypeItem::Handle(handle));
+            }
         }
+
+        items
     }
 }
 
-fn build_name_require_map(library: &Library) -> HashMap<&'static str, RequiredBy> {
-    let mut name_require_map = HashMap::new();
+fn build_type_require_map(libraries: &[&Library]) -> HashMap<TypeName, RequiredBy> {
+    let mut type_require_map = HashMap::new();
 
-    for feature in &library.xml.features {
-        let required_by = RequiredBy::Feature {
-            major: feature.version.major,
-            minor: feature.version.minor,
-        };
+    for library in libraries {
+        for feature in &library.xml.features {
+            let required_by = RequiredBy::Feature {
+                major: feature.version.major,
+                minor: feature.version.minor,
+            };
 
-        for require in &feature.requires {
-            for require_type in &require.types {
-                name_require_map.insert(require_type.name, required_by);
+            for require in &feature.requires {
+                for require_type in &require.types {
+                    type_require_map.insert(require_type.name, required_by);
+                }
+            }
+        }
+
+        for extension in &library.xml.extensions {
+            let required_by = RequiredBy::Extension {
+                name: extension.name,
+            };
+
+            for require in &extension.requires {
+                for require_type in &require.types {
+                    type_require_map.insert(require_type.name, required_by);
+                }
             }
         }
     }
 
-    for extension in &library.xml.extensions {
-        let required_by = RequiredBy::Extension {
-            name: extension.name,
-        };
-
-        for require in &extension.requires {
-            for require_type in &require.types {
-                name_require_map.insert(require_type.name, required_by);
-            }
-        }
-    }
-
-    name_require_map
+    type_require_map
 }

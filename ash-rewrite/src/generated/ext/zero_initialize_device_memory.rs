@@ -2,18 +2,8 @@
 #![cfg_attr(rustfmt, rustfmt_skip)]
 //![Vulkan Manual Page](https://docs.vulkan.org/refpages/latest/refpages/source/VK_EXT_zero_initialize_device_memory.html) · Vulkan extension
 #[repr(C)]
-pub struct VkPhysicalDeviceZeroInitializeDeviceMemoryFeaturesEXT {
-    pub s_type: crate::External<
-        {
-            "VkStructureType";
-            0
-        },
-    >,
-    pub p_next: *mut core::ffi::c_void,
-    pub zero_initialize_device_memory: crate::External<
-        {
-            "VkBool32";
-            0
-        },
-    >,
+pub struct PhysicalDeviceZeroInitializeDeviceMemoryFeaturesEXT {
+    s_type: crate::vk::StructureType,
+    p_next: *mut core::ffi::c_void,
+    zero_initialize_device_memory: crate::vk::Bool32,
 }

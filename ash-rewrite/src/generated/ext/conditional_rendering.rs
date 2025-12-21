@@ -2,68 +2,23 @@
 #![cfg_attr(rustfmt, rustfmt_skip)]
 //![Vulkan Manual Page](https://docs.vulkan.org/refpages/latest/refpages/source/VK_EXT_conditional_rendering.html) · Vulkan extension
 #[repr(C)]
-pub struct VkConditionalRenderingBeginInfoEXT {
-    pub s_type: crate::External<
-        {
-            "VkStructureType";
-            0
-        },
-    >,
-    pub p_next: *const core::ffi::c_void,
-    pub buffer: crate::External<
-        {
-            "VkBuffer";
-            0
-        },
-    >,
-    pub offset: crate::External<
-        {
-            "VkDeviceSize";
-            0
-        },
-    >,
-    pub flags: crate::External<
-        {
-            "VkConditionalRenderingFlagsEXT";
-            0
-        },
-    >,
+pub struct ConditionalRenderingBeginInfoEXT {
+    s_type: crate::vk::StructureType,
+    p_next: *const core::ffi::c_void,
+    buffer: crate::vk::Buffer,
+    offset: crate::vk::DeviceSize,
+    flags: crate::vk::ConditionalRenderingFlagsEXT,
 }
 #[repr(C)]
-pub struct VkCommandBufferInheritanceConditionalRenderingInfoEXT {
-    pub s_type: crate::External<
-        {
-            "VkStructureType";
-            0
-        },
-    >,
-    pub p_next: *const core::ffi::c_void,
-    pub conditional_rendering_enable: crate::External<
-        {
-            "VkBool32";
-            0
-        },
-    >,
+pub struct CommandBufferInheritanceConditionalRenderingInfoEXT {
+    s_type: crate::vk::StructureType,
+    p_next: *const core::ffi::c_void,
+    conditional_rendering_enable: crate::vk::Bool32,
 }
 #[repr(C)]
-pub struct VkPhysicalDeviceConditionalRenderingFeaturesEXT {
-    pub s_type: crate::External<
-        {
-            "VkStructureType";
-            0
-        },
-    >,
-    pub p_next: *mut core::ffi::c_void,
-    pub conditional_rendering: crate::External<
-        {
-            "VkBool32";
-            0
-        },
-    >,
-    pub inherited_conditional_rendering: crate::External<
-        {
-            "VkBool32";
-            0
-        },
-    >,
+pub struct PhysicalDeviceConditionalRenderingFeaturesEXT {
+    s_type: crate::vk::StructureType,
+    p_next: *mut core::ffi::c_void,
+    conditional_rendering: crate::vk::Bool32,
+    inherited_conditional_rendering: crate::vk::Bool32,
 }

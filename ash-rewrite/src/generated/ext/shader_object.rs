@@ -2,105 +2,40 @@
 #![cfg_attr(rustfmt, rustfmt_skip)]
 //![Vulkan Manual Page](https://docs.vulkan.org/refpages/latest/refpages/source/VK_EXT_shader_object.html) · Vulkan extension
 #[repr(C)]
-pub struct VkColorBlendEquationEXT {
-    pub src_color_blend_factor: crate::External<
-        {
-            "VkBlendFactor";
-            0
-        },
-    >,
-    pub dst_color_blend_factor: crate::External<
-        {
-            "VkBlendFactor";
-            0
-        },
-    >,
-    pub color_blend_op: crate::External<
-        {
-            "VkBlendOp";
-            0
-        },
-    >,
-    pub src_alpha_blend_factor: crate::External<
-        {
-            "VkBlendFactor";
-            0
-        },
-    >,
-    pub dst_alpha_blend_factor: crate::External<
-        {
-            "VkBlendFactor";
-            0
-        },
-    >,
-    pub alpha_blend_op: crate::External<
-        {
-            "VkBlendOp";
-            0
-        },
-    >,
+pub struct ColorBlendEquationEXT {
+    src_color_blend_factor: crate::vk::BlendFactor,
+    dst_color_blend_factor: crate::vk::BlendFactor,
+    color_blend_op: crate::vk::BlendOp,
+    src_alpha_blend_factor: crate::vk::BlendFactor,
+    dst_alpha_blend_factor: crate::vk::BlendFactor,
+    alpha_blend_op: crate::vk::BlendOp,
 }
 #[repr(C)]
-pub struct VkColorBlendAdvancedEXT {
-    pub advanced_blend_op: crate::External<
-        {
-            "VkBlendOp";
-            0
-        },
-    >,
-    pub src_premultiplied: crate::External<
-        {
-            "VkBool32";
-            0
-        },
-    >,
-    pub dst_premultiplied: crate::External<
-        {
-            "VkBool32";
-            0
-        },
-    >,
-    pub blend_overlap: crate::External<
-        {
-            "VkBlendOverlapEXT";
-            0
-        },
-    >,
-    pub clamp_results: crate::External<
-        {
-            "VkBool32";
-            0
-        },
-    >,
+pub struct ColorBlendAdvancedEXT {
+    advanced_blend_op: crate::vk::BlendOp,
+    src_premultiplied: crate::vk::Bool32,
+    dst_premultiplied: crate::vk::Bool32,
+    blend_overlap: crate::vk::BlendOverlapEXT,
+    clamp_results: crate::vk::Bool32,
 }
 #[repr(C)]
-pub struct VkVertexInputBindingDescription2EXT {
-    pub s_type: crate::External<
-        {
-            "VkStructureType";
-            0
-        },
-    >,
-    pub p_next: *mut core::ffi::c_void,
-    pub binding: crate::External<
+pub struct VertexInputBindingDescription2EXT {
+    s_type: crate::vk::StructureType,
+    p_next: *mut core::ffi::c_void,
+    binding: crate::External<
         {
             "uint32_t";
             0
         },
     >,
-    pub stride: crate::External<
+    stride: crate::External<
         {
             "uint32_t";
             0
         },
     >,
-    pub input_rate: crate::External<
-        {
-            "VkVertexInputRate";
-            0
-        },
-    >,
-    pub divisor: crate::External<
+    input_rate: crate::vk::VertexInputRate,
+    divisor: crate::External<
         {
             "uint32_t";
             0
@@ -108,33 +43,23 @@ pub struct VkVertexInputBindingDescription2EXT {
     >,
 }
 #[repr(C)]
-pub struct VkVertexInputAttributeDescription2EXT {
-    pub s_type: crate::External<
-        {
-            "VkStructureType";
-            0
-        },
-    >,
-    pub p_next: *mut core::ffi::c_void,
-    pub location: crate::External<
+pub struct VertexInputAttributeDescription2EXT {
+    s_type: crate::vk::StructureType,
+    p_next: *mut core::ffi::c_void,
+    location: crate::External<
         {
             "uint32_t";
             0
         },
     >,
-    pub binding: crate::External<
+    binding: crate::External<
         {
             "uint32_t";
             0
         },
     >,
-    pub format: crate::External<
-        {
-            "VkFormat";
-            0
-        },
-    >,
-    pub offset: crate::External<
+    format: crate::vk::Format,
+    offset: crate::External<
         {
             "uint32_t";
             0
@@ -142,37 +67,22 @@ pub struct VkVertexInputAttributeDescription2EXT {
     >,
 }
 #[repr(C)]
-pub struct VkPhysicalDeviceShaderObjectFeaturesEXT {
-    pub s_type: crate::External<
-        {
-            "VkStructureType";
-            0
-        },
-    >,
-    pub p_next: *mut core::ffi::c_void,
-    pub shader_object: crate::External<
-        {
-            "VkBool32";
-            0
-        },
-    >,
+pub struct PhysicalDeviceShaderObjectFeaturesEXT {
+    s_type: crate::vk::StructureType,
+    p_next: *mut core::ffi::c_void,
+    shader_object: crate::vk::Bool32,
 }
 #[repr(C)]
-pub struct VkPhysicalDeviceShaderObjectPropertiesEXT {
-    pub s_type: crate::External<
-        {
-            "VkStructureType";
-            0
-        },
-    >,
-    pub p_next: *mut core::ffi::c_void,
-    pub shader_binary_uuid: [crate::External<
+pub struct PhysicalDeviceShaderObjectPropertiesEXT {
+    s_type: crate::vk::StructureType,
+    p_next: *mut core::ffi::c_void,
+    shader_binary_uuid: [crate::External<
         {
             "uint8_t";
             0
         },
     >; 1337],
-    pub shader_binary_version: crate::External<
+    shader_binary_version: crate::External<
         {
             "uint32_t";
             0
@@ -180,79 +90,43 @@ pub struct VkPhysicalDeviceShaderObjectPropertiesEXT {
     >,
 }
 #[repr(C)]
-pub struct VkShaderCreateInfoEXT {
-    pub s_type: crate::External<
-        {
-            "VkStructureType";
-            0
-        },
-    >,
-    pub p_next: *const core::ffi::c_void,
-    pub flags: crate::External<
-        {
-            "VkShaderCreateFlagsEXT";
-            0
-        },
-    >,
-    pub stage: crate::External<
-        {
-            "VkShaderStageFlagBits";
-            0
-        },
-    >,
-    pub next_stage: crate::External<
-        {
-            "VkShaderStageFlags";
-            0
-        },
-    >,
-    pub code_type: crate::External<
-        {
-            "VkShaderCodeTypeEXT";
-            0
-        },
-    >,
-    pub code_size: crate::External<
+pub struct ShaderCreateInfoEXT {
+    s_type: crate::vk::StructureType,
+    p_next: *const core::ffi::c_void,
+    flags: crate::vk::ShaderCreateFlagsEXT,
+    stage: crate::vk::ShaderStageFlagBits,
+    next_stage: crate::vk::ShaderStageFlags,
+    code_type: crate::vk::ShaderCodeTypeEXT,
+    code_size: crate::External<
         {
             "size_t";
             0
         },
     >,
-    pub p_code: *const core::ffi::c_void,
-    pub p_name: *const crate::External<
+    p_code: *const core::ffi::c_void,
+    p_name: *const crate::External<
         {
             "char";
             0
         },
     >,
-    pub set_layout_count: crate::External<
+    set_layout_count: crate::External<
         {
             "uint32_t";
             0
         },
     >,
-    pub p_set_layouts: *const crate::External<
-        {
-            "VkDescriptorSetLayout";
-            0
-        },
-    >,
-    pub push_constant_range_count: crate::External<
+    p_set_layouts: *const crate::vk::DescriptorSetLayout,
+    push_constant_range_count: crate::External<
         {
             "uint32_t";
             0
         },
     >,
-    pub p_push_constant_ranges: *const crate::External<
-        {
-            "VkPushConstantRange";
-            0
-        },
-    >,
-    pub p_specialization_info: *const crate::External<
-        {
-            "VkSpecializationInfo";
-            0
-        },
-    >,
+    p_push_constant_ranges: *const crate::vk::PushConstantRange,
+    p_specialization_info: *const crate::vk::SpecializationInfo,
 }
+#[repr(C)]
+pub struct ShaderCodeTypeEXT {}
+#[repr(C)]
+pub struct ShaderEXT {}

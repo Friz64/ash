@@ -2,21 +2,11 @@
 #![cfg_attr(rustfmt, rustfmt_skip)]
 //![Vulkan Manual Page](https://docs.vulkan.org/refpages/latest/refpages/source/VK_FUCHSIA_external_memory.html) · Vulkan extension
 #[repr(C)]
-pub struct VkImportMemoryZirconHandleInfoFUCHSIA {
-    pub s_type: crate::External<
-        {
-            "VkStructureType";
-            0
-        },
-    >,
-    pub p_next: *const core::ffi::c_void,
-    pub handle_type: crate::External<
-        {
-            "VkExternalMemoryHandleTypeFlagBits";
-            0
-        },
-    >,
-    pub handle: crate::External<
+pub struct ImportMemoryZirconHandleInfoFUCHSIA {
+    s_type: crate::vk::StructureType,
+    p_next: *const core::ffi::c_void,
+    handle_type: crate::vk::ExternalMemoryHandleTypeFlagBits,
+    handle: crate::External<
         {
             "zx_handle_t";
             0
@@ -24,15 +14,10 @@ pub struct VkImportMemoryZirconHandleInfoFUCHSIA {
     >,
 }
 #[repr(C)]
-pub struct VkMemoryZirconHandlePropertiesFUCHSIA {
-    pub s_type: crate::External<
-        {
-            "VkStructureType";
-            0
-        },
-    >,
-    pub p_next: *mut core::ffi::c_void,
-    pub memory_type_bits: crate::External<
+pub struct MemoryZirconHandlePropertiesFUCHSIA {
+    s_type: crate::vk::StructureType,
+    p_next: *mut core::ffi::c_void,
+    memory_type_bits: crate::External<
         {
             "uint32_t";
             0
@@ -40,24 +25,9 @@ pub struct VkMemoryZirconHandlePropertiesFUCHSIA {
     >,
 }
 #[repr(C)]
-pub struct VkMemoryGetZirconHandleInfoFUCHSIA {
-    pub s_type: crate::External<
-        {
-            "VkStructureType";
-            0
-        },
-    >,
-    pub p_next: *const core::ffi::c_void,
-    pub memory: crate::External<
-        {
-            "VkDeviceMemory";
-            0
-        },
-    >,
-    pub handle_type: crate::External<
-        {
-            "VkExternalMemoryHandleTypeFlagBits";
-            0
-        },
-    >,
+pub struct MemoryGetZirconHandleInfoFUCHSIA {
+    s_type: crate::vk::StructureType,
+    p_next: *const core::ffi::c_void,
+    memory: crate::vk::DeviceMemory,
+    handle_type: crate::vk::ExternalMemoryHandleTypeFlagBits,
 }

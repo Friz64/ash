@@ -2,123 +2,43 @@
 #![cfg_attr(rustfmt, rustfmt_skip)]
 //![Vulkan Manual Page](https://docs.vulkan.org/refpages/latest/refpages/source/VK_KHR_video_encode_queue.html) · Vulkan extension
 #[repr(C)]
-pub struct VkVideoEncodeSessionParametersGetInfoKHR {
-    pub s_type: crate::External<
-        {
-            "VkStructureType";
-            0
-        },
-    >,
-    pub p_next: *const core::ffi::c_void,
-    pub video_session_parameters: crate::External<
-        {
-            "VkVideoSessionParametersKHR";
-            0
-        },
-    >,
+pub struct VideoEncodeSessionParametersGetInfoKHR {
+    s_type: crate::vk::StructureType,
+    p_next: *const core::ffi::c_void,
+    video_session_parameters: crate::vk::VideoSessionParametersKHR,
 }
 #[repr(C)]
-pub struct VkVideoEncodeSessionParametersFeedbackInfoKHR {
-    pub s_type: crate::External<
-        {
-            "VkStructureType";
-            0
-        },
-    >,
-    pub p_next: *mut core::ffi::c_void,
-    pub has_overrides: crate::External<
-        {
-            "VkBool32";
-            0
-        },
-    >,
+pub struct VideoEncodeSessionParametersFeedbackInfoKHR {
+    s_type: crate::vk::StructureType,
+    p_next: *mut core::ffi::c_void,
+    has_overrides: crate::vk::Bool32,
 }
 #[repr(C)]
-pub struct VkVideoEncodeUsageInfoKHR {
-    pub s_type: crate::External<
-        {
-            "VkStructureType";
-            0
-        },
-    >,
-    pub p_next: *const core::ffi::c_void,
-    pub video_usage_hints: crate::External<
-        {
-            "VkVideoEncodeUsageFlagsKHR";
-            0
-        },
-    >,
-    pub video_content_hints: crate::External<
-        {
-            "VkVideoEncodeContentFlagsKHR";
-            0
-        },
-    >,
-    pub tuning_mode: crate::External<
-        {
-            "VkVideoEncodeTuningModeKHR";
-            0
-        },
-    >,
+pub struct VideoEncodeUsageInfoKHR {
+    s_type: crate::vk::StructureType,
+    p_next: *const core::ffi::c_void,
+    video_usage_hints: crate::vk::VideoEncodeUsageFlagsKHR,
+    video_content_hints: crate::vk::VideoEncodeContentFlagsKHR,
+    tuning_mode: crate::vk::VideoEncodeTuningModeKHR,
 }
 #[repr(C)]
-pub struct VkVideoEncodeInfoKHR {
-    pub s_type: crate::External<
-        {
-            "VkStructureType";
-            0
-        },
-    >,
-    pub p_next: *const core::ffi::c_void,
-    pub flags: crate::External<
-        {
-            "VkVideoEncodeFlagsKHR";
-            0
-        },
-    >,
-    pub dst_buffer: crate::External<
-        {
-            "VkBuffer";
-            0
-        },
-    >,
-    pub dst_buffer_offset: crate::External<
-        {
-            "VkDeviceSize";
-            0
-        },
-    >,
-    pub dst_buffer_range: crate::External<
-        {
-            "VkDeviceSize";
-            0
-        },
-    >,
-    pub src_picture_resource: crate::External<
-        {
-            "VkVideoPictureResourceInfoKHR";
-            0
-        },
-    >,
-    pub p_setup_reference_slot: *const crate::External<
-        {
-            "VkVideoReferenceSlotInfoKHR";
-            0
-        },
-    >,
-    pub reference_slot_count: crate::External<
+pub struct VideoEncodeInfoKHR {
+    s_type: crate::vk::StructureType,
+    p_next: *const core::ffi::c_void,
+    flags: crate::vk::VideoEncodeFlagsKHR,
+    dst_buffer: crate::vk::Buffer,
+    dst_buffer_offset: crate::vk::DeviceSize,
+    dst_buffer_range: crate::vk::DeviceSize,
+    src_picture_resource: crate::vk::VideoPictureResourceInfoKHR,
+    p_setup_reference_slot: *const crate::vk::VideoReferenceSlotInfoKHR,
+    reference_slot_count: crate::External<
         {
             "uint32_t";
             0
         },
     >,
-    pub p_reference_slots: *const crate::External<
-        {
-            "VkVideoReferenceSlotInfoKHR";
-            0
-        },
-    >,
-    pub preceding_externally_encoded_bytes: crate::External<
+    p_reference_slots: *const crate::vk::VideoReferenceSlotInfoKHR,
+    preceding_externally_encoded_bytes: crate::External<
         {
             "uint32_t";
             0
@@ -126,31 +46,16 @@ pub struct VkVideoEncodeInfoKHR {
     >,
 }
 #[repr(C)]
-pub struct VkQueryPoolVideoEncodeFeedbackCreateInfoKHR {
-    pub s_type: crate::External<
-        {
-            "VkStructureType";
-            0
-        },
-    >,
-    pub p_next: *const core::ffi::c_void,
-    pub encode_feedback_flags: crate::External<
-        {
-            "VkVideoEncodeFeedbackFlagsKHR";
-            0
-        },
-    >,
+pub struct QueryPoolVideoEncodeFeedbackCreateInfoKHR {
+    s_type: crate::vk::StructureType,
+    p_next: *const core::ffi::c_void,
+    encode_feedback_flags: crate::vk::VideoEncodeFeedbackFlagsKHR,
 }
 #[repr(C)]
-pub struct VkVideoEncodeQualityLevelInfoKHR {
-    pub s_type: crate::External<
-        {
-            "VkStructureType";
-            0
-        },
-    >,
-    pub p_next: *const core::ffi::c_void,
-    pub quality_level: crate::External<
+pub struct VideoEncodeQualityLevelInfoKHR {
+    s_type: crate::vk::StructureType,
+    p_next: *const core::ffi::c_void,
+    quality_level: crate::External<
         {
             "uint32_t";
             0
@@ -158,21 +63,11 @@ pub struct VkVideoEncodeQualityLevelInfoKHR {
     >,
 }
 #[repr(C)]
-pub struct VkPhysicalDeviceVideoEncodeQualityLevelInfoKHR {
-    pub s_type: crate::External<
-        {
-            "VkStructureType";
-            0
-        },
-    >,
-    pub p_next: *const core::ffi::c_void,
-    pub p_video_profile: *const crate::External<
-        {
-            "VkVideoProfileInfoKHR";
-            0
-        },
-    >,
-    pub quality_level: crate::External<
+pub struct PhysicalDeviceVideoEncodeQualityLevelInfoKHR {
+    s_type: crate::vk::StructureType,
+    p_next: *const core::ffi::c_void,
+    p_video_profile: *const crate::vk::VideoProfileInfoKHR,
+    quality_level: crate::External<
         {
             "uint32_t";
             0
@@ -180,21 +75,11 @@ pub struct VkPhysicalDeviceVideoEncodeQualityLevelInfoKHR {
     >,
 }
 #[repr(C)]
-pub struct VkVideoEncodeQualityLevelPropertiesKHR {
-    pub s_type: crate::External<
-        {
-            "VkStructureType";
-            0
-        },
-    >,
-    pub p_next: *mut core::ffi::c_void,
-    pub preferred_rate_control_mode: crate::External<
-        {
-            "VkVideoEncodeRateControlModeFlagBitsKHR";
-            0
-        },
-    >,
-    pub preferred_rate_control_layer_count: crate::External<
+pub struct VideoEncodeQualityLevelPropertiesKHR {
+    s_type: crate::vk::StructureType,
+    p_next: *mut core::ffi::c_void,
+    preferred_rate_control_mode: crate::vk::VideoEncodeRateControlModeFlagBitsKHR,
+    preferred_rate_control_layer_count: crate::External<
         {
             "uint32_t";
             0
@@ -202,45 +87,25 @@ pub struct VkVideoEncodeQualityLevelPropertiesKHR {
     >,
 }
 #[repr(C)]
-pub struct VkVideoEncodeRateControlInfoKHR {
-    pub s_type: crate::External<
-        {
-            "VkStructureType";
-            0
-        },
-    >,
-    pub p_next: *const core::ffi::c_void,
-    pub flags: crate::External<
-        {
-            "VkVideoEncodeRateControlFlagsKHR";
-            0
-        },
-    >,
-    pub rate_control_mode: crate::External<
-        {
-            "VkVideoEncodeRateControlModeFlagBitsKHR";
-            0
-        },
-    >,
-    pub layer_count: crate::External<
+pub struct VideoEncodeRateControlInfoKHR {
+    s_type: crate::vk::StructureType,
+    p_next: *const core::ffi::c_void,
+    flags: crate::vk::VideoEncodeRateControlFlagsKHR,
+    rate_control_mode: crate::vk::VideoEncodeRateControlModeFlagBitsKHR,
+    layer_count: crate::External<
         {
             "uint32_t";
             0
         },
     >,
-    pub p_layers: *const crate::External<
-        {
-            "VkVideoEncodeRateControlLayerInfoKHR";
-            0
-        },
-    >,
-    pub virtual_buffer_size_in_ms: crate::External<
+    p_layers: *const crate::vk::VideoEncodeRateControlLayerInfoKHR,
+    virtual_buffer_size_in_ms: crate::External<
         {
             "uint32_t";
             0
         },
     >,
-    pub initial_virtual_buffer_size_in_ms: crate::External<
+    initial_virtual_buffer_size_in_ms: crate::External<
         {
             "uint32_t";
             0
@@ -248,33 +113,28 @@ pub struct VkVideoEncodeRateControlInfoKHR {
     >,
 }
 #[repr(C)]
-pub struct VkVideoEncodeRateControlLayerInfoKHR {
-    pub s_type: crate::External<
-        {
-            "VkStructureType";
-            0
-        },
-    >,
-    pub p_next: *const core::ffi::c_void,
-    pub average_bitrate: crate::External<
+pub struct VideoEncodeRateControlLayerInfoKHR {
+    s_type: crate::vk::StructureType,
+    p_next: *const core::ffi::c_void,
+    average_bitrate: crate::External<
         {
             "uint64_t";
             0
         },
     >,
-    pub max_bitrate: crate::External<
+    max_bitrate: crate::External<
         {
             "uint64_t";
             0
         },
     >,
-    pub frame_rate_numerator: crate::External<
+    frame_rate_numerator: crate::External<
         {
             "uint32_t";
             0
         },
     >,
-    pub frame_rate_denominator: crate::External<
+    frame_rate_denominator: crate::External<
         {
             "uint32_t";
             0
@@ -282,54 +142,31 @@ pub struct VkVideoEncodeRateControlLayerInfoKHR {
     >,
 }
 #[repr(C)]
-pub struct VkVideoEncodeCapabilitiesKHR {
-    pub s_type: crate::External<
-        {
-            "VkStructureType";
-            0
-        },
-    >,
-    pub p_next: *mut core::ffi::c_void,
-    pub flags: crate::External<
-        {
-            "VkVideoEncodeCapabilityFlagsKHR";
-            0
-        },
-    >,
-    pub rate_control_modes: crate::External<
-        {
-            "VkVideoEncodeRateControlModeFlagsKHR";
-            0
-        },
-    >,
-    pub max_rate_control_layers: crate::External<
+pub struct VideoEncodeCapabilitiesKHR {
+    s_type: crate::vk::StructureType,
+    p_next: *mut core::ffi::c_void,
+    flags: crate::vk::VideoEncodeCapabilityFlagsKHR,
+    rate_control_modes: crate::vk::VideoEncodeRateControlModeFlagsKHR,
+    max_rate_control_layers: crate::External<
         {
             "uint32_t";
             0
         },
     >,
-    pub max_bitrate: crate::External<
+    max_bitrate: crate::External<
         {
             "uint64_t";
             0
         },
     >,
-    pub max_quality_levels: crate::External<
+    max_quality_levels: crate::External<
         {
             "uint32_t";
             0
         },
     >,
-    pub encode_input_picture_granularity: crate::External<
-        {
-            "VkExtent2D";
-            0
-        },
-    >,
-    pub supported_encode_feedback_flags: crate::External<
-        {
-            "VkVideoEncodeFeedbackFlagsKHR";
-            0
-        },
-    >,
+    encode_input_picture_granularity: crate::vk::Extent2D,
+    supported_encode_feedback_flags: crate::vk::VideoEncodeFeedbackFlagsKHR,
 }
+#[repr(C)]
+pub struct VideoEncodeTuningModeKHR {}

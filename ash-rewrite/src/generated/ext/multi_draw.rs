@@ -2,14 +2,14 @@
 #![cfg_attr(rustfmt, rustfmt_skip)]
 //![Vulkan Manual Page](https://docs.vulkan.org/refpages/latest/refpages/source/VK_EXT_multi_draw.html) · Vulkan extension
 #[repr(C)]
-pub struct VkMultiDrawInfoEXT {
-    pub first_vertex: crate::External<
+pub struct MultiDrawInfoEXT {
+    first_vertex: crate::External<
         {
             "uint32_t";
             0
         },
     >,
-    pub vertex_count: crate::External<
+    vertex_count: crate::External<
         {
             "uint32_t";
             0
@@ -17,20 +17,20 @@ pub struct VkMultiDrawInfoEXT {
     >,
 }
 #[repr(C)]
-pub struct VkMultiDrawIndexedInfoEXT {
-    pub first_index: crate::External<
+pub struct MultiDrawIndexedInfoEXT {
+    first_index: crate::External<
         {
             "uint32_t";
             0
         },
     >,
-    pub index_count: crate::External<
+    index_count: crate::External<
         {
             "uint32_t";
             0
         },
     >,
-    pub vertex_offset: crate::External<
+    vertex_offset: crate::External<
         {
             "int32_t";
             0
@@ -38,15 +38,10 @@ pub struct VkMultiDrawIndexedInfoEXT {
     >,
 }
 #[repr(C)]
-pub struct VkPhysicalDeviceMultiDrawPropertiesEXT {
-    pub s_type: crate::External<
-        {
-            "VkStructureType";
-            0
-        },
-    >,
-    pub p_next: *mut core::ffi::c_void,
-    pub max_multi_draw_count: crate::External<
+pub struct PhysicalDeviceMultiDrawPropertiesEXT {
+    s_type: crate::vk::StructureType,
+    p_next: *mut core::ffi::c_void,
+    max_multi_draw_count: crate::External<
         {
             "uint32_t";
             0
@@ -54,18 +49,8 @@ pub struct VkPhysicalDeviceMultiDrawPropertiesEXT {
     >,
 }
 #[repr(C)]
-pub struct VkPhysicalDeviceMultiDrawFeaturesEXT {
-    pub s_type: crate::External<
-        {
-            "VkStructureType";
-            0
-        },
-    >,
-    pub p_next: *mut core::ffi::c_void,
-    pub multi_draw: crate::External<
-        {
-            "VkBool32";
-            0
-        },
-    >,
+pub struct PhysicalDeviceMultiDrawFeaturesEXT {
+    s_type: crate::vk::StructureType,
+    p_next: *mut core::ffi::c_void,
+    multi_draw: crate::vk::Bool32,
 }

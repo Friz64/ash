@@ -2,52 +2,17 @@
 #![cfg_attr(rustfmt, rustfmt_skip)]
 //![Vulkan Manual Page](https://docs.vulkan.org/refpages/latest/refpages/source/VK_NVX_image_view_handle.html) · Vulkan extension
 #[repr(C)]
-pub struct VkImageViewHandleInfoNVX {
-    pub s_type: crate::External<
-        {
-            "VkStructureType";
-            0
-        },
-    >,
-    pub p_next: *const core::ffi::c_void,
-    pub image_view: crate::External<
-        {
-            "VkImageView";
-            0
-        },
-    >,
-    pub descriptor_type: crate::External<
-        {
-            "VkDescriptorType";
-            0
-        },
-    >,
-    pub sampler: crate::External<
-        {
-            "VkSampler";
-            0
-        },
-    >,
+pub struct ImageViewHandleInfoNVX {
+    s_type: crate::vk::StructureType,
+    p_next: *const core::ffi::c_void,
+    image_view: crate::vk::ImageView,
+    descriptor_type: crate::vk::DescriptorType,
+    sampler: crate::vk::Sampler,
 }
 #[repr(C)]
-pub struct VkImageViewAddressPropertiesNVX {
-    pub s_type: crate::External<
-        {
-            "VkStructureType";
-            0
-        },
-    >,
-    pub p_next: *mut core::ffi::c_void,
-    pub device_address: crate::External<
-        {
-            "VkDeviceAddress";
-            0
-        },
-    >,
-    pub size: crate::External<
-        {
-            "VkDeviceSize";
-            0
-        },
-    >,
+pub struct ImageViewAddressPropertiesNVX {
+    s_type: crate::vk::StructureType,
+    p_next: *mut core::ffi::c_void,
+    device_address: crate::vk::DeviceAddress,
+    size: crate::vk::DeviceSize,
 }

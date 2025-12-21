@@ -2,30 +2,10 @@
 #![cfg_attr(rustfmt, rustfmt_skip)]
 //![Vulkan Manual Page](https://docs.vulkan.org/refpages/latest/refpages/source/VK_EXT_fragment_shader_interlock.html) · Vulkan extension
 #[repr(C)]
-pub struct VkPhysicalDeviceFragmentShaderInterlockFeaturesEXT {
-    pub s_type: crate::External<
-        {
-            "VkStructureType";
-            0
-        },
-    >,
-    pub p_next: *mut core::ffi::c_void,
-    pub fragment_shader_sample_interlock: crate::External<
-        {
-            "VkBool32";
-            0
-        },
-    >,
-    pub fragment_shader_pixel_interlock: crate::External<
-        {
-            "VkBool32";
-            0
-        },
-    >,
-    pub fragment_shader_shading_rate_interlock: crate::External<
-        {
-            "VkBool32";
-            0
-        },
-    >,
+pub struct PhysicalDeviceFragmentShaderInterlockFeaturesEXT {
+    s_type: crate::vk::StructureType,
+    p_next: *mut core::ffi::c_void,
+    fragment_shader_sample_interlock: crate::vk::Bool32,
+    fragment_shader_pixel_interlock: crate::vk::Bool32,
+    fragment_shader_shading_rate_interlock: crate::vk::Bool32,
 }

@@ -2,42 +2,24 @@
 #![cfg_attr(rustfmt, rustfmt_skip)]
 //![Vulkan Manual Page](https://docs.vulkan.org/refpages/latest/refpages/source/VK_NV_framebuffer_mixed_samples.html) · Vulkan extension
 #[repr(C)]
-pub struct VkPipelineCoverageModulationStateCreateInfoNV {
-    pub s_type: crate::External<
-        {
-            "VkStructureType";
-            0
-        },
-    >,
-    pub p_next: *const core::ffi::c_void,
-    pub flags: crate::External<
-        {
-            "VkPipelineCoverageModulationStateCreateFlagsNV";
-            0
-        },
-    >,
-    pub coverage_modulation_mode: crate::External<
-        {
-            "VkCoverageModulationModeNV";
-            0
-        },
-    >,
-    pub coverage_modulation_table_enable: crate::External<
-        {
-            "VkBool32";
-            0
-        },
-    >,
-    pub coverage_modulation_table_count: crate::External<
+pub struct PipelineCoverageModulationStateCreateInfoNV {
+    s_type: crate::vk::StructureType,
+    p_next: *const core::ffi::c_void,
+    flags: crate::vk::PipelineCoverageModulationStateCreateFlagsNV,
+    coverage_modulation_mode: crate::vk::CoverageModulationModeNV,
+    coverage_modulation_table_enable: crate::vk::Bool32,
+    coverage_modulation_table_count: crate::External<
         {
             "uint32_t";
             0
         },
     >,
-    pub p_coverage_modulation_table: *const crate::External<
+    p_coverage_modulation_table: *const crate::External<
         {
             "float";
             0
         },
     >,
 }
+#[repr(C)]
+pub struct CoverageModulationModeNV {}

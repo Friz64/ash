@@ -2,68 +2,37 @@
 #![cfg_attr(rustfmt, rustfmt_skip)]
 //![Vulkan Manual Page](https://docs.vulkan.org/refpages/latest/refpages/source/VK_AMD_anti_lag.html) · Vulkan extension
 #[repr(C)]
-pub struct VkPhysicalDeviceAntiLagFeaturesAMD {
-    pub s_type: crate::External<
-        {
-            "VkStructureType";
-            0
-        },
-    >,
-    pub p_next: *mut core::ffi::c_void,
-    pub anti_lag: crate::External<
-        {
-            "VkBool32";
-            0
-        },
-    >,
+pub struct PhysicalDeviceAntiLagFeaturesAMD {
+    s_type: crate::vk::StructureType,
+    p_next: *mut core::ffi::c_void,
+    anti_lag: crate::vk::Bool32,
 }
 #[repr(C)]
-pub struct VkAntiLagDataAMD {
-    pub s_type: crate::External<
-        {
-            "VkStructureType";
-            0
-        },
-    >,
-    pub p_next: *const core::ffi::c_void,
-    pub mode: crate::External<
-        {
-            "VkAntiLagModeAMD";
-            0
-        },
-    >,
-    pub max_fps: crate::External<
+pub struct AntiLagDataAMD {
+    s_type: crate::vk::StructureType,
+    p_next: *const core::ffi::c_void,
+    mode: crate::vk::AntiLagModeAMD,
+    max_fps: crate::External<
         {
             "uint32_t";
             0
         },
     >,
-    pub p_presentation_info: *const crate::External<
-        {
-            "VkAntiLagPresentationInfoAMD";
-            0
-        },
-    >,
+    p_presentation_info: *const crate::vk::AntiLagPresentationInfoAMD,
 }
 #[repr(C)]
-pub struct VkAntiLagPresentationInfoAMD {
-    pub s_type: crate::External<
-        {
-            "VkStructureType";
-            0
-        },
-    >,
-    pub p_next: *mut core::ffi::c_void,
-    pub stage: crate::External<
-        {
-            "VkAntiLagStageAMD";
-            0
-        },
-    >,
-    pub frame_index: crate::External<
+pub struct AntiLagPresentationInfoAMD {
+    s_type: crate::vk::StructureType,
+    p_next: *mut core::ffi::c_void,
+    stage: crate::vk::AntiLagStageAMD,
+    frame_index: crate::External<
         {
             "uint64_t";
             0
         },
     >,
 }
+#[repr(C)]
+pub struct AntiLagModeAMD {}
+#[repr(C)]
+pub struct AntiLagStageAMD {}

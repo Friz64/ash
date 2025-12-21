@@ -2,15 +2,10 @@
 #![cfg_attr(rustfmt, rustfmt_skip)]
 //![Vulkan Manual Page](https://docs.vulkan.org/refpages/latest/refpages/source/VK_NV_external_compute_queue.html) · Vulkan extension
 #[repr(C)]
-pub struct VkExternalComputeQueueDeviceCreateInfoNV {
-    pub s_type: crate::External<
-        {
-            "VkStructureType";
-            0
-        },
-    >,
-    pub p_next: *const core::ffi::c_void,
-    pub reserved_external_queues: crate::External<
+pub struct ExternalComputeQueueDeviceCreateInfoNV {
+    s_type: crate::vk::StructureType,
+    p_next: *const core::ffi::c_void,
+    reserved_external_queues: crate::External<
         {
             "uint32_t";
             0
@@ -18,31 +13,16 @@ pub struct VkExternalComputeQueueDeviceCreateInfoNV {
     >,
 }
 #[repr(C)]
-pub struct VkExternalComputeQueueCreateInfoNV {
-    pub s_type: crate::External<
-        {
-            "VkStructureType";
-            0
-        },
-    >,
-    pub p_next: *const core::ffi::c_void,
-    pub preferred_queue: crate::External<
-        {
-            "VkQueue";
-            0
-        },
-    >,
+pub struct ExternalComputeQueueCreateInfoNV {
+    s_type: crate::vk::StructureType,
+    p_next: *const core::ffi::c_void,
+    preferred_queue: crate::vk::Queue,
 }
 #[repr(C)]
-pub struct VkExternalComputeQueueDataParamsNV {
-    pub s_type: crate::External<
-        {
-            "VkStructureType";
-            0
-        },
-    >,
-    pub p_next: *const core::ffi::c_void,
-    pub device_index: crate::External<
+pub struct ExternalComputeQueueDataParamsNV {
+    s_type: crate::vk::StructureType,
+    p_next: *const core::ffi::c_void,
+    device_index: crate::External<
         {
             "uint32_t";
             0
@@ -50,24 +30,21 @@ pub struct VkExternalComputeQueueDataParamsNV {
     >,
 }
 #[repr(C)]
-pub struct VkPhysicalDeviceExternalComputeQueuePropertiesNV {
-    pub s_type: crate::External<
-        {
-            "VkStructureType";
-            0
-        },
-    >,
-    pub p_next: *mut core::ffi::c_void,
-    pub external_data_size: crate::External<
+pub struct PhysicalDeviceExternalComputeQueuePropertiesNV {
+    s_type: crate::vk::StructureType,
+    p_next: *mut core::ffi::c_void,
+    external_data_size: crate::External<
         {
             "uint32_t";
             0
         },
     >,
-    pub max_external_queues: crate::External<
+    max_external_queues: crate::External<
         {
             "uint32_t";
             0
         },
     >,
 }
+#[repr(C)]
+pub struct ExternalComputeQueueNV {}

@@ -2,43 +2,23 @@
 #![cfg_attr(rustfmt, rustfmt_skip)]
 //![Vulkan Manual Page](https://docs.vulkan.org/refpages/latest/refpages/source/VK_KHR_video_maintenance1.html) · Vulkan extension
 #[repr(C)]
-pub struct VkPhysicalDeviceVideoMaintenance1FeaturesKHR {
-    pub s_type: crate::External<
-        {
-            "VkStructureType";
-            0
-        },
-    >,
-    pub p_next: *mut core::ffi::c_void,
-    pub video_maintenance1: crate::External<
-        {
-            "VkBool32";
-            0
-        },
-    >,
+pub struct PhysicalDeviceVideoMaintenance1FeaturesKHR {
+    s_type: crate::vk::StructureType,
+    p_next: *mut core::ffi::c_void,
+    video_maintenance1: crate::vk::Bool32,
 }
 #[repr(C)]
-pub struct VkVideoInlineQueryInfoKHR {
-    pub s_type: crate::External<
-        {
-            "VkStructureType";
-            0
-        },
-    >,
-    pub p_next: *const core::ffi::c_void,
-    pub query_pool: crate::External<
-        {
-            "VkQueryPool";
-            0
-        },
-    >,
-    pub first_query: crate::External<
+pub struct VideoInlineQueryInfoKHR {
+    s_type: crate::vk::StructureType,
+    p_next: *const core::ffi::c_void,
+    query_pool: crate::vk::QueryPool,
+    first_query: crate::External<
         {
             "uint32_t";
             0
         },
     >,
-    pub query_count: crate::External<
+    query_count: crate::External<
         {
             "uint32_t";
             0

@@ -2,27 +2,17 @@
 #![cfg_attr(rustfmt, rustfmt_skip)]
 //![Vulkan Manual Page](https://docs.vulkan.org/refpages/latest/refpages/source/VK_EXT_debug_marker.html) · Vulkan extension
 #[repr(C)]
-pub struct VkDebugMarkerObjectNameInfoEXT {
-    pub s_type: crate::External<
-        {
-            "VkStructureType";
-            0
-        },
-    >,
-    pub p_next: *const core::ffi::c_void,
-    pub object_type: crate::External<
-        {
-            "VkDebugReportObjectTypeEXT";
-            0
-        },
-    >,
-    pub object: crate::External<
+pub struct DebugMarkerObjectNameInfoEXT {
+    s_type: crate::vk::StructureType,
+    p_next: *const core::ffi::c_void,
+    object_type: crate::vk::DebugReportObjectTypeEXT,
+    object: crate::External<
         {
             "uint64_t";
             0
         },
     >,
-    pub p_object_name: *const crate::External<
+    p_object_name: *const crate::External<
         {
             "char";
             0
@@ -30,59 +20,46 @@ pub struct VkDebugMarkerObjectNameInfoEXT {
     >,
 }
 #[repr(C)]
-pub struct VkDebugMarkerObjectTagInfoEXT {
-    pub s_type: crate::External<
-        {
-            "VkStructureType";
-            0
-        },
-    >,
-    pub p_next: *const core::ffi::c_void,
-    pub object_type: crate::External<
-        {
-            "VkDebugReportObjectTypeEXT";
-            0
-        },
-    >,
-    pub object: crate::External<
+pub struct DebugMarkerObjectTagInfoEXT {
+    s_type: crate::vk::StructureType,
+    p_next: *const core::ffi::c_void,
+    object_type: crate::vk::DebugReportObjectTypeEXT,
+    object: crate::External<
         {
             "uint64_t";
             0
         },
     >,
-    pub tag_name: crate::External<
+    tag_name: crate::External<
         {
             "uint64_t";
             0
         },
     >,
-    pub tag_size: crate::External<
+    tag_size: crate::External<
         {
             "size_t";
             0
         },
     >,
-    pub p_tag: *const core::ffi::c_void,
+    p_tag: *const core::ffi::c_void,
 }
 #[repr(C)]
-pub struct VkDebugMarkerMarkerInfoEXT {
-    pub s_type: crate::External<
-        {
-            "VkStructureType";
-            0
-        },
-    >,
-    pub p_next: *const core::ffi::c_void,
-    pub p_marker_name: *const crate::External<
+pub struct DebugMarkerMarkerInfoEXT {
+    s_type: crate::vk::StructureType,
+    p_next: *const core::ffi::c_void,
+    p_marker_name: *const crate::External<
         {
             "char";
             0
         },
     >,
-    pub color: [crate::External<
+    color: [crate::External<
         {
             "float";
             0
         },
     >; 1337],
 }
+#[repr(C)]
+pub struct DebugReportObjectTypeEXT {}

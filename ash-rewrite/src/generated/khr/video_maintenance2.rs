@@ -2,84 +2,29 @@
 #![cfg_attr(rustfmt, rustfmt_skip)]
 //![Vulkan Manual Page](https://docs.vulkan.org/refpages/latest/refpages/source/VK_KHR_video_maintenance2.html) · Vulkan extension
 #[repr(C)]
-pub struct VkPhysicalDeviceVideoMaintenance2FeaturesKHR {
-    pub s_type: crate::External<
-        {
-            "VkStructureType";
-            0
-        },
-    >,
-    pub p_next: *mut core::ffi::c_void,
-    pub video_maintenance2: crate::External<
-        {
-            "VkBool32";
-            0
-        },
-    >,
+pub struct PhysicalDeviceVideoMaintenance2FeaturesKHR {
+    s_type: crate::vk::StructureType,
+    p_next: *mut core::ffi::c_void,
+    video_maintenance2: crate::vk::Bool32,
 }
 #[repr(C)]
-pub struct VkVideoDecodeH264InlineSessionParametersInfoKHR {
-    pub s_type: crate::External<
-        {
-            "VkStructureType";
-            0
-        },
-    >,
-    pub p_next: *const core::ffi::c_void,
-    pub p_std_sps: *const crate::External<
-        {
-            "StdVideoH264SequenceParameterSet";
-            0
-        },
-    >,
-    pub p_std_pps: *const crate::External<
-        {
-            "StdVideoH264PictureParameterSet";
-            0
-        },
-    >,
+pub struct VideoDecodeH264InlineSessionParametersInfoKHR {
+    s_type: crate::vk::StructureType,
+    p_next: *const core::ffi::c_void,
+    p_std_sps: *const crate::vk::StdVideoH264SequenceParameterSet,
+    p_std_pps: *const crate::vk::StdVideoH264PictureParameterSet,
 }
 #[repr(C)]
-pub struct VkVideoDecodeH265InlineSessionParametersInfoKHR {
-    pub s_type: crate::External<
-        {
-            "VkStructureType";
-            0
-        },
-    >,
-    pub p_next: *const core::ffi::c_void,
-    pub p_std_vps: *const crate::External<
-        {
-            "StdVideoH265VideoParameterSet";
-            0
-        },
-    >,
-    pub p_std_sps: *const crate::External<
-        {
-            "StdVideoH265SequenceParameterSet";
-            0
-        },
-    >,
-    pub p_std_pps: *const crate::External<
-        {
-            "StdVideoH265PictureParameterSet";
-            0
-        },
-    >,
+pub struct VideoDecodeH265InlineSessionParametersInfoKHR {
+    s_type: crate::vk::StructureType,
+    p_next: *const core::ffi::c_void,
+    p_std_vps: *const crate::vk::StdVideoH265VideoParameterSet,
+    p_std_sps: *const crate::vk::StdVideoH265SequenceParameterSet,
+    p_std_pps: *const crate::vk::StdVideoH265PictureParameterSet,
 }
 #[repr(C)]
-pub struct VkVideoDecodeAV1InlineSessionParametersInfoKHR {
-    pub s_type: crate::External<
-        {
-            "VkStructureType";
-            0
-        },
-    >,
-    pub p_next: *const core::ffi::c_void,
-    pub p_std_sequence_header: *const crate::External<
-        {
-            "StdVideoAV1SequenceHeader";
-            0
-        },
-    >,
+pub struct VideoDecodeAV1InlineSessionParametersInfoKHR {
+    s_type: crate::vk::StructureType,
+    p_next: *const core::ffi::c_void,
+    p_std_sequence_header: *const crate::vk::StdVideoAV1SequenceHeader,
 }

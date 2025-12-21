@@ -2,164 +2,43 @@
 #![cfg_attr(rustfmt, rustfmt_skip)]
 //![Vulkan Manual Page](https://docs.vulkan.org/refpages/latest/refpages/source/VK_NV_ray_tracing_linear_swept_spheres.html) · Vulkan extension
 #[repr(C)]
-pub struct VkAccelerationStructureGeometryLinearSweptSpheresDataNV {
-    pub s_type: crate::External<
-        {
-            "VkStructureType";
-            0
-        },
-    >,
-    pub p_next: *const core::ffi::c_void,
-    pub vertex_format: crate::External<
-        {
-            "VkFormat";
-            0
-        },
-    >,
-    pub vertex_data: crate::External<
-        {
-            "VkDeviceOrHostAddressConstKHR";
-            0
-        },
-    >,
-    pub vertex_stride: crate::External<
-        {
-            "VkDeviceSize";
-            0
-        },
-    >,
-    pub radius_format: crate::External<
-        {
-            "VkFormat";
-            0
-        },
-    >,
-    pub radius_data: crate::External<
-        {
-            "VkDeviceOrHostAddressConstKHR";
-            0
-        },
-    >,
-    pub radius_stride: crate::External<
-        {
-            "VkDeviceSize";
-            0
-        },
-    >,
-    pub index_type: crate::External<
-        {
-            "VkIndexType";
-            0
-        },
-    >,
-    pub index_data: crate::External<
-        {
-            "VkDeviceOrHostAddressConstKHR";
-            0
-        },
-    >,
-    pub index_stride: crate::External<
-        {
-            "VkDeviceSize";
-            0
-        },
-    >,
-    pub indexing_mode: crate::External<
-        {
-            "VkRayTracingLssIndexingModeNV";
-            0
-        },
-    >,
-    pub end_caps_mode: crate::External<
-        {
-            "VkRayTracingLssPrimitiveEndCapsModeNV";
-            0
-        },
-    >,
+pub struct AccelerationStructureGeometryLinearSweptSpheresDataNV {
+    s_type: crate::vk::StructureType,
+    p_next: *const core::ffi::c_void,
+    vertex_format: crate::vk::Format,
+    vertex_data: crate::vk::DeviceOrHostAddressConstKHR,
+    vertex_stride: crate::vk::DeviceSize,
+    radius_format: crate::vk::Format,
+    radius_data: crate::vk::DeviceOrHostAddressConstKHR,
+    radius_stride: crate::vk::DeviceSize,
+    index_type: crate::vk::IndexType,
+    index_data: crate::vk::DeviceOrHostAddressConstKHR,
+    index_stride: crate::vk::DeviceSize,
+    indexing_mode: crate::vk::RayTracingLssIndexingModeNV,
+    end_caps_mode: crate::vk::RayTracingLssPrimitiveEndCapsModeNV,
 }
 #[repr(C)]
-pub struct VkAccelerationStructureGeometrySpheresDataNV {
-    pub s_type: crate::External<
-        {
-            "VkStructureType";
-            0
-        },
-    >,
-    pub p_next: *const core::ffi::c_void,
-    pub vertex_format: crate::External<
-        {
-            "VkFormat";
-            0
-        },
-    >,
-    pub vertex_data: crate::External<
-        {
-            "VkDeviceOrHostAddressConstKHR";
-            0
-        },
-    >,
-    pub vertex_stride: crate::External<
-        {
-            "VkDeviceSize";
-            0
-        },
-    >,
-    pub radius_format: crate::External<
-        {
-            "VkFormat";
-            0
-        },
-    >,
-    pub radius_data: crate::External<
-        {
-            "VkDeviceOrHostAddressConstKHR";
-            0
-        },
-    >,
-    pub radius_stride: crate::External<
-        {
-            "VkDeviceSize";
-            0
-        },
-    >,
-    pub index_type: crate::External<
-        {
-            "VkIndexType";
-            0
-        },
-    >,
-    pub index_data: crate::External<
-        {
-            "VkDeviceOrHostAddressConstKHR";
-            0
-        },
-    >,
-    pub index_stride: crate::External<
-        {
-            "VkDeviceSize";
-            0
-        },
-    >,
+pub struct AccelerationStructureGeometrySpheresDataNV {
+    s_type: crate::vk::StructureType,
+    p_next: *const core::ffi::c_void,
+    vertex_format: crate::vk::Format,
+    vertex_data: crate::vk::DeviceOrHostAddressConstKHR,
+    vertex_stride: crate::vk::DeviceSize,
+    radius_format: crate::vk::Format,
+    radius_data: crate::vk::DeviceOrHostAddressConstKHR,
+    radius_stride: crate::vk::DeviceSize,
+    index_type: crate::vk::IndexType,
+    index_data: crate::vk::DeviceOrHostAddressConstKHR,
+    index_stride: crate::vk::DeviceSize,
 }
 #[repr(C)]
-pub struct VkPhysicalDeviceRayTracingLinearSweptSpheresFeaturesNV {
-    pub s_type: crate::External<
-        {
-            "VkStructureType";
-            0
-        },
-    >,
-    pub p_next: *mut core::ffi::c_void,
-    pub spheres: crate::External<
-        {
-            "VkBool32";
-            0
-        },
-    >,
-    pub linear_swept_spheres: crate::External<
-        {
-            "VkBool32";
-            0
-        },
-    >,
+pub struct PhysicalDeviceRayTracingLinearSweptSpheresFeaturesNV {
+    s_type: crate::vk::StructureType,
+    p_next: *mut core::ffi::c_void,
+    spheres: crate::vk::Bool32,
+    linear_swept_spheres: crate::vk::Bool32,
 }
+#[repr(C)]
+pub struct RayTracingLssIndexingModeNV {}
+#[repr(C)]
+pub struct RayTracingLssPrimitiveEndCapsModeNV {}

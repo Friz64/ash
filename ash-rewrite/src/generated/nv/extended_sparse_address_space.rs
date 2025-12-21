@@ -2,46 +2,16 @@
 #![cfg_attr(rustfmt, rustfmt_skip)]
 //![Vulkan Manual Page](https://docs.vulkan.org/refpages/latest/refpages/source/VK_NV_extended_sparse_address_space.html) · Vulkan extension
 #[repr(C)]
-pub struct VkPhysicalDeviceExtendedSparseAddressSpaceFeaturesNV {
-    pub s_type: crate::External<
-        {
-            "VkStructureType";
-            0
-        },
-    >,
-    pub p_next: *mut core::ffi::c_void,
-    pub extended_sparse_address_space: crate::External<
-        {
-            "VkBool32";
-            0
-        },
-    >,
+pub struct PhysicalDeviceExtendedSparseAddressSpaceFeaturesNV {
+    s_type: crate::vk::StructureType,
+    p_next: *mut core::ffi::c_void,
+    extended_sparse_address_space: crate::vk::Bool32,
 }
 #[repr(C)]
-pub struct VkPhysicalDeviceExtendedSparseAddressSpacePropertiesNV {
-    pub s_type: crate::External<
-        {
-            "VkStructureType";
-            0
-        },
-    >,
-    pub p_next: *mut core::ffi::c_void,
-    pub extended_sparse_address_space_size: crate::External<
-        {
-            "VkDeviceSize";
-            0
-        },
-    >,
-    pub extended_sparse_image_usage_flags: crate::External<
-        {
-            "VkImageUsageFlags";
-            0
-        },
-    >,
-    pub extended_sparse_buffer_usage_flags: crate::External<
-        {
-            "VkBufferUsageFlags";
-            0
-        },
-    >,
+pub struct PhysicalDeviceExtendedSparseAddressSpacePropertiesNV {
+    s_type: crate::vk::StructureType,
+    p_next: *mut core::ffi::c_void,
+    extended_sparse_address_space_size: crate::vk::DeviceSize,
+    extended_sparse_image_usage_flags: crate::vk::ImageUsageFlags,
+    extended_sparse_buffer_usage_flags: crate::vk::BufferUsageFlags,
 }

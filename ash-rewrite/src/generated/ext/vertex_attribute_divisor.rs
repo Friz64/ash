@@ -2,15 +2,10 @@
 #![cfg_attr(rustfmt, rustfmt_skip)]
 //![Vulkan Manual Page](https://docs.vulkan.org/refpages/latest/refpages/source/VK_EXT_vertex_attribute_divisor.html) · Vulkan extension
 #[repr(C)]
-pub struct VkPhysicalDeviceVertexAttributeDivisorPropertiesEXT {
-    pub s_type: crate::External<
-        {
-            "VkStructureType";
-            0
-        },
-    >,
-    pub p_next: *mut core::ffi::c_void,
-    pub max_vertex_attrib_divisor: crate::External<
+pub struct PhysicalDeviceVertexAttributeDivisorPropertiesEXT {
+    s_type: crate::vk::StructureType,
+    p_next: *mut core::ffi::c_void,
+    max_vertex_attrib_divisor: crate::External<
         {
             "uint32_t";
             0

@@ -2,74 +2,39 @@
 #![cfg_attr(rustfmt, rustfmt_skip)]
 //![Vulkan Manual Page](https://docs.vulkan.org/refpages/latest/refpages/source/VK_HUAWEI_cluster_culling_shader.html) · Vulkan extension
 #[repr(C)]
-pub struct VkPhysicalDeviceClusterCullingShaderPropertiesHUAWEI {
-    pub s_type: crate::External<
-        {
-            "VkStructureType";
-            0
-        },
-    >,
-    pub p_next: *mut core::ffi::c_void,
-    pub max_work_group_count: [crate::External<
+pub struct PhysicalDeviceClusterCullingShaderPropertiesHUAWEI {
+    s_type: crate::vk::StructureType,
+    p_next: *mut core::ffi::c_void,
+    max_work_group_count: [crate::External<
         {
             "uint32_t";
             0
         },
     >; 1337],
-    pub max_work_group_size: [crate::External<
+    max_work_group_size: [crate::External<
         {
             "uint32_t";
             0
         },
     >; 1337],
-    pub max_output_cluster_count: crate::External<
+    max_output_cluster_count: crate::External<
         {
             "uint32_t";
             0
         },
     >,
-    pub indirect_buffer_offset_alignment: crate::External<
-        {
-            "VkDeviceSize";
-            0
-        },
-    >,
+    indirect_buffer_offset_alignment: crate::vk::DeviceSize,
 }
 #[repr(C)]
-pub struct VkPhysicalDeviceClusterCullingShaderFeaturesHUAWEI {
-    pub s_type: crate::External<
-        {
-            "VkStructureType";
-            0
-        },
-    >,
-    pub p_next: *mut core::ffi::c_void,
-    pub clusterculling_shader: crate::External<
-        {
-            "VkBool32";
-            0
-        },
-    >,
-    pub multiview_cluster_culling_shader: crate::External<
-        {
-            "VkBool32";
-            0
-        },
-    >,
+pub struct PhysicalDeviceClusterCullingShaderFeaturesHUAWEI {
+    s_type: crate::vk::StructureType,
+    p_next: *mut core::ffi::c_void,
+    clusterculling_shader: crate::vk::Bool32,
+    multiview_cluster_culling_shader: crate::vk::Bool32,
 }
 #[repr(C)]
-pub struct VkPhysicalDeviceClusterCullingShaderVrsFeaturesHUAWEI {
-    pub s_type: crate::External<
-        {
-            "VkStructureType";
-            0
-        },
-    >,
-    pub p_next: *mut core::ffi::c_void,
-    pub cluster_shading_rate: crate::External<
-        {
-            "VkBool32";
-            0
-        },
-    >,
+pub struct PhysicalDeviceClusterCullingShaderVrsFeaturesHUAWEI {
+    s_type: crate::vk::StructureType,
+    p_next: *mut core::ffi::c_void,
+    cluster_shading_rate: crate::vk::Bool32,
 }

@@ -2,79 +2,34 @@
 #![cfg_attr(rustfmt, rustfmt_skip)]
 //![Vulkan Manual Page](https://docs.vulkan.org/refpages/latest/refpages/source/VK_NV_cooperative_matrix2.html) · Vulkan extension
 #[repr(C)]
-pub struct VkPhysicalDeviceCooperativeMatrix2FeaturesNV {
-    pub s_type: crate::External<
-        {
-            "VkStructureType";
-            0
-        },
-    >,
-    pub p_next: *mut core::ffi::c_void,
-    pub cooperative_matrix_workgroup_scope: crate::External<
-        {
-            "VkBool32";
-            0
-        },
-    >,
-    pub cooperative_matrix_flexible_dimensions: crate::External<
-        {
-            "VkBool32";
-            0
-        },
-    >,
-    pub cooperative_matrix_reductions: crate::External<
-        {
-            "VkBool32";
-            0
-        },
-    >,
-    pub cooperative_matrix_conversions: crate::External<
-        {
-            "VkBool32";
-            0
-        },
-    >,
-    pub cooperative_matrix_per_element_operations: crate::External<
-        {
-            "VkBool32";
-            0
-        },
-    >,
-    pub cooperative_matrix_tensor_addressing: crate::External<
-        {
-            "VkBool32";
-            0
-        },
-    >,
-    pub cooperative_matrix_block_loads: crate::External<
-        {
-            "VkBool32";
-            0
-        },
-    >,
+pub struct PhysicalDeviceCooperativeMatrix2FeaturesNV {
+    s_type: crate::vk::StructureType,
+    p_next: *mut core::ffi::c_void,
+    cooperative_matrix_workgroup_scope: crate::vk::Bool32,
+    cooperative_matrix_flexible_dimensions: crate::vk::Bool32,
+    cooperative_matrix_reductions: crate::vk::Bool32,
+    cooperative_matrix_conversions: crate::vk::Bool32,
+    cooperative_matrix_per_element_operations: crate::vk::Bool32,
+    cooperative_matrix_tensor_addressing: crate::vk::Bool32,
+    cooperative_matrix_block_loads: crate::vk::Bool32,
 }
 #[repr(C)]
-pub struct VkPhysicalDeviceCooperativeMatrix2PropertiesNV {
-    pub s_type: crate::External<
-        {
-            "VkStructureType";
-            0
-        },
-    >,
-    pub p_next: *mut core::ffi::c_void,
-    pub cooperative_matrix_workgroup_scope_max_workgroup_size: crate::External<
+pub struct PhysicalDeviceCooperativeMatrix2PropertiesNV {
+    s_type: crate::vk::StructureType,
+    p_next: *mut core::ffi::c_void,
+    cooperative_matrix_workgroup_scope_max_workgroup_size: crate::External<
         {
             "uint32_t";
             0
         },
     >,
-    pub cooperative_matrix_flexible_dimensions_max_dimension: crate::External<
+    cooperative_matrix_flexible_dimensions_max_dimension: crate::External<
         {
             "uint32_t";
             0
         },
     >,
-    pub cooperative_matrix_workgroup_scope_reserved_shared_memory: crate::External<
+    cooperative_matrix_workgroup_scope_reserved_shared_memory: crate::External<
         {
             "uint32_t";
             0
@@ -82,69 +37,34 @@ pub struct VkPhysicalDeviceCooperativeMatrix2PropertiesNV {
     >,
 }
 #[repr(C)]
-pub struct VkCooperativeMatrixFlexibleDimensionsPropertiesNV {
-    pub s_type: crate::External<
-        {
-            "VkStructureType";
-            0
-        },
-    >,
-    pub p_next: *mut core::ffi::c_void,
-    pub m_granularity: crate::External<
+pub struct CooperativeMatrixFlexibleDimensionsPropertiesNV {
+    s_type: crate::vk::StructureType,
+    p_next: *mut core::ffi::c_void,
+    m_granularity: crate::External<
         {
             "uint32_t";
             0
         },
     >,
-    pub n_granularity: crate::External<
+    n_granularity: crate::External<
         {
             "uint32_t";
             0
         },
     >,
-    pub k_granularity: crate::External<
+    k_granularity: crate::External<
         {
             "uint32_t";
             0
         },
     >,
-    pub a_type: crate::External<
-        {
-            "VkComponentTypeKHR";
-            0
-        },
-    >,
-    pub b_type: crate::External<
-        {
-            "VkComponentTypeKHR";
-            0
-        },
-    >,
-    pub c_type: crate::External<
-        {
-            "VkComponentTypeKHR";
-            0
-        },
-    >,
-    pub result_type: crate::External<
-        {
-            "VkComponentTypeKHR";
-            0
-        },
-    >,
-    pub saturating_accumulation: crate::External<
-        {
-            "VkBool32";
-            0
-        },
-    >,
-    pub scope: crate::External<
-        {
-            "VkScopeKHR";
-            0
-        },
-    >,
-    pub workgroup_invocations: crate::External<
+    a_type: crate::vk::ComponentTypeKHR,
+    b_type: crate::vk::ComponentTypeKHR,
+    c_type: crate::vk::ComponentTypeKHR,
+    result_type: crate::vk::ComponentTypeKHR,
+    saturating_accumulation: crate::vk::Bool32,
+    scope: crate::vk::ScopeKHR,
+    workgroup_invocations: crate::External<
         {
             "uint32_t";
             0

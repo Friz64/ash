@@ -2,96 +2,31 @@
 #![cfg_attr(rustfmt, rustfmt_skip)]
 //![Vulkan Manual Page](https://docs.vulkan.org/refpages/latest/refpages/source/VK_EXT_fragment_density_map.html) · Vulkan extension
 #[repr(C)]
-pub struct VkPhysicalDeviceFragmentDensityMapFeaturesEXT {
-    pub s_type: crate::External<
-        {
-            "VkStructureType";
-            0
-        },
-    >,
-    pub p_next: *mut core::ffi::c_void,
-    pub fragment_density_map: crate::External<
-        {
-            "VkBool32";
-            0
-        },
-    >,
-    pub fragment_density_map_dynamic: crate::External<
-        {
-            "VkBool32";
-            0
-        },
-    >,
-    pub fragment_density_map_non_subsampled_images: crate::External<
-        {
-            "VkBool32";
-            0
-        },
-    >,
+pub struct PhysicalDeviceFragmentDensityMapFeaturesEXT {
+    s_type: crate::vk::StructureType,
+    p_next: *mut core::ffi::c_void,
+    fragment_density_map: crate::vk::Bool32,
+    fragment_density_map_dynamic: crate::vk::Bool32,
+    fragment_density_map_non_subsampled_images: crate::vk::Bool32,
 }
 #[repr(C)]
-pub struct VkPhysicalDeviceFragmentDensityMapPropertiesEXT {
-    pub s_type: crate::External<
-        {
-            "VkStructureType";
-            0
-        },
-    >,
-    pub p_next: *mut core::ffi::c_void,
-    pub min_fragment_density_texel_size: crate::External<
-        {
-            "VkExtent2D";
-            0
-        },
-    >,
-    pub max_fragment_density_texel_size: crate::External<
-        {
-            "VkExtent2D";
-            0
-        },
-    >,
-    pub fragment_density_invocations: crate::External<
-        {
-            "VkBool32";
-            0
-        },
-    >,
+pub struct PhysicalDeviceFragmentDensityMapPropertiesEXT {
+    s_type: crate::vk::StructureType,
+    p_next: *mut core::ffi::c_void,
+    min_fragment_density_texel_size: crate::vk::Extent2D,
+    max_fragment_density_texel_size: crate::vk::Extent2D,
+    fragment_density_invocations: crate::vk::Bool32,
 }
 #[repr(C)]
-pub struct VkRenderPassFragmentDensityMapCreateInfoEXT {
-    pub s_type: crate::External<
-        {
-            "VkStructureType";
-            0
-        },
-    >,
-    pub p_next: *const core::ffi::c_void,
-    pub fragment_density_map_attachment: crate::External<
-        {
-            "VkAttachmentReference";
-            0
-        },
-    >,
+pub struct RenderPassFragmentDensityMapCreateInfoEXT {
+    s_type: crate::vk::StructureType,
+    p_next: *const core::ffi::c_void,
+    fragment_density_map_attachment: crate::vk::AttachmentReference,
 }
 #[repr(C)]
-pub struct VkRenderingFragmentDensityMapAttachmentInfoEXT {
-    pub s_type: crate::External<
-        {
-            "VkStructureType";
-            0
-        },
-    >,
-    pub p_next: *const core::ffi::c_void,
-    pub image_view: crate::External<
-        {
-            "VkImageView";
-            0
-        },
-    >,
-    pub image_layout: crate::External<
-        {
-            "VkImageLayout";
-            0
-        },
-    >,
+pub struct RenderingFragmentDensityMapAttachmentInfoEXT {
+    s_type: crate::vk::StructureType,
+    p_next: *const core::ffi::c_void,
+    image_view: crate::vk::ImageView,
+    image_layout: crate::vk::ImageLayout,
 }

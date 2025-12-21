@@ -2,89 +2,29 @@
 #![cfg_attr(rustfmt, rustfmt_skip)]
 //![Vulkan Manual Page](https://docs.vulkan.org/refpages/latest/refpages/source/VK_NV_device_generated_commands_compute.html) · Vulkan extension
 #[repr(C)]
-pub struct VkComputePipelineIndirectBufferInfoNV {
-    pub s_type: crate::External<
-        {
-            "VkStructureType";
-            0
-        },
-    >,
-    pub p_next: *const core::ffi::c_void,
-    pub device_address: crate::External<
-        {
-            "VkDeviceAddress";
-            0
-        },
-    >,
-    pub size: crate::External<
-        {
-            "VkDeviceSize";
-            0
-        },
-    >,
-    pub pipeline_device_address_capture_replay: crate::External<
-        {
-            "VkDeviceAddress";
-            0
-        },
-    >,
+pub struct ComputePipelineIndirectBufferInfoNV {
+    s_type: crate::vk::StructureType,
+    p_next: *const core::ffi::c_void,
+    device_address: crate::vk::DeviceAddress,
+    size: crate::vk::DeviceSize,
+    pipeline_device_address_capture_replay: crate::vk::DeviceAddress,
 }
 #[repr(C)]
-pub struct VkPhysicalDeviceDeviceGeneratedCommandsComputeFeaturesNV {
-    pub s_type: crate::External<
-        {
-            "VkStructureType";
-            0
-        },
-    >,
-    pub p_next: *mut core::ffi::c_void,
-    pub device_generated_compute: crate::External<
-        {
-            "VkBool32";
-            0
-        },
-    >,
-    pub device_generated_compute_pipelines: crate::External<
-        {
-            "VkBool32";
-            0
-        },
-    >,
-    pub device_generated_compute_capture_replay: crate::External<
-        {
-            "VkBool32";
-            0
-        },
-    >,
+pub struct PhysicalDeviceDeviceGeneratedCommandsComputeFeaturesNV {
+    s_type: crate::vk::StructureType,
+    p_next: *mut core::ffi::c_void,
+    device_generated_compute: crate::vk::Bool32,
+    device_generated_compute_pipelines: crate::vk::Bool32,
+    device_generated_compute_capture_replay: crate::vk::Bool32,
 }
 #[repr(C)]
-pub struct VkPipelineIndirectDeviceAddressInfoNV {
-    pub s_type: crate::External<
-        {
-            "VkStructureType";
-            0
-        },
-    >,
-    pub p_next: *const core::ffi::c_void,
-    pub pipeline_bind_point: crate::External<
-        {
-            "VkPipelineBindPoint";
-            0
-        },
-    >,
-    pub pipeline: crate::External<
-        {
-            "VkPipeline";
-            0
-        },
-    >,
+pub struct PipelineIndirectDeviceAddressInfoNV {
+    s_type: crate::vk::StructureType,
+    p_next: *const core::ffi::c_void,
+    pipeline_bind_point: crate::vk::PipelineBindPoint,
+    pipeline: crate::vk::Pipeline,
 }
 #[repr(C)]
-pub struct VkBindPipelineIndirectCommandNV {
-    pub pipeline_address: crate::External<
-        {
-            "VkDeviceAddress";
-            0
-        },
-    >,
+pub struct BindPipelineIndirectCommandNV {
+    pipeline_address: crate::vk::DeviceAddress,
 }

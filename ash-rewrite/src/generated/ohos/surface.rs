@@ -2,24 +2,11 @@
 #![cfg_attr(rustfmt, rustfmt_skip)]
 //![Vulkan Manual Page](https://docs.vulkan.org/refpages/latest/refpages/source/VK_OHOS_surface.html) · Vulkan extension
 #[repr(C)]
-pub struct VkSurfaceCreateInfoOHOS {
-    pub s_type: crate::External<
-        {
-            "VkStructureType";
-            0
-        },
-    >,
-    pub p_next: *const core::ffi::c_void,
-    pub flags: crate::External<
-        {
-            "VkSurfaceCreateFlagsOHOS";
-            0
-        },
-    >,
-    pub window: *mut crate::External<
-        {
-            "OHNativeWindow";
-            0
-        },
-    >,
+pub struct SurfaceCreateInfoOHOS {
+    s_type: crate::vk::StructureType,
+    p_next: *const core::ffi::c_void,
+    flags: crate::vk::SurfaceCreateFlagsOHOS,
+    window: *mut crate::vk::OHNativeWindow,
 }
+#[repr(C)]
+pub struct OHNativeWindow {}

@@ -2,65 +2,35 @@
 #![cfg_attr(rustfmt, rustfmt_skip)]
 //![Vulkan Manual Page](https://docs.vulkan.org/refpages/latest/refpages/source/VK_KHR_pipeline_executable_properties.html) · Vulkan extension
 #[repr(C)]
-pub struct VkPhysicalDevicePipelineExecutablePropertiesFeaturesKHR {
-    pub s_type: crate::External<
-        {
-            "VkStructureType";
-            0
-        },
-    >,
-    pub p_next: *mut core::ffi::c_void,
-    pub pipeline_executable_info: crate::External<
-        {
-            "VkBool32";
-            0
-        },
-    >,
+pub struct PhysicalDevicePipelineExecutablePropertiesFeaturesKHR {
+    s_type: crate::vk::StructureType,
+    p_next: *mut core::ffi::c_void,
+    pipeline_executable_info: crate::vk::Bool32,
 }
 #[repr(C)]
-pub struct VkPipelineInfoKHR {
-    pub s_type: crate::External<
-        {
-            "VkStructureType";
-            0
-        },
-    >,
-    pub p_next: *const core::ffi::c_void,
-    pub pipeline: crate::External<
-        {
-            "VkPipeline";
-            0
-        },
-    >,
+pub struct PipelineInfoKHR {
+    s_type: crate::vk::StructureType,
+    p_next: *const core::ffi::c_void,
+    pipeline: crate::vk::Pipeline,
 }
 #[repr(C)]
-pub struct VkPipelineExecutablePropertiesKHR {
-    pub s_type: crate::External<
-        {
-            "VkStructureType";
-            0
-        },
-    >,
-    pub p_next: *mut core::ffi::c_void,
-    pub stages: crate::External<
-        {
-            "VkShaderStageFlags";
-            0
-        },
-    >,
-    pub name: [crate::External<
+pub struct PipelineExecutablePropertiesKHR {
+    s_type: crate::vk::StructureType,
+    p_next: *mut core::ffi::c_void,
+    stages: crate::vk::ShaderStageFlags,
+    name: [crate::External<
         {
             "char";
             0
         },
     >; 1337],
-    pub description: [crate::External<
+    description: [crate::External<
         {
             "char";
             0
         },
     >; 1337],
-    pub subgroup_size: crate::External<
+    subgroup_size: crate::External<
         {
             "uint32_t";
             0
@@ -68,21 +38,11 @@ pub struct VkPipelineExecutablePropertiesKHR {
     >,
 }
 #[repr(C)]
-pub struct VkPipelineExecutableInfoKHR {
-    pub s_type: crate::External<
-        {
-            "VkStructureType";
-            0
-        },
-    >,
-    pub p_next: *const core::ffi::c_void,
-    pub pipeline: crate::External<
-        {
-            "VkPipeline";
-            0
-        },
-    >,
-    pub executable_index: crate::External<
+pub struct PipelineExecutableInfoKHR {
+    s_type: crate::vk::StructureType,
+    p_next: *const core::ffi::c_void,
+    pipeline: crate::vk::Pipeline,
+    executable_index: crate::External<
         {
             "uint32_t";
             0
@@ -90,71 +50,48 @@ pub struct VkPipelineExecutableInfoKHR {
     >,
 }
 #[repr(C)]
-pub struct VkPipelineExecutableStatisticKHR {
-    pub s_type: crate::External<
-        {
-            "VkStructureType";
-            0
-        },
-    >,
-    pub p_next: *mut core::ffi::c_void,
-    pub name: [crate::External<
+pub struct PipelineExecutableStatisticKHR {
+    s_type: crate::vk::StructureType,
+    p_next: *mut core::ffi::c_void,
+    name: [crate::External<
         {
             "char";
             0
         },
     >; 1337],
-    pub description: [crate::External<
+    description: [crate::External<
         {
             "char";
             0
         },
     >; 1337],
-    pub format: crate::External<
-        {
-            "VkPipelineExecutableStatisticFormatKHR";
-            0
-        },
-    >,
-    pub value: crate::External<
-        {
-            "VkPipelineExecutableStatisticValueKHR";
-            0
-        },
-    >,
+    format: crate::vk::PipelineExecutableStatisticFormatKHR,
+    value: crate::vk::PipelineExecutableStatisticValueKHR,
 }
 #[repr(C)]
-pub struct VkPipelineExecutableInternalRepresentationKHR {
-    pub s_type: crate::External<
-        {
-            "VkStructureType";
-            0
-        },
-    >,
-    pub p_next: *mut core::ffi::c_void,
-    pub name: [crate::External<
+pub struct PipelineExecutableInternalRepresentationKHR {
+    s_type: crate::vk::StructureType,
+    p_next: *mut core::ffi::c_void,
+    name: [crate::External<
         {
             "char";
             0
         },
     >; 1337],
-    pub description: [crate::External<
+    description: [crate::External<
         {
             "char";
             0
         },
     >; 1337],
-    pub is_text: crate::External<
-        {
-            "VkBool32";
-            0
-        },
-    >,
-    pub data_size: crate::External<
+    is_text: crate::vk::Bool32,
+    data_size: crate::External<
         {
             "size_t";
             0
         },
     >,
-    pub p_data: *mut core::ffi::c_void,
+    p_data: *mut core::ffi::c_void,
 }
+#[repr(C)]
+pub struct PipelineExecutableStatisticFormatKHR {}

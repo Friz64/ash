@@ -2,92 +2,34 @@
 #![cfg_attr(rustfmt, rustfmt_skip)]
 //![Vulkan Manual Page](https://docs.vulkan.org/refpages/latest/refpages/source/VK_EXT_blend_operation_advanced.html) · Vulkan extension
 #[repr(C)]
-pub struct VkPhysicalDeviceBlendOperationAdvancedFeaturesEXT {
-    pub s_type: crate::External<
-        {
-            "VkStructureType";
-            0
-        },
-    >,
-    pub p_next: *mut core::ffi::c_void,
-    pub advanced_blend_coherent_operations: crate::External<
-        {
-            "VkBool32";
-            0
-        },
-    >,
+pub struct PhysicalDeviceBlendOperationAdvancedFeaturesEXT {
+    s_type: crate::vk::StructureType,
+    p_next: *mut core::ffi::c_void,
+    advanced_blend_coherent_operations: crate::vk::Bool32,
 }
 #[repr(C)]
-pub struct VkPhysicalDeviceBlendOperationAdvancedPropertiesEXT {
-    pub s_type: crate::External<
-        {
-            "VkStructureType";
-            0
-        },
-    >,
-    pub p_next: *mut core::ffi::c_void,
-    pub advanced_blend_max_color_attachments: crate::External<
+pub struct PhysicalDeviceBlendOperationAdvancedPropertiesEXT {
+    s_type: crate::vk::StructureType,
+    p_next: *mut core::ffi::c_void,
+    advanced_blend_max_color_attachments: crate::External<
         {
             "uint32_t";
             0
         },
     >,
-    pub advanced_blend_independent_blend: crate::External<
-        {
-            "VkBool32";
-            0
-        },
-    >,
-    pub advanced_blend_non_premultiplied_src_color: crate::External<
-        {
-            "VkBool32";
-            0
-        },
-    >,
-    pub advanced_blend_non_premultiplied_dst_color: crate::External<
-        {
-            "VkBool32";
-            0
-        },
-    >,
-    pub advanced_blend_correlated_overlap: crate::External<
-        {
-            "VkBool32";
-            0
-        },
-    >,
-    pub advanced_blend_all_operations: crate::External<
-        {
-            "VkBool32";
-            0
-        },
-    >,
+    advanced_blend_independent_blend: crate::vk::Bool32,
+    advanced_blend_non_premultiplied_src_color: crate::vk::Bool32,
+    advanced_blend_non_premultiplied_dst_color: crate::vk::Bool32,
+    advanced_blend_correlated_overlap: crate::vk::Bool32,
+    advanced_blend_all_operations: crate::vk::Bool32,
 }
 #[repr(C)]
-pub struct VkPipelineColorBlendAdvancedStateCreateInfoEXT {
-    pub s_type: crate::External<
-        {
-            "VkStructureType";
-            0
-        },
-    >,
-    pub p_next: *const core::ffi::c_void,
-    pub src_premultiplied: crate::External<
-        {
-            "VkBool32";
-            0
-        },
-    >,
-    pub dst_premultiplied: crate::External<
-        {
-            "VkBool32";
-            0
-        },
-    >,
-    pub blend_overlap: crate::External<
-        {
-            "VkBlendOverlapEXT";
-            0
-        },
-    >,
+pub struct PipelineColorBlendAdvancedStateCreateInfoEXT {
+    s_type: crate::vk::StructureType,
+    p_next: *const core::ffi::c_void,
+    src_premultiplied: crate::vk::Bool32,
+    dst_premultiplied: crate::vk::Bool32,
+    blend_overlap: crate::vk::BlendOverlapEXT,
 }
+#[repr(C)]
+pub struct BlendOverlapEXT {}

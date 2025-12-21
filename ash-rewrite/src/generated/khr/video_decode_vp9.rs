@@ -2,87 +2,47 @@
 #![cfg_attr(rustfmt, rustfmt_skip)]
 //![Vulkan Manual Page](https://docs.vulkan.org/refpages/latest/refpages/source/VK_KHR_video_decode_vp9.html) · Vulkan extension
 #[repr(C)]
-pub struct VkPhysicalDeviceVideoDecodeVP9FeaturesKHR {
-    pub s_type: crate::External<
-        {
-            "VkStructureType";
-            0
-        },
-    >,
-    pub p_next: *mut core::ffi::c_void,
-    pub video_decode_vp9: crate::External<
-        {
-            "VkBool32";
-            0
-        },
-    >,
+pub struct PhysicalDeviceVideoDecodeVP9FeaturesKHR {
+    s_type: crate::vk::StructureType,
+    p_next: *mut core::ffi::c_void,
+    video_decode_vp9: crate::vk::Bool32,
 }
 #[repr(C)]
-pub struct VkVideoDecodeVP9ProfileInfoKHR {
-    pub s_type: crate::External<
-        {
-            "VkStructureType";
-            0
-        },
-    >,
-    pub p_next: *const core::ffi::c_void,
-    pub std_profile: crate::External<
-        {
-            "StdVideoVP9Profile";
-            0
-        },
-    >,
+pub struct VideoDecodeVP9ProfileInfoKHR {
+    s_type: crate::vk::StructureType,
+    p_next: *const core::ffi::c_void,
+    std_profile: crate::vk::StdVideoVP9Profile,
 }
 #[repr(C)]
-pub struct VkVideoDecodeVP9CapabilitiesKHR {
-    pub s_type: crate::External<
-        {
-            "VkStructureType";
-            0
-        },
-    >,
-    pub p_next: *mut core::ffi::c_void,
-    pub max_level: crate::External<
-        {
-            "StdVideoVP9Level";
-            0
-        },
-    >,
+pub struct VideoDecodeVP9CapabilitiesKHR {
+    s_type: crate::vk::StructureType,
+    p_next: *mut core::ffi::c_void,
+    max_level: crate::vk::StdVideoVP9Level,
 }
 #[repr(C)]
-pub struct VkVideoDecodeVP9PictureInfoKHR {
-    pub s_type: crate::External<
-        {
-            "VkStructureType";
-            0
-        },
-    >,
-    pub p_next: *const core::ffi::c_void,
-    pub p_std_picture_info: *const crate::External<
-        {
-            "StdVideoDecodeVP9PictureInfo";
-            0
-        },
-    >,
-    pub reference_name_slot_indices: [crate::External<
+pub struct VideoDecodeVP9PictureInfoKHR {
+    s_type: crate::vk::StructureType,
+    p_next: *const core::ffi::c_void,
+    p_std_picture_info: *const crate::vk::StdVideoDecodeVP9PictureInfo,
+    reference_name_slot_indices: [crate::External<
         {
             "int32_t";
             0
         },
     >; 1337],
-    pub uncompressed_header_offset: crate::External<
+    uncompressed_header_offset: crate::External<
         {
             "uint32_t";
             0
         },
     >,
-    pub compressed_header_offset: crate::External<
+    compressed_header_offset: crate::External<
         {
             "uint32_t";
             0
         },
     >,
-    pub tiles_offset: crate::External<
+    tiles_offset: crate::External<
         {
             "uint32_t";
             0

@@ -2,113 +2,58 @@
 #![cfg_attr(rustfmt, rustfmt_skip)]
 //![Vulkan Manual Page](https://docs.vulkan.org/refpages/latest/refpages/source/VK_EXT_transform_feedback.html) · Vulkan extension
 #[repr(C)]
-pub struct VkPhysicalDeviceTransformFeedbackFeaturesEXT {
-    pub s_type: crate::External<
-        {
-            "VkStructureType";
-            0
-        },
-    >,
-    pub p_next: *mut core::ffi::c_void,
-    pub transform_feedback: crate::External<
-        {
-            "VkBool32";
-            0
-        },
-    >,
-    pub geometry_streams: crate::External<
-        {
-            "VkBool32";
-            0
-        },
-    >,
+pub struct PhysicalDeviceTransformFeedbackFeaturesEXT {
+    s_type: crate::vk::StructureType,
+    p_next: *mut core::ffi::c_void,
+    transform_feedback: crate::vk::Bool32,
+    geometry_streams: crate::vk::Bool32,
 }
 #[repr(C)]
-pub struct VkPhysicalDeviceTransformFeedbackPropertiesEXT {
-    pub s_type: crate::External<
-        {
-            "VkStructureType";
-            0
-        },
-    >,
-    pub p_next: *mut core::ffi::c_void,
-    pub max_transform_feedback_streams: crate::External<
+pub struct PhysicalDeviceTransformFeedbackPropertiesEXT {
+    s_type: crate::vk::StructureType,
+    p_next: *mut core::ffi::c_void,
+    max_transform_feedback_streams: crate::External<
         {
             "uint32_t";
             0
         },
     >,
-    pub max_transform_feedback_buffers: crate::External<
+    max_transform_feedback_buffers: crate::External<
         {
             "uint32_t";
             0
         },
     >,
-    pub max_transform_feedback_buffer_size: crate::External<
-        {
-            "VkDeviceSize";
-            0
-        },
-    >,
-    pub max_transform_feedback_stream_data_size: crate::External<
+    max_transform_feedback_buffer_size: crate::vk::DeviceSize,
+    max_transform_feedback_stream_data_size: crate::External<
         {
             "uint32_t";
             0
         },
     >,
-    pub max_transform_feedback_buffer_data_size: crate::External<
+    max_transform_feedback_buffer_data_size: crate::External<
         {
             "uint32_t";
             0
         },
     >,
-    pub max_transform_feedback_buffer_data_stride: crate::External<
+    max_transform_feedback_buffer_data_stride: crate::External<
         {
             "uint32_t";
             0
         },
     >,
-    pub transform_feedback_queries: crate::External<
-        {
-            "VkBool32";
-            0
-        },
-    >,
-    pub transform_feedback_streams_lines_triangles: crate::External<
-        {
-            "VkBool32";
-            0
-        },
-    >,
-    pub transform_feedback_rasterization_stream_select: crate::External<
-        {
-            "VkBool32";
-            0
-        },
-    >,
-    pub transform_feedback_draw: crate::External<
-        {
-            "VkBool32";
-            0
-        },
-    >,
+    transform_feedback_queries: crate::vk::Bool32,
+    transform_feedback_streams_lines_triangles: crate::vk::Bool32,
+    transform_feedback_rasterization_stream_select: crate::vk::Bool32,
+    transform_feedback_draw: crate::vk::Bool32,
 }
 #[repr(C)]
-pub struct VkPipelineRasterizationStateStreamCreateInfoEXT {
-    pub s_type: crate::External<
-        {
-            "VkStructureType";
-            0
-        },
-    >,
-    pub p_next: *const core::ffi::c_void,
-    pub flags: crate::External<
-        {
-            "VkPipelineRasterizationStateStreamCreateFlagsEXT";
-            0
-        },
-    >,
-    pub rasterization_stream: crate::External<
+pub struct PipelineRasterizationStateStreamCreateInfoEXT {
+    s_type: crate::vk::StructureType,
+    p_next: *const core::ffi::c_void,
+    flags: crate::vk::PipelineRasterizationStateStreamCreateFlagsEXT,
+    rasterization_stream: crate::External<
         {
             "uint32_t";
             0

@@ -2,35 +2,10 @@
 #![cfg_attr(rustfmt, rustfmt_skip)]
 //![Vulkan Manual Page](https://docs.vulkan.org/refpages/latest/refpages/source/VK_NV_memory_decompression.html) · Vulkan extension
 #[repr(C)]
-pub struct VkDecompressMemoryRegionNV {
-    pub src_address: crate::External<
-        {
-            "VkDeviceAddress";
-            0
-        },
-    >,
-    pub dst_address: crate::External<
-        {
-            "VkDeviceAddress";
-            0
-        },
-    >,
-    pub compressed_size: crate::External<
-        {
-            "VkDeviceSize";
-            0
-        },
-    >,
-    pub decompressed_size: crate::External<
-        {
-            "VkDeviceSize";
-            0
-        },
-    >,
-    pub decompression_method: crate::External<
-        {
-            "VkMemoryDecompressionMethodFlagsNV";
-            0
-        },
-    >,
+pub struct DecompressMemoryRegionNV {
+    src_address: crate::vk::DeviceAddress,
+    dst_address: crate::vk::DeviceAddress,
+    compressed_size: crate::vk::DeviceSize,
+    decompressed_size: crate::vk::DeviceSize,
+    decompression_method: crate::vk::MemoryDecompressionMethodFlagsNV,
 }

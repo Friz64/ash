@@ -2,31 +2,16 @@
 #![cfg_attr(rustfmt, rustfmt_skip)]
 //![Vulkan Manual Page](https://docs.vulkan.org/refpages/latest/refpages/source/VK_MESA_image_alignment_control.html) · Vulkan extension
 #[repr(C)]
-pub struct VkPhysicalDeviceImageAlignmentControlFeaturesMESA {
-    pub s_type: crate::External<
-        {
-            "VkStructureType";
-            0
-        },
-    >,
-    pub p_next: *mut core::ffi::c_void,
-    pub image_alignment_control: crate::External<
-        {
-            "VkBool32";
-            0
-        },
-    >,
+pub struct PhysicalDeviceImageAlignmentControlFeaturesMESA {
+    s_type: crate::vk::StructureType,
+    p_next: *mut core::ffi::c_void,
+    image_alignment_control: crate::vk::Bool32,
 }
 #[repr(C)]
-pub struct VkPhysicalDeviceImageAlignmentControlPropertiesMESA {
-    pub s_type: crate::External<
-        {
-            "VkStructureType";
-            0
-        },
-    >,
-    pub p_next: *mut core::ffi::c_void,
-    pub supported_image_alignment_mask: crate::External<
+pub struct PhysicalDeviceImageAlignmentControlPropertiesMESA {
+    s_type: crate::vk::StructureType,
+    p_next: *mut core::ffi::c_void,
+    supported_image_alignment_mask: crate::External<
         {
             "uint32_t";
             0
@@ -34,15 +19,10 @@ pub struct VkPhysicalDeviceImageAlignmentControlPropertiesMESA {
     >,
 }
 #[repr(C)]
-pub struct VkImageAlignmentControlCreateInfoMESA {
-    pub s_type: crate::External<
-        {
-            "VkStructureType";
-            0
-        },
-    >,
-    pub p_next: *const core::ffi::c_void,
-    pub maximum_requested_alignment: crate::External<
+pub struct ImageAlignmentControlCreateInfoMESA {
+    s_type: crate::vk::StructureType,
+    p_next: *const core::ffi::c_void,
+    maximum_requested_alignment: crate::External<
         {
             "uint32_t";
             0

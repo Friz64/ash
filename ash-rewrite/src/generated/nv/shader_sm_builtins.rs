@@ -2,21 +2,16 @@
 #![cfg_attr(rustfmt, rustfmt_skip)]
 //![Vulkan Manual Page](https://docs.vulkan.org/refpages/latest/refpages/source/VK_NV_shader_sm_builtins.html) · Vulkan extension
 #[repr(C)]
-pub struct VkPhysicalDeviceShaderSMBuiltinsPropertiesNV {
-    pub s_type: crate::External<
-        {
-            "VkStructureType";
-            0
-        },
-    >,
-    pub p_next: *mut core::ffi::c_void,
-    pub shader_sm_count: crate::External<
+pub struct PhysicalDeviceShaderSMBuiltinsPropertiesNV {
+    s_type: crate::vk::StructureType,
+    p_next: *mut core::ffi::c_void,
+    shader_sm_count: crate::External<
         {
             "uint32_t";
             0
         },
     >,
-    pub shader_warps_per_sm: crate::External<
+    shader_warps_per_sm: crate::External<
         {
             "uint32_t";
             0
@@ -24,18 +19,8 @@ pub struct VkPhysicalDeviceShaderSMBuiltinsPropertiesNV {
     >,
 }
 #[repr(C)]
-pub struct VkPhysicalDeviceShaderSMBuiltinsFeaturesNV {
-    pub s_type: crate::External<
-        {
-            "VkStructureType";
-            0
-        },
-    >,
-    pub p_next: *mut core::ffi::c_void,
-    pub shader_sm_builtins: crate::External<
-        {
-            "VkBool32";
-            0
-        },
-    >,
+pub struct PhysicalDeviceShaderSMBuiltinsFeaturesNV {
+    s_type: crate::vk::StructureType,
+    p_next: *mut core::ffi::c_void,
+    shader_sm_builtins: crate::vk::Bool32,
 }

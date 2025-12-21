@@ -2,31 +2,16 @@
 #![cfg_attr(rustfmt, rustfmt_skip)]
 //![Vulkan Manual Page](https://docs.vulkan.org/refpages/latest/refpages/source/VK_NV_displacement_micromap.html) · Vulkan extension
 #[repr(C)]
-pub struct VkPhysicalDeviceDisplacementMicromapFeaturesNV {
-    pub s_type: crate::External<
-        {
-            "VkStructureType";
-            0
-        },
-    >,
-    pub p_next: *mut core::ffi::c_void,
-    pub displacement_micromap: crate::External<
-        {
-            "VkBool32";
-            0
-        },
-    >,
+pub struct PhysicalDeviceDisplacementMicromapFeaturesNV {
+    s_type: crate::vk::StructureType,
+    p_next: *mut core::ffi::c_void,
+    displacement_micromap: crate::vk::Bool32,
 }
 #[repr(C)]
-pub struct VkPhysicalDeviceDisplacementMicromapPropertiesNV {
-    pub s_type: crate::External<
-        {
-            "VkStructureType";
-            0
-        },
-    >,
-    pub p_next: *mut core::ffi::c_void,
-    pub max_displacement_micromap_subdivision_level: crate::External<
+pub struct PhysicalDeviceDisplacementMicromapPropertiesNV {
+    s_type: crate::vk::StructureType,
+    p_next: *mut core::ffi::c_void,
+    max_displacement_micromap_subdivision_level: crate::External<
         {
             "uint32_t";
             0
@@ -34,108 +19,35 @@ pub struct VkPhysicalDeviceDisplacementMicromapPropertiesNV {
     >,
 }
 #[repr(C)]
-pub struct VkAccelerationStructureTrianglesDisplacementMicromapNV {
-    pub s_type: crate::External<
-        {
-            "VkStructureType";
-            0
-        },
-    >,
-    pub p_next: *mut core::ffi::c_void,
-    pub displacement_bias_and_scale_format: crate::External<
-        {
-            "VkFormat";
-            0
-        },
-    >,
-    pub displacement_vector_format: crate::External<
-        {
-            "VkFormat";
-            0
-        },
-    >,
-    pub displacement_bias_and_scale_buffer: crate::External<
-        {
-            "VkDeviceOrHostAddressConstKHR";
-            0
-        },
-    >,
-    pub displacement_bias_and_scale_stride: crate::External<
-        {
-            "VkDeviceSize";
-            0
-        },
-    >,
-    pub displacement_vector_buffer: crate::External<
-        {
-            "VkDeviceOrHostAddressConstKHR";
-            0
-        },
-    >,
-    pub displacement_vector_stride: crate::External<
-        {
-            "VkDeviceSize";
-            0
-        },
-    >,
-    pub displaced_micromap_primitive_flags: crate::External<
-        {
-            "VkDeviceOrHostAddressConstKHR";
-            0
-        },
-    >,
-    pub displaced_micromap_primitive_flags_stride: crate::External<
-        {
-            "VkDeviceSize";
-            0
-        },
-    >,
-    pub index_type: crate::External<
-        {
-            "VkIndexType";
-            0
-        },
-    >,
-    pub index_buffer: crate::External<
-        {
-            "VkDeviceOrHostAddressConstKHR";
-            0
-        },
-    >,
-    pub index_stride: crate::External<
-        {
-            "VkDeviceSize";
-            0
-        },
-    >,
-    pub base_triangle: crate::External<
+pub struct AccelerationStructureTrianglesDisplacementMicromapNV {
+    s_type: crate::vk::StructureType,
+    p_next: *mut core::ffi::c_void,
+    displacement_bias_and_scale_format: crate::vk::Format,
+    displacement_vector_format: crate::vk::Format,
+    displacement_bias_and_scale_buffer: crate::vk::DeviceOrHostAddressConstKHR,
+    displacement_bias_and_scale_stride: crate::vk::DeviceSize,
+    displacement_vector_buffer: crate::vk::DeviceOrHostAddressConstKHR,
+    displacement_vector_stride: crate::vk::DeviceSize,
+    displaced_micromap_primitive_flags: crate::vk::DeviceOrHostAddressConstKHR,
+    displaced_micromap_primitive_flags_stride: crate::vk::DeviceSize,
+    index_type: crate::vk::IndexType,
+    index_buffer: crate::vk::DeviceOrHostAddressConstKHR,
+    index_stride: crate::vk::DeviceSize,
+    base_triangle: crate::External<
         {
             "uint32_t";
             0
         },
     >,
-    pub usage_counts_count: crate::External<
+    usage_counts_count: crate::External<
         {
             "uint32_t";
             0
         },
     >,
-    pub p_usage_counts: *const crate::External<
-        {
-            "VkMicromapUsageEXT";
-            0
-        },
-    >,
-    pub pp_usage_counts: *const *const crate::External<
-        {
-            "VkMicromapUsageEXT";
-            0
-        },
-    >,
-    pub micromap: crate::External<
-        {
-            "VkMicromapEXT";
-            0
-        },
-    >,
+    p_usage_counts: *const crate::vk::MicromapUsageEXT,
+    pp_usage_counts: *const *const crate::vk::MicromapUsageEXT,
+    micromap: crate::vk::MicromapEXT,
 }
+#[repr(C)]
+pub struct DisplacementMicromapFormatNV {}

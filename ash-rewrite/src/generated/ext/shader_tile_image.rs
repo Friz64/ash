@@ -2,58 +2,18 @@
 #![cfg_attr(rustfmt, rustfmt_skip)]
 //![Vulkan Manual Page](https://docs.vulkan.org/refpages/latest/refpages/source/VK_EXT_shader_tile_image.html) · Vulkan extension
 #[repr(C)]
-pub struct VkPhysicalDeviceShaderTileImageFeaturesEXT {
-    pub s_type: crate::External<
-        {
-            "VkStructureType";
-            0
-        },
-    >,
-    pub p_next: *mut core::ffi::c_void,
-    pub shader_tile_image_color_read_access: crate::External<
-        {
-            "VkBool32";
-            0
-        },
-    >,
-    pub shader_tile_image_depth_read_access: crate::External<
-        {
-            "VkBool32";
-            0
-        },
-    >,
-    pub shader_tile_image_stencil_read_access: crate::External<
-        {
-            "VkBool32";
-            0
-        },
-    >,
+pub struct PhysicalDeviceShaderTileImageFeaturesEXT {
+    s_type: crate::vk::StructureType,
+    p_next: *mut core::ffi::c_void,
+    shader_tile_image_color_read_access: crate::vk::Bool32,
+    shader_tile_image_depth_read_access: crate::vk::Bool32,
+    shader_tile_image_stencil_read_access: crate::vk::Bool32,
 }
 #[repr(C)]
-pub struct VkPhysicalDeviceShaderTileImagePropertiesEXT {
-    pub s_type: crate::External<
-        {
-            "VkStructureType";
-            0
-        },
-    >,
-    pub p_next: *mut core::ffi::c_void,
-    pub shader_tile_image_coherent_read_accelerated: crate::External<
-        {
-            "VkBool32";
-            0
-        },
-    >,
-    pub shader_tile_image_read_sample_from_pixel_rate_invocation: crate::External<
-        {
-            "VkBool32";
-            0
-        },
-    >,
-    pub shader_tile_image_read_from_helper_invocation: crate::External<
-        {
-            "VkBool32";
-            0
-        },
-    >,
+pub struct PhysicalDeviceShaderTileImagePropertiesEXT {
+    s_type: crate::vk::StructureType,
+    p_next: *mut core::ffi::c_void,
+    shader_tile_image_coherent_read_accelerated: crate::vk::Bool32,
+    shader_tile_image_read_sample_from_pixel_rate_invocation: crate::vk::Bool32,
+    shader_tile_image_read_from_helper_invocation: crate::vk::Bool32,
 }

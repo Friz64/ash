@@ -2,77 +2,47 @@
 #![cfg_attr(rustfmt, rustfmt_skip)]
 //![Vulkan Manual Page](https://docs.vulkan.org/refpages/latest/refpages/source/VK_EXT_frame_boundary.html) · Vulkan extension
 #[repr(C)]
-pub struct VkFrameBoundaryEXT {
-    pub s_type: crate::External<
-        {
-            "VkStructureType";
-            0
-        },
-    >,
-    pub p_next: *const core::ffi::c_void,
-    pub flags: crate::External<
-        {
-            "VkFrameBoundaryFlagsEXT";
-            0
-        },
-    >,
-    pub frame_id: crate::External<
+pub struct FrameBoundaryEXT {
+    s_type: crate::vk::StructureType,
+    p_next: *const core::ffi::c_void,
+    flags: crate::vk::FrameBoundaryFlagsEXT,
+    frame_id: crate::External<
         {
             "uint64_t";
             0
         },
     >,
-    pub image_count: crate::External<
+    image_count: crate::External<
         {
             "uint32_t";
             0
         },
     >,
-    pub p_images: *const crate::External<
-        {
-            "VkImage";
-            0
-        },
-    >,
-    pub buffer_count: crate::External<
+    p_images: *const crate::vk::Image,
+    buffer_count: crate::External<
         {
             "uint32_t";
             0
         },
     >,
-    pub p_buffers: *const crate::External<
-        {
-            "VkBuffer";
-            0
-        },
-    >,
-    pub tag_name: crate::External<
+    p_buffers: *const crate::vk::Buffer,
+    tag_name: crate::External<
         {
             "uint64_t";
             0
         },
     >,
-    pub tag_size: crate::External<
+    tag_size: crate::External<
         {
             "size_t";
             0
         },
     >,
-    pub p_tag: *const core::ffi::c_void,
+    p_tag: *const core::ffi::c_void,
 }
 #[repr(C)]
-pub struct VkPhysicalDeviceFrameBoundaryFeaturesEXT {
-    pub s_type: crate::External<
-        {
-            "VkStructureType";
-            0
-        },
-    >,
-    pub p_next: *mut core::ffi::c_void,
-    pub frame_boundary: crate::External<
-        {
-            "VkBool32";
-            0
-        },
-    >,
+pub struct PhysicalDeviceFrameBoundaryFeaturesEXT {
+    s_type: crate::vk::StructureType,
+    p_next: *mut core::ffi::c_void,
+    frame_boundary: crate::vk::Bool32,
 }

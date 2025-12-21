@@ -3,73 +3,73 @@
 //!Items provided by `vulkan_video_codec_h264std`
 #[repr(C)]
 pub struct StdVideoH264SpsVuiFlags {
-    pub aspect_ratio_info_present_flag: crate::External<
+    aspect_ratio_info_present_flag: crate::External<
         {
             "uint32_t";
             0
         },
     >,
-    pub overscan_info_present_flag: crate::External<
+    overscan_info_present_flag: crate::External<
         {
             "uint32_t";
             0
         },
     >,
-    pub overscan_appropriate_flag: crate::External<
+    overscan_appropriate_flag: crate::External<
         {
             "uint32_t";
             0
         },
     >,
-    pub video_signal_type_present_flag: crate::External<
+    video_signal_type_present_flag: crate::External<
         {
             "uint32_t";
             0
         },
     >,
-    pub video_full_range_flag: crate::External<
+    video_full_range_flag: crate::External<
         {
             "uint32_t";
             0
         },
     >,
-    pub color_description_present_flag: crate::External<
+    color_description_present_flag: crate::External<
         {
             "uint32_t";
             0
         },
     >,
-    pub chroma_loc_info_present_flag: crate::External<
+    chroma_loc_info_present_flag: crate::External<
         {
             "uint32_t";
             0
         },
     >,
-    pub timing_info_present_flag: crate::External<
+    timing_info_present_flag: crate::External<
         {
             "uint32_t";
             0
         },
     >,
-    pub fixed_frame_rate_flag: crate::External<
+    fixed_frame_rate_flag: crate::External<
         {
             "uint32_t";
             0
         },
     >,
-    pub bitstream_restriction_flag: crate::External<
+    bitstream_restriction_flag: crate::External<
         {
             "uint32_t";
             0
         },
     >,
-    pub nal_hrd_parameters_present_flag: crate::External<
+    nal_hrd_parameters_present_flag: crate::External<
         {
             "uint32_t";
             0
         },
     >,
-    pub vcl_hrd_parameters_present_flag: crate::External<
+    vcl_hrd_parameters_present_flag: crate::External<
         {
             "uint32_t";
             0
@@ -78,67 +78,67 @@ pub struct StdVideoH264SpsVuiFlags {
 }
 #[repr(C)]
 pub struct StdVideoH264HrdParameters {
-    pub cpb_cnt_minus1: crate::External<
+    cpb_cnt_minus1: crate::External<
         {
             "uint8_t";
             0
         },
     >,
-    pub bit_rate_scale: crate::External<
+    bit_rate_scale: crate::External<
         {
             "uint8_t";
             0
         },
     >,
-    pub cpb_size_scale: crate::External<
+    cpb_size_scale: crate::External<
         {
             "uint8_t";
             0
         },
     >,
-    pub reserved1: crate::External<
+    reserved1: crate::External<
         {
             "uint8_t";
             0
         },
     >,
-    pub bit_rate_value_minus1: [crate::External<
+    bit_rate_value_minus1: [crate::External<
         {
             "uint32_t";
             0
         },
     >; 1337],
-    pub cpb_size_value_minus1: [crate::External<
+    cpb_size_value_minus1: [crate::External<
         {
             "uint32_t";
             0
         },
     >; 1337],
-    pub cbr_flag: [crate::External<
+    cbr_flag: [crate::External<
         {
             "uint8_t";
             0
         },
     >; 1337],
-    pub initial_cpb_removal_delay_length_minus1: crate::External<
+    initial_cpb_removal_delay_length_minus1: crate::External<
         {
             "uint32_t";
             0
         },
     >,
-    pub cpb_removal_delay_length_minus1: crate::External<
+    cpb_removal_delay_length_minus1: crate::External<
         {
             "uint32_t";
             0
         },
     >,
-    pub dpb_output_delay_length_minus1: crate::External<
+    dpb_output_delay_length_minus1: crate::External<
         {
             "uint32_t";
             0
         },
     >,
-    pub time_offset_length: crate::External<
+    time_offset_length: crate::External<
         {
             "uint32_t";
             0
@@ -147,196 +147,181 @@ pub struct StdVideoH264HrdParameters {
 }
 #[repr(C)]
 pub struct StdVideoH264SequenceParameterSetVui {
-    pub flags: crate::External<
-        {
-            "StdVideoH264SpsVuiFlags";
-            0
-        },
-    >,
-    pub aspect_ratio_idc: crate::External<
-        {
-            "StdVideoH264AspectRatioIdc";
-            0
-        },
-    >,
-    pub sar_width: crate::External<
+    flags: crate::vk::StdVideoH264SpsVuiFlags,
+    aspect_ratio_idc: crate::vk::StdVideoH264AspectRatioIdc,
+    sar_width: crate::External<
         {
             "uint16_t";
             0
         },
     >,
-    pub sar_height: crate::External<
+    sar_height: crate::External<
         {
             "uint16_t";
             0
         },
     >,
-    pub video_format: crate::External<
+    video_format: crate::External<
         {
             "uint8_t";
             0
         },
     >,
-    pub colour_primaries: crate::External<
+    colour_primaries: crate::External<
         {
             "uint8_t";
             0
         },
     >,
-    pub transfer_characteristics: crate::External<
+    transfer_characteristics: crate::External<
         {
             "uint8_t";
             0
         },
     >,
-    pub matrix_coefficients: crate::External<
+    matrix_coefficients: crate::External<
         {
             "uint8_t";
             0
         },
     >,
-    pub num_units_in_tick: crate::External<
+    num_units_in_tick: crate::External<
         {
             "uint32_t";
             0
         },
     >,
-    pub time_scale: crate::External<
+    time_scale: crate::External<
         {
             "uint32_t";
             0
         },
     >,
-    pub max_num_reorder_frames: crate::External<
+    max_num_reorder_frames: crate::External<
         {
             "uint8_t";
             0
         },
     >,
-    pub max_dec_frame_buffering: crate::External<
+    max_dec_frame_buffering: crate::External<
         {
             "uint8_t";
             0
         },
     >,
-    pub chroma_sample_loc_type_top_field: crate::External<
+    chroma_sample_loc_type_top_field: crate::External<
         {
             "uint8_t";
             0
         },
     >,
-    pub chroma_sample_loc_type_bottom_field: crate::External<
+    chroma_sample_loc_type_bottom_field: crate::External<
         {
             "uint8_t";
             0
         },
     >,
-    pub reserved1: crate::External<
+    reserved1: crate::External<
         {
             "uint32_t";
             0
         },
     >,
-    pub p_hrd_parameters: *const crate::External<
-        {
-            "StdVideoH264HrdParameters";
-            0
-        },
-    >,
+    p_hrd_parameters: *const crate::vk::StdVideoH264HrdParameters,
 }
 #[repr(C)]
 pub struct StdVideoH264SpsFlags {
-    pub constraint_set0_flag: crate::External<
+    constraint_set0_flag: crate::External<
         {
             "uint32_t";
             0
         },
     >,
-    pub constraint_set1_flag: crate::External<
+    constraint_set1_flag: crate::External<
         {
             "uint32_t";
             0
         },
     >,
-    pub constraint_set2_flag: crate::External<
+    constraint_set2_flag: crate::External<
         {
             "uint32_t";
             0
         },
     >,
-    pub constraint_set3_flag: crate::External<
+    constraint_set3_flag: crate::External<
         {
             "uint32_t";
             0
         },
     >,
-    pub constraint_set4_flag: crate::External<
+    constraint_set4_flag: crate::External<
         {
             "uint32_t";
             0
         },
     >,
-    pub constraint_set5_flag: crate::External<
+    constraint_set5_flag: crate::External<
         {
             "uint32_t";
             0
         },
     >,
-    pub direct_8x8_inference_flag: crate::External<
+    direct_8x8_inference_flag: crate::External<
         {
             "uint32_t";
             0
         },
     >,
-    pub mb_adaptive_frame_field_flag: crate::External<
+    mb_adaptive_frame_field_flag: crate::External<
         {
             "uint32_t";
             0
         },
     >,
-    pub frame_mbs_only_flag: crate::External<
+    frame_mbs_only_flag: crate::External<
         {
             "uint32_t";
             0
         },
     >,
-    pub delta_pic_order_always_zero_flag: crate::External<
+    delta_pic_order_always_zero_flag: crate::External<
         {
             "uint32_t";
             0
         },
     >,
-    pub separate_colour_plane_flag: crate::External<
+    separate_colour_plane_flag: crate::External<
         {
             "uint32_t";
             0
         },
     >,
-    pub gaps_in_frame_num_value_allowed_flag: crate::External<
+    gaps_in_frame_num_value_allowed_flag: crate::External<
         {
             "uint32_t";
             0
         },
     >,
-    pub qpprime_y_zero_transform_bypass_flag: crate::External<
+    qpprime_y_zero_transform_bypass_flag: crate::External<
         {
             "uint32_t";
             0
         },
     >,
-    pub frame_cropping_flag: crate::External<
+    frame_cropping_flag: crate::External<
         {
             "uint32_t";
             0
         },
     >,
-    pub seq_scaling_matrix_present_flag: crate::External<
+    seq_scaling_matrix_present_flag: crate::External<
         {
             "uint32_t";
             0
         },
     >,
-    pub vui_parameters_present_flag: crate::External<
+    vui_parameters_present_flag: crate::External<
         {
             "uint32_t";
             0
@@ -345,25 +330,25 @@ pub struct StdVideoH264SpsFlags {
 }
 #[repr(C)]
 pub struct StdVideoH264ScalingLists {
-    pub scaling_list_present_mask: crate::External<
+    scaling_list_present_mask: crate::External<
         {
             "uint16_t";
             0
         },
     >,
-    pub use_default_scaling_matrix_mask: crate::External<
+    use_default_scaling_matrix_mask: crate::External<
         {
             "uint16_t";
             0
         },
     >,
-    pub scaling_list4x4: [[crate::External<
+    scaling_list4x4: [[crate::External<
         {
             "uint8_t";
             0
         },
     >; 1337]; 1337],
-    pub scaling_list8x8: [[crate::External<
+    scaling_list8x8: [[crate::External<
         {
             "uint8_t";
             0
@@ -372,202 +357,167 @@ pub struct StdVideoH264ScalingLists {
 }
 #[repr(C)]
 pub struct StdVideoH264SequenceParameterSet {
-    pub flags: crate::External<
-        {
-            "StdVideoH264SpsFlags";
-            0
-        },
-    >,
-    pub profile_idc: crate::External<
-        {
-            "StdVideoH264ProfileIdc";
-            0
-        },
-    >,
-    pub level_idc: crate::External<
-        {
-            "StdVideoH264LevelIdc";
-            0
-        },
-    >,
-    pub chroma_format_idc: crate::External<
-        {
-            "StdVideoH264ChromaFormatIdc";
-            0
-        },
-    >,
-    pub seq_parameter_set_id: crate::External<
+    flags: crate::vk::StdVideoH264SpsFlags,
+    profile_idc: crate::vk::StdVideoH264ProfileIdc,
+    level_idc: crate::vk::StdVideoH264LevelIdc,
+    chroma_format_idc: crate::vk::StdVideoH264ChromaFormatIdc,
+    seq_parameter_set_id: crate::External<
         {
             "uint8_t";
             0
         },
     >,
-    pub bit_depth_luma_minus8: crate::External<
+    bit_depth_luma_minus8: crate::External<
         {
             "uint8_t";
             0
         },
     >,
-    pub bit_depth_chroma_minus8: crate::External<
+    bit_depth_chroma_minus8: crate::External<
         {
             "uint8_t";
             0
         },
     >,
-    pub log2_max_frame_num_minus4: crate::External<
+    log2_max_frame_num_minus4: crate::External<
         {
             "uint8_t";
             0
         },
     >,
-    pub pic_order_cnt_type: crate::External<
-        {
-            "StdVideoH264PocType";
-            0
-        },
-    >,
-    pub offset_for_non_ref_pic: crate::External<
+    pic_order_cnt_type: crate::vk::StdVideoH264PocType,
+    offset_for_non_ref_pic: crate::External<
         {
             "int32_t";
             0
         },
     >,
-    pub offset_for_top_to_bottom_field: crate::External<
+    offset_for_top_to_bottom_field: crate::External<
         {
             "int32_t";
             0
         },
     >,
-    pub log2_max_pic_order_cnt_lsb_minus4: crate::External<
+    log2_max_pic_order_cnt_lsb_minus4: crate::External<
         {
             "uint8_t";
             0
         },
     >,
-    pub num_ref_frames_in_pic_order_cnt_cycle: crate::External<
+    num_ref_frames_in_pic_order_cnt_cycle: crate::External<
         {
             "uint8_t";
             0
         },
     >,
-    pub max_num_ref_frames: crate::External<
+    max_num_ref_frames: crate::External<
         {
             "uint8_t";
             0
         },
     >,
-    pub reserved1: crate::External<
+    reserved1: crate::External<
         {
             "uint8_t";
             0
         },
     >,
-    pub pic_width_in_mbs_minus1: crate::External<
+    pic_width_in_mbs_minus1: crate::External<
         {
             "uint32_t";
             0
         },
     >,
-    pub pic_height_in_map_units_minus1: crate::External<
+    pic_height_in_map_units_minus1: crate::External<
         {
             "uint32_t";
             0
         },
     >,
-    pub frame_crop_left_offset: crate::External<
+    frame_crop_left_offset: crate::External<
         {
             "uint32_t";
             0
         },
     >,
-    pub frame_crop_right_offset: crate::External<
+    frame_crop_right_offset: crate::External<
         {
             "uint32_t";
             0
         },
     >,
-    pub frame_crop_top_offset: crate::External<
+    frame_crop_top_offset: crate::External<
         {
             "uint32_t";
             0
         },
     >,
-    pub frame_crop_bottom_offset: crate::External<
+    frame_crop_bottom_offset: crate::External<
         {
             "uint32_t";
             0
         },
     >,
-    pub reserved2: crate::External<
+    reserved2: crate::External<
         {
             "uint32_t";
             0
         },
     >,
-    pub p_offset_for_ref_frame: *const crate::External<
+    p_offset_for_ref_frame: *const crate::External<
         {
             "int32_t";
             0
         },
     >,
-    pub p_scaling_lists: *const crate::External<
-        {
-            "StdVideoH264ScalingLists";
-            0
-        },
-    >,
-    pub p_sequence_parameter_set_vui: *const crate::External<
-        {
-            "StdVideoH264SequenceParameterSetVui";
-            0
-        },
-    >,
+    p_scaling_lists: *const crate::vk::StdVideoH264ScalingLists,
+    p_sequence_parameter_set_vui: *const crate::vk::StdVideoH264SequenceParameterSetVui,
 }
 #[repr(C)]
 pub struct StdVideoH264PpsFlags {
-    pub transform_8x8_mode_flag: crate::External<
+    transform_8x8_mode_flag: crate::External<
         {
             "uint32_t";
             0
         },
     >,
-    pub redundant_pic_cnt_present_flag: crate::External<
+    redundant_pic_cnt_present_flag: crate::External<
         {
             "uint32_t";
             0
         },
     >,
-    pub constrained_intra_pred_flag: crate::External<
+    constrained_intra_pred_flag: crate::External<
         {
             "uint32_t";
             0
         },
     >,
-    pub deblocking_filter_control_present_flag: crate::External<
+    deblocking_filter_control_present_flag: crate::External<
         {
             "uint32_t";
             0
         },
     >,
-    pub weighted_pred_flag: crate::External<
+    weighted_pred_flag: crate::External<
         {
             "uint32_t";
             0
         },
     >,
-    pub bottom_field_pic_order_in_frame_present_flag: crate::External<
+    bottom_field_pic_order_in_frame_present_flag: crate::External<
         {
             "uint32_t";
             0
         },
     >,
-    pub entropy_coding_mode_flag: crate::External<
+    entropy_coding_mode_flag: crate::External<
         {
             "uint32_t";
             0
         },
     >,
-    pub pic_scaling_matrix_present_flag: crate::External<
+    pic_scaling_matrix_present_flag: crate::External<
         {
             "uint32_t";
             0
@@ -576,70 +526,81 @@ pub struct StdVideoH264PpsFlags {
 }
 #[repr(C)]
 pub struct StdVideoH264PictureParameterSet {
-    pub flags: crate::External<
-        {
-            "StdVideoH264PpsFlags";
-            0
-        },
-    >,
-    pub seq_parameter_set_id: crate::External<
+    flags: crate::vk::StdVideoH264PpsFlags,
+    seq_parameter_set_id: crate::External<
         {
             "uint8_t";
             0
         },
     >,
-    pub pic_parameter_set_id: crate::External<
+    pic_parameter_set_id: crate::External<
         {
             "uint8_t";
             0
         },
     >,
-    pub num_ref_idx_l0_default_active_minus1: crate::External<
+    num_ref_idx_l0_default_active_minus1: crate::External<
         {
             "uint8_t";
             0
         },
     >,
-    pub num_ref_idx_l1_default_active_minus1: crate::External<
+    num_ref_idx_l1_default_active_minus1: crate::External<
         {
             "uint8_t";
             0
         },
     >,
-    pub weighted_bipred_idc: crate::External<
-        {
-            "StdVideoH264WeightedBipredIdc";
-            0
-        },
-    >,
-    pub pic_init_qp_minus26: crate::External<
+    weighted_bipred_idc: crate::vk::StdVideoH264WeightedBipredIdc,
+    pic_init_qp_minus26: crate::External<
         {
             "int8_t";
             0
         },
     >,
-    pub pic_init_qs_minus26: crate::External<
+    pic_init_qs_minus26: crate::External<
         {
             "int8_t";
             0
         },
     >,
-    pub chroma_qp_index_offset: crate::External<
+    chroma_qp_index_offset: crate::External<
         {
             "int8_t";
             0
         },
     >,
-    pub second_chroma_qp_index_offset: crate::External<
+    second_chroma_qp_index_offset: crate::External<
         {
             "int8_t";
             0
         },
     >,
-    pub p_scaling_lists: *const crate::External<
-        {
-            "StdVideoH264ScalingLists";
-            0
-        },
-    >,
+    p_scaling_lists: *const crate::vk::StdVideoH264ScalingLists,
 }
+#[repr(C)]
+pub struct StdVideoH264ChromaFormatIdc {}
+#[repr(C)]
+pub struct StdVideoH264ProfileIdc {}
+#[repr(C)]
+pub struct StdVideoH264LevelIdc {}
+#[repr(C)]
+pub struct StdVideoH264PocType {}
+#[repr(C)]
+pub struct StdVideoH264AspectRatioIdc {}
+#[repr(C)]
+pub struct StdVideoH264WeightedBipredIdc {}
+#[repr(C)]
+pub struct StdVideoH264ModificationOfPicNumsIdc {}
+#[repr(C)]
+pub struct StdVideoH264MemMgmtControlOp {}
+#[repr(C)]
+pub struct StdVideoH264CabacInitIdc {}
+#[repr(C)]
+pub struct StdVideoH264DisableDeblockingFilterIdc {}
+#[repr(C)]
+pub struct StdVideoH264SliceType {}
+#[repr(C)]
+pub struct StdVideoH264PictureType {}
+#[repr(C)]
+pub struct StdVideoH264NonVclNaluType {}

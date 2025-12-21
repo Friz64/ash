@@ -2,18 +2,8 @@
 #![cfg_attr(rustfmt, rustfmt_skip)]
 //![Vulkan Manual Page](https://docs.vulkan.org/refpages/latest/refpages/source/VK_EXT_external_memory_acquire_unmodified.html) · Vulkan extension
 #[repr(C)]
-pub struct VkExternalMemoryAcquireUnmodifiedEXT {
-    pub s_type: crate::External<
-        {
-            "VkStructureType";
-            0
-        },
-    >,
-    pub p_next: *const core::ffi::c_void,
-    pub acquire_unmodified_memory: crate::External<
-        {
-            "VkBool32";
-            0
-        },
-    >,
+pub struct ExternalMemoryAcquireUnmodifiedEXT {
+    s_type: crate::vk::StructureType,
+    p_next: *const core::ffi::c_void,
+    acquire_unmodified_memory: crate::vk::Bool32,
 }

@@ -2,21 +2,16 @@
 #![cfg_attr(rustfmt, rustfmt_skip)]
 //![Vulkan Manual Page](https://docs.vulkan.org/refpages/latest/refpages/source/VK_NV_present_metering.html) · Vulkan extension
 #[repr(C)]
-pub struct VkSetPresentConfigNV {
-    pub s_type: crate::External<
-        {
-            "VkStructureType";
-            0
-        },
-    >,
-    pub p_next: *const core::ffi::c_void,
-    pub num_frames_per_batch: crate::External<
+pub struct SetPresentConfigNV {
+    s_type: crate::vk::StructureType,
+    p_next: *const core::ffi::c_void,
+    num_frames_per_batch: crate::External<
         {
             "uint32_t";
             0
         },
     >,
-    pub present_config_feedback: crate::External<
+    present_config_feedback: crate::External<
         {
             "uint32_t";
             0
@@ -24,18 +19,8 @@ pub struct VkSetPresentConfigNV {
     >,
 }
 #[repr(C)]
-pub struct VkPhysicalDevicePresentMeteringFeaturesNV {
-    pub s_type: crate::External<
-        {
-            "VkStructureType";
-            0
-        },
-    >,
-    pub p_next: *mut core::ffi::c_void,
-    pub present_metering: crate::External<
-        {
-            "VkBool32";
-            0
-        },
-    >,
+pub struct PhysicalDevicePresentMeteringFeaturesNV {
+    s_type: crate::vk::StructureType,
+    p_next: *mut core::ffi::c_void,
+    present_metering: crate::vk::Bool32,
 }

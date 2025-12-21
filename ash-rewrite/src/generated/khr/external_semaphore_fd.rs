@@ -2,33 +2,13 @@
 #![cfg_attr(rustfmt, rustfmt_skip)]
 //![Vulkan Manual Page](https://docs.vulkan.org/refpages/latest/refpages/source/VK_KHR_external_semaphore_fd.html) · Vulkan extension
 #[repr(C)]
-pub struct VkImportSemaphoreFdInfoKHR {
-    pub s_type: crate::External<
-        {
-            "VkStructureType";
-            0
-        },
-    >,
-    pub p_next: *const core::ffi::c_void,
-    pub semaphore: crate::External<
-        {
-            "VkSemaphore";
-            0
-        },
-    >,
-    pub flags: crate::External<
-        {
-            "VkSemaphoreImportFlags";
-            0
-        },
-    >,
-    pub handle_type: crate::External<
-        {
-            "VkExternalSemaphoreHandleTypeFlagBits";
-            0
-        },
-    >,
-    pub fd: crate::External<
+pub struct ImportSemaphoreFdInfoKHR {
+    s_type: crate::vk::StructureType,
+    p_next: *const core::ffi::c_void,
+    semaphore: crate::vk::Semaphore,
+    flags: crate::vk::SemaphoreImportFlags,
+    handle_type: crate::vk::ExternalSemaphoreHandleTypeFlagBits,
+    fd: crate::External<
         {
             "int";
             0
@@ -36,24 +16,9 @@ pub struct VkImportSemaphoreFdInfoKHR {
     >,
 }
 #[repr(C)]
-pub struct VkSemaphoreGetFdInfoKHR {
-    pub s_type: crate::External<
-        {
-            "VkStructureType";
-            0
-        },
-    >,
-    pub p_next: *const core::ffi::c_void,
-    pub semaphore: crate::External<
-        {
-            "VkSemaphore";
-            0
-        },
-    >,
-    pub handle_type: crate::External<
-        {
-            "VkExternalSemaphoreHandleTypeFlagBits";
-            0
-        },
-    >,
+pub struct SemaphoreGetFdInfoKHR {
+    s_type: crate::vk::StructureType,
+    p_next: *const core::ffi::c_void,
+    semaphore: crate::vk::Semaphore,
+    handle_type: crate::vk::ExternalSemaphoreHandleTypeFlagBits,
 }

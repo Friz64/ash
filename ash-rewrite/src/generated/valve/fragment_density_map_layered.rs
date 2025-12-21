@@ -2,15 +2,10 @@
 #![cfg_attr(rustfmt, rustfmt_skip)]
 //![Vulkan Manual Page](https://docs.vulkan.org/refpages/latest/refpages/source/VK_VALVE_fragment_density_map_layered.html) · Vulkan extension
 #[repr(C)]
-pub struct VkPhysicalDeviceFragmentDensityMapLayeredPropertiesVALVE {
-    pub s_type: crate::External<
-        {
-            "VkStructureType";
-            0
-        },
-    >,
-    pub p_next: *mut core::ffi::c_void,
-    pub max_fragment_density_map_layers: crate::External<
+pub struct PhysicalDeviceFragmentDensityMapLayeredPropertiesVALVE {
+    s_type: crate::vk::StructureType,
+    p_next: *mut core::ffi::c_void,
+    max_fragment_density_map_layers: crate::External<
         {
             "uint32_t";
             0
@@ -18,31 +13,16 @@ pub struct VkPhysicalDeviceFragmentDensityMapLayeredPropertiesVALVE {
     >,
 }
 #[repr(C)]
-pub struct VkPhysicalDeviceFragmentDensityMapLayeredFeaturesVALVE {
-    pub s_type: crate::External<
-        {
-            "VkStructureType";
-            0
-        },
-    >,
-    pub p_next: *mut core::ffi::c_void,
-    pub fragment_density_map_layered: crate::External<
-        {
-            "VkBool32";
-            0
-        },
-    >,
+pub struct PhysicalDeviceFragmentDensityMapLayeredFeaturesVALVE {
+    s_type: crate::vk::StructureType,
+    p_next: *mut core::ffi::c_void,
+    fragment_density_map_layered: crate::vk::Bool32,
 }
 #[repr(C)]
-pub struct VkPipelineFragmentDensityMapLayeredCreateInfoVALVE {
-    pub s_type: crate::External<
-        {
-            "VkStructureType";
-            0
-        },
-    >,
-    pub p_next: *const core::ffi::c_void,
-    pub max_fragment_density_map_layers: crate::External<
+pub struct PipelineFragmentDensityMapLayeredCreateInfoVALVE {
+    s_type: crate::vk::StructureType,
+    p_next: *const core::ffi::c_void,
+    max_fragment_density_map_layers: crate::External<
         {
             "uint32_t";
             0
