@@ -3,13 +3,13 @@
 //![Vulkan Manual Page](https://docs.vulkan.org/refpages/latest/refpages/source/VK_EXT_multi_draw.html) · Vulkan extension
 #[repr(C)]
 pub struct MultiDrawInfoEXT {
-    first_vertex: crate::External<
+    pub first_vertex: crate::External<
         {
             "uint32_t";
             0
         },
     >,
-    vertex_count: crate::External<
+    pub vertex_count: crate::External<
         {
             "uint32_t";
             0
@@ -18,19 +18,19 @@ pub struct MultiDrawInfoEXT {
 }
 #[repr(C)]
 pub struct MultiDrawIndexedInfoEXT {
-    first_index: crate::External<
+    pub first_index: crate::External<
         {
             "uint32_t";
             0
         },
     >,
-    index_count: crate::External<
+    pub index_count: crate::External<
         {
             "uint32_t";
             0
         },
     >,
-    vertex_offset: crate::External<
+    pub vertex_offset: crate::External<
         {
             "int32_t";
             0
@@ -39,9 +39,9 @@ pub struct MultiDrawIndexedInfoEXT {
 }
 #[repr(C)]
 pub struct PhysicalDeviceMultiDrawPropertiesEXT {
-    s_type: crate::vk::StructureType,
-    p_next: *mut core::ffi::c_void,
-    max_multi_draw_count: crate::External<
+    pub s_type: crate::vk::StructureType,
+    pub p_next: *mut core::ffi::c_void,
+    pub max_multi_draw_count: crate::External<
         {
             "uint32_t";
             0
@@ -50,7 +50,7 @@ pub struct PhysicalDeviceMultiDrawPropertiesEXT {
 }
 #[repr(C)]
 pub struct PhysicalDeviceMultiDrawFeaturesEXT {
-    s_type: crate::vk::StructureType,
-    p_next: *mut core::ffi::c_void,
-    multi_draw: crate::vk::Bool32,
+    pub s_type: crate::vk::StructureType,
+    pub p_next: *mut core::ffi::c_void,
+    pub multi_draw: crate::vk::Bool32,
 }

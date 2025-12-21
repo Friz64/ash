@@ -3,41 +3,41 @@
 //![Vulkan Manual Page](https://docs.vulkan.org/refpages/latest/refpages/source/VK_EXT_opacity_micromap.html) · Vulkan extension
 #[repr(C)]
 pub struct MicromapBuildInfoEXT {
-    s_type: crate::vk::StructureType,
-    p_next: *const core::ffi::c_void,
-    _type: crate::vk::MicromapTypeEXT,
-    flags: crate::vk::BuildMicromapFlagsEXT,
-    mode: crate::vk::BuildMicromapModeEXT,
-    dst_micromap: crate::vk::MicromapEXT,
-    usage_counts_count: crate::External<
+    pub s_type: crate::vk::StructureType,
+    pub p_next: *const core::ffi::c_void,
+    pub _type: crate::vk::MicromapTypeEXT,
+    pub flags: crate::vk::BuildMicromapFlagsEXT,
+    pub mode: crate::vk::BuildMicromapModeEXT,
+    pub dst_micromap: crate::vk::MicromapEXT,
+    pub usage_counts_count: crate::External<
         {
             "uint32_t";
             0
         },
     >,
-    p_usage_counts: *const crate::vk::MicromapUsageEXT,
-    pp_usage_counts: *const *const crate::vk::MicromapUsageEXT,
-    data: crate::vk::DeviceOrHostAddressConstKHR,
-    scratch_data: crate::vk::DeviceOrHostAddressKHR,
-    triangle_array: crate::vk::DeviceOrHostAddressConstKHR,
-    triangle_array_stride: crate::vk::DeviceSize,
+    pub p_usage_counts: *const crate::vk::MicromapUsageEXT,
+    pub pp_usage_counts: *const *const crate::vk::MicromapUsageEXT,
+    pub data: crate::vk::DeviceOrHostAddressConstKHR,
+    pub scratch_data: crate::vk::DeviceOrHostAddressKHR,
+    pub triangle_array: crate::vk::DeviceOrHostAddressConstKHR,
+    pub triangle_array_stride: crate::vk::DeviceSize,
 }
 #[repr(C)]
 pub struct MicromapCreateInfoEXT {
-    s_type: crate::vk::StructureType,
-    p_next: *const core::ffi::c_void,
-    create_flags: crate::vk::MicromapCreateFlagsEXT,
-    buffer: crate::vk::Buffer,
-    offset: crate::vk::DeviceSize,
-    size: crate::vk::DeviceSize,
-    _type: crate::vk::MicromapTypeEXT,
-    device_address: crate::vk::DeviceAddress,
+    pub s_type: crate::vk::StructureType,
+    pub p_next: *const core::ffi::c_void,
+    pub create_flags: crate::vk::MicromapCreateFlagsEXT,
+    pub buffer: crate::vk::Buffer,
+    pub offset: crate::vk::DeviceSize,
+    pub size: crate::vk::DeviceSize,
+    pub _type: crate::vk::MicromapTypeEXT,
+    pub device_address: crate::vk::DeviceAddress,
 }
 #[repr(C)]
 pub struct MicromapVersionInfoEXT {
-    s_type: crate::vk::StructureType,
-    p_next: *const core::ffi::c_void,
-    p_version_data: *const crate::External<
+    pub s_type: crate::vk::StructureType,
+    pub p_next: *const core::ffi::c_void,
+    pub p_version_data: *const crate::External<
         {
             "uint8_t";
             0
@@ -46,51 +46,51 @@ pub struct MicromapVersionInfoEXT {
 }
 #[repr(C)]
 pub struct CopyMicromapInfoEXT {
-    s_type: crate::vk::StructureType,
-    p_next: *const core::ffi::c_void,
-    src: crate::vk::MicromapEXT,
-    dst: crate::vk::MicromapEXT,
-    mode: crate::vk::CopyMicromapModeEXT,
+    pub s_type: crate::vk::StructureType,
+    pub p_next: *const core::ffi::c_void,
+    pub src: crate::vk::MicromapEXT,
+    pub dst: crate::vk::MicromapEXT,
+    pub mode: crate::vk::CopyMicromapModeEXT,
 }
 #[repr(C)]
 pub struct CopyMicromapToMemoryInfoEXT {
-    s_type: crate::vk::StructureType,
-    p_next: *const core::ffi::c_void,
-    src: crate::vk::MicromapEXT,
-    dst: crate::vk::DeviceOrHostAddressKHR,
-    mode: crate::vk::CopyMicromapModeEXT,
+    pub s_type: crate::vk::StructureType,
+    pub p_next: *const core::ffi::c_void,
+    pub src: crate::vk::MicromapEXT,
+    pub dst: crate::vk::DeviceOrHostAddressKHR,
+    pub mode: crate::vk::CopyMicromapModeEXT,
 }
 #[repr(C)]
 pub struct CopyMemoryToMicromapInfoEXT {
-    s_type: crate::vk::StructureType,
-    p_next: *const core::ffi::c_void,
-    src: crate::vk::DeviceOrHostAddressConstKHR,
-    dst: crate::vk::MicromapEXT,
-    mode: crate::vk::CopyMicromapModeEXT,
+    pub s_type: crate::vk::StructureType,
+    pub p_next: *const core::ffi::c_void,
+    pub src: crate::vk::DeviceOrHostAddressConstKHR,
+    pub dst: crate::vk::MicromapEXT,
+    pub mode: crate::vk::CopyMicromapModeEXT,
 }
 #[repr(C)]
 pub struct MicromapBuildSizesInfoEXT {
-    s_type: crate::vk::StructureType,
-    p_next: *const core::ffi::c_void,
-    micromap_size: crate::vk::DeviceSize,
-    build_scratch_size: crate::vk::DeviceSize,
-    discardable: crate::vk::Bool32,
+    pub s_type: crate::vk::StructureType,
+    pub p_next: *const core::ffi::c_void,
+    pub micromap_size: crate::vk::DeviceSize,
+    pub build_scratch_size: crate::vk::DeviceSize,
+    pub discardable: crate::vk::Bool32,
 }
 #[repr(C)]
 pub struct MicromapUsageEXT {
-    count: crate::External<
+    pub count: crate::External<
         {
             "uint32_t";
             0
         },
     >,
-    subdivision_level: crate::External<
+    pub subdivision_level: crate::External<
         {
             "uint32_t";
             0
         },
     >,
-    format: crate::External<
+    pub format: crate::External<
         {
             "uint32_t";
             0
@@ -99,19 +99,19 @@ pub struct MicromapUsageEXT {
 }
 #[repr(C)]
 pub struct MicromapTriangleEXT {
-    data_offset: crate::External<
+    pub data_offset: crate::External<
         {
             "uint32_t";
             0
         },
     >,
-    subdivision_level: crate::External<
+    pub subdivision_level: crate::External<
         {
             "uint16_t";
             0
         },
     >,
-    format: crate::External<
+    pub format: crate::External<
         {
             "uint16_t";
             0
@@ -120,23 +120,23 @@ pub struct MicromapTriangleEXT {
 }
 #[repr(C)]
 pub struct PhysicalDeviceOpacityMicromapFeaturesEXT {
-    s_type: crate::vk::StructureType,
-    p_next: *mut core::ffi::c_void,
-    micromap: crate::vk::Bool32,
-    micromap_capture_replay: crate::vk::Bool32,
-    micromap_host_commands: crate::vk::Bool32,
+    pub s_type: crate::vk::StructureType,
+    pub p_next: *mut core::ffi::c_void,
+    pub micromap: crate::vk::Bool32,
+    pub micromap_capture_replay: crate::vk::Bool32,
+    pub micromap_host_commands: crate::vk::Bool32,
 }
 #[repr(C)]
 pub struct PhysicalDeviceOpacityMicromapPropertiesEXT {
-    s_type: crate::vk::StructureType,
-    p_next: *mut core::ffi::c_void,
-    max_opacity2_state_subdivision_level: crate::External<
+    pub s_type: crate::vk::StructureType,
+    pub p_next: *mut core::ffi::c_void,
+    pub max_opacity2_state_subdivision_level: crate::External<
         {
             "uint32_t";
             0
         },
     >,
-    max_opacity4_state_subdivision_level: crate::External<
+    pub max_opacity4_state_subdivision_level: crate::External<
         {
             "uint32_t";
             0
@@ -145,26 +145,26 @@ pub struct PhysicalDeviceOpacityMicromapPropertiesEXT {
 }
 #[repr(C)]
 pub struct AccelerationStructureTrianglesOpacityMicromapEXT {
-    s_type: crate::vk::StructureType,
-    p_next: *mut core::ffi::c_void,
-    index_type: crate::vk::IndexType,
-    index_buffer: crate::vk::DeviceOrHostAddressConstKHR,
-    index_stride: crate::vk::DeviceSize,
-    base_triangle: crate::External<
+    pub s_type: crate::vk::StructureType,
+    pub p_next: *mut core::ffi::c_void,
+    pub index_type: crate::vk::IndexType,
+    pub index_buffer: crate::vk::DeviceOrHostAddressConstKHR,
+    pub index_stride: crate::vk::DeviceSize,
+    pub base_triangle: crate::External<
         {
             "uint32_t";
             0
         },
     >,
-    usage_counts_count: crate::External<
+    pub usage_counts_count: crate::External<
         {
             "uint32_t";
             0
         },
     >,
-    p_usage_counts: *const crate::vk::MicromapUsageEXT,
-    pp_usage_counts: *const *const crate::vk::MicromapUsageEXT,
-    micromap: crate::vk::MicromapEXT,
+    pub p_usage_counts: *const crate::vk::MicromapUsageEXT,
+    pub pp_usage_counts: *const *const crate::vk::MicromapUsageEXT,
+    pub micromap: crate::vk::MicromapEXT,
 }
 #[repr(C)]
 pub struct MicromapTypeEXT {}
@@ -176,5 +176,13 @@ pub struct BuildMicromapModeEXT {}
 pub struct OpacityMicromapFormatEXT {}
 #[repr(C)]
 pub struct OpacityMicromapSpecialIndexEXT {}
+#[repr(C)]
+pub struct BuildMicromapFlagsEXT {}
+#[repr(C)]
+pub struct MicromapCreateFlagsEXT {}
+#[repr(C)]
+pub struct BuildMicromapFlagBitsEXT {}
+#[repr(C)]
+pub struct MicromapCreateFlagBitsEXT {}
 #[repr(C)]
 pub struct MicromapEXT {}

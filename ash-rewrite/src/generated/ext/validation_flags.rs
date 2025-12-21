@@ -3,15 +3,15 @@
 //![Vulkan Manual Page](https://docs.vulkan.org/refpages/latest/refpages/source/VK_EXT_validation_flags.html) · Vulkan extension
 #[repr(C)]
 pub struct ValidationFlagsEXT {
-    s_type: crate::vk::StructureType,
-    p_next: *const core::ffi::c_void,
-    disabled_validation_check_count: crate::External<
+    pub s_type: crate::vk::StructureType,
+    pub p_next: *const core::ffi::c_void,
+    pub disabled_validation_check_count: crate::External<
         {
             "uint32_t";
             0
         },
     >,
-    p_disabled_validation_checks: *const crate::vk::ValidationCheckEXT,
+    pub p_disabled_validation_checks: *const crate::vk::ValidationCheckEXT,
 }
 #[repr(C)]
 pub struct ValidationCheckEXT {}

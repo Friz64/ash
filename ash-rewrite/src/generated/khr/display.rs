@@ -3,23 +3,23 @@
 //![Vulkan Manual Page](https://docs.vulkan.org/refpages/latest/refpages/source/VK_KHR_display.html) · Vulkan extension
 #[repr(C)]
 pub struct DisplayPropertiesKHR {
-    display: crate::vk::DisplayKHR,
-    display_name: *const crate::External<
+    pub display: crate::vk::DisplayKHR,
+    pub display_name: *const crate::External<
         {
             "char";
             0
         },
     >,
-    physical_dimensions: crate::vk::Extent2D,
-    physical_resolution: crate::vk::Extent2D,
-    supported_transforms: crate::vk::SurfaceTransformFlagsKHR,
-    plane_reorder_possible: crate::vk::Bool32,
-    persistent_content: crate::vk::Bool32,
+    pub physical_dimensions: crate::vk::Extent2D,
+    pub physical_resolution: crate::vk::Extent2D,
+    pub supported_transforms: crate::vk::SurfaceTransformFlagsKHR,
+    pub plane_reorder_possible: crate::vk::Bool32,
+    pub persistent_content: crate::vk::Bool32,
 }
 #[repr(C)]
 pub struct DisplayPlanePropertiesKHR {
-    current_display: crate::vk::DisplayKHR,
-    current_stack_index: crate::External<
+    pub current_display: crate::vk::DisplayKHR,
+    pub current_stack_index: crate::External<
         {
             "uint32_t";
             0
@@ -28,8 +28,8 @@ pub struct DisplayPlanePropertiesKHR {
 }
 #[repr(C)]
 pub struct DisplayModeParametersKHR {
-    visible_region: crate::vk::Extent2D,
-    refresh_rate: crate::External<
+    pub visible_region: crate::vk::Extent2D,
+    pub refresh_rate: crate::External<
         {
             "uint32_t";
             0
@@ -38,56 +38,66 @@ pub struct DisplayModeParametersKHR {
 }
 #[repr(C)]
 pub struct DisplayModePropertiesKHR {
-    display_mode: crate::vk::DisplayModeKHR,
-    parameters: crate::vk::DisplayModeParametersKHR,
+    pub display_mode: crate::vk::DisplayModeKHR,
+    pub parameters: crate::vk::DisplayModeParametersKHR,
 }
 #[repr(C)]
 pub struct DisplayModeCreateInfoKHR {
-    s_type: crate::vk::StructureType,
-    p_next: *const core::ffi::c_void,
-    flags: crate::vk::DisplayModeCreateFlagsKHR,
-    parameters: crate::vk::DisplayModeParametersKHR,
+    pub s_type: crate::vk::StructureType,
+    pub p_next: *const core::ffi::c_void,
+    pub flags: crate::vk::DisplayModeCreateFlagsKHR,
+    pub parameters: crate::vk::DisplayModeParametersKHR,
 }
 #[repr(C)]
 pub struct DisplayPlaneCapabilitiesKHR {
-    supported_alpha: crate::vk::DisplayPlaneAlphaFlagsKHR,
-    min_src_position: crate::vk::Offset2D,
-    max_src_position: crate::vk::Offset2D,
-    min_src_extent: crate::vk::Extent2D,
-    max_src_extent: crate::vk::Extent2D,
-    min_dst_position: crate::vk::Offset2D,
-    max_dst_position: crate::vk::Offset2D,
-    min_dst_extent: crate::vk::Extent2D,
-    max_dst_extent: crate::vk::Extent2D,
+    pub supported_alpha: crate::vk::DisplayPlaneAlphaFlagsKHR,
+    pub min_src_position: crate::vk::Offset2D,
+    pub max_src_position: crate::vk::Offset2D,
+    pub min_src_extent: crate::vk::Extent2D,
+    pub max_src_extent: crate::vk::Extent2D,
+    pub min_dst_position: crate::vk::Offset2D,
+    pub max_dst_position: crate::vk::Offset2D,
+    pub min_dst_extent: crate::vk::Extent2D,
+    pub max_dst_extent: crate::vk::Extent2D,
 }
 #[repr(C)]
 pub struct DisplaySurfaceCreateInfoKHR {
-    s_type: crate::vk::StructureType,
-    p_next: *const core::ffi::c_void,
-    flags: crate::vk::DisplaySurfaceCreateFlagsKHR,
-    display_mode: crate::vk::DisplayModeKHR,
-    plane_index: crate::External<
+    pub s_type: crate::vk::StructureType,
+    pub p_next: *const core::ffi::c_void,
+    pub flags: crate::vk::DisplaySurfaceCreateFlagsKHR,
+    pub display_mode: crate::vk::DisplayModeKHR,
+    pub plane_index: crate::External<
         {
             "uint32_t";
             0
         },
     >,
-    plane_stack_index: crate::External<
+    pub plane_stack_index: crate::External<
         {
             "uint32_t";
             0
         },
     >,
-    transform: crate::vk::SurfaceTransformFlagBitsKHR,
-    global_alpha: crate::External<
+    pub transform: crate::vk::SurfaceTransformFlagBitsKHR,
+    pub global_alpha: crate::External<
         {
             "float";
             0
         },
     >,
-    alpha_mode: crate::vk::DisplayPlaneAlphaFlagBitsKHR,
-    image_extent: crate::vk::Extent2D,
+    pub alpha_mode: crate::vk::DisplayPlaneAlphaFlagBitsKHR,
+    pub image_extent: crate::vk::Extent2D,
 }
+#[repr(C)]
+pub struct DisplayPlaneAlphaFlagsKHR {}
+#[repr(C)]
+pub struct SurfaceTransformFlagsKHR {}
+#[repr(C)]
+pub struct DisplayModeCreateFlagsKHR {}
+#[repr(C)]
+pub struct DisplaySurfaceCreateFlagsKHR {}
+#[repr(C)]
+pub struct DisplayPlaneAlphaFlagBitsKHR {}
 #[repr(C)]
 pub struct DisplayKHR {}
 #[repr(C)]

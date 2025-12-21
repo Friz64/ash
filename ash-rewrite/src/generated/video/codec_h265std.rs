@@ -3,31 +3,31 @@
 //!Items provided by `vulkan_video_codec_h265std`
 #[repr(C)]
 pub struct StdVideoH265ProfileTierLevelFlags {
-    general_tier_flag: crate::External<
+    pub general_tier_flag: crate::External<
         {
             "uint32_t";
             0
         },
     >,
-    general_progressive_source_flag: crate::External<
+    pub general_progressive_source_flag: crate::External<
         {
             "uint32_t";
             0
         },
     >,
-    general_interlaced_source_flag: crate::External<
+    pub general_interlaced_source_flag: crate::External<
         {
             "uint32_t";
             0
         },
     >,
-    general_non_packed_constraint_flag: crate::External<
+    pub general_non_packed_constraint_flag: crate::External<
         {
             "uint32_t";
             0
         },
     >,
-    general_frame_only_constraint_flag: crate::External<
+    pub general_frame_only_constraint_flag: crate::External<
         {
             "uint32_t";
             0
@@ -36,25 +36,25 @@ pub struct StdVideoH265ProfileTierLevelFlags {
 }
 #[repr(C)]
 pub struct StdVideoH265ProfileTierLevel {
-    flags: crate::vk::StdVideoH265ProfileTierLevelFlags,
-    general_profile_idc: crate::vk::StdVideoH265ProfileIdc,
-    general_level_idc: crate::vk::StdVideoH265LevelIdc,
+    pub flags: crate::vk::StdVideoH265ProfileTierLevelFlags,
+    pub general_profile_idc: crate::vk::StdVideoH265ProfileIdc,
+    pub general_level_idc: crate::vk::StdVideoH265LevelIdc,
 }
 #[repr(C)]
 pub struct StdVideoH265DecPicBufMgr {
-    max_latency_increase_plus1: [crate::External<
+    pub max_latency_increase_plus1: [crate::External<
         {
             "uint32_t";
             0
         },
     >; 1337],
-    max_dec_pic_buffering_minus1: [crate::External<
+    pub max_dec_pic_buffering_minus1: [crate::External<
         {
             "uint8_t";
             0
         },
     >; 1337],
-    max_num_reorder_pics: [crate::External<
+    pub max_num_reorder_pics: [crate::External<
         {
             "uint8_t";
             0
@@ -63,31 +63,31 @@ pub struct StdVideoH265DecPicBufMgr {
 }
 #[repr(C)]
 pub struct StdVideoH265SubLayerHrdParameters {
-    bit_rate_value_minus1: [crate::External<
+    pub bit_rate_value_minus1: [crate::External<
         {
             "uint32_t";
             0
         },
     >; 1337],
-    cpb_size_value_minus1: [crate::External<
+    pub cpb_size_value_minus1: [crate::External<
         {
             "uint32_t";
             0
         },
     >; 1337],
-    cpb_size_du_value_minus1: [crate::External<
+    pub cpb_size_du_value_minus1: [crate::External<
         {
             "uint32_t";
             0
         },
     >; 1337],
-    bit_rate_du_value_minus1: [crate::External<
+    pub bit_rate_du_value_minus1: [crate::External<
         {
             "uint32_t";
             0
         },
     >; 1337],
-    cbr_flag: crate::External<
+    pub cbr_flag: crate::External<
         {
             "uint32_t";
             0
@@ -96,43 +96,43 @@ pub struct StdVideoH265SubLayerHrdParameters {
 }
 #[repr(C)]
 pub struct StdVideoH265HrdFlags {
-    nal_hrd_parameters_present_flag: crate::External<
+    pub nal_hrd_parameters_present_flag: crate::External<
         {
             "uint32_t";
             0
         },
     >,
-    vcl_hrd_parameters_present_flag: crate::External<
+    pub vcl_hrd_parameters_present_flag: crate::External<
         {
             "uint32_t";
             0
         },
     >,
-    sub_pic_hrd_params_present_flag: crate::External<
+    pub sub_pic_hrd_params_present_flag: crate::External<
         {
             "uint32_t";
             0
         },
     >,
-    sub_pic_cpb_params_in_pic_timing_sei_flag: crate::External<
+    pub sub_pic_cpb_params_in_pic_timing_sei_flag: crate::External<
         {
             "uint32_t";
             0
         },
     >,
-    fixed_pic_rate_general_flag: crate::External<
+    pub fixed_pic_rate_general_flag: crate::External<
         {
             "uint32_t";
             0
         },
     >,
-    fixed_pic_rate_within_cvs_flag: crate::External<
+    pub fixed_pic_rate_within_cvs_flag: crate::External<
         {
             "uint32_t";
             0
         },
     >,
-    low_delay_hrd_flag: crate::External<
+    pub low_delay_hrd_flag: crate::External<
         {
             "uint32_t";
             0
@@ -141,103 +141,103 @@ pub struct StdVideoH265HrdFlags {
 }
 #[repr(C)]
 pub struct StdVideoH265HrdParameters {
-    flags: crate::vk::StdVideoH265HrdFlags,
-    tick_divisor_minus2: crate::External<
+    pub flags: crate::vk::StdVideoH265HrdFlags,
+    pub tick_divisor_minus2: crate::External<
         {
             "uint8_t";
             0
         },
     >,
-    du_cpb_removal_delay_increment_length_minus1: crate::External<
+    pub du_cpb_removal_delay_increment_length_minus1: crate::External<
         {
             "uint8_t";
             0
         },
     >,
-    dpb_output_delay_du_length_minus1: crate::External<
+    pub dpb_output_delay_du_length_minus1: crate::External<
         {
             "uint8_t";
             0
         },
     >,
-    bit_rate_scale: crate::External<
+    pub bit_rate_scale: crate::External<
         {
             "uint8_t";
             0
         },
     >,
-    cpb_size_scale: crate::External<
+    pub cpb_size_scale: crate::External<
         {
             "uint8_t";
             0
         },
     >,
-    cpb_size_du_scale: crate::External<
+    pub cpb_size_du_scale: crate::External<
         {
             "uint8_t";
             0
         },
     >,
-    initial_cpb_removal_delay_length_minus1: crate::External<
+    pub initial_cpb_removal_delay_length_minus1: crate::External<
         {
             "uint8_t";
             0
         },
     >,
-    au_cpb_removal_delay_length_minus1: crate::External<
+    pub au_cpb_removal_delay_length_minus1: crate::External<
         {
             "uint8_t";
             0
         },
     >,
-    dpb_output_delay_length_minus1: crate::External<
+    pub dpb_output_delay_length_minus1: crate::External<
         {
             "uint8_t";
             0
         },
     >,
-    cpb_cnt_minus1: [crate::External<
+    pub cpb_cnt_minus1: [crate::External<
         {
             "uint8_t";
             0
         },
     >; 1337],
-    elemental_duration_in_tc_minus1: [crate::External<
+    pub elemental_duration_in_tc_minus1: [crate::External<
         {
             "uint16_t";
             0
         },
     >; 1337],
-    reserved: [crate::External<
+    pub reserved: [crate::External<
         {
             "uint16_t";
             0
         },
     >; 1337],
-    p_sub_layer_hrd_parameters_nal: *const crate::vk::StdVideoH265SubLayerHrdParameters,
-    p_sub_layer_hrd_parameters_vcl: *const crate::vk::StdVideoH265SubLayerHrdParameters,
+    pub p_sub_layer_hrd_parameters_nal: *const crate::vk::StdVideoH265SubLayerHrdParameters,
+    pub p_sub_layer_hrd_parameters_vcl: *const crate::vk::StdVideoH265SubLayerHrdParameters,
 }
 #[repr(C)]
 pub struct StdVideoH265VpsFlags {
-    vps_temporal_id_nesting_flag: crate::External<
+    pub vps_temporal_id_nesting_flag: crate::External<
         {
             "uint32_t";
             0
         },
     >,
-    vps_sub_layer_ordering_info_present_flag: crate::External<
+    pub vps_sub_layer_ordering_info_present_flag: crate::External<
         {
             "uint32_t";
             0
         },
     >,
-    vps_timing_info_present_flag: crate::External<
+    pub vps_timing_info_present_flag: crate::External<
         {
             "uint32_t";
             0
         },
     >,
-    vps_poc_proportional_to_timing_flag: crate::External<
+    pub vps_poc_proportional_to_timing_flag: crate::External<
         {
             "uint32_t";
             0
@@ -246,92 +246,92 @@ pub struct StdVideoH265VpsFlags {
 }
 #[repr(C)]
 pub struct StdVideoH265VideoParameterSet {
-    flags: crate::vk::StdVideoH265VpsFlags,
-    vps_video_parameter_set_id: crate::External<
+    pub flags: crate::vk::StdVideoH265VpsFlags,
+    pub vps_video_parameter_set_id: crate::External<
         {
             "uint8_t";
             0
         },
     >,
-    vps_max_sub_layers_minus1: crate::External<
+    pub vps_max_sub_layers_minus1: crate::External<
         {
             "uint8_t";
             0
         },
     >,
-    reserved1: crate::External<
+    pub reserved1: crate::External<
         {
             "uint8_t";
             0
         },
     >,
-    reserved2: crate::External<
+    pub reserved2: crate::External<
         {
             "uint8_t";
             0
         },
     >,
-    vps_num_units_in_tick: crate::External<
+    pub vps_num_units_in_tick: crate::External<
         {
             "uint32_t";
             0
         },
     >,
-    vps_time_scale: crate::External<
+    pub vps_time_scale: crate::External<
         {
             "uint32_t";
             0
         },
     >,
-    vps_num_ticks_poc_diff_one_minus1: crate::External<
+    pub vps_num_ticks_poc_diff_one_minus1: crate::External<
         {
             "uint32_t";
             0
         },
     >,
-    reserved3: crate::External<
+    pub reserved3: crate::External<
         {
             "uint32_t";
             0
         },
     >,
-    p_dec_pic_buf_mgr: *const crate::vk::StdVideoH265DecPicBufMgr,
-    p_hrd_parameters: *const crate::vk::StdVideoH265HrdParameters,
-    p_profile_tier_level: *const crate::vk::StdVideoH265ProfileTierLevel,
+    pub p_dec_pic_buf_mgr: *const crate::vk::StdVideoH265DecPicBufMgr,
+    pub p_hrd_parameters: *const crate::vk::StdVideoH265HrdParameters,
+    pub p_profile_tier_level: *const crate::vk::StdVideoH265ProfileTierLevel,
 }
 #[repr(C)]
 pub struct StdVideoH265ScalingLists {
-    scaling_list4x4: [[crate::External<
+    pub scaling_list4x4: [[crate::External<
         {
             "uint8_t";
             0
         },
     >; 1337]; 1337],
-    scaling_list8x8: [[crate::External<
+    pub scaling_list8x8: [[crate::External<
         {
             "uint8_t";
             0
         },
     >; 1337]; 1337],
-    scaling_list16x16: [[crate::External<
+    pub scaling_list16x16: [[crate::External<
         {
             "uint8_t";
             0
         },
     >; 1337]; 1337],
-    scaling_list32x32: [[crate::External<
+    pub scaling_list32x32: [[crate::External<
         {
             "uint8_t";
             0
         },
     >; 1337]; 1337],
-    scaling_list_dc_coef16x16: [crate::External<
+    pub scaling_list_dc_coef16x16: [crate::External<
         {
             "uint8_t";
             0
         },
     >; 1337],
-    scaling_list_dc_coef32x32: [crate::External<
+    pub scaling_list_dc_coef32x32: [crate::External<
         {
             "uint8_t";
             0
@@ -340,13 +340,13 @@ pub struct StdVideoH265ScalingLists {
 }
 #[repr(C)]
 pub struct StdVideoH265ShortTermRefPicSetFlags {
-    inter_ref_pic_set_prediction_flag: crate::External<
+    pub inter_ref_pic_set_prediction_flag: crate::External<
         {
             "uint32_t";
             0
         },
     >,
-    delta_rps_sign: crate::External<
+    pub delta_rps_sign: crate::External<
         {
             "uint32_t";
             0
@@ -355,80 +355,80 @@ pub struct StdVideoH265ShortTermRefPicSetFlags {
 }
 #[repr(C)]
 pub struct StdVideoH265ShortTermRefPicSet {
-    flags: crate::vk::StdVideoH265ShortTermRefPicSetFlags,
-    delta_idx_minus1: crate::External<
+    pub flags: crate::vk::StdVideoH265ShortTermRefPicSetFlags,
+    pub delta_idx_minus1: crate::External<
         {
             "uint32_t";
             0
         },
     >,
-    use_delta_flag: crate::External<
+    pub use_delta_flag: crate::External<
         {
             "uint16_t";
             0
         },
     >,
-    abs_delta_rps_minus1: crate::External<
+    pub abs_delta_rps_minus1: crate::External<
         {
             "uint16_t";
             0
         },
     >,
-    used_by_curr_pic_flag: crate::External<
+    pub used_by_curr_pic_flag: crate::External<
         {
             "uint16_t";
             0
         },
     >,
-    used_by_curr_pic_s0_flag: crate::External<
+    pub used_by_curr_pic_s0_flag: crate::External<
         {
             "uint16_t";
             0
         },
     >,
-    used_by_curr_pic_s1_flag: crate::External<
+    pub used_by_curr_pic_s1_flag: crate::External<
         {
             "uint16_t";
             0
         },
     >,
-    reserved1: crate::External<
+    pub reserved1: crate::External<
         {
             "uint16_t";
             0
         },
     >,
-    reserved2: crate::External<
+    pub reserved2: crate::External<
         {
             "uint8_t";
             0
         },
     >,
-    reserved3: crate::External<
+    pub reserved3: crate::External<
         {
             "uint8_t";
             0
         },
     >,
-    num_negative_pics: crate::External<
+    pub num_negative_pics: crate::External<
         {
             "uint8_t";
             0
         },
     >,
-    num_positive_pics: crate::External<
+    pub num_positive_pics: crate::External<
         {
             "uint8_t";
             0
         },
     >,
-    delta_poc_s0_minus1: [crate::External<
+    pub delta_poc_s0_minus1: [crate::External<
         {
             "uint16_t";
             0
         },
     >; 1337],
-    delta_poc_s1_minus1: [crate::External<
+    pub delta_poc_s1_minus1: [crate::External<
         {
             "uint16_t";
             0
@@ -437,13 +437,13 @@ pub struct StdVideoH265ShortTermRefPicSet {
 }
 #[repr(C)]
 pub struct StdVideoH265LongTermRefPicsSps {
-    used_by_curr_pic_lt_sps_flag: crate::External<
+    pub used_by_curr_pic_lt_sps_flag: crate::External<
         {
             "uint32_t";
             0
         },
     >,
-    lt_ref_pic_poc_lsb_sps: [crate::External<
+    pub lt_ref_pic_poc_lsb_sps: [crate::External<
         {
             "uint32_t";
             0
@@ -452,109 +452,109 @@ pub struct StdVideoH265LongTermRefPicsSps {
 }
 #[repr(C)]
 pub struct StdVideoH265SpsVuiFlags {
-    aspect_ratio_info_present_flag: crate::External<
+    pub aspect_ratio_info_present_flag: crate::External<
         {
             "uint32_t";
             0
         },
     >,
-    overscan_info_present_flag: crate::External<
+    pub overscan_info_present_flag: crate::External<
         {
             "uint32_t";
             0
         },
     >,
-    overscan_appropriate_flag: crate::External<
+    pub overscan_appropriate_flag: crate::External<
         {
             "uint32_t";
             0
         },
     >,
-    video_signal_type_present_flag: crate::External<
+    pub video_signal_type_present_flag: crate::External<
         {
             "uint32_t";
             0
         },
     >,
-    video_full_range_flag: crate::External<
+    pub video_full_range_flag: crate::External<
         {
             "uint32_t";
             0
         },
     >,
-    colour_description_present_flag: crate::External<
+    pub colour_description_present_flag: crate::External<
         {
             "uint32_t";
             0
         },
     >,
-    chroma_loc_info_present_flag: crate::External<
+    pub chroma_loc_info_present_flag: crate::External<
         {
             "uint32_t";
             0
         },
     >,
-    neutral_chroma_indication_flag: crate::External<
+    pub neutral_chroma_indication_flag: crate::External<
         {
             "uint32_t";
             0
         },
     >,
-    field_seq_flag: crate::External<
+    pub field_seq_flag: crate::External<
         {
             "uint32_t";
             0
         },
     >,
-    frame_field_info_present_flag: crate::External<
+    pub frame_field_info_present_flag: crate::External<
         {
             "uint32_t";
             0
         },
     >,
-    default_display_window_flag: crate::External<
+    pub default_display_window_flag: crate::External<
         {
             "uint32_t";
             0
         },
     >,
-    vui_timing_info_present_flag: crate::External<
+    pub vui_timing_info_present_flag: crate::External<
         {
             "uint32_t";
             0
         },
     >,
-    vui_poc_proportional_to_timing_flag: crate::External<
+    pub vui_poc_proportional_to_timing_flag: crate::External<
         {
             "uint32_t";
             0
         },
     >,
-    vui_hrd_parameters_present_flag: crate::External<
+    pub vui_hrd_parameters_present_flag: crate::External<
         {
             "uint32_t";
             0
         },
     >,
-    bitstream_restriction_flag: crate::External<
+    pub bitstream_restriction_flag: crate::External<
         {
             "uint32_t";
             0
         },
     >,
-    tiles_fixed_structure_flag: crate::External<
+    pub tiles_fixed_structure_flag: crate::External<
         {
             "uint32_t";
             0
         },
     >,
-    motion_vectors_over_pic_boundaries_flag: crate::External<
+    pub motion_vectors_over_pic_boundaries_flag: crate::External<
         {
             "uint32_t";
             0
         },
     >,
-    restricted_ref_pic_lists_flag: crate::External<
+    pub restricted_ref_pic_lists_flag: crate::External<
         {
             "uint32_t";
             0
@@ -563,151 +563,151 @@ pub struct StdVideoH265SpsVuiFlags {
 }
 #[repr(C)]
 pub struct StdVideoH265SequenceParameterSetVui {
-    flags: crate::vk::StdVideoH265SpsVuiFlags,
-    aspect_ratio_idc: crate::vk::StdVideoH265AspectRatioIdc,
-    sar_width: crate::External<
+    pub flags: crate::vk::StdVideoH265SpsVuiFlags,
+    pub aspect_ratio_idc: crate::vk::StdVideoH265AspectRatioIdc,
+    pub sar_width: crate::External<
         {
             "uint16_t";
             0
         },
     >,
-    sar_height: crate::External<
+    pub sar_height: crate::External<
         {
             "uint16_t";
             0
         },
     >,
-    video_format: crate::External<
+    pub video_format: crate::External<
         {
             "uint8_t";
             0
         },
     >,
-    colour_primaries: crate::External<
+    pub colour_primaries: crate::External<
         {
             "uint8_t";
             0
         },
     >,
-    transfer_characteristics: crate::External<
+    pub transfer_characteristics: crate::External<
         {
             "uint8_t";
             0
         },
     >,
-    matrix_coeffs: crate::External<
+    pub matrix_coeffs: crate::External<
         {
             "uint8_t";
             0
         },
     >,
-    chroma_sample_loc_type_top_field: crate::External<
+    pub chroma_sample_loc_type_top_field: crate::External<
         {
             "uint8_t";
             0
         },
     >,
-    chroma_sample_loc_type_bottom_field: crate::External<
+    pub chroma_sample_loc_type_bottom_field: crate::External<
         {
             "uint8_t";
             0
         },
     >,
-    reserved1: crate::External<
+    pub reserved1: crate::External<
         {
             "uint8_t";
             0
         },
     >,
-    reserved2: crate::External<
+    pub reserved2: crate::External<
         {
             "uint8_t";
             0
         },
     >,
-    def_disp_win_left_offset: crate::External<
+    pub def_disp_win_left_offset: crate::External<
         {
             "uint16_t";
             0
         },
     >,
-    def_disp_win_right_offset: crate::External<
+    pub def_disp_win_right_offset: crate::External<
         {
             "uint16_t";
             0
         },
     >,
-    def_disp_win_top_offset: crate::External<
+    pub def_disp_win_top_offset: crate::External<
         {
             "uint16_t";
             0
         },
     >,
-    def_disp_win_bottom_offset: crate::External<
+    pub def_disp_win_bottom_offset: crate::External<
         {
             "uint16_t";
             0
         },
     >,
-    vui_num_units_in_tick: crate::External<
+    pub vui_num_units_in_tick: crate::External<
         {
             "uint32_t";
             0
         },
     >,
-    vui_time_scale: crate::External<
+    pub vui_time_scale: crate::External<
         {
             "uint32_t";
             0
         },
     >,
-    vui_num_ticks_poc_diff_one_minus1: crate::External<
+    pub vui_num_ticks_poc_diff_one_minus1: crate::External<
         {
             "uint32_t";
             0
         },
     >,
-    min_spatial_segmentation_idc: crate::External<
+    pub min_spatial_segmentation_idc: crate::External<
         {
             "uint16_t";
             0
         },
     >,
-    reserved3: crate::External<
+    pub reserved3: crate::External<
         {
             "uint16_t";
             0
         },
     >,
-    max_bytes_per_pic_denom: crate::External<
+    pub max_bytes_per_pic_denom: crate::External<
         {
             "uint8_t";
             0
         },
     >,
-    max_bits_per_min_cu_denom: crate::External<
+    pub max_bits_per_min_cu_denom: crate::External<
         {
             "uint8_t";
             0
         },
     >,
-    log2_max_mv_length_horizontal: crate::External<
+    pub log2_max_mv_length_horizontal: crate::External<
         {
             "uint8_t";
             0
         },
     >,
-    log2_max_mv_length_vertical: crate::External<
+    pub log2_max_mv_length_vertical: crate::External<
         {
             "uint8_t";
             0
         },
     >,
-    p_hrd_parameters: *const crate::vk::StdVideoH265HrdParameters,
+    pub p_hrd_parameters: *const crate::vk::StdVideoH265HrdParameters,
 }
 #[repr(C)]
 pub struct StdVideoH265PredictorPaletteEntries {
-    predictor_palette_entries: [[crate::External<
+    pub predictor_palette_entries: [[crate::External<
         {
             "uint16_t";
             0
@@ -716,181 +716,181 @@ pub struct StdVideoH265PredictorPaletteEntries {
 }
 #[repr(C)]
 pub struct StdVideoH265SpsFlags {
-    sps_temporal_id_nesting_flag: crate::External<
+    pub sps_temporal_id_nesting_flag: crate::External<
         {
             "uint32_t";
             0
         },
     >,
-    separate_colour_plane_flag: crate::External<
+    pub separate_colour_plane_flag: crate::External<
         {
             "uint32_t";
             0
         },
     >,
-    conformance_window_flag: crate::External<
+    pub conformance_window_flag: crate::External<
         {
             "uint32_t";
             0
         },
     >,
-    sps_sub_layer_ordering_info_present_flag: crate::External<
+    pub sps_sub_layer_ordering_info_present_flag: crate::External<
         {
             "uint32_t";
             0
         },
     >,
-    scaling_list_enabled_flag: crate::External<
+    pub scaling_list_enabled_flag: crate::External<
         {
             "uint32_t";
             0
         },
     >,
-    sps_scaling_list_data_present_flag: crate::External<
+    pub sps_scaling_list_data_present_flag: crate::External<
         {
             "uint32_t";
             0
         },
     >,
-    amp_enabled_flag: crate::External<
+    pub amp_enabled_flag: crate::External<
         {
             "uint32_t";
             0
         },
     >,
-    sample_adaptive_offset_enabled_flag: crate::External<
+    pub sample_adaptive_offset_enabled_flag: crate::External<
         {
             "uint32_t";
             0
         },
     >,
-    pcm_enabled_flag: crate::External<
+    pub pcm_enabled_flag: crate::External<
         {
             "uint32_t";
             0
         },
     >,
-    pcm_loop_filter_disabled_flag: crate::External<
+    pub pcm_loop_filter_disabled_flag: crate::External<
         {
             "uint32_t";
             0
         },
     >,
-    long_term_ref_pics_present_flag: crate::External<
+    pub long_term_ref_pics_present_flag: crate::External<
         {
             "uint32_t";
             0
         },
     >,
-    sps_temporal_mvp_enabled_flag: crate::External<
+    pub sps_temporal_mvp_enabled_flag: crate::External<
         {
             "uint32_t";
             0
         },
     >,
-    strong_intra_smoothing_enabled_flag: crate::External<
+    pub strong_intra_smoothing_enabled_flag: crate::External<
         {
             "uint32_t";
             0
         },
     >,
-    vui_parameters_present_flag: crate::External<
+    pub vui_parameters_present_flag: crate::External<
         {
             "uint32_t";
             0
         },
     >,
-    sps_extension_present_flag: crate::External<
+    pub sps_extension_present_flag: crate::External<
         {
             "uint32_t";
             0
         },
     >,
-    sps_range_extension_flag: crate::External<
+    pub sps_range_extension_flag: crate::External<
         {
             "uint32_t";
             0
         },
     >,
-    transform_skip_rotation_enabled_flag: crate::External<
+    pub transform_skip_rotation_enabled_flag: crate::External<
         {
             "uint32_t";
             0
         },
     >,
-    transform_skip_context_enabled_flag: crate::External<
+    pub transform_skip_context_enabled_flag: crate::External<
         {
             "uint32_t";
             0
         },
     >,
-    implicit_rdpcm_enabled_flag: crate::External<
+    pub implicit_rdpcm_enabled_flag: crate::External<
         {
             "uint32_t";
             0
         },
     >,
-    explicit_rdpcm_enabled_flag: crate::External<
+    pub explicit_rdpcm_enabled_flag: crate::External<
         {
             "uint32_t";
             0
         },
     >,
-    extended_precision_processing_flag: crate::External<
+    pub extended_precision_processing_flag: crate::External<
         {
             "uint32_t";
             0
         },
     >,
-    intra_smoothing_disabled_flag: crate::External<
+    pub intra_smoothing_disabled_flag: crate::External<
         {
             "uint32_t";
             0
         },
     >,
-    high_precision_offsets_enabled_flag: crate::External<
+    pub high_precision_offsets_enabled_flag: crate::External<
         {
             "uint32_t";
             0
         },
     >,
-    persistent_rice_adaptation_enabled_flag: crate::External<
+    pub persistent_rice_adaptation_enabled_flag: crate::External<
         {
             "uint32_t";
             0
         },
     >,
-    cabac_bypass_alignment_enabled_flag: crate::External<
+    pub cabac_bypass_alignment_enabled_flag: crate::External<
         {
             "uint32_t";
             0
         },
     >,
-    sps_scc_extension_flag: crate::External<
+    pub sps_scc_extension_flag: crate::External<
         {
             "uint32_t";
             0
         },
     >,
-    sps_curr_pic_ref_enabled_flag: crate::External<
+    pub sps_curr_pic_ref_enabled_flag: crate::External<
         {
             "uint32_t";
             0
         },
     >,
-    palette_mode_enabled_flag: crate::External<
+    pub palette_mode_enabled_flag: crate::External<
         {
             "uint32_t";
             0
         },
     >,
-    sps_palette_predictor_initializers_present_flag: crate::External<
+    pub sps_palette_predictor_initializers_present_flag: crate::External<
         {
             "uint32_t";
             0
         },
     >,
-    intra_boundary_filtering_disabled_flag: crate::External<
+    pub intra_boundary_filtering_disabled_flag: crate::External<
         {
             "uint32_t";
             0
@@ -899,379 +899,379 @@ pub struct StdVideoH265SpsFlags {
 }
 #[repr(C)]
 pub struct StdVideoH265SequenceParameterSet {
-    flags: crate::vk::StdVideoH265SpsFlags,
-    chroma_format_idc: crate::vk::StdVideoH265ChromaFormatIdc,
-    pic_width_in_luma_samples: crate::External<
+    pub flags: crate::vk::StdVideoH265SpsFlags,
+    pub chroma_format_idc: crate::vk::StdVideoH265ChromaFormatIdc,
+    pub pic_width_in_luma_samples: crate::External<
         {
             "uint32_t";
             0
         },
     >,
-    pic_height_in_luma_samples: crate::External<
+    pub pic_height_in_luma_samples: crate::External<
         {
             "uint32_t";
             0
         },
     >,
-    sps_video_parameter_set_id: crate::External<
+    pub sps_video_parameter_set_id: crate::External<
         {
             "uint8_t";
             0
         },
     >,
-    sps_max_sub_layers_minus1: crate::External<
+    pub sps_max_sub_layers_minus1: crate::External<
         {
             "uint8_t";
             0
         },
     >,
-    sps_seq_parameter_set_id: crate::External<
+    pub sps_seq_parameter_set_id: crate::External<
         {
             "uint8_t";
             0
         },
     >,
-    bit_depth_luma_minus8: crate::External<
+    pub bit_depth_luma_minus8: crate::External<
         {
             "uint8_t";
             0
         },
     >,
-    bit_depth_chroma_minus8: crate::External<
+    pub bit_depth_chroma_minus8: crate::External<
         {
             "uint8_t";
             0
         },
     >,
-    log2_max_pic_order_cnt_lsb_minus4: crate::External<
+    pub log2_max_pic_order_cnt_lsb_minus4: crate::External<
         {
             "uint8_t";
             0
         },
     >,
-    log2_min_luma_coding_block_size_minus3: crate::External<
+    pub log2_min_luma_coding_block_size_minus3: crate::External<
         {
             "uint8_t";
             0
         },
     >,
-    log2_diff_max_min_luma_coding_block_size: crate::External<
+    pub log2_diff_max_min_luma_coding_block_size: crate::External<
         {
             "uint8_t";
             0
         },
     >,
-    log2_min_luma_transform_block_size_minus2: crate::External<
+    pub log2_min_luma_transform_block_size_minus2: crate::External<
         {
             "uint8_t";
             0
         },
     >,
-    log2_diff_max_min_luma_transform_block_size: crate::External<
+    pub log2_diff_max_min_luma_transform_block_size: crate::External<
         {
             "uint8_t";
             0
         },
     >,
-    max_transform_hierarchy_depth_inter: crate::External<
+    pub max_transform_hierarchy_depth_inter: crate::External<
         {
             "uint8_t";
             0
         },
     >,
-    max_transform_hierarchy_depth_intra: crate::External<
+    pub max_transform_hierarchy_depth_intra: crate::External<
         {
             "uint8_t";
             0
         },
     >,
-    num_short_term_ref_pic_sets: crate::External<
+    pub num_short_term_ref_pic_sets: crate::External<
         {
             "uint8_t";
             0
         },
     >,
-    num_long_term_ref_pics_sps: crate::External<
+    pub num_long_term_ref_pics_sps: crate::External<
         {
             "uint8_t";
             0
         },
     >,
-    pcm_sample_bit_depth_luma_minus1: crate::External<
+    pub pcm_sample_bit_depth_luma_minus1: crate::External<
         {
             "uint8_t";
             0
         },
     >,
-    pcm_sample_bit_depth_chroma_minus1: crate::External<
+    pub pcm_sample_bit_depth_chroma_minus1: crate::External<
         {
             "uint8_t";
             0
         },
     >,
-    log2_min_pcm_luma_coding_block_size_minus3: crate::External<
+    pub log2_min_pcm_luma_coding_block_size_minus3: crate::External<
         {
             "uint8_t";
             0
         },
     >,
-    log2_diff_max_min_pcm_luma_coding_block_size: crate::External<
+    pub log2_diff_max_min_pcm_luma_coding_block_size: crate::External<
         {
             "uint8_t";
             0
         },
     >,
-    reserved1: crate::External<
+    pub reserved1: crate::External<
         {
             "uint8_t";
             0
         },
     >,
-    reserved2: crate::External<
+    pub reserved2: crate::External<
         {
             "uint8_t";
             0
         },
     >,
-    palette_max_size: crate::External<
+    pub palette_max_size: crate::External<
         {
             "uint8_t";
             0
         },
     >,
-    delta_palette_max_predictor_size: crate::External<
+    pub delta_palette_max_predictor_size: crate::External<
         {
             "uint8_t";
             0
         },
     >,
-    motion_vector_resolution_control_idc: crate::External<
+    pub motion_vector_resolution_control_idc: crate::External<
         {
             "uint8_t";
             0
         },
     >,
-    sps_num_palette_predictor_initializers_minus1: crate::External<
+    pub sps_num_palette_predictor_initializers_minus1: crate::External<
         {
             "uint8_t";
             0
         },
     >,
-    conf_win_left_offset: crate::External<
+    pub conf_win_left_offset: crate::External<
         {
             "uint32_t";
             0
         },
     >,
-    conf_win_right_offset: crate::External<
+    pub conf_win_right_offset: crate::External<
         {
             "uint32_t";
             0
         },
     >,
-    conf_win_top_offset: crate::External<
+    pub conf_win_top_offset: crate::External<
         {
             "uint32_t";
             0
         },
     >,
-    conf_win_bottom_offset: crate::External<
+    pub conf_win_bottom_offset: crate::External<
         {
             "uint32_t";
             0
         },
     >,
-    p_profile_tier_level: *const crate::vk::StdVideoH265ProfileTierLevel,
-    p_dec_pic_buf_mgr: *const crate::vk::StdVideoH265DecPicBufMgr,
-    p_scaling_lists: *const crate::vk::StdVideoH265ScalingLists,
-    p_short_term_ref_pic_set: *const crate::vk::StdVideoH265ShortTermRefPicSet,
-    p_long_term_ref_pics_sps: *const crate::vk::StdVideoH265LongTermRefPicsSps,
-    p_sequence_parameter_set_vui: *const crate::vk::StdVideoH265SequenceParameterSetVui,
-    p_predictor_palette_entries: *const crate::vk::StdVideoH265PredictorPaletteEntries,
+    pub p_profile_tier_level: *const crate::vk::StdVideoH265ProfileTierLevel,
+    pub p_dec_pic_buf_mgr: *const crate::vk::StdVideoH265DecPicBufMgr,
+    pub p_scaling_lists: *const crate::vk::StdVideoH265ScalingLists,
+    pub p_short_term_ref_pic_set: *const crate::vk::StdVideoH265ShortTermRefPicSet,
+    pub p_long_term_ref_pics_sps: *const crate::vk::StdVideoH265LongTermRefPicsSps,
+    pub p_sequence_parameter_set_vui: *const crate::vk::StdVideoH265SequenceParameterSetVui,
+    pub p_predictor_palette_entries: *const crate::vk::StdVideoH265PredictorPaletteEntries,
 }
 #[repr(C)]
 pub struct StdVideoH265PpsFlags {
-    dependent_slice_segments_enabled_flag: crate::External<
+    pub dependent_slice_segments_enabled_flag: crate::External<
         {
             "uint32_t";
             0
         },
     >,
-    output_flag_present_flag: crate::External<
+    pub output_flag_present_flag: crate::External<
         {
             "uint32_t";
             0
         },
     >,
-    sign_data_hiding_enabled_flag: crate::External<
+    pub sign_data_hiding_enabled_flag: crate::External<
         {
             "uint32_t";
             0
         },
     >,
-    cabac_init_present_flag: crate::External<
+    pub cabac_init_present_flag: crate::External<
         {
             "uint32_t";
             0
         },
     >,
-    constrained_intra_pred_flag: crate::External<
+    pub constrained_intra_pred_flag: crate::External<
         {
             "uint32_t";
             0
         },
     >,
-    transform_skip_enabled_flag: crate::External<
+    pub transform_skip_enabled_flag: crate::External<
         {
             "uint32_t";
             0
         },
     >,
-    cu_qp_delta_enabled_flag: crate::External<
+    pub cu_qp_delta_enabled_flag: crate::External<
         {
             "uint32_t";
             0
         },
     >,
-    pps_slice_chroma_qp_offsets_present_flag: crate::External<
+    pub pps_slice_chroma_qp_offsets_present_flag: crate::External<
         {
             "uint32_t";
             0
         },
     >,
-    weighted_pred_flag: crate::External<
+    pub weighted_pred_flag: crate::External<
         {
             "uint32_t";
             0
         },
     >,
-    weighted_bipred_flag: crate::External<
+    pub weighted_bipred_flag: crate::External<
         {
             "uint32_t";
             0
         },
     >,
-    transquant_bypass_enabled_flag: crate::External<
+    pub transquant_bypass_enabled_flag: crate::External<
         {
             "uint32_t";
             0
         },
     >,
-    tiles_enabled_flag: crate::External<
+    pub tiles_enabled_flag: crate::External<
         {
             "uint32_t";
             0
         },
     >,
-    entropy_coding_sync_enabled_flag: crate::External<
+    pub entropy_coding_sync_enabled_flag: crate::External<
         {
             "uint32_t";
             0
         },
     >,
-    uniform_spacing_flag: crate::External<
+    pub uniform_spacing_flag: crate::External<
         {
             "uint32_t";
             0
         },
     >,
-    loop_filter_across_tiles_enabled_flag: crate::External<
+    pub loop_filter_across_tiles_enabled_flag: crate::External<
         {
             "uint32_t";
             0
         },
     >,
-    pps_loop_filter_across_slices_enabled_flag: crate::External<
+    pub pps_loop_filter_across_slices_enabled_flag: crate::External<
         {
             "uint32_t";
             0
         },
     >,
-    deblocking_filter_control_present_flag: crate::External<
+    pub deblocking_filter_control_present_flag: crate::External<
         {
             "uint32_t";
             0
         },
     >,
-    deblocking_filter_override_enabled_flag: crate::External<
+    pub deblocking_filter_override_enabled_flag: crate::External<
         {
             "uint32_t";
             0
         },
     >,
-    pps_deblocking_filter_disabled_flag: crate::External<
+    pub pps_deblocking_filter_disabled_flag: crate::External<
         {
             "uint32_t";
             0
         },
     >,
-    pps_scaling_list_data_present_flag: crate::External<
+    pub pps_scaling_list_data_present_flag: crate::External<
         {
             "uint32_t";
             0
         },
     >,
-    lists_modification_present_flag: crate::External<
+    pub lists_modification_present_flag: crate::External<
         {
             "uint32_t";
             0
         },
     >,
-    slice_segment_header_extension_present_flag: crate::External<
+    pub slice_segment_header_extension_present_flag: crate::External<
         {
             "uint32_t";
             0
         },
     >,
-    pps_extension_present_flag: crate::External<
+    pub pps_extension_present_flag: crate::External<
         {
             "uint32_t";
             0
         },
     >,
-    cross_component_prediction_enabled_flag: crate::External<
+    pub cross_component_prediction_enabled_flag: crate::External<
         {
             "uint32_t";
             0
         },
     >,
-    chroma_qp_offset_list_enabled_flag: crate::External<
+    pub chroma_qp_offset_list_enabled_flag: crate::External<
         {
             "uint32_t";
             0
         },
     >,
-    pps_curr_pic_ref_enabled_flag: crate::External<
+    pub pps_curr_pic_ref_enabled_flag: crate::External<
         {
             "uint32_t";
             0
         },
     >,
-    residual_adaptive_colour_transform_enabled_flag: crate::External<
+    pub residual_adaptive_colour_transform_enabled_flag: crate::External<
         {
             "uint32_t";
             0
         },
     >,
-    pps_slice_act_qp_offsets_present_flag: crate::External<
+    pub pps_slice_act_qp_offsets_present_flag: crate::External<
         {
             "uint32_t";
             0
         },
     >,
-    pps_palette_predictor_initializers_present_flag: crate::External<
+    pub pps_palette_predictor_initializers_present_flag: crate::External<
         {
             "uint32_t";
             0
         },
     >,
-    monochrome_palette_flag: crate::External<
+    pub monochrome_palette_flag: crate::External<
         {
             "uint32_t";
             0
         },
     >,
-    pps_range_extension_flag: crate::External<
+    pub pps_range_extension_flag: crate::External<
         {
             "uint32_t";
             0
@@ -1280,207 +1280,207 @@ pub struct StdVideoH265PpsFlags {
 }
 #[repr(C)]
 pub struct StdVideoH265PictureParameterSet {
-    flags: crate::vk::StdVideoH265PpsFlags,
-    pps_pic_parameter_set_id: crate::External<
+    pub flags: crate::vk::StdVideoH265PpsFlags,
+    pub pps_pic_parameter_set_id: crate::External<
         {
             "uint8_t";
             0
         },
     >,
-    pps_seq_parameter_set_id: crate::External<
+    pub pps_seq_parameter_set_id: crate::External<
         {
             "uint8_t";
             0
         },
     >,
-    sps_video_parameter_set_id: crate::External<
+    pub sps_video_parameter_set_id: crate::External<
         {
             "uint8_t";
             0
         },
     >,
-    num_extra_slice_header_bits: crate::External<
+    pub num_extra_slice_header_bits: crate::External<
         {
             "uint8_t";
             0
         },
     >,
-    num_ref_idx_l0_default_active_minus1: crate::External<
+    pub num_ref_idx_l0_default_active_minus1: crate::External<
         {
             "uint8_t";
             0
         },
     >,
-    num_ref_idx_l1_default_active_minus1: crate::External<
+    pub num_ref_idx_l1_default_active_minus1: crate::External<
         {
             "uint8_t";
             0
         },
     >,
-    init_qp_minus26: crate::External<
+    pub init_qp_minus26: crate::External<
         {
             "int8_t";
             0
         },
     >,
-    diff_cu_qp_delta_depth: crate::External<
+    pub diff_cu_qp_delta_depth: crate::External<
         {
             "uint8_t";
             0
         },
     >,
-    pps_cb_qp_offset: crate::External<
+    pub pps_cb_qp_offset: crate::External<
         {
             "int8_t";
             0
         },
     >,
-    pps_cr_qp_offset: crate::External<
+    pub pps_cr_qp_offset: crate::External<
         {
             "int8_t";
             0
         },
     >,
-    pps_beta_offset_div2: crate::External<
+    pub pps_beta_offset_div2: crate::External<
         {
             "int8_t";
             0
         },
     >,
-    pps_tc_offset_div2: crate::External<
+    pub pps_tc_offset_div2: crate::External<
         {
             "int8_t";
             0
         },
     >,
-    log2_parallel_merge_level_minus2: crate::External<
+    pub log2_parallel_merge_level_minus2: crate::External<
         {
             "uint8_t";
             0
         },
     >,
-    log2_max_transform_skip_block_size_minus2: crate::External<
+    pub log2_max_transform_skip_block_size_minus2: crate::External<
         {
             "uint8_t";
             0
         },
     >,
-    diff_cu_chroma_qp_offset_depth: crate::External<
+    pub diff_cu_chroma_qp_offset_depth: crate::External<
         {
             "uint8_t";
             0
         },
     >,
-    chroma_qp_offset_list_len_minus1: crate::External<
+    pub chroma_qp_offset_list_len_minus1: crate::External<
         {
             "uint8_t";
             0
         },
     >,
-    cb_qp_offset_list: [crate::External<
-        {
-            "int8_t";
-            0
-        },
-    >; 1337],
-    cr_qp_offset_list: [crate::External<
+    pub cb_qp_offset_list: [crate::External<
         {
             "int8_t";
             0
         },
     >; 1337],
-    log2_sao_offset_scale_luma: crate::External<
+    pub cr_qp_offset_list: [crate::External<
+        {
+            "int8_t";
+            0
+        },
+    >; 1337],
+    pub log2_sao_offset_scale_luma: crate::External<
         {
             "uint8_t";
             0
         },
     >,
-    log2_sao_offset_scale_chroma: crate::External<
+    pub log2_sao_offset_scale_chroma: crate::External<
         {
             "uint8_t";
             0
         },
     >,
-    pps_act_y_qp_offset_plus5: crate::External<
+    pub pps_act_y_qp_offset_plus5: crate::External<
         {
             "int8_t";
             0
         },
     >,
-    pps_act_cb_qp_offset_plus5: crate::External<
+    pub pps_act_cb_qp_offset_plus5: crate::External<
         {
             "int8_t";
             0
         },
     >,
-    pps_act_cr_qp_offset_plus3: crate::External<
+    pub pps_act_cr_qp_offset_plus3: crate::External<
         {
             "int8_t";
             0
         },
     >,
-    pps_num_palette_predictor_initializers: crate::External<
+    pub pps_num_palette_predictor_initializers: crate::External<
         {
             "uint8_t";
             0
         },
     >,
-    luma_bit_depth_entry_minus8: crate::External<
+    pub luma_bit_depth_entry_minus8: crate::External<
         {
             "uint8_t";
             0
         },
     >,
-    chroma_bit_depth_entry_minus8: crate::External<
+    pub chroma_bit_depth_entry_minus8: crate::External<
         {
             "uint8_t";
             0
         },
     >,
-    num_tile_columns_minus1: crate::External<
+    pub num_tile_columns_minus1: crate::External<
         {
             "uint8_t";
             0
         },
     >,
-    num_tile_rows_minus1: crate::External<
+    pub num_tile_rows_minus1: crate::External<
         {
             "uint8_t";
             0
         },
     >,
-    reserved1: crate::External<
+    pub reserved1: crate::External<
         {
             "uint8_t";
             0
         },
     >,
-    reserved2: crate::External<
+    pub reserved2: crate::External<
         {
             "uint8_t";
             0
         },
     >,
-    column_width_minus1: [crate::External<
+    pub column_width_minus1: [crate::External<
         {
             "uint16_t";
             0
         },
     >; 1337],
-    row_height_minus1: [crate::External<
+    pub row_height_minus1: [crate::External<
         {
             "uint16_t";
             0
         },
     >; 1337],
-    reserved3: crate::External<
+    pub reserved3: crate::External<
         {
             "uint32_t";
             0
         },
     >,
-    p_scaling_lists: *const crate::vk::StdVideoH265ScalingLists,
-    p_predictor_palette_entries: *const crate::vk::StdVideoH265PredictorPaletteEntries,
+    pub p_scaling_lists: *const crate::vk::StdVideoH265ScalingLists,
+    pub p_predictor_palette_entries: *const crate::vk::StdVideoH265PredictorPaletteEntries,
 }
 #[repr(C)]
 pub struct StdVideoH265ChromaFormatIdc {}

@@ -3,25 +3,25 @@
 //!Items provided by `vulkan_video_codec_h265std_decode`
 #[repr(C)]
 pub struct StdVideoDecodeH265PictureInfoFlags {
-    irap_pic_flag: crate::External<
+    pub irap_pic_flag: crate::External<
         {
             "uint32_t";
             0
         },
     >,
-    idr_pic_flag: crate::External<
+    pub idr_pic_flag: crate::External<
         {
             "uint32_t";
             0
         },
     >,
-    is_reference: crate::External<
+    pub is_reference: crate::External<
         {
             "uint32_t";
             0
         },
     >,
-    short_term_ref_pic_set_sps_flag: crate::External<
+    pub short_term_ref_pic_set_sps_flag: crate::External<
         {
             "uint32_t";
             0
@@ -30,62 +30,62 @@ pub struct StdVideoDecodeH265PictureInfoFlags {
 }
 #[repr(C)]
 pub struct StdVideoDecodeH265PictureInfo {
-    flags: crate::vk::StdVideoDecodeH265PictureInfoFlags,
-    sps_video_parameter_set_id: crate::External<
+    pub flags: crate::vk::StdVideoDecodeH265PictureInfoFlags,
+    pub sps_video_parameter_set_id: crate::External<
         {
             "uint8_t";
             0
         },
     >,
-    pps_seq_parameter_set_id: crate::External<
+    pub pps_seq_parameter_set_id: crate::External<
         {
             "uint8_t";
             0
         },
     >,
-    pps_pic_parameter_set_id: crate::External<
+    pub pps_pic_parameter_set_id: crate::External<
         {
             "uint8_t";
             0
         },
     >,
-    num_delta_pocs_of_ref_rps_idx: crate::External<
+    pub num_delta_pocs_of_ref_rps_idx: crate::External<
         {
             "uint8_t";
             0
         },
     >,
-    pic_order_cnt_val: crate::External<
+    pub pic_order_cnt_val: crate::External<
         {
             "int32_t";
             0
         },
     >,
-    num_bits_for_st_ref_pic_set_in_slice: crate::External<
+    pub num_bits_for_st_ref_pic_set_in_slice: crate::External<
         {
             "uint16_t";
             0
         },
     >,
-    reserved: crate::External<
+    pub reserved: crate::External<
         {
             "uint16_t";
             0
         },
     >,
-    ref_pic_set_st_curr_before: [crate::External<
+    pub ref_pic_set_st_curr_before: [crate::External<
         {
             "uint8_t";
             0
         },
     >; 1337],
-    ref_pic_set_st_curr_after: [crate::External<
+    pub ref_pic_set_st_curr_after: [crate::External<
         {
             "uint8_t";
             0
         },
     >; 1337],
-    ref_pic_set_lt_curr: [crate::External<
+    pub ref_pic_set_lt_curr: [crate::External<
         {
             "uint8_t";
             0
@@ -94,13 +94,13 @@ pub struct StdVideoDecodeH265PictureInfo {
 }
 #[repr(C)]
 pub struct StdVideoDecodeH265ReferenceInfoFlags {
-    used_for_long_term_reference: crate::External<
+    pub used_for_long_term_reference: crate::External<
         {
             "uint32_t";
             0
         },
     >,
-    unused_for_reference: crate::External<
+    pub unused_for_reference: crate::External<
         {
             "uint32_t";
             0
@@ -109,8 +109,8 @@ pub struct StdVideoDecodeH265ReferenceInfoFlags {
 }
 #[repr(C)]
 pub struct StdVideoDecodeH265ReferenceInfo {
-    flags: crate::vk::StdVideoDecodeH265ReferenceInfoFlags,
-    pic_order_cnt_val: crate::External<
+    pub flags: crate::vk::StdVideoDecodeH265ReferenceInfoFlags,
+    pub pic_order_cnt_val: crate::External<
         {
             "int32_t";
             0

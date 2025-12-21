@@ -3,7 +3,7 @@
 //![Vulkan Manual Page](https://docs.vulkan.org/refpages/latest/refpages/source/VK_KHR_depth_clamp_zero_one.html) · Vulkan extension
 #[repr(C)]
 pub struct PhysicalDeviceDepthClampZeroOneFeaturesKHR {
-    s_type: crate::vk::StructureType,
-    p_next: *mut core::ffi::c_void,
-    depth_clamp_zero_one: crate::vk::Bool32,
+    pub s_type: crate::vk::StructureType,
+    pub p_next: *mut core::ffi::c_void,
+    pub depth_clamp_zero_one: crate::vk::Bool32,
 }

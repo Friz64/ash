@@ -4,6 +4,7 @@
 pub mod data_graph_model;
 pub mod filter_cubic_clamp;
 pub mod filter_cubic_weights;
+pub mod fragment_density_map_offset;
 pub mod image_processing;
 pub mod image_processing2;
 pub mod multiview_per_view_render_areas;

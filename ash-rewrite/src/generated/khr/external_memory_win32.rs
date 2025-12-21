@@ -3,16 +3,16 @@
 //![Vulkan Manual Page](https://docs.vulkan.org/refpages/latest/refpages/source/VK_KHR_external_memory_win32.html) · Vulkan extension
 #[repr(C)]
 pub struct ImportMemoryWin32HandleInfoKHR {
-    s_type: crate::vk::StructureType,
-    p_next: *const core::ffi::c_void,
-    handle_type: crate::vk::ExternalMemoryHandleTypeFlagBits,
-    handle: crate::External<
+    pub s_type: crate::vk::StructureType,
+    pub p_next: *const core::ffi::c_void,
+    pub handle_type: crate::vk::ExternalMemoryHandleTypeFlagBits,
+    pub handle: crate::External<
         {
             "HANDLE";
             0
         },
     >,
-    name: crate::External<
+    pub name: crate::External<
         {
             "LPCWSTR";
             0
@@ -21,21 +21,21 @@ pub struct ImportMemoryWin32HandleInfoKHR {
 }
 #[repr(C)]
 pub struct ExportMemoryWin32HandleInfoKHR {
-    s_type: crate::vk::StructureType,
-    p_next: *const core::ffi::c_void,
-    p_attributes: *const crate::External<
+    pub s_type: crate::vk::StructureType,
+    pub p_next: *const core::ffi::c_void,
+    pub p_attributes: *const crate::External<
         {
             "SECURITY_ATTRIBUTES";
             0
         },
     >,
-    dw_access: crate::External<
+    pub dw_access: crate::External<
         {
             "DWORD";
             0
         },
     >,
-    name: crate::External<
+    pub name: crate::External<
         {
             "LPCWSTR";
             0
@@ -44,9 +44,9 @@ pub struct ExportMemoryWin32HandleInfoKHR {
 }
 #[repr(C)]
 pub struct MemoryWin32HandlePropertiesKHR {
-    s_type: crate::vk::StructureType,
-    p_next: *mut core::ffi::c_void,
-    memory_type_bits: crate::External<
+    pub s_type: crate::vk::StructureType,
+    pub p_next: *mut core::ffi::c_void,
+    pub memory_type_bits: crate::External<
         {
             "uint32_t";
             0
@@ -55,8 +55,8 @@ pub struct MemoryWin32HandlePropertiesKHR {
 }
 #[repr(C)]
 pub struct MemoryGetWin32HandleInfoKHR {
-    s_type: crate::vk::StructureType,
-    p_next: *const core::ffi::c_void,
-    memory: crate::vk::DeviceMemory,
-    handle_type: crate::vk::ExternalMemoryHandleTypeFlagBits,
+    pub s_type: crate::vk::StructureType,
+    pub p_next: *const core::ffi::c_void,
+    pub memory: crate::vk::DeviceMemory,
+    pub handle_type: crate::vk::ExternalMemoryHandleTypeFlagBits,
 }

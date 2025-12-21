@@ -3,46 +3,46 @@
 //![Vulkan Manual Page](https://docs.vulkan.org/refpages/latest/refpages/source/VK_NV_shading_rate_image.html) · Vulkan extension
 #[repr(C)]
 pub struct ShadingRatePaletteNV {
-    shading_rate_palette_entry_count: crate::External<
+    pub shading_rate_palette_entry_count: crate::External<
         {
             "uint32_t";
             0
         },
     >,
-    p_shading_rate_palette_entries: *const crate::vk::ShadingRatePaletteEntryNV,
+    pub p_shading_rate_palette_entries: *const crate::vk::ShadingRatePaletteEntryNV,
 }
 #[repr(C)]
 pub struct PipelineViewportShadingRateImageStateCreateInfoNV {
-    s_type: crate::vk::StructureType,
-    p_next: *const core::ffi::c_void,
-    shading_rate_image_enable: crate::vk::Bool32,
-    viewport_count: crate::External<
+    pub s_type: crate::vk::StructureType,
+    pub p_next: *const core::ffi::c_void,
+    pub shading_rate_image_enable: crate::vk::Bool32,
+    pub viewport_count: crate::External<
         {
             "uint32_t";
             0
         },
     >,
-    p_shading_rate_palettes: *const crate::vk::ShadingRatePaletteNV,
+    pub p_shading_rate_palettes: *const crate::vk::ShadingRatePaletteNV,
 }
 #[repr(C)]
 pub struct PhysicalDeviceShadingRateImageFeaturesNV {
-    s_type: crate::vk::StructureType,
-    p_next: *mut core::ffi::c_void,
-    shading_rate_image: crate::vk::Bool32,
-    shading_rate_coarse_sample_order: crate::vk::Bool32,
+    pub s_type: crate::vk::StructureType,
+    pub p_next: *mut core::ffi::c_void,
+    pub shading_rate_image: crate::vk::Bool32,
+    pub shading_rate_coarse_sample_order: crate::vk::Bool32,
 }
 #[repr(C)]
 pub struct PhysicalDeviceShadingRateImagePropertiesNV {
-    s_type: crate::vk::StructureType,
-    p_next: *mut core::ffi::c_void,
-    shading_rate_texel_size: crate::vk::Extent2D,
-    shading_rate_palette_size: crate::External<
+    pub s_type: crate::vk::StructureType,
+    pub p_next: *mut core::ffi::c_void,
+    pub shading_rate_texel_size: crate::vk::Extent2D,
+    pub shading_rate_palette_size: crate::External<
         {
             "uint32_t";
             0
         },
     >,
-    shading_rate_max_coarse_samples: crate::External<
+    pub shading_rate_max_coarse_samples: crate::External<
         {
             "uint32_t";
             0
@@ -51,19 +51,19 @@ pub struct PhysicalDeviceShadingRateImagePropertiesNV {
 }
 #[repr(C)]
 pub struct CoarseSampleLocationNV {
-    pixel_x: crate::External<
+    pub pixel_x: crate::External<
         {
             "uint32_t";
             0
         },
     >,
-    pixel_y: crate::External<
+    pub pixel_y: crate::External<
         {
             "uint32_t";
             0
         },
     >,
-    sample: crate::External<
+    pub sample: crate::External<
         {
             "uint32_t";
             0
@@ -72,33 +72,33 @@ pub struct CoarseSampleLocationNV {
 }
 #[repr(C)]
 pub struct CoarseSampleOrderCustomNV {
-    shading_rate: crate::vk::ShadingRatePaletteEntryNV,
-    sample_count: crate::External<
+    pub shading_rate: crate::vk::ShadingRatePaletteEntryNV,
+    pub sample_count: crate::External<
         {
             "uint32_t";
             0
         },
     >,
-    sample_location_count: crate::External<
+    pub sample_location_count: crate::External<
         {
             "uint32_t";
             0
         },
     >,
-    p_sample_locations: *const crate::vk::CoarseSampleLocationNV,
+    pub p_sample_locations: *const crate::vk::CoarseSampleLocationNV,
 }
 #[repr(C)]
 pub struct PipelineViewportCoarseSampleOrderStateCreateInfoNV {
-    s_type: crate::vk::StructureType,
-    p_next: *const core::ffi::c_void,
-    sample_order_type: crate::vk::CoarseSampleOrderTypeNV,
-    custom_sample_order_count: crate::External<
+    pub s_type: crate::vk::StructureType,
+    pub p_next: *const core::ffi::c_void,
+    pub sample_order_type: crate::vk::CoarseSampleOrderTypeNV,
+    pub custom_sample_order_count: crate::External<
         {
             "uint32_t";
             0
         },
     >,
-    p_custom_sample_orders: *const crate::vk::CoarseSampleOrderCustomNV,
+    pub p_custom_sample_orders: *const crate::vk::CoarseSampleOrderCustomNV,
 }
 #[repr(C)]
 pub struct ShadingRatePaletteEntryNV {}

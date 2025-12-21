@@ -3,27 +3,27 @@
 //![Vulkan Manual Page](https://docs.vulkan.org/refpages/latest/refpages/source/VK_EXT_pci_bus_info.html) · Vulkan extension
 #[repr(C)]
 pub struct PhysicalDevicePCIBusInfoPropertiesEXT {
-    s_type: crate::vk::StructureType,
-    p_next: *mut core::ffi::c_void,
-    pci_domain: crate::External<
+    pub s_type: crate::vk::StructureType,
+    pub p_next: *mut core::ffi::c_void,
+    pub pci_domain: crate::External<
         {
             "uint32_t";
             0
         },
     >,
-    pci_bus: crate::External<
+    pub pci_bus: crate::External<
         {
             "uint32_t";
             0
         },
     >,
-    pci_device: crate::External<
+    pub pci_device: crate::External<
         {
             "uint32_t";
             0
         },
     >,
-    pci_function: crate::External<
+    pub pci_function: crate::External<
         {
             "uint32_t";
             0

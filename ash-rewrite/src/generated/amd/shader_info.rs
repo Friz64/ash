@@ -3,31 +3,31 @@
 //![Vulkan Manual Page](https://docs.vulkan.org/refpages/latest/refpages/source/VK_AMD_shader_info.html) · Vulkan extension
 #[repr(C)]
 pub struct ShaderResourceUsageAMD {
-    num_used_vgprs: crate::External<
+    pub num_used_vgprs: crate::External<
         {
             "uint32_t";
             0
         },
     >,
-    num_used_sgprs: crate::External<
+    pub num_used_sgprs: crate::External<
         {
             "uint32_t";
             0
         },
     >,
-    lds_size_per_local_work_group: crate::External<
+    pub lds_size_per_local_work_group: crate::External<
         {
             "uint32_t";
             0
         },
     >,
-    lds_usage_size_in_bytes: crate::External<
+    pub lds_usage_size_in_bytes: crate::External<
         {
             "size_t";
             0
         },
     >,
-    scratch_mem_usage_in_bytes: crate::External<
+    pub scratch_mem_usage_in_bytes: crate::External<
         {
             "size_t";
             0
@@ -36,33 +36,33 @@ pub struct ShaderResourceUsageAMD {
 }
 #[repr(C)]
 pub struct ShaderStatisticsInfoAMD {
-    shader_stage_mask: crate::vk::ShaderStageFlags,
-    resource_usage: crate::vk::ShaderResourceUsageAMD,
-    num_physical_vgprs: crate::External<
+    pub shader_stage_mask: crate::vk::ShaderStageFlags,
+    pub resource_usage: crate::vk::ShaderResourceUsageAMD,
+    pub num_physical_vgprs: crate::External<
         {
             "uint32_t";
             0
         },
     >,
-    num_physical_sgprs: crate::External<
+    pub num_physical_sgprs: crate::External<
         {
             "uint32_t";
             0
         },
     >,
-    num_available_vgprs: crate::External<
+    pub num_available_vgprs: crate::External<
         {
             "uint32_t";
             0
         },
     >,
-    num_available_sgprs: crate::External<
+    pub num_available_sgprs: crate::External<
         {
             "uint32_t";
             0
         },
     >,
-    compute_work_group_size: [crate::External<
+    pub compute_work_group_size: [crate::External<
         {
             "uint32_t";
             0

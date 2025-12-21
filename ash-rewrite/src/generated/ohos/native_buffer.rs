@@ -3,21 +3,25 @@
 //![Vulkan Manual Page](https://docs.vulkan.org/refpages/latest/refpages/source/VK_OHOS_native_buffer.html) · Vulkan extension
 #[repr(C)]
 pub struct NativeBufferOHOS {
-    s_type: crate::vk::StructureType,
-    p_next: *const core::ffi::c_void,
-    handle: *mut crate::vk::OHBufferHandle,
+    pub s_type: crate::vk::StructureType,
+    pub p_next: *const core::ffi::c_void,
+    pub handle: *mut crate::vk::OHBufferHandle,
 }
 #[repr(C)]
 pub struct SwapchainImageCreateInfoOHOS {
-    s_type: crate::vk::StructureType,
-    p_next: *const core::ffi::c_void,
-    usage: crate::vk::SwapchainImageUsageFlagsOHOS,
+    pub s_type: crate::vk::StructureType,
+    pub p_next: *const core::ffi::c_void,
+    pub usage: crate::vk::SwapchainImageUsageFlagsOHOS,
 }
 #[repr(C)]
 pub struct PhysicalDevicePresentationPropertiesOHOS {
-    s_type: crate::vk::StructureType,
-    p_next: *mut core::ffi::c_void,
-    shared_image: crate::vk::Bool32,
+    pub s_type: crate::vk::StructureType,
+    pub p_next: *mut core::ffi::c_void,
+    pub shared_image: crate::vk::Bool32,
 }
+#[repr(C)]
+pub struct SwapchainImageUsageFlagsOHOS {}
+#[repr(C)]
+pub struct SwapchainImageUsageFlagBitsOHOS {}
 #[repr(C)]
 pub struct OHBufferHandle {}

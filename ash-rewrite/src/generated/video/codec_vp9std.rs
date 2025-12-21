@@ -3,13 +3,13 @@
 //!Items provided by `vulkan_video_codec_vp9std`
 #[repr(C)]
 pub struct StdVideoVP9ColorConfigFlags {
-    color_range: crate::External<
+    pub color_range: crate::External<
         {
             "uint32_t";
             0
         },
     >,
-    reserved: crate::External<
+    pub reserved: crate::External<
         {
             "uint32_t";
             0
@@ -18,48 +18,48 @@ pub struct StdVideoVP9ColorConfigFlags {
 }
 #[repr(C)]
 pub struct StdVideoVP9ColorConfig {
-    flags: crate::vk::StdVideoVP9ColorConfigFlags,
-    bit_depth: crate::External<
+    pub flags: crate::vk::StdVideoVP9ColorConfigFlags,
+    pub bit_depth: crate::External<
         {
             "uint8_t";
             0
         },
     >,
-    subsampling_x: crate::External<
+    pub subsampling_x: crate::External<
         {
             "uint8_t";
             0
         },
     >,
-    subsampling_y: crate::External<
+    pub subsampling_y: crate::External<
         {
             "uint8_t";
             0
         },
     >,
-    reserved1: crate::External<
+    pub reserved1: crate::External<
         {
             "uint8_t";
             0
         },
     >,
-    color_space: crate::vk::StdVideoVP9ColorSpace,
+    pub color_space: crate::vk::StdVideoVP9ColorSpace,
 }
 #[repr(C)]
 pub struct StdVideoVP9LoopFilterFlags {
-    loop_filter_delta_enabled: crate::External<
+    pub loop_filter_delta_enabled: crate::External<
         {
             "uint32_t";
             0
         },
     >,
-    loop_filter_delta_update: crate::External<
+    pub loop_filter_delta_update: crate::External<
         {
             "uint32_t";
             0
         },
     >,
-    reserved: crate::External<
+    pub reserved: crate::External<
         {
             "uint32_t";
             0
@@ -68,38 +68,38 @@ pub struct StdVideoVP9LoopFilterFlags {
 }
 #[repr(C)]
 pub struct StdVideoVP9LoopFilter {
-    flags: crate::vk::StdVideoVP9LoopFilterFlags,
-    loop_filter_level: crate::External<
+    pub flags: crate::vk::StdVideoVP9LoopFilterFlags,
+    pub loop_filter_level: crate::External<
         {
             "uint8_t";
             0
         },
     >,
-    loop_filter_sharpness: crate::External<
+    pub loop_filter_sharpness: crate::External<
         {
             "uint8_t";
             0
         },
     >,
-    update_ref_delta: crate::External<
+    pub update_ref_delta: crate::External<
         {
             "uint8_t";
             0
         },
     >,
-    loop_filter_ref_deltas: [crate::External<
+    pub loop_filter_ref_deltas: [crate::External<
         {
             "int8_t";
             0
         },
     >; 1337],
-    update_mode_delta: crate::External<
+    pub update_mode_delta: crate::External<
         {
             "uint8_t";
             0
         },
     >,
-    loop_filter_mode_deltas: [crate::External<
+    pub loop_filter_mode_deltas: [crate::External<
         {
             "int8_t";
             0
@@ -108,31 +108,31 @@ pub struct StdVideoVP9LoopFilter {
 }
 #[repr(C)]
 pub struct StdVideoVP9SegmentationFlags {
-    segmentation_update_map: crate::External<
+    pub segmentation_update_map: crate::External<
         {
             "uint32_t";
             0
         },
     >,
-    segmentation_temporal_update: crate::External<
+    pub segmentation_temporal_update: crate::External<
         {
             "uint32_t";
             0
         },
     >,
-    segmentation_update_data: crate::External<
+    pub segmentation_update_data: crate::External<
         {
             "uint32_t";
             0
         },
     >,
-    segmentation_abs_or_delta_update: crate::External<
+    pub segmentation_abs_or_delta_update: crate::External<
         {
             "uint32_t";
             0
         },
     >,
-    reserved: crate::External<
+    pub reserved: crate::External<
         {
             "uint32_t";
             0
@@ -141,26 +141,26 @@ pub struct StdVideoVP9SegmentationFlags {
 }
 #[repr(C)]
 pub struct StdVideoVP9Segmentation {
-    flags: crate::vk::StdVideoVP9SegmentationFlags,
-    segmentation_tree_probs: [crate::External<
+    pub flags: crate::vk::StdVideoVP9SegmentationFlags,
+    pub segmentation_tree_probs: [crate::External<
         {
             "uint8_t";
             0
         },
     >; 1337],
-    segmentation_pred_prob: [crate::External<
+    pub segmentation_pred_prob: [crate::External<
         {
             "uint8_t";
             0
         },
     >; 1337],
-    feature_enabled: [crate::External<
+    pub feature_enabled: [crate::External<
         {
             "uint8_t";
             0
         },
     >; 1337],
-    feature_data: [[crate::External<
+    pub feature_data: [[crate::External<
         {
             "int16_t";
             0

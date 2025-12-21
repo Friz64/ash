@@ -3,21 +3,21 @@
 //![Vulkan Manual Page](https://docs.vulkan.org/refpages/latest/refpages/source/VK_ARM_shader_core_properties.html) · Vulkan extension
 #[repr(C)]
 pub struct PhysicalDeviceShaderCorePropertiesARM {
-    s_type: crate::vk::StructureType,
-    p_next: *mut core::ffi::c_void,
-    pixel_rate: crate::External<
+    pub s_type: crate::vk::StructureType,
+    pub p_next: *mut core::ffi::c_void,
+    pub pixel_rate: crate::External<
         {
             "uint32_t";
             0
         },
     >,
-    texel_rate: crate::External<
+    pub texel_rate: crate::External<
         {
             "uint32_t";
             0
         },
     >,
-    fma_rate: crate::External<
+    pub fma_rate: crate::External<
         {
             "uint32_t";
             0

@@ -3,7 +3,7 @@
 //![Vulkan Manual Page](https://docs.vulkan.org/refpages/latest/refpages/source/VK_NV_corner_sampled_image.html) · Vulkan extension
 #[repr(C)]
 pub struct PhysicalDeviceCornerSampledImageFeaturesNV {
-    s_type: crate::vk::StructureType,
-    p_next: *mut core::ffi::c_void,
-    corner_sampled_image: crate::vk::Bool32,
+    pub s_type: crate::vk::StructureType,
+    pub p_next: *mut core::ffi::c_void,
+    pub corner_sampled_image: crate::vk::Bool32,
 }

@@ -3,7 +3,7 @@
 //![Vulkan Manual Page](https://docs.vulkan.org/refpages/latest/refpages/source/VK_EXT_extended_dynamic_state.html) · Vulkan extension
 #[repr(C)]
 pub struct PhysicalDeviceExtendedDynamicStateFeaturesEXT {
-    s_type: crate::vk::StructureType,
-    p_next: *mut core::ffi::c_void,
-    extended_dynamic_state: crate::vk::Bool32,
+    pub s_type: crate::vk::StructureType,
+    pub p_next: *mut core::ffi::c_void,
+    pub extended_dynamic_state: crate::vk::Bool32,
 }

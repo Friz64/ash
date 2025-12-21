@@ -3,7 +3,7 @@
 //![Vulkan Manual Page](https://docs.vulkan.org/refpages/latest/refpages/source/VK_QCOM_filter_cubic_clamp.html) · Vulkan extension
 #[repr(C)]
 pub struct PhysicalDeviceCubicClampFeaturesQCOM {
-    s_type: crate::vk::StructureType,
-    p_next: *mut core::ffi::c_void,
-    cubic_range_clamp: crate::vk::Bool32,
+    pub s_type: crate::vk::StructureType,
+    pub p_next: *mut core::ffi::c_void,
+    pub cubic_range_clamp: crate::vk::Bool32,
 }

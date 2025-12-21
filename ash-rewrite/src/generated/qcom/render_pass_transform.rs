@@ -3,14 +3,14 @@
 //![Vulkan Manual Page](https://docs.vulkan.org/refpages/latest/refpages/source/VK_QCOM_render_pass_transform.html) · Vulkan extension
 #[repr(C)]
 pub struct RenderPassTransformBeginInfoQCOM {
-    s_type: crate::vk::StructureType,
-    p_next: *const core::ffi::c_void,
-    transform: crate::vk::SurfaceTransformFlagBitsKHR,
+    pub s_type: crate::vk::StructureType,
+    pub p_next: *const core::ffi::c_void,
+    pub transform: crate::vk::SurfaceTransformFlagBitsKHR,
 }
 #[repr(C)]
 pub struct CommandBufferInheritanceRenderPassTransformInfoQCOM {
-    s_type: crate::vk::StructureType,
-    p_next: *const core::ffi::c_void,
-    transform: crate::vk::SurfaceTransformFlagBitsKHR,
-    render_area: crate::vk::Rect2D,
+    pub s_type: crate::vk::StructureType,
+    pub p_next: *const core::ffi::c_void,
+    pub transform: crate::vk::SurfaceTransformFlagBitsKHR,
+    pub render_area: crate::vk::Rect2D,
 }

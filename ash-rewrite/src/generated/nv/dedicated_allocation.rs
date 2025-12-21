@@ -3,20 +3,20 @@
 //![Vulkan Manual Page](https://docs.vulkan.org/refpages/latest/refpages/source/VK_NV_dedicated_allocation.html) · Vulkan extension
 #[repr(C)]
 pub struct DedicatedAllocationImageCreateInfoNV {
-    s_type: crate::vk::StructureType,
-    p_next: *const core::ffi::c_void,
-    dedicated_allocation: crate::vk::Bool32,
+    pub s_type: crate::vk::StructureType,
+    pub p_next: *const core::ffi::c_void,
+    pub dedicated_allocation: crate::vk::Bool32,
 }
 #[repr(C)]
 pub struct DedicatedAllocationBufferCreateInfoNV {
-    s_type: crate::vk::StructureType,
-    p_next: *const core::ffi::c_void,
-    dedicated_allocation: crate::vk::Bool32,
+    pub s_type: crate::vk::StructureType,
+    pub p_next: *const core::ffi::c_void,
+    pub dedicated_allocation: crate::vk::Bool32,
 }
 #[repr(C)]
 pub struct DedicatedAllocationMemoryAllocateInfoNV {
-    s_type: crate::vk::StructureType,
-    p_next: *const core::ffi::c_void,
-    image: crate::vk::Image,
-    buffer: crate::vk::Buffer,
+    pub s_type: crate::vk::StructureType,
+    pub p_next: *const core::ffi::c_void,
+    pub image: crate::vk::Image,
+    pub buffer: crate::vk::Buffer,
 }

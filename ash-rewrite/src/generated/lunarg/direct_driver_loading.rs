@@ -3,23 +3,27 @@
 //![Vulkan Manual Page](https://docs.vulkan.org/refpages/latest/refpages/source/VK_LUNARG_direct_driver_loading.html) · Vulkan extension
 #[repr(C)]
 pub struct DirectDriverLoadingInfoLUNARG {
-    s_type: crate::vk::StructureType,
-    p_next: *mut core::ffi::c_void,
-    flags: crate::vk::DirectDriverLoadingFlagsLUNARG,
-    pfn_get_instance_proc_addr: crate::vk::PFN_vkGetInstanceProcAddrLUNARG,
+    pub s_type: crate::vk::StructureType,
+    pub p_next: *mut core::ffi::c_void,
+    pub flags: crate::vk::DirectDriverLoadingFlagsLUNARG,
+    pub pfn_get_instance_proc_addr: crate::vk::PFN_vkGetInstanceProcAddrLUNARG,
 }
 #[repr(C)]
 pub struct DirectDriverLoadingListLUNARG {
-    s_type: crate::vk::StructureType,
-    p_next: *const core::ffi::c_void,
-    mode: crate::vk::DirectDriverLoadingModeLUNARG,
-    driver_count: crate::External<
+    pub s_type: crate::vk::StructureType,
+    pub p_next: *const core::ffi::c_void,
+    pub mode: crate::vk::DirectDriverLoadingModeLUNARG,
+    pub driver_count: crate::External<
         {
             "uint32_t";
             0
         },
     >,
-    p_drivers: *const crate::vk::DirectDriverLoadingInfoLUNARG,
+    pub p_drivers: *const crate::vk::DirectDriverLoadingInfoLUNARG,
 }
 #[repr(C)]
 pub struct DirectDriverLoadingModeLUNARG {}
+#[repr(C)]
+pub struct DirectDriverLoadingFlagsLUNARG {}
+#[repr(C)]
+pub struct PFN_vkGetInstanceProcAddrLUNARG {}

@@ -3,12 +3,15 @@
 //![Vulkan Manual Page](https://docs.vulkan.org/refpages/latest/refpages/source/VK_EXT_vertex_attribute_divisor.html) · Vulkan extension
 #[repr(C)]
 pub struct PhysicalDeviceVertexAttributeDivisorPropertiesEXT {
-    s_type: crate::vk::StructureType,
-    p_next: *mut core::ffi::c_void,
-    max_vertex_attrib_divisor: crate::External<
+    pub s_type: crate::vk::StructureType,
+    pub p_next: *mut core::ffi::c_void,
+    pub max_vertex_attrib_divisor: crate::External<
         {
             "uint32_t";
             0
         },
     >,
 }
+pub type VertexInputBindingDivisorDescriptionEXT = crate::vk::VertexInputBindingDivisorDescription;
+pub type PipelineVertexInputDivisorStateCreateInfoEXT = crate::vk::PipelineVertexInputDivisorStateCreateInfo;
+pub type PhysicalDeviceVertexAttributeDivisorFeaturesEXT = crate::vk::PhysicalDeviceVertexAttributeDivisorFeatures;

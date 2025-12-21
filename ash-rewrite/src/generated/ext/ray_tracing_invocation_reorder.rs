@@ -3,16 +3,16 @@
 //![Vulkan Manual Page](https://docs.vulkan.org/refpages/latest/refpages/source/VK_EXT_ray_tracing_invocation_reorder.html) · Vulkan extension
 #[repr(C)]
 pub struct PhysicalDeviceRayTracingInvocationReorderFeaturesEXT {
-    s_type: crate::vk::StructureType,
-    p_next: *mut core::ffi::c_void,
-    ray_tracing_invocation_reorder: crate::vk::Bool32,
+    pub s_type: crate::vk::StructureType,
+    pub p_next: *mut core::ffi::c_void,
+    pub ray_tracing_invocation_reorder: crate::vk::Bool32,
 }
 #[repr(C)]
 pub struct PhysicalDeviceRayTracingInvocationReorderPropertiesEXT {
-    s_type: crate::vk::StructureType,
-    p_next: *mut core::ffi::c_void,
-    ray_tracing_invocation_reorder_reordering_hint: crate::vk::RayTracingInvocationReorderModeEXT,
-    max_shader_binding_table_record_index: crate::External<
+    pub s_type: crate::vk::StructureType,
+    pub p_next: *mut core::ffi::c_void,
+    pub ray_tracing_invocation_reorder_reordering_hint: crate::vk::RayTracingInvocationReorderModeEXT,
+    pub max_shader_binding_table_record_index: crate::External<
         {
             "uint32_t";
             0

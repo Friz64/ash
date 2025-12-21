@@ -3,18 +3,18 @@
 //![Vulkan Manual Page](https://docs.vulkan.org/refpages/latest/refpages/source/VK_KHR_external_semaphore_win32.html) · Vulkan extension
 #[repr(C)]
 pub struct ImportSemaphoreWin32HandleInfoKHR {
-    s_type: crate::vk::StructureType,
-    p_next: *const core::ffi::c_void,
-    semaphore: crate::vk::Semaphore,
-    flags: crate::vk::SemaphoreImportFlags,
-    handle_type: crate::vk::ExternalSemaphoreHandleTypeFlagBits,
-    handle: crate::External<
+    pub s_type: crate::vk::StructureType,
+    pub p_next: *const core::ffi::c_void,
+    pub semaphore: crate::vk::Semaphore,
+    pub flags: crate::vk::SemaphoreImportFlags,
+    pub handle_type: crate::vk::ExternalSemaphoreHandleTypeFlagBits,
+    pub handle: crate::External<
         {
             "HANDLE";
             0
         },
     >,
-    name: crate::External<
+    pub name: crate::External<
         {
             "LPCWSTR";
             0
@@ -23,21 +23,21 @@ pub struct ImportSemaphoreWin32HandleInfoKHR {
 }
 #[repr(C)]
 pub struct ExportSemaphoreWin32HandleInfoKHR {
-    s_type: crate::vk::StructureType,
-    p_next: *const core::ffi::c_void,
-    p_attributes: *const crate::External<
+    pub s_type: crate::vk::StructureType,
+    pub p_next: *const core::ffi::c_void,
+    pub p_attributes: *const crate::External<
         {
             "SECURITY_ATTRIBUTES";
             0
         },
     >,
-    dw_access: crate::External<
+    pub dw_access: crate::External<
         {
             "DWORD";
             0
         },
     >,
-    name: crate::External<
+    pub name: crate::External<
         {
             "LPCWSTR";
             0
@@ -46,27 +46,27 @@ pub struct ExportSemaphoreWin32HandleInfoKHR {
 }
 #[repr(C)]
 pub struct D3D12FenceSubmitInfoKHR {
-    s_type: crate::vk::StructureType,
-    p_next: *const core::ffi::c_void,
-    wait_semaphore_values_count: crate::External<
+    pub s_type: crate::vk::StructureType,
+    pub p_next: *const core::ffi::c_void,
+    pub wait_semaphore_values_count: crate::External<
         {
             "uint32_t";
             0
         },
     >,
-    p_wait_semaphore_values: *const crate::External<
+    pub p_wait_semaphore_values: *const crate::External<
         {
             "uint64_t";
             0
         },
     >,
-    signal_semaphore_values_count: crate::External<
+    pub signal_semaphore_values_count: crate::External<
         {
             "uint32_t";
             0
         },
     >,
-    p_signal_semaphore_values: *const crate::External<
+    pub p_signal_semaphore_values: *const crate::External<
         {
             "uint64_t";
             0
@@ -75,8 +75,8 @@ pub struct D3D12FenceSubmitInfoKHR {
 }
 #[repr(C)]
 pub struct SemaphoreGetWin32HandleInfoKHR {
-    s_type: crate::vk::StructureType,
-    p_next: *const core::ffi::c_void,
-    semaphore: crate::vk::Semaphore,
-    handle_type: crate::vk::ExternalSemaphoreHandleTypeFlagBits,
+    pub s_type: crate::vk::StructureType,
+    pub p_next: *const core::ffi::c_void,
+    pub semaphore: crate::vk::Semaphore,
+    pub handle_type: crate::vk::ExternalSemaphoreHandleTypeFlagBits,
 }

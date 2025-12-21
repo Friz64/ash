@@ -3,29 +3,29 @@
 //![Vulkan Manual Page](https://docs.vulkan.org/refpages/latest/refpages/source/VK_KHR_portability_subset.html) · Vulkan extension
 #[repr(C)]
 pub struct PhysicalDevicePortabilitySubsetFeaturesKHR {
-    s_type: crate::vk::StructureType,
-    p_next: *mut core::ffi::c_void,
-    constant_alpha_color_blend_factors: crate::vk::Bool32,
-    events: crate::vk::Bool32,
-    image_view_format_reinterpretation: crate::vk::Bool32,
-    image_view_format_swizzle: crate::vk::Bool32,
-    image_view2_d_on3_d_image: crate::vk::Bool32,
-    multisample_array_image: crate::vk::Bool32,
-    mutable_comparison_samplers: crate::vk::Bool32,
-    point_polygons: crate::vk::Bool32,
-    sampler_mip_lod_bias: crate::vk::Bool32,
-    separate_stencil_mask_ref: crate::vk::Bool32,
-    shader_sample_rate_interpolation_functions: crate::vk::Bool32,
-    tessellation_isolines: crate::vk::Bool32,
-    tessellation_point_mode: crate::vk::Bool32,
-    triangle_fans: crate::vk::Bool32,
-    vertex_attribute_access_beyond_stride: crate::vk::Bool32,
+    pub s_type: crate::vk::StructureType,
+    pub p_next: *mut core::ffi::c_void,
+    pub constant_alpha_color_blend_factors: crate::vk::Bool32,
+    pub events: crate::vk::Bool32,
+    pub image_view_format_reinterpretation: crate::vk::Bool32,
+    pub image_view_format_swizzle: crate::vk::Bool32,
+    pub image_view2_d_on3_d_image: crate::vk::Bool32,
+    pub multisample_array_image: crate::vk::Bool32,
+    pub mutable_comparison_samplers: crate::vk::Bool32,
+    pub point_polygons: crate::vk::Bool32,
+    pub sampler_mip_lod_bias: crate::vk::Bool32,
+    pub separate_stencil_mask_ref: crate::vk::Bool32,
+    pub shader_sample_rate_interpolation_functions: crate::vk::Bool32,
+    pub tessellation_isolines: crate::vk::Bool32,
+    pub tessellation_point_mode: crate::vk::Bool32,
+    pub triangle_fans: crate::vk::Bool32,
+    pub vertex_attribute_access_beyond_stride: crate::vk::Bool32,
 }
 #[repr(C)]
 pub struct PhysicalDevicePortabilitySubsetPropertiesKHR {
-    s_type: crate::vk::StructureType,
-    p_next: *mut core::ffi::c_void,
-    min_vertex_input_binding_stride_alignment: crate::External<
+    pub s_type: crate::vk::StructureType,
+    pub p_next: *mut core::ffi::c_void,
+    pub min_vertex_input_binding_stride_alignment: crate::External<
         {
             "uint32_t";
             0

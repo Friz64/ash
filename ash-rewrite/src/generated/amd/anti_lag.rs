@@ -3,29 +3,29 @@
 //![Vulkan Manual Page](https://docs.vulkan.org/refpages/latest/refpages/source/VK_AMD_anti_lag.html) · Vulkan extension
 #[repr(C)]
 pub struct PhysicalDeviceAntiLagFeaturesAMD {
-    s_type: crate::vk::StructureType,
-    p_next: *mut core::ffi::c_void,
-    anti_lag: crate::vk::Bool32,
+    pub s_type: crate::vk::StructureType,
+    pub p_next: *mut core::ffi::c_void,
+    pub anti_lag: crate::vk::Bool32,
 }
 #[repr(C)]
 pub struct AntiLagDataAMD {
-    s_type: crate::vk::StructureType,
-    p_next: *const core::ffi::c_void,
-    mode: crate::vk::AntiLagModeAMD,
-    max_fps: crate::External<
+    pub s_type: crate::vk::StructureType,
+    pub p_next: *const core::ffi::c_void,
+    pub mode: crate::vk::AntiLagModeAMD,
+    pub max_fps: crate::External<
         {
             "uint32_t";
             0
         },
     >,
-    p_presentation_info: *const crate::vk::AntiLagPresentationInfoAMD,
+    pub p_presentation_info: *const crate::vk::AntiLagPresentationInfoAMD,
 }
 #[repr(C)]
 pub struct AntiLagPresentationInfoAMD {
-    s_type: crate::vk::StructureType,
-    p_next: *mut core::ffi::c_void,
-    stage: crate::vk::AntiLagStageAMD,
-    frame_index: crate::External<
+    pub s_type: crate::vk::StructureType,
+    pub p_next: *mut core::ffi::c_void,
+    pub stage: crate::vk::AntiLagStageAMD,
+    pub frame_index: crate::External<
         {
             "uint64_t";
             0

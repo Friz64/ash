@@ -3,16 +3,16 @@
 //![Vulkan Manual Page](https://docs.vulkan.org/refpages/latest/refpages/source/VK_EXT_debug_utils.html) · Vulkan extension
 #[repr(C)]
 pub struct DebugUtilsObjectNameInfoEXT {
-    s_type: crate::vk::StructureType,
-    p_next: *const core::ffi::c_void,
-    object_type: crate::vk::ObjectType,
-    object_handle: crate::External<
+    pub s_type: crate::vk::StructureType,
+    pub p_next: *const core::ffi::c_void,
+    pub object_type: crate::vk::ObjectType,
+    pub object_handle: crate::External<
         {
             "uint64_t";
             0
         },
     >,
-    p_object_name: *const crate::External<
+    pub p_object_name: *const crate::External<
         {
             "char";
             0
@@ -21,40 +21,40 @@ pub struct DebugUtilsObjectNameInfoEXT {
 }
 #[repr(C)]
 pub struct DebugUtilsObjectTagInfoEXT {
-    s_type: crate::vk::StructureType,
-    p_next: *const core::ffi::c_void,
-    object_type: crate::vk::ObjectType,
-    object_handle: crate::External<
+    pub s_type: crate::vk::StructureType,
+    pub p_next: *const core::ffi::c_void,
+    pub object_type: crate::vk::ObjectType,
+    pub object_handle: crate::External<
         {
             "uint64_t";
             0
         },
     >,
-    tag_name: crate::External<
+    pub tag_name: crate::External<
         {
             "uint64_t";
             0
         },
     >,
-    tag_size: crate::External<
+    pub tag_size: crate::External<
         {
             "size_t";
             0
         },
     >,
-    p_tag: *const core::ffi::c_void,
+    pub p_tag: *const core::ffi::c_void,
 }
 #[repr(C)]
 pub struct DebugUtilsLabelEXT {
-    s_type: crate::vk::StructureType,
-    p_next: *const core::ffi::c_void,
-    p_label_name: *const crate::External<
+    pub s_type: crate::vk::StructureType,
+    pub p_next: *const core::ffi::c_void,
+    pub p_label_name: *const crate::External<
         {
             "char";
             0
         },
     >,
-    color: [crate::External<
+    pub color: [crate::External<
         {
             "float";
             0
@@ -63,58 +63,72 @@ pub struct DebugUtilsLabelEXT {
 }
 #[repr(C)]
 pub struct DebugUtilsMessengerCreateInfoEXT {
-    s_type: crate::vk::StructureType,
-    p_next: *const core::ffi::c_void,
-    flags: crate::vk::DebugUtilsMessengerCreateFlagsEXT,
-    message_severity: crate::vk::DebugUtilsMessageSeverityFlagsEXT,
-    message_type: crate::vk::DebugUtilsMessageTypeFlagsEXT,
-    pfn_user_callback: crate::vk::PFN_vkDebugUtilsMessengerCallbackEXT,
-    p_user_data: *mut core::ffi::c_void,
+    pub s_type: crate::vk::StructureType,
+    pub p_next: *const core::ffi::c_void,
+    pub flags: crate::vk::DebugUtilsMessengerCreateFlagsEXT,
+    pub message_severity: crate::vk::DebugUtilsMessageSeverityFlagsEXT,
+    pub message_type: crate::vk::DebugUtilsMessageTypeFlagsEXT,
+    pub pfn_user_callback: crate::vk::PFN_vkDebugUtilsMessengerCallbackEXT,
+    pub p_user_data: *mut core::ffi::c_void,
 }
 #[repr(C)]
 pub struct DebugUtilsMessengerCallbackDataEXT {
-    s_type: crate::vk::StructureType,
-    p_next: *const core::ffi::c_void,
-    flags: crate::vk::DebugUtilsMessengerCallbackDataFlagsEXT,
-    p_message_id_name: *const crate::External<
+    pub s_type: crate::vk::StructureType,
+    pub p_next: *const core::ffi::c_void,
+    pub flags: crate::vk::DebugUtilsMessengerCallbackDataFlagsEXT,
+    pub p_message_id_name: *const crate::External<
         {
             "char";
             0
         },
     >,
-    message_id_number: crate::External<
+    pub message_id_number: crate::External<
         {
             "int32_t";
             0
         },
     >,
-    p_message: *const crate::External<
+    pub p_message: *const crate::External<
         {
             "char";
             0
         },
     >,
-    queue_label_count: crate::External<
+    pub queue_label_count: crate::External<
         {
             "uint32_t";
             0
         },
     >,
-    p_queue_labels: *const crate::vk::DebugUtilsLabelEXT,
-    cmd_buf_label_count: crate::External<
+    pub p_queue_labels: *const crate::vk::DebugUtilsLabelEXT,
+    pub cmd_buf_label_count: crate::External<
         {
             "uint32_t";
             0
         },
     >,
-    p_cmd_buf_labels: *const crate::vk::DebugUtilsLabelEXT,
-    object_count: crate::External<
+    pub p_cmd_buf_labels: *const crate::vk::DebugUtilsLabelEXT,
+    pub object_count: crate::External<
         {
             "uint32_t";
             0
         },
     >,
-    p_objects: *const crate::vk::DebugUtilsObjectNameInfoEXT,
+    pub p_objects: *const crate::vk::DebugUtilsObjectNameInfoEXT,
 }
 #[repr(C)]
+pub struct DebugUtilsMessageSeverityFlagsEXT {}
+#[repr(C)]
+pub struct DebugUtilsMessageTypeFlagsEXT {}
+#[repr(C)]
+pub struct DebugUtilsMessengerCreateFlagsEXT {}
+#[repr(C)]
+pub struct DebugUtilsMessengerCallbackDataFlagsEXT {}
+#[repr(C)]
+pub struct DebugUtilsMessageSeverityFlagBitsEXT {}
+#[repr(C)]
+pub struct DebugUtilsMessageTypeFlagBitsEXT {}
+#[repr(C)]
 pub struct DebugUtilsMessengerEXT {}
+#[repr(C)]
+pub struct PFN_vkDebugUtilsMessengerCallbackEXT {}

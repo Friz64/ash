@@ -3,13 +3,17 @@
 //![Vulkan Manual Page](https://docs.vulkan.org/refpages/latest/refpages/source/VK_AMD_shader_core_properties2.html) · Vulkan extension
 #[repr(C)]
 pub struct PhysicalDeviceShaderCoreProperties2AMD {
-    s_type: crate::vk::StructureType,
-    p_next: *mut core::ffi::c_void,
-    shader_core_features: crate::vk::ShaderCorePropertiesFlagsAMD,
-    active_compute_unit_count: crate::External<
+    pub s_type: crate::vk::StructureType,
+    pub p_next: *mut core::ffi::c_void,
+    pub shader_core_features: crate::vk::ShaderCorePropertiesFlagsAMD,
+    pub active_compute_unit_count: crate::External<
         {
             "uint32_t";
             0
         },
     >,
 }
+#[repr(C)]
+pub struct ShaderCorePropertiesFlagsAMD {}
+#[repr(C)]
+pub struct ShaderCorePropertiesFlagBitsAMD {}

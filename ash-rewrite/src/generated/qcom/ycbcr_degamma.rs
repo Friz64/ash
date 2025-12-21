@@ -3,14 +3,14 @@
 //![Vulkan Manual Page](https://docs.vulkan.org/refpages/latest/refpages/source/VK_QCOM_ycbcr_degamma.html) · Vulkan extension
 #[repr(C)]
 pub struct PhysicalDeviceYcbcrDegammaFeaturesQCOM {
-    s_type: crate::vk::StructureType,
-    p_next: *mut core::ffi::c_void,
-    ycbcr_degamma: crate::vk::Bool32,
+    pub s_type: crate::vk::StructureType,
+    pub p_next: *mut core::ffi::c_void,
+    pub ycbcr_degamma: crate::vk::Bool32,
 }
 #[repr(C)]
 pub struct SamplerYcbcrConversionYcbcrDegammaCreateInfoQCOM {
-    s_type: crate::vk::StructureType,
-    p_next: *mut core::ffi::c_void,
-    enable_y_degamma: crate::vk::Bool32,
-    enable_cb_cr_degamma: crate::vk::Bool32,
+    pub s_type: crate::vk::StructureType,
+    pub p_next: *mut core::ffi::c_void,
+    pub enable_y_degamma: crate::vk::Bool32,
+    pub enable_cb_cr_degamma: crate::vk::Bool32,
 }

@@ -5,12 +5,12 @@ use crate::{
 };
 
 #[derive(Debug)]
-pub struct Enumeration {
+pub struct Enum {
     pub required_by: RequiredBy,
     pub name: TypeName,
 }
 
-impl ItemInfo for Enumeration {
+impl ItemInfo for Enum {
     fn required_by(&self) -> RequiredBy {
         self.required_by
     }
@@ -20,13 +20,13 @@ impl ItemInfo for Enumeration {
     }
 }
 
-impl Enumeration {
+impl Enum {
     pub(crate) fn new(
         // decl_ctx: &decl::Context,
         required_by: RequiredBy,
         xml: &xml::Enum,
-    ) -> Enumeration {
-        Enumeration {
+    ) -> Enum {
+        Enum {
             required_by,
             name: xml.name,
         }

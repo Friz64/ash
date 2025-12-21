@@ -3,9 +3,9 @@
 //![Vulkan Manual Page](https://docs.vulkan.org/refpages/latest/refpages/source/VK_KHR_calibrated_timestamps.html) · Vulkan extension
 #[repr(C)]
 pub struct CalibratedTimestampInfoKHR {
-    s_type: crate::vk::StructureType,
-    p_next: *const core::ffi::c_void,
-    time_domain: crate::vk::TimeDomainKHR,
+    pub s_type: crate::vk::StructureType,
+    pub p_next: *const core::ffi::c_void,
+    pub time_domain: crate::vk::TimeDomainKHR,
 }
 #[repr(C)]
 pub struct TimeDomainKHR {}

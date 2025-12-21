@@ -3,7 +3,7 @@
 //![Vulkan Manual Page](https://docs.vulkan.org/refpages/latest/refpages/source/VK_EXT_ycbcr_2plane_444_formats.html) · Vulkan extension
 #[repr(C)]
 pub struct PhysicalDeviceYcbcr2Plane444FormatsFeaturesEXT {
-    s_type: crate::vk::StructureType,
-    p_next: *mut core::ffi::c_void,
-    ycbcr2plane444_formats: crate::vk::Bool32,
+    pub s_type: crate::vk::StructureType,
+    pub p_next: *mut core::ffi::c_void,
+    pub ycbcr2plane444_formats: crate::vk::Bool32,
 }

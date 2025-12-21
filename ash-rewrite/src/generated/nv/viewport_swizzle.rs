@@ -3,23 +3,25 @@
 //![Vulkan Manual Page](https://docs.vulkan.org/refpages/latest/refpages/source/VK_NV_viewport_swizzle.html) · Vulkan extension
 #[repr(C)]
 pub struct ViewportSwizzleNV {
-    x: crate::vk::ViewportCoordinateSwizzleNV,
-    y: crate::vk::ViewportCoordinateSwizzleNV,
-    z: crate::vk::ViewportCoordinateSwizzleNV,
-    w: crate::vk::ViewportCoordinateSwizzleNV,
+    pub x: crate::vk::ViewportCoordinateSwizzleNV,
+    pub y: crate::vk::ViewportCoordinateSwizzleNV,
+    pub z: crate::vk::ViewportCoordinateSwizzleNV,
+    pub w: crate::vk::ViewportCoordinateSwizzleNV,
 }
 #[repr(C)]
 pub struct PipelineViewportSwizzleStateCreateInfoNV {
-    s_type: crate::vk::StructureType,
-    p_next: *const core::ffi::c_void,
-    flags: crate::vk::PipelineViewportSwizzleStateCreateFlagsNV,
-    viewport_count: crate::External<
+    pub s_type: crate::vk::StructureType,
+    pub p_next: *const core::ffi::c_void,
+    pub flags: crate::vk::PipelineViewportSwizzleStateCreateFlagsNV,
+    pub viewport_count: crate::External<
         {
             "uint32_t";
             0
         },
     >,
-    p_viewport_swizzles: *const crate::vk::ViewportSwizzleNV,
+    pub p_viewport_swizzles: *const crate::vk::ViewportSwizzleNV,
 }
 #[repr(C)]
 pub struct ViewportCoordinateSwizzleNV {}
+#[repr(C)]
+pub struct PipelineViewportSwizzleStateCreateFlagsNV {}

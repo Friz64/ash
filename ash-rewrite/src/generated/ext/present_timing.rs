@@ -3,32 +3,32 @@
 //![Vulkan Manual Page](https://docs.vulkan.org/refpages/latest/refpages/source/VK_EXT_present_timing.html) · Vulkan extension
 #[repr(C)]
 pub struct PhysicalDevicePresentTimingFeaturesEXT {
-    s_type: crate::vk::StructureType,
-    p_next: *mut core::ffi::c_void,
-    present_timing: crate::vk::Bool32,
-    present_at_absolute_time: crate::vk::Bool32,
-    present_at_relative_time: crate::vk::Bool32,
+    pub s_type: crate::vk::StructureType,
+    pub p_next: *mut core::ffi::c_void,
+    pub present_timing: crate::vk::Bool32,
+    pub present_at_absolute_time: crate::vk::Bool32,
+    pub present_at_relative_time: crate::vk::Bool32,
 }
 #[repr(C)]
 pub struct PresentTimingSurfaceCapabilitiesEXT {
-    s_type: crate::vk::StructureType,
-    p_next: *mut core::ffi::c_void,
-    present_timing_supported: crate::vk::Bool32,
-    present_at_absolute_time_supported: crate::vk::Bool32,
-    present_at_relative_time_supported: crate::vk::Bool32,
-    present_stage_queries: crate::vk::PresentStageFlagsEXT,
+    pub s_type: crate::vk::StructureType,
+    pub p_next: *mut core::ffi::c_void,
+    pub present_timing_supported: crate::vk::Bool32,
+    pub present_at_absolute_time_supported: crate::vk::Bool32,
+    pub present_at_relative_time_supported: crate::vk::Bool32,
+    pub present_stage_queries: crate::vk::PresentStageFlagsEXT,
 }
 #[repr(C)]
 pub struct SwapchainTimingPropertiesEXT {
-    s_type: crate::vk::StructureType,
-    p_next: *mut core::ffi::c_void,
-    refresh_duration: crate::External<
+    pub s_type: crate::vk::StructureType,
+    pub p_next: *mut core::ffi::c_void,
+    pub refresh_duration: crate::External<
         {
             "uint64_t";
             0
         },
     >,
-    refresh_interval: crate::External<
+    pub refresh_interval: crate::External<
         {
             "uint64_t";
             0
@@ -37,16 +37,16 @@ pub struct SwapchainTimingPropertiesEXT {
 }
 #[repr(C)]
 pub struct SwapchainTimeDomainPropertiesEXT {
-    s_type: crate::vk::StructureType,
-    p_next: *mut core::ffi::c_void,
-    time_domain_count: crate::External<
+    pub s_type: crate::vk::StructureType,
+    pub p_next: *mut core::ffi::c_void,
+    pub time_domain_count: crate::External<
         {
             "uint32_t";
             0
         },
     >,
-    p_time_domains: *mut crate::vk::TimeDomainKHR,
-    p_time_domain_ids: *mut crate::External<
+    pub p_time_domains: *mut crate::vk::TimeDomainKHR,
+    pub p_time_domain_ids: *mut crate::External<
         {
             "uint64_t";
             0
@@ -55,8 +55,8 @@ pub struct SwapchainTimeDomainPropertiesEXT {
 }
 #[repr(C)]
 pub struct PresentStageTimeEXT {
-    stage: crate::vk::PresentStageFlagsEXT,
-    time: crate::External<
+    pub stage: crate::vk::PresentStageFlagsEXT,
+    pub time: crate::External<
         {
             "uint64_t";
             0
@@ -65,109 +65,121 @@ pub struct PresentStageTimeEXT {
 }
 #[repr(C)]
 pub struct PastPresentationTimingInfoEXT {
-    s_type: crate::vk::StructureType,
-    p_next: *const core::ffi::c_void,
-    flags: crate::vk::PastPresentationTimingFlagsEXT,
-    swapchain: crate::vk::SwapchainKHR,
+    pub s_type: crate::vk::StructureType,
+    pub p_next: *const core::ffi::c_void,
+    pub flags: crate::vk::PastPresentationTimingFlagsEXT,
+    pub swapchain: crate::vk::SwapchainKHR,
 }
 #[repr(C)]
 pub struct PastPresentationTimingPropertiesEXT {
-    s_type: crate::vk::StructureType,
-    p_next: *mut core::ffi::c_void,
-    timing_properties_counter: crate::External<
+    pub s_type: crate::vk::StructureType,
+    pub p_next: *mut core::ffi::c_void,
+    pub timing_properties_counter: crate::External<
         {
             "uint64_t";
             0
         },
     >,
-    time_domains_counter: crate::External<
+    pub time_domains_counter: crate::External<
         {
             "uint64_t";
             0
         },
     >,
-    presentation_timing_count: crate::External<
+    pub presentation_timing_count: crate::External<
         {
             "uint32_t";
             0
         },
     >,
-    p_presentation_timings: *mut crate::vk::PastPresentationTimingEXT,
+    pub p_presentation_timings: *mut crate::vk::PastPresentationTimingEXT,
 }
 #[repr(C)]
 pub struct PastPresentationTimingEXT {
-    s_type: crate::vk::StructureType,
-    p_next: *mut core::ffi::c_void,
-    present_id: crate::External<
+    pub s_type: crate::vk::StructureType,
+    pub p_next: *mut core::ffi::c_void,
+    pub present_id: crate::External<
         {
             "uint64_t";
             0
         },
     >,
-    target_time: crate::External<
+    pub target_time: crate::External<
         {
             "uint64_t";
             0
         },
     >,
-    present_stage_count: crate::External<
+    pub present_stage_count: crate::External<
         {
             "uint32_t";
             0
         },
     >,
-    p_present_stages: *mut crate::vk::PresentStageTimeEXT,
-    time_domain: crate::vk::TimeDomainKHR,
-    time_domain_id: crate::External<
+    pub p_present_stages: *mut crate::vk::PresentStageTimeEXT,
+    pub time_domain: crate::vk::TimeDomainKHR,
+    pub time_domain_id: crate::External<
         {
             "uint64_t";
             0
         },
     >,
-    report_complete: crate::vk::Bool32,
+    pub report_complete: crate::vk::Bool32,
 }
 #[repr(C)]
 pub struct PresentTimingsInfoEXT {
-    s_type: crate::vk::StructureType,
-    p_next: *const core::ffi::c_void,
-    swapchain_count: crate::External<
+    pub s_type: crate::vk::StructureType,
+    pub p_next: *const core::ffi::c_void,
+    pub swapchain_count: crate::External<
         {
             "uint32_t";
             0
         },
     >,
-    p_timing_infos: *const crate::vk::PresentTimingInfoEXT,
+    pub p_timing_infos: *const crate::vk::PresentTimingInfoEXT,
 }
 #[repr(C)]
 pub struct PresentTimingInfoEXT {
-    s_type: crate::vk::StructureType,
-    p_next: *const core::ffi::c_void,
-    flags: crate::vk::PresentTimingInfoFlagsEXT,
-    target_time: crate::External<
+    pub s_type: crate::vk::StructureType,
+    pub p_next: *const core::ffi::c_void,
+    pub flags: crate::vk::PresentTimingInfoFlagsEXT,
+    pub target_time: crate::External<
         {
             "uint64_t";
             0
         },
     >,
-    time_domain_id: crate::External<
+    pub time_domain_id: crate::External<
         {
             "uint64_t";
             0
         },
     >,
-    present_stage_queries: crate::vk::PresentStageFlagsEXT,
-    target_time_domain_present_stage: crate::vk::PresentStageFlagsEXT,
+    pub present_stage_queries: crate::vk::PresentStageFlagsEXT,
+    pub target_time_domain_present_stage: crate::vk::PresentStageFlagsEXT,
 }
 #[repr(C)]
 pub struct SwapchainCalibratedTimestampInfoEXT {
-    s_type: crate::vk::StructureType,
-    p_next: *const core::ffi::c_void,
-    swapchain: crate::vk::SwapchainKHR,
-    present_stage: crate::vk::PresentStageFlagsEXT,
-    time_domain_id: crate::External<
+    pub s_type: crate::vk::StructureType,
+    pub p_next: *const core::ffi::c_void,
+    pub swapchain: crate::vk::SwapchainKHR,
+    pub present_stage: crate::vk::PresentStageFlagsEXT,
+    pub time_domain_id: crate::External<
         {
             "uint64_t";
             0
         },
     >,
 }
+#[repr(C)]
+pub struct PresentStageFlagsEXT {}
+#[repr(C)]
+pub struct PastPresentationTimingFlagsEXT {}
+#[repr(C)]
+pub struct PresentTimingInfoFlagsEXT {}
+#[repr(C)]
+pub struct PresentStageFlagBitsEXT {}
+#[repr(C)]
+pub struct PastPresentationTimingFlagBitsEXT {}
+#[repr(C)]
+pub struct PresentTimingInfoFlagBitsEXT {}

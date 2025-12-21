@@ -3,28 +3,28 @@
 //![Vulkan Manual Page](https://docs.vulkan.org/refpages/latest/refpages/source/VK_NV_device_generated_commands_compute.html) · Vulkan extension
 #[repr(C)]
 pub struct ComputePipelineIndirectBufferInfoNV {
-    s_type: crate::vk::StructureType,
-    p_next: *const core::ffi::c_void,
-    device_address: crate::vk::DeviceAddress,
-    size: crate::vk::DeviceSize,
-    pipeline_device_address_capture_replay: crate::vk::DeviceAddress,
+    pub s_type: crate::vk::StructureType,
+    pub p_next: *const core::ffi::c_void,
+    pub device_address: crate::vk::DeviceAddress,
+    pub size: crate::vk::DeviceSize,
+    pub pipeline_device_address_capture_replay: crate::vk::DeviceAddress,
 }
 #[repr(C)]
 pub struct PhysicalDeviceDeviceGeneratedCommandsComputeFeaturesNV {
-    s_type: crate::vk::StructureType,
-    p_next: *mut core::ffi::c_void,
-    device_generated_compute: crate::vk::Bool32,
-    device_generated_compute_pipelines: crate::vk::Bool32,
-    device_generated_compute_capture_replay: crate::vk::Bool32,
+    pub s_type: crate::vk::StructureType,
+    pub p_next: *mut core::ffi::c_void,
+    pub device_generated_compute: crate::vk::Bool32,
+    pub device_generated_compute_pipelines: crate::vk::Bool32,
+    pub device_generated_compute_capture_replay: crate::vk::Bool32,
 }
 #[repr(C)]
 pub struct PipelineIndirectDeviceAddressInfoNV {
-    s_type: crate::vk::StructureType,
-    p_next: *const core::ffi::c_void,
-    pipeline_bind_point: crate::vk::PipelineBindPoint,
-    pipeline: crate::vk::Pipeline,
+    pub s_type: crate::vk::StructureType,
+    pub p_next: *const core::ffi::c_void,
+    pub pipeline_bind_point: crate::vk::PipelineBindPoint,
+    pub pipeline: crate::vk::Pipeline,
 }
 #[repr(C)]
 pub struct BindPipelineIndirectCommandNV {
-    pipeline_address: crate::vk::DeviceAddress,
+    pub pipeline_address: crate::vk::DeviceAddress,
 }

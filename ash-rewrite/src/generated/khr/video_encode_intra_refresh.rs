@@ -3,41 +3,41 @@
 //![Vulkan Manual Page](https://docs.vulkan.org/refpages/latest/refpages/source/VK_KHR_video_encode_intra_refresh.html) · Vulkan extension
 #[repr(C)]
 pub struct VideoEncodeIntraRefreshCapabilitiesKHR {
-    s_type: crate::vk::StructureType,
-    p_next: *mut core::ffi::c_void,
-    intra_refresh_modes: crate::vk::VideoEncodeIntraRefreshModeFlagsKHR,
-    max_intra_refresh_cycle_duration: crate::External<
+    pub s_type: crate::vk::StructureType,
+    pub p_next: *mut core::ffi::c_void,
+    pub intra_refresh_modes: crate::vk::VideoEncodeIntraRefreshModeFlagsKHR,
+    pub max_intra_refresh_cycle_duration: crate::External<
         {
             "uint32_t";
             0
         },
     >,
-    max_intra_refresh_active_reference_pictures: crate::External<
+    pub max_intra_refresh_active_reference_pictures: crate::External<
         {
             "uint32_t";
             0
         },
     >,
-    partition_independent_intra_refresh_regions: crate::vk::Bool32,
-    non_rectangular_intra_refresh_regions: crate::vk::Bool32,
+    pub partition_independent_intra_refresh_regions: crate::vk::Bool32,
+    pub non_rectangular_intra_refresh_regions: crate::vk::Bool32,
 }
 #[repr(C)]
 pub struct VideoEncodeSessionIntraRefreshCreateInfoKHR {
-    s_type: crate::vk::StructureType,
-    p_next: *const core::ffi::c_void,
-    intra_refresh_mode: crate::vk::VideoEncodeIntraRefreshModeFlagBitsKHR,
+    pub s_type: crate::vk::StructureType,
+    pub p_next: *const core::ffi::c_void,
+    pub intra_refresh_mode: crate::vk::VideoEncodeIntraRefreshModeFlagBitsKHR,
 }
 #[repr(C)]
 pub struct VideoEncodeIntraRefreshInfoKHR {
-    s_type: crate::vk::StructureType,
-    p_next: *const core::ffi::c_void,
-    intra_refresh_cycle_duration: crate::External<
+    pub s_type: crate::vk::StructureType,
+    pub p_next: *const core::ffi::c_void,
+    pub intra_refresh_cycle_duration: crate::External<
         {
             "uint32_t";
             0
         },
     >,
-    intra_refresh_index: crate::External<
+    pub intra_refresh_index: crate::External<
         {
             "uint32_t";
             0
@@ -46,9 +46,9 @@ pub struct VideoEncodeIntraRefreshInfoKHR {
 }
 #[repr(C)]
 pub struct VideoReferenceIntraRefreshInfoKHR {
-    s_type: crate::vk::StructureType,
-    p_next: *const core::ffi::c_void,
-    dirty_intra_refresh_regions: crate::External<
+    pub s_type: crate::vk::StructureType,
+    pub p_next: *const core::ffi::c_void,
+    pub dirty_intra_refresh_regions: crate::External<
         {
             "uint32_t";
             0
@@ -57,7 +57,11 @@ pub struct VideoReferenceIntraRefreshInfoKHR {
 }
 #[repr(C)]
 pub struct PhysicalDeviceVideoEncodeIntraRefreshFeaturesKHR {
-    s_type: crate::vk::StructureType,
-    p_next: *mut core::ffi::c_void,
-    video_encode_intra_refresh: crate::vk::Bool32,
+    pub s_type: crate::vk::StructureType,
+    pub p_next: *mut core::ffi::c_void,
+    pub video_encode_intra_refresh: crate::vk::Bool32,
 }
+#[repr(C)]
+pub struct VideoEncodeIntraRefreshModeFlagsKHR {}
+#[repr(C)]
+pub struct VideoEncodeIntraRefreshModeFlagBitsKHR {}

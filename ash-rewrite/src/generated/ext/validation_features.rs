@@ -3,22 +3,22 @@
 //![Vulkan Manual Page](https://docs.vulkan.org/refpages/latest/refpages/source/VK_EXT_validation_features.html) · Vulkan extension
 #[repr(C)]
 pub struct ValidationFeaturesEXT {
-    s_type: crate::vk::StructureType,
-    p_next: *const core::ffi::c_void,
-    enabled_validation_feature_count: crate::External<
+    pub s_type: crate::vk::StructureType,
+    pub p_next: *const core::ffi::c_void,
+    pub enabled_validation_feature_count: crate::External<
         {
             "uint32_t";
             0
         },
     >,
-    p_enabled_validation_features: *const crate::vk::ValidationFeatureEnableEXT,
-    disabled_validation_feature_count: crate::External<
+    pub p_enabled_validation_features: *const crate::vk::ValidationFeatureEnableEXT,
+    pub disabled_validation_feature_count: crate::External<
         {
             "uint32_t";
             0
         },
     >,
-    p_disabled_validation_features: *const crate::vk::ValidationFeatureDisableEXT,
+    pub p_disabled_validation_features: *const crate::vk::ValidationFeatureDisableEXT,
 }
 #[repr(C)]
 pub struct ValidationFeatureEnableEXT {}

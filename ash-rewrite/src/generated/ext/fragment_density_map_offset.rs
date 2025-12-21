@@ -3,25 +3,26 @@
 //![Vulkan Manual Page](https://docs.vulkan.org/refpages/latest/refpages/source/VK_EXT_fragment_density_map_offset.html) · Vulkan extension
 #[repr(C)]
 pub struct PhysicalDeviceFragmentDensityMapOffsetFeaturesEXT {
-    s_type: crate::vk::StructureType,
-    p_next: *mut core::ffi::c_void,
-    fragment_density_map_offset: crate::vk::Bool32,
+    pub s_type: crate::vk::StructureType,
+    pub p_next: *mut core::ffi::c_void,
+    pub fragment_density_map_offset: crate::vk::Bool32,
 }
 #[repr(C)]
 pub struct PhysicalDeviceFragmentDensityMapOffsetPropertiesEXT {
-    s_type: crate::vk::StructureType,
-    p_next: *mut core::ffi::c_void,
-    fragment_density_offset_granularity: crate::vk::Extent2D,
+    pub s_type: crate::vk::StructureType,
+    pub p_next: *mut core::ffi::c_void,
+    pub fragment_density_offset_granularity: crate::vk::Extent2D,
 }
 #[repr(C)]
 pub struct RenderPassFragmentDensityMapOffsetEndInfoEXT {
-    s_type: crate::vk::StructureType,
-    p_next: *const core::ffi::c_void,
-    fragment_density_offset_count: crate::External<
+    pub s_type: crate::vk::StructureType,
+    pub p_next: *const core::ffi::c_void,
+    pub fragment_density_offset_count: crate::External<
         {
             "uint32_t";
             0
         },
     >,
-    p_fragment_density_offsets: *const crate::vk::Offset2D,
+    pub p_fragment_density_offsets: *const crate::vk::Offset2D,
 }
+pub type RenderingEndInfoEXT = crate::vk::RenderingEndInfoKHR;

@@ -3,13 +3,15 @@
 //![Vulkan Manual Page](https://docs.vulkan.org/refpages/latest/refpages/source/VK_GGP_stream_descriptor_surface.html) · Vulkan extension
 #[repr(C)]
 pub struct StreamDescriptorSurfaceCreateInfoGGP {
-    s_type: crate::vk::StructureType,
-    p_next: *const core::ffi::c_void,
-    flags: crate::vk::StreamDescriptorSurfaceCreateFlagsGGP,
-    stream_descriptor: crate::External<
+    pub s_type: crate::vk::StructureType,
+    pub p_next: *const core::ffi::c_void,
+    pub flags: crate::vk::StreamDescriptorSurfaceCreateFlagsGGP,
+    pub stream_descriptor: crate::External<
         {
             "GgpStreamDescriptor";
             0
         },
     >,
 }
+#[repr(C)]
+pub struct StreamDescriptorSurfaceCreateFlagsGGP {}

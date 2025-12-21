@@ -3,15 +3,15 @@
 //![Vulkan Manual Page](https://docs.vulkan.org/refpages/latest/refpages/source/VK_EXT_image_view_min_lod.html) · Vulkan extension
 #[repr(C)]
 pub struct PhysicalDeviceImageViewMinLodFeaturesEXT {
-    s_type: crate::vk::StructureType,
-    p_next: *mut core::ffi::c_void,
-    min_lod: crate::vk::Bool32,
+    pub s_type: crate::vk::StructureType,
+    pub p_next: *mut core::ffi::c_void,
+    pub min_lod: crate::vk::Bool32,
 }
 #[repr(C)]
 pub struct ImageViewMinLodCreateInfoEXT {
-    s_type: crate::vk::StructureType,
-    p_next: *const core::ffi::c_void,
-    min_lod: crate::External<
+    pub s_type: crate::vk::StructureType,
+    pub p_next: *const core::ffi::c_void,
+    pub min_lod: crate::External<
         {
             "float";
             0

@@ -3,33 +3,33 @@
 //![Vulkan Manual Page](https://docs.vulkan.org/refpages/latest/refpages/source/VK_QCOM_tile_memory_heap.html) · Vulkan extension
 #[repr(C)]
 pub struct TileMemoryBindInfoQCOM {
-    s_type: crate::vk::StructureType,
-    p_next: *const core::ffi::c_void,
-    memory: crate::vk::DeviceMemory,
+    pub s_type: crate::vk::StructureType,
+    pub p_next: *const core::ffi::c_void,
+    pub memory: crate::vk::DeviceMemory,
 }
 #[repr(C)]
 pub struct PhysicalDeviceTileMemoryHeapFeaturesQCOM {
-    s_type: crate::vk::StructureType,
-    p_next: *mut core::ffi::c_void,
-    tile_memory_heap: crate::vk::Bool32,
+    pub s_type: crate::vk::StructureType,
+    pub p_next: *mut core::ffi::c_void,
+    pub tile_memory_heap: crate::vk::Bool32,
 }
 #[repr(C)]
 pub struct PhysicalDeviceTileMemoryHeapPropertiesQCOM {
-    s_type: crate::vk::StructureType,
-    p_next: *mut core::ffi::c_void,
-    queue_submit_boundary: crate::vk::Bool32,
-    tile_buffer_transfers: crate::vk::Bool32,
+    pub s_type: crate::vk::StructureType,
+    pub p_next: *mut core::ffi::c_void,
+    pub queue_submit_boundary: crate::vk::Bool32,
+    pub tile_buffer_transfers: crate::vk::Bool32,
 }
 #[repr(C)]
 pub struct TileMemorySizeInfoQCOM {
-    s_type: crate::vk::StructureType,
-    p_next: *const core::ffi::c_void,
-    size: crate::vk::DeviceSize,
+    pub s_type: crate::vk::StructureType,
+    pub p_next: *const core::ffi::c_void,
+    pub size: crate::vk::DeviceSize,
 }
 #[repr(C)]
 pub struct TileMemoryRequirementsQCOM {
-    s_type: crate::vk::StructureType,
-    p_next: *mut core::ffi::c_void,
-    size: crate::vk::DeviceSize,
-    alignment: crate::vk::DeviceSize,
+    pub s_type: crate::vk::StructureType,
+    pub p_next: *mut core::ffi::c_void,
+    pub size: crate::vk::DeviceSize,
+    pub alignment: crate::vk::DeviceSize,
 }

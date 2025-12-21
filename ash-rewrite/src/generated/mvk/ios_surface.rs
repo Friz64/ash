@@ -3,8 +3,10 @@
 //![Vulkan Manual Page](https://docs.vulkan.org/refpages/latest/refpages/source/VK_MVK_ios_surface.html) · Vulkan extension
 #[repr(C)]
 pub struct IOSSurfaceCreateInfoMVK {
-    s_type: crate::vk::StructureType,
-    p_next: *const core::ffi::c_void,
-    flags: crate::vk::IOSSurfaceCreateFlagsMVK,
-    p_view: *const core::ffi::c_void,
+    pub s_type: crate::vk::StructureType,
+    pub p_next: *const core::ffi::c_void,
+    pub flags: crate::vk::IOSSurfaceCreateFlagsMVK,
+    pub p_view: *const core::ffi::c_void,
 }
+#[repr(C)]
+pub struct IOSSurfaceCreateFlagsMVK {}

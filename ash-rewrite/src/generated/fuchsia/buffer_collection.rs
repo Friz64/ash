@@ -3,10 +3,10 @@
 //![Vulkan Manual Page](https://docs.vulkan.org/refpages/latest/refpages/source/VK_FUCHSIA_buffer_collection.html) · Vulkan extension
 #[repr(C)]
 pub struct ImportMemoryBufferCollectionFUCHSIA {
-    s_type: crate::vk::StructureType,
-    p_next: *const core::ffi::c_void,
-    collection: crate::vk::BufferCollectionFUCHSIA,
-    index: crate::External<
+    pub s_type: crate::vk::StructureType,
+    pub p_next: *const core::ffi::c_void,
+    pub collection: crate::vk::BufferCollectionFUCHSIA,
+    pub index: crate::External<
         {
             "uint32_t";
             0
@@ -15,10 +15,10 @@ pub struct ImportMemoryBufferCollectionFUCHSIA {
 }
 #[repr(C)]
 pub struct BufferCollectionImageCreateInfoFUCHSIA {
-    s_type: crate::vk::StructureType,
-    p_next: *const core::ffi::c_void,
-    collection: crate::vk::BufferCollectionFUCHSIA,
-    index: crate::External<
+    pub s_type: crate::vk::StructureType,
+    pub p_next: *const core::ffi::c_void,
+    pub collection: crate::vk::BufferCollectionFUCHSIA,
+    pub index: crate::External<
         {
             "uint32_t";
             0
@@ -27,10 +27,10 @@ pub struct BufferCollectionImageCreateInfoFUCHSIA {
 }
 #[repr(C)]
 pub struct BufferCollectionBufferCreateInfoFUCHSIA {
-    s_type: crate::vk::StructureType,
-    p_next: *const core::ffi::c_void,
-    collection: crate::vk::BufferCollectionFUCHSIA,
-    index: crate::External<
+    pub s_type: crate::vk::StructureType,
+    pub p_next: *const core::ffi::c_void,
+    pub collection: crate::vk::BufferCollectionFUCHSIA,
+    pub index: crate::External<
         {
             "uint32_t";
             0
@@ -39,9 +39,9 @@ pub struct BufferCollectionBufferCreateInfoFUCHSIA {
 }
 #[repr(C)]
 pub struct BufferCollectionCreateInfoFUCHSIA {
-    s_type: crate::vk::StructureType,
-    p_next: *const core::ffi::c_void,
-    collection_token: crate::External<
+    pub s_type: crate::vk::StructureType,
+    pub p_next: *const core::ffi::c_void,
+    pub collection_token: crate::External<
         {
             "zx_handle_t";
             0
@@ -50,53 +50,53 @@ pub struct BufferCollectionCreateInfoFUCHSIA {
 }
 #[repr(C)]
 pub struct BufferCollectionPropertiesFUCHSIA {
-    s_type: crate::vk::StructureType,
-    p_next: *mut core::ffi::c_void,
-    memory_type_bits: crate::External<
+    pub s_type: crate::vk::StructureType,
+    pub p_next: *mut core::ffi::c_void,
+    pub memory_type_bits: crate::External<
         {
             "uint32_t";
             0
         },
     >,
-    buffer_count: crate::External<
+    pub buffer_count: crate::External<
         {
             "uint32_t";
             0
         },
     >,
-    create_info_index: crate::External<
+    pub create_info_index: crate::External<
         {
             "uint32_t";
             0
         },
     >,
-    sysmem_pixel_format: crate::External<
+    pub sysmem_pixel_format: crate::External<
         {
             "uint64_t";
             0
         },
     >,
-    format_features: crate::vk::FormatFeatureFlags,
-    sysmem_color_space_index: crate::vk::SysmemColorSpaceFUCHSIA,
-    sampler_ycbcr_conversion_components: crate::vk::ComponentMapping,
-    suggested_ycbcr_model: crate::vk::SamplerYcbcrModelConversion,
-    suggested_ycbcr_range: crate::vk::SamplerYcbcrRange,
-    suggested_x_chroma_offset: crate::vk::ChromaLocation,
-    suggested_y_chroma_offset: crate::vk::ChromaLocation,
+    pub format_features: crate::vk::FormatFeatureFlags,
+    pub sysmem_color_space_index: crate::vk::SysmemColorSpaceFUCHSIA,
+    pub sampler_ycbcr_conversion_components: crate::vk::ComponentMapping,
+    pub suggested_ycbcr_model: crate::vk::SamplerYcbcrModelConversion,
+    pub suggested_ycbcr_range: crate::vk::SamplerYcbcrRange,
+    pub suggested_x_chroma_offset: crate::vk::ChromaLocation,
+    pub suggested_y_chroma_offset: crate::vk::ChromaLocation,
 }
 #[repr(C)]
 pub struct BufferConstraintsInfoFUCHSIA {
-    s_type: crate::vk::StructureType,
-    p_next: *const core::ffi::c_void,
-    create_info: crate::vk::BufferCreateInfo,
-    required_format_features: crate::vk::FormatFeatureFlags,
-    buffer_collection_constraints: crate::vk::BufferCollectionConstraintsInfoFUCHSIA,
+    pub s_type: crate::vk::StructureType,
+    pub p_next: *const core::ffi::c_void,
+    pub create_info: crate::vk::BufferCreateInfo,
+    pub required_format_features: crate::vk::FormatFeatureFlags,
+    pub buffer_collection_constraints: crate::vk::BufferCollectionConstraintsInfoFUCHSIA,
 }
 #[repr(C)]
 pub struct SysmemColorSpaceFUCHSIA {
-    s_type: crate::vk::StructureType,
-    p_next: *const core::ffi::c_void,
-    color_space: crate::External<
+    pub s_type: crate::vk::StructureType,
+    pub p_next: *const core::ffi::c_void,
+    pub color_space: crate::External<
         {
             "uint32_t";
             0
@@ -105,73 +105,79 @@ pub struct SysmemColorSpaceFUCHSIA {
 }
 #[repr(C)]
 pub struct ImageFormatConstraintsInfoFUCHSIA {
-    s_type: crate::vk::StructureType,
-    p_next: *const core::ffi::c_void,
-    image_create_info: crate::vk::ImageCreateInfo,
-    required_format_features: crate::vk::FormatFeatureFlags,
-    flags: crate::vk::ImageFormatConstraintsFlagsFUCHSIA,
-    sysmem_pixel_format: crate::External<
+    pub s_type: crate::vk::StructureType,
+    pub p_next: *const core::ffi::c_void,
+    pub image_create_info: crate::vk::ImageCreateInfo,
+    pub required_format_features: crate::vk::FormatFeatureFlags,
+    pub flags: crate::vk::ImageFormatConstraintsFlagsFUCHSIA,
+    pub sysmem_pixel_format: crate::External<
         {
             "uint64_t";
             0
         },
     >,
-    color_space_count: crate::External<
+    pub color_space_count: crate::External<
         {
             "uint32_t";
             0
         },
     >,
-    p_color_spaces: *const crate::vk::SysmemColorSpaceFUCHSIA,
+    pub p_color_spaces: *const crate::vk::SysmemColorSpaceFUCHSIA,
 }
 #[repr(C)]
 pub struct ImageConstraintsInfoFUCHSIA {
-    s_type: crate::vk::StructureType,
-    p_next: *const core::ffi::c_void,
-    format_constraints_count: crate::External<
+    pub s_type: crate::vk::StructureType,
+    pub p_next: *const core::ffi::c_void,
+    pub format_constraints_count: crate::External<
         {
             "uint32_t";
             0
         },
     >,
-    p_format_constraints: *const crate::vk::ImageFormatConstraintsInfoFUCHSIA,
-    buffer_collection_constraints: crate::vk::BufferCollectionConstraintsInfoFUCHSIA,
-    flags: crate::vk::ImageConstraintsInfoFlagsFUCHSIA,
+    pub p_format_constraints: *const crate::vk::ImageFormatConstraintsInfoFUCHSIA,
+    pub buffer_collection_constraints: crate::vk::BufferCollectionConstraintsInfoFUCHSIA,
+    pub flags: crate::vk::ImageConstraintsInfoFlagsFUCHSIA,
 }
 #[repr(C)]
 pub struct BufferCollectionConstraintsInfoFUCHSIA {
-    s_type: crate::vk::StructureType,
-    p_next: *const core::ffi::c_void,
-    min_buffer_count: crate::External<
+    pub s_type: crate::vk::StructureType,
+    pub p_next: *const core::ffi::c_void,
+    pub min_buffer_count: crate::External<
         {
             "uint32_t";
             0
         },
     >,
-    max_buffer_count: crate::External<
+    pub max_buffer_count: crate::External<
         {
             "uint32_t";
             0
         },
     >,
-    min_buffer_count_for_camping: crate::External<
+    pub min_buffer_count_for_camping: crate::External<
         {
             "uint32_t";
             0
         },
     >,
-    min_buffer_count_for_dedicated_slack: crate::External<
+    pub min_buffer_count_for_dedicated_slack: crate::External<
         {
             "uint32_t";
             0
         },
     >,
-    min_buffer_count_for_shared_slack: crate::External<
+    pub min_buffer_count_for_shared_slack: crate::External<
         {
             "uint32_t";
             0
         },
     >,
 }
+#[repr(C)]
+pub struct ImageFormatConstraintsFlagsFUCHSIA {}
+#[repr(C)]
+pub struct ImageConstraintsInfoFlagsFUCHSIA {}
+#[repr(C)]
+pub struct ImageConstraintsInfoFlagBitsFUCHSIA {}
 #[repr(C)]
 pub struct BufferCollectionFUCHSIA {}

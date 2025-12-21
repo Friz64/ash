@@ -3,8 +3,10 @@
 //![Vulkan Manual Page](https://docs.vulkan.org/refpages/latest/refpages/source/VK_MVK_macos_surface.html) · Vulkan extension
 #[repr(C)]
 pub struct MacOSSurfaceCreateInfoMVK {
-    s_type: crate::vk::StructureType,
-    p_next: *const core::ffi::c_void,
-    flags: crate::vk::MacOSSurfaceCreateFlagsMVK,
-    p_view: *const core::ffi::c_void,
+    pub s_type: crate::vk::StructureType,
+    pub p_next: *const core::ffi::c_void,
+    pub flags: crate::vk::MacOSSurfaceCreateFlagsMVK,
+    pub p_view: *const core::ffi::c_void,
 }
+#[repr(C)]
+pub struct MacOSSurfaceCreateFlagsMVK {}

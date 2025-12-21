@@ -3,7 +3,7 @@
 //![Vulkan Manual Page](https://docs.vulkan.org/refpages/latest/refpages/source/VK_NV_command_buffer_inheritance.html) · Vulkan extension
 #[repr(C)]
 pub struct PhysicalDeviceCommandBufferInheritanceFeaturesNV {
-    s_type: crate::vk::StructureType,
-    p_next: *mut core::ffi::c_void,
-    command_buffer_inheritance: crate::vk::Bool32,
+    pub s_type: crate::vk::StructureType,
+    pub p_next: *mut core::ffi::c_void,
+    pub command_buffer_inheritance: crate::vk::Bool32,
 }

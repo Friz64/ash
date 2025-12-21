@@ -3,8 +3,10 @@
 //![Vulkan Manual Page](https://docs.vulkan.org/refpages/latest/refpages/source/VK_NN_vi_surface.html) · Vulkan extension
 #[repr(C)]
 pub struct ViSurfaceCreateInfoNN {
-    s_type: crate::vk::StructureType,
-    p_next: *const core::ffi::c_void,
-    flags: crate::vk::ViSurfaceCreateFlagsNN,
-    window: *mut core::ffi::c_void,
+    pub s_type: crate::vk::StructureType,
+    pub p_next: *const core::ffi::c_void,
+    pub flags: crate::vk::ViSurfaceCreateFlagsNN,
+    pub window: *mut core::ffi::c_void,
 }
+#[repr(C)]
+pub struct ViSurfaceCreateFlagsNN {}

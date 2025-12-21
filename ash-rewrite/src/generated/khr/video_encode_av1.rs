@@ -3,182 +3,182 @@
 //![Vulkan Manual Page](https://docs.vulkan.org/refpages/latest/refpages/source/VK_KHR_video_encode_av1.html) · Vulkan extension
 #[repr(C)]
 pub struct VideoEncodeAV1CapabilitiesKHR {
-    s_type: crate::vk::StructureType,
-    p_next: *mut core::ffi::c_void,
-    flags: crate::vk::VideoEncodeAV1CapabilityFlagsKHR,
-    max_level: crate::vk::StdVideoAV1Level,
-    coded_picture_alignment: crate::vk::Extent2D,
-    max_tiles: crate::vk::Extent2D,
-    min_tile_size: crate::vk::Extent2D,
-    max_tile_size: crate::vk::Extent2D,
-    superblock_sizes: crate::vk::VideoEncodeAV1SuperblockSizeFlagsKHR,
-    max_single_reference_count: crate::External<
+    pub s_type: crate::vk::StructureType,
+    pub p_next: *mut core::ffi::c_void,
+    pub flags: crate::vk::VideoEncodeAV1CapabilityFlagsKHR,
+    pub max_level: crate::vk::StdVideoAV1Level,
+    pub coded_picture_alignment: crate::vk::Extent2D,
+    pub max_tiles: crate::vk::Extent2D,
+    pub min_tile_size: crate::vk::Extent2D,
+    pub max_tile_size: crate::vk::Extent2D,
+    pub superblock_sizes: crate::vk::VideoEncodeAV1SuperblockSizeFlagsKHR,
+    pub max_single_reference_count: crate::External<
         {
             "uint32_t";
             0
         },
     >,
-    single_reference_name_mask: crate::External<
+    pub single_reference_name_mask: crate::External<
         {
             "uint32_t";
             0
         },
     >,
-    max_unidirectional_compound_reference_count: crate::External<
+    pub max_unidirectional_compound_reference_count: crate::External<
         {
             "uint32_t";
             0
         },
     >,
-    max_unidirectional_compound_group1_reference_count: crate::External<
+    pub max_unidirectional_compound_group1_reference_count: crate::External<
         {
             "uint32_t";
             0
         },
     >,
-    unidirectional_compound_reference_name_mask: crate::External<
+    pub unidirectional_compound_reference_name_mask: crate::External<
         {
             "uint32_t";
             0
         },
     >,
-    max_bidirectional_compound_reference_count: crate::External<
+    pub max_bidirectional_compound_reference_count: crate::External<
         {
             "uint32_t";
             0
         },
     >,
-    max_bidirectional_compound_group1_reference_count: crate::External<
+    pub max_bidirectional_compound_group1_reference_count: crate::External<
         {
             "uint32_t";
             0
         },
     >,
-    max_bidirectional_compound_group2_reference_count: crate::External<
+    pub max_bidirectional_compound_group2_reference_count: crate::External<
         {
             "uint32_t";
             0
         },
     >,
-    bidirectional_compound_reference_name_mask: crate::External<
+    pub bidirectional_compound_reference_name_mask: crate::External<
         {
             "uint32_t";
             0
         },
     >,
-    max_temporal_layer_count: crate::External<
+    pub max_temporal_layer_count: crate::External<
         {
             "uint32_t";
             0
         },
     >,
-    max_spatial_layer_count: crate::External<
+    pub max_spatial_layer_count: crate::External<
         {
             "uint32_t";
             0
         },
     >,
-    max_operating_points: crate::External<
+    pub max_operating_points: crate::External<
         {
             "uint32_t";
             0
         },
     >,
-    min_q_index: crate::External<
+    pub min_q_index: crate::External<
         {
             "uint32_t";
             0
         },
     >,
-    max_q_index: crate::External<
+    pub max_q_index: crate::External<
         {
             "uint32_t";
             0
         },
     >,
-    prefers_gop_remaining_frames: crate::vk::Bool32,
-    requires_gop_remaining_frames: crate::vk::Bool32,
-    std_syntax_flags: crate::vk::VideoEncodeAV1StdFlagsKHR,
+    pub prefers_gop_remaining_frames: crate::vk::Bool32,
+    pub requires_gop_remaining_frames: crate::vk::Bool32,
+    pub std_syntax_flags: crate::vk::VideoEncodeAV1StdFlagsKHR,
 }
 #[repr(C)]
 pub struct VideoEncodeAV1QualityLevelPropertiesKHR {
-    s_type: crate::vk::StructureType,
-    p_next: *mut core::ffi::c_void,
-    preferred_rate_control_flags: crate::vk::VideoEncodeAV1RateControlFlagsKHR,
-    preferred_gop_frame_count: crate::External<
+    pub s_type: crate::vk::StructureType,
+    pub p_next: *mut core::ffi::c_void,
+    pub preferred_rate_control_flags: crate::vk::VideoEncodeAV1RateControlFlagsKHR,
+    pub preferred_gop_frame_count: crate::External<
         {
             "uint32_t";
             0
         },
     >,
-    preferred_key_frame_period: crate::External<
+    pub preferred_key_frame_period: crate::External<
         {
             "uint32_t";
             0
         },
     >,
-    preferred_consecutive_bipredictive_frame_count: crate::External<
+    pub preferred_consecutive_bipredictive_frame_count: crate::External<
         {
             "uint32_t";
             0
         },
     >,
-    preferred_temporal_layer_count: crate::External<
+    pub preferred_temporal_layer_count: crate::External<
         {
             "uint32_t";
             0
         },
     >,
-    preferred_constant_q_index: crate::vk::VideoEncodeAV1QIndexKHR,
-    preferred_max_single_reference_count: crate::External<
+    pub preferred_constant_q_index: crate::vk::VideoEncodeAV1QIndexKHR,
+    pub preferred_max_single_reference_count: crate::External<
         {
             "uint32_t";
             0
         },
     >,
-    preferred_single_reference_name_mask: crate::External<
+    pub preferred_single_reference_name_mask: crate::External<
         {
             "uint32_t";
             0
         },
     >,
-    preferred_max_unidirectional_compound_reference_count: crate::External<
+    pub preferred_max_unidirectional_compound_reference_count: crate::External<
         {
             "uint32_t";
             0
         },
     >,
-    preferred_max_unidirectional_compound_group1_reference_count: crate::External<
+    pub preferred_max_unidirectional_compound_group1_reference_count: crate::External<
         {
             "uint32_t";
             0
         },
     >,
-    preferred_unidirectional_compound_reference_name_mask: crate::External<
+    pub preferred_unidirectional_compound_reference_name_mask: crate::External<
         {
             "uint32_t";
             0
         },
     >,
-    preferred_max_bidirectional_compound_reference_count: crate::External<
+    pub preferred_max_bidirectional_compound_reference_count: crate::External<
         {
             "uint32_t";
             0
         },
     >,
-    preferred_max_bidirectional_compound_group1_reference_count: crate::External<
+    pub preferred_max_bidirectional_compound_group1_reference_count: crate::External<
         {
             "uint32_t";
             0
         },
     >,
-    preferred_max_bidirectional_compound_group2_reference_count: crate::External<
+    pub preferred_max_bidirectional_compound_group2_reference_count: crate::External<
         {
             "uint32_t";
             0
         },
     >,
-    preferred_bidirectional_compound_reference_name_mask: crate::External<
+    pub preferred_bidirectional_compound_reference_name_mask: crate::External<
         {
             "uint32_t";
             0
@@ -187,89 +187,89 @@ pub struct VideoEncodeAV1QualityLevelPropertiesKHR {
 }
 #[repr(C)]
 pub struct PhysicalDeviceVideoEncodeAV1FeaturesKHR {
-    s_type: crate::vk::StructureType,
-    p_next: *mut core::ffi::c_void,
-    video_encode_av1: crate::vk::Bool32,
+    pub s_type: crate::vk::StructureType,
+    pub p_next: *mut core::ffi::c_void,
+    pub video_encode_av1: crate::vk::Bool32,
 }
 #[repr(C)]
 pub struct VideoEncodeAV1SessionCreateInfoKHR {
-    s_type: crate::vk::StructureType,
-    p_next: *const core::ffi::c_void,
-    use_max_level: crate::vk::Bool32,
-    max_level: crate::vk::StdVideoAV1Level,
+    pub s_type: crate::vk::StructureType,
+    pub p_next: *const core::ffi::c_void,
+    pub use_max_level: crate::vk::Bool32,
+    pub max_level: crate::vk::StdVideoAV1Level,
 }
 #[repr(C)]
 pub struct VideoEncodeAV1SessionParametersCreateInfoKHR {
-    s_type: crate::vk::StructureType,
-    p_next: *const core::ffi::c_void,
-    p_std_sequence_header: *const crate::vk::StdVideoAV1SequenceHeader,
-    p_std_decoder_model_info: *const crate::vk::StdVideoEncodeAV1DecoderModelInfo,
-    std_operating_point_count: crate::External<
+    pub s_type: crate::vk::StructureType,
+    pub p_next: *const core::ffi::c_void,
+    pub p_std_sequence_header: *const crate::vk::StdVideoAV1SequenceHeader,
+    pub p_std_decoder_model_info: *const crate::vk::StdVideoEncodeAV1DecoderModelInfo,
+    pub std_operating_point_count: crate::External<
         {
             "uint32_t";
             0
         },
     >,
-    p_std_operating_points: *const crate::vk::StdVideoEncodeAV1OperatingPointInfo,
+    pub p_std_operating_points: *const crate::vk::StdVideoEncodeAV1OperatingPointInfo,
 }
 #[repr(C)]
 pub struct VideoEncodeAV1DpbSlotInfoKHR {
-    s_type: crate::vk::StructureType,
-    p_next: *const core::ffi::c_void,
-    p_std_reference_info: *const crate::vk::StdVideoEncodeAV1ReferenceInfo,
+    pub s_type: crate::vk::StructureType,
+    pub p_next: *const core::ffi::c_void,
+    pub p_std_reference_info: *const crate::vk::StdVideoEncodeAV1ReferenceInfo,
 }
 #[repr(C)]
 pub struct VideoEncodeAV1PictureInfoKHR {
-    s_type: crate::vk::StructureType,
-    p_next: *const core::ffi::c_void,
-    prediction_mode: crate::vk::VideoEncodeAV1PredictionModeKHR,
-    rate_control_group: crate::vk::VideoEncodeAV1RateControlGroupKHR,
-    constant_q_index: crate::External<
+    pub s_type: crate::vk::StructureType,
+    pub p_next: *const core::ffi::c_void,
+    pub prediction_mode: crate::vk::VideoEncodeAV1PredictionModeKHR,
+    pub rate_control_group: crate::vk::VideoEncodeAV1RateControlGroupKHR,
+    pub constant_q_index: crate::External<
         {
             "uint32_t";
             0
         },
     >,
-    p_std_picture_info: *const crate::vk::StdVideoEncodeAV1PictureInfo,
-    reference_name_slot_indices: [crate::External<
+    pub p_std_picture_info: *const crate::vk::StdVideoEncodeAV1PictureInfo,
+    pub reference_name_slot_indices: [crate::External<
         {
             "int32_t";
             0
         },
     >; 1337],
-    primary_reference_cdf_only: crate::vk::Bool32,
-    generate_obu_extension_header: crate::vk::Bool32,
+    pub primary_reference_cdf_only: crate::vk::Bool32,
+    pub generate_obu_extension_header: crate::vk::Bool32,
 }
 #[repr(C)]
 pub struct VideoEncodeAV1ProfileInfoKHR {
-    s_type: crate::vk::StructureType,
-    p_next: *const core::ffi::c_void,
-    std_profile: crate::vk::StdVideoAV1Profile,
+    pub s_type: crate::vk::StructureType,
+    pub p_next: *const core::ffi::c_void,
+    pub std_profile: crate::vk::StdVideoAV1Profile,
 }
 #[repr(C)]
 pub struct VideoEncodeAV1RateControlInfoKHR {
-    s_type: crate::vk::StructureType,
-    p_next: *const core::ffi::c_void,
-    flags: crate::vk::VideoEncodeAV1RateControlFlagsKHR,
-    gop_frame_count: crate::External<
+    pub s_type: crate::vk::StructureType,
+    pub p_next: *const core::ffi::c_void,
+    pub flags: crate::vk::VideoEncodeAV1RateControlFlagsKHR,
+    pub gop_frame_count: crate::External<
         {
             "uint32_t";
             0
         },
     >,
-    key_frame_period: crate::External<
+    pub key_frame_period: crate::External<
         {
             "uint32_t";
             0
         },
     >,
-    consecutive_bipredictive_frame_count: crate::External<
+    pub consecutive_bipredictive_frame_count: crate::External<
         {
             "uint32_t";
             0
         },
     >,
-    temporal_layer_count: crate::External<
+    pub temporal_layer_count: crate::External<
         {
             "uint32_t";
             0
@@ -278,19 +278,19 @@ pub struct VideoEncodeAV1RateControlInfoKHR {
 }
 #[repr(C)]
 pub struct VideoEncodeAV1QIndexKHR {
-    intra_q_index: crate::External<
+    pub intra_q_index: crate::External<
         {
             "uint32_t";
             0
         },
     >,
-    predictive_q_index: crate::External<
+    pub predictive_q_index: crate::External<
         {
             "uint32_t";
             0
         },
     >,
-    bipredictive_q_index: crate::External<
+    pub bipredictive_q_index: crate::External<
         {
             "uint32_t";
             0
@@ -299,19 +299,19 @@ pub struct VideoEncodeAV1QIndexKHR {
 }
 #[repr(C)]
 pub struct VideoEncodeAV1FrameSizeKHR {
-    intra_frame_size: crate::External<
+    pub intra_frame_size: crate::External<
         {
             "uint32_t";
             0
         },
     >,
-    predictive_frame_size: crate::External<
+    pub predictive_frame_size: crate::External<
         {
             "uint32_t";
             0
         },
     >,
-    bipredictive_frame_size: crate::External<
+    pub bipredictive_frame_size: crate::External<
         {
             "uint32_t";
             0
@@ -320,22 +320,22 @@ pub struct VideoEncodeAV1FrameSizeKHR {
 }
 #[repr(C)]
 pub struct VideoEncodeAV1GopRemainingFrameInfoKHR {
-    s_type: crate::vk::StructureType,
-    p_next: *const core::ffi::c_void,
-    use_gop_remaining_frames: crate::vk::Bool32,
-    gop_remaining_intra: crate::External<
+    pub s_type: crate::vk::StructureType,
+    pub p_next: *const core::ffi::c_void,
+    pub use_gop_remaining_frames: crate::vk::Bool32,
+    pub gop_remaining_intra: crate::External<
         {
             "uint32_t";
             0
         },
     >,
-    gop_remaining_predictive: crate::External<
+    pub gop_remaining_predictive: crate::External<
         {
             "uint32_t";
             0
         },
     >,
-    gop_remaining_bipredictive: crate::External<
+    pub gop_remaining_bipredictive: crate::External<
         {
             "uint32_t";
             0
@@ -344,16 +344,32 @@ pub struct VideoEncodeAV1GopRemainingFrameInfoKHR {
 }
 #[repr(C)]
 pub struct VideoEncodeAV1RateControlLayerInfoKHR {
-    s_type: crate::vk::StructureType,
-    p_next: *const core::ffi::c_void,
-    use_min_q_index: crate::vk::Bool32,
-    min_q_index: crate::vk::VideoEncodeAV1QIndexKHR,
-    use_max_q_index: crate::vk::Bool32,
-    max_q_index: crate::vk::VideoEncodeAV1QIndexKHR,
-    use_max_frame_size: crate::vk::Bool32,
-    max_frame_size: crate::vk::VideoEncodeAV1FrameSizeKHR,
+    pub s_type: crate::vk::StructureType,
+    pub p_next: *const core::ffi::c_void,
+    pub use_min_q_index: crate::vk::Bool32,
+    pub min_q_index: crate::vk::VideoEncodeAV1QIndexKHR,
+    pub use_max_q_index: crate::vk::Bool32,
+    pub max_q_index: crate::vk::VideoEncodeAV1QIndexKHR,
+    pub use_max_frame_size: crate::vk::Bool32,
+    pub max_frame_size: crate::vk::VideoEncodeAV1FrameSizeKHR,
 }
 #[repr(C)]
 pub struct VideoEncodeAV1PredictionModeKHR {}
 #[repr(C)]
 pub struct VideoEncodeAV1RateControlGroupKHR {}
+#[repr(C)]
+pub struct VideoEncodeAV1CapabilityFlagsKHR {}
+#[repr(C)]
+pub struct VideoEncodeAV1StdFlagsKHR {}
+#[repr(C)]
+pub struct VideoEncodeAV1RateControlFlagsKHR {}
+#[repr(C)]
+pub struct VideoEncodeAV1SuperblockSizeFlagsKHR {}
+#[repr(C)]
+pub struct VideoEncodeAV1CapabilityFlagBitsKHR {}
+#[repr(C)]
+pub struct VideoEncodeAV1StdFlagBitsKHR {}
+#[repr(C)]
+pub struct VideoEncodeAV1RateControlFlagBitsKHR {}
+#[repr(C)]
+pub struct VideoEncodeAV1SuperblockSizeFlagBitsKHR {}

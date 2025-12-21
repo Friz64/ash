@@ -3,172 +3,172 @@
 //![Vulkan Manual Page](https://docs.vulkan.org/refpages/latest/refpages/source/VK_KHR_video_queue.html) · Vulkan extension
 #[repr(C)]
 pub struct QueueFamilyVideoPropertiesKHR {
-    s_type: crate::vk::StructureType,
-    p_next: *mut core::ffi::c_void,
-    video_codec_operations: crate::vk::VideoCodecOperationFlagsKHR,
+    pub s_type: crate::vk::StructureType,
+    pub p_next: *mut core::ffi::c_void,
+    pub video_codec_operations: crate::vk::VideoCodecOperationFlagsKHR,
 }
 #[repr(C)]
 pub struct QueueFamilyQueryResultStatusPropertiesKHR {
-    s_type: crate::vk::StructureType,
-    p_next: *mut core::ffi::c_void,
-    query_result_status_support: crate::vk::Bool32,
+    pub s_type: crate::vk::StructureType,
+    pub p_next: *mut core::ffi::c_void,
+    pub query_result_status_support: crate::vk::Bool32,
 }
 #[repr(C)]
 pub struct VideoProfileListInfoKHR {
-    s_type: crate::vk::StructureType,
-    p_next: *const core::ffi::c_void,
-    profile_count: crate::External<
+    pub s_type: crate::vk::StructureType,
+    pub p_next: *const core::ffi::c_void,
+    pub profile_count: crate::External<
         {
             "uint32_t";
             0
         },
     >,
-    p_profiles: *const crate::vk::VideoProfileInfoKHR,
+    pub p_profiles: *const crate::vk::VideoProfileInfoKHR,
 }
 #[repr(C)]
 pub struct PhysicalDeviceVideoFormatInfoKHR {
-    s_type: crate::vk::StructureType,
-    p_next: *const core::ffi::c_void,
-    image_usage: crate::vk::ImageUsageFlags,
+    pub s_type: crate::vk::StructureType,
+    pub p_next: *const core::ffi::c_void,
+    pub image_usage: crate::vk::ImageUsageFlags,
 }
 #[repr(C)]
 pub struct VideoFormatPropertiesKHR {
-    s_type: crate::vk::StructureType,
-    p_next: *mut core::ffi::c_void,
-    format: crate::vk::Format,
-    component_mapping: crate::vk::ComponentMapping,
-    image_create_flags: crate::vk::ImageCreateFlags,
-    image_type: crate::vk::ImageType,
-    image_tiling: crate::vk::ImageTiling,
-    image_usage_flags: crate::vk::ImageUsageFlags,
+    pub s_type: crate::vk::StructureType,
+    pub p_next: *mut core::ffi::c_void,
+    pub format: crate::vk::Format,
+    pub component_mapping: crate::vk::ComponentMapping,
+    pub image_create_flags: crate::vk::ImageCreateFlags,
+    pub image_type: crate::vk::ImageType,
+    pub image_tiling: crate::vk::ImageTiling,
+    pub image_usage_flags: crate::vk::ImageUsageFlags,
 }
 #[repr(C)]
 pub struct VideoProfileInfoKHR {
-    s_type: crate::vk::StructureType,
-    p_next: *const core::ffi::c_void,
-    video_codec_operation: crate::vk::VideoCodecOperationFlagBitsKHR,
-    chroma_subsampling: crate::vk::VideoChromaSubsamplingFlagsKHR,
-    luma_bit_depth: crate::vk::VideoComponentBitDepthFlagsKHR,
-    chroma_bit_depth: crate::vk::VideoComponentBitDepthFlagsKHR,
+    pub s_type: crate::vk::StructureType,
+    pub p_next: *const core::ffi::c_void,
+    pub video_codec_operation: crate::vk::VideoCodecOperationFlagBitsKHR,
+    pub chroma_subsampling: crate::vk::VideoChromaSubsamplingFlagsKHR,
+    pub luma_bit_depth: crate::vk::VideoComponentBitDepthFlagsKHR,
+    pub chroma_bit_depth: crate::vk::VideoComponentBitDepthFlagsKHR,
 }
 #[repr(C)]
 pub struct VideoCapabilitiesKHR {
-    s_type: crate::vk::StructureType,
-    p_next: *mut core::ffi::c_void,
-    flags: crate::vk::VideoCapabilityFlagsKHR,
-    min_bitstream_buffer_offset_alignment: crate::vk::DeviceSize,
-    min_bitstream_buffer_size_alignment: crate::vk::DeviceSize,
-    picture_access_granularity: crate::vk::Extent2D,
-    min_coded_extent: crate::vk::Extent2D,
-    max_coded_extent: crate::vk::Extent2D,
-    max_dpb_slots: crate::External<
+    pub s_type: crate::vk::StructureType,
+    pub p_next: *mut core::ffi::c_void,
+    pub flags: crate::vk::VideoCapabilityFlagsKHR,
+    pub min_bitstream_buffer_offset_alignment: crate::vk::DeviceSize,
+    pub min_bitstream_buffer_size_alignment: crate::vk::DeviceSize,
+    pub picture_access_granularity: crate::vk::Extent2D,
+    pub min_coded_extent: crate::vk::Extent2D,
+    pub max_coded_extent: crate::vk::Extent2D,
+    pub max_dpb_slots: crate::External<
         {
             "uint32_t";
             0
         },
     >,
-    max_active_reference_pictures: crate::External<
+    pub max_active_reference_pictures: crate::External<
         {
             "uint32_t";
             0
         },
     >,
-    std_header_version: crate::vk::ExtensionProperties,
+    pub std_header_version: crate::vk::ExtensionProperties,
 }
 #[repr(C)]
 pub struct VideoSessionMemoryRequirementsKHR {
-    s_type: crate::vk::StructureType,
-    p_next: *mut core::ffi::c_void,
-    memory_bind_index: crate::External<
+    pub s_type: crate::vk::StructureType,
+    pub p_next: *mut core::ffi::c_void,
+    pub memory_bind_index: crate::External<
         {
             "uint32_t";
             0
         },
     >,
-    memory_requirements: crate::vk::MemoryRequirements,
+    pub memory_requirements: crate::vk::MemoryRequirements,
 }
 #[repr(C)]
 pub struct BindVideoSessionMemoryInfoKHR {
-    s_type: crate::vk::StructureType,
-    p_next: *const core::ffi::c_void,
-    memory_bind_index: crate::External<
+    pub s_type: crate::vk::StructureType,
+    pub p_next: *const core::ffi::c_void,
+    pub memory_bind_index: crate::External<
         {
             "uint32_t";
             0
         },
     >,
-    memory: crate::vk::DeviceMemory,
-    memory_offset: crate::vk::DeviceSize,
-    memory_size: crate::vk::DeviceSize,
+    pub memory: crate::vk::DeviceMemory,
+    pub memory_offset: crate::vk::DeviceSize,
+    pub memory_size: crate::vk::DeviceSize,
 }
 #[repr(C)]
 pub struct VideoPictureResourceInfoKHR {
-    s_type: crate::vk::StructureType,
-    p_next: *const core::ffi::c_void,
-    coded_offset: crate::vk::Offset2D,
-    coded_extent: crate::vk::Extent2D,
-    base_array_layer: crate::External<
+    pub s_type: crate::vk::StructureType,
+    pub p_next: *const core::ffi::c_void,
+    pub coded_offset: crate::vk::Offset2D,
+    pub coded_extent: crate::vk::Extent2D,
+    pub base_array_layer: crate::External<
         {
             "uint32_t";
             0
         },
     >,
-    image_view_binding: crate::vk::ImageView,
+    pub image_view_binding: crate::vk::ImageView,
 }
 #[repr(C)]
 pub struct VideoReferenceSlotInfoKHR {
-    s_type: crate::vk::StructureType,
-    p_next: *const core::ffi::c_void,
-    slot_index: crate::External<
+    pub s_type: crate::vk::StructureType,
+    pub p_next: *const core::ffi::c_void,
+    pub slot_index: crate::External<
         {
             "int32_t";
             0
         },
     >,
-    p_picture_resource: *const crate::vk::VideoPictureResourceInfoKHR,
+    pub p_picture_resource: *const crate::vk::VideoPictureResourceInfoKHR,
 }
 #[repr(C)]
 pub struct VideoSessionCreateInfoKHR {
-    s_type: crate::vk::StructureType,
-    p_next: *const core::ffi::c_void,
-    queue_family_index: crate::External<
+    pub s_type: crate::vk::StructureType,
+    pub p_next: *const core::ffi::c_void,
+    pub queue_family_index: crate::External<
         {
             "uint32_t";
             0
         },
     >,
-    flags: crate::vk::VideoSessionCreateFlagsKHR,
-    p_video_profile: *const crate::vk::VideoProfileInfoKHR,
-    picture_format: crate::vk::Format,
-    max_coded_extent: crate::vk::Extent2D,
-    reference_picture_format: crate::vk::Format,
-    max_dpb_slots: crate::External<
+    pub flags: crate::vk::VideoSessionCreateFlagsKHR,
+    pub p_video_profile: *const crate::vk::VideoProfileInfoKHR,
+    pub picture_format: crate::vk::Format,
+    pub max_coded_extent: crate::vk::Extent2D,
+    pub reference_picture_format: crate::vk::Format,
+    pub max_dpb_slots: crate::External<
         {
             "uint32_t";
             0
         },
     >,
-    max_active_reference_pictures: crate::External<
+    pub max_active_reference_pictures: crate::External<
         {
             "uint32_t";
             0
         },
     >,
-    p_std_header_version: *const crate::vk::ExtensionProperties,
+    pub p_std_header_version: *const crate::vk::ExtensionProperties,
 }
 #[repr(C)]
 pub struct VideoSessionParametersCreateInfoKHR {
-    s_type: crate::vk::StructureType,
-    p_next: *const core::ffi::c_void,
-    flags: crate::vk::VideoSessionParametersCreateFlagsKHR,
-    video_session_parameters_template: crate::vk::VideoSessionParametersKHR,
-    video_session: crate::vk::VideoSessionKHR,
+    pub s_type: crate::vk::StructureType,
+    pub p_next: *const core::ffi::c_void,
+    pub flags: crate::vk::VideoSessionParametersCreateFlagsKHR,
+    pub video_session_parameters_template: crate::vk::VideoSessionParametersKHR,
+    pub video_session: crate::vk::VideoSessionKHR,
 }
 #[repr(C)]
 pub struct VideoSessionParametersUpdateInfoKHR {
-    s_type: crate::vk::StructureType,
-    p_next: *const core::ffi::c_void,
-    update_sequence_count: crate::External<
+    pub s_type: crate::vk::StructureType,
+    pub p_next: *const core::ffi::c_void,
+    pub update_sequence_count: crate::External<
         {
             "uint32_t";
             0
@@ -177,33 +177,63 @@ pub struct VideoSessionParametersUpdateInfoKHR {
 }
 #[repr(C)]
 pub struct VideoBeginCodingInfoKHR {
-    s_type: crate::vk::StructureType,
-    p_next: *const core::ffi::c_void,
-    flags: crate::vk::VideoBeginCodingFlagsKHR,
-    video_session: crate::vk::VideoSessionKHR,
-    video_session_parameters: crate::vk::VideoSessionParametersKHR,
-    reference_slot_count: crate::External<
+    pub s_type: crate::vk::StructureType,
+    pub p_next: *const core::ffi::c_void,
+    pub flags: crate::vk::VideoBeginCodingFlagsKHR,
+    pub video_session: crate::vk::VideoSessionKHR,
+    pub video_session_parameters: crate::vk::VideoSessionParametersKHR,
+    pub reference_slot_count: crate::External<
         {
             "uint32_t";
             0
         },
     >,
-    p_reference_slots: *const crate::vk::VideoReferenceSlotInfoKHR,
+    pub p_reference_slots: *const crate::vk::VideoReferenceSlotInfoKHR,
 }
 #[repr(C)]
 pub struct VideoEndCodingInfoKHR {
-    s_type: crate::vk::StructureType,
-    p_next: *const core::ffi::c_void,
-    flags: crate::vk::VideoEndCodingFlagsKHR,
+    pub s_type: crate::vk::StructureType,
+    pub p_next: *const core::ffi::c_void,
+    pub flags: crate::vk::VideoEndCodingFlagsKHR,
 }
 #[repr(C)]
 pub struct VideoCodingControlInfoKHR {
-    s_type: crate::vk::StructureType,
-    p_next: *const core::ffi::c_void,
-    flags: crate::vk::VideoCodingControlFlagsKHR,
+    pub s_type: crate::vk::StructureType,
+    pub p_next: *const core::ffi::c_void,
+    pub flags: crate::vk::VideoCodingControlFlagsKHR,
 }
 #[repr(C)]
 pub struct QueryResultStatusKHR {}
+#[repr(C)]
+pub struct VideoCodecOperationFlagsKHR {}
+#[repr(C)]
+pub struct VideoCapabilityFlagsKHR {}
+#[repr(C)]
+pub struct VideoSessionCreateFlagsKHR {}
+#[repr(C)]
+pub struct VideoSessionParametersCreateFlagsKHR {}
+#[repr(C)]
+pub struct VideoBeginCodingFlagsKHR {}
+#[repr(C)]
+pub struct VideoEndCodingFlagsKHR {}
+#[repr(C)]
+pub struct VideoCodingControlFlagsKHR {}
+#[repr(C)]
+pub struct VideoChromaSubsamplingFlagsKHR {}
+#[repr(C)]
+pub struct VideoComponentBitDepthFlagsKHR {}
+#[repr(C)]
+pub struct VideoCodecOperationFlagBitsKHR {}
+#[repr(C)]
+pub struct VideoChromaSubsamplingFlagBitsKHR {}
+#[repr(C)]
+pub struct VideoComponentBitDepthFlagBitsKHR {}
+#[repr(C)]
+pub struct VideoCapabilityFlagBitsKHR {}
+#[repr(C)]
+pub struct VideoSessionCreateFlagBitsKHR {}
+#[repr(C)]
+pub struct VideoCodingControlFlagBitsKHR {}
 #[repr(C)]
 pub struct VideoSessionKHR {}
 #[repr(C)]

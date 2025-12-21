@@ -3,46 +3,46 @@
 //![Vulkan Manual Page](https://docs.vulkan.org/refpages/latest/refpages/source/VK_KHR_video_decode_vp9.html) · Vulkan extension
 #[repr(C)]
 pub struct PhysicalDeviceVideoDecodeVP9FeaturesKHR {
-    s_type: crate::vk::StructureType,
-    p_next: *mut core::ffi::c_void,
-    video_decode_vp9: crate::vk::Bool32,
+    pub s_type: crate::vk::StructureType,
+    pub p_next: *mut core::ffi::c_void,
+    pub video_decode_vp9: crate::vk::Bool32,
 }
 #[repr(C)]
 pub struct VideoDecodeVP9ProfileInfoKHR {
-    s_type: crate::vk::StructureType,
-    p_next: *const core::ffi::c_void,
-    std_profile: crate::vk::StdVideoVP9Profile,
+    pub s_type: crate::vk::StructureType,
+    pub p_next: *const core::ffi::c_void,
+    pub std_profile: crate::vk::StdVideoVP9Profile,
 }
 #[repr(C)]
 pub struct VideoDecodeVP9CapabilitiesKHR {
-    s_type: crate::vk::StructureType,
-    p_next: *mut core::ffi::c_void,
-    max_level: crate::vk::StdVideoVP9Level,
+    pub s_type: crate::vk::StructureType,
+    pub p_next: *mut core::ffi::c_void,
+    pub max_level: crate::vk::StdVideoVP9Level,
 }
 #[repr(C)]
 pub struct VideoDecodeVP9PictureInfoKHR {
-    s_type: crate::vk::StructureType,
-    p_next: *const core::ffi::c_void,
-    p_std_picture_info: *const crate::vk::StdVideoDecodeVP9PictureInfo,
-    reference_name_slot_indices: [crate::External<
+    pub s_type: crate::vk::StructureType,
+    pub p_next: *const core::ffi::c_void,
+    pub p_std_picture_info: *const crate::vk::StdVideoDecodeVP9PictureInfo,
+    pub reference_name_slot_indices: [crate::External<
         {
             "int32_t";
             0
         },
     >; 1337],
-    uncompressed_header_offset: crate::External<
+    pub uncompressed_header_offset: crate::External<
         {
             "uint32_t";
             0
         },
     >,
-    compressed_header_offset: crate::External<
+    pub compressed_header_offset: crate::External<
         {
             "uint32_t";
             0
         },
     >,
-    tiles_offset: crate::External<
+    pub tiles_offset: crate::External<
         {
             "uint32_t";
             0

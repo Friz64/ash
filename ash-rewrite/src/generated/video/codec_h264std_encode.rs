@@ -3,25 +3,25 @@
 //!Items provided by `vulkan_video_codec_h264std_encode`
 #[repr(C)]
 pub struct StdVideoEncodeH264WeightTableFlags {
-    luma_weight_l0_flag: crate::External<
+    pub luma_weight_l0_flag: crate::External<
         {
             "uint32_t";
             0
         },
     >,
-    chroma_weight_l0_flag: crate::External<
+    pub chroma_weight_l0_flag: crate::External<
         {
             "uint32_t";
             0
         },
     >,
-    luma_weight_l1_flag: crate::External<
+    pub luma_weight_l1_flag: crate::External<
         {
             "uint32_t";
             0
         },
     >,
-    chroma_weight_l1_flag: crate::External<
+    pub chroma_weight_l1_flag: crate::External<
         {
             "uint32_t";
             0
@@ -30,62 +30,62 @@ pub struct StdVideoEncodeH264WeightTableFlags {
 }
 #[repr(C)]
 pub struct StdVideoEncodeH264WeightTable {
-    flags: crate::vk::StdVideoEncodeH264WeightTableFlags,
-    luma_log2_weight_denom: crate::External<
+    pub flags: crate::vk::StdVideoEncodeH264WeightTableFlags,
+    pub luma_log2_weight_denom: crate::External<
         {
             "uint8_t";
             0
         },
     >,
-    chroma_log2_weight_denom: crate::External<
+    pub chroma_log2_weight_denom: crate::External<
         {
             "uint8_t";
             0
         },
     >,
-    luma_weight_l0: [crate::External<
+    pub luma_weight_l0: [crate::External<
         {
             "int8_t";
             0
         },
     >; 1337],
-    luma_offset_l0: [crate::External<
+    pub luma_offset_l0: [crate::External<
         {
             "int8_t";
             0
         },
     >; 1337],
-    chroma_weight_l0: [[crate::External<
+    pub chroma_weight_l0: [[crate::External<
         {
             "int8_t";
             0
         },
     >; 1337]; 1337],
-    chroma_offset_l0: [[crate::External<
+    pub chroma_offset_l0: [[crate::External<
         {
             "int8_t";
             0
         },
     >; 1337]; 1337],
-    luma_weight_l1: [crate::External<
+    pub luma_weight_l1: [crate::External<
         {
             "int8_t";
             0
         },
     >; 1337],
-    luma_offset_l1: [crate::External<
+    pub luma_offset_l1: [crate::External<
         {
             "int8_t";
             0
         },
     >; 1337],
-    chroma_weight_l1: [[crate::External<
+    pub chroma_weight_l1: [[crate::External<
         {
             "int8_t";
             0
         },
     >; 1337]; 1337],
-    chroma_offset_l1: [[crate::External<
+    pub chroma_offset_l1: [[crate::External<
         {
             "int8_t";
             0
@@ -94,19 +94,19 @@ pub struct StdVideoEncodeH264WeightTable {
 }
 #[repr(C)]
 pub struct StdVideoEncodeH264SliceHeaderFlags {
-    direct_spatial_mv_pred_flag: crate::External<
+    pub direct_spatial_mv_pred_flag: crate::External<
         {
             "uint32_t";
             0
         },
     >,
-    num_ref_idx_active_override_flag: crate::External<
+    pub num_ref_idx_active_override_flag: crate::External<
         {
             "uint32_t";
             0
         },
     >,
-    reserved: crate::External<
+    pub reserved: crate::External<
         {
             "uint32_t";
             0
@@ -115,37 +115,37 @@ pub struct StdVideoEncodeH264SliceHeaderFlags {
 }
 #[repr(C)]
 pub struct StdVideoEncodeH264PictureInfoFlags {
-    idr_pic_flag: crate::External<
+    pub idr_pic_flag: crate::External<
         {
             "uint32_t";
             0
         },
     >,
-    is_reference: crate::External<
+    pub is_reference: crate::External<
         {
             "uint32_t";
             0
         },
     >,
-    no_output_of_prior_pics_flag: crate::External<
+    pub no_output_of_prior_pics_flag: crate::External<
         {
             "uint32_t";
             0
         },
     >,
-    long_term_reference_flag: crate::External<
+    pub long_term_reference_flag: crate::External<
         {
             "uint32_t";
             0
         },
     >,
-    adaptive_ref_pic_marking_mode_flag: crate::External<
+    pub adaptive_ref_pic_marking_mode_flag: crate::External<
         {
             "uint32_t";
             0
         },
     >,
-    reserved: crate::External<
+    pub reserved: crate::External<
         {
             "uint32_t";
             0
@@ -154,13 +154,13 @@ pub struct StdVideoEncodeH264PictureInfoFlags {
 }
 #[repr(C)]
 pub struct StdVideoEncodeH264ReferenceInfoFlags {
-    used_for_long_term_reference: crate::External<
+    pub used_for_long_term_reference: crate::External<
         {
             "uint32_t";
             0
         },
     >,
-    reserved: crate::External<
+    pub reserved: crate::External<
         {
             "uint32_t";
             0
@@ -169,19 +169,19 @@ pub struct StdVideoEncodeH264ReferenceInfoFlags {
 }
 #[repr(C)]
 pub struct StdVideoEncodeH264ReferenceListsInfoFlags {
-    ref_pic_list_modification_flag_l0: crate::External<
+    pub ref_pic_list_modification_flag_l0: crate::External<
         {
             "uint32_t";
             0
         },
     >,
-    ref_pic_list_modification_flag_l1: crate::External<
+    pub ref_pic_list_modification_flag_l1: crate::External<
         {
             "uint32_t";
             0
         },
     >,
-    reserved: crate::External<
+    pub reserved: crate::External<
         {
             "uint32_t";
             0
@@ -190,14 +190,14 @@ pub struct StdVideoEncodeH264ReferenceListsInfoFlags {
 }
 #[repr(C)]
 pub struct StdVideoEncodeH264RefListModEntry {
-    modification_of_pic_nums_idc: crate::vk::StdVideoH264ModificationOfPicNumsIdc,
-    abs_diff_pic_num_minus1: crate::External<
+    pub modification_of_pic_nums_idc: crate::vk::StdVideoH264ModificationOfPicNumsIdc,
+    pub abs_diff_pic_num_minus1: crate::External<
         {
             "uint16_t";
             0
         },
     >,
-    long_term_pic_num: crate::External<
+    pub long_term_pic_num: crate::External<
         {
             "uint16_t";
             0
@@ -206,26 +206,26 @@ pub struct StdVideoEncodeH264RefListModEntry {
 }
 #[repr(C)]
 pub struct StdVideoEncodeH264RefPicMarkingEntry {
-    memory_management_control_operation: crate::vk::StdVideoH264MemMgmtControlOp,
-    difference_of_pic_nums_minus1: crate::External<
+    pub memory_management_control_operation: crate::vk::StdVideoH264MemMgmtControlOp,
+    pub difference_of_pic_nums_minus1: crate::External<
         {
             "uint16_t";
             0
         },
     >,
-    long_term_pic_num: crate::External<
+    pub long_term_pic_num: crate::External<
         {
             "uint16_t";
             0
         },
     >,
-    long_term_frame_idx: crate::External<
+    pub long_term_frame_idx: crate::External<
         {
             "uint16_t";
             0
         },
     >,
-    max_long_term_frame_idx_plus1: crate::External<
+    pub max_long_term_frame_idx_plus1: crate::External<
         {
             "uint16_t";
             0
@@ -234,136 +234,136 @@ pub struct StdVideoEncodeH264RefPicMarkingEntry {
 }
 #[repr(C)]
 pub struct StdVideoEncodeH264ReferenceListsInfo {
-    flags: crate::vk::StdVideoEncodeH264ReferenceListsInfoFlags,
-    num_ref_idx_l0_active_minus1: crate::External<
+    pub flags: crate::vk::StdVideoEncodeH264ReferenceListsInfoFlags,
+    pub num_ref_idx_l0_active_minus1: crate::External<
         {
             "uint8_t";
             0
         },
     >,
-    num_ref_idx_l1_active_minus1: crate::External<
+    pub num_ref_idx_l1_active_minus1: crate::External<
         {
             "uint8_t";
             0
         },
     >,
-    ref_pic_list0: [crate::External<
+    pub ref_pic_list0: [crate::External<
         {
             "uint8_t";
             0
         },
     >; 1337],
-    ref_pic_list1: [crate::External<
+    pub ref_pic_list1: [crate::External<
         {
             "uint8_t";
             0
         },
     >; 1337],
-    ref_list0_mod_op_count: crate::External<
+    pub ref_list0_mod_op_count: crate::External<
         {
             "uint8_t";
             0
         },
     >,
-    ref_list1_mod_op_count: crate::External<
+    pub ref_list1_mod_op_count: crate::External<
         {
             "uint8_t";
             0
         },
     >,
-    ref_pic_marking_op_count: crate::External<
+    pub ref_pic_marking_op_count: crate::External<
         {
             "uint8_t";
             0
         },
     >,
-    reserved1: [crate::External<
+    pub reserved1: [crate::External<
         {
             "uint8_t";
             0
         },
     >; 1337],
-    p_ref_list0_mod_operations: *const crate::vk::StdVideoEncodeH264RefListModEntry,
-    p_ref_list1_mod_operations: *const crate::vk::StdVideoEncodeH264RefListModEntry,
-    p_ref_pic_marking_operations: *const crate::vk::StdVideoEncodeH264RefPicMarkingEntry,
+    pub p_ref_list0_mod_operations: *const crate::vk::StdVideoEncodeH264RefListModEntry,
+    pub p_ref_list1_mod_operations: *const crate::vk::StdVideoEncodeH264RefListModEntry,
+    pub p_ref_pic_marking_operations: *const crate::vk::StdVideoEncodeH264RefPicMarkingEntry,
 }
 #[repr(C)]
 pub struct StdVideoEncodeH264PictureInfo {
-    flags: crate::vk::StdVideoEncodeH264PictureInfoFlags,
-    seq_parameter_set_id: crate::External<
+    pub flags: crate::vk::StdVideoEncodeH264PictureInfoFlags,
+    pub seq_parameter_set_id: crate::External<
         {
             "uint8_t";
             0
         },
     >,
-    pic_parameter_set_id: crate::External<
+    pub pic_parameter_set_id: crate::External<
         {
             "uint8_t";
             0
         },
     >,
-    idr_pic_id: crate::External<
+    pub idr_pic_id: crate::External<
         {
             "uint16_t";
             0
         },
     >,
-    primary_pic_type: crate::vk::StdVideoH264PictureType,
-    frame_num: crate::External<
+    pub primary_pic_type: crate::vk::StdVideoH264PictureType,
+    pub frame_num: crate::External<
         {
             "uint32_t";
             0
         },
     >,
-    pic_order_cnt: crate::External<
+    pub pic_order_cnt: crate::External<
         {
             "int32_t";
             0
         },
     >,
-    temporal_id: crate::External<
+    pub temporal_id: crate::External<
         {
             "uint8_t";
             0
         },
     >,
-    reserved1: [crate::External<
+    pub reserved1: [crate::External<
         {
             "uint8_t";
             0
         },
     >; 1337],
-    p_ref_lists: *const crate::vk::StdVideoEncodeH264ReferenceListsInfo,
+    pub p_ref_lists: *const crate::vk::StdVideoEncodeH264ReferenceListsInfo,
 }
 #[repr(C)]
 pub struct StdVideoEncodeH264ReferenceInfo {
-    flags: crate::vk::StdVideoEncodeH264ReferenceInfoFlags,
-    primary_pic_type: crate::vk::StdVideoH264PictureType,
-    frame_num: crate::External<
+    pub flags: crate::vk::StdVideoEncodeH264ReferenceInfoFlags,
+    pub primary_pic_type: crate::vk::StdVideoH264PictureType,
+    pub frame_num: crate::External<
         {
             "uint32_t";
             0
         },
     >,
-    pic_order_cnt: crate::External<
+    pub pic_order_cnt: crate::External<
         {
             "int32_t";
             0
         },
     >,
-    long_term_pic_num: crate::External<
+    pub long_term_pic_num: crate::External<
         {
             "uint16_t";
             0
         },
     >,
-    long_term_frame_idx: crate::External<
+    pub long_term_frame_idx: crate::External<
         {
             "uint16_t";
             0
         },
     >,
-    temporal_id: crate::External<
+    pub temporal_id: crate::External<
         {
             "uint8_t";
             0
@@ -372,39 +372,39 @@ pub struct StdVideoEncodeH264ReferenceInfo {
 }
 #[repr(C)]
 pub struct StdVideoEncodeH264SliceHeader {
-    flags: crate::vk::StdVideoEncodeH264SliceHeaderFlags,
-    first_mb_in_slice: crate::External<
+    pub flags: crate::vk::StdVideoEncodeH264SliceHeaderFlags,
+    pub first_mb_in_slice: crate::External<
         {
             "uint32_t";
             0
         },
     >,
-    slice_type: crate::vk::StdVideoH264SliceType,
-    slice_alpha_c0_offset_div2: crate::External<
+    pub slice_type: crate::vk::StdVideoH264SliceType,
+    pub slice_alpha_c0_offset_div2: crate::External<
         {
             "int8_t";
             0
         },
     >,
-    slice_beta_offset_div2: crate::External<
+    pub slice_beta_offset_div2: crate::External<
         {
             "int8_t";
             0
         },
     >,
-    slice_qp_delta: crate::External<
+    pub slice_qp_delta: crate::External<
         {
             "int8_t";
             0
         },
     >,
-    reserved1: crate::External<
+    pub reserved1: crate::External<
         {
             "uint8_t";
             0
         },
     >,
-    cabac_init_idc: crate::vk::StdVideoH264CabacInitIdc,
-    disable_deblocking_filter_idc: crate::vk::StdVideoH264DisableDeblockingFilterIdc,
-    p_weight_table: *const crate::vk::StdVideoEncodeH264WeightTable,
+    pub cabac_init_idc: crate::vk::StdVideoH264CabacInitIdc,
+    pub disable_deblocking_filter_idc: crate::vk::StdVideoH264DisableDeblockingFilterIdc,
+    pub p_weight_table: *const crate::vk::StdVideoEncodeH264WeightTable,
 }

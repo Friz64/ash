@@ -3,53 +3,53 @@
 //![Vulkan Manual Page](https://docs.vulkan.org/refpages/latest/refpages/source/VK_KHR_video_decode_av1.html) · Vulkan extension
 #[repr(C)]
 pub struct VideoDecodeAV1ProfileInfoKHR {
-    s_type: crate::vk::StructureType,
-    p_next: *const core::ffi::c_void,
-    std_profile: crate::vk::StdVideoAV1Profile,
-    film_grain_support: crate::vk::Bool32,
+    pub s_type: crate::vk::StructureType,
+    pub p_next: *const core::ffi::c_void,
+    pub std_profile: crate::vk::StdVideoAV1Profile,
+    pub film_grain_support: crate::vk::Bool32,
 }
 #[repr(C)]
 pub struct VideoDecodeAV1CapabilitiesKHR {
-    s_type: crate::vk::StructureType,
-    p_next: *mut core::ffi::c_void,
-    max_level: crate::vk::StdVideoAV1Level,
+    pub s_type: crate::vk::StructureType,
+    pub p_next: *mut core::ffi::c_void,
+    pub max_level: crate::vk::StdVideoAV1Level,
 }
 #[repr(C)]
 pub struct VideoDecodeAV1SessionParametersCreateInfoKHR {
-    s_type: crate::vk::StructureType,
-    p_next: *const core::ffi::c_void,
-    p_std_sequence_header: *const crate::vk::StdVideoAV1SequenceHeader,
+    pub s_type: crate::vk::StructureType,
+    pub p_next: *const core::ffi::c_void,
+    pub p_std_sequence_header: *const crate::vk::StdVideoAV1SequenceHeader,
 }
 #[repr(C)]
 pub struct VideoDecodeAV1PictureInfoKHR {
-    s_type: crate::vk::StructureType,
-    p_next: *const core::ffi::c_void,
-    p_std_picture_info: *const crate::vk::StdVideoDecodeAV1PictureInfo,
-    reference_name_slot_indices: [crate::External<
+    pub s_type: crate::vk::StructureType,
+    pub p_next: *const core::ffi::c_void,
+    pub p_std_picture_info: *const crate::vk::StdVideoDecodeAV1PictureInfo,
+    pub reference_name_slot_indices: [crate::External<
         {
             "int32_t";
             0
         },
     >; 1337],
-    frame_header_offset: crate::External<
+    pub frame_header_offset: crate::External<
         {
             "uint32_t";
             0
         },
     >,
-    tile_count: crate::External<
+    pub tile_count: crate::External<
         {
             "uint32_t";
             0
         },
     >,
-    p_tile_offsets: *const crate::External<
+    pub p_tile_offsets: *const crate::External<
         {
             "uint32_t";
             0
         },
     >,
-    p_tile_sizes: *const crate::External<
+    pub p_tile_sizes: *const crate::External<
         {
             "uint32_t";
             0
@@ -58,7 +58,7 @@ pub struct VideoDecodeAV1PictureInfoKHR {
 }
 #[repr(C)]
 pub struct VideoDecodeAV1DpbSlotInfoKHR {
-    s_type: crate::vk::StructureType,
-    p_next: *const core::ffi::c_void,
-    p_std_reference_info: *const crate::vk::StdVideoDecodeAV1ReferenceInfo,
+    pub s_type: crate::vk::StructureType,
+    pub p_next: *const core::ffi::c_void,
+    pub p_std_reference_info: *const crate::vk::StdVideoDecodeAV1ReferenceInfo,
 }

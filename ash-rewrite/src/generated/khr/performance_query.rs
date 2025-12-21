@@ -3,25 +3,25 @@
 //![Vulkan Manual Page](https://docs.vulkan.org/refpages/latest/refpages/source/VK_KHR_performance_query.html) · Vulkan extension
 #[repr(C)]
 pub struct PhysicalDevicePerformanceQueryFeaturesKHR {
-    s_type: crate::vk::StructureType,
-    p_next: *mut core::ffi::c_void,
-    performance_counter_query_pools: crate::vk::Bool32,
-    performance_counter_multiple_query_pools: crate::vk::Bool32,
+    pub s_type: crate::vk::StructureType,
+    pub p_next: *mut core::ffi::c_void,
+    pub performance_counter_query_pools: crate::vk::Bool32,
+    pub performance_counter_multiple_query_pools: crate::vk::Bool32,
 }
 #[repr(C)]
 pub struct PhysicalDevicePerformanceQueryPropertiesKHR {
-    s_type: crate::vk::StructureType,
-    p_next: *mut core::ffi::c_void,
-    allow_command_buffer_query_copies: crate::vk::Bool32,
+    pub s_type: crate::vk::StructureType,
+    pub p_next: *mut core::ffi::c_void,
+    pub allow_command_buffer_query_copies: crate::vk::Bool32,
 }
 #[repr(C)]
 pub struct PerformanceCounterKHR {
-    s_type: crate::vk::StructureType,
-    p_next: *mut core::ffi::c_void,
-    unit: crate::vk::PerformanceCounterUnitKHR,
-    scope: crate::vk::PerformanceCounterScopeKHR,
-    storage: crate::vk::PerformanceCounterStorageKHR,
-    uuid: [crate::External<
+    pub s_type: crate::vk::StructureType,
+    pub p_next: *mut core::ffi::c_void,
+    pub unit: crate::vk::PerformanceCounterUnitKHR,
+    pub scope: crate::vk::PerformanceCounterScopeKHR,
+    pub storage: crate::vk::PerformanceCounterStorageKHR,
+    pub uuid: [crate::External<
         {
             "uint8_t";
             0
@@ -30,22 +30,22 @@ pub struct PerformanceCounterKHR {
 }
 #[repr(C)]
 pub struct PerformanceCounterDescriptionKHR {
-    s_type: crate::vk::StructureType,
-    p_next: *mut core::ffi::c_void,
-    flags: crate::vk::PerformanceCounterDescriptionFlagsKHR,
-    name: [crate::External<
+    pub s_type: crate::vk::StructureType,
+    pub p_next: *mut core::ffi::c_void,
+    pub flags: crate::vk::PerformanceCounterDescriptionFlagsKHR,
+    pub name: [crate::External<
         {
             "char";
             0
         },
     >; 1337],
-    category: [crate::External<
+    pub category: [crate::External<
         {
             "char";
             0
         },
     >; 1337],
-    description: [crate::External<
+    pub description: [crate::External<
         {
             "char";
             0
@@ -54,21 +54,21 @@ pub struct PerformanceCounterDescriptionKHR {
 }
 #[repr(C)]
 pub struct QueryPoolPerformanceCreateInfoKHR {
-    s_type: crate::vk::StructureType,
-    p_next: *const core::ffi::c_void,
-    queue_family_index: crate::External<
+    pub s_type: crate::vk::StructureType,
+    pub p_next: *const core::ffi::c_void,
+    pub queue_family_index: crate::External<
         {
             "uint32_t";
             0
         },
     >,
-    counter_index_count: crate::External<
+    pub counter_index_count: crate::External<
         {
             "uint32_t";
             0
         },
     >,
-    p_counter_indices: *const crate::External<
+    pub p_counter_indices: *const crate::External<
         {
             "uint32_t";
             0
@@ -77,10 +77,10 @@ pub struct QueryPoolPerformanceCreateInfoKHR {
 }
 #[repr(C)]
 pub struct AcquireProfilingLockInfoKHR {
-    s_type: crate::vk::StructureType,
-    p_next: *const core::ffi::c_void,
-    flags: crate::vk::AcquireProfilingLockFlagsKHR,
-    timeout: crate::External<
+    pub s_type: crate::vk::StructureType,
+    pub p_next: *const core::ffi::c_void,
+    pub flags: crate::vk::AcquireProfilingLockFlagsKHR,
+    pub timeout: crate::External<
         {
             "uint64_t";
             0
@@ -89,11 +89,50 @@ pub struct AcquireProfilingLockInfoKHR {
 }
 #[repr(C)]
 pub struct PerformanceQuerySubmitInfoKHR {
-    s_type: crate::vk::StructureType,
-    p_next: *const core::ffi::c_void,
-    counter_pass_index: crate::External<
+    pub s_type: crate::vk::StructureType,
+    pub p_next: *const core::ffi::c_void,
+    pub counter_pass_index: crate::External<
         {
             "uint32_t";
+            0
+        },
+    >,
+}
+#[repr(C)]
+pub struct PerformanceCounterResultKHR {
+    int32: crate::External<
+        {
+            "int32_t";
+            0
+        },
+    >,
+    int64: crate::External<
+        {
+            "int64_t";
+            0
+        },
+    >,
+    uint32: crate::External<
+        {
+            "uint32_t";
+            0
+        },
+    >,
+    uint64: crate::External<
+        {
+            "uint64_t";
+            0
+        },
+    >,
+    float32: crate::External<
+        {
+            "float";
+            0
+        },
+    >,
+    float64: crate::External<
+        {
+            "double";
             0
         },
     >,
@@ -104,3 +143,11 @@ pub struct PerformanceCounterScopeKHR {}
 pub struct PerformanceCounterUnitKHR {}
 #[repr(C)]
 pub struct PerformanceCounterStorageKHR {}
+#[repr(C)]
+pub struct PerformanceCounterDescriptionFlagsKHR {}
+#[repr(C)]
+pub struct AcquireProfilingLockFlagsKHR {}
+#[repr(C)]
+pub struct PerformanceCounterDescriptionFlagBitsKHR {}
+#[repr(C)]
+pub struct AcquireProfilingLockFlagBitsKHR {}

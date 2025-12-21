@@ -3,9 +3,9 @@
 //![Vulkan Manual Page](https://docs.vulkan.org/refpages/latest/refpages/source/VK_NV_external_compute_queue.html) · Vulkan extension
 #[repr(C)]
 pub struct ExternalComputeQueueDeviceCreateInfoNV {
-    s_type: crate::vk::StructureType,
-    p_next: *const core::ffi::c_void,
-    reserved_external_queues: crate::External<
+    pub s_type: crate::vk::StructureType,
+    pub p_next: *const core::ffi::c_void,
+    pub reserved_external_queues: crate::External<
         {
             "uint32_t";
             0
@@ -14,15 +14,15 @@ pub struct ExternalComputeQueueDeviceCreateInfoNV {
 }
 #[repr(C)]
 pub struct ExternalComputeQueueCreateInfoNV {
-    s_type: crate::vk::StructureType,
-    p_next: *const core::ffi::c_void,
-    preferred_queue: crate::vk::Queue,
+    pub s_type: crate::vk::StructureType,
+    pub p_next: *const core::ffi::c_void,
+    pub preferred_queue: crate::vk::Queue,
 }
 #[repr(C)]
 pub struct ExternalComputeQueueDataParamsNV {
-    s_type: crate::vk::StructureType,
-    p_next: *const core::ffi::c_void,
-    device_index: crate::External<
+    pub s_type: crate::vk::StructureType,
+    pub p_next: *const core::ffi::c_void,
+    pub device_index: crate::External<
         {
             "uint32_t";
             0
@@ -31,15 +31,15 @@ pub struct ExternalComputeQueueDataParamsNV {
 }
 #[repr(C)]
 pub struct PhysicalDeviceExternalComputeQueuePropertiesNV {
-    s_type: crate::vk::StructureType,
-    p_next: *mut core::ffi::c_void,
-    external_data_size: crate::External<
+    pub s_type: crate::vk::StructureType,
+    pub p_next: *mut core::ffi::c_void,
+    pub external_data_size: crate::External<
         {
             "uint32_t";
             0
         },
     >,
-    max_external_queues: crate::External<
+    pub max_external_queues: crate::External<
         {
             "uint32_t";
             0

@@ -3,15 +3,15 @@
 //![Vulkan Manual Page](https://docs.vulkan.org/refpages/latest/refpages/source/VK_EXT_shader_module_identifier.html) · Vulkan extension
 #[repr(C)]
 pub struct PhysicalDeviceShaderModuleIdentifierFeaturesEXT {
-    s_type: crate::vk::StructureType,
-    p_next: *mut core::ffi::c_void,
-    shader_module_identifier: crate::vk::Bool32,
+    pub s_type: crate::vk::StructureType,
+    pub p_next: *mut core::ffi::c_void,
+    pub shader_module_identifier: crate::vk::Bool32,
 }
 #[repr(C)]
 pub struct PhysicalDeviceShaderModuleIdentifierPropertiesEXT {
-    s_type: crate::vk::StructureType,
-    p_next: *mut core::ffi::c_void,
-    shader_module_identifier_algorithm_uuid: [crate::External<
+    pub s_type: crate::vk::StructureType,
+    pub p_next: *mut core::ffi::c_void,
+    pub shader_module_identifier_algorithm_uuid: [crate::External<
         {
             "uint8_t";
             0
@@ -20,15 +20,15 @@ pub struct PhysicalDeviceShaderModuleIdentifierPropertiesEXT {
 }
 #[repr(C)]
 pub struct PipelineShaderStageModuleIdentifierCreateInfoEXT {
-    s_type: crate::vk::StructureType,
-    p_next: *const core::ffi::c_void,
-    identifier_size: crate::External<
+    pub s_type: crate::vk::StructureType,
+    pub p_next: *const core::ffi::c_void,
+    pub identifier_size: crate::External<
         {
             "uint32_t";
             0
         },
     >,
-    p_identifier: *const crate::External<
+    pub p_identifier: *const crate::External<
         {
             "uint8_t";
             0
@@ -37,15 +37,15 @@ pub struct PipelineShaderStageModuleIdentifierCreateInfoEXT {
 }
 #[repr(C)]
 pub struct ShaderModuleIdentifierEXT {
-    s_type: crate::vk::StructureType,
-    p_next: *mut core::ffi::c_void,
-    identifier_size: crate::External<
+    pub s_type: crate::vk::StructureType,
+    pub p_next: *mut core::ffi::c_void,
+    pub identifier_size: crate::External<
         {
             "uint32_t";
             0
         },
     >,
-    identifier: [crate::External<
+    pub identifier: [crate::External<
         {
             "uint8_t";
             0

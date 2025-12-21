@@ -3,9 +3,9 @@
 //![Vulkan Manual Page](https://docs.vulkan.org/refpages/latest/refpages/source/VK_AMD_rasterization_order.html) · Vulkan extension
 #[repr(C)]
 pub struct PipelineRasterizationStateRasterizationOrderAMD {
-    s_type: crate::vk::StructureType,
-    p_next: *const core::ffi::c_void,
-    rasterization_order: crate::vk::RasterizationOrderAMD,
+    pub s_type: crate::vk::StructureType,
+    pub p_next: *const core::ffi::c_void,
+    pub rasterization_order: crate::vk::RasterizationOrderAMD,
 }
 #[repr(C)]
 pub struct RasterizationOrderAMD {}

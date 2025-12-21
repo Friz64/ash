@@ -3,7 +3,7 @@
 //![Vulkan Manual Page](https://docs.vulkan.org/refpages/latest/refpages/source/VK_GOOGLE_display_timing.html) · Vulkan extension
 #[repr(C)]
 pub struct RefreshCycleDurationGOOGLE {
-    refresh_duration: crate::External<
+    pub refresh_duration: crate::External<
         {
             "uint64_t";
             0
@@ -12,31 +12,31 @@ pub struct RefreshCycleDurationGOOGLE {
 }
 #[repr(C)]
 pub struct PastPresentationTimingGOOGLE {
-    present_id: crate::External<
+    pub present_id: crate::External<
         {
             "uint32_t";
             0
         },
     >,
-    desired_present_time: crate::External<
+    pub desired_present_time: crate::External<
         {
             "uint64_t";
             0
         },
     >,
-    actual_present_time: crate::External<
+    pub actual_present_time: crate::External<
         {
             "uint64_t";
             0
         },
     >,
-    earliest_present_time: crate::External<
+    pub earliest_present_time: crate::External<
         {
             "uint64_t";
             0
         },
     >,
-    present_margin: crate::External<
+    pub present_margin: crate::External<
         {
             "uint64_t";
             0
@@ -45,25 +45,25 @@ pub struct PastPresentationTimingGOOGLE {
 }
 #[repr(C)]
 pub struct PresentTimesInfoGOOGLE {
-    s_type: crate::vk::StructureType,
-    p_next: *const core::ffi::c_void,
-    swapchain_count: crate::External<
+    pub s_type: crate::vk::StructureType,
+    pub p_next: *const core::ffi::c_void,
+    pub swapchain_count: crate::External<
         {
             "uint32_t";
             0
         },
     >,
-    p_times: *const crate::vk::PresentTimeGOOGLE,
+    pub p_times: *const crate::vk::PresentTimeGOOGLE,
 }
 #[repr(C)]
 pub struct PresentTimeGOOGLE {
-    present_id: crate::External<
+    pub present_id: crate::External<
         {
             "uint32_t";
             0
         },
     >,
-    desired_present_time: crate::External<
+    pub desired_present_time: crate::External<
         {
             "uint64_t";
             0

@@ -3,26 +3,26 @@
 //![Vulkan Manual Page](https://docs.vulkan.org/refpages/latest/refpages/source/VK_INTEL_performance_query.html) · Vulkan extension
 #[repr(C)]
 pub struct PerformanceValueINTEL {
-    _type: crate::vk::PerformanceValueTypeINTEL,
-    data: crate::vk::PerformanceValueDataINTEL,
+    pub _type: crate::vk::PerformanceValueTypeINTEL,
+    pub data: crate::vk::PerformanceValueDataINTEL,
 }
 #[repr(C)]
 pub struct InitializePerformanceApiInfoINTEL {
-    s_type: crate::vk::StructureType,
-    p_next: *const core::ffi::c_void,
-    p_user_data: *mut core::ffi::c_void,
+    pub s_type: crate::vk::StructureType,
+    pub p_next: *const core::ffi::c_void,
+    pub p_user_data: *mut core::ffi::c_void,
 }
 #[repr(C)]
 pub struct QueryPoolPerformanceQueryCreateInfoINTEL {
-    s_type: crate::vk::StructureType,
-    p_next: *const core::ffi::c_void,
-    performance_counters_sampling: crate::vk::QueryPoolSamplingModeINTEL,
+    pub s_type: crate::vk::StructureType,
+    pub p_next: *const core::ffi::c_void,
+    pub performance_counters_sampling: crate::vk::QueryPoolSamplingModeINTEL,
 }
 #[repr(C)]
 pub struct PerformanceMarkerInfoINTEL {
-    s_type: crate::vk::StructureType,
-    p_next: *const core::ffi::c_void,
-    marker: crate::External<
+    pub s_type: crate::vk::StructureType,
+    pub p_next: *const core::ffi::c_void,
+    pub marker: crate::External<
         {
             "uint64_t";
             0
@@ -31,9 +31,9 @@ pub struct PerformanceMarkerInfoINTEL {
 }
 #[repr(C)]
 pub struct PerformanceStreamMarkerInfoINTEL {
-    s_type: crate::vk::StructureType,
-    p_next: *const core::ffi::c_void,
-    marker: crate::External<
+    pub s_type: crate::vk::StructureType,
+    pub p_next: *const core::ffi::c_void,
+    pub marker: crate::External<
         {
             "uint32_t";
             0
@@ -42,11 +42,11 @@ pub struct PerformanceStreamMarkerInfoINTEL {
 }
 #[repr(C)]
 pub struct PerformanceOverrideInfoINTEL {
-    s_type: crate::vk::StructureType,
-    p_next: *const core::ffi::c_void,
-    _type: crate::vk::PerformanceOverrideTypeINTEL,
-    enable: crate::vk::Bool32,
-    parameter: crate::External<
+    pub s_type: crate::vk::StructureType,
+    pub p_next: *const core::ffi::c_void,
+    pub _type: crate::vk::PerformanceOverrideTypeINTEL,
+    pub enable: crate::vk::Bool32,
+    pub parameter: crate::External<
         {
             "uint64_t";
             0
@@ -55,9 +55,38 @@ pub struct PerformanceOverrideInfoINTEL {
 }
 #[repr(C)]
 pub struct PerformanceConfigurationAcquireInfoINTEL {
-    s_type: crate::vk::StructureType,
-    p_next: *const core::ffi::c_void,
-    _type: crate::vk::PerformanceConfigurationTypeINTEL,
+    pub s_type: crate::vk::StructureType,
+    pub p_next: *const core::ffi::c_void,
+    pub _type: crate::vk::PerformanceConfigurationTypeINTEL,
+}
+pub type QueryPoolCreateInfoINTEL = crate::vk::QueryPoolPerformanceQueryCreateInfoINTEL;
+#[repr(C)]
+pub struct PerformanceValueDataINTEL {
+    value32: crate::External<
+        {
+            "uint32_t";
+            0
+        },
+    >,
+    value64: crate::External<
+        {
+            "uint64_t";
+            0
+        },
+    >,
+    value_float: crate::External<
+        {
+            "float";
+            0
+        },
+    >,
+    value_bool: crate::vk::Bool32,
+    value_string: *const crate::External<
+        {
+            "char";
+            0
+        },
+    >,
 }
 #[repr(C)]
 pub struct PerformanceConfigurationTypeINTEL {}

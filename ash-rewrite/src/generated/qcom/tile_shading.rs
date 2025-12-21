@@ -3,56 +3,60 @@
 //![Vulkan Manual Page](https://docs.vulkan.org/refpages/latest/refpages/source/VK_QCOM_tile_shading.html) · Vulkan extension
 #[repr(C)]
 pub struct PhysicalDeviceTileShadingFeaturesQCOM {
-    s_type: crate::vk::StructureType,
-    p_next: *mut core::ffi::c_void,
-    tile_shading: crate::vk::Bool32,
-    tile_shading_fragment_stage: crate::vk::Bool32,
-    tile_shading_color_attachments: crate::vk::Bool32,
-    tile_shading_depth_attachments: crate::vk::Bool32,
-    tile_shading_stencil_attachments: crate::vk::Bool32,
-    tile_shading_input_attachments: crate::vk::Bool32,
-    tile_shading_sampled_attachments: crate::vk::Bool32,
-    tile_shading_per_tile_draw: crate::vk::Bool32,
-    tile_shading_per_tile_dispatch: crate::vk::Bool32,
-    tile_shading_dispatch_tile: crate::vk::Bool32,
-    tile_shading_apron: crate::vk::Bool32,
-    tile_shading_anisotropic_apron: crate::vk::Bool32,
-    tile_shading_atomic_ops: crate::vk::Bool32,
-    tile_shading_image_processing: crate::vk::Bool32,
+    pub s_type: crate::vk::StructureType,
+    pub p_next: *mut core::ffi::c_void,
+    pub tile_shading: crate::vk::Bool32,
+    pub tile_shading_fragment_stage: crate::vk::Bool32,
+    pub tile_shading_color_attachments: crate::vk::Bool32,
+    pub tile_shading_depth_attachments: crate::vk::Bool32,
+    pub tile_shading_stencil_attachments: crate::vk::Bool32,
+    pub tile_shading_input_attachments: crate::vk::Bool32,
+    pub tile_shading_sampled_attachments: crate::vk::Bool32,
+    pub tile_shading_per_tile_draw: crate::vk::Bool32,
+    pub tile_shading_per_tile_dispatch: crate::vk::Bool32,
+    pub tile_shading_dispatch_tile: crate::vk::Bool32,
+    pub tile_shading_apron: crate::vk::Bool32,
+    pub tile_shading_anisotropic_apron: crate::vk::Bool32,
+    pub tile_shading_atomic_ops: crate::vk::Bool32,
+    pub tile_shading_image_processing: crate::vk::Bool32,
 }
 #[repr(C)]
 pub struct PhysicalDeviceTileShadingPropertiesQCOM {
-    s_type: crate::vk::StructureType,
-    p_next: *mut core::ffi::c_void,
-    max_apron_size: crate::External<
+    pub s_type: crate::vk::StructureType,
+    pub p_next: *mut core::ffi::c_void,
+    pub max_apron_size: crate::External<
         {
             "uint32_t";
             0
         },
     >,
-    prefer_non_coherent: crate::vk::Bool32,
-    tile_granularity: crate::vk::Extent2D,
-    max_tile_shading_rate: crate::vk::Extent2D,
+    pub prefer_non_coherent: crate::vk::Bool32,
+    pub tile_granularity: crate::vk::Extent2D,
+    pub max_tile_shading_rate: crate::vk::Extent2D,
 }
 #[repr(C)]
 pub struct RenderPassTileShadingCreateInfoQCOM {
-    s_type: crate::vk::StructureType,
-    p_next: *const core::ffi::c_void,
-    flags: crate::vk::TileShadingRenderPassFlagsQCOM,
-    tile_apron_size: crate::vk::Extent2D,
+    pub s_type: crate::vk::StructureType,
+    pub p_next: *const core::ffi::c_void,
+    pub flags: crate::vk::TileShadingRenderPassFlagsQCOM,
+    pub tile_apron_size: crate::vk::Extent2D,
 }
 #[repr(C)]
 pub struct PerTileBeginInfoQCOM {
-    s_type: crate::vk::StructureType,
-    p_next: *const core::ffi::c_void,
+    pub s_type: crate::vk::StructureType,
+    pub p_next: *const core::ffi::c_void,
 }
 #[repr(C)]
 pub struct PerTileEndInfoQCOM {
-    s_type: crate::vk::StructureType,
-    p_next: *const core::ffi::c_void,
+    pub s_type: crate::vk::StructureType,
+    pub p_next: *const core::ffi::c_void,
 }
 #[repr(C)]
 pub struct DispatchTileInfoQCOM {
-    s_type: crate::vk::StructureType,
-    p_next: *const core::ffi::c_void,
+    pub s_type: crate::vk::StructureType,
+    pub p_next: *const core::ffi::c_void,
 }
+#[repr(C)]
+pub struct TileShadingRenderPassFlagsQCOM {}
+#[repr(C)]
+pub struct TileShadingRenderPassFlagBitsQCOM {}

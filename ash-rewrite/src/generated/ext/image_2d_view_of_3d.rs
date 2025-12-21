@@ -3,8 +3,8 @@
 //![Vulkan Manual Page](https://docs.vulkan.org/refpages/latest/refpages/source/VK_EXT_image_2d_view_of_3d.html) · Vulkan extension
 #[repr(C)]
 pub struct PhysicalDeviceImage2DViewOf3DFeaturesEXT {
-    s_type: crate::vk::StructureType,
-    p_next: *mut core::ffi::c_void,
-    image2_d_view_of3_d: crate::vk::Bool32,
-    sampler2_d_view_of3_d: crate::vk::Bool32,
+    pub s_type: crate::vk::StructureType,
+    pub p_next: *mut core::ffi::c_void,
+    pub image2_d_view_of3_d: crate::vk::Bool32,
+    pub sampler2_d_view_of3_d: crate::vk::Bool32,
 }

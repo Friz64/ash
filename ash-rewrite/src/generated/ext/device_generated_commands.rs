@@ -3,89 +3,89 @@
 //![Vulkan Manual Page](https://docs.vulkan.org/refpages/latest/refpages/source/VK_EXT_device_generated_commands.html) · Vulkan extension
 #[repr(C)]
 pub struct PhysicalDeviceDeviceGeneratedCommandsFeaturesEXT {
-    s_type: crate::vk::StructureType,
-    p_next: *mut core::ffi::c_void,
-    device_generated_commands: crate::vk::Bool32,
-    dynamic_generated_pipeline_layout: crate::vk::Bool32,
+    pub s_type: crate::vk::StructureType,
+    pub p_next: *mut core::ffi::c_void,
+    pub device_generated_commands: crate::vk::Bool32,
+    pub dynamic_generated_pipeline_layout: crate::vk::Bool32,
 }
 #[repr(C)]
 pub struct PhysicalDeviceDeviceGeneratedCommandsPropertiesEXT {
-    s_type: crate::vk::StructureType,
-    p_next: *mut core::ffi::c_void,
-    max_indirect_pipeline_count: crate::External<
+    pub s_type: crate::vk::StructureType,
+    pub p_next: *mut core::ffi::c_void,
+    pub max_indirect_pipeline_count: crate::External<
         {
             "uint32_t";
             0
         },
     >,
-    max_indirect_shader_object_count: crate::External<
+    pub max_indirect_shader_object_count: crate::External<
         {
             "uint32_t";
             0
         },
     >,
-    max_indirect_sequence_count: crate::External<
+    pub max_indirect_sequence_count: crate::External<
         {
             "uint32_t";
             0
         },
     >,
-    max_indirect_commands_token_count: crate::External<
+    pub max_indirect_commands_token_count: crate::External<
         {
             "uint32_t";
             0
         },
     >,
-    max_indirect_commands_token_offset: crate::External<
+    pub max_indirect_commands_token_offset: crate::External<
         {
             "uint32_t";
             0
         },
     >,
-    max_indirect_commands_indirect_stride: crate::External<
+    pub max_indirect_commands_indirect_stride: crate::External<
         {
             "uint32_t";
             0
         },
     >,
-    supported_indirect_commands_input_modes: crate::vk::IndirectCommandsInputModeFlagsEXT,
-    supported_indirect_commands_shader_stages: crate::vk::ShaderStageFlags,
-    supported_indirect_commands_shader_stages_pipeline_binding: crate::vk::ShaderStageFlags,
-    supported_indirect_commands_shader_stages_shader_binding: crate::vk::ShaderStageFlags,
-    device_generated_commands_transform_feedback: crate::vk::Bool32,
-    device_generated_commands_multi_draw_indirect_count: crate::vk::Bool32,
+    pub supported_indirect_commands_input_modes: crate::vk::IndirectCommandsInputModeFlagsEXT,
+    pub supported_indirect_commands_shader_stages: crate::vk::ShaderStageFlags,
+    pub supported_indirect_commands_shader_stages_pipeline_binding: crate::vk::ShaderStageFlags,
+    pub supported_indirect_commands_shader_stages_shader_binding: crate::vk::ShaderStageFlags,
+    pub device_generated_commands_transform_feedback: crate::vk::Bool32,
+    pub device_generated_commands_multi_draw_indirect_count: crate::vk::Bool32,
 }
 #[repr(C)]
 pub struct GeneratedCommandsPipelineInfoEXT {
-    s_type: crate::vk::StructureType,
-    p_next: *mut core::ffi::c_void,
-    pipeline: crate::vk::Pipeline,
+    pub s_type: crate::vk::StructureType,
+    pub p_next: *mut core::ffi::c_void,
+    pub pipeline: crate::vk::Pipeline,
 }
 #[repr(C)]
 pub struct GeneratedCommandsShaderInfoEXT {
-    s_type: crate::vk::StructureType,
-    p_next: *mut core::ffi::c_void,
-    shader_count: crate::External<
+    pub s_type: crate::vk::StructureType,
+    pub p_next: *mut core::ffi::c_void,
+    pub shader_count: crate::External<
         {
             "uint32_t";
             0
         },
     >,
-    p_shaders: *const crate::vk::ShaderEXT,
+    pub p_shaders: *const crate::vk::ShaderEXT,
 }
 #[repr(C)]
 pub struct GeneratedCommandsMemoryRequirementsInfoEXT {
-    s_type: crate::vk::StructureType,
-    p_next: *const core::ffi::c_void,
-    indirect_execution_set: crate::vk::IndirectExecutionSetEXT,
-    indirect_commands_layout: crate::vk::IndirectCommandsLayoutEXT,
-    max_sequence_count: crate::External<
+    pub s_type: crate::vk::StructureType,
+    pub p_next: *const core::ffi::c_void,
+    pub indirect_execution_set: crate::vk::IndirectExecutionSetEXT,
+    pub indirect_commands_layout: crate::vk::IndirectCommandsLayoutEXT,
+    pub max_sequence_count: crate::External<
         {
             "uint32_t";
             0
         },
     >,
-    max_draw_count: crate::External<
+    pub max_draw_count: crate::External<
         {
             "uint32_t";
             0
@@ -94,10 +94,10 @@ pub struct GeneratedCommandsMemoryRequirementsInfoEXT {
 }
 #[repr(C)]
 pub struct IndirectExecutionSetPipelineInfoEXT {
-    s_type: crate::vk::StructureType,
-    p_next: *const core::ffi::c_void,
-    initial_pipeline: crate::vk::Pipeline,
-    max_pipeline_count: crate::External<
+    pub s_type: crate::vk::StructureType,
+    pub p_next: *const core::ffi::c_void,
+    pub initial_pipeline: crate::vk::Pipeline,
+    pub max_pipeline_count: crate::External<
         {
             "uint32_t";
             0
@@ -106,68 +106,68 @@ pub struct IndirectExecutionSetPipelineInfoEXT {
 }
 #[repr(C)]
 pub struct IndirectExecutionSetShaderLayoutInfoEXT {
-    s_type: crate::vk::StructureType,
-    p_next: *const core::ffi::c_void,
-    set_layout_count: crate::External<
+    pub s_type: crate::vk::StructureType,
+    pub p_next: *const core::ffi::c_void,
+    pub set_layout_count: crate::External<
         {
             "uint32_t";
             0
         },
     >,
-    p_set_layouts: *const crate::vk::DescriptorSetLayout,
+    pub p_set_layouts: *const crate::vk::DescriptorSetLayout,
 }
 #[repr(C)]
 pub struct IndirectExecutionSetShaderInfoEXT {
-    s_type: crate::vk::StructureType,
-    p_next: *const core::ffi::c_void,
-    shader_count: crate::External<
+    pub s_type: crate::vk::StructureType,
+    pub p_next: *const core::ffi::c_void,
+    pub shader_count: crate::External<
         {
             "uint32_t";
             0
         },
     >,
-    p_initial_shaders: *const crate::vk::ShaderEXT,
-    p_set_layout_infos: *const crate::vk::IndirectExecutionSetShaderLayoutInfoEXT,
-    max_shader_count: crate::External<
+    pub p_initial_shaders: *const crate::vk::ShaderEXT,
+    pub p_set_layout_infos: *const crate::vk::IndirectExecutionSetShaderLayoutInfoEXT,
+    pub max_shader_count: crate::External<
         {
             "uint32_t";
             0
         },
     >,
-    push_constant_range_count: crate::External<
+    pub push_constant_range_count: crate::External<
         {
             "uint32_t";
             0
         },
     >,
-    p_push_constant_ranges: *const crate::vk::PushConstantRange,
+    pub p_push_constant_ranges: *const crate::vk::PushConstantRange,
 }
 #[repr(C)]
 pub struct IndirectExecutionSetCreateInfoEXT {
-    s_type: crate::vk::StructureType,
-    p_next: *const core::ffi::c_void,
-    _type: crate::vk::IndirectExecutionSetInfoTypeEXT,
-    info: crate::vk::IndirectExecutionSetInfoEXT,
+    pub s_type: crate::vk::StructureType,
+    pub p_next: *const core::ffi::c_void,
+    pub _type: crate::vk::IndirectExecutionSetInfoTypeEXT,
+    pub info: crate::vk::IndirectExecutionSetInfoEXT,
 }
 #[repr(C)]
 pub struct GeneratedCommandsInfoEXT {
-    s_type: crate::vk::StructureType,
-    p_next: *const core::ffi::c_void,
-    shader_stages: crate::vk::ShaderStageFlags,
-    indirect_execution_set: crate::vk::IndirectExecutionSetEXT,
-    indirect_commands_layout: crate::vk::IndirectCommandsLayoutEXT,
-    indirect_address: crate::vk::DeviceAddress,
-    indirect_address_size: crate::vk::DeviceSize,
-    preprocess_address: crate::vk::DeviceAddress,
-    preprocess_size: crate::vk::DeviceSize,
-    max_sequence_count: crate::External<
+    pub s_type: crate::vk::StructureType,
+    pub p_next: *const core::ffi::c_void,
+    pub shader_stages: crate::vk::ShaderStageFlags,
+    pub indirect_execution_set: crate::vk::IndirectExecutionSetEXT,
+    pub indirect_commands_layout: crate::vk::IndirectCommandsLayoutEXT,
+    pub indirect_address: crate::vk::DeviceAddress,
+    pub indirect_address_size: crate::vk::DeviceSize,
+    pub preprocess_address: crate::vk::DeviceAddress,
+    pub preprocess_size: crate::vk::DeviceSize,
+    pub max_sequence_count: crate::External<
         {
             "uint32_t";
             0
         },
     >,
-    sequence_count_address: crate::vk::DeviceAddress,
-    max_draw_count: crate::External<
+    pub sequence_count_address: crate::vk::DeviceAddress,
+    pub max_draw_count: crate::External<
         {
             "uint32_t";
             0
@@ -176,56 +176,56 @@ pub struct GeneratedCommandsInfoEXT {
 }
 #[repr(C)]
 pub struct WriteIndirectExecutionSetPipelineEXT {
-    s_type: crate::vk::StructureType,
-    p_next: *const core::ffi::c_void,
-    index: crate::External<
+    pub s_type: crate::vk::StructureType,
+    pub p_next: *const core::ffi::c_void,
+    pub index: crate::External<
         {
             "uint32_t";
             0
         },
     >,
-    pipeline: crate::vk::Pipeline,
+    pub pipeline: crate::vk::Pipeline,
 }
 #[repr(C)]
 pub struct WriteIndirectExecutionSetShaderEXT {
-    s_type: crate::vk::StructureType,
-    p_next: *const core::ffi::c_void,
-    index: crate::External<
+    pub s_type: crate::vk::StructureType,
+    pub p_next: *const core::ffi::c_void,
+    pub index: crate::External<
         {
             "uint32_t";
             0
         },
     >,
-    shader: crate::vk::ShaderEXT,
+    pub shader: crate::vk::ShaderEXT,
 }
 #[repr(C)]
 pub struct IndirectCommandsLayoutCreateInfoEXT {
-    s_type: crate::vk::StructureType,
-    p_next: *const core::ffi::c_void,
-    flags: crate::vk::IndirectCommandsLayoutUsageFlagsEXT,
-    shader_stages: crate::vk::ShaderStageFlags,
-    indirect_stride: crate::External<
+    pub s_type: crate::vk::StructureType,
+    pub p_next: *const core::ffi::c_void,
+    pub flags: crate::vk::IndirectCommandsLayoutUsageFlagsEXT,
+    pub shader_stages: crate::vk::ShaderStageFlags,
+    pub indirect_stride: crate::External<
         {
             "uint32_t";
             0
         },
     >,
-    pipeline_layout: crate::vk::PipelineLayout,
-    token_count: crate::External<
+    pub pipeline_layout: crate::vk::PipelineLayout,
+    pub token_count: crate::External<
         {
             "uint32_t";
             0
         },
     >,
-    p_tokens: *const crate::vk::IndirectCommandsLayoutTokenEXT,
+    pub p_tokens: *const crate::vk::IndirectCommandsLayoutTokenEXT,
 }
 #[repr(C)]
 pub struct IndirectCommandsLayoutTokenEXT {
-    s_type: crate::vk::StructureType,
-    p_next: *const core::ffi::c_void,
-    _type: crate::vk::IndirectCommandsTokenTypeEXT,
-    data: crate::vk::IndirectCommandsTokenDataEXT,
-    offset: crate::External<
+    pub s_type: crate::vk::StructureType,
+    pub p_next: *const core::ffi::c_void,
+    pub _type: crate::vk::IndirectCommandsTokenTypeEXT,
+    pub data: crate::vk::IndirectCommandsTokenDataEXT,
+    pub offset: crate::External<
         {
             "uint32_t";
             0
@@ -234,14 +234,14 @@ pub struct IndirectCommandsLayoutTokenEXT {
 }
 #[repr(C)]
 pub struct DrawIndirectCountIndirectCommandEXT {
-    buffer_address: crate::vk::DeviceAddress,
-    stride: crate::External<
+    pub buffer_address: crate::vk::DeviceAddress,
+    pub stride: crate::External<
         {
             "uint32_t";
             0
         },
     >,
-    command_count: crate::External<
+    pub command_count: crate::External<
         {
             "uint32_t";
             0
@@ -250,7 +250,7 @@ pub struct DrawIndirectCountIndirectCommandEXT {
 }
 #[repr(C)]
 pub struct IndirectCommandsVertexBufferTokenEXT {
-    vertex_binding_unit: crate::External<
+    pub vertex_binding_unit: crate::External<
         {
             "uint32_t";
             0
@@ -259,14 +259,14 @@ pub struct IndirectCommandsVertexBufferTokenEXT {
 }
 #[repr(C)]
 pub struct BindVertexBufferIndirectCommandEXT {
-    buffer_address: crate::vk::DeviceAddress,
-    size: crate::External<
+    pub buffer_address: crate::vk::DeviceAddress,
+    pub size: crate::External<
         {
             "uint32_t";
             0
         },
     >,
-    stride: crate::External<
+    pub stride: crate::External<
         {
             "uint32_t";
             0
@@ -275,32 +275,52 @@ pub struct BindVertexBufferIndirectCommandEXT {
 }
 #[repr(C)]
 pub struct IndirectCommandsIndexBufferTokenEXT {
-    mode: crate::vk::IndirectCommandsInputModeFlagBitsEXT,
+    pub mode: crate::vk::IndirectCommandsInputModeFlagBitsEXT,
 }
 #[repr(C)]
 pub struct BindIndexBufferIndirectCommandEXT {
-    buffer_address: crate::vk::DeviceAddress,
-    size: crate::External<
+    pub buffer_address: crate::vk::DeviceAddress,
+    pub size: crate::External<
         {
             "uint32_t";
             0
         },
     >,
-    index_type: crate::vk::IndexType,
+    pub index_type: crate::vk::IndexType,
 }
 #[repr(C)]
 pub struct IndirectCommandsPushConstantTokenEXT {
-    update_range: crate::vk::PushConstantRange,
+    pub update_range: crate::vk::PushConstantRange,
 }
 #[repr(C)]
 pub struct IndirectCommandsExecutionSetTokenEXT {
-    _type: crate::vk::IndirectExecutionSetInfoTypeEXT,
-    shader_stages: crate::vk::ShaderStageFlags,
+    pub _type: crate::vk::IndirectExecutionSetInfoTypeEXT,
+    pub shader_stages: crate::vk::ShaderStageFlags,
+}
+#[repr(C)]
+pub struct IndirectExecutionSetInfoEXT {
+    p_pipeline_info: *const crate::vk::IndirectExecutionSetPipelineInfoEXT,
+    p_shader_info: *const crate::vk::IndirectExecutionSetShaderInfoEXT,
+}
+#[repr(C)]
+pub struct IndirectCommandsTokenDataEXT {
+    p_push_constant: *const crate::vk::IndirectCommandsPushConstantTokenEXT,
+    p_vertex_buffer: *const crate::vk::IndirectCommandsVertexBufferTokenEXT,
+    p_index_buffer: *const crate::vk::IndirectCommandsIndexBufferTokenEXT,
+    p_execution_set: *const crate::vk::IndirectCommandsExecutionSetTokenEXT,
 }
 #[repr(C)]
 pub struct IndirectExecutionSetInfoTypeEXT {}
 #[repr(C)]
 pub struct IndirectCommandsTokenTypeEXT {}
+#[repr(C)]
+pub struct IndirectCommandsLayoutUsageFlagsEXT {}
+#[repr(C)]
+pub struct IndirectCommandsInputModeFlagsEXT {}
+#[repr(C)]
+pub struct IndirectCommandsLayoutUsageFlagBitsEXT {}
+#[repr(C)]
+pub struct IndirectCommandsInputModeFlagBitsEXT {}
 #[repr(C)]
 pub struct IndirectCommandsLayoutEXT {}
 #[repr(C)]

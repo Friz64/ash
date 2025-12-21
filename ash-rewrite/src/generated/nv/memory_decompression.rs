@@ -3,9 +3,13 @@
 //![Vulkan Manual Page](https://docs.vulkan.org/refpages/latest/refpages/source/VK_NV_memory_decompression.html) · Vulkan extension
 #[repr(C)]
 pub struct DecompressMemoryRegionNV {
-    src_address: crate::vk::DeviceAddress,
-    dst_address: crate::vk::DeviceAddress,
-    compressed_size: crate::vk::DeviceSize,
-    decompressed_size: crate::vk::DeviceSize,
-    decompression_method: crate::vk::MemoryDecompressionMethodFlagsNV,
+    pub src_address: crate::vk::DeviceAddress,
+    pub dst_address: crate::vk::DeviceAddress,
+    pub compressed_size: crate::vk::DeviceSize,
+    pub decompressed_size: crate::vk::DeviceSize,
+    pub decompression_method: crate::vk::MemoryDecompressionMethodFlagsNV,
 }
+pub type PhysicalDeviceMemoryDecompressionFeaturesNV = crate::vk::PhysicalDeviceMemoryDecompressionFeaturesEXT;
+pub type PhysicalDeviceMemoryDecompressionPropertiesNV = crate::vk::PhysicalDeviceMemoryDecompressionPropertiesEXT;
+pub type MemoryDecompressionMethodFlagBitsNV = crate::vk::MemoryDecompressionMethodFlagBitsEXT;
+pub type MemoryDecompressionMethodFlagsNV = crate::vk::MemoryDecompressionMethodFlagsEXT;

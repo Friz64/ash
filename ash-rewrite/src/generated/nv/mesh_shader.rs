@@ -3,88 +3,88 @@
 //![Vulkan Manual Page](https://docs.vulkan.org/refpages/latest/refpages/source/VK_NV_mesh_shader.html) · Vulkan extension
 #[repr(C)]
 pub struct PhysicalDeviceMeshShaderFeaturesNV {
-    s_type: crate::vk::StructureType,
-    p_next: *mut core::ffi::c_void,
-    task_shader: crate::vk::Bool32,
-    mesh_shader: crate::vk::Bool32,
+    pub s_type: crate::vk::StructureType,
+    pub p_next: *mut core::ffi::c_void,
+    pub task_shader: crate::vk::Bool32,
+    pub mesh_shader: crate::vk::Bool32,
 }
 #[repr(C)]
 pub struct PhysicalDeviceMeshShaderPropertiesNV {
-    s_type: crate::vk::StructureType,
-    p_next: *mut core::ffi::c_void,
-    max_draw_mesh_tasks_count: crate::External<
+    pub s_type: crate::vk::StructureType,
+    pub p_next: *mut core::ffi::c_void,
+    pub max_draw_mesh_tasks_count: crate::External<
         {
             "uint32_t";
             0
         },
     >,
-    max_task_work_group_invocations: crate::External<
+    pub max_task_work_group_invocations: crate::External<
         {
             "uint32_t";
             0
         },
     >,
-    max_task_work_group_size: [crate::External<
+    pub max_task_work_group_size: [crate::External<
         {
             "uint32_t";
             0
         },
     >; 1337],
-    max_task_total_memory_size: crate::External<
+    pub max_task_total_memory_size: crate::External<
         {
             "uint32_t";
             0
         },
     >,
-    max_task_output_count: crate::External<
+    pub max_task_output_count: crate::External<
         {
             "uint32_t";
             0
         },
     >,
-    max_mesh_work_group_invocations: crate::External<
+    pub max_mesh_work_group_invocations: crate::External<
         {
             "uint32_t";
             0
         },
     >,
-    max_mesh_work_group_size: [crate::External<
+    pub max_mesh_work_group_size: [crate::External<
         {
             "uint32_t";
             0
         },
     >; 1337],
-    max_mesh_total_memory_size: crate::External<
+    pub max_mesh_total_memory_size: crate::External<
         {
             "uint32_t";
             0
         },
     >,
-    max_mesh_output_vertices: crate::External<
+    pub max_mesh_output_vertices: crate::External<
         {
             "uint32_t";
             0
         },
     >,
-    max_mesh_output_primitives: crate::External<
+    pub max_mesh_output_primitives: crate::External<
         {
             "uint32_t";
             0
         },
     >,
-    max_mesh_multiview_view_count: crate::External<
+    pub max_mesh_multiview_view_count: crate::External<
         {
             "uint32_t";
             0
         },
     >,
-    mesh_output_per_vertex_granularity: crate::External<
+    pub mesh_output_per_vertex_granularity: crate::External<
         {
             "uint32_t";
             0
         },
     >,
-    mesh_output_per_primitive_granularity: crate::External<
+    pub mesh_output_per_primitive_granularity: crate::External<
         {
             "uint32_t";
             0
@@ -93,13 +93,13 @@ pub struct PhysicalDeviceMeshShaderPropertiesNV {
 }
 #[repr(C)]
 pub struct DrawMeshTasksIndirectCommandNV {
-    task_count: crate::External<
+    pub task_count: crate::External<
         {
             "uint32_t";
             0
         },
     >,
-    first_task: crate::External<
+    pub first_task: crate::External<
         {
             "uint32_t";
             0

@@ -3,35 +3,35 @@
 //![Vulkan Manual Page](https://docs.vulkan.org/refpages/latest/refpages/source/VK_KHR_win32_keyed_mutex.html) · Vulkan extension
 #[repr(C)]
 pub struct Win32KeyedMutexAcquireReleaseInfoKHR {
-    s_type: crate::vk::StructureType,
-    p_next: *const core::ffi::c_void,
-    acquire_count: crate::External<
+    pub s_type: crate::vk::StructureType,
+    pub p_next: *const core::ffi::c_void,
+    pub acquire_count: crate::External<
         {
             "uint32_t";
             0
         },
     >,
-    p_acquire_syncs: *const crate::vk::DeviceMemory,
-    p_acquire_keys: *const crate::External<
+    pub p_acquire_syncs: *const crate::vk::DeviceMemory,
+    pub p_acquire_keys: *const crate::External<
         {
             "uint64_t";
             0
         },
     >,
-    p_acquire_timeouts: *const crate::External<
+    pub p_acquire_timeouts: *const crate::External<
         {
             "uint32_t";
             0
         },
     >,
-    release_count: crate::External<
+    pub release_count: crate::External<
         {
             "uint32_t";
             0
         },
     >,
-    p_release_syncs: *const crate::vk::DeviceMemory,
-    p_release_keys: *const crate::External<
+    pub p_release_syncs: *const crate::vk::DeviceMemory,
+    pub p_release_keys: *const crate::External<
         {
             "uint64_t";
             0

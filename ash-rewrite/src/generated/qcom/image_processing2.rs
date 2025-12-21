@@ -3,22 +3,22 @@
 //![Vulkan Manual Page](https://docs.vulkan.org/refpages/latest/refpages/source/VK_QCOM_image_processing2.html) · Vulkan extension
 #[repr(C)]
 pub struct PhysicalDeviceImageProcessing2FeaturesQCOM {
-    s_type: crate::vk::StructureType,
-    p_next: *mut core::ffi::c_void,
-    texture_block_match2: crate::vk::Bool32,
+    pub s_type: crate::vk::StructureType,
+    pub p_next: *mut core::ffi::c_void,
+    pub texture_block_match2: crate::vk::Bool32,
 }
 #[repr(C)]
 pub struct PhysicalDeviceImageProcessing2PropertiesQCOM {
-    s_type: crate::vk::StructureType,
-    p_next: *mut core::ffi::c_void,
-    max_block_match_window: crate::vk::Extent2D,
+    pub s_type: crate::vk::StructureType,
+    pub p_next: *mut core::ffi::c_void,
+    pub max_block_match_window: crate::vk::Extent2D,
 }
 #[repr(C)]
 pub struct SamplerBlockMatchWindowCreateInfoQCOM {
-    s_type: crate::vk::StructureType,
-    p_next: *const core::ffi::c_void,
-    window_extent: crate::vk::Extent2D,
-    window_compare_mode: crate::vk::BlockMatchWindowCompareModeQCOM,
+    pub s_type: crate::vk::StructureType,
+    pub p_next: *const core::ffi::c_void,
+    pub window_extent: crate::vk::Extent2D,
+    pub window_compare_mode: crate::vk::BlockMatchWindowCompareModeQCOM,
 }
 #[repr(C)]
 pub struct BlockMatchWindowCompareModeQCOM {}

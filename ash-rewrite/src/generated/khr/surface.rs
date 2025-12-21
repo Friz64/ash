@@ -3,40 +3,46 @@
 //![Vulkan Manual Page](https://docs.vulkan.org/refpages/latest/refpages/source/VK_KHR_surface.html) · Vulkan extension
 #[repr(C)]
 pub struct SurfaceCapabilitiesKHR {
-    min_image_count: crate::External<
+    pub min_image_count: crate::External<
         {
             "uint32_t";
             0
         },
     >,
-    max_image_count: crate::External<
+    pub max_image_count: crate::External<
         {
             "uint32_t";
             0
         },
     >,
-    current_extent: crate::vk::Extent2D,
-    min_image_extent: crate::vk::Extent2D,
-    max_image_extent: crate::vk::Extent2D,
-    max_image_array_layers: crate::External<
+    pub current_extent: crate::vk::Extent2D,
+    pub min_image_extent: crate::vk::Extent2D,
+    pub max_image_extent: crate::vk::Extent2D,
+    pub max_image_array_layers: crate::External<
         {
             "uint32_t";
             0
         },
     >,
-    supported_transforms: crate::vk::SurfaceTransformFlagsKHR,
-    current_transform: crate::vk::SurfaceTransformFlagBitsKHR,
-    supported_composite_alpha: crate::vk::CompositeAlphaFlagsKHR,
-    supported_usage_flags: crate::vk::ImageUsageFlags,
+    pub supported_transforms: crate::vk::SurfaceTransformFlagsKHR,
+    pub current_transform: crate::vk::SurfaceTransformFlagBitsKHR,
+    pub supported_composite_alpha: crate::vk::CompositeAlphaFlagsKHR,
+    pub supported_usage_flags: crate::vk::ImageUsageFlags,
 }
 #[repr(C)]
 pub struct SurfaceFormatKHR {
-    format: crate::vk::Format,
-    color_space: crate::vk::ColorSpaceKHR,
+    pub format: crate::vk::Format,
+    pub color_space: crate::vk::ColorSpaceKHR,
 }
 #[repr(C)]
 pub struct PresentModeKHR {}
 #[repr(C)]
 pub struct ColorSpaceKHR {}
+#[repr(C)]
+pub struct CompositeAlphaFlagsKHR {}
+#[repr(C)]
+pub struct CompositeAlphaFlagBitsKHR {}
+#[repr(C)]
+pub struct SurfaceTransformFlagBitsKHR {}
 #[repr(C)]
 pub struct SurfaceKHR {}

@@ -3,42 +3,44 @@
 //![Vulkan Manual Page](https://docs.vulkan.org/refpages/latest/refpages/source/VK_NV_cooperative_matrix.html) · Vulkan extension
 #[repr(C)]
 pub struct PhysicalDeviceCooperativeMatrixFeaturesNV {
-    s_type: crate::vk::StructureType,
-    p_next: *mut core::ffi::c_void,
-    cooperative_matrix: crate::vk::Bool32,
-    cooperative_matrix_robust_buffer_access: crate::vk::Bool32,
+    pub s_type: crate::vk::StructureType,
+    pub p_next: *mut core::ffi::c_void,
+    pub cooperative_matrix: crate::vk::Bool32,
+    pub cooperative_matrix_robust_buffer_access: crate::vk::Bool32,
 }
 #[repr(C)]
 pub struct PhysicalDeviceCooperativeMatrixPropertiesNV {
-    s_type: crate::vk::StructureType,
-    p_next: *mut core::ffi::c_void,
-    cooperative_matrix_supported_stages: crate::vk::ShaderStageFlags,
+    pub s_type: crate::vk::StructureType,
+    pub p_next: *mut core::ffi::c_void,
+    pub cooperative_matrix_supported_stages: crate::vk::ShaderStageFlags,
 }
 #[repr(C)]
 pub struct CooperativeMatrixPropertiesNV {
-    s_type: crate::vk::StructureType,
-    p_next: *mut core::ffi::c_void,
-    m_size: crate::External<
+    pub s_type: crate::vk::StructureType,
+    pub p_next: *mut core::ffi::c_void,
+    pub m_size: crate::External<
         {
             "uint32_t";
             0
         },
     >,
-    n_size: crate::External<
+    pub n_size: crate::External<
         {
             "uint32_t";
             0
         },
     >,
-    k_size: crate::External<
+    pub k_size: crate::External<
         {
             "uint32_t";
             0
         },
     >,
-    a_type: crate::vk::ComponentTypeNV,
-    b_type: crate::vk::ComponentTypeNV,
-    c_type: crate::vk::ComponentTypeNV,
-    d_type: crate::vk::ComponentTypeNV,
-    scope: crate::vk::ScopeNV,
+    pub a_type: crate::vk::ComponentTypeNV,
+    pub b_type: crate::vk::ComponentTypeNV,
+    pub c_type: crate::vk::ComponentTypeNV,
+    pub d_type: crate::vk::ComponentTypeNV,
+    pub scope: crate::vk::ScopeNV,
 }
+pub type ScopeNV = crate::vk::ScopeKHR;
+pub type ComponentTypeNV = crate::vk::ComponentTypeKHR;

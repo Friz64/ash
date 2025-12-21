@@ -3,15 +3,15 @@
 //![Vulkan Manual Page](https://docs.vulkan.org/refpages/latest/refpages/source/VK_NV_displacement_micromap.html) · Vulkan extension
 #[repr(C)]
 pub struct PhysicalDeviceDisplacementMicromapFeaturesNV {
-    s_type: crate::vk::StructureType,
-    p_next: *mut core::ffi::c_void,
-    displacement_micromap: crate::vk::Bool32,
+    pub s_type: crate::vk::StructureType,
+    pub p_next: *mut core::ffi::c_void,
+    pub displacement_micromap: crate::vk::Bool32,
 }
 #[repr(C)]
 pub struct PhysicalDeviceDisplacementMicromapPropertiesNV {
-    s_type: crate::vk::StructureType,
-    p_next: *mut core::ffi::c_void,
-    max_displacement_micromap_subdivision_level: crate::External<
+    pub s_type: crate::vk::StructureType,
+    pub p_next: *mut core::ffi::c_void,
+    pub max_displacement_micromap_subdivision_level: crate::External<
         {
             "uint32_t";
             0
@@ -20,34 +20,34 @@ pub struct PhysicalDeviceDisplacementMicromapPropertiesNV {
 }
 #[repr(C)]
 pub struct AccelerationStructureTrianglesDisplacementMicromapNV {
-    s_type: crate::vk::StructureType,
-    p_next: *mut core::ffi::c_void,
-    displacement_bias_and_scale_format: crate::vk::Format,
-    displacement_vector_format: crate::vk::Format,
-    displacement_bias_and_scale_buffer: crate::vk::DeviceOrHostAddressConstKHR,
-    displacement_bias_and_scale_stride: crate::vk::DeviceSize,
-    displacement_vector_buffer: crate::vk::DeviceOrHostAddressConstKHR,
-    displacement_vector_stride: crate::vk::DeviceSize,
-    displaced_micromap_primitive_flags: crate::vk::DeviceOrHostAddressConstKHR,
-    displaced_micromap_primitive_flags_stride: crate::vk::DeviceSize,
-    index_type: crate::vk::IndexType,
-    index_buffer: crate::vk::DeviceOrHostAddressConstKHR,
-    index_stride: crate::vk::DeviceSize,
-    base_triangle: crate::External<
+    pub s_type: crate::vk::StructureType,
+    pub p_next: *mut core::ffi::c_void,
+    pub displacement_bias_and_scale_format: crate::vk::Format,
+    pub displacement_vector_format: crate::vk::Format,
+    pub displacement_bias_and_scale_buffer: crate::vk::DeviceOrHostAddressConstKHR,
+    pub displacement_bias_and_scale_stride: crate::vk::DeviceSize,
+    pub displacement_vector_buffer: crate::vk::DeviceOrHostAddressConstKHR,
+    pub displacement_vector_stride: crate::vk::DeviceSize,
+    pub displaced_micromap_primitive_flags: crate::vk::DeviceOrHostAddressConstKHR,
+    pub displaced_micromap_primitive_flags_stride: crate::vk::DeviceSize,
+    pub index_type: crate::vk::IndexType,
+    pub index_buffer: crate::vk::DeviceOrHostAddressConstKHR,
+    pub index_stride: crate::vk::DeviceSize,
+    pub base_triangle: crate::External<
         {
             "uint32_t";
             0
         },
     >,
-    usage_counts_count: crate::External<
+    pub usage_counts_count: crate::External<
         {
             "uint32_t";
             0
         },
     >,
-    p_usage_counts: *const crate::vk::MicromapUsageEXT,
-    pp_usage_counts: *const *const crate::vk::MicromapUsageEXT,
-    micromap: crate::vk::MicromapEXT,
+    pub p_usage_counts: *const crate::vk::MicromapUsageEXT,
+    pub pp_usage_counts: *const *const crate::vk::MicromapUsageEXT,
+    pub micromap: crate::vk::MicromapEXT,
 }
 #[repr(C)]
 pub struct DisplacementMicromapFormatNV {}

@@ -3,21 +3,21 @@
 //![Vulkan Manual Page](https://docs.vulkan.org/refpages/latest/refpages/source/VK_KHR_present_id2.html) · Vulkan extension
 #[repr(C)]
 pub struct PhysicalDevicePresentId2FeaturesKHR {
-    s_type: crate::vk::StructureType,
-    p_next: *mut core::ffi::c_void,
-    present_id2: crate::vk::Bool32,
+    pub s_type: crate::vk::StructureType,
+    pub p_next: *mut core::ffi::c_void,
+    pub present_id2: crate::vk::Bool32,
 }
 #[repr(C)]
 pub struct PresentId2KHR {
-    s_type: crate::vk::StructureType,
-    p_next: *const core::ffi::c_void,
-    swapchain_count: crate::External<
+    pub s_type: crate::vk::StructureType,
+    pub p_next: *const core::ffi::c_void,
+    pub swapchain_count: crate::External<
         {
             "uint32_t";
             0
         },
     >,
-    p_present_ids: *const crate::External<
+    pub p_present_ids: *const crate::External<
         {
             "uint64_t";
             0
@@ -26,7 +26,7 @@ pub struct PresentId2KHR {
 }
 #[repr(C)]
 pub struct SurfaceCapabilitiesPresentId2KHR {
-    s_type: crate::vk::StructureType,
-    p_next: *mut core::ffi::c_void,
-    present_id2_supported: crate::vk::Bool32,
+    pub s_type: crate::vk::StructureType,
+    pub p_next: *mut core::ffi::c_void,
+    pub present_id2_supported: crate::vk::Bool32,
 }

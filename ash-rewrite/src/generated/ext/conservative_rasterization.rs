@@ -3,40 +3,40 @@
 //![Vulkan Manual Page](https://docs.vulkan.org/refpages/latest/refpages/source/VK_EXT_conservative_rasterization.html) · Vulkan extension
 #[repr(C)]
 pub struct PhysicalDeviceConservativeRasterizationPropertiesEXT {
-    s_type: crate::vk::StructureType,
-    p_next: *mut core::ffi::c_void,
-    primitive_overestimation_size: crate::External<
+    pub s_type: crate::vk::StructureType,
+    pub p_next: *mut core::ffi::c_void,
+    pub primitive_overestimation_size: crate::External<
         {
             "float";
             0
         },
     >,
-    max_extra_primitive_overestimation_size: crate::External<
+    pub max_extra_primitive_overestimation_size: crate::External<
         {
             "float";
             0
         },
     >,
-    extra_primitive_overestimation_size_granularity: crate::External<
+    pub extra_primitive_overestimation_size_granularity: crate::External<
         {
             "float";
             0
         },
     >,
-    primitive_underestimation: crate::vk::Bool32,
-    conservative_point_and_line_rasterization: crate::vk::Bool32,
-    degenerate_triangles_rasterized: crate::vk::Bool32,
-    degenerate_lines_rasterized: crate::vk::Bool32,
-    fully_covered_fragment_shader_input_variable: crate::vk::Bool32,
-    conservative_rasterization_post_depth_coverage: crate::vk::Bool32,
+    pub primitive_underestimation: crate::vk::Bool32,
+    pub conservative_point_and_line_rasterization: crate::vk::Bool32,
+    pub degenerate_triangles_rasterized: crate::vk::Bool32,
+    pub degenerate_lines_rasterized: crate::vk::Bool32,
+    pub fully_covered_fragment_shader_input_variable: crate::vk::Bool32,
+    pub conservative_rasterization_post_depth_coverage: crate::vk::Bool32,
 }
 #[repr(C)]
 pub struct PipelineRasterizationConservativeStateCreateInfoEXT {
-    s_type: crate::vk::StructureType,
-    p_next: *const core::ffi::c_void,
-    flags: crate::vk::PipelineRasterizationConservativeStateCreateFlagsEXT,
-    conservative_rasterization_mode: crate::vk::ConservativeRasterizationModeEXT,
-    extra_primitive_overestimation_size: crate::External<
+    pub s_type: crate::vk::StructureType,
+    pub p_next: *const core::ffi::c_void,
+    pub flags: crate::vk::PipelineRasterizationConservativeStateCreateFlagsEXT,
+    pub conservative_rasterization_mode: crate::vk::ConservativeRasterizationModeEXT,
+    pub extra_primitive_overestimation_size: crate::External<
         {
             "float";
             0
@@ -45,3 +45,5 @@ pub struct PipelineRasterizationConservativeStateCreateInfoEXT {
 }
 #[repr(C)]
 pub struct ConservativeRasterizationModeEXT {}
+#[repr(C)]
+pub struct PipelineRasterizationConservativeStateCreateFlagsEXT {}

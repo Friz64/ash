@@ -3,31 +3,31 @@
 //![Vulkan Manual Page](https://docs.vulkan.org/refpages/latest/refpages/source/VK_KHR_incremental_present.html) · Vulkan extension
 #[repr(C)]
 pub struct PresentRegionsKHR {
-    s_type: crate::vk::StructureType,
-    p_next: *const core::ffi::c_void,
-    swapchain_count: crate::External<
+    pub s_type: crate::vk::StructureType,
+    pub p_next: *const core::ffi::c_void,
+    pub swapchain_count: crate::External<
         {
             "uint32_t";
             0
         },
     >,
-    p_regions: *const crate::vk::PresentRegionKHR,
+    pub p_regions: *const crate::vk::PresentRegionKHR,
 }
 #[repr(C)]
 pub struct PresentRegionKHR {
-    rectangle_count: crate::External<
+    pub rectangle_count: crate::External<
         {
             "uint32_t";
             0
         },
     >,
-    p_rectangles: *const crate::vk::RectLayerKHR,
+    pub p_rectangles: *const crate::vk::RectLayerKHR,
 }
 #[repr(C)]
 pub struct RectLayerKHR {
-    offset: crate::vk::Offset2D,
-    extent: crate::vk::Extent2D,
-    layer: crate::External<
+    pub offset: crate::vk::Offset2D,
+    pub extent: crate::vk::Extent2D,
+    pub layer: crate::External<
         {
             "uint32_t";
             0

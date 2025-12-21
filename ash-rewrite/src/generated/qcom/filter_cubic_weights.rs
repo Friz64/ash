@@ -3,21 +3,21 @@
 //![Vulkan Manual Page](https://docs.vulkan.org/refpages/latest/refpages/source/VK_QCOM_filter_cubic_weights.html) · Vulkan extension
 #[repr(C)]
 pub struct PhysicalDeviceCubicWeightsFeaturesQCOM {
-    s_type: crate::vk::StructureType,
-    p_next: *mut core::ffi::c_void,
-    selectable_cubic_weights: crate::vk::Bool32,
+    pub s_type: crate::vk::StructureType,
+    pub p_next: *mut core::ffi::c_void,
+    pub selectable_cubic_weights: crate::vk::Bool32,
 }
 #[repr(C)]
 pub struct SamplerCubicWeightsCreateInfoQCOM {
-    s_type: crate::vk::StructureType,
-    p_next: *const core::ffi::c_void,
-    cubic_weights: crate::vk::CubicFilterWeightsQCOM,
+    pub s_type: crate::vk::StructureType,
+    pub p_next: *const core::ffi::c_void,
+    pub cubic_weights: crate::vk::CubicFilterWeightsQCOM,
 }
 #[repr(C)]
 pub struct BlitImageCubicWeightsInfoQCOM {
-    s_type: crate::vk::StructureType,
-    p_next: *const core::ffi::c_void,
-    cubic_weights: crate::vk::CubicFilterWeightsQCOM,
+    pub s_type: crate::vk::StructureType,
+    pub p_next: *const core::ffi::c_void,
+    pub cubic_weights: crate::vk::CubicFilterWeightsQCOM,
 }
 #[repr(C)]
 pub struct CubicFilterWeightsQCOM {}

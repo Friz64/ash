@@ -3,15 +3,15 @@
 //![Vulkan Manual Page](https://docs.vulkan.org/refpages/latest/refpages/source/VK_KHR_present_wait2.html) · Vulkan extension
 #[repr(C)]
 pub struct PresentWait2InfoKHR {
-    s_type: crate::vk::StructureType,
-    p_next: *const core::ffi::c_void,
-    present_id: crate::External<
+    pub s_type: crate::vk::StructureType,
+    pub p_next: *const core::ffi::c_void,
+    pub present_id: crate::External<
         {
             "uint64_t";
             0
         },
     >,
-    timeout: crate::External<
+    pub timeout: crate::External<
         {
             "uint64_t";
             0
@@ -20,13 +20,13 @@ pub struct PresentWait2InfoKHR {
 }
 #[repr(C)]
 pub struct PhysicalDevicePresentWait2FeaturesKHR {
-    s_type: crate::vk::StructureType,
-    p_next: *mut core::ffi::c_void,
-    present_wait2: crate::vk::Bool32,
+    pub s_type: crate::vk::StructureType,
+    pub p_next: *mut core::ffi::c_void,
+    pub present_wait2: crate::vk::Bool32,
 }
 #[repr(C)]
 pub struct SurfaceCapabilitiesPresentWait2KHR {
-    s_type: crate::vk::StructureType,
-    p_next: *mut core::ffi::c_void,
-    present_wait2_supported: crate::vk::Bool32,
+    pub s_type: crate::vk::StructureType,
+    pub p_next: *mut core::ffi::c_void,
+    pub present_wait2_supported: crate::vk::Bool32,
 }

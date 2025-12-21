@@ -3,16 +3,16 @@
 //![Vulkan Manual Page](https://docs.vulkan.org/refpages/latest/refpages/source/VK_NVX_image_view_handle.html) · Vulkan extension
 #[repr(C)]
 pub struct ImageViewHandleInfoNVX {
-    s_type: crate::vk::StructureType,
-    p_next: *const core::ffi::c_void,
-    image_view: crate::vk::ImageView,
-    descriptor_type: crate::vk::DescriptorType,
-    sampler: crate::vk::Sampler,
+    pub s_type: crate::vk::StructureType,
+    pub p_next: *const core::ffi::c_void,
+    pub image_view: crate::vk::ImageView,
+    pub descriptor_type: crate::vk::DescriptorType,
+    pub sampler: crate::vk::Sampler,
 }
 #[repr(C)]
 pub struct ImageViewAddressPropertiesNVX {
-    s_type: crate::vk::StructureType,
-    p_next: *mut core::ffi::c_void,
-    device_address: crate::vk::DeviceAddress,
-    size: crate::vk::DeviceSize,
+    pub s_type: crate::vk::StructureType,
+    pub p_next: *mut core::ffi::c_void,
+    pub device_address: crate::vk::DeviceAddress,
+    pub size: crate::vk::DeviceSize,
 }

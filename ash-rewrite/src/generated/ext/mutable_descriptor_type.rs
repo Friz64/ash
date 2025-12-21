@@ -3,29 +3,29 @@
 //![Vulkan Manual Page](https://docs.vulkan.org/refpages/latest/refpages/source/VK_EXT_mutable_descriptor_type.html) · Vulkan extension
 #[repr(C)]
 pub struct PhysicalDeviceMutableDescriptorTypeFeaturesEXT {
-    s_type: crate::vk::StructureType,
-    p_next: *mut core::ffi::c_void,
-    mutable_descriptor_type: crate::vk::Bool32,
+    pub s_type: crate::vk::StructureType,
+    pub p_next: *mut core::ffi::c_void,
+    pub mutable_descriptor_type: crate::vk::Bool32,
 }
 #[repr(C)]
 pub struct MutableDescriptorTypeListEXT {
-    descriptor_type_count: crate::External<
+    pub descriptor_type_count: crate::External<
         {
             "uint32_t";
             0
         },
     >,
-    p_descriptor_types: *const crate::vk::DescriptorType,
+    pub p_descriptor_types: *const crate::vk::DescriptorType,
 }
 #[repr(C)]
 pub struct MutableDescriptorTypeCreateInfoEXT {
-    s_type: crate::vk::StructureType,
-    p_next: *const core::ffi::c_void,
-    mutable_descriptor_type_list_count: crate::External<
+    pub s_type: crate::vk::StructureType,
+    pub p_next: *const core::ffi::c_void,
+    pub mutable_descriptor_type_list_count: crate::External<
         {
             "uint32_t";
             0
         },
     >,
-    p_mutable_descriptor_type_lists: *const crate::vk::MutableDescriptorTypeListEXT,
+    pub p_mutable_descriptor_type_lists: *const crate::vk::MutableDescriptorTypeListEXT,
 }

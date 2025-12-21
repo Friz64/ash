@@ -3,7 +3,7 @@
 //![Vulkan Manual Page](https://docs.vulkan.org/refpages/latest/refpages/source/VK_KHR_shared_presentable_image.html) · Vulkan extension
 #[repr(C)]
 pub struct SharedPresentSurfaceCapabilitiesKHR {
-    s_type: crate::vk::StructureType,
-    p_next: *mut core::ffi::c_void,
-    shared_present_supported_usage_flags: crate::vk::ImageUsageFlags,
+    pub s_type: crate::vk::StructureType,
+    pub p_next: *mut core::ffi::c_void,
+    pub shared_present_supported_usage_flags: crate::vk::ImageUsageFlags,
 }

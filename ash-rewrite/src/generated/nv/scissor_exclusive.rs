@@ -3,19 +3,19 @@
 //![Vulkan Manual Page](https://docs.vulkan.org/refpages/latest/refpages/source/VK_NV_scissor_exclusive.html) · Vulkan extension
 #[repr(C)]
 pub struct PhysicalDeviceExclusiveScissorFeaturesNV {
-    s_type: crate::vk::StructureType,
-    p_next: *mut core::ffi::c_void,
-    exclusive_scissor: crate::vk::Bool32,
+    pub s_type: crate::vk::StructureType,
+    pub p_next: *mut core::ffi::c_void,
+    pub exclusive_scissor: crate::vk::Bool32,
 }
 #[repr(C)]
 pub struct PipelineViewportExclusiveScissorStateCreateInfoNV {
-    s_type: crate::vk::StructureType,
-    p_next: *const core::ffi::c_void,
-    exclusive_scissor_count: crate::External<
+    pub s_type: crate::vk::StructureType,
+    pub p_next: *const core::ffi::c_void,
+    pub exclusive_scissor_count: crate::External<
         {
             "uint32_t";
             0
         },
     >,
-    p_exclusive_scissors: *const crate::vk::Rect2D,
+    pub p_exclusive_scissors: *const crate::vk::Rect2D,
 }

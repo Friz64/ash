@@ -3,32 +3,32 @@
 //![Vulkan Manual Page](https://docs.vulkan.org/refpages/latest/refpages/source/VK_EXT_device_fault.html) · Vulkan extension
 #[repr(C)]
 pub struct PhysicalDeviceFaultFeaturesEXT {
-    s_type: crate::vk::StructureType,
-    p_next: *mut core::ffi::c_void,
-    device_fault: crate::vk::Bool32,
-    device_fault_vendor_binary: crate::vk::Bool32,
+    pub s_type: crate::vk::StructureType,
+    pub p_next: *mut core::ffi::c_void,
+    pub device_fault: crate::vk::Bool32,
+    pub device_fault_vendor_binary: crate::vk::Bool32,
 }
 #[repr(C)]
 pub struct DeviceFaultAddressInfoEXT {
-    address_type: crate::vk::DeviceFaultAddressTypeEXT,
-    reported_address: crate::vk::DeviceAddress,
-    address_precision: crate::vk::DeviceSize,
+    pub address_type: crate::vk::DeviceFaultAddressTypeEXT,
+    pub reported_address: crate::vk::DeviceAddress,
+    pub address_precision: crate::vk::DeviceSize,
 }
 #[repr(C)]
 pub struct DeviceFaultVendorInfoEXT {
-    description: [crate::External<
+    pub description: [crate::External<
         {
             "char";
             0
         },
     >; 1337],
-    vendor_fault_code: crate::External<
+    pub vendor_fault_code: crate::External<
         {
             "uint64_t";
             0
         },
     >,
-    vendor_fault_data: crate::External<
+    pub vendor_fault_data: crate::External<
         {
             "uint64_t";
             0
@@ -37,94 +37,94 @@ pub struct DeviceFaultVendorInfoEXT {
 }
 #[repr(C)]
 pub struct DeviceFaultCountsEXT {
-    s_type: crate::vk::StructureType,
-    p_next: *mut core::ffi::c_void,
-    address_info_count: crate::External<
+    pub s_type: crate::vk::StructureType,
+    pub p_next: *mut core::ffi::c_void,
+    pub address_info_count: crate::External<
         {
             "uint32_t";
             0
         },
     >,
-    vendor_info_count: crate::External<
+    pub vendor_info_count: crate::External<
         {
             "uint32_t";
             0
         },
     >,
-    vendor_binary_size: crate::vk::DeviceSize,
+    pub vendor_binary_size: crate::vk::DeviceSize,
 }
 #[repr(C)]
 pub struct DeviceFaultInfoEXT {
-    s_type: crate::vk::StructureType,
-    p_next: *mut core::ffi::c_void,
-    description: [crate::External<
+    pub s_type: crate::vk::StructureType,
+    pub p_next: *mut core::ffi::c_void,
+    pub description: [crate::External<
         {
             "char";
             0
         },
     >; 1337],
-    p_address_infos: *mut crate::vk::DeviceFaultAddressInfoEXT,
-    p_vendor_infos: *mut crate::vk::DeviceFaultVendorInfoEXT,
-    p_vendor_binary_data: *mut core::ffi::c_void,
+    pub p_address_infos: *mut crate::vk::DeviceFaultAddressInfoEXT,
+    pub p_vendor_infos: *mut crate::vk::DeviceFaultVendorInfoEXT,
+    pub p_vendor_binary_data: *mut core::ffi::c_void,
 }
 #[repr(C)]
 pub struct DeviceFaultVendorBinaryHeaderVersionOneEXT {
-    header_size: crate::External<
+    pub header_size: crate::External<
         {
             "uint32_t";
             0
         },
     >,
-    header_version: crate::vk::DeviceFaultVendorBinaryHeaderVersionEXT,
-    vendor_id: crate::External<
+    pub header_version: crate::vk::DeviceFaultVendorBinaryHeaderVersionEXT,
+    pub vendor_id: crate::External<
         {
             "uint32_t";
             0
         },
     >,
-    device_id: crate::External<
+    pub device_id: crate::External<
         {
             "uint32_t";
             0
         },
     >,
-    driver_version: crate::External<
+    pub driver_version: crate::External<
         {
             "uint32_t";
             0
         },
     >,
-    pipeline_cache_uuid: [crate::External<
+    pub pipeline_cache_uuid: [crate::External<
         {
             "uint8_t";
             0
         },
     >; 1337],
-    application_name_offset: crate::External<
+    pub application_name_offset: crate::External<
         {
             "uint32_t";
             0
         },
     >,
-    application_version: crate::External<
+    pub application_version: crate::External<
         {
             "uint32_t";
             0
         },
     >,
-    engine_name_offset: crate::External<
+    pub engine_name_offset: crate::External<
         {
             "uint32_t";
             0
         },
     >,
-    engine_version: crate::External<
+    pub engine_version: crate::External<
         {
             "uint32_t";
             0
         },
     >,
-    api_version: crate::External<
+    pub api_version: crate::External<
         {
             "uint32_t";
             0

@@ -3,15 +3,15 @@
 //![Vulkan Manual Page](https://docs.vulkan.org/refpages/latest/refpages/source/VK_ANDROID_external_memory_android_hardware_buffer.html) · Vulkan extension
 #[repr(C)]
 pub struct ImportAndroidHardwareBufferInfoANDROID {
-    s_type: crate::vk::StructureType,
-    p_next: *const core::ffi::c_void,
-    buffer: *mut crate::vk::AHardwareBuffer,
+    pub s_type: crate::vk::StructureType,
+    pub p_next: *const core::ffi::c_void,
+    pub buffer: *mut crate::vk::AHardwareBuffer,
 }
 #[repr(C)]
 pub struct AndroidHardwareBufferUsageANDROID {
-    s_type: crate::vk::StructureType,
-    p_next: *mut core::ffi::c_void,
-    android_hardware_buffer_usage: crate::External<
+    pub s_type: crate::vk::StructureType,
+    pub p_next: *mut core::ffi::c_void,
+    pub android_hardware_buffer_usage: crate::External<
         {
             "uint64_t";
             0
@@ -20,10 +20,10 @@ pub struct AndroidHardwareBufferUsageANDROID {
 }
 #[repr(C)]
 pub struct AndroidHardwareBufferPropertiesANDROID {
-    s_type: crate::vk::StructureType,
-    p_next: *mut core::ffi::c_void,
-    allocation_size: crate::vk::DeviceSize,
-    memory_type_bits: crate::External<
+    pub s_type: crate::vk::StructureType,
+    pub p_next: *mut core::ffi::c_void,
+    pub allocation_size: crate::vk::DeviceSize,
+    pub memory_type_bits: crate::External<
         {
             "uint32_t";
             0
@@ -32,33 +32,33 @@ pub struct AndroidHardwareBufferPropertiesANDROID {
 }
 #[repr(C)]
 pub struct MemoryGetAndroidHardwareBufferInfoANDROID {
-    s_type: crate::vk::StructureType,
-    p_next: *const core::ffi::c_void,
-    memory: crate::vk::DeviceMemory,
+    pub s_type: crate::vk::StructureType,
+    pub p_next: *const core::ffi::c_void,
+    pub memory: crate::vk::DeviceMemory,
 }
 #[repr(C)]
 pub struct AndroidHardwareBufferFormatPropertiesANDROID {
-    s_type: crate::vk::StructureType,
-    p_next: *mut core::ffi::c_void,
-    format: crate::vk::Format,
-    external_format: crate::External<
+    pub s_type: crate::vk::StructureType,
+    pub p_next: *mut core::ffi::c_void,
+    pub format: crate::vk::Format,
+    pub external_format: crate::External<
         {
             "uint64_t";
             0
         },
     >,
-    format_features: crate::vk::FormatFeatureFlags,
-    sampler_ycbcr_conversion_components: crate::vk::ComponentMapping,
-    suggested_ycbcr_model: crate::vk::SamplerYcbcrModelConversion,
-    suggested_ycbcr_range: crate::vk::SamplerYcbcrRange,
-    suggested_x_chroma_offset: crate::vk::ChromaLocation,
-    suggested_y_chroma_offset: crate::vk::ChromaLocation,
+    pub format_features: crate::vk::FormatFeatureFlags,
+    pub sampler_ycbcr_conversion_components: crate::vk::ComponentMapping,
+    pub suggested_ycbcr_model: crate::vk::SamplerYcbcrModelConversion,
+    pub suggested_ycbcr_range: crate::vk::SamplerYcbcrRange,
+    pub suggested_x_chroma_offset: crate::vk::ChromaLocation,
+    pub suggested_y_chroma_offset: crate::vk::ChromaLocation,
 }
 #[repr(C)]
 pub struct ExternalFormatANDROID {
-    s_type: crate::vk::StructureType,
-    p_next: *mut core::ffi::c_void,
-    external_format: crate::External<
+    pub s_type: crate::vk::StructureType,
+    pub p_next: *mut core::ffi::c_void,
+    pub external_format: crate::External<
         {
             "uint64_t";
             0
@@ -67,21 +67,21 @@ pub struct ExternalFormatANDROID {
 }
 #[repr(C)]
 pub struct AndroidHardwareBufferFormatProperties2ANDROID {
-    s_type: crate::vk::StructureType,
-    p_next: *mut core::ffi::c_void,
-    format: crate::vk::Format,
-    external_format: crate::External<
+    pub s_type: crate::vk::StructureType,
+    pub p_next: *mut core::ffi::c_void,
+    pub format: crate::vk::Format,
+    pub external_format: crate::External<
         {
             "uint64_t";
             0
         },
     >,
-    format_features: crate::vk::FormatFeatureFlags2,
-    sampler_ycbcr_conversion_components: crate::vk::ComponentMapping,
-    suggested_ycbcr_model: crate::vk::SamplerYcbcrModelConversion,
-    suggested_ycbcr_range: crate::vk::SamplerYcbcrRange,
-    suggested_x_chroma_offset: crate::vk::ChromaLocation,
-    suggested_y_chroma_offset: crate::vk::ChromaLocation,
+    pub format_features: crate::vk::FormatFeatureFlags2,
+    pub sampler_ycbcr_conversion_components: crate::vk::ComponentMapping,
+    pub suggested_ycbcr_model: crate::vk::SamplerYcbcrModelConversion,
+    pub suggested_ycbcr_range: crate::vk::SamplerYcbcrRange,
+    pub suggested_x_chroma_offset: crate::vk::ChromaLocation,
+    pub suggested_y_chroma_offset: crate::vk::ChromaLocation,
 }
 #[repr(C)]
 pub struct AHardwareBuffer {}

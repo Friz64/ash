@@ -3,39 +3,39 @@
 //![Vulkan Manual Page](https://docs.vulkan.org/refpages/latest/refpages/source/VK_EXT_device_memory_report.html) · Vulkan extension
 #[repr(C)]
 pub struct PhysicalDeviceDeviceMemoryReportFeaturesEXT {
-    s_type: crate::vk::StructureType,
-    p_next: *mut core::ffi::c_void,
-    device_memory_report: crate::vk::Bool32,
+    pub s_type: crate::vk::StructureType,
+    pub p_next: *mut core::ffi::c_void,
+    pub device_memory_report: crate::vk::Bool32,
 }
 #[repr(C)]
 pub struct DeviceDeviceMemoryReportCreateInfoEXT {
-    s_type: crate::vk::StructureType,
-    p_next: *const core::ffi::c_void,
-    flags: crate::vk::DeviceMemoryReportFlagsEXT,
-    pfn_user_callback: crate::vk::PFN_vkDeviceMemoryReportCallbackEXT,
-    p_user_data: *mut core::ffi::c_void,
+    pub s_type: crate::vk::StructureType,
+    pub p_next: *const core::ffi::c_void,
+    pub flags: crate::vk::DeviceMemoryReportFlagsEXT,
+    pub pfn_user_callback: crate::vk::PFN_vkDeviceMemoryReportCallbackEXT,
+    pub p_user_data: *mut core::ffi::c_void,
 }
 #[repr(C)]
 pub struct DeviceMemoryReportCallbackDataEXT {
-    s_type: crate::vk::StructureType,
-    p_next: *mut core::ffi::c_void,
-    flags: crate::vk::DeviceMemoryReportFlagsEXT,
-    _type: crate::vk::DeviceMemoryReportEventTypeEXT,
-    memory_object_id: crate::External<
+    pub s_type: crate::vk::StructureType,
+    pub p_next: *mut core::ffi::c_void,
+    pub flags: crate::vk::DeviceMemoryReportFlagsEXT,
+    pub _type: crate::vk::DeviceMemoryReportEventTypeEXT,
+    pub memory_object_id: crate::External<
         {
             "uint64_t";
             0
         },
     >,
-    size: crate::vk::DeviceSize,
-    object_type: crate::vk::ObjectType,
-    object_handle: crate::External<
+    pub size: crate::vk::DeviceSize,
+    pub object_type: crate::vk::ObjectType,
+    pub object_handle: crate::External<
         {
             "uint64_t";
             0
         },
     >,
-    heap_index: crate::External<
+    pub heap_index: crate::External<
         {
             "uint32_t";
             0
@@ -44,3 +44,7 @@ pub struct DeviceMemoryReportCallbackDataEXT {
 }
 #[repr(C)]
 pub struct DeviceMemoryReportEventTypeEXT {}
+#[repr(C)]
+pub struct DeviceMemoryReportFlagsEXT {}
+#[repr(C)]
+pub struct PFN_vkDeviceMemoryReportCallbackEXT {}

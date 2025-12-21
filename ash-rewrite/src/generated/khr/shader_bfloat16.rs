@@ -3,9 +3,9 @@
 //![Vulkan Manual Page](https://docs.vulkan.org/refpages/latest/refpages/source/VK_KHR_shader_bfloat16.html) · Vulkan extension
 #[repr(C)]
 pub struct PhysicalDeviceShaderBfloat16FeaturesKHR {
-    s_type: crate::vk::StructureType,
-    p_next: *mut core::ffi::c_void,
-    shader_b_float16_type: crate::vk::Bool32,
-    shader_b_float16_dot_product: crate::vk::Bool32,
-    shader_b_float16_cooperative_matrix: crate::vk::Bool32,
+    pub s_type: crate::vk::StructureType,
+    pub p_next: *mut core::ffi::c_void,
+    pub shader_b_float16_type: crate::vk::Bool32,
+    pub shader_b_float16_dot_product: crate::vk::Bool32,
+    pub shader_b_float16_cooperative_matrix: crate::vk::Bool32,
 }

@@ -3,23 +3,26 @@
 //![Vulkan Manual Page](https://docs.vulkan.org/refpages/latest/refpages/source/VK_NV_framebuffer_mixed_samples.html) · Vulkan extension
 #[repr(C)]
 pub struct PipelineCoverageModulationStateCreateInfoNV {
-    s_type: crate::vk::StructureType,
-    p_next: *const core::ffi::c_void,
-    flags: crate::vk::PipelineCoverageModulationStateCreateFlagsNV,
-    coverage_modulation_mode: crate::vk::CoverageModulationModeNV,
-    coverage_modulation_table_enable: crate::vk::Bool32,
-    coverage_modulation_table_count: crate::External<
+    pub s_type: crate::vk::StructureType,
+    pub p_next: *const core::ffi::c_void,
+    pub flags: crate::vk::PipelineCoverageModulationStateCreateFlagsNV,
+    pub coverage_modulation_mode: crate::vk::CoverageModulationModeNV,
+    pub coverage_modulation_table_enable: crate::vk::Bool32,
+    pub coverage_modulation_table_count: crate::External<
         {
             "uint32_t";
             0
         },
     >,
-    p_coverage_modulation_table: *const crate::External<
+    pub p_coverage_modulation_table: *const crate::External<
         {
             "float";
             0
         },
     >,
 }
+pub type AttachmentSampleCountInfoNV = crate::vk::AttachmentSampleCountInfoAMD;
 #[repr(C)]
 pub struct CoverageModulationModeNV {}
+#[repr(C)]
+pub struct PipelineCoverageModulationStateCreateFlagsNV {}

@@ -3,29 +3,37 @@
 //![Vulkan Manual Page](https://docs.vulkan.org/refpages/latest/refpages/source/VK_KHR_surface_maintenance1.html) · Vulkan extension
 #[repr(C)]
 pub struct SurfacePresentModeKHR {
-    s_type: crate::vk::StructureType,
-    p_next: *mut core::ffi::c_void,
-    present_mode: crate::vk::PresentModeKHR,
+    pub s_type: crate::vk::StructureType,
+    pub p_next: *mut core::ffi::c_void,
+    pub present_mode: crate::vk::PresentModeKHR,
 }
 #[repr(C)]
 pub struct SurfacePresentScalingCapabilitiesKHR {
-    s_type: crate::vk::StructureType,
-    p_next: *mut core::ffi::c_void,
-    supported_present_scaling: crate::vk::PresentScalingFlagsKHR,
-    supported_present_gravity_x: crate::vk::PresentGravityFlagsKHR,
-    supported_present_gravity_y: crate::vk::PresentGravityFlagsKHR,
-    min_scaled_image_extent: crate::vk::Extent2D,
-    max_scaled_image_extent: crate::vk::Extent2D,
+    pub s_type: crate::vk::StructureType,
+    pub p_next: *mut core::ffi::c_void,
+    pub supported_present_scaling: crate::vk::PresentScalingFlagsKHR,
+    pub supported_present_gravity_x: crate::vk::PresentGravityFlagsKHR,
+    pub supported_present_gravity_y: crate::vk::PresentGravityFlagsKHR,
+    pub min_scaled_image_extent: crate::vk::Extent2D,
+    pub max_scaled_image_extent: crate::vk::Extent2D,
 }
 #[repr(C)]
 pub struct SurfacePresentModeCompatibilityKHR {
-    s_type: crate::vk::StructureType,
-    p_next: *mut core::ffi::c_void,
-    present_mode_count: crate::External<
+    pub s_type: crate::vk::StructureType,
+    pub p_next: *mut core::ffi::c_void,
+    pub present_mode_count: crate::External<
         {
             "uint32_t";
             0
         },
     >,
-    p_present_modes: *mut crate::vk::PresentModeKHR,
+    pub p_present_modes: *mut crate::vk::PresentModeKHR,
 }
+#[repr(C)]
+pub struct PresentScalingFlagsKHR {}
+#[repr(C)]
+pub struct PresentGravityFlagsKHR {}
+#[repr(C)]
+pub struct PresentScalingFlagBitsKHR {}
+#[repr(C)]
+pub struct PresentGravityFlagBitsKHR {}

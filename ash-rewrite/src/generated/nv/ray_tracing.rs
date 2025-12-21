@@ -3,28 +3,28 @@
 //![Vulkan Manual Page](https://docs.vulkan.org/refpages/latest/refpages/source/VK_NV_ray_tracing.html) · Vulkan extension
 #[repr(C)]
 pub struct RayTracingShaderGroupCreateInfoNV {
-    s_type: crate::vk::StructureType,
-    p_next: *const core::ffi::c_void,
-    _type: crate::vk::RayTracingShaderGroupTypeKHR,
-    general_shader: crate::External<
+    pub s_type: crate::vk::StructureType,
+    pub p_next: *const core::ffi::c_void,
+    pub _type: crate::vk::RayTracingShaderGroupTypeKHR,
+    pub general_shader: crate::External<
         {
             "uint32_t";
             0
         },
     >,
-    closest_hit_shader: crate::External<
+    pub closest_hit_shader: crate::External<
         {
             "uint32_t";
             0
         },
     >,
-    any_hit_shader: crate::External<
+    pub any_hit_shader: crate::External<
         {
             "uint32_t";
             0
         },
     >,
-    intersection_shader: crate::External<
+    pub intersection_shader: crate::External<
         {
             "uint32_t";
             0
@@ -33,32 +33,32 @@ pub struct RayTracingShaderGroupCreateInfoNV {
 }
 #[repr(C)]
 pub struct RayTracingPipelineCreateInfoNV {
-    s_type: crate::vk::StructureType,
-    p_next: *const core::ffi::c_void,
-    flags: crate::vk::PipelineCreateFlags,
-    stage_count: crate::External<
+    pub s_type: crate::vk::StructureType,
+    pub p_next: *const core::ffi::c_void,
+    pub flags: crate::vk::PipelineCreateFlags,
+    pub stage_count: crate::External<
         {
             "uint32_t";
             0
         },
     >,
-    p_stages: *const crate::vk::PipelineShaderStageCreateInfo,
-    group_count: crate::External<
+    pub p_stages: *const crate::vk::PipelineShaderStageCreateInfo,
+    pub group_count: crate::External<
         {
             "uint32_t";
             0
         },
     >,
-    p_groups: *const crate::vk::RayTracingShaderGroupCreateInfoNV,
-    max_recursion_depth: crate::External<
+    pub p_groups: *const crate::vk::RayTracingShaderGroupCreateInfoNV,
+    pub max_recursion_depth: crate::External<
         {
             "uint32_t";
             0
         },
     >,
-    layout: crate::vk::PipelineLayout,
-    base_pipeline_handle: crate::vk::Pipeline,
-    base_pipeline_index: crate::External<
+    pub layout: crate::vk::PipelineLayout,
+    pub base_pipeline_handle: crate::vk::Pipeline,
+    pub base_pipeline_index: crate::External<
         {
             "int32_t";
             0
@@ -67,103 +67,103 @@ pub struct RayTracingPipelineCreateInfoNV {
 }
 #[repr(C)]
 pub struct GeometryTrianglesNV {
-    s_type: crate::vk::StructureType,
-    p_next: *const core::ffi::c_void,
-    vertex_data: crate::vk::Buffer,
-    vertex_offset: crate::vk::DeviceSize,
-    vertex_count: crate::External<
+    pub s_type: crate::vk::StructureType,
+    pub p_next: *const core::ffi::c_void,
+    pub vertex_data: crate::vk::Buffer,
+    pub vertex_offset: crate::vk::DeviceSize,
+    pub vertex_count: crate::External<
         {
             "uint32_t";
             0
         },
     >,
-    vertex_stride: crate::vk::DeviceSize,
-    vertex_format: crate::vk::Format,
-    index_data: crate::vk::Buffer,
-    index_offset: crate::vk::DeviceSize,
-    index_count: crate::External<
+    pub vertex_stride: crate::vk::DeviceSize,
+    pub vertex_format: crate::vk::Format,
+    pub index_data: crate::vk::Buffer,
+    pub index_offset: crate::vk::DeviceSize,
+    pub index_count: crate::External<
         {
             "uint32_t";
             0
         },
     >,
-    index_type: crate::vk::IndexType,
-    transform_data: crate::vk::Buffer,
-    transform_offset: crate::vk::DeviceSize,
+    pub index_type: crate::vk::IndexType,
+    pub transform_data: crate::vk::Buffer,
+    pub transform_offset: crate::vk::DeviceSize,
 }
 #[repr(C)]
 pub struct GeometryAABBNV {
-    s_type: crate::vk::StructureType,
-    p_next: *const core::ffi::c_void,
-    aabb_data: crate::vk::Buffer,
-    num_aab_bs: crate::External<
+    pub s_type: crate::vk::StructureType,
+    pub p_next: *const core::ffi::c_void,
+    pub aabb_data: crate::vk::Buffer,
+    pub num_aab_bs: crate::External<
         {
             "uint32_t";
             0
         },
     >,
-    stride: crate::External<
+    pub stride: crate::External<
         {
             "uint32_t";
             0
         },
     >,
-    offset: crate::vk::DeviceSize,
+    pub offset: crate::vk::DeviceSize,
 }
 #[repr(C)]
 pub struct GeometryDataNV {
-    triangles: crate::vk::GeometryTrianglesNV,
-    aabbs: crate::vk::GeometryAABBNV,
+    pub triangles: crate::vk::GeometryTrianglesNV,
+    pub aabbs: crate::vk::GeometryAABBNV,
 }
 #[repr(C)]
 pub struct GeometryNV {
-    s_type: crate::vk::StructureType,
-    p_next: *const core::ffi::c_void,
-    geometry_type: crate::vk::GeometryTypeKHR,
-    geometry: crate::vk::GeometryDataNV,
-    flags: crate::vk::GeometryFlagsKHR,
+    pub s_type: crate::vk::StructureType,
+    pub p_next: *const core::ffi::c_void,
+    pub geometry_type: crate::vk::GeometryTypeKHR,
+    pub geometry: crate::vk::GeometryDataNV,
+    pub flags: crate::vk::GeometryFlagsKHR,
 }
 #[repr(C)]
 pub struct AccelerationStructureInfoNV {
-    s_type: crate::vk::StructureType,
-    p_next: *const core::ffi::c_void,
-    _type: crate::vk::AccelerationStructureTypeNV,
-    flags: crate::vk::BuildAccelerationStructureFlagsNV,
-    instance_count: crate::External<
+    pub s_type: crate::vk::StructureType,
+    pub p_next: *const core::ffi::c_void,
+    pub _type: crate::vk::AccelerationStructureTypeNV,
+    pub flags: crate::vk::BuildAccelerationStructureFlagsNV,
+    pub instance_count: crate::External<
         {
             "uint32_t";
             0
         },
     >,
-    geometry_count: crate::External<
+    pub geometry_count: crate::External<
         {
             "uint32_t";
             0
         },
     >,
-    p_geometries: *const crate::vk::GeometryNV,
+    pub p_geometries: *const crate::vk::GeometryNV,
 }
 #[repr(C)]
 pub struct AccelerationStructureCreateInfoNV {
-    s_type: crate::vk::StructureType,
-    p_next: *const core::ffi::c_void,
-    compacted_size: crate::vk::DeviceSize,
-    info: crate::vk::AccelerationStructureInfoNV,
+    pub s_type: crate::vk::StructureType,
+    pub p_next: *const core::ffi::c_void,
+    pub compacted_size: crate::vk::DeviceSize,
+    pub info: crate::vk::AccelerationStructureInfoNV,
 }
 #[repr(C)]
 pub struct BindAccelerationStructureMemoryInfoNV {
-    s_type: crate::vk::StructureType,
-    p_next: *const core::ffi::c_void,
-    acceleration_structure: crate::vk::AccelerationStructureNV,
-    memory: crate::vk::DeviceMemory,
-    memory_offset: crate::vk::DeviceSize,
-    device_index_count: crate::External<
+    pub s_type: crate::vk::StructureType,
+    pub p_next: *const core::ffi::c_void,
+    pub acceleration_structure: crate::vk::AccelerationStructureNV,
+    pub memory: crate::vk::DeviceMemory,
+    pub memory_offset: crate::vk::DeviceSize,
+    pub device_index_count: crate::External<
         {
             "uint32_t";
             0
         },
     >,
-    p_device_indices: *const crate::External<
+    pub p_device_indices: *const crate::External<
         {
             "uint32_t";
             0
@@ -172,77 +172,91 @@ pub struct BindAccelerationStructureMemoryInfoNV {
 }
 #[repr(C)]
 pub struct WriteDescriptorSetAccelerationStructureNV {
-    s_type: crate::vk::StructureType,
-    p_next: *const core::ffi::c_void,
-    acceleration_structure_count: crate::External<
+    pub s_type: crate::vk::StructureType,
+    pub p_next: *const core::ffi::c_void,
+    pub acceleration_structure_count: crate::External<
         {
             "uint32_t";
             0
         },
     >,
-    p_acceleration_structures: *const crate::vk::AccelerationStructureNV,
+    pub p_acceleration_structures: *const crate::vk::AccelerationStructureNV,
 }
 #[repr(C)]
 pub struct AccelerationStructureMemoryRequirementsInfoNV {
-    s_type: crate::vk::StructureType,
-    p_next: *const core::ffi::c_void,
-    _type: crate::vk::AccelerationStructureMemoryRequirementsTypeNV,
-    acceleration_structure: crate::vk::AccelerationStructureNV,
+    pub s_type: crate::vk::StructureType,
+    pub p_next: *const core::ffi::c_void,
+    pub _type: crate::vk::AccelerationStructureMemoryRequirementsTypeNV,
+    pub acceleration_structure: crate::vk::AccelerationStructureNV,
 }
 #[repr(C)]
 pub struct PhysicalDeviceRayTracingPropertiesNV {
-    s_type: crate::vk::StructureType,
-    p_next: *mut core::ffi::c_void,
-    shader_group_handle_size: crate::External<
+    pub s_type: crate::vk::StructureType,
+    pub p_next: *mut core::ffi::c_void,
+    pub shader_group_handle_size: crate::External<
         {
             "uint32_t";
             0
         },
     >,
-    max_recursion_depth: crate::External<
+    pub max_recursion_depth: crate::External<
         {
             "uint32_t";
             0
         },
     >,
-    max_shader_group_stride: crate::External<
+    pub max_shader_group_stride: crate::External<
         {
             "uint32_t";
             0
         },
     >,
-    shader_group_base_alignment: crate::External<
+    pub shader_group_base_alignment: crate::External<
         {
             "uint32_t";
             0
         },
     >,
-    max_geometry_count: crate::External<
+    pub max_geometry_count: crate::External<
         {
             "uint64_t";
             0
         },
     >,
-    max_instance_count: crate::External<
+    pub max_instance_count: crate::External<
         {
             "uint64_t";
             0
         },
     >,
-    max_triangle_count: crate::External<
+    pub max_triangle_count: crate::External<
         {
             "uint64_t";
             0
         },
     >,
-    max_descriptor_set_acceleration_structures: crate::External<
+    pub max_descriptor_set_acceleration_structures: crate::External<
         {
             "uint32_t";
             0
         },
     >,
 }
+pub type MemoryRequirements2KHR = crate::vk::MemoryRequirements2;
+pub type AabbPositionsNV = crate::vk::AabbPositionsKHR;
+pub type TransformMatrixNV = crate::vk::TransformMatrixKHR;
+pub type AccelerationStructureInstanceNV = crate::vk::AccelerationStructureInstanceKHR;
 #[repr(C)]
 pub struct AccelerationStructureMemoryRequirementsTypeNV {}
+pub type GeometryFlagBitsNV = crate::vk::GeometryFlagBitsKHR;
+pub type GeometryInstanceFlagBitsNV = crate::vk::GeometryInstanceFlagBitsKHR;
+pub type BuildAccelerationStructureFlagBitsNV = crate::vk::BuildAccelerationStructureFlagBitsKHR;
+pub type CopyAccelerationStructureModeNV = crate::vk::CopyAccelerationStructureModeKHR;
+pub type AccelerationStructureTypeNV = crate::vk::AccelerationStructureTypeKHR;
+pub type GeometryTypeNV = crate::vk::GeometryTypeKHR;
+pub type RayTracingShaderGroupTypeNV = crate::vk::RayTracingShaderGroupTypeKHR;
+pub type GeometryFlagsNV = crate::vk::GeometryFlagsKHR;
+pub type GeometryInstanceFlagsNV = crate::vk::GeometryInstanceFlagsKHR;
+pub type BuildAccelerationStructureFlagsNV = crate::vk::BuildAccelerationStructureFlagsKHR;
 #[repr(C)]
 pub struct AccelerationStructureNV {}
