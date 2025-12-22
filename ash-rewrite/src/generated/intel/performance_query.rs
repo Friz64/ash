@@ -53,15 +53,15 @@ pub struct PerformanceValueDataINTEL {
     value_bool: crate::vk::Bool32,
     value_string: *const core::ffi::c_char,
 }
-#[repr(C)]
-pub struct PerformanceConfigurationTypeINTEL {}
-#[repr(C)]
-pub struct QueryPoolSamplingModeINTEL {}
-#[repr(C)]
-pub struct PerformanceOverrideTypeINTEL {}
-#[repr(C)]
-pub struct PerformanceParameterTypeINTEL {}
-#[repr(C)]
-pub struct PerformanceValueTypeINTEL {}
-#[repr(C)]
-pub struct PerformanceConfigurationINTEL {}
+#[repr(transparent)]
+pub struct PerformanceConfigurationTypeINTEL(pub(crate) i32);
+#[repr(transparent)]
+pub struct QueryPoolSamplingModeINTEL(pub(crate) i32);
+#[repr(transparent)]
+pub struct PerformanceOverrideTypeINTEL(pub(crate) i32);
+#[repr(transparent)]
+pub struct PerformanceParameterTypeINTEL(pub(crate) i32);
+#[repr(transparent)]
+pub struct PerformanceValueTypeINTEL(pub(crate) i32);
+#[repr(transparent)]
+pub struct PerformanceConfigurationINTEL(pub(crate) i32);

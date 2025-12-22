@@ -7,5 +7,5 @@ pub struct HeadlessSurfaceCreateInfoEXT {
     pub p_next: *const core::ffi::c_void,
     pub flags: crate::vk::HeadlessSurfaceCreateFlagsEXT,
 }
-#[repr(C)]
-pub struct HeadlessSurfaceCreateFlagsEXT {}
+#[repr(transparent)]
+pub struct HeadlessSurfaceCreateFlagsEXT(pub(crate) i32);

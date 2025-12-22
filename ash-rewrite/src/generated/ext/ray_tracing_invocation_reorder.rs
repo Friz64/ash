@@ -14,5 +14,5 @@ pub struct PhysicalDeviceRayTracingInvocationReorderPropertiesEXT {
     pub ray_tracing_invocation_reorder_reordering_hint: crate::vk::RayTracingInvocationReorderModeEXT,
     pub max_shader_binding_table_record_index: u32,
 }
-#[repr(C)]
-pub struct RayTracingInvocationReorderModeEXT {}
+#[repr(transparent)]
+pub struct RayTracingInvocationReorderModeEXT(pub(crate) i32);

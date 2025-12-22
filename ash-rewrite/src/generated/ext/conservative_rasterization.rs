@@ -23,7 +23,7 @@ pub struct PipelineRasterizationConservativeStateCreateInfoEXT {
     pub conservative_rasterization_mode: crate::vk::ConservativeRasterizationModeEXT,
     pub extra_primitive_overestimation_size: core::ffi::c_float,
 }
-#[repr(C)]
-pub struct ConservativeRasterizationModeEXT {}
-#[repr(C)]
-pub struct PipelineRasterizationConservativeStateCreateFlagsEXT {}
+#[repr(transparent)]
+pub struct ConservativeRasterizationModeEXT(pub(crate) i32);
+#[repr(transparent)]
+pub struct PipelineRasterizationConservativeStateCreateFlagsEXT(pub(crate) i32);

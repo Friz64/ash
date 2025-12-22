@@ -22,7 +22,7 @@ pub struct AntiLagPresentationInfoAMD {
     pub stage: crate::vk::AntiLagStageAMD,
     pub frame_index: u64,
 }
-#[repr(C)]
-pub struct AntiLagModeAMD {}
-#[repr(C)]
-pub struct AntiLagStageAMD {}
+#[repr(transparent)]
+pub struct AntiLagModeAMD(pub(crate) i32);
+#[repr(transparent)]
+pub struct AntiLagStageAMD(pub(crate) i32);

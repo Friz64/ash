@@ -8,5 +8,5 @@ pub struct ViSurfaceCreateInfoNN {
     pub flags: crate::vk::ViSurfaceCreateFlagsNN,
     pub window: *mut core::ffi::c_void,
 }
-#[repr(C)]
-pub struct ViSurfaceCreateFlagsNN {}
+#[repr(transparent)]
+pub struct ViSurfaceCreateFlagsNN(pub(crate) i32);

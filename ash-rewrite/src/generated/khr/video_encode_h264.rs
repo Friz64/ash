@@ -143,15 +143,15 @@ pub struct VideoEncodeH264RateControlLayerInfoKHR {
     pub use_max_frame_size: crate::vk::Bool32,
     pub max_frame_size: crate::vk::VideoEncodeH264FrameSizeKHR,
 }
-#[repr(C)]
-pub struct VideoEncodeH264CapabilityFlagsKHR {}
-#[repr(C)]
-pub struct VideoEncodeH264StdFlagsKHR {}
-#[repr(C)]
-pub struct VideoEncodeH264RateControlFlagsKHR {}
-#[repr(C)]
-pub struct VideoEncodeH264CapabilityFlagBitsKHR {}
-#[repr(C)]
-pub struct VideoEncodeH264StdFlagBitsKHR {}
-#[repr(C)]
-pub struct VideoEncodeH264RateControlFlagBitsKHR {}
+#[repr(transparent)]
+pub struct VideoEncodeH264CapabilityFlagsKHR(pub(crate) i32);
+#[repr(transparent)]
+pub struct VideoEncodeH264StdFlagsKHR(pub(crate) i32);
+#[repr(transparent)]
+pub struct VideoEncodeH264RateControlFlagsKHR(pub(crate) i32);
+#[repr(transparent)]
+pub struct VideoEncodeH264CapabilityFlagBitsKHR(pub(crate) i32);
+#[repr(transparent)]
+pub struct VideoEncodeH264StdFlagBitsKHR(pub(crate) i32);
+#[repr(transparent)]
+pub struct VideoEncodeH264RateControlFlagBitsKHR(pub(crate) i32);

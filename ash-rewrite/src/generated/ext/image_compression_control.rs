@@ -24,11 +24,11 @@ pub struct ImageCompressionPropertiesEXT {
 }
 pub type ImageSubresource2EXT = crate::vk::ImageSubresource2;
 pub type SubresourceLayout2EXT = crate::vk::SubresourceLayout2;
-#[repr(C)]
-pub struct ImageCompressionFlagsEXT {}
-#[repr(C)]
-pub struct ImageCompressionFixedRateFlagsEXT {}
-#[repr(C)]
-pub struct ImageCompressionFlagBitsEXT {}
-#[repr(C)]
-pub struct ImageCompressionFixedRateFlagBitsEXT {}
+#[repr(transparent)]
+pub struct ImageCompressionFlagsEXT(pub(crate) i32);
+#[repr(transparent)]
+pub struct ImageCompressionFixedRateFlagsEXT(pub(crate) i32);
+#[repr(transparent)]
+pub struct ImageCompressionFlagBitsEXT(pub(crate) i32);
+#[repr(transparent)]
+pub struct ImageCompressionFixedRateFlagBitsEXT(pub(crate) i32);

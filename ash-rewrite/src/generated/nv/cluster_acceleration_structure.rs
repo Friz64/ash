@@ -157,25 +157,25 @@ pub struct ClusterAccelerationStructureOpInputNV {
     p_triangle_clusters: *mut crate::vk::ClusterAccelerationStructureTriangleClusterInputNV,
     p_move_objects: *mut crate::vk::ClusterAccelerationStructureMoveObjectsInputNV,
 }
-#[repr(C)]
-pub struct ClusterAccelerationStructureTypeNV {}
-#[repr(C)]
-pub struct ClusterAccelerationStructureOpTypeNV {}
-#[repr(C)]
-pub struct ClusterAccelerationStructureOpModeNV {}
-#[repr(C)]
-pub struct ClusterAccelerationStructureGeometryFlagsNV {}
-#[repr(C)]
-pub struct ClusterAccelerationStructureClusterFlagsNV {}
-#[repr(C)]
-pub struct ClusterAccelerationStructureAddressResolutionFlagsNV {}
-#[repr(C)]
-pub struct ClusterAccelerationStructureIndexFormatFlagsNV {}
-#[repr(C)]
-pub struct ClusterAccelerationStructureIndexFormatFlagBitsNV {}
-#[repr(C)]
-pub struct ClusterAccelerationStructureClusterFlagBitsNV {}
-#[repr(C)]
-pub struct ClusterAccelerationStructureGeometryFlagBitsNV {}
-#[repr(C)]
-pub struct ClusterAccelerationStructureAddressResolutionFlagBitsNV {}
+#[repr(transparent)]
+pub struct ClusterAccelerationStructureTypeNV(pub(crate) i32);
+#[repr(transparent)]
+pub struct ClusterAccelerationStructureOpTypeNV(pub(crate) i32);
+#[repr(transparent)]
+pub struct ClusterAccelerationStructureOpModeNV(pub(crate) i32);
+#[repr(transparent)]
+pub struct ClusterAccelerationStructureGeometryFlagsNV(pub(crate) i32);
+#[repr(transparent)]
+pub struct ClusterAccelerationStructureClusterFlagsNV(pub(crate) i32);
+#[repr(transparent)]
+pub struct ClusterAccelerationStructureAddressResolutionFlagsNV(pub(crate) i32);
+#[repr(transparent)]
+pub struct ClusterAccelerationStructureIndexFormatFlagsNV(pub(crate) i32);
+#[repr(transparent)]
+pub struct ClusterAccelerationStructureIndexFormatFlagBitsNV(pub(crate) i32);
+#[repr(transparent)]
+pub struct ClusterAccelerationStructureClusterFlagBitsNV(pub(crate) i32);
+#[repr(transparent)]
+pub struct ClusterAccelerationStructureGeometryFlagBitsNV(pub(crate) i32);
+#[repr(transparent)]
+pub struct ClusterAccelerationStructureAddressResolutionFlagBitsNV(pub(crate) i32);

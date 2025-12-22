@@ -7,5 +7,5 @@ pub struct CalibratedTimestampInfoKHR {
     pub p_next: *const core::ffi::c_void,
     pub time_domain: crate::vk::TimeDomainKHR,
 }
-#[repr(C)]
-pub struct TimeDomainKHR {}
+#[repr(transparent)]
+pub struct TimeDomainKHR(pub(crate) i32);

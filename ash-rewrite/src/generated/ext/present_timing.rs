@@ -91,15 +91,15 @@ pub struct SwapchainCalibratedTimestampInfoEXT {
     pub present_stage: crate::vk::PresentStageFlagsEXT,
     pub time_domain_id: u64,
 }
-#[repr(C)]
-pub struct PresentStageFlagsEXT {}
-#[repr(C)]
-pub struct PastPresentationTimingFlagsEXT {}
-#[repr(C)]
-pub struct PresentTimingInfoFlagsEXT {}
-#[repr(C)]
-pub struct PresentStageFlagBitsEXT {}
-#[repr(C)]
-pub struct PastPresentationTimingFlagBitsEXT {}
-#[repr(C)]
-pub struct PresentTimingInfoFlagBitsEXT {}
+#[repr(transparent)]
+pub struct PresentStageFlagsEXT(pub(crate) i32);
+#[repr(transparent)]
+pub struct PastPresentationTimingFlagsEXT(pub(crate) i32);
+#[repr(transparent)]
+pub struct PresentTimingInfoFlagsEXT(pub(crate) i32);
+#[repr(transparent)]
+pub struct PresentStageFlagBitsEXT(pub(crate) i32);
+#[repr(transparent)]
+pub struct PastPresentationTimingFlagBitsEXT(pub(crate) i32);
+#[repr(transparent)]
+pub struct PresentTimingInfoFlagBitsEXT(pub(crate) i32);

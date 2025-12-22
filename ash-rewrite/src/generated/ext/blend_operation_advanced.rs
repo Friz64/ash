@@ -26,5 +26,5 @@ pub struct PipelineColorBlendAdvancedStateCreateInfoEXT {
     pub dst_premultiplied: crate::vk::Bool32,
     pub blend_overlap: crate::vk::BlendOverlapEXT,
 }
-#[repr(C)]
-pub struct BlendOverlapEXT {}
+#[repr(transparent)]
+pub struct BlendOverlapEXT(pub(crate) i32);

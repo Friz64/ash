@@ -58,5 +58,6 @@ pub struct AndroidHardwareBufferFormatProperties2ANDROID {
     pub suggested_x_chroma_offset: crate::vk::ChromaLocation,
     pub suggested_y_chroma_offset: crate::vk::ChromaLocation,
 }
-#[repr(C)]
-pub struct AHardwareBuffer {}
+#[repr(transparent)]
+#[allow(non_camel_case_types)]
+pub struct AHardwareBuffer(pub(crate) i16);

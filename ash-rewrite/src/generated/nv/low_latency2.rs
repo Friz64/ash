@@ -74,7 +74,7 @@ pub struct LatencySurfaceCapabilitiesNV {
     pub present_mode_count: u32,
     pub p_present_modes: *mut crate::vk::PresentModeKHR,
 }
-#[repr(C)]
-pub struct LatencyMarkerNV {}
-#[repr(C)]
-pub struct OutOfBandQueueTypeNV {}
+#[repr(transparent)]
+pub struct LatencyMarkerNV(pub(crate) i32);
+#[repr(transparent)]
+pub struct OutOfBandQueueTypeNV(pub(crate) i32);

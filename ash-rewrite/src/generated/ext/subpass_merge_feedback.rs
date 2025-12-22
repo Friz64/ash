@@ -35,5 +35,5 @@ pub struct PhysicalDeviceSubpassMergeFeedbackFeaturesEXT {
     pub p_next: *mut core::ffi::c_void,
     pub subpass_merge_feedback: crate::vk::Bool32,
 }
-#[repr(C)]
-pub struct SubpassMergeStatusEXT {}
+#[repr(transparent)]
+pub struct SubpassMergeStatusEXT(pub(crate) i32);

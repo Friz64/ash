@@ -65,7 +65,7 @@ pub struct PhysicalDeviceVideoEncodeQuantizationMapFeaturesKHR {
     pub p_next: *mut core::ffi::c_void,
     pub video_encode_quantization_map: crate::vk::Bool32,
 }
-#[repr(C)]
-pub struct VideoSessionParametersCreateFlagBitsKHR {}
-#[repr(C)]
-pub struct VideoEncodeFlagBitsKHR {}
+#[repr(transparent)]
+pub struct VideoSessionParametersCreateFlagBitsKHR(pub(crate) i32);
+#[repr(transparent)]
+pub struct VideoEncodeFlagBitsKHR(pub(crate) i32);

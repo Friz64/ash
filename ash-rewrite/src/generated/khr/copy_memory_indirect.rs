@@ -55,7 +55,7 @@ pub struct PhysicalDeviceCopyMemoryIndirectPropertiesKHR {
     pub p_next: *mut core::ffi::c_void,
     pub supported_queues: crate::vk::QueueFlags,
 }
-#[repr(C)]
-pub struct AddressCopyFlagsKHR {}
-#[repr(C)]
-pub struct AddressCopyFlagBitsKHR {}
+#[repr(transparent)]
+pub struct AddressCopyFlagsKHR(pub(crate) i32);
+#[repr(transparent)]
+pub struct AddressCopyFlagBitsKHR(pub(crate) i32);

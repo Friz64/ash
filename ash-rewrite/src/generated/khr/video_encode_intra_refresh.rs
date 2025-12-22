@@ -36,7 +36,7 @@ pub struct PhysicalDeviceVideoEncodeIntraRefreshFeaturesKHR {
     pub p_next: *mut core::ffi::c_void,
     pub video_encode_intra_refresh: crate::vk::Bool32,
 }
-#[repr(C)]
-pub struct VideoEncodeIntraRefreshModeFlagsKHR {}
-#[repr(C)]
-pub struct VideoEncodeIntraRefreshModeFlagBitsKHR {}
+#[repr(transparent)]
+pub struct VideoEncodeIntraRefreshModeFlagsKHR(pub(crate) i32);
+#[repr(transparent)]
+pub struct VideoEncodeIntraRefreshModeFlagBitsKHR(pub(crate) i32);

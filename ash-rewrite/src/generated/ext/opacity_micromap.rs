@@ -106,23 +106,23 @@ pub struct AccelerationStructureTrianglesOpacityMicromapEXT {
     pub pp_usage_counts: *const *const crate::vk::MicromapUsageEXT,
     pub micromap: crate::vk::MicromapEXT,
 }
-#[repr(C)]
-pub struct MicromapTypeEXT {}
-#[repr(C)]
-pub struct CopyMicromapModeEXT {}
-#[repr(C)]
-pub struct BuildMicromapModeEXT {}
-#[repr(C)]
-pub struct OpacityMicromapFormatEXT {}
-#[repr(C)]
-pub struct OpacityMicromapSpecialIndexEXT {}
-#[repr(C)]
-pub struct BuildMicromapFlagsEXT {}
-#[repr(C)]
-pub struct MicromapCreateFlagsEXT {}
-#[repr(C)]
-pub struct BuildMicromapFlagBitsEXT {}
-#[repr(C)]
-pub struct MicromapCreateFlagBitsEXT {}
-#[repr(C)]
-pub struct MicromapEXT {}
+#[repr(transparent)]
+pub struct MicromapTypeEXT(pub(crate) i32);
+#[repr(transparent)]
+pub struct CopyMicromapModeEXT(pub(crate) i32);
+#[repr(transparent)]
+pub struct BuildMicromapModeEXT(pub(crate) i32);
+#[repr(transparent)]
+pub struct OpacityMicromapFormatEXT(pub(crate) i32);
+#[repr(transparent)]
+pub struct OpacityMicromapSpecialIndexEXT(pub(crate) i32);
+#[repr(transparent)]
+pub struct BuildMicromapFlagsEXT(pub(crate) i32);
+#[repr(transparent)]
+pub struct MicromapCreateFlagsEXT(pub(crate) i32);
+#[repr(transparent)]
+pub struct BuildMicromapFlagBitsEXT(pub(crate) i32);
+#[repr(transparent)]
+pub struct MicromapCreateFlagBitsEXT(pub(crate) i32);
+#[repr(transparent)]
+pub struct MicromapEXT(pub(crate) i32);

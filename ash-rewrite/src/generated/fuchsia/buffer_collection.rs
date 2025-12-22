@@ -88,11 +88,11 @@ pub struct BufferCollectionConstraintsInfoFUCHSIA {
     pub min_buffer_count_for_dedicated_slack: u32,
     pub min_buffer_count_for_shared_slack: u32,
 }
-#[repr(C)]
-pub struct ImageFormatConstraintsFlagsFUCHSIA {}
-#[repr(C)]
-pub struct ImageConstraintsInfoFlagsFUCHSIA {}
-#[repr(C)]
-pub struct ImageConstraintsInfoFlagBitsFUCHSIA {}
-#[repr(C)]
-pub struct BufferCollectionFUCHSIA {}
+#[repr(transparent)]
+pub struct ImageFormatConstraintsFlagsFUCHSIA(pub(crate) i32);
+#[repr(transparent)]
+pub struct ImageConstraintsInfoFlagsFUCHSIA(pub(crate) i32);
+#[repr(transparent)]
+pub struct ImageConstraintsInfoFlagBitsFUCHSIA(pub(crate) i32);
+#[repr(transparent)]
+pub struct BufferCollectionFUCHSIA(pub(crate) i32);

@@ -62,17 +62,17 @@ pub struct PerformanceCounterResultKHR {
     float32: core::ffi::c_float,
     float64: core::ffi::c_double,
 }
-#[repr(C)]
-pub struct PerformanceCounterScopeKHR {}
-#[repr(C)]
-pub struct PerformanceCounterUnitKHR {}
-#[repr(C)]
-pub struct PerformanceCounterStorageKHR {}
-#[repr(C)]
-pub struct PerformanceCounterDescriptionFlagsKHR {}
-#[repr(C)]
-pub struct AcquireProfilingLockFlagsKHR {}
-#[repr(C)]
-pub struct PerformanceCounterDescriptionFlagBitsKHR {}
-#[repr(C)]
-pub struct AcquireProfilingLockFlagBitsKHR {}
+#[repr(transparent)]
+pub struct PerformanceCounterScopeKHR(pub(crate) i32);
+#[repr(transparent)]
+pub struct PerformanceCounterUnitKHR(pub(crate) i32);
+#[repr(transparent)]
+pub struct PerformanceCounterStorageKHR(pub(crate) i32);
+#[repr(transparent)]
+pub struct PerformanceCounterDescriptionFlagsKHR(pub(crate) i32);
+#[repr(transparent)]
+pub struct AcquireProfilingLockFlagsKHR(pub(crate) i32);
+#[repr(transparent)]
+pub struct PerformanceCounterDescriptionFlagBitsKHR(pub(crate) i32);
+#[repr(transparent)]
+pub struct AcquireProfilingLockFlagBitsKHR(pub(crate) i32);

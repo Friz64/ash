@@ -40,5 +40,5 @@ pub struct RenderPassPerformanceCountersByRegionBeginInfoARM {
     pub counter_index_count: u32,
     pub p_counter_indices: *mut u32,
 }
-#[repr(C)]
-pub struct PerformanceCounterDescriptionFlagsARM {}
+#[repr(transparent)]
+pub struct PerformanceCounterDescriptionFlagsARM(pub(crate) i32);

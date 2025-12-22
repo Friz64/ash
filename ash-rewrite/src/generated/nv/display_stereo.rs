@@ -13,5 +13,5 @@ pub struct DisplayModeStereoPropertiesNV {
     pub p_next: *mut core::ffi::c_void,
     pub hdmi3_d_supported: crate::vk::Bool32,
 }
-#[repr(C)]
-pub struct DisplaySurfaceStereoTypeNV {}
+#[repr(transparent)]
+pub struct DisplaySurfaceStereoTypeNV(pub(crate) i32);

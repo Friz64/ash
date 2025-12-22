@@ -27,10 +27,10 @@ pub struct DeviceMemoryReportCallbackDataEXT {
     pub object_handle: u64,
     pub heap_index: u32,
 }
-#[repr(C)]
-pub struct DeviceMemoryReportEventTypeEXT {}
-#[repr(C)]
-pub struct DeviceMemoryReportFlagsEXT {}
+#[repr(transparent)]
+pub struct DeviceMemoryReportEventTypeEXT(pub(crate) i32);
+#[repr(transparent)]
+pub struct DeviceMemoryReportFlagsEXT(pub(crate) i32);
 #[allow(non_camel_case_types)]
 pub type PFN_vkDeviceMemoryReportCallbackEXT = Option<
     unsafe extern "system" fn(

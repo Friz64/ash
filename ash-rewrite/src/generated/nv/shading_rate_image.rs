@@ -50,7 +50,7 @@ pub struct PipelineViewportCoarseSampleOrderStateCreateInfoNV {
     pub custom_sample_order_count: u32,
     pub p_custom_sample_orders: *const crate::vk::CoarseSampleOrderCustomNV,
 }
-#[repr(C)]
-pub struct ShadingRatePaletteEntryNV {}
-#[repr(C)]
-pub struct CoarseSampleOrderTypeNV {}
+#[repr(transparent)]
+pub struct ShadingRatePaletteEntryNV(pub(crate) i32);
+#[repr(transparent)]
+pub struct CoarseSampleOrderTypeNV(pub(crate) i32);

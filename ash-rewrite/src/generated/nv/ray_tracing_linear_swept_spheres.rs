@@ -38,7 +38,7 @@ pub struct PhysicalDeviceRayTracingLinearSweptSpheresFeaturesNV {
     pub spheres: crate::vk::Bool32,
     pub linear_swept_spheres: crate::vk::Bool32,
 }
-#[repr(C)]
-pub struct RayTracingLssIndexingModeNV {}
-#[repr(C)]
-pub struct RayTracingLssPrimitiveEndCapsModeNV {}
+#[repr(transparent)]
+pub struct RayTracingLssIndexingModeNV(pub(crate) i32);
+#[repr(transparent)]
+pub struct RayTracingLssPrimitiveEndCapsModeNV(pub(crate) i32);

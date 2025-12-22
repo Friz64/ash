@@ -20,5 +20,5 @@ pub struct QueueFamilyOwnershipTransferPropertiesKHR {
     pub p_next: *mut core::ffi::c_void,
     pub optimal_image_transfer_to_queue_families: u32,
 }
-#[repr(C)]
-pub struct DefaultVertexAttributeValueKHR {}
+#[repr(transparent)]
+pub struct DefaultVertexAttributeValueKHR(pub(crate) i32);

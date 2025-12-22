@@ -120,15 +120,15 @@ pub struct GeneratedCommandsMemoryRequirementsInfoNV {
     pub indirect_commands_layout: crate::vk::IndirectCommandsLayoutNV,
     pub max_sequences_count: u32,
 }
-#[repr(C)]
-pub struct IndirectCommandsTokenTypeNV {}
-#[repr(C)]
-pub struct IndirectCommandsLayoutUsageFlagsNV {}
-#[repr(C)]
-pub struct IndirectStateFlagsNV {}
-#[repr(C)]
-pub struct IndirectCommandsLayoutUsageFlagBitsNV {}
-#[repr(C)]
-pub struct IndirectStateFlagBitsNV {}
-#[repr(C)]
-pub struct IndirectCommandsLayoutNV {}
+#[repr(transparent)]
+pub struct IndirectCommandsTokenTypeNV(pub(crate) i32);
+#[repr(transparent)]
+pub struct IndirectCommandsLayoutUsageFlagsNV(pub(crate) i32);
+#[repr(transparent)]
+pub struct IndirectStateFlagsNV(pub(crate) i32);
+#[repr(transparent)]
+pub struct IndirectCommandsLayoutUsageFlagBitsNV(pub(crate) i32);
+#[repr(transparent)]
+pub struct IndirectStateFlagBitsNV(pub(crate) i32);
+#[repr(transparent)]
+pub struct IndirectCommandsLayoutNV(pub(crate) i32);

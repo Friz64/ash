@@ -9,5 +9,5 @@ pub struct Win32SurfaceCreateInfoKHR {
     pub hinstance: crate::platform_types::HINSTANCE,
     pub hwnd: crate::platform_types::HWND,
 }
-#[repr(C)]
-pub struct Win32SurfaceCreateFlagsKHR {}
+#[repr(transparent)]
+pub struct Win32SurfaceCreateFlagsKHR(pub(crate) i32);

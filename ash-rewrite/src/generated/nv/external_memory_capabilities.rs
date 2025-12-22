@@ -8,11 +8,11 @@ pub struct ExternalImageFormatPropertiesNV {
     pub export_from_imported_handle_types: crate::vk::ExternalMemoryHandleTypeFlagsNV,
     pub compatible_handle_types: crate::vk::ExternalMemoryHandleTypeFlagsNV,
 }
-#[repr(C)]
-pub struct ExternalMemoryHandleTypeFlagsNV {}
-#[repr(C)]
-pub struct ExternalMemoryFeatureFlagsNV {}
-#[repr(C)]
-pub struct ExternalMemoryHandleTypeFlagBitsNV {}
-#[repr(C)]
-pub struct ExternalMemoryFeatureFlagBitsNV {}
+#[repr(transparent)]
+pub struct ExternalMemoryHandleTypeFlagsNV(pub(crate) i32);
+#[repr(transparent)]
+pub struct ExternalMemoryFeatureFlagsNV(pub(crate) i32);
+#[repr(transparent)]
+pub struct ExternalMemoryHandleTypeFlagBitsNV(pub(crate) i32);
+#[repr(transparent)]
+pub struct ExternalMemoryFeatureFlagBitsNV(pub(crate) i32);

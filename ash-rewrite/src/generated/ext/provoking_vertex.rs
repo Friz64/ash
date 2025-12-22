@@ -21,5 +21,5 @@ pub struct PipelineRasterizationProvokingVertexStateCreateInfoEXT {
     pub p_next: *const core::ffi::c_void,
     pub provoking_vertex_mode: crate::vk::ProvokingVertexModeEXT,
 }
-#[repr(C)]
-pub struct ProvokingVertexModeEXT {}
+#[repr(transparent)]
+pub struct ProvokingVertexModeEXT(pub(crate) i32);

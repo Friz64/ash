@@ -28,7 +28,7 @@ pub struct PhysicalDeviceCooperativeMatrixPropertiesKHR {
     pub p_next: *mut core::ffi::c_void,
     pub cooperative_matrix_supported_stages: crate::vk::ShaderStageFlags,
 }
-#[repr(C)]
-pub struct ScopeKHR {}
-#[repr(C)]
-pub struct ComponentTypeKHR {}
+#[repr(transparent)]
+pub struct ScopeKHR(pub(crate) i32);
+#[repr(transparent)]
+pub struct ComponentTypeKHR(pub(crate) i32);

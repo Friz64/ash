@@ -82,19 +82,25 @@ pub struct ImportMetalSharedEventInfoEXT {
     pub p_next: *const core::ffi::c_void,
     pub mtl_shared_event: crate::vk::MTLSharedEvent_id,
 }
-#[repr(C)]
-pub struct ExportMetalObjectTypeFlagsEXT {}
-#[repr(C)]
-pub struct ExportMetalObjectTypeFlagBitsEXT {}
-#[repr(C)]
-pub struct MTLDevice_id {}
-#[repr(C)]
-pub struct MTLCommandQueue_id {}
-#[repr(C)]
-pub struct MTLBuffer_id {}
-#[repr(C)]
-pub struct MTLTexture_id {}
-#[repr(C)]
-pub struct MTLSharedEvent_id {}
-#[repr(C)]
-pub struct IOSurfaceRef {}
+#[repr(transparent)]
+pub struct ExportMetalObjectTypeFlagsEXT(pub(crate) i32);
+#[repr(transparent)]
+pub struct ExportMetalObjectTypeFlagBitsEXT(pub(crate) i32);
+#[repr(transparent)]
+#[allow(non_camel_case_types)]
+pub struct MTLDevice_id(pub(crate) i16);
+#[repr(transparent)]
+#[allow(non_camel_case_types)]
+pub struct MTLCommandQueue_id(pub(crate) i16);
+#[repr(transparent)]
+#[allow(non_camel_case_types)]
+pub struct MTLBuffer_id(pub(crate) i16);
+#[repr(transparent)]
+#[allow(non_camel_case_types)]
+pub struct MTLTexture_id(pub(crate) i16);
+#[repr(transparent)]
+#[allow(non_camel_case_types)]
+pub struct MTLSharedEvent_id(pub(crate) i16);
+#[repr(transparent)]
+#[allow(non_camel_case_types)]
+pub struct IOSurfaceRef(pub(crate) i16);

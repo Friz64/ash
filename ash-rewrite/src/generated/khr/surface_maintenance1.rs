@@ -24,11 +24,11 @@ pub struct SurfacePresentModeCompatibilityKHR {
     pub present_mode_count: u32,
     pub p_present_modes: *mut crate::vk::PresentModeKHR,
 }
-#[repr(C)]
-pub struct PresentScalingFlagsKHR {}
-#[repr(C)]
-pub struct PresentGravityFlagsKHR {}
-#[repr(C)]
-pub struct PresentScalingFlagBitsKHR {}
-#[repr(C)]
-pub struct PresentGravityFlagBitsKHR {}
+#[repr(transparent)]
+pub struct PresentScalingFlagsKHR(pub(crate) i32);
+#[repr(transparent)]
+pub struct PresentGravityFlagsKHR(pub(crate) i32);
+#[repr(transparent)]
+pub struct PresentScalingFlagBitsKHR(pub(crate) i32);
+#[repr(transparent)]
+pub struct PresentGravityFlagBitsKHR(pub(crate) i32);

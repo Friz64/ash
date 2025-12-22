@@ -195,21 +195,21 @@ pub struct ExternalMemoryTensorCreateInfoARM {
     pub p_next: *const core::ffi::c_void,
     pub handle_types: crate::vk::ExternalMemoryHandleTypeFlags,
 }
-#[repr(C)]
-pub struct TensorTilingARM {}
-#[repr(C)]
-pub struct TensorCreateFlagsARM {}
-#[repr(C)]
-pub struct TensorUsageFlagsARM {}
-#[repr(C)]
-pub struct TensorViewCreateFlagsARM {}
-#[repr(C)]
-pub struct TensorCreateFlagBitsARM {}
-#[repr(C)]
-pub struct TensorUsageFlagBitsARM {}
-#[repr(C)]
-pub struct TensorViewCreateFlagBitsARM {}
-#[repr(C)]
-pub struct TensorARM {}
-#[repr(C)]
-pub struct TensorViewARM {}
+#[repr(transparent)]
+pub struct TensorTilingARM(pub(crate) i32);
+#[repr(transparent)]
+pub struct TensorCreateFlagsARM(pub(crate) i32);
+#[repr(transparent)]
+pub struct TensorUsageFlagsARM(pub(crate) i32);
+#[repr(transparent)]
+pub struct TensorViewCreateFlagsARM(pub(crate) i32);
+#[repr(transparent)]
+pub struct TensorCreateFlagBitsARM(pub(crate) i32);
+#[repr(transparent)]
+pub struct TensorUsageFlagBitsARM(pub(crate) i32);
+#[repr(transparent)]
+pub struct TensorViewCreateFlagBitsARM(pub(crate) i32);
+#[repr(transparent)]
+pub struct TensorARM(pub(crate) i32);
+#[repr(transparent)]
+pub struct TensorViewARM(pub(crate) i32);

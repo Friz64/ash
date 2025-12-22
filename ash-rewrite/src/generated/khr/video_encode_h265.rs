@@ -150,23 +150,23 @@ pub struct VideoEncodeH265DpbSlotInfoKHR {
     pub p_next: *const core::ffi::c_void,
     pub p_std_reference_info: *const crate::vk::StdVideoEncodeH265ReferenceInfo,
 }
-#[repr(C)]
-pub struct VideoEncodeH265CapabilityFlagsKHR {}
-#[repr(C)]
-pub struct VideoEncodeH265StdFlagsKHR {}
-#[repr(C)]
-pub struct VideoEncodeH265RateControlFlagsKHR {}
-#[repr(C)]
-pub struct VideoEncodeH265CtbSizeFlagsKHR {}
-#[repr(C)]
-pub struct VideoEncodeH265TransformBlockSizeFlagsKHR {}
-#[repr(C)]
-pub struct VideoEncodeH265CapabilityFlagBitsKHR {}
-#[repr(C)]
-pub struct VideoEncodeH265StdFlagBitsKHR {}
-#[repr(C)]
-pub struct VideoEncodeH265RateControlFlagBitsKHR {}
-#[repr(C)]
-pub struct VideoEncodeH265CtbSizeFlagBitsKHR {}
-#[repr(C)]
-pub struct VideoEncodeH265TransformBlockSizeFlagBitsKHR {}
+#[repr(transparent)]
+pub struct VideoEncodeH265CapabilityFlagsKHR(pub(crate) i32);
+#[repr(transparent)]
+pub struct VideoEncodeH265StdFlagsKHR(pub(crate) i32);
+#[repr(transparent)]
+pub struct VideoEncodeH265RateControlFlagsKHR(pub(crate) i32);
+#[repr(transparent)]
+pub struct VideoEncodeH265CtbSizeFlagsKHR(pub(crate) i32);
+#[repr(transparent)]
+pub struct VideoEncodeH265TransformBlockSizeFlagsKHR(pub(crate) i32);
+#[repr(transparent)]
+pub struct VideoEncodeH265CapabilityFlagBitsKHR(pub(crate) i32);
+#[repr(transparent)]
+pub struct VideoEncodeH265StdFlagBitsKHR(pub(crate) i32);
+#[repr(transparent)]
+pub struct VideoEncodeH265RateControlFlagBitsKHR(pub(crate) i32);
+#[repr(transparent)]
+pub struct VideoEncodeH265CtbSizeFlagBitsKHR(pub(crate) i32);
+#[repr(transparent)]
+pub struct VideoEncodeH265TransformBlockSizeFlagBitsKHR(pub(crate) i32);

@@ -19,5 +19,5 @@ pub struct AccelerationStructureDenseGeometryFormatTrianglesDataAMDX {
     pub max_geometry_index: u32,
     pub format: crate::vk::CompressedTriangleFormatAMDX,
 }
-#[repr(C)]
-pub struct CompressedTriangleFormatAMDX {}
+#[repr(transparent)]
+pub struct CompressedTriangleFormatAMDX(pub(crate) i32);

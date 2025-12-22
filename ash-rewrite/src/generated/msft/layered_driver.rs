@@ -7,5 +7,5 @@ pub struct PhysicalDeviceLayeredDriverPropertiesMSFT {
     pub p_next: *mut core::ffi::c_void,
     pub underlying_api: crate::vk::LayeredDriverUnderlyingApiMSFT,
 }
-#[repr(C)]
-pub struct LayeredDriverUnderlyingApiMSFT {}
+#[repr(transparent)]
+pub struct LayeredDriverUnderlyingApiMSFT(pub(crate) i32);

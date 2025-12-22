@@ -8,5 +8,5 @@ pub struct ValidationFlagsEXT {
     pub disabled_validation_check_count: u32,
     pub p_disabled_validation_checks: *const crate::vk::ValidationCheckEXT,
 }
-#[repr(C)]
-pub struct ValidationCheckEXT {}
+#[repr(transparent)]
+pub struct ValidationCheckEXT(pub(crate) i32);

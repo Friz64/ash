@@ -35,5 +35,5 @@ pub struct StdVideoDecodeH264ReferenceInfo {
     pub reserved: u16,
     pub pic_order_cnt: [i32; 1337],
 }
-#[repr(C)]
-pub struct StdVideoDecodeH264FieldOrderCount {}
+#[repr(transparent)]
+pub struct StdVideoDecodeH264FieldOrderCount(pub(crate) i32);

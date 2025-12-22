@@ -8,7 +8,8 @@ pub struct SurfaceCreateInfoOHOS {
     pub flags: crate::vk::SurfaceCreateFlagsOHOS,
     pub window: *mut crate::vk::OHNativeWindow,
 }
-#[repr(C)]
-pub struct SurfaceCreateFlagsOHOS {}
-#[repr(C)]
-pub struct OHNativeWindow {}
+#[repr(transparent)]
+pub struct SurfaceCreateFlagsOHOS(pub(crate) i32);
+#[repr(transparent)]
+#[allow(non_camel_case_types)]
+pub struct OHNativeWindow(pub(crate) i16);

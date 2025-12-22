@@ -16,10 +16,10 @@ pub struct DirectDriverLoadingListLUNARG {
     pub driver_count: u32,
     pub p_drivers: *const crate::vk::DirectDriverLoadingInfoLUNARG,
 }
-#[repr(C)]
-pub struct DirectDriverLoadingModeLUNARG {}
-#[repr(C)]
-pub struct DirectDriverLoadingFlagsLUNARG {}
+#[repr(transparent)]
+pub struct DirectDriverLoadingModeLUNARG(pub(crate) i32);
+#[repr(transparent)]
+pub struct DirectDriverLoadingFlagsLUNARG(pub(crate) i32);
 #[allow(non_camel_case_types)]
 pub type PFN_vkGetInstanceProcAddrLUNARG = Option<
     unsafe extern "system" fn(

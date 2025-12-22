@@ -9,5 +9,5 @@ pub struct XcbSurfaceCreateInfoKHR {
     pub connection: *mut crate::platform_types::xcb_connection_t,
     pub window: crate::platform_types::xcb_window_t,
 }
-#[repr(C)]
-pub struct XcbSurfaceCreateFlagsKHR {}
+#[repr(transparent)]
+pub struct XcbSurfaceCreateFlagsKHR(pub(crate) i32);

@@ -8,5 +8,5 @@ pub struct StreamDescriptorSurfaceCreateInfoGGP {
     pub flags: crate::vk::StreamDescriptorSurfaceCreateFlagsGGP,
     pub stream_descriptor: crate::platform_types::GgpStreamDescriptor,
 }
-#[repr(C)]
-pub struct StreamDescriptorSurfaceCreateFlagsGGP {}
+#[repr(transparent)]
+pub struct StreamDescriptorSurfaceCreateFlagsGGP(pub(crate) i32);

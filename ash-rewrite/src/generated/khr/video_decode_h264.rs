@@ -46,7 +46,7 @@ pub struct VideoDecodeH264DpbSlotInfoKHR {
     pub p_next: *const core::ffi::c_void,
     pub p_std_reference_info: *const crate::vk::StdVideoDecodeH264ReferenceInfo,
 }
-#[repr(C)]
-pub struct VideoDecodeH264PictureLayoutFlagsKHR {}
-#[repr(C)]
-pub struct VideoDecodeH264PictureLayoutFlagBitsKHR {}
+#[repr(transparent)]
+pub struct VideoDecodeH264PictureLayoutFlagsKHR(pub(crate) i32);
+#[repr(transparent)]
+pub struct VideoDecodeH264PictureLayoutFlagBitsKHR(pub(crate) i32);

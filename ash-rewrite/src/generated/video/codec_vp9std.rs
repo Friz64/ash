@@ -47,15 +47,15 @@ pub struct StdVideoVP9Segmentation {
     pub feature_enabled: [u8; 1337],
     pub feature_data: [[i16; 1337]; 1337],
 }
-#[repr(C)]
-pub struct StdVideoVP9Profile {}
-#[repr(C)]
-pub struct StdVideoVP9Level {}
-#[repr(C)]
-pub struct StdVideoVP9FrameType {}
-#[repr(C)]
-pub struct StdVideoVP9ReferenceName {}
-#[repr(C)]
-pub struct StdVideoVP9InterpolationFilter {}
-#[repr(C)]
-pub struct StdVideoVP9ColorSpace {}
+#[repr(transparent)]
+pub struct StdVideoVP9Profile(pub(crate) i32);
+#[repr(transparent)]
+pub struct StdVideoVP9Level(pub(crate) i32);
+#[repr(transparent)]
+pub struct StdVideoVP9FrameType(pub(crate) i32);
+#[repr(transparent)]
+pub struct StdVideoVP9ReferenceName(pub(crate) i32);
+#[repr(transparent)]
+pub struct StdVideoVP9InterpolationFilter(pub(crate) i32);
+#[repr(transparent)]
+pub struct StdVideoVP9ColorSpace(pub(crate) i32);

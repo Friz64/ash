@@ -60,5 +60,5 @@ pub struct RenderingFragmentShadingRateAttachmentInfoKHR {
     pub image_layout: crate::vk::ImageLayout,
     pub shading_rate_attachment_texel_size: crate::vk::Extent2D,
 }
-#[repr(C)]
-pub struct FragmentShadingRateCombinerOpKHR {}
+#[repr(transparent)]
+pub struct FragmentShadingRateCombinerOpKHR(pub(crate) i32);

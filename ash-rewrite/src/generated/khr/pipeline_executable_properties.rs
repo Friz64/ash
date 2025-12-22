@@ -55,5 +55,5 @@ pub struct PipelineExecutableStatisticValueKHR {
     u64: u64,
     f64: core::ffi::c_double,
 }
-#[repr(C)]
-pub struct PipelineExecutableStatisticFormatKHR {}
+#[repr(transparent)]
+pub struct PipelineExecutableStatisticFormatKHR(pub(crate) i32);

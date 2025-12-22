@@ -9,12 +9,12 @@ pub struct DebugReportCallbackCreateInfoEXT {
     pub pfn_callback: crate::vk::PFN_vkDebugReportCallbackEXT,
     pub p_user_data: *mut core::ffi::c_void,
 }
-#[repr(C)]
-pub struct DebugReportFlagsEXT {}
-#[repr(C)]
-pub struct DebugReportFlagBitsEXT {}
-#[repr(C)]
-pub struct DebugReportCallbackEXT {}
+#[repr(transparent)]
+pub struct DebugReportFlagsEXT(pub(crate) i32);
+#[repr(transparent)]
+pub struct DebugReportFlagBitsEXT(pub(crate) i32);
+#[repr(transparent)]
+pub struct DebugReportCallbackEXT(pub(crate) i32);
 #[allow(non_camel_case_types)]
 pub type PFN_vkDebugReportCallbackEXT = Option<
     unsafe extern "system" fn(

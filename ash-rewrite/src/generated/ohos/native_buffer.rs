@@ -19,9 +19,10 @@ pub struct PhysicalDevicePresentationPropertiesOHOS {
     pub p_next: *mut core::ffi::c_void,
     pub shared_image: crate::vk::Bool32,
 }
-#[repr(C)]
-pub struct SwapchainImageUsageFlagsOHOS {}
-#[repr(C)]
-pub struct SwapchainImageUsageFlagBitsOHOS {}
-#[repr(C)]
-pub struct OHBufferHandle {}
+#[repr(transparent)]
+pub struct SwapchainImageUsageFlagsOHOS(pub(crate) i32);
+#[repr(transparent)]
+pub struct SwapchainImageUsageFlagBitsOHOS(pub(crate) i32);
+#[repr(transparent)]
+#[allow(non_camel_case_types)]
+pub struct OHBufferHandle(pub(crate) i16);

@@ -14,5 +14,6 @@ pub struct MemoryGetRemoteAddressInfoNV {
     pub memory: crate::vk::DeviceMemory,
     pub handle_type: crate::vk::ExternalMemoryHandleTypeFlagBits,
 }
-#[repr(C)]
-pub struct RemoteAddressNV {}
+#[repr(transparent)]
+#[allow(non_camel_case_types)]
+pub struct RemoteAddressNV(pub(crate) i16);

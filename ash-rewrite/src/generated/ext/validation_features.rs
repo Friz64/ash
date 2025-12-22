@@ -10,7 +10,7 @@ pub struct ValidationFeaturesEXT {
     pub disabled_validation_feature_count: u32,
     pub p_disabled_validation_features: *const crate::vk::ValidationFeatureDisableEXT,
 }
-#[repr(C)]
-pub struct ValidationFeatureEnableEXT {}
-#[repr(C)]
-pub struct ValidationFeatureDisableEXT {}
+#[repr(transparent)]
+pub struct ValidationFeatureEnableEXT(pub(crate) i32);
+#[repr(transparent)]
+pub struct ValidationFeatureDisableEXT(pub(crate) i32);

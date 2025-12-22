@@ -22,7 +22,7 @@ pub struct PhysicalDeviceConditionalRenderingFeaturesEXT {
     pub conditional_rendering: crate::vk::Bool32,
     pub inherited_conditional_rendering: crate::vk::Bool32,
 }
-#[repr(C)]
-pub struct ConditionalRenderingFlagsEXT {}
-#[repr(C)]
-pub struct ConditionalRenderingFlagBitsEXT {}
+#[repr(transparent)]
+pub struct ConditionalRenderingFlagsEXT(pub(crate) i32);
+#[repr(transparent)]
+pub struct ConditionalRenderingFlagBitsEXT(pub(crate) i32);

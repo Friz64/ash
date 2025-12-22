@@ -8,7 +8,8 @@ pub struct MetalSurfaceCreateInfoEXT {
     pub flags: crate::vk::MetalSurfaceCreateFlagsEXT,
     pub p_layer: *const crate::vk::CAMetalLayer,
 }
-#[repr(C)]
-pub struct MetalSurfaceCreateFlagsEXT {}
-#[repr(C)]
-pub struct CAMetalLayer {}
+#[repr(transparent)]
+pub struct MetalSurfaceCreateFlagsEXT(pub(crate) i32);
+#[repr(transparent)]
+#[allow(non_camel_case_types)]
+pub struct CAMetalLayer(pub(crate) i16);

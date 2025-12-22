@@ -45,7 +45,7 @@ pub struct PhysicalDeviceCudaKernelLaunchPropertiesNV {
     pub compute_capability_minor: u32,
     pub compute_capability_major: u32,
 }
-#[repr(C)]
-pub struct CudaModuleNV {}
-#[repr(C)]
-pub struct CudaFunctionNV {}
+#[repr(transparent)]
+pub struct CudaModuleNV(pub(crate) i32);
+#[repr(transparent)]
+pub struct CudaFunctionNV(pub(crate) i32);

@@ -15,9 +15,9 @@ pub struct ShaderModuleValidationCacheCreateInfoEXT {
     pub p_next: *const core::ffi::c_void,
     pub validation_cache: crate::vk::ValidationCacheEXT,
 }
-#[repr(C)]
-pub struct ValidationCacheHeaderVersionEXT {}
-#[repr(C)]
-pub struct ValidationCacheCreateFlagsEXT {}
-#[repr(C)]
-pub struct ValidationCacheEXT {}
+#[repr(transparent)]
+pub struct ValidationCacheHeaderVersionEXT(pub(crate) i32);
+#[repr(transparent)]
+pub struct ValidationCacheCreateFlagsEXT(pub(crate) i32);
+#[repr(transparent)]
+pub struct ValidationCacheEXT(pub(crate) i32);

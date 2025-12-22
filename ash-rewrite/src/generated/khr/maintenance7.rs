@@ -42,5 +42,5 @@ pub struct PhysicalDeviceLayeredApiVulkanPropertiesKHR {
     pub p_next: *mut core::ffi::c_void,
     pub properties: crate::vk::PhysicalDeviceProperties2,
 }
-#[repr(C)]
-pub struct PhysicalDeviceLayeredApiKHR {}
+#[repr(transparent)]
+pub struct PhysicalDeviceLayeredApiKHR(pub(crate) i32);

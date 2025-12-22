@@ -9,5 +9,5 @@ pub struct DirectFBSurfaceCreateInfoEXT {
     pub dfb: *mut crate::platform_types::IDirectFB,
     pub surface: *mut crate::platform_types::IDirectFBSurface,
 }
-#[repr(C)]
-pub struct DirectFBSurfaceCreateFlagsEXT {}
+#[repr(transparent)]
+pub struct DirectFBSurfaceCreateFlagsEXT(pub(crate) i32);

@@ -7,7 +7,7 @@ pub struct PipelineCompilerControlCreateInfoAMD {
     pub p_next: *const core::ffi::c_void,
     pub compiler_control_flags: crate::vk::PipelineCompilerControlFlagsAMD,
 }
-#[repr(C)]
-pub struct PipelineCompilerControlFlagsAMD {}
-#[repr(C)]
-pub struct PipelineCompilerControlFlagBitsAMD {}
+#[repr(transparent)]
+pub struct PipelineCompilerControlFlagsAMD(pub(crate) i32);
+#[repr(transparent)]
+pub struct PipelineCompilerControlFlagBitsAMD(pub(crate) i32);

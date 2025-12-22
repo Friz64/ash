@@ -80,5 +80,5 @@ pub struct PhysicalDevicePipelineBinaryPropertiesKHR {
     pub pipeline_binary_precompiled_internal_cache: crate::vk::Bool32,
     pub pipeline_binary_compressed_data: crate::vk::Bool32,
 }
-#[repr(C)]
-pub struct PipelineBinaryKHR {}
+#[repr(transparent)]
+pub struct PipelineBinaryKHR(pub(crate) i32);

@@ -558,23 +558,23 @@ pub struct PhysicalDeviceVulkan12Properties {
     pub max_timeline_semaphore_value_difference: u64,
     pub framebuffer_integer_color_sample_counts: crate::vk::SampleCountFlags,
 }
-#[repr(C)]
-pub struct SemaphoreType {}
-#[repr(C)]
-pub struct SamplerReductionMode {}
-#[repr(C)]
-pub struct DriverId {}
-#[repr(C)]
-pub struct ShaderFloatControlsIndependence {}
-#[repr(C)]
-pub struct SemaphoreWaitFlags {}
-#[repr(C)]
-pub struct DescriptorBindingFlags {}
-#[repr(C)]
-pub struct ResolveModeFlags {}
-#[repr(C)]
-pub struct SemaphoreWaitFlagBits {}
-#[repr(C)]
-pub struct DescriptorBindingFlagBits {}
-#[repr(C)]
-pub struct ResolveModeFlagBits {}
+#[repr(transparent)]
+pub struct SemaphoreType(pub(crate) i32);
+#[repr(transparent)]
+pub struct SamplerReductionMode(pub(crate) i32);
+#[repr(transparent)]
+pub struct DriverId(pub(crate) i32);
+#[repr(transparent)]
+pub struct ShaderFloatControlsIndependence(pub(crate) i32);
+#[repr(transparent)]
+pub struct SemaphoreWaitFlags(pub(crate) i32);
+#[repr(transparent)]
+pub struct DescriptorBindingFlags(pub(crate) i32);
+#[repr(transparent)]
+pub struct ResolveModeFlags(pub(crate) i32);
+#[repr(transparent)]
+pub struct SemaphoreWaitFlagBits(pub(crate) i32);
+#[repr(transparent)]
+pub struct DescriptorBindingFlagBits(pub(crate) i32);
+#[repr(transparent)]
+pub struct ResolveModeFlagBits(pub(crate) i32);

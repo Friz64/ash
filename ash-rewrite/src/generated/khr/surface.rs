@@ -19,15 +19,15 @@ pub struct SurfaceFormatKHR {
     pub format: crate::vk::Format,
     pub color_space: crate::vk::ColorSpaceKHR,
 }
-#[repr(C)]
-pub struct PresentModeKHR {}
-#[repr(C)]
-pub struct ColorSpaceKHR {}
-#[repr(C)]
-pub struct CompositeAlphaFlagsKHR {}
-#[repr(C)]
-pub struct CompositeAlphaFlagBitsKHR {}
-#[repr(C)]
-pub struct SurfaceTransformFlagBitsKHR {}
-#[repr(C)]
-pub struct SurfaceKHR {}
+#[repr(transparent)]
+pub struct PresentModeKHR(pub(crate) i32);
+#[repr(transparent)]
+pub struct ColorSpaceKHR(pub(crate) i32);
+#[repr(transparent)]
+pub struct CompositeAlphaFlagsKHR(pub(crate) i32);
+#[repr(transparent)]
+pub struct CompositeAlphaFlagBitsKHR(pub(crate) i32);
+#[repr(transparent)]
+pub struct SurfaceTransformFlagBitsKHR(pub(crate) i32);
+#[repr(transparent)]
+pub struct SurfaceKHR(pub(crate) i32);

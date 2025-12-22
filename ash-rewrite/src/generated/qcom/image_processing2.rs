@@ -20,5 +20,5 @@ pub struct SamplerBlockMatchWindowCreateInfoQCOM {
     pub window_extent: crate::vk::Extent2D,
     pub window_compare_mode: crate::vk::BlockMatchWindowCompareModeQCOM,
 }
-#[repr(C)]
-pub struct BlockMatchWindowCompareModeQCOM {}
+#[repr(transparent)]
+pub struct BlockMatchWindowCompareModeQCOM(pub(crate) i32);

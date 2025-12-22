@@ -16,7 +16,7 @@ pub struct PipelineViewportSwizzleStateCreateInfoNV {
     pub viewport_count: u32,
     pub p_viewport_swizzles: *const crate::vk::ViewportSwizzleNV,
 }
-#[repr(C)]
-pub struct ViewportCoordinateSwizzleNV {}
-#[repr(C)]
-pub struct PipelineViewportSwizzleStateCreateFlagsNV {}
+#[repr(transparent)]
+pub struct ViewportCoordinateSwizzleNV(pub(crate) i32);
+#[repr(transparent)]
+pub struct PipelineViewportSwizzleStateCreateFlagsNV(pub(crate) i32);

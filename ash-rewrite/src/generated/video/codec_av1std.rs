@@ -186,25 +186,25 @@ pub struct StdVideoAV1FilmGrain {
     pub cr_luma_mult: u8,
     pub cr_offset: u16,
 }
-#[repr(C)]
-pub struct StdVideoAV1Profile {}
-#[repr(C)]
-pub struct StdVideoAV1Level {}
-#[repr(C)]
-pub struct StdVideoAV1FrameType {}
-#[repr(C)]
-pub struct StdVideoAV1ReferenceName {}
-#[repr(C)]
-pub struct StdVideoAV1InterpolationFilter {}
-#[repr(C)]
-pub struct StdVideoAV1TxMode {}
-#[repr(C)]
-pub struct StdVideoAV1FrameRestorationType {}
-#[repr(C)]
-pub struct StdVideoAV1ColorPrimaries {}
-#[repr(C)]
-pub struct StdVideoAV1TransferCharacteristics {}
-#[repr(C)]
-pub struct StdVideoAV1MatrixCoefficients {}
-#[repr(C)]
-pub struct StdVideoAV1ChromaSamplePosition {}
+#[repr(transparent)]
+pub struct StdVideoAV1Profile(pub(crate) i32);
+#[repr(transparent)]
+pub struct StdVideoAV1Level(pub(crate) i32);
+#[repr(transparent)]
+pub struct StdVideoAV1FrameType(pub(crate) i32);
+#[repr(transparent)]
+pub struct StdVideoAV1ReferenceName(pub(crate) i32);
+#[repr(transparent)]
+pub struct StdVideoAV1InterpolationFilter(pub(crate) i32);
+#[repr(transparent)]
+pub struct StdVideoAV1TxMode(pub(crate) i32);
+#[repr(transparent)]
+pub struct StdVideoAV1FrameRestorationType(pub(crate) i32);
+#[repr(transparent)]
+pub struct StdVideoAV1ColorPrimaries(pub(crate) i32);
+#[repr(transparent)]
+pub struct StdVideoAV1TransferCharacteristics(pub(crate) i32);
+#[repr(transparent)]
+pub struct StdVideoAV1MatrixCoefficients(pub(crate) i32);
+#[repr(transparent)]
+pub struct StdVideoAV1ChromaSamplePosition(pub(crate) i32);

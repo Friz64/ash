@@ -14,5 +14,5 @@ pub struct PipelineRasterizationDepthClipStateCreateInfoEXT {
     pub flags: crate::vk::PipelineRasterizationDepthClipStateCreateFlagsEXT,
     pub depth_clip_enable: crate::vk::Bool32,
 }
-#[repr(C)]
-pub struct PipelineRasterizationDepthClipStateCreateFlagsEXT {}
+#[repr(transparent)]
+pub struct PipelineRasterizationDepthClipStateCreateFlagsEXT(pub(crate) i32);

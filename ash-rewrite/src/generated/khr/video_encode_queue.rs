@@ -93,29 +93,29 @@ pub struct VideoEncodeCapabilitiesKHR {
     pub encode_input_picture_granularity: crate::vk::Extent2D,
     pub supported_encode_feedback_flags: crate::vk::VideoEncodeFeedbackFlagsKHR,
 }
-#[repr(C)]
-pub struct VideoEncodeTuningModeKHR {}
-#[repr(C)]
-pub struct VideoEncodeFlagsKHR {}
-#[repr(C)]
-pub struct VideoEncodeUsageFlagsKHR {}
-#[repr(C)]
-pub struct VideoEncodeContentFlagsKHR {}
-#[repr(C)]
-pub struct VideoEncodeCapabilityFlagsKHR {}
-#[repr(C)]
-pub struct VideoEncodeFeedbackFlagsKHR {}
-#[repr(C)]
-pub struct VideoEncodeRateControlFlagsKHR {}
-#[repr(C)]
-pub struct VideoEncodeRateControlModeFlagsKHR {}
-#[repr(C)]
-pub struct VideoEncodeUsageFlagBitsKHR {}
-#[repr(C)]
-pub struct VideoEncodeContentFlagBitsKHR {}
-#[repr(C)]
-pub struct VideoEncodeCapabilityFlagBitsKHR {}
-#[repr(C)]
-pub struct VideoEncodeFeedbackFlagBitsKHR {}
-#[repr(C)]
-pub struct VideoEncodeRateControlModeFlagBitsKHR {}
+#[repr(transparent)]
+pub struct VideoEncodeTuningModeKHR(pub(crate) i32);
+#[repr(transparent)]
+pub struct VideoEncodeFlagsKHR(pub(crate) i32);
+#[repr(transparent)]
+pub struct VideoEncodeUsageFlagsKHR(pub(crate) i32);
+#[repr(transparent)]
+pub struct VideoEncodeContentFlagsKHR(pub(crate) i32);
+#[repr(transparent)]
+pub struct VideoEncodeCapabilityFlagsKHR(pub(crate) i32);
+#[repr(transparent)]
+pub struct VideoEncodeFeedbackFlagsKHR(pub(crate) i32);
+#[repr(transparent)]
+pub struct VideoEncodeRateControlFlagsKHR(pub(crate) i32);
+#[repr(transparent)]
+pub struct VideoEncodeRateControlModeFlagsKHR(pub(crate) i32);
+#[repr(transparent)]
+pub struct VideoEncodeUsageFlagBitsKHR(pub(crate) i32);
+#[repr(transparent)]
+pub struct VideoEncodeContentFlagBitsKHR(pub(crate) i32);
+#[repr(transparent)]
+pub struct VideoEncodeCapabilityFlagBitsKHR(pub(crate) i32);
+#[repr(transparent)]
+pub struct VideoEncodeFeedbackFlagBitsKHR(pub(crate) i32);
+#[repr(transparent)]
+pub struct VideoEncodeRateControlModeFlagBitsKHR(pub(crate) i32);

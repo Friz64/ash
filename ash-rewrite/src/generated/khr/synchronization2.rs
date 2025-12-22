@@ -15,5 +15,6 @@ pub type SubmitFlagBitsKHR = crate::vk::SubmitFlagBits;
 pub type AccessFlags2KHR = crate::vk::AccessFlags2;
 pub type PipelineStageFlags2KHR = crate::vk::PipelineStageFlags2;
 pub type SubmitFlagsKHR = crate::vk::SubmitFlags;
-#[repr(C)]
-pub struct Flags64 {}
+#[repr(transparent)]
+#[allow(non_camel_case_types)]
+pub struct Flags64(pub(crate) i16);

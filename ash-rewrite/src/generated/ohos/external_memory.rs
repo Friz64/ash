@@ -45,5 +45,6 @@ pub struct ExternalFormatOHOS {
     pub p_next: *mut core::ffi::c_void,
     pub external_format: u64,
 }
-#[repr(C)]
-pub struct OH_NativeBuffer {}
+#[repr(transparent)]
+#[allow(non_camel_case_types)]
+pub struct OH_NativeBuffer(pub(crate) i16);

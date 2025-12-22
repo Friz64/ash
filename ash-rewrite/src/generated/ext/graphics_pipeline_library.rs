@@ -20,9 +20,9 @@ pub struct GraphicsPipelineLibraryCreateInfoEXT {
     pub p_next: *const core::ffi::c_void,
     pub flags: crate::vk::GraphicsPipelineLibraryFlagsEXT,
 }
-#[repr(C)]
-pub struct GraphicsPipelineLibraryFlagsEXT {}
-#[repr(C)]
-pub struct PipelineLayoutCreateFlagBits {}
-#[repr(C)]
-pub struct GraphicsPipelineLibraryFlagBitsEXT {}
+#[repr(transparent)]
+pub struct GraphicsPipelineLibraryFlagsEXT(pub(crate) i32);
+#[repr(transparent)]
+pub struct PipelineLayoutCreateFlagBits(pub(crate) i32);
+#[repr(transparent)]
+pub struct GraphicsPipelineLibraryFlagBitsEXT(pub(crate) i32);

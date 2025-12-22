@@ -8,5 +8,5 @@ pub struct ImagePipeSurfaceCreateInfoFUCHSIA {
     pub flags: crate::vk::ImagePipeSurfaceCreateFlagsFUCHSIA,
     pub image_pipe_handle: crate::platform_types::zx_handle_t,
 }
-#[repr(C)]
-pub struct ImagePipeSurfaceCreateFlagsFUCHSIA {}
+#[repr(transparent)]
+pub struct ImagePipeSurfaceCreateFlagsFUCHSIA(pub(crate) i32);

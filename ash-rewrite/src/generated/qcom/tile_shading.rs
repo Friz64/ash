@@ -51,7 +51,7 @@ pub struct DispatchTileInfoQCOM {
     pub s_type: crate::vk::StructureType,
     pub p_next: *const core::ffi::c_void,
 }
-#[repr(C)]
-pub struct TileShadingRenderPassFlagsQCOM {}
-#[repr(C)]
-pub struct TileShadingRenderPassFlagBitsQCOM {}
+#[repr(transparent)]
+pub struct TileShadingRenderPassFlagsQCOM(pub(crate) i32);
+#[repr(transparent)]
+pub struct TileShadingRenderPassFlagBitsQCOM(pub(crate) i32);

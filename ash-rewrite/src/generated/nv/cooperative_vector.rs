@@ -55,5 +55,5 @@ pub struct DeviceOrHostAddressConstKHR {
     device_address: crate::vk::DeviceAddress,
     host_address: *const core::ffi::c_void,
 }
-#[repr(C)]
-pub struct CooperativeVectorMatrixLayoutNV {}
+#[repr(transparent)]
+pub struct CooperativeVectorMatrixLayoutNV(pub(crate) i32);

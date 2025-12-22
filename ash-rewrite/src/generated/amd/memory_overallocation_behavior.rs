@@ -7,5 +7,5 @@ pub struct DeviceMemoryOverallocationCreateInfoAMD {
     pub p_next: *const core::ffi::c_void,
     pub overallocation_behavior: crate::vk::MemoryOverallocationBehaviorAMD,
 }
-#[repr(C)]
-pub struct MemoryOverallocationBehaviorAMD {}
+#[repr(transparent)]
+pub struct MemoryOverallocationBehaviorAMD(pub(crate) i32);
