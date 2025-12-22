@@ -15,5 +15,41 @@ pub struct DebugReportFlagsEXT {}
 pub struct DebugReportFlagBitsEXT {}
 #[repr(C)]
 pub struct DebugReportCallbackEXT {}
-#[repr(C)]
-pub struct PFN_vkDebugReportCallbackEXT {}
+#[allow(non_camel_case_types)]
+pub type PFN_vkDebugReportCallbackEXT = Option<
+    unsafe extern "system" fn(
+        flags: crate::vk::DebugReportFlagsEXT,
+        object_type: crate::vk::DebugReportObjectTypeEXT,
+        object: crate::External<
+            {
+                "uint64_t";
+                0
+            },
+        >,
+        location: crate::External<
+            {
+                "size_t";
+                0
+            },
+        >,
+        message_code: crate::External<
+            {
+                "int32_t";
+                0
+            },
+        >,
+        p_layer_prefix: *const crate::External<
+            {
+                "char";
+                0
+            },
+        >,
+        p_message: *const crate::External<
+            {
+                "char";
+                0
+            },
+        >,
+        p_user_data: *mut core::ffi::c_void,
+    ) -> crate::vk::Bool32,
+>;

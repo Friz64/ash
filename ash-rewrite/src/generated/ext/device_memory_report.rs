@@ -46,5 +46,10 @@ pub struct DeviceMemoryReportCallbackDataEXT {
 pub struct DeviceMemoryReportEventTypeEXT {}
 #[repr(C)]
 pub struct DeviceMemoryReportFlagsEXT {}
-#[repr(C)]
-pub struct PFN_vkDeviceMemoryReportCallbackEXT {}
+#[allow(non_camel_case_types)]
+pub type PFN_vkDeviceMemoryReportCallbackEXT = Option<
+    unsafe extern "system" fn(
+        p_callback_data: *const crate::vk::DeviceMemoryReportCallbackDataEXT,
+        p_user_data: *mut core::ffi::c_void,
+    ),
+>;

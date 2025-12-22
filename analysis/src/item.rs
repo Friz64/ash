@@ -74,6 +74,7 @@ impl Items {
                 };
             }
 
+            // todo: das muss schöner gehen
             collect_type!(structs =>
                 |required_by, ty| TypeItem::Struct(Struct::new(&decl_ctx, required_by, ty)));
             collect_type!(struct_aliases =>
@@ -105,7 +106,7 @@ impl Items {
 
                 items.types.insert(
                     name,
-                    TypeItem::FuncPointer(FuncPointer::new(required_by, ty)),
+                    TypeItem::FuncPointer(FuncPointer::new(&decl_ctx, required_by, ty)),
                 );
             }
         }

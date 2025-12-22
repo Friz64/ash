@@ -25,5 +25,15 @@ pub struct DirectDriverLoadingListLUNARG {
 pub struct DirectDriverLoadingModeLUNARG {}
 #[repr(C)]
 pub struct DirectDriverLoadingFlagsLUNARG {}
-#[repr(C)]
-pub struct PFN_vkGetInstanceProcAddrLUNARG {}
+#[allow(non_camel_case_types)]
+pub type PFN_vkGetInstanceProcAddrLUNARG = Option<
+    unsafe extern "system" fn(
+        instance: crate::vk::Instance,
+        p_name: *const crate::External<
+            {
+                "char";
+                0
+            },
+        >,
+    ) -> crate::vk::PFN_vkVoidFunction,
+>;
