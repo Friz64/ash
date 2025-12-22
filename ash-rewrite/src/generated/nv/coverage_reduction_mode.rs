@@ -23,7 +23,7 @@ pub struct FramebufferMixedSamplesCombinationNV {
     pub depth_stencil_samples: crate::vk::SampleCountFlags,
     pub color_samples: crate::vk::SampleCountFlags,
 }
-#[repr(C)]
-pub struct CoverageReductionModeNV {}
-#[repr(C)]
-pub struct PipelineCoverageReductionStateCreateFlagsNV {}
+#[repr(transparent)]
+pub struct CoverageReductionModeNV(pub(crate) i32);
+#[repr(transparent)]
+pub struct PipelineCoverageReductionStateCreateFlagsNV(pub(crate) i32);

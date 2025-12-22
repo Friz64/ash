@@ -34,5 +34,5 @@ pub struct AccelerationStructureTrianglesDisplacementMicromapNV {
     pub pp_usage_counts: *const *const crate::vk::MicromapUsageEXT,
     pub micromap: crate::vk::MicromapEXT,
 }
-#[repr(C)]
-pub struct DisplacementMicromapFormatNV {}
+#[repr(transparent)]
+pub struct DisplacementMicromapFormatNV(pub(crate) i32);

@@ -169,33 +169,33 @@ pub struct AccelerationStructureGeometryDataKHR {
     aabbs: crate::vk::AccelerationStructureGeometryAabbsDataKHR,
     instances: crate::vk::AccelerationStructureGeometryInstancesDataKHR,
 }
-#[repr(C)]
-pub struct CopyAccelerationStructureModeKHR {}
-#[repr(C)]
-pub struct BuildAccelerationStructureModeKHR {}
-#[repr(C)]
-pub struct AccelerationStructureTypeKHR {}
-#[repr(C)]
-pub struct GeometryTypeKHR {}
-#[repr(C)]
-pub struct AccelerationStructureBuildTypeKHR {}
-#[repr(C)]
-pub struct AccelerationStructureCompatibilityKHR {}
-#[repr(C)]
-pub struct GeometryFlagsKHR {}
-#[repr(C)]
-pub struct GeometryInstanceFlagsKHR {}
-#[repr(C)]
-pub struct BuildAccelerationStructureFlagsKHR {}
-#[repr(C)]
-pub struct AccelerationStructureCreateFlagsKHR {}
-#[repr(C)]
-pub struct GeometryInstanceFlagBitsKHR {}
-#[repr(C)]
-pub struct GeometryFlagBitsKHR {}
-#[repr(C)]
-pub struct BuildAccelerationStructureFlagBitsKHR {}
-#[repr(C)]
-pub struct AccelerationStructureCreateFlagBitsKHR {}
-#[repr(C)]
-pub struct AccelerationStructureKHR {}
+#[repr(transparent)]
+pub struct CopyAccelerationStructureModeKHR(pub(crate) i32);
+#[repr(transparent)]
+pub struct BuildAccelerationStructureModeKHR(pub(crate) i32);
+#[repr(transparent)]
+pub struct AccelerationStructureTypeKHR(pub(crate) i32);
+#[repr(transparent)]
+pub struct GeometryTypeKHR(pub(crate) i32);
+#[repr(transparent)]
+pub struct AccelerationStructureBuildTypeKHR(pub(crate) i32);
+#[repr(transparent)]
+pub struct AccelerationStructureCompatibilityKHR(pub(crate) i32);
+#[repr(transparent)]
+pub struct GeometryFlagsKHR(pub(crate) i32);
+#[repr(transparent)]
+pub struct GeometryInstanceFlagsKHR(pub(crate) i32);
+#[repr(transparent)]
+pub struct BuildAccelerationStructureFlagsKHR(pub(crate) i32);
+#[repr(transparent)]
+pub struct AccelerationStructureCreateFlagsKHR(pub(crate) i32);
+#[repr(transparent)]
+pub struct GeometryInstanceFlagBitsKHR(pub(crate) i32);
+#[repr(transparent)]
+pub struct GeometryFlagBitsKHR(pub(crate) i32);
+#[repr(transparent)]
+pub struct BuildAccelerationStructureFlagBitsKHR(pub(crate) i32);
+#[repr(transparent)]
+pub struct AccelerationStructureCreateFlagBitsKHR(pub(crate) i32);
+#[repr(transparent)]
+pub struct AccelerationStructureKHR(pub(crate) i32);

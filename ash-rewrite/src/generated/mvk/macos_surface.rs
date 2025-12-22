@@ -8,5 +8,5 @@ pub struct MacOSSurfaceCreateInfoMVK {
     pub flags: crate::vk::MacOSSurfaceCreateFlagsMVK,
     pub p_view: *const core::ffi::c_void,
 }
-#[repr(C)]
-pub struct MacOSSurfaceCreateFlagsMVK {}
+#[repr(transparent)]
+pub struct MacOSSurfaceCreateFlagsMVK(pub(crate) i32);

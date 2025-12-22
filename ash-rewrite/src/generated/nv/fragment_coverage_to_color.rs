@@ -9,5 +9,5 @@ pub struct PipelineCoverageToColorStateCreateInfoNV {
     pub coverage_to_color_enable: crate::vk::Bool32,
     pub coverage_to_color_location: u32,
 }
-#[repr(C)]
-pub struct PipelineCoverageToColorStateCreateFlagsNV {}
+#[repr(transparent)]
+pub struct PipelineCoverageToColorStateCreateFlagsNV(pub(crate) i32);

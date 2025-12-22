@@ -9,5 +9,5 @@ pub struct WaylandSurfaceCreateInfoKHR {
     pub display: *mut crate::platform_types::wl_display,
     pub surface: *mut crate::platform_types::wl_surface,
 }
-#[repr(C)]
-pub struct WaylandSurfaceCreateFlagsKHR {}
+#[repr(transparent)]
+pub struct WaylandSurfaceCreateFlagsKHR(pub(crate) i32);

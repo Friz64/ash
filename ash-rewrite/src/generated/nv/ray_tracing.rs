@@ -121,8 +121,8 @@ pub type MemoryRequirements2KHR = crate::vk::MemoryRequirements2;
 pub type AabbPositionsNV = crate::vk::AabbPositionsKHR;
 pub type TransformMatrixNV = crate::vk::TransformMatrixKHR;
 pub type AccelerationStructureInstanceNV = crate::vk::AccelerationStructureInstanceKHR;
-#[repr(C)]
-pub struct AccelerationStructureMemoryRequirementsTypeNV {}
+#[repr(transparent)]
+pub struct AccelerationStructureMemoryRequirementsTypeNV(pub(crate) i32);
 pub type GeometryFlagBitsNV = crate::vk::GeometryFlagBitsKHR;
 pub type GeometryInstanceFlagBitsNV = crate::vk::GeometryInstanceFlagBitsKHR;
 pub type BuildAccelerationStructureFlagBitsNV = crate::vk::BuildAccelerationStructureFlagBitsKHR;
@@ -133,5 +133,5 @@ pub type RayTracingShaderGroupTypeNV = crate::vk::RayTracingShaderGroupTypeKHR;
 pub type GeometryFlagsNV = crate::vk::GeometryFlagsKHR;
 pub type GeometryInstanceFlagsNV = crate::vk::GeometryInstanceFlagsKHR;
 pub type BuildAccelerationStructureFlagsNV = crate::vk::BuildAccelerationStructureFlagsKHR;
-#[repr(C)]
-pub struct AccelerationStructureNV {}
+#[repr(transparent)]
+pub struct AccelerationStructureNV(pub(crate) i32);

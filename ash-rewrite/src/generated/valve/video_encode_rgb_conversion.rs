@@ -31,15 +31,15 @@ pub struct VideoEncodeSessionRgbConversionCreateInfoVALVE {
     pub x_chroma_offset: crate::vk::VideoEncodeRgbChromaOffsetFlagBitsVALVE,
     pub y_chroma_offset: crate::vk::VideoEncodeRgbChromaOffsetFlagBitsVALVE,
 }
-#[repr(C)]
-pub struct VideoEncodeRgbModelConversionFlagsVALVE {}
-#[repr(C)]
-pub struct VideoEncodeRgbRangeCompressionFlagsVALVE {}
-#[repr(C)]
-pub struct VideoEncodeRgbChromaOffsetFlagsVALVE {}
-#[repr(C)]
-pub struct VideoEncodeRgbModelConversionFlagBitsVALVE {}
-#[repr(C)]
-pub struct VideoEncodeRgbRangeCompressionFlagBitsVALVE {}
-#[repr(C)]
-pub struct VideoEncodeRgbChromaOffsetFlagBitsVALVE {}
+#[repr(transparent)]
+pub struct VideoEncodeRgbModelConversionFlagsVALVE(pub(crate) i32);
+#[repr(transparent)]
+pub struct VideoEncodeRgbRangeCompressionFlagsVALVE(pub(crate) i32);
+#[repr(transparent)]
+pub struct VideoEncodeRgbChromaOffsetFlagsVALVE(pub(crate) i32);
+#[repr(transparent)]
+pub struct VideoEncodeRgbModelConversionFlagBitsVALVE(pub(crate) i32);
+#[repr(transparent)]
+pub struct VideoEncodeRgbRangeCompressionFlagBitsVALVE(pub(crate) i32);
+#[repr(transparent)]
+pub struct VideoEncodeRgbChromaOffsetFlagBitsVALVE(pub(crate) i32);

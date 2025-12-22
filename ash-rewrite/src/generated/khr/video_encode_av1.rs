@@ -138,23 +138,23 @@ pub struct VideoEncodeAV1RateControlLayerInfoKHR {
     pub use_max_frame_size: crate::vk::Bool32,
     pub max_frame_size: crate::vk::VideoEncodeAV1FrameSizeKHR,
 }
-#[repr(C)]
-pub struct VideoEncodeAV1PredictionModeKHR {}
-#[repr(C)]
-pub struct VideoEncodeAV1RateControlGroupKHR {}
-#[repr(C)]
-pub struct VideoEncodeAV1CapabilityFlagsKHR {}
-#[repr(C)]
-pub struct VideoEncodeAV1StdFlagsKHR {}
-#[repr(C)]
-pub struct VideoEncodeAV1RateControlFlagsKHR {}
-#[repr(C)]
-pub struct VideoEncodeAV1SuperblockSizeFlagsKHR {}
-#[repr(C)]
-pub struct VideoEncodeAV1CapabilityFlagBitsKHR {}
-#[repr(C)]
-pub struct VideoEncodeAV1StdFlagBitsKHR {}
-#[repr(C)]
-pub struct VideoEncodeAV1RateControlFlagBitsKHR {}
-#[repr(C)]
-pub struct VideoEncodeAV1SuperblockSizeFlagBitsKHR {}
+#[repr(transparent)]
+pub struct VideoEncodeAV1PredictionModeKHR(pub(crate) i32);
+#[repr(transparent)]
+pub struct VideoEncodeAV1RateControlGroupKHR(pub(crate) i32);
+#[repr(transparent)]
+pub struct VideoEncodeAV1CapabilityFlagsKHR(pub(crate) i32);
+#[repr(transparent)]
+pub struct VideoEncodeAV1StdFlagsKHR(pub(crate) i32);
+#[repr(transparent)]
+pub struct VideoEncodeAV1RateControlFlagsKHR(pub(crate) i32);
+#[repr(transparent)]
+pub struct VideoEncodeAV1SuperblockSizeFlagsKHR(pub(crate) i32);
+#[repr(transparent)]
+pub struct VideoEncodeAV1CapabilityFlagBitsKHR(pub(crate) i32);
+#[repr(transparent)]
+pub struct VideoEncodeAV1StdFlagBitsKHR(pub(crate) i32);
+#[repr(transparent)]
+pub struct VideoEncodeAV1RateControlFlagBitsKHR(pub(crate) i32);
+#[repr(transparent)]
+pub struct VideoEncodeAV1SuperblockSizeFlagBitsKHR(pub(crate) i32);

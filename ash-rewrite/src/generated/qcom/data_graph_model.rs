@@ -21,5 +21,5 @@ pub struct PhysicalDeviceDataGraphModelFeaturesQCOM {
     pub p_next: *mut core::ffi::c_void,
     pub data_graph_model: crate::vk::Bool32,
 }
-#[repr(C)]
-pub struct DataGraphModelCacheTypeQCOM {}
+#[repr(transparent)]
+pub struct DataGraphModelCacheTypeQCOM(pub(crate) i32);

@@ -16,9 +16,9 @@ pub struct DeviceAddressBindingCallbackDataEXT {
     pub size: crate::vk::DeviceSize,
     pub binding_type: crate::vk::DeviceAddressBindingTypeEXT,
 }
-#[repr(C)]
-pub struct DeviceAddressBindingTypeEXT {}
-#[repr(C)]
-pub struct DeviceAddressBindingFlagsEXT {}
-#[repr(C)]
-pub struct DeviceAddressBindingFlagBitsEXT {}
+#[repr(transparent)]
+pub struct DeviceAddressBindingTypeEXT(pub(crate) i32);
+#[repr(transparent)]
+pub struct DeviceAddressBindingFlagsEXT(pub(crate) i32);
+#[repr(transparent)]
+pub struct DeviceAddressBindingFlagBitsEXT(pub(crate) i32);

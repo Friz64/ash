@@ -30,5 +30,5 @@ pub struct PipelineRasterizationStateStreamCreateInfoEXT {
     pub flags: crate::vk::PipelineRasterizationStateStreamCreateFlagsEXT,
     pub rasterization_stream: u32,
 }
-#[repr(C)]
-pub struct PipelineRasterizationStateStreamCreateFlagsEXT {}
+#[repr(transparent)]
+pub struct PipelineRasterizationStateStreamCreateFlagsEXT(pub(crate) i32);

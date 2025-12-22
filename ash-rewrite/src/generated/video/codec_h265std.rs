@@ -317,15 +317,15 @@ pub struct StdVideoH265PictureParameterSet {
     pub p_scaling_lists: *const crate::vk::StdVideoH265ScalingLists,
     pub p_predictor_palette_entries: *const crate::vk::StdVideoH265PredictorPaletteEntries,
 }
-#[repr(C)]
-pub struct StdVideoH265ChromaFormatIdc {}
-#[repr(C)]
-pub struct StdVideoH265ProfileIdc {}
-#[repr(C)]
-pub struct StdVideoH265LevelIdc {}
-#[repr(C)]
-pub struct StdVideoH265SliceType {}
-#[repr(C)]
-pub struct StdVideoH265PictureType {}
-#[repr(C)]
-pub struct StdVideoH265AspectRatioIdc {}
+#[repr(transparent)]
+pub struct StdVideoH265ChromaFormatIdc(pub(crate) i32);
+#[repr(transparent)]
+pub struct StdVideoH265ProfileIdc(pub(crate) i32);
+#[repr(transparent)]
+pub struct StdVideoH265LevelIdc(pub(crate) i32);
+#[repr(transparent)]
+pub struct StdVideoH265SliceType(pub(crate) i32);
+#[repr(transparent)]
+pub struct StdVideoH265PictureType(pub(crate) i32);
+#[repr(transparent)]
+pub struct StdVideoH265AspectRatioIdc(pub(crate) i32);

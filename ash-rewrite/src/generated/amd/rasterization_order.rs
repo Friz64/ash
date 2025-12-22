@@ -7,5 +7,5 @@ pub struct PipelineRasterizationStateRasterizationOrderAMD {
     pub p_next: *const core::ffi::c_void,
     pub rasterization_order: crate::vk::RasterizationOrderAMD,
 }
-#[repr(C)]
-pub struct RasterizationOrderAMD {}
+#[repr(transparent)]
+pub struct RasterizationOrderAMD(pub(crate) i32);

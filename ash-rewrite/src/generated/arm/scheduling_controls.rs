@@ -19,7 +19,7 @@ pub struct PhysicalDeviceSchedulingControlsPropertiesARM {
     pub p_next: *mut core::ffi::c_void,
     pub scheduling_controls_flags: crate::vk::PhysicalDeviceSchedulingControlsFlagsARM,
 }
-#[repr(C)]
-pub struct PhysicalDeviceSchedulingControlsFlagsARM {}
-#[repr(C)]
-pub struct PhysicalDeviceSchedulingControlsFlagBitsARM {}
+#[repr(transparent)]
+pub struct PhysicalDeviceSchedulingControlsFlagsARM(pub(crate) i32);
+#[repr(transparent)]
+pub struct PhysicalDeviceSchedulingControlsFlagBitsARM(pub(crate) i32);

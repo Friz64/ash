@@ -439,27 +439,27 @@ pub struct RenderingInputAttachmentIndexInfo {
     pub p_depth_input_attachment_index: *const u32,
     pub p_stencil_input_attachment_index: *const u32,
 }
-#[repr(C)]
-pub struct QueueGlobalPriority {}
-#[repr(C)]
-pub struct LineRasterizationMode {}
-#[repr(C)]
-pub struct PipelineRobustnessBufferBehavior {}
-#[repr(C)]
-pub struct PipelineRobustnessImageBehavior {}
-#[repr(C)]
-pub struct MemoryUnmapFlags {}
-#[repr(C)]
-pub struct PipelineCreateFlags2 {}
-#[repr(C)]
-pub struct BufferUsageFlags2 {}
-#[repr(C)]
-pub struct HostImageCopyFlags {}
-#[repr(C)]
-pub struct BufferUsageFlagBits2 {}
-#[repr(C)]
-pub struct PipelineCreateFlagBits2 {}
-#[repr(C)]
-pub struct HostImageCopyFlagBits {}
-#[repr(C)]
-pub struct MemoryUnmapFlagBits {}
+#[repr(transparent)]
+pub struct QueueGlobalPriority(pub(crate) i32);
+#[repr(transparent)]
+pub struct LineRasterizationMode(pub(crate) i32);
+#[repr(transparent)]
+pub struct PipelineRobustnessBufferBehavior(pub(crate) i32);
+#[repr(transparent)]
+pub struct PipelineRobustnessImageBehavior(pub(crate) i32);
+#[repr(transparent)]
+pub struct MemoryUnmapFlags(pub(crate) i32);
+#[repr(transparent)]
+pub struct PipelineCreateFlags2(pub(crate) i32);
+#[repr(transparent)]
+pub struct BufferUsageFlags2(pub(crate) i32);
+#[repr(transparent)]
+pub struct HostImageCopyFlags(pub(crate) i32);
+#[repr(transparent)]
+pub struct BufferUsageFlagBits2(pub(crate) i32);
+#[repr(transparent)]
+pub struct PipelineCreateFlagBits2(pub(crate) i32);
+#[repr(transparent)]
+pub struct HostImageCopyFlagBits(pub(crate) i32);
+#[repr(transparent)]
+pub struct MemoryUnmapFlagBits(pub(crate) i32);

@@ -33,9 +33,9 @@ pub struct PresentInfoKHR {
     pub p_image_indices: *const u32,
     pub p_results: *mut crate::vk::Result,
 }
-#[repr(C)]
-pub struct SwapchainCreateFlagsKHR {}
-#[repr(C)]
-pub struct SwapchainCreateFlagBitsKHR {}
-#[repr(C)]
-pub struct SwapchainKHR {}
+#[repr(transparent)]
+pub struct SwapchainCreateFlagsKHR(pub(crate) i32);
+#[repr(transparent)]
+pub struct SwapchainCreateFlagBitsKHR(pub(crate) i32);
+#[repr(transparent)]
+pub struct SwapchainKHR(pub(crate) i32);

@@ -51,7 +51,7 @@ pub struct DeviceFaultVendorBinaryHeaderVersionOneEXT {
     pub engine_version: u32,
     pub api_version: u32,
 }
-#[repr(C)]
-pub struct DeviceFaultAddressTypeEXT {}
-#[repr(C)]
-pub struct DeviceFaultVendorBinaryHeaderVersionEXT {}
+#[repr(transparent)]
+pub struct DeviceFaultAddressTypeEXT(pub(crate) i32);
+#[repr(transparent)]
+pub struct DeviceFaultVendorBinaryHeaderVersionEXT(pub(crate) i32);

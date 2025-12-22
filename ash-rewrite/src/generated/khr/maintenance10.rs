@@ -34,11 +34,11 @@ pub struct ResolveImageModeInfoKHR {
     pub resolve_mode: crate::vk::ResolveModeFlagBits,
     pub stencil_resolve_mode: crate::vk::ResolveModeFlagBits,
 }
-#[repr(C)]
-pub struct RenderingAttachmentFlagsKHR {}
-#[repr(C)]
-pub struct ResolveImageFlagsKHR {}
-#[repr(C)]
-pub struct RenderingAttachmentFlagBitsKHR {}
-#[repr(C)]
-pub struct ResolveImageFlagBitsKHR {}
+#[repr(transparent)]
+pub struct RenderingAttachmentFlagsKHR(pub(crate) i32);
+#[repr(transparent)]
+pub struct ResolveImageFlagsKHR(pub(crate) i32);
+#[repr(transparent)]
+pub struct RenderingAttachmentFlagBitsKHR(pub(crate) i32);
+#[repr(transparent)]
+pub struct ResolveImageFlagBitsKHR(pub(crate) i32);

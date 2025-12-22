@@ -142,39 +142,39 @@ pub struct VideoCodingControlInfoKHR {
     pub p_next: *const core::ffi::c_void,
     pub flags: crate::vk::VideoCodingControlFlagsKHR,
 }
-#[repr(C)]
-pub struct QueryResultStatusKHR {}
-#[repr(C)]
-pub struct VideoCodecOperationFlagsKHR {}
-#[repr(C)]
-pub struct VideoCapabilityFlagsKHR {}
-#[repr(C)]
-pub struct VideoSessionCreateFlagsKHR {}
-#[repr(C)]
-pub struct VideoSessionParametersCreateFlagsKHR {}
-#[repr(C)]
-pub struct VideoBeginCodingFlagsKHR {}
-#[repr(C)]
-pub struct VideoEndCodingFlagsKHR {}
-#[repr(C)]
-pub struct VideoCodingControlFlagsKHR {}
-#[repr(C)]
-pub struct VideoChromaSubsamplingFlagsKHR {}
-#[repr(C)]
-pub struct VideoComponentBitDepthFlagsKHR {}
-#[repr(C)]
-pub struct VideoCodecOperationFlagBitsKHR {}
-#[repr(C)]
-pub struct VideoChromaSubsamplingFlagBitsKHR {}
-#[repr(C)]
-pub struct VideoComponentBitDepthFlagBitsKHR {}
-#[repr(C)]
-pub struct VideoCapabilityFlagBitsKHR {}
-#[repr(C)]
-pub struct VideoSessionCreateFlagBitsKHR {}
-#[repr(C)]
-pub struct VideoCodingControlFlagBitsKHR {}
-#[repr(C)]
-pub struct VideoSessionKHR {}
-#[repr(C)]
-pub struct VideoSessionParametersKHR {}
+#[repr(transparent)]
+pub struct QueryResultStatusKHR(pub(crate) i32);
+#[repr(transparent)]
+pub struct VideoCodecOperationFlagsKHR(pub(crate) i32);
+#[repr(transparent)]
+pub struct VideoCapabilityFlagsKHR(pub(crate) i32);
+#[repr(transparent)]
+pub struct VideoSessionCreateFlagsKHR(pub(crate) i32);
+#[repr(transparent)]
+pub struct VideoSessionParametersCreateFlagsKHR(pub(crate) i32);
+#[repr(transparent)]
+pub struct VideoBeginCodingFlagsKHR(pub(crate) i32);
+#[repr(transparent)]
+pub struct VideoEndCodingFlagsKHR(pub(crate) i32);
+#[repr(transparent)]
+pub struct VideoCodingControlFlagsKHR(pub(crate) i32);
+#[repr(transparent)]
+pub struct VideoChromaSubsamplingFlagsKHR(pub(crate) i32);
+#[repr(transparent)]
+pub struct VideoComponentBitDepthFlagsKHR(pub(crate) i32);
+#[repr(transparent)]
+pub struct VideoCodecOperationFlagBitsKHR(pub(crate) i32);
+#[repr(transparent)]
+pub struct VideoChromaSubsamplingFlagBitsKHR(pub(crate) i32);
+#[repr(transparent)]
+pub struct VideoComponentBitDepthFlagBitsKHR(pub(crate) i32);
+#[repr(transparent)]
+pub struct VideoCapabilityFlagBitsKHR(pub(crate) i32);
+#[repr(transparent)]
+pub struct VideoSessionCreateFlagBitsKHR(pub(crate) i32);
+#[repr(transparent)]
+pub struct VideoCodingControlFlagBitsKHR(pub(crate) i32);
+#[repr(transparent)]
+pub struct VideoSessionKHR(pub(crate) i32);
+#[repr(transparent)]
+pub struct VideoSessionParametersKHR(pub(crate) i32);

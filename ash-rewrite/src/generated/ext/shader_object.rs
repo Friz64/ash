@@ -67,11 +67,11 @@ pub struct ShaderCreateInfoEXT {
     pub p_specialization_info: *const crate::vk::SpecializationInfo,
 }
 pub type ShaderRequiredSubgroupSizeCreateInfoEXT = crate::vk::PipelineShaderStageRequiredSubgroupSizeCreateInfo;
-#[repr(C)]
-pub struct ShaderCodeTypeEXT {}
-#[repr(C)]
-pub struct ShaderCreateFlagsEXT {}
-#[repr(C)]
-pub struct ShaderCreateFlagBitsEXT {}
-#[repr(C)]
-pub struct ShaderEXT {}
+#[repr(transparent)]
+pub struct ShaderCodeTypeEXT(pub(crate) i32);
+#[repr(transparent)]
+pub struct ShaderCreateFlagsEXT(pub(crate) i32);
+#[repr(transparent)]
+pub struct ShaderCreateFlagBitsEXT(pub(crate) i32);
+#[repr(transparent)]
+pub struct ShaderEXT(pub(crate) i32);

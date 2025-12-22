@@ -21,7 +21,7 @@ pub struct PhysicalDeviceFrameBoundaryFeaturesEXT {
     pub p_next: *mut core::ffi::c_void,
     pub frame_boundary: crate::vk::Bool32,
 }
-#[repr(C)]
-pub struct FrameBoundaryFlagsEXT {}
-#[repr(C)]
-pub struct FrameBoundaryFlagBitsEXT {}
+#[repr(transparent)]
+pub struct FrameBoundaryFlagsEXT(pub(crate) i32);
+#[repr(transparent)]
+pub struct FrameBoundaryFlagBitsEXT(pub(crate) i32);

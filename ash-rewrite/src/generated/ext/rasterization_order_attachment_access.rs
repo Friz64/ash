@@ -9,7 +9,7 @@ pub struct PhysicalDeviceRasterizationOrderAttachmentAccessFeaturesEXT {
     pub rasterization_order_depth_attachment_access: crate::vk::Bool32,
     pub rasterization_order_stencil_attachment_access: crate::vk::Bool32,
 }
-#[repr(C)]
-pub struct PipelineColorBlendStateCreateFlagBits {}
-#[repr(C)]
-pub struct PipelineDepthStencilStateCreateFlagBits {}
+#[repr(transparent)]
+pub struct PipelineColorBlendStateCreateFlagBits(pub(crate) i32);
+#[repr(transparent)]
+pub struct PipelineDepthStencilStateCreateFlagBits(pub(crate) i32);

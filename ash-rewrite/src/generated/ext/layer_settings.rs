@@ -16,5 +16,5 @@ pub struct LayerSettingEXT {
     pub value_count: u32,
     pub p_values: *const core::ffi::c_void,
 }
-#[repr(C)]
-pub struct LayerSettingTypeEXT {}
+#[repr(transparent)]
+pub struct LayerSettingTypeEXT(pub(crate) i32);

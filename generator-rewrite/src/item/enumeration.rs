@@ -7,9 +7,8 @@ impl Code for Enum {
     fn code(&self, _ctx: &Context) -> CodeMap {
         let name = format_ident!("{}", self.name.prefix_trimmed());
         let code = quote! {
-            #[repr(C)]
-            pub struct #name {
-            }
+            #[repr(transparent)]
+            pub struct #name(pub(crate) i32);
         };
 
         CodeMap::new(Destination(self.required_by), code)

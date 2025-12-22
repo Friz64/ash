@@ -54,9 +54,9 @@ pub type DeviceGroupSubmitInfoKHR = crate::vk::DeviceGroupSubmitInfo;
 pub type DeviceGroupBindSparseInfoKHR = crate::vk::DeviceGroupBindSparseInfo;
 pub type PeerMemoryFeatureFlagBitsKHR = crate::vk::PeerMemoryFeatureFlagBits;
 pub type MemoryAllocateFlagBitsKHR = crate::vk::MemoryAllocateFlagBits;
-#[repr(C)]
-pub struct DeviceGroupPresentModeFlagsKHR {}
+#[repr(transparent)]
+pub struct DeviceGroupPresentModeFlagsKHR(pub(crate) i32);
 pub type PeerMemoryFeatureFlagsKHR = crate::vk::PeerMemoryFeatureFlags;
 pub type MemoryAllocateFlagsKHR = crate::vk::MemoryAllocateFlags;
-#[repr(C)]
-pub struct DeviceGroupPresentModeFlagBitsKHR {}
+#[repr(transparent)]
+pub struct DeviceGroupPresentModeFlagBitsKHR(pub(crate) i32);

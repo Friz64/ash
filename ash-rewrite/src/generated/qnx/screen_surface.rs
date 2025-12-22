@@ -9,5 +9,5 @@ pub struct ScreenSurfaceCreateInfoQNX {
     pub context: *mut crate::platform_types::_screen_context,
     pub window: *mut crate::platform_types::_screen_window,
 }
-#[repr(C)]
-pub struct ScreenSurfaceCreateFlagsQNX {}
+#[repr(transparent)]
+pub struct ScreenSurfaceCreateFlagsQNX(pub(crate) i32);

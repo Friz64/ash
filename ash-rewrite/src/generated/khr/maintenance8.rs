@@ -14,9 +14,9 @@ pub struct MemoryBarrierAccessFlags3KHR {
     pub src_access_mask3: crate::vk::AccessFlags3KHR,
     pub dst_access_mask3: crate::vk::AccessFlags3KHR,
 }
-#[repr(C)]
-pub struct AccessFlags3KHR {}
-#[repr(C)]
-pub struct PipelineCacheCreateFlagBits {}
-#[repr(C)]
-pub struct AccessFlagBits3KHR {}
+#[repr(transparent)]
+pub struct AccessFlags3KHR(pub(crate) i32);
+#[repr(transparent)]
+pub struct PipelineCacheCreateFlagBits(pub(crate) i32);
+#[repr(transparent)]
+pub struct AccessFlagBits3KHR(pub(crate) i32);

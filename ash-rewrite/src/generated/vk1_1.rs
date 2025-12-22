@@ -487,69 +487,69 @@ pub struct PhysicalDeviceShaderDrawParametersFeatures {
 }
 pub type PhysicalDeviceVariablePointerFeatures = crate::vk::PhysicalDeviceVariablePointersFeatures;
 pub type PhysicalDeviceShaderDrawParameterFeatures = crate::vk::PhysicalDeviceShaderDrawParametersFeatures;
-#[repr(C)]
-pub struct DescriptorUpdateTemplateType {}
-#[repr(C)]
-pub struct PointClippingBehavior {}
-#[repr(C)]
-pub struct TessellationDomainOrigin {}
-#[repr(C)]
-pub struct SamplerYcbcrModelConversion {}
-#[repr(C)]
-pub struct SamplerYcbcrRange {}
-#[repr(C)]
-pub struct ChromaLocation {}
-#[repr(C)]
-pub struct SubgroupFeatureFlags {}
-#[repr(C)]
-pub struct DescriptorUpdateTemplateCreateFlags {}
-#[repr(C)]
-pub struct PeerMemoryFeatureFlags {}
-#[repr(C)]
-pub struct MemoryAllocateFlags {}
-#[repr(C)]
-pub struct CommandPoolTrimFlags {}
-#[repr(C)]
-pub struct ExternalMemoryHandleTypeFlags {}
-#[repr(C)]
-pub struct ExternalMemoryFeatureFlags {}
-#[repr(C)]
-pub struct ExternalSemaphoreHandleTypeFlags {}
-#[repr(C)]
-pub struct ExternalSemaphoreFeatureFlags {}
-#[repr(C)]
-pub struct SemaphoreImportFlags {}
-#[repr(C)]
-pub struct ExternalFenceHandleTypeFlags {}
-#[repr(C)]
-pub struct ExternalFenceFeatureFlags {}
-#[repr(C)]
-pub struct FenceImportFlags {}
-#[repr(C)]
-pub struct DeviceQueueCreateFlagBits {}
-#[repr(C)]
-pub struct SubgroupFeatureFlagBits {}
-#[repr(C)]
-pub struct ExternalMemoryHandleTypeFlagBits {}
-#[repr(C)]
-pub struct ExternalMemoryFeatureFlagBits {}
-#[repr(C)]
-pub struct ExternalSemaphoreHandleTypeFlagBits {}
-#[repr(C)]
-pub struct ExternalSemaphoreFeatureFlagBits {}
-#[repr(C)]
-pub struct SemaphoreImportFlagBits {}
-#[repr(C)]
-pub struct ExternalFenceHandleTypeFlagBits {}
-#[repr(C)]
-pub struct ExternalFenceFeatureFlagBits {}
-#[repr(C)]
-pub struct FenceImportFlagBits {}
-#[repr(C)]
-pub struct PeerMemoryFeatureFlagBits {}
-#[repr(C)]
-pub struct MemoryAllocateFlagBits {}
-#[repr(C)]
-pub struct DescriptorUpdateTemplate {}
-#[repr(C)]
-pub struct SamplerYcbcrConversion {}
+#[repr(transparent)]
+pub struct DescriptorUpdateTemplateType(pub(crate) i32);
+#[repr(transparent)]
+pub struct PointClippingBehavior(pub(crate) i32);
+#[repr(transparent)]
+pub struct TessellationDomainOrigin(pub(crate) i32);
+#[repr(transparent)]
+pub struct SamplerYcbcrModelConversion(pub(crate) i32);
+#[repr(transparent)]
+pub struct SamplerYcbcrRange(pub(crate) i32);
+#[repr(transparent)]
+pub struct ChromaLocation(pub(crate) i32);
+#[repr(transparent)]
+pub struct SubgroupFeatureFlags(pub(crate) i32);
+#[repr(transparent)]
+pub struct DescriptorUpdateTemplateCreateFlags(pub(crate) i32);
+#[repr(transparent)]
+pub struct PeerMemoryFeatureFlags(pub(crate) i32);
+#[repr(transparent)]
+pub struct MemoryAllocateFlags(pub(crate) i32);
+#[repr(transparent)]
+pub struct CommandPoolTrimFlags(pub(crate) i32);
+#[repr(transparent)]
+pub struct ExternalMemoryHandleTypeFlags(pub(crate) i32);
+#[repr(transparent)]
+pub struct ExternalMemoryFeatureFlags(pub(crate) i32);
+#[repr(transparent)]
+pub struct ExternalSemaphoreHandleTypeFlags(pub(crate) i32);
+#[repr(transparent)]
+pub struct ExternalSemaphoreFeatureFlags(pub(crate) i32);
+#[repr(transparent)]
+pub struct SemaphoreImportFlags(pub(crate) i32);
+#[repr(transparent)]
+pub struct ExternalFenceHandleTypeFlags(pub(crate) i32);
+#[repr(transparent)]
+pub struct ExternalFenceFeatureFlags(pub(crate) i32);
+#[repr(transparent)]
+pub struct FenceImportFlags(pub(crate) i32);
+#[repr(transparent)]
+pub struct DeviceQueueCreateFlagBits(pub(crate) i32);
+#[repr(transparent)]
+pub struct SubgroupFeatureFlagBits(pub(crate) i32);
+#[repr(transparent)]
+pub struct ExternalMemoryHandleTypeFlagBits(pub(crate) i32);
+#[repr(transparent)]
+pub struct ExternalMemoryFeatureFlagBits(pub(crate) i32);
+#[repr(transparent)]
+pub struct ExternalSemaphoreHandleTypeFlagBits(pub(crate) i32);
+#[repr(transparent)]
+pub struct ExternalSemaphoreFeatureFlagBits(pub(crate) i32);
+#[repr(transparent)]
+pub struct SemaphoreImportFlagBits(pub(crate) i32);
+#[repr(transparent)]
+pub struct ExternalFenceHandleTypeFlagBits(pub(crate) i32);
+#[repr(transparent)]
+pub struct ExternalFenceFeatureFlagBits(pub(crate) i32);
+#[repr(transparent)]
+pub struct FenceImportFlagBits(pub(crate) i32);
+#[repr(transparent)]
+pub struct PeerMemoryFeatureFlagBits(pub(crate) i32);
+#[repr(transparent)]
+pub struct MemoryAllocateFlagBits(pub(crate) i32);
+#[repr(transparent)]
+pub struct DescriptorUpdateTemplate(pub(crate) i32);
+#[repr(transparent)]
+pub struct SamplerYcbcrConversion(pub(crate) i32);

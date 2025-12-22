@@ -9,5 +9,5 @@ pub struct XlibSurfaceCreateInfoKHR {
     pub dpy: *mut crate::platform_types::Display,
     pub window: crate::platform_types::Window,
 }
-#[repr(C)]
-pub struct XlibSurfaceCreateFlagsKHR {}
+#[repr(transparent)]
+pub struct XlibSurfaceCreateFlagsKHR(pub(crate) i32);

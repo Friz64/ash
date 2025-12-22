@@ -71,7 +71,7 @@ pub struct RayTracingPipelineInterfaceCreateInfoKHR {
     pub max_pipeline_ray_payload_size: u32,
     pub max_pipeline_ray_hit_attribute_size: u32,
 }
-#[repr(C)]
-pub struct RayTracingShaderGroupTypeKHR {}
-#[repr(C)]
-pub struct ShaderGroupShaderKHR {}
+#[repr(transparent)]
+pub struct RayTracingShaderGroupTypeKHR(pub(crate) i32);
+#[repr(transparent)]
+pub struct ShaderGroupShaderKHR(pub(crate) i32);

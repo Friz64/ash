@@ -26,5 +26,5 @@ pub struct PhysicalDeviceExternalComputeQueuePropertiesNV {
     pub external_data_size: u32,
     pub max_external_queues: u32,
 }
-#[repr(C)]
-pub struct ExternalComputeQueueNV {}
+#[repr(transparent)]
+pub struct ExternalComputeQueueNV(pub(crate) i32);

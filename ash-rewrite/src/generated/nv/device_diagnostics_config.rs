@@ -13,7 +13,7 @@ pub struct DeviceDiagnosticsConfigCreateInfoNV {
     pub p_next: *const core::ffi::c_void,
     pub flags: crate::vk::DeviceDiagnosticsConfigFlagsNV,
 }
-#[repr(C)]
-pub struct DeviceDiagnosticsConfigFlagsNV {}
-#[repr(C)]
-pub struct DeviceDiagnosticsConfigFlagBitsNV {}
+#[repr(transparent)]
+pub struct DeviceDiagnosticsConfigFlagsNV(pub(crate) i32);
+#[repr(transparent)]
+pub struct DeviceDiagnosticsConfigFlagBitsNV(pub(crate) i32);

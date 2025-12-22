@@ -23,7 +23,7 @@ pub struct PipelineFragmentShadingRateEnumStateCreateInfoNV {
     pub shading_rate: crate::vk::FragmentShadingRateNV,
     pub combiner_ops: [crate::vk::FragmentShadingRateCombinerOpKHR; 1337],
 }
-#[repr(C)]
-pub struct FragmentShadingRateNV {}
-#[repr(C)]
-pub struct FragmentShadingRateTypeNV {}
+#[repr(transparent)]
+pub struct FragmentShadingRateNV(pub(crate) i32);
+#[repr(transparent)]
+pub struct FragmentShadingRateTypeNV(pub(crate) i32);

@@ -532,35 +532,35 @@ pub struct CommandBufferInheritanceRenderingInfo {
     pub stencil_attachment_format: crate::vk::Format,
     pub rasterization_samples: crate::vk::SampleCountFlagBits,
 }
-#[repr(C)]
-pub struct PrivateDataSlotCreateFlags {}
-#[repr(C)]
-pub struct PipelineCreationFeedbackFlags {}
-#[repr(C)]
-pub struct AccessFlags2 {}
-#[repr(C)]
-pub struct PipelineStageFlags2 {}
-#[repr(C)]
-pub struct FormatFeatureFlags2 {}
-#[repr(C)]
-pub struct RenderingFlags {}
-#[repr(C)]
-pub struct ToolPurposeFlags {}
-#[repr(C)]
-pub struct SubmitFlags {}
-#[repr(C)]
-pub struct PipelineCreationFeedbackFlagBits {}
-#[repr(C)]
-pub struct ToolPurposeFlagBits {}
-#[repr(C)]
-pub struct AccessFlagBits2 {}
-#[repr(C)]
-pub struct PipelineStageFlagBits2 {}
-#[repr(C)]
-pub struct SubmitFlagBits {}
-#[repr(C)]
-pub struct FormatFeatureFlagBits2 {}
-#[repr(C)]
-pub struct RenderingFlagBits {}
-#[repr(C)]
-pub struct PrivateDataSlot {}
+#[repr(transparent)]
+pub struct PrivateDataSlotCreateFlags(pub(crate) i32);
+#[repr(transparent)]
+pub struct PipelineCreationFeedbackFlags(pub(crate) i32);
+#[repr(transparent)]
+pub struct AccessFlags2(pub(crate) i32);
+#[repr(transparent)]
+pub struct PipelineStageFlags2(pub(crate) i32);
+#[repr(transparent)]
+pub struct FormatFeatureFlags2(pub(crate) i32);
+#[repr(transparent)]
+pub struct RenderingFlags(pub(crate) i32);
+#[repr(transparent)]
+pub struct ToolPurposeFlags(pub(crate) i32);
+#[repr(transparent)]
+pub struct SubmitFlags(pub(crate) i32);
+#[repr(transparent)]
+pub struct PipelineCreationFeedbackFlagBits(pub(crate) i32);
+#[repr(transparent)]
+pub struct ToolPurposeFlagBits(pub(crate) i32);
+#[repr(transparent)]
+pub struct AccessFlagBits2(pub(crate) i32);
+#[repr(transparent)]
+pub struct PipelineStageFlagBits2(pub(crate) i32);
+#[repr(transparent)]
+pub struct SubmitFlagBits(pub(crate) i32);
+#[repr(transparent)]
+pub struct FormatFeatureFlagBits2(pub(crate) i32);
+#[repr(transparent)]
+pub struct RenderingFlagBits(pub(crate) i32);
+#[repr(transparent)]
+pub struct PrivateDataSlot(pub(crate) i32);

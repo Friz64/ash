@@ -58,17 +58,17 @@ pub struct DisplaySurfaceCreateInfoKHR {
     pub alpha_mode: crate::vk::DisplayPlaneAlphaFlagBitsKHR,
     pub image_extent: crate::vk::Extent2D,
 }
-#[repr(C)]
-pub struct DisplayPlaneAlphaFlagsKHR {}
-#[repr(C)]
-pub struct SurfaceTransformFlagsKHR {}
-#[repr(C)]
-pub struct DisplayModeCreateFlagsKHR {}
-#[repr(C)]
-pub struct DisplaySurfaceCreateFlagsKHR {}
-#[repr(C)]
-pub struct DisplayPlaneAlphaFlagBitsKHR {}
-#[repr(C)]
-pub struct DisplayKHR {}
-#[repr(C)]
-pub struct DisplayModeKHR {}
+#[repr(transparent)]
+pub struct DisplayPlaneAlphaFlagsKHR(pub(crate) i32);
+#[repr(transparent)]
+pub struct SurfaceTransformFlagsKHR(pub(crate) i32);
+#[repr(transparent)]
+pub struct DisplayModeCreateFlagsKHR(pub(crate) i32);
+#[repr(transparent)]
+pub struct DisplaySurfaceCreateFlagsKHR(pub(crate) i32);
+#[repr(transparent)]
+pub struct DisplayPlaneAlphaFlagBitsKHR(pub(crate) i32);
+#[repr(transparent)]
+pub struct DisplayKHR(pub(crate) i32);
+#[repr(transparent)]
+pub struct DisplayModeKHR(pub(crate) i32);

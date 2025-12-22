@@ -165,23 +165,23 @@ pub struct DataGraphProcessingEngineCreateInfoARM {
     pub processing_engine_count: u32,
     pub p_processing_engines: *mut crate::vk::PhysicalDeviceDataGraphProcessingEngineARM,
 }
-#[repr(C)]
-pub struct DataGraphPipelineSessionBindPointARM {}
-#[repr(C)]
-pub struct DataGraphPipelineSessionBindPointTypeARM {}
-#[repr(C)]
-pub struct DataGraphPipelinePropertyARM {}
-#[repr(C)]
-pub struct PhysicalDeviceDataGraphProcessingEngineTypeARM {}
-#[repr(C)]
-pub struct PhysicalDeviceDataGraphOperationTypeARM {}
-#[repr(C)]
-pub struct DataGraphPipelineSessionCreateFlagsARM {}
-#[repr(C)]
-pub struct DataGraphPipelineDispatchFlagsARM {}
-#[repr(C)]
-pub struct DataGraphPipelineSessionCreateFlagBitsARM {}
-#[repr(C)]
-pub struct DataGraphPipelineDispatchFlagBitsARM {}
-#[repr(C)]
-pub struct DataGraphPipelineSessionARM {}
+#[repr(transparent)]
+pub struct DataGraphPipelineSessionBindPointARM(pub(crate) i32);
+#[repr(transparent)]
+pub struct DataGraphPipelineSessionBindPointTypeARM(pub(crate) i32);
+#[repr(transparent)]
+pub struct DataGraphPipelinePropertyARM(pub(crate) i32);
+#[repr(transparent)]
+pub struct PhysicalDeviceDataGraphProcessingEngineTypeARM(pub(crate) i32);
+#[repr(transparent)]
+pub struct PhysicalDeviceDataGraphOperationTypeARM(pub(crate) i32);
+#[repr(transparent)]
+pub struct DataGraphPipelineSessionCreateFlagsARM(pub(crate) i32);
+#[repr(transparent)]
+pub struct DataGraphPipelineDispatchFlagsARM(pub(crate) i32);
+#[repr(transparent)]
+pub struct DataGraphPipelineSessionCreateFlagBitsARM(pub(crate) i32);
+#[repr(transparent)]
+pub struct DataGraphPipelineDispatchFlagBitsARM(pub(crate) i32);
+#[repr(transparent)]
+pub struct DataGraphPipelineSessionARM(pub(crate) i32);

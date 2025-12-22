@@ -76,9 +76,9 @@ pub struct BuildPartitionedAccelerationStructureInfoNV {
     pub src_infos: crate::vk::DeviceAddress,
     pub src_infos_count: crate::vk::DeviceAddress,
 }
-#[repr(C)]
-pub struct PartitionedAccelerationStructureOpTypeNV {}
-#[repr(C)]
-pub struct PartitionedAccelerationStructureInstanceFlagsNV {}
-#[repr(C)]
-pub struct PartitionedAccelerationStructureInstanceFlagBitsNV {}
+#[repr(transparent)]
+pub struct PartitionedAccelerationStructureOpTypeNV(pub(crate) i32);
+#[repr(transparent)]
+pub struct PartitionedAccelerationStructureInstanceFlagsNV(pub(crate) i32);
+#[repr(transparent)]
+pub struct PartitionedAccelerationStructureInstanceFlagBitsNV(pub(crate) i32);

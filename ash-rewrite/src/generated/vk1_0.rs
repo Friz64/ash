@@ -1094,338 +1094,343 @@ pub struct ClearValue {
     color: crate::vk::ClearColorValue,
     depth_stencil: crate::vk::ClearDepthStencilValue,
 }
-#[repr(C)]
-pub struct ImageLayout {}
-#[repr(C)]
-pub struct AttachmentLoadOp {}
-#[repr(C)]
-pub struct AttachmentStoreOp {}
-#[repr(C)]
-pub struct ImageType {}
-#[repr(C)]
-pub struct ImageTiling {}
-#[repr(C)]
-pub struct ImageViewType {}
-#[repr(C)]
-pub struct CommandBufferLevel {}
-#[repr(C)]
-pub struct ComponentSwizzle {}
-#[repr(C)]
-pub struct DescriptorType {}
-#[repr(C)]
-pub struct QueryType {}
-#[repr(C)]
-pub struct BorderColor {}
-#[repr(C)]
-pub struct PipelineBindPoint {}
-#[repr(C)]
-pub struct PipelineCacheHeaderVersion {}
-#[repr(C)]
-pub struct PrimitiveTopology {}
-#[repr(C)]
-pub struct SharingMode {}
-#[repr(C)]
-pub struct IndexType {}
-#[repr(C)]
-pub struct Filter {}
-#[repr(C)]
-pub struct SamplerMipmapMode {}
-#[repr(C)]
-pub struct SamplerAddressMode {}
-#[repr(C)]
-pub struct CompareOp {}
-#[repr(C)]
-pub struct PolygonMode {}
-#[repr(C)]
-pub struct FrontFace {}
-#[repr(C)]
-pub struct BlendFactor {}
-#[repr(C)]
-pub struct BlendOp {}
-#[repr(C)]
-pub struct StencilOp {}
-#[repr(C)]
-pub struct LogicOp {}
-#[repr(C)]
-pub struct InternalAllocationType {}
-#[repr(C)]
-pub struct SystemAllocationScope {}
-#[repr(C)]
-pub struct PhysicalDeviceType {}
-#[repr(C)]
-pub struct VertexInputRate {}
-#[repr(C)]
-pub struct Format {}
-#[repr(C)]
-pub struct StructureType {}
-#[repr(C)]
-pub struct SubpassContents {}
-#[repr(C)]
-pub struct Result {}
-#[repr(C)]
-pub struct DynamicState {}
-#[repr(C)]
-pub struct ObjectType {}
-#[repr(C)]
-pub struct VendorId {}
-#[repr(C)]
-pub struct FramebufferCreateFlags {}
-#[repr(C)]
-pub struct QueryPoolCreateFlags {}
-#[repr(C)]
-pub struct RenderPassCreateFlags {}
-#[repr(C)]
-pub struct SamplerCreateFlags {}
-#[repr(C)]
-pub struct PipelineLayoutCreateFlags {}
-#[repr(C)]
-pub struct PipelineCacheCreateFlags {}
-#[repr(C)]
-pub struct PipelineDepthStencilStateCreateFlags {}
-#[repr(C)]
-pub struct PipelineDynamicStateCreateFlags {}
-#[repr(C)]
-pub struct PipelineColorBlendStateCreateFlags {}
-#[repr(C)]
-pub struct PipelineMultisampleStateCreateFlags {}
-#[repr(C)]
-pub struct PipelineRasterizationStateCreateFlags {}
-#[repr(C)]
-pub struct PipelineViewportStateCreateFlags {}
-#[repr(C)]
-pub struct PipelineTessellationStateCreateFlags {}
-#[repr(C)]
-pub struct PipelineInputAssemblyStateCreateFlags {}
-#[repr(C)]
-pub struct PipelineVertexInputStateCreateFlags {}
-#[repr(C)]
-pub struct PipelineShaderStageCreateFlags {}
-#[repr(C)]
-pub struct DescriptorSetLayoutCreateFlags {}
-#[repr(C)]
-pub struct BufferViewCreateFlags {}
-#[repr(C)]
-pub struct InstanceCreateFlags {}
-#[repr(C)]
-pub struct DeviceCreateFlags {}
-#[repr(C)]
-pub struct DeviceQueueCreateFlags {}
-#[repr(C)]
-pub struct QueueFlags {}
-#[repr(C)]
-pub struct MemoryPropertyFlags {}
-#[repr(C)]
-pub struct MemoryHeapFlags {}
-#[repr(C)]
-pub struct AccessFlags {}
-#[repr(C)]
-pub struct BufferUsageFlags {}
-#[repr(C)]
-pub struct BufferCreateFlags {}
-#[repr(C)]
-pub struct ShaderStageFlags {}
-#[repr(C)]
-pub struct ImageUsageFlags {}
-#[repr(C)]
-pub struct ImageCreateFlags {}
-#[repr(C)]
-pub struct ImageViewCreateFlags {}
-#[repr(C)]
-pub struct PipelineCreateFlags {}
-#[repr(C)]
-pub struct ColorComponentFlags {}
-#[repr(C)]
-pub struct FenceCreateFlags {}
-#[repr(C)]
-pub struct SemaphoreCreateFlags {}
-#[repr(C)]
-pub struct FormatFeatureFlags {}
-#[repr(C)]
-pub struct QueryControlFlags {}
-#[repr(C)]
-pub struct QueryResultFlags {}
-#[repr(C)]
-pub struct ShaderModuleCreateFlags {}
-#[repr(C)]
-pub struct EventCreateFlags {}
-#[repr(C)]
-pub struct CommandPoolCreateFlags {}
-#[repr(C)]
-pub struct CommandPoolResetFlags {}
-#[repr(C)]
-pub struct CommandBufferResetFlags {}
-#[repr(C)]
-pub struct CommandBufferUsageFlags {}
-#[repr(C)]
-pub struct QueryPipelineStatisticFlags {}
-#[repr(C)]
-pub struct MemoryMapFlags {}
-#[repr(C)]
-pub struct ImageAspectFlags {}
-#[repr(C)]
-pub struct SparseMemoryBindFlags {}
-#[repr(C)]
-pub struct SparseImageFormatFlags {}
-#[repr(C)]
-pub struct SubpassDescriptionFlags {}
-#[repr(C)]
-pub struct PipelineStageFlags {}
-#[repr(C)]
-pub struct SampleCountFlags {}
-#[repr(C)]
-pub struct AttachmentDescriptionFlags {}
-#[repr(C)]
-pub struct StencilFaceFlags {}
-#[repr(C)]
-pub struct CullModeFlags {}
-#[repr(C)]
-pub struct DescriptorPoolCreateFlags {}
-#[repr(C)]
-pub struct DescriptorPoolResetFlags {}
-#[repr(C)]
-pub struct DependencyFlags {}
-#[repr(C)]
-pub struct QueueFlagBits {}
-#[repr(C)]
-pub struct CullModeFlagBits {}
-#[repr(C)]
-pub struct RenderPassCreateFlagBits {}
-#[repr(C)]
-pub struct MemoryPropertyFlagBits {}
-#[repr(C)]
-pub struct MemoryHeapFlagBits {}
-#[repr(C)]
-pub struct AccessFlagBits {}
-#[repr(C)]
-pub struct BufferUsageFlagBits {}
-#[repr(C)]
-pub struct BufferCreateFlagBits {}
-#[repr(C)]
-pub struct ShaderStageFlagBits {}
-#[repr(C)]
-pub struct ImageUsageFlagBits {}
-#[repr(C)]
-pub struct ImageCreateFlagBits {}
-#[repr(C)]
-pub struct ImageViewCreateFlagBits {}
-#[repr(C)]
-pub struct SamplerCreateFlagBits {}
-#[repr(C)]
-pub struct PipelineCreateFlagBits {}
-#[repr(C)]
-pub struct PipelineShaderStageCreateFlagBits {}
-#[repr(C)]
-pub struct ColorComponentFlagBits {}
-#[repr(C)]
-pub struct FenceCreateFlagBits {}
-#[repr(C)]
-pub struct FormatFeatureFlagBits {}
-#[repr(C)]
-pub struct QueryControlFlagBits {}
-#[repr(C)]
-pub struct QueryResultFlagBits {}
-#[repr(C)]
-pub struct CommandBufferUsageFlagBits {}
-#[repr(C)]
-pub struct QueryPipelineStatisticFlagBits {}
-#[repr(C)]
-pub struct MemoryMapFlagBits {}
-#[repr(C)]
-pub struct ImageAspectFlagBits {}
-#[repr(C)]
-pub struct SparseImageFormatFlagBits {}
-#[repr(C)]
-pub struct SparseMemoryBindFlagBits {}
-#[repr(C)]
-pub struct PipelineStageFlagBits {}
-#[repr(C)]
-pub struct CommandPoolCreateFlagBits {}
-#[repr(C)]
-pub struct CommandPoolResetFlagBits {}
-#[repr(C)]
-pub struct CommandBufferResetFlagBits {}
-#[repr(C)]
-pub struct SampleCountFlagBits {}
-#[repr(C)]
-pub struct AttachmentDescriptionFlagBits {}
-#[repr(C)]
-pub struct StencilFaceFlagBits {}
-#[repr(C)]
-pub struct DescriptorPoolCreateFlagBits {}
-#[repr(C)]
-pub struct DependencyFlagBits {}
-#[repr(C)]
-pub struct DescriptorSetLayoutCreateFlagBits {}
-#[repr(C)]
-pub struct SubpassDescriptionFlagBits {}
-#[repr(C)]
-pub struct FramebufferCreateFlagBits {}
-#[repr(C)]
-pub struct QueryPoolCreateFlagBits {}
-#[repr(C)]
-pub struct EventCreateFlagBits {}
-#[repr(C)]
-pub struct InstanceCreateFlagBits {}
-#[repr(C)]
-pub struct SampleMask {}
-#[repr(C)]
-pub struct Bool32 {}
-#[repr(C)]
-pub struct Flags {}
-#[repr(C)]
-pub struct DeviceSize {}
-#[repr(C)]
-pub struct DeviceAddress {}
-#[repr(C)]
-pub struct Instance {}
-#[repr(C)]
-pub struct PhysicalDevice {}
-#[repr(C)]
-pub struct Device {}
-#[repr(C)]
-pub struct Queue {}
-#[repr(C)]
-pub struct CommandBuffer {}
-#[repr(C)]
-pub struct DeviceMemory {}
-#[repr(C)]
-pub struct CommandPool {}
-#[repr(C)]
-pub struct Buffer {}
-#[repr(C)]
-pub struct BufferView {}
-#[repr(C)]
-pub struct Image {}
-#[repr(C)]
-pub struct ImageView {}
-#[repr(C)]
-pub struct ShaderModule {}
-#[repr(C)]
-pub struct Pipeline {}
-#[repr(C)]
-pub struct PipelineLayout {}
-#[repr(C)]
-pub struct Sampler {}
-#[repr(C)]
-pub struct DescriptorSet {}
-#[repr(C)]
-pub struct DescriptorSetLayout {}
-#[repr(C)]
-pub struct DescriptorPool {}
-#[repr(C)]
-pub struct Fence {}
-#[repr(C)]
-pub struct Semaphore {}
-#[repr(C)]
-pub struct Event {}
-#[repr(C)]
-pub struct QueryPool {}
-#[repr(C)]
-pub struct Framebuffer {}
-#[repr(C)]
-pub struct RenderPass {}
-#[repr(C)]
-pub struct PipelineCache {}
+#[repr(transparent)]
+pub struct ImageLayout(pub(crate) i32);
+#[repr(transparent)]
+pub struct AttachmentLoadOp(pub(crate) i32);
+#[repr(transparent)]
+pub struct AttachmentStoreOp(pub(crate) i32);
+#[repr(transparent)]
+pub struct ImageType(pub(crate) i32);
+#[repr(transparent)]
+pub struct ImageTiling(pub(crate) i32);
+#[repr(transparent)]
+pub struct ImageViewType(pub(crate) i32);
+#[repr(transparent)]
+pub struct CommandBufferLevel(pub(crate) i32);
+#[repr(transparent)]
+pub struct ComponentSwizzle(pub(crate) i32);
+#[repr(transparent)]
+pub struct DescriptorType(pub(crate) i32);
+#[repr(transparent)]
+pub struct QueryType(pub(crate) i32);
+#[repr(transparent)]
+pub struct BorderColor(pub(crate) i32);
+#[repr(transparent)]
+pub struct PipelineBindPoint(pub(crate) i32);
+#[repr(transparent)]
+pub struct PipelineCacheHeaderVersion(pub(crate) i32);
+#[repr(transparent)]
+pub struct PrimitiveTopology(pub(crate) i32);
+#[repr(transparent)]
+pub struct SharingMode(pub(crate) i32);
+#[repr(transparent)]
+pub struct IndexType(pub(crate) i32);
+#[repr(transparent)]
+pub struct Filter(pub(crate) i32);
+#[repr(transparent)]
+pub struct SamplerMipmapMode(pub(crate) i32);
+#[repr(transparent)]
+pub struct SamplerAddressMode(pub(crate) i32);
+#[repr(transparent)]
+pub struct CompareOp(pub(crate) i32);
+#[repr(transparent)]
+pub struct PolygonMode(pub(crate) i32);
+#[repr(transparent)]
+pub struct FrontFace(pub(crate) i32);
+#[repr(transparent)]
+pub struct BlendFactor(pub(crate) i32);
+#[repr(transparent)]
+pub struct BlendOp(pub(crate) i32);
+#[repr(transparent)]
+pub struct StencilOp(pub(crate) i32);
+#[repr(transparent)]
+pub struct LogicOp(pub(crate) i32);
+#[repr(transparent)]
+pub struct InternalAllocationType(pub(crate) i32);
+#[repr(transparent)]
+pub struct SystemAllocationScope(pub(crate) i32);
+#[repr(transparent)]
+pub struct PhysicalDeviceType(pub(crate) i32);
+#[repr(transparent)]
+pub struct VertexInputRate(pub(crate) i32);
+#[repr(transparent)]
+pub struct Format(pub(crate) i32);
+#[repr(transparent)]
+pub struct StructureType(pub(crate) i32);
+#[repr(transparent)]
+pub struct SubpassContents(pub(crate) i32);
+#[repr(transparent)]
+pub struct Result(pub(crate) i32);
+#[repr(transparent)]
+pub struct DynamicState(pub(crate) i32);
+#[repr(transparent)]
+pub struct ObjectType(pub(crate) i32);
+#[repr(transparent)]
+pub struct VendorId(pub(crate) i32);
+#[repr(transparent)]
+pub struct FramebufferCreateFlags(pub(crate) i32);
+#[repr(transparent)]
+pub struct QueryPoolCreateFlags(pub(crate) i32);
+#[repr(transparent)]
+pub struct RenderPassCreateFlags(pub(crate) i32);
+#[repr(transparent)]
+pub struct SamplerCreateFlags(pub(crate) i32);
+#[repr(transparent)]
+pub struct PipelineLayoutCreateFlags(pub(crate) i32);
+#[repr(transparent)]
+pub struct PipelineCacheCreateFlags(pub(crate) i32);
+#[repr(transparent)]
+pub struct PipelineDepthStencilStateCreateFlags(pub(crate) i32);
+#[repr(transparent)]
+pub struct PipelineDynamicStateCreateFlags(pub(crate) i32);
+#[repr(transparent)]
+pub struct PipelineColorBlendStateCreateFlags(pub(crate) i32);
+#[repr(transparent)]
+pub struct PipelineMultisampleStateCreateFlags(pub(crate) i32);
+#[repr(transparent)]
+pub struct PipelineRasterizationStateCreateFlags(pub(crate) i32);
+#[repr(transparent)]
+pub struct PipelineViewportStateCreateFlags(pub(crate) i32);
+#[repr(transparent)]
+pub struct PipelineTessellationStateCreateFlags(pub(crate) i32);
+#[repr(transparent)]
+pub struct PipelineInputAssemblyStateCreateFlags(pub(crate) i32);
+#[repr(transparent)]
+pub struct PipelineVertexInputStateCreateFlags(pub(crate) i32);
+#[repr(transparent)]
+pub struct PipelineShaderStageCreateFlags(pub(crate) i32);
+#[repr(transparent)]
+pub struct DescriptorSetLayoutCreateFlags(pub(crate) i32);
+#[repr(transparent)]
+pub struct BufferViewCreateFlags(pub(crate) i32);
+#[repr(transparent)]
+pub struct InstanceCreateFlags(pub(crate) i32);
+#[repr(transparent)]
+pub struct DeviceCreateFlags(pub(crate) i32);
+#[repr(transparent)]
+pub struct DeviceQueueCreateFlags(pub(crate) i32);
+#[repr(transparent)]
+pub struct QueueFlags(pub(crate) i32);
+#[repr(transparent)]
+pub struct MemoryPropertyFlags(pub(crate) i32);
+#[repr(transparent)]
+pub struct MemoryHeapFlags(pub(crate) i32);
+#[repr(transparent)]
+pub struct AccessFlags(pub(crate) i32);
+#[repr(transparent)]
+pub struct BufferUsageFlags(pub(crate) i32);
+#[repr(transparent)]
+pub struct BufferCreateFlags(pub(crate) i32);
+#[repr(transparent)]
+pub struct ShaderStageFlags(pub(crate) i32);
+#[repr(transparent)]
+pub struct ImageUsageFlags(pub(crate) i32);
+#[repr(transparent)]
+pub struct ImageCreateFlags(pub(crate) i32);
+#[repr(transparent)]
+pub struct ImageViewCreateFlags(pub(crate) i32);
+#[repr(transparent)]
+pub struct PipelineCreateFlags(pub(crate) i32);
+#[repr(transparent)]
+pub struct ColorComponentFlags(pub(crate) i32);
+#[repr(transparent)]
+pub struct FenceCreateFlags(pub(crate) i32);
+#[repr(transparent)]
+pub struct SemaphoreCreateFlags(pub(crate) i32);
+#[repr(transparent)]
+pub struct FormatFeatureFlags(pub(crate) i32);
+#[repr(transparent)]
+pub struct QueryControlFlags(pub(crate) i32);
+#[repr(transparent)]
+pub struct QueryResultFlags(pub(crate) i32);
+#[repr(transparent)]
+pub struct ShaderModuleCreateFlags(pub(crate) i32);
+#[repr(transparent)]
+pub struct EventCreateFlags(pub(crate) i32);
+#[repr(transparent)]
+pub struct CommandPoolCreateFlags(pub(crate) i32);
+#[repr(transparent)]
+pub struct CommandPoolResetFlags(pub(crate) i32);
+#[repr(transparent)]
+pub struct CommandBufferResetFlags(pub(crate) i32);
+#[repr(transparent)]
+pub struct CommandBufferUsageFlags(pub(crate) i32);
+#[repr(transparent)]
+pub struct QueryPipelineStatisticFlags(pub(crate) i32);
+#[repr(transparent)]
+pub struct MemoryMapFlags(pub(crate) i32);
+#[repr(transparent)]
+pub struct ImageAspectFlags(pub(crate) i32);
+#[repr(transparent)]
+pub struct SparseMemoryBindFlags(pub(crate) i32);
+#[repr(transparent)]
+pub struct SparseImageFormatFlags(pub(crate) i32);
+#[repr(transparent)]
+pub struct SubpassDescriptionFlags(pub(crate) i32);
+#[repr(transparent)]
+pub struct PipelineStageFlags(pub(crate) i32);
+#[repr(transparent)]
+pub struct SampleCountFlags(pub(crate) i32);
+#[repr(transparent)]
+pub struct AttachmentDescriptionFlags(pub(crate) i32);
+#[repr(transparent)]
+pub struct StencilFaceFlags(pub(crate) i32);
+#[repr(transparent)]
+pub struct CullModeFlags(pub(crate) i32);
+#[repr(transparent)]
+pub struct DescriptorPoolCreateFlags(pub(crate) i32);
+#[repr(transparent)]
+pub struct DescriptorPoolResetFlags(pub(crate) i32);
+#[repr(transparent)]
+pub struct DependencyFlags(pub(crate) i32);
+#[repr(transparent)]
+pub struct QueueFlagBits(pub(crate) i32);
+#[repr(transparent)]
+pub struct CullModeFlagBits(pub(crate) i32);
+#[repr(transparent)]
+pub struct RenderPassCreateFlagBits(pub(crate) i32);
+#[repr(transparent)]
+pub struct MemoryPropertyFlagBits(pub(crate) i32);
+#[repr(transparent)]
+pub struct MemoryHeapFlagBits(pub(crate) i32);
+#[repr(transparent)]
+pub struct AccessFlagBits(pub(crate) i32);
+#[repr(transparent)]
+pub struct BufferUsageFlagBits(pub(crate) i32);
+#[repr(transparent)]
+pub struct BufferCreateFlagBits(pub(crate) i32);
+#[repr(transparent)]
+pub struct ShaderStageFlagBits(pub(crate) i32);
+#[repr(transparent)]
+pub struct ImageUsageFlagBits(pub(crate) i32);
+#[repr(transparent)]
+pub struct ImageCreateFlagBits(pub(crate) i32);
+#[repr(transparent)]
+pub struct ImageViewCreateFlagBits(pub(crate) i32);
+#[repr(transparent)]
+pub struct SamplerCreateFlagBits(pub(crate) i32);
+#[repr(transparent)]
+pub struct PipelineCreateFlagBits(pub(crate) i32);
+#[repr(transparent)]
+pub struct PipelineShaderStageCreateFlagBits(pub(crate) i32);
+#[repr(transparent)]
+pub struct ColorComponentFlagBits(pub(crate) i32);
+#[repr(transparent)]
+pub struct FenceCreateFlagBits(pub(crate) i32);
+#[repr(transparent)]
+pub struct FormatFeatureFlagBits(pub(crate) i32);
+#[repr(transparent)]
+pub struct QueryControlFlagBits(pub(crate) i32);
+#[repr(transparent)]
+pub struct QueryResultFlagBits(pub(crate) i32);
+#[repr(transparent)]
+pub struct CommandBufferUsageFlagBits(pub(crate) i32);
+#[repr(transparent)]
+pub struct QueryPipelineStatisticFlagBits(pub(crate) i32);
+#[repr(transparent)]
+pub struct MemoryMapFlagBits(pub(crate) i32);
+#[repr(transparent)]
+pub struct ImageAspectFlagBits(pub(crate) i32);
+#[repr(transparent)]
+pub struct SparseImageFormatFlagBits(pub(crate) i32);
+#[repr(transparent)]
+pub struct SparseMemoryBindFlagBits(pub(crate) i32);
+#[repr(transparent)]
+pub struct PipelineStageFlagBits(pub(crate) i32);
+#[repr(transparent)]
+pub struct CommandPoolCreateFlagBits(pub(crate) i32);
+#[repr(transparent)]
+pub struct CommandPoolResetFlagBits(pub(crate) i32);
+#[repr(transparent)]
+pub struct CommandBufferResetFlagBits(pub(crate) i32);
+#[repr(transparent)]
+pub struct SampleCountFlagBits(pub(crate) i32);
+#[repr(transparent)]
+pub struct AttachmentDescriptionFlagBits(pub(crate) i32);
+#[repr(transparent)]
+pub struct StencilFaceFlagBits(pub(crate) i32);
+#[repr(transparent)]
+pub struct DescriptorPoolCreateFlagBits(pub(crate) i32);
+#[repr(transparent)]
+pub struct DependencyFlagBits(pub(crate) i32);
+#[repr(transparent)]
+pub struct DescriptorSetLayoutCreateFlagBits(pub(crate) i32);
+#[repr(transparent)]
+pub struct SubpassDescriptionFlagBits(pub(crate) i32);
+#[repr(transparent)]
+pub struct FramebufferCreateFlagBits(pub(crate) i32);
+#[repr(transparent)]
+pub struct QueryPoolCreateFlagBits(pub(crate) i32);
+#[repr(transparent)]
+pub struct EventCreateFlagBits(pub(crate) i32);
+#[repr(transparent)]
+pub struct InstanceCreateFlagBits(pub(crate) i32);
+#[repr(transparent)]
+#[allow(non_camel_case_types)]
+pub struct SampleMask(pub(crate) i16);
+#[repr(transparent)]
+#[allow(non_camel_case_types)]
+pub struct Bool32(pub(crate) i16);
+#[repr(transparent)]
+#[allow(non_camel_case_types)]
+pub struct Flags(pub(crate) i16);
+#[repr(transparent)]
+#[allow(non_camel_case_types)]
+pub struct DeviceSize(pub(crate) i16);
+#[repr(transparent)]
+#[allow(non_camel_case_types)]
+pub struct DeviceAddress(pub(crate) i16);
+#[repr(transparent)]
+pub struct Instance(pub(crate) i32);
+#[repr(transparent)]
+pub struct PhysicalDevice(pub(crate) i32);
+#[repr(transparent)]
+pub struct Device(pub(crate) i32);
+#[repr(transparent)]
+pub struct Queue(pub(crate) i32);
+#[repr(transparent)]
+pub struct CommandBuffer(pub(crate) i32);
+#[repr(transparent)]
+pub struct DeviceMemory(pub(crate) i32);
+#[repr(transparent)]
+pub struct CommandPool(pub(crate) i32);
+#[repr(transparent)]
+pub struct Buffer(pub(crate) i32);
+#[repr(transparent)]
+pub struct BufferView(pub(crate) i32);
+#[repr(transparent)]
+pub struct Image(pub(crate) i32);
+#[repr(transparent)]
+pub struct ImageView(pub(crate) i32);
+#[repr(transparent)]
+pub struct ShaderModule(pub(crate) i32);
+#[repr(transparent)]
+pub struct Pipeline(pub(crate) i32);
+#[repr(transparent)]
+pub struct PipelineLayout(pub(crate) i32);
+#[repr(transparent)]
+pub struct Sampler(pub(crate) i32);
+#[repr(transparent)]
+pub struct DescriptorSet(pub(crate) i32);
+#[repr(transparent)]
+pub struct DescriptorSetLayout(pub(crate) i32);
+#[repr(transparent)]
+pub struct DescriptorPool(pub(crate) i32);
+#[repr(transparent)]
+pub struct Fence(pub(crate) i32);
+#[repr(transparent)]
+pub struct Semaphore(pub(crate) i32);
+#[repr(transparent)]
+pub struct Event(pub(crate) i32);
+#[repr(transparent)]
+pub struct QueryPool(pub(crate) i32);
+#[repr(transparent)]
+pub struct Framebuffer(pub(crate) i32);
+#[repr(transparent)]
+pub struct RenderPass(pub(crate) i32);
+#[repr(transparent)]
+pub struct PipelineCache(pub(crate) i32);
 #[allow(non_camel_case_types)]
 pub type PFN_vkInternalAllocationNotification = Option<
     unsafe extern "system" fn(

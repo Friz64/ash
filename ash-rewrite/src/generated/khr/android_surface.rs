@@ -8,7 +8,8 @@ pub struct AndroidSurfaceCreateInfoKHR {
     pub flags: crate::vk::AndroidSurfaceCreateFlagsKHR,
     pub window: *mut crate::vk::ANativeWindow,
 }
-#[repr(C)]
-pub struct AndroidSurfaceCreateFlagsKHR {}
-#[repr(C)]
-pub struct ANativeWindow {}
+#[repr(transparent)]
+pub struct AndroidSurfaceCreateFlagsKHR(pub(crate) i32);
+#[repr(transparent)]
+#[allow(non_camel_case_types)]
+pub struct ANativeWindow(pub(crate) i16);

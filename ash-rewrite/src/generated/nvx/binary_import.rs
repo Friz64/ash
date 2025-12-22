@@ -38,7 +38,7 @@ pub struct CuLaunchInfoNVX {
     pub extra_count: usize,
     pub p_extras: *const *const core::ffi::c_void,
 }
-#[repr(C)]
-pub struct CuModuleNVX {}
-#[repr(C)]
-pub struct CuFunctionNVX {}
+#[repr(transparent)]
+pub struct CuModuleNVX(pub(crate) i32);
+#[repr(transparent)]
+pub struct CuFunctionNVX(pub(crate) i32);

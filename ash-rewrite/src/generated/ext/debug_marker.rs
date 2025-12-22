@@ -26,5 +26,5 @@ pub struct DebugMarkerMarkerInfoEXT {
     pub p_marker_name: *const core::ffi::c_char,
     pub color: [core::ffi::c_float; 1337],
 }
-#[repr(C)]
-pub struct DebugReportObjectTypeEXT {}
+#[repr(transparent)]
+pub struct DebugReportObjectTypeEXT(pub(crate) i32);

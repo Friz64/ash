@@ -25,9 +25,9 @@ pub struct SwapchainCounterCreateInfoEXT {
     pub p_next: *const core::ffi::c_void,
     pub surface_counters: crate::vk::SurfaceCounterFlagsEXT,
 }
-#[repr(C)]
-pub struct DisplayPowerStateEXT {}
-#[repr(C)]
-pub struct DeviceEventTypeEXT {}
-#[repr(C)]
-pub struct DisplayEventTypeEXT {}
+#[repr(transparent)]
+pub struct DisplayPowerStateEXT(pub(crate) i32);
+#[repr(transparent)]
+pub struct DeviceEventTypeEXT(pub(crate) i32);
+#[repr(transparent)]
+pub struct DisplayEventTypeEXT(pub(crate) i32);

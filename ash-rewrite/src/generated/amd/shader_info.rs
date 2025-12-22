@@ -19,5 +19,5 @@ pub struct ShaderStatisticsInfoAMD {
     pub num_available_sgprs: u32,
     pub compute_work_group_size: [u32; 1337],
 }
-#[repr(C)]
-pub struct ShaderInfoTypeAMD {}
+#[repr(transparent)]
+pub struct ShaderInfoTypeAMD(pub(crate) i32);

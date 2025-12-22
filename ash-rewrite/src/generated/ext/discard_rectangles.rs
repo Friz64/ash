@@ -16,7 +16,7 @@ pub struct PipelineDiscardRectangleStateCreateInfoEXT {
     pub discard_rectangle_count: u32,
     pub p_discard_rectangles: *const crate::vk::Rect2D,
 }
-#[repr(C)]
-pub struct DiscardRectangleModeEXT {}
-#[repr(C)]
-pub struct PipelineDiscardRectangleStateCreateFlagsEXT {}
+#[repr(transparent)]
+pub struct DiscardRectangleModeEXT(pub(crate) i32);
+#[repr(transparent)]
+pub struct PipelineDiscardRectangleStateCreateFlagsEXT(pub(crate) i32);

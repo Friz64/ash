@@ -26,13 +26,13 @@ pub struct VideoDecodeInfoKHR {
     pub reference_slot_count: u32,
     pub p_reference_slots: *const crate::vk::VideoReferenceSlotInfoKHR,
 }
-#[repr(C)]
-pub struct VideoDecodeUsageFlagsKHR {}
-#[repr(C)]
-pub struct VideoDecodeCapabilityFlagsKHR {}
-#[repr(C)]
-pub struct VideoDecodeFlagsKHR {}
-#[repr(C)]
-pub struct VideoDecodeUsageFlagBitsKHR {}
-#[repr(C)]
-pub struct VideoDecodeCapabilityFlagBitsKHR {}
+#[repr(transparent)]
+pub struct VideoDecodeUsageFlagsKHR(pub(crate) i32);
+#[repr(transparent)]
+pub struct VideoDecodeCapabilityFlagsKHR(pub(crate) i32);
+#[repr(transparent)]
+pub struct VideoDecodeFlagsKHR(pub(crate) i32);
+#[repr(transparent)]
+pub struct VideoDecodeUsageFlagBitsKHR(pub(crate) i32);
+#[repr(transparent)]
+pub struct VideoDecodeCapabilityFlagBitsKHR(pub(crate) i32);

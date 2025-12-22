@@ -25,5 +25,5 @@ pub struct PhysicalDeviceDepthBiasControlFeaturesEXT {
     pub float_representation: crate::vk::Bool32,
     pub depth_bias_exact: crate::vk::Bool32,
 }
-#[repr(C)]
-pub struct DepthBiasRepresentationEXT {}
+#[repr(transparent)]
+pub struct DepthBiasRepresentationEXT(pub(crate) i32);

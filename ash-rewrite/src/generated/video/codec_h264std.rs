@@ -128,29 +128,29 @@ pub struct StdVideoH264PictureParameterSet {
     pub second_chroma_qp_index_offset: i8,
     pub p_scaling_lists: *const crate::vk::StdVideoH264ScalingLists,
 }
-#[repr(C)]
-pub struct StdVideoH264ChromaFormatIdc {}
-#[repr(C)]
-pub struct StdVideoH264ProfileIdc {}
-#[repr(C)]
-pub struct StdVideoH264LevelIdc {}
-#[repr(C)]
-pub struct StdVideoH264PocType {}
-#[repr(C)]
-pub struct StdVideoH264AspectRatioIdc {}
-#[repr(C)]
-pub struct StdVideoH264WeightedBipredIdc {}
-#[repr(C)]
-pub struct StdVideoH264ModificationOfPicNumsIdc {}
-#[repr(C)]
-pub struct StdVideoH264MemMgmtControlOp {}
-#[repr(C)]
-pub struct StdVideoH264CabacInitIdc {}
-#[repr(C)]
-pub struct StdVideoH264DisableDeblockingFilterIdc {}
-#[repr(C)]
-pub struct StdVideoH264SliceType {}
-#[repr(C)]
-pub struct StdVideoH264PictureType {}
-#[repr(C)]
-pub struct StdVideoH264NonVclNaluType {}
+#[repr(transparent)]
+pub struct StdVideoH264ChromaFormatIdc(pub(crate) i32);
+#[repr(transparent)]
+pub struct StdVideoH264ProfileIdc(pub(crate) i32);
+#[repr(transparent)]
+pub struct StdVideoH264LevelIdc(pub(crate) i32);
+#[repr(transparent)]
+pub struct StdVideoH264PocType(pub(crate) i32);
+#[repr(transparent)]
+pub struct StdVideoH264AspectRatioIdc(pub(crate) i32);
+#[repr(transparent)]
+pub struct StdVideoH264WeightedBipredIdc(pub(crate) i32);
+#[repr(transparent)]
+pub struct StdVideoH264ModificationOfPicNumsIdc(pub(crate) i32);
+#[repr(transparent)]
+pub struct StdVideoH264MemMgmtControlOp(pub(crate) i32);
+#[repr(transparent)]
+pub struct StdVideoH264CabacInitIdc(pub(crate) i32);
+#[repr(transparent)]
+pub struct StdVideoH264DisableDeblockingFilterIdc(pub(crate) i32);
+#[repr(transparent)]
+pub struct StdVideoH264SliceType(pub(crate) i32);
+#[repr(transparent)]
+pub struct StdVideoH264PictureType(pub(crate) i32);
+#[repr(transparent)]
+pub struct StdVideoH264NonVclNaluType(pub(crate) i32);

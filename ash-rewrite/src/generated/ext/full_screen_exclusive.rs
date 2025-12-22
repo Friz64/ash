@@ -19,5 +19,5 @@ pub struct SurfaceCapabilitiesFullScreenExclusiveEXT {
     pub p_next: *mut core::ffi::c_void,
     pub full_screen_exclusive_supported: crate::vk::Bool32,
 }
-#[repr(C)]
-pub struct FullScreenExclusiveEXT {}
+#[repr(transparent)]
+pub struct FullScreenExclusiveEXT(pub(crate) i32);

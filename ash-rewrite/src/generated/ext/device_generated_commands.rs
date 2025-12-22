@@ -174,19 +174,19 @@ pub struct IndirectCommandsTokenDataEXT {
     p_index_buffer: *const crate::vk::IndirectCommandsIndexBufferTokenEXT,
     p_execution_set: *const crate::vk::IndirectCommandsExecutionSetTokenEXT,
 }
-#[repr(C)]
-pub struct IndirectExecutionSetInfoTypeEXT {}
-#[repr(C)]
-pub struct IndirectCommandsTokenTypeEXT {}
-#[repr(C)]
-pub struct IndirectCommandsLayoutUsageFlagsEXT {}
-#[repr(C)]
-pub struct IndirectCommandsInputModeFlagsEXT {}
-#[repr(C)]
-pub struct IndirectCommandsLayoutUsageFlagBitsEXT {}
-#[repr(C)]
-pub struct IndirectCommandsInputModeFlagBitsEXT {}
-#[repr(C)]
-pub struct IndirectCommandsLayoutEXT {}
-#[repr(C)]
-pub struct IndirectExecutionSetEXT {}
+#[repr(transparent)]
+pub struct IndirectExecutionSetInfoTypeEXT(pub(crate) i32);
+#[repr(transparent)]
+pub struct IndirectCommandsTokenTypeEXT(pub(crate) i32);
+#[repr(transparent)]
+pub struct IndirectCommandsLayoutUsageFlagsEXT(pub(crate) i32);
+#[repr(transparent)]
+pub struct IndirectCommandsInputModeFlagsEXT(pub(crate) i32);
+#[repr(transparent)]
+pub struct IndirectCommandsLayoutUsageFlagBitsEXT(pub(crate) i32);
+#[repr(transparent)]
+pub struct IndirectCommandsInputModeFlagBitsEXT(pub(crate) i32);
+#[repr(transparent)]
+pub struct IndirectCommandsLayoutEXT(pub(crate) i32);
+#[repr(transparent)]
+pub struct IndirectExecutionSetEXT(pub(crate) i32);

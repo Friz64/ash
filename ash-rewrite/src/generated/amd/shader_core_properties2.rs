@@ -8,7 +8,7 @@ pub struct PhysicalDeviceShaderCoreProperties2AMD {
     pub shader_core_features: crate::vk::ShaderCorePropertiesFlagsAMD,
     pub active_compute_unit_count: u32,
 }
-#[repr(C)]
-pub struct ShaderCorePropertiesFlagsAMD {}
-#[repr(C)]
-pub struct ShaderCorePropertiesFlagBitsAMD {}
+#[repr(transparent)]
+pub struct ShaderCorePropertiesFlagsAMD(pub(crate) i32);
+#[repr(transparent)]
+pub struct ShaderCorePropertiesFlagBitsAMD(pub(crate) i32);

@@ -19,5 +19,5 @@ pub struct DepthClampRangeEXT {
     pub min_depth_clamp: core::ffi::c_float,
     pub max_depth_clamp: core::ffi::c_float,
 }
-#[repr(C)]
-pub struct DepthClampModeEXT {}
+#[repr(transparent)]
+pub struct DepthClampModeEXT(pub(crate) i32);

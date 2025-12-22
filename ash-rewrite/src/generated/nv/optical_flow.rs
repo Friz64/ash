@@ -65,25 +65,25 @@ pub struct OpticalFlowExecuteInfoNV {
     pub region_count: u32,
     pub p_regions: *const crate::vk::Rect2D,
 }
-#[repr(C)]
-pub struct OpticalFlowPerformanceLevelNV {}
-#[repr(C)]
-pub struct OpticalFlowSessionBindingPointNV {}
-#[repr(C)]
-pub struct OpticalFlowGridSizeFlagsNV {}
-#[repr(C)]
-pub struct OpticalFlowUsageFlagsNV {}
-#[repr(C)]
-pub struct OpticalFlowSessionCreateFlagsNV {}
-#[repr(C)]
-pub struct OpticalFlowExecuteFlagsNV {}
-#[repr(C)]
-pub struct OpticalFlowGridSizeFlagBitsNV {}
-#[repr(C)]
-pub struct OpticalFlowUsageFlagBitsNV {}
-#[repr(C)]
-pub struct OpticalFlowSessionCreateFlagBitsNV {}
-#[repr(C)]
-pub struct OpticalFlowExecuteFlagBitsNV {}
-#[repr(C)]
-pub struct OpticalFlowSessionNV {}
+#[repr(transparent)]
+pub struct OpticalFlowPerformanceLevelNV(pub(crate) i32);
+#[repr(transparent)]
+pub struct OpticalFlowSessionBindingPointNV(pub(crate) i32);
+#[repr(transparent)]
+pub struct OpticalFlowGridSizeFlagsNV(pub(crate) i32);
+#[repr(transparent)]
+pub struct OpticalFlowUsageFlagsNV(pub(crate) i32);
+#[repr(transparent)]
+pub struct OpticalFlowSessionCreateFlagsNV(pub(crate) i32);
+#[repr(transparent)]
+pub struct OpticalFlowExecuteFlagsNV(pub(crate) i32);
+#[repr(transparent)]
+pub struct OpticalFlowGridSizeFlagBitsNV(pub(crate) i32);
+#[repr(transparent)]
+pub struct OpticalFlowUsageFlagBitsNV(pub(crate) i32);
+#[repr(transparent)]
+pub struct OpticalFlowSessionCreateFlagBitsNV(pub(crate) i32);
+#[repr(transparent)]
+pub struct OpticalFlowExecuteFlagBitsNV(pub(crate) i32);
+#[repr(transparent)]
+pub struct OpticalFlowSessionNV(pub(crate) i32);

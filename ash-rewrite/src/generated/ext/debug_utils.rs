@@ -51,20 +51,20 @@ pub struct DebugUtilsMessengerCallbackDataEXT {
     pub object_count: u32,
     pub p_objects: *const crate::vk::DebugUtilsObjectNameInfoEXT,
 }
-#[repr(C)]
-pub struct DebugUtilsMessageSeverityFlagsEXT {}
-#[repr(C)]
-pub struct DebugUtilsMessageTypeFlagsEXT {}
-#[repr(C)]
-pub struct DebugUtilsMessengerCreateFlagsEXT {}
-#[repr(C)]
-pub struct DebugUtilsMessengerCallbackDataFlagsEXT {}
-#[repr(C)]
-pub struct DebugUtilsMessageSeverityFlagBitsEXT {}
-#[repr(C)]
-pub struct DebugUtilsMessageTypeFlagBitsEXT {}
-#[repr(C)]
-pub struct DebugUtilsMessengerEXT {}
+#[repr(transparent)]
+pub struct DebugUtilsMessageSeverityFlagsEXT(pub(crate) i32);
+#[repr(transparent)]
+pub struct DebugUtilsMessageTypeFlagsEXT(pub(crate) i32);
+#[repr(transparent)]
+pub struct DebugUtilsMessengerCreateFlagsEXT(pub(crate) i32);
+#[repr(transparent)]
+pub struct DebugUtilsMessengerCallbackDataFlagsEXT(pub(crate) i32);
+#[repr(transparent)]
+pub struct DebugUtilsMessageSeverityFlagBitsEXT(pub(crate) i32);
+#[repr(transparent)]
+pub struct DebugUtilsMessageTypeFlagBitsEXT(pub(crate) i32);
+#[repr(transparent)]
+pub struct DebugUtilsMessengerEXT(pub(crate) i32);
 #[allow(non_camel_case_types)]
 pub type PFN_vkDebugUtilsMessengerCallbackEXT = Option<
     unsafe extern "system" fn(

@@ -19,5 +19,5 @@ pub struct BlitImageCubicWeightsInfoQCOM {
     pub p_next: *const core::ffi::c_void,
     pub cubic_weights: crate::vk::CubicFilterWeightsQCOM,
 }
-#[repr(C)]
-pub struct CubicFilterWeightsQCOM {}
+#[repr(transparent)]
+pub struct CubicFilterWeightsQCOM(pub(crate) i32);

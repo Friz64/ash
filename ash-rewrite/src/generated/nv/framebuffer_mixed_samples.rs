@@ -12,7 +12,7 @@ pub struct PipelineCoverageModulationStateCreateInfoNV {
     pub p_coverage_modulation_table: *const core::ffi::c_float,
 }
 pub type AttachmentSampleCountInfoNV = crate::vk::AttachmentSampleCountInfoAMD;
-#[repr(C)]
-pub struct CoverageModulationModeNV {}
-#[repr(C)]
-pub struct PipelineCoverageModulationStateCreateFlagsNV {}
+#[repr(transparent)]
+pub struct CoverageModulationModeNV(pub(crate) i32);
+#[repr(transparent)]
+pub struct PipelineCoverageModulationStateCreateFlagsNV(pub(crate) i32);

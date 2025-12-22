@@ -29,7 +29,7 @@ pub struct DecompressMemoryInfoEXT {
     pub region_count: u32,
     pub p_regions: *const crate::vk::DecompressMemoryRegionEXT,
 }
-#[repr(C)]
-pub struct MemoryDecompressionMethodFlagsEXT {}
-#[repr(C)]
-pub struct MemoryDecompressionMethodFlagBitsEXT {}
+#[repr(transparent)]
+pub struct MemoryDecompressionMethodFlagsEXT(pub(crate) i32);
+#[repr(transparent)]
+pub struct MemoryDecompressionMethodFlagBitsEXT(pub(crate) i32);
