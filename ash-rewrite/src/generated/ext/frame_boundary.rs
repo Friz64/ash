@@ -6,38 +6,13 @@ pub struct FrameBoundaryEXT {
     pub s_type: crate::vk::StructureType,
     pub p_next: *const core::ffi::c_void,
     pub flags: crate::vk::FrameBoundaryFlagsEXT,
-    pub frame_id: crate::External<
-        {
-            "uint64_t";
-            0
-        },
-    >,
-    pub image_count: crate::External<
-        {
-            "uint32_t";
-            0
-        },
-    >,
+    pub frame_id: u64,
+    pub image_count: u32,
     pub p_images: *const crate::vk::Image,
-    pub buffer_count: crate::External<
-        {
-            "uint32_t";
-            0
-        },
-    >,
+    pub buffer_count: u32,
     pub p_buffers: *const crate::vk::Buffer,
-    pub tag_name: crate::External<
-        {
-            "uint64_t";
-            0
-        },
-    >,
-    pub tag_size: crate::External<
-        {
-            "size_t";
-            0
-        },
-    >,
+    pub tag_name: u64,
+    pub tag_size: usize,
     pub p_tag: *const core::ffi::c_void,
 }
 #[repr(C)]

@@ -12,27 +12,12 @@ pub struct DescriptorSetBindingReferenceVALVE {
     pub s_type: crate::vk::StructureType,
     pub p_next: *const core::ffi::c_void,
     pub descriptor_set_layout: crate::vk::DescriptorSetLayout,
-    pub binding: crate::External<
-        {
-            "uint32_t";
-            0
-        },
-    >,
+    pub binding: u32,
 }
 #[repr(C)]
 pub struct DescriptorSetLayoutHostMappingInfoVALVE {
     pub s_type: crate::vk::StructureType,
     pub p_next: *mut core::ffi::c_void,
-    pub descriptor_offset: crate::External<
-        {
-            "size_t";
-            0
-        },
-    >,
-    pub descriptor_size: crate::External<
-        {
-            "uint32_t";
-            0
-        },
-    >,
+    pub descriptor_offset: usize,
+    pub descriptor_size: u32,
 }

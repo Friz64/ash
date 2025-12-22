@@ -17,12 +17,7 @@ pub struct PhysicalDeviceFragmentDensityMapOffsetPropertiesEXT {
 pub struct RenderPassFragmentDensityMapOffsetEndInfoEXT {
     pub s_type: crate::vk::StructureType,
     pub p_next: *const core::ffi::c_void,
-    pub fragment_density_offset_count: crate::External<
-        {
-            "uint32_t";
-            0
-        },
-    >,
+    pub fragment_density_offset_count: u32,
     pub p_fragment_density_offsets: *const crate::vk::Offset2D,
 }
 pub type RenderingEndInfoEXT = crate::vk::RenderingEndInfoKHR;

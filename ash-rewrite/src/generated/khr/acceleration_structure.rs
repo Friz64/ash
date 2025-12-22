@@ -5,12 +5,7 @@
 pub struct WriteDescriptorSetAccelerationStructureKHR {
     pub s_type: crate::vk::StructureType,
     pub p_next: *const core::ffi::c_void,
-    pub acceleration_structure_count: crate::External<
-        {
-            "uint32_t";
-            0
-        },
-    >,
+    pub acceleration_structure_count: u32,
     pub p_acceleration_structures: *const crate::vk::AccelerationStructureKHR,
 }
 #[repr(C)]
@@ -27,54 +22,14 @@ pub struct PhysicalDeviceAccelerationStructureFeaturesKHR {
 pub struct PhysicalDeviceAccelerationStructurePropertiesKHR {
     pub s_type: crate::vk::StructureType,
     pub p_next: *mut core::ffi::c_void,
-    pub max_geometry_count: crate::External<
-        {
-            "uint64_t";
-            0
-        },
-    >,
-    pub max_instance_count: crate::External<
-        {
-            "uint64_t";
-            0
-        },
-    >,
-    pub max_primitive_count: crate::External<
-        {
-            "uint64_t";
-            0
-        },
-    >,
-    pub max_per_stage_descriptor_acceleration_structures: crate::External<
-        {
-            "uint32_t";
-            0
-        },
-    >,
-    pub max_per_stage_descriptor_update_after_bind_acceleration_structures: crate::External<
-        {
-            "uint32_t";
-            0
-        },
-    >,
-    pub max_descriptor_set_acceleration_structures: crate::External<
-        {
-            "uint32_t";
-            0
-        },
-    >,
-    pub max_descriptor_set_update_after_bind_acceleration_structures: crate::External<
-        {
-            "uint32_t";
-            0
-        },
-    >,
-    pub min_acceleration_structure_scratch_offset_alignment: crate::External<
-        {
-            "uint32_t";
-            0
-        },
-    >,
+    pub max_geometry_count: u64,
+    pub max_instance_count: u64,
+    pub max_primitive_count: u64,
+    pub max_per_stage_descriptor_acceleration_structures: u32,
+    pub max_per_stage_descriptor_update_after_bind_acceleration_structures: u32,
+    pub max_descriptor_set_acceleration_structures: u32,
+    pub max_descriptor_set_update_after_bind_acceleration_structures: u32,
+    pub min_acceleration_structure_scratch_offset_alignment: u32,
 }
 #[repr(C)]
 pub struct AccelerationStructureGeometryTrianglesDataKHR {
@@ -83,12 +38,7 @@ pub struct AccelerationStructureGeometryTrianglesDataKHR {
     pub vertex_format: crate::vk::Format,
     pub vertex_data: crate::vk::DeviceOrHostAddressConstKHR,
     pub vertex_stride: crate::vk::DeviceSize,
-    pub max_vertex: crate::External<
-        {
-            "uint32_t";
-            0
-        },
-    >,
+    pub max_vertex: u32,
     pub index_type: crate::vk::IndexType,
     pub index_data: crate::vk::DeviceOrHostAddressConstKHR,
     pub transform_data: crate::vk::DeviceOrHostAddressConstKHR,
@@ -124,42 +74,17 @@ pub struct AccelerationStructureBuildGeometryInfoKHR {
     pub mode: crate::vk::BuildAccelerationStructureModeKHR,
     pub src_acceleration_structure: crate::vk::AccelerationStructureKHR,
     pub dst_acceleration_structure: crate::vk::AccelerationStructureKHR,
-    pub geometry_count: crate::External<
-        {
-            "uint32_t";
-            0
-        },
-    >,
+    pub geometry_count: u32,
     pub p_geometries: *const crate::vk::AccelerationStructureGeometryKHR,
     pub pp_geometries: *const *const crate::vk::AccelerationStructureGeometryKHR,
     pub scratch_data: crate::vk::DeviceOrHostAddressKHR,
 }
 #[repr(C)]
 pub struct AccelerationStructureBuildRangeInfoKHR {
-    pub primitive_count: crate::External<
-        {
-            "uint32_t";
-            0
-        },
-    >,
-    pub primitive_offset: crate::External<
-        {
-            "uint32_t";
-            0
-        },
-    >,
-    pub first_vertex: crate::External<
-        {
-            "uint32_t";
-            0
-        },
-    >,
-    pub transform_offset: crate::External<
-        {
-            "uint32_t";
-            0
-        },
-    >,
+    pub primitive_count: u32,
+    pub primitive_offset: u32,
+    pub first_vertex: u32,
+    pub transform_offset: u32,
 }
 #[repr(C)]
 pub struct AccelerationStructureCreateInfoKHR {
@@ -174,80 +99,25 @@ pub struct AccelerationStructureCreateInfoKHR {
 }
 #[repr(C)]
 pub struct AabbPositionsKHR {
-    pub min_x: crate::External<
-        {
-            "float";
-            0
-        },
-    >,
-    pub min_y: crate::External<
-        {
-            "float";
-            0
-        },
-    >,
-    pub min_z: crate::External<
-        {
-            "float";
-            0
-        },
-    >,
-    pub max_x: crate::External<
-        {
-            "float";
-            0
-        },
-    >,
-    pub max_y: crate::External<
-        {
-            "float";
-            0
-        },
-    >,
-    pub max_z: crate::External<
-        {
-            "float";
-            0
-        },
-    >,
+    pub min_x: core::ffi::c_float,
+    pub min_y: core::ffi::c_float,
+    pub min_z: core::ffi::c_float,
+    pub max_x: core::ffi::c_float,
+    pub max_y: core::ffi::c_float,
+    pub max_z: core::ffi::c_float,
 }
 #[repr(C)]
 pub struct TransformMatrixKHR {
-    pub matrix: [[crate::External<
-        {
-            "float";
-            0
-        },
-    >; 1337]; 1337],
+    pub matrix: [[core::ffi::c_float; 1337]; 1337],
 }
 #[repr(C)]
 pub struct AccelerationStructureInstanceKHR {
     pub transform: crate::vk::TransformMatrixKHR,
-    pub instance_custom_index: crate::External<
-        {
-            "uint32_t";
-            0
-        },
-    >,
-    pub mask: crate::External<
-        {
-            "uint32_t";
-            0
-        },
-    >,
-    pub instance_shader_binding_table_record_offset: crate::External<
-        {
-            "uint32_t";
-            0
-        },
-    >,
+    pub instance_custom_index: u32,
+    pub mask: u32,
+    pub instance_shader_binding_table_record_offset: u32,
     pub flags: crate::vk::GeometryInstanceFlagsKHR,
-    pub acceleration_structure_reference: crate::External<
-        {
-            "uint64_t";
-            0
-        },
-    >,
+    pub acceleration_structure_reference: u64,
 }
 #[repr(C)]
 pub struct AccelerationStructureDeviceAddressInfoKHR {
@@ -259,12 +129,7 @@ pub struct AccelerationStructureDeviceAddressInfoKHR {
 pub struct AccelerationStructureVersionInfoKHR {
     pub s_type: crate::vk::StructureType,
     pub p_next: *const core::ffi::c_void,
-    pub p_version_data: *const crate::External<
-        {
-            "uint8_t";
-            0
-        },
-    >,
+    pub p_version_data: *const u8,
 }
 #[repr(C)]
 pub struct CopyAccelerationStructureInfoKHR {

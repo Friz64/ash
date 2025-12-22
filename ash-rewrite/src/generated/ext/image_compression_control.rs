@@ -6,12 +6,7 @@ pub struct ImageCompressionControlEXT {
     pub s_type: crate::vk::StructureType,
     pub p_next: *const core::ffi::c_void,
     pub flags: crate::vk::ImageCompressionFlagsEXT,
-    pub compression_control_plane_count: crate::External<
-        {
-            "uint32_t";
-            0
-        },
-    >,
+    pub compression_control_plane_count: u32,
     pub p_fixed_rate_flags: *mut crate::vk::ImageCompressionFixedRateFlagsEXT,
 }
 #[repr(C)]

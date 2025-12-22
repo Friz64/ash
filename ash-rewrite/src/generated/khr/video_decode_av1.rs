@@ -25,36 +25,11 @@ pub struct VideoDecodeAV1PictureInfoKHR {
     pub s_type: crate::vk::StructureType,
     pub p_next: *const core::ffi::c_void,
     pub p_std_picture_info: *const crate::vk::StdVideoDecodeAV1PictureInfo,
-    pub reference_name_slot_indices: [crate::External<
-        {
-            "int32_t";
-            0
-        },
-    >; 1337],
-    pub frame_header_offset: crate::External<
-        {
-            "uint32_t";
-            0
-        },
-    >,
-    pub tile_count: crate::External<
-        {
-            "uint32_t";
-            0
-        },
-    >,
-    pub p_tile_offsets: *const crate::External<
-        {
-            "uint32_t";
-            0
-        },
-    >,
-    pub p_tile_sizes: *const crate::External<
-        {
-            "uint32_t";
-            0
-        },
-    >,
+    pub reference_name_slot_indices: [i32; 1337],
+    pub frame_header_offset: u32,
+    pub tile_count: u32,
+    pub p_tile_offsets: *const u32,
+    pub p_tile_sizes: *const u32,
 }
 #[repr(C)]
 pub struct VideoDecodeAV1DpbSlotInfoKHR {

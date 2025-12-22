@@ -5,24 +5,9 @@
 pub struct PhysicalDeviceConservativeRasterizationPropertiesEXT {
     pub s_type: crate::vk::StructureType,
     pub p_next: *mut core::ffi::c_void,
-    pub primitive_overestimation_size: crate::External<
-        {
-            "float";
-            0
-        },
-    >,
-    pub max_extra_primitive_overestimation_size: crate::External<
-        {
-            "float";
-            0
-        },
-    >,
-    pub extra_primitive_overestimation_size_granularity: crate::External<
-        {
-            "float";
-            0
-        },
-    >,
+    pub primitive_overestimation_size: core::ffi::c_float,
+    pub max_extra_primitive_overestimation_size: core::ffi::c_float,
+    pub extra_primitive_overestimation_size_granularity: core::ffi::c_float,
     pub primitive_underestimation: crate::vk::Bool32,
     pub conservative_point_and_line_rasterization: crate::vk::Bool32,
     pub degenerate_triangles_rasterized: crate::vk::Bool32,
@@ -36,12 +21,7 @@ pub struct PipelineRasterizationConservativeStateCreateInfoEXT {
     pub p_next: *const core::ffi::c_void,
     pub flags: crate::vk::PipelineRasterizationConservativeStateCreateFlagsEXT,
     pub conservative_rasterization_mode: crate::vk::ConservativeRasterizationModeEXT,
-    pub extra_primitive_overestimation_size: crate::External<
-        {
-            "float";
-            0
-        },
-    >,
+    pub extra_primitive_overestimation_size: core::ffi::c_float,
 }
 #[repr(C)]
 pub struct ConservativeRasterizationModeEXT {}

@@ -39,6 +39,19 @@ pub enum Mutability {
 #[derive(Debug, Clone, Copy)]
 pub enum CBaseTy {
     Void,
+    Char,
+    Int,
+    Float,
+    Double,
+    Int8,
+    UInt8,
+    Int16,
+    UInt16,
+    Int32,
+    UInt32,
+    Int64,
+    UInt64,
+    Size,
 }
 
 #[derive(Debug)]
@@ -63,6 +76,19 @@ impl Ty {
         match c_type {
             CType::Base(cbase_type) => match cbase_type.name {
                 "void" => Ty::CBase(CBaseTy::Void),
+                "char" => Ty::CBase(CBaseTy::Char),
+                "int" => Ty::CBase(CBaseTy::Int),
+                "float" => Ty::CBase(CBaseTy::Float),
+                "double" => Ty::CBase(CBaseTy::Double),
+                "int8_t" => Ty::CBase(CBaseTy::Int8),
+                "uint8_t" => Ty::CBase(CBaseTy::UInt8),
+                "int16_t" => Ty::CBase(CBaseTy::Int16),
+                "uint16_t" => Ty::CBase(CBaseTy::UInt16),
+                "int32_t" => Ty::CBase(CBaseTy::Int32),
+                "uint32_t" => Ty::CBase(CBaseTy::UInt32),
+                "int64_t" => Ty::CBase(CBaseTy::Int64),
+                "uint64_t" => Ty::CBase(CBaseTy::UInt64),
+                "size_t" => Ty::CBase(CBaseTy::Size),
                 spec if ctx.type_require_map.contains_key(&TypeName(spec)) => {
                     Ty::Spec(TypeName(spec))
                 }

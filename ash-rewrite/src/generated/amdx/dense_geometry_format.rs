@@ -13,30 +13,10 @@ pub struct AccelerationStructureDenseGeometryFormatTrianglesDataAMDX {
     pub p_next: *const core::ffi::c_void,
     pub compressed_data: crate::vk::DeviceOrHostAddressConstKHR,
     pub data_size: crate::vk::DeviceSize,
-    pub num_triangles: crate::External<
-        {
-            "uint32_t";
-            0
-        },
-    >,
-    pub num_vertices: crate::External<
-        {
-            "uint32_t";
-            0
-        },
-    >,
-    pub max_primitive_index: crate::External<
-        {
-            "uint32_t";
-            0
-        },
-    >,
-    pub max_geometry_index: crate::External<
-        {
-            "uint32_t";
-            0
-        },
-    >,
+    pub num_triangles: u32,
+    pub num_vertices: u32,
+    pub max_primitive_index: u32,
+    pub max_geometry_index: u32,
     pub format: crate::vk::CompressedTriangleFormatAMDX,
 }
 #[repr(C)]

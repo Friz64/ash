@@ -6,60 +6,25 @@ pub struct DebugMarkerObjectNameInfoEXT {
     pub s_type: crate::vk::StructureType,
     pub p_next: *const core::ffi::c_void,
     pub object_type: crate::vk::DebugReportObjectTypeEXT,
-    pub object: crate::External<
-        {
-            "uint64_t";
-            0
-        },
-    >,
-    pub p_object_name: *const crate::External<
-        {
-            "char";
-            0
-        },
-    >,
+    pub object: u64,
+    pub p_object_name: *const core::ffi::c_char,
 }
 #[repr(C)]
 pub struct DebugMarkerObjectTagInfoEXT {
     pub s_type: crate::vk::StructureType,
     pub p_next: *const core::ffi::c_void,
     pub object_type: crate::vk::DebugReportObjectTypeEXT,
-    pub object: crate::External<
-        {
-            "uint64_t";
-            0
-        },
-    >,
-    pub tag_name: crate::External<
-        {
-            "uint64_t";
-            0
-        },
-    >,
-    pub tag_size: crate::External<
-        {
-            "size_t";
-            0
-        },
-    >,
+    pub object: u64,
+    pub tag_name: u64,
+    pub tag_size: usize,
     pub p_tag: *const core::ffi::c_void,
 }
 #[repr(C)]
 pub struct DebugMarkerMarkerInfoEXT {
     pub s_type: crate::vk::StructureType,
     pub p_next: *const core::ffi::c_void,
-    pub p_marker_name: *const crate::External<
-        {
-            "char";
-            0
-        },
-    >,
-    pub color: [crate::External<
-        {
-            "float";
-            0
-        },
-    >; 1337],
+    pub p_marker_name: *const core::ffi::c_char,
+    pub color: [core::ffi::c_float; 1337],
 }
 #[repr(C)]
 pub struct DebugReportObjectTypeEXT {}

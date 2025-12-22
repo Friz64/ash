@@ -6,18 +6,8 @@ pub struct Win32SurfaceCreateInfoKHR {
     pub s_type: crate::vk::StructureType,
     pub p_next: *const core::ffi::c_void,
     pub flags: crate::vk::Win32SurfaceCreateFlagsKHR,
-    pub hinstance: crate::External<
-        {
-            "HINSTANCE";
-            0
-        },
-    >,
-    pub hwnd: crate::External<
-        {
-            "HWND";
-            0
-        },
-    >,
+    pub hinstance: crate::platform_types::HINSTANCE,
+    pub hwnd: crate::platform_types::HWND,
 }
 #[repr(C)]
 pub struct Win32SurfaceCreateFlagsKHR {}

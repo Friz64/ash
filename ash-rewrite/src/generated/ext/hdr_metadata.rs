@@ -3,18 +3,8 @@
 //![Vulkan Manual Page](https://docs.vulkan.org/refpages/latest/refpages/source/VK_EXT_hdr_metadata.html) · Vulkan extension
 #[repr(C)]
 pub struct XYColorEXT {
-    pub x: crate::External<
-        {
-            "float";
-            0
-        },
-    >,
-    pub y: crate::External<
-        {
-            "float";
-            0
-        },
-    >,
+    pub x: core::ffi::c_float,
+    pub y: core::ffi::c_float,
 }
 #[repr(C)]
 pub struct HdrMetadataEXT {
@@ -24,28 +14,8 @@ pub struct HdrMetadataEXT {
     pub display_primary_green: crate::vk::XYColorEXT,
     pub display_primary_blue: crate::vk::XYColorEXT,
     pub white_point: crate::vk::XYColorEXT,
-    pub max_luminance: crate::External<
-        {
-            "float";
-            0
-        },
-    >,
-    pub min_luminance: crate::External<
-        {
-            "float";
-            0
-        },
-    >,
-    pub max_content_light_level: crate::External<
-        {
-            "float";
-            0
-        },
-    >,
-    pub max_frame_average_light_level: crate::External<
-        {
-            "float";
-            0
-        },
-    >,
+    pub max_luminance: core::ffi::c_float,
+    pub min_luminance: core::ffi::c_float,
+    pub max_content_light_level: core::ffi::c_float,
+    pub max_frame_average_light_level: core::ffi::c_float,
 }

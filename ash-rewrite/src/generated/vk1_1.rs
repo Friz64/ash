@@ -106,30 +106,10 @@ pub struct ExternalBufferProperties {
 pub struct PhysicalDeviceIDProperties {
     pub s_type: crate::vk::StructureType,
     pub p_next: *mut core::ffi::c_void,
-    pub device_uuid: [crate::External<
-        {
-            "uint8_t";
-            0
-        },
-    >; 1337],
-    pub driver_uuid: [crate::External<
-        {
-            "uint8_t";
-            0
-        },
-    >; 1337],
-    pub device_luid: [crate::External<
-        {
-            "uint8_t";
-            0
-        },
-    >; 1337],
-    pub device_node_mask: crate::External<
-        {
-            "uint32_t";
-            0
-        },
-    >,
+    pub device_uuid: [u8; 1337],
+    pub driver_uuid: [u8; 1337],
+    pub device_luid: [u8; 1337],
+    pub device_node_mask: u32,
     pub device_luid_valid: crate::vk::Bool32,
 }
 #[repr(C)]
@@ -202,70 +182,25 @@ pub struct PhysicalDeviceMultiviewFeatures {
 pub struct PhysicalDeviceMultiviewProperties {
     pub s_type: crate::vk::StructureType,
     pub p_next: *mut core::ffi::c_void,
-    pub max_multiview_view_count: crate::External<
-        {
-            "uint32_t";
-            0
-        },
-    >,
-    pub max_multiview_instance_index: crate::External<
-        {
-            "uint32_t";
-            0
-        },
-    >,
+    pub max_multiview_view_count: u32,
+    pub max_multiview_instance_index: u32,
 }
 #[repr(C)]
 pub struct RenderPassMultiviewCreateInfo {
     pub s_type: crate::vk::StructureType,
     pub p_next: *const core::ffi::c_void,
-    pub subpass_count: crate::External<
-        {
-            "uint32_t";
-            0
-        },
-    >,
-    pub p_view_masks: *const crate::External<
-        {
-            "uint32_t";
-            0
-        },
-    >,
-    pub dependency_count: crate::External<
-        {
-            "uint32_t";
-            0
-        },
-    >,
-    pub p_view_offsets: *const crate::External<
-        {
-            "int32_t";
-            0
-        },
-    >,
-    pub correlation_mask_count: crate::External<
-        {
-            "uint32_t";
-            0
-        },
-    >,
-    pub p_correlation_masks: *const crate::External<
-        {
-            "uint32_t";
-            0
-        },
-    >,
+    pub subpass_count: u32,
+    pub p_view_masks: *const u32,
+    pub dependency_count: u32,
+    pub p_view_offsets: *const i32,
+    pub correlation_mask_count: u32,
+    pub p_correlation_masks: *const u32,
 }
 #[repr(C)]
 pub struct PhysicalDeviceGroupProperties {
     pub s_type: crate::vk::StructureType,
     pub p_next: *mut core::ffi::c_void,
-    pub physical_device_count: crate::External<
-        {
-            "uint32_t";
-            0
-        },
-    >,
+    pub physical_device_count: u32,
     pub physical_devices: [crate::vk::PhysicalDevice; 1337],
     pub subset_allocation: crate::vk::Bool32,
 }
@@ -274,12 +209,7 @@ pub struct MemoryAllocateFlagsInfo {
     pub s_type: crate::vk::StructureType,
     pub p_next: *const core::ffi::c_void,
     pub flags: crate::vk::MemoryAllocateFlags,
-    pub device_mask: crate::External<
-        {
-            "uint32_t";
-            0
-        },
-    >,
+    pub device_mask: u32,
 }
 #[repr(C)]
 pub struct BindBufferMemoryInfo {
@@ -293,18 +223,8 @@ pub struct BindBufferMemoryInfo {
 pub struct BindBufferMemoryDeviceGroupInfo {
     pub s_type: crate::vk::StructureType,
     pub p_next: *const core::ffi::c_void,
-    pub device_index_count: crate::External<
-        {
-            "uint32_t";
-            0
-        },
-    >,
-    pub p_device_indices: *const crate::External<
-        {
-            "uint32_t";
-            0
-        },
-    >,
+    pub device_index_count: u32,
+    pub p_device_indices: *const u32,
 }
 #[repr(C)]
 pub struct BindImageMemoryInfo {
@@ -318,208 +238,83 @@ pub struct BindImageMemoryInfo {
 pub struct BindImageMemoryDeviceGroupInfo {
     pub s_type: crate::vk::StructureType,
     pub p_next: *const core::ffi::c_void,
-    pub device_index_count: crate::External<
-        {
-            "uint32_t";
-            0
-        },
-    >,
-    pub p_device_indices: *const crate::External<
-        {
-            "uint32_t";
-            0
-        },
-    >,
-    pub split_instance_bind_region_count: crate::External<
-        {
-            "uint32_t";
-            0
-        },
-    >,
+    pub device_index_count: u32,
+    pub p_device_indices: *const u32,
+    pub split_instance_bind_region_count: u32,
     pub p_split_instance_bind_regions: *const crate::vk::Rect2D,
 }
 #[repr(C)]
 pub struct DeviceGroupRenderPassBeginInfo {
     pub s_type: crate::vk::StructureType,
     pub p_next: *const core::ffi::c_void,
-    pub device_mask: crate::External<
-        {
-            "uint32_t";
-            0
-        },
-    >,
-    pub device_render_area_count: crate::External<
-        {
-            "uint32_t";
-            0
-        },
-    >,
+    pub device_mask: u32,
+    pub device_render_area_count: u32,
     pub p_device_render_areas: *const crate::vk::Rect2D,
 }
 #[repr(C)]
 pub struct DeviceGroupCommandBufferBeginInfo {
     pub s_type: crate::vk::StructureType,
     pub p_next: *const core::ffi::c_void,
-    pub device_mask: crate::External<
-        {
-            "uint32_t";
-            0
-        },
-    >,
+    pub device_mask: u32,
 }
 #[repr(C)]
 pub struct DeviceGroupSubmitInfo {
     pub s_type: crate::vk::StructureType,
     pub p_next: *const core::ffi::c_void,
-    pub wait_semaphore_count: crate::External<
-        {
-            "uint32_t";
-            0
-        },
-    >,
-    pub p_wait_semaphore_device_indices: *const crate::External<
-        {
-            "uint32_t";
-            0
-        },
-    >,
-    pub command_buffer_count: crate::External<
-        {
-            "uint32_t";
-            0
-        },
-    >,
-    pub p_command_buffer_device_masks: *const crate::External<
-        {
-            "uint32_t";
-            0
-        },
-    >,
-    pub signal_semaphore_count: crate::External<
-        {
-            "uint32_t";
-            0
-        },
-    >,
-    pub p_signal_semaphore_device_indices: *const crate::External<
-        {
-            "uint32_t";
-            0
-        },
-    >,
+    pub wait_semaphore_count: u32,
+    pub p_wait_semaphore_device_indices: *const u32,
+    pub command_buffer_count: u32,
+    pub p_command_buffer_device_masks: *const u32,
+    pub signal_semaphore_count: u32,
+    pub p_signal_semaphore_device_indices: *const u32,
 }
 #[repr(C)]
 pub struct DeviceGroupBindSparseInfo {
     pub s_type: crate::vk::StructureType,
     pub p_next: *const core::ffi::c_void,
-    pub resource_device_index: crate::External<
-        {
-            "uint32_t";
-            0
-        },
-    >,
-    pub memory_device_index: crate::External<
-        {
-            "uint32_t";
-            0
-        },
-    >,
+    pub resource_device_index: u32,
+    pub memory_device_index: u32,
 }
 #[repr(C)]
 pub struct DeviceGroupDeviceCreateInfo {
     pub s_type: crate::vk::StructureType,
     pub p_next: *const core::ffi::c_void,
-    pub physical_device_count: crate::External<
-        {
-            "uint32_t";
-            0
-        },
-    >,
+    pub physical_device_count: u32,
     pub p_physical_devices: *const crate::vk::PhysicalDevice,
 }
 #[repr(C)]
 pub struct DescriptorUpdateTemplateEntry {
-    pub dst_binding: crate::External<
-        {
-            "uint32_t";
-            0
-        },
-    >,
-    pub dst_array_element: crate::External<
-        {
-            "uint32_t";
-            0
-        },
-    >,
-    pub descriptor_count: crate::External<
-        {
-            "uint32_t";
-            0
-        },
-    >,
+    pub dst_binding: u32,
+    pub dst_array_element: u32,
+    pub descriptor_count: u32,
     pub descriptor_type: crate::vk::DescriptorType,
-    pub offset: crate::External<
-        {
-            "size_t";
-            0
-        },
-    >,
-    pub stride: crate::External<
-        {
-            "size_t";
-            0
-        },
-    >,
+    pub offset: usize,
+    pub stride: usize,
 }
 #[repr(C)]
 pub struct DescriptorUpdateTemplateCreateInfo {
     pub s_type: crate::vk::StructureType,
     pub p_next: *const core::ffi::c_void,
     pub flags: crate::vk::DescriptorUpdateTemplateCreateFlags,
-    pub descriptor_update_entry_count: crate::External<
-        {
-            "uint32_t";
-            0
-        },
-    >,
+    pub descriptor_update_entry_count: u32,
     pub p_descriptor_update_entries: *const crate::vk::DescriptorUpdateTemplateEntry,
     pub template_type: crate::vk::DescriptorUpdateTemplateType,
     pub descriptor_set_layout: crate::vk::DescriptorSetLayout,
     pub pipeline_bind_point: crate::vk::PipelineBindPoint,
     pub pipeline_layout: crate::vk::PipelineLayout,
-    pub set: crate::External<
-        {
-            "uint32_t";
-            0
-        },
-    >,
+    pub set: u32,
 }
 #[repr(C)]
 pub struct InputAttachmentAspectReference {
-    pub subpass: crate::External<
-        {
-            "uint32_t";
-            0
-        },
-    >,
-    pub input_attachment_index: crate::External<
-        {
-            "uint32_t";
-            0
-        },
-    >,
+    pub subpass: u32,
+    pub input_attachment_index: u32,
     pub aspect_mask: crate::vk::ImageAspectFlags,
 }
 #[repr(C)]
 pub struct RenderPassInputAttachmentAspectCreateInfo {
     pub s_type: crate::vk::StructureType,
     pub p_next: *const core::ffi::c_void,
-    pub aspect_reference_count: crate::External<
-        {
-            "uint32_t";
-            0
-        },
-    >,
+    pub aspect_reference_count: u32,
     pub p_aspect_references: *const crate::vk::InputAttachmentAspectReference,
 }
 #[repr(C)]
@@ -535,12 +330,7 @@ pub struct PhysicalDevice16BitStorageFeatures {
 pub struct PhysicalDeviceSubgroupProperties {
     pub s_type: crate::vk::StructureType,
     pub p_next: *mut core::ffi::c_void,
-    pub subgroup_size: crate::External<
-        {
-            "uint32_t";
-            0
-        },
-    >,
+    pub subgroup_size: u32,
     pub supported_stages: crate::vk::ShaderStageFlags,
     pub supported_operations: crate::vk::SubgroupFeatureFlags,
     pub quad_operations_in_all_stages: crate::vk::Bool32,
@@ -648,12 +438,7 @@ pub struct PhysicalDeviceSamplerYcbcrConversionFeatures {
 pub struct SamplerYcbcrConversionImageFormatProperties {
     pub s_type: crate::vk::StructureType,
     pub p_next: *mut core::ffi::c_void,
-    pub combined_image_sampler_descriptor_count: crate::External<
-        {
-            "uint32_t";
-            0
-        },
-    >,
+    pub combined_image_sampler_descriptor_count: u32,
 }
 #[repr(C)]
 pub struct ProtectedSubmitInfo {
@@ -678,29 +463,14 @@ pub struct DeviceQueueInfo2 {
     pub s_type: crate::vk::StructureType,
     pub p_next: *const core::ffi::c_void,
     pub flags: crate::vk::DeviceQueueCreateFlags,
-    pub queue_family_index: crate::External<
-        {
-            "uint32_t";
-            0
-        },
-    >,
-    pub queue_index: crate::External<
-        {
-            "uint32_t";
-            0
-        },
-    >,
+    pub queue_family_index: u32,
+    pub queue_index: u32,
 }
 #[repr(C)]
 pub struct PhysicalDeviceMaintenance3Properties {
     pub s_type: crate::vk::StructureType,
     pub p_next: *mut core::ffi::c_void,
-    pub max_per_set_descriptors: crate::External<
-        {
-            "uint32_t";
-            0
-        },
-    >,
+    pub max_per_set_descriptors: u32,
     pub max_memory_allocation_size: crate::vk::DeviceSize,
 }
 #[repr(C)]

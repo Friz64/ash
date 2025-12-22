@@ -5,12 +5,7 @@
 pub struct ExternalComputeQueueDeviceCreateInfoNV {
     pub s_type: crate::vk::StructureType,
     pub p_next: *const core::ffi::c_void,
-    pub reserved_external_queues: crate::External<
-        {
-            "uint32_t";
-            0
-        },
-    >,
+    pub reserved_external_queues: u32,
 }
 #[repr(C)]
 pub struct ExternalComputeQueueCreateInfoNV {
@@ -22,29 +17,14 @@ pub struct ExternalComputeQueueCreateInfoNV {
 pub struct ExternalComputeQueueDataParamsNV {
     pub s_type: crate::vk::StructureType,
     pub p_next: *const core::ffi::c_void,
-    pub device_index: crate::External<
-        {
-            "uint32_t";
-            0
-        },
-    >,
+    pub device_index: u32,
 }
 #[repr(C)]
 pub struct PhysicalDeviceExternalComputeQueuePropertiesNV {
     pub s_type: crate::vk::StructureType,
     pub p_next: *mut core::ffi::c_void,
-    pub external_data_size: crate::External<
-        {
-            "uint32_t";
-            0
-        },
-    >,
-    pub max_external_queues: crate::External<
-        {
-            "uint32_t";
-            0
-        },
-    >,
+    pub external_data_size: u32,
+    pub max_external_queues: u32,
 }
 #[repr(C)]
 pub struct ExternalComputeQueueNV {}

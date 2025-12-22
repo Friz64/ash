@@ -18,12 +18,7 @@ pub struct PhysicalDeviceMaintenance9PropertiesKHR {
 pub struct QueueFamilyOwnershipTransferPropertiesKHR {
     pub s_type: crate::vk::StructureType,
     pub p_next: *mut core::ffi::c_void,
-    pub optimal_image_transfer_to_queue_families: crate::External<
-        {
-            "uint32_t";
-            0
-        },
-    >,
+    pub optimal_image_transfer_to_queue_families: u32,
 }
 #[repr(C)]
 pub struct DefaultVertexAttributeValueKHR {}

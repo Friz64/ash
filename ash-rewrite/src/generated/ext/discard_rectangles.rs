@@ -5,12 +5,7 @@
 pub struct PhysicalDeviceDiscardRectanglePropertiesEXT {
     pub s_type: crate::vk::StructureType,
     pub p_next: *mut core::ffi::c_void,
-    pub max_discard_rectangles: crate::External<
-        {
-            "uint32_t";
-            0
-        },
-    >,
+    pub max_discard_rectangles: u32,
 }
 #[repr(C)]
 pub struct PipelineDiscardRectangleStateCreateInfoEXT {
@@ -18,12 +13,7 @@ pub struct PipelineDiscardRectangleStateCreateInfoEXT {
     pub p_next: *const core::ffi::c_void,
     pub flags: crate::vk::PipelineDiscardRectangleStateCreateFlagsEXT,
     pub discard_rectangle_mode: crate::vk::DiscardRectangleModeEXT,
-    pub discard_rectangle_count: crate::External<
-        {
-            "uint32_t";
-            0
-        },
-    >,
+    pub discard_rectangle_count: u32,
     pub p_discard_rectangles: *const crate::vk::Rect2D,
 }
 #[repr(C)]

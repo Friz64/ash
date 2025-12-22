@@ -6,27 +6,12 @@ pub struct ImportMemoryWin32HandleInfoNV {
     pub s_type: crate::vk::StructureType,
     pub p_next: *const core::ffi::c_void,
     pub handle_type: crate::vk::ExternalMemoryHandleTypeFlagsNV,
-    pub handle: crate::External<
-        {
-            "HANDLE";
-            0
-        },
-    >,
+    pub handle: crate::platform_types::HANDLE,
 }
 #[repr(C)]
 pub struct ExportMemoryWin32HandleInfoNV {
     pub s_type: crate::vk::StructureType,
     pub p_next: *const core::ffi::c_void,
-    pub p_attributes: *const crate::External<
-        {
-            "SECURITY_ATTRIBUTES";
-            0
-        },
-    >,
-    pub dw_access: crate::External<
-        {
-            "DWORD";
-            0
-        },
-    >,
+    pub p_attributes: *const crate::platform_types::SECURITY_ATTRIBUTES,
+    pub dw_access: crate::platform_types::DWORD,
 }

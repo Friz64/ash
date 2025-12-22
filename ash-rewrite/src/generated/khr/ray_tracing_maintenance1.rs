@@ -14,24 +14,9 @@ pub struct TraceRaysIndirectCommand2KHR {
     pub callable_shader_binding_table_address: crate::vk::DeviceAddress,
     pub callable_shader_binding_table_size: crate::vk::DeviceSize,
     pub callable_shader_binding_table_stride: crate::vk::DeviceSize,
-    pub width: crate::External<
-        {
-            "uint32_t";
-            0
-        },
-    >,
-    pub height: crate::External<
-        {
-            "uint32_t";
-            0
-        },
-    >,
-    pub depth: crate::External<
-        {
-            "uint32_t";
-            0
-        },
-    >,
+    pub width: u32,
+    pub height: u32,
+    pub depth: u32,
 }
 #[repr(C)]
 pub struct PhysicalDeviceRayTracingMaintenance1FeaturesKHR {

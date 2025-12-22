@@ -11,16 +11,6 @@ pub struct PhysicalDevicePresentIdFeaturesKHR {
 pub struct PresentIdKHR {
     pub s_type: crate::vk::StructureType,
     pub p_next: *const core::ffi::c_void,
-    pub swapchain_count: crate::External<
-        {
-            "uint32_t";
-            0
-        },
-    >,
-    pub p_present_ids: *const crate::External<
-        {
-            "uint64_t";
-            0
-        },
-    >,
+    pub swapchain_count: u32,
+    pub p_present_ids: *const u64,
 }

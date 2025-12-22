@@ -13,32 +13,17 @@ pub struct PipelineBinaryCreateInfoKHR {
 pub struct PipelineBinaryHandlesInfoKHR {
     pub s_type: crate::vk::StructureType,
     pub p_next: *const core::ffi::c_void,
-    pub pipeline_binary_count: crate::External<
-        {
-            "uint32_t";
-            0
-        },
-    >,
+    pub pipeline_binary_count: u32,
     pub p_pipeline_binaries: *mut crate::vk::PipelineBinaryKHR,
 }
 #[repr(C)]
 pub struct PipelineBinaryDataKHR {
-    pub data_size: crate::External<
-        {
-            "size_t";
-            0
-        },
-    >,
+    pub data_size: usize,
     pub p_data: *mut core::ffi::c_void,
 }
 #[repr(C)]
 pub struct PipelineBinaryKeysAndDataKHR {
-    pub binary_count: crate::External<
-        {
-            "uint32_t";
-            0
-        },
-    >,
+    pub binary_count: u32,
     pub p_pipeline_binary_keys: *const crate::vk::PipelineBinaryKeyKHR,
     pub p_pipeline_binary_data: *const crate::vk::PipelineBinaryDataKHR,
 }
@@ -46,29 +31,14 @@ pub struct PipelineBinaryKeysAndDataKHR {
 pub struct PipelineBinaryKeyKHR {
     pub s_type: crate::vk::StructureType,
     pub p_next: *mut core::ffi::c_void,
-    pub key_size: crate::External<
-        {
-            "uint32_t";
-            0
-        },
-    >,
-    pub key: [crate::External<
-        {
-            "uint8_t";
-            0
-        },
-    >; 1337],
+    pub key_size: u32,
+    pub key: [u8; 1337],
 }
 #[repr(C)]
 pub struct PipelineBinaryInfoKHR {
     pub s_type: crate::vk::StructureType,
     pub p_next: *const core::ffi::c_void,
-    pub binary_count: crate::External<
-        {
-            "uint32_t";
-            0
-        },
-    >,
+    pub binary_count: u32,
     pub p_pipeline_binaries: *const crate::vk::PipelineBinaryKHR,
 }
 #[repr(C)]

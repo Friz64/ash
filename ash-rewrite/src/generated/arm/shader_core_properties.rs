@@ -5,22 +5,7 @@
 pub struct PhysicalDeviceShaderCorePropertiesARM {
     pub s_type: crate::vk::StructureType,
     pub p_next: *mut core::ffi::c_void,
-    pub pixel_rate: crate::External<
-        {
-            "uint32_t";
-            0
-        },
-    >,
-    pub texel_rate: crate::External<
-        {
-            "uint32_t";
-            0
-        },
-    >,
-    pub fma_rate: crate::External<
-        {
-            "uint32_t";
-            0
-        },
-    >,
+    pub pixel_rate: u32,
+    pub texel_rate: u32,
+    pub fma_rate: u32,
 }

@@ -13,114 +13,34 @@ pub struct BaseInStructure {
 }
 #[repr(C)]
 pub struct Offset2D {
-    pub x: crate::External<
-        {
-            "int32_t";
-            0
-        },
-    >,
-    pub y: crate::External<
-        {
-            "int32_t";
-            0
-        },
-    >,
+    pub x: i32,
+    pub y: i32,
 }
 #[repr(C)]
 pub struct Offset3D {
-    pub x: crate::External<
-        {
-            "int32_t";
-            0
-        },
-    >,
-    pub y: crate::External<
-        {
-            "int32_t";
-            0
-        },
-    >,
-    pub z: crate::External<
-        {
-            "int32_t";
-            0
-        },
-    >,
+    pub x: i32,
+    pub y: i32,
+    pub z: i32,
 }
 #[repr(C)]
 pub struct Extent2D {
-    pub width: crate::External<
-        {
-            "uint32_t";
-            0
-        },
-    >,
-    pub height: crate::External<
-        {
-            "uint32_t";
-            0
-        },
-    >,
+    pub width: u32,
+    pub height: u32,
 }
 #[repr(C)]
 pub struct Extent3D {
-    pub width: crate::External<
-        {
-            "uint32_t";
-            0
-        },
-    >,
-    pub height: crate::External<
-        {
-            "uint32_t";
-            0
-        },
-    >,
-    pub depth: crate::External<
-        {
-            "uint32_t";
-            0
-        },
-    >,
+    pub width: u32,
+    pub height: u32,
+    pub depth: u32,
 }
 #[repr(C)]
 pub struct Viewport {
-    pub x: crate::External<
-        {
-            "float";
-            0
-        },
-    >,
-    pub y: crate::External<
-        {
-            "float";
-            0
-        },
-    >,
-    pub width: crate::External<
-        {
-            "float";
-            0
-        },
-    >,
-    pub height: crate::External<
-        {
-            "float";
-            0
-        },
-    >,
-    pub min_depth: crate::External<
-        {
-            "float";
-            0
-        },
-    >,
-    pub max_depth: crate::External<
-        {
-            "float";
-            0
-        },
-    >,
+    pub x: core::ffi::c_float,
+    pub y: core::ffi::c_float,
+    pub width: core::ffi::c_float,
+    pub height: core::ffi::c_float,
+    pub min_depth: core::ffi::c_float,
+    pub max_depth: core::ffi::c_float,
 }
 #[repr(C)]
 pub struct Rect2D {
@@ -130,18 +50,8 @@ pub struct Rect2D {
 #[repr(C)]
 pub struct ClearRect {
     pub rect: crate::vk::Rect2D,
-    pub base_array_layer: crate::External<
-        {
-            "uint32_t";
-            0
-        },
-    >,
-    pub layer_count: crate::External<
-        {
-            "uint32_t";
-            0
-        },
-    >,
+    pub base_array_layer: u32,
+    pub layer_count: u32,
 }
 #[repr(C)]
 pub struct ComponentMapping {
@@ -152,122 +62,37 @@ pub struct ComponentMapping {
 }
 #[repr(C)]
 pub struct PhysicalDeviceProperties {
-    pub api_version: crate::External<
-        {
-            "uint32_t";
-            0
-        },
-    >,
-    pub driver_version: crate::External<
-        {
-            "uint32_t";
-            0
-        },
-    >,
-    pub vendor_id: crate::External<
-        {
-            "uint32_t";
-            0
-        },
-    >,
-    pub device_id: crate::External<
-        {
-            "uint32_t";
-            0
-        },
-    >,
+    pub api_version: u32,
+    pub driver_version: u32,
+    pub vendor_id: u32,
+    pub device_id: u32,
     pub device_type: crate::vk::PhysicalDeviceType,
-    pub device_name: [crate::External<
-        {
-            "char";
-            0
-        },
-    >; 1337],
-    pub pipeline_cache_uuid: [crate::External<
-        {
-            "uint8_t";
-            0
-        },
-    >; 1337],
+    pub device_name: [core::ffi::c_char; 1337],
+    pub pipeline_cache_uuid: [u8; 1337],
     pub limits: crate::vk::PhysicalDeviceLimits,
     pub sparse_properties: crate::vk::PhysicalDeviceSparseProperties,
 }
 #[repr(C)]
 pub struct ExtensionProperties {
-    pub extension_name: [crate::External<
-        {
-            "char";
-            0
-        },
-    >; 1337],
-    pub spec_version: crate::External<
-        {
-            "uint32_t";
-            0
-        },
-    >,
+    pub extension_name: [core::ffi::c_char; 1337],
+    pub spec_version: u32,
 }
 #[repr(C)]
 pub struct LayerProperties {
-    pub layer_name: [crate::External<
-        {
-            "char";
-            0
-        },
-    >; 1337],
-    pub spec_version: crate::External<
-        {
-            "uint32_t";
-            0
-        },
-    >,
-    pub implementation_version: crate::External<
-        {
-            "uint32_t";
-            0
-        },
-    >,
-    pub description: [crate::External<
-        {
-            "char";
-            0
-        },
-    >; 1337],
+    pub layer_name: [core::ffi::c_char; 1337],
+    pub spec_version: u32,
+    pub implementation_version: u32,
+    pub description: [core::ffi::c_char; 1337],
 }
 #[repr(C)]
 pub struct ApplicationInfo {
     pub s_type: crate::vk::StructureType,
     pub p_next: *const core::ffi::c_void,
-    pub p_application_name: *const crate::External<
-        {
-            "char";
-            0
-        },
-    >,
-    pub application_version: crate::External<
-        {
-            "uint32_t";
-            0
-        },
-    >,
-    pub p_engine_name: *const crate::External<
-        {
-            "char";
-            0
-        },
-    >,
-    pub engine_version: crate::External<
-        {
-            "uint32_t";
-            0
-        },
-    >,
-    pub api_version: crate::External<
-        {
-            "uint32_t";
-            0
-        },
-    >,
+    pub p_application_name: *const core::ffi::c_char,
+    pub application_version: u32,
+    pub p_engine_name: *const core::ffi::c_char,
+    pub engine_version: u32,
+    pub api_version: u32,
 }
 #[repr(C)]
 pub struct AllocationCallbacks {
@@ -283,61 +108,21 @@ pub struct DeviceQueueCreateInfo {
     pub s_type: crate::vk::StructureType,
     pub p_next: *const core::ffi::c_void,
     pub flags: crate::vk::DeviceQueueCreateFlags,
-    pub queue_family_index: crate::External<
-        {
-            "uint32_t";
-            0
-        },
-    >,
-    pub queue_count: crate::External<
-        {
-            "uint32_t";
-            0
-        },
-    >,
-    pub p_queue_priorities: *const crate::External<
-        {
-            "float";
-            0
-        },
-    >,
+    pub queue_family_index: u32,
+    pub queue_count: u32,
+    pub p_queue_priorities: *const core::ffi::c_float,
 }
 #[repr(C)]
 pub struct DeviceCreateInfo {
     pub s_type: crate::vk::StructureType,
     pub p_next: *const core::ffi::c_void,
     pub flags: crate::vk::DeviceCreateFlags,
-    pub queue_create_info_count: crate::External<
-        {
-            "uint32_t";
-            0
-        },
-    >,
+    pub queue_create_info_count: u32,
     pub p_queue_create_infos: *const crate::vk::DeviceQueueCreateInfo,
-    pub enabled_layer_count: crate::External<
-        {
-            "uint32_t";
-            0
-        },
-    >,
-    pub pp_enabled_layer_names: *const *const crate::External<
-        {
-            "char";
-            0
-        },
-    >,
-    pub enabled_extension_count: crate::External<
-        {
-            "uint32_t";
-            0
-        },
-    >,
-    pub pp_enabled_extension_names: *const *const crate::External<
-        {
-            "char";
-            0
-        },
-    >,
+    pub enabled_layer_count: u32,
+    pub pp_enabled_layer_names: *const *const core::ffi::c_char,
+    pub enabled_extension_count: u32,
+    pub pp_enabled_extension_names: *const *const core::ffi::c_char,
     pub p_enabled_features: *const crate::vk::PhysicalDeviceFeatures,
 }
 #[repr(C)]
@@ -346,63 +131,23 @@ pub struct InstanceCreateInfo {
     pub p_next: *const core::ffi::c_void,
     pub flags: crate::vk::InstanceCreateFlags,
     pub p_application_info: *const crate::vk::ApplicationInfo,
-    pub enabled_layer_count: crate::External<
-        {
-            "uint32_t";
-            0
-        },
-    >,
-    pub pp_enabled_layer_names: *const *const crate::External<
-        {
-            "char";
-            0
-        },
-    >,
-    pub enabled_extension_count: crate::External<
-        {
-            "uint32_t";
-            0
-        },
-    >,
-    pub pp_enabled_extension_names: *const *const crate::External<
-        {
-            "char";
-            0
-        },
-    >,
+    pub enabled_layer_count: u32,
+    pub pp_enabled_layer_names: *const *const core::ffi::c_char,
+    pub enabled_extension_count: u32,
+    pub pp_enabled_extension_names: *const *const core::ffi::c_char,
 }
 #[repr(C)]
 pub struct QueueFamilyProperties {
     pub queue_flags: crate::vk::QueueFlags,
-    pub queue_count: crate::External<
-        {
-            "uint32_t";
-            0
-        },
-    >,
-    pub timestamp_valid_bits: crate::External<
-        {
-            "uint32_t";
-            0
-        },
-    >,
+    pub queue_count: u32,
+    pub timestamp_valid_bits: u32,
     pub min_image_transfer_granularity: crate::vk::Extent3D,
 }
 #[repr(C)]
 pub struct PhysicalDeviceMemoryProperties {
-    pub memory_type_count: crate::External<
-        {
-            "uint32_t";
-            0
-        },
-    >,
+    pub memory_type_count: u32,
     pub memory_types: [crate::vk::MemoryType; 1337],
-    pub memory_heap_count: crate::External<
-        {
-            "uint32_t";
-            0
-        },
-    >,
+    pub memory_heap_count: u32,
     pub memory_heaps: [crate::vk::MemoryHeap; 1337],
 }
 #[repr(C)]
@@ -410,23 +155,13 @@ pub struct MemoryAllocateInfo {
     pub s_type: crate::vk::StructureType,
     pub p_next: *const core::ffi::c_void,
     pub allocation_size: crate::vk::DeviceSize,
-    pub memory_type_index: crate::External<
-        {
-            "uint32_t";
-            0
-        },
-    >,
+    pub memory_type_index: u32,
 }
 #[repr(C)]
 pub struct MemoryRequirements {
     pub size: crate::vk::DeviceSize,
     pub alignment: crate::vk::DeviceSize,
-    pub memory_type_bits: crate::External<
-        {
-            "uint32_t";
-            0
-        },
-    >,
+    pub memory_type_bits: u32,
 }
 #[repr(C)]
 pub struct SparseImageFormatProperties {
@@ -437,12 +172,7 @@ pub struct SparseImageFormatProperties {
 #[repr(C)]
 pub struct SparseImageMemoryRequirements {
     pub format_properties: crate::vk::SparseImageFormatProperties,
-    pub image_mip_tail_first_lod: crate::External<
-        {
-            "uint32_t";
-            0
-        },
-    >,
+    pub image_mip_tail_first_lod: u32,
     pub image_mip_tail_size: crate::vk::DeviceSize,
     pub image_mip_tail_offset: crate::vk::DeviceSize,
     pub image_mip_tail_stride: crate::vk::DeviceSize,
@@ -450,12 +180,7 @@ pub struct SparseImageMemoryRequirements {
 #[repr(C)]
 pub struct MemoryType {
     pub property_flags: crate::vk::MemoryPropertyFlags,
-    pub heap_index: crate::External<
-        {
-            "uint32_t";
-            0
-        },
-    >,
+    pub heap_index: u32,
 }
 #[repr(C)]
 pub struct MemoryHeap {
@@ -479,18 +204,8 @@ pub struct FormatProperties {
 #[repr(C)]
 pub struct ImageFormatProperties {
     pub max_extent: crate::vk::Extent3D,
-    pub max_mip_levels: crate::External<
-        {
-            "uint32_t";
-            0
-        },
-    >,
-    pub max_array_layers: crate::External<
-        {
-            "uint32_t";
-            0
-        },
-    >,
+    pub max_mip_levels: u32,
+    pub max_array_layers: u32,
     pub sample_counts: crate::vk::SampleCountFlags,
     pub max_resource_size: crate::vk::DeviceSize,
 }
@@ -511,24 +226,9 @@ pub struct WriteDescriptorSet {
     pub s_type: crate::vk::StructureType,
     pub p_next: *const core::ffi::c_void,
     pub dst_set: crate::vk::DescriptorSet,
-    pub dst_binding: crate::External<
-        {
-            "uint32_t";
-            0
-        },
-    >,
-    pub dst_array_element: crate::External<
-        {
-            "uint32_t";
-            0
-        },
-    >,
-    pub descriptor_count: crate::External<
-        {
-            "uint32_t";
-            0
-        },
-    >,
+    pub dst_binding: u32,
+    pub dst_array_element: u32,
+    pub descriptor_count: u32,
     pub descriptor_type: crate::vk::DescriptorType,
     pub p_image_info: *const crate::vk::DescriptorImageInfo,
     pub p_buffer_info: *const crate::vk::DescriptorBufferInfo,
@@ -539,37 +239,12 @@ pub struct CopyDescriptorSet {
     pub s_type: crate::vk::StructureType,
     pub p_next: *const core::ffi::c_void,
     pub src_set: crate::vk::DescriptorSet,
-    pub src_binding: crate::External<
-        {
-            "uint32_t";
-            0
-        },
-    >,
-    pub src_array_element: crate::External<
-        {
-            "uint32_t";
-            0
-        },
-    >,
+    pub src_binding: u32,
+    pub src_array_element: u32,
     pub dst_set: crate::vk::DescriptorSet,
-    pub dst_binding: crate::External<
-        {
-            "uint32_t";
-            0
-        },
-    >,
-    pub dst_array_element: crate::External<
-        {
-            "uint32_t";
-            0
-        },
-    >,
-    pub descriptor_count: crate::External<
-        {
-            "uint32_t";
-            0
-        },
-    >,
+    pub dst_binding: u32,
+    pub dst_array_element: u32,
+    pub descriptor_count: u32,
 }
 #[repr(C)]
 pub struct BufferCreateInfo {
@@ -579,18 +254,8 @@ pub struct BufferCreateInfo {
     pub size: crate::vk::DeviceSize,
     pub usage: crate::vk::BufferUsageFlags,
     pub sharing_mode: crate::vk::SharingMode,
-    pub queue_family_index_count: crate::External<
-        {
-            "uint32_t";
-            0
-        },
-    >,
-    pub p_queue_family_indices: *const crate::External<
-        {
-            "uint32_t";
-            0
-        },
-    >,
+    pub queue_family_index_count: u32,
+    pub p_queue_family_indices: *const u32,
 }
 #[repr(C)]
 pub struct BufferViewCreateInfo {
@@ -605,68 +270,23 @@ pub struct BufferViewCreateInfo {
 #[repr(C)]
 pub struct ImageSubresource {
     pub aspect_mask: crate::vk::ImageAspectFlags,
-    pub mip_level: crate::External<
-        {
-            "uint32_t";
-            0
-        },
-    >,
-    pub array_layer: crate::External<
-        {
-            "uint32_t";
-            0
-        },
-    >,
+    pub mip_level: u32,
+    pub array_layer: u32,
 }
 #[repr(C)]
 pub struct ImageSubresourceLayers {
     pub aspect_mask: crate::vk::ImageAspectFlags,
-    pub mip_level: crate::External<
-        {
-            "uint32_t";
-            0
-        },
-    >,
-    pub base_array_layer: crate::External<
-        {
-            "uint32_t";
-            0
-        },
-    >,
-    pub layer_count: crate::External<
-        {
-            "uint32_t";
-            0
-        },
-    >,
+    pub mip_level: u32,
+    pub base_array_layer: u32,
+    pub layer_count: u32,
 }
 #[repr(C)]
 pub struct ImageSubresourceRange {
     pub aspect_mask: crate::vk::ImageAspectFlags,
-    pub base_mip_level: crate::External<
-        {
-            "uint32_t";
-            0
-        },
-    >,
-    pub level_count: crate::External<
-        {
-            "uint32_t";
-            0
-        },
-    >,
-    pub base_array_layer: crate::External<
-        {
-            "uint32_t";
-            0
-        },
-    >,
-    pub layer_count: crate::External<
-        {
-            "uint32_t";
-            0
-        },
-    >,
+    pub base_mip_level: u32,
+    pub level_count: u32,
+    pub base_array_layer: u32,
+    pub layer_count: u32,
 }
 #[repr(C)]
 pub struct MemoryBarrier {
@@ -681,18 +301,8 @@ pub struct BufferMemoryBarrier {
     pub p_next: *const core::ffi::c_void,
     pub src_access_mask: crate::vk::AccessFlags,
     pub dst_access_mask: crate::vk::AccessFlags,
-    pub src_queue_family_index: crate::External<
-        {
-            "uint32_t";
-            0
-        },
-    >,
-    pub dst_queue_family_index: crate::External<
-        {
-            "uint32_t";
-            0
-        },
-    >,
+    pub src_queue_family_index: u32,
+    pub dst_queue_family_index: u32,
     pub buffer: crate::vk::Buffer,
     pub offset: crate::vk::DeviceSize,
     pub size: crate::vk::DeviceSize,
@@ -705,18 +315,8 @@ pub struct ImageMemoryBarrier {
     pub dst_access_mask: crate::vk::AccessFlags,
     pub old_layout: crate::vk::ImageLayout,
     pub new_layout: crate::vk::ImageLayout,
-    pub src_queue_family_index: crate::External<
-        {
-            "uint32_t";
-            0
-        },
-    >,
-    pub dst_queue_family_index: crate::External<
-        {
-            "uint32_t";
-            0
-        },
-    >,
+    pub src_queue_family_index: u32,
+    pub dst_queue_family_index: u32,
     pub image: crate::vk::Image,
     pub subresource_range: crate::vk::ImageSubresourceRange,
 }
@@ -728,34 +328,14 @@ pub struct ImageCreateInfo {
     pub image_type: crate::vk::ImageType,
     pub format: crate::vk::Format,
     pub extent: crate::vk::Extent3D,
-    pub mip_levels: crate::External<
-        {
-            "uint32_t";
-            0
-        },
-    >,
-    pub array_layers: crate::External<
-        {
-            "uint32_t";
-            0
-        },
-    >,
+    pub mip_levels: u32,
+    pub array_layers: u32,
     pub samples: crate::vk::SampleCountFlagBits,
     pub tiling: crate::vk::ImageTiling,
     pub usage: crate::vk::ImageUsageFlags,
     pub sharing_mode: crate::vk::SharingMode,
-    pub queue_family_index_count: crate::External<
-        {
-            "uint32_t";
-            0
-        },
-    >,
-    pub p_queue_family_indices: *const crate::External<
-        {
-            "uint32_t";
-            0
-        },
-    >,
+    pub queue_family_index_count: u32,
+    pub p_queue_family_indices: *const u32,
     pub initial_layout: crate::vk::ImageLayout,
 }
 #[repr(C)]
@@ -803,74 +383,34 @@ pub struct SparseImageMemoryBind {
 #[repr(C)]
 pub struct SparseBufferMemoryBindInfo {
     pub buffer: crate::vk::Buffer,
-    pub bind_count: crate::External<
-        {
-            "uint32_t";
-            0
-        },
-    >,
+    pub bind_count: u32,
     pub p_binds: *const crate::vk::SparseMemoryBind,
 }
 #[repr(C)]
 pub struct SparseImageOpaqueMemoryBindInfo {
     pub image: crate::vk::Image,
-    pub bind_count: crate::External<
-        {
-            "uint32_t";
-            0
-        },
-    >,
+    pub bind_count: u32,
     pub p_binds: *const crate::vk::SparseMemoryBind,
 }
 #[repr(C)]
 pub struct SparseImageMemoryBindInfo {
     pub image: crate::vk::Image,
-    pub bind_count: crate::External<
-        {
-            "uint32_t";
-            0
-        },
-    >,
+    pub bind_count: u32,
     pub p_binds: *const crate::vk::SparseImageMemoryBind,
 }
 #[repr(C)]
 pub struct BindSparseInfo {
     pub s_type: crate::vk::StructureType,
     pub p_next: *const core::ffi::c_void,
-    pub wait_semaphore_count: crate::External<
-        {
-            "uint32_t";
-            0
-        },
-    >,
+    pub wait_semaphore_count: u32,
     pub p_wait_semaphores: *const crate::vk::Semaphore,
-    pub buffer_bind_count: crate::External<
-        {
-            "uint32_t";
-            0
-        },
-    >,
+    pub buffer_bind_count: u32,
     pub p_buffer_binds: *const crate::vk::SparseBufferMemoryBindInfo,
-    pub image_opaque_bind_count: crate::External<
-        {
-            "uint32_t";
-            0
-        },
-    >,
+    pub image_opaque_bind_count: u32,
     pub p_image_opaque_binds: *const crate::vk::SparseImageOpaqueMemoryBindInfo,
-    pub image_bind_count: crate::External<
-        {
-            "uint32_t";
-            0
-        },
-    >,
+    pub image_bind_count: u32,
     pub p_image_binds: *const crate::vk::SparseImageMemoryBindInfo,
-    pub signal_semaphore_count: crate::External<
-        {
-            "uint32_t";
-            0
-        },
-    >,
+    pub signal_semaphore_count: u32,
     pub p_signal_semaphores: *const crate::vk::Semaphore,
 }
 #[repr(C)]
@@ -891,18 +431,8 @@ pub struct ImageBlit {
 #[repr(C)]
 pub struct BufferImageCopy {
     pub buffer_offset: crate::vk::DeviceSize,
-    pub buffer_row_length: crate::External<
-        {
-            "uint32_t";
-            0
-        },
-    >,
-    pub buffer_image_height: crate::External<
-        {
-            "uint32_t";
-            0
-        },
-    >,
+    pub buffer_row_length: u32,
+    pub buffer_image_height: u32,
     pub image_subresource: crate::vk::ImageSubresourceLayers,
     pub image_offset: crate::vk::Offset3D,
     pub image_extent: crate::vk::Extent3D,
@@ -920,34 +450,14 @@ pub struct ShaderModuleCreateInfo {
     pub s_type: crate::vk::StructureType,
     pub p_next: *const core::ffi::c_void,
     pub flags: crate::vk::ShaderModuleCreateFlags,
-    pub code_size: crate::External<
-        {
-            "size_t";
-            0
-        },
-    >,
-    pub p_code: *const crate::External<
-        {
-            "uint32_t";
-            0
-        },
-    >,
+    pub code_size: usize,
+    pub p_code: *const u32,
 }
 #[repr(C)]
 pub struct DescriptorSetLayoutBinding {
-    pub binding: crate::External<
-        {
-            "uint32_t";
-            0
-        },
-    >,
+    pub binding: u32,
     pub descriptor_type: crate::vk::DescriptorType,
-    pub descriptor_count: crate::External<
-        {
-            "uint32_t";
-            0
-        },
-    >,
+    pub descriptor_count: u32,
     pub stage_flags: crate::vk::ShaderStageFlags,
     pub p_immutable_samplers: *const crate::vk::Sampler,
 }
@@ -956,41 +466,21 @@ pub struct DescriptorSetLayoutCreateInfo {
     pub s_type: crate::vk::StructureType,
     pub p_next: *const core::ffi::c_void,
     pub flags: crate::vk::DescriptorSetLayoutCreateFlags,
-    pub binding_count: crate::External<
-        {
-            "uint32_t";
-            0
-        },
-    >,
+    pub binding_count: u32,
     pub p_bindings: *const crate::vk::DescriptorSetLayoutBinding,
 }
 #[repr(C)]
 pub struct DescriptorPoolSize {
     pub _type: crate::vk::DescriptorType,
-    pub descriptor_count: crate::External<
-        {
-            "uint32_t";
-            0
-        },
-    >,
+    pub descriptor_count: u32,
 }
 #[repr(C)]
 pub struct DescriptorPoolCreateInfo {
     pub s_type: crate::vk::StructureType,
     pub p_next: *const core::ffi::c_void,
     pub flags: crate::vk::DescriptorPoolCreateFlags,
-    pub max_sets: crate::External<
-        {
-            "uint32_t";
-            0
-        },
-    >,
-    pub pool_size_count: crate::External<
-        {
-            "uint32_t";
-            0
-        },
-    >,
+    pub max_sets: u32,
+    pub pool_size_count: u32,
     pub p_pool_sizes: *const crate::vk::DescriptorPoolSize,
 }
 #[repr(C)]
@@ -998,50 +488,20 @@ pub struct DescriptorSetAllocateInfo {
     pub s_type: crate::vk::StructureType,
     pub p_next: *const core::ffi::c_void,
     pub descriptor_pool: crate::vk::DescriptorPool,
-    pub descriptor_set_count: crate::External<
-        {
-            "uint32_t";
-            0
-        },
-    >,
+    pub descriptor_set_count: u32,
     pub p_set_layouts: *const crate::vk::DescriptorSetLayout,
 }
 #[repr(C)]
 pub struct SpecializationMapEntry {
-    pub constant_id: crate::External<
-        {
-            "uint32_t";
-            0
-        },
-    >,
-    pub offset: crate::External<
-        {
-            "uint32_t";
-            0
-        },
-    >,
-    pub size: crate::External<
-        {
-            "size_t";
-            0
-        },
-    >,
+    pub constant_id: u32,
+    pub offset: u32,
+    pub size: usize,
 }
 #[repr(C)]
 pub struct SpecializationInfo {
-    pub map_entry_count: crate::External<
-        {
-            "uint32_t";
-            0
-        },
-    >,
+    pub map_entry_count: u32,
     pub p_map_entries: *const crate::vk::SpecializationMapEntry,
-    pub data_size: crate::External<
-        {
-            "size_t";
-            0
-        },
-    >,
+    pub data_size: usize,
     pub p_data: *const core::ffi::c_void,
 }
 #[repr(C)]
@@ -1051,12 +511,7 @@ pub struct PipelineShaderStageCreateInfo {
     pub flags: crate::vk::PipelineShaderStageCreateFlags,
     pub stage: crate::vk::ShaderStageFlagBits,
     pub module: crate::vk::ShaderModule,
-    pub p_name: *const crate::External<
-        {
-            "char";
-            0
-        },
-    >,
+    pub p_name: *const core::ffi::c_char,
     pub p_specialization_info: *const crate::vk::SpecializationInfo,
 }
 #[repr(C)]
@@ -1067,69 +522,29 @@ pub struct ComputePipelineCreateInfo {
     pub stage: crate::vk::PipelineShaderStageCreateInfo,
     pub layout: crate::vk::PipelineLayout,
     pub base_pipeline_handle: crate::vk::Pipeline,
-    pub base_pipeline_index: crate::External<
-        {
-            "int32_t";
-            0
-        },
-    >,
+    pub base_pipeline_index: i32,
 }
 #[repr(C)]
 pub struct VertexInputBindingDescription {
-    pub binding: crate::External<
-        {
-            "uint32_t";
-            0
-        },
-    >,
-    pub stride: crate::External<
-        {
-            "uint32_t";
-            0
-        },
-    >,
+    pub binding: u32,
+    pub stride: u32,
     pub input_rate: crate::vk::VertexInputRate,
 }
 #[repr(C)]
 pub struct VertexInputAttributeDescription {
-    pub location: crate::External<
-        {
-            "uint32_t";
-            0
-        },
-    >,
-    pub binding: crate::External<
-        {
-            "uint32_t";
-            0
-        },
-    >,
+    pub location: u32,
+    pub binding: u32,
     pub format: crate::vk::Format,
-    pub offset: crate::External<
-        {
-            "uint32_t";
-            0
-        },
-    >,
+    pub offset: u32,
 }
 #[repr(C)]
 pub struct PipelineVertexInputStateCreateInfo {
     pub s_type: crate::vk::StructureType,
     pub p_next: *const core::ffi::c_void,
     pub flags: crate::vk::PipelineVertexInputStateCreateFlags,
-    pub vertex_binding_description_count: crate::External<
-        {
-            "uint32_t";
-            0
-        },
-    >,
+    pub vertex_binding_description_count: u32,
     pub p_vertex_binding_descriptions: *const crate::vk::VertexInputBindingDescription,
-    pub vertex_attribute_description_count: crate::External<
-        {
-            "uint32_t";
-            0
-        },
-    >,
+    pub vertex_attribute_description_count: u32,
     pub p_vertex_attribute_descriptions: *const crate::vk::VertexInputAttributeDescription,
 }
 #[repr(C)]
@@ -1145,31 +560,16 @@ pub struct PipelineTessellationStateCreateInfo {
     pub s_type: crate::vk::StructureType,
     pub p_next: *const core::ffi::c_void,
     pub flags: crate::vk::PipelineTessellationStateCreateFlags,
-    pub patch_control_points: crate::External<
-        {
-            "uint32_t";
-            0
-        },
-    >,
+    pub patch_control_points: u32,
 }
 #[repr(C)]
 pub struct PipelineViewportStateCreateInfo {
     pub s_type: crate::vk::StructureType,
     pub p_next: *const core::ffi::c_void,
     pub flags: crate::vk::PipelineViewportStateCreateFlags,
-    pub viewport_count: crate::External<
-        {
-            "uint32_t";
-            0
-        },
-    >,
+    pub viewport_count: u32,
     pub p_viewports: *const crate::vk::Viewport,
-    pub scissor_count: crate::External<
-        {
-            "uint32_t";
-            0
-        },
-    >,
+    pub scissor_count: u32,
     pub p_scissors: *const crate::vk::Rect2D,
 }
 #[repr(C)]
@@ -1183,30 +583,10 @@ pub struct PipelineRasterizationStateCreateInfo {
     pub cull_mode: crate::vk::CullModeFlags,
     pub front_face: crate::vk::FrontFace,
     pub depth_bias_enable: crate::vk::Bool32,
-    pub depth_bias_constant_factor: crate::External<
-        {
-            "float";
-            0
-        },
-    >,
-    pub depth_bias_clamp: crate::External<
-        {
-            "float";
-            0
-        },
-    >,
-    pub depth_bias_slope_factor: crate::External<
-        {
-            "float";
-            0
-        },
-    >,
-    pub line_width: crate::External<
-        {
-            "float";
-            0
-        },
-    >,
+    pub depth_bias_constant_factor: core::ffi::c_float,
+    pub depth_bias_clamp: core::ffi::c_float,
+    pub depth_bias_slope_factor: core::ffi::c_float,
+    pub line_width: core::ffi::c_float,
 }
 #[repr(C)]
 pub struct PipelineMultisampleStateCreateInfo {
@@ -1215,12 +595,7 @@ pub struct PipelineMultisampleStateCreateInfo {
     pub flags: crate::vk::PipelineMultisampleStateCreateFlags,
     pub rasterization_samples: crate::vk::SampleCountFlagBits,
     pub sample_shading_enable: crate::vk::Bool32,
-    pub min_sample_shading: crate::External<
-        {
-            "float";
-            0
-        },
-    >,
+    pub min_sample_shading: core::ffi::c_float,
     pub p_sample_mask: *const crate::vk::SampleMask,
     pub alpha_to_coverage_enable: crate::vk::Bool32,
     pub alpha_to_one_enable: crate::vk::Bool32,
@@ -1243,31 +618,16 @@ pub struct PipelineColorBlendStateCreateInfo {
     pub flags: crate::vk::PipelineColorBlendStateCreateFlags,
     pub logic_op_enable: crate::vk::Bool32,
     pub logic_op: crate::vk::LogicOp,
-    pub attachment_count: crate::External<
-        {
-            "uint32_t";
-            0
-        },
-    >,
+    pub attachment_count: u32,
     pub p_attachments: *const crate::vk::PipelineColorBlendAttachmentState,
-    pub blend_constants: [crate::External<
-        {
-            "float";
-            0
-        },
-    >; 1337],
+    pub blend_constants: [core::ffi::c_float; 1337],
 }
 #[repr(C)]
 pub struct PipelineDynamicStateCreateInfo {
     pub s_type: crate::vk::StructureType,
     pub p_next: *const core::ffi::c_void,
     pub flags: crate::vk::PipelineDynamicStateCreateFlags,
-    pub dynamic_state_count: crate::External<
-        {
-            "uint32_t";
-            0
-        },
-    >,
+    pub dynamic_state_count: u32,
     pub p_dynamic_states: *const crate::vk::DynamicState,
 }
 #[repr(C)]
@@ -1276,24 +636,9 @@ pub struct StencilOpState {
     pub pass_op: crate::vk::StencilOp,
     pub depth_fail_op: crate::vk::StencilOp,
     pub compare_op: crate::vk::CompareOp,
-    pub compare_mask: crate::External<
-        {
-            "uint32_t";
-            0
-        },
-    >,
-    pub write_mask: crate::External<
-        {
-            "uint32_t";
-            0
-        },
-    >,
-    pub reference: crate::External<
-        {
-            "uint32_t";
-            0
-        },
-    >,
+    pub compare_mask: u32,
+    pub write_mask: u32,
+    pub reference: u32,
 }
 #[repr(C)]
 pub struct PipelineDepthStencilStateCreateInfo {
@@ -1307,30 +652,15 @@ pub struct PipelineDepthStencilStateCreateInfo {
     pub stencil_test_enable: crate::vk::Bool32,
     pub front: crate::vk::StencilOpState,
     pub back: crate::vk::StencilOpState,
-    pub min_depth_bounds: crate::External<
-        {
-            "float";
-            0
-        },
-    >,
-    pub max_depth_bounds: crate::External<
-        {
-            "float";
-            0
-        },
-    >,
+    pub min_depth_bounds: core::ffi::c_float,
+    pub max_depth_bounds: core::ffi::c_float,
 }
 #[repr(C)]
 pub struct GraphicsPipelineCreateInfo {
     pub s_type: crate::vk::StructureType,
     pub p_next: *const core::ffi::c_void,
     pub flags: crate::vk::PipelineCreateFlags,
-    pub stage_count: crate::External<
-        {
-            "uint32_t";
-            0
-        },
-    >,
+    pub stage_count: u32,
     pub p_stages: *const crate::vk::PipelineShaderStageCreateInfo,
     pub p_vertex_input_state: *const crate::vk::PipelineVertexInputStateCreateInfo,
     pub p_input_assembly_state: *const crate::vk::PipelineInputAssemblyStateCreateInfo,
@@ -1343,95 +673,40 @@ pub struct GraphicsPipelineCreateInfo {
     pub p_dynamic_state: *const crate::vk::PipelineDynamicStateCreateInfo,
     pub layout: crate::vk::PipelineLayout,
     pub render_pass: crate::vk::RenderPass,
-    pub subpass: crate::External<
-        {
-            "uint32_t";
-            0
-        },
-    >,
+    pub subpass: u32,
     pub base_pipeline_handle: crate::vk::Pipeline,
-    pub base_pipeline_index: crate::External<
-        {
-            "int32_t";
-            0
-        },
-    >,
+    pub base_pipeline_index: i32,
 }
 #[repr(C)]
 pub struct PipelineCacheCreateInfo {
     pub s_type: crate::vk::StructureType,
     pub p_next: *const core::ffi::c_void,
     pub flags: crate::vk::PipelineCacheCreateFlags,
-    pub initial_data_size: crate::External<
-        {
-            "size_t";
-            0
-        },
-    >,
+    pub initial_data_size: usize,
     pub p_initial_data: *const core::ffi::c_void,
 }
 #[repr(C)]
 pub struct PipelineCacheHeaderVersionOne {
-    pub header_size: crate::External<
-        {
-            "uint32_t";
-            0
-        },
-    >,
+    pub header_size: u32,
     pub header_version: crate::vk::PipelineCacheHeaderVersion,
-    pub vendor_id: crate::External<
-        {
-            "uint32_t";
-            0
-        },
-    >,
-    pub device_id: crate::External<
-        {
-            "uint32_t";
-            0
-        },
-    >,
-    pub pipeline_cache_uuid: [crate::External<
-        {
-            "uint8_t";
-            0
-        },
-    >; 1337],
+    pub vendor_id: u32,
+    pub device_id: u32,
+    pub pipeline_cache_uuid: [u8; 1337],
 }
 #[repr(C)]
 pub struct PushConstantRange {
     pub stage_flags: crate::vk::ShaderStageFlags,
-    pub offset: crate::External<
-        {
-            "uint32_t";
-            0
-        },
-    >,
-    pub size: crate::External<
-        {
-            "uint32_t";
-            0
-        },
-    >,
+    pub offset: u32,
+    pub size: u32,
 }
 #[repr(C)]
 pub struct PipelineLayoutCreateInfo {
     pub s_type: crate::vk::StructureType,
     pub p_next: *const core::ffi::c_void,
     pub flags: crate::vk::PipelineLayoutCreateFlags,
-    pub set_layout_count: crate::External<
-        {
-            "uint32_t";
-            0
-        },
-    >,
+    pub set_layout_count: u32,
     pub p_set_layouts: *const crate::vk::DescriptorSetLayout,
-    pub push_constant_range_count: crate::External<
-        {
-            "uint32_t";
-            0
-        },
-    >,
+    pub push_constant_range_count: u32,
     pub p_push_constant_ranges: *const crate::vk::PushConstantRange,
 }
 #[repr(C)]
@@ -1445,33 +720,13 @@ pub struct SamplerCreateInfo {
     pub address_mode_u: crate::vk::SamplerAddressMode,
     pub address_mode_v: crate::vk::SamplerAddressMode,
     pub address_mode_w: crate::vk::SamplerAddressMode,
-    pub mip_lod_bias: crate::External<
-        {
-            "float";
-            0
-        },
-    >,
+    pub mip_lod_bias: core::ffi::c_float,
     pub anisotropy_enable: crate::vk::Bool32,
-    pub max_anisotropy: crate::External<
-        {
-            "float";
-            0
-        },
-    >,
+    pub max_anisotropy: core::ffi::c_float,
     pub compare_enable: crate::vk::Bool32,
     pub compare_op: crate::vk::CompareOp,
-    pub min_lod: crate::External<
-        {
-            "float";
-            0
-        },
-    >,
-    pub max_lod: crate::External<
-        {
-            "float";
-            0
-        },
-    >,
+    pub min_lod: core::ffi::c_float,
+    pub max_lod: core::ffi::c_float,
     pub border_color: crate::vk::BorderColor,
     pub unnormalized_coordinates: crate::vk::Bool32,
 }
@@ -1480,12 +735,7 @@ pub struct CommandPoolCreateInfo {
     pub s_type: crate::vk::StructureType,
     pub p_next: *const core::ffi::c_void,
     pub flags: crate::vk::CommandPoolCreateFlags,
-    pub queue_family_index: crate::External<
-        {
-            "uint32_t";
-            0
-        },
-    >,
+    pub queue_family_index: u32,
 }
 #[repr(C)]
 pub struct CommandBufferAllocateInfo {
@@ -1493,24 +743,14 @@ pub struct CommandBufferAllocateInfo {
     pub p_next: *const core::ffi::c_void,
     pub command_pool: crate::vk::CommandPool,
     pub level: crate::vk::CommandBufferLevel,
-    pub command_buffer_count: crate::External<
-        {
-            "uint32_t";
-            0
-        },
-    >,
+    pub command_buffer_count: u32,
 }
 #[repr(C)]
 pub struct CommandBufferInheritanceInfo {
     pub s_type: crate::vk::StructureType,
     pub p_next: *const core::ffi::c_void,
     pub render_pass: crate::vk::RenderPass,
-    pub subpass: crate::External<
-        {
-            "uint32_t";
-            0
-        },
-    >,
+    pub subpass: u32,
     pub framebuffer: crate::vk::Framebuffer,
     pub occlusion_query_enable: crate::vk::Bool32,
     pub query_flags: crate::vk::QueryControlFlags,
@@ -1530,38 +770,18 @@ pub struct RenderPassBeginInfo {
     pub render_pass: crate::vk::RenderPass,
     pub framebuffer: crate::vk::Framebuffer,
     pub render_area: crate::vk::Rect2D,
-    pub clear_value_count: crate::External<
-        {
-            "uint32_t";
-            0
-        },
-    >,
+    pub clear_value_count: u32,
     pub p_clear_values: *const crate::vk::ClearValue,
 }
 #[repr(C)]
 pub struct ClearDepthStencilValue {
-    pub depth: crate::External<
-        {
-            "float";
-            0
-        },
-    >,
-    pub stencil: crate::External<
-        {
-            "uint32_t";
-            0
-        },
-    >,
+    pub depth: core::ffi::c_float,
+    pub stencil: u32,
 }
 #[repr(C)]
 pub struct ClearAttachment {
     pub aspect_mask: crate::vk::ImageAspectFlags,
-    pub color_attachment: crate::External<
-        {
-            "uint32_t";
-            0
-        },
-    >,
+    pub color_attachment: u32,
     pub clear_value: crate::vk::ClearValue,
 }
 #[repr(C)]
@@ -1578,61 +798,26 @@ pub struct AttachmentDescription {
 }
 #[repr(C)]
 pub struct AttachmentReference {
-    pub attachment: crate::External<
-        {
-            "uint32_t";
-            0
-        },
-    >,
+    pub attachment: u32,
     pub layout: crate::vk::ImageLayout,
 }
 #[repr(C)]
 pub struct SubpassDescription {
     pub flags: crate::vk::SubpassDescriptionFlags,
     pub pipeline_bind_point: crate::vk::PipelineBindPoint,
-    pub input_attachment_count: crate::External<
-        {
-            "uint32_t";
-            0
-        },
-    >,
+    pub input_attachment_count: u32,
     pub p_input_attachments: *const crate::vk::AttachmentReference,
-    pub color_attachment_count: crate::External<
-        {
-            "uint32_t";
-            0
-        },
-    >,
+    pub color_attachment_count: u32,
     pub p_color_attachments: *const crate::vk::AttachmentReference,
     pub p_resolve_attachments: *const crate::vk::AttachmentReference,
     pub p_depth_stencil_attachment: *const crate::vk::AttachmentReference,
-    pub preserve_attachment_count: crate::External<
-        {
-            "uint32_t";
-            0
-        },
-    >,
-    pub p_preserve_attachments: *const crate::External<
-        {
-            "uint32_t";
-            0
-        },
-    >,
+    pub preserve_attachment_count: u32,
+    pub p_preserve_attachments: *const u32,
 }
 #[repr(C)]
 pub struct SubpassDependency {
-    pub src_subpass: crate::External<
-        {
-            "uint32_t";
-            0
-        },
-    >,
-    pub dst_subpass: crate::External<
-        {
-            "uint32_t";
-            0
-        },
-    >,
+    pub src_subpass: u32,
+    pub dst_subpass: u32,
     pub src_stage_mask: crate::vk::PipelineStageFlags,
     pub dst_stage_mask: crate::vk::PipelineStageFlags,
     pub src_access_mask: crate::vk::AccessFlags,
@@ -1644,26 +829,11 @@ pub struct RenderPassCreateInfo {
     pub s_type: crate::vk::StructureType,
     pub p_next: *const core::ffi::c_void,
     pub flags: crate::vk::RenderPassCreateFlags,
-    pub attachment_count: crate::External<
-        {
-            "uint32_t";
-            0
-        },
-    >,
+    pub attachment_count: u32,
     pub p_attachments: *const crate::vk::AttachmentDescription,
-    pub subpass_count: crate::External<
-        {
-            "uint32_t";
-            0
-        },
-    >,
+    pub subpass_count: u32,
     pub p_subpasses: *const crate::vk::SubpassDescription,
-    pub dependency_count: crate::External<
-        {
-            "uint32_t";
-            0
-        },
-    >,
+    pub dependency_count: u32,
     pub p_dependencies: *const crate::vk::SubpassDependency,
 }
 #[repr(C)]
@@ -1746,537 +916,107 @@ pub struct PhysicalDeviceSparseProperties {
 }
 #[repr(C)]
 pub struct PhysicalDeviceLimits {
-    pub max_image_dimension1_d: crate::External<
-        {
-            "uint32_t";
-            0
-        },
-    >,
-    pub max_image_dimension2_d: crate::External<
-        {
-            "uint32_t";
-            0
-        },
-    >,
-    pub max_image_dimension3_d: crate::External<
-        {
-            "uint32_t";
-            0
-        },
-    >,
-    pub max_image_dimension_cube: crate::External<
-        {
-            "uint32_t";
-            0
-        },
-    >,
-    pub max_image_array_layers: crate::External<
-        {
-            "uint32_t";
-            0
-        },
-    >,
-    pub max_texel_buffer_elements: crate::External<
-        {
-            "uint32_t";
-            0
-        },
-    >,
-    pub max_uniform_buffer_range: crate::External<
-        {
-            "uint32_t";
-            0
-        },
-    >,
-    pub max_storage_buffer_range: crate::External<
-        {
-            "uint32_t";
-            0
-        },
-    >,
-    pub max_push_constants_size: crate::External<
-        {
-            "uint32_t";
-            0
-        },
-    >,
-    pub max_memory_allocation_count: crate::External<
-        {
-            "uint32_t";
-            0
-        },
-    >,
-    pub max_sampler_allocation_count: crate::External<
-        {
-            "uint32_t";
-            0
-        },
-    >,
+    pub max_image_dimension1_d: u32,
+    pub max_image_dimension2_d: u32,
+    pub max_image_dimension3_d: u32,
+    pub max_image_dimension_cube: u32,
+    pub max_image_array_layers: u32,
+    pub max_texel_buffer_elements: u32,
+    pub max_uniform_buffer_range: u32,
+    pub max_storage_buffer_range: u32,
+    pub max_push_constants_size: u32,
+    pub max_memory_allocation_count: u32,
+    pub max_sampler_allocation_count: u32,
     pub buffer_image_granularity: crate::vk::DeviceSize,
     pub sparse_address_space_size: crate::vk::DeviceSize,
-    pub max_bound_descriptor_sets: crate::External<
-        {
-            "uint32_t";
-            0
-        },
-    >,
-    pub max_per_stage_descriptor_samplers: crate::External<
-        {
-            "uint32_t";
-            0
-        },
-    >,
-    pub max_per_stage_descriptor_uniform_buffers: crate::External<
-        {
-            "uint32_t";
-            0
-        },
-    >,
-    pub max_per_stage_descriptor_storage_buffers: crate::External<
-        {
-            "uint32_t";
-            0
-        },
-    >,
-    pub max_per_stage_descriptor_sampled_images: crate::External<
-        {
-            "uint32_t";
-            0
-        },
-    >,
-    pub max_per_stage_descriptor_storage_images: crate::External<
-        {
-            "uint32_t";
-            0
-        },
-    >,
-    pub max_per_stage_descriptor_input_attachments: crate::External<
-        {
-            "uint32_t";
-            0
-        },
-    >,
-    pub max_per_stage_resources: crate::External<
-        {
-            "uint32_t";
-            0
-        },
-    >,
-    pub max_descriptor_set_samplers: crate::External<
-        {
-            "uint32_t";
-            0
-        },
-    >,
-    pub max_descriptor_set_uniform_buffers: crate::External<
-        {
-            "uint32_t";
-            0
-        },
-    >,
-    pub max_descriptor_set_uniform_buffers_dynamic: crate::External<
-        {
-            "uint32_t";
-            0
-        },
-    >,
-    pub max_descriptor_set_storage_buffers: crate::External<
-        {
-            "uint32_t";
-            0
-        },
-    >,
-    pub max_descriptor_set_storage_buffers_dynamic: crate::External<
-        {
-            "uint32_t";
-            0
-        },
-    >,
-    pub max_descriptor_set_sampled_images: crate::External<
-        {
-            "uint32_t";
-            0
-        },
-    >,
-    pub max_descriptor_set_storage_images: crate::External<
-        {
-            "uint32_t";
-            0
-        },
-    >,
-    pub max_descriptor_set_input_attachments: crate::External<
-        {
-            "uint32_t";
-            0
-        },
-    >,
-    pub max_vertex_input_attributes: crate::External<
-        {
-            "uint32_t";
-            0
-        },
-    >,
-    pub max_vertex_input_bindings: crate::External<
-        {
-            "uint32_t";
-            0
-        },
-    >,
-    pub max_vertex_input_attribute_offset: crate::External<
-        {
-            "uint32_t";
-            0
-        },
-    >,
-    pub max_vertex_input_binding_stride: crate::External<
-        {
-            "uint32_t";
-            0
-        },
-    >,
-    pub max_vertex_output_components: crate::External<
-        {
-            "uint32_t";
-            0
-        },
-    >,
-    pub max_tessellation_generation_level: crate::External<
-        {
-            "uint32_t";
-            0
-        },
-    >,
-    pub max_tessellation_patch_size: crate::External<
-        {
-            "uint32_t";
-            0
-        },
-    >,
-    pub max_tessellation_control_per_vertex_input_components: crate::External<
-        {
-            "uint32_t";
-            0
-        },
-    >,
-    pub max_tessellation_control_per_vertex_output_components: crate::External<
-        {
-            "uint32_t";
-            0
-        },
-    >,
-    pub max_tessellation_control_per_patch_output_components: crate::External<
-        {
-            "uint32_t";
-            0
-        },
-    >,
-    pub max_tessellation_control_total_output_components: crate::External<
-        {
-            "uint32_t";
-            0
-        },
-    >,
-    pub max_tessellation_evaluation_input_components: crate::External<
-        {
-            "uint32_t";
-            0
-        },
-    >,
-    pub max_tessellation_evaluation_output_components: crate::External<
-        {
-            "uint32_t";
-            0
-        },
-    >,
-    pub max_geometry_shader_invocations: crate::External<
-        {
-            "uint32_t";
-            0
-        },
-    >,
-    pub max_geometry_input_components: crate::External<
-        {
-            "uint32_t";
-            0
-        },
-    >,
-    pub max_geometry_output_components: crate::External<
-        {
-            "uint32_t";
-            0
-        },
-    >,
-    pub max_geometry_output_vertices: crate::External<
-        {
-            "uint32_t";
-            0
-        },
-    >,
-    pub max_geometry_total_output_components: crate::External<
-        {
-            "uint32_t";
-            0
-        },
-    >,
-    pub max_fragment_input_components: crate::External<
-        {
-            "uint32_t";
-            0
-        },
-    >,
-    pub max_fragment_output_attachments: crate::External<
-        {
-            "uint32_t";
-            0
-        },
-    >,
-    pub max_fragment_dual_src_attachments: crate::External<
-        {
-            "uint32_t";
-            0
-        },
-    >,
-    pub max_fragment_combined_output_resources: crate::External<
-        {
-            "uint32_t";
-            0
-        },
-    >,
-    pub max_compute_shared_memory_size: crate::External<
-        {
-            "uint32_t";
-            0
-        },
-    >,
-    pub max_compute_work_group_count: [crate::External<
-        {
-            "uint32_t";
-            0
-        },
-    >; 1337],
-    pub max_compute_work_group_invocations: crate::External<
-        {
-            "uint32_t";
-            0
-        },
-    >,
-    pub max_compute_work_group_size: [crate::External<
-        {
-            "uint32_t";
-            0
-        },
-    >; 1337],
-    pub sub_pixel_precision_bits: crate::External<
-        {
-            "uint32_t";
-            0
-        },
-    >,
-    pub sub_texel_precision_bits: crate::External<
-        {
-            "uint32_t";
-            0
-        },
-    >,
-    pub mipmap_precision_bits: crate::External<
-        {
-            "uint32_t";
-            0
-        },
-    >,
-    pub max_draw_indexed_index_value: crate::External<
-        {
-            "uint32_t";
-            0
-        },
-    >,
-    pub max_draw_indirect_count: crate::External<
-        {
-            "uint32_t";
-            0
-        },
-    >,
-    pub max_sampler_lod_bias: crate::External<
-        {
-            "float";
-            0
-        },
-    >,
-    pub max_sampler_anisotropy: crate::External<
-        {
-            "float";
-            0
-        },
-    >,
-    pub max_viewports: crate::External<
-        {
-            "uint32_t";
-            0
-        },
-    >,
-    pub max_viewport_dimensions: [crate::External<
-        {
-            "uint32_t";
-            0
-        },
-    >; 1337],
-    pub viewport_bounds_range: [crate::External<
-        {
-            "float";
-            0
-        },
-    >; 1337],
-    pub viewport_sub_pixel_bits: crate::External<
-        {
-            "uint32_t";
-            0
-        },
-    >,
-    pub min_memory_map_alignment: crate::External<
-        {
-            "size_t";
-            0
-        },
-    >,
+    pub max_bound_descriptor_sets: u32,
+    pub max_per_stage_descriptor_samplers: u32,
+    pub max_per_stage_descriptor_uniform_buffers: u32,
+    pub max_per_stage_descriptor_storage_buffers: u32,
+    pub max_per_stage_descriptor_sampled_images: u32,
+    pub max_per_stage_descriptor_storage_images: u32,
+    pub max_per_stage_descriptor_input_attachments: u32,
+    pub max_per_stage_resources: u32,
+    pub max_descriptor_set_samplers: u32,
+    pub max_descriptor_set_uniform_buffers: u32,
+    pub max_descriptor_set_uniform_buffers_dynamic: u32,
+    pub max_descriptor_set_storage_buffers: u32,
+    pub max_descriptor_set_storage_buffers_dynamic: u32,
+    pub max_descriptor_set_sampled_images: u32,
+    pub max_descriptor_set_storage_images: u32,
+    pub max_descriptor_set_input_attachments: u32,
+    pub max_vertex_input_attributes: u32,
+    pub max_vertex_input_bindings: u32,
+    pub max_vertex_input_attribute_offset: u32,
+    pub max_vertex_input_binding_stride: u32,
+    pub max_vertex_output_components: u32,
+    pub max_tessellation_generation_level: u32,
+    pub max_tessellation_patch_size: u32,
+    pub max_tessellation_control_per_vertex_input_components: u32,
+    pub max_tessellation_control_per_vertex_output_components: u32,
+    pub max_tessellation_control_per_patch_output_components: u32,
+    pub max_tessellation_control_total_output_components: u32,
+    pub max_tessellation_evaluation_input_components: u32,
+    pub max_tessellation_evaluation_output_components: u32,
+    pub max_geometry_shader_invocations: u32,
+    pub max_geometry_input_components: u32,
+    pub max_geometry_output_components: u32,
+    pub max_geometry_output_vertices: u32,
+    pub max_geometry_total_output_components: u32,
+    pub max_fragment_input_components: u32,
+    pub max_fragment_output_attachments: u32,
+    pub max_fragment_dual_src_attachments: u32,
+    pub max_fragment_combined_output_resources: u32,
+    pub max_compute_shared_memory_size: u32,
+    pub max_compute_work_group_count: [u32; 1337],
+    pub max_compute_work_group_invocations: u32,
+    pub max_compute_work_group_size: [u32; 1337],
+    pub sub_pixel_precision_bits: u32,
+    pub sub_texel_precision_bits: u32,
+    pub mipmap_precision_bits: u32,
+    pub max_draw_indexed_index_value: u32,
+    pub max_draw_indirect_count: u32,
+    pub max_sampler_lod_bias: core::ffi::c_float,
+    pub max_sampler_anisotropy: core::ffi::c_float,
+    pub max_viewports: u32,
+    pub max_viewport_dimensions: [u32; 1337],
+    pub viewport_bounds_range: [core::ffi::c_float; 1337],
+    pub viewport_sub_pixel_bits: u32,
+    pub min_memory_map_alignment: usize,
     pub min_texel_buffer_offset_alignment: crate::vk::DeviceSize,
     pub min_uniform_buffer_offset_alignment: crate::vk::DeviceSize,
     pub min_storage_buffer_offset_alignment: crate::vk::DeviceSize,
-    pub min_texel_offset: crate::External<
-        {
-            "int32_t";
-            0
-        },
-    >,
-    pub max_texel_offset: crate::External<
-        {
-            "uint32_t";
-            0
-        },
-    >,
-    pub min_texel_gather_offset: crate::External<
-        {
-            "int32_t";
-            0
-        },
-    >,
-    pub max_texel_gather_offset: crate::External<
-        {
-            "uint32_t";
-            0
-        },
-    >,
-    pub min_interpolation_offset: crate::External<
-        {
-            "float";
-            0
-        },
-    >,
-    pub max_interpolation_offset: crate::External<
-        {
-            "float";
-            0
-        },
-    >,
-    pub sub_pixel_interpolation_offset_bits: crate::External<
-        {
-            "uint32_t";
-            0
-        },
-    >,
-    pub max_framebuffer_width: crate::External<
-        {
-            "uint32_t";
-            0
-        },
-    >,
-    pub max_framebuffer_height: crate::External<
-        {
-            "uint32_t";
-            0
-        },
-    >,
-    pub max_framebuffer_layers: crate::External<
-        {
-            "uint32_t";
-            0
-        },
-    >,
+    pub min_texel_offset: i32,
+    pub max_texel_offset: u32,
+    pub min_texel_gather_offset: i32,
+    pub max_texel_gather_offset: u32,
+    pub min_interpolation_offset: core::ffi::c_float,
+    pub max_interpolation_offset: core::ffi::c_float,
+    pub sub_pixel_interpolation_offset_bits: u32,
+    pub max_framebuffer_width: u32,
+    pub max_framebuffer_height: u32,
+    pub max_framebuffer_layers: u32,
     pub framebuffer_color_sample_counts: crate::vk::SampleCountFlags,
     pub framebuffer_depth_sample_counts: crate::vk::SampleCountFlags,
     pub framebuffer_stencil_sample_counts: crate::vk::SampleCountFlags,
     pub framebuffer_no_attachments_sample_counts: crate::vk::SampleCountFlags,
-    pub max_color_attachments: crate::External<
-        {
-            "uint32_t";
-            0
-        },
-    >,
+    pub max_color_attachments: u32,
     pub sampled_image_color_sample_counts: crate::vk::SampleCountFlags,
     pub sampled_image_integer_sample_counts: crate::vk::SampleCountFlags,
     pub sampled_image_depth_sample_counts: crate::vk::SampleCountFlags,
     pub sampled_image_stencil_sample_counts: crate::vk::SampleCountFlags,
     pub storage_image_sample_counts: crate::vk::SampleCountFlags,
-    pub max_sample_mask_words: crate::External<
-        {
-            "uint32_t";
-            0
-        },
-    >,
+    pub max_sample_mask_words: u32,
     pub timestamp_compute_and_graphics: crate::vk::Bool32,
-    pub timestamp_period: crate::External<
-        {
-            "float";
-            0
-        },
-    >,
-    pub max_clip_distances: crate::External<
-        {
-            "uint32_t";
-            0
-        },
-    >,
-    pub max_cull_distances: crate::External<
-        {
-            "uint32_t";
-            0
-        },
-    >,
-    pub max_combined_clip_and_cull_distances: crate::External<
-        {
-            "uint32_t";
-            0
-        },
-    >,
-    pub discrete_queue_priorities: crate::External<
-        {
-            "uint32_t";
-            0
-        },
-    >,
-    pub point_size_range: [crate::External<
-        {
-            "float";
-            0
-        },
-    >; 1337],
-    pub line_width_range: [crate::External<
-        {
-            "float";
-            0
-        },
-    >; 1337],
-    pub point_size_granularity: crate::External<
-        {
-            "float";
-            0
-        },
-    >,
-    pub line_width_granularity: crate::External<
-        {
-            "float";
-            0
-        },
-    >,
+    pub timestamp_period: core::ffi::c_float,
+    pub max_clip_distances: u32,
+    pub max_cull_distances: u32,
+    pub max_combined_clip_and_cull_distances: u32,
+    pub discrete_queue_priorities: u32,
+    pub point_size_range: [core::ffi::c_float; 1337],
+    pub line_width_range: [core::ffi::c_float; 1337],
+    pub point_size_granularity: core::ffi::c_float,
+    pub line_width_granularity: core::ffi::c_float,
     pub strict_lines: crate::vk::Bool32,
     pub standard_sample_locations: crate::vk::Bool32,
     pub optimal_buffer_copy_offset_alignment: crate::vk::DeviceSize,
@@ -2295,12 +1035,7 @@ pub struct QueryPoolCreateInfo {
     pub p_next: *const core::ffi::c_void,
     pub flags: crate::vk::QueryPoolCreateFlags,
     pub query_type: crate::vk::QueryType,
-    pub query_count: crate::External<
-        {
-            "uint32_t";
-            0
-        },
-    >,
+    pub query_count: u32,
     pub pipeline_statistics: crate::vk::QueryPipelineStatisticFlags,
 }
 #[repr(C)]
@@ -2309,160 +1044,50 @@ pub struct FramebufferCreateInfo {
     pub p_next: *const core::ffi::c_void,
     pub flags: crate::vk::FramebufferCreateFlags,
     pub render_pass: crate::vk::RenderPass,
-    pub attachment_count: crate::External<
-        {
-            "uint32_t";
-            0
-        },
-    >,
+    pub attachment_count: u32,
     pub p_attachments: *const crate::vk::ImageView,
-    pub width: crate::External<
-        {
-            "uint32_t";
-            0
-        },
-    >,
-    pub height: crate::External<
-        {
-            "uint32_t";
-            0
-        },
-    >,
-    pub layers: crate::External<
-        {
-            "uint32_t";
-            0
-        },
-    >,
+    pub width: u32,
+    pub height: u32,
+    pub layers: u32,
 }
 #[repr(C)]
 pub struct DrawIndirectCommand {
-    pub vertex_count: crate::External<
-        {
-            "uint32_t";
-            0
-        },
-    >,
-    pub instance_count: crate::External<
-        {
-            "uint32_t";
-            0
-        },
-    >,
-    pub first_vertex: crate::External<
-        {
-            "uint32_t";
-            0
-        },
-    >,
-    pub first_instance: crate::External<
-        {
-            "uint32_t";
-            0
-        },
-    >,
+    pub vertex_count: u32,
+    pub instance_count: u32,
+    pub first_vertex: u32,
+    pub first_instance: u32,
 }
 #[repr(C)]
 pub struct DrawIndexedIndirectCommand {
-    pub index_count: crate::External<
-        {
-            "uint32_t";
-            0
-        },
-    >,
-    pub instance_count: crate::External<
-        {
-            "uint32_t";
-            0
-        },
-    >,
-    pub first_index: crate::External<
-        {
-            "uint32_t";
-            0
-        },
-    >,
-    pub vertex_offset: crate::External<
-        {
-            "int32_t";
-            0
-        },
-    >,
-    pub first_instance: crate::External<
-        {
-            "uint32_t";
-            0
-        },
-    >,
+    pub index_count: u32,
+    pub instance_count: u32,
+    pub first_index: u32,
+    pub vertex_offset: i32,
+    pub first_instance: u32,
 }
 #[repr(C)]
 pub struct DispatchIndirectCommand {
-    pub x: crate::External<
-        {
-            "uint32_t";
-            0
-        },
-    >,
-    pub y: crate::External<
-        {
-            "uint32_t";
-            0
-        },
-    >,
-    pub z: crate::External<
-        {
-            "uint32_t";
-            0
-        },
-    >,
+    pub x: u32,
+    pub y: u32,
+    pub z: u32,
 }
 #[repr(C)]
 pub struct SubmitInfo {
     pub s_type: crate::vk::StructureType,
     pub p_next: *const core::ffi::c_void,
-    pub wait_semaphore_count: crate::External<
-        {
-            "uint32_t";
-            0
-        },
-    >,
+    pub wait_semaphore_count: u32,
     pub p_wait_semaphores: *const crate::vk::Semaphore,
     pub p_wait_dst_stage_mask: *const crate::vk::PipelineStageFlags,
-    pub command_buffer_count: crate::External<
-        {
-            "uint32_t";
-            0
-        },
-    >,
+    pub command_buffer_count: u32,
     pub p_command_buffers: *const crate::vk::CommandBuffer,
-    pub signal_semaphore_count: crate::External<
-        {
-            "uint32_t";
-            0
-        },
-    >,
+    pub signal_semaphore_count: u32,
     pub p_signal_semaphores: *const crate::vk::Semaphore,
 }
 #[repr(C)]
 pub struct ClearColorValue {
-    float32: [crate::External<
-        {
-            "float";
-            0
-        },
-    >; 1337],
-    int32: [crate::External<
-        {
-            "int32_t";
-            0
-        },
-    >; 1337],
-    uint32: [crate::External<
-        {
-            "uint32_t";
-            0
-        },
-    >; 1337],
+    float32: [core::ffi::c_float; 1337],
+    int32: [i32; 1337],
+    uint32: [u32; 1337],
 }
 #[repr(C)]
 pub struct ClearValue {
@@ -2805,12 +1430,7 @@ pub struct PipelineCache {}
 pub type PFN_vkInternalAllocationNotification = Option<
     unsafe extern "system" fn(
         p_user_data: *mut core::ffi::c_void,
-        size: crate::External<
-            {
-                "size_t";
-                0
-            },
-        >,
+        size: usize,
         allocation_type: crate::vk::InternalAllocationType,
         allocation_scope: crate::vk::SystemAllocationScope,
     ),
@@ -2819,12 +1439,7 @@ pub type PFN_vkInternalAllocationNotification = Option<
 pub type PFN_vkInternalFreeNotification = Option<
     unsafe extern "system" fn(
         p_user_data: *mut core::ffi::c_void,
-        size: crate::External<
-            {
-                "size_t";
-                0
-            },
-        >,
+        size: usize,
         allocation_type: crate::vk::InternalAllocationType,
         allocation_scope: crate::vk::SystemAllocationScope,
     ),
@@ -2834,18 +1449,8 @@ pub type PFN_vkReallocationFunction = Option<
     unsafe extern "system" fn(
         p_user_data: *mut core::ffi::c_void,
         p_original: *mut core::ffi::c_void,
-        size: crate::External<
-            {
-                "size_t";
-                0
-            },
-        >,
-        alignment: crate::External<
-            {
-                "size_t";
-                0
-            },
-        >,
+        size: usize,
+        alignment: usize,
         allocation_scope: crate::vk::SystemAllocationScope,
     ) -> *mut core::ffi::c_void,
 >;
@@ -2853,18 +1458,8 @@ pub type PFN_vkReallocationFunction = Option<
 pub type PFN_vkAllocationFunction = Option<
     unsafe extern "system" fn(
         p_user_data: *mut core::ffi::c_void,
-        size: crate::External<
-            {
-                "size_t";
-                0
-            },
-        >,
-        alignment: crate::External<
-            {
-                "size_t";
-                0
-            },
-        >,
+        size: usize,
+        alignment: usize,
         allocation_scope: crate::vk::SystemAllocationScope,
     ) -> *mut core::ffi::c_void,
 >;

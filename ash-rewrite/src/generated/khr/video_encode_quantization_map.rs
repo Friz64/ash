@@ -11,52 +11,22 @@ pub struct VideoEncodeQuantizationMapCapabilitiesKHR {
 pub struct VideoEncodeH264QuantizationMapCapabilitiesKHR {
     pub s_type: crate::vk::StructureType,
     pub p_next: *mut core::ffi::c_void,
-    pub min_qp_delta: crate::External<
-        {
-            "int32_t";
-            0
-        },
-    >,
-    pub max_qp_delta: crate::External<
-        {
-            "int32_t";
-            0
-        },
-    >,
+    pub min_qp_delta: i32,
+    pub max_qp_delta: i32,
 }
 #[repr(C)]
 pub struct VideoEncodeH265QuantizationMapCapabilitiesKHR {
     pub s_type: crate::vk::StructureType,
     pub p_next: *mut core::ffi::c_void,
-    pub min_qp_delta: crate::External<
-        {
-            "int32_t";
-            0
-        },
-    >,
-    pub max_qp_delta: crate::External<
-        {
-            "int32_t";
-            0
-        },
-    >,
+    pub min_qp_delta: i32,
+    pub max_qp_delta: i32,
 }
 #[repr(C)]
 pub struct VideoEncodeAV1QuantizationMapCapabilitiesKHR {
     pub s_type: crate::vk::StructureType,
     pub p_next: *mut core::ffi::c_void,
-    pub min_q_index_delta: crate::External<
-        {
-            "int32_t";
-            0
-        },
-    >,
-    pub max_q_index_delta: crate::External<
-        {
-            "int32_t";
-            0
-        },
-    >,
+    pub min_q_index_delta: i32,
+    pub max_q_index_delta: i32,
 }
 #[repr(C)]
 pub struct VideoFormatQuantizationMapPropertiesKHR {

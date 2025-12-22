@@ -5,19 +5,9 @@
 pub struct ValidationFeaturesEXT {
     pub s_type: crate::vk::StructureType,
     pub p_next: *const core::ffi::c_void,
-    pub enabled_validation_feature_count: crate::External<
-        {
-            "uint32_t";
-            0
-        },
-    >,
+    pub enabled_validation_feature_count: u32,
     pub p_enabled_validation_features: *const crate::vk::ValidationFeatureEnableEXT,
-    pub disabled_validation_feature_count: crate::External<
-        {
-            "uint32_t";
-            0
-        },
-    >,
+    pub disabled_validation_feature_count: u32,
     pub p_disabled_validation_features: *const crate::vk::ValidationFeatureDisableEXT,
 }
 #[repr(C)]

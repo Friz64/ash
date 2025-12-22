@@ -13,12 +13,7 @@ pub struct PipelineViewportSwizzleStateCreateInfoNV {
     pub s_type: crate::vk::StructureType,
     pub p_next: *const core::ffi::c_void,
     pub flags: crate::vk::PipelineViewportSwizzleStateCreateFlagsNV,
-    pub viewport_count: crate::External<
-        {
-            "uint32_t";
-            0
-        },
-    >,
+    pub viewport_count: u32,
     pub p_viewport_swizzles: *const crate::vk::ViewportSwizzleNV,
 }
 #[repr(C)]

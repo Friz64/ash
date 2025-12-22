@@ -5,27 +5,12 @@
 pub struct SurfaceCapabilities2EXT {
     pub s_type: crate::vk::StructureType,
     pub p_next: *mut core::ffi::c_void,
-    pub min_image_count: crate::External<
-        {
-            "uint32_t";
-            0
-        },
-    >,
-    pub max_image_count: crate::External<
-        {
-            "uint32_t";
-            0
-        },
-    >,
+    pub min_image_count: u32,
+    pub max_image_count: u32,
     pub current_extent: crate::vk::Extent2D,
     pub min_image_extent: crate::vk::Extent2D,
     pub max_image_extent: crate::vk::Extent2D,
-    pub max_image_array_layers: crate::External<
-        {
-            "uint32_t";
-            0
-        },
-    >,
+    pub max_image_array_layers: u32,
     pub supported_transforms: crate::vk::SurfaceTransformFlagsKHR,
     pub current_transform: crate::vk::SurfaceTransformFlagBitsKHR,
     pub supported_composite_alpha: crate::vk::CompositeAlphaFlagsKHR,

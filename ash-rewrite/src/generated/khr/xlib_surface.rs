@@ -6,18 +6,8 @@ pub struct XlibSurfaceCreateInfoKHR {
     pub s_type: crate::vk::StructureType,
     pub p_next: *const core::ffi::c_void,
     pub flags: crate::vk::XlibSurfaceCreateFlagsKHR,
-    pub dpy: *mut crate::External<
-        {
-            "Display";
-            0
-        },
-    >,
-    pub window: crate::External<
-        {
-            "Window";
-            0
-        },
-    >,
+    pub dpy: *mut crate::platform_types::Display,
+    pub window: crate::platform_types::Window,
 }
 #[repr(C)]
 pub struct XlibSurfaceCreateFlagsKHR {}

@@ -5,12 +5,7 @@
 pub struct DeviceQueueShaderCoreControlCreateInfoARM {
     pub s_type: crate::vk::StructureType,
     pub p_next: *mut core::ffi::c_void,
-    pub shader_core_count: crate::External<
-        {
-            "uint32_t";
-            0
-        },
-    >,
+    pub shader_core_count: u32,
 }
 #[repr(C)]
 pub struct PhysicalDeviceSchedulingControlsFeaturesARM {

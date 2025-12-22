@@ -3,71 +3,21 @@
 //![Vulkan Manual Page](https://docs.vulkan.org/refpages/latest/refpages/source/VK_AMD_shader_info.html) · Vulkan extension
 #[repr(C)]
 pub struct ShaderResourceUsageAMD {
-    pub num_used_vgprs: crate::External<
-        {
-            "uint32_t";
-            0
-        },
-    >,
-    pub num_used_sgprs: crate::External<
-        {
-            "uint32_t";
-            0
-        },
-    >,
-    pub lds_size_per_local_work_group: crate::External<
-        {
-            "uint32_t";
-            0
-        },
-    >,
-    pub lds_usage_size_in_bytes: crate::External<
-        {
-            "size_t";
-            0
-        },
-    >,
-    pub scratch_mem_usage_in_bytes: crate::External<
-        {
-            "size_t";
-            0
-        },
-    >,
+    pub num_used_vgprs: u32,
+    pub num_used_sgprs: u32,
+    pub lds_size_per_local_work_group: u32,
+    pub lds_usage_size_in_bytes: usize,
+    pub scratch_mem_usage_in_bytes: usize,
 }
 #[repr(C)]
 pub struct ShaderStatisticsInfoAMD {
     pub shader_stage_mask: crate::vk::ShaderStageFlags,
     pub resource_usage: crate::vk::ShaderResourceUsageAMD,
-    pub num_physical_vgprs: crate::External<
-        {
-            "uint32_t";
-            0
-        },
-    >,
-    pub num_physical_sgprs: crate::External<
-        {
-            "uint32_t";
-            0
-        },
-    >,
-    pub num_available_vgprs: crate::External<
-        {
-            "uint32_t";
-            0
-        },
-    >,
-    pub num_available_sgprs: crate::External<
-        {
-            "uint32_t";
-            0
-        },
-    >,
-    pub compute_work_group_size: [crate::External<
-        {
-            "uint32_t";
-            0
-        },
-    >; 1337],
+    pub num_physical_vgprs: u32,
+    pub num_physical_sgprs: u32,
+    pub num_available_vgprs: u32,
+    pub num_available_sgprs: u32,
+    pub compute_work_group_size: [u32; 1337],
 }
 #[repr(C)]
 pub struct ShaderInfoTypeAMD {}

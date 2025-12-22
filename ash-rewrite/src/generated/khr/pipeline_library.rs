@@ -5,11 +5,6 @@
 pub struct PipelineLibraryCreateInfoKHR {
     pub s_type: crate::vk::StructureType,
     pub p_next: *const core::ffi::c_void,
-    pub library_count: crate::External<
-        {
-            "uint32_t";
-            0
-        },
-    >,
+    pub library_count: u32,
     pub p_libraries: *const crate::vk::Pipeline,
 }

@@ -11,16 +11,6 @@ pub struct PhysicalDeviceAmigoProfilingFeaturesSEC {
 pub struct AmigoProfilingSubmitInfoSEC {
     pub s_type: crate::vk::StructureType,
     pub p_next: *const core::ffi::c_void,
-    pub first_draw_timestamp: crate::External<
-        {
-            "uint64_t";
-            0
-        },
-    >,
-    pub swap_buffer_timestamp: crate::External<
-        {
-            "uint64_t";
-            0
-        },
-    >,
+    pub first_draw_timestamp: u64,
+    pub swap_buffer_timestamp: u64,
 }

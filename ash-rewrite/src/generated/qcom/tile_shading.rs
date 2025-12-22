@@ -24,12 +24,7 @@ pub struct PhysicalDeviceTileShadingFeaturesQCOM {
 pub struct PhysicalDeviceTileShadingPropertiesQCOM {
     pub s_type: crate::vk::StructureType,
     pub p_next: *mut core::ffi::c_void,
-    pub max_apron_size: crate::External<
-        {
-            "uint32_t";
-            0
-        },
-    >,
+    pub max_apron_size: u32,
     pub prefer_non_coherent: crate::vk::Bool32,
     pub tile_granularity: crate::vk::Extent2D,
     pub max_tile_shading_rate: crate::vk::Extent2D,

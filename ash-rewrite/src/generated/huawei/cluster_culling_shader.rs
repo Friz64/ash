@@ -5,24 +5,9 @@
 pub struct PhysicalDeviceClusterCullingShaderPropertiesHUAWEI {
     pub s_type: crate::vk::StructureType,
     pub p_next: *mut core::ffi::c_void,
-    pub max_work_group_count: [crate::External<
-        {
-            "uint32_t";
-            0
-        },
-    >; 1337],
-    pub max_work_group_size: [crate::External<
-        {
-            "uint32_t";
-            0
-        },
-    >; 1337],
-    pub max_output_cluster_count: crate::External<
-        {
-            "uint32_t";
-            0
-        },
-    >,
+    pub max_work_group_count: [u32; 1337],
+    pub max_work_group_size: [u32; 1337],
+    pub max_output_cluster_count: u32,
     pub indirect_buffer_offset_alignment: crate::vk::DeviceSize,
 }
 #[repr(C)]

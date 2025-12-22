@@ -5,28 +5,8 @@
 pub struct PhysicalDevicePCIBusInfoPropertiesEXT {
     pub s_type: crate::vk::StructureType,
     pub p_next: *mut core::ffi::c_void,
-    pub pci_domain: crate::External<
-        {
-            "uint32_t";
-            0
-        },
-    >,
-    pub pci_bus: crate::External<
-        {
-            "uint32_t";
-            0
-        },
-    >,
-    pub pci_device: crate::External<
-        {
-            "uint32_t";
-            0
-        },
-    >,
-    pub pci_function: crate::External<
-        {
-            "uint32_t";
-            0
-        },
-    >,
+    pub pci_domain: u32,
+    pub pci_bus: u32,
+    pub pci_device: u32,
+    pub pci_function: u32,
 }

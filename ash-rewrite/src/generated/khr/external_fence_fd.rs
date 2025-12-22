@@ -8,12 +8,7 @@ pub struct ImportFenceFdInfoKHR {
     pub fence: crate::vk::Fence,
     pub flags: crate::vk::FenceImportFlags,
     pub handle_type: crate::vk::ExternalFenceHandleTypeFlagBits,
-    pub fd: crate::External<
-        {
-            "int";
-            0
-        },
-    >,
+    pub fd: core::ffi::c_int,
 }
 #[repr(C)]
 pub struct FenceGetFdInfoKHR {

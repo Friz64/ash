@@ -19,37 +19,17 @@ pub struct VideoDecodeH264CapabilitiesKHR {
 pub struct VideoDecodeH264SessionParametersAddInfoKHR {
     pub s_type: crate::vk::StructureType,
     pub p_next: *const core::ffi::c_void,
-    pub std_sps_count: crate::External<
-        {
-            "uint32_t";
-            0
-        },
-    >,
+    pub std_sps_count: u32,
     pub p_std_sp_ss: *const crate::vk::StdVideoH264SequenceParameterSet,
-    pub std_pps_count: crate::External<
-        {
-            "uint32_t";
-            0
-        },
-    >,
+    pub std_pps_count: u32,
     pub p_std_pp_ss: *const crate::vk::StdVideoH264PictureParameterSet,
 }
 #[repr(C)]
 pub struct VideoDecodeH264SessionParametersCreateInfoKHR {
     pub s_type: crate::vk::StructureType,
     pub p_next: *const core::ffi::c_void,
-    pub max_std_sps_count: crate::External<
-        {
-            "uint32_t";
-            0
-        },
-    >,
-    pub max_std_pps_count: crate::External<
-        {
-            "uint32_t";
-            0
-        },
-    >,
+    pub max_std_sps_count: u32,
+    pub max_std_pps_count: u32,
     pub p_parameters_add_info: *const crate::vk::VideoDecodeH264SessionParametersAddInfoKHR,
 }
 #[repr(C)]
@@ -57,18 +37,8 @@ pub struct VideoDecodeH264PictureInfoKHR {
     pub s_type: crate::vk::StructureType,
     pub p_next: *const core::ffi::c_void,
     pub p_std_picture_info: *const crate::vk::StdVideoDecodeH264PictureInfo,
-    pub slice_count: crate::External<
-        {
-            "uint32_t";
-            0
-        },
-    >,
-    pub p_slice_offsets: *const crate::External<
-        {
-            "uint32_t";
-            0
-        },
-    >,
+    pub slice_count: u32,
+    pub p_slice_offsets: *const u32,
 }
 #[repr(C)]
 pub struct VideoDecodeH264DpbSlotInfoKHR {

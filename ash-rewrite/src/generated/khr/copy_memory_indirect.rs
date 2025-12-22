@@ -19,29 +19,14 @@ pub struct CopyMemoryIndirectInfoKHR {
     pub p_next: *const core::ffi::c_void,
     pub src_copy_flags: crate::vk::AddressCopyFlagsKHR,
     pub dst_copy_flags: crate::vk::AddressCopyFlagsKHR,
-    pub copy_count: crate::External<
-        {
-            "uint32_t";
-            0
-        },
-    >,
+    pub copy_count: u32,
     pub copy_address_range: crate::vk::StridedDeviceAddressRangeKHR,
 }
 #[repr(C)]
 pub struct CopyMemoryToImageIndirectCommandKHR {
     pub src_address: crate::vk::DeviceAddress,
-    pub buffer_row_length: crate::External<
-        {
-            "uint32_t";
-            0
-        },
-    >,
-    pub buffer_image_height: crate::External<
-        {
-            "uint32_t";
-            0
-        },
-    >,
+    pub buffer_row_length: u32,
+    pub buffer_image_height: u32,
     pub image_subresource: crate::vk::ImageSubresourceLayers,
     pub image_offset: crate::vk::Offset3D,
     pub image_extent: crate::vk::Extent3D,
@@ -51,12 +36,7 @@ pub struct CopyMemoryToImageIndirectInfoKHR {
     pub s_type: crate::vk::StructureType,
     pub p_next: *const core::ffi::c_void,
     pub src_copy_flags: crate::vk::AddressCopyFlagsKHR,
-    pub copy_count: crate::External<
-        {
-            "uint32_t";
-            0
-        },
-    >,
+    pub copy_count: u32,
     pub copy_address_range: crate::vk::StridedDeviceAddressRangeKHR,
     pub dst_image: crate::vk::Image,
     pub dst_image_layout: crate::vk::ImageLayout,

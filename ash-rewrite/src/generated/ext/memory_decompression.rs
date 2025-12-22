@@ -12,12 +12,7 @@ pub struct PhysicalDeviceMemoryDecompressionPropertiesEXT {
     pub s_type: crate::vk::StructureType,
     pub p_next: *mut core::ffi::c_void,
     pub decompression_methods: crate::vk::MemoryDecompressionMethodFlagsEXT,
-    pub max_decompression_indirect_count: crate::External<
-        {
-            "uint64_t";
-            0
-        },
-    >,
+    pub max_decompression_indirect_count: u64,
 }
 #[repr(C)]
 pub struct DecompressMemoryRegionEXT {
@@ -31,12 +26,7 @@ pub struct DecompressMemoryInfoEXT {
     pub s_type: crate::vk::StructureType,
     pub p_next: *const core::ffi::c_void,
     pub decompression_method: crate::vk::MemoryDecompressionMethodFlagsEXT,
-    pub region_count: crate::External<
-        {
-            "uint32_t";
-            0
-        },
-    >,
+    pub region_count: u32,
     pub p_regions: *const crate::vk::DecompressMemoryRegionEXT,
 }
 #[repr(C)]

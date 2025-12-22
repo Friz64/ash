@@ -6,52 +6,22 @@ pub struct ImportMemoryWin32HandleInfoKHR {
     pub s_type: crate::vk::StructureType,
     pub p_next: *const core::ffi::c_void,
     pub handle_type: crate::vk::ExternalMemoryHandleTypeFlagBits,
-    pub handle: crate::External<
-        {
-            "HANDLE";
-            0
-        },
-    >,
-    pub name: crate::External<
-        {
-            "LPCWSTR";
-            0
-        },
-    >,
+    pub handle: crate::platform_types::HANDLE,
+    pub name: crate::platform_types::LPCWSTR,
 }
 #[repr(C)]
 pub struct ExportMemoryWin32HandleInfoKHR {
     pub s_type: crate::vk::StructureType,
     pub p_next: *const core::ffi::c_void,
-    pub p_attributes: *const crate::External<
-        {
-            "SECURITY_ATTRIBUTES";
-            0
-        },
-    >,
-    pub dw_access: crate::External<
-        {
-            "DWORD";
-            0
-        },
-    >,
-    pub name: crate::External<
-        {
-            "LPCWSTR";
-            0
-        },
-    >,
+    pub p_attributes: *const crate::platform_types::SECURITY_ATTRIBUTES,
+    pub dw_access: crate::platform_types::DWORD,
+    pub name: crate::platform_types::LPCWSTR,
 }
 #[repr(C)]
 pub struct MemoryWin32HandlePropertiesKHR {
     pub s_type: crate::vk::StructureType,
     pub p_next: *mut core::ffi::c_void,
-    pub memory_type_bits: crate::External<
-        {
-            "uint32_t";
-            0
-        },
-    >,
+    pub memory_type_bits: u32,
 }
 #[repr(C)]
 pub struct MemoryGetWin32HandleInfoKHR {

@@ -5,18 +5,8 @@
 pub struct SetPresentConfigNV {
     pub s_type: crate::vk::StructureType,
     pub p_next: *const core::ffi::c_void,
-    pub num_frames_per_batch: crate::External<
-        {
-            "uint32_t";
-            0
-        },
-    >,
-    pub present_config_feedback: crate::External<
-        {
-            "uint32_t";
-            0
-        },
-    >,
+    pub num_frames_per_batch: u32,
+    pub present_config_feedback: u32,
 }
 #[repr(C)]
 pub struct PhysicalDevicePresentMeteringFeaturesNV {

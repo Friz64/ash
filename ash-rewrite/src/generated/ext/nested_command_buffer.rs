@@ -13,10 +13,5 @@ pub struct PhysicalDeviceNestedCommandBufferFeaturesEXT {
 pub struct PhysicalDeviceNestedCommandBufferPropertiesEXT {
     pub s_type: crate::vk::StructureType,
     pub p_next: *mut core::ffi::c_void,
-    pub max_command_buffer_nesting_level: crate::External<
-        {
-            "uint32_t";
-            0
-        },
-    >,
+    pub max_command_buffer_nesting_level: u32,
 }

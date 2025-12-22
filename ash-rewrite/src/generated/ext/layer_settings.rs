@@ -5,35 +5,15 @@
 pub struct LayerSettingsCreateInfoEXT {
     pub s_type: crate::vk::StructureType,
     pub p_next: *const core::ffi::c_void,
-    pub setting_count: crate::External<
-        {
-            "uint32_t";
-            0
-        },
-    >,
+    pub setting_count: u32,
     pub p_settings: *const crate::vk::LayerSettingEXT,
 }
 #[repr(C)]
 pub struct LayerSettingEXT {
-    pub p_layer_name: *const crate::External<
-        {
-            "char";
-            0
-        },
-    >,
-    pub p_setting_name: *const crate::External<
-        {
-            "char";
-            0
-        },
-    >,
+    pub p_layer_name: *const core::ffi::c_char,
+    pub p_setting_name: *const core::ffi::c_char,
     pub _type: crate::vk::LayerSettingTypeEXT,
-    pub value_count: crate::External<
-        {
-            "uint32_t";
-            0
-        },
-    >,
+    pub value_count: u32,
     pub p_values: *const core::ffi::c_void,
 }
 #[repr(C)]

@@ -8,70 +8,25 @@ pub struct ImportSemaphoreWin32HandleInfoKHR {
     pub semaphore: crate::vk::Semaphore,
     pub flags: crate::vk::SemaphoreImportFlags,
     pub handle_type: crate::vk::ExternalSemaphoreHandleTypeFlagBits,
-    pub handle: crate::External<
-        {
-            "HANDLE";
-            0
-        },
-    >,
-    pub name: crate::External<
-        {
-            "LPCWSTR";
-            0
-        },
-    >,
+    pub handle: crate::platform_types::HANDLE,
+    pub name: crate::platform_types::LPCWSTR,
 }
 #[repr(C)]
 pub struct ExportSemaphoreWin32HandleInfoKHR {
     pub s_type: crate::vk::StructureType,
     pub p_next: *const core::ffi::c_void,
-    pub p_attributes: *const crate::External<
-        {
-            "SECURITY_ATTRIBUTES";
-            0
-        },
-    >,
-    pub dw_access: crate::External<
-        {
-            "DWORD";
-            0
-        },
-    >,
-    pub name: crate::External<
-        {
-            "LPCWSTR";
-            0
-        },
-    >,
+    pub p_attributes: *const crate::platform_types::SECURITY_ATTRIBUTES,
+    pub dw_access: crate::platform_types::DWORD,
+    pub name: crate::platform_types::LPCWSTR,
 }
 #[repr(C)]
 pub struct D3D12FenceSubmitInfoKHR {
     pub s_type: crate::vk::StructureType,
     pub p_next: *const core::ffi::c_void,
-    pub wait_semaphore_values_count: crate::External<
-        {
-            "uint32_t";
-            0
-        },
-    >,
-    pub p_wait_semaphore_values: *const crate::External<
-        {
-            "uint64_t";
-            0
-        },
-    >,
-    pub signal_semaphore_values_count: crate::External<
-        {
-            "uint32_t";
-            0
-        },
-    >,
-    pub p_signal_semaphore_values: *const crate::External<
-        {
-            "uint64_t";
-            0
-        },
-    >,
+    pub wait_semaphore_values_count: u32,
+    pub p_wait_semaphore_values: *const u64,
+    pub signal_semaphore_values_count: u32,
+    pub p_signal_semaphore_values: *const u64,
 }
 #[repr(C)]
 pub struct SemaphoreGetWin32HandleInfoKHR {

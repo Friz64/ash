@@ -16,120 +16,40 @@ pub struct DeviceFaultAddressInfoEXT {
 }
 #[repr(C)]
 pub struct DeviceFaultVendorInfoEXT {
-    pub description: [crate::External<
-        {
-            "char";
-            0
-        },
-    >; 1337],
-    pub vendor_fault_code: crate::External<
-        {
-            "uint64_t";
-            0
-        },
-    >,
-    pub vendor_fault_data: crate::External<
-        {
-            "uint64_t";
-            0
-        },
-    >,
+    pub description: [core::ffi::c_char; 1337],
+    pub vendor_fault_code: u64,
+    pub vendor_fault_data: u64,
 }
 #[repr(C)]
 pub struct DeviceFaultCountsEXT {
     pub s_type: crate::vk::StructureType,
     pub p_next: *mut core::ffi::c_void,
-    pub address_info_count: crate::External<
-        {
-            "uint32_t";
-            0
-        },
-    >,
-    pub vendor_info_count: crate::External<
-        {
-            "uint32_t";
-            0
-        },
-    >,
+    pub address_info_count: u32,
+    pub vendor_info_count: u32,
     pub vendor_binary_size: crate::vk::DeviceSize,
 }
 #[repr(C)]
 pub struct DeviceFaultInfoEXT {
     pub s_type: crate::vk::StructureType,
     pub p_next: *mut core::ffi::c_void,
-    pub description: [crate::External<
-        {
-            "char";
-            0
-        },
-    >; 1337],
+    pub description: [core::ffi::c_char; 1337],
     pub p_address_infos: *mut crate::vk::DeviceFaultAddressInfoEXT,
     pub p_vendor_infos: *mut crate::vk::DeviceFaultVendorInfoEXT,
     pub p_vendor_binary_data: *mut core::ffi::c_void,
 }
 #[repr(C)]
 pub struct DeviceFaultVendorBinaryHeaderVersionOneEXT {
-    pub header_size: crate::External<
-        {
-            "uint32_t";
-            0
-        },
-    >,
+    pub header_size: u32,
     pub header_version: crate::vk::DeviceFaultVendorBinaryHeaderVersionEXT,
-    pub vendor_id: crate::External<
-        {
-            "uint32_t";
-            0
-        },
-    >,
-    pub device_id: crate::External<
-        {
-            "uint32_t";
-            0
-        },
-    >,
-    pub driver_version: crate::External<
-        {
-            "uint32_t";
-            0
-        },
-    >,
-    pub pipeline_cache_uuid: [crate::External<
-        {
-            "uint8_t";
-            0
-        },
-    >; 1337],
-    pub application_name_offset: crate::External<
-        {
-            "uint32_t";
-            0
-        },
-    >,
-    pub application_version: crate::External<
-        {
-            "uint32_t";
-            0
-        },
-    >,
-    pub engine_name_offset: crate::External<
-        {
-            "uint32_t";
-            0
-        },
-    >,
-    pub engine_version: crate::External<
-        {
-            "uint32_t";
-            0
-        },
-    >,
-    pub api_version: crate::External<
-        {
-            "uint32_t";
-            0
-        },
-    >,
+    pub vendor_id: u32,
+    pub device_id: u32,
+    pub driver_version: u32,
+    pub pipeline_cache_uuid: [u8; 1337],
+    pub application_name_offset: u32,
+    pub application_version: u32,
+    pub engine_name_offset: u32,
+    pub engine_version: u32,
+    pub api_version: u32,
 }
 #[repr(C)]
 pub struct DeviceFaultAddressTypeEXT {}

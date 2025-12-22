@@ -3,12 +3,7 @@
 //![Vulkan Manual Page](https://docs.vulkan.org/refpages/latest/refpages/source/VK_NV_shading_rate_image.html) · Vulkan extension
 #[repr(C)]
 pub struct ShadingRatePaletteNV {
-    pub shading_rate_palette_entry_count: crate::External<
-        {
-            "uint32_t";
-            0
-        },
-    >,
+    pub shading_rate_palette_entry_count: u32,
     pub p_shading_rate_palette_entries: *const crate::vk::ShadingRatePaletteEntryNV,
 }
 #[repr(C)]
@@ -16,12 +11,7 @@ pub struct PipelineViewportShadingRateImageStateCreateInfoNV {
     pub s_type: crate::vk::StructureType,
     pub p_next: *const core::ffi::c_void,
     pub shading_rate_image_enable: crate::vk::Bool32,
-    pub viewport_count: crate::External<
-        {
-            "uint32_t";
-            0
-        },
-    >,
+    pub viewport_count: u32,
     pub p_shading_rate_palettes: *const crate::vk::ShadingRatePaletteNV,
 }
 #[repr(C)]
@@ -36,55 +26,20 @@ pub struct PhysicalDeviceShadingRateImagePropertiesNV {
     pub s_type: crate::vk::StructureType,
     pub p_next: *mut core::ffi::c_void,
     pub shading_rate_texel_size: crate::vk::Extent2D,
-    pub shading_rate_palette_size: crate::External<
-        {
-            "uint32_t";
-            0
-        },
-    >,
-    pub shading_rate_max_coarse_samples: crate::External<
-        {
-            "uint32_t";
-            0
-        },
-    >,
+    pub shading_rate_palette_size: u32,
+    pub shading_rate_max_coarse_samples: u32,
 }
 #[repr(C)]
 pub struct CoarseSampleLocationNV {
-    pub pixel_x: crate::External<
-        {
-            "uint32_t";
-            0
-        },
-    >,
-    pub pixel_y: crate::External<
-        {
-            "uint32_t";
-            0
-        },
-    >,
-    pub sample: crate::External<
-        {
-            "uint32_t";
-            0
-        },
-    >,
+    pub pixel_x: u32,
+    pub pixel_y: u32,
+    pub sample: u32,
 }
 #[repr(C)]
 pub struct CoarseSampleOrderCustomNV {
     pub shading_rate: crate::vk::ShadingRatePaletteEntryNV,
-    pub sample_count: crate::External<
-        {
-            "uint32_t";
-            0
-        },
-    >,
-    pub sample_location_count: crate::External<
-        {
-            "uint32_t";
-            0
-        },
-    >,
+    pub sample_count: u32,
+    pub sample_location_count: u32,
     pub p_sample_locations: *const crate::vk::CoarseSampleLocationNV,
 }
 #[repr(C)]
@@ -92,12 +47,7 @@ pub struct PipelineViewportCoarseSampleOrderStateCreateInfoNV {
     pub s_type: crate::vk::StructureType,
     pub p_next: *const core::ffi::c_void,
     pub sample_order_type: crate::vk::CoarseSampleOrderTypeNV,
-    pub custom_sample_order_count: crate::External<
-        {
-            "uint32_t";
-            0
-        },
-    >,
+    pub custom_sample_order_count: u32,
     pub p_custom_sample_orders: *const crate::vk::CoarseSampleOrderCustomNV,
 }
 #[repr(C)]

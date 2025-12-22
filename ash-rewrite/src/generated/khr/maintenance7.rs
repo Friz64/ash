@@ -13,78 +13,28 @@ pub struct PhysicalDeviceMaintenance7PropertiesKHR {
     pub p_next: *mut core::ffi::c_void,
     pub robust_fragment_shading_rate_attachment_access: crate::vk::Bool32,
     pub separate_depth_stencil_attachment_access: crate::vk::Bool32,
-    pub max_descriptor_set_total_uniform_buffers_dynamic: crate::External<
-        {
-            "uint32_t";
-            0
-        },
-    >,
-    pub max_descriptor_set_total_storage_buffers_dynamic: crate::External<
-        {
-            "uint32_t";
-            0
-        },
-    >,
-    pub max_descriptor_set_total_buffers_dynamic: crate::External<
-        {
-            "uint32_t";
-            0
-        },
-    >,
-    pub max_descriptor_set_update_after_bind_total_uniform_buffers_dynamic: crate::External<
-        {
-            "uint32_t";
-            0
-        },
-    >,
-    pub max_descriptor_set_update_after_bind_total_storage_buffers_dynamic: crate::External<
-        {
-            "uint32_t";
-            0
-        },
-    >,
-    pub max_descriptor_set_update_after_bind_total_buffers_dynamic: crate::External<
-        {
-            "uint32_t";
-            0
-        },
-    >,
+    pub max_descriptor_set_total_uniform_buffers_dynamic: u32,
+    pub max_descriptor_set_total_storage_buffers_dynamic: u32,
+    pub max_descriptor_set_total_buffers_dynamic: u32,
+    pub max_descriptor_set_update_after_bind_total_uniform_buffers_dynamic: u32,
+    pub max_descriptor_set_update_after_bind_total_storage_buffers_dynamic: u32,
+    pub max_descriptor_set_update_after_bind_total_buffers_dynamic: u32,
 }
 #[repr(C)]
 pub struct PhysicalDeviceLayeredApiPropertiesListKHR {
     pub s_type: crate::vk::StructureType,
     pub p_next: *mut core::ffi::c_void,
-    pub layered_api_count: crate::External<
-        {
-            "uint32_t";
-            0
-        },
-    >,
+    pub layered_api_count: u32,
     pub p_layered_apis: *mut crate::vk::PhysicalDeviceLayeredApiPropertiesKHR,
 }
 #[repr(C)]
 pub struct PhysicalDeviceLayeredApiPropertiesKHR {
     pub s_type: crate::vk::StructureType,
     pub p_next: *mut core::ffi::c_void,
-    pub vendor_id: crate::External<
-        {
-            "uint32_t";
-            0
-        },
-    >,
-    pub device_id: crate::External<
-        {
-            "uint32_t";
-            0
-        },
-    >,
+    pub vendor_id: u32,
+    pub device_id: u32,
     pub layered_api: crate::vk::PhysicalDeviceLayeredApiKHR,
-    pub device_name: [crate::External<
-        {
-            "char";
-            0
-        },
-    >; 1337],
+    pub device_name: [core::ffi::c_char; 1337],
 }
 #[repr(C)]
 pub struct PhysicalDeviceLayeredApiVulkanPropertiesKHR {

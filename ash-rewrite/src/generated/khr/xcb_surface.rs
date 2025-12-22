@@ -6,18 +6,8 @@ pub struct XcbSurfaceCreateInfoKHR {
     pub s_type: crate::vk::StructureType,
     pub p_next: *const core::ffi::c_void,
     pub flags: crate::vk::XcbSurfaceCreateFlagsKHR,
-    pub connection: *mut crate::External<
-        {
-            "xcb_connection_t";
-            0
-        },
-    >,
-    pub window: crate::External<
-        {
-            "xcb_window_t";
-            0
-        },
-    >,
+    pub connection: *mut crate::platform_types::xcb_connection_t,
+    pub window: crate::platform_types::xcb_window_t,
 }
 #[repr(C)]
 pub struct XcbSurfaceCreateFlagsKHR {}

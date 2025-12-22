@@ -12,37 +12,12 @@ pub struct PhysicalDeviceTransformFeedbackFeaturesEXT {
 pub struct PhysicalDeviceTransformFeedbackPropertiesEXT {
     pub s_type: crate::vk::StructureType,
     pub p_next: *mut core::ffi::c_void,
-    pub max_transform_feedback_streams: crate::External<
-        {
-            "uint32_t";
-            0
-        },
-    >,
-    pub max_transform_feedback_buffers: crate::External<
-        {
-            "uint32_t";
-            0
-        },
-    >,
+    pub max_transform_feedback_streams: u32,
+    pub max_transform_feedback_buffers: u32,
     pub max_transform_feedback_buffer_size: crate::vk::DeviceSize,
-    pub max_transform_feedback_stream_data_size: crate::External<
-        {
-            "uint32_t";
-            0
-        },
-    >,
-    pub max_transform_feedback_buffer_data_size: crate::External<
-        {
-            "uint32_t";
-            0
-        },
-    >,
-    pub max_transform_feedback_buffer_data_stride: crate::External<
-        {
-            "uint32_t";
-            0
-        },
-    >,
+    pub max_transform_feedback_stream_data_size: u32,
+    pub max_transform_feedback_buffer_data_size: u32,
+    pub max_transform_feedback_buffer_data_stride: u32,
     pub transform_feedback_queries: crate::vk::Bool32,
     pub transform_feedback_streams_lines_triangles: crate::vk::Bool32,
     pub transform_feedback_rasterization_stream_select: crate::vk::Bool32,
@@ -53,12 +28,7 @@ pub struct PipelineRasterizationStateStreamCreateInfoEXT {
     pub s_type: crate::vk::StructureType,
     pub p_next: *const core::ffi::c_void,
     pub flags: crate::vk::PipelineRasterizationStateStreamCreateFlagsEXT,
-    pub rasterization_stream: crate::External<
-        {
-            "uint32_t";
-            0
-        },
-    >,
+    pub rasterization_stream: u32,
 }
 #[repr(C)]
 pub struct PipelineRasterizationStateStreamCreateFlagsEXT {}

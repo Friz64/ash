@@ -21,12 +21,7 @@ pub struct SurfacePresentScalingCapabilitiesKHR {
 pub struct SurfacePresentModeCompatibilityKHR {
     pub s_type: crate::vk::StructureType,
     pub p_next: *mut core::ffi::c_void,
-    pub present_mode_count: crate::External<
-        {
-            "uint32_t";
-            0
-        },
-    >,
+    pub present_mode_count: u32,
     pub p_present_modes: *mut crate::vk::PresentModeKHR,
 }
 #[repr(C)]

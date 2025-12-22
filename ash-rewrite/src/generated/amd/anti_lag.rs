@@ -12,12 +12,7 @@ pub struct AntiLagDataAMD {
     pub s_type: crate::vk::StructureType,
     pub p_next: *const core::ffi::c_void,
     pub mode: crate::vk::AntiLagModeAMD,
-    pub max_fps: crate::External<
-        {
-            "uint32_t";
-            0
-        },
-    >,
+    pub max_fps: u32,
     pub p_presentation_info: *const crate::vk::AntiLagPresentationInfoAMD,
 }
 #[repr(C)]
@@ -25,12 +20,7 @@ pub struct AntiLagPresentationInfoAMD {
     pub s_type: crate::vk::StructureType,
     pub p_next: *mut core::ffi::c_void,
     pub stage: crate::vk::AntiLagStageAMD,
-    pub frame_index: crate::External<
-        {
-            "uint64_t";
-            0
-        },
-    >,
+    pub frame_index: u64,
 }
 #[repr(C)]
 pub struct AntiLagModeAMD {}

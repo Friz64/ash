@@ -6,60 +6,25 @@ pub struct DebugUtilsObjectNameInfoEXT {
     pub s_type: crate::vk::StructureType,
     pub p_next: *const core::ffi::c_void,
     pub object_type: crate::vk::ObjectType,
-    pub object_handle: crate::External<
-        {
-            "uint64_t";
-            0
-        },
-    >,
-    pub p_object_name: *const crate::External<
-        {
-            "char";
-            0
-        },
-    >,
+    pub object_handle: u64,
+    pub p_object_name: *const core::ffi::c_char,
 }
 #[repr(C)]
 pub struct DebugUtilsObjectTagInfoEXT {
     pub s_type: crate::vk::StructureType,
     pub p_next: *const core::ffi::c_void,
     pub object_type: crate::vk::ObjectType,
-    pub object_handle: crate::External<
-        {
-            "uint64_t";
-            0
-        },
-    >,
-    pub tag_name: crate::External<
-        {
-            "uint64_t";
-            0
-        },
-    >,
-    pub tag_size: crate::External<
-        {
-            "size_t";
-            0
-        },
-    >,
+    pub object_handle: u64,
+    pub tag_name: u64,
+    pub tag_size: usize,
     pub p_tag: *const core::ffi::c_void,
 }
 #[repr(C)]
 pub struct DebugUtilsLabelEXT {
     pub s_type: crate::vk::StructureType,
     pub p_next: *const core::ffi::c_void,
-    pub p_label_name: *const crate::External<
-        {
-            "char";
-            0
-        },
-    >,
-    pub color: [crate::External<
-        {
-            "float";
-            0
-        },
-    >; 1337],
+    pub p_label_name: *const core::ffi::c_char,
+    pub color: [core::ffi::c_float; 1337],
 }
 #[repr(C)]
 pub struct DebugUtilsMessengerCreateInfoEXT {
@@ -76,44 +41,14 @@ pub struct DebugUtilsMessengerCallbackDataEXT {
     pub s_type: crate::vk::StructureType,
     pub p_next: *const core::ffi::c_void,
     pub flags: crate::vk::DebugUtilsMessengerCallbackDataFlagsEXT,
-    pub p_message_id_name: *const crate::External<
-        {
-            "char";
-            0
-        },
-    >,
-    pub message_id_number: crate::External<
-        {
-            "int32_t";
-            0
-        },
-    >,
-    pub p_message: *const crate::External<
-        {
-            "char";
-            0
-        },
-    >,
-    pub queue_label_count: crate::External<
-        {
-            "uint32_t";
-            0
-        },
-    >,
+    pub p_message_id_name: *const core::ffi::c_char,
+    pub message_id_number: i32,
+    pub p_message: *const core::ffi::c_char,
+    pub queue_label_count: u32,
     pub p_queue_labels: *const crate::vk::DebugUtilsLabelEXT,
-    pub cmd_buf_label_count: crate::External<
-        {
-            "uint32_t";
-            0
-        },
-    >,
+    pub cmd_buf_label_count: u32,
     pub p_cmd_buf_labels: *const crate::vk::DebugUtilsLabelEXT,
-    pub object_count: crate::External<
-        {
-            "uint32_t";
-            0
-        },
-    >,
+    pub object_count: u32,
     pub p_objects: *const crate::vk::DebugUtilsObjectNameInfoEXT,
 }
 #[repr(C)]

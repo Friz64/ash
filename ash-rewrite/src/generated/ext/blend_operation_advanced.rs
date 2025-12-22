@@ -11,12 +11,7 @@ pub struct PhysicalDeviceBlendOperationAdvancedFeaturesEXT {
 pub struct PhysicalDeviceBlendOperationAdvancedPropertiesEXT {
     pub s_type: crate::vk::StructureType,
     pub p_next: *mut core::ffi::c_void,
-    pub advanced_blend_max_color_attachments: crate::External<
-        {
-            "uint32_t";
-            0
-        },
-    >,
+    pub advanced_blend_max_color_attachments: u32,
     pub advanced_blend_independent_blend: crate::vk::Bool32,
     pub advanced_blend_non_premultiplied_src_color: crate::vk::Bool32,
     pub advanced_blend_non_premultiplied_dst_color: crate::vk::Bool32,

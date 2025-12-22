@@ -11,21 +11,11 @@ pub struct PhysicalDeviceImageAlignmentControlFeaturesMESA {
 pub struct PhysicalDeviceImageAlignmentControlPropertiesMESA {
     pub s_type: crate::vk::StructureType,
     pub p_next: *mut core::ffi::c_void,
-    pub supported_image_alignment_mask: crate::External<
-        {
-            "uint32_t";
-            0
-        },
-    >,
+    pub supported_image_alignment_mask: u32,
 }
 #[repr(C)]
 pub struct ImageAlignmentControlCreateInfoMESA {
     pub s_type: crate::vk::StructureType,
     pub p_next: *const core::ffi::c_void,
-    pub maximum_requested_alignment: crate::External<
-        {
-            "uint32_t";
-            0
-        },
-    >,
+    pub maximum_requested_alignment: u32,
 }

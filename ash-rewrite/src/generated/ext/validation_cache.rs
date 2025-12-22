@@ -6,12 +6,7 @@ pub struct ValidationCacheCreateInfoEXT {
     pub s_type: crate::vk::StructureType,
     pub p_next: *const core::ffi::c_void,
     pub flags: crate::vk::ValidationCacheCreateFlagsEXT,
-    pub initial_data_size: crate::External<
-        {
-            "size_t";
-            0
-        },
-    >,
+    pub initial_data_size: usize,
     pub p_initial_data: *const core::ffi::c_void,
 }
 #[repr(C)]

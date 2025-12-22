@@ -17,36 +17,11 @@ pub struct PhysicalDeviceOpticalFlowPropertiesNV {
     pub cost_supported: crate::vk::Bool32,
     pub bidirectional_flow_supported: crate::vk::Bool32,
     pub global_flow_supported: crate::vk::Bool32,
-    pub min_width: crate::External<
-        {
-            "uint32_t";
-            0
-        },
-    >,
-    pub min_height: crate::External<
-        {
-            "uint32_t";
-            0
-        },
-    >,
-    pub max_width: crate::External<
-        {
-            "uint32_t";
-            0
-        },
-    >,
-    pub max_height: crate::External<
-        {
-            "uint32_t";
-            0
-        },
-    >,
-    pub max_num_regions_of_interest: crate::External<
-        {
-            "uint32_t";
-            0
-        },
-    >,
+    pub min_width: u32,
+    pub min_height: u32,
+    pub max_width: u32,
+    pub max_height: u32,
+    pub max_num_regions_of_interest: u32,
 }
 #[repr(C)]
 pub struct OpticalFlowImageFormatInfoNV {
@@ -64,18 +39,8 @@ pub struct OpticalFlowImageFormatPropertiesNV {
 pub struct OpticalFlowSessionCreateInfoNV {
     pub s_type: crate::vk::StructureType,
     pub p_next: *mut core::ffi::c_void,
-    pub width: crate::External<
-        {
-            "uint32_t";
-            0
-        },
-    >,
-    pub height: crate::External<
-        {
-            "uint32_t";
-            0
-        },
-    >,
+    pub width: u32,
+    pub height: u32,
     pub image_format: crate::vk::Format,
     pub flow_vector_format: crate::vk::Format,
     pub cost_format: crate::vk::Format,
@@ -88,18 +53,8 @@ pub struct OpticalFlowSessionCreateInfoNV {
 pub struct OpticalFlowSessionCreatePrivateDataInfoNV {
     pub s_type: crate::vk::StructureType,
     pub p_next: *mut core::ffi::c_void,
-    pub id: crate::External<
-        {
-            "uint32_t";
-            0
-        },
-    >,
-    pub size: crate::External<
-        {
-            "uint32_t";
-            0
-        },
-    >,
+    pub id: u32,
+    pub size: u32,
     pub p_private_data: *const core::ffi::c_void,
 }
 #[repr(C)]
@@ -107,12 +62,7 @@ pub struct OpticalFlowExecuteInfoNV {
     pub s_type: crate::vk::StructureType,
     pub p_next: *mut core::ffi::c_void,
     pub flags: crate::vk::OpticalFlowExecuteFlagsNV,
-    pub region_count: crate::External<
-        {
-            "uint32_t";
-            0
-        },
-    >,
+    pub region_count: u32,
     pub p_regions: *const crate::vk::Rect2D,
 }
 #[repr(C)]

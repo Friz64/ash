@@ -8,12 +8,7 @@ pub struct ImportSemaphoreFdInfoKHR {
     pub semaphore: crate::vk::Semaphore,
     pub flags: crate::vk::SemaphoreImportFlags,
     pub handle_type: crate::vk::ExternalSemaphoreHandleTypeFlagBits,
-    pub fd: crate::External<
-        {
-            "int";
-            0
-        },
-    >,
+    pub fd: core::ffi::c_int,
 }
 #[repr(C)]
 pub struct SemaphoreGetFdInfoKHR {

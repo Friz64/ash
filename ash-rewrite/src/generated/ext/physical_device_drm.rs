@@ -7,28 +7,8 @@ pub struct PhysicalDeviceDrmPropertiesEXT {
     pub p_next: *mut core::ffi::c_void,
     pub has_primary: crate::vk::Bool32,
     pub has_render: crate::vk::Bool32,
-    pub primary_major: crate::External<
-        {
-            "int64_t";
-            0
-        },
-    >,
-    pub primary_minor: crate::External<
-        {
-            "int64_t";
-            0
-        },
-    >,
-    pub render_major: crate::External<
-        {
-            "int64_t";
-            0
-        },
-    >,
-    pub render_minor: crate::External<
-        {
-            "int64_t";
-            0
-        },
-    >,
+    pub primary_major: i64,
+    pub primary_minor: i64,
+    pub render_major: i64,
+    pub render_minor: i64,
 }

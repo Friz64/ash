@@ -24,12 +24,7 @@ pub struct DisplayPlaneInfo2KHR {
     pub s_type: crate::vk::StructureType,
     pub p_next: *const core::ffi::c_void,
     pub mode: crate::vk::DisplayModeKHR,
-    pub plane_index: crate::External<
-        {
-            "uint32_t";
-            0
-        },
-    >,
+    pub plane_index: u32,
 }
 #[repr(C)]
 pub struct DisplayPlaneCapabilities2KHR {

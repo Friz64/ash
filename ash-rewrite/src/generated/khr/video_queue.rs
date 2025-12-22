@@ -17,12 +17,7 @@ pub struct QueueFamilyQueryResultStatusPropertiesKHR {
 pub struct VideoProfileListInfoKHR {
     pub s_type: crate::vk::StructureType,
     pub p_next: *const core::ffi::c_void,
-    pub profile_count: crate::External<
-        {
-            "uint32_t";
-            0
-        },
-    >,
+    pub profile_count: u32,
     pub p_profiles: *const crate::vk::VideoProfileInfoKHR,
 }
 #[repr(C)]
@@ -61,42 +56,22 @@ pub struct VideoCapabilitiesKHR {
     pub picture_access_granularity: crate::vk::Extent2D,
     pub min_coded_extent: crate::vk::Extent2D,
     pub max_coded_extent: crate::vk::Extent2D,
-    pub max_dpb_slots: crate::External<
-        {
-            "uint32_t";
-            0
-        },
-    >,
-    pub max_active_reference_pictures: crate::External<
-        {
-            "uint32_t";
-            0
-        },
-    >,
+    pub max_dpb_slots: u32,
+    pub max_active_reference_pictures: u32,
     pub std_header_version: crate::vk::ExtensionProperties,
 }
 #[repr(C)]
 pub struct VideoSessionMemoryRequirementsKHR {
     pub s_type: crate::vk::StructureType,
     pub p_next: *mut core::ffi::c_void,
-    pub memory_bind_index: crate::External<
-        {
-            "uint32_t";
-            0
-        },
-    >,
+    pub memory_bind_index: u32,
     pub memory_requirements: crate::vk::MemoryRequirements,
 }
 #[repr(C)]
 pub struct BindVideoSessionMemoryInfoKHR {
     pub s_type: crate::vk::StructureType,
     pub p_next: *const core::ffi::c_void,
-    pub memory_bind_index: crate::External<
-        {
-            "uint32_t";
-            0
-        },
-    >,
+    pub memory_bind_index: u32,
     pub memory: crate::vk::DeviceMemory,
     pub memory_offset: crate::vk::DeviceSize,
     pub memory_size: crate::vk::DeviceSize,
@@ -107,53 +82,28 @@ pub struct VideoPictureResourceInfoKHR {
     pub p_next: *const core::ffi::c_void,
     pub coded_offset: crate::vk::Offset2D,
     pub coded_extent: crate::vk::Extent2D,
-    pub base_array_layer: crate::External<
-        {
-            "uint32_t";
-            0
-        },
-    >,
+    pub base_array_layer: u32,
     pub image_view_binding: crate::vk::ImageView,
 }
 #[repr(C)]
 pub struct VideoReferenceSlotInfoKHR {
     pub s_type: crate::vk::StructureType,
     pub p_next: *const core::ffi::c_void,
-    pub slot_index: crate::External<
-        {
-            "int32_t";
-            0
-        },
-    >,
+    pub slot_index: i32,
     pub p_picture_resource: *const crate::vk::VideoPictureResourceInfoKHR,
 }
 #[repr(C)]
 pub struct VideoSessionCreateInfoKHR {
     pub s_type: crate::vk::StructureType,
     pub p_next: *const core::ffi::c_void,
-    pub queue_family_index: crate::External<
-        {
-            "uint32_t";
-            0
-        },
-    >,
+    pub queue_family_index: u32,
     pub flags: crate::vk::VideoSessionCreateFlagsKHR,
     pub p_video_profile: *const crate::vk::VideoProfileInfoKHR,
     pub picture_format: crate::vk::Format,
     pub max_coded_extent: crate::vk::Extent2D,
     pub reference_picture_format: crate::vk::Format,
-    pub max_dpb_slots: crate::External<
-        {
-            "uint32_t";
-            0
-        },
-    >,
-    pub max_active_reference_pictures: crate::External<
-        {
-            "uint32_t";
-            0
-        },
-    >,
+    pub max_dpb_slots: u32,
+    pub max_active_reference_pictures: u32,
     pub p_std_header_version: *const crate::vk::ExtensionProperties,
 }
 #[repr(C)]
@@ -168,12 +118,7 @@ pub struct VideoSessionParametersCreateInfoKHR {
 pub struct VideoSessionParametersUpdateInfoKHR {
     pub s_type: crate::vk::StructureType,
     pub p_next: *const core::ffi::c_void,
-    pub update_sequence_count: crate::External<
-        {
-            "uint32_t";
-            0
-        },
-    >,
+    pub update_sequence_count: u32,
 }
 #[repr(C)]
 pub struct VideoBeginCodingInfoKHR {
@@ -182,12 +127,7 @@ pub struct VideoBeginCodingInfoKHR {
     pub flags: crate::vk::VideoBeginCodingFlagsKHR,
     pub video_session: crate::vk::VideoSessionKHR,
     pub video_session_parameters: crate::vk::VideoSessionParametersKHR,
-    pub reference_slot_count: crate::External<
-        {
-            "uint32_t";
-            0
-        },
-    >,
+    pub reference_slot_count: u32,
     pub p_reference_slots: *const crate::vk::VideoReferenceSlotInfoKHR,
 }
 #[repr(C)]

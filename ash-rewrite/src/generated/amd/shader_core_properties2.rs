@@ -6,12 +6,7 @@ pub struct PhysicalDeviceShaderCoreProperties2AMD {
     pub s_type: crate::vk::StructureType,
     pub p_next: *mut core::ffi::c_void,
     pub shader_core_features: crate::vk::ShaderCorePropertiesFlagsAMD,
-    pub active_compute_unit_count: crate::External<
-        {
-            "uint32_t";
-            0
-        },
-    >,
+    pub active_compute_unit_count: u32,
 }
 #[repr(C)]
 pub struct ShaderCorePropertiesFlagsAMD {}

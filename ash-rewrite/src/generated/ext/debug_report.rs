@@ -20,36 +20,11 @@ pub type PFN_vkDebugReportCallbackEXT = Option<
     unsafe extern "system" fn(
         flags: crate::vk::DebugReportFlagsEXT,
         object_type: crate::vk::DebugReportObjectTypeEXT,
-        object: crate::External<
-            {
-                "uint64_t";
-                0
-            },
-        >,
-        location: crate::External<
-            {
-                "size_t";
-                0
-            },
-        >,
-        message_code: crate::External<
-            {
-                "int32_t";
-                0
-            },
-        >,
-        p_layer_prefix: *const crate::External<
-            {
-                "char";
-                0
-            },
-        >,
-        p_message: *const crate::External<
-            {
-                "char";
-                0
-            },
-        >,
+        object: u64,
+        location: usize,
+        message_code: i32,
+        p_layer_prefix: *const core::ffi::c_char,
+        p_message: *const core::ffi::c_char,
         p_user_data: *mut core::ffi::c_void,
     ) -> crate::vk::Bool32,
 >;

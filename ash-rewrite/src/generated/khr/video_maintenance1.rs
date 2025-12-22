@@ -12,16 +12,6 @@ pub struct VideoInlineQueryInfoKHR {
     pub s_type: crate::vk::StructureType,
     pub p_next: *const core::ffi::c_void,
     pub query_pool: crate::vk::QueryPool,
-    pub first_query: crate::External<
-        {
-            "uint32_t";
-            0
-        },
-    >,
-    pub query_count: crate::External<
-        {
-            "uint32_t";
-            0
-        },
-    >,
+    pub first_query: u32,
+    pub query_count: u32,
 }

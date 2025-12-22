@@ -6,12 +6,7 @@ pub struct ImagePipeSurfaceCreateInfoFUCHSIA {
     pub s_type: crate::vk::StructureType,
     pub p_next: *const core::ffi::c_void,
     pub flags: crate::vk::ImagePipeSurfaceCreateFlagsFUCHSIA,
-    pub image_pipe_handle: crate::External<
-        {
-            "zx_handle_t";
-            0
-        },
-    >,
+    pub image_pipe_handle: crate::platform_types::zx_handle_t,
 }
 #[repr(C)]
 pub struct ImagePipeSurfaceCreateFlagsFUCHSIA {}
