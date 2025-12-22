@@ -11,11 +11,6 @@ pub struct PhysicalDeviceColorWriteEnableFeaturesEXT {
 pub struct PipelineColorWriteCreateInfoEXT {
     pub s_type: crate::vk::StructureType,
     pub p_next: *const core::ffi::c_void,
-    pub attachment_count: crate::External<
-        {
-            "uint32_t";
-            0
-        },
-    >,
+    pub attachment_count: u32,
     pub p_color_write_enables: *const crate::vk::Bool32,
 }

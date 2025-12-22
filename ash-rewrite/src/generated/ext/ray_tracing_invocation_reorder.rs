@@ -12,12 +12,7 @@ pub struct PhysicalDeviceRayTracingInvocationReorderPropertiesEXT {
     pub s_type: crate::vk::StructureType,
     pub p_next: *mut core::ffi::c_void,
     pub ray_tracing_invocation_reorder_reordering_hint: crate::vk::RayTracingInvocationReorderModeEXT,
-    pub max_shader_binding_table_record_index: crate::External<
-        {
-            "uint32_t";
-            0
-        },
-    >,
+    pub max_shader_binding_table_record_index: u32,
 }
 #[repr(C)]
 pub struct RayTracingInvocationReorderModeEXT {}

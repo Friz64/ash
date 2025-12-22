@@ -9,23 +9,13 @@ pub struct PhysicalDeviceMutableDescriptorTypeFeaturesEXT {
 }
 #[repr(C)]
 pub struct MutableDescriptorTypeListEXT {
-    pub descriptor_type_count: crate::External<
-        {
-            "uint32_t";
-            0
-        },
-    >,
+    pub descriptor_type_count: u32,
     pub p_descriptor_types: *const crate::vk::DescriptorType,
 }
 #[repr(C)]
 pub struct MutableDescriptorTypeCreateInfoEXT {
     pub s_type: crate::vk::StructureType,
     pub p_next: *const core::ffi::c_void,
-    pub mutable_descriptor_type_list_count: crate::External<
-        {
-            "uint32_t";
-            0
-        },
-    >,
+    pub mutable_descriptor_type_list_count: u32,
     pub p_mutable_descriptor_type_lists: *const crate::vk::MutableDescriptorTypeListEXT,
 }

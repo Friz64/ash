@@ -24,28 +24,8 @@ pub struct VideoDecodeVP9PictureInfoKHR {
     pub s_type: crate::vk::StructureType,
     pub p_next: *const core::ffi::c_void,
     pub p_std_picture_info: *const crate::vk::StdVideoDecodeVP9PictureInfo,
-    pub reference_name_slot_indices: [crate::External<
-        {
-            "int32_t";
-            0
-        },
-    >; 1337],
-    pub uncompressed_header_offset: crate::External<
-        {
-            "uint32_t";
-            0
-        },
-    >,
-    pub compressed_header_offset: crate::External<
-        {
-            "uint32_t";
-            0
-        },
-    >,
-    pub tiles_offset: crate::External<
-        {
-            "uint32_t";
-            0
-        },
-    >,
+    pub reference_name_slot_indices: [i32; 1337],
+    pub uncompressed_header_offset: u32,
+    pub compressed_header_offset: u32,
+    pub tiles_offset: u32,
 }

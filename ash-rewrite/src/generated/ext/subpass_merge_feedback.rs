@@ -9,12 +9,7 @@ pub struct RenderPassCreationControlEXT {
 }
 #[repr(C)]
 pub struct RenderPassCreationFeedbackInfoEXT {
-    pub post_merge_subpass_count: crate::External<
-        {
-            "uint32_t";
-            0
-        },
-    >,
+    pub post_merge_subpass_count: u32,
 }
 #[repr(C)]
 pub struct RenderPassCreationFeedbackCreateInfoEXT {
@@ -25,18 +20,8 @@ pub struct RenderPassCreationFeedbackCreateInfoEXT {
 #[repr(C)]
 pub struct RenderPassSubpassFeedbackInfoEXT {
     pub subpass_merge_status: crate::vk::SubpassMergeStatusEXT,
-    pub description: [crate::External<
-        {
-            "char";
-            0
-        },
-    >; 1337],
-    pub post_merge_index: crate::External<
-        {
-            "uint32_t";
-            0
-        },
-    >,
+    pub description: [core::ffi::c_char; 1337],
+    pub post_merge_index: u32,
 }
 #[repr(C)]
 pub struct RenderPassSubpassFeedbackCreateInfoEXT {

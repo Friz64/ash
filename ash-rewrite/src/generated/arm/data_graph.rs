@@ -15,70 +15,30 @@ pub struct PhysicalDeviceDataGraphFeaturesARM {
 pub struct DataGraphPipelineConstantTensorSemiStructuredSparsityInfoARM {
     pub s_type: crate::vk::StructureType,
     pub p_next: *const core::ffi::c_void,
-    pub dimension: crate::External<
-        {
-            "uint32_t";
-            0
-        },
-    >,
-    pub zero_count: crate::External<
-        {
-            "uint32_t";
-            0
-        },
-    >,
-    pub group_size: crate::External<
-        {
-            "uint32_t";
-            0
-        },
-    >,
+    pub dimension: u32,
+    pub zero_count: u32,
+    pub group_size: u32,
 }
 #[repr(C)]
 pub struct DataGraphPipelineConstantARM {
     pub s_type: crate::vk::StructureType,
     pub p_next: *const core::ffi::c_void,
-    pub id: crate::External<
-        {
-            "uint32_t";
-            0
-        },
-    >,
+    pub id: u32,
     pub p_constant_data: *const core::ffi::c_void,
 }
 #[repr(C)]
 pub struct DataGraphPipelineResourceInfoARM {
     pub s_type: crate::vk::StructureType,
     pub p_next: *const core::ffi::c_void,
-    pub descriptor_set: crate::External<
-        {
-            "uint32_t";
-            0
-        },
-    >,
-    pub binding: crate::External<
-        {
-            "uint32_t";
-            0
-        },
-    >,
-    pub array_element: crate::External<
-        {
-            "uint32_t";
-            0
-        },
-    >,
+    pub descriptor_set: u32,
+    pub binding: u32,
+    pub array_element: u32,
 }
 #[repr(C)]
 pub struct DataGraphPipelineCompilerControlCreateInfoARM {
     pub s_type: crate::vk::StructureType,
     pub p_next: *const core::ffi::c_void,
-    pub p_vendor_options: *const crate::External<
-        {
-            "char";
-            0
-        },
-    >,
+    pub p_vendor_options: *const core::ffi::c_char,
 }
 #[repr(C)]
 pub struct DataGraphPipelineCreateInfoARM {
@@ -86,12 +46,7 @@ pub struct DataGraphPipelineCreateInfoARM {
     pub p_next: *const core::ffi::c_void,
     pub flags: crate::vk::PipelineCreateFlags2KHR,
     pub layout: crate::vk::PipelineLayout,
-    pub resource_info_count: crate::External<
-        {
-            "uint32_t";
-            0
-        },
-    >,
+    pub resource_info_count: u32,
     pub p_resource_infos: *const crate::vk::DataGraphPipelineResourceInfoARM,
 }
 #[repr(C)]
@@ -99,19 +54,9 @@ pub struct DataGraphPipelineShaderModuleCreateInfoARM {
     pub s_type: crate::vk::StructureType,
     pub p_next: *const core::ffi::c_void,
     pub module: crate::vk::ShaderModule,
-    pub p_name: *const crate::External<
-        {
-            "char";
-            0
-        },
-    >,
+    pub p_name: *const core::ffi::c_char,
     pub p_specialization_info: *const crate::vk::SpecializationInfo,
-    pub constant_count: crate::External<
-        {
-            "uint32_t";
-            0
-        },
-    >,
+    pub constant_count: u32,
     pub p_constants: *const crate::vk::DataGraphPipelineConstantARM,
 }
 #[repr(C)]
@@ -133,12 +78,7 @@ pub struct DataGraphPipelineSessionBindPointRequirementARM {
     pub p_next: *const core::ffi::c_void,
     pub bind_point: crate::vk::DataGraphPipelineSessionBindPointARM,
     pub bind_point_type: crate::vk::DataGraphPipelineSessionBindPointTypeARM,
-    pub num_objects: crate::External<
-        {
-            "uint32_t";
-            0
-        },
-    >,
+    pub num_objects: u32,
 }
 #[repr(C)]
 pub struct DataGraphPipelineSessionMemoryRequirementsInfoARM {
@@ -146,12 +86,7 @@ pub struct DataGraphPipelineSessionMemoryRequirementsInfoARM {
     pub p_next: *const core::ffi::c_void,
     pub session: crate::vk::DataGraphPipelineSessionARM,
     pub bind_point: crate::vk::DataGraphPipelineSessionBindPointARM,
-    pub object_index: crate::External<
-        {
-            "uint32_t";
-            0
-        },
-    >,
+    pub object_index: u32,
 }
 #[repr(C)]
 pub struct BindDataGraphPipelineSessionMemoryInfoARM {
@@ -159,12 +94,7 @@ pub struct BindDataGraphPipelineSessionMemoryInfoARM {
     pub p_next: *const core::ffi::c_void,
     pub session: crate::vk::DataGraphPipelineSessionARM,
     pub bind_point: crate::vk::DataGraphPipelineSessionBindPointARM,
-    pub object_index: crate::External<
-        {
-            "uint32_t";
-            0
-        },
-    >,
+    pub object_index: u32,
     pub memory: crate::vk::DeviceMemory,
     pub memory_offset: crate::vk::DeviceSize,
 }
@@ -180,30 +110,15 @@ pub struct DataGraphPipelinePropertyQueryResultARM {
     pub p_next: *const core::ffi::c_void,
     pub property: crate::vk::DataGraphPipelinePropertyARM,
     pub is_text: crate::vk::Bool32,
-    pub data_size: crate::External<
-        {
-            "size_t";
-            0
-        },
-    >,
+    pub data_size: usize,
     pub p_data: *mut core::ffi::c_void,
 }
 #[repr(C)]
 pub struct DataGraphPipelineIdentifierCreateInfoARM {
     pub s_type: crate::vk::StructureType,
     pub p_next: *const core::ffi::c_void,
-    pub identifier_size: crate::External<
-        {
-            "uint32_t";
-            0
-        },
-    >,
-    pub p_identifier: *const crate::External<
-        {
-            "uint8_t";
-            0
-        },
-    >,
+    pub identifier_size: u32,
+    pub p_identifier: *const u8,
 }
 #[repr(C)]
 pub struct DataGraphPipelineDispatchInfoARM {
@@ -219,18 +134,8 @@ pub struct PhysicalDeviceDataGraphProcessingEngineARM {
 #[repr(C)]
 pub struct PhysicalDeviceDataGraphOperationSupportARM {
     pub operation_type: crate::vk::PhysicalDeviceDataGraphOperationTypeARM,
-    pub name: [crate::External<
-        {
-            "char";
-            0
-        },
-    >; 1337],
-    pub version: crate::External<
-        {
-            "uint32_t";
-            0
-        },
-    >,
+    pub name: [core::ffi::c_char; 1337],
+    pub version: u32,
 }
 #[repr(C)]
 pub struct QueueFamilyDataGraphPropertiesARM {
@@ -243,12 +148,7 @@ pub struct QueueFamilyDataGraphPropertiesARM {
 pub struct PhysicalDeviceQueueFamilyDataGraphProcessingEngineInfoARM {
     pub s_type: crate::vk::StructureType,
     pub p_next: *const core::ffi::c_void,
-    pub queue_family_index: crate::External<
-        {
-            "uint32_t";
-            0
-        },
-    >,
+    pub queue_family_index: u32,
     pub engine_type: crate::vk::PhysicalDeviceDataGraphProcessingEngineTypeARM,
 }
 #[repr(C)]
@@ -262,12 +162,7 @@ pub struct QueueFamilyDataGraphProcessingEnginePropertiesARM {
 pub struct DataGraphProcessingEngineCreateInfoARM {
     pub s_type: crate::vk::StructureType,
     pub p_next: *const core::ffi::c_void,
-    pub processing_engine_count: crate::External<
-        {
-            "uint32_t";
-            0
-        },
-    >,
+    pub processing_engine_count: u32,
     pub p_processing_engines: *mut crate::vk::PhysicalDeviceDataGraphProcessingEngineARM,
 }
 #[repr(C)]

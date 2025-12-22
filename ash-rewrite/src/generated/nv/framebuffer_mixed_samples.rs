@@ -8,18 +8,8 @@ pub struct PipelineCoverageModulationStateCreateInfoNV {
     pub flags: crate::vk::PipelineCoverageModulationStateCreateFlagsNV,
     pub coverage_modulation_mode: crate::vk::CoverageModulationModeNV,
     pub coverage_modulation_table_enable: crate::vk::Bool32,
-    pub coverage_modulation_table_count: crate::External<
-        {
-            "uint32_t";
-            0
-        },
-    >,
-    pub p_coverage_modulation_table: *const crate::External<
-        {
-            "float";
-            0
-        },
-    >,
+    pub coverage_modulation_table_count: u32,
+    pub p_coverage_modulation_table: *const core::ffi::c_float,
 }
 pub type AttachmentSampleCountInfoNV = crate::vk::AttachmentSampleCountInfoAMD;
 #[repr(C)]

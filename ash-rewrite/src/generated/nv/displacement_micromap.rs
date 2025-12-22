@@ -11,12 +11,7 @@ pub struct PhysicalDeviceDisplacementMicromapFeaturesNV {
 pub struct PhysicalDeviceDisplacementMicromapPropertiesNV {
     pub s_type: crate::vk::StructureType,
     pub p_next: *mut core::ffi::c_void,
-    pub max_displacement_micromap_subdivision_level: crate::External<
-        {
-            "uint32_t";
-            0
-        },
-    >,
+    pub max_displacement_micromap_subdivision_level: u32,
 }
 #[repr(C)]
 pub struct AccelerationStructureTrianglesDisplacementMicromapNV {
@@ -33,18 +28,8 @@ pub struct AccelerationStructureTrianglesDisplacementMicromapNV {
     pub index_type: crate::vk::IndexType,
     pub index_buffer: crate::vk::DeviceOrHostAddressConstKHR,
     pub index_stride: crate::vk::DeviceSize,
-    pub base_triangle: crate::External<
-        {
-            "uint32_t";
-            0
-        },
-    >,
-    pub usage_counts_count: crate::External<
-        {
-            "uint32_t";
-            0
-        },
-    >,
+    pub base_triangle: u32,
+    pub usage_counts_count: u32,
     pub p_usage_counts: *const crate::vk::MicromapUsageEXT,
     pub pp_usage_counts: *const *const crate::vk::MicromapUsageEXT,
     pub micromap: crate::vk::MicromapEXT,

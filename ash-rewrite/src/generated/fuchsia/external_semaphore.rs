@@ -8,12 +8,7 @@ pub struct ImportSemaphoreZirconHandleInfoFUCHSIA {
     pub semaphore: crate::vk::Semaphore,
     pub flags: crate::vk::SemaphoreImportFlags,
     pub handle_type: crate::vk::ExternalSemaphoreHandleTypeFlagBits,
-    pub zircon_handle: crate::External<
-        {
-            "zx_handle_t";
-            0
-        },
-    >,
+    pub zircon_handle: crate::platform_types::zx_handle_t,
 }
 #[repr(C)]
 pub struct SemaphoreGetZirconHandleInfoFUCHSIA {

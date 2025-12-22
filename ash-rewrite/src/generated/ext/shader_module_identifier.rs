@@ -11,44 +11,19 @@ pub struct PhysicalDeviceShaderModuleIdentifierFeaturesEXT {
 pub struct PhysicalDeviceShaderModuleIdentifierPropertiesEXT {
     pub s_type: crate::vk::StructureType,
     pub p_next: *mut core::ffi::c_void,
-    pub shader_module_identifier_algorithm_uuid: [crate::External<
-        {
-            "uint8_t";
-            0
-        },
-    >; 1337],
+    pub shader_module_identifier_algorithm_uuid: [u8; 1337],
 }
 #[repr(C)]
 pub struct PipelineShaderStageModuleIdentifierCreateInfoEXT {
     pub s_type: crate::vk::StructureType,
     pub p_next: *const core::ffi::c_void,
-    pub identifier_size: crate::External<
-        {
-            "uint32_t";
-            0
-        },
-    >,
-    pub p_identifier: *const crate::External<
-        {
-            "uint8_t";
-            0
-        },
-    >,
+    pub identifier_size: u32,
+    pub p_identifier: *const u8,
 }
 #[repr(C)]
 pub struct ShaderModuleIdentifierEXT {
     pub s_type: crate::vk::StructureType,
     pub p_next: *mut core::ffi::c_void,
-    pub identifier_size: crate::External<
-        {
-            "uint32_t";
-            0
-        },
-    >,
-    pub identifier: [crate::External<
-        {
-            "uint8_t";
-            0
-        },
-    >; 1337],
+    pub identifier_size: u32,
+    pub identifier: [u8; 1337],
 }

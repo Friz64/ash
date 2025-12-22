@@ -9,12 +9,7 @@ pub struct MicromapBuildInfoEXT {
     pub flags: crate::vk::BuildMicromapFlagsEXT,
     pub mode: crate::vk::BuildMicromapModeEXT,
     pub dst_micromap: crate::vk::MicromapEXT,
-    pub usage_counts_count: crate::External<
-        {
-            "uint32_t";
-            0
-        },
-    >,
+    pub usage_counts_count: u32,
     pub p_usage_counts: *const crate::vk::MicromapUsageEXT,
     pub pp_usage_counts: *const *const crate::vk::MicromapUsageEXT,
     pub data: crate::vk::DeviceOrHostAddressConstKHR,
@@ -37,12 +32,7 @@ pub struct MicromapCreateInfoEXT {
 pub struct MicromapVersionInfoEXT {
     pub s_type: crate::vk::StructureType,
     pub p_next: *const core::ffi::c_void,
-    pub p_version_data: *const crate::External<
-        {
-            "uint8_t";
-            0
-        },
-    >,
+    pub p_version_data: *const u8,
 }
 #[repr(C)]
 pub struct CopyMicromapInfoEXT {
@@ -78,45 +68,15 @@ pub struct MicromapBuildSizesInfoEXT {
 }
 #[repr(C)]
 pub struct MicromapUsageEXT {
-    pub count: crate::External<
-        {
-            "uint32_t";
-            0
-        },
-    >,
-    pub subdivision_level: crate::External<
-        {
-            "uint32_t";
-            0
-        },
-    >,
-    pub format: crate::External<
-        {
-            "uint32_t";
-            0
-        },
-    >,
+    pub count: u32,
+    pub subdivision_level: u32,
+    pub format: u32,
 }
 #[repr(C)]
 pub struct MicromapTriangleEXT {
-    pub data_offset: crate::External<
-        {
-            "uint32_t";
-            0
-        },
-    >,
-    pub subdivision_level: crate::External<
-        {
-            "uint16_t";
-            0
-        },
-    >,
-    pub format: crate::External<
-        {
-            "uint16_t";
-            0
-        },
-    >,
+    pub data_offset: u32,
+    pub subdivision_level: u16,
+    pub format: u16,
 }
 #[repr(C)]
 pub struct PhysicalDeviceOpacityMicromapFeaturesEXT {
@@ -130,18 +90,8 @@ pub struct PhysicalDeviceOpacityMicromapFeaturesEXT {
 pub struct PhysicalDeviceOpacityMicromapPropertiesEXT {
     pub s_type: crate::vk::StructureType,
     pub p_next: *mut core::ffi::c_void,
-    pub max_opacity2_state_subdivision_level: crate::External<
-        {
-            "uint32_t";
-            0
-        },
-    >,
-    pub max_opacity4_state_subdivision_level: crate::External<
-        {
-            "uint32_t";
-            0
-        },
-    >,
+    pub max_opacity2_state_subdivision_level: u32,
+    pub max_opacity4_state_subdivision_level: u32,
 }
 #[repr(C)]
 pub struct AccelerationStructureTrianglesOpacityMicromapEXT {
@@ -150,18 +100,8 @@ pub struct AccelerationStructureTrianglesOpacityMicromapEXT {
     pub index_type: crate::vk::IndexType,
     pub index_buffer: crate::vk::DeviceOrHostAddressConstKHR,
     pub index_stride: crate::vk::DeviceSize,
-    pub base_triangle: crate::External<
-        {
-            "uint32_t";
-            0
-        },
-    >,
-    pub usage_counts_count: crate::External<
-        {
-            "uint32_t";
-            0
-        },
-    >,
+    pub base_triangle: u32,
+    pub usage_counts_count: u32,
     pub p_usage_counts: *const crate::vk::MicromapUsageEXT,
     pub pp_usage_counts: *const *const crate::vk::MicromapUsageEXT,
     pub micromap: crate::vk::MicromapEXT,

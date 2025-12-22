@@ -6,18 +6,8 @@ pub struct WaylandSurfaceCreateInfoKHR {
     pub s_type: crate::vk::StructureType,
     pub p_next: *const core::ffi::c_void,
     pub flags: crate::vk::WaylandSurfaceCreateFlagsKHR,
-    pub display: *mut crate::External<
-        {
-            "wl_display";
-            0
-        },
-    >,
-    pub surface: *mut crate::External<
-        {
-            "wl_surface";
-            0
-        },
-    >,
+    pub display: *mut crate::platform_types::wl_display,
+    pub surface: *mut crate::platform_types::wl_surface,
 }
 #[repr(C)]
 pub struct WaylandSurfaceCreateFlagsKHR {}

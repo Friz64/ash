@@ -17,12 +17,7 @@ pub struct CustomResolveCreateInfoEXT {
     pub s_type: crate::vk::StructureType,
     pub p_next: *const core::ffi::c_void,
     pub custom_resolve: crate::vk::Bool32,
-    pub color_attachment_count: crate::External<
-        {
-            "uint32_t";
-            0
-        },
-    >,
+    pub color_attachment_count: u32,
     pub p_color_attachment_formats: *const crate::vk::Format,
     pub depth_attachment_format: crate::vk::Format,
     pub stencil_attachment_format: crate::vk::Format,

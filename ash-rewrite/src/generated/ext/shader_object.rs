@@ -22,49 +22,19 @@ pub struct ColorBlendAdvancedEXT {
 pub struct VertexInputBindingDescription2EXT {
     pub s_type: crate::vk::StructureType,
     pub p_next: *mut core::ffi::c_void,
-    pub binding: crate::External<
-        {
-            "uint32_t";
-            0
-        },
-    >,
-    pub stride: crate::External<
-        {
-            "uint32_t";
-            0
-        },
-    >,
+    pub binding: u32,
+    pub stride: u32,
     pub input_rate: crate::vk::VertexInputRate,
-    pub divisor: crate::External<
-        {
-            "uint32_t";
-            0
-        },
-    >,
+    pub divisor: u32,
 }
 #[repr(C)]
 pub struct VertexInputAttributeDescription2EXT {
     pub s_type: crate::vk::StructureType,
     pub p_next: *mut core::ffi::c_void,
-    pub location: crate::External<
-        {
-            "uint32_t";
-            0
-        },
-    >,
-    pub binding: crate::External<
-        {
-            "uint32_t";
-            0
-        },
-    >,
+    pub location: u32,
+    pub binding: u32,
     pub format: crate::vk::Format,
-    pub offset: crate::External<
-        {
-            "uint32_t";
-            0
-        },
-    >,
+    pub offset: u32,
 }
 #[repr(C)]
 pub struct PhysicalDeviceShaderObjectFeaturesEXT {
@@ -76,18 +46,8 @@ pub struct PhysicalDeviceShaderObjectFeaturesEXT {
 pub struct PhysicalDeviceShaderObjectPropertiesEXT {
     pub s_type: crate::vk::StructureType,
     pub p_next: *mut core::ffi::c_void,
-    pub shader_binary_uuid: [crate::External<
-        {
-            "uint8_t";
-            0
-        },
-    >; 1337],
-    pub shader_binary_version: crate::External<
-        {
-            "uint32_t";
-            0
-        },
-    >,
+    pub shader_binary_uuid: [u8; 1337],
+    pub shader_binary_version: u32,
 }
 #[repr(C)]
 pub struct ShaderCreateInfoEXT {
@@ -97,32 +57,12 @@ pub struct ShaderCreateInfoEXT {
     pub stage: crate::vk::ShaderStageFlagBits,
     pub next_stage: crate::vk::ShaderStageFlags,
     pub code_type: crate::vk::ShaderCodeTypeEXT,
-    pub code_size: crate::External<
-        {
-            "size_t";
-            0
-        },
-    >,
+    pub code_size: usize,
     pub p_code: *const core::ffi::c_void,
-    pub p_name: *const crate::External<
-        {
-            "char";
-            0
-        },
-    >,
-    pub set_layout_count: crate::External<
-        {
-            "uint32_t";
-            0
-        },
-    >,
+    pub p_name: *const core::ffi::c_char,
+    pub set_layout_count: u32,
     pub p_set_layouts: *const crate::vk::DescriptorSetLayout,
-    pub push_constant_range_count: crate::External<
-        {
-            "uint32_t";
-            0
-        },
-    >,
+    pub push_constant_range_count: u32,
     pub p_push_constant_ranges: *const crate::vk::PushConstantRange,
     pub p_specialization_info: *const crate::vk::SpecializationInfo,
 }

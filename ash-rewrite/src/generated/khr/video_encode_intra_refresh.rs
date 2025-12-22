@@ -6,18 +6,8 @@ pub struct VideoEncodeIntraRefreshCapabilitiesKHR {
     pub s_type: crate::vk::StructureType,
     pub p_next: *mut core::ffi::c_void,
     pub intra_refresh_modes: crate::vk::VideoEncodeIntraRefreshModeFlagsKHR,
-    pub max_intra_refresh_cycle_duration: crate::External<
-        {
-            "uint32_t";
-            0
-        },
-    >,
-    pub max_intra_refresh_active_reference_pictures: crate::External<
-        {
-            "uint32_t";
-            0
-        },
-    >,
+    pub max_intra_refresh_cycle_duration: u32,
+    pub max_intra_refresh_active_reference_pictures: u32,
     pub partition_independent_intra_refresh_regions: crate::vk::Bool32,
     pub non_rectangular_intra_refresh_regions: crate::vk::Bool32,
 }
@@ -31,29 +21,14 @@ pub struct VideoEncodeSessionIntraRefreshCreateInfoKHR {
 pub struct VideoEncodeIntraRefreshInfoKHR {
     pub s_type: crate::vk::StructureType,
     pub p_next: *const core::ffi::c_void,
-    pub intra_refresh_cycle_duration: crate::External<
-        {
-            "uint32_t";
-            0
-        },
-    >,
-    pub intra_refresh_index: crate::External<
-        {
-            "uint32_t";
-            0
-        },
-    >,
+    pub intra_refresh_cycle_duration: u32,
+    pub intra_refresh_index: u32,
 }
 #[repr(C)]
 pub struct VideoReferenceIntraRefreshInfoKHR {
     pub s_type: crate::vk::StructureType,
     pub p_next: *const core::ffi::c_void,
-    pub dirty_intra_refresh_regions: crate::External<
-        {
-            "uint32_t";
-            0
-        },
-    >,
+    pub dirty_intra_refresh_regions: u32,
 }
 #[repr(C)]
 pub struct PhysicalDeviceVideoEncodeIntraRefreshFeaturesKHR {

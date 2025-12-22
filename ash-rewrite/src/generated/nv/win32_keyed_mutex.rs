@@ -5,36 +5,11 @@
 pub struct Win32KeyedMutexAcquireReleaseInfoNV {
     pub s_type: crate::vk::StructureType,
     pub p_next: *const core::ffi::c_void,
-    pub acquire_count: crate::External<
-        {
-            "uint32_t";
-            0
-        },
-    >,
+    pub acquire_count: u32,
     pub p_acquire_syncs: *const crate::vk::DeviceMemory,
-    pub p_acquire_keys: *const crate::External<
-        {
-            "uint64_t";
-            0
-        },
-    >,
-    pub p_acquire_timeout_milliseconds: *const crate::External<
-        {
-            "uint32_t";
-            0
-        },
-    >,
-    pub release_count: crate::External<
-        {
-            "uint32_t";
-            0
-        },
-    >,
+    pub p_acquire_keys: *const u64,
+    pub p_acquire_timeout_milliseconds: *const u32,
+    pub release_count: u32,
     pub p_release_syncs: *const crate::vk::DeviceMemory,
-    pub p_release_keys: *const crate::External<
-        {
-            "uint64_t";
-            0
-        },
-    >,
+    pub p_release_keys: *const u64,
 }

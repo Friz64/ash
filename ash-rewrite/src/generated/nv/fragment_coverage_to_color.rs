@@ -7,12 +7,7 @@ pub struct PipelineCoverageToColorStateCreateInfoNV {
     pub p_next: *const core::ffi::c_void,
     pub flags: crate::vk::PipelineCoverageToColorStateCreateFlagsNV,
     pub coverage_to_color_enable: crate::vk::Bool32,
-    pub coverage_to_color_location: crate::External<
-        {
-            "uint32_t";
-            0
-        },
-    >,
+    pub coverage_to_color_location: u32,
 }
 #[repr(C)]
 pub struct PipelineCoverageToColorStateCreateFlagsNV {}

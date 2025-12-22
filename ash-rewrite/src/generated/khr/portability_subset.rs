@@ -25,10 +25,5 @@ pub struct PhysicalDevicePortabilitySubsetFeaturesKHR {
 pub struct PhysicalDevicePortabilitySubsetPropertiesKHR {
     pub s_type: crate::vk::StructureType,
     pub p_next: *mut core::ffi::c_void,
-    pub min_vertex_input_binding_stride_alignment: crate::External<
-        {
-            "uint32_t";
-            0
-        },
-    >,
+    pub min_vertex_input_binding_stride_alignment: u32,
 }

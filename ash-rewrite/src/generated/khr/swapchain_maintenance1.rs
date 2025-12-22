@@ -11,36 +11,21 @@ pub struct PhysicalDeviceSwapchainMaintenance1FeaturesKHR {
 pub struct SwapchainPresentFenceInfoKHR {
     pub s_type: crate::vk::StructureType,
     pub p_next: *const core::ffi::c_void,
-    pub swapchain_count: crate::External<
-        {
-            "uint32_t";
-            0
-        },
-    >,
+    pub swapchain_count: u32,
     pub p_fences: *const crate::vk::Fence,
 }
 #[repr(C)]
 pub struct SwapchainPresentModesCreateInfoKHR {
     pub s_type: crate::vk::StructureType,
     pub p_next: *const core::ffi::c_void,
-    pub present_mode_count: crate::External<
-        {
-            "uint32_t";
-            0
-        },
-    >,
+    pub present_mode_count: u32,
     pub p_present_modes: *const crate::vk::PresentModeKHR,
 }
 #[repr(C)]
 pub struct SwapchainPresentModeInfoKHR {
     pub s_type: crate::vk::StructureType,
     pub p_next: *const core::ffi::c_void,
-    pub swapchain_count: crate::External<
-        {
-            "uint32_t";
-            0
-        },
-    >,
+    pub swapchain_count: u32,
     pub p_present_modes: *const crate::vk::PresentModeKHR,
 }
 #[repr(C)]
@@ -56,16 +41,6 @@ pub struct ReleaseSwapchainImagesInfoKHR {
     pub s_type: crate::vk::StructureType,
     pub p_next: *const core::ffi::c_void,
     pub swapchain: crate::vk::SwapchainKHR,
-    pub image_index_count: crate::External<
-        {
-            "uint32_t";
-            0
-        },
-    >,
-    pub p_image_indices: *const crate::External<
-        {
-            "uint32_t";
-            0
-        },
-    >,
+    pub image_index_count: u32,
+    pub p_image_indices: *const u32,
 }

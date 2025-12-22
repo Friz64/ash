@@ -5,12 +5,7 @@
 pub struct PhysicalDeviceFragmentDensityMapLayeredPropertiesVALVE {
     pub s_type: crate::vk::StructureType,
     pub p_next: *mut core::ffi::c_void,
-    pub max_fragment_density_map_layers: crate::External<
-        {
-            "uint32_t";
-            0
-        },
-    >,
+    pub max_fragment_density_map_layers: u32,
 }
 #[repr(C)]
 pub struct PhysicalDeviceFragmentDensityMapLayeredFeaturesVALVE {
@@ -22,10 +17,5 @@ pub struct PhysicalDeviceFragmentDensityMapLayeredFeaturesVALVE {
 pub struct PipelineFragmentDensityMapLayeredCreateInfoVALVE {
     pub s_type: crate::vk::StructureType,
     pub p_next: *const core::ffi::c_void,
-    pub max_fragment_density_map_layers: crate::External<
-        {
-            "uint32_t";
-            0
-        },
-    >,
+    pub max_fragment_density_map_layers: u32,
 }

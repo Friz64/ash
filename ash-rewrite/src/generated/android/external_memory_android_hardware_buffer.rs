@@ -11,24 +11,14 @@ pub struct ImportAndroidHardwareBufferInfoANDROID {
 pub struct AndroidHardwareBufferUsageANDROID {
     pub s_type: crate::vk::StructureType,
     pub p_next: *mut core::ffi::c_void,
-    pub android_hardware_buffer_usage: crate::External<
-        {
-            "uint64_t";
-            0
-        },
-    >,
+    pub android_hardware_buffer_usage: u64,
 }
 #[repr(C)]
 pub struct AndroidHardwareBufferPropertiesANDROID {
     pub s_type: crate::vk::StructureType,
     pub p_next: *mut core::ffi::c_void,
     pub allocation_size: crate::vk::DeviceSize,
-    pub memory_type_bits: crate::External<
-        {
-            "uint32_t";
-            0
-        },
-    >,
+    pub memory_type_bits: u32,
 }
 #[repr(C)]
 pub struct MemoryGetAndroidHardwareBufferInfoANDROID {
@@ -41,12 +31,7 @@ pub struct AndroidHardwareBufferFormatPropertiesANDROID {
     pub s_type: crate::vk::StructureType,
     pub p_next: *mut core::ffi::c_void,
     pub format: crate::vk::Format,
-    pub external_format: crate::External<
-        {
-            "uint64_t";
-            0
-        },
-    >,
+    pub external_format: u64,
     pub format_features: crate::vk::FormatFeatureFlags,
     pub sampler_ycbcr_conversion_components: crate::vk::ComponentMapping,
     pub suggested_ycbcr_model: crate::vk::SamplerYcbcrModelConversion,
@@ -58,24 +43,14 @@ pub struct AndroidHardwareBufferFormatPropertiesANDROID {
 pub struct ExternalFormatANDROID {
     pub s_type: crate::vk::StructureType,
     pub p_next: *mut core::ffi::c_void,
-    pub external_format: crate::External<
-        {
-            "uint64_t";
-            0
-        },
-    >,
+    pub external_format: u64,
 }
 #[repr(C)]
 pub struct AndroidHardwareBufferFormatProperties2ANDROID {
     pub s_type: crate::vk::StructureType,
     pub p_next: *mut core::ffi::c_void,
     pub format: crate::vk::Format,
-    pub external_format: crate::External<
-        {
-            "uint64_t";
-            0
-        },
-    >,
+    pub external_format: u64,
     pub format_features: crate::vk::FormatFeatureFlags2,
     pub sampler_ycbcr_conversion_components: crate::vk::ComponentMapping,
     pub suggested_ycbcr_model: crate::vk::SamplerYcbcrModelConversion,

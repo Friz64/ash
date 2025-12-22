@@ -11,10 +11,5 @@ pub struct PhysicalDeviceImageViewMinLodFeaturesEXT {
 pub struct ImageViewMinLodCreateInfoEXT {
     pub s_type: crate::vk::StructureType,
     pub p_next: *const core::ffi::c_void,
-    pub min_lod: crate::External<
-        {
-            "float";
-            0
-        },
-    >,
+    pub min_lod: core::ffi::c_float,
 }

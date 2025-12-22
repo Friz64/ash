@@ -5,18 +5,8 @@
 pub struct PresentWait2InfoKHR {
     pub s_type: crate::vk::StructureType,
     pub p_next: *const core::ffi::c_void,
-    pub present_id: crate::External<
-        {
-            "uint64_t";
-            0
-        },
-    >,
-    pub timeout: crate::External<
-        {
-            "uint64_t";
-            0
-        },
-    >,
+    pub present_id: u64,
+    pub timeout: u64,
 }
 #[repr(C)]
 pub struct PhysicalDevicePresentWait2FeaturesKHR {

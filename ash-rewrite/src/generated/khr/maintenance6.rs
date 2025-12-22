@@ -7,24 +7,9 @@ pub struct SetDescriptorBufferOffsetsInfoEXT {
     pub p_next: *const core::ffi::c_void,
     pub stage_flags: crate::vk::ShaderStageFlags,
     pub layout: crate::vk::PipelineLayout,
-    pub first_set: crate::External<
-        {
-            "uint32_t";
-            0
-        },
-    >,
-    pub set_count: crate::External<
-        {
-            "uint32_t";
-            0
-        },
-    >,
-    pub p_buffer_indices: *const crate::External<
-        {
-            "uint32_t";
-            0
-        },
-    >,
+    pub first_set: u32,
+    pub set_count: u32,
+    pub p_buffer_indices: *const u32,
     pub p_offsets: *const crate::vk::DeviceSize,
 }
 #[repr(C)]
@@ -33,12 +18,7 @@ pub struct BindDescriptorBufferEmbeddedSamplersInfoEXT {
     pub p_next: *const core::ffi::c_void,
     pub stage_flags: crate::vk::ShaderStageFlags,
     pub layout: crate::vk::PipelineLayout,
-    pub set: crate::External<
-        {
-            "uint32_t";
-            0
-        },
-    >,
+    pub set: u32,
 }
 pub type PhysicalDeviceMaintenance6FeaturesKHR = crate::vk::PhysicalDeviceMaintenance6Features;
 pub type PhysicalDeviceMaintenance6PropertiesKHR = crate::vk::PhysicalDeviceMaintenance6Properties;

@@ -7,52 +7,17 @@ pub struct VideoEncodeH265CapabilitiesKHR {
     pub p_next: *mut core::ffi::c_void,
     pub flags: crate::vk::VideoEncodeH265CapabilityFlagsKHR,
     pub max_level_idc: crate::vk::StdVideoH265LevelIdc,
-    pub max_slice_segment_count: crate::External<
-        {
-            "uint32_t";
-            0
-        },
-    >,
+    pub max_slice_segment_count: u32,
     pub max_tiles: crate::vk::Extent2D,
     pub ctb_sizes: crate::vk::VideoEncodeH265CtbSizeFlagsKHR,
     pub transform_block_sizes: crate::vk::VideoEncodeH265TransformBlockSizeFlagsKHR,
-    pub max_p_picture_l0_reference_count: crate::External<
-        {
-            "uint32_t";
-            0
-        },
-    >,
-    pub max_b_picture_l0_reference_count: crate::External<
-        {
-            "uint32_t";
-            0
-        },
-    >,
-    pub max_l1_reference_count: crate::External<
-        {
-            "uint32_t";
-            0
-        },
-    >,
-    pub max_sub_layer_count: crate::External<
-        {
-            "uint32_t";
-            0
-        },
-    >,
+    pub max_p_picture_l0_reference_count: u32,
+    pub max_b_picture_l0_reference_count: u32,
+    pub max_l1_reference_count: u32,
+    pub max_sub_layer_count: u32,
     pub expect_dyadic_temporal_sub_layer_pattern: crate::vk::Bool32,
-    pub min_qp: crate::External<
-        {
-            "int32_t";
-            0
-        },
-    >,
-    pub max_qp: crate::External<
-        {
-            "int32_t";
-            0
-        },
-    >,
+    pub min_qp: i32,
+    pub max_qp: i32,
     pub prefers_gop_remaining_frames: crate::vk::Bool32,
     pub requires_gop_remaining_frames: crate::vk::Bool32,
     pub std_syntax_flags: crate::vk::VideoEncodeH265StdFlagsKHR,
@@ -62,43 +27,13 @@ pub struct VideoEncodeH265QualityLevelPropertiesKHR {
     pub s_type: crate::vk::StructureType,
     pub p_next: *mut core::ffi::c_void,
     pub preferred_rate_control_flags: crate::vk::VideoEncodeH265RateControlFlagsKHR,
-    pub preferred_gop_frame_count: crate::External<
-        {
-            "uint32_t";
-            0
-        },
-    >,
-    pub preferred_idr_period: crate::External<
-        {
-            "uint32_t";
-            0
-        },
-    >,
-    pub preferred_consecutive_b_frame_count: crate::External<
-        {
-            "uint32_t";
-            0
-        },
-    >,
-    pub preferred_sub_layer_count: crate::External<
-        {
-            "uint32_t";
-            0
-        },
-    >,
+    pub preferred_gop_frame_count: u32,
+    pub preferred_idr_period: u32,
+    pub preferred_consecutive_b_frame_count: u32,
+    pub preferred_sub_layer_count: u32,
     pub preferred_constant_qp: crate::vk::VideoEncodeH265QpKHR,
-    pub preferred_max_l0_reference_count: crate::External<
-        {
-            "uint32_t";
-            0
-        },
-    >,
-    pub preferred_max_l1_reference_count: crate::External<
-        {
-            "uint32_t";
-            0
-        },
-    >,
+    pub preferred_max_l0_reference_count: u32,
+    pub preferred_max_l1_reference_count: u32,
 }
 #[repr(C)]
 pub struct VideoEncodeH265SessionCreateInfoKHR {
@@ -111,50 +46,20 @@ pub struct VideoEncodeH265SessionCreateInfoKHR {
 pub struct VideoEncodeH265SessionParametersAddInfoKHR {
     pub s_type: crate::vk::StructureType,
     pub p_next: *const core::ffi::c_void,
-    pub std_vps_count: crate::External<
-        {
-            "uint32_t";
-            0
-        },
-    >,
+    pub std_vps_count: u32,
     pub p_std_vp_ss: *const crate::vk::StdVideoH265VideoParameterSet,
-    pub std_sps_count: crate::External<
-        {
-            "uint32_t";
-            0
-        },
-    >,
+    pub std_sps_count: u32,
     pub p_std_sp_ss: *const crate::vk::StdVideoH265SequenceParameterSet,
-    pub std_pps_count: crate::External<
-        {
-            "uint32_t";
-            0
-        },
-    >,
+    pub std_pps_count: u32,
     pub p_std_pp_ss: *const crate::vk::StdVideoH265PictureParameterSet,
 }
 #[repr(C)]
 pub struct VideoEncodeH265SessionParametersCreateInfoKHR {
     pub s_type: crate::vk::StructureType,
     pub p_next: *const core::ffi::c_void,
-    pub max_std_vps_count: crate::External<
-        {
-            "uint32_t";
-            0
-        },
-    >,
-    pub max_std_sps_count: crate::External<
-        {
-            "uint32_t";
-            0
-        },
-    >,
-    pub max_std_pps_count: crate::External<
-        {
-            "uint32_t";
-            0
-        },
-    >,
+    pub max_std_vps_count: u32,
+    pub max_std_sps_count: u32,
+    pub max_std_pps_count: u32,
     pub p_parameters_add_info: *const crate::vk::VideoEncodeH265SessionParametersAddInfoKHR,
 }
 #[repr(C)]
@@ -164,24 +69,9 @@ pub struct VideoEncodeH265SessionParametersGetInfoKHR {
     pub write_std_vps: crate::vk::Bool32,
     pub write_std_sps: crate::vk::Bool32,
     pub write_std_pps: crate::vk::Bool32,
-    pub std_vps_id: crate::External<
-        {
-            "uint32_t";
-            0
-        },
-    >,
-    pub std_sps_id: crate::External<
-        {
-            "uint32_t";
-            0
-        },
-    >,
-    pub std_pps_id: crate::External<
-        {
-            "uint32_t";
-            0
-        },
-    >,
+    pub std_vps_id: u32,
+    pub std_sps_id: u32,
+    pub std_pps_id: u32,
 }
 #[repr(C)]
 pub struct VideoEncodeH265SessionParametersFeedbackInfoKHR {
@@ -195,12 +85,7 @@ pub struct VideoEncodeH265SessionParametersFeedbackInfoKHR {
 pub struct VideoEncodeH265PictureInfoKHR {
     pub s_type: crate::vk::StructureType,
     pub p_next: *const core::ffi::c_void,
-    pub nalu_slice_segment_entry_count: crate::External<
-        {
-            "uint32_t";
-            0
-        },
-    >,
+    pub nalu_slice_segment_entry_count: u32,
     pub p_nalu_slice_segment_entries: *const crate::vk::VideoEncodeH265NaluSliceSegmentInfoKHR,
     pub p_std_picture_info: *const crate::vk::StdVideoEncodeH265PictureInfo,
 }
@@ -208,12 +93,7 @@ pub struct VideoEncodeH265PictureInfoKHR {
 pub struct VideoEncodeH265NaluSliceSegmentInfoKHR {
     pub s_type: crate::vk::StructureType,
     pub p_next: *const core::ffi::c_void,
-    pub constant_qp: crate::External<
-        {
-            "int32_t";
-            0
-        },
-    >,
+    pub constant_qp: i32,
     pub p_std_slice_segment_header: *const crate::vk::StdVideoEncodeH265SliceSegmentHeader,
 }
 #[repr(C)]
@@ -221,96 +101,31 @@ pub struct VideoEncodeH265RateControlInfoKHR {
     pub s_type: crate::vk::StructureType,
     pub p_next: *const core::ffi::c_void,
     pub flags: crate::vk::VideoEncodeH265RateControlFlagsKHR,
-    pub gop_frame_count: crate::External<
-        {
-            "uint32_t";
-            0
-        },
-    >,
-    pub idr_period: crate::External<
-        {
-            "uint32_t";
-            0
-        },
-    >,
-    pub consecutive_b_frame_count: crate::External<
-        {
-            "uint32_t";
-            0
-        },
-    >,
-    pub sub_layer_count: crate::External<
-        {
-            "uint32_t";
-            0
-        },
-    >,
+    pub gop_frame_count: u32,
+    pub idr_period: u32,
+    pub consecutive_b_frame_count: u32,
+    pub sub_layer_count: u32,
 }
 #[repr(C)]
 pub struct VideoEncodeH265QpKHR {
-    pub qp_i: crate::External<
-        {
-            "int32_t";
-            0
-        },
-    >,
-    pub qp_p: crate::External<
-        {
-            "int32_t";
-            0
-        },
-    >,
-    pub qp_b: crate::External<
-        {
-            "int32_t";
-            0
-        },
-    >,
+    pub qp_i: i32,
+    pub qp_p: i32,
+    pub qp_b: i32,
 }
 #[repr(C)]
 pub struct VideoEncodeH265FrameSizeKHR {
-    pub frame_i_size: crate::External<
-        {
-            "uint32_t";
-            0
-        },
-    >,
-    pub frame_p_size: crate::External<
-        {
-            "uint32_t";
-            0
-        },
-    >,
-    pub frame_b_size: crate::External<
-        {
-            "uint32_t";
-            0
-        },
-    >,
+    pub frame_i_size: u32,
+    pub frame_p_size: u32,
+    pub frame_b_size: u32,
 }
 #[repr(C)]
 pub struct VideoEncodeH265GopRemainingFrameInfoKHR {
     pub s_type: crate::vk::StructureType,
     pub p_next: *const core::ffi::c_void,
     pub use_gop_remaining_frames: crate::vk::Bool32,
-    pub gop_remaining_i: crate::External<
-        {
-            "uint32_t";
-            0
-        },
-    >,
-    pub gop_remaining_p: crate::External<
-        {
-            "uint32_t";
-            0
-        },
-    >,
-    pub gop_remaining_b: crate::External<
-        {
-            "uint32_t";
-            0
-        },
-    >,
+    pub gop_remaining_i: u32,
+    pub gop_remaining_p: u32,
+    pub gop_remaining_b: u32,
 }
 #[repr(C)]
 pub struct VideoEncodeH265RateControlLayerInfoKHR {

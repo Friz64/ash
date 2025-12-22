@@ -6,23 +6,13 @@ pub struct SubpassShadingPipelineCreateInfoHUAWEI {
     pub s_type: crate::vk::StructureType,
     pub p_next: *mut core::ffi::c_void,
     pub render_pass: crate::vk::RenderPass,
-    pub subpass: crate::External<
-        {
-            "uint32_t";
-            0
-        },
-    >,
+    pub subpass: u32,
 }
 #[repr(C)]
 pub struct PhysicalDeviceSubpassShadingPropertiesHUAWEI {
     pub s_type: crate::vk::StructureType,
     pub p_next: *mut core::ffi::c_void,
-    pub max_subpass_shading_workgroup_size_aspect_ratio: crate::External<
-        {
-            "uint32_t";
-            0
-        },
-    >,
+    pub max_subpass_shading_workgroup_size_aspect_ratio: u32,
 }
 #[repr(C)]
 pub struct PhysicalDeviceSubpassShadingFeaturesHUAWEI {

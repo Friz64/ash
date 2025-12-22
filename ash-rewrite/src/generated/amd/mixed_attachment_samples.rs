@@ -5,12 +5,7 @@
 pub struct AttachmentSampleCountInfoAMD {
     pub s_type: crate::vk::StructureType,
     pub p_next: *const core::ffi::c_void,
-    pub color_attachment_count: crate::External<
-        {
-            "uint32_t";
-            0
-        },
-    >,
+    pub color_attachment_count: u32,
     pub p_color_attachment_samples: *const crate::vk::SampleCountFlagBits,
     pub depth_stencil_attachment_samples: crate::vk::SampleCountFlagBits,
 }

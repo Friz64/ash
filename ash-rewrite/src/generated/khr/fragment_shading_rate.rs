@@ -29,28 +29,13 @@ pub struct PhysicalDeviceFragmentShadingRatePropertiesKHR {
     pub p_next: *mut core::ffi::c_void,
     pub min_fragment_shading_rate_attachment_texel_size: crate::vk::Extent2D,
     pub max_fragment_shading_rate_attachment_texel_size: crate::vk::Extent2D,
-    pub max_fragment_shading_rate_attachment_texel_size_aspect_ratio: crate::External<
-        {
-            "uint32_t";
-            0
-        },
-    >,
+    pub max_fragment_shading_rate_attachment_texel_size_aspect_ratio: u32,
     pub primitive_fragment_shading_rate_with_multiple_viewports: crate::vk::Bool32,
     pub layered_shading_rate_attachments: crate::vk::Bool32,
     pub fragment_shading_rate_non_trivial_combiner_ops: crate::vk::Bool32,
     pub max_fragment_size: crate::vk::Extent2D,
-    pub max_fragment_size_aspect_ratio: crate::External<
-        {
-            "uint32_t";
-            0
-        },
-    >,
-    pub max_fragment_shading_rate_coverage_samples: crate::External<
-        {
-            "uint32_t";
-            0
-        },
-    >,
+    pub max_fragment_size_aspect_ratio: u32,
+    pub max_fragment_shading_rate_coverage_samples: u32,
     pub max_fragment_shading_rate_rasterization_samples: crate::vk::SampleCountFlagBits,
     pub fragment_shading_rate_with_shader_depth_stencil_writes: crate::vk::Bool32,
     pub fragment_shading_rate_with_sample_mask: crate::vk::Bool32,

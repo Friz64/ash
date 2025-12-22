@@ -5,24 +5,9 @@
 pub struct PhysicalDeviceShaderCoreBuiltinsPropertiesARM {
     pub s_type: crate::vk::StructureType,
     pub p_next: *mut core::ffi::c_void,
-    pub shader_core_mask: crate::External<
-        {
-            "uint64_t";
-            0
-        },
-    >,
-    pub shader_core_count: crate::External<
-        {
-            "uint32_t";
-            0
-        },
-    >,
-    pub shader_warps_per_core: crate::External<
-        {
-            "uint32_t";
-            0
-        },
-    >,
+    pub shader_core_mask: u64,
+    pub shader_core_count: u32,
+    pub shader_warps_per_core: u32,
 }
 #[repr(C)]
 pub struct PhysicalDeviceShaderCoreBuiltinsFeaturesARM {

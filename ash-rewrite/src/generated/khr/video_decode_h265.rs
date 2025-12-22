@@ -17,50 +17,20 @@ pub struct VideoDecodeH265CapabilitiesKHR {
 pub struct VideoDecodeH265SessionParametersAddInfoKHR {
     pub s_type: crate::vk::StructureType,
     pub p_next: *const core::ffi::c_void,
-    pub std_vps_count: crate::External<
-        {
-            "uint32_t";
-            0
-        },
-    >,
+    pub std_vps_count: u32,
     pub p_std_vp_ss: *const crate::vk::StdVideoH265VideoParameterSet,
-    pub std_sps_count: crate::External<
-        {
-            "uint32_t";
-            0
-        },
-    >,
+    pub std_sps_count: u32,
     pub p_std_sp_ss: *const crate::vk::StdVideoH265SequenceParameterSet,
-    pub std_pps_count: crate::External<
-        {
-            "uint32_t";
-            0
-        },
-    >,
+    pub std_pps_count: u32,
     pub p_std_pp_ss: *const crate::vk::StdVideoH265PictureParameterSet,
 }
 #[repr(C)]
 pub struct VideoDecodeH265SessionParametersCreateInfoKHR {
     pub s_type: crate::vk::StructureType,
     pub p_next: *const core::ffi::c_void,
-    pub max_std_vps_count: crate::External<
-        {
-            "uint32_t";
-            0
-        },
-    >,
-    pub max_std_sps_count: crate::External<
-        {
-            "uint32_t";
-            0
-        },
-    >,
-    pub max_std_pps_count: crate::External<
-        {
-            "uint32_t";
-            0
-        },
-    >,
+    pub max_std_vps_count: u32,
+    pub max_std_sps_count: u32,
+    pub max_std_pps_count: u32,
     pub p_parameters_add_info: *const crate::vk::VideoDecodeH265SessionParametersAddInfoKHR,
 }
 #[repr(C)]
@@ -68,18 +38,8 @@ pub struct VideoDecodeH265PictureInfoKHR {
     pub s_type: crate::vk::StructureType,
     pub p_next: *const core::ffi::c_void,
     pub p_std_picture_info: *const crate::vk::StdVideoDecodeH265PictureInfo,
-    pub slice_segment_count: crate::External<
-        {
-            "uint32_t";
-            0
-        },
-    >,
-    pub p_slice_segment_offsets: *const crate::External<
-        {
-            "uint32_t";
-            0
-        },
-    >,
+    pub slice_segment_count: u32,
+    pub p_slice_segment_offsets: *const u32,
 }
 #[repr(C)]
 pub struct VideoDecodeH265DpbSlotInfoKHR {

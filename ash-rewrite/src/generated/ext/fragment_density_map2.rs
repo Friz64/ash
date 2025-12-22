@@ -13,16 +13,6 @@ pub struct PhysicalDeviceFragmentDensityMap2PropertiesEXT {
     pub p_next: *mut core::ffi::c_void,
     pub subsampled_loads: crate::vk::Bool32,
     pub subsampled_coarse_reconstruction_early_access: crate::vk::Bool32,
-    pub max_subsampled_array_layers: crate::External<
-        {
-            "uint32_t";
-            0
-        },
-    >,
-    pub max_descriptor_set_subsampled_samplers: crate::External<
-        {
-            "uint32_t";
-            0
-        },
-    >,
+    pub max_subsampled_array_layers: u32,
+    pub max_descriptor_set_subsampled_samplers: u32,
 }

@@ -12,24 +12,9 @@ pub struct PhysicalDeviceCooperativeMatrixFeaturesKHR {
 pub struct CooperativeMatrixPropertiesKHR {
     pub s_type: crate::vk::StructureType,
     pub p_next: *mut core::ffi::c_void,
-    pub m_size: crate::External<
-        {
-            "uint32_t";
-            0
-        },
-    >,
-    pub n_size: crate::External<
-        {
-            "uint32_t";
-            0
-        },
-    >,
-    pub k_size: crate::External<
-        {
-            "uint32_t";
-            0
-        },
-    >,
+    pub m_size: u32,
+    pub n_size: u32,
+    pub k_size: u32,
     pub a_type: crate::vk::ComponentTypeKHR,
     pub b_type: crate::vk::ComponentTypeKHR,
     pub c_type: crate::vk::ComponentTypeKHR,

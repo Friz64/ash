@@ -11,10 +11,5 @@ pub struct PhysicalDeviceMemoryPriorityFeaturesEXT {
 pub struct MemoryPriorityAllocateInfoEXT {
     pub s_type: crate::vk::StructureType,
     pub p_next: *const core::ffi::c_void,
-    pub priority: crate::External<
-        {
-            "float";
-            0
-        },
-    >,
+    pub priority: core::ffi::c_float,
 }

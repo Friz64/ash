@@ -12,12 +12,7 @@ pub struct ImportMemoryHostPointerInfoEXT {
 pub struct MemoryHostPointerPropertiesEXT {
     pub s_type: crate::vk::StructureType,
     pub p_next: *mut core::ffi::c_void,
-    pub memory_type_bits: crate::External<
-        {
-            "uint32_t";
-            0
-        },
-    >,
+    pub memory_type_bits: u32,
 }
 #[repr(C)]
 pub struct PhysicalDeviceExternalMemoryHostPropertiesEXT {

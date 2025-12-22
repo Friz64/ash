@@ -6,18 +6,8 @@ pub struct DirectFBSurfaceCreateInfoEXT {
     pub s_type: crate::vk::StructureType,
     pub p_next: *const core::ffi::c_void,
     pub flags: crate::vk::DirectFBSurfaceCreateFlagsEXT,
-    pub dfb: *mut crate::External<
-        {
-            "IDirectFB";
-            0
-        },
-    >,
-    pub surface: *mut crate::External<
-        {
-            "IDirectFBSurface";
-            0
-        },
-    >,
+    pub dfb: *mut crate::platform_types::IDirectFB,
+    pub surface: *mut crate::platform_types::IDirectFBSurface,
 }
 #[repr(C)]
 pub struct DirectFBSurfaceCreateFlagsEXT {}

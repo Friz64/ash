@@ -3,133 +3,33 @@
 //!Items provided by `vulkan_video_codec_vp9std_decode`
 #[repr(C)]
 pub struct StdVideoDecodeVP9PictureInfoFlags {
-    pub error_resilient_mode: crate::External<
-        {
-            "uint32_t";
-            0
-        },
-    >,
-    pub intra_only: crate::External<
-        {
-            "uint32_t";
-            0
-        },
-    >,
-    pub allow_high_precision_mv: crate::External<
-        {
-            "uint32_t";
-            0
-        },
-    >,
-    pub refresh_frame_context: crate::External<
-        {
-            "uint32_t";
-            0
-        },
-    >,
-    pub frame_parallel_decoding_mode: crate::External<
-        {
-            "uint32_t";
-            0
-        },
-    >,
-    pub segmentation_enabled: crate::External<
-        {
-            "uint32_t";
-            0
-        },
-    >,
-    pub show_frame: crate::External<
-        {
-            "uint32_t";
-            0
-        },
-    >,
-    pub use_prev_frame_mvs: crate::External<
-        {
-            "uint32_t";
-            0
-        },
-    >,
-    pub reserved: crate::External<
-        {
-            "uint32_t";
-            0
-        },
-    >,
+    pub error_resilient_mode: u32,
+    pub intra_only: u32,
+    pub allow_high_precision_mv: u32,
+    pub refresh_frame_context: u32,
+    pub frame_parallel_decoding_mode: u32,
+    pub segmentation_enabled: u32,
+    pub show_frame: u32,
+    pub use_prev_frame_mvs: u32,
+    pub reserved: u32,
 }
 #[repr(C)]
 pub struct StdVideoDecodeVP9PictureInfo {
     pub flags: crate::vk::StdVideoDecodeVP9PictureInfoFlags,
     pub profile: crate::vk::StdVideoVP9Profile,
     pub frame_type: crate::vk::StdVideoVP9FrameType,
-    pub frame_context_idx: crate::External<
-        {
-            "uint8_t";
-            0
-        },
-    >,
-    pub reset_frame_context: crate::External<
-        {
-            "uint8_t";
-            0
-        },
-    >,
-    pub refresh_frame_flags: crate::External<
-        {
-            "uint8_t";
-            0
-        },
-    >,
-    pub ref_frame_sign_bias_mask: crate::External<
-        {
-            "uint8_t";
-            0
-        },
-    >,
+    pub frame_context_idx: u8,
+    pub reset_frame_context: u8,
+    pub refresh_frame_flags: u8,
+    pub ref_frame_sign_bias_mask: u8,
     pub interpolation_filter: crate::vk::StdVideoVP9InterpolationFilter,
-    pub base_q_idx: crate::External<
-        {
-            "uint8_t";
-            0
-        },
-    >,
-    pub delta_q_y_dc: crate::External<
-        {
-            "int8_t";
-            0
-        },
-    >,
-    pub delta_q_uv_dc: crate::External<
-        {
-            "int8_t";
-            0
-        },
-    >,
-    pub delta_q_uv_ac: crate::External<
-        {
-            "int8_t";
-            0
-        },
-    >,
-    pub tile_cols_log2: crate::External<
-        {
-            "uint8_t";
-            0
-        },
-    >,
-    pub tile_rows_log2: crate::External<
-        {
-            "uint8_t";
-            0
-        },
-    >,
-    pub reserved1: [crate::External<
-        {
-            "uint16_t";
-            0
-        },
-    >; 1337],
+    pub base_q_idx: u8,
+    pub delta_q_y_dc: i8,
+    pub delta_q_uv_dc: i8,
+    pub delta_q_uv_ac: i8,
+    pub tile_cols_log2: u8,
+    pub tile_rows_log2: u8,
+    pub reserved1: [u16; 1337],
     pub p_color_config: *const crate::vk::StdVideoVP9ColorConfig,
     pub p_loop_filter: *const crate::vk::StdVideoVP9LoopFilter,
     pub p_segmentation: *const crate::vk::StdVideoVP9Segmentation,

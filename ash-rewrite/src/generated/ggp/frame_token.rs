@@ -5,10 +5,5 @@
 pub struct PresentFrameTokenGGP {
     pub s_type: crate::vk::StructureType,
     pub p_next: *const core::ffi::c_void,
-    pub frame_token: crate::External<
-        {
-            "GgpFrameToken";
-            0
-        },
-    >,
+    pub frame_token: crate::platform_types::GgpFrameToken,
 }

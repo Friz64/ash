@@ -5,12 +5,7 @@
 pub struct CuModuleCreateInfoNVX {
     pub s_type: crate::vk::StructureType,
     pub p_next: *const core::ffi::c_void,
-    pub data_size: crate::External<
-        {
-            "size_t";
-            0
-        },
-    >,
+    pub data_size: usize,
     pub p_data: *const core::ffi::c_void,
 }
 #[repr(C)]
@@ -24,73 +19,23 @@ pub struct CuFunctionCreateInfoNVX {
     pub s_type: crate::vk::StructureType,
     pub p_next: *const core::ffi::c_void,
     pub module: crate::vk::CuModuleNVX,
-    pub p_name: *const crate::External<
-        {
-            "char";
-            0
-        },
-    >,
+    pub p_name: *const core::ffi::c_char,
 }
 #[repr(C)]
 pub struct CuLaunchInfoNVX {
     pub s_type: crate::vk::StructureType,
     pub p_next: *const core::ffi::c_void,
     pub function: crate::vk::CuFunctionNVX,
-    pub grid_dim_x: crate::External<
-        {
-            "uint32_t";
-            0
-        },
-    >,
-    pub grid_dim_y: crate::External<
-        {
-            "uint32_t";
-            0
-        },
-    >,
-    pub grid_dim_z: crate::External<
-        {
-            "uint32_t";
-            0
-        },
-    >,
-    pub block_dim_x: crate::External<
-        {
-            "uint32_t";
-            0
-        },
-    >,
-    pub block_dim_y: crate::External<
-        {
-            "uint32_t";
-            0
-        },
-    >,
-    pub block_dim_z: crate::External<
-        {
-            "uint32_t";
-            0
-        },
-    >,
-    pub shared_mem_bytes: crate::External<
-        {
-            "uint32_t";
-            0
-        },
-    >,
-    pub param_count: crate::External<
-        {
-            "size_t";
-            0
-        },
-    >,
+    pub grid_dim_x: u32,
+    pub grid_dim_y: u32,
+    pub grid_dim_z: u32,
+    pub block_dim_x: u32,
+    pub block_dim_y: u32,
+    pub block_dim_z: u32,
+    pub shared_mem_bytes: u32,
+    pub param_count: usize,
     pub p_params: *const *const core::ffi::c_void,
-    pub extra_count: crate::External<
-        {
-            "size_t";
-            0
-        },
-    >,
+    pub extra_count: usize,
     pub p_extras: *const *const core::ffi::c_void,
 }
 #[repr(C)]

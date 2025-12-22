@@ -14,6 +14,19 @@ pub trait NameTranslate {
     fn base_type_to_rust(&self, base_ty: CBaseTy) -> TokenStream {
         match base_ty {
             CBaseTy::Void => quote! { core::ffi::c_void },
+            CBaseTy::Char => quote! { core::ffi::c_char },
+            CBaseTy::Int => quote! { core::ffi::c_int },
+            CBaseTy::Float => quote! { core::ffi::c_float },
+            CBaseTy::Double => quote! { core::ffi::c_double },
+            CBaseTy::Int8 => quote! { i8 },
+            CBaseTy::UInt8 => quote! { u8 },
+            CBaseTy::Int16 => quote! { i16 },
+            CBaseTy::UInt16 => quote! { u16 },
+            CBaseTy::Int32 => quote! { i32 },
+            CBaseTy::UInt32 => quote! { u32 },
+            CBaseTy::Int64 => quote! { i64 },
+            CBaseTy::UInt64 => quote! { u64 },
+            CBaseTy::Size => quote! { usize },
         }
     }
 

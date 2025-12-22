@@ -3,26 +3,11 @@
 //![Vulkan Manual Page](https://docs.vulkan.org/refpages/latest/refpages/source/VK_QCOM_data_graph_model.html) · Vulkan extension
 #[repr(C)]
 pub struct PipelineCacheHeaderVersionDataGraphQCOM {
-    pub header_size: crate::External<
-        {
-            "uint32_t";
-            0
-        },
-    >,
+    pub header_size: u32,
     pub header_version: crate::vk::PipelineCacheHeaderVersion,
     pub cache_type: crate::vk::DataGraphModelCacheTypeQCOM,
-    pub cache_version: crate::External<
-        {
-            "uint32_t";
-            0
-        },
-    >,
-    pub toolchain_version: [crate::External<
-        {
-            "uint32_t";
-            0
-        },
-    >; 1337],
+    pub cache_version: u32,
+    pub toolchain_version: [u32; 1337],
 }
 #[repr(C)]
 pub struct DataGraphPipelineBuiltinModelCreateInfoQCOM {

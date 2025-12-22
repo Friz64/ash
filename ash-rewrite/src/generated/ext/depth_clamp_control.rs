@@ -16,18 +16,8 @@ pub struct PipelineViewportDepthClampControlCreateInfoEXT {
 }
 #[repr(C)]
 pub struct DepthClampRangeEXT {
-    pub min_depth_clamp: crate::External<
-        {
-            "float";
-            0
-        },
-    >,
-    pub max_depth_clamp: crate::External<
-        {
-            "float";
-            0
-        },
-    >,
+    pub min_depth_clamp: core::ffi::c_float,
+    pub max_depth_clamp: core::ffi::c_float,
 }
 #[repr(C)]
 pub struct DepthClampModeEXT {}

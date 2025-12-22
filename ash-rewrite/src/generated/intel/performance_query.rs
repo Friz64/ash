@@ -22,23 +22,13 @@ pub struct QueryPoolPerformanceQueryCreateInfoINTEL {
 pub struct PerformanceMarkerInfoINTEL {
     pub s_type: crate::vk::StructureType,
     pub p_next: *const core::ffi::c_void,
-    pub marker: crate::External<
-        {
-            "uint64_t";
-            0
-        },
-    >,
+    pub marker: u64,
 }
 #[repr(C)]
 pub struct PerformanceStreamMarkerInfoINTEL {
     pub s_type: crate::vk::StructureType,
     pub p_next: *const core::ffi::c_void,
-    pub marker: crate::External<
-        {
-            "uint32_t";
-            0
-        },
-    >,
+    pub marker: u32,
 }
 #[repr(C)]
 pub struct PerformanceOverrideInfoINTEL {
@@ -46,12 +36,7 @@ pub struct PerformanceOverrideInfoINTEL {
     pub p_next: *const core::ffi::c_void,
     pub _type: crate::vk::PerformanceOverrideTypeINTEL,
     pub enable: crate::vk::Bool32,
-    pub parameter: crate::External<
-        {
-            "uint64_t";
-            0
-        },
-    >,
+    pub parameter: u64,
 }
 #[repr(C)]
 pub struct PerformanceConfigurationAcquireInfoINTEL {
@@ -62,31 +47,11 @@ pub struct PerformanceConfigurationAcquireInfoINTEL {
 pub type QueryPoolCreateInfoINTEL = crate::vk::QueryPoolPerformanceQueryCreateInfoINTEL;
 #[repr(C)]
 pub struct PerformanceValueDataINTEL {
-    value32: crate::External<
-        {
-            "uint32_t";
-            0
-        },
-    >,
-    value64: crate::External<
-        {
-            "uint64_t";
-            0
-        },
-    >,
-    value_float: crate::External<
-        {
-            "float";
-            0
-        },
-    >,
+    value32: u32,
+    value64: u64,
+    value_float: core::ffi::c_float,
     value_bool: crate::vk::Bool32,
-    value_string: *const crate::External<
-        {
-            "char";
-            0
-        },
-    >,
+    value_string: *const core::ffi::c_char,
 }
 #[repr(C)]
 pub struct PerformanceConfigurationTypeINTEL {}

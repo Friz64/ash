@@ -5,12 +5,7 @@
 pub struct HdrVividDynamicMetadataHUAWEI {
     pub s_type: crate::vk::StructureType,
     pub p_next: *const core::ffi::c_void,
-    pub dynamic_metadata_size: crate::External<
-        {
-            "size_t";
-            0
-        },
-    >,
+    pub dynamic_metadata_size: usize,
     pub p_dynamic_metadata: *const core::ffi::c_void,
 }
 #[repr(C)]

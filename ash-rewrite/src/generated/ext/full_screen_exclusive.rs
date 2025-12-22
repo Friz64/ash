@@ -11,12 +11,7 @@ pub struct SurfaceFullScreenExclusiveInfoEXT {
 pub struct SurfaceFullScreenExclusiveWin32InfoEXT {
     pub s_type: crate::vk::StructureType,
     pub p_next: *const core::ffi::c_void,
-    pub hmonitor: crate::External<
-        {
-            "HMONITOR";
-            0
-        },
-    >,
+    pub hmonitor: crate::platform_types::HMONITOR,
 }
 #[repr(C)]
 pub struct SurfaceCapabilitiesFullScreenExclusiveEXT {

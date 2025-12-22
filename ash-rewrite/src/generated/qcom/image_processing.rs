@@ -7,12 +7,7 @@ pub struct ImageViewSampleWeightCreateInfoQCOM {
     pub p_next: *const core::ffi::c_void,
     pub filter_center: crate::vk::Offset2D,
     pub filter_size: crate::vk::Extent2D,
-    pub num_phases: crate::External<
-        {
-            "uint32_t";
-            0
-        },
-    >,
+    pub num_phases: u32,
 }
 #[repr(C)]
 pub struct PhysicalDeviceImageProcessingFeaturesQCOM {
@@ -26,12 +21,7 @@ pub struct PhysicalDeviceImageProcessingFeaturesQCOM {
 pub struct PhysicalDeviceImageProcessingPropertiesQCOM {
     pub s_type: crate::vk::StructureType,
     pub p_next: *mut core::ffi::c_void,
-    pub max_weight_filter_phases: crate::External<
-        {
-            "uint32_t";
-            0
-        },
-    >,
+    pub max_weight_filter_phases: u32,
     pub max_weight_filter_dimension: crate::vk::Extent2D,
     pub max_block_match_region: crate::vk::Extent2D,
     pub max_box_filter_block_size: crate::vk::Extent2D,

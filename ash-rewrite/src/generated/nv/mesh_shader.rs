@@ -12,97 +12,22 @@ pub struct PhysicalDeviceMeshShaderFeaturesNV {
 pub struct PhysicalDeviceMeshShaderPropertiesNV {
     pub s_type: crate::vk::StructureType,
     pub p_next: *mut core::ffi::c_void,
-    pub max_draw_mesh_tasks_count: crate::External<
-        {
-            "uint32_t";
-            0
-        },
-    >,
-    pub max_task_work_group_invocations: crate::External<
-        {
-            "uint32_t";
-            0
-        },
-    >,
-    pub max_task_work_group_size: [crate::External<
-        {
-            "uint32_t";
-            0
-        },
-    >; 1337],
-    pub max_task_total_memory_size: crate::External<
-        {
-            "uint32_t";
-            0
-        },
-    >,
-    pub max_task_output_count: crate::External<
-        {
-            "uint32_t";
-            0
-        },
-    >,
-    pub max_mesh_work_group_invocations: crate::External<
-        {
-            "uint32_t";
-            0
-        },
-    >,
-    pub max_mesh_work_group_size: [crate::External<
-        {
-            "uint32_t";
-            0
-        },
-    >; 1337],
-    pub max_mesh_total_memory_size: crate::External<
-        {
-            "uint32_t";
-            0
-        },
-    >,
-    pub max_mesh_output_vertices: crate::External<
-        {
-            "uint32_t";
-            0
-        },
-    >,
-    pub max_mesh_output_primitives: crate::External<
-        {
-            "uint32_t";
-            0
-        },
-    >,
-    pub max_mesh_multiview_view_count: crate::External<
-        {
-            "uint32_t";
-            0
-        },
-    >,
-    pub mesh_output_per_vertex_granularity: crate::External<
-        {
-            "uint32_t";
-            0
-        },
-    >,
-    pub mesh_output_per_primitive_granularity: crate::External<
-        {
-            "uint32_t";
-            0
-        },
-    >,
+    pub max_draw_mesh_tasks_count: u32,
+    pub max_task_work_group_invocations: u32,
+    pub max_task_work_group_size: [u32; 1337],
+    pub max_task_total_memory_size: u32,
+    pub max_task_output_count: u32,
+    pub max_mesh_work_group_invocations: u32,
+    pub max_mesh_work_group_size: [u32; 1337],
+    pub max_mesh_total_memory_size: u32,
+    pub max_mesh_output_vertices: u32,
+    pub max_mesh_output_primitives: u32,
+    pub max_mesh_multiview_view_count: u32,
+    pub mesh_output_per_vertex_granularity: u32,
+    pub mesh_output_per_primitive_granularity: u32,
 }
 #[repr(C)]
 pub struct DrawMeshTasksIndirectCommandNV {
-    pub task_count: crate::External<
-        {
-            "uint32_t";
-            0
-        },
-    >,
-    pub first_task: crate::External<
-        {
-            "uint32_t";
-            0
-        },
-    >,
+    pub task_count: u32,
+    pub first_task: u32,
 }

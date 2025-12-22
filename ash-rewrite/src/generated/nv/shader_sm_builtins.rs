@@ -5,18 +5,8 @@
 pub struct PhysicalDeviceShaderSMBuiltinsPropertiesNV {
     pub s_type: crate::vk::StructureType,
     pub p_next: *mut core::ffi::c_void,
-    pub shader_sm_count: crate::External<
-        {
-            "uint32_t";
-            0
-        },
-    >,
-    pub shader_warps_per_sm: crate::External<
-        {
-            "uint32_t";
-            0
-        },
-    >,
+    pub shader_sm_count: u32,
+    pub shader_warps_per_sm: u32,
 }
 #[repr(C)]
 pub struct PhysicalDeviceShaderSMBuiltinsFeaturesNV {

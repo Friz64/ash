@@ -5,32 +5,17 @@
 pub struct PresentRegionsKHR {
     pub s_type: crate::vk::StructureType,
     pub p_next: *const core::ffi::c_void,
-    pub swapchain_count: crate::External<
-        {
-            "uint32_t";
-            0
-        },
-    >,
+    pub swapchain_count: u32,
     pub p_regions: *const crate::vk::PresentRegionKHR,
 }
 #[repr(C)]
 pub struct PresentRegionKHR {
-    pub rectangle_count: crate::External<
-        {
-            "uint32_t";
-            0
-        },
-    >,
+    pub rectangle_count: u32,
     pub p_rectangles: *const crate::vk::RectLayerKHR,
 }
 #[repr(C)]
 pub struct RectLayerKHR {
     pub offset: crate::vk::Offset2D,
     pub extent: crate::vk::Extent2D,
-    pub layer: crate::External<
-        {
-            "uint32_t";
-            0
-        },
-    >,
+    pub layer: u32,
 }

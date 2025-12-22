@@ -4,12 +4,7 @@
 #[repr(C)]
 pub struct DisplayPropertiesKHR {
     pub display: crate::vk::DisplayKHR,
-    pub display_name: *const crate::External<
-        {
-            "char";
-            0
-        },
-    >,
+    pub display_name: *const core::ffi::c_char,
     pub physical_dimensions: crate::vk::Extent2D,
     pub physical_resolution: crate::vk::Extent2D,
     pub supported_transforms: crate::vk::SurfaceTransformFlagsKHR,
@@ -19,22 +14,12 @@ pub struct DisplayPropertiesKHR {
 #[repr(C)]
 pub struct DisplayPlanePropertiesKHR {
     pub current_display: crate::vk::DisplayKHR,
-    pub current_stack_index: crate::External<
-        {
-            "uint32_t";
-            0
-        },
-    >,
+    pub current_stack_index: u32,
 }
 #[repr(C)]
 pub struct DisplayModeParametersKHR {
     pub visible_region: crate::vk::Extent2D,
-    pub refresh_rate: crate::External<
-        {
-            "uint32_t";
-            0
-        },
-    >,
+    pub refresh_rate: u32,
 }
 #[repr(C)]
 pub struct DisplayModePropertiesKHR {
@@ -66,25 +51,10 @@ pub struct DisplaySurfaceCreateInfoKHR {
     pub p_next: *const core::ffi::c_void,
     pub flags: crate::vk::DisplaySurfaceCreateFlagsKHR,
     pub display_mode: crate::vk::DisplayModeKHR,
-    pub plane_index: crate::External<
-        {
-            "uint32_t";
-            0
-        },
-    >,
-    pub plane_stack_index: crate::External<
-        {
-            "uint32_t";
-            0
-        },
-    >,
+    pub plane_index: u32,
+    pub plane_stack_index: u32,
     pub transform: crate::vk::SurfaceTransformFlagBitsKHR,
-    pub global_alpha: crate::External<
-        {
-            "float";
-            0
-        },
-    >,
+    pub global_alpha: core::ffi::c_float,
     pub alpha_mode: crate::vk::DisplayPlaneAlphaFlagBitsKHR,
     pub image_extent: crate::vk::Extent2D,
 }

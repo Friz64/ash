@@ -6,18 +6,8 @@ pub struct ScreenSurfaceCreateInfoQNX {
     pub s_type: crate::vk::StructureType,
     pub p_next: *const core::ffi::c_void,
     pub flags: crate::vk::ScreenSurfaceCreateFlagsQNX,
-    pub context: *mut crate::External<
-        {
-            "_screen_context";
-            0
-        },
-    >,
-    pub window: *mut crate::External<
-        {
-            "_screen_window";
-            0
-        },
-    >,
+    pub context: *mut crate::platform_types::_screen_context,
+    pub window: *mut crate::platform_types::_screen_window,
 }
 #[repr(C)]
 pub struct ScreenSurfaceCreateFlagsQNX {}

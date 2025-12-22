@@ -22,46 +22,21 @@ pub struct PresentTimingSurfaceCapabilitiesEXT {
 pub struct SwapchainTimingPropertiesEXT {
     pub s_type: crate::vk::StructureType,
     pub p_next: *mut core::ffi::c_void,
-    pub refresh_duration: crate::External<
-        {
-            "uint64_t";
-            0
-        },
-    >,
-    pub refresh_interval: crate::External<
-        {
-            "uint64_t";
-            0
-        },
-    >,
+    pub refresh_duration: u64,
+    pub refresh_interval: u64,
 }
 #[repr(C)]
 pub struct SwapchainTimeDomainPropertiesEXT {
     pub s_type: crate::vk::StructureType,
     pub p_next: *mut core::ffi::c_void,
-    pub time_domain_count: crate::External<
-        {
-            "uint32_t";
-            0
-        },
-    >,
+    pub time_domain_count: u32,
     pub p_time_domains: *mut crate::vk::TimeDomainKHR,
-    pub p_time_domain_ids: *mut crate::External<
-        {
-            "uint64_t";
-            0
-        },
-    >,
+    pub p_time_domain_ids: *mut u64,
 }
 #[repr(C)]
 pub struct PresentStageTimeEXT {
     pub stage: crate::vk::PresentStageFlagsEXT,
-    pub time: crate::External<
-        {
-            "uint64_t";
-            0
-        },
-    >,
+    pub time: u64,
 }
 #[repr(C)]
 pub struct PastPresentationTimingInfoEXT {
@@ -74,68 +49,28 @@ pub struct PastPresentationTimingInfoEXT {
 pub struct PastPresentationTimingPropertiesEXT {
     pub s_type: crate::vk::StructureType,
     pub p_next: *mut core::ffi::c_void,
-    pub timing_properties_counter: crate::External<
-        {
-            "uint64_t";
-            0
-        },
-    >,
-    pub time_domains_counter: crate::External<
-        {
-            "uint64_t";
-            0
-        },
-    >,
-    pub presentation_timing_count: crate::External<
-        {
-            "uint32_t";
-            0
-        },
-    >,
+    pub timing_properties_counter: u64,
+    pub time_domains_counter: u64,
+    pub presentation_timing_count: u32,
     pub p_presentation_timings: *mut crate::vk::PastPresentationTimingEXT,
 }
 #[repr(C)]
 pub struct PastPresentationTimingEXT {
     pub s_type: crate::vk::StructureType,
     pub p_next: *mut core::ffi::c_void,
-    pub present_id: crate::External<
-        {
-            "uint64_t";
-            0
-        },
-    >,
-    pub target_time: crate::External<
-        {
-            "uint64_t";
-            0
-        },
-    >,
-    pub present_stage_count: crate::External<
-        {
-            "uint32_t";
-            0
-        },
-    >,
+    pub present_id: u64,
+    pub target_time: u64,
+    pub present_stage_count: u32,
     pub p_present_stages: *mut crate::vk::PresentStageTimeEXT,
     pub time_domain: crate::vk::TimeDomainKHR,
-    pub time_domain_id: crate::External<
-        {
-            "uint64_t";
-            0
-        },
-    >,
+    pub time_domain_id: u64,
     pub report_complete: crate::vk::Bool32,
 }
 #[repr(C)]
 pub struct PresentTimingsInfoEXT {
     pub s_type: crate::vk::StructureType,
     pub p_next: *const core::ffi::c_void,
-    pub swapchain_count: crate::External<
-        {
-            "uint32_t";
-            0
-        },
-    >,
+    pub swapchain_count: u32,
     pub p_timing_infos: *const crate::vk::PresentTimingInfoEXT,
 }
 #[repr(C)]
@@ -143,18 +78,8 @@ pub struct PresentTimingInfoEXT {
     pub s_type: crate::vk::StructureType,
     pub p_next: *const core::ffi::c_void,
     pub flags: crate::vk::PresentTimingInfoFlagsEXT,
-    pub target_time: crate::External<
-        {
-            "uint64_t";
-            0
-        },
-    >,
-    pub time_domain_id: crate::External<
-        {
-            "uint64_t";
-            0
-        },
-    >,
+    pub target_time: u64,
+    pub time_domain_id: u64,
     pub present_stage_queries: crate::vk::PresentStageFlagsEXT,
     pub target_time_domain_present_stage: crate::vk::PresentStageFlagsEXT,
 }
@@ -164,12 +89,7 @@ pub struct SwapchainCalibratedTimestampInfoEXT {
     pub p_next: *const core::ffi::c_void,
     pub swapchain: crate::vk::SwapchainKHR,
     pub present_stage: crate::vk::PresentStageFlagsEXT,
-    pub time_domain_id: crate::External<
-        {
-            "uint64_t";
-            0
-        },
-    >,
+    pub time_domain_id: u64,
 }
 #[repr(C)]
 pub struct PresentStageFlagsEXT {}

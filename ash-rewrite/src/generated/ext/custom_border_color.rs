@@ -12,12 +12,7 @@ pub struct SamplerCustomBorderColorCreateInfoEXT {
 pub struct PhysicalDeviceCustomBorderColorPropertiesEXT {
     pub s_type: crate::vk::StructureType,
     pub p_next: *mut core::ffi::c_void,
-    pub max_custom_border_color_samplers: crate::External<
-        {
-            "uint32_t";
-            0
-        },
-    >,
+    pub max_custom_border_color_samplers: u32,
 }
 #[repr(C)]
 pub struct PhysicalDeviceCustomBorderColorFeaturesEXT {

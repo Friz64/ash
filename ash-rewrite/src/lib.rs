@@ -1,4 +1,5 @@
 mod generated;
+pub mod platform_types;
 
 pub use generated::*;
 

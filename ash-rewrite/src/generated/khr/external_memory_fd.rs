@@ -6,23 +6,13 @@ pub struct ImportMemoryFdInfoKHR {
     pub s_type: crate::vk::StructureType,
     pub p_next: *const core::ffi::c_void,
     pub handle_type: crate::vk::ExternalMemoryHandleTypeFlagBits,
-    pub fd: crate::External<
-        {
-            "int";
-            0
-        },
-    >,
+    pub fd: core::ffi::c_int,
 }
 #[repr(C)]
 pub struct MemoryFdPropertiesKHR {
     pub s_type: crate::vk::StructureType,
     pub p_next: *mut core::ffi::c_void,
-    pub memory_type_bits: crate::External<
-        {
-            "uint32_t";
-            0
-        },
-    >,
+    pub memory_type_bits: u32,
 }
 #[repr(C)]
 pub struct MemoryGetFdInfoKHR {

@@ -5,24 +5,9 @@
 pub struct DepthBiasInfoEXT {
     pub s_type: crate::vk::StructureType,
     pub p_next: *const core::ffi::c_void,
-    pub depth_bias_constant_factor: crate::External<
-        {
-            "float";
-            0
-        },
-    >,
-    pub depth_bias_clamp: crate::External<
-        {
-            "float";
-            0
-        },
-    >,
-    pub depth_bias_slope_factor: crate::External<
-        {
-            "float";
-            0
-        },
-    >,
+    pub depth_bias_constant_factor: core::ffi::c_float,
+    pub depth_bias_clamp: core::ffi::c_float,
+    pub depth_bias_slope_factor: core::ffi::c_float,
 }
 #[repr(C)]
 pub struct DepthBiasRepresentationInfoEXT {

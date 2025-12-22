@@ -11,74 +11,34 @@ pub struct PhysicalDevicePerformanceCountersByRegionFeaturesARM {
 pub struct PhysicalDevicePerformanceCountersByRegionPropertiesARM {
     pub s_type: crate::vk::StructureType,
     pub p_next: *mut core::ffi::c_void,
-    pub max_per_region_performance_counters: crate::External<
-        {
-            "uint32_t";
-            0
-        },
-    >,
+    pub max_per_region_performance_counters: u32,
     pub performance_counter_region_size: crate::vk::Extent2D,
-    pub row_stride_alignment: crate::External<
-        {
-            "uint32_t";
-            0
-        },
-    >,
-    pub region_alignment: crate::External<
-        {
-            "uint32_t";
-            0
-        },
-    >,
+    pub row_stride_alignment: u32,
+    pub region_alignment: u32,
     pub identity_transform_order: crate::vk::Bool32,
 }
 #[repr(C)]
 pub struct PerformanceCounterARM {
     pub s_type: crate::vk::StructureType,
     pub p_next: *mut core::ffi::c_void,
-    pub counter_id: crate::External<
-        {
-            "uint32_t";
-            0
-        },
-    >,
+    pub counter_id: u32,
 }
 #[repr(C)]
 pub struct PerformanceCounterDescriptionARM {
     pub s_type: crate::vk::StructureType,
     pub p_next: *mut core::ffi::c_void,
     pub flags: crate::vk::PerformanceCounterDescriptionFlagsARM,
-    pub name: [crate::External<
-        {
-            "char";
-            0
-        },
-    >; 1337],
+    pub name: [core::ffi::c_char; 1337],
 }
 #[repr(C)]
 pub struct RenderPassPerformanceCountersByRegionBeginInfoARM {
     pub s_type: crate::vk::StructureType,
     pub p_next: *mut core::ffi::c_void,
-    pub counter_address_count: crate::External<
-        {
-            "uint32_t";
-            0
-        },
-    >,
+    pub counter_address_count: u32,
     pub p_counter_addresses: *const crate::vk::DeviceAddress,
     pub serialize_regions: crate::vk::Bool32,
-    pub counter_index_count: crate::External<
-        {
-            "uint32_t";
-            0
-        },
-    >,
-    pub p_counter_indices: *mut crate::External<
-        {
-            "uint32_t";
-            0
-        },
-    >,
+    pub counter_index_count: u32,
+    pub p_counter_indices: *mut u32,
 }
 #[repr(C)]
 pub struct PerformanceCounterDescriptionFlagsARM {}

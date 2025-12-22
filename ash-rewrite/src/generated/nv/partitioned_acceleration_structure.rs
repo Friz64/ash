@@ -11,22 +11,12 @@ pub struct PhysicalDevicePartitionedAccelerationStructureFeaturesNV {
 pub struct PhysicalDevicePartitionedAccelerationStructurePropertiesNV {
     pub s_type: crate::vk::StructureType,
     pub p_next: *mut core::ffi::c_void,
-    pub max_partition_count: crate::External<
-        {
-            "uint32_t";
-            0
-        },
-    >,
+    pub max_partition_count: u32,
 }
 #[repr(C)]
 pub struct BuildPartitionedAccelerationStructureIndirectCommandNV {
     pub op_type: crate::vk::PartitionedAccelerationStructureOpTypeNV,
-    pub arg_count: crate::External<
-        {
-            "uint32_t";
-            0
-        },
-    >,
+    pub arg_count: u32,
     pub arg_data: crate::vk::StridedDeviceAddressNV,
 }
 #[repr(C)]
@@ -38,86 +28,31 @@ pub struct PartitionedAccelerationStructureFlagsNV {
 #[repr(C)]
 pub struct PartitionedAccelerationStructureWriteInstanceDataNV {
     pub transform: crate::vk::TransformMatrixKHR,
-    pub explicit_aabb: [crate::External<
-        {
-            "float";
-            0
-        },
-    >; 1337],
-    pub instance_id: crate::External<
-        {
-            "uint32_t";
-            0
-        },
-    >,
-    pub instance_mask: crate::External<
-        {
-            "uint32_t";
-            0
-        },
-    >,
-    pub instance_contribution_to_hit_group_index: crate::External<
-        {
-            "uint32_t";
-            0
-        },
-    >,
+    pub explicit_aabb: [core::ffi::c_float; 1337],
+    pub instance_id: u32,
+    pub instance_mask: u32,
+    pub instance_contribution_to_hit_group_index: u32,
     pub instance_flags: crate::vk::PartitionedAccelerationStructureInstanceFlagsNV,
-    pub instance_index: crate::External<
-        {
-            "uint32_t";
-            0
-        },
-    >,
-    pub partition_index: crate::External<
-        {
-            "uint32_t";
-            0
-        },
-    >,
+    pub instance_index: u32,
+    pub partition_index: u32,
     pub acceleration_structure: crate::vk::DeviceAddress,
 }
 #[repr(C)]
 pub struct PartitionedAccelerationStructureUpdateInstanceDataNV {
-    pub instance_index: crate::External<
-        {
-            "uint32_t";
-            0
-        },
-    >,
-    pub instance_contribution_to_hit_group_index: crate::External<
-        {
-            "uint32_t";
-            0
-        },
-    >,
+    pub instance_index: u32,
+    pub instance_contribution_to_hit_group_index: u32,
     pub acceleration_structure: crate::vk::DeviceAddress,
 }
 #[repr(C)]
 pub struct PartitionedAccelerationStructureWritePartitionTranslationDataNV {
-    pub partition_index: crate::External<
-        {
-            "uint32_t";
-            0
-        },
-    >,
-    pub partition_translation: [crate::External<
-        {
-            "float";
-            0
-        },
-    >; 1337],
+    pub partition_index: u32,
+    pub partition_translation: [core::ffi::c_float; 1337],
 }
 #[repr(C)]
 pub struct WriteDescriptorSetPartitionedAccelerationStructureNV {
     pub s_type: crate::vk::StructureType,
     pub p_next: *mut core::ffi::c_void,
-    pub acceleration_structure_count: crate::External<
-        {
-            "uint32_t";
-            0
-        },
-    >,
+    pub acceleration_structure_count: u32,
     pub p_acceleration_structures: *const crate::vk::DeviceAddress,
 }
 #[repr(C)]
@@ -125,30 +60,10 @@ pub struct PartitionedAccelerationStructureInstancesInputNV {
     pub s_type: crate::vk::StructureType,
     pub p_next: *mut core::ffi::c_void,
     pub flags: crate::vk::BuildAccelerationStructureFlagsKHR,
-    pub instance_count: crate::External<
-        {
-            "uint32_t";
-            0
-        },
-    >,
-    pub max_instance_per_partition_count: crate::External<
-        {
-            "uint32_t";
-            0
-        },
-    >,
-    pub partition_count: crate::External<
-        {
-            "uint32_t";
-            0
-        },
-    >,
-    pub max_instance_in_global_partition_count: crate::External<
-        {
-            "uint32_t";
-            0
-        },
-    >,
+    pub instance_count: u32,
+    pub max_instance_per_partition_count: u32,
+    pub partition_count: u32,
+    pub max_instance_in_global_partition_count: u32,
 }
 #[repr(C)]
 pub struct BuildPartitionedAccelerationStructureInfoNV {

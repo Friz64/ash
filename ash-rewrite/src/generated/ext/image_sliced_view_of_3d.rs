@@ -5,18 +5,8 @@
 pub struct ImageViewSlicedCreateInfoEXT {
     pub s_type: crate::vk::StructureType,
     pub p_next: *const core::ffi::c_void,
-    pub slice_offset: crate::External<
-        {
-            "uint32_t";
-            0
-        },
-    >,
-    pub slice_count: crate::External<
-        {
-            "uint32_t";
-            0
-        },
-    >,
+    pub slice_offset: u32,
+    pub slice_count: u32,
 }
 #[repr(C)]
 pub struct PhysicalDeviceImageSlicedViewOf3DFeaturesEXT {

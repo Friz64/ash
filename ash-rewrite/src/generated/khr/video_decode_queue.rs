@@ -23,12 +23,7 @@ pub struct VideoDecodeInfoKHR {
     pub src_buffer_range: crate::vk::DeviceSize,
     pub dst_picture_resource: crate::vk::VideoPictureResourceInfoKHR,
     pub p_setup_reference_slot: *const crate::vk::VideoReferenceSlotInfoKHR,
-    pub reference_slot_count: crate::External<
-        {
-            "uint32_t";
-            0
-        },
-    >,
+    pub reference_slot_count: u32,
     pub p_reference_slots: *const crate::vk::VideoReferenceSlotInfoKHR,
 }
 #[repr(C)]

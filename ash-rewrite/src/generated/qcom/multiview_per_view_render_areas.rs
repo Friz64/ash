@@ -11,11 +11,6 @@ pub struct PhysicalDeviceMultiviewPerViewRenderAreasFeaturesQCOM {
 pub struct MultiviewPerViewRenderAreasRenderPassBeginInfoQCOM {
     pub s_type: crate::vk::StructureType,
     pub p_next: *const core::ffi::c_void,
-    pub per_view_render_area_count: crate::External<
-        {
-            "uint32_t";
-            0
-        },
-    >,
+    pub per_view_render_area_count: u32,
     pub p_per_view_render_areas: *const crate::vk::Rect2D,
 }

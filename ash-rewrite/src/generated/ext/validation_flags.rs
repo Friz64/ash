@@ -5,12 +5,7 @@
 pub struct ValidationFlagsEXT {
     pub s_type: crate::vk::StructureType,
     pub p_next: *const core::ffi::c_void,
-    pub disabled_validation_check_count: crate::External<
-        {
-            "uint32_t";
-            0
-        },
-    >,
+    pub disabled_validation_check_count: u32,
     pub p_disabled_validation_checks: *const crate::vk::ValidationCheckEXT,
 }
 #[repr(C)]

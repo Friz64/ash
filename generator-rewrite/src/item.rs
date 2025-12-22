@@ -62,7 +62,8 @@ impl NameTranslate for Context {
     }
 
     fn ext_type_to_rust(&self, raw: &'static str) -> TokenStream {
-        quote! { crate::External<{ #raw; 0 }> }
+        let ident: Ident = syn::parse_str(raw).unwrap();
+        quote! { crate::platform_types::#ident }
     }
 }
 

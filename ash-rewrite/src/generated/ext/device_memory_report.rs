@@ -21,26 +21,11 @@ pub struct DeviceMemoryReportCallbackDataEXT {
     pub p_next: *mut core::ffi::c_void,
     pub flags: crate::vk::DeviceMemoryReportFlagsEXT,
     pub _type: crate::vk::DeviceMemoryReportEventTypeEXT,
-    pub memory_object_id: crate::External<
-        {
-            "uint64_t";
-            0
-        },
-    >,
+    pub memory_object_id: u64,
     pub size: crate::vk::DeviceSize,
     pub object_type: crate::vk::ObjectType,
-    pub object_handle: crate::External<
-        {
-            "uint64_t";
-            0
-        },
-    >,
-    pub heap_index: crate::External<
-        {
-            "uint32_t";
-            0
-        },
-    >,
+    pub object_handle: u64,
+    pub heap_index: u32,
 }
 #[repr(C)]
 pub struct DeviceMemoryReportEventTypeEXT {}

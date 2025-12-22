@@ -12,11 +12,6 @@ pub struct CommandBufferInheritanceViewportScissorInfoNV {
     pub s_type: crate::vk::StructureType,
     pub p_next: *const core::ffi::c_void,
     pub viewport_scissor2_d: crate::vk::Bool32,
-    pub viewport_depth_count: crate::External<
-        {
-            "uint32_t";
-            0
-        },
-    >,
+    pub viewport_depth_count: u32,
     pub p_viewport_depths: *const crate::vk::Viewport,
 }

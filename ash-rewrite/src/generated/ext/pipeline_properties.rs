@@ -5,12 +5,7 @@
 pub struct PipelinePropertiesIdentifierEXT {
     pub s_type: crate::vk::StructureType,
     pub p_next: *mut core::ffi::c_void,
-    pub pipeline_identifier: [crate::External<
-        {
-            "uint8_t";
-            0
-        },
-    >; 1337],
+    pub pipeline_identifier: [u8; 1337],
 }
 #[repr(C)]
 pub struct PhysicalDevicePipelinePropertiesFeaturesEXT {

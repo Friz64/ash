@@ -3,70 +3,25 @@
 //![Vulkan Manual Page](https://docs.vulkan.org/refpages/latest/refpages/source/VK_GOOGLE_display_timing.html) · Vulkan extension
 #[repr(C)]
 pub struct RefreshCycleDurationGOOGLE {
-    pub refresh_duration: crate::External<
-        {
-            "uint64_t";
-            0
-        },
-    >,
+    pub refresh_duration: u64,
 }
 #[repr(C)]
 pub struct PastPresentationTimingGOOGLE {
-    pub present_id: crate::External<
-        {
-            "uint32_t";
-            0
-        },
-    >,
-    pub desired_present_time: crate::External<
-        {
-            "uint64_t";
-            0
-        },
-    >,
-    pub actual_present_time: crate::External<
-        {
-            "uint64_t";
-            0
-        },
-    >,
-    pub earliest_present_time: crate::External<
-        {
-            "uint64_t";
-            0
-        },
-    >,
-    pub present_margin: crate::External<
-        {
-            "uint64_t";
-            0
-        },
-    >,
+    pub present_id: u32,
+    pub desired_present_time: u64,
+    pub actual_present_time: u64,
+    pub earliest_present_time: u64,
+    pub present_margin: u64,
 }
 #[repr(C)]
 pub struct PresentTimesInfoGOOGLE {
     pub s_type: crate::vk::StructureType,
     pub p_next: *const core::ffi::c_void,
-    pub swapchain_count: crate::External<
-        {
-            "uint32_t";
-            0
-        },
-    >,
+    pub swapchain_count: u32,
     pub p_times: *const crate::vk::PresentTimeGOOGLE,
 }
 #[repr(C)]
 pub struct PresentTimeGOOGLE {
-    pub present_id: crate::External<
-        {
-            "uint32_t";
-            0
-        },
-    >,
-    pub desired_present_time: crate::External<
-        {
-            "uint64_t";
-            0
-        },
-    >,
+    pub present_id: u32,
+    pub desired_present_time: u64,
 }

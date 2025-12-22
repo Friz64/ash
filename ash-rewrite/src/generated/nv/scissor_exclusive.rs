@@ -11,11 +11,6 @@ pub struct PhysicalDeviceExclusiveScissorFeaturesNV {
 pub struct PipelineViewportExclusiveScissorStateCreateInfoNV {
     pub s_type: crate::vk::StructureType,
     pub p_next: *const core::ffi::c_void,
-    pub exclusive_scissor_count: crate::External<
-        {
-            "uint32_t";
-            0
-        },
-    >,
+    pub exclusive_scissor_count: u32,
     pub p_exclusive_scissors: *const crate::vk::Rect2D,
 }

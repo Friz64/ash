@@ -12,12 +12,7 @@ pub struct PhysicalDeviceRenderPassStripedPropertiesARM {
     pub s_type: crate::vk::StructureType,
     pub p_next: *mut core::ffi::c_void,
     pub render_pass_stripe_granularity: crate::vk::Extent2D,
-    pub max_render_pass_stripes: crate::External<
-        {
-            "uint32_t";
-            0
-        },
-    >,
+    pub max_render_pass_stripes: u32,
 }
 #[repr(C)]
 pub struct RenderPassStripeInfoARM {
@@ -29,23 +24,13 @@ pub struct RenderPassStripeInfoARM {
 pub struct RenderPassStripeBeginInfoARM {
     pub s_type: crate::vk::StructureType,
     pub p_next: *const core::ffi::c_void,
-    pub stripe_info_count: crate::External<
-        {
-            "uint32_t";
-            0
-        },
-    >,
+    pub stripe_info_count: u32,
     pub p_stripe_infos: *const crate::vk::RenderPassStripeInfoARM,
 }
 #[repr(C)]
 pub struct RenderPassStripeSubmitInfoARM {
     pub s_type: crate::vk::StructureType,
     pub p_next: *const core::ffi::c_void,
-    pub stripe_semaphore_info_count: crate::External<
-        {
-            "uint32_t";
-            0
-        },
-    >,
+    pub stripe_semaphore_info_count: u32,
     pub p_stripe_semaphore_infos: *const crate::vk::SemaphoreSubmitInfo,
 }

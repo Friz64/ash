@@ -6,76 +6,36 @@ pub struct ImportMemoryBufferCollectionFUCHSIA {
     pub s_type: crate::vk::StructureType,
     pub p_next: *const core::ffi::c_void,
     pub collection: crate::vk::BufferCollectionFUCHSIA,
-    pub index: crate::External<
-        {
-            "uint32_t";
-            0
-        },
-    >,
+    pub index: u32,
 }
 #[repr(C)]
 pub struct BufferCollectionImageCreateInfoFUCHSIA {
     pub s_type: crate::vk::StructureType,
     pub p_next: *const core::ffi::c_void,
     pub collection: crate::vk::BufferCollectionFUCHSIA,
-    pub index: crate::External<
-        {
-            "uint32_t";
-            0
-        },
-    >,
+    pub index: u32,
 }
 #[repr(C)]
 pub struct BufferCollectionBufferCreateInfoFUCHSIA {
     pub s_type: crate::vk::StructureType,
     pub p_next: *const core::ffi::c_void,
     pub collection: crate::vk::BufferCollectionFUCHSIA,
-    pub index: crate::External<
-        {
-            "uint32_t";
-            0
-        },
-    >,
+    pub index: u32,
 }
 #[repr(C)]
 pub struct BufferCollectionCreateInfoFUCHSIA {
     pub s_type: crate::vk::StructureType,
     pub p_next: *const core::ffi::c_void,
-    pub collection_token: crate::External<
-        {
-            "zx_handle_t";
-            0
-        },
-    >,
+    pub collection_token: crate::platform_types::zx_handle_t,
 }
 #[repr(C)]
 pub struct BufferCollectionPropertiesFUCHSIA {
     pub s_type: crate::vk::StructureType,
     pub p_next: *mut core::ffi::c_void,
-    pub memory_type_bits: crate::External<
-        {
-            "uint32_t";
-            0
-        },
-    >,
-    pub buffer_count: crate::External<
-        {
-            "uint32_t";
-            0
-        },
-    >,
-    pub create_info_index: crate::External<
-        {
-            "uint32_t";
-            0
-        },
-    >,
-    pub sysmem_pixel_format: crate::External<
-        {
-            "uint64_t";
-            0
-        },
-    >,
+    pub memory_type_bits: u32,
+    pub buffer_count: u32,
+    pub create_info_index: u32,
+    pub sysmem_pixel_format: u64,
     pub format_features: crate::vk::FormatFeatureFlags,
     pub sysmem_color_space_index: crate::vk::SysmemColorSpaceFUCHSIA,
     pub sampler_ycbcr_conversion_components: crate::vk::ComponentMapping,
@@ -96,12 +56,7 @@ pub struct BufferConstraintsInfoFUCHSIA {
 pub struct SysmemColorSpaceFUCHSIA {
     pub s_type: crate::vk::StructureType,
     pub p_next: *const core::ffi::c_void,
-    pub color_space: crate::External<
-        {
-            "uint32_t";
-            0
-        },
-    >,
+    pub color_space: u32,
 }
 #[repr(C)]
 pub struct ImageFormatConstraintsInfoFUCHSIA {
@@ -110,30 +65,15 @@ pub struct ImageFormatConstraintsInfoFUCHSIA {
     pub image_create_info: crate::vk::ImageCreateInfo,
     pub required_format_features: crate::vk::FormatFeatureFlags,
     pub flags: crate::vk::ImageFormatConstraintsFlagsFUCHSIA,
-    pub sysmem_pixel_format: crate::External<
-        {
-            "uint64_t";
-            0
-        },
-    >,
-    pub color_space_count: crate::External<
-        {
-            "uint32_t";
-            0
-        },
-    >,
+    pub sysmem_pixel_format: u64,
+    pub color_space_count: u32,
     pub p_color_spaces: *const crate::vk::SysmemColorSpaceFUCHSIA,
 }
 #[repr(C)]
 pub struct ImageConstraintsInfoFUCHSIA {
     pub s_type: crate::vk::StructureType,
     pub p_next: *const core::ffi::c_void,
-    pub format_constraints_count: crate::External<
-        {
-            "uint32_t";
-            0
-        },
-    >,
+    pub format_constraints_count: u32,
     pub p_format_constraints: *const crate::vk::ImageFormatConstraintsInfoFUCHSIA,
     pub buffer_collection_constraints: crate::vk::BufferCollectionConstraintsInfoFUCHSIA,
     pub flags: crate::vk::ImageConstraintsInfoFlagsFUCHSIA,
@@ -142,36 +82,11 @@ pub struct ImageConstraintsInfoFUCHSIA {
 pub struct BufferCollectionConstraintsInfoFUCHSIA {
     pub s_type: crate::vk::StructureType,
     pub p_next: *const core::ffi::c_void,
-    pub min_buffer_count: crate::External<
-        {
-            "uint32_t";
-            0
-        },
-    >,
-    pub max_buffer_count: crate::External<
-        {
-            "uint32_t";
-            0
-        },
-    >,
-    pub min_buffer_count_for_camping: crate::External<
-        {
-            "uint32_t";
-            0
-        },
-    >,
-    pub min_buffer_count_for_dedicated_slack: crate::External<
-        {
-            "uint32_t";
-            0
-        },
-    >,
-    pub min_buffer_count_for_shared_slack: crate::External<
-        {
-            "uint32_t";
-            0
-        },
-    >,
+    pub min_buffer_count: u32,
+    pub max_buffer_count: u32,
+    pub min_buffer_count_for_camping: u32,
+    pub min_buffer_count_for_dedicated_slack: u32,
+    pub min_buffer_count_for_shared_slack: u32,
 }
 #[repr(C)]
 pub struct ImageFormatConstraintsFlagsFUCHSIA {}

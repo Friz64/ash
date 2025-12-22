@@ -5,12 +5,7 @@
 pub struct DeviceGroupPresentCapabilitiesKHR {
     pub s_type: crate::vk::StructureType,
     pub p_next: *mut core::ffi::c_void,
-    pub present_mask: [crate::External<
-        {
-            "uint32_t";
-            0
-        },
-    >; 1337],
+    pub present_mask: [u32; 1337],
     pub modes: crate::vk::DeviceGroupPresentModeFlagsKHR,
 }
 #[repr(C)]
@@ -24,49 +19,24 @@ pub struct BindImageMemorySwapchainInfoKHR {
     pub s_type: crate::vk::StructureType,
     pub p_next: *const core::ffi::c_void,
     pub swapchain: crate::vk::SwapchainKHR,
-    pub image_index: crate::External<
-        {
-            "uint32_t";
-            0
-        },
-    >,
+    pub image_index: u32,
 }
 #[repr(C)]
 pub struct AcquireNextImageInfoKHR {
     pub s_type: crate::vk::StructureType,
     pub p_next: *const core::ffi::c_void,
     pub swapchain: crate::vk::SwapchainKHR,
-    pub timeout: crate::External<
-        {
-            "uint64_t";
-            0
-        },
-    >,
+    pub timeout: u64,
     pub semaphore: crate::vk::Semaphore,
     pub fence: crate::vk::Fence,
-    pub device_mask: crate::External<
-        {
-            "uint32_t";
-            0
-        },
-    >,
+    pub device_mask: u32,
 }
 #[repr(C)]
 pub struct DeviceGroupPresentInfoKHR {
     pub s_type: crate::vk::StructureType,
     pub p_next: *const core::ffi::c_void,
-    pub swapchain_count: crate::External<
-        {
-            "uint32_t";
-            0
-        },
-    >,
-    pub p_device_masks: *const crate::External<
-        {
-            "uint32_t";
-            0
-        },
-    >,
+    pub swapchain_count: u32,
+    pub p_device_masks: *const u32,
     pub mode: crate::vk::DeviceGroupPresentModeFlagBitsKHR,
 }
 #[repr(C)]

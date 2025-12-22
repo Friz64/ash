@@ -6,12 +6,7 @@ pub struct StreamDescriptorSurfaceCreateInfoGGP {
     pub s_type: crate::vk::StructureType,
     pub p_next: *const core::ffi::c_void,
     pub flags: crate::vk::StreamDescriptorSurfaceCreateFlagsGGP,
-    pub stream_descriptor: crate::External<
-        {
-            "GgpStreamDescriptor";
-            0
-        },
-    >,
+    pub stream_descriptor: crate::platform_types::GgpStreamDescriptor,
 }
 #[repr(C)]
 pub struct StreamDescriptorSurfaceCreateFlagsGGP {}

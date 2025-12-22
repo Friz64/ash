@@ -18,53 +18,23 @@ pub struct PipelineExecutablePropertiesKHR {
     pub s_type: crate::vk::StructureType,
     pub p_next: *mut core::ffi::c_void,
     pub stages: crate::vk::ShaderStageFlags,
-    pub name: [crate::External<
-        {
-            "char";
-            0
-        },
-    >; 1337],
-    pub description: [crate::External<
-        {
-            "char";
-            0
-        },
-    >; 1337],
-    pub subgroup_size: crate::External<
-        {
-            "uint32_t";
-            0
-        },
-    >,
+    pub name: [core::ffi::c_char; 1337],
+    pub description: [core::ffi::c_char; 1337],
+    pub subgroup_size: u32,
 }
 #[repr(C)]
 pub struct PipelineExecutableInfoKHR {
     pub s_type: crate::vk::StructureType,
     pub p_next: *const core::ffi::c_void,
     pub pipeline: crate::vk::Pipeline,
-    pub executable_index: crate::External<
-        {
-            "uint32_t";
-            0
-        },
-    >,
+    pub executable_index: u32,
 }
 #[repr(C)]
 pub struct PipelineExecutableStatisticKHR {
     pub s_type: crate::vk::StructureType,
     pub p_next: *mut core::ffi::c_void,
-    pub name: [crate::External<
-        {
-            "char";
-            0
-        },
-    >; 1337],
-    pub description: [crate::External<
-        {
-            "char";
-            0
-        },
-    >; 1337],
+    pub name: [core::ffi::c_char; 1337],
+    pub description: [core::ffi::c_char; 1337],
     pub format: crate::vk::PipelineExecutableStatisticFormatKHR,
     pub value: crate::vk::PipelineExecutableStatisticValueKHR,
 }
@@ -72,48 +42,18 @@ pub struct PipelineExecutableStatisticKHR {
 pub struct PipelineExecutableInternalRepresentationKHR {
     pub s_type: crate::vk::StructureType,
     pub p_next: *mut core::ffi::c_void,
-    pub name: [crate::External<
-        {
-            "char";
-            0
-        },
-    >; 1337],
-    pub description: [crate::External<
-        {
-            "char";
-            0
-        },
-    >; 1337],
+    pub name: [core::ffi::c_char; 1337],
+    pub description: [core::ffi::c_char; 1337],
     pub is_text: crate::vk::Bool32,
-    pub data_size: crate::External<
-        {
-            "size_t";
-            0
-        },
-    >,
+    pub data_size: usize,
     pub p_data: *mut core::ffi::c_void,
 }
 #[repr(C)]
 pub struct PipelineExecutableStatisticValueKHR {
     b32: crate::vk::Bool32,
-    i64: crate::External<
-        {
-            "int64_t";
-            0
-        },
-    >,
-    u64: crate::External<
-        {
-            "uint64_t";
-            0
-        },
-    >,
-    f64: crate::External<
-        {
-            "double";
-            0
-        },
-    >,
+    i64: i64,
+    u64: u64,
+    f64: core::ffi::c_double,
 }
 #[repr(C)]
 pub struct PipelineExecutableStatisticFormatKHR {}

@@ -5,12 +5,7 @@
 pub struct PhysicalDeviceVertexAttributeDivisorPropertiesEXT {
     pub s_type: crate::vk::StructureType,
     pub p_next: *mut core::ffi::c_void,
-    pub max_vertex_attrib_divisor: crate::External<
-        {
-            "uint32_t";
-            0
-        },
-    >,
+    pub max_vertex_attrib_divisor: u32,
 }
 pub type VertexInputBindingDivisorDescriptionEXT = crate::vk::VertexInputBindingDivisorDescription;
 pub type PipelineVertexInputDivisorStateCreateInfoEXT = crate::vk::PipelineVertexInputDivisorStateCreateInfo;
