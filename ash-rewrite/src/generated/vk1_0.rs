@@ -2801,15 +2801,79 @@ pub struct Framebuffer {}
 pub struct RenderPass {}
 #[repr(C)]
 pub struct PipelineCache {}
-#[repr(C)]
-pub struct PFN_vkInternalAllocationNotification {}
-#[repr(C)]
-pub struct PFN_vkInternalFreeNotification {}
-#[repr(C)]
-pub struct PFN_vkReallocationFunction {}
-#[repr(C)]
-pub struct PFN_vkAllocationFunction {}
-#[repr(C)]
-pub struct PFN_vkFreeFunction {}
-#[repr(C)]
-pub struct PFN_vkVoidFunction {}
+#[allow(non_camel_case_types)]
+pub type PFN_vkInternalAllocationNotification = Option<
+    unsafe extern "system" fn(
+        p_user_data: *mut core::ffi::c_void,
+        size: crate::External<
+            {
+                "size_t";
+                0
+            },
+        >,
+        allocation_type: crate::vk::InternalAllocationType,
+        allocation_scope: crate::vk::SystemAllocationScope,
+    ),
+>;
+#[allow(non_camel_case_types)]
+pub type PFN_vkInternalFreeNotification = Option<
+    unsafe extern "system" fn(
+        p_user_data: *mut core::ffi::c_void,
+        size: crate::External<
+            {
+                "size_t";
+                0
+            },
+        >,
+        allocation_type: crate::vk::InternalAllocationType,
+        allocation_scope: crate::vk::SystemAllocationScope,
+    ),
+>;
+#[allow(non_camel_case_types)]
+pub type PFN_vkReallocationFunction = Option<
+    unsafe extern "system" fn(
+        p_user_data: *mut core::ffi::c_void,
+        p_original: *mut core::ffi::c_void,
+        size: crate::External<
+            {
+                "size_t";
+                0
+            },
+        >,
+        alignment: crate::External<
+            {
+                "size_t";
+                0
+            },
+        >,
+        allocation_scope: crate::vk::SystemAllocationScope,
+    ) -> *mut core::ffi::c_void,
+>;
+#[allow(non_camel_case_types)]
+pub type PFN_vkAllocationFunction = Option<
+    unsafe extern "system" fn(
+        p_user_data: *mut core::ffi::c_void,
+        size: crate::External<
+            {
+                "size_t";
+                0
+            },
+        >,
+        alignment: crate::External<
+            {
+                "size_t";
+                0
+            },
+        >,
+        allocation_scope: crate::vk::SystemAllocationScope,
+    ) -> *mut core::ffi::c_void,
+>;
+#[allow(non_camel_case_types)]
+pub type PFN_vkFreeFunction = Option<
+    unsafe extern "system" fn(
+        p_user_data: *mut core::ffi::c_void,
+        p_memory: *mut core::ffi::c_void,
+    ),
+>;
+#[allow(non_camel_case_types)]
+pub type PFN_vkVoidFunction = Option<unsafe extern "system" fn()>;

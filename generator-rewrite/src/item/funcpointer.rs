@@ -4,12 +4,12 @@ use analysis::item::function::FuncPointer;
 use quote::{format_ident, quote};
 
 impl Code for FuncPointer {
-    fn code(&self, _ctx: &Context) -> CodeMap {
+    fn code(&self, ctx: &Context) -> CodeMap {
         let name = format_ident!("{}", self.name.prefix_trimmed());
+        let fnptr = self.func_ty.to_rust(ctx);
         let code = quote! {
-            #[repr(C)]
-            pub struct #name {
-            }
+            #[allow(non_camel_case_types)]
+            pub type #name = Option<#fnptr>;
         };
 
         CodeMap::new(Destination(self.required_by), code)
