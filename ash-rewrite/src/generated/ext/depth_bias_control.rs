@@ -27,5 +27,5 @@ pub struct PhysicalDeviceDepthBiasControlFeaturesEXT {
 }
 #[repr(transparent)]
 pub struct DepthBiasRepresentationEXT(pub(crate) i32);
-pub const EXT_DEPTH_BIAS_CONTROL_SPEC_VERSION: usize = 69;
-pub const EXT_DEPTH_BIAS_CONTROL_EXTENSION_NAME: &'static core::ffi::CStr = c"VK_EXT_depth_bias_control";
+pub const EXT_DEPTH_BIAS_CONTROL_SPEC_VERSION: usize = 1;
+pub const EXT_DEPTH_BIAS_CONTROL_EXTENSION_NAME: &core::ffi::CStr = c"VK_EXT_depth_bias_control";

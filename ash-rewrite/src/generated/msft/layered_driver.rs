@@ -9,5 +9,5 @@ pub struct PhysicalDeviceLayeredDriverPropertiesMSFT {
 }
 #[repr(transparent)]
 pub struct LayeredDriverUnderlyingApiMSFT(pub(crate) i32);
-pub const MSFT_LAYERED_DRIVER_SPEC_VERSION: usize = 69;
-pub const MSFT_LAYERED_DRIVER_EXTENSION_NAME: &'static core::ffi::CStr = c"VK_MSFT_layered_driver";
+pub const MSFT_LAYERED_DRIVER_SPEC_VERSION: usize = 1;
+pub const MSFT_LAYERED_DRIVER_EXTENSION_NAME: &core::ffi::CStr = c"VK_MSFT_layered_driver";

@@ -7,5 +7,5 @@ pub type ExternalSemaphoreHandleTypeFlagBitsKHR = crate::vk::ExternalSemaphoreHa
 pub type ExternalSemaphoreFeatureFlagBitsKHR = crate::vk::ExternalSemaphoreFeatureFlagBits;
 pub type ExternalSemaphoreHandleTypeFlagsKHR = crate::vk::ExternalSemaphoreHandleTypeFlags;
 pub type ExternalSemaphoreFeatureFlagsKHR = crate::vk::ExternalSemaphoreFeatureFlags;
-pub const KHR_EXTERNAL_SEMAPHORE_CAPABILITIES_SPEC_VERSION: usize = 69;
-pub const KHR_EXTERNAL_SEMAPHORE_CAPABILITIES_EXTENSION_NAME: &'static core::ffi::CStr = c"VK_KHR_external_semaphore_capabilities";
+pub const KHR_EXTERNAL_SEMAPHORE_CAPABILITIES_SPEC_VERSION: usize = 1;
+pub const KHR_EXTERNAL_SEMAPHORE_CAPABILITIES_EXTENSION_NAME: &core::ffi::CStr = c"VK_KHR_external_semaphore_capabilities";

@@ -40,5 +40,5 @@ pub struct PhysicalDeviceVideoEncodeIntraRefreshFeaturesKHR {
 pub struct VideoEncodeIntraRefreshModeFlagsKHR(pub(crate) i32);
 #[repr(transparent)]
 pub struct VideoEncodeIntraRefreshModeFlagBitsKHR(pub(crate) i32);
-pub const KHR_VIDEO_ENCODE_INTRA_REFRESH_SPEC_VERSION: usize = 69;
-pub const KHR_VIDEO_ENCODE_INTRA_REFRESH_EXTENSION_NAME: &'static core::ffi::CStr = c"VK_KHR_video_encode_intra_refresh";
+pub const KHR_VIDEO_ENCODE_INTRA_REFRESH_SPEC_VERSION: usize = 1;
+pub const KHR_VIDEO_ENCODE_INTRA_REFRESH_EXTENSION_NAME: &core::ffi::CStr = c"VK_KHR_video_encode_intra_refresh";

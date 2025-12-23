@@ -155,5 +155,5 @@ pub struct VideoEncodeH264CapabilityFlagBitsKHR(pub(crate) i32);
 pub struct VideoEncodeH264StdFlagBitsKHR(pub(crate) i32);
 #[repr(transparent)]
 pub struct VideoEncodeH264RateControlFlagBitsKHR(pub(crate) i32);
-pub const KHR_VIDEO_ENCODE_H264_SPEC_VERSION: usize = 69;
-pub const KHR_VIDEO_ENCODE_H264_EXTENSION_NAME: &'static core::ffi::CStr = c"VK_KHR_video_encode_h264";
+pub const KHR_VIDEO_ENCODE_H264_SPEC_VERSION: usize = 14;
+pub const KHR_VIDEO_ENCODE_H264_EXTENSION_NAME: &core::ffi::CStr = c"VK_KHR_video_encode_h264";

@@ -1,13 +1,18 @@
 use crate::{
+    decl::CPrimaryType,
     item::{Item, RequiredBy},
     name::ConstantName,
     xml,
 };
+use tracing::{instrument, trace};
+
+#[derive(Debug)]
+pub struct Expression(pub &'static str);
 
 #[derive(Debug)]
 pub enum Value {
-    String(&'static str),
-    Todo,
+    LiteralString(&'static str),
+    Expression(Option<CPrimaryType>, Expression),
 }
 
 #[derive(Debug)]
@@ -24,26 +29,32 @@ impl Item for Constant {
 }
 
 impl Constant {
+    #[instrument]
     pub(crate) fn from_constant(required_by: RequiredBy, xml: &xml::Constant) -> Constant {
+        trace!("constructing from constant");
+
         Constant {
             required_by,
             name: xml.name,
-            value: Value::Todo,
+            value: Value::Expression(Some(xml.ty), Expression(xml.value)),
         }
     }
 
+    #[instrument]
     pub(crate) fn from_require_constant(
         required_by: RequiredBy,
         xml: &xml::RequireConstant,
     ) -> Option<Constant> {
+        trace!("constructing from require constant");
+
         let value = xml.value?;
         Some(Constant {
             required_by,
             name: xml.name,
             value: if let Some(string) = value.strip_prefix('"') {
-                Value::String(string.strip_suffix('"').unwrap())
+                Value::LiteralString(string.strip_suffix('"').unwrap())
             } else {
-                Value::Todo
+                Value::Expression(None, Expression(value))
             },
         })
     }

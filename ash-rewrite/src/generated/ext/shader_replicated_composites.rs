@@ -7,5 +7,5 @@ pub struct PhysicalDeviceShaderReplicatedCompositesFeaturesEXT {
     pub p_next: *mut core::ffi::c_void,
     pub shader_replicated_composites: crate::vk::Bool32,
 }
-pub const EXT_SHADER_REPLICATED_COMPOSITES_SPEC_VERSION: usize = 69;
-pub const EXT_SHADER_REPLICATED_COMPOSITES_EXTENSION_NAME: &'static core::ffi::CStr = c"VK_EXT_shader_replicated_composites";
+pub const EXT_SHADER_REPLICATED_COMPOSITES_SPEC_VERSION: usize = 1;
+pub const EXT_SHADER_REPLICATED_COMPOSITES_EXTENSION_NAME: &core::ffi::CStr = c"VK_EXT_shader_replicated_composites";

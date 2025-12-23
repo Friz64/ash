@@ -1,5 +1,6 @@
 use crate::{
     decl::{ArrayLen, CPrimaryType, Decl, Mutability, Ty},
+    item::constant,
     name::{ConstantName, TypeName},
 };
 use proc_macro2::{Literal, TokenStream};
@@ -13,8 +14,8 @@ pub trait NameTranslate {
 
     fn constant_to_rust(&self, name: ConstantName) -> TokenStream;
 
-    fn base_type_to_rust(&self, base_ty: CPrimaryType) -> TokenStream {
-        match base_ty {
+    fn primary_type_to_rust(&self, primary_ty: CPrimaryType) -> TokenStream {
+        match primary_ty {
             CPrimaryType::Void => quote! { core::ffi::c_void },
             CPrimaryType::Char => quote! { core::ffi::c_char },
             CPrimaryType::Int => quote! { core::ffi::c_int },
@@ -48,7 +49,7 @@ impl Ty {
     pub fn to_rust(&self, name_translate: &impl NameTranslate) -> TokenStream {
         match self {
             Ty::Spec(name) => name_translate.type_to_rust(*name),
-            Ty::CPrimary(base_ty) => name_translate.base_type_to_rust(*base_ty),
+            Ty::CPrimary(base_ty) => name_translate.primary_type_to_rust(*base_ty),
             Ty::External(external) => name_translate.ext_type_to_rust(external),
             Ty::Ptr(Ty::Func { ret_ty, params }, _mutability) => {
                 let ret = ret_ty.map(|ty| {
@@ -89,8 +90,54 @@ impl Ty {
                     }
                 };
 
-                quote! { [#ty; #array_len] }
+                quote! { [#ty; #array_len as _] }
             }
         }
+    }
+}
+
+impl constant::Expression {
+    pub fn to_rust(&self, _name_translate: &impl NameTranslate) -> TokenStream {
+        let mut rust_expr = String::default();
+
+        let mut s = self.0;
+        assert!(s.is_ascii());
+        while let Some(c) = s.chars().next() {
+            let is_ident_or_number = |c: char| c.is_ascii_alphanumeric() || c == '_' || c == '.';
+            let rust_token = if is_ident_or_number(c) {
+                let len = s.chars().take_while(|&c| is_ident_or_number(c)).count();
+                let (token, rest) = s.split_at(len);
+                s = rest;
+                if c.is_ascii_digit() {
+                    // `token` is  a literal integer
+                    token
+                        .replace("ULL", "u64")
+                        .replace("U", "u32")
+                        .replace("F", "f32")
+                } else {
+                    // `token` is a macro invocation
+                    String::from("69420") // TODO
+                }
+            } else if c.is_ascii_punctuation() {
+                s = &s[1..];
+                // `c` is punctuation
+                if c == '~' {
+                    String::from('!')
+                } else {
+                    c.to_string()
+                }
+            } else if c.is_ascii_whitespace() {
+                s = s.trim_start();
+                continue;
+            } else {
+                panic!("unsupported token: {c:?}");
+            };
+
+            rust_expr += &(rust_token + " ");
+        }
+
+        let tokens = syn::parse_str(&rust_expr).unwrap();
+        syn::parse2::<syn::File>(quote! { const WAFF: usize = #tokens; }).unwrap();
+        tokens
     }
 }

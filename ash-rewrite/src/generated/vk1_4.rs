@@ -77,7 +77,8 @@ pub struct QueueFamilyGlobalPriorityProperties {
     pub s_type: crate::vk::StructureType,
     pub p_next: *mut core::ffi::c_void,
     pub priority_count: u32,
-    pub priorities: [crate::vk::QueueGlobalPriority; crate::vk::MAX_GLOBAL_PRIORITY_SIZE],
+    pub priorities: [crate::vk::QueueGlobalPriority; crate::vk::MAX_GLOBAL_PRIORITY_SIZE
+        as _],
 }
 #[repr(C)]
 pub struct VertexInputBindingDivisorDescription {
@@ -190,7 +191,7 @@ pub struct PhysicalDeviceVulkan14Properties {
     pub p_copy_src_layouts: *mut crate::vk::ImageLayout,
     pub copy_dst_layout_count: u32,
     pub p_copy_dst_layouts: *mut crate::vk::ImageLayout,
-    pub optimal_tiling_layout_uuid: [u8; crate::vk::UUID_SIZE],
+    pub optimal_tiling_layout_uuid: [u8; crate::vk::UUID_SIZE as _],
     pub identical_memory_type_requirements: crate::vk::Bool32,
 }
 #[repr(C)]
@@ -207,7 +208,7 @@ pub struct PhysicalDeviceHostImageCopyProperties {
     pub p_copy_src_layouts: *mut crate::vk::ImageLayout,
     pub copy_dst_layout_count: u32,
     pub p_copy_dst_layouts: *mut crate::vk::ImageLayout,
-    pub optimal_tiling_layout_uuid: [u8; crate::vk::UUID_SIZE],
+    pub optimal_tiling_layout_uuid: [u8; crate::vk::UUID_SIZE as _],
     pub identical_memory_type_requirements: crate::vk::Bool32,
 }
 #[repr(C)]
@@ -463,4 +464,4 @@ pub struct PipelineCreateFlagBits2(pub(crate) i32);
 pub struct HostImageCopyFlagBits(pub(crate) i32);
 #[repr(transparent)]
 pub struct MemoryUnmapFlagBits(pub(crate) i32);
-pub const MAX_GLOBAL_PRIORITY_SIZE: usize = 69;
+pub const MAX_GLOBAL_PRIORITY_SIZE: u32 = 16;

@@ -7,5 +7,5 @@ pub struct PhysicalDeviceDynamicRenderingUnusedAttachmentsFeaturesEXT {
     pub p_next: *mut core::ffi::c_void,
     pub dynamic_rendering_unused_attachments: crate::vk::Bool32,
 }
-pub const EXT_DYNAMIC_RENDERING_UNUSED_ATTACHMENTS_SPEC_VERSION: usize = 69;
-pub const EXT_DYNAMIC_RENDERING_UNUSED_ATTACHMENTS_EXTENSION_NAME: &'static core::ffi::CStr = c"VK_EXT_dynamic_rendering_unused_attachments";
+pub const EXT_DYNAMIC_RENDERING_UNUSED_ATTACHMENTS_SPEC_VERSION: usize = 1;
+pub const EXT_DYNAMIC_RENDERING_UNUSED_ATTACHMENTS_EXTENSION_NAME: &core::ffi::CStr = c"VK_EXT_dynamic_rendering_unused_attachments";

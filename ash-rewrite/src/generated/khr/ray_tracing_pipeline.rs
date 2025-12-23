@@ -75,6 +75,6 @@ pub struct RayTracingPipelineInterfaceCreateInfoKHR {
 pub struct RayTracingShaderGroupTypeKHR(pub(crate) i32);
 #[repr(transparent)]
 pub struct ShaderGroupShaderKHR(pub(crate) i32);
-pub const SHADER_UNUSED_KHR: usize = 69;
-pub const KHR_RAY_TRACING_PIPELINE_SPEC_VERSION: usize = 69;
-pub const KHR_RAY_TRACING_PIPELINE_EXTENSION_NAME: &'static core::ffi::CStr = c"VK_KHR_ray_tracing_pipeline";
+pub const SHADER_UNUSED_KHR: u32 = (!0u32);
+pub const KHR_RAY_TRACING_PIPELINE_SPEC_VERSION: usize = 1;
+pub const KHR_RAY_TRACING_PIPELINE_EXTENSION_NAME: &core::ffi::CStr = c"VK_KHR_ray_tracing_pipeline";

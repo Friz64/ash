@@ -6,5 +6,5 @@ pub type PrivateDataSlotCreateInfoEXT = crate::vk::PrivateDataSlotCreateInfo;
 pub type PhysicalDevicePrivateDataFeaturesEXT = crate::vk::PhysicalDevicePrivateDataFeatures;
 pub type PrivateDataSlotCreateFlagsEXT = crate::vk::PrivateDataSlotCreateFlags;
 pub type PrivateDataSlotEXT = crate::vk::PrivateDataSlot;
-pub const EXT_PRIVATE_DATA_SPEC_VERSION: usize = 69;
-pub const EXT_PRIVATE_DATA_EXTENSION_NAME: &'static core::ffi::CStr = c"VK_EXT_private_data";
+pub const EXT_PRIVATE_DATA_SPEC_VERSION: usize = 1;
+pub const EXT_PRIVATE_DATA_EXTENSION_NAME: &core::ffi::CStr = c"VK_EXT_private_data";

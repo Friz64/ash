@@ -86,7 +86,8 @@ pub struct VideoEncodeAV1PictureInfoKHR {
     pub rate_control_group: crate::vk::VideoEncodeAV1RateControlGroupKHR,
     pub constant_q_index: u32,
     pub p_std_picture_info: *const crate::vk::StdVideoEncodeAV1PictureInfo,
-    pub reference_name_slot_indices: [i32; crate::vk::MAX_VIDEO_AV1_REFERENCES_PER_FRAME_KHR],
+    pub reference_name_slot_indices: [i32; crate::vk::MAX_VIDEO_AV1_REFERENCES_PER_FRAME_KHR
+        as _],
     pub primary_reference_cdf_only: crate::vk::Bool32,
     pub generate_obu_extension_header: crate::vk::Bool32,
 }
@@ -158,6 +159,6 @@ pub struct VideoEncodeAV1StdFlagBitsKHR(pub(crate) i32);
 pub struct VideoEncodeAV1RateControlFlagBitsKHR(pub(crate) i32);
 #[repr(transparent)]
 pub struct VideoEncodeAV1SuperblockSizeFlagBitsKHR(pub(crate) i32);
-pub const MAX_VIDEO_AV1_REFERENCES_PER_FRAME_KHR: usize = 69;
-pub const KHR_VIDEO_ENCODE_AV1_SPEC_VERSION: usize = 69;
-pub const KHR_VIDEO_ENCODE_AV1_EXTENSION_NAME: &'static core::ffi::CStr = c"VK_KHR_video_encode_av1";
+pub const MAX_VIDEO_AV1_REFERENCES_PER_FRAME_KHR: u32 = 7;
+pub const KHR_VIDEO_ENCODE_AV1_SPEC_VERSION: usize = 1;
+pub const KHR_VIDEO_ENCODE_AV1_EXTENSION_NAME: &core::ffi::CStr = c"VK_KHR_video_encode_av1";

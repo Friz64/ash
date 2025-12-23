@@ -46,7 +46,7 @@ pub struct PhysicalDeviceShaderObjectFeaturesEXT {
 pub struct PhysicalDeviceShaderObjectPropertiesEXT {
     pub s_type: crate::vk::StructureType,
     pub p_next: *mut core::ffi::c_void,
-    pub shader_binary_uuid: [u8; crate::vk::UUID_SIZE],
+    pub shader_binary_uuid: [u8; crate::vk::UUID_SIZE as _],
     pub shader_binary_version: u32,
 }
 #[repr(C)]
@@ -75,5 +75,5 @@ pub struct ShaderCreateFlagsEXT(pub(crate) i32);
 pub struct ShaderCreateFlagBitsEXT(pub(crate) i32);
 #[repr(transparent)]
 pub struct ShaderEXT(pub(crate) i32);
-pub const EXT_SHADER_OBJECT_SPEC_VERSION: usize = 69;
-pub const EXT_SHADER_OBJECT_EXTENSION_NAME: &'static core::ffi::CStr = c"VK_EXT_shader_object";
+pub const EXT_SHADER_OBJECT_SPEC_VERSION: usize = 1;
+pub const EXT_SHADER_OBJECT_EXTENSION_NAME: &core::ffi::CStr = c"VK_EXT_shader_object";

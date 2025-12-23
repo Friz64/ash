@@ -2,6 +2,7 @@ pub mod cdecl;
 pub mod decl;
 pub mod item;
 pub mod name;
+pub mod to_rust;
 pub mod xml;
 
 use item::Items;

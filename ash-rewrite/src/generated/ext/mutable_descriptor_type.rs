@@ -19,5 +19,5 @@ pub struct MutableDescriptorTypeCreateInfoEXT {
     pub mutable_descriptor_type_list_count: u32,
     pub p_mutable_descriptor_type_lists: *const crate::vk::MutableDescriptorTypeListEXT,
 }
-pub const EXT_MUTABLE_DESCRIPTOR_TYPE_SPEC_VERSION: usize = 69;
-pub const EXT_MUTABLE_DESCRIPTOR_TYPE_EXTENSION_NAME: &'static core::ffi::CStr = c"VK_EXT_mutable_descriptor_type";
+pub const EXT_MUTABLE_DESCRIPTOR_TYPE_SPEC_VERSION: usize = 1;
+pub const EXT_MUTABLE_DESCRIPTOR_TYPE_EXTENSION_NAME: &core::ffi::CStr = c"VK_EXT_mutable_descriptor_type";

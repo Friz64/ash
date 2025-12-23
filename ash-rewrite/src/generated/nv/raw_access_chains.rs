@@ -7,5 +7,5 @@ pub struct PhysicalDeviceRawAccessChainsFeaturesNV {
     pub p_next: *mut core::ffi::c_void,
     pub shader_raw_access_chains: crate::vk::Bool32,
 }
-pub const NV_RAW_ACCESS_CHAINS_SPEC_VERSION: usize = 69;
-pub const NV_RAW_ACCESS_CHAINS_EXTENSION_NAME: &'static core::ffi::CStr = c"VK_NV_raw_access_chains";
+pub const NV_RAW_ACCESS_CHAINS_SPEC_VERSION: usize = 1;
+pub const NV_RAW_ACCESS_CHAINS_EXTENSION_NAME: &core::ffi::CStr = c"VK_NV_raw_access_chains";

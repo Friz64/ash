@@ -16,5 +16,5 @@ pub struct ExternalMemoryFeatureFlagsNV(pub(crate) i32);
 pub struct ExternalMemoryHandleTypeFlagBitsNV(pub(crate) i32);
 #[repr(transparent)]
 pub struct ExternalMemoryFeatureFlagBitsNV(pub(crate) i32);
-pub const NV_EXTERNAL_MEMORY_CAPABILITIES_SPEC_VERSION: usize = 69;
-pub const NV_EXTERNAL_MEMORY_CAPABILITIES_EXTENSION_NAME: &'static core::ffi::CStr = c"VK_NV_external_memory_capabilities";
+pub const NV_EXTERNAL_MEMORY_CAPABILITIES_SPEC_VERSION: usize = 1;
+pub const NV_EXTERNAL_MEMORY_CAPABILITIES_EXTENSION_NAME: &core::ffi::CStr = c"VK_NV_external_memory_capabilities";

@@ -13,5 +13,5 @@ pub struct MetalSurfaceCreateFlagsEXT(pub(crate) i32);
 #[repr(transparent)]
 #[allow(non_camel_case_types)]
 pub struct CAMetalLayer(pub(crate) i16);
-pub const EXT_METAL_SURFACE_SPEC_VERSION: usize = 69;
-pub const EXT_METAL_SURFACE_EXTENSION_NAME: &'static core::ffi::CStr = c"VK_EXT_metal_surface";
+pub const EXT_METAL_SURFACE_SPEC_VERSION: usize = 1;
+pub const EXT_METAL_SURFACE_EXTENSION_NAME: &core::ffi::CStr = c"VK_EXT_metal_surface";

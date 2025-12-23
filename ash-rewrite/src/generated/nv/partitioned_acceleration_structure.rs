@@ -28,7 +28,7 @@ pub struct PartitionedAccelerationStructureFlagsNV {
 #[repr(C)]
 pub struct PartitionedAccelerationStructureWriteInstanceDataNV {
     pub transform: crate::vk::TransformMatrixKHR,
-    pub explicit_aabb: [core::ffi::c_float; 6],
+    pub explicit_aabb: [core::ffi::c_float; 6 as _],
     pub instance_id: u32,
     pub instance_mask: u32,
     pub instance_contribution_to_hit_group_index: u32,
@@ -46,7 +46,7 @@ pub struct PartitionedAccelerationStructureUpdateInstanceDataNV {
 #[repr(C)]
 pub struct PartitionedAccelerationStructureWritePartitionTranslationDataNV {
     pub partition_index: u32,
-    pub partition_translation: [core::ffi::c_float; 3],
+    pub partition_translation: [core::ffi::c_float; 3 as _],
 }
 #[repr(C)]
 pub struct WriteDescriptorSetPartitionedAccelerationStructureNV {
@@ -82,6 +82,6 @@ pub struct PartitionedAccelerationStructureOpTypeNV(pub(crate) i32);
 pub struct PartitionedAccelerationStructureInstanceFlagsNV(pub(crate) i32);
 #[repr(transparent)]
 pub struct PartitionedAccelerationStructureInstanceFlagBitsNV(pub(crate) i32);
-pub const PARTITIONED_ACCELERATION_STRUCTURE_PARTITION_INDEX_GLOBAL_NV: usize = 69;
-pub const NV_PARTITIONED_ACCELERATION_STRUCTURE_SPEC_VERSION: usize = 69;
-pub const NV_PARTITIONED_ACCELERATION_STRUCTURE_EXTENSION_NAME: &'static core::ffi::CStr = c"VK_NV_partitioned_acceleration_structure";
+pub const PARTITIONED_ACCELERATION_STRUCTURE_PARTITION_INDEX_GLOBAL_NV: u32 = (!0u32);
+pub const NV_PARTITIONED_ACCELERATION_STRUCTURE_SPEC_VERSION: usize = 1;
+pub const NV_PARTITIONED_ACCELERATION_STRUCTURE_EXTENSION_NAME: &core::ffi::CStr = c"VK_NV_partitioned_acceleration_structure";

@@ -15,5 +15,5 @@ pub struct PhysicalDeviceNestedCommandBufferPropertiesEXT {
     pub p_next: *mut core::ffi::c_void,
     pub max_command_buffer_nesting_level: u32,
 }
-pub const EXT_NESTED_COMMAND_BUFFER_SPEC_VERSION: usize = 69;
-pub const EXT_NESTED_COMMAND_BUFFER_EXTENSION_NAME: &'static core::ffi::CStr = c"VK_EXT_nested_command_buffer";
+pub const EXT_NESTED_COMMAND_BUFFER_SPEC_VERSION: usize = 1;
+pub const EXT_NESTED_COMMAND_BUFFER_EXTENSION_NAME: &core::ffi::CStr = c"VK_EXT_nested_command_buffer";

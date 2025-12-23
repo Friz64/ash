@@ -4,6 +4,7 @@ use crate::{
     name::TypeName,
     xml,
 };
+use tracing::{instrument, trace};
 
 #[derive(Debug)]
 pub struct Struct {
@@ -25,11 +26,13 @@ impl Type for Struct {
 }
 
 impl Struct {
+    #[instrument(skip(decl_ctx))]
     pub(crate) fn new(
         decl_ctx: &decl::Context,
         required_by: RequiredBy,
         xml: &xml::Structure,
     ) -> Struct {
+        trace!("constructing");
         Struct {
             required_by,
             name: xml.name,
@@ -60,11 +63,13 @@ impl Type for Union {
 }
 
 impl Union {
+    #[instrument(skip(decl_ctx))]
     pub(crate) fn new(
         decl_ctx: &decl::Context,
         required_by: RequiredBy,
         xml: &xml::Structure,
     ) -> Union {
+        trace!("constructing");
         Union {
             required_by,
             name: xml.name,

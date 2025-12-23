@@ -12,5 +12,5 @@ pub struct PhysicalDeviceShaderCoreProperties2AMD {
 pub struct ShaderCorePropertiesFlagsAMD(pub(crate) i32);
 #[repr(transparent)]
 pub struct ShaderCorePropertiesFlagBitsAMD(pub(crate) i32);
-pub const AMD_SHADER_CORE_PROPERTIES_2_SPEC_VERSION: usize = 69;
-pub const AMD_SHADER_CORE_PROPERTIES_2_EXTENSION_NAME: &'static core::ffi::CStr = c"VK_AMD_shader_core_properties2";
+pub const AMD_SHADER_CORE_PROPERTIES_2_SPEC_VERSION: usize = 1;
+pub const AMD_SHADER_CORE_PROPERTIES_2_EXTENSION_NAME: &core::ffi::CStr = c"VK_AMD_shader_core_properties2";

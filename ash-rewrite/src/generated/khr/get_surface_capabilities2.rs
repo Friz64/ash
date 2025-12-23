@@ -19,5 +19,5 @@ pub struct SurfaceFormat2KHR {
     pub p_next: *mut core::ffi::c_void,
     pub surface_format: crate::vk::SurfaceFormatKHR,
 }
-pub const KHR_GET_SURFACE_CAPABILITIES_2_SPEC_VERSION: usize = 69;
-pub const KHR_GET_SURFACE_CAPABILITIES_2_EXTENSION_NAME: &'static core::ffi::CStr = c"VK_KHR_get_surface_capabilities2";
+pub const KHR_GET_SURFACE_CAPABILITIES_2_SPEC_VERSION: usize = 1;
+pub const KHR_GET_SURFACE_CAPABILITIES_2_EXTENSION_NAME: &core::ffi::CStr = c"VK_KHR_get_surface_capabilities2";

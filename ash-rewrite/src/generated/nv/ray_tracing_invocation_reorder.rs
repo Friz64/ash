@@ -14,5 +14,5 @@ pub struct PhysicalDeviceRayTracingInvocationReorderPropertiesNV {
     pub ray_tracing_invocation_reorder_reordering_hint: crate::vk::RayTracingInvocationReorderModeEXT,
 }
 pub type RayTracingInvocationReorderModeNV = crate::vk::RayTracingInvocationReorderModeEXT;
-pub const NV_RAY_TRACING_INVOCATION_REORDER_SPEC_VERSION: usize = 69;
-pub const NV_RAY_TRACING_INVOCATION_REORDER_EXTENSION_NAME: &'static core::ffi::CStr = c"VK_NV_ray_tracing_invocation_reorder";
+pub const NV_RAY_TRACING_INVOCATION_REORDER_SPEC_VERSION: usize = 1;
+pub const NV_RAY_TRACING_INVOCATION_REORDER_EXTENSION_NAME: &core::ffi::CStr = c"VK_NV_ray_tracing_invocation_reorder";

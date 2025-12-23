@@ -2,5 +2,5 @@
 #![cfg_attr(rustfmt, rustfmt_skip)]
 //![Vulkan Manual Page](https://docs.vulkan.org/refpages/latest/refpages/source/VK_KHR_shader_atomic_int64.html) · Vulkan extension
 pub type PhysicalDeviceShaderAtomicInt64FeaturesKHR = crate::vk::PhysicalDeviceShaderAtomicInt64Features;
-pub const KHR_SHADER_ATOMIC_INT64_SPEC_VERSION: usize = 69;
-pub const KHR_SHADER_ATOMIC_INT64_EXTENSION_NAME: &'static core::ffi::CStr = c"VK_KHR_shader_atomic_int64";
+pub const KHR_SHADER_ATOMIC_INT64_SPEC_VERSION: usize = 1;
+pub const KHR_SHADER_ATOMIC_INT64_EXTENSION_NAME: &core::ffi::CStr = c"VK_KHR_shader_atomic_int64";

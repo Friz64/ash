@@ -2,5 +2,5 @@
 #![cfg_attr(rustfmt, rustfmt_skip)]
 //![Vulkan Manual Page](https://docs.vulkan.org/refpages/latest/refpages/source/VK_EXT_present_mode_fifo_latest_ready.html) · Vulkan extension
 pub type PhysicalDevicePresentModeFifoLatestReadyFeaturesEXT = crate::vk::PhysicalDevicePresentModeFifoLatestReadyFeaturesKHR;
-pub const EXT_PRESENT_MODE_FIFO_LATEST_READY_SPEC_VERSION: usize = 69;
-pub const EXT_PRESENT_MODE_FIFO_LATEST_READY_EXTENSION_NAME: &'static core::ffi::CStr = c"VK_EXT_present_mode_fifo_latest_ready";
+pub const EXT_PRESENT_MODE_FIFO_LATEST_READY_SPEC_VERSION: usize = 1;
+pub const EXT_PRESENT_MODE_FIFO_LATEST_READY_EXTENSION_NAME: &core::ffi::CStr = c"VK_EXT_present_mode_fifo_latest_ready";

@@ -4,5 +4,5 @@
 pub type PhysicalDeviceMutableDescriptorTypeFeaturesVALVE = crate::vk::PhysicalDeviceMutableDescriptorTypeFeaturesEXT;
 pub type MutableDescriptorTypeListVALVE = crate::vk::MutableDescriptorTypeListEXT;
 pub type MutableDescriptorTypeCreateInfoVALVE = crate::vk::MutableDescriptorTypeCreateInfoEXT;
-pub const VALVE_MUTABLE_DESCRIPTOR_TYPE_SPEC_VERSION: usize = 69;
-pub const VALVE_MUTABLE_DESCRIPTOR_TYPE_EXTENSION_NAME: &'static core::ffi::CStr = c"VK_VALVE_mutable_descriptor_type";
+pub const VALVE_MUTABLE_DESCRIPTOR_TYPE_SPEC_VERSION: usize = 1;
+pub const VALVE_MUTABLE_DESCRIPTOR_TYPE_EXTENSION_NAME: &core::ffi::CStr = c"VK_VALVE_mutable_descriptor_type";

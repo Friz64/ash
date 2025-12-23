@@ -6,5 +6,5 @@ pub type DescriptorUpdateTemplateCreateInfoKHR = crate::vk::DescriptorUpdateTemp
 pub type DescriptorUpdateTemplateTypeKHR = crate::vk::DescriptorUpdateTemplateType;
 pub type DescriptorUpdateTemplateCreateFlagsKHR = crate::vk::DescriptorUpdateTemplateCreateFlags;
 pub type DescriptorUpdateTemplateKHR = crate::vk::DescriptorUpdateTemplate;
-pub const KHR_DESCRIPTOR_UPDATE_TEMPLATE_SPEC_VERSION: usize = 69;
-pub const KHR_DESCRIPTOR_UPDATE_TEMPLATE_EXTENSION_NAME: &'static core::ffi::CStr = c"VK_KHR_descriptor_update_template";
+pub const KHR_DESCRIPTOR_UPDATE_TEMPLATE_SPEC_VERSION: usize = 1;
+pub const KHR_DESCRIPTOR_UPDATE_TEMPLATE_EXTENSION_NAME: &core::ffi::CStr = c"VK_KHR_descriptor_update_template";

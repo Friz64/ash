@@ -43,5 +43,5 @@ pub struct PhysicalDeviceExtendedDynamicState3PropertiesEXT {
     pub p_next: *mut core::ffi::c_void,
     pub dynamic_primitive_topology_unrestricted: crate::vk::Bool32,
 }
-pub const EXT_EXTENDED_DYNAMIC_STATE_3_SPEC_VERSION: usize = 69;
-pub const EXT_EXTENDED_DYNAMIC_STATE_3_EXTENSION_NAME: &'static core::ffi::CStr = c"VK_EXT_extended_dynamic_state3";
+pub const EXT_EXTENDED_DYNAMIC_STATE_3_SPEC_VERSION: usize = 2;
+pub const EXT_EXTENDED_DYNAMIC_STATE_3_EXTENSION_NAME: &core::ffi::CStr = c"VK_EXT_extended_dynamic_state3";

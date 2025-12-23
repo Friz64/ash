@@ -108,7 +108,7 @@ pub struct AabbPositionsKHR {
 }
 #[repr(C)]
 pub struct TransformMatrixKHR {
-    pub matrix: [[core::ffi::c_float; 4]; 3],
+    pub matrix: [[core::ffi::c_float; 4 as _]; 3 as _],
 }
 #[repr(C)]
 pub struct AccelerationStructureInstanceKHR {
@@ -199,5 +199,5 @@ pub struct BuildAccelerationStructureFlagBitsKHR(pub(crate) i32);
 pub struct AccelerationStructureCreateFlagBitsKHR(pub(crate) i32);
 #[repr(transparent)]
 pub struct AccelerationStructureKHR(pub(crate) i32);
-pub const KHR_ACCELERATION_STRUCTURE_SPEC_VERSION: usize = 69;
-pub const KHR_ACCELERATION_STRUCTURE_EXTENSION_NAME: &'static core::ffi::CStr = c"VK_KHR_acceleration_structure";
+pub const KHR_ACCELERATION_STRUCTURE_SPEC_VERSION: usize = 13;
+pub const KHR_ACCELERATION_STRUCTURE_EXTENSION_NAME: &core::ffi::CStr = c"VK_KHR_acceleration_structure";

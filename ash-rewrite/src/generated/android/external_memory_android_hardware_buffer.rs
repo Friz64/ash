@@ -61,5 +61,5 @@ pub struct AndroidHardwareBufferFormatProperties2ANDROID {
 #[repr(transparent)]
 #[allow(non_camel_case_types)]
 pub struct AHardwareBuffer(pub(crate) i16);
-pub const ANDROID_EXTERNAL_MEMORY_ANDROID_HARDWARE_BUFFER_SPEC_VERSION: usize = 69;
-pub const ANDROID_EXTERNAL_MEMORY_ANDROID_HARDWARE_BUFFER_EXTENSION_NAME: &'static core::ffi::CStr = c"VK_ANDROID_external_memory_android_hardware_buffer";
+pub const ANDROID_EXTERNAL_MEMORY_ANDROID_HARDWARE_BUFFER_SPEC_VERSION: usize = 5;
+pub const ANDROID_EXTERNAL_MEMORY_ANDROID_HARDWARE_BUFFER_EXTENSION_NAME: &core::ffi::CStr = c"VK_ANDROID_external_memory_android_hardware_buffer";

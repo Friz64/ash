@@ -26,5 +26,5 @@ pub struct GraphicsPipelineLibraryFlagsEXT(pub(crate) i32);
 pub struct PipelineLayoutCreateFlagBits(pub(crate) i32);
 #[repr(transparent)]
 pub struct GraphicsPipelineLibraryFlagBitsEXT(pub(crate) i32);
-pub const EXT_GRAPHICS_PIPELINE_LIBRARY_SPEC_VERSION: usize = 69;
-pub const EXT_GRAPHICS_PIPELINE_LIBRARY_EXTENSION_NAME: &'static core::ffi::CStr = c"VK_EXT_graphics_pipeline_library";
+pub const EXT_GRAPHICS_PIPELINE_LIBRARY_SPEC_VERSION: usize = 1;
+pub const EXT_GRAPHICS_PIPELINE_LIBRARY_EXTENSION_NAME: &core::ffi::CStr = c"VK_EXT_graphics_pipeline_library";

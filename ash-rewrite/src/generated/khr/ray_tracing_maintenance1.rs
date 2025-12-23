@@ -25,5 +25,5 @@ pub struct PhysicalDeviceRayTracingMaintenance1FeaturesKHR {
     pub ray_tracing_maintenance1: crate::vk::Bool32,
     pub ray_tracing_pipeline_trace_rays_indirect2: crate::vk::Bool32,
 }
-pub const KHR_RAY_TRACING_MAINTENANCE_1_SPEC_VERSION: usize = 69;
-pub const KHR_RAY_TRACING_MAINTENANCE_1_EXTENSION_NAME: &'static core::ffi::CStr = c"VK_KHR_ray_tracing_maintenance1";
+pub const KHR_RAY_TRACING_MAINTENANCE_1_SPEC_VERSION: usize = 1;
+pub const KHR_RAY_TRACING_MAINTENANCE_1_EXTENSION_NAME: &core::ffi::CStr = c"VK_KHR_ray_tracing_maintenance1";

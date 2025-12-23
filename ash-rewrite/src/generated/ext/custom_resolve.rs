@@ -22,5 +22,5 @@ pub struct CustomResolveCreateInfoEXT {
     pub depth_attachment_format: crate::vk::Format,
     pub stencil_attachment_format: crate::vk::Format,
 }
-pub const EXT_CUSTOM_RESOLVE_SPEC_VERSION: usize = 69;
-pub const EXT_CUSTOM_RESOLVE_EXTENSION_NAME: &'static core::ffi::CStr = c"VK_EXT_custom_resolve";
+pub const EXT_CUSTOM_RESOLVE_SPEC_VERSION: usize = 1;
+pub const EXT_CUSTOM_RESOLVE_EXTENSION_NAME: &core::ffi::CStr = c"VK_EXT_custom_resolve";

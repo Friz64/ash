@@ -4,5 +4,5 @@
 pub type PhysicalDeviceMultiviewFeaturesKHR = crate::vk::PhysicalDeviceMultiviewFeatures;
 pub type PhysicalDeviceMultiviewPropertiesKHR = crate::vk::PhysicalDeviceMultiviewProperties;
 pub type RenderPassMultiviewCreateInfoKHR = crate::vk::RenderPassMultiviewCreateInfo;
-pub const KHR_MULTIVIEW_SPEC_VERSION: usize = 69;
-pub const KHR_MULTIVIEW_EXTENSION_NAME: &'static core::ffi::CStr = c"VK_KHR_multiview";
+pub const KHR_MULTIVIEW_SPEC_VERSION: usize = 1;
+pub const KHR_MULTIVIEW_EXTENSION_NAME: &core::ffi::CStr = c"VK_KHR_multiview";

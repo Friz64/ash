@@ -5,5 +5,5 @@ pub type PipelineCreationFeedbackEXT = crate::vk::PipelineCreationFeedback;
 pub type PipelineCreationFeedbackCreateInfoEXT = crate::vk::PipelineCreationFeedbackCreateInfo;
 pub type PipelineCreationFeedbackFlagBitsEXT = crate::vk::PipelineCreationFeedbackFlagBits;
 pub type PipelineCreationFeedbackFlagsEXT = crate::vk::PipelineCreationFeedbackFlags;
-pub const EXT_PIPELINE_CREATION_FEEDBACK_SPEC_VERSION: usize = 69;
-pub const EXT_PIPELINE_CREATION_FEEDBACK_EXTENSION_NAME: &'static core::ffi::CStr = c"VK_EXT_pipeline_creation_feedback";
+pub const EXT_PIPELINE_CREATION_FEEDBACK_SPEC_VERSION: usize = 1;
+pub const EXT_PIPELINE_CREATION_FEEDBACK_EXTENSION_NAME: &core::ffi::CStr = c"VK_EXT_pipeline_creation_feedback";

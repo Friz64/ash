@@ -16,5 +16,5 @@ pub struct TilePropertiesQCOM {
     pub origin: crate::vk::Offset2D,
 }
 pub type RenderingInfoKHR = crate::vk::RenderingInfo;
-pub const QCOM_TILE_PROPERTIES_SPEC_VERSION: usize = 69;
-pub const QCOM_TILE_PROPERTIES_EXTENSION_NAME: &'static core::ffi::CStr = c"VK_QCOM_tile_properties";
+pub const QCOM_TILE_PROPERTIES_SPEC_VERSION: usize = 1;
+pub const QCOM_TILE_PROPERTIES_EXTENSION_NAME: &core::ffi::CStr = c"VK_QCOM_tile_properties";

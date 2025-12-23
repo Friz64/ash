@@ -10,5 +10,5 @@ pub struct MacOSSurfaceCreateInfoMVK {
 }
 #[repr(transparent)]
 pub struct MacOSSurfaceCreateFlagsMVK(pub(crate) i32);
-pub const MVK_MACOS_SURFACE_SPEC_VERSION: usize = 69;
-pub const MVK_MACOS_SURFACE_EXTENSION_NAME: &'static core::ffi::CStr = c"VK_MVK_macos_surface";
+pub const MVK_MACOS_SURFACE_SPEC_VERSION: usize = 3;
+pub const MVK_MACOS_SURFACE_EXTENSION_NAME: &core::ffi::CStr = c"VK_MVK_macos_surface";

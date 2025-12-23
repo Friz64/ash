@@ -13,5 +13,5 @@ pub struct PipelineViewportDepthClipControlCreateInfoEXT {
     pub p_next: *const core::ffi::c_void,
     pub negative_one_to_one: crate::vk::Bool32,
 }
-pub const EXT_DEPTH_CLIP_CONTROL_SPEC_VERSION: usize = 69;
-pub const EXT_DEPTH_CLIP_CONTROL_EXTENSION_NAME: &'static core::ffi::CStr = c"VK_EXT_depth_clip_control";
+pub const EXT_DEPTH_CLIP_CONTROL_SPEC_VERSION: usize = 1;
+pub const EXT_DEPTH_CLIP_CONTROL_EXTENSION_NAME: &core::ffi::CStr = c"VK_EXT_depth_clip_control";

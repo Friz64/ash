@@ -7,5 +7,5 @@ pub struct PhysicalDevicePipelineLibraryGroupHandlesFeaturesEXT {
     pub p_next: *mut core::ffi::c_void,
     pub pipeline_library_group_handles: crate::vk::Bool32,
 }
-pub const EXT_PIPELINE_LIBRARY_GROUP_HANDLES_SPEC_VERSION: usize = 69;
-pub const EXT_PIPELINE_LIBRARY_GROUP_HANDLES_EXTENSION_NAME: &'static core::ffi::CStr = c"VK_EXT_pipeline_library_group_handles";
+pub const EXT_PIPELINE_LIBRARY_GROUP_HANDLES_SPEC_VERSION: usize = 1;
+pub const EXT_PIPELINE_LIBRARY_GROUP_HANDLES_EXTENSION_NAME: &core::ffi::CStr = c"VK_EXT_pipeline_library_group_handles";

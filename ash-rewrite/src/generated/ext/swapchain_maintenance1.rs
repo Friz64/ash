@@ -7,5 +7,5 @@ pub type SwapchainPresentModesCreateInfoEXT = crate::vk::SwapchainPresentModesCr
 pub type SwapchainPresentModeInfoEXT = crate::vk::SwapchainPresentModeInfoKHR;
 pub type SwapchainPresentScalingCreateInfoEXT = crate::vk::SwapchainPresentScalingCreateInfoKHR;
 pub type ReleaseSwapchainImagesInfoEXT = crate::vk::ReleaseSwapchainImagesInfoKHR;
-pub const EXT_SWAPCHAIN_MAINTENANCE_1_SPEC_VERSION: usize = 69;
-pub const EXT_SWAPCHAIN_MAINTENANCE_1_EXTENSION_NAME: &'static core::ffi::CStr = c"VK_EXT_swapchain_maintenance1";
+pub const EXT_SWAPCHAIN_MAINTENANCE_1_SPEC_VERSION: usize = 1;
+pub const EXT_SWAPCHAIN_MAINTENANCE_1_EXTENSION_NAME: &core::ffi::CStr = c"VK_EXT_swapchain_maintenance1";

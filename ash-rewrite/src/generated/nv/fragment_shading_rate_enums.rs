@@ -21,11 +21,11 @@ pub struct PipelineFragmentShadingRateEnumStateCreateInfoNV {
     pub p_next: *const core::ffi::c_void,
     pub shading_rate_type: crate::vk::FragmentShadingRateTypeNV,
     pub shading_rate: crate::vk::FragmentShadingRateNV,
-    pub combiner_ops: [crate::vk::FragmentShadingRateCombinerOpKHR; 2],
+    pub combiner_ops: [crate::vk::FragmentShadingRateCombinerOpKHR; 2 as _],
 }
 #[repr(transparent)]
 pub struct FragmentShadingRateNV(pub(crate) i32);
 #[repr(transparent)]
 pub struct FragmentShadingRateTypeNV(pub(crate) i32);
-pub const NV_FRAGMENT_SHADING_RATE_ENUMS_SPEC_VERSION: usize = 69;
-pub const NV_FRAGMENT_SHADING_RATE_ENUMS_EXTENSION_NAME: &'static core::ffi::CStr = c"VK_NV_fragment_shading_rate_enums";
+pub const NV_FRAGMENT_SHADING_RATE_ENUMS_SPEC_VERSION: usize = 1;
+pub const NV_FRAGMENT_SHADING_RATE_ENUMS_EXTENSION_NAME: &core::ffi::CStr = c"VK_NV_fragment_shading_rate_enums";

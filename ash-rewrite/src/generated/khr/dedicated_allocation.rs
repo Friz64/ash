@@ -3,5 +3,5 @@
 //![Vulkan Manual Page](https://docs.vulkan.org/refpages/latest/refpages/source/VK_KHR_dedicated_allocation.html) · Vulkan extension
 pub type MemoryDedicatedRequirementsKHR = crate::vk::MemoryDedicatedRequirements;
 pub type MemoryDedicatedAllocateInfoKHR = crate::vk::MemoryDedicatedAllocateInfo;
-pub const KHR_DEDICATED_ALLOCATION_SPEC_VERSION: usize = 69;
-pub const KHR_DEDICATED_ALLOCATION_EXTENSION_NAME: &'static core::ffi::CStr = c"VK_KHR_dedicated_allocation";
+pub const KHR_DEDICATED_ALLOCATION_SPEC_VERSION: usize = 3;
+pub const KHR_DEDICATED_ALLOCATION_EXTENSION_NAME: &core::ffi::CStr = c"VK_KHR_dedicated_allocation";

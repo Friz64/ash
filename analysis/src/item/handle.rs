@@ -3,6 +3,7 @@ use crate::{
     name::TypeName,
     xml,
 };
+use tracing::{instrument, trace};
 
 #[derive(Debug)]
 pub struct Handle {
@@ -23,11 +24,9 @@ impl Type for Handle {
 }
 
 impl Handle {
-    pub(crate) fn new(
-        // decl_ctx: &decl::Context,
-        required_by: RequiredBy,
-        xml: &xml::Handle,
-    ) -> Handle {
+    #[instrument]
+    pub(crate) fn new(required_by: RequiredBy, xml: &xml::Handle) -> Handle {
+        trace!("constructing");
         Handle {
             required_by,
             name: xml.name,

@@ -8,5 +8,5 @@ pub struct PhysicalDevicePrimitiveTopologyListRestartFeaturesEXT {
     pub primitive_topology_list_restart: crate::vk::Bool32,
     pub primitive_topology_patch_list_restart: crate::vk::Bool32,
 }
-pub const EXT_PRIMITIVE_TOPOLOGY_LIST_RESTART_SPEC_VERSION: usize = 69;
-pub const EXT_PRIMITIVE_TOPOLOGY_LIST_RESTART_EXTENSION_NAME: &'static core::ffi::CStr = c"VK_EXT_primitive_topology_list_restart";
+pub const EXT_PRIMITIVE_TOPOLOGY_LIST_RESTART_SPEC_VERSION: usize = 1;
+pub const EXT_PRIMITIVE_TOPOLOGY_LIST_RESTART_EXTENSION_NAME: &core::ffi::CStr = c"VK_EXT_primitive_topology_list_restart";

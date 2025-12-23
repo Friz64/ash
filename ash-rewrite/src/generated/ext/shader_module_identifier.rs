@@ -11,7 +11,7 @@ pub struct PhysicalDeviceShaderModuleIdentifierFeaturesEXT {
 pub struct PhysicalDeviceShaderModuleIdentifierPropertiesEXT {
     pub s_type: crate::vk::StructureType,
     pub p_next: *mut core::ffi::c_void,
-    pub shader_module_identifier_algorithm_uuid: [u8; crate::vk::UUID_SIZE],
+    pub shader_module_identifier_algorithm_uuid: [u8; crate::vk::UUID_SIZE as _],
 }
 #[repr(C)]
 pub struct PipelineShaderStageModuleIdentifierCreateInfoEXT {
@@ -25,8 +25,8 @@ pub struct ShaderModuleIdentifierEXT {
     pub s_type: crate::vk::StructureType,
     pub p_next: *mut core::ffi::c_void,
     pub identifier_size: u32,
-    pub identifier: [u8; crate::vk::MAX_SHADER_MODULE_IDENTIFIER_SIZE_EXT],
+    pub identifier: [u8; crate::vk::MAX_SHADER_MODULE_IDENTIFIER_SIZE_EXT as _],
 }
-pub const MAX_SHADER_MODULE_IDENTIFIER_SIZE_EXT: usize = 69;
-pub const EXT_SHADER_MODULE_IDENTIFIER_SPEC_VERSION: usize = 69;
-pub const EXT_SHADER_MODULE_IDENTIFIER_EXTENSION_NAME: &'static core::ffi::CStr = c"VK_EXT_shader_module_identifier";
+pub const MAX_SHADER_MODULE_IDENTIFIER_SIZE_EXT: u32 = 32;
+pub const EXT_SHADER_MODULE_IDENTIFIER_SPEC_VERSION: usize = 1;
+pub const EXT_SHADER_MODULE_IDENTIFIER_EXTENSION_NAME: &core::ffi::CStr = c"VK_EXT_shader_module_identifier";

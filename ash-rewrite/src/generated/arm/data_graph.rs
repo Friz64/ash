@@ -134,7 +134,8 @@ pub struct PhysicalDeviceDataGraphProcessingEngineARM {
 #[repr(C)]
 pub struct PhysicalDeviceDataGraphOperationSupportARM {
     pub operation_type: crate::vk::PhysicalDeviceDataGraphOperationTypeARM,
-    pub name: [core::ffi::c_char; crate::vk::MAX_PHYSICAL_DEVICE_DATA_GRAPH_OPERATION_SET_NAME_SIZE_ARM],
+    pub name: [core::ffi::c_char; crate::vk::MAX_PHYSICAL_DEVICE_DATA_GRAPH_OPERATION_SET_NAME_SIZE_ARM
+        as _],
     pub version: u32,
 }
 #[repr(C)]
@@ -185,6 +186,6 @@ pub struct DataGraphPipelineSessionCreateFlagBitsARM(pub(crate) i32);
 pub struct DataGraphPipelineDispatchFlagBitsARM(pub(crate) i32);
 #[repr(transparent)]
 pub struct DataGraphPipelineSessionARM(pub(crate) i32);
-pub const MAX_PHYSICAL_DEVICE_DATA_GRAPH_OPERATION_SET_NAME_SIZE_ARM: usize = 69;
-pub const ARM_DATA_GRAPH_SPEC_VERSION: usize = 69;
-pub const ARM_DATA_GRAPH_EXTENSION_NAME: &'static core::ffi::CStr = c"VK_ARM_data_graph";
+pub const MAX_PHYSICAL_DEVICE_DATA_GRAPH_OPERATION_SET_NAME_SIZE_ARM: u32 = 128;
+pub const ARM_DATA_GRAPH_SPEC_VERSION: usize = 1;
+pub const ARM_DATA_GRAPH_EXTENSION_NAME: &core::ffi::CStr = c"VK_ARM_data_graph";

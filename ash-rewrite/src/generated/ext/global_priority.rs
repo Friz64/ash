@@ -3,5 +3,5 @@
 //![Vulkan Manual Page](https://docs.vulkan.org/refpages/latest/refpages/source/VK_EXT_global_priority.html) · Vulkan extension
 pub type DeviceQueueGlobalPriorityCreateInfoEXT = crate::vk::DeviceQueueGlobalPriorityCreateInfo;
 pub type QueueGlobalPriorityEXT = crate::vk::QueueGlobalPriority;
-pub const EXT_GLOBAL_PRIORITY_SPEC_VERSION: usize = 69;
-pub const EXT_GLOBAL_PRIORITY_EXTENSION_NAME: &'static core::ffi::CStr = c"VK_EXT_global_priority";
+pub const EXT_GLOBAL_PRIORITY_SPEC_VERSION: usize = 2;
+pub const EXT_GLOBAL_PRIORITY_EXTENSION_NAME: &core::ffi::CStr = c"VK_EXT_global_priority";

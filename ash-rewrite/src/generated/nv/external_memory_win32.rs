@@ -15,5 +15,5 @@ pub struct ExportMemoryWin32HandleInfoNV {
     pub p_attributes: *const crate::platform_types::SECURITY_ATTRIBUTES,
     pub dw_access: crate::platform_types::DWORD,
 }
-pub const NV_EXTERNAL_MEMORY_WIN32_SPEC_VERSION: usize = 69;
-pub const NV_EXTERNAL_MEMORY_WIN32_EXTENSION_NAME: &'static core::ffi::CStr = c"VK_NV_external_memory_win32";
+pub const NV_EXTERNAL_MEMORY_WIN32_SPEC_VERSION: usize = 1;
+pub const NV_EXTERNAL_MEMORY_WIN32_EXTENSION_NAME: &core::ffi::CStr = c"VK_NV_external_memory_win32";

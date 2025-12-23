@@ -69,7 +69,7 @@ pub struct StdVideoAV1SequenceHeader {
     pub order_hint_bits_minus_1: u8,
     pub seq_force_integer_mv: u8,
     pub seq_force_screen_content_tools: u8,
-    pub reserved1: [u8; 5],
+    pub reserved1: [u8; 5 as _],
     pub p_color_config: *const crate::vk::StdVideoAV1ColorConfig,
     pub p_timing_info: *const crate::vk::StdVideoAV1TimingInfo,
 }
@@ -82,12 +82,13 @@ pub struct StdVideoAV1LoopFilterFlags {
 #[repr(C)]
 pub struct StdVideoAV1LoopFilter {
     pub flags: crate::vk::StdVideoAV1LoopFilterFlags,
-    pub loop_filter_level: [u8; crate::vk::STD_VIDEO_AV1_MAX_LOOP_FILTER_STRENGTHS],
+    pub loop_filter_level: [u8; crate::vk::STD_VIDEO_AV1_MAX_LOOP_FILTER_STRENGTHS as _],
     pub loop_filter_sharpness: u8,
     pub update_ref_delta: u8,
-    pub loop_filter_ref_deltas: [i8; crate::vk::STD_VIDEO_AV1_TOTAL_REFS_PER_FRAME],
+    pub loop_filter_ref_deltas: [i8; crate::vk::STD_VIDEO_AV1_TOTAL_REFS_PER_FRAME as _],
     pub update_mode_delta: u8,
-    pub loop_filter_mode_deltas: [i8; crate::vk::STD_VIDEO_AV1_LOOP_FILTER_ADJUSTMENTS],
+    pub loop_filter_mode_deltas: [i8; crate::vk::STD_VIDEO_AV1_LOOP_FILTER_ADJUSTMENTS
+        as _],
 }
 #[repr(C)]
 pub struct StdVideoAV1QuantizationFlags {
@@ -110,8 +111,9 @@ pub struct StdVideoAV1Quantization {
 }
 #[repr(C)]
 pub struct StdVideoAV1Segmentation {
-    pub feature_enabled: [u8; crate::vk::STD_VIDEO_AV1_MAX_SEGMENTS],
-    pub feature_data: [[i16; crate::vk::STD_VIDEO_AV1_SEG_LVL_MAX]; crate::vk::STD_VIDEO_AV1_MAX_SEGMENTS],
+    pub feature_enabled: [u8; crate::vk::STD_VIDEO_AV1_MAX_SEGMENTS as _],
+    pub feature_data: [[i16; crate::vk::STD_VIDEO_AV1_SEG_LVL_MAX
+        as _]; crate::vk::STD_VIDEO_AV1_MAX_SEGMENTS as _],
 }
 #[repr(C)]
 pub struct StdVideoAV1TileInfoFlags {
@@ -125,7 +127,7 @@ pub struct StdVideoAV1TileInfo {
     pub tile_rows: u8,
     pub context_update_tile_id: u16,
     pub tile_size_bytes_minus_1: u8,
-    pub reserved1: [u8; 7],
+    pub reserved1: [u8; 7 as _],
     pub p_mi_col_starts: *const u16,
     pub p_mi_row_starts: *const u16,
     pub p_width_in_sbs_minus1: *const u16,
@@ -135,20 +137,26 @@ pub struct StdVideoAV1TileInfo {
 pub struct StdVideoAV1CDEF {
     pub cdef_damping_minus_3: u8,
     pub cdef_bits: u8,
-    pub cdef_y_pri_strength: [u8; crate::vk::STD_VIDEO_AV1_MAX_CDEF_FILTER_STRENGTHS],
-    pub cdef_y_sec_strength: [u8; crate::vk::STD_VIDEO_AV1_MAX_CDEF_FILTER_STRENGTHS],
-    pub cdef_uv_pri_strength: [u8; crate::vk::STD_VIDEO_AV1_MAX_CDEF_FILTER_STRENGTHS],
-    pub cdef_uv_sec_strength: [u8; crate::vk::STD_VIDEO_AV1_MAX_CDEF_FILTER_STRENGTHS],
+    pub cdef_y_pri_strength: [u8; crate::vk::STD_VIDEO_AV1_MAX_CDEF_FILTER_STRENGTHS
+        as _],
+    pub cdef_y_sec_strength: [u8; crate::vk::STD_VIDEO_AV1_MAX_CDEF_FILTER_STRENGTHS
+        as _],
+    pub cdef_uv_pri_strength: [u8; crate::vk::STD_VIDEO_AV1_MAX_CDEF_FILTER_STRENGTHS
+        as _],
+    pub cdef_uv_sec_strength: [u8; crate::vk::STD_VIDEO_AV1_MAX_CDEF_FILTER_STRENGTHS
+        as _],
 }
 #[repr(C)]
 pub struct StdVideoAV1LoopRestoration {
-    pub frame_restoration_type: [crate::vk::StdVideoAV1FrameRestorationType; crate::vk::STD_VIDEO_AV1_MAX_NUM_PLANES],
-    pub loop_restoration_size: [u16; crate::vk::STD_VIDEO_AV1_MAX_NUM_PLANES],
+    pub frame_restoration_type: [crate::vk::StdVideoAV1FrameRestorationType; crate::vk::STD_VIDEO_AV1_MAX_NUM_PLANES
+        as _],
+    pub loop_restoration_size: [u16; crate::vk::STD_VIDEO_AV1_MAX_NUM_PLANES as _],
 }
 #[repr(C)]
 pub struct StdVideoAV1GlobalMotion {
-    pub gm_type: [u8; crate::vk::STD_VIDEO_AV1_NUM_REF_FRAMES],
-    pub gm_params: [[i32; crate::vk::STD_VIDEO_AV1_GLOBAL_MOTION_PARAMS]; crate::vk::STD_VIDEO_AV1_NUM_REF_FRAMES],
+    pub gm_type: [u8; crate::vk::STD_VIDEO_AV1_NUM_REF_FRAMES as _],
+    pub gm_params: [[i32; crate::vk::STD_VIDEO_AV1_GLOBAL_MOTION_PARAMS
+        as _]; crate::vk::STD_VIDEO_AV1_NUM_REF_FRAMES as _],
 }
 #[repr(C)]
 pub struct StdVideoAV1FilmGrainFlags {
@@ -168,17 +176,17 @@ pub struct StdVideoAV1FilmGrain {
     pub grain_seed: u16,
     pub film_grain_params_ref_idx: u8,
     pub num_y_points: u8,
-    pub point_y_value: [u8; crate::vk::STD_VIDEO_AV1_MAX_NUM_Y_POINTS],
-    pub point_y_scaling: [u8; crate::vk::STD_VIDEO_AV1_MAX_NUM_Y_POINTS],
+    pub point_y_value: [u8; crate::vk::STD_VIDEO_AV1_MAX_NUM_Y_POINTS as _],
+    pub point_y_scaling: [u8; crate::vk::STD_VIDEO_AV1_MAX_NUM_Y_POINTS as _],
     pub num_cb_points: u8,
-    pub point_cb_value: [u8; crate::vk::STD_VIDEO_AV1_MAX_NUM_CB_POINTS],
-    pub point_cb_scaling: [u8; crate::vk::STD_VIDEO_AV1_MAX_NUM_CB_POINTS],
+    pub point_cb_value: [u8; crate::vk::STD_VIDEO_AV1_MAX_NUM_CB_POINTS as _],
+    pub point_cb_scaling: [u8; crate::vk::STD_VIDEO_AV1_MAX_NUM_CB_POINTS as _],
     pub num_cr_points: u8,
-    pub point_cr_value: [u8; crate::vk::STD_VIDEO_AV1_MAX_NUM_CR_POINTS],
-    pub point_cr_scaling: [u8; crate::vk::STD_VIDEO_AV1_MAX_NUM_CR_POINTS],
-    pub ar_coeffs_y_plus_128: [i8; crate::vk::STD_VIDEO_AV1_MAX_NUM_POS_LUMA],
-    pub ar_coeffs_cb_plus_128: [i8; crate::vk::STD_VIDEO_AV1_MAX_NUM_POS_CHROMA],
-    pub ar_coeffs_cr_plus_128: [i8; crate::vk::STD_VIDEO_AV1_MAX_NUM_POS_CHROMA],
+    pub point_cr_value: [u8; crate::vk::STD_VIDEO_AV1_MAX_NUM_CR_POINTS as _],
+    pub point_cr_scaling: [u8; crate::vk::STD_VIDEO_AV1_MAX_NUM_CR_POINTS as _],
+    pub ar_coeffs_y_plus_128: [i8; crate::vk::STD_VIDEO_AV1_MAX_NUM_POS_LUMA as _],
+    pub ar_coeffs_cb_plus_128: [i8; crate::vk::STD_VIDEO_AV1_MAX_NUM_POS_CHROMA as _],
+    pub ar_coeffs_cr_plus_128: [i8; crate::vk::STD_VIDEO_AV1_MAX_NUM_POS_CHROMA as _],
     pub cb_mult: u8,
     pub cb_luma_mult: u8,
     pub cb_offset: u16,
@@ -208,24 +216,24 @@ pub struct StdVideoAV1TransferCharacteristics(pub(crate) i32);
 pub struct StdVideoAV1MatrixCoefficients(pub(crate) i32);
 #[repr(transparent)]
 pub struct StdVideoAV1ChromaSamplePosition(pub(crate) i32);
-pub const STD_VIDEO_AV1_NUM_REF_FRAMES: usize = 69;
-pub const STD_VIDEO_AV1_REFS_PER_FRAME: usize = 69;
-pub const STD_VIDEO_AV1_TOTAL_REFS_PER_FRAME: usize = 69;
-pub const STD_VIDEO_AV1_MAX_TILE_COLS: usize = 69;
-pub const STD_VIDEO_AV1_MAX_TILE_ROWS: usize = 69;
-pub const STD_VIDEO_AV1_MAX_SEGMENTS: usize = 69;
-pub const STD_VIDEO_AV1_SEG_LVL_MAX: usize = 69;
-pub const STD_VIDEO_AV1_PRIMARY_REF_NONE: usize = 69;
-pub const STD_VIDEO_AV1_SELECT_INTEGER_MV: usize = 69;
-pub const STD_VIDEO_AV1_SELECT_SCREEN_CONTENT_TOOLS: usize = 69;
-pub const STD_VIDEO_AV1_SKIP_MODE_FRAMES: usize = 69;
-pub const STD_VIDEO_AV1_MAX_LOOP_FILTER_STRENGTHS: usize = 69;
-pub const STD_VIDEO_AV1_LOOP_FILTER_ADJUSTMENTS: usize = 69;
-pub const STD_VIDEO_AV1_MAX_CDEF_FILTER_STRENGTHS: usize = 69;
-pub const STD_VIDEO_AV1_MAX_NUM_PLANES: usize = 69;
-pub const STD_VIDEO_AV1_GLOBAL_MOTION_PARAMS: usize = 69;
-pub const STD_VIDEO_AV1_MAX_NUM_Y_POINTS: usize = 69;
-pub const STD_VIDEO_AV1_MAX_NUM_CB_POINTS: usize = 69;
-pub const STD_VIDEO_AV1_MAX_NUM_CR_POINTS: usize = 69;
-pub const STD_VIDEO_AV1_MAX_NUM_POS_LUMA: usize = 69;
-pub const STD_VIDEO_AV1_MAX_NUM_POS_CHROMA: usize = 69;
+pub const STD_VIDEO_AV1_NUM_REF_FRAMES: usize = 8;
+pub const STD_VIDEO_AV1_REFS_PER_FRAME: usize = 7;
+pub const STD_VIDEO_AV1_TOTAL_REFS_PER_FRAME: usize = 8;
+pub const STD_VIDEO_AV1_MAX_TILE_COLS: usize = 64;
+pub const STD_VIDEO_AV1_MAX_TILE_ROWS: usize = 64;
+pub const STD_VIDEO_AV1_MAX_SEGMENTS: usize = 8;
+pub const STD_VIDEO_AV1_SEG_LVL_MAX: usize = 8;
+pub const STD_VIDEO_AV1_PRIMARY_REF_NONE: usize = 7;
+pub const STD_VIDEO_AV1_SELECT_INTEGER_MV: usize = 2;
+pub const STD_VIDEO_AV1_SELECT_SCREEN_CONTENT_TOOLS: usize = 2;
+pub const STD_VIDEO_AV1_SKIP_MODE_FRAMES: usize = 2;
+pub const STD_VIDEO_AV1_MAX_LOOP_FILTER_STRENGTHS: usize = 4;
+pub const STD_VIDEO_AV1_LOOP_FILTER_ADJUSTMENTS: usize = 2;
+pub const STD_VIDEO_AV1_MAX_CDEF_FILTER_STRENGTHS: usize = 8;
+pub const STD_VIDEO_AV1_MAX_NUM_PLANES: usize = 3;
+pub const STD_VIDEO_AV1_GLOBAL_MOTION_PARAMS: usize = 6;
+pub const STD_VIDEO_AV1_MAX_NUM_Y_POINTS: usize = 14;
+pub const STD_VIDEO_AV1_MAX_NUM_CB_POINTS: usize = 10;
+pub const STD_VIDEO_AV1_MAX_NUM_CR_POINTS: usize = 10;
+pub const STD_VIDEO_AV1_MAX_NUM_POS_LUMA: usize = 24;
+pub const STD_VIDEO_AV1_MAX_NUM_POS_CHROMA: usize = 25;

@@ -13,5 +13,5 @@ pub type PipelineCreateFlagBits2KHR = crate::vk::PipelineCreateFlagBits2;
 pub type BufferUsageFlagBits2KHR = crate::vk::BufferUsageFlagBits2;
 pub type PipelineCreateFlags2KHR = crate::vk::PipelineCreateFlags2;
 pub type BufferUsageFlags2KHR = crate::vk::BufferUsageFlags2;
-pub const KHR_MAINTENANCE_5_SPEC_VERSION: usize = 69;
-pub const KHR_MAINTENANCE_5_EXTENSION_NAME: &'static core::ffi::CStr = c"VK_KHR_maintenance5";
+pub const KHR_MAINTENANCE_5_SPEC_VERSION: usize = 1;
+pub const KHR_MAINTENANCE_5_EXTENSION_NAME: &core::ffi::CStr = c"VK_KHR_maintenance5";

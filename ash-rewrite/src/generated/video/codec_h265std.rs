@@ -17,16 +17,20 @@ pub struct StdVideoH265ProfileTierLevel {
 }
 #[repr(C)]
 pub struct StdVideoH265DecPicBufMgr {
-    pub max_latency_increase_plus1: [u32; crate::vk::STD_VIDEO_H265_SUBLAYERS_LIST_SIZE],
-    pub max_dec_pic_buffering_minus1: [u8; crate::vk::STD_VIDEO_H265_SUBLAYERS_LIST_SIZE],
-    pub max_num_reorder_pics: [u8; crate::vk::STD_VIDEO_H265_SUBLAYERS_LIST_SIZE],
+    pub max_latency_increase_plus1: [u32; crate::vk::STD_VIDEO_H265_SUBLAYERS_LIST_SIZE
+        as _],
+    pub max_dec_pic_buffering_minus1: [u8; crate::vk::STD_VIDEO_H265_SUBLAYERS_LIST_SIZE
+        as _],
+    pub max_num_reorder_pics: [u8; crate::vk::STD_VIDEO_H265_SUBLAYERS_LIST_SIZE as _],
 }
 #[repr(C)]
 pub struct StdVideoH265SubLayerHrdParameters {
-    pub bit_rate_value_minus1: [u32; crate::vk::STD_VIDEO_H265_CPB_CNT_LIST_SIZE],
-    pub cpb_size_value_minus1: [u32; crate::vk::STD_VIDEO_H265_CPB_CNT_LIST_SIZE],
-    pub cpb_size_du_value_minus1: [u32; crate::vk::STD_VIDEO_H265_CPB_CNT_LIST_SIZE],
-    pub bit_rate_du_value_minus1: [u32; crate::vk::STD_VIDEO_H265_CPB_CNT_LIST_SIZE],
+    pub bit_rate_value_minus1: [u32; crate::vk::STD_VIDEO_H265_CPB_CNT_LIST_SIZE as _],
+    pub cpb_size_value_minus1: [u32; crate::vk::STD_VIDEO_H265_CPB_CNT_LIST_SIZE as _],
+    pub cpb_size_du_value_minus1: [u32; crate::vk::STD_VIDEO_H265_CPB_CNT_LIST_SIZE
+        as _],
+    pub bit_rate_du_value_minus1: [u32; crate::vk::STD_VIDEO_H265_CPB_CNT_LIST_SIZE
+        as _],
     pub cbr_flag: u32,
 }
 #[repr(C)]
@@ -51,9 +55,10 @@ pub struct StdVideoH265HrdParameters {
     pub initial_cpb_removal_delay_length_minus1: u8,
     pub au_cpb_removal_delay_length_minus1: u8,
     pub dpb_output_delay_length_minus1: u8,
-    pub cpb_cnt_minus1: [u8; crate::vk::STD_VIDEO_H265_SUBLAYERS_LIST_SIZE],
-    pub elemental_duration_in_tc_minus1: [u16; crate::vk::STD_VIDEO_H265_SUBLAYERS_LIST_SIZE],
-    pub reserved: [u16; 3],
+    pub cpb_cnt_minus1: [u8; crate::vk::STD_VIDEO_H265_SUBLAYERS_LIST_SIZE as _],
+    pub elemental_duration_in_tc_minus1: [u16; crate::vk::STD_VIDEO_H265_SUBLAYERS_LIST_SIZE
+        as _],
+    pub reserved: [u16; 3 as _],
     pub p_sub_layer_hrd_parameters_nal: *const crate::vk::StdVideoH265SubLayerHrdParameters,
     pub p_sub_layer_hrd_parameters_vcl: *const crate::vk::StdVideoH265SubLayerHrdParameters,
 }
@@ -81,12 +86,18 @@ pub struct StdVideoH265VideoParameterSet {
 }
 #[repr(C)]
 pub struct StdVideoH265ScalingLists {
-    pub scaling_list4x4: [[u8; crate::vk::STD_VIDEO_H265_SCALING_LIST_4X4_NUM_ELEMENTS]; crate::vk::STD_VIDEO_H265_SCALING_LIST_4X4_NUM_LISTS],
-    pub scaling_list8x8: [[u8; crate::vk::STD_VIDEO_H265_SCALING_LIST_8X8_NUM_ELEMENTS]; crate::vk::STD_VIDEO_H265_SCALING_LIST_8X8_NUM_LISTS],
-    pub scaling_list16x16: [[u8; crate::vk::STD_VIDEO_H265_SCALING_LIST_16X16_NUM_ELEMENTS]; crate::vk::STD_VIDEO_H265_SCALING_LIST_16X16_NUM_LISTS],
-    pub scaling_list32x32: [[u8; crate::vk::STD_VIDEO_H265_SCALING_LIST_32X32_NUM_ELEMENTS]; crate::vk::STD_VIDEO_H265_SCALING_LIST_32X32_NUM_LISTS],
-    pub scaling_list_dc_coef16x16: [u8; crate::vk::STD_VIDEO_H265_SCALING_LIST_16X16_NUM_LISTS],
-    pub scaling_list_dc_coef32x32: [u8; crate::vk::STD_VIDEO_H265_SCALING_LIST_32X32_NUM_LISTS],
+    pub scaling_list4x4: [[u8; crate::vk::STD_VIDEO_H265_SCALING_LIST_4X4_NUM_ELEMENTS
+        as _]; crate::vk::STD_VIDEO_H265_SCALING_LIST_4X4_NUM_LISTS as _],
+    pub scaling_list8x8: [[u8; crate::vk::STD_VIDEO_H265_SCALING_LIST_8X8_NUM_ELEMENTS
+        as _]; crate::vk::STD_VIDEO_H265_SCALING_LIST_8X8_NUM_LISTS as _],
+    pub scaling_list16x16: [[u8; crate::vk::STD_VIDEO_H265_SCALING_LIST_16X16_NUM_ELEMENTS
+        as _]; crate::vk::STD_VIDEO_H265_SCALING_LIST_16X16_NUM_LISTS as _],
+    pub scaling_list32x32: [[u8; crate::vk::STD_VIDEO_H265_SCALING_LIST_32X32_NUM_ELEMENTS
+        as _]; crate::vk::STD_VIDEO_H265_SCALING_LIST_32X32_NUM_LISTS as _],
+    pub scaling_list_dc_coef16x16: [u8; crate::vk::STD_VIDEO_H265_SCALING_LIST_16X16_NUM_LISTS
+        as _],
+    pub scaling_list_dc_coef32x32: [u8; crate::vk::STD_VIDEO_H265_SCALING_LIST_32X32_NUM_LISTS
+        as _],
 }
 #[repr(C)]
 pub struct StdVideoH265ShortTermRefPicSetFlags {
@@ -107,13 +118,14 @@ pub struct StdVideoH265ShortTermRefPicSet {
     pub reserved3: u8,
     pub num_negative_pics: u8,
     pub num_positive_pics: u8,
-    pub delta_poc_s0_minus1: [u16; crate::vk::STD_VIDEO_H265_MAX_DPB_SIZE],
-    pub delta_poc_s1_minus1: [u16; crate::vk::STD_VIDEO_H265_MAX_DPB_SIZE],
+    pub delta_poc_s0_minus1: [u16; crate::vk::STD_VIDEO_H265_MAX_DPB_SIZE as _],
+    pub delta_poc_s1_minus1: [u16; crate::vk::STD_VIDEO_H265_MAX_DPB_SIZE as _],
 }
 #[repr(C)]
 pub struct StdVideoH265LongTermRefPicsSps {
     pub used_by_curr_pic_lt_sps_flag: u32,
-    pub lt_ref_pic_poc_lsb_sps: [u32; crate::vk::STD_VIDEO_H265_MAX_LONG_TERM_REF_PICS_SPS],
+    pub lt_ref_pic_poc_lsb_sps: [u32; crate::vk::STD_VIDEO_H265_MAX_LONG_TERM_REF_PICS_SPS
+        as _],
 }
 #[repr(C)]
 pub struct StdVideoH265SpsVuiFlags {
@@ -167,7 +179,8 @@ pub struct StdVideoH265SequenceParameterSetVui {
 }
 #[repr(C)]
 pub struct StdVideoH265PredictorPaletteEntries {
-    pub predictor_palette_entries: [[u16; crate::vk::STD_VIDEO_H265_PREDICTOR_PALETTE_COMP_ENTRIES_LIST_SIZE]; crate::vk::STD_VIDEO_H265_PREDICTOR_PALETTE_COMPONENTS_LIST_SIZE],
+    pub predictor_palette_entries: [[u16; crate::vk::STD_VIDEO_H265_PREDICTOR_PALETTE_COMP_ENTRIES_LIST_SIZE
+        as _]; crate::vk::STD_VIDEO_H265_PREDICTOR_PALETTE_COMPONENTS_LIST_SIZE as _],
 }
 #[repr(C)]
 pub struct StdVideoH265SpsFlags {
@@ -297,8 +310,10 @@ pub struct StdVideoH265PictureParameterSet {
     pub log2_max_transform_skip_block_size_minus2: u8,
     pub diff_cu_chroma_qp_offset_depth: u8,
     pub chroma_qp_offset_list_len_minus1: u8,
-    pub cb_qp_offset_list: [i8; crate::vk::STD_VIDEO_H265_CHROMA_QP_OFFSET_LIST_SIZE],
-    pub cr_qp_offset_list: [i8; crate::vk::STD_VIDEO_H265_CHROMA_QP_OFFSET_LIST_SIZE],
+    pub cb_qp_offset_list: [i8; crate::vk::STD_VIDEO_H265_CHROMA_QP_OFFSET_LIST_SIZE
+        as _],
+    pub cr_qp_offset_list: [i8; crate::vk::STD_VIDEO_H265_CHROMA_QP_OFFSET_LIST_SIZE
+        as _],
     pub log2_sao_offset_scale_luma: u8,
     pub log2_sao_offset_scale_chroma: u8,
     pub pps_act_y_qp_offset_plus5: i8,
@@ -311,8 +326,10 @@ pub struct StdVideoH265PictureParameterSet {
     pub num_tile_rows_minus1: u8,
     pub reserved1: u8,
     pub reserved2: u8,
-    pub column_width_minus1: [u16; crate::vk::STD_VIDEO_H265_CHROMA_QP_OFFSET_TILE_COLS_LIST_SIZE],
-    pub row_height_minus1: [u16; crate::vk::STD_VIDEO_H265_CHROMA_QP_OFFSET_TILE_ROWS_LIST_SIZE],
+    pub column_width_minus1: [u16; crate::vk::STD_VIDEO_H265_CHROMA_QP_OFFSET_TILE_COLS_LIST_SIZE
+        as _],
+    pub row_height_minus1: [u16; crate::vk::STD_VIDEO_H265_CHROMA_QP_OFFSET_TILE_ROWS_LIST_SIZE
+        as _],
     pub reserved3: u32,
     pub p_scaling_lists: *const crate::vk::StdVideoH265ScalingLists,
     pub p_predictor_palette_entries: *const crate::vk::StdVideoH265PredictorPaletteEntries,
@@ -329,26 +346,26 @@ pub struct StdVideoH265SliceType(pub(crate) i32);
 pub struct StdVideoH265PictureType(pub(crate) i32);
 #[repr(transparent)]
 pub struct StdVideoH265AspectRatioIdc(pub(crate) i32);
-pub const STD_VIDEO_H265_CPB_CNT_LIST_SIZE: usize = 69;
-pub const STD_VIDEO_H265_SUBLAYERS_LIST_SIZE: usize = 69;
-pub const STD_VIDEO_H265_SCALING_LIST_4X4_NUM_LISTS: usize = 69;
-pub const STD_VIDEO_H265_SCALING_LIST_4X4_NUM_ELEMENTS: usize = 69;
-pub const STD_VIDEO_H265_SCALING_LIST_8X8_NUM_LISTS: usize = 69;
-pub const STD_VIDEO_H265_SCALING_LIST_8X8_NUM_ELEMENTS: usize = 69;
-pub const STD_VIDEO_H265_SCALING_LIST_16X16_NUM_LISTS: usize = 69;
-pub const STD_VIDEO_H265_SCALING_LIST_16X16_NUM_ELEMENTS: usize = 69;
-pub const STD_VIDEO_H265_SCALING_LIST_32X32_NUM_LISTS: usize = 69;
-pub const STD_VIDEO_H265_SCALING_LIST_32X32_NUM_ELEMENTS: usize = 69;
-pub const STD_VIDEO_H265_CHROMA_QP_OFFSET_LIST_SIZE: usize = 69;
-pub const STD_VIDEO_H265_CHROMA_QP_OFFSET_TILE_COLS_LIST_SIZE: usize = 69;
-pub const STD_VIDEO_H265_CHROMA_QP_OFFSET_TILE_ROWS_LIST_SIZE: usize = 69;
-pub const STD_VIDEO_H265_PREDICTOR_PALETTE_COMPONENTS_LIST_SIZE: usize = 69;
-pub const STD_VIDEO_H265_PREDICTOR_PALETTE_COMP_ENTRIES_LIST_SIZE: usize = 69;
-pub const STD_VIDEO_H265_MAX_NUM_LIST_REF: usize = 69;
-pub const STD_VIDEO_H265_MAX_CHROMA_PLANES: usize = 69;
-pub const STD_VIDEO_H265_MAX_SHORT_TERM_REF_PIC_SETS: usize = 69;
-pub const STD_VIDEO_H265_MAX_DPB_SIZE: usize = 69;
-pub const STD_VIDEO_H265_MAX_LONG_TERM_REF_PICS_SPS: usize = 69;
-pub const STD_VIDEO_H265_MAX_LONG_TERM_PICS: usize = 69;
-pub const STD_VIDEO_H265_MAX_DELTA_POC: usize = 69;
-pub const STD_VIDEO_H265_NO_REFERENCE_PICTURE: usize = 69;
+pub const STD_VIDEO_H265_CPB_CNT_LIST_SIZE: usize = 32;
+pub const STD_VIDEO_H265_SUBLAYERS_LIST_SIZE: usize = 7;
+pub const STD_VIDEO_H265_SCALING_LIST_4X4_NUM_LISTS: usize = 6;
+pub const STD_VIDEO_H265_SCALING_LIST_4X4_NUM_ELEMENTS: usize = 16;
+pub const STD_VIDEO_H265_SCALING_LIST_8X8_NUM_LISTS: usize = 6;
+pub const STD_VIDEO_H265_SCALING_LIST_8X8_NUM_ELEMENTS: usize = 64;
+pub const STD_VIDEO_H265_SCALING_LIST_16X16_NUM_LISTS: usize = 6;
+pub const STD_VIDEO_H265_SCALING_LIST_16X16_NUM_ELEMENTS: usize = 64;
+pub const STD_VIDEO_H265_SCALING_LIST_32X32_NUM_LISTS: usize = 2;
+pub const STD_VIDEO_H265_SCALING_LIST_32X32_NUM_ELEMENTS: usize = 64;
+pub const STD_VIDEO_H265_CHROMA_QP_OFFSET_LIST_SIZE: usize = 6;
+pub const STD_VIDEO_H265_CHROMA_QP_OFFSET_TILE_COLS_LIST_SIZE: usize = 19;
+pub const STD_VIDEO_H265_CHROMA_QP_OFFSET_TILE_ROWS_LIST_SIZE: usize = 21;
+pub const STD_VIDEO_H265_PREDICTOR_PALETTE_COMPONENTS_LIST_SIZE: usize = 3;
+pub const STD_VIDEO_H265_PREDICTOR_PALETTE_COMP_ENTRIES_LIST_SIZE: usize = 128;
+pub const STD_VIDEO_H265_MAX_NUM_LIST_REF: usize = 15;
+pub const STD_VIDEO_H265_MAX_CHROMA_PLANES: usize = 2;
+pub const STD_VIDEO_H265_MAX_SHORT_TERM_REF_PIC_SETS: usize = 64;
+pub const STD_VIDEO_H265_MAX_DPB_SIZE: usize = 16;
+pub const STD_VIDEO_H265_MAX_LONG_TERM_REF_PICS_SPS: usize = 32;
+pub const STD_VIDEO_H265_MAX_LONG_TERM_PICS: usize = 16;
+pub const STD_VIDEO_H265_MAX_DELTA_POC: usize = 48;
+pub const STD_VIDEO_H265_NO_REFERENCE_PICTURE: usize = 0xf32f32;

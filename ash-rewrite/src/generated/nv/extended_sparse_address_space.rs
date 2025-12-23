@@ -15,5 +15,5 @@ pub struct PhysicalDeviceExtendedSparseAddressSpacePropertiesNV {
     pub extended_sparse_image_usage_flags: crate::vk::ImageUsageFlags,
     pub extended_sparse_buffer_usage_flags: crate::vk::BufferUsageFlags,
 }
-pub const NV_EXTENDED_SPARSE_ADDRESS_SPACE_SPEC_VERSION: usize = 69;
-pub const NV_EXTENDED_SPARSE_ADDRESS_SPACE_EXTENSION_NAME: &'static core::ffi::CStr = c"VK_NV_extended_sparse_address_space";
+pub const NV_EXTENDED_SPARSE_ADDRESS_SPACE_SPEC_VERSION: usize = 1;
+pub const NV_EXTENDED_SPARSE_ADDRESS_SPACE_EXTENSION_NAME: &core::ffi::CStr = c"VK_NV_extended_sparse_address_space";

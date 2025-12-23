@@ -8,5 +8,5 @@ pub struct PhysicalDeviceTexelBufferAlignmentFeaturesEXT {
     pub texel_buffer_alignment: crate::vk::Bool32,
 }
 pub type PhysicalDeviceTexelBufferAlignmentPropertiesEXT = crate::vk::PhysicalDeviceTexelBufferAlignmentProperties;
-pub const EXT_TEXEL_BUFFER_ALIGNMENT_SPEC_VERSION: usize = 69;
-pub const EXT_TEXEL_BUFFER_ALIGNMENT_EXTENSION_NAME: &'static core::ffi::CStr = c"VK_EXT_texel_buffer_alignment";
+pub const EXT_TEXEL_BUFFER_ALIGNMENT_SPEC_VERSION: usize = 1;
+pub const EXT_TEXEL_BUFFER_ALIGNMENT_EXTENSION_NAME: &core::ffi::CStr = c"VK_EXT_texel_buffer_alignment";

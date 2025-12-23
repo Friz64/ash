@@ -20,5 +20,5 @@ pub struct SurfaceCapabilitiesPresentWait2KHR {
     pub p_next: *mut core::ffi::c_void,
     pub present_wait2_supported: crate::vk::Bool32,
 }
-pub const KHR_PRESENT_WAIT_2_SPEC_VERSION: usize = 69;
-pub const KHR_PRESENT_WAIT_2_EXTENSION_NAME: &'static core::ffi::CStr = c"VK_KHR_present_wait2";
+pub const KHR_PRESENT_WAIT_2_SPEC_VERSION: usize = 1;
+pub const KHR_PRESENT_WAIT_2_EXTENSION_NAME: &core::ffi::CStr = c"VK_KHR_present_wait2";

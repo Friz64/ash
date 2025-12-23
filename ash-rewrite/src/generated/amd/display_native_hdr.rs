@@ -13,5 +13,5 @@ pub struct SwapchainDisplayNativeHdrCreateInfoAMD {
     pub p_next: *const core::ffi::c_void,
     pub local_dimming_enable: crate::vk::Bool32,
 }
-pub const AMD_DISPLAY_NATIVE_HDR_SPEC_VERSION: usize = 69;
-pub const AMD_DISPLAY_NATIVE_HDR_EXTENSION_NAME: &'static core::ffi::CStr = c"VK_AMD_display_native_hdr";
+pub const AMD_DISPLAY_NATIVE_HDR_SPEC_VERSION: usize = 1;
+pub const AMD_DISPLAY_NATIVE_HDR_EXTENSION_NAME: &core::ffi::CStr = c"VK_AMD_display_native_hdr";

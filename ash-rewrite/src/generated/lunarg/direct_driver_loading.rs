@@ -27,5 +27,5 @@ pub type PFN_vkGetInstanceProcAddrLUNARG = Option<
         p_name: *const core::ffi::c_char,
     ) -> crate::vk::PFN_vkVoidFunction,
 >;
-pub const LUNARG_DIRECT_DRIVER_LOADING_SPEC_VERSION: usize = 69;
-pub const LUNARG_DIRECT_DRIVER_LOADING_EXTENSION_NAME: &'static core::ffi::CStr = c"VK_LUNARG_direct_driver_loading";
+pub const LUNARG_DIRECT_DRIVER_LOADING_SPEC_VERSION: usize = 1;
+pub const LUNARG_DIRECT_DRIVER_LOADING_EXTENSION_NAME: &core::ffi::CStr = c"VK_LUNARG_direct_driver_loading";

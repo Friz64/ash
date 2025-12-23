@@ -26,5 +26,5 @@ pub struct FenceGetWin32HandleInfoKHR {
     pub fence: crate::vk::Fence,
     pub handle_type: crate::vk::ExternalFenceHandleTypeFlagBits,
 }
-pub const KHR_EXTERNAL_FENCE_WIN32_SPEC_VERSION: usize = 69;
-pub const KHR_EXTERNAL_FENCE_WIN32_EXTENSION_NAME: &'static core::ffi::CStr = c"VK_KHR_external_fence_win32";
+pub const KHR_EXTERNAL_FENCE_WIN32_SPEC_VERSION: usize = 1;
+pub const KHR_EXTERNAL_FENCE_WIN32_EXTENSION_NAME: &core::ffi::CStr = c"VK_KHR_external_fence_win32";

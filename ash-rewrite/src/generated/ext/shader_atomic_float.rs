@@ -18,5 +18,5 @@ pub struct PhysicalDeviceShaderAtomicFloatFeaturesEXT {
     pub sparse_image_float32_atomics: crate::vk::Bool32,
     pub sparse_image_float32_atomic_add: crate::vk::Bool32,
 }
-pub const EXT_SHADER_ATOMIC_FLOAT_SPEC_VERSION: usize = 69;
-pub const EXT_SHADER_ATOMIC_FLOAT_EXTENSION_NAME: &'static core::ffi::CStr = c"VK_EXT_shader_atomic_float";
+pub const EXT_SHADER_ATOMIC_FLOAT_SPEC_VERSION: usize = 1;
+pub const EXT_SHADER_ATOMIC_FLOAT_EXTENSION_NAME: &core::ffi::CStr = c"VK_EXT_shader_atomic_float";

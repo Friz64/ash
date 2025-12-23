@@ -13,24 +13,28 @@ pub struct StdVideoEncodeH265WeightTable {
     pub flags: crate::vk::StdVideoEncodeH265WeightTableFlags,
     pub luma_log2_weight_denom: u8,
     pub delta_chroma_log2_weight_denom: i8,
-    pub delta_luma_weight_l0: [i8; crate::vk::STD_VIDEO_H265_MAX_NUM_LIST_REF],
-    pub luma_offset_l0: [i8; crate::vk::STD_VIDEO_H265_MAX_NUM_LIST_REF],
-    pub delta_chroma_weight_l0: [[i8; crate::vk::STD_VIDEO_H265_MAX_CHROMA_PLANES]; crate::vk::STD_VIDEO_H265_MAX_NUM_LIST_REF],
-    pub delta_chroma_offset_l0: [[i8; crate::vk::STD_VIDEO_H265_MAX_CHROMA_PLANES]; crate::vk::STD_VIDEO_H265_MAX_NUM_LIST_REF],
-    pub delta_luma_weight_l1: [i8; crate::vk::STD_VIDEO_H265_MAX_NUM_LIST_REF],
-    pub luma_offset_l1: [i8; crate::vk::STD_VIDEO_H265_MAX_NUM_LIST_REF],
-    pub delta_chroma_weight_l1: [[i8; crate::vk::STD_VIDEO_H265_MAX_CHROMA_PLANES]; crate::vk::STD_VIDEO_H265_MAX_NUM_LIST_REF],
-    pub delta_chroma_offset_l1: [[i8; crate::vk::STD_VIDEO_H265_MAX_CHROMA_PLANES]; crate::vk::STD_VIDEO_H265_MAX_NUM_LIST_REF],
+    pub delta_luma_weight_l0: [i8; crate::vk::STD_VIDEO_H265_MAX_NUM_LIST_REF as _],
+    pub luma_offset_l0: [i8; crate::vk::STD_VIDEO_H265_MAX_NUM_LIST_REF as _],
+    pub delta_chroma_weight_l0: [[i8; crate::vk::STD_VIDEO_H265_MAX_CHROMA_PLANES
+        as _]; crate::vk::STD_VIDEO_H265_MAX_NUM_LIST_REF as _],
+    pub delta_chroma_offset_l0: [[i8; crate::vk::STD_VIDEO_H265_MAX_CHROMA_PLANES
+        as _]; crate::vk::STD_VIDEO_H265_MAX_NUM_LIST_REF as _],
+    pub delta_luma_weight_l1: [i8; crate::vk::STD_VIDEO_H265_MAX_NUM_LIST_REF as _],
+    pub luma_offset_l1: [i8; crate::vk::STD_VIDEO_H265_MAX_NUM_LIST_REF as _],
+    pub delta_chroma_weight_l1: [[i8; crate::vk::STD_VIDEO_H265_MAX_CHROMA_PLANES
+        as _]; crate::vk::STD_VIDEO_H265_MAX_NUM_LIST_REF as _],
+    pub delta_chroma_offset_l1: [[i8; crate::vk::STD_VIDEO_H265_MAX_CHROMA_PLANES
+        as _]; crate::vk::STD_VIDEO_H265_MAX_NUM_LIST_REF as _],
 }
 #[repr(C)]
 pub struct StdVideoEncodeH265LongTermRefPics {
     pub num_long_term_sps: u8,
     pub num_long_term_pics: u8,
-    pub lt_idx_sps: [u8; crate::vk::STD_VIDEO_H265_MAX_LONG_TERM_REF_PICS_SPS],
-    pub poc_lsb_lt: [u8; crate::vk::STD_VIDEO_H265_MAX_LONG_TERM_PICS],
+    pub lt_idx_sps: [u8; crate::vk::STD_VIDEO_H265_MAX_LONG_TERM_REF_PICS_SPS as _],
+    pub poc_lsb_lt: [u8; crate::vk::STD_VIDEO_H265_MAX_LONG_TERM_PICS as _],
     pub used_by_curr_pic_lt_flag: u16,
-    pub delta_poc_msb_present_flag: [u8; crate::vk::STD_VIDEO_H265_MAX_DELTA_POC],
-    pub delta_poc_msb_cycle_lt: [u8; crate::vk::STD_VIDEO_H265_MAX_DELTA_POC],
+    pub delta_poc_msb_present_flag: [u8; crate::vk::STD_VIDEO_H265_MAX_DELTA_POC as _],
+    pub delta_poc_msb_cycle_lt: [u8; crate::vk::STD_VIDEO_H265_MAX_DELTA_POC as _],
 }
 #[repr(C)]
 pub struct StdVideoEncodeH265SliceSegmentHeaderFlags {
@@ -77,10 +81,10 @@ pub struct StdVideoEncodeH265ReferenceListsInfo {
     pub flags: crate::vk::StdVideoEncodeH265ReferenceListsInfoFlags,
     pub num_ref_idx_l0_active_minus1: u8,
     pub num_ref_idx_l1_active_minus1: u8,
-    pub ref_pic_list0: [u8; crate::vk::STD_VIDEO_H265_MAX_NUM_LIST_REF],
-    pub ref_pic_list1: [u8; crate::vk::STD_VIDEO_H265_MAX_NUM_LIST_REF],
-    pub list_entry_l0: [u8; crate::vk::STD_VIDEO_H265_MAX_NUM_LIST_REF],
-    pub list_entry_l1: [u8; crate::vk::STD_VIDEO_H265_MAX_NUM_LIST_REF],
+    pub ref_pic_list0: [u8; crate::vk::STD_VIDEO_H265_MAX_NUM_LIST_REF as _],
+    pub ref_pic_list1: [u8; crate::vk::STD_VIDEO_H265_MAX_NUM_LIST_REF as _],
+    pub list_entry_l0: [u8; crate::vk::STD_VIDEO_H265_MAX_NUM_LIST_REF as _],
+    pub list_entry_l1: [u8; crate::vk::STD_VIDEO_H265_MAX_NUM_LIST_REF as _],
 }
 #[repr(C)]
 pub struct StdVideoEncodeH265PictureInfoFlags {
@@ -105,7 +109,7 @@ pub struct StdVideoEncodeH265PictureInfo {
     pub short_term_ref_pic_set_idx: u8,
     pub pic_order_cnt_val: i32,
     pub temporal_id: u8,
-    pub reserved1: [u8; 7],
+    pub reserved1: [u8; 7 as _],
     pub p_ref_lists: *const crate::vk::StdVideoEncodeH265ReferenceListsInfo,
     pub p_short_term_ref_pic_set: *const crate::vk::StdVideoH265ShortTermRefPicSet,
     pub p_long_term_ref_pics: *const crate::vk::StdVideoEncodeH265LongTermRefPics,
@@ -123,5 +127,5 @@ pub struct StdVideoEncodeH265ReferenceInfo {
     pub pic_order_cnt_val: i32,
     pub temporal_id: u8,
 }
-pub const STD_VULKAN_VIDEO_CODEC_H265_ENCODE_SPEC_VERSION: usize = 69;
-pub const STD_VULKAN_VIDEO_CODEC_H265_ENCODE_EXTENSION_NAME: &'static core::ffi::CStr = c"VK_STD_vulkan_video_codec_h265_encode";
+pub const STD_VULKAN_VIDEO_CODEC_H265_ENCODE_SPEC_VERSION: usize = 69420;
+pub const STD_VULKAN_VIDEO_CODEC_H265_ENCODE_EXTENSION_NAME: &core::ffi::CStr = c"VK_STD_vulkan_video_codec_h265_encode";

@@ -7,5 +7,5 @@ pub struct PhysicalDeviceMultiviewPerViewViewportsFeaturesQCOM {
     pub p_next: *mut core::ffi::c_void,
     pub multiview_per_view_viewports: crate::vk::Bool32,
 }
-pub const QCOM_MULTIVIEW_PER_VIEW_VIEWPORTS_SPEC_VERSION: usize = 69;
-pub const QCOM_MULTIVIEW_PER_VIEW_VIEWPORTS_EXTENSION_NAME: &'static core::ffi::CStr = c"VK_QCOM_multiview_per_view_viewports";
+pub const QCOM_MULTIVIEW_PER_VIEW_VIEWPORTS_SPEC_VERSION: usize = 1;
+pub const QCOM_MULTIVIEW_PER_VIEW_VIEWPORTS_EXTENSION_NAME: &core::ffi::CStr = c"VK_QCOM_multiview_per_view_viewports";

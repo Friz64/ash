@@ -23,5 +23,5 @@ pub struct PhysicalDeviceSchedulingControlsPropertiesARM {
 pub struct PhysicalDeviceSchedulingControlsFlagsARM(pub(crate) i32);
 #[repr(transparent)]
 pub struct PhysicalDeviceSchedulingControlsFlagBitsARM(pub(crate) i32);
-pub const ARM_SCHEDULING_CONTROLS_SPEC_VERSION: usize = 69;
-pub const ARM_SCHEDULING_CONTROLS_EXTENSION_NAME: &'static core::ffi::CStr = c"VK_ARM_scheduling_controls";
+pub const ARM_SCHEDULING_CONTROLS_SPEC_VERSION: usize = 1;
+pub const ARM_SCHEDULING_CONTROLS_EXTENSION_NAME: &core::ffi::CStr = c"VK_ARM_scheduling_controls";

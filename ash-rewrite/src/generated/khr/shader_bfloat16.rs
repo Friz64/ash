@@ -9,5 +9,5 @@ pub struct PhysicalDeviceShaderBfloat16FeaturesKHR {
     pub shader_b_float16_dot_product: crate::vk::Bool32,
     pub shader_b_float16_cooperative_matrix: crate::vk::Bool32,
 }
-pub const KHR_SHADER_BFLOAT16_SPEC_VERSION: usize = 69;
-pub const KHR_SHADER_BFLOAT16_EXTENSION_NAME: &'static core::ffi::CStr = c"VK_KHR_shader_bfloat16";
+pub const KHR_SHADER_BFLOAT16_SPEC_VERSION: usize = 1;
+pub const KHR_SHADER_BFLOAT16_EXTENSION_NAME: &core::ffi::CStr = c"VK_KHR_shader_bfloat16";

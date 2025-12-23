@@ -2,5 +2,5 @@
 #![cfg_attr(rustfmt, rustfmt_skip)]
 //![Vulkan Manual Page](https://docs.vulkan.org/refpages/latest/refpages/source/VK_KHR_push_descriptor.html) · Vulkan extension
 pub type PhysicalDevicePushDescriptorPropertiesKHR = crate::vk::PhysicalDevicePushDescriptorProperties;
-pub const KHR_PUSH_DESCRIPTOR_SPEC_VERSION: usize = 69;
-pub const KHR_PUSH_DESCRIPTOR_EXTENSION_NAME: &'static core::ffi::CStr = c"VK_KHR_push_descriptor";
+pub const KHR_PUSH_DESCRIPTOR_SPEC_VERSION: usize = 2;
+pub const KHR_PUSH_DESCRIPTOR_EXTENSION_NAME: &core::ffi::CStr = c"VK_KHR_push_descriptor";

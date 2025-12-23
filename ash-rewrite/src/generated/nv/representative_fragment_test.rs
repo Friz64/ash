@@ -13,5 +13,5 @@ pub struct PipelineRepresentativeFragmentTestStateCreateInfoNV {
     pub p_next: *const core::ffi::c_void,
     pub representative_fragment_test_enable: crate::vk::Bool32,
 }
-pub const NV_REPRESENTATIVE_FRAGMENT_TEST_SPEC_VERSION: usize = 69;
-pub const NV_REPRESENTATIVE_FRAGMENT_TEST_EXTENSION_NAME: &'static core::ffi::CStr = c"VK_NV_representative_fragment_test";
+pub const NV_REPRESENTATIVE_FRAGMENT_TEST_SPEC_VERSION: usize = 2;
+pub const NV_REPRESENTATIVE_FRAGMENT_TEST_EXTENSION_NAME: &core::ffi::CStr = c"VK_NV_representative_fragment_test";

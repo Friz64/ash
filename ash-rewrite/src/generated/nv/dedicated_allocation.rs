@@ -20,5 +20,5 @@ pub struct DedicatedAllocationMemoryAllocateInfoNV {
     pub image: crate::vk::Image,
     pub buffer: crate::vk::Buffer,
 }
-pub const NV_DEDICATED_ALLOCATION_SPEC_VERSION: usize = 69;
-pub const NV_DEDICATED_ALLOCATION_EXTENSION_NAME: &'static core::ffi::CStr = c"VK_NV_dedicated_allocation";
+pub const NV_DEDICATED_ALLOCATION_SPEC_VERSION: usize = 1;
+pub const NV_DEDICATED_ALLOCATION_EXTENSION_NAME: &core::ffi::CStr = c"VK_NV_dedicated_allocation";

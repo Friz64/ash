@@ -7,5 +7,5 @@ pub struct PhysicalDeviceVertexAttributeRobustnessFeaturesEXT {
     pub p_next: *mut core::ffi::c_void,
     pub vertex_attribute_robustness: crate::vk::Bool32,
 }
-pub const EXT_VERTEX_ATTRIBUTE_ROBUSTNESS_SPEC_VERSION: usize = 69;
-pub const EXT_VERTEX_ATTRIBUTE_ROBUSTNESS_EXTENSION_NAME: &'static core::ffi::CStr = c"VK_EXT_vertex_attribute_robustness";
+pub const EXT_VERTEX_ATTRIBUTE_ROBUSTNESS_SPEC_VERSION: usize = 1;
+pub const EXT_VERTEX_ATTRIBUTE_ROBUSTNESS_EXTENSION_NAME: &core::ffi::CStr = c"VK_EXT_vertex_attribute_robustness";

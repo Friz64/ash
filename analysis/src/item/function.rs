@@ -4,6 +4,7 @@ use crate::{
     name::TypeName,
     xml,
 };
+use tracing::{instrument, trace};
 
 #[derive(Debug)]
 pub struct FuncPointer {
@@ -25,11 +26,13 @@ impl Type for FuncPointer {
 }
 
 impl FuncPointer {
+    #[instrument(skip(decl_ctx))]
     pub(crate) fn new(
         decl_ctx: &decl::Context,
         required_by: RequiredBy,
         xml: &xml::FuncPointer,
     ) -> FuncPointer {
+        trace!("constructing");
         FuncPointer {
             required_by,
             name: TypeName(xml.c_decl.name),

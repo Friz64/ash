@@ -24,11 +24,12 @@ pub struct VideoDecodeVP9PictureInfoKHR {
     pub s_type: crate::vk::StructureType,
     pub p_next: *const core::ffi::c_void,
     pub p_std_picture_info: *const crate::vk::StdVideoDecodeVP9PictureInfo,
-    pub reference_name_slot_indices: [i32; crate::vk::MAX_VIDEO_VP9_REFERENCES_PER_FRAME_KHR],
+    pub reference_name_slot_indices: [i32; crate::vk::MAX_VIDEO_VP9_REFERENCES_PER_FRAME_KHR
+        as _],
     pub uncompressed_header_offset: u32,
     pub compressed_header_offset: u32,
     pub tiles_offset: u32,
 }
-pub const MAX_VIDEO_VP9_REFERENCES_PER_FRAME_KHR: usize = 69;
-pub const KHR_VIDEO_DECODE_VP9_SPEC_VERSION: usize = 69;
-pub const KHR_VIDEO_DECODE_VP9_EXTENSION_NAME: &'static core::ffi::CStr = c"VK_KHR_video_decode_vp9";
+pub const MAX_VIDEO_VP9_REFERENCES_PER_FRAME_KHR: u32 = 3;
+pub const KHR_VIDEO_DECODE_VP9_SPEC_VERSION: usize = 1;
+pub const KHR_VIDEO_DECODE_VP9_EXTENSION_NAME: &core::ffi::CStr = c"VK_KHR_video_decode_vp9";

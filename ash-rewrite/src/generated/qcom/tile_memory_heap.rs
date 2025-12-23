@@ -33,5 +33,5 @@ pub struct TileMemoryRequirementsQCOM {
     pub size: crate::vk::DeviceSize,
     pub alignment: crate::vk::DeviceSize,
 }
-pub const QCOM_TILE_MEMORY_HEAP_SPEC_VERSION: usize = 69;
-pub const QCOM_TILE_MEMORY_HEAP_EXTENSION_NAME: &'static core::ffi::CStr = c"VK_QCOM_tile_memory_heap";
+pub const QCOM_TILE_MEMORY_HEAP_SPEC_VERSION: usize = 1;
+pub const QCOM_TILE_MEMORY_HEAP_EXTENSION_NAME: &core::ffi::CStr = c"VK_QCOM_tile_memory_heap";

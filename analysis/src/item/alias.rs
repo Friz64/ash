@@ -3,6 +3,7 @@ use crate::{
     name::TypeName,
     xml,
 };
+use tracing::{instrument, trace};
 
 #[derive(Debug)]
 pub struct Alias {
@@ -24,11 +25,9 @@ impl Type for Alias {
 }
 
 impl Alias {
-    pub(crate) fn new(
-        // decl_ctx: &decl::Context,
-        required_by: RequiredBy,
-        xml: &xml::TypeAlias,
-    ) -> Alias {
+    #[instrument]
+    pub(crate) fn new(required_by: RequiredBy, xml: &xml::TypeAlias) -> Alias {
+        trace!("constructing");
         Alias {
             required_by,
             name: xml.name,

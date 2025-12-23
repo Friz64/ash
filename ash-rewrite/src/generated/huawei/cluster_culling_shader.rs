@@ -5,8 +5,8 @@
 pub struct PhysicalDeviceClusterCullingShaderPropertiesHUAWEI {
     pub s_type: crate::vk::StructureType,
     pub p_next: *mut core::ffi::c_void,
-    pub max_work_group_count: [u32; 3],
-    pub max_work_group_size: [u32; 3],
+    pub max_work_group_count: [u32; 3 as _],
+    pub max_work_group_size: [u32; 3 as _],
     pub max_output_cluster_count: u32,
     pub indirect_buffer_offset_alignment: crate::vk::DeviceSize,
 }
@@ -23,5 +23,5 @@ pub struct PhysicalDeviceClusterCullingShaderVrsFeaturesHUAWEI {
     pub p_next: *mut core::ffi::c_void,
     pub cluster_shading_rate: crate::vk::Bool32,
 }
-pub const HUAWEI_CLUSTER_CULLING_SHADER_SPEC_VERSION: usize = 69;
-pub const HUAWEI_CLUSTER_CULLING_SHADER_EXTENSION_NAME: &'static core::ffi::CStr = c"VK_HUAWEI_cluster_culling_shader";
+pub const HUAWEI_CLUSTER_CULLING_SHADER_SPEC_VERSION: usize = 3;
+pub const HUAWEI_CLUSTER_CULLING_SHADER_EXTENSION_NAME: &core::ffi::CStr = c"VK_HUAWEI_cluster_culling_shader";

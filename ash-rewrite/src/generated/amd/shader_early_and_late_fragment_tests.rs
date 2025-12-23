@@ -7,5 +7,5 @@ pub struct PhysicalDeviceShaderEarlyAndLateFragmentTestsFeaturesAMD {
     pub p_next: *mut core::ffi::c_void,
     pub shader_early_and_late_fragment_tests: crate::vk::Bool32,
 }
-pub const AMD_SHADER_EARLY_AND_LATE_FRAGMENT_TESTS_SPEC_VERSION: usize = 69;
-pub const AMD_SHADER_EARLY_AND_LATE_FRAGMENT_TESTS_EXTENSION_NAME: &'static core::ffi::CStr = c"VK_AMD_shader_early_and_late_fragment_tests";
+pub const AMD_SHADER_EARLY_AND_LATE_FRAGMENT_TESTS_SPEC_VERSION: usize = 1;
+pub const AMD_SHADER_EARLY_AND_LATE_FRAGMENT_TESTS_EXTENSION_NAME: &core::ffi::CStr = c"VK_AMD_shader_early_and_late_fragment_tests";

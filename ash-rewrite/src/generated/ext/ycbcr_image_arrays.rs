@@ -7,5 +7,5 @@ pub struct PhysicalDeviceYcbcrImageArraysFeaturesEXT {
     pub p_next: *mut core::ffi::c_void,
     pub ycbcr_image_arrays: crate::vk::Bool32,
 }
-pub const EXT_YCBCR_IMAGE_ARRAYS_SPEC_VERSION: usize = 69;
-pub const EXT_YCBCR_IMAGE_ARRAYS_EXTENSION_NAME: &'static core::ffi::CStr = c"VK_EXT_ycbcr_image_arrays";
+pub const EXT_YCBCR_IMAGE_ARRAYS_SPEC_VERSION: usize = 1;
+pub const EXT_YCBCR_IMAGE_ARRAYS_EXTENSION_NAME: &core::ffi::CStr = c"VK_EXT_ycbcr_image_arrays";
