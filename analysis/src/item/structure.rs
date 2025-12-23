@@ -1,5 +1,5 @@
 use crate::{
-    decl::{self, Decl},
+    decl::{self, Decl, Ty},
     item::{Item, RequiredBy, Type},
     name::TypeName,
     xml,
@@ -41,6 +41,10 @@ impl Struct {
                 .collect(),
         }
     }
+
+    pub fn has_pointer(&self) -> bool {
+        has_pointer(&self.members)
+    }
 }
 
 #[derive(Debug)]
@@ -78,4 +82,14 @@ impl Union {
                 .collect(),
         }
     }
+
+    pub fn has_pointer(&self) -> bool {
+        has_pointer(&self.members)
+    }
+}
+
+fn has_pointer(members: &[Decl]) -> bool {
+    members
+        .iter()
+        .any(|member| matches!(member.ty, Ty::Ptr(..)))
 }

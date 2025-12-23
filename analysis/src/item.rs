@@ -25,6 +25,7 @@ use crate::{
 };
 use indexmap::IndexMap;
 use std::collections::HashMap;
+use tracing::debug;
 
 #[derive(Debug, Clone, Copy, PartialEq, Eq, Hash)]
 pub enum RequiredBy {
@@ -61,6 +62,7 @@ pub struct Items {
 
 impl Items {
     pub(super) fn collect(libraries: &[&Library]) -> Items {
+        debug!("collecting items");
         let mut items = Items::default();
 
         let mut type_require_map = HashMap::new();
