@@ -57,3 +57,5 @@ pub struct DeviceOrHostAddressConstKHR {
 }
 #[repr(transparent)]
 pub struct CooperativeVectorMatrixLayoutNV(pub(crate) i32);
+pub const NV_COOPERATIVE_VECTOR_SPEC_VERSION: usize = 69;
+pub const NV_COOPERATIVE_VECTOR_EXTENSION_NAME: &'static core::ffi::CStr = c"VK_NV_cooperative_vector";

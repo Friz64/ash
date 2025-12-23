@@ -42,3 +42,5 @@ pub struct ResolveImageFlagsKHR(pub(crate) i32);
 pub struct RenderingAttachmentFlagBitsKHR(pub(crate) i32);
 #[repr(transparent)]
 pub struct ResolveImageFlagBitsKHR(pub(crate) i32);
+pub const KHR_MAINTENANCE_10_SPEC_VERSION: usize = 69;
+pub const KHR_MAINTENANCE_10_EXTENSION_NAME: &'static core::ffi::CStr = c"VK_KHR_maintenance10";

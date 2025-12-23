@@ -2,3 +2,5 @@
 #![cfg_attr(rustfmt, rustfmt_skip)]
 //![Vulkan Manual Page](https://docs.vulkan.org/refpages/latest/refpages/source/VK_KHR_shader_float_controls2.html) · Vulkan extension
 pub type PhysicalDeviceShaderFloatControls2FeaturesKHR = crate::vk::PhysicalDeviceShaderFloatControls2Features;
+pub const KHR_SHADER_FLOAT_CONTROLS_2_SPEC_VERSION: usize = 69;
+pub const KHR_SHADER_FLOAT_CONTROLS_2_EXTENSION_NAME: &'static core::ffi::CStr = c"VK_KHR_shader_float_controls2";

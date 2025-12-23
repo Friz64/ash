@@ -13,3 +13,5 @@ pub struct PhysicalDeviceASTCDecodeFeaturesEXT {
     pub p_next: *mut core::ffi::c_void,
     pub decode_mode_shared_exponent: crate::vk::Bool32,
 }
+pub const EXT_ASTC_DECODE_MODE_SPEC_VERSION: usize = 69;
+pub const EXT_ASTC_DECODE_MODE_EXTENSION_NAME: &'static core::ffi::CStr = c"VK_EXT_astc_decode_mode";

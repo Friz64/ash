@@ -2,3 +2,5 @@
 #![cfg_attr(rustfmt, rustfmt_skip)]
 //![Vulkan Manual Page](https://docs.vulkan.org/refpages/latest/refpages/source/VK_KHR_zero_initialize_workgroup_memory.html) · Vulkan extension
 pub type PhysicalDeviceZeroInitializeWorkgroupMemoryFeaturesKHR = crate::vk::PhysicalDeviceZeroInitializeWorkgroupMemoryFeatures;
+pub const KHR_ZERO_INITIALIZE_WORKGROUP_MEMORY_SPEC_VERSION: usize = 69;
+pub const KHR_ZERO_INITIALIZE_WORKGROUP_MEMORY_EXTENSION_NAME: &'static core::ffi::CStr = c"VK_KHR_zero_initialize_workgroup_memory";

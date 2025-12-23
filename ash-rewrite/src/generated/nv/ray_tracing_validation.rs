@@ -7,3 +7,5 @@ pub struct PhysicalDeviceRayTracingValidationFeaturesNV {
     pub p_next: *mut core::ffi::c_void,
     pub ray_tracing_validation: crate::vk::Bool32,
 }
+pub const NV_RAY_TRACING_VALIDATION_SPEC_VERSION: usize = 69;
+pub const NV_RAY_TRACING_VALIDATION_EXTENSION_NAME: &'static core::ffi::CStr = c"VK_NV_ray_tracing_validation";

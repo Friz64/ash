@@ -7,3 +7,5 @@ pub struct PhysicalDeviceAttachmentFeedbackLoopDynamicStateFeaturesEXT {
     pub p_next: *mut core::ffi::c_void,
     pub attachment_feedback_loop_dynamic_state: crate::vk::Bool32,
 }
+pub const EXT_ATTACHMENT_FEEDBACK_LOOP_DYNAMIC_STATE_SPEC_VERSION: usize = 69;
+pub const EXT_ATTACHMENT_FEEDBACK_LOOP_DYNAMIC_STATE_EXTENSION_NAME: &'static core::ffi::CStr = c"VK_EXT_attachment_feedback_loop_dynamic_state";

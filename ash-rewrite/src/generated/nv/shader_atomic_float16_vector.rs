@@ -7,3 +7,5 @@ pub struct PhysicalDeviceShaderAtomicFloat16VectorFeaturesNV {
     pub p_next: *mut core::ffi::c_void,
     pub shader_float16_vector_atomics: crate::vk::Bool32,
 }
+pub const NV_SHADER_ATOMIC_FLOAT16_VECTOR_SPEC_VERSION: usize = 69;
+pub const NV_SHADER_ATOMIC_FLOAT16_VECTOR_EXTENSION_NAME: &'static core::ffi::CStr = c"VK_NV_shader_atomic_float16_vector";

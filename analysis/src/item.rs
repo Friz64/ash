@@ -1,6 +1,7 @@
 pub mod alias;
 pub mod basetype;
 pub mod bitmask;
+pub mod constant;
 pub mod enumeration;
 pub mod function;
 pub mod handle;
@@ -12,12 +13,14 @@ use crate::{
         alias::Alias,
         basetype::BaseType,
         bitmask::{BitMask, BitMaskBits},
+        constant::Constant,
         enumeration::Enum,
         function::FuncPointer,
         handle::Handle,
         structure::{Struct, Union},
     },
-    name::TypeName,
+    name::{ConstantName, TypeName},
+    xml::Require,
     Library,
 };
 use indexmap::IndexMap;
@@ -29,9 +32,11 @@ pub enum RequiredBy {
     Extension { name: &'static str },
 }
 
-pub trait ItemInfo {
+pub trait Item {
     fn required_by(&self) -> RequiredBy;
+}
 
+pub trait Type: Item {
     fn name(&self) -> TypeName;
 }
 
@@ -51,13 +56,26 @@ pub enum TypeItem {
 #[derive(Default, Debug)]
 pub struct Items {
     pub types: IndexMap<TypeName, TypeItem>,
+    pub constants: IndexMap<ConstantName, Constant>,
 }
 
 impl Items {
     pub(super) fn collect(libraries: &[&Library]) -> Items {
         let mut items = Items::default();
 
-        let type_require_map = build_type_require_map(libraries);
+        let mut type_require_map = HashMap::new();
+        let mut constant_require_map = HashMap::new();
+
+        iter_requires(libraries, |required_by, require| {
+            for require_type in &require.types {
+                type_require_map.insert(require_type.name, required_by);
+            }
+
+            for require_command in &require.constants {
+                constant_require_map.insert(require_command.name, required_by);
+            }
+        });
+
         let decl_ctx = decl::Context::new(&type_require_map);
 
         for library in libraries {
@@ -109,15 +127,33 @@ impl Items {
                     TypeItem::FuncPointer(FuncPointer::new(&decl_ctx, required_by, ty)),
                 );
             }
+
+            for constant in &library.xml.constants {
+                let name = constant.name;
+                let Some(&required_by) = constant_require_map.get(&name) else {
+                    continue;
+                };
+
+                items
+                    .constants
+                    .insert(name, Constant::from_constant(required_by, constant));
+            }
         }
+
+        iter_requires(libraries, |required_by, require| {
+            for constant in &require.constants {
+                let name = constant.name;
+                if let Some(constant) = Constant::from_require_constant(required_by, constant) {
+                    items.constants.insert(name, constant);
+                }
+            }
+        });
 
         items
     }
 }
 
-fn build_type_require_map(libraries: &[&Library]) -> HashMap<TypeName, RequiredBy> {
-    let mut type_require_map = HashMap::new();
-
+fn iter_requires(libraries: &[&Library], mut f: impl FnMut(RequiredBy, &Require)) {
     for library in libraries {
         for feature in &library.xml.features {
             let required_by = RequiredBy::Feature {
@@ -126,9 +162,7 @@ fn build_type_require_map(libraries: &[&Library]) -> HashMap<TypeName, RequiredB
             };
 
             for require in &feature.requires {
-                for require_type in &require.types {
-                    type_require_map.insert(require_type.name, required_by);
-                }
+                f(required_by, require);
             }
         }
 
@@ -138,12 +172,8 @@ fn build_type_require_map(libraries: &[&Library]) -> HashMap<TypeName, RequiredB
             };
 
             for require in &extension.requires {
-                for require_type in &require.types {
-                    type_require_map.insert(require_type.name, required_by);
-                }
+                f(required_by, require);
             }
         }
     }
-
-    type_require_map
 }

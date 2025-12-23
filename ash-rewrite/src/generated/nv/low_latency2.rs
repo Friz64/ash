@@ -78,3 +78,5 @@ pub struct LatencySurfaceCapabilitiesNV {
 pub struct LatencyMarkerNV(pub(crate) i32);
 #[repr(transparent)]
 pub struct OutOfBandQueueTypeNV(pub(crate) i32);
+pub const NV_LOW_LATENCY_2_SPEC_VERSION: usize = 69;
+pub const NV_LOW_LATENCY_2_EXTENSION_NAME: &'static core::ffi::CStr = c"VK_NV_low_latency2";

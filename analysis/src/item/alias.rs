@@ -1,5 +1,5 @@
 use crate::{
-    item::{ItemInfo, RequiredBy},
+    item::{Item, RequiredBy, Type},
     name::TypeName,
     xml,
 };
@@ -11,11 +11,13 @@ pub struct Alias {
     pub alias: TypeName,
 }
 
-impl ItemInfo for Alias {
+impl Item for Alias {
     fn required_by(&self) -> RequiredBy {
         self.required_by
     }
+}
 
+impl Type for Alias {
     fn name(&self) -> TypeName {
         self.name
     }
@@ -25,7 +27,7 @@ impl Alias {
     pub(crate) fn new(
         // decl_ctx: &decl::Context,
         required_by: RequiredBy,
-        xml: &xml::Alias,
+        xml: &xml::TypeAlias,
     ) -> Alias {
         Alias {
             required_by,

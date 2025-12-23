@@ -36,3 +36,5 @@ pub struct CooperativeMatrixFlexibleDimensionsPropertiesNV {
     pub scope: crate::vk::ScopeKHR,
     pub workgroup_invocations: u32,
 }
+pub const NV_COOPERATIVE_MATRIX_2_SPEC_VERSION: usize = 69;
+pub const NV_COOPERATIVE_MATRIX_2_EXTENSION_NAME: &'static core::ffi::CStr = c"VK_NV_cooperative_matrix2";

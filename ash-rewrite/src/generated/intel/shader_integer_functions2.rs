@@ -7,3 +7,5 @@ pub struct PhysicalDeviceShaderIntegerFunctions2FeaturesINTEL {
     pub p_next: *mut core::ffi::c_void,
     pub shader_integer_functions2: crate::vk::Bool32,
 }
+pub const INTEL_SHADER_INTEGER_FUNCTIONS_2_SPEC_VERSION: usize = 69;
+pub const INTEL_SHADER_INTEGER_FUNCTIONS_2_EXTENSION_NAME: &'static core::ffi::CStr = c"VK_INTEL_shader_integer_functions2";

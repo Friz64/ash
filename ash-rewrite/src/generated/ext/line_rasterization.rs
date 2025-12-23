@@ -5,3 +5,5 @@ pub type PhysicalDeviceLineRasterizationFeaturesEXT = crate::vk::PhysicalDeviceL
 pub type PhysicalDeviceLineRasterizationPropertiesEXT = crate::vk::PhysicalDeviceLineRasterizationProperties;
 pub type PipelineRasterizationLineStateCreateInfoEXT = crate::vk::PipelineRasterizationLineStateCreateInfo;
 pub type LineRasterizationModeEXT = crate::vk::LineRasterizationMode;
+pub const EXT_LINE_RASTERIZATION_SPEC_VERSION: usize = 69;
+pub const EXT_LINE_RASTERIZATION_EXTENSION_NAME: &'static core::ffi::CStr = c"VK_EXT_line_rasterization";

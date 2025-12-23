@@ -7,3 +7,5 @@ pub struct SurfaceProtectedCapabilitiesKHR {
     pub p_next: *mut core::ffi::c_void,
     pub supports_protected: crate::vk::Bool32,
 }
+pub const KHR_SURFACE_PROTECTED_CAPABILITIES_SPEC_VERSION: usize = 69;
+pub const KHR_SURFACE_PROTECTED_CAPABILITIES_EXTENSION_NAME: &'static core::ffi::CStr = c"VK_KHR_surface_protected_capabilities";

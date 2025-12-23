@@ -2,3 +2,5 @@
 #![cfg_attr(rustfmt, rustfmt_skip)]
 //![Vulkan Manual Page](https://docs.vulkan.org/refpages/latest/refpages/source/VK_EXT_scalar_block_layout.html) · Vulkan extension
 pub type PhysicalDeviceScalarBlockLayoutFeaturesEXT = crate::vk::PhysicalDeviceScalarBlockLayoutFeatures;
+pub const EXT_SCALAR_BLOCK_LAYOUT_SPEC_VERSION: usize = 69;
+pub const EXT_SCALAR_BLOCK_LAYOUT_EXTENSION_NAME: &'static core::ffi::CStr = c"VK_EXT_scalar_block_layout";

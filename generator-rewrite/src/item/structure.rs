@@ -6,7 +6,7 @@ use quote::{format_ident, quote};
 impl Code for Struct {
     fn code(&self, ctx: &Context) -> CodeMap {
         let name = format_ident!("{}", self.name.prefix_trimmed());
-        let members = (self.members.iter()).map(|decl| decl.to_rust_name_colon_type(ctx));
+        let members = (self.members.iter()).map(|decl| decl.to_rust(ctx));
 
         let code = quote! {
             #[repr(C)]
@@ -22,7 +22,7 @@ impl Code for Struct {
 impl Code for Union {
     fn code(&self, ctx: &Context) -> CodeMap {
         let name = format_ident!("{}", self.name.prefix_trimmed());
-        let members = (self.members.iter()).map(|decl| decl.to_rust_name_colon_type(ctx));
+        let members = (self.members.iter()).map(|decl| decl.to_rust(ctx));
 
         let code = quote! {
             #[repr(C)]

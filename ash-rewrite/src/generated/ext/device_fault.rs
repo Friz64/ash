@@ -16,7 +16,7 @@ pub struct DeviceFaultAddressInfoEXT {
 }
 #[repr(C)]
 pub struct DeviceFaultVendorInfoEXT {
-    pub description: [core::ffi::c_char; 1337],
+    pub description: [core::ffi::c_char; crate::vk::MAX_DESCRIPTION_SIZE],
     pub vendor_fault_code: u64,
     pub vendor_fault_data: u64,
 }
@@ -32,7 +32,7 @@ pub struct DeviceFaultCountsEXT {
 pub struct DeviceFaultInfoEXT {
     pub s_type: crate::vk::StructureType,
     pub p_next: *mut core::ffi::c_void,
-    pub description: [core::ffi::c_char; 1337],
+    pub description: [core::ffi::c_char; crate::vk::MAX_DESCRIPTION_SIZE],
     pub p_address_infos: *mut crate::vk::DeviceFaultAddressInfoEXT,
     pub p_vendor_infos: *mut crate::vk::DeviceFaultVendorInfoEXT,
     pub p_vendor_binary_data: *mut core::ffi::c_void,
@@ -44,7 +44,7 @@ pub struct DeviceFaultVendorBinaryHeaderVersionOneEXT {
     pub vendor_id: u32,
     pub device_id: u32,
     pub driver_version: u32,
-    pub pipeline_cache_uuid: [u8; 1337],
+    pub pipeline_cache_uuid: [u8; crate::vk::UUID_SIZE],
     pub application_name_offset: u32,
     pub application_version: u32,
     pub engine_name_offset: u32,
@@ -55,3 +55,5 @@ pub struct DeviceFaultVendorBinaryHeaderVersionOneEXT {
 pub struct DeviceFaultAddressTypeEXT(pub(crate) i32);
 #[repr(transparent)]
 pub struct DeviceFaultVendorBinaryHeaderVersionEXT(pub(crate) i32);
+pub const EXT_DEVICE_FAULT_SPEC_VERSION: usize = 69;
+pub const EXT_DEVICE_FAULT_EXTENSION_NAME: &'static core::ffi::CStr = c"VK_EXT_device_fault";

@@ -13,8 +13,8 @@ pub struct PhysicalDeviceDriverProperties {
     pub s_type: crate::vk::StructureType,
     pub p_next: *mut core::ffi::c_void,
     pub driver_id: crate::vk::DriverId,
-    pub driver_name: [core::ffi::c_char; 1337],
-    pub driver_info: [core::ffi::c_char; 1337],
+    pub driver_name: [core::ffi::c_char; crate::vk::MAX_DRIVER_NAME_SIZE],
+    pub driver_info: [core::ffi::c_char; crate::vk::MAX_DRIVER_INFO_SIZE],
     pub conformance_version: crate::vk::ConformanceVersion,
 }
 #[repr(C)]
@@ -433,9 +433,9 @@ pub struct PhysicalDeviceVulkan11Features {
 pub struct PhysicalDeviceVulkan11Properties {
     pub s_type: crate::vk::StructureType,
     pub p_next: *mut core::ffi::c_void,
-    pub device_uuid: [u8; 1337],
-    pub driver_uuid: [u8; 1337],
-    pub device_luid: [u8; 1337],
+    pub device_uuid: [u8; crate::vk::UUID_SIZE],
+    pub driver_uuid: [u8; crate::vk::UUID_SIZE],
+    pub device_luid: [u8; crate::vk::LUID_SIZE],
     pub device_node_mask: u32,
     pub device_luid_valid: crate::vk::Bool32,
     pub subgroup_size: u32,
@@ -506,8 +506,8 @@ pub struct PhysicalDeviceVulkan12Properties {
     pub s_type: crate::vk::StructureType,
     pub p_next: *mut core::ffi::c_void,
     pub driver_id: crate::vk::DriverId,
-    pub driver_name: [core::ffi::c_char; 1337],
-    pub driver_info: [core::ffi::c_char; 1337],
+    pub driver_name: [core::ffi::c_char; crate::vk::MAX_DRIVER_NAME_SIZE],
+    pub driver_info: [core::ffi::c_char; crate::vk::MAX_DRIVER_INFO_SIZE],
     pub conformance_version: crate::vk::ConformanceVersion,
     pub denorm_behavior_independence: crate::vk::ShaderFloatControlsIndependence,
     pub rounding_mode_independence: crate::vk::ShaderFloatControlsIndependence,
@@ -578,3 +578,5 @@ pub struct SemaphoreWaitFlagBits(pub(crate) i32);
 pub struct DescriptorBindingFlagBits(pub(crate) i32);
 #[repr(transparent)]
 pub struct ResolveModeFlagBits(pub(crate) i32);
+pub const MAX_DRIVER_NAME_SIZE: usize = 69;
+pub const MAX_DRIVER_INFO_SIZE: usize = 69;

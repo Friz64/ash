@@ -15,3 +15,5 @@ pub struct CommandBufferInheritanceViewportScissorInfoNV {
     pub viewport_depth_count: u32,
     pub p_viewport_depths: *const crate::vk::Viewport,
 }
+pub const NV_INHERITED_VIEWPORT_SCISSOR_SPEC_VERSION: usize = 69;
+pub const NV_INHERITED_VIEWPORT_SCISSOR_EXTENSION_NAME: &'static core::ffi::CStr = c"VK_NV_inherited_viewport_scissor";

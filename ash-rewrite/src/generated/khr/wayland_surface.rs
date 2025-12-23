@@ -11,3 +11,5 @@ pub struct WaylandSurfaceCreateInfoKHR {
 }
 #[repr(transparent)]
 pub struct WaylandSurfaceCreateFlagsKHR(pub(crate) i32);
+pub const KHR_WAYLAND_SURFACE_SPEC_VERSION: usize = 69;
+pub const KHR_WAYLAND_SURFACE_EXTENSION_NAME: &'static core::ffi::CStr = c"VK_KHR_wayland_surface";

@@ -14,3 +14,5 @@ pub struct ValidationFeaturesEXT {
 pub struct ValidationFeatureEnableEXT(pub(crate) i32);
 #[repr(transparent)]
 pub struct ValidationFeatureDisableEXT(pub(crate) i32);
+pub const EXT_VALIDATION_FEATURES_SPEC_VERSION: usize = 69;
+pub const EXT_VALIDATION_FEATURES_EXTENSION_NAME: &'static core::ffi::CStr = c"VK_EXT_validation_features";

@@ -14,3 +14,6 @@ pub struct PhysicalDeviceImageSlicedViewOf3DFeaturesEXT {
     pub p_next: *mut core::ffi::c_void,
     pub image_sliced_view_of3_d: crate::vk::Bool32,
 }
+pub const REMAINING_3D_SLICES_EXT: usize = 69;
+pub const EXT_IMAGE_SLICED_VIEW_OF_3D_SPEC_VERSION: usize = 69;
+pub const EXT_IMAGE_SLICED_VIEW_OF_3D_EXTENSION_NAME: &'static core::ffi::CStr = c"VK_EXT_image_sliced_view_of_3d";

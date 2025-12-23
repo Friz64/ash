@@ -13,3 +13,5 @@ pub struct PhysicalDeviceLegacyVertexAttributesPropertiesEXT {
     pub p_next: *mut core::ffi::c_void,
     pub native_unaligned_performance: crate::vk::Bool32,
 }
+pub const EXT_LEGACY_VERTEX_ATTRIBUTES_SPEC_VERSION: usize = 69;
+pub const EXT_LEGACY_VERTEX_ATTRIBUTES_EXTENSION_NAME: &'static core::ffi::CStr = c"VK_EXT_legacy_vertex_attributes";

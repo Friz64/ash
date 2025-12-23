@@ -5,7 +5,7 @@
 pub struct DeviceGroupPresentCapabilitiesKHR {
     pub s_type: crate::vk::StructureType,
     pub p_next: *mut core::ffi::c_void,
-    pub present_mask: [u32; 1337],
+    pub present_mask: [u32; crate::vk::MAX_DEVICE_GROUP_SIZE],
     pub modes: crate::vk::DeviceGroupPresentModeFlagsKHR,
 }
 #[repr(C)]
@@ -60,3 +60,5 @@ pub type PeerMemoryFeatureFlagsKHR = crate::vk::PeerMemoryFeatureFlags;
 pub type MemoryAllocateFlagsKHR = crate::vk::MemoryAllocateFlags;
 #[repr(transparent)]
 pub struct DeviceGroupPresentModeFlagBitsKHR(pub(crate) i32);
+pub const KHR_DEVICE_GROUP_SPEC_VERSION: usize = 69;
+pub const KHR_DEVICE_GROUP_EXTENSION_NAME: &'static core::ffi::CStr = c"VK_KHR_device_group";

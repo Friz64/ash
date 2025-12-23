@@ -17,3 +17,5 @@ pub struct BufferDeviceAddressCreateInfoEXT {
 }
 pub type PhysicalDeviceBufferAddressFeaturesEXT = crate::vk::PhysicalDeviceBufferDeviceAddressFeaturesEXT;
 pub type BufferDeviceAddressInfoEXT = crate::vk::BufferDeviceAddressInfo;
+pub const EXT_BUFFER_DEVICE_ADDRESS_SPEC_VERSION: usize = 69;
+pub const EXT_BUFFER_DEVICE_ADDRESS_EXTENSION_NAME: &'static core::ffi::CStr = c"VK_EXT_buffer_device_address";

@@ -8,3 +8,5 @@ pub struct PhysicalDeviceImage2DViewOf3DFeaturesEXT {
     pub image2_d_view_of3_d: crate::vk::Bool32,
     pub sampler2_d_view_of3_d: crate::vk::Bool32,
 }
+pub const EXT_IMAGE_2D_VIEW_OF_3D_SPEC_VERSION: usize = 69;
+pub const EXT_IMAGE_2D_VIEW_OF_3D_EXTENSION_NAME: &'static core::ffi::CStr = c"VK_EXT_image_2d_view_of_3d";

@@ -1,5 +1,5 @@
 use crate::{
-    item::{ItemInfo, RequiredBy},
+    item::{Item, RequiredBy, Type},
     name::TypeName,
     xml,
 };
@@ -10,11 +10,13 @@ pub struct BitMask {
     pub name: TypeName,
 }
 
-impl ItemInfo for BitMask {
+impl Item for BitMask {
     fn required_by(&self) -> RequiredBy {
         self.required_by
     }
+}
 
+impl Type for BitMask {
     fn name(&self) -> TypeName {
         self.name
     }
@@ -39,11 +41,13 @@ pub struct BitMaskBits {
     pub name: TypeName,
 }
 
-impl ItemInfo for BitMaskBits {
+impl Item for BitMaskBits {
     fn required_by(&self) -> RequiredBy {
         self.required_by
     }
+}
 
+impl Type for BitMaskBits {
     fn name(&self) -> TypeName {
         self.name
     }

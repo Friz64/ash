@@ -28,3 +28,5 @@ pub struct PhysicalDeviceExternalComputeQueuePropertiesNV {
 }
 #[repr(transparent)]
 pub struct ExternalComputeQueueNV(pub(crate) i32);
+pub const NV_EXTERNAL_COMPUTE_QUEUE_SPEC_VERSION: usize = 69;
+pub const NV_EXTERNAL_COMPUTE_QUEUE_EXTENSION_NAME: &'static core::ffi::CStr = c"VK_NV_external_compute_queue";

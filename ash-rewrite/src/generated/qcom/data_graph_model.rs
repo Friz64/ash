@@ -7,7 +7,7 @@ pub struct PipelineCacheHeaderVersionDataGraphQCOM {
     pub header_version: crate::vk::PipelineCacheHeaderVersion,
     pub cache_type: crate::vk::DataGraphModelCacheTypeQCOM,
     pub cache_version: u32,
-    pub toolchain_version: [u32; 1337],
+    pub toolchain_version: [u32; crate::vk::DATA_GRAPH_MODEL_TOOLCHAIN_VERSION_LENGTH_QCOM],
 }
 #[repr(C)]
 pub struct DataGraphPipelineBuiltinModelCreateInfoQCOM {
@@ -23,3 +23,6 @@ pub struct PhysicalDeviceDataGraphModelFeaturesQCOM {
 }
 #[repr(transparent)]
 pub struct DataGraphModelCacheTypeQCOM(pub(crate) i32);
+pub const DATA_GRAPH_MODEL_TOOLCHAIN_VERSION_LENGTH_QCOM: usize = 69;
+pub const QCOM_DATA_GRAPH_MODEL_SPEC_VERSION: usize = 69;
+pub const QCOM_DATA_GRAPH_MODEL_EXTENSION_NAME: &'static core::ffi::CStr = c"VK_QCOM_data_graph_model";

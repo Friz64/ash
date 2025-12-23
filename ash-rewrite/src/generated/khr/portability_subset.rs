@@ -27,3 +27,5 @@ pub struct PhysicalDevicePortabilitySubsetPropertiesKHR {
     pub p_next: *mut core::ffi::c_void,
     pub min_vertex_input_binding_stride_alignment: u32,
 }
+pub const KHR_PORTABILITY_SUBSET_SPEC_VERSION: usize = 69;
+pub const KHR_PORTABILITY_SUBSET_EXTENSION_NAME: &'static core::ffi::CStr = c"VK_KHR_portability_subset";

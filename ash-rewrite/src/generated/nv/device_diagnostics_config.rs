@@ -17,3 +17,5 @@ pub struct DeviceDiagnosticsConfigCreateInfoNV {
 pub struct DeviceDiagnosticsConfigFlagsNV(pub(crate) i32);
 #[repr(transparent)]
 pub struct DeviceDiagnosticsConfigFlagBitsNV(pub(crate) i32);
+pub const NV_DEVICE_DIAGNOSTICS_CONFIG_SPEC_VERSION: usize = 69;
+pub const NV_DEVICE_DIAGNOSTICS_CONFIG_EXTENSION_NAME: &'static core::ffi::CStr = c"VK_NV_device_diagnostics_config";

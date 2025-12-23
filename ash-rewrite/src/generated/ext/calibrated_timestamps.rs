@@ -3,3 +3,5 @@
 //![Vulkan Manual Page](https://docs.vulkan.org/refpages/latest/refpages/source/VK_EXT_calibrated_timestamps.html) · Vulkan extension
 pub type CalibratedTimestampInfoEXT = crate::vk::CalibratedTimestampInfoKHR;
 pub type TimeDomainEXT = crate::vk::TimeDomainKHR;
+pub const EXT_CALIBRATED_TIMESTAMPS_SPEC_VERSION: usize = 69;
+pub const EXT_CALIBRATED_TIMESTAMPS_EXTENSION_NAME: &'static core::ffi::CStr = c"VK_EXT_calibrated_timestamps";

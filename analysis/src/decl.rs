@@ -1,7 +1,9 @@
+pub mod to_rust;
+
 use crate::{
-    cdecl::{CDecl, CType},
+    cdecl::{CArrayLen, CDecl, CType},
     item::RequiredBy,
-    name::TypeName,
+    name::{ConstantName, TypeName},
 };
 use std::collections::HashMap;
 
@@ -37,7 +39,7 @@ pub enum Mutability {
 }
 
 #[derive(Debug, Clone, Copy)]
-pub enum CBaseTy {
+pub enum CPrimaryType {
     Void,
     Char,
     Int,
@@ -54,17 +56,42 @@ pub enum CBaseTy {
     Size,
 }
 
+impl CPrimaryType {
+    pub(crate) fn from_str(s: &str) -> Option<CPrimaryType> {
+        match s {
+            "void" => Some(CPrimaryType::Void),
+            "char" => Some(CPrimaryType::Char),
+            "int" => Some(CPrimaryType::Int),
+            "float" => Some(CPrimaryType::Float),
+            "double" => Some(CPrimaryType::Double),
+            "int8_t" => Some(CPrimaryType::Int8),
+            "uint8_t" => Some(CPrimaryType::UInt8),
+            "int16_t" => Some(CPrimaryType::Int16),
+            "uint16_t" => Some(CPrimaryType::UInt16),
+            "int32_t" => Some(CPrimaryType::Int32),
+            "uint32_t" => Some(CPrimaryType::UInt32),
+            "int64_t" => Some(CPrimaryType::Int64),
+            "uint64_t" => Some(CPrimaryType::UInt64),
+            "size_t" => Some(CPrimaryType::Size),
+            _ => None,
+        }
+    }
+}
+
 #[derive(Debug)]
-pub struct ArrayLen;
+pub enum ArrayLen {
+    Constant(ConstantName),
+    Literal(u128),
+}
 
 #[derive(Debug)]
 pub enum Ty {
     Spec(TypeName),
-    CBase(CBaseTy),
+    CPrimary(CPrimaryType),
     External(&'static str),
     Ptr(&'static Ty, Mutability),
     Ref(&'static Ty, Mutability),
-    Array(&'static Ty, ArrayLen /* todo */),
+    Array(&'static Ty, ArrayLen),
     Func {
         ret_ty: Option<&'static Ty>,
         params: Vec<&'static Decl>,
@@ -74,26 +101,16 @@ pub enum Ty {
 impl Ty {
     pub(crate) fn from_c(ctx: &Context, c_type: &CType<'static>) -> Ty {
         match c_type {
-            CType::Base(cbase_type) => match cbase_type.name {
-                "void" => Ty::CBase(CBaseTy::Void),
-                "char" => Ty::CBase(CBaseTy::Char),
-                "int" => Ty::CBase(CBaseTy::Int),
-                "float" => Ty::CBase(CBaseTy::Float),
-                "double" => Ty::CBase(CBaseTy::Double),
-                "int8_t" => Ty::CBase(CBaseTy::Int8),
-                "uint8_t" => Ty::CBase(CBaseTy::UInt8),
-                "int16_t" => Ty::CBase(CBaseTy::Int16),
-                "uint16_t" => Ty::CBase(CBaseTy::UInt16),
-                "int32_t" => Ty::CBase(CBaseTy::Int32),
-                "uint32_t" => Ty::CBase(CBaseTy::UInt32),
-                "int64_t" => Ty::CBase(CBaseTy::Int64),
-                "uint64_t" => Ty::CBase(CBaseTy::UInt64),
-                "size_t" => Ty::CBase(CBaseTy::Size),
-                spec if ctx.type_require_map.contains_key(&TypeName(spec)) => {
-                    Ty::Spec(TypeName(spec))
+            CType::Base(cbase_type) => {
+                let name = cbase_type.name;
+                if let Some(primary) = CPrimaryType::from_str(name) {
+                    Ty::CPrimary(primary)
+                } else if ctx.type_require_map.contains_key(&TypeName(name)) {
+                    Ty::Spec(TypeName(name))
+                } else {
+                    Ty::External(name)
                 }
-                external => Ty::External(external),
-            },
+            }
             CType::Ptr {
                 implicit_for_decay: _,
                 is_const,
@@ -106,10 +123,13 @@ impl Ty {
                     Mutability::Mut
                 },
             ),
-            CType::Array {
-                element,
-                len: _todo,
-            } => Ty::Array(Box::leak(Box::new(Ty::from_c(ctx, element))), ArrayLen),
+            CType::Array { element, len } => Ty::Array(
+                Box::leak(Box::new(Ty::from_c(ctx, element))),
+                match len {
+                    CArrayLen::Named(constant) => ArrayLen::Constant(ConstantName(constant)),
+                    CArrayLen::Literal(value) => ArrayLen::Literal(*value),
+                },
+            ),
             CType::Func { ret_ty, params } => Ty::Func {
                 ret_ty: ret_ty
                     .as_ref()

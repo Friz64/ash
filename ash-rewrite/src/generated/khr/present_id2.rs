@@ -20,3 +20,5 @@ pub struct SurfaceCapabilitiesPresentId2KHR {
     pub p_next: *mut core::ffi::c_void,
     pub present_id2_supported: crate::vk::Bool32,
 }
+pub const KHR_PRESENT_ID_2_SPEC_VERSION: usize = 69;
+pub const KHR_PRESENT_ID_2_EXTENSION_NAME: &'static core::ffi::CStr = c"VK_KHR_present_id2";

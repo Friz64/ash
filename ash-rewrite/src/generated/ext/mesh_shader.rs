@@ -16,16 +16,16 @@ pub struct PhysicalDeviceMeshShaderPropertiesEXT {
     pub s_type: crate::vk::StructureType,
     pub p_next: *mut core::ffi::c_void,
     pub max_task_work_group_total_count: u32,
-    pub max_task_work_group_count: [u32; 1337],
+    pub max_task_work_group_count: [u32; 3],
     pub max_task_work_group_invocations: u32,
-    pub max_task_work_group_size: [u32; 1337],
+    pub max_task_work_group_size: [u32; 3],
     pub max_task_payload_size: u32,
     pub max_task_shared_memory_size: u32,
     pub max_task_payload_and_shared_memory_size: u32,
     pub max_mesh_work_group_total_count: u32,
-    pub max_mesh_work_group_count: [u32; 1337],
+    pub max_mesh_work_group_count: [u32; 3],
     pub max_mesh_work_group_invocations: u32,
-    pub max_mesh_work_group_size: [u32; 1337],
+    pub max_mesh_work_group_size: [u32; 3],
     pub max_mesh_shared_memory_size: u32,
     pub max_mesh_payload_and_shared_memory_size: u32,
     pub max_mesh_output_memory_size: u32,
@@ -50,3 +50,5 @@ pub struct DrawMeshTasksIndirectCommandEXT {
     pub group_count_y: u32,
     pub group_count_z: u32,
 }
+pub const EXT_MESH_SHADER_SPEC_VERSION: usize = 69;
+pub const EXT_MESH_SHADER_EXTENSION_NAME: &'static core::ffi::CStr = c"VK_EXT_mesh_shader";

@@ -21,3 +21,5 @@ pub struct DepthClampRangeEXT {
 }
 #[repr(transparent)]
 pub struct DepthClampModeEXT(pub(crate) i32);
+pub const EXT_DEPTH_CLAMP_CONTROL_SPEC_VERSION: usize = 69;
+pub const EXT_DEPTH_CLAMP_CONTROL_EXTENSION_NAME: &'static core::ffi::CStr = c"VK_EXT_depth_clamp_control";

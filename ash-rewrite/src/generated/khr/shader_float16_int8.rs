@@ -3,3 +3,5 @@
 //![Vulkan Manual Page](https://docs.vulkan.org/refpages/latest/refpages/source/VK_KHR_shader_float16_int8.html) · Vulkan extension
 pub type PhysicalDeviceShaderFloat16Int8FeaturesKHR = crate::vk::PhysicalDeviceShaderFloat16Int8Features;
 pub type PhysicalDeviceFloat16Int8FeaturesKHR = crate::vk::PhysicalDeviceShaderFloat16Int8Features;
+pub const KHR_SHADER_FLOAT16_INT8_SPEC_VERSION: usize = 69;
+pub const KHR_SHADER_FLOAT16_INT8_EXTENSION_NAME: &'static core::ffi::CStr = c"VK_KHR_shader_float16_int8";

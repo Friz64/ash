@@ -7,3 +7,5 @@ pub struct PhysicalDeviceDepthClampZeroOneFeaturesKHR {
     pub p_next: *mut core::ffi::c_void,
     pub depth_clamp_zero_one: crate::vk::Bool32,
 }
+pub const KHR_DEPTH_CLAMP_ZERO_ONE_SPEC_VERSION: usize = 69;
+pub const KHR_DEPTH_CLAMP_ZERO_ONE_EXTENSION_NAME: &'static core::ffi::CStr = c"VK_KHR_depth_clamp_zero_one";

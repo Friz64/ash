@@ -25,7 +25,7 @@ pub struct VideoDecodeAV1PictureInfoKHR {
     pub s_type: crate::vk::StructureType,
     pub p_next: *const core::ffi::c_void,
     pub p_std_picture_info: *const crate::vk::StdVideoDecodeAV1PictureInfo,
-    pub reference_name_slot_indices: [i32; 1337],
+    pub reference_name_slot_indices: [i32; crate::vk::MAX_VIDEO_AV1_REFERENCES_PER_FRAME_KHR],
     pub frame_header_offset: u32,
     pub tile_count: u32,
     pub p_tile_offsets: *const u32,
@@ -37,3 +37,5 @@ pub struct VideoDecodeAV1DpbSlotInfoKHR {
     pub p_next: *const core::ffi::c_void,
     pub p_std_reference_info: *const crate::vk::StdVideoDecodeAV1ReferenceInfo,
 }
+pub const KHR_VIDEO_DECODE_AV1_SPEC_VERSION: usize = 69;
+pub const KHR_VIDEO_DECODE_AV1_EXTENSION_NAME: &'static core::ffi::CStr = c"VK_KHR_video_decode_av1";

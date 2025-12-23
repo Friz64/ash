@@ -1,6 +1,6 @@
 use crate::{
     decl::{self, Ty},
-    item::{ItemInfo, RequiredBy},
+    item::{Item, RequiredBy, Type},
     name::TypeName,
     xml,
 };
@@ -12,11 +12,13 @@ pub struct FuncPointer {
     pub func_ty: Ty,
 }
 
-impl ItemInfo for FuncPointer {
+impl Item for FuncPointer {
     fn required_by(&self) -> RequiredBy {
         self.required_by
     }
+}
 
+impl Type for FuncPointer {
     fn name(&self) -> TypeName {
         self.name
     }

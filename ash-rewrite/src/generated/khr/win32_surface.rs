@@ -11,3 +11,5 @@ pub struct Win32SurfaceCreateInfoKHR {
 }
 #[repr(transparent)]
 pub struct Win32SurfaceCreateFlagsKHR(pub(crate) i32);
+pub const KHR_WIN32_SURFACE_SPEC_VERSION: usize = 69;
+pub const KHR_WIN32_SURFACE_EXTENSION_NAME: &'static core::ffi::CStr = c"VK_KHR_win32_surface";

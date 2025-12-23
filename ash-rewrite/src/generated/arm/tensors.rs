@@ -213,3 +213,5 @@ pub struct TensorViewCreateFlagBitsARM(pub(crate) i32);
 pub struct TensorARM(pub(crate) i32);
 #[repr(transparent)]
 pub struct TensorViewARM(pub(crate) i32);
+pub const ARM_TENSORS_SPEC_VERSION: usize = 69;
+pub const ARM_TENSORS_EXTENSION_NAME: &'static core::ffi::CStr = c"VK_ARM_tensors";

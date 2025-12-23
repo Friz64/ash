@@ -1,6 +1,6 @@
 use crate::{
     decl::{self, Decl},
-    item::{ItemInfo, RequiredBy},
+    item::{Item, RequiredBy, Type},
     name::TypeName,
     xml,
 };
@@ -12,11 +12,13 @@ pub struct Struct {
     pub members: Vec<Decl>,
 }
 
-impl ItemInfo for Struct {
+impl Item for Struct {
     fn required_by(&self) -> RequiredBy {
         self.required_by
     }
+}
 
+impl Type for Struct {
     fn name(&self) -> TypeName {
         self.name
     }
@@ -45,11 +47,13 @@ pub struct Union {
     pub members: Vec<Decl>,
 }
 
-impl ItemInfo for Union {
+impl Item for Union {
     fn required_by(&self) -> RequiredBy {
         self.required_by
     }
+}
 
+impl Type for Union {
     fn name(&self) -> TypeName {
         self.name
     }

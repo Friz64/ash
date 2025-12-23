@@ -5,3 +5,5 @@ pub type PhysicalDeviceInlineUniformBlockFeaturesEXT = crate::vk::PhysicalDevice
 pub type PhysicalDeviceInlineUniformBlockPropertiesEXT = crate::vk::PhysicalDeviceInlineUniformBlockProperties;
 pub type WriteDescriptorSetInlineUniformBlockEXT = crate::vk::WriteDescriptorSetInlineUniformBlock;
 pub type DescriptorPoolInlineUniformBlockCreateInfoEXT = crate::vk::DescriptorPoolInlineUniformBlockCreateInfo;
+pub const EXT_INLINE_UNIFORM_BLOCK_SPEC_VERSION: usize = 69;
+pub const EXT_INLINE_UNIFORM_BLOCK_EXTENSION_NAME: &'static core::ffi::CStr = c"VK_EXT_inline_uniform_block";

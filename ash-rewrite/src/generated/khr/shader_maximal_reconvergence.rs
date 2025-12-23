@@ -7,3 +7,5 @@ pub struct PhysicalDeviceShaderMaximalReconvergenceFeaturesKHR {
     pub p_next: *mut core::ffi::c_void,
     pub shader_maximal_reconvergence: crate::vk::Bool32,
 }
+pub const KHR_SHADER_MAXIMAL_RECONVERGENCE_SPEC_VERSION: usize = 69;
+pub const KHR_SHADER_MAXIMAL_RECONVERGENCE_EXTENSION_NAME: &'static core::ffi::CStr = c"VK_KHR_shader_maximal_reconvergence";

@@ -7,3 +7,5 @@ pub struct PhysicalDeviceShaderImageFootprintFeaturesNV {
     pub p_next: *mut core::ffi::c_void,
     pub image_footprint: crate::vk::Bool32,
 }
+pub const NV_SHADER_IMAGE_FOOTPRINT_SPEC_VERSION: usize = 69;
+pub const NV_SHADER_IMAGE_FOOTPRINT_EXTENSION_NAME: &'static core::ffi::CStr = c"VK_NV_shader_image_footprint";

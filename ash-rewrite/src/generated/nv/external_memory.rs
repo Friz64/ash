@@ -13,3 +13,5 @@ pub struct ExportMemoryAllocateInfoNV {
     pub p_next: *const core::ffi::c_void,
     pub handle_types: crate::vk::ExternalMemoryHandleTypeFlagsNV,
 }
+pub const NV_EXTERNAL_MEMORY_SPEC_VERSION: usize = 69;
+pub const NV_EXTERNAL_MEMORY_EXTENSION_NAME: &'static core::ffi::CStr = c"VK_NV_external_memory";

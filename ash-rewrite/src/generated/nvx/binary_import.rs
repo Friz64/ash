@@ -42,3 +42,5 @@ pub struct CuLaunchInfoNVX {
 pub struct CuModuleNVX(pub(crate) i32);
 #[repr(transparent)]
 pub struct CuFunctionNVX(pub(crate) i32);
+pub const NVX_BINARY_IMPORT_SPEC_VERSION: usize = 69;
+pub const NVX_BINARY_IMPORT_EXTENSION_NAME: &'static core::ffi::CStr = c"VK_NVX_binary_import";

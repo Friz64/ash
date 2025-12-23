@@ -4,3 +4,5 @@
 pub type ExportFenceCreateInfoKHR = crate::vk::ExportFenceCreateInfo;
 pub type FenceImportFlagBitsKHR = crate::vk::FenceImportFlagBits;
 pub type FenceImportFlagsKHR = crate::vk::FenceImportFlags;
+pub const KHR_EXTERNAL_FENCE_SPEC_VERSION: usize = 69;
+pub const KHR_EXTERNAL_FENCE_EXTENSION_NAME: &'static core::ffi::CStr = c"VK_KHR_external_fence";

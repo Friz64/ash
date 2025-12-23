@@ -9,3 +9,5 @@ pub struct PhysicalDevicePrimitivesGeneratedQueryFeaturesEXT {
     pub primitives_generated_query_with_rasterizer_discard: crate::vk::Bool32,
     pub primitives_generated_query_with_non_zero_streams: crate::vk::Bool32,
 }
+pub const EXT_PRIMITIVES_GENERATED_QUERY_SPEC_VERSION: usize = 69;
+pub const EXT_PRIMITIVES_GENERATED_QUERY_EXTENSION_NAME: &'static core::ffi::CStr = c"VK_EXT_primitives_generated_query";

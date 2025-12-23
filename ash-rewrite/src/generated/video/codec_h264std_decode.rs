@@ -19,7 +19,7 @@ pub struct StdVideoDecodeH264PictureInfo {
     pub reserved2: u8,
     pub frame_num: u16,
     pub idr_pic_id: u16,
-    pub pic_order_cnt: [i32; 1337],
+    pub pic_order_cnt: [i32; crate::vk::STD_VIDEO_DECODE_H264_FIELD_ORDER_COUNT_LIST_SIZE],
 }
 #[repr(C)]
 pub struct StdVideoDecodeH264ReferenceInfoFlags {
@@ -33,7 +33,10 @@ pub struct StdVideoDecodeH264ReferenceInfo {
     pub flags: crate::vk::StdVideoDecodeH264ReferenceInfoFlags,
     pub frame_num: u16,
     pub reserved: u16,
-    pub pic_order_cnt: [i32; 1337],
+    pub pic_order_cnt: [i32; crate::vk::STD_VIDEO_DECODE_H264_FIELD_ORDER_COUNT_LIST_SIZE],
 }
 #[repr(transparent)]
 pub struct StdVideoDecodeH264FieldOrderCount(pub(crate) i32);
+pub const STD_VULKAN_VIDEO_CODEC_H264_DECODE_SPEC_VERSION: usize = 69;
+pub const STD_VULKAN_VIDEO_CODEC_H264_DECODE_EXTENSION_NAME: &'static core::ffi::CStr = c"VK_STD_vulkan_video_codec_h264_decode";
+pub const STD_VIDEO_DECODE_H264_FIELD_ORDER_COUNT_LIST_SIZE: usize = 69;

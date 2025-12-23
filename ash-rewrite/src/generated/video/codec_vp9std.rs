@@ -27,9 +27,9 @@ pub struct StdVideoVP9LoopFilter {
     pub loop_filter_level: u8,
     pub loop_filter_sharpness: u8,
     pub update_ref_delta: u8,
-    pub loop_filter_ref_deltas: [i8; 1337],
+    pub loop_filter_ref_deltas: [i8; crate::vk::STD_VIDEO_VP9_MAX_REF_FRAMES],
     pub update_mode_delta: u8,
-    pub loop_filter_mode_deltas: [i8; 1337],
+    pub loop_filter_mode_deltas: [i8; crate::vk::STD_VIDEO_VP9_LOOP_FILTER_ADJUSTMENTS],
 }
 #[repr(C)]
 pub struct StdVideoVP9SegmentationFlags {
@@ -42,10 +42,10 @@ pub struct StdVideoVP9SegmentationFlags {
 #[repr(C)]
 pub struct StdVideoVP9Segmentation {
     pub flags: crate::vk::StdVideoVP9SegmentationFlags,
-    pub segmentation_tree_probs: [u8; 1337],
-    pub segmentation_pred_prob: [u8; 1337],
-    pub feature_enabled: [u8; 1337],
-    pub feature_data: [[i16; 1337]; 1337],
+    pub segmentation_tree_probs: [u8; crate::vk::STD_VIDEO_VP9_MAX_SEGMENTATION_TREE_PROBS],
+    pub segmentation_pred_prob: [u8; crate::vk::STD_VIDEO_VP9_MAX_SEGMENTATION_PRED_PROB],
+    pub feature_enabled: [u8; crate::vk::STD_VIDEO_VP9_MAX_SEGMENTS],
+    pub feature_data: [[i16; crate::vk::STD_VIDEO_VP9_SEG_LVL_MAX]; crate::vk::STD_VIDEO_VP9_MAX_SEGMENTS],
 }
 #[repr(transparent)]
 pub struct StdVideoVP9Profile(pub(crate) i32);
@@ -59,3 +59,11 @@ pub struct StdVideoVP9ReferenceName(pub(crate) i32);
 pub struct StdVideoVP9InterpolationFilter(pub(crate) i32);
 #[repr(transparent)]
 pub struct StdVideoVP9ColorSpace(pub(crate) i32);
+pub const STD_VIDEO_VP9_NUM_REF_FRAMES: usize = 69;
+pub const STD_VIDEO_VP9_REFS_PER_FRAME: usize = 69;
+pub const STD_VIDEO_VP9_MAX_REF_FRAMES: usize = 69;
+pub const STD_VIDEO_VP9_LOOP_FILTER_ADJUSTMENTS: usize = 69;
+pub const STD_VIDEO_VP9_MAX_SEGMENTS: usize = 69;
+pub const STD_VIDEO_VP9_SEG_LVL_MAX: usize = 69;
+pub const STD_VIDEO_VP9_MAX_SEGMENTATION_TREE_PROBS: usize = 69;
+pub const STD_VIDEO_VP9_MAX_SEGMENTATION_PRED_PROB: usize = 69;

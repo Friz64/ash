@@ -18,3 +18,25 @@ impl TypeName {
         prefix_trimmed.split_at(tag_boundary).0
     }
 }
+
+#[derive(Debug, PartialEq, Eq, Hash, Clone, Copy)]
+pub struct ConstantName(pub &'static str);
+
+impl ConstantName {
+    pub fn original(&self) -> &'static str {
+        self.0
+    }
+
+    pub fn prefix_trimmed(&self) -> &'static str {
+        self.original().trim_start_matches("VK_")
+    }
+}
+
+#[derive(Debug, PartialEq, Eq, Hash, Clone, Copy)]
+pub struct CommandName(pub &'static str);
+
+impl CommandName {
+    pub fn original(&self) -> &'static str {
+        self.0
+    }
+}

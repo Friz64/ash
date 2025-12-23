@@ -132,3 +132,5 @@ pub struct IndirectCommandsLayoutUsageFlagBitsNV(pub(crate) i32);
 pub struct IndirectStateFlagBitsNV(pub(crate) i32);
 #[repr(transparent)]
 pub struct IndirectCommandsLayoutNV(pub(crate) i32);
+pub const NV_DEVICE_GENERATED_COMMANDS_SPEC_VERSION: usize = 69;
+pub const NV_DEVICE_GENERATED_COMMANDS_EXTENSION_NAME: &'static core::ffi::CStr = c"VK_NV_device_generated_commands";

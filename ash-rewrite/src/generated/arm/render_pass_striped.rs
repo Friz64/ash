@@ -34,3 +34,5 @@ pub struct RenderPassStripeSubmitInfoARM {
     pub stripe_semaphore_info_count: u32,
     pub p_stripe_semaphore_infos: *const crate::vk::SemaphoreSubmitInfo,
 }
+pub const ARM_RENDER_PASS_STRIPED_SPEC_VERSION: usize = 69;
+pub const ARM_RENDER_PASS_STRIPED_EXTENSION_NAME: &'static core::ffi::CStr = c"VK_ARM_render_pass_striped";

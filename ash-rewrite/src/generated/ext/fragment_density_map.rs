@@ -30,3 +30,5 @@ pub struct RenderingFragmentDensityMapAttachmentInfoEXT {
     pub image_view: crate::vk::ImageView,
     pub image_layout: crate::vk::ImageLayout,
 }
+pub const EXT_FRAGMENT_DENSITY_MAP_SPEC_VERSION: usize = 69;
+pub const EXT_FRAGMENT_DENSITY_MAP_EXTENSION_NAME: &'static core::ffi::CStr = c"VK_EXT_fragment_density_map";

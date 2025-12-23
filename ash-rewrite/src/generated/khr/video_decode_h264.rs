@@ -50,3 +50,5 @@ pub struct VideoDecodeH264DpbSlotInfoKHR {
 pub struct VideoDecodeH264PictureLayoutFlagsKHR(pub(crate) i32);
 #[repr(transparent)]
 pub struct VideoDecodeH264PictureLayoutFlagBitsKHR(pub(crate) i32);
+pub const KHR_VIDEO_DECODE_H264_SPEC_VERSION: usize = 69;
+pub const KHR_VIDEO_DECODE_H264_EXTENSION_NAME: &'static core::ffi::CStr = c"VK_KHR_video_decode_h264";

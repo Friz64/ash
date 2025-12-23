@@ -14,3 +14,5 @@ pub struct MultiviewPerViewAttributesInfoNVX {
     pub per_view_attributes: crate::vk::Bool32,
     pub per_view_attributes_position_x_only: crate::vk::Bool32,
 }
+pub const NVX_MULTIVIEW_PER_VIEW_ATTRIBUTES_SPEC_VERSION: usize = 69;
+pub const NVX_MULTIVIEW_PER_VIEW_ATTRIBUTES_EXTENSION_NAME: &'static core::ffi::CStr = c"VK_NVX_multiview_per_view_attributes";

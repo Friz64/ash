@@ -11,3 +11,5 @@ pub struct PipelineCompilerControlCreateInfoAMD {
 pub struct PipelineCompilerControlFlagsAMD(pub(crate) i32);
 #[repr(transparent)]
 pub struct PipelineCompilerControlFlagBitsAMD(pub(crate) i32);
+pub const AMD_PIPELINE_COMPILER_CONTROL_SPEC_VERSION: usize = 69;
+pub const AMD_PIPELINE_COMPILER_CONTROL_EXTENSION_NAME: &'static core::ffi::CStr = c"VK_AMD_pipeline_compiler_control";
