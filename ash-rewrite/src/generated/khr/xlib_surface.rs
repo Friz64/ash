@@ -11,3 +11,5 @@ pub struct XlibSurfaceCreateInfoKHR {
 }
 #[repr(transparent)]
 pub struct XlibSurfaceCreateFlagsKHR(pub(crate) i32);
+pub const KHR_XLIB_SURFACE_SPEC_VERSION: usize = 69;
+pub const KHR_XLIB_SURFACE_EXTENSION_NAME: &'static core::ffi::CStr = c"VK_KHR_xlib_surface";

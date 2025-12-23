@@ -17,7 +17,9 @@ pub struct ShaderStatisticsInfoAMD {
     pub num_physical_sgprs: u32,
     pub num_available_vgprs: u32,
     pub num_available_sgprs: u32,
-    pub compute_work_group_size: [u32; 1337],
+    pub compute_work_group_size: [u32; 3],
 }
 #[repr(transparent)]
 pub struct ShaderInfoTypeAMD(pub(crate) i32);
+pub const AMD_SHADER_INFO_SPEC_VERSION: usize = 69;
+pub const AMD_SHADER_INFO_EXTENSION_NAME: &'static core::ffi::CStr = c"VK_AMD_shader_info";

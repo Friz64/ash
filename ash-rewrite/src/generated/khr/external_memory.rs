@@ -4,3 +4,5 @@
 pub type ExternalMemoryImageCreateInfoKHR = crate::vk::ExternalMemoryImageCreateInfo;
 pub type ExternalMemoryBufferCreateInfoKHR = crate::vk::ExternalMemoryBufferCreateInfo;
 pub type ExportMemoryAllocateInfoKHR = crate::vk::ExportMemoryAllocateInfo;
+pub const KHR_EXTERNAL_MEMORY_SPEC_VERSION: usize = 69;
+pub const KHR_EXTERNAL_MEMORY_EXTENSION_NAME: &'static core::ffi::CStr = c"VK_KHR_external_memory";

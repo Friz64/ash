@@ -178,3 +178,5 @@ pub struct VideoCodingControlFlagBitsKHR(pub(crate) i32);
 pub struct VideoSessionKHR(pub(crate) i32);
 #[repr(transparent)]
 pub struct VideoSessionParametersKHR(pub(crate) i32);
+pub const KHR_VIDEO_QUEUE_SPEC_VERSION: usize = 69;
+pub const KHR_VIDEO_QUEUE_EXTENSION_NAME: &'static core::ffi::CStr = c"VK_KHR_video_queue";

@@ -7,3 +7,5 @@ pub struct PhysicalDeviceShaderQuadControlFeaturesKHR {
     pub p_next: *mut core::ffi::c_void,
     pub shader_quad_control: crate::vk::Bool32,
 }
+pub const KHR_SHADER_QUAD_CONTROL_SPEC_VERSION: usize = 69;
+pub const KHR_SHADER_QUAD_CONTROL_EXTENSION_NAME: &'static core::ffi::CStr = c"VK_KHR_shader_quad_control";

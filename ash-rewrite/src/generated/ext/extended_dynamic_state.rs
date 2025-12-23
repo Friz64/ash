@@ -7,3 +7,5 @@ pub struct PhysicalDeviceExtendedDynamicStateFeaturesEXT {
     pub p_next: *mut core::ffi::c_void,
     pub extended_dynamic_state: crate::vk::Bool32,
 }
+pub const EXT_EXTENDED_DYNAMIC_STATE_SPEC_VERSION: usize = 69;
+pub const EXT_EXTENDED_DYNAMIC_STATE_EXTENSION_NAME: &'static core::ffi::CStr = c"VK_EXT_extended_dynamic_state";

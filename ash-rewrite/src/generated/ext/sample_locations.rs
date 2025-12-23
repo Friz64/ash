@@ -47,7 +47,7 @@ pub struct PhysicalDeviceSampleLocationsPropertiesEXT {
     pub p_next: *mut core::ffi::c_void,
     pub sample_location_sample_counts: crate::vk::SampleCountFlags,
     pub max_sample_location_grid_size: crate::vk::Extent2D,
-    pub sample_location_coordinate_range: [core::ffi::c_float; 1337],
+    pub sample_location_coordinate_range: [core::ffi::c_float; 2],
     pub sample_location_sub_pixel_bits: u32,
     pub variable_sample_locations: crate::vk::Bool32,
 }
@@ -57,3 +57,5 @@ pub struct MultisamplePropertiesEXT {
     pub p_next: *mut core::ffi::c_void,
     pub max_sample_location_grid_size: crate::vk::Extent2D,
 }
+pub const EXT_SAMPLE_LOCATIONS_SPEC_VERSION: usize = 69;
+pub const EXT_SAMPLE_LOCATIONS_EXTENSION_NAME: &'static core::ffi::CStr = c"VK_EXT_sample_locations";

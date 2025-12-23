@@ -7,3 +7,5 @@ pub type PhysicalDeviceDynamicRenderingFeaturesKHR = crate::vk::PhysicalDeviceDy
 pub type CommandBufferInheritanceRenderingInfoKHR = crate::vk::CommandBufferInheritanceRenderingInfo;
 pub type RenderingFlagBitsKHR = crate::vk::RenderingFlagBits;
 pub type RenderingFlagsKHR = crate::vk::RenderingFlags;
+pub const KHR_DYNAMIC_RENDERING_SPEC_VERSION: usize = 69;
+pub const KHR_DYNAMIC_RENDERING_EXTENSION_NAME: &'static core::ffi::CStr = c"VK_KHR_dynamic_rendering";

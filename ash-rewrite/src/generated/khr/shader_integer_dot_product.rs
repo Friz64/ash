@@ -3,3 +3,5 @@
 //![Vulkan Manual Page](https://docs.vulkan.org/refpages/latest/refpages/source/VK_KHR_shader_integer_dot_product.html) · Vulkan extension
 pub type PhysicalDeviceShaderIntegerDotProductFeaturesKHR = crate::vk::PhysicalDeviceShaderIntegerDotProductFeatures;
 pub type PhysicalDeviceShaderIntegerDotProductPropertiesKHR = crate::vk::PhysicalDeviceShaderIntegerDotProductProperties;
+pub const KHR_SHADER_INTEGER_DOT_PRODUCT_SPEC_VERSION: usize = 69;
+pub const KHR_SHADER_INTEGER_DOT_PRODUCT_EXTENSION_NAME: &'static core::ffi::CStr = c"VK_KHR_shader_integer_dot_product";

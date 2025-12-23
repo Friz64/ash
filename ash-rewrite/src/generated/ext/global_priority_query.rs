@@ -3,3 +3,5 @@
 //![Vulkan Manual Page](https://docs.vulkan.org/refpages/latest/refpages/source/VK_EXT_global_priority_query.html) · Vulkan extension
 pub type PhysicalDeviceGlobalPriorityQueryFeaturesEXT = crate::vk::PhysicalDeviceGlobalPriorityQueryFeatures;
 pub type QueueFamilyGlobalPriorityPropertiesEXT = crate::vk::QueueFamilyGlobalPriorityProperties;
+pub const EXT_GLOBAL_PRIORITY_QUERY_SPEC_VERSION: usize = 69;
+pub const EXT_GLOBAL_PRIORITY_QUERY_EXTENSION_NAME: &'static core::ffi::CStr = c"VK_EXT_global_priority_query";

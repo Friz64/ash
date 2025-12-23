@@ -21,3 +21,5 @@ pub struct DescriptorSetLayoutHostMappingInfoVALVE {
     pub descriptor_offset: usize,
     pub descriptor_size: u32,
 }
+pub const VALVE_DESCRIPTOR_SET_HOST_MAPPING_SPEC_VERSION: usize = 69;
+pub const VALVE_DESCRIPTOR_SET_HOST_MAPPING_EXTENSION_NAME: &'static core::ffi::CStr = c"VK_VALVE_descriptor_set_host_mapping";

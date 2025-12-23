@@ -16,3 +16,5 @@ pub struct PipelineRasterizationDepthClipStateCreateInfoEXT {
 }
 #[repr(transparent)]
 pub struct PipelineRasterizationDepthClipStateCreateFlagsEXT(pub(crate) i32);
+pub const EXT_DEPTH_CLIP_ENABLE_SPEC_VERSION: usize = 69;
+pub const EXT_DEPTH_CLIP_ENABLE_EXTENSION_NAME: &'static core::ffi::CStr = c"VK_EXT_depth_clip_enable";

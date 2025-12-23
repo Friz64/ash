@@ -22,3 +22,5 @@ pub struct SamplerBlockMatchWindowCreateInfoQCOM {
 }
 #[repr(transparent)]
 pub struct BlockMatchWindowCompareModeQCOM(pub(crate) i32);
+pub const QCOM_IMAGE_PROCESSING_2_SPEC_VERSION: usize = 69;
+pub const QCOM_IMAGE_PROCESSING_2_EXTENSION_NAME: &'static core::ffi::CStr = c"VK_QCOM_image_processing2";

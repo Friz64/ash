@@ -6,3 +6,5 @@ pub type BufferDeviceAddressInfoKHR = crate::vk::BufferDeviceAddressInfo;
 pub type BufferOpaqueCaptureAddressCreateInfoKHR = crate::vk::BufferOpaqueCaptureAddressCreateInfo;
 pub type MemoryOpaqueCaptureAddressAllocateInfoKHR = crate::vk::MemoryOpaqueCaptureAddressAllocateInfo;
 pub type DeviceMemoryOpaqueCaptureAddressInfoKHR = crate::vk::DeviceMemoryOpaqueCaptureAddressInfo;
+pub const KHR_BUFFER_DEVICE_ADDRESS_SPEC_VERSION: usize = 69;
+pub const KHR_BUFFER_DEVICE_ADDRESS_EXTENSION_NAME: &'static core::ffi::CStr = c"VK_KHR_buffer_device_address";

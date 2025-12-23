@@ -25,3 +25,5 @@ pub struct PhysicalDeviceFrameBoundaryFeaturesEXT {
 pub struct FrameBoundaryFlagsEXT(pub(crate) i32);
 #[repr(transparent)]
 pub struct FrameBoundaryFlagBitsEXT(pub(crate) i32);
+pub const EXT_FRAME_BOUNDARY_SPEC_VERSION: usize = 69;
+pub const EXT_FRAME_BOUNDARY_EXTENSION_NAME: &'static core::ffi::CStr = c"VK_EXT_frame_boundary";

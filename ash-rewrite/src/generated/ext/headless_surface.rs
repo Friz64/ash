@@ -9,3 +9,5 @@ pub struct HeadlessSurfaceCreateInfoEXT {
 }
 #[repr(transparent)]
 pub struct HeadlessSurfaceCreateFlagsEXT(pub(crate) i32);
+pub const EXT_HEADLESS_SURFACE_SPEC_VERSION: usize = 69;
+pub const EXT_HEADLESS_SURFACE_EXTENSION_NAME: &'static core::ffi::CStr = c"VK_EXT_headless_surface";

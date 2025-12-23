@@ -1,5 +1,5 @@
 use crate::cdecl::{CDecl, CDeclMode, CTok, CType};
-use crate::name::TypeName;
+use crate::name::{CommandName, ConstantName, TypeName};
 use roxmltree::NodeType;
 use roxmltree::StringStorage;
 use std::fmt::Write;
@@ -121,21 +121,20 @@ pub struct Registry {
     pub externals: Vec<External>,
     pub basetypes: Vec<BaseType>,
     pub bitmasks: Vec<BitMask>,
-    pub bitmask_aliases: Vec<Alias>,
+    pub bitmask_aliases: Vec<TypeAlias>,
     pub handles: Vec<Handle>,
-    pub handle_aliases: Vec<Alias>,
+    pub handle_aliases: Vec<TypeAlias>,
     pub enum_types: Vec<EnumType>,
-    pub enum_aliases: Vec<Alias>,
+    pub enum_aliases: Vec<TypeAlias>,
     pub funcpointers: Vec<FuncPointer>,
     pub structs: Vec<Structure>,
-    pub struct_aliases: Vec<Alias>,
+    pub struct_aliases: Vec<TypeAlias>,
     pub unions: Vec<Structure>,
     pub constants: Vec<Constant>,
-    pub constant_aliases: Vec<Alias>,
     pub enums: Vec<Enum>,
     pub bitmask_bits: Vec<BitMaskBits>,
     pub commands: Vec<Command>,
-    pub command_aliases: Vec<Alias>,
+    pub command_aliases: Vec<CommandAlias>,
     pub features: Vec<Feature>,
     pub extensions: Vec<Extension>,
 }
@@ -164,16 +163,22 @@ impl Registry {
                         if type_node.has_attribute("alias") {
                             match type_node.attribute("category") {
                                 Some("bitmask") => {
-                                    registry.bitmask_aliases.push(Alias::from_node(type_node));
+                                    registry
+                                        .bitmask_aliases
+                                        .push(TypeAlias::from_node(type_node));
                                 }
                                 Some("handle") => {
-                                    registry.handle_aliases.push(Alias::from_node(type_node));
+                                    registry
+                                        .handle_aliases
+                                        .push(TypeAlias::from_node(type_node));
                                 }
                                 Some("enum") => {
-                                    registry.enum_aliases.push(Alias::from_node(type_node));
+                                    registry.enum_aliases.push(TypeAlias::from_node(type_node));
                                 }
                                 Some("struct") => {
-                                    registry.struct_aliases.push(Alias::from_node(type_node));
+                                    registry
+                                        .struct_aliases
+                                        .push(TypeAlias::from_node(type_node));
                                 }
                                 _ => trace!("ignored"),
                             }
@@ -216,18 +221,14 @@ impl Registry {
                         Some("bitmask") => registry
                             .bitmask_bits
                             .push(BitMaskBits::from_node(registry_child, api)),
-                        None if registry_child.attribute("name") == Some("API Constants") => {
-                            for enum_node in registry_child
-                                .children()
-                                .filter(|node| node.has_tag_name("enum"))
-                                .filter(|node| api_matches(node, api))
-                            {
-                                if enum_node.has_attribute("alias") {
-                                    registry.constant_aliases.push(Alias::from_node(enum_node));
-                                } else {
-                                    registry.constants.push(Constant::from_node(enum_node));
-                                }
-                            }
+                        Some("constants") => {
+                            registry.constants.extend(
+                                registry_child
+                                    .children()
+                                    .filter(|node| node.has_tag_name("enum"))
+                                    .filter(|node| api_matches(node, api))
+                                    .map(Constant::from_node),
+                            );
                         }
                         _ => trace!("ignored"),
                     }
@@ -244,7 +245,7 @@ impl Registry {
                         if command_node.has_attribute("alias") {
                             registry
                                 .command_aliases
-                                .push(Alias::from_node(command_node));
+                                .push(CommandAlias::from_node(command_node));
                         } else {
                             registry
                                 .commands
@@ -287,16 +288,46 @@ impl Registry {
 }
 
 #[derive(Debug)]
-pub struct Alias {
+pub struct TypeAlias {
     pub name: TypeName,
     pub alias: TypeName,
 }
 
-impl Alias {
-    fn from_node(node: Node) -> Alias {
-        Alias {
+impl TypeAlias {
+    fn from_node(node: Node) -> TypeAlias {
+        TypeAlias {
             name: TypeName(attribute(node, "name").unwrap()),
             alias: TypeName(attribute(node, "alias").unwrap()),
+        }
+    }
+}
+
+#[derive(Debug)]
+pub struct ConstantAlias {
+    pub name: ConstantName,
+    pub alias: ConstantName,
+}
+
+impl ConstantAlias {
+    fn from_node(node: Node) -> ConstantAlias {
+        ConstantAlias {
+            name: ConstantName(attribute(node, "name").unwrap()),
+            alias: ConstantName(attribute(node, "alias").unwrap()),
+        }
+    }
+}
+
+#[derive(Debug)]
+pub struct CommandAlias {
+    pub name: CommandName,
+    pub alias: CommandName,
+}
+
+impl CommandAlias {
+    fn from_node(node: Node) -> CommandAlias {
+        CommandAlias {
+            name: CommandName(attribute(node, "name").unwrap()),
+            alias: CommandName(attribute(node, "alias").unwrap()),
         }
     }
 }
@@ -445,7 +476,7 @@ impl Structure {
 pub struct Constant {
     pub ty: &'static str,
     pub value: &'static str,
-    pub name: &'static str,
+    pub name: ConstantName,
 }
 
 impl Constant {
@@ -453,7 +484,7 @@ impl Constant {
         Constant {
             ty: attribute(node, "type").unwrap(),
             value: attribute(node, "value").unwrap(),
-            name: attribute(node, "name").unwrap(),
+            name: ConstantName(attribute(node, "name").unwrap()),
         }
     }
 }
@@ -477,7 +508,7 @@ impl EnumValue {
 pub struct Enum {
     pub name: TypeName,
     pub values: Vec<EnumValue>,
-    pub aliases: Vec<Alias>,
+    pub aliases: Vec<TypeAlias>,
 }
 
 impl Enum {
@@ -494,7 +525,7 @@ impl Enum {
             .filter(|node| api_matches(node, api))
         {
             if variant.has_attribute("alias") {
-                value.aliases.push(Alias::from_node(variant));
+                value.aliases.push(TypeAlias::from_node(variant));
             } else {
                 value.values.push(EnumValue::from_node(variant));
             }
@@ -507,14 +538,14 @@ impl Enum {
 #[derive(Debug)]
 pub struct BitMaskBit {
     pub bitpos: &'static str,
-    pub name: &'static str,
+    pub name: ConstantName,
 }
 
 impl BitMaskBit {
     fn from_node(node: Node) -> BitMaskBit {
         BitMaskBit {
             bitpos: attribute(node, "bitpos").unwrap(),
-            name: attribute(node, "name").unwrap(),
+            name: ConstantName(attribute(node, "name").unwrap()),
         }
     }
 }
@@ -527,7 +558,7 @@ pub struct BitMaskBits {
     /// individual bits, e.g. a combination of bits, or no bits at all. A good
     /// example for this is `VkCullModeFlagBits::FRONT_AND_BACK`.
     pub values: Vec<EnumValue>,
-    pub aliases: Vec<Alias>,
+    pub aliases: Vec<ConstantAlias>,
 }
 
 impl BitMaskBits {
@@ -545,7 +576,7 @@ impl BitMaskBits {
             .filter(|node| api_matches(node, api))
         {
             if variant.has_attribute("alias") {
-                value.aliases.push(Alias::from_node(variant));
+                value.aliases.push(ConstantAlias::from_node(variant));
             } else if variant.has_attribute("value") {
                 value.values.push(EnumValue::from_node(variant));
             } else {
@@ -607,7 +638,7 @@ impl Command {
 
 #[derive(Debug)]
 pub struct RequireConstant {
-    pub name: &'static str,
+    pub name: ConstantName,
     /// `Some` indicates a new constant being defined here.
     pub value: Option<&'static str>,
 }
@@ -615,42 +646,69 @@ pub struct RequireConstant {
 impl RequireConstant {
     fn from_node(node: Node) -> RequireConstant {
         RequireConstant {
-            name: attribute(node, "name").unwrap(),
+            name: ConstantName(attribute(node, "name").unwrap()),
             value: attribute(node, "value"),
         }
     }
 }
 
 #[derive(Debug)]
-pub struct RequireEnumVariant {
-    pub name: &'static str,
-    pub offset: u8,
-    pub extends: &'static str,
+pub struct RequireEnumExtendsOffset {
+    pub offset: u32,
+    pub extension_num: u32,
+    pub positive_dir: bool,
 }
 
-impl RequireEnumVariant {
-    fn from_node(node: Node) -> RequireEnumVariant {
-        RequireEnumVariant {
-            name: attribute(node, "name").unwrap(),
-            offset: attribute(node, "offset").unwrap().parse().unwrap(),
-            extends: attribute(node, "extends").unwrap(),
+impl RequireEnumExtendsOffset {
+    pub fn resolve_value(&self) -> i32 {
+        let ext_base = 1_000_000_000;
+        let ext_block_size = 1000;
+        let value = ext_base + (self.extension_num - 1) * ext_block_size + self.offset;
+
+        if self.positive_dir {
+            value as i32
+        } else {
+            -(value as i32)
         }
     }
 }
 
 #[derive(Debug)]
-pub struct RequireBitPos {
-    pub name: &'static str,
-    pub bitpos: u8,
-    pub extends: &'static str,
+pub enum RequireEnumExtendsValue {
+    Value(&'static str),
+    BitPos(u8),
+    Alias(ConstantName),
+    Offset(RequireEnumExtendsOffset),
 }
 
-impl RequireBitPos {
-    fn from_node(node: Node) -> RequireBitPos {
-        RequireBitPos {
+#[derive(Debug)]
+pub struct RequireEnumExtends {
+    pub name: &'static str,
+    pub extends: &'static str,
+    pub value: RequireEnumExtendsValue,
+}
+
+impl RequireEnumExtends {
+    fn from_node(node: Node, extension_num: Option<u32>) -> RequireEnumExtends {
+        RequireEnumExtends {
             name: attribute(node, "name").unwrap(),
-            bitpos: attribute(node, "bitpos").unwrap().parse().unwrap(),
             extends: attribute(node, "extends").unwrap(),
+            value: if let Some(value) = attribute(node, "value") {
+                RequireEnumExtendsValue::Value(value)
+            } else if let Some(bitpos) = attribute(node, "bitpos").map(|v| v.parse().unwrap()) {
+                RequireEnumExtendsValue::BitPos(bitpos)
+            } else if let Some(alias) = attribute(node, "alias") {
+                RequireEnumExtendsValue::Alias(ConstantName(alias))
+            } else {
+                RequireEnumExtendsValue::Offset(RequireEnumExtendsOffset {
+                    offset: attribute(node, "offset").unwrap().parse().unwrap(),
+                    extension_num: attribute(node, "extnumber")
+                        .map(|v| v.parse().unwrap())
+                        .or(extension_num)
+                        .unwrap(),
+                    positive_dir: !matches!(attribute(node, "dir"), Some("-")),
+                })
+            },
         }
     }
 }
@@ -730,15 +788,14 @@ impl Depends {
 #[derive(Debug, Default)]
 pub struct Require {
     pub depends: Vec<Depends>,
-    pub enum_variants: Vec<RequireEnumVariant>,
-    pub bitpositions: Vec<RequireBitPos>,
+    pub enum_extends: Vec<RequireEnumExtends>,
     pub constants: Vec<RequireConstant>,
     pub types: Vec<RequireType>,
     pub commands: Vec<RequireCommand>,
 }
 
 impl Require {
-    fn from_node(node: Node, api: &str) -> Require {
+    fn from_node(node: Node, api: &str, extension_num: Option<u32>) -> Require {
         let mut value = Require {
             depends: attribute(node, "depends")
                 .map(|value| (value.split(',').map(Depends::from_str)).collect())
@@ -749,12 +806,10 @@ impl Require {
         for child in node.children().filter(|node| api_matches(node, api)) {
             match child.tag_name().name() {
                 "enum" => {
-                    if child.has_attribute("offset") {
+                    if child.has_attribute("extends") {
                         value
-                            .enum_variants
-                            .push(RequireEnumVariant::from_node(child));
-                    } else if child.has_attribute("bitpos") {
-                        value.bitpositions.push(RequireBitPos::from_node(child));
+                            .enum_extends
+                            .push(RequireEnumExtends::from_node(child, extension_num));
                     } else {
                         value.constants.push(RequireConstant::from_node(child));
                     }
@@ -791,7 +846,7 @@ impl Feature {
                 .children()
                 .filter(|child| child.has_tag_name("require"))
                 .filter(|node| api_matches(node, api))
-                .map(|child| Require::from_node(child, api))
+                .map(|child| Require::from_node(child, api, None))
                 .collect(),
         }
     }
@@ -807,15 +862,16 @@ pub struct Extension {
 
 impl Extension {
     fn from_node(node: Node, api: &str) -> Extension {
+        let extension_num = attribute(node, "number").map(|value| value.parse().unwrap());
         Extension {
             name: attribute(node, "name").unwrap(),
-            number: attribute(node, "number").map(|value| value.parse().unwrap()),
+            number: extension_num,
             ty: attribute(node, "type"),
             requires: node
                 .children()
                 .filter(|child| child.has_tag_name("require"))
                 .filter(|node| api_matches(node, api))
-                .map(|child| Require::from_node(child, api))
+                .map(|child| Require::from_node(child, api, extension_num))
                 .collect(),
         }
     }
@@ -835,7 +891,12 @@ mod tests {
                 .into_boxed_str(),
         );
 
-        Registry::parse(xml_input, "vulkan");
+        let waff3 = Registry::parse(xml_input, "vulkan");
+        std::fs::write(
+            "/home/friz64/source/ash/target/waff3",
+            format!("{waff3:#?}"),
+        )
+        .unwrap();
     }
 
     #[test]

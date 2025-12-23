@@ -4,3 +4,5 @@
 pub type ExportSemaphoreCreateInfoKHR = crate::vk::ExportSemaphoreCreateInfo;
 pub type SemaphoreImportFlagBitsKHR = crate::vk::SemaphoreImportFlagBits;
 pub type SemaphoreImportFlagsKHR = crate::vk::SemaphoreImportFlags;
+pub const KHR_EXTERNAL_SEMAPHORE_SPEC_VERSION: usize = 69;
+pub const KHR_EXTERNAL_SEMAPHORE_EXTENSION_NAME: &'static core::ffi::CStr = c"VK_KHR_external_semaphore";

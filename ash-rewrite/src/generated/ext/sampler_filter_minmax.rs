@@ -4,3 +4,5 @@
 pub type PhysicalDeviceSamplerFilterMinmaxPropertiesEXT = crate::vk::PhysicalDeviceSamplerFilterMinmaxProperties;
 pub type SamplerReductionModeCreateInfoEXT = crate::vk::SamplerReductionModeCreateInfo;
 pub type SamplerReductionModeEXT = crate::vk::SamplerReductionMode;
+pub const EXT_SAMPLER_FILTER_MINMAX_SPEC_VERSION: usize = 69;
+pub const EXT_SAMPLER_FILTER_MINMAX_EXTENSION_NAME: &'static core::ffi::CStr = c"VK_EXT_sampler_filter_minmax";

@@ -20,7 +20,7 @@ pub struct RenderPassCreationFeedbackCreateInfoEXT {
 #[repr(C)]
 pub struct RenderPassSubpassFeedbackInfoEXT {
     pub subpass_merge_status: crate::vk::SubpassMergeStatusEXT,
-    pub description: [core::ffi::c_char; 1337],
+    pub description: [core::ffi::c_char; crate::vk::MAX_DESCRIPTION_SIZE],
     pub post_merge_index: u32,
 }
 #[repr(C)]
@@ -37,3 +37,5 @@ pub struct PhysicalDeviceSubpassMergeFeedbackFeaturesEXT {
 }
 #[repr(transparent)]
 pub struct SubpassMergeStatusEXT(pub(crate) i32);
+pub const EXT_SUBPASS_MERGE_FEEDBACK_SPEC_VERSION: usize = 69;
+pub const EXT_SUBPASS_MERGE_FEEDBACK_EXTENSION_NAME: &'static core::ffi::CStr = c"VK_EXT_subpass_merge_feedback";

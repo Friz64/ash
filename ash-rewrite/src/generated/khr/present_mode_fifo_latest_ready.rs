@@ -7,3 +7,5 @@ pub struct PhysicalDevicePresentModeFifoLatestReadyFeaturesKHR {
     pub p_next: *mut core::ffi::c_void,
     pub present_mode_fifo_latest_ready: crate::vk::Bool32,
 }
+pub const KHR_PRESENT_MODE_FIFO_LATEST_READY_SPEC_VERSION: usize = 69;
+pub const KHR_PRESENT_MODE_FIFO_LATEST_READY_EXTENSION_NAME: &'static core::ffi::CStr = c"VK_KHR_present_mode_fifo_latest_ready";

@@ -14,3 +14,5 @@ pub struct AmigoProfilingSubmitInfoSEC {
     pub first_draw_timestamp: u64,
     pub swap_buffer_timestamp: u64,
 }
+pub const SEC_AMIGO_PROFILING_SPEC_VERSION: usize = 69;
+pub const SEC_AMIGO_PROFILING_EXTENSION_NAME: &'static core::ffi::CStr = c"VK_SEC_amigo_profiling";

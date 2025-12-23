@@ -1,8 +1,8 @@
 use crate::output::CodeMap;
 use analysis::{
+    decl::to_rust::NameTranslate,
     item::{Items, TypeItem},
     name::TypeName,
-    to_rust::NameTranslate,
 };
 use proc_macro2::TokenStream;
 use quote::quote;
@@ -12,6 +12,7 @@ use tracing::debug;
 mod alias;
 mod basetype;
 mod bitmask;
+mod constant;
 mod enumeration;
 mod funcpointer;
 mod handle;
@@ -56,7 +57,12 @@ impl NameTranslate for Context {
         crate::to_snake_case_escape_ident(raw)
     }
 
-    fn spec_type_to_rust(&self, name: TypeName) -> TokenStream {
+    fn type_to_rust(&self, name: TypeName) -> TokenStream {
+        let ident: Ident = syn::parse_str(name.prefix_trimmed()).unwrap();
+        quote! { crate::vk::#ident }
+    }
+
+    fn constant_to_rust(&self, name: analysis::name::ConstantName) -> TokenStream {
         let ident: Ident = syn::parse_str(name.prefix_trimmed()).unwrap();
         quote! { crate::vk::#ident }
     }
@@ -74,6 +80,7 @@ pub fn build_items_codemap(items: &Items) -> CodeMap {
     debug!("generating structures code");
     let ctx = Context {};
     codemap.extend_from_items(&ctx, items.types.values());
+    codemap.extend_from_items(&ctx, items.constants.values());
 
     codemap
 }

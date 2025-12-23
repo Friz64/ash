@@ -36,3 +36,5 @@ pub struct VideoDecodeFlagsKHR(pub(crate) i32);
 pub struct VideoDecodeUsageFlagBitsKHR(pub(crate) i32);
 #[repr(transparent)]
 pub struct VideoDecodeCapabilityFlagBitsKHR(pub(crate) i32);
+pub const KHR_VIDEO_DECODE_QUEUE_SPEC_VERSION: usize = 69;
+pub const KHR_VIDEO_DECODE_QUEUE_EXTENSION_NAME: &'static core::ffi::CStr = c"VK_KHR_video_decode_queue";

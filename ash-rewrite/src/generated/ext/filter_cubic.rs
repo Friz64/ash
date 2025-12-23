@@ -14,3 +14,5 @@ pub struct FilterCubicImageViewImageFormatPropertiesEXT {
     pub filter_cubic: crate::vk::Bool32,
     pub filter_cubic_minmax: crate::vk::Bool32,
 }
+pub const EXT_FILTER_CUBIC_SPEC_VERSION: usize = 69;
+pub const EXT_FILTER_CUBIC_EXTENSION_NAME: &'static core::ffi::CStr = c"VK_EXT_filter_cubic";

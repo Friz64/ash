@@ -13,3 +13,5 @@ pub struct ImageViewMinLodCreateInfoEXT {
     pub p_next: *const core::ffi::c_void,
     pub min_lod: core::ffi::c_float,
 }
+pub const EXT_IMAGE_VIEW_MIN_LOD_SPEC_VERSION: usize = 69;
+pub const EXT_IMAGE_VIEW_MIN_LOD_EXTENSION_NAME: &'static core::ffi::CStr = c"VK_EXT_image_view_min_lod";

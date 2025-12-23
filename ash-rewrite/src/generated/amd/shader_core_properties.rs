@@ -20,3 +20,5 @@ pub struct PhysicalDeviceShaderCorePropertiesAMD {
     pub max_vgpr_allocation: u32,
     pub vgpr_allocation_granularity: u32,
 }
+pub const AMD_SHADER_CORE_PROPERTIES_SPEC_VERSION: usize = 69;
+pub const AMD_SHADER_CORE_PROPERTIES_EXTENSION_NAME: &'static core::ffi::CStr = c"VK_AMD_shader_core_properties";

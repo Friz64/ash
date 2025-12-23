@@ -8,3 +8,5 @@ pub type ExternalFenceHandleTypeFlagBitsKHR = crate::vk::ExternalFenceHandleType
 pub type ExternalFenceFeatureFlagBitsKHR = crate::vk::ExternalFenceFeatureFlagBits;
 pub type ExternalFenceHandleTypeFlagsKHR = crate::vk::ExternalFenceHandleTypeFlags;
 pub type ExternalFenceFeatureFlagsKHR = crate::vk::ExternalFenceFeatureFlags;
+pub const KHR_EXTERNAL_FENCE_CAPABILITIES_SPEC_VERSION: usize = 69;
+pub const KHR_EXTERNAL_FENCE_CAPABILITIES_EXTENSION_NAME: &'static core::ffi::CStr = c"VK_KHR_external_fence_capabilities";

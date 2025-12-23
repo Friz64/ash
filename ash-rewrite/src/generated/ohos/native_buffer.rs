@@ -26,3 +26,5 @@ pub struct SwapchainImageUsageFlagBitsOHOS(pub(crate) i32);
 #[repr(transparent)]
 #[allow(non_camel_case_types)]
 pub struct OHBufferHandle(pub(crate) i16);
+pub const OHOS_NATIVE_BUFFER_SPEC_VERSION: usize = 69;
+pub const OHOS_NATIVE_BUFFER_EXTENSION_NAME: &'static core::ffi::CStr = c"VK_OHOS_native_buffer";

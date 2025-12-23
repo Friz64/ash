@@ -5,3 +5,5 @@ pub type DeviceBufferMemoryRequirementsKHR = crate::vk::DeviceBufferMemoryRequir
 pub type DeviceImageMemoryRequirementsKHR = crate::vk::DeviceImageMemoryRequirements;
 pub type PhysicalDeviceMaintenance4FeaturesKHR = crate::vk::PhysicalDeviceMaintenance4Features;
 pub type PhysicalDeviceMaintenance4PropertiesKHR = crate::vk::PhysicalDeviceMaintenance4Properties;
+pub const KHR_MAINTENANCE_4_SPEC_VERSION: usize = 69;
+pub const KHR_MAINTENANCE_4_EXTENSION_NAME: &'static core::ffi::CStr = c"VK_KHR_maintenance4";

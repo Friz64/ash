@@ -2,3 +2,5 @@
 #![cfg_attr(rustfmt, rustfmt_skip)]
 //![Vulkan Manual Page](https://docs.vulkan.org/refpages/latest/refpages/source/VK_EXT_texture_compression_astc_hdr.html) · Vulkan extension
 pub type PhysicalDeviceTextureCompressionASTCHDRFeaturesEXT = crate::vk::PhysicalDeviceTextureCompressionASTCHDRFeatures;
+pub const EXT_TEXTURE_COMPRESSION_ASTC_HDR_SPEC_VERSION: usize = 69;
+pub const EXT_TEXTURE_COMPRESSION_ASTC_HDR_EXTENSION_NAME: &'static core::ffi::CStr = c"VK_EXT_texture_compression_astc_hdr";

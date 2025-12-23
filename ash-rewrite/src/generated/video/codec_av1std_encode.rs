@@ -80,10 +80,10 @@ pub struct StdVideoEncodeAV1PictureInfo {
     pub tx_mode: crate::vk::StdVideoAV1TxMode,
     pub delta_q_res: u8,
     pub delta_lf_res: u8,
-    pub ref_order_hint: [u8; 1337],
-    pub ref_frame_idx: [i8; 1337],
-    pub reserved1: [u8; 1337],
-    pub delta_frame_id_minus_1: [u32; 1337],
+    pub ref_order_hint: [u8; crate::vk::STD_VIDEO_AV1_NUM_REF_FRAMES],
+    pub ref_frame_idx: [i8; crate::vk::STD_VIDEO_AV1_REFS_PER_FRAME],
+    pub reserved1: [u8; 3],
+    pub delta_frame_id_minus_1: [u32; crate::vk::STD_VIDEO_AV1_REFS_PER_FRAME],
     pub p_tile_info: *const crate::vk::StdVideoAV1TileInfo,
     pub p_quantization: *const crate::vk::StdVideoAV1Quantization,
     pub p_segmentation: *const crate::vk::StdVideoAV1Segmentation,
@@ -106,6 +106,8 @@ pub struct StdVideoEncodeAV1ReferenceInfo {
     pub ref_frame_id: u32,
     pub frame_type: crate::vk::StdVideoAV1FrameType,
     pub order_hint: u8,
-    pub reserved1: [u8; 1337],
+    pub reserved1: [u8; 3],
     pub p_extension_header: *const crate::vk::StdVideoEncodeAV1ExtensionHeader,
 }
+pub const STD_VULKAN_VIDEO_CODEC_AV1_ENCODE_SPEC_VERSION: usize = 69;
+pub const STD_VULKAN_VIDEO_CODEC_AV1_ENCODE_EXTENSION_NAME: &'static core::ffi::CStr = c"VK_STD_vulkan_video_codec_av1_encode";

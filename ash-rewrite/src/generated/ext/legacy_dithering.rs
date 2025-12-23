@@ -7,3 +7,5 @@ pub struct PhysicalDeviceLegacyDitheringFeaturesEXT {
     pub p_next: *mut core::ffi::c_void,
     pub legacy_dithering: crate::vk::Bool32,
 }
+pub const EXT_LEGACY_DITHERING_SPEC_VERSION: usize = 69;
+pub const EXT_LEGACY_DITHERING_EXTENSION_NAME: &'static core::ffi::CStr = c"VK_EXT_legacy_dithering";

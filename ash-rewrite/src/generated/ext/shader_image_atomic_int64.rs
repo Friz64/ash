@@ -8,3 +8,5 @@ pub struct PhysicalDeviceShaderImageAtomicInt64FeaturesEXT {
     pub shader_image_int64_atomics: crate::vk::Bool32,
     pub sparse_image_int64_atomics: crate::vk::Bool32,
 }
+pub const EXT_SHADER_IMAGE_ATOMIC_INT64_SPEC_VERSION: usize = 69;
+pub const EXT_SHADER_IMAGE_ATOMIC_INT64_EXTENSION_NAME: &'static core::ffi::CStr = c"VK_EXT_shader_image_atomic_int64";

@@ -54,3 +54,5 @@ pub struct PipelineViewportCoarseSampleOrderStateCreateInfoNV {
 pub struct ShadingRatePaletteEntryNV(pub(crate) i32);
 #[repr(transparent)]
 pub struct CoarseSampleOrderTypeNV(pub(crate) i32);
+pub const NV_SHADING_RATE_IMAGE_SPEC_VERSION: usize = 69;
+pub const NV_SHADING_RATE_IMAGE_EXTENSION_NAME: &'static core::ffi::CStr = c"VK_NV_shading_rate_image";

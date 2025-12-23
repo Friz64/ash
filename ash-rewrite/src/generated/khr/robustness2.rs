@@ -16,3 +16,5 @@ pub struct PhysicalDeviceRobustness2PropertiesKHR {
     pub robust_storage_buffer_access_size_alignment: crate::vk::DeviceSize,
     pub robust_uniform_buffer_access_size_alignment: crate::vk::DeviceSize,
 }
+pub const KHR_ROBUSTNESS_2_SPEC_VERSION: usize = 69;
+pub const KHR_ROBUSTNESS_2_EXTENSION_NAME: &'static core::ffi::CStr = c"VK_KHR_robustness2";

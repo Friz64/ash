@@ -2,14 +2,25 @@
 #![cfg_attr(rustfmt, rustfmt_skip)]
 //!Extensions tagged AMD
 pub mod anti_lag;
+pub mod buffer_marker;
 pub mod device_coherent_memory;
 pub mod display_native_hdr;
+pub mod draw_indirect_count;
+pub mod gcn_shader;
+pub mod gpu_shader_half_float;
+pub mod gpu_shader_int16;
 pub mod memory_overallocation_behavior;
 pub mod mixed_attachment_samples;
+pub mod negative_viewport_height;
 pub mod pipeline_compiler_control;
 pub mod rasterization_order;
+pub mod shader_ballot;
 pub mod shader_core_properties;
 pub mod shader_core_properties2;
 pub mod shader_early_and_late_fragment_tests;
+pub mod shader_explicit_vertex_parameter;
+pub mod shader_fragment_mask;
+pub mod shader_image_load_store_lod;
 pub mod shader_info;
+pub mod shader_trinary_minmax;
 pub mod texture_gather_bias_lod;

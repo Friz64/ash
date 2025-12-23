@@ -31,3 +31,5 @@ pub struct CompositeAlphaFlagBitsKHR(pub(crate) i32);
 pub struct SurfaceTransformFlagBitsKHR(pub(crate) i32);
 #[repr(transparent)]
 pub struct SurfaceKHR(pub(crate) i32);
+pub const KHR_SURFACE_SPEC_VERSION: usize = 69;
+pub const KHR_SURFACE_EXTENSION_NAME: &'static core::ffi::CStr = c"VK_KHR_surface";

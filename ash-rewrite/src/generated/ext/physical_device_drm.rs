@@ -12,3 +12,5 @@ pub struct PhysicalDeviceDrmPropertiesEXT {
     pub render_major: i64,
     pub render_minor: i64,
 }
+pub const EXT_PHYSICAL_DEVICE_DRM_SPEC_VERSION: usize = 69;
+pub const EXT_PHYSICAL_DEVICE_DRM_EXTENSION_NAME: &'static core::ffi::CStr = c"VK_EXT_physical_device_drm";

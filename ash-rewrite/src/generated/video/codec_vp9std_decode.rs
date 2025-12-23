@@ -29,8 +29,10 @@ pub struct StdVideoDecodeVP9PictureInfo {
     pub delta_q_uv_ac: i8,
     pub tile_cols_log2: u8,
     pub tile_rows_log2: u8,
-    pub reserved1: [u16; 1337],
+    pub reserved1: [u16; 3],
     pub p_color_config: *const crate::vk::StdVideoVP9ColorConfig,
     pub p_loop_filter: *const crate::vk::StdVideoVP9LoopFilter,
     pub p_segmentation: *const crate::vk::StdVideoVP9Segmentation,
 }
+pub const STD_VULKAN_VIDEO_CODEC_VP9_DECODE_SPEC_VERSION: usize = 69;
+pub const STD_VULKAN_VIDEO_CODEC_VP9_DECODE_EXTENSION_NAME: &'static core::ffi::CStr = c"VK_STD_vulkan_video_codec_vp9_decode";

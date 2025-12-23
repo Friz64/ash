@@ -21,3 +21,5 @@ pub struct SurfaceCapabilities2EXT {
 pub struct SurfaceCounterFlagsEXT(pub(crate) i32);
 #[repr(transparent)]
 pub struct SurfaceCounterFlagBitsEXT(pub(crate) i32);
+pub const EXT_DISPLAY_SURFACE_COUNTER_SPEC_VERSION: usize = 69;
+pub const EXT_DISPLAY_SURFACE_COUNTER_EXTENSION_NAME: &'static core::ffi::CStr = c"VK_EXT_display_surface_counter";

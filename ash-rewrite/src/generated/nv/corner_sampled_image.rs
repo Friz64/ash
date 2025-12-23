@@ -7,3 +7,5 @@ pub struct PhysicalDeviceCornerSampledImageFeaturesNV {
     pub p_next: *mut core::ffi::c_void,
     pub corner_sampled_image: crate::vk::Bool32,
 }
+pub const NV_CORNER_SAMPLED_IMAGE_SPEC_VERSION: usize = 69;
+pub const NV_CORNER_SAMPLED_IMAGE_EXTENSION_NAME: &'static core::ffi::CStr = c"VK_NV_corner_sampled_image";

@@ -7,3 +7,5 @@ pub struct PhysicalDeviceNonSeamlessCubeMapFeaturesEXT {
     pub p_next: *mut core::ffi::c_void,
     pub non_seamless_cube_map: crate::vk::Bool32,
 }
+pub const EXT_NON_SEAMLESS_CUBE_MAP_SPEC_VERSION: usize = 69;
+pub const EXT_NON_SEAMLESS_CUBE_MAP_EXTENSION_NAME: &'static core::ffi::CStr = c"VK_EXT_non_seamless_cube_map";

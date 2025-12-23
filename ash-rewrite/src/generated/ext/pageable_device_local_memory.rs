@@ -7,3 +7,5 @@ pub struct PhysicalDevicePageableDeviceLocalMemoryFeaturesEXT {
     pub p_next: *mut core::ffi::c_void,
     pub pageable_device_local_memory: crate::vk::Bool32,
 }
+pub const EXT_PAGEABLE_DEVICE_LOCAL_MEMORY_SPEC_VERSION: usize = 69;
+pub const EXT_PAGEABLE_DEVICE_LOCAL_MEMORY_EXTENSION_NAME: &'static core::ffi::CStr = c"VK_EXT_pageable_device_local_memory";

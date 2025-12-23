@@ -28,7 +28,7 @@ pub struct PerformanceCounterDescriptionARM {
     pub s_type: crate::vk::StructureType,
     pub p_next: *mut core::ffi::c_void,
     pub flags: crate::vk::PerformanceCounterDescriptionFlagsARM,
-    pub name: [core::ffi::c_char; 1337],
+    pub name: [core::ffi::c_char; crate::vk::MAX_DESCRIPTION_SIZE],
 }
 #[repr(C)]
 pub struct RenderPassPerformanceCountersByRegionBeginInfoARM {
@@ -42,3 +42,5 @@ pub struct RenderPassPerformanceCountersByRegionBeginInfoARM {
 }
 #[repr(transparent)]
 pub struct PerformanceCounterDescriptionFlagsARM(pub(crate) i32);
+pub const ARM_PERFORMANCE_COUNTERS_BY_REGION_SPEC_VERSION: usize = 69;
+pub const ARM_PERFORMANCE_COUNTERS_BY_REGION_EXTENSION_NAME: &'static core::ffi::CStr = c"VK_ARM_performance_counters_by_region";

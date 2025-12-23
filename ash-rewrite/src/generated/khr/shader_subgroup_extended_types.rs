@@ -2,3 +2,5 @@
 #![cfg_attr(rustfmt, rustfmt_skip)]
 //![Vulkan Manual Page](https://docs.vulkan.org/refpages/latest/refpages/source/VK_KHR_shader_subgroup_extended_types.html) · Vulkan extension
 pub type PhysicalDeviceShaderSubgroupExtendedTypesFeaturesKHR = crate::vk::PhysicalDeviceShaderSubgroupExtendedTypesFeatures;
+pub const KHR_SHADER_SUBGROUP_EXTENDED_TYPES_SPEC_VERSION: usize = 69;
+pub const KHR_SHADER_SUBGROUP_EXTENDED_TYPES_EXTENSION_NAME: &'static core::ffi::CStr = c"VK_KHR_shader_subgroup_extended_types";

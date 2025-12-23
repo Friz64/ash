@@ -20,3 +20,5 @@ pub struct PhysicalDeviceSubpassShadingFeaturesHUAWEI {
     pub p_next: *mut core::ffi::c_void,
     pub subpass_shading: crate::vk::Bool32,
 }
+pub const HUAWEI_SUBPASS_SHADING_SPEC_VERSION: usize = 69;
+pub const HUAWEI_SUBPASS_SHADING_EXTENSION_NAME: &'static core::ffi::CStr = c"VK_HUAWEI_subpass_shading";

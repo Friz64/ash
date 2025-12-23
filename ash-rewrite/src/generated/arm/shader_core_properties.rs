@@ -9,3 +9,5 @@ pub struct PhysicalDeviceShaderCorePropertiesARM {
     pub texel_rate: u32,
     pub fma_rate: u32,
 }
+pub const ARM_SHADER_CORE_PROPERTIES_SPEC_VERSION: usize = 69;
+pub const ARM_SHADER_CORE_PROPERTIES_EXTENSION_NAME: &'static core::ffi::CStr = c"VK_ARM_shader_core_properties";

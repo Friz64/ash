@@ -1,5 +1,5 @@
 use crate::{
-    item::{ItemInfo, RequiredBy},
+    item::{Item, RequiredBy, Type},
     name::TypeName,
     xml,
 };
@@ -10,11 +10,13 @@ pub struct BaseType {
     pub name: TypeName,
 }
 
-impl ItemInfo for BaseType {
+impl Item for BaseType {
     fn required_by(&self) -> RequiredBy {
         self.required_by
     }
+}
 
+impl Type for BaseType {
     fn name(&self) -> TypeName {
         self.name
     }

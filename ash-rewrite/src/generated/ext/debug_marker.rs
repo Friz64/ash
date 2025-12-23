@@ -24,7 +24,9 @@ pub struct DebugMarkerMarkerInfoEXT {
     pub s_type: crate::vk::StructureType,
     pub p_next: *const core::ffi::c_void,
     pub p_marker_name: *const core::ffi::c_char,
-    pub color: [core::ffi::c_float; 1337],
+    pub color: [core::ffi::c_float; 4],
 }
 #[repr(transparent)]
 pub struct DebugReportObjectTypeEXT(pub(crate) i32);
+pub const EXT_DEBUG_MARKER_SPEC_VERSION: usize = 69;
+pub const EXT_DEBUG_MARKER_EXTENSION_NAME: &'static core::ffi::CStr = c"VK_EXT_debug_marker";

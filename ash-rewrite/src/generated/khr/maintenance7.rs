@@ -34,7 +34,7 @@ pub struct PhysicalDeviceLayeredApiPropertiesKHR {
     pub vendor_id: u32,
     pub device_id: u32,
     pub layered_api: crate::vk::PhysicalDeviceLayeredApiKHR,
-    pub device_name: [core::ffi::c_char; 1337],
+    pub device_name: [core::ffi::c_char; crate::vk::MAX_PHYSICAL_DEVICE_NAME_SIZE],
 }
 #[repr(C)]
 pub struct PhysicalDeviceLayeredApiVulkanPropertiesKHR {
@@ -44,3 +44,5 @@ pub struct PhysicalDeviceLayeredApiVulkanPropertiesKHR {
 }
 #[repr(transparent)]
 pub struct PhysicalDeviceLayeredApiKHR(pub(crate) i32);
+pub const KHR_MAINTENANCE_7_SPEC_VERSION: usize = 69;
+pub const KHR_MAINTENANCE_7_EXTENSION_NAME: &'static core::ffi::CStr = c"VK_KHR_maintenance7";

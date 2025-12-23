@@ -2,3 +2,5 @@
 #![cfg_attr(rustfmt, rustfmt_skip)]
 //![Vulkan Manual Page](https://docs.vulkan.org/refpages/latest/refpages/source/VK_EXT_pipeline_creation_cache_control.html) · Vulkan extension
 pub type PhysicalDevicePipelineCreationCacheControlFeaturesEXT = crate::vk::PhysicalDevicePipelineCreationCacheControlFeatures;
+pub const EXT_PIPELINE_CREATION_CACHE_CONTROL_SPEC_VERSION: usize = 69;
+pub const EXT_PIPELINE_CREATION_CACHE_CONTROL_EXTENSION_NAME: &'static core::ffi::CStr = c"VK_EXT_pipeline_creation_cache_control";

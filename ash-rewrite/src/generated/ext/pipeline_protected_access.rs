@@ -2,3 +2,5 @@
 #![cfg_attr(rustfmt, rustfmt_skip)]
 //![Vulkan Manual Page](https://docs.vulkan.org/refpages/latest/refpages/source/VK_EXT_pipeline_protected_access.html) · Vulkan extension
 pub type PhysicalDevicePipelineProtectedAccessFeaturesEXT = crate::vk::PhysicalDevicePipelineProtectedAccessFeatures;
+pub const EXT_PIPELINE_PROTECTED_ACCESS_SPEC_VERSION: usize = 69;
+pub const EXT_PIPELINE_PROTECTED_ACCESS_EXTENSION_NAME: &'static core::ffi::CStr = c"VK_EXT_pipeline_protected_access";

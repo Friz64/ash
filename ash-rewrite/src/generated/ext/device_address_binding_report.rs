@@ -22,3 +22,5 @@ pub struct DeviceAddressBindingTypeEXT(pub(crate) i32);
 pub struct DeviceAddressBindingFlagsEXT(pub(crate) i32);
 #[repr(transparent)]
 pub struct DeviceAddressBindingFlagBitsEXT(pub(crate) i32);
+pub const EXT_DEVICE_ADDRESS_BINDING_REPORT_SPEC_VERSION: usize = 69;
+pub const EXT_DEVICE_ADDRESS_BINDING_REPORT_EXTENSION_NAME: &'static core::ffi::CStr = c"VK_EXT_device_address_binding_report";

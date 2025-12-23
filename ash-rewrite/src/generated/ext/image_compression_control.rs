@@ -32,3 +32,5 @@ pub struct ImageCompressionFixedRateFlagsEXT(pub(crate) i32);
 pub struct ImageCompressionFlagBitsEXT(pub(crate) i32);
 #[repr(transparent)]
 pub struct ImageCompressionFixedRateFlagBitsEXT(pub(crate) i32);
+pub const EXT_IMAGE_COMPRESSION_CONTROL_SPEC_VERSION: usize = 69;
+pub const EXT_IMAGE_COMPRESSION_CONTROL_EXTENSION_NAME: &'static core::ffi::CStr = c"VK_EXT_image_compression_control";

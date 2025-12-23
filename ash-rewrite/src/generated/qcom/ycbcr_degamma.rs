@@ -14,3 +14,5 @@ pub struct SamplerYcbcrConversionYcbcrDegammaCreateInfoQCOM {
     pub enable_y_degamma: crate::vk::Bool32,
     pub enable_cb_cr_degamma: crate::vk::Bool32,
 }
+pub const QCOM_YCBCR_DEGAMMA_SPEC_VERSION: usize = 69;
+pub const QCOM_YCBCR_DEGAMMA_EXTENSION_NAME: &'static core::ffi::CStr = c"VK_QCOM_ycbcr_degamma";

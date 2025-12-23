@@ -7,3 +7,5 @@ pub struct PhysicalDeviceShaderSubgroupUniformControlFlowFeaturesKHR {
     pub p_next: *mut core::ffi::c_void,
     pub shader_subgroup_uniform_control_flow: crate::vk::Bool32,
 }
+pub const KHR_SHADER_SUBGROUP_UNIFORM_CONTROL_FLOW_SPEC_VERSION: usize = 69;
+pub const KHR_SHADER_SUBGROUP_UNIFORM_CONTROL_FLOW_EXTENSION_NAME: &'static core::ffi::CStr = c"VK_KHR_shader_subgroup_uniform_control_flow";

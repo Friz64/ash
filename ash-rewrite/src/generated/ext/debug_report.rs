@@ -28,3 +28,5 @@ pub type PFN_vkDebugReportCallbackEXT = Option<
         p_user_data: *mut core::ffi::c_void,
     ) -> crate::vk::Bool32,
 >;
+pub const EXT_DEBUG_REPORT_SPEC_VERSION: usize = 69;
+pub const EXT_DEBUG_REPORT_EXTENSION_NAME: &'static core::ffi::CStr = c"VK_EXT_debug_report";

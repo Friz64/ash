@@ -14,3 +14,5 @@ pub struct PipelineViewportExclusiveScissorStateCreateInfoNV {
     pub exclusive_scissor_count: u32,
     pub p_exclusive_scissors: *const crate::vk::Rect2D,
 }
+pub const NV_SCISSOR_EXCLUSIVE_SPEC_VERSION: usize = 69;
+pub const NV_SCISSOR_EXCLUSIVE_EXTENSION_NAME: &'static core::ffi::CStr = c"VK_NV_scissor_exclusive";

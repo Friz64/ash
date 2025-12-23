@@ -9,6 +9,8 @@ pub mod image_processing;
 pub mod image_processing2;
 pub mod multiview_per_view_render_areas;
 pub mod multiview_per_view_viewports;
+pub mod render_pass_shader_resolve;
+pub mod render_pass_store_ops;
 pub mod render_pass_transform;
 pub mod rotated_copy_commands;
 pub mod tile_memory_heap;

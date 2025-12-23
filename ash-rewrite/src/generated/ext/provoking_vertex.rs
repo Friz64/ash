@@ -23,3 +23,5 @@ pub struct PipelineRasterizationProvokingVertexStateCreateInfoEXT {
 }
 #[repr(transparent)]
 pub struct ProvokingVertexModeEXT(pub(crate) i32);
+pub const EXT_PROVOKING_VERTEX_SPEC_VERSION: usize = 69;
+pub const EXT_PROVOKING_VERTEX_EXTENSION_NAME: &'static core::ffi::CStr = c"VK_EXT_provoking_vertex";

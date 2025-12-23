@@ -24,7 +24,7 @@ pub struct DebugUtilsLabelEXT {
     pub s_type: crate::vk::StructureType,
     pub p_next: *const core::ffi::c_void,
     pub p_label_name: *const core::ffi::c_char,
-    pub color: [core::ffi::c_float; 1337],
+    pub color: [core::ffi::c_float; 4],
 }
 #[repr(C)]
 pub struct DebugUtilsMessengerCreateInfoEXT {
@@ -74,3 +74,5 @@ pub type PFN_vkDebugUtilsMessengerCallbackEXT = Option<
         p_user_data: *mut core::ffi::c_void,
     ) -> crate::vk::Bool32,
 >;
+pub const EXT_DEBUG_UTILS_SPEC_VERSION: usize = 69;
+pub const EXT_DEBUG_UTILS_EXTENSION_NAME: &'static core::ffi::CStr = c"VK_EXT_debug_utils";

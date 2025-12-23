@@ -2,3 +2,5 @@
 #![cfg_attr(rustfmt, rustfmt_skip)]
 //![Vulkan Manual Page](https://docs.vulkan.org/refpages/latest/refpages/source/VK_KHR_8bit_storage.html) · Vulkan extension
 pub type PhysicalDevice8BitStorageFeaturesKHR = crate::vk::PhysicalDevice8BitStorageFeatures;
+pub const KHR_8BIT_STORAGE_SPEC_VERSION: usize = 69;
+pub const KHR_8BIT_STORAGE_EXTENSION_NAME: &'static core::ffi::CStr = c"VK_KHR_8bit_storage";

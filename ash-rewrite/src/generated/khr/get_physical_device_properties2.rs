@@ -10,3 +10,5 @@ pub type QueueFamilyProperties2KHR = crate::vk::QueueFamilyProperties2;
 pub type PhysicalDeviceMemoryProperties2KHR = crate::vk::PhysicalDeviceMemoryProperties2;
 pub type SparseImageFormatProperties2KHR = crate::vk::SparseImageFormatProperties2;
 pub type PhysicalDeviceSparseImageFormatInfo2KHR = crate::vk::PhysicalDeviceSparseImageFormatInfo2;
+pub const KHR_GET_PHYSICAL_DEVICE_PROPERTIES_2_SPEC_VERSION: usize = 69;
+pub const KHR_GET_PHYSICAL_DEVICE_PROPERTIES_2_EXTENSION_NAME: &'static core::ffi::CStr = c"VK_KHR_get_physical_device_properties2";

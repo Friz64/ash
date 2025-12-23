@@ -65,3 +65,5 @@ pub struct PerformanceParameterTypeINTEL(pub(crate) i32);
 pub struct PerformanceValueTypeINTEL(pub(crate) i32);
 #[repr(transparent)]
 pub struct PerformanceConfigurationINTEL(pub(crate) i32);
+pub const INTEL_PERFORMANCE_QUERY_SPEC_VERSION: usize = 69;
+pub const INTEL_PERFORMANCE_QUERY_EXTENSION_NAME: &'static core::ffi::CStr = c"VK_INTEL_performance_query";

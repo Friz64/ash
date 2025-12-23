@@ -13,7 +13,7 @@ pub struct PipelineFragmentShadingRateStateCreateInfoKHR {
     pub s_type: crate::vk::StructureType,
     pub p_next: *const core::ffi::c_void,
     pub fragment_size: crate::vk::Extent2D,
-    pub combiner_ops: [crate::vk::FragmentShadingRateCombinerOpKHR; 1337],
+    pub combiner_ops: [crate::vk::FragmentShadingRateCombinerOpKHR; 2],
 }
 #[repr(C)]
 pub struct PhysicalDeviceFragmentShadingRateFeaturesKHR {
@@ -62,3 +62,5 @@ pub struct RenderingFragmentShadingRateAttachmentInfoKHR {
 }
 #[repr(transparent)]
 pub struct FragmentShadingRateCombinerOpKHR(pub(crate) i32);
+pub const KHR_FRAGMENT_SHADING_RATE_SPEC_VERSION: usize = 69;
+pub const KHR_FRAGMENT_SHADING_RATE_EXTENSION_NAME: &'static core::ffi::CStr = c"VK_KHR_fragment_shading_rate";

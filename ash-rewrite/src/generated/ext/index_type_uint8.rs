@@ -2,3 +2,5 @@
 #![cfg_attr(rustfmt, rustfmt_skip)]
 //![Vulkan Manual Page](https://docs.vulkan.org/refpages/latest/refpages/source/VK_EXT_index_type_uint8.html) · Vulkan extension
 pub type PhysicalDeviceIndexTypeUint8FeaturesEXT = crate::vk::PhysicalDeviceIndexTypeUint8Features;
+pub const EXT_INDEX_TYPE_UINT8_SPEC_VERSION: usize = 69;
+pub const EXT_INDEX_TYPE_UINT8_EXTENSION_NAME: &'static core::ffi::CStr = c"VK_EXT_index_type_uint8";
