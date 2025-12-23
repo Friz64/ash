@@ -25,7 +25,10 @@ impl Destination {
         match self.0 {
             RequiredBy::Feature { major, minor } => vec![DestinationPathComponent {
                 module_name: format_ident!("vk{major}_{minor}"),
-                doc_comment: format!("Vulkan version {major}.{minor}"),
+                doc_comment: crate::refpage_doc(
+                    &format!("VK_VERSION_{major}_{minor}"),
+                    format!("Vulkan version {major}.{minor}"),
+                ),
             }],
             RequiredBy::Extension { name } => {
                 if let Some(vulkan_ext) = name.strip_prefix("VK_") {
@@ -37,7 +40,7 @@ impl Destination {
                         },
                         DestinationPathComponent {
                             module_name: crate::to_snake_case_escape_ident(ext_name),
-                            doc_comment: crate::refpage_doc(name, "Vulkan extension"),
+                            doc_comment: crate::refpage_doc(name, format!("Extension `{name}`")),
                         },
                     ]
                 } else if let Some(video_ext) = name.strip_prefix("vulkan_video_") {
