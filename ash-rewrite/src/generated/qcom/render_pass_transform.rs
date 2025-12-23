@@ -14,5 +14,5 @@ pub struct CommandBufferInheritanceRenderPassTransformInfoQCOM {
     pub transform: crate::vk::SurfaceTransformFlagBitsKHR,
     pub render_area: crate::vk::Rect2D,
 }
-pub const QCOM_RENDER_PASS_TRANSFORM_SPEC_VERSION: usize = 69;
-pub const QCOM_RENDER_PASS_TRANSFORM_EXTENSION_NAME: &'static core::ffi::CStr = c"VK_QCOM_render_pass_transform";
+pub const QCOM_RENDER_PASS_TRANSFORM_SPEC_VERSION: usize = 5;
+pub const QCOM_RENDER_PASS_TRANSFORM_EXTENSION_NAME: &core::ffi::CStr = c"VK_QCOM_render_pass_transform";

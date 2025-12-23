@@ -15,5 +15,5 @@ pub struct PhysicalDeviceShaderCoreBuiltinsFeaturesARM {
     pub p_next: *mut core::ffi::c_void,
     pub shader_core_builtins: crate::vk::Bool32,
 }
-pub const ARM_SHADER_CORE_BUILTINS_SPEC_VERSION: usize = 69;
-pub const ARM_SHADER_CORE_BUILTINS_EXTENSION_NAME: &'static core::ffi::CStr = c"VK_ARM_shader_core_builtins";
+pub const ARM_SHADER_CORE_BUILTINS_SPEC_VERSION: usize = 2;
+pub const ARM_SHADER_CORE_BUILTINS_EXTENSION_NAME: &core::ffi::CStr = c"VK_ARM_shader_core_builtins";

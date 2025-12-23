@@ -13,5 +13,5 @@ pub struct PhysicalDeviceFragmentShaderBarycentricPropertiesKHR {
     pub p_next: *mut core::ffi::c_void,
     pub tri_strip_vertex_order_independent_of_provoking_vertex: crate::vk::Bool32,
 }
-pub const KHR_FRAGMENT_SHADER_BARYCENTRIC_SPEC_VERSION: usize = 69;
-pub const KHR_FRAGMENT_SHADER_BARYCENTRIC_EXTENSION_NAME: &'static core::ffi::CStr = c"VK_KHR_fragment_shader_barycentric";
+pub const KHR_FRAGMENT_SHADER_BARYCENTRIC_SPEC_VERSION: usize = 1;
+pub const KHR_FRAGMENT_SHADER_BARYCENTRIC_EXTENSION_NAME: &core::ffi::CStr = c"VK_KHR_fragment_shader_barycentric";

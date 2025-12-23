@@ -8,5 +8,5 @@ pub struct PipelineLibraryCreateInfoKHR {
     pub library_count: u32,
     pub p_libraries: *const crate::vk::Pipeline,
 }
-pub const KHR_PIPELINE_LIBRARY_SPEC_VERSION: usize = 69;
-pub const KHR_PIPELINE_LIBRARY_EXTENSION_NAME: &'static core::ffi::CStr = c"VK_KHR_pipeline_library";
+pub const KHR_PIPELINE_LIBRARY_SPEC_VERSION: usize = 1;
+pub const KHR_PIPELINE_LIBRARY_EXTENSION_NAME: &core::ffi::CStr = c"VK_KHR_pipeline_library";

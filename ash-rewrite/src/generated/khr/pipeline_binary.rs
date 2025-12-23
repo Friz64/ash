@@ -32,7 +32,7 @@ pub struct PipelineBinaryKeyKHR {
     pub s_type: crate::vk::StructureType,
     pub p_next: *mut core::ffi::c_void,
     pub key_size: u32,
-    pub key: [u8; crate::vk::MAX_PIPELINE_BINARY_KEY_SIZE_KHR],
+    pub key: [u8; crate::vk::MAX_PIPELINE_BINARY_KEY_SIZE_KHR as _],
 }
 #[repr(C)]
 pub struct PipelineBinaryInfoKHR {
@@ -82,6 +82,6 @@ pub struct PhysicalDevicePipelineBinaryPropertiesKHR {
 }
 #[repr(transparent)]
 pub struct PipelineBinaryKHR(pub(crate) i32);
-pub const MAX_PIPELINE_BINARY_KEY_SIZE_KHR: usize = 69;
-pub const KHR_PIPELINE_BINARY_SPEC_VERSION: usize = 69;
-pub const KHR_PIPELINE_BINARY_EXTENSION_NAME: &'static core::ffi::CStr = c"VK_KHR_pipeline_binary";
+pub const MAX_PIPELINE_BINARY_KEY_SIZE_KHR: u32 = 32;
+pub const KHR_PIPELINE_BINARY_SPEC_VERSION: usize = 1;
+pub const KHR_PIPELINE_BINARY_EXTENSION_NAME: &core::ffi::CStr = c"VK_KHR_pipeline_binary";

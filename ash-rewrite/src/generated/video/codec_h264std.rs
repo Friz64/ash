@@ -22,9 +22,9 @@ pub struct StdVideoH264HrdParameters {
     pub bit_rate_scale: u8,
     pub cpb_size_scale: u8,
     pub reserved1: u8,
-    pub bit_rate_value_minus1: [u32; crate::vk::STD_VIDEO_H264_CPB_CNT_LIST_SIZE],
-    pub cpb_size_value_minus1: [u32; crate::vk::STD_VIDEO_H264_CPB_CNT_LIST_SIZE],
-    pub cbr_flag: [u8; crate::vk::STD_VIDEO_H264_CPB_CNT_LIST_SIZE],
+    pub bit_rate_value_minus1: [u32; crate::vk::STD_VIDEO_H264_CPB_CNT_LIST_SIZE as _],
+    pub cpb_size_value_minus1: [u32; crate::vk::STD_VIDEO_H264_CPB_CNT_LIST_SIZE as _],
+    pub cbr_flag: [u8; crate::vk::STD_VIDEO_H264_CPB_CNT_LIST_SIZE as _],
     pub initial_cpb_removal_delay_length_minus1: u32,
     pub cpb_removal_delay_length_minus1: u32,
     pub dpb_output_delay_length_minus1: u32,
@@ -72,8 +72,10 @@ pub struct StdVideoH264SpsFlags {
 pub struct StdVideoH264ScalingLists {
     pub scaling_list_present_mask: u16,
     pub use_default_scaling_matrix_mask: u16,
-    pub scaling_list4x4: [[u8; crate::vk::STD_VIDEO_H264_SCALING_LIST_4X4_NUM_ELEMENTS]; crate::vk::STD_VIDEO_H264_SCALING_LIST_4X4_NUM_LISTS],
-    pub scaling_list8x8: [[u8; crate::vk::STD_VIDEO_H264_SCALING_LIST_8X8_NUM_ELEMENTS]; crate::vk::STD_VIDEO_H264_SCALING_LIST_8X8_NUM_LISTS],
+    pub scaling_list4x4: [[u8; crate::vk::STD_VIDEO_H264_SCALING_LIST_4X4_NUM_ELEMENTS
+        as _]; crate::vk::STD_VIDEO_H264_SCALING_LIST_4X4_NUM_LISTS as _],
+    pub scaling_list8x8: [[u8; crate::vk::STD_VIDEO_H264_SCALING_LIST_8X8_NUM_ELEMENTS
+        as _]; crate::vk::STD_VIDEO_H264_SCALING_LIST_8X8_NUM_LISTS as _],
 }
 #[repr(C)]
 pub struct StdVideoH264SequenceParameterSet {
@@ -154,11 +156,11 @@ pub struct StdVideoH264SliceType(pub(crate) i32);
 pub struct StdVideoH264PictureType(pub(crate) i32);
 #[repr(transparent)]
 pub struct StdVideoH264NonVclNaluType(pub(crate) i32);
-pub const STD_VIDEO_H264_CPB_CNT_LIST_SIZE: usize = 69;
-pub const STD_VIDEO_H264_SCALING_LIST_4X4_NUM_LISTS: usize = 69;
-pub const STD_VIDEO_H264_SCALING_LIST_4X4_NUM_ELEMENTS: usize = 69;
-pub const STD_VIDEO_H264_SCALING_LIST_8X8_NUM_LISTS: usize = 69;
-pub const STD_VIDEO_H264_SCALING_LIST_8X8_NUM_ELEMENTS: usize = 69;
-pub const STD_VIDEO_H264_MAX_NUM_LIST_REF: usize = 69;
-pub const STD_VIDEO_H264_MAX_CHROMA_PLANES: usize = 69;
-pub const STD_VIDEO_H264_NO_REFERENCE_PICTURE: usize = 69;
+pub const STD_VIDEO_H264_CPB_CNT_LIST_SIZE: usize = 32;
+pub const STD_VIDEO_H264_SCALING_LIST_4X4_NUM_LISTS: usize = 6;
+pub const STD_VIDEO_H264_SCALING_LIST_4X4_NUM_ELEMENTS: usize = 16;
+pub const STD_VIDEO_H264_SCALING_LIST_8X8_NUM_LISTS: usize = 6;
+pub const STD_VIDEO_H264_SCALING_LIST_8X8_NUM_ELEMENTS: usize = 64;
+pub const STD_VIDEO_H264_MAX_NUM_LIST_REF: usize = 32;
+pub const STD_VIDEO_H264_MAX_CHROMA_PLANES: usize = 2;
+pub const STD_VIDEO_H264_NO_REFERENCE_PICTURE: usize = 0xf32f32;

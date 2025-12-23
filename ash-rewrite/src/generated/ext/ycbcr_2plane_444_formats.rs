@@ -7,5 +7,5 @@ pub struct PhysicalDeviceYcbcr2Plane444FormatsFeaturesEXT {
     pub p_next: *mut core::ffi::c_void,
     pub ycbcr2plane444_formats: crate::vk::Bool32,
 }
-pub const EXT_YCBCR_2PLANE_444_FORMATS_SPEC_VERSION: usize = 69;
-pub const EXT_YCBCR_2PLANE_444_FORMATS_EXTENSION_NAME: &'static core::ffi::CStr = c"VK_EXT_ycbcr_2plane_444_formats";
+pub const EXT_YCBCR_2PLANE_444_FORMATS_SPEC_VERSION: usize = 1;
+pub const EXT_YCBCR_2PLANE_444_FORMATS_EXTENSION_NAME: &core::ffi::CStr = c"VK_EXT_ycbcr_2plane_444_formats";

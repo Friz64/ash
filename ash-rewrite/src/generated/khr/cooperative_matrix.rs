@@ -32,5 +32,5 @@ pub struct PhysicalDeviceCooperativeMatrixPropertiesKHR {
 pub struct ScopeKHR(pub(crate) i32);
 #[repr(transparent)]
 pub struct ComponentTypeKHR(pub(crate) i32);
-pub const KHR_COOPERATIVE_MATRIX_SPEC_VERSION: usize = 69;
-pub const KHR_COOPERATIVE_MATRIX_EXTENSION_NAME: &'static core::ffi::CStr = c"VK_KHR_cooperative_matrix";
+pub const KHR_COOPERATIVE_MATRIX_SPEC_VERSION: usize = 2;
+pub const KHR_COOPERATIVE_MATRIX_EXTENSION_NAME: &core::ffi::CStr = c"VK_KHR_cooperative_matrix";

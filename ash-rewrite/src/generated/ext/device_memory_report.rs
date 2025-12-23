@@ -38,5 +38,5 @@ pub type PFN_vkDeviceMemoryReportCallbackEXT = Option<
         p_user_data: *mut core::ffi::c_void,
     ),
 >;
-pub const EXT_DEVICE_MEMORY_REPORT_SPEC_VERSION: usize = 69;
-pub const EXT_DEVICE_MEMORY_REPORT_EXTENSION_NAME: &'static core::ffi::CStr = c"VK_EXT_device_memory_report";
+pub const EXT_DEVICE_MEMORY_REPORT_SPEC_VERSION: usize = 2;
+pub const EXT_DEVICE_MEMORY_REPORT_EXTENSION_NAME: &core::ffi::CStr = c"VK_EXT_device_memory_report";

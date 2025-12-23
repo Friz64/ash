@@ -4,5 +4,5 @@
 pub type PhysicalDeviceSubgroupSizeControlFeaturesEXT = crate::vk::PhysicalDeviceSubgroupSizeControlFeatures;
 pub type PhysicalDeviceSubgroupSizeControlPropertiesEXT = crate::vk::PhysicalDeviceSubgroupSizeControlProperties;
 pub type PipelineShaderStageRequiredSubgroupSizeCreateInfoEXT = crate::vk::PipelineShaderStageRequiredSubgroupSizeCreateInfo;
-pub const EXT_SUBGROUP_SIZE_CONTROL_SPEC_VERSION: usize = 69;
-pub const EXT_SUBGROUP_SIZE_CONTROL_EXTENSION_NAME: &'static core::ffi::CStr = c"VK_EXT_subgroup_size_control";
+pub const EXT_SUBGROUP_SIZE_CONTROL_SPEC_VERSION: usize = 2;
+pub const EXT_SUBGROUP_SIZE_CONTROL_EXTENSION_NAME: &core::ffi::CStr = c"VK_EXT_subgroup_size_control";

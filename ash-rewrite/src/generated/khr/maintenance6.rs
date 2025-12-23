@@ -27,5 +27,5 @@ pub type BindDescriptorSetsInfoKHR = crate::vk::BindDescriptorSetsInfo;
 pub type PushConstantsInfoKHR = crate::vk::PushConstantsInfo;
 pub type PushDescriptorSetInfoKHR = crate::vk::PushDescriptorSetInfo;
 pub type PushDescriptorSetWithTemplateInfoKHR = crate::vk::PushDescriptorSetWithTemplateInfo;
-pub const KHR_MAINTENANCE_6_SPEC_VERSION: usize = 69;
-pub const KHR_MAINTENANCE_6_EXTENSION_NAME: &'static core::ffi::CStr = c"VK_KHR_maintenance6";
+pub const KHR_MAINTENANCE_6_SPEC_VERSION: usize = 1;
+pub const KHR_MAINTENANCE_6_EXTENSION_NAME: &core::ffi::CStr = c"VK_KHR_maintenance6";

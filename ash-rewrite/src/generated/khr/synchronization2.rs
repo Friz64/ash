@@ -18,5 +18,5 @@ pub type SubmitFlagsKHR = crate::vk::SubmitFlags;
 #[repr(transparent)]
 #[allow(non_camel_case_types)]
 pub struct Flags64(pub(crate) i16);
-pub const KHR_SYNCHRONIZATION_2_SPEC_VERSION: usize = 69;
-pub const KHR_SYNCHRONIZATION_2_EXTENSION_NAME: &'static core::ffi::CStr = c"VK_KHR_synchronization2";
+pub const KHR_SYNCHRONIZATION_2_SPEC_VERSION: usize = 1;
+pub const KHR_SYNCHRONIZATION_2_EXTENSION_NAME: &core::ffi::CStr = c"VK_KHR_synchronization2";

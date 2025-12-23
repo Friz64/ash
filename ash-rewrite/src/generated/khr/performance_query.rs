@@ -21,16 +21,16 @@ pub struct PerformanceCounterKHR {
     pub unit: crate::vk::PerformanceCounterUnitKHR,
     pub scope: crate::vk::PerformanceCounterScopeKHR,
     pub storage: crate::vk::PerformanceCounterStorageKHR,
-    pub uuid: [u8; crate::vk::UUID_SIZE],
+    pub uuid: [u8; crate::vk::UUID_SIZE as _],
 }
 #[repr(C)]
 pub struct PerformanceCounterDescriptionKHR {
     pub s_type: crate::vk::StructureType,
     pub p_next: *mut core::ffi::c_void,
     pub flags: crate::vk::PerformanceCounterDescriptionFlagsKHR,
-    pub name: [core::ffi::c_char; crate::vk::MAX_DESCRIPTION_SIZE],
-    pub category: [core::ffi::c_char; crate::vk::MAX_DESCRIPTION_SIZE],
-    pub description: [core::ffi::c_char; crate::vk::MAX_DESCRIPTION_SIZE],
+    pub name: [core::ffi::c_char; crate::vk::MAX_DESCRIPTION_SIZE as _],
+    pub category: [core::ffi::c_char; crate::vk::MAX_DESCRIPTION_SIZE as _],
+    pub description: [core::ffi::c_char; crate::vk::MAX_DESCRIPTION_SIZE as _],
 }
 #[repr(C)]
 pub struct QueryPoolPerformanceCreateInfoKHR {
@@ -76,5 +76,5 @@ pub struct AcquireProfilingLockFlagsKHR(pub(crate) i32);
 pub struct PerformanceCounterDescriptionFlagBitsKHR(pub(crate) i32);
 #[repr(transparent)]
 pub struct AcquireProfilingLockFlagBitsKHR(pub(crate) i32);
-pub const KHR_PERFORMANCE_QUERY_SPEC_VERSION: usize = 69;
-pub const KHR_PERFORMANCE_QUERY_EXTENSION_NAME: &'static core::ffi::CStr = c"VK_KHR_performance_query";
+pub const KHR_PERFORMANCE_QUERY_SPEC_VERSION: usize = 1;
+pub const KHR_PERFORMANCE_QUERY_EXTENSION_NAME: &core::ffi::CStr = c"VK_KHR_performance_query";

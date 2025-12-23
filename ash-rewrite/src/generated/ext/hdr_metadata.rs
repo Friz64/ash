@@ -19,5 +19,5 @@ pub struct HdrMetadataEXT {
     pub max_content_light_level: core::ffi::c_float,
     pub max_frame_average_light_level: core::ffi::c_float,
 }
-pub const EXT_HDR_METADATA_SPEC_VERSION: usize = 69;
-pub const EXT_HDR_METADATA_EXTENSION_NAME: &'static core::ffi::CStr = c"VK_EXT_hdr_metadata";
+pub const EXT_HDR_METADATA_SPEC_VERSION: usize = 3;
+pub const EXT_HDR_METADATA_EXTENSION_NAME: &core::ffi::CStr = c"VK_EXT_hdr_metadata";

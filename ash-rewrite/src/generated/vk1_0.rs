@@ -67,22 +67,22 @@ pub struct PhysicalDeviceProperties {
     pub vendor_id: u32,
     pub device_id: u32,
     pub device_type: crate::vk::PhysicalDeviceType,
-    pub device_name: [core::ffi::c_char; crate::vk::MAX_PHYSICAL_DEVICE_NAME_SIZE],
-    pub pipeline_cache_uuid: [u8; crate::vk::UUID_SIZE],
+    pub device_name: [core::ffi::c_char; crate::vk::MAX_PHYSICAL_DEVICE_NAME_SIZE as _],
+    pub pipeline_cache_uuid: [u8; crate::vk::UUID_SIZE as _],
     pub limits: crate::vk::PhysicalDeviceLimits,
     pub sparse_properties: crate::vk::PhysicalDeviceSparseProperties,
 }
 #[repr(C)]
 pub struct ExtensionProperties {
-    pub extension_name: [core::ffi::c_char; crate::vk::MAX_EXTENSION_NAME_SIZE],
+    pub extension_name: [core::ffi::c_char; crate::vk::MAX_EXTENSION_NAME_SIZE as _],
     pub spec_version: u32,
 }
 #[repr(C)]
 pub struct LayerProperties {
-    pub layer_name: [core::ffi::c_char; crate::vk::MAX_EXTENSION_NAME_SIZE],
+    pub layer_name: [core::ffi::c_char; crate::vk::MAX_EXTENSION_NAME_SIZE as _],
     pub spec_version: u32,
     pub implementation_version: u32,
-    pub description: [core::ffi::c_char; crate::vk::MAX_DESCRIPTION_SIZE],
+    pub description: [core::ffi::c_char; crate::vk::MAX_DESCRIPTION_SIZE as _],
 }
 #[repr(C)]
 pub struct ApplicationInfo {
@@ -146,9 +146,9 @@ pub struct QueueFamilyProperties {
 #[repr(C)]
 pub struct PhysicalDeviceMemoryProperties {
     pub memory_type_count: u32,
-    pub memory_types: [crate::vk::MemoryType; crate::vk::MAX_MEMORY_TYPES],
+    pub memory_types: [crate::vk::MemoryType; crate::vk::MAX_MEMORY_TYPES as _],
     pub memory_heap_count: u32,
-    pub memory_heaps: [crate::vk::MemoryHeap; crate::vk::MAX_MEMORY_HEAPS],
+    pub memory_heaps: [crate::vk::MemoryHeap; crate::vk::MAX_MEMORY_HEAPS as _],
 }
 #[repr(C)]
 pub struct MemoryAllocateInfo {
@@ -424,9 +424,9 @@ pub struct ImageCopy {
 #[repr(C)]
 pub struct ImageBlit {
     pub src_subresource: crate::vk::ImageSubresourceLayers,
-    pub src_offsets: [crate::vk::Offset3D; 2],
+    pub src_offsets: [crate::vk::Offset3D; 2 as _],
     pub dst_subresource: crate::vk::ImageSubresourceLayers,
-    pub dst_offsets: [crate::vk::Offset3D; 2],
+    pub dst_offsets: [crate::vk::Offset3D; 2 as _],
 }
 #[repr(C)]
 pub struct BufferImageCopy {
@@ -620,7 +620,7 @@ pub struct PipelineColorBlendStateCreateInfo {
     pub logic_op: crate::vk::LogicOp,
     pub attachment_count: u32,
     pub p_attachments: *const crate::vk::PipelineColorBlendAttachmentState,
-    pub blend_constants: [core::ffi::c_float; 4],
+    pub blend_constants: [core::ffi::c_float; 4 as _],
 }
 #[repr(C)]
 pub struct PipelineDynamicStateCreateInfo {
@@ -691,7 +691,7 @@ pub struct PipelineCacheHeaderVersionOne {
     pub header_version: crate::vk::PipelineCacheHeaderVersion,
     pub vendor_id: u32,
     pub device_id: u32,
-    pub pipeline_cache_uuid: [u8; crate::vk::UUID_SIZE],
+    pub pipeline_cache_uuid: [u8; crate::vk::UUID_SIZE as _],
 }
 #[repr(C)]
 pub struct PushConstantRange {
@@ -968,9 +968,9 @@ pub struct PhysicalDeviceLimits {
     pub max_fragment_dual_src_attachments: u32,
     pub max_fragment_combined_output_resources: u32,
     pub max_compute_shared_memory_size: u32,
-    pub max_compute_work_group_count: [u32; 3],
+    pub max_compute_work_group_count: [u32; 3 as _],
     pub max_compute_work_group_invocations: u32,
-    pub max_compute_work_group_size: [u32; 3],
+    pub max_compute_work_group_size: [u32; 3 as _],
     pub sub_pixel_precision_bits: u32,
     pub sub_texel_precision_bits: u32,
     pub mipmap_precision_bits: u32,
@@ -979,8 +979,8 @@ pub struct PhysicalDeviceLimits {
     pub max_sampler_lod_bias: core::ffi::c_float,
     pub max_sampler_anisotropy: core::ffi::c_float,
     pub max_viewports: u32,
-    pub max_viewport_dimensions: [u32; 2],
-    pub viewport_bounds_range: [core::ffi::c_float; 2],
+    pub max_viewport_dimensions: [u32; 2 as _],
+    pub viewport_bounds_range: [core::ffi::c_float; 2 as _],
     pub viewport_sub_pixel_bits: u32,
     pub min_memory_map_alignment: usize,
     pub min_texel_buffer_offset_alignment: crate::vk::DeviceSize,
@@ -1013,8 +1013,8 @@ pub struct PhysicalDeviceLimits {
     pub max_cull_distances: u32,
     pub max_combined_clip_and_cull_distances: u32,
     pub discrete_queue_priorities: u32,
-    pub point_size_range: [core::ffi::c_float; 2],
-    pub line_width_range: [core::ffi::c_float; 2],
+    pub point_size_range: [core::ffi::c_float; 2 as _],
+    pub line_width_range: [core::ffi::c_float; 2 as _],
     pub point_size_granularity: core::ffi::c_float,
     pub line_width_granularity: core::ffi::c_float,
     pub strict_lines: crate::vk::Bool32,
@@ -1085,9 +1085,9 @@ pub struct SubmitInfo {
 }
 #[repr(C)]
 pub struct ClearColorValue {
-    float32: [core::ffi::c_float; 4],
-    int32: [i32; 4],
-    uint32: [u32; 4],
+    float32: [core::ffi::c_float; 4 as _],
+    int32: [i32; 4 as _],
+    uint32: [u32; 4 as _],
 }
 #[repr(C)]
 pub struct ClearValue {
@@ -1477,18 +1477,18 @@ pub type PFN_vkFreeFunction = Option<
 >;
 #[allow(non_camel_case_types)]
 pub type PFN_vkVoidFunction = Option<unsafe extern "system" fn()>;
-pub const MAX_PHYSICAL_DEVICE_NAME_SIZE: usize = 69;
-pub const UUID_SIZE: usize = 69;
-pub const MAX_EXTENSION_NAME_SIZE: usize = 69;
-pub const MAX_DESCRIPTION_SIZE: usize = 69;
-pub const MAX_MEMORY_TYPES: usize = 69;
-pub const MAX_MEMORY_HEAPS: usize = 69;
-pub const LOD_CLAMP_NONE: usize = 69;
-pub const REMAINING_MIP_LEVELS: usize = 69;
-pub const REMAINING_ARRAY_LAYERS: usize = 69;
-pub const WHOLE_SIZE: usize = 69;
-pub const ATTACHMENT_UNUSED: usize = 69;
-pub const TRUE: usize = 69;
-pub const FALSE: usize = 69;
-pub const QUEUE_FAMILY_IGNORED: usize = 69;
-pub const SUBPASS_EXTERNAL: usize = 69;
+pub const MAX_PHYSICAL_DEVICE_NAME_SIZE: u32 = 256;
+pub const UUID_SIZE: u32 = 16;
+pub const MAX_EXTENSION_NAME_SIZE: u32 = 256;
+pub const MAX_DESCRIPTION_SIZE: u32 = 256;
+pub const MAX_MEMORY_TYPES: u32 = 32;
+pub const MAX_MEMORY_HEAPS: u32 = 16;
+pub const LOD_CLAMP_NONE: core::ffi::c_float = 1000.0f32;
+pub const REMAINING_MIP_LEVELS: u32 = (!0u32);
+pub const REMAINING_ARRAY_LAYERS: u32 = (!0u32);
+pub const WHOLE_SIZE: u64 = (!0u64);
+pub const ATTACHMENT_UNUSED: u32 = (!0u32);
+pub const TRUE: u32 = 1;
+pub const FALSE: u32 = 0;
+pub const QUEUE_FAMILY_IGNORED: u32 = (!0u32);
+pub const SUBPASS_EXTERNAL: u32 = (!0u32);

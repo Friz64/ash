@@ -19,5 +19,5 @@ pub struct RectLayerKHR {
     pub extent: crate::vk::Extent2D,
     pub layer: u32,
 }
-pub const KHR_INCREMENTAL_PRESENT_SPEC_VERSION: usize = 69;
-pub const KHR_INCREMENTAL_PRESENT_EXTENSION_NAME: &'static core::ffi::CStr = c"VK_KHR_incremental_present";
+pub const KHR_INCREMENTAL_PRESENT_SPEC_VERSION: usize = 2;
+pub const KHR_INCREMENTAL_PRESENT_EXTENSION_NAME: &core::ffi::CStr = c"VK_KHR_incremental_present";

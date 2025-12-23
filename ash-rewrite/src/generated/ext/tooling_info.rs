@@ -4,5 +4,5 @@
 pub type PhysicalDeviceToolPropertiesEXT = crate::vk::PhysicalDeviceToolProperties;
 pub type ToolPurposeFlagBitsEXT = crate::vk::ToolPurposeFlagBits;
 pub type ToolPurposeFlagsEXT = crate::vk::ToolPurposeFlags;
-pub const EXT_TOOLING_INFO_SPEC_VERSION: usize = 69;
-pub const EXT_TOOLING_INFO_EXTENSION_NAME: &'static core::ffi::CStr = c"VK_EXT_tooling_info";
+pub const EXT_TOOLING_INFO_SPEC_VERSION: usize = 1;
+pub const EXT_TOOLING_INFO_EXTENSION_NAME: &core::ffi::CStr = c"VK_EXT_tooling_info";

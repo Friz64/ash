@@ -13,5 +13,5 @@ pub struct Win32KeyedMutexAcquireReleaseInfoNV {
     pub p_release_syncs: *const crate::vk::DeviceMemory,
     pub p_release_keys: *const u64,
 }
-pub const NV_WIN32_KEYED_MUTEX_SPEC_VERSION: usize = 69;
-pub const NV_WIN32_KEYED_MUTEX_EXTENSION_NAME: &'static core::ffi::CStr = c"VK_NV_win32_keyed_mutex";
+pub const NV_WIN32_KEYED_MUTEX_SPEC_VERSION: usize = 2;
+pub const NV_WIN32_KEYED_MUTEX_EXTENSION_NAME: &core::ffi::CStr = c"VK_NV_win32_keyed_mutex";

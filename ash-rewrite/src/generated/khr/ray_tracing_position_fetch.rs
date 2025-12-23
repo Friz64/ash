@@ -7,5 +7,5 @@ pub struct PhysicalDeviceRayTracingPositionFetchFeaturesKHR {
     pub p_next: *mut core::ffi::c_void,
     pub ray_tracing_position_fetch: crate::vk::Bool32,
 }
-pub const KHR_RAY_TRACING_POSITION_FETCH_SPEC_VERSION: usize = 69;
-pub const KHR_RAY_TRACING_POSITION_FETCH_EXTENSION_NAME: &'static core::ffi::CStr = c"VK_KHR_ray_tracing_position_fetch";
+pub const KHR_RAY_TRACING_POSITION_FETCH_SPEC_VERSION: usize = 1;
+pub const KHR_RAY_TRACING_POSITION_FETCH_EXTENSION_NAME: &core::ffi::CStr = c"VK_KHR_ray_tracing_position_fetch";

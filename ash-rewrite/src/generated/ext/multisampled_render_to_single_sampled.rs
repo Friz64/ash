@@ -20,5 +20,5 @@ pub struct MultisampledRenderToSingleSampledInfoEXT {
     pub multisampled_render_to_single_sampled_enable: crate::vk::Bool32,
     pub rasterization_samples: crate::vk::SampleCountFlagBits,
 }
-pub const EXT_MULTISAMPLED_RENDER_TO_SINGLE_SAMPLED_SPEC_VERSION: usize = 69;
-pub const EXT_MULTISAMPLED_RENDER_TO_SINGLE_SAMPLED_EXTENSION_NAME: &'static core::ffi::CStr = c"VK_EXT_multisampled_render_to_single_sampled";
+pub const EXT_MULTISAMPLED_RENDER_TO_SINGLE_SAMPLED_SPEC_VERSION: usize = 1;
+pub const EXT_MULTISAMPLED_RENDER_TO_SINGLE_SAMPLED_EXTENSION_NAME: &core::ffi::CStr = c"VK_EXT_multisampled_render_to_single_sampled";

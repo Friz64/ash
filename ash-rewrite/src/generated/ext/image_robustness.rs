@@ -2,5 +2,5 @@
 #![cfg_attr(rustfmt, rustfmt_skip)]
 //![Vulkan Manual Page](https://docs.vulkan.org/refpages/latest/refpages/source/VK_EXT_image_robustness.html) · Vulkan extension
 pub type PhysicalDeviceImageRobustnessFeaturesEXT = crate::vk::PhysicalDeviceImageRobustnessFeatures;
-pub const EXT_IMAGE_ROBUSTNESS_SPEC_VERSION: usize = 69;
-pub const EXT_IMAGE_ROBUSTNESS_EXTENSION_NAME: &'static core::ffi::CStr = c"VK_EXT_image_robustness";
+pub const EXT_IMAGE_ROBUSTNESS_SPEC_VERSION: usize = 1;
+pub const EXT_IMAGE_ROBUSTNESS_EXTENSION_NAME: &core::ffi::CStr = c"VK_EXT_image_robustness";

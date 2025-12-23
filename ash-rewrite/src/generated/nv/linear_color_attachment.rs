@@ -7,5 +7,5 @@ pub struct PhysicalDeviceLinearColorAttachmentFeaturesNV {
     pub p_next: *mut core::ffi::c_void,
     pub linear_color_attachment: crate::vk::Bool32,
 }
-pub const NV_LINEAR_COLOR_ATTACHMENT_SPEC_VERSION: usize = 69;
-pub const NV_LINEAR_COLOR_ATTACHMENT_EXTENSION_NAME: &'static core::ffi::CStr = c"VK_NV_linear_color_attachment";
+pub const NV_LINEAR_COLOR_ATTACHMENT_SPEC_VERSION: usize = 1;
+pub const NV_LINEAR_COLOR_ATTACHMENT_EXTENSION_NAME: &core::ffi::CStr = c"VK_NV_linear_color_attachment";

@@ -14,11 +14,11 @@ pub struct PhysicalDeviceMeshShaderPropertiesNV {
     pub p_next: *mut core::ffi::c_void,
     pub max_draw_mesh_tasks_count: u32,
     pub max_task_work_group_invocations: u32,
-    pub max_task_work_group_size: [u32; 3],
+    pub max_task_work_group_size: [u32; 3 as _],
     pub max_task_total_memory_size: u32,
     pub max_task_output_count: u32,
     pub max_mesh_work_group_invocations: u32,
-    pub max_mesh_work_group_size: [u32; 3],
+    pub max_mesh_work_group_size: [u32; 3 as _],
     pub max_mesh_total_memory_size: u32,
     pub max_mesh_output_vertices: u32,
     pub max_mesh_output_primitives: u32,
@@ -31,5 +31,5 @@ pub struct DrawMeshTasksIndirectCommandNV {
     pub task_count: u32,
     pub first_task: u32,
 }
-pub const NV_MESH_SHADER_SPEC_VERSION: usize = 69;
-pub const NV_MESH_SHADER_EXTENSION_NAME: &'static core::ffi::CStr = c"VK_NV_mesh_shader";
+pub const NV_MESH_SHADER_SPEC_VERSION: usize = 1;
+pub const NV_MESH_SHADER_EXTENSION_NAME: &core::ffi::CStr = c"VK_NV_mesh_shader";

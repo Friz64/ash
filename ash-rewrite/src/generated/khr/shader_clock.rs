@@ -8,5 +8,5 @@ pub struct PhysicalDeviceShaderClockFeaturesKHR {
     pub shader_subgroup_clock: crate::vk::Bool32,
     pub shader_device_clock: crate::vk::Bool32,
 }
-pub const KHR_SHADER_CLOCK_SPEC_VERSION: usize = 69;
-pub const KHR_SHADER_CLOCK_EXTENSION_NAME: &'static core::ffi::CStr = c"VK_KHR_shader_clock";
+pub const KHR_SHADER_CLOCK_SPEC_VERSION: usize = 1;
+pub const KHR_SHADER_CLOCK_EXTENSION_NAME: &core::ffi::CStr = c"VK_KHR_shader_clock";

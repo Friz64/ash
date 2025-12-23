@@ -10,5 +10,5 @@ pub struct ImagePipeSurfaceCreateInfoFUCHSIA {
 }
 #[repr(transparent)]
 pub struct ImagePipeSurfaceCreateFlagsFUCHSIA(pub(crate) i32);
-pub const FUCHSIA_IMAGEPIPE_SURFACE_SPEC_VERSION: usize = 69;
-pub const FUCHSIA_IMAGEPIPE_SURFACE_EXTENSION_NAME: &'static core::ffi::CStr = c"VK_FUCHSIA_imagepipe_surface";
+pub const FUCHSIA_IMAGEPIPE_SURFACE_SPEC_VERSION: usize = 1;
+pub const FUCHSIA_IMAGEPIPE_SURFACE_EXTENSION_NAME: &core::ffi::CStr = c"VK_FUCHSIA_imagepipe_surface";

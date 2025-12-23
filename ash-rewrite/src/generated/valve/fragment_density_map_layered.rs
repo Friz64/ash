@@ -19,5 +19,5 @@ pub struct PipelineFragmentDensityMapLayeredCreateInfoVALVE {
     pub p_next: *const core::ffi::c_void,
     pub max_fragment_density_map_layers: u32,
 }
-pub const VALVE_FRAGMENT_DENSITY_MAP_LAYERED_SPEC_VERSION: usize = 69;
-pub const VALVE_FRAGMENT_DENSITY_MAP_LAYERED_EXTENSION_NAME: &'static core::ffi::CStr = c"VK_VALVE_fragment_density_map_layered";
+pub const VALVE_FRAGMENT_DENSITY_MAP_LAYERED_SPEC_VERSION: usize = 1;
+pub const VALVE_FRAGMENT_DENSITY_MAP_LAYERED_EXTENSION_NAME: &core::ffi::CStr = c"VK_VALVE_fragment_density_map_layered";

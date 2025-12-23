@@ -26,5 +26,5 @@ pub struct AntiLagPresentationInfoAMD {
 pub struct AntiLagModeAMD(pub(crate) i32);
 #[repr(transparent)]
 pub struct AntiLagStageAMD(pub(crate) i32);
-pub const AMD_ANTI_LAG_SPEC_VERSION: usize = 69;
-pub const AMD_ANTI_LAG_EXTENSION_NAME: &'static core::ffi::CStr = c"VK_AMD_anti_lag";
+pub const AMD_ANTI_LAG_SPEC_VERSION: usize = 1;
+pub const AMD_ANTI_LAG_EXTENSION_NAME: &core::ffi::CStr = c"VK_AMD_anti_lag";

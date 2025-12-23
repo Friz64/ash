@@ -3,6 +3,7 @@ use crate::{
     name::TypeName,
     xml,
 };
+use tracing::{instrument, trace};
 
 #[derive(Debug)]
 pub struct Enum {
@@ -23,11 +24,9 @@ impl Type for Enum {
 }
 
 impl Enum {
-    pub(crate) fn new(
-        // decl_ctx: &decl::Context,
-        required_by: RequiredBy,
-        xml: &xml::Enum,
-    ) -> Enum {
+    #[instrument]
+    pub(crate) fn new(required_by: RequiredBy, xml: &xml::Enum) -> Enum {
+        trace!("constructing");
         Enum {
             required_by,
             name: xml.name,

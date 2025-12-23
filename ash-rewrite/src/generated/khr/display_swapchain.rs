@@ -9,5 +9,5 @@ pub struct DisplayPresentInfoKHR {
     pub dst_rect: crate::vk::Rect2D,
     pub persistent: crate::vk::Bool32,
 }
-pub const KHR_DISPLAY_SWAPCHAIN_SPEC_VERSION: usize = 69;
-pub const KHR_DISPLAY_SWAPCHAIN_EXTENSION_NAME: &'static core::ffi::CStr = c"VK_KHR_display_swapchain";
+pub const KHR_DISPLAY_SWAPCHAIN_SPEC_VERSION: usize = 10;
+pub const KHR_DISPLAY_SWAPCHAIN_EXTENSION_NAME: &core::ffi::CStr = c"VK_KHR_display_swapchain";

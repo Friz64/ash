@@ -1,4 +1,5 @@
 use crate::cdecl::{CDecl, CDeclMode, CTok, CType};
+use crate::decl::CPrimaryType;
 use crate::name::{CommandName, ConstantName, TypeName};
 use roxmltree::NodeType;
 use roxmltree::StringStorage;
@@ -474,7 +475,7 @@ impl Structure {
 
 #[derive(Debug)]
 pub struct Constant {
-    pub ty: &'static str,
+    pub ty: CPrimaryType,
     pub value: &'static str,
     pub name: ConstantName,
 }
@@ -482,7 +483,7 @@ pub struct Constant {
 impl Constant {
     fn from_node(node: Node) -> Constant {
         Constant {
-            ty: attribute(node, "type").unwrap(),
+            ty: CPrimaryType::from_str(attribute(node, "type").unwrap()).unwrap(),
             value: attribute(node, "value").unwrap(),
             name: ConstantName(attribute(node, "name").unwrap()),
         }

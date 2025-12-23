@@ -5,8 +5,8 @@
 pub struct PhysicalDeviceMemoryBudgetPropertiesEXT {
     pub s_type: crate::vk::StructureType,
     pub p_next: *mut core::ffi::c_void,
-    pub heap_budget: [crate::vk::DeviceSize; crate::vk::MAX_MEMORY_HEAPS],
-    pub heap_usage: [crate::vk::DeviceSize; crate::vk::MAX_MEMORY_HEAPS],
+    pub heap_budget: [crate::vk::DeviceSize; crate::vk::MAX_MEMORY_HEAPS as _],
+    pub heap_usage: [crate::vk::DeviceSize; crate::vk::MAX_MEMORY_HEAPS as _],
 }
-pub const EXT_MEMORY_BUDGET_SPEC_VERSION: usize = 69;
-pub const EXT_MEMORY_BUDGET_EXTENSION_NAME: &'static core::ffi::CStr = c"VK_EXT_memory_budget";
+pub const EXT_MEMORY_BUDGET_SPEC_VERSION: usize = 1;
+pub const EXT_MEMORY_BUDGET_EXTENSION_NAME: &core::ffi::CStr = c"VK_EXT_memory_budget";

@@ -87,5 +87,5 @@ pub struct OpticalFlowSessionCreateFlagBitsNV(pub(crate) i32);
 pub struct OpticalFlowExecuteFlagBitsNV(pub(crate) i32);
 #[repr(transparent)]
 pub struct OpticalFlowSessionNV(pub(crate) i32);
-pub const NV_OPTICAL_FLOW_SPEC_VERSION: usize = 69;
-pub const NV_OPTICAL_FLOW_EXTENSION_NAME: &'static core::ffi::CStr = c"VK_NV_optical_flow";
+pub const NV_OPTICAL_FLOW_SPEC_VERSION: usize = 1;
+pub const NV_OPTICAL_FLOW_EXTENSION_NAME: &core::ffi::CStr = c"VK_NV_optical_flow";

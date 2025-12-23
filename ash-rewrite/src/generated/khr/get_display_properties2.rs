@@ -32,5 +32,5 @@ pub struct DisplayPlaneCapabilities2KHR {
     pub p_next: *mut core::ffi::c_void,
     pub capabilities: crate::vk::DisplayPlaneCapabilitiesKHR,
 }
-pub const KHR_GET_DISPLAY_PROPERTIES_2_SPEC_VERSION: usize = 69;
-pub const KHR_GET_DISPLAY_PROPERTIES_2_EXTENSION_NAME: &'static core::ffi::CStr = c"VK_KHR_get_display_properties2";
+pub const KHR_GET_DISPLAY_PROPERTIES_2_SPEC_VERSION: usize = 1;
+pub const KHR_GET_DISPLAY_PROPERTIES_2_EXTENSION_NAME: &core::ffi::CStr = c"VK_KHR_get_display_properties2";

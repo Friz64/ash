@@ -14,5 +14,5 @@ pub struct PipelineColorWriteCreateInfoEXT {
     pub attachment_count: u32,
     pub p_color_write_enables: *const crate::vk::Bool32,
 }
-pub const EXT_COLOR_WRITE_ENABLE_SPEC_VERSION: usize = 69;
-pub const EXT_COLOR_WRITE_ENABLE_EXTENSION_NAME: &'static core::ffi::CStr = c"VK_EXT_color_write_enable";
+pub const EXT_COLOR_WRITE_ENABLE_SPEC_VERSION: usize = 1;
+pub const EXT_COLOR_WRITE_ENABLE_EXTENSION_NAME: &core::ffi::CStr = c"VK_EXT_color_write_enable";

@@ -5,5 +5,5 @@ pub type DeviceQueueGlobalPriorityCreateInfoKHR = crate::vk::DeviceQueueGlobalPr
 pub type PhysicalDeviceGlobalPriorityQueryFeaturesKHR = crate::vk::PhysicalDeviceGlobalPriorityQueryFeatures;
 pub type QueueFamilyGlobalPriorityPropertiesKHR = crate::vk::QueueFamilyGlobalPriorityProperties;
 pub type QueueGlobalPriorityKHR = crate::vk::QueueGlobalPriority;
-pub const KHR_GLOBAL_PRIORITY_SPEC_VERSION: usize = 69;
-pub const KHR_GLOBAL_PRIORITY_EXTENSION_NAME: &'static core::ffi::CStr = c"VK_KHR_global_priority";
+pub const KHR_GLOBAL_PRIORITY_SPEC_VERSION: usize = 1;
+pub const KHR_GLOBAL_PRIORITY_EXTENSION_NAME: &core::ffi::CStr = c"VK_KHR_global_priority";

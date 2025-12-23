@@ -21,5 +21,5 @@ pub struct MemoryMapPlacedInfoEXT {
     pub p_next: *const core::ffi::c_void,
     pub p_placed_address: *mut core::ffi::c_void,
 }
-pub const EXT_MAP_MEMORY_PLACED_SPEC_VERSION: usize = 69;
-pub const EXT_MAP_MEMORY_PLACED_EXTENSION_NAME: &'static core::ffi::CStr = c"VK_EXT_map_memory_placed";
+pub const EXT_MAP_MEMORY_PLACED_SPEC_VERSION: usize = 1;
+pub const EXT_MAP_MEMORY_PLACED_EXTENSION_NAME: &core::ffi::CStr = c"VK_EXT_map_memory_placed";

@@ -2,5 +2,5 @@
 #![cfg_attr(rustfmt, rustfmt_skip)]
 //![Vulkan Manual Page](https://docs.vulkan.org/refpages/latest/refpages/source/VK_ARM_rasterization_order_attachment_access.html) · Vulkan extension
 pub type PhysicalDeviceRasterizationOrderAttachmentAccessFeaturesARM = crate::vk::PhysicalDeviceRasterizationOrderAttachmentAccessFeaturesEXT;
-pub const ARM_RASTERIZATION_ORDER_ATTACHMENT_ACCESS_SPEC_VERSION: usize = 69;
-pub const ARM_RASTERIZATION_ORDER_ATTACHMENT_ACCESS_EXTENSION_NAME: &'static core::ffi::CStr = c"VK_ARM_rasterization_order_attachment_access";
+pub const ARM_RASTERIZATION_ORDER_ATTACHMENT_ACCESS_SPEC_VERSION: usize = 1;
+pub const ARM_RASTERIZATION_ORDER_ATTACHMENT_ACCESS_EXTENSION_NAME: &core::ffi::CStr = c"VK_ARM_rasterization_order_attachment_access";

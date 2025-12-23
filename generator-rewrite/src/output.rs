@@ -80,6 +80,7 @@ impl CodeMap {
         vfs.write(
             "mod.rs",
             quote! {
+                #![allow(unused_parens)]
                 /// A re-export of all items
                 pub mod vk;
             },

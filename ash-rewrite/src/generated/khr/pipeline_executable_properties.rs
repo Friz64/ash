@@ -18,8 +18,8 @@ pub struct PipelineExecutablePropertiesKHR {
     pub s_type: crate::vk::StructureType,
     pub p_next: *mut core::ffi::c_void,
     pub stages: crate::vk::ShaderStageFlags,
-    pub name: [core::ffi::c_char; crate::vk::MAX_DESCRIPTION_SIZE],
-    pub description: [core::ffi::c_char; crate::vk::MAX_DESCRIPTION_SIZE],
+    pub name: [core::ffi::c_char; crate::vk::MAX_DESCRIPTION_SIZE as _],
+    pub description: [core::ffi::c_char; crate::vk::MAX_DESCRIPTION_SIZE as _],
     pub subgroup_size: u32,
 }
 #[repr(C)]
@@ -33,8 +33,8 @@ pub struct PipelineExecutableInfoKHR {
 pub struct PipelineExecutableStatisticKHR {
     pub s_type: crate::vk::StructureType,
     pub p_next: *mut core::ffi::c_void,
-    pub name: [core::ffi::c_char; crate::vk::MAX_DESCRIPTION_SIZE],
-    pub description: [core::ffi::c_char; crate::vk::MAX_DESCRIPTION_SIZE],
+    pub name: [core::ffi::c_char; crate::vk::MAX_DESCRIPTION_SIZE as _],
+    pub description: [core::ffi::c_char; crate::vk::MAX_DESCRIPTION_SIZE as _],
     pub format: crate::vk::PipelineExecutableStatisticFormatKHR,
     pub value: crate::vk::PipelineExecutableStatisticValueKHR,
 }
@@ -42,8 +42,8 @@ pub struct PipelineExecutableStatisticKHR {
 pub struct PipelineExecutableInternalRepresentationKHR {
     pub s_type: crate::vk::StructureType,
     pub p_next: *mut core::ffi::c_void,
-    pub name: [core::ffi::c_char; crate::vk::MAX_DESCRIPTION_SIZE],
-    pub description: [core::ffi::c_char; crate::vk::MAX_DESCRIPTION_SIZE],
+    pub name: [core::ffi::c_char; crate::vk::MAX_DESCRIPTION_SIZE as _],
+    pub description: [core::ffi::c_char; crate::vk::MAX_DESCRIPTION_SIZE as _],
     pub is_text: crate::vk::Bool32,
     pub data_size: usize,
     pub p_data: *mut core::ffi::c_void,
@@ -57,5 +57,5 @@ pub struct PipelineExecutableStatisticValueKHR {
 }
 #[repr(transparent)]
 pub struct PipelineExecutableStatisticFormatKHR(pub(crate) i32);
-pub const KHR_PIPELINE_EXECUTABLE_PROPERTIES_SPEC_VERSION: usize = 69;
-pub const KHR_PIPELINE_EXECUTABLE_PROPERTIES_EXTENSION_NAME: &'static core::ffi::CStr = c"VK_KHR_pipeline_executable_properties";
+pub const KHR_PIPELINE_EXECUTABLE_PROPERTIES_SPEC_VERSION: usize = 1;
+pub const KHR_PIPELINE_EXECUTABLE_PROPERTIES_EXTENSION_NAME: &core::ffi::CStr = c"VK_KHR_pipeline_executable_properties";

@@ -7,5 +7,5 @@ pub struct PresentFrameTokenGGP {
     pub p_next: *const core::ffi::c_void,
     pub frame_token: crate::platform_types::GgpFrameToken,
 }
-pub const GGP_FRAME_TOKEN_SPEC_VERSION: usize = 69;
-pub const GGP_FRAME_TOKEN_EXTENSION_NAME: &'static core::ffi::CStr = c"VK_GGP_frame_token";
+pub const GGP_FRAME_TOKEN_SPEC_VERSION: usize = 1;
+pub const GGP_FRAME_TOKEN_EXTENSION_NAME: &core::ffi::CStr = c"VK_GGP_frame_token";

@@ -10,7 +10,7 @@ pub struct PhysicalDeviceShaderEnqueuePropertiesAMDX {
     pub max_execution_graph_shader_payload_size: u32,
     pub max_execution_graph_shader_payload_count: u32,
     pub execution_graph_dispatch_address_alignment: u32,
-    pub max_execution_graph_workgroup_count: [u32; 3],
+    pub max_execution_graph_workgroup_count: [u32; 3 as _],
     pub max_execution_graph_workgroups: u32,
 }
 #[repr(C)]
@@ -65,6 +65,6 @@ pub struct DeviceOrHostAddressConstAMDX {
     device_address: crate::vk::DeviceAddress,
     host_address: *const core::ffi::c_void,
 }
-pub const SHADER_INDEX_UNUSED_AMDX: usize = 69;
-pub const AMDX_SHADER_ENQUEUE_SPEC_VERSION: usize = 69;
-pub const AMDX_SHADER_ENQUEUE_EXTENSION_NAME: &'static core::ffi::CStr = c"VK_AMDX_shader_enqueue";
+pub const SHADER_INDEX_UNUSED_AMDX: u32 = (!0u32);
+pub const AMDX_SHADER_ENQUEUE_SPEC_VERSION: usize = 2;
+pub const AMDX_SHADER_ENQUEUE_EXTENSION_NAME: &core::ffi::CStr = c"VK_AMDX_shader_enqueue";

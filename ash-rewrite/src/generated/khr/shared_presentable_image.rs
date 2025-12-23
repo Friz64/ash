@@ -7,5 +7,5 @@ pub struct SharedPresentSurfaceCapabilitiesKHR {
     pub p_next: *mut core::ffi::c_void,
     pub shared_present_supported_usage_flags: crate::vk::ImageUsageFlags,
 }
-pub const KHR_SHARED_PRESENTABLE_IMAGE_SPEC_VERSION: usize = 69;
-pub const KHR_SHARED_PRESENTABLE_IMAGE_EXTENSION_NAME: &'static core::ffi::CStr = c"VK_KHR_shared_presentable_image";
+pub const KHR_SHARED_PRESENTABLE_IMAGE_SPEC_VERSION: usize = 1;
+pub const KHR_SHARED_PRESENTABLE_IMAGE_EXTENSION_NAME: &core::ffi::CStr = c"VK_KHR_shared_presentable_image";

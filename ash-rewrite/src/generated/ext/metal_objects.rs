@@ -104,5 +104,5 @@ pub struct MTLSharedEvent_id(pub(crate) i16);
 #[repr(transparent)]
 #[allow(non_camel_case_types)]
 pub struct IOSurfaceRef(pub(crate) i16);
-pub const EXT_METAL_OBJECTS_SPEC_VERSION: usize = 69;
-pub const EXT_METAL_OBJECTS_EXTENSION_NAME: &'static core::ffi::CStr = c"VK_EXT_metal_objects";
+pub const EXT_METAL_OBJECTS_SPEC_VERSION: usize = 2;
+pub const EXT_METAL_OBJECTS_EXTENSION_NAME: &core::ffi::CStr = c"VK_EXT_metal_objects";

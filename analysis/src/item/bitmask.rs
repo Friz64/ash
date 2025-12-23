@@ -3,6 +3,7 @@ use crate::{
     name::TypeName,
     xml,
 };
+use tracing::{instrument, trace};
 
 #[derive(Debug)]
 pub struct BitMask {
@@ -23,11 +24,9 @@ impl Type for BitMask {
 }
 
 impl BitMask {
-    pub(crate) fn new(
-        // decl_ctx: &decl::Context,
-        required_by: RequiredBy,
-        xml: &xml::BitMask,
-    ) -> BitMask {
+    #[instrument]
+    pub(crate) fn new(required_by: RequiredBy, xml: &xml::BitMask) -> BitMask {
+        trace!("constructing");
         BitMask {
             required_by,
             name: xml.name,
@@ -54,11 +53,9 @@ impl Type for BitMaskBits {
 }
 
 impl BitMaskBits {
-    pub(crate) fn new(
-        // decl_ctx: &decl::Context,
-        required_by: RequiredBy,
-        xml: &xml::BitMaskBits,
-    ) -> BitMaskBits {
+    #[instrument]
+    pub(crate) fn new(required_by: RequiredBy, xml: &xml::BitMaskBits) -> BitMaskBits {
+        trace!("constructing");
         BitMaskBits {
             required_by,
             name: xml.name,

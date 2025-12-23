@@ -21,5 +21,5 @@ pub struct MemoryGetMetalHandleInfoEXT {
     pub memory: crate::vk::DeviceMemory,
     pub handle_type: crate::vk::ExternalMemoryHandleTypeFlagBits,
 }
-pub const EXT_EXTERNAL_MEMORY_METAL_SPEC_VERSION: usize = 69;
-pub const EXT_EXTERNAL_MEMORY_METAL_EXTENSION_NAME: &'static core::ffi::CStr = c"VK_EXT_external_memory_metal";
+pub const EXT_EXTERNAL_MEMORY_METAL_SPEC_VERSION: usize = 1;
+pub const EXT_EXTERNAL_MEMORY_METAL_EXTENSION_NAME: &core::ffi::CStr = c"VK_EXT_external_memory_metal";

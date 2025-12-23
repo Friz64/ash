@@ -10,5 +10,5 @@ pub struct PhysicalDevicePCIBusInfoPropertiesEXT {
     pub pci_device: u32,
     pub pci_function: u32,
 }
-pub const EXT_PCI_BUS_INFO_SPEC_VERSION: usize = 69;
-pub const EXT_PCI_BUS_INFO_EXTENSION_NAME: &'static core::ffi::CStr = c"VK_EXT_pci_bus_info";
+pub const EXT_PCI_BUS_INFO_SPEC_VERSION: usize = 2;
+pub const EXT_PCI_BUS_INFO_EXTENSION_NAME: &core::ffi::CStr = c"VK_EXT_pci_bus_info";

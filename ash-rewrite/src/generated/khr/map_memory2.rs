@@ -5,5 +5,5 @@ pub type MemoryMapInfoKHR = crate::vk::MemoryMapInfo;
 pub type MemoryUnmapInfoKHR = crate::vk::MemoryUnmapInfo;
 pub type MemoryUnmapFlagBitsKHR = crate::vk::MemoryUnmapFlagBits;
 pub type MemoryUnmapFlagsKHR = crate::vk::MemoryUnmapFlags;
-pub const KHR_MAP_MEMORY_2_SPEC_VERSION: usize = 69;
-pub const KHR_MAP_MEMORY_2_EXTENSION_NAME: &'static core::ffi::CStr = c"VK_KHR_map_memory2";
+pub const KHR_MAP_MEMORY_2_SPEC_VERSION: usize = 1;
+pub const KHR_MAP_MEMORY_2_EXTENSION_NAME: &core::ffi::CStr = c"VK_KHR_map_memory2";

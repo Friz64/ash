@@ -39,14 +39,14 @@ impl<'a> CTok<'a> {
     ) -> Result<(), UnsupportedCTok<'a>> {
         // FIXME(eddyb) this could really use the `std::ascii` API.
         let mut s = s;
-        while let Some(c) = s.chars().next() {
-            if !c.is_ascii() {
-                return Err(UnsupportedCTok(s));
-            }
+        if !s.is_ascii() {
+            return Err(UnsupportedCTok(s));
+        }
 
-            let is_ident_or_number = |c: char| c.is_ascii_alphanumeric() || c == '_';
-            let tok = if is_ident_or_number(c) {
-                let len = s.chars().take_while(|&c| is_ident_or_number(c)).count();
+        while let Some(c) = s.chars().next() {
+            let is_value = |c: char| c.is_ascii_alphanumeric() || c == '_';
+            let tok = if is_value(c) {
+                let len = s.chars().take_while(|&c| is_value(c)).count();
                 let (tok, rest) = s.split_at(len);
                 s = rest;
                 if c.is_ascii_digit() {

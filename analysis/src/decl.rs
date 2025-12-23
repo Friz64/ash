@@ -1,5 +1,3 @@
-pub mod to_rust;
-
 use crate::{
     cdecl::{CArrayLen, CDecl, CType},
     item::RequiredBy,

@@ -1,8 +1,8 @@
 use crate::output::CodeMap;
 use analysis::{
-    decl::to_rust::NameTranslate,
     item::{Items, TypeItem},
-    name::TypeName,
+    name::{ConstantName, TypeName},
+    to_rust::NameTranslate,
 };
 use proc_macro2::TokenStream;
 use quote::quote;
@@ -50,6 +50,7 @@ impl CodeMap {
     }
 }
 
+#[derive(Debug)]
 pub struct Context {}
 
 impl NameTranslate for Context {
@@ -62,7 +63,7 @@ impl NameTranslate for Context {
         quote! { crate::vk::#ident }
     }
 
-    fn constant_to_rust(&self, name: analysis::name::ConstantName) -> TokenStream {
+    fn constant_to_rust(&self, name: ConstantName) -> TokenStream {
         let ident: Ident = syn::parse_str(name.prefix_trimmed()).unwrap();
         quote! { crate::vk::#ident }
     }

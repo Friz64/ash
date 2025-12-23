@@ -16,5 +16,5 @@ pub struct PhysicalDeviceRayTracingInvocationReorderPropertiesEXT {
 }
 #[repr(transparent)]
 pub struct RayTracingInvocationReorderModeEXT(pub(crate) i32);
-pub const EXT_RAY_TRACING_INVOCATION_REORDER_SPEC_VERSION: usize = 69;
-pub const EXT_RAY_TRACING_INVOCATION_REORDER_EXTENSION_NAME: &'static core::ffi::CStr = c"VK_EXT_ray_tracing_invocation_reorder";
+pub const EXT_RAY_TRACING_INVOCATION_REORDER_SPEC_VERSION: usize = 1;
+pub const EXT_RAY_TRACING_INVOCATION_REORDER_EXTENSION_NAME: &core::ffi::CStr = c"VK_EXT_ray_tracing_invocation_reorder";

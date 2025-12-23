@@ -28,5 +28,5 @@ pub struct PipelineColorBlendAdvancedStateCreateInfoEXT {
 }
 #[repr(transparent)]
 pub struct BlendOverlapEXT(pub(crate) i32);
-pub const EXT_BLEND_OPERATION_ADVANCED_SPEC_VERSION: usize = 69;
-pub const EXT_BLEND_OPERATION_ADVANCED_EXTENSION_NAME: &'static core::ffi::CStr = c"VK_EXT_blend_operation_advanced";
+pub const EXT_BLEND_OPERATION_ADVANCED_SPEC_VERSION: usize = 2;
+pub const EXT_BLEND_OPERATION_ADVANCED_EXTENSION_NAME: &core::ffi::CStr = c"VK_EXT_blend_operation_advanced";

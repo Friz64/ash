@@ -13,5 +13,5 @@ pub struct MemoryPriorityAllocateInfoEXT {
     pub p_next: *const core::ffi::c_void,
     pub priority: core::ffi::c_float,
 }
-pub const EXT_MEMORY_PRIORITY_SPEC_VERSION: usize = 69;
-pub const EXT_MEMORY_PRIORITY_EXTENSION_NAME: &'static core::ffi::CStr = c"VK_EXT_memory_priority";
+pub const EXT_MEMORY_PRIORITY_SPEC_VERSION: usize = 1;
+pub const EXT_MEMORY_PRIORITY_EXTENSION_NAME: &core::ffi::CStr = c"VK_EXT_memory_priority";

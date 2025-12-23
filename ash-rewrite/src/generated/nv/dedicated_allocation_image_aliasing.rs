@@ -7,5 +7,5 @@ pub struct PhysicalDeviceDedicatedAllocationImageAliasingFeaturesNV {
     pub p_next: *mut core::ffi::c_void,
     pub dedicated_allocation_image_aliasing: crate::vk::Bool32,
 }
-pub const NV_DEDICATED_ALLOCATION_IMAGE_ALIASING_SPEC_VERSION: usize = 69;
-pub const NV_DEDICATED_ALLOCATION_IMAGE_ALIASING_EXTENSION_NAME: &'static core::ffi::CStr = c"VK_NV_dedicated_allocation_image_aliasing";
+pub const NV_DEDICATED_ALLOCATION_IMAGE_ALIASING_SPEC_VERSION: usize = 1;
+pub const NV_DEDICATED_ALLOCATION_IMAGE_ALIASING_EXTENSION_NAME: &core::ffi::CStr = c"VK_NV_dedicated_allocation_image_aliasing";

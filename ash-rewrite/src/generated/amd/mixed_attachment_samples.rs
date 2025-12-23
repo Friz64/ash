@@ -9,5 +9,5 @@ pub struct AttachmentSampleCountInfoAMD {
     pub p_color_attachment_samples: *const crate::vk::SampleCountFlagBits,
     pub depth_stencil_attachment_samples: crate::vk::SampleCountFlagBits,
 }
-pub const AMD_MIXED_ATTACHMENT_SAMPLES_SPEC_VERSION: usize = 69;
-pub const AMD_MIXED_ATTACHMENT_SAMPLES_EXTENSION_NAME: &'static core::ffi::CStr = c"VK_AMD_mixed_attachment_samples";
+pub const AMD_MIXED_ATTACHMENT_SAMPLES_SPEC_VERSION: usize = 1;
+pub const AMD_MIXED_ATTACHMENT_SAMPLES_EXTENSION_NAME: &core::ffi::CStr = c"VK_AMD_mixed_attachment_samples";

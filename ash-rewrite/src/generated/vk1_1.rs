@@ -106,9 +106,9 @@ pub struct ExternalBufferProperties {
 pub struct PhysicalDeviceIDProperties {
     pub s_type: crate::vk::StructureType,
     pub p_next: *mut core::ffi::c_void,
-    pub device_uuid: [u8; crate::vk::UUID_SIZE],
-    pub driver_uuid: [u8; crate::vk::UUID_SIZE],
-    pub device_luid: [u8; crate::vk::LUID_SIZE],
+    pub device_uuid: [u8; crate::vk::UUID_SIZE as _],
+    pub driver_uuid: [u8; crate::vk::UUID_SIZE as _],
+    pub device_luid: [u8; crate::vk::LUID_SIZE as _],
     pub device_node_mask: u32,
     pub device_luid_valid: crate::vk::Bool32,
 }
@@ -201,7 +201,8 @@ pub struct PhysicalDeviceGroupProperties {
     pub s_type: crate::vk::StructureType,
     pub p_next: *mut core::ffi::c_void,
     pub physical_device_count: u32,
-    pub physical_devices: [crate::vk::PhysicalDevice; crate::vk::MAX_DEVICE_GROUP_SIZE],
+    pub physical_devices: [crate::vk::PhysicalDevice; crate::vk::MAX_DEVICE_GROUP_SIZE
+        as _],
     pub subset_allocation: crate::vk::Bool32,
 }
 #[repr(C)]
@@ -553,6 +554,6 @@ pub struct MemoryAllocateFlagBits(pub(crate) i32);
 pub struct DescriptorUpdateTemplate(pub(crate) i32);
 #[repr(transparent)]
 pub struct SamplerYcbcrConversion(pub(crate) i32);
-pub const LUID_SIZE: usize = 69;
-pub const QUEUE_FAMILY_EXTERNAL: usize = 69;
-pub const MAX_DEVICE_GROUP_SIZE: usize = 69;
+pub const LUID_SIZE: u32 = 8;
+pub const QUEUE_FAMILY_EXTERNAL: u32 = (!1u32);
+pub const MAX_DEVICE_GROUP_SIZE: u32 = 32;

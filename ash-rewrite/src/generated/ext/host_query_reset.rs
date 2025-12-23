@@ -2,5 +2,5 @@
 #![cfg_attr(rustfmt, rustfmt_skip)]
 //![Vulkan Manual Page](https://docs.vulkan.org/refpages/latest/refpages/source/VK_EXT_host_query_reset.html) · Vulkan extension
 pub type PhysicalDeviceHostQueryResetFeaturesEXT = crate::vk::PhysicalDeviceHostQueryResetFeatures;
-pub const EXT_HOST_QUERY_RESET_SPEC_VERSION: usize = 69;
-pub const EXT_HOST_QUERY_RESET_EXTENSION_NAME: &'static core::ffi::CStr = c"VK_EXT_host_query_reset";
+pub const EXT_HOST_QUERY_RESET_SPEC_VERSION: usize = 1;
+pub const EXT_HOST_QUERY_RESET_EXTENSION_NAME: &core::ffi::CStr = c"VK_EXT_host_query_reset";

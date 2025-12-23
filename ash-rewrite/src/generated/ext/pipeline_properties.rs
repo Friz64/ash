@@ -5,7 +5,7 @@
 pub struct PipelinePropertiesIdentifierEXT {
     pub s_type: crate::vk::StructureType,
     pub p_next: *mut core::ffi::c_void,
-    pub pipeline_identifier: [u8; crate::vk::UUID_SIZE],
+    pub pipeline_identifier: [u8; crate::vk::UUID_SIZE as _],
 }
 #[repr(C)]
 pub struct PhysicalDevicePipelinePropertiesFeaturesEXT {
@@ -14,5 +14,5 @@ pub struct PhysicalDevicePipelinePropertiesFeaturesEXT {
     pub pipeline_properties_identifier: crate::vk::Bool32,
 }
 pub type PipelineInfoEXT = crate::vk::PipelineInfoKHR;
-pub const EXT_PIPELINE_PROPERTIES_SPEC_VERSION: usize = 69;
-pub const EXT_PIPELINE_PROPERTIES_EXTENSION_NAME: &'static core::ffi::CStr = c"VK_EXT_pipeline_properties";
+pub const EXT_PIPELINE_PROPERTIES_SPEC_VERSION: usize = 1;
+pub const EXT_PIPELINE_PROPERTIES_EXTENSION_NAME: &core::ffi::CStr = c"VK_EXT_pipeline_properties";

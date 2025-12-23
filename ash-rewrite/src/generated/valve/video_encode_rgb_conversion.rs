@@ -43,5 +43,5 @@ pub struct VideoEncodeRgbModelConversionFlagBitsVALVE(pub(crate) i32);
 pub struct VideoEncodeRgbRangeCompressionFlagBitsVALVE(pub(crate) i32);
 #[repr(transparent)]
 pub struct VideoEncodeRgbChromaOffsetFlagBitsVALVE(pub(crate) i32);
-pub const VALVE_VIDEO_ENCODE_RGB_CONVERSION_SPEC_VERSION: usize = 69;
-pub const VALVE_VIDEO_ENCODE_RGB_CONVERSION_EXTENSION_NAME: &'static core::ffi::CStr = c"VK_VALVE_video_encode_rgb_conversion";
+pub const VALVE_VIDEO_ENCODE_RGB_CONVERSION_SPEC_VERSION: usize = 1;
+pub const VALVE_VIDEO_ENCODE_RGB_CONVERSION_EXTENSION_NAME: &core::ffi::CStr = c"VK_VALVE_video_encode_rgb_conversion";

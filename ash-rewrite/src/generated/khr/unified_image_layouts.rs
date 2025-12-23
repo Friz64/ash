@@ -14,5 +14,5 @@ pub struct AttachmentFeedbackLoopInfoEXT {
     pub p_next: *const core::ffi::c_void,
     pub feedback_loop_enable: crate::vk::Bool32,
 }
-pub const KHR_UNIFIED_IMAGE_LAYOUTS_SPEC_VERSION: usize = 69;
-pub const KHR_UNIFIED_IMAGE_LAYOUTS_EXTENSION_NAME: &'static core::ffi::CStr = c"VK_KHR_unified_image_layouts";
+pub const KHR_UNIFIED_IMAGE_LAYOUTS_SPEC_VERSION: usize = 1;
+pub const KHR_UNIFIED_IMAGE_LAYOUTS_EXTENSION_NAME: &core::ffi::CStr = c"VK_KHR_unified_image_layouts";

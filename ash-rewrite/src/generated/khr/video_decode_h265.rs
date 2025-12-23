@@ -47,5 +47,5 @@ pub struct VideoDecodeH265DpbSlotInfoKHR {
     pub p_next: *const core::ffi::c_void,
     pub p_std_reference_info: *const crate::vk::StdVideoDecodeH265ReferenceInfo,
 }
-pub const KHR_VIDEO_DECODE_H265_SPEC_VERSION: usize = 69;
-pub const KHR_VIDEO_DECODE_H265_EXTENSION_NAME: &'static core::ffi::CStr = c"VK_KHR_video_decode_h265";
+pub const KHR_VIDEO_DECODE_H265_SPEC_VERSION: usize = 8;
+pub const KHR_VIDEO_DECODE_H265_EXTENSION_NAME: &core::ffi::CStr = c"VK_KHR_video_decode_h265";

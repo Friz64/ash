@@ -21,5 +21,5 @@ pub struct AndroidHardwareBufferFormatResolvePropertiesANDROID {
     pub p_next: *mut core::ffi::c_void,
     pub color_attachment_format: crate::vk::Format,
 }
-pub const ANDROID_EXTERNAL_FORMAT_RESOLVE_SPEC_VERSION: usize = 69;
-pub const ANDROID_EXTERNAL_FORMAT_RESOLVE_EXTENSION_NAME: &'static core::ffi::CStr = c"VK_ANDROID_external_format_resolve";
+pub const ANDROID_EXTERNAL_FORMAT_RESOLVE_SPEC_VERSION: usize = 1;
+pub const ANDROID_EXTERNAL_FORMAT_RESOLVE_EXTENSION_NAME: &core::ffi::CStr = c"VK_ANDROID_external_format_resolve";

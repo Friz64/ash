@@ -28,5 +28,5 @@ pub struct VideoDecodeAV1InlineSessionParametersInfoKHR {
     pub p_next: *const core::ffi::c_void,
     pub p_std_sequence_header: *const crate::vk::StdVideoAV1SequenceHeader,
 }
-pub const KHR_VIDEO_MAINTENANCE_2_SPEC_VERSION: usize = 69;
-pub const KHR_VIDEO_MAINTENANCE_2_EXTENSION_NAME: &'static core::ffi::CStr = c"VK_KHR_video_maintenance2";
+pub const KHR_VIDEO_MAINTENANCE_2_SPEC_VERSION: usize = 1;
+pub const KHR_VIDEO_MAINTENANCE_2_EXTENSION_NAME: &core::ffi::CStr = c"VK_KHR_video_maintenance2";

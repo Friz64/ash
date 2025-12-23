@@ -7,5 +7,5 @@ pub struct PhysicalDeviceCubicClampFeaturesQCOM {
     pub p_next: *mut core::ffi::c_void,
     pub cubic_range_clamp: crate::vk::Bool32,
 }
-pub const QCOM_FILTER_CUBIC_CLAMP_SPEC_VERSION: usize = 69;
-pub const QCOM_FILTER_CUBIC_CLAMP_EXTENSION_NAME: &'static core::ffi::CStr = c"VK_QCOM_filter_cubic_clamp";
+pub const QCOM_FILTER_CUBIC_CLAMP_SPEC_VERSION: usize = 1;
+pub const QCOM_FILTER_CUBIC_CLAMP_EXTENSION_NAME: &core::ffi::CStr = c"VK_QCOM_filter_cubic_clamp";

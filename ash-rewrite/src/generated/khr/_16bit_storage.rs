@@ -2,5 +2,5 @@
 #![cfg_attr(rustfmt, rustfmt_skip)]
 //![Vulkan Manual Page](https://docs.vulkan.org/refpages/latest/refpages/source/VK_KHR_16bit_storage.html) · Vulkan extension
 pub type PhysicalDevice16BitStorageFeaturesKHR = crate::vk::PhysicalDevice16BitStorageFeatures;
-pub const KHR_16BIT_STORAGE_SPEC_VERSION: usize = 69;
-pub const KHR_16BIT_STORAGE_EXTENSION_NAME: &'static core::ffi::CStr = c"VK_KHR_16bit_storage";
+pub const KHR_16BIT_STORAGE_SPEC_VERSION: usize = 1;
+pub const KHR_16BIT_STORAGE_EXTENSION_NAME: &core::ffi::CStr = c"VK_KHR_16bit_storage";

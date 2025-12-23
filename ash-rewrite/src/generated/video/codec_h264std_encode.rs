@@ -13,14 +13,18 @@ pub struct StdVideoEncodeH264WeightTable {
     pub flags: crate::vk::StdVideoEncodeH264WeightTableFlags,
     pub luma_log2_weight_denom: u8,
     pub chroma_log2_weight_denom: u8,
-    pub luma_weight_l0: [i8; crate::vk::STD_VIDEO_H264_MAX_NUM_LIST_REF],
-    pub luma_offset_l0: [i8; crate::vk::STD_VIDEO_H264_MAX_NUM_LIST_REF],
-    pub chroma_weight_l0: [[i8; crate::vk::STD_VIDEO_H264_MAX_CHROMA_PLANES]; crate::vk::STD_VIDEO_H264_MAX_NUM_LIST_REF],
-    pub chroma_offset_l0: [[i8; crate::vk::STD_VIDEO_H264_MAX_CHROMA_PLANES]; crate::vk::STD_VIDEO_H264_MAX_NUM_LIST_REF],
-    pub luma_weight_l1: [i8; crate::vk::STD_VIDEO_H264_MAX_NUM_LIST_REF],
-    pub luma_offset_l1: [i8; crate::vk::STD_VIDEO_H264_MAX_NUM_LIST_REF],
-    pub chroma_weight_l1: [[i8; crate::vk::STD_VIDEO_H264_MAX_CHROMA_PLANES]; crate::vk::STD_VIDEO_H264_MAX_NUM_LIST_REF],
-    pub chroma_offset_l1: [[i8; crate::vk::STD_VIDEO_H264_MAX_CHROMA_PLANES]; crate::vk::STD_VIDEO_H264_MAX_NUM_LIST_REF],
+    pub luma_weight_l0: [i8; crate::vk::STD_VIDEO_H264_MAX_NUM_LIST_REF as _],
+    pub luma_offset_l0: [i8; crate::vk::STD_VIDEO_H264_MAX_NUM_LIST_REF as _],
+    pub chroma_weight_l0: [[i8; crate::vk::STD_VIDEO_H264_MAX_CHROMA_PLANES
+        as _]; crate::vk::STD_VIDEO_H264_MAX_NUM_LIST_REF as _],
+    pub chroma_offset_l0: [[i8; crate::vk::STD_VIDEO_H264_MAX_CHROMA_PLANES
+        as _]; crate::vk::STD_VIDEO_H264_MAX_NUM_LIST_REF as _],
+    pub luma_weight_l1: [i8; crate::vk::STD_VIDEO_H264_MAX_NUM_LIST_REF as _],
+    pub luma_offset_l1: [i8; crate::vk::STD_VIDEO_H264_MAX_NUM_LIST_REF as _],
+    pub chroma_weight_l1: [[i8; crate::vk::STD_VIDEO_H264_MAX_CHROMA_PLANES
+        as _]; crate::vk::STD_VIDEO_H264_MAX_NUM_LIST_REF as _],
+    pub chroma_offset_l1: [[i8; crate::vk::STD_VIDEO_H264_MAX_CHROMA_PLANES
+        as _]; crate::vk::STD_VIDEO_H264_MAX_NUM_LIST_REF as _],
 }
 #[repr(C)]
 pub struct StdVideoEncodeH264SliceHeaderFlags {
@@ -67,12 +71,12 @@ pub struct StdVideoEncodeH264ReferenceListsInfo {
     pub flags: crate::vk::StdVideoEncodeH264ReferenceListsInfoFlags,
     pub num_ref_idx_l0_active_minus1: u8,
     pub num_ref_idx_l1_active_minus1: u8,
-    pub ref_pic_list0: [u8; crate::vk::STD_VIDEO_H264_MAX_NUM_LIST_REF],
-    pub ref_pic_list1: [u8; crate::vk::STD_VIDEO_H264_MAX_NUM_LIST_REF],
+    pub ref_pic_list0: [u8; crate::vk::STD_VIDEO_H264_MAX_NUM_LIST_REF as _],
+    pub ref_pic_list1: [u8; crate::vk::STD_VIDEO_H264_MAX_NUM_LIST_REF as _],
     pub ref_list0_mod_op_count: u8,
     pub ref_list1_mod_op_count: u8,
     pub ref_pic_marking_op_count: u8,
-    pub reserved1: [u8; 7],
+    pub reserved1: [u8; 7 as _],
     pub p_ref_list0_mod_operations: *const crate::vk::StdVideoEncodeH264RefListModEntry,
     pub p_ref_list1_mod_operations: *const crate::vk::StdVideoEncodeH264RefListModEntry,
     pub p_ref_pic_marking_operations: *const crate::vk::StdVideoEncodeH264RefPicMarkingEntry,
@@ -87,7 +91,7 @@ pub struct StdVideoEncodeH264PictureInfo {
     pub frame_num: u32,
     pub pic_order_cnt: i32,
     pub temporal_id: u8,
-    pub reserved1: [u8; 3],
+    pub reserved1: [u8; 3 as _],
     pub p_ref_lists: *const crate::vk::StdVideoEncodeH264ReferenceListsInfo,
 }
 #[repr(C)]
@@ -113,5 +117,5 @@ pub struct StdVideoEncodeH264SliceHeader {
     pub disable_deblocking_filter_idc: crate::vk::StdVideoH264DisableDeblockingFilterIdc,
     pub p_weight_table: *const crate::vk::StdVideoEncodeH264WeightTable,
 }
-pub const STD_VULKAN_VIDEO_CODEC_H264_ENCODE_SPEC_VERSION: usize = 69;
-pub const STD_VULKAN_VIDEO_CODEC_H264_ENCODE_EXTENSION_NAME: &'static core::ffi::CStr = c"VK_STD_vulkan_video_codec_h264_encode";
+pub const STD_VULKAN_VIDEO_CODEC_H264_ENCODE_SPEC_VERSION: usize = 69420;
+pub const STD_VULKAN_VIDEO_CODEC_H264_ENCODE_EXTENSION_NAME: &core::ffi::CStr = c"VK_STD_vulkan_video_codec_h264_encode";

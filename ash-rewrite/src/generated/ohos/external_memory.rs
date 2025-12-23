@@ -48,5 +48,5 @@ pub struct ExternalFormatOHOS {
 #[repr(transparent)]
 #[allow(non_camel_case_types)]
 pub struct OH_NativeBuffer(pub(crate) i16);
-pub const OHOS_EXTERNAL_MEMORY_SPEC_VERSION: usize = 69;
-pub const OHOS_EXTERNAL_MEMORY_EXTENSION_NAME: &'static core::ffi::CStr = c"VK_OHOS_external_memory";
+pub const OHOS_EXTERNAL_MEMORY_SPEC_VERSION: usize = 1;
+pub const OHOS_EXTERNAL_MEMORY_EXTENSION_NAME: &core::ffi::CStr = c"VK_OHOS_external_memory";

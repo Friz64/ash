@@ -14,5 +14,5 @@ pub struct PhysicalDeviceShaderSMBuiltinsFeaturesNV {
     pub p_next: *mut core::ffi::c_void,
     pub shader_sm_builtins: crate::vk::Bool32,
 }
-pub const NV_SHADER_SM_BUILTINS_SPEC_VERSION: usize = 69;
-pub const NV_SHADER_SM_BUILTINS_EXTENSION_NAME: &'static core::ffi::CStr = c"VK_NV_shader_sm_builtins";
+pub const NV_SHADER_SM_BUILTINS_SPEC_VERSION: usize = 1;
+pub const NV_SHADER_SM_BUILTINS_EXTENSION_NAME: &core::ffi::CStr = c"VK_NV_shader_sm_builtins";

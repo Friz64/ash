@@ -210,11 +210,11 @@ pub struct PhysicalDeviceVulkan13Properties {
 pub struct PhysicalDeviceToolProperties {
     pub s_type: crate::vk::StructureType,
     pub p_next: *mut core::ffi::c_void,
-    pub name: [core::ffi::c_char; crate::vk::MAX_EXTENSION_NAME_SIZE],
-    pub version: [core::ffi::c_char; crate::vk::MAX_EXTENSION_NAME_SIZE],
+    pub name: [core::ffi::c_char; crate::vk::MAX_EXTENSION_NAME_SIZE as _],
+    pub version: [core::ffi::c_char; crate::vk::MAX_EXTENSION_NAME_SIZE as _],
     pub purposes: crate::vk::ToolPurposeFlags,
-    pub description: [core::ffi::c_char; crate::vk::MAX_DESCRIPTION_SIZE],
-    pub layer: [core::ffi::c_char; crate::vk::MAX_EXTENSION_NAME_SIZE],
+    pub description: [core::ffi::c_char; crate::vk::MAX_DESCRIPTION_SIZE as _],
+    pub layer: [core::ffi::c_char; crate::vk::MAX_EXTENSION_NAME_SIZE as _],
 }
 #[repr(C)]
 pub struct PhysicalDeviceZeroInitializeWorkgroupMemoryFeatures {
@@ -251,9 +251,9 @@ pub struct ImageBlit2 {
     pub s_type: crate::vk::StructureType,
     pub p_next: *const core::ffi::c_void,
     pub src_subresource: crate::vk::ImageSubresourceLayers,
-    pub src_offsets: [crate::vk::Offset3D; 2],
+    pub src_offsets: [crate::vk::Offset3D; 2 as _],
     pub dst_subresource: crate::vk::ImageSubresourceLayers,
-    pub dst_offsets: [crate::vk::Offset3D; 2],
+    pub dst_offsets: [crate::vk::Offset3D; 2 as _],
 }
 #[repr(C)]
 pub struct BufferImageCopy2 {
