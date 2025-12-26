@@ -1,9 +1,4 @@
-use crate::{
-    decl::CPrimaryType,
-    item::{Item, RequiredBy},
-    name::ConstantName,
-    xml,
-};
+use crate::{decl::CPrimaryType, item::RequiredBy, name::ConstantName, xml};
 use tracing::{instrument, trace};
 
 #[derive(Debug)]
@@ -20,12 +15,6 @@ pub struct Constant {
     pub required_by: RequiredBy,
     pub name: ConstantName,
     pub value: Value,
-}
-
-impl Item for Constant {
-    fn required_by(&self) -> RequiredBy {
-        self.required_by
-    }
 }
 
 impl Constant {

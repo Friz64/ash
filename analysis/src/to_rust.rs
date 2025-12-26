@@ -103,9 +103,9 @@ impl constant::Expression {
         let mut s = self.0;
         assert!(s.is_ascii());
         while let Some(c) = s.chars().next() {
-            let is_ident_or_number = |c: char| c.is_ascii_alphanumeric() || c == '_' || c == '.';
-            let rust_token = if is_ident_or_number(c) {
-                let len = s.chars().take_while(|&c| is_ident_or_number(c)).count();
+            let is_value = |c: char| c.is_ascii_alphanumeric() || c == '_' || c == '.';
+            let rust_token = if is_value(c) {
+                let len = s.chars().take_while(|&c| is_value(c)).count();
                 let (token, rest) = s.split_at(len);
                 s = rest;
                 if c.is_ascii_digit() {

@@ -3,7 +3,7 @@ pub mod basetype;
 pub mod bitmask;
 pub mod constant;
 pub mod enumeration;
-pub mod function;
+pub mod funcpointer;
 pub mod handle;
 pub mod structure;
 
@@ -15,7 +15,7 @@ use crate::{
         bitmask::{BitMask, BitMaskBits},
         constant::Constant,
         enumeration::Enum,
-        function::FuncPointer,
+        funcpointer::FuncPointer,
         handle::Handle,
         structure::{Struct, Union},
     },
@@ -31,14 +31,6 @@ use tracing::debug;
 pub enum RequiredBy {
     Feature { major: u32, minor: u32 },
     Extension { name: &'static str },
-}
-
-pub trait Item {
-    fn required_by(&self) -> RequiredBy;
-}
-
-pub trait Type: Item {
-    fn name(&self) -> TypeName;
 }
 
 #[derive(Debug)]

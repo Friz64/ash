@@ -1,26 +1,10 @@
-use crate::{
-    item::{Item, RequiredBy, Type},
-    name::TypeName,
-    xml,
-};
+use crate::{item::RequiredBy, name::TypeName, xml};
 use tracing::{instrument, trace};
 
 #[derive(Debug)]
 pub struct BitMask {
     pub required_by: RequiredBy,
     pub name: TypeName,
-}
-
-impl Item for BitMask {
-    fn required_by(&self) -> RequiredBy {
-        self.required_by
-    }
-}
-
-impl Type for BitMask {
-    fn name(&self) -> TypeName {
-        self.name
-    }
 }
 
 impl BitMask {
@@ -38,18 +22,6 @@ impl BitMask {
 pub struct BitMaskBits {
     pub required_by: RequiredBy,
     pub name: TypeName,
-}
-
-impl Item for BitMaskBits {
-    fn required_by(&self) -> RequiredBy {
-        self.required_by
-    }
-}
-
-impl Type for BitMaskBits {
-    fn name(&self) -> TypeName {
-        self.name
-    }
 }
 
 impl BitMaskBits {
