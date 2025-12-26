@@ -1,14 +1,20 @@
+mod item;
+mod output;
+
+use crate::output::CodeMap;
 use analysis::Analysis;
 use heck::ToSnekCase;
 use quote::format_ident;
 use std::{fmt::Display, io, path::Path};
 use syn::Ident;
-
-mod item;
-mod output;
+use tracing::debug;
 
 pub fn generate(analysis: &Analysis, output_path: impl AsRef<Path>) -> io::Result<()> {
-    let codemap = item::build_items_codemap(analysis.items());
+    debug!("building codemap");
+    let mut codemap = CodeMap::default();
+
+    item::generate_code(analysis.items(), &mut codemap);
+
     codemap.write(output_path)
 }
 

@@ -74,14 +74,9 @@ impl NameTranslate for Context {
     }
 }
 
-pub fn build_items_codemap(items: &Items) -> CodeMap {
-    debug!("building codemap");
-    let mut codemap = CodeMap::default();
-
+pub fn generate_code(items: &Items, codemap: &mut CodeMap) {
     debug!("generating structures code");
     let ctx = Context {};
     codemap.extend_from_items(&ctx, items.types.values());
     codemap.extend_from_items(&ctx, items.constants.values());
-
-    codemap
 }
