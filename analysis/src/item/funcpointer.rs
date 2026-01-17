@@ -42,9 +42,9 @@ impl Command {
         decl_ctx: &decl::Context,
         required_by: RequiredBy,
         xml: &xml::FuncPointer,
-    ) -> FuncPointer {
+    ) -> Command {
         trace!("constructing");
-        FuncPointer {
+        Command {
             required_by,
             name: TypeName(xml.c_decl.name),
             func_ty: Ty::from_c(decl_ctx, &xml.c_decl.ty),

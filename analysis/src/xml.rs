@@ -1,6 +1,7 @@
 use crate::cdecl::{CDecl, CDeclMode, CTok, CType};
 use crate::decl::CPrimaryType;
 use crate::name::{CommandName, ConstantName, TypeName};
+use crate::LibraryName;
 use roxmltree::NodeType;
 use roxmltree::StringStorage;
 use std::fmt::Write;
@@ -141,12 +142,12 @@ pub struct Registry {
 }
 
 impl Registry {
-    pub fn parse(input: &'static str, api: &str) -> Registry {
+    pub fn parse(input: &'static str, library_name: LibraryName, api: &str) -> Registry {
         let doc = roxmltree::Document::parse(input).unwrap();
-        Registry::from_node(doc.root_element(), api)
+        Registry::from_node(doc.root_element(), library_name, api)
     }
 
-    fn from_node(registry_node: Node, api: &str) -> Registry {
+    fn from_node(registry_node: Node, library_name: LibraryName, api: &str) -> Registry {
         let mut registry = Registry::default();
         for registry_child in registry_node
             .children()
@@ -275,9 +276,11 @@ impl Registry {
                         let _s = info_span!("extension", node = node_span_field(&extension_node))
                             .entered();
                         trace!("encountered node");
-                        registry
-                            .extensions
-                            .push(Extension::from_node(extension_node, api));
+                        registry.extensions.push(Extension::from_node(
+                            extension_node,
+                            library_name,
+                            api,
+                        ));
                     }
                 }
                 _ => (),
@@ -859,10 +862,11 @@ pub struct Extension {
     pub number: Option<u32>,
     pub ty: Option<&'static str>,
     pub requires: Vec<Require>,
+    pub is_ratified: Option<bool>,
 }
 
 impl Extension {
-    fn from_node(node: Node, api: &str) -> Extension {
+    fn from_node(node: Node, library_name: LibraryName, api: &str) -> Extension {
         let extension_num = attribute(node, "number").map(|value| value.parse().unwrap());
         Extension {
             name: attribute(node, "name").unwrap(),
@@ -874,6 +878,11 @@ impl Extension {
                 .filter(|node| api_matches(node, api))
                 .map(|child| Require::from_node(child, api, extension_num))
                 .collect(),
+            is_ratified: matches!(library_name, LibraryName::Vk).then(|| {
+                node.attribute("ratified")
+                    .map(|values| values.split(',').any(|support| support == api))
+                    .unwrap_or(false)
+            }),
         }
     }
 }
@@ -892,7 +901,7 @@ mod tests {
                 .into_boxed_str(),
         );
 
-        let waff3 = Registry::parse(xml_input, "vulkan");
+        let waff3 = Registry::parse(xml_input, LibraryName::Vk, "vulkan");
         std::fs::write(
             "/home/friz64/source/ash/target/waff3",
             format!("{waff3:#?}"),
@@ -909,6 +918,11 @@ mod tests {
                 .into_boxed_str(),
         );
 
-        Registry::parse(xml_input, "vulkan");
+        let waff3 = Registry::parse(xml_input, LibraryName::Video, "vulkan");
+        std::fs::write(
+            "/home/friz64/source/ash/target/waff3video",
+            format!("{waff3:#?}"),
+        )
+        .unwrap();
     }
 }

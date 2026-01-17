@@ -21,14 +21,20 @@ use crate::{
     },
     name::{ConstantName, TypeName},
     xml::Require,
-    Library,
+    Library, LibraryName,
 };
 use indexmap::IndexMap;
 use std::collections::HashMap;
 use tracing::debug;
 
 #[derive(Debug, Clone, Copy, PartialEq, Eq, Hash)]
-pub enum RequiredBy {
+pub struct RequiredBy {
+    pub library: LibraryName,
+    pub location: RequireLocation,
+}
+
+#[derive(Debug, Clone, Copy, PartialEq, Eq, Hash)]
+pub enum RequireLocation {
     Feature { major: u32, minor: u32 },
     Extension { name: &'static str },
 }
@@ -53,7 +59,7 @@ pub struct Items {
 }
 
 impl Items {
-    pub(super) fn collect(libraries: &[&Library]) -> Items {
+    pub fn collect(libraries: &[&Library]) -> Items {
         debug!("collecting items");
         let mut items = Items::default();
 
@@ -150,9 +156,12 @@ impl Items {
 fn iter_requires(libraries: &[&Library], mut f: impl FnMut(RequiredBy, &Require)) {
     for library in libraries {
         for feature in &library.xml.features {
-            let required_by = RequiredBy::Feature {
-                major: feature.version.major,
-                minor: feature.version.minor,
+            let required_by = RequiredBy {
+                library: library.name,
+                location: RequireLocation::Feature {
+                    major: feature.version.major,
+                    minor: feature.version.minor,
+                },
             };
 
             for require in &feature.requires {
@@ -161,8 +170,11 @@ fn iter_requires(libraries: &[&Library], mut f: impl FnMut(RequiredBy, &Require)
         }
 
         for extension in &library.xml.extensions {
-            let required_by = RequiredBy::Extension {
-                name: extension.name,
+            let required_by = RequiredBy {
+                library: library.name,
+                location: RequireLocation::Extension {
+                    name: extension.name,
+                },
             };
 
             for require in &extension.requires {
