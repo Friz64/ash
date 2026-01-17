@@ -1,7 +1,10 @@
 mod vfs;
 
 use crate::output::vfs::VirtualRustFs;
-use analysis::item::RequiredBy;
+use analysis::{
+    LibraryName,
+    item::{RequireLocation, RequiredBy},
+};
 use indexmap::IndexMap;
 use proc_macro2::TokenStream;
 use quote::{format_ident, quote};
@@ -22,16 +25,17 @@ struct DestinationPathComponent {
 
 impl Destination {
     fn path_components(&self) -> Vec<DestinationPathComponent> {
-        match self.0 {
-            RequiredBy::Feature { major, minor } => vec![DestinationPathComponent {
+        match self.0.location {
+            RequireLocation::Feature { major, minor } => vec![DestinationPathComponent {
                 module_name: format_ident!("vk{major}_{minor}"),
                 doc_comment: crate::refpage_doc(
                     &format!("VK_VERSION_{major}_{minor}"),
                     format!("Vulkan version {major}.{minor}"),
                 ),
             }],
-            RequiredBy::Extension { name } => {
-                if let Some(vulkan_ext) = name.strip_prefix("VK_") {
+            RequireLocation::Extension { name } => match self.0.library {
+                LibraryName::Vk => {
+                    let vulkan_ext = name.strip_prefix("VK_").unwrap();
                     let (ext_tag, ext_name) = vulkan_ext.split_once('_').unwrap();
                     vec![
                         DestinationPathComponent {
@@ -43,7 +47,9 @@ impl Destination {
                             doc_comment: crate::refpage_doc(name, format!("Extension `{name}`")),
                         },
                     ]
-                } else if let Some(video_ext) = name.strip_prefix("vulkan_video_") {
+                }
+                LibraryName::Video => {
+                    let video_ext = name.strip_prefix("vulkan_video_").unwrap();
                     vec![
                         DestinationPathComponent {
                             module_name: format_ident!("video"),
@@ -54,10 +60,8 @@ impl Destination {
                             doc_comment: format!("Items provided by `{}`", name),
                         },
                     ]
-                } else {
-                    panic!()
                 }
-            }
+            },
         }
     }
 }
