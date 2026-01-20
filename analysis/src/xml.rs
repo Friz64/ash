@@ -1,7 +1,11 @@
-use crate::cdecl::{CDecl, CDeclMode, CTok, CType};
+pub mod cdecl;
+pub mod depends;
+
 use crate::decl::CPrimaryType;
 use crate::name::{CommandName, ConstantName, TypeName};
+use crate::xml::depends::Depends;
 use crate::LibraryName;
+use cdecl::{CDecl, CDeclMode, CTok, CType};
 use roxmltree::NodeType;
 use roxmltree::StringStorage;
 use std::fmt::Write;
@@ -764,34 +768,9 @@ impl Version {
     }
 }
 
-#[derive(Debug)]
-pub enum Depends {
-    Version(Version),
-    Feature {
-        feature_structure: &'static str,
-        feature_member: &'static str,
-    },
-    Extension(&'static str),
-}
-
-impl Depends {
-    fn from_str(s: &'static str) -> Depends {
-        if let Some(version) = Version::from_str(s) {
-            Depends::Version(version)
-        } else if let Some((feature_structure, feature_member)) = s.split_once("::") {
-            Depends::Feature {
-                feature_structure,
-                feature_member,
-            }
-        } else {
-            Depends::Extension(s)
-        }
-    }
-}
-
 #[derive(Debug, Default)]
 pub struct Require {
-    pub depends: Vec<Depends>,
+    pub depends: Option<Depends>,
     pub enum_extends: Vec<RequireEnumExtends>,
     pub constants: Vec<RequireConstant>,
     pub types: Vec<RequireType>,
@@ -801,9 +780,7 @@ pub struct Require {
 impl Require {
     fn from_node(node: Node, api: &str, extension_num: Option<u32>) -> Require {
         let mut value = Require {
-            depends: attribute(node, "depends")
-                .map(|value| (value.split(',').map(Depends::from_str)).collect())
-                .unwrap_or_default(),
+            depends: attribute(node, "depends").map(|input| Depends::from_str(input).unwrap()),
             ..Default::default()
         };
 
@@ -830,22 +807,16 @@ impl Require {
 
 #[derive(Debug)]
 pub struct Feature {
-    pub name: &'static str,
     pub version: Version,
-    pub depends: Vec<Depends>,
+    pub depends: Option<Depends>,
     pub requires: Vec<Require>,
 }
 
 impl Feature {
     fn from_node(node: Node, api: &str) -> Feature {
-        let name = attribute(node, "name").unwrap();
-
         Feature {
-            version: Version::from_str(name).unwrap(),
-            name,
-            depends: attribute(node, "depends")
-                .map(|value| (value.split(',').map(Depends::from_str)).collect())
-                .unwrap_or_default(),
+            version: Version::from_str(attribute(node, "name").unwrap()).unwrap(),
+            depends: attribute(node, "depends").map(|input| Depends::from_str(input).unwrap()),
             requires: node
                 .children()
                 .filter(|child| child.has_tag_name("require"))
@@ -861,8 +832,9 @@ pub struct Extension {
     pub name: &'static str,
     pub number: Option<u32>,
     pub ty: Option<&'static str>,
-    pub requires: Vec<Require>,
     pub is_ratified: Option<bool>,
+    pub depends: Option<Depends>,
+    pub requires: Vec<Require>,
 }
 
 impl Extension {
@@ -872,17 +844,18 @@ impl Extension {
             name: attribute(node, "name").unwrap(),
             number: extension_num,
             ty: attribute(node, "type"),
+            is_ratified: matches!(library_name, LibraryName::Vk).then(|| {
+                node.attribute("ratified")
+                    .map(|values| values.split(',').any(|support| support == api))
+                    .unwrap_or(false)
+            }),
+            depends: attribute(node, "depends").map(|input| Depends::from_str(input).unwrap()),
             requires: node
                 .children()
                 .filter(|child| child.has_tag_name("require"))
                 .filter(|node| api_matches(node, api))
                 .map(|child| Require::from_node(child, api, extension_num))
                 .collect(),
-            is_ratified: matches!(library_name, LibraryName::Vk).then(|| {
-                node.attribute("ratified")
-                    .map(|values| values.split(',').any(|support| support == api))
-                    .unwrap_or(false)
-            }),
         }
     }
 }

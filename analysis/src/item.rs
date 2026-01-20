@@ -35,7 +35,7 @@ pub struct RequiredBy {
 
 #[derive(Debug, Clone, Copy, PartialEq, Eq, Hash)]
 pub enum RequireLocation {
-    Feature { major: u32, minor: u32 },
+    Core { major: u32, minor: u32 },
     Extension { name: &'static str },
 }
 
@@ -158,7 +158,7 @@ fn iter_requires(libraries: &[&Library], mut f: impl FnMut(RequiredBy, &Require)
         for feature in &library.xml.features {
             let required_by = RequiredBy {
                 library: library.name,
-                location: RequireLocation::Feature {
+                location: RequireLocation::Core {
                     major: feature.version.major,
                     minor: feature.version.minor,
                 },

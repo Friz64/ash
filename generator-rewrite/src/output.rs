@@ -26,7 +26,7 @@ struct DestinationPathComponent {
 impl Destination {
     fn path_components(&self) -> Vec<DestinationPathComponent> {
         match self.0.location {
-            RequireLocation::Feature { major, minor } => vec![DestinationPathComponent {
+            RequireLocation::Core { major, minor } => vec![DestinationPathComponent {
                 module_name: format_ident!("vk{major}_{minor}"),
                 doc_comment: crate::refpage_doc(
                     &format!("VK_VERSION_{major}_{minor}"),

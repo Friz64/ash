@@ -1,7 +1,7 @@
 use crate::{
-    cdecl::{CArrayLen, CDecl, CType},
     item::RequiredBy,
     name::{ConstantName, TypeName},
+    xml::cdecl::{CArrayLen, CDecl, CType},
 };
 use std::collections::HashMap;
 
