@@ -5,6 +5,7 @@ pub mod acquire_winrt_display;
 pub mod clip_space_w_scaling;
 pub mod cluster_acceleration_structure;
 pub mod command_buffer_inheritance;
+pub mod compute_occupancy_priority;
 pub mod compute_shader_derivatives;
 pub mod cooperative_matrix;
 pub mod cooperative_matrix2;

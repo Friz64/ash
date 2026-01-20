@@ -75,7 +75,7 @@ pub struct DataGraphPipelineSessionBindPointRequirementsInfoARM {
 #[repr(C)]
 pub struct DataGraphPipelineSessionBindPointRequirementARM {
     pub s_type: crate::vk::StructureType,
-    pub p_next: *const core::ffi::c_void,
+    pub p_next: *mut core::ffi::c_void,
     pub bind_point: crate::vk::DataGraphPipelineSessionBindPointARM,
     pub bind_point_type: crate::vk::DataGraphPipelineSessionBindPointTypeARM,
     pub num_objects: u32,
@@ -107,7 +107,7 @@ pub struct DataGraphPipelineInfoARM {
 #[repr(C)]
 pub struct DataGraphPipelinePropertyQueryResultARM {
     pub s_type: crate::vk::StructureType,
-    pub p_next: *const core::ffi::c_void,
+    pub p_next: *mut core::ffi::c_void,
     pub property: crate::vk::DataGraphPipelinePropertyARM,
     pub is_text: crate::vk::Bool32,
     pub data_size: usize,
@@ -141,7 +141,7 @@ pub struct PhysicalDeviceDataGraphOperationSupportARM {
 #[repr(C)]
 pub struct QueueFamilyDataGraphPropertiesARM {
     pub s_type: crate::vk::StructureType,
-    pub p_next: *const core::ffi::c_void,
+    pub p_next: *mut core::ffi::c_void,
     pub engine: crate::vk::PhysicalDeviceDataGraphProcessingEngineARM,
     pub operation: crate::vk::PhysicalDeviceDataGraphOperationSupportARM,
 }
@@ -155,7 +155,7 @@ pub struct PhysicalDeviceQueueFamilyDataGraphProcessingEngineInfoARM {
 #[repr(C)]
 pub struct QueueFamilyDataGraphProcessingEnginePropertiesARM {
     pub s_type: crate::vk::StructureType,
-    pub p_next: *const core::ffi::c_void,
+    pub p_next: *mut core::ffi::c_void,
     pub foreign_semaphore_handle_types: crate::vk::ExternalSemaphoreHandleTypeFlags,
     pub foreign_memory_handle_types: crate::vk::ExternalMemoryHandleTypeFlags,
 }

@@ -10,7 +10,6 @@ use tracing::{instrument, trace};
 pub struct FuncPointer {
     pub required_by: RequiredBy,
     pub name: TypeName,
-    pub func_ty: Ty,
 }
 
 impl FuncPointer {
@@ -23,8 +22,7 @@ impl FuncPointer {
         trace!("constructing");
         FuncPointer {
             required_by,
-            name: TypeName(xml.c_decl.name),
-            func_ty: Ty::from_c(decl_ctx, &xml.c_decl.ty),
+            name: TypeName(xml.name),
         }
     }
 }
@@ -33,7 +31,6 @@ impl FuncPointer {
 pub struct Command {
     pub required_by: RequiredBy,
     pub name: TypeName,
-    pub func_ty: Ty,
 }
 
 impl Command {
@@ -46,8 +43,7 @@ impl Command {
         trace!("constructing");
         Command {
             required_by,
-            name: TypeName(xml.c_decl.name),
-            func_ty: Ty::from_c(decl_ctx, &xml.c_decl.ty),
+            name: TypeName(xml.name),
         }
     }
 }

@@ -1432,51 +1432,17 @@ pub struct RenderPass(pub(crate) i32);
 #[repr(transparent)]
 pub struct PipelineCache(pub(crate) i32);
 #[allow(non_camel_case_types)]
-pub type PFN_vkInternalAllocationNotification = Option<
-    unsafe extern "system" fn(
-        p_user_data: *mut core::ffi::c_void,
-        size: usize,
-        allocation_type: crate::vk::InternalAllocationType,
-        allocation_scope: crate::vk::SystemAllocationScope,
-    ),
->;
+pub type PFN_vkInternalAllocationNotification = Option<()>;
 #[allow(non_camel_case_types)]
-pub type PFN_vkInternalFreeNotification = Option<
-    unsafe extern "system" fn(
-        p_user_data: *mut core::ffi::c_void,
-        size: usize,
-        allocation_type: crate::vk::InternalAllocationType,
-        allocation_scope: crate::vk::SystemAllocationScope,
-    ),
->;
+pub type PFN_vkInternalFreeNotification = Option<()>;
 #[allow(non_camel_case_types)]
-pub type PFN_vkReallocationFunction = Option<
-    unsafe extern "system" fn(
-        p_user_data: *mut core::ffi::c_void,
-        p_original: *mut core::ffi::c_void,
-        size: usize,
-        alignment: usize,
-        allocation_scope: crate::vk::SystemAllocationScope,
-    ) -> *mut core::ffi::c_void,
->;
+pub type PFN_vkReallocationFunction = Option<()>;
 #[allow(non_camel_case_types)]
-pub type PFN_vkAllocationFunction = Option<
-    unsafe extern "system" fn(
-        p_user_data: *mut core::ffi::c_void,
-        size: usize,
-        alignment: usize,
-        allocation_scope: crate::vk::SystemAllocationScope,
-    ) -> *mut core::ffi::c_void,
->;
+pub type PFN_vkAllocationFunction = Option<()>;
 #[allow(non_camel_case_types)]
-pub type PFN_vkFreeFunction = Option<
-    unsafe extern "system" fn(
-        p_user_data: *mut core::ffi::c_void,
-        p_memory: *mut core::ffi::c_void,
-    ),
->;
+pub type PFN_vkFreeFunction = Option<()>;
 #[allow(non_camel_case_types)]
-pub type PFN_vkVoidFunction = Option<unsafe extern "system" fn()>;
+pub type PFN_vkVoidFunction = Option<()>;
 pub const MAX_PHYSICAL_DEVICE_NAME_SIZE: u32 = 256;
 pub const UUID_SIZE: u32 = 16;
 pub const MAX_EXTENSION_NAME_SIZE: u32 = 256;

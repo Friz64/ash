@@ -204,7 +204,7 @@ impl Registry {
                                 }
                                 Some("funcpointer") => registry
                                     .funcpointers
-                                    .push(FuncPointer::from_node(type_node)),
+                                    .push(FuncPointer::from_node(type_node, api)),
                                 Some("struct") => {
                                     registry.structs.push(Structure::from_node(type_node, api))
                                 }
@@ -424,14 +424,31 @@ impl EnumType {
 
 #[derive(Debug)]
 pub struct FuncPointer {
-    pub c_decl: CDecl<'static>,
+    pub return_type: Option<CType<'static>>,
+    pub name: &'static str,
+    pub params: Vec<CDecl<'static>>,
     pub requires: Option<&'static str>,
 }
 
 impl FuncPointer {
-    fn from_node(node: Node) -> FuncPointer {
+    fn from_node(node: Node, api: &str) -> FuncPointer {
+        let proto = node
+            .children()
+            .find(|child| child.has_tag_name("proto"))
+            .filter(|node| api_matches(node, api))
+            .unwrap();
+
+        // FIXME(eddyb) `CDeclMode::StructMember` should work but isn't accurate.
+        let proto_cdecl = CDecl::from_xml(CDeclMode::StructMember, proto.children());
         FuncPointer {
-            c_decl: CDecl::from_xml(CDeclMode::TypeDef, node.children()),
+            return_type: Some(proto_cdecl.ty).filter(|ty| *ty != CType::VOID),
+            name: proto_cdecl.name,
+            params: node
+                .children()
+                .filter(|child| child.has_tag_name("param"))
+                .filter(|node| api_matches(node, api))
+                .map(|node| CDecl::from_xml(CDeclMode::FuncParam, node.children()))
+                .collect(),
             requires: attribute(node, "requires"),
         }
     }
