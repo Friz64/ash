@@ -16,17 +16,6 @@ pub struct DebugReportFlagBitsEXT(pub(crate) i32);
 #[repr(transparent)]
 pub struct DebugReportCallbackEXT(pub(crate) i32);
 #[allow(non_camel_case_types)]
-pub type PFN_vkDebugReportCallbackEXT = Option<
-    unsafe extern "system" fn(
-        flags: crate::vk::DebugReportFlagsEXT,
-        object_type: crate::vk::DebugReportObjectTypeEXT,
-        object: u64,
-        location: usize,
-        message_code: i32,
-        p_layer_prefix: *const core::ffi::c_char,
-        p_message: *const core::ffi::c_char,
-        p_user_data: *mut core::ffi::c_void,
-    ) -> crate::vk::Bool32,
->;
+pub type PFN_vkDebugReportCallbackEXT = Option<()>;
 pub const EXT_DEBUG_REPORT_SPEC_VERSION: usize = 10;
 pub const EXT_DEBUG_REPORT_EXTENSION_NAME: &core::ffi::CStr = c"VK_EXT_debug_report";

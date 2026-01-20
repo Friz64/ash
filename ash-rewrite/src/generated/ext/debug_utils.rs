@@ -66,13 +66,6 @@ pub struct DebugUtilsMessageTypeFlagBitsEXT(pub(crate) i32);
 #[repr(transparent)]
 pub struct DebugUtilsMessengerEXT(pub(crate) i32);
 #[allow(non_camel_case_types)]
-pub type PFN_vkDebugUtilsMessengerCallbackEXT = Option<
-    unsafe extern "system" fn(
-        message_severity: crate::vk::DebugUtilsMessageSeverityFlagBitsEXT,
-        message_types: crate::vk::DebugUtilsMessageTypeFlagsEXT,
-        p_callback_data: *const crate::vk::DebugUtilsMessengerCallbackDataEXT,
-        p_user_data: *mut core::ffi::c_void,
-    ) -> crate::vk::Bool32,
->;
+pub type PFN_vkDebugUtilsMessengerCallbackEXT = Option<()>;
 pub const EXT_DEBUG_UTILS_SPEC_VERSION: usize = 2;
 pub const EXT_DEBUG_UTILS_EXTENSION_NAME: &core::ffi::CStr = c"VK_EXT_debug_utils";

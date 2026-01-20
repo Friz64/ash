@@ -9,10 +9,10 @@ impl Code for FuncPointer {
     fn code(&self, ctx: &Context) -> CodeMap {
         trace!("generating");
         let name = format_ident!("{}", self.name.prefix_trimmed());
-        let fnptr = self.func_ty.to_rust(ctx);
+        // let fnptr = self.func_ty.to_rust(ctx);
         let code = quote! {
             #[allow(non_camel_case_types)]
-            pub type #name = Option<#fnptr>;
+            pub type #name = Option<()>;
         };
 
         CodeMap::new(Destination(self.required_by), code)

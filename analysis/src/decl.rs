@@ -90,10 +90,6 @@ pub enum Ty {
     Ptr(&'static Ty, Mutability),
     Ref(&'static Ty, Mutability),
     Array(&'static Ty, ArrayLen),
-    Func {
-        ret_ty: Option<&'static Ty>,
-        params: Vec<&'static Decl>,
-    },
 }
 
 impl Ty {
@@ -128,15 +124,7 @@ impl Ty {
                     CArrayLen::Literal(value) => ArrayLen::Literal(*value),
                 },
             ),
-            CType::Func { ret_ty, params } => Ty::Func {
-                ret_ty: ret_ty
-                    .as_ref()
-                    .map(|c_type| &*Box::leak(Box::new(Ty::from_c(ctx, c_type)))),
-                params: params
-                    .iter()
-                    .map(|c_decl| &*Box::leak(Box::new(Decl::from_c(ctx, c_decl))))
-                    .collect(),
-            },
+            CType::Func { .. } => unreachable!("unused after Vulkan-Headers >339"),
         }
     }
 }

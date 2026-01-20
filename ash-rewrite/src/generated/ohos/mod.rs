@@ -2,5 +2,4 @@
 #![cfg_attr(rustfmt, rustfmt_skip)]
 //!Extensions tagged OHOS
 pub mod external_memory;
-pub mod native_buffer;
 pub mod surface;

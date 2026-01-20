@@ -51,17 +51,6 @@ impl Ty {
             Ty::Spec(name) => name_translate.type_to_rust(*name),
             Ty::CPrimary(base_ty) => name_translate.primary_type_to_rust(*base_ty),
             Ty::External(external) => name_translate.ext_type_to_rust(external),
-            Ty::Ptr(Ty::Func { ret_ty, params }, _mutability) => {
-                let ret = ret_ty.map(|ty| {
-                    let ty = ty.to_rust(name_translate);
-                    quote! { -> #ty }
-                });
-
-                let params = params.iter().map(|decl| decl.to_rust(name_translate));
-
-                quote! { unsafe extern "system" fn( #( #params ),* ) #ret }
-            }
-            Ty::Func { .. } => panic!("A pointed-to function cannot exist without a pointer"),
             Ty::Ptr(ty, mutability) => {
                 let mutability = match mutability {
                     Mutability::Not => quote! { const },

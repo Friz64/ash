@@ -117,7 +117,7 @@ impl Items {
                 |required_by, ty| TypeItem::Alias(Alias::new(required_by, ty)));
 
             for ty in &library.xml.funcpointers {
-                let name = TypeName(ty.c_decl.name);
+                let name = TypeName(ty.name);
                 let Some(&required_by) = type_require_map.get(&name) else {
                     continue;
                 };
