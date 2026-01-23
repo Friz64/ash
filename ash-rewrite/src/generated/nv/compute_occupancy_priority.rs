@@ -14,8 +14,8 @@ pub struct PhysicalDeviceComputeOccupancyPriorityFeaturesNV {
     pub p_next: *mut core::ffi::c_void,
     pub compute_occupancy_priority: crate::vk::Bool32,
 }
-pub const COMPUTE_OCCUPANCY_PRIORITY_LOW_NV: core::ffi::c_float = 0.25f;
-pub const COMPUTE_OCCUPANCY_PRIORITY_NORMAL_NV: core::ffi::c_float = 0.50f;
-pub const COMPUTE_OCCUPANCY_PRIORITY_HIGH_NV: core::ffi::c_float = 0.75f;
+pub const COMPUTE_OCCUPANCY_PRIORITY_LOW_NV: core::ffi::c_float = 0.25f32;
+pub const COMPUTE_OCCUPANCY_PRIORITY_NORMAL_NV: core::ffi::c_float = 0.50f32;
+pub const COMPUTE_OCCUPANCY_PRIORITY_HIGH_NV: core::ffi::c_float = 0.75f32;
 pub const NV_COMPUTE_OCCUPANCY_PRIORITY_SPEC_VERSION: usize = 1;
 pub const NV_COMPUTE_OCCUPANCY_PRIORITY_EXTENSION_NAME: &core::ffi::CStr = c"VK_NV_compute_occupancy_priority";

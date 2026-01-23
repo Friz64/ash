@@ -99,10 +99,14 @@ impl constant::Expression {
                 s = rest;
                 if c.is_ascii_digit() {
                     // `token` is  a literal integer
-                    token
-                        .replace("ULL", "u64")
-                        .replace("U", "u32")
-                        .replace("F", "f32")
+                    let mut horrible_code_pls_fix = token.replace("ULL", "u64").replace("U", "u32");
+
+                    if horrible_code_pls_fix.contains('.') {
+                        horrible_code_pls_fix = horrible_code_pls_fix
+                            .replace("f", "f32")
+                            .replace("F", "f32");
+                    }
+                    horrible_code_pls_fix
                 } else {
                     // `token` is a macro invocation
                     String::from("69420") // TODO
