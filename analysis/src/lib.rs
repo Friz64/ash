@@ -33,7 +33,7 @@ impl Analysis {
         &self.vk
     }
 
-    pub fn video_xml(&self) -> &Library {
+    pub fn video(&self) -> &Library {
         &self.video
     }
 
