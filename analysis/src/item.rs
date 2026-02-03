@@ -8,20 +8,21 @@ pub mod handle;
 pub mod structure;
 
 use crate::{
-    decl,
+    // decl,
     item::{
         alias::Alias,
         basetype::BaseType,
         bitmask::{BitMask, BitMaskBits},
         constant::Constant,
         enumeration::Enum,
-        funcpointer::FuncPointer,
+        // funcpointer::FuncPointer,
         handle::Handle,
         structure::{Struct, Union},
     },
     name::{ConstantName, TypeName},
     xml::Require,
-    Library, LibraryName,
+    Library,
+    LibraryName,
 };
 use indexmap::IndexMap;
 use std::collections::HashMap;
@@ -39,6 +40,12 @@ pub enum RequireLocation {
     Extension { name: &'static str },
 }
 
+pub type TypeRequireMap = HashMap<TypeName, RequiredBy>;
+
+pub trait Named<T> {
+    fn name(&self) -> T;
+}
+
 #[derive(Debug)]
 pub enum TypeItem {
     Alias(Alias),
@@ -49,7 +56,7 @@ pub enum TypeItem {
     BitMaskBits(BitMaskBits),
     BaseType(BaseType),
     Handle(Handle),
-    FuncPointer(FuncPointer),
+    // FuncPointer(FuncPointer),
 }
 
 #[derive(Default, Debug)]
@@ -76,68 +83,72 @@ impl Items {
             }
         });
 
-        let decl_ctx = decl::Context::new(&type_require_map);
-
         for library in libraries {
-            macro_rules! collect_type {
-                ($iter_field:ident => $type_item_fn:expr) => {
-                    for ty in &library.xml.$iter_field {
-                        let name = ty.name;
-                        let Some(&required_by) = type_require_map.get(&name) else {
-                            continue;
-                        };
+            items.collect_type(
+                &library.xml.structs,
+                |xml| Struct::new(&type_require_map, xml),
+                TypeItem::Struct,
+            );
 
-                        items.types.insert(name, ($type_item_fn)(required_by, ty));
-                    }
-                };
-            }
+            items.collect_type(
+                &library.xml.struct_aliases,
+                |xml| Alias::new(&type_require_map, xml),
+                TypeItem::Alias,
+            );
 
-            // todo: das muss schöner gehen
-            collect_type!(structs =>
-                |required_by, ty| TypeItem::Struct(Struct::new(&decl_ctx, required_by, ty)));
-            collect_type!(struct_aliases =>
-                |required_by, ty| TypeItem::Alias(Alias::new(required_by, ty)));
-            collect_type!(unions =>
-                |required_by, ty| TypeItem::Union(Union::new(&decl_ctx, required_by, ty)));
-            collect_type!(enums =>
-                |required_by, ty| TypeItem::Enum(Enum::new(required_by, ty)));
-            collect_type!(enum_aliases =>
-                |required_by, ty| TypeItem::Alias(Alias::new(required_by, ty)));
-            collect_type!(bitmasks =>
-                |required_by, ty| TypeItem::BitMask(BitMask::new(required_by, ty)));
-            collect_type!(bitmask_aliases =>
-                |required_by, ty| TypeItem::Alias(Alias::new(required_by, ty)));
-            collect_type!(bitmask_bits =>
-                |required_by, ty| TypeItem::BitMaskBits(BitMaskBits::new(required_by, ty)));
-            collect_type!(basetypes =>
-                |required_by, ty| TypeItem::BaseType(BaseType::new(required_by, ty)));
-            collect_type!(handles =>
-                |required_by, ty| TypeItem::Handle(Handle::new(required_by, ty)));
-            collect_type!(handle_aliases =>
-                |required_by, ty| TypeItem::Alias(Alias::new(required_by, ty)));
+            items.collect_type(
+                &library.xml.unions,
+                |xml| Struct::new(&type_require_map, xml),
+                TypeItem::Struct,
+            );
 
-            for ty in &library.xml.funcpointers {
-                let name = TypeName(ty.name);
-                let Some(&required_by) = type_require_map.get(&name) else {
-                    continue;
-                };
+            items.collect_type(
+                &library.xml.enums,
+                |xml| Enum::new(&type_require_map, xml),
+                TypeItem::Enum,
+            );
 
-                items.types.insert(
-                    name,
-                    TypeItem::FuncPointer(FuncPointer::new(&decl_ctx, required_by, ty)),
-                );
-            }
+            items.collect_type(
+                &library.xml.enum_aliases,
+                |xml| Alias::new(&type_require_map, xml),
+                TypeItem::Alias,
+            );
 
-            for constant in &library.xml.constants {
-                let name = constant.name;
-                let Some(&required_by) = constant_require_map.get(&name) else {
-                    continue;
-                };
+            // collect_type!(bitmasks =>
+            //     |required_by, ty| TypeItem::BitMask(BitMask::new(required_by, ty)));
+            // collect_type!(bitmask_aliases =>
+            //     |required_by, ty| TypeItem::Alias(Alias::new(required_by, ty)));
+            // collect_type!(bitmask_bits =>
+            //     |required_by, ty| TypeItem::BitMaskBits(BitMaskBits::new(required_by, ty)));
+            // collect_type!(basetypes =>
+            //     |required_by, ty| TypeItem::BaseType(BaseType::new(required_by, ty)));
+            // collect_type!(handles =>
+            //     |required_by, ty| TypeItem::Handle(Handle::new(required_by, ty)));
+            // collect_type!(handle_aliases =>
+            //     |required_by, ty| TypeItem::Alias(Alias::new(required_by, ty)));
 
-                items
-                    .constants
-                    .insert(name, Constant::from_constant(required_by, constant));
-            }
+            // for ty in &library.xml.funcpointers {
+            //     let name = TypeName(ty.name);
+            //     let Some(&required_by) = type_require_map.get(&name) else {
+            //         continue;
+            //     };
+
+            //     items.types.insert(
+            //         name,
+            //         TypeItem::FuncPointer(FuncPointer::new(&decl_ctx, required_by, ty)),
+            //     );
+            // }
+
+            // for constant in &library.xml.constants {
+            //     let name = constant.name;
+            //     let Some(&required_by) = constant_require_map.get(&name) else {
+            //         continue;
+            //     };
+
+            //     items
+            //         .constants
+            //         .insert(name, Constant::from_constant(required_by, constant));
+            // }
         }
 
         iter_requires(libraries, |required_by, require| {
@@ -150,6 +161,20 @@ impl Items {
         });
 
         items
+    }
+
+    fn collect_type<'a, X: 'a, T: Named<TypeName>>(
+        &mut self,
+        xml_src: impl IntoIterator<Item = &'a X>,
+        construct: impl FnMut(&X) -> Option<T>,
+        en: impl Fn(T) -> TypeItem,
+    ) {
+        self.types.extend(
+            xml_src
+                .into_iter()
+                .filter_map(construct)
+                .map(|ty| (ty.name(), en(ty))),
+        )
     }
 }
 

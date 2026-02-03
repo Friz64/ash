@@ -1,4 +1,8 @@
-use crate::{item::RequiredBy, name::TypeName, xml};
+use crate::{
+    item::{Named, RequiredBy, TypeRequireMap},
+    name::TypeName,
+    xml,
+};
 use tracing::{instrument, trace};
 
 #[derive(Debug)]
@@ -8,14 +12,22 @@ pub struct Alias {
     pub alias: TypeName,
 }
 
+impl Named<TypeName> for Alias {
+    fn name(&self) -> TypeName {
+        self.name
+    }
+}
+
 impl Alias {
     #[instrument]
-    pub(crate) fn new(required_by: RequiredBy, xml: &xml::TypeAlias) -> Alias {
+    pub(crate) fn new(trm: &TypeRequireMap, xml: &xml::TypeAlias) -> Option<Alias> {
+        let required_by = *trm.get(&xml.name)?;
+
         trace!("constructing");
-        Alias {
+        Some(Alias {
             required_by,
             name: xml.name,
             alias: xml.alias,
-        }
+        })
     }
 }

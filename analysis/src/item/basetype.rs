@@ -1,4 +1,8 @@
-use crate::{item::RequiredBy, name::TypeName, xml};
+use crate::{
+    item::{Named, RequiredBy, TypeRequireMap},
+    name::TypeName,
+    xml,
+};
 use tracing::{instrument, trace};
 
 #[derive(Debug)]
@@ -7,13 +11,21 @@ pub struct BaseType {
     pub name: TypeName,
 }
 
+impl Named<TypeName> for BaseType {
+    fn name(&self) -> TypeName {
+        self.name
+    }
+}
+
 impl BaseType {
     #[instrument]
-    pub(crate) fn new(required_by: RequiredBy, xml: &xml::BaseType) -> BaseType {
+    pub(crate) fn new(trm: &TypeRequireMap, xml: &xml::BaseType) -> Option<BaseType> {
+        let required_by = *trm.get(&xml.name)?;
+
         trace!("constructing");
-        BaseType {
+        Some(BaseType {
             required_by,
             name: xml.name,
-        }
+        })
     }
 }

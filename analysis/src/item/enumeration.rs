@@ -1,4 +1,8 @@
-use crate::{item::RequiredBy, name::TypeName, xml};
+use crate::{
+    item::{Named, RequiredBy, TypeRequireMap},
+    name::TypeName,
+    xml,
+};
 use tracing::{instrument, trace};
 
 #[derive(Debug)]
@@ -7,13 +11,22 @@ pub struct Enum {
     pub name: TypeName,
 }
 
+impl Named<TypeName> for Enum {
+    fn name(&self) -> TypeName {
+        self.name
+    }
+}
+
 impl Enum {
     #[instrument]
-    pub(crate) fn new(required_by: RequiredBy, xml: &xml::Enum) -> Enum {
+    pub(crate) fn new(trm: &TypeRequireMap, xml: &xml::Enum) -> Option<Enum> {
+        let name = xml.name;
+        let required_by = *trm.get(&name)?;
+
         trace!("constructing");
-        Enum {
+        Some(Enum {
             required_by,
             name: xml.name,
-        }
+        })
     }
 }

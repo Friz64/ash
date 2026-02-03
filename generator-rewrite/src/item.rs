@@ -33,7 +33,7 @@ impl Code for TypeItem {
             TypeItem::BitMaskBits(bitmask_bits) => bitmask_bits.code(ctx),
             TypeItem::BaseType(basetype) => basetype.code(ctx),
             TypeItem::Handle(handle) => handle.code(ctx),
-            TypeItem::FuncPointer(funcpointer) => funcpointer.code(ctx),
+            // TypeItem::FuncPointer(funcpointer) => funcpointer.code(ctx),
         }
     }
 }
