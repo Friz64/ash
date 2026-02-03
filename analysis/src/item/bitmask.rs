@@ -1,4 +1,8 @@
-use crate::{item::RequiredBy, name::TypeName, xml};
+use crate::{
+    item::{Named, RequiredBy, TypeRequireMap},
+    name::TypeName,
+    xml,
+};
 use tracing::{instrument, trace};
 
 #[derive(Debug)]
@@ -7,14 +11,21 @@ pub struct BitMask {
     pub name: TypeName,
 }
 
+impl Named<TypeName> for BitMask {
+    fn name(&self) -> TypeName {
+        self.name
+    }
+}
+
 impl BitMask {
     #[instrument]
-    pub(crate) fn new(required_by: RequiredBy, xml: &xml::BitMask) -> BitMask {
+    pub(crate) fn new(trm: &TypeRequireMap, xml: &xml::BitMask) -> Option<BitMask> {
+        let required_by = *trm.get(&xml.name)?;
         trace!("constructing");
-        BitMask {
+        Some(BitMask {
             required_by,
             name: xml.name,
-        }
+        })
     }
 }
 
@@ -24,13 +35,20 @@ pub struct BitMaskBits {
     pub name: TypeName,
 }
 
+impl Named<TypeName> for BitMaskBits {
+    fn name(&self) -> TypeName {
+        self.name
+    }
+}
+
 impl BitMaskBits {
     #[instrument]
-    pub(crate) fn new(required_by: RequiredBy, xml: &xml::BitMaskBits) -> BitMaskBits {
+    pub(crate) fn new(trm: &TypeRequireMap, xml: &xml::BitMaskBits) -> Option<BitMaskBits> {
+        let required_by = *trm.get(&xml.name)?;
         trace!("constructing");
-        BitMaskBits {
+        Some(BitMaskBits {
             required_by,
             name: xml.name,
-        }
+        })
     }
 }

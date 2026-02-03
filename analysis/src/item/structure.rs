@@ -1,6 +1,6 @@
 use crate::{
-    decl::{self, Decl, Ty},
-    item::RequiredBy,
+    decl::{Decl, Ty},
+    item::{Named, RequiredBy, TypeRequireMap},
     name::TypeName,
     xml,
 };
@@ -13,21 +13,25 @@ pub struct Struct {
     pub members: Vec<Decl>,
 }
 
+impl Named<TypeName> for Struct {
+    fn name(&self) -> TypeName {
+        self.name
+    }
+}
+
 impl Struct {
-    #[instrument(skip(decl_ctx))]
-    pub(crate) fn new(
-        decl_ctx: &decl::Context,
-        required_by: RequiredBy,
-        xml: &xml::Structure,
-    ) -> Struct {
+    #[instrument(skip(trm))]
+    pub(crate) fn new(trm: &TypeRequireMap, xml: &xml::Structure) -> Option<Struct> {
+        let required_by = *trm.get(&xml.name)?;
         trace!("constructing");
-        Struct {
+
+        Some(Struct {
             required_by,
             name: xml.name,
             members: (xml.members.iter())
-                .map(|member| Decl::from_c(decl_ctx, &member.c_decl))
+                .map(|member| Decl::from_c(trm, &member.c_decl))
                 .collect(),
-        }
+        })
     }
 
     pub fn has_pointer(&self) -> bool {
@@ -42,21 +46,29 @@ pub struct Union {
     pub members: Vec<Decl>,
 }
 
+impl Named<TypeName> for Union {
+    fn name(&self) -> TypeName {
+        self.name
+    }
+}
+
 impl Union {
-    #[instrument(skip(decl_ctx))]
+    #[instrument(skip(trm))]
     pub(crate) fn new(
-        decl_ctx: &decl::Context,
+        trm: &TypeRequireMap,
         required_by: RequiredBy,
         xml: &xml::Structure,
-    ) -> Union {
+    ) -> Option<Union> {
+        let required_by = *trm.get(&xml.name)?;
         trace!("constructing");
-        Union {
+
+        Some(Union {
             required_by,
             name: xml.name,
             members: (xml.members.iter())
-                .map(|member| Decl::from_c(decl_ctx, &member.c_decl))
+                .map(|member| Decl::from_c(trm, &member.c_decl))
                 .collect(),
-        }
+        })
     }
 
     pub fn has_pointer(&self) -> bool {

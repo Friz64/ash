@@ -1,19 +1,8 @@
 use crate::{
-    item::RequiredBy,
+    item::TypeRequireMap,
     name::{ConstantName, TypeName},
     xml::cdecl::{CArrayLen, CDecl, CType},
 };
-use std::collections::HashMap;
-
-pub struct Context<'a> {
-    type_require_map: &'a HashMap<TypeName, RequiredBy>,
-}
-
-impl<'a> Context<'a> {
-    pub fn new(type_require_map: &'a HashMap<TypeName, RequiredBy>) -> Self {
-        Context { type_require_map }
-    }
-}
 
 #[derive(Debug)]
 pub struct Decl {
@@ -22,10 +11,10 @@ pub struct Decl {
 }
 
 impl Decl {
-    pub(crate) fn from_c(ctx: &Context, c_decl: &CDecl<'static>) -> Decl {
+    pub(crate) fn from_c(trm: &TypeRequireMap, c_decl: &CDecl<'static>) -> Decl {
         Decl {
             name: c_decl.name,
-            ty: Ty::from_c(ctx, &c_decl.ty),
+            ty: Ty::from_c(trm, &c_decl.ty),
         }
     }
 }
@@ -93,13 +82,13 @@ pub enum Ty {
 }
 
 impl Ty {
-    pub(crate) fn from_c(ctx: &Context, c_type: &CType<'static>) -> Ty {
+    pub(crate) fn from_c(trm: &TypeRequireMap, c_type: &CType<'static>) -> Ty {
         match c_type {
             CType::Base(cbase_type) => {
                 let name = cbase_type.name;
                 if let Some(primary) = CPrimaryType::from_str(name) {
                     Ty::CPrimary(primary)
-                } else if ctx.type_require_map.contains_key(&TypeName(name)) {
+                } else if trm.contains_key(&TypeName(name)) {
                     Ty::Spec(TypeName(name))
                 } else {
                     Ty::External(name)
@@ -110,7 +99,7 @@ impl Ty {
                 is_const,
                 pointee,
             } => Ty::Ptr(
-                Box::leak(Box::new(Ty::from_c(ctx, pointee))),
+                Box::leak(Box::new(Ty::from_c(trm, pointee))),
                 if *is_const {
                     Mutability::Not
                 } else {
@@ -118,7 +107,7 @@ impl Ty {
                 },
             ),
             CType::Array { element, len } => Ty::Array(
-                Box::leak(Box::new(Ty::from_c(ctx, element))),
+                Box::leak(Box::new(Ty::from_c(trm, element))),
                 match len {
                     CArrayLen::Named(constant) => ArrayLen::Constant(ConstantName(constant)),
                     CArrayLen::Literal(value) => ArrayLen::Literal(*value),
