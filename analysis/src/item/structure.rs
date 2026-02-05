@@ -23,7 +23,7 @@ impl Struct {
     #[instrument(skip(trm))]
     pub(crate) fn new(trm: &TypeRequireMap, xml: &xml::Structure) -> Option<Struct> {
         let required_by = *trm.get(&xml.name)?;
-        trace!("constructing");
+        trace!(?required_by, "constructing");
 
         Some(Struct {
             required_by,
@@ -54,13 +54,9 @@ impl Named<TypeName> for Union {
 
 impl Union {
     #[instrument(skip(trm))]
-    pub(crate) fn new(
-        trm: &TypeRequireMap,
-        required_by: RequiredBy,
-        xml: &xml::Structure,
-    ) -> Option<Union> {
+    pub(crate) fn new(trm: &TypeRequireMap, xml: &xml::Structure) -> Option<Union> {
         let required_by = *trm.get(&xml.name)?;
-        trace!("constructing");
+        trace!(?required_by, "constructing");
 
         Some(Union {
             required_by,

@@ -14,7 +14,7 @@ mod basetype;
 mod bitmask;
 mod constant;
 mod enumeration;
-mod funcpointer;
+// mod funcpointer;
 mod handle;
 mod structure;
 

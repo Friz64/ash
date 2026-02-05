@@ -19,11 +19,11 @@ impl Named<TypeName> for Alias {
 }
 
 impl Alias {
-    #[instrument]
+    #[instrument(skip(trm))]
     pub(crate) fn new(trm: &TypeRequireMap, xml: &xml::TypeAlias) -> Option<Alias> {
         let required_by = *trm.get(&xml.name)?;
+        trace!(?required_by, "constructing");
 
-        trace!("constructing");
         Some(Alias {
             required_by,
             name: xml.name,

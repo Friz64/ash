@@ -18,10 +18,11 @@ impl Named<TypeName> for BitMask {
 }
 
 impl BitMask {
-    #[instrument]
+    #[instrument(skip(trm))]
     pub(crate) fn new(trm: &TypeRequireMap, xml: &xml::BitMask) -> Option<BitMask> {
         let required_by = *trm.get(&xml.name)?;
-        trace!("constructing");
+        trace!(?required_by, "constructing");
+
         Some(BitMask {
             required_by,
             name: xml.name,
@@ -42,10 +43,11 @@ impl Named<TypeName> for BitMaskBits {
 }
 
 impl BitMaskBits {
-    #[instrument]
+    #[instrument(skip(trm))]
     pub(crate) fn new(trm: &TypeRequireMap, xml: &xml::BitMaskBits) -> Option<BitMaskBits> {
         let required_by = *trm.get(&xml.name)?;
-        trace!("constructing");
+        trace!(?required_by, "constructing");
+
         Some(BitMaskBits {
             required_by,
             name: xml.name,

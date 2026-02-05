@@ -136,7 +136,7 @@ pub struct Registry {
     pub structs: Vec<Structure>,
     pub struct_aliases: Vec<TypeAlias>,
     pub unions: Vec<Structure>,
-    pub constants: Vec<Constant>,
+    pub constants: Vec<BaseConstant>,
     pub enums: Vec<Enum>,
     pub bitmask_bits: Vec<BitMaskBits>,
     pub commands: Vec<Command>,
@@ -233,7 +233,7 @@ impl Registry {
                                     .children()
                                     .filter(|node| node.has_tag_name("enum"))
                                     .filter(|node| api_matches(node, api))
-                                    .map(Constant::from_node),
+                                    .map(BaseConstant::from_node),
                             );
                         }
                         _ => trace!("ignored"),
@@ -498,15 +498,15 @@ impl Structure {
 }
 
 #[derive(Debug)]
-pub struct Constant {
+pub struct BaseConstant {
     pub ty: CPrimaryType,
     pub value: &'static str,
     pub name: ConstantName,
 }
 
-impl Constant {
-    fn from_node(node: Node) -> Constant {
-        Constant {
+impl BaseConstant {
+    fn from_node(node: Node) -> BaseConstant {
+        BaseConstant {
             ty: CPrimaryType::from_str(attribute(node, "type").unwrap()).unwrap(),
             value: attribute(node, "value").unwrap(),
             name: ConstantName(attribute(node, "name").unwrap()),

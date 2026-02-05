@@ -18,12 +18,11 @@ impl Named<TypeName> for Enum {
 }
 
 impl Enum {
-    #[instrument]
+    #[instrument(skip(trm))]
     pub(crate) fn new(trm: &TypeRequireMap, xml: &xml::Enum) -> Option<Enum> {
-        let name = xml.name;
-        let required_by = *trm.get(&name)?;
+        let required_by = *trm.get(&xml.name)?;
+        trace!(?required_by, "constructing");
 
-        trace!("constructing");
         Some(Enum {
             required_by,
             name: xml.name,

@@ -41,6 +41,7 @@ pub enum RequireLocation {
 }
 
 pub type TypeRequireMap = HashMap<TypeName, RequiredBy>;
+pub type ConstantRequireMap = HashMap<ConstantName, RequiredBy>;
 
 pub trait Named<T> {
     fn name(&self) -> T;
@@ -98,8 +99,8 @@ impl Items {
 
             items.collect_type(
                 &library.xml.unions,
-                |xml| Struct::new(&type_require_map, xml),
-                TypeItem::Struct,
+                |xml| Union::new(&type_require_map, xml),
+                TypeItem::Union,
             );
 
             items.collect_type(
@@ -114,18 +115,41 @@ impl Items {
                 TypeItem::Alias,
             );
 
-            // collect_type!(bitmasks =>
-            //     |required_by, ty| TypeItem::BitMask(BitMask::new(required_by, ty)));
-            // collect_type!(bitmask_aliases =>
-            //     |required_by, ty| TypeItem::Alias(Alias::new(required_by, ty)));
-            // collect_type!(bitmask_bits =>
-            //     |required_by, ty| TypeItem::BitMaskBits(BitMaskBits::new(required_by, ty)));
-            // collect_type!(basetypes =>
-            //     |required_by, ty| TypeItem::BaseType(BaseType::new(required_by, ty)));
-            // collect_type!(handles =>
-            //     |required_by, ty| TypeItem::Handle(Handle::new(required_by, ty)));
-            // collect_type!(handle_aliases =>
-            //     |required_by, ty| TypeItem::Alias(Alias::new(required_by, ty)));
+            items.collect_type(
+                &library.xml.bitmasks,
+                |xml| BitMask::new(&type_require_map, xml),
+                TypeItem::BitMask,
+            );
+
+            items.collect_type(
+                &library.xml.bitmask_aliases,
+                |xml| Alias::new(&type_require_map, xml),
+                TypeItem::Alias,
+            );
+
+            items.collect_type(
+                &library.xml.bitmask_bits,
+                |xml| BitMaskBits::new(&type_require_map, xml),
+                TypeItem::BitMaskBits,
+            );
+
+            items.collect_type(
+                &library.xml.basetypes,
+                |xml| BaseType::new(&type_require_map, xml),
+                TypeItem::BaseType,
+            );
+
+            items.collect_type(
+                &library.xml.handles,
+                |xml| Handle::new(&type_require_map, xml),
+                TypeItem::Handle,
+            );
+
+            items.collect_type(
+                &library.xml.handle_aliases,
+                |xml| Alias::new(&type_require_map, xml),
+                TypeItem::Alias,
+            );
 
             // for ty in &library.xml.funcpointers {
             //     let name = TypeName(ty.name);
@@ -139,16 +163,14 @@ impl Items {
             //     );
             // }
 
-            // for constant in &library.xml.constants {
-            //     let name = constant.name;
-            //     let Some(&required_by) = constant_require_map.get(&name) else {
-            //         continue;
-            //     };
-
-            //     items
-            //         .constants
-            //         .insert(name, Constant::from_constant(required_by, constant));
-            // }
+            items.constants.extend(
+                library
+                    .xml
+                    .constants
+                    .iter()
+                    .filter_map(|xml| Constant::from_base_constant(&constant_require_map, xml))
+                    .map(|constant| (constant.name(), constant)),
+            );
         }
 
         iter_requires(libraries, |required_by, require| {
