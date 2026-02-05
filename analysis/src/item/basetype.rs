@@ -18,11 +18,11 @@ impl Named<TypeName> for BaseType {
 }
 
 impl BaseType {
-    #[instrument]
+    #[instrument(skip(trm))]
     pub(crate) fn new(trm: &TypeRequireMap, xml: &xml::BaseType) -> Option<BaseType> {
         let required_by = *trm.get(&xml.name)?;
+        trace!(?required_by, "constructing");
 
-        trace!("constructing");
         Some(BaseType {
             required_by,
             name: xml.name,

@@ -1,4 +1,8 @@
-use crate::{item::RequiredBy, name::TypeName, xml};
+use crate::{
+    item::{Named, RequiredBy, TypeRequireMap},
+    name::TypeName,
+    xml,
+};
 use tracing::{instrument, trace};
 
 #[derive(Debug)]
@@ -7,13 +11,21 @@ pub struct Handle {
     pub name: TypeName,
 }
 
+impl Named<TypeName> for Handle {
+    fn name(&self) -> TypeName {
+        self.name
+    }
+}
+
 impl Handle {
-    #[instrument]
-    pub(crate) fn new(required_by: RequiredBy, xml: &xml::Handle) -> Handle {
-        trace!("constructing");
-        Handle {
+    #[instrument(skip(trm))]
+    pub(crate) fn new(trm: &TypeRequireMap, xml: &xml::Handle) -> Option<Handle> {
+        let required_by = *trm.get(&xml.name)?;
+        trace!(?required_by, "constructing");
+
+        Some(Handle {
             required_by,
             name: xml.name,
-        }
+        })
     }
 }
