@@ -50,6 +50,7 @@ pub mod image_format_list;
 pub mod imageless_framebuffer;
 pub mod incremental_present;
 pub mod index_type_uint8;
+pub mod internally_synchronized_queues;
 pub mod line_rasterization;
 pub mod load_store_op_none;
 pub mod maintenance1;

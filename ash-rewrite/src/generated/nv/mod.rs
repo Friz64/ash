@@ -47,6 +47,7 @@ pub mod partitioned_acceleration_structure;
 pub mod per_stage_descriptor_set;
 pub mod present_barrier;
 pub mod present_metering;
+pub mod push_constant_bank;
 pub mod raw_access_chains;
 pub mod ray_tracing;
 pub mod ray_tracing_invocation_reorder;

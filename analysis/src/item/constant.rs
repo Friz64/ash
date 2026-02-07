@@ -1,8 +1,7 @@
 use crate::{
     decl::CPrimaryType,
     item::{Named, RequireMap, RequiredBy},
-    name::ConstantName,
-    xml,
+    xml::{self, name::ConstantName},
 };
 use tracing::{instrument, trace};
 

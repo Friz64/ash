@@ -1,7 +1,7 @@
 use crate::{
     decl::{ArrayLen, CPrimaryType, Decl, Mutability, Ty},
     item::constant,
-    name::{ConstantName, FuncPointerName, TypeName},
+    xml::name::{ConstantName, FuncPointerName, TypeName},
 };
 use proc_macro2::{Literal, TokenStream};
 use quote::quote;

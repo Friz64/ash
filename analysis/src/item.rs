@@ -20,8 +20,10 @@ use crate::{
         handle::Handle,
         structure::{Struct, Union},
     },
-    name::{CommandName, ConstantName, FuncPointerName, TypeName},
-    xml::{Require, RequireType},
+    xml::{
+        name::{CommandName, ConstantName, FuncPointerName, TypeName},
+        Require, RequireType,
+    },
     Library, LibraryName,
 };
 use indexmap::IndexMap;
