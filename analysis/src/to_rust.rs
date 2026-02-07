@@ -1,7 +1,7 @@
 use crate::{
     decl::{ArrayLen, CPrimaryType, Decl, Mutability, Ty},
     item::constant,
-    name::{ConstantName, TypeName},
+    name::{ConstantName, FuncPointerName, TypeName},
 };
 use proc_macro2::{Literal, TokenStream};
 use quote::quote;
@@ -11,6 +11,8 @@ pub trait NameTranslate {
     fn variable_to_rust(&self, raw: &'static str) -> Ident;
 
     fn type_to_rust(&self, name: TypeName) -> TokenStream;
+
+    fn func_pointer_to_rust(&self, name: FuncPointerName) -> TokenStream;
 
     fn constant_to_rust(&self, name: ConstantName) -> TokenStream;
 
@@ -48,7 +50,8 @@ impl Decl {
 impl Ty {
     pub fn to_rust(&self, name_translate: &impl NameTranslate) -> TokenStream {
         match self {
-            Ty::Spec(name) => name_translate.type_to_rust(*name),
+            Ty::SpecType(name) => name_translate.type_to_rust(*name),
+            Ty::SpecFuncPointer(name) => name_translate.func_pointer_to_rust(*name),
             Ty::CPrimary(base_ty) => name_translate.primary_type_to_rust(*base_ty),
             Ty::External(external) => name_translate.ext_type_to_rust(external),
             Ty::Ptr(ty, mutability) => {

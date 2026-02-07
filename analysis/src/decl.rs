@@ -1,6 +1,6 @@
 use crate::{
-    item::TypeRequireMap,
-    name::{ConstantName, TypeName},
+    item::RequireMap,
+    name::{ConstantName, FuncPointerName, TypeName},
     xml::cdecl::{CArrayLen, CDecl, CType},
 };
 
@@ -11,10 +11,10 @@ pub struct Decl {
 }
 
 impl Decl {
-    pub(crate) fn from_c(trm: &TypeRequireMap, c_decl: &CDecl<'static>) -> Decl {
+    pub(crate) fn from_c(require_map: &RequireMap, c_decl: &CDecl<'static>) -> Decl {
         Decl {
             name: c_decl.name,
-            ty: Ty::from_c(trm, &c_decl.ty),
+            ty: Ty::from_c(require_map, &c_decl.ty),
         }
     }
 }
@@ -73,7 +73,8 @@ pub enum ArrayLen {
 
 #[derive(Debug)]
 pub enum Ty {
-    Spec(TypeName),
+    SpecType(TypeName),
+    SpecFuncPointer(FuncPointerName),
     CPrimary(CPrimaryType),
     External(&'static str),
     Ptr(&'static Ty, Mutability),
@@ -82,14 +83,19 @@ pub enum Ty {
 }
 
 impl Ty {
-    pub(crate) fn from_c(trm: &TypeRequireMap, c_type: &CType<'static>) -> Ty {
+    pub(crate) fn from_c(require_map: &RequireMap, c_type: &CType<'static>) -> Ty {
         match c_type {
             CType::Base(cbase_type) => {
                 let name = cbase_type.name;
                 if let Some(primary) = CPrimaryType::from_str(name) {
                     Ty::CPrimary(primary)
-                } else if trm.contains_key(&TypeName(name)) {
-                    Ty::Spec(TypeName(name))
+                } else if require_map.ty.contains_key(&TypeName(name)) {
+                    Ty::SpecType(TypeName(name))
+                } else if require_map
+                    .func_pointer
+                    .contains_key(&FuncPointerName(name))
+                {
+                    Ty::SpecFuncPointer(FuncPointerName(name))
                 } else {
                     Ty::External(name)
                 }
@@ -99,7 +105,7 @@ impl Ty {
                 is_const,
                 pointee,
             } => Ty::Ptr(
-                Box::leak(Box::new(Ty::from_c(trm, pointee))),
+                Box::leak(Box::new(Ty::from_c(require_map, pointee))),
                 if *is_const {
                     Mutability::Not
                 } else {
@@ -107,13 +113,13 @@ impl Ty {
                 },
             ),
             CType::Array { element, len } => Ty::Array(
-                Box::leak(Box::new(Ty::from_c(trm, element))),
+                Box::leak(Box::new(Ty::from_c(require_map, element))),
                 match len {
                     CArrayLen::Named(constant) => ArrayLen::Constant(ConstantName(constant)),
                     CArrayLen::Literal(value) => ArrayLen::Literal(*value),
                 },
             ),
-            CType::Func { .. } => unreachable!("unused after Vulkan-Headers >339"),
+            CType::Func { .. } => unreachable!("unused after Vulkan-Headers 339"),
         }
     }
 }

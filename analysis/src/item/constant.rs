@@ -1,6 +1,6 @@
 use crate::{
     decl::CPrimaryType,
-    item::{ConstantRequireMap, Named, RequiredBy},
+    item::{Named, RequireMap, RequiredBy},
     name::ConstantName,
     xml,
 };
@@ -30,12 +30,12 @@ impl Named<ConstantName> for Constant {
 }
 
 impl Constant {
-    #[instrument(skip(crm))]
+    #[instrument(skip(require_map))]
     pub(crate) fn from_base_constant(
-        crm: &ConstantRequireMap,
+        require_map: &RequireMap,
         xml: &xml::BaseConstant,
     ) -> Option<Constant> {
-        let required_by = *crm.get(&xml.name)?;
+        let required_by = *require_map.constant.get(&xml.name)?;
         trace!(?required_by, "constructing from constant");
 
         Some(Constant {
@@ -46,7 +46,7 @@ impl Constant {
     }
 
     #[instrument]
-    pub(crate) fn from_require_constant(
+    pub(crate) fn from_require(
         required_by: RequiredBy,
         xml: &xml::RequireConstant,
     ) -> Option<Constant> {

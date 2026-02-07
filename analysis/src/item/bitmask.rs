@@ -1,5 +1,5 @@
 use crate::{
-    item::{Named, RequiredBy, TypeRequireMap},
+    item::{Named, RequireMap, RequiredBy},
     name::TypeName,
     xml,
 };
@@ -18,9 +18,9 @@ impl Named<TypeName> for BitMask {
 }
 
 impl BitMask {
-    #[instrument(skip(trm))]
-    pub(crate) fn new(trm: &TypeRequireMap, xml: &xml::BitMask) -> Option<BitMask> {
-        let required_by = *trm.get(&xml.name)?;
+    #[instrument(skip(require_map))]
+    pub(crate) fn new(require_map: &RequireMap, xml: &xml::BitMask) -> Option<BitMask> {
+        let required_by = *require_map.ty.get(&xml.name)?;
         trace!(?required_by, "constructing");
 
         Some(BitMask {
@@ -43,9 +43,9 @@ impl Named<TypeName> for BitMaskBits {
 }
 
 impl BitMaskBits {
-    #[instrument(skip(trm))]
-    pub(crate) fn new(trm: &TypeRequireMap, xml: &xml::BitMaskBits) -> Option<BitMaskBits> {
-        let required_by = *trm.get(&xml.name)?;
+    #[instrument(skip(require_map))]
+    pub(crate) fn new(require_map: &RequireMap, xml: &xml::BitMaskBits) -> Option<BitMaskBits> {
+        let required_by = *require_map.ty.get(&xml.name)?;
         trace!(?required_by, "constructing");
 
         Some(BitMaskBits {

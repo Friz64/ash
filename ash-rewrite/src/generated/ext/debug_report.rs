@@ -15,5 +15,7 @@ pub struct DebugReportFlagsEXT(pub(crate) i32);
 pub struct DebugReportFlagBitsEXT(pub(crate) i32);
 #[repr(transparent)]
 pub struct DebugReportCallbackEXT(pub(crate) i32);
+#[allow(non_camel_case_types)]
+pub type PFN_vkDebugReportCallbackEXT = Option<()>;
 pub const EXT_DEBUG_REPORT_SPEC_VERSION: usize = 10;
 pub const EXT_DEBUG_REPORT_EXTENSION_NAME: &core::ffi::CStr = c"VK_EXT_debug_report";
