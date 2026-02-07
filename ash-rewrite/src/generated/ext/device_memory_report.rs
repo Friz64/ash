@@ -31,5 +31,7 @@ pub struct DeviceMemoryReportCallbackDataEXT {
 pub struct DeviceMemoryReportEventTypeEXT(pub(crate) i32);
 #[repr(transparent)]
 pub struct DeviceMemoryReportFlagsEXT(pub(crate) i32);
+#[allow(non_camel_case_types)]
+pub type PFN_vkDeviceMemoryReportCallbackEXT = Option<()>;
 pub const EXT_DEVICE_MEMORY_REPORT_SPEC_VERSION: usize = 2;
 pub const EXT_DEVICE_MEMORY_REPORT_EXTENSION_NAME: &core::ffi::CStr = c"VK_EXT_device_memory_report";

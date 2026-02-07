@@ -33,6 +33,19 @@ impl ConstantName {
 }
 
 #[derive(Debug, PartialEq, Eq, Hash, Clone, Copy)]
+pub struct FuncPointerName(pub &'static str);
+
+impl FuncPointerName {
+    pub fn original(&self) -> &'static str {
+        self.0
+    }
+
+    pub fn as_command_name(&self) -> CommandName {
+        CommandName(self.0.strip_prefix("PFN_").unwrap())
+    }
+}
+
+#[derive(Debug, PartialEq, Eq, Hash, Clone, Copy)]
 pub struct CommandName(pub &'static str);
 
 impl CommandName {

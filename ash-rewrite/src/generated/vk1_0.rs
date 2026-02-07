@@ -1431,6 +1431,18 @@ pub struct Framebuffer(pub(crate) i32);
 pub struct RenderPass(pub(crate) i32);
 #[repr(transparent)]
 pub struct PipelineCache(pub(crate) i32);
+#[allow(non_camel_case_types)]
+pub type PFN_vkInternalAllocationNotification = Option<()>;
+#[allow(non_camel_case_types)]
+pub type PFN_vkInternalFreeNotification = Option<()>;
+#[allow(non_camel_case_types)]
+pub type PFN_vkReallocationFunction = Option<()>;
+#[allow(non_camel_case_types)]
+pub type PFN_vkAllocationFunction = Option<()>;
+#[allow(non_camel_case_types)]
+pub type PFN_vkFreeFunction = Option<()>;
+#[allow(non_camel_case_types)]
+pub type PFN_vkVoidFunction = Option<()>;
 pub const MAX_PHYSICAL_DEVICE_NAME_SIZE: u32 = 256;
 pub const UUID_SIZE: u32 = 16;
 pub const MAX_EXTENSION_NAME_SIZE: u32 = 256;

@@ -1,7 +1,7 @@
 use crate::output::CodeMap;
 use analysis::{
     item::{Items, TypeItem},
-    name::{ConstantName, TypeName},
+    name::{ConstantName, FuncPointerName, TypeName},
     to_rust::NameTranslate,
 };
 use proc_macro2::TokenStream;
@@ -14,7 +14,7 @@ mod basetype;
 mod bitmask;
 mod constant;
 mod enumeration;
-// mod funcpointer;
+mod function;
 mod handle;
 mod structure;
 
@@ -33,7 +33,6 @@ impl Code for TypeItem {
             TypeItem::BitMaskBits(bitmask_bits) => bitmask_bits.code(ctx),
             TypeItem::BaseType(basetype) => basetype.code(ctx),
             TypeItem::Handle(handle) => handle.code(ctx),
-            // TypeItem::FuncPointer(funcpointer) => funcpointer.code(ctx),
         }
     }
 }
@@ -63,6 +62,11 @@ impl NameTranslate for Context {
         quote! { crate::vk::#ident }
     }
 
+    fn func_pointer_to_rust(&self, name: FuncPointerName) -> TokenStream {
+        let ident: Ident = syn::parse_str(name.original()).unwrap();
+        quote! { crate::vk::#ident }
+    }
+
     fn constant_to_rust(&self, name: ConstantName) -> TokenStream {
         let ident: Ident = syn::parse_str(name.prefix_trimmed()).unwrap();
         quote! { crate::vk::#ident }
@@ -78,5 +82,6 @@ pub fn generate_code(items: &Items, codemap: &mut CodeMap) {
     debug!("generating structures code");
     let ctx = Context {};
     codemap.extend_from_items(&ctx, items.types.values());
+    codemap.extend_from_items(&ctx, items.func_pointers.values());
     codemap.extend_from_items(&ctx, items.constants.values());
 }

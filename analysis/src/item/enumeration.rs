@@ -1,5 +1,5 @@
 use crate::{
-    item::{Named, RequiredBy, TypeRequireMap},
+    item::{Named, RequireMap, RequiredBy},
     name::TypeName,
     xml,
 };
@@ -18,9 +18,9 @@ impl Named<TypeName> for Enum {
 }
 
 impl Enum {
-    #[instrument(skip(trm))]
-    pub(crate) fn new(trm: &TypeRequireMap, xml: &xml::Enum) -> Option<Enum> {
-        let required_by = *trm.get(&xml.name)?;
+    #[instrument(skip(require_map))]
+    pub(crate) fn new(require_map: &RequireMap, xml: &xml::Enum) -> Option<Enum> {
+        let required_by = *require_map.ty.get(&xml.name)?;
         trace!(?required_by, "constructing");
 
         Some(Enum {

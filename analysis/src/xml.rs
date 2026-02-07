@@ -2,7 +2,7 @@ pub mod cdecl;
 pub mod depends;
 
 use crate::decl::CPrimaryType;
-use crate::name::{CommandName, ConstantName, TypeName};
+use crate::name::{CommandName, ConstantName, FuncPointerName, TypeName};
 use crate::xml::depends::Depends;
 use crate::LibraryName;
 use cdecl::{CDecl, CDeclMode, CTok, CType};
@@ -132,7 +132,7 @@ pub struct Registry {
     pub handle_aliases: Vec<TypeAlias>,
     pub enum_types: Vec<EnumType>,
     pub enum_aliases: Vec<TypeAlias>,
-    pub funcpointers: Vec<FuncPointer>,
+    pub func_pointers: Vec<FuncPointer>,
     pub structs: Vec<Structure>,
     pub struct_aliases: Vec<TypeAlias>,
     pub unions: Vec<Structure>,
@@ -203,7 +203,7 @@ impl Registry {
                                     registry.enum_types.push(EnumType::from_node(type_node))
                                 }
                                 Some("funcpointer") => registry
-                                    .funcpointers
+                                    .func_pointers
                                     .push(FuncPointer::from_node(type_node, api)),
                                 Some("struct") => {
                                     registry.structs.push(Structure::from_node(type_node, api))
@@ -425,7 +425,7 @@ impl EnumType {
 #[derive(Debug)]
 pub struct FuncPointer {
     pub return_type: Option<CType<'static>>,
-    pub name: &'static str,
+    pub name: FuncPointerName,
     pub params: Vec<CDecl<'static>>,
     pub requires: Option<&'static str>,
 }
@@ -442,7 +442,7 @@ impl FuncPointer {
         let proto_cdecl = CDecl::from_xml(CDeclMode::StructMember, proto.children());
         FuncPointer {
             return_type: Some(proto_cdecl.ty).filter(|ty| *ty != CType::VOID),
-            name: proto_cdecl.name,
+            name: FuncPointerName(proto_cdecl.name),
             params: node
                 .children()
                 .filter(|child| child.has_tag_name("param"))
@@ -635,7 +635,7 @@ impl CommandParam {
 #[derive(Debug)]
 pub struct Command {
     pub return_type: Option<CType<'static>>,
-    pub name: &'static str,
+    pub name: CommandName,
     pub params: Vec<CommandParam>,
 }
 
@@ -650,7 +650,7 @@ impl Command {
         let proto_cdecl = CDecl::from_xml(CDeclMode::StructMember, proto.children());
         Command {
             return_type: Some(proto_cdecl.ty).filter(|ty| *ty != CType::VOID),
-            name: proto_cdecl.name,
+            name: CommandName(proto_cdecl.name),
             params: node
                 .children()
                 .filter(|child| child.has_tag_name("param"))
@@ -739,27 +739,31 @@ impl RequireEnumExtends {
 }
 
 #[derive(Debug)]
-pub struct RequireType {
-    pub name: TypeName,
+pub enum RequireType {
+    Type(TypeName),
+    FuncPointer(FuncPointerName),
 }
 
 impl RequireType {
     fn from_node(node: Node) -> RequireType {
-        RequireType {
-            name: TypeName(attribute(node, "name").unwrap()),
+        let name = attribute(node, "name").unwrap();
+        if name.starts_with("PFN_") {
+            RequireType::FuncPointer(FuncPointerName(name))
+        } else {
+            RequireType::Type(TypeName(name))
         }
     }
 }
 
 #[derive(Debug)]
 pub struct RequireCommand {
-    pub name: &'static str,
+    pub name: CommandName,
 }
 
 impl RequireCommand {
     fn from_node(node: Node) -> RequireCommand {
         RequireCommand {
-            name: attribute(node, "name").unwrap(),
+            name: CommandName(attribute(node, "name").unwrap()),
         }
     }
 }
