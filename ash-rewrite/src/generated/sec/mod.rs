@@ -3,3 +3,4 @@
 //!Extensions tagged SEC
 pub mod amigo_profiling;
 pub mod pipeline_cache_incremental_mode;
+pub mod ubm_surface;

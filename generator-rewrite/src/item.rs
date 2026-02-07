@@ -1,8 +1,8 @@
 use crate::output::CodeMap;
 use analysis::{
     item::{Items, TypeItem},
-    name::{ConstantName, FuncPointerName, TypeName},
     to_rust::NameTranslate,
+    xml::name::{ConstantName, FuncPointerName, TypeName},
 };
 use proc_macro2::TokenStream;
 use quote::quote;

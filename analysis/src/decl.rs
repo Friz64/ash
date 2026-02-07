@@ -1,7 +1,9 @@
 use crate::{
     item::RequireMap,
-    name::{ConstantName, FuncPointerName, TypeName},
-    xml::cdecl::{CArrayLen, CDecl, CType},
+    xml::{
+        cdecl::{CArrayLen, CDecl, CType},
+        name::{ConstantName, FuncPointerName, TypeName},
+    },
 };
 
 #[derive(Debug)]
