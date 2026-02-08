@@ -7,8 +7,6 @@ pub mod function;
 pub mod handle;
 pub mod structure;
 
-use std::collections::HashMap;
-
 use crate::{
     item::{
         alias::Alias,
@@ -27,6 +25,7 @@ use crate::{
     Library, LibraryName,
 };
 use indexmap::IndexMap;
+use std::collections::HashMap;
 use tracing::debug;
 
 #[derive(Debug, Clone, Copy, PartialEq, Eq, Hash)]
@@ -191,6 +190,15 @@ impl Items {
 
         iter_requires(libraries, |required_by, require| {
             for constant in &require.constants {
+                let waf = constant.name.original();
+                if constant.value.is_some()
+                    && !waf.starts_with("STD_VIDEO_")
+                    && !waf.ends_with("_EXTENSION_NAME")
+                    && !waf.ends_with("_SPEC_VERSION")
+                {
+                    panic!("{waf:?}");
+                }
+
                 if let Some(constant) = Constant::from_require(required_by, constant) {
                     items.constants.insert(constant.name(), constant);
                 }
