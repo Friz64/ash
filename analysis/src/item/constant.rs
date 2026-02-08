@@ -35,7 +35,7 @@ impl Constant {
         xml: &xml::BaseConstant,
     ) -> Option<Constant> {
         let required_by = *require_map.constant.get(&xml.name)?;
-        trace!(?required_by, "constructing from constant");
+        trace!(?required_by, "constructing from base constant");
 
         Some(Constant {
             required_by,

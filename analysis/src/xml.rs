@@ -138,6 +138,7 @@ pub struct Registry {
     pub structs: Vec<Structure>,
     pub struct_aliases: Vec<TypeAlias>,
     pub unions: Vec<Structure>,
+    pub macros: Vec<Macro>,
     pub constants: Vec<BaseConstant>,
     pub enums: Vec<Enum>,
     pub bitmask_bits: Vec<BitMaskBits>,
@@ -212,6 +213,11 @@ impl Registry {
                                 }
                                 Some("union") => {
                                     registry.unions.push(Structure::from_node(type_node, api));
+                                }
+                                Some("define") => {
+                                    if let Some(define) = Macro::from_node(type_node, api) {
+                                        registry.macros.push(define);
+                                    }
                                 }
                                 Some(_) => trace!("ignored"),
                                 None => {
@@ -496,6 +502,59 @@ impl Structure {
                 .map(StructureMember::from_node)
                 .collect(),
         }
+    }
+}
+
+#[derive(Debug)]
+pub struct Macro {}
+
+impl Macro {
+    fn from_node(node: Node, api: &str) -> Option<Macro> {
+        enum State {
+            Init,
+            GotDefine,
+            GotName,
+            Calling,
+        }
+
+        let mut state = State::Init;
+
+        for child in node.children() {
+            match child.node_type() {
+                NodeType::Element => match child.tag_name().name() {
+                    // "name" =>
+                    _ => unimplemented!(),
+                },
+                NodeType::Text => {}
+                _ => unimplemented!(),
+            }
+
+            // dbg!(child.node_type());
+            // child.node
+            if child.is_text() {
+                let processed_text: String = child
+                    .text()
+                    .unwrap()
+                    .lines()
+                    .map(|mut line| {
+                        if let Some(comment) = line.find("//") {
+                            line = &line[..comment];
+                        }
+
+                        line.trim_end_matches('\\').trim()
+                    })
+                    .filter(|s| !s.is_empty())
+                    .collect();
+
+                if !processed_text.is_empty() {
+                    dbg!(processed_text);
+                }
+            } else if child.is_element() {
+                println!("{} = {}", child.tag_name().name(), child.text().unwrap());
+            }
+        }
+
+        None
     }
 }
 
