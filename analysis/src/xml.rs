@@ -3,9 +3,10 @@ pub mod cexpr;
 pub mod depends;
 pub mod name;
 
-use crate::decl::CPrimaryType;
-use crate::xml::depends::Depends;
 use crate::LibraryName;
+use crate::decl::CPrimaryType;
+use crate::xml::cexpr::CExpr;
+use crate::xml::depends::Depends;
 use cdecl::{CDecl, CDeclMode, CTok, CType};
 use name::{CommandName, ConstantName, FuncPointerName, TypeName};
 use roxmltree::NodeType;
@@ -41,10 +42,16 @@ fn attribute_comma_separated(node: Node, name: &str) -> Vec<&'static str> {
         .unwrap_or_default()
 }
 
+/// Retrieves the text inside the `node`
+fn text(node: Node) -> &'static str {
+    leak(node.text_storage().unwrap().clone())
+}
+
 /// Retrieves the text inside the next child element of `node` named `name`.
 fn child_text(node: Node, name: &str) -> Option<&'static str> {
-    let child = node.children().find(|node| node.has_tag_name(name));
-    child.map(|node| leak(node.text_storage().unwrap().clone()))
+    node.children()
+        .find(|node| node.has_tag_name(name))
+        .map(text)
 }
 
 /// Returns [`true`] when the `node`'s "api" attribute matches the `expected` API.
@@ -68,16 +75,15 @@ impl CDecl<'static> {
     fn from_xml(mode: CDeclMode, children: roxmltree::Children<'_, 'static>) -> CDecl<'static> {
         let mut c_tokens = vec![];
         for child in children {
-            let text = || leak(child.text_storage().unwrap().clone());
             match child.node_type() {
                 NodeType::Text => {
-                    CTok::lex_into(text(), &mut c_tokens).unwrap();
+                    CTok::lex_into(text(child), &mut c_tokens).unwrap();
                 }
                 NodeType::Element => {
                     assert_eq!(child.attributes().len(), 0);
                     let text = || {
                         assert_eq!(child.children().count(), 1);
-                        text()
+                        text(child)
                     };
                     c_tokens.push(match child.tag_name().name() {
                         "comment" => continue,
@@ -510,50 +516,137 @@ pub struct Macro {}
 
 impl Macro {
     fn from_node(node: Node, api: &str) -> Option<Macro> {
-        enum State {
-            Init,
-            GotDefine,
-            GotName,
-            Calling,
-        }
-
-        let mut state = State::Init;
-
+        let mut want_define = true;
+        let c_expr = Vec::new();
         for child in node.children() {
-            match child.node_type() {
-                NodeType::Element => match child.tag_name().name() {
-                    // "name" =>
-                    _ => unimplemented!(),
-                },
-                NodeType::Text => {}
-                _ => unimplemented!(),
+            if want_define {
+                continue;
             }
 
-            // dbg!(child.node_type());
-            // child.node
+            match child.node_type() {
+                NodeType::Text => {
+                    CExpr::parse_into(text(child), &mut c_expr);
+                    // do we gonna do error handling?
+                }
+                NodeType::Element => {
+                    assert_eq!(child.attributes().len(), 0);
+                    let text = || {
+                        assert_eq!(child.children().count(), 1);
+                        text(child)
+                    };
+                    c_expr.push(match child.tag_name().name() {
+                        "type" => CTok::TypeName(text()),
+                        "name" => CTok::DeclName(text()),
+                        tag => unreachable!("unexpected `<{tag}>` in C declaration"),
+                    })
+                }
+                NodeType::Root | NodeType::PI | NodeType::Comment => unreachable!(),
+            }
+        }
+
+        /////////////////////////nnnnneeh
+        ///
+        /*
+
+        #[derive(Debug, PartialEq)]
+        enum Item {
+            Name(&'static str),
+            Type(&'static str),
+            Text(&'static str),
+        }
+
+        let mut items = node.children().flat_map(|child| {
             if child.is_text() {
-                let processed_text: String = child
-                    .text()
-                    .unwrap()
+                text(child)
                     .lines()
-                    .map(|mut line| {
+                    .filter_map(|mut line| {
                         if let Some(comment) = line.find("//") {
                             line = &line[..comment];
                         }
 
-                        line.trim_end_matches('\\').trim()
+                        let trimmed = line.trim_end_matches('\\').trim();
+                        (!trimmed.is_empty()).then_some(Item::Text(trimmed))
                     })
-                    .filter(|s| !s.is_empty())
-                    .collect();
-
-                if !processed_text.is_empty() {
-                    dbg!(processed_text);
-                }
+                    .collect()
             } else if child.is_element() {
-                println!("{} = {}", child.tag_name().name(), child.text().unwrap());
+                match child.tag_name().name() {
+                    "name" => vec![Item::Name(text(child))],
+                    "type" => vec![Item::Type(text(child))],
+                    _ => vec![],
+                }
+            } else {
+                vec![]
             }
+        });
+
+        if !matches!(items.next(), Some(Item::Text(t)) if t == "#define") {
+            println!("NOPE (#define)");
+            return None;
         }
 
+        println!("okay cool");
+
+        let Some(Item::Name(name)) = items.next() else {
+            println!("NOPE (name)");
+            return None;
+        };
+        dbg!(name);
+
+        enum CExpr {
+            Punct(&'static str),
+            Value(&'static str),
+            Cast {
+                to_type: &'static str,
+                expr: Box<CExpr>,
+            },
+            MacroCall {
+                macro_name: &'static str,
+                args: Vec<CExpr>,
+            },
+        }
+
+        #[derive(Default)]
+        struct Macro {
+            name: &'static str,
+            args: Vec<&'static str>,
+            cexpr: Vec<CExpr>,
+        }
+
+        let mut result = Macro::default();
+
+        let mut args_parsed = false;
+        let mut calling = None;
+        for item in items {
+            let der_foofer = match item {
+                Item::Name(..) => unreachable!(),
+                Item::Type(macro_name) => {
+                    calling = Some(macro_name);
+                    continue;
+                }
+                Item::Text(mut t) => {
+                    let mut eat_list = || {
+                        let mut list = Vec::new();
+                        if let Some(end) = t.find(')')
+                            && t.starts_with('(')
+                        {
+                            let (waf, new_t) = t.split_at(end + 1);
+                            list.extend(waf[1..waf.len() - 1].split(',').map(|s| s.trim()));
+                            t = new_t;
+                        }
+
+                        list
+                    };
+
+                    if !args_parsed {
+                        result.args = eat_list();
+                    } else if let Some(macro_name) = calling {
+                    }
+                }
+            };
+
+            args_parsed = true;
+        }
+        */
         None
     }
 }
