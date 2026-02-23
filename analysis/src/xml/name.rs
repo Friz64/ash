@@ -33,6 +33,19 @@ impl ConstantName {
 }
 
 #[derive(Debug, PartialEq, Eq, Hash, Clone, Copy)]
+pub struct MacroName(pub &'static str);
+
+impl MacroName {
+    pub fn original(&self) -> &'static str {
+        self.0
+    }
+
+    pub fn prefix_trimmed(&self) -> &'static str {
+        self.original().trim_start_matches("VK_")
+    }
+}
+
+#[derive(Debug, PartialEq, Eq, Hash, Clone, Copy)]
 pub struct FuncPointerName(pub &'static str);
 
 impl FuncPointerName {

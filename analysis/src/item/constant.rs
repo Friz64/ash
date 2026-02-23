@@ -40,7 +40,10 @@ impl Constant {
         Some(Constant {
             required_by,
             name: xml.name,
-            value: Value::Expression(Some(xml.ty), Expression(xml.value)),
+            value: Value::Expression(
+                Some(CPrimaryType::from_str(xml.ty).unwrap()),
+                Expression(xml.value),
+            ),
         })
     }
 

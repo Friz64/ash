@@ -43,7 +43,7 @@ pub enum DependsParseError {
 }
 
 impl Depends {
-    #[allow(clippy::should_implement_trait)] // we want a 'static input lifetime!!!
+    #[allow(clippy::should_implement_trait)] // we want a 'static input lifetime bc. of xml::Version
     pub fn from_str(input: &'static str) -> Result<Depends, DependsParseError> {
         if !input.is_ascii() {
             return Err(DependsParseError::NonAsciiInput);
