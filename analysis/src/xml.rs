@@ -4,11 +4,10 @@ pub mod depends;
 pub mod name;
 
 use crate::LibraryName;
-use crate::decl::CPrimaryType;
-use crate::xml::cexpr::CExpr;
-use crate::xml::depends::Depends;
 use cdecl::{CDecl, CDeclMode, CTok, CType};
-use name::{CommandName, ConstantName, FuncPointerName, TypeName};
+use cexpr::{CExprItem, CExprToks};
+use depends::Depends;
+use name::{CommandName, ConstantName, FuncPointerName, MacroName, TypeName};
 use roxmltree::NodeType;
 use roxmltree::StringStorage;
 use std::fmt::Write;
@@ -221,7 +220,7 @@ impl Registry {
                                     registry.unions.push(Structure::from_node(type_node, api));
                                 }
                                 Some("define") => {
-                                    if let Some(define) = Macro::from_node(type_node, api) {
+                                    if let Some(define) = Macro::from_node(type_node) {
                                         registry.macros.push(define);
                                     }
                                 }
@@ -512,148 +511,102 @@ impl Structure {
 }
 
 #[derive(Debug)]
-pub struct Macro {}
+pub struct Macro {
+    name: MacroName,
+    args: Vec<CExprToks<'static>>,
+    c_expr: CExprToks<'static>,
+}
 
 impl Macro {
-    fn from_node(node: Node, api: &str) -> Option<Macro> {
-        let mut want_define = true;
-        let c_expr = Vec::new();
-        for child in node.children() {
-            if want_define {
-                continue;
-            }
-
-            match child.node_type() {
-                NodeType::Text => {
-                    CExpr::parse_into(text(child), &mut c_expr);
-                    // do we gonna do error handling?
-                }
-                NodeType::Element => {
-                    assert_eq!(child.attributes().len(), 0);
-                    let text = || {
-                        assert_eq!(child.children().count(), 1);
-                        text(child)
-                    };
-                    c_expr.push(match child.tag_name().name() {
-                        "type" => CTok::TypeName(text()),
-                        "name" => CTok::DeclName(text()),
-                        tag => unreachable!("unexpected `<{tag}>` in C declaration"),
-                    })
-                }
-                NodeType::Root | NodeType::PI | NodeType::Comment => unreachable!(),
-            }
-        }
-
-        /////////////////////////nnnnneeh
-        ///
-        /*
-
+    fn from_node(node: Node) -> Option<Macro> {
         #[derive(Debug, PartialEq)]
         enum Item {
-            Name(&'static str),
-            Type(&'static str),
+            NameTag(&'static str),
+            TypeTag(&'static str),
             Text(&'static str),
         }
 
-        let mut items = node.children().flat_map(|child| {
-            if child.is_text() {
-                text(child)
-                    .lines()
-                    .filter_map(|mut line| {
-                        if let Some(comment) = line.find("//") {
-                            line = &line[..comment];
-                        }
+        let mut items = node.children().flat_map(|child| match child.node_type() {
+            NodeType::Text => text(child)
+                .lines()
+                .filter_map(|mut line| {
+                    if let Some(comment) = line.find("//") {
+                        line = &line[..comment];
+                    }
 
-                        let trimmed = line.trim_end_matches('\\').trim();
-                        (!trimmed.is_empty()).then_some(Item::Text(trimmed))
-                    })
-                    .collect()
-            } else if child.is_element() {
-                match child.tag_name().name() {
-                    "name" => vec![Item::Name(text(child))],
-                    "type" => vec![Item::Type(text(child))],
-                    _ => vec![],
-                }
-            } else {
-                vec![]
-            }
+                    let trimmed = line.trim_end_matches('\\').trim();
+                    (!trimmed.is_empty()).then_some(Item::Text(trimmed))
+                })
+                .collect(),
+            NodeType::Element => match child.tag_name().name() {
+                "name" => vec![Item::NameTag(text(child))],
+                "type" => vec![Item::TypeTag(text(child))],
+                tag => unreachable!("unexpected `<{tag}>` in define"),
+            },
+            NodeType::Root | NodeType::PI | NodeType::Comment => unreachable!(),
         });
 
         if !matches!(items.next(), Some(Item::Text(t)) if t == "#define") {
-            println!("NOPE (#define)");
+            trace!("missing #define");
             return None;
         }
 
-        println!("okay cool");
-
-        let Some(Item::Name(name)) = items.next() else {
-            println!("NOPE (name)");
-            return None;
+        let Some(Item::NameTag(name)) = items.next() else {
+            unreachable!("define has no name");
         };
-        dbg!(name);
 
-        enum CExpr {
-            Punct(&'static str),
-            Value(&'static str),
-            Cast {
-                to_type: &'static str,
-                expr: Box<CExpr>,
-            },
-            MacroCall {
-                macro_name: &'static str,
-                args: Vec<CExpr>,
-            },
+        if !name.contains("VERSION") {
+            trace!("not a relevant macro (no VERSION in name)");
+            return None;
         }
 
-        #[derive(Default)]
-        struct Macro {
-            name: &'static str,
-            args: Vec<&'static str>,
-            cexpr: Vec<CExpr>,
+        fn eat_list<'a>(s: &mut &'a str) -> Option<Vec<CExprToks<'a>>> {
+            s.find(')') // naive, but works for us
+                .filter(|_| s.starts_with('('))
+                .map(|end| {
+                    // `end` is before the closing brace
+                    let (a, b) = s.split_at(end);
+                    *s = &b[1..];
+                    a[1..].split(',').map(CExprItem::parse).collect()
+                })
         }
 
-        let mut result = Macro::default();
-
-        let mut args_parsed = false;
+        let mut c_expr = Vec::new();
+        let mut args = None;
         let mut calling = None;
         for item in items {
-            let der_foofer = match item {
-                Item::Name(..) => unreachable!(),
-                Item::Type(macro_name) => {
-                    calling = Some(macro_name);
-                    continue;
+            match item {
+                Item::NameTag(..) => unreachable!(),
+                Item::TypeTag(macro_name) => {
+                    calling = Some(MacroName(macro_name));
+                    args = Some(vec![]);
                 }
-                Item::Text(mut t) => {
-                    let mut eat_list = || {
-                        let mut list = Vec::new();
-                        if let Some(end) = t.find(')')
-                            && t.starts_with('(')
-                        {
-                            let (waf, new_t) = t.split_at(end + 1);
-                            list.extend(waf[1..waf.len() - 1].split(',').map(|s| s.trim()));
-                            t = new_t;
-                        }
-
-                        list
-                    };
-
-                    if !args_parsed {
-                        result.args = eat_list();
-                    } else if let Some(macro_name) = calling {
+                Item::Text(mut s) => {
+                    if args.is_none() {
+                        args = Some(eat_list(&mut s).unwrap_or_default());
+                    } else if let Some(macro_name) = calling.take() {
+                        c_expr.push(CExprItem::MacroCall {
+                            macro_name,
+                            args: eat_list(&mut s).unwrap_or_default(),
+                        });
                     }
-                }
-            };
 
-            args_parsed = true;
+                    CExprItem::parse_into(s, &mut c_expr);
+                }
+            }
         }
-        */
-        None
+
+        Some(Macro {
+            name: MacroName(name),
+            args: args?,
+            c_expr,
+        })
     }
 }
 
 #[derive(Debug)]
 pub struct BaseConstant {
-    pub ty: CPrimaryType,
+    pub ty: &'static str,
     pub value: &'static str,
     pub name: ConstantName,
 }
@@ -661,7 +614,7 @@ pub struct BaseConstant {
 impl BaseConstant {
     fn from_node(node: Node) -> BaseConstant {
         BaseConstant {
-            ty: CPrimaryType::from_str(attribute(node, "type").unwrap()).unwrap(),
+            ty: attribute(node, "type").unwrap(),
             value: attribute(node, "value").unwrap(),
             name: ConstantName(attribute(node, "name").unwrap()),
         }
