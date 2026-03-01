@@ -42,7 +42,7 @@ impl Constant {
             name: xml.name,
             value: Value::Expression(
                 Some(CPrimaryType::from_str(xml.ty).unwrap()),
-                Expression(xml.value),
+                Expression("todo!()"),
             ),
         })
     }
@@ -52,19 +52,19 @@ impl Constant {
         required_by: RequiredBy,
         xml: &xml::RequireConstant,
     ) -> Option<Constant> {
-        let xml_value = xml.value?;
+        // let xml_value = xml.value?;
         trace!("constructing from require constant");
 
-        let value = if let Some(string) = xml_value.strip_prefix('"') {
-            Value::LiteralString(string.strip_suffix('"').unwrap())
-        } else {
-            Value::Expression(None, Expression(xml_value))
-        };
+        // let value = if let Some(string) = xml_value.strip_prefix('"') {
+        //     Value::LiteralString(string.strip_suffix('"').unwrap())
+        // } else {
+        // Value::Expression(None, Expression(xml_value))
+        // };
 
         Some(Constant {
             required_by,
             name: xml.name,
-            value,
+            value: Value::Expression(None, Expression("todo!()")),
         })
     }
 }

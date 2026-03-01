@@ -31,7 +31,7 @@ impl ConstantName {
         self.original().trim_start_matches("VK_")
     }
 }
-
+    
 #[derive(Debug, PartialEq, Eq, Hash, Clone, Copy)]
 pub struct MacroName(pub &'static str);
 

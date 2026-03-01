@@ -1,52 +1,83 @@
 use crate::xml::name::MacroName;
 
-pub type CExprToks<'a> = Vec<CExprItem<'a>>;
+pub type CExprItems = Vec<CExprItem>;
 
 #[derive(Debug)]
-pub enum CExprItem<'a> {
+pub enum CExprItem {
     Punct(char),
-    IntLit(i128),   // ?
-    Value(&'a str), // separate into numbers and variables (and maybe even macro calls?????) quasi du checkst>?
-    // unsure about this one
-    Cast {
-        to_type: &'a str,
-        c_expr: CExprToks<'a>,
-    },
+    NumericLiteral(&'static str),
+    U32ArgVar(&'static str),
+    StringLiteral(&'static str),
     MacroCall {
         macro_name: MacroName,
-        args: Vec<CExprToks<'a>>,
+        args: Vec<CExprItems>,
     },
 }
 
-impl<'a> CExprItem<'a> {
-    pub(crate) fn parse(input: &'a str) -> CExprToks<'a> {
-        let mut c_expr = Vec::new();
-        Self::parse_into(input, &mut c_expr);
-        c_expr
-    }
+pub(crate) fn parse(input: &'static str) -> CExprItems {
+    assert!(input.is_ascii());
 
-    pub(crate) fn parse_into(input: &'a str, out: &mut impl Extend<CExprItem<'a>>) {
-        assert!(input.is_ascii());
-        let mut s = input;
-        while let Some(c) = s.chars().next() {
-            let is_value = |c: char| c.is_ascii_alphanumeric() || c == '_';
-            let item = if is_value(c) {
-                let len = s.chars().take_while(|&c| is_value(c)).count();
-                let (value, rest) = s.split_at(len);
-                s = rest;
-                // todo?
-                CExprItem::Value(value)
-            } else if c.is_ascii_punctuation() {
-                s = &s[1..];
-                CExprItem::Punct(c)
-            } else if c.is_ascii_whitespace() {
-                s = s.trim_start();
-                continue;
-            } else {
-                unreachable!("{s:?}");
-            };
-
-            out.extend([item]);
+    fn eat_char(s: &mut &str, c: char) -> bool {
+        if s.starts_with(c) {
+            *s = &s[1..];
+            return true;
         }
+
+        false
     }
+
+    let mut s = input;
+    let mut output = Vec::new();
+    let mut arg_expected = false;
+    while let Some(c) = s.chars().next() {
+        let is_value = |c: char| c.is_ascii_alphanumeric() || ['_', '.'].contains(&c);
+        let item = if is_value(c) {
+            let len = s.chars().take_while(|&c| is_value(c)).count();
+            let (mut value, rest) = s.split_at(len);
+            s = rest;
+
+            if matches!(output.last(), Some(CExprItem::Punct('(')))
+                && value == "uint32_t"
+                && eat_char(&mut s, ')')
+            {
+                output.pop(); // remove that '('
+                arg_expected = true;
+                continue;
+            } else if arg_expected {
+                arg_expected = false;
+                CExprItem::U32ArgVar(value)
+            } else if value.starts_with(|c: char| c.is_ascii_digit()) {
+                let lowercase = value.to_ascii_lowercase();
+                if let Some(stripped) = (lowercase.strip_suffix("ull"))
+                    .or_else(|| lowercase.strip_suffix("u"))
+                    .or_else(|| lowercase.strip_suffix("f"))
+                {
+                    value = &value[..stripped.len()];
+                }
+
+                CExprItem::NumericLiteral(value)
+            } else {
+                CExprItem::MacroCall {
+                    macro_name: MacroName(value),
+                    args: vec![],
+                }
+            }
+        } else if c == '"' {
+            let (value, rest) = s[1..].split_once('"').unwrap();
+            s = rest;
+            CExprItem::StringLiteral(value)
+        } else if c.is_ascii_punctuation() {
+            s = &s[1..];
+            CExprItem::Punct(c)
+        } else if c.is_ascii_whitespace() {
+            s = s.trim_start();
+            continue;
+        } else {
+            unreachable!("{s:?}");
+        };
+
+        output.push(item);
+    }
+
+    output
 }
