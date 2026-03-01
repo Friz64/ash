@@ -5,7 +5,7 @@ pub mod name;
 
 use crate::LibraryName;
 use cdecl::{CDecl, CDeclMode, CTok, CType};
-use cexpr::{CExprItem, CExprToks};
+use cexpr::{CExprItem, CExprItems};
 use depends::Depends;
 use name::{CommandName, ConstantName, FuncPointerName, MacroName, TypeName};
 use roxmltree::NodeType;
@@ -513,8 +513,8 @@ impl Structure {
 #[derive(Debug)]
 pub struct Macro {
     name: MacroName,
-    args: Vec<CExprToks<'static>>,
-    c_expr: CExprToks<'static>,
+    args: Vec<&'static str>,
+    c_expr: CExprItems,
 }
 
 impl Macro {
@@ -560,14 +560,14 @@ impl Macro {
             return None;
         }
 
-        fn eat_list<'a>(s: &mut &'a str) -> Option<Vec<CExprToks<'a>>> {
+        fn eat_list(s: &mut &'static str) -> Option<impl Iterator<Item = &'static str>> {
             s.find(')') // naive, but works for us
                 .filter(|_| s.starts_with('('))
                 .map(|end| {
                     // `end` is before the closing brace
                     let (a, b) = s.split_at(end);
                     *s = &b[1..];
-                    a[1..].split(',').map(CExprItem::parse).collect()
+                    a[1..].split(',').map(str::trim)
                 })
         }
 
@@ -583,15 +583,15 @@ impl Macro {
                 }
                 Item::Text(mut s) => {
                     if args.is_none() {
-                        args = Some(eat_list(&mut s).unwrap_or_default());
+                        args = Some(eat_list(&mut s).map(|i| i.collect()).unwrap_or_default());
                     } else if let Some(macro_name) = calling.take() {
-                        c_expr.push(CExprItem::MacroCall {
-                            macro_name,
-                            args: eat_list(&mut s).unwrap_or_default(),
-                        });
+                        let args = eat_list(&mut s)
+                            .map(|i| i.map(cexpr::parse).collect())
+                            .unwrap_or_default();
+                        c_expr.push(CExprItem::MacroCall { macro_name, args });
                     }
 
-                    CExprItem::parse_into(s, &mut c_expr);
+                    c_expr.extend(cexpr::parse(s));
                 }
             }
         }
@@ -607,7 +607,7 @@ impl Macro {
 #[derive(Debug)]
 pub struct BaseConstant {
     pub ty: &'static str,
-    pub value: &'static str,
+    pub value: CExprItems,
     pub name: ConstantName,
 }
 
@@ -615,7 +615,7 @@ impl BaseConstant {
     fn from_node(node: Node) -> BaseConstant {
         BaseConstant {
             ty: attribute(node, "type").unwrap(),
-            value: attribute(node, "value").unwrap(),
+            value: cexpr::parse(attribute(node, "value").unwrap()),
             name: ConstantName(attribute(node, "name").unwrap()),
         }
     }
@@ -623,14 +623,14 @@ impl BaseConstant {
 
 #[derive(Debug)]
 pub struct EnumValue {
-    pub value: &'static str,
+    pub value: CExprItems,
     pub name: &'static str,
 }
 
 impl EnumValue {
     fn from_node(node: Node) -> EnumValue {
         EnumValue {
-            value: attribute(node, "value").unwrap(),
+            value: cexpr::parse(attribute(node, "value").unwrap()),
             name: attribute(node, "name").unwrap(),
         }
     }
@@ -772,14 +772,14 @@ impl Command {
 pub struct RequireConstant {
     pub name: ConstantName,
     /// `Some` indicates a new constant being defined here.
-    pub value: Option<&'static str>,
+    pub value: Option<CExprItems>,
 }
 
 impl RequireConstant {
     fn from_node(node: Node) -> RequireConstant {
         RequireConstant {
             name: ConstantName(attribute(node, "name").unwrap()),
-            value: attribute(node, "value"),
+            value: attribute(node, "value").map(cexpr::parse),
         }
     }
 }
