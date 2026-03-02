@@ -50,5 +50,5 @@ pub struct DrawMeshTasksIndirectCommandEXT {
     pub group_count_y: u32,
     pub group_count_z: u32,
 }
-pub const EXT_MESH_SHADER_SPEC_VERSION: usize = 1;
+pub const EXT_MESH_SHADER_SPEC_VERSION: u32 = 1;
 pub const EXT_MESH_SHADER_EXTENSION_NAME: &core::ffi::CStr = c"VK_EXT_mesh_shader";

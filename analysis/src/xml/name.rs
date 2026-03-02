@@ -31,17 +31,23 @@ impl ConstantName {
         self.original().trim_start_matches("VK_")
     }
 }
-    
-#[derive(Debug, PartialEq, Eq, Hash, Clone, Copy)]
-pub struct MacroName(pub &'static str);
 
-impl MacroName {
+#[derive(Debug, PartialEq, Eq, Hash, Clone, Copy)]
+pub struct CMacroName(pub &'static str);
+
+impl CMacroName {
     pub fn original(&self) -> &'static str {
         self.0
     }
 
+    // for use as const name
     pub fn prefix_trimmed(&self) -> &'static str {
         self.original().trim_start_matches("VK_")
+    }
+
+    /// for use as function name
+    pub fn prefix_trimmed_lowercase(&self) -> String {
+        self.prefix_trimmed().to_ascii_lowercase()
     }
 }
 

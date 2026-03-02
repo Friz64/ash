@@ -8,5 +8,5 @@ pub struct PhysicalDevicePerStageDescriptorSetFeaturesNV {
     pub per_stage_descriptor_set: crate::vk::Bool32,
     pub dynamic_pipeline_layout: crate::vk::Bool32,
 }
-pub const NV_PER_STAGE_DESCRIPTOR_SET_SPEC_VERSION: usize = 1;
+pub const NV_PER_STAGE_DESCRIPTOR_SET_SPEC_VERSION: u32 = 1;
 pub const NV_PER_STAGE_DESCRIPTOR_SET_EXTENSION_NAME: &core::ffi::CStr = c"VK_NV_per_stage_descriptor_set";

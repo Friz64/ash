@@ -465,3 +465,4 @@ pub struct HostImageCopyFlagBits(pub(crate) i32);
 #[repr(transparent)]
 pub struct MemoryUnmapFlagBits(pub(crate) i32);
 pub const MAX_GLOBAL_PRIORITY_SIZE: u32 = 16;
+pub const API_VERSION_1_4: u32 = crate::vk::make_api_version(0, 1, 4, 0);

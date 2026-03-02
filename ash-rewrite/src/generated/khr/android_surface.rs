@@ -13,5 +13,5 @@ pub struct AndroidSurfaceCreateFlagsKHR(pub(crate) i32);
 #[repr(transparent)]
 #[allow(non_camel_case_types)]
 pub struct ANativeWindow(pub(crate) i16);
-pub const KHR_ANDROID_SURFACE_SPEC_VERSION: usize = 6;
+pub const KHR_ANDROID_SURFACE_SPEC_VERSION: u32 = 6;
 pub const KHR_ANDROID_SURFACE_EXTENSION_NAME: &core::ffi::CStr = c"VK_KHR_android_surface";

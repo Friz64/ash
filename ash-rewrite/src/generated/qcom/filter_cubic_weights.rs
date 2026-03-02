@@ -21,5 +21,5 @@ pub struct BlitImageCubicWeightsInfoQCOM {
 }
 #[repr(transparent)]
 pub struct CubicFilterWeightsQCOM(pub(crate) i32);
-pub const QCOM_FILTER_CUBIC_WEIGHTS_SPEC_VERSION: usize = 1;
+pub const QCOM_FILTER_CUBIC_WEIGHTS_SPEC_VERSION: u32 = 1;
 pub const QCOM_FILTER_CUBIC_WEIGHTS_EXTENSION_NAME: &core::ffi::CStr = c"VK_QCOM_filter_cubic_weights";

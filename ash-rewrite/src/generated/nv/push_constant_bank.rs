@@ -22,5 +22,5 @@ pub struct PhysicalDevicePushConstantBankPropertiesNV {
     pub max_graphics_push_data_banks: u32,
     pub max_compute_push_data_banks: u32,
 }
-pub const NV_PUSH_CONSTANT_BANK_SPEC_VERSION: usize = 1;
+pub const NV_PUSH_CONSTANT_BANK_SPEC_VERSION: u32 = 1;
 pub const NV_PUSH_CONSTANT_BANK_EXTENSION_NAME: &core::ffi::CStr = c"VK_NV_push_constant_bank";

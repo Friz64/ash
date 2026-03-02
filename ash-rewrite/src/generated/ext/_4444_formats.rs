@@ -8,5 +8,5 @@ pub struct PhysicalDevice4444FormatsFeaturesEXT {
     pub format_a4r4g4b4: crate::vk::Bool32,
     pub format_a4b4g4r4: crate::vk::Bool32,
 }
-pub const EXT_4444_FORMATS_SPEC_VERSION: usize = 1;
+pub const EXT_4444_FORMATS_SPEC_VERSION: u32 = 1;
 pub const EXT_4444_FORMATS_EXTENSION_NAME: &core::ffi::CStr = c"VK_EXT_4444_formats";

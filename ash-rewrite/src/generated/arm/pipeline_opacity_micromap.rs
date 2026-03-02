@@ -7,5 +7,5 @@ pub struct PhysicalDevicePipelineOpacityMicromapFeaturesARM {
     pub p_next: *mut core::ffi::c_void,
     pub pipeline_opacity_micromap: crate::vk::Bool32,
 }
-pub const ARM_PIPELINE_OPACITY_MICROMAP_SPEC_VERSION: usize = 1;
+pub const ARM_PIPELINE_OPACITY_MICROMAP_SPEC_VERSION: u32 = 1;
 pub const ARM_PIPELINE_OPACITY_MICROMAP_EXTENSION_NAME: &core::ffi::CStr = c"VK_ARM_pipeline_opacity_micromap";

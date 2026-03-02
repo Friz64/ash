@@ -75,5 +75,10 @@ pub struct StdVideoDecodeAV1ReferenceInfo {
     pub order_hint: u8,
     pub saved_order_hints: [u8; crate::vk::STD_VIDEO_AV1_NUM_REF_FRAMES as _],
 }
-pub const STD_VULKAN_VIDEO_CODEC_AV1_DECODE_SPEC_VERSION: usize = 69420;
+pub const STD_VULKAN_VIDEO_CODEC_AV1_DECODE_SPEC_VERSION: u32 = crate::vk::STD_VULKAN_VIDEO_CODEC_AV1_DECODE_API_VERSION_1_0_0;
 pub const STD_VULKAN_VIDEO_CODEC_AV1_DECODE_EXTENSION_NAME: &core::ffi::CStr = c"VK_STD_vulkan_video_codec_av1_decode";
+pub const STD_VULKAN_VIDEO_CODEC_AV1_DECODE_API_VERSION_1_0_0: u32 = crate::vk::make_video_std_version(
+    1,
+    0,
+    0,
+);

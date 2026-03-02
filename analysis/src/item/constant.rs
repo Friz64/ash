@@ -1,25 +1,26 @@
 use crate::{
     decl::CPrimaryType,
     item::{Named, RequireMap, RequiredBy},
-    xml::{self, name::ConstantName},
+    xml::{
+        self,
+        cexpr::{CExprItem, CExprItems},
+        name::ConstantName,
+    },
 };
 use tracing::{instrument, trace};
 
 #[derive(Debug)]
-pub struct Expression(pub &'static str);
-
-// does this is sense????? ?
-#[derive(Debug)]
-pub enum Value {
-    LiteralString(&'static str),
-    Expression(Option<CPrimaryType>, Expression),
+pub enum ConstantType {
+    Integer(CPrimaryType),
+    String,
 }
 
 #[derive(Debug)]
 pub struct Constant {
     pub required_by: RequiredBy,
     pub name: ConstantName,
-    pub value: Value,
+    pub ty: ConstantType,
+    pub value: CExprItems,
 }
 
 impl Named<ConstantName> for Constant {
@@ -40,10 +41,8 @@ impl Constant {
         Some(Constant {
             required_by,
             name: xml.name,
-            value: Value::Expression(
-                Some(CPrimaryType::from_str(xml.ty).unwrap()),
-                Expression("todo!()"),
-            ),
+            ty: ConstantType::Integer(CPrimaryType::from_str(xml.ty).unwrap()),
+            value: xml.value.clone(),
         })
     }
 
@@ -52,19 +51,20 @@ impl Constant {
         required_by: RequiredBy,
         xml: &xml::RequireConstant,
     ) -> Option<Constant> {
-        // let xml_value = xml.value?;
-        trace!("constructing from require constant");
+        trace!(?required_by, "constructing from require constant");
 
-        // let value = if let Some(string) = xml_value.strip_prefix('"') {
-        //     Value::LiteralString(string.strip_suffix('"').unwrap())
-        // } else {
-        // Value::Expression(None, Expression(xml_value))
-        // };
+        let Some(value) = &xml.value else {
+            return None;
+        };
 
         Some(Constant {
             required_by,
             name: xml.name,
-            value: Value::Expression(None, Expression("todo!()")),
+            ty: match value.as_slice() {
+                [CExprItem::StringLiteral(..)] => ConstantType::String,
+                _ => ConstantType::Integer(CPrimaryType::UInt32),
+            },
+            value: value.clone(),
         })
     }
 }

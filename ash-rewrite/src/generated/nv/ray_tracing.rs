@@ -135,5 +135,5 @@ pub type GeometryInstanceFlagsNV = crate::vk::GeometryInstanceFlagsKHR;
 pub type BuildAccelerationStructureFlagsNV = crate::vk::BuildAccelerationStructureFlagsKHR;
 #[repr(transparent)]
 pub struct AccelerationStructureNV(pub(crate) i32);
-pub const NV_RAY_TRACING_SPEC_VERSION: usize = 3;
+pub const NV_RAY_TRACING_SPEC_VERSION: u32 = 3;
 pub const NV_RAY_TRACING_EXTENSION_NAME: &core::ffi::CStr = c"VK_NV_ray_tracing";

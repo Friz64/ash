@@ -25,5 +25,5 @@ pub struct PresentTimeGOOGLE {
     pub present_id: u32,
     pub desired_present_time: u64,
 }
-pub const GOOGLE_DISPLAY_TIMING_SPEC_VERSION: usize = 1;
+pub const GOOGLE_DISPLAY_TIMING_SPEC_VERSION: u32 = 1;
 pub const GOOGLE_DISPLAY_TIMING_EXTENSION_NAME: &core::ffi::CStr = c"VK_GOOGLE_display_timing";

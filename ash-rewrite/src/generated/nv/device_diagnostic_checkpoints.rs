@@ -27,5 +27,5 @@ pub struct CheckpointData2NV {
     pub stage: crate::vk::PipelineStageFlags2,
     pub p_checkpoint_marker: *mut core::ffi::c_void,
 }
-pub const NV_DEVICE_DIAGNOSTIC_CHECKPOINTS_SPEC_VERSION: usize = 2;
+pub const NV_DEVICE_DIAGNOSTIC_CHECKPOINTS_SPEC_VERSION: u32 = 2;
 pub const NV_DEVICE_DIAGNOSTIC_CHECKPOINTS_EXTENSION_NAME: &core::ffi::CStr = c"VK_NV_device_diagnostic_checkpoints";

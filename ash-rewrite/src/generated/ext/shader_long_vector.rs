@@ -13,5 +13,5 @@ pub struct PhysicalDeviceShaderLongVectorPropertiesEXT {
     pub p_next: *mut core::ffi::c_void,
     pub max_vector_components: u32,
 }
-pub const EXT_SHADER_LONG_VECTOR_SPEC_VERSION: usize = 1;
+pub const EXT_SHADER_LONG_VECTOR_SPEC_VERSION: u32 = 1;
 pub const EXT_SHADER_LONG_VECTOR_EXTENSION_NAME: &core::ffi::CStr = c"VK_EXT_shader_long_vector";

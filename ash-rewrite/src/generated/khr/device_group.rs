@@ -60,5 +60,5 @@ pub type PeerMemoryFeatureFlagsKHR = crate::vk::PeerMemoryFeatureFlags;
 pub type MemoryAllocateFlagsKHR = crate::vk::MemoryAllocateFlags;
 #[repr(transparent)]
 pub struct DeviceGroupPresentModeFlagBitsKHR(pub(crate) i32);
-pub const KHR_DEVICE_GROUP_SPEC_VERSION: usize = 4;
+pub const KHR_DEVICE_GROUP_SPEC_VERSION: u32 = 4;
 pub const KHR_DEVICE_GROUP_EXTENSION_NAME: &core::ffi::CStr = c"VK_KHR_device_group";

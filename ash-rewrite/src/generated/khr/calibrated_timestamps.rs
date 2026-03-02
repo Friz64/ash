@@ -9,5 +9,5 @@ pub struct CalibratedTimestampInfoKHR {
 }
 #[repr(transparent)]
 pub struct TimeDomainKHR(pub(crate) i32);
-pub const KHR_CALIBRATED_TIMESTAMPS_SPEC_VERSION: usize = 1;
+pub const KHR_CALIBRATED_TIMESTAMPS_SPEC_VERSION: u32 = 1;
 pub const KHR_CALIBRATED_TIMESTAMPS_EXTENSION_NAME: &core::ffi::CStr = c"VK_KHR_calibrated_timestamps";

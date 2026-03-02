@@ -55,5 +55,5 @@ pub struct DispatchTileInfoQCOM {
 pub struct TileShadingRenderPassFlagsQCOM(pub(crate) i32);
 #[repr(transparent)]
 pub struct TileShadingRenderPassFlagBitsQCOM(pub(crate) i32);
-pub const QCOM_TILE_SHADING_SPEC_VERSION: usize = 2;
+pub const QCOM_TILE_SHADING_SPEC_VERSION: u32 = 2;
 pub const QCOM_TILE_SHADING_EXTENSION_NAME: &core::ffi::CStr = c"VK_QCOM_tile_shading";

@@ -14,5 +14,5 @@ pub struct PhysicalDevicePresentMeteringFeaturesNV {
     pub p_next: *mut core::ffi::c_void,
     pub present_metering: crate::vk::Bool32,
 }
-pub const NV_PRESENT_METERING_SPEC_VERSION: usize = 1;
+pub const NV_PRESENT_METERING_SPEC_VERSION: u32 = 1;
 pub const NV_PRESENT_METERING_EXTENSION_NAME: &core::ffi::CStr = c"VK_NV_present_metering";

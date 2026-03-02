@@ -55,5 +55,5 @@ pub struct DeviceFaultVendorBinaryHeaderVersionOneEXT {
 pub struct DeviceFaultAddressTypeEXT(pub(crate) i32);
 #[repr(transparent)]
 pub struct DeviceFaultVendorBinaryHeaderVersionEXT(pub(crate) i32);
-pub const EXT_DEVICE_FAULT_SPEC_VERSION: usize = 2;
+pub const EXT_DEVICE_FAULT_SPEC_VERSION: u32 = 2;
 pub const EXT_DEVICE_FAULT_EXTENSION_NAME: &core::ffi::CStr = c"VK_EXT_device_fault";

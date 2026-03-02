@@ -14,5 +14,5 @@ pub struct PhysicalDeviceHdrVividFeaturesHUAWEI {
     pub p_next: *mut core::ffi::c_void,
     pub hdr_vivid: crate::vk::Bool32,
 }
-pub const HUAWEI_HDR_VIVID_SPEC_VERSION: usize = 1;
+pub const HUAWEI_HDR_VIVID_SPEC_VERSION: u32 = 1;
 pub const HUAWEI_HDR_VIVID_EXTENSION_NAME: &core::ffi::CStr = c"VK_HUAWEI_hdr_vivid";

@@ -42,5 +42,5 @@ pub struct PhysicalDeviceRayTracingLinearSweptSpheresFeaturesNV {
 pub struct RayTracingLssIndexingModeNV(pub(crate) i32);
 #[repr(transparent)]
 pub struct RayTracingLssPrimitiveEndCapsModeNV(pub(crate) i32);
-pub const NV_RAY_TRACING_LINEAR_SWEPT_SPHERES_SPEC_VERSION: usize = 1;
+pub const NV_RAY_TRACING_LINEAR_SWEPT_SPHERES_SPEC_VERSION: u32 = 1;
 pub const NV_RAY_TRACING_LINEAR_SWEPT_SPHERES_EXTENSION_NAME: &core::ffi::CStr = c"VK_NV_ray_tracing_linear_swept_spheres";

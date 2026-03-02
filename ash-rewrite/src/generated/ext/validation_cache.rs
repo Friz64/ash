@@ -21,5 +21,5 @@ pub struct ValidationCacheHeaderVersionEXT(pub(crate) i32);
 pub struct ValidationCacheCreateFlagsEXT(pub(crate) i32);
 #[repr(transparent)]
 pub struct ValidationCacheEXT(pub(crate) i32);
-pub const EXT_VALIDATION_CACHE_SPEC_VERSION: usize = 1;
+pub const EXT_VALIDATION_CACHE_SPEC_VERSION: u32 = 1;
 pub const EXT_VALIDATION_CACHE_EXTENSION_NAME: &core::ffi::CStr = c"VK_EXT_validation_cache";

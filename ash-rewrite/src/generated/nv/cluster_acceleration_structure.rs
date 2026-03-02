@@ -179,5 +179,5 @@ pub struct ClusterAccelerationStructureClusterFlagBitsNV(pub(crate) i32);
 pub struct ClusterAccelerationStructureGeometryFlagBitsNV(pub(crate) i32);
 #[repr(transparent)]
 pub struct ClusterAccelerationStructureAddressResolutionFlagBitsNV(pub(crate) i32);
-pub const NV_CLUSTER_ACCELERATION_STRUCTURE_SPEC_VERSION: usize = 4;
+pub const NV_CLUSTER_ACCELERATION_STRUCTURE_SPEC_VERSION: u32 = 4;
 pub const NV_CLUSTER_ACCELERATION_STRUCTURE_EXTENSION_NAME: &core::ffi::CStr = c"VK_NV_cluster_acceleration_structure";

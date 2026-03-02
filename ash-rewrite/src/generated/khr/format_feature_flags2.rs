@@ -4,5 +4,5 @@
 pub type FormatProperties3KHR = crate::vk::FormatProperties3;
 pub type FormatFeatureFlagBits2KHR = crate::vk::FormatFeatureFlagBits2;
 pub type FormatFeatureFlags2KHR = crate::vk::FormatFeatureFlags2;
-pub const KHR_FORMAT_FEATURE_FLAGS_2_SPEC_VERSION: usize = 2;
+pub const KHR_FORMAT_FEATURE_FLAGS_2_SPEC_VERSION: u32 = 2;
 pub const KHR_FORMAT_FEATURE_FLAGS_2_EXTENSION_NAME: &core::ffi::CStr = c"VK_KHR_format_feature_flags2";

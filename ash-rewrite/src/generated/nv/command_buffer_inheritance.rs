@@ -7,5 +7,5 @@ pub struct PhysicalDeviceCommandBufferInheritanceFeaturesNV {
     pub p_next: *mut core::ffi::c_void,
     pub command_buffer_inheritance: crate::vk::Bool32,
 }
-pub const NV_COMMAND_BUFFER_INHERITANCE_SPEC_VERSION: usize = 1;
+pub const NV_COMMAND_BUFFER_INHERITANCE_SPEC_VERSION: u32 = 1;
 pub const NV_COMMAND_BUFFER_INHERITANCE_EXTENSION_NAME: &core::ffi::CStr = c"VK_NV_command_buffer_inheritance";

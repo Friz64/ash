@@ -19,5 +19,5 @@ pub struct ImageAlignmentControlCreateInfoMESA {
     pub p_next: *const core::ffi::c_void,
     pub maximum_requested_alignment: u32,
 }
-pub const MESA_IMAGE_ALIGNMENT_CONTROL_SPEC_VERSION: usize = 1;
+pub const MESA_IMAGE_ALIGNMENT_CONTROL_SPEC_VERSION: u32 = 1;
 pub const MESA_IMAGE_ALIGNMENT_CONTROL_EXTENSION_NAME: &core::ffi::CStr = c"VK_MESA_image_alignment_control";

@@ -57,5 +57,5 @@ pub struct MultisamplePropertiesEXT {
     pub p_next: *mut core::ffi::c_void,
     pub max_sample_location_grid_size: crate::vk::Extent2D,
 }
-pub const EXT_SAMPLE_LOCATIONS_SPEC_VERSION: usize = 1;
+pub const EXT_SAMPLE_LOCATIONS_SPEC_VERSION: u32 = 1;
 pub const EXT_SAMPLE_LOCATIONS_EXTENSION_NAME: &core::ffi::CStr = c"VK_EXT_sample_locations";

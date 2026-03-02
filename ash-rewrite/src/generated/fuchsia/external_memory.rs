@@ -21,5 +21,5 @@ pub struct MemoryGetZirconHandleInfoFUCHSIA {
     pub memory: crate::vk::DeviceMemory,
     pub handle_type: crate::vk::ExternalMemoryHandleTypeFlagBits,
 }
-pub const FUCHSIA_EXTERNAL_MEMORY_SPEC_VERSION: usize = 1;
+pub const FUCHSIA_EXTERNAL_MEMORY_SPEC_VERSION: u32 = 1;
 pub const FUCHSIA_EXTERNAL_MEMORY_EXTENSION_NAME: &core::ffi::CStr = c"VK_FUCHSIA_external_memory";

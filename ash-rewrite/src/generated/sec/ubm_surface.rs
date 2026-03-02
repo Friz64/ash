@@ -6,10 +6,10 @@ pub struct UbmSurfaceCreateInfoSEC {
     pub s_type: crate::vk::StructureType,
     pub p_next: *const core::ffi::c_void,
     pub flags: crate::vk::UbmSurfaceCreateFlagsSEC,
-    pub ubm_device: *mut crate::platform_types::ubm_device,
-    pub ubm_surface: *mut crate::platform_types::ubm_surface,
+    pub device: *mut crate::platform_types::ubm_device,
+    pub surface: *mut crate::platform_types::ubm_surface,
 }
 #[repr(transparent)]
 pub struct UbmSurfaceCreateFlagsSEC(pub(crate) i32);
-pub const SEC_UBM_SURFACE_SPEC_VERSION: usize = 1;
+pub const SEC_UBM_SURFACE_SPEC_VERSION: u32 = 1;
 pub const SEC_UBM_SURFACE_EXTENSION_NAME: &core::ffi::CStr = c"VK_SEC_ubm_surface";

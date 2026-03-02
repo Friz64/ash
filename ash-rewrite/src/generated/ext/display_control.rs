@@ -31,5 +31,5 @@ pub struct DisplayPowerStateEXT(pub(crate) i32);
 pub struct DeviceEventTypeEXT(pub(crate) i32);
 #[repr(transparent)]
 pub struct DisplayEventTypeEXT(pub(crate) i32);
-pub const EXT_DISPLAY_CONTROL_SPEC_VERSION: usize = 1;
+pub const EXT_DISPLAY_CONTROL_SPEC_VERSION: u32 = 1;
 pub const EXT_DISPLAY_CONTROL_EXTENSION_NAME: &core::ffi::CStr = c"VK_EXT_display_control";

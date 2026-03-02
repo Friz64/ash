@@ -4,5 +4,5 @@
 pub type ConformanceVersionKHR = crate::vk::ConformanceVersion;
 pub type PhysicalDeviceDriverPropertiesKHR = crate::vk::PhysicalDeviceDriverProperties;
 pub type DriverIdKHR = crate::vk::DriverId;
-pub const KHR_DRIVER_PROPERTIES_SPEC_VERSION: usize = 1;
+pub const KHR_DRIVER_PROPERTIES_SPEC_VERSION: u32 = 1;
 pub const KHR_DRIVER_PROPERTIES_EXTENSION_NAME: &core::ffi::CStr = c"VK_KHR_driver_properties";

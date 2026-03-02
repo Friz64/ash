@@ -57,5 +57,5 @@ pub struct PipelineExecutableStatisticValueKHR {
 }
 #[repr(transparent)]
 pub struct PipelineExecutableStatisticFormatKHR(pub(crate) i32);
-pub const KHR_PIPELINE_EXECUTABLE_PROPERTIES_SPEC_VERSION: usize = 1;
+pub const KHR_PIPELINE_EXECUTABLE_PROPERTIES_SPEC_VERSION: u32 = 1;
 pub const KHR_PIPELINE_EXECUTABLE_PROPERTIES_EXTENSION_NAME: &core::ffi::CStr = c"VK_KHR_pipeline_executable_properties";

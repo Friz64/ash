@@ -17,5 +17,5 @@ pub struct SemaphoreGetFdInfoKHR {
     pub semaphore: crate::vk::Semaphore,
     pub handle_type: crate::vk::ExternalSemaphoreHandleTypeFlagBits,
 }
-pub const KHR_EXTERNAL_SEMAPHORE_FD_SPEC_VERSION: usize = 1;
+pub const KHR_EXTERNAL_SEMAPHORE_FD_SPEC_VERSION: u32 = 1;
 pub const KHR_EXTERNAL_SEMAPHORE_FD_EXTENSION_NAME: &core::ffi::CStr = c"VK_KHR_external_semaphore_fd";

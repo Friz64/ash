@@ -10,5 +10,5 @@ pub type SemaphoreSignalInfoKHR = crate::vk::SemaphoreSignalInfo;
 pub type SemaphoreTypeKHR = crate::vk::SemaphoreType;
 pub type SemaphoreWaitFlagBitsKHR = crate::vk::SemaphoreWaitFlagBits;
 pub type SemaphoreWaitFlagsKHR = crate::vk::SemaphoreWaitFlags;
-pub const KHR_TIMELINE_SEMAPHORE_SPEC_VERSION: usize = 2;
+pub const KHR_TIMELINE_SEMAPHORE_SPEC_VERSION: u32 = 2;
 pub const KHR_TIMELINE_SEMAPHORE_EXTENSION_NAME: &core::ffi::CStr = c"VK_KHR_timeline_semaphore";

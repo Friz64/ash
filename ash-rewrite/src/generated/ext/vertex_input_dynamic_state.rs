@@ -7,5 +7,5 @@ pub struct PhysicalDeviceVertexInputDynamicStateFeaturesEXT {
     pub p_next: *mut core::ffi::c_void,
     pub vertex_input_dynamic_state: crate::vk::Bool32,
 }
-pub const EXT_VERTEX_INPUT_DYNAMIC_STATE_SPEC_VERSION: usize = 2;
+pub const EXT_VERTEX_INPUT_DYNAMIC_STATE_SPEC_VERSION: u32 = 2;
 pub const EXT_VERTEX_INPUT_DYNAMIC_STATE_EXTENSION_NAME: &core::ffi::CStr = c"VK_EXT_vertex_input_dynamic_state";

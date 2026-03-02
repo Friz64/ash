@@ -11,5 +11,5 @@ pub type SamplerYcbcrModelConversionKHR = crate::vk::SamplerYcbcrModelConversion
 pub type SamplerYcbcrRangeKHR = crate::vk::SamplerYcbcrRange;
 pub type ChromaLocationKHR = crate::vk::ChromaLocation;
 pub type SamplerYcbcrConversionKHR = crate::vk::SamplerYcbcrConversion;
-pub const KHR_SAMPLER_YCBCR_CONVERSION_SPEC_VERSION: usize = 14;
+pub const KHR_SAMPLER_YCBCR_CONVERSION_SPEC_VERSION: u32 = 14;
 pub const KHR_SAMPLER_YCBCR_CONVERSION_EXTENSION_NAME: &core::ffi::CStr = c"VK_KHR_sampler_ycbcr_conversion";

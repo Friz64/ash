@@ -132,5 +132,5 @@ pub struct DescriptorDataEXT {
     p_storage_buffer: *const crate::vk::DescriptorAddressInfoEXT,
     acceleration_structure: crate::vk::DeviceAddress,
 }
-pub const EXT_DESCRIPTOR_BUFFER_SPEC_VERSION: usize = 1;
+pub const EXT_DESCRIPTOR_BUFFER_SPEC_VERSION: u32 = 1;
 pub const EXT_DESCRIPTOR_BUFFER_EXTENSION_NAME: &core::ffi::CStr = c"VK_EXT_descriptor_buffer";

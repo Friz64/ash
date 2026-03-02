@@ -109,5 +109,10 @@ pub struct StdVideoEncodeAV1ReferenceInfo {
     pub reserved1: [u8; 3 as _],
     pub p_extension_header: *const crate::vk::StdVideoEncodeAV1ExtensionHeader,
 }
-pub const STD_VULKAN_VIDEO_CODEC_AV1_ENCODE_SPEC_VERSION: usize = 69420;
+pub const STD_VULKAN_VIDEO_CODEC_AV1_ENCODE_SPEC_VERSION: u32 = crate::vk::STD_VULKAN_VIDEO_CODEC_AV1_ENCODE_API_VERSION_1_0_0;
 pub const STD_VULKAN_VIDEO_CODEC_AV1_ENCODE_EXTENSION_NAME: &core::ffi::CStr = c"VK_STD_vulkan_video_codec_av1_encode";
+pub const STD_VULKAN_VIDEO_CODEC_AV1_ENCODE_API_VERSION_1_0_0: u32 = crate::vk::make_video_std_version(
+    1,
+    0,
+    0,
+);

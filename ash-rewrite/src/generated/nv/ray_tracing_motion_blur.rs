@@ -78,5 +78,5 @@ pub struct AccelerationStructureMotionInstanceTypeNV(pub(crate) i32);
 pub struct AccelerationStructureMotionInfoFlagsNV(pub(crate) i32);
 #[repr(transparent)]
 pub struct AccelerationStructureMotionInstanceFlagsNV(pub(crate) i32);
-pub const NV_RAY_TRACING_MOTION_BLUR_SPEC_VERSION: usize = 1;
+pub const NV_RAY_TRACING_MOTION_BLUR_SPEC_VERSION: u32 = 1;
 pub const NV_RAY_TRACING_MOTION_BLUR_EXTENSION_NAME: &core::ffi::CStr = c"VK_NV_ray_tracing_motion_blur";

@@ -31,5 +31,5 @@ pub struct DrawMeshTasksIndirectCommandNV {
     pub task_count: u32,
     pub first_task: u32,
 }
-pub const NV_MESH_SHADER_SPEC_VERSION: usize = 1;
+pub const NV_MESH_SHADER_SPEC_VERSION: u32 = 1;
 pub const NV_MESH_SHADER_EXTENSION_NAME: &core::ffi::CStr = c"VK_NV_mesh_shader";

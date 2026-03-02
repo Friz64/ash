@@ -9,5 +9,5 @@ pub struct PhysicalDeviceFragmentShaderInterlockFeaturesEXT {
     pub fragment_shader_pixel_interlock: crate::vk::Bool32,
     pub fragment_shader_shading_rate_interlock: crate::vk::Bool32,
 }
-pub const EXT_FRAGMENT_SHADER_INTERLOCK_SPEC_VERSION: usize = 1;
+pub const EXT_FRAGMENT_SHADER_INTERLOCK_SPEC_VERSION: u32 = 1;
 pub const EXT_FRAGMENT_SHADER_INTERLOCK_EXTENSION_NAME: &core::ffi::CStr = c"VK_EXT_fragment_shader_interlock";

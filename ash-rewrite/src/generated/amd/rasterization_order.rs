@@ -9,5 +9,5 @@ pub struct PipelineRasterizationStateRasterizationOrderAMD {
 }
 #[repr(transparent)]
 pub struct RasterizationOrderAMD(pub(crate) i32);
-pub const AMD_RASTERIZATION_ORDER_SPEC_VERSION: usize = 1;
+pub const AMD_RASTERIZATION_ORDER_SPEC_VERSION: u32 = 1;
 pub const AMD_RASTERIZATION_ORDER_EXTENSION_NAME: &core::ffi::CStr = c"VK_AMD_rasterization_order";

@@ -22,5 +22,5 @@ pub struct DirectDriverLoadingModeLUNARG(pub(crate) i32);
 pub struct DirectDriverLoadingFlagsLUNARG(pub(crate) i32);
 #[allow(non_camel_case_types)]
 pub type PFN_vkGetInstanceProcAddrLUNARG = Option<()>;
-pub const LUNARG_DIRECT_DRIVER_LOADING_SPEC_VERSION: usize = 1;
+pub const LUNARG_DIRECT_DRIVER_LOADING_SPEC_VERSION: u32 = 1;
 pub const LUNARG_DIRECT_DRIVER_LOADING_EXTENSION_NAME: &core::ffi::CStr = c"VK_LUNARG_direct_driver_loading";

@@ -23,5 +23,5 @@ pub struct AccelerationStructureDenseGeometryFormatTrianglesDataAMDX {
 pub struct CompressedTriangleFormatAMDX(pub(crate) i32);
 pub const COMPRESSED_TRIANGLE_FORMAT_DGF1_BYTE_ALIGNMENT_AMDX: u32 = 128;
 pub const COMPRESSED_TRIANGLE_FORMAT_DGF1_BYTE_STRIDE_AMDX: u32 = 128;
-pub const AMDX_DENSE_GEOMETRY_FORMAT_SPEC_VERSION: usize = 1;
+pub const AMDX_DENSE_GEOMETRY_FORMAT_SPEC_VERSION: u32 = 1;
 pub const AMDX_DENSE_GEOMETRY_FORMAT_EXTENSION_NAME: &core::ffi::CStr = c"VK_AMDX_dense_geometry_format";

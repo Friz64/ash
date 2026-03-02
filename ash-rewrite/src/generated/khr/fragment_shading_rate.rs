@@ -62,5 +62,5 @@ pub struct RenderingFragmentShadingRateAttachmentInfoKHR {
 }
 #[repr(transparent)]
 pub struct FragmentShadingRateCombinerOpKHR(pub(crate) i32);
-pub const KHR_FRAGMENT_SHADING_RATE_SPEC_VERSION: usize = 2;
+pub const KHR_FRAGMENT_SHADING_RATE_SPEC_VERSION: u32 = 2;
 pub const KHR_FRAGMENT_SHADING_RATE_EXTENSION_NAME: &core::ffi::CStr = c"VK_KHR_fragment_shading_rate";

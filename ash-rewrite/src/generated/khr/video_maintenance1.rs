@@ -15,5 +15,5 @@ pub struct VideoInlineQueryInfoKHR {
     pub first_query: u32,
     pub query_count: u32,
 }
-pub const KHR_VIDEO_MAINTENANCE_1_SPEC_VERSION: usize = 1;
+pub const KHR_VIDEO_MAINTENANCE_1_SPEC_VERSION: u32 = 1;
 pub const KHR_VIDEO_MAINTENANCE_1_EXTENSION_NAME: &core::ffi::CStr = c"VK_KHR_video_maintenance1";

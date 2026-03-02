@@ -12,3 +12,4 @@ pub mod codec_h265std_decode;
 pub mod codec_h265std_encode;
 pub mod codec_vp9std;
 pub mod codec_vp9std_decode;
+pub mod codecs_common;

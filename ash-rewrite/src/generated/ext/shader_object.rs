@@ -75,5 +75,5 @@ pub struct ShaderCreateFlagsEXT(pub(crate) i32);
 pub struct ShaderCreateFlagBitsEXT(pub(crate) i32);
 #[repr(transparent)]
 pub struct ShaderEXT(pub(crate) i32);
-pub const EXT_SHADER_OBJECT_SPEC_VERSION: usize = 1;
+pub const EXT_SHADER_OBJECT_SPEC_VERSION: u32 = 1;
 pub const EXT_SHADER_OBJECT_EXTENSION_NAME: &core::ffi::CStr = c"VK_EXT_shader_object";

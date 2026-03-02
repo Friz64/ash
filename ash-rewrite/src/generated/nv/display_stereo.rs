@@ -15,5 +15,5 @@ pub struct DisplayModeStereoPropertiesNV {
 }
 #[repr(transparent)]
 pub struct DisplaySurfaceStereoTypeNV(pub(crate) i32);
-pub const NV_DISPLAY_STEREO_SPEC_VERSION: usize = 1;
+pub const NV_DISPLAY_STEREO_SPEC_VERSION: u32 = 1;
 pub const NV_DISPLAY_STEREO_EXTENSION_NAME: &core::ffi::CStr = c"VK_NV_display_stereo";

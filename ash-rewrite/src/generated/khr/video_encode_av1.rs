@@ -160,5 +160,5 @@ pub struct VideoEncodeAV1RateControlFlagBitsKHR(pub(crate) i32);
 #[repr(transparent)]
 pub struct VideoEncodeAV1SuperblockSizeFlagBitsKHR(pub(crate) i32);
 pub const MAX_VIDEO_AV1_REFERENCES_PER_FRAME_KHR: u32 = 7;
-pub const KHR_VIDEO_ENCODE_AV1_SPEC_VERSION: usize = 1;
+pub const KHR_VIDEO_ENCODE_AV1_SPEC_VERSION: u32 = 1;
 pub const KHR_VIDEO_ENCODE_AV1_EXTENSION_NAME: &core::ffi::CStr = c"VK_KHR_video_encode_av1";

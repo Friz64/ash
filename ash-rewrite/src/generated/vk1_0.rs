@@ -1449,12 +1449,47 @@ pub const MAX_EXTENSION_NAME_SIZE: u32 = 256;
 pub const MAX_DESCRIPTION_SIZE: u32 = 256;
 pub const MAX_MEMORY_TYPES: u32 = 32;
 pub const MAX_MEMORY_HEAPS: u32 = 16;
-pub const LOD_CLAMP_NONE: core::ffi::c_float = 1000.0f32;
-pub const REMAINING_MIP_LEVELS: u32 = (!0u32);
-pub const REMAINING_ARRAY_LAYERS: u32 = (!0u32);
-pub const WHOLE_SIZE: u64 = (!0u64);
-pub const ATTACHMENT_UNUSED: u32 = (!0u32);
+pub const LOD_CLAMP_NONE: core::ffi::c_float = 1000.0;
+pub const REMAINING_MIP_LEVELS: u32 = (!0);
+pub const REMAINING_ARRAY_LAYERS: u32 = (!0);
+pub const WHOLE_SIZE: u64 = (!0);
+pub const ATTACHMENT_UNUSED: u32 = (!0);
 pub const TRUE: u32 = 1;
 pub const FALSE: u32 = 0;
-pub const QUEUE_FAMILY_IGNORED: u32 = (!0u32);
-pub const SUBPASS_EXTERNAL: u32 = (!0u32);
+pub const QUEUE_FAMILY_IGNORED: u32 = (!0);
+pub const SUBPASS_EXTERNAL: u32 = (!0);
+pub const fn make_version(major: u32, minor: u32, patch: u32) -> u32 {
+    ((((major)) << 22) | (((minor)) << 12) | ((patch)))
+}
+pub const fn version_major(version: u32) -> u32 {
+    ((version) >> 22)
+}
+pub const fn version_minor(version: u32) -> u32 {
+    (((version) >> 12) & 0x3FF)
+}
+pub const fn version_patch(version: u32) -> u32 {
+    ((version) & 0xFFF)
+}
+pub const fn make_api_version(variant: u32, major: u32, minor: u32, patch: u32) -> u32 {
+    ((((variant)) << 29) | (((major)) << 22) | (((minor)) << 12) | ((patch)))
+}
+pub const fn api_version_variant(version: u32) -> u32 {
+    ((version) >> 29)
+}
+pub const fn api_version_major(version: u32) -> u32 {
+    (((version) >> 22) & 0x7F)
+}
+pub const fn api_version_minor(version: u32) -> u32 {
+    (((version) >> 12) & 0x3FF)
+}
+pub const fn api_version_patch(version: u32) -> u32 {
+    ((version) & 0xFFF)
+}
+pub const API_VERSION_1_0: u32 = crate::vk::make_api_version(0, 1, 0, 0);
+pub const HEADER_VERSION: u32 = 344;
+pub const HEADER_VERSION_COMPLETE: u32 = crate::vk::make_api_version(
+    0,
+    1,
+    4,
+    crate::vk::HEADER_VERSION,
+);

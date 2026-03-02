@@ -16,5 +16,5 @@ pub struct ImageViewAddressPropertiesNVX {
     pub device_address: crate::vk::DeviceAddress,
     pub size: crate::vk::DeviceSize,
 }
-pub const NVX_IMAGE_VIEW_HANDLE_SPEC_VERSION: usize = 4;
+pub const NVX_IMAGE_VIEW_HANDLE_SPEC_VERSION: u32 = 4;
 pub const NVX_IMAGE_VIEW_HANDLE_EXTENSION_NAME: &core::ffi::CStr = c"VK_NVX_image_view_handle";

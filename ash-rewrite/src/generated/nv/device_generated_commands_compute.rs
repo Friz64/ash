@@ -28,5 +28,5 @@ pub struct PipelineIndirectDeviceAddressInfoNV {
 pub struct BindPipelineIndirectCommandNV {
     pub pipeline_address: crate::vk::DeviceAddress,
 }
-pub const NV_DEVICE_GENERATED_COMMANDS_COMPUTE_SPEC_VERSION: usize = 2;
+pub const NV_DEVICE_GENERATED_COMMANDS_COMPUTE_SPEC_VERSION: u32 = 2;
 pub const NV_DEVICE_GENERATED_COMMANDS_COMPUTE_EXTENSION_NAME: &core::ffi::CStr = c"VK_NV_device_generated_commands_compute";

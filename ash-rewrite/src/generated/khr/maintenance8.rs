@@ -20,5 +20,5 @@ pub struct AccessFlags3KHR(pub(crate) i32);
 pub struct PipelineCacheCreateFlagBits(pub(crate) i32);
 #[repr(transparent)]
 pub struct AccessFlagBits3KHR(pub(crate) i32);
-pub const KHR_MAINTENANCE_8_SPEC_VERSION: usize = 1;
+pub const KHR_MAINTENANCE_8_SPEC_VERSION: u32 = 1;
 pub const KHR_MAINTENANCE_8_EXTENSION_NAME: &core::ffi::CStr = c"VK_KHR_maintenance8";

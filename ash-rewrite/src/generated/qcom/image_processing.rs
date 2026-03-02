@@ -26,5 +26,5 @@ pub struct PhysicalDeviceImageProcessingPropertiesQCOM {
     pub max_block_match_region: crate::vk::Extent2D,
     pub max_box_filter_block_size: crate::vk::Extent2D,
 }
-pub const QCOM_IMAGE_PROCESSING_SPEC_VERSION: usize = 1;
+pub const QCOM_IMAGE_PROCESSING_SPEC_VERSION: u32 = 1;
 pub const QCOM_IMAGE_PROCESSING_EXTENSION_NAME: &core::ffi::CStr = c"VK_QCOM_image_processing";

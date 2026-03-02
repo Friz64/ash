@@ -240,5 +240,5 @@ pub struct DescriptorMappingSourceEXT(pub(crate) i32);
 pub struct SpirvResourceTypeFlagsEXT(pub(crate) i32);
 #[repr(transparent)]
 pub struct SpirvResourceTypeFlagBitsEXT(pub(crate) i32);
-pub const EXT_DESCRIPTOR_HEAP_SPEC_VERSION: usize = 1;
+pub const EXT_DESCRIPTOR_HEAP_SPEC_VERSION: u32 = 1;
 pub const EXT_DESCRIPTOR_HEAP_EXTENSION_NAME: &core::ffi::CStr = c"VK_EXT_descriptor_heap";

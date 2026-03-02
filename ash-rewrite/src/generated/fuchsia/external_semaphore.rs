@@ -17,5 +17,5 @@ pub struct SemaphoreGetZirconHandleInfoFUCHSIA {
     pub semaphore: crate::vk::Semaphore,
     pub handle_type: crate::vk::ExternalSemaphoreHandleTypeFlagBits,
 }
-pub const FUCHSIA_EXTERNAL_SEMAPHORE_SPEC_VERSION: usize = 1;
+pub const FUCHSIA_EXTERNAL_SEMAPHORE_SPEC_VERSION: u32 = 1;
 pub const FUCHSIA_EXTERNAL_SEMAPHORE_EXTENSION_NAME: &core::ffi::CStr = c"VK_FUCHSIA_external_semaphore";

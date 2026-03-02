@@ -10,5 +10,5 @@ pub struct IOSSurfaceCreateInfoMVK {
 }
 #[repr(transparent)]
 pub struct IOSSurfaceCreateFlagsMVK(pub(crate) i32);
-pub const MVK_IOS_SURFACE_SPEC_VERSION: usize = 3;
+pub const MVK_IOS_SURFACE_SPEC_VERSION: u32 = 3;
 pub const MVK_IOS_SURFACE_EXTENSION_NAME: &core::ffi::CStr = c"VK_MVK_ios_surface";
