@@ -14,5 +14,5 @@ pub struct MultiviewPerViewRenderAreasRenderPassBeginInfoQCOM {
     pub per_view_render_area_count: u32,
     pub p_per_view_render_areas: *const crate::vk::Rect2D,
 }
-pub const QCOM_MULTIVIEW_PER_VIEW_RENDER_AREAS_SPEC_VERSION: usize = 1;
+pub const QCOM_MULTIVIEW_PER_VIEW_RENDER_AREAS_SPEC_VERSION: u32 = 1;
 pub const QCOM_MULTIVIEW_PER_VIEW_RENDER_AREAS_EXTENSION_NAME: &core::ffi::CStr = c"VK_QCOM_multiview_per_view_render_areas";

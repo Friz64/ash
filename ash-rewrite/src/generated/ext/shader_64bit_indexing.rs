@@ -7,5 +7,5 @@ pub struct PhysicalDeviceShader64BitIndexingFeaturesEXT {
     pub p_next: *mut core::ffi::c_void,
     pub shader64_bit_indexing: crate::vk::Bool32,
 }
-pub const EXT_SHADER_64BIT_INDEXING_SPEC_VERSION: usize = 1;
+pub const EXT_SHADER_64BIT_INDEXING_SPEC_VERSION: u32 = 1;
 pub const EXT_SHADER_64BIT_INDEXING_EXTENSION_NAME: &core::ffi::CStr = c"VK_EXT_shader_64bit_indexing";

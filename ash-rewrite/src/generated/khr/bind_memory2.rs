@@ -3,5 +3,5 @@
 //![Vulkan Manual Page](https://docs.vulkan.org/refpages/latest/refpages/source/VK_KHR_bind_memory2.html) · Extension `VK_KHR_bind_memory2`
 pub type BindBufferMemoryInfoKHR = crate::vk::BindBufferMemoryInfo;
 pub type BindImageMemoryInfoKHR = crate::vk::BindImageMemoryInfo;
-pub const KHR_BIND_MEMORY_2_SPEC_VERSION: usize = 1;
+pub const KHR_BIND_MEMORY_2_SPEC_VERSION: u32 = 1;
 pub const KHR_BIND_MEMORY_2_EXTENSION_NAME: &core::ffi::CStr = c"VK_KHR_bind_memory2";

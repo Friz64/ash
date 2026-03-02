@@ -7,7 +7,7 @@ use crate::LibraryName;
 use cdecl::{CDecl, CDeclMode, CTok, CType};
 use cexpr::{CExprItem, CExprItems};
 use depends::Depends;
-use name::{CommandName, ConstantName, FuncPointerName, MacroName, TypeName};
+use name::{CMacroName, CommandName, ConstantName, FuncPointerName, TypeName};
 use roxmltree::NodeType;
 use roxmltree::StringStorage;
 use std::fmt::Write;
@@ -143,7 +143,7 @@ pub struct Registry {
     pub structs: Vec<Structure>,
     pub struct_aliases: Vec<TypeAlias>,
     pub unions: Vec<Structure>,
-    pub macros: Vec<Macro>,
+    pub cmacros: Vec<CMacro>,
     pub constants: Vec<BaseConstant>,
     pub enums: Vec<Enum>,
     pub bitmask_bits: Vec<BitMaskBits>,
@@ -220,8 +220,8 @@ impl Registry {
                                     registry.unions.push(Structure::from_node(type_node, api));
                                 }
                                 Some("define") => {
-                                    if let Some(define) = Macro::from_node(type_node) {
-                                        registry.macros.push(define);
+                                    if let Some(define) = CMacro::from_node(type_node) {
+                                        registry.cmacros.push(define);
                                     }
                                 }
                                 Some(_) => trace!("ignored"),
@@ -511,14 +511,14 @@ impl Structure {
 }
 
 #[derive(Debug)]
-pub struct Macro {
-    name: MacroName,
-    args: Vec<&'static str>,
-    c_expr: CExprItems,
+pub struct CMacro {
+    pub name: CMacroName,
+    pub args: Vec<&'static str>,
+    pub cexpr: CExprItems,
 }
 
-impl Macro {
-    fn from_node(node: Node) -> Option<Macro> {
+impl CMacro {
+    fn from_node(node: Node) -> Option<CMacro> {
         #[derive(Debug, PartialEq)]
         enum Item {
             NameTag(&'static str),
@@ -571,14 +571,14 @@ impl Macro {
                 })
         }
 
-        let mut c_expr = Vec::new();
+        let mut cexpr = Vec::new();
         let mut args = None;
         let mut calling = None;
         for item in items {
             match item {
                 Item::NameTag(..) => unreachable!(),
                 Item::TypeTag(macro_name) => {
-                    calling = Some(MacroName(macro_name));
+                    calling = Some(CMacroName(macro_name));
                     args = Some(vec![]);
                 }
                 Item::Text(mut s) => {
@@ -588,18 +588,18 @@ impl Macro {
                         let args = eat_list(&mut s)
                             .map(|i| i.map(cexpr::parse).collect())
                             .unwrap_or_default();
-                        c_expr.push(CExprItem::MacroCall { macro_name, args });
+                        cexpr.push(CExprItem::MacroCall { macro_name, args });
                     }
 
-                    c_expr.extend(cexpr::parse(s));
+                    cexpr.extend(cexpr::parse(s));
                 }
             }
         }
 
-        Some(Macro {
-            name: MacroName(name),
+        Some(CMacro {
+            name: CMacroName(name),
             args: args?,
-            c_expr,
+            cexpr,
         })
     }
 }
@@ -848,6 +848,7 @@ impl RequireEnumExtends {
 #[derive(Debug)]
 pub enum RequireType {
     Type(TypeName),
+    CMacro(CMacroName),
     FuncPointer(FuncPointerName),
 }
 
@@ -856,6 +857,10 @@ impl RequireType {
         let name = attribute(node, "name").unwrap();
         if name.starts_with("PFN_") {
             RequireType::FuncPointer(FuncPointerName(name))
+        }
+        // fun way to check for snake_case
+        else if name.contains('_') {
+            RequireType::CMacro(CMacroName(name))
         } else {
             RequireType::Type(TypeName(name))
         }

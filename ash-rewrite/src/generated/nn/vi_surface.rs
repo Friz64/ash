@@ -10,5 +10,5 @@ pub struct ViSurfaceCreateInfoNN {
 }
 #[repr(transparent)]
 pub struct ViSurfaceCreateFlagsNN(pub(crate) i32);
-pub const NN_VI_SURFACE_SPEC_VERSION: usize = 1;
+pub const NN_VI_SURFACE_SPEC_VERSION: u32 = 1;
 pub const NN_VI_SURFACE_EXTENSION_NAME: &core::ffi::CStr = c"VK_NN_vi_surface";

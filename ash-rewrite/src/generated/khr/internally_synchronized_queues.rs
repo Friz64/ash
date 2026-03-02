@@ -7,5 +7,5 @@ pub struct PhysicalDeviceInternallySynchronizedQueuesFeaturesKHR {
     pub p_next: *mut core::ffi::c_void,
     pub internally_synchronized_queues: crate::vk::Bool32,
 }
-pub const KHR_INTERNALLY_SYNCHRONIZED_QUEUES_SPEC_VERSION: usize = 1;
+pub const KHR_INTERNALLY_SYNCHRONIZED_QUEUES_SPEC_VERSION: u32 = 1;
 pub const KHR_INTERNALLY_SYNCHRONIZED_QUEUES_EXTENSION_NAME: &core::ffi::CStr = c"VK_KHR_internally_synchronized_queues";

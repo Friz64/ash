@@ -5,5 +5,5 @@ pub type VertexInputBindingDivisorDescriptionKHR = crate::vk::VertexInputBinding
 pub type PipelineVertexInputDivisorStateCreateInfoKHR = crate::vk::PipelineVertexInputDivisorStateCreateInfo;
 pub type PhysicalDeviceVertexAttributeDivisorPropertiesKHR = crate::vk::PhysicalDeviceVertexAttributeDivisorProperties;
 pub type PhysicalDeviceVertexAttributeDivisorFeaturesKHR = crate::vk::PhysicalDeviceVertexAttributeDivisorFeatures;
-pub const KHR_VERTEX_ATTRIBUTE_DIVISOR_SPEC_VERSION: usize = 1;
+pub const KHR_VERTEX_ATTRIBUTE_DIVISOR_SPEC_VERSION: u32 = 1;
 pub const KHR_VERTEX_ATTRIBUTE_DIVISOR_EXTENSION_NAME: &core::ffi::CStr = c"VK_KHR_vertex_attribute_divisor";

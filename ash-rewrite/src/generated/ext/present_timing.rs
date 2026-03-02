@@ -103,5 +103,5 @@ pub struct PresentStageFlagBitsEXT(pub(crate) i32);
 pub struct PastPresentationTimingFlagBitsEXT(pub(crate) i32);
 #[repr(transparent)]
 pub struct PresentTimingInfoFlagBitsEXT(pub(crate) i32);
-pub const EXT_PRESENT_TIMING_SPEC_VERSION: usize = 3;
+pub const EXT_PRESENT_TIMING_SPEC_VERSION: u32 = 3;
 pub const EXT_PRESENT_TIMING_EXTENSION_NAME: &core::ffi::CStr = c"VK_EXT_present_timing";

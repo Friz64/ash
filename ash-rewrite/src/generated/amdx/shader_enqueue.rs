@@ -65,6 +65,6 @@ pub struct DeviceOrHostAddressConstAMDX {
     device_address: crate::vk::DeviceAddress,
     host_address: *const core::ffi::c_void,
 }
-pub const SHADER_INDEX_UNUSED_AMDX: u32 = (!0u32);
-pub const AMDX_SHADER_ENQUEUE_SPEC_VERSION: usize = 2;
+pub const SHADER_INDEX_UNUSED_AMDX: u32 = (!0);
+pub const AMDX_SHADER_ENQUEUE_SPEC_VERSION: u32 = 2;
 pub const AMDX_SHADER_ENQUEUE_EXTENSION_NAME: &core::ffi::CStr = c"VK_AMDX_shader_enqueue";

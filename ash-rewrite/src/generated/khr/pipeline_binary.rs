@@ -83,5 +83,5 @@ pub struct PhysicalDevicePipelineBinaryPropertiesKHR {
 #[repr(transparent)]
 pub struct PipelineBinaryKHR(pub(crate) i32);
 pub const MAX_PIPELINE_BINARY_KEY_SIZE_KHR: u32 = 32;
-pub const KHR_PIPELINE_BINARY_SPEC_VERSION: usize = 1;
+pub const KHR_PIPELINE_BINARY_SPEC_VERSION: u32 = 1;
 pub const KHR_PIPELINE_BINARY_EXTENSION_NAME: &core::ffi::CStr = c"VK_KHR_pipeline_binary";

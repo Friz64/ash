@@ -44,5 +44,5 @@ pub struct ReleaseSwapchainImagesInfoKHR {
     pub image_index_count: u32,
     pub p_image_indices: *const u32,
 }
-pub const KHR_SWAPCHAIN_MAINTENANCE_1_SPEC_VERSION: usize = 1;
+pub const KHR_SWAPCHAIN_MAINTENANCE_1_SPEC_VERSION: u32 = 1;
 pub const KHR_SWAPCHAIN_MAINTENANCE_1_EXTENSION_NAME: &core::ffi::CStr = c"VK_KHR_swapchain_maintenance1";

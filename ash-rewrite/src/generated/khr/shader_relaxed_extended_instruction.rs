@@ -7,5 +7,5 @@ pub struct PhysicalDeviceShaderRelaxedExtendedInstructionFeaturesKHR {
     pub p_next: *mut core::ffi::c_void,
     pub shader_relaxed_extended_instruction: crate::vk::Bool32,
 }
-pub const KHR_SHADER_RELAXED_EXTENDED_INSTRUCTION_SPEC_VERSION: usize = 1;
+pub const KHR_SHADER_RELAXED_EXTENDED_INSTRUCTION_SPEC_VERSION: u32 = 1;
 pub const KHR_SHADER_RELAXED_EXTENDED_INSTRUCTION_EXTENSION_NAME: &core::ffi::CStr = c"VK_KHR_shader_relaxed_extended_instruction";

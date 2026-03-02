@@ -8,5 +8,5 @@ pub struct PhysicalDeviceShaderFloat8FeaturesEXT {
     pub shader_float8: crate::vk::Bool32,
     pub shader_float8_cooperative_matrix: crate::vk::Bool32,
 }
-pub const EXT_SHADER_FLOAT8_SPEC_VERSION: usize = 1;
+pub const EXT_SHADER_FLOAT8_SPEC_VERSION: u32 = 1;
 pub const EXT_SHADER_FLOAT8_EXTENSION_NAME: &core::ffi::CStr = c"VK_EXT_shader_float8";

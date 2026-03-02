@@ -38,5 +38,5 @@ pub struct VideoDecodeAV1DpbSlotInfoKHR {
     pub p_next: *const core::ffi::c_void,
     pub p_std_reference_info: *const crate::vk::StdVideoDecodeAV1ReferenceInfo,
 }
-pub const KHR_VIDEO_DECODE_AV1_SPEC_VERSION: usize = 1;
+pub const KHR_VIDEO_DECODE_AV1_SPEC_VERSION: u32 = 1;
 pub const KHR_VIDEO_DECODE_AV1_EXTENSION_NAME: &core::ffi::CStr = c"VK_KHR_video_decode_av1";

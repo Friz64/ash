@@ -21,5 +21,5 @@ pub struct PhysicalDeviceCustomBorderColorFeaturesEXT {
     pub custom_border_colors: crate::vk::Bool32,
     pub custom_border_color_without_format: crate::vk::Bool32,
 }
-pub const EXT_CUSTOM_BORDER_COLOR_SPEC_VERSION: usize = 12;
+pub const EXT_CUSTOM_BORDER_COLOR_SPEC_VERSION: u32 = 12;
 pub const EXT_CUSTOM_BORDER_COLOR_EXTENSION_NAME: &core::ffi::CStr = c"VK_EXT_custom_border_color";

@@ -1,6 +1,7 @@
 pub mod alias;
 pub mod basetype;
 pub mod bitmask;
+pub mod cmacro;
 pub mod constant;
 pub mod enumeration;
 pub mod function;
@@ -8,10 +9,12 @@ pub mod handle;
 pub mod structure;
 
 use crate::{
+    Library, LibraryName,
     item::{
         alias::Alias,
         basetype::BaseType,
         bitmask::{BitMask, BitMaskBits},
+        cmacro::CMacro,
         constant::Constant,
         enumeration::Enum,
         function::{Command, FuncPointer},
@@ -19,10 +22,9 @@ use crate::{
         structure::{Struct, Union},
     },
     xml::{
-        name::{CommandName, ConstantName, FuncPointerName, TypeName},
         Require, RequireType,
+        name::{CMacroName, CommandName, ConstantName, FuncPointerName, TypeName},
     },
-    Library, LibraryName,
 };
 use indexmap::IndexMap;
 use std::collections::HashMap;
@@ -46,6 +48,7 @@ pub(crate) struct RequireMap {
     pub func_pointer: HashMap<FuncPointerName, RequiredBy>,
     pub command: HashMap<CommandName, RequiredBy>,
     pub constant: HashMap<ConstantName, RequiredBy>,
+    pub c_macro: HashMap<CMacroName, RequiredBy>,
 }
 
 pub trait Named<T> {
@@ -70,6 +73,7 @@ pub struct Items {
     pub func_pointers: IndexMap<FuncPointerName, FuncPointer>,
     pub commands: IndexMap<CommandName, Command>,
     pub constants: IndexMap<ConstantName, Constant>,
+    pub cmacros: IndexMap<CMacroName, CMacro>,
 }
 
 impl Items {
@@ -83,6 +87,7 @@ impl Items {
             for require_type in &require.types {
                 match require_type {
                     RequireType::Type(name) => require_map.ty.insert(*name, required_by),
+                    RequireType::CMacro(name) => require_map.c_macro.insert(*name, required_by),
                     RequireType::FuncPointer(name) => {
                         require_map.func_pointer.insert(*name, required_by)
                     }
@@ -169,36 +174,23 @@ impl Items {
                 TypeItem::Alias,
             );
 
-            items.func_pointers.extend(
-                library
-                    .xml
-                    .func_pointers
-                    .iter()
-                    .filter_map(|xml| FuncPointer::new(&require_map, xml))
-                    .map(|func_pointer| (func_pointer.name(), func_pointer)),
+            Items::collect_item(
+                &mut items.func_pointers,
+                &library.xml.func_pointers,
+                |xml| FuncPointer::new(&require_map, xml),
             );
 
-            items.constants.extend(
-                library
-                    .xml
-                    .constants
-                    .iter()
-                    .filter_map(|xml| Constant::from_base_constant(&require_map, xml))
-                    .map(|constant| (constant.name(), constant)),
-            );
+            Items::collect_item(&mut items.constants, &library.xml.constants, |xml| {
+                Constant::from_base_constant(&require_map, xml)
+            });
+
+            Items::collect_item(&mut items.cmacros, &library.xml.cmacros, |xml| {
+                CMacro::new(&require_map, xml)
+            });
         }
 
         iter_requires(libraries, |required_by, require| {
             for constant in &require.constants {
-                let waf = constant.name.original();
-                if constant.value.is_some()
-                    && !waf.starts_with("STD_VIDEO_")
-                    && !waf.ends_with("_EXTENSION_NAME")
-                    && !waf.ends_with("_SPEC_VERSION")
-                {
-                    panic!("{waf:?}");
-                }
-
                 if let Some(constant) = Constant::from_require(required_by, constant) {
                     items.constants.insert(constant.name(), constant);
                 }
@@ -226,6 +218,19 @@ impl Items {
                 .filter_map(construct)
                 .map(|ty| (ty.name(), en(ty))),
         )
+    }
+
+    fn collect_item<'a, X: 'a, N, T: Named<N>>(
+        target: &mut impl Extend<(N, T)>,
+        xml_src: impl IntoIterator<Item = &'a X>,
+        construct: impl FnMut(&X) -> Option<T>,
+    ) {
+        target.extend(
+            xml_src
+                .into_iter()
+                .filter_map(construct)
+                .map(|ty| (ty.name(), ty)),
+        );
     }
 }
 

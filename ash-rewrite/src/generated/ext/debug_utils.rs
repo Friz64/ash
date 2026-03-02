@@ -67,5 +67,5 @@ pub struct DebugUtilsMessageTypeFlagBitsEXT(pub(crate) i32);
 pub struct DebugUtilsMessengerEXT(pub(crate) i32);
 #[allow(non_camel_case_types)]
 pub type PFN_vkDebugUtilsMessengerCallbackEXT = Option<()>;
-pub const EXT_DEBUG_UTILS_SPEC_VERSION: usize = 2;
+pub const EXT_DEBUG_UTILS_SPEC_VERSION: u32 = 2;
 pub const EXT_DEBUG_UTILS_EXTENSION_NAME: &core::ffi::CStr = c"VK_EXT_debug_utils";

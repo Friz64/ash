@@ -8,5 +8,5 @@ pub type SubpassDependency2KHR = crate::vk::SubpassDependency2;
 pub type RenderPassCreateInfo2KHR = crate::vk::RenderPassCreateInfo2;
 pub type SubpassBeginInfoKHR = crate::vk::SubpassBeginInfo;
 pub type SubpassEndInfoKHR = crate::vk::SubpassEndInfo;
-pub const KHR_CREATE_RENDERPASS_2_SPEC_VERSION: usize = 1;
+pub const KHR_CREATE_RENDERPASS_2_SPEC_VERSION: u32 = 1;
 pub const KHR_CREATE_RENDERPASS_2_EXTENSION_NAME: &core::ffi::CStr = c"VK_KHR_create_renderpass2";

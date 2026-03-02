@@ -13,5 +13,5 @@ pub type SubresourceHostMemcpySizeEXT = crate::vk::SubresourceHostMemcpySize;
 pub type HostImageCopyDevicePerformanceQueryEXT = crate::vk::HostImageCopyDevicePerformanceQuery;
 pub type HostImageCopyFlagBitsEXT = crate::vk::HostImageCopyFlagBits;
 pub type HostImageCopyFlagsEXT = crate::vk::HostImageCopyFlags;
-pub const EXT_HOST_IMAGE_COPY_SPEC_VERSION: usize = 1;
+pub const EXT_HOST_IMAGE_COPY_SPEC_VERSION: u32 = 1;
 pub const EXT_HOST_IMAGE_COPY_EXTENSION_NAME: &core::ffi::CStr = c"VK_EXT_host_image_copy";

@@ -9,5 +9,5 @@ pub struct PhysicalDeviceExtendedDynamicState2FeaturesEXT {
     pub extended_dynamic_state2_logic_op: crate::vk::Bool32,
     pub extended_dynamic_state2_patch_control_points: crate::vk::Bool32,
 }
-pub const EXT_EXTENDED_DYNAMIC_STATE_2_SPEC_VERSION: usize = 1;
+pub const EXT_EXTENDED_DYNAMIC_STATE_2_SPEC_VERSION: u32 = 1;
 pub const EXT_EXTENDED_DYNAMIC_STATE_2_EXTENSION_NAME: &core::ffi::CStr = c"VK_EXT_extended_dynamic_state2";

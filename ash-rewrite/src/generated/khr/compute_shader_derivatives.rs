@@ -14,5 +14,5 @@ pub struct PhysicalDeviceComputeShaderDerivativesPropertiesKHR {
     pub p_next: *mut core::ffi::c_void,
     pub mesh_and_task_shader_derivatives: crate::vk::Bool32,
 }
-pub const KHR_COMPUTE_SHADER_DERIVATIVES_SPEC_VERSION: usize = 1;
+pub const KHR_COMPUTE_SHADER_DERIVATIVES_SPEC_VERSION: u32 = 1;
 pub const KHR_COMPUTE_SHADER_DERIVATIVES_EXTENSION_NAME: &core::ffi::CStr = c"VK_KHR_compute_shader_derivatives";

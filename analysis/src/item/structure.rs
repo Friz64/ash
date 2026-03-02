@@ -5,6 +5,12 @@ use crate::{
 };
 use tracing::{instrument, trace};
 
+fn has_pointer(members: &[Decl]) -> bool {
+    members
+        .iter()
+        .any(|member| matches!(member.ty, Ty::Ptr(..)))
+}
+
 #[derive(Debug)]
 pub struct Struct {
     pub required_by: RequiredBy,
@@ -69,10 +75,4 @@ impl Union {
     pub fn has_pointer(&self) -> bool {
         has_pointer(&self.members)
     }
-}
-
-fn has_pointer(members: &[Decl]) -> bool {
-    members
-        .iter()
-        .any(|member| matches!(member.ty, Ty::Ptr(..)))
 }

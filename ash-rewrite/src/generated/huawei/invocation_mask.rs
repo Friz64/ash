@@ -7,5 +7,5 @@ pub struct PhysicalDeviceInvocationMaskFeaturesHUAWEI {
     pub p_next: *mut core::ffi::c_void,
     pub invocation_mask: crate::vk::Bool32,
 }
-pub const HUAWEI_INVOCATION_MASK_SPEC_VERSION: usize = 1;
+pub const HUAWEI_INVOCATION_MASK_SPEC_VERSION: u32 = 1;
 pub const HUAWEI_INVOCATION_MASK_EXTENSION_NAME: &core::ffi::CStr = c"VK_HUAWEI_invocation_mask";

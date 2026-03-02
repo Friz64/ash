@@ -580,3 +580,4 @@ pub struct DescriptorBindingFlagBits(pub(crate) i32);
 pub struct ResolveModeFlagBits(pub(crate) i32);
 pub const MAX_DRIVER_NAME_SIZE: u32 = 256;
 pub const MAX_DRIVER_INFO_SIZE: u32 = 256;
+pub const API_VERSION_1_2: u32 = crate::vk::make_api_version(0, 1, 2, 0);

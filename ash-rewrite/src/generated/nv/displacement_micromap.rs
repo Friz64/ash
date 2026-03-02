@@ -36,5 +36,5 @@ pub struct AccelerationStructureTrianglesDisplacementMicromapNV {
 }
 #[repr(transparent)]
 pub struct DisplacementMicromapFormatNV(pub(crate) i32);
-pub const NV_DISPLACEMENT_MICROMAP_SPEC_VERSION: usize = 2;
+pub const NV_DISPLACEMENT_MICROMAP_SPEC_VERSION: u32 = 2;
 pub const NV_DISPLACEMENT_MICROMAP_EXTENSION_NAME: &core::ffi::CStr = c"VK_NV_displacement_micromap";

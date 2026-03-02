@@ -2,5 +2,5 @@
 #![cfg_attr(rustfmt, rustfmt_skip)]
 //![Vulkan Manual Page](https://docs.vulkan.org/refpages/latest/refpages/source/VK_KHR_vulkan_memory_model.html) · Extension `VK_KHR_vulkan_memory_model`
 pub type PhysicalDeviceVulkanMemoryModelFeaturesKHR = crate::vk::PhysicalDeviceVulkanMemoryModelFeatures;
-pub const KHR_VULKAN_MEMORY_MODEL_SPEC_VERSION: usize = 3;
+pub const KHR_VULKAN_MEMORY_MODEL_SPEC_VERSION: u32 = 3;
 pub const KHR_VULKAN_MEMORY_MODEL_EXTENSION_NAME: &core::ffi::CStr = c"VK_KHR_vulkan_memory_model";

@@ -21,5 +21,5 @@ pub struct SurfaceCapabilitiesFullScreenExclusiveEXT {
 }
 #[repr(transparent)]
 pub struct FullScreenExclusiveEXT(pub(crate) i32);
-pub const EXT_FULL_SCREEN_EXCLUSIVE_SPEC_VERSION: usize = 4;
+pub const EXT_FULL_SCREEN_EXCLUSIVE_SPEC_VERSION: u32 = 4;
 pub const EXT_FULL_SCREEN_EXCLUSIVE_EXTENSION_NAME: &core::ffi::CStr = c"VK_EXT_full_screen_exclusive";

@@ -35,6 +35,11 @@ pub struct StdVideoDecodeH265ReferenceInfo {
     pub flags: crate::vk::StdVideoDecodeH265ReferenceInfoFlags,
     pub pic_order_cnt_val: i32,
 }
-pub const STD_VULKAN_VIDEO_CODEC_H265_DECODE_SPEC_VERSION: usize = 69420;
+pub const STD_VULKAN_VIDEO_CODEC_H265_DECODE_SPEC_VERSION: u32 = crate::vk::STD_VULKAN_VIDEO_CODEC_H265_DECODE_API_VERSION_1_0_0;
 pub const STD_VULKAN_VIDEO_CODEC_H265_DECODE_EXTENSION_NAME: &core::ffi::CStr = c"VK_STD_vulkan_video_codec_h265_decode";
-pub const STD_VIDEO_DECODE_H265_REF_PIC_SET_LIST_SIZE: usize = 8;
+pub const STD_VIDEO_DECODE_H265_REF_PIC_SET_LIST_SIZE: u32 = 8;
+pub const STD_VULKAN_VIDEO_CODEC_H265_DECODE_API_VERSION_1_0_0: u32 = crate::vk::make_video_std_version(
+    1,
+    0,
+    0,
+);

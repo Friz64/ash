@@ -10,5 +10,5 @@ pub struct ValidationFlagsEXT {
 }
 #[repr(transparent)]
 pub struct ValidationCheckEXT(pub(crate) i32);
-pub const EXT_VALIDATION_FLAGS_SPEC_VERSION: usize = 3;
+pub const EXT_VALIDATION_FLAGS_SPEC_VERSION: u32 = 3;
 pub const EXT_VALIDATION_FLAGS_EXTENSION_NAME: &core::ffi::CStr = c"VK_EXT_validation_flags";

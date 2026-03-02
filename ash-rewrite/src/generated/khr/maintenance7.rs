@@ -44,5 +44,5 @@ pub struct PhysicalDeviceLayeredApiVulkanPropertiesKHR {
 }
 #[repr(transparent)]
 pub struct PhysicalDeviceLayeredApiKHR(pub(crate) i32);
-pub const KHR_MAINTENANCE_7_SPEC_VERSION: usize = 1;
+pub const KHR_MAINTENANCE_7_SPEC_VERSION: u32 = 1;
 pub const KHR_MAINTENANCE_7_EXTENSION_NAME: &core::ffi::CStr = c"VK_KHR_maintenance7";

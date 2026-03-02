@@ -4,4 +4,5 @@
 pub mod descriptor_set_host_mapping;
 pub mod fragment_density_map_layered;
 pub mod mutable_descriptor_type;
+pub mod shader_mixed_float_dot_product;
 pub mod video_encode_rgb_conversion;

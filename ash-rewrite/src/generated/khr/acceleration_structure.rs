@@ -199,5 +199,5 @@ pub struct BuildAccelerationStructureFlagBitsKHR(pub(crate) i32);
 pub struct AccelerationStructureCreateFlagBitsKHR(pub(crate) i32);
 #[repr(transparent)]
 pub struct AccelerationStructureKHR(pub(crate) i32);
-pub const KHR_ACCELERATION_STRUCTURE_SPEC_VERSION: usize = 13;
+pub const KHR_ACCELERATION_STRUCTURE_SPEC_VERSION: u32 = 13;
 pub const KHR_ACCELERATION_STRUCTURE_EXTENSION_NAME: &core::ffi::CStr = c"VK_KHR_acceleration_structure";

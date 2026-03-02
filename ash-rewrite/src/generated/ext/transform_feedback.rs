@@ -32,5 +32,5 @@ pub struct PipelineRasterizationStateStreamCreateInfoEXT {
 }
 #[repr(transparent)]
 pub struct PipelineRasterizationStateStreamCreateFlagsEXT(pub(crate) i32);
-pub const EXT_TRANSFORM_FEEDBACK_SPEC_VERSION: usize = 1;
+pub const EXT_TRANSFORM_FEEDBACK_SPEC_VERSION: u32 = 1;
 pub const EXT_TRANSFORM_FEEDBACK_EXTENSION_NAME: &core::ffi::CStr = c"VK_EXT_transform_feedback";

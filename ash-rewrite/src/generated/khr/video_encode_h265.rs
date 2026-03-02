@@ -170,5 +170,5 @@ pub struct VideoEncodeH265RateControlFlagBitsKHR(pub(crate) i32);
 pub struct VideoEncodeH265CtbSizeFlagBitsKHR(pub(crate) i32);
 #[repr(transparent)]
 pub struct VideoEncodeH265TransformBlockSizeFlagBitsKHR(pub(crate) i32);
-pub const KHR_VIDEO_ENCODE_H265_SPEC_VERSION: usize = 14;
+pub const KHR_VIDEO_ENCODE_H265_SPEC_VERSION: u32 = 14;
 pub const KHR_VIDEO_ENCODE_H265_EXTENSION_NAME: &core::ffi::CStr = c"VK_KHR_video_encode_h265";

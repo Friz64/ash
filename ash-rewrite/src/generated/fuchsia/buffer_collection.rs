@@ -96,5 +96,5 @@ pub struct ImageConstraintsInfoFlagsFUCHSIA(pub(crate) i32);
 pub struct ImageConstraintsInfoFlagBitsFUCHSIA(pub(crate) i32);
 #[repr(transparent)]
 pub struct BufferCollectionFUCHSIA(pub(crate) i32);
-pub const FUCHSIA_BUFFER_COLLECTION_SPEC_VERSION: usize = 2;
+pub const FUCHSIA_BUFFER_COLLECTION_SPEC_VERSION: u32 = 2;
 pub const FUCHSIA_BUFFER_COLLECTION_EXTENSION_NAME: &core::ffi::CStr = c"VK_FUCHSIA_buffer_collection";

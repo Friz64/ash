@@ -42,5 +42,5 @@ pub struct RenderPassPerformanceCountersByRegionBeginInfoARM {
 }
 #[repr(transparent)]
 pub struct PerformanceCounterDescriptionFlagsARM(pub(crate) i32);
-pub const ARM_PERFORMANCE_COUNTERS_BY_REGION_SPEC_VERSION: usize = 1;
+pub const ARM_PERFORMANCE_COUNTERS_BY_REGION_SPEC_VERSION: u32 = 1;
 pub const ARM_PERFORMANCE_COUNTERS_BY_REGION_EXTENSION_NAME: &core::ffi::CStr = c"VK_ARM_performance_counters_by_region";

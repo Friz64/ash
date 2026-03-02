@@ -12,5 +12,5 @@ pub type BlitImageInfo2KHR = crate::vk::BlitImageInfo2;
 pub type CopyBufferToImageInfo2KHR = crate::vk::CopyBufferToImageInfo2;
 pub type CopyImageToBufferInfo2KHR = crate::vk::CopyImageToBufferInfo2;
 pub type ResolveImageInfo2KHR = crate::vk::ResolveImageInfo2;
-pub const KHR_COPY_COMMANDS_2_SPEC_VERSION: usize = 1;
+pub const KHR_COPY_COMMANDS_2_SPEC_VERSION: u32 = 1;
 pub const KHR_COPY_COMMANDS_2_EXTENSION_NAME: &core::ffi::CStr = c"VK_KHR_copy_commands2";

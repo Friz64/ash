@@ -49,5 +49,5 @@ pub struct PhysicalDeviceCudaKernelLaunchPropertiesNV {
 pub struct CudaModuleNV(pub(crate) i32);
 #[repr(transparent)]
 pub struct CudaFunctionNV(pub(crate) i32);
-pub const NV_CUDA_KERNEL_LAUNCH_SPEC_VERSION: usize = 2;
+pub const NV_CUDA_KERNEL_LAUNCH_SPEC_VERSION: u32 = 2;
 pub const NV_CUDA_KERNEL_LAUNCH_EXTENSION_NAME: &core::ffi::CStr = c"VK_NV_cuda_kernel_launch";

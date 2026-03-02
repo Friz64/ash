@@ -7,5 +7,5 @@ pub struct PhysicalDeviceFormatPackFeaturesARM {
     pub p_next: *mut core::ffi::c_void,
     pub format_pack: crate::vk::Bool32,
 }
-pub const ARM_FORMAT_PACK_SPEC_VERSION: usize = 1;
+pub const ARM_FORMAT_PACK_SPEC_VERSION: u32 = 1;
 pub const ARM_FORMAT_PACK_EXTENSION_NAME: &core::ffi::CStr = c"VK_ARM_format_pack";

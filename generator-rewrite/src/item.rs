@@ -2,7 +2,7 @@ use crate::output::CodeMap;
 use analysis::{
     item::{Items, TypeItem},
     to_rust::NameTranslate,
-    xml::name::{ConstantName, FuncPointerName, TypeName},
+    xml::name::{CMacroName, ConstantName, FuncPointerName, TypeName},
 };
 use proc_macro2::TokenStream;
 use quote::quote;
@@ -12,6 +12,7 @@ use tracing::debug;
 mod alias;
 mod basetype;
 mod bitmask;
+mod cmacro;
 mod constant;
 mod enumeration;
 mod function;
@@ -72,6 +73,16 @@ impl NameTranslate for Context {
         quote! { crate::vk::#ident }
     }
 
+    fn cmacro_to_rust(&self, name: CMacroName, has_args: bool) -> TokenStream {
+        let ident: Ident = if has_args {
+            syn::parse_str(&name.prefix_trimmed_lowercase()).unwrap()
+        } else {
+            syn::parse_str(name.prefix_trimmed()).unwrap()
+        };
+
+        quote! { crate::vk::#ident }
+    }
+
     fn ext_type_to_rust(&self, raw: &'static str) -> TokenStream {
         let ident: Ident = syn::parse_str(raw).unwrap();
         quote! { crate::platform_types::#ident }
@@ -84,4 +95,5 @@ pub fn generate_code(items: &Items, codemap: &mut CodeMap) {
     codemap.extend_from_items(&ctx, items.types.values());
     codemap.extend_from_items(&ctx, items.func_pointers.values());
     codemap.extend_from_items(&ctx, items.constants.values());
+    codemap.extend_from_items(&ctx, items.cmacros.values());
 }

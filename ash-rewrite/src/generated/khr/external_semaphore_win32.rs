@@ -35,5 +35,5 @@ pub struct SemaphoreGetWin32HandleInfoKHR {
     pub semaphore: crate::vk::Semaphore,
     pub handle_type: crate::vk::ExternalSemaphoreHandleTypeFlagBits,
 }
-pub const KHR_EXTERNAL_SEMAPHORE_WIN32_SPEC_VERSION: usize = 1;
+pub const KHR_EXTERNAL_SEMAPHORE_WIN32_SPEC_VERSION: u32 = 1;
 pub const KHR_EXTERNAL_SEMAPHORE_WIN32_EXTENSION_NAME: &core::ffi::CStr = c"VK_KHR_external_semaphore_win32";

@@ -31,5 +31,5 @@ pub struct VideoDecodeVP9PictureInfoKHR {
     pub tiles_offset: u32,
 }
 pub const MAX_VIDEO_VP9_REFERENCES_PER_FRAME_KHR: u32 = 3;
-pub const KHR_VIDEO_DECODE_VP9_SPEC_VERSION: usize = 1;
+pub const KHR_VIDEO_DECODE_VP9_SPEC_VERSION: u32 = 1;
 pub const KHR_VIDEO_DECODE_VP9_EXTENSION_NAME: &core::ffi::CStr = c"VK_KHR_video_decode_vp9";

@@ -564,3 +564,4 @@ pub struct FormatFeatureFlagBits2(pub(crate) i32);
 pub struct RenderingFlagBits(pub(crate) i32);
 #[repr(transparent)]
 pub struct PrivateDataSlot(pub(crate) i32);
+pub const API_VERSION_1_3: u32 = crate::vk::make_api_version(0, 1, 3, 0);

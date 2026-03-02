@@ -29,5 +29,5 @@ pub struct CooperativeMatrixPropertiesNV {
 }
 pub type ScopeNV = crate::vk::ScopeKHR;
 pub type ComponentTypeNV = crate::vk::ComponentTypeKHR;
-pub const NV_COOPERATIVE_MATRIX_SPEC_VERSION: usize = 1;
+pub const NV_COOPERATIVE_MATRIX_SPEC_VERSION: u32 = 1;
 pub const NV_COOPERATIVE_MATRIX_EXTENSION_NAME: &core::ffi::CStr = c"VK_NV_cooperative_matrix";

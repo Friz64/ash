@@ -7,5 +7,5 @@ pub struct PhysicalDeviceAttachmentFeedbackLoopLayoutFeaturesEXT {
     pub p_next: *mut core::ffi::c_void,
     pub attachment_feedback_loop_layout: crate::vk::Bool32,
 }
-pub const EXT_ATTACHMENT_FEEDBACK_LOOP_LAYOUT_SPEC_VERSION: usize = 2;
+pub const EXT_ATTACHMENT_FEEDBACK_LOOP_LAYOUT_SPEC_VERSION: u32 = 2;
 pub const EXT_ATTACHMENT_FEEDBACK_LOOP_LAYOUT_EXTENSION_NAME: &core::ffi::CStr = c"VK_EXT_attachment_feedback_loop_layout";

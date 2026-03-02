@@ -15,5 +15,5 @@ pub struct PhysicalDeviceBorderColorSwizzleFeaturesEXT {
     pub border_color_swizzle: crate::vk::Bool32,
     pub border_color_swizzle_from_image: crate::vk::Bool32,
 }
-pub const EXT_BORDER_COLOR_SWIZZLE_SPEC_VERSION: usize = 1;
+pub const EXT_BORDER_COLOR_SWIZZLE_SPEC_VERSION: u32 = 1;
 pub const EXT_BORDER_COLOR_SWIZZLE_EXTENSION_NAME: &core::ffi::CStr = c"VK_EXT_border_color_swizzle";

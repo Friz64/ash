@@ -14,5 +14,5 @@ pub struct PresentIdKHR {
     pub swapchain_count: u32,
     pub p_present_ids: *const u64,
 }
-pub const KHR_PRESENT_ID_SPEC_VERSION: usize = 1;
+pub const KHR_PRESENT_ID_SPEC_VERSION: u32 = 1;
 pub const KHR_PRESENT_ID_EXTENSION_NAME: &core::ffi::CStr = c"VK_KHR_present_id";

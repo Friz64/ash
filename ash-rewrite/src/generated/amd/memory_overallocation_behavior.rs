@@ -9,5 +9,5 @@ pub struct DeviceMemoryOverallocationCreateInfoAMD {
 }
 #[repr(transparent)]
 pub struct MemoryOverallocationBehaviorAMD(pub(crate) i32);
-pub const AMD_MEMORY_OVERALLOCATION_BEHAVIOR_SPEC_VERSION: usize = 1;
+pub const AMD_MEMORY_OVERALLOCATION_BEHAVIOR_SPEC_VERSION: u32 = 1;
 pub const AMD_MEMORY_OVERALLOCATION_BEHAVIOR_EXTENSION_NAME: &core::ffi::CStr = c"VK_AMD_memory_overallocation_behavior";

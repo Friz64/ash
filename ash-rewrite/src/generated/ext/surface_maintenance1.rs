@@ -8,5 +8,5 @@ pub type PresentScalingFlagBitsEXT = crate::vk::PresentScalingFlagBitsKHR;
 pub type PresentGravityFlagBitsEXT = crate::vk::PresentGravityFlagBitsKHR;
 pub type PresentScalingFlagsEXT = crate::vk::PresentScalingFlagsKHR;
 pub type PresentGravityFlagsEXT = crate::vk::PresentGravityFlagsKHR;
-pub const EXT_SURFACE_MAINTENANCE_1_SPEC_VERSION: usize = 1;
+pub const EXT_SURFACE_MAINTENANCE_1_SPEC_VERSION: u32 = 1;
 pub const EXT_SURFACE_MAINTENANCE_1_EXTENSION_NAME: &core::ffi::CStr = c"VK_EXT_surface_maintenance1";

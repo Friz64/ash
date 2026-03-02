@@ -57,5 +57,5 @@ pub struct DrmFormatModifierProperties2EXT {
     pub drm_format_modifier_plane_count: u32,
     pub drm_format_modifier_tiling_features: crate::vk::FormatFeatureFlags2,
 }
-pub const EXT_IMAGE_DRM_FORMAT_MODIFIER_SPEC_VERSION: usize = 2;
+pub const EXT_IMAGE_DRM_FORMAT_MODIFIER_SPEC_VERSION: u32 = 2;
 pub const EXT_IMAGE_DRM_FORMAT_MODIFIER_EXTENSION_NAME: &core::ffi::CStr = c"VK_EXT_image_drm_format_modifier";

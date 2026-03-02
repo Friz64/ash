@@ -76,5 +76,5 @@ pub struct AcquireProfilingLockFlagsKHR(pub(crate) i32);
 pub struct PerformanceCounterDescriptionFlagBitsKHR(pub(crate) i32);
 #[repr(transparent)]
 pub struct AcquireProfilingLockFlagBitsKHR(pub(crate) i32);
-pub const KHR_PERFORMANCE_QUERY_SPEC_VERSION: usize = 1;
+pub const KHR_PERFORMANCE_QUERY_SPEC_VERSION: u32 = 1;
 pub const KHR_PERFORMANCE_QUERY_EXTENSION_NAME: &core::ffi::CStr = c"VK_KHR_performance_query";

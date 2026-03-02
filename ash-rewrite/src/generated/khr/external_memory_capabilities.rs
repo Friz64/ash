@@ -10,5 +10,5 @@ pub type ExternalMemoryHandleTypeFlagBitsKHR = crate::vk::ExternalMemoryHandleTy
 pub type ExternalMemoryFeatureFlagBitsKHR = crate::vk::ExternalMemoryFeatureFlagBits;
 pub type ExternalMemoryHandleTypeFlagsKHR = crate::vk::ExternalMemoryHandleTypeFlags;
 pub type ExternalMemoryFeatureFlagsKHR = crate::vk::ExternalMemoryFeatureFlags;
-pub const KHR_EXTERNAL_MEMORY_CAPABILITIES_SPEC_VERSION: usize = 1;
+pub const KHR_EXTERNAL_MEMORY_CAPABILITIES_SPEC_VERSION: u32 = 1;
 pub const KHR_EXTERNAL_MEMORY_CAPABILITIES_EXTENSION_NAME: &core::ffi::CStr = c"VK_KHR_external_memory_capabilities";

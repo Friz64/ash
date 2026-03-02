@@ -11,5 +11,5 @@ pub struct ScreenSurfaceCreateInfoQNX {
 }
 #[repr(transparent)]
 pub struct ScreenSurfaceCreateFlagsQNX(pub(crate) i32);
-pub const QNX_SCREEN_SURFACE_SPEC_VERSION: usize = 1;
+pub const QNX_SCREEN_SURFACE_SPEC_VERSION: u32 = 1;
 pub const QNX_SCREEN_SURFACE_EXTENSION_NAME: &core::ffi::CStr = c"VK_QNX_screen_surface";

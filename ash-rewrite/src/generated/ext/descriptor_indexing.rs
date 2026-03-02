@@ -8,5 +8,5 @@ pub type DescriptorSetVariableDescriptorCountAllocateInfoEXT = crate::vk::Descri
 pub type DescriptorSetVariableDescriptorCountLayoutSupportEXT = crate::vk::DescriptorSetVariableDescriptorCountLayoutSupport;
 pub type DescriptorBindingFlagBitsEXT = crate::vk::DescriptorBindingFlagBits;
 pub type DescriptorBindingFlagsEXT = crate::vk::DescriptorBindingFlags;
-pub const EXT_DESCRIPTOR_INDEXING_SPEC_VERSION: usize = 2;
+pub const EXT_DESCRIPTOR_INDEXING_SPEC_VERSION: u32 = 2;
 pub const EXT_DESCRIPTOR_INDEXING_EXTENSION_NAME: &core::ffi::CStr = c"VK_EXT_descriptor_indexing";

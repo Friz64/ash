@@ -28,5 +28,5 @@ pub struct DebugMarkerMarkerInfoEXT {
 }
 #[repr(transparent)]
 pub struct DebugReportObjectTypeEXT(pub(crate) i32);
-pub const EXT_DEBUG_MARKER_SPEC_VERSION: usize = 4;
+pub const EXT_DEBUG_MARKER_SPEC_VERSION: u32 = 4;
 pub const EXT_DEBUG_MARKER_EXTENSION_NAME: &core::ffi::CStr = c"VK_EXT_debug_marker";

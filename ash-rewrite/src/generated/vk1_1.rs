@@ -555,5 +555,6 @@ pub struct DescriptorUpdateTemplate(pub(crate) i32);
 #[repr(transparent)]
 pub struct SamplerYcbcrConversion(pub(crate) i32);
 pub const LUID_SIZE: u32 = 8;
-pub const QUEUE_FAMILY_EXTERNAL: u32 = (!1u32);
+pub const QUEUE_FAMILY_EXTERNAL: u32 = (!1);
 pub const MAX_DEVICE_GROUP_SIZE: u32 = 32;
+pub const API_VERSION_1_1: u32 = crate::vk::make_api_version(0, 1, 1, 0);

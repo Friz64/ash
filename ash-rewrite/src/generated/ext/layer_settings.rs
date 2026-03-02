@@ -18,5 +18,5 @@ pub struct LayerSettingEXT {
 }
 #[repr(transparent)]
 pub struct LayerSettingTypeEXT(pub(crate) i32);
-pub const EXT_LAYER_SETTINGS_SPEC_VERSION: usize = 2;
+pub const EXT_LAYER_SETTINGS_SPEC_VERSION: u32 = 2;
 pub const EXT_LAYER_SETTINGS_EXTENSION_NAME: &core::ffi::CStr = c"VK_EXT_layer_settings";

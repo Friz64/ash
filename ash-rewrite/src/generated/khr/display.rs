@@ -72,5 +72,5 @@ pub struct DisplayPlaneAlphaFlagBitsKHR(pub(crate) i32);
 pub struct DisplayKHR(pub(crate) i32);
 #[repr(transparent)]
 pub struct DisplayModeKHR(pub(crate) i32);
-pub const KHR_DISPLAY_SPEC_VERSION: usize = 23;
+pub const KHR_DISPLAY_SPEC_VERSION: u32 = 23;
 pub const KHR_DISPLAY_EXTENSION_NAME: &core::ffi::CStr = c"VK_KHR_display";

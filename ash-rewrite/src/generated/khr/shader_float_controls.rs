@@ -3,5 +3,5 @@
 //![Vulkan Manual Page](https://docs.vulkan.org/refpages/latest/refpages/source/VK_KHR_shader_float_controls.html) · Extension `VK_KHR_shader_float_controls`
 pub type PhysicalDeviceFloatControlsPropertiesKHR = crate::vk::PhysicalDeviceFloatControlsProperties;
 pub type ShaderFloatControlsIndependenceKHR = crate::vk::ShaderFloatControlsIndependence;
-pub const KHR_SHADER_FLOAT_CONTROLS_SPEC_VERSION: usize = 4;
+pub const KHR_SHADER_FLOAT_CONTROLS_SPEC_VERSION: u32 = 4;
 pub const KHR_SHADER_FLOAT_CONTROLS_EXTENSION_NAME: &core::ffi::CStr = c"VK_KHR_shader_float_controls";

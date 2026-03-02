@@ -37,5 +37,5 @@ pub struct PhysicalDeviceSubpassMergeFeedbackFeaturesEXT {
 }
 #[repr(transparent)]
 pub struct SubpassMergeStatusEXT(pub(crate) i32);
-pub const EXT_SUBPASS_MERGE_FEEDBACK_SPEC_VERSION: usize = 2;
+pub const EXT_SUBPASS_MERGE_FEEDBACK_SPEC_VERSION: u32 = 2;
 pub const EXT_SUBPASS_MERGE_FEEDBACK_EXTENSION_NAME: &core::ffi::CStr = c"VK_EXT_subpass_merge_feedback";

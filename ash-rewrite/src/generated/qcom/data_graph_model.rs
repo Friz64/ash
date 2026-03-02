@@ -25,5 +25,5 @@ pub struct PhysicalDeviceDataGraphModelFeaturesQCOM {
 #[repr(transparent)]
 pub struct DataGraphModelCacheTypeQCOM(pub(crate) i32);
 pub const DATA_GRAPH_MODEL_TOOLCHAIN_VERSION_LENGTH_QCOM: u32 = 3;
-pub const QCOM_DATA_GRAPH_MODEL_SPEC_VERSION: usize = 1;
+pub const QCOM_DATA_GRAPH_MODEL_SPEC_VERSION: u32 = 1;
 pub const QCOM_DATA_GRAPH_MODEL_EXTENSION_NAME: &core::ffi::CStr = c"VK_QCOM_data_graph_model";

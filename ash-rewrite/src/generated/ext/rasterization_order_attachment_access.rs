@@ -13,5 +13,5 @@ pub struct PhysicalDeviceRasterizationOrderAttachmentAccessFeaturesEXT {
 pub struct PipelineColorBlendStateCreateFlagBits(pub(crate) i32);
 #[repr(transparent)]
 pub struct PipelineDepthStencilStateCreateFlagBits(pub(crate) i32);
-pub const EXT_RASTERIZATION_ORDER_ATTACHMENT_ACCESS_SPEC_VERSION: usize = 1;
+pub const EXT_RASTERIZATION_ORDER_ATTACHMENT_ACCESS_SPEC_VERSION: u32 = 1;
 pub const EXT_RASTERIZATION_ORDER_ATTACHMENT_ACCESS_EXTENSION_NAME: &core::ffi::CStr = c"VK_EXT_rasterization_order_attachment_access";

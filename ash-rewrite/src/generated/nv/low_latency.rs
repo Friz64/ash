@@ -7,5 +7,5 @@ pub struct QueryLowLatencySupportNV {
     pub p_next: *const core::ffi::c_void,
     pub p_queried_low_latency_data: *mut core::ffi::c_void,
 }
-pub const NV_LOW_LATENCY_SPEC_VERSION: usize = 1;
+pub const NV_LOW_LATENCY_SPEC_VERSION: u32 = 1;
 pub const NV_LOW_LATENCY_EXTENSION_NAME: &core::ffi::CStr = c"VK_NV_low_latency";

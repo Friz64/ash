@@ -82,6 +82,6 @@ pub struct PartitionedAccelerationStructureOpTypeNV(pub(crate) i32);
 pub struct PartitionedAccelerationStructureInstanceFlagsNV(pub(crate) i32);
 #[repr(transparent)]
 pub struct PartitionedAccelerationStructureInstanceFlagBitsNV(pub(crate) i32);
-pub const PARTITIONED_ACCELERATION_STRUCTURE_PARTITION_INDEX_GLOBAL_NV: u32 = (!0u32);
-pub const NV_PARTITIONED_ACCELERATION_STRUCTURE_SPEC_VERSION: usize = 1;
+pub const PARTITIONED_ACCELERATION_STRUCTURE_PARTITION_INDEX_GLOBAL_NV: u32 = (!0);
+pub const NV_PARTITIONED_ACCELERATION_STRUCTURE_SPEC_VERSION: u32 = 1;
 pub const NV_PARTITIONED_ACCELERATION_STRUCTURE_EXTENSION_NAME: &core::ffi::CStr = c"VK_NV_partitioned_acceleration_structure";

@@ -21,5 +21,5 @@ pub struct ShaderStatisticsInfoAMD {
 }
 #[repr(transparent)]
 pub struct ShaderInfoTypeAMD(pub(crate) i32);
-pub const AMD_SHADER_INFO_SPEC_VERSION: usize = 1;
+pub const AMD_SHADER_INFO_SPEC_VERSION: u32 = 1;
 pub const AMD_SHADER_INFO_EXTENSION_NAME: &core::ffi::CStr = c"VK_AMD_shader_info";

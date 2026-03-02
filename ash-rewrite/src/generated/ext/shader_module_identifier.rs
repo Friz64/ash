@@ -28,5 +28,5 @@ pub struct ShaderModuleIdentifierEXT {
     pub identifier: [u8; crate::vk::MAX_SHADER_MODULE_IDENTIFIER_SIZE_EXT as _],
 }
 pub const MAX_SHADER_MODULE_IDENTIFIER_SIZE_EXT: u32 = 32;
-pub const EXT_SHADER_MODULE_IDENTIFIER_SPEC_VERSION: usize = 1;
+pub const EXT_SHADER_MODULE_IDENTIFIER_SPEC_VERSION: u32 = 1;
 pub const EXT_SHADER_MODULE_IDENTIFIER_EXTENSION_NAME: &core::ffi::CStr = c"VK_EXT_shader_module_identifier";

@@ -6,5 +6,5 @@ pub type PipelineRobustnessCreateInfoEXT = crate::vk::PipelineRobustnessCreateIn
 pub type PhysicalDevicePipelineRobustnessPropertiesEXT = crate::vk::PhysicalDevicePipelineRobustnessProperties;
 pub type PipelineRobustnessBufferBehaviorEXT = crate::vk::PipelineRobustnessBufferBehavior;
 pub type PipelineRobustnessImageBehaviorEXT = crate::vk::PipelineRobustnessImageBehavior;
-pub const EXT_PIPELINE_ROBUSTNESS_SPEC_VERSION: usize = 1;
+pub const EXT_PIPELINE_ROBUSTNESS_SPEC_VERSION: u32 = 1;
 pub const EXT_PIPELINE_ROBUSTNESS_EXTENSION_NAME: &core::ffi::CStr = c"VK_EXT_pipeline_robustness";

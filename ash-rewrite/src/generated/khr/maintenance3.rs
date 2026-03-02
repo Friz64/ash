@@ -3,5 +3,5 @@
 //![Vulkan Manual Page](https://docs.vulkan.org/refpages/latest/refpages/source/VK_KHR_maintenance3.html) · Extension `VK_KHR_maintenance3`
 pub type PhysicalDeviceMaintenance3PropertiesKHR = crate::vk::PhysicalDeviceMaintenance3Properties;
 pub type DescriptorSetLayoutSupportKHR = crate::vk::DescriptorSetLayoutSupport;
-pub const KHR_MAINTENANCE_3_SPEC_VERSION: usize = 1;
+pub const KHR_MAINTENANCE_3_SPEC_VERSION: u32 = 1;
 pub const KHR_MAINTENANCE_3_EXTENSION_NAME: &core::ffi::CStr = c"VK_KHR_maintenance3";

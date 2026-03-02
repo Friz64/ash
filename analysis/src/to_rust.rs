@@ -1,10 +1,13 @@
 use crate::{
     decl::{ArrayLen, CPrimaryType, Decl, Mutability, Ty},
-    item::constant,
-    xml::name::{ConstantName, FuncPointerName, TypeName},
+    xml::{
+        cexpr::CExprItem,
+        name::{CMacroName, ConstantName, FuncPointerName, TypeName},
+    },
 };
 use proc_macro2::{Literal, TokenStream};
 use quote::quote;
+use std::{borrow::Borrow, mem};
 use syn::Ident;
 
 pub trait NameTranslate {
@@ -15,6 +18,8 @@ pub trait NameTranslate {
     fn func_pointer_to_rust(&self, name: FuncPointerName) -> TokenStream;
 
     fn constant_to_rust(&self, name: ConstantName) -> TokenStream;
+
+    fn cmacro_to_rust(&self, name: CMacroName, has_args: bool) -> TokenStream;
 
     fn primary_type_to_rust(&self, primary_ty: CPrimaryType) -> TokenStream {
         match primary_ty {
@@ -88,52 +93,43 @@ impl Ty {
     }
 }
 
-impl constant::Expression {
-    pub fn to_rust(&self, _name_translate: &impl NameTranslate) -> TokenStream {
-        let mut rust_expr = String::default();
-
-        let mut s = self.0;
-        assert!(s.is_ascii());
-        while let Some(c) = s.chars().next() {
-            let is_value = |c: char| c.is_ascii_alphanumeric() || c == '_' || c == '.';
-            let rust_token = if is_value(c) {
-                let len = s.chars().take_while(|&c| is_value(c)).count();
-                let (token, rest) = s.split_at(len);
-                s = rest;
-                if c.is_ascii_digit() {
-                    // `token` is  a literal integer
-                    let mut horrible_code_pls_fix = token.replace("ULL", "u64").replace("U", "u32");
-
-                    if horrible_code_pls_fix.contains('.') {
-                        horrible_code_pls_fix = horrible_code_pls_fix
-                            .replace("f", "f32")
-                            .replace("F", "f32");
-                    }
-                    horrible_code_pls_fix
-                } else {
-                    // `token` is a macro invocation
-                    String::from("69420") // TODO
-                }
-            } else if c.is_ascii_punctuation() {
-                s = &s[1..];
-                // `c` is punctuation
-                if c == '~' {
-                    String::from('!')
-                } else {
-                    c.to_string()
-                }
-            } else if c.is_ascii_whitespace() {
-                s = s.trim_start();
-                continue;
-            } else {
-                panic!("unsupported token: {c:?}");
-            };
-
-            rust_expr += &(rust_token + " ");
+impl CExprItem {
+    pub fn to_rust(
+        items: impl Iterator<Item = impl Borrow<CExprItem>>,
+        name_translate: &impl NameTranslate,
+    ) -> TokenStream {
+        let mut output = TokenStream::new();
+        let mut tmp_s = String::new();
+        fn move_into_tokens(ts: &mut TokenStream, s: &mut String) {
+            ts.extend::<TokenStream>(mem::take(s).parse().unwrap())
         }
 
-        let tokens = syn::parse_str(&rust_expr).unwrap();
-        syn::parse2::<syn::File>(quote! { const WAFF: usize = #tokens; }).unwrap();
-        tokens
+        for item in items {
+            match item.borrow() {
+                CExprItem::Punct('~') => tmp_s.push('!'),
+                CExprItem::Punct(c) => tmp_s.push(*c),
+                CExprItem::NumericLiteral(lit) => tmp_s.push_str(lit),
+                CExprItem::U32ArgVar(name) => tmp_s.push_str(name),
+                CExprItem::StringLiteral(content) => tmp_s.push_str(&format!("c\"{content}\"")),
+                CExprItem::MacroCall { macro_name, args } => {
+                    move_into_tokens(&mut output, &mut tmp_s);
+                    let has_args = !args.is_empty();
+                    let name = name_translate.cmacro_to_rust(*macro_name, has_args);
+
+                    output.extend(if has_args {
+                        let args = args
+                            .iter()
+                            .map(|arg| CExprItem::to_rust(arg.iter(), name_translate));
+
+                        quote! { #name( #(#args),* ) }
+                    } else {
+                        quote! { #name }
+                    });
+                }
+            }
+        }
+
+        move_into_tokens(&mut output, &mut tmp_s);
+        output
     }
 }

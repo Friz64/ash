@@ -19,5 +19,5 @@ pub struct SwapchainPresentBarrierCreateInfoNV {
     pub p_next: *mut core::ffi::c_void,
     pub present_barrier_enable: crate::vk::Bool32,
 }
-pub const NV_PRESENT_BARRIER_SPEC_VERSION: usize = 1;
+pub const NV_PRESENT_BARRIER_SPEC_VERSION: u32 = 1;
 pub const NV_PRESENT_BARRIER_EXTENSION_NAME: &core::ffi::CStr = c"VK_NV_present_barrier";

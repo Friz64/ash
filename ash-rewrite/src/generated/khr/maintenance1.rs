@@ -2,5 +2,5 @@
 #![cfg_attr(rustfmt, rustfmt_skip)]
 //![Vulkan Manual Page](https://docs.vulkan.org/refpages/latest/refpages/source/VK_KHR_maintenance1.html) · Extension `VK_KHR_maintenance1`
 pub type CommandPoolTrimFlagsKHR = crate::vk::CommandPoolTrimFlags;
-pub const KHR_MAINTENANCE_1_SPEC_VERSION: usize = 2;
+pub const KHR_MAINTENANCE_1_SPEC_VERSION: u32 = 2;
 pub const KHR_MAINTENANCE_1_EXTENSION_NAME: &core::ffi::CStr = c"VK_KHR_maintenance1";

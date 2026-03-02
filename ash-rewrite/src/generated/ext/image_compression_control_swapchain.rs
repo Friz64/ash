@@ -7,5 +7,5 @@ pub struct PhysicalDeviceImageCompressionControlSwapchainFeaturesEXT {
     pub p_next: *mut core::ffi::c_void,
     pub image_compression_control_swapchain: crate::vk::Bool32,
 }
-pub const EXT_IMAGE_COMPRESSION_CONTROL_SWAPCHAIN_SPEC_VERSION: usize = 1;
+pub const EXT_IMAGE_COMPRESSION_CONTROL_SWAPCHAIN_SPEC_VERSION: u32 = 1;
 pub const EXT_IMAGE_COMPRESSION_CONTROL_SWAPCHAIN_EXTENSION_NAME: &core::ffi::CStr = c"VK_EXT_image_compression_control_swapchain";

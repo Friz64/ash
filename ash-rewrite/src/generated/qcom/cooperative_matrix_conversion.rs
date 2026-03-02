@@ -7,5 +7,5 @@ pub struct PhysicalDeviceCooperativeMatrixConversionFeaturesQCOM {
     pub p_next: *mut core::ffi::c_void,
     pub cooperative_matrix_conversion: crate::vk::Bool32,
 }
-pub const QCOM_COOPERATIVE_MATRIX_CONVERSION_SPEC_VERSION: usize = 1;
+pub const QCOM_COOPERATIVE_MATRIX_CONVERSION_SPEC_VERSION: u32 = 1;
 pub const QCOM_COOPERATIVE_MATRIX_CONVERSION_EXTENSION_NAME: &core::ffi::CStr = c"VK_QCOM_cooperative_matrix_conversion";

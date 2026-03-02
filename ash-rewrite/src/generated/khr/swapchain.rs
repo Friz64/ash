@@ -39,5 +39,5 @@ pub struct SwapchainCreateFlagsKHR(pub(crate) i32);
 pub struct SwapchainCreateFlagBitsKHR(pub(crate) i32);
 #[repr(transparent)]
 pub struct SwapchainKHR(pub(crate) i32);
-pub const KHR_SWAPCHAIN_SPEC_VERSION: usize = 70;
+pub const KHR_SWAPCHAIN_SPEC_VERSION: u32 = 70;
 pub const KHR_SWAPCHAIN_EXTENSION_NAME: &core::ffi::CStr = c"VK_KHR_swapchain";

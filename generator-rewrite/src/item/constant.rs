@@ -1,12 +1,11 @@
 use super::{Code, Context};
 use crate::output::{CodeMap, Destination};
 use analysis::{
-    item::constant::{Constant, Value},
+    item::constant::{Constant, ConstantType},
     to_rust::NameTranslate,
+    xml::cexpr::CExprItem,
 };
-use proc_macro2::Literal;
 use quote::{format_ident, quote};
-use std::{ffi::CString, str::FromStr};
 use tracing::{instrument, trace};
 
 impl Code for Constant {
@@ -14,20 +13,13 @@ impl Code for Constant {
     fn code(&self, ctx: &Context) -> CodeMap {
         trace!("generating");
         let name = format_ident!("{}", self.name.prefix_trimmed());
-        let (ty, value) = match &self.value {
-            Value::LiteralString(value) => {
-                let literal = Literal::c_string(&CString::from_str(value).unwrap());
-                (quote! { &core::ffi::CStr }, quote! { #literal })
-            }
-            Value::Expression(ty, expression) => {
-                let ty = match ty {
-                    Some(primary_ty) => ctx.primary_type_to_rust(*primary_ty),
-                    None => quote! { usize },
-                };
 
-                (ty, expression.to_rust(ctx))
-            }
+        let ty = match self.ty {
+            ConstantType::Integer(primary_ty) => ctx.primary_type_to_rust(primary_ty),
+            ConstantType::String => quote! { &core::ffi::CStr },
         };
+
+        let value = CExprItem::to_rust(self.value.iter(), ctx);
 
         let code = quote! {
             pub const #name: #ty = #value;

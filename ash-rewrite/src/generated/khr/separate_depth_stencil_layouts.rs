@@ -4,5 +4,5 @@
 pub type PhysicalDeviceSeparateDepthStencilLayoutsFeaturesKHR = crate::vk::PhysicalDeviceSeparateDepthStencilLayoutsFeatures;
 pub type AttachmentReferenceStencilLayoutKHR = crate::vk::AttachmentReferenceStencilLayout;
 pub type AttachmentDescriptionStencilLayoutKHR = crate::vk::AttachmentDescriptionStencilLayout;
-pub const KHR_SEPARATE_DEPTH_STENCIL_LAYOUTS_SPEC_VERSION: usize = 1;
+pub const KHR_SEPARATE_DEPTH_STENCIL_LAYOUTS_SPEC_VERSION: u32 = 1;
 pub const KHR_SEPARATE_DEPTH_STENCIL_LAYOUTS_EXTENSION_NAME: &core::ffi::CStr = c"VK_KHR_separate_depth_stencil_layouts";

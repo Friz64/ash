@@ -5,5 +5,5 @@ pub type PhysicalDeviceDepthStencilResolvePropertiesKHR = crate::vk::PhysicalDev
 pub type SubpassDescriptionDepthStencilResolveKHR = crate::vk::SubpassDescriptionDepthStencilResolve;
 pub type ResolveModeFlagBitsKHR = crate::vk::ResolveModeFlagBits;
 pub type ResolveModeFlagsKHR = crate::vk::ResolveModeFlags;
-pub const KHR_DEPTH_STENCIL_RESOLVE_SPEC_VERSION: usize = 1;
+pub const KHR_DEPTH_STENCIL_RESOLVE_SPEC_VERSION: u32 = 1;
 pub const KHR_DEPTH_STENCIL_RESOLVE_EXTENSION_NAME: &core::ffi::CStr = c"VK_KHR_depth_stencil_resolve";

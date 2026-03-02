@@ -190,5 +190,5 @@ pub struct IndirectCommandsInputModeFlagBitsEXT(pub(crate) i32);
 pub struct IndirectCommandsLayoutEXT(pub(crate) i32);
 #[repr(transparent)]
 pub struct IndirectExecutionSetEXT(pub(crate) i32);
-pub const EXT_DEVICE_GENERATED_COMMANDS_SPEC_VERSION: usize = 1;
+pub const EXT_DEVICE_GENERATED_COMMANDS_SPEC_VERSION: u32 = 1;
 pub const EXT_DEVICE_GENERATED_COMMANDS_EXTENSION_NAME: &core::ffi::CStr = c"VK_EXT_device_generated_commands";

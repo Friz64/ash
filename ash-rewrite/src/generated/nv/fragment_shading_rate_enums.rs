@@ -27,5 +27,5 @@ pub struct PipelineFragmentShadingRateEnumStateCreateInfoNV {
 pub struct FragmentShadingRateNV(pub(crate) i32);
 #[repr(transparent)]
 pub struct FragmentShadingRateTypeNV(pub(crate) i32);
-pub const NV_FRAGMENT_SHADING_RATE_ENUMS_SPEC_VERSION: usize = 1;
+pub const NV_FRAGMENT_SHADING_RATE_ENUMS_SPEC_VERSION: u32 = 1;
 pub const NV_FRAGMENT_SHADING_RATE_ENUMS_EXTENSION_NAME: &core::ffi::CStr = c"VK_NV_fragment_shading_rate_enums";

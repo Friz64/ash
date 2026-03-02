@@ -30,5 +30,5 @@ pub struct MemoryGetWin32HandleInfoKHR {
     pub memory: crate::vk::DeviceMemory,
     pub handle_type: crate::vk::ExternalMemoryHandleTypeFlagBits,
 }
-pub const KHR_EXTERNAL_MEMORY_WIN32_SPEC_VERSION: usize = 1;
+pub const KHR_EXTERNAL_MEMORY_WIN32_SPEC_VERSION: u32 = 1;
 pub const KHR_EXTERNAL_MEMORY_WIN32_EXTENSION_NAME: &core::ffi::CStr = c"VK_KHR_external_memory_win32";

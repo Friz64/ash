@@ -23,5 +23,5 @@ pub struct PhysicalDeviceClusterCullingShaderVrsFeaturesHUAWEI {
     pub p_next: *mut core::ffi::c_void,
     pub cluster_shading_rate: crate::vk::Bool32,
 }
-pub const HUAWEI_CLUSTER_CULLING_SHADER_SPEC_VERSION: usize = 3;
+pub const HUAWEI_CLUSTER_CULLING_SHADER_SPEC_VERSION: u32 = 3;
 pub const HUAWEI_CLUSTER_CULLING_SHADER_EXTENSION_NAME: &core::ffi::CStr = c"VK_HUAWEI_cluster_culling_shader";

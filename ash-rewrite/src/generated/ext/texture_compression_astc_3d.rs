@@ -7,5 +7,5 @@ pub struct PhysicalDeviceTextureCompressionASTC3DFeaturesEXT {
     pub p_next: *mut core::ffi::c_void,
     pub texture_compression_astc_3d: crate::vk::Bool32,
 }
-pub const EXT_TEXTURE_COMPRESSION_ASTC_3D_SPEC_VERSION: usize = 1;
+pub const EXT_TEXTURE_COMPRESSION_ASTC_3D_SPEC_VERSION: u32 = 1;
 pub const EXT_TEXTURE_COMPRESSION_ASTC_3D_EXTENSION_NAME: &core::ffi::CStr = c"VK_EXT_texture_compression_astc_3d";

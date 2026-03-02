@@ -1,15 +1,15 @@
-use crate::xml::name::MacroName;
+use crate::xml::name::CMacroName;
 
 pub type CExprItems = Vec<CExprItem>;
 
-#[derive(Debug)]
+#[derive(Debug, Clone)]
 pub enum CExprItem {
     Punct(char),
     NumericLiteral(&'static str),
     U32ArgVar(&'static str),
     StringLiteral(&'static str),
     MacroCall {
-        macro_name: MacroName,
+        macro_name: CMacroName,
         args: Vec<CExprItems>,
     },
 }
@@ -58,7 +58,7 @@ pub(crate) fn parse(input: &'static str) -> CExprItems {
                 CExprItem::NumericLiteral(value)
             } else {
                 CExprItem::MacroCall {
-                    macro_name: MacroName(value),
+                    macro_name: CMacroName(value),
                     args: vec![],
                 }
             }

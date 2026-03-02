@@ -7,5 +7,5 @@ pub struct ExternalMemoryAcquireUnmodifiedEXT {
     pub p_next: *const core::ffi::c_void,
     pub acquire_unmodified_memory: crate::vk::Bool32,
 }
-pub const EXT_EXTERNAL_MEMORY_ACQUIRE_UNMODIFIED_SPEC_VERSION: usize = 1;
+pub const EXT_EXTERNAL_MEMORY_ACQUIRE_UNMODIFIED_SPEC_VERSION: u32 = 1;
 pub const EXT_EXTERNAL_MEMORY_ACQUIRE_UNMODIFIED_EXTENSION_NAME: &core::ffi::CStr = c"VK_EXT_external_memory_acquire_unmodified";

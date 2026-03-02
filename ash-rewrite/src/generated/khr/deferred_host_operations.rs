@@ -3,5 +3,5 @@
 //![Vulkan Manual Page](https://docs.vulkan.org/refpages/latest/refpages/source/VK_KHR_deferred_host_operations.html) · Extension `VK_KHR_deferred_host_operations`
 #[repr(transparent)]
 pub struct DeferredOperationKHR(pub(crate) i32);
-pub const KHR_DEFERRED_HOST_OPERATIONS_SPEC_VERSION: usize = 4;
+pub const KHR_DEFERRED_HOST_OPERATIONS_SPEC_VERSION: u32 = 4;
 pub const KHR_DEFERRED_HOST_OPERATIONS_EXTENSION_NAME: &core::ffi::CStr = c"VK_KHR_deferred_host_operations";
