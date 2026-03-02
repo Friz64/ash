@@ -278,7 +278,7 @@ impl Registry {
                     trace!("encountered node");
                     registry
                         .features
-                        .push(Feature::from_node(registry_child, api));
+                        .push(Feature::from_node(registry_child, library_name, api));
                 }
                 "extensions" => {
                     for extension_node in registry_child
@@ -853,13 +853,13 @@ pub enum RequireType {
 }
 
 impl RequireType {
-    fn from_node(node: Node) -> RequireType {
+    fn from_node(node: Node, library_name: LibraryName) -> RequireType {
         let name = attribute(node, "name").unwrap();
         if name.starts_with("PFN_") {
             RequireType::FuncPointer(FuncPointerName(name))
-        }
-        // fun way to check for snake_case
-        else if name.contains('_') {
+        } else if name.starts_with(match library_name {
+            LibraryName::Vk | LibraryName::Video => "VK_",
+        }) {
             RequireType::CMacro(CMacroName(name))
         } else {
             RequireType::Type(TypeName(name))
@@ -911,7 +911,12 @@ pub struct Require {
 }
 
 impl Require {
-    fn from_node(node: Node, api: &str, extension_num: Option<u32>) -> Require {
+    fn from_node(
+        node: Node,
+        library_name: LibraryName,
+        api: &str,
+        extension_num: Option<u32>,
+    ) -> Require {
         let mut value = Require {
             depends: attribute(node, "depends").map(|input| Depends::from_str(input).unwrap()),
             ..Default::default()
@@ -928,7 +933,9 @@ impl Require {
                         value.constants.push(RequireConstant::from_node(child));
                     }
                 }
-                "type" => value.types.push(RequireType::from_node(child)),
+                "type" => value
+                    .types
+                    .push(RequireType::from_node(child, library_name)),
                 "command" => value.commands.push(RequireCommand::from_node(child)),
                 _ => (),
             }
@@ -946,7 +953,7 @@ pub struct Feature {
 }
 
 impl Feature {
-    fn from_node(node: Node, api: &str) -> Feature {
+    fn from_node(node: Node, library_name: LibraryName, api: &str) -> Feature {
         Feature {
             version: Version::from_str(attribute(node, "name").unwrap()).unwrap(),
             depends: attribute(node, "depends").map(|input| Depends::from_str(input).unwrap()),
@@ -954,7 +961,7 @@ impl Feature {
                 .children()
                 .filter(|child| child.has_tag_name("require"))
                 .filter(|node| api_matches(node, api))
-                .map(|child| Require::from_node(child, api, None))
+                .map(|child| Require::from_node(child, library_name, api, None))
                 .collect(),
         }
     }
@@ -987,7 +994,7 @@ impl Extension {
                 .children()
                 .filter(|child| child.has_tag_name("require"))
                 .filter(|node| api_matches(node, api))
-                .map(|child| Require::from_node(child, api, extension_num))
+                .map(|child| Require::from_node(child, library_name, api, extension_num))
                 .collect(),
         }
     }
