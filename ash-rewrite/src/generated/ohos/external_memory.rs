@@ -31,7 +31,7 @@ pub struct NativeBufferFormatPropertiesOHOS {
 pub struct ImportNativeBufferInfoOHOS {
     pub s_type: crate::vk::StructureType,
     pub p_next: *const core::ffi::c_void,
-    pub buffer: *mut crate::platform_types::OH_NativeBuffer,
+    pub buffer: *mut crate::vk::OH_NativeBuffer,
 }
 #[repr(C)]
 pub struct MemoryGetNativeBufferInfoOHOS {
@@ -45,5 +45,8 @@ pub struct ExternalFormatOHOS {
     pub p_next: *mut core::ffi::c_void,
     pub external_format: u64,
 }
+#[repr(transparent)]
+#[allow(non_camel_case_types)]
+pub struct OH_NativeBuffer(pub(crate) i16);
 pub const OHOS_EXTERNAL_MEMORY_SPEC_VERSION: u32 = 1;
 pub const OHOS_EXTERNAL_MEMORY_EXTENSION_NAME: &core::ffi::CStr = c"VK_OHOS_external_memory";
