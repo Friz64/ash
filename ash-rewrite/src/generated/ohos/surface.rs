@@ -6,12 +6,9 @@ pub struct SurfaceCreateInfoOHOS {
     pub s_type: crate::vk::StructureType,
     pub p_next: *const core::ffi::c_void,
     pub flags: crate::vk::SurfaceCreateFlagsOHOS,
-    pub window: *mut crate::vk::OHNativeWindow,
+    pub window: *mut crate::platform_types::OHNativeWindow,
 }
 #[repr(transparent)]
 pub struct SurfaceCreateFlagsOHOS(pub(crate) i32);
-#[repr(transparent)]
-#[allow(non_camel_case_types)]
-pub struct OHNativeWindow(pub(crate) i16);
 pub const OHOS_SURFACE_SPEC_VERSION: u32 = 1;
 pub const OHOS_SURFACE_EXTENSION_NAME: &core::ffi::CStr = c"VK_OHOS_surface";

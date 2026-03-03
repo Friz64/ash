@@ -199,7 +199,9 @@ impl Registry {
                         } else {
                             match type_node.attribute("category") {
                                 Some("basetype") => {
-                                    registry.basetypes.push(BaseType::from_node(type_node))
+                                    if let Some(basetype) = BaseType::from_node(type_node) {
+                                        registry.basetypes.push(basetype);
+                                    }
                                 }
                                 Some("bitmask") => {
                                     registry.bitmasks.push(BitMask::from_node(type_node))
@@ -371,16 +373,15 @@ impl External {
 #[derive(Debug)]
 pub struct BaseType {
     pub name: TypeName,
-    /// [`None`] indicates this being a platform-specific type.
-    pub ty: Option<&'static str>,
+    pub ty: &'static str,
 }
 
 impl BaseType {
-    fn from_node(node: Node) -> BaseType {
-        BaseType {
+    fn from_node(node: Node) -> Option<BaseType> {
+        Some(BaseType {
             name: TypeName(child_text(node, "name").unwrap()),
-            ty: child_text(node, "type"),
-        }
+            ty: child_text(node, "type")?,
+        })
     }
 }
 
@@ -850,6 +851,7 @@ pub enum RequireType {
     Type(TypeName),
     CMacro(CMacroName),
     FuncPointer(FuncPointerName),
+    External(&'static str),
 }
 
 impl RequireType {
@@ -861,8 +863,13 @@ impl RequireType {
             LibraryName::Vk | LibraryName::Video => "VK_",
         }) {
             RequireType::CMacro(CMacroName(name))
-        } else {
+        } else if name.starts_with(match library_name {
+            LibraryName::Vk => "Vk",
+            LibraryName::Video => "StdVideo",
+        }) {
             RequireType::Type(TypeName(name))
+        } else {
+            RequireType::External(name)
         }
     }
 }

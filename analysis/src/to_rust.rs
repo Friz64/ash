@@ -10,8 +10,8 @@ use quote::quote;
 use std::{borrow::Borrow, mem};
 use syn::Ident;
 
-pub trait NameTranslate {
-    fn variable_to_rust(&self, raw: &'static str) -> Ident;
+pub trait RustTranslator {
+    fn var_name_to_rust(&self, raw: &'static str) -> Ident;
 
     fn type_to_rust(&self, name: TypeName) -> TokenStream;
 
@@ -45,27 +45,27 @@ pub trait NameTranslate {
 
 impl Decl {
     /// Gives you this declaration in the form of `#name: #ty`.
-    pub fn to_rust(&self, name_translate: &impl NameTranslate) -> TokenStream {
-        let name = name_translate.variable_to_rust(self.name);
-        let ty = self.ty.to_rust(name_translate);
+    pub fn to_rust(&self, translator: &impl RustTranslator) -> TokenStream {
+        let name = translator.var_name_to_rust(self.name);
+        let ty = self.ty.to_rust(translator);
         quote! { #name: #ty }
     }
 }
 
 impl Ty {
-    pub fn to_rust(&self, name_translate: &impl NameTranslate) -> TokenStream {
+    pub fn to_rust(&self, translator: &impl RustTranslator) -> TokenStream {
         match self {
-            Ty::SpecType(name) => name_translate.type_to_rust(*name),
-            Ty::SpecFuncPointer(name) => name_translate.func_pointer_to_rust(*name),
-            Ty::CPrimary(base_ty) => name_translate.primary_type_to_rust(*base_ty),
-            Ty::External(external) => name_translate.ext_type_to_rust(external),
+            Ty::SpecType(name) => translator.type_to_rust(*name),
+            Ty::SpecFuncPointer(name) => translator.func_pointer_to_rust(*name),
+            Ty::CPrimary(base_ty) => translator.primary_type_to_rust(*base_ty),
+            Ty::External(external) => translator.ext_type_to_rust(external),
             Ty::Ptr(ty, mutability) => {
                 let mutability = match mutability {
                     Mutability::Not => quote! { const },
                     Mutability::Mut => quote! { mut },
                 };
 
-                let ty = ty.to_rust(name_translate);
+                let ty = ty.to_rust(translator);
                 quote! { * #mutability #ty }
             }
             Ty::Ref(ty, mutability) => {
@@ -74,13 +74,13 @@ impl Ty {
                     Mutability::Mut => quote! { mut },
                 };
 
-                let ty = ty.to_rust(name_translate);
+                let ty = ty.to_rust(translator);
                 quote! { & #mutability #ty }
             }
             Ty::Array(ty, array_len) => {
-                let ty = ty.to_rust(name_translate);
+                let ty = ty.to_rust(translator);
                 let array_len = match array_len {
-                    ArrayLen::Constant(constant) => name_translate.constant_to_rust(*constant),
+                    ArrayLen::Constant(constant) => translator.constant_to_rust(*constant),
                     ArrayLen::Literal(value) => {
                         let literal = Literal::u128_unsuffixed(*value);
                         quote! { #literal }
@@ -96,7 +96,7 @@ impl Ty {
 impl CExprItem {
     pub fn to_rust(
         items: impl Iterator<Item = impl Borrow<CExprItem>>,
-        name_translate: &impl NameTranslate,
+        translator: &impl RustTranslator,
     ) -> TokenStream {
         let mut output = TokenStream::new();
         let mut tmp_s = String::new();
@@ -114,12 +114,12 @@ impl CExprItem {
                 CExprItem::MacroCall { macro_name, args } => {
                     move_into_tokens(&mut output, &mut tmp_s);
                     let has_args = !args.is_empty();
-                    let name = name_translate.cmacro_to_rust(*macro_name, has_args);
+                    let name = translator.cmacro_to_rust(*macro_name, has_args);
 
                     output.extend(if has_args {
                         let args = args
                             .iter()
-                            .map(|arg| CExprItem::to_rust(arg.iter(), name_translate));
+                            .map(|arg| CExprItem::to_rust(arg.iter(), translator));
 
                         quote! { #name( #(#args),* ) }
                     } else {

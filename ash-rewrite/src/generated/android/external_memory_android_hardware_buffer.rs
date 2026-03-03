@@ -5,7 +5,7 @@
 pub struct ImportAndroidHardwareBufferInfoANDROID {
     pub s_type: crate::vk::StructureType,
     pub p_next: *const core::ffi::c_void,
-    pub buffer: *mut crate::vk::AHardwareBuffer,
+    pub buffer: *mut crate::platform_types::AHardwareBuffer,
 }
 #[repr(C)]
 pub struct AndroidHardwareBufferUsageANDROID {
@@ -58,8 +58,5 @@ pub struct AndroidHardwareBufferFormatProperties2ANDROID {
     pub suggested_x_chroma_offset: crate::vk::ChromaLocation,
     pub suggested_y_chroma_offset: crate::vk::ChromaLocation,
 }
-#[repr(transparent)]
-#[allow(non_camel_case_types)]
-pub struct AHardwareBuffer(pub(crate) i16);
 pub const ANDROID_EXTERNAL_MEMORY_ANDROID_HARDWARE_BUFFER_SPEC_VERSION: u32 = 5;
 pub const ANDROID_EXTERNAL_MEMORY_ANDROID_HARDWARE_BUFFER_EXTENSION_NAME: &core::ffi::CStr = c"VK_ANDROID_external_memory_android_hardware_buffer";

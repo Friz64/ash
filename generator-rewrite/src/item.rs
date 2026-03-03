@@ -1,7 +1,7 @@
 use crate::output::CodeMap;
 use analysis::{
     item::{Items, TypeItem},
-    to_rust::NameTranslate,
+    to_rust::RustTranslator,
     xml::name::{CMacroName, ConstantName, FuncPointerName, TypeName},
 };
 use proc_macro2::TokenStream;
@@ -53,8 +53,8 @@ impl CodeMap {
 #[derive(Debug)]
 pub struct Context {}
 
-impl NameTranslate for Context {
-    fn variable_to_rust(&self, raw: &'static str) -> Ident {
+impl RustTranslator for Context {
+    fn var_name_to_rust(&self, raw: &'static str) -> Ident {
         crate::to_snake_case_escape_ident(raw)
     }
 

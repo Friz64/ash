@@ -1368,19 +1368,19 @@ pub struct EventCreateFlagBits(pub(crate) i32);
 pub struct InstanceCreateFlagBits(pub(crate) i32);
 #[repr(transparent)]
 #[allow(non_camel_case_types)]
-pub struct SampleMask(pub(crate) i16);
+pub struct SampleMask(pub(crate) u32);
 #[repr(transparent)]
 #[allow(non_camel_case_types)]
-pub struct Bool32(pub(crate) i16);
+pub struct Bool32(pub(crate) u32);
 #[repr(transparent)]
 #[allow(non_camel_case_types)]
-pub struct Flags(pub(crate) i16);
+pub struct Flags(pub(crate) u32);
 #[repr(transparent)]
 #[allow(non_camel_case_types)]
-pub struct DeviceSize(pub(crate) i16);
+pub struct DeviceSize(pub(crate) u64);
 #[repr(transparent)]
 #[allow(non_camel_case_types)]
-pub struct DeviceAddress(pub(crate) i16);
+pub struct DeviceAddress(pub(crate) u64);
 #[repr(transparent)]
 pub struct Instance(pub(crate) i32);
 #[repr(transparent)]
