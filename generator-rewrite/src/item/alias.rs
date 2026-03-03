@@ -1,6 +1,6 @@
 use super::{Code, Context};
 use crate::output::{CodeMap, Destination};
-use analysis::{item::alias::Alias, to_rust::NameTranslate};
+use analysis::{item::alias::Alias, to_rust::RustTranslator};
 use quote::{format_ident, quote};
 use tracing::{instrument, trace};
 

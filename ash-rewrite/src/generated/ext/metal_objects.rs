@@ -16,27 +16,27 @@ pub struct ExportMetalObjectsInfoEXT {
 pub struct ExportMetalDeviceInfoEXT {
     pub s_type: crate::vk::StructureType,
     pub p_next: *const core::ffi::c_void,
-    pub mtl_device: crate::vk::MTLDevice_id,
+    pub mtl_device: crate::platform_types::MTLDevice_id,
 }
 #[repr(C)]
 pub struct ExportMetalCommandQueueInfoEXT {
     pub s_type: crate::vk::StructureType,
     pub p_next: *const core::ffi::c_void,
     pub queue: crate::vk::Queue,
-    pub mtl_command_queue: crate::vk::MTLCommandQueue_id,
+    pub mtl_command_queue: crate::platform_types::MTLCommandQueue_id,
 }
 #[repr(C)]
 pub struct ExportMetalBufferInfoEXT {
     pub s_type: crate::vk::StructureType,
     pub p_next: *const core::ffi::c_void,
     pub memory: crate::vk::DeviceMemory,
-    pub mtl_buffer: crate::vk::MTLBuffer_id,
+    pub mtl_buffer: crate::platform_types::MTLBuffer_id,
 }
 #[repr(C)]
 pub struct ImportMetalBufferInfoEXT {
     pub s_type: crate::vk::StructureType,
     pub p_next: *const core::ffi::c_void,
-    pub mtl_buffer: crate::vk::MTLBuffer_id,
+    pub mtl_buffer: crate::platform_types::MTLBuffer_id,
 }
 #[repr(C)]
 pub struct ExportMetalTextureInfoEXT {
@@ -46,27 +46,27 @@ pub struct ExportMetalTextureInfoEXT {
     pub image_view: crate::vk::ImageView,
     pub buffer_view: crate::vk::BufferView,
     pub plane: crate::vk::ImageAspectFlagBits,
-    pub mtl_texture: crate::vk::MTLTexture_id,
+    pub mtl_texture: crate::platform_types::MTLTexture_id,
 }
 #[repr(C)]
 pub struct ImportMetalTextureInfoEXT {
     pub s_type: crate::vk::StructureType,
     pub p_next: *const core::ffi::c_void,
     pub plane: crate::vk::ImageAspectFlagBits,
-    pub mtl_texture: crate::vk::MTLTexture_id,
+    pub mtl_texture: crate::platform_types::MTLTexture_id,
 }
 #[repr(C)]
 pub struct ExportMetalIOSurfaceInfoEXT {
     pub s_type: crate::vk::StructureType,
     pub p_next: *const core::ffi::c_void,
     pub image: crate::vk::Image,
-    pub io_surface: crate::vk::IOSurfaceRef,
+    pub io_surface: crate::platform_types::IOSurfaceRef,
 }
 #[repr(C)]
 pub struct ImportMetalIOSurfaceInfoEXT {
     pub s_type: crate::vk::StructureType,
     pub p_next: *const core::ffi::c_void,
-    pub io_surface: crate::vk::IOSurfaceRef,
+    pub io_surface: crate::platform_types::IOSurfaceRef,
 }
 #[repr(C)]
 pub struct ExportMetalSharedEventInfoEXT {
@@ -74,35 +74,17 @@ pub struct ExportMetalSharedEventInfoEXT {
     pub p_next: *const core::ffi::c_void,
     pub semaphore: crate::vk::Semaphore,
     pub event: crate::vk::Event,
-    pub mtl_shared_event: crate::vk::MTLSharedEvent_id,
+    pub mtl_shared_event: crate::platform_types::MTLSharedEvent_id,
 }
 #[repr(C)]
 pub struct ImportMetalSharedEventInfoEXT {
     pub s_type: crate::vk::StructureType,
     pub p_next: *const core::ffi::c_void,
-    pub mtl_shared_event: crate::vk::MTLSharedEvent_id,
+    pub mtl_shared_event: crate::platform_types::MTLSharedEvent_id,
 }
 #[repr(transparent)]
 pub struct ExportMetalObjectTypeFlagsEXT(pub(crate) i32);
 #[repr(transparent)]
 pub struct ExportMetalObjectTypeFlagBitsEXT(pub(crate) i32);
-#[repr(transparent)]
-#[allow(non_camel_case_types)]
-pub struct MTLDevice_id(pub(crate) i16);
-#[repr(transparent)]
-#[allow(non_camel_case_types)]
-pub struct MTLCommandQueue_id(pub(crate) i16);
-#[repr(transparent)]
-#[allow(non_camel_case_types)]
-pub struct MTLBuffer_id(pub(crate) i16);
-#[repr(transparent)]
-#[allow(non_camel_case_types)]
-pub struct MTLTexture_id(pub(crate) i16);
-#[repr(transparent)]
-#[allow(non_camel_case_types)]
-pub struct MTLSharedEvent_id(pub(crate) i16);
-#[repr(transparent)]
-#[allow(non_camel_case_types)]
-pub struct IOSurfaceRef(pub(crate) i16);
 pub const EXT_METAL_OBJECTS_SPEC_VERSION: u32 = 2;
 pub const EXT_METAL_OBJECTS_EXTENSION_NAME: &core::ffi::CStr = c"VK_EXT_metal_objects";

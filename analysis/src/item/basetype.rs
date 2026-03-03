@@ -1,4 +1,5 @@
 use crate::{
+    decl::CPrimaryType,
     item::{Named, RequireMap, RequiredBy},
     xml::{self, name::TypeName},
 };
@@ -8,6 +9,7 @@ use tracing::{instrument, trace};
 pub struct BaseType {
     pub required_by: RequiredBy,
     pub name: TypeName,
+    pub ty: CPrimaryType,
 }
 
 impl Named<TypeName> for BaseType {
@@ -25,6 +27,7 @@ impl BaseType {
         Some(BaseType {
             required_by,
             name: xml.name,
+            ty: CPrimaryType::from_str(xml.ty).unwrap(),
         })
     }
 }

@@ -6,12 +6,9 @@ pub struct MetalSurfaceCreateInfoEXT {
     pub s_type: crate::vk::StructureType,
     pub p_next: *const core::ffi::c_void,
     pub flags: crate::vk::MetalSurfaceCreateFlagsEXT,
-    pub p_layer: *const crate::vk::CAMetalLayer,
+    pub p_layer: *const crate::platform_types::CAMetalLayer,
 }
 #[repr(transparent)]
 pub struct MetalSurfaceCreateFlagsEXT(pub(crate) i32);
-#[repr(transparent)]
-#[allow(non_camel_case_types)]
-pub struct CAMetalLayer(pub(crate) i16);
 pub const EXT_METAL_SURFACE_SPEC_VERSION: u32 = 1;
 pub const EXT_METAL_SURFACE_EXTENSION_NAME: &core::ffi::CStr = c"VK_EXT_metal_surface";

@@ -91,6 +91,8 @@ impl Items {
                     RequireType::FuncPointer(name) => {
                         require_map.func_pointer.insert(*name, required_by)
                     }
+                    // in ash these are covered by platform_types.rs, so let's just ignore those :P
+                    RequireType::External(_name) => continue,
                 };
             }
 

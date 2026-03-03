@@ -2,7 +2,7 @@ use super::{Code, Context};
 use crate::output::{CodeMap, Destination};
 use analysis::{
     item::constant::{Constant, ConstantType},
-    to_rust::NameTranslate,
+    to_rust::RustTranslator,
     xml::cexpr::CExprItem,
 };
 use quote::{format_ident, quote};
