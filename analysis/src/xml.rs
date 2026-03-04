@@ -373,14 +373,20 @@ impl External {
 #[derive(Debug)]
 pub struct BaseType {
     pub name: TypeName,
-    pub ty: &'static str,
+    pub ty: CType<'static>,
 }
 
 impl BaseType {
     fn from_node(node: Node) -> Option<BaseType> {
+        // these won't parse as CDecl
+        if !node.children().any(|node| node.has_tag_name("type")) {
+            return None;
+        }
+
+        let c_decl = CDecl::from_xml(CDeclMode::TypeDef, node.children());
         Some(BaseType {
-            name: TypeName(child_text(node, "name").unwrap()),
-            ty: child_text(node, "type")?,
+            name: TypeName(c_decl.name),
+            ty: c_decl.ty,
         })
     }
 }

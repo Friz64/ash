@@ -16,6 +16,6 @@ pub struct MemoryGetRemoteAddressInfoNV {
 }
 #[repr(transparent)]
 #[allow(non_camel_case_types)]
-pub struct RemoteAddressNV(pub(crate) core::ffi::c_void);
+pub struct RemoteAddressNV(pub(crate) *mut core::ffi::c_void);
 pub const NV_EXTERNAL_MEMORY_RDMA_SPEC_VERSION: u32 = 1;
 pub const NV_EXTERNAL_MEMORY_RDMA_EXTENSION_NAME: &core::ffi::CStr = c"VK_NV_external_memory_rdma";
