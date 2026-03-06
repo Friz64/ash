@@ -1,5 +1,5 @@
 #[derive(Debug, PartialEq, Eq, Hash, Clone, Copy)]
-pub struct TypeName(pub &'static str);
+pub struct TypeName(pub(crate) &'static str);
 
 impl TypeName {
     pub fn original(&self) -> &'static str {
@@ -20,7 +20,7 @@ impl TypeName {
 }
 
 #[derive(Debug, PartialEq, Eq, Hash, Clone, Copy)]
-pub struct ConstantName(pub &'static str);
+pub struct ConstantName(pub(crate) &'static str);
 
 impl ConstantName {
     pub fn original(&self) -> &'static str {
@@ -33,26 +33,20 @@ impl ConstantName {
 }
 
 #[derive(Debug, PartialEq, Eq, Hash, Clone, Copy)]
-pub struct CMacroName(pub &'static str);
+pub struct CMacroName(pub(crate) &'static str);
 
 impl CMacroName {
     pub fn original(&self) -> &'static str {
         self.0
     }
 
-    // for use as const name
     pub fn prefix_trimmed(&self) -> &'static str {
         self.original().trim_start_matches("VK_")
-    }
-
-    /// for use as function name
-    pub fn prefix_trimmed_lowercase(&self) -> String {
-        self.prefix_trimmed().to_ascii_lowercase()
     }
 }
 
 #[derive(Debug, PartialEq, Eq, Hash, Clone, Copy)]
-pub struct FuncPointerName(pub &'static str);
+pub struct FuncPointerName(pub(crate) &'static str);
 
 impl FuncPointerName {
     pub fn original(&self) -> &'static str {
@@ -65,9 +59,17 @@ impl FuncPointerName {
 }
 
 #[derive(Debug, PartialEq, Eq, Hash, Clone, Copy)]
-pub struct CommandName(pub &'static str);
+pub struct CommandName(pub(crate) &'static str);
 
 impl CommandName {
+    pub fn original(&self) -> &'static str {
+        self.0
+    }
+}
+
+pub struct VariableName(pub(crate) &'static str);
+
+impl VariableName {
     pub fn original(&self) -> &'static str {
         self.0
     }

@@ -152,10 +152,10 @@ pub struct ClusterAccelerationStructureCommandsInfoNV {
     pub address_resolution_flags: crate::vk::ClusterAccelerationStructureAddressResolutionFlagsNV,
 }
 #[repr(C)]
-pub struct ClusterAccelerationStructureOpInputNV {
-    p_clusters_bottom_level: *mut crate::vk::ClusterAccelerationStructureClustersBottomLevelInputNV,
-    p_triangle_clusters: *mut crate::vk::ClusterAccelerationStructureTriangleClusterInputNV,
-    p_move_objects: *mut crate::vk::ClusterAccelerationStructureMoveObjectsInputNV,
+pub union ClusterAccelerationStructureOpInputNV {
+    pub p_clusters_bottom_level: *mut crate::vk::ClusterAccelerationStructureClustersBottomLevelInputNV,
+    pub p_triangle_clusters: *mut crate::vk::ClusterAccelerationStructureTriangleClusterInputNV,
+    pub p_move_objects: *mut crate::vk::ClusterAccelerationStructureMoveObjectsInputNV,
 }
 #[repr(transparent)]
 pub struct ClusterAccelerationStructureTypeNV(pub(crate) i32);

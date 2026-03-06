@@ -61,9 +61,9 @@ pub struct DispatchGraphCountInfoAMDX {
     pub stride: u64,
 }
 #[repr(C)]
-pub struct DeviceOrHostAddressConstAMDX {
-    device_address: crate::vk::DeviceAddress,
-    host_address: *const core::ffi::c_void,
+pub union DeviceOrHostAddressConstAMDX {
+    pub device_address: crate::vk::DeviceAddress,
+    pub host_address: *const core::ffi::c_void,
 }
 pub const SHADER_INDEX_UNUSED_AMDX: u32 = (!0);
 pub const AMDX_SHADER_ENQUEUE_SPEC_VERSION: u32 = 2;

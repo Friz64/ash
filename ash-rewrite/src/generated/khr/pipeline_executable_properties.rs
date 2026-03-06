@@ -49,11 +49,11 @@ pub struct PipelineExecutableInternalRepresentationKHR {
     pub p_data: *mut core::ffi::c_void,
 }
 #[repr(C)]
-pub struct PipelineExecutableStatisticValueKHR {
-    b32: crate::vk::Bool32,
-    i64: i64,
-    u64: u64,
-    f64: core::ffi::c_double,
+pub union PipelineExecutableStatisticValueKHR {
+    pub b32: crate::vk::Bool32,
+    pub i64: i64,
+    pub u64: u64,
+    pub f64: core::ffi::c_double,
 }
 #[repr(transparent)]
 pub struct PipelineExecutableStatisticFormatKHR(pub(crate) i32);

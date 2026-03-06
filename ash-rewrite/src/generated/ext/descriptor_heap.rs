@@ -214,25 +214,25 @@ pub struct PhysicalDeviceDescriptorHeapTensorPropertiesARM {
     pub tensor_capture_replay_opaque_data_size: usize,
 }
 #[repr(C)]
-pub struct ResourceDescriptorDataEXT {
-    p_image: *const crate::vk::ImageDescriptorInfoEXT,
-    p_texel_buffer: *const crate::vk::TexelBufferDescriptorInfoEXT,
-    p_address_range: *const crate::vk::DeviceAddressRangeEXT,
-    p_tensor_arm: *const crate::vk::TensorViewCreateInfoARM,
+pub union ResourceDescriptorDataEXT {
+    pub p_image: *const crate::vk::ImageDescriptorInfoEXT,
+    pub p_texel_buffer: *const crate::vk::TexelBufferDescriptorInfoEXT,
+    pub p_address_range: *const crate::vk::DeviceAddressRangeEXT,
+    pub p_tensor_arm: *const crate::vk::TensorViewCreateInfoARM,
 }
 #[repr(C)]
-pub struct DescriptorMappingSourceDataEXT {
-    constant_offset: crate::vk::DescriptorMappingSourceConstantOffsetEXT,
-    push_index: crate::vk::DescriptorMappingSourcePushIndexEXT,
-    indirect_index: crate::vk::DescriptorMappingSourceIndirectIndexEXT,
-    indirect_index_array: crate::vk::DescriptorMappingSourceIndirectIndexArrayEXT,
-    heap_data: crate::vk::DescriptorMappingSourceHeapDataEXT,
-    push_data_offset: u32,
-    push_address_offset: u32,
-    indirect_address: crate::vk::DescriptorMappingSourceIndirectAddressEXT,
-    shader_record_index: crate::vk::DescriptorMappingSourceShaderRecordIndexEXT,
-    shader_record_data_offset: u32,
-    shader_record_address_offset: u32,
+pub union DescriptorMappingSourceDataEXT {
+    pub constant_offset: crate::vk::DescriptorMappingSourceConstantOffsetEXT,
+    pub push_index: crate::vk::DescriptorMappingSourcePushIndexEXT,
+    pub indirect_index: crate::vk::DescriptorMappingSourceIndirectIndexEXT,
+    pub indirect_index_array: crate::vk::DescriptorMappingSourceIndirectIndexArrayEXT,
+    pub heap_data: crate::vk::DescriptorMappingSourceHeapDataEXT,
+    pub push_data_offset: u32,
+    pub push_address_offset: u32,
+    pub indirect_address: crate::vk::DescriptorMappingSourceIndirectAddressEXT,
+    pub shader_record_index: crate::vk::DescriptorMappingSourceShaderRecordIndexEXT,
+    pub shader_record_data_offset: u32,
+    pub shader_record_address_offset: u32,
 }
 #[repr(transparent)]
 pub struct DescriptorMappingSourceEXT(pub(crate) i32);

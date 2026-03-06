@@ -1084,15 +1084,15 @@ pub struct SubmitInfo {
     pub p_signal_semaphores: *const crate::vk::Semaphore,
 }
 #[repr(C)]
-pub struct ClearColorValue {
-    float32: [core::ffi::c_float; 4 as _],
-    int32: [i32; 4 as _],
-    uint32: [u32; 4 as _],
+pub union ClearColorValue {
+    pub float32: [core::ffi::c_float; 4 as _],
+    pub int32: [i32; 4 as _],
+    pub uint32: [u32; 4 as _],
 }
 #[repr(C)]
-pub struct ClearValue {
-    color: crate::vk::ClearColorValue,
-    depth_stencil: crate::vk::ClearDepthStencilValue,
+pub union ClearValue {
+    pub color: crate::vk::ClearColorValue,
+    pub depth_stencil: crate::vk::ClearDepthStencilValue,
 }
 #[repr(transparent)]
 pub struct ImageLayout(pub(crate) i32);
@@ -1486,7 +1486,7 @@ pub const fn api_version_patch(version: u32) -> u32 {
     ((version) & 0xFFF)
 }
 pub const API_VERSION_1_0: u32 = crate::vk::make_api_version(0, 1, 0, 0);
-pub const HEADER_VERSION: u32 = 344;
+pub const HEADER_VERSION: u32 = 345;
 pub const HEADER_VERSION_COMPLETE: u32 = crate::vk::make_api_version(
     0,
     1,

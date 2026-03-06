@@ -10,7 +10,10 @@ use quote::quote;
 use std::{borrow::Borrow, mem};
 use syn::Ident;
 
+// todo: for each name type, have a function that returns just the ident,
+// and additionally, if applicable, have another function that also returns it with the path
 pub trait RustTranslator {
+    // todo: switch to dedicated type
     fn var_name_to_rust(&self, raw: &'static str) -> Ident;
 
     fn type_to_rust(&self, name: TypeName) -> TokenStream;
@@ -40,7 +43,7 @@ pub trait RustTranslator {
         }
     }
 
-    fn ext_type_to_rust(&self, raw: &'static str) -> TokenStream;
+    fn platform_type_to_rust(&self, raw: &'static str) -> TokenStream;
 }
 
 impl Decl {
@@ -58,7 +61,7 @@ impl Ty {
             Ty::SpecType(name) => translator.type_to_rust(*name),
             Ty::SpecFuncPointer(name) => translator.func_pointer_to_rust(*name),
             Ty::CPrimary(base_ty) => translator.primary_type_to_rust(*base_ty),
-            Ty::External(external) => translator.ext_type_to_rust(external),
+            Ty::Platform(raw) => translator.platform_type_to_rust(raw),
             Ty::Ptr(ty, mutability) => {
                 let mutability = match mutability {
                     Mutability::Not => quote! { const },

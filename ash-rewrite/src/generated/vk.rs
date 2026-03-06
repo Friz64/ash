@@ -316,6 +316,7 @@ pub use super::ext::shader_long_vector::*;
 pub use super::ext::texture_compression_astc_3d::*;
 pub use super::ext::shader_subgroup_partitioned::*;
 pub use super::ext::descriptor_heap::*;
+pub use super::arm::shader_instrumentation::*;
 pub use super::khr::maintenance5::*;
 pub use super::ext::private_data::*;
 pub use super::khr::get_physical_device_properties2::*;

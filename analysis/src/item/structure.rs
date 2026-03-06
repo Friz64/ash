@@ -11,6 +11,15 @@ fn has_pointer(members: &[Decl]) -> bool {
         .any(|member| matches!(member.ty, Ty::Ptr(..)))
 }
 
+struct BitfieldRange {
+    // name + range?
+}
+
+enum StructMember {
+    Normal(Decl),
+    Bitfield { decl: Decl },
+}
+
 #[derive(Debug)]
 pub struct Struct {
     pub required_by: RequiredBy,

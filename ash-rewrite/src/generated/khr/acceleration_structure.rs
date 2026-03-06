@@ -164,10 +164,10 @@ pub struct AccelerationStructureBuildSizesInfoKHR {
     pub build_scratch_size: crate::vk::DeviceSize,
 }
 #[repr(C)]
-pub struct AccelerationStructureGeometryDataKHR {
-    triangles: crate::vk::AccelerationStructureGeometryTrianglesDataKHR,
-    aabbs: crate::vk::AccelerationStructureGeometryAabbsDataKHR,
-    instances: crate::vk::AccelerationStructureGeometryInstancesDataKHR,
+pub union AccelerationStructureGeometryDataKHR {
+    pub triangles: crate::vk::AccelerationStructureGeometryTrianglesDataKHR,
+    pub aabbs: crate::vk::AccelerationStructureGeometryAabbsDataKHR,
+    pub instances: crate::vk::AccelerationStructureGeometryInstancesDataKHR,
 }
 #[repr(transparent)]
 pub struct CopyAccelerationStructureModeKHR(pub(crate) i32);

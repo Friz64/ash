@@ -78,7 +78,7 @@ pub enum Ty {
     SpecType(TypeName),
     SpecFuncPointer(FuncPointerName),
     CPrimary(CPrimaryType),
-    External(&'static str),
+    Platform(&'static str),
     Ptr(&'static Ty, Mutability),
     Ref(&'static Ty, Mutability),
     Array(&'static Ty, ArrayLen),
@@ -99,7 +99,7 @@ impl Ty {
                 {
                     Ty::SpecFuncPointer(FuncPointerName(name))
                 } else {
-                    Ty::External(name)
+                    Ty::Platform(name)
                 }
             }
             CType::Ptr {

@@ -54,13 +54,13 @@ pub struct PerformanceQuerySubmitInfoKHR {
     pub counter_pass_index: u32,
 }
 #[repr(C)]
-pub struct PerformanceCounterResultKHR {
-    int32: i32,
-    int64: i64,
-    uint32: u32,
-    uint64: u64,
-    float32: core::ffi::c_float,
-    float64: core::ffi::c_double,
+pub union PerformanceCounterResultKHR {
+    pub int32: i32,
+    pub int64: i64,
+    pub uint32: u32,
+    pub uint64: u64,
+    pub float32: core::ffi::c_float,
+    pub float64: core::ffi::c_double,
 }
 #[repr(transparent)]
 pub struct PerformanceCounterScopeKHR(pub(crate) i32);

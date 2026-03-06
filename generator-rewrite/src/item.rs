@@ -75,7 +75,13 @@ impl RustTranslator for Context {
 
     fn cmacro_to_rust(&self, name: CMacroName, has_args: bool) -> TokenStream {
         let ident: Ident = if has_args {
-            syn::parse_str(&name.prefix_trimmed_lowercase()).unwrap()
+            syn::parse_str(
+                &name
+                    .prefix_trimmed()
+                    // todo: switch to future RustTranslate function?
+                    .to_ascii_lowercase(),
+            )
+            .unwrap()
         } else {
             syn::parse_str(name.prefix_trimmed()).unwrap()
         };
@@ -83,7 +89,7 @@ impl RustTranslator for Context {
         quote! { crate::vk::#ident }
     }
 
-    fn ext_type_to_rust(&self, raw: &'static str) -> TokenStream {
+    fn platform_type_to_rust(&self, raw: &'static str) -> TokenStream {
         let ident: Ident = syn::parse_str(raw).unwrap();
         quote! { crate::platform_types::#ident }
     }

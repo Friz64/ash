@@ -67,10 +67,10 @@ pub struct AccelerationStructureMotionInstanceNV {
     pub data: crate::vk::AccelerationStructureMotionInstanceDataNV,
 }
 #[repr(C)]
-pub struct AccelerationStructureMotionInstanceDataNV {
-    static_instance: crate::vk::AccelerationStructureInstanceKHR,
-    matrix_motion_instance: crate::vk::AccelerationStructureMatrixMotionInstanceNV,
-    srt_motion_instance: crate::vk::AccelerationStructureSRTMotionInstanceNV,
+pub union AccelerationStructureMotionInstanceDataNV {
+    pub static_instance: crate::vk::AccelerationStructureInstanceKHR,
+    pub matrix_motion_instance: crate::vk::AccelerationStructureMatrixMotionInstanceNV,
+    pub srt_motion_instance: crate::vk::AccelerationStructureSRTMotionInstanceNV,
 }
 #[repr(transparent)]
 pub struct AccelerationStructureMotionInstanceTypeNV(pub(crate) i32);

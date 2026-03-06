@@ -163,16 +163,16 @@ pub struct IndirectCommandsExecutionSetTokenEXT {
     pub shader_stages: crate::vk::ShaderStageFlags,
 }
 #[repr(C)]
-pub struct IndirectExecutionSetInfoEXT {
-    p_pipeline_info: *const crate::vk::IndirectExecutionSetPipelineInfoEXT,
-    p_shader_info: *const crate::vk::IndirectExecutionSetShaderInfoEXT,
+pub union IndirectExecutionSetInfoEXT {
+    pub p_pipeline_info: *const crate::vk::IndirectExecutionSetPipelineInfoEXT,
+    pub p_shader_info: *const crate::vk::IndirectExecutionSetShaderInfoEXT,
 }
 #[repr(C)]
-pub struct IndirectCommandsTokenDataEXT {
-    p_push_constant: *const crate::vk::IndirectCommandsPushConstantTokenEXT,
-    p_vertex_buffer: *const crate::vk::IndirectCommandsVertexBufferTokenEXT,
-    p_index_buffer: *const crate::vk::IndirectCommandsIndexBufferTokenEXT,
-    p_execution_set: *const crate::vk::IndirectCommandsExecutionSetTokenEXT,
+pub union IndirectCommandsTokenDataEXT {
+    pub p_push_constant: *const crate::vk::IndirectCommandsPushConstantTokenEXT,
+    pub p_vertex_buffer: *const crate::vk::IndirectCommandsVertexBufferTokenEXT,
+    pub p_index_buffer: *const crate::vk::IndirectCommandsIndexBufferTokenEXT,
+    pub p_execution_set: *const crate::vk::IndirectCommandsExecutionSetTokenEXT,
 }
 #[repr(transparent)]
 pub struct IndirectExecutionSetInfoTypeEXT(pub(crate) i32);

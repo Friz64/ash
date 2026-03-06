@@ -31,8 +31,8 @@ impl Code for Union {
 
         let code = quote! {
             #[repr(C)]
-            pub struct #name {
-                #( #members ),*
+            pub union #name {
+                #( pub #members ),*
             }
         };
 

@@ -46,14 +46,14 @@ pub struct ConvertCooperativeVectorMatrixInfoNV {
     pub dst_stride: usize,
 }
 #[repr(C)]
-pub struct DeviceOrHostAddressKHR {
-    device_address: crate::vk::DeviceAddress,
-    host_address: *mut core::ffi::c_void,
+pub union DeviceOrHostAddressKHR {
+    pub device_address: crate::vk::DeviceAddress,
+    pub host_address: *mut core::ffi::c_void,
 }
 #[repr(C)]
-pub struct DeviceOrHostAddressConstKHR {
-    device_address: crate::vk::DeviceAddress,
-    host_address: *const core::ffi::c_void,
+pub union DeviceOrHostAddressConstKHR {
+    pub device_address: crate::vk::DeviceAddress,
+    pub host_address: *const core::ffi::c_void,
 }
 #[repr(transparent)]
 pub struct CooperativeVectorMatrixLayoutNV(pub(crate) i32);
