@@ -16,7 +16,13 @@ impl Code for CMacro {
                 pub const #name: u32 = #expr;
             }
         } else {
-            let name = format_ident!("{}", self.name.prefix_trimmed_lowercase());
+            let name = format_ident!(
+                "{}",
+                self.name
+                    .prefix_trimmed()
+                    // todo: switch to future RustTranslate function?
+                    .to_lowercase()
+            );
             let args = self.args.iter().map(|arg| format_ident!("{arg}"));
             quote! {
                 pub const fn #name(#(#args: u32),*) -> u32 { #expr }

@@ -46,12 +46,12 @@ pub struct PerformanceConfigurationAcquireInfoINTEL {
 }
 pub type QueryPoolCreateInfoINTEL = crate::vk::QueryPoolPerformanceQueryCreateInfoINTEL;
 #[repr(C)]
-pub struct PerformanceValueDataINTEL {
-    value32: u32,
-    value64: u64,
-    value_float: core::ffi::c_float,
-    value_bool: crate::vk::Bool32,
-    value_string: *const core::ffi::c_char,
+pub union PerformanceValueDataINTEL {
+    pub value32: u32,
+    pub value64: u64,
+    pub value_float: core::ffi::c_float,
+    pub value_bool: crate::vk::Bool32,
+    pub value_string: *const core::ffi::c_char,
 }
 #[repr(transparent)]
 pub struct PerformanceConfigurationTypeINTEL(pub(crate) i32);

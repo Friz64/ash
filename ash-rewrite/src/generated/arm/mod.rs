@@ -10,4 +10,5 @@ pub mod render_pass_striped;
 pub mod scheduling_controls;
 pub mod shader_core_builtins;
 pub mod shader_core_properties;
+pub mod shader_instrumentation;
 pub mod tensors;

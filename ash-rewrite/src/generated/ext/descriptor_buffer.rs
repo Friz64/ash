@@ -120,17 +120,17 @@ pub struct OpaqueCaptureDescriptorDataCreateInfoEXT {
     pub opaque_capture_descriptor_data: *const core::ffi::c_void,
 }
 #[repr(C)]
-pub struct DescriptorDataEXT {
-    p_sampler: *const crate::vk::Sampler,
-    p_combined_image_sampler: *const crate::vk::DescriptorImageInfo,
-    p_input_attachment_image: *const crate::vk::DescriptorImageInfo,
-    p_sampled_image: *const crate::vk::DescriptorImageInfo,
-    p_storage_image: *const crate::vk::DescriptorImageInfo,
-    p_uniform_texel_buffer: *const crate::vk::DescriptorAddressInfoEXT,
-    p_storage_texel_buffer: *const crate::vk::DescriptorAddressInfoEXT,
-    p_uniform_buffer: *const crate::vk::DescriptorAddressInfoEXT,
-    p_storage_buffer: *const crate::vk::DescriptorAddressInfoEXT,
-    acceleration_structure: crate::vk::DeviceAddress,
+pub union DescriptorDataEXT {
+    pub p_sampler: *const crate::vk::Sampler,
+    pub p_combined_image_sampler: *const crate::vk::DescriptorImageInfo,
+    pub p_input_attachment_image: *const crate::vk::DescriptorImageInfo,
+    pub p_sampled_image: *const crate::vk::DescriptorImageInfo,
+    pub p_storage_image: *const crate::vk::DescriptorImageInfo,
+    pub p_uniform_texel_buffer: *const crate::vk::DescriptorAddressInfoEXT,
+    pub p_storage_texel_buffer: *const crate::vk::DescriptorAddressInfoEXT,
+    pub p_uniform_buffer: *const crate::vk::DescriptorAddressInfoEXT,
+    pub p_storage_buffer: *const crate::vk::DescriptorAddressInfoEXT,
+    pub acceleration_structure: crate::vk::DeviceAddress,
 }
 pub const EXT_DESCRIPTOR_BUFFER_SPEC_VERSION: u32 = 1;
 pub const EXT_DESCRIPTOR_BUFFER_EXTENSION_NAME: &core::ffi::CStr = c"VK_EXT_descriptor_buffer";

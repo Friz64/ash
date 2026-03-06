@@ -378,7 +378,7 @@ pub struct BaseType {
 
 impl BaseType {
     fn from_node(node: Node) -> Option<BaseType> {
-        // these won't parse as CDecl
+        // these won't parse as CDecl and are irrelevant anyways as they're platform types
         if !node.children().any(|node| node.has_tag_name("type")) {
             return None;
         }
@@ -605,7 +605,7 @@ impl CMacro {
 
         Some(CMacro {
             name: CMacroName(name),
-            args: args?,
+            args: args.unwrap(),
             cexpr,
         })
     }
