@@ -2,12 +2,14 @@
 #![cfg_attr(rustfmt, rustfmt_skip)]
 //![Vulkan Manual Page](https://docs.vulkan.org/refpages/latest/refpages/source/VK_ARM_performance_counters_by_region.html) · Extension `VK_ARM_performance_counters_by_region`
 #[repr(C)]
+#[derive(Clone, Copy)]
 pub struct PhysicalDevicePerformanceCountersByRegionFeaturesARM {
     pub s_type: crate::vk::StructureType,
     pub p_next: *mut core::ffi::c_void,
     pub performance_counters_by_region: crate::vk::Bool32,
 }
 #[repr(C)]
+#[derive(Clone, Copy)]
 pub struct PhysicalDevicePerformanceCountersByRegionPropertiesARM {
     pub s_type: crate::vk::StructureType,
     pub p_next: *mut core::ffi::c_void,
@@ -18,12 +20,14 @@ pub struct PhysicalDevicePerformanceCountersByRegionPropertiesARM {
     pub identity_transform_order: crate::vk::Bool32,
 }
 #[repr(C)]
+#[derive(Clone, Copy)]
 pub struct PerformanceCounterARM {
     pub s_type: crate::vk::StructureType,
     pub p_next: *mut core::ffi::c_void,
     pub counter_id: u32,
 }
 #[repr(C)]
+#[derive(Clone, Copy)]
 pub struct PerformanceCounterDescriptionARM {
     pub s_type: crate::vk::StructureType,
     pub p_next: *mut core::ffi::c_void,
@@ -31,6 +35,7 @@ pub struct PerformanceCounterDescriptionARM {
     pub name: [core::ffi::c_char; crate::vk::MAX_DESCRIPTION_SIZE as _],
 }
 #[repr(C)]
+#[derive(Clone, Copy)]
 pub struct RenderPassPerformanceCountersByRegionBeginInfoARM {
     pub s_type: crate::vk::StructureType,
     pub p_next: *mut core::ffi::c_void,
@@ -41,6 +46,7 @@ pub struct RenderPassPerformanceCountersByRegionBeginInfoARM {
     pub p_counter_indices: *mut u32,
 }
 #[repr(transparent)]
+#[derive(Clone, Copy)]
 pub struct PerformanceCounterDescriptionFlagsARM(pub(crate) i32);
 pub const ARM_PERFORMANCE_COUNTERS_BY_REGION_SPEC_VERSION: u32 = 1;
 pub const ARM_PERFORMANCE_COUNTERS_BY_REGION_EXTENSION_NAME: &core::ffi::CStr = c"VK_ARM_performance_counters_by_region";

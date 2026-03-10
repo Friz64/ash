@@ -2,6 +2,7 @@
 #![cfg_attr(rustfmt, rustfmt_skip)]
 //![Vulkan Manual Page](https://docs.vulkan.org/refpages/latest/refpages/source/VK_NV_mesh_shader.html) · Extension `VK_NV_mesh_shader`
 #[repr(C)]
+#[derive(Clone, Copy)]
 pub struct PhysicalDeviceMeshShaderFeaturesNV {
     pub s_type: crate::vk::StructureType,
     pub p_next: *mut core::ffi::c_void,
@@ -9,6 +10,7 @@ pub struct PhysicalDeviceMeshShaderFeaturesNV {
     pub mesh_shader: crate::vk::Bool32,
 }
 #[repr(C)]
+#[derive(Clone, Copy)]
 pub struct PhysicalDeviceMeshShaderPropertiesNV {
     pub s_type: crate::vk::StructureType,
     pub p_next: *mut core::ffi::c_void,
@@ -27,6 +29,7 @@ pub struct PhysicalDeviceMeshShaderPropertiesNV {
     pub mesh_output_per_primitive_granularity: u32,
 }
 #[repr(C)]
+#[derive(Clone, Copy)]
 pub struct DrawMeshTasksIndirectCommandNV {
     pub task_count: u32,
     pub first_task: u32,

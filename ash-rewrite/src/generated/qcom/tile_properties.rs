@@ -2,12 +2,14 @@
 #![cfg_attr(rustfmt, rustfmt_skip)]
 //![Vulkan Manual Page](https://docs.vulkan.org/refpages/latest/refpages/source/VK_QCOM_tile_properties.html) · Extension `VK_QCOM_tile_properties`
 #[repr(C)]
+#[derive(Clone, Copy)]
 pub struct PhysicalDeviceTilePropertiesFeaturesQCOM {
     pub s_type: crate::vk::StructureType,
     pub p_next: *mut core::ffi::c_void,
     pub tile_properties: crate::vk::Bool32,
 }
 #[repr(C)]
+#[derive(Clone, Copy)]
 pub struct TilePropertiesQCOM {
     pub s_type: crate::vk::StructureType,
     pub p_next: *mut core::ffi::c_void,
@@ -15,6 +17,5 @@ pub struct TilePropertiesQCOM {
     pub apron_size: crate::vk::Extent2D,
     pub origin: crate::vk::Offset2D,
 }
-pub type RenderingInfoKHR = crate::vk::RenderingInfo;
 pub const QCOM_TILE_PROPERTIES_SPEC_VERSION: u32 = 1;
 pub const QCOM_TILE_PROPERTIES_EXTENSION_NAME: &core::ffi::CStr = c"VK_QCOM_tile_properties";

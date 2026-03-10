@@ -2,6 +2,7 @@
 #![cfg_attr(rustfmt, rustfmt_skip)]
 //![Vulkan Manual Page](https://docs.vulkan.org/refpages/latest/refpages/source/VK_KHR_robustness2.html) · Extension `VK_KHR_robustness2`
 #[repr(C)]
+#[derive(Clone, Copy)]
 pub struct PhysicalDeviceRobustness2FeaturesKHR {
     pub s_type: crate::vk::StructureType,
     pub p_next: *mut core::ffi::c_void,
@@ -10,6 +11,7 @@ pub struct PhysicalDeviceRobustness2FeaturesKHR {
     pub null_descriptor: crate::vk::Bool32,
 }
 #[repr(C)]
+#[derive(Clone, Copy)]
 pub struct PhysicalDeviceRobustness2PropertiesKHR {
     pub s_type: crate::vk::StructureType,
     pub p_next: *mut core::ffi::c_void,

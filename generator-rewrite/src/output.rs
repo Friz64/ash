@@ -16,7 +16,21 @@ use std::{
 use syn::Ident;
 
 #[derive(Debug, Clone, Copy, PartialEq, Eq, Hash)]
-pub struct Destination(pub RequiredBy);
+pub struct Destination {
+    pub library: LibraryName,
+    pub location: RequireLocation,
+}
+
+impl Destination {
+    pub fn new(required_by: RequiredBy) -> Destination {
+        Destination {
+            library: required_by.library,
+            // TODO: figure out secondary locations
+            // we need to be generating type aliases or smth like that at those...
+            location: required_by.primary_location(),
+        }
+    }
+}
 
 struct DestinationPathComponent {
     module_name: Ident,
@@ -25,7 +39,7 @@ struct DestinationPathComponent {
 
 impl Destination {
     fn path_components(&self) -> Vec<DestinationPathComponent> {
-        match self.0.location {
+        match self.location {
             RequireLocation::Core { major, minor } => vec![DestinationPathComponent {
                 module_name: format_ident!("vk{major}_{minor}"),
                 doc_comment: crate::refpage_doc(
@@ -33,7 +47,7 @@ impl Destination {
                     format!("Vulkan version {major}.{minor}"),
                 ),
             }],
-            RequireLocation::Extension { name } => match self.0.library {
+            RequireLocation::Extension { name } => match self.library {
                 LibraryName::Vk => {
                     let vulkan_ext = name.strip_prefix("VK_").unwrap();
                     let (ext_tag, ext_name) = vulkan_ext.split_once('_').unwrap();

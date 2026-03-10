@@ -2,6 +2,7 @@
 #![cfg_attr(rustfmt, rustfmt_skip)]
 //![Vulkan Manual Page](https://docs.vulkan.org/refpages/latest/refpages/source/VK_KHR_swapchain.html) · Extension `VK_KHR_swapchain`
 #[repr(C)]
+#[derive(Clone, Copy)]
 pub struct SwapchainCreateInfoKHR {
     pub s_type: crate::vk::StructureType,
     pub p_next: *const core::ffi::c_void,
@@ -23,6 +24,7 @@ pub struct SwapchainCreateInfoKHR {
     pub old_swapchain: crate::vk::SwapchainKHR,
 }
 #[repr(C)]
+#[derive(Clone, Copy)]
 pub struct PresentInfoKHR {
     pub s_type: crate::vk::StructureType,
     pub p_next: *const core::ffi::c_void,
@@ -33,11 +35,70 @@ pub struct PresentInfoKHR {
     pub p_image_indices: *const u32,
     pub p_results: *mut crate::vk::Result,
 }
+#[repr(C)]
+#[derive(Clone, Copy)]
+pub struct DeviceGroupPresentCapabilitiesKHR {
+    pub s_type: crate::vk::StructureType,
+    pub p_next: *mut core::ffi::c_void,
+    pub present_mask: [u32; crate::vk::MAX_DEVICE_GROUP_SIZE as _],
+    pub modes: crate::vk::DeviceGroupPresentModeFlagsKHR,
+}
+#[repr(C)]
+#[derive(Clone, Copy)]
+pub struct ImageSwapchainCreateInfoKHR {
+    pub s_type: crate::vk::StructureType,
+    pub p_next: *const core::ffi::c_void,
+    pub swapchain: crate::vk::SwapchainKHR,
+}
+#[repr(C)]
+#[derive(Clone, Copy)]
+pub struct BindImageMemorySwapchainInfoKHR {
+    pub s_type: crate::vk::StructureType,
+    pub p_next: *const core::ffi::c_void,
+    pub swapchain: crate::vk::SwapchainKHR,
+    pub image_index: u32,
+}
+#[repr(C)]
+#[derive(Clone, Copy)]
+pub struct AcquireNextImageInfoKHR {
+    pub s_type: crate::vk::StructureType,
+    pub p_next: *const core::ffi::c_void,
+    pub swapchain: crate::vk::SwapchainKHR,
+    pub timeout: u64,
+    pub semaphore: crate::vk::Semaphore,
+    pub fence: crate::vk::Fence,
+    pub device_mask: u32,
+}
+#[repr(C)]
+#[derive(Clone, Copy)]
+pub struct DeviceGroupPresentInfoKHR {
+    pub s_type: crate::vk::StructureType,
+    pub p_next: *const core::ffi::c_void,
+    pub swapchain_count: u32,
+    pub p_device_masks: *const u32,
+    pub mode: crate::vk::DeviceGroupPresentModeFlagBitsKHR,
+}
+#[repr(C)]
+#[derive(Clone, Copy)]
+pub struct DeviceGroupSwapchainCreateInfoKHR {
+    pub s_type: crate::vk::StructureType,
+    pub p_next: *const core::ffi::c_void,
+    pub modes: crate::vk::DeviceGroupPresentModeFlagsKHR,
+}
 #[repr(transparent)]
+#[derive(Clone, Copy)]
 pub struct SwapchainCreateFlagsKHR(pub(crate) i32);
 #[repr(transparent)]
+#[derive(Clone, Copy)]
+pub struct DeviceGroupPresentModeFlagsKHR(pub(crate) i32);
+#[repr(transparent)]
+#[derive(Clone, Copy)]
+pub struct DeviceGroupPresentModeFlagBitsKHR(pub(crate) i32);
+#[repr(transparent)]
+#[derive(Clone, Copy)]
 pub struct SwapchainCreateFlagBitsKHR(pub(crate) i32);
 #[repr(transparent)]
+#[derive(Clone, Copy)]
 pub struct SwapchainKHR(pub(crate) i32);
 pub const KHR_SWAPCHAIN_SPEC_VERSION: u32 = 70;
 pub const KHR_SWAPCHAIN_EXTENSION_NAME: &core::ffi::CStr = c"VK_KHR_swapchain";

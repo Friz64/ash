@@ -2,6 +2,7 @@
 #![cfg_attr(rustfmt, rustfmt_skip)]
 //![Vulkan Manual Page](https://docs.vulkan.org/refpages/latest/refpages/source/VK_EXT_depth_bias_control.html) · Extension `VK_EXT_depth_bias_control`
 #[repr(C)]
+#[derive(Clone, Copy)]
 pub struct DepthBiasInfoEXT {
     pub s_type: crate::vk::StructureType,
     pub p_next: *const core::ffi::c_void,
@@ -10,6 +11,7 @@ pub struct DepthBiasInfoEXT {
     pub depth_bias_slope_factor: core::ffi::c_float,
 }
 #[repr(C)]
+#[derive(Clone, Copy)]
 pub struct DepthBiasRepresentationInfoEXT {
     pub s_type: crate::vk::StructureType,
     pub p_next: *const core::ffi::c_void,
@@ -17,6 +19,7 @@ pub struct DepthBiasRepresentationInfoEXT {
     pub depth_bias_exact: crate::vk::Bool32,
 }
 #[repr(C)]
+#[derive(Clone, Copy)]
 pub struct PhysicalDeviceDepthBiasControlFeaturesEXT {
     pub s_type: crate::vk::StructureType,
     pub p_next: *mut core::ffi::c_void,
@@ -26,6 +29,7 @@ pub struct PhysicalDeviceDepthBiasControlFeaturesEXT {
     pub depth_bias_exact: crate::vk::Bool32,
 }
 #[repr(transparent)]
+#[derive(Clone, Copy)]
 pub struct DepthBiasRepresentationEXT(pub(crate) i32);
 pub const EXT_DEPTH_BIAS_CONTROL_SPEC_VERSION: u32 = 1;
 pub const EXT_DEPTH_BIAS_CONTROL_EXTENSION_NAME: &core::ffi::CStr = c"VK_EXT_depth_bias_control";

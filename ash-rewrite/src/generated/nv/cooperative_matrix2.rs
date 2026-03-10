@@ -2,6 +2,7 @@
 #![cfg_attr(rustfmt, rustfmt_skip)]
 //![Vulkan Manual Page](https://docs.vulkan.org/refpages/latest/refpages/source/VK_NV_cooperative_matrix2.html) · Extension `VK_NV_cooperative_matrix2`
 #[repr(C)]
+#[derive(Clone, Copy)]
 pub struct PhysicalDeviceCooperativeMatrix2FeaturesNV {
     pub s_type: crate::vk::StructureType,
     pub p_next: *mut core::ffi::c_void,
@@ -14,6 +15,7 @@ pub struct PhysicalDeviceCooperativeMatrix2FeaturesNV {
     pub cooperative_matrix_block_loads: crate::vk::Bool32,
 }
 #[repr(C)]
+#[derive(Clone, Copy)]
 pub struct PhysicalDeviceCooperativeMatrix2PropertiesNV {
     pub s_type: crate::vk::StructureType,
     pub p_next: *mut core::ffi::c_void,
@@ -22,6 +24,7 @@ pub struct PhysicalDeviceCooperativeMatrix2PropertiesNV {
     pub cooperative_matrix_workgroup_scope_reserved_shared_memory: u32,
 }
 #[repr(C)]
+#[derive(Clone, Copy)]
 pub struct CooperativeMatrixFlexibleDimensionsPropertiesNV {
     pub s_type: crate::vk::StructureType,
     pub p_next: *mut core::ffi::c_void,

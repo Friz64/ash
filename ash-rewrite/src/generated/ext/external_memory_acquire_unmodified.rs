@@ -2,6 +2,7 @@
 #![cfg_attr(rustfmt, rustfmt_skip)]
 //![Vulkan Manual Page](https://docs.vulkan.org/refpages/latest/refpages/source/VK_EXT_external_memory_acquire_unmodified.html) · Extension `VK_EXT_external_memory_acquire_unmodified`
 #[repr(C)]
+#[derive(Clone, Copy)]
 pub struct ExternalMemoryAcquireUnmodifiedEXT {
     pub s_type: crate::vk::StructureType,
     pub p_next: *const core::ffi::c_void,

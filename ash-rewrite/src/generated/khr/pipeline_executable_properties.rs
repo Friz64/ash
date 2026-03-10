@@ -2,18 +2,21 @@
 #![cfg_attr(rustfmt, rustfmt_skip)]
 //![Vulkan Manual Page](https://docs.vulkan.org/refpages/latest/refpages/source/VK_KHR_pipeline_executable_properties.html) · Extension `VK_KHR_pipeline_executable_properties`
 #[repr(C)]
+#[derive(Clone, Copy)]
 pub struct PhysicalDevicePipelineExecutablePropertiesFeaturesKHR {
     pub s_type: crate::vk::StructureType,
     pub p_next: *mut core::ffi::c_void,
     pub pipeline_executable_info: crate::vk::Bool32,
 }
 #[repr(C)]
+#[derive(Clone, Copy)]
 pub struct PipelineInfoKHR {
     pub s_type: crate::vk::StructureType,
     pub p_next: *const core::ffi::c_void,
     pub pipeline: crate::vk::Pipeline,
 }
 #[repr(C)]
+#[derive(Clone, Copy)]
 pub struct PipelineExecutablePropertiesKHR {
     pub s_type: crate::vk::StructureType,
     pub p_next: *mut core::ffi::c_void,
@@ -23,6 +26,7 @@ pub struct PipelineExecutablePropertiesKHR {
     pub subgroup_size: u32,
 }
 #[repr(C)]
+#[derive(Clone, Copy)]
 pub struct PipelineExecutableInfoKHR {
     pub s_type: crate::vk::StructureType,
     pub p_next: *const core::ffi::c_void,
@@ -30,6 +34,7 @@ pub struct PipelineExecutableInfoKHR {
     pub executable_index: u32,
 }
 #[repr(C)]
+#[derive(Clone, Copy)]
 pub struct PipelineExecutableStatisticKHR {
     pub s_type: crate::vk::StructureType,
     pub p_next: *mut core::ffi::c_void,
@@ -39,6 +44,7 @@ pub struct PipelineExecutableStatisticKHR {
     pub value: crate::vk::PipelineExecutableStatisticValueKHR,
 }
 #[repr(C)]
+#[derive(Clone, Copy)]
 pub struct PipelineExecutableInternalRepresentationKHR {
     pub s_type: crate::vk::StructureType,
     pub p_next: *mut core::ffi::c_void,
@@ -49,6 +55,7 @@ pub struct PipelineExecutableInternalRepresentationKHR {
     pub p_data: *mut core::ffi::c_void,
 }
 #[repr(C)]
+#[derive(Clone, Copy)]
 pub union PipelineExecutableStatisticValueKHR {
     pub b32: crate::vk::Bool32,
     pub i64: i64,
@@ -56,6 +63,7 @@ pub union PipelineExecutableStatisticValueKHR {
     pub f64: core::ffi::c_double,
 }
 #[repr(transparent)]
+#[derive(Clone, Copy)]
 pub struct PipelineExecutableStatisticFormatKHR(pub(crate) i32);
 pub const KHR_PIPELINE_EXECUTABLE_PROPERTIES_SPEC_VERSION: u32 = 1;
 pub const KHR_PIPELINE_EXECUTABLE_PROPERTIES_EXTENSION_NAME: &core::ffi::CStr = c"VK_KHR_pipeline_executable_properties";

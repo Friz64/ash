@@ -2,12 +2,14 @@
 #![cfg_attr(rustfmt, rustfmt_skip)]
 //![Vulkan Manual Page](https://docs.vulkan.org/refpages/latest/refpages/source/VK_EXT_depth_clip_enable.html) · Extension `VK_EXT_depth_clip_enable`
 #[repr(C)]
+#[derive(Clone, Copy)]
 pub struct PhysicalDeviceDepthClipEnableFeaturesEXT {
     pub s_type: crate::vk::StructureType,
     pub p_next: *mut core::ffi::c_void,
     pub depth_clip_enable: crate::vk::Bool32,
 }
 #[repr(C)]
+#[derive(Clone, Copy)]
 pub struct PipelineRasterizationDepthClipStateCreateInfoEXT {
     pub s_type: crate::vk::StructureType,
     pub p_next: *const core::ffi::c_void,
@@ -15,6 +17,7 @@ pub struct PipelineRasterizationDepthClipStateCreateInfoEXT {
     pub depth_clip_enable: crate::vk::Bool32,
 }
 #[repr(transparent)]
+#[derive(Clone, Copy)]
 pub struct PipelineRasterizationDepthClipStateCreateFlagsEXT(pub(crate) i32);
 pub const EXT_DEPTH_CLIP_ENABLE_SPEC_VERSION: u32 = 1;
 pub const EXT_DEPTH_CLIP_ENABLE_EXTENSION_NAME: &core::ffi::CStr = c"VK_EXT_depth_clip_enable";

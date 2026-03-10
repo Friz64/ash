@@ -2,6 +2,7 @@
 #![cfg_attr(rustfmt, rustfmt_skip)]
 //![Vulkan Manual Page](https://docs.vulkan.org/refpages/latest/refpages/source/VK_EXT_layer_settings.html) · Extension `VK_EXT_layer_settings`
 #[repr(C)]
+#[derive(Clone, Copy)]
 pub struct LayerSettingsCreateInfoEXT {
     pub s_type: crate::vk::StructureType,
     pub p_next: *const core::ffi::c_void,
@@ -9,6 +10,7 @@ pub struct LayerSettingsCreateInfoEXT {
     pub p_settings: *const crate::vk::LayerSettingEXT,
 }
 #[repr(C)]
+#[derive(Clone, Copy)]
 pub struct LayerSettingEXT {
     pub p_layer_name: *const core::ffi::c_char,
     pub p_setting_name: *const core::ffi::c_char,
@@ -17,6 +19,7 @@ pub struct LayerSettingEXT {
     pub p_values: *const core::ffi::c_void,
 }
 #[repr(transparent)]
+#[derive(Clone, Copy)]
 pub struct LayerSettingTypeEXT(pub(crate) i32);
 pub const EXT_LAYER_SETTINGS_SPEC_VERSION: u32 = 2;
 pub const EXT_LAYER_SETTINGS_EXTENSION_NAME: &core::ffi::CStr = c"VK_EXT_layer_settings";

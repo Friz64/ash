@@ -2,6 +2,7 @@
 #![cfg_attr(rustfmt, rustfmt_skip)]
 //![Vulkan Manual Page](https://docs.vulkan.org/refpages/latest/refpages/source/VK_NV_fragment_shading_rate_enums.html) · Extension `VK_NV_fragment_shading_rate_enums`
 #[repr(C)]
+#[derive(Clone, Copy)]
 pub struct PhysicalDeviceFragmentShadingRateEnumsFeaturesNV {
     pub s_type: crate::vk::StructureType,
     pub p_next: *mut core::ffi::c_void,
@@ -10,12 +11,14 @@ pub struct PhysicalDeviceFragmentShadingRateEnumsFeaturesNV {
     pub no_invocation_fragment_shading_rates: crate::vk::Bool32,
 }
 #[repr(C)]
+#[derive(Clone, Copy)]
 pub struct PhysicalDeviceFragmentShadingRateEnumsPropertiesNV {
     pub s_type: crate::vk::StructureType,
     pub p_next: *mut core::ffi::c_void,
     pub max_fragment_shading_rate_invocation_count: crate::vk::SampleCountFlagBits,
 }
 #[repr(C)]
+#[derive(Clone, Copy)]
 pub struct PipelineFragmentShadingRateEnumStateCreateInfoNV {
     pub s_type: crate::vk::StructureType,
     pub p_next: *const core::ffi::c_void,
@@ -24,8 +27,10 @@ pub struct PipelineFragmentShadingRateEnumStateCreateInfoNV {
     pub combiner_ops: [crate::vk::FragmentShadingRateCombinerOpKHR; 2 as _],
 }
 #[repr(transparent)]
+#[derive(Clone, Copy)]
 pub struct FragmentShadingRateNV(pub(crate) i32);
 #[repr(transparent)]
+#[derive(Clone, Copy)]
 pub struct FragmentShadingRateTypeNV(pub(crate) i32);
 pub const NV_FRAGMENT_SHADING_RATE_ENUMS_SPEC_VERSION: u32 = 1;
 pub const NV_FRAGMENT_SHADING_RATE_ENUMS_EXTENSION_NAME: &core::ffi::CStr = c"VK_NV_fragment_shading_rate_enums";

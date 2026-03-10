@@ -2,6 +2,7 @@
 #![cfg_attr(rustfmt, rustfmt_skip)]
 //![Vulkan Manual Page](https://docs.vulkan.org/refpages/latest/refpages/source/VK_NVX_binary_import.html) · Extension `VK_NVX_binary_import`
 #[repr(C)]
+#[derive(Clone, Copy)]
 pub struct CuModuleCreateInfoNVX {
     pub s_type: crate::vk::StructureType,
     pub p_next: *const core::ffi::c_void,
@@ -9,12 +10,14 @@ pub struct CuModuleCreateInfoNVX {
     pub p_data: *const core::ffi::c_void,
 }
 #[repr(C)]
+#[derive(Clone, Copy)]
 pub struct CuModuleTexturingModeCreateInfoNVX {
     pub s_type: crate::vk::StructureType,
     pub p_next: *const core::ffi::c_void,
     pub use64bit_texturing: crate::vk::Bool32,
 }
 #[repr(C)]
+#[derive(Clone, Copy)]
 pub struct CuFunctionCreateInfoNVX {
     pub s_type: crate::vk::StructureType,
     pub p_next: *const core::ffi::c_void,
@@ -22,6 +25,7 @@ pub struct CuFunctionCreateInfoNVX {
     pub p_name: *const core::ffi::c_char,
 }
 #[repr(C)]
+#[derive(Clone, Copy)]
 pub struct CuLaunchInfoNVX {
     pub s_type: crate::vk::StructureType,
     pub p_next: *const core::ffi::c_void,
@@ -39,8 +43,10 @@ pub struct CuLaunchInfoNVX {
     pub p_extras: *const *const core::ffi::c_void,
 }
 #[repr(transparent)]
+#[derive(Clone, Copy)]
 pub struct CuModuleNVX(pub(crate) i32);
 #[repr(transparent)]
+#[derive(Clone, Copy)]
 pub struct CuFunctionNVX(pub(crate) i32);
 pub const NVX_BINARY_IMPORT_SPEC_VERSION: u32 = 2;
 pub const NVX_BINARY_IMPORT_EXTENSION_NAME: &core::ffi::CStr = c"VK_NVX_binary_import";

@@ -2,6 +2,7 @@
 #![cfg_attr(rustfmt, rustfmt_skip)]
 //![Vulkan Manual Page](https://docs.vulkan.org/refpages/latest/refpages/source/VK_QNX_screen_surface.html) · Extension `VK_QNX_screen_surface`
 #[repr(C)]
+#[derive(Clone, Copy)]
 pub struct ScreenSurfaceCreateInfoQNX {
     pub s_type: crate::vk::StructureType,
     pub p_next: *const core::ffi::c_void,
@@ -10,6 +11,7 @@ pub struct ScreenSurfaceCreateInfoQNX {
     pub window: *mut crate::platform_types::_screen_window,
 }
 #[repr(transparent)]
+#[derive(Clone, Copy)]
 pub struct ScreenSurfaceCreateFlagsQNX(pub(crate) i32);
 pub const QNX_SCREEN_SURFACE_SPEC_VERSION: u32 = 1;
 pub const QNX_SCREEN_SURFACE_EXTENSION_NAME: &core::ffi::CStr = c"VK_QNX_screen_surface";

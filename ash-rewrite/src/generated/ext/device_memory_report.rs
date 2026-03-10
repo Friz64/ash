@@ -2,12 +2,14 @@
 #![cfg_attr(rustfmt, rustfmt_skip)]
 //![Vulkan Manual Page](https://docs.vulkan.org/refpages/latest/refpages/source/VK_EXT_device_memory_report.html) · Extension `VK_EXT_device_memory_report`
 #[repr(C)]
+#[derive(Clone, Copy)]
 pub struct PhysicalDeviceDeviceMemoryReportFeaturesEXT {
     pub s_type: crate::vk::StructureType,
     pub p_next: *mut core::ffi::c_void,
     pub device_memory_report: crate::vk::Bool32,
 }
 #[repr(C)]
+#[derive(Clone, Copy)]
 pub struct DeviceDeviceMemoryReportCreateInfoEXT {
     pub s_type: crate::vk::StructureType,
     pub p_next: *const core::ffi::c_void,
@@ -16,6 +18,7 @@ pub struct DeviceDeviceMemoryReportCreateInfoEXT {
     pub p_user_data: *mut core::ffi::c_void,
 }
 #[repr(C)]
+#[derive(Clone, Copy)]
 pub struct DeviceMemoryReportCallbackDataEXT {
     pub s_type: crate::vk::StructureType,
     pub p_next: *mut core::ffi::c_void,
@@ -28,8 +31,10 @@ pub struct DeviceMemoryReportCallbackDataEXT {
     pub heap_index: u32,
 }
 #[repr(transparent)]
+#[derive(Clone, Copy)]
 pub struct DeviceMemoryReportEventTypeEXT(pub(crate) i32);
 #[repr(transparent)]
+#[derive(Clone, Copy)]
 pub struct DeviceMemoryReportFlagsEXT(pub(crate) i32);
 #[allow(non_camel_case_types)]
 pub type PFN_vkDeviceMemoryReportCallbackEXT = Option<()>;

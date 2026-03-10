@@ -2,6 +2,7 @@
 #![cfg_attr(rustfmt, rustfmt_skip)]
 //![Vulkan Manual Page](https://docs.vulkan.org/refpages/latest/refpages/source/VK_EXT_texture_compression_astc_3d.html) · Extension `VK_EXT_texture_compression_astc_3d`
 #[repr(C)]
+#[derive(Clone, Copy)]
 pub struct PhysicalDeviceTextureCompressionASTC3DFeaturesEXT {
     pub s_type: crate::vk::StructureType,
     pub p_next: *mut core::ffi::c_void,

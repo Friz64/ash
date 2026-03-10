@@ -2,6 +2,7 @@
 #![cfg_attr(rustfmt, rustfmt_skip)]
 //!Items provided by `vulkan_video_codec_h264std_encode`
 #[repr(C)]
+#[derive(Clone, Copy)]
 pub struct StdVideoEncodeH264WeightTableFlags {
     pub luma_weight_l0_flag: u32,
     pub chroma_weight_l0_flag: u32,
@@ -9,6 +10,7 @@ pub struct StdVideoEncodeH264WeightTableFlags {
     pub chroma_weight_l1_flag: u32,
 }
 #[repr(C)]
+#[derive(Clone, Copy)]
 pub struct StdVideoEncodeH264WeightTable {
     pub flags: crate::vk::StdVideoEncodeH264WeightTableFlags,
     pub luma_log2_weight_denom: u8,
@@ -27,38 +29,52 @@ pub struct StdVideoEncodeH264WeightTable {
         as _]; crate::vk::STD_VIDEO_H264_MAX_NUM_LIST_REF as _],
 }
 #[repr(C)]
+#[derive(Clone, Copy)]
 pub struct StdVideoEncodeH264SliceHeaderFlags {
-    pub direct_spatial_mv_pred_flag: u32,
-    pub num_ref_idx_active_override_flag: u32,
-    pub reserved: u32,
+    /**- `direct_spatial_mv_pred_flag` @ `0..1`
+- `num_ref_idx_active_override_flag` @ `1..2`
+- `reserved` @ `2..32`
+*/
+    pub bitfield0: u32,
 }
 #[repr(C)]
+#[derive(Clone, Copy)]
 pub struct StdVideoEncodeH264PictureInfoFlags {
-    pub idr_pic_flag: u32,
-    pub is_reference: u32,
-    pub no_output_of_prior_pics_flag: u32,
-    pub long_term_reference_flag: u32,
-    pub adaptive_ref_pic_marking_mode_flag: u32,
-    pub reserved: u32,
+    /**- `IdrPicFlag` @ `0..1`
+- `is_reference` @ `1..2`
+- `no_output_of_prior_pics_flag` @ `2..3`
+- `long_term_reference_flag` @ `3..4`
+- `adaptive_ref_pic_marking_mode_flag` @ `4..5`
+- `reserved` @ `5..32`
+*/
+    pub bitfield0: u32,
 }
 #[repr(C)]
+#[derive(Clone, Copy)]
 pub struct StdVideoEncodeH264ReferenceInfoFlags {
-    pub used_for_long_term_reference: u32,
-    pub reserved: u32,
+    /**- `used_for_long_term_reference` @ `0..1`
+- `reserved` @ `1..32`
+*/
+    pub bitfield0: u32,
 }
 #[repr(C)]
+#[derive(Clone, Copy)]
 pub struct StdVideoEncodeH264ReferenceListsInfoFlags {
-    pub ref_pic_list_modification_flag_l0: u32,
-    pub ref_pic_list_modification_flag_l1: u32,
-    pub reserved: u32,
+    /**- `ref_pic_list_modification_flag_l0` @ `0..1`
+- `ref_pic_list_modification_flag_l1` @ `1..2`
+- `reserved` @ `2..32`
+*/
+    pub bitfield0: u32,
 }
 #[repr(C)]
+#[derive(Clone, Copy)]
 pub struct StdVideoEncodeH264RefListModEntry {
     pub modification_of_pic_nums_idc: crate::vk::StdVideoH264ModificationOfPicNumsIdc,
     pub abs_diff_pic_num_minus1: u16,
     pub long_term_pic_num: u16,
 }
 #[repr(C)]
+#[derive(Clone, Copy)]
 pub struct StdVideoEncodeH264RefPicMarkingEntry {
     pub memory_management_control_operation: crate::vk::StdVideoH264MemMgmtControlOp,
     pub difference_of_pic_nums_minus1: u16,
@@ -67,6 +83,7 @@ pub struct StdVideoEncodeH264RefPicMarkingEntry {
     pub max_long_term_frame_idx_plus1: u16,
 }
 #[repr(C)]
+#[derive(Clone, Copy)]
 pub struct StdVideoEncodeH264ReferenceListsInfo {
     pub flags: crate::vk::StdVideoEncodeH264ReferenceListsInfoFlags,
     pub num_ref_idx_l0_active_minus1: u8,
@@ -82,6 +99,7 @@ pub struct StdVideoEncodeH264ReferenceListsInfo {
     pub p_ref_pic_marking_operations: *const crate::vk::StdVideoEncodeH264RefPicMarkingEntry,
 }
 #[repr(C)]
+#[derive(Clone, Copy)]
 pub struct StdVideoEncodeH264PictureInfo {
     pub flags: crate::vk::StdVideoEncodeH264PictureInfoFlags,
     pub seq_parameter_set_id: u8,
@@ -95,6 +113,7 @@ pub struct StdVideoEncodeH264PictureInfo {
     pub p_ref_lists: *const crate::vk::StdVideoEncodeH264ReferenceListsInfo,
 }
 #[repr(C)]
+#[derive(Clone, Copy)]
 pub struct StdVideoEncodeH264ReferenceInfo {
     pub flags: crate::vk::StdVideoEncodeH264ReferenceInfoFlags,
     pub primary_pic_type: crate::vk::StdVideoH264PictureType,
@@ -105,6 +124,7 @@ pub struct StdVideoEncodeH264ReferenceInfo {
     pub temporal_id: u8,
 }
 #[repr(C)]
+#[derive(Clone, Copy)]
 pub struct StdVideoEncodeH264SliceHeader {
     pub flags: crate::vk::StdVideoEncodeH264SliceHeaderFlags,
     pub first_mb_in_slice: u32,

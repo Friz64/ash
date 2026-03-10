@@ -2,6 +2,7 @@
 #![cfg_attr(rustfmt, rustfmt_skip)]
 //![Vulkan Manual Page](https://docs.vulkan.org/refpages/latest/refpages/source/VK_KHR_external_semaphore_win32.html) · Extension `VK_KHR_external_semaphore_win32`
 #[repr(C)]
+#[derive(Clone, Copy)]
 pub struct ImportSemaphoreWin32HandleInfoKHR {
     pub s_type: crate::vk::StructureType,
     pub p_next: *const core::ffi::c_void,
@@ -12,6 +13,7 @@ pub struct ImportSemaphoreWin32HandleInfoKHR {
     pub name: crate::platform_types::LPCWSTR,
 }
 #[repr(C)]
+#[derive(Clone, Copy)]
 pub struct ExportSemaphoreWin32HandleInfoKHR {
     pub s_type: crate::vk::StructureType,
     pub p_next: *const core::ffi::c_void,
@@ -20,6 +22,7 @@ pub struct ExportSemaphoreWin32HandleInfoKHR {
     pub name: crate::platform_types::LPCWSTR,
 }
 #[repr(C)]
+#[derive(Clone, Copy)]
 pub struct D3D12FenceSubmitInfoKHR {
     pub s_type: crate::vk::StructureType,
     pub p_next: *const core::ffi::c_void,
@@ -29,6 +32,7 @@ pub struct D3D12FenceSubmitInfoKHR {
     pub p_signal_semaphore_values: *const u64,
 }
 #[repr(C)]
+#[derive(Clone, Copy)]
 pub struct SemaphoreGetWin32HandleInfoKHR {
     pub s_type: crate::vk::StructureType,
     pub p_next: *const core::ffi::c_void,

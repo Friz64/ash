@@ -2,6 +2,7 @@
 #![cfg_attr(rustfmt, rustfmt_skip)]
 //![Vulkan Manual Page](https://docs.vulkan.org/refpages/latest/refpages/source/VK_KHR_display_swapchain.html) · Extension `VK_KHR_display_swapchain`
 #[repr(C)]
+#[derive(Clone, Copy)]
 pub struct DisplayPresentInfoKHR {
     pub s_type: crate::vk::StructureType,
     pub p_next: *const core::ffi::c_void,

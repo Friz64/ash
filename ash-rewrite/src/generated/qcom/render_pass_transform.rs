@@ -2,12 +2,14 @@
 #![cfg_attr(rustfmt, rustfmt_skip)]
 //![Vulkan Manual Page](https://docs.vulkan.org/refpages/latest/refpages/source/VK_QCOM_render_pass_transform.html) · Extension `VK_QCOM_render_pass_transform`
 #[repr(C)]
+#[derive(Clone, Copy)]
 pub struct RenderPassTransformBeginInfoQCOM {
     pub s_type: crate::vk::StructureType,
     pub p_next: *const core::ffi::c_void,
     pub transform: crate::vk::SurfaceTransformFlagBitsKHR,
 }
 #[repr(C)]
+#[derive(Clone, Copy)]
 pub struct CommandBufferInheritanceRenderPassTransformInfoQCOM {
     pub s_type: crate::vk::StructureType,
     pub p_next: *const core::ffi::c_void,

@@ -2,6 +2,7 @@
 #![cfg_attr(rustfmt, rustfmt_skip)]
 //![Vulkan Manual Page](https://docs.vulkan.org/refpages/latest/refpages/source/VK_NV_external_memory_capabilities.html) · Extension `VK_NV_external_memory_capabilities`
 #[repr(C)]
+#[derive(Clone, Copy)]
 pub struct ExternalImageFormatPropertiesNV {
     pub image_format_properties: crate::vk::ImageFormatProperties,
     pub external_memory_features: crate::vk::ExternalMemoryFeatureFlagsNV,
@@ -9,12 +10,16 @@ pub struct ExternalImageFormatPropertiesNV {
     pub compatible_handle_types: crate::vk::ExternalMemoryHandleTypeFlagsNV,
 }
 #[repr(transparent)]
+#[derive(Clone, Copy)]
 pub struct ExternalMemoryHandleTypeFlagsNV(pub(crate) i32);
 #[repr(transparent)]
+#[derive(Clone, Copy)]
 pub struct ExternalMemoryFeatureFlagsNV(pub(crate) i32);
 #[repr(transparent)]
+#[derive(Clone, Copy)]
 pub struct ExternalMemoryHandleTypeFlagBitsNV(pub(crate) i32);
 #[repr(transparent)]
+#[derive(Clone, Copy)]
 pub struct ExternalMemoryFeatureFlagBitsNV(pub(crate) i32);
 pub const NV_EXTERNAL_MEMORY_CAPABILITIES_SPEC_VERSION: u32 = 1;
 pub const NV_EXTERNAL_MEMORY_CAPABILITIES_EXTENSION_NAME: &core::ffi::CStr = c"VK_NV_external_memory_capabilities";

@@ -2,18 +2,21 @@
 #![cfg_attr(rustfmt, rustfmt_skip)]
 //![Vulkan Manual Page](https://docs.vulkan.org/refpages/latest/refpages/source/VK_VALVE_fragment_density_map_layered.html) · Extension `VK_VALVE_fragment_density_map_layered`
 #[repr(C)]
+#[derive(Clone, Copy)]
 pub struct PhysicalDeviceFragmentDensityMapLayeredPropertiesVALVE {
     pub s_type: crate::vk::StructureType,
     pub p_next: *mut core::ffi::c_void,
     pub max_fragment_density_map_layers: u32,
 }
 #[repr(C)]
+#[derive(Clone, Copy)]
 pub struct PhysicalDeviceFragmentDensityMapLayeredFeaturesVALVE {
     pub s_type: crate::vk::StructureType,
     pub p_next: *mut core::ffi::c_void,
     pub fragment_density_map_layered: crate::vk::Bool32,
 }
 #[repr(C)]
+#[derive(Clone, Copy)]
 pub struct PipelineFragmentDensityMapLayeredCreateInfoVALVE {
     pub s_type: crate::vk::StructureType,
     pub p_next: *const core::ffi::c_void,

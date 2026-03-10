@@ -5,14 +5,14 @@ use analysis::{
     to_rust::RustTranslator,
     xml::cexpr::CExprItem,
 };
-use quote::{format_ident, quote};
+use quote::quote;
 use tracing::{instrument, trace};
 
 impl Code for Constant {
-    #[instrument]
+    #[instrument(skip(ctx))]
     fn code(&self, ctx: &Context) -> CodeMap {
         trace!("generating");
-        let name = format_ident!("{}", self.name.prefix_trimmed());
+        let name = ctx.rust_name_of_constant(self);
 
         let ty = match self.ty {
             ConstantType::Integer(primary_ty) => ctx.primary_type_to_rust(primary_ty),
@@ -25,6 +25,6 @@ impl Code for Constant {
             pub const #name: #ty = #value;
         };
 
-        CodeMap::new(Destination(self.required_by), code)
+        CodeMap::new(Destination::new(self.required_by), code)
     }
 }

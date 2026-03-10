@@ -2,12 +2,14 @@
 #![cfg_attr(rustfmt, rustfmt_skip)]
 //![Vulkan Manual Page](https://docs.vulkan.org/refpages/latest/refpages/source/VK_KHR_maintenance7.html) · Extension `VK_KHR_maintenance7`
 #[repr(C)]
+#[derive(Clone, Copy)]
 pub struct PhysicalDeviceMaintenance7FeaturesKHR {
     pub s_type: crate::vk::StructureType,
     pub p_next: *mut core::ffi::c_void,
     pub maintenance7: crate::vk::Bool32,
 }
 #[repr(C)]
+#[derive(Clone, Copy)]
 pub struct PhysicalDeviceMaintenance7PropertiesKHR {
     pub s_type: crate::vk::StructureType,
     pub p_next: *mut core::ffi::c_void,
@@ -21,6 +23,7 @@ pub struct PhysicalDeviceMaintenance7PropertiesKHR {
     pub max_descriptor_set_update_after_bind_total_buffers_dynamic: u32,
 }
 #[repr(C)]
+#[derive(Clone, Copy)]
 pub struct PhysicalDeviceLayeredApiPropertiesListKHR {
     pub s_type: crate::vk::StructureType,
     pub p_next: *mut core::ffi::c_void,
@@ -28,6 +31,7 @@ pub struct PhysicalDeviceLayeredApiPropertiesListKHR {
     pub p_layered_apis: *mut crate::vk::PhysicalDeviceLayeredApiPropertiesKHR,
 }
 #[repr(C)]
+#[derive(Clone, Copy)]
 pub struct PhysicalDeviceLayeredApiPropertiesKHR {
     pub s_type: crate::vk::StructureType,
     pub p_next: *mut core::ffi::c_void,
@@ -37,12 +41,14 @@ pub struct PhysicalDeviceLayeredApiPropertiesKHR {
     pub device_name: [core::ffi::c_char; crate::vk::MAX_PHYSICAL_DEVICE_NAME_SIZE as _],
 }
 #[repr(C)]
+#[derive(Clone, Copy)]
 pub struct PhysicalDeviceLayeredApiVulkanPropertiesKHR {
     pub s_type: crate::vk::StructureType,
     pub p_next: *mut core::ffi::c_void,
     pub properties: crate::vk::PhysicalDeviceProperties2,
 }
 #[repr(transparent)]
+#[derive(Clone, Copy)]
 pub struct PhysicalDeviceLayeredApiKHR(pub(crate) i32);
 pub const KHR_MAINTENANCE_7_SPEC_VERSION: u32 = 1;
 pub const KHR_MAINTENANCE_7_EXTENSION_NAME: &core::ffi::CStr = c"VK_KHR_maintenance7";

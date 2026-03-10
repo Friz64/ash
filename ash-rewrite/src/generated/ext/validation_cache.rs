@@ -2,6 +2,7 @@
 #![cfg_attr(rustfmt, rustfmt_skip)]
 //![Vulkan Manual Page](https://docs.vulkan.org/refpages/latest/refpages/source/VK_EXT_validation_cache.html) · Extension `VK_EXT_validation_cache`
 #[repr(C)]
+#[derive(Clone, Copy)]
 pub struct ValidationCacheCreateInfoEXT {
     pub s_type: crate::vk::StructureType,
     pub p_next: *const core::ffi::c_void,
@@ -10,16 +11,20 @@ pub struct ValidationCacheCreateInfoEXT {
     pub p_initial_data: *const core::ffi::c_void,
 }
 #[repr(C)]
+#[derive(Clone, Copy)]
 pub struct ShaderModuleValidationCacheCreateInfoEXT {
     pub s_type: crate::vk::StructureType,
     pub p_next: *const core::ffi::c_void,
     pub validation_cache: crate::vk::ValidationCacheEXT,
 }
 #[repr(transparent)]
+#[derive(Clone, Copy)]
 pub struct ValidationCacheHeaderVersionEXT(pub(crate) i32);
 #[repr(transparent)]
+#[derive(Clone, Copy)]
 pub struct ValidationCacheCreateFlagsEXT(pub(crate) i32);
 #[repr(transparent)]
+#[derive(Clone, Copy)]
 pub struct ValidationCacheEXT(pub(crate) i32);
 pub const EXT_VALIDATION_CACHE_SPEC_VERSION: u32 = 1;
 pub const EXT_VALIDATION_CACHE_EXTENSION_NAME: &core::ffi::CStr = c"VK_EXT_validation_cache";

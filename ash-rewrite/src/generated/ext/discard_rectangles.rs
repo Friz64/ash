@@ -2,12 +2,14 @@
 #![cfg_attr(rustfmt, rustfmt_skip)]
 //![Vulkan Manual Page](https://docs.vulkan.org/refpages/latest/refpages/source/VK_EXT_discard_rectangles.html) · Extension `VK_EXT_discard_rectangles`
 #[repr(C)]
+#[derive(Clone, Copy)]
 pub struct PhysicalDeviceDiscardRectanglePropertiesEXT {
     pub s_type: crate::vk::StructureType,
     pub p_next: *mut core::ffi::c_void,
     pub max_discard_rectangles: u32,
 }
 #[repr(C)]
+#[derive(Clone, Copy)]
 pub struct PipelineDiscardRectangleStateCreateInfoEXT {
     pub s_type: crate::vk::StructureType,
     pub p_next: *const core::ffi::c_void,
@@ -17,8 +19,10 @@ pub struct PipelineDiscardRectangleStateCreateInfoEXT {
     pub p_discard_rectangles: *const crate::vk::Rect2D,
 }
 #[repr(transparent)]
+#[derive(Clone, Copy)]
 pub struct DiscardRectangleModeEXT(pub(crate) i32);
 #[repr(transparent)]
+#[derive(Clone, Copy)]
 pub struct PipelineDiscardRectangleStateCreateFlagsEXT(pub(crate) i32);
 pub const EXT_DISCARD_RECTANGLES_SPEC_VERSION: u32 = 2;
 pub const EXT_DISCARD_RECTANGLES_EXTENSION_NAME: &core::ffi::CStr = c"VK_EXT_discard_rectangles";

@@ -2,11 +2,13 @@
 #![cfg_attr(rustfmt, rustfmt_skip)]
 //![Vulkan Manual Page](https://docs.vulkan.org/refpages/latest/refpages/source/VK_EXT_hdr_metadata.html) · Extension `VK_EXT_hdr_metadata`
 #[repr(C)]
+#[derive(Clone, Copy)]
 pub struct XYColorEXT {
     pub x: core::ffi::c_float,
     pub y: core::ffi::c_float,
 }
 #[repr(C)]
+#[derive(Clone, Copy)]
 pub struct HdrMetadataEXT {
     pub s_type: crate::vk::StructureType,
     pub p_next: *const core::ffi::c_void,

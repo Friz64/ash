@@ -2,6 +2,7 @@
 #![cfg_attr(rustfmt, rustfmt_skip)]
 //![Vulkan Manual Page](https://docs.vulkan.org/refpages/latest/refpages/source/VK_KHR_video_encode_av1.html) · Extension `VK_KHR_video_encode_av1`
 #[repr(C)]
+#[derive(Clone, Copy)]
 pub struct VideoEncodeAV1CapabilitiesKHR {
     pub s_type: crate::vk::StructureType,
     pub p_next: *mut core::ffi::c_void,
@@ -31,6 +32,7 @@ pub struct VideoEncodeAV1CapabilitiesKHR {
     pub std_syntax_flags: crate::vk::VideoEncodeAV1StdFlagsKHR,
 }
 #[repr(C)]
+#[derive(Clone, Copy)]
 pub struct VideoEncodeAV1QualityLevelPropertiesKHR {
     pub s_type: crate::vk::StructureType,
     pub p_next: *mut core::ffi::c_void,
@@ -51,12 +53,14 @@ pub struct VideoEncodeAV1QualityLevelPropertiesKHR {
     pub preferred_bidirectional_compound_reference_name_mask: u32,
 }
 #[repr(C)]
+#[derive(Clone, Copy)]
 pub struct PhysicalDeviceVideoEncodeAV1FeaturesKHR {
     pub s_type: crate::vk::StructureType,
     pub p_next: *mut core::ffi::c_void,
     pub video_encode_av1: crate::vk::Bool32,
 }
 #[repr(C)]
+#[derive(Clone, Copy)]
 pub struct VideoEncodeAV1SessionCreateInfoKHR {
     pub s_type: crate::vk::StructureType,
     pub p_next: *const core::ffi::c_void,
@@ -64,6 +68,7 @@ pub struct VideoEncodeAV1SessionCreateInfoKHR {
     pub max_level: crate::vk::StdVideoAV1Level,
 }
 #[repr(C)]
+#[derive(Clone, Copy)]
 pub struct VideoEncodeAV1SessionParametersCreateInfoKHR {
     pub s_type: crate::vk::StructureType,
     pub p_next: *const core::ffi::c_void,
@@ -73,12 +78,14 @@ pub struct VideoEncodeAV1SessionParametersCreateInfoKHR {
     pub p_std_operating_points: *const crate::vk::StdVideoEncodeAV1OperatingPointInfo,
 }
 #[repr(C)]
+#[derive(Clone, Copy)]
 pub struct VideoEncodeAV1DpbSlotInfoKHR {
     pub s_type: crate::vk::StructureType,
     pub p_next: *const core::ffi::c_void,
     pub p_std_reference_info: *const crate::vk::StdVideoEncodeAV1ReferenceInfo,
 }
 #[repr(C)]
+#[derive(Clone, Copy)]
 pub struct VideoEncodeAV1PictureInfoKHR {
     pub s_type: crate::vk::StructureType,
     pub p_next: *const core::ffi::c_void,
@@ -92,12 +99,14 @@ pub struct VideoEncodeAV1PictureInfoKHR {
     pub generate_obu_extension_header: crate::vk::Bool32,
 }
 #[repr(C)]
+#[derive(Clone, Copy)]
 pub struct VideoEncodeAV1ProfileInfoKHR {
     pub s_type: crate::vk::StructureType,
     pub p_next: *const core::ffi::c_void,
     pub std_profile: crate::vk::StdVideoAV1Profile,
 }
 #[repr(C)]
+#[derive(Clone, Copy)]
 pub struct VideoEncodeAV1RateControlInfoKHR {
     pub s_type: crate::vk::StructureType,
     pub p_next: *const core::ffi::c_void,
@@ -108,18 +117,21 @@ pub struct VideoEncodeAV1RateControlInfoKHR {
     pub temporal_layer_count: u32,
 }
 #[repr(C)]
+#[derive(Clone, Copy)]
 pub struct VideoEncodeAV1QIndexKHR {
     pub intra_q_index: u32,
     pub predictive_q_index: u32,
     pub bipredictive_q_index: u32,
 }
 #[repr(C)]
+#[derive(Clone, Copy)]
 pub struct VideoEncodeAV1FrameSizeKHR {
     pub intra_frame_size: u32,
     pub predictive_frame_size: u32,
     pub bipredictive_frame_size: u32,
 }
 #[repr(C)]
+#[derive(Clone, Copy)]
 pub struct VideoEncodeAV1GopRemainingFrameInfoKHR {
     pub s_type: crate::vk::StructureType,
     pub p_next: *const core::ffi::c_void,
@@ -129,6 +141,7 @@ pub struct VideoEncodeAV1GopRemainingFrameInfoKHR {
     pub gop_remaining_bipredictive: u32,
 }
 #[repr(C)]
+#[derive(Clone, Copy)]
 pub struct VideoEncodeAV1RateControlLayerInfoKHR {
     pub s_type: crate::vk::StructureType,
     pub p_next: *const core::ffi::c_void,
@@ -140,25 +153,34 @@ pub struct VideoEncodeAV1RateControlLayerInfoKHR {
     pub max_frame_size: crate::vk::VideoEncodeAV1FrameSizeKHR,
 }
 #[repr(transparent)]
+#[derive(Clone, Copy)]
 pub struct VideoEncodeAV1PredictionModeKHR(pub(crate) i32);
 #[repr(transparent)]
+#[derive(Clone, Copy)]
 pub struct VideoEncodeAV1RateControlGroupKHR(pub(crate) i32);
 #[repr(transparent)]
+#[derive(Clone, Copy)]
 pub struct VideoEncodeAV1CapabilityFlagsKHR(pub(crate) i32);
 #[repr(transparent)]
+#[derive(Clone, Copy)]
 pub struct VideoEncodeAV1StdFlagsKHR(pub(crate) i32);
 #[repr(transparent)]
+#[derive(Clone, Copy)]
 pub struct VideoEncodeAV1RateControlFlagsKHR(pub(crate) i32);
 #[repr(transparent)]
+#[derive(Clone, Copy)]
 pub struct VideoEncodeAV1SuperblockSizeFlagsKHR(pub(crate) i32);
 #[repr(transparent)]
+#[derive(Clone, Copy)]
 pub struct VideoEncodeAV1CapabilityFlagBitsKHR(pub(crate) i32);
 #[repr(transparent)]
+#[derive(Clone, Copy)]
 pub struct VideoEncodeAV1StdFlagBitsKHR(pub(crate) i32);
 #[repr(transparent)]
+#[derive(Clone, Copy)]
 pub struct VideoEncodeAV1RateControlFlagBitsKHR(pub(crate) i32);
 #[repr(transparent)]
+#[derive(Clone, Copy)]
 pub struct VideoEncodeAV1SuperblockSizeFlagBitsKHR(pub(crate) i32);
-pub const MAX_VIDEO_AV1_REFERENCES_PER_FRAME_KHR: u32 = 7;
 pub const KHR_VIDEO_ENCODE_AV1_SPEC_VERSION: u32 = 1;
 pub const KHR_VIDEO_ENCODE_AV1_EXTENSION_NAME: &core::ffi::CStr = c"VK_KHR_video_encode_av1";

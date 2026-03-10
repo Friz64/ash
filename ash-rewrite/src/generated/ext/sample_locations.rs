@@ -2,11 +2,13 @@
 #![cfg_attr(rustfmt, rustfmt_skip)]
 //![Vulkan Manual Page](https://docs.vulkan.org/refpages/latest/refpages/source/VK_EXT_sample_locations.html) · Extension `VK_EXT_sample_locations`
 #[repr(C)]
+#[derive(Clone, Copy)]
 pub struct SampleLocationEXT {
     pub x: core::ffi::c_float,
     pub y: core::ffi::c_float,
 }
 #[repr(C)]
+#[derive(Clone, Copy)]
 pub struct SampleLocationsInfoEXT {
     pub s_type: crate::vk::StructureType,
     pub p_next: *const core::ffi::c_void,
@@ -16,16 +18,19 @@ pub struct SampleLocationsInfoEXT {
     pub p_sample_locations: *const crate::vk::SampleLocationEXT,
 }
 #[repr(C)]
+#[derive(Clone, Copy)]
 pub struct AttachmentSampleLocationsEXT {
     pub attachment_index: u32,
     pub sample_locations_info: crate::vk::SampleLocationsInfoEXT,
 }
 #[repr(C)]
+#[derive(Clone, Copy)]
 pub struct SubpassSampleLocationsEXT {
     pub subpass_index: u32,
     pub sample_locations_info: crate::vk::SampleLocationsInfoEXT,
 }
 #[repr(C)]
+#[derive(Clone, Copy)]
 pub struct RenderPassSampleLocationsBeginInfoEXT {
     pub s_type: crate::vk::StructureType,
     pub p_next: *const core::ffi::c_void,
@@ -35,6 +40,7 @@ pub struct RenderPassSampleLocationsBeginInfoEXT {
     pub p_post_subpass_sample_locations: *const crate::vk::SubpassSampleLocationsEXT,
 }
 #[repr(C)]
+#[derive(Clone, Copy)]
 pub struct PipelineSampleLocationsStateCreateInfoEXT {
     pub s_type: crate::vk::StructureType,
     pub p_next: *const core::ffi::c_void,
@@ -42,6 +48,7 @@ pub struct PipelineSampleLocationsStateCreateInfoEXT {
     pub sample_locations_info: crate::vk::SampleLocationsInfoEXT,
 }
 #[repr(C)]
+#[derive(Clone, Copy)]
 pub struct PhysicalDeviceSampleLocationsPropertiesEXT {
     pub s_type: crate::vk::StructureType,
     pub p_next: *mut core::ffi::c_void,
@@ -52,6 +59,7 @@ pub struct PhysicalDeviceSampleLocationsPropertiesEXT {
     pub variable_sample_locations: crate::vk::Bool32,
 }
 #[repr(C)]
+#[derive(Clone, Copy)]
 pub struct MultisamplePropertiesEXT {
     pub s_type: crate::vk::StructureType,
     pub p_next: *mut core::ffi::c_void,

@@ -2,10 +2,31 @@
 #![cfg_attr(rustfmt, rustfmt_skip)]
 //![Vulkan Manual Page](https://docs.vulkan.org/refpages/latest/refpages/source/VK_EXT_vertex_input_dynamic_state.html) · Extension `VK_EXT_vertex_input_dynamic_state`
 #[repr(C)]
+#[derive(Clone, Copy)]
 pub struct PhysicalDeviceVertexInputDynamicStateFeaturesEXT {
     pub s_type: crate::vk::StructureType,
     pub p_next: *mut core::ffi::c_void,
     pub vertex_input_dynamic_state: crate::vk::Bool32,
+}
+#[repr(C)]
+#[derive(Clone, Copy)]
+pub struct VertexInputBindingDescription2EXT {
+    pub s_type: crate::vk::StructureType,
+    pub p_next: *mut core::ffi::c_void,
+    pub binding: u32,
+    pub stride: u32,
+    pub input_rate: crate::vk::VertexInputRate,
+    pub divisor: u32,
+}
+#[repr(C)]
+#[derive(Clone, Copy)]
+pub struct VertexInputAttributeDescription2EXT {
+    pub s_type: crate::vk::StructureType,
+    pub p_next: *mut core::ffi::c_void,
+    pub location: u32,
+    pub binding: u32,
+    pub format: crate::vk::Format,
+    pub offset: u32,
 }
 pub const EXT_VERTEX_INPUT_DYNAMIC_STATE_SPEC_VERSION: u32 = 2;
 pub const EXT_VERTEX_INPUT_DYNAMIC_STATE_EXTENSION_NAME: &core::ffi::CStr = c"VK_EXT_vertex_input_dynamic_state";

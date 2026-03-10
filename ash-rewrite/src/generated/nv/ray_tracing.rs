@@ -2,6 +2,7 @@
 #![cfg_attr(rustfmt, rustfmt_skip)]
 //![Vulkan Manual Page](https://docs.vulkan.org/refpages/latest/refpages/source/VK_NV_ray_tracing.html) · Extension `VK_NV_ray_tracing`
 #[repr(C)]
+#[derive(Clone, Copy)]
 pub struct RayTracingShaderGroupCreateInfoNV {
     pub s_type: crate::vk::StructureType,
     pub p_next: *const core::ffi::c_void,
@@ -12,6 +13,7 @@ pub struct RayTracingShaderGroupCreateInfoNV {
     pub intersection_shader: u32,
 }
 #[repr(C)]
+#[derive(Clone, Copy)]
 pub struct RayTracingPipelineCreateInfoNV {
     pub s_type: crate::vk::StructureType,
     pub p_next: *const core::ffi::c_void,
@@ -26,6 +28,7 @@ pub struct RayTracingPipelineCreateInfoNV {
     pub base_pipeline_index: i32,
 }
 #[repr(C)]
+#[derive(Clone, Copy)]
 pub struct GeometryTrianglesNV {
     pub s_type: crate::vk::StructureType,
     pub p_next: *const core::ffi::c_void,
@@ -42,6 +45,7 @@ pub struct GeometryTrianglesNV {
     pub transform_offset: crate::vk::DeviceSize,
 }
 #[repr(C)]
+#[derive(Clone, Copy)]
 pub struct GeometryAABBNV {
     pub s_type: crate::vk::StructureType,
     pub p_next: *const core::ffi::c_void,
@@ -51,11 +55,13 @@ pub struct GeometryAABBNV {
     pub offset: crate::vk::DeviceSize,
 }
 #[repr(C)]
+#[derive(Clone, Copy)]
 pub struct GeometryDataNV {
     pub triangles: crate::vk::GeometryTrianglesNV,
     pub aabbs: crate::vk::GeometryAABBNV,
 }
 #[repr(C)]
+#[derive(Clone, Copy)]
 pub struct GeometryNV {
     pub s_type: crate::vk::StructureType,
     pub p_next: *const core::ffi::c_void,
@@ -64,6 +70,7 @@ pub struct GeometryNV {
     pub flags: crate::vk::GeometryFlagsKHR,
 }
 #[repr(C)]
+#[derive(Clone, Copy)]
 pub struct AccelerationStructureInfoNV {
     pub s_type: crate::vk::StructureType,
     pub p_next: *const core::ffi::c_void,
@@ -74,6 +81,7 @@ pub struct AccelerationStructureInfoNV {
     pub p_geometries: *const crate::vk::GeometryNV,
 }
 #[repr(C)]
+#[derive(Clone, Copy)]
 pub struct AccelerationStructureCreateInfoNV {
     pub s_type: crate::vk::StructureType,
     pub p_next: *const core::ffi::c_void,
@@ -81,6 +89,7 @@ pub struct AccelerationStructureCreateInfoNV {
     pub info: crate::vk::AccelerationStructureInfoNV,
 }
 #[repr(C)]
+#[derive(Clone, Copy)]
 pub struct BindAccelerationStructureMemoryInfoNV {
     pub s_type: crate::vk::StructureType,
     pub p_next: *const core::ffi::c_void,
@@ -91,6 +100,7 @@ pub struct BindAccelerationStructureMemoryInfoNV {
     pub p_device_indices: *const u32,
 }
 #[repr(C)]
+#[derive(Clone, Copy)]
 pub struct WriteDescriptorSetAccelerationStructureNV {
     pub s_type: crate::vk::StructureType,
     pub p_next: *const core::ffi::c_void,
@@ -98,6 +108,7 @@ pub struct WriteDescriptorSetAccelerationStructureNV {
     pub p_acceleration_structures: *const crate::vk::AccelerationStructureNV,
 }
 #[repr(C)]
+#[derive(Clone, Copy)]
 pub struct AccelerationStructureMemoryRequirementsInfoNV {
     pub s_type: crate::vk::StructureType,
     pub p_next: *const core::ffi::c_void,
@@ -105,6 +116,7 @@ pub struct AccelerationStructureMemoryRequirementsInfoNV {
     pub acceleration_structure: crate::vk::AccelerationStructureNV,
 }
 #[repr(C)]
+#[derive(Clone, Copy)]
 pub struct PhysicalDeviceRayTracingPropertiesNV {
     pub s_type: crate::vk::StructureType,
     pub p_next: *mut core::ffi::c_void,
@@ -117,11 +129,11 @@ pub struct PhysicalDeviceRayTracingPropertiesNV {
     pub max_triangle_count: u64,
     pub max_descriptor_set_acceleration_structures: u32,
 }
-pub type MemoryRequirements2KHR = crate::vk::MemoryRequirements2;
 pub type AabbPositionsNV = crate::vk::AabbPositionsKHR;
 pub type TransformMatrixNV = crate::vk::TransformMatrixKHR;
 pub type AccelerationStructureInstanceNV = crate::vk::AccelerationStructureInstanceKHR;
 #[repr(transparent)]
+#[derive(Clone, Copy)]
 pub struct AccelerationStructureMemoryRequirementsTypeNV(pub(crate) i32);
 pub type GeometryFlagBitsNV = crate::vk::GeometryFlagBitsKHR;
 pub type GeometryInstanceFlagBitsNV = crate::vk::GeometryInstanceFlagBitsKHR;
@@ -134,6 +146,7 @@ pub type GeometryFlagsNV = crate::vk::GeometryFlagsKHR;
 pub type GeometryInstanceFlagsNV = crate::vk::GeometryInstanceFlagsKHR;
 pub type BuildAccelerationStructureFlagsNV = crate::vk::BuildAccelerationStructureFlagsKHR;
 #[repr(transparent)]
+#[derive(Clone, Copy)]
 pub struct AccelerationStructureNV(pub(crate) i32);
 pub const NV_RAY_TRACING_SPEC_VERSION: u32 = 3;
 pub const NV_RAY_TRACING_EXTENSION_NAME: &core::ffi::CStr = c"VK_NV_ray_tracing";

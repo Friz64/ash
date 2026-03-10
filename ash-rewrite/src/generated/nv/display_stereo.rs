@@ -2,18 +2,21 @@
 #![cfg_attr(rustfmt, rustfmt_skip)]
 //![Vulkan Manual Page](https://docs.vulkan.org/refpages/latest/refpages/source/VK_NV_display_stereo.html) · Extension `VK_NV_display_stereo`
 #[repr(C)]
+#[derive(Clone, Copy)]
 pub struct DisplaySurfaceStereoCreateInfoNV {
     pub s_type: crate::vk::StructureType,
     pub p_next: *const core::ffi::c_void,
     pub stereo_type: crate::vk::DisplaySurfaceStereoTypeNV,
 }
 #[repr(C)]
+#[derive(Clone, Copy)]
 pub struct DisplayModeStereoPropertiesNV {
     pub s_type: crate::vk::StructureType,
     pub p_next: *mut core::ffi::c_void,
     pub hdmi3_d_supported: crate::vk::Bool32,
 }
 #[repr(transparent)]
+#[derive(Clone, Copy)]
 pub struct DisplaySurfaceStereoTypeNV(pub(crate) i32);
 pub const NV_DISPLAY_STEREO_SPEC_VERSION: u32 = 1;
 pub const NV_DISPLAY_STEREO_EXTENSION_NAME: &core::ffi::CStr = c"VK_NV_display_stereo";

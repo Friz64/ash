@@ -2,18 +2,21 @@
 #![cfg_attr(rustfmt, rustfmt_skip)]
 //![Vulkan Manual Page](https://docs.vulkan.org/refpages/latest/refpages/source/VK_KHR_get_surface_capabilities2.html) · Extension `VK_KHR_get_surface_capabilities2`
 #[repr(C)]
+#[derive(Clone, Copy)]
 pub struct PhysicalDeviceSurfaceInfo2KHR {
     pub s_type: crate::vk::StructureType,
     pub p_next: *const core::ffi::c_void,
     pub surface: crate::vk::SurfaceKHR,
 }
 #[repr(C)]
+#[derive(Clone, Copy)]
 pub struct SurfaceCapabilities2KHR {
     pub s_type: crate::vk::StructureType,
     pub p_next: *mut core::ffi::c_void,
     pub surface_capabilities: crate::vk::SurfaceCapabilitiesKHR,
 }
 #[repr(C)]
+#[derive(Clone, Copy)]
 pub struct SurfaceFormat2KHR {
     pub s_type: crate::vk::StructureType,
     pub p_next: *mut core::ffi::c_void,

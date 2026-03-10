@@ -2,12 +2,14 @@
 #![cfg_attr(rustfmt, rustfmt_skip)]
 //![Vulkan Manual Page](https://docs.vulkan.org/refpages/latest/refpages/source/VK_NV_optical_flow.html) · Extension `VK_NV_optical_flow`
 #[repr(C)]
+#[derive(Clone, Copy)]
 pub struct PhysicalDeviceOpticalFlowFeaturesNV {
     pub s_type: crate::vk::StructureType,
     pub p_next: *mut core::ffi::c_void,
     pub optical_flow: crate::vk::Bool32,
 }
 #[repr(C)]
+#[derive(Clone, Copy)]
 pub struct PhysicalDeviceOpticalFlowPropertiesNV {
     pub s_type: crate::vk::StructureType,
     pub p_next: *mut core::ffi::c_void,
@@ -24,18 +26,21 @@ pub struct PhysicalDeviceOpticalFlowPropertiesNV {
     pub max_num_regions_of_interest: u32,
 }
 #[repr(C)]
+#[derive(Clone, Copy)]
 pub struct OpticalFlowImageFormatInfoNV {
     pub s_type: crate::vk::StructureType,
     pub p_next: *const core::ffi::c_void,
     pub usage: crate::vk::OpticalFlowUsageFlagsNV,
 }
 #[repr(C)]
+#[derive(Clone, Copy)]
 pub struct OpticalFlowImageFormatPropertiesNV {
     pub s_type: crate::vk::StructureType,
     pub p_next: *mut core::ffi::c_void,
     pub format: crate::vk::Format,
 }
 #[repr(C)]
+#[derive(Clone, Copy)]
 pub struct OpticalFlowSessionCreateInfoNV {
     pub s_type: crate::vk::StructureType,
     pub p_next: *mut core::ffi::c_void,
@@ -50,6 +55,7 @@ pub struct OpticalFlowSessionCreateInfoNV {
     pub flags: crate::vk::OpticalFlowSessionCreateFlagsNV,
 }
 #[repr(C)]
+#[derive(Clone, Copy)]
 pub struct OpticalFlowSessionCreatePrivateDataInfoNV {
     pub s_type: crate::vk::StructureType,
     pub p_next: *mut core::ffi::c_void,
@@ -58,6 +64,7 @@ pub struct OpticalFlowSessionCreatePrivateDataInfoNV {
     pub p_private_data: *const core::ffi::c_void,
 }
 #[repr(C)]
+#[derive(Clone, Copy)]
 pub struct OpticalFlowExecuteInfoNV {
     pub s_type: crate::vk::StructureType,
     pub p_next: *mut core::ffi::c_void,
@@ -66,26 +73,37 @@ pub struct OpticalFlowExecuteInfoNV {
     pub p_regions: *const crate::vk::Rect2D,
 }
 #[repr(transparent)]
+#[derive(Clone, Copy)]
 pub struct OpticalFlowPerformanceLevelNV(pub(crate) i32);
 #[repr(transparent)]
+#[derive(Clone, Copy)]
 pub struct OpticalFlowSessionBindingPointNV(pub(crate) i32);
 #[repr(transparent)]
+#[derive(Clone, Copy)]
 pub struct OpticalFlowGridSizeFlagsNV(pub(crate) i32);
 #[repr(transparent)]
+#[derive(Clone, Copy)]
 pub struct OpticalFlowUsageFlagsNV(pub(crate) i32);
 #[repr(transparent)]
+#[derive(Clone, Copy)]
 pub struct OpticalFlowSessionCreateFlagsNV(pub(crate) i32);
 #[repr(transparent)]
+#[derive(Clone, Copy)]
 pub struct OpticalFlowExecuteFlagsNV(pub(crate) i32);
 #[repr(transparent)]
+#[derive(Clone, Copy)]
 pub struct OpticalFlowGridSizeFlagBitsNV(pub(crate) i32);
 #[repr(transparent)]
+#[derive(Clone, Copy)]
 pub struct OpticalFlowUsageFlagBitsNV(pub(crate) i32);
 #[repr(transparent)]
+#[derive(Clone, Copy)]
 pub struct OpticalFlowSessionCreateFlagBitsNV(pub(crate) i32);
 #[repr(transparent)]
+#[derive(Clone, Copy)]
 pub struct OpticalFlowExecuteFlagBitsNV(pub(crate) i32);
 #[repr(transparent)]
+#[derive(Clone, Copy)]
 pub struct OpticalFlowSessionNV(pub(crate) i32);
 pub const NV_OPTICAL_FLOW_SPEC_VERSION: u32 = 1;
 pub const NV_OPTICAL_FLOW_EXTENSION_NAME: &core::ffi::CStr = c"VK_NV_optical_flow";

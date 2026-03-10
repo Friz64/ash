@@ -2,6 +2,7 @@
 #![cfg_attr(rustfmt, rustfmt_skip)]
 //![Vulkan Manual Page](https://docs.vulkan.org/refpages/latest/refpages/source/VK_KHR_video_decode_av1.html) · Extension `VK_KHR_video_decode_av1`
 #[repr(C)]
+#[derive(Clone, Copy)]
 pub struct VideoDecodeAV1ProfileInfoKHR {
     pub s_type: crate::vk::StructureType,
     pub p_next: *const core::ffi::c_void,
@@ -9,18 +10,21 @@ pub struct VideoDecodeAV1ProfileInfoKHR {
     pub film_grain_support: crate::vk::Bool32,
 }
 #[repr(C)]
+#[derive(Clone, Copy)]
 pub struct VideoDecodeAV1CapabilitiesKHR {
     pub s_type: crate::vk::StructureType,
     pub p_next: *mut core::ffi::c_void,
     pub max_level: crate::vk::StdVideoAV1Level,
 }
 #[repr(C)]
+#[derive(Clone, Copy)]
 pub struct VideoDecodeAV1SessionParametersCreateInfoKHR {
     pub s_type: crate::vk::StructureType,
     pub p_next: *const core::ffi::c_void,
     pub p_std_sequence_header: *const crate::vk::StdVideoAV1SequenceHeader,
 }
 #[repr(C)]
+#[derive(Clone, Copy)]
 pub struct VideoDecodeAV1PictureInfoKHR {
     pub s_type: crate::vk::StructureType,
     pub p_next: *const core::ffi::c_void,
@@ -33,10 +37,12 @@ pub struct VideoDecodeAV1PictureInfoKHR {
     pub p_tile_sizes: *const u32,
 }
 #[repr(C)]
+#[derive(Clone, Copy)]
 pub struct VideoDecodeAV1DpbSlotInfoKHR {
     pub s_type: crate::vk::StructureType,
     pub p_next: *const core::ffi::c_void,
     pub p_std_reference_info: *const crate::vk::StdVideoDecodeAV1ReferenceInfo,
 }
+pub const MAX_VIDEO_AV1_REFERENCES_PER_FRAME_KHR: u32 = 7;
 pub const KHR_VIDEO_DECODE_AV1_SPEC_VERSION: u32 = 1;
 pub const KHR_VIDEO_DECODE_AV1_EXTENSION_NAME: &core::ffi::CStr = c"VK_KHR_video_decode_av1";

@@ -15,8 +15,5 @@ pub type SubmitFlagBitsKHR = crate::vk::SubmitFlagBits;
 pub type AccessFlags2KHR = crate::vk::AccessFlags2;
 pub type PipelineStageFlags2KHR = crate::vk::PipelineStageFlags2;
 pub type SubmitFlagsKHR = crate::vk::SubmitFlags;
-#[repr(transparent)]
-#[allow(non_camel_case_types)]
-pub struct Flags64(pub(crate) u64);
 pub const KHR_SYNCHRONIZATION_2_SPEC_VERSION: u32 = 1;
 pub const KHR_SYNCHRONIZATION_2_EXTENSION_NAME: &core::ffi::CStr = c"VK_KHR_synchronization2";

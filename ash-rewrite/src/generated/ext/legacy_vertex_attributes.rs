@@ -2,12 +2,14 @@
 #![cfg_attr(rustfmt, rustfmt_skip)]
 //![Vulkan Manual Page](https://docs.vulkan.org/refpages/latest/refpages/source/VK_EXT_legacy_vertex_attributes.html) · Extension `VK_EXT_legacy_vertex_attributes`
 #[repr(C)]
+#[derive(Clone, Copy)]
 pub struct PhysicalDeviceLegacyVertexAttributesFeaturesEXT {
     pub s_type: crate::vk::StructureType,
     pub p_next: *mut core::ffi::c_void,
     pub legacy_vertex_attributes: crate::vk::Bool32,
 }
 #[repr(C)]
+#[derive(Clone, Copy)]
 pub struct PhysicalDeviceLegacyVertexAttributesPropertiesEXT {
     pub s_type: crate::vk::StructureType,
     pub p_next: *mut core::ffi::c_void,

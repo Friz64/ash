@@ -2,6 +2,7 @@
 #![cfg_attr(rustfmt, rustfmt_skip)]
 //![Vulkan Manual Page](https://docs.vulkan.org/refpages/latest/refpages/source/VK_NV_viewport_swizzle.html) · Extension `VK_NV_viewport_swizzle`
 #[repr(C)]
+#[derive(Clone, Copy)]
 pub struct ViewportSwizzleNV {
     pub x: crate::vk::ViewportCoordinateSwizzleNV,
     pub y: crate::vk::ViewportCoordinateSwizzleNV,
@@ -9,6 +10,7 @@ pub struct ViewportSwizzleNV {
     pub w: crate::vk::ViewportCoordinateSwizzleNV,
 }
 #[repr(C)]
+#[derive(Clone, Copy)]
 pub struct PipelineViewportSwizzleStateCreateInfoNV {
     pub s_type: crate::vk::StructureType,
     pub p_next: *const core::ffi::c_void,
@@ -17,8 +19,10 @@ pub struct PipelineViewportSwizzleStateCreateInfoNV {
     pub p_viewport_swizzles: *const crate::vk::ViewportSwizzleNV,
 }
 #[repr(transparent)]
+#[derive(Clone, Copy)]
 pub struct ViewportCoordinateSwizzleNV(pub(crate) i32);
 #[repr(transparent)]
+#[derive(Clone, Copy)]
 pub struct PipelineViewportSwizzleStateCreateFlagsNV(pub(crate) i32);
 pub const NV_VIEWPORT_SWIZZLE_SPEC_VERSION: u32 = 1;
 pub const NV_VIEWPORT_SWIZZLE_EXTENSION_NAME: &core::ffi::CStr = c"VK_NV_viewport_swizzle";

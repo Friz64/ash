@@ -67,6 +67,7 @@ impl CommandName {
     }
 }
 
+#[derive(Debug, PartialEq, Eq, Hash, Clone, Copy)]
 pub struct VariableName(pub(crate) &'static str);
 
 impl VariableName {

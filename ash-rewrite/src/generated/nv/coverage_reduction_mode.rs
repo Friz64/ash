@@ -2,12 +2,14 @@
 #![cfg_attr(rustfmt, rustfmt_skip)]
 //![Vulkan Manual Page](https://docs.vulkan.org/refpages/latest/refpages/source/VK_NV_coverage_reduction_mode.html) · Extension `VK_NV_coverage_reduction_mode`
 #[repr(C)]
+#[derive(Clone, Copy)]
 pub struct PhysicalDeviceCoverageReductionModeFeaturesNV {
     pub s_type: crate::vk::StructureType,
     pub p_next: *mut core::ffi::c_void,
     pub coverage_reduction_mode: crate::vk::Bool32,
 }
 #[repr(C)]
+#[derive(Clone, Copy)]
 pub struct PipelineCoverageReductionStateCreateInfoNV {
     pub s_type: crate::vk::StructureType,
     pub p_next: *const core::ffi::c_void,
@@ -15,6 +17,7 @@ pub struct PipelineCoverageReductionStateCreateInfoNV {
     pub coverage_reduction_mode: crate::vk::CoverageReductionModeNV,
 }
 #[repr(C)]
+#[derive(Clone, Copy)]
 pub struct FramebufferMixedSamplesCombinationNV {
     pub s_type: crate::vk::StructureType,
     pub p_next: *mut core::ffi::c_void,
@@ -24,8 +27,10 @@ pub struct FramebufferMixedSamplesCombinationNV {
     pub color_samples: crate::vk::SampleCountFlags,
 }
 #[repr(transparent)]
+#[derive(Clone, Copy)]
 pub struct CoverageReductionModeNV(pub(crate) i32);
 #[repr(transparent)]
+#[derive(Clone, Copy)]
 pub struct PipelineCoverageReductionStateCreateFlagsNV(pub(crate) i32);
 pub const NV_COVERAGE_REDUCTION_MODE_SPEC_VERSION: u32 = 1;
 pub const NV_COVERAGE_REDUCTION_MODE_EXTENSION_NAME: &core::ffi::CStr = c"VK_NV_coverage_reduction_mode";

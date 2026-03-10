@@ -2,6 +2,7 @@
 #![cfg_attr(rustfmt, rustfmt_skip)]
 //![Vulkan Manual Page](https://docs.vulkan.org/refpages/latest/refpages/source/VK_QCOM_data_graph_model.html) · Extension `VK_QCOM_data_graph_model`
 #[repr(C)]
+#[derive(Clone, Copy)]
 pub struct PipelineCacheHeaderVersionDataGraphQCOM {
     pub header_size: u32,
     pub header_version: crate::vk::PipelineCacheHeaderVersion,
@@ -11,18 +12,21 @@ pub struct PipelineCacheHeaderVersionDataGraphQCOM {
         as _],
 }
 #[repr(C)]
+#[derive(Clone, Copy)]
 pub struct DataGraphPipelineBuiltinModelCreateInfoQCOM {
     pub s_type: crate::vk::StructureType,
     pub p_next: *const core::ffi::c_void,
     pub p_operation: *const crate::vk::PhysicalDeviceDataGraphOperationSupportARM,
 }
 #[repr(C)]
+#[derive(Clone, Copy)]
 pub struct PhysicalDeviceDataGraphModelFeaturesQCOM {
     pub s_type: crate::vk::StructureType,
     pub p_next: *mut core::ffi::c_void,
     pub data_graph_model: crate::vk::Bool32,
 }
 #[repr(transparent)]
+#[derive(Clone, Copy)]
 pub struct DataGraphModelCacheTypeQCOM(pub(crate) i32);
 pub const DATA_GRAPH_MODEL_TOOLCHAIN_VERSION_LENGTH_QCOM: u32 = 3;
 pub const QCOM_DATA_GRAPH_MODEL_SPEC_VERSION: u32 = 1;

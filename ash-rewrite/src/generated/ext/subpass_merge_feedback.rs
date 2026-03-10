@@ -2,40 +2,47 @@
 #![cfg_attr(rustfmt, rustfmt_skip)]
 //![Vulkan Manual Page](https://docs.vulkan.org/refpages/latest/refpages/source/VK_EXT_subpass_merge_feedback.html) · Extension `VK_EXT_subpass_merge_feedback`
 #[repr(C)]
+#[derive(Clone, Copy)]
 pub struct RenderPassCreationControlEXT {
     pub s_type: crate::vk::StructureType,
     pub p_next: *const core::ffi::c_void,
     pub disallow_merging: crate::vk::Bool32,
 }
 #[repr(C)]
+#[derive(Clone, Copy)]
 pub struct RenderPassCreationFeedbackInfoEXT {
     pub post_merge_subpass_count: u32,
 }
 #[repr(C)]
+#[derive(Clone, Copy)]
 pub struct RenderPassCreationFeedbackCreateInfoEXT {
     pub s_type: crate::vk::StructureType,
     pub p_next: *const core::ffi::c_void,
     pub p_render_pass_feedback: *mut crate::vk::RenderPassCreationFeedbackInfoEXT,
 }
 #[repr(C)]
+#[derive(Clone, Copy)]
 pub struct RenderPassSubpassFeedbackInfoEXT {
     pub subpass_merge_status: crate::vk::SubpassMergeStatusEXT,
     pub description: [core::ffi::c_char; crate::vk::MAX_DESCRIPTION_SIZE as _],
     pub post_merge_index: u32,
 }
 #[repr(C)]
+#[derive(Clone, Copy)]
 pub struct RenderPassSubpassFeedbackCreateInfoEXT {
     pub s_type: crate::vk::StructureType,
     pub p_next: *const core::ffi::c_void,
     pub p_subpass_feedback: *mut crate::vk::RenderPassSubpassFeedbackInfoEXT,
 }
 #[repr(C)]
+#[derive(Clone, Copy)]
 pub struct PhysicalDeviceSubpassMergeFeedbackFeaturesEXT {
     pub s_type: crate::vk::StructureType,
     pub p_next: *mut core::ffi::c_void,
     pub subpass_merge_feedback: crate::vk::Bool32,
 }
 #[repr(transparent)]
+#[derive(Clone, Copy)]
 pub struct SubpassMergeStatusEXT(pub(crate) i32);
 pub const EXT_SUBPASS_MERGE_FEEDBACK_SPEC_VERSION: u32 = 2;
 pub const EXT_SUBPASS_MERGE_FEEDBACK_EXTENSION_NAME: &core::ffi::CStr = c"VK_EXT_subpass_merge_feedback";

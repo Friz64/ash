@@ -2,24 +2,28 @@
 #![cfg_attr(rustfmt, rustfmt_skip)]
 //![Vulkan Manual Page](https://docs.vulkan.org/refpages/latest/refpages/source/VK_EXT_full_screen_exclusive.html) · Extension `VK_EXT_full_screen_exclusive`
 #[repr(C)]
+#[derive(Clone, Copy)]
 pub struct SurfaceFullScreenExclusiveInfoEXT {
     pub s_type: crate::vk::StructureType,
     pub p_next: *mut core::ffi::c_void,
     pub full_screen_exclusive: crate::vk::FullScreenExclusiveEXT,
 }
 #[repr(C)]
+#[derive(Clone, Copy)]
 pub struct SurfaceFullScreenExclusiveWin32InfoEXT {
     pub s_type: crate::vk::StructureType,
     pub p_next: *const core::ffi::c_void,
     pub hmonitor: crate::platform_types::HMONITOR,
 }
 #[repr(C)]
+#[derive(Clone, Copy)]
 pub struct SurfaceCapabilitiesFullScreenExclusiveEXT {
     pub s_type: crate::vk::StructureType,
     pub p_next: *mut core::ffi::c_void,
     pub full_screen_exclusive_supported: crate::vk::Bool32,
 }
 #[repr(transparent)]
+#[derive(Clone, Copy)]
 pub struct FullScreenExclusiveEXT(pub(crate) i32);
 pub const EXT_FULL_SCREEN_EXCLUSIVE_SPEC_VERSION: u32 = 4;
 pub const EXT_FULL_SCREEN_EXCLUSIVE_EXTENSION_NAME: &core::ffi::CStr = c"VK_EXT_full_screen_exclusive";

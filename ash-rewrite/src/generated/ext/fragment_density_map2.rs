@@ -2,12 +2,14 @@
 #![cfg_attr(rustfmt, rustfmt_skip)]
 //![Vulkan Manual Page](https://docs.vulkan.org/refpages/latest/refpages/source/VK_EXT_fragment_density_map2.html) · Extension `VK_EXT_fragment_density_map2`
 #[repr(C)]
+#[derive(Clone, Copy)]
 pub struct PhysicalDeviceFragmentDensityMap2FeaturesEXT {
     pub s_type: crate::vk::StructureType,
     pub p_next: *mut core::ffi::c_void,
     pub fragment_density_map_deferred: crate::vk::Bool32,
 }
 #[repr(C)]
+#[derive(Clone, Copy)]
 pub struct PhysicalDeviceFragmentDensityMap2PropertiesEXT {
     pub s_type: crate::vk::StructureType,
     pub p_next: *mut core::ffi::c_void,

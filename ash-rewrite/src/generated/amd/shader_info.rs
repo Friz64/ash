@@ -2,6 +2,7 @@
 #![cfg_attr(rustfmt, rustfmt_skip)]
 //![Vulkan Manual Page](https://docs.vulkan.org/refpages/latest/refpages/source/VK_AMD_shader_info.html) · Extension `VK_AMD_shader_info`
 #[repr(C)]
+#[derive(Clone, Copy)]
 pub struct ShaderResourceUsageAMD {
     pub num_used_vgprs: u32,
     pub num_used_sgprs: u32,
@@ -10,6 +11,7 @@ pub struct ShaderResourceUsageAMD {
     pub scratch_mem_usage_in_bytes: usize,
 }
 #[repr(C)]
+#[derive(Clone, Copy)]
 pub struct ShaderStatisticsInfoAMD {
     pub shader_stage_mask: crate::vk::ShaderStageFlags,
     pub resource_usage: crate::vk::ShaderResourceUsageAMD,
@@ -20,6 +22,7 @@ pub struct ShaderStatisticsInfoAMD {
     pub compute_work_group_size: [u32; 3 as _],
 }
 #[repr(transparent)]
+#[derive(Clone, Copy)]
 pub struct ShaderInfoTypeAMD(pub(crate) i32);
 pub const AMD_SHADER_INFO_SPEC_VERSION: u32 = 1;
 pub const AMD_SHADER_INFO_EXTENSION_NAME: &core::ffi::CStr = c"VK_AMD_shader_info";

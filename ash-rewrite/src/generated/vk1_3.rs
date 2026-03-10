@@ -2,30 +2,35 @@
 #![cfg_attr(rustfmt, rustfmt_skip)]
 //![Vulkan Manual Page](https://docs.vulkan.org/refpages/latest/refpages/source/VK_VERSION_1_3.html) · Vulkan version 1.3
 #[repr(C)]
+#[derive(Clone, Copy)]
 pub struct DevicePrivateDataCreateInfo {
     pub s_type: crate::vk::StructureType,
     pub p_next: *const core::ffi::c_void,
     pub private_data_slot_request_count: u32,
 }
 #[repr(C)]
+#[derive(Clone, Copy)]
 pub struct PrivateDataSlotCreateInfo {
     pub s_type: crate::vk::StructureType,
     pub p_next: *const core::ffi::c_void,
     pub flags: crate::vk::PrivateDataSlotCreateFlags,
 }
 #[repr(C)]
+#[derive(Clone, Copy)]
 pub struct PhysicalDevicePrivateDataFeatures {
     pub s_type: crate::vk::StructureType,
     pub p_next: *mut core::ffi::c_void,
     pub private_data: crate::vk::Bool32,
 }
 #[repr(C)]
+#[derive(Clone, Copy)]
 pub struct DeviceBufferMemoryRequirements {
     pub s_type: crate::vk::StructureType,
     pub p_next: *const core::ffi::c_void,
     pub p_create_info: *const crate::vk::BufferCreateInfo,
 }
 #[repr(C)]
+#[derive(Clone, Copy)]
 pub struct DeviceImageMemoryRequirements {
     pub s_type: crate::vk::StructureType,
     pub p_next: *const core::ffi::c_void,
@@ -33,6 +38,7 @@ pub struct DeviceImageMemoryRequirements {
     pub plane_aspect: crate::vk::ImageAspectFlagBits,
 }
 #[repr(C)]
+#[derive(Clone, Copy)]
 pub struct PhysicalDeviceInlineUniformBlockFeatures {
     pub s_type: crate::vk::StructureType,
     pub p_next: *mut core::ffi::c_void,
@@ -40,6 +46,7 @@ pub struct PhysicalDeviceInlineUniformBlockFeatures {
     pub descriptor_binding_inline_uniform_block_update_after_bind: crate::vk::Bool32,
 }
 #[repr(C)]
+#[derive(Clone, Copy)]
 pub struct PhysicalDeviceInlineUniformBlockProperties {
     pub s_type: crate::vk::StructureType,
     pub p_next: *mut core::ffi::c_void,
@@ -50,6 +57,7 @@ pub struct PhysicalDeviceInlineUniformBlockProperties {
     pub max_descriptor_set_update_after_bind_inline_uniform_blocks: u32,
 }
 #[repr(C)]
+#[derive(Clone, Copy)]
 pub struct WriteDescriptorSetInlineUniformBlock {
     pub s_type: crate::vk::StructureType,
     pub p_next: *const core::ffi::c_void,
@@ -57,35 +65,41 @@ pub struct WriteDescriptorSetInlineUniformBlock {
     pub p_data: *const core::ffi::c_void,
 }
 #[repr(C)]
+#[derive(Clone, Copy)]
 pub struct DescriptorPoolInlineUniformBlockCreateInfo {
     pub s_type: crate::vk::StructureType,
     pub p_next: *const core::ffi::c_void,
     pub max_inline_uniform_block_bindings: u32,
 }
 #[repr(C)]
+#[derive(Clone, Copy)]
 pub struct PhysicalDeviceMaintenance4Features {
     pub s_type: crate::vk::StructureType,
     pub p_next: *mut core::ffi::c_void,
     pub maintenance4: crate::vk::Bool32,
 }
 #[repr(C)]
+#[derive(Clone, Copy)]
 pub struct PhysicalDeviceMaintenance4Properties {
     pub s_type: crate::vk::StructureType,
     pub p_next: *mut core::ffi::c_void,
     pub max_buffer_size: crate::vk::DeviceSize,
 }
 #[repr(C)]
+#[derive(Clone, Copy)]
 pub struct PhysicalDeviceTextureCompressionASTCHDRFeatures {
     pub s_type: crate::vk::StructureType,
     pub p_next: *mut core::ffi::c_void,
     pub texture_compression_astc_hdr: crate::vk::Bool32,
 }
 #[repr(C)]
+#[derive(Clone, Copy)]
 pub struct PipelineCreationFeedback {
     pub flags: crate::vk::PipelineCreationFeedbackFlags,
     pub duration: u64,
 }
 #[repr(C)]
+#[derive(Clone, Copy)]
 pub struct PipelineCreationFeedbackCreateInfo {
     pub s_type: crate::vk::StructureType,
     pub p_next: *const core::ffi::c_void,
@@ -94,12 +108,14 @@ pub struct PipelineCreationFeedbackCreateInfo {
     pub p_pipeline_stage_creation_feedbacks: *mut crate::vk::PipelineCreationFeedback,
 }
 #[repr(C)]
+#[derive(Clone, Copy)]
 pub struct PhysicalDeviceShaderDemoteToHelperInvocationFeatures {
     pub s_type: crate::vk::StructureType,
     pub p_next: *mut core::ffi::c_void,
     pub shader_demote_to_helper_invocation: crate::vk::Bool32,
 }
 #[repr(C)]
+#[derive(Clone, Copy)]
 pub struct PhysicalDeviceTexelBufferAlignmentProperties {
     pub s_type: crate::vk::StructureType,
     pub p_next: *mut core::ffi::c_void,
@@ -109,6 +125,7 @@ pub struct PhysicalDeviceTexelBufferAlignmentProperties {
     pub uniform_texel_buffer_offset_single_texel_alignment: crate::vk::Bool32,
 }
 #[repr(C)]
+#[derive(Clone, Copy)]
 pub struct PhysicalDeviceSubgroupSizeControlFeatures {
     pub s_type: crate::vk::StructureType,
     pub p_next: *mut core::ffi::c_void,
@@ -116,6 +133,7 @@ pub struct PhysicalDeviceSubgroupSizeControlFeatures {
     pub compute_full_subgroups: crate::vk::Bool32,
 }
 #[repr(C)]
+#[derive(Clone, Copy)]
 pub struct PhysicalDeviceSubgroupSizeControlProperties {
     pub s_type: crate::vk::StructureType,
     pub p_next: *mut core::ffi::c_void,
@@ -125,18 +143,21 @@ pub struct PhysicalDeviceSubgroupSizeControlProperties {
     pub required_subgroup_size_stages: crate::vk::ShaderStageFlags,
 }
 #[repr(C)]
+#[derive(Clone, Copy)]
 pub struct PipelineShaderStageRequiredSubgroupSizeCreateInfo {
     pub s_type: crate::vk::StructureType,
     pub p_next: *const core::ffi::c_void,
     pub required_subgroup_size: u32,
 }
 #[repr(C)]
+#[derive(Clone, Copy)]
 pub struct PhysicalDevicePipelineCreationCacheControlFeatures {
     pub s_type: crate::vk::StructureType,
     pub p_next: *mut core::ffi::c_void,
     pub pipeline_creation_cache_control: crate::vk::Bool32,
 }
 #[repr(C)]
+#[derive(Clone, Copy)]
 pub struct PhysicalDeviceVulkan13Features {
     pub s_type: crate::vk::StructureType,
     pub p_next: *mut core::ffi::c_void,
@@ -157,6 +178,7 @@ pub struct PhysicalDeviceVulkan13Features {
     pub maintenance4: crate::vk::Bool32,
 }
 #[repr(C)]
+#[derive(Clone, Copy)]
 pub struct PhysicalDeviceVulkan13Properties {
     pub s_type: crate::vk::StructureType,
     pub p_next: *mut core::ffi::c_void,
@@ -207,6 +229,7 @@ pub struct PhysicalDeviceVulkan13Properties {
     pub max_buffer_size: crate::vk::DeviceSize,
 }
 #[repr(C)]
+#[derive(Clone, Copy)]
 pub struct PhysicalDeviceToolProperties {
     pub s_type: crate::vk::StructureType,
     pub p_next: *mut core::ffi::c_void,
@@ -217,18 +240,21 @@ pub struct PhysicalDeviceToolProperties {
     pub layer: [core::ffi::c_char; crate::vk::MAX_EXTENSION_NAME_SIZE as _],
 }
 #[repr(C)]
+#[derive(Clone, Copy)]
 pub struct PhysicalDeviceZeroInitializeWorkgroupMemoryFeatures {
     pub s_type: crate::vk::StructureType,
     pub p_next: *mut core::ffi::c_void,
     pub shader_zero_initialize_workgroup_memory: crate::vk::Bool32,
 }
 #[repr(C)]
+#[derive(Clone, Copy)]
 pub struct PhysicalDeviceImageRobustnessFeatures {
     pub s_type: crate::vk::StructureType,
     pub p_next: *mut core::ffi::c_void,
     pub robust_image_access: crate::vk::Bool32,
 }
 #[repr(C)]
+#[derive(Clone, Copy)]
 pub struct BufferCopy2 {
     pub s_type: crate::vk::StructureType,
     pub p_next: *const core::ffi::c_void,
@@ -237,6 +263,7 @@ pub struct BufferCopy2 {
     pub size: crate::vk::DeviceSize,
 }
 #[repr(C)]
+#[derive(Clone, Copy)]
 pub struct ImageCopy2 {
     pub s_type: crate::vk::StructureType,
     pub p_next: *const core::ffi::c_void,
@@ -247,6 +274,7 @@ pub struct ImageCopy2 {
     pub extent: crate::vk::Extent3D,
 }
 #[repr(C)]
+#[derive(Clone, Copy)]
 pub struct ImageBlit2 {
     pub s_type: crate::vk::StructureType,
     pub p_next: *const core::ffi::c_void,
@@ -256,6 +284,7 @@ pub struct ImageBlit2 {
     pub dst_offsets: [crate::vk::Offset3D; 2 as _],
 }
 #[repr(C)]
+#[derive(Clone, Copy)]
 pub struct BufferImageCopy2 {
     pub s_type: crate::vk::StructureType,
     pub p_next: *const core::ffi::c_void,
@@ -267,6 +296,7 @@ pub struct BufferImageCopy2 {
     pub image_extent: crate::vk::Extent3D,
 }
 #[repr(C)]
+#[derive(Clone, Copy)]
 pub struct ImageResolve2 {
     pub s_type: crate::vk::StructureType,
     pub p_next: *const core::ffi::c_void,
@@ -277,6 +307,7 @@ pub struct ImageResolve2 {
     pub extent: crate::vk::Extent3D,
 }
 #[repr(C)]
+#[derive(Clone, Copy)]
 pub struct CopyBufferInfo2 {
     pub s_type: crate::vk::StructureType,
     pub p_next: *const core::ffi::c_void,
@@ -286,6 +317,7 @@ pub struct CopyBufferInfo2 {
     pub p_regions: *const crate::vk::BufferCopy2,
 }
 #[repr(C)]
+#[derive(Clone, Copy)]
 pub struct CopyImageInfo2 {
     pub s_type: crate::vk::StructureType,
     pub p_next: *const core::ffi::c_void,
@@ -297,6 +329,7 @@ pub struct CopyImageInfo2 {
     pub p_regions: *const crate::vk::ImageCopy2,
 }
 #[repr(C)]
+#[derive(Clone, Copy)]
 pub struct BlitImageInfo2 {
     pub s_type: crate::vk::StructureType,
     pub p_next: *const core::ffi::c_void,
@@ -309,6 +342,7 @@ pub struct BlitImageInfo2 {
     pub filter: crate::vk::Filter,
 }
 #[repr(C)]
+#[derive(Clone, Copy)]
 pub struct CopyBufferToImageInfo2 {
     pub s_type: crate::vk::StructureType,
     pub p_next: *const core::ffi::c_void,
@@ -319,6 +353,7 @@ pub struct CopyBufferToImageInfo2 {
     pub p_regions: *const crate::vk::BufferImageCopy2,
 }
 #[repr(C)]
+#[derive(Clone, Copy)]
 pub struct CopyImageToBufferInfo2 {
     pub s_type: crate::vk::StructureType,
     pub p_next: *const core::ffi::c_void,
@@ -329,6 +364,7 @@ pub struct CopyImageToBufferInfo2 {
     pub p_regions: *const crate::vk::BufferImageCopy2,
 }
 #[repr(C)]
+#[derive(Clone, Copy)]
 pub struct ResolveImageInfo2 {
     pub s_type: crate::vk::StructureType,
     pub p_next: *const core::ffi::c_void,
@@ -340,12 +376,14 @@ pub struct ResolveImageInfo2 {
     pub p_regions: *const crate::vk::ImageResolve2,
 }
 #[repr(C)]
+#[derive(Clone, Copy)]
 pub struct PhysicalDeviceShaderTerminateInvocationFeatures {
     pub s_type: crate::vk::StructureType,
     pub p_next: *mut core::ffi::c_void,
     pub shader_terminate_invocation: crate::vk::Bool32,
 }
 #[repr(C)]
+#[derive(Clone, Copy)]
 pub struct MemoryBarrier2 {
     pub s_type: crate::vk::StructureType,
     pub p_next: *const core::ffi::c_void,
@@ -355,6 +393,7 @@ pub struct MemoryBarrier2 {
     pub dst_access_mask: crate::vk::AccessFlags2,
 }
 #[repr(C)]
+#[derive(Clone, Copy)]
 pub struct ImageMemoryBarrier2 {
     pub s_type: crate::vk::StructureType,
     pub p_next: *const core::ffi::c_void,
@@ -370,6 +409,7 @@ pub struct ImageMemoryBarrier2 {
     pub subresource_range: crate::vk::ImageSubresourceRange,
 }
 #[repr(C)]
+#[derive(Clone, Copy)]
 pub struct BufferMemoryBarrier2 {
     pub s_type: crate::vk::StructureType,
     pub p_next: *const core::ffi::c_void,
@@ -384,6 +424,7 @@ pub struct BufferMemoryBarrier2 {
     pub size: crate::vk::DeviceSize,
 }
 #[repr(C)]
+#[derive(Clone, Copy)]
 pub struct DependencyInfo {
     pub s_type: crate::vk::StructureType,
     pub p_next: *const core::ffi::c_void,
@@ -396,6 +437,7 @@ pub struct DependencyInfo {
     pub p_image_memory_barriers: *const crate::vk::ImageMemoryBarrier2,
 }
 #[repr(C)]
+#[derive(Clone, Copy)]
 pub struct SemaphoreSubmitInfo {
     pub s_type: crate::vk::StructureType,
     pub p_next: *const core::ffi::c_void,
@@ -405,6 +447,7 @@ pub struct SemaphoreSubmitInfo {
     pub device_index: u32,
 }
 #[repr(C)]
+#[derive(Clone, Copy)]
 pub struct CommandBufferSubmitInfo {
     pub s_type: crate::vk::StructureType,
     pub p_next: *const core::ffi::c_void,
@@ -412,6 +455,7 @@ pub struct CommandBufferSubmitInfo {
     pub device_mask: u32,
 }
 #[repr(C)]
+#[derive(Clone, Copy)]
 pub struct SubmitInfo2 {
     pub s_type: crate::vk::StructureType,
     pub p_next: *const core::ffi::c_void,
@@ -424,18 +468,21 @@ pub struct SubmitInfo2 {
     pub p_signal_semaphore_infos: *const crate::vk::SemaphoreSubmitInfo,
 }
 #[repr(C)]
+#[derive(Clone, Copy)]
 pub struct PhysicalDeviceSynchronization2Features {
     pub s_type: crate::vk::StructureType,
     pub p_next: *mut core::ffi::c_void,
     pub synchronization2: crate::vk::Bool32,
 }
 #[repr(C)]
+#[derive(Clone, Copy)]
 pub struct PhysicalDeviceShaderIntegerDotProductFeatures {
     pub s_type: crate::vk::StructureType,
     pub p_next: *mut core::ffi::c_void,
     pub shader_integer_dot_product: crate::vk::Bool32,
 }
 #[repr(C)]
+#[derive(Clone, Copy)]
 pub struct PhysicalDeviceShaderIntegerDotProductProperties {
     pub s_type: crate::vk::StructureType,
     pub p_next: *mut core::ffi::c_void,
@@ -471,6 +518,7 @@ pub struct PhysicalDeviceShaderIntegerDotProductProperties {
     pub integer_dot_product_accumulating_saturating64_bit_mixed_signedness_accelerated: crate::vk::Bool32,
 }
 #[repr(C)]
+#[derive(Clone, Copy)]
 pub struct FormatProperties3 {
     pub s_type: crate::vk::StructureType,
     pub p_next: *mut core::ffi::c_void,
@@ -479,6 +527,7 @@ pub struct FormatProperties3 {
     pub buffer_features: crate::vk::FormatFeatureFlags2,
 }
 #[repr(C)]
+#[derive(Clone, Copy)]
 pub struct PipelineRenderingCreateInfo {
     pub s_type: crate::vk::StructureType,
     pub p_next: *const core::ffi::c_void,
@@ -489,6 +538,7 @@ pub struct PipelineRenderingCreateInfo {
     pub stencil_attachment_format: crate::vk::Format,
 }
 #[repr(C)]
+#[derive(Clone, Copy)]
 pub struct RenderingInfo {
     pub s_type: crate::vk::StructureType,
     pub p_next: *const core::ffi::c_void,
@@ -502,6 +552,7 @@ pub struct RenderingInfo {
     pub p_stencil_attachment: *const crate::vk::RenderingAttachmentInfo,
 }
 #[repr(C)]
+#[derive(Clone, Copy)]
 pub struct RenderingAttachmentInfo {
     pub s_type: crate::vk::StructureType,
     pub p_next: *const core::ffi::c_void,
@@ -515,12 +566,14 @@ pub struct RenderingAttachmentInfo {
     pub clear_value: crate::vk::ClearValue,
 }
 #[repr(C)]
+#[derive(Clone, Copy)]
 pub struct PhysicalDeviceDynamicRenderingFeatures {
     pub s_type: crate::vk::StructureType,
     pub p_next: *mut core::ffi::c_void,
     pub dynamic_rendering: crate::vk::Bool32,
 }
 #[repr(C)]
+#[derive(Clone, Copy)]
 pub struct CommandBufferInheritanceRenderingInfo {
     pub s_type: crate::vk::StructureType,
     pub p_next: *const core::ffi::c_void,
@@ -533,35 +586,58 @@ pub struct CommandBufferInheritanceRenderingInfo {
     pub rasterization_samples: crate::vk::SampleCountFlagBits,
 }
 #[repr(transparent)]
+#[derive(Clone, Copy)]
 pub struct PrivateDataSlotCreateFlags(pub(crate) i32);
 #[repr(transparent)]
+#[derive(Clone, Copy)]
 pub struct PipelineCreationFeedbackFlags(pub(crate) i32);
 #[repr(transparent)]
+#[derive(Clone, Copy)]
 pub struct AccessFlags2(pub(crate) i32);
 #[repr(transparent)]
+#[derive(Clone, Copy)]
 pub struct PipelineStageFlags2(pub(crate) i32);
 #[repr(transparent)]
+#[derive(Clone, Copy)]
 pub struct FormatFeatureFlags2(pub(crate) i32);
 #[repr(transparent)]
+#[derive(Clone, Copy)]
 pub struct RenderingFlags(pub(crate) i32);
 #[repr(transparent)]
+#[derive(Clone, Copy)]
 pub struct ToolPurposeFlags(pub(crate) i32);
 #[repr(transparent)]
+#[derive(Clone, Copy)]
 pub struct SubmitFlags(pub(crate) i32);
 #[repr(transparent)]
+#[derive(Clone, Copy)]
+pub struct PipelineCacheCreateFlagBits(pub(crate) i32);
+#[repr(transparent)]
+#[derive(Clone, Copy)]
 pub struct PipelineCreationFeedbackFlagBits(pub(crate) i32);
 #[repr(transparent)]
+#[derive(Clone, Copy)]
 pub struct ToolPurposeFlagBits(pub(crate) i32);
 #[repr(transparent)]
+#[derive(Clone, Copy)]
 pub struct AccessFlagBits2(pub(crate) i32);
 #[repr(transparent)]
+#[derive(Clone, Copy)]
 pub struct PipelineStageFlagBits2(pub(crate) i32);
 #[repr(transparent)]
+#[derive(Clone, Copy)]
 pub struct SubmitFlagBits(pub(crate) i32);
 #[repr(transparent)]
+#[derive(Clone, Copy)]
 pub struct FormatFeatureFlagBits2(pub(crate) i32);
 #[repr(transparent)]
+#[derive(Clone, Copy)]
 pub struct RenderingFlagBits(pub(crate) i32);
 #[repr(transparent)]
+#[allow(non_camel_case_types)]
+#[derive(Clone, Copy)]
+pub struct Flags64(pub(crate) u64);
+#[repr(transparent)]
+#[derive(Clone, Copy)]
 pub struct PrivateDataSlot(pub(crate) i32);
 pub const API_VERSION_1_3: u32 = crate::vk::make_api_version(0, 1, 3, 0);

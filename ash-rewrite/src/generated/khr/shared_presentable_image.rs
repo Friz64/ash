@@ -2,6 +2,7 @@
 #![cfg_attr(rustfmt, rustfmt_skip)]
 //![Vulkan Manual Page](https://docs.vulkan.org/refpages/latest/refpages/source/VK_KHR_shared_presentable_image.html) · Extension `VK_KHR_shared_presentable_image`
 #[repr(C)]
+#[derive(Clone, Copy)]
 pub struct SharedPresentSurfaceCapabilitiesKHR {
     pub s_type: crate::vk::StructureType,
     pub p_next: *mut core::ffi::c_void,

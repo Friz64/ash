@@ -2,6 +2,7 @@
 #![cfg_attr(rustfmt, rustfmt_skip)]
 //![Vulkan Manual Page](https://docs.vulkan.org/refpages/latest/refpages/source/VK_EXT_pci_bus_info.html) · Extension `VK_EXT_pci_bus_info`
 #[repr(C)]
+#[derive(Clone, Copy)]
 pub struct PhysicalDevicePCIBusInfoPropertiesEXT {
     pub s_type: crate::vk::StructureType,
     pub p_next: *mut core::ffi::c_void,

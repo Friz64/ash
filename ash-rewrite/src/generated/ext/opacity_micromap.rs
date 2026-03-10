@@ -2,6 +2,7 @@
 #![cfg_attr(rustfmt, rustfmt_skip)]
 //![Vulkan Manual Page](https://docs.vulkan.org/refpages/latest/refpages/source/VK_EXT_opacity_micromap.html) · Extension `VK_EXT_opacity_micromap`
 #[repr(C)]
+#[derive(Clone, Copy)]
 pub struct MicromapBuildInfoEXT {
     pub s_type: crate::vk::StructureType,
     pub p_next: *const core::ffi::c_void,
@@ -18,6 +19,7 @@ pub struct MicromapBuildInfoEXT {
     pub triangle_array_stride: crate::vk::DeviceSize,
 }
 #[repr(C)]
+#[derive(Clone, Copy)]
 pub struct MicromapCreateInfoEXT {
     pub s_type: crate::vk::StructureType,
     pub p_next: *const core::ffi::c_void,
@@ -29,12 +31,14 @@ pub struct MicromapCreateInfoEXT {
     pub device_address: crate::vk::DeviceAddress,
 }
 #[repr(C)]
+#[derive(Clone, Copy)]
 pub struct MicromapVersionInfoEXT {
     pub s_type: crate::vk::StructureType,
     pub p_next: *const core::ffi::c_void,
     pub p_version_data: *const u8,
 }
 #[repr(C)]
+#[derive(Clone, Copy)]
 pub struct CopyMicromapInfoEXT {
     pub s_type: crate::vk::StructureType,
     pub p_next: *const core::ffi::c_void,
@@ -43,6 +47,7 @@ pub struct CopyMicromapInfoEXT {
     pub mode: crate::vk::CopyMicromapModeEXT,
 }
 #[repr(C)]
+#[derive(Clone, Copy)]
 pub struct CopyMicromapToMemoryInfoEXT {
     pub s_type: crate::vk::StructureType,
     pub p_next: *const core::ffi::c_void,
@@ -51,6 +56,7 @@ pub struct CopyMicromapToMemoryInfoEXT {
     pub mode: crate::vk::CopyMicromapModeEXT,
 }
 #[repr(C)]
+#[derive(Clone, Copy)]
 pub struct CopyMemoryToMicromapInfoEXT {
     pub s_type: crate::vk::StructureType,
     pub p_next: *const core::ffi::c_void,
@@ -59,6 +65,7 @@ pub struct CopyMemoryToMicromapInfoEXT {
     pub mode: crate::vk::CopyMicromapModeEXT,
 }
 #[repr(C)]
+#[derive(Clone, Copy)]
 pub struct MicromapBuildSizesInfoEXT {
     pub s_type: crate::vk::StructureType,
     pub p_next: *const core::ffi::c_void,
@@ -67,18 +74,21 @@ pub struct MicromapBuildSizesInfoEXT {
     pub discardable: crate::vk::Bool32,
 }
 #[repr(C)]
+#[derive(Clone, Copy)]
 pub struct MicromapUsageEXT {
     pub count: u32,
     pub subdivision_level: u32,
     pub format: u32,
 }
 #[repr(C)]
+#[derive(Clone, Copy)]
 pub struct MicromapTriangleEXT {
     pub data_offset: u32,
     pub subdivision_level: u16,
     pub format: u16,
 }
 #[repr(C)]
+#[derive(Clone, Copy)]
 pub struct PhysicalDeviceOpacityMicromapFeaturesEXT {
     pub s_type: crate::vk::StructureType,
     pub p_next: *mut core::ffi::c_void,
@@ -87,6 +97,7 @@ pub struct PhysicalDeviceOpacityMicromapFeaturesEXT {
     pub micromap_host_commands: crate::vk::Bool32,
 }
 #[repr(C)]
+#[derive(Clone, Copy)]
 pub struct PhysicalDeviceOpacityMicromapPropertiesEXT {
     pub s_type: crate::vk::StructureType,
     pub p_next: *mut core::ffi::c_void,
@@ -94,6 +105,7 @@ pub struct PhysicalDeviceOpacityMicromapPropertiesEXT {
     pub max_opacity4_state_subdivision_level: u32,
 }
 #[repr(C)]
+#[derive(Clone, Copy)]
 pub struct AccelerationStructureTrianglesOpacityMicromapEXT {
     pub s_type: crate::vk::StructureType,
     pub p_next: *mut core::ffi::c_void,
@@ -107,24 +119,34 @@ pub struct AccelerationStructureTrianglesOpacityMicromapEXT {
     pub micromap: crate::vk::MicromapEXT,
 }
 #[repr(transparent)]
+#[derive(Clone, Copy)]
 pub struct MicromapTypeEXT(pub(crate) i32);
 #[repr(transparent)]
+#[derive(Clone, Copy)]
 pub struct CopyMicromapModeEXT(pub(crate) i32);
 #[repr(transparent)]
+#[derive(Clone, Copy)]
 pub struct BuildMicromapModeEXT(pub(crate) i32);
 #[repr(transparent)]
+#[derive(Clone, Copy)]
 pub struct OpacityMicromapFormatEXT(pub(crate) i32);
 #[repr(transparent)]
+#[derive(Clone, Copy)]
 pub struct OpacityMicromapSpecialIndexEXT(pub(crate) i32);
 #[repr(transparent)]
+#[derive(Clone, Copy)]
 pub struct BuildMicromapFlagsEXT(pub(crate) i32);
 #[repr(transparent)]
+#[derive(Clone, Copy)]
 pub struct MicromapCreateFlagsEXT(pub(crate) i32);
 #[repr(transparent)]
+#[derive(Clone, Copy)]
 pub struct BuildMicromapFlagBitsEXT(pub(crate) i32);
 #[repr(transparent)]
+#[derive(Clone, Copy)]
 pub struct MicromapCreateFlagBitsEXT(pub(crate) i32);
 #[repr(transparent)]
+#[derive(Clone, Copy)]
 pub struct MicromapEXT(pub(crate) i32);
 pub const EXT_OPACITY_MICROMAP_SPEC_VERSION: u32 = 2;
 pub const EXT_OPACITY_MICROMAP_EXTENSION_NAME: &core::ffi::CStr = c"VK_EXT_opacity_micromap";

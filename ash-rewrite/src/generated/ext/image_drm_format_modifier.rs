@@ -2,6 +2,7 @@
 #![cfg_attr(rustfmt, rustfmt_skip)]
 //![Vulkan Manual Page](https://docs.vulkan.org/refpages/latest/refpages/source/VK_EXT_image_drm_format_modifier.html) · Extension `VK_EXT_image_drm_format_modifier`
 #[repr(C)]
+#[derive(Clone, Copy)]
 pub struct DrmFormatModifierPropertiesListEXT {
     pub s_type: crate::vk::StructureType,
     pub p_next: *mut core::ffi::c_void,
@@ -9,12 +10,14 @@ pub struct DrmFormatModifierPropertiesListEXT {
     pub p_drm_format_modifier_properties: *mut crate::vk::DrmFormatModifierPropertiesEXT,
 }
 #[repr(C)]
+#[derive(Clone, Copy)]
 pub struct DrmFormatModifierPropertiesEXT {
     pub drm_format_modifier: u64,
     pub drm_format_modifier_plane_count: u32,
     pub drm_format_modifier_tiling_features: crate::vk::FormatFeatureFlags,
 }
 #[repr(C)]
+#[derive(Clone, Copy)]
 pub struct PhysicalDeviceImageDrmFormatModifierInfoEXT {
     pub s_type: crate::vk::StructureType,
     pub p_next: *const core::ffi::c_void,
@@ -24,6 +27,7 @@ pub struct PhysicalDeviceImageDrmFormatModifierInfoEXT {
     pub p_queue_family_indices: *const u32,
 }
 #[repr(C)]
+#[derive(Clone, Copy)]
 pub struct ImageDrmFormatModifierListCreateInfoEXT {
     pub s_type: crate::vk::StructureType,
     pub p_next: *const core::ffi::c_void,
@@ -31,6 +35,7 @@ pub struct ImageDrmFormatModifierListCreateInfoEXT {
     pub p_drm_format_modifiers: *const u64,
 }
 #[repr(C)]
+#[derive(Clone, Copy)]
 pub struct ImageDrmFormatModifierExplicitCreateInfoEXT {
     pub s_type: crate::vk::StructureType,
     pub p_next: *const core::ffi::c_void,
@@ -39,12 +44,14 @@ pub struct ImageDrmFormatModifierExplicitCreateInfoEXT {
     pub p_plane_layouts: *const crate::vk::SubresourceLayout,
 }
 #[repr(C)]
+#[derive(Clone, Copy)]
 pub struct ImageDrmFormatModifierPropertiesEXT {
     pub s_type: crate::vk::StructureType,
     pub p_next: *mut core::ffi::c_void,
     pub drm_format_modifier: u64,
 }
 #[repr(C)]
+#[derive(Clone, Copy)]
 pub struct DrmFormatModifierPropertiesList2EXT {
     pub s_type: crate::vk::StructureType,
     pub p_next: *mut core::ffi::c_void,
@@ -52,6 +59,7 @@ pub struct DrmFormatModifierPropertiesList2EXT {
     pub p_drm_format_modifier_properties: *mut crate::vk::DrmFormatModifierProperties2EXT,
 }
 #[repr(C)]
+#[derive(Clone, Copy)]
 pub struct DrmFormatModifierProperties2EXT {
     pub drm_format_modifier: u64,
     pub drm_format_modifier_plane_count: u32,

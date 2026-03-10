@@ -2,12 +2,14 @@
 #![cfg_attr(rustfmt, rustfmt_skip)]
 //![Vulkan Manual Page](https://docs.vulkan.org/refpages/latest/refpages/source/VK_EXT_ray_tracing_invocation_reorder.html) · Extension `VK_EXT_ray_tracing_invocation_reorder`
 #[repr(C)]
+#[derive(Clone, Copy)]
 pub struct PhysicalDeviceRayTracingInvocationReorderFeaturesEXT {
     pub s_type: crate::vk::StructureType,
     pub p_next: *mut core::ffi::c_void,
     pub ray_tracing_invocation_reorder: crate::vk::Bool32,
 }
 #[repr(C)]
+#[derive(Clone, Copy)]
 pub struct PhysicalDeviceRayTracingInvocationReorderPropertiesEXT {
     pub s_type: crate::vk::StructureType,
     pub p_next: *mut core::ffi::c_void,
@@ -15,6 +17,7 @@ pub struct PhysicalDeviceRayTracingInvocationReorderPropertiesEXT {
     pub max_shader_binding_table_record_index: u32,
 }
 #[repr(transparent)]
+#[derive(Clone, Copy)]
 pub struct RayTracingInvocationReorderModeEXT(pub(crate) i32);
 pub const EXT_RAY_TRACING_INVOCATION_REORDER_SPEC_VERSION: u32 = 1;
 pub const EXT_RAY_TRACING_INVOCATION_REORDER_EXTENSION_NAME: &core::ffi::CStr = c"VK_EXT_ray_tracing_invocation_reorder";

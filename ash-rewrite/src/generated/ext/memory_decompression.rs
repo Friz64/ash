@@ -2,12 +2,14 @@
 #![cfg_attr(rustfmt, rustfmt_skip)]
 //![Vulkan Manual Page](https://docs.vulkan.org/refpages/latest/refpages/source/VK_EXT_memory_decompression.html) · Extension `VK_EXT_memory_decompression`
 #[repr(C)]
+#[derive(Clone, Copy)]
 pub struct PhysicalDeviceMemoryDecompressionFeaturesEXT {
     pub s_type: crate::vk::StructureType,
     pub p_next: *mut core::ffi::c_void,
     pub memory_decompression: crate::vk::Bool32,
 }
 #[repr(C)]
+#[derive(Clone, Copy)]
 pub struct PhysicalDeviceMemoryDecompressionPropertiesEXT {
     pub s_type: crate::vk::StructureType,
     pub p_next: *mut core::ffi::c_void,
@@ -15,6 +17,7 @@ pub struct PhysicalDeviceMemoryDecompressionPropertiesEXT {
     pub max_decompression_indirect_count: u64,
 }
 #[repr(C)]
+#[derive(Clone, Copy)]
 pub struct DecompressMemoryRegionEXT {
     pub src_address: crate::vk::DeviceAddress,
     pub dst_address: crate::vk::DeviceAddress,
@@ -22,6 +25,7 @@ pub struct DecompressMemoryRegionEXT {
     pub decompressed_size: crate::vk::DeviceSize,
 }
 #[repr(C)]
+#[derive(Clone, Copy)]
 pub struct DecompressMemoryInfoEXT {
     pub s_type: crate::vk::StructureType,
     pub p_next: *const core::ffi::c_void,
@@ -30,8 +34,10 @@ pub struct DecompressMemoryInfoEXT {
     pub p_regions: *const crate::vk::DecompressMemoryRegionEXT,
 }
 #[repr(transparent)]
+#[derive(Clone, Copy)]
 pub struct MemoryDecompressionMethodFlagsEXT(pub(crate) i32);
 #[repr(transparent)]
+#[derive(Clone, Copy)]
 pub struct MemoryDecompressionMethodFlagBitsEXT(pub(crate) i32);
 pub const EXT_MEMORY_DECOMPRESSION_SPEC_VERSION: u32 = 1;
 pub const EXT_MEMORY_DECOMPRESSION_EXTENSION_NAME: &core::ffi::CStr = c"VK_EXT_memory_decompression";

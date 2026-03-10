@@ -2,6 +2,7 @@
 #![cfg_attr(rustfmt, rustfmt_skip)]
 //![Vulkan Manual Page](https://docs.vulkan.org/refpages/latest/refpages/source/VK_EXT_external_memory_host.html) · Extension `VK_EXT_external_memory_host`
 #[repr(C)]
+#[derive(Clone, Copy)]
 pub struct ImportMemoryHostPointerInfoEXT {
     pub s_type: crate::vk::StructureType,
     pub p_next: *const core::ffi::c_void,
@@ -9,12 +10,14 @@ pub struct ImportMemoryHostPointerInfoEXT {
     pub p_host_pointer: *mut core::ffi::c_void,
 }
 #[repr(C)]
+#[derive(Clone, Copy)]
 pub struct MemoryHostPointerPropertiesEXT {
     pub s_type: crate::vk::StructureType,
     pub p_next: *mut core::ffi::c_void,
     pub memory_type_bits: u32,
 }
 #[repr(C)]
+#[derive(Clone, Copy)]
 pub struct PhysicalDeviceExternalMemoryHostPropertiesEXT {
     pub s_type: crate::vk::StructureType,
     pub p_next: *mut core::ffi::c_void,

@@ -2,12 +2,14 @@
 #![cfg_attr(rustfmt, rustfmt_skip)]
 //![Vulkan Manual Page](https://docs.vulkan.org/refpages/latest/refpages/source/VK_EXT_blend_operation_advanced.html) · Extension `VK_EXT_blend_operation_advanced`
 #[repr(C)]
+#[derive(Clone, Copy)]
 pub struct PhysicalDeviceBlendOperationAdvancedFeaturesEXT {
     pub s_type: crate::vk::StructureType,
     pub p_next: *mut core::ffi::c_void,
     pub advanced_blend_coherent_operations: crate::vk::Bool32,
 }
 #[repr(C)]
+#[derive(Clone, Copy)]
 pub struct PhysicalDeviceBlendOperationAdvancedPropertiesEXT {
     pub s_type: crate::vk::StructureType,
     pub p_next: *mut core::ffi::c_void,
@@ -19,6 +21,7 @@ pub struct PhysicalDeviceBlendOperationAdvancedPropertiesEXT {
     pub advanced_blend_all_operations: crate::vk::Bool32,
 }
 #[repr(C)]
+#[derive(Clone, Copy)]
 pub struct PipelineColorBlendAdvancedStateCreateInfoEXT {
     pub s_type: crate::vk::StructureType,
     pub p_next: *const core::ffi::c_void,
@@ -27,6 +30,7 @@ pub struct PipelineColorBlendAdvancedStateCreateInfoEXT {
     pub blend_overlap: crate::vk::BlendOverlapEXT,
 }
 #[repr(transparent)]
+#[derive(Clone, Copy)]
 pub struct BlendOverlapEXT(pub(crate) i32);
 pub const EXT_BLEND_OPERATION_ADVANCED_SPEC_VERSION: u32 = 2;
 pub const EXT_BLEND_OPERATION_ADVANCED_EXTENSION_NAME: &core::ffi::CStr = c"VK_EXT_blend_operation_advanced";

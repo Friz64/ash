@@ -1,28 +1,38 @@
 use crate::{
     decl::{ArrayLen, CPrimaryType, Decl, Mutability, Ty},
-    xml::{
-        cexpr::CExprItem,
-        name::{CMacroName, ConstantName, FuncPointerName, TypeName},
-    },
+    item::Named,
+    name::{CMacroName, ConstantName, FuncPointerName, TypeName, VariableName},
+    xml::cexpr::CExprItem,
 };
 use proc_macro2::{Literal, TokenStream};
 use quote::quote;
 use std::{borrow::Borrow, mem};
 use syn::Ident;
 
-// todo: for each name type, have a function that returns just the ident,
-// and additionally, if applicable, have another function that also returns it with the path
 pub trait RustTranslator {
-    // todo: switch to dedicated type
-    fn var_name_to_rust(&self, raw: &'static str) -> Ident;
+    fn var_name_to_rust(&self, name: VariableName) -> Ident;
 
-    fn type_to_rust(&self, name: TypeName) -> TokenStream;
+    fn type_to_rust(&self, name: TypeName, with_path: bool) -> TokenStream;
+    fn rust_name_of_type<T: Named<TypeName>>(&self, item: &T) -> TokenStream {
+        self.type_to_rust(item.name(), false)
+    }
 
-    fn func_pointer_to_rust(&self, name: FuncPointerName) -> TokenStream;
+    fn func_pointer_to_rust(&self, name: FuncPointerName, with_path: bool) -> TokenStream;
+    fn rust_name_of_func_pointer<T: Named<FuncPointerName>>(&self, item: &T) -> TokenStream {
+        self.func_pointer_to_rust(item.name(), false)
+    }
 
-    fn constant_to_rust(&self, name: ConstantName) -> TokenStream;
+    fn constant_to_rust(&self, name: ConstantName, with_path: bool) -> TokenStream;
+    fn rust_name_of_constant<T: Named<ConstantName>>(&self, item: &T) -> TokenStream {
+        self.constant_to_rust(item.name(), false)
+    }
 
-    fn cmacro_to_rust(&self, name: CMacroName, has_args: bool) -> TokenStream;
+    fn cmacro_to_rust(&self, name: CMacroName, with_path: bool) -> TokenStream;
+    fn rust_name_of_cmacro<T: Named<CMacroName>>(&self, item: &T) -> TokenStream {
+        self.cmacro_to_rust(item.name(), false)
+    }
+
+    fn platform_type_to_rust(&self, raw: &'static str, with_path: bool) -> TokenStream;
 
     fn primary_type_to_rust(&self, primary_ty: CPrimaryType) -> TokenStream {
         match primary_ty {
@@ -42,8 +52,6 @@ pub trait RustTranslator {
             CPrimaryType::Size => quote! { usize },
         }
     }
-
-    fn platform_type_to_rust(&self, raw: &'static str) -> TokenStream;
 }
 
 impl Decl {
@@ -58,10 +66,10 @@ impl Decl {
 impl Ty {
     pub fn to_rust(&self, translator: &impl RustTranslator) -> TokenStream {
         match self {
-            Ty::SpecType(name) => translator.type_to_rust(*name),
-            Ty::SpecFuncPointer(name) => translator.func_pointer_to_rust(*name),
+            Ty::SpecType(name) => translator.type_to_rust(*name, true),
+            Ty::SpecFuncPointer(name) => translator.func_pointer_to_rust(*name, true),
             Ty::CPrimary(base_ty) => translator.primary_type_to_rust(*base_ty),
-            Ty::Platform(raw) => translator.platform_type_to_rust(raw),
+            Ty::Platform(raw) => translator.platform_type_to_rust(raw, true),
             Ty::Ptr(ty, mutability) => {
                 let mutability = match mutability {
                     Mutability::Not => quote! { const },
@@ -83,7 +91,7 @@ impl Ty {
             Ty::Array(ty, array_len) => {
                 let ty = ty.to_rust(translator);
                 let array_len = match array_len {
-                    ArrayLen::Constant(constant) => translator.constant_to_rust(*constant),
+                    ArrayLen::Constant(constant) => translator.constant_to_rust(*constant, true),
                     ArrayLen::Literal(value) => {
                         let literal = Literal::u128_unsuffixed(*value);
                         quote! { #literal }
@@ -116,17 +124,16 @@ impl CExprItem {
                 CExprItem::StringLiteral(content) => tmp_s.push_str(&format!("c\"{content}\"")),
                 CExprItem::MacroCall { macro_name, args } => {
                     move_into_tokens(&mut output, &mut tmp_s);
-                    let has_args = !args.is_empty();
-                    let name = translator.cmacro_to_rust(*macro_name, has_args);
+                    let name = translator.cmacro_to_rust(*macro_name, true);
 
-                    output.extend(if has_args {
+                    output.extend(if args.is_empty() {
+                        quote! { #name }
+                    } else {
                         let args = args
                             .iter()
                             .map(|arg| CExprItem::to_rust(arg.iter(), translator));
 
                         quote! { #name( #(#args),* ) }
-                    } else {
-                        quote! { #name }
                     });
                 }
             }

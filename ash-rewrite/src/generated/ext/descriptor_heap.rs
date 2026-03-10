@@ -2,21 +2,34 @@
 #![cfg_attr(rustfmt, rustfmt_skip)]
 //![Vulkan Manual Page](https://docs.vulkan.org/refpages/latest/refpages/source/VK_EXT_descriptor_heap.html) · Extension `VK_EXT_descriptor_heap`
 #[repr(C)]
+#[derive(Clone, Copy)]
+pub struct TensorViewCreateInfoARM {
+    pub s_type: crate::vk::StructureType,
+    pub p_next: *const core::ffi::c_void,
+    pub flags: crate::vk::TensorViewCreateFlagsARM,
+    pub tensor: crate::vk::TensorARM,
+    pub format: crate::vk::Format,
+}
+#[repr(C)]
+#[derive(Clone, Copy)]
 pub struct HostAddressRangeEXT {
     pub address: *mut core::ffi::c_void,
     pub size: usize,
 }
 #[repr(C)]
+#[derive(Clone, Copy)]
 pub struct HostAddressRangeConstEXT {
     pub address: *const core::ffi::c_void,
     pub size: usize,
 }
 #[repr(C)]
+#[derive(Clone, Copy)]
 pub struct DeviceAddressRangeEXT {
     pub address: crate::vk::DeviceAddress,
     pub size: crate::vk::DeviceSize,
 }
 #[repr(C)]
+#[derive(Clone, Copy)]
 pub struct TexelBufferDescriptorInfoEXT {
     pub s_type: crate::vk::StructureType,
     pub p_next: *const core::ffi::c_void,
@@ -24,6 +37,7 @@ pub struct TexelBufferDescriptorInfoEXT {
     pub address_range: crate::vk::DeviceAddressRangeEXT,
 }
 #[repr(C)]
+#[derive(Clone, Copy)]
 pub struct ImageDescriptorInfoEXT {
     pub s_type: crate::vk::StructureType,
     pub p_next: *const core::ffi::c_void,
@@ -31,6 +45,7 @@ pub struct ImageDescriptorInfoEXT {
     pub layout: crate::vk::ImageLayout,
 }
 #[repr(C)]
+#[derive(Clone, Copy)]
 pub struct ResourceDescriptorInfoEXT {
     pub s_type: crate::vk::StructureType,
     pub p_next: *const core::ffi::c_void,
@@ -38,6 +53,7 @@ pub struct ResourceDescriptorInfoEXT {
     pub data: crate::vk::ResourceDescriptorDataEXT,
 }
 #[repr(C)]
+#[derive(Clone, Copy)]
 pub struct BindHeapInfoEXT {
     pub s_type: crate::vk::StructureType,
     pub p_next: *const core::ffi::c_void,
@@ -46,6 +62,7 @@ pub struct BindHeapInfoEXT {
     pub reserved_range_size: crate::vk::DeviceSize,
 }
 #[repr(C)]
+#[derive(Clone, Copy)]
 pub struct PushDataInfoEXT {
     pub s_type: crate::vk::StructureType,
     pub p_next: *const core::ffi::c_void,
@@ -53,6 +70,7 @@ pub struct PushDataInfoEXT {
     pub data: crate::vk::HostAddressRangeConstEXT,
 }
 #[repr(C)]
+#[derive(Clone, Copy)]
 pub struct DescriptorMappingSourceConstantOffsetEXT {
     pub heap_offset: u32,
     pub heap_array_stride: u32,
@@ -61,6 +79,7 @@ pub struct DescriptorMappingSourceConstantOffsetEXT {
     pub sampler_heap_array_stride: u32,
 }
 #[repr(C)]
+#[derive(Clone, Copy)]
 pub struct DescriptorMappingSourcePushIndexEXT {
     pub heap_offset: u32,
     pub push_offset: u32,
@@ -74,6 +93,7 @@ pub struct DescriptorMappingSourcePushIndexEXT {
     pub sampler_heap_array_stride: u32,
 }
 #[repr(C)]
+#[derive(Clone, Copy)]
 pub struct DescriptorMappingSourceIndirectIndexEXT {
     pub heap_offset: u32,
     pub push_offset: u32,
@@ -89,6 +109,7 @@ pub struct DescriptorMappingSourceIndirectIndexEXT {
     pub sampler_heap_array_stride: u32,
 }
 #[repr(C)]
+#[derive(Clone, Copy)]
 pub struct DescriptorMappingSourceIndirectIndexArrayEXT {
     pub heap_offset: u32,
     pub push_offset: u32,
@@ -102,11 +123,13 @@ pub struct DescriptorMappingSourceIndirectIndexArrayEXT {
     pub sampler_heap_index_stride: u32,
 }
 #[repr(C)]
+#[derive(Clone, Copy)]
 pub struct DescriptorMappingSourceHeapDataEXT {
     pub heap_offset: u32,
     pub push_offset: u32,
 }
 #[repr(C)]
+#[derive(Clone, Copy)]
 pub struct DescriptorMappingSourceShaderRecordIndexEXT {
     pub heap_offset: u32,
     pub shader_record_offset: u32,
@@ -120,11 +143,13 @@ pub struct DescriptorMappingSourceShaderRecordIndexEXT {
     pub sampler_heap_array_stride: u32,
 }
 #[repr(C)]
+#[derive(Clone, Copy)]
 pub struct DescriptorMappingSourceIndirectAddressEXT {
     pub push_offset: u32,
     pub address_offset: u32,
 }
 #[repr(C)]
+#[derive(Clone, Copy)]
 pub struct DescriptorSetAndBindingMappingEXT {
     pub s_type: crate::vk::StructureType,
     pub p_next: *const core::ffi::c_void,
@@ -136,6 +161,7 @@ pub struct DescriptorSetAndBindingMappingEXT {
     pub source_data: crate::vk::DescriptorMappingSourceDataEXT,
 }
 #[repr(C)]
+#[derive(Clone, Copy)]
 pub struct ShaderDescriptorSetAndBindingMappingInfoEXT {
     pub s_type: crate::vk::StructureType,
     pub p_next: *const core::ffi::c_void,
@@ -143,18 +169,21 @@ pub struct ShaderDescriptorSetAndBindingMappingInfoEXT {
     pub p_mappings: *const crate::vk::DescriptorSetAndBindingMappingEXT,
 }
 #[repr(C)]
+#[derive(Clone, Copy)]
 pub struct SamplerCustomBorderColorIndexCreateInfoEXT {
     pub s_type: crate::vk::StructureType,
     pub p_next: *const core::ffi::c_void,
     pub index: u32,
 }
 #[repr(C)]
+#[derive(Clone, Copy)]
 pub struct OpaqueCaptureDataCreateInfoEXT {
     pub s_type: crate::vk::StructureType,
     pub p_next: *const core::ffi::c_void,
     pub p_data: *const crate::vk::HostAddressRangeConstEXT,
 }
 #[repr(C)]
+#[derive(Clone, Copy)]
 pub struct IndirectCommandsLayoutPushDataTokenNV {
     pub s_type: crate::vk::StructureType,
     pub p_next: *const core::ffi::c_void,
@@ -162,12 +191,14 @@ pub struct IndirectCommandsLayoutPushDataTokenNV {
     pub push_data_size: u32,
 }
 #[repr(C)]
+#[derive(Clone, Copy)]
 pub struct SubsampledImageFormatPropertiesEXT {
     pub s_type: crate::vk::StructureType,
     pub p_next: *const core::ffi::c_void,
     pub subsampled_image_descriptor_count: u32,
 }
 #[repr(C)]
+#[derive(Clone, Copy)]
 pub struct PhysicalDeviceDescriptorHeapFeaturesEXT {
     pub s_type: crate::vk::StructureType,
     pub p_next: *mut core::ffi::c_void,
@@ -175,6 +206,7 @@ pub struct PhysicalDeviceDescriptorHeapFeaturesEXT {
     pub descriptor_heap_capture_replay: crate::vk::Bool32,
 }
 #[repr(C)]
+#[derive(Clone, Copy)]
 pub struct PhysicalDeviceDescriptorHeapPropertiesEXT {
     pub s_type: crate::vk::StructureType,
     pub p_next: *mut core::ffi::c_void,
@@ -199,6 +231,7 @@ pub struct PhysicalDeviceDescriptorHeapPropertiesEXT {
     pub protected_descriptor_heaps: crate::vk::Bool32,
 }
 #[repr(C)]
+#[derive(Clone, Copy)]
 pub struct CommandBufferInheritanceDescriptorHeapInfoEXT {
     pub s_type: crate::vk::StructureType,
     pub p_next: *const core::ffi::c_void,
@@ -206,6 +239,7 @@ pub struct CommandBufferInheritanceDescriptorHeapInfoEXT {
     pub p_resource_heap_bind_info: *const crate::vk::BindHeapInfoEXT,
 }
 #[repr(C)]
+#[derive(Clone, Copy)]
 pub struct PhysicalDeviceDescriptorHeapTensorPropertiesARM {
     pub s_type: crate::vk::StructureType,
     pub p_next: *mut core::ffi::c_void,
@@ -214,6 +248,7 @@ pub struct PhysicalDeviceDescriptorHeapTensorPropertiesARM {
     pub tensor_capture_replay_opaque_data_size: usize,
 }
 #[repr(C)]
+#[derive(Clone, Copy)]
 pub union ResourceDescriptorDataEXT {
     pub p_image: *const crate::vk::ImageDescriptorInfoEXT,
     pub p_texel_buffer: *const crate::vk::TexelBufferDescriptorInfoEXT,
@@ -221,6 +256,7 @@ pub union ResourceDescriptorDataEXT {
     pub p_tensor_arm: *const crate::vk::TensorViewCreateInfoARM,
 }
 #[repr(C)]
+#[derive(Clone, Copy)]
 pub union DescriptorMappingSourceDataEXT {
     pub constant_offset: crate::vk::DescriptorMappingSourceConstantOffsetEXT,
     pub push_index: crate::vk::DescriptorMappingSourcePushIndexEXT,
@@ -235,10 +271,19 @@ pub union DescriptorMappingSourceDataEXT {
     pub shader_record_address_offset: u32,
 }
 #[repr(transparent)]
+#[derive(Clone, Copy)]
 pub struct DescriptorMappingSourceEXT(pub(crate) i32);
 #[repr(transparent)]
+#[derive(Clone, Copy)]
+pub struct TensorViewCreateFlagsARM(pub(crate) i32);
+#[repr(transparent)]
+#[derive(Clone, Copy)]
 pub struct SpirvResourceTypeFlagsEXT(pub(crate) i32);
 #[repr(transparent)]
+#[derive(Clone, Copy)]
 pub struct SpirvResourceTypeFlagBitsEXT(pub(crate) i32);
+#[repr(transparent)]
+#[derive(Clone, Copy)]
+pub struct TensorARM(pub(crate) i32);
 pub const EXT_DESCRIPTOR_HEAP_SPEC_VERSION: u32 = 1;
 pub const EXT_DESCRIPTOR_HEAP_EXTENSION_NAME: &core::ffi::CStr = c"VK_EXT_descriptor_heap";

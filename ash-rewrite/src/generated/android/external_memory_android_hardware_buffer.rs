@@ -2,18 +2,21 @@
 #![cfg_attr(rustfmt, rustfmt_skip)]
 //![Vulkan Manual Page](https://docs.vulkan.org/refpages/latest/refpages/source/VK_ANDROID_external_memory_android_hardware_buffer.html) · Extension `VK_ANDROID_external_memory_android_hardware_buffer`
 #[repr(C)]
+#[derive(Clone, Copy)]
 pub struct ImportAndroidHardwareBufferInfoANDROID {
     pub s_type: crate::vk::StructureType,
     pub p_next: *const core::ffi::c_void,
     pub buffer: *mut crate::platform_types::AHardwareBuffer,
 }
 #[repr(C)]
+#[derive(Clone, Copy)]
 pub struct AndroidHardwareBufferUsageANDROID {
     pub s_type: crate::vk::StructureType,
     pub p_next: *mut core::ffi::c_void,
     pub android_hardware_buffer_usage: u64,
 }
 #[repr(C)]
+#[derive(Clone, Copy)]
 pub struct AndroidHardwareBufferPropertiesANDROID {
     pub s_type: crate::vk::StructureType,
     pub p_next: *mut core::ffi::c_void,
@@ -21,12 +24,14 @@ pub struct AndroidHardwareBufferPropertiesANDROID {
     pub memory_type_bits: u32,
 }
 #[repr(C)]
+#[derive(Clone, Copy)]
 pub struct MemoryGetAndroidHardwareBufferInfoANDROID {
     pub s_type: crate::vk::StructureType,
     pub p_next: *const core::ffi::c_void,
     pub memory: crate::vk::DeviceMemory,
 }
 #[repr(C)]
+#[derive(Clone, Copy)]
 pub struct AndroidHardwareBufferFormatPropertiesANDROID {
     pub s_type: crate::vk::StructureType,
     pub p_next: *mut core::ffi::c_void,
@@ -40,12 +45,14 @@ pub struct AndroidHardwareBufferFormatPropertiesANDROID {
     pub suggested_y_chroma_offset: crate::vk::ChromaLocation,
 }
 #[repr(C)]
+#[derive(Clone, Copy)]
 pub struct ExternalFormatANDROID {
     pub s_type: crate::vk::StructureType,
     pub p_next: *mut core::ffi::c_void,
     pub external_format: u64,
 }
 #[repr(C)]
+#[derive(Clone, Copy)]
 pub struct AndroidHardwareBufferFormatProperties2ANDROID {
     pub s_type: crate::vk::StructureType,
     pub p_next: *mut core::ffi::c_void,

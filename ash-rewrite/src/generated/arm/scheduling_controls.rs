@@ -2,26 +2,31 @@
 #![cfg_attr(rustfmt, rustfmt_skip)]
 //![Vulkan Manual Page](https://docs.vulkan.org/refpages/latest/refpages/source/VK_ARM_scheduling_controls.html) · Extension `VK_ARM_scheduling_controls`
 #[repr(C)]
+#[derive(Clone, Copy)]
 pub struct DeviceQueueShaderCoreControlCreateInfoARM {
     pub s_type: crate::vk::StructureType,
     pub p_next: *mut core::ffi::c_void,
     pub shader_core_count: u32,
 }
 #[repr(C)]
+#[derive(Clone, Copy)]
 pub struct PhysicalDeviceSchedulingControlsFeaturesARM {
     pub s_type: crate::vk::StructureType,
     pub p_next: *mut core::ffi::c_void,
     pub scheduling_controls: crate::vk::Bool32,
 }
 #[repr(C)]
+#[derive(Clone, Copy)]
 pub struct PhysicalDeviceSchedulingControlsPropertiesARM {
     pub s_type: crate::vk::StructureType,
     pub p_next: *mut core::ffi::c_void,
     pub scheduling_controls_flags: crate::vk::PhysicalDeviceSchedulingControlsFlagsARM,
 }
 #[repr(transparent)]
+#[derive(Clone, Copy)]
 pub struct PhysicalDeviceSchedulingControlsFlagsARM(pub(crate) i32);
 #[repr(transparent)]
+#[derive(Clone, Copy)]
 pub struct PhysicalDeviceSchedulingControlsFlagBitsARM(pub(crate) i32);
 pub const ARM_SCHEDULING_CONTROLS_SPEC_VERSION: u32 = 1;
 pub const ARM_SCHEDULING_CONTROLS_EXTENSION_NAME: &core::ffi::CStr = c"VK_ARM_scheduling_controls";

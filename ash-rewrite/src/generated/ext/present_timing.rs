@@ -2,6 +2,7 @@
 #![cfg_attr(rustfmt, rustfmt_skip)]
 //![Vulkan Manual Page](https://docs.vulkan.org/refpages/latest/refpages/source/VK_EXT_present_timing.html) · Extension `VK_EXT_present_timing`
 #[repr(C)]
+#[derive(Clone, Copy)]
 pub struct PhysicalDevicePresentTimingFeaturesEXT {
     pub s_type: crate::vk::StructureType,
     pub p_next: *mut core::ffi::c_void,
@@ -10,6 +11,7 @@ pub struct PhysicalDevicePresentTimingFeaturesEXT {
     pub present_at_relative_time: crate::vk::Bool32,
 }
 #[repr(C)]
+#[derive(Clone, Copy)]
 pub struct PresentTimingSurfaceCapabilitiesEXT {
     pub s_type: crate::vk::StructureType,
     pub p_next: *mut core::ffi::c_void,
@@ -19,6 +21,7 @@ pub struct PresentTimingSurfaceCapabilitiesEXT {
     pub present_stage_queries: crate::vk::PresentStageFlagsEXT,
 }
 #[repr(C)]
+#[derive(Clone, Copy)]
 pub struct SwapchainTimingPropertiesEXT {
     pub s_type: crate::vk::StructureType,
     pub p_next: *mut core::ffi::c_void,
@@ -26,6 +29,7 @@ pub struct SwapchainTimingPropertiesEXT {
     pub refresh_interval: u64,
 }
 #[repr(C)]
+#[derive(Clone, Copy)]
 pub struct SwapchainTimeDomainPropertiesEXT {
     pub s_type: crate::vk::StructureType,
     pub p_next: *mut core::ffi::c_void,
@@ -34,11 +38,13 @@ pub struct SwapchainTimeDomainPropertiesEXT {
     pub p_time_domain_ids: *mut u64,
 }
 #[repr(C)]
+#[derive(Clone, Copy)]
 pub struct PresentStageTimeEXT {
     pub stage: crate::vk::PresentStageFlagsEXT,
     pub time: u64,
 }
 #[repr(C)]
+#[derive(Clone, Copy)]
 pub struct PastPresentationTimingInfoEXT {
     pub s_type: crate::vk::StructureType,
     pub p_next: *const core::ffi::c_void,
@@ -46,6 +52,7 @@ pub struct PastPresentationTimingInfoEXT {
     pub swapchain: crate::vk::SwapchainKHR,
 }
 #[repr(C)]
+#[derive(Clone, Copy)]
 pub struct PastPresentationTimingPropertiesEXT {
     pub s_type: crate::vk::StructureType,
     pub p_next: *mut core::ffi::c_void,
@@ -55,6 +62,7 @@ pub struct PastPresentationTimingPropertiesEXT {
     pub p_presentation_timings: *mut crate::vk::PastPresentationTimingEXT,
 }
 #[repr(C)]
+#[derive(Clone, Copy)]
 pub struct PastPresentationTimingEXT {
     pub s_type: crate::vk::StructureType,
     pub p_next: *mut core::ffi::c_void,
@@ -67,6 +75,7 @@ pub struct PastPresentationTimingEXT {
     pub report_complete: crate::vk::Bool32,
 }
 #[repr(C)]
+#[derive(Clone, Copy)]
 pub struct PresentTimingsInfoEXT {
     pub s_type: crate::vk::StructureType,
     pub p_next: *const core::ffi::c_void,
@@ -74,6 +83,7 @@ pub struct PresentTimingsInfoEXT {
     pub p_timing_infos: *const crate::vk::PresentTimingInfoEXT,
 }
 #[repr(C)]
+#[derive(Clone, Copy)]
 pub struct PresentTimingInfoEXT {
     pub s_type: crate::vk::StructureType,
     pub p_next: *const core::ffi::c_void,
@@ -84,6 +94,7 @@ pub struct PresentTimingInfoEXT {
     pub target_time_domain_present_stage: crate::vk::PresentStageFlagsEXT,
 }
 #[repr(C)]
+#[derive(Clone, Copy)]
 pub struct SwapchainCalibratedTimestampInfoEXT {
     pub s_type: crate::vk::StructureType,
     pub p_next: *const core::ffi::c_void,
@@ -92,16 +103,22 @@ pub struct SwapchainCalibratedTimestampInfoEXT {
     pub time_domain_id: u64,
 }
 #[repr(transparent)]
+#[derive(Clone, Copy)]
 pub struct PresentStageFlagsEXT(pub(crate) i32);
 #[repr(transparent)]
+#[derive(Clone, Copy)]
 pub struct PastPresentationTimingFlagsEXT(pub(crate) i32);
 #[repr(transparent)]
+#[derive(Clone, Copy)]
 pub struct PresentTimingInfoFlagsEXT(pub(crate) i32);
 #[repr(transparent)]
+#[derive(Clone, Copy)]
 pub struct PresentStageFlagBitsEXT(pub(crate) i32);
 #[repr(transparent)]
+#[derive(Clone, Copy)]
 pub struct PastPresentationTimingFlagBitsEXT(pub(crate) i32);
 #[repr(transparent)]
+#[derive(Clone, Copy)]
 pub struct PresentTimingInfoFlagBitsEXT(pub(crate) i32);
 pub const EXT_PRESENT_TIMING_SPEC_VERSION: u32 = 3;
 pub const EXT_PRESENT_TIMING_EXTENSION_NAME: &core::ffi::CStr = c"VK_EXT_present_timing";

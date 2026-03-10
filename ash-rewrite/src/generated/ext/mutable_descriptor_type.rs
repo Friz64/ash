@@ -2,17 +2,20 @@
 #![cfg_attr(rustfmt, rustfmt_skip)]
 //![Vulkan Manual Page](https://docs.vulkan.org/refpages/latest/refpages/source/VK_EXT_mutable_descriptor_type.html) · Extension `VK_EXT_mutable_descriptor_type`
 #[repr(C)]
+#[derive(Clone, Copy)]
 pub struct PhysicalDeviceMutableDescriptorTypeFeaturesEXT {
     pub s_type: crate::vk::StructureType,
     pub p_next: *mut core::ffi::c_void,
     pub mutable_descriptor_type: crate::vk::Bool32,
 }
 #[repr(C)]
+#[derive(Clone, Copy)]
 pub struct MutableDescriptorTypeListEXT {
     pub descriptor_type_count: u32,
     pub p_descriptor_types: *const crate::vk::DescriptorType,
 }
 #[repr(C)]
+#[derive(Clone, Copy)]
 pub struct MutableDescriptorTypeCreateInfoEXT {
     pub s_type: crate::vk::StructureType,
     pub p_next: *const core::ffi::c_void,

@@ -2,12 +2,14 @@
 #![cfg_attr(rustfmt, rustfmt_skip)]
 //![Vulkan Manual Page](https://docs.vulkan.org/refpages/latest/refpages/source/VK_QNX_external_memory_screen_buffer.html) · Extension `VK_QNX_external_memory_screen_buffer`
 #[repr(C)]
+#[derive(Clone, Copy)]
 pub struct ImportScreenBufferInfoQNX {
     pub s_type: crate::vk::StructureType,
     pub p_next: *const core::ffi::c_void,
     pub buffer: *mut crate::platform_types::_screen_buffer,
 }
 #[repr(C)]
+#[derive(Clone, Copy)]
 pub struct ScreenBufferPropertiesQNX {
     pub s_type: crate::vk::StructureType,
     pub p_next: *mut core::ffi::c_void,
@@ -15,6 +17,7 @@ pub struct ScreenBufferPropertiesQNX {
     pub memory_type_bits: u32,
 }
 #[repr(C)]
+#[derive(Clone, Copy)]
 pub struct ScreenBufferFormatPropertiesQNX {
     pub s_type: crate::vk::StructureType,
     pub p_next: *mut core::ffi::c_void,
@@ -29,12 +32,14 @@ pub struct ScreenBufferFormatPropertiesQNX {
     pub suggested_y_chroma_offset: crate::vk::ChromaLocation,
 }
 #[repr(C)]
+#[derive(Clone, Copy)]
 pub struct ExternalFormatQNX {
     pub s_type: crate::vk::StructureType,
     pub p_next: *mut core::ffi::c_void,
     pub external_format: u64,
 }
 #[repr(C)]
+#[derive(Clone, Copy)]
 pub struct PhysicalDeviceExternalMemoryScreenBufferFeaturesQNX {
     pub s_type: crate::vk::StructureType,
     pub p_next: *mut core::ffi::c_void,

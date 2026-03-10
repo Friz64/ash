@@ -2,6 +2,7 @@
 #![cfg_attr(rustfmt, rustfmt_skip)]
 //![Vulkan Manual Page](https://docs.vulkan.org/refpages/latest/refpages/source/VK_NV_low_latency2.html) · Extension `VK_NV_low_latency2`
 #[repr(C)]
+#[derive(Clone, Copy)]
 pub struct LatencySleepModeInfoNV {
     pub s_type: crate::vk::StructureType,
     pub p_next: *const core::ffi::c_void,
@@ -10,6 +11,7 @@ pub struct LatencySleepModeInfoNV {
     pub minimum_interval_us: u32,
 }
 #[repr(C)]
+#[derive(Clone, Copy)]
 pub struct LatencySleepInfoNV {
     pub s_type: crate::vk::StructureType,
     pub p_next: *const core::ffi::c_void,
@@ -17,6 +19,7 @@ pub struct LatencySleepInfoNV {
     pub value: u64,
 }
 #[repr(C)]
+#[derive(Clone, Copy)]
 pub struct SetLatencyMarkerInfoNV {
     pub s_type: crate::vk::StructureType,
     pub p_next: *const core::ffi::c_void,
@@ -24,6 +27,7 @@ pub struct SetLatencyMarkerInfoNV {
     pub marker: crate::vk::LatencyMarkerNV,
 }
 #[repr(C)]
+#[derive(Clone, Copy)]
 pub struct GetLatencyMarkerInfoNV {
     pub s_type: crate::vk::StructureType,
     pub p_next: *const core::ffi::c_void,
@@ -31,6 +35,7 @@ pub struct GetLatencyMarkerInfoNV {
     pub p_timings: *mut crate::vk::LatencyTimingsFrameReportNV,
 }
 #[repr(C)]
+#[derive(Clone, Copy)]
 pub struct LatencyTimingsFrameReportNV {
     pub s_type: crate::vk::StructureType,
     pub p_next: *mut core::ffi::c_void,
@@ -50,24 +55,28 @@ pub struct LatencyTimingsFrameReportNV {
     pub gpu_render_end_time_us: u64,
 }
 #[repr(C)]
+#[derive(Clone, Copy)]
 pub struct OutOfBandQueueTypeInfoNV {
     pub s_type: crate::vk::StructureType,
     pub p_next: *const core::ffi::c_void,
     pub queue_type: crate::vk::OutOfBandQueueTypeNV,
 }
 #[repr(C)]
+#[derive(Clone, Copy)]
 pub struct LatencySubmissionPresentIdNV {
     pub s_type: crate::vk::StructureType,
     pub p_next: *const core::ffi::c_void,
     pub present_id: u64,
 }
 #[repr(C)]
+#[derive(Clone, Copy)]
 pub struct SwapchainLatencyCreateInfoNV {
     pub s_type: crate::vk::StructureType,
     pub p_next: *const core::ffi::c_void,
     pub latency_mode_enable: crate::vk::Bool32,
 }
 #[repr(C)]
+#[derive(Clone, Copy)]
 pub struct LatencySurfaceCapabilitiesNV {
     pub s_type: crate::vk::StructureType,
     pub p_next: *const core::ffi::c_void,
@@ -75,8 +84,10 @@ pub struct LatencySurfaceCapabilitiesNV {
     pub p_present_modes: *mut crate::vk::PresentModeKHR,
 }
 #[repr(transparent)]
+#[derive(Clone, Copy)]
 pub struct LatencyMarkerNV(pub(crate) i32);
 #[repr(transparent)]
+#[derive(Clone, Copy)]
 pub struct OutOfBandQueueTypeNV(pub(crate) i32);
 pub const NV_LOW_LATENCY_2_SPEC_VERSION: u32 = 2;
 pub const NV_LOW_LATENCY_2_EXTENSION_NAME: &core::ffi::CStr = c"VK_NV_low_latency2";

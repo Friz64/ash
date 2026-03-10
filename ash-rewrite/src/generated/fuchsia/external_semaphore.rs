@@ -2,6 +2,7 @@
 #![cfg_attr(rustfmt, rustfmt_skip)]
 //![Vulkan Manual Page](https://docs.vulkan.org/refpages/latest/refpages/source/VK_FUCHSIA_external_semaphore.html) · Extension `VK_FUCHSIA_external_semaphore`
 #[repr(C)]
+#[derive(Clone, Copy)]
 pub struct ImportSemaphoreZirconHandleInfoFUCHSIA {
     pub s_type: crate::vk::StructureType,
     pub p_next: *const core::ffi::c_void,
@@ -11,6 +12,7 @@ pub struct ImportSemaphoreZirconHandleInfoFUCHSIA {
     pub zircon_handle: crate::platform_types::zx_handle_t,
 }
 #[repr(C)]
+#[derive(Clone, Copy)]
 pub struct SemaphoreGetZirconHandleInfoFUCHSIA {
     pub s_type: crate::vk::StructureType,
     pub p_next: *const core::ffi::c_void,

@@ -2,6 +2,7 @@
 #![cfg_attr(rustfmt, rustfmt_skip)]
 //![Vulkan Manual Page](https://docs.vulkan.org/refpages/latest/refpages/source/VK_EXT_validation_features.html) · Extension `VK_EXT_validation_features`
 #[repr(C)]
+#[derive(Clone, Copy)]
 pub struct ValidationFeaturesEXT {
     pub s_type: crate::vk::StructureType,
     pub p_next: *const core::ffi::c_void,
@@ -11,8 +12,10 @@ pub struct ValidationFeaturesEXT {
     pub p_disabled_validation_features: *const crate::vk::ValidationFeatureDisableEXT,
 }
 #[repr(transparent)]
+#[derive(Clone, Copy)]
 pub struct ValidationFeatureEnableEXT(pub(crate) i32);
 #[repr(transparent)]
+#[derive(Clone, Copy)]
 pub struct ValidationFeatureDisableEXT(pub(crate) i32);
 pub const EXT_VALIDATION_FEATURES_SPEC_VERSION: u32 = 6;
 pub const EXT_VALIDATION_FEATURES_EXTENSION_NAME: &core::ffi::CStr = c"VK_EXT_validation_features";

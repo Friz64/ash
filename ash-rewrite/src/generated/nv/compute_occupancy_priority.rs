@@ -2,6 +2,7 @@
 #![cfg_attr(rustfmt, rustfmt_skip)]
 //![Vulkan Manual Page](https://docs.vulkan.org/refpages/latest/refpages/source/VK_NV_compute_occupancy_priority.html) · Extension `VK_NV_compute_occupancy_priority`
 #[repr(C)]
+#[derive(Clone, Copy)]
 pub struct ComputeOccupancyPriorityParametersNV {
     pub s_type: crate::vk::StructureType,
     pub p_next: *const core::ffi::c_void,
@@ -9,6 +10,7 @@ pub struct ComputeOccupancyPriorityParametersNV {
     pub occupancy_throttling: core::ffi::c_float,
 }
 #[repr(C)]
+#[derive(Clone, Copy)]
 pub struct PhysicalDeviceComputeOccupancyPriorityFeaturesNV {
     pub s_type: crate::vk::StructureType,
     pub p_next: *mut core::ffi::c_void,

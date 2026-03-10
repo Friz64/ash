@@ -2,18 +2,21 @@
 #![cfg_attr(rustfmt, rustfmt_skip)]
 //![Vulkan Manual Page](https://docs.vulkan.org/refpages/latest/refpages/source/VK_NV_present_barrier.html) · Extension `VK_NV_present_barrier`
 #[repr(C)]
+#[derive(Clone, Copy)]
 pub struct PhysicalDevicePresentBarrierFeaturesNV {
     pub s_type: crate::vk::StructureType,
     pub p_next: *mut core::ffi::c_void,
     pub present_barrier: crate::vk::Bool32,
 }
 #[repr(C)]
+#[derive(Clone, Copy)]
 pub struct SurfaceCapabilitiesPresentBarrierNV {
     pub s_type: crate::vk::StructureType,
     pub p_next: *mut core::ffi::c_void,
     pub present_barrier_supported: crate::vk::Bool32,
 }
 #[repr(C)]
+#[derive(Clone, Copy)]
 pub struct SwapchainPresentBarrierCreateInfoNV {
     pub s_type: crate::vk::StructureType,
     pub p_next: *mut core::ffi::c_void,

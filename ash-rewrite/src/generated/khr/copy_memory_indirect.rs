@@ -2,18 +2,21 @@
 #![cfg_attr(rustfmt, rustfmt_skip)]
 //![Vulkan Manual Page](https://docs.vulkan.org/refpages/latest/refpages/source/VK_KHR_copy_memory_indirect.html) · Extension `VK_KHR_copy_memory_indirect`
 #[repr(C)]
+#[derive(Clone, Copy)]
 pub struct StridedDeviceAddressRangeKHR {
     pub address: crate::vk::DeviceAddress,
     pub size: crate::vk::DeviceSize,
     pub stride: crate::vk::DeviceSize,
 }
 #[repr(C)]
+#[derive(Clone, Copy)]
 pub struct CopyMemoryIndirectCommandKHR {
     pub src_address: crate::vk::DeviceAddress,
     pub dst_address: crate::vk::DeviceAddress,
     pub size: crate::vk::DeviceSize,
 }
 #[repr(C)]
+#[derive(Clone, Copy)]
 pub struct CopyMemoryIndirectInfoKHR {
     pub s_type: crate::vk::StructureType,
     pub p_next: *const core::ffi::c_void,
@@ -23,6 +26,7 @@ pub struct CopyMemoryIndirectInfoKHR {
     pub copy_address_range: crate::vk::StridedDeviceAddressRangeKHR,
 }
 #[repr(C)]
+#[derive(Clone, Copy)]
 pub struct CopyMemoryToImageIndirectCommandKHR {
     pub src_address: crate::vk::DeviceAddress,
     pub buffer_row_length: u32,
@@ -32,6 +36,7 @@ pub struct CopyMemoryToImageIndirectCommandKHR {
     pub image_extent: crate::vk::Extent3D,
 }
 #[repr(C)]
+#[derive(Clone, Copy)]
 pub struct CopyMemoryToImageIndirectInfoKHR {
     pub s_type: crate::vk::StructureType,
     pub p_next: *const core::ffi::c_void,
@@ -43,6 +48,7 @@ pub struct CopyMemoryToImageIndirectInfoKHR {
     pub p_image_subresources: *const crate::vk::ImageSubresourceLayers,
 }
 #[repr(C)]
+#[derive(Clone, Copy)]
 pub struct PhysicalDeviceCopyMemoryIndirectFeaturesKHR {
     pub s_type: crate::vk::StructureType,
     pub p_next: *mut core::ffi::c_void,
@@ -50,14 +56,17 @@ pub struct PhysicalDeviceCopyMemoryIndirectFeaturesKHR {
     pub indirect_memory_to_image_copy: crate::vk::Bool32,
 }
 #[repr(C)]
+#[derive(Clone, Copy)]
 pub struct PhysicalDeviceCopyMemoryIndirectPropertiesKHR {
     pub s_type: crate::vk::StructureType,
     pub p_next: *mut core::ffi::c_void,
     pub supported_queues: crate::vk::QueueFlags,
 }
 #[repr(transparent)]
+#[derive(Clone, Copy)]
 pub struct AddressCopyFlagsKHR(pub(crate) i32);
 #[repr(transparent)]
+#[derive(Clone, Copy)]
 pub struct AddressCopyFlagBitsKHR(pub(crate) i32);
 pub const KHR_COPY_MEMORY_INDIRECT_SPEC_VERSION: u32 = 1;
 pub const KHR_COPY_MEMORY_INDIRECT_EXTENSION_NAME: &core::ffi::CStr = c"VK_KHR_copy_memory_indirect";

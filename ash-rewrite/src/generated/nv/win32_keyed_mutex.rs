@@ -2,6 +2,7 @@
 #![cfg_attr(rustfmt, rustfmt_skip)]
 //![Vulkan Manual Page](https://docs.vulkan.org/refpages/latest/refpages/source/VK_NV_win32_keyed_mutex.html) · Extension `VK_NV_win32_keyed_mutex`
 #[repr(C)]
+#[derive(Clone, Copy)]
 pub struct Win32KeyedMutexAcquireReleaseInfoNV {
     pub s_type: crate::vk::StructureType,
     pub p_next: *const core::ffi::c_void,

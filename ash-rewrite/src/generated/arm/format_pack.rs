@@ -2,6 +2,7 @@
 #![cfg_attr(rustfmt, rustfmt_skip)]
 //![Vulkan Manual Page](https://docs.vulkan.org/refpages/latest/refpages/source/VK_ARM_format_pack.html) · Extension `VK_ARM_format_pack`
 #[repr(C)]
+#[derive(Clone, Copy)]
 pub struct PhysicalDeviceFormatPackFeaturesARM {
     pub s_type: crate::vk::StructureType,
     pub p_next: *mut core::ffi::c_void,

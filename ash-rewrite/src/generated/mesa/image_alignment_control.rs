@@ -2,18 +2,21 @@
 #![cfg_attr(rustfmt, rustfmt_skip)]
 //![Vulkan Manual Page](https://docs.vulkan.org/refpages/latest/refpages/source/VK_MESA_image_alignment_control.html) · Extension `VK_MESA_image_alignment_control`
 #[repr(C)]
+#[derive(Clone, Copy)]
 pub struct PhysicalDeviceImageAlignmentControlFeaturesMESA {
     pub s_type: crate::vk::StructureType,
     pub p_next: *mut core::ffi::c_void,
     pub image_alignment_control: crate::vk::Bool32,
 }
 #[repr(C)]
+#[derive(Clone, Copy)]
 pub struct PhysicalDeviceImageAlignmentControlPropertiesMESA {
     pub s_type: crate::vk::StructureType,
     pub p_next: *mut core::ffi::c_void,
     pub supported_image_alignment_mask: u32,
 }
 #[repr(C)]
+#[derive(Clone, Copy)]
 pub struct ImageAlignmentControlCreateInfoMESA {
     pub s_type: crate::vk::StructureType,
     pub p_next: *const core::ffi::c_void,

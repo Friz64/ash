@@ -2,6 +2,7 @@
 #![cfg_attr(rustfmt, rustfmt_skip)]
 //![Vulkan Manual Page](https://docs.vulkan.org/refpages/latest/refpages/source/VK_EXT_external_memory_metal.html) · Extension `VK_EXT_external_memory_metal`
 #[repr(C)]
+#[derive(Clone, Copy)]
 pub struct ImportMemoryMetalHandleInfoEXT {
     pub s_type: crate::vk::StructureType,
     pub p_next: *const core::ffi::c_void,
@@ -9,12 +10,14 @@ pub struct ImportMemoryMetalHandleInfoEXT {
     pub handle: *mut core::ffi::c_void,
 }
 #[repr(C)]
+#[derive(Clone, Copy)]
 pub struct MemoryMetalHandlePropertiesEXT {
     pub s_type: crate::vk::StructureType,
     pub p_next: *mut core::ffi::c_void,
     pub memory_type_bits: u32,
 }
 #[repr(C)]
+#[derive(Clone, Copy)]
 pub struct MemoryGetMetalHandleInfoEXT {
     pub s_type: crate::vk::StructureType,
     pub p_next: *const core::ffi::c_void,

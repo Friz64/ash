@@ -1,4 +1,4 @@
-use crate::xml::name::CMacroName;
+use crate::name::CMacroName;
 
 pub type CExprItems = Vec<CExprItem>;
 

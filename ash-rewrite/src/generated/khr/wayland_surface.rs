@@ -2,6 +2,7 @@
 #![cfg_attr(rustfmt, rustfmt_skip)]
 //![Vulkan Manual Page](https://docs.vulkan.org/refpages/latest/refpages/source/VK_KHR_wayland_surface.html) · Extension `VK_KHR_wayland_surface`
 #[repr(C)]
+#[derive(Clone, Copy)]
 pub struct WaylandSurfaceCreateInfoKHR {
     pub s_type: crate::vk::StructureType,
     pub p_next: *const core::ffi::c_void,
@@ -10,6 +11,7 @@ pub struct WaylandSurfaceCreateInfoKHR {
     pub surface: *mut crate::platform_types::wl_surface,
 }
 #[repr(transparent)]
+#[derive(Clone, Copy)]
 pub struct WaylandSurfaceCreateFlagsKHR(pub(crate) i32);
 pub const KHR_WAYLAND_SURFACE_SPEC_VERSION: u32 = 6;
 pub const KHR_WAYLAND_SURFACE_EXTENSION_NAME: &core::ffi::CStr = c"VK_KHR_wayland_surface";

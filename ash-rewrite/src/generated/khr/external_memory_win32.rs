@@ -2,6 +2,7 @@
 #![cfg_attr(rustfmt, rustfmt_skip)]
 //![Vulkan Manual Page](https://docs.vulkan.org/refpages/latest/refpages/source/VK_KHR_external_memory_win32.html) · Extension `VK_KHR_external_memory_win32`
 #[repr(C)]
+#[derive(Clone, Copy)]
 pub struct ImportMemoryWin32HandleInfoKHR {
     pub s_type: crate::vk::StructureType,
     pub p_next: *const core::ffi::c_void,
@@ -10,6 +11,7 @@ pub struct ImportMemoryWin32HandleInfoKHR {
     pub name: crate::platform_types::LPCWSTR,
 }
 #[repr(C)]
+#[derive(Clone, Copy)]
 pub struct ExportMemoryWin32HandleInfoKHR {
     pub s_type: crate::vk::StructureType,
     pub p_next: *const core::ffi::c_void,
@@ -18,12 +20,14 @@ pub struct ExportMemoryWin32HandleInfoKHR {
     pub name: crate::platform_types::LPCWSTR,
 }
 #[repr(C)]
+#[derive(Clone, Copy)]
 pub struct MemoryWin32HandlePropertiesKHR {
     pub s_type: crate::vk::StructureType,
     pub p_next: *mut core::ffi::c_void,
     pub memory_type_bits: u32,
 }
 #[repr(C)]
+#[derive(Clone, Copy)]
 pub struct MemoryGetWin32HandleInfoKHR {
     pub s_type: crate::vk::StructureType,
     pub p_next: *const core::ffi::c_void,

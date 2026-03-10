@@ -2,6 +2,7 @@
 #![cfg_attr(rustfmt, rustfmt_skip)]
 //![Vulkan Manual Page](https://docs.vulkan.org/refpages/latest/refpages/source/VK_EXT_extended_dynamic_state3.html) · Extension `VK_EXT_extended_dynamic_state3`
 #[repr(C)]
+#[derive(Clone, Copy)]
 pub struct PhysicalDeviceExtendedDynamicState3FeaturesEXT {
     pub s_type: crate::vk::StructureType,
     pub p_next: *mut core::ffi::c_void,
@@ -38,10 +39,30 @@ pub struct PhysicalDeviceExtendedDynamicState3FeaturesEXT {
     pub extended_dynamic_state3_shading_rate_image_enable: crate::vk::Bool32,
 }
 #[repr(C)]
+#[derive(Clone, Copy)]
 pub struct PhysicalDeviceExtendedDynamicState3PropertiesEXT {
     pub s_type: crate::vk::StructureType,
     pub p_next: *mut core::ffi::c_void,
     pub dynamic_primitive_topology_unrestricted: crate::vk::Bool32,
+}
+#[repr(C)]
+#[derive(Clone, Copy)]
+pub struct ColorBlendEquationEXT {
+    pub src_color_blend_factor: crate::vk::BlendFactor,
+    pub dst_color_blend_factor: crate::vk::BlendFactor,
+    pub color_blend_op: crate::vk::BlendOp,
+    pub src_alpha_blend_factor: crate::vk::BlendFactor,
+    pub dst_alpha_blend_factor: crate::vk::BlendFactor,
+    pub alpha_blend_op: crate::vk::BlendOp,
+}
+#[repr(C)]
+#[derive(Clone, Copy)]
+pub struct ColorBlendAdvancedEXT {
+    pub advanced_blend_op: crate::vk::BlendOp,
+    pub src_premultiplied: crate::vk::Bool32,
+    pub dst_premultiplied: crate::vk::Bool32,
+    pub blend_overlap: crate::vk::BlendOverlapEXT,
+    pub clamp_results: crate::vk::Bool32,
 }
 pub const EXT_EXTENDED_DYNAMIC_STATE_3_SPEC_VERSION: u32 = 2;
 pub const EXT_EXTENDED_DYNAMIC_STATE_3_EXTENSION_NAME: &core::ffi::CStr = c"VK_EXT_extended_dynamic_state3";

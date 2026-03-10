@@ -2,6 +2,7 @@
 #![cfg_attr(rustfmt, rustfmt_skip)]
 //![Vulkan Manual Page](https://docs.vulkan.org/refpages/latest/refpages/source/VK_EXT_validation_flags.html) · Extension `VK_EXT_validation_flags`
 #[repr(C)]
+#[derive(Clone, Copy)]
 pub struct ValidationFlagsEXT {
     pub s_type: crate::vk::StructureType,
     pub p_next: *const core::ffi::c_void,
@@ -9,6 +10,7 @@ pub struct ValidationFlagsEXT {
     pub p_disabled_validation_checks: *const crate::vk::ValidationCheckEXT,
 }
 #[repr(transparent)]
+#[derive(Clone, Copy)]
 pub struct ValidationCheckEXT(pub(crate) i32);
 pub const EXT_VALIDATION_FLAGS_SPEC_VERSION: u32 = 3;
 pub const EXT_VALIDATION_FLAGS_EXTENSION_NAME: &core::ffi::CStr = c"VK_EXT_validation_flags";

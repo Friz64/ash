@@ -2,6 +2,7 @@
 #![cfg_attr(rustfmt, rustfmt_skip)]
 //![Vulkan Manual Page](https://docs.vulkan.org/refpages/latest/refpages/source/VK_KHR_cooperative_matrix.html) · Extension `VK_KHR_cooperative_matrix`
 #[repr(C)]
+#[derive(Clone, Copy)]
 pub struct PhysicalDeviceCooperativeMatrixFeaturesKHR {
     pub s_type: crate::vk::StructureType,
     pub p_next: *mut core::ffi::c_void,
@@ -9,6 +10,7 @@ pub struct PhysicalDeviceCooperativeMatrixFeaturesKHR {
     pub cooperative_matrix_robust_buffer_access: crate::vk::Bool32,
 }
 #[repr(C)]
+#[derive(Clone, Copy)]
 pub struct CooperativeMatrixPropertiesKHR {
     pub s_type: crate::vk::StructureType,
     pub p_next: *mut core::ffi::c_void,
@@ -23,14 +25,14 @@ pub struct CooperativeMatrixPropertiesKHR {
     pub scope: crate::vk::ScopeKHR,
 }
 #[repr(C)]
+#[derive(Clone, Copy)]
 pub struct PhysicalDeviceCooperativeMatrixPropertiesKHR {
     pub s_type: crate::vk::StructureType,
     pub p_next: *mut core::ffi::c_void,
     pub cooperative_matrix_supported_stages: crate::vk::ShaderStageFlags,
 }
 #[repr(transparent)]
+#[derive(Clone, Copy)]
 pub struct ScopeKHR(pub(crate) i32);
-#[repr(transparent)]
-pub struct ComponentTypeKHR(pub(crate) i32);
 pub const KHR_COOPERATIVE_MATRIX_SPEC_VERSION: u32 = 2;
 pub const KHR_COOPERATIVE_MATRIX_EXTENSION_NAME: &core::ffi::CStr = c"VK_KHR_cooperative_matrix";

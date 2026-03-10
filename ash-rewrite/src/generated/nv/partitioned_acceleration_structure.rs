@@ -2,30 +2,35 @@
 #![cfg_attr(rustfmt, rustfmt_skip)]
 //![Vulkan Manual Page](https://docs.vulkan.org/refpages/latest/refpages/source/VK_NV_partitioned_acceleration_structure.html) · Extension `VK_NV_partitioned_acceleration_structure`
 #[repr(C)]
+#[derive(Clone, Copy)]
 pub struct PhysicalDevicePartitionedAccelerationStructureFeaturesNV {
     pub s_type: crate::vk::StructureType,
     pub p_next: *mut core::ffi::c_void,
     pub partitioned_acceleration_structure: crate::vk::Bool32,
 }
 #[repr(C)]
+#[derive(Clone, Copy)]
 pub struct PhysicalDevicePartitionedAccelerationStructurePropertiesNV {
     pub s_type: crate::vk::StructureType,
     pub p_next: *mut core::ffi::c_void,
     pub max_partition_count: u32,
 }
 #[repr(C)]
+#[derive(Clone, Copy)]
 pub struct BuildPartitionedAccelerationStructureIndirectCommandNV {
     pub op_type: crate::vk::PartitionedAccelerationStructureOpTypeNV,
     pub arg_count: u32,
     pub arg_data: crate::vk::StridedDeviceAddressNV,
 }
 #[repr(C)]
+#[derive(Clone, Copy)]
 pub struct PartitionedAccelerationStructureFlagsNV {
     pub s_type: crate::vk::StructureType,
     pub p_next: *mut core::ffi::c_void,
     pub enable_partition_translation: crate::vk::Bool32,
 }
 #[repr(C)]
+#[derive(Clone, Copy)]
 pub struct PartitionedAccelerationStructureWriteInstanceDataNV {
     pub transform: crate::vk::TransformMatrixKHR,
     pub explicit_aabb: [core::ffi::c_float; 6 as _],
@@ -38,17 +43,20 @@ pub struct PartitionedAccelerationStructureWriteInstanceDataNV {
     pub acceleration_structure: crate::vk::DeviceAddress,
 }
 #[repr(C)]
+#[derive(Clone, Copy)]
 pub struct PartitionedAccelerationStructureUpdateInstanceDataNV {
     pub instance_index: u32,
     pub instance_contribution_to_hit_group_index: u32,
     pub acceleration_structure: crate::vk::DeviceAddress,
 }
 #[repr(C)]
+#[derive(Clone, Copy)]
 pub struct PartitionedAccelerationStructureWritePartitionTranslationDataNV {
     pub partition_index: u32,
     pub partition_translation: [core::ffi::c_float; 3 as _],
 }
 #[repr(C)]
+#[derive(Clone, Copy)]
 pub struct WriteDescriptorSetPartitionedAccelerationStructureNV {
     pub s_type: crate::vk::StructureType,
     pub p_next: *mut core::ffi::c_void,
@@ -56,6 +64,7 @@ pub struct WriteDescriptorSetPartitionedAccelerationStructureNV {
     pub p_acceleration_structures: *const crate::vk::DeviceAddress,
 }
 #[repr(C)]
+#[derive(Clone, Copy)]
 pub struct PartitionedAccelerationStructureInstancesInputNV {
     pub s_type: crate::vk::StructureType,
     pub p_next: *mut core::ffi::c_void,
@@ -66,6 +75,7 @@ pub struct PartitionedAccelerationStructureInstancesInputNV {
     pub max_instance_in_global_partition_count: u32,
 }
 #[repr(C)]
+#[derive(Clone, Copy)]
 pub struct BuildPartitionedAccelerationStructureInfoNV {
     pub s_type: crate::vk::StructureType,
     pub p_next: *mut core::ffi::c_void,
@@ -77,10 +87,13 @@ pub struct BuildPartitionedAccelerationStructureInfoNV {
     pub src_infos_count: crate::vk::DeviceAddress,
 }
 #[repr(transparent)]
+#[derive(Clone, Copy)]
 pub struct PartitionedAccelerationStructureOpTypeNV(pub(crate) i32);
 #[repr(transparent)]
+#[derive(Clone, Copy)]
 pub struct PartitionedAccelerationStructureInstanceFlagsNV(pub(crate) i32);
 #[repr(transparent)]
+#[derive(Clone, Copy)]
 pub struct PartitionedAccelerationStructureInstanceFlagBitsNV(pub(crate) i32);
 pub const PARTITIONED_ACCELERATION_STRUCTURE_PARTITION_INDEX_GLOBAL_NV: u32 = (!0);
 pub const NV_PARTITIONED_ACCELERATION_STRUCTURE_SPEC_VERSION: u32 = 1;

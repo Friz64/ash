@@ -2,6 +2,7 @@
 #![cfg_attr(rustfmt, rustfmt_skip)]
 //![Vulkan Manual Page](https://docs.vulkan.org/refpages/latest/refpages/source/VK_QCOM_image_processing.html) · Extension `VK_QCOM_image_processing`
 #[repr(C)]
+#[derive(Clone, Copy)]
 pub struct ImageViewSampleWeightCreateInfoQCOM {
     pub s_type: crate::vk::StructureType,
     pub p_next: *const core::ffi::c_void,
@@ -10,6 +11,7 @@ pub struct ImageViewSampleWeightCreateInfoQCOM {
     pub num_phases: u32,
 }
 #[repr(C)]
+#[derive(Clone, Copy)]
 pub struct PhysicalDeviceImageProcessingFeaturesQCOM {
     pub s_type: crate::vk::StructureType,
     pub p_next: *mut core::ffi::c_void,
@@ -18,6 +20,7 @@ pub struct PhysicalDeviceImageProcessingFeaturesQCOM {
     pub texture_block_match: crate::vk::Bool32,
 }
 #[repr(C)]
+#[derive(Clone, Copy)]
 pub struct PhysicalDeviceImageProcessingPropertiesQCOM {
     pub s_type: crate::vk::StructureType,
     pub p_next: *mut core::ffi::c_void,

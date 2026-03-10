@@ -2,6 +2,7 @@
 #![cfg_attr(rustfmt, rustfmt_skip)]
 //![Vulkan Manual Page](https://docs.vulkan.org/refpages/latest/refpages/source/VK_KHR_external_fence_win32.html) · Extension `VK_KHR_external_fence_win32`
 #[repr(C)]
+#[derive(Clone, Copy)]
 pub struct ImportFenceWin32HandleInfoKHR {
     pub s_type: crate::vk::StructureType,
     pub p_next: *const core::ffi::c_void,
@@ -12,6 +13,7 @@ pub struct ImportFenceWin32HandleInfoKHR {
     pub name: crate::platform_types::LPCWSTR,
 }
 #[repr(C)]
+#[derive(Clone, Copy)]
 pub struct ExportFenceWin32HandleInfoKHR {
     pub s_type: crate::vk::StructureType,
     pub p_next: *const core::ffi::c_void,
@@ -20,6 +22,7 @@ pub struct ExportFenceWin32HandleInfoKHR {
     pub name: crate::platform_types::LPCWSTR,
 }
 #[repr(C)]
+#[derive(Clone, Copy)]
 pub struct FenceGetWin32HandleInfoKHR {
     pub s_type: crate::vk::StructureType,
     pub p_next: *const core::ffi::c_void,

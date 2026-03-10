@@ -2,6 +2,7 @@
 #![cfg_attr(rustfmt, rustfmt_skip)]
 //![Vulkan Manual Page](https://docs.vulkan.org/refpages/latest/refpages/source/VK_EXT_mesh_shader.html) · Extension `VK_EXT_mesh_shader`
 #[repr(C)]
+#[derive(Clone, Copy)]
 pub struct PhysicalDeviceMeshShaderFeaturesEXT {
     pub s_type: crate::vk::StructureType,
     pub p_next: *mut core::ffi::c_void,
@@ -12,6 +13,7 @@ pub struct PhysicalDeviceMeshShaderFeaturesEXT {
     pub mesh_shader_queries: crate::vk::Bool32,
 }
 #[repr(C)]
+#[derive(Clone, Copy)]
 pub struct PhysicalDeviceMeshShaderPropertiesEXT {
     pub s_type: crate::vk::StructureType,
     pub p_next: *mut core::ffi::c_void,
@@ -45,6 +47,7 @@ pub struct PhysicalDeviceMeshShaderPropertiesEXT {
     pub prefers_compact_primitive_output: crate::vk::Bool32,
 }
 #[repr(C)]
+#[derive(Clone, Copy)]
 pub struct DrawMeshTasksIndirectCommandEXT {
     pub group_count_x: u32,
     pub group_count_y: u32,

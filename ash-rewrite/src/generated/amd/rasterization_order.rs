@@ -2,12 +2,14 @@
 #![cfg_attr(rustfmt, rustfmt_skip)]
 //![Vulkan Manual Page](https://docs.vulkan.org/refpages/latest/refpages/source/VK_AMD_rasterization_order.html) · Extension `VK_AMD_rasterization_order`
 #[repr(C)]
+#[derive(Clone, Copy)]
 pub struct PipelineRasterizationStateRasterizationOrderAMD {
     pub s_type: crate::vk::StructureType,
     pub p_next: *const core::ffi::c_void,
     pub rasterization_order: crate::vk::RasterizationOrderAMD,
 }
 #[repr(transparent)]
+#[derive(Clone, Copy)]
 pub struct RasterizationOrderAMD(pub(crate) i32);
 pub const AMD_RASTERIZATION_ORDER_SPEC_VERSION: u32 = 1;
 pub const AMD_RASTERIZATION_ORDER_EXTENSION_NAME: &core::ffi::CStr = c"VK_AMD_rasterization_order";

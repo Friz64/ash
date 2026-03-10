@@ -1,6 +1,7 @@
 use crate::{
     item::{Named, RequireMap, RequiredBy},
-    xml::{self, cexpr::CExprItems, name::CMacroName},
+    name::CMacroName,
+    xml::{self, cexpr::CExprItems},
 };
 use tracing::{instrument, trace};
 
@@ -30,5 +31,9 @@ impl CMacro {
             args: xml.args.clone(),
             cexpr: xml.cexpr.clone(),
         })
+    }
+
+    pub fn has_args(&self) -> bool {
+        self.args.is_empty()
     }
 }

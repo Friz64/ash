@@ -2,6 +2,7 @@
 #![cfg_attr(rustfmt, rustfmt_skip)]
 //![Vulkan Manual Page](https://docs.vulkan.org/refpages/latest/refpages/source/VK_KHR_performance_query.html) · Extension `VK_KHR_performance_query`
 #[repr(C)]
+#[derive(Clone, Copy)]
 pub struct PhysicalDevicePerformanceQueryFeaturesKHR {
     pub s_type: crate::vk::StructureType,
     pub p_next: *mut core::ffi::c_void,
@@ -9,12 +10,14 @@ pub struct PhysicalDevicePerformanceQueryFeaturesKHR {
     pub performance_counter_multiple_query_pools: crate::vk::Bool32,
 }
 #[repr(C)]
+#[derive(Clone, Copy)]
 pub struct PhysicalDevicePerformanceQueryPropertiesKHR {
     pub s_type: crate::vk::StructureType,
     pub p_next: *mut core::ffi::c_void,
     pub allow_command_buffer_query_copies: crate::vk::Bool32,
 }
 #[repr(C)]
+#[derive(Clone, Copy)]
 pub struct PerformanceCounterKHR {
     pub s_type: crate::vk::StructureType,
     pub p_next: *mut core::ffi::c_void,
@@ -24,6 +27,7 @@ pub struct PerformanceCounterKHR {
     pub uuid: [u8; crate::vk::UUID_SIZE as _],
 }
 #[repr(C)]
+#[derive(Clone, Copy)]
 pub struct PerformanceCounterDescriptionKHR {
     pub s_type: crate::vk::StructureType,
     pub p_next: *mut core::ffi::c_void,
@@ -33,6 +37,7 @@ pub struct PerformanceCounterDescriptionKHR {
     pub description: [core::ffi::c_char; crate::vk::MAX_DESCRIPTION_SIZE as _],
 }
 #[repr(C)]
+#[derive(Clone, Copy)]
 pub struct QueryPoolPerformanceCreateInfoKHR {
     pub s_type: crate::vk::StructureType,
     pub p_next: *const core::ffi::c_void,
@@ -41,6 +46,7 @@ pub struct QueryPoolPerformanceCreateInfoKHR {
     pub p_counter_indices: *const u32,
 }
 #[repr(C)]
+#[derive(Clone, Copy)]
 pub struct AcquireProfilingLockInfoKHR {
     pub s_type: crate::vk::StructureType,
     pub p_next: *const core::ffi::c_void,
@@ -48,12 +54,14 @@ pub struct AcquireProfilingLockInfoKHR {
     pub timeout: u64,
 }
 #[repr(C)]
+#[derive(Clone, Copy)]
 pub struct PerformanceQuerySubmitInfoKHR {
     pub s_type: crate::vk::StructureType,
     pub p_next: *const core::ffi::c_void,
     pub counter_pass_index: u32,
 }
 #[repr(C)]
+#[derive(Clone, Copy)]
 pub union PerformanceCounterResultKHR {
     pub int32: i32,
     pub int64: i64,
@@ -63,18 +71,25 @@ pub union PerformanceCounterResultKHR {
     pub float64: core::ffi::c_double,
 }
 #[repr(transparent)]
+#[derive(Clone, Copy)]
 pub struct PerformanceCounterScopeKHR(pub(crate) i32);
 #[repr(transparent)]
+#[derive(Clone, Copy)]
 pub struct PerformanceCounterUnitKHR(pub(crate) i32);
 #[repr(transparent)]
+#[derive(Clone, Copy)]
 pub struct PerformanceCounterStorageKHR(pub(crate) i32);
 #[repr(transparent)]
+#[derive(Clone, Copy)]
 pub struct PerformanceCounterDescriptionFlagsKHR(pub(crate) i32);
 #[repr(transparent)]
+#[derive(Clone, Copy)]
 pub struct AcquireProfilingLockFlagsKHR(pub(crate) i32);
 #[repr(transparent)]
+#[derive(Clone, Copy)]
 pub struct PerformanceCounterDescriptionFlagBitsKHR(pub(crate) i32);
 #[repr(transparent)]
+#[derive(Clone, Copy)]
 pub struct AcquireProfilingLockFlagBitsKHR(pub(crate) i32);
 pub const KHR_PERFORMANCE_QUERY_SPEC_VERSION: u32 = 1;
 pub const KHR_PERFORMANCE_QUERY_EXTENSION_NAME: &core::ffi::CStr = c"VK_KHR_performance_query";

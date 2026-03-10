@@ -2,10 +2,12 @@
 #![cfg_attr(rustfmt, rustfmt_skip)]
 //![Vulkan Manual Page](https://docs.vulkan.org/refpages/latest/refpages/source/VK_GOOGLE_display_timing.html) · Extension `VK_GOOGLE_display_timing`
 #[repr(C)]
+#[derive(Clone, Copy)]
 pub struct RefreshCycleDurationGOOGLE {
     pub refresh_duration: u64,
 }
 #[repr(C)]
+#[derive(Clone, Copy)]
 pub struct PastPresentationTimingGOOGLE {
     pub present_id: u32,
     pub desired_present_time: u64,
@@ -14,6 +16,7 @@ pub struct PastPresentationTimingGOOGLE {
     pub present_margin: u64,
 }
 #[repr(C)]
+#[derive(Clone, Copy)]
 pub struct PresentTimesInfoGOOGLE {
     pub s_type: crate::vk::StructureType,
     pub p_next: *const core::ffi::c_void,
@@ -21,6 +24,7 @@ pub struct PresentTimesInfoGOOGLE {
     pub p_times: *const crate::vk::PresentTimeGOOGLE,
 }
 #[repr(C)]
+#[derive(Clone, Copy)]
 pub struct PresentTimeGOOGLE {
     pub present_id: u32,
     pub desired_present_time: u64,

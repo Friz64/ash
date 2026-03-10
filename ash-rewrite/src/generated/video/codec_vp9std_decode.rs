@@ -2,18 +2,22 @@
 #![cfg_attr(rustfmt, rustfmt_skip)]
 //!Items provided by `vulkan_video_codec_vp9std_decode`
 #[repr(C)]
+#[derive(Clone, Copy)]
 pub struct StdVideoDecodeVP9PictureInfoFlags {
-    pub error_resilient_mode: u32,
-    pub intra_only: u32,
-    pub allow_high_precision_mv: u32,
-    pub refresh_frame_context: u32,
-    pub frame_parallel_decoding_mode: u32,
-    pub segmentation_enabled: u32,
-    pub show_frame: u32,
-    pub use_prev_frame_mvs: u32,
-    pub reserved: u32,
+    /**- `error_resilient_mode` @ `0..1`
+- `intra_only` @ `1..2`
+- `allow_high_precision_mv` @ `2..3`
+- `refresh_frame_context` @ `3..4`
+- `frame_parallel_decoding_mode` @ `4..5`
+- `segmentation_enabled` @ `5..6`
+- `show_frame` @ `6..7`
+- `UsePrevFrameMvs` @ `7..8`
+- `reserved` @ `8..32`
+*/
+    pub bitfield0: u32,
 }
 #[repr(C)]
+#[derive(Clone, Copy)]
 pub struct StdVideoDecodeVP9PictureInfo {
     pub flags: crate::vk::StdVideoDecodeVP9PictureInfoFlags,
     pub profile: crate::vk::StdVideoVP9Profile,

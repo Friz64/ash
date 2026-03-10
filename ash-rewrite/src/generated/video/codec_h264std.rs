@@ -2,21 +2,25 @@
 #![cfg_attr(rustfmt, rustfmt_skip)]
 //!Items provided by `vulkan_video_codec_h264std`
 #[repr(C)]
+#[derive(Clone, Copy)]
 pub struct StdVideoH264SpsVuiFlags {
-    pub aspect_ratio_info_present_flag: u32,
-    pub overscan_info_present_flag: u32,
-    pub overscan_appropriate_flag: u32,
-    pub video_signal_type_present_flag: u32,
-    pub video_full_range_flag: u32,
-    pub color_description_present_flag: u32,
-    pub chroma_loc_info_present_flag: u32,
-    pub timing_info_present_flag: u32,
-    pub fixed_frame_rate_flag: u32,
-    pub bitstream_restriction_flag: u32,
-    pub nal_hrd_parameters_present_flag: u32,
-    pub vcl_hrd_parameters_present_flag: u32,
+    /**- `aspect_ratio_info_present_flag` @ `0..1`
+- `overscan_info_present_flag` @ `1..2`
+- `overscan_appropriate_flag` @ `2..3`
+- `video_signal_type_present_flag` @ `3..4`
+- `video_full_range_flag` @ `4..5`
+- `color_description_present_flag` @ `5..6`
+- `chroma_loc_info_present_flag` @ `6..7`
+- `timing_info_present_flag` @ `7..8`
+- `fixed_frame_rate_flag` @ `8..9`
+- `bitstream_restriction_flag` @ `9..10`
+- `nal_hrd_parameters_present_flag` @ `10..11`
+- `vcl_hrd_parameters_present_flag` @ `11..12`
+*/
+    pub bitfield0: u32,
 }
 #[repr(C)]
+#[derive(Clone, Copy)]
 pub struct StdVideoH264HrdParameters {
     pub cpb_cnt_minus1: u8,
     pub bit_rate_scale: u8,
@@ -31,6 +35,7 @@ pub struct StdVideoH264HrdParameters {
     pub time_offset_length: u32,
 }
 #[repr(C)]
+#[derive(Clone, Copy)]
 pub struct StdVideoH264SequenceParameterSetVui {
     pub flags: crate::vk::StdVideoH264SpsVuiFlags,
     pub aspect_ratio_idc: crate::vk::StdVideoH264AspectRatioIdc,
@@ -50,25 +55,29 @@ pub struct StdVideoH264SequenceParameterSetVui {
     pub p_hrd_parameters: *const crate::vk::StdVideoH264HrdParameters,
 }
 #[repr(C)]
+#[derive(Clone, Copy)]
 pub struct StdVideoH264SpsFlags {
-    pub constraint_set0_flag: u32,
-    pub constraint_set1_flag: u32,
-    pub constraint_set2_flag: u32,
-    pub constraint_set3_flag: u32,
-    pub constraint_set4_flag: u32,
-    pub constraint_set5_flag: u32,
-    pub direct_8x8_inference_flag: u32,
-    pub mb_adaptive_frame_field_flag: u32,
-    pub frame_mbs_only_flag: u32,
-    pub delta_pic_order_always_zero_flag: u32,
-    pub separate_colour_plane_flag: u32,
-    pub gaps_in_frame_num_value_allowed_flag: u32,
-    pub qpprime_y_zero_transform_bypass_flag: u32,
-    pub frame_cropping_flag: u32,
-    pub seq_scaling_matrix_present_flag: u32,
-    pub vui_parameters_present_flag: u32,
+    /**- `constraint_set0_flag` @ `0..1`
+- `constraint_set1_flag` @ `1..2`
+- `constraint_set2_flag` @ `2..3`
+- `constraint_set3_flag` @ `3..4`
+- `constraint_set4_flag` @ `4..5`
+- `constraint_set5_flag` @ `5..6`
+- `direct_8x8_inference_flag` @ `6..7`
+- `mb_adaptive_frame_field_flag` @ `7..8`
+- `frame_mbs_only_flag` @ `8..9`
+- `delta_pic_order_always_zero_flag` @ `9..10`
+- `separate_colour_plane_flag` @ `10..11`
+- `gaps_in_frame_num_value_allowed_flag` @ `11..12`
+- `qpprime_y_zero_transform_bypass_flag` @ `12..13`
+- `frame_cropping_flag` @ `13..14`
+- `seq_scaling_matrix_present_flag` @ `14..15`
+- `vui_parameters_present_flag` @ `15..16`
+*/
+    pub bitfield0: u32,
 }
 #[repr(C)]
+#[derive(Clone, Copy)]
 pub struct StdVideoH264ScalingLists {
     pub scaling_list_present_mask: u16,
     pub use_default_scaling_matrix_mask: u16,
@@ -78,6 +87,7 @@ pub struct StdVideoH264ScalingLists {
         as _]; crate::vk::STD_VIDEO_H264_SCALING_LIST_8X8_NUM_LISTS as _],
 }
 #[repr(C)]
+#[derive(Clone, Copy)]
 pub struct StdVideoH264SequenceParameterSet {
     pub flags: crate::vk::StdVideoH264SpsFlags,
     pub profile_idc: crate::vk::StdVideoH264ProfileIdc,
@@ -106,17 +116,21 @@ pub struct StdVideoH264SequenceParameterSet {
     pub p_sequence_parameter_set_vui: *const crate::vk::StdVideoH264SequenceParameterSetVui,
 }
 #[repr(C)]
+#[derive(Clone, Copy)]
 pub struct StdVideoH264PpsFlags {
-    pub transform_8x8_mode_flag: u32,
-    pub redundant_pic_cnt_present_flag: u32,
-    pub constrained_intra_pred_flag: u32,
-    pub deblocking_filter_control_present_flag: u32,
-    pub weighted_pred_flag: u32,
-    pub bottom_field_pic_order_in_frame_present_flag: u32,
-    pub entropy_coding_mode_flag: u32,
-    pub pic_scaling_matrix_present_flag: u32,
+    /**- `transform_8x8_mode_flag` @ `0..1`
+- `redundant_pic_cnt_present_flag` @ `1..2`
+- `constrained_intra_pred_flag` @ `2..3`
+- `deblocking_filter_control_present_flag` @ `3..4`
+- `weighted_pred_flag` @ `4..5`
+- `bottom_field_pic_order_in_frame_present_flag` @ `5..6`
+- `entropy_coding_mode_flag` @ `6..7`
+- `pic_scaling_matrix_present_flag` @ `7..8`
+*/
+    pub bitfield0: u32,
 }
 #[repr(C)]
+#[derive(Clone, Copy)]
 pub struct StdVideoH264PictureParameterSet {
     pub flags: crate::vk::StdVideoH264PpsFlags,
     pub seq_parameter_set_id: u8,
@@ -131,30 +145,43 @@ pub struct StdVideoH264PictureParameterSet {
     pub p_scaling_lists: *const crate::vk::StdVideoH264ScalingLists,
 }
 #[repr(transparent)]
+#[derive(Clone, Copy)]
 pub struct StdVideoH264ChromaFormatIdc(pub(crate) i32);
 #[repr(transparent)]
+#[derive(Clone, Copy)]
 pub struct StdVideoH264ProfileIdc(pub(crate) i32);
 #[repr(transparent)]
+#[derive(Clone, Copy)]
 pub struct StdVideoH264LevelIdc(pub(crate) i32);
 #[repr(transparent)]
+#[derive(Clone, Copy)]
 pub struct StdVideoH264PocType(pub(crate) i32);
 #[repr(transparent)]
+#[derive(Clone, Copy)]
 pub struct StdVideoH264AspectRatioIdc(pub(crate) i32);
 #[repr(transparent)]
+#[derive(Clone, Copy)]
 pub struct StdVideoH264WeightedBipredIdc(pub(crate) i32);
 #[repr(transparent)]
+#[derive(Clone, Copy)]
 pub struct StdVideoH264ModificationOfPicNumsIdc(pub(crate) i32);
 #[repr(transparent)]
+#[derive(Clone, Copy)]
 pub struct StdVideoH264MemMgmtControlOp(pub(crate) i32);
 #[repr(transparent)]
+#[derive(Clone, Copy)]
 pub struct StdVideoH264CabacInitIdc(pub(crate) i32);
 #[repr(transparent)]
+#[derive(Clone, Copy)]
 pub struct StdVideoH264DisableDeblockingFilterIdc(pub(crate) i32);
 #[repr(transparent)]
+#[derive(Clone, Copy)]
 pub struct StdVideoH264SliceType(pub(crate) i32);
 #[repr(transparent)]
+#[derive(Clone, Copy)]
 pub struct StdVideoH264PictureType(pub(crate) i32);
 #[repr(transparent)]
+#[derive(Clone, Copy)]
 pub struct StdVideoH264NonVclNaluType(pub(crate) i32);
 pub const STD_VIDEO_H264_CPB_CNT_LIST_SIZE: u32 = 32;
 pub const STD_VIDEO_H264_SCALING_LIST_4X4_NUM_LISTS: u32 = 6;

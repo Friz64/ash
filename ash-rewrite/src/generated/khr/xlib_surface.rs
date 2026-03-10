@@ -2,6 +2,7 @@
 #![cfg_attr(rustfmt, rustfmt_skip)]
 //![Vulkan Manual Page](https://docs.vulkan.org/refpages/latest/refpages/source/VK_KHR_xlib_surface.html) · Extension `VK_KHR_xlib_surface`
 #[repr(C)]
+#[derive(Clone, Copy)]
 pub struct XlibSurfaceCreateInfoKHR {
     pub s_type: crate::vk::StructureType,
     pub p_next: *const core::ffi::c_void,
@@ -10,6 +11,7 @@ pub struct XlibSurfaceCreateInfoKHR {
     pub window: crate::platform_types::Window,
 }
 #[repr(transparent)]
+#[derive(Clone, Copy)]
 pub struct XlibSurfaceCreateFlagsKHR(pub(crate) i32);
 pub const KHR_XLIB_SURFACE_SPEC_VERSION: u32 = 6;
 pub const KHR_XLIB_SURFACE_EXTENSION_NAME: &core::ffi::CStr = c"VK_KHR_xlib_surface";

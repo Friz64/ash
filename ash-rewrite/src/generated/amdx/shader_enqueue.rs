@@ -2,6 +2,7 @@
 #![cfg_attr(rustfmt, rustfmt_skip)]
 //![Vulkan Manual Page](https://docs.vulkan.org/refpages/latest/refpages/source/VK_AMDX_shader_enqueue.html) · Extension `VK_AMDX_shader_enqueue`
 #[repr(C)]
+#[derive(Clone, Copy)]
 pub struct PhysicalDeviceShaderEnqueuePropertiesAMDX {
     pub s_type: crate::vk::StructureType,
     pub p_next: *mut core::ffi::c_void,
@@ -14,6 +15,7 @@ pub struct PhysicalDeviceShaderEnqueuePropertiesAMDX {
     pub max_execution_graph_workgroups: u32,
 }
 #[repr(C)]
+#[derive(Clone, Copy)]
 pub struct PhysicalDeviceShaderEnqueueFeaturesAMDX {
     pub s_type: crate::vk::StructureType,
     pub p_next: *mut core::ffi::c_void,
@@ -21,6 +23,7 @@ pub struct PhysicalDeviceShaderEnqueueFeaturesAMDX {
     pub shader_mesh_enqueue: crate::vk::Bool32,
 }
 #[repr(C)]
+#[derive(Clone, Copy)]
 pub struct ExecutionGraphPipelineCreateInfoAMDX {
     pub s_type: crate::vk::StructureType,
     pub p_next: *const core::ffi::c_void,
@@ -33,6 +36,7 @@ pub struct ExecutionGraphPipelineCreateInfoAMDX {
     pub base_pipeline_index: i32,
 }
 #[repr(C)]
+#[derive(Clone, Copy)]
 pub struct PipelineShaderStageNodeCreateInfoAMDX {
     pub s_type: crate::vk::StructureType,
     pub p_next: *const core::ffi::c_void,
@@ -40,6 +44,7 @@ pub struct PipelineShaderStageNodeCreateInfoAMDX {
     pub index: u32,
 }
 #[repr(C)]
+#[derive(Clone, Copy)]
 pub struct ExecutionGraphPipelineScratchSizeAMDX {
     pub s_type: crate::vk::StructureType,
     pub p_next: *mut core::ffi::c_void,
@@ -48,6 +53,7 @@ pub struct ExecutionGraphPipelineScratchSizeAMDX {
     pub size_granularity: crate::vk::DeviceSize,
 }
 #[repr(C)]
+#[derive(Clone, Copy)]
 pub struct DispatchGraphInfoAMDX {
     pub node_index: u32,
     pub payload_count: u32,
@@ -55,12 +61,14 @@ pub struct DispatchGraphInfoAMDX {
     pub payload_stride: u64,
 }
 #[repr(C)]
+#[derive(Clone, Copy)]
 pub struct DispatchGraphCountInfoAMDX {
     pub count: u32,
     pub infos: crate::vk::DeviceOrHostAddressConstAMDX,
     pub stride: u64,
 }
 #[repr(C)]
+#[derive(Clone, Copy)]
 pub union DeviceOrHostAddressConstAMDX {
     pub device_address: crate::vk::DeviceAddress,
     pub host_address: *const core::ffi::c_void,

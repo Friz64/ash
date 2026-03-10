@@ -2,34 +2,41 @@
 #![cfg_attr(rustfmt, rustfmt_skip)]
 //![Vulkan Manual Page](https://docs.vulkan.org/refpages/latest/refpages/source/VK_EXT_display_control.html) · Extension `VK_EXT_display_control`
 #[repr(C)]
+#[derive(Clone, Copy)]
 pub struct DisplayPowerInfoEXT {
     pub s_type: crate::vk::StructureType,
     pub p_next: *const core::ffi::c_void,
     pub power_state: crate::vk::DisplayPowerStateEXT,
 }
 #[repr(C)]
+#[derive(Clone, Copy)]
 pub struct DeviceEventInfoEXT {
     pub s_type: crate::vk::StructureType,
     pub p_next: *const core::ffi::c_void,
     pub device_event: crate::vk::DeviceEventTypeEXT,
 }
 #[repr(C)]
+#[derive(Clone, Copy)]
 pub struct DisplayEventInfoEXT {
     pub s_type: crate::vk::StructureType,
     pub p_next: *const core::ffi::c_void,
     pub display_event: crate::vk::DisplayEventTypeEXT,
 }
 #[repr(C)]
+#[derive(Clone, Copy)]
 pub struct SwapchainCounterCreateInfoEXT {
     pub s_type: crate::vk::StructureType,
     pub p_next: *const core::ffi::c_void,
     pub surface_counters: crate::vk::SurfaceCounterFlagsEXT,
 }
 #[repr(transparent)]
+#[derive(Clone, Copy)]
 pub struct DisplayPowerStateEXT(pub(crate) i32);
 #[repr(transparent)]
+#[derive(Clone, Copy)]
 pub struct DeviceEventTypeEXT(pub(crate) i32);
 #[repr(transparent)]
+#[derive(Clone, Copy)]
 pub struct DisplayEventTypeEXT(pub(crate) i32);
 pub const EXT_DISPLAY_CONTROL_SPEC_VERSION: u32 = 1;
 pub const EXT_DISPLAY_CONTROL_EXTENSION_NAME: &core::ffi::CStr = c"VK_EXT_display_control";

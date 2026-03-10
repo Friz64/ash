@@ -2,6 +2,7 @@
 #![cfg_attr(rustfmt, rustfmt_skip)]
 //![Vulkan Manual Page](https://docs.vulkan.org/refpages/latest/refpages/source/VK_KHR_dynamic_rendering.html) · Extension `VK_KHR_dynamic_rendering`
 pub type PipelineRenderingCreateInfoKHR = crate::vk::PipelineRenderingCreateInfo;
+pub type RenderingInfoKHR = crate::vk::RenderingInfo;
 pub type RenderingAttachmentInfoKHR = crate::vk::RenderingAttachmentInfo;
 pub type PhysicalDeviceDynamicRenderingFeaturesKHR = crate::vk::PhysicalDeviceDynamicRenderingFeatures;
 pub type CommandBufferInheritanceRenderingInfoKHR = crate::vk::CommandBufferInheritanceRenderingInfo;

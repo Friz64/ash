@@ -2,12 +2,14 @@
 #![cfg_attr(rustfmt, rustfmt_skip)]
 //![Vulkan Manual Page](https://docs.vulkan.org/refpages/latest/refpages/source/VK_ARM_render_pass_striped.html) · Extension `VK_ARM_render_pass_striped`
 #[repr(C)]
+#[derive(Clone, Copy)]
 pub struct PhysicalDeviceRenderPassStripedFeaturesARM {
     pub s_type: crate::vk::StructureType,
     pub p_next: *mut core::ffi::c_void,
     pub render_pass_striped: crate::vk::Bool32,
 }
 #[repr(C)]
+#[derive(Clone, Copy)]
 pub struct PhysicalDeviceRenderPassStripedPropertiesARM {
     pub s_type: crate::vk::StructureType,
     pub p_next: *mut core::ffi::c_void,
@@ -15,12 +17,14 @@ pub struct PhysicalDeviceRenderPassStripedPropertiesARM {
     pub max_render_pass_stripes: u32,
 }
 #[repr(C)]
+#[derive(Clone, Copy)]
 pub struct RenderPassStripeInfoARM {
     pub s_type: crate::vk::StructureType,
     pub p_next: *const core::ffi::c_void,
     pub stripe_area: crate::vk::Rect2D,
 }
 #[repr(C)]
+#[derive(Clone, Copy)]
 pub struct RenderPassStripeBeginInfoARM {
     pub s_type: crate::vk::StructureType,
     pub p_next: *const core::ffi::c_void,
@@ -28,6 +32,7 @@ pub struct RenderPassStripeBeginInfoARM {
     pub p_stripe_infos: *const crate::vk::RenderPassStripeInfoARM,
 }
 #[repr(C)]
+#[derive(Clone, Copy)]
 pub struct RenderPassStripeSubmitInfoARM {
     pub s_type: crate::vk::StructureType,
     pub p_next: *const core::ffi::c_void,

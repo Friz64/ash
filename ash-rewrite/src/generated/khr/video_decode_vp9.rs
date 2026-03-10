@@ -2,24 +2,28 @@
 #![cfg_attr(rustfmt, rustfmt_skip)]
 //![Vulkan Manual Page](https://docs.vulkan.org/refpages/latest/refpages/source/VK_KHR_video_decode_vp9.html) · Extension `VK_KHR_video_decode_vp9`
 #[repr(C)]
+#[derive(Clone, Copy)]
 pub struct PhysicalDeviceVideoDecodeVP9FeaturesKHR {
     pub s_type: crate::vk::StructureType,
     pub p_next: *mut core::ffi::c_void,
     pub video_decode_vp9: crate::vk::Bool32,
 }
 #[repr(C)]
+#[derive(Clone, Copy)]
 pub struct VideoDecodeVP9ProfileInfoKHR {
     pub s_type: crate::vk::StructureType,
     pub p_next: *const core::ffi::c_void,
     pub std_profile: crate::vk::StdVideoVP9Profile,
 }
 #[repr(C)]
+#[derive(Clone, Copy)]
 pub struct VideoDecodeVP9CapabilitiesKHR {
     pub s_type: crate::vk::StructureType,
     pub p_next: *mut core::ffi::c_void,
     pub max_level: crate::vk::StdVideoVP9Level,
 }
 #[repr(C)]
+#[derive(Clone, Copy)]
 pub struct VideoDecodeVP9PictureInfoKHR {
     pub s_type: crate::vk::StructureType,
     pub p_next: *const core::ffi::c_void,

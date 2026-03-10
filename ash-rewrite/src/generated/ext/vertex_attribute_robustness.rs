@@ -2,6 +2,7 @@
 #![cfg_attr(rustfmt, rustfmt_skip)]
 //![Vulkan Manual Page](https://docs.vulkan.org/refpages/latest/refpages/source/VK_EXT_vertex_attribute_robustness.html) · Extension `VK_EXT_vertex_attribute_robustness`
 #[repr(C)]
+#[derive(Clone, Copy)]
 pub struct PhysicalDeviceVertexAttributeRobustnessFeaturesEXT {
     pub s_type: crate::vk::StructureType,
     pub p_next: *mut core::ffi::c_void,

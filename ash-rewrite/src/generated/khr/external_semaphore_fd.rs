@@ -2,6 +2,7 @@
 #![cfg_attr(rustfmt, rustfmt_skip)]
 //![Vulkan Manual Page](https://docs.vulkan.org/refpages/latest/refpages/source/VK_KHR_external_semaphore_fd.html) · Extension `VK_KHR_external_semaphore_fd`
 #[repr(C)]
+#[derive(Clone, Copy)]
 pub struct ImportSemaphoreFdInfoKHR {
     pub s_type: crate::vk::StructureType,
     pub p_next: *const core::ffi::c_void,
@@ -11,6 +12,7 @@ pub struct ImportSemaphoreFdInfoKHR {
     pub fd: core::ffi::c_int,
 }
 #[repr(C)]
+#[derive(Clone, Copy)]
 pub struct SemaphoreGetFdInfoKHR {
     pub s_type: crate::vk::StructureType,
     pub p_next: *const core::ffi::c_void,

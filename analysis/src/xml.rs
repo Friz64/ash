@@ -1,13 +1,12 @@
 pub mod cdecl;
 pub mod cexpr;
 pub mod depends;
-pub mod name;
 
 use crate::LibraryName;
+use crate::name::{CMacroName, CommandName, ConstantName, FuncPointerName, TypeName};
 use cdecl::{CDecl, CDeclMode, CTok, CType};
 use cexpr::{CExprItem, CExprItems};
 use depends::Depends;
-use name::{CMacroName, CommandName, ConstantName, FuncPointerName, TypeName};
 use roxmltree::NodeType;
 use roxmltree::StringStorage;
 use std::fmt::Write;

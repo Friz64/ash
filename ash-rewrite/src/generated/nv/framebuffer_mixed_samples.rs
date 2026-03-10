@@ -2,6 +2,7 @@
 #![cfg_attr(rustfmt, rustfmt_skip)]
 //![Vulkan Manual Page](https://docs.vulkan.org/refpages/latest/refpages/source/VK_NV_framebuffer_mixed_samples.html) · Extension `VK_NV_framebuffer_mixed_samples`
 #[repr(C)]
+#[derive(Clone, Copy)]
 pub struct PipelineCoverageModulationStateCreateInfoNV {
     pub s_type: crate::vk::StructureType,
     pub p_next: *const core::ffi::c_void,
@@ -13,8 +14,10 @@ pub struct PipelineCoverageModulationStateCreateInfoNV {
 }
 pub type AttachmentSampleCountInfoNV = crate::vk::AttachmentSampleCountInfoAMD;
 #[repr(transparent)]
+#[derive(Clone, Copy)]
 pub struct CoverageModulationModeNV(pub(crate) i32);
 #[repr(transparent)]
+#[derive(Clone, Copy)]
 pub struct PipelineCoverageModulationStateCreateFlagsNV(pub(crate) i32);
 pub const NV_FRAMEBUFFER_MIXED_SAMPLES_SPEC_VERSION: u32 = 1;
 pub const NV_FRAMEBUFFER_MIXED_SAMPLES_EXTENSION_NAME: &core::ffi::CStr = c"VK_NV_framebuffer_mixed_samples";

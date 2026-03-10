@@ -2,6 +2,7 @@
 #![cfg_attr(rustfmt, rustfmt_skip)]
 //![Vulkan Manual Page](https://docs.vulkan.org/refpages/latest/refpages/source/VK_EXT_debug_utils.html) · Extension `VK_EXT_debug_utils`
 #[repr(C)]
+#[derive(Clone, Copy)]
 pub struct DebugUtilsObjectNameInfoEXT {
     pub s_type: crate::vk::StructureType,
     pub p_next: *const core::ffi::c_void,
@@ -10,6 +11,7 @@ pub struct DebugUtilsObjectNameInfoEXT {
     pub p_object_name: *const core::ffi::c_char,
 }
 #[repr(C)]
+#[derive(Clone, Copy)]
 pub struct DebugUtilsObjectTagInfoEXT {
     pub s_type: crate::vk::StructureType,
     pub p_next: *const core::ffi::c_void,
@@ -20,6 +22,7 @@ pub struct DebugUtilsObjectTagInfoEXT {
     pub p_tag: *const core::ffi::c_void,
 }
 #[repr(C)]
+#[derive(Clone, Copy)]
 pub struct DebugUtilsLabelEXT {
     pub s_type: crate::vk::StructureType,
     pub p_next: *const core::ffi::c_void,
@@ -27,6 +30,7 @@ pub struct DebugUtilsLabelEXT {
     pub color: [core::ffi::c_float; 4 as _],
 }
 #[repr(C)]
+#[derive(Clone, Copy)]
 pub struct DebugUtilsMessengerCreateInfoEXT {
     pub s_type: crate::vk::StructureType,
     pub p_next: *const core::ffi::c_void,
@@ -37,6 +41,7 @@ pub struct DebugUtilsMessengerCreateInfoEXT {
     pub p_user_data: *mut core::ffi::c_void,
 }
 #[repr(C)]
+#[derive(Clone, Copy)]
 pub struct DebugUtilsMessengerCallbackDataEXT {
     pub s_type: crate::vk::StructureType,
     pub p_next: *const core::ffi::c_void,
@@ -52,18 +57,25 @@ pub struct DebugUtilsMessengerCallbackDataEXT {
     pub p_objects: *const crate::vk::DebugUtilsObjectNameInfoEXT,
 }
 #[repr(transparent)]
+#[derive(Clone, Copy)]
 pub struct DebugUtilsMessageSeverityFlagsEXT(pub(crate) i32);
 #[repr(transparent)]
+#[derive(Clone, Copy)]
 pub struct DebugUtilsMessageTypeFlagsEXT(pub(crate) i32);
 #[repr(transparent)]
+#[derive(Clone, Copy)]
 pub struct DebugUtilsMessengerCreateFlagsEXT(pub(crate) i32);
 #[repr(transparent)]
+#[derive(Clone, Copy)]
 pub struct DebugUtilsMessengerCallbackDataFlagsEXT(pub(crate) i32);
 #[repr(transparent)]
+#[derive(Clone, Copy)]
 pub struct DebugUtilsMessageSeverityFlagBitsEXT(pub(crate) i32);
 #[repr(transparent)]
+#[derive(Clone, Copy)]
 pub struct DebugUtilsMessageTypeFlagBitsEXT(pub(crate) i32);
 #[repr(transparent)]
+#[derive(Clone, Copy)]
 pub struct DebugUtilsMessengerEXT(pub(crate) i32);
 #[allow(non_camel_case_types)]
 pub type PFN_vkDebugUtilsMessengerCallbackEXT = Option<()>;

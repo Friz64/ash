@@ -1,8 +1,9 @@
 use crate::output::CodeMap;
 use analysis::{
     item::{Items, TypeItem},
+    name::VariableName,
+    name::{CMacroName, ConstantName, FuncPointerName, TypeName},
     to_rust::RustTranslator,
-    xml::name::{CMacroName, ConstantName, FuncPointerName, TypeName},
 };
 use proc_macro2::TokenStream;
 use quote::quote;
@@ -51,53 +52,54 @@ impl CodeMap {
 }
 
 #[derive(Debug)]
-pub struct Context {}
+pub struct Context<'a> {
+    items: &'a Items,
+}
 
-impl RustTranslator for Context {
-    fn var_name_to_rust(&self, raw: &'static str) -> Ident {
-        crate::to_snake_case_escape_ident(raw)
+impl<'a> RustTranslator for Context<'a> {
+    fn var_name_to_rust(&self, name: VariableName) -> Ident {
+        crate::to_snake_case_escape_ident(name.original())
     }
 
-    fn type_to_rust(&self, name: TypeName) -> TokenStream {
+    fn type_to_rust(&self, name: TypeName, with_path: bool) -> TokenStream {
         let ident: Ident = syn::parse_str(name.prefix_trimmed()).unwrap();
-        quote! { crate::vk::#ident }
+        let path = with_path.then(|| quote! { crate::vk:: });
+        quote! { #path #ident }
     }
 
-    fn func_pointer_to_rust(&self, name: FuncPointerName) -> TokenStream {
+    fn func_pointer_to_rust(&self, name: FuncPointerName, with_path: bool) -> TokenStream {
         let ident: Ident = syn::parse_str(name.original()).unwrap();
-        quote! { crate::vk::#ident }
+        let path = with_path.then(|| quote! { crate::vk:: });
+        quote! { #path #ident }
     }
 
-    fn constant_to_rust(&self, name: ConstantName) -> TokenStream {
+    fn constant_to_rust(&self, name: ConstantName, with_path: bool) -> TokenStream {
         let ident: Ident = syn::parse_str(name.prefix_trimmed()).unwrap();
-        quote! { crate::vk::#ident }
+        let path = with_path.then(|| quote! { crate::vk:: });
+        quote! { #path #ident }
     }
 
-    fn cmacro_to_rust(&self, name: CMacroName, has_args: bool) -> TokenStream {
-        let ident: Ident = if has_args {
-            syn::parse_str(
-                &name
-                    .prefix_trimmed()
-                    // todo: switch to future RustTranslate function?
-                    .to_ascii_lowercase(),
-            )
-            .unwrap()
-        } else {
+    fn cmacro_to_rust(&self, name: CMacroName, with_path: bool) -> TokenStream {
+        let ident: Ident = if self.items.cmacros[&name].has_args() {
             syn::parse_str(name.prefix_trimmed()).unwrap()
+        } else {
+            syn::parse_str(&name.prefix_trimmed().to_ascii_lowercase()).unwrap()
         };
 
-        quote! { crate::vk::#ident }
+        let path = with_path.then(|| quote! { crate::vk:: });
+        quote! { #path #ident }
     }
 
-    fn platform_type_to_rust(&self, raw: &'static str) -> TokenStream {
+    fn platform_type_to_rust(&self, raw: &'static str, with_path: bool) -> TokenStream {
         let ident: Ident = syn::parse_str(raw).unwrap();
-        quote! { crate::platform_types::#ident }
+        let path = with_path.then(|| quote! { crate::platform_types:: });
+        quote! { #path #ident }
     }
 }
 
 pub fn generate_code(items: &Items, codemap: &mut CodeMap) {
     debug!("generating structures code");
-    let ctx = Context {};
+    let ctx = Context { items };
     codemap.extend_from_items(&ctx, items.types.values());
     codemap.extend_from_items(&ctx, items.func_pointers.values());
     codemap.extend_from_items(&ctx, items.constants.values());

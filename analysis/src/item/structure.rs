@@ -1,30 +1,29 @@
 use crate::{
     decl::{Decl, Ty},
     item::{Named, RequireMap, RequiredBy},
-    xml::{self, name::TypeName},
+    name::{TypeName, VariableName},
+    xml,
 };
+use std::{cmp::Ordering, ops::Range};
 use tracing::{instrument, trace};
 
-fn has_pointer(members: &[Decl]) -> bool {
-    members
-        .iter()
-        .any(|member| matches!(member.ty, Ty::Ptr(..)))
+#[derive(Debug)]
+pub struct BitfieldRange {
+    pub name: VariableName,
+    pub range: Range<u8>,
 }
 
-struct BitfieldRange {
-    // name + range?
-}
-
-enum StructMember {
+#[derive(Debug)]
+pub enum StructMember {
     Normal(Decl),
-    Bitfield { decl: Decl },
+    BitField { ty: Ty, ranges: Vec<BitfieldRange> },
 }
 
 #[derive(Debug)]
 pub struct Struct {
     pub required_by: RequiredBy,
     pub name: TypeName,
-    pub members: Vec<Decl>,
+    pub members: Vec<StructMember>,
 }
 
 impl Named<TypeName> for Struct {
@@ -39,17 +38,64 @@ impl Struct {
         let required_by = *require_map.ty.get(&xml.name)?;
         trace!(?required_by, "constructing");
 
+        let mut members = Vec::new();
+        let mut used_bitwidth = None;
+        for member in &xml.members {
+            let decl = Decl::from_c(require_map, &member.c_decl);
+            if let Some(width) = member.c_decl.bitfield_width {
+                // FIXME: this is currently the case everywhere, but we shouldn't assume...
+                const TY_WIDTH: u8 = 32;
+
+                if used_bitwidth.is_none() {
+                    used_bitwidth = Some(0);
+                    members.push(StructMember::BitField {
+                        ty: decl.ty,
+                        ranges: Vec::new(),
+                    });
+                }
+
+                let currently_used_bitwidth = used_bitwidth.as_mut().unwrap();
+                let last_used_bitwidth = *currently_used_bitwidth;
+                *currently_used_bitwidth += width.get();
+                let range = last_used_bitwidth..(*currently_used_bitwidth);
+
+                match (*currently_used_bitwidth).cmp(&TY_WIDTH) {
+                    Ordering::Less => (),
+                    Ordering::Equal => used_bitwidth = None,
+                    Ordering::Greater => panic!("bitfield should be large enough"),
+                }
+
+                let Some(StructMember::BitField { ty: _, ranges }) = members.last_mut() else {
+                    unreachable!()
+                };
+
+                ranges.push(BitfieldRange {
+                    name: decl.name,
+                    range,
+                });
+            } else {
+                assert_eq!(used_bitwidth, None, "bitfield not fully used");
+                members.push(StructMember::Normal(decl));
+            }
+        }
+
         Some(Struct {
             required_by,
             name: xml.name,
-            members: (xml.members.iter())
-                .map(|member| Decl::from_c(require_map, &member.c_decl))
-                .collect(),
+            members,
         })
     }
 
     pub fn has_pointer(&self) -> bool {
-        has_pointer(&self.members)
+        self.members.iter().any(|member| {
+            matches!(
+                member,
+                StructMember::Normal(Decl {
+                    ty: Ty::Ptr(..),
+                    ..
+                })
+            )
+        })
     }
 }
 
@@ -82,6 +128,8 @@ impl Union {
     }
 
     pub fn has_pointer(&self) -> bool {
-        has_pointer(&self.members)
+        self.members
+            .iter()
+            .any(|member| matches!(member.ty, Ty::Ptr(..)))
     }
 }

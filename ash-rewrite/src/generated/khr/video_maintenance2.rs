@@ -2,12 +2,14 @@
 #![cfg_attr(rustfmt, rustfmt_skip)]
 //![Vulkan Manual Page](https://docs.vulkan.org/refpages/latest/refpages/source/VK_KHR_video_maintenance2.html) · Extension `VK_KHR_video_maintenance2`
 #[repr(C)]
+#[derive(Clone, Copy)]
 pub struct PhysicalDeviceVideoMaintenance2FeaturesKHR {
     pub s_type: crate::vk::StructureType,
     pub p_next: *mut core::ffi::c_void,
     pub video_maintenance2: crate::vk::Bool32,
 }
 #[repr(C)]
+#[derive(Clone, Copy)]
 pub struct VideoDecodeH264InlineSessionParametersInfoKHR {
     pub s_type: crate::vk::StructureType,
     pub p_next: *const core::ffi::c_void,
@@ -15,6 +17,7 @@ pub struct VideoDecodeH264InlineSessionParametersInfoKHR {
     pub p_std_pps: *const crate::vk::StdVideoH264PictureParameterSet,
 }
 #[repr(C)]
+#[derive(Clone, Copy)]
 pub struct VideoDecodeH265InlineSessionParametersInfoKHR {
     pub s_type: crate::vk::StructureType,
     pub p_next: *const core::ffi::c_void,
@@ -23,6 +26,7 @@ pub struct VideoDecodeH265InlineSessionParametersInfoKHR {
     pub p_std_pps: *const crate::vk::StdVideoH265PictureParameterSet,
 }
 #[repr(C)]
+#[derive(Clone, Copy)]
 pub struct VideoDecodeAV1InlineSessionParametersInfoKHR {
     pub s_type: crate::vk::StructureType,
     pub p_next: *const core::ffi::c_void,

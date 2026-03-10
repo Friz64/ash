@@ -2,6 +2,7 @@
 #![cfg_attr(rustfmt, rustfmt_skip)]
 //![Vulkan Manual Page](https://docs.vulkan.org/refpages/latest/refpages/source/VK_NV_memory_decompression.html) · Extension `VK_NV_memory_decompression`
 #[repr(C)]
+#[derive(Clone, Copy)]
 pub struct DecompressMemoryRegionNV {
     pub src_address: crate::vk::DeviceAddress,
     pub dst_address: crate::vk::DeviceAddress,

@@ -2,6 +2,7 @@
 #![cfg_attr(rustfmt, rustfmt_skip)]
 //![Vulkan Manual Page](https://docs.vulkan.org/refpages/latest/refpages/source/VK_KHR_video_decode_h264.html) · Extension `VK_KHR_video_decode_h264`
 #[repr(C)]
+#[derive(Clone, Copy)]
 pub struct VideoDecodeH264ProfileInfoKHR {
     pub s_type: crate::vk::StructureType,
     pub p_next: *const core::ffi::c_void,
@@ -9,6 +10,7 @@ pub struct VideoDecodeH264ProfileInfoKHR {
     pub picture_layout: crate::vk::VideoDecodeH264PictureLayoutFlagBitsKHR,
 }
 #[repr(C)]
+#[derive(Clone, Copy)]
 pub struct VideoDecodeH264CapabilitiesKHR {
     pub s_type: crate::vk::StructureType,
     pub p_next: *mut core::ffi::c_void,
@@ -16,6 +18,7 @@ pub struct VideoDecodeH264CapabilitiesKHR {
     pub field_offset_granularity: crate::vk::Offset2D,
 }
 #[repr(C)]
+#[derive(Clone, Copy)]
 pub struct VideoDecodeH264SessionParametersAddInfoKHR {
     pub s_type: crate::vk::StructureType,
     pub p_next: *const core::ffi::c_void,
@@ -25,6 +28,7 @@ pub struct VideoDecodeH264SessionParametersAddInfoKHR {
     pub p_std_pp_ss: *const crate::vk::StdVideoH264PictureParameterSet,
 }
 #[repr(C)]
+#[derive(Clone, Copy)]
 pub struct VideoDecodeH264SessionParametersCreateInfoKHR {
     pub s_type: crate::vk::StructureType,
     pub p_next: *const core::ffi::c_void,
@@ -33,6 +37,7 @@ pub struct VideoDecodeH264SessionParametersCreateInfoKHR {
     pub p_parameters_add_info: *const crate::vk::VideoDecodeH264SessionParametersAddInfoKHR,
 }
 #[repr(C)]
+#[derive(Clone, Copy)]
 pub struct VideoDecodeH264PictureInfoKHR {
     pub s_type: crate::vk::StructureType,
     pub p_next: *const core::ffi::c_void,
@@ -41,14 +46,17 @@ pub struct VideoDecodeH264PictureInfoKHR {
     pub p_slice_offsets: *const u32,
 }
 #[repr(C)]
+#[derive(Clone, Copy)]
 pub struct VideoDecodeH264DpbSlotInfoKHR {
     pub s_type: crate::vk::StructureType,
     pub p_next: *const core::ffi::c_void,
     pub p_std_reference_info: *const crate::vk::StdVideoDecodeH264ReferenceInfo,
 }
 #[repr(transparent)]
+#[derive(Clone, Copy)]
 pub struct VideoDecodeH264PictureLayoutFlagsKHR(pub(crate) i32);
 #[repr(transparent)]
+#[derive(Clone, Copy)]
 pub struct VideoDecodeH264PictureLayoutFlagBitsKHR(pub(crate) i32);
 pub const KHR_VIDEO_DECODE_H264_SPEC_VERSION: u32 = 9;
 pub const KHR_VIDEO_DECODE_H264_EXTENSION_NAME: &core::ffi::CStr = c"VK_KHR_video_decode_h264";

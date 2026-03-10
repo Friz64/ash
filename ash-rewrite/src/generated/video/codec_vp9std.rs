@@ -2,11 +2,15 @@
 #![cfg_attr(rustfmt, rustfmt_skip)]
 //!Items provided by `vulkan_video_codec_vp9std`
 #[repr(C)]
+#[derive(Clone, Copy)]
 pub struct StdVideoVP9ColorConfigFlags {
-    pub color_range: u32,
-    pub reserved: u32,
+    /**- `color_range` @ `0..1`
+- `reserved` @ `1..32`
+*/
+    pub bitfield0: u32,
 }
 #[repr(C)]
+#[derive(Clone, Copy)]
 pub struct StdVideoVP9ColorConfig {
     pub flags: crate::vk::StdVideoVP9ColorConfigFlags,
     pub bit_depth: u8,
@@ -16,12 +20,16 @@ pub struct StdVideoVP9ColorConfig {
     pub color_space: crate::vk::StdVideoVP9ColorSpace,
 }
 #[repr(C)]
+#[derive(Clone, Copy)]
 pub struct StdVideoVP9LoopFilterFlags {
-    pub loop_filter_delta_enabled: u32,
-    pub loop_filter_delta_update: u32,
-    pub reserved: u32,
+    /**- `loop_filter_delta_enabled` @ `0..1`
+- `loop_filter_delta_update` @ `1..2`
+- `reserved` @ `2..32`
+*/
+    pub bitfield0: u32,
 }
 #[repr(C)]
+#[derive(Clone, Copy)]
 pub struct StdVideoVP9LoopFilter {
     pub flags: crate::vk::StdVideoVP9LoopFilterFlags,
     pub loop_filter_level: u8,
@@ -33,14 +41,18 @@ pub struct StdVideoVP9LoopFilter {
         as _],
 }
 #[repr(C)]
+#[derive(Clone, Copy)]
 pub struct StdVideoVP9SegmentationFlags {
-    pub segmentation_update_map: u32,
-    pub segmentation_temporal_update: u32,
-    pub segmentation_update_data: u32,
-    pub segmentation_abs_or_delta_update: u32,
-    pub reserved: u32,
+    /**- `segmentation_update_map` @ `0..1`
+- `segmentation_temporal_update` @ `1..2`
+- `segmentation_update_data` @ `2..3`
+- `segmentation_abs_or_delta_update` @ `3..4`
+- `reserved` @ `4..32`
+*/
+    pub bitfield0: u32,
 }
 #[repr(C)]
+#[derive(Clone, Copy)]
 pub struct StdVideoVP9Segmentation {
     pub flags: crate::vk::StdVideoVP9SegmentationFlags,
     pub segmentation_tree_probs: [u8; crate::vk::STD_VIDEO_VP9_MAX_SEGMENTATION_TREE_PROBS
@@ -52,16 +64,22 @@ pub struct StdVideoVP9Segmentation {
         as _]; crate::vk::STD_VIDEO_VP9_MAX_SEGMENTS as _],
 }
 #[repr(transparent)]
+#[derive(Clone, Copy)]
 pub struct StdVideoVP9Profile(pub(crate) i32);
 #[repr(transparent)]
+#[derive(Clone, Copy)]
 pub struct StdVideoVP9Level(pub(crate) i32);
 #[repr(transparent)]
+#[derive(Clone, Copy)]
 pub struct StdVideoVP9FrameType(pub(crate) i32);
 #[repr(transparent)]
+#[derive(Clone, Copy)]
 pub struct StdVideoVP9ReferenceName(pub(crate) i32);
 #[repr(transparent)]
+#[derive(Clone, Copy)]
 pub struct StdVideoVP9InterpolationFilter(pub(crate) i32);
 #[repr(transparent)]
+#[derive(Clone, Copy)]
 pub struct StdVideoVP9ColorSpace(pub(crate) i32);
 pub const STD_VIDEO_VP9_NUM_REF_FRAMES: u32 = 8;
 pub const STD_VIDEO_VP9_REFS_PER_FRAME: u32 = 3;

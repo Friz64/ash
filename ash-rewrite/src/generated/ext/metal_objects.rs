@@ -2,23 +2,27 @@
 #![cfg_attr(rustfmt, rustfmt_skip)]
 //![Vulkan Manual Page](https://docs.vulkan.org/refpages/latest/refpages/source/VK_EXT_metal_objects.html) · Extension `VK_EXT_metal_objects`
 #[repr(C)]
+#[derive(Clone, Copy)]
 pub struct ExportMetalObjectCreateInfoEXT {
     pub s_type: crate::vk::StructureType,
     pub p_next: *const core::ffi::c_void,
     pub export_object_type: crate::vk::ExportMetalObjectTypeFlagBitsEXT,
 }
 #[repr(C)]
+#[derive(Clone, Copy)]
 pub struct ExportMetalObjectsInfoEXT {
     pub s_type: crate::vk::StructureType,
     pub p_next: *const core::ffi::c_void,
 }
 #[repr(C)]
+#[derive(Clone, Copy)]
 pub struct ExportMetalDeviceInfoEXT {
     pub s_type: crate::vk::StructureType,
     pub p_next: *const core::ffi::c_void,
     pub mtl_device: crate::platform_types::MTLDevice_id,
 }
 #[repr(C)]
+#[derive(Clone, Copy)]
 pub struct ExportMetalCommandQueueInfoEXT {
     pub s_type: crate::vk::StructureType,
     pub p_next: *const core::ffi::c_void,
@@ -26,6 +30,7 @@ pub struct ExportMetalCommandQueueInfoEXT {
     pub mtl_command_queue: crate::platform_types::MTLCommandQueue_id,
 }
 #[repr(C)]
+#[derive(Clone, Copy)]
 pub struct ExportMetalBufferInfoEXT {
     pub s_type: crate::vk::StructureType,
     pub p_next: *const core::ffi::c_void,
@@ -33,12 +38,14 @@ pub struct ExportMetalBufferInfoEXT {
     pub mtl_buffer: crate::platform_types::MTLBuffer_id,
 }
 #[repr(C)]
+#[derive(Clone, Copy)]
 pub struct ImportMetalBufferInfoEXT {
     pub s_type: crate::vk::StructureType,
     pub p_next: *const core::ffi::c_void,
     pub mtl_buffer: crate::platform_types::MTLBuffer_id,
 }
 #[repr(C)]
+#[derive(Clone, Copy)]
 pub struct ExportMetalTextureInfoEXT {
     pub s_type: crate::vk::StructureType,
     pub p_next: *const core::ffi::c_void,
@@ -49,6 +56,7 @@ pub struct ExportMetalTextureInfoEXT {
     pub mtl_texture: crate::platform_types::MTLTexture_id,
 }
 #[repr(C)]
+#[derive(Clone, Copy)]
 pub struct ImportMetalTextureInfoEXT {
     pub s_type: crate::vk::StructureType,
     pub p_next: *const core::ffi::c_void,
@@ -56,6 +64,7 @@ pub struct ImportMetalTextureInfoEXT {
     pub mtl_texture: crate::platform_types::MTLTexture_id,
 }
 #[repr(C)]
+#[derive(Clone, Copy)]
 pub struct ExportMetalIOSurfaceInfoEXT {
     pub s_type: crate::vk::StructureType,
     pub p_next: *const core::ffi::c_void,
@@ -63,12 +72,14 @@ pub struct ExportMetalIOSurfaceInfoEXT {
     pub io_surface: crate::platform_types::IOSurfaceRef,
 }
 #[repr(C)]
+#[derive(Clone, Copy)]
 pub struct ImportMetalIOSurfaceInfoEXT {
     pub s_type: crate::vk::StructureType,
     pub p_next: *const core::ffi::c_void,
     pub io_surface: crate::platform_types::IOSurfaceRef,
 }
 #[repr(C)]
+#[derive(Clone, Copy)]
 pub struct ExportMetalSharedEventInfoEXT {
     pub s_type: crate::vk::StructureType,
     pub p_next: *const core::ffi::c_void,
@@ -77,14 +88,17 @@ pub struct ExportMetalSharedEventInfoEXT {
     pub mtl_shared_event: crate::platform_types::MTLSharedEvent_id,
 }
 #[repr(C)]
+#[derive(Clone, Copy)]
 pub struct ImportMetalSharedEventInfoEXT {
     pub s_type: crate::vk::StructureType,
     pub p_next: *const core::ffi::c_void,
     pub mtl_shared_event: crate::platform_types::MTLSharedEvent_id,
 }
 #[repr(transparent)]
+#[derive(Clone, Copy)]
 pub struct ExportMetalObjectTypeFlagsEXT(pub(crate) i32);
 #[repr(transparent)]
+#[derive(Clone, Copy)]
 pub struct ExportMetalObjectTypeFlagBitsEXT(pub(crate) i32);
 pub const EXT_METAL_OBJECTS_SPEC_VERSION: u32 = 2;
 pub const EXT_METAL_OBJECTS_EXTENSION_NAME: &core::ffi::CStr = c"VK_EXT_metal_objects";

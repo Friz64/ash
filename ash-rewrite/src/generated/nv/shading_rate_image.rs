@@ -2,11 +2,13 @@
 #![cfg_attr(rustfmt, rustfmt_skip)]
 //![Vulkan Manual Page](https://docs.vulkan.org/refpages/latest/refpages/source/VK_NV_shading_rate_image.html) · Extension `VK_NV_shading_rate_image`
 #[repr(C)]
+#[derive(Clone, Copy)]
 pub struct ShadingRatePaletteNV {
     pub shading_rate_palette_entry_count: u32,
     pub p_shading_rate_palette_entries: *const crate::vk::ShadingRatePaletteEntryNV,
 }
 #[repr(C)]
+#[derive(Clone, Copy)]
 pub struct PipelineViewportShadingRateImageStateCreateInfoNV {
     pub s_type: crate::vk::StructureType,
     pub p_next: *const core::ffi::c_void,
@@ -15,6 +17,7 @@ pub struct PipelineViewportShadingRateImageStateCreateInfoNV {
     pub p_shading_rate_palettes: *const crate::vk::ShadingRatePaletteNV,
 }
 #[repr(C)]
+#[derive(Clone, Copy)]
 pub struct PhysicalDeviceShadingRateImageFeaturesNV {
     pub s_type: crate::vk::StructureType,
     pub p_next: *mut core::ffi::c_void,
@@ -22,6 +25,7 @@ pub struct PhysicalDeviceShadingRateImageFeaturesNV {
     pub shading_rate_coarse_sample_order: crate::vk::Bool32,
 }
 #[repr(C)]
+#[derive(Clone, Copy)]
 pub struct PhysicalDeviceShadingRateImagePropertiesNV {
     pub s_type: crate::vk::StructureType,
     pub p_next: *mut core::ffi::c_void,
@@ -30,12 +34,14 @@ pub struct PhysicalDeviceShadingRateImagePropertiesNV {
     pub shading_rate_max_coarse_samples: u32,
 }
 #[repr(C)]
+#[derive(Clone, Copy)]
 pub struct CoarseSampleLocationNV {
     pub pixel_x: u32,
     pub pixel_y: u32,
     pub sample: u32,
 }
 #[repr(C)]
+#[derive(Clone, Copy)]
 pub struct CoarseSampleOrderCustomNV {
     pub shading_rate: crate::vk::ShadingRatePaletteEntryNV,
     pub sample_count: u32,
@@ -43,6 +49,7 @@ pub struct CoarseSampleOrderCustomNV {
     pub p_sample_locations: *const crate::vk::CoarseSampleLocationNV,
 }
 #[repr(C)]
+#[derive(Clone, Copy)]
 pub struct PipelineViewportCoarseSampleOrderStateCreateInfoNV {
     pub s_type: crate::vk::StructureType,
     pub p_next: *const core::ffi::c_void,
@@ -51,8 +58,10 @@ pub struct PipelineViewportCoarseSampleOrderStateCreateInfoNV {
     pub p_custom_sample_orders: *const crate::vk::CoarseSampleOrderCustomNV,
 }
 #[repr(transparent)]
+#[derive(Clone, Copy)]
 pub struct ShadingRatePaletteEntryNV(pub(crate) i32);
 #[repr(transparent)]
+#[derive(Clone, Copy)]
 pub struct CoarseSampleOrderTypeNV(pub(crate) i32);
 pub const NV_SHADING_RATE_IMAGE_SPEC_VERSION: u32 = 3;
 pub const NV_SHADING_RATE_IMAGE_EXTENSION_NAME: &core::ffi::CStr = c"VK_NV_shading_rate_image";

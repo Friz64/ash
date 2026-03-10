@@ -2,6 +2,7 @@
 #![cfg_attr(rustfmt, rustfmt_skip)]
 //![Vulkan Manual Page](https://docs.vulkan.org/refpages/latest/refpages/source/VK_EXT_nested_command_buffer.html) · Extension `VK_EXT_nested_command_buffer`
 #[repr(C)]
+#[derive(Clone, Copy)]
 pub struct PhysicalDeviceNestedCommandBufferFeaturesEXT {
     pub s_type: crate::vk::StructureType,
     pub p_next: *mut core::ffi::c_void,
@@ -10,6 +11,7 @@ pub struct PhysicalDeviceNestedCommandBufferFeaturesEXT {
     pub nested_command_buffer_simultaneous_use: crate::vk::Bool32,
 }
 #[repr(C)]
+#[derive(Clone, Copy)]
 pub struct PhysicalDeviceNestedCommandBufferPropertiesEXT {
     pub s_type: crate::vk::StructureType,
     pub p_next: *mut core::ffi::c_void,

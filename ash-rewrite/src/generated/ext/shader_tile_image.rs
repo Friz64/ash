@@ -2,6 +2,7 @@
 #![cfg_attr(rustfmt, rustfmt_skip)]
 //![Vulkan Manual Page](https://docs.vulkan.org/refpages/latest/refpages/source/VK_EXT_shader_tile_image.html) · Extension `VK_EXT_shader_tile_image`
 #[repr(C)]
+#[derive(Clone, Copy)]
 pub struct PhysicalDeviceShaderTileImageFeaturesEXT {
     pub s_type: crate::vk::StructureType,
     pub p_next: *mut core::ffi::c_void,
@@ -10,6 +11,7 @@ pub struct PhysicalDeviceShaderTileImageFeaturesEXT {
     pub shader_tile_image_stencil_read_access: crate::vk::Bool32,
 }
 #[repr(C)]
+#[derive(Clone, Copy)]
 pub struct PhysicalDeviceShaderTileImagePropertiesEXT {
     pub s_type: crate::vk::StructureType,
     pub p_next: *mut core::ffi::c_void,

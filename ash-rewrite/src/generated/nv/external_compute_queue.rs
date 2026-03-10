@@ -2,24 +2,28 @@
 #![cfg_attr(rustfmt, rustfmt_skip)]
 //![Vulkan Manual Page](https://docs.vulkan.org/refpages/latest/refpages/source/VK_NV_external_compute_queue.html) · Extension `VK_NV_external_compute_queue`
 #[repr(C)]
+#[derive(Clone, Copy)]
 pub struct ExternalComputeQueueDeviceCreateInfoNV {
     pub s_type: crate::vk::StructureType,
     pub p_next: *const core::ffi::c_void,
     pub reserved_external_queues: u32,
 }
 #[repr(C)]
+#[derive(Clone, Copy)]
 pub struct ExternalComputeQueueCreateInfoNV {
     pub s_type: crate::vk::StructureType,
     pub p_next: *const core::ffi::c_void,
     pub preferred_queue: crate::vk::Queue,
 }
 #[repr(C)]
+#[derive(Clone, Copy)]
 pub struct ExternalComputeQueueDataParamsNV {
     pub s_type: crate::vk::StructureType,
     pub p_next: *const core::ffi::c_void,
     pub device_index: u32,
 }
 #[repr(C)]
+#[derive(Clone, Copy)]
 pub struct PhysicalDeviceExternalComputeQueuePropertiesNV {
     pub s_type: crate::vk::StructureType,
     pub p_next: *mut core::ffi::c_void,
@@ -27,6 +31,7 @@ pub struct PhysicalDeviceExternalComputeQueuePropertiesNV {
     pub max_external_queues: u32,
 }
 #[repr(transparent)]
+#[derive(Clone, Copy)]
 pub struct ExternalComputeQueueNV(pub(crate) i32);
 pub const NV_EXTERNAL_COMPUTE_QUEUE_SPEC_VERSION: u32 = 1;
 pub const NV_EXTERNAL_COMPUTE_QUEUE_EXTENSION_NAME: &core::ffi::CStr = c"VK_NV_external_compute_queue";

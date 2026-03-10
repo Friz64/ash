@@ -2,6 +2,7 @@
 #![cfg_attr(rustfmt, rustfmt_skip)]
 //![Vulkan Manual Page](https://docs.vulkan.org/refpages/latest/refpages/source/VK_IMG_relaxed_line_rasterization.html) · Extension `VK_IMG_relaxed_line_rasterization`
 #[repr(C)]
+#[derive(Clone, Copy)]
 pub struct PhysicalDeviceRelaxedLineRasterizationFeaturesIMG {
     pub s_type: crate::vk::StructureType,
     pub p_next: *mut core::ffi::c_void,

@@ -2,6 +2,7 @@
 #![cfg_attr(rustfmt, rustfmt_skip)]
 //![Vulkan Manual Page](https://docs.vulkan.org/refpages/latest/refpages/source/VK_EXT_descriptor_buffer.html) · Extension `VK_EXT_descriptor_buffer`
 #[repr(C)]
+#[derive(Clone, Copy)]
 pub struct PhysicalDeviceDescriptorBufferFeaturesEXT {
     pub s_type: crate::vk::StructureType,
     pub p_next: *mut core::ffi::c_void,
@@ -11,6 +12,7 @@ pub struct PhysicalDeviceDescriptorBufferFeaturesEXT {
     pub descriptor_buffer_push_descriptors: crate::vk::Bool32,
 }
 #[repr(C)]
+#[derive(Clone, Copy)]
 pub struct PhysicalDeviceDescriptorBufferPropertiesEXT {
     pub s_type: crate::vk::StructureType,
     pub p_next: *mut core::ffi::c_void,
@@ -49,12 +51,14 @@ pub struct PhysicalDeviceDescriptorBufferPropertiesEXT {
     pub descriptor_buffer_address_space_size: crate::vk::DeviceSize,
 }
 #[repr(C)]
+#[derive(Clone, Copy)]
 pub struct PhysicalDeviceDescriptorBufferDensityMapPropertiesEXT {
     pub s_type: crate::vk::StructureType,
     pub p_next: *mut core::ffi::c_void,
     pub combined_image_sampler_density_map_descriptor_size: usize,
 }
 #[repr(C)]
+#[derive(Clone, Copy)]
 pub struct DescriptorAddressInfoEXT {
     pub s_type: crate::vk::StructureType,
     pub p_next: *mut core::ffi::c_void,
@@ -63,6 +67,7 @@ pub struct DescriptorAddressInfoEXT {
     pub format: crate::vk::Format,
 }
 #[repr(C)]
+#[derive(Clone, Copy)]
 pub struct DescriptorBufferBindingInfoEXT {
     pub s_type: crate::vk::StructureType,
     pub p_next: *const core::ffi::c_void,
@@ -70,12 +75,14 @@ pub struct DescriptorBufferBindingInfoEXT {
     pub usage: crate::vk::BufferUsageFlags,
 }
 #[repr(C)]
+#[derive(Clone, Copy)]
 pub struct DescriptorBufferBindingPushDescriptorBufferHandleEXT {
     pub s_type: crate::vk::StructureType,
     pub p_next: *const core::ffi::c_void,
     pub buffer: crate::vk::Buffer,
 }
 #[repr(C)]
+#[derive(Clone, Copy)]
 pub struct DescriptorGetInfoEXT {
     pub s_type: crate::vk::StructureType,
     pub p_next: *const core::ffi::c_void,
@@ -83,30 +90,35 @@ pub struct DescriptorGetInfoEXT {
     pub data: crate::vk::DescriptorDataEXT,
 }
 #[repr(C)]
+#[derive(Clone, Copy)]
 pub struct BufferCaptureDescriptorDataInfoEXT {
     pub s_type: crate::vk::StructureType,
     pub p_next: *const core::ffi::c_void,
     pub buffer: crate::vk::Buffer,
 }
 #[repr(C)]
+#[derive(Clone, Copy)]
 pub struct ImageCaptureDescriptorDataInfoEXT {
     pub s_type: crate::vk::StructureType,
     pub p_next: *const core::ffi::c_void,
     pub image: crate::vk::Image,
 }
 #[repr(C)]
+#[derive(Clone, Copy)]
 pub struct ImageViewCaptureDescriptorDataInfoEXT {
     pub s_type: crate::vk::StructureType,
     pub p_next: *const core::ffi::c_void,
     pub image_view: crate::vk::ImageView,
 }
 #[repr(C)]
+#[derive(Clone, Copy)]
 pub struct SamplerCaptureDescriptorDataInfoEXT {
     pub s_type: crate::vk::StructureType,
     pub p_next: *const core::ffi::c_void,
     pub sampler: crate::vk::Sampler,
 }
 #[repr(C)]
+#[derive(Clone, Copy)]
 pub struct AccelerationStructureCaptureDescriptorDataInfoEXT {
     pub s_type: crate::vk::StructureType,
     pub p_next: *const core::ffi::c_void,
@@ -114,12 +126,14 @@ pub struct AccelerationStructureCaptureDescriptorDataInfoEXT {
     pub acceleration_structure_nv: crate::vk::AccelerationStructureNV,
 }
 #[repr(C)]
+#[derive(Clone, Copy)]
 pub struct OpaqueCaptureDescriptorDataCreateInfoEXT {
     pub s_type: crate::vk::StructureType,
     pub p_next: *const core::ffi::c_void,
     pub opaque_capture_descriptor_data: *const core::ffi::c_void,
 }
 #[repr(C)]
+#[derive(Clone, Copy)]
 pub union DescriptorDataEXT {
     pub p_sampler: *const crate::vk::Sampler,
     pub p_combined_image_sampler: *const crate::vk::DescriptorImageInfo,

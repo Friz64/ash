@@ -2,6 +2,7 @@
 #![cfg_attr(rustfmt, rustfmt_skip)]
 //![Vulkan Manual Page](https://docs.vulkan.org/refpages/latest/refpages/source/VK_ARM_tensors.html) · Extension `VK_ARM_tensors`
 #[repr(C)]
+#[derive(Clone, Copy)]
 pub struct TensorDescriptionARM {
     pub s_type: crate::vk::StructureType,
     pub p_next: *const core::ffi::c_void,
@@ -13,6 +14,7 @@ pub struct TensorDescriptionARM {
     pub usage: crate::vk::TensorUsageFlagsARM,
 }
 #[repr(C)]
+#[derive(Clone, Copy)]
 pub struct TensorCreateInfoARM {
     pub s_type: crate::vk::StructureType,
     pub p_next: *const core::ffi::c_void,
@@ -23,20 +25,14 @@ pub struct TensorCreateInfoARM {
     pub p_queue_family_indices: *const u32,
 }
 #[repr(C)]
-pub struct TensorViewCreateInfoARM {
-    pub s_type: crate::vk::StructureType,
-    pub p_next: *const core::ffi::c_void,
-    pub flags: crate::vk::TensorViewCreateFlagsARM,
-    pub tensor: crate::vk::TensorARM,
-    pub format: crate::vk::Format,
-}
-#[repr(C)]
+#[derive(Clone, Copy)]
 pub struct TensorMemoryRequirementsInfoARM {
     pub s_type: crate::vk::StructureType,
     pub p_next: *const core::ffi::c_void,
     pub tensor: crate::vk::TensorARM,
 }
 #[repr(C)]
+#[derive(Clone, Copy)]
 pub struct BindTensorMemoryInfoARM {
     pub s_type: crate::vk::StructureType,
     pub p_next: *const core::ffi::c_void,
@@ -45,6 +41,7 @@ pub struct BindTensorMemoryInfoARM {
     pub memory_offset: crate::vk::DeviceSize,
 }
 #[repr(C)]
+#[derive(Clone, Copy)]
 pub struct WriteDescriptorSetTensorARM {
     pub s_type: crate::vk::StructureType,
     pub p_next: *const core::ffi::c_void,
@@ -52,6 +49,7 @@ pub struct WriteDescriptorSetTensorARM {
     pub p_tensor_views: *const crate::vk::TensorViewARM,
 }
 #[repr(C)]
+#[derive(Clone, Copy)]
 pub struct TensorFormatPropertiesARM {
     pub s_type: crate::vk::StructureType,
     pub p_next: *mut core::ffi::c_void,
@@ -59,6 +57,7 @@ pub struct TensorFormatPropertiesARM {
     pub linear_tiling_tensor_features: crate::vk::FormatFeatureFlags2,
 }
 #[repr(C)]
+#[derive(Clone, Copy)]
 pub struct PhysicalDeviceTensorPropertiesARM {
     pub s_type: crate::vk::StructureType,
     pub p_next: *mut core::ffi::c_void,
@@ -77,6 +76,7 @@ pub struct PhysicalDeviceTensorPropertiesARM {
     pub shader_tensor_supported_stages: crate::vk::ShaderStageFlags,
 }
 #[repr(C)]
+#[derive(Clone, Copy)]
 pub struct TensorMemoryBarrierARM {
     pub s_type: crate::vk::StructureType,
     pub p_next: *const core::ffi::c_void,
@@ -89,6 +89,7 @@ pub struct TensorMemoryBarrierARM {
     pub tensor: crate::vk::TensorARM,
 }
 #[repr(C)]
+#[derive(Clone, Copy)]
 pub struct TensorDependencyInfoARM {
     pub s_type: crate::vk::StructureType,
     pub p_next: *const core::ffi::c_void,
@@ -96,6 +97,7 @@ pub struct TensorDependencyInfoARM {
     pub p_tensor_memory_barriers: *const crate::vk::TensorMemoryBarrierARM,
 }
 #[repr(C)]
+#[derive(Clone, Copy)]
 pub struct PhysicalDeviceTensorFeaturesARM {
     pub s_type: crate::vk::StructureType,
     pub p_next: *mut core::ffi::c_void,
@@ -107,12 +109,14 @@ pub struct PhysicalDeviceTensorFeaturesARM {
     pub tensors: crate::vk::Bool32,
 }
 #[repr(C)]
+#[derive(Clone, Copy)]
 pub struct DeviceTensorMemoryRequirementsARM {
     pub s_type: crate::vk::StructureType,
     pub p_next: *const core::ffi::c_void,
     pub p_create_info: *const crate::vk::TensorCreateInfoARM,
 }
 #[repr(C)]
+#[derive(Clone, Copy)]
 pub struct CopyTensorInfoARM {
     pub s_type: crate::vk::StructureType,
     pub p_next: *const core::ffi::c_void,
@@ -122,6 +126,7 @@ pub struct CopyTensorInfoARM {
     pub p_regions: *const crate::vk::TensorCopyARM,
 }
 #[repr(C)]
+#[derive(Clone, Copy)]
 pub struct TensorCopyARM {
     pub s_type: crate::vk::StructureType,
     pub p_next: *const core::ffi::c_void,
@@ -131,12 +136,14 @@ pub struct TensorCopyARM {
     pub p_extent: *const u64,
 }
 #[repr(C)]
+#[derive(Clone, Copy)]
 pub struct MemoryDedicatedAllocateInfoTensorARM {
     pub s_type: crate::vk::StructureType,
     pub p_next: *const core::ffi::c_void,
     pub tensor: crate::vk::TensorARM,
 }
 #[repr(C)]
+#[derive(Clone, Copy)]
 pub struct PhysicalDeviceDescriptorBufferTensorPropertiesARM {
     pub s_type: crate::vk::StructureType,
     pub p_next: *mut core::ffi::c_void,
@@ -145,30 +152,35 @@ pub struct PhysicalDeviceDescriptorBufferTensorPropertiesARM {
     pub tensor_descriptor_size: usize,
 }
 #[repr(C)]
+#[derive(Clone, Copy)]
 pub struct PhysicalDeviceDescriptorBufferTensorFeaturesARM {
     pub s_type: crate::vk::StructureType,
     pub p_next: *mut core::ffi::c_void,
     pub descriptor_buffer_tensor_descriptors: crate::vk::Bool32,
 }
 #[repr(C)]
+#[derive(Clone, Copy)]
 pub struct TensorCaptureDescriptorDataInfoARM {
     pub s_type: crate::vk::StructureType,
     pub p_next: *const core::ffi::c_void,
     pub tensor: crate::vk::TensorARM,
 }
 #[repr(C)]
+#[derive(Clone, Copy)]
 pub struct TensorViewCaptureDescriptorDataInfoARM {
     pub s_type: crate::vk::StructureType,
     pub p_next: *const core::ffi::c_void,
     pub tensor_view: crate::vk::TensorViewARM,
 }
 #[repr(C)]
+#[derive(Clone, Copy)]
 pub struct DescriptorGetTensorInfoARM {
     pub s_type: crate::vk::StructureType,
     pub p_next: *const core::ffi::c_void,
     pub tensor_view: crate::vk::TensorViewARM,
 }
 #[repr(C)]
+#[derive(Clone, Copy)]
 pub struct FrameBoundaryTensorsARM {
     pub s_type: crate::vk::StructureType,
     pub p_next: *const core::ffi::c_void,
@@ -176,6 +188,7 @@ pub struct FrameBoundaryTensorsARM {
     pub p_tensors: *const crate::vk::TensorARM,
 }
 #[repr(C)]
+#[derive(Clone, Copy)]
 pub struct PhysicalDeviceExternalTensorInfoARM {
     pub s_type: crate::vk::StructureType,
     pub p_next: *const core::ffi::c_void,
@@ -184,34 +197,39 @@ pub struct PhysicalDeviceExternalTensorInfoARM {
     pub handle_type: crate::vk::ExternalMemoryHandleTypeFlagBits,
 }
 #[repr(C)]
+#[derive(Clone, Copy)]
 pub struct ExternalTensorPropertiesARM {
     pub s_type: crate::vk::StructureType,
     pub p_next: *const core::ffi::c_void,
     pub external_memory_properties: crate::vk::ExternalMemoryProperties,
 }
 #[repr(C)]
+#[derive(Clone, Copy)]
 pub struct ExternalMemoryTensorCreateInfoARM {
     pub s_type: crate::vk::StructureType,
     pub p_next: *const core::ffi::c_void,
     pub handle_types: crate::vk::ExternalMemoryHandleTypeFlags,
 }
 #[repr(transparent)]
+#[derive(Clone, Copy)]
 pub struct TensorTilingARM(pub(crate) i32);
 #[repr(transparent)]
+#[derive(Clone, Copy)]
 pub struct TensorCreateFlagsARM(pub(crate) i32);
 #[repr(transparent)]
+#[derive(Clone, Copy)]
 pub struct TensorUsageFlagsARM(pub(crate) i32);
 #[repr(transparent)]
-pub struct TensorViewCreateFlagsARM(pub(crate) i32);
-#[repr(transparent)]
+#[derive(Clone, Copy)]
 pub struct TensorCreateFlagBitsARM(pub(crate) i32);
 #[repr(transparent)]
+#[derive(Clone, Copy)]
 pub struct TensorUsageFlagBitsARM(pub(crate) i32);
 #[repr(transparent)]
+#[derive(Clone, Copy)]
 pub struct TensorViewCreateFlagBitsARM(pub(crate) i32);
 #[repr(transparent)]
-pub struct TensorARM(pub(crate) i32);
-#[repr(transparent)]
+#[derive(Clone, Copy)]
 pub struct TensorViewARM(pub(crate) i32);
 pub const ARM_TENSORS_SPEC_VERSION: u32 = 2;
 pub const ARM_TENSORS_EXTENSION_NAME: &core::ffi::CStr = c"VK_ARM_tensors";

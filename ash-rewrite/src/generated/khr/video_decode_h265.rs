@@ -2,18 +2,21 @@
 #![cfg_attr(rustfmt, rustfmt_skip)]
 //![Vulkan Manual Page](https://docs.vulkan.org/refpages/latest/refpages/source/VK_KHR_video_decode_h265.html) · Extension `VK_KHR_video_decode_h265`
 #[repr(C)]
+#[derive(Clone, Copy)]
 pub struct VideoDecodeH265ProfileInfoKHR {
     pub s_type: crate::vk::StructureType,
     pub p_next: *const core::ffi::c_void,
     pub std_profile_idc: crate::vk::StdVideoH265ProfileIdc,
 }
 #[repr(C)]
+#[derive(Clone, Copy)]
 pub struct VideoDecodeH265CapabilitiesKHR {
     pub s_type: crate::vk::StructureType,
     pub p_next: *mut core::ffi::c_void,
     pub max_level_idc: crate::vk::StdVideoH265LevelIdc,
 }
 #[repr(C)]
+#[derive(Clone, Copy)]
 pub struct VideoDecodeH265SessionParametersAddInfoKHR {
     pub s_type: crate::vk::StructureType,
     pub p_next: *const core::ffi::c_void,
@@ -25,6 +28,7 @@ pub struct VideoDecodeH265SessionParametersAddInfoKHR {
     pub p_std_pp_ss: *const crate::vk::StdVideoH265PictureParameterSet,
 }
 #[repr(C)]
+#[derive(Clone, Copy)]
 pub struct VideoDecodeH265SessionParametersCreateInfoKHR {
     pub s_type: crate::vk::StructureType,
     pub p_next: *const core::ffi::c_void,
@@ -34,6 +38,7 @@ pub struct VideoDecodeH265SessionParametersCreateInfoKHR {
     pub p_parameters_add_info: *const crate::vk::VideoDecodeH265SessionParametersAddInfoKHR,
 }
 #[repr(C)]
+#[derive(Clone, Copy)]
 pub struct VideoDecodeH265PictureInfoKHR {
     pub s_type: crate::vk::StructureType,
     pub p_next: *const core::ffi::c_void,
@@ -42,6 +47,7 @@ pub struct VideoDecodeH265PictureInfoKHR {
     pub p_slice_segment_offsets: *const u32,
 }
 #[repr(C)]
+#[derive(Clone, Copy)]
 pub struct VideoDecodeH265DpbSlotInfoKHR {
     pub s_type: crate::vk::StructureType,
     pub p_next: *const core::ffi::c_void,

@@ -2,6 +2,7 @@
 #![cfg_attr(rustfmt, rustfmt_skip)]
 //![Vulkan Manual Page](https://docs.vulkan.org/refpages/latest/refpages/source/VK_NV_ray_tracing_motion_blur.html) · Extension `VK_NV_ray_tracing_motion_blur`
 #[repr(C)]
+#[derive(Clone, Copy)]
 pub struct PhysicalDeviceRayTracingMotionBlurFeaturesNV {
     pub s_type: crate::vk::StructureType,
     pub p_next: *mut core::ffi::c_void,
@@ -9,12 +10,14 @@ pub struct PhysicalDeviceRayTracingMotionBlurFeaturesNV {
     pub ray_tracing_motion_blur_pipeline_trace_rays_indirect: crate::vk::Bool32,
 }
 #[repr(C)]
+#[derive(Clone, Copy)]
 pub struct AccelerationStructureGeometryMotionTrianglesDataNV {
     pub s_type: crate::vk::StructureType,
     pub p_next: *const core::ffi::c_void,
     pub vertex_data: crate::vk::DeviceOrHostAddressConstKHR,
 }
 #[repr(C)]
+#[derive(Clone, Copy)]
 pub struct AccelerationStructureMotionInfoNV {
     pub s_type: crate::vk::StructureType,
     pub p_next: *const core::ffi::c_void,
@@ -22,6 +25,7 @@ pub struct AccelerationStructureMotionInfoNV {
     pub flags: crate::vk::AccelerationStructureMotionInfoFlagsNV,
 }
 #[repr(C)]
+#[derive(Clone, Copy)]
 pub struct SRTDataNV {
     pub sx: core::ffi::c_float,
     pub a: core::ffi::c_float,
@@ -41,42 +45,57 @@ pub struct SRTDataNV {
     pub tz: core::ffi::c_float,
 }
 #[repr(C)]
+#[derive(Clone, Copy)]
 pub struct AccelerationStructureSRTMotionInstanceNV {
     pub transform_t0: crate::vk::SRTDataNV,
     pub transform_t1: crate::vk::SRTDataNV,
-    pub instance_custom_index: u32,
-    pub mask: u32,
-    pub instance_shader_binding_table_record_offset: u32,
-    pub flags: crate::vk::GeometryInstanceFlagsKHR,
+    /**- `instanceCustomIndex` @ `0..24`
+- `mask` @ `24..32`
+*/
+    pub bitfield0: u32,
+    /**- `instanceShaderBindingTableRecordOffset` @ `0..24`
+- `flags` @ `24..32`
+*/
+    pub bitfield1: u32,
     pub acceleration_structure_reference: u64,
 }
 #[repr(C)]
+#[derive(Clone, Copy)]
 pub struct AccelerationStructureMatrixMotionInstanceNV {
     pub transform_t0: crate::vk::TransformMatrixKHR,
     pub transform_t1: crate::vk::TransformMatrixKHR,
-    pub instance_custom_index: u32,
-    pub mask: u32,
-    pub instance_shader_binding_table_record_offset: u32,
-    pub flags: crate::vk::GeometryInstanceFlagsKHR,
+    /**- `instanceCustomIndex` @ `0..24`
+- `mask` @ `24..32`
+*/
+    pub bitfield0: u32,
+    /**- `instanceShaderBindingTableRecordOffset` @ `0..24`
+- `flags` @ `24..32`
+*/
+    pub bitfield1: u32,
     pub acceleration_structure_reference: u64,
 }
 #[repr(C)]
+#[derive(Clone, Copy)]
 pub struct AccelerationStructureMotionInstanceNV {
     pub _type: crate::vk::AccelerationStructureMotionInstanceTypeNV,
     pub flags: crate::vk::AccelerationStructureMotionInstanceFlagsNV,
     pub data: crate::vk::AccelerationStructureMotionInstanceDataNV,
 }
 #[repr(C)]
+#[derive(Clone, Copy)]
 pub union AccelerationStructureMotionInstanceDataNV {
     pub static_instance: crate::vk::AccelerationStructureInstanceKHR,
     pub matrix_motion_instance: crate::vk::AccelerationStructureMatrixMotionInstanceNV,
     pub srt_motion_instance: crate::vk::AccelerationStructureSRTMotionInstanceNV,
 }
 #[repr(transparent)]
+#[derive(Clone, Copy)]
 pub struct AccelerationStructureMotionInstanceTypeNV(pub(crate) i32);
 #[repr(transparent)]
+#[derive(Clone, Copy)]
 pub struct AccelerationStructureMotionInfoFlagsNV(pub(crate) i32);
 #[repr(transparent)]
+#[derive(Clone, Copy)]
 pub struct AccelerationStructureMotionInstanceFlagsNV(pub(crate) i32);
 pub const NV_RAY_TRACING_MOTION_BLUR_SPEC_VERSION: u32 = 1;
 pub const NV_RAY_TRACING_MOTION_BLUR_EXTENSION_NAME: &core::ffi::CStr = c"VK_NV_ray_tracing_motion_blur";

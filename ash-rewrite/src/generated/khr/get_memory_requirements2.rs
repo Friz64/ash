@@ -4,6 +4,7 @@
 pub type BufferMemoryRequirementsInfo2KHR = crate::vk::BufferMemoryRequirementsInfo2;
 pub type ImageMemoryRequirementsInfo2KHR = crate::vk::ImageMemoryRequirementsInfo2;
 pub type ImageSparseMemoryRequirementsInfo2KHR = crate::vk::ImageSparseMemoryRequirementsInfo2;
+pub type MemoryRequirements2KHR = crate::vk::MemoryRequirements2;
 pub type SparseImageMemoryRequirements2KHR = crate::vk::SparseImageMemoryRequirements2;
 pub const KHR_GET_MEMORY_REQUIREMENTS_2_SPEC_VERSION: u32 = 1;
 pub const KHR_GET_MEMORY_REQUIREMENTS_2_EXTENSION_NAME: &core::ffi::CStr = c"VK_KHR_get_memory_requirements2";

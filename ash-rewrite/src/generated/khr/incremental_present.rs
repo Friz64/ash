@@ -2,6 +2,7 @@
 #![cfg_attr(rustfmt, rustfmt_skip)]
 //![Vulkan Manual Page](https://docs.vulkan.org/refpages/latest/refpages/source/VK_KHR_incremental_present.html) · Extension `VK_KHR_incremental_present`
 #[repr(C)]
+#[derive(Clone, Copy)]
 pub struct PresentRegionsKHR {
     pub s_type: crate::vk::StructureType,
     pub p_next: *const core::ffi::c_void,
@@ -9,11 +10,13 @@ pub struct PresentRegionsKHR {
     pub p_regions: *const crate::vk::PresentRegionKHR,
 }
 #[repr(C)]
+#[derive(Clone, Copy)]
 pub struct PresentRegionKHR {
     pub rectangle_count: u32,
     pub p_rectangles: *const crate::vk::RectLayerKHR,
 }
 #[repr(C)]
+#[derive(Clone, Copy)]
 pub struct RectLayerKHR {
     pub offset: crate::vk::Offset2D,
     pub extent: crate::vk::Extent2D,

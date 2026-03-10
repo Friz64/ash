@@ -2,6 +2,7 @@
 #![cfg_attr(rustfmt, rustfmt_skip)]
 //![Vulkan Manual Page](https://docs.vulkan.org/refpages/latest/refpages/source/VK_EXT_device_fault.html) · Extension `VK_EXT_device_fault`
 #[repr(C)]
+#[derive(Clone, Copy)]
 pub struct PhysicalDeviceFaultFeaturesEXT {
     pub s_type: crate::vk::StructureType,
     pub p_next: *mut core::ffi::c_void,
@@ -9,18 +10,21 @@ pub struct PhysicalDeviceFaultFeaturesEXT {
     pub device_fault_vendor_binary: crate::vk::Bool32,
 }
 #[repr(C)]
+#[derive(Clone, Copy)]
 pub struct DeviceFaultAddressInfoEXT {
     pub address_type: crate::vk::DeviceFaultAddressTypeEXT,
     pub reported_address: crate::vk::DeviceAddress,
     pub address_precision: crate::vk::DeviceSize,
 }
 #[repr(C)]
+#[derive(Clone, Copy)]
 pub struct DeviceFaultVendorInfoEXT {
     pub description: [core::ffi::c_char; crate::vk::MAX_DESCRIPTION_SIZE as _],
     pub vendor_fault_code: u64,
     pub vendor_fault_data: u64,
 }
 #[repr(C)]
+#[derive(Clone, Copy)]
 pub struct DeviceFaultCountsEXT {
     pub s_type: crate::vk::StructureType,
     pub p_next: *mut core::ffi::c_void,
@@ -29,6 +33,7 @@ pub struct DeviceFaultCountsEXT {
     pub vendor_binary_size: crate::vk::DeviceSize,
 }
 #[repr(C)]
+#[derive(Clone, Copy)]
 pub struct DeviceFaultInfoEXT {
     pub s_type: crate::vk::StructureType,
     pub p_next: *mut core::ffi::c_void,
@@ -38,6 +43,7 @@ pub struct DeviceFaultInfoEXT {
     pub p_vendor_binary_data: *mut core::ffi::c_void,
 }
 #[repr(C)]
+#[derive(Clone, Copy)]
 pub struct DeviceFaultVendorBinaryHeaderVersionOneEXT {
     pub header_size: u32,
     pub header_version: crate::vk::DeviceFaultVendorBinaryHeaderVersionEXT,
@@ -52,8 +58,10 @@ pub struct DeviceFaultVendorBinaryHeaderVersionOneEXT {
     pub api_version: u32,
 }
 #[repr(transparent)]
+#[derive(Clone, Copy)]
 pub struct DeviceFaultAddressTypeEXT(pub(crate) i32);
 #[repr(transparent)]
+#[derive(Clone, Copy)]
 pub struct DeviceFaultVendorBinaryHeaderVersionEXT(pub(crate) i32);
 pub const EXT_DEVICE_FAULT_SPEC_VERSION: u32 = 2;
 pub const EXT_DEVICE_FAULT_EXTENSION_NAME: &core::ffi::CStr = c"VK_EXT_device_fault";

@@ -2,12 +2,14 @@
 #![cfg_attr(rustfmt, rustfmt_skip)]
 //![Vulkan Manual Page](https://docs.vulkan.org/refpages/latest/refpages/source/VK_ANDROID_external_format_resolve.html) · Extension `VK_ANDROID_external_format_resolve`
 #[repr(C)]
+#[derive(Clone, Copy)]
 pub struct PhysicalDeviceExternalFormatResolveFeaturesANDROID {
     pub s_type: crate::vk::StructureType,
     pub p_next: *mut core::ffi::c_void,
     pub external_format_resolve: crate::vk::Bool32,
 }
 #[repr(C)]
+#[derive(Clone, Copy)]
 pub struct PhysicalDeviceExternalFormatResolvePropertiesANDROID {
     pub s_type: crate::vk::StructureType,
     pub p_next: *mut core::ffi::c_void,
@@ -16,6 +18,7 @@ pub struct PhysicalDeviceExternalFormatResolvePropertiesANDROID {
     pub external_format_resolve_chroma_offset_y: crate::vk::ChromaLocation,
 }
 #[repr(C)]
+#[derive(Clone, Copy)]
 pub struct AndroidHardwareBufferFormatResolvePropertiesANDROID {
     pub s_type: crate::vk::StructureType,
     pub p_next: *mut core::ffi::c_void,

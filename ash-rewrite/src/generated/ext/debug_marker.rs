@@ -2,6 +2,7 @@
 #![cfg_attr(rustfmt, rustfmt_skip)]
 //![Vulkan Manual Page](https://docs.vulkan.org/refpages/latest/refpages/source/VK_EXT_debug_marker.html) · Extension `VK_EXT_debug_marker`
 #[repr(C)]
+#[derive(Clone, Copy)]
 pub struct DebugMarkerObjectNameInfoEXT {
     pub s_type: crate::vk::StructureType,
     pub p_next: *const core::ffi::c_void,
@@ -10,6 +11,7 @@ pub struct DebugMarkerObjectNameInfoEXT {
     pub p_object_name: *const core::ffi::c_char,
 }
 #[repr(C)]
+#[derive(Clone, Copy)]
 pub struct DebugMarkerObjectTagInfoEXT {
     pub s_type: crate::vk::StructureType,
     pub p_next: *const core::ffi::c_void,
@@ -20,13 +22,12 @@ pub struct DebugMarkerObjectTagInfoEXT {
     pub p_tag: *const core::ffi::c_void,
 }
 #[repr(C)]
+#[derive(Clone, Copy)]
 pub struct DebugMarkerMarkerInfoEXT {
     pub s_type: crate::vk::StructureType,
     pub p_next: *const core::ffi::c_void,
     pub p_marker_name: *const core::ffi::c_char,
     pub color: [core::ffi::c_float; 4 as _],
 }
-#[repr(transparent)]
-pub struct DebugReportObjectTypeEXT(pub(crate) i32);
 pub const EXT_DEBUG_MARKER_SPEC_VERSION: u32 = 4;
 pub const EXT_DEBUG_MARKER_EXTENSION_NAME: &core::ffi::CStr = c"VK_EXT_debug_marker";

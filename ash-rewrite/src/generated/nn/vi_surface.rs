@@ -2,6 +2,7 @@
 #![cfg_attr(rustfmt, rustfmt_skip)]
 //![Vulkan Manual Page](https://docs.vulkan.org/refpages/latest/refpages/source/VK_NN_vi_surface.html) · Extension `VK_NN_vi_surface`
 #[repr(C)]
+#[derive(Clone, Copy)]
 pub struct ViSurfaceCreateInfoNN {
     pub s_type: crate::vk::StructureType,
     pub p_next: *const core::ffi::c_void,
@@ -9,6 +10,7 @@ pub struct ViSurfaceCreateInfoNN {
     pub window: *mut core::ffi::c_void,
 }
 #[repr(transparent)]
+#[derive(Clone, Copy)]
 pub struct ViSurfaceCreateFlagsNN(pub(crate) i32);
 pub const NN_VI_SURFACE_SPEC_VERSION: u32 = 1;
 pub const NN_VI_SURFACE_EXTENSION_NAME: &core::ffi::CStr = c"VK_NN_vi_surface";

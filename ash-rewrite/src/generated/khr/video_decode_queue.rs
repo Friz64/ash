@@ -2,18 +2,21 @@
 #![cfg_attr(rustfmt, rustfmt_skip)]
 //![Vulkan Manual Page](https://docs.vulkan.org/refpages/latest/refpages/source/VK_KHR_video_decode_queue.html) · Extension `VK_KHR_video_decode_queue`
 #[repr(C)]
+#[derive(Clone, Copy)]
 pub struct VideoDecodeCapabilitiesKHR {
     pub s_type: crate::vk::StructureType,
     pub p_next: *mut core::ffi::c_void,
     pub flags: crate::vk::VideoDecodeCapabilityFlagsKHR,
 }
 #[repr(C)]
+#[derive(Clone, Copy)]
 pub struct VideoDecodeUsageInfoKHR {
     pub s_type: crate::vk::StructureType,
     pub p_next: *const core::ffi::c_void,
     pub video_usage_hints: crate::vk::VideoDecodeUsageFlagsKHR,
 }
 #[repr(C)]
+#[derive(Clone, Copy)]
 pub struct VideoDecodeInfoKHR {
     pub s_type: crate::vk::StructureType,
     pub p_next: *const core::ffi::c_void,
@@ -27,14 +30,19 @@ pub struct VideoDecodeInfoKHR {
     pub p_reference_slots: *const crate::vk::VideoReferenceSlotInfoKHR,
 }
 #[repr(transparent)]
+#[derive(Clone, Copy)]
 pub struct VideoDecodeUsageFlagsKHR(pub(crate) i32);
 #[repr(transparent)]
+#[derive(Clone, Copy)]
 pub struct VideoDecodeCapabilityFlagsKHR(pub(crate) i32);
 #[repr(transparent)]
+#[derive(Clone, Copy)]
 pub struct VideoDecodeFlagsKHR(pub(crate) i32);
 #[repr(transparent)]
+#[derive(Clone, Copy)]
 pub struct VideoDecodeUsageFlagBitsKHR(pub(crate) i32);
 #[repr(transparent)]
+#[derive(Clone, Copy)]
 pub struct VideoDecodeCapabilityFlagBitsKHR(pub(crate) i32);
 pub const KHR_VIDEO_DECODE_QUEUE_SPEC_VERSION: u32 = 8;
 pub const KHR_VIDEO_DECODE_QUEUE_EXTENSION_NAME: &core::ffi::CStr = c"VK_KHR_video_decode_queue";

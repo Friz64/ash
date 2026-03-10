@@ -2,12 +2,14 @@
 #![cfg_attr(rustfmt, rustfmt_skip)]
 //![Vulkan Manual Page](https://docs.vulkan.org/refpages/latest/refpages/source/VK_NV_device_diagnostic_checkpoints.html) · Extension `VK_NV_device_diagnostic_checkpoints`
 #[repr(C)]
+#[derive(Clone, Copy)]
 pub struct QueueFamilyCheckpointPropertiesNV {
     pub s_type: crate::vk::StructureType,
     pub p_next: *mut core::ffi::c_void,
     pub checkpoint_execution_stage_mask: crate::vk::PipelineStageFlags,
 }
 #[repr(C)]
+#[derive(Clone, Copy)]
 pub struct CheckpointDataNV {
     pub s_type: crate::vk::StructureType,
     pub p_next: *mut core::ffi::c_void,
@@ -15,12 +17,14 @@ pub struct CheckpointDataNV {
     pub p_checkpoint_marker: *mut core::ffi::c_void,
 }
 #[repr(C)]
+#[derive(Clone, Copy)]
 pub struct QueueFamilyCheckpointProperties2NV {
     pub s_type: crate::vk::StructureType,
     pub p_next: *mut core::ffi::c_void,
     pub checkpoint_execution_stage_mask: crate::vk::PipelineStageFlags2,
 }
 #[repr(C)]
+#[derive(Clone, Copy)]
 pub struct CheckpointData2NV {
     pub s_type: crate::vk::StructureType,
     pub p_next: *mut core::ffi::c_void,

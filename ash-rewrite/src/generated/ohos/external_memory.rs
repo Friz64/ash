@@ -2,12 +2,14 @@
 #![cfg_attr(rustfmt, rustfmt_skip)]
 //![Vulkan Manual Page](https://docs.vulkan.org/refpages/latest/refpages/source/VK_OHOS_external_memory.html) · Extension `VK_OHOS_external_memory`
 #[repr(C)]
+#[derive(Clone, Copy)]
 pub struct NativeBufferUsageOHOS {
     pub s_type: crate::vk::StructureType,
     pub p_next: *mut core::ffi::c_void,
     pub ohos_native_buffer_usage: u64,
 }
 #[repr(C)]
+#[derive(Clone, Copy)]
 pub struct NativeBufferPropertiesOHOS {
     pub s_type: crate::vk::StructureType,
     pub p_next: *mut core::ffi::c_void,
@@ -15,6 +17,7 @@ pub struct NativeBufferPropertiesOHOS {
     pub memory_type_bits: u32,
 }
 #[repr(C)]
+#[derive(Clone, Copy)]
 pub struct NativeBufferFormatPropertiesOHOS {
     pub s_type: crate::vk::StructureType,
     pub p_next: *mut core::ffi::c_void,
@@ -28,18 +31,21 @@ pub struct NativeBufferFormatPropertiesOHOS {
     pub suggested_y_chroma_offset: crate::vk::ChromaLocation,
 }
 #[repr(C)]
+#[derive(Clone, Copy)]
 pub struct ImportNativeBufferInfoOHOS {
     pub s_type: crate::vk::StructureType,
     pub p_next: *const core::ffi::c_void,
     pub buffer: *mut crate::platform_types::OH_NativeBuffer,
 }
 #[repr(C)]
+#[derive(Clone, Copy)]
 pub struct MemoryGetNativeBufferInfoOHOS {
     pub s_type: crate::vk::StructureType,
     pub p_next: *const core::ffi::c_void,
     pub memory: crate::vk::DeviceMemory,
 }
 #[repr(C)]
+#[derive(Clone, Copy)]
 pub struct ExternalFormatOHOS {
     pub s_type: crate::vk::StructureType,
     pub p_next: *mut core::ffi::c_void,

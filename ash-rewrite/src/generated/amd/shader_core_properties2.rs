@@ -2,6 +2,7 @@
 #![cfg_attr(rustfmt, rustfmt_skip)]
 //![Vulkan Manual Page](https://docs.vulkan.org/refpages/latest/refpages/source/VK_AMD_shader_core_properties2.html) · Extension `VK_AMD_shader_core_properties2`
 #[repr(C)]
+#[derive(Clone, Copy)]
 pub struct PhysicalDeviceShaderCoreProperties2AMD {
     pub s_type: crate::vk::StructureType,
     pub p_next: *mut core::ffi::c_void,
@@ -9,8 +10,10 @@ pub struct PhysicalDeviceShaderCoreProperties2AMD {
     pub active_compute_unit_count: u32,
 }
 #[repr(transparent)]
+#[derive(Clone, Copy)]
 pub struct ShaderCorePropertiesFlagsAMD(pub(crate) i32);
 #[repr(transparent)]
+#[derive(Clone, Copy)]
 pub struct ShaderCorePropertiesFlagBitsAMD(pub(crate) i32);
 pub const AMD_SHADER_CORE_PROPERTIES_2_SPEC_VERSION: u32 = 1;
 pub const AMD_SHADER_CORE_PROPERTIES_2_EXTENSION_NAME: &core::ffi::CStr = c"VK_AMD_shader_core_properties2";

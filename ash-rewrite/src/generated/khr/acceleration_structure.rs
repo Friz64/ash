@@ -2,6 +2,7 @@
 #![cfg_attr(rustfmt, rustfmt_skip)]
 //![Vulkan Manual Page](https://docs.vulkan.org/refpages/latest/refpages/source/VK_KHR_acceleration_structure.html) · Extension `VK_KHR_acceleration_structure`
 #[repr(C)]
+#[derive(Clone, Copy)]
 pub struct WriteDescriptorSetAccelerationStructureKHR {
     pub s_type: crate::vk::StructureType,
     pub p_next: *const core::ffi::c_void,
@@ -9,6 +10,7 @@ pub struct WriteDescriptorSetAccelerationStructureKHR {
     pub p_acceleration_structures: *const crate::vk::AccelerationStructureKHR,
 }
 #[repr(C)]
+#[derive(Clone, Copy)]
 pub struct PhysicalDeviceAccelerationStructureFeaturesKHR {
     pub s_type: crate::vk::StructureType,
     pub p_next: *mut core::ffi::c_void,
@@ -19,6 +21,7 @@ pub struct PhysicalDeviceAccelerationStructureFeaturesKHR {
     pub descriptor_binding_acceleration_structure_update_after_bind: crate::vk::Bool32,
 }
 #[repr(C)]
+#[derive(Clone, Copy)]
 pub struct PhysicalDeviceAccelerationStructurePropertiesKHR {
     pub s_type: crate::vk::StructureType,
     pub p_next: *mut core::ffi::c_void,
@@ -32,6 +35,7 @@ pub struct PhysicalDeviceAccelerationStructurePropertiesKHR {
     pub min_acceleration_structure_scratch_offset_alignment: u32,
 }
 #[repr(C)]
+#[derive(Clone, Copy)]
 pub struct AccelerationStructureGeometryTrianglesDataKHR {
     pub s_type: crate::vk::StructureType,
     pub p_next: *const core::ffi::c_void,
@@ -44,6 +48,7 @@ pub struct AccelerationStructureGeometryTrianglesDataKHR {
     pub transform_data: crate::vk::DeviceOrHostAddressConstKHR,
 }
 #[repr(C)]
+#[derive(Clone, Copy)]
 pub struct AccelerationStructureGeometryAabbsDataKHR {
     pub s_type: crate::vk::StructureType,
     pub p_next: *const core::ffi::c_void,
@@ -51,6 +56,7 @@ pub struct AccelerationStructureGeometryAabbsDataKHR {
     pub stride: crate::vk::DeviceSize,
 }
 #[repr(C)]
+#[derive(Clone, Copy)]
 pub struct AccelerationStructureGeometryInstancesDataKHR {
     pub s_type: crate::vk::StructureType,
     pub p_next: *const core::ffi::c_void,
@@ -58,6 +64,7 @@ pub struct AccelerationStructureGeometryInstancesDataKHR {
     pub data: crate::vk::DeviceOrHostAddressConstKHR,
 }
 #[repr(C)]
+#[derive(Clone, Copy)]
 pub struct AccelerationStructureGeometryKHR {
     pub s_type: crate::vk::StructureType,
     pub p_next: *const core::ffi::c_void,
@@ -66,6 +73,7 @@ pub struct AccelerationStructureGeometryKHR {
     pub flags: crate::vk::GeometryFlagsKHR,
 }
 #[repr(C)]
+#[derive(Clone, Copy)]
 pub struct AccelerationStructureBuildGeometryInfoKHR {
     pub s_type: crate::vk::StructureType,
     pub p_next: *const core::ffi::c_void,
@@ -80,6 +88,7 @@ pub struct AccelerationStructureBuildGeometryInfoKHR {
     pub scratch_data: crate::vk::DeviceOrHostAddressKHR,
 }
 #[repr(C)]
+#[derive(Clone, Copy)]
 pub struct AccelerationStructureBuildRangeInfoKHR {
     pub primitive_count: u32,
     pub primitive_offset: u32,
@@ -87,6 +96,7 @@ pub struct AccelerationStructureBuildRangeInfoKHR {
     pub transform_offset: u32,
 }
 #[repr(C)]
+#[derive(Clone, Copy)]
 pub struct AccelerationStructureCreateInfoKHR {
     pub s_type: crate::vk::StructureType,
     pub p_next: *const core::ffi::c_void,
@@ -98,6 +108,7 @@ pub struct AccelerationStructureCreateInfoKHR {
     pub device_address: crate::vk::DeviceAddress,
 }
 #[repr(C)]
+#[derive(Clone, Copy)]
 pub struct AabbPositionsKHR {
     pub min_x: core::ffi::c_float,
     pub min_y: core::ffi::c_float,
@@ -107,31 +118,40 @@ pub struct AabbPositionsKHR {
     pub max_z: core::ffi::c_float,
 }
 #[repr(C)]
+#[derive(Clone, Copy)]
 pub struct TransformMatrixKHR {
     pub matrix: [[core::ffi::c_float; 4 as _]; 3 as _],
 }
 #[repr(C)]
+#[derive(Clone, Copy)]
 pub struct AccelerationStructureInstanceKHR {
     pub transform: crate::vk::TransformMatrixKHR,
-    pub instance_custom_index: u32,
-    pub mask: u32,
-    pub instance_shader_binding_table_record_offset: u32,
-    pub flags: crate::vk::GeometryInstanceFlagsKHR,
+    /**- `instanceCustomIndex` @ `0..24`
+- `mask` @ `24..32`
+*/
+    pub bitfield0: u32,
+    /**- `instanceShaderBindingTableRecordOffset` @ `0..24`
+- `flags` @ `24..32`
+*/
+    pub bitfield1: u32,
     pub acceleration_structure_reference: u64,
 }
 #[repr(C)]
+#[derive(Clone, Copy)]
 pub struct AccelerationStructureDeviceAddressInfoKHR {
     pub s_type: crate::vk::StructureType,
     pub p_next: *const core::ffi::c_void,
     pub acceleration_structure: crate::vk::AccelerationStructureKHR,
 }
 #[repr(C)]
+#[derive(Clone, Copy)]
 pub struct AccelerationStructureVersionInfoKHR {
     pub s_type: crate::vk::StructureType,
     pub p_next: *const core::ffi::c_void,
     pub p_version_data: *const u8,
 }
 #[repr(C)]
+#[derive(Clone, Copy)]
 pub struct CopyAccelerationStructureInfoKHR {
     pub s_type: crate::vk::StructureType,
     pub p_next: *const core::ffi::c_void,
@@ -140,6 +160,7 @@ pub struct CopyAccelerationStructureInfoKHR {
     pub mode: crate::vk::CopyAccelerationStructureModeKHR,
 }
 #[repr(C)]
+#[derive(Clone, Copy)]
 pub struct CopyAccelerationStructureToMemoryInfoKHR {
     pub s_type: crate::vk::StructureType,
     pub p_next: *const core::ffi::c_void,
@@ -148,6 +169,7 @@ pub struct CopyAccelerationStructureToMemoryInfoKHR {
     pub mode: crate::vk::CopyAccelerationStructureModeKHR,
 }
 #[repr(C)]
+#[derive(Clone, Copy)]
 pub struct CopyMemoryToAccelerationStructureInfoKHR {
     pub s_type: crate::vk::StructureType,
     pub p_next: *const core::ffi::c_void,
@@ -156,6 +178,7 @@ pub struct CopyMemoryToAccelerationStructureInfoKHR {
     pub mode: crate::vk::CopyAccelerationStructureModeKHR,
 }
 #[repr(C)]
+#[derive(Clone, Copy)]
 pub struct AccelerationStructureBuildSizesInfoKHR {
     pub s_type: crate::vk::StructureType,
     pub p_next: *mut core::ffi::c_void,
@@ -164,40 +187,68 @@ pub struct AccelerationStructureBuildSizesInfoKHR {
     pub build_scratch_size: crate::vk::DeviceSize,
 }
 #[repr(C)]
+#[derive(Clone, Copy)]
+pub union DeviceOrHostAddressKHR {
+    pub device_address: crate::vk::DeviceAddress,
+    pub host_address: *mut core::ffi::c_void,
+}
+#[repr(C)]
+#[derive(Clone, Copy)]
+pub union DeviceOrHostAddressConstKHR {
+    pub device_address: crate::vk::DeviceAddress,
+    pub host_address: *const core::ffi::c_void,
+}
+#[repr(C)]
+#[derive(Clone, Copy)]
 pub union AccelerationStructureGeometryDataKHR {
     pub triangles: crate::vk::AccelerationStructureGeometryTrianglesDataKHR,
     pub aabbs: crate::vk::AccelerationStructureGeometryAabbsDataKHR,
     pub instances: crate::vk::AccelerationStructureGeometryInstancesDataKHR,
 }
 #[repr(transparent)]
+#[derive(Clone, Copy)]
 pub struct CopyAccelerationStructureModeKHR(pub(crate) i32);
 #[repr(transparent)]
+#[derive(Clone, Copy)]
 pub struct BuildAccelerationStructureModeKHR(pub(crate) i32);
 #[repr(transparent)]
+#[derive(Clone, Copy)]
 pub struct AccelerationStructureTypeKHR(pub(crate) i32);
 #[repr(transparent)]
+#[derive(Clone, Copy)]
 pub struct GeometryTypeKHR(pub(crate) i32);
 #[repr(transparent)]
+#[derive(Clone, Copy)]
 pub struct AccelerationStructureBuildTypeKHR(pub(crate) i32);
 #[repr(transparent)]
+#[derive(Clone, Copy)]
 pub struct AccelerationStructureCompatibilityKHR(pub(crate) i32);
 #[repr(transparent)]
+#[derive(Clone, Copy)]
 pub struct GeometryFlagsKHR(pub(crate) i32);
 #[repr(transparent)]
+#[derive(Clone, Copy)]
 pub struct GeometryInstanceFlagsKHR(pub(crate) i32);
 #[repr(transparent)]
+#[derive(Clone, Copy)]
 pub struct BuildAccelerationStructureFlagsKHR(pub(crate) i32);
 #[repr(transparent)]
+#[derive(Clone, Copy)]
 pub struct AccelerationStructureCreateFlagsKHR(pub(crate) i32);
 #[repr(transparent)]
+#[derive(Clone, Copy)]
 pub struct GeometryInstanceFlagBitsKHR(pub(crate) i32);
 #[repr(transparent)]
+#[derive(Clone, Copy)]
 pub struct GeometryFlagBitsKHR(pub(crate) i32);
 #[repr(transparent)]
+#[derive(Clone, Copy)]
 pub struct BuildAccelerationStructureFlagBitsKHR(pub(crate) i32);
 #[repr(transparent)]
+#[derive(Clone, Copy)]
 pub struct AccelerationStructureCreateFlagBitsKHR(pub(crate) i32);
 #[repr(transparent)]
+#[derive(Clone, Copy)]
 pub struct AccelerationStructureKHR(pub(crate) i32);
 pub const KHR_ACCELERATION_STRUCTURE_SPEC_VERSION: u32 = 13;
 pub const KHR_ACCELERATION_STRUCTURE_EXTENSION_NAME: &core::ffi::CStr = c"VK_KHR_acceleration_structure";

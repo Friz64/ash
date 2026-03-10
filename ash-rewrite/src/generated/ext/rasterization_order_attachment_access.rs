@@ -2,6 +2,7 @@
 #![cfg_attr(rustfmt, rustfmt_skip)]
 //![Vulkan Manual Page](https://docs.vulkan.org/refpages/latest/refpages/source/VK_EXT_rasterization_order_attachment_access.html) · Extension `VK_EXT_rasterization_order_attachment_access`
 #[repr(C)]
+#[derive(Clone, Copy)]
 pub struct PhysicalDeviceRasterizationOrderAttachmentAccessFeaturesEXT {
     pub s_type: crate::vk::StructureType,
     pub p_next: *mut core::ffi::c_void,
@@ -10,8 +11,10 @@ pub struct PhysicalDeviceRasterizationOrderAttachmentAccessFeaturesEXT {
     pub rasterization_order_stencil_attachment_access: crate::vk::Bool32,
 }
 #[repr(transparent)]
+#[derive(Clone, Copy)]
 pub struct PipelineColorBlendStateCreateFlagBits(pub(crate) i32);
 #[repr(transparent)]
+#[derive(Clone, Copy)]
 pub struct PipelineDepthStencilStateCreateFlagBits(pub(crate) i32);
 pub const EXT_RASTERIZATION_ORDER_ATTACHMENT_ACCESS_SPEC_VERSION: u32 = 1;
 pub const EXT_RASTERIZATION_ORDER_ATTACHMENT_ACCESS_EXTENSION_NAME: &core::ffi::CStr = c"VK_EXT_rasterization_order_attachment_access";

@@ -2,12 +2,14 @@
 #![cfg_attr(rustfmt, rustfmt_skip)]
 //![Vulkan Manual Page](https://docs.vulkan.org/refpages/latest/refpages/source/VK_AMDX_dense_geometry_format.html) · Extension `VK_AMDX_dense_geometry_format`
 #[repr(C)]
+#[derive(Clone, Copy)]
 pub struct PhysicalDeviceDenseGeometryFormatFeaturesAMDX {
     pub s_type: crate::vk::StructureType,
     pub p_next: *mut core::ffi::c_void,
     pub dense_geometry_format: crate::vk::Bool32,
 }
 #[repr(C)]
+#[derive(Clone, Copy)]
 pub struct AccelerationStructureDenseGeometryFormatTrianglesDataAMDX {
     pub s_type: crate::vk::StructureType,
     pub p_next: *const core::ffi::c_void,
@@ -20,6 +22,7 @@ pub struct AccelerationStructureDenseGeometryFormatTrianglesDataAMDX {
     pub format: crate::vk::CompressedTriangleFormatAMDX,
 }
 #[repr(transparent)]
+#[derive(Clone, Copy)]
 pub struct CompressedTriangleFormatAMDX(pub(crate) i32);
 pub const COMPRESSED_TRIANGLE_FORMAT_DGF1_BYTE_ALIGNMENT_AMDX: u32 = 128;
 pub const COMPRESSED_TRIANGLE_FORMAT_DGF1_BYTE_STRIDE_AMDX: u32 = 128;

@@ -2,12 +2,14 @@
 #![cfg_attr(rustfmt, rustfmt_skip)]
 //![Vulkan Manual Page](https://docs.vulkan.org/refpages/latest/refpages/source/VK_AMD_anti_lag.html) · Extension `VK_AMD_anti_lag`
 #[repr(C)]
+#[derive(Clone, Copy)]
 pub struct PhysicalDeviceAntiLagFeaturesAMD {
     pub s_type: crate::vk::StructureType,
     pub p_next: *mut core::ffi::c_void,
     pub anti_lag: crate::vk::Bool32,
 }
 #[repr(C)]
+#[derive(Clone, Copy)]
 pub struct AntiLagDataAMD {
     pub s_type: crate::vk::StructureType,
     pub p_next: *const core::ffi::c_void,
@@ -16,6 +18,7 @@ pub struct AntiLagDataAMD {
     pub p_presentation_info: *const crate::vk::AntiLagPresentationInfoAMD,
 }
 #[repr(C)]
+#[derive(Clone, Copy)]
 pub struct AntiLagPresentationInfoAMD {
     pub s_type: crate::vk::StructureType,
     pub p_next: *mut core::ffi::c_void,
@@ -23,8 +26,10 @@ pub struct AntiLagPresentationInfoAMD {
     pub frame_index: u64,
 }
 #[repr(transparent)]
+#[derive(Clone, Copy)]
 pub struct AntiLagModeAMD(pub(crate) i32);
 #[repr(transparent)]
+#[derive(Clone, Copy)]
 pub struct AntiLagStageAMD(pub(crate) i32);
 pub const AMD_ANTI_LAG_SPEC_VERSION: u32 = 1;
 pub const AMD_ANTI_LAG_EXTENSION_NAME: &core::ffi::CStr = c"VK_AMD_anti_lag";

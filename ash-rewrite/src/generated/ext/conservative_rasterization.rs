@@ -2,6 +2,7 @@
 #![cfg_attr(rustfmt, rustfmt_skip)]
 //![Vulkan Manual Page](https://docs.vulkan.org/refpages/latest/refpages/source/VK_EXT_conservative_rasterization.html) · Extension `VK_EXT_conservative_rasterization`
 #[repr(C)]
+#[derive(Clone, Copy)]
 pub struct PhysicalDeviceConservativeRasterizationPropertiesEXT {
     pub s_type: crate::vk::StructureType,
     pub p_next: *mut core::ffi::c_void,
@@ -16,6 +17,7 @@ pub struct PhysicalDeviceConservativeRasterizationPropertiesEXT {
     pub conservative_rasterization_post_depth_coverage: crate::vk::Bool32,
 }
 #[repr(C)]
+#[derive(Clone, Copy)]
 pub struct PipelineRasterizationConservativeStateCreateInfoEXT {
     pub s_type: crate::vk::StructureType,
     pub p_next: *const core::ffi::c_void,
@@ -24,8 +26,10 @@ pub struct PipelineRasterizationConservativeStateCreateInfoEXT {
     pub extra_primitive_overestimation_size: core::ffi::c_float,
 }
 #[repr(transparent)]
+#[derive(Clone, Copy)]
 pub struct ConservativeRasterizationModeEXT(pub(crate) i32);
 #[repr(transparent)]
+#[derive(Clone, Copy)]
 pub struct PipelineRasterizationConservativeStateCreateFlagsEXT(pub(crate) i32);
 pub const EXT_CONSERVATIVE_RASTERIZATION_SPEC_VERSION: u32 = 1;
 pub const EXT_CONSERVATIVE_RASTERIZATION_EXTENSION_NAME: &core::ffi::CStr = c"VK_EXT_conservative_rasterization";

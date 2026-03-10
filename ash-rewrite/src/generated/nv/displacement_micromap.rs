@@ -2,18 +2,21 @@
 #![cfg_attr(rustfmt, rustfmt_skip)]
 //![Vulkan Manual Page](https://docs.vulkan.org/refpages/latest/refpages/source/VK_NV_displacement_micromap.html) · Extension `VK_NV_displacement_micromap`
 #[repr(C)]
+#[derive(Clone, Copy)]
 pub struct PhysicalDeviceDisplacementMicromapFeaturesNV {
     pub s_type: crate::vk::StructureType,
     pub p_next: *mut core::ffi::c_void,
     pub displacement_micromap: crate::vk::Bool32,
 }
 #[repr(C)]
+#[derive(Clone, Copy)]
 pub struct PhysicalDeviceDisplacementMicromapPropertiesNV {
     pub s_type: crate::vk::StructureType,
     pub p_next: *mut core::ffi::c_void,
     pub max_displacement_micromap_subdivision_level: u32,
 }
 #[repr(C)]
+#[derive(Clone, Copy)]
 pub struct AccelerationStructureTrianglesDisplacementMicromapNV {
     pub s_type: crate::vk::StructureType,
     pub p_next: *mut core::ffi::c_void,
@@ -35,6 +38,7 @@ pub struct AccelerationStructureTrianglesDisplacementMicromapNV {
     pub micromap: crate::vk::MicromapEXT,
 }
 #[repr(transparent)]
+#[derive(Clone, Copy)]
 pub struct DisplacementMicromapFormatNV(pub(crate) i32);
 pub const NV_DISPLACEMENT_MICROMAP_SPEC_VERSION: u32 = 2;
 pub const NV_DISPLACEMENT_MICROMAP_EXTENSION_NAME: &core::ffi::CStr = c"VK_NV_displacement_micromap";

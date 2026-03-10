@@ -2,6 +2,7 @@
 #![cfg_attr(rustfmt, rustfmt_skip)]
 //![Vulkan Manual Page](https://docs.vulkan.org/refpages/latest/refpages/source/VK_KHR_compute_shader_derivatives.html) · Extension `VK_KHR_compute_shader_derivatives`
 #[repr(C)]
+#[derive(Clone, Copy)]
 pub struct PhysicalDeviceComputeShaderDerivativesFeaturesKHR {
     pub s_type: crate::vk::StructureType,
     pub p_next: *mut core::ffi::c_void,
@@ -9,6 +10,7 @@ pub struct PhysicalDeviceComputeShaderDerivativesFeaturesKHR {
     pub compute_derivative_group_linear: crate::vk::Bool32,
 }
 #[repr(C)]
+#[derive(Clone, Copy)]
 pub struct PhysicalDeviceComputeShaderDerivativesPropertiesKHR {
     pub s_type: crate::vk::StructureType,
     pub p_next: *mut core::ffi::c_void,

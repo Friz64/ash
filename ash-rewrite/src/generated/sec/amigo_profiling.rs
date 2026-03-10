@@ -2,12 +2,14 @@
 #![cfg_attr(rustfmt, rustfmt_skip)]
 //![Vulkan Manual Page](https://docs.vulkan.org/refpages/latest/refpages/source/VK_SEC_amigo_profiling.html) · Extension `VK_SEC_amigo_profiling`
 #[repr(C)]
+#[derive(Clone, Copy)]
 pub struct PhysicalDeviceAmigoProfilingFeaturesSEC {
     pub s_type: crate::vk::StructureType,
     pub p_next: *mut core::ffi::c_void,
     pub amigo_profiling: crate::vk::Bool32,
 }
 #[repr(C)]
+#[derive(Clone, Copy)]
 pub struct AmigoProfilingSubmitInfoSEC {
     pub s_type: crate::vk::StructureType,
     pub p_next: *const core::ffi::c_void,

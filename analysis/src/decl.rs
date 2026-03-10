@@ -1,21 +1,19 @@
 use crate::{
     item::RequireMap,
-    xml::{
-        cdecl::{CArrayLen, CDecl, CType},
-        name::{ConstantName, FuncPointerName, TypeName},
-    },
+    name::{ConstantName, FuncPointerName, TypeName, VariableName},
+    xml::cdecl::{CArrayLen, CDecl, CType},
 };
 
 #[derive(Debug)]
 pub struct Decl {
-    pub name: &'static str,
+    pub name: VariableName,
     pub ty: Ty,
 }
 
 impl Decl {
     pub(crate) fn from_c(require_map: &RequireMap, c_decl: &CDecl<'static>) -> Decl {
         Decl {
-            name: c_decl.name,
+            name: VariableName(c_decl.name),
             ty: Ty::from_c(require_map, &c_decl.ty),
         }
     }
@@ -27,7 +25,7 @@ pub enum Mutability {
     Mut,
 }
 
-#[derive(Debug, Clone, Copy)]
+#[derive(Debug, Clone, Copy, PartialEq, Eq)]
 pub enum CPrimaryType {
     Void,
     Char,

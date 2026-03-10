@@ -2,12 +2,14 @@
 #![cfg_attr(rustfmt, rustfmt_skip)]
 //![Vulkan Manual Page](https://docs.vulkan.org/refpages/latest/refpages/source/VK_VALVE_video_encode_rgb_conversion.html) · Extension `VK_VALVE_video_encode_rgb_conversion`
 #[repr(C)]
+#[derive(Clone, Copy)]
 pub struct PhysicalDeviceVideoEncodeRgbConversionFeaturesVALVE {
     pub s_type: crate::vk::StructureType,
     pub p_next: *mut core::ffi::c_void,
     pub video_encode_rgb_conversion: crate::vk::Bool32,
 }
 #[repr(C)]
+#[derive(Clone, Copy)]
 pub struct VideoEncodeRgbConversionCapabilitiesVALVE {
     pub s_type: crate::vk::StructureType,
     pub p_next: *mut core::ffi::c_void,
@@ -17,12 +19,14 @@ pub struct VideoEncodeRgbConversionCapabilitiesVALVE {
     pub y_chroma_offsets: crate::vk::VideoEncodeRgbChromaOffsetFlagsVALVE,
 }
 #[repr(C)]
+#[derive(Clone, Copy)]
 pub struct VideoEncodeProfileRgbConversionInfoVALVE {
     pub s_type: crate::vk::StructureType,
     pub p_next: *const core::ffi::c_void,
     pub perform_encode_rgb_conversion: crate::vk::Bool32,
 }
 #[repr(C)]
+#[derive(Clone, Copy)]
 pub struct VideoEncodeSessionRgbConversionCreateInfoVALVE {
     pub s_type: crate::vk::StructureType,
     pub p_next: *const core::ffi::c_void,
@@ -32,16 +36,22 @@ pub struct VideoEncodeSessionRgbConversionCreateInfoVALVE {
     pub y_chroma_offset: crate::vk::VideoEncodeRgbChromaOffsetFlagBitsVALVE,
 }
 #[repr(transparent)]
+#[derive(Clone, Copy)]
 pub struct VideoEncodeRgbModelConversionFlagsVALVE(pub(crate) i32);
 #[repr(transparent)]
+#[derive(Clone, Copy)]
 pub struct VideoEncodeRgbRangeCompressionFlagsVALVE(pub(crate) i32);
 #[repr(transparent)]
+#[derive(Clone, Copy)]
 pub struct VideoEncodeRgbChromaOffsetFlagsVALVE(pub(crate) i32);
 #[repr(transparent)]
+#[derive(Clone, Copy)]
 pub struct VideoEncodeRgbModelConversionFlagBitsVALVE(pub(crate) i32);
 #[repr(transparent)]
+#[derive(Clone, Copy)]
 pub struct VideoEncodeRgbRangeCompressionFlagBitsVALVE(pub(crate) i32);
 #[repr(transparent)]
+#[derive(Clone, Copy)]
 pub struct VideoEncodeRgbChromaOffsetFlagBitsVALVE(pub(crate) i32);
 pub const VALVE_VIDEO_ENCODE_RGB_CONVERSION_SPEC_VERSION: u32 = 1;
 pub const VALVE_VIDEO_ENCODE_RGB_CONVERSION_EXTENSION_NAME: &core::ffi::CStr = c"VK_VALVE_video_encode_rgb_conversion";

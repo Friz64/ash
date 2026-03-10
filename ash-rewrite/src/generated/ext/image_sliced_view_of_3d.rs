@@ -2,6 +2,7 @@
 #![cfg_attr(rustfmt, rustfmt_skip)]
 //![Vulkan Manual Page](https://docs.vulkan.org/refpages/latest/refpages/source/VK_EXT_image_sliced_view_of_3d.html) · Extension `VK_EXT_image_sliced_view_of_3d`
 #[repr(C)]
+#[derive(Clone, Copy)]
 pub struct ImageViewSlicedCreateInfoEXT {
     pub s_type: crate::vk::StructureType,
     pub p_next: *const core::ffi::c_void,
@@ -9,6 +10,7 @@ pub struct ImageViewSlicedCreateInfoEXT {
     pub slice_count: u32,
 }
 #[repr(C)]
+#[derive(Clone, Copy)]
 pub struct PhysicalDeviceImageSlicedViewOf3DFeaturesEXT {
     pub s_type: crate::vk::StructureType,
     pub p_next: *mut core::ffi::c_void,

@@ -2,12 +2,14 @@
 #![cfg_attr(rustfmt, rustfmt_skip)]
 //![Vulkan Manual Page](https://docs.vulkan.org/refpages/latest/refpages/source/VK_EXT_filter_cubic.html) · Extension `VK_EXT_filter_cubic`
 #[repr(C)]
+#[derive(Clone, Copy)]
 pub struct PhysicalDeviceImageViewImageFormatInfoEXT {
     pub s_type: crate::vk::StructureType,
     pub p_next: *mut core::ffi::c_void,
     pub image_view_type: crate::vk::ImageViewType,
 }
 #[repr(C)]
+#[derive(Clone, Copy)]
 pub struct FilterCubicImageViewImageFormatPropertiesEXT {
     pub s_type: crate::vk::StructureType,
     pub p_next: *mut core::ffi::c_void,
