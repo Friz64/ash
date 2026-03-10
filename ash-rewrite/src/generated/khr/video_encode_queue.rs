@@ -2,18 +2,21 @@
 #![cfg_attr(rustfmt, rustfmt_skip)]
 //![Vulkan Manual Page](https://docs.vulkan.org/refpages/latest/refpages/source/VK_KHR_video_encode_queue.html) · Extension `VK_KHR_video_encode_queue`
 #[repr(C)]
+#[derive(Clone, Copy)]
 pub struct VideoEncodeSessionParametersGetInfoKHR {
     pub s_type: crate::vk::StructureType,
     pub p_next: *const core::ffi::c_void,
     pub video_session_parameters: crate::vk::VideoSessionParametersKHR,
 }
 #[repr(C)]
+#[derive(Clone, Copy)]
 pub struct VideoEncodeSessionParametersFeedbackInfoKHR {
     pub s_type: crate::vk::StructureType,
     pub p_next: *mut core::ffi::c_void,
     pub has_overrides: crate::vk::Bool32,
 }
 #[repr(C)]
+#[derive(Clone, Copy)]
 pub struct VideoEncodeUsageInfoKHR {
     pub s_type: crate::vk::StructureType,
     pub p_next: *const core::ffi::c_void,
@@ -22,6 +25,7 @@ pub struct VideoEncodeUsageInfoKHR {
     pub tuning_mode: crate::vk::VideoEncodeTuningModeKHR,
 }
 #[repr(C)]
+#[derive(Clone, Copy)]
 pub struct VideoEncodeInfoKHR {
     pub s_type: crate::vk::StructureType,
     pub p_next: *const core::ffi::c_void,
@@ -36,18 +40,21 @@ pub struct VideoEncodeInfoKHR {
     pub preceding_externally_encoded_bytes: u32,
 }
 #[repr(C)]
+#[derive(Clone, Copy)]
 pub struct QueryPoolVideoEncodeFeedbackCreateInfoKHR {
     pub s_type: crate::vk::StructureType,
     pub p_next: *const core::ffi::c_void,
     pub encode_feedback_flags: crate::vk::VideoEncodeFeedbackFlagsKHR,
 }
 #[repr(C)]
+#[derive(Clone, Copy)]
 pub struct VideoEncodeQualityLevelInfoKHR {
     pub s_type: crate::vk::StructureType,
     pub p_next: *const core::ffi::c_void,
     pub quality_level: u32,
 }
 #[repr(C)]
+#[derive(Clone, Copy)]
 pub struct PhysicalDeviceVideoEncodeQualityLevelInfoKHR {
     pub s_type: crate::vk::StructureType,
     pub p_next: *const core::ffi::c_void,
@@ -55,6 +62,7 @@ pub struct PhysicalDeviceVideoEncodeQualityLevelInfoKHR {
     pub quality_level: u32,
 }
 #[repr(C)]
+#[derive(Clone, Copy)]
 pub struct VideoEncodeQualityLevelPropertiesKHR {
     pub s_type: crate::vk::StructureType,
     pub p_next: *mut core::ffi::c_void,
@@ -62,6 +70,7 @@ pub struct VideoEncodeQualityLevelPropertiesKHR {
     pub preferred_rate_control_layer_count: u32,
 }
 #[repr(C)]
+#[derive(Clone, Copy)]
 pub struct VideoEncodeRateControlInfoKHR {
     pub s_type: crate::vk::StructureType,
     pub p_next: *const core::ffi::c_void,
@@ -73,6 +82,7 @@ pub struct VideoEncodeRateControlInfoKHR {
     pub initial_virtual_buffer_size_in_ms: u32,
 }
 #[repr(C)]
+#[derive(Clone, Copy)]
 pub struct VideoEncodeRateControlLayerInfoKHR {
     pub s_type: crate::vk::StructureType,
     pub p_next: *const core::ffi::c_void,
@@ -82,6 +92,7 @@ pub struct VideoEncodeRateControlLayerInfoKHR {
     pub frame_rate_denominator: u32,
 }
 #[repr(C)]
+#[derive(Clone, Copy)]
 pub struct VideoEncodeCapabilitiesKHR {
     pub s_type: crate::vk::StructureType,
     pub p_next: *mut core::ffi::c_void,
@@ -94,30 +105,43 @@ pub struct VideoEncodeCapabilitiesKHR {
     pub supported_encode_feedback_flags: crate::vk::VideoEncodeFeedbackFlagsKHR,
 }
 #[repr(transparent)]
+#[derive(Clone, Copy)]
 pub struct VideoEncodeTuningModeKHR(pub(crate) i32);
 #[repr(transparent)]
+#[derive(Clone, Copy)]
 pub struct VideoEncodeFlagsKHR(pub(crate) i32);
 #[repr(transparent)]
+#[derive(Clone, Copy)]
 pub struct VideoEncodeUsageFlagsKHR(pub(crate) i32);
 #[repr(transparent)]
+#[derive(Clone, Copy)]
 pub struct VideoEncodeContentFlagsKHR(pub(crate) i32);
 #[repr(transparent)]
+#[derive(Clone, Copy)]
 pub struct VideoEncodeCapabilityFlagsKHR(pub(crate) i32);
 #[repr(transparent)]
+#[derive(Clone, Copy)]
 pub struct VideoEncodeFeedbackFlagsKHR(pub(crate) i32);
 #[repr(transparent)]
+#[derive(Clone, Copy)]
 pub struct VideoEncodeRateControlFlagsKHR(pub(crate) i32);
 #[repr(transparent)]
+#[derive(Clone, Copy)]
 pub struct VideoEncodeRateControlModeFlagsKHR(pub(crate) i32);
 #[repr(transparent)]
+#[derive(Clone, Copy)]
 pub struct VideoEncodeUsageFlagBitsKHR(pub(crate) i32);
 #[repr(transparent)]
+#[derive(Clone, Copy)]
 pub struct VideoEncodeContentFlagBitsKHR(pub(crate) i32);
 #[repr(transparent)]
+#[derive(Clone, Copy)]
 pub struct VideoEncodeCapabilityFlagBitsKHR(pub(crate) i32);
 #[repr(transparent)]
+#[derive(Clone, Copy)]
 pub struct VideoEncodeFeedbackFlagBitsKHR(pub(crate) i32);
 #[repr(transparent)]
+#[derive(Clone, Copy)]
 pub struct VideoEncodeRateControlModeFlagBitsKHR(pub(crate) i32);
 pub const KHR_VIDEO_ENCODE_QUEUE_SPEC_VERSION: u32 = 12;
 pub const KHR_VIDEO_ENCODE_QUEUE_EXTENSION_NAME: &core::ffi::CStr = c"VK_KHR_video_encode_queue";

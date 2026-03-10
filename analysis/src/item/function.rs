@@ -1,9 +1,7 @@
 use crate::{
     item::{Named, RequireMap, RequiredBy},
-    xml::{
-        self,
-        name::{CommandName, FuncPointerName},
-    },
+    name::{CommandName, FuncPointerName},
+    xml,
 };
 use tracing::{instrument, trace};
 

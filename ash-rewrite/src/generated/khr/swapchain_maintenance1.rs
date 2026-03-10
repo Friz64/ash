@@ -2,12 +2,14 @@
 #![cfg_attr(rustfmt, rustfmt_skip)]
 //![Vulkan Manual Page](https://docs.vulkan.org/refpages/latest/refpages/source/VK_KHR_swapchain_maintenance1.html) · Extension `VK_KHR_swapchain_maintenance1`
 #[repr(C)]
+#[derive(Clone, Copy)]
 pub struct PhysicalDeviceSwapchainMaintenance1FeaturesKHR {
     pub s_type: crate::vk::StructureType,
     pub p_next: *mut core::ffi::c_void,
     pub swapchain_maintenance1: crate::vk::Bool32,
 }
 #[repr(C)]
+#[derive(Clone, Copy)]
 pub struct SwapchainPresentFenceInfoKHR {
     pub s_type: crate::vk::StructureType,
     pub p_next: *const core::ffi::c_void,
@@ -15,6 +17,7 @@ pub struct SwapchainPresentFenceInfoKHR {
     pub p_fences: *const crate::vk::Fence,
 }
 #[repr(C)]
+#[derive(Clone, Copy)]
 pub struct SwapchainPresentModesCreateInfoKHR {
     pub s_type: crate::vk::StructureType,
     pub p_next: *const core::ffi::c_void,
@@ -22,6 +25,7 @@ pub struct SwapchainPresentModesCreateInfoKHR {
     pub p_present_modes: *const crate::vk::PresentModeKHR,
 }
 #[repr(C)]
+#[derive(Clone, Copy)]
 pub struct SwapchainPresentModeInfoKHR {
     pub s_type: crate::vk::StructureType,
     pub p_next: *const core::ffi::c_void,
@@ -29,6 +33,7 @@ pub struct SwapchainPresentModeInfoKHR {
     pub p_present_modes: *const crate::vk::PresentModeKHR,
 }
 #[repr(C)]
+#[derive(Clone, Copy)]
 pub struct SwapchainPresentScalingCreateInfoKHR {
     pub s_type: crate::vk::StructureType,
     pub p_next: *const core::ffi::c_void,
@@ -37,6 +42,7 @@ pub struct SwapchainPresentScalingCreateInfoKHR {
     pub present_gravity_y: crate::vk::PresentGravityFlagsKHR,
 }
 #[repr(C)]
+#[derive(Clone, Copy)]
 pub struct ReleaseSwapchainImagesInfoKHR {
     pub s_type: crate::vk::StructureType,
     pub p_next: *const core::ffi::c_void,

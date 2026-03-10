@@ -2,12 +2,14 @@
 #![cfg_attr(rustfmt, rustfmt_skip)]
 //![Vulkan Manual Page](https://docs.vulkan.org/refpages/latest/refpages/source/VK_KHR_maintenance9.html) · Extension `VK_KHR_maintenance9`
 #[repr(C)]
+#[derive(Clone, Copy)]
 pub struct PhysicalDeviceMaintenance9FeaturesKHR {
     pub s_type: crate::vk::StructureType,
     pub p_next: *mut core::ffi::c_void,
     pub maintenance9: crate::vk::Bool32,
 }
 #[repr(C)]
+#[derive(Clone, Copy)]
 pub struct PhysicalDeviceMaintenance9PropertiesKHR {
     pub s_type: crate::vk::StructureType,
     pub p_next: *mut core::ffi::c_void,
@@ -15,12 +17,14 @@ pub struct PhysicalDeviceMaintenance9PropertiesKHR {
     pub default_vertex_attribute_value: crate::vk::DefaultVertexAttributeValueKHR,
 }
 #[repr(C)]
+#[derive(Clone, Copy)]
 pub struct QueueFamilyOwnershipTransferPropertiesKHR {
     pub s_type: crate::vk::StructureType,
     pub p_next: *mut core::ffi::c_void,
     pub optimal_image_transfer_to_queue_families: u32,
 }
 #[repr(transparent)]
+#[derive(Clone, Copy)]
 pub struct DefaultVertexAttributeValueKHR(pub(crate) i32);
 pub const KHR_MAINTENANCE_9_SPEC_VERSION: u32 = 1;
 pub const KHR_MAINTENANCE_9_EXTENSION_NAME: &core::ffi::CStr = c"VK_KHR_maintenance9";

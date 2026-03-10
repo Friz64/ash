@@ -2,12 +2,14 @@
 #![cfg_attr(rustfmt, rustfmt_skip)]
 //![Vulkan Manual Page](https://docs.vulkan.org/refpages/latest/refpages/source/VK_KHR_maintenance8.html) · Extension `VK_KHR_maintenance8`
 #[repr(C)]
+#[derive(Clone, Copy)]
 pub struct PhysicalDeviceMaintenance8FeaturesKHR {
     pub s_type: crate::vk::StructureType,
     pub p_next: *mut core::ffi::c_void,
     pub maintenance8: crate::vk::Bool32,
 }
 #[repr(C)]
+#[derive(Clone, Copy)]
 pub struct MemoryBarrierAccessFlags3KHR {
     pub s_type: crate::vk::StructureType,
     pub p_next: *const core::ffi::c_void,
@@ -15,10 +17,10 @@ pub struct MemoryBarrierAccessFlags3KHR {
     pub dst_access_mask3: crate::vk::AccessFlags3KHR,
 }
 #[repr(transparent)]
+#[derive(Clone, Copy)]
 pub struct AccessFlags3KHR(pub(crate) i32);
 #[repr(transparent)]
-pub struct PipelineCacheCreateFlagBits(pub(crate) i32);
-#[repr(transparent)]
+#[derive(Clone, Copy)]
 pub struct AccessFlagBits3KHR(pub(crate) i32);
 pub const KHR_MAINTENANCE_8_SPEC_VERSION: u32 = 1;
 pub const KHR_MAINTENANCE_8_EXTENSION_NAME: &core::ffi::CStr = c"VK_KHR_maintenance8";

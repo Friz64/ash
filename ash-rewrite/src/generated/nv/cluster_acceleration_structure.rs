@@ -2,12 +2,14 @@
 #![cfg_attr(rustfmt, rustfmt_skip)]
 //![Vulkan Manual Page](https://docs.vulkan.org/refpages/latest/refpages/source/VK_NV_cluster_acceleration_structure.html) · Extension `VK_NV_cluster_acceleration_structure`
 #[repr(C)]
+#[derive(Clone, Copy)]
 pub struct PhysicalDeviceClusterAccelerationStructureFeaturesNV {
     pub s_type: crate::vk::StructureType,
     pub p_next: *mut core::ffi::c_void,
     pub cluster_acceleration_structure: crate::vk::Bool32,
 }
 #[repr(C)]
+#[derive(Clone, Copy)]
 pub struct PhysicalDeviceClusterAccelerationStructurePropertiesNV {
     pub s_type: crate::vk::StructureType,
     pub p_next: *mut core::ffi::c_void,
@@ -21,45 +23,56 @@ pub struct PhysicalDeviceClusterAccelerationStructurePropertiesNV {
     pub max_cluster_geometry_index: u32,
 }
 #[repr(C)]
+#[derive(Clone, Copy)]
 pub struct StridedDeviceAddressNV {
     pub start_address: crate::vk::DeviceAddress,
     pub stride_in_bytes: crate::vk::DeviceSize,
 }
 #[repr(C)]
+#[derive(Clone, Copy)]
 pub struct RayTracingPipelineClusterAccelerationStructureCreateInfoNV {
     pub s_type: crate::vk::StructureType,
     pub p_next: *mut core::ffi::c_void,
     pub allow_cluster_acceleration_structure: crate::vk::Bool32,
 }
 #[repr(C)]
+#[derive(Clone, Copy)]
 pub struct ClusterAccelerationStructureGeometryIndexAndGeometryFlagsNV {
-    pub geometry_index: u32,
-    pub reserved: u32,
-    pub geometry_flags: u32,
+    /**- `geometryIndex` @ `0..24`
+- `reserved` @ `24..29`
+- `geometryFlags` @ `29..32`
+*/
+    pub bitfield0: u32,
 }
 #[repr(C)]
+#[derive(Clone, Copy)]
 pub struct ClusterAccelerationStructureMoveObjectsInfoNV {
     pub src_acceleration_structure: crate::vk::DeviceAddress,
 }
 #[repr(C)]
+#[derive(Clone, Copy)]
 pub struct ClusterAccelerationStructureBuildClustersBottomLevelInfoNV {
     pub cluster_references_count: u32,
     pub cluster_references_stride: u32,
     pub cluster_references: crate::vk::DeviceAddress,
 }
 #[repr(C)]
+#[derive(Clone, Copy)]
 pub struct ClusterAccelerationStructureGetTemplateIndicesInfoNV {
     pub cluster_template_address: crate::vk::DeviceAddress,
 }
 #[repr(C)]
+#[derive(Clone, Copy)]
 pub struct ClusterAccelerationStructureBuildTriangleClusterInfoNV {
     pub cluster_id: u32,
     pub cluster_flags: crate::vk::ClusterAccelerationStructureClusterFlagsNV,
-    pub triangle_count: u32,
-    pub vertex_count: u32,
-    pub position_truncate_bit_count: u32,
-    pub index_type: u32,
-    pub opacity_micromap_index_type: u32,
+    /**- `triangleCount` @ `0..9`
+- `vertexCount` @ `9..18`
+- `positionTruncateBitCount` @ `18..24`
+- `indexType` @ `24..28`
+- `opacityMicromapIndexType` @ `28..32`
+*/
+    pub bitfield0: u32,
     pub base_geometry_index_and_geometry_flags: crate::vk::ClusterAccelerationStructureGeometryIndexAndGeometryFlagsNV,
     pub index_buffer_stride: u16,
     pub vertex_buffer_stride: u16,
@@ -72,14 +85,17 @@ pub struct ClusterAccelerationStructureBuildTriangleClusterInfoNV {
     pub opacity_micromap_index_buffer: crate::vk::DeviceAddress,
 }
 #[repr(C)]
+#[derive(Clone, Copy)]
 pub struct ClusterAccelerationStructureBuildTriangleClusterTemplateInfoNV {
     pub cluster_id: u32,
     pub cluster_flags: crate::vk::ClusterAccelerationStructureClusterFlagsNV,
-    pub triangle_count: u32,
-    pub vertex_count: u32,
-    pub position_truncate_bit_count: u32,
-    pub index_type: u32,
-    pub opacity_micromap_index_type: u32,
+    /**- `triangleCount` @ `0..9`
+- `vertexCount` @ `9..18`
+- `positionTruncateBitCount` @ `18..24`
+- `indexType` @ `24..28`
+- `opacityMicromapIndexType` @ `28..32`
+*/
+    pub bitfield0: u32,
     pub base_geometry_index_and_geometry_flags: crate::vk::ClusterAccelerationStructureGeometryIndexAndGeometryFlagsNV,
     pub index_buffer_stride: u16,
     pub vertex_buffer_stride: u16,
@@ -93,14 +109,18 @@ pub struct ClusterAccelerationStructureBuildTriangleClusterTemplateInfoNV {
     pub instantiation_bounding_box_limit: crate::vk::DeviceAddress,
 }
 #[repr(C)]
+#[derive(Clone, Copy)]
 pub struct ClusterAccelerationStructureInstantiateClusterInfoNV {
     pub cluster_id_offset: u32,
-    pub geometry_index_offset: u32,
-    pub reserved: u32,
+    /**- `geometryIndexOffset` @ `0..24`
+- `reserved` @ `24..32`
+*/
+    pub bitfield0: u32,
     pub cluster_template_address: crate::vk::DeviceAddress,
     pub vertex_buffer: crate::vk::StridedDeviceAddressNV,
 }
 #[repr(C)]
+#[derive(Clone, Copy)]
 pub struct ClusterAccelerationStructureClustersBottomLevelInputNV {
     pub s_type: crate::vk::StructureType,
     pub p_next: *mut core::ffi::c_void,
@@ -108,6 +128,7 @@ pub struct ClusterAccelerationStructureClustersBottomLevelInputNV {
     pub max_cluster_count_per_acceleration_structure: u32,
 }
 #[repr(C)]
+#[derive(Clone, Copy)]
 pub struct ClusterAccelerationStructureTriangleClusterInputNV {
     pub s_type: crate::vk::StructureType,
     pub p_next: *mut core::ffi::c_void,
@@ -121,6 +142,7 @@ pub struct ClusterAccelerationStructureTriangleClusterInputNV {
     pub min_position_truncate_bit_count: u32,
 }
 #[repr(C)]
+#[derive(Clone, Copy)]
 pub struct ClusterAccelerationStructureMoveObjectsInputNV {
     pub s_type: crate::vk::StructureType,
     pub p_next: *mut core::ffi::c_void,
@@ -129,6 +151,7 @@ pub struct ClusterAccelerationStructureMoveObjectsInputNV {
     pub max_moved_bytes: crate::vk::DeviceSize,
 }
 #[repr(C)]
+#[derive(Clone, Copy)]
 pub struct ClusterAccelerationStructureInputInfoNV {
     pub s_type: crate::vk::StructureType,
     pub p_next: *mut core::ffi::c_void,
@@ -139,6 +162,7 @@ pub struct ClusterAccelerationStructureInputInfoNV {
     pub op_input: crate::vk::ClusterAccelerationStructureOpInputNV,
 }
 #[repr(C)]
+#[derive(Clone, Copy)]
 pub struct ClusterAccelerationStructureCommandsInfoNV {
     pub s_type: crate::vk::StructureType,
     pub p_next: *mut core::ffi::c_void,
@@ -152,32 +176,44 @@ pub struct ClusterAccelerationStructureCommandsInfoNV {
     pub address_resolution_flags: crate::vk::ClusterAccelerationStructureAddressResolutionFlagsNV,
 }
 #[repr(C)]
+#[derive(Clone, Copy)]
 pub union ClusterAccelerationStructureOpInputNV {
     pub p_clusters_bottom_level: *mut crate::vk::ClusterAccelerationStructureClustersBottomLevelInputNV,
     pub p_triangle_clusters: *mut crate::vk::ClusterAccelerationStructureTriangleClusterInputNV,
     pub p_move_objects: *mut crate::vk::ClusterAccelerationStructureMoveObjectsInputNV,
 }
 #[repr(transparent)]
+#[derive(Clone, Copy)]
 pub struct ClusterAccelerationStructureTypeNV(pub(crate) i32);
 #[repr(transparent)]
+#[derive(Clone, Copy)]
 pub struct ClusterAccelerationStructureOpTypeNV(pub(crate) i32);
 #[repr(transparent)]
+#[derive(Clone, Copy)]
 pub struct ClusterAccelerationStructureOpModeNV(pub(crate) i32);
 #[repr(transparent)]
+#[derive(Clone, Copy)]
 pub struct ClusterAccelerationStructureGeometryFlagsNV(pub(crate) i32);
 #[repr(transparent)]
+#[derive(Clone, Copy)]
 pub struct ClusterAccelerationStructureClusterFlagsNV(pub(crate) i32);
 #[repr(transparent)]
+#[derive(Clone, Copy)]
 pub struct ClusterAccelerationStructureAddressResolutionFlagsNV(pub(crate) i32);
 #[repr(transparent)]
+#[derive(Clone, Copy)]
 pub struct ClusterAccelerationStructureIndexFormatFlagsNV(pub(crate) i32);
 #[repr(transparent)]
+#[derive(Clone, Copy)]
 pub struct ClusterAccelerationStructureIndexFormatFlagBitsNV(pub(crate) i32);
 #[repr(transparent)]
+#[derive(Clone, Copy)]
 pub struct ClusterAccelerationStructureClusterFlagBitsNV(pub(crate) i32);
 #[repr(transparent)]
+#[derive(Clone, Copy)]
 pub struct ClusterAccelerationStructureGeometryFlagBitsNV(pub(crate) i32);
 #[repr(transparent)]
+#[derive(Clone, Copy)]
 pub struct ClusterAccelerationStructureAddressResolutionFlagBitsNV(pub(crate) i32);
 pub const NV_CLUSTER_ACCELERATION_STRUCTURE_SPEC_VERSION: u32 = 4;
 pub const NV_CLUSTER_ACCELERATION_STRUCTURE_EXTENSION_NAME: &core::ffi::CStr = c"VK_NV_cluster_acceleration_structure";

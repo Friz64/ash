@@ -2,20 +2,25 @@
 #![cfg_attr(rustfmt, rustfmt_skip)]
 //!Items provided by `vulkan_video_codec_h265std`
 #[repr(C)]
+#[derive(Clone, Copy)]
 pub struct StdVideoH265ProfileTierLevelFlags {
-    pub general_tier_flag: u32,
-    pub general_progressive_source_flag: u32,
-    pub general_interlaced_source_flag: u32,
-    pub general_non_packed_constraint_flag: u32,
-    pub general_frame_only_constraint_flag: u32,
+    /**- `general_tier_flag` @ `0..1`
+- `general_progressive_source_flag` @ `1..2`
+- `general_interlaced_source_flag` @ `2..3`
+- `general_non_packed_constraint_flag` @ `3..4`
+- `general_frame_only_constraint_flag` @ `4..5`
+*/
+    pub bitfield0: u32,
 }
 #[repr(C)]
+#[derive(Clone, Copy)]
 pub struct StdVideoH265ProfileTierLevel {
     pub flags: crate::vk::StdVideoH265ProfileTierLevelFlags,
     pub general_profile_idc: crate::vk::StdVideoH265ProfileIdc,
     pub general_level_idc: crate::vk::StdVideoH265LevelIdc,
 }
 #[repr(C)]
+#[derive(Clone, Copy)]
 pub struct StdVideoH265DecPicBufMgr {
     pub max_latency_increase_plus1: [u32; crate::vk::STD_VIDEO_H265_SUBLAYERS_LIST_SIZE
         as _],
@@ -24,6 +29,7 @@ pub struct StdVideoH265DecPicBufMgr {
     pub max_num_reorder_pics: [u8; crate::vk::STD_VIDEO_H265_SUBLAYERS_LIST_SIZE as _],
 }
 #[repr(C)]
+#[derive(Clone, Copy)]
 pub struct StdVideoH265SubLayerHrdParameters {
     pub bit_rate_value_minus1: [u32; crate::vk::STD_VIDEO_H265_CPB_CNT_LIST_SIZE as _],
     pub cpb_size_value_minus1: [u32; crate::vk::STD_VIDEO_H265_CPB_CNT_LIST_SIZE as _],
@@ -34,16 +40,20 @@ pub struct StdVideoH265SubLayerHrdParameters {
     pub cbr_flag: u32,
 }
 #[repr(C)]
+#[derive(Clone, Copy)]
 pub struct StdVideoH265HrdFlags {
-    pub nal_hrd_parameters_present_flag: u32,
-    pub vcl_hrd_parameters_present_flag: u32,
-    pub sub_pic_hrd_params_present_flag: u32,
-    pub sub_pic_cpb_params_in_pic_timing_sei_flag: u32,
-    pub fixed_pic_rate_general_flag: u32,
-    pub fixed_pic_rate_within_cvs_flag: u32,
-    pub low_delay_hrd_flag: u32,
+    /**- `nal_hrd_parameters_present_flag` @ `0..1`
+- `vcl_hrd_parameters_present_flag` @ `1..2`
+- `sub_pic_hrd_params_present_flag` @ `2..3`
+- `sub_pic_cpb_params_in_pic_timing_sei_flag` @ `3..4`
+- `fixed_pic_rate_general_flag` @ `4..12`
+- `fixed_pic_rate_within_cvs_flag` @ `12..20`
+- `low_delay_hrd_flag` @ `20..28`
+*/
+    pub bitfield0: u32,
 }
 #[repr(C)]
+#[derive(Clone, Copy)]
 pub struct StdVideoH265HrdParameters {
     pub flags: crate::vk::StdVideoH265HrdFlags,
     pub tick_divisor_minus2: u8,
@@ -63,13 +73,17 @@ pub struct StdVideoH265HrdParameters {
     pub p_sub_layer_hrd_parameters_vcl: *const crate::vk::StdVideoH265SubLayerHrdParameters,
 }
 #[repr(C)]
+#[derive(Clone, Copy)]
 pub struct StdVideoH265VpsFlags {
-    pub vps_temporal_id_nesting_flag: u32,
-    pub vps_sub_layer_ordering_info_present_flag: u32,
-    pub vps_timing_info_present_flag: u32,
-    pub vps_poc_proportional_to_timing_flag: u32,
+    /**- `vps_temporal_id_nesting_flag` @ `0..1`
+- `vps_sub_layer_ordering_info_present_flag` @ `1..2`
+- `vps_timing_info_present_flag` @ `2..3`
+- `vps_poc_proportional_to_timing_flag` @ `3..4`
+*/
+    pub bitfield0: u32,
 }
 #[repr(C)]
+#[derive(Clone, Copy)]
 pub struct StdVideoH265VideoParameterSet {
     pub flags: crate::vk::StdVideoH265VpsFlags,
     pub vps_video_parameter_set_id: u8,
@@ -85,6 +99,7 @@ pub struct StdVideoH265VideoParameterSet {
     pub p_profile_tier_level: *const crate::vk::StdVideoH265ProfileTierLevel,
 }
 #[repr(C)]
+#[derive(Clone, Copy)]
 pub struct StdVideoH265ScalingLists {
     pub scaling_list4x4: [[u8; crate::vk::STD_VIDEO_H265_SCALING_LIST_4X4_NUM_ELEMENTS
         as _]; crate::vk::STD_VIDEO_H265_SCALING_LIST_4X4_NUM_LISTS as _],
@@ -100,11 +115,15 @@ pub struct StdVideoH265ScalingLists {
         as _],
 }
 #[repr(C)]
+#[derive(Clone, Copy)]
 pub struct StdVideoH265ShortTermRefPicSetFlags {
-    pub inter_ref_pic_set_prediction_flag: u32,
-    pub delta_rps_sign: u32,
+    /**- `inter_ref_pic_set_prediction_flag` @ `0..1`
+- `delta_rps_sign` @ `1..2`
+*/
+    pub bitfield0: u32,
 }
 #[repr(C)]
+#[derive(Clone, Copy)]
 pub struct StdVideoH265ShortTermRefPicSet {
     pub flags: crate::vk::StdVideoH265ShortTermRefPicSetFlags,
     pub delta_idx_minus1: u32,
@@ -122,33 +141,38 @@ pub struct StdVideoH265ShortTermRefPicSet {
     pub delta_poc_s1_minus1: [u16; crate::vk::STD_VIDEO_H265_MAX_DPB_SIZE as _],
 }
 #[repr(C)]
+#[derive(Clone, Copy)]
 pub struct StdVideoH265LongTermRefPicsSps {
     pub used_by_curr_pic_lt_sps_flag: u32,
     pub lt_ref_pic_poc_lsb_sps: [u32; crate::vk::STD_VIDEO_H265_MAX_LONG_TERM_REF_PICS_SPS
         as _],
 }
 #[repr(C)]
+#[derive(Clone, Copy)]
 pub struct StdVideoH265SpsVuiFlags {
-    pub aspect_ratio_info_present_flag: u32,
-    pub overscan_info_present_flag: u32,
-    pub overscan_appropriate_flag: u32,
-    pub video_signal_type_present_flag: u32,
-    pub video_full_range_flag: u32,
-    pub colour_description_present_flag: u32,
-    pub chroma_loc_info_present_flag: u32,
-    pub neutral_chroma_indication_flag: u32,
-    pub field_seq_flag: u32,
-    pub frame_field_info_present_flag: u32,
-    pub default_display_window_flag: u32,
-    pub vui_timing_info_present_flag: u32,
-    pub vui_poc_proportional_to_timing_flag: u32,
-    pub vui_hrd_parameters_present_flag: u32,
-    pub bitstream_restriction_flag: u32,
-    pub tiles_fixed_structure_flag: u32,
-    pub motion_vectors_over_pic_boundaries_flag: u32,
-    pub restricted_ref_pic_lists_flag: u32,
+    /**- `aspect_ratio_info_present_flag` @ `0..1`
+- `overscan_info_present_flag` @ `1..2`
+- `overscan_appropriate_flag` @ `2..3`
+- `video_signal_type_present_flag` @ `3..4`
+- `video_full_range_flag` @ `4..5`
+- `colour_description_present_flag` @ `5..6`
+- `chroma_loc_info_present_flag` @ `6..7`
+- `neutral_chroma_indication_flag` @ `7..8`
+- `field_seq_flag` @ `8..9`
+- `frame_field_info_present_flag` @ `9..10`
+- `default_display_window_flag` @ `10..11`
+- `vui_timing_info_present_flag` @ `11..12`
+- `vui_poc_proportional_to_timing_flag` @ `12..13`
+- `vui_hrd_parameters_present_flag` @ `13..14`
+- `bitstream_restriction_flag` @ `14..15`
+- `tiles_fixed_structure_flag` @ `15..16`
+- `motion_vectors_over_pic_boundaries_flag` @ `16..17`
+- `restricted_ref_pic_lists_flag` @ `17..18`
+*/
+    pub bitfield0: u32,
 }
 #[repr(C)]
+#[derive(Clone, Copy)]
 pub struct StdVideoH265SequenceParameterSetVui {
     pub flags: crate::vk::StdVideoH265SpsVuiFlags,
     pub aspect_ratio_idc: crate::vk::StdVideoH265AspectRatioIdc,
@@ -178,44 +202,49 @@ pub struct StdVideoH265SequenceParameterSetVui {
     pub p_hrd_parameters: *const crate::vk::StdVideoH265HrdParameters,
 }
 #[repr(C)]
+#[derive(Clone, Copy)]
 pub struct StdVideoH265PredictorPaletteEntries {
     pub predictor_palette_entries: [[u16; crate::vk::STD_VIDEO_H265_PREDICTOR_PALETTE_COMP_ENTRIES_LIST_SIZE
         as _]; crate::vk::STD_VIDEO_H265_PREDICTOR_PALETTE_COMPONENTS_LIST_SIZE as _],
 }
 #[repr(C)]
+#[derive(Clone, Copy)]
 pub struct StdVideoH265SpsFlags {
-    pub sps_temporal_id_nesting_flag: u32,
-    pub separate_colour_plane_flag: u32,
-    pub conformance_window_flag: u32,
-    pub sps_sub_layer_ordering_info_present_flag: u32,
-    pub scaling_list_enabled_flag: u32,
-    pub sps_scaling_list_data_present_flag: u32,
-    pub amp_enabled_flag: u32,
-    pub sample_adaptive_offset_enabled_flag: u32,
-    pub pcm_enabled_flag: u32,
-    pub pcm_loop_filter_disabled_flag: u32,
-    pub long_term_ref_pics_present_flag: u32,
-    pub sps_temporal_mvp_enabled_flag: u32,
-    pub strong_intra_smoothing_enabled_flag: u32,
-    pub vui_parameters_present_flag: u32,
-    pub sps_extension_present_flag: u32,
-    pub sps_range_extension_flag: u32,
-    pub transform_skip_rotation_enabled_flag: u32,
-    pub transform_skip_context_enabled_flag: u32,
-    pub implicit_rdpcm_enabled_flag: u32,
-    pub explicit_rdpcm_enabled_flag: u32,
-    pub extended_precision_processing_flag: u32,
-    pub intra_smoothing_disabled_flag: u32,
-    pub high_precision_offsets_enabled_flag: u32,
-    pub persistent_rice_adaptation_enabled_flag: u32,
-    pub cabac_bypass_alignment_enabled_flag: u32,
-    pub sps_scc_extension_flag: u32,
-    pub sps_curr_pic_ref_enabled_flag: u32,
-    pub palette_mode_enabled_flag: u32,
-    pub sps_palette_predictor_initializers_present_flag: u32,
-    pub intra_boundary_filtering_disabled_flag: u32,
+    /**- `sps_temporal_id_nesting_flag` @ `0..1`
+- `separate_colour_plane_flag` @ `1..2`
+- `conformance_window_flag` @ `2..3`
+- `sps_sub_layer_ordering_info_present_flag` @ `3..4`
+- `scaling_list_enabled_flag` @ `4..5`
+- `sps_scaling_list_data_present_flag` @ `5..6`
+- `amp_enabled_flag` @ `6..7`
+- `sample_adaptive_offset_enabled_flag` @ `7..8`
+- `pcm_enabled_flag` @ `8..9`
+- `pcm_loop_filter_disabled_flag` @ `9..10`
+- `long_term_ref_pics_present_flag` @ `10..11`
+- `sps_temporal_mvp_enabled_flag` @ `11..12`
+- `strong_intra_smoothing_enabled_flag` @ `12..13`
+- `vui_parameters_present_flag` @ `13..14`
+- `sps_extension_present_flag` @ `14..15`
+- `sps_range_extension_flag` @ `15..16`
+- `transform_skip_rotation_enabled_flag` @ `16..17`
+- `transform_skip_context_enabled_flag` @ `17..18`
+- `implicit_rdpcm_enabled_flag` @ `18..19`
+- `explicit_rdpcm_enabled_flag` @ `19..20`
+- `extended_precision_processing_flag` @ `20..21`
+- `intra_smoothing_disabled_flag` @ `21..22`
+- `high_precision_offsets_enabled_flag` @ `22..23`
+- `persistent_rice_adaptation_enabled_flag` @ `23..24`
+- `cabac_bypass_alignment_enabled_flag` @ `24..25`
+- `sps_scc_extension_flag` @ `25..26`
+- `sps_curr_pic_ref_enabled_flag` @ `26..27`
+- `palette_mode_enabled_flag` @ `27..28`
+- `sps_palette_predictor_initializers_present_flag` @ `28..29`
+- `intra_boundary_filtering_disabled_flag` @ `29..30`
+*/
+    pub bitfield0: u32,
 }
 #[repr(C)]
+#[derive(Clone, Copy)]
 pub struct StdVideoH265SequenceParameterSet {
     pub flags: crate::vk::StdVideoH265SpsFlags,
     pub chroma_format_idc: crate::vk::StdVideoH265ChromaFormatIdc,
@@ -258,40 +287,44 @@ pub struct StdVideoH265SequenceParameterSet {
     pub p_predictor_palette_entries: *const crate::vk::StdVideoH265PredictorPaletteEntries,
 }
 #[repr(C)]
+#[derive(Clone, Copy)]
 pub struct StdVideoH265PpsFlags {
-    pub dependent_slice_segments_enabled_flag: u32,
-    pub output_flag_present_flag: u32,
-    pub sign_data_hiding_enabled_flag: u32,
-    pub cabac_init_present_flag: u32,
-    pub constrained_intra_pred_flag: u32,
-    pub transform_skip_enabled_flag: u32,
-    pub cu_qp_delta_enabled_flag: u32,
-    pub pps_slice_chroma_qp_offsets_present_flag: u32,
-    pub weighted_pred_flag: u32,
-    pub weighted_bipred_flag: u32,
-    pub transquant_bypass_enabled_flag: u32,
-    pub tiles_enabled_flag: u32,
-    pub entropy_coding_sync_enabled_flag: u32,
-    pub uniform_spacing_flag: u32,
-    pub loop_filter_across_tiles_enabled_flag: u32,
-    pub pps_loop_filter_across_slices_enabled_flag: u32,
-    pub deblocking_filter_control_present_flag: u32,
-    pub deblocking_filter_override_enabled_flag: u32,
-    pub pps_deblocking_filter_disabled_flag: u32,
-    pub pps_scaling_list_data_present_flag: u32,
-    pub lists_modification_present_flag: u32,
-    pub slice_segment_header_extension_present_flag: u32,
-    pub pps_extension_present_flag: u32,
-    pub cross_component_prediction_enabled_flag: u32,
-    pub chroma_qp_offset_list_enabled_flag: u32,
-    pub pps_curr_pic_ref_enabled_flag: u32,
-    pub residual_adaptive_colour_transform_enabled_flag: u32,
-    pub pps_slice_act_qp_offsets_present_flag: u32,
-    pub pps_palette_predictor_initializers_present_flag: u32,
-    pub monochrome_palette_flag: u32,
-    pub pps_range_extension_flag: u32,
+    /**- `dependent_slice_segments_enabled_flag` @ `0..1`
+- `output_flag_present_flag` @ `1..2`
+- `sign_data_hiding_enabled_flag` @ `2..3`
+- `cabac_init_present_flag` @ `3..4`
+- `constrained_intra_pred_flag` @ `4..5`
+- `transform_skip_enabled_flag` @ `5..6`
+- `cu_qp_delta_enabled_flag` @ `6..7`
+- `pps_slice_chroma_qp_offsets_present_flag` @ `7..8`
+- `weighted_pred_flag` @ `8..9`
+- `weighted_bipred_flag` @ `9..10`
+- `transquant_bypass_enabled_flag` @ `10..11`
+- `tiles_enabled_flag` @ `11..12`
+- `entropy_coding_sync_enabled_flag` @ `12..13`
+- `uniform_spacing_flag` @ `13..14`
+- `loop_filter_across_tiles_enabled_flag` @ `14..15`
+- `pps_loop_filter_across_slices_enabled_flag` @ `15..16`
+- `deblocking_filter_control_present_flag` @ `16..17`
+- `deblocking_filter_override_enabled_flag` @ `17..18`
+- `pps_deblocking_filter_disabled_flag` @ `18..19`
+- `pps_scaling_list_data_present_flag` @ `19..20`
+- `lists_modification_present_flag` @ `20..21`
+- `slice_segment_header_extension_present_flag` @ `21..22`
+- `pps_extension_present_flag` @ `22..23`
+- `cross_component_prediction_enabled_flag` @ `23..24`
+- `chroma_qp_offset_list_enabled_flag` @ `24..25`
+- `pps_curr_pic_ref_enabled_flag` @ `25..26`
+- `residual_adaptive_colour_transform_enabled_flag` @ `26..27`
+- `pps_slice_act_qp_offsets_present_flag` @ `27..28`
+- `pps_palette_predictor_initializers_present_flag` @ `28..29`
+- `monochrome_palette_flag` @ `29..30`
+- `pps_range_extension_flag` @ `30..31`
+*/
+    pub bitfield0: u32,
 }
 #[repr(C)]
+#[derive(Clone, Copy)]
 pub struct StdVideoH265PictureParameterSet {
     pub flags: crate::vk::StdVideoH265PpsFlags,
     pub pps_pic_parameter_set_id: u8,
@@ -335,16 +368,22 @@ pub struct StdVideoH265PictureParameterSet {
     pub p_predictor_palette_entries: *const crate::vk::StdVideoH265PredictorPaletteEntries,
 }
 #[repr(transparent)]
+#[derive(Clone, Copy)]
 pub struct StdVideoH265ChromaFormatIdc(pub(crate) i32);
 #[repr(transparent)]
+#[derive(Clone, Copy)]
 pub struct StdVideoH265ProfileIdc(pub(crate) i32);
 #[repr(transparent)]
+#[derive(Clone, Copy)]
 pub struct StdVideoH265LevelIdc(pub(crate) i32);
 #[repr(transparent)]
+#[derive(Clone, Copy)]
 pub struct StdVideoH265SliceType(pub(crate) i32);
 #[repr(transparent)]
+#[derive(Clone, Copy)]
 pub struct StdVideoH265PictureType(pub(crate) i32);
 #[repr(transparent)]
+#[derive(Clone, Copy)]
 pub struct StdVideoH265AspectRatioIdc(pub(crate) i32);
 pub const STD_VIDEO_H265_CPB_CNT_LIST_SIZE: u32 = 32;
 pub const STD_VIDEO_H265_SUBLAYERS_LIST_SIZE: u32 = 7;

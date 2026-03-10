@@ -2,6 +2,7 @@
 #![cfg_attr(rustfmt, rustfmt_skip)]
 //![Vulkan Manual Page](https://docs.vulkan.org/refpages/latest/refpages/source/VK_VALVE_shader_mixed_float_dot_product.html) · Extension `VK_VALVE_shader_mixed_float_dot_product`
 #[repr(C)]
+#[derive(Clone, Copy)]
 pub struct PhysicalDeviceShaderMixedFloatDotProductFeaturesVALVE {
     pub s_type: crate::vk::StructureType,
     pub p_next: *mut core::ffi::c_void,

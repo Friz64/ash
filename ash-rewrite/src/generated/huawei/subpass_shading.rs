@@ -2,6 +2,7 @@
 #![cfg_attr(rustfmt, rustfmt_skip)]
 //![Vulkan Manual Page](https://docs.vulkan.org/refpages/latest/refpages/source/VK_HUAWEI_subpass_shading.html) · Extension `VK_HUAWEI_subpass_shading`
 #[repr(C)]
+#[derive(Clone, Copy)]
 pub struct SubpassShadingPipelineCreateInfoHUAWEI {
     pub s_type: crate::vk::StructureType,
     pub p_next: *mut core::ffi::c_void,
@@ -9,12 +10,14 @@ pub struct SubpassShadingPipelineCreateInfoHUAWEI {
     pub subpass: u32,
 }
 #[repr(C)]
+#[derive(Clone, Copy)]
 pub struct PhysicalDeviceSubpassShadingPropertiesHUAWEI {
     pub s_type: crate::vk::StructureType,
     pub p_next: *mut core::ffi::c_void,
     pub max_subpass_shading_workgroup_size_aspect_ratio: u32,
 }
 #[repr(C)]
+#[derive(Clone, Copy)]
 pub struct PhysicalDeviceSubpassShadingFeaturesHUAWEI {
     pub s_type: crate::vk::StructureType,
     pub p_next: *mut core::ffi::c_void,

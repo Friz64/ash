@@ -2,18 +2,21 @@
 #![cfg_attr(rustfmt, rustfmt_skip)]
 //![Vulkan Manual Page](https://docs.vulkan.org/refpages/latest/refpages/source/VK_QCOM_tile_memory_heap.html) · Extension `VK_QCOM_tile_memory_heap`
 #[repr(C)]
+#[derive(Clone, Copy)]
 pub struct TileMemoryBindInfoQCOM {
     pub s_type: crate::vk::StructureType,
     pub p_next: *const core::ffi::c_void,
     pub memory: crate::vk::DeviceMemory,
 }
 #[repr(C)]
+#[derive(Clone, Copy)]
 pub struct PhysicalDeviceTileMemoryHeapFeaturesQCOM {
     pub s_type: crate::vk::StructureType,
     pub p_next: *mut core::ffi::c_void,
     pub tile_memory_heap: crate::vk::Bool32,
 }
 #[repr(C)]
+#[derive(Clone, Copy)]
 pub struct PhysicalDeviceTileMemoryHeapPropertiesQCOM {
     pub s_type: crate::vk::StructureType,
     pub p_next: *mut core::ffi::c_void,
@@ -21,12 +24,14 @@ pub struct PhysicalDeviceTileMemoryHeapPropertiesQCOM {
     pub tile_buffer_transfers: crate::vk::Bool32,
 }
 #[repr(C)]
+#[derive(Clone, Copy)]
 pub struct TileMemorySizeInfoQCOM {
     pub s_type: crate::vk::StructureType,
     pub p_next: *const core::ffi::c_void,
     pub size: crate::vk::DeviceSize,
 }
 #[repr(C)]
+#[derive(Clone, Copy)]
 pub struct TileMemoryRequirementsQCOM {
     pub s_type: crate::vk::StructureType,
     pub p_next: *mut core::ffi::c_void,

@@ -2,6 +2,7 @@
 #![cfg_attr(rustfmt, rustfmt_skip)]
 //![Vulkan Manual Page](https://docs.vulkan.org/refpages/latest/refpages/source/VK_QCOM_rotated_copy_commands.html) · Extension `VK_QCOM_rotated_copy_commands`
 #[repr(C)]
+#[derive(Clone, Copy)]
 pub struct CopyCommandTransformInfoQCOM {
     pub s_type: crate::vk::StructureType,
     pub p_next: *const core::ffi::c_void,

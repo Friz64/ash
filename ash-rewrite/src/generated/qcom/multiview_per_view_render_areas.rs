@@ -2,12 +2,14 @@
 #![cfg_attr(rustfmt, rustfmt_skip)]
 //![Vulkan Manual Page](https://docs.vulkan.org/refpages/latest/refpages/source/VK_QCOM_multiview_per_view_render_areas.html) · Extension `VK_QCOM_multiview_per_view_render_areas`
 #[repr(C)]
+#[derive(Clone, Copy)]
 pub struct PhysicalDeviceMultiviewPerViewRenderAreasFeaturesQCOM {
     pub s_type: crate::vk::StructureType,
     pub p_next: *mut core::ffi::c_void,
     pub multiview_per_view_render_areas: crate::vk::Bool32,
 }
 #[repr(C)]
+#[derive(Clone, Copy)]
 pub struct MultiviewPerViewRenderAreasRenderPassBeginInfoQCOM {
     pub s_type: crate::vk::StructureType,
     pub p_next: *const core::ffi::c_void,

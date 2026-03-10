@@ -2,38 +2,45 @@
 #![cfg_attr(rustfmt, rustfmt_skip)]
 //![Vulkan Manual Page](https://docs.vulkan.org/refpages/latest/refpages/source/VK_VERSION_1_0.html) · Vulkan version 1.0
 #[repr(C)]
+#[derive(Clone, Copy)]
 pub struct BaseOutStructure {
     pub s_type: crate::vk::StructureType,
     pub p_next: *mut crate::vk::BaseOutStructure,
 }
 #[repr(C)]
+#[derive(Clone, Copy)]
 pub struct BaseInStructure {
     pub s_type: crate::vk::StructureType,
     pub p_next: *const crate::vk::BaseInStructure,
 }
 #[repr(C)]
+#[derive(Clone, Copy)]
 pub struct Offset2D {
     pub x: i32,
     pub y: i32,
 }
 #[repr(C)]
+#[derive(Clone, Copy)]
 pub struct Offset3D {
     pub x: i32,
     pub y: i32,
     pub z: i32,
 }
 #[repr(C)]
+#[derive(Clone, Copy)]
 pub struct Extent2D {
     pub width: u32,
     pub height: u32,
 }
 #[repr(C)]
+#[derive(Clone, Copy)]
 pub struct Extent3D {
     pub width: u32,
     pub height: u32,
     pub depth: u32,
 }
 #[repr(C)]
+#[derive(Clone, Copy)]
 pub struct Viewport {
     pub x: core::ffi::c_float,
     pub y: core::ffi::c_float,
@@ -43,17 +50,20 @@ pub struct Viewport {
     pub max_depth: core::ffi::c_float,
 }
 #[repr(C)]
+#[derive(Clone, Copy)]
 pub struct Rect2D {
     pub offset: crate::vk::Offset2D,
     pub extent: crate::vk::Extent2D,
 }
 #[repr(C)]
+#[derive(Clone, Copy)]
 pub struct ClearRect {
     pub rect: crate::vk::Rect2D,
     pub base_array_layer: u32,
     pub layer_count: u32,
 }
 #[repr(C)]
+#[derive(Clone, Copy)]
 pub struct ComponentMapping {
     pub r: crate::vk::ComponentSwizzle,
     pub g: crate::vk::ComponentSwizzle,
@@ -61,6 +71,7 @@ pub struct ComponentMapping {
     pub a: crate::vk::ComponentSwizzle,
 }
 #[repr(C)]
+#[derive(Clone, Copy)]
 pub struct PhysicalDeviceProperties {
     pub api_version: u32,
     pub driver_version: u32,
@@ -73,11 +84,13 @@ pub struct PhysicalDeviceProperties {
     pub sparse_properties: crate::vk::PhysicalDeviceSparseProperties,
 }
 #[repr(C)]
+#[derive(Clone, Copy)]
 pub struct ExtensionProperties {
     pub extension_name: [core::ffi::c_char; crate::vk::MAX_EXTENSION_NAME_SIZE as _],
     pub spec_version: u32,
 }
 #[repr(C)]
+#[derive(Clone, Copy)]
 pub struct LayerProperties {
     pub layer_name: [core::ffi::c_char; crate::vk::MAX_EXTENSION_NAME_SIZE as _],
     pub spec_version: u32,
@@ -85,6 +98,7 @@ pub struct LayerProperties {
     pub description: [core::ffi::c_char; crate::vk::MAX_DESCRIPTION_SIZE as _],
 }
 #[repr(C)]
+#[derive(Clone, Copy)]
 pub struct ApplicationInfo {
     pub s_type: crate::vk::StructureType,
     pub p_next: *const core::ffi::c_void,
@@ -95,6 +109,7 @@ pub struct ApplicationInfo {
     pub api_version: u32,
 }
 #[repr(C)]
+#[derive(Clone, Copy)]
 pub struct AllocationCallbacks {
     pub p_user_data: *mut core::ffi::c_void,
     pub pfn_allocation: crate::vk::PFN_vkAllocationFunction,
@@ -104,6 +119,7 @@ pub struct AllocationCallbacks {
     pub pfn_internal_free: crate::vk::PFN_vkInternalFreeNotification,
 }
 #[repr(C)]
+#[derive(Clone, Copy)]
 pub struct DeviceQueueCreateInfo {
     pub s_type: crate::vk::StructureType,
     pub p_next: *const core::ffi::c_void,
@@ -113,6 +129,7 @@ pub struct DeviceQueueCreateInfo {
     pub p_queue_priorities: *const core::ffi::c_float,
 }
 #[repr(C)]
+#[derive(Clone, Copy)]
 pub struct DeviceCreateInfo {
     pub s_type: crate::vk::StructureType,
     pub p_next: *const core::ffi::c_void,
@@ -126,6 +143,7 @@ pub struct DeviceCreateInfo {
     pub p_enabled_features: *const crate::vk::PhysicalDeviceFeatures,
 }
 #[repr(C)]
+#[derive(Clone, Copy)]
 pub struct InstanceCreateInfo {
     pub s_type: crate::vk::StructureType,
     pub p_next: *const core::ffi::c_void,
@@ -137,6 +155,7 @@ pub struct InstanceCreateInfo {
     pub pp_enabled_extension_names: *const *const core::ffi::c_char,
 }
 #[repr(C)]
+#[derive(Clone, Copy)]
 pub struct QueueFamilyProperties {
     pub queue_flags: crate::vk::QueueFlags,
     pub queue_count: u32,
@@ -144,6 +163,7 @@ pub struct QueueFamilyProperties {
     pub min_image_transfer_granularity: crate::vk::Extent3D,
 }
 #[repr(C)]
+#[derive(Clone, Copy)]
 pub struct PhysicalDeviceMemoryProperties {
     pub memory_type_count: u32,
     pub memory_types: [crate::vk::MemoryType; crate::vk::MAX_MEMORY_TYPES as _],
@@ -151,6 +171,7 @@ pub struct PhysicalDeviceMemoryProperties {
     pub memory_heaps: [crate::vk::MemoryHeap; crate::vk::MAX_MEMORY_HEAPS as _],
 }
 #[repr(C)]
+#[derive(Clone, Copy)]
 pub struct MemoryAllocateInfo {
     pub s_type: crate::vk::StructureType,
     pub p_next: *const core::ffi::c_void,
@@ -158,18 +179,21 @@ pub struct MemoryAllocateInfo {
     pub memory_type_index: u32,
 }
 #[repr(C)]
+#[derive(Clone, Copy)]
 pub struct MemoryRequirements {
     pub size: crate::vk::DeviceSize,
     pub alignment: crate::vk::DeviceSize,
     pub memory_type_bits: u32,
 }
 #[repr(C)]
+#[derive(Clone, Copy)]
 pub struct SparseImageFormatProperties {
     pub aspect_mask: crate::vk::ImageAspectFlags,
     pub image_granularity: crate::vk::Extent3D,
     pub flags: crate::vk::SparseImageFormatFlags,
 }
 #[repr(C)]
+#[derive(Clone, Copy)]
 pub struct SparseImageMemoryRequirements {
     pub format_properties: crate::vk::SparseImageFormatProperties,
     pub image_mip_tail_first_lod: u32,
@@ -178,16 +202,19 @@ pub struct SparseImageMemoryRequirements {
     pub image_mip_tail_stride: crate::vk::DeviceSize,
 }
 #[repr(C)]
+#[derive(Clone, Copy)]
 pub struct MemoryType {
     pub property_flags: crate::vk::MemoryPropertyFlags,
     pub heap_index: u32,
 }
 #[repr(C)]
+#[derive(Clone, Copy)]
 pub struct MemoryHeap {
     pub size: crate::vk::DeviceSize,
     pub flags: crate::vk::MemoryHeapFlags,
 }
 #[repr(C)]
+#[derive(Clone, Copy)]
 pub struct MappedMemoryRange {
     pub s_type: crate::vk::StructureType,
     pub p_next: *const core::ffi::c_void,
@@ -196,12 +223,14 @@ pub struct MappedMemoryRange {
     pub size: crate::vk::DeviceSize,
 }
 #[repr(C)]
+#[derive(Clone, Copy)]
 pub struct FormatProperties {
     pub linear_tiling_features: crate::vk::FormatFeatureFlags,
     pub optimal_tiling_features: crate::vk::FormatFeatureFlags,
     pub buffer_features: crate::vk::FormatFeatureFlags,
 }
 #[repr(C)]
+#[derive(Clone, Copy)]
 pub struct ImageFormatProperties {
     pub max_extent: crate::vk::Extent3D,
     pub max_mip_levels: u32,
@@ -210,18 +239,21 @@ pub struct ImageFormatProperties {
     pub max_resource_size: crate::vk::DeviceSize,
 }
 #[repr(C)]
+#[derive(Clone, Copy)]
 pub struct DescriptorBufferInfo {
     pub buffer: crate::vk::Buffer,
     pub offset: crate::vk::DeviceSize,
     pub range: crate::vk::DeviceSize,
 }
 #[repr(C)]
+#[derive(Clone, Copy)]
 pub struct DescriptorImageInfo {
     pub sampler: crate::vk::Sampler,
     pub image_view: crate::vk::ImageView,
     pub image_layout: crate::vk::ImageLayout,
 }
 #[repr(C)]
+#[derive(Clone, Copy)]
 pub struct WriteDescriptorSet {
     pub s_type: crate::vk::StructureType,
     pub p_next: *const core::ffi::c_void,
@@ -235,6 +267,7 @@ pub struct WriteDescriptorSet {
     pub p_texel_buffer_view: *const crate::vk::BufferView,
 }
 #[repr(C)]
+#[derive(Clone, Copy)]
 pub struct CopyDescriptorSet {
     pub s_type: crate::vk::StructureType,
     pub p_next: *const core::ffi::c_void,
@@ -247,6 +280,7 @@ pub struct CopyDescriptorSet {
     pub descriptor_count: u32,
 }
 #[repr(C)]
+#[derive(Clone, Copy)]
 pub struct BufferCreateInfo {
     pub s_type: crate::vk::StructureType,
     pub p_next: *const core::ffi::c_void,
@@ -258,6 +292,7 @@ pub struct BufferCreateInfo {
     pub p_queue_family_indices: *const u32,
 }
 #[repr(C)]
+#[derive(Clone, Copy)]
 pub struct BufferViewCreateInfo {
     pub s_type: crate::vk::StructureType,
     pub p_next: *const core::ffi::c_void,
@@ -268,12 +303,14 @@ pub struct BufferViewCreateInfo {
     pub range: crate::vk::DeviceSize,
 }
 #[repr(C)]
+#[derive(Clone, Copy)]
 pub struct ImageSubresource {
     pub aspect_mask: crate::vk::ImageAspectFlags,
     pub mip_level: u32,
     pub array_layer: u32,
 }
 #[repr(C)]
+#[derive(Clone, Copy)]
 pub struct ImageSubresourceLayers {
     pub aspect_mask: crate::vk::ImageAspectFlags,
     pub mip_level: u32,
@@ -281,6 +318,7 @@ pub struct ImageSubresourceLayers {
     pub layer_count: u32,
 }
 #[repr(C)]
+#[derive(Clone, Copy)]
 pub struct ImageSubresourceRange {
     pub aspect_mask: crate::vk::ImageAspectFlags,
     pub base_mip_level: u32,
@@ -289,6 +327,7 @@ pub struct ImageSubresourceRange {
     pub layer_count: u32,
 }
 #[repr(C)]
+#[derive(Clone, Copy)]
 pub struct MemoryBarrier {
     pub s_type: crate::vk::StructureType,
     pub p_next: *const core::ffi::c_void,
@@ -296,6 +335,7 @@ pub struct MemoryBarrier {
     pub dst_access_mask: crate::vk::AccessFlags,
 }
 #[repr(C)]
+#[derive(Clone, Copy)]
 pub struct BufferMemoryBarrier {
     pub s_type: crate::vk::StructureType,
     pub p_next: *const core::ffi::c_void,
@@ -308,6 +348,7 @@ pub struct BufferMemoryBarrier {
     pub size: crate::vk::DeviceSize,
 }
 #[repr(C)]
+#[derive(Clone, Copy)]
 pub struct ImageMemoryBarrier {
     pub s_type: crate::vk::StructureType,
     pub p_next: *const core::ffi::c_void,
@@ -321,6 +362,7 @@ pub struct ImageMemoryBarrier {
     pub subresource_range: crate::vk::ImageSubresourceRange,
 }
 #[repr(C)]
+#[derive(Clone, Copy)]
 pub struct ImageCreateInfo {
     pub s_type: crate::vk::StructureType,
     pub p_next: *const core::ffi::c_void,
@@ -339,6 +381,7 @@ pub struct ImageCreateInfo {
     pub initial_layout: crate::vk::ImageLayout,
 }
 #[repr(C)]
+#[derive(Clone, Copy)]
 pub struct SubresourceLayout {
     pub offset: crate::vk::DeviceSize,
     pub size: crate::vk::DeviceSize,
@@ -347,6 +390,7 @@ pub struct SubresourceLayout {
     pub depth_pitch: crate::vk::DeviceSize,
 }
 #[repr(C)]
+#[derive(Clone, Copy)]
 pub struct ImageViewCreateInfo {
     pub s_type: crate::vk::StructureType,
     pub p_next: *const core::ffi::c_void,
@@ -358,12 +402,14 @@ pub struct ImageViewCreateInfo {
     pub subresource_range: crate::vk::ImageSubresourceRange,
 }
 #[repr(C)]
+#[derive(Clone, Copy)]
 pub struct BufferCopy {
     pub src_offset: crate::vk::DeviceSize,
     pub dst_offset: crate::vk::DeviceSize,
     pub size: crate::vk::DeviceSize,
 }
 #[repr(C)]
+#[derive(Clone, Copy)]
 pub struct SparseMemoryBind {
     pub resource_offset: crate::vk::DeviceSize,
     pub size: crate::vk::DeviceSize,
@@ -372,6 +418,7 @@ pub struct SparseMemoryBind {
     pub flags: crate::vk::SparseMemoryBindFlags,
 }
 #[repr(C)]
+#[derive(Clone, Copy)]
 pub struct SparseImageMemoryBind {
     pub subresource: crate::vk::ImageSubresource,
     pub offset: crate::vk::Offset3D,
@@ -381,24 +428,28 @@ pub struct SparseImageMemoryBind {
     pub flags: crate::vk::SparseMemoryBindFlags,
 }
 #[repr(C)]
+#[derive(Clone, Copy)]
 pub struct SparseBufferMemoryBindInfo {
     pub buffer: crate::vk::Buffer,
     pub bind_count: u32,
     pub p_binds: *const crate::vk::SparseMemoryBind,
 }
 #[repr(C)]
+#[derive(Clone, Copy)]
 pub struct SparseImageOpaqueMemoryBindInfo {
     pub image: crate::vk::Image,
     pub bind_count: u32,
     pub p_binds: *const crate::vk::SparseMemoryBind,
 }
 #[repr(C)]
+#[derive(Clone, Copy)]
 pub struct SparseImageMemoryBindInfo {
     pub image: crate::vk::Image,
     pub bind_count: u32,
     pub p_binds: *const crate::vk::SparseImageMemoryBind,
 }
 #[repr(C)]
+#[derive(Clone, Copy)]
 pub struct BindSparseInfo {
     pub s_type: crate::vk::StructureType,
     pub p_next: *const core::ffi::c_void,
@@ -414,6 +465,7 @@ pub struct BindSparseInfo {
     pub p_signal_semaphores: *const crate::vk::Semaphore,
 }
 #[repr(C)]
+#[derive(Clone, Copy)]
 pub struct ImageCopy {
     pub src_subresource: crate::vk::ImageSubresourceLayers,
     pub src_offset: crate::vk::Offset3D,
@@ -422,6 +474,7 @@ pub struct ImageCopy {
     pub extent: crate::vk::Extent3D,
 }
 #[repr(C)]
+#[derive(Clone, Copy)]
 pub struct ImageBlit {
     pub src_subresource: crate::vk::ImageSubresourceLayers,
     pub src_offsets: [crate::vk::Offset3D; 2 as _],
@@ -429,6 +482,7 @@ pub struct ImageBlit {
     pub dst_offsets: [crate::vk::Offset3D; 2 as _],
 }
 #[repr(C)]
+#[derive(Clone, Copy)]
 pub struct BufferImageCopy {
     pub buffer_offset: crate::vk::DeviceSize,
     pub buffer_row_length: u32,
@@ -438,6 +492,7 @@ pub struct BufferImageCopy {
     pub image_extent: crate::vk::Extent3D,
 }
 #[repr(C)]
+#[derive(Clone, Copy)]
 pub struct ImageResolve {
     pub src_subresource: crate::vk::ImageSubresourceLayers,
     pub src_offset: crate::vk::Offset3D,
@@ -446,6 +501,7 @@ pub struct ImageResolve {
     pub extent: crate::vk::Extent3D,
 }
 #[repr(C)]
+#[derive(Clone, Copy)]
 pub struct ShaderModuleCreateInfo {
     pub s_type: crate::vk::StructureType,
     pub p_next: *const core::ffi::c_void,
@@ -454,6 +510,7 @@ pub struct ShaderModuleCreateInfo {
     pub p_code: *const u32,
 }
 #[repr(C)]
+#[derive(Clone, Copy)]
 pub struct DescriptorSetLayoutBinding {
     pub binding: u32,
     pub descriptor_type: crate::vk::DescriptorType,
@@ -462,6 +519,7 @@ pub struct DescriptorSetLayoutBinding {
     pub p_immutable_samplers: *const crate::vk::Sampler,
 }
 #[repr(C)]
+#[derive(Clone, Copy)]
 pub struct DescriptorSetLayoutCreateInfo {
     pub s_type: crate::vk::StructureType,
     pub p_next: *const core::ffi::c_void,
@@ -470,11 +528,13 @@ pub struct DescriptorSetLayoutCreateInfo {
     pub p_bindings: *const crate::vk::DescriptorSetLayoutBinding,
 }
 #[repr(C)]
+#[derive(Clone, Copy)]
 pub struct DescriptorPoolSize {
     pub _type: crate::vk::DescriptorType,
     pub descriptor_count: u32,
 }
 #[repr(C)]
+#[derive(Clone, Copy)]
 pub struct DescriptorPoolCreateInfo {
     pub s_type: crate::vk::StructureType,
     pub p_next: *const core::ffi::c_void,
@@ -484,6 +544,7 @@ pub struct DescriptorPoolCreateInfo {
     pub p_pool_sizes: *const crate::vk::DescriptorPoolSize,
 }
 #[repr(C)]
+#[derive(Clone, Copy)]
 pub struct DescriptorSetAllocateInfo {
     pub s_type: crate::vk::StructureType,
     pub p_next: *const core::ffi::c_void,
@@ -492,12 +553,14 @@ pub struct DescriptorSetAllocateInfo {
     pub p_set_layouts: *const crate::vk::DescriptorSetLayout,
 }
 #[repr(C)]
+#[derive(Clone, Copy)]
 pub struct SpecializationMapEntry {
     pub constant_id: u32,
     pub offset: u32,
     pub size: usize,
 }
 #[repr(C)]
+#[derive(Clone, Copy)]
 pub struct SpecializationInfo {
     pub map_entry_count: u32,
     pub p_map_entries: *const crate::vk::SpecializationMapEntry,
@@ -505,6 +568,7 @@ pub struct SpecializationInfo {
     pub p_data: *const core::ffi::c_void,
 }
 #[repr(C)]
+#[derive(Clone, Copy)]
 pub struct PipelineShaderStageCreateInfo {
     pub s_type: crate::vk::StructureType,
     pub p_next: *const core::ffi::c_void,
@@ -515,6 +579,7 @@ pub struct PipelineShaderStageCreateInfo {
     pub p_specialization_info: *const crate::vk::SpecializationInfo,
 }
 #[repr(C)]
+#[derive(Clone, Copy)]
 pub struct ComputePipelineCreateInfo {
     pub s_type: crate::vk::StructureType,
     pub p_next: *const core::ffi::c_void,
@@ -525,12 +590,14 @@ pub struct ComputePipelineCreateInfo {
     pub base_pipeline_index: i32,
 }
 #[repr(C)]
+#[derive(Clone, Copy)]
 pub struct VertexInputBindingDescription {
     pub binding: u32,
     pub stride: u32,
     pub input_rate: crate::vk::VertexInputRate,
 }
 #[repr(C)]
+#[derive(Clone, Copy)]
 pub struct VertexInputAttributeDescription {
     pub location: u32,
     pub binding: u32,
@@ -538,6 +605,7 @@ pub struct VertexInputAttributeDescription {
     pub offset: u32,
 }
 #[repr(C)]
+#[derive(Clone, Copy)]
 pub struct PipelineVertexInputStateCreateInfo {
     pub s_type: crate::vk::StructureType,
     pub p_next: *const core::ffi::c_void,
@@ -548,6 +616,7 @@ pub struct PipelineVertexInputStateCreateInfo {
     pub p_vertex_attribute_descriptions: *const crate::vk::VertexInputAttributeDescription,
 }
 #[repr(C)]
+#[derive(Clone, Copy)]
 pub struct PipelineInputAssemblyStateCreateInfo {
     pub s_type: crate::vk::StructureType,
     pub p_next: *const core::ffi::c_void,
@@ -556,6 +625,7 @@ pub struct PipelineInputAssemblyStateCreateInfo {
     pub primitive_restart_enable: crate::vk::Bool32,
 }
 #[repr(C)]
+#[derive(Clone, Copy)]
 pub struct PipelineTessellationStateCreateInfo {
     pub s_type: crate::vk::StructureType,
     pub p_next: *const core::ffi::c_void,
@@ -563,6 +633,7 @@ pub struct PipelineTessellationStateCreateInfo {
     pub patch_control_points: u32,
 }
 #[repr(C)]
+#[derive(Clone, Copy)]
 pub struct PipelineViewportStateCreateInfo {
     pub s_type: crate::vk::StructureType,
     pub p_next: *const core::ffi::c_void,
@@ -573,6 +644,7 @@ pub struct PipelineViewportStateCreateInfo {
     pub p_scissors: *const crate::vk::Rect2D,
 }
 #[repr(C)]
+#[derive(Clone, Copy)]
 pub struct PipelineRasterizationStateCreateInfo {
     pub s_type: crate::vk::StructureType,
     pub p_next: *const core::ffi::c_void,
@@ -589,6 +661,7 @@ pub struct PipelineRasterizationStateCreateInfo {
     pub line_width: core::ffi::c_float,
 }
 #[repr(C)]
+#[derive(Clone, Copy)]
 pub struct PipelineMultisampleStateCreateInfo {
     pub s_type: crate::vk::StructureType,
     pub p_next: *const core::ffi::c_void,
@@ -601,6 +674,7 @@ pub struct PipelineMultisampleStateCreateInfo {
     pub alpha_to_one_enable: crate::vk::Bool32,
 }
 #[repr(C)]
+#[derive(Clone, Copy)]
 pub struct PipelineColorBlendAttachmentState {
     pub blend_enable: crate::vk::Bool32,
     pub src_color_blend_factor: crate::vk::BlendFactor,
@@ -612,6 +686,7 @@ pub struct PipelineColorBlendAttachmentState {
     pub color_write_mask: crate::vk::ColorComponentFlags,
 }
 #[repr(C)]
+#[derive(Clone, Copy)]
 pub struct PipelineColorBlendStateCreateInfo {
     pub s_type: crate::vk::StructureType,
     pub p_next: *const core::ffi::c_void,
@@ -623,6 +698,7 @@ pub struct PipelineColorBlendStateCreateInfo {
     pub blend_constants: [core::ffi::c_float; 4 as _],
 }
 #[repr(C)]
+#[derive(Clone, Copy)]
 pub struct PipelineDynamicStateCreateInfo {
     pub s_type: crate::vk::StructureType,
     pub p_next: *const core::ffi::c_void,
@@ -631,6 +707,7 @@ pub struct PipelineDynamicStateCreateInfo {
     pub p_dynamic_states: *const crate::vk::DynamicState,
 }
 #[repr(C)]
+#[derive(Clone, Copy)]
 pub struct StencilOpState {
     pub fail_op: crate::vk::StencilOp,
     pub pass_op: crate::vk::StencilOp,
@@ -641,6 +718,7 @@ pub struct StencilOpState {
     pub reference: u32,
 }
 #[repr(C)]
+#[derive(Clone, Copy)]
 pub struct PipelineDepthStencilStateCreateInfo {
     pub s_type: crate::vk::StructureType,
     pub p_next: *const core::ffi::c_void,
@@ -656,6 +734,7 @@ pub struct PipelineDepthStencilStateCreateInfo {
     pub max_depth_bounds: core::ffi::c_float,
 }
 #[repr(C)]
+#[derive(Clone, Copy)]
 pub struct GraphicsPipelineCreateInfo {
     pub s_type: crate::vk::StructureType,
     pub p_next: *const core::ffi::c_void,
@@ -678,6 +757,7 @@ pub struct GraphicsPipelineCreateInfo {
     pub base_pipeline_index: i32,
 }
 #[repr(C)]
+#[derive(Clone, Copy)]
 pub struct PipelineCacheCreateInfo {
     pub s_type: crate::vk::StructureType,
     pub p_next: *const core::ffi::c_void,
@@ -686,6 +766,7 @@ pub struct PipelineCacheCreateInfo {
     pub p_initial_data: *const core::ffi::c_void,
 }
 #[repr(C)]
+#[derive(Clone, Copy)]
 pub struct PipelineCacheHeaderVersionOne {
     pub header_size: u32,
     pub header_version: crate::vk::PipelineCacheHeaderVersion,
@@ -694,12 +775,14 @@ pub struct PipelineCacheHeaderVersionOne {
     pub pipeline_cache_uuid: [u8; crate::vk::UUID_SIZE as _],
 }
 #[repr(C)]
+#[derive(Clone, Copy)]
 pub struct PushConstantRange {
     pub stage_flags: crate::vk::ShaderStageFlags,
     pub offset: u32,
     pub size: u32,
 }
 #[repr(C)]
+#[derive(Clone, Copy)]
 pub struct PipelineLayoutCreateInfo {
     pub s_type: crate::vk::StructureType,
     pub p_next: *const core::ffi::c_void,
@@ -710,6 +793,7 @@ pub struct PipelineLayoutCreateInfo {
     pub p_push_constant_ranges: *const crate::vk::PushConstantRange,
 }
 #[repr(C)]
+#[derive(Clone, Copy)]
 pub struct SamplerCreateInfo {
     pub s_type: crate::vk::StructureType,
     pub p_next: *const core::ffi::c_void,
@@ -731,6 +815,7 @@ pub struct SamplerCreateInfo {
     pub unnormalized_coordinates: crate::vk::Bool32,
 }
 #[repr(C)]
+#[derive(Clone, Copy)]
 pub struct CommandPoolCreateInfo {
     pub s_type: crate::vk::StructureType,
     pub p_next: *const core::ffi::c_void,
@@ -738,6 +823,7 @@ pub struct CommandPoolCreateInfo {
     pub queue_family_index: u32,
 }
 #[repr(C)]
+#[derive(Clone, Copy)]
 pub struct CommandBufferAllocateInfo {
     pub s_type: crate::vk::StructureType,
     pub p_next: *const core::ffi::c_void,
@@ -746,6 +832,7 @@ pub struct CommandBufferAllocateInfo {
     pub command_buffer_count: u32,
 }
 #[repr(C)]
+#[derive(Clone, Copy)]
 pub struct CommandBufferInheritanceInfo {
     pub s_type: crate::vk::StructureType,
     pub p_next: *const core::ffi::c_void,
@@ -757,6 +844,7 @@ pub struct CommandBufferInheritanceInfo {
     pub pipeline_statistics: crate::vk::QueryPipelineStatisticFlags,
 }
 #[repr(C)]
+#[derive(Clone, Copy)]
 pub struct CommandBufferBeginInfo {
     pub s_type: crate::vk::StructureType,
     pub p_next: *const core::ffi::c_void,
@@ -764,6 +852,7 @@ pub struct CommandBufferBeginInfo {
     pub p_inheritance_info: *const crate::vk::CommandBufferInheritanceInfo,
 }
 #[repr(C)]
+#[derive(Clone, Copy)]
 pub struct RenderPassBeginInfo {
     pub s_type: crate::vk::StructureType,
     pub p_next: *const core::ffi::c_void,
@@ -774,17 +863,20 @@ pub struct RenderPassBeginInfo {
     pub p_clear_values: *const crate::vk::ClearValue,
 }
 #[repr(C)]
+#[derive(Clone, Copy)]
 pub struct ClearDepthStencilValue {
     pub depth: core::ffi::c_float,
     pub stencil: u32,
 }
 #[repr(C)]
+#[derive(Clone, Copy)]
 pub struct ClearAttachment {
     pub aspect_mask: crate::vk::ImageAspectFlags,
     pub color_attachment: u32,
     pub clear_value: crate::vk::ClearValue,
 }
 #[repr(C)]
+#[derive(Clone, Copy)]
 pub struct AttachmentDescription {
     pub flags: crate::vk::AttachmentDescriptionFlags,
     pub format: crate::vk::Format,
@@ -797,11 +889,13 @@ pub struct AttachmentDescription {
     pub final_layout: crate::vk::ImageLayout,
 }
 #[repr(C)]
+#[derive(Clone, Copy)]
 pub struct AttachmentReference {
     pub attachment: u32,
     pub layout: crate::vk::ImageLayout,
 }
 #[repr(C)]
+#[derive(Clone, Copy)]
 pub struct SubpassDescription {
     pub flags: crate::vk::SubpassDescriptionFlags,
     pub pipeline_bind_point: crate::vk::PipelineBindPoint,
@@ -815,6 +909,7 @@ pub struct SubpassDescription {
     pub p_preserve_attachments: *const u32,
 }
 #[repr(C)]
+#[derive(Clone, Copy)]
 pub struct SubpassDependency {
     pub src_subpass: u32,
     pub dst_subpass: u32,
@@ -825,6 +920,7 @@ pub struct SubpassDependency {
     pub dependency_flags: crate::vk::DependencyFlags,
 }
 #[repr(C)]
+#[derive(Clone, Copy)]
 pub struct RenderPassCreateInfo {
     pub s_type: crate::vk::StructureType,
     pub p_next: *const core::ffi::c_void,
@@ -837,18 +933,21 @@ pub struct RenderPassCreateInfo {
     pub p_dependencies: *const crate::vk::SubpassDependency,
 }
 #[repr(C)]
+#[derive(Clone, Copy)]
 pub struct EventCreateInfo {
     pub s_type: crate::vk::StructureType,
     pub p_next: *const core::ffi::c_void,
     pub flags: crate::vk::EventCreateFlags,
 }
 #[repr(C)]
+#[derive(Clone, Copy)]
 pub struct FenceCreateInfo {
     pub s_type: crate::vk::StructureType,
     pub p_next: *const core::ffi::c_void,
     pub flags: crate::vk::FenceCreateFlags,
 }
 #[repr(C)]
+#[derive(Clone, Copy)]
 pub struct PhysicalDeviceFeatures {
     pub robust_buffer_access: crate::vk::Bool32,
     pub full_draw_index_uint32: crate::vk::Bool32,
@@ -907,6 +1006,7 @@ pub struct PhysicalDeviceFeatures {
     pub inherited_queries: crate::vk::Bool32,
 }
 #[repr(C)]
+#[derive(Clone, Copy)]
 pub struct PhysicalDeviceSparseProperties {
     pub residency_standard2_d_block_shape: crate::vk::Bool32,
     pub residency_standard2_d_multisample_block_shape: crate::vk::Bool32,
@@ -915,6 +1015,7 @@ pub struct PhysicalDeviceSparseProperties {
     pub residency_non_resident_strict: crate::vk::Bool32,
 }
 #[repr(C)]
+#[derive(Clone, Copy)]
 pub struct PhysicalDeviceLimits {
     pub max_image_dimension1_d: u32,
     pub max_image_dimension2_d: u32,
@@ -1024,12 +1125,14 @@ pub struct PhysicalDeviceLimits {
     pub non_coherent_atom_size: crate::vk::DeviceSize,
 }
 #[repr(C)]
+#[derive(Clone, Copy)]
 pub struct SemaphoreCreateInfo {
     pub s_type: crate::vk::StructureType,
     pub p_next: *const core::ffi::c_void,
     pub flags: crate::vk::SemaphoreCreateFlags,
 }
 #[repr(C)]
+#[derive(Clone, Copy)]
 pub struct QueryPoolCreateInfo {
     pub s_type: crate::vk::StructureType,
     pub p_next: *const core::ffi::c_void,
@@ -1039,6 +1142,7 @@ pub struct QueryPoolCreateInfo {
     pub pipeline_statistics: crate::vk::QueryPipelineStatisticFlags,
 }
 #[repr(C)]
+#[derive(Clone, Copy)]
 pub struct FramebufferCreateInfo {
     pub s_type: crate::vk::StructureType,
     pub p_next: *const core::ffi::c_void,
@@ -1051,6 +1155,7 @@ pub struct FramebufferCreateInfo {
     pub layers: u32,
 }
 #[repr(C)]
+#[derive(Clone, Copy)]
 pub struct DrawIndirectCommand {
     pub vertex_count: u32,
     pub instance_count: u32,
@@ -1058,6 +1163,7 @@ pub struct DrawIndirectCommand {
     pub first_instance: u32,
 }
 #[repr(C)]
+#[derive(Clone, Copy)]
 pub struct DrawIndexedIndirectCommand {
     pub index_count: u32,
     pub instance_count: u32,
@@ -1066,12 +1172,14 @@ pub struct DrawIndexedIndirectCommand {
     pub first_instance: u32,
 }
 #[repr(C)]
+#[derive(Clone, Copy)]
 pub struct DispatchIndirectCommand {
     pub x: u32,
     pub y: u32,
     pub z: u32,
 }
 #[repr(C)]
+#[derive(Clone, Copy)]
 pub struct SubmitInfo {
     pub s_type: crate::vk::StructureType,
     pub p_next: *const core::ffi::c_void,
@@ -1084,352 +1192,520 @@ pub struct SubmitInfo {
     pub p_signal_semaphores: *const crate::vk::Semaphore,
 }
 #[repr(C)]
+#[derive(Clone, Copy)]
 pub union ClearColorValue {
     pub float32: [core::ffi::c_float; 4 as _],
     pub int32: [i32; 4 as _],
     pub uint32: [u32; 4 as _],
 }
 #[repr(C)]
+#[derive(Clone, Copy)]
 pub union ClearValue {
     pub color: crate::vk::ClearColorValue,
     pub depth_stencil: crate::vk::ClearDepthStencilValue,
 }
 #[repr(transparent)]
+#[derive(Clone, Copy)]
 pub struct ImageLayout(pub(crate) i32);
 #[repr(transparent)]
+#[derive(Clone, Copy)]
 pub struct AttachmentLoadOp(pub(crate) i32);
 #[repr(transparent)]
+#[derive(Clone, Copy)]
 pub struct AttachmentStoreOp(pub(crate) i32);
 #[repr(transparent)]
+#[derive(Clone, Copy)]
 pub struct ImageType(pub(crate) i32);
 #[repr(transparent)]
+#[derive(Clone, Copy)]
 pub struct ImageTiling(pub(crate) i32);
 #[repr(transparent)]
+#[derive(Clone, Copy)]
 pub struct ImageViewType(pub(crate) i32);
 #[repr(transparent)]
+#[derive(Clone, Copy)]
 pub struct CommandBufferLevel(pub(crate) i32);
 #[repr(transparent)]
+#[derive(Clone, Copy)]
 pub struct ComponentSwizzle(pub(crate) i32);
 #[repr(transparent)]
+#[derive(Clone, Copy)]
 pub struct DescriptorType(pub(crate) i32);
 #[repr(transparent)]
+#[derive(Clone, Copy)]
 pub struct QueryType(pub(crate) i32);
 #[repr(transparent)]
+#[derive(Clone, Copy)]
 pub struct BorderColor(pub(crate) i32);
 #[repr(transparent)]
+#[derive(Clone, Copy)]
 pub struct PipelineBindPoint(pub(crate) i32);
 #[repr(transparent)]
+#[derive(Clone, Copy)]
 pub struct PipelineCacheHeaderVersion(pub(crate) i32);
 #[repr(transparent)]
+#[derive(Clone, Copy)]
 pub struct PrimitiveTopology(pub(crate) i32);
 #[repr(transparent)]
+#[derive(Clone, Copy)]
 pub struct SharingMode(pub(crate) i32);
 #[repr(transparent)]
+#[derive(Clone, Copy)]
 pub struct IndexType(pub(crate) i32);
 #[repr(transparent)]
+#[derive(Clone, Copy)]
 pub struct Filter(pub(crate) i32);
 #[repr(transparent)]
+#[derive(Clone, Copy)]
 pub struct SamplerMipmapMode(pub(crate) i32);
 #[repr(transparent)]
+#[derive(Clone, Copy)]
 pub struct SamplerAddressMode(pub(crate) i32);
 #[repr(transparent)]
+#[derive(Clone, Copy)]
 pub struct CompareOp(pub(crate) i32);
 #[repr(transparent)]
+#[derive(Clone, Copy)]
 pub struct PolygonMode(pub(crate) i32);
 #[repr(transparent)]
+#[derive(Clone, Copy)]
 pub struct FrontFace(pub(crate) i32);
 #[repr(transparent)]
+#[derive(Clone, Copy)]
 pub struct BlendFactor(pub(crate) i32);
 #[repr(transparent)]
+#[derive(Clone, Copy)]
 pub struct BlendOp(pub(crate) i32);
 #[repr(transparent)]
+#[derive(Clone, Copy)]
 pub struct StencilOp(pub(crate) i32);
 #[repr(transparent)]
+#[derive(Clone, Copy)]
 pub struct LogicOp(pub(crate) i32);
 #[repr(transparent)]
+#[derive(Clone, Copy)]
 pub struct InternalAllocationType(pub(crate) i32);
 #[repr(transparent)]
+#[derive(Clone, Copy)]
 pub struct SystemAllocationScope(pub(crate) i32);
 #[repr(transparent)]
+#[derive(Clone, Copy)]
 pub struct PhysicalDeviceType(pub(crate) i32);
 #[repr(transparent)]
+#[derive(Clone, Copy)]
 pub struct VertexInputRate(pub(crate) i32);
 #[repr(transparent)]
+#[derive(Clone, Copy)]
 pub struct Format(pub(crate) i32);
 #[repr(transparent)]
+#[derive(Clone, Copy)]
 pub struct StructureType(pub(crate) i32);
 #[repr(transparent)]
+#[derive(Clone, Copy)]
 pub struct SubpassContents(pub(crate) i32);
 #[repr(transparent)]
+#[derive(Clone, Copy)]
 pub struct Result(pub(crate) i32);
 #[repr(transparent)]
+#[derive(Clone, Copy)]
 pub struct DynamicState(pub(crate) i32);
 #[repr(transparent)]
+#[derive(Clone, Copy)]
 pub struct ObjectType(pub(crate) i32);
 #[repr(transparent)]
+#[derive(Clone, Copy)]
 pub struct VendorId(pub(crate) i32);
 #[repr(transparent)]
+#[derive(Clone, Copy)]
 pub struct FramebufferCreateFlags(pub(crate) i32);
 #[repr(transparent)]
+#[derive(Clone, Copy)]
 pub struct QueryPoolCreateFlags(pub(crate) i32);
 #[repr(transparent)]
+#[derive(Clone, Copy)]
 pub struct RenderPassCreateFlags(pub(crate) i32);
 #[repr(transparent)]
+#[derive(Clone, Copy)]
 pub struct SamplerCreateFlags(pub(crate) i32);
 #[repr(transparent)]
+#[derive(Clone, Copy)]
 pub struct PipelineLayoutCreateFlags(pub(crate) i32);
 #[repr(transparent)]
+#[derive(Clone, Copy)]
 pub struct PipelineCacheCreateFlags(pub(crate) i32);
 #[repr(transparent)]
+#[derive(Clone, Copy)]
 pub struct PipelineDepthStencilStateCreateFlags(pub(crate) i32);
 #[repr(transparent)]
+#[derive(Clone, Copy)]
 pub struct PipelineDynamicStateCreateFlags(pub(crate) i32);
 #[repr(transparent)]
+#[derive(Clone, Copy)]
 pub struct PipelineColorBlendStateCreateFlags(pub(crate) i32);
 #[repr(transparent)]
+#[derive(Clone, Copy)]
 pub struct PipelineMultisampleStateCreateFlags(pub(crate) i32);
 #[repr(transparent)]
+#[derive(Clone, Copy)]
 pub struct PipelineRasterizationStateCreateFlags(pub(crate) i32);
 #[repr(transparent)]
+#[derive(Clone, Copy)]
 pub struct PipelineViewportStateCreateFlags(pub(crate) i32);
 #[repr(transparent)]
+#[derive(Clone, Copy)]
 pub struct PipelineTessellationStateCreateFlags(pub(crate) i32);
 #[repr(transparent)]
+#[derive(Clone, Copy)]
 pub struct PipelineInputAssemblyStateCreateFlags(pub(crate) i32);
 #[repr(transparent)]
+#[derive(Clone, Copy)]
 pub struct PipelineVertexInputStateCreateFlags(pub(crate) i32);
 #[repr(transparent)]
+#[derive(Clone, Copy)]
 pub struct PipelineShaderStageCreateFlags(pub(crate) i32);
 #[repr(transparent)]
+#[derive(Clone, Copy)]
 pub struct DescriptorSetLayoutCreateFlags(pub(crate) i32);
 #[repr(transparent)]
+#[derive(Clone, Copy)]
 pub struct BufferViewCreateFlags(pub(crate) i32);
 #[repr(transparent)]
+#[derive(Clone, Copy)]
 pub struct InstanceCreateFlags(pub(crate) i32);
 #[repr(transparent)]
+#[derive(Clone, Copy)]
 pub struct DeviceCreateFlags(pub(crate) i32);
 #[repr(transparent)]
+#[derive(Clone, Copy)]
 pub struct DeviceQueueCreateFlags(pub(crate) i32);
 #[repr(transparent)]
+#[derive(Clone, Copy)]
 pub struct QueueFlags(pub(crate) i32);
 #[repr(transparent)]
+#[derive(Clone, Copy)]
 pub struct MemoryPropertyFlags(pub(crate) i32);
 #[repr(transparent)]
+#[derive(Clone, Copy)]
 pub struct MemoryHeapFlags(pub(crate) i32);
 #[repr(transparent)]
+#[derive(Clone, Copy)]
 pub struct AccessFlags(pub(crate) i32);
 #[repr(transparent)]
+#[derive(Clone, Copy)]
 pub struct BufferUsageFlags(pub(crate) i32);
 #[repr(transparent)]
+#[derive(Clone, Copy)]
 pub struct BufferCreateFlags(pub(crate) i32);
 #[repr(transparent)]
+#[derive(Clone, Copy)]
 pub struct ShaderStageFlags(pub(crate) i32);
 #[repr(transparent)]
+#[derive(Clone, Copy)]
 pub struct ImageUsageFlags(pub(crate) i32);
 #[repr(transparent)]
+#[derive(Clone, Copy)]
 pub struct ImageCreateFlags(pub(crate) i32);
 #[repr(transparent)]
+#[derive(Clone, Copy)]
 pub struct ImageViewCreateFlags(pub(crate) i32);
 #[repr(transparent)]
+#[derive(Clone, Copy)]
 pub struct PipelineCreateFlags(pub(crate) i32);
 #[repr(transparent)]
+#[derive(Clone, Copy)]
 pub struct ColorComponentFlags(pub(crate) i32);
 #[repr(transparent)]
+#[derive(Clone, Copy)]
 pub struct FenceCreateFlags(pub(crate) i32);
 #[repr(transparent)]
+#[derive(Clone, Copy)]
 pub struct SemaphoreCreateFlags(pub(crate) i32);
 #[repr(transparent)]
+#[derive(Clone, Copy)]
 pub struct FormatFeatureFlags(pub(crate) i32);
 #[repr(transparent)]
+#[derive(Clone, Copy)]
 pub struct QueryControlFlags(pub(crate) i32);
 #[repr(transparent)]
+#[derive(Clone, Copy)]
 pub struct QueryResultFlags(pub(crate) i32);
 #[repr(transparent)]
+#[derive(Clone, Copy)]
 pub struct ShaderModuleCreateFlags(pub(crate) i32);
 #[repr(transparent)]
+#[derive(Clone, Copy)]
 pub struct EventCreateFlags(pub(crate) i32);
 #[repr(transparent)]
+#[derive(Clone, Copy)]
 pub struct CommandPoolCreateFlags(pub(crate) i32);
 #[repr(transparent)]
+#[derive(Clone, Copy)]
 pub struct CommandPoolResetFlags(pub(crate) i32);
 #[repr(transparent)]
+#[derive(Clone, Copy)]
 pub struct CommandBufferResetFlags(pub(crate) i32);
 #[repr(transparent)]
+#[derive(Clone, Copy)]
 pub struct CommandBufferUsageFlags(pub(crate) i32);
 #[repr(transparent)]
+#[derive(Clone, Copy)]
 pub struct QueryPipelineStatisticFlags(pub(crate) i32);
 #[repr(transparent)]
+#[derive(Clone, Copy)]
 pub struct MemoryMapFlags(pub(crate) i32);
 #[repr(transparent)]
+#[derive(Clone, Copy)]
 pub struct ImageAspectFlags(pub(crate) i32);
 #[repr(transparent)]
+#[derive(Clone, Copy)]
 pub struct SparseMemoryBindFlags(pub(crate) i32);
 #[repr(transparent)]
+#[derive(Clone, Copy)]
 pub struct SparseImageFormatFlags(pub(crate) i32);
 #[repr(transparent)]
+#[derive(Clone, Copy)]
 pub struct SubpassDescriptionFlags(pub(crate) i32);
 #[repr(transparent)]
+#[derive(Clone, Copy)]
 pub struct PipelineStageFlags(pub(crate) i32);
 #[repr(transparent)]
+#[derive(Clone, Copy)]
 pub struct SampleCountFlags(pub(crate) i32);
 #[repr(transparent)]
+#[derive(Clone, Copy)]
 pub struct AttachmentDescriptionFlags(pub(crate) i32);
 #[repr(transparent)]
+#[derive(Clone, Copy)]
 pub struct StencilFaceFlags(pub(crate) i32);
 #[repr(transparent)]
+#[derive(Clone, Copy)]
 pub struct CullModeFlags(pub(crate) i32);
 #[repr(transparent)]
+#[derive(Clone, Copy)]
 pub struct DescriptorPoolCreateFlags(pub(crate) i32);
 #[repr(transparent)]
+#[derive(Clone, Copy)]
 pub struct DescriptorPoolResetFlags(pub(crate) i32);
 #[repr(transparent)]
+#[derive(Clone, Copy)]
 pub struct DependencyFlags(pub(crate) i32);
 #[repr(transparent)]
+#[derive(Clone, Copy)]
 pub struct QueueFlagBits(pub(crate) i32);
 #[repr(transparent)]
+#[derive(Clone, Copy)]
 pub struct CullModeFlagBits(pub(crate) i32);
 #[repr(transparent)]
+#[derive(Clone, Copy)]
 pub struct RenderPassCreateFlagBits(pub(crate) i32);
 #[repr(transparent)]
+#[derive(Clone, Copy)]
 pub struct MemoryPropertyFlagBits(pub(crate) i32);
 #[repr(transparent)]
+#[derive(Clone, Copy)]
 pub struct MemoryHeapFlagBits(pub(crate) i32);
 #[repr(transparent)]
+#[derive(Clone, Copy)]
 pub struct AccessFlagBits(pub(crate) i32);
 #[repr(transparent)]
+#[derive(Clone, Copy)]
 pub struct BufferUsageFlagBits(pub(crate) i32);
 #[repr(transparent)]
+#[derive(Clone, Copy)]
 pub struct BufferCreateFlagBits(pub(crate) i32);
 #[repr(transparent)]
+#[derive(Clone, Copy)]
 pub struct ShaderStageFlagBits(pub(crate) i32);
 #[repr(transparent)]
+#[derive(Clone, Copy)]
 pub struct ImageUsageFlagBits(pub(crate) i32);
 #[repr(transparent)]
+#[derive(Clone, Copy)]
 pub struct ImageCreateFlagBits(pub(crate) i32);
 #[repr(transparent)]
+#[derive(Clone, Copy)]
 pub struct ImageViewCreateFlagBits(pub(crate) i32);
 #[repr(transparent)]
+#[derive(Clone, Copy)]
 pub struct SamplerCreateFlagBits(pub(crate) i32);
 #[repr(transparent)]
+#[derive(Clone, Copy)]
 pub struct PipelineCreateFlagBits(pub(crate) i32);
 #[repr(transparent)]
+#[derive(Clone, Copy)]
 pub struct PipelineShaderStageCreateFlagBits(pub(crate) i32);
 #[repr(transparent)]
+#[derive(Clone, Copy)]
 pub struct ColorComponentFlagBits(pub(crate) i32);
 #[repr(transparent)]
+#[derive(Clone, Copy)]
 pub struct FenceCreateFlagBits(pub(crate) i32);
 #[repr(transparent)]
+#[derive(Clone, Copy)]
 pub struct FormatFeatureFlagBits(pub(crate) i32);
 #[repr(transparent)]
+#[derive(Clone, Copy)]
 pub struct QueryControlFlagBits(pub(crate) i32);
 #[repr(transparent)]
+#[derive(Clone, Copy)]
 pub struct QueryResultFlagBits(pub(crate) i32);
 #[repr(transparent)]
+#[derive(Clone, Copy)]
 pub struct CommandBufferUsageFlagBits(pub(crate) i32);
 #[repr(transparent)]
+#[derive(Clone, Copy)]
 pub struct QueryPipelineStatisticFlagBits(pub(crate) i32);
 #[repr(transparent)]
+#[derive(Clone, Copy)]
 pub struct MemoryMapFlagBits(pub(crate) i32);
 #[repr(transparent)]
+#[derive(Clone, Copy)]
 pub struct ImageAspectFlagBits(pub(crate) i32);
 #[repr(transparent)]
+#[derive(Clone, Copy)]
 pub struct SparseImageFormatFlagBits(pub(crate) i32);
 #[repr(transparent)]
+#[derive(Clone, Copy)]
 pub struct SparseMemoryBindFlagBits(pub(crate) i32);
 #[repr(transparent)]
+#[derive(Clone, Copy)]
 pub struct PipelineStageFlagBits(pub(crate) i32);
 #[repr(transparent)]
+#[derive(Clone, Copy)]
 pub struct CommandPoolCreateFlagBits(pub(crate) i32);
 #[repr(transparent)]
+#[derive(Clone, Copy)]
 pub struct CommandPoolResetFlagBits(pub(crate) i32);
 #[repr(transparent)]
+#[derive(Clone, Copy)]
 pub struct CommandBufferResetFlagBits(pub(crate) i32);
 #[repr(transparent)]
+#[derive(Clone, Copy)]
 pub struct SampleCountFlagBits(pub(crate) i32);
 #[repr(transparent)]
+#[derive(Clone, Copy)]
 pub struct AttachmentDescriptionFlagBits(pub(crate) i32);
 #[repr(transparent)]
+#[derive(Clone, Copy)]
 pub struct StencilFaceFlagBits(pub(crate) i32);
 #[repr(transparent)]
+#[derive(Clone, Copy)]
 pub struct DescriptorPoolCreateFlagBits(pub(crate) i32);
 #[repr(transparent)]
+#[derive(Clone, Copy)]
 pub struct DependencyFlagBits(pub(crate) i32);
 #[repr(transparent)]
+#[derive(Clone, Copy)]
 pub struct DescriptorSetLayoutCreateFlagBits(pub(crate) i32);
 #[repr(transparent)]
+#[derive(Clone, Copy)]
 pub struct SubpassDescriptionFlagBits(pub(crate) i32);
 #[repr(transparent)]
+#[derive(Clone, Copy)]
 pub struct FramebufferCreateFlagBits(pub(crate) i32);
 #[repr(transparent)]
+#[derive(Clone, Copy)]
 pub struct QueryPoolCreateFlagBits(pub(crate) i32);
 #[repr(transparent)]
+#[derive(Clone, Copy)]
 pub struct EventCreateFlagBits(pub(crate) i32);
 #[repr(transparent)]
+#[derive(Clone, Copy)]
 pub struct InstanceCreateFlagBits(pub(crate) i32);
 #[repr(transparent)]
 #[allow(non_camel_case_types)]
+#[derive(Clone, Copy)]
 pub struct SampleMask(pub(crate) u32);
 #[repr(transparent)]
 #[allow(non_camel_case_types)]
+#[derive(Clone, Copy)]
 pub struct Bool32(pub(crate) u32);
 #[repr(transparent)]
 #[allow(non_camel_case_types)]
+#[derive(Clone, Copy)]
 pub struct Flags(pub(crate) u32);
 #[repr(transparent)]
 #[allow(non_camel_case_types)]
+#[derive(Clone, Copy)]
 pub struct DeviceSize(pub(crate) u64);
 #[repr(transparent)]
 #[allow(non_camel_case_types)]
+#[derive(Clone, Copy)]
 pub struct DeviceAddress(pub(crate) u64);
 #[repr(transparent)]
+#[derive(Clone, Copy)]
 pub struct Instance(pub(crate) i32);
 #[repr(transparent)]
+#[derive(Clone, Copy)]
 pub struct PhysicalDevice(pub(crate) i32);
 #[repr(transparent)]
+#[derive(Clone, Copy)]
 pub struct Device(pub(crate) i32);
 #[repr(transparent)]
+#[derive(Clone, Copy)]
 pub struct Queue(pub(crate) i32);
 #[repr(transparent)]
+#[derive(Clone, Copy)]
 pub struct CommandBuffer(pub(crate) i32);
 #[repr(transparent)]
+#[derive(Clone, Copy)]
 pub struct DeviceMemory(pub(crate) i32);
 #[repr(transparent)]
+#[derive(Clone, Copy)]
 pub struct CommandPool(pub(crate) i32);
 #[repr(transparent)]
+#[derive(Clone, Copy)]
 pub struct Buffer(pub(crate) i32);
 #[repr(transparent)]
+#[derive(Clone, Copy)]
 pub struct BufferView(pub(crate) i32);
 #[repr(transparent)]
+#[derive(Clone, Copy)]
 pub struct Image(pub(crate) i32);
 #[repr(transparent)]
+#[derive(Clone, Copy)]
 pub struct ImageView(pub(crate) i32);
 #[repr(transparent)]
+#[derive(Clone, Copy)]
 pub struct ShaderModule(pub(crate) i32);
 #[repr(transparent)]
+#[derive(Clone, Copy)]
 pub struct Pipeline(pub(crate) i32);
 #[repr(transparent)]
+#[derive(Clone, Copy)]
 pub struct PipelineLayout(pub(crate) i32);
 #[repr(transparent)]
+#[derive(Clone, Copy)]
 pub struct Sampler(pub(crate) i32);
 #[repr(transparent)]
+#[derive(Clone, Copy)]
 pub struct DescriptorSet(pub(crate) i32);
 #[repr(transparent)]
+#[derive(Clone, Copy)]
 pub struct DescriptorSetLayout(pub(crate) i32);
 #[repr(transparent)]
+#[derive(Clone, Copy)]
 pub struct DescriptorPool(pub(crate) i32);
 #[repr(transparent)]
+#[derive(Clone, Copy)]
 pub struct Fence(pub(crate) i32);
 #[repr(transparent)]
+#[derive(Clone, Copy)]
 pub struct Semaphore(pub(crate) i32);
 #[repr(transparent)]
+#[derive(Clone, Copy)]
 pub struct Event(pub(crate) i32);
 #[repr(transparent)]
+#[derive(Clone, Copy)]
 pub struct QueryPool(pub(crate) i32);
 #[repr(transparent)]
+#[derive(Clone, Copy)]
 pub struct Framebuffer(pub(crate) i32);
 #[repr(transparent)]
+#[derive(Clone, Copy)]
 pub struct RenderPass(pub(crate) i32);
 #[repr(transparent)]
+#[derive(Clone, Copy)]
 pub struct PipelineCache(pub(crate) i32);
 #[allow(non_camel_case_types)]
 pub type PFN_vkInternalAllocationNotification = Option<()>;

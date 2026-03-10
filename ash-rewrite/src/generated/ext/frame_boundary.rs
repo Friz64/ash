@@ -2,6 +2,7 @@
 #![cfg_attr(rustfmt, rustfmt_skip)]
 //![Vulkan Manual Page](https://docs.vulkan.org/refpages/latest/refpages/source/VK_EXT_frame_boundary.html) · Extension `VK_EXT_frame_boundary`
 #[repr(C)]
+#[derive(Clone, Copy)]
 pub struct FrameBoundaryEXT {
     pub s_type: crate::vk::StructureType,
     pub p_next: *const core::ffi::c_void,
@@ -16,14 +17,17 @@ pub struct FrameBoundaryEXT {
     pub p_tag: *const core::ffi::c_void,
 }
 #[repr(C)]
+#[derive(Clone, Copy)]
 pub struct PhysicalDeviceFrameBoundaryFeaturesEXT {
     pub s_type: crate::vk::StructureType,
     pub p_next: *mut core::ffi::c_void,
     pub frame_boundary: crate::vk::Bool32,
 }
 #[repr(transparent)]
+#[derive(Clone, Copy)]
 pub struct FrameBoundaryFlagsEXT(pub(crate) i32);
 #[repr(transparent)]
+#[derive(Clone, Copy)]
 pub struct FrameBoundaryFlagBitsEXT(pub(crate) i32);
 pub const EXT_FRAME_BOUNDARY_SPEC_VERSION: u32 = 1;
 pub const EXT_FRAME_BOUNDARY_EXTENSION_NAME: &core::ffi::CStr = c"VK_EXT_frame_boundary";

@@ -2,18 +2,21 @@
 #![cfg_attr(rustfmt, rustfmt_skip)]
 //![Vulkan Manual Page](https://docs.vulkan.org/refpages/latest/refpages/source/VK_EXT_fragment_density_map_offset.html) · Extension `VK_EXT_fragment_density_map_offset`
 #[repr(C)]
+#[derive(Clone, Copy)]
 pub struct PhysicalDeviceFragmentDensityMapOffsetFeaturesEXT {
     pub s_type: crate::vk::StructureType,
     pub p_next: *mut core::ffi::c_void,
     pub fragment_density_map_offset: crate::vk::Bool32,
 }
 #[repr(C)]
+#[derive(Clone, Copy)]
 pub struct PhysicalDeviceFragmentDensityMapOffsetPropertiesEXT {
     pub s_type: crate::vk::StructureType,
     pub p_next: *mut core::ffi::c_void,
     pub fragment_density_offset_granularity: crate::vk::Extent2D,
 }
 #[repr(C)]
+#[derive(Clone, Copy)]
 pub struct RenderPassFragmentDensityMapOffsetEndInfoEXT {
     pub s_type: crate::vk::StructureType,
     pub p_next: *const core::ffi::c_void,

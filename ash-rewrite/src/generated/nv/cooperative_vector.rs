@@ -2,6 +2,7 @@
 #![cfg_attr(rustfmt, rustfmt_skip)]
 //![Vulkan Manual Page](https://docs.vulkan.org/refpages/latest/refpages/source/VK_NV_cooperative_vector.html) · Extension `VK_NV_cooperative_vector`
 #[repr(C)]
+#[derive(Clone, Copy)]
 pub struct PhysicalDeviceCooperativeVectorFeaturesNV {
     pub s_type: crate::vk::StructureType,
     pub p_next: *mut core::ffi::c_void,
@@ -9,6 +10,7 @@ pub struct PhysicalDeviceCooperativeVectorFeaturesNV {
     pub cooperative_vector_training: crate::vk::Bool32,
 }
 #[repr(C)]
+#[derive(Clone, Copy)]
 pub struct CooperativeVectorPropertiesNV {
     pub s_type: crate::vk::StructureType,
     pub p_next: *mut core::ffi::c_void,
@@ -20,6 +22,7 @@ pub struct CooperativeVectorPropertiesNV {
     pub transpose: crate::vk::Bool32,
 }
 #[repr(C)]
+#[derive(Clone, Copy)]
 pub struct PhysicalDeviceCooperativeVectorPropertiesNV {
     pub s_type: crate::vk::StructureType,
     pub p_next: *mut core::ffi::c_void,
@@ -29,6 +32,7 @@ pub struct PhysicalDeviceCooperativeVectorPropertiesNV {
     pub max_cooperative_vector_components: u32,
 }
 #[repr(C)]
+#[derive(Clone, Copy)]
 pub struct ConvertCooperativeVectorMatrixInfoNV {
     pub s_type: crate::vk::StructureType,
     pub p_next: *const core::ffi::c_void,
@@ -45,17 +49,11 @@ pub struct ConvertCooperativeVectorMatrixInfoNV {
     pub dst_layout: crate::vk::CooperativeVectorMatrixLayoutNV,
     pub dst_stride: usize,
 }
-#[repr(C)]
-pub union DeviceOrHostAddressKHR {
-    pub device_address: crate::vk::DeviceAddress,
-    pub host_address: *mut core::ffi::c_void,
-}
-#[repr(C)]
-pub union DeviceOrHostAddressConstKHR {
-    pub device_address: crate::vk::DeviceAddress,
-    pub host_address: *const core::ffi::c_void,
-}
 #[repr(transparent)]
+#[derive(Clone, Copy)]
+pub struct ComponentTypeKHR(pub(crate) i32);
+#[repr(transparent)]
+#[derive(Clone, Copy)]
 pub struct CooperativeVectorMatrixLayoutNV(pub(crate) i32);
 pub const NV_COOPERATIVE_VECTOR_SPEC_VERSION: u32 = 4;
 pub const NV_COOPERATIVE_VECTOR_EXTENSION_NAME: &core::ffi::CStr = c"VK_NV_cooperative_vector";

@@ -2,12 +2,14 @@
 #![cfg_attr(rustfmt, rustfmt_skip)]
 //![Vulkan Manual Page](https://docs.vulkan.org/refpages/latest/refpages/source/VK_NV_device_generated_commands.html) · Extension `VK_NV_device_generated_commands`
 #[repr(C)]
+#[derive(Clone, Copy)]
 pub struct PhysicalDeviceDeviceGeneratedCommandsFeaturesNV {
     pub s_type: crate::vk::StructureType,
     pub p_next: *mut core::ffi::c_void,
     pub device_generated_commands: crate::vk::Bool32,
 }
 #[repr(C)]
+#[derive(Clone, Copy)]
 pub struct PhysicalDeviceDeviceGeneratedCommandsPropertiesNV {
     pub s_type: crate::vk::StructureType,
     pub p_next: *mut core::ffi::c_void,
@@ -22,6 +24,7 @@ pub struct PhysicalDeviceDeviceGeneratedCommandsPropertiesNV {
     pub min_indirect_commands_buffer_offset_alignment: u32,
 }
 #[repr(C)]
+#[derive(Clone, Copy)]
 pub struct GraphicsShaderGroupCreateInfoNV {
     pub s_type: crate::vk::StructureType,
     pub p_next: *const core::ffi::c_void,
@@ -31,6 +34,7 @@ pub struct GraphicsShaderGroupCreateInfoNV {
     pub p_tessellation_state: *const crate::vk::PipelineTessellationStateCreateInfo,
 }
 #[repr(C)]
+#[derive(Clone, Copy)]
 pub struct GraphicsPipelineShaderGroupsCreateInfoNV {
     pub s_type: crate::vk::StructureType,
     pub p_next: *const core::ffi::c_void,
@@ -40,31 +44,37 @@ pub struct GraphicsPipelineShaderGroupsCreateInfoNV {
     pub p_pipelines: *const crate::vk::Pipeline,
 }
 #[repr(C)]
+#[derive(Clone, Copy)]
 pub struct BindShaderGroupIndirectCommandNV {
     pub group_index: u32,
 }
 #[repr(C)]
+#[derive(Clone, Copy)]
 pub struct BindIndexBufferIndirectCommandNV {
     pub buffer_address: crate::vk::DeviceAddress,
     pub size: u32,
     pub index_type: crate::vk::IndexType,
 }
 #[repr(C)]
+#[derive(Clone, Copy)]
 pub struct BindVertexBufferIndirectCommandNV {
     pub buffer_address: crate::vk::DeviceAddress,
     pub size: u32,
     pub stride: u32,
 }
 #[repr(C)]
+#[derive(Clone, Copy)]
 pub struct SetStateFlagsIndirectCommandNV {
     pub data: u32,
 }
 #[repr(C)]
+#[derive(Clone, Copy)]
 pub struct IndirectCommandsStreamNV {
     pub buffer: crate::vk::Buffer,
     pub offset: crate::vk::DeviceSize,
 }
 #[repr(C)]
+#[derive(Clone, Copy)]
 pub struct IndirectCommandsLayoutTokenNV {
     pub s_type: crate::vk::StructureType,
     pub p_next: *const core::ffi::c_void,
@@ -83,6 +93,7 @@ pub struct IndirectCommandsLayoutTokenNV {
     pub p_index_type_values: *const u32,
 }
 #[repr(C)]
+#[derive(Clone, Copy)]
 pub struct IndirectCommandsLayoutCreateInfoNV {
     pub s_type: crate::vk::StructureType,
     pub p_next: *const core::ffi::c_void,
@@ -94,6 +105,7 @@ pub struct IndirectCommandsLayoutCreateInfoNV {
     pub p_stream_strides: *const u32,
 }
 #[repr(C)]
+#[derive(Clone, Copy)]
 pub struct GeneratedCommandsInfoNV {
     pub s_type: crate::vk::StructureType,
     pub p_next: *const core::ffi::c_void,
@@ -112,6 +124,7 @@ pub struct GeneratedCommandsInfoNV {
     pub sequences_index_offset: crate::vk::DeviceSize,
 }
 #[repr(C)]
+#[derive(Clone, Copy)]
 pub struct GeneratedCommandsMemoryRequirementsInfoNV {
     pub s_type: crate::vk::StructureType,
     pub p_next: *const core::ffi::c_void,
@@ -121,16 +134,22 @@ pub struct GeneratedCommandsMemoryRequirementsInfoNV {
     pub max_sequences_count: u32,
 }
 #[repr(transparent)]
+#[derive(Clone, Copy)]
 pub struct IndirectCommandsTokenTypeNV(pub(crate) i32);
 #[repr(transparent)]
+#[derive(Clone, Copy)]
 pub struct IndirectCommandsLayoutUsageFlagsNV(pub(crate) i32);
 #[repr(transparent)]
+#[derive(Clone, Copy)]
 pub struct IndirectStateFlagsNV(pub(crate) i32);
 #[repr(transparent)]
+#[derive(Clone, Copy)]
 pub struct IndirectCommandsLayoutUsageFlagBitsNV(pub(crate) i32);
 #[repr(transparent)]
+#[derive(Clone, Copy)]
 pub struct IndirectStateFlagBitsNV(pub(crate) i32);
 #[repr(transparent)]
+#[derive(Clone, Copy)]
 pub struct IndirectCommandsLayoutNV(pub(crate) i32);
 pub const NV_DEVICE_GENERATED_COMMANDS_SPEC_VERSION: u32 = 3;
 pub const NV_DEVICE_GENERATED_COMMANDS_EXTENSION_NAME: &core::ffi::CStr = c"VK_NV_device_generated_commands";

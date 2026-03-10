@@ -2,6 +2,7 @@
 #![cfg_attr(rustfmt, rustfmt_skip)]
 //![Vulkan Manual Page](https://docs.vulkan.org/refpages/latest/refpages/source/VK_EXT_provoking_vertex.html) · Extension `VK_EXT_provoking_vertex`
 #[repr(C)]
+#[derive(Clone, Copy)]
 pub struct PhysicalDeviceProvokingVertexFeaturesEXT {
     pub s_type: crate::vk::StructureType,
     pub p_next: *mut core::ffi::c_void,
@@ -9,6 +10,7 @@ pub struct PhysicalDeviceProvokingVertexFeaturesEXT {
     pub transform_feedback_preserves_provoking_vertex: crate::vk::Bool32,
 }
 #[repr(C)]
+#[derive(Clone, Copy)]
 pub struct PhysicalDeviceProvokingVertexPropertiesEXT {
     pub s_type: crate::vk::StructureType,
     pub p_next: *mut core::ffi::c_void,
@@ -16,12 +18,14 @@ pub struct PhysicalDeviceProvokingVertexPropertiesEXT {
     pub transform_feedback_preserves_triangle_fan_provoking_vertex: crate::vk::Bool32,
 }
 #[repr(C)]
+#[derive(Clone, Copy)]
 pub struct PipelineRasterizationProvokingVertexStateCreateInfoEXT {
     pub s_type: crate::vk::StructureType,
     pub p_next: *const core::ffi::c_void,
     pub provoking_vertex_mode: crate::vk::ProvokingVertexModeEXT,
 }
 #[repr(transparent)]
+#[derive(Clone, Copy)]
 pub struct ProvokingVertexModeEXT(pub(crate) i32);
 pub const EXT_PROVOKING_VERTEX_SPEC_VERSION: u32 = 1;
 pub const EXT_PROVOKING_VERTEX_EXTENSION_NAME: &core::ffi::CStr = c"VK_EXT_provoking_vertex";

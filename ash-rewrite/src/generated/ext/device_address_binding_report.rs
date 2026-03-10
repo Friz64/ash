@@ -2,12 +2,14 @@
 #![cfg_attr(rustfmt, rustfmt_skip)]
 //![Vulkan Manual Page](https://docs.vulkan.org/refpages/latest/refpages/source/VK_EXT_device_address_binding_report.html) · Extension `VK_EXT_device_address_binding_report`
 #[repr(C)]
+#[derive(Clone, Copy)]
 pub struct PhysicalDeviceAddressBindingReportFeaturesEXT {
     pub s_type: crate::vk::StructureType,
     pub p_next: *mut core::ffi::c_void,
     pub report_address_binding: crate::vk::Bool32,
 }
 #[repr(C)]
+#[derive(Clone, Copy)]
 pub struct DeviceAddressBindingCallbackDataEXT {
     pub s_type: crate::vk::StructureType,
     pub p_next: *mut core::ffi::c_void,
@@ -17,10 +19,13 @@ pub struct DeviceAddressBindingCallbackDataEXT {
     pub binding_type: crate::vk::DeviceAddressBindingTypeEXT,
 }
 #[repr(transparent)]
+#[derive(Clone, Copy)]
 pub struct DeviceAddressBindingTypeEXT(pub(crate) i32);
 #[repr(transparent)]
+#[derive(Clone, Copy)]
 pub struct DeviceAddressBindingFlagsEXT(pub(crate) i32);
 #[repr(transparent)]
+#[derive(Clone, Copy)]
 pub struct DeviceAddressBindingFlagBitsEXT(pub(crate) i32);
 pub const EXT_DEVICE_ADDRESS_BINDING_REPORT_SPEC_VERSION: u32 = 1;
 pub const EXT_DEVICE_ADDRESS_BINDING_REPORT_EXTENSION_NAME: &core::ffi::CStr = c"VK_EXT_device_address_binding_report";

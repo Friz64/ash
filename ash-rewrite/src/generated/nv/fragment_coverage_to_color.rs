@@ -2,6 +2,7 @@
 #![cfg_attr(rustfmt, rustfmt_skip)]
 //![Vulkan Manual Page](https://docs.vulkan.org/refpages/latest/refpages/source/VK_NV_fragment_coverage_to_color.html) · Extension `VK_NV_fragment_coverage_to_color`
 #[repr(C)]
+#[derive(Clone, Copy)]
 pub struct PipelineCoverageToColorStateCreateInfoNV {
     pub s_type: crate::vk::StructureType,
     pub p_next: *const core::ffi::c_void,
@@ -10,6 +11,7 @@ pub struct PipelineCoverageToColorStateCreateInfoNV {
     pub coverage_to_color_location: u32,
 }
 #[repr(transparent)]
+#[derive(Clone, Copy)]
 pub struct PipelineCoverageToColorStateCreateFlagsNV(pub(crate) i32);
 pub const NV_FRAGMENT_COVERAGE_TO_COLOR_SPEC_VERSION: u32 = 1;
 pub const NV_FRAGMENT_COVERAGE_TO_COLOR_EXTENSION_NAME: &core::ffi::CStr = c"VK_NV_fragment_coverage_to_color";

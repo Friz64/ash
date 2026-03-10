@@ -2,11 +2,13 @@
 #![cfg_attr(rustfmt, rustfmt_skip)]
 //!Items provided by `vulkan_video_codec_av1std_encode`
 #[repr(C)]
+#[derive(Clone, Copy)]
 pub struct StdVideoEncodeAV1ExtensionHeader {
     pub temporal_id: u8,
     pub spatial_id: u8,
 }
 #[repr(C)]
+#[derive(Clone, Copy)]
 pub struct StdVideoEncodeAV1DecoderModelInfo {
     pub buffer_delay_length_minus_1: u8,
     pub buffer_removal_time_length_minus_1: u8,
@@ -15,13 +17,17 @@ pub struct StdVideoEncodeAV1DecoderModelInfo {
     pub num_units_in_decoding_tick: u32,
 }
 #[repr(C)]
+#[derive(Clone, Copy)]
 pub struct StdVideoEncodeAV1OperatingPointInfoFlags {
-    pub decoder_model_present_for_this_op: u32,
-    pub low_delay_mode_flag: u32,
-    pub initial_display_delay_present_for_this_op: u32,
-    pub reserved: u32,
+    /**- `decoder_model_present_for_this_op` @ `0..1`
+- `low_delay_mode_flag` @ `1..2`
+- `initial_display_delay_present_for_this_op` @ `2..3`
+- `reserved` @ `3..32`
+*/
+    pub bitfield0: u32,
 }
 #[repr(C)]
+#[derive(Clone, Copy)]
 pub struct StdVideoEncodeAV1OperatingPointInfo {
     pub flags: crate::vk::StdVideoEncodeAV1OperatingPointInfoFlags,
     pub operating_point_idc: u16,
@@ -32,39 +38,43 @@ pub struct StdVideoEncodeAV1OperatingPointInfo {
     pub initial_display_delay_minus_1: u8,
 }
 #[repr(C)]
+#[derive(Clone, Copy)]
 pub struct StdVideoEncodeAV1PictureInfoFlags {
-    pub error_resilient_mode: u32,
-    pub disable_cdf_update: u32,
-    pub use_superres: u32,
-    pub render_and_frame_size_different: u32,
-    pub allow_screen_content_tools: u32,
-    pub is_filter_switchable: u32,
-    pub force_integer_mv: u32,
-    pub frame_size_override_flag: u32,
-    pub buffer_removal_time_present_flag: u32,
-    pub allow_intrabc: u32,
-    pub frame_refs_short_signaling: u32,
-    pub allow_high_precision_mv: u32,
-    pub is_motion_mode_switchable: u32,
-    pub use_ref_frame_mvs: u32,
-    pub disable_frame_end_update_cdf: u32,
-    pub allow_warped_motion: u32,
-    pub reduced_tx_set: u32,
-    pub skip_mode_present: u32,
-    pub delta_q_present: u32,
-    pub delta_lf_present: u32,
-    pub delta_lf_multi: u32,
-    pub segmentation_enabled: u32,
-    pub segmentation_update_map: u32,
-    pub segmentation_temporal_update: u32,
-    pub segmentation_update_data: u32,
-    pub uses_lr: u32,
-    pub uses_chroma_lr: u32,
-    pub show_frame: u32,
-    pub showable_frame: u32,
-    pub reserved: u32,
+    /**- `error_resilient_mode` @ `0..1`
+- `disable_cdf_update` @ `1..2`
+- `use_superres` @ `2..3`
+- `render_and_frame_size_different` @ `3..4`
+- `allow_screen_content_tools` @ `4..5`
+- `is_filter_switchable` @ `5..6`
+- `force_integer_mv` @ `6..7`
+- `frame_size_override_flag` @ `7..8`
+- `buffer_removal_time_present_flag` @ `8..9`
+- `allow_intrabc` @ `9..10`
+- `frame_refs_short_signaling` @ `10..11`
+- `allow_high_precision_mv` @ `11..12`
+- `is_motion_mode_switchable` @ `12..13`
+- `use_ref_frame_mvs` @ `13..14`
+- `disable_frame_end_update_cdf` @ `14..15`
+- `allow_warped_motion` @ `15..16`
+- `reduced_tx_set` @ `16..17`
+- `skip_mode_present` @ `17..18`
+- `delta_q_present` @ `18..19`
+- `delta_lf_present` @ `19..20`
+- `delta_lf_multi` @ `20..21`
+- `segmentation_enabled` @ `21..22`
+- `segmentation_update_map` @ `22..23`
+- `segmentation_temporal_update` @ `23..24`
+- `segmentation_update_data` @ `24..25`
+- `UsesLr` @ `25..26`
+- `usesChromaLr` @ `26..27`
+- `show_frame` @ `27..28`
+- `showable_frame` @ `28..29`
+- `reserved` @ `29..32`
+*/
+    pub bitfield0: u32,
 }
 #[repr(C)]
+#[derive(Clone, Copy)]
 pub struct StdVideoEncodeAV1PictureInfo {
     pub flags: crate::vk::StdVideoEncodeAV1PictureInfoFlags,
     pub frame_type: crate::vk::StdVideoAV1FrameType,
@@ -95,12 +105,16 @@ pub struct StdVideoEncodeAV1PictureInfo {
     pub p_buffer_removal_times: *const u32,
 }
 #[repr(C)]
+#[derive(Clone, Copy)]
 pub struct StdVideoEncodeAV1ReferenceInfoFlags {
-    pub disable_frame_end_update_cdf: u32,
-    pub segmentation_enabled: u32,
-    pub reserved: u32,
+    /**- `disable_frame_end_update_cdf` @ `0..1`
+- `segmentation_enabled` @ `1..2`
+- `reserved` @ `2..32`
+*/
+    pub bitfield0: u32,
 }
 #[repr(C)]
+#[derive(Clone, Copy)]
 pub struct StdVideoEncodeAV1ReferenceInfo {
     pub flags: crate::vk::StdVideoEncodeAV1ReferenceInfoFlags,
     pub ref_frame_id: u32,

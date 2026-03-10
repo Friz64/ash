@@ -2,6 +2,7 @@
 #![cfg_attr(rustfmt, rustfmt_skip)]
 //![Vulkan Manual Page](https://docs.vulkan.org/refpages/latest/refpages/source/VK_EXT_debug_report.html) · Extension `VK_EXT_debug_report`
 #[repr(C)]
+#[derive(Clone, Copy)]
 pub struct DebugReportCallbackCreateInfoEXT {
     pub s_type: crate::vk::StructureType,
     pub p_next: *const core::ffi::c_void,
@@ -10,10 +11,16 @@ pub struct DebugReportCallbackCreateInfoEXT {
     pub p_user_data: *mut core::ffi::c_void,
 }
 #[repr(transparent)]
+#[derive(Clone, Copy)]
+pub struct DebugReportObjectTypeEXT(pub(crate) i32);
+#[repr(transparent)]
+#[derive(Clone, Copy)]
 pub struct DebugReportFlagsEXT(pub(crate) i32);
 #[repr(transparent)]
+#[derive(Clone, Copy)]
 pub struct DebugReportFlagBitsEXT(pub(crate) i32);
 #[repr(transparent)]
+#[derive(Clone, Copy)]
 pub struct DebugReportCallbackEXT(pub(crate) i32);
 #[allow(non_camel_case_types)]
 pub type PFN_vkDebugReportCallbackEXT = Option<()>;

@@ -2,6 +2,7 @@
 #![cfg_attr(rustfmt, rustfmt_skip)]
 //![Vulkan Manual Page](https://docs.vulkan.org/refpages/latest/refpages/source/VK_EXT_map_memory_placed.html) · Extension `VK_EXT_map_memory_placed`
 #[repr(C)]
+#[derive(Clone, Copy)]
 pub struct PhysicalDeviceMapMemoryPlacedFeaturesEXT {
     pub s_type: crate::vk::StructureType,
     pub p_next: *mut core::ffi::c_void,
@@ -10,12 +11,14 @@ pub struct PhysicalDeviceMapMemoryPlacedFeaturesEXT {
     pub memory_unmap_reserve: crate::vk::Bool32,
 }
 #[repr(C)]
+#[derive(Clone, Copy)]
 pub struct PhysicalDeviceMapMemoryPlacedPropertiesEXT {
     pub s_type: crate::vk::StructureType,
     pub p_next: *mut core::ffi::c_void,
     pub min_placed_memory_map_alignment: crate::vk::DeviceSize,
 }
 #[repr(C)]
+#[derive(Clone, Copy)]
 pub struct MemoryMapPlacedInfoEXT {
     pub s_type: crate::vk::StructureType,
     pub p_next: *const core::ffi::c_void,

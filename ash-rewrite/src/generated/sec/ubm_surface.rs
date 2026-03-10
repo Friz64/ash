@@ -2,6 +2,7 @@
 #![cfg_attr(rustfmt, rustfmt_skip)]
 //![Vulkan Manual Page](https://docs.vulkan.org/refpages/latest/refpages/source/VK_SEC_ubm_surface.html) · Extension `VK_SEC_ubm_surface`
 #[repr(C)]
+#[derive(Clone, Copy)]
 pub struct UbmSurfaceCreateInfoSEC {
     pub s_type: crate::vk::StructureType,
     pub p_next: *const core::ffi::c_void,
@@ -10,6 +11,7 @@ pub struct UbmSurfaceCreateInfoSEC {
     pub surface: *mut crate::platform_types::ubm_surface,
 }
 #[repr(transparent)]
+#[derive(Clone, Copy)]
 pub struct UbmSurfaceCreateFlagsSEC(pub(crate) i32);
 pub const SEC_UBM_SURFACE_SPEC_VERSION: u32 = 1;
 pub const SEC_UBM_SURFACE_EXTENSION_NAME: &core::ffi::CStr = c"VK_SEC_ubm_surface";

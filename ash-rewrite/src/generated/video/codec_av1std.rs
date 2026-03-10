@@ -2,14 +2,18 @@
 #![cfg_attr(rustfmt, rustfmt_skip)]
 //!Items provided by `vulkan_video_codec_av1std`
 #[repr(C)]
+#[derive(Clone, Copy)]
 pub struct StdVideoAV1ColorConfigFlags {
-    pub mono_chrome: u32,
-    pub color_range: u32,
-    pub separate_uv_delta_q: u32,
-    pub color_description_present_flag: u32,
-    pub reserved: u32,
+    /**- `mono_chrome` @ `0..1`
+- `color_range` @ `1..2`
+- `separate_uv_delta_q` @ `2..3`
+- `color_description_present_flag` @ `3..4`
+- `reserved` @ `4..32`
+*/
+    pub bitfield0: u32,
 }
 #[repr(C)]
+#[derive(Clone, Copy)]
 pub struct StdVideoAV1ColorConfig {
     pub flags: crate::vk::StdVideoAV1ColorConfigFlags,
     pub bit_depth: u8,
@@ -22,11 +26,15 @@ pub struct StdVideoAV1ColorConfig {
     pub chroma_sample_position: crate::vk::StdVideoAV1ChromaSamplePosition,
 }
 #[repr(C)]
+#[derive(Clone, Copy)]
 pub struct StdVideoAV1TimingInfoFlags {
-    pub equal_picture_interval: u32,
-    pub reserved: u32,
+    /**- `equal_picture_interval` @ `0..1`
+- `reserved` @ `1..32`
+*/
+    pub bitfield0: u32,
 }
 #[repr(C)]
+#[derive(Clone, Copy)]
 pub struct StdVideoAV1TimingInfo {
     pub flags: crate::vk::StdVideoAV1TimingInfoFlags,
     pub num_units_in_display_tick: u32,
@@ -34,29 +42,33 @@ pub struct StdVideoAV1TimingInfo {
     pub num_ticks_per_picture_minus_1: u32,
 }
 #[repr(C)]
+#[derive(Clone, Copy)]
 pub struct StdVideoAV1SequenceHeaderFlags {
-    pub still_picture: u32,
-    pub reduced_still_picture_header: u32,
-    pub use_128x128_superblock: u32,
-    pub enable_filter_intra: u32,
-    pub enable_intra_edge_filter: u32,
-    pub enable_interintra_compound: u32,
-    pub enable_masked_compound: u32,
-    pub enable_warped_motion: u32,
-    pub enable_dual_filter: u32,
-    pub enable_order_hint: u32,
-    pub enable_jnt_comp: u32,
-    pub enable_ref_frame_mvs: u32,
-    pub frame_id_numbers_present_flag: u32,
-    pub enable_superres: u32,
-    pub enable_cdef: u32,
-    pub enable_restoration: u32,
-    pub film_grain_params_present: u32,
-    pub timing_info_present_flag: u32,
-    pub initial_display_delay_present_flag: u32,
-    pub reserved: u32,
+    /**- `still_picture` @ `0..1`
+- `reduced_still_picture_header` @ `1..2`
+- `use_128x128_superblock` @ `2..3`
+- `enable_filter_intra` @ `3..4`
+- `enable_intra_edge_filter` @ `4..5`
+- `enable_interintra_compound` @ `5..6`
+- `enable_masked_compound` @ `6..7`
+- `enable_warped_motion` @ `7..8`
+- `enable_dual_filter` @ `8..9`
+- `enable_order_hint` @ `9..10`
+- `enable_jnt_comp` @ `10..11`
+- `enable_ref_frame_mvs` @ `11..12`
+- `frame_id_numbers_present_flag` @ `12..13`
+- `enable_superres` @ `13..14`
+- `enable_cdef` @ `14..15`
+- `enable_restoration` @ `15..16`
+- `film_grain_params_present` @ `16..17`
+- `timing_info_present_flag` @ `17..18`
+- `initial_display_delay_present_flag` @ `18..19`
+- `reserved` @ `19..32`
+*/
+    pub bitfield0: u32,
 }
 #[repr(C)]
+#[derive(Clone, Copy)]
 pub struct StdVideoAV1SequenceHeader {
     pub flags: crate::vk::StdVideoAV1SequenceHeaderFlags,
     pub seq_profile: crate::vk::StdVideoAV1Profile,
@@ -74,12 +86,16 @@ pub struct StdVideoAV1SequenceHeader {
     pub p_timing_info: *const crate::vk::StdVideoAV1TimingInfo,
 }
 #[repr(C)]
+#[derive(Clone, Copy)]
 pub struct StdVideoAV1LoopFilterFlags {
-    pub loop_filter_delta_enabled: u32,
-    pub loop_filter_delta_update: u32,
-    pub reserved: u32,
+    /**- `loop_filter_delta_enabled` @ `0..1`
+- `loop_filter_delta_update` @ `1..2`
+- `reserved` @ `2..32`
+*/
+    pub bitfield0: u32,
 }
 #[repr(C)]
+#[derive(Clone, Copy)]
 pub struct StdVideoAV1LoopFilter {
     pub flags: crate::vk::StdVideoAV1LoopFilterFlags,
     pub loop_filter_level: [u8; crate::vk::STD_VIDEO_AV1_MAX_LOOP_FILTER_STRENGTHS as _],
@@ -91,12 +107,16 @@ pub struct StdVideoAV1LoopFilter {
         as _],
 }
 #[repr(C)]
+#[derive(Clone, Copy)]
 pub struct StdVideoAV1QuantizationFlags {
-    pub using_qmatrix: u32,
-    pub diff_uv_delta: u32,
-    pub reserved: u32,
+    /**- `using_qmatrix` @ `0..1`
+- `diff_uv_delta` @ `1..2`
+- `reserved` @ `2..32`
+*/
+    pub bitfield0: u32,
 }
 #[repr(C)]
+#[derive(Clone, Copy)]
 pub struct StdVideoAV1Quantization {
     pub flags: crate::vk::StdVideoAV1QuantizationFlags,
     pub base_q_idx: u8,
@@ -110,17 +130,22 @@ pub struct StdVideoAV1Quantization {
     pub qm_v: u8,
 }
 #[repr(C)]
+#[derive(Clone, Copy)]
 pub struct StdVideoAV1Segmentation {
     pub feature_enabled: [u8; crate::vk::STD_VIDEO_AV1_MAX_SEGMENTS as _],
     pub feature_data: [[i16; crate::vk::STD_VIDEO_AV1_SEG_LVL_MAX
         as _]; crate::vk::STD_VIDEO_AV1_MAX_SEGMENTS as _],
 }
 #[repr(C)]
+#[derive(Clone, Copy)]
 pub struct StdVideoAV1TileInfoFlags {
-    pub uniform_tile_spacing_flag: u32,
-    pub reserved: u32,
+    /**- `uniform_tile_spacing_flag` @ `0..1`
+- `reserved` @ `1..32`
+*/
+    pub bitfield0: u32,
 }
 #[repr(C)]
+#[derive(Clone, Copy)]
 pub struct StdVideoAV1TileInfo {
     pub flags: crate::vk::StdVideoAV1TileInfoFlags,
     pub tile_cols: u8,
@@ -134,6 +159,7 @@ pub struct StdVideoAV1TileInfo {
     pub p_height_in_sbs_minus1: *const u16,
 }
 #[repr(C)]
+#[derive(Clone, Copy)]
 pub struct StdVideoAV1CDEF {
     pub cdef_damping_minus_3: u8,
     pub cdef_bits: u8,
@@ -147,26 +173,32 @@ pub struct StdVideoAV1CDEF {
         as _],
 }
 #[repr(C)]
+#[derive(Clone, Copy)]
 pub struct StdVideoAV1LoopRestoration {
     pub frame_restoration_type: [crate::vk::StdVideoAV1FrameRestorationType; crate::vk::STD_VIDEO_AV1_MAX_NUM_PLANES
         as _],
     pub loop_restoration_size: [u16; crate::vk::STD_VIDEO_AV1_MAX_NUM_PLANES as _],
 }
 #[repr(C)]
+#[derive(Clone, Copy)]
 pub struct StdVideoAV1GlobalMotion {
     pub gm_type: [u8; crate::vk::STD_VIDEO_AV1_NUM_REF_FRAMES as _],
     pub gm_params: [[i32; crate::vk::STD_VIDEO_AV1_GLOBAL_MOTION_PARAMS
         as _]; crate::vk::STD_VIDEO_AV1_NUM_REF_FRAMES as _],
 }
 #[repr(C)]
+#[derive(Clone, Copy)]
 pub struct StdVideoAV1FilmGrainFlags {
-    pub chroma_scaling_from_luma: u32,
-    pub overlap_flag: u32,
-    pub clip_to_restricted_range: u32,
-    pub update_grain: u32,
-    pub reserved: u32,
+    /**- `chroma_scaling_from_luma` @ `0..1`
+- `overlap_flag` @ `1..2`
+- `clip_to_restricted_range` @ `2..3`
+- `update_grain` @ `3..4`
+- `reserved` @ `4..32`
+*/
+    pub bitfield0: u32,
 }
 #[repr(C)]
+#[derive(Clone, Copy)]
 pub struct StdVideoAV1FilmGrain {
     pub flags: crate::vk::StdVideoAV1FilmGrainFlags,
     pub grain_scaling_minus_8: u8,
@@ -195,26 +227,37 @@ pub struct StdVideoAV1FilmGrain {
     pub cr_offset: u16,
 }
 #[repr(transparent)]
+#[derive(Clone, Copy)]
 pub struct StdVideoAV1Profile(pub(crate) i32);
 #[repr(transparent)]
+#[derive(Clone, Copy)]
 pub struct StdVideoAV1Level(pub(crate) i32);
 #[repr(transparent)]
+#[derive(Clone, Copy)]
 pub struct StdVideoAV1FrameType(pub(crate) i32);
 #[repr(transparent)]
+#[derive(Clone, Copy)]
 pub struct StdVideoAV1ReferenceName(pub(crate) i32);
 #[repr(transparent)]
+#[derive(Clone, Copy)]
 pub struct StdVideoAV1InterpolationFilter(pub(crate) i32);
 #[repr(transparent)]
+#[derive(Clone, Copy)]
 pub struct StdVideoAV1TxMode(pub(crate) i32);
 #[repr(transparent)]
+#[derive(Clone, Copy)]
 pub struct StdVideoAV1FrameRestorationType(pub(crate) i32);
 #[repr(transparent)]
+#[derive(Clone, Copy)]
 pub struct StdVideoAV1ColorPrimaries(pub(crate) i32);
 #[repr(transparent)]
+#[derive(Clone, Copy)]
 pub struct StdVideoAV1TransferCharacteristics(pub(crate) i32);
 #[repr(transparent)]
+#[derive(Clone, Copy)]
 pub struct StdVideoAV1MatrixCoefficients(pub(crate) i32);
 #[repr(transparent)]
+#[derive(Clone, Copy)]
 pub struct StdVideoAV1ChromaSamplePosition(pub(crate) i32);
 pub const STD_VIDEO_AV1_NUM_REF_FRAMES: u32 = 8;
 pub const STD_VIDEO_AV1_REFS_PER_FRAME: u32 = 7;

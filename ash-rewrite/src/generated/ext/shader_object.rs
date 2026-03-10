@@ -2,47 +2,14 @@
 #![cfg_attr(rustfmt, rustfmt_skip)]
 //![Vulkan Manual Page](https://docs.vulkan.org/refpages/latest/refpages/source/VK_EXT_shader_object.html) · Extension `VK_EXT_shader_object`
 #[repr(C)]
-pub struct ColorBlendEquationEXT {
-    pub src_color_blend_factor: crate::vk::BlendFactor,
-    pub dst_color_blend_factor: crate::vk::BlendFactor,
-    pub color_blend_op: crate::vk::BlendOp,
-    pub src_alpha_blend_factor: crate::vk::BlendFactor,
-    pub dst_alpha_blend_factor: crate::vk::BlendFactor,
-    pub alpha_blend_op: crate::vk::BlendOp,
-}
-#[repr(C)]
-pub struct ColorBlendAdvancedEXT {
-    pub advanced_blend_op: crate::vk::BlendOp,
-    pub src_premultiplied: crate::vk::Bool32,
-    pub dst_premultiplied: crate::vk::Bool32,
-    pub blend_overlap: crate::vk::BlendOverlapEXT,
-    pub clamp_results: crate::vk::Bool32,
-}
-#[repr(C)]
-pub struct VertexInputBindingDescription2EXT {
-    pub s_type: crate::vk::StructureType,
-    pub p_next: *mut core::ffi::c_void,
-    pub binding: u32,
-    pub stride: u32,
-    pub input_rate: crate::vk::VertexInputRate,
-    pub divisor: u32,
-}
-#[repr(C)]
-pub struct VertexInputAttributeDescription2EXT {
-    pub s_type: crate::vk::StructureType,
-    pub p_next: *mut core::ffi::c_void,
-    pub location: u32,
-    pub binding: u32,
-    pub format: crate::vk::Format,
-    pub offset: u32,
-}
-#[repr(C)]
+#[derive(Clone, Copy)]
 pub struct PhysicalDeviceShaderObjectFeaturesEXT {
     pub s_type: crate::vk::StructureType,
     pub p_next: *mut core::ffi::c_void,
     pub shader_object: crate::vk::Bool32,
 }
 #[repr(C)]
+#[derive(Clone, Copy)]
 pub struct PhysicalDeviceShaderObjectPropertiesEXT {
     pub s_type: crate::vk::StructureType,
     pub p_next: *mut core::ffi::c_void,
@@ -50,6 +17,7 @@ pub struct PhysicalDeviceShaderObjectPropertiesEXT {
     pub shader_binary_version: u32,
 }
 #[repr(C)]
+#[derive(Clone, Copy)]
 pub struct ShaderCreateInfoEXT {
     pub s_type: crate::vk::StructureType,
     pub p_next: *const core::ffi::c_void,
@@ -68,12 +36,16 @@ pub struct ShaderCreateInfoEXT {
 }
 pub type ShaderRequiredSubgroupSizeCreateInfoEXT = crate::vk::PipelineShaderStageRequiredSubgroupSizeCreateInfo;
 #[repr(transparent)]
+#[derive(Clone, Copy)]
 pub struct ShaderCodeTypeEXT(pub(crate) i32);
 #[repr(transparent)]
+#[derive(Clone, Copy)]
 pub struct ShaderCreateFlagsEXT(pub(crate) i32);
 #[repr(transparent)]
+#[derive(Clone, Copy)]
 pub struct ShaderCreateFlagBitsEXT(pub(crate) i32);
 #[repr(transparent)]
+#[derive(Clone, Copy)]
 pub struct ShaderEXT(pub(crate) i32);
 pub const EXT_SHADER_OBJECT_SPEC_VERSION: u32 = 1;
 pub const EXT_SHADER_OBJECT_EXTENSION_NAME: &core::ffi::CStr = c"VK_EXT_shader_object";

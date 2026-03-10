@@ -2,12 +2,14 @@
 #![cfg_attr(rustfmt, rustfmt_skip)]
 //![Vulkan Manual Page](https://docs.vulkan.org/refpages/latest/refpages/source/VK_KHR_present_id2.html) · Extension `VK_KHR_present_id2`
 #[repr(C)]
+#[derive(Clone, Copy)]
 pub struct PhysicalDevicePresentId2FeaturesKHR {
     pub s_type: crate::vk::StructureType,
     pub p_next: *mut core::ffi::c_void,
     pub present_id2: crate::vk::Bool32,
 }
 #[repr(C)]
+#[derive(Clone, Copy)]
 pub struct PresentId2KHR {
     pub s_type: crate::vk::StructureType,
     pub p_next: *const core::ffi::c_void,
@@ -15,6 +17,7 @@ pub struct PresentId2KHR {
     pub p_present_ids: *const u64,
 }
 #[repr(C)]
+#[derive(Clone, Copy)]
 pub struct SurfaceCapabilitiesPresentId2KHR {
     pub s_type: crate::vk::StructureType,
     pub p_next: *mut core::ffi::c_void,

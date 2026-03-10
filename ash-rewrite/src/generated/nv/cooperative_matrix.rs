@@ -2,6 +2,7 @@
 #![cfg_attr(rustfmt, rustfmt_skip)]
 //![Vulkan Manual Page](https://docs.vulkan.org/refpages/latest/refpages/source/VK_NV_cooperative_matrix.html) · Extension `VK_NV_cooperative_matrix`
 #[repr(C)]
+#[derive(Clone, Copy)]
 pub struct PhysicalDeviceCooperativeMatrixFeaturesNV {
     pub s_type: crate::vk::StructureType,
     pub p_next: *mut core::ffi::c_void,
@@ -9,12 +10,14 @@ pub struct PhysicalDeviceCooperativeMatrixFeaturesNV {
     pub cooperative_matrix_robust_buffer_access: crate::vk::Bool32,
 }
 #[repr(C)]
+#[derive(Clone, Copy)]
 pub struct PhysicalDeviceCooperativeMatrixPropertiesNV {
     pub s_type: crate::vk::StructureType,
     pub p_next: *mut core::ffi::c_void,
     pub cooperative_matrix_supported_stages: crate::vk::ShaderStageFlags,
 }
 #[repr(C)]
+#[derive(Clone, Copy)]
 pub struct CooperativeMatrixPropertiesNV {
     pub s_type: crate::vk::StructureType,
     pub p_next: *mut core::ffi::c_void,

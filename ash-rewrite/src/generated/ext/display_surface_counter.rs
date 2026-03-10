@@ -2,6 +2,7 @@
 #![cfg_attr(rustfmt, rustfmt_skip)]
 //![Vulkan Manual Page](https://docs.vulkan.org/refpages/latest/refpages/source/VK_EXT_display_surface_counter.html) · Extension `VK_EXT_display_surface_counter`
 #[repr(C)]
+#[derive(Clone, Copy)]
 pub struct SurfaceCapabilities2EXT {
     pub s_type: crate::vk::StructureType,
     pub p_next: *mut core::ffi::c_void,
@@ -18,8 +19,10 @@ pub struct SurfaceCapabilities2EXT {
     pub supported_surface_counters: crate::vk::SurfaceCounterFlagsEXT,
 }
 #[repr(transparent)]
+#[derive(Clone, Copy)]
 pub struct SurfaceCounterFlagsEXT(pub(crate) i32);
 #[repr(transparent)]
+#[derive(Clone, Copy)]
 pub struct SurfaceCounterFlagBitsEXT(pub(crate) i32);
 pub const EXT_DISPLAY_SURFACE_COUNTER_SPEC_VERSION: u32 = 1;
 pub const EXT_DISPLAY_SURFACE_COUNTER_EXTENSION_NAME: &core::ffi::CStr = c"VK_EXT_display_surface_counter";

@@ -6,6 +6,7 @@ pub type PhysicalDeviceExternalImageFormatInfoKHR = crate::vk::PhysicalDeviceExt
 pub type ExternalImageFormatPropertiesKHR = crate::vk::ExternalImageFormatProperties;
 pub type PhysicalDeviceExternalBufferInfoKHR = crate::vk::PhysicalDeviceExternalBufferInfo;
 pub type ExternalBufferPropertiesKHR = crate::vk::ExternalBufferProperties;
+pub type PhysicalDeviceIDPropertiesKHR = crate::vk::PhysicalDeviceIDProperties;
 pub type ExternalMemoryHandleTypeFlagBitsKHR = crate::vk::ExternalMemoryHandleTypeFlagBits;
 pub type ExternalMemoryFeatureFlagBitsKHR = crate::vk::ExternalMemoryFeatureFlagBits;
 pub type ExternalMemoryHandleTypeFlagsKHR = crate::vk::ExternalMemoryHandleTypeFlags;

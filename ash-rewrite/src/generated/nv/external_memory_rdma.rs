@@ -2,12 +2,14 @@
 #![cfg_attr(rustfmt, rustfmt_skip)]
 //![Vulkan Manual Page](https://docs.vulkan.org/refpages/latest/refpages/source/VK_NV_external_memory_rdma.html) · Extension `VK_NV_external_memory_rdma`
 #[repr(C)]
+#[derive(Clone, Copy)]
 pub struct PhysicalDeviceExternalMemoryRDMAFeaturesNV {
     pub s_type: crate::vk::StructureType,
     pub p_next: *mut core::ffi::c_void,
     pub external_memory_rdma: crate::vk::Bool32,
 }
 #[repr(C)]
+#[derive(Clone, Copy)]
 pub struct MemoryGetRemoteAddressInfoNV {
     pub s_type: crate::vk::StructureType,
     pub p_next: *const core::ffi::c_void,
@@ -16,6 +18,7 @@ pub struct MemoryGetRemoteAddressInfoNV {
 }
 #[repr(transparent)]
 #[allow(non_camel_case_types)]
+#[derive(Clone, Copy)]
 pub struct RemoteAddressNV(pub(crate) *mut core::ffi::c_void);
 pub const NV_EXTERNAL_MEMORY_RDMA_SPEC_VERSION: u32 = 1;
 pub const NV_EXTERNAL_MEMORY_RDMA_EXTENSION_NAME: &core::ffi::CStr = c"VK_NV_external_memory_rdma";

@@ -2,6 +2,7 @@
 #![cfg_attr(rustfmt, rustfmt_skip)]
 //![Vulkan Manual Page](https://docs.vulkan.org/refpages/latest/refpages/source/VK_KHR_surface.html) · Extension `VK_KHR_surface`
 #[repr(C)]
+#[derive(Clone, Copy)]
 pub struct SurfaceCapabilitiesKHR {
     pub min_image_count: u32,
     pub max_image_count: u32,
@@ -15,21 +16,28 @@ pub struct SurfaceCapabilitiesKHR {
     pub supported_usage_flags: crate::vk::ImageUsageFlags,
 }
 #[repr(C)]
+#[derive(Clone, Copy)]
 pub struct SurfaceFormatKHR {
     pub format: crate::vk::Format,
     pub color_space: crate::vk::ColorSpaceKHR,
 }
 #[repr(transparent)]
+#[derive(Clone, Copy)]
 pub struct PresentModeKHR(pub(crate) i32);
 #[repr(transparent)]
+#[derive(Clone, Copy)]
 pub struct ColorSpaceKHR(pub(crate) i32);
 #[repr(transparent)]
+#[derive(Clone, Copy)]
 pub struct CompositeAlphaFlagsKHR(pub(crate) i32);
 #[repr(transparent)]
+#[derive(Clone, Copy)]
 pub struct CompositeAlphaFlagBitsKHR(pub(crate) i32);
 #[repr(transparent)]
+#[derive(Clone, Copy)]
 pub struct SurfaceTransformFlagBitsKHR(pub(crate) i32);
 #[repr(transparent)]
+#[derive(Clone, Copy)]
 pub struct SurfaceKHR(pub(crate) i32);
 pub const KHR_SURFACE_SPEC_VERSION: u32 = 25;
 pub const KHR_SURFACE_EXTENSION_NAME: &core::ffi::CStr = c"VK_KHR_surface";

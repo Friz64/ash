@@ -2,35 +2,41 @@
 #![cfg_attr(rustfmt, rustfmt_skip)]
 //![Vulkan Manual Page](https://docs.vulkan.org/refpages/latest/refpages/source/VK_INTEL_performance_query.html) · Extension `VK_INTEL_performance_query`
 #[repr(C)]
+#[derive(Clone, Copy)]
 pub struct PerformanceValueINTEL {
     pub _type: crate::vk::PerformanceValueTypeINTEL,
     pub data: crate::vk::PerformanceValueDataINTEL,
 }
 #[repr(C)]
+#[derive(Clone, Copy)]
 pub struct InitializePerformanceApiInfoINTEL {
     pub s_type: crate::vk::StructureType,
     pub p_next: *const core::ffi::c_void,
     pub p_user_data: *mut core::ffi::c_void,
 }
 #[repr(C)]
+#[derive(Clone, Copy)]
 pub struct QueryPoolPerformanceQueryCreateInfoINTEL {
     pub s_type: crate::vk::StructureType,
     pub p_next: *const core::ffi::c_void,
     pub performance_counters_sampling: crate::vk::QueryPoolSamplingModeINTEL,
 }
 #[repr(C)]
+#[derive(Clone, Copy)]
 pub struct PerformanceMarkerInfoINTEL {
     pub s_type: crate::vk::StructureType,
     pub p_next: *const core::ffi::c_void,
     pub marker: u64,
 }
 #[repr(C)]
+#[derive(Clone, Copy)]
 pub struct PerformanceStreamMarkerInfoINTEL {
     pub s_type: crate::vk::StructureType,
     pub p_next: *const core::ffi::c_void,
     pub marker: u32,
 }
 #[repr(C)]
+#[derive(Clone, Copy)]
 pub struct PerformanceOverrideInfoINTEL {
     pub s_type: crate::vk::StructureType,
     pub p_next: *const core::ffi::c_void,
@@ -39,6 +45,7 @@ pub struct PerformanceOverrideInfoINTEL {
     pub parameter: u64,
 }
 #[repr(C)]
+#[derive(Clone, Copy)]
 pub struct PerformanceConfigurationAcquireInfoINTEL {
     pub s_type: crate::vk::StructureType,
     pub p_next: *const core::ffi::c_void,
@@ -46,6 +53,7 @@ pub struct PerformanceConfigurationAcquireInfoINTEL {
 }
 pub type QueryPoolCreateInfoINTEL = crate::vk::QueryPoolPerformanceQueryCreateInfoINTEL;
 #[repr(C)]
+#[derive(Clone, Copy)]
 pub union PerformanceValueDataINTEL {
     pub value32: u32,
     pub value64: u64,
@@ -54,16 +62,22 @@ pub union PerformanceValueDataINTEL {
     pub value_string: *const core::ffi::c_char,
 }
 #[repr(transparent)]
+#[derive(Clone, Copy)]
 pub struct PerformanceConfigurationTypeINTEL(pub(crate) i32);
 #[repr(transparent)]
+#[derive(Clone, Copy)]
 pub struct QueryPoolSamplingModeINTEL(pub(crate) i32);
 #[repr(transparent)]
+#[derive(Clone, Copy)]
 pub struct PerformanceOverrideTypeINTEL(pub(crate) i32);
 #[repr(transparent)]
+#[derive(Clone, Copy)]
 pub struct PerformanceParameterTypeINTEL(pub(crate) i32);
 #[repr(transparent)]
+#[derive(Clone, Copy)]
 pub struct PerformanceValueTypeINTEL(pub(crate) i32);
 #[repr(transparent)]
+#[derive(Clone, Copy)]
 pub struct PerformanceConfigurationINTEL(pub(crate) i32);
 pub const INTEL_PERFORMANCE_QUERY_SPEC_VERSION: u32 = 2;
 pub const INTEL_PERFORMANCE_QUERY_EXTENSION_NAME: &core::ffi::CStr = c"VK_INTEL_performance_query";

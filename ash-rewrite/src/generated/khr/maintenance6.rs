@@ -2,6 +2,7 @@
 #![cfg_attr(rustfmt, rustfmt_skip)]
 //![Vulkan Manual Page](https://docs.vulkan.org/refpages/latest/refpages/source/VK_KHR_maintenance6.html) · Extension `VK_KHR_maintenance6`
 #[repr(C)]
+#[derive(Clone, Copy)]
 pub struct SetDescriptorBufferOffsetsInfoEXT {
     pub s_type: crate::vk::StructureType,
     pub p_next: *const core::ffi::c_void,
@@ -13,6 +14,7 @@ pub struct SetDescriptorBufferOffsetsInfoEXT {
     pub p_offsets: *const crate::vk::DeviceSize,
 }
 #[repr(C)]
+#[derive(Clone, Copy)]
 pub struct BindDescriptorBufferEmbeddedSamplersInfoEXT {
     pub s_type: crate::vk::StructureType,
     pub p_next: *const core::ffi::c_void,

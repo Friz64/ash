@@ -2,6 +2,7 @@
 #![cfg_attr(rustfmt, rustfmt_skip)]
 //![Vulkan Manual Page](https://docs.vulkan.org/refpages/latest/refpages/source/VK_KHR_win32_surface.html) · Extension `VK_KHR_win32_surface`
 #[repr(C)]
+#[derive(Clone, Copy)]
 pub struct Win32SurfaceCreateInfoKHR {
     pub s_type: crate::vk::StructureType,
     pub p_next: *const core::ffi::c_void,
@@ -10,6 +11,7 @@ pub struct Win32SurfaceCreateInfoKHR {
     pub hwnd: crate::platform_types::HWND,
 }
 #[repr(transparent)]
+#[derive(Clone, Copy)]
 pub struct Win32SurfaceCreateFlagsKHR(pub(crate) i32);
 pub const KHR_WIN32_SURFACE_SPEC_VERSION: u32 = 6;
 pub const KHR_WIN32_SURFACE_EXTENSION_NAME: &core::ffi::CStr = c"VK_KHR_win32_surface";

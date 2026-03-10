@@ -2,12 +2,14 @@
 #![cfg_attr(rustfmt, rustfmt_skip)]
 //![Vulkan Manual Page](https://docs.vulkan.org/refpages/latest/refpages/source/VK_ARM_shader_instrumentation.html) · Extension `VK_ARM_shader_instrumentation`
 #[repr(C)]
+#[derive(Clone, Copy)]
 pub struct PhysicalDeviceShaderInstrumentationFeaturesARM {
     pub s_type: crate::vk::StructureType,
     pub p_next: *mut core::ffi::c_void,
     pub shader_instrumentation: crate::vk::Bool32,
 }
 #[repr(C)]
+#[derive(Clone, Copy)]
 pub struct PhysicalDeviceShaderInstrumentationPropertiesARM {
     pub s_type: crate::vk::StructureType,
     pub p_next: *mut core::ffi::c_void,
@@ -15,11 +17,13 @@ pub struct PhysicalDeviceShaderInstrumentationPropertiesARM {
     pub per_basic_block_granularity: crate::vk::Bool32,
 }
 #[repr(C)]
+#[derive(Clone, Copy)]
 pub struct ShaderInstrumentationCreateInfoARM {
     pub s_type: crate::vk::StructureType,
     pub p_next: *mut core::ffi::c_void,
 }
 #[repr(C)]
+#[derive(Clone, Copy)]
 pub struct ShaderInstrumentationMetricDescriptionARM {
     pub s_type: crate::vk::StructureType,
     pub p_next: *mut core::ffi::c_void,
@@ -27,6 +31,7 @@ pub struct ShaderInstrumentationMetricDescriptionARM {
     pub description: [core::ffi::c_char; crate::vk::MAX_DESCRIPTION_SIZE as _],
 }
 #[repr(C)]
+#[derive(Clone, Copy)]
 pub struct ShaderInstrumentationMetricDataHeaderARM {
     pub result_index: u32,
     pub result_sub_index: u32,
@@ -34,8 +39,10 @@ pub struct ShaderInstrumentationMetricDataHeaderARM {
     pub basic_block_index: u32,
 }
 #[repr(transparent)]
+#[derive(Clone, Copy)]
 pub struct ShaderInstrumentationValuesFlagsARM(pub(crate) i32);
 #[repr(transparent)]
+#[derive(Clone, Copy)]
 pub struct ShaderInstrumentationARM(pub(crate) i32);
 pub const ARM_SHADER_INSTRUMENTATION_SPEC_VERSION: u32 = 1;
 pub const ARM_SHADER_INSTRUMENTATION_EXTENSION_NAME: &core::ffi::CStr = c"VK_ARM_shader_instrumentation";

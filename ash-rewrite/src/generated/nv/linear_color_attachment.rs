@@ -2,6 +2,7 @@
 #![cfg_attr(rustfmt, rustfmt_skip)]
 //![Vulkan Manual Page](https://docs.vulkan.org/refpages/latest/refpages/source/VK_NV_linear_color_attachment.html) · Extension `VK_NV_linear_color_attachment`
 #[repr(C)]
+#[derive(Clone, Copy)]
 pub struct PhysicalDeviceLinearColorAttachmentFeaturesNV {
     pub s_type: crate::vk::StructureType,
     pub p_next: *mut core::ffi::c_void,

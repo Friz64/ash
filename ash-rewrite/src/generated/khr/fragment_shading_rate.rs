@@ -2,6 +2,7 @@
 #![cfg_attr(rustfmt, rustfmt_skip)]
 //![Vulkan Manual Page](https://docs.vulkan.org/refpages/latest/refpages/source/VK_KHR_fragment_shading_rate.html) · Extension `VK_KHR_fragment_shading_rate`
 #[repr(C)]
+#[derive(Clone, Copy)]
 pub struct FragmentShadingRateAttachmentInfoKHR {
     pub s_type: crate::vk::StructureType,
     pub p_next: *const core::ffi::c_void,
@@ -9,6 +10,7 @@ pub struct FragmentShadingRateAttachmentInfoKHR {
     pub shading_rate_attachment_texel_size: crate::vk::Extent2D,
 }
 #[repr(C)]
+#[derive(Clone, Copy)]
 pub struct PipelineFragmentShadingRateStateCreateInfoKHR {
     pub s_type: crate::vk::StructureType,
     pub p_next: *const core::ffi::c_void,
@@ -16,6 +18,7 @@ pub struct PipelineFragmentShadingRateStateCreateInfoKHR {
     pub combiner_ops: [crate::vk::FragmentShadingRateCombinerOpKHR; 2 as _],
 }
 #[repr(C)]
+#[derive(Clone, Copy)]
 pub struct PhysicalDeviceFragmentShadingRateFeaturesKHR {
     pub s_type: crate::vk::StructureType,
     pub p_next: *mut core::ffi::c_void,
@@ -24,6 +27,7 @@ pub struct PhysicalDeviceFragmentShadingRateFeaturesKHR {
     pub attachment_fragment_shading_rate: crate::vk::Bool32,
 }
 #[repr(C)]
+#[derive(Clone, Copy)]
 pub struct PhysicalDeviceFragmentShadingRatePropertiesKHR {
     pub s_type: crate::vk::StructureType,
     pub p_next: *mut core::ffi::c_void,
@@ -46,6 +50,7 @@ pub struct PhysicalDeviceFragmentShadingRatePropertiesKHR {
     pub fragment_shading_rate_strict_multiply_combiner: crate::vk::Bool32,
 }
 #[repr(C)]
+#[derive(Clone, Copy)]
 pub struct PhysicalDeviceFragmentShadingRateKHR {
     pub s_type: crate::vk::StructureType,
     pub p_next: *mut core::ffi::c_void,
@@ -53,6 +58,7 @@ pub struct PhysicalDeviceFragmentShadingRateKHR {
     pub fragment_size: crate::vk::Extent2D,
 }
 #[repr(C)]
+#[derive(Clone, Copy)]
 pub struct RenderingFragmentShadingRateAttachmentInfoKHR {
     pub s_type: crate::vk::StructureType,
     pub p_next: *const core::ffi::c_void,
@@ -61,6 +67,7 @@ pub struct RenderingFragmentShadingRateAttachmentInfoKHR {
     pub shading_rate_attachment_texel_size: crate::vk::Extent2D,
 }
 #[repr(transparent)]
+#[derive(Clone, Copy)]
 pub struct FragmentShadingRateCombinerOpKHR(pub(crate) i32);
 pub const KHR_FRAGMENT_SHADING_RATE_SPEC_VERSION: u32 = 2;
 pub const KHR_FRAGMENT_SHADING_RATE_EXTENSION_NAME: &core::ffi::CStr = c"VK_KHR_fragment_shading_rate";

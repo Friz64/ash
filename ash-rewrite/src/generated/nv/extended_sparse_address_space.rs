@@ -2,12 +2,14 @@
 #![cfg_attr(rustfmt, rustfmt_skip)]
 //![Vulkan Manual Page](https://docs.vulkan.org/refpages/latest/refpages/source/VK_NV_extended_sparse_address_space.html) · Extension `VK_NV_extended_sparse_address_space`
 #[repr(C)]
+#[derive(Clone, Copy)]
 pub struct PhysicalDeviceExtendedSparseAddressSpaceFeaturesNV {
     pub s_type: crate::vk::StructureType,
     pub p_next: *mut core::ffi::c_void,
     pub extended_sparse_address_space: crate::vk::Bool32,
 }
 #[repr(C)]
+#[derive(Clone, Copy)]
 pub struct PhysicalDeviceExtendedSparseAddressSpacePropertiesNV {
     pub s_type: crate::vk::StructureType,
     pub p_next: *mut core::ffi::c_void,

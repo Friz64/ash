@@ -1,10 +1,10 @@
 use crate::{
     decl::CPrimaryType,
     item::{Named, RequireMap, RequiredBy},
+    name::ConstantName,
     xml::{
         self,
         cexpr::{CExprItem, CExprItems},
-        name::ConstantName,
     },
 };
 use tracing::{instrument, trace};

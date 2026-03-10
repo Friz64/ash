@@ -2,6 +2,7 @@
 #![cfg_attr(rustfmt, rustfmt_skip)]
 //![Vulkan Manual Page](https://docs.vulkan.org/refpages/latest/refpages/source/VK_ARM_data_graph.html) · Extension `VK_ARM_data_graph`
 #[repr(C)]
+#[derive(Clone, Copy)]
 pub struct PhysicalDeviceDataGraphFeaturesARM {
     pub s_type: crate::vk::StructureType,
     pub p_next: *mut core::ffi::c_void,
@@ -12,6 +13,7 @@ pub struct PhysicalDeviceDataGraphFeaturesARM {
     pub data_graph_shader_module: crate::vk::Bool32,
 }
 #[repr(C)]
+#[derive(Clone, Copy)]
 pub struct DataGraphPipelineConstantTensorSemiStructuredSparsityInfoARM {
     pub s_type: crate::vk::StructureType,
     pub p_next: *const core::ffi::c_void,
@@ -20,6 +22,7 @@ pub struct DataGraphPipelineConstantTensorSemiStructuredSparsityInfoARM {
     pub group_size: u32,
 }
 #[repr(C)]
+#[derive(Clone, Copy)]
 pub struct DataGraphPipelineConstantARM {
     pub s_type: crate::vk::StructureType,
     pub p_next: *const core::ffi::c_void,
@@ -27,6 +30,7 @@ pub struct DataGraphPipelineConstantARM {
     pub p_constant_data: *const core::ffi::c_void,
 }
 #[repr(C)]
+#[derive(Clone, Copy)]
 pub struct DataGraphPipelineResourceInfoARM {
     pub s_type: crate::vk::StructureType,
     pub p_next: *const core::ffi::c_void,
@@ -35,12 +39,14 @@ pub struct DataGraphPipelineResourceInfoARM {
     pub array_element: u32,
 }
 #[repr(C)]
+#[derive(Clone, Copy)]
 pub struct DataGraphPipelineCompilerControlCreateInfoARM {
     pub s_type: crate::vk::StructureType,
     pub p_next: *const core::ffi::c_void,
     pub p_vendor_options: *const core::ffi::c_char,
 }
 #[repr(C)]
+#[derive(Clone, Copy)]
 pub struct DataGraphPipelineCreateInfoARM {
     pub s_type: crate::vk::StructureType,
     pub p_next: *const core::ffi::c_void,
@@ -50,6 +56,7 @@ pub struct DataGraphPipelineCreateInfoARM {
     pub p_resource_infos: *const crate::vk::DataGraphPipelineResourceInfoARM,
 }
 #[repr(C)]
+#[derive(Clone, Copy)]
 pub struct DataGraphPipelineShaderModuleCreateInfoARM {
     pub s_type: crate::vk::StructureType,
     pub p_next: *const core::ffi::c_void,
@@ -60,6 +67,7 @@ pub struct DataGraphPipelineShaderModuleCreateInfoARM {
     pub p_constants: *const crate::vk::DataGraphPipelineConstantARM,
 }
 #[repr(C)]
+#[derive(Clone, Copy)]
 pub struct DataGraphPipelineSessionCreateInfoARM {
     pub s_type: crate::vk::StructureType,
     pub p_next: *const core::ffi::c_void,
@@ -67,12 +75,14 @@ pub struct DataGraphPipelineSessionCreateInfoARM {
     pub data_graph_pipeline: crate::vk::Pipeline,
 }
 #[repr(C)]
+#[derive(Clone, Copy)]
 pub struct DataGraphPipelineSessionBindPointRequirementsInfoARM {
     pub s_type: crate::vk::StructureType,
     pub p_next: *const core::ffi::c_void,
     pub session: crate::vk::DataGraphPipelineSessionARM,
 }
 #[repr(C)]
+#[derive(Clone, Copy)]
 pub struct DataGraphPipelineSessionBindPointRequirementARM {
     pub s_type: crate::vk::StructureType,
     pub p_next: *mut core::ffi::c_void,
@@ -81,6 +91,7 @@ pub struct DataGraphPipelineSessionBindPointRequirementARM {
     pub num_objects: u32,
 }
 #[repr(C)]
+#[derive(Clone, Copy)]
 pub struct DataGraphPipelineSessionMemoryRequirementsInfoARM {
     pub s_type: crate::vk::StructureType,
     pub p_next: *const core::ffi::c_void,
@@ -89,6 +100,7 @@ pub struct DataGraphPipelineSessionMemoryRequirementsInfoARM {
     pub object_index: u32,
 }
 #[repr(C)]
+#[derive(Clone, Copy)]
 pub struct BindDataGraphPipelineSessionMemoryInfoARM {
     pub s_type: crate::vk::StructureType,
     pub p_next: *const core::ffi::c_void,
@@ -99,12 +111,14 @@ pub struct BindDataGraphPipelineSessionMemoryInfoARM {
     pub memory_offset: crate::vk::DeviceSize,
 }
 #[repr(C)]
+#[derive(Clone, Copy)]
 pub struct DataGraphPipelineInfoARM {
     pub s_type: crate::vk::StructureType,
     pub p_next: *const core::ffi::c_void,
     pub data_graph_pipeline: crate::vk::Pipeline,
 }
 #[repr(C)]
+#[derive(Clone, Copy)]
 pub struct DataGraphPipelinePropertyQueryResultARM {
     pub s_type: crate::vk::StructureType,
     pub p_next: *mut core::ffi::c_void,
@@ -114,6 +128,7 @@ pub struct DataGraphPipelinePropertyQueryResultARM {
     pub p_data: *mut core::ffi::c_void,
 }
 #[repr(C)]
+#[derive(Clone, Copy)]
 pub struct DataGraphPipelineIdentifierCreateInfoARM {
     pub s_type: crate::vk::StructureType,
     pub p_next: *const core::ffi::c_void,
@@ -121,17 +136,20 @@ pub struct DataGraphPipelineIdentifierCreateInfoARM {
     pub p_identifier: *const u8,
 }
 #[repr(C)]
+#[derive(Clone, Copy)]
 pub struct DataGraphPipelineDispatchInfoARM {
     pub s_type: crate::vk::StructureType,
     pub p_next: *mut core::ffi::c_void,
     pub flags: crate::vk::DataGraphPipelineDispatchFlagsARM,
 }
 #[repr(C)]
+#[derive(Clone, Copy)]
 pub struct PhysicalDeviceDataGraphProcessingEngineARM {
     pub _type: crate::vk::PhysicalDeviceDataGraphProcessingEngineTypeARM,
     pub is_foreign: crate::vk::Bool32,
 }
 #[repr(C)]
+#[derive(Clone, Copy)]
 pub struct PhysicalDeviceDataGraphOperationSupportARM {
     pub operation_type: crate::vk::PhysicalDeviceDataGraphOperationTypeARM,
     pub name: [core::ffi::c_char; crate::vk::MAX_PHYSICAL_DEVICE_DATA_GRAPH_OPERATION_SET_NAME_SIZE_ARM
@@ -139,6 +157,7 @@ pub struct PhysicalDeviceDataGraphOperationSupportARM {
     pub version: u32,
 }
 #[repr(C)]
+#[derive(Clone, Copy)]
 pub struct QueueFamilyDataGraphPropertiesARM {
     pub s_type: crate::vk::StructureType,
     pub p_next: *mut core::ffi::c_void,
@@ -146,6 +165,7 @@ pub struct QueueFamilyDataGraphPropertiesARM {
     pub operation: crate::vk::PhysicalDeviceDataGraphOperationSupportARM,
 }
 #[repr(C)]
+#[derive(Clone, Copy)]
 pub struct PhysicalDeviceQueueFamilyDataGraphProcessingEngineInfoARM {
     pub s_type: crate::vk::StructureType,
     pub p_next: *const core::ffi::c_void,
@@ -153,6 +173,7 @@ pub struct PhysicalDeviceQueueFamilyDataGraphProcessingEngineInfoARM {
     pub engine_type: crate::vk::PhysicalDeviceDataGraphProcessingEngineTypeARM,
 }
 #[repr(C)]
+#[derive(Clone, Copy)]
 pub struct QueueFamilyDataGraphProcessingEnginePropertiesARM {
     pub s_type: crate::vk::StructureType,
     pub p_next: *mut core::ffi::c_void,
@@ -160,6 +181,7 @@ pub struct QueueFamilyDataGraphProcessingEnginePropertiesARM {
     pub foreign_memory_handle_types: crate::vk::ExternalMemoryHandleTypeFlags,
 }
 #[repr(C)]
+#[derive(Clone, Copy)]
 pub struct DataGraphProcessingEngineCreateInfoARM {
     pub s_type: crate::vk::StructureType,
     pub p_next: *const core::ffi::c_void,
@@ -167,24 +189,34 @@ pub struct DataGraphProcessingEngineCreateInfoARM {
     pub p_processing_engines: *mut crate::vk::PhysicalDeviceDataGraphProcessingEngineARM,
 }
 #[repr(transparent)]
+#[derive(Clone, Copy)]
 pub struct DataGraphPipelineSessionBindPointARM(pub(crate) i32);
 #[repr(transparent)]
+#[derive(Clone, Copy)]
 pub struct DataGraphPipelineSessionBindPointTypeARM(pub(crate) i32);
 #[repr(transparent)]
+#[derive(Clone, Copy)]
 pub struct DataGraphPipelinePropertyARM(pub(crate) i32);
 #[repr(transparent)]
+#[derive(Clone, Copy)]
 pub struct PhysicalDeviceDataGraphProcessingEngineTypeARM(pub(crate) i32);
 #[repr(transparent)]
+#[derive(Clone, Copy)]
 pub struct PhysicalDeviceDataGraphOperationTypeARM(pub(crate) i32);
 #[repr(transparent)]
+#[derive(Clone, Copy)]
 pub struct DataGraphPipelineSessionCreateFlagsARM(pub(crate) i32);
 #[repr(transparent)]
+#[derive(Clone, Copy)]
 pub struct DataGraphPipelineDispatchFlagsARM(pub(crate) i32);
 #[repr(transparent)]
+#[derive(Clone, Copy)]
 pub struct DataGraphPipelineSessionCreateFlagBitsARM(pub(crate) i32);
 #[repr(transparent)]
+#[derive(Clone, Copy)]
 pub struct DataGraphPipelineDispatchFlagBitsARM(pub(crate) i32);
 #[repr(transparent)]
+#[derive(Clone, Copy)]
 pub struct DataGraphPipelineSessionARM(pub(crate) i32);
 pub const MAX_PHYSICAL_DEVICE_DATA_GRAPH_OPERATION_SET_NAME_SIZE_ARM: u32 = 128;
 pub const ARM_DATA_GRAPH_SPEC_VERSION: u32 = 1;

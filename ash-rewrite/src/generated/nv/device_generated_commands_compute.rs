@@ -2,6 +2,7 @@
 #![cfg_attr(rustfmt, rustfmt_skip)]
 //![Vulkan Manual Page](https://docs.vulkan.org/refpages/latest/refpages/source/VK_NV_device_generated_commands_compute.html) · Extension `VK_NV_device_generated_commands_compute`
 #[repr(C)]
+#[derive(Clone, Copy)]
 pub struct ComputePipelineIndirectBufferInfoNV {
     pub s_type: crate::vk::StructureType,
     pub p_next: *const core::ffi::c_void,
@@ -10,6 +11,7 @@ pub struct ComputePipelineIndirectBufferInfoNV {
     pub pipeline_device_address_capture_replay: crate::vk::DeviceAddress,
 }
 #[repr(C)]
+#[derive(Clone, Copy)]
 pub struct PhysicalDeviceDeviceGeneratedCommandsComputeFeaturesNV {
     pub s_type: crate::vk::StructureType,
     pub p_next: *mut core::ffi::c_void,
@@ -18,6 +20,7 @@ pub struct PhysicalDeviceDeviceGeneratedCommandsComputeFeaturesNV {
     pub device_generated_compute_capture_replay: crate::vk::Bool32,
 }
 #[repr(C)]
+#[derive(Clone, Copy)]
 pub struct PipelineIndirectDeviceAddressInfoNV {
     pub s_type: crate::vk::StructureType,
     pub p_next: *const core::ffi::c_void,
@@ -25,6 +28,7 @@ pub struct PipelineIndirectDeviceAddressInfoNV {
     pub pipeline: crate::vk::Pipeline,
 }
 #[repr(C)]
+#[derive(Clone, Copy)]
 pub struct BindPipelineIndirectCommandNV {
     pub pipeline_address: crate::vk::DeviceAddress,
 }

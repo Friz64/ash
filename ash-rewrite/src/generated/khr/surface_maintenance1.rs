@@ -2,12 +2,14 @@
 #![cfg_attr(rustfmt, rustfmt_skip)]
 //![Vulkan Manual Page](https://docs.vulkan.org/refpages/latest/refpages/source/VK_KHR_surface_maintenance1.html) · Extension `VK_KHR_surface_maintenance1`
 #[repr(C)]
+#[derive(Clone, Copy)]
 pub struct SurfacePresentModeKHR {
     pub s_type: crate::vk::StructureType,
     pub p_next: *mut core::ffi::c_void,
     pub present_mode: crate::vk::PresentModeKHR,
 }
 #[repr(C)]
+#[derive(Clone, Copy)]
 pub struct SurfacePresentScalingCapabilitiesKHR {
     pub s_type: crate::vk::StructureType,
     pub p_next: *mut core::ffi::c_void,
@@ -18,6 +20,7 @@ pub struct SurfacePresentScalingCapabilitiesKHR {
     pub max_scaled_image_extent: crate::vk::Extent2D,
 }
 #[repr(C)]
+#[derive(Clone, Copy)]
 pub struct SurfacePresentModeCompatibilityKHR {
     pub s_type: crate::vk::StructureType,
     pub p_next: *mut core::ffi::c_void,
@@ -25,12 +28,16 @@ pub struct SurfacePresentModeCompatibilityKHR {
     pub p_present_modes: *mut crate::vk::PresentModeKHR,
 }
 #[repr(transparent)]
+#[derive(Clone, Copy)]
 pub struct PresentScalingFlagsKHR(pub(crate) i32);
 #[repr(transparent)]
+#[derive(Clone, Copy)]
 pub struct PresentGravityFlagsKHR(pub(crate) i32);
 #[repr(transparent)]
+#[derive(Clone, Copy)]
 pub struct PresentScalingFlagBitsKHR(pub(crate) i32);
 #[repr(transparent)]
+#[derive(Clone, Copy)]
 pub struct PresentGravityFlagBitsKHR(pub(crate) i32);
 pub const KHR_SURFACE_MAINTENANCE_1_SPEC_VERSION: u32 = 1;
 pub const KHR_SURFACE_MAINTENANCE_1_EXTENSION_NAME: &core::ffi::CStr = c"VK_KHR_surface_maintenance1";

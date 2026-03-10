@@ -2,23 +2,27 @@
 #![cfg_attr(rustfmt, rustfmt_skip)]
 //![Vulkan Manual Page](https://docs.vulkan.org/refpages/latest/refpages/source/VK_EXT_multi_draw.html) · Extension `VK_EXT_multi_draw`
 #[repr(C)]
+#[derive(Clone, Copy)]
 pub struct MultiDrawInfoEXT {
     pub first_vertex: u32,
     pub vertex_count: u32,
 }
 #[repr(C)]
+#[derive(Clone, Copy)]
 pub struct MultiDrawIndexedInfoEXT {
     pub first_index: u32,
     pub index_count: u32,
     pub vertex_offset: i32,
 }
 #[repr(C)]
+#[derive(Clone, Copy)]
 pub struct PhysicalDeviceMultiDrawPropertiesEXT {
     pub s_type: crate::vk::StructureType,
     pub p_next: *mut core::ffi::c_void,
     pub max_multi_draw_count: u32,
 }
 #[repr(C)]
+#[derive(Clone, Copy)]
 pub struct PhysicalDeviceMultiDrawFeaturesEXT {
     pub s_type: crate::vk::StructureType,
     pub p_next: *mut core::ffi::c_void,

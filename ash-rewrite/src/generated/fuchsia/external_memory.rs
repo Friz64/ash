@@ -2,6 +2,7 @@
 #![cfg_attr(rustfmt, rustfmt_skip)]
 //![Vulkan Manual Page](https://docs.vulkan.org/refpages/latest/refpages/source/VK_FUCHSIA_external_memory.html) · Extension `VK_FUCHSIA_external_memory`
 #[repr(C)]
+#[derive(Clone, Copy)]
 pub struct ImportMemoryZirconHandleInfoFUCHSIA {
     pub s_type: crate::vk::StructureType,
     pub p_next: *const core::ffi::c_void,
@@ -9,12 +10,14 @@ pub struct ImportMemoryZirconHandleInfoFUCHSIA {
     pub handle: crate::platform_types::zx_handle_t,
 }
 #[repr(C)]
+#[derive(Clone, Copy)]
 pub struct MemoryZirconHandlePropertiesFUCHSIA {
     pub s_type: crate::vk::StructureType,
     pub p_next: *mut core::ffi::c_void,
     pub memory_type_bits: u32,
 }
 #[repr(C)]
+#[derive(Clone, Copy)]
 pub struct MemoryGetZirconHandleInfoFUCHSIA {
     pub s_type: crate::vk::StructureType,
     pub p_next: *const core::ffi::c_void,

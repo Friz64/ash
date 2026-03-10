@@ -21,25 +21,36 @@ use crate::{
         handle::Handle,
         structure::{Struct, Union},
     },
-    xml::{
-        Require, RequireType,
-        name::{CMacroName, CommandName, ConstantName, FuncPointerName, TypeName},
-    },
+    name::{CMacroName, CommandName, ConstantName, FuncPointerName, TypeName},
+    xml::{Require, RequireCommand, RequireConstant, RequireType},
 };
 use indexmap::IndexMap;
-use std::collections::HashMap;
+use std::collections::{HashMap, hash_map};
+use tinyvec::{ArrayVec, array_vec};
 use tracing::debug;
 
 #[derive(Debug, Clone, Copy, PartialEq, Eq, Hash)]
 pub struct RequiredBy {
     pub library: LibraryName,
-    pub location: RequireLocation,
+    pub locations: ArrayVec<[RequireLocation; 4]>,
+}
+
+impl RequiredBy {
+    pub fn primary_location(&self) -> RequireLocation {
+        self.locations[0]
+    }
 }
 
 #[derive(Debug, Clone, Copy, PartialEq, Eq, Hash)]
 pub enum RequireLocation {
     Core { major: u32, minor: u32 },
     Extension { name: &'static str },
+}
+
+impl Default for RequireLocation {
+    fn default() -> Self {
+        RequireLocation::Core { major: 1, minor: 0 }
+    }
 }
 
 #[derive(Default)]
@@ -83,29 +94,42 @@ impl Items {
 
         let mut require_map = RequireMap::default();
 
-        iter_requires(libraries, |required_by, require| {
+        iter_requires(libraries, |library, location, require| {
+            fn extend<T>(
+                entry: hash_map::Entry<T, RequiredBy>,
+                library: LibraryName,
+                location: RequireLocation,
+            ) {
+                let required_by = entry.or_insert_with(|| RequiredBy {
+                    library,
+                    locations: ArrayVec::new(),
+                });
+
+                required_by.locations.push(location);
+            }
+
             for require_type in &require.types {
                 match require_type {
-                    RequireType::Type(name) => require_map.ty.insert(*name, required_by),
-                    RequireType::CMacro(name) => require_map.c_macro.insert(*name, required_by),
+                    RequireType::Type(name) => {
+                        extend(require_map.ty.entry(*name), library, location);
+                    }
+                    RequireType::CMacro(name) => {
+                        extend(require_map.c_macro.entry(*name), library, location);
+                    }
                     RequireType::FuncPointer(name) => {
-                        require_map.func_pointer.insert(*name, required_by)
+                        extend(require_map.func_pointer.entry(*name), library, location);
                     }
                     // in ash these are covered by platform_types.rs, so let's just ignore those :P
                     RequireType::External(_name) => continue,
                 };
             }
 
-            for require_constant in &require.constants {
-                require_map
-                    .constant
-                    .insert(require_constant.name, required_by);
+            for RequireConstant { name, .. } in &require.constants {
+                extend(require_map.constant.entry(*name), library, location);
             }
 
-            for require_command in &require.commands {
-                require_map
-                    .command
-                    .insert(require_command.name, required_by);
+            for RequireCommand { name } in &require.commands {
+                extend(require_map.command.entry(*name), library, location);
             }
         });
 
@@ -191,7 +215,12 @@ impl Items {
             });
         }
 
-        iter_requires(libraries, |required_by, require| {
+        iter_requires(libraries, |library, location, require| {
+            let required_by = RequiredBy {
+                library,
+                locations: array_vec!([RequireLocation; _] => location),
+            };
+
             for constant in &require.constants {
                 if let Some(constant) = Constant::from_require(required_by, constant) {
                     items.constants.insert(constant.name(), constant);
@@ -236,32 +265,29 @@ impl Items {
     }
 }
 
-fn iter_requires(libraries: &[&Library], mut f: impl FnMut(RequiredBy, &Require)) {
+fn iter_requires(
+    libraries: &[&Library],
+    mut f: impl FnMut(LibraryName, RequireLocation, &Require),
+) {
     for library in libraries {
         for feature in &library.xml.features {
-            let required_by = RequiredBy {
-                library: library.name,
-                location: RequireLocation::Core {
-                    major: feature.version.major,
-                    minor: feature.version.minor,
-                },
+            let location = RequireLocation::Core {
+                major: feature.version.major,
+                minor: feature.version.minor,
             };
 
             for require in &feature.requires {
-                f(required_by, require);
+                f(library.name(), location, require);
             }
         }
 
         for extension in &library.xml.extensions {
-            let required_by = RequiredBy {
-                library: library.name,
-                location: RequireLocation::Extension {
-                    name: extension.name,
-                },
+            let location = RequireLocation::Extension {
+                name: extension.name,
             };
 
             for require in &extension.requires {
-                f(required_by, require);
+                f(library.name(), location, require);
             }
         }
     }

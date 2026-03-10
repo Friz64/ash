@@ -2,6 +2,7 @@
 #![cfg_attr(rustfmt, rustfmt_skip)]
 //![Vulkan Manual Page](https://docs.vulkan.org/refpages/latest/refpages/source/VK_KHR_maintenance10.html) · Extension `VK_KHR_maintenance10`
 #[repr(C)]
+#[derive(Clone, Copy)]
 pub struct PhysicalDeviceMaintenance10PropertiesKHR {
     pub s_type: crate::vk::StructureType,
     pub p_next: *mut core::ffi::c_void,
@@ -10,23 +11,27 @@ pub struct PhysicalDeviceMaintenance10PropertiesKHR {
     pub resolve_srgb_format_supports_transfer_function_control: crate::vk::Bool32,
 }
 #[repr(C)]
+#[derive(Clone, Copy)]
 pub struct PhysicalDeviceMaintenance10FeaturesKHR {
     pub s_type: crate::vk::StructureType,
     pub p_next: *mut core::ffi::c_void,
     pub maintenance10: crate::vk::Bool32,
 }
 #[repr(C)]
+#[derive(Clone, Copy)]
 pub struct RenderingEndInfoKHR {
     pub s_type: crate::vk::StructureType,
     pub p_next: *const core::ffi::c_void,
 }
 #[repr(C)]
+#[derive(Clone, Copy)]
 pub struct RenderingAttachmentFlagsInfoKHR {
     pub s_type: crate::vk::StructureType,
     pub p_next: *const core::ffi::c_void,
     pub flags: crate::vk::RenderingAttachmentFlagsKHR,
 }
 #[repr(C)]
+#[derive(Clone, Copy)]
 pub struct ResolveImageModeInfoKHR {
     pub s_type: crate::vk::StructureType,
     pub p_next: *const core::ffi::c_void,
@@ -35,12 +40,16 @@ pub struct ResolveImageModeInfoKHR {
     pub stencil_resolve_mode: crate::vk::ResolveModeFlagBits,
 }
 #[repr(transparent)]
+#[derive(Clone, Copy)]
 pub struct RenderingAttachmentFlagsKHR(pub(crate) i32);
 #[repr(transparent)]
+#[derive(Clone, Copy)]
 pub struct ResolveImageFlagsKHR(pub(crate) i32);
 #[repr(transparent)]
+#[derive(Clone, Copy)]
 pub struct RenderingAttachmentFlagBitsKHR(pub(crate) i32);
 #[repr(transparent)]
+#[derive(Clone, Copy)]
 pub struct ResolveImageFlagBitsKHR(pub(crate) i32);
 pub const KHR_MAINTENANCE_10_SPEC_VERSION: u32 = 1;
 pub const KHR_MAINTENANCE_10_EXTENSION_NAME: &core::ffi::CStr = c"VK_KHR_maintenance10";

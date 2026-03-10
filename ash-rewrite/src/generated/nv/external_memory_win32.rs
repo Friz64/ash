@@ -2,6 +2,7 @@
 #![cfg_attr(rustfmt, rustfmt_skip)]
 //![Vulkan Manual Page](https://docs.vulkan.org/refpages/latest/refpages/source/VK_NV_external_memory_win32.html) · Extension `VK_NV_external_memory_win32`
 #[repr(C)]
+#[derive(Clone, Copy)]
 pub struct ImportMemoryWin32HandleInfoNV {
     pub s_type: crate::vk::StructureType,
     pub p_next: *const core::ffi::c_void,
@@ -9,6 +10,7 @@ pub struct ImportMemoryWin32HandleInfoNV {
     pub handle: crate::platform_types::HANDLE,
 }
 #[repr(C)]
+#[derive(Clone, Copy)]
 pub struct ExportMemoryWin32HandleInfoNV {
     pub s_type: crate::vk::StructureType,
     pub p_next: *const core::ffi::c_void,

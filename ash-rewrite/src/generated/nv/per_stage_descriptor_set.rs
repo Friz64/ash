@@ -2,6 +2,7 @@
 #![cfg_attr(rustfmt, rustfmt_skip)]
 //![Vulkan Manual Page](https://docs.vulkan.org/refpages/latest/refpages/source/VK_NV_per_stage_descriptor_set.html) · Extension `VK_NV_per_stage_descriptor_set`
 #[repr(C)]
+#[derive(Clone, Copy)]
 pub struct PhysicalDevicePerStageDescriptorSetFeaturesNV {
     pub s_type: crate::vk::StructureType,
     pub p_next: *mut core::ffi::c_void,

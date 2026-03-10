@@ -2,15 +2,19 @@
 #![cfg_attr(rustfmt, rustfmt_skip)]
 //!Items provided by `vulkan_video_codec_h264std_decode`
 #[repr(C)]
+#[derive(Clone, Copy)]
 pub struct StdVideoDecodeH264PictureInfoFlags {
-    pub field_pic_flag: u32,
-    pub is_intra: u32,
-    pub idr_pic_flag: u32,
-    pub bottom_field_flag: u32,
-    pub is_reference: u32,
-    pub complementary_field_pair: u32,
+    /**- `field_pic_flag` @ `0..1`
+- `is_intra` @ `1..2`
+- `IdrPicFlag` @ `2..3`
+- `bottom_field_flag` @ `3..4`
+- `is_reference` @ `4..5`
+- `complementary_field_pair` @ `5..6`
+*/
+    pub bitfield0: u32,
 }
 #[repr(C)]
+#[derive(Clone, Copy)]
 pub struct StdVideoDecodeH264PictureInfo {
     pub flags: crate::vk::StdVideoDecodeH264PictureInfoFlags,
     pub seq_parameter_set_id: u8,
@@ -23,13 +27,17 @@ pub struct StdVideoDecodeH264PictureInfo {
         as _],
 }
 #[repr(C)]
+#[derive(Clone, Copy)]
 pub struct StdVideoDecodeH264ReferenceInfoFlags {
-    pub top_field_flag: u32,
-    pub bottom_field_flag: u32,
-    pub used_for_long_term_reference: u32,
-    pub is_non_existing: u32,
+    /**- `top_field_flag` @ `0..1`
+- `bottom_field_flag` @ `1..2`
+- `used_for_long_term_reference` @ `2..3`
+- `is_non_existing` @ `3..4`
+*/
+    pub bitfield0: u32,
 }
 #[repr(C)]
+#[derive(Clone, Copy)]
 pub struct StdVideoDecodeH264ReferenceInfo {
     pub flags: crate::vk::StdVideoDecodeH264ReferenceInfoFlags,
     pub frame_num: u16,
@@ -38,6 +46,7 @@ pub struct StdVideoDecodeH264ReferenceInfo {
         as _],
 }
 #[repr(transparent)]
+#[derive(Clone, Copy)]
 pub struct StdVideoDecodeH264FieldOrderCount(pub(crate) i32);
 pub const STD_VULKAN_VIDEO_CODEC_H264_DECODE_SPEC_VERSION: u32 = crate::vk::STD_VULKAN_VIDEO_CODEC_H264_DECODE_API_VERSION_1_0_0;
 pub const STD_VULKAN_VIDEO_CODEC_H264_DECODE_EXTENSION_NAME: &core::ffi::CStr = c"VK_STD_vulkan_video_codec_h264_decode";

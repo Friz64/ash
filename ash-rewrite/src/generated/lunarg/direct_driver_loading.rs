@@ -2,6 +2,7 @@
 #![cfg_attr(rustfmt, rustfmt_skip)]
 //![Vulkan Manual Page](https://docs.vulkan.org/refpages/latest/refpages/source/VK_LUNARG_direct_driver_loading.html) · Extension `VK_LUNARG_direct_driver_loading`
 #[repr(C)]
+#[derive(Clone, Copy)]
 pub struct DirectDriverLoadingInfoLUNARG {
     pub s_type: crate::vk::StructureType,
     pub p_next: *mut core::ffi::c_void,
@@ -9,6 +10,7 @@ pub struct DirectDriverLoadingInfoLUNARG {
     pub pfn_get_instance_proc_addr: crate::vk::PFN_vkGetInstanceProcAddrLUNARG,
 }
 #[repr(C)]
+#[derive(Clone, Copy)]
 pub struct DirectDriverLoadingListLUNARG {
     pub s_type: crate::vk::StructureType,
     pub p_next: *const core::ffi::c_void,
@@ -17,8 +19,10 @@ pub struct DirectDriverLoadingListLUNARG {
     pub p_drivers: *const crate::vk::DirectDriverLoadingInfoLUNARG,
 }
 #[repr(transparent)]
+#[derive(Clone, Copy)]
 pub struct DirectDriverLoadingModeLUNARG(pub(crate) i32);
 #[repr(transparent)]
+#[derive(Clone, Copy)]
 pub struct DirectDriverLoadingFlagsLUNARG(pub(crate) i32);
 #[allow(non_camel_case_types)]
 pub type PFN_vkGetInstanceProcAddrLUNARG = Option<()>;

@@ -2,6 +2,7 @@
 #![cfg_attr(rustfmt, rustfmt_skip)]
 //!Items provided by `vulkan_video_codec_h265std_encode`
 #[repr(C)]
+#[derive(Clone, Copy)]
 pub struct StdVideoEncodeH265WeightTableFlags {
     pub luma_weight_l0_flag: u16,
     pub chroma_weight_l0_flag: u16,
@@ -9,6 +10,7 @@ pub struct StdVideoEncodeH265WeightTableFlags {
     pub chroma_weight_l1_flag: u16,
 }
 #[repr(C)]
+#[derive(Clone, Copy)]
 pub struct StdVideoEncodeH265WeightTable {
     pub flags: crate::vk::StdVideoEncodeH265WeightTableFlags,
     pub luma_log2_weight_denom: u8,
@@ -27,6 +29,7 @@ pub struct StdVideoEncodeH265WeightTable {
         as _]; crate::vk::STD_VIDEO_H265_MAX_NUM_LIST_REF as _],
 }
 #[repr(C)]
+#[derive(Clone, Copy)]
 pub struct StdVideoEncodeH265LongTermRefPics {
     pub num_long_term_sps: u8,
     pub num_long_term_pics: u8,
@@ -37,22 +40,26 @@ pub struct StdVideoEncodeH265LongTermRefPics {
     pub delta_poc_msb_cycle_lt: [u8; crate::vk::STD_VIDEO_H265_MAX_DELTA_POC as _],
 }
 #[repr(C)]
+#[derive(Clone, Copy)]
 pub struct StdVideoEncodeH265SliceSegmentHeaderFlags {
-    pub first_slice_segment_in_pic_flag: u32,
-    pub dependent_slice_segment_flag: u32,
-    pub slice_sao_luma_flag: u32,
-    pub slice_sao_chroma_flag: u32,
-    pub num_ref_idx_active_override_flag: u32,
-    pub mvd_l1_zero_flag: u32,
-    pub cabac_init_flag: u32,
-    pub cu_chroma_qp_offset_enabled_flag: u32,
-    pub deblocking_filter_override_flag: u32,
-    pub slice_deblocking_filter_disabled_flag: u32,
-    pub collocated_from_l0_flag: u32,
-    pub slice_loop_filter_across_slices_enabled_flag: u32,
-    pub reserved: u32,
+    /**- `first_slice_segment_in_pic_flag` @ `0..1`
+- `dependent_slice_segment_flag` @ `1..2`
+- `slice_sao_luma_flag` @ `2..3`
+- `slice_sao_chroma_flag` @ `3..4`
+- `num_ref_idx_active_override_flag` @ `4..5`
+- `mvd_l1_zero_flag` @ `5..6`
+- `cabac_init_flag` @ `6..7`
+- `cu_chroma_qp_offset_enabled_flag` @ `7..8`
+- `deblocking_filter_override_flag` @ `8..9`
+- `slice_deblocking_filter_disabled_flag` @ `9..10`
+- `collocated_from_l0_flag` @ `10..11`
+- `slice_loop_filter_across_slices_enabled_flag` @ `11..12`
+- `reserved` @ `12..32`
+*/
+    pub bitfield0: u32,
 }
 #[repr(C)]
+#[derive(Clone, Copy)]
 pub struct StdVideoEncodeH265SliceSegmentHeader {
     pub flags: crate::vk::StdVideoEncodeH265SliceSegmentHeaderFlags,
     pub slice_type: crate::vk::StdVideoH265SliceType,
@@ -71,12 +78,16 @@ pub struct StdVideoEncodeH265SliceSegmentHeader {
     pub p_weight_table: *const crate::vk::StdVideoEncodeH265WeightTable,
 }
 #[repr(C)]
+#[derive(Clone, Copy)]
 pub struct StdVideoEncodeH265ReferenceListsInfoFlags {
-    pub ref_pic_list_modification_flag_l0: u32,
-    pub ref_pic_list_modification_flag_l1: u32,
-    pub reserved: u32,
+    /**- `ref_pic_list_modification_flag_l0` @ `0..1`
+- `ref_pic_list_modification_flag_l1` @ `1..2`
+- `reserved` @ `2..32`
+*/
+    pub bitfield0: u32,
 }
 #[repr(C)]
+#[derive(Clone, Copy)]
 pub struct StdVideoEncodeH265ReferenceListsInfo {
     pub flags: crate::vk::StdVideoEncodeH265ReferenceListsInfoFlags,
     pub num_ref_idx_l0_active_minus1: u8,
@@ -87,19 +98,23 @@ pub struct StdVideoEncodeH265ReferenceListsInfo {
     pub list_entry_l1: [u8; crate::vk::STD_VIDEO_H265_MAX_NUM_LIST_REF as _],
 }
 #[repr(C)]
+#[derive(Clone, Copy)]
 pub struct StdVideoEncodeH265PictureInfoFlags {
-    pub is_reference: u32,
-    pub irap_pic_flag: u32,
-    pub used_for_long_term_reference: u32,
-    pub discardable_flag: u32,
-    pub cross_layer_bla_flag: u32,
-    pub pic_output_flag: u32,
-    pub no_output_of_prior_pics_flag: u32,
-    pub short_term_ref_pic_set_sps_flag: u32,
-    pub slice_temporal_mvp_enabled_flag: u32,
-    pub reserved: u32,
+    /**- `is_reference` @ `0..1`
+- `IrapPicFlag` @ `1..2`
+- `used_for_long_term_reference` @ `2..3`
+- `discardable_flag` @ `3..4`
+- `cross_layer_bla_flag` @ `4..5`
+- `pic_output_flag` @ `5..6`
+- `no_output_of_prior_pics_flag` @ `6..7`
+- `short_term_ref_pic_set_sps_flag` @ `7..8`
+- `slice_temporal_mvp_enabled_flag` @ `8..9`
+- `reserved` @ `9..32`
+*/
+    pub bitfield0: u32,
 }
 #[repr(C)]
+#[derive(Clone, Copy)]
 pub struct StdVideoEncodeH265PictureInfo {
     pub flags: crate::vk::StdVideoEncodeH265PictureInfoFlags,
     pub pic_type: crate::vk::StdVideoH265PictureType,
@@ -115,12 +130,16 @@ pub struct StdVideoEncodeH265PictureInfo {
     pub p_long_term_ref_pics: *const crate::vk::StdVideoEncodeH265LongTermRefPics,
 }
 #[repr(C)]
+#[derive(Clone, Copy)]
 pub struct StdVideoEncodeH265ReferenceInfoFlags {
-    pub used_for_long_term_reference: u32,
-    pub unused_for_reference: u32,
-    pub reserved: u32,
+    /**- `used_for_long_term_reference` @ `0..1`
+- `unused_for_reference` @ `1..2`
+- `reserved` @ `2..32`
+*/
+    pub bitfield0: u32,
 }
 #[repr(C)]
+#[derive(Clone, Copy)]
 pub struct StdVideoEncodeH265ReferenceInfo {
     pub flags: crate::vk::StdVideoEncodeH265ReferenceInfoFlags,
     pub pic_type: crate::vk::StdVideoH265PictureType,

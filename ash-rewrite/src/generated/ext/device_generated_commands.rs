@@ -2,6 +2,7 @@
 #![cfg_attr(rustfmt, rustfmt_skip)]
 //![Vulkan Manual Page](https://docs.vulkan.org/refpages/latest/refpages/source/VK_EXT_device_generated_commands.html) · Extension `VK_EXT_device_generated_commands`
 #[repr(C)]
+#[derive(Clone, Copy)]
 pub struct PhysicalDeviceDeviceGeneratedCommandsFeaturesEXT {
     pub s_type: crate::vk::StructureType,
     pub p_next: *mut core::ffi::c_void,
@@ -9,6 +10,7 @@ pub struct PhysicalDeviceDeviceGeneratedCommandsFeaturesEXT {
     pub dynamic_generated_pipeline_layout: crate::vk::Bool32,
 }
 #[repr(C)]
+#[derive(Clone, Copy)]
 pub struct PhysicalDeviceDeviceGeneratedCommandsPropertiesEXT {
     pub s_type: crate::vk::StructureType,
     pub p_next: *mut core::ffi::c_void,
@@ -26,12 +28,14 @@ pub struct PhysicalDeviceDeviceGeneratedCommandsPropertiesEXT {
     pub device_generated_commands_multi_draw_indirect_count: crate::vk::Bool32,
 }
 #[repr(C)]
+#[derive(Clone, Copy)]
 pub struct GeneratedCommandsPipelineInfoEXT {
     pub s_type: crate::vk::StructureType,
     pub p_next: *mut core::ffi::c_void,
     pub pipeline: crate::vk::Pipeline,
 }
 #[repr(C)]
+#[derive(Clone, Copy)]
 pub struct GeneratedCommandsShaderInfoEXT {
     pub s_type: crate::vk::StructureType,
     pub p_next: *mut core::ffi::c_void,
@@ -39,6 +43,7 @@ pub struct GeneratedCommandsShaderInfoEXT {
     pub p_shaders: *const crate::vk::ShaderEXT,
 }
 #[repr(C)]
+#[derive(Clone, Copy)]
 pub struct GeneratedCommandsMemoryRequirementsInfoEXT {
     pub s_type: crate::vk::StructureType,
     pub p_next: *const core::ffi::c_void,
@@ -48,6 +53,7 @@ pub struct GeneratedCommandsMemoryRequirementsInfoEXT {
     pub max_draw_count: u32,
 }
 #[repr(C)]
+#[derive(Clone, Copy)]
 pub struct IndirectExecutionSetPipelineInfoEXT {
     pub s_type: crate::vk::StructureType,
     pub p_next: *const core::ffi::c_void,
@@ -55,6 +61,7 @@ pub struct IndirectExecutionSetPipelineInfoEXT {
     pub max_pipeline_count: u32,
 }
 #[repr(C)]
+#[derive(Clone, Copy)]
 pub struct IndirectExecutionSetShaderLayoutInfoEXT {
     pub s_type: crate::vk::StructureType,
     pub p_next: *const core::ffi::c_void,
@@ -62,6 +69,7 @@ pub struct IndirectExecutionSetShaderLayoutInfoEXT {
     pub p_set_layouts: *const crate::vk::DescriptorSetLayout,
 }
 #[repr(C)]
+#[derive(Clone, Copy)]
 pub struct IndirectExecutionSetShaderInfoEXT {
     pub s_type: crate::vk::StructureType,
     pub p_next: *const core::ffi::c_void,
@@ -73,6 +81,7 @@ pub struct IndirectExecutionSetShaderInfoEXT {
     pub p_push_constant_ranges: *const crate::vk::PushConstantRange,
 }
 #[repr(C)]
+#[derive(Clone, Copy)]
 pub struct IndirectExecutionSetCreateInfoEXT {
     pub s_type: crate::vk::StructureType,
     pub p_next: *const core::ffi::c_void,
@@ -80,6 +89,7 @@ pub struct IndirectExecutionSetCreateInfoEXT {
     pub info: crate::vk::IndirectExecutionSetInfoEXT,
 }
 #[repr(C)]
+#[derive(Clone, Copy)]
 pub struct GeneratedCommandsInfoEXT {
     pub s_type: crate::vk::StructureType,
     pub p_next: *const core::ffi::c_void,
@@ -95,6 +105,7 @@ pub struct GeneratedCommandsInfoEXT {
     pub max_draw_count: u32,
 }
 #[repr(C)]
+#[derive(Clone, Copy)]
 pub struct WriteIndirectExecutionSetPipelineEXT {
     pub s_type: crate::vk::StructureType,
     pub p_next: *const core::ffi::c_void,
@@ -102,6 +113,7 @@ pub struct WriteIndirectExecutionSetPipelineEXT {
     pub pipeline: crate::vk::Pipeline,
 }
 #[repr(C)]
+#[derive(Clone, Copy)]
 pub struct WriteIndirectExecutionSetShaderEXT {
     pub s_type: crate::vk::StructureType,
     pub p_next: *const core::ffi::c_void,
@@ -109,6 +121,7 @@ pub struct WriteIndirectExecutionSetShaderEXT {
     pub shader: crate::vk::ShaderEXT,
 }
 #[repr(C)]
+#[derive(Clone, Copy)]
 pub struct IndirectCommandsLayoutCreateInfoEXT {
     pub s_type: crate::vk::StructureType,
     pub p_next: *const core::ffi::c_void,
@@ -120,6 +133,7 @@ pub struct IndirectCommandsLayoutCreateInfoEXT {
     pub p_tokens: *const crate::vk::IndirectCommandsLayoutTokenEXT,
 }
 #[repr(C)]
+#[derive(Clone, Copy)]
 pub struct IndirectCommandsLayoutTokenEXT {
     pub s_type: crate::vk::StructureType,
     pub p_next: *const core::ffi::c_void,
@@ -128,46 +142,55 @@ pub struct IndirectCommandsLayoutTokenEXT {
     pub offset: u32,
 }
 #[repr(C)]
+#[derive(Clone, Copy)]
 pub struct DrawIndirectCountIndirectCommandEXT {
     pub buffer_address: crate::vk::DeviceAddress,
     pub stride: u32,
     pub command_count: u32,
 }
 #[repr(C)]
+#[derive(Clone, Copy)]
 pub struct IndirectCommandsVertexBufferTokenEXT {
     pub vertex_binding_unit: u32,
 }
 #[repr(C)]
+#[derive(Clone, Copy)]
 pub struct BindVertexBufferIndirectCommandEXT {
     pub buffer_address: crate::vk::DeviceAddress,
     pub size: u32,
     pub stride: u32,
 }
 #[repr(C)]
+#[derive(Clone, Copy)]
 pub struct IndirectCommandsIndexBufferTokenEXT {
     pub mode: crate::vk::IndirectCommandsInputModeFlagBitsEXT,
 }
 #[repr(C)]
+#[derive(Clone, Copy)]
 pub struct BindIndexBufferIndirectCommandEXT {
     pub buffer_address: crate::vk::DeviceAddress,
     pub size: u32,
     pub index_type: crate::vk::IndexType,
 }
 #[repr(C)]
+#[derive(Clone, Copy)]
 pub struct IndirectCommandsPushConstantTokenEXT {
     pub update_range: crate::vk::PushConstantRange,
 }
 #[repr(C)]
+#[derive(Clone, Copy)]
 pub struct IndirectCommandsExecutionSetTokenEXT {
     pub _type: crate::vk::IndirectExecutionSetInfoTypeEXT,
     pub shader_stages: crate::vk::ShaderStageFlags,
 }
 #[repr(C)]
+#[derive(Clone, Copy)]
 pub union IndirectExecutionSetInfoEXT {
     pub p_pipeline_info: *const crate::vk::IndirectExecutionSetPipelineInfoEXT,
     pub p_shader_info: *const crate::vk::IndirectExecutionSetShaderInfoEXT,
 }
 #[repr(C)]
+#[derive(Clone, Copy)]
 pub union IndirectCommandsTokenDataEXT {
     pub p_push_constant: *const crate::vk::IndirectCommandsPushConstantTokenEXT,
     pub p_vertex_buffer: *const crate::vk::IndirectCommandsVertexBufferTokenEXT,
@@ -175,20 +198,28 @@ pub union IndirectCommandsTokenDataEXT {
     pub p_execution_set: *const crate::vk::IndirectCommandsExecutionSetTokenEXT,
 }
 #[repr(transparent)]
+#[derive(Clone, Copy)]
 pub struct IndirectExecutionSetInfoTypeEXT(pub(crate) i32);
 #[repr(transparent)]
+#[derive(Clone, Copy)]
 pub struct IndirectCommandsTokenTypeEXT(pub(crate) i32);
 #[repr(transparent)]
+#[derive(Clone, Copy)]
 pub struct IndirectCommandsLayoutUsageFlagsEXT(pub(crate) i32);
 #[repr(transparent)]
+#[derive(Clone, Copy)]
 pub struct IndirectCommandsInputModeFlagsEXT(pub(crate) i32);
 #[repr(transparent)]
+#[derive(Clone, Copy)]
 pub struct IndirectCommandsLayoutUsageFlagBitsEXT(pub(crate) i32);
 #[repr(transparent)]
+#[derive(Clone, Copy)]
 pub struct IndirectCommandsInputModeFlagBitsEXT(pub(crate) i32);
 #[repr(transparent)]
+#[derive(Clone, Copy)]
 pub struct IndirectCommandsLayoutEXT(pub(crate) i32);
 #[repr(transparent)]
+#[derive(Clone, Copy)]
 pub struct IndirectExecutionSetEXT(pub(crate) i32);
 pub const EXT_DEVICE_GENERATED_COMMANDS_SPEC_VERSION: u32 = 1;
 pub const EXT_DEVICE_GENERATED_COMMANDS_EXTENSION_NAME: &core::ffi::CStr = c"VK_EXT_device_generated_commands";

@@ -2,18 +2,21 @@
 #![cfg_attr(rustfmt, rustfmt_skip)]
 //![Vulkan Manual Page](https://docs.vulkan.org/refpages/latest/refpages/source/VK_QCOM_image_processing2.html) · Extension `VK_QCOM_image_processing2`
 #[repr(C)]
+#[derive(Clone, Copy)]
 pub struct PhysicalDeviceImageProcessing2FeaturesQCOM {
     pub s_type: crate::vk::StructureType,
     pub p_next: *mut core::ffi::c_void,
     pub texture_block_match2: crate::vk::Bool32,
 }
 #[repr(C)]
+#[derive(Clone, Copy)]
 pub struct PhysicalDeviceImageProcessing2PropertiesQCOM {
     pub s_type: crate::vk::StructureType,
     pub p_next: *mut core::ffi::c_void,
     pub max_block_match_window: crate::vk::Extent2D,
 }
 #[repr(C)]
+#[derive(Clone, Copy)]
 pub struct SamplerBlockMatchWindowCreateInfoQCOM {
     pub s_type: crate::vk::StructureType,
     pub p_next: *const core::ffi::c_void,
@@ -21,6 +24,7 @@ pub struct SamplerBlockMatchWindowCreateInfoQCOM {
     pub window_compare_mode: crate::vk::BlockMatchWindowCompareModeQCOM,
 }
 #[repr(transparent)]
+#[derive(Clone, Copy)]
 pub struct BlockMatchWindowCompareModeQCOM(pub(crate) i32);
 pub const QCOM_IMAGE_PROCESSING_2_SPEC_VERSION: u32 = 1;
 pub const QCOM_IMAGE_PROCESSING_2_EXTENSION_NAME: &core::ffi::CStr = c"VK_QCOM_image_processing2";

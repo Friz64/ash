@@ -2,24 +2,28 @@
 #![cfg_attr(rustfmt, rustfmt_skip)]
 //![Vulkan Manual Page](https://docs.vulkan.org/refpages/latest/refpages/source/VK_QCOM_filter_cubic_weights.html) · Extension `VK_QCOM_filter_cubic_weights`
 #[repr(C)]
+#[derive(Clone, Copy)]
 pub struct PhysicalDeviceCubicWeightsFeaturesQCOM {
     pub s_type: crate::vk::StructureType,
     pub p_next: *mut core::ffi::c_void,
     pub selectable_cubic_weights: crate::vk::Bool32,
 }
 #[repr(C)]
+#[derive(Clone, Copy)]
 pub struct SamplerCubicWeightsCreateInfoQCOM {
     pub s_type: crate::vk::StructureType,
     pub p_next: *const core::ffi::c_void,
     pub cubic_weights: crate::vk::CubicFilterWeightsQCOM,
 }
 #[repr(C)]
+#[derive(Clone, Copy)]
 pub struct BlitImageCubicWeightsInfoQCOM {
     pub s_type: crate::vk::StructureType,
     pub p_next: *const core::ffi::c_void,
     pub cubic_weights: crate::vk::CubicFilterWeightsQCOM,
 }
 #[repr(transparent)]
+#[derive(Clone, Copy)]
 pub struct CubicFilterWeightsQCOM(pub(crate) i32);
 pub const QCOM_FILTER_CUBIC_WEIGHTS_SPEC_VERSION: u32 = 1;
 pub const QCOM_FILTER_CUBIC_WEIGHTS_EXTENSION_NAME: &core::ffi::CStr = c"VK_QCOM_filter_cubic_weights";

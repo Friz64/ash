@@ -1,6 +1,7 @@
 use crate::{
     item::{Named, RequireMap, RequiredBy},
-    xml::{self, name::TypeName},
+    name::TypeName,
+    xml,
 };
 use tracing::{instrument, trace};
 

@@ -2,11 +2,13 @@
 #![cfg_attr(rustfmt, rustfmt_skip)]
 //![Vulkan Manual Page](https://docs.vulkan.org/refpages/latest/refpages/source/VK_NV_clip_space_w_scaling.html) · Extension `VK_NV_clip_space_w_scaling`
 #[repr(C)]
+#[derive(Clone, Copy)]
 pub struct ViewportWScalingNV {
     pub xcoeff: core::ffi::c_float,
     pub ycoeff: core::ffi::c_float,
 }
 #[repr(C)]
+#[derive(Clone, Copy)]
 pub struct PipelineViewportWScalingStateCreateInfoNV {
     pub s_type: crate::vk::StructureType,
     pub p_next: *const core::ffi::c_void,

@@ -2,24 +2,28 @@
 #![cfg_attr(rustfmt, rustfmt_skip)]
 //![Vulkan Manual Page](https://docs.vulkan.org/refpages/latest/refpages/source/VK_KHR_get_display_properties2.html) · Extension `VK_KHR_get_display_properties2`
 #[repr(C)]
+#[derive(Clone, Copy)]
 pub struct DisplayProperties2KHR {
     pub s_type: crate::vk::StructureType,
     pub p_next: *mut core::ffi::c_void,
     pub display_properties: crate::vk::DisplayPropertiesKHR,
 }
 #[repr(C)]
+#[derive(Clone, Copy)]
 pub struct DisplayPlaneProperties2KHR {
     pub s_type: crate::vk::StructureType,
     pub p_next: *mut core::ffi::c_void,
     pub display_plane_properties: crate::vk::DisplayPlanePropertiesKHR,
 }
 #[repr(C)]
+#[derive(Clone, Copy)]
 pub struct DisplayModeProperties2KHR {
     pub s_type: crate::vk::StructureType,
     pub p_next: *mut core::ffi::c_void,
     pub display_mode_properties: crate::vk::DisplayModePropertiesKHR,
 }
 #[repr(C)]
+#[derive(Clone, Copy)]
 pub struct DisplayPlaneInfo2KHR {
     pub s_type: crate::vk::StructureType,
     pub p_next: *const core::ffi::c_void,
@@ -27,6 +31,7 @@ pub struct DisplayPlaneInfo2KHR {
     pub plane_index: u32,
 }
 #[repr(C)]
+#[derive(Clone, Copy)]
 pub struct DisplayPlaneCapabilities2KHR {
     pub s_type: crate::vk::StructureType,
     pub p_next: *mut core::ffi::c_void,

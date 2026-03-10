@@ -2,6 +2,7 @@
 #![cfg_attr(rustfmt, rustfmt_skip)]
 //![Vulkan Manual Page](https://docs.vulkan.org/refpages/latest/refpages/source/VK_OHOS_surface.html) · Extension `VK_OHOS_surface`
 #[repr(C)]
+#[derive(Clone, Copy)]
 pub struct SurfaceCreateInfoOHOS {
     pub s_type: crate::vk::StructureType,
     pub p_next: *const core::ffi::c_void,
@@ -9,6 +10,7 @@ pub struct SurfaceCreateInfoOHOS {
     pub window: *mut crate::platform_types::OHNativeWindow,
 }
 #[repr(transparent)]
+#[derive(Clone, Copy)]
 pub struct SurfaceCreateFlagsOHOS(pub(crate) i32);
 pub const OHOS_SURFACE_SPEC_VERSION: u32 = 1;
 pub const OHOS_SURFACE_EXTENSION_NAME: &core::ffi::CStr = c"VK_OHOS_surface";

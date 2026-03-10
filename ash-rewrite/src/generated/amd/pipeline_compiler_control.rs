@@ -2,14 +2,17 @@
 #![cfg_attr(rustfmt, rustfmt_skip)]
 //![Vulkan Manual Page](https://docs.vulkan.org/refpages/latest/refpages/source/VK_AMD_pipeline_compiler_control.html) · Extension `VK_AMD_pipeline_compiler_control`
 #[repr(C)]
+#[derive(Clone, Copy)]
 pub struct PipelineCompilerControlCreateInfoAMD {
     pub s_type: crate::vk::StructureType,
     pub p_next: *const core::ffi::c_void,
     pub compiler_control_flags: crate::vk::PipelineCompilerControlFlagsAMD,
 }
 #[repr(transparent)]
+#[derive(Clone, Copy)]
 pub struct PipelineCompilerControlFlagsAMD(pub(crate) i32);
 #[repr(transparent)]
+#[derive(Clone, Copy)]
 pub struct PipelineCompilerControlFlagBitsAMD(pub(crate) i32);
 pub const AMD_PIPELINE_COMPILER_CONTROL_SPEC_VERSION: u32 = 1;
 pub const AMD_PIPELINE_COMPILER_CONTROL_EXTENSION_NAME: &core::ffi::CStr = c"VK_AMD_pipeline_compiler_control";

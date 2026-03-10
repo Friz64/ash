@@ -2,6 +2,7 @@
 #![cfg_attr(rustfmt, rustfmt_skip)]
 //![Vulkan Manual Page](https://docs.vulkan.org/refpages/latest/refpages/source/VK_FUCHSIA_buffer_collection.html) · Extension `VK_FUCHSIA_buffer_collection`
 #[repr(C)]
+#[derive(Clone, Copy)]
 pub struct ImportMemoryBufferCollectionFUCHSIA {
     pub s_type: crate::vk::StructureType,
     pub p_next: *const core::ffi::c_void,
@@ -9,6 +10,7 @@ pub struct ImportMemoryBufferCollectionFUCHSIA {
     pub index: u32,
 }
 #[repr(C)]
+#[derive(Clone, Copy)]
 pub struct BufferCollectionImageCreateInfoFUCHSIA {
     pub s_type: crate::vk::StructureType,
     pub p_next: *const core::ffi::c_void,
@@ -16,6 +18,7 @@ pub struct BufferCollectionImageCreateInfoFUCHSIA {
     pub index: u32,
 }
 #[repr(C)]
+#[derive(Clone, Copy)]
 pub struct BufferCollectionBufferCreateInfoFUCHSIA {
     pub s_type: crate::vk::StructureType,
     pub p_next: *const core::ffi::c_void,
@@ -23,12 +26,14 @@ pub struct BufferCollectionBufferCreateInfoFUCHSIA {
     pub index: u32,
 }
 #[repr(C)]
+#[derive(Clone, Copy)]
 pub struct BufferCollectionCreateInfoFUCHSIA {
     pub s_type: crate::vk::StructureType,
     pub p_next: *const core::ffi::c_void,
     pub collection_token: crate::platform_types::zx_handle_t,
 }
 #[repr(C)]
+#[derive(Clone, Copy)]
 pub struct BufferCollectionPropertiesFUCHSIA {
     pub s_type: crate::vk::StructureType,
     pub p_next: *mut core::ffi::c_void,
@@ -45,6 +50,7 @@ pub struct BufferCollectionPropertiesFUCHSIA {
     pub suggested_y_chroma_offset: crate::vk::ChromaLocation,
 }
 #[repr(C)]
+#[derive(Clone, Copy)]
 pub struct BufferConstraintsInfoFUCHSIA {
     pub s_type: crate::vk::StructureType,
     pub p_next: *const core::ffi::c_void,
@@ -53,12 +59,14 @@ pub struct BufferConstraintsInfoFUCHSIA {
     pub buffer_collection_constraints: crate::vk::BufferCollectionConstraintsInfoFUCHSIA,
 }
 #[repr(C)]
+#[derive(Clone, Copy)]
 pub struct SysmemColorSpaceFUCHSIA {
     pub s_type: crate::vk::StructureType,
     pub p_next: *const core::ffi::c_void,
     pub color_space: u32,
 }
 #[repr(C)]
+#[derive(Clone, Copy)]
 pub struct ImageFormatConstraintsInfoFUCHSIA {
     pub s_type: crate::vk::StructureType,
     pub p_next: *const core::ffi::c_void,
@@ -70,6 +78,7 @@ pub struct ImageFormatConstraintsInfoFUCHSIA {
     pub p_color_spaces: *const crate::vk::SysmemColorSpaceFUCHSIA,
 }
 #[repr(C)]
+#[derive(Clone, Copy)]
 pub struct ImageConstraintsInfoFUCHSIA {
     pub s_type: crate::vk::StructureType,
     pub p_next: *const core::ffi::c_void,
@@ -79,6 +88,7 @@ pub struct ImageConstraintsInfoFUCHSIA {
     pub flags: crate::vk::ImageConstraintsInfoFlagsFUCHSIA,
 }
 #[repr(C)]
+#[derive(Clone, Copy)]
 pub struct BufferCollectionConstraintsInfoFUCHSIA {
     pub s_type: crate::vk::StructureType,
     pub p_next: *const core::ffi::c_void,
@@ -89,12 +99,16 @@ pub struct BufferCollectionConstraintsInfoFUCHSIA {
     pub min_buffer_count_for_shared_slack: u32,
 }
 #[repr(transparent)]
+#[derive(Clone, Copy)]
 pub struct ImageFormatConstraintsFlagsFUCHSIA(pub(crate) i32);
 #[repr(transparent)]
+#[derive(Clone, Copy)]
 pub struct ImageConstraintsInfoFlagsFUCHSIA(pub(crate) i32);
 #[repr(transparent)]
+#[derive(Clone, Copy)]
 pub struct ImageConstraintsInfoFlagBitsFUCHSIA(pub(crate) i32);
 #[repr(transparent)]
+#[derive(Clone, Copy)]
 pub struct BufferCollectionFUCHSIA(pub(crate) i32);
 pub const FUCHSIA_BUFFER_COLLECTION_SPEC_VERSION: u32 = 2;
 pub const FUCHSIA_BUFFER_COLLECTION_EXTENSION_NAME: &core::ffi::CStr = c"VK_FUCHSIA_buffer_collection";

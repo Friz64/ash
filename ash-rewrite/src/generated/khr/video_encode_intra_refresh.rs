@@ -2,6 +2,7 @@
 #![cfg_attr(rustfmt, rustfmt_skip)]
 //![Vulkan Manual Page](https://docs.vulkan.org/refpages/latest/refpages/source/VK_KHR_video_encode_intra_refresh.html) · Extension `VK_KHR_video_encode_intra_refresh`
 #[repr(C)]
+#[derive(Clone, Copy)]
 pub struct VideoEncodeIntraRefreshCapabilitiesKHR {
     pub s_type: crate::vk::StructureType,
     pub p_next: *mut core::ffi::c_void,
@@ -12,12 +13,14 @@ pub struct VideoEncodeIntraRefreshCapabilitiesKHR {
     pub non_rectangular_intra_refresh_regions: crate::vk::Bool32,
 }
 #[repr(C)]
+#[derive(Clone, Copy)]
 pub struct VideoEncodeSessionIntraRefreshCreateInfoKHR {
     pub s_type: crate::vk::StructureType,
     pub p_next: *const core::ffi::c_void,
     pub intra_refresh_mode: crate::vk::VideoEncodeIntraRefreshModeFlagBitsKHR,
 }
 #[repr(C)]
+#[derive(Clone, Copy)]
 pub struct VideoEncodeIntraRefreshInfoKHR {
     pub s_type: crate::vk::StructureType,
     pub p_next: *const core::ffi::c_void,
@@ -25,20 +28,24 @@ pub struct VideoEncodeIntraRefreshInfoKHR {
     pub intra_refresh_index: u32,
 }
 #[repr(C)]
+#[derive(Clone, Copy)]
 pub struct VideoReferenceIntraRefreshInfoKHR {
     pub s_type: crate::vk::StructureType,
     pub p_next: *const core::ffi::c_void,
     pub dirty_intra_refresh_regions: u32,
 }
 #[repr(C)]
+#[derive(Clone, Copy)]
 pub struct PhysicalDeviceVideoEncodeIntraRefreshFeaturesKHR {
     pub s_type: crate::vk::StructureType,
     pub p_next: *mut core::ffi::c_void,
     pub video_encode_intra_refresh: crate::vk::Bool32,
 }
 #[repr(transparent)]
+#[derive(Clone, Copy)]
 pub struct VideoEncodeIntraRefreshModeFlagsKHR(pub(crate) i32);
 #[repr(transparent)]
+#[derive(Clone, Copy)]
 pub struct VideoEncodeIntraRefreshModeFlagBitsKHR(pub(crate) i32);
 pub const KHR_VIDEO_ENCODE_INTRA_REFRESH_SPEC_VERSION: u32 = 1;
 pub const KHR_VIDEO_ENCODE_INTRA_REFRESH_EXTENSION_NAME: &core::ffi::CStr = c"VK_KHR_video_encode_intra_refresh";

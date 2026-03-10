@@ -2,6 +2,7 @@
 #![cfg_attr(rustfmt, rustfmt_skip)]
 //![Vulkan Manual Page](https://docs.vulkan.org/refpages/latest/refpages/source/VK_EXT_buffer_device_address.html) · Extension `VK_EXT_buffer_device_address`
 #[repr(C)]
+#[derive(Clone, Copy)]
 pub struct PhysicalDeviceBufferDeviceAddressFeaturesEXT {
     pub s_type: crate::vk::StructureType,
     pub p_next: *mut core::ffi::c_void,
@@ -10,6 +11,7 @@ pub struct PhysicalDeviceBufferDeviceAddressFeaturesEXT {
     pub buffer_device_address_multi_device: crate::vk::Bool32,
 }
 #[repr(C)]
+#[derive(Clone, Copy)]
 pub struct BufferDeviceAddressCreateInfoEXT {
     pub s_type: crate::vk::StructureType,
     pub p_next: *const core::ffi::c_void,

@@ -2,6 +2,7 @@
 #![cfg_attr(rustfmt, rustfmt_skip)]
 //![Vulkan Manual Page](https://docs.vulkan.org/refpages/latest/refpages/source/VK_KHR_display.html) · Extension `VK_KHR_display`
 #[repr(C)]
+#[derive(Clone, Copy)]
 pub struct DisplayPropertiesKHR {
     pub display: crate::vk::DisplayKHR,
     pub display_name: *const core::ffi::c_char,
@@ -12,21 +13,25 @@ pub struct DisplayPropertiesKHR {
     pub persistent_content: crate::vk::Bool32,
 }
 #[repr(C)]
+#[derive(Clone, Copy)]
 pub struct DisplayPlanePropertiesKHR {
     pub current_display: crate::vk::DisplayKHR,
     pub current_stack_index: u32,
 }
 #[repr(C)]
+#[derive(Clone, Copy)]
 pub struct DisplayModeParametersKHR {
     pub visible_region: crate::vk::Extent2D,
     pub refresh_rate: u32,
 }
 #[repr(C)]
+#[derive(Clone, Copy)]
 pub struct DisplayModePropertiesKHR {
     pub display_mode: crate::vk::DisplayModeKHR,
     pub parameters: crate::vk::DisplayModeParametersKHR,
 }
 #[repr(C)]
+#[derive(Clone, Copy)]
 pub struct DisplayModeCreateInfoKHR {
     pub s_type: crate::vk::StructureType,
     pub p_next: *const core::ffi::c_void,
@@ -34,6 +39,7 @@ pub struct DisplayModeCreateInfoKHR {
     pub parameters: crate::vk::DisplayModeParametersKHR,
 }
 #[repr(C)]
+#[derive(Clone, Copy)]
 pub struct DisplayPlaneCapabilitiesKHR {
     pub supported_alpha: crate::vk::DisplayPlaneAlphaFlagsKHR,
     pub min_src_position: crate::vk::Offset2D,
@@ -46,6 +52,7 @@ pub struct DisplayPlaneCapabilitiesKHR {
     pub max_dst_extent: crate::vk::Extent2D,
 }
 #[repr(C)]
+#[derive(Clone, Copy)]
 pub struct DisplaySurfaceCreateInfoKHR {
     pub s_type: crate::vk::StructureType,
     pub p_next: *const core::ffi::c_void,
@@ -59,18 +66,25 @@ pub struct DisplaySurfaceCreateInfoKHR {
     pub image_extent: crate::vk::Extent2D,
 }
 #[repr(transparent)]
+#[derive(Clone, Copy)]
 pub struct DisplayPlaneAlphaFlagsKHR(pub(crate) i32);
 #[repr(transparent)]
+#[derive(Clone, Copy)]
 pub struct SurfaceTransformFlagsKHR(pub(crate) i32);
 #[repr(transparent)]
+#[derive(Clone, Copy)]
 pub struct DisplayModeCreateFlagsKHR(pub(crate) i32);
 #[repr(transparent)]
+#[derive(Clone, Copy)]
 pub struct DisplaySurfaceCreateFlagsKHR(pub(crate) i32);
 #[repr(transparent)]
+#[derive(Clone, Copy)]
 pub struct DisplayPlaneAlphaFlagBitsKHR(pub(crate) i32);
 #[repr(transparent)]
+#[derive(Clone, Copy)]
 pub struct DisplayKHR(pub(crate) i32);
 #[repr(transparent)]
+#[derive(Clone, Copy)]
 pub struct DisplayModeKHR(pub(crate) i32);
 pub const KHR_DISPLAY_SPEC_VERSION: u32 = 23;
 pub const KHR_DISPLAY_EXTENSION_NAME: &core::ffi::CStr = c"VK_KHR_display";

@@ -2,6 +2,7 @@
 #![cfg_attr(rustfmt, rustfmt_skip)]
 //![Vulkan Manual Page](https://docs.vulkan.org/refpages/latest/refpages/source/VK_QCOM_tile_shading.html) · Extension `VK_QCOM_tile_shading`
 #[repr(C)]
+#[derive(Clone, Copy)]
 pub struct PhysicalDeviceTileShadingFeaturesQCOM {
     pub s_type: crate::vk::StructureType,
     pub p_next: *mut core::ffi::c_void,
@@ -21,6 +22,7 @@ pub struct PhysicalDeviceTileShadingFeaturesQCOM {
     pub tile_shading_image_processing: crate::vk::Bool32,
 }
 #[repr(C)]
+#[derive(Clone, Copy)]
 pub struct PhysicalDeviceTileShadingPropertiesQCOM {
     pub s_type: crate::vk::StructureType,
     pub p_next: *mut core::ffi::c_void,
@@ -30,6 +32,7 @@ pub struct PhysicalDeviceTileShadingPropertiesQCOM {
     pub max_tile_shading_rate: crate::vk::Extent2D,
 }
 #[repr(C)]
+#[derive(Clone, Copy)]
 pub struct RenderPassTileShadingCreateInfoQCOM {
     pub s_type: crate::vk::StructureType,
     pub p_next: *const core::ffi::c_void,
@@ -37,23 +40,28 @@ pub struct RenderPassTileShadingCreateInfoQCOM {
     pub tile_apron_size: crate::vk::Extent2D,
 }
 #[repr(C)]
+#[derive(Clone, Copy)]
 pub struct PerTileBeginInfoQCOM {
     pub s_type: crate::vk::StructureType,
     pub p_next: *const core::ffi::c_void,
 }
 #[repr(C)]
+#[derive(Clone, Copy)]
 pub struct PerTileEndInfoQCOM {
     pub s_type: crate::vk::StructureType,
     pub p_next: *const core::ffi::c_void,
 }
 #[repr(C)]
+#[derive(Clone, Copy)]
 pub struct DispatchTileInfoQCOM {
     pub s_type: crate::vk::StructureType,
     pub p_next: *const core::ffi::c_void,
 }
 #[repr(transparent)]
+#[derive(Clone, Copy)]
 pub struct TileShadingRenderPassFlagsQCOM(pub(crate) i32);
 #[repr(transparent)]
+#[derive(Clone, Copy)]
 pub struct TileShadingRenderPassFlagBitsQCOM(pub(crate) i32);
 pub const QCOM_TILE_SHADING_SPEC_VERSION: u32 = 2;
 pub const QCOM_TILE_SHADING_EXTENSION_NAME: &core::ffi::CStr = c"VK_QCOM_tile_shading";

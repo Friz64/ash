@@ -2,12 +2,14 @@
 #![cfg_attr(rustfmt, rustfmt_skip)]
 //![Vulkan Manual Page](https://docs.vulkan.org/refpages/latest/refpages/source/VK_EXT_headless_surface.html) · Extension `VK_EXT_headless_surface`
 #[repr(C)]
+#[derive(Clone, Copy)]
 pub struct HeadlessSurfaceCreateInfoEXT {
     pub s_type: crate::vk::StructureType,
     pub p_next: *const core::ffi::c_void,
     pub flags: crate::vk::HeadlessSurfaceCreateFlagsEXT,
 }
 #[repr(transparent)]
+#[derive(Clone, Copy)]
 pub struct HeadlessSurfaceCreateFlagsEXT(pub(crate) i32);
 pub const EXT_HEADLESS_SURFACE_SPEC_VERSION: u32 = 1;
 pub const EXT_HEADLESS_SURFACE_EXTENSION_NAME: &core::ffi::CStr = c"VK_EXT_headless_surface";

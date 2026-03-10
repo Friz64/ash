@@ -2,6 +2,7 @@
 #![cfg_attr(rustfmt, rustfmt_skip)]
 //![Vulkan Manual Page](https://docs.vulkan.org/refpages/latest/refpages/source/VK_EXT_image_compression_control.html) · Extension `VK_EXT_image_compression_control`
 #[repr(C)]
+#[derive(Clone, Copy)]
 pub struct ImageCompressionControlEXT {
     pub s_type: crate::vk::StructureType,
     pub p_next: *const core::ffi::c_void,
@@ -10,27 +11,31 @@ pub struct ImageCompressionControlEXT {
     pub p_fixed_rate_flags: *mut crate::vk::ImageCompressionFixedRateFlagsEXT,
 }
 #[repr(C)]
+#[derive(Clone, Copy)]
 pub struct PhysicalDeviceImageCompressionControlFeaturesEXT {
     pub s_type: crate::vk::StructureType,
     pub p_next: *mut core::ffi::c_void,
     pub image_compression_control: crate::vk::Bool32,
 }
 #[repr(C)]
+#[derive(Clone, Copy)]
 pub struct ImageCompressionPropertiesEXT {
     pub s_type: crate::vk::StructureType,
     pub p_next: *mut core::ffi::c_void,
     pub image_compression_flags: crate::vk::ImageCompressionFlagsEXT,
     pub image_compression_fixed_rate_flags: crate::vk::ImageCompressionFixedRateFlagsEXT,
 }
-pub type ImageSubresource2EXT = crate::vk::ImageSubresource2;
-pub type SubresourceLayout2EXT = crate::vk::SubresourceLayout2;
 #[repr(transparent)]
+#[derive(Clone, Copy)]
 pub struct ImageCompressionFlagsEXT(pub(crate) i32);
 #[repr(transparent)]
+#[derive(Clone, Copy)]
 pub struct ImageCompressionFixedRateFlagsEXT(pub(crate) i32);
 #[repr(transparent)]
+#[derive(Clone, Copy)]
 pub struct ImageCompressionFlagBitsEXT(pub(crate) i32);
 #[repr(transparent)]
+#[derive(Clone, Copy)]
 pub struct ImageCompressionFixedRateFlagBitsEXT(pub(crate) i32);
 pub const EXT_IMAGE_COMPRESSION_CONTROL_SPEC_VERSION: u32 = 1;
 pub const EXT_IMAGE_COMPRESSION_CONTROL_EXTENSION_NAME: &core::ffi::CStr = c"VK_EXT_image_compression_control";

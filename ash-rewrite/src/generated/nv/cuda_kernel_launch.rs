@@ -2,6 +2,7 @@
 #![cfg_attr(rustfmt, rustfmt_skip)]
 //![Vulkan Manual Page](https://docs.vulkan.org/refpages/latest/refpages/source/VK_NV_cuda_kernel_launch.html) · Extension `VK_NV_cuda_kernel_launch`
 #[repr(C)]
+#[derive(Clone, Copy)]
 pub struct CudaModuleCreateInfoNV {
     pub s_type: crate::vk::StructureType,
     pub p_next: *const core::ffi::c_void,
@@ -9,6 +10,7 @@ pub struct CudaModuleCreateInfoNV {
     pub p_data: *const core::ffi::c_void,
 }
 #[repr(C)]
+#[derive(Clone, Copy)]
 pub struct CudaFunctionCreateInfoNV {
     pub s_type: crate::vk::StructureType,
     pub p_next: *const core::ffi::c_void,
@@ -16,6 +18,7 @@ pub struct CudaFunctionCreateInfoNV {
     pub p_name: *const core::ffi::c_char,
 }
 #[repr(C)]
+#[derive(Clone, Copy)]
 pub struct CudaLaunchInfoNV {
     pub s_type: crate::vk::StructureType,
     pub p_next: *const core::ffi::c_void,
@@ -33,12 +36,14 @@ pub struct CudaLaunchInfoNV {
     pub p_extras: *const *const core::ffi::c_void,
 }
 #[repr(C)]
+#[derive(Clone, Copy)]
 pub struct PhysicalDeviceCudaKernelLaunchFeaturesNV {
     pub s_type: crate::vk::StructureType,
     pub p_next: *mut core::ffi::c_void,
     pub cuda_kernel_launch_features: crate::vk::Bool32,
 }
 #[repr(C)]
+#[derive(Clone, Copy)]
 pub struct PhysicalDeviceCudaKernelLaunchPropertiesNV {
     pub s_type: crate::vk::StructureType,
     pub p_next: *mut core::ffi::c_void,
@@ -46,8 +51,10 @@ pub struct PhysicalDeviceCudaKernelLaunchPropertiesNV {
     pub compute_capability_major: u32,
 }
 #[repr(transparent)]
+#[derive(Clone, Copy)]
 pub struct CudaModuleNV(pub(crate) i32);
 #[repr(transparent)]
+#[derive(Clone, Copy)]
 pub struct CudaFunctionNV(pub(crate) i32);
 pub const NV_CUDA_KERNEL_LAUNCH_SPEC_VERSION: u32 = 2;
 pub const NV_CUDA_KERNEL_LAUNCH_EXTENSION_NAME: &core::ffi::CStr = c"VK_NV_cuda_kernel_launch";

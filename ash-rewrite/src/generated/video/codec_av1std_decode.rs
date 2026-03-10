@@ -2,39 +2,43 @@
 #![cfg_attr(rustfmt, rustfmt_skip)]
 //!Items provided by `vulkan_video_codec_av1std_decode`
 #[repr(C)]
+#[derive(Clone, Copy)]
 pub struct StdVideoDecodeAV1PictureInfoFlags {
-    pub error_resilient_mode: u32,
-    pub disable_cdf_update: u32,
-    pub use_superres: u32,
-    pub render_and_frame_size_different: u32,
-    pub allow_screen_content_tools: u32,
-    pub is_filter_switchable: u32,
-    pub force_integer_mv: u32,
-    pub frame_size_override_flag: u32,
-    pub buffer_removal_time_present_flag: u32,
-    pub allow_intrabc: u32,
-    pub frame_refs_short_signaling: u32,
-    pub allow_high_precision_mv: u32,
-    pub is_motion_mode_switchable: u32,
-    pub use_ref_frame_mvs: u32,
-    pub disable_frame_end_update_cdf: u32,
-    pub allow_warped_motion: u32,
-    pub reduced_tx_set: u32,
-    pub reference_select: u32,
-    pub skip_mode_present: u32,
-    pub delta_q_present: u32,
-    pub delta_lf_present: u32,
-    pub delta_lf_multi: u32,
-    pub segmentation_enabled: u32,
-    pub segmentation_update_map: u32,
-    pub segmentation_temporal_update: u32,
-    pub segmentation_update_data: u32,
-    pub uses_lr: u32,
-    pub uses_chroma_lr: u32,
-    pub apply_grain: u32,
-    pub reserved: u32,
+    /**- `error_resilient_mode` @ `0..1`
+- `disable_cdf_update` @ `1..2`
+- `use_superres` @ `2..3`
+- `render_and_frame_size_different` @ `3..4`
+- `allow_screen_content_tools` @ `4..5`
+- `is_filter_switchable` @ `5..6`
+- `force_integer_mv` @ `6..7`
+- `frame_size_override_flag` @ `7..8`
+- `buffer_removal_time_present_flag` @ `8..9`
+- `allow_intrabc` @ `9..10`
+- `frame_refs_short_signaling` @ `10..11`
+- `allow_high_precision_mv` @ `11..12`
+- `is_motion_mode_switchable` @ `12..13`
+- `use_ref_frame_mvs` @ `13..14`
+- `disable_frame_end_update_cdf` @ `14..15`
+- `allow_warped_motion` @ `15..16`
+- `reduced_tx_set` @ `16..17`
+- `reference_select` @ `17..18`
+- `skip_mode_present` @ `18..19`
+- `delta_q_present` @ `19..20`
+- `delta_lf_present` @ `20..21`
+- `delta_lf_multi` @ `21..22`
+- `segmentation_enabled` @ `22..23`
+- `segmentation_update_map` @ `23..24`
+- `segmentation_temporal_update` @ `24..25`
+- `segmentation_update_data` @ `25..26`
+- `UsesLr` @ `26..27`
+- `usesChromaLr` @ `27..28`
+- `apply_grain` @ `28..29`
+- `reserved` @ `29..32`
+*/
+    pub bitfield0: u32,
 }
 #[repr(C)]
+#[derive(Clone, Copy)]
 pub struct StdVideoDecodeAV1PictureInfo {
     pub flags: crate::vk::StdVideoDecodeAV1PictureInfoFlags,
     pub frame_type: crate::vk::StdVideoAV1FrameType,
@@ -62,12 +66,16 @@ pub struct StdVideoDecodeAV1PictureInfo {
     pub p_film_grain: *const crate::vk::StdVideoAV1FilmGrain,
 }
 #[repr(C)]
+#[derive(Clone, Copy)]
 pub struct StdVideoDecodeAV1ReferenceInfoFlags {
-    pub disable_frame_end_update_cdf: u32,
-    pub segmentation_enabled: u32,
-    pub reserved: u32,
+    /**- `disable_frame_end_update_cdf` @ `0..1`
+- `segmentation_enabled` @ `1..2`
+- `reserved` @ `2..32`
+*/
+    pub bitfield0: u32,
 }
 #[repr(C)]
+#[derive(Clone, Copy)]
 pub struct StdVideoDecodeAV1ReferenceInfo {
     pub flags: crate::vk::StdVideoDecodeAV1ReferenceInfoFlags,
     pub frame_type: u8,

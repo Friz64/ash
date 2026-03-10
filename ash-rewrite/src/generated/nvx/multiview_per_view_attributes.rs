@@ -2,12 +2,14 @@
 #![cfg_attr(rustfmt, rustfmt_skip)]
 //![Vulkan Manual Page](https://docs.vulkan.org/refpages/latest/refpages/source/VK_NVX_multiview_per_view_attributes.html) · Extension `VK_NVX_multiview_per_view_attributes`
 #[repr(C)]
+#[derive(Clone, Copy)]
 pub struct PhysicalDeviceMultiviewPerViewAttributesPropertiesNVX {
     pub s_type: crate::vk::StructureType,
     pub p_next: *mut core::ffi::c_void,
     pub per_view_position_all_components: crate::vk::Bool32,
 }
 #[repr(C)]
+#[derive(Clone, Copy)]
 pub struct MultiviewPerViewAttributesInfoNVX {
     pub s_type: crate::vk::StructureType,
     pub p_next: *const core::ffi::c_void,

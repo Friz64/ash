@@ -2,12 +2,14 @@
 #![cfg_attr(rustfmt, rustfmt_skip)]
 //![Vulkan Manual Page](https://docs.vulkan.org/refpages/latest/refpages/source/VK_MSFT_layered_driver.html) · Extension `VK_MSFT_layered_driver`
 #[repr(C)]
+#[derive(Clone, Copy)]
 pub struct PhysicalDeviceLayeredDriverPropertiesMSFT {
     pub s_type: crate::vk::StructureType,
     pub p_next: *mut core::ffi::c_void,
     pub underlying_api: crate::vk::LayeredDriverUnderlyingApiMSFT,
 }
 #[repr(transparent)]
+#[derive(Clone, Copy)]
 pub struct LayeredDriverUnderlyingApiMSFT(pub(crate) i32);
 pub const MSFT_LAYERED_DRIVER_SPEC_VERSION: u32 = 1;
 pub const MSFT_LAYERED_DRIVER_EXTENSION_NAME: &core::ffi::CStr = c"VK_MSFT_layered_driver";

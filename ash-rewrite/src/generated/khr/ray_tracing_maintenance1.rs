@@ -2,6 +2,7 @@
 #![cfg_attr(rustfmt, rustfmt_skip)]
 //![Vulkan Manual Page](https://docs.vulkan.org/refpages/latest/refpages/source/VK_KHR_ray_tracing_maintenance1.html) · Extension `VK_KHR_ray_tracing_maintenance1`
 #[repr(C)]
+#[derive(Clone, Copy)]
 pub struct TraceRaysIndirectCommand2KHR {
     pub raygen_shader_record_address: crate::vk::DeviceAddress,
     pub raygen_shader_record_size: crate::vk::DeviceSize,
@@ -19,6 +20,7 @@ pub struct TraceRaysIndirectCommand2KHR {
     pub depth: u32,
 }
 #[repr(C)]
+#[derive(Clone, Copy)]
 pub struct PhysicalDeviceRayTracingMaintenance1FeaturesKHR {
     pub s_type: crate::vk::StructureType,
     pub p_next: *mut core::ffi::c_void,

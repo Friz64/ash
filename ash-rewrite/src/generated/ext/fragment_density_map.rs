@@ -2,6 +2,7 @@
 #![cfg_attr(rustfmt, rustfmt_skip)]
 //![Vulkan Manual Page](https://docs.vulkan.org/refpages/latest/refpages/source/VK_EXT_fragment_density_map.html) · Extension `VK_EXT_fragment_density_map`
 #[repr(C)]
+#[derive(Clone, Copy)]
 pub struct PhysicalDeviceFragmentDensityMapFeaturesEXT {
     pub s_type: crate::vk::StructureType,
     pub p_next: *mut core::ffi::c_void,
@@ -10,6 +11,7 @@ pub struct PhysicalDeviceFragmentDensityMapFeaturesEXT {
     pub fragment_density_map_non_subsampled_images: crate::vk::Bool32,
 }
 #[repr(C)]
+#[derive(Clone, Copy)]
 pub struct PhysicalDeviceFragmentDensityMapPropertiesEXT {
     pub s_type: crate::vk::StructureType,
     pub p_next: *mut core::ffi::c_void,
@@ -18,12 +20,14 @@ pub struct PhysicalDeviceFragmentDensityMapPropertiesEXT {
     pub fragment_density_invocations: crate::vk::Bool32,
 }
 #[repr(C)]
+#[derive(Clone, Copy)]
 pub struct RenderPassFragmentDensityMapCreateInfoEXT {
     pub s_type: crate::vk::StructureType,
     pub p_next: *const core::ffi::c_void,
     pub fragment_density_map_attachment: crate::vk::AttachmentReference,
 }
 #[repr(C)]
+#[derive(Clone, Copy)]
 pub struct RenderingFragmentDensityMapAttachmentInfoEXT {
     pub s_type: crate::vk::StructureType,
     pub p_next: *const core::ffi::c_void,

@@ -2,6 +2,7 @@
 #![cfg_attr(rustfmt, rustfmt_skip)]
 //![Vulkan Manual Page](https://docs.vulkan.org/refpages/latest/refpages/source/VK_HUAWEI_invocation_mask.html) · Extension `VK_HUAWEI_invocation_mask`
 #[repr(C)]
+#[derive(Clone, Copy)]
 pub struct PhysicalDeviceInvocationMaskFeaturesHUAWEI {
     pub s_type: crate::vk::StructureType,
     pub p_next: *mut core::ffi::c_void,

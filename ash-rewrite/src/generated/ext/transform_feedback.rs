@@ -2,6 +2,7 @@
 #![cfg_attr(rustfmt, rustfmt_skip)]
 //![Vulkan Manual Page](https://docs.vulkan.org/refpages/latest/refpages/source/VK_EXT_transform_feedback.html) · Extension `VK_EXT_transform_feedback`
 #[repr(C)]
+#[derive(Clone, Copy)]
 pub struct PhysicalDeviceTransformFeedbackFeaturesEXT {
     pub s_type: crate::vk::StructureType,
     pub p_next: *mut core::ffi::c_void,
@@ -9,6 +10,7 @@ pub struct PhysicalDeviceTransformFeedbackFeaturesEXT {
     pub geometry_streams: crate::vk::Bool32,
 }
 #[repr(C)]
+#[derive(Clone, Copy)]
 pub struct PhysicalDeviceTransformFeedbackPropertiesEXT {
     pub s_type: crate::vk::StructureType,
     pub p_next: *mut core::ffi::c_void,
@@ -24,6 +26,7 @@ pub struct PhysicalDeviceTransformFeedbackPropertiesEXT {
     pub transform_feedback_draw: crate::vk::Bool32,
 }
 #[repr(C)]
+#[derive(Clone, Copy)]
 pub struct PipelineRasterizationStateStreamCreateInfoEXT {
     pub s_type: crate::vk::StructureType,
     pub p_next: *const core::ffi::c_void,
@@ -31,6 +34,7 @@ pub struct PipelineRasterizationStateStreamCreateInfoEXT {
     pub rasterization_stream: u32,
 }
 #[repr(transparent)]
+#[derive(Clone, Copy)]
 pub struct PipelineRasterizationStateStreamCreateFlagsEXT(pub(crate) i32);
 pub const EXT_TRANSFORM_FEEDBACK_SPEC_VERSION: u32 = 1;
 pub const EXT_TRANSFORM_FEEDBACK_EXTENSION_NAME: &core::ffi::CStr = c"VK_EXT_transform_feedback";

@@ -2,6 +2,7 @@
 #![cfg_attr(rustfmt, rustfmt_skip)]
 //![Vulkan Manual Page](https://docs.vulkan.org/refpages/latest/refpages/source/VK_NV_ray_tracing_linear_swept_spheres.html) · Extension `VK_NV_ray_tracing_linear_swept_spheres`
 #[repr(C)]
+#[derive(Clone, Copy)]
 pub struct AccelerationStructureGeometryLinearSweptSpheresDataNV {
     pub s_type: crate::vk::StructureType,
     pub p_next: *const core::ffi::c_void,
@@ -18,6 +19,7 @@ pub struct AccelerationStructureGeometryLinearSweptSpheresDataNV {
     pub end_caps_mode: crate::vk::RayTracingLssPrimitiveEndCapsModeNV,
 }
 #[repr(C)]
+#[derive(Clone, Copy)]
 pub struct AccelerationStructureGeometrySpheresDataNV {
     pub s_type: crate::vk::StructureType,
     pub p_next: *const core::ffi::c_void,
@@ -32,6 +34,7 @@ pub struct AccelerationStructureGeometrySpheresDataNV {
     pub index_stride: crate::vk::DeviceSize,
 }
 #[repr(C)]
+#[derive(Clone, Copy)]
 pub struct PhysicalDeviceRayTracingLinearSweptSpheresFeaturesNV {
     pub s_type: crate::vk::StructureType,
     pub p_next: *mut core::ffi::c_void,
@@ -39,8 +42,10 @@ pub struct PhysicalDeviceRayTracingLinearSweptSpheresFeaturesNV {
     pub linear_swept_spheres: crate::vk::Bool32,
 }
 #[repr(transparent)]
+#[derive(Clone, Copy)]
 pub struct RayTracingLssIndexingModeNV(pub(crate) i32);
 #[repr(transparent)]
+#[derive(Clone, Copy)]
 pub struct RayTracingLssPrimitiveEndCapsModeNV(pub(crate) i32);
 pub const NV_RAY_TRACING_LINEAR_SWEPT_SPHERES_SPEC_VERSION: u32 = 1;
 pub const NV_RAY_TRACING_LINEAR_SWEPT_SPHERES_EXTENSION_NAME: &core::ffi::CStr = c"VK_NV_ray_tracing_linear_swept_spheres";
