@@ -7,9 +7,7 @@ pub struct StdVideoAV1ColorConfigFlags {
     /**- `mono_chrome` @ `0..1`
 - `color_range` @ `1..2`
 - `separate_uv_delta_q` @ `2..3`
-- `color_description_present_flag` @ `3..4`
-- `reserved` @ `4..32`
-*/
+- `color_description_present_flag` @ `3..4`*/
     pub bitfield0: u32,
 }
 #[repr(C)]
@@ -28,9 +26,7 @@ pub struct StdVideoAV1ColorConfig {
 #[repr(C)]
 #[derive(Clone, Copy)]
 pub struct StdVideoAV1TimingInfoFlags {
-    /**- `equal_picture_interval` @ `0..1`
-- `reserved` @ `1..32`
-*/
+    ///- `equal_picture_interval` @ `0..1`
     pub bitfield0: u32,
 }
 #[repr(C)]
@@ -62,9 +58,7 @@ pub struct StdVideoAV1SequenceHeaderFlags {
 - `enable_restoration` @ `15..16`
 - `film_grain_params_present` @ `16..17`
 - `timing_info_present_flag` @ `17..18`
-- `initial_display_delay_present_flag` @ `18..19`
-- `reserved` @ `19..32`
-*/
+- `initial_display_delay_present_flag` @ `18..19`*/
     pub bitfield0: u32,
 }
 #[repr(C)]
@@ -89,9 +83,7 @@ pub struct StdVideoAV1SequenceHeader {
 #[derive(Clone, Copy)]
 pub struct StdVideoAV1LoopFilterFlags {
     /**- `loop_filter_delta_enabled` @ `0..1`
-- `loop_filter_delta_update` @ `1..2`
-- `reserved` @ `2..32`
-*/
+- `loop_filter_delta_update` @ `1..2`*/
     pub bitfield0: u32,
 }
 #[repr(C)]
@@ -110,9 +102,7 @@ pub struct StdVideoAV1LoopFilter {
 #[derive(Clone, Copy)]
 pub struct StdVideoAV1QuantizationFlags {
     /**- `using_qmatrix` @ `0..1`
-- `diff_uv_delta` @ `1..2`
-- `reserved` @ `2..32`
-*/
+- `diff_uv_delta` @ `1..2`*/
     pub bitfield0: u32,
 }
 #[repr(C)]
@@ -139,9 +129,7 @@ pub struct StdVideoAV1Segmentation {
 #[repr(C)]
 #[derive(Clone, Copy)]
 pub struct StdVideoAV1TileInfoFlags {
-    /**- `uniform_tile_spacing_flag` @ `0..1`
-- `reserved` @ `1..32`
-*/
+    ///- `uniform_tile_spacing_flag` @ `0..1`
     pub bitfield0: u32,
 }
 #[repr(C)]
@@ -192,9 +180,7 @@ pub struct StdVideoAV1FilmGrainFlags {
     /**- `chroma_scaling_from_luma` @ `0..1`
 - `overlap_flag` @ `1..2`
 - `clip_to_restricted_range` @ `2..3`
-- `update_grain` @ `3..4`
-- `reserved` @ `4..32`
-*/
+- `update_grain` @ `3..4`*/
     pub bitfield0: u32,
 }
 #[repr(C)]

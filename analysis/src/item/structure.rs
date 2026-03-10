@@ -65,14 +65,16 @@ impl Struct {
                     Ordering::Greater => panic!("bitfield should be large enough"),
                 }
 
-                let Some(StructMember::BitField { ty: _, ranges }) = members.last_mut() else {
-                    unreachable!()
-                };
+                if decl.name.original() != "reserved" {
+                    let Some(StructMember::BitField { ty: _, ranges }) = members.last_mut() else {
+                        unreachable!()
+                    };
 
-                ranges.push(BitfieldRange {
-                    name: decl.name,
-                    range,
-                });
+                    ranges.push(BitfieldRange {
+                        name: decl.name,
+                        range,
+                    });
+                }
             } else {
                 assert_eq!(used_bitwidth, None, "bitfield not fully used");
                 members.push(StructMember::Normal(decl));

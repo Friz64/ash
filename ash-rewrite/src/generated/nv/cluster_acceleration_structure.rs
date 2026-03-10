@@ -39,9 +39,7 @@ pub struct RayTracingPipelineClusterAccelerationStructureCreateInfoNV {
 #[derive(Clone, Copy)]
 pub struct ClusterAccelerationStructureGeometryIndexAndGeometryFlagsNV {
     /**- `geometryIndex` @ `0..24`
-- `reserved` @ `24..29`
-- `geometryFlags` @ `29..32`
-*/
+- `geometryFlags` @ `29..32`*/
     pub bitfield0: u32,
 }
 #[repr(C)]
@@ -70,8 +68,7 @@ pub struct ClusterAccelerationStructureBuildTriangleClusterInfoNV {
 - `vertexCount` @ `9..18`
 - `positionTruncateBitCount` @ `18..24`
 - `indexType` @ `24..28`
-- `opacityMicromapIndexType` @ `28..32`
-*/
+- `opacityMicromapIndexType` @ `28..32`*/
     pub bitfield0: u32,
     pub base_geometry_index_and_geometry_flags: crate::vk::ClusterAccelerationStructureGeometryIndexAndGeometryFlagsNV,
     pub index_buffer_stride: u16,
@@ -93,8 +90,7 @@ pub struct ClusterAccelerationStructureBuildTriangleClusterTemplateInfoNV {
 - `vertexCount` @ `9..18`
 - `positionTruncateBitCount` @ `18..24`
 - `indexType` @ `24..28`
-- `opacityMicromapIndexType` @ `28..32`
-*/
+- `opacityMicromapIndexType` @ `28..32`*/
     pub bitfield0: u32,
     pub base_geometry_index_and_geometry_flags: crate::vk::ClusterAccelerationStructureGeometryIndexAndGeometryFlagsNV,
     pub index_buffer_stride: u16,
@@ -112,9 +108,7 @@ pub struct ClusterAccelerationStructureBuildTriangleClusterTemplateInfoNV {
 #[derive(Clone, Copy)]
 pub struct ClusterAccelerationStructureInstantiateClusterInfoNV {
     pub cluster_id_offset: u32,
-    /**- `geometryIndexOffset` @ `0..24`
-- `reserved` @ `24..32`
-*/
+    ///- `geometryIndexOffset` @ `0..24`
     pub bitfield0: u32,
     pub cluster_template_address: crate::vk::DeviceAddress,
     pub vertex_buffer: crate::vk::StridedDeviceAddressNV,

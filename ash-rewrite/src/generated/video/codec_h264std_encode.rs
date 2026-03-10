@@ -32,9 +32,7 @@ pub struct StdVideoEncodeH264WeightTable {
 #[derive(Clone, Copy)]
 pub struct StdVideoEncodeH264SliceHeaderFlags {
     /**- `direct_spatial_mv_pred_flag` @ `0..1`
-- `num_ref_idx_active_override_flag` @ `1..2`
-- `reserved` @ `2..32`
-*/
+- `num_ref_idx_active_override_flag` @ `1..2`*/
     pub bitfield0: u32,
 }
 #[repr(C)]
@@ -44,26 +42,20 @@ pub struct StdVideoEncodeH264PictureInfoFlags {
 - `is_reference` @ `1..2`
 - `no_output_of_prior_pics_flag` @ `2..3`
 - `long_term_reference_flag` @ `3..4`
-- `adaptive_ref_pic_marking_mode_flag` @ `4..5`
-- `reserved` @ `5..32`
-*/
+- `adaptive_ref_pic_marking_mode_flag` @ `4..5`*/
     pub bitfield0: u32,
 }
 #[repr(C)]
 #[derive(Clone, Copy)]
 pub struct StdVideoEncodeH264ReferenceInfoFlags {
-    /**- `used_for_long_term_reference` @ `0..1`
-- `reserved` @ `1..32`
-*/
+    ///- `used_for_long_term_reference` @ `0..1`
     pub bitfield0: u32,
 }
 #[repr(C)]
 #[derive(Clone, Copy)]
 pub struct StdVideoEncodeH264ReferenceListsInfoFlags {
     /**- `ref_pic_list_modification_flag_l0` @ `0..1`
-- `ref_pic_list_modification_flag_l1` @ `1..2`
-- `reserved` @ `2..32`
-*/
+- `ref_pic_list_modification_flag_l1` @ `1..2`*/
     pub bitfield0: u32,
 }
 #[repr(C)]

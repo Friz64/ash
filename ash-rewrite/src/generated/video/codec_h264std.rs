@@ -15,8 +15,7 @@ pub struct StdVideoH264SpsVuiFlags {
 - `fixed_frame_rate_flag` @ `8..9`
 - `bitstream_restriction_flag` @ `9..10`
 - `nal_hrd_parameters_present_flag` @ `10..11`
-- `vcl_hrd_parameters_present_flag` @ `11..12`
-*/
+- `vcl_hrd_parameters_present_flag` @ `11..12`*/
     pub bitfield0: u32,
 }
 #[repr(C)]
@@ -72,8 +71,7 @@ pub struct StdVideoH264SpsFlags {
 - `qpprime_y_zero_transform_bypass_flag` @ `12..13`
 - `frame_cropping_flag` @ `13..14`
 - `seq_scaling_matrix_present_flag` @ `14..15`
-- `vui_parameters_present_flag` @ `15..16`
-*/
+- `vui_parameters_present_flag` @ `15..16`*/
     pub bitfield0: u32,
 }
 #[repr(C)]
@@ -125,8 +123,7 @@ pub struct StdVideoH264PpsFlags {
 - `weighted_pred_flag` @ `4..5`
 - `bottom_field_pic_order_in_frame_present_flag` @ `5..6`
 - `entropy_coding_mode_flag` @ `6..7`
-- `pic_scaling_matrix_present_flag` @ `7..8`
-*/
+- `pic_scaling_matrix_present_flag` @ `7..8`*/
     pub bitfield0: u32,
 }
 #[repr(C)]

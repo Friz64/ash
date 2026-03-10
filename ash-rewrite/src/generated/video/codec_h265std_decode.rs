@@ -7,8 +7,7 @@ pub struct StdVideoDecodeH265PictureInfoFlags {
     /**- `IrapPicFlag` @ `0..1`
 - `IdrPicFlag` @ `1..2`
 - `IsReference` @ `2..3`
-- `short_term_ref_pic_set_sps_flag` @ `3..4`
-*/
+- `short_term_ref_pic_set_sps_flag` @ `3..4`*/
     pub bitfield0: u32,
 }
 #[repr(C)]
@@ -33,8 +32,7 @@ pub struct StdVideoDecodeH265PictureInfo {
 #[derive(Clone, Copy)]
 pub struct StdVideoDecodeH265ReferenceInfoFlags {
     /**- `used_for_long_term_reference` @ `0..1`
-- `unused_for_reference` @ `1..2`
-*/
+- `unused_for_reference` @ `1..2`*/
     pub bitfield0: u32,
 }
 #[repr(C)]

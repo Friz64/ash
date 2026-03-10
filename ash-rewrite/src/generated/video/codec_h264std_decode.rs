@@ -9,8 +9,7 @@ pub struct StdVideoDecodeH264PictureInfoFlags {
 - `IdrPicFlag` @ `2..3`
 - `bottom_field_flag` @ `3..4`
 - `is_reference` @ `4..5`
-- `complementary_field_pair` @ `5..6`
-*/
+- `complementary_field_pair` @ `5..6`*/
     pub bitfield0: u32,
 }
 #[repr(C)]
@@ -32,8 +31,7 @@ pub struct StdVideoDecodeH264ReferenceInfoFlags {
     /**- `top_field_flag` @ `0..1`
 - `bottom_field_flag` @ `1..2`
 - `used_for_long_term_reference` @ `2..3`
-- `is_non_existing` @ `3..4`
-*/
+- `is_non_existing` @ `3..4`*/
     pub bitfield0: u32,
 }
 #[repr(C)]

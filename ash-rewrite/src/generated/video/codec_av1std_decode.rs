@@ -32,9 +32,7 @@ pub struct StdVideoDecodeAV1PictureInfoFlags {
 - `segmentation_update_data` @ `25..26`
 - `UsesLr` @ `26..27`
 - `usesChromaLr` @ `27..28`
-- `apply_grain` @ `28..29`
-- `reserved` @ `29..32`
-*/
+- `apply_grain` @ `28..29`*/
     pub bitfield0: u32,
 }
 #[repr(C)]
@@ -69,9 +67,7 @@ pub struct StdVideoDecodeAV1PictureInfo {
 #[derive(Clone, Copy)]
 pub struct StdVideoDecodeAV1ReferenceInfoFlags {
     /**- `disable_frame_end_update_cdf` @ `0..1`
-- `segmentation_enabled` @ `1..2`
-- `reserved` @ `2..32`
-*/
+- `segmentation_enabled` @ `1..2`*/
     pub bitfield0: u32,
 }
 #[repr(C)]

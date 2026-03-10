@@ -30,6 +30,7 @@ impl Code for Struct {
                         )
                     })
                     .collect();
+                let doc = doc.trim_ascii_end();
 
                 let name = format_ident!("bitfield{bitfield_i}");
                 bitfield_i += 1;
