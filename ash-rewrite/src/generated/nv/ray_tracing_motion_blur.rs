@@ -50,12 +50,10 @@ pub struct AccelerationStructureSRTMotionInstanceNV {
     pub transform_t0: crate::vk::SRTDataNV,
     pub transform_t1: crate::vk::SRTDataNV,
     /**- `instanceCustomIndex` @ `0..24`
-- `mask` @ `24..32`
-*/
+- `mask` @ `24..32`*/
     pub bitfield0: u32,
     /**- `instanceShaderBindingTableRecordOffset` @ `0..24`
-- `flags` @ `24..32`
-*/
+- `flags` @ `24..32`*/
     pub bitfield1: u32,
     pub acceleration_structure_reference: u64,
 }
@@ -65,12 +63,10 @@ pub struct AccelerationStructureMatrixMotionInstanceNV {
     pub transform_t0: crate::vk::TransformMatrixKHR,
     pub transform_t1: crate::vk::TransformMatrixKHR,
     /**- `instanceCustomIndex` @ `0..24`
-- `mask` @ `24..32`
-*/
+- `mask` @ `24..32`*/
     pub bitfield0: u32,
     /**- `instanceShaderBindingTableRecordOffset` @ `0..24`
-- `flags` @ `24..32`
-*/
+- `flags` @ `24..32`*/
     pub bitfield1: u32,
     pub acceleration_structure_reference: u64,
 }

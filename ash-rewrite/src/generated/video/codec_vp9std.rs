@@ -4,9 +4,7 @@
 #[repr(C)]
 #[derive(Clone, Copy)]
 pub struct StdVideoVP9ColorConfigFlags {
-    /**- `color_range` @ `0..1`
-- `reserved` @ `1..32`
-*/
+    ///- `color_range` @ `0..1`
     pub bitfield0: u32,
 }
 #[repr(C)]
@@ -23,9 +21,7 @@ pub struct StdVideoVP9ColorConfig {
 #[derive(Clone, Copy)]
 pub struct StdVideoVP9LoopFilterFlags {
     /**- `loop_filter_delta_enabled` @ `0..1`
-- `loop_filter_delta_update` @ `1..2`
-- `reserved` @ `2..32`
-*/
+- `loop_filter_delta_update` @ `1..2`*/
     pub bitfield0: u32,
 }
 #[repr(C)]
@@ -46,9 +42,7 @@ pub struct StdVideoVP9SegmentationFlags {
     /**- `segmentation_update_map` @ `0..1`
 - `segmentation_temporal_update` @ `1..2`
 - `segmentation_update_data` @ `2..3`
-- `segmentation_abs_or_delta_update` @ `3..4`
-- `reserved` @ `4..32`
-*/
+- `segmentation_abs_or_delta_update` @ `3..4`*/
     pub bitfield0: u32,
 }
 #[repr(C)]

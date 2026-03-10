@@ -8,8 +8,7 @@ pub struct StdVideoH265ProfileTierLevelFlags {
 - `general_progressive_source_flag` @ `1..2`
 - `general_interlaced_source_flag` @ `2..3`
 - `general_non_packed_constraint_flag` @ `3..4`
-- `general_frame_only_constraint_flag` @ `4..5`
-*/
+- `general_frame_only_constraint_flag` @ `4..5`*/
     pub bitfield0: u32,
 }
 #[repr(C)]
@@ -48,8 +47,7 @@ pub struct StdVideoH265HrdFlags {
 - `sub_pic_cpb_params_in_pic_timing_sei_flag` @ `3..4`
 - `fixed_pic_rate_general_flag` @ `4..12`
 - `fixed_pic_rate_within_cvs_flag` @ `12..20`
-- `low_delay_hrd_flag` @ `20..28`
-*/
+- `low_delay_hrd_flag` @ `20..28`*/
     pub bitfield0: u32,
 }
 #[repr(C)]
@@ -78,8 +76,7 @@ pub struct StdVideoH265VpsFlags {
     /**- `vps_temporal_id_nesting_flag` @ `0..1`
 - `vps_sub_layer_ordering_info_present_flag` @ `1..2`
 - `vps_timing_info_present_flag` @ `2..3`
-- `vps_poc_proportional_to_timing_flag` @ `3..4`
-*/
+- `vps_poc_proportional_to_timing_flag` @ `3..4`*/
     pub bitfield0: u32,
 }
 #[repr(C)]
@@ -118,8 +115,7 @@ pub struct StdVideoH265ScalingLists {
 #[derive(Clone, Copy)]
 pub struct StdVideoH265ShortTermRefPicSetFlags {
     /**- `inter_ref_pic_set_prediction_flag` @ `0..1`
-- `delta_rps_sign` @ `1..2`
-*/
+- `delta_rps_sign` @ `1..2`*/
     pub bitfield0: u32,
 }
 #[repr(C)]
@@ -167,8 +163,7 @@ pub struct StdVideoH265SpsVuiFlags {
 - `bitstream_restriction_flag` @ `14..15`
 - `tiles_fixed_structure_flag` @ `15..16`
 - `motion_vectors_over_pic_boundaries_flag` @ `16..17`
-- `restricted_ref_pic_lists_flag` @ `17..18`
-*/
+- `restricted_ref_pic_lists_flag` @ `17..18`*/
     pub bitfield0: u32,
 }
 #[repr(C)]
@@ -239,8 +234,7 @@ pub struct StdVideoH265SpsFlags {
 - `sps_curr_pic_ref_enabled_flag` @ `26..27`
 - `palette_mode_enabled_flag` @ `27..28`
 - `sps_palette_predictor_initializers_present_flag` @ `28..29`
-- `intra_boundary_filtering_disabled_flag` @ `29..30`
-*/
+- `intra_boundary_filtering_disabled_flag` @ `29..30`*/
     pub bitfield0: u32,
 }
 #[repr(C)]
@@ -319,8 +313,7 @@ pub struct StdVideoH265PpsFlags {
 - `pps_slice_act_qp_offsets_present_flag` @ `27..28`
 - `pps_palette_predictor_initializers_present_flag` @ `28..29`
 - `monochrome_palette_flag` @ `29..30`
-- `pps_range_extension_flag` @ `30..31`
-*/
+- `pps_range_extension_flag` @ `30..31`*/
     pub bitfield0: u32,
 }
 #[repr(C)]

@@ -11,9 +11,7 @@ pub struct StdVideoDecodeVP9PictureInfoFlags {
 - `frame_parallel_decoding_mode` @ `4..5`
 - `segmentation_enabled` @ `5..6`
 - `show_frame` @ `6..7`
-- `UsePrevFrameMvs` @ `7..8`
-- `reserved` @ `8..32`
-*/
+- `UsePrevFrameMvs` @ `7..8`*/
     pub bitfield0: u32,
 }
 #[repr(C)]

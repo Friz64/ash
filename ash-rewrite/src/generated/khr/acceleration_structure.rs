@@ -127,12 +127,10 @@ pub struct TransformMatrixKHR {
 pub struct AccelerationStructureInstanceKHR {
     pub transform: crate::vk::TransformMatrixKHR,
     /**- `instanceCustomIndex` @ `0..24`
-- `mask` @ `24..32`
-*/
+- `mask` @ `24..32`*/
     pub bitfield0: u32,
     /**- `instanceShaderBindingTableRecordOffset` @ `0..24`
-- `flags` @ `24..32`
-*/
+- `flags` @ `24..32`*/
     pub bitfield1: u32,
     pub acceleration_structure_reference: u64,
 }

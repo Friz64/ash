@@ -21,9 +21,7 @@ pub struct StdVideoEncodeAV1DecoderModelInfo {
 pub struct StdVideoEncodeAV1OperatingPointInfoFlags {
     /**- `decoder_model_present_for_this_op` @ `0..1`
 - `low_delay_mode_flag` @ `1..2`
-- `initial_display_delay_present_for_this_op` @ `2..3`
-- `reserved` @ `3..32`
-*/
+- `initial_display_delay_present_for_this_op` @ `2..3`*/
     pub bitfield0: u32,
 }
 #[repr(C)]
@@ -68,9 +66,7 @@ pub struct StdVideoEncodeAV1PictureInfoFlags {
 - `UsesLr` @ `25..26`
 - `usesChromaLr` @ `26..27`
 - `show_frame` @ `27..28`
-- `showable_frame` @ `28..29`
-- `reserved` @ `29..32`
-*/
+- `showable_frame` @ `28..29`*/
     pub bitfield0: u32,
 }
 #[repr(C)]
@@ -108,9 +104,7 @@ pub struct StdVideoEncodeAV1PictureInfo {
 #[derive(Clone, Copy)]
 pub struct StdVideoEncodeAV1ReferenceInfoFlags {
     /**- `disable_frame_end_update_cdf` @ `0..1`
-- `segmentation_enabled` @ `1..2`
-- `reserved` @ `2..32`
-*/
+- `segmentation_enabled` @ `1..2`*/
     pub bitfield0: u32,
 }
 #[repr(C)]

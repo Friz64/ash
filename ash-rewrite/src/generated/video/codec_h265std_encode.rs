@@ -53,9 +53,7 @@ pub struct StdVideoEncodeH265SliceSegmentHeaderFlags {
 - `deblocking_filter_override_flag` @ `8..9`
 - `slice_deblocking_filter_disabled_flag` @ `9..10`
 - `collocated_from_l0_flag` @ `10..11`
-- `slice_loop_filter_across_slices_enabled_flag` @ `11..12`
-- `reserved` @ `12..32`
-*/
+- `slice_loop_filter_across_slices_enabled_flag` @ `11..12`*/
     pub bitfield0: u32,
 }
 #[repr(C)]
@@ -81,9 +79,7 @@ pub struct StdVideoEncodeH265SliceSegmentHeader {
 #[derive(Clone, Copy)]
 pub struct StdVideoEncodeH265ReferenceListsInfoFlags {
     /**- `ref_pic_list_modification_flag_l0` @ `0..1`
-- `ref_pic_list_modification_flag_l1` @ `1..2`
-- `reserved` @ `2..32`
-*/
+- `ref_pic_list_modification_flag_l1` @ `1..2`*/
     pub bitfield0: u32,
 }
 #[repr(C)]
@@ -108,9 +104,7 @@ pub struct StdVideoEncodeH265PictureInfoFlags {
 - `pic_output_flag` @ `5..6`
 - `no_output_of_prior_pics_flag` @ `6..7`
 - `short_term_ref_pic_set_sps_flag` @ `7..8`
-- `slice_temporal_mvp_enabled_flag` @ `8..9`
-- `reserved` @ `9..32`
-*/
+- `slice_temporal_mvp_enabled_flag` @ `8..9`*/
     pub bitfield0: u32,
 }
 #[repr(C)]
@@ -133,9 +127,7 @@ pub struct StdVideoEncodeH265PictureInfo {
 #[derive(Clone, Copy)]
 pub struct StdVideoEncodeH265ReferenceInfoFlags {
     /**- `used_for_long_term_reference` @ `0..1`
-- `unused_for_reference` @ `1..2`
-- `reserved` @ `2..32`
-*/
+- `unused_for_reference` @ `1..2`*/
     pub bitfield0: u32,
 }
 #[repr(C)]
