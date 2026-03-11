@@ -1,12 +1,15 @@
-use crate::xml::Version;
+use crate::{
+    name::{TypeName, VariableName},
+    xml::Version,
+};
 
 #[derive(Clone, Debug, PartialEq, Eq)]
 pub enum Depends {
     Core(Version),
     Extension(&'static str),
     Feature {
-        feature_structure: &'static str,
-        feature_member: &'static str,
+        feature_structure: TypeName,
+        feature_member: VariableName,
     },
     And(Box<Depends>, Box<Depends>),
     Or(Box<Depends>, Box<Depends>),
@@ -43,7 +46,7 @@ pub enum DependsParseError {
 }
 
 impl Depends {
-    #[allow(clippy::should_implement_trait)] // we want a 'static input lifetime bc. of xml::Version
+    #[allow(clippy::should_implement_trait)] // we want a 'static input lifetime bc. of our fields
     pub fn from_str(input: &'static str) -> Result<Depends, DependsParseError> {
         if !input.is_ascii() {
             return Err(DependsParseError::NonAsciiInput);
@@ -87,8 +90,8 @@ impl Depends {
                     Depends::Core(version)
                 } else if let Some((feature_structure, feature_member)) = tok.split_once("::") {
                     Depends::Feature {
-                        feature_structure,
-                        feature_member,
+                        feature_structure: TypeName(feature_structure),
+                        feature_member: VariableName(feature_member),
                     }
                 } else {
                     Depends::Extension(tok)
@@ -176,8 +179,8 @@ mod tests {
             Ok(And(
                 Box::new(Extension("VK_KHR_fragment_shading_rate")),
                 Box::new(Feature {
-                    feature_structure: "VkPhysicalDeviceMeshShaderFeaturesEXT",
-                    feature_member: "primitiveFragmentShadingRateMeshShader"
+                    feature_structure: TypeName("VkPhysicalDeviceMeshShaderFeaturesEXT"),
+                    feature_member: VariableName("primitiveFragmentShadingRateMeshShader")
                 }),
             )),
         );
