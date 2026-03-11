@@ -13,24 +13,12 @@ pub trait RustTranslator {
     fn var_name_to_rust(&self, name: VariableName) -> Ident;
 
     fn type_to_rust(&self, name: TypeName, with_path: bool) -> TokenStream;
-    fn rust_name_of_type<T: Named<TypeName>>(&self, item: &T) -> TokenStream {
-        self.type_to_rust(item.name(), false)
-    }
 
     fn func_pointer_to_rust(&self, name: FuncPointerName, with_path: bool) -> TokenStream;
-    fn rust_name_of_func_pointer<T: Named<FuncPointerName>>(&self, item: &T) -> TokenStream {
-        self.func_pointer_to_rust(item.name(), false)
-    }
 
     fn constant_to_rust(&self, name: ConstantName, with_path: bool) -> TokenStream;
-    fn rust_name_of_constant<T: Named<ConstantName>>(&self, item: &T) -> TokenStream {
-        self.constant_to_rust(item.name(), false)
-    }
 
     fn cmacro_to_rust(&self, name: CMacroName, with_path: bool) -> TokenStream;
-    fn rust_name_of_cmacro<T: Named<CMacroName>>(&self, item: &T) -> TokenStream {
-        self.cmacro_to_rust(item.name(), false)
-    }
 
     fn platform_type_to_rust(&self, raw: &'static str, with_path: bool) -> TokenStream;
 
@@ -51,6 +39,34 @@ pub trait RustTranslator {
             CPrimaryType::UInt64 => quote! { u64 },
             CPrimaryType::Size => quote! { usize },
         }
+    }
+}
+
+pub trait RustName<N> {
+    fn rust_name(&self, rust_translator: &impl RustTranslator) -> TokenStream;
+}
+
+impl<T: Named<TypeName>> RustName<TypeName> for T {
+    fn rust_name(&self, rust_translator: &impl RustTranslator) -> TokenStream {
+        rust_translator.type_to_rust(self.name(), false)
+    }
+}
+
+impl<T: Named<FuncPointerName>> RustName<FuncPointerName> for T {
+    fn rust_name(&self, rust_translator: &impl RustTranslator) -> TokenStream {
+        rust_translator.func_pointer_to_rust(self.name(), false)
+    }
+}
+
+impl<T: Named<ConstantName>> RustName<ConstantName> for T {
+    fn rust_name(&self, rust_translator: &impl RustTranslator) -> TokenStream {
+        rust_translator.constant_to_rust(self.name(), false)
+    }
+}
+
+impl<T: Named<CMacroName>> RustName<CMacroName> for T {
+    fn rust_name(&self, rust_translator: &impl RustTranslator) -> TokenStream {
+        rust_translator.cmacro_to_rust(self.name(), false)
     }
 }
 

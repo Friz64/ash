@@ -1,7 +1,7 @@
 use crate::{
     decl::{Decl, Ty},
     item::{Named, RequireMap, RequiredBy},
-    name::{TypeName, VariableName},
+    name::TypeName,
     xml,
 };
 use std::{cmp::Ordering, ops::Range};
@@ -9,14 +9,14 @@ use tracing::{instrument, trace};
 
 #[derive(Debug)]
 pub struct BitfieldRange {
-    pub name: VariableName,
+    pub decl: Decl,
     pub range: Range<u8>,
 }
 
 #[derive(Debug)]
 pub enum StructMember {
     Normal(Decl),
-    BitField { ty: Ty, ranges: Vec<BitfieldRange> },
+    BitField(Vec<BitfieldRange>),
 }
 
 #[derive(Debug)]
@@ -43,15 +43,13 @@ impl Struct {
         for member in &xml.members {
             let decl = Decl::from_c(require_map, &member.c_decl);
             if let Some(width) = member.c_decl.bitfield_width {
-                // FIXME: this is currently the case everywhere, but we shouldn't assume...
+                // this is currently the case everywhere,
+                // and if this assumption is broken, the code below will panic
                 const TY_WIDTH: u8 = 32;
 
                 if used_bitwidth.is_none() {
                     used_bitwidth = Some(0);
-                    members.push(StructMember::BitField {
-                        ty: decl.ty,
-                        ranges: Vec::new(),
-                    });
+                    members.push(StructMember::BitField(vec![]));
                 }
 
                 let currently_used_bitwidth = used_bitwidth.as_mut().unwrap();
@@ -66,14 +64,11 @@ impl Struct {
                 }
 
                 if decl.name.original() != "reserved" {
-                    let Some(StructMember::BitField { ty: _, ranges }) = members.last_mut() else {
+                    let Some(StructMember::BitField(ranges)) = members.last_mut() else {
                         unreachable!()
                     };
 
-                    ranges.push(BitfieldRange {
-                        name: decl.name,
-                        range,
-                    });
+                    ranges.push(BitfieldRange { decl, range });
                 }
             } else {
                 assert_eq!(used_bitwidth, None, "bitfield not fully used");
