@@ -12,6 +12,6 @@ pub struct UbmSurfaceCreateInfoSEC {
 }
 #[repr(transparent)]
 #[derive(Clone, Copy)]
-pub struct UbmSurfaceCreateFlagsSEC(pub(crate) i32);
+pub struct UbmSurfaceCreateFlagsSEC(pub(crate) u32);
 pub const SEC_UBM_SURFACE_SPEC_VERSION: u32 = 1;
 pub const SEC_UBM_SURFACE_EXTENSION_NAME: &core::ffi::CStr = c"VK_SEC_ubm_surface";

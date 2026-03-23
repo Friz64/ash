@@ -90,8 +90,8 @@ impl Depends {
                     Depends::Core(version)
                 } else if let Some((feature_structure, feature_member)) = tok.split_once("::") {
                     Depends::Feature {
-                        feature_structure: TypeName(feature_structure),
-                        feature_member: VariableName(feature_member),
+                        feature_structure: TypeName::new(feature_structure),
+                        feature_member: VariableName::new(feature_member),
                     }
                 } else {
                     Depends::Extension(tok)
@@ -179,8 +179,8 @@ mod tests {
             Ok(And(
                 Box::new(Extension("VK_KHR_fragment_shading_rate")),
                 Box::new(Feature {
-                    feature_structure: TypeName("VkPhysicalDeviceMeshShaderFeaturesEXT"),
-                    feature_member: VariableName("primitiveFragmentShadingRateMeshShader")
+                    feature_structure: TypeName::new("VkPhysicalDeviceMeshShaderFeaturesEXT"),
+                    feature_member: VariableName::new("primitiveFragmentShadingRateMeshShader")
                 }),
             )),
         );

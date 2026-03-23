@@ -223,28 +223,32 @@ pub struct AccelerationStructureBuildTypeKHR(pub(crate) i32);
 pub struct AccelerationStructureCompatibilityKHR(pub(crate) i32);
 #[repr(transparent)]
 #[derive(Clone, Copy)]
-pub struct GeometryFlagsKHR(pub(crate) i32);
+pub struct GeometryFlagsKHR(pub(crate) u32);
 #[repr(transparent)]
 #[derive(Clone, Copy)]
-pub struct GeometryInstanceFlagsKHR(pub(crate) i32);
+pub struct GeometryFlagBitsKHR(pub(crate) u32);
+impl GeometryFlagBitsKHR {}
 #[repr(transparent)]
 #[derive(Clone, Copy)]
-pub struct BuildAccelerationStructureFlagsKHR(pub(crate) i32);
+pub struct GeometryInstanceFlagsKHR(pub(crate) u32);
 #[repr(transparent)]
 #[derive(Clone, Copy)]
-pub struct AccelerationStructureCreateFlagsKHR(pub(crate) i32);
+pub struct GeometryInstanceFlagBitsKHR(pub(crate) u32);
+impl GeometryInstanceFlagBitsKHR {}
 #[repr(transparent)]
 #[derive(Clone, Copy)]
-pub struct GeometryInstanceFlagBitsKHR(pub(crate) i32);
+pub struct BuildAccelerationStructureFlagsKHR(pub(crate) u32);
 #[repr(transparent)]
 #[derive(Clone, Copy)]
-pub struct GeometryFlagBitsKHR(pub(crate) i32);
+pub struct BuildAccelerationStructureFlagBitsKHR(pub(crate) u32);
+impl BuildAccelerationStructureFlagBitsKHR {}
 #[repr(transparent)]
 #[derive(Clone, Copy)]
-pub struct BuildAccelerationStructureFlagBitsKHR(pub(crate) i32);
+pub struct AccelerationStructureCreateFlagsKHR(pub(crate) u32);
 #[repr(transparent)]
 #[derive(Clone, Copy)]
-pub struct AccelerationStructureCreateFlagBitsKHR(pub(crate) i32);
+pub struct AccelerationStructureCreateFlagBitsKHR(pub(crate) u32);
+impl AccelerationStructureCreateFlagBitsKHR {}
 #[repr(transparent)]
 #[derive(Clone, Copy)]
 pub struct AccelerationStructureKHR(pub(crate) i32);

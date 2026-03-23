@@ -27,15 +27,21 @@ pub struct ImageCompressionPropertiesEXT {
 }
 #[repr(transparent)]
 #[derive(Clone, Copy)]
-pub struct ImageCompressionFlagsEXT(pub(crate) i32);
+pub struct ImageCompressionFlagsEXT(pub(crate) u32);
 #[repr(transparent)]
 #[derive(Clone, Copy)]
-pub struct ImageCompressionFixedRateFlagsEXT(pub(crate) i32);
+pub struct ImageCompressionFlagBitsEXT(pub(crate) u32);
+impl ImageCompressionFlagBitsEXT {
+    pub const DEFAULT_EXT: Self = Self(1);
+}
 #[repr(transparent)]
 #[derive(Clone, Copy)]
-pub struct ImageCompressionFlagBitsEXT(pub(crate) i32);
+pub struct ImageCompressionFixedRateFlagsEXT(pub(crate) u32);
 #[repr(transparent)]
 #[derive(Clone, Copy)]
-pub struct ImageCompressionFixedRateFlagBitsEXT(pub(crate) i32);
+pub struct ImageCompressionFixedRateFlagBitsEXT(pub(crate) u32);
+impl ImageCompressionFixedRateFlagBitsEXT {
+    pub const NONE_EXT: Self = Self(1);
+}
 pub const EXT_IMAGE_COMPRESSION_CONTROL_SPEC_VERSION: u32 = 1;
 pub const EXT_IMAGE_COMPRESSION_CONTROL_EXTENSION_NAME: &core::ffi::CStr = c"VK_EXT_image_compression_control";

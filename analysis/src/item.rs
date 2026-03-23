@@ -13,7 +13,7 @@ use crate::{
     item::{
         alias::Alias,
         basetype::BaseType,
-        bitmask::{BitMask, BitMaskBits},
+        bitmask::BitMask,
         cmacro::CMacro,
         constant::Constant,
         enumeration::Enum,
@@ -22,7 +22,7 @@ use crate::{
         structure::{Struct, Union},
     },
     name::{CMacroName, CommandName, ConstantName, FuncPointerName, TypeName},
-    xml::{Require, RequireCommand, RequireConstant, RequireType},
+    xml::{self, Require, RequireCommand, RequireConstant, RequireType},
 };
 use indexmap::IndexMap;
 use std::collections::{HashMap, hash_map};
@@ -73,7 +73,7 @@ pub enum TypeItem {
     Union(Union),
     Enum(Enum),
     BitMask(BitMask),
-    BitMaskBits(BitMaskBits),
+    BitMaskBits { bitmask_name: TypeName },
     BaseType(BaseType),
     Handle(Handle),
 }
@@ -133,6 +133,10 @@ impl Items {
             }
         });
 
+        let bitmask_bits_map: HashMap<TypeName, &xml::BitMaskBits> = (libraries.iter())
+            .flat_map(|library| (library.xml.bitmask_bits.iter()).map(|item| (item.name, item)))
+            .collect();
+
         for library in libraries {
             items.collect_type(
                 &library.xml.structs,
@@ -164,22 +168,29 @@ impl Items {
                 TypeItem::Alias,
             );
 
-            items.collect_type(
-                &library.xml.bitmasks,
-                |xml| BitMask::new(&require_map, xml),
-                TypeItem::BitMask,
-            );
+            (items.types).extend(library.xml.bitmasks.iter().flat_map(|xml| {
+                let mut bits_name_emitted = false;
+                from_fn_with(
+                    BitMask::new(&require_map, &bitmask_bits_map, xml),
+                    move |bitmask| {
+                        if !bits_name_emitted
+                            && let Some(bitmask) = bitmask
+                            && let Some(bits_name) = bitmask.bits_name
+                        {
+                            bits_name_emitted = true;
+                            let bitmask_name = bitmask.name();
+                            return Some((bits_name, TypeItem::BitMaskBits { bitmask_name }));
+                        }
+
+                        bitmask.take().map(|ty| (ty.name(), TypeItem::BitMask(ty)))
+                    },
+                )
+            }));
 
             items.collect_type(
                 &library.xml.bitmask_aliases,
                 |xml| Alias::new(&require_map, xml),
                 TypeItem::Alias,
-            );
-
-            items.collect_type(
-                &library.xml.bitmask_bits,
-                |xml| BitMaskBits::new(&require_map, xml),
-                TypeItem::BitMaskBits,
             );
 
             items.collect_type(
@@ -220,6 +231,22 @@ impl Items {
                 library,
                 locations: array_vec!([RequireLocation; _] => location),
             };
+
+            for enum_extends in &require.enum_extends {
+                match &items.types[&enum_extends.extends] {
+                    &TypeItem::BitMaskBits { bitmask_name } => {
+                        let TypeItem::BitMask(bitmask) = &mut items.types[&bitmask_name] else {
+                            unreachable!()
+                        };
+
+                        bitmask.extend(enum_extends);
+                    }
+                    TypeItem::Enum(digga) => {
+                        // cool
+                    }
+                    _ => unreachable!(),
+                }
+            }
 
             for constant in &require.constants {
                 if let Some(constant) = Constant::from_require(required_by, constant) {
@@ -290,5 +317,29 @@ fn iter_requires(
                 f(library.name(), location, require);
             }
         }
+    }
+}
+
+fn from_fn_with<T, F, W>(with: W, f: F) -> FromFnWith<F, W>
+where
+    F: FnMut(&mut W) -> Option<T>,
+{
+    FromFnWith { function: f, with }
+}
+
+struct FromFnWith<F, W> {
+    function: F,
+    with: W,
+}
+
+impl<T, F, W> Iterator for FromFnWith<F, W>
+where
+    F: FnMut(&mut W) -> Option<T>,
+{
+    type Item = T;
+
+    #[inline]
+    fn next(&mut self) -> Option<Self::Item> {
+        (self.function)(&mut self.with)
     }
 }

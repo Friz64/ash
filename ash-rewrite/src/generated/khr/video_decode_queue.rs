@@ -31,18 +31,22 @@ pub struct VideoDecodeInfoKHR {
 }
 #[repr(transparent)]
 #[derive(Clone, Copy)]
-pub struct VideoDecodeUsageFlagsKHR(pub(crate) i32);
+pub struct VideoDecodeUsageFlagsKHR(pub(crate) u32);
 #[repr(transparent)]
 #[derive(Clone, Copy)]
-pub struct VideoDecodeCapabilityFlagsKHR(pub(crate) i32);
+pub struct VideoDecodeUsageFlagBitsKHR(pub(crate) u32);
+impl VideoDecodeUsageFlagBitsKHR {
+    pub const DEFAULT_KHR: Self = Self(1);
+}
 #[repr(transparent)]
 #[derive(Clone, Copy)]
-pub struct VideoDecodeFlagsKHR(pub(crate) i32);
+pub struct VideoDecodeCapabilityFlagsKHR(pub(crate) u32);
 #[repr(transparent)]
 #[derive(Clone, Copy)]
-pub struct VideoDecodeUsageFlagBitsKHR(pub(crate) i32);
+pub struct VideoDecodeCapabilityFlagBitsKHR(pub(crate) u32);
+impl VideoDecodeCapabilityFlagBitsKHR {}
 #[repr(transparent)]
 #[derive(Clone, Copy)]
-pub struct VideoDecodeCapabilityFlagBitsKHR(pub(crate) i32);
+pub struct VideoDecodeFlagsKHR(pub(crate) u32);
 pub const KHR_VIDEO_DECODE_QUEUE_SPEC_VERSION: u32 = 8;
 pub const KHR_VIDEO_DECODE_QUEUE_EXTENSION_NAME: &core::ffi::CStr = c"VK_KHR_video_decode_queue";

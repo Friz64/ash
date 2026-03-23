@@ -10,6 +10,6 @@ pub struct HeadlessSurfaceCreateInfoEXT {
 }
 #[repr(transparent)]
 #[derive(Clone, Copy)]
-pub struct HeadlessSurfaceCreateFlagsEXT(pub(crate) i32);
+pub struct HeadlessSurfaceCreateFlagsEXT(pub(crate) u32);
 pub const EXT_HEADLESS_SURFACE_SPEC_VERSION: u32 = 1;
 pub const EXT_HEADLESS_SURFACE_EXTENSION_NAME: &core::ffi::CStr = c"VK_EXT_headless_surface";

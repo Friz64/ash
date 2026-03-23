@@ -15,10 +15,11 @@ pub struct DebugReportCallbackCreateInfoEXT {
 pub struct DebugReportObjectTypeEXT(pub(crate) i32);
 #[repr(transparent)]
 #[derive(Clone, Copy)]
-pub struct DebugReportFlagsEXT(pub(crate) i32);
+pub struct DebugReportFlagsEXT(pub(crate) u32);
 #[repr(transparent)]
 #[derive(Clone, Copy)]
-pub struct DebugReportFlagBitsEXT(pub(crate) i32);
+pub struct DebugReportFlagBitsEXT(pub(crate) u32);
+impl DebugReportFlagBitsEXT {}
 #[repr(transparent)]
 #[derive(Clone, Copy)]
 pub struct DebugReportCallbackEXT(pub(crate) i32);

@@ -205,16 +205,18 @@ pub struct PhysicalDeviceDataGraphProcessingEngineTypeARM(pub(crate) i32);
 pub struct PhysicalDeviceDataGraphOperationTypeARM(pub(crate) i32);
 #[repr(transparent)]
 #[derive(Clone, Copy)]
-pub struct DataGraphPipelineSessionCreateFlagsARM(pub(crate) i32);
+pub struct DataGraphPipelineSessionCreateFlagsARM(pub(crate) u64);
 #[repr(transparent)]
 #[derive(Clone, Copy)]
-pub struct DataGraphPipelineDispatchFlagsARM(pub(crate) i32);
+pub struct DataGraphPipelineSessionCreateFlagBitsARM(pub(crate) u64);
+impl DataGraphPipelineSessionCreateFlagBitsARM {}
 #[repr(transparent)]
 #[derive(Clone, Copy)]
-pub struct DataGraphPipelineSessionCreateFlagBitsARM(pub(crate) i32);
+pub struct DataGraphPipelineDispatchFlagsARM(pub(crate) u64);
 #[repr(transparent)]
 #[derive(Clone, Copy)]
-pub struct DataGraphPipelineDispatchFlagBitsARM(pub(crate) i32);
+pub struct DataGraphPipelineDispatchFlagBitsARM(pub(crate) u64);
+impl DataGraphPipelineDispatchFlagBitsARM {}
 #[repr(transparent)]
 #[derive(Clone, Copy)]
 pub struct DataGraphPipelineSessionARM(pub(crate) i32);

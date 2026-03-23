@@ -11,9 +11,10 @@ pub struct PhysicalDeviceShaderCoreProperties2AMD {
 }
 #[repr(transparent)]
 #[derive(Clone, Copy)]
-pub struct ShaderCorePropertiesFlagsAMD(pub(crate) i32);
+pub struct ShaderCorePropertiesFlagsAMD(pub(crate) u32);
 #[repr(transparent)]
 #[derive(Clone, Copy)]
-pub struct ShaderCorePropertiesFlagBitsAMD(pub(crate) i32);
+pub struct ShaderCorePropertiesFlagBitsAMD(pub(crate) u32);
+impl ShaderCorePropertiesFlagBitsAMD {}
 pub const AMD_SHADER_CORE_PROPERTIES_2_SPEC_VERSION: u32 = 1;
 pub const AMD_SHADER_CORE_PROPERTIES_2_EXTENSION_NAME: &core::ffi::CStr = c"VK_AMD_shader_core_properties2";

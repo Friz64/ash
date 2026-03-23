@@ -20,9 +20,10 @@ pub struct SurfaceCapabilities2EXT {
 }
 #[repr(transparent)]
 #[derive(Clone, Copy)]
-pub struct SurfaceCounterFlagsEXT(pub(crate) i32);
+pub struct SurfaceCounterFlagsEXT(pub(crate) u32);
 #[repr(transparent)]
 #[derive(Clone, Copy)]
-pub struct SurfaceCounterFlagBitsEXT(pub(crate) i32);
+pub struct SurfaceCounterFlagBitsEXT(pub(crate) u32);
+impl SurfaceCounterFlagBitsEXT {}
 pub const EXT_DISPLAY_SURFACE_COUNTER_SPEC_VERSION: u32 = 1;
 pub const EXT_DISPLAY_SURFACE_COUNTER_EXTENSION_NAME: &core::ffi::CStr = c"VK_EXT_display_surface_counter";

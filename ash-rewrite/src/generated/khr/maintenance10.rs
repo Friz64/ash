@@ -41,15 +41,17 @@ pub struct ResolveImageModeInfoKHR {
 }
 #[repr(transparent)]
 #[derive(Clone, Copy)]
-pub struct RenderingAttachmentFlagsKHR(pub(crate) i32);
+pub struct RenderingAttachmentFlagsKHR(pub(crate) u32);
 #[repr(transparent)]
 #[derive(Clone, Copy)]
-pub struct ResolveImageFlagsKHR(pub(crate) i32);
+pub struct RenderingAttachmentFlagBitsKHR(pub(crate) u32);
+impl RenderingAttachmentFlagBitsKHR {}
 #[repr(transparent)]
 #[derive(Clone, Copy)]
-pub struct RenderingAttachmentFlagBitsKHR(pub(crate) i32);
+pub struct ResolveImageFlagsKHR(pub(crate) u32);
 #[repr(transparent)]
 #[derive(Clone, Copy)]
-pub struct ResolveImageFlagBitsKHR(pub(crate) i32);
+pub struct ResolveImageFlagBitsKHR(pub(crate) u32);
+impl ResolveImageFlagBitsKHR {}
 pub const KHR_MAINTENANCE_10_SPEC_VERSION: u32 = 1;
 pub const KHR_MAINTENANCE_10_EXTENSION_NAME: &core::ffi::CStr = c"VK_KHR_maintenance10";

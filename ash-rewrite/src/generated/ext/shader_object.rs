@@ -40,10 +40,11 @@ pub type ShaderRequiredSubgroupSizeCreateInfoEXT = crate::vk::PipelineShaderStag
 pub struct ShaderCodeTypeEXT(pub(crate) i32);
 #[repr(transparent)]
 #[derive(Clone, Copy)]
-pub struct ShaderCreateFlagsEXT(pub(crate) i32);
+pub struct ShaderCreateFlagsEXT(pub(crate) u32);
 #[repr(transparent)]
 #[derive(Clone, Copy)]
-pub struct ShaderCreateFlagBitsEXT(pub(crate) i32);
+pub struct ShaderCreateFlagBitsEXT(pub(crate) u32);
+impl ShaderCreateFlagBitsEXT {}
 #[repr(transparent)]
 #[derive(Clone, Copy)]
 pub struct ShaderEXT(pub(crate) i32);

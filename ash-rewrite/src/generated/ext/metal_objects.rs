@@ -96,9 +96,10 @@ pub struct ImportMetalSharedEventInfoEXT {
 }
 #[repr(transparent)]
 #[derive(Clone, Copy)]
-pub struct ExportMetalObjectTypeFlagsEXT(pub(crate) i32);
+pub struct ExportMetalObjectTypeFlagsEXT(pub(crate) u32);
 #[repr(transparent)]
 #[derive(Clone, Copy)]
-pub struct ExportMetalObjectTypeFlagBitsEXT(pub(crate) i32);
+pub struct ExportMetalObjectTypeFlagBitsEXT(pub(crate) u32);
+impl ExportMetalObjectTypeFlagBitsEXT {}
 pub const EXT_METAL_OBJECTS_SPEC_VERSION: u32 = 2;
 pub const EXT_METAL_OBJECTS_EXTENSION_NAME: &core::ffi::CStr = c"VK_EXT_metal_objects";

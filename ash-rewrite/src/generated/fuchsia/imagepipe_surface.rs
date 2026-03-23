@@ -11,6 +11,6 @@ pub struct ImagePipeSurfaceCreateInfoFUCHSIA {
 }
 #[repr(transparent)]
 #[derive(Clone, Copy)]
-pub struct ImagePipeSurfaceCreateFlagsFUCHSIA(pub(crate) i32);
+pub struct ImagePipeSurfaceCreateFlagsFUCHSIA(pub(crate) u32);
 pub const FUCHSIA_IMAGEPIPE_SURFACE_SPEC_VERSION: u32 = 1;
 pub const FUCHSIA_IMAGEPIPE_SURFACE_EXTENSION_NAME: &core::ffi::CStr = c"VK_FUCHSIA_imagepipe_surface";

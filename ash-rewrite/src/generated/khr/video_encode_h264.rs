@@ -161,21 +161,24 @@ pub struct VideoEncodeH264RateControlLayerInfoKHR {
 }
 #[repr(transparent)]
 #[derive(Clone, Copy)]
-pub struct VideoEncodeH264CapabilityFlagsKHR(pub(crate) i32);
+pub struct VideoEncodeH264CapabilityFlagsKHR(pub(crate) u32);
 #[repr(transparent)]
 #[derive(Clone, Copy)]
-pub struct VideoEncodeH264StdFlagsKHR(pub(crate) i32);
+pub struct VideoEncodeH264CapabilityFlagBitsKHR(pub(crate) u32);
+impl VideoEncodeH264CapabilityFlagBitsKHR {}
 #[repr(transparent)]
 #[derive(Clone, Copy)]
-pub struct VideoEncodeH264RateControlFlagsKHR(pub(crate) i32);
+pub struct VideoEncodeH264StdFlagsKHR(pub(crate) u32);
 #[repr(transparent)]
 #[derive(Clone, Copy)]
-pub struct VideoEncodeH264CapabilityFlagBitsKHR(pub(crate) i32);
+pub struct VideoEncodeH264StdFlagBitsKHR(pub(crate) u32);
+impl VideoEncodeH264StdFlagBitsKHR {}
 #[repr(transparent)]
 #[derive(Clone, Copy)]
-pub struct VideoEncodeH264StdFlagBitsKHR(pub(crate) i32);
+pub struct VideoEncodeH264RateControlFlagsKHR(pub(crate) u32);
 #[repr(transparent)]
 #[derive(Clone, Copy)]
-pub struct VideoEncodeH264RateControlFlagBitsKHR(pub(crate) i32);
+pub struct VideoEncodeH264RateControlFlagBitsKHR(pub(crate) u32);
+impl VideoEncodeH264RateControlFlagBitsKHR {}
 pub const KHR_VIDEO_ENCODE_H264_SPEC_VERSION: u32 = 14;
 pub const KHR_VIDEO_ENCODE_H264_EXTENSION_NAME: &core::ffi::CStr = c"VK_KHR_video_encode_h264";

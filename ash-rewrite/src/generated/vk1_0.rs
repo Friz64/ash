@@ -1317,301 +1317,370 @@ pub struct ObjectType(pub(crate) i32);
 pub struct VendorId(pub(crate) i32);
 #[repr(transparent)]
 #[derive(Clone, Copy)]
-pub struct FramebufferCreateFlags(pub(crate) i32);
+pub struct FramebufferCreateFlags(pub(crate) u32);
 #[repr(transparent)]
 #[derive(Clone, Copy)]
-pub struct QueryPoolCreateFlags(pub(crate) i32);
+pub struct FramebufferCreateFlagBits(pub(crate) u32);
+impl FramebufferCreateFlagBits {}
 #[repr(transparent)]
 #[derive(Clone, Copy)]
-pub struct RenderPassCreateFlags(pub(crate) i32);
+pub struct QueryPoolCreateFlags(pub(crate) u32);
 #[repr(transparent)]
 #[derive(Clone, Copy)]
-pub struct SamplerCreateFlags(pub(crate) i32);
+pub struct QueryPoolCreateFlagBits(pub(crate) u32);
+impl QueryPoolCreateFlagBits {}
 #[repr(transparent)]
 #[derive(Clone, Copy)]
-pub struct PipelineLayoutCreateFlags(pub(crate) i32);
+pub struct RenderPassCreateFlags(pub(crate) u32);
 #[repr(transparent)]
 #[derive(Clone, Copy)]
-pub struct PipelineCacheCreateFlags(pub(crate) i32);
+pub struct RenderPassCreateFlagBits(pub(crate) u32);
+impl RenderPassCreateFlagBits {}
 #[repr(transparent)]
 #[derive(Clone, Copy)]
-pub struct PipelineDepthStencilStateCreateFlags(pub(crate) i32);
+pub struct SamplerCreateFlags(pub(crate) u32);
 #[repr(transparent)]
 #[derive(Clone, Copy)]
-pub struct PipelineDynamicStateCreateFlags(pub(crate) i32);
+pub struct SamplerCreateFlagBits(pub(crate) u32);
+impl SamplerCreateFlagBits {}
 #[repr(transparent)]
 #[derive(Clone, Copy)]
-pub struct PipelineColorBlendStateCreateFlags(pub(crate) i32);
+pub struct PipelineLayoutCreateFlags(pub(crate) u32);
 #[repr(transparent)]
 #[derive(Clone, Copy)]
-pub struct PipelineMultisampleStateCreateFlags(pub(crate) i32);
+pub struct PipelineLayoutCreateFlagBits(pub(crate) u32);
+impl PipelineLayoutCreateFlagBits {}
 #[repr(transparent)]
 #[derive(Clone, Copy)]
-pub struct PipelineRasterizationStateCreateFlags(pub(crate) i32);
+pub struct PipelineCacheCreateFlags(pub(crate) u32);
 #[repr(transparent)]
 #[derive(Clone, Copy)]
-pub struct PipelineViewportStateCreateFlags(pub(crate) i32);
+pub struct PipelineCacheCreateFlagBits(pub(crate) u32);
+impl PipelineCacheCreateFlagBits {}
 #[repr(transparent)]
 #[derive(Clone, Copy)]
-pub struct PipelineTessellationStateCreateFlags(pub(crate) i32);
+pub struct PipelineDepthStencilStateCreateFlags(pub(crate) u32);
 #[repr(transparent)]
 #[derive(Clone, Copy)]
-pub struct PipelineInputAssemblyStateCreateFlags(pub(crate) i32);
+pub struct PipelineDepthStencilStateCreateFlagBits(pub(crate) u32);
+impl PipelineDepthStencilStateCreateFlagBits {}
 #[repr(transparent)]
 #[derive(Clone, Copy)]
-pub struct PipelineVertexInputStateCreateFlags(pub(crate) i32);
+pub struct PipelineDynamicStateCreateFlags(pub(crate) u32);
 #[repr(transparent)]
 #[derive(Clone, Copy)]
-pub struct PipelineShaderStageCreateFlags(pub(crate) i32);
+pub struct PipelineColorBlendStateCreateFlags(pub(crate) u32);
 #[repr(transparent)]
 #[derive(Clone, Copy)]
-pub struct DescriptorSetLayoutCreateFlags(pub(crate) i32);
+pub struct PipelineColorBlendStateCreateFlagBits(pub(crate) u32);
+impl PipelineColorBlendStateCreateFlagBits {}
 #[repr(transparent)]
 #[derive(Clone, Copy)]
-pub struct BufferViewCreateFlags(pub(crate) i32);
+pub struct PipelineMultisampleStateCreateFlags(pub(crate) u32);
 #[repr(transparent)]
 #[derive(Clone, Copy)]
-pub struct InstanceCreateFlags(pub(crate) i32);
+pub struct PipelineRasterizationStateCreateFlags(pub(crate) u32);
 #[repr(transparent)]
 #[derive(Clone, Copy)]
-pub struct DeviceCreateFlags(pub(crate) i32);
+pub struct PipelineViewportStateCreateFlags(pub(crate) u32);
 #[repr(transparent)]
 #[derive(Clone, Copy)]
-pub struct DeviceQueueCreateFlags(pub(crate) i32);
+pub struct PipelineTessellationStateCreateFlags(pub(crate) u32);
 #[repr(transparent)]
 #[derive(Clone, Copy)]
-pub struct QueueFlags(pub(crate) i32);
+pub struct PipelineInputAssemblyStateCreateFlags(pub(crate) u32);
 #[repr(transparent)]
 #[derive(Clone, Copy)]
-pub struct MemoryPropertyFlags(pub(crate) i32);
+pub struct PipelineVertexInputStateCreateFlags(pub(crate) u32);
 #[repr(transparent)]
 #[derive(Clone, Copy)]
-pub struct MemoryHeapFlags(pub(crate) i32);
+pub struct PipelineShaderStageCreateFlags(pub(crate) u32);
 #[repr(transparent)]
 #[derive(Clone, Copy)]
-pub struct AccessFlags(pub(crate) i32);
+pub struct PipelineShaderStageCreateFlagBits(pub(crate) u32);
+impl PipelineShaderStageCreateFlagBits {}
 #[repr(transparent)]
 #[derive(Clone, Copy)]
-pub struct BufferUsageFlags(pub(crate) i32);
+pub struct DescriptorSetLayoutCreateFlags(pub(crate) u32);
 #[repr(transparent)]
 #[derive(Clone, Copy)]
-pub struct BufferCreateFlags(pub(crate) i32);
+pub struct DescriptorSetLayoutCreateFlagBits(pub(crate) u32);
+impl DescriptorSetLayoutCreateFlagBits {}
 #[repr(transparent)]
 #[derive(Clone, Copy)]
-pub struct ShaderStageFlags(pub(crate) i32);
+pub struct BufferViewCreateFlags(pub(crate) u32);
 #[repr(transparent)]
 #[derive(Clone, Copy)]
-pub struct ImageUsageFlags(pub(crate) i32);
+pub struct InstanceCreateFlags(pub(crate) u32);
 #[repr(transparent)]
 #[derive(Clone, Copy)]
-pub struct ImageCreateFlags(pub(crate) i32);
+pub struct InstanceCreateFlagBits(pub(crate) u32);
+impl InstanceCreateFlagBits {}
 #[repr(transparent)]
 #[derive(Clone, Copy)]
-pub struct ImageViewCreateFlags(pub(crate) i32);
+pub struct DeviceCreateFlags(pub(crate) u32);
 #[repr(transparent)]
 #[derive(Clone, Copy)]
-pub struct PipelineCreateFlags(pub(crate) i32);
+pub struct DeviceQueueCreateFlags(pub(crate) u32);
 #[repr(transparent)]
 #[derive(Clone, Copy)]
-pub struct ColorComponentFlags(pub(crate) i32);
+pub struct DeviceQueueCreateFlagBits(pub(crate) u32);
+impl DeviceQueueCreateFlagBits {}
 #[repr(transparent)]
 #[derive(Clone, Copy)]
-pub struct FenceCreateFlags(pub(crate) i32);
+pub struct QueueFlags(pub(crate) u32);
 #[repr(transparent)]
 #[derive(Clone, Copy)]
-pub struct SemaphoreCreateFlags(pub(crate) i32);
+pub struct QueueFlagBits(pub(crate) u32);
+impl QueueFlagBits {}
 #[repr(transparent)]
 #[derive(Clone, Copy)]
-pub struct FormatFeatureFlags(pub(crate) i32);
+pub struct MemoryPropertyFlags(pub(crate) u32);
 #[repr(transparent)]
 #[derive(Clone, Copy)]
-pub struct QueryControlFlags(pub(crate) i32);
+pub struct MemoryPropertyFlagBits(pub(crate) u32);
+impl MemoryPropertyFlagBits {}
 #[repr(transparent)]
 #[derive(Clone, Copy)]
-pub struct QueryResultFlags(pub(crate) i32);
+pub struct MemoryHeapFlags(pub(crate) u32);
 #[repr(transparent)]
 #[derive(Clone, Copy)]
-pub struct ShaderModuleCreateFlags(pub(crate) i32);
+pub struct MemoryHeapFlagBits(pub(crate) u32);
+impl MemoryHeapFlagBits {}
 #[repr(transparent)]
 #[derive(Clone, Copy)]
-pub struct EventCreateFlags(pub(crate) i32);
+pub struct AccessFlags(pub(crate) u32);
 #[repr(transparent)]
 #[derive(Clone, Copy)]
-pub struct CommandPoolCreateFlags(pub(crate) i32);
+pub struct AccessFlagBits(pub(crate) u32);
+impl AccessFlagBits {}
 #[repr(transparent)]
 #[derive(Clone, Copy)]
-pub struct CommandPoolResetFlags(pub(crate) i32);
+pub struct BufferUsageFlags(pub(crate) u32);
 #[repr(transparent)]
 #[derive(Clone, Copy)]
-pub struct CommandBufferResetFlags(pub(crate) i32);
+pub struct BufferUsageFlagBits(pub(crate) u32);
+impl BufferUsageFlagBits {}
 #[repr(transparent)]
 #[derive(Clone, Copy)]
-pub struct CommandBufferUsageFlags(pub(crate) i32);
+pub struct BufferCreateFlags(pub(crate) u32);
 #[repr(transparent)]
 #[derive(Clone, Copy)]
-pub struct QueryPipelineStatisticFlags(pub(crate) i32);
+pub struct BufferCreateFlagBits(pub(crate) u32);
+impl BufferCreateFlagBits {}
 #[repr(transparent)]
 #[derive(Clone, Copy)]
-pub struct MemoryMapFlags(pub(crate) i32);
+pub struct ShaderStageFlags(pub(crate) u32);
 #[repr(transparent)]
 #[derive(Clone, Copy)]
-pub struct ImageAspectFlags(pub(crate) i32);
+pub struct ShaderStageFlagBits(pub(crate) u32);
+impl ShaderStageFlagBits {
+    pub const ALL_GRAPHICS: Self = Self(1);
+    pub const ALL: Self = Self(1);
+}
 #[repr(transparent)]
 #[derive(Clone, Copy)]
-pub struct SparseMemoryBindFlags(pub(crate) i32);
+pub struct ImageUsageFlags(pub(crate) u32);
 #[repr(transparent)]
 #[derive(Clone, Copy)]
-pub struct SparseImageFormatFlags(pub(crate) i32);
+pub struct ImageUsageFlagBits(pub(crate) u32);
+impl ImageUsageFlagBits {}
 #[repr(transparent)]
 #[derive(Clone, Copy)]
-pub struct SubpassDescriptionFlags(pub(crate) i32);
+pub struct ImageCreateFlags(pub(crate) u32);
 #[repr(transparent)]
 #[derive(Clone, Copy)]
-pub struct PipelineStageFlags(pub(crate) i32);
+pub struct ImageCreateFlagBits(pub(crate) u32);
+impl ImageCreateFlagBits {}
 #[repr(transparent)]
 #[derive(Clone, Copy)]
-pub struct SampleCountFlags(pub(crate) i32);
+pub struct ImageViewCreateFlags(pub(crate) u32);
 #[repr(transparent)]
 #[derive(Clone, Copy)]
-pub struct AttachmentDescriptionFlags(pub(crate) i32);
+pub struct ImageViewCreateFlagBits(pub(crate) u32);
+impl ImageViewCreateFlagBits {}
 #[repr(transparent)]
 #[derive(Clone, Copy)]
-pub struct StencilFaceFlags(pub(crate) i32);
+pub struct PipelineCreateFlags(pub(crate) u32);
 #[repr(transparent)]
 #[derive(Clone, Copy)]
-pub struct CullModeFlags(pub(crate) i32);
+pub struct PipelineCreateFlagBits(pub(crate) u32);
+impl PipelineCreateFlagBits {}
 #[repr(transparent)]
 #[derive(Clone, Copy)]
-pub struct DescriptorPoolCreateFlags(pub(crate) i32);
+pub struct ColorComponentFlags(pub(crate) u32);
 #[repr(transparent)]
 #[derive(Clone, Copy)]
-pub struct DescriptorPoolResetFlags(pub(crate) i32);
+pub struct ColorComponentFlagBits(pub(crate) u32);
+impl ColorComponentFlagBits {}
 #[repr(transparent)]
 #[derive(Clone, Copy)]
-pub struct DependencyFlags(pub(crate) i32);
+pub struct FenceCreateFlags(pub(crate) u32);
 #[repr(transparent)]
 #[derive(Clone, Copy)]
-pub struct QueueFlagBits(pub(crate) i32);
+pub struct FenceCreateFlagBits(pub(crate) u32);
+impl FenceCreateFlagBits {}
 #[repr(transparent)]
 #[derive(Clone, Copy)]
-pub struct CullModeFlagBits(pub(crate) i32);
+pub struct SemaphoreCreateFlags(pub(crate) u32);
 #[repr(transparent)]
 #[derive(Clone, Copy)]
-pub struct RenderPassCreateFlagBits(pub(crate) i32);
+pub struct FormatFeatureFlags(pub(crate) u32);
 #[repr(transparent)]
 #[derive(Clone, Copy)]
-pub struct MemoryPropertyFlagBits(pub(crate) i32);
+pub struct FormatFeatureFlagBits(pub(crate) u32);
+impl FormatFeatureFlagBits {}
 #[repr(transparent)]
 #[derive(Clone, Copy)]
-pub struct MemoryHeapFlagBits(pub(crate) i32);
+pub struct QueryControlFlags(pub(crate) u32);
 #[repr(transparent)]
 #[derive(Clone, Copy)]
-pub struct AccessFlagBits(pub(crate) i32);
+pub struct QueryControlFlagBits(pub(crate) u32);
+impl QueryControlFlagBits {}
 #[repr(transparent)]
 #[derive(Clone, Copy)]
-pub struct BufferUsageFlagBits(pub(crate) i32);
+pub struct QueryResultFlags(pub(crate) u32);
 #[repr(transparent)]
 #[derive(Clone, Copy)]
-pub struct BufferCreateFlagBits(pub(crate) i32);
+pub struct QueryResultFlagBits(pub(crate) u32);
+impl QueryResultFlagBits {}
 #[repr(transparent)]
 #[derive(Clone, Copy)]
-pub struct ShaderStageFlagBits(pub(crate) i32);
+pub struct ShaderModuleCreateFlags(pub(crate) u32);
 #[repr(transparent)]
 #[derive(Clone, Copy)]
-pub struct ImageUsageFlagBits(pub(crate) i32);
+pub struct EventCreateFlags(pub(crate) u32);
 #[repr(transparent)]
 #[derive(Clone, Copy)]
-pub struct ImageCreateFlagBits(pub(crate) i32);
+pub struct EventCreateFlagBits(pub(crate) u32);
+impl EventCreateFlagBits {}
 #[repr(transparent)]
 #[derive(Clone, Copy)]
-pub struct ImageViewCreateFlagBits(pub(crate) i32);
+pub struct CommandPoolCreateFlags(pub(crate) u32);
 #[repr(transparent)]
 #[derive(Clone, Copy)]
-pub struct SamplerCreateFlagBits(pub(crate) i32);
+pub struct CommandPoolCreateFlagBits(pub(crate) u32);
+impl CommandPoolCreateFlagBits {}
 #[repr(transparent)]
 #[derive(Clone, Copy)]
-pub struct PipelineCreateFlagBits(pub(crate) i32);
+pub struct CommandPoolResetFlags(pub(crate) u32);
 #[repr(transparent)]
 #[derive(Clone, Copy)]
-pub struct PipelineShaderStageCreateFlagBits(pub(crate) i32);
+pub struct CommandPoolResetFlagBits(pub(crate) u32);
+impl CommandPoolResetFlagBits {}
 #[repr(transparent)]
 #[derive(Clone, Copy)]
-pub struct ColorComponentFlagBits(pub(crate) i32);
+pub struct CommandBufferResetFlags(pub(crate) u32);
 #[repr(transparent)]
 #[derive(Clone, Copy)]
-pub struct FenceCreateFlagBits(pub(crate) i32);
+pub struct CommandBufferResetFlagBits(pub(crate) u32);
+impl CommandBufferResetFlagBits {}
 #[repr(transparent)]
 #[derive(Clone, Copy)]
-pub struct FormatFeatureFlagBits(pub(crate) i32);
+pub struct CommandBufferUsageFlags(pub(crate) u32);
 #[repr(transparent)]
 #[derive(Clone, Copy)]
-pub struct QueryControlFlagBits(pub(crate) i32);
+pub struct CommandBufferUsageFlagBits(pub(crate) u32);
+impl CommandBufferUsageFlagBits {}
 #[repr(transparent)]
 #[derive(Clone, Copy)]
-pub struct QueryResultFlagBits(pub(crate) i32);
+pub struct QueryPipelineStatisticFlags(pub(crate) u32);
 #[repr(transparent)]
 #[derive(Clone, Copy)]
-pub struct CommandBufferUsageFlagBits(pub(crate) i32);
+pub struct QueryPipelineStatisticFlagBits(pub(crate) u32);
+impl QueryPipelineStatisticFlagBits {}
 #[repr(transparent)]
 #[derive(Clone, Copy)]
-pub struct QueryPipelineStatisticFlagBits(pub(crate) i32);
+pub struct MemoryMapFlags(pub(crate) u32);
 #[repr(transparent)]
 #[derive(Clone, Copy)]
-pub struct MemoryMapFlagBits(pub(crate) i32);
+pub struct MemoryMapFlagBits(pub(crate) u32);
+impl MemoryMapFlagBits {}
 #[repr(transparent)]
 #[derive(Clone, Copy)]
-pub struct ImageAspectFlagBits(pub(crate) i32);
+pub struct ImageAspectFlags(pub(crate) u32);
 #[repr(transparent)]
 #[derive(Clone, Copy)]
-pub struct SparseImageFormatFlagBits(pub(crate) i32);
+pub struct ImageAspectFlagBits(pub(crate) u32);
+impl ImageAspectFlagBits {}
 #[repr(transparent)]
 #[derive(Clone, Copy)]
-pub struct SparseMemoryBindFlagBits(pub(crate) i32);
+pub struct SparseMemoryBindFlags(pub(crate) u32);
 #[repr(transparent)]
 #[derive(Clone, Copy)]
-pub struct PipelineStageFlagBits(pub(crate) i32);
+pub struct SparseMemoryBindFlagBits(pub(crate) u32);
+impl SparseMemoryBindFlagBits {}
 #[repr(transparent)]
 #[derive(Clone, Copy)]
-pub struct CommandPoolCreateFlagBits(pub(crate) i32);
+pub struct SparseImageFormatFlags(pub(crate) u32);
 #[repr(transparent)]
 #[derive(Clone, Copy)]
-pub struct CommandPoolResetFlagBits(pub(crate) i32);
+pub struct SparseImageFormatFlagBits(pub(crate) u32);
+impl SparseImageFormatFlagBits {}
 #[repr(transparent)]
 #[derive(Clone, Copy)]
-pub struct CommandBufferResetFlagBits(pub(crate) i32);
+pub struct SubpassDescriptionFlags(pub(crate) u32);
 #[repr(transparent)]
 #[derive(Clone, Copy)]
-pub struct SampleCountFlagBits(pub(crate) i32);
+pub struct SubpassDescriptionFlagBits(pub(crate) u32);
+impl SubpassDescriptionFlagBits {}
 #[repr(transparent)]
 #[derive(Clone, Copy)]
-pub struct AttachmentDescriptionFlagBits(pub(crate) i32);
+pub struct PipelineStageFlags(pub(crate) u32);
 #[repr(transparent)]
 #[derive(Clone, Copy)]
-pub struct StencilFaceFlagBits(pub(crate) i32);
+pub struct PipelineStageFlagBits(pub(crate) u32);
+impl PipelineStageFlagBits {}
 #[repr(transparent)]
 #[derive(Clone, Copy)]
-pub struct DescriptorPoolCreateFlagBits(pub(crate) i32);
+pub struct SampleCountFlags(pub(crate) u32);
 #[repr(transparent)]
 #[derive(Clone, Copy)]
-pub struct DependencyFlagBits(pub(crate) i32);
+pub struct SampleCountFlagBits(pub(crate) u32);
+impl SampleCountFlagBits {}
 #[repr(transparent)]
 #[derive(Clone, Copy)]
-pub struct DescriptorSetLayoutCreateFlagBits(pub(crate) i32);
+pub struct AttachmentDescriptionFlags(pub(crate) u32);
 #[repr(transparent)]
 #[derive(Clone, Copy)]
-pub struct SubpassDescriptionFlagBits(pub(crate) i32);
+pub struct AttachmentDescriptionFlagBits(pub(crate) u32);
+impl AttachmentDescriptionFlagBits {}
 #[repr(transparent)]
 #[derive(Clone, Copy)]
-pub struct FramebufferCreateFlagBits(pub(crate) i32);
+pub struct StencilFaceFlags(pub(crate) u32);
 #[repr(transparent)]
 #[derive(Clone, Copy)]
-pub struct QueryPoolCreateFlagBits(pub(crate) i32);
+pub struct StencilFaceFlagBits(pub(crate) u32);
+impl StencilFaceFlagBits {
+    pub const FRONT_AND_BACK: Self = Self(1);
+}
 #[repr(transparent)]
 #[derive(Clone, Copy)]
-pub struct EventCreateFlagBits(pub(crate) i32);
+pub struct CullModeFlags(pub(crate) u32);
 #[repr(transparent)]
 #[derive(Clone, Copy)]
-pub struct InstanceCreateFlagBits(pub(crate) i32);
+pub struct CullModeFlagBits(pub(crate) u32);
+impl CullModeFlagBits {
+    pub const NONE: Self = Self(1);
+    pub const FRONT_AND_BACK: Self = Self(1);
+}
+#[repr(transparent)]
+#[derive(Clone, Copy)]
+pub struct DescriptorPoolCreateFlags(pub(crate) u32);
+#[repr(transparent)]
+#[derive(Clone, Copy)]
+pub struct DescriptorPoolCreateFlagBits(pub(crate) u32);
+impl DescriptorPoolCreateFlagBits {}
+#[repr(transparent)]
+#[derive(Clone, Copy)]
+pub struct DescriptorPoolResetFlags(pub(crate) u32);
+#[repr(transparent)]
+#[derive(Clone, Copy)]
+pub struct DependencyFlags(pub(crate) u32);
+#[repr(transparent)]
+#[derive(Clone, Copy)]
+pub struct DependencyFlagBits(pub(crate) u32);
+impl DependencyFlagBits {}
 #[repr(transparent)]
 #[allow(non_camel_case_types)]
 #[derive(Clone, Copy)]

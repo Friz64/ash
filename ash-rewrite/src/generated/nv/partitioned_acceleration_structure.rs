@@ -91,10 +91,11 @@ pub struct BuildPartitionedAccelerationStructureInfoNV {
 pub struct PartitionedAccelerationStructureOpTypeNV(pub(crate) i32);
 #[repr(transparent)]
 #[derive(Clone, Copy)]
-pub struct PartitionedAccelerationStructureInstanceFlagsNV(pub(crate) i32);
+pub struct PartitionedAccelerationStructureInstanceFlagsNV(pub(crate) u32);
 #[repr(transparent)]
 #[derive(Clone, Copy)]
-pub struct PartitionedAccelerationStructureInstanceFlagBitsNV(pub(crate) i32);
+pub struct PartitionedAccelerationStructureInstanceFlagBitsNV(pub(crate) u32);
+impl PartitionedAccelerationStructureInstanceFlagBitsNV {}
 pub const PARTITIONED_ACCELERATION_STRUCTURE_PARTITION_INDEX_GLOBAL_NV: u32 = (!0);
 pub const NV_PARTITIONED_ACCELERATION_STRUCTURE_SPEC_VERSION: u32 = 1;
 pub const NV_PARTITIONED_ACCELERATION_STRUCTURE_EXTENSION_NAME: &core::ffi::CStr = c"VK_NV_partitioned_acceleration_structure";

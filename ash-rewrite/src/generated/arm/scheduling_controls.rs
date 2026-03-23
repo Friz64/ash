@@ -24,9 +24,10 @@ pub struct PhysicalDeviceSchedulingControlsPropertiesARM {
 }
 #[repr(transparent)]
 #[derive(Clone, Copy)]
-pub struct PhysicalDeviceSchedulingControlsFlagsARM(pub(crate) i32);
+pub struct PhysicalDeviceSchedulingControlsFlagsARM(pub(crate) u64);
 #[repr(transparent)]
 #[derive(Clone, Copy)]
-pub struct PhysicalDeviceSchedulingControlsFlagBitsARM(pub(crate) i32);
+pub struct PhysicalDeviceSchedulingControlsFlagBitsARM(pub(crate) u64);
+impl PhysicalDeviceSchedulingControlsFlagBitsARM {}
 pub const ARM_SCHEDULING_CONTROLS_SPEC_VERSION: u32 = 1;
 pub const ARM_SCHEDULING_CONTROLS_EXTENSION_NAME: &core::ffi::CStr = c"VK_ARM_scheduling_controls";

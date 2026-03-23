@@ -215,19 +215,18 @@ pub struct ExternalMemoryTensorCreateInfoARM {
 pub struct TensorTilingARM(pub(crate) i32);
 #[repr(transparent)]
 #[derive(Clone, Copy)]
-pub struct TensorCreateFlagsARM(pub(crate) i32);
+pub struct TensorCreateFlagsARM(pub(crate) u64);
 #[repr(transparent)]
 #[derive(Clone, Copy)]
-pub struct TensorUsageFlagsARM(pub(crate) i32);
+pub struct TensorCreateFlagBitsARM(pub(crate) u64);
+impl TensorCreateFlagBitsARM {}
 #[repr(transparent)]
 #[derive(Clone, Copy)]
-pub struct TensorCreateFlagBitsARM(pub(crate) i32);
+pub struct TensorUsageFlagsARM(pub(crate) u64);
 #[repr(transparent)]
 #[derive(Clone, Copy)]
-pub struct TensorUsageFlagBitsARM(pub(crate) i32);
-#[repr(transparent)]
-#[derive(Clone, Copy)]
-pub struct TensorViewCreateFlagBitsARM(pub(crate) i32);
+pub struct TensorUsageFlagBitsARM(pub(crate) u64);
+impl TensorUsageFlagBitsARM {}
 #[repr(transparent)]
 #[derive(Clone, Copy)]
 pub struct TensorViewARM(pub(crate) i32);

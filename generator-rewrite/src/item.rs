@@ -32,7 +32,7 @@ impl Code for TypeItem {
             TypeItem::Union(union) => union.code(ctx),
             TypeItem::Enum(enumeration) => enumeration.code(ctx),
             TypeItem::BitMask(bitmask) => bitmask.code(ctx),
-            TypeItem::BitMaskBits(bitmask_bits) => bitmask_bits.code(ctx),
+            TypeItem::BitMaskBits { .. } => CodeMap::default(), // covered by `TypeItem::BitMask``
             TypeItem::BaseType(basetype) => basetype.code(ctx),
             TypeItem::Handle(handle) => handle.code(ctx),
         }

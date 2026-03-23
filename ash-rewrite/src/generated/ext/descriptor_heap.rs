@@ -275,13 +275,20 @@ pub union DescriptorMappingSourceDataEXT {
 pub struct DescriptorMappingSourceEXT(pub(crate) i32);
 #[repr(transparent)]
 #[derive(Clone, Copy)]
-pub struct TensorViewCreateFlagsARM(pub(crate) i32);
+pub struct TensorViewCreateFlagsARM(pub(crate) u64);
 #[repr(transparent)]
 #[derive(Clone, Copy)]
-pub struct SpirvResourceTypeFlagsEXT(pub(crate) i32);
+pub struct TensorViewCreateFlagBitsARM(pub(crate) u64);
+impl TensorViewCreateFlagBitsARM {}
 #[repr(transparent)]
 #[derive(Clone, Copy)]
-pub struct SpirvResourceTypeFlagBitsEXT(pub(crate) i32);
+pub struct SpirvResourceTypeFlagsEXT(pub(crate) u32);
+#[repr(transparent)]
+#[derive(Clone, Copy)]
+pub struct SpirvResourceTypeFlagBitsEXT(pub(crate) u32);
+impl SpirvResourceTypeFlagBitsEXT {
+    pub const ALL_EXT: Self = Self(1);
+}
 #[repr(transparent)]
 #[derive(Clone, Copy)]
 pub struct TensorARM(pub(crate) i32);

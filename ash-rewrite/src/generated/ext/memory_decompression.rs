@@ -35,9 +35,10 @@ pub struct DecompressMemoryInfoEXT {
 }
 #[repr(transparent)]
 #[derive(Clone, Copy)]
-pub struct MemoryDecompressionMethodFlagsEXT(pub(crate) i32);
+pub struct MemoryDecompressionMethodFlagsEXT(pub(crate) u64);
 #[repr(transparent)]
 #[derive(Clone, Copy)]
-pub struct MemoryDecompressionMethodFlagBitsEXT(pub(crate) i32);
+pub struct MemoryDecompressionMethodFlagBitsEXT(pub(crate) u64);
+impl MemoryDecompressionMethodFlagBitsEXT {}
 pub const EXT_MEMORY_DECOMPRESSION_SPEC_VERSION: u32 = 1;
 pub const EXT_MEMORY_DECOMPRESSION_EXTENSION_NAME: &core::ffi::CStr = c"VK_EXT_memory_decompression";

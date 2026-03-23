@@ -576,79 +576,87 @@ pub struct SamplerYcbcrRange(pub(crate) i32);
 pub struct ChromaLocation(pub(crate) i32);
 #[repr(transparent)]
 #[derive(Clone, Copy)]
-pub struct SubgroupFeatureFlags(pub(crate) i32);
+pub struct SubgroupFeatureFlags(pub(crate) u32);
 #[repr(transparent)]
 #[derive(Clone, Copy)]
-pub struct DescriptorUpdateTemplateCreateFlags(pub(crate) i32);
+pub struct SubgroupFeatureFlagBits(pub(crate) u32);
+impl SubgroupFeatureFlagBits {}
 #[repr(transparent)]
 #[derive(Clone, Copy)]
-pub struct PeerMemoryFeatureFlags(pub(crate) i32);
+pub struct DescriptorUpdateTemplateCreateFlags(pub(crate) u32);
 #[repr(transparent)]
 #[derive(Clone, Copy)]
-pub struct MemoryAllocateFlags(pub(crate) i32);
+pub struct PeerMemoryFeatureFlags(pub(crate) u32);
 #[repr(transparent)]
 #[derive(Clone, Copy)]
-pub struct CommandPoolTrimFlags(pub(crate) i32);
+pub struct PeerMemoryFeatureFlagBits(pub(crate) u32);
+impl PeerMemoryFeatureFlagBits {}
 #[repr(transparent)]
 #[derive(Clone, Copy)]
-pub struct ExternalMemoryHandleTypeFlags(pub(crate) i32);
+pub struct MemoryAllocateFlags(pub(crate) u32);
 #[repr(transparent)]
 #[derive(Clone, Copy)]
-pub struct ExternalMemoryFeatureFlags(pub(crate) i32);
+pub struct MemoryAllocateFlagBits(pub(crate) u32);
+impl MemoryAllocateFlagBits {}
 #[repr(transparent)]
 #[derive(Clone, Copy)]
-pub struct ExternalSemaphoreHandleTypeFlags(pub(crate) i32);
+pub struct CommandPoolTrimFlags(pub(crate) u32);
 #[repr(transparent)]
 #[derive(Clone, Copy)]
-pub struct ExternalSemaphoreFeatureFlags(pub(crate) i32);
+pub struct ExternalMemoryHandleTypeFlags(pub(crate) u32);
 #[repr(transparent)]
 #[derive(Clone, Copy)]
-pub struct SemaphoreImportFlags(pub(crate) i32);
+pub struct ExternalMemoryHandleTypeFlagBits(pub(crate) u32);
+impl ExternalMemoryHandleTypeFlagBits {}
 #[repr(transparent)]
 #[derive(Clone, Copy)]
-pub struct ExternalFenceHandleTypeFlags(pub(crate) i32);
+pub struct ExternalMemoryFeatureFlags(pub(crate) u32);
 #[repr(transparent)]
 #[derive(Clone, Copy)]
-pub struct ExternalFenceFeatureFlags(pub(crate) i32);
+pub struct ExternalMemoryFeatureFlagBits(pub(crate) u32);
+impl ExternalMemoryFeatureFlagBits {}
 #[repr(transparent)]
 #[derive(Clone, Copy)]
-pub struct FenceImportFlags(pub(crate) i32);
+pub struct ExternalSemaphoreHandleTypeFlags(pub(crate) u32);
 #[repr(transparent)]
 #[derive(Clone, Copy)]
-pub struct DeviceQueueCreateFlagBits(pub(crate) i32);
+pub struct ExternalSemaphoreHandleTypeFlagBits(pub(crate) u32);
+impl ExternalSemaphoreHandleTypeFlagBits {}
 #[repr(transparent)]
 #[derive(Clone, Copy)]
-pub struct SubgroupFeatureFlagBits(pub(crate) i32);
+pub struct ExternalSemaphoreFeatureFlags(pub(crate) u32);
 #[repr(transparent)]
 #[derive(Clone, Copy)]
-pub struct ExternalMemoryHandleTypeFlagBits(pub(crate) i32);
+pub struct ExternalSemaphoreFeatureFlagBits(pub(crate) u32);
+impl ExternalSemaphoreFeatureFlagBits {}
 #[repr(transparent)]
 #[derive(Clone, Copy)]
-pub struct ExternalMemoryFeatureFlagBits(pub(crate) i32);
+pub struct SemaphoreImportFlags(pub(crate) u32);
 #[repr(transparent)]
 #[derive(Clone, Copy)]
-pub struct ExternalSemaphoreHandleTypeFlagBits(pub(crate) i32);
+pub struct SemaphoreImportFlagBits(pub(crate) u32);
+impl SemaphoreImportFlagBits {}
 #[repr(transparent)]
 #[derive(Clone, Copy)]
-pub struct ExternalSemaphoreFeatureFlagBits(pub(crate) i32);
+pub struct ExternalFenceHandleTypeFlags(pub(crate) u32);
 #[repr(transparent)]
 #[derive(Clone, Copy)]
-pub struct SemaphoreImportFlagBits(pub(crate) i32);
+pub struct ExternalFenceHandleTypeFlagBits(pub(crate) u32);
+impl ExternalFenceHandleTypeFlagBits {}
 #[repr(transparent)]
 #[derive(Clone, Copy)]
-pub struct ExternalFenceHandleTypeFlagBits(pub(crate) i32);
+pub struct ExternalFenceFeatureFlags(pub(crate) u32);
 #[repr(transparent)]
 #[derive(Clone, Copy)]
-pub struct ExternalFenceFeatureFlagBits(pub(crate) i32);
+pub struct ExternalFenceFeatureFlagBits(pub(crate) u32);
+impl ExternalFenceFeatureFlagBits {}
 #[repr(transparent)]
 #[derive(Clone, Copy)]
-pub struct FenceImportFlagBits(pub(crate) i32);
+pub struct FenceImportFlags(pub(crate) u32);
 #[repr(transparent)]
 #[derive(Clone, Copy)]
-pub struct PeerMemoryFeatureFlagBits(pub(crate) i32);
-#[repr(transparent)]
-#[derive(Clone, Copy)]
-pub struct MemoryAllocateFlagBits(pub(crate) i32);
+pub struct FenceImportFlagBits(pub(crate) u32);
+impl FenceImportFlagBits {}
 #[repr(transparent)]
 #[derive(Clone, Copy)]
 pub struct DescriptorUpdateTemplate(pub(crate) i32);

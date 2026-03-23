@@ -11,6 +11,6 @@ pub struct StreamDescriptorSurfaceCreateInfoGGP {
 }
 #[repr(transparent)]
 #[derive(Clone, Copy)]
-pub struct StreamDescriptorSurfaceCreateFlagsGGP(pub(crate) i32);
+pub struct StreamDescriptorSurfaceCreateFlagsGGP(pub(crate) u32);
 pub const GGP_STREAM_DESCRIPTOR_SURFACE_SPEC_VERSION: u32 = 1;
 pub const GGP_STREAM_DESCRIPTOR_SURFACE_EXTENSION_NAME: &core::ffi::CStr = c"VK_GGP_stream_descriptor_surface";

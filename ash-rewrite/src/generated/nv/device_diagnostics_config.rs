@@ -17,9 +17,10 @@ pub struct DeviceDiagnosticsConfigCreateInfoNV {
 }
 #[repr(transparent)]
 #[derive(Clone, Copy)]
-pub struct DeviceDiagnosticsConfigFlagsNV(pub(crate) i32);
+pub struct DeviceDiagnosticsConfigFlagsNV(pub(crate) u32);
 #[repr(transparent)]
 #[derive(Clone, Copy)]
-pub struct DeviceDiagnosticsConfigFlagBitsNV(pub(crate) i32);
+pub struct DeviceDiagnosticsConfigFlagBitsNV(pub(crate) u32);
+impl DeviceDiagnosticsConfigFlagBitsNV {}
 pub const NV_DEVICE_DIAGNOSTICS_CONFIG_SPEC_VERSION: u32 = 2;
 pub const NV_DEVICE_DIAGNOSTICS_CONFIG_EXTENSION_NAME: &core::ffi::CStr = c"VK_NV_device_diagnostics_config";

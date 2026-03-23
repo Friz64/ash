@@ -11,6 +11,6 @@ pub struct SurfaceCreateInfoOHOS {
 }
 #[repr(transparent)]
 #[derive(Clone, Copy)]
-pub struct SurfaceCreateFlagsOHOS(pub(crate) i32);
+pub struct SurfaceCreateFlagsOHOS(pub(crate) u32);
 pub const OHOS_SURFACE_SPEC_VERSION: u32 = 1;
 pub const OHOS_SURFACE_EXTENSION_NAME: &core::ffi::CStr = c"VK_OHOS_surface";

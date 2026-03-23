@@ -40,7 +40,7 @@ pub struct ShaderInstrumentationMetricDataHeaderARM {
 }
 #[repr(transparent)]
 #[derive(Clone, Copy)]
-pub struct ShaderInstrumentationValuesFlagsARM(pub(crate) i32);
+pub struct ShaderInstrumentationValuesFlagsARM(pub(crate) u32);
 #[repr(transparent)]
 #[derive(Clone, Copy)]
 pub struct ShaderInstrumentationARM(pub(crate) i32);

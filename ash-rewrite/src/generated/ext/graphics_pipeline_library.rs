@@ -25,12 +25,10 @@ pub struct GraphicsPipelineLibraryCreateInfoEXT {
 }
 #[repr(transparent)]
 #[derive(Clone, Copy)]
-pub struct GraphicsPipelineLibraryFlagsEXT(pub(crate) i32);
+pub struct GraphicsPipelineLibraryFlagsEXT(pub(crate) u32);
 #[repr(transparent)]
 #[derive(Clone, Copy)]
-pub struct PipelineLayoutCreateFlagBits(pub(crate) i32);
-#[repr(transparent)]
-#[derive(Clone, Copy)]
-pub struct GraphicsPipelineLibraryFlagBitsEXT(pub(crate) i32);
+pub struct GraphicsPipelineLibraryFlagBitsEXT(pub(crate) u32);
+impl GraphicsPipelineLibraryFlagBitsEXT {}
 pub const EXT_GRAPHICS_PIPELINE_LIBRARY_SPEC_VERSION: u32 = 1;
 pub const EXT_GRAPHICS_PIPELINE_LIBRARY_EXTENSION_NAME: &core::ffi::CStr = c"VK_EXT_graphics_pipeline_library";

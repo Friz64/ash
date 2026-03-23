@@ -187,27 +187,33 @@ pub struct ClusterAccelerationStructureOpTypeNV(pub(crate) i32);
 pub struct ClusterAccelerationStructureOpModeNV(pub(crate) i32);
 #[repr(transparent)]
 #[derive(Clone, Copy)]
-pub struct ClusterAccelerationStructureGeometryFlagsNV(pub(crate) i32);
+pub struct ClusterAccelerationStructureGeometryFlagsNV(pub(crate) u32);
 #[repr(transparent)]
 #[derive(Clone, Copy)]
-pub struct ClusterAccelerationStructureClusterFlagsNV(pub(crate) i32);
+pub struct ClusterAccelerationStructureGeometryFlagBitsNV(pub(crate) u32);
+impl ClusterAccelerationStructureGeometryFlagBitsNV {}
 #[repr(transparent)]
 #[derive(Clone, Copy)]
-pub struct ClusterAccelerationStructureAddressResolutionFlagsNV(pub(crate) i32);
+pub struct ClusterAccelerationStructureClusterFlagsNV(pub(crate) u32);
 #[repr(transparent)]
 #[derive(Clone, Copy)]
-pub struct ClusterAccelerationStructureIndexFormatFlagsNV(pub(crate) i32);
+pub struct ClusterAccelerationStructureClusterFlagBitsNV(pub(crate) u32);
+impl ClusterAccelerationStructureClusterFlagBitsNV {}
 #[repr(transparent)]
 #[derive(Clone, Copy)]
-pub struct ClusterAccelerationStructureIndexFormatFlagBitsNV(pub(crate) i32);
+pub struct ClusterAccelerationStructureAddressResolutionFlagsNV(pub(crate) u32);
 #[repr(transparent)]
 #[derive(Clone, Copy)]
-pub struct ClusterAccelerationStructureClusterFlagBitsNV(pub(crate) i32);
+pub struct ClusterAccelerationStructureAddressResolutionFlagBitsNV(pub(crate) u32);
+impl ClusterAccelerationStructureAddressResolutionFlagBitsNV {
+    pub const NONE_NV: Self = Self(1);
+}
 #[repr(transparent)]
 #[derive(Clone, Copy)]
-pub struct ClusterAccelerationStructureGeometryFlagBitsNV(pub(crate) i32);
+pub struct ClusterAccelerationStructureIndexFormatFlagsNV(pub(crate) u32);
 #[repr(transparent)]
 #[derive(Clone, Copy)]
-pub struct ClusterAccelerationStructureAddressResolutionFlagBitsNV(pub(crate) i32);
+pub struct ClusterAccelerationStructureIndexFormatFlagBitsNV(pub(crate) u32);
+impl ClusterAccelerationStructureIndexFormatFlagBitsNV {}
 pub const NV_CLUSTER_ACCELERATION_STRUCTURE_SPEC_VERSION: u32 = 4;
 pub const NV_CLUSTER_ACCELERATION_STRUCTURE_EXTENSION_NAME: &core::ffi::CStr = c"VK_NV_cluster_acceleration_structure";

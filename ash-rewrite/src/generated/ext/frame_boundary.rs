@@ -25,9 +25,10 @@ pub struct PhysicalDeviceFrameBoundaryFeaturesEXT {
 }
 #[repr(transparent)]
 #[derive(Clone, Copy)]
-pub struct FrameBoundaryFlagsEXT(pub(crate) i32);
+pub struct FrameBoundaryFlagsEXT(pub(crate) u32);
 #[repr(transparent)]
 #[derive(Clone, Copy)]
-pub struct FrameBoundaryFlagBitsEXT(pub(crate) i32);
+pub struct FrameBoundaryFlagBitsEXT(pub(crate) u32);
+impl FrameBoundaryFlagBitsEXT {}
 pub const EXT_FRAME_BOUNDARY_SPEC_VERSION: u32 = 1;
 pub const EXT_FRAME_BOUNDARY_EXTENSION_NAME: &core::ffi::CStr = c"VK_EXT_frame_boundary";

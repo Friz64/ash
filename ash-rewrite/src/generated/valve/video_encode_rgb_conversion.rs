@@ -37,21 +37,24 @@ pub struct VideoEncodeSessionRgbConversionCreateInfoVALVE {
 }
 #[repr(transparent)]
 #[derive(Clone, Copy)]
-pub struct VideoEncodeRgbModelConversionFlagsVALVE(pub(crate) i32);
+pub struct VideoEncodeRgbModelConversionFlagsVALVE(pub(crate) u32);
 #[repr(transparent)]
 #[derive(Clone, Copy)]
-pub struct VideoEncodeRgbRangeCompressionFlagsVALVE(pub(crate) i32);
+pub struct VideoEncodeRgbModelConversionFlagBitsVALVE(pub(crate) u32);
+impl VideoEncodeRgbModelConversionFlagBitsVALVE {}
 #[repr(transparent)]
 #[derive(Clone, Copy)]
-pub struct VideoEncodeRgbChromaOffsetFlagsVALVE(pub(crate) i32);
+pub struct VideoEncodeRgbRangeCompressionFlagsVALVE(pub(crate) u32);
 #[repr(transparent)]
 #[derive(Clone, Copy)]
-pub struct VideoEncodeRgbModelConversionFlagBitsVALVE(pub(crate) i32);
+pub struct VideoEncodeRgbRangeCompressionFlagBitsVALVE(pub(crate) u32);
+impl VideoEncodeRgbRangeCompressionFlagBitsVALVE {}
 #[repr(transparent)]
 #[derive(Clone, Copy)]
-pub struct VideoEncodeRgbRangeCompressionFlagBitsVALVE(pub(crate) i32);
+pub struct VideoEncodeRgbChromaOffsetFlagsVALVE(pub(crate) u32);
 #[repr(transparent)]
 #[derive(Clone, Copy)]
-pub struct VideoEncodeRgbChromaOffsetFlagBitsVALVE(pub(crate) i32);
+pub struct VideoEncodeRgbChromaOffsetFlagBitsVALVE(pub(crate) u32);
+impl VideoEncodeRgbChromaOffsetFlagBitsVALVE {}
 pub const VALVE_VIDEO_ENCODE_RGB_CONVERSION_SPEC_VERSION: u32 = 1;
 pub const VALVE_VIDEO_ENCODE_RGB_CONVERSION_EXTENSION_NAME: &core::ffi::CStr = c"VK_VALVE_video_encode_rgb_conversion";

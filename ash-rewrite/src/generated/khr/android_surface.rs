@@ -11,6 +11,6 @@ pub struct AndroidSurfaceCreateInfoKHR {
 }
 #[repr(transparent)]
 #[derive(Clone, Copy)]
-pub struct AndroidSurfaceCreateFlagsKHR(pub(crate) i32);
+pub struct AndroidSurfaceCreateFlagsKHR(pub(crate) u32);
 pub const KHR_ANDROID_SURFACE_SPEC_VERSION: u32 = 6;
 pub const KHR_ANDROID_SURFACE_EXTENSION_NAME: &core::ffi::CStr = c"VK_KHR_android_surface";

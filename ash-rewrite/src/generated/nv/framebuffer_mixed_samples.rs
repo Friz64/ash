@@ -18,6 +18,6 @@ pub type AttachmentSampleCountInfoNV = crate::vk::AttachmentSampleCountInfoAMD;
 pub struct CoverageModulationModeNV(pub(crate) i32);
 #[repr(transparent)]
 #[derive(Clone, Copy)]
-pub struct PipelineCoverageModulationStateCreateFlagsNV(pub(crate) i32);
+pub struct PipelineCoverageModulationStateCreateFlagsNV(pub(crate) u32);
 pub const NV_FRAMEBUFFER_MIXED_SAMPLES_SPEC_VERSION: u32 = 1;
 pub const NV_FRAMEBUFFER_MIXED_SAMPLES_EXTENSION_NAME: &core::ffi::CStr = c"VK_NV_framebuffer_mixed_samples";

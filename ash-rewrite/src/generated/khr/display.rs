@@ -67,19 +67,24 @@ pub struct DisplaySurfaceCreateInfoKHR {
 }
 #[repr(transparent)]
 #[derive(Clone, Copy)]
-pub struct DisplayPlaneAlphaFlagsKHR(pub(crate) i32);
+pub struct DisplayPlaneAlphaFlagsKHR(pub(crate) u32);
 #[repr(transparent)]
 #[derive(Clone, Copy)]
-pub struct SurfaceTransformFlagsKHR(pub(crate) i32);
+pub struct DisplayPlaneAlphaFlagBitsKHR(pub(crate) u32);
+impl DisplayPlaneAlphaFlagBitsKHR {}
 #[repr(transparent)]
 #[derive(Clone, Copy)]
-pub struct DisplayModeCreateFlagsKHR(pub(crate) i32);
+pub struct SurfaceTransformFlagsKHR(pub(crate) u32);
 #[repr(transparent)]
 #[derive(Clone, Copy)]
-pub struct DisplaySurfaceCreateFlagsKHR(pub(crate) i32);
+pub struct SurfaceTransformFlagBitsKHR(pub(crate) u32);
+impl SurfaceTransformFlagBitsKHR {}
 #[repr(transparent)]
 #[derive(Clone, Copy)]
-pub struct DisplayPlaneAlphaFlagBitsKHR(pub(crate) i32);
+pub struct DisplayModeCreateFlagsKHR(pub(crate) u32);
+#[repr(transparent)]
+#[derive(Clone, Copy)]
+pub struct DisplaySurfaceCreateFlagsKHR(pub(crate) u32);
 #[repr(transparent)]
 #[derive(Clone, Copy)]
 pub struct DisplayKHR(pub(crate) i32);
