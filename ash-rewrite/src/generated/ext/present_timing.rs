@@ -104,21 +104,24 @@ pub struct SwapchainCalibratedTimestampInfoEXT {
 }
 #[repr(transparent)]
 #[derive(Clone, Copy)]
-pub struct PresentStageFlagsEXT(pub(crate) i32);
+pub struct PresentStageFlagsEXT(pub(crate) u32);
 #[repr(transparent)]
 #[derive(Clone, Copy)]
-pub struct PastPresentationTimingFlagsEXT(pub(crate) i32);
+pub struct PresentStageFlagBitsEXT(pub(crate) u32);
+impl PresentStageFlagBitsEXT {}
 #[repr(transparent)]
 #[derive(Clone, Copy)]
-pub struct PresentTimingInfoFlagsEXT(pub(crate) i32);
+pub struct PastPresentationTimingFlagsEXT(pub(crate) u32);
 #[repr(transparent)]
 #[derive(Clone, Copy)]
-pub struct PresentStageFlagBitsEXT(pub(crate) i32);
+pub struct PastPresentationTimingFlagBitsEXT(pub(crate) u32);
+impl PastPresentationTimingFlagBitsEXT {}
 #[repr(transparent)]
 #[derive(Clone, Copy)]
-pub struct PastPresentationTimingFlagBitsEXT(pub(crate) i32);
+pub struct PresentTimingInfoFlagsEXT(pub(crate) u32);
 #[repr(transparent)]
 #[derive(Clone, Copy)]
-pub struct PresentTimingInfoFlagBitsEXT(pub(crate) i32);
+pub struct PresentTimingInfoFlagBitsEXT(pub(crate) u32);
+impl PresentTimingInfoFlagBitsEXT {}
 pub const EXT_PRESENT_TIMING_SPEC_VERSION: u32 = 3;
 pub const EXT_PRESENT_TIMING_EXTENSION_NAME: &core::ffi::CStr = c"VK_EXT_present_timing";

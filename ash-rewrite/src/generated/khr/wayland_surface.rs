@@ -12,6 +12,6 @@ pub struct WaylandSurfaceCreateInfoKHR {
 }
 #[repr(transparent)]
 #[derive(Clone, Copy)]
-pub struct WaylandSurfaceCreateFlagsKHR(pub(crate) i32);
+pub struct WaylandSurfaceCreateFlagsKHR(pub(crate) u32);
 pub const KHR_WAYLAND_SURFACE_SPEC_VERSION: u32 = 6;
 pub const KHR_WAYLAND_SURFACE_EXTENSION_NAME: &core::ffi::CStr = c"VK_KHR_wayland_surface";

@@ -80,28 +80,36 @@ pub struct OpticalFlowPerformanceLevelNV(pub(crate) i32);
 pub struct OpticalFlowSessionBindingPointNV(pub(crate) i32);
 #[repr(transparent)]
 #[derive(Clone, Copy)]
-pub struct OpticalFlowGridSizeFlagsNV(pub(crate) i32);
+pub struct OpticalFlowGridSizeFlagsNV(pub(crate) u32);
 #[repr(transparent)]
 #[derive(Clone, Copy)]
-pub struct OpticalFlowUsageFlagsNV(pub(crate) i32);
+pub struct OpticalFlowGridSizeFlagBitsNV(pub(crate) u32);
+impl OpticalFlowGridSizeFlagBitsNV {
+    pub const UNKNOWN_NV: Self = Self(1);
+}
 #[repr(transparent)]
 #[derive(Clone, Copy)]
-pub struct OpticalFlowSessionCreateFlagsNV(pub(crate) i32);
+pub struct OpticalFlowUsageFlagsNV(pub(crate) u32);
 #[repr(transparent)]
 #[derive(Clone, Copy)]
-pub struct OpticalFlowExecuteFlagsNV(pub(crate) i32);
+pub struct OpticalFlowUsageFlagBitsNV(pub(crate) u32);
+impl OpticalFlowUsageFlagBitsNV {
+    pub const UNKNOWN_NV: Self = Self(1);
+}
 #[repr(transparent)]
 #[derive(Clone, Copy)]
-pub struct OpticalFlowGridSizeFlagBitsNV(pub(crate) i32);
+pub struct OpticalFlowSessionCreateFlagsNV(pub(crate) u32);
 #[repr(transparent)]
 #[derive(Clone, Copy)]
-pub struct OpticalFlowUsageFlagBitsNV(pub(crate) i32);
+pub struct OpticalFlowSessionCreateFlagBitsNV(pub(crate) u32);
+impl OpticalFlowSessionCreateFlagBitsNV {}
 #[repr(transparent)]
 #[derive(Clone, Copy)]
-pub struct OpticalFlowSessionCreateFlagBitsNV(pub(crate) i32);
+pub struct OpticalFlowExecuteFlagsNV(pub(crate) u32);
 #[repr(transparent)]
 #[derive(Clone, Copy)]
-pub struct OpticalFlowExecuteFlagBitsNV(pub(crate) i32);
+pub struct OpticalFlowExecuteFlagBitsNV(pub(crate) u32);
+impl OpticalFlowExecuteFlagBitsNV {}
 #[repr(transparent)]
 #[derive(Clone, Copy)]
 pub struct OpticalFlowSessionNV(pub(crate) i32);

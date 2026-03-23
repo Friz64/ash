@@ -81,15 +81,17 @@ pub struct PerformanceCounterUnitKHR(pub(crate) i32);
 pub struct PerformanceCounterStorageKHR(pub(crate) i32);
 #[repr(transparent)]
 #[derive(Clone, Copy)]
-pub struct PerformanceCounterDescriptionFlagsKHR(pub(crate) i32);
+pub struct PerformanceCounterDescriptionFlagsKHR(pub(crate) u32);
 #[repr(transparent)]
 #[derive(Clone, Copy)]
-pub struct AcquireProfilingLockFlagsKHR(pub(crate) i32);
+pub struct PerformanceCounterDescriptionFlagBitsKHR(pub(crate) u32);
+impl PerformanceCounterDescriptionFlagBitsKHR {}
 #[repr(transparent)]
 #[derive(Clone, Copy)]
-pub struct PerformanceCounterDescriptionFlagBitsKHR(pub(crate) i32);
+pub struct AcquireProfilingLockFlagsKHR(pub(crate) u32);
 #[repr(transparent)]
 #[derive(Clone, Copy)]
-pub struct AcquireProfilingLockFlagBitsKHR(pub(crate) i32);
+pub struct AcquireProfilingLockFlagBitsKHR(pub(crate) u32);
+impl AcquireProfilingLockFlagBitsKHR {}
 pub const KHR_PERFORMANCE_QUERY_SPEC_VERSION: u32 = 1;
 pub const KHR_PERFORMANCE_QUERY_EXTENSION_NAME: &core::ffi::CStr = c"VK_KHR_performance_query";

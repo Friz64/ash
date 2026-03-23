@@ -58,7 +58,7 @@ pub(crate) fn parse(input: &'static str) -> CExprItems {
                 CExprItem::NumericLiteral(value)
             } else {
                 CExprItem::MacroCall {
-                    macro_name: CMacroName(value),
+                    macro_name: CMacroName::new(value),
                     args: vec![],
                 }
             }

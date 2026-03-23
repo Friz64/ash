@@ -54,9 +54,12 @@ pub struct VideoDecodeH264DpbSlotInfoKHR {
 }
 #[repr(transparent)]
 #[derive(Clone, Copy)]
-pub struct VideoDecodeH264PictureLayoutFlagsKHR(pub(crate) i32);
+pub struct VideoDecodeH264PictureLayoutFlagsKHR(pub(crate) u32);
 #[repr(transparent)]
 #[derive(Clone, Copy)]
-pub struct VideoDecodeH264PictureLayoutFlagBitsKHR(pub(crate) i32);
+pub struct VideoDecodeH264PictureLayoutFlagBitsKHR(pub(crate) u32);
+impl VideoDecodeH264PictureLayoutFlagBitsKHR {
+    pub const PROGRESSIVE_KHR: Self = Self(1);
+}
 pub const KHR_VIDEO_DECODE_H264_SPEC_VERSION: u32 = 9;
 pub const KHR_VIDEO_DECODE_H264_EXTENSION_NAME: &core::ffi::CStr = c"VK_KHR_video_decode_h264";

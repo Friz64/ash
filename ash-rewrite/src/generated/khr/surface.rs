@@ -29,13 +29,11 @@ pub struct PresentModeKHR(pub(crate) i32);
 pub struct ColorSpaceKHR(pub(crate) i32);
 #[repr(transparent)]
 #[derive(Clone, Copy)]
-pub struct CompositeAlphaFlagsKHR(pub(crate) i32);
+pub struct CompositeAlphaFlagsKHR(pub(crate) u32);
 #[repr(transparent)]
 #[derive(Clone, Copy)]
-pub struct CompositeAlphaFlagBitsKHR(pub(crate) i32);
-#[repr(transparent)]
-#[derive(Clone, Copy)]
-pub struct SurfaceTransformFlagBitsKHR(pub(crate) i32);
+pub struct CompositeAlphaFlagBitsKHR(pub(crate) u32);
+impl CompositeAlphaFlagBitsKHR {}
 #[repr(transparent)]
 #[derive(Clone, Copy)]
 pub struct SurfaceKHR(pub(crate) i32);

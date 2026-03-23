@@ -138,16 +138,18 @@ pub struct GeneratedCommandsMemoryRequirementsInfoNV {
 pub struct IndirectCommandsTokenTypeNV(pub(crate) i32);
 #[repr(transparent)]
 #[derive(Clone, Copy)]
-pub struct IndirectCommandsLayoutUsageFlagsNV(pub(crate) i32);
+pub struct IndirectCommandsLayoutUsageFlagsNV(pub(crate) u32);
 #[repr(transparent)]
 #[derive(Clone, Copy)]
-pub struct IndirectStateFlagsNV(pub(crate) i32);
+pub struct IndirectCommandsLayoutUsageFlagBitsNV(pub(crate) u32);
+impl IndirectCommandsLayoutUsageFlagBitsNV {}
 #[repr(transparent)]
 #[derive(Clone, Copy)]
-pub struct IndirectCommandsLayoutUsageFlagBitsNV(pub(crate) i32);
+pub struct IndirectStateFlagsNV(pub(crate) u32);
 #[repr(transparent)]
 #[derive(Clone, Copy)]
-pub struct IndirectStateFlagBitsNV(pub(crate) i32);
+pub struct IndirectStateFlagBitsNV(pub(crate) u32);
+impl IndirectStateFlagBitsNV {}
 #[repr(transparent)]
 #[derive(Clone, Copy)]
 pub struct IndirectCommandsLayoutNV(pub(crate) i32);

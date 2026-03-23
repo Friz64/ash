@@ -135,16 +135,18 @@ pub struct OpacityMicromapFormatEXT(pub(crate) i32);
 pub struct OpacityMicromapSpecialIndexEXT(pub(crate) i32);
 #[repr(transparent)]
 #[derive(Clone, Copy)]
-pub struct BuildMicromapFlagsEXT(pub(crate) i32);
+pub struct BuildMicromapFlagsEXT(pub(crate) u32);
 #[repr(transparent)]
 #[derive(Clone, Copy)]
-pub struct MicromapCreateFlagsEXT(pub(crate) i32);
+pub struct BuildMicromapFlagBitsEXT(pub(crate) u32);
+impl BuildMicromapFlagBitsEXT {}
 #[repr(transparent)]
 #[derive(Clone, Copy)]
-pub struct BuildMicromapFlagBitsEXT(pub(crate) i32);
+pub struct MicromapCreateFlagsEXT(pub(crate) u32);
 #[repr(transparent)]
 #[derive(Clone, Copy)]
-pub struct MicromapCreateFlagBitsEXT(pub(crate) i32);
+pub struct MicromapCreateFlagBitsEXT(pub(crate) u32);
+impl MicromapCreateFlagBitsEXT {}
 #[repr(transparent)]
 #[derive(Clone, Copy)]
 pub struct MicromapEXT(pub(crate) i32);

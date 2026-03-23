@@ -12,6 +12,6 @@ pub struct PipelineCoverageToColorStateCreateInfoNV {
 }
 #[repr(transparent)]
 #[derive(Clone, Copy)]
-pub struct PipelineCoverageToColorStateCreateFlagsNV(pub(crate) i32);
+pub struct PipelineCoverageToColorStateCreateFlagsNV(pub(crate) u32);
 pub const NV_FRAGMENT_COVERAGE_TO_COLOR_SPEC_VERSION: u32 = 1;
 pub const NV_FRAGMENT_COVERAGE_TO_COLOR_EXTENSION_NAME: &core::ffi::CStr = c"VK_NV_fragment_coverage_to_color";

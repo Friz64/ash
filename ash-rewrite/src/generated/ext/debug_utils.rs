@@ -58,22 +58,24 @@ pub struct DebugUtilsMessengerCallbackDataEXT {
 }
 #[repr(transparent)]
 #[derive(Clone, Copy)]
-pub struct DebugUtilsMessageSeverityFlagsEXT(pub(crate) i32);
+pub struct DebugUtilsMessageSeverityFlagsEXT(pub(crate) u32);
 #[repr(transparent)]
 #[derive(Clone, Copy)]
-pub struct DebugUtilsMessageTypeFlagsEXT(pub(crate) i32);
+pub struct DebugUtilsMessageSeverityFlagBitsEXT(pub(crate) u32);
+impl DebugUtilsMessageSeverityFlagBitsEXT {}
 #[repr(transparent)]
 #[derive(Clone, Copy)]
-pub struct DebugUtilsMessengerCreateFlagsEXT(pub(crate) i32);
+pub struct DebugUtilsMessageTypeFlagsEXT(pub(crate) u32);
 #[repr(transparent)]
 #[derive(Clone, Copy)]
-pub struct DebugUtilsMessengerCallbackDataFlagsEXT(pub(crate) i32);
+pub struct DebugUtilsMessageTypeFlagBitsEXT(pub(crate) u32);
+impl DebugUtilsMessageTypeFlagBitsEXT {}
 #[repr(transparent)]
 #[derive(Clone, Copy)]
-pub struct DebugUtilsMessageSeverityFlagBitsEXT(pub(crate) i32);
+pub struct DebugUtilsMessengerCreateFlagsEXT(pub(crate) u32);
 #[repr(transparent)]
 #[derive(Clone, Copy)]
-pub struct DebugUtilsMessageTypeFlagBitsEXT(pub(crate) i32);
+pub struct DebugUtilsMessengerCallbackDataFlagsEXT(pub(crate) u32);
 #[repr(transparent)]
 #[derive(Clone, Copy)]
 pub struct DebugUtilsMessengerEXT(pub(crate) i32);

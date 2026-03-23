@@ -27,9 +27,10 @@ pub struct PhysicalDeviceConditionalRenderingFeaturesEXT {
 }
 #[repr(transparent)]
 #[derive(Clone, Copy)]
-pub struct ConditionalRenderingFlagsEXT(pub(crate) i32);
+pub struct ConditionalRenderingFlagsEXT(pub(crate) u32);
 #[repr(transparent)]
 #[derive(Clone, Copy)]
-pub struct ConditionalRenderingFlagBitsEXT(pub(crate) i32);
+pub struct ConditionalRenderingFlagBitsEXT(pub(crate) u32);
+impl ConditionalRenderingFlagBitsEXT {}
 pub const EXT_CONDITIONAL_RENDERING_SPEC_VERSION: u32 = 2;
 pub const EXT_CONDITIONAL_RENDERING_EXTENSION_NAME: &core::ffi::CStr = c"VK_EXT_conditional_rendering";

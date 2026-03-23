@@ -587,52 +587,60 @@ pub struct CommandBufferInheritanceRenderingInfo {
 }
 #[repr(transparent)]
 #[derive(Clone, Copy)]
-pub struct PrivateDataSlotCreateFlags(pub(crate) i32);
+pub struct PrivateDataSlotCreateFlags(pub(crate) u32);
 #[repr(transparent)]
 #[derive(Clone, Copy)]
-pub struct PipelineCreationFeedbackFlags(pub(crate) i32);
+pub struct PipelineCreationFeedbackFlags(pub(crate) u32);
 #[repr(transparent)]
 #[derive(Clone, Copy)]
-pub struct AccessFlags2(pub(crate) i32);
+pub struct PipelineCreationFeedbackFlagBits(pub(crate) u32);
+impl PipelineCreationFeedbackFlagBits {}
 #[repr(transparent)]
 #[derive(Clone, Copy)]
-pub struct PipelineStageFlags2(pub(crate) i32);
+pub struct AccessFlags2(pub(crate) u64);
 #[repr(transparent)]
 #[derive(Clone, Copy)]
-pub struct FormatFeatureFlags2(pub(crate) i32);
+pub struct AccessFlagBits2(pub(crate) u64);
+impl AccessFlagBits2 {
+    pub const NONE: Self = Self(1);
+}
 #[repr(transparent)]
 #[derive(Clone, Copy)]
-pub struct RenderingFlags(pub(crate) i32);
+pub struct PipelineStageFlags2(pub(crate) u64);
 #[repr(transparent)]
 #[derive(Clone, Copy)]
-pub struct ToolPurposeFlags(pub(crate) i32);
+pub struct PipelineStageFlagBits2(pub(crate) u64);
+impl PipelineStageFlagBits2 {
+    pub const NONE: Self = Self(1);
+}
 #[repr(transparent)]
 #[derive(Clone, Copy)]
-pub struct SubmitFlags(pub(crate) i32);
+pub struct FormatFeatureFlags2(pub(crate) u64);
 #[repr(transparent)]
 #[derive(Clone, Copy)]
-pub struct PipelineCacheCreateFlagBits(pub(crate) i32);
+pub struct FormatFeatureFlagBits2(pub(crate) u64);
+impl FormatFeatureFlagBits2 {}
 #[repr(transparent)]
 #[derive(Clone, Copy)]
-pub struct PipelineCreationFeedbackFlagBits(pub(crate) i32);
+pub struct RenderingFlags(pub(crate) u32);
 #[repr(transparent)]
 #[derive(Clone, Copy)]
-pub struct ToolPurposeFlagBits(pub(crate) i32);
+pub struct RenderingFlagBits(pub(crate) u32);
+impl RenderingFlagBits {}
 #[repr(transparent)]
 #[derive(Clone, Copy)]
-pub struct AccessFlagBits2(pub(crate) i32);
+pub struct ToolPurposeFlags(pub(crate) u32);
 #[repr(transparent)]
 #[derive(Clone, Copy)]
-pub struct PipelineStageFlagBits2(pub(crate) i32);
+pub struct ToolPurposeFlagBits(pub(crate) u32);
+impl ToolPurposeFlagBits {}
 #[repr(transparent)]
 #[derive(Clone, Copy)]
-pub struct SubmitFlagBits(pub(crate) i32);
+pub struct SubmitFlags(pub(crate) u32);
 #[repr(transparent)]
 #[derive(Clone, Copy)]
-pub struct FormatFeatureFlagBits2(pub(crate) i32);
-#[repr(transparent)]
-#[derive(Clone, Copy)]
-pub struct RenderingFlagBits(pub(crate) i32);
+pub struct SubmitFlagBits(pub(crate) u32);
+impl SubmitFlagBits {}
 #[repr(transparent)]
 #[allow(non_camel_case_types)]
 #[derive(Clone, Copy)]

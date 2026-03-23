@@ -23,9 +23,10 @@ pub struct DeviceAddressBindingCallbackDataEXT {
 pub struct DeviceAddressBindingTypeEXT(pub(crate) i32);
 #[repr(transparent)]
 #[derive(Clone, Copy)]
-pub struct DeviceAddressBindingFlagsEXT(pub(crate) i32);
+pub struct DeviceAddressBindingFlagsEXT(pub(crate) u32);
 #[repr(transparent)]
 #[derive(Clone, Copy)]
-pub struct DeviceAddressBindingFlagBitsEXT(pub(crate) i32);
+pub struct DeviceAddressBindingFlagBitsEXT(pub(crate) u32);
+impl DeviceAddressBindingFlagBitsEXT {}
 pub const EXT_DEVICE_ADDRESS_BINDING_REPORT_SPEC_VERSION: u32 = 1;
 pub const EXT_DEVICE_ADDRESS_BINDING_REPORT_EXTENSION_NAME: &core::ffi::CStr = c"VK_EXT_device_address_binding_report";

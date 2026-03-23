@@ -205,16 +205,18 @@ pub struct IndirectExecutionSetInfoTypeEXT(pub(crate) i32);
 pub struct IndirectCommandsTokenTypeEXT(pub(crate) i32);
 #[repr(transparent)]
 #[derive(Clone, Copy)]
-pub struct IndirectCommandsLayoutUsageFlagsEXT(pub(crate) i32);
+pub struct IndirectCommandsLayoutUsageFlagsEXT(pub(crate) u32);
 #[repr(transparent)]
 #[derive(Clone, Copy)]
-pub struct IndirectCommandsInputModeFlagsEXT(pub(crate) i32);
+pub struct IndirectCommandsLayoutUsageFlagBitsEXT(pub(crate) u32);
+impl IndirectCommandsLayoutUsageFlagBitsEXT {}
 #[repr(transparent)]
 #[derive(Clone, Copy)]
-pub struct IndirectCommandsLayoutUsageFlagBitsEXT(pub(crate) i32);
+pub struct IndirectCommandsInputModeFlagsEXT(pub(crate) u32);
 #[repr(transparent)]
 #[derive(Clone, Copy)]
-pub struct IndirectCommandsInputModeFlagBitsEXT(pub(crate) i32);
+pub struct IndirectCommandsInputModeFlagBitsEXT(pub(crate) u32);
+impl IndirectCommandsInputModeFlagBitsEXT {}
 #[repr(transparent)]
 #[derive(Clone, Copy)]
 pub struct IndirectCommandsLayoutEXT(pub(crate) i32);

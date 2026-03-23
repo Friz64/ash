@@ -100,13 +100,14 @@ pub struct BufferCollectionConstraintsInfoFUCHSIA {
 }
 #[repr(transparent)]
 #[derive(Clone, Copy)]
-pub struct ImageFormatConstraintsFlagsFUCHSIA(pub(crate) i32);
+pub struct ImageFormatConstraintsFlagsFUCHSIA(pub(crate) u32);
 #[repr(transparent)]
 #[derive(Clone, Copy)]
-pub struct ImageConstraintsInfoFlagsFUCHSIA(pub(crate) i32);
+pub struct ImageConstraintsInfoFlagsFUCHSIA(pub(crate) u32);
 #[repr(transparent)]
 #[derive(Clone, Copy)]
-pub struct ImageConstraintsInfoFlagBitsFUCHSIA(pub(crate) i32);
+pub struct ImageConstraintsInfoFlagBitsFUCHSIA(pub(crate) u32);
+impl ImageConstraintsInfoFlagBitsFUCHSIA {}
 #[repr(transparent)]
 #[derive(Clone, Copy)]
 pub struct BufferCollectionFUCHSIA(pub(crate) i32);

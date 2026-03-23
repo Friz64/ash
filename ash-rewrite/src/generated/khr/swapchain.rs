@@ -87,16 +87,18 @@ pub struct DeviceGroupSwapchainCreateInfoKHR {
 }
 #[repr(transparent)]
 #[derive(Clone, Copy)]
-pub struct SwapchainCreateFlagsKHR(pub(crate) i32);
+pub struct SwapchainCreateFlagsKHR(pub(crate) u32);
 #[repr(transparent)]
 #[derive(Clone, Copy)]
-pub struct DeviceGroupPresentModeFlagsKHR(pub(crate) i32);
+pub struct SwapchainCreateFlagBitsKHR(pub(crate) u32);
+impl SwapchainCreateFlagBitsKHR {}
 #[repr(transparent)]
 #[derive(Clone, Copy)]
-pub struct DeviceGroupPresentModeFlagBitsKHR(pub(crate) i32);
+pub struct DeviceGroupPresentModeFlagsKHR(pub(crate) u32);
 #[repr(transparent)]
 #[derive(Clone, Copy)]
-pub struct SwapchainCreateFlagBitsKHR(pub(crate) i32);
+pub struct DeviceGroupPresentModeFlagBitsKHR(pub(crate) u32);
+impl DeviceGroupPresentModeFlagBitsKHR {}
 #[repr(transparent)]
 #[derive(Clone, Copy)]
 pub struct SwapchainKHR(pub(crate) i32);

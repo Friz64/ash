@@ -18,9 +18,12 @@ pub struct MemoryBarrierAccessFlags3KHR {
 }
 #[repr(transparent)]
 #[derive(Clone, Copy)]
-pub struct AccessFlags3KHR(pub(crate) i32);
+pub struct AccessFlags3KHR(pub(crate) u64);
 #[repr(transparent)]
 #[derive(Clone, Copy)]
-pub struct AccessFlagBits3KHR(pub(crate) i32);
+pub struct AccessFlagBits3KHR(pub(crate) u64);
+impl AccessFlagBits3KHR {
+    pub const NONE_KHR: Self = Self(1);
+}
 pub const KHR_MAINTENANCE_8_SPEC_VERSION: u32 = 1;
 pub const KHR_MAINTENANCE_8_EXTENSION_NAME: &core::ffi::CStr = c"VK_KHR_maintenance8";

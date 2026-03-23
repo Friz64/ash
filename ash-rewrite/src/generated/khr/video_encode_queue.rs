@@ -109,39 +109,54 @@ pub struct VideoEncodeCapabilitiesKHR {
 pub struct VideoEncodeTuningModeKHR(pub(crate) i32);
 #[repr(transparent)]
 #[derive(Clone, Copy)]
-pub struct VideoEncodeFlagsKHR(pub(crate) i32);
+pub struct VideoEncodeFlagsKHR(pub(crate) u32);
 #[repr(transparent)]
 #[derive(Clone, Copy)]
-pub struct VideoEncodeUsageFlagsKHR(pub(crate) i32);
+pub struct VideoEncodeFlagBitsKHR(pub(crate) u32);
+impl VideoEncodeFlagBitsKHR {}
 #[repr(transparent)]
 #[derive(Clone, Copy)]
-pub struct VideoEncodeContentFlagsKHR(pub(crate) i32);
+pub struct VideoEncodeUsageFlagsKHR(pub(crate) u32);
 #[repr(transparent)]
 #[derive(Clone, Copy)]
-pub struct VideoEncodeCapabilityFlagsKHR(pub(crate) i32);
+pub struct VideoEncodeUsageFlagBitsKHR(pub(crate) u32);
+impl VideoEncodeUsageFlagBitsKHR {
+    pub const DEFAULT_KHR: Self = Self(1);
+}
 #[repr(transparent)]
 #[derive(Clone, Copy)]
-pub struct VideoEncodeFeedbackFlagsKHR(pub(crate) i32);
+pub struct VideoEncodeContentFlagsKHR(pub(crate) u32);
 #[repr(transparent)]
 #[derive(Clone, Copy)]
-pub struct VideoEncodeRateControlFlagsKHR(pub(crate) i32);
+pub struct VideoEncodeContentFlagBitsKHR(pub(crate) u32);
+impl VideoEncodeContentFlagBitsKHR {
+    pub const DEFAULT_KHR: Self = Self(1);
+}
 #[repr(transparent)]
 #[derive(Clone, Copy)]
-pub struct VideoEncodeRateControlModeFlagsKHR(pub(crate) i32);
+pub struct VideoEncodeCapabilityFlagsKHR(pub(crate) u32);
 #[repr(transparent)]
 #[derive(Clone, Copy)]
-pub struct VideoEncodeUsageFlagBitsKHR(pub(crate) i32);
+pub struct VideoEncodeCapabilityFlagBitsKHR(pub(crate) u32);
+impl VideoEncodeCapabilityFlagBitsKHR {}
 #[repr(transparent)]
 #[derive(Clone, Copy)]
-pub struct VideoEncodeContentFlagBitsKHR(pub(crate) i32);
+pub struct VideoEncodeFeedbackFlagsKHR(pub(crate) u32);
 #[repr(transparent)]
 #[derive(Clone, Copy)]
-pub struct VideoEncodeCapabilityFlagBitsKHR(pub(crate) i32);
+pub struct VideoEncodeFeedbackFlagBitsKHR(pub(crate) u32);
+impl VideoEncodeFeedbackFlagBitsKHR {}
 #[repr(transparent)]
 #[derive(Clone, Copy)]
-pub struct VideoEncodeFeedbackFlagBitsKHR(pub(crate) i32);
+pub struct VideoEncodeRateControlFlagsKHR(pub(crate) u32);
 #[repr(transparent)]
 #[derive(Clone, Copy)]
-pub struct VideoEncodeRateControlModeFlagBitsKHR(pub(crate) i32);
+pub struct VideoEncodeRateControlModeFlagsKHR(pub(crate) u32);
+#[repr(transparent)]
+#[derive(Clone, Copy)]
+pub struct VideoEncodeRateControlModeFlagBitsKHR(pub(crate) u32);
+impl VideoEncodeRateControlModeFlagBitsKHR {
+    pub const DEFAULT_KHR: Self = Self(1);
+}
 pub const KHR_VIDEO_ENCODE_QUEUE_SPEC_VERSION: u32 = 12;
 pub const KHR_VIDEO_ENCODE_QUEUE_EXTENSION_NAME: &core::ffi::CStr = c"VK_KHR_video_encode_queue";

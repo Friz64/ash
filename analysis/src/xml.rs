@@ -3,7 +3,9 @@ pub mod cexpr;
 pub mod depends;
 
 use crate::LibraryName;
-use crate::name::{CMacroName, CommandName, ConstantName, FuncPointerName, TypeName};
+use crate::name::{
+    CMacroName, CommandName, ConstantName, EnumVariantName, FuncPointerName, TypeName,
+};
 use cdecl::{CDecl, CDeclMode, CTok, CType};
 use cexpr::{CExprItem, CExprItems};
 use depends::Depends;
@@ -318,8 +320,8 @@ pub struct TypeAlias {
 impl TypeAlias {
     fn from_node(node: Node) -> TypeAlias {
         TypeAlias {
-            name: TypeName(attribute(node, "name").unwrap()),
-            alias: TypeName(attribute(node, "alias").unwrap()),
+            name: TypeName::new(attribute(node, "name").unwrap()),
+            alias: TypeName::new(attribute(node, "alias").unwrap()),
         }
     }
 }
@@ -333,8 +335,23 @@ pub struct ConstantAlias {
 impl ConstantAlias {
     fn from_node(node: Node) -> ConstantAlias {
         ConstantAlias {
-            name: ConstantName(attribute(node, "name").unwrap()),
-            alias: ConstantName(attribute(node, "alias").unwrap()),
+            name: ConstantName::new(attribute(node, "name").unwrap()),
+            alias: ConstantName::new(attribute(node, "alias").unwrap()),
+        }
+    }
+}
+
+#[derive(Debug)]
+pub struct EnumVariantAlias {
+    pub name: EnumVariantName,
+    pub alias: EnumVariantName,
+}
+
+impl EnumVariantAlias {
+    fn from_node(node: Node) -> EnumVariantAlias {
+        EnumVariantAlias {
+            name: EnumVariantName::new(attribute(node, "name").unwrap()),
+            alias: EnumVariantName::new(attribute(node, "alias").unwrap()),
         }
     }
 }
@@ -348,8 +365,8 @@ pub struct CommandAlias {
 impl CommandAlias {
     fn from_node(node: Node) -> CommandAlias {
         CommandAlias {
-            name: CommandName(attribute(node, "name").unwrap()),
-            alias: CommandName(attribute(node, "alias").unwrap()),
+            name: CommandName::new(attribute(node, "name").unwrap()),
+            alias: CommandName::new(attribute(node, "alias").unwrap()),
         }
     }
 }
@@ -384,7 +401,7 @@ impl BaseType {
 
         let c_decl = CDecl::from_xml(CDeclMode::TypeDef, node.children());
         Some(BaseType {
-            name: TypeName(c_decl.name),
+            name: TypeName::new(c_decl.name),
             ty: c_decl.ty,
         })
     }
@@ -392,19 +409,19 @@ impl BaseType {
 
 #[derive(Debug)]
 pub struct BitMask {
-    pub requires: Option<&'static str>,
-    pub bitvalues: Option<&'static str>,
-    pub ty: &'static str,
+    pub requires: Option<TypeName>,
+    pub bitvalues: Option<TypeName>,
+    pub ty: TypeName,
     pub name: TypeName,
 }
 
 impl BitMask {
     fn from_node(node: Node) -> BitMask {
         BitMask {
-            requires: attribute(node, "requires"),
-            bitvalues: attribute(node, "bitvalues"),
-            ty: child_text(node, "type").unwrap(),
-            name: TypeName(child_text(node, "name").unwrap()),
+            requires: attribute(node, "requires").map(TypeName::new),
+            bitvalues: attribute(node, "bitvalues").map(TypeName::new),
+            ty: TypeName::new(child_text(node, "type").unwrap()),
+            name: TypeName::new(child_text(node, "name").unwrap()),
         }
     }
 }
@@ -423,7 +440,7 @@ impl Handle {
             parent: attribute(node, "parent"),
             objtypeenum: attribute(node, "objtypeenum").unwrap(),
             ty: child_text(node, "type").unwrap(),
-            name: TypeName(child_text(node, "name").unwrap()),
+            name: TypeName::new(child_text(node, "name").unwrap()),
         }
     }
 }
@@ -461,7 +478,7 @@ impl FuncPointer {
         let proto_cdecl = CDecl::from_xml(CDeclMode::StructMember, proto.children());
         FuncPointer {
             return_type: Some(proto_cdecl.ty).filter(|ty| *ty != CType::VOID),
-            name: FuncPointerName(proto_cdecl.name),
+            name: FuncPointerName::new(proto_cdecl.name),
             params: node
                 .children()
                 .filter(|child| child.has_tag_name("param"))
@@ -504,7 +521,7 @@ pub struct Structure {
 impl Structure {
     fn from_node(node: Node, api: &str) -> Structure {
         Structure {
-            name: TypeName(attribute(node, "name").unwrap()),
+            name: TypeName::new(attribute(node, "name").unwrap()),
             structextends: attribute_comma_separated(node, "structextends"),
             members: node
                 .children()
@@ -584,7 +601,7 @@ impl CMacro {
             match item {
                 Item::NameTag(..) => unreachable!(),
                 Item::TypeTag(macro_name) => {
-                    calling = Some(CMacroName(macro_name));
+                    calling = Some(CMacroName::new(macro_name));
                     args = Some(vec![]);
                 }
                 Item::Text(mut s) => {
@@ -603,7 +620,7 @@ impl CMacro {
         }
 
         Some(CMacro {
-            name: CMacroName(name),
+            name: CMacroName::new(name),
             args: args.unwrap(),
             cexpr,
         })
@@ -622,22 +639,22 @@ impl BaseConstant {
         BaseConstant {
             ty: attribute(node, "type").unwrap(),
             value: cexpr::parse(attribute(node, "value").unwrap()),
-            name: ConstantName(attribute(node, "name").unwrap()),
+            name: ConstantName::new(attribute(node, "name").unwrap()),
         }
     }
 }
 
 #[derive(Debug)]
 pub struct EnumValue {
-    pub value: CExprItems,
-    pub name: &'static str,
+    pub expr: CExprItems,
+    pub name: EnumVariantName,
 }
 
 impl EnumValue {
     fn from_node(node: Node) -> EnumValue {
         EnumValue {
-            value: cexpr::parse(attribute(node, "value").unwrap()),
-            name: attribute(node, "name").unwrap(),
+            expr: cexpr::parse(attribute(node, "value").unwrap()),
+            name: EnumVariantName::new(attribute(node, "name").unwrap()),
         }
     }
 }
@@ -652,7 +669,7 @@ pub struct Enum {
 impl Enum {
     fn from_node(node: Node, api: &str) -> Enum {
         let mut value = Enum {
-            name: TypeName(attribute(node, "name").unwrap()),
+            name: TypeName::new(attribute(node, "name").unwrap()),
             values: Vec::new(),
             aliases: Vec::new(),
         };
@@ -675,54 +692,56 @@ impl Enum {
 
 #[derive(Debug)]
 pub struct BitMaskBit {
-    pub bitpos: &'static str,
-    pub name: ConstantName,
+    pub bitpos: u8,
+    pub name: EnumVariantName,
 }
 
 impl BitMaskBit {
     fn from_node(node: Node) -> BitMaskBit {
         BitMaskBit {
-            bitpos: attribute(node, "bitpos").unwrap(),
-            name: ConstantName(attribute(node, "name").unwrap()),
+            bitpos: attribute(node, "bitpos").unwrap().parse().unwrap(),
+            name: EnumVariantName::new(attribute(node, "name").unwrap()),
         }
     }
 }
 
 #[derive(Debug)]
-pub struct BitMaskBits {
-    pub name: TypeName,
-    pub bits: Vec<BitMaskBit>,
+pub enum BitMaskBitsItem {
+    Bit(BitMaskBit),
     /// Some bitmask variants represent literal values instead of specific
     /// individual bits, e.g. a combination of bits, or no bits at all. A good
     /// example for this is `VkCullModeFlagBits::FRONT_AND_BACK`.
-    pub values: Vec<EnumValue>,
-    pub aliases: Vec<ConstantAlias>,
+    Value(EnumValue),
+    Alias(EnumVariantAlias),
+}
+
+#[derive(Debug)]
+pub struct BitMaskBits {
+    pub name: TypeName,
+    pub bitwidth: Option<u8>,
+    pub values: Vec<BitMaskBitsItem>,
 }
 
 impl BitMaskBits {
     fn from_node(node: Node, api: &str) -> BitMaskBits {
-        let mut value = BitMaskBits {
-            name: TypeName(attribute(node, "name").unwrap()),
-            bits: Vec::new(),
-            values: Vec::new(),
-            aliases: Vec::new(),
-        };
-
-        for variant in node
-            .children()
-            .filter(|node| node.has_tag_name("enum"))
-            .filter(|node| api_matches(node, api))
-        {
-            if variant.has_attribute("alias") {
-                value.aliases.push(ConstantAlias::from_node(variant));
-            } else if variant.has_attribute("value") {
-                value.values.push(EnumValue::from_node(variant));
-            } else {
-                value.bits.push(BitMaskBit::from_node(variant));
-            }
+        BitMaskBits {
+            name: TypeName::new(attribute(node, "name").unwrap()),
+            bitwidth: attribute(node, "bitwidth").map(|v| v.parse().unwrap()),
+            values: node
+                .children()
+                .filter(|node| node.has_tag_name("enum"))
+                .filter(|node| api_matches(node, api))
+                .map(|variant| {
+                    if variant.has_attribute("alias") {
+                        BitMaskBitsItem::Alias(EnumVariantAlias::from_node(variant))
+                    } else if variant.has_attribute("value") {
+                        BitMaskBitsItem::Value(EnumValue::from_node(variant))
+                    } else {
+                        BitMaskBitsItem::Bit(BitMaskBit::from_node(variant))
+                    }
+                })
+                .collect(),
         }
-
-        value
     }
 }
 
@@ -763,7 +782,7 @@ impl Command {
         let proto_cdecl = CDecl::from_xml(CDeclMode::StructMember, proto.children());
         Command {
             return_type: Some(proto_cdecl.ty).filter(|ty| *ty != CType::VOID),
-            name: CommandName(proto_cdecl.name),
+            name: CommandName::new(proto_cdecl.name),
             params: node
                 .children()
                 .filter(|child| child.has_tag_name("param"))
@@ -784,7 +803,7 @@ pub struct RequireConstant {
 impl RequireConstant {
     fn from_node(node: Node) -> RequireConstant {
         RequireConstant {
-            name: ConstantName(attribute(node, "name").unwrap()),
+            name: ConstantName::new(attribute(node, "name").unwrap()),
             value: attribute(node, "value").map(cexpr::parse),
         }
     }
@@ -821,22 +840,22 @@ pub enum RequireEnumExtendsValue {
 
 #[derive(Debug)]
 pub struct RequireEnumExtends {
-    pub name: &'static str,
-    pub extends: &'static str,
+    pub name: EnumVariantName,
+    pub extends: TypeName,
     pub value: RequireEnumExtendsValue,
 }
 
 impl RequireEnumExtends {
     fn from_node(node: Node, extension_num: Option<u32>) -> RequireEnumExtends {
         RequireEnumExtends {
-            name: attribute(node, "name").unwrap(),
-            extends: attribute(node, "extends").unwrap(),
+            name: EnumVariantName::new(attribute(node, "name").unwrap()),
+            extends: TypeName::new(attribute(node, "extends").unwrap()),
             value: if let Some(value) = attribute(node, "value") {
                 RequireEnumExtendsValue::Value(value)
             } else if let Some(bitpos) = attribute(node, "bitpos").map(|v| v.parse().unwrap()) {
                 RequireEnumExtendsValue::BitPos(bitpos)
             } else if let Some(alias) = attribute(node, "alias") {
-                RequireEnumExtendsValue::Alias(ConstantName(alias))
+                RequireEnumExtendsValue::Alias(ConstantName::new(alias))
             } else {
                 RequireEnumExtendsValue::Offset(RequireEnumExtendsOffset {
                     offset: attribute(node, "offset").unwrap().parse().unwrap(),
@@ -863,16 +882,16 @@ impl RequireType {
     fn from_node(node: Node, library_name: LibraryName) -> RequireType {
         let name = attribute(node, "name").unwrap();
         if name.starts_with("PFN_") {
-            RequireType::FuncPointer(FuncPointerName(name))
+            RequireType::FuncPointer(FuncPointerName::new(name))
         } else if name.starts_with(match library_name {
             LibraryName::Vk | LibraryName::Video => "VK_",
         }) {
-            RequireType::CMacro(CMacroName(name))
+            RequireType::CMacro(CMacroName::new(name))
         } else if name.starts_with(match library_name {
             LibraryName::Vk => "Vk",
             LibraryName::Video => "StdVideo",
         }) {
-            RequireType::Type(TypeName(name))
+            RequireType::Type(TypeName::new(name))
         } else {
             RequireType::External(name)
         }
@@ -887,7 +906,7 @@ pub struct RequireCommand {
 impl RequireCommand {
     fn from_node(node: Node) -> RequireCommand {
         RequireCommand {
-            name: CommandName(attribute(node, "name").unwrap()),
+            name: CommandName::new(attribute(node, "name").unwrap()),
         }
     }
 }

@@ -23,6 +23,6 @@ pub struct PipelineDiscardRectangleStateCreateInfoEXT {
 pub struct DiscardRectangleModeEXT(pub(crate) i32);
 #[repr(transparent)]
 #[derive(Clone, Copy)]
-pub struct PipelineDiscardRectangleStateCreateFlagsEXT(pub(crate) i32);
+pub struct PipelineDiscardRectangleStateCreateFlagsEXT(pub(crate) u32);
 pub const EXT_DISCARD_RECTANGLES_SPEC_VERSION: u32 = 2;
 pub const EXT_DISCARD_RECTANGLES_EXTENSION_NAME: &core::ffi::CStr = c"VK_EXT_discard_rectangles";

@@ -12,6 +12,6 @@ pub struct XlibSurfaceCreateInfoKHR {
 }
 #[repr(transparent)]
 #[derive(Clone, Copy)]
-pub struct XlibSurfaceCreateFlagsKHR(pub(crate) i32);
+pub struct XlibSurfaceCreateFlagsKHR(pub(crate) u32);
 pub const KHR_XLIB_SURFACE_SPEC_VERSION: u32 = 6;
 pub const KHR_XLIB_SURFACE_EXTENSION_NAME: &core::ffi::CStr = c"VK_KHR_xlib_surface";

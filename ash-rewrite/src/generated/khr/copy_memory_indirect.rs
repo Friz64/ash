@@ -64,9 +64,10 @@ pub struct PhysicalDeviceCopyMemoryIndirectPropertiesKHR {
 }
 #[repr(transparent)]
 #[derive(Clone, Copy)]
-pub struct AddressCopyFlagsKHR(pub(crate) i32);
+pub struct AddressCopyFlagsKHR(pub(crate) u32);
 #[repr(transparent)]
 #[derive(Clone, Copy)]
-pub struct AddressCopyFlagBitsKHR(pub(crate) i32);
+pub struct AddressCopyFlagBitsKHR(pub(crate) u32);
+impl AddressCopyFlagBitsKHR {}
 pub const KHR_COPY_MEMORY_INDIRECT_SPEC_VERSION: u32 = 1;
 pub const KHR_COPY_MEMORY_INDIRECT_EXTENSION_NAME: &core::ffi::CStr = c"VK_KHR_copy_memory_indirect";

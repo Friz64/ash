@@ -13,7 +13,7 @@ pub struct Decl {
 impl Decl {
     pub(crate) fn from_c(require_map: &RequireMap, c_decl: &CDecl<'static>) -> Decl {
         Decl {
-            name: VariableName(c_decl.name),
+            name: VariableName::new(c_decl.name),
             ty: Ty::from_c(require_map, &c_decl.ty),
         }
     }
@@ -89,13 +89,13 @@ impl Ty {
                 let name = cbase_type.name;
                 if let Some(primary) = CPrimaryType::from_str(name) {
                     Ty::CPrimary(primary)
-                } else if require_map.ty.contains_key(&TypeName(name)) {
-                    Ty::SpecType(TypeName(name))
+                } else if require_map.ty.contains_key(&TypeName::new(name)) {
+                    Ty::SpecType(TypeName::new(name))
                 } else if require_map
                     .func_pointer
-                    .contains_key(&FuncPointerName(name))
+                    .contains_key(&FuncPointerName::new(name))
                 {
-                    Ty::SpecFuncPointer(FuncPointerName(name))
+                    Ty::SpecFuncPointer(FuncPointerName::new(name))
                 } else {
                     Ty::Platform(name)
                 }
@@ -115,7 +115,7 @@ impl Ty {
             CType::Array { element, len } => Ty::Array(
                 Box::leak(Box::new(Ty::from_c(require_map, element))),
                 match len {
-                    CArrayLen::Named(constant) => ArrayLen::Constant(ConstantName(constant)),
+                    CArrayLen::Named(constant) => ArrayLen::Constant(ConstantName::new(constant)),
                     CArrayLen::Literal(value) => ArrayLen::Literal(*value),
                 },
             ),

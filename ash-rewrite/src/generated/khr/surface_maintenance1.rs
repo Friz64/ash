@@ -29,15 +29,17 @@ pub struct SurfacePresentModeCompatibilityKHR {
 }
 #[repr(transparent)]
 #[derive(Clone, Copy)]
-pub struct PresentScalingFlagsKHR(pub(crate) i32);
+pub struct PresentScalingFlagsKHR(pub(crate) u32);
 #[repr(transparent)]
 #[derive(Clone, Copy)]
-pub struct PresentGravityFlagsKHR(pub(crate) i32);
+pub struct PresentScalingFlagBitsKHR(pub(crate) u32);
+impl PresentScalingFlagBitsKHR {}
 #[repr(transparent)]
 #[derive(Clone, Copy)]
-pub struct PresentScalingFlagBitsKHR(pub(crate) i32);
+pub struct PresentGravityFlagsKHR(pub(crate) u32);
 #[repr(transparent)]
 #[derive(Clone, Copy)]
-pub struct PresentGravityFlagBitsKHR(pub(crate) i32);
+pub struct PresentGravityFlagBitsKHR(pub(crate) u32);
+impl PresentGravityFlagBitsKHR {}
 pub const KHR_SURFACE_MAINTENANCE_1_SPEC_VERSION: u32 = 1;
 pub const KHR_SURFACE_MAINTENANCE_1_EXTENSION_NAME: &core::ffi::CStr = c"VK_KHR_surface_maintenance1";

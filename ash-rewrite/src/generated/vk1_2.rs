@@ -623,22 +623,27 @@ pub struct DriverId(pub(crate) i32);
 pub struct ShaderFloatControlsIndependence(pub(crate) i32);
 #[repr(transparent)]
 #[derive(Clone, Copy)]
-pub struct SemaphoreWaitFlags(pub(crate) i32);
+pub struct SemaphoreWaitFlags(pub(crate) u32);
 #[repr(transparent)]
 #[derive(Clone, Copy)]
-pub struct DescriptorBindingFlags(pub(crate) i32);
+pub struct SemaphoreWaitFlagBits(pub(crate) u32);
+impl SemaphoreWaitFlagBits {}
 #[repr(transparent)]
 #[derive(Clone, Copy)]
-pub struct ResolveModeFlags(pub(crate) i32);
+pub struct DescriptorBindingFlags(pub(crate) u32);
 #[repr(transparent)]
 #[derive(Clone, Copy)]
-pub struct SemaphoreWaitFlagBits(pub(crate) i32);
+pub struct DescriptorBindingFlagBits(pub(crate) u32);
+impl DescriptorBindingFlagBits {}
 #[repr(transparent)]
 #[derive(Clone, Copy)]
-pub struct DescriptorBindingFlagBits(pub(crate) i32);
+pub struct ResolveModeFlags(pub(crate) u32);
 #[repr(transparent)]
 #[derive(Clone, Copy)]
-pub struct ResolveModeFlagBits(pub(crate) i32);
+pub struct ResolveModeFlagBits(pub(crate) u32);
+impl ResolveModeFlagBits {
+    pub const NONE: Self = Self(1);
+}
 pub const MAX_DRIVER_NAME_SIZE: u32 = 256;
 pub const MAX_DRIVER_INFO_SIZE: u32 = 256;
 pub const API_VERSION_1_2: u32 = crate::vk::make_api_version(0, 1, 2, 0);

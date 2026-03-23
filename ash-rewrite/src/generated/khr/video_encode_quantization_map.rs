@@ -75,11 +75,5 @@ pub struct PhysicalDeviceVideoEncodeQuantizationMapFeaturesKHR {
     pub p_next: *mut core::ffi::c_void,
     pub video_encode_quantization_map: crate::vk::Bool32,
 }
-#[repr(transparent)]
-#[derive(Clone, Copy)]
-pub struct VideoSessionParametersCreateFlagBitsKHR(pub(crate) i32);
-#[repr(transparent)]
-#[derive(Clone, Copy)]
-pub struct VideoEncodeFlagBitsKHR(pub(crate) i32);
 pub const KHR_VIDEO_ENCODE_QUANTIZATION_MAP_SPEC_VERSION: u32 = 2;
 pub const KHR_VIDEO_ENCODE_QUANTIZATION_MAP_EXTENSION_NAME: &core::ffi::CStr = c"VK_KHR_video_encode_quantization_map";

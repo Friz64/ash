@@ -168,33 +168,38 @@ pub struct VideoEncodeH265DpbSlotInfoKHR {
 }
 #[repr(transparent)]
 #[derive(Clone, Copy)]
-pub struct VideoEncodeH265CapabilityFlagsKHR(pub(crate) i32);
+pub struct VideoEncodeH265CapabilityFlagsKHR(pub(crate) u32);
 #[repr(transparent)]
 #[derive(Clone, Copy)]
-pub struct VideoEncodeH265StdFlagsKHR(pub(crate) i32);
+pub struct VideoEncodeH265CapabilityFlagBitsKHR(pub(crate) u32);
+impl VideoEncodeH265CapabilityFlagBitsKHR {}
 #[repr(transparent)]
 #[derive(Clone, Copy)]
-pub struct VideoEncodeH265RateControlFlagsKHR(pub(crate) i32);
+pub struct VideoEncodeH265StdFlagsKHR(pub(crate) u32);
 #[repr(transparent)]
 #[derive(Clone, Copy)]
-pub struct VideoEncodeH265CtbSizeFlagsKHR(pub(crate) i32);
+pub struct VideoEncodeH265StdFlagBitsKHR(pub(crate) u32);
+impl VideoEncodeH265StdFlagBitsKHR {}
 #[repr(transparent)]
 #[derive(Clone, Copy)]
-pub struct VideoEncodeH265TransformBlockSizeFlagsKHR(pub(crate) i32);
+pub struct VideoEncodeH265RateControlFlagsKHR(pub(crate) u32);
 #[repr(transparent)]
 #[derive(Clone, Copy)]
-pub struct VideoEncodeH265CapabilityFlagBitsKHR(pub(crate) i32);
+pub struct VideoEncodeH265RateControlFlagBitsKHR(pub(crate) u32);
+impl VideoEncodeH265RateControlFlagBitsKHR {}
 #[repr(transparent)]
 #[derive(Clone, Copy)]
-pub struct VideoEncodeH265StdFlagBitsKHR(pub(crate) i32);
+pub struct VideoEncodeH265CtbSizeFlagsKHR(pub(crate) u32);
 #[repr(transparent)]
 #[derive(Clone, Copy)]
-pub struct VideoEncodeH265RateControlFlagBitsKHR(pub(crate) i32);
+pub struct VideoEncodeH265CtbSizeFlagBitsKHR(pub(crate) u32);
+impl VideoEncodeH265CtbSizeFlagBitsKHR {}
 #[repr(transparent)]
 #[derive(Clone, Copy)]
-pub struct VideoEncodeH265CtbSizeFlagBitsKHR(pub(crate) i32);
+pub struct VideoEncodeH265TransformBlockSizeFlagsKHR(pub(crate) u32);
 #[repr(transparent)]
 #[derive(Clone, Copy)]
-pub struct VideoEncodeH265TransformBlockSizeFlagBitsKHR(pub(crate) i32);
+pub struct VideoEncodeH265TransformBlockSizeFlagBitsKHR(pub(crate) u32);
+impl VideoEncodeH265TransformBlockSizeFlagBitsKHR {}
 pub const KHR_VIDEO_ENCODE_H265_SPEC_VERSION: u32 = 14;
 pub const KHR_VIDEO_ENCODE_H265_EXTENSION_NAME: &core::ffi::CStr = c"VK_KHR_video_encode_h265";

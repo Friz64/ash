@@ -505,27 +505,31 @@ pub struct PipelineRobustnessBufferBehavior(pub(crate) i32);
 pub struct PipelineRobustnessImageBehavior(pub(crate) i32);
 #[repr(transparent)]
 #[derive(Clone, Copy)]
-pub struct MemoryUnmapFlags(pub(crate) i32);
+pub struct MemoryUnmapFlags(pub(crate) u32);
 #[repr(transparent)]
 #[derive(Clone, Copy)]
-pub struct PipelineCreateFlags2(pub(crate) i32);
+pub struct MemoryUnmapFlagBits(pub(crate) u32);
+impl MemoryUnmapFlagBits {}
 #[repr(transparent)]
 #[derive(Clone, Copy)]
-pub struct BufferUsageFlags2(pub(crate) i32);
+pub struct PipelineCreateFlags2(pub(crate) u64);
 #[repr(transparent)]
 #[derive(Clone, Copy)]
-pub struct HostImageCopyFlags(pub(crate) i32);
+pub struct PipelineCreateFlagBits2(pub(crate) u64);
+impl PipelineCreateFlagBits2 {}
 #[repr(transparent)]
 #[derive(Clone, Copy)]
-pub struct BufferUsageFlagBits2(pub(crate) i32);
+pub struct BufferUsageFlags2(pub(crate) u64);
 #[repr(transparent)]
 #[derive(Clone, Copy)]
-pub struct PipelineCreateFlagBits2(pub(crate) i32);
+pub struct BufferUsageFlagBits2(pub(crate) u64);
+impl BufferUsageFlagBits2 {}
 #[repr(transparent)]
 #[derive(Clone, Copy)]
-pub struct HostImageCopyFlagBits(pub(crate) i32);
+pub struct HostImageCopyFlags(pub(crate) u32);
 #[repr(transparent)]
 #[derive(Clone, Copy)]
-pub struct MemoryUnmapFlagBits(pub(crate) i32);
+pub struct HostImageCopyFlagBits(pub(crate) u32);
+impl HostImageCopyFlagBits {}
 pub const MAX_GLOBAL_PRIORITY_SIZE: u32 = 16;
 pub const API_VERSION_1_4: u32 = crate::vk::make_api_version(0, 1, 4, 0);
