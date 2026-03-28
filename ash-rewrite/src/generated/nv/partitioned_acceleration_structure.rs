@@ -89,9 +89,21 @@ pub struct BuildPartitionedAccelerationStructureInfoNV {
 #[repr(transparent)]
 #[derive(Clone, Copy)]
 pub struct PartitionedAccelerationStructureOpTypeNV(pub(crate) i32);
-#[repr(transparent)]
-#[derive(Clone, Copy)]
-pub struct PartitionedAccelerationStructureInstanceFlagsNV(pub(crate) u32);
+bitflags::bitflags! {
+    #[repr(transparent)] #[derive(Clone, Copy)] pub struct
+    PartitionedAccelerationStructureInstanceFlagsNV : u32 { const
+    FLAG_TRIANGLE_FACING_CULL_DISABLE_NV =
+    PartitionedAccelerationStructureInstanceFlagBitsNV::FLAG_TRIANGLE_FACING_CULL_DISABLE_NV
+    .0; const FLAG_TRIANGLE_FLIP_FACING_NV =
+    PartitionedAccelerationStructureInstanceFlagBitsNV::FLAG_TRIANGLE_FLIP_FACING_NV.0;
+    const FLAG_FORCE_OPAQUE_NV =
+    PartitionedAccelerationStructureInstanceFlagBitsNV::FLAG_FORCE_OPAQUE_NV.0; const
+    FLAG_FORCE_NO_OPAQUE_NV =
+    PartitionedAccelerationStructureInstanceFlagBitsNV::FLAG_FORCE_NO_OPAQUE_NV.0; const
+    FLAG_ENABLE_EXPLICIT_BOUNDING_BOX_NV =
+    PartitionedAccelerationStructureInstanceFlagBitsNV::FLAG_ENABLE_EXPLICIT_BOUNDING_BOX_NV
+    .0; }
+}
 #[repr(transparent)]
 #[derive(Clone, Copy)]
 pub struct PartitionedAccelerationStructureInstanceFlagBitsNV(pub(crate) u32);

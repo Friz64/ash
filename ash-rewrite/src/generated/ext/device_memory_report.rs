@@ -33,9 +33,10 @@ pub struct DeviceMemoryReportCallbackDataEXT {
 #[repr(transparent)]
 #[derive(Clone, Copy)]
 pub struct DeviceMemoryReportEventTypeEXT(pub(crate) i32);
-#[repr(transparent)]
-#[derive(Clone, Copy)]
-pub struct DeviceMemoryReportFlagsEXT(pub(crate) u32);
+bitflags::bitflags! {
+    #[repr(transparent)] #[derive(Clone, Copy)] pub struct DeviceMemoryReportFlagsEXT :
+    u32 {}
+}
 #[allow(non_camel_case_types)]
 pub type PFN_vkDeviceMemoryReportCallbackEXT = Option<()>;
 pub const EXT_DEVICE_MEMORY_REPORT_SPEC_VERSION: u32 = 2;

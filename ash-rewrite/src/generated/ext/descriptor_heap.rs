@@ -298,15 +298,30 @@ impl crate::vk::BufferUsageFlagBits2 {
 impl crate::vk::TensorCreateFlagBitsARM {
     pub const DESCRIPTOR_HEAP_CAPTURE_REPLAY_ARM: Self = Self(1 << 3);
 }
-#[repr(transparent)]
-#[derive(Clone, Copy)]
-pub struct TensorViewCreateFlagsARM(pub(crate) u64);
+bitflags::bitflags! {
+    #[repr(transparent)] #[derive(Clone, Copy)] pub struct TensorViewCreateFlagsARM : u64
+    { const DESCRIPTOR_BUFFER_CAPTURE_REPLAY_ARM =
+    TensorViewCreateFlagBitsARM::DESCRIPTOR_BUFFER_CAPTURE_REPLAY_ARM.0; }
+}
 #[repr(transparent)]
 #[derive(Clone, Copy)]
 pub struct TensorViewCreateFlagBitsARM(pub(crate) u64);
-#[repr(transparent)]
-#[derive(Clone, Copy)]
-pub struct SpirvResourceTypeFlagsEXT(pub(crate) u32);
+bitflags::bitflags! {
+    #[repr(transparent)] #[derive(Clone, Copy)] pub struct SpirvResourceTypeFlagsEXT :
+    u32 { const ALL_EXT = SpirvResourceTypeFlagBitsEXT::ALL_EXT.0; const SAMPLER_EXT =
+    SpirvResourceTypeFlagBitsEXT::SAMPLER_EXT.0; const SAMPLED_IMAGE_EXT =
+    SpirvResourceTypeFlagBitsEXT::SAMPLED_IMAGE_EXT.0; const READ_ONLY_IMAGE_EXT =
+    SpirvResourceTypeFlagBitsEXT::READ_ONLY_IMAGE_EXT.0; const READ_WRITE_IMAGE_EXT =
+    SpirvResourceTypeFlagBitsEXT::READ_WRITE_IMAGE_EXT.0; const
+    COMBINED_SAMPLED_IMAGE_EXT = SpirvResourceTypeFlagBitsEXT::COMBINED_SAMPLED_IMAGE_EXT
+    .0; const UNIFORM_BUFFER_EXT = SpirvResourceTypeFlagBitsEXT::UNIFORM_BUFFER_EXT.0;
+    const READ_ONLY_STORAGE_BUFFER_EXT =
+    SpirvResourceTypeFlagBitsEXT::READ_ONLY_STORAGE_BUFFER_EXT.0; const
+    READ_WRITE_STORAGE_BUFFER_EXT =
+    SpirvResourceTypeFlagBitsEXT::READ_WRITE_STORAGE_BUFFER_EXT.0; const
+    ACCELERATION_STRUCTURE_EXT = SpirvResourceTypeFlagBitsEXT::ACCELERATION_STRUCTURE_EXT
+    .0; const TENSOR_ARM = SpirvResourceTypeFlagBitsEXT::TENSOR_ARM.0; }
+}
 #[repr(transparent)]
 #[derive(Clone, Copy)]
 pub struct SpirvResourceTypeFlagBitsEXT(pub(crate) u32);

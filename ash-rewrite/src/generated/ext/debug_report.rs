@@ -13,9 +13,14 @@ pub struct DebugReportCallbackCreateInfoEXT {
 #[repr(transparent)]
 #[derive(Clone, Copy)]
 pub struct DebugReportObjectTypeEXT(pub(crate) i32);
-#[repr(transparent)]
-#[derive(Clone, Copy)]
-pub struct DebugReportFlagsEXT(pub(crate) u32);
+bitflags::bitflags! {
+    #[repr(transparent)] #[derive(Clone, Copy)] pub struct DebugReportFlagsEXT : u32 {
+    const INFORMATION_EXT = DebugReportFlagBitsEXT::INFORMATION_EXT.0; const WARNING_EXT
+    = DebugReportFlagBitsEXT::WARNING_EXT.0; const PERFORMANCE_WARNING_EXT =
+    DebugReportFlagBitsEXT::PERFORMANCE_WARNING_EXT.0; const ERROR_EXT =
+    DebugReportFlagBitsEXT::ERROR_EXT.0; const DEBUG_EXT =
+    DebugReportFlagBitsEXT::DEBUG_EXT.0; }
+}
 #[repr(transparent)]
 #[derive(Clone, Copy)]
 pub struct DebugReportFlagBitsEXT(pub(crate) u32);

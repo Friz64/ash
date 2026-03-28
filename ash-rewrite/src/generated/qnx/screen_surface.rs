@@ -10,8 +10,9 @@ pub struct ScreenSurfaceCreateInfoQNX {
     pub context: *mut crate::platform_types::_screen_context,
     pub window: *mut crate::platform_types::_screen_window,
 }
-#[repr(transparent)]
-#[derive(Clone, Copy)]
-pub struct ScreenSurfaceCreateFlagsQNX(pub(crate) u32);
+bitflags::bitflags! {
+    #[repr(transparent)] #[derive(Clone, Copy)] pub struct ScreenSurfaceCreateFlagsQNX :
+    u32 {}
+}
 pub const QNX_SCREEN_SURFACE_SPEC_VERSION: u32 = 1;
 pub const QNX_SCREEN_SURFACE_EXTENSION_NAME: &core::ffi::CStr = c"VK_QNX_screen_surface";

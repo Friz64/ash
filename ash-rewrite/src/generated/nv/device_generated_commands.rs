@@ -149,9 +149,14 @@ impl crate::vk::PipelineCreateFlagBits {
 impl crate::vk::PipelineStageFlagBits {
     pub const COMMAND_PREPROCESS_NV: Self = Self::COMMAND_PREPROCESS_EXT;
 }
-#[repr(transparent)]
-#[derive(Clone, Copy)]
-pub struct IndirectCommandsLayoutUsageFlagsNV(pub(crate) u32);
+bitflags::bitflags! {
+    #[repr(transparent)] #[derive(Clone, Copy)] pub struct
+    IndirectCommandsLayoutUsageFlagsNV : u32 { const EXPLICIT_PREPROCESS_NV =
+    IndirectCommandsLayoutUsageFlagBitsNV::EXPLICIT_PREPROCESS_NV.0; const
+    INDEXED_SEQUENCES_NV = IndirectCommandsLayoutUsageFlagBitsNV::INDEXED_SEQUENCES_NV.0;
+    const UNORDERED_SEQUENCES_NV =
+    IndirectCommandsLayoutUsageFlagBitsNV::UNORDERED_SEQUENCES_NV.0; }
+}
 #[repr(transparent)]
 #[derive(Clone, Copy)]
 pub struct IndirectCommandsLayoutUsageFlagBitsNV(pub(crate) u32);
@@ -161,9 +166,10 @@ impl IndirectCommandsLayoutUsageFlagBitsNV {
     pub const INDEXED_SEQUENCES_NV: Self = Self(1 << 1);
     pub const UNORDERED_SEQUENCES_NV: Self = Self(1 << 2);
 }
-#[repr(transparent)]
-#[derive(Clone, Copy)]
-pub struct IndirectStateFlagsNV(pub(crate) u32);
+bitflags::bitflags! {
+    #[repr(transparent)] #[derive(Clone, Copy)] pub struct IndirectStateFlagsNV : u32 {
+    const FLAG_FRONTFACE_NV = IndirectStateFlagBitsNV::FLAG_FRONTFACE_NV.0; }
+}
 #[repr(transparent)]
 #[derive(Clone, Copy)]
 pub struct IndirectStateFlagBitsNV(pub(crate) u32);

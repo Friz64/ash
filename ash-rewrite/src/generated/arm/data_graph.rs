@@ -228,9 +228,11 @@ impl crate::vk::BufferUsageFlagBits2 {
 impl crate::vk::TensorUsageFlagBitsARM {
     pub const DATA_GRAPH_ARM: Self = Self(1 << 5);
 }
-#[repr(transparent)]
-#[derive(Clone, Copy)]
-pub struct DataGraphPipelineSessionCreateFlagsARM(pub(crate) u64);
+bitflags::bitflags! {
+    #[repr(transparent)] #[derive(Clone, Copy)] pub struct
+    DataGraphPipelineSessionCreateFlagsARM : u64 { const PROTECTED_ARM =
+    DataGraphPipelineSessionCreateFlagBitsARM::PROTECTED_ARM.0; }
+}
 #[repr(transparent)]
 #[derive(Clone, Copy)]
 pub struct DataGraphPipelineSessionCreateFlagBitsARM(pub(crate) u64);
@@ -238,9 +240,10 @@ pub struct DataGraphPipelineSessionCreateFlagBitsARM(pub(crate) u64);
 impl DataGraphPipelineSessionCreateFlagBitsARM {
     pub const PROTECTED_ARM: Self = Self(1 << 0);
 }
-#[repr(transparent)]
-#[derive(Clone, Copy)]
-pub struct DataGraphPipelineDispatchFlagsARM(pub(crate) u64);
+bitflags::bitflags! {
+    #[repr(transparent)] #[derive(Clone, Copy)] pub struct
+    DataGraphPipelineDispatchFlagsARM : u64 {}
+}
 #[repr(transparent)]
 #[derive(Clone, Copy)]
 pub struct DataGraphPipelineDispatchFlagBitsARM(pub(crate) u64);

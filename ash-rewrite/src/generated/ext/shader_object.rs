@@ -38,9 +38,23 @@ pub type ShaderRequiredSubgroupSizeCreateInfoEXT = crate::vk::PipelineShaderStag
 #[repr(transparent)]
 #[derive(Clone, Copy)]
 pub struct ShaderCodeTypeEXT(pub(crate) i32);
-#[repr(transparent)]
-#[derive(Clone, Copy)]
-pub struct ShaderCreateFlagsEXT(pub(crate) u32);
+bitflags::bitflags! {
+    #[repr(transparent)] #[derive(Clone, Copy)] pub struct ShaderCreateFlagsEXT : u32 {
+    const LINK_STAGE_EXT = ShaderCreateFlagBitsEXT::LINK_STAGE_EXT.0; const
+    DESCRIPTOR_HEAP_EXT = ShaderCreateFlagBitsEXT::DESCRIPTOR_HEAP_EXT.0; const
+    INSTRUMENT_SHADER_ARM = ShaderCreateFlagBitsEXT::INSTRUMENT_SHADER_ARM.0; const
+    ALLOW_VARYING_SUBGROUP_SIZE_EXT =
+    ShaderCreateFlagBitsEXT::ALLOW_VARYING_SUBGROUP_SIZE_EXT.0; const
+    REQUIRE_FULL_SUBGROUPS_EXT = ShaderCreateFlagBitsEXT::REQUIRE_FULL_SUBGROUPS_EXT.0;
+    const NO_TASK_SHADER_EXT = ShaderCreateFlagBitsEXT::NO_TASK_SHADER_EXT.0; const
+    DISPATCH_BASE_EXT = ShaderCreateFlagBitsEXT::DISPATCH_BASE_EXT.0; const
+    FRAGMENT_SHADING_RATE_ATTACHMENT_EXT =
+    ShaderCreateFlagBitsEXT::FRAGMENT_SHADING_RATE_ATTACHMENT_EXT.0; const
+    FRAGMENT_DENSITY_MAP_ATTACHMENT_EXT =
+    ShaderCreateFlagBitsEXT::FRAGMENT_DENSITY_MAP_ATTACHMENT_EXT.0; const
+    INDIRECT_BINDABLE_EXT = ShaderCreateFlagBitsEXT::INDIRECT_BINDABLE_EXT.0; const
+    _64_INDEXING_EXT = ShaderCreateFlagBitsEXT::_64_INDEXING_EXT.0; }
+}
 #[repr(transparent)]
 #[derive(Clone, Copy)]
 pub struct ShaderCreateFlagBitsEXT(pub(crate) u32);

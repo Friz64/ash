@@ -642,9 +642,21 @@ impl crate::vk::DependencyFlagBits {
     pub const DEVICE_GROUP: Self = Self(1 << 2);
     pub const VIEW_LOCAL: Self = Self(1 << 1);
 }
-#[repr(transparent)]
-#[derive(Clone, Copy)]
-pub struct SubgroupFeatureFlags(pub(crate) u32);
+bitflags::bitflags! {
+    #[repr(transparent)] #[derive(Clone, Copy)] pub struct SubgroupFeatureFlags : u32 {
+    const BASIC = SubgroupFeatureFlagBits::BASIC.0; const VOTE =
+    SubgroupFeatureFlagBits::VOTE.0; const ARITHMETIC =
+    SubgroupFeatureFlagBits::ARITHMETIC.0; const BALLOT = SubgroupFeatureFlagBits::BALLOT
+    .0; const SHUFFLE = SubgroupFeatureFlagBits::SHUFFLE.0; const SHUFFLE_RELATIVE =
+    SubgroupFeatureFlagBits::SHUFFLE_RELATIVE.0; const CLUSTERED =
+    SubgroupFeatureFlagBits::CLUSTERED.0; const QUAD = SubgroupFeatureFlagBits::QUAD.0;
+    const ROTATE = SubgroupFeatureFlagBits::ROTATE.0; const ROTATE_CLUSTERED =
+    SubgroupFeatureFlagBits::ROTATE_CLUSTERED.0; const PARTITIONED_NV =
+    SubgroupFeatureFlagBits::PARTITIONED_NV.0; const ROTATE_KHR =
+    SubgroupFeatureFlagBits::ROTATE_KHR.0; const ROTATE_CLUSTERED_KHR =
+    SubgroupFeatureFlagBits::ROTATE_CLUSTERED_KHR.0; const PARTITIONED_EXT =
+    SubgroupFeatureFlagBits::PARTITIONED_EXT.0; }
+}
 #[repr(transparent)]
 #[derive(Clone, Copy)]
 pub struct SubgroupFeatureFlagBits(pub(crate) u32);
@@ -659,12 +671,21 @@ impl SubgroupFeatureFlagBits {
     pub const CLUSTERED: Self = Self(1 << 6);
     pub const QUAD: Self = Self(1 << 7);
 }
-#[repr(transparent)]
-#[derive(Clone, Copy)]
-pub struct DescriptorUpdateTemplateCreateFlags(pub(crate) u32);
-#[repr(transparent)]
-#[derive(Clone, Copy)]
-pub struct PeerMemoryFeatureFlags(pub(crate) u32);
+bitflags::bitflags! {
+    #[repr(transparent)] #[derive(Clone, Copy)] pub struct
+    DescriptorUpdateTemplateCreateFlags : u32 {}
+}
+bitflags::bitflags! {
+    #[repr(transparent)] #[derive(Clone, Copy)] pub struct PeerMemoryFeatureFlags : u32 {
+    const COPY_SRC = PeerMemoryFeatureFlagBits::COPY_SRC.0; const COPY_DST =
+    PeerMemoryFeatureFlagBits::COPY_DST.0; const GENERIC_SRC =
+    PeerMemoryFeatureFlagBits::GENERIC_SRC.0; const GENERIC_DST =
+    PeerMemoryFeatureFlagBits::GENERIC_DST.0; const COPY_SRC_KHR =
+    PeerMemoryFeatureFlagBits::COPY_SRC_KHR.0; const COPY_DST_KHR =
+    PeerMemoryFeatureFlagBits::COPY_DST_KHR.0; const GENERIC_SRC_KHR =
+    PeerMemoryFeatureFlagBits::GENERIC_SRC_KHR.0; const GENERIC_DST_KHR =
+    PeerMemoryFeatureFlagBits::GENERIC_DST_KHR.0; }
+}
 #[repr(transparent)]
 #[derive(Clone, Copy)]
 pub struct PeerMemoryFeatureFlagBits(pub(crate) u32);
@@ -675,9 +696,16 @@ impl PeerMemoryFeatureFlagBits {
     pub const GENERIC_SRC: Self = Self(1 << 2);
     pub const GENERIC_DST: Self = Self(1 << 3);
 }
-#[repr(transparent)]
-#[derive(Clone, Copy)]
-pub struct MemoryAllocateFlags(pub(crate) u32);
+bitflags::bitflags! {
+    #[repr(transparent)] #[derive(Clone, Copy)] pub struct MemoryAllocateFlags : u32 {
+    const DEVICE_MASK = MemoryAllocateFlagBits::DEVICE_MASK.0; const DEVICE_ADDRESS =
+    MemoryAllocateFlagBits::DEVICE_ADDRESS.0; const DEVICE_ADDRESS_CAPTURE_REPLAY =
+    MemoryAllocateFlagBits::DEVICE_ADDRESS_CAPTURE_REPLAY.0; const DEVICE_MASK_KHR =
+    MemoryAllocateFlagBits::DEVICE_MASK_KHR.0; const DEVICE_ADDRESS_KHR =
+    MemoryAllocateFlagBits::DEVICE_ADDRESS_KHR.0; const DEVICE_ADDRESS_CAPTURE_REPLAY_KHR
+    = MemoryAllocateFlagBits::DEVICE_ADDRESS_CAPTURE_REPLAY_KHR.0; const
+    ZERO_INITIALIZE_EXT = MemoryAllocateFlagBits::ZERO_INITIALIZE_EXT.0; }
+}
 #[repr(transparent)]
 #[derive(Clone, Copy)]
 pub struct MemoryAllocateFlagBits(pub(crate) u32);
@@ -685,12 +713,39 @@ pub struct MemoryAllocateFlagBits(pub(crate) u32);
 impl MemoryAllocateFlagBits {
     pub const DEVICE_MASK: Self = Self(1 << 0);
 }
-#[repr(transparent)]
-#[derive(Clone, Copy)]
-pub struct CommandPoolTrimFlags(pub(crate) u32);
-#[repr(transparent)]
-#[derive(Clone, Copy)]
-pub struct ExternalMemoryHandleTypeFlags(pub(crate) u32);
+bitflags::bitflags! {
+    #[repr(transparent)] #[derive(Clone, Copy)] pub struct CommandPoolTrimFlags : u32 {}
+}
+bitflags::bitflags! {
+    #[repr(transparent)] #[derive(Clone, Copy)] pub struct ExternalMemoryHandleTypeFlags
+    : u32 { const OPAQUE_FD = ExternalMemoryHandleTypeFlagBits::OPAQUE_FD.0; const
+    OPAQUE_WIN32 = ExternalMemoryHandleTypeFlagBits::OPAQUE_WIN32.0; const
+    OPAQUE_WIN32_KMT = ExternalMemoryHandleTypeFlagBits::OPAQUE_WIN32_KMT.0; const
+    D3D11_TEXTURE = ExternalMemoryHandleTypeFlagBits::D3D11_TEXTURE.0; const
+    D3D11_TEXTURE_KMT = ExternalMemoryHandleTypeFlagBits::D3D11_TEXTURE_KMT.0; const
+    D3D12_HEAP = ExternalMemoryHandleTypeFlagBits::D3D12_HEAP.0; const D3D12_RESOURCE =
+    ExternalMemoryHandleTypeFlagBits::D3D12_RESOURCE.0; const OPAQUE_FD_KHR =
+    ExternalMemoryHandleTypeFlagBits::OPAQUE_FD_KHR.0; const OPAQUE_WIN32_KHR =
+    ExternalMemoryHandleTypeFlagBits::OPAQUE_WIN32_KHR.0; const OPAQUE_WIN32_KMT_KHR =
+    ExternalMemoryHandleTypeFlagBits::OPAQUE_WIN32_KMT_KHR.0; const D3D11_TEXTURE_KHR =
+    ExternalMemoryHandleTypeFlagBits::D3D11_TEXTURE_KHR.0; const D3D11_TEXTURE_KMT_KHR =
+    ExternalMemoryHandleTypeFlagBits::D3D11_TEXTURE_KMT_KHR.0; const D3D12_HEAP_KHR =
+    ExternalMemoryHandleTypeFlagBits::D3D12_HEAP_KHR.0; const D3D12_RESOURCE_KHR =
+    ExternalMemoryHandleTypeFlagBits::D3D12_RESOURCE_KHR.0; const DMA_BUF_EXT =
+    ExternalMemoryHandleTypeFlagBits::DMA_BUF_EXT.0; const
+    ANDROID_HARDWARE_BUFFER_ANDROID =
+    ExternalMemoryHandleTypeFlagBits::ANDROID_HARDWARE_BUFFER_ANDROID.0; const
+    HOST_ALLOCATION_EXT = ExternalMemoryHandleTypeFlagBits::HOST_ALLOCATION_EXT.0; const
+    HOST_MAPPED_FOREIGN_MEMORY_EXT =
+    ExternalMemoryHandleTypeFlagBits::HOST_MAPPED_FOREIGN_MEMORY_EXT.0; const
+    ZIRCON_VMO_FUCHSIA = ExternalMemoryHandleTypeFlagBits::ZIRCON_VMO_FUCHSIA.0; const
+    RDMA_ADDRESS_NV = ExternalMemoryHandleTypeFlagBits::RDMA_ADDRESS_NV.0; const
+    OH_NATIVE_BUFFER_OHOS = ExternalMemoryHandleTypeFlagBits::OH_NATIVE_BUFFER_OHOS.0;
+    const SCREEN_BUFFER_QNX = ExternalMemoryHandleTypeFlagBits::SCREEN_BUFFER_QNX.0;
+    const MTLBUFFER_EXT = ExternalMemoryHandleTypeFlagBits::MTLBUFFER_EXT.0; const
+    MTLTEXTURE_EXT = ExternalMemoryHandleTypeFlagBits::MTLTEXTURE_EXT.0; const
+    MTLHEAP_EXT = ExternalMemoryHandleTypeFlagBits::MTLHEAP_EXT.0; }
+}
 #[repr(transparent)]
 #[derive(Clone, Copy)]
 pub struct ExternalMemoryHandleTypeFlagBits(pub(crate) u32);
@@ -704,9 +759,15 @@ impl ExternalMemoryHandleTypeFlagBits {
     pub const D3D12_HEAP: Self = Self(1 << 5);
     pub const D3D12_RESOURCE: Self = Self(1 << 6);
 }
-#[repr(transparent)]
-#[derive(Clone, Copy)]
-pub struct ExternalMemoryFeatureFlags(pub(crate) u32);
+bitflags::bitflags! {
+    #[repr(transparent)] #[derive(Clone, Copy)] pub struct ExternalMemoryFeatureFlags :
+    u32 { const DEDICATED_ONLY = ExternalMemoryFeatureFlagBits::DEDICATED_ONLY.0; const
+    EXPORTABLE = ExternalMemoryFeatureFlagBits::EXPORTABLE.0; const IMPORTABLE =
+    ExternalMemoryFeatureFlagBits::IMPORTABLE.0; const DEDICATED_ONLY_KHR =
+    ExternalMemoryFeatureFlagBits::DEDICATED_ONLY_KHR.0; const EXPORTABLE_KHR =
+    ExternalMemoryFeatureFlagBits::EXPORTABLE_KHR.0; const IMPORTABLE_KHR =
+    ExternalMemoryFeatureFlagBits::IMPORTABLE_KHR.0; }
+}
 #[repr(transparent)]
 #[derive(Clone, Copy)]
 pub struct ExternalMemoryFeatureFlagBits(pub(crate) u32);
@@ -716,9 +777,22 @@ impl ExternalMemoryFeatureFlagBits {
     pub const EXPORTABLE: Self = Self(1 << 1);
     pub const IMPORTABLE: Self = Self(1 << 2);
 }
-#[repr(transparent)]
-#[derive(Clone, Copy)]
-pub struct ExternalSemaphoreHandleTypeFlags(pub(crate) u32);
+bitflags::bitflags! {
+    #[repr(transparent)] #[derive(Clone, Copy)] pub struct
+    ExternalSemaphoreHandleTypeFlags : u32 { const OPAQUE_FD =
+    ExternalSemaphoreHandleTypeFlagBits::OPAQUE_FD.0; const OPAQUE_WIN32 =
+    ExternalSemaphoreHandleTypeFlagBits::OPAQUE_WIN32.0; const OPAQUE_WIN32_KMT =
+    ExternalSemaphoreHandleTypeFlagBits::OPAQUE_WIN32_KMT.0; const D3D12_FENCE =
+    ExternalSemaphoreHandleTypeFlagBits::D3D12_FENCE.0; const D3D11_FENCE =
+    ExternalSemaphoreHandleTypeFlagBits::D3D11_FENCE.0; const SYNC_FD =
+    ExternalSemaphoreHandleTypeFlagBits::SYNC_FD.0; const OPAQUE_FD_KHR =
+    ExternalSemaphoreHandleTypeFlagBits::OPAQUE_FD_KHR.0; const OPAQUE_WIN32_KHR =
+    ExternalSemaphoreHandleTypeFlagBits::OPAQUE_WIN32_KHR.0; const OPAQUE_WIN32_KMT_KHR =
+    ExternalSemaphoreHandleTypeFlagBits::OPAQUE_WIN32_KMT_KHR.0; const D3D12_FENCE_KHR =
+    ExternalSemaphoreHandleTypeFlagBits::D3D12_FENCE_KHR.0; const SYNC_FD_KHR =
+    ExternalSemaphoreHandleTypeFlagBits::SYNC_FD_KHR.0; const ZIRCON_EVENT_FUCHSIA =
+    ExternalSemaphoreHandleTypeFlagBits::ZIRCON_EVENT_FUCHSIA.0; }
+}
 #[repr(transparent)]
 #[derive(Clone, Copy)]
 pub struct ExternalSemaphoreHandleTypeFlagBits(pub(crate) u32);
@@ -731,9 +805,13 @@ impl ExternalSemaphoreHandleTypeFlagBits {
     pub const D3D11_FENCE: Self = Self::D3D12_FENCE;
     pub const SYNC_FD: Self = Self(1 << 4);
 }
-#[repr(transparent)]
-#[derive(Clone, Copy)]
-pub struct ExternalSemaphoreFeatureFlags(pub(crate) u32);
+bitflags::bitflags! {
+    #[repr(transparent)] #[derive(Clone, Copy)] pub struct ExternalSemaphoreFeatureFlags
+    : u32 { const EXPORTABLE = ExternalSemaphoreFeatureFlagBits::EXPORTABLE.0; const
+    IMPORTABLE = ExternalSemaphoreFeatureFlagBits::IMPORTABLE.0; const EXPORTABLE_KHR =
+    ExternalSemaphoreFeatureFlagBits::EXPORTABLE_KHR.0; const IMPORTABLE_KHR =
+    ExternalSemaphoreFeatureFlagBits::IMPORTABLE_KHR.0; }
+}
 #[repr(transparent)]
 #[derive(Clone, Copy)]
 pub struct ExternalSemaphoreFeatureFlagBits(pub(crate) u32);
@@ -742,9 +820,11 @@ impl ExternalSemaphoreFeatureFlagBits {
     pub const EXPORTABLE: Self = Self(1 << 0);
     pub const IMPORTABLE: Self = Self(1 << 1);
 }
-#[repr(transparent)]
-#[derive(Clone, Copy)]
-pub struct SemaphoreImportFlags(pub(crate) u32);
+bitflags::bitflags! {
+    #[repr(transparent)] #[derive(Clone, Copy)] pub struct SemaphoreImportFlags : u32 {
+    const TEMPORARY = SemaphoreImportFlagBits::TEMPORARY.0; const TEMPORARY_KHR =
+    SemaphoreImportFlagBits::TEMPORARY_KHR.0; }
+}
 #[repr(transparent)]
 #[derive(Clone, Copy)]
 pub struct SemaphoreImportFlagBits(pub(crate) u32);
@@ -752,9 +832,17 @@ pub struct SemaphoreImportFlagBits(pub(crate) u32);
 impl SemaphoreImportFlagBits {
     pub const TEMPORARY: Self = Self(1 << 0);
 }
-#[repr(transparent)]
-#[derive(Clone, Copy)]
-pub struct ExternalFenceHandleTypeFlags(pub(crate) u32);
+bitflags::bitflags! {
+    #[repr(transparent)] #[derive(Clone, Copy)] pub struct ExternalFenceHandleTypeFlags :
+    u32 { const OPAQUE_FD = ExternalFenceHandleTypeFlagBits::OPAQUE_FD.0; const
+    OPAQUE_WIN32 = ExternalFenceHandleTypeFlagBits::OPAQUE_WIN32.0; const
+    OPAQUE_WIN32_KMT = ExternalFenceHandleTypeFlagBits::OPAQUE_WIN32_KMT.0; const SYNC_FD
+    = ExternalFenceHandleTypeFlagBits::SYNC_FD.0; const OPAQUE_FD_KHR =
+    ExternalFenceHandleTypeFlagBits::OPAQUE_FD_KHR.0; const OPAQUE_WIN32_KHR =
+    ExternalFenceHandleTypeFlagBits::OPAQUE_WIN32_KHR.0; const OPAQUE_WIN32_KMT_KHR =
+    ExternalFenceHandleTypeFlagBits::OPAQUE_WIN32_KMT_KHR.0; const SYNC_FD_KHR =
+    ExternalFenceHandleTypeFlagBits::SYNC_FD_KHR.0; }
+}
 #[repr(transparent)]
 #[derive(Clone, Copy)]
 pub struct ExternalFenceHandleTypeFlagBits(pub(crate) u32);
@@ -765,9 +853,13 @@ impl ExternalFenceHandleTypeFlagBits {
     pub const OPAQUE_WIN32_KMT: Self = Self(1 << 2);
     pub const SYNC_FD: Self = Self(1 << 3);
 }
-#[repr(transparent)]
-#[derive(Clone, Copy)]
-pub struct ExternalFenceFeatureFlags(pub(crate) u32);
+bitflags::bitflags! {
+    #[repr(transparent)] #[derive(Clone, Copy)] pub struct ExternalFenceFeatureFlags :
+    u32 { const EXPORTABLE = ExternalFenceFeatureFlagBits::EXPORTABLE.0; const IMPORTABLE
+    = ExternalFenceFeatureFlagBits::IMPORTABLE.0; const EXPORTABLE_KHR =
+    ExternalFenceFeatureFlagBits::EXPORTABLE_KHR.0; const IMPORTABLE_KHR =
+    ExternalFenceFeatureFlagBits::IMPORTABLE_KHR.0; }
+}
 #[repr(transparent)]
 #[derive(Clone, Copy)]
 pub struct ExternalFenceFeatureFlagBits(pub(crate) u32);
@@ -776,9 +868,11 @@ impl ExternalFenceFeatureFlagBits {
     pub const EXPORTABLE: Self = Self(1 << 0);
     pub const IMPORTABLE: Self = Self(1 << 1);
 }
-#[repr(transparent)]
-#[derive(Clone, Copy)]
-pub struct FenceImportFlags(pub(crate) u32);
+bitflags::bitflags! {
+    #[repr(transparent)] #[derive(Clone, Copy)] pub struct FenceImportFlags : u32 { const
+    TEMPORARY = FenceImportFlagBits::TEMPORARY.0; const TEMPORARY_KHR =
+    FenceImportFlagBits::TEMPORARY_KHR.0; }
+}
 #[repr(transparent)]
 #[derive(Clone, Copy)]
 pub struct FenceImportFlagBits(pub(crate) u32);

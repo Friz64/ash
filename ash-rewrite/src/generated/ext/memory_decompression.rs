@@ -42,9 +42,12 @@ impl crate::vk::AccessFlagBits2 {
 impl crate::vk::PipelineStageFlagBits2 {
     pub const MEMORY_DECOMPRESSION_EXT: Self = Self(1 << 45);
 }
-#[repr(transparent)]
-#[derive(Clone, Copy)]
-pub struct MemoryDecompressionMethodFlagsEXT(pub(crate) u64);
+bitflags::bitflags! {
+    #[repr(transparent)] #[derive(Clone, Copy)] pub struct
+    MemoryDecompressionMethodFlagsEXT : u64 { const GDEFLATE_1_0_EXT =
+    MemoryDecompressionMethodFlagBitsEXT::GDEFLATE_1_0_EXT.0; const GDEFLATE_1_0_NV =
+    MemoryDecompressionMethodFlagBitsEXT::GDEFLATE_1_0_NV.0; }
+}
 #[repr(transparent)]
 #[derive(Clone, Copy)]
 pub struct MemoryDecompressionMethodFlagBitsEXT(pub(crate) u64);

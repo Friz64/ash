@@ -9,8 +9,9 @@ pub struct AndroidSurfaceCreateInfoKHR {
     pub flags: crate::vk::AndroidSurfaceCreateFlagsKHR,
     pub window: *mut crate::platform_types::ANativeWindow,
 }
-#[repr(transparent)]
-#[derive(Clone, Copy)]
-pub struct AndroidSurfaceCreateFlagsKHR(pub(crate) u32);
+bitflags::bitflags! {
+    #[repr(transparent)] #[derive(Clone, Copy)] pub struct AndroidSurfaceCreateFlagsKHR :
+    u32 {}
+}
 pub const KHR_ANDROID_SURFACE_SPEC_VERSION: u32 = 6;
 pub const KHR_ANDROID_SURFACE_EXTENSION_NAME: &core::ffi::CStr = c"VK_KHR_android_surface";

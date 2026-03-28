@@ -79,9 +79,13 @@ pub struct PerformanceCounterUnitKHR(pub(crate) i32);
 #[repr(transparent)]
 #[derive(Clone, Copy)]
 pub struct PerformanceCounterStorageKHR(pub(crate) i32);
-#[repr(transparent)]
-#[derive(Clone, Copy)]
-pub struct PerformanceCounterDescriptionFlagsKHR(pub(crate) u32);
+bitflags::bitflags! {
+    #[repr(transparent)] #[derive(Clone, Copy)] pub struct
+    PerformanceCounterDescriptionFlagsKHR : u32 { const PERFORMANCE_IMPACTING_KHR =
+    PerformanceCounterDescriptionFlagBitsKHR::PERFORMANCE_IMPACTING_KHR.0; const
+    CONCURRENTLY_IMPACTED_KHR =
+    PerformanceCounterDescriptionFlagBitsKHR::CONCURRENTLY_IMPACTED_KHR.0; }
+}
 #[repr(transparent)]
 #[derive(Clone, Copy)]
 pub struct PerformanceCounterDescriptionFlagBitsKHR(pub(crate) u32);
@@ -90,9 +94,10 @@ impl PerformanceCounterDescriptionFlagBitsKHR {
     pub const PERFORMANCE_IMPACTING_KHR: Self = Self(1 << 0);
     pub const CONCURRENTLY_IMPACTED_KHR: Self = Self(1 << 1);
 }
-#[repr(transparent)]
-#[derive(Clone, Copy)]
-pub struct AcquireProfilingLockFlagsKHR(pub(crate) u32);
+bitflags::bitflags! {
+    #[repr(transparent)] #[derive(Clone, Copy)] pub struct AcquireProfilingLockFlagsKHR :
+    u32 {}
+}
 #[repr(transparent)]
 #[derive(Clone, Copy)]
 pub struct AcquireProfilingLockFlagBitsKHR(pub(crate) u32);

@@ -9,8 +9,9 @@ pub struct IOSSurfaceCreateInfoMVK {
     pub flags: crate::vk::IOSSurfaceCreateFlagsMVK,
     pub p_view: *const core::ffi::c_void,
 }
-#[repr(transparent)]
-#[derive(Clone, Copy)]
-pub struct IOSSurfaceCreateFlagsMVK(pub(crate) u32);
+bitflags::bitflags! {
+    #[repr(transparent)] #[derive(Clone, Copy)] pub struct IOSSurfaceCreateFlagsMVK : u32
+    {}
+}
 pub const MVK_IOS_SURFACE_SPEC_VERSION: u32 = 3;
 pub const MVK_IOS_SURFACE_EXTENSION_NAME: &core::ffi::CStr = c"VK_MVK_ios_surface";

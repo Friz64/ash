@@ -55,9 +55,15 @@ impl crate::vk::FormatFeatureFlagBits2 {
 impl crate::vk::RenderingFlagBits {
     pub const LOCAL_READ_CONCURRENT_ACCESS_CONTROL_KHR: Self = Self(1 << 8);
 }
-#[repr(transparent)]
-#[derive(Clone, Copy)]
-pub struct RenderingAttachmentFlagsKHR(pub(crate) u32);
+bitflags::bitflags! {
+    #[repr(transparent)] #[derive(Clone, Copy)] pub struct RenderingAttachmentFlagsKHR :
+    u32 { const INPUT_ATTACHMENT_FEEDBACK_KHR =
+    RenderingAttachmentFlagBitsKHR::INPUT_ATTACHMENT_FEEDBACK_KHR.0; const
+    RESOLVE_SKIP_TRANSFER_FUNCTION_KHR =
+    RenderingAttachmentFlagBitsKHR::RESOLVE_SKIP_TRANSFER_FUNCTION_KHR.0; const
+    RESOLVE_ENABLE_TRANSFER_FUNCTION_KHR =
+    RenderingAttachmentFlagBitsKHR::RESOLVE_ENABLE_TRANSFER_FUNCTION_KHR.0; }
+}
 #[repr(transparent)]
 #[derive(Clone, Copy)]
 pub struct RenderingAttachmentFlagBitsKHR(pub(crate) u32);
@@ -67,9 +73,13 @@ impl RenderingAttachmentFlagBitsKHR {
     pub const RESOLVE_SKIP_TRANSFER_FUNCTION_KHR: Self = Self(1 << 1);
     pub const RESOLVE_ENABLE_TRANSFER_FUNCTION_KHR: Self = Self(1 << 2);
 }
-#[repr(transparent)]
-#[derive(Clone, Copy)]
-pub struct ResolveImageFlagsKHR(pub(crate) u32);
+bitflags::bitflags! {
+    #[repr(transparent)] #[derive(Clone, Copy)] pub struct ResolveImageFlagsKHR : u32 {
+    const SKIP_TRANSFER_FUNCTION_KHR =
+    ResolveImageFlagBitsKHR::SKIP_TRANSFER_FUNCTION_KHR.0; const
+    ENABLE_TRANSFER_FUNCTION_KHR = ResolveImageFlagBitsKHR::ENABLE_TRANSFER_FUNCTION_KHR
+    .0; }
+}
 #[repr(transparent)]
 #[derive(Clone, Copy)]
 pub struct ResolveImageFlagBitsKHR(pub(crate) u32);

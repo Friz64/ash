@@ -45,8 +45,9 @@ pub struct RenderPassPerformanceCountersByRegionBeginInfoARM {
     pub counter_index_count: u32,
     pub p_counter_indices: *mut u32,
 }
-#[repr(transparent)]
-#[derive(Clone, Copy)]
-pub struct PerformanceCounterDescriptionFlagsARM(pub(crate) u32);
+bitflags::bitflags! {
+    #[repr(transparent)] #[derive(Clone, Copy)] pub struct
+    PerformanceCounterDescriptionFlagsARM : u32 {}
+}
 pub const ARM_PERFORMANCE_COUNTERS_BY_REGION_SPEC_VERSION: u32 = 1;
 pub const ARM_PERFORMANCE_COUNTERS_BY_REGION_EXTENSION_NAME: &core::ffi::CStr = c"VK_ARM_performance_counters_by_region";

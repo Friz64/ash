@@ -9,8 +9,9 @@ pub struct SurfaceCreateInfoOHOS {
     pub flags: crate::vk::SurfaceCreateFlagsOHOS,
     pub window: *mut crate::platform_types::OHNativeWindow,
 }
-#[repr(transparent)]
-#[derive(Clone, Copy)]
-pub struct SurfaceCreateFlagsOHOS(pub(crate) u32);
+bitflags::bitflags! {
+    #[repr(transparent)] #[derive(Clone, Copy)] pub struct SurfaceCreateFlagsOHOS : u32
+    {}
+}
 pub const OHOS_SURFACE_SPEC_VERSION: u32 = 1;
 pub const OHOS_SURFACE_EXTENSION_NAME: &core::ffi::CStr = c"VK_OHOS_surface";

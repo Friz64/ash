@@ -18,9 +18,10 @@ pub struct SurfaceCapabilities2EXT {
     pub supported_usage_flags: crate::vk::ImageUsageFlags,
     pub supported_surface_counters: crate::vk::SurfaceCounterFlagsEXT,
 }
-#[repr(transparent)]
-#[derive(Clone, Copy)]
-pub struct SurfaceCounterFlagsEXT(pub(crate) u32);
+bitflags::bitflags! {
+    #[repr(transparent)] #[derive(Clone, Copy)] pub struct SurfaceCounterFlagsEXT : u32 {
+    const VBLANK_EXT = SurfaceCounterFlagBitsEXT::VBLANK_EXT.0; }
+}
 #[repr(transparent)]
 #[derive(Clone, Copy)]
 pub struct SurfaceCounterFlagBitsEXT(pub(crate) u32);

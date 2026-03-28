@@ -212,9 +212,13 @@ impl crate::vk::AccessFlagBits {
 impl crate::vk::PipelineStageFlagBits {
     pub const COMMAND_PREPROCESS_EXT: Self = Self(1 << 17);
 }
-#[repr(transparent)]
-#[derive(Clone, Copy)]
-pub struct IndirectCommandsLayoutUsageFlagsEXT(pub(crate) u32);
+bitflags::bitflags! {
+    #[repr(transparent)] #[derive(Clone, Copy)] pub struct
+    IndirectCommandsLayoutUsageFlagsEXT : u32 { const EXPLICIT_PREPROCESS_EXT =
+    IndirectCommandsLayoutUsageFlagBitsEXT::EXPLICIT_PREPROCESS_EXT.0; const
+    UNORDERED_SEQUENCES_EXT =
+    IndirectCommandsLayoutUsageFlagBitsEXT::UNORDERED_SEQUENCES_EXT.0; }
+}
 #[repr(transparent)]
 #[derive(Clone, Copy)]
 pub struct IndirectCommandsLayoutUsageFlagBitsEXT(pub(crate) u32);
@@ -223,9 +227,13 @@ impl IndirectCommandsLayoutUsageFlagBitsEXT {
     pub const EXPLICIT_PREPROCESS_EXT: Self = Self(1 << 0);
     pub const UNORDERED_SEQUENCES_EXT: Self = Self(1 << 1);
 }
-#[repr(transparent)]
-#[derive(Clone, Copy)]
-pub struct IndirectCommandsInputModeFlagsEXT(pub(crate) u32);
+bitflags::bitflags! {
+    #[repr(transparent)] #[derive(Clone, Copy)] pub struct
+    IndirectCommandsInputModeFlagsEXT : u32 { const VULKAN_INDEX_BUFFER_EXT =
+    IndirectCommandsInputModeFlagBitsEXT::VULKAN_INDEX_BUFFER_EXT.0; const
+    DXGI_INDEX_BUFFER_EXT = IndirectCommandsInputModeFlagBitsEXT::DXGI_INDEX_BUFFER_EXT
+    .0; }
+}
 #[repr(transparent)]
 #[derive(Clone, Copy)]
 pub struct IndirectCommandsInputModeFlagBitsEXT(pub(crate) u32);

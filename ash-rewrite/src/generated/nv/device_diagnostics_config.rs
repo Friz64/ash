@@ -15,9 +15,17 @@ pub struct DeviceDiagnosticsConfigCreateInfoNV {
     pub p_next: *const core::ffi::c_void,
     pub flags: crate::vk::DeviceDiagnosticsConfigFlagsNV,
 }
-#[repr(transparent)]
-#[derive(Clone, Copy)]
-pub struct DeviceDiagnosticsConfigFlagsNV(pub(crate) u32);
+bitflags::bitflags! {
+    #[repr(transparent)] #[derive(Clone, Copy)] pub struct DeviceDiagnosticsConfigFlagsNV
+    : u32 { const ENABLE_SHADER_DEBUG_INFO_NV =
+    DeviceDiagnosticsConfigFlagBitsNV::ENABLE_SHADER_DEBUG_INFO_NV.0; const
+    ENABLE_RESOURCE_TRACKING_NV =
+    DeviceDiagnosticsConfigFlagBitsNV::ENABLE_RESOURCE_TRACKING_NV.0; const
+    ENABLE_AUTOMATIC_CHECKPOINTS_NV =
+    DeviceDiagnosticsConfigFlagBitsNV::ENABLE_AUTOMATIC_CHECKPOINTS_NV.0; const
+    ENABLE_SHADER_ERROR_REPORTING_NV =
+    DeviceDiagnosticsConfigFlagBitsNV::ENABLE_SHADER_ERROR_REPORTING_NV.0; }
+}
 #[repr(transparent)]
 #[derive(Clone, Copy)]
 pub struct DeviceDiagnosticsConfigFlagBitsNV(pub(crate) u32);

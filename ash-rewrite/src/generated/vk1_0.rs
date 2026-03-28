@@ -1315,108 +1315,183 @@ pub struct ObjectType(pub(crate) i32);
 #[repr(transparent)]
 #[derive(Clone, Copy)]
 pub struct VendorId(pub(crate) i32);
-#[repr(transparent)]
-#[derive(Clone, Copy)]
-pub struct FramebufferCreateFlags(pub(crate) u32);
+bitflags::bitflags! {
+    #[repr(transparent)] #[derive(Clone, Copy)] pub struct FramebufferCreateFlags : u32 {
+    const IMAGELESS = FramebufferCreateFlagBits::IMAGELESS.0; const IMAGELESS_KHR =
+    FramebufferCreateFlagBits::IMAGELESS_KHR.0; }
+}
 #[repr(transparent)]
 #[derive(Clone, Copy)]
 pub struct FramebufferCreateFlagBits(pub(crate) u32);
-#[repr(transparent)]
-#[derive(Clone, Copy)]
-pub struct QueryPoolCreateFlags(pub(crate) u32);
+bitflags::bitflags! {
+    #[repr(transparent)] #[derive(Clone, Copy)] pub struct QueryPoolCreateFlags : u32 {
+    const RESET_KHR = QueryPoolCreateFlagBits::RESET_KHR.0; }
+}
 #[repr(transparent)]
 #[derive(Clone, Copy)]
 pub struct QueryPoolCreateFlagBits(pub(crate) u32);
-#[repr(transparent)]
-#[derive(Clone, Copy)]
-pub struct RenderPassCreateFlags(pub(crate) u32);
+bitflags::bitflags! {
+    #[repr(transparent)] #[derive(Clone, Copy)] pub struct RenderPassCreateFlags : u32 {
+    const TRANSFORM_QCOM = RenderPassCreateFlagBits::TRANSFORM_QCOM.0; const
+    PER_LAYER_FRAGMENT_DENSITY_VALVE =
+    RenderPassCreateFlagBits::PER_LAYER_FRAGMENT_DENSITY_VALVE.0; }
+}
 #[repr(transparent)]
 #[derive(Clone, Copy)]
 pub struct RenderPassCreateFlagBits(pub(crate) u32);
-#[repr(transparent)]
-#[derive(Clone, Copy)]
-pub struct SamplerCreateFlags(pub(crate) u32);
+bitflags::bitflags! {
+    #[repr(transparent)] #[derive(Clone, Copy)] pub struct SamplerCreateFlags : u32 {
+    const SUBSAMPLED_EXT = SamplerCreateFlagBits::SUBSAMPLED_EXT.0; const
+    SUBSAMPLED_COARSE_RECONSTRUCTION_EXT =
+    SamplerCreateFlagBits::SUBSAMPLED_COARSE_RECONSTRUCTION_EXT.0; const
+    DESCRIPTOR_BUFFER_CAPTURE_REPLAY_EXT =
+    SamplerCreateFlagBits::DESCRIPTOR_BUFFER_CAPTURE_REPLAY_EXT.0; const
+    NON_SEAMLESS_CUBE_MAP_EXT = SamplerCreateFlagBits::NON_SEAMLESS_CUBE_MAP_EXT.0; const
+    IMAGE_PROCESSING_QCOM = SamplerCreateFlagBits::IMAGE_PROCESSING_QCOM.0; }
+}
 #[repr(transparent)]
 #[derive(Clone, Copy)]
 pub struct SamplerCreateFlagBits(pub(crate) u32);
-#[repr(transparent)]
-#[derive(Clone, Copy)]
-pub struct PipelineLayoutCreateFlags(pub(crate) u32);
+bitflags::bitflags! {
+    #[repr(transparent)] #[derive(Clone, Copy)] pub struct PipelineLayoutCreateFlags :
+    u32 { const INDEPENDENT_SETS_EXT = PipelineLayoutCreateFlagBits::INDEPENDENT_SETS_EXT
+    .0; }
+}
 #[repr(transparent)]
 #[derive(Clone, Copy)]
 pub struct PipelineLayoutCreateFlagBits(pub(crate) u32);
-#[repr(transparent)]
-#[derive(Clone, Copy)]
-pub struct PipelineCacheCreateFlags(pub(crate) u32);
+bitflags::bitflags! {
+    #[repr(transparent)] #[derive(Clone, Copy)] pub struct PipelineCacheCreateFlags : u32
+    { const EXTERNALLY_SYNCHRONIZED =
+    PipelineCacheCreateFlagBits::EXTERNALLY_SYNCHRONIZED.0; const
+    EXTERNALLY_SYNCHRONIZED_EXT =
+    PipelineCacheCreateFlagBits::EXTERNALLY_SYNCHRONIZED_EXT.0; const
+    INTERNALLY_SYNCHRONIZED_MERGE_KHR =
+    PipelineCacheCreateFlagBits::INTERNALLY_SYNCHRONIZED_MERGE_KHR.0; }
+}
 #[repr(transparent)]
 #[derive(Clone, Copy)]
 pub struct PipelineCacheCreateFlagBits(pub(crate) u32);
-#[repr(transparent)]
-#[derive(Clone, Copy)]
-pub struct PipelineDepthStencilStateCreateFlags(pub(crate) u32);
+bitflags::bitflags! {
+    #[repr(transparent)] #[derive(Clone, Copy)] pub struct
+    PipelineDepthStencilStateCreateFlags : u32 { const
+    RASTERIZATION_ORDER_ATTACHMENT_DEPTH_ACCESS_ARM =
+    PipelineDepthStencilStateCreateFlagBits::RASTERIZATION_ORDER_ATTACHMENT_DEPTH_ACCESS_ARM
+    .0; const RASTERIZATION_ORDER_ATTACHMENT_STENCIL_ACCESS_ARM =
+    PipelineDepthStencilStateCreateFlagBits::RASTERIZATION_ORDER_ATTACHMENT_STENCIL_ACCESS_ARM
+    .0; const RASTERIZATION_ORDER_ATTACHMENT_DEPTH_ACCESS_EXT =
+    PipelineDepthStencilStateCreateFlagBits::RASTERIZATION_ORDER_ATTACHMENT_DEPTH_ACCESS_EXT
+    .0; const RASTERIZATION_ORDER_ATTACHMENT_STENCIL_ACCESS_EXT =
+    PipelineDepthStencilStateCreateFlagBits::RASTERIZATION_ORDER_ATTACHMENT_STENCIL_ACCESS_EXT
+    .0; }
+}
 #[repr(transparent)]
 #[derive(Clone, Copy)]
 pub struct PipelineDepthStencilStateCreateFlagBits(pub(crate) u32);
-#[repr(transparent)]
-#[derive(Clone, Copy)]
-pub struct PipelineDynamicStateCreateFlags(pub(crate) u32);
-#[repr(transparent)]
-#[derive(Clone, Copy)]
-pub struct PipelineColorBlendStateCreateFlags(pub(crate) u32);
+bitflags::bitflags! {
+    #[repr(transparent)] #[derive(Clone, Copy)] pub struct
+    PipelineDynamicStateCreateFlags : u32 {}
+}
+bitflags::bitflags! {
+    #[repr(transparent)] #[derive(Clone, Copy)] pub struct
+    PipelineColorBlendStateCreateFlags : u32 { const
+    RASTERIZATION_ORDER_ATTACHMENT_ACCESS_ARM =
+    PipelineColorBlendStateCreateFlagBits::RASTERIZATION_ORDER_ATTACHMENT_ACCESS_ARM.0;
+    const RASTERIZATION_ORDER_ATTACHMENT_ACCESS_EXT =
+    PipelineColorBlendStateCreateFlagBits::RASTERIZATION_ORDER_ATTACHMENT_ACCESS_EXT.0; }
+}
 #[repr(transparent)]
 #[derive(Clone, Copy)]
 pub struct PipelineColorBlendStateCreateFlagBits(pub(crate) u32);
-#[repr(transparent)]
-#[derive(Clone, Copy)]
-pub struct PipelineMultisampleStateCreateFlags(pub(crate) u32);
-#[repr(transparent)]
-#[derive(Clone, Copy)]
-pub struct PipelineRasterizationStateCreateFlags(pub(crate) u32);
-#[repr(transparent)]
-#[derive(Clone, Copy)]
-pub struct PipelineViewportStateCreateFlags(pub(crate) u32);
-#[repr(transparent)]
-#[derive(Clone, Copy)]
-pub struct PipelineTessellationStateCreateFlags(pub(crate) u32);
-#[repr(transparent)]
-#[derive(Clone, Copy)]
-pub struct PipelineInputAssemblyStateCreateFlags(pub(crate) u32);
-#[repr(transparent)]
-#[derive(Clone, Copy)]
-pub struct PipelineVertexInputStateCreateFlags(pub(crate) u32);
-#[repr(transparent)]
-#[derive(Clone, Copy)]
-pub struct PipelineShaderStageCreateFlags(pub(crate) u32);
+bitflags::bitflags! {
+    #[repr(transparent)] #[derive(Clone, Copy)] pub struct
+    PipelineMultisampleStateCreateFlags : u32 {}
+}
+bitflags::bitflags! {
+    #[repr(transparent)] #[derive(Clone, Copy)] pub struct
+    PipelineRasterizationStateCreateFlags : u32 {}
+}
+bitflags::bitflags! {
+    #[repr(transparent)] #[derive(Clone, Copy)] pub struct
+    PipelineViewportStateCreateFlags : u32 {}
+}
+bitflags::bitflags! {
+    #[repr(transparent)] #[derive(Clone, Copy)] pub struct
+    PipelineTessellationStateCreateFlags : u32 {}
+}
+bitflags::bitflags! {
+    #[repr(transparent)] #[derive(Clone, Copy)] pub struct
+    PipelineInputAssemblyStateCreateFlags : u32 {}
+}
+bitflags::bitflags! {
+    #[repr(transparent)] #[derive(Clone, Copy)] pub struct
+    PipelineVertexInputStateCreateFlags : u32 {}
+}
+bitflags::bitflags! {
+    #[repr(transparent)] #[derive(Clone, Copy)] pub struct PipelineShaderStageCreateFlags
+    : u32 { const ALLOW_VARYING_SUBGROUP_SIZE =
+    PipelineShaderStageCreateFlagBits::ALLOW_VARYING_SUBGROUP_SIZE.0; const
+    REQUIRE_FULL_SUBGROUPS = PipelineShaderStageCreateFlagBits::REQUIRE_FULL_SUBGROUPS.0;
+    const ALLOW_VARYING_SUBGROUP_SIZE_EXT =
+    PipelineShaderStageCreateFlagBits::ALLOW_VARYING_SUBGROUP_SIZE_EXT.0; const
+    REQUIRE_FULL_SUBGROUPS_EXT =
+    PipelineShaderStageCreateFlagBits::REQUIRE_FULL_SUBGROUPS_EXT.0; }
+}
 #[repr(transparent)]
 #[derive(Clone, Copy)]
 pub struct PipelineShaderStageCreateFlagBits(pub(crate) u32);
-#[repr(transparent)]
-#[derive(Clone, Copy)]
-pub struct DescriptorSetLayoutCreateFlags(pub(crate) u32);
+bitflags::bitflags! {
+    #[repr(transparent)] #[derive(Clone, Copy)] pub struct DescriptorSetLayoutCreateFlags
+    : u32 { const UPDATE_AFTER_BIND_POOL =
+    DescriptorSetLayoutCreateFlagBits::UPDATE_AFTER_BIND_POOL.0; const PUSH_DESCRIPTOR =
+    DescriptorSetLayoutCreateFlagBits::PUSH_DESCRIPTOR.0; const PUSH_DESCRIPTOR_KHR =
+    DescriptorSetLayoutCreateFlagBits::PUSH_DESCRIPTOR_KHR.0; const
+    UPDATE_AFTER_BIND_POOL_EXT =
+    DescriptorSetLayoutCreateFlagBits::UPDATE_AFTER_BIND_POOL_EXT.0; const
+    DESCRIPTOR_BUFFER_EXT = DescriptorSetLayoutCreateFlagBits::DESCRIPTOR_BUFFER_EXT.0;
+    const EMBEDDED_IMMUTABLE_SAMPLERS_EXT =
+    DescriptorSetLayoutCreateFlagBits::EMBEDDED_IMMUTABLE_SAMPLERS_EXT.0; const
+    HOST_ONLY_POOL_VALVE = DescriptorSetLayoutCreateFlagBits::HOST_ONLY_POOL_VALVE.0;
+    const INDIRECT_BINDABLE_NV = DescriptorSetLayoutCreateFlagBits::INDIRECT_BINDABLE_NV
+    .0; const HOST_ONLY_POOL_EXT = DescriptorSetLayoutCreateFlagBits::HOST_ONLY_POOL_EXT
+    .0; const PER_STAGE_NV = DescriptorSetLayoutCreateFlagBits::PER_STAGE_NV.0; }
+}
 #[repr(transparent)]
 #[derive(Clone, Copy)]
 pub struct DescriptorSetLayoutCreateFlagBits(pub(crate) u32);
-#[repr(transparent)]
-#[derive(Clone, Copy)]
-pub struct BufferViewCreateFlags(pub(crate) u32);
-#[repr(transparent)]
-#[derive(Clone, Copy)]
-pub struct InstanceCreateFlags(pub(crate) u32);
+bitflags::bitflags! {
+    #[repr(transparent)] #[derive(Clone, Copy)] pub struct BufferViewCreateFlags : u32 {}
+}
+bitflags::bitflags! {
+    #[repr(transparent)] #[derive(Clone, Copy)] pub struct InstanceCreateFlags : u32 {
+    const ENUMERATE_PORTABILITY_KHR = InstanceCreateFlagBits::ENUMERATE_PORTABILITY_KHR
+    .0; }
+}
 #[repr(transparent)]
 #[derive(Clone, Copy)]
 pub struct InstanceCreateFlagBits(pub(crate) u32);
-#[repr(transparent)]
-#[derive(Clone, Copy)]
-pub struct DeviceCreateFlags(pub(crate) u32);
-#[repr(transparent)]
-#[derive(Clone, Copy)]
-pub struct DeviceQueueCreateFlags(pub(crate) u32);
+bitflags::bitflags! {
+    #[repr(transparent)] #[derive(Clone, Copy)] pub struct DeviceCreateFlags : u32 {}
+}
+bitflags::bitflags! {
+    #[repr(transparent)] #[derive(Clone, Copy)] pub struct DeviceQueueCreateFlags : u32 {
+    const PROTECTED = DeviceQueueCreateFlagBits::PROTECTED.0; const
+    INTERNALLY_SYNCHRONIZED_KHR = DeviceQueueCreateFlagBits::INTERNALLY_SYNCHRONIZED_KHR
+    .0; }
+}
 #[repr(transparent)]
 #[derive(Clone, Copy)]
 pub struct DeviceQueueCreateFlagBits(pub(crate) u32);
-#[repr(transparent)]
-#[derive(Clone, Copy)]
-pub struct QueueFlags(pub(crate) u32);
+bitflags::bitflags! {
+    #[repr(transparent)] #[derive(Clone, Copy)] pub struct QueueFlags : u32 { const
+    GRAPHICS = QueueFlagBits::GRAPHICS.0; const COMPUTE = QueueFlagBits::COMPUTE.0; const
+    TRANSFER = QueueFlagBits::TRANSFER.0; const SPARSE_BINDING =
+    QueueFlagBits::SPARSE_BINDING.0; const PROTECTED = QueueFlagBits::PROTECTED.0; const
+    VIDEO_DECODE_KHR = QueueFlagBits::VIDEO_DECODE_KHR.0; const VIDEO_ENCODE_KHR =
+    QueueFlagBits::VIDEO_ENCODE_KHR.0; const OPTICAL_FLOW_NV =
+    QueueFlagBits::OPTICAL_FLOW_NV.0; const DATA_GRAPH_ARM =
+    QueueFlagBits::DATA_GRAPH_ARM.0; }
+}
 #[repr(transparent)]
 #[derive(Clone, Copy)]
 pub struct QueueFlagBits(pub(crate) u32);
@@ -1427,9 +1502,18 @@ impl QueueFlagBits {
     pub const TRANSFER: Self = Self(1 << 2);
     pub const SPARSE_BINDING: Self = Self(1 << 3);
 }
-#[repr(transparent)]
-#[derive(Clone, Copy)]
-pub struct MemoryPropertyFlags(pub(crate) u32);
+bitflags::bitflags! {
+    #[repr(transparent)] #[derive(Clone, Copy)] pub struct MemoryPropertyFlags : u32 {
+    const DEVICE_LOCAL = MemoryPropertyFlagBits::DEVICE_LOCAL.0; const HOST_VISIBLE =
+    MemoryPropertyFlagBits::HOST_VISIBLE.0; const HOST_COHERENT =
+    MemoryPropertyFlagBits::HOST_COHERENT.0; const HOST_CACHED =
+    MemoryPropertyFlagBits::HOST_CACHED.0; const LAZILY_ALLOCATED =
+    MemoryPropertyFlagBits::LAZILY_ALLOCATED.0; const PROTECTED =
+    MemoryPropertyFlagBits::PROTECTED.0; const DEVICE_COHERENT_AMD =
+    MemoryPropertyFlagBits::DEVICE_COHERENT_AMD.0; const DEVICE_UNCACHED_AMD =
+    MemoryPropertyFlagBits::DEVICE_UNCACHED_AMD.0; const RDMA_CAPABLE_NV =
+    MemoryPropertyFlagBits::RDMA_CAPABLE_NV.0; }
+}
 #[repr(transparent)]
 #[derive(Clone, Copy)]
 pub struct MemoryPropertyFlagBits(pub(crate) u32);
@@ -1441,9 +1525,13 @@ impl MemoryPropertyFlagBits {
     pub const HOST_CACHED: Self = Self(1 << 3);
     pub const LAZILY_ALLOCATED: Self = Self(1 << 4);
 }
-#[repr(transparent)]
-#[derive(Clone, Copy)]
-pub struct MemoryHeapFlags(pub(crate) u32);
+bitflags::bitflags! {
+    #[repr(transparent)] #[derive(Clone, Copy)] pub struct MemoryHeapFlags : u32 { const
+    DEVICE_LOCAL = MemoryHeapFlagBits::DEVICE_LOCAL.0; const MULTI_INSTANCE =
+    MemoryHeapFlagBits::MULTI_INSTANCE.0; const MULTI_INSTANCE_KHR =
+    MemoryHeapFlagBits::MULTI_INSTANCE_KHR.0; const TILE_MEMORY_QCOM =
+    MemoryHeapFlagBits::TILE_MEMORY_QCOM.0; }
+}
 #[repr(transparent)]
 #[derive(Clone, Copy)]
 pub struct MemoryHeapFlagBits(pub(crate) u32);
@@ -1451,9 +1539,46 @@ pub struct MemoryHeapFlagBits(pub(crate) u32);
 impl MemoryHeapFlagBits {
     pub const DEVICE_LOCAL: Self = Self(1 << 0);
 }
-#[repr(transparent)]
-#[derive(Clone, Copy)]
-pub struct AccessFlags(pub(crate) u32);
+bitflags::bitflags! {
+    #[repr(transparent)] #[derive(Clone, Copy)] pub struct AccessFlags : u32 { const
+    INDIRECT_COMMAND_READ = AccessFlagBits::INDIRECT_COMMAND_READ.0; const INDEX_READ =
+    AccessFlagBits::INDEX_READ.0; const VERTEX_ATTRIBUTE_READ =
+    AccessFlagBits::VERTEX_ATTRIBUTE_READ.0; const UNIFORM_READ =
+    AccessFlagBits::UNIFORM_READ.0; const INPUT_ATTACHMENT_READ =
+    AccessFlagBits::INPUT_ATTACHMENT_READ.0; const SHADER_READ =
+    AccessFlagBits::SHADER_READ.0; const SHADER_WRITE = AccessFlagBits::SHADER_WRITE.0;
+    const COLOR_ATTACHMENT_READ = AccessFlagBits::COLOR_ATTACHMENT_READ.0; const
+    COLOR_ATTACHMENT_WRITE = AccessFlagBits::COLOR_ATTACHMENT_WRITE.0; const
+    DEPTH_STENCIL_ATTACHMENT_READ = AccessFlagBits::DEPTH_STENCIL_ATTACHMENT_READ.0;
+    const DEPTH_STENCIL_ATTACHMENT_WRITE = AccessFlagBits::DEPTH_STENCIL_ATTACHMENT_WRITE
+    .0; const TRANSFER_READ = AccessFlagBits::TRANSFER_READ.0; const TRANSFER_WRITE =
+    AccessFlagBits::TRANSFER_WRITE.0; const HOST_READ = AccessFlagBits::HOST_READ.0;
+    const HOST_WRITE = AccessFlagBits::HOST_WRITE.0; const MEMORY_READ =
+    AccessFlagBits::MEMORY_READ.0; const MEMORY_WRITE = AccessFlagBits::MEMORY_WRITE.0;
+    const NONE = AccessFlagBits::NONE.0; const TRANSFORM_FEEDBACK_WRITE_EXT =
+    AccessFlagBits::TRANSFORM_FEEDBACK_WRITE_EXT.0; const
+    TRANSFORM_FEEDBACK_COUNTER_READ_EXT =
+    AccessFlagBits::TRANSFORM_FEEDBACK_COUNTER_READ_EXT.0; const
+    TRANSFORM_FEEDBACK_COUNTER_WRITE_EXT =
+    AccessFlagBits::TRANSFORM_FEEDBACK_COUNTER_WRITE_EXT.0; const
+    CONDITIONAL_RENDERING_READ_EXT = AccessFlagBits::CONDITIONAL_RENDERING_READ_EXT.0;
+    const COLOR_ATTACHMENT_READ_NONCOHERENT_EXT =
+    AccessFlagBits::COLOR_ATTACHMENT_READ_NONCOHERENT_EXT.0; const
+    ACCELERATION_STRUCTURE_READ_KHR = AccessFlagBits::ACCELERATION_STRUCTURE_READ_KHR.0;
+    const ACCELERATION_STRUCTURE_WRITE_KHR =
+    AccessFlagBits::ACCELERATION_STRUCTURE_WRITE_KHR.0; const SHADING_RATE_IMAGE_READ_NV
+    = AccessFlagBits::SHADING_RATE_IMAGE_READ_NV.0; const ACCELERATION_STRUCTURE_READ_NV
+    = AccessFlagBits::ACCELERATION_STRUCTURE_READ_NV.0; const
+    ACCELERATION_STRUCTURE_WRITE_NV = AccessFlagBits::ACCELERATION_STRUCTURE_WRITE_NV.0;
+    const FRAGMENT_DENSITY_MAP_READ_EXT = AccessFlagBits::FRAGMENT_DENSITY_MAP_READ_EXT
+    .0; const FRAGMENT_SHADING_RATE_ATTACHMENT_READ_KHR =
+    AccessFlagBits::FRAGMENT_SHADING_RATE_ATTACHMENT_READ_KHR.0; const
+    COMMAND_PREPROCESS_READ_NV = AccessFlagBits::COMMAND_PREPROCESS_READ_NV.0; const
+    COMMAND_PREPROCESS_WRITE_NV = AccessFlagBits::COMMAND_PREPROCESS_WRITE_NV.0; const
+    NONE_KHR = AccessFlagBits::NONE_KHR.0; const COMMAND_PREPROCESS_READ_EXT =
+    AccessFlagBits::COMMAND_PREPROCESS_READ_EXT.0; const COMMAND_PREPROCESS_WRITE_EXT =
+    AccessFlagBits::COMMAND_PREPROCESS_WRITE_EXT.0; }
+}
 #[repr(transparent)]
 #[derive(Clone, Copy)]
 pub struct AccessFlagBits(pub(crate) u32);
@@ -1477,9 +1602,46 @@ impl AccessFlagBits {
     pub const MEMORY_READ: Self = Self(1 << 15);
     pub const MEMORY_WRITE: Self = Self(1 << 16);
 }
-#[repr(transparent)]
-#[derive(Clone, Copy)]
-pub struct BufferUsageFlags(pub(crate) u32);
+bitflags::bitflags! {
+    #[repr(transparent)] #[derive(Clone, Copy)] pub struct BufferUsageFlags : u32 { const
+    TRANSFER_SRC = BufferUsageFlagBits::TRANSFER_SRC.0; const TRANSFER_DST =
+    BufferUsageFlagBits::TRANSFER_DST.0; const UNIFORM_TEXEL_BUFFER =
+    BufferUsageFlagBits::UNIFORM_TEXEL_BUFFER.0; const STORAGE_TEXEL_BUFFER =
+    BufferUsageFlagBits::STORAGE_TEXEL_BUFFER.0; const UNIFORM_BUFFER =
+    BufferUsageFlagBits::UNIFORM_BUFFER.0; const STORAGE_BUFFER =
+    BufferUsageFlagBits::STORAGE_BUFFER.0; const INDEX_BUFFER =
+    BufferUsageFlagBits::INDEX_BUFFER.0; const VERTEX_BUFFER =
+    BufferUsageFlagBits::VERTEX_BUFFER.0; const INDIRECT_BUFFER =
+    BufferUsageFlagBits::INDIRECT_BUFFER.0; const SHADER_DEVICE_ADDRESS =
+    BufferUsageFlagBits::SHADER_DEVICE_ADDRESS.0; const VIDEO_DECODE_SRC_KHR =
+    BufferUsageFlagBits::VIDEO_DECODE_SRC_KHR.0; const VIDEO_DECODE_DST_KHR =
+    BufferUsageFlagBits::VIDEO_DECODE_DST_KHR.0; const TRANSFORM_FEEDBACK_BUFFER_EXT =
+    BufferUsageFlagBits::TRANSFORM_FEEDBACK_BUFFER_EXT.0; const
+    TRANSFORM_FEEDBACK_COUNTER_BUFFER_EXT =
+    BufferUsageFlagBits::TRANSFORM_FEEDBACK_COUNTER_BUFFER_EXT.0; const
+    CONDITIONAL_RENDERING_EXT = BufferUsageFlagBits::CONDITIONAL_RENDERING_EXT.0; const
+    EXECUTION_GRAPH_SCRATCH_AMDX = BufferUsageFlagBits::EXECUTION_GRAPH_SCRATCH_AMDX.0;
+    const DESCRIPTOR_HEAP_EXT = BufferUsageFlagBits::DESCRIPTOR_HEAP_EXT.0; const
+    ACCELERATION_STRUCTURE_BUILD_INPUT_READ_ONLY_KHR =
+    BufferUsageFlagBits::ACCELERATION_STRUCTURE_BUILD_INPUT_READ_ONLY_KHR.0; const
+    ACCELERATION_STRUCTURE_STORAGE_KHR =
+    BufferUsageFlagBits::ACCELERATION_STRUCTURE_STORAGE_KHR.0; const
+    SHADER_BINDING_TABLE_KHR = BufferUsageFlagBits::SHADER_BINDING_TABLE_KHR.0; const
+    RAY_TRACING_NV = BufferUsageFlagBits::RAY_TRACING_NV.0; const
+    SHADER_DEVICE_ADDRESS_EXT = BufferUsageFlagBits::SHADER_DEVICE_ADDRESS_EXT.0; const
+    SHADER_DEVICE_ADDRESS_KHR = BufferUsageFlagBits::SHADER_DEVICE_ADDRESS_KHR.0; const
+    VIDEO_ENCODE_DST_KHR = BufferUsageFlagBits::VIDEO_ENCODE_DST_KHR.0; const
+    VIDEO_ENCODE_SRC_KHR = BufferUsageFlagBits::VIDEO_ENCODE_SRC_KHR.0; const
+    SAMPLER_DESCRIPTOR_BUFFER_EXT = BufferUsageFlagBits::SAMPLER_DESCRIPTOR_BUFFER_EXT.0;
+    const RESOURCE_DESCRIPTOR_BUFFER_EXT =
+    BufferUsageFlagBits::RESOURCE_DESCRIPTOR_BUFFER_EXT.0; const
+    PUSH_DESCRIPTORS_DESCRIPTOR_BUFFER_EXT =
+    BufferUsageFlagBits::PUSH_DESCRIPTORS_DESCRIPTOR_BUFFER_EXT.0; const
+    MICROMAP_BUILD_INPUT_READ_ONLY_EXT =
+    BufferUsageFlagBits::MICROMAP_BUILD_INPUT_READ_ONLY_EXT.0; const MICROMAP_STORAGE_EXT
+    = BufferUsageFlagBits::MICROMAP_STORAGE_EXT.0; const TILE_MEMORY_QCOM =
+    BufferUsageFlagBits::TILE_MEMORY_QCOM.0; }
+}
 #[repr(transparent)]
 #[derive(Clone, Copy)]
 pub struct BufferUsageFlagBits(pub(crate) u32);
@@ -1495,9 +1657,22 @@ impl BufferUsageFlagBits {
     pub const VERTEX_BUFFER: Self = Self(1 << 7);
     pub const INDIRECT_BUFFER: Self = Self(1 << 8);
 }
-#[repr(transparent)]
-#[derive(Clone, Copy)]
-pub struct BufferCreateFlags(pub(crate) u32);
+bitflags::bitflags! {
+    #[repr(transparent)] #[derive(Clone, Copy)] pub struct BufferCreateFlags : u32 {
+    const SPARSE_BINDING = BufferCreateFlagBits::SPARSE_BINDING.0; const SPARSE_RESIDENCY
+    = BufferCreateFlagBits::SPARSE_RESIDENCY.0; const SPARSE_ALIASED =
+    BufferCreateFlagBits::SPARSE_ALIASED.0; const PROTECTED =
+    BufferCreateFlagBits::PROTECTED.0; const DEVICE_ADDRESS_CAPTURE_REPLAY =
+    BufferCreateFlagBits::DEVICE_ADDRESS_CAPTURE_REPLAY.0; const
+    DEVICE_ADDRESS_CAPTURE_REPLAY_EXT =
+    BufferCreateFlagBits::DEVICE_ADDRESS_CAPTURE_REPLAY_EXT.0; const
+    DEVICE_ADDRESS_CAPTURE_REPLAY_KHR =
+    BufferCreateFlagBits::DEVICE_ADDRESS_CAPTURE_REPLAY_KHR.0; const
+    DESCRIPTOR_BUFFER_CAPTURE_REPLAY_EXT =
+    BufferCreateFlagBits::DESCRIPTOR_BUFFER_CAPTURE_REPLAY_EXT.0; const
+    VIDEO_PROFILE_INDEPENDENT_KHR = BufferCreateFlagBits::VIDEO_PROFILE_INDEPENDENT_KHR
+    .0; }
+}
 #[repr(transparent)]
 #[derive(Clone, Copy)]
 pub struct BufferCreateFlagBits(pub(crate) u32);
@@ -1507,9 +1682,29 @@ impl BufferCreateFlagBits {
     pub const SPARSE_RESIDENCY: Self = Self(1 << 1);
     pub const SPARSE_ALIASED: Self = Self(1 << 2);
 }
-#[repr(transparent)]
-#[derive(Clone, Copy)]
-pub struct ShaderStageFlags(pub(crate) u32);
+bitflags::bitflags! {
+    #[repr(transparent)] #[derive(Clone, Copy)] pub struct ShaderStageFlags : u32 { const
+    VERTEX = ShaderStageFlagBits::VERTEX.0; const TESSELLATION_CONTROL =
+    ShaderStageFlagBits::TESSELLATION_CONTROL.0; const TESSELLATION_EVALUATION =
+    ShaderStageFlagBits::TESSELLATION_EVALUATION.0; const GEOMETRY =
+    ShaderStageFlagBits::GEOMETRY.0; const FRAGMENT = ShaderStageFlagBits::FRAGMENT.0;
+    const COMPUTE = ShaderStageFlagBits::COMPUTE.0; const ALL_GRAPHICS =
+    ShaderStageFlagBits::ALL_GRAPHICS.0; const ALL = ShaderStageFlagBits::ALL.0; const
+    RAYGEN_KHR = ShaderStageFlagBits::RAYGEN_KHR.0; const ANY_HIT_KHR =
+    ShaderStageFlagBits::ANY_HIT_KHR.0; const CLOSEST_HIT_KHR =
+    ShaderStageFlagBits::CLOSEST_HIT_KHR.0; const MISS_KHR =
+    ShaderStageFlagBits::MISS_KHR.0; const INTERSECTION_KHR =
+    ShaderStageFlagBits::INTERSECTION_KHR.0; const CALLABLE_KHR =
+    ShaderStageFlagBits::CALLABLE_KHR.0; const RAYGEN_NV = ShaderStageFlagBits::RAYGEN_NV
+    .0; const ANY_HIT_NV = ShaderStageFlagBits::ANY_HIT_NV.0; const CLOSEST_HIT_NV =
+    ShaderStageFlagBits::CLOSEST_HIT_NV.0; const MISS_NV = ShaderStageFlagBits::MISS_NV
+    .0; const INTERSECTION_NV = ShaderStageFlagBits::INTERSECTION_NV.0; const CALLABLE_NV
+    = ShaderStageFlagBits::CALLABLE_NV.0; const TASK_NV = ShaderStageFlagBits::TASK_NV.0;
+    const MESH_NV = ShaderStageFlagBits::MESH_NV.0; const TASK_EXT =
+    ShaderStageFlagBits::TASK_EXT.0; const MESH_EXT = ShaderStageFlagBits::MESH_EXT.0;
+    const SUBPASS_SHADING_HUAWEI = ShaderStageFlagBits::SUBPASS_SHADING_HUAWEI.0; const
+    CLUSTER_CULLING_HUAWEI = ShaderStageFlagBits::CLUSTER_CULLING_HUAWEI.0; }
+}
 #[repr(transparent)]
 #[derive(Clone, Copy)]
 pub struct ShaderStageFlagBits(pub(crate) u32);
@@ -1524,9 +1719,37 @@ impl ShaderStageFlagBits {
     pub const ALL_GRAPHICS: Self = Self(0x0000001);
     pub const ALL: Self = Self(0x7FFFFFF);
 }
-#[repr(transparent)]
-#[derive(Clone, Copy)]
-pub struct ImageUsageFlags(pub(crate) u32);
+bitflags::bitflags! {
+    #[repr(transparent)] #[derive(Clone, Copy)] pub struct ImageUsageFlags : u32 { const
+    TRANSFER_SRC = ImageUsageFlagBits::TRANSFER_SRC.0; const TRANSFER_DST =
+    ImageUsageFlagBits::TRANSFER_DST.0; const SAMPLED = ImageUsageFlagBits::SAMPLED.0;
+    const STORAGE = ImageUsageFlagBits::STORAGE.0; const COLOR_ATTACHMENT =
+    ImageUsageFlagBits::COLOR_ATTACHMENT.0; const DEPTH_STENCIL_ATTACHMENT =
+    ImageUsageFlagBits::DEPTH_STENCIL_ATTACHMENT.0; const TRANSIENT_ATTACHMENT =
+    ImageUsageFlagBits::TRANSIENT_ATTACHMENT.0; const INPUT_ATTACHMENT =
+    ImageUsageFlagBits::INPUT_ATTACHMENT.0; const HOST_TRANSFER =
+    ImageUsageFlagBits::HOST_TRANSFER.0; const VIDEO_DECODE_DST_KHR =
+    ImageUsageFlagBits::VIDEO_DECODE_DST_KHR.0; const VIDEO_DECODE_SRC_KHR =
+    ImageUsageFlagBits::VIDEO_DECODE_SRC_KHR.0; const VIDEO_DECODE_DPB_KHR =
+    ImageUsageFlagBits::VIDEO_DECODE_DPB_KHR.0; const SHADING_RATE_IMAGE_NV =
+    ImageUsageFlagBits::SHADING_RATE_IMAGE_NV.0; const FRAGMENT_DENSITY_MAP_EXT =
+    ImageUsageFlagBits::FRAGMENT_DENSITY_MAP_EXT.0; const
+    FRAGMENT_SHADING_RATE_ATTACHMENT_KHR =
+    ImageUsageFlagBits::FRAGMENT_SHADING_RATE_ATTACHMENT_KHR.0; const HOST_TRANSFER_EXT =
+    ImageUsageFlagBits::HOST_TRANSFER_EXT.0; const VIDEO_ENCODE_DST_KHR =
+    ImageUsageFlagBits::VIDEO_ENCODE_DST_KHR.0; const VIDEO_ENCODE_SRC_KHR =
+    ImageUsageFlagBits::VIDEO_ENCODE_SRC_KHR.0; const VIDEO_ENCODE_DPB_KHR =
+    ImageUsageFlagBits::VIDEO_ENCODE_DPB_KHR.0; const ATTACHMENT_FEEDBACK_LOOP_EXT =
+    ImageUsageFlagBits::ATTACHMENT_FEEDBACK_LOOP_EXT.0; const INVOCATION_MASK_HUAWEI =
+    ImageUsageFlagBits::INVOCATION_MASK_HUAWEI.0; const SAMPLE_WEIGHT_QCOM =
+    ImageUsageFlagBits::SAMPLE_WEIGHT_QCOM.0; const SAMPLE_BLOCK_MATCH_QCOM =
+    ImageUsageFlagBits::SAMPLE_BLOCK_MATCH_QCOM.0; const TENSOR_ALIASING_ARM =
+    ImageUsageFlagBits::TENSOR_ALIASING_ARM.0; const TILE_MEMORY_QCOM =
+    ImageUsageFlagBits::TILE_MEMORY_QCOM.0; const VIDEO_ENCODE_QUANTIZATION_DELTA_MAP_KHR
+    = ImageUsageFlagBits::VIDEO_ENCODE_QUANTIZATION_DELTA_MAP_KHR.0; const
+    VIDEO_ENCODE_EMPHASIS_MAP_KHR = ImageUsageFlagBits::VIDEO_ENCODE_EMPHASIS_MAP_KHR.0;
+    }
+}
 #[repr(transparent)]
 #[derive(Clone, Copy)]
 pub struct ImageUsageFlagBits(pub(crate) u32);
@@ -1541,9 +1764,41 @@ impl ImageUsageFlagBits {
     pub const TRANSIENT_ATTACHMENT: Self = Self(1 << 6);
     pub const INPUT_ATTACHMENT: Self = Self(1 << 7);
 }
-#[repr(transparent)]
-#[derive(Clone, Copy)]
-pub struct ImageCreateFlags(pub(crate) u32);
+bitflags::bitflags! {
+    #[repr(transparent)] #[derive(Clone, Copy)] pub struct ImageCreateFlags : u32 { const
+    SPARSE_BINDING = ImageCreateFlagBits::SPARSE_BINDING.0; const SPARSE_RESIDENCY =
+    ImageCreateFlagBits::SPARSE_RESIDENCY.0; const SPARSE_ALIASED =
+    ImageCreateFlagBits::SPARSE_ALIASED.0; const MUTABLE_FORMAT =
+    ImageCreateFlagBits::MUTABLE_FORMAT.0; const CUBE_COMPATIBLE =
+    ImageCreateFlagBits::CUBE_COMPATIBLE.0; const ALIAS = ImageCreateFlagBits::ALIAS.0;
+    const SPLIT_INSTANCE_BIND_REGIONS = ImageCreateFlagBits::SPLIT_INSTANCE_BIND_REGIONS
+    .0; const _2D_ARRAY_COMPATIBLE = ImageCreateFlagBits::_2D_ARRAY_COMPATIBLE.0; const
+    BLOCK_TEXEL_VIEW_COMPATIBLE = ImageCreateFlagBits::BLOCK_TEXEL_VIEW_COMPATIBLE.0;
+    const EXTENDED_USAGE = ImageCreateFlagBits::EXTENDED_USAGE.0; const PROTECTED =
+    ImageCreateFlagBits::PROTECTED.0; const DISJOINT = ImageCreateFlagBits::DISJOINT.0;
+    const CORNER_SAMPLED_NV = ImageCreateFlagBits::CORNER_SAMPLED_NV.0; const
+    SPLIT_INSTANCE_BIND_REGIONS_KHR =
+    ImageCreateFlagBits::SPLIT_INSTANCE_BIND_REGIONS_KHR.0; const
+    _2D_ARRAY_COMPATIBLE_KHR = ImageCreateFlagBits::_2D_ARRAY_COMPATIBLE_KHR.0; const
+    BLOCK_TEXEL_VIEW_COMPATIBLE_KHR =
+    ImageCreateFlagBits::BLOCK_TEXEL_VIEW_COMPATIBLE_KHR.0; const EXTENDED_USAGE_KHR =
+    ImageCreateFlagBits::EXTENDED_USAGE_KHR.0; const DESCRIPTOR_HEAP_CAPTURE_REPLAY_EXT =
+    ImageCreateFlagBits::DESCRIPTOR_HEAP_CAPTURE_REPLAY_EXT.0; const
+    SAMPLE_LOCATIONS_COMPATIBLE_DEPTH_EXT =
+    ImageCreateFlagBits::SAMPLE_LOCATIONS_COMPATIBLE_DEPTH_EXT.0; const DISJOINT_KHR =
+    ImageCreateFlagBits::DISJOINT_KHR.0; const ALIAS_KHR = ImageCreateFlagBits::ALIAS_KHR
+    .0; const SUBSAMPLED_EXT = ImageCreateFlagBits::SUBSAMPLED_EXT.0; const
+    DESCRIPTOR_BUFFER_CAPTURE_REPLAY_EXT =
+    ImageCreateFlagBits::DESCRIPTOR_BUFFER_CAPTURE_REPLAY_EXT.0; const
+    MULTISAMPLED_RENDER_TO_SINGLE_SAMPLED_EXT =
+    ImageCreateFlagBits::MULTISAMPLED_RENDER_TO_SINGLE_SAMPLED_EXT.0; const
+    _2D_VIEW_COMPATIBLE_EXT = ImageCreateFlagBits::_2D_VIEW_COMPATIBLE_EXT.0; const
+    FRAGMENT_DENSITY_MAP_OFFSET_QCOM =
+    ImageCreateFlagBits::FRAGMENT_DENSITY_MAP_OFFSET_QCOM.0; const
+    VIDEO_PROFILE_INDEPENDENT_KHR = ImageCreateFlagBits::VIDEO_PROFILE_INDEPENDENT_KHR.0;
+    const FRAGMENT_DENSITY_MAP_OFFSET_EXT =
+    ImageCreateFlagBits::FRAGMENT_DENSITY_MAP_OFFSET_EXT.0; }
+}
 #[repr(transparent)]
 #[derive(Clone, Copy)]
 pub struct ImageCreateFlagBits(pub(crate) u32);
@@ -1555,15 +1810,76 @@ impl ImageCreateFlagBits {
     pub const MUTABLE_FORMAT: Self = Self(1 << 3);
     pub const CUBE_COMPATIBLE: Self = Self(1 << 4);
 }
-#[repr(transparent)]
-#[derive(Clone, Copy)]
-pub struct ImageViewCreateFlags(pub(crate) u32);
+bitflags::bitflags! {
+    #[repr(transparent)] #[derive(Clone, Copy)] pub struct ImageViewCreateFlags : u32 {
+    const FRAGMENT_DENSITY_MAP_DYNAMIC_EXT =
+    ImageViewCreateFlagBits::FRAGMENT_DENSITY_MAP_DYNAMIC_EXT.0; const
+    DESCRIPTOR_BUFFER_CAPTURE_REPLAY_EXT =
+    ImageViewCreateFlagBits::DESCRIPTOR_BUFFER_CAPTURE_REPLAY_EXT.0; const
+    FRAGMENT_DENSITY_MAP_DEFERRED_EXT =
+    ImageViewCreateFlagBits::FRAGMENT_DENSITY_MAP_DEFERRED_EXT.0; }
+}
 #[repr(transparent)]
 #[derive(Clone, Copy)]
 pub struct ImageViewCreateFlagBits(pub(crate) u32);
-#[repr(transparent)]
-#[derive(Clone, Copy)]
-pub struct PipelineCreateFlags(pub(crate) u32);
+bitflags::bitflags! {
+    #[repr(transparent)] #[derive(Clone, Copy)] pub struct PipelineCreateFlags : u32 {
+    const DISABLE_OPTIMIZATION = PipelineCreateFlagBits::DISABLE_OPTIMIZATION.0; const
+    ALLOW_DERIVATIVES = PipelineCreateFlagBits::ALLOW_DERIVATIVES.0; const DERIVATIVE =
+    PipelineCreateFlagBits::DERIVATIVE.0; const DISPATCH_BASE =
+    PipelineCreateFlagBits::DISPATCH_BASE.0; const VIEW_INDEX_FROM_DEVICE_INDEX =
+    PipelineCreateFlagBits::VIEW_INDEX_FROM_DEVICE_INDEX.0; const
+    FAIL_ON_PIPELINE_COMPILE_REQUIRED =
+    PipelineCreateFlagBits::FAIL_ON_PIPELINE_COMPILE_REQUIRED.0; const
+    EARLY_RETURN_ON_FAILURE = PipelineCreateFlagBits::EARLY_RETURN_ON_FAILURE.0; const
+    NO_PROTECTED_ACCESS = PipelineCreateFlagBits::NO_PROTECTED_ACCESS.0; const
+    PROTECTED_ACCESS_ONLY = PipelineCreateFlagBits::PROTECTED_ACCESS_ONLY.0; const
+    VIEW_INDEX_FROM_DEVICE_INDEX_KHR =
+    PipelineCreateFlagBits::VIEW_INDEX_FROM_DEVICE_INDEX_KHR.0; const DISPATCH_BASE_KHR =
+    PipelineCreateFlagBits::DISPATCH_BASE_KHR.0; const
+    RAY_TRACING_NO_NULL_ANY_HIT_SHADERS_KHR =
+    PipelineCreateFlagBits::RAY_TRACING_NO_NULL_ANY_HIT_SHADERS_KHR.0; const
+    RAY_TRACING_NO_NULL_CLOSEST_HIT_SHADERS_KHR =
+    PipelineCreateFlagBits::RAY_TRACING_NO_NULL_CLOSEST_HIT_SHADERS_KHR.0; const
+    RAY_TRACING_NO_NULL_MISS_SHADERS_KHR =
+    PipelineCreateFlagBits::RAY_TRACING_NO_NULL_MISS_SHADERS_KHR.0; const
+    RAY_TRACING_NO_NULL_INTERSECTION_SHADERS_KHR =
+    PipelineCreateFlagBits::RAY_TRACING_NO_NULL_INTERSECTION_SHADERS_KHR.0; const
+    RAY_TRACING_SKIP_TRIANGLES_KHR =
+    PipelineCreateFlagBits::RAY_TRACING_SKIP_TRIANGLES_KHR.0; const
+    RAY_TRACING_SKIP_AABBS_KHR = PipelineCreateFlagBits::RAY_TRACING_SKIP_AABBS_KHR.0;
+    const RAY_TRACING_SHADER_GROUP_HANDLE_CAPTURE_REPLAY_KHR =
+    PipelineCreateFlagBits::RAY_TRACING_SHADER_GROUP_HANDLE_CAPTURE_REPLAY_KHR.0; const
+    DEFER_COMPILE_NV = PipelineCreateFlagBits::DEFER_COMPILE_NV.0; const
+    RENDERING_FRAGMENT_DENSITY_MAP_ATTACHMENT_EXT =
+    PipelineCreateFlagBits::RENDERING_FRAGMENT_DENSITY_MAP_ATTACHMENT_EXT.0; const
+    RENDERING_FRAGMENT_SHADING_RATE_ATTACHMENT_KHR =
+    PipelineCreateFlagBits::RENDERING_FRAGMENT_SHADING_RATE_ATTACHMENT_KHR.0; const
+    CAPTURE_STATISTICS_KHR = PipelineCreateFlagBits::CAPTURE_STATISTICS_KHR.0; const
+    CAPTURE_INTERNAL_REPRESENTATIONS_KHR =
+    PipelineCreateFlagBits::CAPTURE_INTERNAL_REPRESENTATIONS_KHR.0; const
+    INDIRECT_BINDABLE_NV = PipelineCreateFlagBits::INDIRECT_BINDABLE_NV.0; const
+    LIBRARY_KHR = PipelineCreateFlagBits::LIBRARY_KHR.0; const
+    FAIL_ON_PIPELINE_COMPILE_REQUIRED_EXT =
+    PipelineCreateFlagBits::FAIL_ON_PIPELINE_COMPILE_REQUIRED_EXT.0; const
+    EARLY_RETURN_ON_FAILURE_EXT = PipelineCreateFlagBits::EARLY_RETURN_ON_FAILURE_EXT.0;
+    const DESCRIPTOR_BUFFER_EXT = PipelineCreateFlagBits::DESCRIPTOR_BUFFER_EXT.0; const
+    RETAIN_LINK_TIME_OPTIMIZATION_INFO_EXT =
+    PipelineCreateFlagBits::RETAIN_LINK_TIME_OPTIMIZATION_INFO_EXT.0; const
+    LINK_TIME_OPTIMIZATION_EXT = PipelineCreateFlagBits::LINK_TIME_OPTIMIZATION_EXT.0;
+    const RAY_TRACING_ALLOW_MOTION_NV =
+    PipelineCreateFlagBits::RAY_TRACING_ALLOW_MOTION_NV.0; const
+    COLOR_ATTACHMENT_FEEDBACK_LOOP_EXT =
+    PipelineCreateFlagBits::COLOR_ATTACHMENT_FEEDBACK_LOOP_EXT.0; const
+    DEPTH_STENCIL_ATTACHMENT_FEEDBACK_LOOP_EXT =
+    PipelineCreateFlagBits::DEPTH_STENCIL_ATTACHMENT_FEEDBACK_LOOP_EXT.0; const
+    RAY_TRACING_OPACITY_MICROMAP_EXT =
+    PipelineCreateFlagBits::RAY_TRACING_OPACITY_MICROMAP_EXT.0; const
+    RAY_TRACING_DISPLACEMENT_MICROMAP_NV =
+    PipelineCreateFlagBits::RAY_TRACING_DISPLACEMENT_MICROMAP_NV.0; const
+    NO_PROTECTED_ACCESS_EXT = PipelineCreateFlagBits::NO_PROTECTED_ACCESS_EXT.0; const
+    PROTECTED_ACCESS_ONLY_EXT = PipelineCreateFlagBits::PROTECTED_ACCESS_ONLY_EXT.0; }
+}
 #[repr(transparent)]
 #[derive(Clone, Copy)]
 pub struct PipelineCreateFlagBits(pub(crate) u32);
@@ -1573,9 +1889,11 @@ impl PipelineCreateFlagBits {
     pub const ALLOW_DERIVATIVES: Self = Self(1 << 1);
     pub const DERIVATIVE: Self = Self(1 << 2);
 }
-#[repr(transparent)]
-#[derive(Clone, Copy)]
-pub struct ColorComponentFlags(pub(crate) u32);
+bitflags::bitflags! {
+    #[repr(transparent)] #[derive(Clone, Copy)] pub struct ColorComponentFlags : u32 {
+    const R = ColorComponentFlagBits::R.0; const G = ColorComponentFlagBits::G.0; const B
+    = ColorComponentFlagBits::B.0; const A = ColorComponentFlagBits::A.0; }
+}
 #[repr(transparent)]
 #[derive(Clone, Copy)]
 pub struct ColorComponentFlagBits(pub(crate) u32);
@@ -1586,9 +1904,10 @@ impl ColorComponentFlagBits {
     pub const B: Self = Self(1 << 2);
     pub const A: Self = Self(1 << 3);
 }
-#[repr(transparent)]
-#[derive(Clone, Copy)]
-pub struct FenceCreateFlags(pub(crate) u32);
+bitflags::bitflags! {
+    #[repr(transparent)] #[derive(Clone, Copy)] pub struct FenceCreateFlags : u32 { const
+    SIGNALED = FenceCreateFlagBits::SIGNALED.0; }
+}
 #[repr(transparent)]
 #[derive(Clone, Copy)]
 pub struct FenceCreateFlagBits(pub(crate) u32);
@@ -1596,12 +1915,67 @@ pub struct FenceCreateFlagBits(pub(crate) u32);
 impl FenceCreateFlagBits {
     pub const SIGNALED: Self = Self(1 << 0);
 }
-#[repr(transparent)]
-#[derive(Clone, Copy)]
-pub struct SemaphoreCreateFlags(pub(crate) u32);
-#[repr(transparent)]
-#[derive(Clone, Copy)]
-pub struct FormatFeatureFlags(pub(crate) u32);
+bitflags::bitflags! {
+    #[repr(transparent)] #[derive(Clone, Copy)] pub struct SemaphoreCreateFlags : u32 {}
+}
+bitflags::bitflags! {
+    #[repr(transparent)] #[derive(Clone, Copy)] pub struct FormatFeatureFlags : u32 {
+    const SAMPLED_IMAGE = FormatFeatureFlagBits::SAMPLED_IMAGE.0; const STORAGE_IMAGE =
+    FormatFeatureFlagBits::STORAGE_IMAGE.0; const STORAGE_IMAGE_ATOMIC =
+    FormatFeatureFlagBits::STORAGE_IMAGE_ATOMIC.0; const UNIFORM_TEXEL_BUFFER =
+    FormatFeatureFlagBits::UNIFORM_TEXEL_BUFFER.0; const STORAGE_TEXEL_BUFFER =
+    FormatFeatureFlagBits::STORAGE_TEXEL_BUFFER.0; const STORAGE_TEXEL_BUFFER_ATOMIC =
+    FormatFeatureFlagBits::STORAGE_TEXEL_BUFFER_ATOMIC.0; const VERTEX_BUFFER =
+    FormatFeatureFlagBits::VERTEX_BUFFER.0; const COLOR_ATTACHMENT =
+    FormatFeatureFlagBits::COLOR_ATTACHMENT.0; const COLOR_ATTACHMENT_BLEND =
+    FormatFeatureFlagBits::COLOR_ATTACHMENT_BLEND.0; const DEPTH_STENCIL_ATTACHMENT =
+    FormatFeatureFlagBits::DEPTH_STENCIL_ATTACHMENT.0; const BLIT_SRC =
+    FormatFeatureFlagBits::BLIT_SRC.0; const BLIT_DST = FormatFeatureFlagBits::BLIT_DST
+    .0; const SAMPLED_IMAGE_FILTER_LINEAR =
+    FormatFeatureFlagBits::SAMPLED_IMAGE_FILTER_LINEAR.0; const TRANSFER_SRC =
+    FormatFeatureFlagBits::TRANSFER_SRC.0; const TRANSFER_DST =
+    FormatFeatureFlagBits::TRANSFER_DST.0; const MIDPOINT_CHROMA_SAMPLES =
+    FormatFeatureFlagBits::MIDPOINT_CHROMA_SAMPLES.0; const
+    SAMPLED_IMAGE_YCBCR_CONVERSION_LINEAR_FILTER =
+    FormatFeatureFlagBits::SAMPLED_IMAGE_YCBCR_CONVERSION_LINEAR_FILTER.0; const
+    SAMPLED_IMAGE_YCBCR_CONVERSION_SEPARATE_RECONSTRUCTION_FILTER =
+    FormatFeatureFlagBits::SAMPLED_IMAGE_YCBCR_CONVERSION_SEPARATE_RECONSTRUCTION_FILTER
+    .0; const SAMPLED_IMAGE_YCBCR_CONVERSION_CHROMA_RECONSTRUCTION_EXPLICIT =
+    FormatFeatureFlagBits::SAMPLED_IMAGE_YCBCR_CONVERSION_CHROMA_RECONSTRUCTION_EXPLICIT
+    .0; const SAMPLED_IMAGE_YCBCR_CONVERSION_CHROMA_RECONSTRUCTION_EXPLICIT_FORCEABLE =
+    FormatFeatureFlagBits::SAMPLED_IMAGE_YCBCR_CONVERSION_CHROMA_RECONSTRUCTION_EXPLICIT_FORCEABLE
+    .0; const DISJOINT = FormatFeatureFlagBits::DISJOINT.0; const COSITED_CHROMA_SAMPLES
+    = FormatFeatureFlagBits::COSITED_CHROMA_SAMPLES.0; const SAMPLED_IMAGE_FILTER_MINMAX
+    = FormatFeatureFlagBits::SAMPLED_IMAGE_FILTER_MINMAX.0; const
+    SAMPLED_IMAGE_FILTER_CUBIC_IMG =
+    FormatFeatureFlagBits::SAMPLED_IMAGE_FILTER_CUBIC_IMG.0; const
+    VIDEO_DECODE_OUTPUT_KHR = FormatFeatureFlagBits::VIDEO_DECODE_OUTPUT_KHR.0; const
+    VIDEO_DECODE_DPB_KHR = FormatFeatureFlagBits::VIDEO_DECODE_DPB_KHR.0; const
+    TRANSFER_SRC_KHR = FormatFeatureFlagBits::TRANSFER_SRC_KHR.0; const TRANSFER_DST_KHR
+    = FormatFeatureFlagBits::TRANSFER_DST_KHR.0; const SAMPLED_IMAGE_FILTER_MINMAX_EXT =
+    FormatFeatureFlagBits::SAMPLED_IMAGE_FILTER_MINMAX_EXT.0; const
+    ACCELERATION_STRUCTURE_VERTEX_BUFFER_KHR =
+    FormatFeatureFlagBits::ACCELERATION_STRUCTURE_VERTEX_BUFFER_KHR.0; const
+    MIDPOINT_CHROMA_SAMPLES_KHR = FormatFeatureFlagBits::MIDPOINT_CHROMA_SAMPLES_KHR.0;
+    const SAMPLED_IMAGE_YCBCR_CONVERSION_LINEAR_FILTER_KHR =
+    FormatFeatureFlagBits::SAMPLED_IMAGE_YCBCR_CONVERSION_LINEAR_FILTER_KHR.0; const
+    SAMPLED_IMAGE_YCBCR_CONVERSION_SEPARATE_RECONSTRUCTION_FILTER_KHR =
+    FormatFeatureFlagBits::SAMPLED_IMAGE_YCBCR_CONVERSION_SEPARATE_RECONSTRUCTION_FILTER_KHR
+    .0; const SAMPLED_IMAGE_YCBCR_CONVERSION_CHROMA_RECONSTRUCTION_EXPLICIT_KHR =
+    FormatFeatureFlagBits::SAMPLED_IMAGE_YCBCR_CONVERSION_CHROMA_RECONSTRUCTION_EXPLICIT_KHR
+    .0; const SAMPLED_IMAGE_YCBCR_CONVERSION_CHROMA_RECONSTRUCTION_EXPLICIT_FORCEABLE_KHR
+    =
+    FormatFeatureFlagBits::SAMPLED_IMAGE_YCBCR_CONVERSION_CHROMA_RECONSTRUCTION_EXPLICIT_FORCEABLE_KHR
+    .0; const DISJOINT_KHR = FormatFeatureFlagBits::DISJOINT_KHR.0; const
+    COSITED_CHROMA_SAMPLES_KHR = FormatFeatureFlagBits::COSITED_CHROMA_SAMPLES_KHR.0;
+    const SAMPLED_IMAGE_FILTER_CUBIC_EXT =
+    FormatFeatureFlagBits::SAMPLED_IMAGE_FILTER_CUBIC_EXT.0; const
+    FRAGMENT_DENSITY_MAP_EXT = FormatFeatureFlagBits::FRAGMENT_DENSITY_MAP_EXT.0; const
+    FRAGMENT_SHADING_RATE_ATTACHMENT_KHR =
+    FormatFeatureFlagBits::FRAGMENT_SHADING_RATE_ATTACHMENT_KHR.0; const
+    VIDEO_ENCODE_INPUT_KHR = FormatFeatureFlagBits::VIDEO_ENCODE_INPUT_KHR.0; const
+    VIDEO_ENCODE_DPB_KHR = FormatFeatureFlagBits::VIDEO_ENCODE_DPB_KHR.0; }
+}
 #[repr(transparent)]
 #[derive(Clone, Copy)]
 pub struct FormatFeatureFlagBits(pub(crate) u32);
@@ -1621,9 +1995,10 @@ impl FormatFeatureFlagBits {
     pub const BLIT_DST: Self = Self(1 << 11);
     pub const SAMPLED_IMAGE_FILTER_LINEAR: Self = Self(1 << 12);
 }
-#[repr(transparent)]
-#[derive(Clone, Copy)]
-pub struct QueryControlFlags(pub(crate) u32);
+bitflags::bitflags! {
+    #[repr(transparent)] #[derive(Clone, Copy)] pub struct QueryControlFlags : u32 {
+    const PRECISE = QueryControlFlagBits::PRECISE.0; }
+}
 #[repr(transparent)]
 #[derive(Clone, Copy)]
 pub struct QueryControlFlagBits(pub(crate) u32);
@@ -1631,9 +2006,13 @@ pub struct QueryControlFlagBits(pub(crate) u32);
 impl QueryControlFlagBits {
     pub const PRECISE: Self = Self(1 << 0);
 }
-#[repr(transparent)]
-#[derive(Clone, Copy)]
-pub struct QueryResultFlags(pub(crate) u32);
+bitflags::bitflags! {
+    #[repr(transparent)] #[derive(Clone, Copy)] pub struct QueryResultFlags : u32 { const
+    _64 = QueryResultFlagBits::_64.0; const WAIT = QueryResultFlagBits::WAIT.0; const
+    WITH_AVAILABILITY = QueryResultFlagBits::WITH_AVAILABILITY.0; const PARTIAL =
+    QueryResultFlagBits::PARTIAL.0; const WITH_STATUS_KHR =
+    QueryResultFlagBits::WITH_STATUS_KHR.0; }
+}
 #[repr(transparent)]
 #[derive(Clone, Copy)]
 pub struct QueryResultFlagBits(pub(crate) u32);
@@ -1644,18 +2023,24 @@ impl QueryResultFlagBits {
     pub const WITH_AVAILABILITY: Self = Self(1 << 2);
     pub const PARTIAL: Self = Self(1 << 3);
 }
-#[repr(transparent)]
-#[derive(Clone, Copy)]
-pub struct ShaderModuleCreateFlags(pub(crate) u32);
-#[repr(transparent)]
-#[derive(Clone, Copy)]
-pub struct EventCreateFlags(pub(crate) u32);
+bitflags::bitflags! {
+    #[repr(transparent)] #[derive(Clone, Copy)] pub struct ShaderModuleCreateFlags : u32
+    {}
+}
+bitflags::bitflags! {
+    #[repr(transparent)] #[derive(Clone, Copy)] pub struct EventCreateFlags : u32 { const
+    DEVICE_ONLY = EventCreateFlagBits::DEVICE_ONLY.0; const DEVICE_ONLY_KHR =
+    EventCreateFlagBits::DEVICE_ONLY_KHR.0; }
+}
 #[repr(transparent)]
 #[derive(Clone, Copy)]
 pub struct EventCreateFlagBits(pub(crate) u32);
-#[repr(transparent)]
-#[derive(Clone, Copy)]
-pub struct CommandPoolCreateFlags(pub(crate) u32);
+bitflags::bitflags! {
+    #[repr(transparent)] #[derive(Clone, Copy)] pub struct CommandPoolCreateFlags : u32 {
+    const TRANSIENT = CommandPoolCreateFlagBits::TRANSIENT.0; const RESET_COMMAND_BUFFER
+    = CommandPoolCreateFlagBits::RESET_COMMAND_BUFFER.0; const PROTECTED =
+    CommandPoolCreateFlagBits::PROTECTED.0; }
+}
 #[repr(transparent)]
 #[derive(Clone, Copy)]
 pub struct CommandPoolCreateFlagBits(pub(crate) u32);
@@ -1664,9 +2049,10 @@ impl CommandPoolCreateFlagBits {
     pub const TRANSIENT: Self = Self(1 << 0);
     pub const RESET_COMMAND_BUFFER: Self = Self(1 << 1);
 }
-#[repr(transparent)]
-#[derive(Clone, Copy)]
-pub struct CommandPoolResetFlags(pub(crate) u32);
+bitflags::bitflags! {
+    #[repr(transparent)] #[derive(Clone, Copy)] pub struct CommandPoolResetFlags : u32 {
+    const RELEASE_RESOURCES = CommandPoolResetFlagBits::RELEASE_RESOURCES.0; }
+}
 #[repr(transparent)]
 #[derive(Clone, Copy)]
 pub struct CommandPoolResetFlagBits(pub(crate) u32);
@@ -1674,9 +2060,10 @@ pub struct CommandPoolResetFlagBits(pub(crate) u32);
 impl CommandPoolResetFlagBits {
     pub const RELEASE_RESOURCES: Self = Self(1 << 0);
 }
-#[repr(transparent)]
-#[derive(Clone, Copy)]
-pub struct CommandBufferResetFlags(pub(crate) u32);
+bitflags::bitflags! {
+    #[repr(transparent)] #[derive(Clone, Copy)] pub struct CommandBufferResetFlags : u32
+    { const RELEASE_RESOURCES = CommandBufferResetFlagBits::RELEASE_RESOURCES.0; }
+}
 #[repr(transparent)]
 #[derive(Clone, Copy)]
 pub struct CommandBufferResetFlagBits(pub(crate) u32);
@@ -1684,9 +2071,12 @@ pub struct CommandBufferResetFlagBits(pub(crate) u32);
 impl CommandBufferResetFlagBits {
     pub const RELEASE_RESOURCES: Self = Self(1 << 0);
 }
-#[repr(transparent)]
-#[derive(Clone, Copy)]
-pub struct CommandBufferUsageFlags(pub(crate) u32);
+bitflags::bitflags! {
+    #[repr(transparent)] #[derive(Clone, Copy)] pub struct CommandBufferUsageFlags : u32
+    { const ONE_TIME_SUBMIT = CommandBufferUsageFlagBits::ONE_TIME_SUBMIT.0; const
+    RENDER_PASS_CONTINUE = CommandBufferUsageFlagBits::RENDER_PASS_CONTINUE.0; const
+    SIMULTANEOUS_USE = CommandBufferUsageFlagBits::SIMULTANEOUS_USE.0; }
+}
 #[repr(transparent)]
 #[derive(Clone, Copy)]
 pub struct CommandBufferUsageFlagBits(pub(crate) u32);
@@ -1696,9 +2086,34 @@ impl CommandBufferUsageFlagBits {
     pub const RENDER_PASS_CONTINUE: Self = Self(1 << 1);
     pub const SIMULTANEOUS_USE: Self = Self(1 << 2);
 }
-#[repr(transparent)]
-#[derive(Clone, Copy)]
-pub struct QueryPipelineStatisticFlags(pub(crate) u32);
+bitflags::bitflags! {
+    #[repr(transparent)] #[derive(Clone, Copy)] pub struct QueryPipelineStatisticFlags :
+    u32 { const INPUT_ASSEMBLY_VERTICES =
+    QueryPipelineStatisticFlagBits::INPUT_ASSEMBLY_VERTICES.0; const
+    INPUT_ASSEMBLY_PRIMITIVES = QueryPipelineStatisticFlagBits::INPUT_ASSEMBLY_PRIMITIVES
+    .0; const VERTEX_SHADER_INVOCATIONS =
+    QueryPipelineStatisticFlagBits::VERTEX_SHADER_INVOCATIONS.0; const
+    GEOMETRY_SHADER_INVOCATIONS =
+    QueryPipelineStatisticFlagBits::GEOMETRY_SHADER_INVOCATIONS.0; const
+    GEOMETRY_SHADER_PRIMITIVES =
+    QueryPipelineStatisticFlagBits::GEOMETRY_SHADER_PRIMITIVES.0; const
+    CLIPPING_INVOCATIONS = QueryPipelineStatisticFlagBits::CLIPPING_INVOCATIONS.0; const
+    CLIPPING_PRIMITIVES = QueryPipelineStatisticFlagBits::CLIPPING_PRIMITIVES.0; const
+    FRAGMENT_SHADER_INVOCATIONS =
+    QueryPipelineStatisticFlagBits::FRAGMENT_SHADER_INVOCATIONS.0; const
+    TESSELLATION_CONTROL_SHADER_PATCHES =
+    QueryPipelineStatisticFlagBits::TESSELLATION_CONTROL_SHADER_PATCHES.0; const
+    TESSELLATION_EVALUATION_SHADER_INVOCATIONS =
+    QueryPipelineStatisticFlagBits::TESSELLATION_EVALUATION_SHADER_INVOCATIONS.0; const
+    COMPUTE_SHADER_INVOCATIONS =
+    QueryPipelineStatisticFlagBits::COMPUTE_SHADER_INVOCATIONS.0; const
+    TASK_SHADER_INVOCATIONS_EXT =
+    QueryPipelineStatisticFlagBits::TASK_SHADER_INVOCATIONS_EXT.0; const
+    MESH_SHADER_INVOCATIONS_EXT =
+    QueryPipelineStatisticFlagBits::MESH_SHADER_INVOCATIONS_EXT.0; const
+    CLUSTER_CULLING_SHADER_INVOCATIONS_HUAWEI =
+    QueryPipelineStatisticFlagBits::CLUSTER_CULLING_SHADER_INVOCATIONS_HUAWEI.0; }
+}
 #[repr(transparent)]
 #[derive(Clone, Copy)]
 pub struct QueryPipelineStatisticFlagBits(pub(crate) u32);
@@ -1716,15 +2131,29 @@ impl QueryPipelineStatisticFlagBits {
     pub const TESSELLATION_EVALUATION_SHADER_INVOCATIONS: Self = Self(1 << 9);
     pub const COMPUTE_SHADER_INVOCATIONS: Self = Self(1 << 10);
 }
-#[repr(transparent)]
-#[derive(Clone, Copy)]
-pub struct MemoryMapFlags(pub(crate) u32);
+bitflags::bitflags! {
+    #[repr(transparent)] #[derive(Clone, Copy)] pub struct MemoryMapFlags : u32 { const
+    PLACED_EXT = MemoryMapFlagBits::PLACED_EXT.0; }
+}
 #[repr(transparent)]
 #[derive(Clone, Copy)]
 pub struct MemoryMapFlagBits(pub(crate) u32);
-#[repr(transparent)]
-#[derive(Clone, Copy)]
-pub struct ImageAspectFlags(pub(crate) u32);
+bitflags::bitflags! {
+    #[repr(transparent)] #[derive(Clone, Copy)] pub struct ImageAspectFlags : u32 { const
+    COLOR = ImageAspectFlagBits::COLOR.0; const DEPTH = ImageAspectFlagBits::DEPTH.0;
+    const STENCIL = ImageAspectFlagBits::STENCIL.0; const METADATA =
+    ImageAspectFlagBits::METADATA.0; const PLANE_0 = ImageAspectFlagBits::PLANE_0.0;
+    const PLANE_1 = ImageAspectFlagBits::PLANE_1.0; const PLANE_2 =
+    ImageAspectFlagBits::PLANE_2.0; const NONE = ImageAspectFlagBits::NONE.0; const
+    PLANE_0_KHR = ImageAspectFlagBits::PLANE_0_KHR.0; const PLANE_1_KHR =
+    ImageAspectFlagBits::PLANE_1_KHR.0; const PLANE_2_KHR =
+    ImageAspectFlagBits::PLANE_2_KHR.0; const MEMORY_PLANE_0_EXT =
+    ImageAspectFlagBits::MEMORY_PLANE_0_EXT.0; const MEMORY_PLANE_1_EXT =
+    ImageAspectFlagBits::MEMORY_PLANE_1_EXT.0; const MEMORY_PLANE_2_EXT =
+    ImageAspectFlagBits::MEMORY_PLANE_2_EXT.0; const MEMORY_PLANE_3_EXT =
+    ImageAspectFlagBits::MEMORY_PLANE_3_EXT.0; const NONE_KHR =
+    ImageAspectFlagBits::NONE_KHR.0; }
+}
 #[repr(transparent)]
 #[derive(Clone, Copy)]
 pub struct ImageAspectFlagBits(pub(crate) u32);
@@ -1735,9 +2164,10 @@ impl ImageAspectFlagBits {
     pub const STENCIL: Self = Self(1 << 2);
     pub const METADATA: Self = Self(1 << 3);
 }
-#[repr(transparent)]
-#[derive(Clone, Copy)]
-pub struct SparseMemoryBindFlags(pub(crate) u32);
+bitflags::bitflags! {
+    #[repr(transparent)] #[derive(Clone, Copy)] pub struct SparseMemoryBindFlags : u32 {
+    const METADATA = SparseMemoryBindFlagBits::METADATA.0; }
+}
 #[repr(transparent)]
 #[derive(Clone, Copy)]
 pub struct SparseMemoryBindFlagBits(pub(crate) u32);
@@ -1745,9 +2175,12 @@ pub struct SparseMemoryBindFlagBits(pub(crate) u32);
 impl SparseMemoryBindFlagBits {
     pub const METADATA: Self = Self(1 << 0);
 }
-#[repr(transparent)]
-#[derive(Clone, Copy)]
-pub struct SparseImageFormatFlags(pub(crate) u32);
+bitflags::bitflags! {
+    #[repr(transparent)] #[derive(Clone, Copy)] pub struct SparseImageFormatFlags : u32 {
+    const SINGLE_MIPTAIL = SparseImageFormatFlagBits::SINGLE_MIPTAIL.0; const
+    ALIGNED_MIP_SIZE = SparseImageFormatFlagBits::ALIGNED_MIP_SIZE.0; const
+    NONSTANDARD_BLOCK_SIZE = SparseImageFormatFlagBits::NONSTANDARD_BLOCK_SIZE.0; }
+}
 #[repr(transparent)]
 #[derive(Clone, Copy)]
 pub struct SparseImageFormatFlagBits(pub(crate) u32);
@@ -1757,15 +2190,73 @@ impl SparseImageFormatFlagBits {
     pub const ALIGNED_MIP_SIZE: Self = Self(1 << 1);
     pub const NONSTANDARD_BLOCK_SIZE: Self = Self(1 << 2);
 }
-#[repr(transparent)]
-#[derive(Clone, Copy)]
-pub struct SubpassDescriptionFlags(pub(crate) u32);
+bitflags::bitflags! {
+    #[repr(transparent)] #[derive(Clone, Copy)] pub struct SubpassDescriptionFlags : u32
+    { const PER_VIEW_ATTRIBUTES_NVX = SubpassDescriptionFlagBits::PER_VIEW_ATTRIBUTES_NVX
+    .0; const PER_VIEW_POSITION_X_ONLY_NVX =
+    SubpassDescriptionFlagBits::PER_VIEW_POSITION_X_ONLY_NVX.0; const
+    FRAGMENT_REGION_QCOM = SubpassDescriptionFlagBits::FRAGMENT_REGION_QCOM.0; const
+    SHADER_RESOLVE_QCOM = SubpassDescriptionFlagBits::SHADER_RESOLVE_QCOM.0; const
+    TILE_SHADING_APRON_QCOM = SubpassDescriptionFlagBits::TILE_SHADING_APRON_QCOM.0;
+    const RASTERIZATION_ORDER_ATTACHMENT_COLOR_ACCESS_ARM =
+    SubpassDescriptionFlagBits::RASTERIZATION_ORDER_ATTACHMENT_COLOR_ACCESS_ARM.0; const
+    RASTERIZATION_ORDER_ATTACHMENT_DEPTH_ACCESS_ARM =
+    SubpassDescriptionFlagBits::RASTERIZATION_ORDER_ATTACHMENT_DEPTH_ACCESS_ARM.0; const
+    RASTERIZATION_ORDER_ATTACHMENT_STENCIL_ACCESS_ARM =
+    SubpassDescriptionFlagBits::RASTERIZATION_ORDER_ATTACHMENT_STENCIL_ACCESS_ARM.0;
+    const RASTERIZATION_ORDER_ATTACHMENT_COLOR_ACCESS_EXT =
+    SubpassDescriptionFlagBits::RASTERIZATION_ORDER_ATTACHMENT_COLOR_ACCESS_EXT.0; const
+    RASTERIZATION_ORDER_ATTACHMENT_DEPTH_ACCESS_EXT =
+    SubpassDescriptionFlagBits::RASTERIZATION_ORDER_ATTACHMENT_DEPTH_ACCESS_EXT.0; const
+    RASTERIZATION_ORDER_ATTACHMENT_STENCIL_ACCESS_EXT =
+    SubpassDescriptionFlagBits::RASTERIZATION_ORDER_ATTACHMENT_STENCIL_ACCESS_EXT.0;
+    const ENABLE_LEGACY_DITHERING_EXT =
+    SubpassDescriptionFlagBits::ENABLE_LEGACY_DITHERING_EXT.0; const FRAGMENT_REGION_EXT
+    = SubpassDescriptionFlagBits::FRAGMENT_REGION_EXT.0; const CUSTOM_RESOLVE_EXT =
+    SubpassDescriptionFlagBits::CUSTOM_RESOLVE_EXT.0; }
+}
 #[repr(transparent)]
 #[derive(Clone, Copy)]
 pub struct SubpassDescriptionFlagBits(pub(crate) u32);
-#[repr(transparent)]
-#[derive(Clone, Copy)]
-pub struct PipelineStageFlags(pub(crate) u32);
+bitflags::bitflags! {
+    #[repr(transparent)] #[derive(Clone, Copy)] pub struct PipelineStageFlags : u32 {
+    const TOP_OF_PIPE = PipelineStageFlagBits::TOP_OF_PIPE.0; const DRAW_INDIRECT =
+    PipelineStageFlagBits::DRAW_INDIRECT.0; const VERTEX_INPUT =
+    PipelineStageFlagBits::VERTEX_INPUT.0; const VERTEX_SHADER =
+    PipelineStageFlagBits::VERTEX_SHADER.0; const TESSELLATION_CONTROL_SHADER =
+    PipelineStageFlagBits::TESSELLATION_CONTROL_SHADER.0; const
+    TESSELLATION_EVALUATION_SHADER =
+    PipelineStageFlagBits::TESSELLATION_EVALUATION_SHADER.0; const GEOMETRY_SHADER =
+    PipelineStageFlagBits::GEOMETRY_SHADER.0; const FRAGMENT_SHADER =
+    PipelineStageFlagBits::FRAGMENT_SHADER.0; const EARLY_FRAGMENT_TESTS =
+    PipelineStageFlagBits::EARLY_FRAGMENT_TESTS.0; const LATE_FRAGMENT_TESTS =
+    PipelineStageFlagBits::LATE_FRAGMENT_TESTS.0; const COLOR_ATTACHMENT_OUTPUT =
+    PipelineStageFlagBits::COLOR_ATTACHMENT_OUTPUT.0; const COMPUTE_SHADER =
+    PipelineStageFlagBits::COMPUTE_SHADER.0; const TRANSFER =
+    PipelineStageFlagBits::TRANSFER.0; const BOTTOM_OF_PIPE =
+    PipelineStageFlagBits::BOTTOM_OF_PIPE.0; const HOST = PipelineStageFlagBits::HOST.0;
+    const ALL_GRAPHICS = PipelineStageFlagBits::ALL_GRAPHICS.0; const ALL_COMMANDS =
+    PipelineStageFlagBits::ALL_COMMANDS.0; const NONE = PipelineStageFlagBits::NONE.0;
+    const TRANSFORM_FEEDBACK_EXT = PipelineStageFlagBits::TRANSFORM_FEEDBACK_EXT.0; const
+    CONDITIONAL_RENDERING_EXT = PipelineStageFlagBits::CONDITIONAL_RENDERING_EXT.0; const
+    ACCELERATION_STRUCTURE_BUILD_KHR =
+    PipelineStageFlagBits::ACCELERATION_STRUCTURE_BUILD_KHR.0; const
+    RAY_TRACING_SHADER_KHR = PipelineStageFlagBits::RAY_TRACING_SHADER_KHR.0; const
+    SHADING_RATE_IMAGE_NV = PipelineStageFlagBits::SHADING_RATE_IMAGE_NV.0; const
+    RAY_TRACING_SHADER_NV = PipelineStageFlagBits::RAY_TRACING_SHADER_NV.0; const
+    ACCELERATION_STRUCTURE_BUILD_NV =
+    PipelineStageFlagBits::ACCELERATION_STRUCTURE_BUILD_NV.0; const TASK_SHADER_NV =
+    PipelineStageFlagBits::TASK_SHADER_NV.0; const MESH_SHADER_NV =
+    PipelineStageFlagBits::MESH_SHADER_NV.0; const FRAGMENT_DENSITY_PROCESS_EXT =
+    PipelineStageFlagBits::FRAGMENT_DENSITY_PROCESS_EXT.0; const
+    FRAGMENT_SHADING_RATE_ATTACHMENT_KHR =
+    PipelineStageFlagBits::FRAGMENT_SHADING_RATE_ATTACHMENT_KHR.0; const
+    COMMAND_PREPROCESS_NV = PipelineStageFlagBits::COMMAND_PREPROCESS_NV.0; const
+    NONE_KHR = PipelineStageFlagBits::NONE_KHR.0; const TASK_SHADER_EXT =
+    PipelineStageFlagBits::TASK_SHADER_EXT.0; const MESH_SHADER_EXT =
+    PipelineStageFlagBits::MESH_SHADER_EXT.0; const COMMAND_PREPROCESS_EXT =
+    PipelineStageFlagBits::COMMAND_PREPROCESS_EXT.0; }
+}
 #[repr(transparent)]
 #[derive(Clone, Copy)]
 pub struct PipelineStageFlagBits(pub(crate) u32);
@@ -1789,9 +2280,13 @@ impl PipelineStageFlagBits {
     pub const ALL_GRAPHICS: Self = Self(1 << 15);
     pub const ALL_COMMANDS: Self = Self(1 << 16);
 }
-#[repr(transparent)]
-#[derive(Clone, Copy)]
-pub struct SampleCountFlags(pub(crate) u32);
+bitflags::bitflags! {
+    #[repr(transparent)] #[derive(Clone, Copy)] pub struct SampleCountFlags : u32 { const
+    _1 = SampleCountFlagBits::_1.0; const _2 = SampleCountFlagBits::_2.0; const _4 =
+    SampleCountFlagBits::_4.0; const _8 = SampleCountFlagBits::_8.0; const _16 =
+    SampleCountFlagBits::_16.0; const _32 = SampleCountFlagBits::_32.0; const _64 =
+    SampleCountFlagBits::_64.0; }
+}
 #[repr(transparent)]
 #[derive(Clone, Copy)]
 pub struct SampleCountFlagBits(pub(crate) u32);
@@ -1805,9 +2300,14 @@ impl SampleCountFlagBits {
     pub const _32: Self = Self(1 << 5);
     pub const _64: Self = Self(1 << 6);
 }
-#[repr(transparent)]
-#[derive(Clone, Copy)]
-pub struct AttachmentDescriptionFlags(pub(crate) u32);
+bitflags::bitflags! {
+    #[repr(transparent)] #[derive(Clone, Copy)] pub struct AttachmentDescriptionFlags :
+    u32 { const MAY_ALIAS = AttachmentDescriptionFlagBits::MAY_ALIAS.0; const
+    RESOLVE_SKIP_TRANSFER_FUNCTION_KHR =
+    AttachmentDescriptionFlagBits::RESOLVE_SKIP_TRANSFER_FUNCTION_KHR.0; const
+    RESOLVE_ENABLE_TRANSFER_FUNCTION_KHR =
+    AttachmentDescriptionFlagBits::RESOLVE_ENABLE_TRANSFER_FUNCTION_KHR.0; }
+}
 #[repr(transparent)]
 #[derive(Clone, Copy)]
 pub struct AttachmentDescriptionFlagBits(pub(crate) u32);
@@ -1815,9 +2315,11 @@ pub struct AttachmentDescriptionFlagBits(pub(crate) u32);
 impl AttachmentDescriptionFlagBits {
     pub const MAY_ALIAS: Self = Self(1 << 0);
 }
-#[repr(transparent)]
-#[derive(Clone, Copy)]
-pub struct StencilFaceFlags(pub(crate) u32);
+bitflags::bitflags! {
+    #[repr(transparent)] #[derive(Clone, Copy)] pub struct StencilFaceFlags : u32 { const
+    FRONT = StencilFaceFlagBits::FRONT.0; const BACK = StencilFaceFlagBits::BACK.0; const
+    FRONT_AND_BACK = StencilFaceFlagBits::FRONT_AND_BACK.0; }
+}
 #[repr(transparent)]
 #[derive(Clone, Copy)]
 pub struct StencilFaceFlagBits(pub(crate) u32);
@@ -1827,9 +2329,12 @@ impl StencilFaceFlagBits {
     pub const BACK: Self = Self(1 << 1);
     pub const FRONT_AND_BACK: Self = Self(0x00000003);
 }
-#[repr(transparent)]
-#[derive(Clone, Copy)]
-pub struct CullModeFlags(pub(crate) u32);
+bitflags::bitflags! {
+    #[repr(transparent)] #[derive(Clone, Copy)] pub struct CullModeFlags : u32 { const
+    NONE = CullModeFlagBits::NONE.0; const FRONT = CullModeFlagBits::FRONT.0; const BACK
+    = CullModeFlagBits::BACK.0; const FRONT_AND_BACK = CullModeFlagBits::FRONT_AND_BACK
+    .0; }
+}
 #[repr(transparent)]
 #[derive(Clone, Copy)]
 pub struct CullModeFlagBits(pub(crate) u32);
@@ -1840,9 +2345,18 @@ impl CullModeFlagBits {
     pub const BACK: Self = Self(1 << 1);
     pub const FRONT_AND_BACK: Self = Self(0x00000003);
 }
-#[repr(transparent)]
-#[derive(Clone, Copy)]
-pub struct DescriptorPoolCreateFlags(pub(crate) u32);
+bitflags::bitflags! {
+    #[repr(transparent)] #[derive(Clone, Copy)] pub struct DescriptorPoolCreateFlags :
+    u32 { const FREE_DESCRIPTOR_SET = DescriptorPoolCreateFlagBits::FREE_DESCRIPTOR_SET
+    .0; const UPDATE_AFTER_BIND = DescriptorPoolCreateFlagBits::UPDATE_AFTER_BIND.0;
+    const UPDATE_AFTER_BIND_EXT = DescriptorPoolCreateFlagBits::UPDATE_AFTER_BIND_EXT.0;
+    const HOST_ONLY_VALVE = DescriptorPoolCreateFlagBits::HOST_ONLY_VALVE.0; const
+    HOST_ONLY_EXT = DescriptorPoolCreateFlagBits::HOST_ONLY_EXT.0; const
+    ALLOW_OVERALLOCATION_SETS_NV =
+    DescriptorPoolCreateFlagBits::ALLOW_OVERALLOCATION_SETS_NV.0; const
+    ALLOW_OVERALLOCATION_POOLS_NV =
+    DescriptorPoolCreateFlagBits::ALLOW_OVERALLOCATION_POOLS_NV.0; }
+}
 #[repr(transparent)]
 #[derive(Clone, Copy)]
 pub struct DescriptorPoolCreateFlagBits(pub(crate) u32);
@@ -1850,12 +2364,21 @@ pub struct DescriptorPoolCreateFlagBits(pub(crate) u32);
 impl DescriptorPoolCreateFlagBits {
     pub const FREE_DESCRIPTOR_SET: Self = Self(1 << 0);
 }
-#[repr(transparent)]
-#[derive(Clone, Copy)]
-pub struct DescriptorPoolResetFlags(pub(crate) u32);
-#[repr(transparent)]
-#[derive(Clone, Copy)]
-pub struct DependencyFlags(pub(crate) u32);
+bitflags::bitflags! {
+    #[repr(transparent)] #[derive(Clone, Copy)] pub struct DescriptorPoolResetFlags : u32
+    {}
+}
+bitflags::bitflags! {
+    #[repr(transparent)] #[derive(Clone, Copy)] pub struct DependencyFlags : u32 { const
+    BY_REGION = DependencyFlagBits::BY_REGION.0; const DEVICE_GROUP =
+    DependencyFlagBits::DEVICE_GROUP.0; const VIEW_LOCAL = DependencyFlagBits::VIEW_LOCAL
+    .0; const VIEW_LOCAL_KHR = DependencyFlagBits::VIEW_LOCAL_KHR.0; const
+    DEVICE_GROUP_KHR = DependencyFlagBits::DEVICE_GROUP_KHR.0; const FEEDBACK_LOOP_EXT =
+    DependencyFlagBits::FEEDBACK_LOOP_EXT.0; const
+    QUEUE_FAMILY_OWNERSHIP_TRANSFER_USE_ALL_STAGES_KHR =
+    DependencyFlagBits::QUEUE_FAMILY_OWNERSHIP_TRANSFER_USE_ALL_STAGES_KHR.0; const
+    ASYMMETRIC_EVENT_KHR = DependencyFlagBits::ASYMMETRIC_EVENT_KHR.0; }
+}
 #[repr(transparent)]
 #[derive(Clone, Copy)]
 pub struct DependencyFlagBits(pub(crate) u32);

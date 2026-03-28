@@ -70,9 +70,12 @@ impl crate::vk::PipelineStageFlagBits2 {
 impl crate::vk::FormatFeatureFlagBits2 {
     pub const COPY_IMAGE_INDIRECT_DST_KHR: Self = Self(1 << 59);
 }
-#[repr(transparent)]
-#[derive(Clone, Copy)]
-pub struct AddressCopyFlagsKHR(pub(crate) u32);
+bitflags::bitflags! {
+    #[repr(transparent)] #[derive(Clone, Copy)] pub struct AddressCopyFlagsKHR : u32 {
+    const DEVICE_LOCAL_KHR = AddressCopyFlagBitsKHR::DEVICE_LOCAL_KHR.0; const SPARSE_KHR
+    = AddressCopyFlagBitsKHR::SPARSE_KHR.0; const PROTECTED_KHR =
+    AddressCopyFlagBitsKHR::PROTECTED_KHR.0; }
+}
 #[repr(transparent)]
 #[derive(Clone, Copy)]
 pub struct AddressCopyFlagBitsKHR(pub(crate) u32);

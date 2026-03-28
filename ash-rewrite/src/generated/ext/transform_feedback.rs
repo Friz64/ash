@@ -48,8 +48,9 @@ impl crate::vk::BufferUsageFlagBits {
 impl crate::vk::PipelineStageFlagBits {
     pub const TRANSFORM_FEEDBACK_EXT: Self = Self(1 << 24);
 }
-#[repr(transparent)]
-#[derive(Clone, Copy)]
-pub struct PipelineRasterizationStateStreamCreateFlagsEXT(pub(crate) u32);
+bitflags::bitflags! {
+    #[repr(transparent)] #[derive(Clone, Copy)] pub struct
+    PipelineRasterizationStateStreamCreateFlagsEXT : u32 {}
+}
 pub const EXT_TRANSFORM_FEEDBACK_SPEC_VERSION: u32 = 1;
 pub const EXT_TRANSFORM_FEEDBACK_EXTENSION_NAME: &core::ffi::CStr = c"VK_EXT_transform_feedback";

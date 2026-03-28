@@ -185,9 +185,14 @@ pub struct ClusterAccelerationStructureOpTypeNV(pub(crate) i32);
 #[repr(transparent)]
 #[derive(Clone, Copy)]
 pub struct ClusterAccelerationStructureOpModeNV(pub(crate) i32);
-#[repr(transparent)]
-#[derive(Clone, Copy)]
-pub struct ClusterAccelerationStructureGeometryFlagsNV(pub(crate) u32);
+bitflags::bitflags! {
+    #[repr(transparent)] #[derive(Clone, Copy)] pub struct
+    ClusterAccelerationStructureGeometryFlagsNV : u32 { const CULL_DISABLE_NV =
+    ClusterAccelerationStructureGeometryFlagBitsNV::CULL_DISABLE_NV.0; const
+    NO_DUPLICATE_ANYHIT_INVOCATION_NV =
+    ClusterAccelerationStructureGeometryFlagBitsNV::NO_DUPLICATE_ANYHIT_INVOCATION_NV.0;
+    const OPAQUE_NV = ClusterAccelerationStructureGeometryFlagBitsNV::OPAQUE_NV.0; }
+}
 #[repr(transparent)]
 #[derive(Clone, Copy)]
 pub struct ClusterAccelerationStructureGeometryFlagBitsNV(pub(crate) u32);
@@ -197,9 +202,13 @@ impl ClusterAccelerationStructureGeometryFlagBitsNV {
     pub const NO_DUPLICATE_ANYHIT_INVOCATION_NV: Self = Self(1 << 1);
     pub const OPAQUE_NV: Self = Self(1 << 2);
 }
-#[repr(transparent)]
-#[derive(Clone, Copy)]
-pub struct ClusterAccelerationStructureClusterFlagsNV(pub(crate) u32);
+bitflags::bitflags! {
+    #[repr(transparent)] #[derive(Clone, Copy)] pub struct
+    ClusterAccelerationStructureClusterFlagsNV : u32 { const
+    ALLOW_DISABLE_OPACITY_MICROMAPS_NV =
+    ClusterAccelerationStructureClusterFlagBitsNV::ALLOW_DISABLE_OPACITY_MICROMAPS_NV.0;
+    }
+}
 #[repr(transparent)]
 #[derive(Clone, Copy)]
 pub struct ClusterAccelerationStructureClusterFlagBitsNV(pub(crate) u32);
@@ -207,9 +216,24 @@ pub struct ClusterAccelerationStructureClusterFlagBitsNV(pub(crate) u32);
 impl ClusterAccelerationStructureClusterFlagBitsNV {
     pub const ALLOW_DISABLE_OPACITY_MICROMAPS_NV: Self = Self(1 << 0);
 }
-#[repr(transparent)]
-#[derive(Clone, Copy)]
-pub struct ClusterAccelerationStructureAddressResolutionFlagsNV(pub(crate) u32);
+bitflags::bitflags! {
+    #[repr(transparent)] #[derive(Clone, Copy)] pub struct
+    ClusterAccelerationStructureAddressResolutionFlagsNV : u32 { const NONE_NV =
+    ClusterAccelerationStructureAddressResolutionFlagBitsNV::NONE_NV.0; const
+    INDIRECTED_DST_IMPLICIT_DATA_NV =
+    ClusterAccelerationStructureAddressResolutionFlagBitsNV::INDIRECTED_DST_IMPLICIT_DATA_NV
+    .0; const INDIRECTED_SCRATCH_DATA_NV =
+    ClusterAccelerationStructureAddressResolutionFlagBitsNV::INDIRECTED_SCRATCH_DATA_NV
+    .0; const INDIRECTED_DST_ADDRESS_ARRAY_NV =
+    ClusterAccelerationStructureAddressResolutionFlagBitsNV::INDIRECTED_DST_ADDRESS_ARRAY_NV
+    .0; const INDIRECTED_DST_SIZES_ARRAY_NV =
+    ClusterAccelerationStructureAddressResolutionFlagBitsNV::INDIRECTED_DST_SIZES_ARRAY_NV
+    .0; const INDIRECTED_SRC_INFOS_ARRAY_NV =
+    ClusterAccelerationStructureAddressResolutionFlagBitsNV::INDIRECTED_SRC_INFOS_ARRAY_NV
+    .0; const INDIRECTED_SRC_INFOS_COUNT_NV =
+    ClusterAccelerationStructureAddressResolutionFlagBitsNV::INDIRECTED_SRC_INFOS_COUNT_NV
+    .0; }
+}
 #[repr(transparent)]
 #[derive(Clone, Copy)]
 pub struct ClusterAccelerationStructureAddressResolutionFlagBitsNV(pub(crate) u32);
@@ -227,9 +251,13 @@ impl ClusterAccelerationStructureAddressResolutionFlagBitsNV {
 impl crate::vk::BuildAccelerationStructureFlagBitsKHR {
     pub const ALLOW_CLUSTER_OPACITY_MICROMAPS_NV: Self = Self(1 << 12);
 }
-#[repr(transparent)]
-#[derive(Clone, Copy)]
-pub struct ClusterAccelerationStructureIndexFormatFlagsNV(pub(crate) u32);
+bitflags::bitflags! {
+    #[repr(transparent)] #[derive(Clone, Copy)] pub struct
+    ClusterAccelerationStructureIndexFormatFlagsNV : u32 { const _8BIT_NV =
+    ClusterAccelerationStructureIndexFormatFlagBitsNV::_8BIT_NV.0; const _16BIT_NV =
+    ClusterAccelerationStructureIndexFormatFlagBitsNV::_16BIT_NV.0; const _32BIT_NV =
+    ClusterAccelerationStructureIndexFormatFlagBitsNV::_32BIT_NV.0; }
+}
 #[repr(transparent)]
 #[derive(Clone, Copy)]
 pub struct ClusterAccelerationStructureIndexFormatFlagBitsNV(pub(crate) u32);

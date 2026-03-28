@@ -25,9 +25,13 @@ pub struct ImageCompressionPropertiesEXT {
     pub image_compression_flags: crate::vk::ImageCompressionFlagsEXT,
     pub image_compression_fixed_rate_flags: crate::vk::ImageCompressionFixedRateFlagsEXT,
 }
-#[repr(transparent)]
-#[derive(Clone, Copy)]
-pub struct ImageCompressionFlagsEXT(pub(crate) u32);
+bitflags::bitflags! {
+    #[repr(transparent)] #[derive(Clone, Copy)] pub struct ImageCompressionFlagsEXT : u32
+    { const DEFAULT_EXT = ImageCompressionFlagBitsEXT::DEFAULT_EXT.0; const
+    FIXED_RATE_DEFAULT_EXT = ImageCompressionFlagBitsEXT::FIXED_RATE_DEFAULT_EXT.0; const
+    FIXED_RATE_EXPLICIT_EXT = ImageCompressionFlagBitsEXT::FIXED_RATE_EXPLICIT_EXT.0;
+    const DISABLED_EXT = ImageCompressionFlagBitsEXT::DISABLED_EXT.0; }
+}
 #[repr(transparent)]
 #[derive(Clone, Copy)]
 pub struct ImageCompressionFlagBitsEXT(pub(crate) u32);
@@ -38,9 +42,35 @@ impl ImageCompressionFlagBitsEXT {
     pub const FIXED_RATE_EXPLICIT_EXT: Self = Self(1 << 1);
     pub const DISABLED_EXT: Self = Self(1 << 2);
 }
-#[repr(transparent)]
-#[derive(Clone, Copy)]
-pub struct ImageCompressionFixedRateFlagsEXT(pub(crate) u32);
+bitflags::bitflags! {
+    #[repr(transparent)] #[derive(Clone, Copy)] pub struct
+    ImageCompressionFixedRateFlagsEXT : u32 { const NONE_EXT =
+    ImageCompressionFixedRateFlagBitsEXT::NONE_EXT.0; const _1BPC_EXT =
+    ImageCompressionFixedRateFlagBitsEXT::_1BPC_EXT.0; const _2BPC_EXT =
+    ImageCompressionFixedRateFlagBitsEXT::_2BPC_EXT.0; const _3BPC_EXT =
+    ImageCompressionFixedRateFlagBitsEXT::_3BPC_EXT.0; const _4BPC_EXT =
+    ImageCompressionFixedRateFlagBitsEXT::_4BPC_EXT.0; const _5BPC_EXT =
+    ImageCompressionFixedRateFlagBitsEXT::_5BPC_EXT.0; const _6BPC_EXT =
+    ImageCompressionFixedRateFlagBitsEXT::_6BPC_EXT.0; const _7BPC_EXT =
+    ImageCompressionFixedRateFlagBitsEXT::_7BPC_EXT.0; const _8BPC_EXT =
+    ImageCompressionFixedRateFlagBitsEXT::_8BPC_EXT.0; const _9BPC_EXT =
+    ImageCompressionFixedRateFlagBitsEXT::_9BPC_EXT.0; const _10BPC_EXT =
+    ImageCompressionFixedRateFlagBitsEXT::_10BPC_EXT.0; const _11BPC_EXT =
+    ImageCompressionFixedRateFlagBitsEXT::_11BPC_EXT.0; const _12BPC_EXT =
+    ImageCompressionFixedRateFlagBitsEXT::_12BPC_EXT.0; const _13BPC_EXT =
+    ImageCompressionFixedRateFlagBitsEXT::_13BPC_EXT.0; const _14BPC_EXT =
+    ImageCompressionFixedRateFlagBitsEXT::_14BPC_EXT.0; const _15BPC_EXT =
+    ImageCompressionFixedRateFlagBitsEXT::_15BPC_EXT.0; const _16BPC_EXT =
+    ImageCompressionFixedRateFlagBitsEXT::_16BPC_EXT.0; const _17BPC_EXT =
+    ImageCompressionFixedRateFlagBitsEXT::_17BPC_EXT.0; const _18BPC_EXT =
+    ImageCompressionFixedRateFlagBitsEXT::_18BPC_EXT.0; const _19BPC_EXT =
+    ImageCompressionFixedRateFlagBitsEXT::_19BPC_EXT.0; const _20BPC_EXT =
+    ImageCompressionFixedRateFlagBitsEXT::_20BPC_EXT.0; const _21BPC_EXT =
+    ImageCompressionFixedRateFlagBitsEXT::_21BPC_EXT.0; const _22BPC_EXT =
+    ImageCompressionFixedRateFlagBitsEXT::_22BPC_EXT.0; const _23BPC_EXT =
+    ImageCompressionFixedRateFlagBitsEXT::_23BPC_EXT.0; const _24BPC_EXT =
+    ImageCompressionFixedRateFlagBitsEXT::_24BPC_EXT.0; }
+}
 #[repr(transparent)]
 #[derive(Clone, Copy)]
 pub struct ImageCompressionFixedRateFlagBitsEXT(pub(crate) u32);

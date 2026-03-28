@@ -97,9 +97,14 @@ impl crate::vk::FormatFeatureFlagBits2 {
     pub const OPTICAL_FLOW_VECTOR_NV: Self = Self(1 << 41);
     pub const OPTICAL_FLOW_COST_NV: Self = Self(1 << 42);
 }
-#[repr(transparent)]
-#[derive(Clone, Copy)]
-pub struct OpticalFlowGridSizeFlagsNV(pub(crate) u32);
+bitflags::bitflags! {
+    #[repr(transparent)] #[derive(Clone, Copy)] pub struct OpticalFlowGridSizeFlagsNV :
+    u32 { const UNKNOWN_NV = OpticalFlowGridSizeFlagBitsNV::UNKNOWN_NV.0; const _1X1_NV =
+    OpticalFlowGridSizeFlagBitsNV::_1X1_NV.0; const _2X2_NV =
+    OpticalFlowGridSizeFlagBitsNV::_2X2_NV.0; const _4X4_NV =
+    OpticalFlowGridSizeFlagBitsNV::_4X4_NV.0; const _8X8_NV =
+    OpticalFlowGridSizeFlagBitsNV::_8X8_NV.0; }
+}
 #[repr(transparent)]
 #[derive(Clone, Copy)]
 pub struct OpticalFlowGridSizeFlagBitsNV(pub(crate) u32);
@@ -111,9 +116,15 @@ impl OpticalFlowGridSizeFlagBitsNV {
     pub const _4X4_NV: Self = Self(1 << 2);
     pub const _8X8_NV: Self = Self(1 << 3);
 }
-#[repr(transparent)]
-#[derive(Clone, Copy)]
-pub struct OpticalFlowUsageFlagsNV(pub(crate) u32);
+bitflags::bitflags! {
+    #[repr(transparent)] #[derive(Clone, Copy)] pub struct OpticalFlowUsageFlagsNV : u32
+    { const UNKNOWN_NV = OpticalFlowUsageFlagBitsNV::UNKNOWN_NV.0; const INPUT_NV =
+    OpticalFlowUsageFlagBitsNV::INPUT_NV.0; const OUTPUT_NV =
+    OpticalFlowUsageFlagBitsNV::OUTPUT_NV.0; const HINT_NV =
+    OpticalFlowUsageFlagBitsNV::HINT_NV.0; const COST_NV =
+    OpticalFlowUsageFlagBitsNV::COST_NV.0; const GLOBAL_FLOW_NV =
+    OpticalFlowUsageFlagBitsNV::GLOBAL_FLOW_NV.0; }
+}
 #[repr(transparent)]
 #[derive(Clone, Copy)]
 pub struct OpticalFlowUsageFlagBitsNV(pub(crate) u32);
@@ -126,9 +137,15 @@ impl OpticalFlowUsageFlagBitsNV {
     pub const COST_NV: Self = Self(1 << 3);
     pub const GLOBAL_FLOW_NV: Self = Self(1 << 4);
 }
-#[repr(transparent)]
-#[derive(Clone, Copy)]
-pub struct OpticalFlowSessionCreateFlagsNV(pub(crate) u32);
+bitflags::bitflags! {
+    #[repr(transparent)] #[derive(Clone, Copy)] pub struct
+    OpticalFlowSessionCreateFlagsNV : u32 { const ENABLE_HINT_NV =
+    OpticalFlowSessionCreateFlagBitsNV::ENABLE_HINT_NV.0; const ENABLE_COST_NV =
+    OpticalFlowSessionCreateFlagBitsNV::ENABLE_COST_NV.0; const ENABLE_GLOBAL_FLOW_NV =
+    OpticalFlowSessionCreateFlagBitsNV::ENABLE_GLOBAL_FLOW_NV.0; const ALLOW_REGIONS_NV =
+    OpticalFlowSessionCreateFlagBitsNV::ALLOW_REGIONS_NV.0; const BOTH_DIRECTIONS_NV =
+    OpticalFlowSessionCreateFlagBitsNV::BOTH_DIRECTIONS_NV.0; }
+}
 #[repr(transparent)]
 #[derive(Clone, Copy)]
 pub struct OpticalFlowSessionCreateFlagBitsNV(pub(crate) u32);
@@ -140,9 +157,11 @@ impl OpticalFlowSessionCreateFlagBitsNV {
     pub const ALLOW_REGIONS_NV: Self = Self(1 << 3);
     pub const BOTH_DIRECTIONS_NV: Self = Self(1 << 4);
 }
-#[repr(transparent)]
-#[derive(Clone, Copy)]
-pub struct OpticalFlowExecuteFlagsNV(pub(crate) u32);
+bitflags::bitflags! {
+    #[repr(transparent)] #[derive(Clone, Copy)] pub struct OpticalFlowExecuteFlagsNV :
+    u32 { const DISABLE_TEMPORAL_HINTS_NV =
+    OpticalFlowExecuteFlagBitsNV::DISABLE_TEMPORAL_HINTS_NV.0; }
+}
 #[repr(transparent)]
 #[derive(Clone, Copy)]
 pub struct OpticalFlowExecuteFlagBitsNV(pub(crate) u32);

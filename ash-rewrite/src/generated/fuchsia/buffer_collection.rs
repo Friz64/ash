@@ -98,12 +98,22 @@ pub struct BufferCollectionConstraintsInfoFUCHSIA {
     pub min_buffer_count_for_dedicated_slack: u32,
     pub min_buffer_count_for_shared_slack: u32,
 }
-#[repr(transparent)]
-#[derive(Clone, Copy)]
-pub struct ImageFormatConstraintsFlagsFUCHSIA(pub(crate) u32);
-#[repr(transparent)]
-#[derive(Clone, Copy)]
-pub struct ImageConstraintsInfoFlagsFUCHSIA(pub(crate) u32);
+bitflags::bitflags! {
+    #[repr(transparent)] #[derive(Clone, Copy)] pub struct
+    ImageFormatConstraintsFlagsFUCHSIA : u32 {}
+}
+bitflags::bitflags! {
+    #[repr(transparent)] #[derive(Clone, Copy)] pub struct
+    ImageConstraintsInfoFlagsFUCHSIA : u32 { const CPU_READ_RARELY_FUCHSIA =
+    ImageConstraintsInfoFlagBitsFUCHSIA::CPU_READ_RARELY_FUCHSIA.0; const
+    CPU_READ_OFTEN_FUCHSIA = ImageConstraintsInfoFlagBitsFUCHSIA::CPU_READ_OFTEN_FUCHSIA
+    .0; const CPU_WRITE_RARELY_FUCHSIA =
+    ImageConstraintsInfoFlagBitsFUCHSIA::CPU_WRITE_RARELY_FUCHSIA.0; const
+    CPU_WRITE_OFTEN_FUCHSIA =
+    ImageConstraintsInfoFlagBitsFUCHSIA::CPU_WRITE_OFTEN_FUCHSIA.0; const
+    PROTECTED_OPTIONAL_FUCHSIA =
+    ImageConstraintsInfoFlagBitsFUCHSIA::PROTECTED_OPTIONAL_FUCHSIA.0; }
+}
 #[repr(transparent)]
 #[derive(Clone, Copy)]
 pub struct ImageConstraintsInfoFlagBitsFUCHSIA(pub(crate) u32);

@@ -85,9 +85,20 @@ pub struct DeviceGroupSwapchainCreateInfoKHR {
     pub p_next: *const core::ffi::c_void,
     pub modes: crate::vk::DeviceGroupPresentModeFlagsKHR,
 }
-#[repr(transparent)]
-#[derive(Clone, Copy)]
-pub struct SwapchainCreateFlagsKHR(pub(crate) u32);
+bitflags::bitflags! {
+    #[repr(transparent)] #[derive(Clone, Copy)] pub struct SwapchainCreateFlagsKHR : u32
+    { const SPLIT_INSTANCE_BIND_REGIONS_KHR =
+    SwapchainCreateFlagBitsKHR::SPLIT_INSTANCE_BIND_REGIONS_KHR.0; const PROTECTED_KHR =
+    SwapchainCreateFlagBitsKHR::PROTECTED_KHR.0; const MUTABLE_FORMAT_KHR =
+    SwapchainCreateFlagBitsKHR::MUTABLE_FORMAT_KHR.0; const PRESENT_TIMING_EXT =
+    SwapchainCreateFlagBitsKHR::PRESENT_TIMING_EXT.0; const
+    DEFERRED_MEMORY_ALLOCATION_EXT =
+    SwapchainCreateFlagBitsKHR::DEFERRED_MEMORY_ALLOCATION_EXT.0; const PRESENT_ID_2_KHR
+    = SwapchainCreateFlagBitsKHR::PRESENT_ID_2_KHR.0; const PRESENT_WAIT_2_KHR =
+    SwapchainCreateFlagBitsKHR::PRESENT_WAIT_2_KHR.0; const
+    DEFERRED_MEMORY_ALLOCATION_KHR =
+    SwapchainCreateFlagBitsKHR::DEFERRED_MEMORY_ALLOCATION_KHR.0; }
+}
 #[repr(transparent)]
 #[derive(Clone, Copy)]
 pub struct SwapchainCreateFlagBitsKHR(pub(crate) u32);
@@ -96,9 +107,13 @@ impl SwapchainCreateFlagBitsKHR {
     pub const SPLIT_INSTANCE_BIND_REGIONS_KHR: Self = Self(1 << 0);
     pub const PROTECTED_KHR: Self = Self(1 << 1);
 }
-#[repr(transparent)]
-#[derive(Clone, Copy)]
-pub struct DeviceGroupPresentModeFlagsKHR(pub(crate) u32);
+bitflags::bitflags! {
+    #[repr(transparent)] #[derive(Clone, Copy)] pub struct DeviceGroupPresentModeFlagsKHR
+    : u32 { const LOCAL_KHR = DeviceGroupPresentModeFlagBitsKHR::LOCAL_KHR.0; const
+    REMOTE_KHR = DeviceGroupPresentModeFlagBitsKHR::REMOTE_KHR.0; const SUM_KHR =
+    DeviceGroupPresentModeFlagBitsKHR::SUM_KHR.0; const LOCAL_MULTI_DEVICE_KHR =
+    DeviceGroupPresentModeFlagBitsKHR::LOCAL_MULTI_DEVICE_KHR.0; }
+}
 #[repr(transparent)]
 #[derive(Clone, Copy)]
 pub struct DeviceGroupPresentModeFlagBitsKHR(pub(crate) u32);

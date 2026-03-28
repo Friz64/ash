@@ -16,8 +16,9 @@ pub struct PipelineRasterizationDepthClipStateCreateInfoEXT {
     pub flags: crate::vk::PipelineRasterizationDepthClipStateCreateFlagsEXT,
     pub depth_clip_enable: crate::vk::Bool32,
 }
-#[repr(transparent)]
-#[derive(Clone, Copy)]
-pub struct PipelineRasterizationDepthClipStateCreateFlagsEXT(pub(crate) u32);
+bitflags::bitflags! {
+    #[repr(transparent)] #[derive(Clone, Copy)] pub struct
+    PipelineRasterizationDepthClipStateCreateFlagsEXT : u32 {}
+}
 pub const EXT_DEPTH_CLIP_ENABLE_SPEC_VERSION: u32 = 1;
 pub const EXT_DEPTH_CLIP_ENABLE_EXTENSION_NAME: &core::ffi::CStr = c"VK_EXT_depth_clip_enable";

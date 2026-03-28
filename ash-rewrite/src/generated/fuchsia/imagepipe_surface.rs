@@ -9,8 +9,9 @@ pub struct ImagePipeSurfaceCreateInfoFUCHSIA {
     pub flags: crate::vk::ImagePipeSurfaceCreateFlagsFUCHSIA,
     pub image_pipe_handle: crate::platform_types::zx_handle_t,
 }
-#[repr(transparent)]
-#[derive(Clone, Copy)]
-pub struct ImagePipeSurfaceCreateFlagsFUCHSIA(pub(crate) u32);
+bitflags::bitflags! {
+    #[repr(transparent)] #[derive(Clone, Copy)] pub struct
+    ImagePipeSurfaceCreateFlagsFUCHSIA : u32 {}
+}
 pub const FUCHSIA_IMAGEPIPE_SURFACE_SPEC_VERSION: u32 = 1;
 pub const FUCHSIA_IMAGEPIPE_SURFACE_EXTENSION_NAME: &core::ffi::CStr = c"VK_FUCHSIA_imagepipe_surface";

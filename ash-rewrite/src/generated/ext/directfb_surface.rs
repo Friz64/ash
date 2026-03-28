@@ -10,8 +10,9 @@ pub struct DirectFBSurfaceCreateInfoEXT {
     pub dfb: *mut crate::platform_types::IDirectFB,
     pub surface: *mut crate::platform_types::IDirectFBSurface,
 }
-#[repr(transparent)]
-#[derive(Clone, Copy)]
-pub struct DirectFBSurfaceCreateFlagsEXT(pub(crate) u32);
+bitflags::bitflags! {
+    #[repr(transparent)] #[derive(Clone, Copy)] pub struct DirectFBSurfaceCreateFlagsEXT
+    : u32 {}
+}
 pub const EXT_DIRECTFB_SURFACE_SPEC_VERSION: u32 = 1;
 pub const EXT_DIRECTFB_SURFACE_EXTENSION_NAME: &core::ffi::CStr = c"VK_EXT_directfb_surface";
