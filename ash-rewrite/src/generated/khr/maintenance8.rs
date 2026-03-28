@@ -24,9 +24,10 @@ impl crate::vk::PipelineCacheCreateFlagBits {
 impl crate::vk::DependencyFlagBits {
     pub const QUEUE_FAMILY_OWNERSHIP_TRANSFER_USE_ALL_STAGES_KHR: Self = Self(1 << 5);
 }
-#[repr(transparent)]
-#[derive(Clone, Copy)]
-pub struct AccessFlags3KHR(pub(crate) u64);
+bitflags::bitflags! {
+    #[repr(transparent)] #[derive(Clone, Copy)] pub struct AccessFlags3KHR : u64 { const
+    NONE_KHR = AccessFlagBits3KHR::NONE_KHR.0; }
+}
 #[repr(transparent)]
 #[derive(Clone, Copy)]
 pub struct AccessFlagBits3KHR(pub(crate) u64);

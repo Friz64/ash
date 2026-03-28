@@ -5,7 +5,7 @@ use analysis::{
     to_rust::{RustName, RustTranslator},
     xml::cexpr::CExprItem,
 };
-use proc_macro2::Literal;
+use proc_macro2::{Literal, TokenStream};
 use quote::quote;
 use tracing::{instrument, trace};
 
@@ -28,10 +28,25 @@ impl Code for BitMask {
             }
         });
 
+        let values = self.bits_name.map(|bits_name| {
+            let bits_name_tokens = ctx.type_to_rust(bits_name, false);
+            self.items
+                .iter()
+                .map(|(&name, _item)| {
+                    let name = ctx.enumerator_to_rust(name, bits_name);
+                    quote! { const #name = #bits_name_tokens::#name.0; }
+                })
+                .collect::<TokenStream>()
+        });
+
         let code = quote! {
-            #[repr(transparent)]
-            #[derive(Clone, Copy)]
-            pub struct #name(pub(crate) #base_ty);
+            bitflags::bitflags! {
+                #[repr(transparent)]
+                #[derive(Clone, Copy)]
+                pub struct #name: #base_ty {
+                    #values
+                }
+            }
 
             #bits_code
         };

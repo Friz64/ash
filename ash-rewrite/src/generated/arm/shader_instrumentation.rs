@@ -38,9 +38,10 @@ pub struct ShaderInstrumentationMetricDataHeaderARM {
     pub stages: crate::vk::ShaderStageFlags,
     pub basic_block_index: u32,
 }
-#[repr(transparent)]
-#[derive(Clone, Copy)]
-pub struct ShaderInstrumentationValuesFlagsARM(pub(crate) u32);
+bitflags::bitflags! {
+    #[repr(transparent)] #[derive(Clone, Copy)] pub struct
+    ShaderInstrumentationValuesFlagsARM : u32 {}
+}
 #[repr(transparent)]
 #[derive(Clone, Copy)]
 pub struct ShaderInstrumentationARM(pub(crate) i32);

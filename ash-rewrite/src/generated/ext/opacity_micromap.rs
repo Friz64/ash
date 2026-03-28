@@ -162,9 +162,12 @@ impl crate::vk::AccessFlagBits2 {
 impl crate::vk::PipelineStageFlagBits2 {
     pub const MICROMAP_BUILD_EXT: Self = Self(1 << 30);
 }
-#[repr(transparent)]
-#[derive(Clone, Copy)]
-pub struct BuildMicromapFlagsEXT(pub(crate) u32);
+bitflags::bitflags! {
+    #[repr(transparent)] #[derive(Clone, Copy)] pub struct BuildMicromapFlagsEXT : u32 {
+    const PREFER_FAST_TRACE_EXT = BuildMicromapFlagBitsEXT::PREFER_FAST_TRACE_EXT.0;
+    const PREFER_FAST_BUILD_EXT = BuildMicromapFlagBitsEXT::PREFER_FAST_BUILD_EXT.0;
+    const ALLOW_COMPACTION_EXT = BuildMicromapFlagBitsEXT::ALLOW_COMPACTION_EXT.0; }
+}
 #[repr(transparent)]
 #[derive(Clone, Copy)]
 pub struct BuildMicromapFlagBitsEXT(pub(crate) u32);
@@ -174,9 +177,11 @@ impl BuildMicromapFlagBitsEXT {
     pub const PREFER_FAST_BUILD_EXT: Self = Self(1 << 1);
     pub const ALLOW_COMPACTION_EXT: Self = Self(1 << 2);
 }
-#[repr(transparent)]
-#[derive(Clone, Copy)]
-pub struct MicromapCreateFlagsEXT(pub(crate) u32);
+bitflags::bitflags! {
+    #[repr(transparent)] #[derive(Clone, Copy)] pub struct MicromapCreateFlagsEXT : u32 {
+    const DEVICE_ADDRESS_CAPTURE_REPLAY_EXT =
+    MicromapCreateFlagBitsEXT::DEVICE_ADDRESS_CAPTURE_REPLAY_EXT.0; }
+}
 #[repr(transparent)]
 #[derive(Clone, Copy)]
 pub struct MicromapCreateFlagBitsEXT(pub(crate) u32);

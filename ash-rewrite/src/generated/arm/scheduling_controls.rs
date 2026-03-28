@@ -22,9 +22,11 @@ pub struct PhysicalDeviceSchedulingControlsPropertiesARM {
     pub p_next: *mut core::ffi::c_void,
     pub scheduling_controls_flags: crate::vk::PhysicalDeviceSchedulingControlsFlagsARM,
 }
-#[repr(transparent)]
-#[derive(Clone, Copy)]
-pub struct PhysicalDeviceSchedulingControlsFlagsARM(pub(crate) u64);
+bitflags::bitflags! {
+    #[repr(transparent)] #[derive(Clone, Copy)] pub struct
+    PhysicalDeviceSchedulingControlsFlagsARM : u64 { const SHADER_CORE_COUNT_ARM =
+    PhysicalDeviceSchedulingControlsFlagBitsARM::SHADER_CORE_COUNT_ARM.0; }
+}
 #[repr(transparent)]
 #[derive(Clone, Copy)]
 pub struct PhysicalDeviceSchedulingControlsFlagBitsARM(pub(crate) u64);

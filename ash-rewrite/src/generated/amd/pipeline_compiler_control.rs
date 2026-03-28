@@ -8,9 +8,10 @@ pub struct PipelineCompilerControlCreateInfoAMD {
     pub p_next: *const core::ffi::c_void,
     pub compiler_control_flags: crate::vk::PipelineCompilerControlFlagsAMD,
 }
-#[repr(transparent)]
-#[derive(Clone, Copy)]
-pub struct PipelineCompilerControlFlagsAMD(pub(crate) u32);
+bitflags::bitflags! {
+    #[repr(transparent)] #[derive(Clone, Copy)] pub struct
+    PipelineCompilerControlFlagsAMD : u32 {}
+}
 #[repr(transparent)]
 #[derive(Clone, Copy)]
 pub struct PipelineCompilerControlFlagBitsAMD(pub(crate) u32);

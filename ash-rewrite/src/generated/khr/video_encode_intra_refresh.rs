@@ -45,9 +45,16 @@ pub struct PhysicalDeviceVideoEncodeIntraRefreshFeaturesKHR {
 impl crate::vk::VideoEncodeFlagBitsKHR {
     pub const INTRA_REFRESH_KHR: Self = Self(1 << 2);
 }
-#[repr(transparent)]
-#[derive(Clone, Copy)]
-pub struct VideoEncodeIntraRefreshModeFlagsKHR(pub(crate) u32);
+bitflags::bitflags! {
+    #[repr(transparent)] #[derive(Clone, Copy)] pub struct
+    VideoEncodeIntraRefreshModeFlagsKHR : u32 { const NONE_KHR =
+    VideoEncodeIntraRefreshModeFlagBitsKHR::NONE_KHR.0; const PER_PICTURE_PARTITION_KHR =
+    VideoEncodeIntraRefreshModeFlagBitsKHR::PER_PICTURE_PARTITION_KHR.0; const
+    BLOCK_BASED_KHR = VideoEncodeIntraRefreshModeFlagBitsKHR::BLOCK_BASED_KHR.0; const
+    BLOCK_ROW_BASED_KHR = VideoEncodeIntraRefreshModeFlagBitsKHR::BLOCK_ROW_BASED_KHR.0;
+    const BLOCK_COLUMN_BASED_KHR =
+    VideoEncodeIntraRefreshModeFlagBitsKHR::BLOCK_COLUMN_BASED_KHR.0; }
+}
 #[repr(transparent)]
 #[derive(Clone, Copy)]
 pub struct VideoEncodeIntraRefreshModeFlagBitsKHR(pub(crate) u32);

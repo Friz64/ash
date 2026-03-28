@@ -63,9 +63,13 @@ impl crate::vk::FormatFeatureFlagBits2 {
     pub const VIDEO_DECODE_OUTPUT_KHR: Self = Self(1 << 25);
     pub const VIDEO_DECODE_DPB_KHR: Self = Self(1 << 26);
 }
-#[repr(transparent)]
-#[derive(Clone, Copy)]
-pub struct VideoDecodeUsageFlagsKHR(pub(crate) u32);
+bitflags::bitflags! {
+    #[repr(transparent)] #[derive(Clone, Copy)] pub struct VideoDecodeUsageFlagsKHR : u32
+    { const DEFAULT_KHR = VideoDecodeUsageFlagBitsKHR::DEFAULT_KHR.0; const
+    TRANSCODING_KHR = VideoDecodeUsageFlagBitsKHR::TRANSCODING_KHR.0; const OFFLINE_KHR =
+    VideoDecodeUsageFlagBitsKHR::OFFLINE_KHR.0; const STREAMING_KHR =
+    VideoDecodeUsageFlagBitsKHR::STREAMING_KHR.0; }
+}
 #[repr(transparent)]
 #[derive(Clone, Copy)]
 pub struct VideoDecodeUsageFlagBitsKHR(pub(crate) u32);
@@ -76,9 +80,13 @@ impl VideoDecodeUsageFlagBitsKHR {
     pub const OFFLINE_KHR: Self = Self(1 << 1);
     pub const STREAMING_KHR: Self = Self(1 << 2);
 }
-#[repr(transparent)]
-#[derive(Clone, Copy)]
-pub struct VideoDecodeCapabilityFlagsKHR(pub(crate) u32);
+bitflags::bitflags! {
+    #[repr(transparent)] #[derive(Clone, Copy)] pub struct VideoDecodeCapabilityFlagsKHR
+    : u32 { const DPB_AND_OUTPUT_COINCIDE_KHR =
+    VideoDecodeCapabilityFlagBitsKHR::DPB_AND_OUTPUT_COINCIDE_KHR.0; const
+    DPB_AND_OUTPUT_DISTINCT_KHR =
+    VideoDecodeCapabilityFlagBitsKHR::DPB_AND_OUTPUT_DISTINCT_KHR.0; }
+}
 #[repr(transparent)]
 #[derive(Clone, Copy)]
 pub struct VideoDecodeCapabilityFlagBitsKHR(pub(crate) u32);
@@ -87,8 +95,8 @@ impl VideoDecodeCapabilityFlagBitsKHR {
     pub const DPB_AND_OUTPUT_COINCIDE_KHR: Self = Self(1 << 0);
     pub const DPB_AND_OUTPUT_DISTINCT_KHR: Self = Self(1 << 1);
 }
-#[repr(transparent)]
-#[derive(Clone, Copy)]
-pub struct VideoDecodeFlagsKHR(pub(crate) u32);
+bitflags::bitflags! {
+    #[repr(transparent)] #[derive(Clone, Copy)] pub struct VideoDecodeFlagsKHR : u32 {}
+}
 pub const KHR_VIDEO_DECODE_QUEUE_SPEC_VERSION: u32 = 8;
 pub const KHR_VIDEO_DECODE_QUEUE_EXTENSION_NAME: &core::ffi::CStr = c"VK_KHR_video_decode_queue";

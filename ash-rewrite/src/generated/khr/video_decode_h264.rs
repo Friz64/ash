@@ -56,9 +56,15 @@ pub struct VideoDecodeH264DpbSlotInfoKHR {
 impl crate::vk::VideoCodecOperationFlagBitsKHR {
     pub const DECODE_H264_KHR: Self = Self(1 << 0);
 }
-#[repr(transparent)]
-#[derive(Clone, Copy)]
-pub struct VideoDecodeH264PictureLayoutFlagsKHR(pub(crate) u32);
+bitflags::bitflags! {
+    #[repr(transparent)] #[derive(Clone, Copy)] pub struct
+    VideoDecodeH264PictureLayoutFlagsKHR : u32 { const PROGRESSIVE_KHR =
+    VideoDecodeH264PictureLayoutFlagBitsKHR::PROGRESSIVE_KHR.0; const
+    INTERLACED_INTERLEAVED_LINES_KHR =
+    VideoDecodeH264PictureLayoutFlagBitsKHR::INTERLACED_INTERLEAVED_LINES_KHR.0; const
+    INTERLACED_SEPARATE_PLANES_KHR =
+    VideoDecodeH264PictureLayoutFlagBitsKHR::INTERLACED_SEPARATE_PLANES_KHR.0; }
+}
 #[repr(transparent)]
 #[derive(Clone, Copy)]
 pub struct VideoDecodeH264PictureLayoutFlagBitsKHR(pub(crate) u32);

@@ -150,15 +150,24 @@ impl crate::vk::VideoCodingControlFlagBitsKHR {
     pub const ENCODE_RATE_CONTROL_KHR: Self = Self(1 << 1);
     pub const ENCODE_QUALITY_LEVEL_KHR: Self = Self(1 << 2);
 }
-#[repr(transparent)]
-#[derive(Clone, Copy)]
-pub struct VideoEncodeFlagsKHR(pub(crate) u32);
+bitflags::bitflags! {
+    #[repr(transparent)] #[derive(Clone, Copy)] pub struct VideoEncodeFlagsKHR : u32 {
+    const INTRA_REFRESH_KHR = VideoEncodeFlagBitsKHR::INTRA_REFRESH_KHR.0; const
+    WITH_QUANTIZATION_DELTA_MAP_KHR =
+    VideoEncodeFlagBitsKHR::WITH_QUANTIZATION_DELTA_MAP_KHR.0; const
+    WITH_EMPHASIS_MAP_KHR = VideoEncodeFlagBitsKHR::WITH_EMPHASIS_MAP_KHR.0; }
+}
 #[repr(transparent)]
 #[derive(Clone, Copy)]
 pub struct VideoEncodeFlagBitsKHR(pub(crate) u32);
-#[repr(transparent)]
-#[derive(Clone, Copy)]
-pub struct VideoEncodeUsageFlagsKHR(pub(crate) u32);
+bitflags::bitflags! {
+    #[repr(transparent)] #[derive(Clone, Copy)] pub struct VideoEncodeUsageFlagsKHR : u32
+    { const DEFAULT_KHR = VideoEncodeUsageFlagBitsKHR::DEFAULT_KHR.0; const
+    TRANSCODING_KHR = VideoEncodeUsageFlagBitsKHR::TRANSCODING_KHR.0; const STREAMING_KHR
+    = VideoEncodeUsageFlagBitsKHR::STREAMING_KHR.0; const RECORDING_KHR =
+    VideoEncodeUsageFlagBitsKHR::RECORDING_KHR.0; const CONFERENCING_KHR =
+    VideoEncodeUsageFlagBitsKHR::CONFERENCING_KHR.0; }
+}
 #[repr(transparent)]
 #[derive(Clone, Copy)]
 pub struct VideoEncodeUsageFlagBitsKHR(pub(crate) u32);
@@ -170,9 +179,13 @@ impl VideoEncodeUsageFlagBitsKHR {
     pub const RECORDING_KHR: Self = Self(1 << 2);
     pub const CONFERENCING_KHR: Self = Self(1 << 3);
 }
-#[repr(transparent)]
-#[derive(Clone, Copy)]
-pub struct VideoEncodeContentFlagsKHR(pub(crate) u32);
+bitflags::bitflags! {
+    #[repr(transparent)] #[derive(Clone, Copy)] pub struct VideoEncodeContentFlagsKHR :
+    u32 { const DEFAULT_KHR = VideoEncodeContentFlagBitsKHR::DEFAULT_KHR.0; const
+    CAMERA_KHR = VideoEncodeContentFlagBitsKHR::CAMERA_KHR.0; const DESKTOP_KHR =
+    VideoEncodeContentFlagBitsKHR::DESKTOP_KHR.0; const RENDERED_KHR =
+    VideoEncodeContentFlagBitsKHR::RENDERED_KHR.0; }
+}
 #[repr(transparent)]
 #[derive(Clone, Copy)]
 pub struct VideoEncodeContentFlagBitsKHR(pub(crate) u32);
@@ -183,9 +196,16 @@ impl VideoEncodeContentFlagBitsKHR {
     pub const DESKTOP_KHR: Self = Self(1 << 1);
     pub const RENDERED_KHR: Self = Self(1 << 2);
 }
-#[repr(transparent)]
-#[derive(Clone, Copy)]
-pub struct VideoEncodeCapabilityFlagsKHR(pub(crate) u32);
+bitflags::bitflags! {
+    #[repr(transparent)] #[derive(Clone, Copy)] pub struct VideoEncodeCapabilityFlagsKHR
+    : u32 { const PRECEDING_EXTERNALLY_ENCODED_BYTES_KHR =
+    VideoEncodeCapabilityFlagBitsKHR::PRECEDING_EXTERNALLY_ENCODED_BYTES_KHR.0; const
+    INSUFFICIENTSTREAM_BUFFER_RANGE_DETECTION_KHR =
+    VideoEncodeCapabilityFlagBitsKHR::INSUFFICIENTSTREAM_BUFFER_RANGE_DETECTION_KHR.0;
+    const QUANTIZATION_DELTA_MAP_KHR =
+    VideoEncodeCapabilityFlagBitsKHR::QUANTIZATION_DELTA_MAP_KHR.0; const
+    EMPHASIS_MAP_KHR = VideoEncodeCapabilityFlagBitsKHR::EMPHASIS_MAP_KHR.0; }
+}
 #[repr(transparent)]
 #[derive(Clone, Copy)]
 pub struct VideoEncodeCapabilityFlagBitsKHR(pub(crate) u32);
@@ -194,9 +214,15 @@ impl VideoEncodeCapabilityFlagBitsKHR {
     pub const PRECEDING_EXTERNALLY_ENCODED_BYTES_KHR: Self = Self(1 << 0);
     pub const INSUFFICIENTSTREAM_BUFFER_RANGE_DETECTION_KHR: Self = Self(1 << 1);
 }
-#[repr(transparent)]
-#[derive(Clone, Copy)]
-pub struct VideoEncodeFeedbackFlagsKHR(pub(crate) u32);
+bitflags::bitflags! {
+    #[repr(transparent)] #[derive(Clone, Copy)] pub struct VideoEncodeFeedbackFlagsKHR :
+    u32 { const BITSTREAM_BUFFER_OFFSET_KHR =
+    VideoEncodeFeedbackFlagBitsKHR::BITSTREAM_BUFFER_OFFSET_KHR.0; const
+    BITSTREAM_BYTES_WRITTEN_KHR =
+    VideoEncodeFeedbackFlagBitsKHR::BITSTREAM_BYTES_WRITTEN_KHR.0; const
+    BITSTREAM_HAS_OVERRIDES_KHR =
+    VideoEncodeFeedbackFlagBitsKHR::BITSTREAM_HAS_OVERRIDES_KHR.0; }
+}
 #[repr(transparent)]
 #[derive(Clone, Copy)]
 pub struct VideoEncodeFeedbackFlagBitsKHR(pub(crate) u32);
@@ -206,12 +232,18 @@ impl VideoEncodeFeedbackFlagBitsKHR {
     pub const BITSTREAM_BYTES_WRITTEN_KHR: Self = Self(1 << 1);
     pub const BITSTREAM_HAS_OVERRIDES_KHR: Self = Self(1 << 2);
 }
-#[repr(transparent)]
-#[derive(Clone, Copy)]
-pub struct VideoEncodeRateControlFlagsKHR(pub(crate) u32);
-#[repr(transparent)]
-#[derive(Clone, Copy)]
-pub struct VideoEncodeRateControlModeFlagsKHR(pub(crate) u32);
+bitflags::bitflags! {
+    #[repr(transparent)] #[derive(Clone, Copy)] pub struct VideoEncodeRateControlFlagsKHR
+    : u32 {}
+}
+bitflags::bitflags! {
+    #[repr(transparent)] #[derive(Clone, Copy)] pub struct
+    VideoEncodeRateControlModeFlagsKHR : u32 { const DEFAULT_KHR =
+    VideoEncodeRateControlModeFlagBitsKHR::DEFAULT_KHR.0; const DISABLED_KHR =
+    VideoEncodeRateControlModeFlagBitsKHR::DISABLED_KHR.0; const CBR_KHR =
+    VideoEncodeRateControlModeFlagBitsKHR::CBR_KHR.0; const VBR_KHR =
+    VideoEncodeRateControlModeFlagBitsKHR::VBR_KHR.0; }
+}
 #[repr(transparent)]
 #[derive(Clone, Copy)]
 pub struct VideoEncodeRateControlModeFlagBitsKHR(pub(crate) u32);

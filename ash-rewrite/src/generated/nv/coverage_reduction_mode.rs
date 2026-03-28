@@ -29,8 +29,9 @@ pub struct FramebufferMixedSamplesCombinationNV {
 #[repr(transparent)]
 #[derive(Clone, Copy)]
 pub struct CoverageReductionModeNV(pub(crate) i32);
-#[repr(transparent)]
-#[derive(Clone, Copy)]
-pub struct PipelineCoverageReductionStateCreateFlagsNV(pub(crate) u32);
+bitflags::bitflags! {
+    #[repr(transparent)] #[derive(Clone, Copy)] pub struct
+    PipelineCoverageReductionStateCreateFlagsNV : u32 {}
+}
 pub const NV_COVERAGE_REDUCTION_MODE_SPEC_VERSION: u32 = 1;
 pub const NV_COVERAGE_REDUCTION_MODE_EXTENSION_NAME: &core::ffi::CStr = c"VK_NV_coverage_reduction_mode";

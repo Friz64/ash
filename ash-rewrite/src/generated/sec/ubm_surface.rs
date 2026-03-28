@@ -10,8 +10,9 @@ pub struct UbmSurfaceCreateInfoSEC {
     pub device: *mut crate::platform_types::ubm_device,
     pub surface: *mut crate::platform_types::ubm_surface,
 }
-#[repr(transparent)]
-#[derive(Clone, Copy)]
-pub struct UbmSurfaceCreateFlagsSEC(pub(crate) u32);
+bitflags::bitflags! {
+    #[repr(transparent)] #[derive(Clone, Copy)] pub struct UbmSurfaceCreateFlagsSEC : u32
+    {}
+}
 pub const SEC_UBM_SURFACE_SPEC_VERSION: u32 = 1;
 pub const SEC_UBM_SURFACE_EXTENSION_NAME: &core::ffi::CStr = c"VK_SEC_ubm_surface";

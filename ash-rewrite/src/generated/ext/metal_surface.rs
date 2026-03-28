@@ -9,8 +9,9 @@ pub struct MetalSurfaceCreateInfoEXT {
     pub flags: crate::vk::MetalSurfaceCreateFlagsEXT,
     pub p_layer: *const crate::platform_types::CAMetalLayer,
 }
-#[repr(transparent)]
-#[derive(Clone, Copy)]
-pub struct MetalSurfaceCreateFlagsEXT(pub(crate) u32);
+bitflags::bitflags! {
+    #[repr(transparent)] #[derive(Clone, Copy)] pub struct MetalSurfaceCreateFlagsEXT :
+    u32 {}
+}
 pub const EXT_METAL_SURFACE_SPEC_VERSION: u32 = 1;
 pub const EXT_METAL_SURFACE_EXTENSION_NAME: &core::ffi::CStr = c"VK_EXT_metal_surface";

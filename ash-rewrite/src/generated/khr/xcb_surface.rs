@@ -10,8 +10,9 @@ pub struct XcbSurfaceCreateInfoKHR {
     pub connection: *mut crate::platform_types::xcb_connection_t,
     pub window: crate::platform_types::xcb_window_t,
 }
-#[repr(transparent)]
-#[derive(Clone, Copy)]
-pub struct XcbSurfaceCreateFlagsKHR(pub(crate) u32);
+bitflags::bitflags! {
+    #[repr(transparent)] #[derive(Clone, Copy)] pub struct XcbSurfaceCreateFlagsKHR : u32
+    {}
+}
 pub const KHR_XCB_SURFACE_SPEC_VERSION: u32 = 6;
 pub const KHR_XCB_SURFACE_EXTENSION_NAME: &core::ffi::CStr = c"VK_KHR_xcb_surface";

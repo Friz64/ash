@@ -170,9 +170,32 @@ pub struct VideoEncodeH265DpbSlotInfoKHR {
 impl crate::vk::VideoCodecOperationFlagBitsKHR {
     pub const ENCODE_H265_KHR: Self = Self(1 << 17);
 }
-#[repr(transparent)]
-#[derive(Clone, Copy)]
-pub struct VideoEncodeH265CapabilityFlagsKHR(pub(crate) u32);
+bitflags::bitflags! {
+    #[repr(transparent)] #[derive(Clone, Copy)] pub struct
+    VideoEncodeH265CapabilityFlagsKHR : u32 { const HRD_COMPLIANCE_KHR =
+    VideoEncodeH265CapabilityFlagBitsKHR::HRD_COMPLIANCE_KHR.0; const
+    PREDICTION_WEIGHT_TABLE_GENERATED_KHR =
+    VideoEncodeH265CapabilityFlagBitsKHR::PREDICTION_WEIGHT_TABLE_GENERATED_KHR.0; const
+    ROW_UNALIGNED_SLICE_SEGMENT_KHR =
+    VideoEncodeH265CapabilityFlagBitsKHR::ROW_UNALIGNED_SLICE_SEGMENT_KHR.0; const
+    DIFFERENT_SLICE_SEGMENT_TYPE_KHR =
+    VideoEncodeH265CapabilityFlagBitsKHR::DIFFERENT_SLICE_SEGMENT_TYPE_KHR.0; const
+    B_FRAME_IN_L0_LIST_KHR = VideoEncodeH265CapabilityFlagBitsKHR::B_FRAME_IN_L0_LIST_KHR
+    .0; const B_FRAME_IN_L1_LIST_KHR =
+    VideoEncodeH265CapabilityFlagBitsKHR::B_FRAME_IN_L1_LIST_KHR.0; const
+    PER_PICTURE_TYPE_MIN_MAX_QP_KHR =
+    VideoEncodeH265CapabilityFlagBitsKHR::PER_PICTURE_TYPE_MIN_MAX_QP_KHR.0; const
+    PER_SLICE_SEGMENT_CONSTANT_QP_KHR =
+    VideoEncodeH265CapabilityFlagBitsKHR::PER_SLICE_SEGMENT_CONSTANT_QP_KHR.0; const
+    MULTIPLE_TILES_PER_SLICE_SEGMENT_KHR =
+    VideoEncodeH265CapabilityFlagBitsKHR::MULTIPLE_TILES_PER_SLICE_SEGMENT_KHR.0; const
+    MULTIPLE_SLICE_SEGMENTS_PER_TILE_KHR =
+    VideoEncodeH265CapabilityFlagBitsKHR::MULTIPLE_SLICE_SEGMENTS_PER_TILE_KHR.0; const
+    B_PICTURE_INTRA_REFRESH_KHR =
+    VideoEncodeH265CapabilityFlagBitsKHR::B_PICTURE_INTRA_REFRESH_KHR.0; const
+    CU_QP_DIFF_WRAPAROUND_KHR =
+    VideoEncodeH265CapabilityFlagBitsKHR::CU_QP_DIFF_WRAPAROUND_KHR.0; }
+}
 #[repr(transparent)]
 #[derive(Clone, Copy)]
 pub struct VideoEncodeH265CapabilityFlagBitsKHR(pub(crate) u32);
@@ -189,9 +212,48 @@ impl VideoEncodeH265CapabilityFlagBitsKHR {
     pub const MULTIPLE_TILES_PER_SLICE_SEGMENT_KHR: Self = Self(1 << 8);
     pub const MULTIPLE_SLICE_SEGMENTS_PER_TILE_KHR: Self = Self(1 << 9);
 }
-#[repr(transparent)]
-#[derive(Clone, Copy)]
-pub struct VideoEncodeH265StdFlagsKHR(pub(crate) u32);
+bitflags::bitflags! {
+    #[repr(transparent)] #[derive(Clone, Copy)] pub struct VideoEncodeH265StdFlagsKHR :
+    u32 { const SEPARATE_COLOR_PLANE_FLAG_SET_KHR =
+    VideoEncodeH265StdFlagBitsKHR::SEPARATE_COLOR_PLANE_FLAG_SET_KHR.0; const
+    SAMPLE_ADAPTIVE_OFFSET_ENABLED_FLAG_SET_KHR =
+    VideoEncodeH265StdFlagBitsKHR::SAMPLE_ADAPTIVE_OFFSET_ENABLED_FLAG_SET_KHR.0; const
+    SCALING_LIST_DATA_PRESENT_FLAG_SET_KHR =
+    VideoEncodeH265StdFlagBitsKHR::SCALING_LIST_DATA_PRESENT_FLAG_SET_KHR.0; const
+    PCM_ENABLED_FLAG_SET_KHR = VideoEncodeH265StdFlagBitsKHR::PCM_ENABLED_FLAG_SET_KHR.0;
+    const SPS_TEMPORAL_MVP_ENABLED_FLAG_SET_KHR =
+    VideoEncodeH265StdFlagBitsKHR::SPS_TEMPORAL_MVP_ENABLED_FLAG_SET_KHR.0; const
+    INIT_QP_MINUS26_KHR = VideoEncodeH265StdFlagBitsKHR::INIT_QP_MINUS26_KHR.0; const
+    WEIGHTED_PRED_FLAG_SET_KHR =
+    VideoEncodeH265StdFlagBitsKHR::WEIGHTED_PRED_FLAG_SET_KHR.0; const
+    WEIGHTED_BIPRED_FLAG_SET_KHR =
+    VideoEncodeH265StdFlagBitsKHR::WEIGHTED_BIPRED_FLAG_SET_KHR.0; const
+    LOG2_PARALLEL_MERGE_LEVEL_MINUS2_KHR =
+    VideoEncodeH265StdFlagBitsKHR::LOG2_PARALLEL_MERGE_LEVEL_MINUS2_KHR.0; const
+    SIGN_DATA_HIDING_ENABLED_FLAG_SET_KHR =
+    VideoEncodeH265StdFlagBitsKHR::SIGN_DATA_HIDING_ENABLED_FLAG_SET_KHR.0; const
+    TRANSFORM_SKIP_ENABLED_FLAG_SET_KHR =
+    VideoEncodeH265StdFlagBitsKHR::TRANSFORM_SKIP_ENABLED_FLAG_SET_KHR.0; const
+    TRANSFORM_SKIP_ENABLED_FLAG_UNSET_KHR =
+    VideoEncodeH265StdFlagBitsKHR::TRANSFORM_SKIP_ENABLED_FLAG_UNSET_KHR.0; const
+    PPS_SLICE_CHROMA_QP_OFFSETS_PRESENT_FLAG_SET_KHR =
+    VideoEncodeH265StdFlagBitsKHR::PPS_SLICE_CHROMA_QP_OFFSETS_PRESENT_FLAG_SET_KHR.0;
+    const TRANSQUANT_BYPASS_ENABLED_FLAG_SET_KHR =
+    VideoEncodeH265StdFlagBitsKHR::TRANSQUANT_BYPASS_ENABLED_FLAG_SET_KHR.0; const
+    CONSTRAINED_INTRA_PRED_FLAG_SET_KHR =
+    VideoEncodeH265StdFlagBitsKHR::CONSTRAINED_INTRA_PRED_FLAG_SET_KHR.0; const
+    ENTROPY_CODING_SYNC_ENABLED_FLAG_SET_KHR =
+    VideoEncodeH265StdFlagBitsKHR::ENTROPY_CODING_SYNC_ENABLED_FLAG_SET_KHR.0; const
+    DEBLOCKING_FILTER_OVERRIDE_ENABLED_FLAG_SET_KHR =
+    VideoEncodeH265StdFlagBitsKHR::DEBLOCKING_FILTER_OVERRIDE_ENABLED_FLAG_SET_KHR.0;
+    const DEPENDENT_SLICE_SEGMENTS_ENABLED_FLAG_SET_KHR =
+    VideoEncodeH265StdFlagBitsKHR::DEPENDENT_SLICE_SEGMENTS_ENABLED_FLAG_SET_KHR.0; const
+    DEPENDENT_SLICE_SEGMENT_FLAG_SET_KHR =
+    VideoEncodeH265StdFlagBitsKHR::DEPENDENT_SLICE_SEGMENT_FLAG_SET_KHR.0; const
+    SLICE_QP_DELTA_KHR = VideoEncodeH265StdFlagBitsKHR::SLICE_QP_DELTA_KHR.0; const
+    DIFFERENT_SLICE_QP_DELTA_KHR =
+    VideoEncodeH265StdFlagBitsKHR::DIFFERENT_SLICE_QP_DELTA_KHR.0; }
+}
 #[repr(transparent)]
 #[derive(Clone, Copy)]
 pub struct VideoEncodeH265StdFlagBitsKHR(pub(crate) u32);
@@ -219,9 +281,18 @@ impl VideoEncodeH265StdFlagBitsKHR {
     pub const SLICE_QP_DELTA_KHR: Self = Self(1 << 19);
     pub const DIFFERENT_SLICE_QP_DELTA_KHR: Self = Self(1 << 20);
 }
-#[repr(transparent)]
-#[derive(Clone, Copy)]
-pub struct VideoEncodeH265RateControlFlagsKHR(pub(crate) u32);
+bitflags::bitflags! {
+    #[repr(transparent)] #[derive(Clone, Copy)] pub struct
+    VideoEncodeH265RateControlFlagsKHR : u32 { const ATTEMPT_HRD_COMPLIANCE_KHR =
+    VideoEncodeH265RateControlFlagBitsKHR::ATTEMPT_HRD_COMPLIANCE_KHR.0; const
+    REGULAR_GOP_KHR = VideoEncodeH265RateControlFlagBitsKHR::REGULAR_GOP_KHR.0; const
+    REFERENCE_PATTERN_FLAT_KHR =
+    VideoEncodeH265RateControlFlagBitsKHR::REFERENCE_PATTERN_FLAT_KHR.0; const
+    REFERENCE_PATTERN_DYADIC_KHR =
+    VideoEncodeH265RateControlFlagBitsKHR::REFERENCE_PATTERN_DYADIC_KHR.0; const
+    TEMPORAL_SUB_LAYER_PATTERN_DYADIC_KHR =
+    VideoEncodeH265RateControlFlagBitsKHR::TEMPORAL_SUB_LAYER_PATTERN_DYADIC_KHR.0; }
+}
 #[repr(transparent)]
 #[derive(Clone, Copy)]
 pub struct VideoEncodeH265RateControlFlagBitsKHR(pub(crate) u32);
@@ -233,9 +304,12 @@ impl VideoEncodeH265RateControlFlagBitsKHR {
     pub const REFERENCE_PATTERN_DYADIC_KHR: Self = Self(1 << 3);
     pub const TEMPORAL_SUB_LAYER_PATTERN_DYADIC_KHR: Self = Self(1 << 4);
 }
-#[repr(transparent)]
-#[derive(Clone, Copy)]
-pub struct VideoEncodeH265CtbSizeFlagsKHR(pub(crate) u32);
+bitflags::bitflags! {
+    #[repr(transparent)] #[derive(Clone, Copy)] pub struct VideoEncodeH265CtbSizeFlagsKHR
+    : u32 { const _16_KHR = VideoEncodeH265CtbSizeFlagBitsKHR::_16_KHR.0; const _32_KHR =
+    VideoEncodeH265CtbSizeFlagBitsKHR::_32_KHR.0; const _64_KHR =
+    VideoEncodeH265CtbSizeFlagBitsKHR::_64_KHR.0; }
+}
 #[repr(transparent)]
 #[derive(Clone, Copy)]
 pub struct VideoEncodeH265CtbSizeFlagBitsKHR(pub(crate) u32);
@@ -245,9 +319,14 @@ impl VideoEncodeH265CtbSizeFlagBitsKHR {
     pub const _32_KHR: Self = Self(1 << 1);
     pub const _64_KHR: Self = Self(1 << 2);
 }
-#[repr(transparent)]
-#[derive(Clone, Copy)]
-pub struct VideoEncodeH265TransformBlockSizeFlagsKHR(pub(crate) u32);
+bitflags::bitflags! {
+    #[repr(transparent)] #[derive(Clone, Copy)] pub struct
+    VideoEncodeH265TransformBlockSizeFlagsKHR : u32 { const _4_KHR =
+    VideoEncodeH265TransformBlockSizeFlagBitsKHR::_4_KHR.0; const _8_KHR =
+    VideoEncodeH265TransformBlockSizeFlagBitsKHR::_8_KHR.0; const _16_KHR =
+    VideoEncodeH265TransformBlockSizeFlagBitsKHR::_16_KHR.0; const _32_KHR =
+    VideoEncodeH265TransformBlockSizeFlagBitsKHR::_32_KHR.0; }
+}
 #[repr(transparent)]
 #[derive(Clone, Copy)]
 pub struct VideoEncodeH265TransformBlockSizeFlagBitsKHR(pub(crate) u32);

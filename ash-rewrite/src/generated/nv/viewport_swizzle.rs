@@ -21,8 +21,9 @@ pub struct PipelineViewportSwizzleStateCreateInfoNV {
 #[repr(transparent)]
 #[derive(Clone, Copy)]
 pub struct ViewportCoordinateSwizzleNV(pub(crate) i32);
-#[repr(transparent)]
-#[derive(Clone, Copy)]
-pub struct PipelineViewportSwizzleStateCreateFlagsNV(pub(crate) u32);
+bitflags::bitflags! {
+    #[repr(transparent)] #[derive(Clone, Copy)] pub struct
+    PipelineViewportSwizzleStateCreateFlagsNV : u32 {}
+}
 pub const NV_VIEWPORT_SWIZZLE_SPEC_VERSION: u32 = 1;
 pub const NV_VIEWPORT_SWIZZLE_EXTENSION_NAME: &core::ffi::CStr = c"VK_NV_viewport_swizzle";

@@ -25,9 +25,11 @@ pub struct DeviceAddressBindingTypeEXT(pub(crate) i32);
 impl crate::vk::DebugUtilsMessageTypeFlagBitsEXT {
     pub const DEVICE_ADDRESS_BINDING_EXT: Self = Self(1 << 3);
 }
-#[repr(transparent)]
-#[derive(Clone, Copy)]
-pub struct DeviceAddressBindingFlagsEXT(pub(crate) u32);
+bitflags::bitflags! {
+    #[repr(transparent)] #[derive(Clone, Copy)] pub struct DeviceAddressBindingFlagsEXT :
+    u32 { const INTERNAL_OBJECT_EXT =
+    DeviceAddressBindingFlagBitsEXT::INTERNAL_OBJECT_EXT.0; }
+}
 #[repr(transparent)]
 #[derive(Clone, Copy)]
 pub struct DeviceAddressBindingFlagBitsEXT(pub(crate) u32);

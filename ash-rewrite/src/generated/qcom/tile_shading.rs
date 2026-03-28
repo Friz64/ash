@@ -66,9 +66,12 @@ impl crate::vk::AccessFlagBits2 {
     pub const SHADER_TILE_ATTACHMENT_READ_QCOM: Self = Self(1 << 51);
     pub const SHADER_TILE_ATTACHMENT_WRITE_QCOM: Self = Self(1 << 52);
 }
-#[repr(transparent)]
-#[derive(Clone, Copy)]
-pub struct TileShadingRenderPassFlagsQCOM(pub(crate) u32);
+bitflags::bitflags! {
+    #[repr(transparent)] #[derive(Clone, Copy)] pub struct TileShadingRenderPassFlagsQCOM
+    : u32 { const ENABLE_QCOM = TileShadingRenderPassFlagBitsQCOM::ENABLE_QCOM.0; const
+    PER_TILE_EXECUTION_QCOM = TileShadingRenderPassFlagBitsQCOM::PER_TILE_EXECUTION_QCOM
+    .0; }
+}
 #[repr(transparent)]
 #[derive(Clone, Copy)]
 pub struct TileShadingRenderPassFlagBitsQCOM(pub(crate) u32);

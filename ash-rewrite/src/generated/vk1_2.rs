@@ -645,9 +645,11 @@ impl crate::vk::FormatFeatureFlagBits {
 impl crate::vk::DescriptorPoolCreateFlagBits {
     pub const UPDATE_AFTER_BIND: Self = Self(1 << 1);
 }
-#[repr(transparent)]
-#[derive(Clone, Copy)]
-pub struct SemaphoreWaitFlags(pub(crate) u32);
+bitflags::bitflags! {
+    #[repr(transparent)] #[derive(Clone, Copy)] pub struct SemaphoreWaitFlags : u32 {
+    const ANY = SemaphoreWaitFlagBits::ANY.0; const ANY_KHR =
+    SemaphoreWaitFlagBits::ANY_KHR.0; }
+}
 #[repr(transparent)]
 #[derive(Clone, Copy)]
 pub struct SemaphoreWaitFlagBits(pub(crate) u32);
@@ -660,9 +662,19 @@ impl crate::vk::MemoryAllocateFlagBits {
     pub const DEVICE_ADDRESS: Self = Self(1 << 1);
     pub const DEVICE_ADDRESS_CAPTURE_REPLAY: Self = Self(1 << 2);
 }
-#[repr(transparent)]
-#[derive(Clone, Copy)]
-pub struct DescriptorBindingFlags(pub(crate) u32);
+bitflags::bitflags! {
+    #[repr(transparent)] #[derive(Clone, Copy)] pub struct DescriptorBindingFlags : u32 {
+    const UPDATE_AFTER_BIND = DescriptorBindingFlagBits::UPDATE_AFTER_BIND.0; const
+    UPDATE_UNUSED_WHILE_PENDING = DescriptorBindingFlagBits::UPDATE_UNUSED_WHILE_PENDING
+    .0; const PARTIALLY_BOUND = DescriptorBindingFlagBits::PARTIALLY_BOUND.0; const
+    VARIABLE_DESCRIPTOR_COUNT = DescriptorBindingFlagBits::VARIABLE_DESCRIPTOR_COUNT.0;
+    const UPDATE_AFTER_BIND_EXT = DescriptorBindingFlagBits::UPDATE_AFTER_BIND_EXT.0;
+    const UPDATE_UNUSED_WHILE_PENDING_EXT =
+    DescriptorBindingFlagBits::UPDATE_UNUSED_WHILE_PENDING_EXT.0; const
+    PARTIALLY_BOUND_EXT = DescriptorBindingFlagBits::PARTIALLY_BOUND_EXT.0; const
+    VARIABLE_DESCRIPTOR_COUNT_EXT =
+    DescriptorBindingFlagBits::VARIABLE_DESCRIPTOR_COUNT_EXT.0; }
+}
 #[repr(transparent)]
 #[derive(Clone, Copy)]
 pub struct DescriptorBindingFlagBits(pub(crate) u32);
@@ -673,9 +685,19 @@ impl DescriptorBindingFlagBits {
     pub const PARTIALLY_BOUND: Self = Self(1 << 2);
     pub const VARIABLE_DESCRIPTOR_COUNT: Self = Self(1 << 3);
 }
-#[repr(transparent)]
-#[derive(Clone, Copy)]
-pub struct ResolveModeFlags(pub(crate) u32);
+bitflags::bitflags! {
+    #[repr(transparent)] #[derive(Clone, Copy)] pub struct ResolveModeFlags : u32 { const
+    NONE = ResolveModeFlagBits::NONE.0; const SAMPLE_ZERO =
+    ResolveModeFlagBits::SAMPLE_ZERO.0; const AVERAGE = ResolveModeFlagBits::AVERAGE.0;
+    const MIN = ResolveModeFlagBits::MIN.0; const MAX = ResolveModeFlagBits::MAX.0; const
+    NONE_KHR = ResolveModeFlagBits::NONE_KHR.0; const SAMPLE_ZERO_KHR =
+    ResolveModeFlagBits::SAMPLE_ZERO_KHR.0; const AVERAGE_KHR =
+    ResolveModeFlagBits::AVERAGE_KHR.0; const MIN_KHR = ResolveModeFlagBits::MIN_KHR.0;
+    const MAX_KHR = ResolveModeFlagBits::MAX_KHR.0; const
+    EXTERNAL_FORMAT_DOWNSAMPLE_ANDROID =
+    ResolveModeFlagBits::EXTERNAL_FORMAT_DOWNSAMPLE_ANDROID.0; const CUSTOM_EXT =
+    ResolveModeFlagBits::CUSTOM_EXT.0; }
+}
 #[repr(transparent)]
 #[derive(Clone, Copy)]
 pub struct ResolveModeFlagBits(pub(crate) u32);

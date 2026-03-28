@@ -20,9 +20,10 @@ pub struct ShaderModuleValidationCacheCreateInfoEXT {
 #[repr(transparent)]
 #[derive(Clone, Copy)]
 pub struct ValidationCacheHeaderVersionEXT(pub(crate) i32);
-#[repr(transparent)]
-#[derive(Clone, Copy)]
-pub struct ValidationCacheCreateFlagsEXT(pub(crate) u32);
+bitflags::bitflags! {
+    #[repr(transparent)] #[derive(Clone, Copy)] pub struct ValidationCacheCreateFlagsEXT
+    : u32 {}
+}
 #[repr(transparent)]
 #[derive(Clone, Copy)]
 pub struct ValidationCacheEXT(pub(crate) i32);

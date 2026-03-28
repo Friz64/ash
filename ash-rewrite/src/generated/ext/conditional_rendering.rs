@@ -37,9 +37,10 @@ impl crate::vk::BufferUsageFlagBits {
 impl crate::vk::PipelineStageFlagBits {
     pub const CONDITIONAL_RENDERING_EXT: Self = Self(1 << 18);
 }
-#[repr(transparent)]
-#[derive(Clone, Copy)]
-pub struct ConditionalRenderingFlagsEXT(pub(crate) u32);
+bitflags::bitflags! {
+    #[repr(transparent)] #[derive(Clone, Copy)] pub struct ConditionalRenderingFlagsEXT :
+    u32 { const INVERTED_EXT = ConditionalRenderingFlagBitsEXT::INVERTED_EXT.0; }
+}
 #[repr(transparent)]
 #[derive(Clone, Copy)]
 pub struct ConditionalRenderingFlagBitsEXT(pub(crate) u32);

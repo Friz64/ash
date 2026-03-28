@@ -106,9 +106,14 @@ pub struct SwapchainCalibratedTimestampInfoEXT {
 impl crate::vk::SwapchainCreateFlagBitsKHR {
     pub const PRESENT_TIMING_EXT: Self = Self(1 << 9);
 }
-#[repr(transparent)]
-#[derive(Clone, Copy)]
-pub struct PresentStageFlagsEXT(pub(crate) u32);
+bitflags::bitflags! {
+    #[repr(transparent)] #[derive(Clone, Copy)] pub struct PresentStageFlagsEXT : u32 {
+    const QUEUE_OPERATIONS_END_EXT = PresentStageFlagBitsEXT::QUEUE_OPERATIONS_END_EXT.0;
+    const REQUEST_DEQUEUED_EXT = PresentStageFlagBitsEXT::REQUEST_DEQUEUED_EXT.0; const
+    IMAGE_FIRST_PIXEL_OUT_EXT = PresentStageFlagBitsEXT::IMAGE_FIRST_PIXEL_OUT_EXT.0;
+    const IMAGE_FIRST_PIXEL_VISIBLE_EXT =
+    PresentStageFlagBitsEXT::IMAGE_FIRST_PIXEL_VISIBLE_EXT.0; }
+}
 #[repr(transparent)]
 #[derive(Clone, Copy)]
 pub struct PresentStageFlagBitsEXT(pub(crate) u32);
@@ -119,9 +124,13 @@ impl PresentStageFlagBitsEXT {
     pub const IMAGE_FIRST_PIXEL_OUT_EXT: Self = Self(1 << 2);
     pub const IMAGE_FIRST_PIXEL_VISIBLE_EXT: Self = Self(1 << 3);
 }
-#[repr(transparent)]
-#[derive(Clone, Copy)]
-pub struct PastPresentationTimingFlagsEXT(pub(crate) u32);
+bitflags::bitflags! {
+    #[repr(transparent)] #[derive(Clone, Copy)] pub struct PastPresentationTimingFlagsEXT
+    : u32 { const ALLOW_PARTIAL_RESULTS_EXT =
+    PastPresentationTimingFlagBitsEXT::ALLOW_PARTIAL_RESULTS_EXT.0; const
+    ALLOW_OUT_OF_ORDER_RESULTS_EXT =
+    PastPresentationTimingFlagBitsEXT::ALLOW_OUT_OF_ORDER_RESULTS_EXT.0; }
+}
 #[repr(transparent)]
 #[derive(Clone, Copy)]
 pub struct PastPresentationTimingFlagBitsEXT(pub(crate) u32);
@@ -130,9 +139,13 @@ impl PastPresentationTimingFlagBitsEXT {
     pub const ALLOW_PARTIAL_RESULTS_EXT: Self = Self(1 << 0);
     pub const ALLOW_OUT_OF_ORDER_RESULTS_EXT: Self = Self(1 << 1);
 }
-#[repr(transparent)]
-#[derive(Clone, Copy)]
-pub struct PresentTimingInfoFlagsEXT(pub(crate) u32);
+bitflags::bitflags! {
+    #[repr(transparent)] #[derive(Clone, Copy)] pub struct PresentTimingInfoFlagsEXT :
+    u32 { const PRESENT_AT_RELATIVE_TIME_EXT =
+    PresentTimingInfoFlagBitsEXT::PRESENT_AT_RELATIVE_TIME_EXT.0; const
+    PRESENT_AT_NEAREST_REFRESH_CYCLE_EXT =
+    PresentTimingInfoFlagBitsEXT::PRESENT_AT_NEAREST_REFRESH_CYCLE_EXT.0; }
+}
 #[repr(transparent)]
 #[derive(Clone, Copy)]
 pub struct PresentTimingInfoFlagBitsEXT(pub(crate) u32);

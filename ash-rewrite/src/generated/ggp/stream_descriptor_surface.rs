@@ -9,8 +9,9 @@ pub struct StreamDescriptorSurfaceCreateInfoGGP {
     pub flags: crate::vk::StreamDescriptorSurfaceCreateFlagsGGP,
     pub stream_descriptor: crate::platform_types::GgpStreamDescriptor,
 }
-#[repr(transparent)]
-#[derive(Clone, Copy)]
-pub struct StreamDescriptorSurfaceCreateFlagsGGP(pub(crate) u32);
+bitflags::bitflags! {
+    #[repr(transparent)] #[derive(Clone, Copy)] pub struct
+    StreamDescriptorSurfaceCreateFlagsGGP : u32 {}
+}
 pub const GGP_STREAM_DESCRIPTOR_SURFACE_SPEC_VERSION: u32 = 1;
 pub const GGP_STREAM_DESCRIPTOR_SURFACE_EXTENSION_NAME: &core::ffi::CStr = c"VK_GGP_stream_descriptor_surface";

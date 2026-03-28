@@ -10,8 +10,9 @@ pub struct WaylandSurfaceCreateInfoKHR {
     pub display: *mut crate::platform_types::wl_display,
     pub surface: *mut crate::platform_types::wl_surface,
 }
-#[repr(transparent)]
-#[derive(Clone, Copy)]
-pub struct WaylandSurfaceCreateFlagsKHR(pub(crate) u32);
+bitflags::bitflags! {
+    #[repr(transparent)] #[derive(Clone, Copy)] pub struct WaylandSurfaceCreateFlagsKHR :
+    u32 {}
+}
 pub const KHR_WAYLAND_SURFACE_SPEC_VERSION: u32 = 6;
 pub const KHR_WAYLAND_SURFACE_EXTENSION_NAME: &core::ffi::CStr = c"VK_KHR_wayland_surface";

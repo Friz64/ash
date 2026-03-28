@@ -21,9 +21,10 @@ pub struct DirectDriverLoadingListLUNARG {
 #[repr(transparent)]
 #[derive(Clone, Copy)]
 pub struct DirectDriverLoadingModeLUNARG(pub(crate) i32);
-#[repr(transparent)]
-#[derive(Clone, Copy)]
-pub struct DirectDriverLoadingFlagsLUNARG(pub(crate) u32);
+bitflags::bitflags! {
+    #[repr(transparent)] #[derive(Clone, Copy)] pub struct DirectDriverLoadingFlagsLUNARG
+    : u32 {}
+}
 #[allow(non_camel_case_types)]
 pub type PFN_vkGetInstanceProcAddrLUNARG = Option<()>;
 pub const LUNARG_DIRECT_DRIVER_LOADING_SPEC_VERSION: u32 = 1;

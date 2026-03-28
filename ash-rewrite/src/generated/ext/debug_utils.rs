@@ -56,9 +56,14 @@ pub struct DebugUtilsMessengerCallbackDataEXT {
     pub object_count: u32,
     pub p_objects: *const crate::vk::DebugUtilsObjectNameInfoEXT,
 }
-#[repr(transparent)]
-#[derive(Clone, Copy)]
-pub struct DebugUtilsMessageSeverityFlagsEXT(pub(crate) u32);
+bitflags::bitflags! {
+    #[repr(transparent)] #[derive(Clone, Copy)] pub struct
+    DebugUtilsMessageSeverityFlagsEXT : u32 { const VERBOSE_EXT =
+    DebugUtilsMessageSeverityFlagBitsEXT::VERBOSE_EXT.0; const INFO_EXT =
+    DebugUtilsMessageSeverityFlagBitsEXT::INFO_EXT.0; const WARNING_EXT =
+    DebugUtilsMessageSeverityFlagBitsEXT::WARNING_EXT.0; const ERROR_EXT =
+    DebugUtilsMessageSeverityFlagBitsEXT::ERROR_EXT.0; }
+}
 #[repr(transparent)]
 #[derive(Clone, Copy)]
 pub struct DebugUtilsMessageSeverityFlagBitsEXT(pub(crate) u32);
@@ -69,9 +74,14 @@ impl DebugUtilsMessageSeverityFlagBitsEXT {
     pub const WARNING_EXT: Self = Self(1 << 8);
     pub const ERROR_EXT: Self = Self(1 << 12);
 }
-#[repr(transparent)]
-#[derive(Clone, Copy)]
-pub struct DebugUtilsMessageTypeFlagsEXT(pub(crate) u32);
+bitflags::bitflags! {
+    #[repr(transparent)] #[derive(Clone, Copy)] pub struct DebugUtilsMessageTypeFlagsEXT
+    : u32 { const GENERAL_EXT = DebugUtilsMessageTypeFlagBitsEXT::GENERAL_EXT.0; const
+    VALIDATION_EXT = DebugUtilsMessageTypeFlagBitsEXT::VALIDATION_EXT.0; const
+    PERFORMANCE_EXT = DebugUtilsMessageTypeFlagBitsEXT::PERFORMANCE_EXT.0; const
+    DEVICE_ADDRESS_BINDING_EXT =
+    DebugUtilsMessageTypeFlagBitsEXT::DEVICE_ADDRESS_BINDING_EXT.0; }
+}
 #[repr(transparent)]
 #[derive(Clone, Copy)]
 pub struct DebugUtilsMessageTypeFlagBitsEXT(pub(crate) u32);
@@ -81,12 +91,14 @@ impl DebugUtilsMessageTypeFlagBitsEXT {
     pub const VALIDATION_EXT: Self = Self(1 << 1);
     pub const PERFORMANCE_EXT: Self = Self(1 << 2);
 }
-#[repr(transparent)]
-#[derive(Clone, Copy)]
-pub struct DebugUtilsMessengerCreateFlagsEXT(pub(crate) u32);
-#[repr(transparent)]
-#[derive(Clone, Copy)]
-pub struct DebugUtilsMessengerCallbackDataFlagsEXT(pub(crate) u32);
+bitflags::bitflags! {
+    #[repr(transparent)] #[derive(Clone, Copy)] pub struct
+    DebugUtilsMessengerCreateFlagsEXT : u32 {}
+}
+bitflags::bitflags! {
+    #[repr(transparent)] #[derive(Clone, Copy)] pub struct
+    DebugUtilsMessengerCallbackDataFlagsEXT : u32 {}
+}
 #[repr(transparent)]
 #[derive(Clone, Copy)]
 pub struct DebugUtilsMessengerEXT(pub(crate) i32);

@@ -27,9 +27,13 @@ pub struct PresentModeKHR(pub(crate) i32);
 #[repr(transparent)]
 #[derive(Clone, Copy)]
 pub struct ColorSpaceKHR(pub(crate) i32);
-#[repr(transparent)]
-#[derive(Clone, Copy)]
-pub struct CompositeAlphaFlagsKHR(pub(crate) u32);
+bitflags::bitflags! {
+    #[repr(transparent)] #[derive(Clone, Copy)] pub struct CompositeAlphaFlagsKHR : u32 {
+    const OPAQUE_KHR = CompositeAlphaFlagBitsKHR::OPAQUE_KHR.0; const PRE_MULTIPLIED_KHR
+    = CompositeAlphaFlagBitsKHR::PRE_MULTIPLIED_KHR.0; const POST_MULTIPLIED_KHR =
+    CompositeAlphaFlagBitsKHR::POST_MULTIPLIED_KHR.0; const INHERIT_KHR =
+    CompositeAlphaFlagBitsKHR::INHERIT_KHR.0; }
+}
 #[repr(transparent)]
 #[derive(Clone, Copy)]
 pub struct CompositeAlphaFlagBitsKHR(pub(crate) u32);
