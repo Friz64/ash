@@ -8,5 +8,13 @@ pub struct PhysicalDeviceShader64BitIndexingFeaturesEXT {
     pub p_next: *mut core::ffi::c_void,
     pub shader64_bit_indexing: crate::vk::Bool32,
 }
+///Provided by [`ext::shader_64bit_indexing`](crate::ext::shader_64bit_indexing)
+impl crate::vk::PipelineCreateFlagBits2 {
+    pub const _64_INDEXING_EXT: Self = Self(1 << 43);
+}
+///Provided by [`ext::shader_64bit_indexing`](crate::ext::shader_64bit_indexing)
+impl crate::vk::ShaderCreateFlagBitsEXT {
+    pub const _64_INDEXING_EXT: Self = Self(1 << 15);
+}
 pub const EXT_SHADER_64BIT_INDEXING_SPEC_VERSION: u32 = 1;
 pub const EXT_SHADER_64BIT_INDEXING_EXTENSION_NAME: &core::ffi::CStr = c"VK_EXT_shader_64bit_indexing";

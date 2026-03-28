@@ -47,5 +47,15 @@ pub struct RayTracingLssIndexingModeNV(pub(crate) i32);
 #[repr(transparent)]
 #[derive(Clone, Copy)]
 pub struct RayTracingLssPrimitiveEndCapsModeNV(pub(crate) i32);
+///Provided by [`nv::ray_tracing_linear_swept_spheres`](crate::nv::ray_tracing_linear_swept_spheres)
+impl crate::vk::FormatFeatureFlagBits2 {
+    pub const ACCELERATION_STRUCTURE_RADIUS_BUFFER_NV: Self = Self(1 << 51);
+}
+///Provided by [`nv::ray_tracing_linear_swept_spheres`](crate::nv::ray_tracing_linear_swept_spheres)
+impl crate::vk::PipelineCreateFlagBits2 {
+    pub const RAY_TRACING_ALLOW_SPHERES_AND_LINEAR_SWEPT_SPHERES_NV: Self = Self(
+        1 << 33,
+    );
+}
 pub const NV_RAY_TRACING_LINEAR_SWEPT_SPHERES_SPEC_VERSION: u32 = 1;
 pub const NV_RAY_TRACING_LINEAR_SWEPT_SPHERES_EXTENSION_NAME: &core::ffi::CStr = c"VK_NV_ray_tracing_linear_swept_spheres";

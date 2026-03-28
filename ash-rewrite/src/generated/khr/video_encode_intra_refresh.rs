@@ -41,14 +41,35 @@ pub struct PhysicalDeviceVideoEncodeIntraRefreshFeaturesKHR {
     pub p_next: *mut core::ffi::c_void,
     pub video_encode_intra_refresh: crate::vk::Bool32,
 }
+///Provided by [`khr::video_encode_intra_refresh`](crate::khr::video_encode_intra_refresh)
+impl crate::vk::VideoEncodeFlagBitsKHR {
+    pub const INTRA_REFRESH_KHR: Self = Self(1 << 2);
+}
 #[repr(transparent)]
 #[derive(Clone, Copy)]
 pub struct VideoEncodeIntraRefreshModeFlagsKHR(pub(crate) u32);
 #[repr(transparent)]
 #[derive(Clone, Copy)]
 pub struct VideoEncodeIntraRefreshModeFlagBitsKHR(pub(crate) u32);
+///Provided by [`khr::video_encode_intra_refresh`](crate::khr::video_encode_intra_refresh)
 impl VideoEncodeIntraRefreshModeFlagBitsKHR {
-    pub const NONE_KHR: Self = Self(1);
+    pub const NONE_KHR: Self = Self(0);
+    pub const PER_PICTURE_PARTITION_KHR: Self = Self(1 << 0);
+    pub const BLOCK_BASED_KHR: Self = Self(1 << 1);
+    pub const BLOCK_ROW_BASED_KHR: Self = Self(1 << 2);
+    pub const BLOCK_COLUMN_BASED_KHR: Self = Self(1 << 3);
+}
+///Provided by [`khr::video_encode_intra_refresh`](crate::khr::video_encode_intra_refresh)
+impl crate::vk::VideoEncodeH264CapabilityFlagBitsKHR {
+    pub const B_PICTURE_INTRA_REFRESH_KHR: Self = Self(1 << 10);
+}
+///Provided by [`khr::video_encode_intra_refresh`](crate::khr::video_encode_intra_refresh)
+impl crate::vk::VideoEncodeH265CapabilityFlagBitsKHR {
+    pub const B_PICTURE_INTRA_REFRESH_KHR: Self = Self(1 << 11);
+}
+///Provided by [`khr::video_encode_intra_refresh`](crate::khr::video_encode_intra_refresh)
+impl crate::vk::VideoEncodeAV1CapabilityFlagBitsKHR {
+    pub const COMPOUND_PREDICTION_INTRA_REFRESH_KHR: Self = Self(1 << 5);
 }
 pub const KHR_VIDEO_ENCODE_INTRA_REFRESH_SPEC_VERSION: u32 = 1;
 pub const KHR_VIDEO_ENCODE_INTRA_REFRESH_EXTENSION_NAME: &core::ffi::CStr = c"VK_KHR_video_encode_intra_refresh";

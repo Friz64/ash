@@ -9,5 +9,9 @@ pub struct PipelineLibraryCreateInfoKHR {
     pub library_count: u32,
     pub p_libraries: *const crate::vk::Pipeline,
 }
+///Provided by [`khr::pipeline_library`](crate::khr::pipeline_library)
+impl crate::vk::PipelineCreateFlagBits {
+    pub const LIBRARY_KHR: Self = Self(1 << 11);
+}
 pub const KHR_PIPELINE_LIBRARY_SPEC_VERSION: u32 = 1;
 pub const KHR_PIPELINE_LIBRARY_EXTENSION_NAME: &core::ffi::CStr = c"VK_KHR_pipeline_library";

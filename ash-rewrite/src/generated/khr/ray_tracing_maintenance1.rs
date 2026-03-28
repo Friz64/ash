@@ -27,5 +27,13 @@ pub struct PhysicalDeviceRayTracingMaintenance1FeaturesKHR {
     pub ray_tracing_maintenance1: crate::vk::Bool32,
     pub ray_tracing_pipeline_trace_rays_indirect2: crate::vk::Bool32,
 }
+///Provided by [`khr::ray_tracing_maintenance1`](crate::khr::ray_tracing_maintenance1)
+impl crate::vk::AccessFlagBits2 {
+    pub const SHADER_BINDING_TABLE_READ_KHR: Self = Self(1 << 40);
+}
+///Provided by [`khr::ray_tracing_maintenance1`](crate::khr::ray_tracing_maintenance1)
+impl crate::vk::PipelineStageFlagBits2 {
+    pub const ACCELERATION_STRUCTURE_COPY_KHR: Self = Self(1 << 28);
+}
 pub const KHR_RAY_TRACING_MAINTENANCE_1_SPEC_VERSION: u32 = 1;
 pub const KHR_RAY_TRACING_MAINTENANCE_1_EXTENSION_NAME: &core::ffi::CStr = c"VK_KHR_ray_tracing_maintenance1";

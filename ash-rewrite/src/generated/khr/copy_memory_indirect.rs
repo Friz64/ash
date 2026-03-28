@@ -62,12 +62,25 @@ pub struct PhysicalDeviceCopyMemoryIndirectPropertiesKHR {
     pub p_next: *mut core::ffi::c_void,
     pub supported_queues: crate::vk::QueueFlags,
 }
+///Provided by [`khr::copy_memory_indirect`](crate::khr::copy_memory_indirect)
+impl crate::vk::PipelineStageFlagBits2 {
+    pub const COPY_INDIRECT_KHR: Self = Self(1 << 46);
+}
+///Provided by [`khr::copy_memory_indirect`](crate::khr::copy_memory_indirect)
+impl crate::vk::FormatFeatureFlagBits2 {
+    pub const COPY_IMAGE_INDIRECT_DST_KHR: Self = Self(1 << 59);
+}
 #[repr(transparent)]
 #[derive(Clone, Copy)]
 pub struct AddressCopyFlagsKHR(pub(crate) u32);
 #[repr(transparent)]
 #[derive(Clone, Copy)]
 pub struct AddressCopyFlagBitsKHR(pub(crate) u32);
-impl AddressCopyFlagBitsKHR {}
+///Provided by [`khr::copy_memory_indirect`](crate::khr::copy_memory_indirect)
+impl AddressCopyFlagBitsKHR {
+    pub const DEVICE_LOCAL_KHR: Self = Self(1 << 0);
+    pub const SPARSE_KHR: Self = Self(1 << 1);
+    pub const PROTECTED_KHR: Self = Self(1 << 2);
+}
 pub const KHR_COPY_MEMORY_INDIRECT_SPEC_VERSION: u32 = 1;
 pub const KHR_COPY_MEMORY_INDIRECT_EXTENSION_NAME: &core::ffi::CStr = c"VK_KHR_copy_memory_indirect";

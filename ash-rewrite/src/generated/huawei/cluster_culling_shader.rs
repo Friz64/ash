@@ -26,5 +26,17 @@ pub struct PhysicalDeviceClusterCullingShaderVrsFeaturesHUAWEI {
     pub p_next: *mut core::ffi::c_void,
     pub cluster_shading_rate: crate::vk::Bool32,
 }
+///Provided by [`huawei::cluster_culling_shader`](crate::huawei::cluster_culling_shader)
+impl crate::vk::ShaderStageFlagBits {
+    pub const CLUSTER_CULLING_HUAWEI: Self = Self(1 << 19);
+}
+///Provided by [`huawei::cluster_culling_shader`](crate::huawei::cluster_culling_shader)
+impl crate::vk::QueryPipelineStatisticFlagBits {
+    pub const CLUSTER_CULLING_SHADER_INVOCATIONS_HUAWEI: Self = Self(1 << 13);
+}
+///Provided by [`huawei::cluster_culling_shader`](crate::huawei::cluster_culling_shader)
+impl crate::vk::PipelineStageFlagBits2 {
+    pub const CLUSTER_CULLING_SHADER_HUAWEI: Self = Self(1 << 41);
+}
 pub const HUAWEI_CLUSTER_CULLING_SHADER_SPEC_VERSION: u32 = 3;
 pub const HUAWEI_CLUSTER_CULLING_SHADER_EXTENSION_NAME: &core::ffi::CStr = c"VK_HUAWEI_cluster_culling_shader";

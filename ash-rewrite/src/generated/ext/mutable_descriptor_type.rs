@@ -22,5 +22,13 @@ pub struct MutableDescriptorTypeCreateInfoEXT {
     pub mutable_descriptor_type_list_count: u32,
     pub p_mutable_descriptor_type_lists: *const crate::vk::MutableDescriptorTypeListEXT,
 }
+///Provided by [`ext::mutable_descriptor_type`](crate::ext::mutable_descriptor_type)
+impl crate::vk::DescriptorSetLayoutCreateFlagBits {
+    pub const HOST_ONLY_POOL_EXT: Self = Self(1 << 2);
+}
+///Provided by [`ext::mutable_descriptor_type`](crate::ext::mutable_descriptor_type)
+impl crate::vk::DescriptorPoolCreateFlagBits {
+    pub const HOST_ONLY_EXT: Self = Self(1 << 2);
+}
 pub const EXT_MUTABLE_DESCRIPTOR_TYPE_SPEC_VERSION: u32 = 1;
 pub const EXT_MUTABLE_DESCRIPTOR_TYPE_EXTENSION_NAME: &core::ffi::CStr = c"VK_EXT_mutable_descriptor_type";

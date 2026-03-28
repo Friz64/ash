@@ -7,5 +7,9 @@ pub type SwapchainPresentModesCreateInfoEXT = crate::vk::SwapchainPresentModesCr
 pub type SwapchainPresentModeInfoEXT = crate::vk::SwapchainPresentModeInfoKHR;
 pub type SwapchainPresentScalingCreateInfoEXT = crate::vk::SwapchainPresentScalingCreateInfoKHR;
 pub type ReleaseSwapchainImagesInfoEXT = crate::vk::ReleaseSwapchainImagesInfoKHR;
+///Provided by [`ext::swapchain_maintenance1`](crate::ext::swapchain_maintenance1)
+impl crate::vk::SwapchainCreateFlagBitsKHR {
+    pub const DEFERRED_MEMORY_ALLOCATION_EXT: Self = Self::DEFERRED_MEMORY_ALLOCATION_KHR;
+}
 pub const EXT_SWAPCHAIN_MAINTENANCE_1_SPEC_VERSION: u32 = 1;
 pub const EXT_SWAPCHAIN_MAINTENANCE_1_EXTENSION_NAME: &core::ffi::CStr = c"VK_EXT_swapchain_maintenance1";

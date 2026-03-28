@@ -16,14 +16,23 @@ pub struct MemoryBarrierAccessFlags3KHR {
     pub src_access_mask3: crate::vk::AccessFlags3KHR,
     pub dst_access_mask3: crate::vk::AccessFlags3KHR,
 }
+///Provided by [`khr::maintenance8`](crate::khr::maintenance8)
+impl crate::vk::PipelineCacheCreateFlagBits {
+    pub const INTERNALLY_SYNCHRONIZED_MERGE_KHR: Self = Self(1 << 3);
+}
+///Provided by [`khr::maintenance8`](crate::khr::maintenance8)
+impl crate::vk::DependencyFlagBits {
+    pub const QUEUE_FAMILY_OWNERSHIP_TRANSFER_USE_ALL_STAGES_KHR: Self = Self(1 << 5);
+}
 #[repr(transparent)]
 #[derive(Clone, Copy)]
 pub struct AccessFlags3KHR(pub(crate) u64);
 #[repr(transparent)]
 #[derive(Clone, Copy)]
 pub struct AccessFlagBits3KHR(pub(crate) u64);
+///Provided by [`khr::maintenance8`](crate::khr::maintenance8)
 impl AccessFlagBits3KHR {
-    pub const NONE_KHR: Self = Self(1);
+    pub const NONE_KHR: Self = Self(0);
 }
 pub const KHR_MAINTENANCE_8_SPEC_VERSION: u32 = 1;
 pub const KHR_MAINTENANCE_8_EXTENSION_NAME: &core::ffi::CStr = c"VK_KHR_maintenance8";

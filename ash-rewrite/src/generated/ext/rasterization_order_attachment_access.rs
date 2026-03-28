@@ -10,5 +10,20 @@ pub struct PhysicalDeviceRasterizationOrderAttachmentAccessFeaturesEXT {
     pub rasterization_order_depth_attachment_access: crate::vk::Bool32,
     pub rasterization_order_stencil_attachment_access: crate::vk::Bool32,
 }
+///Provided by [`ext::rasterization_order_attachment_access`](crate::ext::rasterization_order_attachment_access)
+impl crate::vk::PipelineDepthStencilStateCreateFlagBits {
+    pub const RASTERIZATION_ORDER_ATTACHMENT_DEPTH_ACCESS_EXT: Self = Self(1 << 0);
+    pub const RASTERIZATION_ORDER_ATTACHMENT_STENCIL_ACCESS_EXT: Self = Self(1 << 1);
+}
+///Provided by [`ext::rasterization_order_attachment_access`](crate::ext::rasterization_order_attachment_access)
+impl crate::vk::PipelineColorBlendStateCreateFlagBits {
+    pub const RASTERIZATION_ORDER_ATTACHMENT_ACCESS_EXT: Self = Self(1 << 0);
+}
+///Provided by [`ext::rasterization_order_attachment_access`](crate::ext::rasterization_order_attachment_access)
+impl crate::vk::SubpassDescriptionFlagBits {
+    pub const RASTERIZATION_ORDER_ATTACHMENT_COLOR_ACCESS_EXT: Self = Self(1 << 4);
+    pub const RASTERIZATION_ORDER_ATTACHMENT_DEPTH_ACCESS_EXT: Self = Self(1 << 5);
+    pub const RASTERIZATION_ORDER_ATTACHMENT_STENCIL_ACCESS_EXT: Self = Self(1 << 6);
+}
 pub const EXT_RASTERIZATION_ORDER_ATTACHMENT_ACCESS_SPEC_VERSION: u32 = 1;
 pub const EXT_RASTERIZATION_ORDER_ATTACHMENT_ACCESS_EXTENSION_NAME: &core::ffi::CStr = c"VK_EXT_rasterization_order_attachment_access";

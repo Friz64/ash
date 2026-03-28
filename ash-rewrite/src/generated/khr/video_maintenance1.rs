@@ -17,5 +17,17 @@ pub struct VideoInlineQueryInfoKHR {
     pub first_query: u32,
     pub query_count: u32,
 }
+///Provided by [`khr::video_maintenance1`](crate::khr::video_maintenance1)
+impl crate::vk::BufferCreateFlagBits {
+    pub const VIDEO_PROFILE_INDEPENDENT_KHR: Self = Self(1 << 6);
+}
+///Provided by [`khr::video_maintenance1`](crate::khr::video_maintenance1)
+impl crate::vk::ImageCreateFlagBits {
+    pub const VIDEO_PROFILE_INDEPENDENT_KHR: Self = Self(1 << 20);
+}
+///Provided by [`khr::video_maintenance1`](crate::khr::video_maintenance1)
+impl crate::vk::VideoSessionCreateFlagBitsKHR {
+    pub const INLINE_QUERIES_KHR: Self = Self(1 << 2);
+}
 pub const KHR_VIDEO_MAINTENANCE_1_SPEC_VERSION: u32 = 1;
 pub const KHR_VIDEO_MAINTENANCE_1_EXTENSION_NAME: &core::ffi::CStr = c"VK_KHR_video_maintenance1";

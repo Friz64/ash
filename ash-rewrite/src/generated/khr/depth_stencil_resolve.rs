@@ -4,6 +4,14 @@
 pub type PhysicalDeviceDepthStencilResolvePropertiesKHR = crate::vk::PhysicalDeviceDepthStencilResolveProperties;
 pub type SubpassDescriptionDepthStencilResolveKHR = crate::vk::SubpassDescriptionDepthStencilResolve;
 pub type ResolveModeFlagBitsKHR = crate::vk::ResolveModeFlagBits;
+///Provided by [`khr::depth_stencil_resolve`](crate::khr::depth_stencil_resolve)
+impl crate::vk::ResolveModeFlagBits {
+    pub const NONE_KHR: Self = Self::NONE;
+    pub const SAMPLE_ZERO_KHR: Self = Self::SAMPLE_ZERO;
+    pub const AVERAGE_KHR: Self = Self::AVERAGE;
+    pub const MIN_KHR: Self = Self::MIN;
+    pub const MAX_KHR: Self = Self::MAX;
+}
 pub type ResolveModeFlagsKHR = crate::vk::ResolveModeFlags;
 pub const KHR_DEPTH_STENCIL_RESOLVE_SPEC_VERSION: u32 = 1;
 pub const KHR_DEPTH_STENCIL_RESOLVE_EXTENSION_NAME: &core::ffi::CStr = c"VK_KHR_depth_stencil_resolve";

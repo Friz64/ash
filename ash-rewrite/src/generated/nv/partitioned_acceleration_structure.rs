@@ -95,7 +95,14 @@ pub struct PartitionedAccelerationStructureInstanceFlagsNV(pub(crate) u32);
 #[repr(transparent)]
 #[derive(Clone, Copy)]
 pub struct PartitionedAccelerationStructureInstanceFlagBitsNV(pub(crate) u32);
-impl PartitionedAccelerationStructureInstanceFlagBitsNV {}
+///Provided by [`nv::partitioned_acceleration_structure`](crate::nv::partitioned_acceleration_structure)
+impl PartitionedAccelerationStructureInstanceFlagBitsNV {
+    pub const FLAG_TRIANGLE_FACING_CULL_DISABLE_NV: Self = Self(1 << 0);
+    pub const FLAG_TRIANGLE_FLIP_FACING_NV: Self = Self(1 << 1);
+    pub const FLAG_FORCE_OPAQUE_NV: Self = Self(1 << 2);
+    pub const FLAG_FORCE_NO_OPAQUE_NV: Self = Self(1 << 3);
+    pub const FLAG_ENABLE_EXPLICIT_BOUNDING_BOX_NV: Self = Self(1 << 4);
+}
 pub const PARTITIONED_ACCELERATION_STRUCTURE_PARTITION_INDEX_GLOBAL_NV: u32 = (!0);
 pub const NV_PARTITIONED_ACCELERATION_STRUCTURE_SPEC_VERSION: u32 = 1;
 pub const NV_PARTITIONED_ACCELERATION_STRUCTURE_EXTENSION_NAME: &core::ffi::CStr = c"VK_NV_partitioned_acceleration_structure";

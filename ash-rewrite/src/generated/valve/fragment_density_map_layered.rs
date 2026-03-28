@@ -22,5 +22,17 @@ pub struct PipelineFragmentDensityMapLayeredCreateInfoVALVE {
     pub p_next: *const core::ffi::c_void,
     pub max_fragment_density_map_layers: u32,
 }
+///Provided by [`valve::fragment_density_map_layered`](crate::valve::fragment_density_map_layered)
+impl crate::vk::RenderPassCreateFlagBits {
+    pub const PER_LAYER_FRAGMENT_DENSITY_VALVE: Self = Self(1 << 2);
+}
+///Provided by [`valve::fragment_density_map_layered`](crate::valve::fragment_density_map_layered)
+impl crate::vk::RenderingFlagBits {
+    pub const PER_LAYER_FRAGMENT_DENSITY_VALVE: Self = Self(1 << 5);
+}
+///Provided by [`valve::fragment_density_map_layered`](crate::valve::fragment_density_map_layered)
+impl crate::vk::PipelineCreateFlagBits2 {
+    pub const PER_LAYER_FRAGMENT_DENSITY_VALVE: Self = Self(1 << 40);
+}
 pub const VALVE_FRAGMENT_DENSITY_MAP_LAYERED_SPEC_VERSION: u32 = 1;
 pub const VALVE_FRAGMENT_DENSITY_MAP_LAYERED_EXTENSION_NAME: &core::ffi::CStr = c"VK_VALVE_fragment_density_map_layered";

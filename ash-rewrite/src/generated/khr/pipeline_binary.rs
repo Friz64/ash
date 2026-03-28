@@ -92,6 +92,10 @@ pub struct PhysicalDevicePipelineBinaryPropertiesKHR {
     pub pipeline_binary_precompiled_internal_cache: crate::vk::Bool32,
     pub pipeline_binary_compressed_data: crate::vk::Bool32,
 }
+///Provided by [`khr::pipeline_binary`](crate::khr::pipeline_binary)
+impl crate::vk::PipelineCreateFlagBits2 {
+    pub const CAPTURE_DATA_KHR: Self = Self(1 << 31);
+}
 #[repr(transparent)]
 #[derive(Clone, Copy)]
 pub struct PipelineBinaryKHR(pub(crate) i32);

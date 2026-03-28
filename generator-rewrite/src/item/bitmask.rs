@@ -1,10 +1,12 @@
 use super::{Code, Context};
 use crate::output::{CodeMap, Destination};
 use analysis::{
-    item::bitmask::{BitMask, BitWidth},
+    item::bitmask::{BitMask, BitWidth, Item, Value},
     to_rust::{RustName, RustTranslator},
+    xml::cexpr::CExprItem,
 };
-use quote::{format_ident, quote};
+use proc_macro2::Literal;
+use quote::quote;
 use tracing::{instrument, trace};
 
 impl Code for BitMask {
@@ -19,19 +21,10 @@ impl Code for BitMask {
 
         let bits_code = self.bits_name.map(|bits_name| {
             let name = ctx.type_to_rust(bits_name, false);
-            let values = self.values.iter().map(|value| {
-                let name = format_ident!("{}", value.stripped_name(bits_name));
-                quote! { pub const #name: Self = Self(1); }
-            });
-
             quote! {
                 #[repr(transparent)]
                 #[derive(Clone, Copy)]
                 pub struct #name(pub(crate) #base_ty);
-
-                impl #name {
-                    #( #values )*
-                }
             }
         });
 
@@ -43,6 +36,47 @@ impl Code for BitMask {
             #bits_code
         };
 
-        CodeMap::new(Destination::new(self.required_by), code)
+        let mut codemap = CodeMap::new(Destination::new(self.required_by), code);
+
+        if let Some(bits_name) = self.bits_name {
+            let mut impl_map = CodeMap::default();
+
+            for (&name, Item { required_by, value }) in &self.items {
+                let name = ctx.enumerator_to_rust(name, bits_name);
+                let value = match &value {
+                    Value::BitPos(bitpos) => {
+                        let literal = Literal::u8_unsuffixed(*bitpos);
+                        quote! { Self(1 << #literal) }
+                    }
+                    Value::Expr(cexpr_items) => {
+                        let expr = CExprItem::to_rust(cexpr_items.iter(), ctx);
+                        quote! { Self(#expr) }
+                    }
+                    Value::Alias(enumerator_name) => {
+                        let ident = ctx.enumerator_to_rust(*enumerator_name, bits_name);
+                        quote! { Self::#ident }
+                    }
+                };
+
+                impl_map.extend(CodeMap::new(
+                    Destination::new(*required_by),
+                    quote! { pub const #name: Self = #value; },
+                ));
+            }
+
+            for (&dest, impl_tokens) in impl_map.iter() {
+                let name = ctx.type_to_rust(bits_name, dest != Destination::new(self.required_by));
+                let doc = dest.doc_link();
+                codemap.extend(CodeMap::new(
+                    dest,
+                    quote! {
+                        #[doc = #doc]
+                        impl #name { #impl_tokens }
+                    },
+                ));
+            }
+        }
+
+        codemap
     }
 }

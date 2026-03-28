@@ -9,6 +9,10 @@ pub type SemaphoreWaitInfoKHR = crate::vk::SemaphoreWaitInfo;
 pub type SemaphoreSignalInfoKHR = crate::vk::SemaphoreSignalInfo;
 pub type SemaphoreTypeKHR = crate::vk::SemaphoreType;
 pub type SemaphoreWaitFlagBitsKHR = crate::vk::SemaphoreWaitFlagBits;
+///Provided by [`khr::timeline_semaphore`](crate::khr::timeline_semaphore)
+impl crate::vk::SemaphoreWaitFlagBits {
+    pub const ANY_KHR: Self = Self::ANY;
+}
 pub type SemaphoreWaitFlagsKHR = crate::vk::SemaphoreWaitFlags;
 pub const KHR_TIMELINE_SEMAPHORE_SPEC_VERSION: u32 = 2;
 pub const KHR_TIMELINE_SEMAPHORE_EXTENSION_NAME: &core::ffi::CStr = c"VK_KHR_timeline_semaphore";

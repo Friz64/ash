@@ -18,5 +18,9 @@ pub struct PhysicalDeviceFragmentDensityMap2PropertiesEXT {
     pub max_subsampled_array_layers: u32,
     pub max_descriptor_set_subsampled_samplers: u32,
 }
+///Provided by [`ext::fragment_density_map2`](crate::ext::fragment_density_map2)
+impl crate::vk::ImageViewCreateFlagBits {
+    pub const FRAGMENT_DENSITY_MAP_DEFERRED_EXT: Self = Self(1 << 1);
+}
 pub const EXT_FRAGMENT_DENSITY_MAP_2_SPEC_VERSION: u32 = 1;
 pub const EXT_FRAGMENT_DENSITY_MAP_2_EXTENSION_NAME: &core::ffi::CStr = c"VK_EXT_fragment_density_map2";

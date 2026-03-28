@@ -41,20 +41,35 @@ pub struct VideoEncodeRgbModelConversionFlagsVALVE(pub(crate) u32);
 #[repr(transparent)]
 #[derive(Clone, Copy)]
 pub struct VideoEncodeRgbModelConversionFlagBitsVALVE(pub(crate) u32);
-impl VideoEncodeRgbModelConversionFlagBitsVALVE {}
+///Provided by [`valve::video_encode_rgb_conversion`](crate::valve::video_encode_rgb_conversion)
+impl VideoEncodeRgbModelConversionFlagBitsVALVE {
+    pub const RGB_IDENTITY_VALVE: Self = Self(1 << 0);
+    pub const YCBCR_IDENTITY_VALVE: Self = Self(1 << 1);
+    pub const YCBCR_709_VALVE: Self = Self(1 << 2);
+    pub const YCBCR_601_VALVE: Self = Self(1 << 3);
+    pub const YCBCR_2020_VALVE: Self = Self(1 << 4);
+}
 #[repr(transparent)]
 #[derive(Clone, Copy)]
 pub struct VideoEncodeRgbRangeCompressionFlagsVALVE(pub(crate) u32);
 #[repr(transparent)]
 #[derive(Clone, Copy)]
 pub struct VideoEncodeRgbRangeCompressionFlagBitsVALVE(pub(crate) u32);
-impl VideoEncodeRgbRangeCompressionFlagBitsVALVE {}
+///Provided by [`valve::video_encode_rgb_conversion`](crate::valve::video_encode_rgb_conversion)
+impl VideoEncodeRgbRangeCompressionFlagBitsVALVE {
+    pub const FULL_RANGE_VALVE: Self = Self(1 << 0);
+    pub const NARROW_RANGE_VALVE: Self = Self(1 << 1);
+}
 #[repr(transparent)]
 #[derive(Clone, Copy)]
 pub struct VideoEncodeRgbChromaOffsetFlagsVALVE(pub(crate) u32);
 #[repr(transparent)]
 #[derive(Clone, Copy)]
 pub struct VideoEncodeRgbChromaOffsetFlagBitsVALVE(pub(crate) u32);
-impl VideoEncodeRgbChromaOffsetFlagBitsVALVE {}
+///Provided by [`valve::video_encode_rgb_conversion`](crate::valve::video_encode_rgb_conversion)
+impl VideoEncodeRgbChromaOffsetFlagBitsVALVE {
+    pub const COSITED_EVEN_VALVE: Self = Self(1 << 0);
+    pub const MIDPOINT_VALVE: Self = Self(1 << 1);
+}
 pub const VALVE_VIDEO_ENCODE_RGB_CONVERSION_SPEC_VERSION: u32 = 1;
 pub const VALVE_VIDEO_ENCODE_RGB_CONVERSION_EXTENSION_NAME: &core::ffi::CStr = c"VK_VALVE_video_encode_rgb_conversion";

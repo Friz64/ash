@@ -2,5 +2,10 @@
 #![cfg_attr(rustfmt, rustfmt_skip)]
 //![Vulkan Manual Page](https://docs.vulkan.org/refpages/latest/refpages/source/VK_KHR_shader_subgroup_rotate.html) · Extension `VK_KHR_shader_subgroup_rotate`
 pub type PhysicalDeviceShaderSubgroupRotateFeaturesKHR = crate::vk::PhysicalDeviceShaderSubgroupRotateFeatures;
+///Provided by [`khr::shader_subgroup_rotate`](crate::khr::shader_subgroup_rotate)
+impl crate::vk::SubgroupFeatureFlagBits {
+    pub const ROTATE_KHR: Self = Self::ROTATE;
+    pub const ROTATE_CLUSTERED_KHR: Self = Self::ROTATE_CLUSTERED;
+}
 pub const KHR_SHADER_SUBGROUP_ROTATE_SPEC_VERSION: u32 = 2;
 pub const KHR_SHADER_SUBGROUP_ROTATE_EXTENSION_NAME: &core::ffi::CStr = c"VK_KHR_shader_subgroup_rotate";

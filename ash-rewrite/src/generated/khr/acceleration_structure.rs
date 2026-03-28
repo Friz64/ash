@@ -221,34 +221,77 @@ pub struct AccelerationStructureBuildTypeKHR(pub(crate) i32);
 #[repr(transparent)]
 #[derive(Clone, Copy)]
 pub struct AccelerationStructureCompatibilityKHR(pub(crate) i32);
+///Provided by [`khr::acceleration_structure`](crate::khr::acceleration_structure)
+impl crate::vk::AccessFlagBits {
+    pub const ACCELERATION_STRUCTURE_READ_KHR: Self = Self(1 << 21);
+    pub const ACCELERATION_STRUCTURE_WRITE_KHR: Self = Self(1 << 22);
+}
+///Provided by [`khr::acceleration_structure`](crate::khr::acceleration_structure)
+impl crate::vk::BufferUsageFlagBits {
+    pub const ACCELERATION_STRUCTURE_BUILD_INPUT_READ_ONLY_KHR: Self = Self(1 << 19);
+    pub const ACCELERATION_STRUCTURE_STORAGE_KHR: Self = Self(1 << 20);
+}
+///Provided by [`khr::acceleration_structure`](crate::khr::acceleration_structure)
+impl crate::vk::FormatFeatureFlagBits {
+    pub const ACCELERATION_STRUCTURE_VERTEX_BUFFER_KHR: Self = Self(1 << 29);
+}
+///Provided by [`khr::acceleration_structure`](crate::khr::acceleration_structure)
+impl crate::vk::PipelineStageFlagBits {
+    pub const ACCELERATION_STRUCTURE_BUILD_KHR: Self = Self(1 << 25);
+}
 #[repr(transparent)]
 #[derive(Clone, Copy)]
 pub struct GeometryFlagsKHR(pub(crate) u32);
 #[repr(transparent)]
 #[derive(Clone, Copy)]
 pub struct GeometryFlagBitsKHR(pub(crate) u32);
-impl GeometryFlagBitsKHR {}
+///Provided by [`khr::acceleration_structure`](crate::khr::acceleration_structure)
+impl GeometryFlagBitsKHR {
+    pub const OPAQUE_KHR: Self = Self(1 << 0);
+    pub const NO_DUPLICATE_ANY_HIT_INVOCATION_KHR: Self = Self(1 << 1);
+}
 #[repr(transparent)]
 #[derive(Clone, Copy)]
 pub struct GeometryInstanceFlagsKHR(pub(crate) u32);
 #[repr(transparent)]
 #[derive(Clone, Copy)]
 pub struct GeometryInstanceFlagBitsKHR(pub(crate) u32);
-impl GeometryInstanceFlagBitsKHR {}
+///Provided by [`khr::acceleration_structure`](crate::khr::acceleration_structure)
+impl GeometryInstanceFlagBitsKHR {
+    pub const TRIANGLE_FACING_CULL_DISABLE_KHR: Self = Self(1 << 0);
+    pub const TRIANGLE_FLIP_FACING_KHR: Self = Self(1 << 1);
+    pub const FORCE_OPAQUE_KHR: Self = Self(1 << 2);
+    pub const FORCE_NO_OPAQUE_KHR: Self = Self(1 << 3);
+    pub const TRIANGLE_FRONT_COUNTERCLOCKWISE_KHR: Self = Self::TRIANGLE_FLIP_FACING_KHR;
+}
 #[repr(transparent)]
 #[derive(Clone, Copy)]
 pub struct BuildAccelerationStructureFlagsKHR(pub(crate) u32);
 #[repr(transparent)]
 #[derive(Clone, Copy)]
 pub struct BuildAccelerationStructureFlagBitsKHR(pub(crate) u32);
-impl BuildAccelerationStructureFlagBitsKHR {}
+///Provided by [`khr::acceleration_structure`](crate::khr::acceleration_structure)
+impl BuildAccelerationStructureFlagBitsKHR {
+    pub const ALLOW_UPDATE_KHR: Self = Self(1 << 0);
+    pub const ALLOW_COMPACTION_KHR: Self = Self(1 << 1);
+    pub const PREFER_FAST_TRACE_KHR: Self = Self(1 << 2);
+    pub const PREFER_FAST_BUILD_KHR: Self = Self(1 << 3);
+    pub const LOW_MEMORY_KHR: Self = Self(1 << 4);
+}
 #[repr(transparent)]
 #[derive(Clone, Copy)]
 pub struct AccelerationStructureCreateFlagsKHR(pub(crate) u32);
 #[repr(transparent)]
 #[derive(Clone, Copy)]
 pub struct AccelerationStructureCreateFlagBitsKHR(pub(crate) u32);
-impl AccelerationStructureCreateFlagBitsKHR {}
+///Provided by [`khr::acceleration_structure`](crate::khr::acceleration_structure)
+impl AccelerationStructureCreateFlagBitsKHR {
+    pub const DEVICE_ADDRESS_CAPTURE_REPLAY_KHR: Self = Self(1 << 0);
+}
+///Provided by [`khr::acceleration_structure`](crate::khr::acceleration_structure)
+impl crate::vk::FormatFeatureFlagBits2 {
+    pub const ACCELERATION_STRUCTURE_VERTEX_BUFFER_KHR: Self = Self(1 << 29);
+}
 #[repr(transparent)]
 #[derive(Clone, Copy)]
 pub struct AccelerationStructureKHR(pub(crate) i32);

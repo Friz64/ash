@@ -8,5 +8,10 @@ pub struct PhysicalDeviceDescriptorPoolOverallocationFeaturesNV {
     pub p_next: *mut core::ffi::c_void,
     pub descriptor_pool_overallocation: crate::vk::Bool32,
 }
+///Provided by [`nv::descriptor_pool_overallocation`](crate::nv::descriptor_pool_overallocation)
+impl crate::vk::DescriptorPoolCreateFlagBits {
+    pub const ALLOW_OVERALLOCATION_SETS_NV: Self = Self(1 << 3);
+    pub const ALLOW_OVERALLOCATION_POOLS_NV: Self = Self(1 << 4);
+}
 pub const NV_DESCRIPTOR_POOL_OVERALLOCATION_SPEC_VERSION: u32 = 1;
 pub const NV_DESCRIPTOR_POOL_OVERALLOCATION_EXTENSION_NAME: &core::ffi::CStr = c"VK_NV_descriptor_pool_overallocation";

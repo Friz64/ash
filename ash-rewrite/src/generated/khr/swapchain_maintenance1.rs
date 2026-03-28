@@ -50,5 +50,9 @@ pub struct ReleaseSwapchainImagesInfoKHR {
     pub image_index_count: u32,
     pub p_image_indices: *const u32,
 }
+///Provided by [`khr::swapchain_maintenance1`](crate::khr::swapchain_maintenance1)
+impl crate::vk::SwapchainCreateFlagBitsKHR {
+    pub const DEFERRED_MEMORY_ALLOCATION_KHR: Self = Self(1 << 3);
+}
 pub const KHR_SWAPCHAIN_MAINTENANCE_1_SPEC_VERSION: u32 = 1;
 pub const KHR_SWAPCHAIN_MAINTENANCE_1_EXTENSION_NAME: &core::ffi::CStr = c"VK_KHR_swapchain_maintenance1";

@@ -4,5 +4,9 @@
 pub type PhysicalDeviceSamplerFilterMinmaxPropertiesEXT = crate::vk::PhysicalDeviceSamplerFilterMinmaxProperties;
 pub type SamplerReductionModeCreateInfoEXT = crate::vk::SamplerReductionModeCreateInfo;
 pub type SamplerReductionModeEXT = crate::vk::SamplerReductionMode;
+///Provided by [`ext::sampler_filter_minmax`](crate::ext::sampler_filter_minmax)
+impl crate::vk::FormatFeatureFlagBits {
+    pub const SAMPLED_IMAGE_FILTER_MINMAX_EXT: Self = Self::SAMPLED_IMAGE_FILTER_MINMAX;
+}
 pub const EXT_SAMPLER_FILTER_MINMAX_SPEC_VERSION: u32 = 2;
 pub const EXT_SAMPLER_FILTER_MINMAX_EXTENSION_NAME: &core::ffi::CStr = c"VK_EXT_sampler_filter_minmax";

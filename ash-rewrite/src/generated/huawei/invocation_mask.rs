@@ -8,5 +8,17 @@ pub struct PhysicalDeviceInvocationMaskFeaturesHUAWEI {
     pub p_next: *mut core::ffi::c_void,
     pub invocation_mask: crate::vk::Bool32,
 }
+///Provided by [`huawei::invocation_mask`](crate::huawei::invocation_mask)
+impl crate::vk::ImageUsageFlagBits {
+    pub const INVOCATION_MASK_HUAWEI: Self = Self(1 << 18);
+}
+///Provided by [`huawei::invocation_mask`](crate::huawei::invocation_mask)
+impl crate::vk::AccessFlagBits2 {
+    pub const INVOCATION_MASK_READ_HUAWEI: Self = Self(1 << 39);
+}
+///Provided by [`huawei::invocation_mask`](crate::huawei::invocation_mask)
+impl crate::vk::PipelineStageFlagBits2 {
+    pub const INVOCATION_MASK_HUAWEI: Self = Self(1 << 40);
+}
 pub const HUAWEI_INVOCATION_MASK_SPEC_VERSION: u32 = 1;
 pub const HUAWEI_INVOCATION_MASK_EXTENSION_NAME: &core::ffi::CStr = c"VK_HUAWEI_invocation_mask";

@@ -273,21 +273,60 @@ pub union DescriptorMappingSourceDataEXT {
 #[repr(transparent)]
 #[derive(Clone, Copy)]
 pub struct DescriptorMappingSourceEXT(pub(crate) i32);
+///Provided by [`ext::descriptor_heap`](crate::ext::descriptor_heap)
+impl crate::vk::BufferUsageFlagBits {
+    pub const DESCRIPTOR_HEAP_EXT: Self = Self(1 << 28);
+}
+///Provided by [`ext::descriptor_heap`](crate::ext::descriptor_heap)
+impl crate::vk::ImageCreateFlagBits {
+    pub const DESCRIPTOR_HEAP_CAPTURE_REPLAY_EXT: Self = Self(1 << 16);
+}
+///Provided by [`ext::descriptor_heap`](crate::ext::descriptor_heap)
+impl crate::vk::AccessFlagBits2 {
+    pub const SAMPLER_HEAP_READ_EXT: Self = Self(1 << 57);
+    pub const RESOURCE_HEAP_READ_EXT: Self = Self(1 << 58);
+}
+///Provided by [`ext::descriptor_heap`](crate::ext::descriptor_heap)
+impl crate::vk::PipelineCreateFlagBits2 {
+    pub const DESCRIPTOR_HEAP_EXT: Self = Self(1 << 36);
+}
+///Provided by [`ext::descriptor_heap`](crate::ext::descriptor_heap)
+impl crate::vk::BufferUsageFlagBits2 {
+    pub const DESCRIPTOR_HEAP_EXT: Self = Self(1 << 28);
+}
+///Provided by [`ext::descriptor_heap`](crate::ext::descriptor_heap)
+impl crate::vk::TensorCreateFlagBitsARM {
+    pub const DESCRIPTOR_HEAP_CAPTURE_REPLAY_ARM: Self = Self(1 << 3);
+}
 #[repr(transparent)]
 #[derive(Clone, Copy)]
 pub struct TensorViewCreateFlagsARM(pub(crate) u64);
 #[repr(transparent)]
 #[derive(Clone, Copy)]
 pub struct TensorViewCreateFlagBitsARM(pub(crate) u64);
-impl TensorViewCreateFlagBitsARM {}
 #[repr(transparent)]
 #[derive(Clone, Copy)]
 pub struct SpirvResourceTypeFlagsEXT(pub(crate) u32);
 #[repr(transparent)]
 #[derive(Clone, Copy)]
 pub struct SpirvResourceTypeFlagBitsEXT(pub(crate) u32);
+///Provided by [`ext::descriptor_heap`](crate::ext::descriptor_heap)
 impl SpirvResourceTypeFlagBitsEXT {
-    pub const ALL_EXT: Self = Self(1);
+    pub const ALL_EXT: Self = Self(0x7FFFFFF);
+    pub const SAMPLER_EXT: Self = Self(1 << 0);
+    pub const SAMPLED_IMAGE_EXT: Self = Self(1 << 1);
+    pub const READ_ONLY_IMAGE_EXT: Self = Self(1 << 2);
+    pub const READ_WRITE_IMAGE_EXT: Self = Self(1 << 3);
+    pub const COMBINED_SAMPLED_IMAGE_EXT: Self = Self(1 << 4);
+    pub const UNIFORM_BUFFER_EXT: Self = Self(1 << 5);
+    pub const READ_ONLY_STORAGE_BUFFER_EXT: Self = Self(1 << 6);
+    pub const READ_WRITE_STORAGE_BUFFER_EXT: Self = Self(1 << 7);
+    pub const ACCELERATION_STRUCTURE_EXT: Self = Self(1 << 8);
+    pub const TENSOR_ARM: Self = Self(1 << 9);
+}
+///Provided by [`ext::descriptor_heap`](crate::ext::descriptor_heap)
+impl crate::vk::ShaderCreateFlagBitsEXT {
+    pub const DESCRIPTOR_HEAP_EXT: Self = Self(1 << 10);
 }
 #[repr(transparent)]
 #[derive(Clone, Copy)]

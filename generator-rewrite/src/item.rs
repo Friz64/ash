@@ -1,10 +1,10 @@
 use crate::output::CodeMap;
 use analysis::{
     item::{Items, TypeItem},
-    name::VariableName,
-    name::{CMacroName, ConstantName, FuncPointerName, TypeName},
+    name::{CMacroName, ConstantName, EnumeratorName, FuncPointerName, TypeName, VariableName},
     to_rust::RustTranslator,
 };
+use heck::ToSnekCase;
 use proc_macro2::TokenStream;
 use quote::quote;
 use syn::Ident;
@@ -58,7 +58,11 @@ pub struct Context<'a> {
 
 impl<'a> RustTranslator for Context<'a> {
     fn var_name_to_rust(&self, name: VariableName) -> Ident {
-        crate::to_snake_case_escape_ident(name.original())
+        crate::escape_ident(&name.original().to_snek_case())
+    }
+
+    fn enumerator_to_rust(&self, name: EnumeratorName, bits_name: TypeName) -> Ident {
+        crate::escape_ident(&name.stripped(bits_name))
     }
 
     fn type_to_rust(&self, name: TypeName, with_path: bool) -> TokenStream {

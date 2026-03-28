@@ -25,7 +25,10 @@ use crate::{
     xml::{self, Require, RequireCommand, RequireConstant, RequireType},
 };
 use indexmap::IndexMap;
-use std::collections::{HashMap, hash_map};
+use std::{
+    collections::{HashMap, hash_map},
+    iter,
+};
 use tinyvec::{ArrayVec, array_vec};
 use tracing::debug;
 
@@ -38,6 +41,15 @@ pub struct RequiredBy {
 impl RequiredBy {
     pub fn primary_location(&self) -> RequireLocation {
         self.locations[0]
+    }
+
+    pub fn merge(&mut self, other: RequiredBy) {
+        assert_eq!(self.library, other.library);
+        for location in &other.locations {
+            if !self.locations.contains(location) {
+                self.locations.push(*location);
+            }
+        }
     }
 }
 
@@ -170,21 +182,19 @@ impl Items {
 
             (items.types).extend(library.xml.bitmasks.iter().flat_map(|xml| {
                 let mut bits_name_emitted = false;
-                from_fn_with(
-                    BitMask::new(&require_map, &bitmask_bits_map, xml),
-                    move |bitmask| {
-                        if !bits_name_emitted
-                            && let Some(bitmask) = bitmask
-                            && let Some(bits_name) = bitmask.bits_name
-                        {
-                            bits_name_emitted = true;
-                            let bitmask_name = bitmask.name();
-                            return Some((bits_name, TypeItem::BitMaskBits { bitmask_name }));
-                        }
+                let mut bitmask = BitMask::new(&require_map, &bitmask_bits_map, xml);
+                iter::from_fn(move || {
+                    if !bits_name_emitted
+                        && let Some(bitmask) = &bitmask
+                        && let Some(bits_name) = bitmask.bits_name
+                    {
+                        bits_name_emitted = true;
+                        let bitmask_name = bitmask.name();
+                        return Some((bits_name, TypeItem::BitMaskBits { bitmask_name }));
+                    }
 
-                        bitmask.take().map(|ty| (ty.name(), TypeItem::BitMask(ty)))
-                    },
-                )
+                    bitmask.take().map(|ty| (ty.name(), TypeItem::BitMask(ty)))
+                })
             }));
 
             items.collect_type(
@@ -232,16 +242,19 @@ impl Items {
                 locations: array_vec!([RequireLocation; _] => location),
             };
 
-            for enum_extends in &require.enum_extends {
-                match &items.types[&enum_extends.extends] {
+            for enumerator in &require.enumerators {
+                match &items.types[&enumerator.extends] {
                     &TypeItem::BitMaskBits { bitmask_name } => {
                         let TypeItem::BitMask(bitmask) = &mut items.types[&bitmask_name] else {
                             unreachable!()
                         };
 
-                        bitmask.extend(enum_extends);
+                        bitmask.extend(
+                            required_by,
+                            iter::once((enumerator.name, &enumerator.value)),
+                        );
                     }
-                    TypeItem::Enum(digga) => {
+                    TypeItem::Enum(_digga) => {
                         // cool
                     }
                     _ => unreachable!(),
@@ -317,29 +330,5 @@ fn iter_requires(
                 f(library.name(), location, require);
             }
         }
-    }
-}
-
-fn from_fn_with<T, F, W>(with: W, f: F) -> FromFnWith<F, W>
-where
-    F: FnMut(&mut W) -> Option<T>,
-{
-    FromFnWith { function: f, with }
-}
-
-struct FromFnWith<F, W> {
-    function: F,
-    with: W,
-}
-
-impl<T, F, W> Iterator for FromFnWith<F, W>
-where
-    F: FnMut(&mut W) -> Option<T>,
-{
-    type Item = T;
-
-    #[inline]
-    fn next(&mut self) -> Option<Self::Item> {
-        (self.function)(&mut self.with)
     }
 }

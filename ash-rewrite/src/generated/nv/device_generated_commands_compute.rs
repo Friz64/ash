@@ -32,5 +32,9 @@ pub struct PipelineIndirectDeviceAddressInfoNV {
 pub struct BindPipelineIndirectCommandNV {
     pub pipeline_address: crate::vk::DeviceAddress,
 }
+///Provided by [`nv::device_generated_commands_compute`](crate::nv::device_generated_commands_compute)
+impl crate::vk::DescriptorSetLayoutCreateFlagBits {
+    pub const INDIRECT_BINDABLE_NV: Self = Self(1 << 7);
+}
 pub const NV_DEVICE_GENERATED_COMMANDS_COMPUTE_SPEC_VERSION: u32 = 2;
 pub const NV_DEVICE_GENERATED_COMMANDS_COMPUTE_EXTENSION_NAME: &core::ffi::CStr = c"VK_NV_device_generated_commands_compute";

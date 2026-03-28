@@ -19,5 +19,13 @@ pub struct BufferDeviceAddressCreateInfoEXT {
 }
 pub type PhysicalDeviceBufferAddressFeaturesEXT = crate::vk::PhysicalDeviceBufferDeviceAddressFeaturesEXT;
 pub type BufferDeviceAddressInfoEXT = crate::vk::BufferDeviceAddressInfo;
+///Provided by [`ext::buffer_device_address`](crate::ext::buffer_device_address)
+impl crate::vk::BufferUsageFlagBits {
+    pub const SHADER_DEVICE_ADDRESS_EXT: Self = Self::SHADER_DEVICE_ADDRESS;
+}
+///Provided by [`ext::buffer_device_address`](crate::ext::buffer_device_address)
+impl crate::vk::BufferCreateFlagBits {
+    pub const DEVICE_ADDRESS_CAPTURE_REPLAY_EXT: Self = Self::DEVICE_ADDRESS_CAPTURE_REPLAY;
+}
 pub const EXT_BUFFER_DEVICE_ADDRESS_SPEC_VERSION: u32 = 2;
 pub const EXT_BUFFER_DEVICE_ADDRESS_EXTENSION_NAME: &core::ffi::CStr = c"VK_EXT_buffer_device_address";

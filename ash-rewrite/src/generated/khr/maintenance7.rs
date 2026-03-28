@@ -50,5 +50,9 @@ pub struct PhysicalDeviceLayeredApiVulkanPropertiesKHR {
 #[repr(transparent)]
 #[derive(Clone, Copy)]
 pub struct PhysicalDeviceLayeredApiKHR(pub(crate) i32);
+///Provided by [`khr::maintenance7`](crate::khr::maintenance7)
+impl crate::vk::RenderingFlagBits {
+    pub const CONTENTS_INLINE_KHR: Self = Self(1 << 4);
+}
 pub const KHR_MAINTENANCE_7_SPEC_VERSION: u32 = 1;
 pub const KHR_MAINTENANCE_7_EXTENSION_NAME: &core::ffi::CStr = c"VK_KHR_maintenance7";

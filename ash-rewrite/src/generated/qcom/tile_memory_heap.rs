@@ -38,5 +38,21 @@ pub struct TileMemoryRequirementsQCOM {
     pub size: crate::vk::DeviceSize,
     pub alignment: crate::vk::DeviceSize,
 }
+///Provided by [`qcom::tile_memory_heap`](crate::qcom::tile_memory_heap)
+impl crate::vk::MemoryHeapFlagBits {
+    pub const TILE_MEMORY_QCOM: Self = Self(1 << 3);
+}
+///Provided by [`qcom::tile_memory_heap`](crate::qcom::tile_memory_heap)
+impl crate::vk::BufferUsageFlagBits {
+    pub const TILE_MEMORY_QCOM: Self = Self(1 << 27);
+}
+///Provided by [`qcom::tile_memory_heap`](crate::qcom::tile_memory_heap)
+impl crate::vk::ImageUsageFlagBits {
+    pub const TILE_MEMORY_QCOM: Self = Self(1 << 27);
+}
+///Provided by [`qcom::tile_memory_heap`](crate::qcom::tile_memory_heap)
+impl crate::vk::BufferUsageFlagBits2 {
+    pub const TILE_MEMORY_QCOM: Self = Self(1 << 27);
+}
 pub const QCOM_TILE_MEMORY_HEAP_SPEC_VERSION: u32 = 1;
 pub const QCOM_TILE_MEMORY_HEAP_EXTENSION_NAME: &core::ffi::CStr = c"VK_QCOM_tile_memory_heap";

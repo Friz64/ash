@@ -25,12 +25,27 @@ pub struct PhysicalDeviceConditionalRenderingFeaturesEXT {
     pub conditional_rendering: crate::vk::Bool32,
     pub inherited_conditional_rendering: crate::vk::Bool32,
 }
+///Provided by [`ext::conditional_rendering`](crate::ext::conditional_rendering)
+impl crate::vk::AccessFlagBits {
+    pub const CONDITIONAL_RENDERING_READ_EXT: Self = Self(1 << 20);
+}
+///Provided by [`ext::conditional_rendering`](crate::ext::conditional_rendering)
+impl crate::vk::BufferUsageFlagBits {
+    pub const CONDITIONAL_RENDERING_EXT: Self = Self(1 << 9);
+}
+///Provided by [`ext::conditional_rendering`](crate::ext::conditional_rendering)
+impl crate::vk::PipelineStageFlagBits {
+    pub const CONDITIONAL_RENDERING_EXT: Self = Self(1 << 18);
+}
 #[repr(transparent)]
 #[derive(Clone, Copy)]
 pub struct ConditionalRenderingFlagsEXT(pub(crate) u32);
 #[repr(transparent)]
 #[derive(Clone, Copy)]
 pub struct ConditionalRenderingFlagBitsEXT(pub(crate) u32);
-impl ConditionalRenderingFlagBitsEXT {}
+///Provided by [`ext::conditional_rendering`](crate::ext::conditional_rendering)
+impl ConditionalRenderingFlagBitsEXT {
+    pub const INVERTED_EXT: Self = Self(1 << 0);
+}
 pub const EXT_CONDITIONAL_RENDERING_SPEC_VERSION: u32 = 2;
 pub const EXT_CONDITIONAL_RENDERING_EXTENSION_NAME: &core::ffi::CStr = c"VK_EXT_conditional_rendering";

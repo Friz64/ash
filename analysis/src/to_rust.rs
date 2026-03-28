@@ -1,7 +1,7 @@
 use crate::{
     decl::{ArrayLen, CPrimaryType, Decl, Mutability, Ty},
     item::Named,
-    name::{CMacroName, ConstantName, FuncPointerName, TypeName, VariableName},
+    name::{CMacroName, ConstantName, EnumeratorName, FuncPointerName, TypeName, VariableName},
     xml::cexpr::CExprItem,
 };
 use proc_macro2::{Literal, TokenStream};
@@ -11,6 +11,8 @@ use syn::Ident;
 
 pub trait RustTranslator {
     fn var_name_to_rust(&self, name: VariableName) -> Ident;
+
+    fn enumerator_to_rust(&self, name: EnumeratorName, bits_name: TypeName) -> Ident;
 
     fn type_to_rust(&self, name: TypeName, with_path: bool) -> TokenStream;
 

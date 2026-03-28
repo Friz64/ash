@@ -65,5 +65,10 @@ pub union PipelineExecutableStatisticValueKHR {
 #[repr(transparent)]
 #[derive(Clone, Copy)]
 pub struct PipelineExecutableStatisticFormatKHR(pub(crate) i32);
+///Provided by [`khr::pipeline_executable_properties`](crate::khr::pipeline_executable_properties)
+impl crate::vk::PipelineCreateFlagBits {
+    pub const CAPTURE_STATISTICS_KHR: Self = Self(1 << 6);
+    pub const CAPTURE_INTERNAL_REPRESENTATIONS_KHR: Self = Self(1 << 7);
+}
 pub const KHR_PIPELINE_EXECUTABLE_PROPERTIES_SPEC_VERSION: u32 = 1;
 pub const KHR_PIPELINE_EXECUTABLE_PROPERTIES_EXTENSION_NAME: &core::ffi::CStr = c"VK_KHR_pipeline_executable_properties";

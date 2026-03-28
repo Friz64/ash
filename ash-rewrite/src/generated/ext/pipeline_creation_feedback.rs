@@ -4,6 +4,12 @@
 pub type PipelineCreationFeedbackEXT = crate::vk::PipelineCreationFeedback;
 pub type PipelineCreationFeedbackCreateInfoEXT = crate::vk::PipelineCreationFeedbackCreateInfo;
 pub type PipelineCreationFeedbackFlagBitsEXT = crate::vk::PipelineCreationFeedbackFlagBits;
+///Provided by [`ext::pipeline_creation_feedback`](crate::ext::pipeline_creation_feedback)
+impl crate::vk::PipelineCreationFeedbackFlagBits {
+    pub const VALID_EXT: Self = Self::VALID;
+    pub const APPLICATION_PIPELINE_CACHE_HIT_EXT: Self = Self::APPLICATION_PIPELINE_CACHE_HIT;
+    pub const BASE_PIPELINE_ACCELERATION_EXT: Self = Self::BASE_PIPELINE_ACCELERATION;
+}
 pub type PipelineCreationFeedbackFlagsEXT = crate::vk::PipelineCreationFeedbackFlags;
 pub const EXT_PIPELINE_CREATION_FEEDBACK_SPEC_VERSION: u32 = 1;
 pub const EXT_PIPELINE_CREATION_FEEDBACK_EXTENSION_NAME: &core::ffi::CStr = c"VK_EXT_pipeline_creation_feedback";

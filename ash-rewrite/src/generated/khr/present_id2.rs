@@ -23,5 +23,9 @@ pub struct SurfaceCapabilitiesPresentId2KHR {
     pub p_next: *mut core::ffi::c_void,
     pub present_id2_supported: crate::vk::Bool32,
 }
+///Provided by [`khr::present_id2`](crate::khr::present_id2)
+impl crate::vk::SwapchainCreateFlagBitsKHR {
+    pub const PRESENT_ID_2_KHR: Self = Self(1 << 6);
+}
 pub const KHR_PRESENT_ID_2_SPEC_VERSION: u32 = 1;
 pub const KHR_PRESENT_ID_2_EXTENSION_NAME: &core::ffi::CStr = c"VK_KHR_present_id2";

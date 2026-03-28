@@ -5,5 +5,9 @@ pub type PhysicalDeviceImagelessFramebufferFeaturesKHR = crate::vk::PhysicalDevi
 pub type FramebufferAttachmentsCreateInfoKHR = crate::vk::FramebufferAttachmentsCreateInfo;
 pub type FramebufferAttachmentImageInfoKHR = crate::vk::FramebufferAttachmentImageInfo;
 pub type RenderPassAttachmentBeginInfoKHR = crate::vk::RenderPassAttachmentBeginInfo;
+///Provided by [`khr::imageless_framebuffer`](crate::khr::imageless_framebuffer)
+impl crate::vk::FramebufferCreateFlagBits {
+    pub const IMAGELESS_KHR: Self = Self::IMAGELESS;
+}
 pub const KHR_IMAGELESS_FRAMEBUFFER_SPEC_VERSION: u32 = 1;
 pub const KHR_IMAGELESS_FRAMEBUFFER_EXTENSION_NAME: &core::ffi::CStr = c"VK_KHR_imageless_framebuffer";

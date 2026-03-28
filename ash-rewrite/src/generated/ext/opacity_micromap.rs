@@ -133,20 +133,57 @@ pub struct OpacityMicromapFormatEXT(pub(crate) i32);
 #[repr(transparent)]
 #[derive(Clone, Copy)]
 pub struct OpacityMicromapSpecialIndexEXT(pub(crate) i32);
+///Provided by [`ext::opacity_micromap`](crate::ext::opacity_micromap)
+impl crate::vk::BufferUsageFlagBits {
+    pub const MICROMAP_BUILD_INPUT_READ_ONLY_EXT: Self = Self(1 << 23);
+    pub const MICROMAP_STORAGE_EXT: Self = Self(1 << 24);
+}
+///Provided by [`ext::opacity_micromap`](crate::ext::opacity_micromap)
+impl crate::vk::PipelineCreateFlagBits {
+    pub const RAY_TRACING_OPACITY_MICROMAP_EXT: Self = Self(1 << 24);
+}
+///Provided by [`ext::opacity_micromap`](crate::ext::opacity_micromap)
+impl crate::vk::GeometryInstanceFlagBitsKHR {
+    pub const FORCE_OPACITY_MICROMAP_2_STATE_EXT: Self = Self(1 << 4);
+    pub const DISABLE_OPACITY_MICROMAPS_EXT: Self = Self(1 << 5);
+}
+///Provided by [`ext::opacity_micromap`](crate::ext::opacity_micromap)
+impl crate::vk::BuildAccelerationStructureFlagBitsKHR {
+    pub const ALLOW_OPACITY_MICROMAP_UPDATE_EXT: Self = Self(1 << 6);
+    pub const ALLOW_DISABLE_OPACITY_MICROMAPS_EXT: Self = Self(1 << 7);
+    pub const ALLOW_OPACITY_MICROMAP_DATA_UPDATE_EXT: Self = Self(1 << 8);
+}
+///Provided by [`ext::opacity_micromap`](crate::ext::opacity_micromap)
+impl crate::vk::AccessFlagBits2 {
+    pub const MICROMAP_READ_EXT: Self = Self(1 << 44);
+    pub const MICROMAP_WRITE_EXT: Self = Self(1 << 45);
+}
+///Provided by [`ext::opacity_micromap`](crate::ext::opacity_micromap)
+impl crate::vk::PipelineStageFlagBits2 {
+    pub const MICROMAP_BUILD_EXT: Self = Self(1 << 30);
+}
 #[repr(transparent)]
 #[derive(Clone, Copy)]
 pub struct BuildMicromapFlagsEXT(pub(crate) u32);
 #[repr(transparent)]
 #[derive(Clone, Copy)]
 pub struct BuildMicromapFlagBitsEXT(pub(crate) u32);
-impl BuildMicromapFlagBitsEXT {}
+///Provided by [`ext::opacity_micromap`](crate::ext::opacity_micromap)
+impl BuildMicromapFlagBitsEXT {
+    pub const PREFER_FAST_TRACE_EXT: Self = Self(1 << 0);
+    pub const PREFER_FAST_BUILD_EXT: Self = Self(1 << 1);
+    pub const ALLOW_COMPACTION_EXT: Self = Self(1 << 2);
+}
 #[repr(transparent)]
 #[derive(Clone, Copy)]
 pub struct MicromapCreateFlagsEXT(pub(crate) u32);
 #[repr(transparent)]
 #[derive(Clone, Copy)]
 pub struct MicromapCreateFlagBitsEXT(pub(crate) u32);
-impl MicromapCreateFlagBitsEXT {}
+///Provided by [`ext::opacity_micromap`](crate::ext::opacity_micromap)
+impl MicromapCreateFlagBitsEXT {
+    pub const DEVICE_ADDRESS_CAPTURE_REPLAY_EXT: Self = Self(1 << 0);
+}
 #[repr(transparent)]
 #[derive(Clone, Copy)]
 pub struct MicromapEXT(pub(crate) i32);

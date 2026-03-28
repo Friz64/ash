@@ -17,5 +17,9 @@ pub struct PhysicalDeviceNestedCommandBufferPropertiesEXT {
     pub p_next: *mut core::ffi::c_void,
     pub max_command_buffer_nesting_level: u32,
 }
+///Provided by [`ext::nested_command_buffer`](crate::ext::nested_command_buffer)
+impl crate::vk::RenderingFlagBits {
+    pub const CONTENTS_INLINE_EXT: Self = Self::CONTENTS_INLINE_KHR;
+}
 pub const EXT_NESTED_COMMAND_BUFFER_SPEC_VERSION: u32 = 1;
 pub const EXT_NESTED_COMMAND_BUFFER_EXTENSION_NAME: &core::ffi::CStr = c"VK_EXT_nested_command_buffer";

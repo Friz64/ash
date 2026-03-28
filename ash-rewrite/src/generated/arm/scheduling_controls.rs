@@ -28,6 +28,9 @@ pub struct PhysicalDeviceSchedulingControlsFlagsARM(pub(crate) u64);
 #[repr(transparent)]
 #[derive(Clone, Copy)]
 pub struct PhysicalDeviceSchedulingControlsFlagBitsARM(pub(crate) u64);
-impl PhysicalDeviceSchedulingControlsFlagBitsARM {}
+///Provided by [`arm::scheduling_controls`](crate::arm::scheduling_controls)
+impl PhysicalDeviceSchedulingControlsFlagBitsARM {
+    pub const SHADER_CORE_COUNT_ARM: Self = Self(1 << 0);
+}
 pub const ARM_SCHEDULING_CONTROLS_SPEC_VERSION: u32 = 1;
 pub const ARM_SCHEDULING_CONTROLS_EXTENSION_NAME: &core::ffi::CStr = c"VK_ARM_scheduling_controls";

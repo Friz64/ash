@@ -16,6 +16,14 @@ pub struct MemoryGetRemoteAddressInfoNV {
     pub memory: crate::vk::DeviceMemory,
     pub handle_type: crate::vk::ExternalMemoryHandleTypeFlagBits,
 }
+///Provided by [`nv::external_memory_rdma`](crate::nv::external_memory_rdma)
+impl crate::vk::MemoryPropertyFlagBits {
+    pub const RDMA_CAPABLE_NV: Self = Self(1 << 8);
+}
+///Provided by [`nv::external_memory_rdma`](crate::nv::external_memory_rdma)
+impl crate::vk::ExternalMemoryHandleTypeFlagBits {
+    pub const RDMA_ADDRESS_NV: Self = Self(1 << 12);
+}
 #[repr(transparent)]
 #[allow(non_camel_case_types)]
 #[derive(Clone, Copy)]

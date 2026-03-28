@@ -45,5 +45,9 @@ pub struct PhysicalDeviceExternalMemoryScreenBufferFeaturesQNX {
     pub p_next: *mut core::ffi::c_void,
     pub screen_buffer_import: crate::vk::Bool32,
 }
+///Provided by [`qnx::external_memory_screen_buffer`](crate::qnx::external_memory_screen_buffer)
+impl crate::vk::ExternalMemoryHandleTypeFlagBits {
+    pub const SCREEN_BUFFER_QNX: Self = Self(1 << 14);
+}
 pub const QNX_EXTERNAL_MEMORY_SCREEN_BUFFER_SPEC_VERSION: u32 = 1;
 pub const QNX_EXTERNAL_MEMORY_SCREEN_BUFFER_EXTENSION_NAME: &core::ffi::CStr = c"VK_QNX_external_memory_screen_buffer";

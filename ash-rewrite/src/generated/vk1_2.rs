@@ -621,28 +621,71 @@ pub struct DriverId(pub(crate) i32);
 #[repr(transparent)]
 #[derive(Clone, Copy)]
 pub struct ShaderFloatControlsIndependence(pub(crate) i32);
+///Provided by [`vk1_2`](crate::vk1_2)
+impl crate::vk::FramebufferCreateFlagBits {
+    pub const IMAGELESS: Self = Self(1 << 0);
+}
+///Provided by [`vk1_2`](crate::vk1_2)
+impl crate::vk::DescriptorSetLayoutCreateFlagBits {
+    pub const UPDATE_AFTER_BIND_POOL: Self = Self(1 << 1);
+}
+///Provided by [`vk1_2`](crate::vk1_2)
+impl crate::vk::BufferUsageFlagBits {
+    pub const SHADER_DEVICE_ADDRESS: Self = Self(1 << 17);
+}
+///Provided by [`vk1_2`](crate::vk1_2)
+impl crate::vk::BufferCreateFlagBits {
+    pub const DEVICE_ADDRESS_CAPTURE_REPLAY: Self = Self(1 << 4);
+}
+///Provided by [`vk1_2`](crate::vk1_2)
+impl crate::vk::FormatFeatureFlagBits {
+    pub const SAMPLED_IMAGE_FILTER_MINMAX: Self = Self(1 << 16);
+}
+///Provided by [`vk1_2`](crate::vk1_2)
+impl crate::vk::DescriptorPoolCreateFlagBits {
+    pub const UPDATE_AFTER_BIND: Self = Self(1 << 1);
+}
 #[repr(transparent)]
 #[derive(Clone, Copy)]
 pub struct SemaphoreWaitFlags(pub(crate) u32);
 #[repr(transparent)]
 #[derive(Clone, Copy)]
 pub struct SemaphoreWaitFlagBits(pub(crate) u32);
-impl SemaphoreWaitFlagBits {}
+///Provided by [`vk1_2`](crate::vk1_2)
+impl SemaphoreWaitFlagBits {
+    pub const ANY: Self = Self(1 << 0);
+}
+///Provided by [`vk1_2`](crate::vk1_2)
+impl crate::vk::MemoryAllocateFlagBits {
+    pub const DEVICE_ADDRESS: Self = Self(1 << 1);
+    pub const DEVICE_ADDRESS_CAPTURE_REPLAY: Self = Self(1 << 2);
+}
 #[repr(transparent)]
 #[derive(Clone, Copy)]
 pub struct DescriptorBindingFlags(pub(crate) u32);
 #[repr(transparent)]
 #[derive(Clone, Copy)]
 pub struct DescriptorBindingFlagBits(pub(crate) u32);
-impl DescriptorBindingFlagBits {}
+///Provided by [`vk1_2`](crate::vk1_2)
+impl DescriptorBindingFlagBits {
+    pub const UPDATE_AFTER_BIND: Self = Self(1 << 0);
+    pub const UPDATE_UNUSED_WHILE_PENDING: Self = Self(1 << 1);
+    pub const PARTIALLY_BOUND: Self = Self(1 << 2);
+    pub const VARIABLE_DESCRIPTOR_COUNT: Self = Self(1 << 3);
+}
 #[repr(transparent)]
 #[derive(Clone, Copy)]
 pub struct ResolveModeFlags(pub(crate) u32);
 #[repr(transparent)]
 #[derive(Clone, Copy)]
 pub struct ResolveModeFlagBits(pub(crate) u32);
+///Provided by [`vk1_2`](crate::vk1_2)
 impl ResolveModeFlagBits {
-    pub const NONE: Self = Self(1);
+    pub const NONE: Self = Self(0);
+    pub const SAMPLE_ZERO: Self = Self(1 << 0);
+    pub const AVERAGE: Self = Self(1 << 1);
+    pub const MIN: Self = Self(1 << 2);
+    pub const MAX: Self = Self(1 << 3);
 }
 pub const MAX_DRIVER_NAME_SIZE: u32 = 256;
 pub const MAX_DRIVER_INFO_SIZE: u32 = 256;

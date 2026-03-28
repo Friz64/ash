@@ -29,14 +29,52 @@ pub struct VideoDecodeInfoKHR {
     pub reference_slot_count: u32,
     pub p_reference_slots: *const crate::vk::VideoReferenceSlotInfoKHR,
 }
+///Provided by [`khr::video_decode_queue`](crate::khr::video_decode_queue)
+impl crate::vk::QueueFlagBits {
+    pub const VIDEO_DECODE_KHR: Self = Self(1 << 5);
+}
+///Provided by [`khr::video_decode_queue`](crate::khr::video_decode_queue)
+impl crate::vk::BufferUsageFlagBits {
+    pub const VIDEO_DECODE_SRC_KHR: Self = Self(1 << 13);
+    pub const VIDEO_DECODE_DST_KHR: Self = Self(1 << 14);
+}
+///Provided by [`khr::video_decode_queue`](crate::khr::video_decode_queue)
+impl crate::vk::ImageUsageFlagBits {
+    pub const VIDEO_DECODE_DST_KHR: Self = Self(1 << 10);
+    pub const VIDEO_DECODE_SRC_KHR: Self = Self(1 << 11);
+    pub const VIDEO_DECODE_DPB_KHR: Self = Self(1 << 12);
+}
+///Provided by [`khr::video_decode_queue`](crate::khr::video_decode_queue)
+impl crate::vk::FormatFeatureFlagBits {
+    pub const VIDEO_DECODE_OUTPUT_KHR: Self = Self(1 << 25);
+    pub const VIDEO_DECODE_DPB_KHR: Self = Self(1 << 26);
+}
+///Provided by [`khr::video_decode_queue`](crate::khr::video_decode_queue)
+impl crate::vk::AccessFlagBits2 {
+    pub const VIDEO_DECODE_READ_KHR: Self = Self(1 << 35);
+    pub const VIDEO_DECODE_WRITE_KHR: Self = Self(1 << 36);
+}
+///Provided by [`khr::video_decode_queue`](crate::khr::video_decode_queue)
+impl crate::vk::PipelineStageFlagBits2 {
+    pub const VIDEO_DECODE_KHR: Self = Self(1 << 26);
+}
+///Provided by [`khr::video_decode_queue`](crate::khr::video_decode_queue)
+impl crate::vk::FormatFeatureFlagBits2 {
+    pub const VIDEO_DECODE_OUTPUT_KHR: Self = Self(1 << 25);
+    pub const VIDEO_DECODE_DPB_KHR: Self = Self(1 << 26);
+}
 #[repr(transparent)]
 #[derive(Clone, Copy)]
 pub struct VideoDecodeUsageFlagsKHR(pub(crate) u32);
 #[repr(transparent)]
 #[derive(Clone, Copy)]
 pub struct VideoDecodeUsageFlagBitsKHR(pub(crate) u32);
+///Provided by [`khr::video_decode_queue`](crate::khr::video_decode_queue)
 impl VideoDecodeUsageFlagBitsKHR {
-    pub const DEFAULT_KHR: Self = Self(1);
+    pub const DEFAULT_KHR: Self = Self(0);
+    pub const TRANSCODING_KHR: Self = Self(1 << 0);
+    pub const OFFLINE_KHR: Self = Self(1 << 1);
+    pub const STREAMING_KHR: Self = Self(1 << 2);
 }
 #[repr(transparent)]
 #[derive(Clone, Copy)]
@@ -44,7 +82,11 @@ pub struct VideoDecodeCapabilityFlagsKHR(pub(crate) u32);
 #[repr(transparent)]
 #[derive(Clone, Copy)]
 pub struct VideoDecodeCapabilityFlagBitsKHR(pub(crate) u32);
-impl VideoDecodeCapabilityFlagBitsKHR {}
+///Provided by [`khr::video_decode_queue`](crate::khr::video_decode_queue)
+impl VideoDecodeCapabilityFlagBitsKHR {
+    pub const DPB_AND_OUTPUT_COINCIDE_KHR: Self = Self(1 << 0);
+    pub const DPB_AND_OUTPUT_DISTINCT_KHR: Self = Self(1 << 1);
+}
 #[repr(transparent)]
 #[derive(Clone, Copy)]
 pub struct VideoDecodeFlagsKHR(pub(crate) u32);

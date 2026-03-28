@@ -3,6 +3,10 @@
 //![Vulkan Manual Page](https://docs.vulkan.org/refpages/latest/refpages/source/VK_KHR_external_semaphore.html) · Extension `VK_KHR_external_semaphore`
 pub type ExportSemaphoreCreateInfoKHR = crate::vk::ExportSemaphoreCreateInfo;
 pub type SemaphoreImportFlagBitsKHR = crate::vk::SemaphoreImportFlagBits;
+///Provided by [`khr::external_semaphore`](crate::khr::external_semaphore)
+impl crate::vk::SemaphoreImportFlagBits {
+    pub const TEMPORARY_KHR: Self = Self::TEMPORARY;
+}
 pub type SemaphoreImportFlagsKHR = crate::vk::SemaphoreImportFlags;
 pub const KHR_EXTERNAL_SEMAPHORE_SPEC_VERSION: u32 = 1;
 pub const KHR_EXTERNAL_SEMAPHORE_EXTENSION_NAME: &core::ffi::CStr = c"VK_KHR_external_semaphore";

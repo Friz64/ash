@@ -9,6 +9,22 @@ pub type ExternalBufferPropertiesKHR = crate::vk::ExternalBufferProperties;
 pub type PhysicalDeviceIDPropertiesKHR = crate::vk::PhysicalDeviceIDProperties;
 pub type ExternalMemoryHandleTypeFlagBitsKHR = crate::vk::ExternalMemoryHandleTypeFlagBits;
 pub type ExternalMemoryFeatureFlagBitsKHR = crate::vk::ExternalMemoryFeatureFlagBits;
+///Provided by [`khr::external_memory_capabilities`](crate::khr::external_memory_capabilities)
+impl crate::vk::ExternalMemoryHandleTypeFlagBits {
+    pub const OPAQUE_FD_KHR: Self = Self::OPAQUE_FD;
+    pub const OPAQUE_WIN32_KHR: Self = Self::OPAQUE_WIN32;
+    pub const OPAQUE_WIN32_KMT_KHR: Self = Self::OPAQUE_WIN32_KMT;
+    pub const D3D11_TEXTURE_KHR: Self = Self::D3D11_TEXTURE;
+    pub const D3D11_TEXTURE_KMT_KHR: Self = Self::D3D11_TEXTURE_KMT;
+    pub const D3D12_HEAP_KHR: Self = Self::D3D12_HEAP;
+    pub const D3D12_RESOURCE_KHR: Self = Self::D3D12_RESOURCE;
+}
+///Provided by [`khr::external_memory_capabilities`](crate::khr::external_memory_capabilities)
+impl crate::vk::ExternalMemoryFeatureFlagBits {
+    pub const DEDICATED_ONLY_KHR: Self = Self::DEDICATED_ONLY;
+    pub const EXPORTABLE_KHR: Self = Self::EXPORTABLE;
+    pub const IMPORTABLE_KHR: Self = Self::IMPORTABLE;
+}
 pub type ExternalMemoryHandleTypeFlagsKHR = crate::vk::ExternalMemoryHandleTypeFlags;
 pub type ExternalMemoryFeatureFlagsKHR = crate::vk::ExternalMemoryFeatureFlags;
 pub const KHR_EXTERNAL_MEMORY_CAPABILITIES_SPEC_VERSION: u32 = 1;

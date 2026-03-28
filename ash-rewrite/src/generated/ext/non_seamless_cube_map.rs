@@ -8,5 +8,9 @@ pub struct PhysicalDeviceNonSeamlessCubeMapFeaturesEXT {
     pub p_next: *mut core::ffi::c_void,
     pub non_seamless_cube_map: crate::vk::Bool32,
 }
+///Provided by [`ext::non_seamless_cube_map`](crate::ext::non_seamless_cube_map)
+impl crate::vk::SamplerCreateFlagBits {
+    pub const NON_SEAMLESS_CUBE_MAP_EXT: Self = Self(1 << 2);
+}
 pub const EXT_NON_SEAMLESS_CUBE_MAP_SPEC_VERSION: u32 = 1;
 pub const EXT_NON_SEAMLESS_CUBE_MAP_EXTENSION_NAME: &core::ffi::CStr = c"VK_EXT_non_seamless_cube_map";

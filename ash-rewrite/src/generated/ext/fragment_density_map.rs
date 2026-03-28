@@ -34,5 +34,42 @@ pub struct RenderingFragmentDensityMapAttachmentInfoEXT {
     pub image_view: crate::vk::ImageView,
     pub image_layout: crate::vk::ImageLayout,
 }
+///Provided by [`ext::fragment_density_map`](crate::ext::fragment_density_map)
+impl crate::vk::SamplerCreateFlagBits {
+    pub const SUBSAMPLED_EXT: Self = Self(1 << 0);
+    pub const SUBSAMPLED_COARSE_RECONSTRUCTION_EXT: Self = Self(1 << 1);
+}
+///Provided by [`ext::fragment_density_map`](crate::ext::fragment_density_map)
+impl crate::vk::AccessFlagBits {
+    pub const FRAGMENT_DENSITY_MAP_READ_EXT: Self = Self(1 << 24);
+}
+///Provided by [`ext::fragment_density_map`](crate::ext::fragment_density_map)
+impl crate::vk::ImageUsageFlagBits {
+    pub const FRAGMENT_DENSITY_MAP_EXT: Self = Self(1 << 9);
+}
+///Provided by [`ext::fragment_density_map`](crate::ext::fragment_density_map)
+impl crate::vk::ImageCreateFlagBits {
+    pub const SUBSAMPLED_EXT: Self = Self(1 << 14);
+}
+///Provided by [`ext::fragment_density_map`](crate::ext::fragment_density_map)
+impl crate::vk::ImageViewCreateFlagBits {
+    pub const FRAGMENT_DENSITY_MAP_DYNAMIC_EXT: Self = Self(1 << 0);
+}
+///Provided by [`ext::fragment_density_map`](crate::ext::fragment_density_map)
+impl crate::vk::PipelineCreateFlagBits {
+    pub const RENDERING_FRAGMENT_DENSITY_MAP_ATTACHMENT_EXT: Self = Self(1 << 22);
+}
+///Provided by [`ext::fragment_density_map`](crate::ext::fragment_density_map)
+impl crate::vk::FormatFeatureFlagBits {
+    pub const FRAGMENT_DENSITY_MAP_EXT: Self = Self(1 << 24);
+}
+///Provided by [`ext::fragment_density_map`](crate::ext::fragment_density_map)
+impl crate::vk::PipelineStageFlagBits {
+    pub const FRAGMENT_DENSITY_PROCESS_EXT: Self = Self(1 << 23);
+}
+///Provided by [`ext::fragment_density_map`](crate::ext::fragment_density_map)
+impl crate::vk::FormatFeatureFlagBits2 {
+    pub const FRAGMENT_DENSITY_MAP_EXT: Self = Self(1 << 24);
+}
 pub const EXT_FRAGMENT_DENSITY_MAP_SPEC_VERSION: u32 = 3;
 pub const EXT_FRAGMENT_DENSITY_MAP_EXTENSION_NAME: &core::ffi::CStr = c"VK_EXT_fragment_density_map";

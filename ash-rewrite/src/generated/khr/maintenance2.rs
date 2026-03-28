@@ -8,5 +8,10 @@ pub type ImageViewUsageCreateInfoKHR = crate::vk::ImageViewUsageCreateInfo;
 pub type PipelineTessellationDomainOriginStateCreateInfoKHR = crate::vk::PipelineTessellationDomainOriginStateCreateInfo;
 pub type PointClippingBehaviorKHR = crate::vk::PointClippingBehavior;
 pub type TessellationDomainOriginKHR = crate::vk::TessellationDomainOrigin;
+///Provided by [`khr::maintenance2`](crate::khr::maintenance2)
+impl crate::vk::ImageCreateFlagBits {
+    pub const BLOCK_TEXEL_VIEW_COMPATIBLE_KHR: Self = Self::BLOCK_TEXEL_VIEW_COMPATIBLE;
+    pub const EXTENDED_USAGE_KHR: Self = Self::EXTENDED_USAGE;
+}
 pub const KHR_MAINTENANCE_2_SPEC_VERSION: u32 = 1;
 pub const KHR_MAINTENANCE_2_EXTENSION_NAME: &core::ffi::CStr = c"VK_KHR_maintenance2";

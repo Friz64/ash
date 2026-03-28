@@ -23,5 +23,10 @@ pub struct PhysicalDeviceExternalMemoryHostPropertiesEXT {
     pub p_next: *mut core::ffi::c_void,
     pub min_imported_host_pointer_alignment: crate::vk::DeviceSize,
 }
+///Provided by [`ext::external_memory_host`](crate::ext::external_memory_host)
+impl crate::vk::ExternalMemoryHandleTypeFlagBits {
+    pub const HOST_ALLOCATION_EXT: Self = Self(1 << 7);
+    pub const HOST_MAPPED_FOREIGN_MEMORY_EXT: Self = Self(1 << 8);
+}
 pub const EXT_EXTERNAL_MEMORY_HOST_SPEC_VERSION: u32 = 1;
 pub const EXT_EXTERNAL_MEMORY_HOST_EXTENSION_NAME: &core::ffi::CStr = c"VK_EXT_external_memory_host";

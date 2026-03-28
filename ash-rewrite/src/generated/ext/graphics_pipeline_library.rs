@@ -23,12 +23,27 @@ pub struct GraphicsPipelineLibraryCreateInfoEXT {
     pub p_next: *const core::ffi::c_void,
     pub flags: crate::vk::GraphicsPipelineLibraryFlagsEXT,
 }
+///Provided by [`ext::graphics_pipeline_library`](crate::ext::graphics_pipeline_library)
+impl crate::vk::PipelineLayoutCreateFlagBits {
+    pub const INDEPENDENT_SETS_EXT: Self = Self(1 << 1);
+}
+///Provided by [`ext::graphics_pipeline_library`](crate::ext::graphics_pipeline_library)
+impl crate::vk::PipelineCreateFlagBits {
+    pub const RETAIN_LINK_TIME_OPTIMIZATION_INFO_EXT: Self = Self(1 << 23);
+    pub const LINK_TIME_OPTIMIZATION_EXT: Self = Self(1 << 10);
+}
 #[repr(transparent)]
 #[derive(Clone, Copy)]
 pub struct GraphicsPipelineLibraryFlagsEXT(pub(crate) u32);
 #[repr(transparent)]
 #[derive(Clone, Copy)]
 pub struct GraphicsPipelineLibraryFlagBitsEXT(pub(crate) u32);
-impl GraphicsPipelineLibraryFlagBitsEXT {}
+///Provided by [`ext::graphics_pipeline_library`](crate::ext::graphics_pipeline_library)
+impl GraphicsPipelineLibraryFlagBitsEXT {
+    pub const VERTEX_INPUT_INTERFACE_EXT: Self = Self(1 << 0);
+    pub const PRE_RASTERIZATION_SHADERS_EXT: Self = Self(1 << 1);
+    pub const FRAGMENT_SHADER_EXT: Self = Self(1 << 2);
+    pub const FRAGMENT_OUTPUT_INTERFACE_EXT: Self = Self(1 << 3);
+}
 pub const EXT_GRAPHICS_PIPELINE_LIBRARY_SPEC_VERSION: u32 = 1;
 pub const EXT_GRAPHICS_PIPELINE_LIBRARY_EXTENSION_NAME: &core::ffi::CStr = c"VK_EXT_graphics_pipeline_library";

@@ -33,13 +33,29 @@ pub struct PresentScalingFlagsKHR(pub(crate) u32);
 #[repr(transparent)]
 #[derive(Clone, Copy)]
 pub struct PresentScalingFlagBitsKHR(pub(crate) u32);
-impl PresentScalingFlagBitsKHR {}
+///Provided by [`khr::surface_maintenance1`](crate::khr::surface_maintenance1)
+impl PresentScalingFlagBitsKHR {
+    pub const ONE_TO_ONE_KHR: Self = Self(1 << 0);
+    pub const ONE_TO_ONE_EXT: Self = Self::ONE_TO_ONE_KHR;
+    pub const ASPECT_RATIO_STRETCH_KHR: Self = Self(1 << 1);
+    pub const ASPECT_RATIO_STRETCH_EXT: Self = Self::ASPECT_RATIO_STRETCH_KHR;
+    pub const STRETCH_KHR: Self = Self(1 << 2);
+    pub const STRETCH_EXT: Self = Self::STRETCH_KHR;
+}
 #[repr(transparent)]
 #[derive(Clone, Copy)]
 pub struct PresentGravityFlagsKHR(pub(crate) u32);
 #[repr(transparent)]
 #[derive(Clone, Copy)]
 pub struct PresentGravityFlagBitsKHR(pub(crate) u32);
-impl PresentGravityFlagBitsKHR {}
+///Provided by [`khr::surface_maintenance1`](crate::khr::surface_maintenance1)
+impl PresentGravityFlagBitsKHR {
+    pub const MIN_KHR: Self = Self(1 << 0);
+    pub const MIN_EXT: Self = Self::MIN_KHR;
+    pub const MAX_KHR: Self = Self(1 << 1);
+    pub const MAX_EXT: Self = Self::MAX_KHR;
+    pub const CENTERED_KHR: Self = Self(1 << 2);
+    pub const CENTERED_EXT: Self = Self::CENTERED_KHR;
+}
 pub const KHR_SURFACE_MAINTENANCE_1_SPEC_VERSION: u32 = 1;
 pub const KHR_SURFACE_MAINTENANCE_1_EXTENSION_NAME: &core::ffi::CStr = c"VK_KHR_surface_maintenance1";

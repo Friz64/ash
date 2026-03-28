@@ -87,6 +87,18 @@ pub union AccelerationStructureMotionInstanceDataNV {
 #[repr(transparent)]
 #[derive(Clone, Copy)]
 pub struct AccelerationStructureMotionInstanceTypeNV(pub(crate) i32);
+///Provided by [`nv::ray_tracing_motion_blur`](crate::nv::ray_tracing_motion_blur)
+impl crate::vk::PipelineCreateFlagBits {
+    pub const RAY_TRACING_ALLOW_MOTION_NV: Self = Self(1 << 20);
+}
+///Provided by [`nv::ray_tracing_motion_blur`](crate::nv::ray_tracing_motion_blur)
+impl crate::vk::BuildAccelerationStructureFlagBitsKHR {
+    pub const MOTION_NV: Self = Self(1 << 5);
+}
+///Provided by [`nv::ray_tracing_motion_blur`](crate::nv::ray_tracing_motion_blur)
+impl crate::vk::AccelerationStructureCreateFlagBitsKHR {
+    pub const MOTION_NV: Self = Self(1 << 2);
+}
 #[repr(transparent)]
 #[derive(Clone, Copy)]
 pub struct AccelerationStructureMotionInfoFlagsNV(pub(crate) u32);

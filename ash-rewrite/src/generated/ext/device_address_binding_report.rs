@@ -21,12 +21,19 @@ pub struct DeviceAddressBindingCallbackDataEXT {
 #[repr(transparent)]
 #[derive(Clone, Copy)]
 pub struct DeviceAddressBindingTypeEXT(pub(crate) i32);
+///Provided by [`ext::device_address_binding_report`](crate::ext::device_address_binding_report)
+impl crate::vk::DebugUtilsMessageTypeFlagBitsEXT {
+    pub const DEVICE_ADDRESS_BINDING_EXT: Self = Self(1 << 3);
+}
 #[repr(transparent)]
 #[derive(Clone, Copy)]
 pub struct DeviceAddressBindingFlagsEXT(pub(crate) u32);
 #[repr(transparent)]
 #[derive(Clone, Copy)]
 pub struct DeviceAddressBindingFlagBitsEXT(pub(crate) u32);
-impl DeviceAddressBindingFlagBitsEXT {}
+///Provided by [`ext::device_address_binding_report`](crate::ext::device_address_binding_report)
+impl DeviceAddressBindingFlagBitsEXT {
+    pub const INTERNAL_OBJECT_EXT: Self = Self(1 << 0);
+}
 pub const EXT_DEVICE_ADDRESS_BINDING_REPORT_SPEC_VERSION: u32 = 1;
 pub const EXT_DEVICE_ADDRESS_BINDING_REPORT_EXTENSION_NAME: &core::ffi::CStr = c"VK_EXT_device_address_binding_report";

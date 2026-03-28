@@ -62,14 +62,25 @@ pub struct DebugUtilsMessageSeverityFlagsEXT(pub(crate) u32);
 #[repr(transparent)]
 #[derive(Clone, Copy)]
 pub struct DebugUtilsMessageSeverityFlagBitsEXT(pub(crate) u32);
-impl DebugUtilsMessageSeverityFlagBitsEXT {}
+///Provided by [`ext::debug_utils`](crate::ext::debug_utils)
+impl DebugUtilsMessageSeverityFlagBitsEXT {
+    pub const VERBOSE_EXT: Self = Self(1 << 0);
+    pub const INFO_EXT: Self = Self(1 << 4);
+    pub const WARNING_EXT: Self = Self(1 << 8);
+    pub const ERROR_EXT: Self = Self(1 << 12);
+}
 #[repr(transparent)]
 #[derive(Clone, Copy)]
 pub struct DebugUtilsMessageTypeFlagsEXT(pub(crate) u32);
 #[repr(transparent)]
 #[derive(Clone, Copy)]
 pub struct DebugUtilsMessageTypeFlagBitsEXT(pub(crate) u32);
-impl DebugUtilsMessageTypeFlagBitsEXT {}
+///Provided by [`ext::debug_utils`](crate::ext::debug_utils)
+impl DebugUtilsMessageTypeFlagBitsEXT {
+    pub const GENERAL_EXT: Self = Self(1 << 0);
+    pub const VALIDATION_EXT: Self = Self(1 << 1);
+    pub const PERFORMANCE_EXT: Self = Self(1 << 2);
+}
 #[repr(transparent)]
 #[derive(Clone, Copy)]
 pub struct DebugUtilsMessengerCreateFlagsEXT(pub(crate) u32);

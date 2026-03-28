@@ -2,5 +2,9 @@
 #![cfg_attr(rustfmt, rustfmt_skip)]
 //![Vulkan Manual Page](https://docs.vulkan.org/refpages/latest/refpages/source/VK_KHR_push_descriptor.html) · Extension `VK_KHR_push_descriptor`
 pub type PhysicalDevicePushDescriptorPropertiesKHR = crate::vk::PhysicalDevicePushDescriptorProperties;
+///Provided by [`khr::push_descriptor`](crate::khr::push_descriptor)
+impl crate::vk::DescriptorSetLayoutCreateFlagBits {
+    pub const PUSH_DESCRIPTOR_KHR: Self = Self::PUSH_DESCRIPTOR;
+}
 pub const KHR_PUSH_DESCRIPTOR_SPEC_VERSION: u32 = 2;
 pub const KHR_PUSH_DESCRIPTOR_EXTENSION_NAME: &core::ffi::CStr = c"VK_KHR_push_descriptor";

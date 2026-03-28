@@ -24,6 +24,10 @@ pub struct AccelerationStructureDenseGeometryFormatTrianglesDataAMDX {
 #[repr(transparent)]
 #[derive(Clone, Copy)]
 pub struct CompressedTriangleFormatAMDX(pub(crate) i32);
+///Provided by [`amdx::dense_geometry_format`](crate::amdx::dense_geometry_format)
+impl crate::vk::BufferUsageFlagBits2 {
+    pub const COMPRESSED_DATA_DGF1_AMDX: Self = Self(1 << 33);
+}
 pub const COMPRESSED_TRIANGLE_FORMAT_DGF1_BYTE_ALIGNMENT_AMDX: u32 = 128;
 pub const COMPRESSED_TRIANGLE_FORMAT_DGF1_BYTE_STRIDE_AMDX: u32 = 128;
 pub const AMDX_DENSE_GEOMETRY_FORMAT_SPEC_VERSION: u32 = 1;

@@ -23,5 +23,13 @@ pub struct PhysicalDeviceSubpassShadingFeaturesHUAWEI {
     pub p_next: *mut core::ffi::c_void,
     pub subpass_shading: crate::vk::Bool32,
 }
+///Provided by [`huawei::subpass_shading`](crate::huawei::subpass_shading)
+impl crate::vk::ShaderStageFlagBits {
+    pub const SUBPASS_SHADING_HUAWEI: Self = Self(1 << 14);
+}
+///Provided by [`huawei::subpass_shading`](crate::huawei::subpass_shading)
+impl crate::vk::PipelineStageFlagBits2 {
+    pub const SUBPASS_SHADER_HUAWEI: Self = Self(1 << 39);
+}
 pub const HUAWEI_SUBPASS_SHADING_SPEC_VERSION: u32 = 3;
 pub const HUAWEI_SUBPASS_SHADING_EXTENSION_NAME: &core::ffi::CStr = c"VK_HUAWEI_subpass_shading";

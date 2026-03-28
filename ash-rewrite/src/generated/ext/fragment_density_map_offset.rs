@@ -24,5 +24,9 @@ pub struct RenderPassFragmentDensityMapOffsetEndInfoEXT {
     pub p_fragment_density_offsets: *const crate::vk::Offset2D,
 }
 pub type RenderingEndInfoEXT = crate::vk::RenderingEndInfoKHR;
+///Provided by [`ext::fragment_density_map_offset`](crate::ext::fragment_density_map_offset)
+impl crate::vk::ImageCreateFlagBits {
+    pub const FRAGMENT_DENSITY_MAP_OFFSET_EXT: Self = Self(1 << 15);
+}
 pub const EXT_FRAGMENT_DENSITY_MAP_OFFSET_SPEC_VERSION: u32 = 1;
 pub const EXT_FRAGMENT_DENSITY_MAP_OFFSET_EXTENSION_NAME: &core::ffi::CStr = c"VK_EXT_fragment_density_map_offset";

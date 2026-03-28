@@ -51,5 +51,9 @@ pub struct ExternalFormatOHOS {
     pub p_next: *mut core::ffi::c_void,
     pub external_format: u64,
 }
+///Provided by [`ohos::external_memory`](crate::ohos::external_memory)
+impl crate::vk::ExternalMemoryHandleTypeFlagBits {
+    pub const OH_NATIVE_BUFFER_OHOS: Self = Self(1 << 15);
+}
 pub const OHOS_EXTERNAL_MEMORY_SPEC_VERSION: u32 = 1;
 pub const OHOS_EXTERNAL_MEMORY_EXTENSION_NAME: &core::ffi::CStr = c"VK_OHOS_external_memory";

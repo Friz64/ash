@@ -53,5 +53,20 @@ pub struct DrawMeshTasksIndirectCommandEXT {
     pub group_count_y: u32,
     pub group_count_z: u32,
 }
+///Provided by [`ext::mesh_shader`](crate::ext::mesh_shader)
+impl crate::vk::ShaderStageFlagBits {
+    pub const TASK_EXT: Self = Self(1 << 6);
+    pub const MESH_EXT: Self = Self(1 << 7);
+}
+///Provided by [`ext::mesh_shader`](crate::ext::mesh_shader)
+impl crate::vk::QueryPipelineStatisticFlagBits {
+    pub const TASK_SHADER_INVOCATIONS_EXT: Self = Self(1 << 11);
+    pub const MESH_SHADER_INVOCATIONS_EXT: Self = Self(1 << 12);
+}
+///Provided by [`ext::mesh_shader`](crate::ext::mesh_shader)
+impl crate::vk::PipelineStageFlagBits {
+    pub const TASK_SHADER_EXT: Self = Self(1 << 19);
+    pub const MESH_SHADER_EXT: Self = Self(1 << 20);
+}
 pub const EXT_MESH_SHADER_SPEC_VERSION: u32 = 1;
 pub const EXT_MESH_SHADER_EXTENSION_NAME: &core::ffi::CStr = c"VK_EXT_mesh_shader";

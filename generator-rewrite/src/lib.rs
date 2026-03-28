@@ -3,7 +3,6 @@ mod output;
 
 use crate::output::CodeMap;
 use analysis::Analysis;
-use heck::ToSnekCase;
 use quote::format_ident;
 use std::{fmt::Display, io, path::Path};
 use syn::Ident;
@@ -37,7 +36,6 @@ pub(crate) fn refpage_doc(target: &str, description: impl Display) -> String {
 }
 
 /// Tries to prepend an underscore in case the name is not a valid identifier
-pub(crate) fn to_snake_case_escape_ident(name: &str) -> Ident {
-    let snek = name.to_snek_case();
-    syn::parse_str(&snek).unwrap_or_else(|_| format_ident!("_{snek}"))
+pub(crate) fn escape_ident(name: &str) -> Ident {
+    syn::parse_str(name).unwrap_or_else(|_| format_ident!("_{name}"))
 }

@@ -5,5 +5,9 @@ pub type DeviceBufferMemoryRequirementsKHR = crate::vk::DeviceBufferMemoryRequir
 pub type DeviceImageMemoryRequirementsKHR = crate::vk::DeviceImageMemoryRequirements;
 pub type PhysicalDeviceMaintenance4FeaturesKHR = crate::vk::PhysicalDeviceMaintenance4Features;
 pub type PhysicalDeviceMaintenance4PropertiesKHR = crate::vk::PhysicalDeviceMaintenance4Properties;
+///Provided by [`khr::maintenance4`](crate::khr::maintenance4)
+impl crate::vk::ImageAspectFlagBits {
+    pub const NONE_KHR: Self = Self::NONE;
+}
 pub const KHR_MAINTENANCE_4_SPEC_VERSION: u32 = 2;
 pub const KHR_MAINTENANCE_4_EXTENSION_NAME: &core::ffi::CStr = c"VK_KHR_maintenance4";

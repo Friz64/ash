@@ -69,5 +69,29 @@ pub struct RenderingFragmentShadingRateAttachmentInfoKHR {
 #[repr(transparent)]
 #[derive(Clone, Copy)]
 pub struct FragmentShadingRateCombinerOpKHR(pub(crate) i32);
+///Provided by [`khr::fragment_shading_rate`](crate::khr::fragment_shading_rate)
+impl crate::vk::AccessFlagBits {
+    pub const FRAGMENT_SHADING_RATE_ATTACHMENT_READ_KHR: Self = Self(1 << 23);
+}
+///Provided by [`khr::fragment_shading_rate`](crate::khr::fragment_shading_rate)
+impl crate::vk::ImageUsageFlagBits {
+    pub const FRAGMENT_SHADING_RATE_ATTACHMENT_KHR: Self = Self(1 << 8);
+}
+///Provided by [`khr::fragment_shading_rate`](crate::khr::fragment_shading_rate)
+impl crate::vk::PipelineCreateFlagBits {
+    pub const RENDERING_FRAGMENT_SHADING_RATE_ATTACHMENT_KHR: Self = Self(1 << 21);
+}
+///Provided by [`khr::fragment_shading_rate`](crate::khr::fragment_shading_rate)
+impl crate::vk::FormatFeatureFlagBits {
+    pub const FRAGMENT_SHADING_RATE_ATTACHMENT_KHR: Self = Self(1 << 30);
+}
+///Provided by [`khr::fragment_shading_rate`](crate::khr::fragment_shading_rate)
+impl crate::vk::PipelineStageFlagBits {
+    pub const FRAGMENT_SHADING_RATE_ATTACHMENT_KHR: Self = Self(1 << 22);
+}
+///Provided by [`khr::fragment_shading_rate`](crate::khr::fragment_shading_rate)
+impl crate::vk::FormatFeatureFlagBits2 {
+    pub const FRAGMENT_SHADING_RATE_ATTACHMENT_KHR: Self = Self(1 << 30);
+}
 pub const KHR_FRAGMENT_SHADING_RATE_SPEC_VERSION: u32 = 2;
 pub const KHR_FRAGMENT_SHADING_RATE_EXTENSION_NAME: &core::ffi::CStr = c"VK_KHR_fragment_shading_rate";

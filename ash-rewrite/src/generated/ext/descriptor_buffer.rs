@@ -146,5 +146,44 @@ pub union DescriptorDataEXT {
     pub p_storage_buffer: *const crate::vk::DescriptorAddressInfoEXT,
     pub acceleration_structure: crate::vk::DeviceAddress,
 }
+///Provided by [`ext::descriptor_buffer`](crate::ext::descriptor_buffer)
+impl crate::vk::SamplerCreateFlagBits {
+    pub const DESCRIPTOR_BUFFER_CAPTURE_REPLAY_EXT: Self = Self(1 << 3);
+}
+///Provided by [`ext::descriptor_buffer`](crate::ext::descriptor_buffer)
+impl crate::vk::DescriptorSetLayoutCreateFlagBits {
+    pub const DESCRIPTOR_BUFFER_EXT: Self = Self(1 << 4);
+    pub const EMBEDDED_IMMUTABLE_SAMPLERS_EXT: Self = Self(1 << 5);
+}
+///Provided by [`ext::descriptor_buffer`](crate::ext::descriptor_buffer)
+impl crate::vk::BufferUsageFlagBits {
+    pub const SAMPLER_DESCRIPTOR_BUFFER_EXT: Self = Self(1 << 21);
+    pub const RESOURCE_DESCRIPTOR_BUFFER_EXT: Self = Self(1 << 22);
+    pub const PUSH_DESCRIPTORS_DESCRIPTOR_BUFFER_EXT: Self = Self(1 << 26);
+}
+///Provided by [`ext::descriptor_buffer`](crate::ext::descriptor_buffer)
+impl crate::vk::BufferCreateFlagBits {
+    pub const DESCRIPTOR_BUFFER_CAPTURE_REPLAY_EXT: Self = Self(1 << 5);
+}
+///Provided by [`ext::descriptor_buffer`](crate::ext::descriptor_buffer)
+impl crate::vk::ImageCreateFlagBits {
+    pub const DESCRIPTOR_BUFFER_CAPTURE_REPLAY_EXT: Self = Self::DESCRIPTOR_HEAP_CAPTURE_REPLAY_EXT;
+}
+///Provided by [`ext::descriptor_buffer`](crate::ext::descriptor_buffer)
+impl crate::vk::ImageViewCreateFlagBits {
+    pub const DESCRIPTOR_BUFFER_CAPTURE_REPLAY_EXT: Self = Self(1 << 2);
+}
+///Provided by [`ext::descriptor_buffer`](crate::ext::descriptor_buffer)
+impl crate::vk::PipelineCreateFlagBits {
+    pub const DESCRIPTOR_BUFFER_EXT: Self = Self(1 << 29);
+}
+///Provided by [`ext::descriptor_buffer`](crate::ext::descriptor_buffer)
+impl crate::vk::AccelerationStructureCreateFlagBitsKHR {
+    pub const DESCRIPTOR_BUFFER_CAPTURE_REPLAY_EXT: Self = Self(1 << 3);
+}
+///Provided by [`ext::descriptor_buffer`](crate::ext::descriptor_buffer)
+impl crate::vk::AccessFlagBits2 {
+    pub const DESCRIPTOR_BUFFER_READ_EXT: Self = Self(1 << 41);
+}
 pub const EXT_DESCRIPTOR_BUFFER_SPEC_VERSION: u32 = 1;
 pub const EXT_DESCRIPTOR_BUFFER_EXTENSION_NAME: &core::ffi::CStr = c"VK_EXT_descriptor_buffer";

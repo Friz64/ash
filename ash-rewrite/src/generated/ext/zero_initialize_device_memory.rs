@@ -8,5 +8,9 @@ pub struct PhysicalDeviceZeroInitializeDeviceMemoryFeaturesEXT {
     pub p_next: *mut core::ffi::c_void,
     pub zero_initialize_device_memory: crate::vk::Bool32,
 }
+///Provided by [`ext::zero_initialize_device_memory`](crate::ext::zero_initialize_device_memory)
+impl crate::vk::MemoryAllocateFlagBits {
+    pub const ZERO_INITIALIZE_EXT: Self = Self(1 << 3);
+}
 pub const EXT_ZERO_INITIALIZE_DEVICE_MEMORY_SPEC_VERSION: u32 = 1;
 pub const EXT_ZERO_INITIALIZE_DEVICE_MEMORY_EXTENSION_NAME: &core::ffi::CStr = c"VK_EXT_zero_initialize_device_memory";

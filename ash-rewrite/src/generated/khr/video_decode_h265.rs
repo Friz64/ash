@@ -53,5 +53,9 @@ pub struct VideoDecodeH265DpbSlotInfoKHR {
     pub p_next: *const core::ffi::c_void,
     pub p_std_reference_info: *const crate::vk::StdVideoDecodeH265ReferenceInfo,
 }
+///Provided by [`khr::video_decode_h265`](crate::khr::video_decode_h265)
+impl crate::vk::VideoCodecOperationFlagBitsKHR {
+    pub const DECODE_H265_KHR: Self = Self(1 << 1);
+}
 pub const KHR_VIDEO_DECODE_H265_SPEC_VERSION: u32 = 8;
 pub const KHR_VIDEO_DECODE_H265_EXTENSION_NAME: &core::ffi::CStr = c"VK_KHR_video_decode_h265";

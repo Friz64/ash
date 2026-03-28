@@ -15,13 +15,24 @@ pub struct ExternalMemoryHandleTypeFlagsNV(pub(crate) u32);
 #[repr(transparent)]
 #[derive(Clone, Copy)]
 pub struct ExternalMemoryHandleTypeFlagBitsNV(pub(crate) u32);
-impl ExternalMemoryHandleTypeFlagBitsNV {}
+///Provided by [`nv::external_memory_capabilities`](crate::nv::external_memory_capabilities)
+impl ExternalMemoryHandleTypeFlagBitsNV {
+    pub const OPAQUE_WIN32_NV: Self = Self(1 << 0);
+    pub const OPAQUE_WIN32_KMT_NV: Self = Self(1 << 1);
+    pub const D3D11_IMAGE_NV: Self = Self(1 << 2);
+    pub const D3D11_IMAGE_KMT_NV: Self = Self(1 << 3);
+}
 #[repr(transparent)]
 #[derive(Clone, Copy)]
 pub struct ExternalMemoryFeatureFlagsNV(pub(crate) u32);
 #[repr(transparent)]
 #[derive(Clone, Copy)]
 pub struct ExternalMemoryFeatureFlagBitsNV(pub(crate) u32);
-impl ExternalMemoryFeatureFlagBitsNV {}
+///Provided by [`nv::external_memory_capabilities`](crate::nv::external_memory_capabilities)
+impl ExternalMemoryFeatureFlagBitsNV {
+    pub const DEDICATED_ONLY_NV: Self = Self(1 << 0);
+    pub const EXPORTABLE_NV: Self = Self(1 << 1);
+    pub const IMPORTABLE_NV: Self = Self(1 << 2);
+}
 pub const NV_EXTERNAL_MEMORY_CAPABILITIES_SPEC_VERSION: u32 = 1;
 pub const NV_EXTERNAL_MEMORY_CAPABILITIES_EXTENSION_NAME: &core::ffi::CStr = c"VK_NV_external_memory_capabilities";

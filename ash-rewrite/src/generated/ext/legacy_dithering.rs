@@ -8,5 +8,17 @@ pub struct PhysicalDeviceLegacyDitheringFeaturesEXT {
     pub p_next: *mut core::ffi::c_void,
     pub legacy_dithering: crate::vk::Bool32,
 }
+///Provided by [`ext::legacy_dithering`](crate::ext::legacy_dithering)
+impl crate::vk::SubpassDescriptionFlagBits {
+    pub const ENABLE_LEGACY_DITHERING_EXT: Self = Self(1 << 7);
+}
+///Provided by [`ext::legacy_dithering`](crate::ext::legacy_dithering)
+impl crate::vk::RenderingFlagBits {
+    pub const ENABLE_LEGACY_DITHERING_EXT: Self = Self(1 << 3);
+}
+///Provided by [`ext::legacy_dithering`](crate::ext::legacy_dithering)
+impl crate::vk::PipelineCreateFlagBits2 {
+    pub const ENABLE_LEGACY_DITHERING_EXT: Self = Self(1 << 34);
+}
 pub const EXT_LEGACY_DITHERING_SPEC_VERSION: u32 = 2;
 pub const EXT_LEGACY_DITHERING_EXTENSION_NAME: &core::ffi::CStr = c"VK_EXT_legacy_dithering";

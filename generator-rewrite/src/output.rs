@@ -5,7 +5,9 @@ use analysis::{
     LibraryName,
     item::{RequireLocation, RequiredBy},
 };
+use heck::ToSnekCase;
 use indexmap::IndexMap;
+use itertools::Itertools;
 use proc_macro2::TokenStream;
 use quote::{format_ident, quote};
 use std::{
@@ -57,7 +59,7 @@ impl Destination {
                             doc_comment: format!("Extensions tagged {ext_tag}"),
                         },
                         DestinationPathComponent {
-                            module_name: crate::to_snake_case_escape_ident(ext_name),
+                            module_name: crate::escape_ident(&ext_name.to_snek_case()),
                             doc_comment: crate::refpage_doc(name, format!("Extension `{name}`")),
                         },
                     ]
@@ -78,6 +80,13 @@ impl Destination {
             },
         }
     }
+
+    pub fn doc_link(&self) -> String {
+        let components = (self.path_components().iter())
+            .map(|component| component.module_name.to_string())
+            .join("::");
+        format!("Provided by [`{components}`](crate::{components})")
+    }
 }
 
 #[derive(Default)]
@@ -96,6 +105,10 @@ impl CodeMap {
         }
     }
 
+    pub fn iter(&self) -> impl Iterator<Item = (&Destination, &TokenStream)> {
+        self.0.iter()
+    }
+
     pub fn write(&self, output_path: impl AsRef<Path>) -> io::Result<()> {
         let mut vfs = VirtualRustFs::default();
         vfs.write(
@@ -108,7 +121,7 @@ impl CodeMap {
 
         // foo/bar/mod.rs -> (doc comment, child modules)
         let mut mod_files: HashMap<PathBuf, (Option<String>, HashSet<Ident>)> = Default::default();
-        for (destination, content) in &self.0 {
+        for (destination, content) in self.iter() {
             let components = destination.path_components();
 
             let doc = &components.last().unwrap().doc_comment;

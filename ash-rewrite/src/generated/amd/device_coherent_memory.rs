@@ -8,5 +8,10 @@ pub struct PhysicalDeviceCoherentMemoryFeaturesAMD {
     pub p_next: *mut core::ffi::c_void,
     pub device_coherent_memory: crate::vk::Bool32,
 }
+///Provided by [`amd::device_coherent_memory`](crate::amd::device_coherent_memory)
+impl crate::vk::MemoryPropertyFlagBits {
+    pub const DEVICE_COHERENT_AMD: Self = Self(1 << 6);
+    pub const DEVICE_UNCACHED_AMD: Self = Self(1 << 7);
+}
 pub const AMD_DEVICE_COHERENT_MEMORY_SPEC_VERSION: u32 = 1;
 pub const AMD_DEVICE_COHERENT_MEMORY_EXTENSION_NAME: &core::ffi::CStr = c"VK_AMD_device_coherent_memory";

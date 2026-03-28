@@ -57,12 +57,25 @@ pub struct DispatchTileInfoQCOM {
     pub s_type: crate::vk::StructureType,
     pub p_next: *const core::ffi::c_void,
 }
+///Provided by [`qcom::tile_shading`](crate::qcom::tile_shading)
+impl crate::vk::SubpassDescriptionFlagBits {
+    pub const TILE_SHADING_APRON_QCOM: Self = Self(1 << 8);
+}
+///Provided by [`qcom::tile_shading`](crate::qcom::tile_shading)
+impl crate::vk::AccessFlagBits2 {
+    pub const SHADER_TILE_ATTACHMENT_READ_QCOM: Self = Self(1 << 51);
+    pub const SHADER_TILE_ATTACHMENT_WRITE_QCOM: Self = Self(1 << 52);
+}
 #[repr(transparent)]
 #[derive(Clone, Copy)]
 pub struct TileShadingRenderPassFlagsQCOM(pub(crate) u32);
 #[repr(transparent)]
 #[derive(Clone, Copy)]
 pub struct TileShadingRenderPassFlagBitsQCOM(pub(crate) u32);
-impl TileShadingRenderPassFlagBitsQCOM {}
+///Provided by [`qcom::tile_shading`](crate::qcom::tile_shading)
+impl TileShadingRenderPassFlagBitsQCOM {
+    pub const ENABLE_QCOM: Self = Self(1 << 0);
+    pub const PER_TILE_EXECUTION_QCOM: Self = Self(1 << 1);
+}
 pub const QCOM_TILE_SHADING_SPEC_VERSION: u32 = 2;
 pub const QCOM_TILE_SHADING_EXTENSION_NAME: &core::ffi::CStr = c"VK_QCOM_tile_shading";

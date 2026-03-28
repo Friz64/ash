@@ -191,22 +191,41 @@ pub struct ClusterAccelerationStructureGeometryFlagsNV(pub(crate) u32);
 #[repr(transparent)]
 #[derive(Clone, Copy)]
 pub struct ClusterAccelerationStructureGeometryFlagBitsNV(pub(crate) u32);
-impl ClusterAccelerationStructureGeometryFlagBitsNV {}
+///Provided by [`nv::cluster_acceleration_structure`](crate::nv::cluster_acceleration_structure)
+impl ClusterAccelerationStructureGeometryFlagBitsNV {
+    pub const CULL_DISABLE_NV: Self = Self(1 << 0);
+    pub const NO_DUPLICATE_ANYHIT_INVOCATION_NV: Self = Self(1 << 1);
+    pub const OPAQUE_NV: Self = Self(1 << 2);
+}
 #[repr(transparent)]
 #[derive(Clone, Copy)]
 pub struct ClusterAccelerationStructureClusterFlagsNV(pub(crate) u32);
 #[repr(transparent)]
 #[derive(Clone, Copy)]
 pub struct ClusterAccelerationStructureClusterFlagBitsNV(pub(crate) u32);
-impl ClusterAccelerationStructureClusterFlagBitsNV {}
+///Provided by [`nv::cluster_acceleration_structure`](crate::nv::cluster_acceleration_structure)
+impl ClusterAccelerationStructureClusterFlagBitsNV {
+    pub const ALLOW_DISABLE_OPACITY_MICROMAPS_NV: Self = Self(1 << 0);
+}
 #[repr(transparent)]
 #[derive(Clone, Copy)]
 pub struct ClusterAccelerationStructureAddressResolutionFlagsNV(pub(crate) u32);
 #[repr(transparent)]
 #[derive(Clone, Copy)]
 pub struct ClusterAccelerationStructureAddressResolutionFlagBitsNV(pub(crate) u32);
+///Provided by [`nv::cluster_acceleration_structure`](crate::nv::cluster_acceleration_structure)
 impl ClusterAccelerationStructureAddressResolutionFlagBitsNV {
-    pub const NONE_NV: Self = Self(1);
+    pub const NONE_NV: Self = Self(0);
+    pub const INDIRECTED_DST_IMPLICIT_DATA_NV: Self = Self(1 << 0);
+    pub const INDIRECTED_SCRATCH_DATA_NV: Self = Self(1 << 1);
+    pub const INDIRECTED_DST_ADDRESS_ARRAY_NV: Self = Self(1 << 2);
+    pub const INDIRECTED_DST_SIZES_ARRAY_NV: Self = Self(1 << 3);
+    pub const INDIRECTED_SRC_INFOS_ARRAY_NV: Self = Self(1 << 4);
+    pub const INDIRECTED_SRC_INFOS_COUNT_NV: Self = Self(1 << 5);
+}
+///Provided by [`nv::cluster_acceleration_structure`](crate::nv::cluster_acceleration_structure)
+impl crate::vk::BuildAccelerationStructureFlagBitsKHR {
+    pub const ALLOW_CLUSTER_OPACITY_MICROMAPS_NV: Self = Self(1 << 12);
 }
 #[repr(transparent)]
 #[derive(Clone, Copy)]
@@ -214,6 +233,11 @@ pub struct ClusterAccelerationStructureIndexFormatFlagsNV(pub(crate) u32);
 #[repr(transparent)]
 #[derive(Clone, Copy)]
 pub struct ClusterAccelerationStructureIndexFormatFlagBitsNV(pub(crate) u32);
-impl ClusterAccelerationStructureIndexFormatFlagBitsNV {}
+///Provided by [`nv::cluster_acceleration_structure`](crate::nv::cluster_acceleration_structure)
+impl ClusterAccelerationStructureIndexFormatFlagBitsNV {
+    pub const _8BIT_NV: Self = Self(1 << 0);
+    pub const _16BIT_NV: Self = Self(1 << 1);
+    pub const _32BIT_NV: Self = Self(1 << 2);
+}
 pub const NV_CLUSTER_ACCELERATION_STRUCTURE_SPEC_VERSION: u32 = 4;
 pub const NV_CLUSTER_ACCELERATION_STRUCTURE_EXTENSION_NAME: &core::ffi::CStr = c"VK_NV_cluster_acceleration_structure";
