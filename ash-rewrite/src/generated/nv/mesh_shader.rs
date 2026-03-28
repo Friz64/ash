@@ -34,5 +34,15 @@ pub struct DrawMeshTasksIndirectCommandNV {
     pub task_count: u32,
     pub first_task: u32,
 }
+///Provided by [`nv::mesh_shader`](crate::nv::mesh_shader)
+impl crate::vk::ShaderStageFlagBits {
+    pub const TASK_NV: Self = Self::TASK_EXT;
+    pub const MESH_NV: Self = Self::MESH_EXT;
+}
+///Provided by [`nv::mesh_shader`](crate::nv::mesh_shader)
+impl crate::vk::PipelineStageFlagBits {
+    pub const TASK_SHADER_NV: Self = Self::TASK_SHADER_EXT;
+    pub const MESH_SHADER_NV: Self = Self::MESH_SHADER_EXT;
+}
 pub const NV_MESH_SHADER_SPEC_VERSION: u32 = 1;
 pub const NV_MESH_SHADER_EXTENSION_NAME: &core::ffi::CStr = c"VK_NV_mesh_shader";

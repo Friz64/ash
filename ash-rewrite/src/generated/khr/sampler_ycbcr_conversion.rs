@@ -10,6 +10,26 @@ pub type SamplerYcbcrConversionImageFormatPropertiesKHR = crate::vk::SamplerYcbc
 pub type SamplerYcbcrModelConversionKHR = crate::vk::SamplerYcbcrModelConversion;
 pub type SamplerYcbcrRangeKHR = crate::vk::SamplerYcbcrRange;
 pub type ChromaLocationKHR = crate::vk::ChromaLocation;
+///Provided by [`khr::sampler_ycbcr_conversion`](crate::khr::sampler_ycbcr_conversion)
+impl crate::vk::ImageCreateFlagBits {
+    pub const DISJOINT_KHR: Self = Self::DISJOINT;
+}
+///Provided by [`khr::sampler_ycbcr_conversion`](crate::khr::sampler_ycbcr_conversion)
+impl crate::vk::FormatFeatureFlagBits {
+    pub const MIDPOINT_CHROMA_SAMPLES_KHR: Self = Self::MIDPOINT_CHROMA_SAMPLES;
+    pub const SAMPLED_IMAGE_YCBCR_CONVERSION_LINEAR_FILTER_KHR: Self = Self::SAMPLED_IMAGE_YCBCR_CONVERSION_LINEAR_FILTER;
+    pub const SAMPLED_IMAGE_YCBCR_CONVERSION_SEPARATE_RECONSTRUCTION_FILTER_KHR: Self = Self::SAMPLED_IMAGE_YCBCR_CONVERSION_SEPARATE_RECONSTRUCTION_FILTER;
+    pub const SAMPLED_IMAGE_YCBCR_CONVERSION_CHROMA_RECONSTRUCTION_EXPLICIT_KHR: Self = Self::SAMPLED_IMAGE_YCBCR_CONVERSION_CHROMA_RECONSTRUCTION_EXPLICIT;
+    pub const SAMPLED_IMAGE_YCBCR_CONVERSION_CHROMA_RECONSTRUCTION_EXPLICIT_FORCEABLE_KHR: Self = Self::SAMPLED_IMAGE_YCBCR_CONVERSION_CHROMA_RECONSTRUCTION_EXPLICIT_FORCEABLE;
+    pub const DISJOINT_KHR: Self = Self::DISJOINT;
+    pub const COSITED_CHROMA_SAMPLES_KHR: Self = Self::COSITED_CHROMA_SAMPLES;
+}
+///Provided by [`khr::sampler_ycbcr_conversion`](crate::khr::sampler_ycbcr_conversion)
+impl crate::vk::ImageAspectFlagBits {
+    pub const PLANE_0_KHR: Self = Self::PLANE_0;
+    pub const PLANE_1_KHR: Self = Self::PLANE_1;
+    pub const PLANE_2_KHR: Self = Self::PLANE_2;
+}
 pub type SamplerYcbcrConversionKHR = crate::vk::SamplerYcbcrConversion;
 pub const KHR_SAMPLER_YCBCR_CONVERSION_SPEC_VERSION: u32 = 14;
 pub const KHR_SAMPLER_YCBCR_CONVERSION_EXTENSION_NAME: &core::ffi::CStr = c"VK_KHR_sampler_ycbcr_conversion";

@@ -32,5 +32,9 @@ pub struct PipelineColorBlendAdvancedStateCreateInfoEXT {
 #[repr(transparent)]
 #[derive(Clone, Copy)]
 pub struct BlendOverlapEXT(pub(crate) i32);
+///Provided by [`ext::blend_operation_advanced`](crate::ext::blend_operation_advanced)
+impl crate::vk::AccessFlagBits {
+    pub const COLOR_ATTACHMENT_READ_NONCOHERENT_EXT: Self = Self(1 << 19);
+}
 pub const EXT_BLEND_OPERATION_ADVANCED_SPEC_VERSION: u32 = 2;
 pub const EXT_BLEND_OPERATION_ADVANCED_EXTENSION_NAME: &core::ffi::CStr = c"VK_EXT_blend_operation_advanced";

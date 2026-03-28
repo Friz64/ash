@@ -3,6 +3,16 @@
 //![Vulkan Manual Page](https://docs.vulkan.org/refpages/latest/refpages/source/VK_EXT_tooling_info.html) · Extension `VK_EXT_tooling_info`
 pub type PhysicalDeviceToolPropertiesEXT = crate::vk::PhysicalDeviceToolProperties;
 pub type ToolPurposeFlagBitsEXT = crate::vk::ToolPurposeFlagBits;
+///Provided by [`ext::tooling_info`](crate::ext::tooling_info)
+impl crate::vk::ToolPurposeFlagBits {
+    pub const VALIDATION_EXT: Self = Self::VALIDATION;
+    pub const PROFILING_EXT: Self = Self::PROFILING;
+    pub const TRACING_EXT: Self = Self::TRACING;
+    pub const ADDITIONAL_FEATURES_EXT: Self = Self::ADDITIONAL_FEATURES;
+    pub const MODIFYING_FEATURES_EXT: Self = Self::MODIFYING_FEATURES;
+    pub const DEBUG_REPORTING_EXT: Self = Self(1 << 5);
+    pub const DEBUG_MARKERS_EXT: Self = Self(1 << 6);
+}
 pub type ToolPurposeFlagsEXT = crate::vk::ToolPurposeFlags;
 pub const EXT_TOOLING_INFO_SPEC_VERSION: u32 = 1;
 pub const EXT_TOOLING_INFO_EXTENSION_NAME: &core::ffi::CStr = c"VK_EXT_tooling_info";

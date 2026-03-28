@@ -21,6 +21,12 @@ pub struct DeviceDiagnosticsConfigFlagsNV(pub(crate) u32);
 #[repr(transparent)]
 #[derive(Clone, Copy)]
 pub struct DeviceDiagnosticsConfigFlagBitsNV(pub(crate) u32);
-impl DeviceDiagnosticsConfigFlagBitsNV {}
+///Provided by [`nv::device_diagnostics_config`](crate::nv::device_diagnostics_config)
+impl DeviceDiagnosticsConfigFlagBitsNV {
+    pub const ENABLE_SHADER_DEBUG_INFO_NV: Self = Self(1 << 0);
+    pub const ENABLE_RESOURCE_TRACKING_NV: Self = Self(1 << 1);
+    pub const ENABLE_AUTOMATIC_CHECKPOINTS_NV: Self = Self(1 << 2);
+    pub const ENABLE_SHADER_ERROR_REPORTING_NV: Self = Self(1 << 3);
+}
 pub const NV_DEVICE_DIAGNOSTICS_CONFIG_SPEC_VERSION: u32 = 2;
 pub const NV_DEVICE_DIAGNOSTICS_CONFIG_EXTENSION_NAME: &core::ffi::CStr = c"VK_NV_device_diagnostics_config";

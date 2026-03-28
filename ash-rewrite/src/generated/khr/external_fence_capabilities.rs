@@ -5,6 +5,18 @@ pub type PhysicalDeviceExternalFenceInfoKHR = crate::vk::PhysicalDeviceExternalF
 pub type ExternalFencePropertiesKHR = crate::vk::ExternalFenceProperties;
 pub type ExternalFenceHandleTypeFlagBitsKHR = crate::vk::ExternalFenceHandleTypeFlagBits;
 pub type ExternalFenceFeatureFlagBitsKHR = crate::vk::ExternalFenceFeatureFlagBits;
+///Provided by [`khr::external_fence_capabilities`](crate::khr::external_fence_capabilities)
+impl crate::vk::ExternalFenceHandleTypeFlagBits {
+    pub const OPAQUE_FD_KHR: Self = Self::OPAQUE_FD;
+    pub const OPAQUE_WIN32_KHR: Self = Self::OPAQUE_WIN32;
+    pub const OPAQUE_WIN32_KMT_KHR: Self = Self::OPAQUE_WIN32_KMT;
+    pub const SYNC_FD_KHR: Self = Self::SYNC_FD;
+}
+///Provided by [`khr::external_fence_capabilities`](crate::khr::external_fence_capabilities)
+impl crate::vk::ExternalFenceFeatureFlagBits {
+    pub const EXPORTABLE_KHR: Self = Self::EXPORTABLE;
+    pub const IMPORTABLE_KHR: Self = Self::IMPORTABLE;
+}
 pub type ExternalFenceHandleTypeFlagsKHR = crate::vk::ExternalFenceHandleTypeFlags;
 pub type ExternalFenceFeatureFlagsKHR = crate::vk::ExternalFenceFeatureFlags;
 pub const KHR_EXTERNAL_FENCE_CAPABILITIES_SPEC_VERSION: u32 = 1;

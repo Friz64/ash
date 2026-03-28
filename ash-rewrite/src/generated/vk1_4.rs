@@ -503,33 +503,80 @@ pub struct PipelineRobustnessBufferBehavior(pub(crate) i32);
 #[repr(transparent)]
 #[derive(Clone, Copy)]
 pub struct PipelineRobustnessImageBehavior(pub(crate) i32);
+///Provided by [`vk1_4`](crate::vk1_4)
+impl crate::vk::DescriptorSetLayoutCreateFlagBits {
+    pub const PUSH_DESCRIPTOR: Self = Self(1 << 0);
+}
+///Provided by [`vk1_4`](crate::vk1_4)
+impl crate::vk::ImageUsageFlagBits {
+    pub const HOST_TRANSFER: Self = Self(1 << 22);
+}
+///Provided by [`vk1_4`](crate::vk1_4)
+impl crate::vk::PipelineCreateFlagBits {
+    pub const NO_PROTECTED_ACCESS: Self = Self(1 << 27);
+    pub const PROTECTED_ACCESS_ONLY: Self = Self(1 << 30);
+}
 #[repr(transparent)]
 #[derive(Clone, Copy)]
 pub struct MemoryUnmapFlags(pub(crate) u32);
 #[repr(transparent)]
 #[derive(Clone, Copy)]
 pub struct MemoryUnmapFlagBits(pub(crate) u32);
-impl MemoryUnmapFlagBits {}
+///Provided by [`vk1_4`](crate::vk1_4)
+impl crate::vk::SubgroupFeatureFlagBits {
+    pub const ROTATE: Self = Self(1 << 9);
+    pub const ROTATE_CLUSTERED: Self = Self(1 << 10);
+}
+///Provided by [`vk1_4`](crate::vk1_4)
+impl crate::vk::FormatFeatureFlagBits2 {
+    pub const HOST_IMAGE_TRANSFER: Self = Self(1 << 46);
+}
 #[repr(transparent)]
 #[derive(Clone, Copy)]
 pub struct PipelineCreateFlags2(pub(crate) u64);
 #[repr(transparent)]
 #[derive(Clone, Copy)]
 pub struct PipelineCreateFlagBits2(pub(crate) u64);
-impl PipelineCreateFlagBits2 {}
+///Provided by [`vk1_4`](crate::vk1_4)
+impl PipelineCreateFlagBits2 {
+    pub const DISABLE_OPTIMIZATION: Self = Self(1 << 0);
+    pub const ALLOW_DERIVATIVES: Self = Self(1 << 1);
+    pub const DERIVATIVE: Self = Self(1 << 2);
+    pub const VIEW_INDEX_FROM_DEVICE_INDEX: Self = Self(1 << 3);
+    pub const DISPATCH_BASE: Self = Self(1 << 4);
+    pub const FAIL_ON_PIPELINE_COMPILE_REQUIRED: Self = Self(1 << 8);
+    pub const EARLY_RETURN_ON_FAILURE: Self = Self(1 << 9);
+    pub const NO_PROTECTED_ACCESS: Self = Self(1 << 27);
+    pub const PROTECTED_ACCESS_ONLY: Self = Self(1 << 30);
+}
 #[repr(transparent)]
 #[derive(Clone, Copy)]
 pub struct BufferUsageFlags2(pub(crate) u64);
 #[repr(transparent)]
 #[derive(Clone, Copy)]
 pub struct BufferUsageFlagBits2(pub(crate) u64);
-impl BufferUsageFlagBits2 {}
+///Provided by [`vk1_4`](crate::vk1_4)
+impl BufferUsageFlagBits2 {
+    pub const TRANSFER_SRC: Self = Self(1 << 0);
+    pub const TRANSFER_DST: Self = Self(1 << 1);
+    pub const UNIFORM_TEXEL_BUFFER: Self = Self(1 << 2);
+    pub const STORAGE_TEXEL_BUFFER: Self = Self(1 << 3);
+    pub const UNIFORM_BUFFER: Self = Self(1 << 4);
+    pub const STORAGE_BUFFER: Self = Self(1 << 5);
+    pub const INDEX_BUFFER: Self = Self(1 << 6);
+    pub const VERTEX_BUFFER: Self = Self(1 << 7);
+    pub const INDIRECT_BUFFER: Self = Self(1 << 8);
+    pub const SHADER_DEVICE_ADDRESS: Self = Self(1 << 17);
+}
 #[repr(transparent)]
 #[derive(Clone, Copy)]
 pub struct HostImageCopyFlags(pub(crate) u32);
 #[repr(transparent)]
 #[derive(Clone, Copy)]
 pub struct HostImageCopyFlagBits(pub(crate) u32);
-impl HostImageCopyFlagBits {}
+///Provided by [`vk1_4`](crate::vk1_4)
+impl HostImageCopyFlagBits {
+    pub const MEMCPY: Self = Self(1 << 0);
+}
 pub const MAX_GLOBAL_PRIORITY_SIZE: u32 = 16;
 pub const API_VERSION_1_4: u32 = crate::vk::make_api_version(0, 1, 4, 0);

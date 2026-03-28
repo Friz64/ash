@@ -2,5 +2,20 @@
 #![cfg_attr(rustfmt, rustfmt_skip)]
 //![Vulkan Manual Page](https://docs.vulkan.org/refpages/latest/refpages/source/VK_ARM_rasterization_order_attachment_access.html) · Extension `VK_ARM_rasterization_order_attachment_access`
 pub type PhysicalDeviceRasterizationOrderAttachmentAccessFeaturesARM = crate::vk::PhysicalDeviceRasterizationOrderAttachmentAccessFeaturesEXT;
+///Provided by [`arm::rasterization_order_attachment_access`](crate::arm::rasterization_order_attachment_access)
+impl crate::vk::PipelineDepthStencilStateCreateFlagBits {
+    pub const RASTERIZATION_ORDER_ATTACHMENT_DEPTH_ACCESS_ARM: Self = Self::RASTERIZATION_ORDER_ATTACHMENT_DEPTH_ACCESS_EXT;
+    pub const RASTERIZATION_ORDER_ATTACHMENT_STENCIL_ACCESS_ARM: Self = Self::RASTERIZATION_ORDER_ATTACHMENT_STENCIL_ACCESS_EXT;
+}
+///Provided by [`arm::rasterization_order_attachment_access`](crate::arm::rasterization_order_attachment_access)
+impl crate::vk::PipelineColorBlendStateCreateFlagBits {
+    pub const RASTERIZATION_ORDER_ATTACHMENT_ACCESS_ARM: Self = Self::RASTERIZATION_ORDER_ATTACHMENT_ACCESS_EXT;
+}
+///Provided by [`arm::rasterization_order_attachment_access`](crate::arm::rasterization_order_attachment_access)
+impl crate::vk::SubpassDescriptionFlagBits {
+    pub const RASTERIZATION_ORDER_ATTACHMENT_COLOR_ACCESS_ARM: Self = Self::RASTERIZATION_ORDER_ATTACHMENT_COLOR_ACCESS_EXT;
+    pub const RASTERIZATION_ORDER_ATTACHMENT_DEPTH_ACCESS_ARM: Self = Self::RASTERIZATION_ORDER_ATTACHMENT_DEPTH_ACCESS_EXT;
+    pub const RASTERIZATION_ORDER_ATTACHMENT_STENCIL_ACCESS_ARM: Self = Self::RASTERIZATION_ORDER_ATTACHMENT_STENCIL_ACCESS_EXT;
+}
 pub const ARM_RASTERIZATION_ORDER_ATTACHMENT_ACCESS_SPEC_VERSION: u32 = 1;
 pub const ARM_RASTERIZATION_ORDER_ATTACHMENT_ACCESS_EXTENSION_NAME: &core::ffi::CStr = c"VK_ARM_rasterization_order_attachment_access";

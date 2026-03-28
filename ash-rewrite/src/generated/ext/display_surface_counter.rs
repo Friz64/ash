@@ -24,6 +24,9 @@ pub struct SurfaceCounterFlagsEXT(pub(crate) u32);
 #[repr(transparent)]
 #[derive(Clone, Copy)]
 pub struct SurfaceCounterFlagBitsEXT(pub(crate) u32);
-impl SurfaceCounterFlagBitsEXT {}
+///Provided by [`ext::display_surface_counter`](crate::ext::display_surface_counter)
+impl SurfaceCounterFlagBitsEXT {
+    pub const VBLANK_EXT: Self = Self(1 << 0);
+}
 pub const EXT_DISPLAY_SURFACE_COUNTER_SPEC_VERSION: u32 = 1;
 pub const EXT_DISPLAY_SURFACE_COUNTER_EXTENSION_NAME: &core::ffi::CStr = c"VK_EXT_display_surface_counter";

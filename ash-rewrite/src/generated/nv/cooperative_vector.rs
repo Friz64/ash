@@ -55,5 +55,9 @@ pub struct ComponentTypeKHR(pub(crate) i32);
 #[repr(transparent)]
 #[derive(Clone, Copy)]
 pub struct CooperativeVectorMatrixLayoutNV(pub(crate) i32);
+///Provided by [`nv::cooperative_vector`](crate::nv::cooperative_vector)
+impl crate::vk::PipelineStageFlagBits2 {
+    pub const CONVERT_COOPERATIVE_VECTOR_MATRIX_NV: Self = Self(1 << 44);
+}
 pub const NV_COOPERATIVE_VECTOR_SPEC_VERSION: u32 = 4;
 pub const NV_COOPERATIVE_VECTOR_EXTENSION_NAME: &core::ffi::CStr = c"VK_NV_cooperative_vector";

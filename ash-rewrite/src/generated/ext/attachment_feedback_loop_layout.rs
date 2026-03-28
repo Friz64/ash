@@ -8,5 +8,18 @@ pub struct PhysicalDeviceAttachmentFeedbackLoopLayoutFeaturesEXT {
     pub p_next: *mut core::ffi::c_void,
     pub attachment_feedback_loop_layout: crate::vk::Bool32,
 }
+///Provided by [`ext::attachment_feedback_loop_layout`](crate::ext::attachment_feedback_loop_layout)
+impl crate::vk::ImageUsageFlagBits {
+    pub const ATTACHMENT_FEEDBACK_LOOP_EXT: Self = Self(1 << 19);
+}
+///Provided by [`ext::attachment_feedback_loop_layout`](crate::ext::attachment_feedback_loop_layout)
+impl crate::vk::PipelineCreateFlagBits {
+    pub const COLOR_ATTACHMENT_FEEDBACK_LOOP_EXT: Self = Self(1 << 25);
+    pub const DEPTH_STENCIL_ATTACHMENT_FEEDBACK_LOOP_EXT: Self = Self(1 << 26);
+}
+///Provided by [`ext::attachment_feedback_loop_layout`](crate::ext::attachment_feedback_loop_layout)
+impl crate::vk::DependencyFlagBits {
+    pub const FEEDBACK_LOOP_EXT: Self = Self(1 << 3);
+}
 pub const EXT_ATTACHMENT_FEEDBACK_LOOP_LAYOUT_SPEC_VERSION: u32 = 2;
 pub const EXT_ATTACHMENT_FEEDBACK_LOOP_LAYOUT_EXTENSION_NAME: &core::ffi::CStr = c"VK_EXT_attachment_feedback_loop_layout";

@@ -14,6 +14,18 @@ pub type HostImageCopyDevicePerformanceQueryEXT = crate::vk::HostImageCopyDevice
 pub type ImageSubresource2EXT = crate::vk::ImageSubresource2;
 pub type SubresourceLayout2EXT = crate::vk::SubresourceLayout2;
 pub type HostImageCopyFlagBitsEXT = crate::vk::HostImageCopyFlagBits;
+///Provided by [`ext::host_image_copy`](crate::ext::host_image_copy)
+impl crate::vk::ImageUsageFlagBits {
+    pub const HOST_TRANSFER_EXT: Self = Self::HOST_TRANSFER;
+}
+///Provided by [`ext::host_image_copy`](crate::ext::host_image_copy)
+impl crate::vk::FormatFeatureFlagBits2 {
+    pub const HOST_IMAGE_TRANSFER_EXT: Self = Self::HOST_IMAGE_TRANSFER;
+}
+///Provided by [`ext::host_image_copy`](crate::ext::host_image_copy)
+impl crate::vk::HostImageCopyFlagBits {
+    pub const MEMCPY_EXT: Self = Self::MEMCPY;
+}
 pub type HostImageCopyFlagsEXT = crate::vk::HostImageCopyFlags;
 pub const EXT_HOST_IMAGE_COPY_SPEC_VERSION: u32 = 1;
 pub const EXT_HOST_IMAGE_COPY_EXTENSION_NAME: &core::ffi::CStr = c"VK_EXT_host_image_copy";

@@ -8,5 +8,9 @@ pub struct PhysicalDeviceShaderSubgroupPartitionedFeaturesEXT {
     pub p_next: *mut core::ffi::c_void,
     pub shader_subgroup_partitioned: crate::vk::Bool32,
 }
+///Provided by [`ext::shader_subgroup_partitioned`](crate::ext::shader_subgroup_partitioned)
+impl crate::vk::SubgroupFeatureFlagBits {
+    pub const PARTITIONED_EXT: Self = Self(1 << 8);
+}
 pub const EXT_SHADER_SUBGROUP_PARTITIONED_SPEC_VERSION: u32 = 1;
 pub const EXT_SHADER_SUBGROUP_PARTITIONED_EXTENSION_NAME: &core::ffi::CStr = c"VK_EXT_shader_subgroup_partitioned";

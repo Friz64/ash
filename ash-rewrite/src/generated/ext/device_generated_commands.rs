@@ -203,20 +203,49 @@ pub struct IndirectExecutionSetInfoTypeEXT(pub(crate) i32);
 #[repr(transparent)]
 #[derive(Clone, Copy)]
 pub struct IndirectCommandsTokenTypeEXT(pub(crate) i32);
+///Provided by [`ext::device_generated_commands`](crate::ext::device_generated_commands)
+impl crate::vk::AccessFlagBits {
+    pub const COMMAND_PREPROCESS_READ_EXT: Self = Self(1 << 17);
+    pub const COMMAND_PREPROCESS_WRITE_EXT: Self = Self(1 << 18);
+}
+///Provided by [`ext::device_generated_commands`](crate::ext::device_generated_commands)
+impl crate::vk::PipelineStageFlagBits {
+    pub const COMMAND_PREPROCESS_EXT: Self = Self(1 << 17);
+}
 #[repr(transparent)]
 #[derive(Clone, Copy)]
 pub struct IndirectCommandsLayoutUsageFlagsEXT(pub(crate) u32);
 #[repr(transparent)]
 #[derive(Clone, Copy)]
 pub struct IndirectCommandsLayoutUsageFlagBitsEXT(pub(crate) u32);
-impl IndirectCommandsLayoutUsageFlagBitsEXT {}
+///Provided by [`ext::device_generated_commands`](crate::ext::device_generated_commands)
+impl IndirectCommandsLayoutUsageFlagBitsEXT {
+    pub const EXPLICIT_PREPROCESS_EXT: Self = Self(1 << 0);
+    pub const UNORDERED_SEQUENCES_EXT: Self = Self(1 << 1);
+}
 #[repr(transparent)]
 #[derive(Clone, Copy)]
 pub struct IndirectCommandsInputModeFlagsEXT(pub(crate) u32);
 #[repr(transparent)]
 #[derive(Clone, Copy)]
 pub struct IndirectCommandsInputModeFlagBitsEXT(pub(crate) u32);
-impl IndirectCommandsInputModeFlagBitsEXT {}
+///Provided by [`ext::device_generated_commands`](crate::ext::device_generated_commands)
+impl IndirectCommandsInputModeFlagBitsEXT {
+    pub const VULKAN_INDEX_BUFFER_EXT: Self = Self(1 << 0);
+    pub const DXGI_INDEX_BUFFER_EXT: Self = Self(1 << 1);
+}
+///Provided by [`ext::device_generated_commands`](crate::ext::device_generated_commands)
+impl crate::vk::PipelineCreateFlagBits2 {
+    pub const INDIRECT_BINDABLE_EXT: Self = Self(1 << 38);
+}
+///Provided by [`ext::device_generated_commands`](crate::ext::device_generated_commands)
+impl crate::vk::BufferUsageFlagBits2 {
+    pub const PREPROCESS_BUFFER_EXT: Self = Self(1 << 31);
+}
+///Provided by [`ext::device_generated_commands`](crate::ext::device_generated_commands)
+impl crate::vk::ShaderCreateFlagBitsEXT {
+    pub const INDIRECT_BINDABLE_EXT: Self = Self(1 << 7);
+}
 #[repr(transparent)]
 #[derive(Clone, Copy)]
 pub struct IndirectCommandsLayoutEXT(pub(crate) i32);

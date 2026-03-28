@@ -107,7 +107,14 @@ pub struct ImageConstraintsInfoFlagsFUCHSIA(pub(crate) u32);
 #[repr(transparent)]
 #[derive(Clone, Copy)]
 pub struct ImageConstraintsInfoFlagBitsFUCHSIA(pub(crate) u32);
-impl ImageConstraintsInfoFlagBitsFUCHSIA {}
+///Provided by [`fuchsia::buffer_collection`](crate::fuchsia::buffer_collection)
+impl ImageConstraintsInfoFlagBitsFUCHSIA {
+    pub const CPU_READ_RARELY_FUCHSIA: Self = Self(1 << 0);
+    pub const CPU_READ_OFTEN_FUCHSIA: Self = Self(1 << 1);
+    pub const CPU_WRITE_RARELY_FUCHSIA: Self = Self(1 << 2);
+    pub const CPU_WRITE_OFTEN_FUCHSIA: Self = Self(1 << 3);
+    pub const PROTECTED_OPTIONAL_FUCHSIA: Self = Self(1 << 4);
+}
 #[repr(transparent)]
 #[derive(Clone, Copy)]
 pub struct BufferCollectionFUCHSIA(pub(crate) i32);

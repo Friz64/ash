@@ -33,6 +33,21 @@ pub struct PipelineRasterizationStateStreamCreateInfoEXT {
     pub flags: crate::vk::PipelineRasterizationStateStreamCreateFlagsEXT,
     pub rasterization_stream: u32,
 }
+///Provided by [`ext::transform_feedback`](crate::ext::transform_feedback)
+impl crate::vk::AccessFlagBits {
+    pub const TRANSFORM_FEEDBACK_WRITE_EXT: Self = Self(1 << 25);
+    pub const TRANSFORM_FEEDBACK_COUNTER_READ_EXT: Self = Self(1 << 26);
+    pub const TRANSFORM_FEEDBACK_COUNTER_WRITE_EXT: Self = Self(1 << 27);
+}
+///Provided by [`ext::transform_feedback`](crate::ext::transform_feedback)
+impl crate::vk::BufferUsageFlagBits {
+    pub const TRANSFORM_FEEDBACK_BUFFER_EXT: Self = Self(1 << 11);
+    pub const TRANSFORM_FEEDBACK_COUNTER_BUFFER_EXT: Self = Self(1 << 12);
+}
+///Provided by [`ext::transform_feedback`](crate::ext::transform_feedback)
+impl crate::vk::PipelineStageFlagBits {
+    pub const TRANSFORM_FEEDBACK_EXT: Self = Self(1 << 24);
+}
 #[repr(transparent)]
 #[derive(Clone, Copy)]
 pub struct PipelineRasterizationStateStreamCreateFlagsEXT(pub(crate) u32);

@@ -19,7 +19,14 @@ pub struct DebugReportFlagsEXT(pub(crate) u32);
 #[repr(transparent)]
 #[derive(Clone, Copy)]
 pub struct DebugReportFlagBitsEXT(pub(crate) u32);
-impl DebugReportFlagBitsEXT {}
+///Provided by [`ext::debug_report`](crate::ext::debug_report)
+impl DebugReportFlagBitsEXT {
+    pub const INFORMATION_EXT: Self = Self(1 << 0);
+    pub const WARNING_EXT: Self = Self(1 << 1);
+    pub const PERFORMANCE_WARNING_EXT: Self = Self(1 << 2);
+    pub const ERROR_EXT: Self = Self(1 << 3);
+    pub const DEBUG_EXT: Self = Self(1 << 4);
+}
 #[repr(transparent)]
 #[derive(Clone, Copy)]
 pub struct DebugReportCallbackEXT(pub(crate) i32);

@@ -78,14 +78,38 @@ pub struct OpticalFlowPerformanceLevelNV(pub(crate) i32);
 #[repr(transparent)]
 #[derive(Clone, Copy)]
 pub struct OpticalFlowSessionBindingPointNV(pub(crate) i32);
+///Provided by [`nv::optical_flow`](crate::nv::optical_flow)
+impl crate::vk::QueueFlagBits {
+    pub const OPTICAL_FLOW_NV: Self = Self(1 << 8);
+}
+///Provided by [`nv::optical_flow`](crate::nv::optical_flow)
+impl crate::vk::AccessFlagBits2 {
+    pub const OPTICAL_FLOW_READ_NV: Self = Self(1 << 42);
+    pub const OPTICAL_FLOW_WRITE_NV: Self = Self(1 << 43);
+}
+///Provided by [`nv::optical_flow`](crate::nv::optical_flow)
+impl crate::vk::PipelineStageFlagBits2 {
+    pub const OPTICAL_FLOW_NV: Self = Self(1 << 29);
+}
+///Provided by [`nv::optical_flow`](crate::nv::optical_flow)
+impl crate::vk::FormatFeatureFlagBits2 {
+    pub const OPTICAL_FLOW_IMAGE_NV: Self = Self(1 << 40);
+    pub const OPTICAL_FLOW_VECTOR_NV: Self = Self(1 << 41);
+    pub const OPTICAL_FLOW_COST_NV: Self = Self(1 << 42);
+}
 #[repr(transparent)]
 #[derive(Clone, Copy)]
 pub struct OpticalFlowGridSizeFlagsNV(pub(crate) u32);
 #[repr(transparent)]
 #[derive(Clone, Copy)]
 pub struct OpticalFlowGridSizeFlagBitsNV(pub(crate) u32);
+///Provided by [`nv::optical_flow`](crate::nv::optical_flow)
 impl OpticalFlowGridSizeFlagBitsNV {
-    pub const UNKNOWN_NV: Self = Self(1);
+    pub const UNKNOWN_NV: Self = Self(0);
+    pub const _1X1_NV: Self = Self(1 << 0);
+    pub const _2X2_NV: Self = Self(1 << 1);
+    pub const _4X4_NV: Self = Self(1 << 2);
+    pub const _8X8_NV: Self = Self(1 << 3);
 }
 #[repr(transparent)]
 #[derive(Clone, Copy)]
@@ -93,8 +117,14 @@ pub struct OpticalFlowUsageFlagsNV(pub(crate) u32);
 #[repr(transparent)]
 #[derive(Clone, Copy)]
 pub struct OpticalFlowUsageFlagBitsNV(pub(crate) u32);
+///Provided by [`nv::optical_flow`](crate::nv::optical_flow)
 impl OpticalFlowUsageFlagBitsNV {
-    pub const UNKNOWN_NV: Self = Self(1);
+    pub const UNKNOWN_NV: Self = Self(0);
+    pub const INPUT_NV: Self = Self(1 << 0);
+    pub const OUTPUT_NV: Self = Self(1 << 1);
+    pub const HINT_NV: Self = Self(1 << 2);
+    pub const COST_NV: Self = Self(1 << 3);
+    pub const GLOBAL_FLOW_NV: Self = Self(1 << 4);
 }
 #[repr(transparent)]
 #[derive(Clone, Copy)]
@@ -102,14 +132,24 @@ pub struct OpticalFlowSessionCreateFlagsNV(pub(crate) u32);
 #[repr(transparent)]
 #[derive(Clone, Copy)]
 pub struct OpticalFlowSessionCreateFlagBitsNV(pub(crate) u32);
-impl OpticalFlowSessionCreateFlagBitsNV {}
+///Provided by [`nv::optical_flow`](crate::nv::optical_flow)
+impl OpticalFlowSessionCreateFlagBitsNV {
+    pub const ENABLE_HINT_NV: Self = Self(1 << 0);
+    pub const ENABLE_COST_NV: Self = Self(1 << 1);
+    pub const ENABLE_GLOBAL_FLOW_NV: Self = Self(1 << 2);
+    pub const ALLOW_REGIONS_NV: Self = Self(1 << 3);
+    pub const BOTH_DIRECTIONS_NV: Self = Self(1 << 4);
+}
 #[repr(transparent)]
 #[derive(Clone, Copy)]
 pub struct OpticalFlowExecuteFlagsNV(pub(crate) u32);
 #[repr(transparent)]
 #[derive(Clone, Copy)]
 pub struct OpticalFlowExecuteFlagBitsNV(pub(crate) u32);
-impl OpticalFlowExecuteFlagBitsNV {}
+///Provided by [`nv::optical_flow`](crate::nv::optical_flow)
+impl OpticalFlowExecuteFlagBitsNV {
+    pub const DISABLE_TEMPORAL_HINTS_NV: Self = Self(1 << 0);
+}
 #[repr(transparent)]
 #[derive(Clone, Copy)]
 pub struct OpticalFlowSessionNV(pub(crate) i32);

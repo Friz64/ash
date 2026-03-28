@@ -4,7 +4,7 @@ pub mod depends;
 
 use crate::LibraryName;
 use crate::name::{
-    CMacroName, CommandName, ConstantName, EnumVariantName, FuncPointerName, TypeName,
+    CMacroName, CommandName, ConstantName, EnumeratorName, FuncPointerName, TypeName,
 };
 use cdecl::{CDecl, CDeclMode, CTok, CType};
 use cexpr::{CExprItem, CExprItems};
@@ -59,6 +59,10 @@ fn api_matches(node: &Node, expected: &str) -> bool {
     node.attribute("api")
         .map(|values| values.split(',').any(|value| value == expected))
         .unwrap_or(true)
+}
+
+fn not_deprecated(node: &Node) -> bool {
+    !node.has_attribute("deprecated")
 }
 
 /// Returns a "pseudo-XML" representation of the node, for use in tracing spans.
@@ -322,36 +326,6 @@ impl TypeAlias {
         TypeAlias {
             name: TypeName::new(attribute(node, "name").unwrap()),
             alias: TypeName::new(attribute(node, "alias").unwrap()),
-        }
-    }
-}
-
-#[derive(Debug)]
-pub struct ConstantAlias {
-    pub name: ConstantName,
-    pub alias: ConstantName,
-}
-
-impl ConstantAlias {
-    fn from_node(node: Node) -> ConstantAlias {
-        ConstantAlias {
-            name: ConstantName::new(attribute(node, "name").unwrap()),
-            alias: ConstantName::new(attribute(node, "alias").unwrap()),
-        }
-    }
-}
-
-#[derive(Debug)]
-pub struct EnumVariantAlias {
-    pub name: EnumVariantName,
-    pub alias: EnumVariantName,
-}
-
-impl EnumVariantAlias {
-    fn from_node(node: Node) -> EnumVariantAlias {
-        EnumVariantAlias {
-            name: EnumVariantName::new(attribute(node, "name").unwrap()),
-            alias: EnumVariantName::new(attribute(node, "alias").unwrap()),
         }
     }
 }
@@ -645,81 +619,81 @@ impl BaseConstant {
 }
 
 #[derive(Debug)]
-pub struct EnumValue {
-    pub expr: CExprItems,
-    pub name: EnumVariantName,
+pub enum EnumeratorValue {
+    /// Some bitmask variants represent literal values instead of specific
+    /// individual bits, e.g. a combination of bits, or no bits at all. A good
+    /// example for this is `VkCullModeFlagBits::FRONT_AND_BACK`.
+    Expr(CExprItems),
+    BitPos(u8),
+    Alias(EnumeratorName),
+    EnumOffset {
+        offset: u32,
+        extension_num: u32,
+        positive_dir: bool,
+    },
 }
 
-impl EnumValue {
-    fn from_node(node: Node) -> EnumValue {
-        EnumValue {
-            expr: cexpr::parse(attribute(node, "value").unwrap()),
-            name: EnumVariantName::new(attribute(node, "name").unwrap()),
+impl EnumeratorValue {
+    fn from_node(node: Node, extension_num: Option<u32>) -> EnumeratorValue {
+        if let Some(expr) = attribute(node, "value") {
+            EnumeratorValue::Expr(cexpr::parse(expr))
+        } else if let Some(bitpos) = attribute(node, "bitpos").map(|v| v.parse().unwrap()) {
+            EnumeratorValue::BitPos(bitpos)
+        } else if let Some(alias) = attribute(node, "alias") {
+            EnumeratorValue::Alias(EnumeratorName::new(alias))
+        } else {
+            EnumeratorValue::EnumOffset {
+                offset: attribute(node, "offset").unwrap().parse().unwrap(),
+                extension_num: attribute(node, "extnumber")
+                    .map(|v| v.parse().unwrap())
+                    .or(extension_num)
+                    .unwrap(),
+                positive_dir: !matches!(attribute(node, "dir"), Some("-")),
+            }
         }
+    }
+}
+
+#[derive(Debug)]
+pub struct Enumerator {
+    pub name: EnumeratorName,
+    pub value: EnumeratorValue,
+}
+
+impl Enumerator {
+    fn list_from_node(node: Node, api: &str) -> Vec<Enumerator> {
+        node.children()
+            .filter(|node| node.has_tag_name("enum"))
+            .filter(|node| api_matches(node, api))
+            .filter(not_deprecated)
+            .map(|enumerator| Enumerator {
+                name: EnumeratorName::new(attribute(enumerator, "name").unwrap()),
+                value: EnumeratorValue::from_node(enumerator, None),
+            })
+            .collect()
     }
 }
 
 #[derive(Debug)]
 pub struct Enum {
     pub name: TypeName,
-    pub values: Vec<EnumValue>,
-    pub aliases: Vec<TypeAlias>,
+    pub enumerators: Vec<Enumerator>,
 }
 
 impl Enum {
     fn from_node(node: Node, api: &str) -> Enum {
-        let mut value = Enum {
+        Enum {
             name: TypeName::new(attribute(node, "name").unwrap()),
-            values: Vec::new(),
-            aliases: Vec::new(),
-        };
-
-        for variant in node
-            .children()
-            .filter(|node| node.has_tag_name("enum"))
-            .filter(|node| api_matches(node, api))
-        {
-            if variant.has_attribute("alias") {
-                value.aliases.push(TypeAlias::from_node(variant));
-            } else {
-                value.values.push(EnumValue::from_node(variant));
-            }
-        }
-
-        value
-    }
-}
-
-#[derive(Debug)]
-pub struct BitMaskBit {
-    pub bitpos: u8,
-    pub name: EnumVariantName,
-}
-
-impl BitMaskBit {
-    fn from_node(node: Node) -> BitMaskBit {
-        BitMaskBit {
-            bitpos: attribute(node, "bitpos").unwrap().parse().unwrap(),
-            name: EnumVariantName::new(attribute(node, "name").unwrap()),
+            enumerators: Enumerator::list_from_node(node, api),
         }
     }
-}
-
-#[derive(Debug)]
-pub enum BitMaskBitsItem {
-    Bit(BitMaskBit),
-    /// Some bitmask variants represent literal values instead of specific
-    /// individual bits, e.g. a combination of bits, or no bits at all. A good
-    /// example for this is `VkCullModeFlagBits::FRONT_AND_BACK`.
-    Value(EnumValue),
-    Alias(EnumVariantAlias),
 }
 
 #[derive(Debug)]
 pub struct BitMaskBits {
     pub name: TypeName,
     pub bitwidth: Option<u8>,
-    pub values: Vec<BitMaskBitsItem>,
+    pub enumerators: Vec<Enumerator>,
 }
 
 impl BitMaskBits {
@@ -727,20 +701,7 @@ impl BitMaskBits {
         BitMaskBits {
             name: TypeName::new(attribute(node, "name").unwrap()),
             bitwidth: attribute(node, "bitwidth").map(|v| v.parse().unwrap()),
-            values: node
-                .children()
-                .filter(|node| node.has_tag_name("enum"))
-                .filter(|node| api_matches(node, api))
-                .map(|variant| {
-                    if variant.has_attribute("alias") {
-                        BitMaskBitsItem::Alias(EnumVariantAlias::from_node(variant))
-                    } else if variant.has_attribute("value") {
-                        BitMaskBitsItem::Value(EnumValue::from_node(variant))
-                    } else {
-                        BitMaskBitsItem::Bit(BitMaskBit::from_node(variant))
-                    }
-                })
-                .collect(),
+            enumerators: Enumerator::list_from_node(node, api),
         }
     }
 }
@@ -810,63 +771,19 @@ impl RequireConstant {
 }
 
 #[derive(Debug)]
-pub struct RequireEnumExtendsOffset {
-    pub offset: u32,
-    pub extension_num: u32,
-    pub positive_dir: bool,
-}
-
-impl RequireEnumExtendsOffset {
-    pub fn resolve_value(&self) -> i32 {
-        let ext_base = 1_000_000_000;
-        let ext_block_size = 1000;
-        let value = ext_base + (self.extension_num - 1) * ext_block_size + self.offset;
-
-        if self.positive_dir {
-            value as i32
-        } else {
-            -(value as i32)
-        }
-    }
-}
-
-#[derive(Debug)]
-pub enum RequireEnumExtendsValue {
-    Value(&'static str),
-    BitPos(u8),
-    Alias(ConstantName),
-    Offset(RequireEnumExtendsOffset),
-}
-
-#[derive(Debug)]
-pub struct RequireEnumExtends {
-    pub name: EnumVariantName,
+pub struct RequireEnumerator {
+    pub name: EnumeratorName,
     pub extends: TypeName,
-    pub value: RequireEnumExtendsValue,
+    pub value: EnumeratorValue,
 }
 
-impl RequireEnumExtends {
-    fn from_node(node: Node, extension_num: Option<u32>) -> RequireEnumExtends {
-        RequireEnumExtends {
-            name: EnumVariantName::new(attribute(node, "name").unwrap()),
-            extends: TypeName::new(attribute(node, "extends").unwrap()),
-            value: if let Some(value) = attribute(node, "value") {
-                RequireEnumExtendsValue::Value(value)
-            } else if let Some(bitpos) = attribute(node, "bitpos").map(|v| v.parse().unwrap()) {
-                RequireEnumExtendsValue::BitPos(bitpos)
-            } else if let Some(alias) = attribute(node, "alias") {
-                RequireEnumExtendsValue::Alias(ConstantName::new(alias))
-            } else {
-                RequireEnumExtendsValue::Offset(RequireEnumExtendsOffset {
-                    offset: attribute(node, "offset").unwrap().parse().unwrap(),
-                    extension_num: attribute(node, "extnumber")
-                        .map(|v| v.parse().unwrap())
-                        .or(extension_num)
-                        .unwrap(),
-                    positive_dir: !matches!(attribute(node, "dir"), Some("-")),
-                })
-            },
-        }
+impl RequireEnumerator {
+    fn from_node(node: Node, extension_num: Option<u32>) -> Option<RequireEnumerator> {
+        Some(RequireEnumerator {
+            name: EnumeratorName::new(attribute(node, "name").unwrap()),
+            extends: TypeName::new(attribute(node, "extends")?),
+            value: EnumeratorValue::from_node(node, extension_num),
+        })
     }
 }
 
@@ -935,7 +852,7 @@ impl Version {
 #[derive(Debug, Default)]
 pub struct Require {
     pub depends: Option<Depends>,
-    pub enum_extends: Vec<RequireEnumExtends>,
+    pub enumerators: Vec<RequireEnumerator>,
     pub constants: Vec<RequireConstant>,
     pub types: Vec<RequireType>,
     pub commands: Vec<RequireCommand>,
@@ -953,13 +870,15 @@ impl Require {
             ..Default::default()
         };
 
-        for child in node.children().filter(|node| api_matches(node, api)) {
+        for child in node
+            .children()
+            .filter(|node| api_matches(node, api))
+            .filter(not_deprecated)
+        {
             match child.tag_name().name() {
                 "enum" => {
-                    if child.has_attribute("extends") {
-                        value
-                            .enum_extends
-                            .push(RequireEnumExtends::from_node(child, extension_num));
+                    if let Some(en) = RequireEnumerator::from_node(child, extension_num) {
+                        value.enumerators.push(en);
                     } else {
                         value.constants.push(RequireConstant::from_node(child));
                     }

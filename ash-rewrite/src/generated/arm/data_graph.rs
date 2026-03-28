@@ -203,20 +203,47 @@ pub struct PhysicalDeviceDataGraphProcessingEngineTypeARM(pub(crate) i32);
 #[repr(transparent)]
 #[derive(Clone, Copy)]
 pub struct PhysicalDeviceDataGraphOperationTypeARM(pub(crate) i32);
+///Provided by [`arm::data_graph`](crate::arm::data_graph)
+impl crate::vk::QueueFlagBits {
+    pub const DATA_GRAPH_ARM: Self = Self(1 << 10);
+}
+///Provided by [`arm::data_graph`](crate::arm::data_graph)
+impl crate::vk::AccessFlagBits2 {
+    pub const DATA_GRAPH_READ_ARM: Self = Self(1 << 47);
+    pub const DATA_GRAPH_WRITE_ARM: Self = Self(1 << 48);
+}
+///Provided by [`arm::data_graph`](crate::arm::data_graph)
+impl crate::vk::PipelineStageFlagBits2 {
+    pub const DATA_GRAPH_ARM: Self = Self(1 << 42);
+}
+///Provided by [`arm::data_graph`](crate::arm::data_graph)
+impl crate::vk::FormatFeatureFlagBits2 {
+    pub const TENSOR_DATA_GRAPH_ARM: Self = Self(1 << 48);
+}
+///Provided by [`arm::data_graph`](crate::arm::data_graph)
+impl crate::vk::BufferUsageFlagBits2 {
+    pub const DATA_GRAPH_FOREIGN_DESCRIPTOR_ARM: Self = Self(1 << 29);
+}
+///Provided by [`arm::data_graph`](crate::arm::data_graph)
+impl crate::vk::TensorUsageFlagBitsARM {
+    pub const DATA_GRAPH_ARM: Self = Self(1 << 5);
+}
 #[repr(transparent)]
 #[derive(Clone, Copy)]
 pub struct DataGraphPipelineSessionCreateFlagsARM(pub(crate) u64);
 #[repr(transparent)]
 #[derive(Clone, Copy)]
 pub struct DataGraphPipelineSessionCreateFlagBitsARM(pub(crate) u64);
-impl DataGraphPipelineSessionCreateFlagBitsARM {}
+///Provided by [`arm::data_graph`](crate::arm::data_graph)
+impl DataGraphPipelineSessionCreateFlagBitsARM {
+    pub const PROTECTED_ARM: Self = Self(1 << 0);
+}
 #[repr(transparent)]
 #[derive(Clone, Copy)]
 pub struct DataGraphPipelineDispatchFlagsARM(pub(crate) u64);
 #[repr(transparent)]
 #[derive(Clone, Copy)]
 pub struct DataGraphPipelineDispatchFlagBitsARM(pub(crate) u64);
-impl DataGraphPipelineDispatchFlagBitsARM {}
 #[repr(transparent)]
 #[derive(Clone, Copy)]
 pub struct DataGraphPipelineSessionARM(pub(crate) i32);

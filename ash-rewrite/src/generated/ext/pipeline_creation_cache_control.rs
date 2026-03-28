@@ -2,5 +2,14 @@
 #![cfg_attr(rustfmt, rustfmt_skip)]
 //![Vulkan Manual Page](https://docs.vulkan.org/refpages/latest/refpages/source/VK_EXT_pipeline_creation_cache_control.html) · Extension `VK_EXT_pipeline_creation_cache_control`
 pub type PhysicalDevicePipelineCreationCacheControlFeaturesEXT = crate::vk::PhysicalDevicePipelineCreationCacheControlFeatures;
+///Provided by [`ext::pipeline_creation_cache_control`](crate::ext::pipeline_creation_cache_control)
+impl crate::vk::PipelineCacheCreateFlagBits {
+    pub const EXTERNALLY_SYNCHRONIZED_EXT: Self = Self::EXTERNALLY_SYNCHRONIZED;
+}
+///Provided by [`ext::pipeline_creation_cache_control`](crate::ext::pipeline_creation_cache_control)
+impl crate::vk::PipelineCreateFlagBits {
+    pub const FAIL_ON_PIPELINE_COMPILE_REQUIRED_EXT: Self = Self::FAIL_ON_PIPELINE_COMPILE_REQUIRED;
+    pub const EARLY_RETURN_ON_FAILURE_EXT: Self = Self::EARLY_RETURN_ON_FAILURE;
+}
 pub const EXT_PIPELINE_CREATION_CACHE_CONTROL_SPEC_VERSION: u32 = 3;
 pub const EXT_PIPELINE_CREATION_CACHE_CONTROL_EXTENSION_NAME: &core::ffi::CStr = c"VK_EXT_pipeline_creation_cache_control";

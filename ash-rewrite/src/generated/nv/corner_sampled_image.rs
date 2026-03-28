@@ -8,5 +8,9 @@ pub struct PhysicalDeviceCornerSampledImageFeaturesNV {
     pub p_next: *mut core::ffi::c_void,
     pub corner_sampled_image: crate::vk::Bool32,
 }
+///Provided by [`nv::corner_sampled_image`](crate::nv::corner_sampled_image)
+impl crate::vk::ImageCreateFlagBits {
+    pub const CORNER_SAMPLED_NV: Self = Self(1 << 13);
+}
 pub const NV_CORNER_SAMPLED_IMAGE_SPEC_VERSION: u32 = 2;
 pub const NV_CORNER_SAMPLED_IMAGE_EXTENSION_NAME: &core::ffi::CStr = c"VK_NV_corner_sampled_image";

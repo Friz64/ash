@@ -71,14 +71,31 @@ pub struct DisplayPlaneAlphaFlagsKHR(pub(crate) u32);
 #[repr(transparent)]
 #[derive(Clone, Copy)]
 pub struct DisplayPlaneAlphaFlagBitsKHR(pub(crate) u32);
-impl DisplayPlaneAlphaFlagBitsKHR {}
+///Provided by [`khr::display`](crate::khr::display)
+impl DisplayPlaneAlphaFlagBitsKHR {
+    pub const OPAQUE_KHR: Self = Self(1 << 0);
+    pub const GLOBAL_KHR: Self = Self(1 << 1);
+    pub const PER_PIXEL_KHR: Self = Self(1 << 2);
+    pub const PER_PIXEL_PREMULTIPLIED_KHR: Self = Self(1 << 3);
+}
 #[repr(transparent)]
 #[derive(Clone, Copy)]
 pub struct SurfaceTransformFlagsKHR(pub(crate) u32);
 #[repr(transparent)]
 #[derive(Clone, Copy)]
 pub struct SurfaceTransformFlagBitsKHR(pub(crate) u32);
-impl SurfaceTransformFlagBitsKHR {}
+///Provided by [`khr::display`](crate::khr::display)
+impl SurfaceTransformFlagBitsKHR {
+    pub const IDENTITY_KHR: Self = Self(1 << 0);
+    pub const ROTATE_90_KHR: Self = Self(1 << 1);
+    pub const ROTATE_180_KHR: Self = Self(1 << 2);
+    pub const ROTATE_270_KHR: Self = Self(1 << 3);
+    pub const HORIZONTAL_MIRROR_KHR: Self = Self(1 << 4);
+    pub const HORIZONTAL_MIRROR_ROTATE_90_KHR: Self = Self(1 << 5);
+    pub const HORIZONTAL_MIRROR_ROTATE_180_KHR: Self = Self(1 << 6);
+    pub const HORIZONTAL_MIRROR_ROTATE_270_KHR: Self = Self(1 << 7);
+    pub const INHERIT_KHR: Self = Self(1 << 8);
+}
 #[repr(transparent)]
 #[derive(Clone, Copy)]
 pub struct DisplayModeCreateFlagsKHR(pub(crate) u32);

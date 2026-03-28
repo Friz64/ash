@@ -25,5 +25,19 @@ pub struct CustomResolveCreateInfoEXT {
     pub depth_attachment_format: crate::vk::Format,
     pub stencil_attachment_format: crate::vk::Format,
 }
+///Provided by [`ext::custom_resolve`](crate::ext::custom_resolve)
+impl crate::vk::SubpassDescriptionFlagBits {
+    pub const FRAGMENT_REGION_EXT: Self = Self(1 << 2);
+    pub const CUSTOM_RESOLVE_EXT: Self = Self(1 << 3);
+}
+///Provided by [`ext::custom_resolve`](crate::ext::custom_resolve)
+impl crate::vk::RenderingFlagBits {
+    pub const FRAGMENT_REGION_EXT: Self = Self(1 << 6);
+    pub const CUSTOM_RESOLVE_EXT: Self = Self(1 << 7);
+}
+///Provided by [`ext::custom_resolve`](crate::ext::custom_resolve)
+impl crate::vk::ResolveModeFlagBits {
+    pub const CUSTOM_EXT: Self = Self(1 << 5);
+}
 pub const EXT_CUSTOM_RESOLVE_SPEC_VERSION: u32 = 1;
 pub const EXT_CUSTOM_RESOLVE_EXTENSION_NAME: &core::ffi::CStr = c"VK_EXT_custom_resolve";

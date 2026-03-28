@@ -8,5 +8,9 @@ pub struct PhysicalDeviceLinearColorAttachmentFeaturesNV {
     pub p_next: *mut core::ffi::c_void,
     pub linear_color_attachment: crate::vk::Bool32,
 }
+///Provided by [`nv::linear_color_attachment`](crate::nv::linear_color_attachment)
+impl crate::vk::FormatFeatureFlagBits2 {
+    pub const LINEAR_COLOR_ATTACHMENT_NV: Self = Self(1 << 38);
+}
 pub const NV_LINEAR_COLOR_ATTACHMENT_SPEC_VERSION: u32 = 1;
 pub const NV_LINEAR_COLOR_ATTACHMENT_EXTENSION_NAME: &core::ffi::CStr = c"VK_NV_linear_color_attachment";

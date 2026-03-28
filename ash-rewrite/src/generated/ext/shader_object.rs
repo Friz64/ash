@@ -44,7 +44,16 @@ pub struct ShaderCreateFlagsEXT(pub(crate) u32);
 #[repr(transparent)]
 #[derive(Clone, Copy)]
 pub struct ShaderCreateFlagBitsEXT(pub(crate) u32);
-impl ShaderCreateFlagBitsEXT {}
+///Provided by [`ext::shader_object`](crate::ext::shader_object)
+impl ShaderCreateFlagBitsEXT {
+    pub const LINK_STAGE_EXT: Self = Self(1 << 0);
+    pub const ALLOW_VARYING_SUBGROUP_SIZE_EXT: Self = Self(1 << 1);
+    pub const REQUIRE_FULL_SUBGROUPS_EXT: Self = Self(1 << 2);
+    pub const NO_TASK_SHADER_EXT: Self = Self(1 << 3);
+    pub const DISPATCH_BASE_EXT: Self = Self(1 << 4);
+    pub const FRAGMENT_SHADING_RATE_ATTACHMENT_EXT: Self = Self(1 << 5);
+    pub const FRAGMENT_DENSITY_MAP_ATTACHMENT_EXT: Self = Self(1 << 6);
+}
 #[repr(transparent)]
 #[derive(Clone, Copy)]
 pub struct ShaderEXT(pub(crate) i32);

@@ -1,3 +1,5 @@
+use heck::ToShoutySnekCase;
+
 #[derive(Debug, PartialEq, Eq, Hash, Clone, Copy)]
 pub struct TypeName(&'static str);
 
@@ -41,9 +43,9 @@ impl ConstantName {
 }
 
 #[derive(Debug, PartialEq, Eq, Hash, Clone, Copy)]
-pub struct EnumVariantName(&'static str);
+pub struct EnumeratorName(&'static str);
 
-impl EnumVariantName {
+impl EnumeratorName {
     pub fn new(original: &'static str) -> Self {
         Self(original)
     }
@@ -52,8 +54,21 @@ impl EnumVariantName {
         self.0
     }
 
-    pub fn prefix_trimmed(&self) -> &'static str {
-        self.original().trim_start_matches("VK_")
+    pub fn stripped(&self, bits_name: TypeName) -> String {
+        let mut prefix = bits_name
+            .tag_trimmed()
+            .replace("FlagBits", "")
+            .TO_SHOUTY_SNEK_CASE();
+
+        // add _ before trailing number
+        if prefix.ends_with(|c: char| c.is_ascii_digit()) {
+            prefix.insert(prefix.len() - 1, '_');
+        }
+
+        prefix.push('_');
+
+        let prefix_stripped = self.original().strip_prefix(&prefix).unwrap();
+        prefix_stripped.replace("_BIT", "")
     }
 }
 

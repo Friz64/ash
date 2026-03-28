@@ -33,12 +33,29 @@ pub struct DecompressMemoryInfoEXT {
     pub region_count: u32,
     pub p_regions: *const crate::vk::DecompressMemoryRegionEXT,
 }
+///Provided by [`ext::memory_decompression`](crate::ext::memory_decompression)
+impl crate::vk::AccessFlagBits2 {
+    pub const MEMORY_DECOMPRESSION_READ_EXT: Self = Self(1 << 55);
+    pub const MEMORY_DECOMPRESSION_WRITE_EXT: Self = Self(1 << 56);
+}
+///Provided by [`ext::memory_decompression`](crate::ext::memory_decompression)
+impl crate::vk::PipelineStageFlagBits2 {
+    pub const MEMORY_DECOMPRESSION_EXT: Self = Self(1 << 45);
+}
 #[repr(transparent)]
 #[derive(Clone, Copy)]
 pub struct MemoryDecompressionMethodFlagsEXT(pub(crate) u64);
 #[repr(transparent)]
 #[derive(Clone, Copy)]
 pub struct MemoryDecompressionMethodFlagBitsEXT(pub(crate) u64);
-impl MemoryDecompressionMethodFlagBitsEXT {}
+///Provided by [`ext::memory_decompression`](crate::ext::memory_decompression)
+impl MemoryDecompressionMethodFlagBitsEXT {
+    pub const GDEFLATE_1_0_EXT: Self = Self(1 << 0);
+    pub const GDEFLATE_1_0_NV: Self = Self::GDEFLATE_1_0_EXT;
+}
+///Provided by [`ext::memory_decompression`](crate::ext::memory_decompression)
+impl crate::vk::BufferUsageFlagBits2 {
+    pub const MEMORY_DECOMPRESSION_EXT: Self = Self(1 << 32);
+}
 pub const EXT_MEMORY_DECOMPRESSION_SPEC_VERSION: u32 = 1;
 pub const EXT_MEMORY_DECOMPRESSION_EXTENSION_NAME: &core::ffi::CStr = c"VK_EXT_memory_decompression";

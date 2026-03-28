@@ -11,6 +11,75 @@ pub type SubresourceLayout2KHR = crate::vk::SubresourceLayout2;
 pub type DeviceImageSubresourceInfoKHR = crate::vk::DeviceImageSubresourceInfo;
 pub type PipelineCreateFlagBits2KHR = crate::vk::PipelineCreateFlagBits2;
 pub type BufferUsageFlagBits2KHR = crate::vk::BufferUsageFlagBits2;
+///Provided by [`khr::maintenance5`](crate::khr::maintenance5)
+impl crate::vk::PipelineCreateFlagBits2 {
+    pub const DISABLE_OPTIMIZATION_KHR: Self = Self::DISABLE_OPTIMIZATION;
+    pub const ALLOW_DERIVATIVES_KHR: Self = Self::ALLOW_DERIVATIVES;
+    pub const DERIVATIVE_KHR: Self = Self::DERIVATIVE;
+    pub const VIEW_INDEX_FROM_DEVICE_INDEX_KHR: Self = Self::VIEW_INDEX_FROM_DEVICE_INDEX;
+    pub const DISPATCH_BASE_KHR: Self = Self::DISPATCH_BASE;
+    pub const DEFER_COMPILE_NV: Self = Self(1 << 5);
+    pub const CAPTURE_STATISTICS_KHR: Self = Self(1 << 6);
+    pub const CAPTURE_INTERNAL_REPRESENTATIONS_KHR: Self = Self(1 << 7);
+    pub const FAIL_ON_PIPELINE_COMPILE_REQUIRED_KHR: Self = Self::FAIL_ON_PIPELINE_COMPILE_REQUIRED;
+    pub const EARLY_RETURN_ON_FAILURE_KHR: Self = Self::EARLY_RETURN_ON_FAILURE;
+    pub const LINK_TIME_OPTIMIZATION_EXT: Self = Self(1 << 10);
+    pub const RETAIN_LINK_TIME_OPTIMIZATION_INFO_EXT: Self = Self(1 << 23);
+    pub const LIBRARY_KHR: Self = Self(1 << 11);
+    pub const RAY_TRACING_SKIP_TRIANGLES_KHR: Self = Self(1 << 12);
+    pub const RAY_TRACING_SKIP_AABBS_KHR: Self = Self(1 << 13);
+    pub const RAY_TRACING_NO_NULL_ANY_HIT_SHADERS_KHR: Self = Self(1 << 14);
+    pub const RAY_TRACING_NO_NULL_CLOSEST_HIT_SHADERS_KHR: Self = Self(1 << 15);
+    pub const RAY_TRACING_NO_NULL_MISS_SHADERS_KHR: Self = Self(1 << 16);
+    pub const RAY_TRACING_NO_NULL_INTERSECTION_SHADERS_KHR: Self = Self(1 << 17);
+    pub const RAY_TRACING_SHADER_GROUP_HANDLE_CAPTURE_REPLAY_KHR: Self = Self(1 << 19);
+    pub const INDIRECT_BINDABLE_NV: Self = Self(1 << 18);
+    pub const RAY_TRACING_ALLOW_MOTION_NV: Self = Self(1 << 20);
+    pub const RENDERING_FRAGMENT_SHADING_RATE_ATTACHMENT_KHR: Self = Self(1 << 21);
+    pub const RENDERING_FRAGMENT_DENSITY_MAP_ATTACHMENT_EXT: Self = Self(1 << 22);
+    pub const RAY_TRACING_OPACITY_MICROMAP_EXT: Self = Self(1 << 24);
+    pub const COLOR_ATTACHMENT_FEEDBACK_LOOP_EXT: Self = Self(1 << 25);
+    pub const DEPTH_STENCIL_ATTACHMENT_FEEDBACK_LOOP_EXT: Self = Self(1 << 26);
+    pub const NO_PROTECTED_ACCESS_EXT: Self = Self::NO_PROTECTED_ACCESS;
+    pub const PROTECTED_ACCESS_ONLY_EXT: Self = Self::PROTECTED_ACCESS_ONLY;
+    pub const RAY_TRACING_DISPLACEMENT_MICROMAP_NV: Self = Self(1 << 28);
+    pub const DESCRIPTOR_BUFFER_EXT: Self = Self(1 << 29);
+    pub const DISALLOW_OPACITY_MICROMAP_ARM: Self = Self(1 << 37);
+    pub const INSTRUMENT_SHADERS_ARM: Self = Self(1 << 39);
+}
+///Provided by [`khr::maintenance5`](crate::khr::maintenance5)
+impl crate::vk::BufferUsageFlagBits2 {
+    pub const TRANSFER_SRC_KHR: Self = Self::TRANSFER_SRC;
+    pub const TRANSFER_DST_KHR: Self = Self::TRANSFER_DST;
+    pub const UNIFORM_TEXEL_BUFFER_KHR: Self = Self::UNIFORM_TEXEL_BUFFER;
+    pub const STORAGE_TEXEL_BUFFER_KHR: Self = Self::STORAGE_TEXEL_BUFFER;
+    pub const UNIFORM_BUFFER_KHR: Self = Self::UNIFORM_BUFFER;
+    pub const STORAGE_BUFFER_KHR: Self = Self::STORAGE_BUFFER;
+    pub const INDEX_BUFFER_KHR: Self = Self::INDEX_BUFFER;
+    pub const VERTEX_BUFFER_KHR: Self = Self::VERTEX_BUFFER;
+    pub const INDIRECT_BUFFER_KHR: Self = Self::INDIRECT_BUFFER;
+    pub const CONDITIONAL_RENDERING_EXT: Self = Self(1 << 9);
+    pub const SHADER_BINDING_TABLE_KHR: Self = Self(1 << 10);
+    pub const RAY_TRACING_NV: Self = Self::SHADER_BINDING_TABLE_KHR;
+    pub const TRANSFORM_FEEDBACK_BUFFER_EXT: Self = Self(1 << 11);
+    pub const TRANSFORM_FEEDBACK_COUNTER_BUFFER_EXT: Self = Self(1 << 12);
+    pub const VIDEO_DECODE_SRC_KHR: Self = Self(1 << 13);
+    pub const VIDEO_DECODE_DST_KHR: Self = Self(1 << 14);
+    pub const VIDEO_ENCODE_DST_KHR: Self = Self(1 << 15);
+    pub const VIDEO_ENCODE_SRC_KHR: Self = Self(1 << 16);
+    pub const SHADER_DEVICE_ADDRESS_KHR: Self = Self::SHADER_DEVICE_ADDRESS;
+    pub const ACCELERATION_STRUCTURE_BUILD_INPUT_READ_ONLY_KHR: Self = Self(1 << 19);
+    pub const ACCELERATION_STRUCTURE_STORAGE_KHR: Self = Self(1 << 20);
+    pub const SAMPLER_DESCRIPTOR_BUFFER_EXT: Self = Self(1 << 21);
+    pub const RESOURCE_DESCRIPTOR_BUFFER_EXT: Self = Self(1 << 22);
+    pub const PUSH_DESCRIPTORS_DESCRIPTOR_BUFFER_EXT: Self = Self(1 << 26);
+    pub const MICROMAP_BUILD_INPUT_READ_ONLY_EXT: Self = Self(1 << 23);
+    pub const MICROMAP_STORAGE_EXT: Self = Self(1 << 24);
+}
+///Provided by [`khr::maintenance5`](crate::khr::maintenance5)
+impl crate::vk::ShaderCreateFlagBitsEXT {
+    pub const INSTRUMENT_SHADER_ARM: Self = Self(1 << 11);
+}
 pub type PipelineCreateFlags2KHR = crate::vk::PipelineCreateFlags2;
 pub type BufferUsageFlags2KHR = crate::vk::BufferUsageFlags2;
 pub const KHR_MAINTENANCE_5_SPEC_VERSION: u32 = 1;

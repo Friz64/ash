@@ -73,6 +73,18 @@ pub union DeviceOrHostAddressConstAMDX {
     pub device_address: crate::vk::DeviceAddress,
     pub host_address: *const core::ffi::c_void,
 }
+///Provided by [`amdx::shader_enqueue`](crate::amdx::shader_enqueue)
+impl crate::vk::BufferUsageFlagBits {
+    pub const EXECUTION_GRAPH_SCRATCH_AMDX: Self = Self(1 << 25);
+}
+///Provided by [`amdx::shader_enqueue`](crate::amdx::shader_enqueue)
+impl crate::vk::PipelineCreateFlagBits2 {
+    pub const EXECUTION_GRAPH_AMDX: Self = Self(1 << 32);
+}
+///Provided by [`amdx::shader_enqueue`](crate::amdx::shader_enqueue)
+impl crate::vk::BufferUsageFlagBits2 {
+    pub const EXECUTION_GRAPH_SCRATCH_AMDX: Self = Self(1 << 25);
+}
 pub const SHADER_INDEX_UNUSED_AMDX: u32 = (!0);
 pub const AMDX_SHADER_ENQUEUE_SPEC_VERSION: u32 = 2;
 pub const AMDX_SHADER_ENQUEUE_EXTENSION_NAME: &core::ffi::CStr = c"VK_AMDX_shader_enqueue";

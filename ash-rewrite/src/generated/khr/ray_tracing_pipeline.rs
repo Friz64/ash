@@ -84,6 +84,37 @@ pub struct RayTracingShaderGroupTypeKHR(pub(crate) i32);
 #[repr(transparent)]
 #[derive(Clone, Copy)]
 pub struct ShaderGroupShaderKHR(pub(crate) i32);
+///Provided by [`khr::ray_tracing_pipeline`](crate::khr::ray_tracing_pipeline)
+impl crate::vk::BufferUsageFlagBits {
+    pub const SHADER_BINDING_TABLE_KHR: Self = Self(1 << 10);
+}
+///Provided by [`khr::ray_tracing_pipeline`](crate::khr::ray_tracing_pipeline)
+impl crate::vk::ShaderStageFlagBits {
+    pub const RAYGEN_KHR: Self = Self(1 << 8);
+    pub const ANY_HIT_KHR: Self = Self(1 << 9);
+    pub const CLOSEST_HIT_KHR: Self = Self(1 << 10);
+    pub const MISS_KHR: Self = Self(1 << 11);
+    pub const INTERSECTION_KHR: Self = Self(1 << 12);
+    pub const CALLABLE_KHR: Self = Self(1 << 13);
+}
+///Provided by [`khr::ray_tracing_pipeline`](crate::khr::ray_tracing_pipeline)
+impl crate::vk::PipelineCreateFlagBits {
+    pub const RAY_TRACING_NO_NULL_ANY_HIT_SHADERS_KHR: Self = Self(1 << 14);
+    pub const RAY_TRACING_NO_NULL_CLOSEST_HIT_SHADERS_KHR: Self = Self(1 << 15);
+    pub const RAY_TRACING_NO_NULL_MISS_SHADERS_KHR: Self = Self(1 << 16);
+    pub const RAY_TRACING_NO_NULL_INTERSECTION_SHADERS_KHR: Self = Self(1 << 17);
+    pub const RAY_TRACING_SKIP_TRIANGLES_KHR: Self = Self(1 << 12);
+    pub const RAY_TRACING_SKIP_AABBS_KHR: Self = Self(1 << 13);
+    pub const RAY_TRACING_SHADER_GROUP_HANDLE_CAPTURE_REPLAY_KHR: Self = Self(1 << 19);
+}
+///Provided by [`khr::ray_tracing_pipeline`](crate::khr::ray_tracing_pipeline)
+impl crate::vk::PipelineStageFlagBits {
+    pub const RAY_TRACING_SHADER_KHR: Self = Self(1 << 21);
+}
+///Provided by [`khr::ray_tracing_pipeline`](crate::khr::ray_tracing_pipeline)
+impl crate::vk::PipelineCreateFlagBits2 {
+    pub const RAY_TRACING_SKIP_BUILT_IN_PRIMITIVES_KHR: Self = Self::RAY_TRACING_SKIP_TRIANGLES_KHR;
+}
 pub const SHADER_UNUSED_KHR: u32 = (!0);
 pub const KHR_RAY_TRACING_PIPELINE_SPEC_VERSION: u32 = 1;
 pub const KHR_RAY_TRACING_PIPELINE_EXTENSION_NAME: &core::ffi::CStr = c"VK_KHR_ray_tracing_pipeline";

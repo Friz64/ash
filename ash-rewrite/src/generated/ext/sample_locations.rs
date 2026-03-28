@@ -65,5 +65,9 @@ pub struct MultisamplePropertiesEXT {
     pub p_next: *mut core::ffi::c_void,
     pub max_sample_location_grid_size: crate::vk::Extent2D,
 }
+///Provided by [`ext::sample_locations`](crate::ext::sample_locations)
+impl crate::vk::ImageCreateFlagBits {
+    pub const SAMPLE_LOCATIONS_COMPATIBLE_DEPTH_EXT: Self = Self(1 << 12);
+}
 pub const EXT_SAMPLE_LOCATIONS_SPEC_VERSION: u32 = 1;
 pub const EXT_SAMPLE_LOCATIONS_EXTENSION_NAME: &core::ffi::CStr = c"VK_EXT_sample_locations";

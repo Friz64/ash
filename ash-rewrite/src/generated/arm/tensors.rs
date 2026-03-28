@@ -213,20 +213,44 @@ pub struct ExternalMemoryTensorCreateInfoARM {
 #[repr(transparent)]
 #[derive(Clone, Copy)]
 pub struct TensorTilingARM(pub(crate) i32);
+///Provided by [`arm::tensors`](crate::arm::tensors)
+impl crate::vk::ImageUsageFlagBits {
+    pub const TENSOR_ALIASING_ARM: Self = Self(1 << 23);
+}
+///Provided by [`arm::tensors`](crate::arm::tensors)
+impl crate::vk::FormatFeatureFlagBits2 {
+    pub const TENSOR_SHADER_ARM: Self = Self(1 << 39);
+    pub const TENSOR_IMAGE_ALIASING_ARM: Self = Self(1 << 43);
+}
 #[repr(transparent)]
 #[derive(Clone, Copy)]
 pub struct TensorCreateFlagsARM(pub(crate) u64);
 #[repr(transparent)]
 #[derive(Clone, Copy)]
 pub struct TensorCreateFlagBitsARM(pub(crate) u64);
-impl TensorCreateFlagBitsARM {}
+///Provided by [`arm::tensors`](crate::arm::tensors)
+impl TensorCreateFlagBitsARM {
+    pub const MUTABLE_FORMAT_ARM: Self = Self(1 << 0);
+    pub const PROTECTED_ARM: Self = Self(1 << 1);
+    pub const DESCRIPTOR_BUFFER_CAPTURE_REPLAY_ARM: Self = Self(1 << 2);
+}
 #[repr(transparent)]
 #[derive(Clone, Copy)]
 pub struct TensorUsageFlagsARM(pub(crate) u64);
 #[repr(transparent)]
 #[derive(Clone, Copy)]
 pub struct TensorUsageFlagBitsARM(pub(crate) u64);
-impl TensorUsageFlagBitsARM {}
+///Provided by [`arm::tensors`](crate::arm::tensors)
+impl TensorUsageFlagBitsARM {
+    pub const SHADER_ARM: Self = Self(1 << 1);
+    pub const TRANSFER_SRC_ARM: Self = Self(1 << 2);
+    pub const TRANSFER_DST_ARM: Self = Self(1 << 3);
+    pub const IMAGE_ALIASING_ARM: Self = Self(1 << 4);
+}
+///Provided by [`arm::tensors`](crate::arm::tensors)
+impl crate::vk::TensorViewCreateFlagBitsARM {
+    pub const DESCRIPTOR_BUFFER_CAPTURE_REPLAY_ARM: Self = Self(1 << 0);
+}
 #[repr(transparent)]
 #[derive(Clone, Copy)]
 pub struct TensorViewARM(pub(crate) i32);

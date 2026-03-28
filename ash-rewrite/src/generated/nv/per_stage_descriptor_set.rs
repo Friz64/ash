@@ -9,5 +9,9 @@ pub struct PhysicalDevicePerStageDescriptorSetFeaturesNV {
     pub per_stage_descriptor_set: crate::vk::Bool32,
     pub dynamic_pipeline_layout: crate::vk::Bool32,
 }
+///Provided by [`nv::per_stage_descriptor_set`](crate::nv::per_stage_descriptor_set)
+impl crate::vk::DescriptorSetLayoutCreateFlagBits {
+    pub const PER_STAGE_NV: Self = Self(1 << 6);
+}
 pub const NV_PER_STAGE_DESCRIPTOR_SET_SPEC_VERSION: u32 = 1;
 pub const NV_PER_STAGE_DESCRIPTOR_SET_EXTENSION_NAME: &core::ffi::CStr = c"VK_NV_per_stage_descriptor_set";

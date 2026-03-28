@@ -39,19 +39,44 @@ pub struct ResolveImageModeInfoKHR {
     pub resolve_mode: crate::vk::ResolveModeFlagBits,
     pub stencil_resolve_mode: crate::vk::ResolveModeFlagBits,
 }
+///Provided by [`khr::maintenance10`](crate::khr::maintenance10)
+impl crate::vk::AttachmentDescriptionFlagBits {
+    pub const RESOLVE_SKIP_TRANSFER_FUNCTION_KHR: Self = Self(1 << 1);
+    pub const RESOLVE_ENABLE_TRANSFER_FUNCTION_KHR: Self = Self(1 << 2);
+}
+///Provided by [`khr::maintenance10`](crate::khr::maintenance10)
+impl crate::vk::FormatFeatureFlagBits2 {
+    pub const DEPTH_COPY_ON_COMPUTE_QUEUE_KHR: Self = Self(1 << 52);
+    pub const DEPTH_COPY_ON_TRANSFER_QUEUE_KHR: Self = Self(1 << 53);
+    pub const STENCIL_COPY_ON_COMPUTE_QUEUE_KHR: Self = Self(1 << 54);
+    pub const STENCIL_COPY_ON_TRANSFER_QUEUE_KHR: Self = Self(1 << 55);
+}
+///Provided by [`khr::maintenance10`](crate::khr::maintenance10)
+impl crate::vk::RenderingFlagBits {
+    pub const LOCAL_READ_CONCURRENT_ACCESS_CONTROL_KHR: Self = Self(1 << 8);
+}
 #[repr(transparent)]
 #[derive(Clone, Copy)]
 pub struct RenderingAttachmentFlagsKHR(pub(crate) u32);
 #[repr(transparent)]
 #[derive(Clone, Copy)]
 pub struct RenderingAttachmentFlagBitsKHR(pub(crate) u32);
-impl RenderingAttachmentFlagBitsKHR {}
+///Provided by [`khr::maintenance10`](crate::khr::maintenance10)
+impl RenderingAttachmentFlagBitsKHR {
+    pub const INPUT_ATTACHMENT_FEEDBACK_KHR: Self = Self(1 << 0);
+    pub const RESOLVE_SKIP_TRANSFER_FUNCTION_KHR: Self = Self(1 << 1);
+    pub const RESOLVE_ENABLE_TRANSFER_FUNCTION_KHR: Self = Self(1 << 2);
+}
 #[repr(transparent)]
 #[derive(Clone, Copy)]
 pub struct ResolveImageFlagsKHR(pub(crate) u32);
 #[repr(transparent)]
 #[derive(Clone, Copy)]
 pub struct ResolveImageFlagBitsKHR(pub(crate) u32);
-impl ResolveImageFlagBitsKHR {}
+///Provided by [`khr::maintenance10`](crate::khr::maintenance10)
+impl ResolveImageFlagBitsKHR {
+    pub const SKIP_TRANSFER_FUNCTION_KHR: Self = Self(1 << 0);
+    pub const ENABLE_TRANSFER_FUNCTION_KHR: Self = Self(1 << 1);
+}
 pub const KHR_MAINTENANCE_10_SPEC_VERSION: u32 = 1;
 pub const KHR_MAINTENANCE_10_EXTENSION_NAME: &core::ffi::CStr = c"VK_KHR_maintenance10";

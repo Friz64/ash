@@ -40,5 +40,13 @@ pub struct AccelerationStructureTrianglesDisplacementMicromapNV {
 #[repr(transparent)]
 #[derive(Clone, Copy)]
 pub struct DisplacementMicromapFormatNV(pub(crate) i32);
+///Provided by [`nv::displacement_micromap`](crate::nv::displacement_micromap)
+impl crate::vk::PipelineCreateFlagBits {
+    pub const RAY_TRACING_DISPLACEMENT_MICROMAP_NV: Self = Self(1 << 28);
+}
+///Provided by [`nv::displacement_micromap`](crate::nv::displacement_micromap)
+impl crate::vk::BuildAccelerationStructureFlagBitsKHR {
+    pub const ALLOW_DISPLACEMENT_MICROMAP_UPDATE_NV: Self = Self(1 << 9);
+}
 pub const NV_DISPLACEMENT_MICROMAP_SPEC_VERSION: u32 = 2;
 pub const NV_DISPLACEMENT_MICROMAP_EXTENSION_NAME: &core::ffi::CStr = c"VK_NV_displacement_micromap";

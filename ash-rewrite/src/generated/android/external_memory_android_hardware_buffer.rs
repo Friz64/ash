@@ -65,5 +65,9 @@ pub struct AndroidHardwareBufferFormatProperties2ANDROID {
     pub suggested_x_chroma_offset: crate::vk::ChromaLocation,
     pub suggested_y_chroma_offset: crate::vk::ChromaLocation,
 }
+///Provided by [`android::external_memory_android_hardware_buffer`](crate::android::external_memory_android_hardware_buffer)
+impl crate::vk::ExternalMemoryHandleTypeFlagBits {
+    pub const ANDROID_HARDWARE_BUFFER_ANDROID: Self = Self(1 << 10);
+}
 pub const ANDROID_EXTERNAL_MEMORY_ANDROID_HARDWARE_BUFFER_SPEC_VERSION: u32 = 5;
 pub const ANDROID_EXTERNAL_MEMORY_ANDROID_HARDWARE_BUFFER_EXTENSION_NAME: &core::ffi::CStr = c"VK_ANDROID_external_memory_android_hardware_buffer";

@@ -65,5 +65,12 @@ pub struct DrmFormatModifierProperties2EXT {
     pub drm_format_modifier_plane_count: u32,
     pub drm_format_modifier_tiling_features: crate::vk::FormatFeatureFlags2,
 }
+///Provided by [`ext::image_drm_format_modifier`](crate::ext::image_drm_format_modifier)
+impl crate::vk::ImageAspectFlagBits {
+    pub const MEMORY_PLANE_0_EXT: Self = Self(1 << 7);
+    pub const MEMORY_PLANE_1_EXT: Self = Self(1 << 8);
+    pub const MEMORY_PLANE_2_EXT: Self = Self(1 << 9);
+    pub const MEMORY_PLANE_3_EXT: Self = Self(1 << 10);
+}
 pub const EXT_IMAGE_DRM_FORMAT_MODIFIER_SPEC_VERSION: u32 = 2;
 pub const EXT_IMAGE_DRM_FORMAT_MODIFIER_EXTENSION_NAME: &core::ffi::CStr = c"VK_EXT_image_drm_format_modifier";

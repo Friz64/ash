@@ -23,5 +23,9 @@ pub struct MultisampledRenderToSingleSampledInfoEXT {
     pub multisampled_render_to_single_sampled_enable: crate::vk::Bool32,
     pub rasterization_samples: crate::vk::SampleCountFlagBits,
 }
+///Provided by [`ext::multisampled_render_to_single_sampled`](crate::ext::multisampled_render_to_single_sampled)
+impl crate::vk::ImageCreateFlagBits {
+    pub const MULTISAMPLED_RENDER_TO_SINGLE_SAMPLED_EXT: Self = Self(1 << 18);
+}
 pub const EXT_MULTISAMPLED_RENDER_TO_SINGLE_SAMPLED_SPEC_VERSION: u32 = 1;
 pub const EXT_MULTISAMPLED_RENDER_TO_SINGLE_SAMPLED_EXTENSION_NAME: &core::ffi::CStr = c"VK_EXT_multisampled_render_to_single_sampled";

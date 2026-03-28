@@ -23,5 +23,9 @@ pub struct SurfaceCapabilitiesPresentWait2KHR {
     pub p_next: *mut core::ffi::c_void,
     pub present_wait2_supported: crate::vk::Bool32,
 }
+///Provided by [`khr::present_wait2`](crate::khr::present_wait2)
+impl crate::vk::SwapchainCreateFlagBitsKHR {
+    pub const PRESENT_WAIT_2_KHR: Self = Self(1 << 7);
+}
 pub const KHR_PRESENT_WAIT_2_SPEC_VERSION: u32 = 1;
 pub const KHR_PRESENT_WAIT_2_EXTENSION_NAME: &core::ffi::CStr = c"VK_KHR_present_wait2";

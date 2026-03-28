@@ -159,26 +159,70 @@ pub struct VideoEncodeH264RateControlLayerInfoKHR {
     pub use_max_frame_size: crate::vk::Bool32,
     pub max_frame_size: crate::vk::VideoEncodeH264FrameSizeKHR,
 }
+///Provided by [`khr::video_encode_h264`](crate::khr::video_encode_h264)
+impl crate::vk::VideoCodecOperationFlagBitsKHR {
+    pub const ENCODE_H264_KHR: Self = Self(1 << 16);
+}
 #[repr(transparent)]
 #[derive(Clone, Copy)]
 pub struct VideoEncodeH264CapabilityFlagsKHR(pub(crate) u32);
 #[repr(transparent)]
 #[derive(Clone, Copy)]
 pub struct VideoEncodeH264CapabilityFlagBitsKHR(pub(crate) u32);
-impl VideoEncodeH264CapabilityFlagBitsKHR {}
+///Provided by [`khr::video_encode_h264`](crate::khr::video_encode_h264)
+impl VideoEncodeH264CapabilityFlagBitsKHR {
+    pub const HRD_COMPLIANCE_KHR: Self = Self(1 << 0);
+    pub const PREDICTION_WEIGHT_TABLE_GENERATED_KHR: Self = Self(1 << 1);
+    pub const ROW_UNALIGNED_SLICE_KHR: Self = Self(1 << 2);
+    pub const DIFFERENT_SLICE_TYPE_KHR: Self = Self(1 << 3);
+    pub const B_FRAME_IN_L0_LIST_KHR: Self = Self(1 << 4);
+    pub const B_FRAME_IN_L1_LIST_KHR: Self = Self(1 << 5);
+    pub const PER_PICTURE_TYPE_MIN_MAX_QP_KHR: Self = Self(1 << 6);
+    pub const PER_SLICE_CONSTANT_QP_KHR: Self = Self(1 << 7);
+    pub const GENERATE_PREFIX_NALU_KHR: Self = Self(1 << 8);
+}
 #[repr(transparent)]
 #[derive(Clone, Copy)]
 pub struct VideoEncodeH264StdFlagsKHR(pub(crate) u32);
 #[repr(transparent)]
 #[derive(Clone, Copy)]
 pub struct VideoEncodeH264StdFlagBitsKHR(pub(crate) u32);
-impl VideoEncodeH264StdFlagBitsKHR {}
+///Provided by [`khr::video_encode_h264`](crate::khr::video_encode_h264)
+impl VideoEncodeH264StdFlagBitsKHR {
+    pub const SEPARATE_COLOR_PLANE_FLAG_SET_KHR: Self = Self(1 << 0);
+    pub const QPPRIME_Y_ZERO_TRANSFORM_BYPASS_FLAG_SET_KHR: Self = Self(1 << 1);
+    pub const SCALING_MATRIX_PRESENT_FLAG_SET_KHR: Self = Self(1 << 2);
+    pub const CHROMA_QP_INDEX_OFFSET_KHR: Self = Self(1 << 3);
+    pub const SECOND_CHROMA_QP_INDEX_OFFSET_KHR: Self = Self(1 << 4);
+    pub const PIC_INIT_QP_MINUS26_KHR: Self = Self(1 << 5);
+    pub const WEIGHTED_PRED_FLAG_SET_KHR: Self = Self(1 << 6);
+    pub const WEIGHTED_BIPRED_IDC_EXPLICIT_KHR: Self = Self(1 << 7);
+    pub const WEIGHTED_BIPRED_IDC_IMPLICIT_KHR: Self = Self(1 << 8);
+    pub const TRANSFORM_8X8_MODE_FLAG_SET_KHR: Self = Self(1 << 9);
+    pub const DIRECT_SPATIAL_MV_PRED_FLAG_UNSET_KHR: Self = Self(1 << 10);
+    pub const ENTROPY_CODING_MODE_FLAG_UNSET_KHR: Self = Self(1 << 11);
+    pub const ENTROPY_CODING_MODE_FLAG_SET_KHR: Self = Self(1 << 12);
+    pub const DIRECT_8X8_INFERENCE_FLAG_UNSET_KHR: Self = Self(1 << 13);
+    pub const CONSTRAINED_INTRA_PRED_FLAG_SET_KHR: Self = Self(1 << 14);
+    pub const DEBLOCKING_FILTER_DISABLED_KHR: Self = Self(1 << 15);
+    pub const DEBLOCKING_FILTER_ENABLED_KHR: Self = Self(1 << 16);
+    pub const DEBLOCKING_FILTER_PARTIAL_KHR: Self = Self(1 << 17);
+    pub const SLICE_QP_DELTA_KHR: Self = Self(1 << 19);
+    pub const DIFFERENT_SLICE_QP_DELTA_KHR: Self = Self(1 << 20);
+}
 #[repr(transparent)]
 #[derive(Clone, Copy)]
 pub struct VideoEncodeH264RateControlFlagsKHR(pub(crate) u32);
 #[repr(transparent)]
 #[derive(Clone, Copy)]
 pub struct VideoEncodeH264RateControlFlagBitsKHR(pub(crate) u32);
-impl VideoEncodeH264RateControlFlagBitsKHR {}
+///Provided by [`khr::video_encode_h264`](crate::khr::video_encode_h264)
+impl VideoEncodeH264RateControlFlagBitsKHR {
+    pub const ATTEMPT_HRD_COMPLIANCE_KHR: Self = Self(1 << 0);
+    pub const REGULAR_GOP_KHR: Self = Self(1 << 1);
+    pub const REFERENCE_PATTERN_FLAT_KHR: Self = Self(1 << 2);
+    pub const REFERENCE_PATTERN_DYADIC_KHR: Self = Self(1 << 3);
+    pub const TEMPORAL_LAYER_PATTERN_DYADIC_KHR: Self = Self(1 << 4);
+}
 pub const KHR_VIDEO_ENCODE_H264_SPEC_VERSION: u32 = 14;
 pub const KHR_VIDEO_ENCODE_H264_EXTENSION_NAME: &core::ffi::CStr = c"VK_KHR_video_encode_h264";

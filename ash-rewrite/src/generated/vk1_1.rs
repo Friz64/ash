@@ -574,13 +574,91 @@ pub struct SamplerYcbcrRange(pub(crate) i32);
 #[repr(transparent)]
 #[derive(Clone, Copy)]
 pub struct ChromaLocation(pub(crate) i32);
+///Provided by [`vk1_1`](crate::vk1_1)
+impl crate::vk::DeviceQueueCreateFlagBits {
+    pub const PROTECTED: Self = Self(1 << 0);
+}
+///Provided by [`vk1_1`](crate::vk1_1)
+impl crate::vk::QueueFlagBits {
+    pub const PROTECTED: Self = Self(1 << 4);
+}
+///Provided by [`vk1_1`](crate::vk1_1)
+impl crate::vk::MemoryPropertyFlagBits {
+    pub const PROTECTED: Self = Self(1 << 5);
+}
+///Provided by [`vk1_1`](crate::vk1_1)
+impl crate::vk::MemoryHeapFlagBits {
+    pub const MULTI_INSTANCE: Self = Self(1 << 1);
+}
+///Provided by [`vk1_1`](crate::vk1_1)
+impl crate::vk::BufferCreateFlagBits {
+    pub const PROTECTED: Self = Self(1 << 3);
+}
+///Provided by [`vk1_1`](crate::vk1_1)
+impl crate::vk::ImageCreateFlagBits {
+    pub const ALIAS: Self = Self(1 << 10);
+    pub const SPLIT_INSTANCE_BIND_REGIONS: Self = Self(1 << 6);
+    pub const _2D_ARRAY_COMPATIBLE: Self = Self(1 << 5);
+    pub const BLOCK_TEXEL_VIEW_COMPATIBLE: Self = Self(1 << 7);
+    pub const EXTENDED_USAGE: Self = Self(1 << 8);
+    pub const PROTECTED: Self = Self(1 << 11);
+    pub const DISJOINT: Self = Self(1 << 9);
+}
+///Provided by [`vk1_1`](crate::vk1_1)
+impl crate::vk::PipelineCreateFlagBits {
+    pub const DISPATCH_BASE: Self = Self(1 << 4);
+    pub const VIEW_INDEX_FROM_DEVICE_INDEX: Self = Self(1 << 3);
+}
+///Provided by [`vk1_1`](crate::vk1_1)
+impl crate::vk::FormatFeatureFlagBits {
+    pub const TRANSFER_SRC: Self = Self(1 << 14);
+    pub const TRANSFER_DST: Self = Self(1 << 15);
+    pub const MIDPOINT_CHROMA_SAMPLES: Self = Self(1 << 17);
+    pub const SAMPLED_IMAGE_YCBCR_CONVERSION_LINEAR_FILTER: Self = Self(1 << 18);
+    pub const SAMPLED_IMAGE_YCBCR_CONVERSION_SEPARATE_RECONSTRUCTION_FILTER: Self = Self(
+        1 << 19,
+    );
+    pub const SAMPLED_IMAGE_YCBCR_CONVERSION_CHROMA_RECONSTRUCTION_EXPLICIT: Self = Self(
+        1 << 20,
+    );
+    pub const SAMPLED_IMAGE_YCBCR_CONVERSION_CHROMA_RECONSTRUCTION_EXPLICIT_FORCEABLE: Self = Self(
+        1 << 21,
+    );
+    pub const DISJOINT: Self = Self(1 << 22);
+    pub const COSITED_CHROMA_SAMPLES: Self = Self(1 << 23);
+}
+///Provided by [`vk1_1`](crate::vk1_1)
+impl crate::vk::CommandPoolCreateFlagBits {
+    pub const PROTECTED: Self = Self(1 << 2);
+}
+///Provided by [`vk1_1`](crate::vk1_1)
+impl crate::vk::ImageAspectFlagBits {
+    pub const PLANE_0: Self = Self(1 << 4);
+    pub const PLANE_1: Self = Self(1 << 5);
+    pub const PLANE_2: Self = Self(1 << 6);
+}
+///Provided by [`vk1_1`](crate::vk1_1)
+impl crate::vk::DependencyFlagBits {
+    pub const DEVICE_GROUP: Self = Self(1 << 2);
+    pub const VIEW_LOCAL: Self = Self(1 << 1);
+}
 #[repr(transparent)]
 #[derive(Clone, Copy)]
 pub struct SubgroupFeatureFlags(pub(crate) u32);
 #[repr(transparent)]
 #[derive(Clone, Copy)]
 pub struct SubgroupFeatureFlagBits(pub(crate) u32);
-impl SubgroupFeatureFlagBits {}
+///Provided by [`vk1_1`](crate::vk1_1)
+impl SubgroupFeatureFlagBits {
+    pub const BASIC: Self = Self(1 << 0);
+    pub const VOTE: Self = Self(1 << 1);
+    pub const ARITHMETIC: Self = Self(1 << 2);
+    pub const BALLOT: Self = Self(1 << 3);
+    pub const SHUFFLE: Self = Self(1 << 4);
+    pub const SHUFFLE_RELATIVE: Self = Self(1 << 5);
+    pub const CLUSTERED: Self = Self(1 << 6);
+    pub const QUAD: Self = Self(1 << 7);
+}
 #[repr(transparent)]
 #[derive(Clone, Copy)]
 pub struct DescriptorUpdateTemplateCreateFlags(pub(crate) u32);
@@ -590,14 +668,23 @@ pub struct PeerMemoryFeatureFlags(pub(crate) u32);
 #[repr(transparent)]
 #[derive(Clone, Copy)]
 pub struct PeerMemoryFeatureFlagBits(pub(crate) u32);
-impl PeerMemoryFeatureFlagBits {}
+///Provided by [`vk1_1`](crate::vk1_1)
+impl PeerMemoryFeatureFlagBits {
+    pub const COPY_SRC: Self = Self(1 << 0);
+    pub const COPY_DST: Self = Self(1 << 1);
+    pub const GENERIC_SRC: Self = Self(1 << 2);
+    pub const GENERIC_DST: Self = Self(1 << 3);
+}
 #[repr(transparent)]
 #[derive(Clone, Copy)]
 pub struct MemoryAllocateFlags(pub(crate) u32);
 #[repr(transparent)]
 #[derive(Clone, Copy)]
 pub struct MemoryAllocateFlagBits(pub(crate) u32);
-impl MemoryAllocateFlagBits {}
+///Provided by [`vk1_1`](crate::vk1_1)
+impl MemoryAllocateFlagBits {
+    pub const DEVICE_MASK: Self = Self(1 << 0);
+}
 #[repr(transparent)]
 #[derive(Clone, Copy)]
 pub struct CommandPoolTrimFlags(pub(crate) u32);
@@ -607,56 +694,98 @@ pub struct ExternalMemoryHandleTypeFlags(pub(crate) u32);
 #[repr(transparent)]
 #[derive(Clone, Copy)]
 pub struct ExternalMemoryHandleTypeFlagBits(pub(crate) u32);
-impl ExternalMemoryHandleTypeFlagBits {}
+///Provided by [`vk1_1`](crate::vk1_1)
+impl ExternalMemoryHandleTypeFlagBits {
+    pub const OPAQUE_FD: Self = Self(1 << 0);
+    pub const OPAQUE_WIN32: Self = Self(1 << 1);
+    pub const OPAQUE_WIN32_KMT: Self = Self(1 << 2);
+    pub const D3D11_TEXTURE: Self = Self(1 << 3);
+    pub const D3D11_TEXTURE_KMT: Self = Self(1 << 4);
+    pub const D3D12_HEAP: Self = Self(1 << 5);
+    pub const D3D12_RESOURCE: Self = Self(1 << 6);
+}
 #[repr(transparent)]
 #[derive(Clone, Copy)]
 pub struct ExternalMemoryFeatureFlags(pub(crate) u32);
 #[repr(transparent)]
 #[derive(Clone, Copy)]
 pub struct ExternalMemoryFeatureFlagBits(pub(crate) u32);
-impl ExternalMemoryFeatureFlagBits {}
+///Provided by [`vk1_1`](crate::vk1_1)
+impl ExternalMemoryFeatureFlagBits {
+    pub const DEDICATED_ONLY: Self = Self(1 << 0);
+    pub const EXPORTABLE: Self = Self(1 << 1);
+    pub const IMPORTABLE: Self = Self(1 << 2);
+}
 #[repr(transparent)]
 #[derive(Clone, Copy)]
 pub struct ExternalSemaphoreHandleTypeFlags(pub(crate) u32);
 #[repr(transparent)]
 #[derive(Clone, Copy)]
 pub struct ExternalSemaphoreHandleTypeFlagBits(pub(crate) u32);
-impl ExternalSemaphoreHandleTypeFlagBits {}
+///Provided by [`vk1_1`](crate::vk1_1)
+impl ExternalSemaphoreHandleTypeFlagBits {
+    pub const OPAQUE_FD: Self = Self(1 << 0);
+    pub const OPAQUE_WIN32: Self = Self(1 << 1);
+    pub const OPAQUE_WIN32_KMT: Self = Self(1 << 2);
+    pub const D3D12_FENCE: Self = Self(1 << 3);
+    pub const D3D11_FENCE: Self = Self::D3D12_FENCE;
+    pub const SYNC_FD: Self = Self(1 << 4);
+}
 #[repr(transparent)]
 #[derive(Clone, Copy)]
 pub struct ExternalSemaphoreFeatureFlags(pub(crate) u32);
 #[repr(transparent)]
 #[derive(Clone, Copy)]
 pub struct ExternalSemaphoreFeatureFlagBits(pub(crate) u32);
-impl ExternalSemaphoreFeatureFlagBits {}
+///Provided by [`vk1_1`](crate::vk1_1)
+impl ExternalSemaphoreFeatureFlagBits {
+    pub const EXPORTABLE: Self = Self(1 << 0);
+    pub const IMPORTABLE: Self = Self(1 << 1);
+}
 #[repr(transparent)]
 #[derive(Clone, Copy)]
 pub struct SemaphoreImportFlags(pub(crate) u32);
 #[repr(transparent)]
 #[derive(Clone, Copy)]
 pub struct SemaphoreImportFlagBits(pub(crate) u32);
-impl SemaphoreImportFlagBits {}
+///Provided by [`vk1_1`](crate::vk1_1)
+impl SemaphoreImportFlagBits {
+    pub const TEMPORARY: Self = Self(1 << 0);
+}
 #[repr(transparent)]
 #[derive(Clone, Copy)]
 pub struct ExternalFenceHandleTypeFlags(pub(crate) u32);
 #[repr(transparent)]
 #[derive(Clone, Copy)]
 pub struct ExternalFenceHandleTypeFlagBits(pub(crate) u32);
-impl ExternalFenceHandleTypeFlagBits {}
+///Provided by [`vk1_1`](crate::vk1_1)
+impl ExternalFenceHandleTypeFlagBits {
+    pub const OPAQUE_FD: Self = Self(1 << 0);
+    pub const OPAQUE_WIN32: Self = Self(1 << 1);
+    pub const OPAQUE_WIN32_KMT: Self = Self(1 << 2);
+    pub const SYNC_FD: Self = Self(1 << 3);
+}
 #[repr(transparent)]
 #[derive(Clone, Copy)]
 pub struct ExternalFenceFeatureFlags(pub(crate) u32);
 #[repr(transparent)]
 #[derive(Clone, Copy)]
 pub struct ExternalFenceFeatureFlagBits(pub(crate) u32);
-impl ExternalFenceFeatureFlagBits {}
+///Provided by [`vk1_1`](crate::vk1_1)
+impl ExternalFenceFeatureFlagBits {
+    pub const EXPORTABLE: Self = Self(1 << 0);
+    pub const IMPORTABLE: Self = Self(1 << 1);
+}
 #[repr(transparent)]
 #[derive(Clone, Copy)]
 pub struct FenceImportFlags(pub(crate) u32);
 #[repr(transparent)]
 #[derive(Clone, Copy)]
 pub struct FenceImportFlagBits(pub(crate) u32);
-impl FenceImportFlagBits {}
+///Provided by [`vk1_1`](crate::vk1_1)
+impl FenceImportFlagBits {
+    pub const TEMPORARY: Self = Self(1 << 0);
+}
 #[repr(transparent)]
 #[derive(Clone, Copy)]
 pub struct DescriptorUpdateTemplate(pub(crate) i32);

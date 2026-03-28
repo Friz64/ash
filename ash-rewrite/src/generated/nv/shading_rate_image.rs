@@ -63,5 +63,17 @@ pub struct ShadingRatePaletteEntryNV(pub(crate) i32);
 #[repr(transparent)]
 #[derive(Clone, Copy)]
 pub struct CoarseSampleOrderTypeNV(pub(crate) i32);
+///Provided by [`nv::shading_rate_image`](crate::nv::shading_rate_image)
+impl crate::vk::AccessFlagBits {
+    pub const SHADING_RATE_IMAGE_READ_NV: Self = Self::FRAGMENT_SHADING_RATE_ATTACHMENT_READ_KHR;
+}
+///Provided by [`nv::shading_rate_image`](crate::nv::shading_rate_image)
+impl crate::vk::ImageUsageFlagBits {
+    pub const SHADING_RATE_IMAGE_NV: Self = Self::FRAGMENT_SHADING_RATE_ATTACHMENT_KHR;
+}
+///Provided by [`nv::shading_rate_image`](crate::nv::shading_rate_image)
+impl crate::vk::PipelineStageFlagBits {
+    pub const SHADING_RATE_IMAGE_NV: Self = Self::FRAGMENT_SHADING_RATE_ATTACHMENT_KHR;
+}
 pub const NV_SHADING_RATE_IMAGE_SPEC_VERSION: u32 = 3;
 pub const NV_SHADING_RATE_IMAGE_EXTENSION_NAME: &core::ffi::CStr = c"VK_NV_shading_rate_image";

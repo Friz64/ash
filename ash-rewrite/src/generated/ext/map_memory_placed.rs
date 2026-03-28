@@ -24,5 +24,13 @@ pub struct MemoryMapPlacedInfoEXT {
     pub p_next: *const core::ffi::c_void,
     pub p_placed_address: *mut core::ffi::c_void,
 }
+///Provided by [`ext::map_memory_placed`](crate::ext::map_memory_placed)
+impl crate::vk::MemoryMapFlagBits {
+    pub const PLACED_EXT: Self = Self(1 << 0);
+}
+///Provided by [`ext::map_memory_placed`](crate::ext::map_memory_placed)
+impl crate::vk::MemoryUnmapFlagBits {
+    pub const RESERVE_EXT: Self = Self(1 << 0);
+}
 pub const EXT_MAP_MEMORY_PLACED_SPEC_VERSION: u32 = 1;
 pub const EXT_MAP_MEMORY_PLACED_EXTENSION_NAME: &core::ffi::CStr = c"VK_EXT_map_memory_placed";

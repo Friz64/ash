@@ -33,7 +33,13 @@ pub struct CompositeAlphaFlagsKHR(pub(crate) u32);
 #[repr(transparent)]
 #[derive(Clone, Copy)]
 pub struct CompositeAlphaFlagBitsKHR(pub(crate) u32);
-impl CompositeAlphaFlagBitsKHR {}
+///Provided by [`khr::surface`](crate::khr::surface)
+impl CompositeAlphaFlagBitsKHR {
+    pub const OPAQUE_KHR: Self = Self(1 << 0);
+    pub const PRE_MULTIPLIED_KHR: Self = Self(1 << 1);
+    pub const POST_MULTIPLIED_KHR: Self = Self(1 << 2);
+    pub const INHERIT_KHR: Self = Self(1 << 3);
+}
 #[repr(transparent)]
 #[derive(Clone, Copy)]
 pub struct SurfaceKHR(pub(crate) i32);

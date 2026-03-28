@@ -6,5 +6,18 @@ pub type BufferDeviceAddressInfoKHR = crate::vk::BufferDeviceAddressInfo;
 pub type BufferOpaqueCaptureAddressCreateInfoKHR = crate::vk::BufferOpaqueCaptureAddressCreateInfo;
 pub type MemoryOpaqueCaptureAddressAllocateInfoKHR = crate::vk::MemoryOpaqueCaptureAddressAllocateInfo;
 pub type DeviceMemoryOpaqueCaptureAddressInfoKHR = crate::vk::DeviceMemoryOpaqueCaptureAddressInfo;
+///Provided by [`khr::buffer_device_address`](crate::khr::buffer_device_address)
+impl crate::vk::BufferUsageFlagBits {
+    pub const SHADER_DEVICE_ADDRESS_KHR: Self = Self::SHADER_DEVICE_ADDRESS;
+}
+///Provided by [`khr::buffer_device_address`](crate::khr::buffer_device_address)
+impl crate::vk::BufferCreateFlagBits {
+    pub const DEVICE_ADDRESS_CAPTURE_REPLAY_KHR: Self = Self::DEVICE_ADDRESS_CAPTURE_REPLAY;
+}
+///Provided by [`khr::buffer_device_address`](crate::khr::buffer_device_address)
+impl crate::vk::MemoryAllocateFlagBits {
+    pub const DEVICE_ADDRESS_KHR: Self = Self::DEVICE_ADDRESS;
+    pub const DEVICE_ADDRESS_CAPTURE_REPLAY_KHR: Self = Self::DEVICE_ADDRESS_CAPTURE_REPLAY;
+}
 pub const KHR_BUFFER_DEVICE_ADDRESS_SPEC_VERSION: u32 = 1;
 pub const KHR_BUFFER_DEVICE_ADDRESS_EXTENSION_NAME: &core::ffi::CStr = c"VK_KHR_buffer_device_address";

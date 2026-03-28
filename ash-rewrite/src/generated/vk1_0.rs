@@ -1321,49 +1321,42 @@ pub struct FramebufferCreateFlags(pub(crate) u32);
 #[repr(transparent)]
 #[derive(Clone, Copy)]
 pub struct FramebufferCreateFlagBits(pub(crate) u32);
-impl FramebufferCreateFlagBits {}
 #[repr(transparent)]
 #[derive(Clone, Copy)]
 pub struct QueryPoolCreateFlags(pub(crate) u32);
 #[repr(transparent)]
 #[derive(Clone, Copy)]
 pub struct QueryPoolCreateFlagBits(pub(crate) u32);
-impl QueryPoolCreateFlagBits {}
 #[repr(transparent)]
 #[derive(Clone, Copy)]
 pub struct RenderPassCreateFlags(pub(crate) u32);
 #[repr(transparent)]
 #[derive(Clone, Copy)]
 pub struct RenderPassCreateFlagBits(pub(crate) u32);
-impl RenderPassCreateFlagBits {}
 #[repr(transparent)]
 #[derive(Clone, Copy)]
 pub struct SamplerCreateFlags(pub(crate) u32);
 #[repr(transparent)]
 #[derive(Clone, Copy)]
 pub struct SamplerCreateFlagBits(pub(crate) u32);
-impl SamplerCreateFlagBits {}
 #[repr(transparent)]
 #[derive(Clone, Copy)]
 pub struct PipelineLayoutCreateFlags(pub(crate) u32);
 #[repr(transparent)]
 #[derive(Clone, Copy)]
 pub struct PipelineLayoutCreateFlagBits(pub(crate) u32);
-impl PipelineLayoutCreateFlagBits {}
 #[repr(transparent)]
 #[derive(Clone, Copy)]
 pub struct PipelineCacheCreateFlags(pub(crate) u32);
 #[repr(transparent)]
 #[derive(Clone, Copy)]
 pub struct PipelineCacheCreateFlagBits(pub(crate) u32);
-impl PipelineCacheCreateFlagBits {}
 #[repr(transparent)]
 #[derive(Clone, Copy)]
 pub struct PipelineDepthStencilStateCreateFlags(pub(crate) u32);
 #[repr(transparent)]
 #[derive(Clone, Copy)]
 pub struct PipelineDepthStencilStateCreateFlagBits(pub(crate) u32);
-impl PipelineDepthStencilStateCreateFlagBits {}
 #[repr(transparent)]
 #[derive(Clone, Copy)]
 pub struct PipelineDynamicStateCreateFlags(pub(crate) u32);
@@ -1373,7 +1366,6 @@ pub struct PipelineColorBlendStateCreateFlags(pub(crate) u32);
 #[repr(transparent)]
 #[derive(Clone, Copy)]
 pub struct PipelineColorBlendStateCreateFlagBits(pub(crate) u32);
-impl PipelineColorBlendStateCreateFlagBits {}
 #[repr(transparent)]
 #[derive(Clone, Copy)]
 pub struct PipelineMultisampleStateCreateFlags(pub(crate) u32);
@@ -1398,14 +1390,12 @@ pub struct PipelineShaderStageCreateFlags(pub(crate) u32);
 #[repr(transparent)]
 #[derive(Clone, Copy)]
 pub struct PipelineShaderStageCreateFlagBits(pub(crate) u32);
-impl PipelineShaderStageCreateFlagBits {}
 #[repr(transparent)]
 #[derive(Clone, Copy)]
 pub struct DescriptorSetLayoutCreateFlags(pub(crate) u32);
 #[repr(transparent)]
 #[derive(Clone, Copy)]
 pub struct DescriptorSetLayoutCreateFlagBits(pub(crate) u32);
-impl DescriptorSetLayoutCreateFlagBits {}
 #[repr(transparent)]
 #[derive(Clone, Copy)]
 pub struct BufferViewCreateFlags(pub(crate) u32);
@@ -1415,7 +1405,6 @@ pub struct InstanceCreateFlags(pub(crate) u32);
 #[repr(transparent)]
 #[derive(Clone, Copy)]
 pub struct InstanceCreateFlagBits(pub(crate) u32);
-impl InstanceCreateFlagBits {}
 #[repr(transparent)]
 #[derive(Clone, Copy)]
 pub struct DeviceCreateFlags(pub(crate) u32);
@@ -1425,58 +1414,115 @@ pub struct DeviceQueueCreateFlags(pub(crate) u32);
 #[repr(transparent)]
 #[derive(Clone, Copy)]
 pub struct DeviceQueueCreateFlagBits(pub(crate) u32);
-impl DeviceQueueCreateFlagBits {}
 #[repr(transparent)]
 #[derive(Clone, Copy)]
 pub struct QueueFlags(pub(crate) u32);
 #[repr(transparent)]
 #[derive(Clone, Copy)]
 pub struct QueueFlagBits(pub(crate) u32);
-impl QueueFlagBits {}
+///Provided by [`vk1_0`](crate::vk1_0)
+impl QueueFlagBits {
+    pub const GRAPHICS: Self = Self(1 << 0);
+    pub const COMPUTE: Self = Self(1 << 1);
+    pub const TRANSFER: Self = Self(1 << 2);
+    pub const SPARSE_BINDING: Self = Self(1 << 3);
+}
 #[repr(transparent)]
 #[derive(Clone, Copy)]
 pub struct MemoryPropertyFlags(pub(crate) u32);
 #[repr(transparent)]
 #[derive(Clone, Copy)]
 pub struct MemoryPropertyFlagBits(pub(crate) u32);
-impl MemoryPropertyFlagBits {}
+///Provided by [`vk1_0`](crate::vk1_0)
+impl MemoryPropertyFlagBits {
+    pub const DEVICE_LOCAL: Self = Self(1 << 0);
+    pub const HOST_VISIBLE: Self = Self(1 << 1);
+    pub const HOST_COHERENT: Self = Self(1 << 2);
+    pub const HOST_CACHED: Self = Self(1 << 3);
+    pub const LAZILY_ALLOCATED: Self = Self(1 << 4);
+}
 #[repr(transparent)]
 #[derive(Clone, Copy)]
 pub struct MemoryHeapFlags(pub(crate) u32);
 #[repr(transparent)]
 #[derive(Clone, Copy)]
 pub struct MemoryHeapFlagBits(pub(crate) u32);
-impl MemoryHeapFlagBits {}
+///Provided by [`vk1_0`](crate::vk1_0)
+impl MemoryHeapFlagBits {
+    pub const DEVICE_LOCAL: Self = Self(1 << 0);
+}
 #[repr(transparent)]
 #[derive(Clone, Copy)]
 pub struct AccessFlags(pub(crate) u32);
 #[repr(transparent)]
 #[derive(Clone, Copy)]
 pub struct AccessFlagBits(pub(crate) u32);
-impl AccessFlagBits {}
+///Provided by [`vk1_0`](crate::vk1_0)
+impl AccessFlagBits {
+    pub const INDIRECT_COMMAND_READ: Self = Self(1 << 0);
+    pub const INDEX_READ: Self = Self(1 << 1);
+    pub const VERTEX_ATTRIBUTE_READ: Self = Self(1 << 2);
+    pub const UNIFORM_READ: Self = Self(1 << 3);
+    pub const INPUT_ATTACHMENT_READ: Self = Self(1 << 4);
+    pub const SHADER_READ: Self = Self(1 << 5);
+    pub const SHADER_WRITE: Self = Self(1 << 6);
+    pub const COLOR_ATTACHMENT_READ: Self = Self(1 << 7);
+    pub const COLOR_ATTACHMENT_WRITE: Self = Self(1 << 8);
+    pub const DEPTH_STENCIL_ATTACHMENT_READ: Self = Self(1 << 9);
+    pub const DEPTH_STENCIL_ATTACHMENT_WRITE: Self = Self(1 << 10);
+    pub const TRANSFER_READ: Self = Self(1 << 11);
+    pub const TRANSFER_WRITE: Self = Self(1 << 12);
+    pub const HOST_READ: Self = Self(1 << 13);
+    pub const HOST_WRITE: Self = Self(1 << 14);
+    pub const MEMORY_READ: Self = Self(1 << 15);
+    pub const MEMORY_WRITE: Self = Self(1 << 16);
+}
 #[repr(transparent)]
 #[derive(Clone, Copy)]
 pub struct BufferUsageFlags(pub(crate) u32);
 #[repr(transparent)]
 #[derive(Clone, Copy)]
 pub struct BufferUsageFlagBits(pub(crate) u32);
-impl BufferUsageFlagBits {}
+///Provided by [`vk1_0`](crate::vk1_0)
+impl BufferUsageFlagBits {
+    pub const TRANSFER_SRC: Self = Self(1 << 0);
+    pub const TRANSFER_DST: Self = Self(1 << 1);
+    pub const UNIFORM_TEXEL_BUFFER: Self = Self(1 << 2);
+    pub const STORAGE_TEXEL_BUFFER: Self = Self(1 << 3);
+    pub const UNIFORM_BUFFER: Self = Self(1 << 4);
+    pub const STORAGE_BUFFER: Self = Self(1 << 5);
+    pub const INDEX_BUFFER: Self = Self(1 << 6);
+    pub const VERTEX_BUFFER: Self = Self(1 << 7);
+    pub const INDIRECT_BUFFER: Self = Self(1 << 8);
+}
 #[repr(transparent)]
 #[derive(Clone, Copy)]
 pub struct BufferCreateFlags(pub(crate) u32);
 #[repr(transparent)]
 #[derive(Clone, Copy)]
 pub struct BufferCreateFlagBits(pub(crate) u32);
-impl BufferCreateFlagBits {}
+///Provided by [`vk1_0`](crate::vk1_0)
+impl BufferCreateFlagBits {
+    pub const SPARSE_BINDING: Self = Self(1 << 0);
+    pub const SPARSE_RESIDENCY: Self = Self(1 << 1);
+    pub const SPARSE_ALIASED: Self = Self(1 << 2);
+}
 #[repr(transparent)]
 #[derive(Clone, Copy)]
 pub struct ShaderStageFlags(pub(crate) u32);
 #[repr(transparent)]
 #[derive(Clone, Copy)]
 pub struct ShaderStageFlagBits(pub(crate) u32);
+///Provided by [`vk1_0`](crate::vk1_0)
 impl ShaderStageFlagBits {
-    pub const ALL_GRAPHICS: Self = Self(1);
-    pub const ALL: Self = Self(1);
+    pub const VERTEX: Self = Self(1 << 0);
+    pub const TESSELLATION_CONTROL: Self = Self(1 << 1);
+    pub const TESSELLATION_EVALUATION: Self = Self(1 << 2);
+    pub const GEOMETRY: Self = Self(1 << 3);
+    pub const FRAGMENT: Self = Self(1 << 4);
+    pub const COMPUTE: Self = Self(1 << 5);
+    pub const ALL_GRAPHICS: Self = Self(0x0000001);
+    pub const ALL: Self = Self(0x7FFFFFF);
 }
 #[repr(transparent)]
 #[derive(Clone, Copy)]
@@ -1484,42 +1530,72 @@ pub struct ImageUsageFlags(pub(crate) u32);
 #[repr(transparent)]
 #[derive(Clone, Copy)]
 pub struct ImageUsageFlagBits(pub(crate) u32);
-impl ImageUsageFlagBits {}
+///Provided by [`vk1_0`](crate::vk1_0)
+impl ImageUsageFlagBits {
+    pub const TRANSFER_SRC: Self = Self(1 << 0);
+    pub const TRANSFER_DST: Self = Self(1 << 1);
+    pub const SAMPLED: Self = Self(1 << 2);
+    pub const STORAGE: Self = Self(1 << 3);
+    pub const COLOR_ATTACHMENT: Self = Self(1 << 4);
+    pub const DEPTH_STENCIL_ATTACHMENT: Self = Self(1 << 5);
+    pub const TRANSIENT_ATTACHMENT: Self = Self(1 << 6);
+    pub const INPUT_ATTACHMENT: Self = Self(1 << 7);
+}
 #[repr(transparent)]
 #[derive(Clone, Copy)]
 pub struct ImageCreateFlags(pub(crate) u32);
 #[repr(transparent)]
 #[derive(Clone, Copy)]
 pub struct ImageCreateFlagBits(pub(crate) u32);
-impl ImageCreateFlagBits {}
+///Provided by [`vk1_0`](crate::vk1_0)
+impl ImageCreateFlagBits {
+    pub const SPARSE_BINDING: Self = Self(1 << 0);
+    pub const SPARSE_RESIDENCY: Self = Self(1 << 1);
+    pub const SPARSE_ALIASED: Self = Self(1 << 2);
+    pub const MUTABLE_FORMAT: Self = Self(1 << 3);
+    pub const CUBE_COMPATIBLE: Self = Self(1 << 4);
+}
 #[repr(transparent)]
 #[derive(Clone, Copy)]
 pub struct ImageViewCreateFlags(pub(crate) u32);
 #[repr(transparent)]
 #[derive(Clone, Copy)]
 pub struct ImageViewCreateFlagBits(pub(crate) u32);
-impl ImageViewCreateFlagBits {}
 #[repr(transparent)]
 #[derive(Clone, Copy)]
 pub struct PipelineCreateFlags(pub(crate) u32);
 #[repr(transparent)]
 #[derive(Clone, Copy)]
 pub struct PipelineCreateFlagBits(pub(crate) u32);
-impl PipelineCreateFlagBits {}
+///Provided by [`vk1_0`](crate::vk1_0)
+impl PipelineCreateFlagBits {
+    pub const DISABLE_OPTIMIZATION: Self = Self(1 << 0);
+    pub const ALLOW_DERIVATIVES: Self = Self(1 << 1);
+    pub const DERIVATIVE: Self = Self(1 << 2);
+}
 #[repr(transparent)]
 #[derive(Clone, Copy)]
 pub struct ColorComponentFlags(pub(crate) u32);
 #[repr(transparent)]
 #[derive(Clone, Copy)]
 pub struct ColorComponentFlagBits(pub(crate) u32);
-impl ColorComponentFlagBits {}
+///Provided by [`vk1_0`](crate::vk1_0)
+impl ColorComponentFlagBits {
+    pub const R: Self = Self(1 << 0);
+    pub const G: Self = Self(1 << 1);
+    pub const B: Self = Self(1 << 2);
+    pub const A: Self = Self(1 << 3);
+}
 #[repr(transparent)]
 #[derive(Clone, Copy)]
 pub struct FenceCreateFlags(pub(crate) u32);
 #[repr(transparent)]
 #[derive(Clone, Copy)]
 pub struct FenceCreateFlagBits(pub(crate) u32);
-impl FenceCreateFlagBits {}
+///Provided by [`vk1_0`](crate::vk1_0)
+impl FenceCreateFlagBits {
+    pub const SIGNALED: Self = Self(1 << 0);
+}
 #[repr(transparent)]
 #[derive(Clone, Copy)]
 pub struct SemaphoreCreateFlags(pub(crate) u32);
@@ -1529,21 +1605,45 @@ pub struct FormatFeatureFlags(pub(crate) u32);
 #[repr(transparent)]
 #[derive(Clone, Copy)]
 pub struct FormatFeatureFlagBits(pub(crate) u32);
-impl FormatFeatureFlagBits {}
+///Provided by [`vk1_0`](crate::vk1_0)
+impl FormatFeatureFlagBits {
+    pub const SAMPLED_IMAGE: Self = Self(1 << 0);
+    pub const STORAGE_IMAGE: Self = Self(1 << 1);
+    pub const STORAGE_IMAGE_ATOMIC: Self = Self(1 << 2);
+    pub const UNIFORM_TEXEL_BUFFER: Self = Self(1 << 3);
+    pub const STORAGE_TEXEL_BUFFER: Self = Self(1 << 4);
+    pub const STORAGE_TEXEL_BUFFER_ATOMIC: Self = Self(1 << 5);
+    pub const VERTEX_BUFFER: Self = Self(1 << 6);
+    pub const COLOR_ATTACHMENT: Self = Self(1 << 7);
+    pub const COLOR_ATTACHMENT_BLEND: Self = Self(1 << 8);
+    pub const DEPTH_STENCIL_ATTACHMENT: Self = Self(1 << 9);
+    pub const BLIT_SRC: Self = Self(1 << 10);
+    pub const BLIT_DST: Self = Self(1 << 11);
+    pub const SAMPLED_IMAGE_FILTER_LINEAR: Self = Self(1 << 12);
+}
 #[repr(transparent)]
 #[derive(Clone, Copy)]
 pub struct QueryControlFlags(pub(crate) u32);
 #[repr(transparent)]
 #[derive(Clone, Copy)]
 pub struct QueryControlFlagBits(pub(crate) u32);
-impl QueryControlFlagBits {}
+///Provided by [`vk1_0`](crate::vk1_0)
+impl QueryControlFlagBits {
+    pub const PRECISE: Self = Self(1 << 0);
+}
 #[repr(transparent)]
 #[derive(Clone, Copy)]
 pub struct QueryResultFlags(pub(crate) u32);
 #[repr(transparent)]
 #[derive(Clone, Copy)]
 pub struct QueryResultFlagBits(pub(crate) u32);
-impl QueryResultFlagBits {}
+///Provided by [`vk1_0`](crate::vk1_0)
+impl QueryResultFlagBits {
+    pub const _64: Self = Self(1 << 0);
+    pub const WAIT: Self = Self(1 << 1);
+    pub const WITH_AVAILABILITY: Self = Self(1 << 2);
+    pub const PARTIAL: Self = Self(1 << 3);
+}
 #[repr(transparent)]
 #[derive(Clone, Copy)]
 pub struct ShaderModuleCreateFlags(pub(crate) u32);
@@ -1553,106 +1653,179 @@ pub struct EventCreateFlags(pub(crate) u32);
 #[repr(transparent)]
 #[derive(Clone, Copy)]
 pub struct EventCreateFlagBits(pub(crate) u32);
-impl EventCreateFlagBits {}
 #[repr(transparent)]
 #[derive(Clone, Copy)]
 pub struct CommandPoolCreateFlags(pub(crate) u32);
 #[repr(transparent)]
 #[derive(Clone, Copy)]
 pub struct CommandPoolCreateFlagBits(pub(crate) u32);
-impl CommandPoolCreateFlagBits {}
+///Provided by [`vk1_0`](crate::vk1_0)
+impl CommandPoolCreateFlagBits {
+    pub const TRANSIENT: Self = Self(1 << 0);
+    pub const RESET_COMMAND_BUFFER: Self = Self(1 << 1);
+}
 #[repr(transparent)]
 #[derive(Clone, Copy)]
 pub struct CommandPoolResetFlags(pub(crate) u32);
 #[repr(transparent)]
 #[derive(Clone, Copy)]
 pub struct CommandPoolResetFlagBits(pub(crate) u32);
-impl CommandPoolResetFlagBits {}
+///Provided by [`vk1_0`](crate::vk1_0)
+impl CommandPoolResetFlagBits {
+    pub const RELEASE_RESOURCES: Self = Self(1 << 0);
+}
 #[repr(transparent)]
 #[derive(Clone, Copy)]
 pub struct CommandBufferResetFlags(pub(crate) u32);
 #[repr(transparent)]
 #[derive(Clone, Copy)]
 pub struct CommandBufferResetFlagBits(pub(crate) u32);
-impl CommandBufferResetFlagBits {}
+///Provided by [`vk1_0`](crate::vk1_0)
+impl CommandBufferResetFlagBits {
+    pub const RELEASE_RESOURCES: Self = Self(1 << 0);
+}
 #[repr(transparent)]
 #[derive(Clone, Copy)]
 pub struct CommandBufferUsageFlags(pub(crate) u32);
 #[repr(transparent)]
 #[derive(Clone, Copy)]
 pub struct CommandBufferUsageFlagBits(pub(crate) u32);
-impl CommandBufferUsageFlagBits {}
+///Provided by [`vk1_0`](crate::vk1_0)
+impl CommandBufferUsageFlagBits {
+    pub const ONE_TIME_SUBMIT: Self = Self(1 << 0);
+    pub const RENDER_PASS_CONTINUE: Self = Self(1 << 1);
+    pub const SIMULTANEOUS_USE: Self = Self(1 << 2);
+}
 #[repr(transparent)]
 #[derive(Clone, Copy)]
 pub struct QueryPipelineStatisticFlags(pub(crate) u32);
 #[repr(transparent)]
 #[derive(Clone, Copy)]
 pub struct QueryPipelineStatisticFlagBits(pub(crate) u32);
-impl QueryPipelineStatisticFlagBits {}
+///Provided by [`vk1_0`](crate::vk1_0)
+impl QueryPipelineStatisticFlagBits {
+    pub const INPUT_ASSEMBLY_VERTICES: Self = Self(1 << 0);
+    pub const INPUT_ASSEMBLY_PRIMITIVES: Self = Self(1 << 1);
+    pub const VERTEX_SHADER_INVOCATIONS: Self = Self(1 << 2);
+    pub const GEOMETRY_SHADER_INVOCATIONS: Self = Self(1 << 3);
+    pub const GEOMETRY_SHADER_PRIMITIVES: Self = Self(1 << 4);
+    pub const CLIPPING_INVOCATIONS: Self = Self(1 << 5);
+    pub const CLIPPING_PRIMITIVES: Self = Self(1 << 6);
+    pub const FRAGMENT_SHADER_INVOCATIONS: Self = Self(1 << 7);
+    pub const TESSELLATION_CONTROL_SHADER_PATCHES: Self = Self(1 << 8);
+    pub const TESSELLATION_EVALUATION_SHADER_INVOCATIONS: Self = Self(1 << 9);
+    pub const COMPUTE_SHADER_INVOCATIONS: Self = Self(1 << 10);
+}
 #[repr(transparent)]
 #[derive(Clone, Copy)]
 pub struct MemoryMapFlags(pub(crate) u32);
 #[repr(transparent)]
 #[derive(Clone, Copy)]
 pub struct MemoryMapFlagBits(pub(crate) u32);
-impl MemoryMapFlagBits {}
 #[repr(transparent)]
 #[derive(Clone, Copy)]
 pub struct ImageAspectFlags(pub(crate) u32);
 #[repr(transparent)]
 #[derive(Clone, Copy)]
 pub struct ImageAspectFlagBits(pub(crate) u32);
-impl ImageAspectFlagBits {}
+///Provided by [`vk1_0`](crate::vk1_0)
+impl ImageAspectFlagBits {
+    pub const COLOR: Self = Self(1 << 0);
+    pub const DEPTH: Self = Self(1 << 1);
+    pub const STENCIL: Self = Self(1 << 2);
+    pub const METADATA: Self = Self(1 << 3);
+}
 #[repr(transparent)]
 #[derive(Clone, Copy)]
 pub struct SparseMemoryBindFlags(pub(crate) u32);
 #[repr(transparent)]
 #[derive(Clone, Copy)]
 pub struct SparseMemoryBindFlagBits(pub(crate) u32);
-impl SparseMemoryBindFlagBits {}
+///Provided by [`vk1_0`](crate::vk1_0)
+impl SparseMemoryBindFlagBits {
+    pub const METADATA: Self = Self(1 << 0);
+}
 #[repr(transparent)]
 #[derive(Clone, Copy)]
 pub struct SparseImageFormatFlags(pub(crate) u32);
 #[repr(transparent)]
 #[derive(Clone, Copy)]
 pub struct SparseImageFormatFlagBits(pub(crate) u32);
-impl SparseImageFormatFlagBits {}
+///Provided by [`vk1_0`](crate::vk1_0)
+impl SparseImageFormatFlagBits {
+    pub const SINGLE_MIPTAIL: Self = Self(1 << 0);
+    pub const ALIGNED_MIP_SIZE: Self = Self(1 << 1);
+    pub const NONSTANDARD_BLOCK_SIZE: Self = Self(1 << 2);
+}
 #[repr(transparent)]
 #[derive(Clone, Copy)]
 pub struct SubpassDescriptionFlags(pub(crate) u32);
 #[repr(transparent)]
 #[derive(Clone, Copy)]
 pub struct SubpassDescriptionFlagBits(pub(crate) u32);
-impl SubpassDescriptionFlagBits {}
 #[repr(transparent)]
 #[derive(Clone, Copy)]
 pub struct PipelineStageFlags(pub(crate) u32);
 #[repr(transparent)]
 #[derive(Clone, Copy)]
 pub struct PipelineStageFlagBits(pub(crate) u32);
-impl PipelineStageFlagBits {}
+///Provided by [`vk1_0`](crate::vk1_0)
+impl PipelineStageFlagBits {
+    pub const TOP_OF_PIPE: Self = Self(1 << 0);
+    pub const DRAW_INDIRECT: Self = Self(1 << 1);
+    pub const VERTEX_INPUT: Self = Self(1 << 2);
+    pub const VERTEX_SHADER: Self = Self(1 << 3);
+    pub const TESSELLATION_CONTROL_SHADER: Self = Self(1 << 4);
+    pub const TESSELLATION_EVALUATION_SHADER: Self = Self(1 << 5);
+    pub const GEOMETRY_SHADER: Self = Self(1 << 6);
+    pub const FRAGMENT_SHADER: Self = Self(1 << 7);
+    pub const EARLY_FRAGMENT_TESTS: Self = Self(1 << 8);
+    pub const LATE_FRAGMENT_TESTS: Self = Self(1 << 9);
+    pub const COLOR_ATTACHMENT_OUTPUT: Self = Self(1 << 10);
+    pub const COMPUTE_SHADER: Self = Self(1 << 11);
+    pub const TRANSFER: Self = Self(1 << 12);
+    pub const BOTTOM_OF_PIPE: Self = Self(1 << 13);
+    pub const HOST: Self = Self(1 << 14);
+    pub const ALL_GRAPHICS: Self = Self(1 << 15);
+    pub const ALL_COMMANDS: Self = Self(1 << 16);
+}
 #[repr(transparent)]
 #[derive(Clone, Copy)]
 pub struct SampleCountFlags(pub(crate) u32);
 #[repr(transparent)]
 #[derive(Clone, Copy)]
 pub struct SampleCountFlagBits(pub(crate) u32);
-impl SampleCountFlagBits {}
+///Provided by [`vk1_0`](crate::vk1_0)
+impl SampleCountFlagBits {
+    pub const _1: Self = Self(1 << 0);
+    pub const _2: Self = Self(1 << 1);
+    pub const _4: Self = Self(1 << 2);
+    pub const _8: Self = Self(1 << 3);
+    pub const _16: Self = Self(1 << 4);
+    pub const _32: Self = Self(1 << 5);
+    pub const _64: Self = Self(1 << 6);
+}
 #[repr(transparent)]
 #[derive(Clone, Copy)]
 pub struct AttachmentDescriptionFlags(pub(crate) u32);
 #[repr(transparent)]
 #[derive(Clone, Copy)]
 pub struct AttachmentDescriptionFlagBits(pub(crate) u32);
-impl AttachmentDescriptionFlagBits {}
+///Provided by [`vk1_0`](crate::vk1_0)
+impl AttachmentDescriptionFlagBits {
+    pub const MAY_ALIAS: Self = Self(1 << 0);
+}
 #[repr(transparent)]
 #[derive(Clone, Copy)]
 pub struct StencilFaceFlags(pub(crate) u32);
 #[repr(transparent)]
 #[derive(Clone, Copy)]
 pub struct StencilFaceFlagBits(pub(crate) u32);
+///Provided by [`vk1_0`](crate::vk1_0)
 impl StencilFaceFlagBits {
-    pub const FRONT_AND_BACK: Self = Self(1);
+    pub const FRONT: Self = Self(1 << 0);
+    pub const BACK: Self = Self(1 << 1);
+    pub const FRONT_AND_BACK: Self = Self(0x00000003);
 }
 #[repr(transparent)]
 #[derive(Clone, Copy)]
@@ -1660,9 +1833,12 @@ pub struct CullModeFlags(pub(crate) u32);
 #[repr(transparent)]
 #[derive(Clone, Copy)]
 pub struct CullModeFlagBits(pub(crate) u32);
+///Provided by [`vk1_0`](crate::vk1_0)
 impl CullModeFlagBits {
-    pub const NONE: Self = Self(1);
-    pub const FRONT_AND_BACK: Self = Self(1);
+    pub const NONE: Self = Self(0);
+    pub const FRONT: Self = Self(1 << 0);
+    pub const BACK: Self = Self(1 << 1);
+    pub const FRONT_AND_BACK: Self = Self(0x00000003);
 }
 #[repr(transparent)]
 #[derive(Clone, Copy)]
@@ -1670,7 +1846,10 @@ pub struct DescriptorPoolCreateFlags(pub(crate) u32);
 #[repr(transparent)]
 #[derive(Clone, Copy)]
 pub struct DescriptorPoolCreateFlagBits(pub(crate) u32);
-impl DescriptorPoolCreateFlagBits {}
+///Provided by [`vk1_0`](crate::vk1_0)
+impl DescriptorPoolCreateFlagBits {
+    pub const FREE_DESCRIPTOR_SET: Self = Self(1 << 0);
+}
 #[repr(transparent)]
 #[derive(Clone, Copy)]
 pub struct DescriptorPoolResetFlags(pub(crate) u32);
@@ -1680,7 +1859,10 @@ pub struct DependencyFlags(pub(crate) u32);
 #[repr(transparent)]
 #[derive(Clone, Copy)]
 pub struct DependencyFlagBits(pub(crate) u32);
-impl DependencyFlagBits {}
+///Provided by [`vk1_0`](crate::vk1_0)
+impl DependencyFlagBits {
+    pub const BY_REGION: Self = Self(1 << 0);
+}
 #[repr(transparent)]
 #[allow(non_camel_case_types)]
 #[derive(Clone, Copy)]

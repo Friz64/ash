@@ -3,5 +3,9 @@
 //![Vulkan Manual Page](https://docs.vulkan.org/refpages/latest/refpages/source/VK_KHR_device_group_creation.html) · Extension `VK_KHR_device_group_creation`
 pub type PhysicalDeviceGroupPropertiesKHR = crate::vk::PhysicalDeviceGroupProperties;
 pub type DeviceGroupDeviceCreateInfoKHR = crate::vk::DeviceGroupDeviceCreateInfo;
+///Provided by [`khr::device_group_creation`](crate::khr::device_group_creation)
+impl crate::vk::MemoryHeapFlagBits {
+    pub const MULTI_INSTANCE_KHR: Self = Self::MULTI_INSTANCE;
+}
 pub const KHR_DEVICE_GROUP_CREATION_SPEC_VERSION: u32 = 1;
 pub const KHR_DEVICE_GROUP_CREATION_EXTENSION_NAME: &core::ffi::CStr = c"VK_KHR_device_group_creation";

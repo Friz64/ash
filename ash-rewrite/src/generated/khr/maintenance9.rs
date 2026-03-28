@@ -26,5 +26,13 @@ pub struct QueueFamilyOwnershipTransferPropertiesKHR {
 #[repr(transparent)]
 #[derive(Clone, Copy)]
 pub struct DefaultVertexAttributeValueKHR(pub(crate) i32);
+///Provided by [`khr::maintenance9`](crate::khr::maintenance9)
+impl crate::vk::QueryPoolCreateFlagBits {
+    pub const RESET_KHR: Self = Self(1 << 0);
+}
+///Provided by [`khr::maintenance9`](crate::khr::maintenance9)
+impl crate::vk::DependencyFlagBits {
+    pub const ASYMMETRIC_EVENT_KHR: Self = Self(1 << 6);
+}
 pub const KHR_MAINTENANCE_9_SPEC_VERSION: u32 = 1;
 pub const KHR_MAINTENANCE_9_EXTENSION_NAME: &core::ffi::CStr = c"VK_KHR_maintenance9";

@@ -91,14 +91,24 @@ pub struct SwapchainCreateFlagsKHR(pub(crate) u32);
 #[repr(transparent)]
 #[derive(Clone, Copy)]
 pub struct SwapchainCreateFlagBitsKHR(pub(crate) u32);
-impl SwapchainCreateFlagBitsKHR {}
+///Provided by [`khr::swapchain`](crate::khr::swapchain)
+impl SwapchainCreateFlagBitsKHR {
+    pub const SPLIT_INSTANCE_BIND_REGIONS_KHR: Self = Self(1 << 0);
+    pub const PROTECTED_KHR: Self = Self(1 << 1);
+}
 #[repr(transparent)]
 #[derive(Clone, Copy)]
 pub struct DeviceGroupPresentModeFlagsKHR(pub(crate) u32);
 #[repr(transparent)]
 #[derive(Clone, Copy)]
 pub struct DeviceGroupPresentModeFlagBitsKHR(pub(crate) u32);
-impl DeviceGroupPresentModeFlagBitsKHR {}
+///Provided by [`khr::swapchain`](crate::khr::swapchain)
+impl DeviceGroupPresentModeFlagBitsKHR {
+    pub const LOCAL_KHR: Self = Self(1 << 0);
+    pub const REMOTE_KHR: Self = Self(1 << 1);
+    pub const SUM_KHR: Self = Self(1 << 2);
+    pub const LOCAL_MULTI_DEVICE_KHR: Self = Self(1 << 3);
+}
 #[repr(transparent)]
 #[derive(Clone, Copy)]
 pub struct SwapchainKHR(pub(crate) i32);

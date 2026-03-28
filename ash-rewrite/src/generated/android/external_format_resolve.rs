@@ -24,5 +24,9 @@ pub struct AndroidHardwareBufferFormatResolvePropertiesANDROID {
     pub p_next: *mut core::ffi::c_void,
     pub color_attachment_format: crate::vk::Format,
 }
+///Provided by [`android::external_format_resolve`](crate::android::external_format_resolve)
+impl crate::vk::ResolveModeFlagBits {
+    pub const EXTERNAL_FORMAT_DOWNSAMPLE_ANDROID: Self = Self(1 << 4);
+}
 pub const ANDROID_EXTERNAL_FORMAT_RESOLVE_SPEC_VERSION: u32 = 1;
 pub const ANDROID_EXTERNAL_FORMAT_RESOLVE_EXTENSION_NAME: &core::ffi::CStr = c"VK_ANDROID_external_format_resolve";

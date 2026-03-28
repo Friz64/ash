@@ -136,20 +136,41 @@ pub struct GeneratedCommandsMemoryRequirementsInfoNV {
 #[repr(transparent)]
 #[derive(Clone, Copy)]
 pub struct IndirectCommandsTokenTypeNV(pub(crate) i32);
+///Provided by [`nv::device_generated_commands`](crate::nv::device_generated_commands)
+impl crate::vk::AccessFlagBits {
+    pub const COMMAND_PREPROCESS_READ_NV: Self = Self::COMMAND_PREPROCESS_READ_EXT;
+    pub const COMMAND_PREPROCESS_WRITE_NV: Self = Self::COMMAND_PREPROCESS_WRITE_EXT;
+}
+///Provided by [`nv::device_generated_commands`](crate::nv::device_generated_commands)
+impl crate::vk::PipelineCreateFlagBits {
+    pub const INDIRECT_BINDABLE_NV: Self = Self(1 << 18);
+}
+///Provided by [`nv::device_generated_commands`](crate::nv::device_generated_commands)
+impl crate::vk::PipelineStageFlagBits {
+    pub const COMMAND_PREPROCESS_NV: Self = Self::COMMAND_PREPROCESS_EXT;
+}
 #[repr(transparent)]
 #[derive(Clone, Copy)]
 pub struct IndirectCommandsLayoutUsageFlagsNV(pub(crate) u32);
 #[repr(transparent)]
 #[derive(Clone, Copy)]
 pub struct IndirectCommandsLayoutUsageFlagBitsNV(pub(crate) u32);
-impl IndirectCommandsLayoutUsageFlagBitsNV {}
+///Provided by [`nv::device_generated_commands`](crate::nv::device_generated_commands)
+impl IndirectCommandsLayoutUsageFlagBitsNV {
+    pub const EXPLICIT_PREPROCESS_NV: Self = Self(1 << 0);
+    pub const INDEXED_SEQUENCES_NV: Self = Self(1 << 1);
+    pub const UNORDERED_SEQUENCES_NV: Self = Self(1 << 2);
+}
 #[repr(transparent)]
 #[derive(Clone, Copy)]
 pub struct IndirectStateFlagsNV(pub(crate) u32);
 #[repr(transparent)]
 #[derive(Clone, Copy)]
 pub struct IndirectStateFlagBitsNV(pub(crate) u32);
-impl IndirectStateFlagBitsNV {}
+///Provided by [`nv::device_generated_commands`](crate::nv::device_generated_commands)
+impl IndirectStateFlagBitsNV {
+    pub const FLAG_FRONTFACE_NV: Self = Self(1 << 0);
+}
 #[repr(transparent)]
 #[derive(Clone, Copy)]
 pub struct IndirectCommandsLayoutNV(pub(crate) i32);

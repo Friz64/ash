@@ -10,6 +10,30 @@ pub type DeviceGroupSubmitInfoKHR = crate::vk::DeviceGroupSubmitInfo;
 pub type DeviceGroupBindSparseInfoKHR = crate::vk::DeviceGroupBindSparseInfo;
 pub type PeerMemoryFeatureFlagBitsKHR = crate::vk::PeerMemoryFeatureFlagBits;
 pub type MemoryAllocateFlagBitsKHR = crate::vk::MemoryAllocateFlagBits;
+///Provided by [`khr::device_group`](crate::khr::device_group)
+impl crate::vk::ImageCreateFlagBits {
+    pub const SPLIT_INSTANCE_BIND_REGIONS_KHR: Self = Self::SPLIT_INSTANCE_BIND_REGIONS;
+}
+///Provided by [`khr::device_group`](crate::khr::device_group)
+impl crate::vk::PipelineCreateFlagBits {
+    pub const VIEW_INDEX_FROM_DEVICE_INDEX_KHR: Self = Self::VIEW_INDEX_FROM_DEVICE_INDEX;
+    pub const DISPATCH_BASE_KHR: Self = Self::DISPATCH_BASE;
+}
+///Provided by [`khr::device_group`](crate::khr::device_group)
+impl crate::vk::DependencyFlagBits {
+    pub const DEVICE_GROUP_KHR: Self = Self::DEVICE_GROUP;
+}
+///Provided by [`khr::device_group`](crate::khr::device_group)
+impl crate::vk::PeerMemoryFeatureFlagBits {
+    pub const COPY_SRC_KHR: Self = Self::COPY_SRC;
+    pub const COPY_DST_KHR: Self = Self::COPY_DST;
+    pub const GENERIC_SRC_KHR: Self = Self::GENERIC_SRC;
+    pub const GENERIC_DST_KHR: Self = Self::GENERIC_DST;
+}
+///Provided by [`khr::device_group`](crate::khr::device_group)
+impl crate::vk::MemoryAllocateFlagBits {
+    pub const DEVICE_MASK_KHR: Self = Self::DEVICE_MASK;
+}
 pub type PeerMemoryFeatureFlagsKHR = crate::vk::PeerMemoryFeatureFlags;
 pub type MemoryAllocateFlagsKHR = crate::vk::MemoryAllocateFlags;
 pub const KHR_DEVICE_GROUP_SPEC_VERSION: u32 = 4;

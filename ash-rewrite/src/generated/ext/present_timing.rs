@@ -102,26 +102,44 @@ pub struct SwapchainCalibratedTimestampInfoEXT {
     pub present_stage: crate::vk::PresentStageFlagsEXT,
     pub time_domain_id: u64,
 }
+///Provided by [`ext::present_timing`](crate::ext::present_timing)
+impl crate::vk::SwapchainCreateFlagBitsKHR {
+    pub const PRESENT_TIMING_EXT: Self = Self(1 << 9);
+}
 #[repr(transparent)]
 #[derive(Clone, Copy)]
 pub struct PresentStageFlagsEXT(pub(crate) u32);
 #[repr(transparent)]
 #[derive(Clone, Copy)]
 pub struct PresentStageFlagBitsEXT(pub(crate) u32);
-impl PresentStageFlagBitsEXT {}
+///Provided by [`ext::present_timing`](crate::ext::present_timing)
+impl PresentStageFlagBitsEXT {
+    pub const QUEUE_OPERATIONS_END_EXT: Self = Self(1 << 0);
+    pub const REQUEST_DEQUEUED_EXT: Self = Self(1 << 1);
+    pub const IMAGE_FIRST_PIXEL_OUT_EXT: Self = Self(1 << 2);
+    pub const IMAGE_FIRST_PIXEL_VISIBLE_EXT: Self = Self(1 << 3);
+}
 #[repr(transparent)]
 #[derive(Clone, Copy)]
 pub struct PastPresentationTimingFlagsEXT(pub(crate) u32);
 #[repr(transparent)]
 #[derive(Clone, Copy)]
 pub struct PastPresentationTimingFlagBitsEXT(pub(crate) u32);
-impl PastPresentationTimingFlagBitsEXT {}
+///Provided by [`ext::present_timing`](crate::ext::present_timing)
+impl PastPresentationTimingFlagBitsEXT {
+    pub const ALLOW_PARTIAL_RESULTS_EXT: Self = Self(1 << 0);
+    pub const ALLOW_OUT_OF_ORDER_RESULTS_EXT: Self = Self(1 << 1);
+}
 #[repr(transparent)]
 #[derive(Clone, Copy)]
 pub struct PresentTimingInfoFlagsEXT(pub(crate) u32);
 #[repr(transparent)]
 #[derive(Clone, Copy)]
 pub struct PresentTimingInfoFlagBitsEXT(pub(crate) u32);
-impl PresentTimingInfoFlagBitsEXT {}
+///Provided by [`ext::present_timing`](crate::ext::present_timing)
+impl PresentTimingInfoFlagBitsEXT {
+    pub const PRESENT_AT_RELATIVE_TIME_EXT: Self = Self(1 << 0);
+    pub const PRESENT_AT_NEAREST_REFRESH_CYCLE_EXT: Self = Self(1 << 1);
+}
 pub const EXT_PRESENT_TIMING_SPEC_VERSION: u32 = 3;
 pub const EXT_PRESENT_TIMING_EXTENSION_NAME: &core::ffi::CStr = c"VK_EXT_present_timing";

@@ -29,6 +29,9 @@ pub struct FrameBoundaryFlagsEXT(pub(crate) u32);
 #[repr(transparent)]
 #[derive(Clone, Copy)]
 pub struct FrameBoundaryFlagBitsEXT(pub(crate) u32);
-impl FrameBoundaryFlagBitsEXT {}
+///Provided by [`ext::frame_boundary`](crate::ext::frame_boundary)
+impl FrameBoundaryFlagBitsEXT {
+    pub const FRAME_END_EXT: Self = Self(1 << 0);
+}
 pub const EXT_FRAME_BOUNDARY_SPEC_VERSION: u32 = 1;
 pub const EXT_FRAME_BOUNDARY_EXTENSION_NAME: &core::ffi::CStr = c"VK_EXT_frame_boundary";

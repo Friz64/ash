@@ -5,6 +5,19 @@ pub type PhysicalDeviceExternalSemaphoreInfoKHR = crate::vk::PhysicalDeviceExter
 pub type ExternalSemaphorePropertiesKHR = crate::vk::ExternalSemaphoreProperties;
 pub type ExternalSemaphoreHandleTypeFlagBitsKHR = crate::vk::ExternalSemaphoreHandleTypeFlagBits;
 pub type ExternalSemaphoreFeatureFlagBitsKHR = crate::vk::ExternalSemaphoreFeatureFlagBits;
+///Provided by [`khr::external_semaphore_capabilities`](crate::khr::external_semaphore_capabilities)
+impl crate::vk::ExternalSemaphoreHandleTypeFlagBits {
+    pub const OPAQUE_FD_KHR: Self = Self::OPAQUE_FD;
+    pub const OPAQUE_WIN32_KHR: Self = Self::OPAQUE_WIN32;
+    pub const OPAQUE_WIN32_KMT_KHR: Self = Self::OPAQUE_WIN32_KMT;
+    pub const D3D12_FENCE_KHR: Self = Self::D3D12_FENCE;
+    pub const SYNC_FD_KHR: Self = Self::SYNC_FD;
+}
+///Provided by [`khr::external_semaphore_capabilities`](crate::khr::external_semaphore_capabilities)
+impl crate::vk::ExternalSemaphoreFeatureFlagBits {
+    pub const EXPORTABLE_KHR: Self = Self::EXPORTABLE;
+    pub const IMPORTABLE_KHR: Self = Self::IMPORTABLE;
+}
 pub type ExternalSemaphoreHandleTypeFlagsKHR = crate::vk::ExternalSemaphoreHandleTypeFlags;
 pub type ExternalSemaphoreFeatureFlagsKHR = crate::vk::ExternalSemaphoreFeatureFlags;
 pub const KHR_EXTERNAL_SEMAPHORE_CAPABILITIES_SPEC_VERSION: u32 = 1;

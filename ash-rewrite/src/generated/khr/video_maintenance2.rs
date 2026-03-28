@@ -32,5 +32,9 @@ pub struct VideoDecodeAV1InlineSessionParametersInfoKHR {
     pub p_next: *const core::ffi::c_void,
     pub p_std_sequence_header: *const crate::vk::StdVideoAV1SequenceHeader,
 }
+///Provided by [`khr::video_maintenance2`](crate::khr::video_maintenance2)
+impl crate::vk::VideoSessionCreateFlagBitsKHR {
+    pub const INLINE_SESSION_PARAMETERS_KHR: Self = Self(1 << 5);
+}
 pub const KHR_VIDEO_MAINTENANCE_2_SPEC_VERSION: u32 = 1;
 pub const KHR_VIDEO_MAINTENANCE_2_EXTENSION_NAME: &core::ffi::CStr = c"VK_KHR_video_maintenance2";

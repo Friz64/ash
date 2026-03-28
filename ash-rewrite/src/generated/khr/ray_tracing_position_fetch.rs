@@ -8,5 +8,9 @@ pub struct PhysicalDeviceRayTracingPositionFetchFeaturesKHR {
     pub p_next: *mut core::ffi::c_void,
     pub ray_tracing_position_fetch: crate::vk::Bool32,
 }
+///Provided by [`khr::ray_tracing_position_fetch`](crate::khr::ray_tracing_position_fetch)
+impl crate::vk::BuildAccelerationStructureFlagBitsKHR {
+    pub const ALLOW_DATA_ACCESS_KHR: Self = Self(1 << 11);
+}
 pub const KHR_RAY_TRACING_POSITION_FETCH_SPEC_VERSION: u32 = 1;
 pub const KHR_RAY_TRACING_POSITION_FETCH_EXTENSION_NAME: &core::ffi::CStr = c"VK_KHR_ray_tracing_position_fetch";

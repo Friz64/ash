@@ -4,5 +4,10 @@
 pub type PhysicalDeviceSubgroupSizeControlFeaturesEXT = crate::vk::PhysicalDeviceSubgroupSizeControlFeatures;
 pub type PhysicalDeviceSubgroupSizeControlPropertiesEXT = crate::vk::PhysicalDeviceSubgroupSizeControlProperties;
 pub type PipelineShaderStageRequiredSubgroupSizeCreateInfoEXT = crate::vk::PipelineShaderStageRequiredSubgroupSizeCreateInfo;
+///Provided by [`ext::subgroup_size_control`](crate::ext::subgroup_size_control)
+impl crate::vk::PipelineShaderStageCreateFlagBits {
+    pub const ALLOW_VARYING_SUBGROUP_SIZE_EXT: Self = Self::ALLOW_VARYING_SUBGROUP_SIZE;
+    pub const REQUIRE_FULL_SUBGROUPS_EXT: Self = Self::REQUIRE_FULL_SUBGROUPS;
+}
 pub const EXT_SUBGROUP_SIZE_CONTROL_SPEC_VERSION: u32 = 2;
 pub const EXT_SUBGROUP_SIZE_CONTROL_EXTENSION_NAME: &core::ffi::CStr = c"VK_EXT_subgroup_size_control";

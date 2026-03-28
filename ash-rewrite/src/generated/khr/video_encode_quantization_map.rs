@@ -75,5 +75,42 @@ pub struct PhysicalDeviceVideoEncodeQuantizationMapFeaturesKHR {
     pub p_next: *mut core::ffi::c_void,
     pub video_encode_quantization_map: crate::vk::Bool32,
 }
+///Provided by [`khr::video_encode_quantization_map`](crate::khr::video_encode_quantization_map)
+impl crate::vk::ImageUsageFlagBits {
+    pub const VIDEO_ENCODE_QUANTIZATION_DELTA_MAP_KHR: Self = Self(1 << 25);
+    pub const VIDEO_ENCODE_EMPHASIS_MAP_KHR: Self = Self(1 << 26);
+}
+///Provided by [`khr::video_encode_quantization_map`](crate::khr::video_encode_quantization_map)
+impl crate::vk::FormatFeatureFlagBits2 {
+    pub const VIDEO_ENCODE_QUANTIZATION_DELTA_MAP_KHR: Self = Self(1 << 49);
+    pub const VIDEO_ENCODE_EMPHASIS_MAP_KHR: Self = Self(1 << 50);
+}
+///Provided by [`khr::video_encode_quantization_map`](crate::khr::video_encode_quantization_map)
+impl crate::vk::VideoSessionCreateFlagBitsKHR {
+    pub const ALLOW_ENCODE_QUANTIZATION_DELTA_MAP_KHR: Self = Self(1 << 3);
+    pub const ALLOW_ENCODE_EMPHASIS_MAP_KHR: Self = Self(1 << 4);
+}
+///Provided by [`khr::video_encode_quantization_map`](crate::khr::video_encode_quantization_map)
+impl crate::vk::VideoSessionParametersCreateFlagBitsKHR {
+    pub const QUANTIZATION_MAP_COMPATIBLE_KHR: Self = Self(1 << 0);
+}
+///Provided by [`khr::video_encode_quantization_map`](crate::khr::video_encode_quantization_map)
+impl crate::vk::VideoEncodeFlagBitsKHR {
+    pub const WITH_QUANTIZATION_DELTA_MAP_KHR: Self = Self(1 << 0);
+    pub const WITH_EMPHASIS_MAP_KHR: Self = Self(1 << 1);
+}
+///Provided by [`khr::video_encode_quantization_map`](crate::khr::video_encode_quantization_map)
+impl crate::vk::VideoEncodeCapabilityFlagBitsKHR {
+    pub const QUANTIZATION_DELTA_MAP_KHR: Self = Self(1 << 2);
+    pub const EMPHASIS_MAP_KHR: Self = Self(1 << 3);
+}
+///Provided by [`khr::video_encode_quantization_map`](crate::khr::video_encode_quantization_map)
+impl crate::vk::VideoEncodeH264CapabilityFlagBitsKHR {
+    pub const MB_QP_DIFF_WRAPAROUND_KHR: Self = Self(1 << 9);
+}
+///Provided by [`khr::video_encode_quantization_map`](crate::khr::video_encode_quantization_map)
+impl crate::vk::VideoEncodeH265CapabilityFlagBitsKHR {
+    pub const CU_QP_DIFF_WRAPAROUND_KHR: Self = Self(1 << 10);
+}
 pub const KHR_VIDEO_ENCODE_QUANTIZATION_MAP_SPEC_VERSION: u32 = 2;
 pub const KHR_VIDEO_ENCODE_QUANTIZATION_MAP_EXTENSION_NAME: &core::ffi::CStr = c"VK_KHR_video_encode_quantization_map";

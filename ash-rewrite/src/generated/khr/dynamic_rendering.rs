@@ -7,6 +7,12 @@ pub type RenderingAttachmentInfoKHR = crate::vk::RenderingAttachmentInfo;
 pub type PhysicalDeviceDynamicRenderingFeaturesKHR = crate::vk::PhysicalDeviceDynamicRenderingFeatures;
 pub type CommandBufferInheritanceRenderingInfoKHR = crate::vk::CommandBufferInheritanceRenderingInfo;
 pub type RenderingFlagBitsKHR = crate::vk::RenderingFlagBits;
+///Provided by [`khr::dynamic_rendering`](crate::khr::dynamic_rendering)
+impl crate::vk::RenderingFlagBits {
+    pub const CONTENTS_SECONDARY_COMMAND_BUFFERS_KHR: Self = Self::CONTENTS_SECONDARY_COMMAND_BUFFERS;
+    pub const SUSPENDING_KHR: Self = Self::SUSPENDING;
+    pub const RESUMING_KHR: Self = Self::RESUMING;
+}
 pub type RenderingFlagsKHR = crate::vk::RenderingFlags;
 pub const KHR_DYNAMIC_RENDERING_SPEC_VERSION: u32 = 1;
 pub const KHR_DYNAMIC_RENDERING_EXTENSION_NAME: &core::ffi::CStr = c"VK_KHR_dynamic_rendering";

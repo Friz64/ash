@@ -7,6 +7,21 @@ pub type DescriptorSetLayoutBindingFlagsCreateInfoEXT = crate::vk::DescriptorSet
 pub type DescriptorSetVariableDescriptorCountAllocateInfoEXT = crate::vk::DescriptorSetVariableDescriptorCountAllocateInfo;
 pub type DescriptorSetVariableDescriptorCountLayoutSupportEXT = crate::vk::DescriptorSetVariableDescriptorCountLayoutSupport;
 pub type DescriptorBindingFlagBitsEXT = crate::vk::DescriptorBindingFlagBits;
+///Provided by [`ext::descriptor_indexing`](crate::ext::descriptor_indexing)
+impl crate::vk::DescriptorSetLayoutCreateFlagBits {
+    pub const UPDATE_AFTER_BIND_POOL_EXT: Self = Self::UPDATE_AFTER_BIND_POOL;
+}
+///Provided by [`ext::descriptor_indexing`](crate::ext::descriptor_indexing)
+impl crate::vk::DescriptorPoolCreateFlagBits {
+    pub const UPDATE_AFTER_BIND_EXT: Self = Self::UPDATE_AFTER_BIND;
+}
+///Provided by [`ext::descriptor_indexing`](crate::ext::descriptor_indexing)
+impl crate::vk::DescriptorBindingFlagBits {
+    pub const UPDATE_AFTER_BIND_EXT: Self = Self::UPDATE_AFTER_BIND;
+    pub const UPDATE_UNUSED_WHILE_PENDING_EXT: Self = Self::UPDATE_UNUSED_WHILE_PENDING;
+    pub const PARTIALLY_BOUND_EXT: Self = Self::PARTIALLY_BOUND;
+    pub const VARIABLE_DESCRIPTOR_COUNT_EXT: Self = Self::VARIABLE_DESCRIPTOR_COUNT;
+}
 pub type DescriptorBindingFlagsEXT = crate::vk::DescriptorBindingFlags;
 pub const EXT_DESCRIPTOR_INDEXING_SPEC_VERSION: u32 = 2;
 pub const EXT_DESCRIPTOR_INDEXING_EXTENSION_NAME: &core::ffi::CStr = c"VK_EXT_descriptor_indexing";
