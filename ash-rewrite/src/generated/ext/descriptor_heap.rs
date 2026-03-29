@@ -24,12 +24,6 @@ pub struct HostAddressRangeConstEXT {
 }
 #[repr(C)]
 #[derive(Clone, Copy)]
-pub struct DeviceAddressRangeEXT {
-    pub address: crate::vk::DeviceAddress,
-    pub size: crate::vk::DeviceSize,
-}
-#[repr(C)]
-#[derive(Clone, Copy)]
 pub struct TexelBufferDescriptorInfoEXT {
     pub s_type: crate::vk::StructureType,
     pub p_next: *const core::ffi::c_void,
@@ -247,6 +241,7 @@ pub struct PhysicalDeviceDescriptorHeapTensorPropertiesARM {
     pub tensor_descriptor_alignment: crate::vk::DeviceSize,
     pub tensor_capture_replay_opaque_data_size: usize,
 }
+pub type DeviceAddressRangeEXT = crate::vk::DeviceAddressRangeKHR;
 #[repr(C)]
 #[derive(Clone, Copy)]
 pub union ResourceDescriptorDataEXT {

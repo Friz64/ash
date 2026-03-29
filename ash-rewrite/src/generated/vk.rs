@@ -2,6 +2,7 @@
 #![cfg_attr(rustfmt, rustfmt_skip)]
 pub use super::vk1_0::*;
 pub use super::vk1_4::*;
+pub use super::khr::device_address_commands::*;
 pub use super::khr::copy_memory_indirect::*;
 pub use super::nv::device_generated_commands_compute::*;
 pub use super::qcom::data_graph_model::*;
@@ -239,6 +240,7 @@ pub use super::ext::attachment_feedback_loop_layout::*;
 pub use super::ext::device_address_binding_report::*;
 pub use super::nv::optical_flow::*;
 pub use super::ext::device_fault::*;
+pub use super::khr::device_fault::*;
 pub use super::ext::pipeline_library_group_handles::*;
 pub use super::ext::depth_bias_control::*;
 pub use super::nv::memory_decompression::*;
@@ -316,6 +318,8 @@ pub use super::ext::shader_long_vector::*;
 pub use super::ext::texture_compression_astc_3d::*;
 pub use super::ext::shader_subgroup_partitioned::*;
 pub use super::arm::shader_instrumentation::*;
+pub use super::khr::shader_constant_data::*;
+pub use super::khr::shader_abort::*;
 pub use super::khr::maintenance5::*;
 pub use super::ext::private_data::*;
 pub use super::khr::get_physical_device_properties2::*;
