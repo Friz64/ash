@@ -65,7 +65,31 @@ impl CompositeAlphaFlagBitsKHR {
     pub const INHERIT_KHR: Self = Self(1 << 3);
 }
 #[repr(transparent)]
-#[derive(Clone, Copy)]
-pub struct SurfaceKHR(pub(crate) i32);
+#[derive(Eq, PartialEq, Ord, PartialOrd, Clone, Copy, Hash, Default)]
+pub struct SurfaceKHR(u64);
+impl crate::Handle for SurfaceKHR {
+    const TYPE: crate::vk::ObjectType = crate::vk::ObjectType::SURFACE_KHR;
+    fn as_raw(self) -> u64 {
+        self.0
+    }
+    fn from_raw(x: u64) -> Self {
+        Self(x)
+    }
+}
+impl SurfaceKHR {
+    pub const fn null() -> Self {
+        Self(0)
+    }
+}
+impl core::fmt::Pointer for SurfaceKHR {
+    fn fmt(&self, f: &mut core::fmt::Formatter<'_>) -> core::fmt::Result {
+        write!(f, "0x{:x}", self.0)
+    }
+}
+impl core::fmt::Debug for SurfaceKHR {
+    fn fmt(&self, f: &mut core::fmt::Formatter<'_>) -> core::fmt::Result {
+        write!(f, "0x{:x}", self.0)
+    }
+}
 pub const KHR_SURFACE_SPEC_VERSION: u32 = 25;
 pub const KHR_SURFACE_EXTENSION_NAME: &core::ffi::CStr = c"VK_KHR_surface";

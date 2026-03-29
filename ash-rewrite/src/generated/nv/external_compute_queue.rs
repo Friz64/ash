@@ -44,7 +44,38 @@ impl crate::vk::ObjectType {
     pub const EXTERNAL_COMPUTE_QUEUE_NV: Self = Self(1000556000);
 }
 #[repr(transparent)]
-#[derive(Clone, Copy)]
-pub struct ExternalComputeQueueNV(pub(crate) i32);
+#[derive(Eq, PartialEq, Ord, PartialOrd, Clone, Copy, Hash)]
+pub struct ExternalComputeQueueNV(*mut u8);
+impl Default for ExternalComputeQueueNV {
+    fn default() -> Self {
+        Self::null()
+    }
+}
+impl crate::Handle for ExternalComputeQueueNV {
+    const TYPE: crate::vk::ObjectType = crate::vk::ObjectType::EXTERNAL_COMPUTE_QUEUE_NV;
+    fn as_raw(self) -> u64 {
+        self.0 as u64
+    }
+    fn from_raw(x: u64) -> Self {
+        Self(x as _)
+    }
+}
+unsafe impl Send for ExternalComputeQueueNV {}
+unsafe impl Sync for ExternalComputeQueueNV {}
+impl ExternalComputeQueueNV {
+    pub const fn null() -> Self {
+        Self(::core::ptr::null_mut())
+    }
+}
+impl core::fmt::Pointer for ExternalComputeQueueNV {
+    fn fmt(&self, f: &mut core::fmt::Formatter<'_>) -> core::fmt::Result {
+        core::fmt::Pointer::fmt(&self.0, f)
+    }
+}
+impl core::fmt::Debug for ExternalComputeQueueNV {
+    fn fmt(&self, f: &mut core::fmt::Formatter<'_>) -> core::fmt::Result {
+        core::fmt::Debug::fmt(&self.0, f)
+    }
+}
 pub const NV_EXTERNAL_COMPUTE_QUEUE_SPEC_VERSION: u32 = 1;
 pub const NV_EXTERNAL_COMPUTE_QUEUE_EXTENSION_NAME: &core::ffi::CStr = c"VK_NV_external_compute_queue";

@@ -131,10 +131,58 @@ bitflags::bitflags! {
     u32 {}
 }
 #[repr(transparent)]
-#[derive(Clone, Copy)]
-pub struct DisplayKHR(pub(crate) i32);
+#[derive(Eq, PartialEq, Ord, PartialOrd, Clone, Copy, Hash, Default)]
+pub struct DisplayKHR(u64);
+impl crate::Handle for DisplayKHR {
+    const TYPE: crate::vk::ObjectType = crate::vk::ObjectType::DISPLAY_KHR;
+    fn as_raw(self) -> u64 {
+        self.0
+    }
+    fn from_raw(x: u64) -> Self {
+        Self(x)
+    }
+}
+impl DisplayKHR {
+    pub const fn null() -> Self {
+        Self(0)
+    }
+}
+impl core::fmt::Pointer for DisplayKHR {
+    fn fmt(&self, f: &mut core::fmt::Formatter<'_>) -> core::fmt::Result {
+        write!(f, "0x{:x}", self.0)
+    }
+}
+impl core::fmt::Debug for DisplayKHR {
+    fn fmt(&self, f: &mut core::fmt::Formatter<'_>) -> core::fmt::Result {
+        write!(f, "0x{:x}", self.0)
+    }
+}
 #[repr(transparent)]
-#[derive(Clone, Copy)]
-pub struct DisplayModeKHR(pub(crate) i32);
+#[derive(Eq, PartialEq, Ord, PartialOrd, Clone, Copy, Hash, Default)]
+pub struct DisplayModeKHR(u64);
+impl crate::Handle for DisplayModeKHR {
+    const TYPE: crate::vk::ObjectType = crate::vk::ObjectType::DISPLAY_MODE_KHR;
+    fn as_raw(self) -> u64 {
+        self.0
+    }
+    fn from_raw(x: u64) -> Self {
+        Self(x)
+    }
+}
+impl DisplayModeKHR {
+    pub const fn null() -> Self {
+        Self(0)
+    }
+}
+impl core::fmt::Pointer for DisplayModeKHR {
+    fn fmt(&self, f: &mut core::fmt::Formatter<'_>) -> core::fmt::Result {
+        write!(f, "0x{:x}", self.0)
+    }
+}
+impl core::fmt::Debug for DisplayModeKHR {
+    fn fmt(&self, f: &mut core::fmt::Formatter<'_>) -> core::fmt::Result {
+        write!(f, "0x{:x}", self.0)
+    }
+}
 pub const KHR_DISPLAY_SPEC_VERSION: u32 = 23;
 pub const KHR_DISPLAY_EXTENSION_NAME: &core::ffi::CStr = c"VK_KHR_display";

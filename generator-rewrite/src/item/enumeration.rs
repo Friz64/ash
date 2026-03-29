@@ -24,7 +24,7 @@ impl Code for Enum {
         let mut impl_map = CodeMap::default();
 
         for (&name, Item { required_by, value }) in &self.items {
-            let name = ctx.enumerator_to_rust(name, self.name);
+            let name = ctx.enumerator_to_rust(name, self.name, false);
             let value = match &value {
                 Value::Variant(variant) => {
                     let literal = Literal::i32_unsuffixed(*variant);
@@ -35,8 +35,8 @@ impl Code for Enum {
                     quote! { Self(#expr) }
                 }
                 Value::Alias(enumerator_name) => {
-                    let ident = ctx.enumerator_to_rust(*enumerator_name, self.name);
-                    quote! { Self::#ident }
+                    let alias = ctx.enumerator_to_rust(*enumerator_name, self.name, false);
+                    quote! { Self::#alias }
                 }
             };
 

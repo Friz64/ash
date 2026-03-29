@@ -60,10 +60,58 @@ impl crate::vk::DebugReportObjectTypeEXT {
     pub const CU_FUNCTION_NVX_EXT: Self = Self(1000029001);
 }
 #[repr(transparent)]
-#[derive(Clone, Copy)]
-pub struct CuModuleNVX(pub(crate) i32);
+#[derive(Eq, PartialEq, Ord, PartialOrd, Clone, Copy, Hash, Default)]
+pub struct CuModuleNVX(u64);
+impl crate::Handle for CuModuleNVX {
+    const TYPE: crate::vk::ObjectType = crate::vk::ObjectType::CU_MODULE_NVX;
+    fn as_raw(self) -> u64 {
+        self.0
+    }
+    fn from_raw(x: u64) -> Self {
+        Self(x)
+    }
+}
+impl CuModuleNVX {
+    pub const fn null() -> Self {
+        Self(0)
+    }
+}
+impl core::fmt::Pointer for CuModuleNVX {
+    fn fmt(&self, f: &mut core::fmt::Formatter<'_>) -> core::fmt::Result {
+        write!(f, "0x{:x}", self.0)
+    }
+}
+impl core::fmt::Debug for CuModuleNVX {
+    fn fmt(&self, f: &mut core::fmt::Formatter<'_>) -> core::fmt::Result {
+        write!(f, "0x{:x}", self.0)
+    }
+}
 #[repr(transparent)]
-#[derive(Clone, Copy)]
-pub struct CuFunctionNVX(pub(crate) i32);
+#[derive(Eq, PartialEq, Ord, PartialOrd, Clone, Copy, Hash, Default)]
+pub struct CuFunctionNVX(u64);
+impl crate::Handle for CuFunctionNVX {
+    const TYPE: crate::vk::ObjectType = crate::vk::ObjectType::CU_FUNCTION_NVX;
+    fn as_raw(self) -> u64 {
+        self.0
+    }
+    fn from_raw(x: u64) -> Self {
+        Self(x)
+    }
+}
+impl CuFunctionNVX {
+    pub const fn null() -> Self {
+        Self(0)
+    }
+}
+impl core::fmt::Pointer for CuFunctionNVX {
+    fn fmt(&self, f: &mut core::fmt::Formatter<'_>) -> core::fmt::Result {
+        write!(f, "0x{:x}", self.0)
+    }
+}
+impl core::fmt::Debug for CuFunctionNVX {
+    fn fmt(&self, f: &mut core::fmt::Formatter<'_>) -> core::fmt::Result {
+        write!(f, "0x{:x}", self.0)
+    }
+}
 pub const NVX_BINARY_IMPORT_SPEC_VERSION: u32 = 2;
 pub const NVX_BINARY_IMPORT_EXTENSION_NAME: &core::ffi::CStr = c"VK_NVX_binary_import";

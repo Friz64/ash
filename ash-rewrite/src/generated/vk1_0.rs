@@ -2972,80 +2972,715 @@ pub struct DeviceSize(pub(crate) u64);
 #[derive(Clone, Copy)]
 pub struct DeviceAddress(pub(crate) u64);
 #[repr(transparent)]
-#[derive(Clone, Copy)]
-pub struct Instance(pub(crate) i32);
+#[derive(Eq, PartialEq, Ord, PartialOrd, Clone, Copy, Hash)]
+pub struct Instance(*mut u8);
+impl Default for Instance {
+    fn default() -> Self {
+        Self::null()
+    }
+}
+impl crate::Handle for Instance {
+    const TYPE: crate::vk::ObjectType = crate::vk::ObjectType::INSTANCE;
+    fn as_raw(self) -> u64 {
+        self.0 as u64
+    }
+    fn from_raw(x: u64) -> Self {
+        Self(x as _)
+    }
+}
+unsafe impl Send for Instance {}
+unsafe impl Sync for Instance {}
+impl Instance {
+    pub const fn null() -> Self {
+        Self(::core::ptr::null_mut())
+    }
+}
+impl core::fmt::Pointer for Instance {
+    fn fmt(&self, f: &mut core::fmt::Formatter<'_>) -> core::fmt::Result {
+        core::fmt::Pointer::fmt(&self.0, f)
+    }
+}
+impl core::fmt::Debug for Instance {
+    fn fmt(&self, f: &mut core::fmt::Formatter<'_>) -> core::fmt::Result {
+        core::fmt::Debug::fmt(&self.0, f)
+    }
+}
 #[repr(transparent)]
-#[derive(Clone, Copy)]
-pub struct PhysicalDevice(pub(crate) i32);
+#[derive(Eq, PartialEq, Ord, PartialOrd, Clone, Copy, Hash)]
+pub struct PhysicalDevice(*mut u8);
+impl Default for PhysicalDevice {
+    fn default() -> Self {
+        Self::null()
+    }
+}
+impl crate::Handle for PhysicalDevice {
+    const TYPE: crate::vk::ObjectType = crate::vk::ObjectType::PHYSICAL_DEVICE;
+    fn as_raw(self) -> u64 {
+        self.0 as u64
+    }
+    fn from_raw(x: u64) -> Self {
+        Self(x as _)
+    }
+}
+unsafe impl Send for PhysicalDevice {}
+unsafe impl Sync for PhysicalDevice {}
+impl PhysicalDevice {
+    pub const fn null() -> Self {
+        Self(::core::ptr::null_mut())
+    }
+}
+impl core::fmt::Pointer for PhysicalDevice {
+    fn fmt(&self, f: &mut core::fmt::Formatter<'_>) -> core::fmt::Result {
+        core::fmt::Pointer::fmt(&self.0, f)
+    }
+}
+impl core::fmt::Debug for PhysicalDevice {
+    fn fmt(&self, f: &mut core::fmt::Formatter<'_>) -> core::fmt::Result {
+        core::fmt::Debug::fmt(&self.0, f)
+    }
+}
 #[repr(transparent)]
-#[derive(Clone, Copy)]
-pub struct Device(pub(crate) i32);
+#[derive(Eq, PartialEq, Ord, PartialOrd, Clone, Copy, Hash)]
+pub struct Device(*mut u8);
+impl Default for Device {
+    fn default() -> Self {
+        Self::null()
+    }
+}
+impl crate::Handle for Device {
+    const TYPE: crate::vk::ObjectType = crate::vk::ObjectType::DEVICE;
+    fn as_raw(self) -> u64 {
+        self.0 as u64
+    }
+    fn from_raw(x: u64) -> Self {
+        Self(x as _)
+    }
+}
+unsafe impl Send for Device {}
+unsafe impl Sync for Device {}
+impl Device {
+    pub const fn null() -> Self {
+        Self(::core::ptr::null_mut())
+    }
+}
+impl core::fmt::Pointer for Device {
+    fn fmt(&self, f: &mut core::fmt::Formatter<'_>) -> core::fmt::Result {
+        core::fmt::Pointer::fmt(&self.0, f)
+    }
+}
+impl core::fmt::Debug for Device {
+    fn fmt(&self, f: &mut core::fmt::Formatter<'_>) -> core::fmt::Result {
+        core::fmt::Debug::fmt(&self.0, f)
+    }
+}
 #[repr(transparent)]
-#[derive(Clone, Copy)]
-pub struct Queue(pub(crate) i32);
+#[derive(Eq, PartialEq, Ord, PartialOrd, Clone, Copy, Hash)]
+pub struct Queue(*mut u8);
+impl Default for Queue {
+    fn default() -> Self {
+        Self::null()
+    }
+}
+impl crate::Handle for Queue {
+    const TYPE: crate::vk::ObjectType = crate::vk::ObjectType::QUEUE;
+    fn as_raw(self) -> u64 {
+        self.0 as u64
+    }
+    fn from_raw(x: u64) -> Self {
+        Self(x as _)
+    }
+}
+unsafe impl Send for Queue {}
+unsafe impl Sync for Queue {}
+impl Queue {
+    pub const fn null() -> Self {
+        Self(::core::ptr::null_mut())
+    }
+}
+impl core::fmt::Pointer for Queue {
+    fn fmt(&self, f: &mut core::fmt::Formatter<'_>) -> core::fmt::Result {
+        core::fmt::Pointer::fmt(&self.0, f)
+    }
+}
+impl core::fmt::Debug for Queue {
+    fn fmt(&self, f: &mut core::fmt::Formatter<'_>) -> core::fmt::Result {
+        core::fmt::Debug::fmt(&self.0, f)
+    }
+}
 #[repr(transparent)]
-#[derive(Clone, Copy)]
-pub struct CommandBuffer(pub(crate) i32);
+#[derive(Eq, PartialEq, Ord, PartialOrd, Clone, Copy, Hash)]
+pub struct CommandBuffer(*mut u8);
+impl Default for CommandBuffer {
+    fn default() -> Self {
+        Self::null()
+    }
+}
+impl crate::Handle for CommandBuffer {
+    const TYPE: crate::vk::ObjectType = crate::vk::ObjectType::COMMAND_BUFFER;
+    fn as_raw(self) -> u64 {
+        self.0 as u64
+    }
+    fn from_raw(x: u64) -> Self {
+        Self(x as _)
+    }
+}
+unsafe impl Send for CommandBuffer {}
+unsafe impl Sync for CommandBuffer {}
+impl CommandBuffer {
+    pub const fn null() -> Self {
+        Self(::core::ptr::null_mut())
+    }
+}
+impl core::fmt::Pointer for CommandBuffer {
+    fn fmt(&self, f: &mut core::fmt::Formatter<'_>) -> core::fmt::Result {
+        core::fmt::Pointer::fmt(&self.0, f)
+    }
+}
+impl core::fmt::Debug for CommandBuffer {
+    fn fmt(&self, f: &mut core::fmt::Formatter<'_>) -> core::fmt::Result {
+        core::fmt::Debug::fmt(&self.0, f)
+    }
+}
 #[repr(transparent)]
-#[derive(Clone, Copy)]
-pub struct DeviceMemory(pub(crate) i32);
+#[derive(Eq, PartialEq, Ord, PartialOrd, Clone, Copy, Hash, Default)]
+pub struct DeviceMemory(u64);
+impl crate::Handle for DeviceMemory {
+    const TYPE: crate::vk::ObjectType = crate::vk::ObjectType::DEVICE_MEMORY;
+    fn as_raw(self) -> u64 {
+        self.0
+    }
+    fn from_raw(x: u64) -> Self {
+        Self(x)
+    }
+}
+impl DeviceMemory {
+    pub const fn null() -> Self {
+        Self(0)
+    }
+}
+impl core::fmt::Pointer for DeviceMemory {
+    fn fmt(&self, f: &mut core::fmt::Formatter<'_>) -> core::fmt::Result {
+        write!(f, "0x{:x}", self.0)
+    }
+}
+impl core::fmt::Debug for DeviceMemory {
+    fn fmt(&self, f: &mut core::fmt::Formatter<'_>) -> core::fmt::Result {
+        write!(f, "0x{:x}", self.0)
+    }
+}
 #[repr(transparent)]
-#[derive(Clone, Copy)]
-pub struct CommandPool(pub(crate) i32);
+#[derive(Eq, PartialEq, Ord, PartialOrd, Clone, Copy, Hash, Default)]
+pub struct CommandPool(u64);
+impl crate::Handle for CommandPool {
+    const TYPE: crate::vk::ObjectType = crate::vk::ObjectType::COMMAND_POOL;
+    fn as_raw(self) -> u64 {
+        self.0
+    }
+    fn from_raw(x: u64) -> Self {
+        Self(x)
+    }
+}
+impl CommandPool {
+    pub const fn null() -> Self {
+        Self(0)
+    }
+}
+impl core::fmt::Pointer for CommandPool {
+    fn fmt(&self, f: &mut core::fmt::Formatter<'_>) -> core::fmt::Result {
+        write!(f, "0x{:x}", self.0)
+    }
+}
+impl core::fmt::Debug for CommandPool {
+    fn fmt(&self, f: &mut core::fmt::Formatter<'_>) -> core::fmt::Result {
+        write!(f, "0x{:x}", self.0)
+    }
+}
 #[repr(transparent)]
-#[derive(Clone, Copy)]
-pub struct Buffer(pub(crate) i32);
+#[derive(Eq, PartialEq, Ord, PartialOrd, Clone, Copy, Hash, Default)]
+pub struct Buffer(u64);
+impl crate::Handle for Buffer {
+    const TYPE: crate::vk::ObjectType = crate::vk::ObjectType::BUFFER;
+    fn as_raw(self) -> u64 {
+        self.0
+    }
+    fn from_raw(x: u64) -> Self {
+        Self(x)
+    }
+}
+impl Buffer {
+    pub const fn null() -> Self {
+        Self(0)
+    }
+}
+impl core::fmt::Pointer for Buffer {
+    fn fmt(&self, f: &mut core::fmt::Formatter<'_>) -> core::fmt::Result {
+        write!(f, "0x{:x}", self.0)
+    }
+}
+impl core::fmt::Debug for Buffer {
+    fn fmt(&self, f: &mut core::fmt::Formatter<'_>) -> core::fmt::Result {
+        write!(f, "0x{:x}", self.0)
+    }
+}
 #[repr(transparent)]
-#[derive(Clone, Copy)]
-pub struct BufferView(pub(crate) i32);
+#[derive(Eq, PartialEq, Ord, PartialOrd, Clone, Copy, Hash, Default)]
+pub struct BufferView(u64);
+impl crate::Handle for BufferView {
+    const TYPE: crate::vk::ObjectType = crate::vk::ObjectType::BUFFER_VIEW;
+    fn as_raw(self) -> u64 {
+        self.0
+    }
+    fn from_raw(x: u64) -> Self {
+        Self(x)
+    }
+}
+impl BufferView {
+    pub const fn null() -> Self {
+        Self(0)
+    }
+}
+impl core::fmt::Pointer for BufferView {
+    fn fmt(&self, f: &mut core::fmt::Formatter<'_>) -> core::fmt::Result {
+        write!(f, "0x{:x}", self.0)
+    }
+}
+impl core::fmt::Debug for BufferView {
+    fn fmt(&self, f: &mut core::fmt::Formatter<'_>) -> core::fmt::Result {
+        write!(f, "0x{:x}", self.0)
+    }
+}
 #[repr(transparent)]
-#[derive(Clone, Copy)]
-pub struct Image(pub(crate) i32);
+#[derive(Eq, PartialEq, Ord, PartialOrd, Clone, Copy, Hash, Default)]
+pub struct Image(u64);
+impl crate::Handle for Image {
+    const TYPE: crate::vk::ObjectType = crate::vk::ObjectType::IMAGE;
+    fn as_raw(self) -> u64 {
+        self.0
+    }
+    fn from_raw(x: u64) -> Self {
+        Self(x)
+    }
+}
+impl Image {
+    pub const fn null() -> Self {
+        Self(0)
+    }
+}
+impl core::fmt::Pointer for Image {
+    fn fmt(&self, f: &mut core::fmt::Formatter<'_>) -> core::fmt::Result {
+        write!(f, "0x{:x}", self.0)
+    }
+}
+impl core::fmt::Debug for Image {
+    fn fmt(&self, f: &mut core::fmt::Formatter<'_>) -> core::fmt::Result {
+        write!(f, "0x{:x}", self.0)
+    }
+}
 #[repr(transparent)]
-#[derive(Clone, Copy)]
-pub struct ImageView(pub(crate) i32);
+#[derive(Eq, PartialEq, Ord, PartialOrd, Clone, Copy, Hash, Default)]
+pub struct ImageView(u64);
+impl crate::Handle for ImageView {
+    const TYPE: crate::vk::ObjectType = crate::vk::ObjectType::IMAGE_VIEW;
+    fn as_raw(self) -> u64 {
+        self.0
+    }
+    fn from_raw(x: u64) -> Self {
+        Self(x)
+    }
+}
+impl ImageView {
+    pub const fn null() -> Self {
+        Self(0)
+    }
+}
+impl core::fmt::Pointer for ImageView {
+    fn fmt(&self, f: &mut core::fmt::Formatter<'_>) -> core::fmt::Result {
+        write!(f, "0x{:x}", self.0)
+    }
+}
+impl core::fmt::Debug for ImageView {
+    fn fmt(&self, f: &mut core::fmt::Formatter<'_>) -> core::fmt::Result {
+        write!(f, "0x{:x}", self.0)
+    }
+}
 #[repr(transparent)]
-#[derive(Clone, Copy)]
-pub struct ShaderModule(pub(crate) i32);
+#[derive(Eq, PartialEq, Ord, PartialOrd, Clone, Copy, Hash, Default)]
+pub struct ShaderModule(u64);
+impl crate::Handle for ShaderModule {
+    const TYPE: crate::vk::ObjectType = crate::vk::ObjectType::SHADER_MODULE;
+    fn as_raw(self) -> u64 {
+        self.0
+    }
+    fn from_raw(x: u64) -> Self {
+        Self(x)
+    }
+}
+impl ShaderModule {
+    pub const fn null() -> Self {
+        Self(0)
+    }
+}
+impl core::fmt::Pointer for ShaderModule {
+    fn fmt(&self, f: &mut core::fmt::Formatter<'_>) -> core::fmt::Result {
+        write!(f, "0x{:x}", self.0)
+    }
+}
+impl core::fmt::Debug for ShaderModule {
+    fn fmt(&self, f: &mut core::fmt::Formatter<'_>) -> core::fmt::Result {
+        write!(f, "0x{:x}", self.0)
+    }
+}
 #[repr(transparent)]
-#[derive(Clone, Copy)]
-pub struct Pipeline(pub(crate) i32);
+#[derive(Eq, PartialEq, Ord, PartialOrd, Clone, Copy, Hash, Default)]
+pub struct Pipeline(u64);
+impl crate::Handle for Pipeline {
+    const TYPE: crate::vk::ObjectType = crate::vk::ObjectType::PIPELINE;
+    fn as_raw(self) -> u64 {
+        self.0
+    }
+    fn from_raw(x: u64) -> Self {
+        Self(x)
+    }
+}
+impl Pipeline {
+    pub const fn null() -> Self {
+        Self(0)
+    }
+}
+impl core::fmt::Pointer for Pipeline {
+    fn fmt(&self, f: &mut core::fmt::Formatter<'_>) -> core::fmt::Result {
+        write!(f, "0x{:x}", self.0)
+    }
+}
+impl core::fmt::Debug for Pipeline {
+    fn fmt(&self, f: &mut core::fmt::Formatter<'_>) -> core::fmt::Result {
+        write!(f, "0x{:x}", self.0)
+    }
+}
 #[repr(transparent)]
-#[derive(Clone, Copy)]
-pub struct PipelineLayout(pub(crate) i32);
+#[derive(Eq, PartialEq, Ord, PartialOrd, Clone, Copy, Hash, Default)]
+pub struct PipelineLayout(u64);
+impl crate::Handle for PipelineLayout {
+    const TYPE: crate::vk::ObjectType = crate::vk::ObjectType::PIPELINE_LAYOUT;
+    fn as_raw(self) -> u64 {
+        self.0
+    }
+    fn from_raw(x: u64) -> Self {
+        Self(x)
+    }
+}
+impl PipelineLayout {
+    pub const fn null() -> Self {
+        Self(0)
+    }
+}
+impl core::fmt::Pointer for PipelineLayout {
+    fn fmt(&self, f: &mut core::fmt::Formatter<'_>) -> core::fmt::Result {
+        write!(f, "0x{:x}", self.0)
+    }
+}
+impl core::fmt::Debug for PipelineLayout {
+    fn fmt(&self, f: &mut core::fmt::Formatter<'_>) -> core::fmt::Result {
+        write!(f, "0x{:x}", self.0)
+    }
+}
 #[repr(transparent)]
-#[derive(Clone, Copy)]
-pub struct Sampler(pub(crate) i32);
+#[derive(Eq, PartialEq, Ord, PartialOrd, Clone, Copy, Hash, Default)]
+pub struct Sampler(u64);
+impl crate::Handle for Sampler {
+    const TYPE: crate::vk::ObjectType = crate::vk::ObjectType::SAMPLER;
+    fn as_raw(self) -> u64 {
+        self.0
+    }
+    fn from_raw(x: u64) -> Self {
+        Self(x)
+    }
+}
+impl Sampler {
+    pub const fn null() -> Self {
+        Self(0)
+    }
+}
+impl core::fmt::Pointer for Sampler {
+    fn fmt(&self, f: &mut core::fmt::Formatter<'_>) -> core::fmt::Result {
+        write!(f, "0x{:x}", self.0)
+    }
+}
+impl core::fmt::Debug for Sampler {
+    fn fmt(&self, f: &mut core::fmt::Formatter<'_>) -> core::fmt::Result {
+        write!(f, "0x{:x}", self.0)
+    }
+}
 #[repr(transparent)]
-#[derive(Clone, Copy)]
-pub struct DescriptorSet(pub(crate) i32);
+#[derive(Eq, PartialEq, Ord, PartialOrd, Clone, Copy, Hash, Default)]
+pub struct DescriptorSet(u64);
+impl crate::Handle for DescriptorSet {
+    const TYPE: crate::vk::ObjectType = crate::vk::ObjectType::DESCRIPTOR_SET;
+    fn as_raw(self) -> u64 {
+        self.0
+    }
+    fn from_raw(x: u64) -> Self {
+        Self(x)
+    }
+}
+impl DescriptorSet {
+    pub const fn null() -> Self {
+        Self(0)
+    }
+}
+impl core::fmt::Pointer for DescriptorSet {
+    fn fmt(&self, f: &mut core::fmt::Formatter<'_>) -> core::fmt::Result {
+        write!(f, "0x{:x}", self.0)
+    }
+}
+impl core::fmt::Debug for DescriptorSet {
+    fn fmt(&self, f: &mut core::fmt::Formatter<'_>) -> core::fmt::Result {
+        write!(f, "0x{:x}", self.0)
+    }
+}
 #[repr(transparent)]
-#[derive(Clone, Copy)]
-pub struct DescriptorSetLayout(pub(crate) i32);
+#[derive(Eq, PartialEq, Ord, PartialOrd, Clone, Copy, Hash, Default)]
+pub struct DescriptorSetLayout(u64);
+impl crate::Handle for DescriptorSetLayout {
+    const TYPE: crate::vk::ObjectType = crate::vk::ObjectType::DESCRIPTOR_SET_LAYOUT;
+    fn as_raw(self) -> u64 {
+        self.0
+    }
+    fn from_raw(x: u64) -> Self {
+        Self(x)
+    }
+}
+impl DescriptorSetLayout {
+    pub const fn null() -> Self {
+        Self(0)
+    }
+}
+impl core::fmt::Pointer for DescriptorSetLayout {
+    fn fmt(&self, f: &mut core::fmt::Formatter<'_>) -> core::fmt::Result {
+        write!(f, "0x{:x}", self.0)
+    }
+}
+impl core::fmt::Debug for DescriptorSetLayout {
+    fn fmt(&self, f: &mut core::fmt::Formatter<'_>) -> core::fmt::Result {
+        write!(f, "0x{:x}", self.0)
+    }
+}
 #[repr(transparent)]
-#[derive(Clone, Copy)]
-pub struct DescriptorPool(pub(crate) i32);
+#[derive(Eq, PartialEq, Ord, PartialOrd, Clone, Copy, Hash, Default)]
+pub struct DescriptorPool(u64);
+impl crate::Handle for DescriptorPool {
+    const TYPE: crate::vk::ObjectType = crate::vk::ObjectType::DESCRIPTOR_POOL;
+    fn as_raw(self) -> u64 {
+        self.0
+    }
+    fn from_raw(x: u64) -> Self {
+        Self(x)
+    }
+}
+impl DescriptorPool {
+    pub const fn null() -> Self {
+        Self(0)
+    }
+}
+impl core::fmt::Pointer for DescriptorPool {
+    fn fmt(&self, f: &mut core::fmt::Formatter<'_>) -> core::fmt::Result {
+        write!(f, "0x{:x}", self.0)
+    }
+}
+impl core::fmt::Debug for DescriptorPool {
+    fn fmt(&self, f: &mut core::fmt::Formatter<'_>) -> core::fmt::Result {
+        write!(f, "0x{:x}", self.0)
+    }
+}
 #[repr(transparent)]
-#[derive(Clone, Copy)]
-pub struct Fence(pub(crate) i32);
+#[derive(Eq, PartialEq, Ord, PartialOrd, Clone, Copy, Hash, Default)]
+pub struct Fence(u64);
+impl crate::Handle for Fence {
+    const TYPE: crate::vk::ObjectType = crate::vk::ObjectType::FENCE;
+    fn as_raw(self) -> u64 {
+        self.0
+    }
+    fn from_raw(x: u64) -> Self {
+        Self(x)
+    }
+}
+impl Fence {
+    pub const fn null() -> Self {
+        Self(0)
+    }
+}
+impl core::fmt::Pointer for Fence {
+    fn fmt(&self, f: &mut core::fmt::Formatter<'_>) -> core::fmt::Result {
+        write!(f, "0x{:x}", self.0)
+    }
+}
+impl core::fmt::Debug for Fence {
+    fn fmt(&self, f: &mut core::fmt::Formatter<'_>) -> core::fmt::Result {
+        write!(f, "0x{:x}", self.0)
+    }
+}
 #[repr(transparent)]
-#[derive(Clone, Copy)]
-pub struct Semaphore(pub(crate) i32);
+#[derive(Eq, PartialEq, Ord, PartialOrd, Clone, Copy, Hash, Default)]
+pub struct Semaphore(u64);
+impl crate::Handle for Semaphore {
+    const TYPE: crate::vk::ObjectType = crate::vk::ObjectType::SEMAPHORE;
+    fn as_raw(self) -> u64 {
+        self.0
+    }
+    fn from_raw(x: u64) -> Self {
+        Self(x)
+    }
+}
+impl Semaphore {
+    pub const fn null() -> Self {
+        Self(0)
+    }
+}
+impl core::fmt::Pointer for Semaphore {
+    fn fmt(&self, f: &mut core::fmt::Formatter<'_>) -> core::fmt::Result {
+        write!(f, "0x{:x}", self.0)
+    }
+}
+impl core::fmt::Debug for Semaphore {
+    fn fmt(&self, f: &mut core::fmt::Formatter<'_>) -> core::fmt::Result {
+        write!(f, "0x{:x}", self.0)
+    }
+}
 #[repr(transparent)]
-#[derive(Clone, Copy)]
-pub struct Event(pub(crate) i32);
+#[derive(Eq, PartialEq, Ord, PartialOrd, Clone, Copy, Hash, Default)]
+pub struct Event(u64);
+impl crate::Handle for Event {
+    const TYPE: crate::vk::ObjectType = crate::vk::ObjectType::EVENT;
+    fn as_raw(self) -> u64 {
+        self.0
+    }
+    fn from_raw(x: u64) -> Self {
+        Self(x)
+    }
+}
+impl Event {
+    pub const fn null() -> Self {
+        Self(0)
+    }
+}
+impl core::fmt::Pointer for Event {
+    fn fmt(&self, f: &mut core::fmt::Formatter<'_>) -> core::fmt::Result {
+        write!(f, "0x{:x}", self.0)
+    }
+}
+impl core::fmt::Debug for Event {
+    fn fmt(&self, f: &mut core::fmt::Formatter<'_>) -> core::fmt::Result {
+        write!(f, "0x{:x}", self.0)
+    }
+}
 #[repr(transparent)]
-#[derive(Clone, Copy)]
-pub struct QueryPool(pub(crate) i32);
+#[derive(Eq, PartialEq, Ord, PartialOrd, Clone, Copy, Hash, Default)]
+pub struct QueryPool(u64);
+impl crate::Handle for QueryPool {
+    const TYPE: crate::vk::ObjectType = crate::vk::ObjectType::QUERY_POOL;
+    fn as_raw(self) -> u64 {
+        self.0
+    }
+    fn from_raw(x: u64) -> Self {
+        Self(x)
+    }
+}
+impl QueryPool {
+    pub const fn null() -> Self {
+        Self(0)
+    }
+}
+impl core::fmt::Pointer for QueryPool {
+    fn fmt(&self, f: &mut core::fmt::Formatter<'_>) -> core::fmt::Result {
+        write!(f, "0x{:x}", self.0)
+    }
+}
+impl core::fmt::Debug for QueryPool {
+    fn fmt(&self, f: &mut core::fmt::Formatter<'_>) -> core::fmt::Result {
+        write!(f, "0x{:x}", self.0)
+    }
+}
 #[repr(transparent)]
-#[derive(Clone, Copy)]
-pub struct Framebuffer(pub(crate) i32);
+#[derive(Eq, PartialEq, Ord, PartialOrd, Clone, Copy, Hash, Default)]
+pub struct Framebuffer(u64);
+impl crate::Handle for Framebuffer {
+    const TYPE: crate::vk::ObjectType = crate::vk::ObjectType::FRAMEBUFFER;
+    fn as_raw(self) -> u64 {
+        self.0
+    }
+    fn from_raw(x: u64) -> Self {
+        Self(x)
+    }
+}
+impl Framebuffer {
+    pub const fn null() -> Self {
+        Self(0)
+    }
+}
+impl core::fmt::Pointer for Framebuffer {
+    fn fmt(&self, f: &mut core::fmt::Formatter<'_>) -> core::fmt::Result {
+        write!(f, "0x{:x}", self.0)
+    }
+}
+impl core::fmt::Debug for Framebuffer {
+    fn fmt(&self, f: &mut core::fmt::Formatter<'_>) -> core::fmt::Result {
+        write!(f, "0x{:x}", self.0)
+    }
+}
 #[repr(transparent)]
-#[derive(Clone, Copy)]
-pub struct RenderPass(pub(crate) i32);
+#[derive(Eq, PartialEq, Ord, PartialOrd, Clone, Copy, Hash, Default)]
+pub struct RenderPass(u64);
+impl crate::Handle for RenderPass {
+    const TYPE: crate::vk::ObjectType = crate::vk::ObjectType::RENDER_PASS;
+    fn as_raw(self) -> u64 {
+        self.0
+    }
+    fn from_raw(x: u64) -> Self {
+        Self(x)
+    }
+}
+impl RenderPass {
+    pub const fn null() -> Self {
+        Self(0)
+    }
+}
+impl core::fmt::Pointer for RenderPass {
+    fn fmt(&self, f: &mut core::fmt::Formatter<'_>) -> core::fmt::Result {
+        write!(f, "0x{:x}", self.0)
+    }
+}
+impl core::fmt::Debug for RenderPass {
+    fn fmt(&self, f: &mut core::fmt::Formatter<'_>) -> core::fmt::Result {
+        write!(f, "0x{:x}", self.0)
+    }
+}
 #[repr(transparent)]
-#[derive(Clone, Copy)]
-pub struct PipelineCache(pub(crate) i32);
+#[derive(Eq, PartialEq, Ord, PartialOrd, Clone, Copy, Hash, Default)]
+pub struct PipelineCache(u64);
+impl crate::Handle for PipelineCache {
+    const TYPE: crate::vk::ObjectType = crate::vk::ObjectType::PIPELINE_CACHE;
+    fn as_raw(self) -> u64 {
+        self.0
+    }
+    fn from_raw(x: u64) -> Self {
+        Self(x)
+    }
+}
+impl PipelineCache {
+    pub const fn null() -> Self {
+        Self(0)
+    }
+}
+impl core::fmt::Pointer for PipelineCache {
+    fn fmt(&self, f: &mut core::fmt::Formatter<'_>) -> core::fmt::Result {
+        write!(f, "0x{:x}", self.0)
+    }
+}
+impl core::fmt::Debug for PipelineCache {
+    fn fmt(&self, f: &mut core::fmt::Formatter<'_>) -> core::fmt::Result {
+        write!(f, "0x{:x}", self.0)
+    }
+}
 #[allow(non_camel_case_types)]
 pub type PFN_vkInternalAllocationNotification = Option<()>;
 #[allow(non_camel_case_types)]

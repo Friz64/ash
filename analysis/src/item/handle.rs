@@ -1,6 +1,6 @@
 use crate::{
     item::{Named, RequireMap, RequiredBy},
-    name::TypeName,
+    name::{EnumeratorName, TypeName},
     xml,
 };
 use tracing::{instrument, trace};
@@ -9,6 +9,8 @@ use tracing::{instrument, trace};
 pub struct Handle {
     pub required_by: RequiredBy,
     pub name: TypeName,
+    pub object_type: EnumeratorName,
+    pub dispatchable: bool,
 }
 
 impl Named<TypeName> for Handle {
@@ -26,6 +28,12 @@ impl Handle {
         Some(Handle {
             required_by,
             name: xml.name,
+            object_type: xml.objtypeenum,
+            dispatchable: match xml.ty {
+                "VK_DEFINE_NON_DISPATCHABLE_HANDLE" => false,
+                "VK_DEFINE_HANDLE" => true,
+                unimplemented => unimplemented!("{unimplemented}"),
+            },
         })
     }
 }

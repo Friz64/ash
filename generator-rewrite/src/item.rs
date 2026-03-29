@@ -61,10 +61,6 @@ impl<'a> RustTranslator for Context<'a> {
         crate::escape_ident(&name.original().to_snek_case())
     }
 
-    fn enumerator_to_rust(&self, name: EnumeratorName, bits_name: TypeName) -> Ident {
-        crate::escape_ident(&name.stripped(bits_name).TO_SHOUTY_SNEK_CASE())
-    }
-
     fn type_to_rust(&self, name: TypeName, with_path: bool) -> TokenStream {
         let ident: Ident = syn::parse_str(name.prefix_trimmed()).unwrap();
         let path = with_path.then(|| quote! { crate::vk:: });
@@ -80,6 +76,21 @@ impl<'a> RustTranslator for Context<'a> {
     fn constant_to_rust(&self, name: ConstantName, with_path: bool) -> TokenStream {
         let ident: Ident = syn::parse_str(name.prefix_trimmed()).unwrap();
         let path = with_path.then(|| quote! { crate::vk:: });
+        quote! { #path #ident }
+    }
+
+    fn enumerator_to_rust(
+        &self,
+        name: EnumeratorName,
+        type_name: TypeName,
+        with_path: bool,
+    ) -> TokenStream {
+        let ident = crate::escape_ident(&name.stripped(type_name).TO_SHOUTY_SNEK_CASE());
+        let path = with_path.then(|| {
+            let bits_name = self.type_to_rust(type_name, true);
+            quote! { #bits_name:: }
+        });
+
         quote! { #path #ident }
     }
 

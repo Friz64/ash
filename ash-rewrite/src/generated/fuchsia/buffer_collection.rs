@@ -147,7 +147,31 @@ impl ImageConstraintsInfoFlagBitsFUCHSIA {
     pub const PROTECTED_OPTIONAL_FUCHSIA: Self = Self(1 << 4);
 }
 #[repr(transparent)]
-#[derive(Clone, Copy)]
-pub struct BufferCollectionFUCHSIA(pub(crate) i32);
+#[derive(Eq, PartialEq, Ord, PartialOrd, Clone, Copy, Hash, Default)]
+pub struct BufferCollectionFUCHSIA(u64);
+impl crate::Handle for BufferCollectionFUCHSIA {
+    const TYPE: crate::vk::ObjectType = crate::vk::ObjectType::BUFFER_COLLECTION_FUCHSIA;
+    fn as_raw(self) -> u64 {
+        self.0
+    }
+    fn from_raw(x: u64) -> Self {
+        Self(x)
+    }
+}
+impl BufferCollectionFUCHSIA {
+    pub const fn null() -> Self {
+        Self(0)
+    }
+}
+impl core::fmt::Pointer for BufferCollectionFUCHSIA {
+    fn fmt(&self, f: &mut core::fmt::Formatter<'_>) -> core::fmt::Result {
+        write!(f, "0x{:x}", self.0)
+    }
+}
+impl core::fmt::Debug for BufferCollectionFUCHSIA {
+    fn fmt(&self, f: &mut core::fmt::Formatter<'_>) -> core::fmt::Result {
+        write!(f, "0x{:x}", self.0)
+    }
+}
 pub const FUCHSIA_BUFFER_COLLECTION_SPEC_VERSION: u32 = 2;
 pub const FUCHSIA_BUFFER_COLLECTION_EXTENSION_NAME: &core::ffi::CStr = c"VK_FUCHSIA_buffer_collection";

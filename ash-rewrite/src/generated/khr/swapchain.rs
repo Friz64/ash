@@ -149,7 +149,31 @@ impl DeviceGroupPresentModeFlagBitsKHR {
     pub const LOCAL_MULTI_DEVICE_KHR: Self = Self(1 << 3);
 }
 #[repr(transparent)]
-#[derive(Clone, Copy)]
-pub struct SwapchainKHR(pub(crate) i32);
+#[derive(Eq, PartialEq, Ord, PartialOrd, Clone, Copy, Hash, Default)]
+pub struct SwapchainKHR(u64);
+impl crate::Handle for SwapchainKHR {
+    const TYPE: crate::vk::ObjectType = crate::vk::ObjectType::SWAPCHAIN_KHR;
+    fn as_raw(self) -> u64 {
+        self.0
+    }
+    fn from_raw(x: u64) -> Self {
+        Self(x)
+    }
+}
+impl SwapchainKHR {
+    pub const fn null() -> Self {
+        Self(0)
+    }
+}
+impl core::fmt::Pointer for SwapchainKHR {
+    fn fmt(&self, f: &mut core::fmt::Formatter<'_>) -> core::fmt::Result {
+        write!(f, "0x{:x}", self.0)
+    }
+}
+impl core::fmt::Debug for SwapchainKHR {
+    fn fmt(&self, f: &mut core::fmt::Formatter<'_>) -> core::fmt::Result {
+        write!(f, "0x{:x}", self.0)
+    }
+}
 pub const KHR_SWAPCHAIN_SPEC_VERSION: u32 = 70;
 pub const KHR_SWAPCHAIN_EXTENSION_NAME: &core::ffi::CStr = c"VK_KHR_swapchain";

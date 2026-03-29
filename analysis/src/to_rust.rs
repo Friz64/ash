@@ -12,13 +12,18 @@ use syn::Ident;
 pub trait RustTranslator {
     fn var_name_to_rust(&self, name: VariableName) -> Ident;
 
-    fn enumerator_to_rust(&self, name: EnumeratorName, bits_name: TypeName) -> Ident;
-
     fn type_to_rust(&self, name: TypeName, with_path: bool) -> TokenStream;
 
     fn func_pointer_to_rust(&self, name: FuncPointerName, with_path: bool) -> TokenStream;
 
     fn constant_to_rust(&self, name: ConstantName, with_path: bool) -> TokenStream;
+
+    fn enumerator_to_rust(
+        &self,
+        name: EnumeratorName,
+        type_name: TypeName,
+        with_path: bool,
+    ) -> TokenStream;
 
     fn cmacro_to_rust(&self, name: CMacroName, with_path: bool) -> TokenStream;
 

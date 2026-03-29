@@ -1037,11 +1037,59 @@ impl FenceImportFlagBits {
     pub const TEMPORARY: Self = Self(1 << 0);
 }
 #[repr(transparent)]
-#[derive(Clone, Copy)]
-pub struct DescriptorUpdateTemplate(pub(crate) i32);
+#[derive(Eq, PartialEq, Ord, PartialOrd, Clone, Copy, Hash, Default)]
+pub struct DescriptorUpdateTemplate(u64);
+impl crate::Handle for DescriptorUpdateTemplate {
+    const TYPE: crate::vk::ObjectType = crate::vk::ObjectType::DESCRIPTOR_UPDATE_TEMPLATE;
+    fn as_raw(self) -> u64 {
+        self.0
+    }
+    fn from_raw(x: u64) -> Self {
+        Self(x)
+    }
+}
+impl DescriptorUpdateTemplate {
+    pub const fn null() -> Self {
+        Self(0)
+    }
+}
+impl core::fmt::Pointer for DescriptorUpdateTemplate {
+    fn fmt(&self, f: &mut core::fmt::Formatter<'_>) -> core::fmt::Result {
+        write!(f, "0x{:x}", self.0)
+    }
+}
+impl core::fmt::Debug for DescriptorUpdateTemplate {
+    fn fmt(&self, f: &mut core::fmt::Formatter<'_>) -> core::fmt::Result {
+        write!(f, "0x{:x}", self.0)
+    }
+}
 #[repr(transparent)]
-#[derive(Clone, Copy)]
-pub struct SamplerYcbcrConversion(pub(crate) i32);
+#[derive(Eq, PartialEq, Ord, PartialOrd, Clone, Copy, Hash, Default)]
+pub struct SamplerYcbcrConversion(u64);
+impl crate::Handle for SamplerYcbcrConversion {
+    const TYPE: crate::vk::ObjectType = crate::vk::ObjectType::SAMPLER_YCBCR_CONVERSION;
+    fn as_raw(self) -> u64 {
+        self.0
+    }
+    fn from_raw(x: u64) -> Self {
+        Self(x)
+    }
+}
+impl SamplerYcbcrConversion {
+    pub const fn null() -> Self {
+        Self(0)
+    }
+}
+impl core::fmt::Pointer for SamplerYcbcrConversion {
+    fn fmt(&self, f: &mut core::fmt::Formatter<'_>) -> core::fmt::Result {
+        write!(f, "0x{:x}", self.0)
+    }
+}
+impl core::fmt::Debug for SamplerYcbcrConversion {
+    fn fmt(&self, f: &mut core::fmt::Formatter<'_>) -> core::fmt::Result {
+        write!(f, "0x{:x}", self.0)
+    }
+}
 pub const LUID_SIZE: u32 = 8;
 pub const QUEUE_FAMILY_EXTERNAL: u32 = (!1);
 pub const MAX_DEVICE_GROUP_SIZE: u32 = 32;

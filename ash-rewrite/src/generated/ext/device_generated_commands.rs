@@ -299,10 +299,58 @@ impl crate::vk::ShaderCreateFlagBitsEXT {
     pub const INDIRECT_BINDABLE_EXT: Self = Self(1 << 7);
 }
 #[repr(transparent)]
-#[derive(Clone, Copy)]
-pub struct IndirectCommandsLayoutEXT(pub(crate) i32);
+#[derive(Eq, PartialEq, Ord, PartialOrd, Clone, Copy, Hash, Default)]
+pub struct IndirectCommandsLayoutEXT(u64);
+impl crate::Handle for IndirectCommandsLayoutEXT {
+    const TYPE: crate::vk::ObjectType = crate::vk::ObjectType::INDIRECT_COMMANDS_LAYOUT_EXT;
+    fn as_raw(self) -> u64 {
+        self.0
+    }
+    fn from_raw(x: u64) -> Self {
+        Self(x)
+    }
+}
+impl IndirectCommandsLayoutEXT {
+    pub const fn null() -> Self {
+        Self(0)
+    }
+}
+impl core::fmt::Pointer for IndirectCommandsLayoutEXT {
+    fn fmt(&self, f: &mut core::fmt::Formatter<'_>) -> core::fmt::Result {
+        write!(f, "0x{:x}", self.0)
+    }
+}
+impl core::fmt::Debug for IndirectCommandsLayoutEXT {
+    fn fmt(&self, f: &mut core::fmt::Formatter<'_>) -> core::fmt::Result {
+        write!(f, "0x{:x}", self.0)
+    }
+}
 #[repr(transparent)]
-#[derive(Clone, Copy)]
-pub struct IndirectExecutionSetEXT(pub(crate) i32);
+#[derive(Eq, PartialEq, Ord, PartialOrd, Clone, Copy, Hash, Default)]
+pub struct IndirectExecutionSetEXT(u64);
+impl crate::Handle for IndirectExecutionSetEXT {
+    const TYPE: crate::vk::ObjectType = crate::vk::ObjectType::INDIRECT_EXECUTION_SET_EXT;
+    fn as_raw(self) -> u64 {
+        self.0
+    }
+    fn from_raw(x: u64) -> Self {
+        Self(x)
+    }
+}
+impl IndirectExecutionSetEXT {
+    pub const fn null() -> Self {
+        Self(0)
+    }
+}
+impl core::fmt::Pointer for IndirectExecutionSetEXT {
+    fn fmt(&self, f: &mut core::fmt::Formatter<'_>) -> core::fmt::Result {
+        write!(f, "0x{:x}", self.0)
+    }
+}
+impl core::fmt::Debug for IndirectExecutionSetEXT {
+    fn fmt(&self, f: &mut core::fmt::Formatter<'_>) -> core::fmt::Result {
+        write!(f, "0x{:x}", self.0)
+    }
+}
 pub const EXT_DEVICE_GENERATED_COMMANDS_SPEC_VERSION: u32 = 1;
 pub const EXT_DEVICE_GENERATED_COMMANDS_EXTENSION_NAME: &core::ffi::CStr = c"VK_EXT_device_generated_commands";

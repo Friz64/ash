@@ -4,6 +4,8 @@ use heck::ToShoutySnekCase;
 pub struct TypeName(&'static str);
 
 impl TypeName {
+    pub const VK_OBJECT_TYPE: TypeName = TypeName("VkObjectType");
+
     pub fn new(original: &'static str) -> Self {
         Self(original)
     }

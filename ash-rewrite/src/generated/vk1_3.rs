@@ -1223,6 +1223,30 @@ impl SubmitFlagBits {
 #[derive(Clone, Copy)]
 pub struct Flags64(pub(crate) u64);
 #[repr(transparent)]
-#[derive(Clone, Copy)]
-pub struct PrivateDataSlot(pub(crate) i32);
+#[derive(Eq, PartialEq, Ord, PartialOrd, Clone, Copy, Hash, Default)]
+pub struct PrivateDataSlot(u64);
+impl crate::Handle for PrivateDataSlot {
+    const TYPE: crate::vk::ObjectType = crate::vk::ObjectType::PRIVATE_DATA_SLOT;
+    fn as_raw(self) -> u64 {
+        self.0
+    }
+    fn from_raw(x: u64) -> Self {
+        Self(x)
+    }
+}
+impl PrivateDataSlot {
+    pub const fn null() -> Self {
+        Self(0)
+    }
+}
+impl core::fmt::Pointer for PrivateDataSlot {
+    fn fmt(&self, f: &mut core::fmt::Formatter<'_>) -> core::fmt::Result {
+        write!(f, "0x{:x}", self.0)
+    }
+}
+impl core::fmt::Debug for PrivateDataSlot {
+    fn fmt(&self, f: &mut core::fmt::Formatter<'_>) -> core::fmt::Result {
+        write!(f, "0x{:x}", self.0)
+    }
+}
 pub const API_VERSION_1_3: u32 = crate::vk::make_api_version(0, 1, 3, 0);

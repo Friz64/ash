@@ -82,8 +82,32 @@ impl DebugReportFlagBitsEXT {
     pub const DEBUG_EXT: Self = Self(1 << 4);
 }
 #[repr(transparent)]
-#[derive(Clone, Copy)]
-pub struct DebugReportCallbackEXT(pub(crate) i32);
+#[derive(Eq, PartialEq, Ord, PartialOrd, Clone, Copy, Hash, Default)]
+pub struct DebugReportCallbackEXT(u64);
+impl crate::Handle for DebugReportCallbackEXT {
+    const TYPE: crate::vk::ObjectType = crate::vk::ObjectType::DEBUG_REPORT_CALLBACK_EXT;
+    fn as_raw(self) -> u64 {
+        self.0
+    }
+    fn from_raw(x: u64) -> Self {
+        Self(x)
+    }
+}
+impl DebugReportCallbackEXT {
+    pub const fn null() -> Self {
+        Self(0)
+    }
+}
+impl core::fmt::Pointer for DebugReportCallbackEXT {
+    fn fmt(&self, f: &mut core::fmt::Formatter<'_>) -> core::fmt::Result {
+        write!(f, "0x{:x}", self.0)
+    }
+}
+impl core::fmt::Debug for DebugReportCallbackEXT {
+    fn fmt(&self, f: &mut core::fmt::Formatter<'_>) -> core::fmt::Result {
+        write!(f, "0x{:x}", self.0)
+    }
+}
 #[allow(non_camel_case_types)]
 pub type PFN_vkDebugReportCallbackEXT = Option<()>;
 pub const EXT_DEBUG_REPORT_SPEC_VERSION: u32 = 10;

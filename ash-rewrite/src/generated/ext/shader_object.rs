@@ -89,7 +89,31 @@ impl ShaderCreateFlagBitsEXT {
     pub const FRAGMENT_DENSITY_MAP_ATTACHMENT_EXT: Self = Self(1 << 6);
 }
 #[repr(transparent)]
-#[derive(Clone, Copy)]
-pub struct ShaderEXT(pub(crate) i32);
+#[derive(Eq, PartialEq, Ord, PartialOrd, Clone, Copy, Hash, Default)]
+pub struct ShaderEXT(u64);
+impl crate::Handle for ShaderEXT {
+    const TYPE: crate::vk::ObjectType = crate::vk::ObjectType::SHADER_EXT;
+    fn as_raw(self) -> u64 {
+        self.0
+    }
+    fn from_raw(x: u64) -> Self {
+        Self(x)
+    }
+}
+impl ShaderEXT {
+    pub const fn null() -> Self {
+        Self(0)
+    }
+}
+impl core::fmt::Pointer for ShaderEXT {
+    fn fmt(&self, f: &mut core::fmt::Formatter<'_>) -> core::fmt::Result {
+        write!(f, "0x{:x}", self.0)
+    }
+}
+impl core::fmt::Debug for ShaderEXT {
+    fn fmt(&self, f: &mut core::fmt::Formatter<'_>) -> core::fmt::Result {
+        write!(f, "0x{:x}", self.0)
+    }
+}
 pub const EXT_SHADER_OBJECT_SPEC_VERSION: u32 = 1;
 pub const EXT_SHADER_OBJECT_EXTENSION_NAME: &core::ffi::CStr = c"VK_EXT_shader_object";

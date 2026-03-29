@@ -314,8 +314,32 @@ bitflags::bitflags! {
 #[derive(Clone, Copy)]
 pub struct DataGraphPipelineDispatchFlagBitsARM(pub(crate) u64);
 #[repr(transparent)]
-#[derive(Clone, Copy)]
-pub struct DataGraphPipelineSessionARM(pub(crate) i32);
+#[derive(Eq, PartialEq, Ord, PartialOrd, Clone, Copy, Hash, Default)]
+pub struct DataGraphPipelineSessionARM(u64);
+impl crate::Handle for DataGraphPipelineSessionARM {
+    const TYPE: crate::vk::ObjectType = crate::vk::ObjectType::DATA_GRAPH_PIPELINE_SESSION_ARM;
+    fn as_raw(self) -> u64 {
+        self.0
+    }
+    fn from_raw(x: u64) -> Self {
+        Self(x)
+    }
+}
+impl DataGraphPipelineSessionARM {
+    pub const fn null() -> Self {
+        Self(0)
+    }
+}
+impl core::fmt::Pointer for DataGraphPipelineSessionARM {
+    fn fmt(&self, f: &mut core::fmt::Formatter<'_>) -> core::fmt::Result {
+        write!(f, "0x{:x}", self.0)
+    }
+}
+impl core::fmt::Debug for DataGraphPipelineSessionARM {
+    fn fmt(&self, f: &mut core::fmt::Formatter<'_>) -> core::fmt::Result {
+        write!(f, "0x{:x}", self.0)
+    }
+}
 pub const MAX_PHYSICAL_DEVICE_DATA_GRAPH_OPERATION_SET_NAME_SIZE_ARM: u32 = 128;
 pub const ARM_DATA_GRAPH_SPEC_VERSION: u32 = 1;
 pub const ARM_DATA_GRAPH_EXTENSION_NAME: &core::ffi::CStr = c"VK_ARM_data_graph";
