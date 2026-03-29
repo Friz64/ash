@@ -10,6 +10,10 @@ pub struct DirectFBSurfaceCreateInfoEXT {
     pub dfb: *mut crate::platform_types::IDirectFB,
     pub surface: *mut crate::platform_types::IDirectFBSurface,
 }
+///Provided by [`ext::directfb_surface`](crate::ext::directfb_surface)
+impl crate::vk::StructureType {
+    pub const DIRECTFB_SURFACE_CREATE_INFO_EXT: Self = Self(1000346000);
+}
 bitflags::bitflags! {
     #[repr(transparent)] #[derive(Clone, Copy)] pub struct DirectFBSurfaceCreateFlagsEXT
     : u32 {}

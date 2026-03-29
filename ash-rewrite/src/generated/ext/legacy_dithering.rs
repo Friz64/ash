@@ -9,6 +9,10 @@ pub struct PhysicalDeviceLegacyDitheringFeaturesEXT {
     pub legacy_dithering: crate::vk::Bool32,
 }
 ///Provided by [`ext::legacy_dithering`](crate::ext::legacy_dithering)
+impl crate::vk::StructureType {
+    pub const PHYSICAL_DEVICE_LEGACY_DITHERING_FEATURES_EXT: Self = Self(1000465000);
+}
+///Provided by [`ext::legacy_dithering`](crate::ext::legacy_dithering)
 impl crate::vk::SubpassDescriptionFlagBits {
     pub const ENABLE_LEGACY_DITHERING_EXT: Self = Self(1 << 7);
 }

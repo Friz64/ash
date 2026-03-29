@@ -13,6 +13,19 @@ pub type SubresourceHostMemcpySizeEXT = crate::vk::SubresourceHostMemcpySize;
 pub type HostImageCopyDevicePerformanceQueryEXT = crate::vk::HostImageCopyDevicePerformanceQuery;
 pub type ImageSubresource2EXT = crate::vk::ImageSubresource2;
 pub type SubresourceLayout2EXT = crate::vk::SubresourceLayout2;
+///Provided by [`ext::host_image_copy`](crate::ext::host_image_copy)
+impl crate::vk::StructureType {
+    pub const PHYSICAL_DEVICE_HOST_IMAGE_COPY_FEATURES_EXT: Self = Self::PHYSICAL_DEVICE_HOST_IMAGE_COPY_FEATURES;
+    pub const PHYSICAL_DEVICE_HOST_IMAGE_COPY_PROPERTIES_EXT: Self = Self::PHYSICAL_DEVICE_HOST_IMAGE_COPY_PROPERTIES;
+    pub const MEMORY_TO_IMAGE_COPY_EXT: Self = Self::MEMORY_TO_IMAGE_COPY;
+    pub const IMAGE_TO_MEMORY_COPY_EXT: Self = Self::IMAGE_TO_MEMORY_COPY;
+    pub const COPY_IMAGE_TO_MEMORY_INFO_EXT: Self = Self::COPY_IMAGE_TO_MEMORY_INFO;
+    pub const COPY_MEMORY_TO_IMAGE_INFO_EXT: Self = Self::COPY_MEMORY_TO_IMAGE_INFO;
+    pub const HOST_IMAGE_LAYOUT_TRANSITION_INFO_EXT: Self = Self::HOST_IMAGE_LAYOUT_TRANSITION_INFO;
+    pub const COPY_IMAGE_TO_IMAGE_INFO_EXT: Self = Self::COPY_IMAGE_TO_IMAGE_INFO;
+    pub const SUBRESOURCE_HOST_MEMCPY_SIZE_EXT: Self = Self::SUBRESOURCE_HOST_MEMCPY_SIZE;
+    pub const HOST_IMAGE_COPY_DEVICE_PERFORMANCE_QUERY_EXT: Self = Self::HOST_IMAGE_COPY_DEVICE_PERFORMANCE_QUERY;
+}
 pub type HostImageCopyFlagBitsEXT = crate::vk::HostImageCopyFlagBits;
 ///Provided by [`ext::host_image_copy`](crate::ext::host_image_copy)
 impl crate::vk::ImageUsageFlagBits {

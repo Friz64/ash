@@ -64,5 +64,48 @@ pub struct ColorBlendAdvancedEXT {
     pub blend_overlap: crate::vk::BlendOverlapEXT,
     pub clamp_results: crate::vk::Bool32,
 }
+///Provided by [`ext::extended_dynamic_state3`](crate::ext::extended_dynamic_state3)
+impl crate::vk::StructureType {
+    pub const PHYSICAL_DEVICE_EXTENDED_DYNAMIC_STATE_3_FEATURES_EXT: Self = Self(
+        1000455000,
+    );
+    pub const PHYSICAL_DEVICE_EXTENDED_DYNAMIC_STATE_3_PROPERTIES_EXT: Self = Self(
+        1000455001,
+    );
+}
+///Provided by [`ext::extended_dynamic_state3`](crate::ext::extended_dynamic_state3)
+impl crate::vk::DynamicState {
+    pub const DEPTH_CLAMP_ENABLE_EXT: Self = Self(1000455003);
+    pub const POLYGON_MODE_EXT: Self = Self(1000455004);
+    pub const RASTERIZATION_SAMPLES_EXT: Self = Self(1000455005);
+    pub const SAMPLE_MASK_EXT: Self = Self(1000455006);
+    pub const ALPHA_TO_COVERAGE_ENABLE_EXT: Self = Self(1000455007);
+    pub const ALPHA_TO_ONE_ENABLE_EXT: Self = Self(1000455008);
+    pub const LOGIC_OP_ENABLE_EXT: Self = Self(1000455009);
+    pub const COLOR_BLEND_ENABLE_EXT: Self = Self(1000455010);
+    pub const COLOR_BLEND_EQUATION_EXT: Self = Self(1000455011);
+    pub const COLOR_WRITE_MASK_EXT: Self = Self(1000455012);
+    pub const TESSELLATION_DOMAIN_ORIGIN_EXT: Self = Self(1000455002);
+    pub const RASTERIZATION_STREAM_EXT: Self = Self(1000455013);
+    pub const CONSERVATIVE_RASTERIZATION_MODE_EXT: Self = Self(1000455014);
+    pub const EXTRA_PRIMITIVE_OVERESTIMATION_SIZE_EXT: Self = Self(1000455015);
+    pub const DEPTH_CLIP_ENABLE_EXT: Self = Self(1000455016);
+    pub const SAMPLE_LOCATIONS_ENABLE_EXT: Self = Self(1000455017);
+    pub const COLOR_BLEND_ADVANCED_EXT: Self = Self(1000455018);
+    pub const PROVOKING_VERTEX_MODE_EXT: Self = Self(1000455019);
+    pub const LINE_RASTERIZATION_MODE_EXT: Self = Self(1000455020);
+    pub const LINE_STIPPLE_ENABLE_EXT: Self = Self(1000455021);
+    pub const DEPTH_CLIP_NEGATIVE_ONE_TO_ONE_EXT: Self = Self(1000455022);
+    pub const VIEWPORT_W_SCALING_ENABLE_NV: Self = Self(1000455023);
+    pub const VIEWPORT_SWIZZLE_NV: Self = Self(1000455024);
+    pub const COVERAGE_TO_COLOR_ENABLE_NV: Self = Self(1000455025);
+    pub const COVERAGE_TO_COLOR_LOCATION_NV: Self = Self(1000455026);
+    pub const COVERAGE_MODULATION_MODE_NV: Self = Self(1000455027);
+    pub const COVERAGE_MODULATION_TABLE_ENABLE_NV: Self = Self(1000455028);
+    pub const COVERAGE_MODULATION_TABLE_NV: Self = Self(1000455029);
+    pub const SHADING_RATE_IMAGE_ENABLE_NV: Self = Self(1000455030);
+    pub const REPRESENTATIVE_FRAGMENT_TEST_ENABLE_NV: Self = Self(1000455031);
+    pub const COVERAGE_REDUCTION_MODE_NV: Self = Self(1000455032);
+}
 pub const EXT_EXTENDED_DYNAMIC_STATE_3_SPEC_VERSION: u32 = 2;
 pub const EXT_EXTENDED_DYNAMIC_STATE_3_EXTENSION_NAME: &core::ffi::CStr = c"VK_EXT_extended_dynamic_state3";

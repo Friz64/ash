@@ -33,6 +33,19 @@ pub struct VideoDecodeAV1InlineSessionParametersInfoKHR {
     pub p_std_sequence_header: *const crate::vk::StdVideoAV1SequenceHeader,
 }
 ///Provided by [`khr::video_maintenance2`](crate::khr::video_maintenance2)
+impl crate::vk::StructureType {
+    pub const PHYSICAL_DEVICE_VIDEO_MAINTENANCE_2_FEATURES_KHR: Self = Self(1000586000);
+    pub const VIDEO_DECODE_H264_INLINE_SESSION_PARAMETERS_INFO_KHR: Self = Self(
+        1000586001,
+    );
+    pub const VIDEO_DECODE_H265_INLINE_SESSION_PARAMETERS_INFO_KHR: Self = Self(
+        1000586002,
+    );
+    pub const VIDEO_DECODE_AV1_INLINE_SESSION_PARAMETERS_INFO_KHR: Self = Self(
+        1000586003,
+    );
+}
+///Provided by [`khr::video_maintenance2`](crate::khr::video_maintenance2)
 impl crate::vk::VideoSessionCreateFlagBitsKHR {
     pub const INLINE_SESSION_PARAMETERS_KHR: Self = Self(1 << 5);
 }

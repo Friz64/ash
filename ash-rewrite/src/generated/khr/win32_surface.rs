@@ -10,6 +10,10 @@ pub struct Win32SurfaceCreateInfoKHR {
     pub hinstance: crate::platform_types::HINSTANCE,
     pub hwnd: crate::platform_types::HWND,
 }
+///Provided by [`khr::win32_surface`](crate::khr::win32_surface)
+impl crate::vk::StructureType {
+    pub const WIN32_SURFACE_CREATE_INFO_KHR: Self = Self(1000009000);
+}
 bitflags::bitflags! {
     #[repr(transparent)] #[derive(Clone, Copy)] pub struct Win32SurfaceCreateFlagsKHR :
     u32 {}

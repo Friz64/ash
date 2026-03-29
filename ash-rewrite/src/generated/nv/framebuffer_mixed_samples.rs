@@ -13,9 +13,21 @@ pub struct PipelineCoverageModulationStateCreateInfoNV {
     pub p_coverage_modulation_table: *const core::ffi::c_float,
 }
 pub type AttachmentSampleCountInfoNV = crate::vk::AttachmentSampleCountInfoAMD;
+///Provided by [`nv::framebuffer_mixed_samples`](crate::nv::framebuffer_mixed_samples)
+impl crate::vk::StructureType {
+    pub const PIPELINE_COVERAGE_MODULATION_STATE_CREATE_INFO_NV: Self = Self(1000152000);
+    pub const ATTACHMENT_SAMPLE_COUNT_INFO_NV: Self = Self::ATTACHMENT_SAMPLE_COUNT_INFO_AMD;
+}
 #[repr(transparent)]
 #[derive(Clone, Copy)]
 pub struct CoverageModulationModeNV(pub(crate) i32);
+///Provided by [`nv::framebuffer_mixed_samples`](crate::nv::framebuffer_mixed_samples)
+impl CoverageModulationModeNV {
+    pub const NONE_NV: Self = Self(0);
+    pub const RGB_NV: Self = Self(1);
+    pub const ALPHA_NV: Self = Self(2);
+    pub const RGBA_NV: Self = Self(3);
+}
 bitflags::bitflags! {
     #[repr(transparent)] #[derive(Clone, Copy)] pub struct
     PipelineCoverageModulationStateCreateFlagsNV : u32 {}

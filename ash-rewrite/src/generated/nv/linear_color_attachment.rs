@@ -9,6 +9,12 @@ pub struct PhysicalDeviceLinearColorAttachmentFeaturesNV {
     pub linear_color_attachment: crate::vk::Bool32,
 }
 ///Provided by [`nv::linear_color_attachment`](crate::nv::linear_color_attachment)
+impl crate::vk::StructureType {
+    pub const PHYSICAL_DEVICE_LINEAR_COLOR_ATTACHMENT_FEATURES_NV: Self = Self(
+        1000430000,
+    );
+}
+///Provided by [`nv::linear_color_attachment`](crate::nv::linear_color_attachment)
 impl crate::vk::FormatFeatureFlagBits2 {
     pub const LINEAR_COLOR_ATTACHMENT_NV: Self = Self(1 << 38);
 }

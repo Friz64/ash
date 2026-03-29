@@ -2,6 +2,17 @@
 #![cfg_attr(rustfmt, rustfmt_skip)]
 //![Vulkan Manual Page](https://docs.vulkan.org/refpages/latest/refpages/source/VK_EXT_calibrated_timestamps.html) · Extension `VK_EXT_calibrated_timestamps`
 pub type CalibratedTimestampInfoEXT = crate::vk::CalibratedTimestampInfoKHR;
+///Provided by [`ext::calibrated_timestamps`](crate::ext::calibrated_timestamps)
+impl crate::vk::StructureType {
+    pub const CALIBRATED_TIMESTAMP_INFO_EXT: Self = Self::CALIBRATED_TIMESTAMP_INFO_KHR;
+}
+///Provided by [`ext::calibrated_timestamps`](crate::ext::calibrated_timestamps)
+impl crate::vk::TimeDomainKHR {
+    pub const DEVICE_EXT: Self = Self::DEVICE_KHR;
+    pub const CLOCK_MONOTONIC_EXT: Self = Self::CLOCK_MONOTONIC_KHR;
+    pub const CLOCK_MONOTONIC_RAW_EXT: Self = Self::CLOCK_MONOTONIC_RAW_KHR;
+    pub const QUERY_PERFORMANCE_COUNTER_EXT: Self = Self::QUERY_PERFORMANCE_COUNTER_KHR;
+}
 pub type TimeDomainEXT = crate::vk::TimeDomainKHR;
 pub const EXT_CALIBRATED_TIMESTAMPS_SPEC_VERSION: u32 = 2;
 pub const EXT_CALIBRATED_TIMESTAMPS_EXTENSION_NAME: &core::ffi::CStr = c"VK_EXT_calibrated_timestamps";

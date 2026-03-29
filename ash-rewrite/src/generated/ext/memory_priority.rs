@@ -15,5 +15,10 @@ pub struct MemoryPriorityAllocateInfoEXT {
     pub p_next: *const core::ffi::c_void,
     pub priority: core::ffi::c_float,
 }
+///Provided by [`ext::memory_priority`](crate::ext::memory_priority)
+impl crate::vk::StructureType {
+    pub const PHYSICAL_DEVICE_MEMORY_PRIORITY_FEATURES_EXT: Self = Self(1000238000);
+    pub const MEMORY_PRIORITY_ALLOCATE_INFO_EXT: Self = Self(1000238001);
+}
 pub const EXT_MEMORY_PRIORITY_SPEC_VERSION: u32 = 1;
 pub const EXT_MEMORY_PRIORITY_EXTENSION_NAME: &core::ffi::CStr = c"VK_EXT_memory_priority";

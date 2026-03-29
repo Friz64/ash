@@ -8,5 +8,11 @@ pub struct PhysicalDevicePipelineOpacityMicromapFeaturesARM {
     pub p_next: *mut core::ffi::c_void,
     pub pipeline_opacity_micromap: crate::vk::Bool32,
 }
+///Provided by [`arm::pipeline_opacity_micromap`](crate::arm::pipeline_opacity_micromap)
+impl crate::vk::StructureType {
+    pub const PHYSICAL_DEVICE_PIPELINE_OPACITY_MICROMAP_FEATURES_ARM: Self = Self(
+        1000596000,
+    );
+}
 pub const ARM_PIPELINE_OPACITY_MICROMAP_SPEC_VERSION: u32 = 1;
 pub const ARM_PIPELINE_OPACITY_MICROMAP_EXTENSION_NAME: &core::ffi::CStr = c"VK_ARM_pipeline_opacity_micromap";

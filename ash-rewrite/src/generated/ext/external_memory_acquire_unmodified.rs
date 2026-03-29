@@ -8,5 +8,9 @@ pub struct ExternalMemoryAcquireUnmodifiedEXT {
     pub p_next: *const core::ffi::c_void,
     pub acquire_unmodified_memory: crate::vk::Bool32,
 }
+///Provided by [`ext::external_memory_acquire_unmodified`](crate::ext::external_memory_acquire_unmodified)
+impl crate::vk::StructureType {
+    pub const EXTERNAL_MEMORY_ACQUIRE_UNMODIFIED_EXT: Self = Self(1000453000);
+}
 pub const EXT_EXTERNAL_MEMORY_ACQUIRE_UNMODIFIED_SPEC_VERSION: u32 = 1;
 pub const EXT_EXTERNAL_MEMORY_ACQUIRE_UNMODIFIED_EXTENSION_NAME: &core::ffi::CStr = c"VK_EXT_external_memory_acquire_unmodified";

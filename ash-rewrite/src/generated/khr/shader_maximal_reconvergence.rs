@@ -8,5 +8,11 @@ pub struct PhysicalDeviceShaderMaximalReconvergenceFeaturesKHR {
     pub p_next: *mut core::ffi::c_void,
     pub shader_maximal_reconvergence: crate::vk::Bool32,
 }
+///Provided by [`khr::shader_maximal_reconvergence`](crate::khr::shader_maximal_reconvergence)
+impl crate::vk::StructureType {
+    pub const PHYSICAL_DEVICE_SHADER_MAXIMAL_RECONVERGENCE_FEATURES_KHR: Self = Self(
+        1000434000,
+    );
+}
 pub const KHR_SHADER_MAXIMAL_RECONVERGENCE_SPEC_VERSION: u32 = 1;
 pub const KHR_SHADER_MAXIMAL_RECONVERGENCE_EXTENSION_NAME: &core::ffi::CStr = c"VK_KHR_shader_maximal_reconvergence";

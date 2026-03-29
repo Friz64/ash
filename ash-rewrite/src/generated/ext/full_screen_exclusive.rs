@@ -22,8 +22,25 @@ pub struct SurfaceCapabilitiesFullScreenExclusiveEXT {
     pub p_next: *mut core::ffi::c_void,
     pub full_screen_exclusive_supported: crate::vk::Bool32,
 }
+///Provided by [`ext::full_screen_exclusive`](crate::ext::full_screen_exclusive)
+impl crate::vk::StructureType {
+    pub const SURFACE_FULL_SCREEN_EXCLUSIVE_INFO_EXT: Self = Self(1000255000);
+    pub const SURFACE_CAPABILITIES_FULL_SCREEN_EXCLUSIVE_EXT: Self = Self(1000255002);
+    pub const SURFACE_FULL_SCREEN_EXCLUSIVE_WIN32_INFO_EXT: Self = Self(1000255001);
+}
+///Provided by [`ext::full_screen_exclusive`](crate::ext::full_screen_exclusive)
+impl crate::vk::Result {
+    pub const ERROR_FULL_SCREEN_EXCLUSIVE_MODE_LOST_EXT: Self = Self(-1000255000);
+}
 #[repr(transparent)]
 #[derive(Clone, Copy)]
 pub struct FullScreenExclusiveEXT(pub(crate) i32);
+///Provided by [`ext::full_screen_exclusive`](crate::ext::full_screen_exclusive)
+impl FullScreenExclusiveEXT {
+    pub const DEFAULT_EXT: Self = Self(0);
+    pub const ALLOWED_EXT: Self = Self(1);
+    pub const DISALLOWED_EXT: Self = Self(2);
+    pub const APPLICATION_CONTROLLED_EXT: Self = Self(3);
+}
 pub const EXT_FULL_SCREEN_EXCLUSIVE_SPEC_VERSION: u32 = 4;
 pub const EXT_FULL_SCREEN_EXCLUSIVE_EXTENSION_NAME: &core::ffi::CStr = c"VK_EXT_full_screen_exclusive";

@@ -25,5 +25,11 @@ pub struct PhysicalDevicePushConstantBankPropertiesNV {
     pub max_graphics_push_data_banks: u32,
     pub max_compute_push_data_banks: u32,
 }
+///Provided by [`nv::push_constant_bank`](crate::nv::push_constant_bank)
+impl crate::vk::StructureType {
+    pub const PUSH_CONSTANT_BANK_INFO_NV: Self = Self(1000580000);
+    pub const PHYSICAL_DEVICE_PUSH_CONSTANT_BANK_FEATURES_NV: Self = Self(1000580001);
+    pub const PHYSICAL_DEVICE_PUSH_CONSTANT_BANK_PROPERTIES_NV: Self = Self(1000580002);
+}
 pub const NV_PUSH_CONSTANT_BANK_SPEC_VERSION: u32 = 1;
 pub const NV_PUSH_CONSTANT_BANK_EXTENSION_NAME: &core::ffi::CStr = c"VK_NV_push_constant_bank";

@@ -4,6 +4,11 @@
 pub type BindBufferMemoryInfoKHR = crate::vk::BindBufferMemoryInfo;
 pub type BindImageMemoryInfoKHR = crate::vk::BindImageMemoryInfo;
 ///Provided by [`khr::bind_memory2`](crate::khr::bind_memory2)
+impl crate::vk::StructureType {
+    pub const BIND_BUFFER_MEMORY_INFO_KHR: Self = Self::BIND_BUFFER_MEMORY_INFO;
+    pub const BIND_IMAGE_MEMORY_INFO_KHR: Self = Self::BIND_IMAGE_MEMORY_INFO;
+}
+///Provided by [`khr::bind_memory2`](crate::khr::bind_memory2)
 impl crate::vk::ImageCreateFlagBits {
     pub const ALIAS_KHR: Self = Self::ALIAS;
 }

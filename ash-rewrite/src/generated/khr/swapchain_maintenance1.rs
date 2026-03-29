@@ -51,6 +51,17 @@ pub struct ReleaseSwapchainImagesInfoKHR {
     pub p_image_indices: *const u32,
 }
 ///Provided by [`khr::swapchain_maintenance1`](crate::khr::swapchain_maintenance1)
+impl crate::vk::StructureType {
+    pub const PHYSICAL_DEVICE_SWAPCHAIN_MAINTENANCE_1_FEATURES_KHR: Self = Self(
+        1000275000,
+    );
+    pub const SWAPCHAIN_PRESENT_FENCE_INFO_KHR: Self = Self(1000275001);
+    pub const SWAPCHAIN_PRESENT_MODES_CREATE_INFO_KHR: Self = Self(1000275002);
+    pub const SWAPCHAIN_PRESENT_MODE_INFO_KHR: Self = Self(1000275003);
+    pub const SWAPCHAIN_PRESENT_SCALING_CREATE_INFO_KHR: Self = Self(1000275004);
+    pub const RELEASE_SWAPCHAIN_IMAGES_INFO_KHR: Self = Self(1000275005);
+}
+///Provided by [`khr::swapchain_maintenance1`](crate::khr::swapchain_maintenance1)
 impl crate::vk::SwapchainCreateFlagBitsKHR {
     pub const DEFERRED_MEMORY_ALLOCATION_KHR: Self = Self(1 << 3);
 }

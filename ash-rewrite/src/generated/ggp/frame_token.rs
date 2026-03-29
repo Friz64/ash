@@ -8,5 +8,9 @@ pub struct PresentFrameTokenGGP {
     pub p_next: *const core::ffi::c_void,
     pub frame_token: crate::platform_types::GgpFrameToken,
 }
+///Provided by [`ggp::frame_token`](crate::ggp::frame_token)
+impl crate::vk::StructureType {
+    pub const PRESENT_FRAME_TOKEN_GGP: Self = Self(1000191000);
+}
 pub const GGP_FRAME_TOKEN_SPEC_VERSION: u32 = 1;
 pub const GGP_FRAME_TOKEN_EXTENSION_NAME: &core::ffi::CStr = c"VK_GGP_frame_token";

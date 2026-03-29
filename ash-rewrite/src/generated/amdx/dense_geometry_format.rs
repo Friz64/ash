@@ -21,9 +21,26 @@ pub struct AccelerationStructureDenseGeometryFormatTrianglesDataAMDX {
     pub max_geometry_index: u32,
     pub format: crate::vk::CompressedTriangleFormatAMDX,
 }
+///Provided by [`amdx::dense_geometry_format`](crate::amdx::dense_geometry_format)
+impl crate::vk::StructureType {
+    pub const PHYSICAL_DEVICE_DENSE_GEOMETRY_FORMAT_FEATURES_AMDX: Self = Self(
+        1000478000,
+    );
+    pub const ACCELERATION_STRUCTURE_DENSE_GEOMETRY_FORMAT_TRIANGLES_DATA_AMDX: Self = Self(
+        1000478001,
+    );
+}
+///Provided by [`amdx::dense_geometry_format`](crate::amdx::dense_geometry_format)
+impl crate::vk::GeometryTypeKHR {
+    pub const DENSE_GEOMETRY_FORMAT_TRIANGLES_AMDX: Self = Self(1000478000);
+}
 #[repr(transparent)]
 #[derive(Clone, Copy)]
 pub struct CompressedTriangleFormatAMDX(pub(crate) i32);
+///Provided by [`amdx::dense_geometry_format`](crate::amdx::dense_geometry_format)
+impl CompressedTriangleFormatAMDX {
+    pub const DGF1_AMDX: Self = Self(0);
+}
 ///Provided by [`amdx::dense_geometry_format`](crate::amdx::dense_geometry_format)
 impl crate::vk::BufferUsageFlagBits2 {
     pub const COMPRESSED_DATA_DGF1_AMDX: Self = Self(1 << 33);

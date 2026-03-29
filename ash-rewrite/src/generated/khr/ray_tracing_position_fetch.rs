@@ -9,6 +9,12 @@ pub struct PhysicalDeviceRayTracingPositionFetchFeaturesKHR {
     pub ray_tracing_position_fetch: crate::vk::Bool32,
 }
 ///Provided by [`khr::ray_tracing_position_fetch`](crate::khr::ray_tracing_position_fetch)
+impl crate::vk::StructureType {
+    pub const PHYSICAL_DEVICE_RAY_TRACING_POSITION_FETCH_FEATURES_KHR: Self = Self(
+        1000481000,
+    );
+}
+///Provided by [`khr::ray_tracing_position_fetch`](crate::khr::ray_tracing_position_fetch)
 impl crate::vk::BuildAccelerationStructureFlagBitsKHR {
     pub const ALLOW_DATA_ACCESS_KHR: Self = Self(1 << 11);
 }

@@ -2,5 +2,9 @@
 #![cfg_attr(rustfmt, rustfmt_skip)]
 //![Vulkan Manual Page](https://docs.vulkan.org/refpages/latest/refpages/source/VK_NV_fragment_shader_barycentric.html) · Extension `VK_NV_fragment_shader_barycentric`
 pub type PhysicalDeviceFragmentShaderBarycentricFeaturesNV = crate::vk::PhysicalDeviceFragmentShaderBarycentricFeaturesKHR;
+///Provided by [`nv::fragment_shader_barycentric`](crate::nv::fragment_shader_barycentric)
+impl crate::vk::StructureType {
+    pub const PHYSICAL_DEVICE_FRAGMENT_SHADER_BARYCENTRIC_FEATURES_NV: Self = Self::PHYSICAL_DEVICE_FRAGMENT_SHADER_BARYCENTRIC_FEATURES_KHR;
+}
 pub const NV_FRAGMENT_SHADER_BARYCENTRIC_SPEC_VERSION: u32 = 1;
 pub const NV_FRAGMENT_SHADER_BARYCENTRIC_EXTENSION_NAME: &core::ffi::CStr = c"VK_NV_fragment_shader_barycentric";

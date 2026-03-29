@@ -54,6 +54,17 @@ pub struct VideoDecodeH265DpbSlotInfoKHR {
     pub p_std_reference_info: *const crate::vk::StdVideoDecodeH265ReferenceInfo,
 }
 ///Provided by [`khr::video_decode_h265`](crate::khr::video_decode_h265)
+impl crate::vk::StructureType {
+    pub const VIDEO_DECODE_H265_CAPABILITIES_KHR: Self = Self(1000187000);
+    pub const VIDEO_DECODE_H265_SESSION_PARAMETERS_CREATE_INFO_KHR: Self = Self(
+        1000187001,
+    );
+    pub const VIDEO_DECODE_H265_SESSION_PARAMETERS_ADD_INFO_KHR: Self = Self(1000187002);
+    pub const VIDEO_DECODE_H265_PROFILE_INFO_KHR: Self = Self(1000187003);
+    pub const VIDEO_DECODE_H265_PICTURE_INFO_KHR: Self = Self(1000187004);
+    pub const VIDEO_DECODE_H265_DPB_SLOT_INFO_KHR: Self = Self(1000187005);
+}
+///Provided by [`khr::video_decode_h265`](crate::khr::video_decode_h265)
 impl crate::vk::VideoCodecOperationFlagBitsKHR {
     pub const DECODE_H265_KHR: Self = Self(1 << 1);
 }

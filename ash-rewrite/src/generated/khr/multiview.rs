@@ -5,6 +5,12 @@ pub type PhysicalDeviceMultiviewFeaturesKHR = crate::vk::PhysicalDeviceMultiview
 pub type PhysicalDeviceMultiviewPropertiesKHR = crate::vk::PhysicalDeviceMultiviewProperties;
 pub type RenderPassMultiviewCreateInfoKHR = crate::vk::RenderPassMultiviewCreateInfo;
 ///Provided by [`khr::multiview`](crate::khr::multiview)
+impl crate::vk::StructureType {
+    pub const RENDER_PASS_MULTIVIEW_CREATE_INFO_KHR: Self = Self::RENDER_PASS_MULTIVIEW_CREATE_INFO;
+    pub const PHYSICAL_DEVICE_MULTIVIEW_FEATURES_KHR: Self = Self::PHYSICAL_DEVICE_MULTIVIEW_FEATURES;
+    pub const PHYSICAL_DEVICE_MULTIVIEW_PROPERTIES_KHR: Self = Self::PHYSICAL_DEVICE_MULTIVIEW_PROPERTIES;
+}
+///Provided by [`khr::multiview`](crate::khr::multiview)
 impl crate::vk::DependencyFlagBits {
     pub const VIEW_LOCAL_KHR: Self = Self::VIEW_LOCAL;
 }

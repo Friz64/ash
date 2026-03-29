@@ -16,5 +16,14 @@ pub struct PhysicalDeviceComputeShaderDerivativesPropertiesKHR {
     pub p_next: *mut core::ffi::c_void,
     pub mesh_and_task_shader_derivatives: crate::vk::Bool32,
 }
+///Provided by [`khr::compute_shader_derivatives`](crate::khr::compute_shader_derivatives)
+impl crate::vk::StructureType {
+    pub const PHYSICAL_DEVICE_COMPUTE_SHADER_DERIVATIVES_FEATURES_KHR: Self = Self(
+        1000201000,
+    );
+    pub const PHYSICAL_DEVICE_COMPUTE_SHADER_DERIVATIVES_PROPERTIES_KHR: Self = Self(
+        1000511000,
+    );
+}
 pub const KHR_COMPUTE_SHADER_DERIVATIVES_SPEC_VERSION: u32 = 1;
 pub const KHR_COMPUTE_SHADER_DERIVATIVES_EXTENSION_NAME: &core::ffi::CStr = c"VK_KHR_compute_shader_derivatives";

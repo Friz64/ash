@@ -8,5 +8,9 @@ pub struct CopyCommandTransformInfoQCOM {
     pub p_next: *const core::ffi::c_void,
     pub transform: crate::vk::SurfaceTransformFlagBitsKHR,
 }
+///Provided by [`qcom::rotated_copy_commands`](crate::qcom::rotated_copy_commands)
+impl crate::vk::StructureType {
+    pub const COPY_COMMAND_TRANSFORM_INFO_QCOM: Self = Self(1000333000);
+}
 pub const QCOM_ROTATED_COPY_COMMANDS_SPEC_VERSION: u32 = 2;
 pub const QCOM_ROTATED_COPY_COMMANDS_EXTENSION_NAME: &core::ffi::CStr = c"VK_QCOM_rotated_copy_commands";

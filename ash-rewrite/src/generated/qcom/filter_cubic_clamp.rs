@@ -8,5 +8,13 @@ pub struct PhysicalDeviceCubicClampFeaturesQCOM {
     pub p_next: *mut core::ffi::c_void,
     pub cubic_range_clamp: crate::vk::Bool32,
 }
+///Provided by [`qcom::filter_cubic_clamp`](crate::qcom::filter_cubic_clamp)
+impl crate::vk::StructureType {
+    pub const PHYSICAL_DEVICE_CUBIC_CLAMP_FEATURES_QCOM: Self = Self(1000521000);
+}
+///Provided by [`qcom::filter_cubic_clamp`](crate::qcom::filter_cubic_clamp)
+impl crate::vk::SamplerReductionMode {
+    pub const WEIGHTED_AVERAGE_RANGECLAMP_QCOM: Self = Self(1000521000);
+}
 pub const QCOM_FILTER_CUBIC_CLAMP_SPEC_VERSION: u32 = 1;
 pub const QCOM_FILTER_CUBIC_CLAMP_EXTENSION_NAME: &core::ffi::CStr = c"VK_QCOM_filter_cubic_clamp";

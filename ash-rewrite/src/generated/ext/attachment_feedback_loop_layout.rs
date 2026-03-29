@@ -9,6 +9,16 @@ pub struct PhysicalDeviceAttachmentFeedbackLoopLayoutFeaturesEXT {
     pub attachment_feedback_loop_layout: crate::vk::Bool32,
 }
 ///Provided by [`ext::attachment_feedback_loop_layout`](crate::ext::attachment_feedback_loop_layout)
+impl crate::vk::ImageLayout {
+    pub const ATTACHMENT_FEEDBACK_LOOP_OPTIMAL_EXT: Self = Self(1000339000);
+}
+///Provided by [`ext::attachment_feedback_loop_layout`](crate::ext::attachment_feedback_loop_layout)
+impl crate::vk::StructureType {
+    pub const PHYSICAL_DEVICE_ATTACHMENT_FEEDBACK_LOOP_LAYOUT_FEATURES_EXT: Self = Self(
+        1000339000,
+    );
+}
+///Provided by [`ext::attachment_feedback_loop_layout`](crate::ext::attachment_feedback_loop_layout)
 impl crate::vk::ImageUsageFlagBits {
     pub const ATTACHMENT_FEEDBACK_LOOP_EXT: Self = Self(1 << 19);
 }

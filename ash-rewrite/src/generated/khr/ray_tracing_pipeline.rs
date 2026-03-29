@@ -78,12 +78,43 @@ pub struct RayTracingPipelineInterfaceCreateInfoKHR {
     pub max_pipeline_ray_payload_size: u32,
     pub max_pipeline_ray_hit_attribute_size: u32,
 }
+///Provided by [`khr::ray_tracing_pipeline`](crate::khr::ray_tracing_pipeline)
+impl crate::vk::PipelineBindPoint {
+    pub const RAY_TRACING_KHR: Self = Self(1000165000);
+}
+///Provided by [`khr::ray_tracing_pipeline`](crate::khr::ray_tracing_pipeline)
+impl crate::vk::StructureType {
+    pub const PHYSICAL_DEVICE_RAY_TRACING_PIPELINE_FEATURES_KHR: Self = Self(1000347000);
+    pub const PHYSICAL_DEVICE_RAY_TRACING_PIPELINE_PROPERTIES_KHR: Self = Self(
+        1000347001,
+    );
+    pub const RAY_TRACING_PIPELINE_CREATE_INFO_KHR: Self = Self(1000150015);
+    pub const RAY_TRACING_SHADER_GROUP_CREATE_INFO_KHR: Self = Self(1000150016);
+    pub const RAY_TRACING_PIPELINE_INTERFACE_CREATE_INFO_KHR: Self = Self(1000150018);
+}
+///Provided by [`khr::ray_tracing_pipeline`](crate::khr::ray_tracing_pipeline)
+impl crate::vk::DynamicState {
+    pub const RAY_TRACING_PIPELINE_STACK_SIZE_KHR: Self = Self(1000347000);
+}
 #[repr(transparent)]
 #[derive(Clone, Copy)]
 pub struct RayTracingShaderGroupTypeKHR(pub(crate) i32);
+///Provided by [`khr::ray_tracing_pipeline`](crate::khr::ray_tracing_pipeline)
+impl RayTracingShaderGroupTypeKHR {
+    pub const GENERAL_KHR: Self = Self(0);
+    pub const TRIANGLES_HIT_GROUP_KHR: Self = Self(1);
+    pub const PROCEDURAL_HIT_GROUP_KHR: Self = Self(2);
+}
 #[repr(transparent)]
 #[derive(Clone, Copy)]
 pub struct ShaderGroupShaderKHR(pub(crate) i32);
+///Provided by [`khr::ray_tracing_pipeline`](crate::khr::ray_tracing_pipeline)
+impl ShaderGroupShaderKHR {
+    pub const GENERAL_KHR: Self = Self(0);
+    pub const CLOSEST_HIT_KHR: Self = Self(1);
+    pub const ANY_HIT_KHR: Self = Self(2);
+    pub const INTERSECTION_KHR: Self = Self(3);
+}
 ///Provided by [`khr::ray_tracing_pipeline`](crate::khr::ray_tracing_pipeline)
 impl crate::vk::BufferUsageFlagBits {
     pub const SHADER_BINDING_TABLE_KHR: Self = Self(1 << 10);

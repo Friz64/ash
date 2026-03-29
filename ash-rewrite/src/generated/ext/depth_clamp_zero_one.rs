@@ -2,5 +2,9 @@
 #![cfg_attr(rustfmt, rustfmt_skip)]
 //![Vulkan Manual Page](https://docs.vulkan.org/refpages/latest/refpages/source/VK_EXT_depth_clamp_zero_one.html) · Extension `VK_EXT_depth_clamp_zero_one`
 pub type PhysicalDeviceDepthClampZeroOneFeaturesEXT = crate::vk::PhysicalDeviceDepthClampZeroOneFeaturesKHR;
+///Provided by [`ext::depth_clamp_zero_one`](crate::ext::depth_clamp_zero_one)
+impl crate::vk::StructureType {
+    pub const PHYSICAL_DEVICE_DEPTH_CLAMP_ZERO_ONE_FEATURES_EXT: Self = Self::PHYSICAL_DEVICE_DEPTH_CLAMP_ZERO_ONE_FEATURES_KHR;
+}
 pub const EXT_DEPTH_CLAMP_ZERO_ONE_SPEC_VERSION: u32 = 1;
 pub const EXT_DEPTH_CLAMP_ZERO_ONE_EXTENSION_NAME: &core::ffi::CStr = c"VK_EXT_depth_clamp_zero_one";

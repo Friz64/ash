@@ -18,9 +18,24 @@ pub struct PipelineViewportSwizzleStateCreateInfoNV {
     pub viewport_count: u32,
     pub p_viewport_swizzles: *const crate::vk::ViewportSwizzleNV,
 }
+///Provided by [`nv::viewport_swizzle`](crate::nv::viewport_swizzle)
+impl crate::vk::StructureType {
+    pub const PIPELINE_VIEWPORT_SWIZZLE_STATE_CREATE_INFO_NV: Self = Self(1000098000);
+}
 #[repr(transparent)]
 #[derive(Clone, Copy)]
 pub struct ViewportCoordinateSwizzleNV(pub(crate) i32);
+///Provided by [`nv::viewport_swizzle`](crate::nv::viewport_swizzle)
+impl ViewportCoordinateSwizzleNV {
+    pub const POSITIVE_X_NV: Self = Self(0);
+    pub const NEGATIVE_X_NV: Self = Self(1);
+    pub const POSITIVE_Y_NV: Self = Self(2);
+    pub const NEGATIVE_Y_NV: Self = Self(3);
+    pub const POSITIVE_Z_NV: Self = Self(4);
+    pub const NEGATIVE_Z_NV: Self = Self(5);
+    pub const POSITIVE_W_NV: Self = Self(6);
+    pub const NEGATIVE_W_NV: Self = Self(7);
+}
 bitflags::bitflags! {
     #[repr(transparent)] #[derive(Clone, Copy)] pub struct
     PipelineViewportSwizzleStateCreateFlagsNV : u32 {}

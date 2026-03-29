@@ -8,8 +8,19 @@ pub struct PipelineRasterizationStateRasterizationOrderAMD {
     pub p_next: *const core::ffi::c_void,
     pub rasterization_order: crate::vk::RasterizationOrderAMD,
 }
+///Provided by [`amd::rasterization_order`](crate::amd::rasterization_order)
+impl crate::vk::StructureType {
+    pub const PIPELINE_RASTERIZATION_STATE_RASTERIZATION_ORDER_AMD: Self = Self(
+        1000018000,
+    );
+}
 #[repr(transparent)]
 #[derive(Clone, Copy)]
 pub struct RasterizationOrderAMD(pub(crate) i32);
+///Provided by [`amd::rasterization_order`](crate::amd::rasterization_order)
+impl RasterizationOrderAMD {
+    pub const STRICT_AMD: Self = Self(0);
+    pub const RELAXED_AMD: Self = Self(1);
+}
 pub const AMD_RASTERIZATION_ORDER_SPEC_VERSION: u32 = 1;
 pub const AMD_RASTERIZATION_ORDER_EXTENSION_NAME: &core::ffi::CStr = c"VK_AMD_rasterization_order";

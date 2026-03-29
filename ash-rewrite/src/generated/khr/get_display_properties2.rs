@@ -37,5 +37,13 @@ pub struct DisplayPlaneCapabilities2KHR {
     pub p_next: *mut core::ffi::c_void,
     pub capabilities: crate::vk::DisplayPlaneCapabilitiesKHR,
 }
+///Provided by [`khr::get_display_properties2`](crate::khr::get_display_properties2)
+impl crate::vk::StructureType {
+    pub const DISPLAY_PROPERTIES_2_KHR: Self = Self(1000121000);
+    pub const DISPLAY_PLANE_PROPERTIES_2_KHR: Self = Self(1000121001);
+    pub const DISPLAY_MODE_PROPERTIES_2_KHR: Self = Self(1000121002);
+    pub const DISPLAY_PLANE_INFO_2_KHR: Self = Self(1000121003);
+    pub const DISPLAY_PLANE_CAPABILITIES_2_KHR: Self = Self(1000121004);
+}
 pub const KHR_GET_DISPLAY_PROPERTIES_2_SPEC_VERSION: u32 = 1;
 pub const KHR_GET_DISPLAY_PROPERTIES_2_EXTENSION_NAME: &core::ffi::CStr = c"VK_KHR_get_display_properties2";

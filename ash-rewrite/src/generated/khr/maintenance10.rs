@@ -40,6 +40,14 @@ pub struct ResolveImageModeInfoKHR {
     pub stencil_resolve_mode: crate::vk::ResolveModeFlagBits,
 }
 ///Provided by [`khr::maintenance10`](crate::khr::maintenance10)
+impl crate::vk::StructureType {
+    pub const PHYSICAL_DEVICE_MAINTENANCE_10_FEATURES_KHR: Self = Self(1000630000);
+    pub const PHYSICAL_DEVICE_MAINTENANCE_10_PROPERTIES_KHR: Self = Self(1000630001);
+    pub const RENDERING_ATTACHMENT_FLAGS_INFO_KHR: Self = Self(1000630002);
+    pub const RENDERING_END_INFO_KHR: Self = Self(1000619003);
+    pub const RESOLVE_IMAGE_MODE_INFO_KHR: Self = Self(1000630004);
+}
+///Provided by [`khr::maintenance10`](crate::khr::maintenance10)
 impl crate::vk::AttachmentDescriptionFlagBits {
     pub const RESOLVE_SKIP_TRANSFER_FUNCTION_KHR: Self = Self(1 << 1);
     pub const RESOLVE_ENABLE_TRANSFER_FUNCTION_KHR: Self = Self(1 << 2);

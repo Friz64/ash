@@ -72,12 +72,49 @@ pub struct OpticalFlowExecuteInfoNV {
     pub region_count: u32,
     pub p_regions: *const crate::vk::Rect2D,
 }
+///Provided by [`nv::optical_flow`](crate::nv::optical_flow)
+impl crate::vk::Format {
+    pub const R16G16_SFIXED5_NV: Self = Self(1000464000);
+}
+///Provided by [`nv::optical_flow`](crate::nv::optical_flow)
+impl crate::vk::StructureType {
+    pub const PHYSICAL_DEVICE_OPTICAL_FLOW_FEATURES_NV: Self = Self(1000464000);
+    pub const PHYSICAL_DEVICE_OPTICAL_FLOW_PROPERTIES_NV: Self = Self(1000464001);
+    pub const OPTICAL_FLOW_IMAGE_FORMAT_INFO_NV: Self = Self(1000464002);
+    pub const OPTICAL_FLOW_IMAGE_FORMAT_PROPERTIES_NV: Self = Self(1000464003);
+    pub const OPTICAL_FLOW_SESSION_CREATE_INFO_NV: Self = Self(1000464004);
+    pub const OPTICAL_FLOW_EXECUTE_INFO_NV: Self = Self(1000464005);
+    pub const OPTICAL_FLOW_SESSION_CREATE_PRIVATE_DATA_INFO_NV: Self = Self(1000464010);
+}
+///Provided by [`nv::optical_flow`](crate::nv::optical_flow)
+impl crate::vk::ObjectType {
+    pub const OPTICAL_FLOW_SESSION_NV: Self = Self(1000464000);
+}
 #[repr(transparent)]
 #[derive(Clone, Copy)]
 pub struct OpticalFlowPerformanceLevelNV(pub(crate) i32);
+///Provided by [`nv::optical_flow`](crate::nv::optical_flow)
+impl OpticalFlowPerformanceLevelNV {
+    pub const UNKNOWN_NV: Self = Self(0);
+    pub const SLOW_NV: Self = Self(1);
+    pub const MEDIUM_NV: Self = Self(2);
+    pub const FAST_NV: Self = Self(3);
+}
 #[repr(transparent)]
 #[derive(Clone, Copy)]
 pub struct OpticalFlowSessionBindingPointNV(pub(crate) i32);
+///Provided by [`nv::optical_flow`](crate::nv::optical_flow)
+impl OpticalFlowSessionBindingPointNV {
+    pub const UNKNOWN_NV: Self = Self(0);
+    pub const INPUT_NV: Self = Self(1);
+    pub const REFERENCE_NV: Self = Self(2);
+    pub const HINT_NV: Self = Self(3);
+    pub const FLOW_VECTOR_NV: Self = Self(4);
+    pub const BACKWARD_FLOW_VECTOR_NV: Self = Self(5);
+    pub const COST_NV: Self = Self(6);
+    pub const BACKWARD_COST_NV: Self = Self(7);
+    pub const GLOBAL_FLOW_NV: Self = Self(8);
+}
 ///Provided by [`nv::optical_flow`](crate::nv::optical_flow)
 impl crate::vk::QueueFlagBits {
     pub const OPTICAL_FLOW_NV: Self = Self(1 << 8);

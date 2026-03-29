@@ -118,21 +118,72 @@ pub struct AccelerationStructureTrianglesOpacityMicromapEXT {
     pub pp_usage_counts: *const *const crate::vk::MicromapUsageEXT,
     pub micromap: crate::vk::MicromapEXT,
 }
+///Provided by [`ext::opacity_micromap`](crate::ext::opacity_micromap)
+impl crate::vk::QueryType {
+    pub const MICROMAP_SERIALIZATION_SIZE_EXT: Self = Self(1000396000);
+    pub const MICROMAP_COMPACTED_SIZE_EXT: Self = Self(1000396001);
+}
+///Provided by [`ext::opacity_micromap`](crate::ext::opacity_micromap)
+impl crate::vk::StructureType {
+    pub const MICROMAP_BUILD_INFO_EXT: Self = Self(1000396000);
+    pub const MICROMAP_VERSION_INFO_EXT: Self = Self(1000396001);
+    pub const COPY_MICROMAP_INFO_EXT: Self = Self(1000396002);
+    pub const COPY_MICROMAP_TO_MEMORY_INFO_EXT: Self = Self(1000396003);
+    pub const COPY_MEMORY_TO_MICROMAP_INFO_EXT: Self = Self(1000396004);
+    pub const PHYSICAL_DEVICE_OPACITY_MICROMAP_FEATURES_EXT: Self = Self(1000396005);
+    pub const PHYSICAL_DEVICE_OPACITY_MICROMAP_PROPERTIES_EXT: Self = Self(1000396006);
+    pub const MICROMAP_CREATE_INFO_EXT: Self = Self(1000396007);
+    pub const MICROMAP_BUILD_SIZES_INFO_EXT: Self = Self(1000396008);
+    pub const ACCELERATION_STRUCTURE_TRIANGLES_OPACITY_MICROMAP_EXT: Self = Self(
+        1000396009,
+    );
+}
+///Provided by [`ext::opacity_micromap`](crate::ext::opacity_micromap)
+impl crate::vk::ObjectType {
+    pub const MICROMAP_EXT: Self = Self(1000396000);
+}
 #[repr(transparent)]
 #[derive(Clone, Copy)]
 pub struct MicromapTypeEXT(pub(crate) i32);
+///Provided by [`ext::opacity_micromap`](crate::ext::opacity_micromap)
+impl MicromapTypeEXT {
+    pub const OPACITY_MICROMAP_EXT: Self = Self(0);
+}
 #[repr(transparent)]
 #[derive(Clone, Copy)]
 pub struct CopyMicromapModeEXT(pub(crate) i32);
+///Provided by [`ext::opacity_micromap`](crate::ext::opacity_micromap)
+impl CopyMicromapModeEXT {
+    pub const CLONE_EXT: Self = Self(0);
+    pub const SERIALIZE_EXT: Self = Self(1);
+    pub const DESERIALIZE_EXT: Self = Self(2);
+    pub const COMPACT_EXT: Self = Self(3);
+}
 #[repr(transparent)]
 #[derive(Clone, Copy)]
 pub struct BuildMicromapModeEXT(pub(crate) i32);
+///Provided by [`ext::opacity_micromap`](crate::ext::opacity_micromap)
+impl BuildMicromapModeEXT {
+    pub const BUILD_EXT: Self = Self(0);
+}
 #[repr(transparent)]
 #[derive(Clone, Copy)]
 pub struct OpacityMicromapFormatEXT(pub(crate) i32);
+///Provided by [`ext::opacity_micromap`](crate::ext::opacity_micromap)
+impl OpacityMicromapFormatEXT {
+    pub const _2_STATE_EXT: Self = Self(1);
+    pub const _4_STATE_EXT: Self = Self(2);
+}
 #[repr(transparent)]
 #[derive(Clone, Copy)]
 pub struct OpacityMicromapSpecialIndexEXT(pub(crate) i32);
+///Provided by [`ext::opacity_micromap`](crate::ext::opacity_micromap)
+impl OpacityMicromapSpecialIndexEXT {
+    pub const FULLY_TRANSPARENT_EXT: Self = Self(-1);
+    pub const FULLY_OPAQUE_EXT: Self = Self(-2);
+    pub const FULLY_UNKNOWN_TRANSPARENT_EXT: Self = Self(-3);
+    pub const FULLY_UNKNOWN_OPAQUE_EXT: Self = Self(-4);
+}
 ///Provided by [`ext::opacity_micromap`](crate::ext::opacity_micromap)
 impl crate::vk::BufferUsageFlagBits {
     pub const MICROMAP_BUILD_INPUT_READ_ONLY_EXT: Self = Self(1 << 23);

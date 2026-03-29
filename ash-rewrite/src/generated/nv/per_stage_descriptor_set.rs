@@ -10,6 +10,12 @@ pub struct PhysicalDevicePerStageDescriptorSetFeaturesNV {
     pub dynamic_pipeline_layout: crate::vk::Bool32,
 }
 ///Provided by [`nv::per_stage_descriptor_set`](crate::nv::per_stage_descriptor_set)
+impl crate::vk::StructureType {
+    pub const PHYSICAL_DEVICE_PER_STAGE_DESCRIPTOR_SET_FEATURES_NV: Self = Self(
+        1000516000,
+    );
+}
+///Provided by [`nv::per_stage_descriptor_set`](crate::nv::per_stage_descriptor_set)
 impl crate::vk::DescriptorSetLayoutCreateFlagBits {
     pub const PER_STAGE_NV: Self = Self(1 << 6);
 }

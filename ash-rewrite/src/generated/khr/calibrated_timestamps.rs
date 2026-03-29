@@ -8,8 +8,19 @@ pub struct CalibratedTimestampInfoKHR {
     pub p_next: *const core::ffi::c_void,
     pub time_domain: crate::vk::TimeDomainKHR,
 }
+///Provided by [`khr::calibrated_timestamps`](crate::khr::calibrated_timestamps)
+impl crate::vk::StructureType {
+    pub const CALIBRATED_TIMESTAMP_INFO_KHR: Self = Self(1000184000);
+}
 #[repr(transparent)]
 #[derive(Clone, Copy)]
 pub struct TimeDomainKHR(pub(crate) i32);
+///Provided by [`khr::calibrated_timestamps`](crate::khr::calibrated_timestamps)
+impl TimeDomainKHR {
+    pub const DEVICE_KHR: Self = Self(0);
+    pub const CLOCK_MONOTONIC_KHR: Self = Self(1);
+    pub const CLOCK_MONOTONIC_RAW_KHR: Self = Self(2);
+    pub const QUERY_PERFORMANCE_COUNTER_KHR: Self = Self(3);
+}
 pub const KHR_CALIBRATED_TIMESTAMPS_SPEC_VERSION: u32 = 1;
 pub const KHR_CALIBRATED_TIMESTAMPS_EXTENSION_NAME: &core::ffi::CStr = c"VK_KHR_calibrated_timestamps";

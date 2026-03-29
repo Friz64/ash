@@ -18,9 +18,19 @@ pub struct DirectDriverLoadingListLUNARG {
     pub driver_count: u32,
     pub p_drivers: *const crate::vk::DirectDriverLoadingInfoLUNARG,
 }
+///Provided by [`lunarg::direct_driver_loading`](crate::lunarg::direct_driver_loading)
+impl crate::vk::StructureType {
+    pub const DIRECT_DRIVER_LOADING_INFO_LUNARG: Self = Self(1000459000);
+    pub const DIRECT_DRIVER_LOADING_LIST_LUNARG: Self = Self(1000459001);
+}
 #[repr(transparent)]
 #[derive(Clone, Copy)]
 pub struct DirectDriverLoadingModeLUNARG(pub(crate) i32);
+///Provided by [`lunarg::direct_driver_loading`](crate::lunarg::direct_driver_loading)
+impl DirectDriverLoadingModeLUNARG {
+    pub const EXCLUSIVE_LUNARG: Self = Self(0);
+    pub const INCLUSIVE_LUNARG: Self = Self(1);
+}
 bitflags::bitflags! {
     #[repr(transparent)] #[derive(Clone, Copy)] pub struct DirectDriverLoadingFlagsLUNARG
     : u32 {}

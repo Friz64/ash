@@ -28,5 +28,10 @@ pub struct PhysicalDeviceMultiDrawFeaturesEXT {
     pub p_next: *mut core::ffi::c_void,
     pub multi_draw: crate::vk::Bool32,
 }
+///Provided by [`ext::multi_draw`](crate::ext::multi_draw)
+impl crate::vk::StructureType {
+    pub const PHYSICAL_DEVICE_MULTI_DRAW_FEATURES_EXT: Self = Self(1000392000);
+    pub const PHYSICAL_DEVICE_MULTI_DRAW_PROPERTIES_EXT: Self = Self(1000392001);
+}
 pub const EXT_MULTI_DRAW_SPEC_VERSION: u32 = 1;
 pub const EXT_MULTI_DRAW_EXTENSION_NAME: &core::ffi::CStr = c"VK_EXT_multi_draw";

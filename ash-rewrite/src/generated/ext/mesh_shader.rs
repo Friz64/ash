@@ -54,6 +54,24 @@ pub struct DrawMeshTasksIndirectCommandEXT {
     pub group_count_z: u32,
 }
 ///Provided by [`ext::mesh_shader`](crate::ext::mesh_shader)
+impl crate::vk::QueryType {
+    pub const MESH_PRIMITIVES_GENERATED_EXT: Self = Self(1000328000);
+}
+///Provided by [`ext::mesh_shader`](crate::ext::mesh_shader)
+impl crate::vk::StructureType {
+    pub const PHYSICAL_DEVICE_MESH_SHADER_FEATURES_EXT: Self = Self(1000328000);
+    pub const PHYSICAL_DEVICE_MESH_SHADER_PROPERTIES_EXT: Self = Self(1000328001);
+}
+///Provided by [`ext::mesh_shader`](crate::ext::mesh_shader)
+impl crate::vk::IndirectCommandsTokenTypeNV {
+    pub const DRAW_MESH_TASKS_NV: Self = Self(1000328000);
+}
+///Provided by [`ext::mesh_shader`](crate::ext::mesh_shader)
+impl crate::vk::IndirectCommandsTokenTypeEXT {
+    pub const DRAW_MESH_TASKS_EXT: Self = Self(1000328000);
+    pub const DRAW_MESH_TASKS_COUNT_EXT: Self = Self(1000328001);
+}
+///Provided by [`ext::mesh_shader`](crate::ext::mesh_shader)
 impl crate::vk::ShaderStageFlagBits {
     pub const TASK_EXT: Self = Self(1 << 6);
     pub const MESH_EXT: Self = Self(1 << 7);

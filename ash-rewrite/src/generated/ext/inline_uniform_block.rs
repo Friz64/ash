@@ -5,5 +5,16 @@ pub type PhysicalDeviceInlineUniformBlockFeaturesEXT = crate::vk::PhysicalDevice
 pub type PhysicalDeviceInlineUniformBlockPropertiesEXT = crate::vk::PhysicalDeviceInlineUniformBlockProperties;
 pub type WriteDescriptorSetInlineUniformBlockEXT = crate::vk::WriteDescriptorSetInlineUniformBlock;
 pub type DescriptorPoolInlineUniformBlockCreateInfoEXT = crate::vk::DescriptorPoolInlineUniformBlockCreateInfo;
+///Provided by [`ext::inline_uniform_block`](crate::ext::inline_uniform_block)
+impl crate::vk::DescriptorType {
+    pub const INLINE_UNIFORM_BLOCK_EXT: Self = Self::INLINE_UNIFORM_BLOCK;
+}
+///Provided by [`ext::inline_uniform_block`](crate::ext::inline_uniform_block)
+impl crate::vk::StructureType {
+    pub const PHYSICAL_DEVICE_INLINE_UNIFORM_BLOCK_FEATURES_EXT: Self = Self::PHYSICAL_DEVICE_INLINE_UNIFORM_BLOCK_FEATURES;
+    pub const PHYSICAL_DEVICE_INLINE_UNIFORM_BLOCK_PROPERTIES_EXT: Self = Self::PHYSICAL_DEVICE_INLINE_UNIFORM_BLOCK_PROPERTIES;
+    pub const WRITE_DESCRIPTOR_SET_INLINE_UNIFORM_BLOCK_EXT: Self = Self::WRITE_DESCRIPTOR_SET_INLINE_UNIFORM_BLOCK;
+    pub const DESCRIPTOR_POOL_INLINE_UNIFORM_BLOCK_CREATE_INFO_EXT: Self = Self::DESCRIPTOR_POOL_INLINE_UNIFORM_BLOCK_CREATE_INFO;
+}
 pub const EXT_INLINE_UNIFORM_BLOCK_SPEC_VERSION: u32 = 1;
 pub const EXT_INLINE_UNIFORM_BLOCK_EXTENSION_NAME: &core::ffi::CStr = c"VK_EXT_inline_uniform_block";

@@ -15,5 +15,10 @@ pub struct PhysicalDeviceASTCDecodeFeaturesEXT {
     pub p_next: *mut core::ffi::c_void,
     pub decode_mode_shared_exponent: crate::vk::Bool32,
 }
+///Provided by [`ext::astc_decode_mode`](crate::ext::astc_decode_mode)
+impl crate::vk::StructureType {
+    pub const IMAGE_VIEW_ASTC_DECODE_MODE_EXT: Self = Self(1000067000);
+    pub const PHYSICAL_DEVICE_ASTC_DECODE_FEATURES_EXT: Self = Self(1000067001);
+}
 pub const EXT_ASTC_DECODE_MODE_SPEC_VERSION: u32 = 1;
 pub const EXT_ASTC_DECODE_MODE_EXTENSION_NAME: &core::ffi::CStr = c"VK_EXT_astc_decode_mode";

@@ -74,6 +74,18 @@ pub union DeviceOrHostAddressConstAMDX {
     pub host_address: *const core::ffi::c_void,
 }
 ///Provided by [`amdx::shader_enqueue`](crate::amdx::shader_enqueue)
+impl crate::vk::PipelineBindPoint {
+    pub const EXECUTION_GRAPH_AMDX: Self = Self(1000134000);
+}
+///Provided by [`amdx::shader_enqueue`](crate::amdx::shader_enqueue)
+impl crate::vk::StructureType {
+    pub const PHYSICAL_DEVICE_SHADER_ENQUEUE_FEATURES_AMDX: Self = Self(1000134000);
+    pub const PHYSICAL_DEVICE_SHADER_ENQUEUE_PROPERTIES_AMDX: Self = Self(1000134001);
+    pub const EXECUTION_GRAPH_PIPELINE_SCRATCH_SIZE_AMDX: Self = Self(1000134002);
+    pub const EXECUTION_GRAPH_PIPELINE_CREATE_INFO_AMDX: Self = Self(1000134003);
+    pub const PIPELINE_SHADER_STAGE_NODE_CREATE_INFO_AMDX: Self = Self(1000134004);
+}
+///Provided by [`amdx::shader_enqueue`](crate::amdx::shader_enqueue)
 impl crate::vk::BufferUsageFlagBits {
     pub const EXECUTION_GRAPH_SCRATCH_AMDX: Self = Self(1 << 25);
 }

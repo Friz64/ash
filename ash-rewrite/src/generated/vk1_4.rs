@@ -491,18 +491,134 @@ pub struct RenderingInputAttachmentIndexInfo {
     pub p_depth_input_attachment_index: *const u32,
     pub p_stencil_input_attachment_index: *const u32,
 }
+///Provided by [`vk1_4`](crate::vk1_4)
+impl crate::vk::ImageLayout {
+    pub const RENDERING_LOCAL_READ: Self = Self(1000232000);
+}
+///Provided by [`vk1_4`](crate::vk1_4)
+impl crate::vk::AttachmentLoadOp {
+    pub const NONE: Self = Self(1000400000);
+}
+///Provided by [`vk1_4`](crate::vk1_4)
+impl crate::vk::IndexType {
+    pub const UINT8: Self = Self(1000265000);
+}
+///Provided by [`vk1_4`](crate::vk1_4)
+impl crate::vk::Format {
+    pub const A1B5G5R5_UNORM_PACK16: Self = Self(1000470000);
+    pub const A8_UNORM: Self = Self(1000470001);
+}
+///Provided by [`vk1_4`](crate::vk1_4)
+impl crate::vk::StructureType {
+    pub const PHYSICAL_DEVICE_VULKAN_1_4_FEATURES: Self = Self(55);
+    pub const PHYSICAL_DEVICE_VULKAN_1_4_PROPERTIES: Self = Self(56);
+    pub const DEVICE_QUEUE_GLOBAL_PRIORITY_CREATE_INFO: Self = Self(1000174000);
+    pub const PHYSICAL_DEVICE_GLOBAL_PRIORITY_QUERY_FEATURES: Self = Self(1000388000);
+    pub const QUEUE_FAMILY_GLOBAL_PRIORITY_PROPERTIES: Self = Self(1000388001);
+    pub const PHYSICAL_DEVICE_INDEX_TYPE_UINT8_FEATURES: Self = Self(1000265000);
+    pub const MEMORY_MAP_INFO: Self = Self(1000271000);
+    pub const MEMORY_UNMAP_INFO: Self = Self(1000271001);
+    pub const PHYSICAL_DEVICE_MAINTENANCE_5_FEATURES: Self = Self(1000470000);
+    pub const PHYSICAL_DEVICE_MAINTENANCE_5_PROPERTIES: Self = Self(1000470001);
+    pub const DEVICE_IMAGE_SUBRESOURCE_INFO: Self = Self(1000470004);
+    pub const SUBRESOURCE_LAYOUT_2: Self = Self(1000338002);
+    pub const IMAGE_SUBRESOURCE_2: Self = Self(1000338003);
+    pub const BUFFER_USAGE_FLAGS_2_CREATE_INFO: Self = Self(1000470006);
+    pub const PHYSICAL_DEVICE_MAINTENANCE_6_FEATURES: Self = Self(1000545000);
+    pub const PHYSICAL_DEVICE_MAINTENANCE_6_PROPERTIES: Self = Self(1000545001);
+    pub const BIND_MEMORY_STATUS: Self = Self(1000545002);
+    pub const PHYSICAL_DEVICE_HOST_IMAGE_COPY_FEATURES: Self = Self(1000270000);
+    pub const PHYSICAL_DEVICE_HOST_IMAGE_COPY_PROPERTIES: Self = Self(1000270001);
+    pub const MEMORY_TO_IMAGE_COPY: Self = Self(1000270002);
+    pub const IMAGE_TO_MEMORY_COPY: Self = Self(1000270003);
+    pub const COPY_IMAGE_TO_MEMORY_INFO: Self = Self(1000270004);
+    pub const COPY_MEMORY_TO_IMAGE_INFO: Self = Self(1000270005);
+    pub const HOST_IMAGE_LAYOUT_TRANSITION_INFO: Self = Self(1000270006);
+    pub const COPY_IMAGE_TO_IMAGE_INFO: Self = Self(1000270007);
+    pub const SUBRESOURCE_HOST_MEMCPY_SIZE: Self = Self(1000270008);
+    pub const HOST_IMAGE_COPY_DEVICE_PERFORMANCE_QUERY: Self = Self(1000270009);
+    pub const PHYSICAL_DEVICE_SHADER_SUBGROUP_ROTATE_FEATURES: Self = Self(1000416000);
+    pub const PHYSICAL_DEVICE_SHADER_FLOAT_CONTROLS_2_FEATURES: Self = Self(1000528000);
+    pub const PHYSICAL_DEVICE_SHADER_EXPECT_ASSUME_FEATURES: Self = Self(1000544000);
+    pub const PIPELINE_CREATE_FLAGS_2_CREATE_INFO: Self = Self(1000470005);
+    pub const PHYSICAL_DEVICE_PUSH_DESCRIPTOR_PROPERTIES: Self = Self(1000080000);
+    pub const BIND_DESCRIPTOR_SETS_INFO: Self = Self(1000545003);
+    pub const PUSH_CONSTANTS_INFO: Self = Self(1000545004);
+    pub const PUSH_DESCRIPTOR_SET_INFO: Self = Self(1000545005);
+    pub const PUSH_DESCRIPTOR_SET_WITH_TEMPLATE_INFO: Self = Self(1000545006);
+    pub const PHYSICAL_DEVICE_PIPELINE_PROTECTED_ACCESS_FEATURES: Self = Self(
+        1000466000,
+    );
+    pub const PIPELINE_ROBUSTNESS_CREATE_INFO: Self = Self(1000068000);
+    pub const PHYSICAL_DEVICE_PIPELINE_ROBUSTNESS_FEATURES: Self = Self(1000068001);
+    pub const PHYSICAL_DEVICE_PIPELINE_ROBUSTNESS_PROPERTIES: Self = Self(1000068002);
+    pub const PHYSICAL_DEVICE_LINE_RASTERIZATION_FEATURES: Self = Self(1000259000);
+    pub const PIPELINE_RASTERIZATION_LINE_STATE_CREATE_INFO: Self = Self(1000259001);
+    pub const PHYSICAL_DEVICE_LINE_RASTERIZATION_PROPERTIES: Self = Self(1000259002);
+    pub const PHYSICAL_DEVICE_VERTEX_ATTRIBUTE_DIVISOR_PROPERTIES: Self = Self(
+        1000525000,
+    );
+    pub const PIPELINE_VERTEX_INPUT_DIVISOR_STATE_CREATE_INFO: Self = Self(1000190001);
+    pub const PHYSICAL_DEVICE_VERTEX_ATTRIBUTE_DIVISOR_FEATURES: Self = Self(1000190002);
+    pub const RENDERING_AREA_INFO: Self = Self(1000470003);
+    pub const PHYSICAL_DEVICE_DYNAMIC_RENDERING_LOCAL_READ_FEATURES: Self = Self(
+        1000232000,
+    );
+    pub const RENDERING_ATTACHMENT_LOCATION_INFO: Self = Self(1000232001);
+    pub const RENDERING_INPUT_ATTACHMENT_INDEX_INFO: Self = Self(1000232002);
+}
+///Provided by [`vk1_4`](crate::vk1_4)
+impl crate::vk::Result {
+    pub const ERROR_NOT_PERMITTED: Self = Self(-1000174001);
+}
+///Provided by [`vk1_4`](crate::vk1_4)
+impl crate::vk::DynamicState {
+    pub const LINE_STIPPLE: Self = Self(1000259000);
+}
+///Provided by [`vk1_4`](crate::vk1_4)
+impl crate::vk::DescriptorUpdateTemplateType {
+    pub const PUSH_DESCRIPTORS: Self = Self(1);
+}
 #[repr(transparent)]
 #[derive(Clone, Copy)]
 pub struct QueueGlobalPriority(pub(crate) i32);
+///Provided by [`vk1_4`](crate::vk1_4)
+impl QueueGlobalPriority {
+    pub const LOW: Self = Self(128);
+    pub const MEDIUM: Self = Self(256);
+    pub const HIGH: Self = Self(512);
+    pub const REALTIME: Self = Self(1024);
+}
 #[repr(transparent)]
 #[derive(Clone, Copy)]
 pub struct LineRasterizationMode(pub(crate) i32);
+///Provided by [`vk1_4`](crate::vk1_4)
+impl LineRasterizationMode {
+    pub const DEFAULT: Self = Self(0);
+    pub const RECTANGULAR: Self = Self(1);
+    pub const BRESENHAM: Self = Self(2);
+    pub const RECTANGULAR_SMOOTH: Self = Self(3);
+}
 #[repr(transparent)]
 #[derive(Clone, Copy)]
 pub struct PipelineRobustnessBufferBehavior(pub(crate) i32);
+///Provided by [`vk1_4`](crate::vk1_4)
+impl PipelineRobustnessBufferBehavior {
+    pub const DEVICE_DEFAULT: Self = Self(0);
+    pub const DISABLED: Self = Self(1);
+    pub const ROBUST_BUFFER_ACCESS: Self = Self(2);
+    pub const ROBUST_BUFFER_ACCESS_2: Self = Self(3);
+}
 #[repr(transparent)]
 #[derive(Clone, Copy)]
 pub struct PipelineRobustnessImageBehavior(pub(crate) i32);
+///Provided by [`vk1_4`](crate::vk1_4)
+impl PipelineRobustnessImageBehavior {
+    pub const DEVICE_DEFAULT: Self = Self(0);
+    pub const DISABLED: Self = Self(1);
+    pub const ROBUST_IMAGE_ACCESS: Self = Self(2);
+    pub const ROBUST_IMAGE_ACCESS_2: Self = Self(3);
+}
 ///Provided by [`vk1_4`](crate::vk1_4)
 impl crate::vk::DescriptorSetLayoutCreateFlagBits {
     pub const PUSH_DESCRIPTOR: Self = Self(1 << 0);

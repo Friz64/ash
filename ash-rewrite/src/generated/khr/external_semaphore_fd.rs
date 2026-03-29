@@ -19,5 +19,10 @@ pub struct SemaphoreGetFdInfoKHR {
     pub semaphore: crate::vk::Semaphore,
     pub handle_type: crate::vk::ExternalSemaphoreHandleTypeFlagBits,
 }
+///Provided by [`khr::external_semaphore_fd`](crate::khr::external_semaphore_fd)
+impl crate::vk::StructureType {
+    pub const IMPORT_SEMAPHORE_FD_INFO_KHR: Self = Self(1000079000);
+    pub const SEMAPHORE_GET_FD_INFO_KHR: Self = Self(1000079001);
+}
 pub const KHR_EXTERNAL_SEMAPHORE_FD_SPEC_VERSION: u32 = 1;
 pub const KHR_EXTERNAL_SEMAPHORE_FD_EXTENSION_NAME: &core::ffi::CStr = c"VK_KHR_external_semaphore_fd";

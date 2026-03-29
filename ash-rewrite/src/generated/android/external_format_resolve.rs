@@ -25,6 +25,18 @@ pub struct AndroidHardwareBufferFormatResolvePropertiesANDROID {
     pub color_attachment_format: crate::vk::Format,
 }
 ///Provided by [`android::external_format_resolve`](crate::android::external_format_resolve)
+impl crate::vk::StructureType {
+    pub const PHYSICAL_DEVICE_EXTERNAL_FORMAT_RESOLVE_FEATURES_ANDROID: Self = Self(
+        1000468000,
+    );
+    pub const PHYSICAL_DEVICE_EXTERNAL_FORMAT_RESOLVE_PROPERTIES_ANDROID: Self = Self(
+        1000468001,
+    );
+    pub const ANDROID_HARDWARE_BUFFER_FORMAT_RESOLVE_PROPERTIES_ANDROID: Self = Self(
+        1000468002,
+    );
+}
+///Provided by [`android::external_format_resolve`](crate::android::external_format_resolve)
 impl crate::vk::ResolveModeFlagBits {
     pub const EXTERNAL_FORMAT_DOWNSAMPLE_ANDROID: Self = Self(1 << 4);
 }

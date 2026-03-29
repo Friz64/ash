@@ -8,5 +8,9 @@ pub struct PhysicalDeviceYcbcrImageArraysFeaturesEXT {
     pub p_next: *mut core::ffi::c_void,
     pub ycbcr_image_arrays: crate::vk::Bool32,
 }
+///Provided by [`ext::ycbcr_image_arrays`](crate::ext::ycbcr_image_arrays)
+impl crate::vk::StructureType {
+    pub const PHYSICAL_DEVICE_YCBCR_IMAGE_ARRAYS_FEATURES_EXT: Self = Self(1000252000);
+}
 pub const EXT_YCBCR_IMAGE_ARRAYS_SPEC_VERSION: u32 = 1;
 pub const EXT_YCBCR_IMAGE_ARRAYS_EXTENSION_NAME: &core::ffi::CStr = c"VK_EXT_ycbcr_image_arrays";

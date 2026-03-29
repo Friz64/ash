@@ -22,8 +22,24 @@ pub struct DepthClampRangeEXT {
     pub min_depth_clamp: core::ffi::c_float,
     pub max_depth_clamp: core::ffi::c_float,
 }
+///Provided by [`ext::depth_clamp_control`](crate::ext::depth_clamp_control)
+impl crate::vk::StructureType {
+    pub const PHYSICAL_DEVICE_DEPTH_CLAMP_CONTROL_FEATURES_EXT: Self = Self(1000582000);
+    pub const PIPELINE_VIEWPORT_DEPTH_CLAMP_CONTROL_CREATE_INFO_EXT: Self = Self(
+        1000582001,
+    );
+}
+///Provided by [`ext::depth_clamp_control`](crate::ext::depth_clamp_control)
+impl crate::vk::DynamicState {
+    pub const DEPTH_CLAMP_RANGE_EXT: Self = Self(1000582000);
+}
 #[repr(transparent)]
 #[derive(Clone, Copy)]
 pub struct DepthClampModeEXT(pub(crate) i32);
+///Provided by [`ext::depth_clamp_control`](crate::ext::depth_clamp_control)
+impl DepthClampModeEXT {
+    pub const VIEWPORT_RANGE_EXT: Self = Self(0);
+    pub const USER_DEFINED_RANGE_EXT: Self = Self(1);
+}
 pub const EXT_DEPTH_CLAMP_CONTROL_SPEC_VERSION: u32 = 1;
 pub const EXT_DEPTH_CLAMP_CONTROL_EXTENSION_NAME: &core::ffi::CStr = c"VK_EXT_depth_clamp_control";

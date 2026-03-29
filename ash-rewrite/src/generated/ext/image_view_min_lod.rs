@@ -15,5 +15,10 @@ pub struct ImageViewMinLodCreateInfoEXT {
     pub p_next: *const core::ffi::c_void,
     pub min_lod: core::ffi::c_float,
 }
+///Provided by [`ext::image_view_min_lod`](crate::ext::image_view_min_lod)
+impl crate::vk::StructureType {
+    pub const PHYSICAL_DEVICE_IMAGE_VIEW_MIN_LOD_FEATURES_EXT: Self = Self(1000391000);
+    pub const IMAGE_VIEW_MIN_LOD_CREATE_INFO_EXT: Self = Self(1000391001);
+}
 pub const EXT_IMAGE_VIEW_MIN_LOD_SPEC_VERSION: u32 = 1;
 pub const EXT_IMAGE_VIEW_MIN_LOD_EXTENSION_NAME: &core::ffi::CStr = c"VK_EXT_image_view_min_lod";

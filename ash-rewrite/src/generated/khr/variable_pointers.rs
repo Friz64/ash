@@ -3,5 +3,10 @@
 //![Vulkan Manual Page](https://docs.vulkan.org/refpages/latest/refpages/source/VK_KHR_variable_pointers.html) · Extension `VK_KHR_variable_pointers`
 pub type PhysicalDeviceVariablePointersFeaturesKHR = crate::vk::PhysicalDeviceVariablePointersFeatures;
 pub type PhysicalDeviceVariablePointerFeaturesKHR = crate::vk::PhysicalDeviceVariablePointersFeatures;
+///Provided by [`khr::variable_pointers`](crate::khr::variable_pointers)
+impl crate::vk::StructureType {
+    pub const PHYSICAL_DEVICE_VARIABLE_POINTERS_FEATURES_KHR: Self = Self::PHYSICAL_DEVICE_VARIABLE_POINTERS_FEATURES;
+    pub const PHYSICAL_DEVICE_VARIABLE_POINTER_FEATURES_KHR: Self = Self::PHYSICAL_DEVICE_VARIABLE_POINTERS_FEATURES_KHR;
+}
 pub const KHR_VARIABLE_POINTERS_SPEC_VERSION: u32 = 1;
 pub const KHR_VARIABLE_POINTERS_EXTENSION_NAME: &core::ffi::CStr = c"VK_KHR_variable_pointers";

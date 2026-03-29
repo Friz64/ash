@@ -8,5 +8,11 @@ pub struct PhysicalDeviceShaderSubgroupUniformControlFlowFeaturesKHR {
     pub p_next: *mut core::ffi::c_void,
     pub shader_subgroup_uniform_control_flow: crate::vk::Bool32,
 }
+///Provided by [`khr::shader_subgroup_uniform_control_flow`](crate::khr::shader_subgroup_uniform_control_flow)
+impl crate::vk::StructureType {
+    pub const PHYSICAL_DEVICE_SHADER_SUBGROUP_UNIFORM_CONTROL_FLOW_FEATURES_KHR: Self = Self(
+        1000323000,
+    );
+}
 pub const KHR_SHADER_SUBGROUP_UNIFORM_CONTROL_FLOW_SPEC_VERSION: u32 = 1;
 pub const KHR_SHADER_SUBGROUP_UNIFORM_CONTROL_FLOW_EXTENSION_NAME: &core::ffi::CStr = c"VK_KHR_shader_subgroup_uniform_control_flow";

@@ -8,5 +8,11 @@ pub struct PhysicalDeviceShaderUntypedPointersFeaturesKHR {
     pub p_next: *mut core::ffi::c_void,
     pub shader_untyped_pointers: crate::vk::Bool32,
 }
+///Provided by [`khr::shader_untyped_pointers`](crate::khr::shader_untyped_pointers)
+impl crate::vk::StructureType {
+    pub const PHYSICAL_DEVICE_SHADER_UNTYPED_POINTERS_FEATURES_KHR: Self = Self(
+        1000387000,
+    );
+}
 pub const KHR_SHADER_UNTYPED_POINTERS_SPEC_VERSION: u32 = 1;
 pub const KHR_SHADER_UNTYPED_POINTERS_EXTENSION_NAME: &core::ffi::CStr = c"VK_KHR_shader_untyped_pointers";

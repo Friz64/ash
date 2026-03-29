@@ -8,5 +8,9 @@ pub struct QueryLowLatencySupportNV {
     pub p_next: *const core::ffi::c_void,
     pub p_queried_low_latency_data: *mut core::ffi::c_void,
 }
+///Provided by [`nv::low_latency`](crate::nv::low_latency)
+impl crate::vk::StructureType {
+    pub const QUERY_LOW_LATENCY_SUPPORT_NV: Self = Self(1000310000);
+}
 pub const NV_LOW_LATENCY_SPEC_VERSION: u32 = 1;
 pub const NV_LOW_LATENCY_EXTENSION_NAME: &core::ffi::CStr = c"VK_NV_low_latency";

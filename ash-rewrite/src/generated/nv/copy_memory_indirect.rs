@@ -11,5 +11,10 @@ pub struct PhysicalDeviceCopyMemoryIndirectFeaturesNV {
 pub type CopyMemoryIndirectCommandNV = crate::vk::CopyMemoryIndirectCommandKHR;
 pub type CopyMemoryToImageIndirectCommandNV = crate::vk::CopyMemoryToImageIndirectCommandKHR;
 pub type PhysicalDeviceCopyMemoryIndirectPropertiesNV = crate::vk::PhysicalDeviceCopyMemoryIndirectPropertiesKHR;
+///Provided by [`nv::copy_memory_indirect`](crate::nv::copy_memory_indirect)
+impl crate::vk::StructureType {
+    pub const PHYSICAL_DEVICE_COPY_MEMORY_INDIRECT_FEATURES_NV: Self = Self(1000426000);
+    pub const PHYSICAL_DEVICE_COPY_MEMORY_INDIRECT_PROPERTIES_NV: Self = Self::PHYSICAL_DEVICE_COPY_MEMORY_INDIRECT_PROPERTIES_KHR;
+}
 pub const NV_COPY_MEMORY_INDIRECT_SPEC_VERSION: u32 = 1;
 pub const NV_COPY_MEMORY_INDIRECT_EXTENSION_NAME: &core::ffi::CStr = c"VK_NV_copy_memory_indirect";

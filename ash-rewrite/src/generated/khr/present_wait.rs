@@ -8,5 +8,9 @@ pub struct PhysicalDevicePresentWaitFeaturesKHR {
     pub p_next: *mut core::ffi::c_void,
     pub present_wait: crate::vk::Bool32,
 }
+///Provided by [`khr::present_wait`](crate::khr::present_wait)
+impl crate::vk::StructureType {
+    pub const PHYSICAL_DEVICE_PRESENT_WAIT_FEATURES_KHR: Self = Self(1000248000);
+}
 pub const KHR_PRESENT_WAIT_SPEC_VERSION: u32 = 1;
 pub const KHR_PRESENT_WAIT_EXTENSION_NAME: &core::ffi::CStr = c"VK_KHR_present_wait";

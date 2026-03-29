@@ -24,8 +24,21 @@ pub struct PipelineRasterizationProvokingVertexStateCreateInfoEXT {
     pub p_next: *const core::ffi::c_void,
     pub provoking_vertex_mode: crate::vk::ProvokingVertexModeEXT,
 }
+///Provided by [`ext::provoking_vertex`](crate::ext::provoking_vertex)
+impl crate::vk::StructureType {
+    pub const PHYSICAL_DEVICE_PROVOKING_VERTEX_FEATURES_EXT: Self = Self(1000254000);
+    pub const PIPELINE_RASTERIZATION_PROVOKING_VERTEX_STATE_CREATE_INFO_EXT: Self = Self(
+        1000254001,
+    );
+    pub const PHYSICAL_DEVICE_PROVOKING_VERTEX_PROPERTIES_EXT: Self = Self(1000254002);
+}
 #[repr(transparent)]
 #[derive(Clone, Copy)]
 pub struct ProvokingVertexModeEXT(pub(crate) i32);
+///Provided by [`ext::provoking_vertex`](crate::ext::provoking_vertex)
+impl ProvokingVertexModeEXT {
+    pub const FIRST_VERTEX_EXT: Self = Self(0);
+    pub const LAST_VERTEX_EXT: Self = Self(1);
+}
 pub const EXT_PROVOKING_VERTEX_SPEC_VERSION: u32 = 1;
 pub const EXT_PROVOKING_VERTEX_EXTENSION_NAME: &core::ffi::CStr = c"VK_EXT_provoking_vertex";

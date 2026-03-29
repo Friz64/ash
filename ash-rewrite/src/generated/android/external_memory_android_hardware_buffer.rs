@@ -66,6 +66,18 @@ pub struct AndroidHardwareBufferFormatProperties2ANDROID {
     pub suggested_y_chroma_offset: crate::vk::ChromaLocation,
 }
 ///Provided by [`android::external_memory_android_hardware_buffer`](crate::android::external_memory_android_hardware_buffer)
+impl crate::vk::StructureType {
+    pub const ANDROID_HARDWARE_BUFFER_USAGE_ANDROID: Self = Self(1000129000);
+    pub const ANDROID_HARDWARE_BUFFER_PROPERTIES_ANDROID: Self = Self(1000129001);
+    pub const ANDROID_HARDWARE_BUFFER_FORMAT_PROPERTIES_ANDROID: Self = Self(1000129002);
+    pub const IMPORT_ANDROID_HARDWARE_BUFFER_INFO_ANDROID: Self = Self(1000129003);
+    pub const MEMORY_GET_ANDROID_HARDWARE_BUFFER_INFO_ANDROID: Self = Self(1000129004);
+    pub const EXTERNAL_FORMAT_ANDROID: Self = Self(1000129005);
+    pub const ANDROID_HARDWARE_BUFFER_FORMAT_PROPERTIES_2_ANDROID: Self = Self(
+        1000129006,
+    );
+}
+///Provided by [`android::external_memory_android_hardware_buffer`](crate::android::external_memory_android_hardware_buffer)
 impl crate::vk::ExternalMemoryHandleTypeFlagBits {
     pub const ANDROID_HARDWARE_BUFFER_ANDROID: Self = Self(1 << 10);
 }

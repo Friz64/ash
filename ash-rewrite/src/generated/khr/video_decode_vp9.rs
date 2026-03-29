@@ -35,6 +35,13 @@ pub struct VideoDecodeVP9PictureInfoKHR {
     pub tiles_offset: u32,
 }
 ///Provided by [`khr::video_decode_vp9`](crate::khr::video_decode_vp9)
+impl crate::vk::StructureType {
+    pub const PHYSICAL_DEVICE_VIDEO_DECODE_VP9_FEATURES_KHR: Self = Self(1000514000);
+    pub const VIDEO_DECODE_VP9_CAPABILITIES_KHR: Self = Self(1000514001);
+    pub const VIDEO_DECODE_VP9_PICTURE_INFO_KHR: Self = Self(1000514002);
+    pub const VIDEO_DECODE_VP9_PROFILE_INFO_KHR: Self = Self(1000514003);
+}
+///Provided by [`khr::video_decode_vp9`](crate::khr::video_decode_vp9)
 impl crate::vk::VideoCodecOperationFlagBitsKHR {
     pub const DECODE_VP9_KHR: Self = Self(1 << 3);
 }

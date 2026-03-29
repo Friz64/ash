@@ -22,5 +22,15 @@ pub struct ImageAlignmentControlCreateInfoMESA {
     pub p_next: *const core::ffi::c_void,
     pub maximum_requested_alignment: u32,
 }
+///Provided by [`mesa::image_alignment_control`](crate::mesa::image_alignment_control)
+impl crate::vk::StructureType {
+    pub const PHYSICAL_DEVICE_IMAGE_ALIGNMENT_CONTROL_FEATURES_MESA: Self = Self(
+        1000575000,
+    );
+    pub const PHYSICAL_DEVICE_IMAGE_ALIGNMENT_CONTROL_PROPERTIES_MESA: Self = Self(
+        1000575001,
+    );
+    pub const IMAGE_ALIGNMENT_CONTROL_CREATE_INFO_MESA: Self = Self(1000575002);
+}
 pub const MESA_IMAGE_ALIGNMENT_CONTROL_SPEC_VERSION: u32 = 1;
 pub const MESA_IMAGE_ALIGNMENT_CONTROL_EXTENSION_NAME: &core::ffi::CStr = c"VK_MESA_image_alignment_control";

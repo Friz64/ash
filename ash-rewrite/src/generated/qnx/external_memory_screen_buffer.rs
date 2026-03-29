@@ -46,6 +46,16 @@ pub struct PhysicalDeviceExternalMemoryScreenBufferFeaturesQNX {
     pub screen_buffer_import: crate::vk::Bool32,
 }
 ///Provided by [`qnx::external_memory_screen_buffer`](crate::qnx::external_memory_screen_buffer)
+impl crate::vk::StructureType {
+    pub const SCREEN_BUFFER_PROPERTIES_QNX: Self = Self(1000529000);
+    pub const SCREEN_BUFFER_FORMAT_PROPERTIES_QNX: Self = Self(1000529001);
+    pub const IMPORT_SCREEN_BUFFER_INFO_QNX: Self = Self(1000529002);
+    pub const EXTERNAL_FORMAT_QNX: Self = Self(1000529003);
+    pub const PHYSICAL_DEVICE_EXTERNAL_MEMORY_SCREEN_BUFFER_FEATURES_QNX: Self = Self(
+        1000529004,
+    );
+}
+///Provided by [`qnx::external_memory_screen_buffer`](crate::qnx::external_memory_screen_buffer)
 impl crate::vk::ExternalMemoryHandleTypeFlagBits {
     pub const SCREEN_BUFFER_QNX: Self = Self(1 << 14);
 }

@@ -39,5 +39,15 @@ pub struct RenderPassStripeSubmitInfoARM {
     pub stripe_semaphore_info_count: u32,
     pub p_stripe_semaphore_infos: *const crate::vk::SemaphoreSubmitInfo,
 }
+///Provided by [`arm::render_pass_striped`](crate::arm::render_pass_striped)
+impl crate::vk::StructureType {
+    pub const PHYSICAL_DEVICE_RENDER_PASS_STRIPED_FEATURES_ARM: Self = Self(1000424000);
+    pub const PHYSICAL_DEVICE_RENDER_PASS_STRIPED_PROPERTIES_ARM: Self = Self(
+        1000424001,
+    );
+    pub const RENDER_PASS_STRIPE_BEGIN_INFO_ARM: Self = Self(1000424002);
+    pub const RENDER_PASS_STRIPE_INFO_ARM: Self = Self(1000424003);
+    pub const RENDER_PASS_STRIPE_SUBMIT_INFO_ARM: Self = Self(1000424004);
+}
 pub const ARM_RENDER_PASS_STRIPED_SPEC_VERSION: u32 = 1;
 pub const ARM_RENDER_PASS_STRIPED_EXTENSION_NAME: &core::ffi::CStr = c"VK_ARM_render_pass_striped";

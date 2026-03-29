@@ -83,11 +83,43 @@ pub struct LatencySurfaceCapabilitiesNV {
     pub present_mode_count: u32,
     pub p_present_modes: *mut crate::vk::PresentModeKHR,
 }
+///Provided by [`nv::low_latency2`](crate::nv::low_latency2)
+impl crate::vk::StructureType {
+    pub const LATENCY_SLEEP_MODE_INFO_NV: Self = Self(1000505000);
+    pub const LATENCY_SLEEP_INFO_NV: Self = Self(1000505001);
+    pub const SET_LATENCY_MARKER_INFO_NV: Self = Self(1000505002);
+    pub const GET_LATENCY_MARKER_INFO_NV: Self = Self(1000505003);
+    pub const LATENCY_TIMINGS_FRAME_REPORT_NV: Self = Self(1000505004);
+    pub const LATENCY_SUBMISSION_PRESENT_ID_NV: Self = Self(1000505005);
+    pub const OUT_OF_BAND_QUEUE_TYPE_INFO_NV: Self = Self(1000505006);
+    pub const SWAPCHAIN_LATENCY_CREATE_INFO_NV: Self = Self(1000505007);
+    pub const LATENCY_SURFACE_CAPABILITIES_NV: Self = Self(1000505008);
+}
 #[repr(transparent)]
 #[derive(Clone, Copy)]
 pub struct LatencyMarkerNV(pub(crate) i32);
+///Provided by [`nv::low_latency2`](crate::nv::low_latency2)
+impl LatencyMarkerNV {
+    pub const SIMULATION_START_NV: Self = Self(0);
+    pub const SIMULATION_END_NV: Self = Self(1);
+    pub const RENDERSUBMIT_START_NV: Self = Self(2);
+    pub const RENDERSUBMIT_END_NV: Self = Self(3);
+    pub const PRESENT_START_NV: Self = Self(4);
+    pub const PRESENT_END_NV: Self = Self(5);
+    pub const INPUT_SAMPLE_NV: Self = Self(6);
+    pub const TRIGGER_FLASH_NV: Self = Self(7);
+    pub const OUT_OF_BAND_RENDERSUBMIT_START_NV: Self = Self(8);
+    pub const OUT_OF_BAND_RENDERSUBMIT_END_NV: Self = Self(9);
+    pub const OUT_OF_BAND_PRESENT_START_NV: Self = Self(10);
+    pub const OUT_OF_BAND_PRESENT_END_NV: Self = Self(11);
+}
 #[repr(transparent)]
 #[derive(Clone, Copy)]
 pub struct OutOfBandQueueTypeNV(pub(crate) i32);
+///Provided by [`nv::low_latency2`](crate::nv::low_latency2)
+impl OutOfBandQueueTypeNV {
+    pub const RENDER_NV: Self = Self(0);
+    pub const PRESENT_NV: Self = Self(1);
+}
 pub const NV_LOW_LATENCY_2_SPEC_VERSION: u32 = 2;
 pub const NV_LOW_LATENCY_2_EXTENSION_NAME: &core::ffi::CStr = c"VK_NV_low_latency2";

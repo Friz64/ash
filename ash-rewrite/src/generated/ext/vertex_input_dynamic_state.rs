@@ -28,5 +28,17 @@ pub struct VertexInputAttributeDescription2EXT {
     pub format: crate::vk::Format,
     pub offset: u32,
 }
+///Provided by [`ext::vertex_input_dynamic_state`](crate::ext::vertex_input_dynamic_state)
+impl crate::vk::StructureType {
+    pub const PHYSICAL_DEVICE_VERTEX_INPUT_DYNAMIC_STATE_FEATURES_EXT: Self = Self(
+        1000352000,
+    );
+    pub const VERTEX_INPUT_BINDING_DESCRIPTION_2_EXT: Self = Self(1000352001);
+    pub const VERTEX_INPUT_ATTRIBUTE_DESCRIPTION_2_EXT: Self = Self(1000352002);
+}
+///Provided by [`ext::vertex_input_dynamic_state`](crate::ext::vertex_input_dynamic_state)
+impl crate::vk::DynamicState {
+    pub const VERTEX_INPUT_EXT: Self = Self(1000352000);
+}
 pub const EXT_VERTEX_INPUT_DYNAMIC_STATE_SPEC_VERSION: u32 = 2;
 pub const EXT_VERTEX_INPUT_DYNAMIC_STATE_EXTENSION_NAME: &core::ffi::CStr = c"VK_EXT_vertex_input_dynamic_state";

@@ -9,5 +9,14 @@ pub struct PhysicalDeviceShaderFloat8FeaturesEXT {
     pub shader_float8: crate::vk::Bool32,
     pub shader_float8_cooperative_matrix: crate::vk::Bool32,
 }
+///Provided by [`ext::shader_float8`](crate::ext::shader_float8)
+impl crate::vk::StructureType {
+    pub const PHYSICAL_DEVICE_SHADER_FLOAT8_FEATURES_EXT: Self = Self(1000567000);
+}
+///Provided by [`ext::shader_float8`](crate::ext::shader_float8)
+impl crate::vk::ComponentTypeKHR {
+    pub const FLOAT8_E4M3_EXT: Self = Self(1000491002);
+    pub const FLOAT8_E5M2_EXT: Self = Self(1000491003);
+}
 pub const EXT_SHADER_FLOAT8_SPEC_VERSION: u32 = 1;
 pub const EXT_SHADER_FLOAT8_EXTENSION_NAME: &core::ffi::CStr = c"VK_EXT_shader_float8";

@@ -2,6 +2,11 @@
 #![cfg_attr(rustfmt, rustfmt_skip)]
 /// A re-export of all items
 pub mod vk;
+pub mod vk1_0;
+pub mod vk1_1;
+pub mod vk1_2;
+pub mod vk1_3;
+pub mod vk1_4;
 pub mod amd;
 pub mod amdx;
 pub mod android;
@@ -27,8 +32,3 @@ pub mod qnx;
 pub mod sec;
 pub mod valve;
 pub mod video;
-pub mod vk1_0;
-pub mod vk1_1;
-pub mod vk1_2;
-pub mod vk1_3;
-pub mod vk1_4;

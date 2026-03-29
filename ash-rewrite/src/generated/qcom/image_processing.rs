@@ -30,6 +30,17 @@ pub struct PhysicalDeviceImageProcessingPropertiesQCOM {
     pub max_box_filter_block_size: crate::vk::Extent2D,
 }
 ///Provided by [`qcom::image_processing`](crate::qcom::image_processing)
+impl crate::vk::DescriptorType {
+    pub const SAMPLE_WEIGHT_IMAGE_QCOM: Self = Self(1000440000);
+    pub const BLOCK_MATCH_IMAGE_QCOM: Self = Self(1000440001);
+}
+///Provided by [`qcom::image_processing`](crate::qcom::image_processing)
+impl crate::vk::StructureType {
+    pub const PHYSICAL_DEVICE_IMAGE_PROCESSING_FEATURES_QCOM: Self = Self(1000440000);
+    pub const PHYSICAL_DEVICE_IMAGE_PROCESSING_PROPERTIES_QCOM: Self = Self(1000440001);
+    pub const IMAGE_VIEW_SAMPLE_WEIGHT_CREATE_INFO_QCOM: Self = Self(1000440002);
+}
+///Provided by [`qcom::image_processing`](crate::qcom::image_processing)
 impl crate::vk::SamplerCreateFlagBits {
     pub const IMAGE_PROCESSING_QCOM: Self = Self(1 << 4);
 }

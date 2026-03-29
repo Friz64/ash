@@ -24,6 +24,14 @@ pub struct MultisampledRenderToSingleSampledInfoEXT {
     pub rasterization_samples: crate::vk::SampleCountFlagBits,
 }
 ///Provided by [`ext::multisampled_render_to_single_sampled`](crate::ext::multisampled_render_to_single_sampled)
+impl crate::vk::StructureType {
+    pub const PHYSICAL_DEVICE_MULTISAMPLED_RENDER_TO_SINGLE_SAMPLED_FEATURES_EXT: Self = Self(
+        1000376000,
+    );
+    pub const SUBPASS_RESOLVE_PERFORMANCE_QUERY_EXT: Self = Self(1000376001);
+    pub const MULTISAMPLED_RENDER_TO_SINGLE_SAMPLED_INFO_EXT: Self = Self(1000376002);
+}
+///Provided by [`ext::multisampled_render_to_single_sampled`](crate::ext::multisampled_render_to_single_sampled)
 impl crate::vk::ImageCreateFlagBits {
     pub const MULTISAMPLED_RENDER_TO_SINGLE_SAMPLED_EXT: Self = Self(1 << 18);
 }

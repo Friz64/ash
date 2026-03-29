@@ -22,5 +22,11 @@ pub struct SurfaceFormat2KHR {
     pub p_next: *mut core::ffi::c_void,
     pub surface_format: crate::vk::SurfaceFormatKHR,
 }
+///Provided by [`khr::get_surface_capabilities2`](crate::khr::get_surface_capabilities2)
+impl crate::vk::StructureType {
+    pub const PHYSICAL_DEVICE_SURFACE_INFO_2_KHR: Self = Self(1000119000);
+    pub const SURFACE_CAPABILITIES_2_KHR: Self = Self(1000119001);
+    pub const SURFACE_FORMAT_2_KHR: Self = Self(1000119002);
+}
 pub const KHR_GET_SURFACE_CAPABILITIES_2_SPEC_VERSION: u32 = 1;
 pub const KHR_GET_SURFACE_CAPABILITIES_2_EXTENSION_NAME: &core::ffi::CStr = c"VK_KHR_get_surface_capabilities2";

@@ -24,6 +24,12 @@ pub struct SurfaceCapabilitiesPresentId2KHR {
     pub present_id2_supported: crate::vk::Bool32,
 }
 ///Provided by [`khr::present_id2`](crate::khr::present_id2)
+impl crate::vk::StructureType {
+    pub const SURFACE_CAPABILITIES_PRESENT_ID_2_KHR: Self = Self(1000479000);
+    pub const PRESENT_ID_2_KHR: Self = Self(1000479001);
+    pub const PHYSICAL_DEVICE_PRESENT_ID_2_FEATURES_KHR: Self = Self(1000479002);
+}
+///Provided by [`khr::present_id2`](crate::khr::present_id2)
 impl crate::vk::SwapchainCreateFlagBitsKHR {
     pub const PRESENT_ID_2_KHR: Self = Self(1 << 6);
 }

@@ -4,6 +4,16 @@
 pub type DevicePrivateDataCreateInfoEXT = crate::vk::DevicePrivateDataCreateInfo;
 pub type PrivateDataSlotCreateInfoEXT = crate::vk::PrivateDataSlotCreateInfo;
 pub type PhysicalDevicePrivateDataFeaturesEXT = crate::vk::PhysicalDevicePrivateDataFeatures;
+///Provided by [`ext::private_data`](crate::ext::private_data)
+impl crate::vk::StructureType {
+    pub const PHYSICAL_DEVICE_PRIVATE_DATA_FEATURES_EXT: Self = Self::PHYSICAL_DEVICE_PRIVATE_DATA_FEATURES;
+    pub const DEVICE_PRIVATE_DATA_CREATE_INFO_EXT: Self = Self::DEVICE_PRIVATE_DATA_CREATE_INFO;
+    pub const PRIVATE_DATA_SLOT_CREATE_INFO_EXT: Self = Self::PRIVATE_DATA_SLOT_CREATE_INFO;
+}
+///Provided by [`ext::private_data`](crate::ext::private_data)
+impl crate::vk::ObjectType {
+    pub const PRIVATE_DATA_SLOT_EXT: Self = Self::PRIVATE_DATA_SLOT;
+}
 pub type PrivateDataSlotCreateFlagsEXT = crate::vk::PrivateDataSlotCreateFlags;
 pub type PrivateDataSlotEXT = crate::vk::PrivateDataSlot;
 pub const EXT_PRIVATE_DATA_SPEC_VERSION: u32 = 1;

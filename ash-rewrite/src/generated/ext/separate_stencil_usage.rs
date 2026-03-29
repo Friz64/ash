@@ -2,5 +2,9 @@
 #![cfg_attr(rustfmt, rustfmt_skip)]
 //![Vulkan Manual Page](https://docs.vulkan.org/refpages/latest/refpages/source/VK_EXT_separate_stencil_usage.html) · Extension `VK_EXT_separate_stencil_usage`
 pub type ImageStencilUsageCreateInfoEXT = crate::vk::ImageStencilUsageCreateInfo;
+///Provided by [`ext::separate_stencil_usage`](crate::ext::separate_stencil_usage)
+impl crate::vk::StructureType {
+    pub const IMAGE_STENCIL_USAGE_CREATE_INFO_EXT: Self = Self::IMAGE_STENCIL_USAGE_CREATE_INFO;
+}
 pub const EXT_SEPARATE_STENCIL_USAGE_SPEC_VERSION: u32 = 1;
 pub const EXT_SEPARATE_STENCIL_USAGE_EXTENSION_NAME: &core::ffi::CStr = c"VK_EXT_separate_stencil_usage";

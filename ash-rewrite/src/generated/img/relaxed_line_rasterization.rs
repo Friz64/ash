@@ -8,5 +8,11 @@ pub struct PhysicalDeviceRelaxedLineRasterizationFeaturesIMG {
     pub p_next: *mut core::ffi::c_void,
     pub relaxed_line_rasterization: crate::vk::Bool32,
 }
+///Provided by [`img::relaxed_line_rasterization`](crate::img::relaxed_line_rasterization)
+impl crate::vk::StructureType {
+    pub const PHYSICAL_DEVICE_RELAXED_LINE_RASTERIZATION_FEATURES_IMG: Self = Self(
+        1000110000,
+    );
+}
 pub const IMG_RELAXED_LINE_RASTERIZATION_SPEC_VERSION: u32 = 1;
 pub const IMG_RELAXED_LINE_RASTERIZATION_EXTENSION_NAME: &core::ffi::CStr = c"VK_IMG_relaxed_line_rasterization";

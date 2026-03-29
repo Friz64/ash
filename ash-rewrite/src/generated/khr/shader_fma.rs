@@ -10,5 +10,9 @@ pub struct PhysicalDeviceShaderFmaFeaturesKHR {
     pub shader_fma_float32: crate::vk::Bool32,
     pub shader_fma_float64: crate::vk::Bool32,
 }
+///Provided by [`khr::shader_fma`](crate::khr::shader_fma)
+impl crate::vk::StructureType {
+    pub const PHYSICAL_DEVICE_SHADER_FMA_FEATURES_KHR: Self = Self(1000579000);
+}
 pub const KHR_SHADER_FMA_SPEC_VERSION: u32 = 1;
 pub const KHR_SHADER_FMA_EXTENSION_NAME: &core::ffi::CStr = c"VK_KHR_shader_fma";

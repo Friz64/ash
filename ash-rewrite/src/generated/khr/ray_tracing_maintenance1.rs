@@ -28,6 +28,23 @@ pub struct PhysicalDeviceRayTracingMaintenance1FeaturesKHR {
     pub ray_tracing_pipeline_trace_rays_indirect2: crate::vk::Bool32,
 }
 ///Provided by [`khr::ray_tracing_maintenance1`](crate::khr::ray_tracing_maintenance1)
+impl crate::vk::QueryType {
+    pub const ACCELERATION_STRUCTURE_SERIALIZATION_BOTTOM_LEVEL_POINTERS_KHR: Self = Self(
+        1000386000,
+    );
+    pub const ACCELERATION_STRUCTURE_SIZE_KHR: Self = Self(1000386001);
+}
+///Provided by [`khr::ray_tracing_maintenance1`](crate::khr::ray_tracing_maintenance1)
+impl crate::vk::StructureType {
+    pub const PHYSICAL_DEVICE_RAY_TRACING_MAINTENANCE_1_FEATURES_KHR: Self = Self(
+        1000386000,
+    );
+}
+///Provided by [`khr::ray_tracing_maintenance1`](crate::khr::ray_tracing_maintenance1)
+impl crate::vk::IndirectCommandsTokenTypeEXT {
+    pub const TRACE_RAYS2_EXT: Self = Self(1000386004);
+}
+///Provided by [`khr::ray_tracing_maintenance1`](crate::khr::ray_tracing_maintenance1)
 impl crate::vk::AccessFlagBits2 {
     pub const SHADER_BINDING_TABLE_READ_KHR: Self = Self(1 << 40);
 }

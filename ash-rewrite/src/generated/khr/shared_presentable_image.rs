@@ -8,5 +8,18 @@ pub struct SharedPresentSurfaceCapabilitiesKHR {
     pub p_next: *mut core::ffi::c_void,
     pub shared_present_supported_usage_flags: crate::vk::ImageUsageFlags,
 }
+///Provided by [`khr::shared_presentable_image`](crate::khr::shared_presentable_image)
+impl crate::vk::ImageLayout {
+    pub const SHARED_PRESENT_KHR: Self = Self(1000111000);
+}
+///Provided by [`khr::shared_presentable_image`](crate::khr::shared_presentable_image)
+impl crate::vk::StructureType {
+    pub const SHARED_PRESENT_SURFACE_CAPABILITIES_KHR: Self = Self(1000111000);
+}
+///Provided by [`khr::shared_presentable_image`](crate::khr::shared_presentable_image)
+impl crate::vk::PresentModeKHR {
+    pub const SHARED_DEMAND_REFRESH_KHR: Self = Self(1000111000);
+    pub const SHARED_CONTINUOUS_REFRESH_KHR: Self = Self(1000111001);
+}
 pub const KHR_SHARED_PRESENTABLE_IMAGE_SPEC_VERSION: u32 = 1;
 pub const KHR_SHARED_PRESENTABLE_IMAGE_EXTENSION_NAME: &core::ffi::CStr = c"VK_KHR_shared_presentable_image";

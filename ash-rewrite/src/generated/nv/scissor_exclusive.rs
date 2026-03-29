@@ -16,5 +16,17 @@ pub struct PipelineViewportExclusiveScissorStateCreateInfoNV {
     pub exclusive_scissor_count: u32,
     pub p_exclusive_scissors: *const crate::vk::Rect2D,
 }
+///Provided by [`nv::scissor_exclusive`](crate::nv::scissor_exclusive)
+impl crate::vk::StructureType {
+    pub const PIPELINE_VIEWPORT_EXCLUSIVE_SCISSOR_STATE_CREATE_INFO_NV: Self = Self(
+        1000205000,
+    );
+    pub const PHYSICAL_DEVICE_EXCLUSIVE_SCISSOR_FEATURES_NV: Self = Self(1000205002);
+}
+///Provided by [`nv::scissor_exclusive`](crate::nv::scissor_exclusive)
+impl crate::vk::DynamicState {
+    pub const EXCLUSIVE_SCISSOR_ENABLE_NV: Self = Self(1000205000);
+    pub const EXCLUSIVE_SCISSOR_NV: Self = Self(1000205001);
+}
 pub const NV_SCISSOR_EXCLUSIVE_SPEC_VERSION: u32 = 2;
 pub const NV_SCISSOR_EXCLUSIVE_EXTENSION_NAME: &core::ffi::CStr = c"VK_NV_scissor_exclusive";

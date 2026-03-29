@@ -17,6 +17,17 @@ pub struct FilterCubicImageViewImageFormatPropertiesEXT {
     pub filter_cubic_minmax: crate::vk::Bool32,
 }
 ///Provided by [`ext::filter_cubic`](crate::ext::filter_cubic)
+impl crate::vk::Filter {
+    pub const CUBIC_EXT: Self = Self(1000015000);
+}
+///Provided by [`ext::filter_cubic`](crate::ext::filter_cubic)
+impl crate::vk::StructureType {
+    pub const PHYSICAL_DEVICE_IMAGE_VIEW_IMAGE_FORMAT_INFO_EXT: Self = Self(1000170000);
+    pub const FILTER_CUBIC_IMAGE_VIEW_IMAGE_FORMAT_PROPERTIES_EXT: Self = Self(
+        1000170001,
+    );
+}
+///Provided by [`ext::filter_cubic`](crate::ext::filter_cubic)
 impl crate::vk::FormatFeatureFlagBits {
     pub const SAMPLED_IMAGE_FILTER_CUBIC_EXT: Self = Self(1 << 13);
 }

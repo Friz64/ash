@@ -24,6 +24,16 @@ pub struct GraphicsPipelineLibraryCreateInfoEXT {
     pub flags: crate::vk::GraphicsPipelineLibraryFlagsEXT,
 }
 ///Provided by [`ext::graphics_pipeline_library`](crate::ext::graphics_pipeline_library)
+impl crate::vk::StructureType {
+    pub const PHYSICAL_DEVICE_GRAPHICS_PIPELINE_LIBRARY_FEATURES_EXT: Self = Self(
+        1000320000,
+    );
+    pub const PHYSICAL_DEVICE_GRAPHICS_PIPELINE_LIBRARY_PROPERTIES_EXT: Self = Self(
+        1000320001,
+    );
+    pub const GRAPHICS_PIPELINE_LIBRARY_CREATE_INFO_EXT: Self = Self(1000320002);
+}
+///Provided by [`ext::graphics_pipeline_library`](crate::ext::graphics_pipeline_library)
 impl crate::vk::PipelineLayoutCreateFlagBits {
     pub const INDEPENDENT_SETS_EXT: Self = Self(1 << 1);
 }

@@ -9,5 +9,12 @@ pub struct PhysicalDeviceTexelBufferAlignmentFeaturesEXT {
     pub texel_buffer_alignment: crate::vk::Bool32,
 }
 pub type PhysicalDeviceTexelBufferAlignmentPropertiesEXT = crate::vk::PhysicalDeviceTexelBufferAlignmentProperties;
+///Provided by [`ext::texel_buffer_alignment`](crate::ext::texel_buffer_alignment)
+impl crate::vk::StructureType {
+    pub const PHYSICAL_DEVICE_TEXEL_BUFFER_ALIGNMENT_FEATURES_EXT: Self = Self(
+        1000281000,
+    );
+    pub const PHYSICAL_DEVICE_TEXEL_BUFFER_ALIGNMENT_PROPERTIES_EXT: Self = Self::PHYSICAL_DEVICE_TEXEL_BUFFER_ALIGNMENT_PROPERTIES;
+}
 pub const EXT_TEXEL_BUFFER_ALIGNMENT_SPEC_VERSION: u32 = 1;
 pub const EXT_TEXEL_BUFFER_ALIGNMENT_EXTENSION_NAME: &core::ffi::CStr = c"VK_EXT_texel_buffer_alignment";

@@ -18,9 +18,21 @@ pub struct DeviceAddressBindingCallbackDataEXT {
     pub size: crate::vk::DeviceSize,
     pub binding_type: crate::vk::DeviceAddressBindingTypeEXT,
 }
+///Provided by [`ext::device_address_binding_report`](crate::ext::device_address_binding_report)
+impl crate::vk::StructureType {
+    pub const PHYSICAL_DEVICE_ADDRESS_BINDING_REPORT_FEATURES_EXT: Self = Self(
+        1000354000,
+    );
+    pub const DEVICE_ADDRESS_BINDING_CALLBACK_DATA_EXT: Self = Self(1000354001);
+}
 #[repr(transparent)]
 #[derive(Clone, Copy)]
 pub struct DeviceAddressBindingTypeEXT(pub(crate) i32);
+///Provided by [`ext::device_address_binding_report`](crate::ext::device_address_binding_report)
+impl DeviceAddressBindingTypeEXT {
+    pub const BIND_EXT: Self = Self(0);
+    pub const UNBIND_EXT: Self = Self(1);
+}
 ///Provided by [`ext::device_address_binding_report`](crate::ext::device_address_binding_report)
 impl crate::vk::DebugUtilsMessageTypeFlagBitsEXT {
     pub const DEVICE_ADDRESS_BINDING_EXT: Self = Self(1 << 3);

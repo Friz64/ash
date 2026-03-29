@@ -25,6 +25,12 @@ pub struct MemoryGetMetalHandleInfoEXT {
     pub handle_type: crate::vk::ExternalMemoryHandleTypeFlagBits,
 }
 ///Provided by [`ext::external_memory_metal`](crate::ext::external_memory_metal)
+impl crate::vk::StructureType {
+    pub const IMPORT_MEMORY_METAL_HANDLE_INFO_EXT: Self = Self(1000602000);
+    pub const MEMORY_METAL_HANDLE_PROPERTIES_EXT: Self = Self(1000602001);
+    pub const MEMORY_GET_METAL_HANDLE_INFO_EXT: Self = Self(1000602002);
+}
+///Provided by [`ext::external_memory_metal`](crate::ext::external_memory_metal)
 impl crate::vk::ExternalMemoryHandleTypeFlagBits {
     pub const MTLBUFFER_EXT: Self = Self(1 << 16);
     pub const MTLTEXTURE_EXT: Self = Self(1 << 17);

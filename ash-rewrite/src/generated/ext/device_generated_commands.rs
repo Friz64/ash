@@ -197,12 +197,56 @@ pub union IndirectCommandsTokenDataEXT {
     pub p_index_buffer: *const crate::vk::IndirectCommandsIndexBufferTokenEXT,
     pub p_execution_set: *const crate::vk::IndirectCommandsExecutionSetTokenEXT,
 }
+///Provided by [`ext::device_generated_commands`](crate::ext::device_generated_commands)
+impl crate::vk::StructureType {
+    pub const PHYSICAL_DEVICE_DEVICE_GENERATED_COMMANDS_FEATURES_EXT: Self = Self(
+        1000572000,
+    );
+    pub const PHYSICAL_DEVICE_DEVICE_GENERATED_COMMANDS_PROPERTIES_EXT: Self = Self(
+        1000572001,
+    );
+    pub const GENERATED_COMMANDS_MEMORY_REQUIREMENTS_INFO_EXT: Self = Self(1000572002);
+    pub const INDIRECT_EXECUTION_SET_CREATE_INFO_EXT: Self = Self(1000572003);
+    pub const GENERATED_COMMANDS_INFO_EXT: Self = Self(1000572004);
+    pub const INDIRECT_COMMANDS_LAYOUT_CREATE_INFO_EXT: Self = Self(1000572006);
+    pub const INDIRECT_COMMANDS_LAYOUT_TOKEN_EXT: Self = Self(1000572007);
+    pub const WRITE_INDIRECT_EXECUTION_SET_PIPELINE_EXT: Self = Self(1000572008);
+    pub const WRITE_INDIRECT_EXECUTION_SET_SHADER_EXT: Self = Self(1000572009);
+    pub const INDIRECT_EXECUTION_SET_PIPELINE_INFO_EXT: Self = Self(1000572010);
+    pub const INDIRECT_EXECUTION_SET_SHADER_INFO_EXT: Self = Self(1000572011);
+    pub const INDIRECT_EXECUTION_SET_SHADER_LAYOUT_INFO_EXT: Self = Self(1000572012);
+    pub const GENERATED_COMMANDS_PIPELINE_INFO_EXT: Self = Self(1000572013);
+    pub const GENERATED_COMMANDS_SHADER_INFO_EXT: Self = Self(1000572014);
+}
+///Provided by [`ext::device_generated_commands`](crate::ext::device_generated_commands)
+impl crate::vk::ObjectType {
+    pub const INDIRECT_COMMANDS_LAYOUT_EXT: Self = Self(1000572000);
+    pub const INDIRECT_EXECUTION_SET_EXT: Self = Self(1000572001);
+}
 #[repr(transparent)]
 #[derive(Clone, Copy)]
 pub struct IndirectExecutionSetInfoTypeEXT(pub(crate) i32);
+///Provided by [`ext::device_generated_commands`](crate::ext::device_generated_commands)
+impl IndirectExecutionSetInfoTypeEXT {
+    pub const PIPELINES_EXT: Self = Self(0);
+    pub const SHADER_OBJECTS_EXT: Self = Self(1);
+}
 #[repr(transparent)]
 #[derive(Clone, Copy)]
 pub struct IndirectCommandsTokenTypeEXT(pub(crate) i32);
+///Provided by [`ext::device_generated_commands`](crate::ext::device_generated_commands)
+impl IndirectCommandsTokenTypeEXT {
+    pub const EXECUTION_SET_EXT: Self = Self(0);
+    pub const PUSH_CONSTANT_EXT: Self = Self(1);
+    pub const SEQUENCE_INDEX_EXT: Self = Self(2);
+    pub const INDEX_BUFFER_EXT: Self = Self(3);
+    pub const VERTEX_BUFFER_EXT: Self = Self(4);
+    pub const DRAW_INDEXED_EXT: Self = Self(5);
+    pub const DRAW_EXT: Self = Self(6);
+    pub const DRAW_INDEXED_COUNT_EXT: Self = Self(7);
+    pub const DRAW_COUNT_EXT: Self = Self(8);
+    pub const DISPATCH_EXT: Self = Self(9);
+}
 ///Provided by [`ext::device_generated_commands`](crate::ext::device_generated_commands)
 impl crate::vk::AccessFlagBits {
     pub const COMMAND_PREPROCESS_READ_EXT: Self = Self(1 << 17);

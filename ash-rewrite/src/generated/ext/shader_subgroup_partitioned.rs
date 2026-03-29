@@ -9,6 +9,12 @@ pub struct PhysicalDeviceShaderSubgroupPartitionedFeaturesEXT {
     pub shader_subgroup_partitioned: crate::vk::Bool32,
 }
 ///Provided by [`ext::shader_subgroup_partitioned`](crate::ext::shader_subgroup_partitioned)
+impl crate::vk::StructureType {
+    pub const PHYSICAL_DEVICE_SHADER_SUBGROUP_PARTITIONED_FEATURES_EXT: Self = Self(
+        1000662000,
+    );
+}
+///Provided by [`ext::shader_subgroup_partitioned`](crate::ext::shader_subgroup_partitioned)
 impl crate::vk::SubgroupFeatureFlagBits {
     pub const PARTITIONED_EXT: Self = Self(1 << 8);
 }

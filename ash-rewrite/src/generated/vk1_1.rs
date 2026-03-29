@@ -556,24 +556,180 @@ pub struct PhysicalDeviceShaderDrawParametersFeatures {
 }
 pub type PhysicalDeviceVariablePointerFeatures = crate::vk::PhysicalDeviceVariablePointersFeatures;
 pub type PhysicalDeviceShaderDrawParameterFeatures = crate::vk::PhysicalDeviceShaderDrawParametersFeatures;
+///Provided by [`vk1_1`](crate::vk1_1)
+impl crate::vk::ImageLayout {
+    pub const DEPTH_READ_ONLY_STENCIL_ATTACHMENT_OPTIMAL: Self = Self(1000117000);
+    pub const DEPTH_ATTACHMENT_STENCIL_READ_ONLY_OPTIMAL: Self = Self(1000117001);
+}
+///Provided by [`vk1_1`](crate::vk1_1)
+impl crate::vk::Format {
+    pub const G8B8G8R8_422_UNORM: Self = Self(1000156000);
+    pub const B8G8R8G8_422_UNORM: Self = Self(1000156001);
+    pub const G8_B8_R8_3PLANE_420_UNORM: Self = Self(1000156002);
+    pub const G8_B8R8_2PLANE_420_UNORM: Self = Self(1000156003);
+    pub const G8_B8_R8_3PLANE_422_UNORM: Self = Self(1000156004);
+    pub const G8_B8R8_2PLANE_422_UNORM: Self = Self(1000156005);
+    pub const G8_B8_R8_3PLANE_444_UNORM: Self = Self(1000156006);
+    pub const R10X6_UNORM_PACK16: Self = Self(1000156007);
+    pub const R10X6G10X6_UNORM_2PACK16: Self = Self(1000156008);
+    pub const R10X6G10X6B10X6A10X6_UNORM_4PACK16: Self = Self(1000156009);
+    pub const G10X6B10X6G10X6R10X6_422_UNORM_4PACK16: Self = Self(1000156010);
+    pub const B10X6G10X6R10X6G10X6_422_UNORM_4PACK16: Self = Self(1000156011);
+    pub const G10X6_B10X6_R10X6_3PLANE_420_UNORM_3PACK16: Self = Self(1000156012);
+    pub const G10X6_B10X6R10X6_2PLANE_420_UNORM_3PACK16: Self = Self(1000156013);
+    pub const G10X6_B10X6_R10X6_3PLANE_422_UNORM_3PACK16: Self = Self(1000156014);
+    pub const G10X6_B10X6R10X6_2PLANE_422_UNORM_3PACK16: Self = Self(1000156015);
+    pub const G10X6_B10X6_R10X6_3PLANE_444_UNORM_3PACK16: Self = Self(1000156016);
+    pub const R12X4_UNORM_PACK16: Self = Self(1000156017);
+    pub const R12X4G12X4_UNORM_2PACK16: Self = Self(1000156018);
+    pub const R12X4G12X4B12X4A12X4_UNORM_4PACK16: Self = Self(1000156019);
+    pub const G12X4B12X4G12X4R12X4_422_UNORM_4PACK16: Self = Self(1000156020);
+    pub const B12X4G12X4R12X4G12X4_422_UNORM_4PACK16: Self = Self(1000156021);
+    pub const G12X4_B12X4_R12X4_3PLANE_420_UNORM_3PACK16: Self = Self(1000156022);
+    pub const G12X4_B12X4R12X4_2PLANE_420_UNORM_3PACK16: Self = Self(1000156023);
+    pub const G12X4_B12X4_R12X4_3PLANE_422_UNORM_3PACK16: Self = Self(1000156024);
+    pub const G12X4_B12X4R12X4_2PLANE_422_UNORM_3PACK16: Self = Self(1000156025);
+    pub const G12X4_B12X4_R12X4_3PLANE_444_UNORM_3PACK16: Self = Self(1000156026);
+    pub const G16B16G16R16_422_UNORM: Self = Self(1000156027);
+    pub const B16G16R16G16_422_UNORM: Self = Self(1000156028);
+    pub const G16_B16_R16_3PLANE_420_UNORM: Self = Self(1000156029);
+    pub const G16_B16R16_2PLANE_420_UNORM: Self = Self(1000156030);
+    pub const G16_B16_R16_3PLANE_422_UNORM: Self = Self(1000156031);
+    pub const G16_B16R16_2PLANE_422_UNORM: Self = Self(1000156032);
+    pub const G16_B16_R16_3PLANE_444_UNORM: Self = Self(1000156033);
+}
+///Provided by [`vk1_1`](crate::vk1_1)
+impl crate::vk::StructureType {
+    pub const BIND_BUFFER_MEMORY_INFO: Self = Self(1000157000);
+    pub const BIND_IMAGE_MEMORY_INFO: Self = Self(1000157001);
+    pub const MEMORY_DEDICATED_REQUIREMENTS: Self = Self(1000127000);
+    pub const MEMORY_DEDICATED_ALLOCATE_INFO: Self = Self(1000127001);
+    pub const MEMORY_ALLOCATE_FLAGS_INFO: Self = Self(1000060000);
+    pub const DEVICE_GROUP_COMMAND_BUFFER_BEGIN_INFO: Self = Self(1000060004);
+    pub const DEVICE_GROUP_SUBMIT_INFO: Self = Self(1000060005);
+    pub const DEVICE_GROUP_BIND_SPARSE_INFO: Self = Self(1000060006);
+    pub const BIND_BUFFER_MEMORY_DEVICE_GROUP_INFO: Self = Self(1000060013);
+    pub const BIND_IMAGE_MEMORY_DEVICE_GROUP_INFO: Self = Self(1000060014);
+    pub const PHYSICAL_DEVICE_GROUP_PROPERTIES: Self = Self(1000070000);
+    pub const DEVICE_GROUP_DEVICE_CREATE_INFO: Self = Self(1000070001);
+    pub const BUFFER_MEMORY_REQUIREMENTS_INFO_2: Self = Self(1000146000);
+    pub const IMAGE_MEMORY_REQUIREMENTS_INFO_2: Self = Self(1000146001);
+    pub const IMAGE_SPARSE_MEMORY_REQUIREMENTS_INFO_2: Self = Self(1000146002);
+    pub const MEMORY_REQUIREMENTS_2: Self = Self(1000146003);
+    pub const SPARSE_IMAGE_MEMORY_REQUIREMENTS_2: Self = Self(1000146004);
+    pub const PHYSICAL_DEVICE_FEATURES_2: Self = Self(1000059000);
+    pub const PHYSICAL_DEVICE_PROPERTIES_2: Self = Self(1000059001);
+    pub const FORMAT_PROPERTIES_2: Self = Self(1000059002);
+    pub const IMAGE_FORMAT_PROPERTIES_2: Self = Self(1000059003);
+    pub const PHYSICAL_DEVICE_IMAGE_FORMAT_INFO_2: Self = Self(1000059004);
+    pub const QUEUE_FAMILY_PROPERTIES_2: Self = Self(1000059005);
+    pub const PHYSICAL_DEVICE_MEMORY_PROPERTIES_2: Self = Self(1000059006);
+    pub const SPARSE_IMAGE_FORMAT_PROPERTIES_2: Self = Self(1000059007);
+    pub const PHYSICAL_DEVICE_SPARSE_IMAGE_FORMAT_INFO_2: Self = Self(1000059008);
+    pub const IMAGE_VIEW_USAGE_CREATE_INFO: Self = Self(1000117002);
+    pub const PROTECTED_SUBMIT_INFO: Self = Self(1000145000);
+    pub const PHYSICAL_DEVICE_PROTECTED_MEMORY_FEATURES: Self = Self(1000145001);
+    pub const PHYSICAL_DEVICE_PROTECTED_MEMORY_PROPERTIES: Self = Self(1000145002);
+    pub const DEVICE_QUEUE_INFO_2: Self = Self(1000145003);
+    pub const PHYSICAL_DEVICE_EXTERNAL_IMAGE_FORMAT_INFO: Self = Self(1000071000);
+    pub const EXTERNAL_IMAGE_FORMAT_PROPERTIES: Self = Self(1000071001);
+    pub const PHYSICAL_DEVICE_EXTERNAL_BUFFER_INFO: Self = Self(1000071002);
+    pub const EXTERNAL_BUFFER_PROPERTIES: Self = Self(1000071003);
+    pub const PHYSICAL_DEVICE_ID_PROPERTIES: Self = Self(1000071004);
+    pub const EXTERNAL_MEMORY_BUFFER_CREATE_INFO: Self = Self(1000072000);
+    pub const EXTERNAL_MEMORY_IMAGE_CREATE_INFO: Self = Self(1000072001);
+    pub const EXPORT_MEMORY_ALLOCATE_INFO: Self = Self(1000072002);
+    pub const PHYSICAL_DEVICE_EXTERNAL_FENCE_INFO: Self = Self(1000112000);
+    pub const EXTERNAL_FENCE_PROPERTIES: Self = Self(1000112001);
+    pub const EXPORT_FENCE_CREATE_INFO: Self = Self(1000113000);
+    pub const EXPORT_SEMAPHORE_CREATE_INFO: Self = Self(1000077000);
+    pub const PHYSICAL_DEVICE_EXTERNAL_SEMAPHORE_INFO: Self = Self(1000076000);
+    pub const EXTERNAL_SEMAPHORE_PROPERTIES: Self = Self(1000076001);
+    pub const PHYSICAL_DEVICE_SUBGROUP_PROPERTIES: Self = Self(1000094000);
+    pub const PHYSICAL_DEVICE_16BIT_STORAGE_FEATURES: Self = Self(1000083000);
+    pub const PHYSICAL_DEVICE_VARIABLE_POINTERS_FEATURES: Self = Self(1000120000);
+    pub const PHYSICAL_DEVICE_VARIABLE_POINTER_FEATURES: Self = Self::PHYSICAL_DEVICE_VARIABLE_POINTERS_FEATURES;
+    pub const DESCRIPTOR_UPDATE_TEMPLATE_CREATE_INFO: Self = Self(1000085000);
+    pub const PHYSICAL_DEVICE_MAINTENANCE_3_PROPERTIES: Self = Self(1000168000);
+    pub const DESCRIPTOR_SET_LAYOUT_SUPPORT: Self = Self(1000168001);
+    pub const SAMPLER_YCBCR_CONVERSION_CREATE_INFO: Self = Self(1000156000);
+    pub const SAMPLER_YCBCR_CONVERSION_INFO: Self = Self(1000156001);
+    pub const BIND_IMAGE_PLANE_MEMORY_INFO: Self = Self(1000156002);
+    pub const IMAGE_PLANE_MEMORY_REQUIREMENTS_INFO: Self = Self(1000156003);
+    pub const PHYSICAL_DEVICE_SAMPLER_YCBCR_CONVERSION_FEATURES: Self = Self(1000156004);
+    pub const SAMPLER_YCBCR_CONVERSION_IMAGE_FORMAT_PROPERTIES: Self = Self(1000156005);
+    pub const DEVICE_GROUP_RENDER_PASS_BEGIN_INFO: Self = Self(1000060003);
+    pub const PHYSICAL_DEVICE_POINT_CLIPPING_PROPERTIES: Self = Self(1000117000);
+    pub const RENDER_PASS_INPUT_ATTACHMENT_ASPECT_CREATE_INFO: Self = Self(1000117001);
+    pub const PIPELINE_TESSELLATION_DOMAIN_ORIGIN_STATE_CREATE_INFO: Self = Self(
+        1000117003,
+    );
+    pub const RENDER_PASS_MULTIVIEW_CREATE_INFO: Self = Self(1000053000);
+    pub const PHYSICAL_DEVICE_MULTIVIEW_FEATURES: Self = Self(1000053001);
+    pub const PHYSICAL_DEVICE_MULTIVIEW_PROPERTIES: Self = Self(1000053002);
+    pub const PHYSICAL_DEVICE_SHADER_DRAW_PARAMETERS_FEATURES: Self = Self(1000063000);
+    pub const PHYSICAL_DEVICE_SHADER_DRAW_PARAMETER_FEATURES: Self = Self::PHYSICAL_DEVICE_SHADER_DRAW_PARAMETERS_FEATURES;
+}
+///Provided by [`vk1_1`](crate::vk1_1)
+impl crate::vk::Result {
+    pub const ERROR_OUT_OF_POOL_MEMORY: Self = Self(-1000069000);
+    pub const ERROR_INVALID_EXTERNAL_HANDLE: Self = Self(-1000072003);
+}
 #[repr(transparent)]
 #[derive(Clone, Copy)]
 pub struct DescriptorUpdateTemplateType(pub(crate) i32);
+///Provided by [`vk1_1`](crate::vk1_1)
+impl DescriptorUpdateTemplateType {
+    pub const DESCRIPTOR_SET: Self = Self(0);
+}
+///Provided by [`vk1_1`](crate::vk1_1)
+impl crate::vk::ObjectType {
+    pub const DESCRIPTOR_UPDATE_TEMPLATE: Self = Self(1000085000);
+    pub const SAMPLER_YCBCR_CONVERSION: Self = Self(1000156000);
+}
 #[repr(transparent)]
 #[derive(Clone, Copy)]
 pub struct PointClippingBehavior(pub(crate) i32);
+///Provided by [`vk1_1`](crate::vk1_1)
+impl PointClippingBehavior {
+    pub const ALL_CLIP_PLANES: Self = Self(0);
+    pub const USER_CLIP_PLANES_ONLY: Self = Self(1);
+}
 #[repr(transparent)]
 #[derive(Clone, Copy)]
 pub struct TessellationDomainOrigin(pub(crate) i32);
+///Provided by [`vk1_1`](crate::vk1_1)
+impl TessellationDomainOrigin {
+    pub const UPPER_LEFT: Self = Self(0);
+    pub const LOWER_LEFT: Self = Self(1);
+}
 #[repr(transparent)]
 #[derive(Clone, Copy)]
 pub struct SamplerYcbcrModelConversion(pub(crate) i32);
+///Provided by [`vk1_1`](crate::vk1_1)
+impl SamplerYcbcrModelConversion {
+    pub const RGB_IDENTITY: Self = Self(0);
+    pub const YCBCR_IDENTITY: Self = Self(1);
+    pub const YCBCR_709: Self = Self(2);
+    pub const YCBCR_601: Self = Self(3);
+    pub const YCBCR_2020: Self = Self(4);
+}
 #[repr(transparent)]
 #[derive(Clone, Copy)]
 pub struct SamplerYcbcrRange(pub(crate) i32);
+///Provided by [`vk1_1`](crate::vk1_1)
+impl SamplerYcbcrRange {
+    pub const ITU_FULL: Self = Self(0);
+    pub const ITU_NARROW: Self = Self(1);
+}
 #[repr(transparent)]
 #[derive(Clone, Copy)]
 pub struct ChromaLocation(pub(crate) i32);
+///Provided by [`vk1_1`](crate::vk1_1)
+impl ChromaLocation {
+    pub const COSITED_EVEN: Self = Self(0);
+    pub const MIDPOINT: Self = Self(1);
+}
 ///Provided by [`vk1_1`](crate::vk1_1)
 impl crate::vk::DeviceQueueCreateFlagBits {
     pub const PROTECTED: Self = Self(1 << 0);

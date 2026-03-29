@@ -37,9 +37,29 @@ pub struct AccelerationStructureTrianglesDisplacementMicromapNV {
     pub pp_usage_counts: *const *const crate::vk::MicromapUsageEXT,
     pub micromap: crate::vk::MicromapEXT,
 }
+///Provided by [`nv::displacement_micromap`](crate::nv::displacement_micromap)
+impl crate::vk::StructureType {
+    pub const PHYSICAL_DEVICE_DISPLACEMENT_MICROMAP_FEATURES_NV: Self = Self(1000397000);
+    pub const PHYSICAL_DEVICE_DISPLACEMENT_MICROMAP_PROPERTIES_NV: Self = Self(
+        1000397001,
+    );
+    pub const ACCELERATION_STRUCTURE_TRIANGLES_DISPLACEMENT_MICROMAP_NV: Self = Self(
+        1000397002,
+    );
+}
+///Provided by [`nv::displacement_micromap`](crate::nv::displacement_micromap)
+impl crate::vk::MicromapTypeEXT {
+    pub const DISPLACEMENT_MICROMAP_NV: Self = Self(1000397000);
+}
 #[repr(transparent)]
 #[derive(Clone, Copy)]
 pub struct DisplacementMicromapFormatNV(pub(crate) i32);
+///Provided by [`nv::displacement_micromap`](crate::nv::displacement_micromap)
+impl DisplacementMicromapFormatNV {
+    pub const _64_TRIANGLES_64_BYTES_NV: Self = Self(1);
+    pub const _256_TRIANGLES_128_BYTES_NV: Self = Self(2);
+    pub const _1024_TRIANGLES_128_BYTES_NV: Self = Self(3);
+}
 ///Provided by [`nv::displacement_micromap`](crate::nv::displacement_micromap)
 impl crate::vk::PipelineCreateFlagBits {
     pub const RAY_TRACING_DISPLACEMENT_MICROMAP_NV: Self = Self(1 << 28);

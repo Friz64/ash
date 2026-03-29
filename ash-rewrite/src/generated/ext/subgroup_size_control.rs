@@ -5,6 +5,12 @@ pub type PhysicalDeviceSubgroupSizeControlFeaturesEXT = crate::vk::PhysicalDevic
 pub type PhysicalDeviceSubgroupSizeControlPropertiesEXT = crate::vk::PhysicalDeviceSubgroupSizeControlProperties;
 pub type PipelineShaderStageRequiredSubgroupSizeCreateInfoEXT = crate::vk::PipelineShaderStageRequiredSubgroupSizeCreateInfo;
 ///Provided by [`ext::subgroup_size_control`](crate::ext::subgroup_size_control)
+impl crate::vk::StructureType {
+    pub const PHYSICAL_DEVICE_SUBGROUP_SIZE_CONTROL_PROPERTIES_EXT: Self = Self::PHYSICAL_DEVICE_SUBGROUP_SIZE_CONTROL_PROPERTIES;
+    pub const PIPELINE_SHADER_STAGE_REQUIRED_SUBGROUP_SIZE_CREATE_INFO_EXT: Self = Self::PIPELINE_SHADER_STAGE_REQUIRED_SUBGROUP_SIZE_CREATE_INFO;
+    pub const PHYSICAL_DEVICE_SUBGROUP_SIZE_CONTROL_FEATURES_EXT: Self = Self::PHYSICAL_DEVICE_SUBGROUP_SIZE_CONTROL_FEATURES;
+}
+///Provided by [`ext::subgroup_size_control`](crate::ext::subgroup_size_control)
 impl crate::vk::PipelineShaderStageCreateFlagBits {
     pub const ALLOW_VARYING_SUBGROUP_SIZE_EXT: Self = Self::ALLOW_VARYING_SUBGROUP_SIZE;
     pub const REQUIRE_FULL_SUBGROUPS_EXT: Self = Self::REQUIRE_FULL_SUBGROUPS;

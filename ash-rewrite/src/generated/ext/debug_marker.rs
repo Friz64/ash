@@ -29,5 +29,11 @@ pub struct DebugMarkerMarkerInfoEXT {
     pub p_marker_name: *const core::ffi::c_char,
     pub color: [core::ffi::c_float; 4 as _],
 }
+///Provided by [`ext::debug_marker`](crate::ext::debug_marker)
+impl crate::vk::StructureType {
+    pub const DEBUG_MARKER_OBJECT_NAME_INFO_EXT: Self = Self(1000022000);
+    pub const DEBUG_MARKER_OBJECT_TAG_INFO_EXT: Self = Self(1000022001);
+    pub const DEBUG_MARKER_MARKER_INFO_EXT: Self = Self(1000022002);
+}
 pub const EXT_DEBUG_MARKER_SPEC_VERSION: u32 = 4;
 pub const EXT_DEBUG_MARKER_EXTENSION_NAME: &core::ffi::CStr = c"VK_EXT_debug_marker";

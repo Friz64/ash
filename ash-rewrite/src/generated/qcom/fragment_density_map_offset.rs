@@ -5,6 +5,12 @@ pub type PhysicalDeviceFragmentDensityMapOffsetFeaturesQCOM = crate::vk::Physica
 pub type PhysicalDeviceFragmentDensityMapOffsetPropertiesQCOM = crate::vk::PhysicalDeviceFragmentDensityMapOffsetPropertiesEXT;
 pub type SubpassFragmentDensityMapOffsetEndInfoQCOM = crate::vk::RenderPassFragmentDensityMapOffsetEndInfoEXT;
 ///Provided by [`qcom::fragment_density_map_offset`](crate::qcom::fragment_density_map_offset)
+impl crate::vk::StructureType {
+    pub const PHYSICAL_DEVICE_FRAGMENT_DENSITY_MAP_OFFSET_FEATURES_QCOM: Self = Self::PHYSICAL_DEVICE_FRAGMENT_DENSITY_MAP_OFFSET_FEATURES_EXT;
+    pub const PHYSICAL_DEVICE_FRAGMENT_DENSITY_MAP_OFFSET_PROPERTIES_QCOM: Self = Self::PHYSICAL_DEVICE_FRAGMENT_DENSITY_MAP_OFFSET_PROPERTIES_EXT;
+    pub const SUBPASS_FRAGMENT_DENSITY_MAP_OFFSET_END_INFO_QCOM: Self = Self::RENDER_PASS_FRAGMENT_DENSITY_MAP_OFFSET_END_INFO_EXT;
+}
+///Provided by [`qcom::fragment_density_map_offset`](crate::qcom::fragment_density_map_offset)
 impl crate::vk::ImageCreateFlagBits {
     pub const FRAGMENT_DENSITY_MAP_OFFSET_QCOM: Self = Self::FRAGMENT_DENSITY_MAP_OFFSET_EXT;
 }

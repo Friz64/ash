@@ -16,6 +16,13 @@ pub struct PhysicalDeviceComputeOccupancyPriorityFeaturesNV {
     pub p_next: *mut core::ffi::c_void,
     pub compute_occupancy_priority: crate::vk::Bool32,
 }
+///Provided by [`nv::compute_occupancy_priority`](crate::nv::compute_occupancy_priority)
+impl crate::vk::StructureType {
+    pub const COMPUTE_OCCUPANCY_PRIORITY_PARAMETERS_NV: Self = Self(1000645000);
+    pub const PHYSICAL_DEVICE_COMPUTE_OCCUPANCY_PRIORITY_FEATURES_NV: Self = Self(
+        1000645001,
+    );
+}
 pub const COMPUTE_OCCUPANCY_PRIORITY_LOW_NV: core::ffi::c_float = 0.25;
 pub const COMPUTE_OCCUPANCY_PRIORITY_NORMAL_NV: core::ffi::c_float = 0.50;
 pub const COMPUTE_OCCUPANCY_PRIORITY_HIGH_NV: core::ffi::c_float = 0.75;

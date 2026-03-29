@@ -2,6 +2,10 @@
 #![cfg_attr(rustfmt, rustfmt_skip)]
 //![Vulkan Manual Page](https://docs.vulkan.org/refpages/latest/refpages/source/VK_EXT_tooling_info.html) · Extension `VK_EXT_tooling_info`
 pub type PhysicalDeviceToolPropertiesEXT = crate::vk::PhysicalDeviceToolProperties;
+///Provided by [`ext::tooling_info`](crate::ext::tooling_info)
+impl crate::vk::StructureType {
+    pub const PHYSICAL_DEVICE_TOOL_PROPERTIES_EXT: Self = Self::PHYSICAL_DEVICE_TOOL_PROPERTIES;
+}
 pub type ToolPurposeFlagBitsEXT = crate::vk::ToolPurposeFlagBits;
 ///Provided by [`ext::tooling_info`](crate::ext::tooling_info)
 impl crate::vk::ToolPurposeFlagBits {

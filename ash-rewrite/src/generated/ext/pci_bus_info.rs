@@ -11,5 +11,9 @@ pub struct PhysicalDevicePCIBusInfoPropertiesEXT {
     pub pci_device: u32,
     pub pci_function: u32,
 }
+///Provided by [`ext::pci_bus_info`](crate::ext::pci_bus_info)
+impl crate::vk::StructureType {
+    pub const PHYSICAL_DEVICE_PCI_BUS_INFO_PROPERTIES_EXT: Self = Self(1000212000);
+}
 pub const EXT_PCI_BUS_INFO_SPEC_VERSION: u32 = 2;
 pub const EXT_PCI_BUS_INFO_EXTENSION_NAME: &core::ffi::CStr = c"VK_EXT_pci_bus_info";

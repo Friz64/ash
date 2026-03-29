@@ -39,6 +39,14 @@ pub struct TileMemoryRequirementsQCOM {
     pub alignment: crate::vk::DeviceSize,
 }
 ///Provided by [`qcom::tile_memory_heap`](crate::qcom::tile_memory_heap)
+impl crate::vk::StructureType {
+    pub const PHYSICAL_DEVICE_TILE_MEMORY_HEAP_FEATURES_QCOM: Self = Self(1000547000);
+    pub const PHYSICAL_DEVICE_TILE_MEMORY_HEAP_PROPERTIES_QCOM: Self = Self(1000547001);
+    pub const TILE_MEMORY_REQUIREMENTS_QCOM: Self = Self(1000547002);
+    pub const TILE_MEMORY_BIND_INFO_QCOM: Self = Self(1000547003);
+    pub const TILE_MEMORY_SIZE_INFO_QCOM: Self = Self(1000547004);
+}
+///Provided by [`qcom::tile_memory_heap`](crate::qcom::tile_memory_heap)
 impl crate::vk::MemoryHeapFlagBits {
     pub const TILE_MEMORY_QCOM: Self = Self(1 << 3);
 }

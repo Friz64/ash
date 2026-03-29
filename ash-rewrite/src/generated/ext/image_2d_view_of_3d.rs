@@ -10,6 +10,10 @@ pub struct PhysicalDeviceImage2DViewOf3DFeaturesEXT {
     pub sampler2_d_view_of3_d: crate::vk::Bool32,
 }
 ///Provided by [`ext::image_2d_view_of_3d`](crate::ext::image_2d_view_of_3d)
+impl crate::vk::StructureType {
+    pub const PHYSICAL_DEVICE_IMAGE_2D_VIEW_OF_3D_FEATURES_EXT: Self = Self(1000393000);
+}
+///Provided by [`ext::image_2d_view_of_3d`](crate::ext::image_2d_view_of_3d)
 impl crate::vk::ImageCreateFlagBits {
     pub const _2D_VIEW_COMPATIBLE_EXT: Self = Self(1 << 17);
 }

@@ -44,6 +44,16 @@ pub struct VideoDecodeAV1DpbSlotInfoKHR {
     pub p_std_reference_info: *const crate::vk::StdVideoDecodeAV1ReferenceInfo,
 }
 ///Provided by [`khr::video_decode_av1`](crate::khr::video_decode_av1)
+impl crate::vk::StructureType {
+    pub const VIDEO_DECODE_AV1_CAPABILITIES_KHR: Self = Self(1000512000);
+    pub const VIDEO_DECODE_AV1_PICTURE_INFO_KHR: Self = Self(1000512001);
+    pub const VIDEO_DECODE_AV1_PROFILE_INFO_KHR: Self = Self(1000512003);
+    pub const VIDEO_DECODE_AV1_SESSION_PARAMETERS_CREATE_INFO_KHR: Self = Self(
+        1000512004,
+    );
+    pub const VIDEO_DECODE_AV1_DPB_SLOT_INFO_KHR: Self = Self(1000512005);
+}
+///Provided by [`khr::video_decode_av1`](crate::khr::video_decode_av1)
 impl crate::vk::VideoCodecOperationFlagBitsKHR {
     pub const DECODE_AV1_KHR: Self = Self(1 << 2);
 }

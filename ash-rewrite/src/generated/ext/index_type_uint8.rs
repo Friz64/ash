@@ -2,5 +2,13 @@
 #![cfg_attr(rustfmt, rustfmt_skip)]
 //![Vulkan Manual Page](https://docs.vulkan.org/refpages/latest/refpages/source/VK_EXT_index_type_uint8.html) · Extension `VK_EXT_index_type_uint8`
 pub type PhysicalDeviceIndexTypeUint8FeaturesEXT = crate::vk::PhysicalDeviceIndexTypeUint8Features;
+///Provided by [`ext::index_type_uint8`](crate::ext::index_type_uint8)
+impl crate::vk::IndexType {
+    pub const UINT8_EXT: Self = Self::UINT8;
+}
+///Provided by [`ext::index_type_uint8`](crate::ext::index_type_uint8)
+impl crate::vk::StructureType {
+    pub const PHYSICAL_DEVICE_INDEX_TYPE_UINT8_FEATURES_EXT: Self = Self::PHYSICAL_DEVICE_INDEX_TYPE_UINT8_FEATURES;
+}
 pub const EXT_INDEX_TYPE_UINT8_SPEC_VERSION: u32 = 1;
 pub const EXT_INDEX_TYPE_UINT8_EXTENSION_NAME: &core::ffi::CStr = c"VK_EXT_index_type_uint8";

@@ -3,5 +3,10 @@
 //![Vulkan Manual Page](https://docs.vulkan.org/refpages/latest/refpages/source/VK_EXT_robustness2.html) · Extension `VK_EXT_robustness2`
 pub type PhysicalDeviceRobustness2FeaturesEXT = crate::vk::PhysicalDeviceRobustness2FeaturesKHR;
 pub type PhysicalDeviceRobustness2PropertiesEXT = crate::vk::PhysicalDeviceRobustness2PropertiesKHR;
+///Provided by [`ext::robustness2`](crate::ext::robustness2)
+impl crate::vk::StructureType {
+    pub const PHYSICAL_DEVICE_ROBUSTNESS_2_FEATURES_EXT: Self = Self::PHYSICAL_DEVICE_ROBUSTNESS_2_FEATURES_KHR;
+    pub const PHYSICAL_DEVICE_ROBUSTNESS_2_PROPERTIES_EXT: Self = Self::PHYSICAL_DEVICE_ROBUSTNESS_2_PROPERTIES_KHR;
+}
 pub const EXT_ROBUSTNESS_2_SPEC_VERSION: u32 = 1;
 pub const EXT_ROBUSTNESS_2_EXTENSION_NAME: &core::ffi::CStr = c"VK_EXT_robustness2";

@@ -25,9 +25,24 @@ pub struct PipelineRasterizationConservativeStateCreateInfoEXT {
     pub conservative_rasterization_mode: crate::vk::ConservativeRasterizationModeEXT,
     pub extra_primitive_overestimation_size: core::ffi::c_float,
 }
+///Provided by [`ext::conservative_rasterization`](crate::ext::conservative_rasterization)
+impl crate::vk::StructureType {
+    pub const PHYSICAL_DEVICE_CONSERVATIVE_RASTERIZATION_PROPERTIES_EXT: Self = Self(
+        1000101000,
+    );
+    pub const PIPELINE_RASTERIZATION_CONSERVATIVE_STATE_CREATE_INFO_EXT: Self = Self(
+        1000101001,
+    );
+}
 #[repr(transparent)]
 #[derive(Clone, Copy)]
 pub struct ConservativeRasterizationModeEXT(pub(crate) i32);
+///Provided by [`ext::conservative_rasterization`](crate::ext::conservative_rasterization)
+impl ConservativeRasterizationModeEXT {
+    pub const DISABLED_EXT: Self = Self(0);
+    pub const OVERESTIMATE_EXT: Self = Self(1);
+    pub const UNDERESTIMATE_EXT: Self = Self(2);
+}
 bitflags::bitflags! {
     #[repr(transparent)] #[derive(Clone, Copy)] pub struct
     PipelineRasterizationConservativeStateCreateFlagsEXT : u32 {}

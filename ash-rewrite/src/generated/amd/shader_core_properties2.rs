@@ -9,6 +9,10 @@ pub struct PhysicalDeviceShaderCoreProperties2AMD {
     pub shader_core_features: crate::vk::ShaderCorePropertiesFlagsAMD,
     pub active_compute_unit_count: u32,
 }
+///Provided by [`amd::shader_core_properties2`](crate::amd::shader_core_properties2)
+impl crate::vk::StructureType {
+    pub const PHYSICAL_DEVICE_SHADER_CORE_PROPERTIES_2_AMD: Self = Self(1000227000);
+}
 bitflags::bitflags! {
     #[repr(transparent)] #[derive(Clone, Copy)] pub struct ShaderCorePropertiesFlagsAMD :
     u32 {}

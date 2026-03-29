@@ -8,5 +8,11 @@ pub struct PhysicalDevicePageableDeviceLocalMemoryFeaturesEXT {
     pub p_next: *mut core::ffi::c_void,
     pub pageable_device_local_memory: crate::vk::Bool32,
 }
+///Provided by [`ext::pageable_device_local_memory`](crate::ext::pageable_device_local_memory)
+impl crate::vk::StructureType {
+    pub const PHYSICAL_DEVICE_PAGEABLE_DEVICE_LOCAL_MEMORY_FEATURES_EXT: Self = Self(
+        1000412000,
+    );
+}
 pub const EXT_PAGEABLE_DEVICE_LOCAL_MEMORY_SPEC_VERSION: u32 = 1;
 pub const EXT_PAGEABLE_DEVICE_LOCAL_MEMORY_EXTENSION_NAME: &core::ffi::CStr = c"VK_EXT_pageable_device_local_memory";

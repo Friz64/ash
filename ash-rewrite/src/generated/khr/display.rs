@@ -65,6 +65,16 @@ pub struct DisplaySurfaceCreateInfoKHR {
     pub alpha_mode: crate::vk::DisplayPlaneAlphaFlagBitsKHR,
     pub image_extent: crate::vk::Extent2D,
 }
+///Provided by [`khr::display`](crate::khr::display)
+impl crate::vk::StructureType {
+    pub const DISPLAY_MODE_CREATE_INFO_KHR: Self = Self(1000002000);
+    pub const DISPLAY_SURFACE_CREATE_INFO_KHR: Self = Self(1000002001);
+}
+///Provided by [`khr::display`](crate::khr::display)
+impl crate::vk::ObjectType {
+    pub const DISPLAY_KHR: Self = Self(1000002000);
+    pub const DISPLAY_MODE_KHR: Self = Self(1000002001);
+}
 bitflags::bitflags! {
     #[repr(transparent)] #[derive(Clone, Copy)] pub struct DisplayPlaneAlphaFlagsKHR :
     u32 { const OPAQUE_KHR = DisplayPlaneAlphaFlagBitsKHR::OPAQUE_KHR.0; const GLOBAL_KHR

@@ -2,5 +2,9 @@
 #![cfg_attr(rustfmt, rustfmt_skip)]
 //![Vulkan Manual Page](https://docs.vulkan.org/refpages/latest/refpages/source/VK_KHR_shader_expect_assume.html) · Extension `VK_KHR_shader_expect_assume`
 pub type PhysicalDeviceShaderExpectAssumeFeaturesKHR = crate::vk::PhysicalDeviceShaderExpectAssumeFeatures;
+///Provided by [`khr::shader_expect_assume`](crate::khr::shader_expect_assume)
+impl crate::vk::StructureType {
+    pub const PHYSICAL_DEVICE_SHADER_EXPECT_ASSUME_FEATURES_KHR: Self = Self::PHYSICAL_DEVICE_SHADER_EXPECT_ASSUME_FEATURES;
+}
 pub const KHR_SHADER_EXPECT_ASSUME_SPEC_VERSION: u32 = 1;
 pub const KHR_SHADER_EXPECT_ASSUME_EXTENSION_NAME: &core::ffi::CStr = c"VK_KHR_shader_expect_assume";

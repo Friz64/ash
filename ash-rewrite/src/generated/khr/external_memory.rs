@@ -4,5 +4,15 @@
 pub type ExternalMemoryImageCreateInfoKHR = crate::vk::ExternalMemoryImageCreateInfo;
 pub type ExternalMemoryBufferCreateInfoKHR = crate::vk::ExternalMemoryBufferCreateInfo;
 pub type ExportMemoryAllocateInfoKHR = crate::vk::ExportMemoryAllocateInfo;
+///Provided by [`khr::external_memory`](crate::khr::external_memory)
+impl crate::vk::StructureType {
+    pub const EXTERNAL_MEMORY_BUFFER_CREATE_INFO_KHR: Self = Self::EXTERNAL_MEMORY_BUFFER_CREATE_INFO;
+    pub const EXTERNAL_MEMORY_IMAGE_CREATE_INFO_KHR: Self = Self::EXTERNAL_MEMORY_IMAGE_CREATE_INFO;
+    pub const EXPORT_MEMORY_ALLOCATE_INFO_KHR: Self = Self::EXPORT_MEMORY_ALLOCATE_INFO;
+}
+///Provided by [`khr::external_memory`](crate::khr::external_memory)
+impl crate::vk::Result {
+    pub const ERROR_INVALID_EXTERNAL_HANDLE_KHR: Self = Self::ERROR_INVALID_EXTERNAL_HANDLE;
+}
 pub const KHR_EXTERNAL_MEMORY_SPEC_VERSION: u32 = 1;
 pub const KHR_EXTERNAL_MEMORY_EXTENSION_NAME: &core::ffi::CStr = c"VK_KHR_external_memory";

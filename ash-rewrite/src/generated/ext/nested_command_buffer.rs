@@ -18,6 +18,19 @@ pub struct PhysicalDeviceNestedCommandBufferPropertiesEXT {
     pub max_command_buffer_nesting_level: u32,
 }
 ///Provided by [`ext::nested_command_buffer`](crate::ext::nested_command_buffer)
+impl crate::vk::StructureType {
+    pub const PHYSICAL_DEVICE_NESTED_COMMAND_BUFFER_FEATURES_EXT: Self = Self(
+        1000451000,
+    );
+    pub const PHYSICAL_DEVICE_NESTED_COMMAND_BUFFER_PROPERTIES_EXT: Self = Self(
+        1000451001,
+    );
+}
+///Provided by [`ext::nested_command_buffer`](crate::ext::nested_command_buffer)
+impl crate::vk::SubpassContents {
+    pub const INLINE_AND_SECONDARY_COMMAND_BUFFERS_EXT: Self = Self::INLINE_AND_SECONDARY_COMMAND_BUFFERS_KHR;
+}
+///Provided by [`ext::nested_command_buffer`](crate::ext::nested_command_buffer)
 impl crate::vk::RenderingFlagBits {
     pub const CONTENTS_INLINE_EXT: Self = Self::CONTENTS_INLINE_KHR;
 }

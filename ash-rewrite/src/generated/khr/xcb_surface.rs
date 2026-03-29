@@ -10,6 +10,10 @@ pub struct XcbSurfaceCreateInfoKHR {
     pub connection: *mut crate::platform_types::xcb_connection_t,
     pub window: crate::platform_types::xcb_window_t,
 }
+///Provided by [`khr::xcb_surface`](crate::khr::xcb_surface)
+impl crate::vk::StructureType {
+    pub const XCB_SURFACE_CREATE_INFO_KHR: Self = Self(1000005000);
+}
 bitflags::bitflags! {
     #[repr(transparent)] #[derive(Clone, Copy)] pub struct XcbSurfaceCreateFlagsKHR : u32
     {}

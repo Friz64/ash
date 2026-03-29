@@ -33,6 +33,19 @@ pub struct BindPipelineIndirectCommandNV {
     pub pipeline_address: crate::vk::DeviceAddress,
 }
 ///Provided by [`nv::device_generated_commands_compute`](crate::nv::device_generated_commands_compute)
+impl crate::vk::StructureType {
+    pub const PHYSICAL_DEVICE_DEVICE_GENERATED_COMMANDS_COMPUTE_FEATURES_NV: Self = Self(
+        1000428000,
+    );
+    pub const COMPUTE_PIPELINE_INDIRECT_BUFFER_INFO_NV: Self = Self(1000428001);
+    pub const PIPELINE_INDIRECT_DEVICE_ADDRESS_INFO_NV: Self = Self(1000428002);
+}
+///Provided by [`nv::device_generated_commands_compute`](crate::nv::device_generated_commands_compute)
+impl crate::vk::IndirectCommandsTokenTypeNV {
+    pub const PIPELINE_NV: Self = Self(1000428003);
+    pub const DISPATCH_NV: Self = Self(1000428004);
+}
+///Provided by [`nv::device_generated_commands_compute`](crate::nv::device_generated_commands_compute)
 impl crate::vk::DescriptorSetLayoutCreateFlagBits {
     pub const INDIRECT_BINDABLE_NV: Self = Self(1 << 7);
 }

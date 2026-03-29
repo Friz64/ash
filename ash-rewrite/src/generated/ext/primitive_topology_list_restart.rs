@@ -9,5 +9,11 @@ pub struct PhysicalDevicePrimitiveTopologyListRestartFeaturesEXT {
     pub primitive_topology_list_restart: crate::vk::Bool32,
     pub primitive_topology_patch_list_restart: crate::vk::Bool32,
 }
+///Provided by [`ext::primitive_topology_list_restart`](crate::ext::primitive_topology_list_restart)
+impl crate::vk::StructureType {
+    pub const PHYSICAL_DEVICE_PRIMITIVE_TOPOLOGY_LIST_RESTART_FEATURES_EXT: Self = Self(
+        1000356000,
+    );
+}
 pub const EXT_PRIMITIVE_TOPOLOGY_LIST_RESTART_SPEC_VERSION: u32 = 1;
 pub const EXT_PRIMITIVE_TOPOLOGY_LIST_RESTART_EXTENSION_NAME: &core::ffi::CStr = c"VK_EXT_primitive_topology_list_restart";

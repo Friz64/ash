@@ -38,6 +38,21 @@ pub struct ShaderInstrumentationMetricDataHeaderARM {
     pub stages: crate::vk::ShaderStageFlags,
     pub basic_block_index: u32,
 }
+///Provided by [`arm::shader_instrumentation`](crate::arm::shader_instrumentation)
+impl crate::vk::StructureType {
+    pub const PHYSICAL_DEVICE_SHADER_INSTRUMENTATION_FEATURES_ARM: Self = Self(
+        1000607000,
+    );
+    pub const PHYSICAL_DEVICE_SHADER_INSTRUMENTATION_PROPERTIES_ARM: Self = Self(
+        1000607001,
+    );
+    pub const SHADER_INSTRUMENTATION_CREATE_INFO_ARM: Self = Self(1000607002);
+    pub const SHADER_INSTRUMENTATION_METRIC_DESCRIPTION_ARM: Self = Self(1000607003);
+}
+///Provided by [`arm::shader_instrumentation`](crate::arm::shader_instrumentation)
+impl crate::vk::ObjectType {
+    pub const SHADER_INSTRUMENTATION_ARM: Self = Self(1000607000);
+}
 bitflags::bitflags! {
     #[repr(transparent)] #[derive(Clone, Copy)] pub struct
     ShaderInstrumentationValuesFlagsARM : u32 {}

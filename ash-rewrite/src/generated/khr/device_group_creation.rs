@@ -4,6 +4,11 @@
 pub type PhysicalDeviceGroupPropertiesKHR = crate::vk::PhysicalDeviceGroupProperties;
 pub type DeviceGroupDeviceCreateInfoKHR = crate::vk::DeviceGroupDeviceCreateInfo;
 ///Provided by [`khr::device_group_creation`](crate::khr::device_group_creation)
+impl crate::vk::StructureType {
+    pub const PHYSICAL_DEVICE_GROUP_PROPERTIES_KHR: Self = Self::PHYSICAL_DEVICE_GROUP_PROPERTIES;
+    pub const DEVICE_GROUP_DEVICE_CREATE_INFO_KHR: Self = Self::DEVICE_GROUP_DEVICE_CREATE_INFO;
+}
+///Provided by [`khr::device_group_creation`](crate::khr::device_group_creation)
 impl crate::vk::MemoryHeapFlagBits {
     pub const MULTI_INSTANCE_KHR: Self = Self::MULTI_INSTANCE;
 }

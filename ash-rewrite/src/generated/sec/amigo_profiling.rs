@@ -16,5 +16,10 @@ pub struct AmigoProfilingSubmitInfoSEC {
     pub first_draw_timestamp: u64,
     pub swap_buffer_timestamp: u64,
 }
+///Provided by [`sec::amigo_profiling`](crate::sec::amigo_profiling)
+impl crate::vk::StructureType {
+    pub const PHYSICAL_DEVICE_AMIGO_PROFILING_FEATURES_SEC: Self = Self(1000485000);
+    pub const AMIGO_PROFILING_SUBMIT_INFO_SEC: Self = Self(1000485001);
+}
 pub const SEC_AMIGO_PROFILING_SPEC_VERSION: u32 = 1;
 pub const SEC_AMIGO_PROFILING_EXTENSION_NAME: &core::ffi::CStr = c"VK_SEC_amigo_profiling";

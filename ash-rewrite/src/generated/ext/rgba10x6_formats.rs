@@ -8,5 +8,9 @@ pub struct PhysicalDeviceRGBA10X6FormatsFeaturesEXT {
     pub p_next: *mut core::ffi::c_void,
     pub format_rgba10x6_without_y_cb_cr_sampler: crate::vk::Bool32,
 }
+///Provided by [`ext::rgba10x6_formats`](crate::ext::rgba10x6_formats)
+impl crate::vk::StructureType {
+    pub const PHYSICAL_DEVICE_RGBA10X6_FORMATS_FEATURES_EXT: Self = Self(1000344000);
+}
 pub const EXT_RGBA10X6_FORMATS_SPEC_VERSION: u32 = 1;
 pub const EXT_RGBA10X6_FORMATS_EXTENSION_NAME: &core::ffi::CStr = c"VK_EXT_rgba10x6_formats";

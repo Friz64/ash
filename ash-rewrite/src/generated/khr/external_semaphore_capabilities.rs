@@ -3,6 +3,11 @@
 //![Vulkan Manual Page](https://docs.vulkan.org/refpages/latest/refpages/source/VK_KHR_external_semaphore_capabilities.html) · Extension `VK_KHR_external_semaphore_capabilities`
 pub type PhysicalDeviceExternalSemaphoreInfoKHR = crate::vk::PhysicalDeviceExternalSemaphoreInfo;
 pub type ExternalSemaphorePropertiesKHR = crate::vk::ExternalSemaphoreProperties;
+///Provided by [`khr::external_semaphore_capabilities`](crate::khr::external_semaphore_capabilities)
+impl crate::vk::StructureType {
+    pub const PHYSICAL_DEVICE_EXTERNAL_SEMAPHORE_INFO_KHR: Self = Self::PHYSICAL_DEVICE_EXTERNAL_SEMAPHORE_INFO;
+    pub const EXTERNAL_SEMAPHORE_PROPERTIES_KHR: Self = Self::EXTERNAL_SEMAPHORE_PROPERTIES;
+}
 pub type ExternalSemaphoreHandleTypeFlagBitsKHR = crate::vk::ExternalSemaphoreHandleTypeFlagBits;
 pub type ExternalSemaphoreFeatureFlagBitsKHR = crate::vk::ExternalSemaphoreFeatureFlagBits;
 ///Provided by [`khr::external_semaphore_capabilities`](crate::khr::external_semaphore_capabilities)

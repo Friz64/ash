@@ -8,6 +8,16 @@ pub type DeviceGroupRenderPassBeginInfoKHR = crate::vk::DeviceGroupRenderPassBeg
 pub type DeviceGroupCommandBufferBeginInfoKHR = crate::vk::DeviceGroupCommandBufferBeginInfo;
 pub type DeviceGroupSubmitInfoKHR = crate::vk::DeviceGroupSubmitInfo;
 pub type DeviceGroupBindSparseInfoKHR = crate::vk::DeviceGroupBindSparseInfo;
+///Provided by [`khr::device_group`](crate::khr::device_group)
+impl crate::vk::StructureType {
+    pub const MEMORY_ALLOCATE_FLAGS_INFO_KHR: Self = Self::MEMORY_ALLOCATE_FLAGS_INFO;
+    pub const DEVICE_GROUP_RENDER_PASS_BEGIN_INFO_KHR: Self = Self::DEVICE_GROUP_RENDER_PASS_BEGIN_INFO;
+    pub const DEVICE_GROUP_COMMAND_BUFFER_BEGIN_INFO_KHR: Self = Self::DEVICE_GROUP_COMMAND_BUFFER_BEGIN_INFO;
+    pub const DEVICE_GROUP_SUBMIT_INFO_KHR: Self = Self::DEVICE_GROUP_SUBMIT_INFO;
+    pub const DEVICE_GROUP_BIND_SPARSE_INFO_KHR: Self = Self::DEVICE_GROUP_BIND_SPARSE_INFO;
+    pub const BIND_BUFFER_MEMORY_DEVICE_GROUP_INFO_KHR: Self = Self::BIND_BUFFER_MEMORY_DEVICE_GROUP_INFO;
+    pub const BIND_IMAGE_MEMORY_DEVICE_GROUP_INFO_KHR: Self = Self::BIND_IMAGE_MEMORY_DEVICE_GROUP_INFO;
+}
 pub type PeerMemoryFeatureFlagBitsKHR = crate::vk::PeerMemoryFeatureFlagBits;
 pub type MemoryAllocateFlagBitsKHR = crate::vk::MemoryAllocateFlagBits;
 ///Provided by [`khr::device_group`](crate::khr::device_group)

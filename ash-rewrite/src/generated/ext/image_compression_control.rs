@@ -25,6 +25,20 @@ pub struct ImageCompressionPropertiesEXT {
     pub image_compression_flags: crate::vk::ImageCompressionFlagsEXT,
     pub image_compression_fixed_rate_flags: crate::vk::ImageCompressionFixedRateFlagsEXT,
 }
+///Provided by [`ext::image_compression_control`](crate::ext::image_compression_control)
+impl crate::vk::StructureType {
+    pub const PHYSICAL_DEVICE_IMAGE_COMPRESSION_CONTROL_FEATURES_EXT: Self = Self(
+        1000338000,
+    );
+    pub const IMAGE_COMPRESSION_CONTROL_EXT: Self = Self(1000338001);
+    pub const SUBRESOURCE_LAYOUT_2_EXT: Self = Self::SUBRESOURCE_LAYOUT_2;
+    pub const IMAGE_SUBRESOURCE_2_EXT: Self = Self::IMAGE_SUBRESOURCE_2;
+    pub const IMAGE_COMPRESSION_PROPERTIES_EXT: Self = Self(1000338004);
+}
+///Provided by [`ext::image_compression_control`](crate::ext::image_compression_control)
+impl crate::vk::Result {
+    pub const ERROR_COMPRESSION_EXHAUSTED_EXT: Self = Self(-1000338000);
+}
 bitflags::bitflags! {
     #[repr(transparent)] #[derive(Clone, Copy)] pub struct ImageCompressionFlagsEXT : u32
     { const DEFAULT_EXT = ImageCompressionFlagBitsEXT::DEFAULT_EXT.0; const

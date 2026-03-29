@@ -29,5 +29,17 @@ pub type BindDescriptorSetsInfoKHR = crate::vk::BindDescriptorSetsInfo;
 pub type PushConstantsInfoKHR = crate::vk::PushConstantsInfo;
 pub type PushDescriptorSetInfoKHR = crate::vk::PushDescriptorSetInfo;
 pub type PushDescriptorSetWithTemplateInfoKHR = crate::vk::PushDescriptorSetWithTemplateInfo;
+///Provided by [`khr::maintenance6`](crate::khr::maintenance6)
+impl crate::vk::StructureType {
+    pub const PHYSICAL_DEVICE_MAINTENANCE_6_FEATURES_KHR: Self = Self::PHYSICAL_DEVICE_MAINTENANCE_6_FEATURES;
+    pub const PHYSICAL_DEVICE_MAINTENANCE_6_PROPERTIES_KHR: Self = Self::PHYSICAL_DEVICE_MAINTENANCE_6_PROPERTIES;
+    pub const BIND_MEMORY_STATUS_KHR: Self = Self::BIND_MEMORY_STATUS;
+    pub const BIND_DESCRIPTOR_SETS_INFO_KHR: Self = Self::BIND_DESCRIPTOR_SETS_INFO;
+    pub const PUSH_CONSTANTS_INFO_KHR: Self = Self::PUSH_CONSTANTS_INFO;
+    pub const PUSH_DESCRIPTOR_SET_INFO_KHR: Self = Self::PUSH_DESCRIPTOR_SET_INFO;
+    pub const PUSH_DESCRIPTOR_SET_WITH_TEMPLATE_INFO_KHR: Self = Self::PUSH_DESCRIPTOR_SET_WITH_TEMPLATE_INFO;
+    pub const SET_DESCRIPTOR_BUFFER_OFFSETS_INFO_EXT: Self = Self(1000545007);
+    pub const BIND_DESCRIPTOR_BUFFER_EMBEDDED_SAMPLERS_INFO_EXT: Self = Self(1000545008);
+}
 pub const KHR_MAINTENANCE_6_SPEC_VERSION: u32 = 1;
 pub const KHR_MAINTENANCE_6_EXTENSION_NAME: &core::ffi::CStr = c"VK_KHR_maintenance6";

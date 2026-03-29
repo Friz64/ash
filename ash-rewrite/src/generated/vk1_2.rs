@@ -609,18 +609,145 @@ pub struct PhysicalDeviceVulkan12Properties {
     pub max_timeline_semaphore_value_difference: u64,
     pub framebuffer_integer_color_sample_counts: crate::vk::SampleCountFlags,
 }
+///Provided by [`vk1_2`](crate::vk1_2)
+impl crate::vk::ImageLayout {
+    pub const DEPTH_ATTACHMENT_OPTIMAL: Self = Self(1000241000);
+    pub const DEPTH_READ_ONLY_OPTIMAL: Self = Self(1000241001);
+    pub const STENCIL_ATTACHMENT_OPTIMAL: Self = Self(1000241002);
+    pub const STENCIL_READ_ONLY_OPTIMAL: Self = Self(1000241003);
+}
+///Provided by [`vk1_2`](crate::vk1_2)
+impl crate::vk::SamplerAddressMode {
+    pub const MIRROR_CLAMP_TO_EDGE: Self = Self(4);
+}
+///Provided by [`vk1_2`](crate::vk1_2)
+impl crate::vk::StructureType {
+    pub const PHYSICAL_DEVICE_DRIVER_PROPERTIES: Self = Self(1000196000);
+    pub const PHYSICAL_DEVICE_VULKAN_1_1_FEATURES: Self = Self(49);
+    pub const PHYSICAL_DEVICE_VULKAN_1_1_PROPERTIES: Self = Self(50);
+    pub const PHYSICAL_DEVICE_VULKAN_1_2_FEATURES: Self = Self(51);
+    pub const PHYSICAL_DEVICE_VULKAN_1_2_PROPERTIES: Self = Self(52);
+    pub const IMAGE_FORMAT_LIST_CREATE_INFO: Self = Self(1000147000);
+    pub const PHYSICAL_DEVICE_VULKAN_MEMORY_MODEL_FEATURES: Self = Self(1000211000);
+    pub const PHYSICAL_DEVICE_HOST_QUERY_RESET_FEATURES: Self = Self(1000261000);
+    pub const PHYSICAL_DEVICE_TIMELINE_SEMAPHORE_FEATURES: Self = Self(1000207000);
+    pub const PHYSICAL_DEVICE_TIMELINE_SEMAPHORE_PROPERTIES: Self = Self(1000207001);
+    pub const SEMAPHORE_TYPE_CREATE_INFO: Self = Self(1000207002);
+    pub const TIMELINE_SEMAPHORE_SUBMIT_INFO: Self = Self(1000207003);
+    pub const SEMAPHORE_WAIT_INFO: Self = Self(1000207004);
+    pub const SEMAPHORE_SIGNAL_INFO: Self = Self(1000207005);
+    pub const PHYSICAL_DEVICE_BUFFER_DEVICE_ADDRESS_FEATURES: Self = Self(1000257000);
+    pub const BUFFER_DEVICE_ADDRESS_INFO: Self = Self(1000244001);
+    pub const BUFFER_OPAQUE_CAPTURE_ADDRESS_CREATE_INFO: Self = Self(1000257002);
+    pub const MEMORY_OPAQUE_CAPTURE_ADDRESS_ALLOCATE_INFO: Self = Self(1000257003);
+    pub const DEVICE_MEMORY_OPAQUE_CAPTURE_ADDRESS_INFO: Self = Self(1000257004);
+    pub const PHYSICAL_DEVICE_8BIT_STORAGE_FEATURES: Self = Self(1000177000);
+    pub const PHYSICAL_DEVICE_SHADER_ATOMIC_INT64_FEATURES: Self = Self(1000180000);
+    pub const PHYSICAL_DEVICE_SHADER_FLOAT16_INT8_FEATURES: Self = Self(1000082000);
+    pub const PHYSICAL_DEVICE_FLOAT_CONTROLS_PROPERTIES: Self = Self(1000197000);
+    pub const DESCRIPTOR_SET_LAYOUT_BINDING_FLAGS_CREATE_INFO: Self = Self(1000161000);
+    pub const PHYSICAL_DEVICE_DESCRIPTOR_INDEXING_FEATURES: Self = Self(1000161001);
+    pub const PHYSICAL_DEVICE_DESCRIPTOR_INDEXING_PROPERTIES: Self = Self(1000161002);
+    pub const DESCRIPTOR_SET_VARIABLE_DESCRIPTOR_COUNT_ALLOCATE_INFO: Self = Self(
+        1000161003,
+    );
+    pub const DESCRIPTOR_SET_VARIABLE_DESCRIPTOR_COUNT_LAYOUT_SUPPORT: Self = Self(
+        1000161004,
+    );
+    pub const PHYSICAL_DEVICE_SCALAR_BLOCK_LAYOUT_FEATURES: Self = Self(1000221000);
+    pub const PHYSICAL_DEVICE_SAMPLER_FILTER_MINMAX_PROPERTIES: Self = Self(1000130000);
+    pub const SAMPLER_REDUCTION_MODE_CREATE_INFO: Self = Self(1000130001);
+    pub const PHYSICAL_DEVICE_UNIFORM_BUFFER_STANDARD_LAYOUT_FEATURES: Self = Self(
+        1000253000,
+    );
+    pub const PHYSICAL_DEVICE_SHADER_SUBGROUP_EXTENDED_TYPES_FEATURES: Self = Self(
+        1000175000,
+    );
+    pub const ATTACHMENT_DESCRIPTION_2: Self = Self(1000109000);
+    pub const ATTACHMENT_REFERENCE_2: Self = Self(1000109001);
+    pub const SUBPASS_DESCRIPTION_2: Self = Self(1000109002);
+    pub const SUBPASS_DEPENDENCY_2: Self = Self(1000109003);
+    pub const RENDER_PASS_CREATE_INFO_2: Self = Self(1000109004);
+    pub const SUBPASS_BEGIN_INFO: Self = Self(1000109005);
+    pub const SUBPASS_END_INFO: Self = Self(1000109006);
+    pub const PHYSICAL_DEVICE_DEPTH_STENCIL_RESOLVE_PROPERTIES: Self = Self(1000199000);
+    pub const SUBPASS_DESCRIPTION_DEPTH_STENCIL_RESOLVE: Self = Self(1000199001);
+    pub const IMAGE_STENCIL_USAGE_CREATE_INFO: Self = Self(1000246000);
+    pub const PHYSICAL_DEVICE_IMAGELESS_FRAMEBUFFER_FEATURES: Self = Self(1000108000);
+    pub const FRAMEBUFFER_ATTACHMENTS_CREATE_INFO: Self = Self(1000108001);
+    pub const FRAMEBUFFER_ATTACHMENT_IMAGE_INFO: Self = Self(1000108002);
+    pub const RENDER_PASS_ATTACHMENT_BEGIN_INFO: Self = Self(1000108003);
+    pub const PHYSICAL_DEVICE_SEPARATE_DEPTH_STENCIL_LAYOUTS_FEATURES: Self = Self(
+        1000241000,
+    );
+    pub const ATTACHMENT_REFERENCE_STENCIL_LAYOUT: Self = Self(1000241001);
+    pub const ATTACHMENT_DESCRIPTION_STENCIL_LAYOUT: Self = Self(1000241002);
+}
+///Provided by [`vk1_2`](crate::vk1_2)
+impl crate::vk::Result {
+    pub const ERROR_INVALID_OPAQUE_CAPTURE_ADDRESS: Self = Self(-1000257000);
+    pub const ERROR_FRAGMENTATION: Self = Self(-1000161000);
+}
 #[repr(transparent)]
 #[derive(Clone, Copy)]
 pub struct SemaphoreType(pub(crate) i32);
+///Provided by [`vk1_2`](crate::vk1_2)
+impl SemaphoreType {
+    pub const BINARY: Self = Self(0);
+    pub const TIMELINE: Self = Self(1);
+}
 #[repr(transparent)]
 #[derive(Clone, Copy)]
 pub struct SamplerReductionMode(pub(crate) i32);
+///Provided by [`vk1_2`](crate::vk1_2)
+impl SamplerReductionMode {
+    pub const WEIGHTED_AVERAGE: Self = Self(0);
+    pub const MIN: Self = Self(1);
+    pub const MAX: Self = Self(2);
+}
 #[repr(transparent)]
 #[derive(Clone, Copy)]
 pub struct DriverId(pub(crate) i32);
+///Provided by [`vk1_2`](crate::vk1_2)
+impl DriverId {
+    pub const AMD_PROPRIETARY: Self = Self(1);
+    pub const AMD_OPEN_SOURCE: Self = Self(2);
+    pub const MESA_RADV: Self = Self(3);
+    pub const NVIDIA_PROPRIETARY: Self = Self(4);
+    pub const INTEL_PROPRIETARY_WINDOWS: Self = Self(5);
+    pub const INTEL_OPEN_SOURCE_MESA: Self = Self(6);
+    pub const IMAGINATION_PROPRIETARY: Self = Self(7);
+    pub const QUALCOMM_PROPRIETARY: Self = Self(8);
+    pub const ARM_PROPRIETARY: Self = Self(9);
+    pub const GOOGLE_SWIFTSHADER: Self = Self(10);
+    pub const GGP_PROPRIETARY: Self = Self(11);
+    pub const BROADCOM_PROPRIETARY: Self = Self(12);
+    pub const MESA_LLVMPIPE: Self = Self(13);
+    pub const MOLTENVK: Self = Self(14);
+    pub const COREAVI_PROPRIETARY: Self = Self(15);
+    pub const JUICE_PROPRIETARY: Self = Self(16);
+    pub const VERISILICON_PROPRIETARY: Self = Self(17);
+    pub const MESA_TURNIP: Self = Self(18);
+    pub const MESA_V3DV: Self = Self(19);
+    pub const MESA_PANVK: Self = Self(20);
+    pub const SAMSUNG_PROPRIETARY: Self = Self(21);
+    pub const MESA_VENUS: Self = Self(22);
+    pub const MESA_DOZEN: Self = Self(23);
+    pub const MESA_NVK: Self = Self(24);
+    pub const IMAGINATION_OPEN_SOURCE_MESA: Self = Self(25);
+    pub const MESA_HONEYKRISP: Self = Self(26);
+    pub const VULKAN_SC_EMULATION_ON_VULKAN: Self = Self(27);
+    pub const MESA_KOSMICKRISP: Self = Self(28);
+}
 #[repr(transparent)]
 #[derive(Clone, Copy)]
 pub struct ShaderFloatControlsIndependence(pub(crate) i32);
+///Provided by [`vk1_2`](crate::vk1_2)
+impl ShaderFloatControlsIndependence {
+    pub const _32_ONLY: Self = Self(0);
+    pub const ALL: Self = Self(1);
+    pub const NONE: Self = Self(2);
+}
 ///Provided by [`vk1_2`](crate::vk1_2)
 impl crate::vk::FramebufferCreateFlagBits {
     pub const IMAGELESS: Self = Self(1 << 0);

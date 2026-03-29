@@ -24,5 +24,11 @@ pub struct MemoryGetFdInfoKHR {
     pub memory: crate::vk::DeviceMemory,
     pub handle_type: crate::vk::ExternalMemoryHandleTypeFlagBits,
 }
+///Provided by [`khr::external_memory_fd`](crate::khr::external_memory_fd)
+impl crate::vk::StructureType {
+    pub const IMPORT_MEMORY_FD_INFO_KHR: Self = Self(1000074000);
+    pub const MEMORY_FD_PROPERTIES_KHR: Self = Self(1000074001);
+    pub const MEMORY_GET_FD_INFO_KHR: Self = Self(1000074002);
+}
 pub const KHR_EXTERNAL_MEMORY_FD_SPEC_VERSION: u32 = 1;
 pub const KHR_EXTERNAL_MEMORY_FD_EXTENSION_NAME: &core::ffi::CStr = c"VK_KHR_external_memory_fd";

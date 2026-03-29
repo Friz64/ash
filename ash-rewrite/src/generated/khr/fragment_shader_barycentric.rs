@@ -15,5 +15,14 @@ pub struct PhysicalDeviceFragmentShaderBarycentricPropertiesKHR {
     pub p_next: *mut core::ffi::c_void,
     pub tri_strip_vertex_order_independent_of_provoking_vertex: crate::vk::Bool32,
 }
+///Provided by [`khr::fragment_shader_barycentric`](crate::khr::fragment_shader_barycentric)
+impl crate::vk::StructureType {
+    pub const PHYSICAL_DEVICE_FRAGMENT_SHADER_BARYCENTRIC_FEATURES_KHR: Self = Self(
+        1000203000,
+    );
+    pub const PHYSICAL_DEVICE_FRAGMENT_SHADER_BARYCENTRIC_PROPERTIES_KHR: Self = Self(
+        1000322000,
+    );
+}
 pub const KHR_FRAGMENT_SHADER_BARYCENTRIC_SPEC_VERSION: u32 = 1;
 pub const KHR_FRAGMENT_SHADER_BARYCENTRIC_EXTENSION_NAME: &core::ffi::CStr = c"VK_KHR_fragment_shader_barycentric";

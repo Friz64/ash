@@ -243,8 +243,8 @@ impl Items {
             };
 
             for enumerator in &require.enumerators {
-                match &items.types[&enumerator.extends] {
-                    &TypeItem::BitMaskBits { bitmask_name } => {
+                match &mut items.types[&enumerator.extends] {
+                    &mut TypeItem::BitMaskBits { bitmask_name } => {
                         let TypeItem::BitMask(bitmask) = &mut items.types[&bitmask_name] else {
                             unreachable!()
                         };
@@ -254,8 +254,11 @@ impl Items {
                             iter::once((enumerator.name, &enumerator.value)),
                         );
                     }
-                    TypeItem::Enum(_digga) => {
-                        // cool
+                    TypeItem::Enum(enumeration) => {
+                        enumeration.extend(
+                            required_by,
+                            iter::once((enumerator.name, &enumerator.value)),
+                        );
                     }
                     _ => unreachable!(),
                 }

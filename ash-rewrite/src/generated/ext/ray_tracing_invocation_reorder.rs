@@ -16,8 +16,22 @@ pub struct PhysicalDeviceRayTracingInvocationReorderPropertiesEXT {
     pub ray_tracing_invocation_reorder_reordering_hint: crate::vk::RayTracingInvocationReorderModeEXT,
     pub max_shader_binding_table_record_index: u32,
 }
+///Provided by [`ext::ray_tracing_invocation_reorder`](crate::ext::ray_tracing_invocation_reorder)
+impl crate::vk::StructureType {
+    pub const PHYSICAL_DEVICE_RAY_TRACING_INVOCATION_REORDER_FEATURES_EXT: Self = Self(
+        1000581000,
+    );
+    pub const PHYSICAL_DEVICE_RAY_TRACING_INVOCATION_REORDER_PROPERTIES_EXT: Self = Self(
+        1000581001,
+    );
+}
 #[repr(transparent)]
 #[derive(Clone, Copy)]
 pub struct RayTracingInvocationReorderModeEXT(pub(crate) i32);
+///Provided by [`ext::ray_tracing_invocation_reorder`](crate::ext::ray_tracing_invocation_reorder)
+impl RayTracingInvocationReorderModeEXT {
+    pub const NONE_EXT: Self = Self(0);
+    pub const REORDER_EXT: Self = Self(1);
+}
 pub const EXT_RAY_TRACING_INVOCATION_REORDER_SPEC_VERSION: u32 = 1;
 pub const EXT_RAY_TRACING_INVOCATION_REORDER_EXTENSION_NAME: &core::ffi::CStr = c"VK_EXT_ray_tracing_invocation_reorder";

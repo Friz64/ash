@@ -25,11 +25,28 @@ pub struct AntiLagPresentationInfoAMD {
     pub stage: crate::vk::AntiLagStageAMD,
     pub frame_index: u64,
 }
+///Provided by [`amd::anti_lag`](crate::amd::anti_lag)
+impl crate::vk::StructureType {
+    pub const PHYSICAL_DEVICE_ANTI_LAG_FEATURES_AMD: Self = Self(1000476000);
+    pub const ANTI_LAG_DATA_AMD: Self = Self(1000476001);
+    pub const ANTI_LAG_PRESENTATION_INFO_AMD: Self = Self(1000476002);
+}
 #[repr(transparent)]
 #[derive(Clone, Copy)]
 pub struct AntiLagModeAMD(pub(crate) i32);
+///Provided by [`amd::anti_lag`](crate::amd::anti_lag)
+impl AntiLagModeAMD {
+    pub const DRIVER_CONTROL_AMD: Self = Self(0);
+    pub const ON_AMD: Self = Self(1);
+    pub const OFF_AMD: Self = Self(2);
+}
 #[repr(transparent)]
 #[derive(Clone, Copy)]
 pub struct AntiLagStageAMD(pub(crate) i32);
+///Provided by [`amd::anti_lag`](crate::amd::anti_lag)
+impl AntiLagStageAMD {
+    pub const INPUT_AMD: Self = Self(0);
+    pub const PRESENT_AMD: Self = Self(1);
+}
 pub const AMD_ANTI_LAG_SPEC_VERSION: u32 = 1;
 pub const AMD_ANTI_LAG_EXTENSION_NAME: &core::ffi::CStr = c"VK_AMD_anti_lag";

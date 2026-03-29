@@ -85,6 +85,30 @@ pub struct DeviceGroupSwapchainCreateInfoKHR {
     pub p_next: *const core::ffi::c_void,
     pub modes: crate::vk::DeviceGroupPresentModeFlagsKHR,
 }
+///Provided by [`khr::swapchain`](crate::khr::swapchain)
+impl crate::vk::ImageLayout {
+    pub const PRESENT_SRC_KHR: Self = Self(1000001002);
+}
+///Provided by [`khr::swapchain`](crate::khr::swapchain)
+impl crate::vk::StructureType {
+    pub const SWAPCHAIN_CREATE_INFO_KHR: Self = Self(1000001000);
+    pub const PRESENT_INFO_KHR: Self = Self(1000001001);
+    pub const DEVICE_GROUP_PRESENT_CAPABILITIES_KHR: Self = Self(1000060007);
+    pub const IMAGE_SWAPCHAIN_CREATE_INFO_KHR: Self = Self(1000060008);
+    pub const BIND_IMAGE_MEMORY_SWAPCHAIN_INFO_KHR: Self = Self(1000060009);
+    pub const ACQUIRE_NEXT_IMAGE_INFO_KHR: Self = Self(1000060010);
+    pub const DEVICE_GROUP_PRESENT_INFO_KHR: Self = Self(1000060011);
+    pub const DEVICE_GROUP_SWAPCHAIN_CREATE_INFO_KHR: Self = Self(1000060012);
+}
+///Provided by [`khr::swapchain`](crate::khr::swapchain)
+impl crate::vk::Result {
+    pub const SUBOPTIMAL_KHR: Self = Self(1000001003);
+    pub const ERROR_OUT_OF_DATE_KHR: Self = Self(-1000001004);
+}
+///Provided by [`khr::swapchain`](crate::khr::swapchain)
+impl crate::vk::ObjectType {
+    pub const SWAPCHAIN_KHR: Self = Self(1000001000);
+}
 bitflags::bitflags! {
     #[repr(transparent)] #[derive(Clone, Copy)] pub struct SwapchainCreateFlagsKHR : u32
     { const SPLIT_INSTANCE_BIND_REGIONS_KHR =

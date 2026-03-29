@@ -45,6 +45,20 @@ pub struct RenderPassPerformanceCountersByRegionBeginInfoARM {
     pub counter_index_count: u32,
     pub p_counter_indices: *mut u32,
 }
+///Provided by [`arm::performance_counters_by_region`](crate::arm::performance_counters_by_region)
+impl crate::vk::StructureType {
+    pub const PHYSICAL_DEVICE_PERFORMANCE_COUNTERS_BY_REGION_FEATURES_ARM: Self = Self(
+        1000605000,
+    );
+    pub const PHYSICAL_DEVICE_PERFORMANCE_COUNTERS_BY_REGION_PROPERTIES_ARM: Self = Self(
+        1000605001,
+    );
+    pub const PERFORMANCE_COUNTER_ARM: Self = Self(1000605002);
+    pub const PERFORMANCE_COUNTER_DESCRIPTION_ARM: Self = Self(1000605003);
+    pub const RENDER_PASS_PERFORMANCE_COUNTERS_BY_REGION_BEGIN_INFO_ARM: Self = Self(
+        1000605004,
+    );
+}
 bitflags::bitflags! {
     #[repr(transparent)] #[derive(Clone, Copy)] pub struct
     PerformanceCounterDescriptionFlagsARM : u32 {}

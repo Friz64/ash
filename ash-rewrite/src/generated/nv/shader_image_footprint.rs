@@ -8,5 +8,11 @@ pub struct PhysicalDeviceShaderImageFootprintFeaturesNV {
     pub p_next: *mut core::ffi::c_void,
     pub image_footprint: crate::vk::Bool32,
 }
+///Provided by [`nv::shader_image_footprint`](crate::nv::shader_image_footprint)
+impl crate::vk::StructureType {
+    pub const PHYSICAL_DEVICE_SHADER_IMAGE_FOOTPRINT_FEATURES_NV: Self = Self(
+        1000204000,
+    );
+}
 pub const NV_SHADER_IMAGE_FOOTPRINT_SPEC_VERSION: u32 = 2;
 pub const NV_SHADER_IMAGE_FOOTPRINT_EXTENSION_NAME: &core::ffi::CStr = c"VK_NV_shader_image_footprint";

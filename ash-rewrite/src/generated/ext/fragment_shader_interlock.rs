@@ -10,5 +10,11 @@ pub struct PhysicalDeviceFragmentShaderInterlockFeaturesEXT {
     pub fragment_shader_pixel_interlock: crate::vk::Bool32,
     pub fragment_shader_shading_rate_interlock: crate::vk::Bool32,
 }
+///Provided by [`ext::fragment_shader_interlock`](crate::ext::fragment_shader_interlock)
+impl crate::vk::StructureType {
+    pub const PHYSICAL_DEVICE_FRAGMENT_SHADER_INTERLOCK_FEATURES_EXT: Self = Self(
+        1000251000,
+    );
+}
 pub const EXT_FRAGMENT_SHADER_INTERLOCK_SPEC_VERSION: u32 = 1;
 pub const EXT_FRAGMENT_SHADER_INTERLOCK_EXTENSION_NAME: &core::ffi::CStr = c"VK_EXT_fragment_shader_interlock";

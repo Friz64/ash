@@ -50,6 +50,24 @@ pub struct PhysicalDeviceCudaKernelLaunchPropertiesNV {
     pub compute_capability_minor: u32,
     pub compute_capability_major: u32,
 }
+///Provided by [`nv::cuda_kernel_launch`](crate::nv::cuda_kernel_launch)
+impl crate::vk::StructureType {
+    pub const CUDA_MODULE_CREATE_INFO_NV: Self = Self(1000307000);
+    pub const CUDA_FUNCTION_CREATE_INFO_NV: Self = Self(1000307001);
+    pub const CUDA_LAUNCH_INFO_NV: Self = Self(1000307002);
+    pub const PHYSICAL_DEVICE_CUDA_KERNEL_LAUNCH_FEATURES_NV: Self = Self(1000307003);
+    pub const PHYSICAL_DEVICE_CUDA_KERNEL_LAUNCH_PROPERTIES_NV: Self = Self(1000307004);
+}
+///Provided by [`nv::cuda_kernel_launch`](crate::nv::cuda_kernel_launch)
+impl crate::vk::ObjectType {
+    pub const CUDA_MODULE_NV: Self = Self(1000307000);
+    pub const CUDA_FUNCTION_NV: Self = Self(1000307001);
+}
+///Provided by [`nv::cuda_kernel_launch`](crate::nv::cuda_kernel_launch)
+impl crate::vk::DebugReportObjectTypeEXT {
+    pub const CUDA_MODULE_NV_EXT: Self = Self(1000307000);
+    pub const CUDA_FUNCTION_NV_EXT: Self = Self(1000307001);
+}
 #[repr(transparent)]
 #[derive(Clone, Copy)]
 pub struct CudaModuleNV(pub(crate) i32);

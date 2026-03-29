@@ -152,12 +152,41 @@ pub struct VideoEncodeAV1RateControlLayerInfoKHR {
     pub use_max_frame_size: crate::vk::Bool32,
     pub max_frame_size: crate::vk::VideoEncodeAV1FrameSizeKHR,
 }
+///Provided by [`khr::video_encode_av1`](crate::khr::video_encode_av1)
+impl crate::vk::StructureType {
+    pub const VIDEO_ENCODE_AV1_CAPABILITIES_KHR: Self = Self(1000513000);
+    pub const VIDEO_ENCODE_AV1_SESSION_PARAMETERS_CREATE_INFO_KHR: Self = Self(
+        1000513001,
+    );
+    pub const VIDEO_ENCODE_AV1_PICTURE_INFO_KHR: Self = Self(1000513002);
+    pub const VIDEO_ENCODE_AV1_DPB_SLOT_INFO_KHR: Self = Self(1000513003);
+    pub const PHYSICAL_DEVICE_VIDEO_ENCODE_AV1_FEATURES_KHR: Self = Self(1000513004);
+    pub const VIDEO_ENCODE_AV1_PROFILE_INFO_KHR: Self = Self(1000513005);
+    pub const VIDEO_ENCODE_AV1_RATE_CONTROL_INFO_KHR: Self = Self(1000513006);
+    pub const VIDEO_ENCODE_AV1_RATE_CONTROL_LAYER_INFO_KHR: Self = Self(1000513007);
+    pub const VIDEO_ENCODE_AV1_QUALITY_LEVEL_PROPERTIES_KHR: Self = Self(1000513008);
+    pub const VIDEO_ENCODE_AV1_SESSION_CREATE_INFO_KHR: Self = Self(1000513009);
+    pub const VIDEO_ENCODE_AV1_GOP_REMAINING_FRAME_INFO_KHR: Self = Self(1000513010);
+}
 #[repr(transparent)]
 #[derive(Clone, Copy)]
 pub struct VideoEncodeAV1PredictionModeKHR(pub(crate) i32);
+///Provided by [`khr::video_encode_av1`](crate::khr::video_encode_av1)
+impl VideoEncodeAV1PredictionModeKHR {
+    pub const INTRA_ONLY_KHR: Self = Self(0);
+    pub const SINGLE_REFERENCE_KHR: Self = Self(1);
+    pub const UNIDIRECTIONAL_COMPOUND_KHR: Self = Self(2);
+    pub const BIDIRECTIONAL_COMPOUND_KHR: Self = Self(3);
+}
 #[repr(transparent)]
 #[derive(Clone, Copy)]
 pub struct VideoEncodeAV1RateControlGroupKHR(pub(crate) i32);
+///Provided by [`khr::video_encode_av1`](crate::khr::video_encode_av1)
+impl VideoEncodeAV1RateControlGroupKHR {
+    pub const INTRA_KHR: Self = Self(0);
+    pub const PREDICTIVE_KHR: Self = Self(1);
+    pub const BIPREDICTIVE_KHR: Self = Self(2);
+}
 ///Provided by [`khr::video_encode_av1`](crate::khr::video_encode_av1)
 impl crate::vk::VideoCodecOperationFlagBitsKHR {
     pub const ENCODE_AV1_KHR: Self = Self(1 << 18);

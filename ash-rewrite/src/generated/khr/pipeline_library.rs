@@ -10,6 +10,10 @@ pub struct PipelineLibraryCreateInfoKHR {
     pub p_libraries: *const crate::vk::Pipeline,
 }
 ///Provided by [`khr::pipeline_library`](crate::khr::pipeline_library)
+impl crate::vk::StructureType {
+    pub const PIPELINE_LIBRARY_CREATE_INFO_KHR: Self = Self(1000290000);
+}
+///Provided by [`khr::pipeline_library`](crate::khr::pipeline_library)
 impl crate::vk::PipelineCreateFlagBits {
     pub const LIBRARY_KHR: Self = Self(1 << 11);
 }

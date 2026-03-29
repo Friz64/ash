@@ -17,5 +17,12 @@ pub struct PhysicalDeviceShaderCoreBuiltinsFeaturesARM {
     pub p_next: *mut core::ffi::c_void,
     pub shader_core_builtins: crate::vk::Bool32,
 }
+///Provided by [`arm::shader_core_builtins`](crate::arm::shader_core_builtins)
+impl crate::vk::StructureType {
+    pub const PHYSICAL_DEVICE_SHADER_CORE_BUILTINS_FEATURES_ARM: Self = Self(1000497000);
+    pub const PHYSICAL_DEVICE_SHADER_CORE_BUILTINS_PROPERTIES_ARM: Self = Self(
+        1000497001,
+    );
+}
 pub const ARM_SHADER_CORE_BUILTINS_SPEC_VERSION: u32 = 2;
 pub const ARM_SHADER_CORE_BUILTINS_EXTENSION_NAME: &core::ffi::CStr = c"VK_ARM_shader_core_builtins";

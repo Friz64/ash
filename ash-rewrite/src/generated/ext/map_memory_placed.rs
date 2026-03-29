@@ -25,6 +25,12 @@ pub struct MemoryMapPlacedInfoEXT {
     pub p_placed_address: *mut core::ffi::c_void,
 }
 ///Provided by [`ext::map_memory_placed`](crate::ext::map_memory_placed)
+impl crate::vk::StructureType {
+    pub const PHYSICAL_DEVICE_MAP_MEMORY_PLACED_FEATURES_EXT: Self = Self(1000272000);
+    pub const PHYSICAL_DEVICE_MAP_MEMORY_PLACED_PROPERTIES_EXT: Self = Self(1000272001);
+    pub const MEMORY_MAP_PLACED_INFO_EXT: Self = Self(1000272002);
+}
+///Provided by [`ext::map_memory_placed`](crate::ext::map_memory_placed)
 impl crate::vk::MemoryMapFlagBits {
     pub const PLACED_EXT: Self = Self(1 << 0);
 }

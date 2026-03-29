@@ -9,6 +9,10 @@ pub struct ViSurfaceCreateInfoNN {
     pub flags: crate::vk::ViSurfaceCreateFlagsNN,
     pub window: *mut core::ffi::c_void,
 }
+///Provided by [`nn::vi_surface`](crate::nn::vi_surface)
+impl crate::vk::StructureType {
+    pub const VI_SURFACE_CREATE_INFO_NN: Self = Self(1000062000);
+}
 bitflags::bitflags! {
     #[repr(transparent)] #[derive(Clone, Copy)] pub struct ViSurfaceCreateFlagsNN : u32
     {}

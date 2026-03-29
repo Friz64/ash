@@ -10,6 +10,10 @@ pub struct ScreenSurfaceCreateInfoQNX {
     pub context: *mut crate::platform_types::_screen_context,
     pub window: *mut crate::platform_types::_screen_window,
 }
+///Provided by [`qnx::screen_surface`](crate::qnx::screen_surface)
+impl crate::vk::StructureType {
+    pub const SCREEN_SURFACE_CREATE_INFO_QNX: Self = Self(1000378000);
+}
 bitflags::bitflags! {
     #[repr(transparent)] #[derive(Clone, Copy)] pub struct ScreenSurfaceCreateFlagsQNX :
     u32 {}

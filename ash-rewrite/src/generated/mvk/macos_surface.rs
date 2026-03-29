@@ -9,6 +9,10 @@ pub struct MacOSSurfaceCreateInfoMVK {
     pub flags: crate::vk::MacOSSurfaceCreateFlagsMVK,
     pub p_view: *const core::ffi::c_void,
 }
+///Provided by [`mvk::macos_surface`](crate::mvk::macos_surface)
+impl crate::vk::StructureType {
+    pub const MACOS_SURFACE_CREATE_INFO_MVK: Self = Self(1000123000);
+}
 bitflags::bitflags! {
     #[repr(transparent)] #[derive(Clone, Copy)] pub struct MacOSSurfaceCreateFlagsMVK :
     u32 {}

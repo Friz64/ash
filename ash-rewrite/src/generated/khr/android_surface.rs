@@ -9,6 +9,10 @@ pub struct AndroidSurfaceCreateInfoKHR {
     pub flags: crate::vk::AndroidSurfaceCreateFlagsKHR,
     pub window: *mut crate::platform_types::ANativeWindow,
 }
+///Provided by [`khr::android_surface`](crate::khr::android_surface)
+impl crate::vk::StructureType {
+    pub const ANDROID_SURFACE_CREATE_INFO_KHR: Self = Self(1000008000);
+}
 bitflags::bitflags! {
     #[repr(transparent)] #[derive(Clone, Copy)] pub struct AndroidSurfaceCreateFlagsKHR :
     u32 {}

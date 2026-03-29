@@ -270,9 +270,56 @@ pub union DescriptorMappingSourceDataEXT {
     pub shader_record_data_offset: u32,
     pub shader_record_address_offset: u32,
 }
+///Provided by [`ext::descriptor_heap`](crate::ext::descriptor_heap)
+impl crate::vk::StructureType {
+    pub const TEXEL_BUFFER_DESCRIPTOR_INFO_EXT: Self = Self(1000135000);
+    pub const IMAGE_DESCRIPTOR_INFO_EXT: Self = Self(1000135001);
+    pub const RESOURCE_DESCRIPTOR_INFO_EXT: Self = Self(1000135002);
+    pub const BIND_HEAP_INFO_EXT: Self = Self(1000135003);
+    pub const PUSH_DATA_INFO_EXT: Self = Self(1000135004);
+    pub const DESCRIPTOR_SET_AND_BINDING_MAPPING_EXT: Self = Self(1000135005);
+    pub const SHADER_DESCRIPTOR_SET_AND_BINDING_MAPPING_INFO_EXT: Self = Self(
+        1000135006,
+    );
+    pub const OPAQUE_CAPTURE_DATA_CREATE_INFO_EXT: Self = Self(1000135007);
+    pub const PHYSICAL_DEVICE_DESCRIPTOR_HEAP_PROPERTIES_EXT: Self = Self(1000135008);
+    pub const PHYSICAL_DEVICE_DESCRIPTOR_HEAP_FEATURES_EXT: Self = Self(1000135009);
+    pub const COMMAND_BUFFER_INHERITANCE_DESCRIPTOR_HEAP_INFO_EXT: Self = Self(
+        1000135010,
+    );
+    pub const SAMPLER_CUSTOM_BORDER_COLOR_INDEX_CREATE_INFO_EXT: Self = Self(1000135011);
+    pub const INDIRECT_COMMANDS_LAYOUT_PUSH_DATA_TOKEN_NV: Self = Self(1000135012);
+    pub const SUBSAMPLED_IMAGE_FORMAT_PROPERTIES_EXT: Self = Self(1000135013);
+    pub const PHYSICAL_DEVICE_DESCRIPTOR_HEAP_TENSOR_PROPERTIES_ARM: Self = Self(
+        1000135014,
+    );
+}
+///Provided by [`ext::descriptor_heap`](crate::ext::descriptor_heap)
+impl crate::vk::IndirectCommandsTokenTypeNV {
+    pub const PUSH_DATA_NV: Self = Self(1000135000);
+}
+///Provided by [`ext::descriptor_heap`](crate::ext::descriptor_heap)
+impl crate::vk::IndirectCommandsTokenTypeEXT {
+    pub const PUSH_DATA_EXT: Self = Self(1000135000);
+    pub const PUSH_DATA_SEQUENCE_INDEX_EXT: Self = Self(1000135001);
+}
 #[repr(transparent)]
 #[derive(Clone, Copy)]
 pub struct DescriptorMappingSourceEXT(pub(crate) i32);
+///Provided by [`ext::descriptor_heap`](crate::ext::descriptor_heap)
+impl DescriptorMappingSourceEXT {
+    pub const HEAP_WITH_CONSTANT_OFFSET_EXT: Self = Self(0);
+    pub const HEAP_WITH_PUSH_INDEX_EXT: Self = Self(1);
+    pub const HEAP_WITH_INDIRECT_INDEX_EXT: Self = Self(2);
+    pub const HEAP_WITH_INDIRECT_INDEX_ARRAY_EXT: Self = Self(3);
+    pub const RESOURCE_HEAP_DATA_EXT: Self = Self(4);
+    pub const PUSH_DATA_EXT: Self = Self(5);
+    pub const PUSH_ADDRESS_EXT: Self = Self(6);
+    pub const INDIRECT_ADDRESS_EXT: Self = Self(7);
+    pub const HEAP_WITH_SHADER_RECORD_INDEX_EXT: Self = Self(8);
+    pub const SHADER_RECORD_DATA_EXT: Self = Self(9);
+    pub const SHADER_RECORD_ADDRESS_EXT: Self = Self(10);
+}
 ///Provided by [`ext::descriptor_heap`](crate::ext::descriptor_heap)
 impl crate::vk::BufferUsageFlagBits {
     pub const DESCRIPTOR_HEAP_EXT: Self = Self(1 << 28);

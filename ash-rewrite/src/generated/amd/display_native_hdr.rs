@@ -15,5 +15,14 @@ pub struct SwapchainDisplayNativeHdrCreateInfoAMD {
     pub p_next: *const core::ffi::c_void,
     pub local_dimming_enable: crate::vk::Bool32,
 }
+///Provided by [`amd::display_native_hdr`](crate::amd::display_native_hdr)
+impl crate::vk::StructureType {
+    pub const DISPLAY_NATIVE_HDR_SURFACE_CAPABILITIES_AMD: Self = Self(1000213000);
+    pub const SWAPCHAIN_DISPLAY_NATIVE_HDR_CREATE_INFO_AMD: Self = Self(1000213001);
+}
+///Provided by [`amd::display_native_hdr`](crate::amd::display_native_hdr)
+impl crate::vk::ColorSpaceKHR {
+    pub const DISPLAY_NATIVE_AMD: Self = Self(1000213000);
+}
 pub const AMD_DISPLAY_NATIVE_HDR_SPEC_VERSION: u32 = 1;
 pub const AMD_DISPLAY_NATIVE_HDR_EXTENSION_NAME: &core::ffi::CStr = c"VK_AMD_display_native_hdr";

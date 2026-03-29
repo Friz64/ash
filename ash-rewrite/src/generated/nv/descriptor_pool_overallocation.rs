@@ -9,6 +9,12 @@ pub struct PhysicalDeviceDescriptorPoolOverallocationFeaturesNV {
     pub descriptor_pool_overallocation: crate::vk::Bool32,
 }
 ///Provided by [`nv::descriptor_pool_overallocation`](crate::nv::descriptor_pool_overallocation)
+impl crate::vk::StructureType {
+    pub const PHYSICAL_DEVICE_DESCRIPTOR_POOL_OVERALLOCATION_FEATURES_NV: Self = Self(
+        1000546000,
+    );
+}
+///Provided by [`nv::descriptor_pool_overallocation`](crate::nv::descriptor_pool_overallocation)
 impl crate::vk::DescriptorPoolCreateFlagBits {
     pub const ALLOW_OVERALLOCATION_SETS_NV: Self = Self(1 << 3);
     pub const ALLOW_OVERALLOCATION_POOLS_NV: Self = Self(1 << 4);

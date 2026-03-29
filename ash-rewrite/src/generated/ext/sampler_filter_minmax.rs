@@ -3,6 +3,17 @@
 //![Vulkan Manual Page](https://docs.vulkan.org/refpages/latest/refpages/source/VK_EXT_sampler_filter_minmax.html) · Extension `VK_EXT_sampler_filter_minmax`
 pub type PhysicalDeviceSamplerFilterMinmaxPropertiesEXT = crate::vk::PhysicalDeviceSamplerFilterMinmaxProperties;
 pub type SamplerReductionModeCreateInfoEXT = crate::vk::SamplerReductionModeCreateInfo;
+///Provided by [`ext::sampler_filter_minmax`](crate::ext::sampler_filter_minmax)
+impl crate::vk::StructureType {
+    pub const PHYSICAL_DEVICE_SAMPLER_FILTER_MINMAX_PROPERTIES_EXT: Self = Self::PHYSICAL_DEVICE_SAMPLER_FILTER_MINMAX_PROPERTIES;
+    pub const SAMPLER_REDUCTION_MODE_CREATE_INFO_EXT: Self = Self::SAMPLER_REDUCTION_MODE_CREATE_INFO;
+}
+///Provided by [`ext::sampler_filter_minmax`](crate::ext::sampler_filter_minmax)
+impl crate::vk::SamplerReductionMode {
+    pub const WEIGHTED_AVERAGE_EXT: Self = Self::WEIGHTED_AVERAGE;
+    pub const MIN_EXT: Self = Self::MIN;
+    pub const MAX_EXT: Self = Self::MAX;
+}
 pub type SamplerReductionModeEXT = crate::vk::SamplerReductionMode;
 ///Provided by [`ext::sampler_filter_minmax`](crate::ext::sampler_filter_minmax)
 impl crate::vk::FormatFeatureFlagBits {

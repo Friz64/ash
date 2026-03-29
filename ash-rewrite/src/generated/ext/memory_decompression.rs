@@ -34,6 +34,14 @@ pub struct DecompressMemoryInfoEXT {
     pub p_regions: *const crate::vk::DecompressMemoryRegionEXT,
 }
 ///Provided by [`ext::memory_decompression`](crate::ext::memory_decompression)
+impl crate::vk::StructureType {
+    pub const PHYSICAL_DEVICE_MEMORY_DECOMPRESSION_FEATURES_EXT: Self = Self(1000427000);
+    pub const PHYSICAL_DEVICE_MEMORY_DECOMPRESSION_PROPERTIES_EXT: Self = Self(
+        1000427001,
+    );
+    pub const DECOMPRESS_MEMORY_INFO_EXT: Self = Self(1000550002);
+}
+///Provided by [`ext::memory_decompression`](crate::ext::memory_decompression)
 impl crate::vk::AccessFlagBits2 {
     pub const MEMORY_DECOMPRESSION_READ_EXT: Self = Self(1 << 55);
     pub const MEMORY_DECOMPRESSION_WRITE_EXT: Self = Self(1 << 56);

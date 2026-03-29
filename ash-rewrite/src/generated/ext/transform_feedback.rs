@@ -34,6 +34,18 @@ pub struct PipelineRasterizationStateStreamCreateInfoEXT {
     pub rasterization_stream: u32,
 }
 ///Provided by [`ext::transform_feedback`](crate::ext::transform_feedback)
+impl crate::vk::QueryType {
+    pub const TRANSFORM_FEEDBACK_STREAM_EXT: Self = Self(1000028004);
+}
+///Provided by [`ext::transform_feedback`](crate::ext::transform_feedback)
+impl crate::vk::StructureType {
+    pub const PHYSICAL_DEVICE_TRANSFORM_FEEDBACK_FEATURES_EXT: Self = Self(1000028000);
+    pub const PHYSICAL_DEVICE_TRANSFORM_FEEDBACK_PROPERTIES_EXT: Self = Self(1000028001);
+    pub const PIPELINE_RASTERIZATION_STATE_STREAM_CREATE_INFO_EXT: Self = Self(
+        1000028002,
+    );
+}
+///Provided by [`ext::transform_feedback`](crate::ext::transform_feedback)
 impl crate::vk::AccessFlagBits {
     pub const TRANSFORM_FEEDBACK_WRITE_EXT: Self = Self(1 << 25);
     pub const TRANSFORM_FEEDBACK_COUNTER_READ_EXT: Self = Self(1 << 26);

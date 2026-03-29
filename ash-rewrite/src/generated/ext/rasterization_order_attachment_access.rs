@@ -11,6 +11,12 @@ pub struct PhysicalDeviceRasterizationOrderAttachmentAccessFeaturesEXT {
     pub rasterization_order_stencil_attachment_access: crate::vk::Bool32,
 }
 ///Provided by [`ext::rasterization_order_attachment_access`](crate::ext::rasterization_order_attachment_access)
+impl crate::vk::StructureType {
+    pub const PHYSICAL_DEVICE_RASTERIZATION_ORDER_ATTACHMENT_ACCESS_FEATURES_EXT: Self = Self(
+        1000342000,
+    );
+}
+///Provided by [`ext::rasterization_order_attachment_access`](crate::ext::rasterization_order_attachment_access)
 impl crate::vk::PipelineDepthStencilStateCreateFlagBits {
     pub const RASTERIZATION_ORDER_ATTACHMENT_DEPTH_ACCESS_EXT: Self = Self(1 << 0);
     pub const RASTERIZATION_ORDER_ATTACHMENT_STENCIL_ACCESS_EXT: Self = Self(1 << 1);

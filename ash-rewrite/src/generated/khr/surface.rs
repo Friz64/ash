@@ -21,12 +21,32 @@ pub struct SurfaceFormatKHR {
     pub format: crate::vk::Format,
     pub color_space: crate::vk::ColorSpaceKHR,
 }
+///Provided by [`khr::surface`](crate::khr::surface)
+impl crate::vk::Result {
+    pub const ERROR_SURFACE_LOST_KHR: Self = Self(-1000000000);
+    pub const ERROR_NATIVE_WINDOW_IN_USE_KHR: Self = Self(-1000000001);
+}
+///Provided by [`khr::surface`](crate::khr::surface)
+impl crate::vk::ObjectType {
+    pub const SURFACE_KHR: Self = Self(1000000000);
+}
 #[repr(transparent)]
 #[derive(Clone, Copy)]
 pub struct PresentModeKHR(pub(crate) i32);
+///Provided by [`khr::surface`](crate::khr::surface)
+impl PresentModeKHR {
+    pub const IMMEDIATE_KHR: Self = Self(0);
+    pub const MAILBOX_KHR: Self = Self(1);
+    pub const FIFO_KHR: Self = Self(2);
+    pub const FIFO_RELAXED_KHR: Self = Self(3);
+}
 #[repr(transparent)]
 #[derive(Clone, Copy)]
 pub struct ColorSpaceKHR(pub(crate) i32);
+///Provided by [`khr::surface`](crate::khr::surface)
+impl ColorSpaceKHR {
+    pub const SRGB_NONLINEAR_KHR: Self = Self(0);
+}
 bitflags::bitflags! {
     #[repr(transparent)] #[derive(Clone, Copy)] pub struct CompositeAlphaFlagsKHR : u32 {
     const OPAQUE_KHR = CompositeAlphaFlagBitsKHR::OPAQUE_KHR.0; const PRE_MULTIPLIED_KHR

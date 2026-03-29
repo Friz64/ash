@@ -22,8 +22,21 @@ pub struct BlitImageCubicWeightsInfoQCOM {
     pub p_next: *const core::ffi::c_void,
     pub cubic_weights: crate::vk::CubicFilterWeightsQCOM,
 }
+///Provided by [`qcom::filter_cubic_weights`](crate::qcom::filter_cubic_weights)
+impl crate::vk::StructureType {
+    pub const SAMPLER_CUBIC_WEIGHTS_CREATE_INFO_QCOM: Self = Self(1000519000);
+    pub const PHYSICAL_DEVICE_CUBIC_WEIGHTS_FEATURES_QCOM: Self = Self(1000519001);
+    pub const BLIT_IMAGE_CUBIC_WEIGHTS_INFO_QCOM: Self = Self(1000519002);
+}
 #[repr(transparent)]
 #[derive(Clone, Copy)]
 pub struct CubicFilterWeightsQCOM(pub(crate) i32);
+///Provided by [`qcom::filter_cubic_weights`](crate::qcom::filter_cubic_weights)
+impl CubicFilterWeightsQCOM {
+    pub const CATMULL_ROM_QCOM: Self = Self(0);
+    pub const ZERO_TANGENT_CARDINAL_QCOM: Self = Self(1);
+    pub const B_SPLINE_QCOM: Self = Self(2);
+    pub const MITCHELL_NETRAVALI_QCOM: Self = Self(3);
+}
 pub const QCOM_FILTER_CUBIC_WEIGHTS_SPEC_VERSION: u32 = 1;
 pub const QCOM_FILTER_CUBIC_WEIGHTS_EXTENSION_NAME: &core::ffi::CStr = c"VK_QCOM_filter_cubic_weights";
