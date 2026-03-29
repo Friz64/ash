@@ -319,7 +319,31 @@ impl crate::vk::TensorViewCreateFlagBitsARM {
     pub const DESCRIPTOR_BUFFER_CAPTURE_REPLAY_ARM: Self = Self(1 << 0);
 }
 #[repr(transparent)]
-#[derive(Clone, Copy)]
-pub struct TensorViewARM(pub(crate) i32);
+#[derive(Eq, PartialEq, Ord, PartialOrd, Clone, Copy, Hash, Default)]
+pub struct TensorViewARM(u64);
+impl crate::Handle for TensorViewARM {
+    const TYPE: crate::vk::ObjectType = crate::vk::ObjectType::TENSOR_VIEW_ARM;
+    fn as_raw(self) -> u64 {
+        self.0
+    }
+    fn from_raw(x: u64) -> Self {
+        Self(x)
+    }
+}
+impl TensorViewARM {
+    pub const fn null() -> Self {
+        Self(0)
+    }
+}
+impl core::fmt::Pointer for TensorViewARM {
+    fn fmt(&self, f: &mut core::fmt::Formatter<'_>) -> core::fmt::Result {
+        write!(f, "0x{:x}", self.0)
+    }
+}
+impl core::fmt::Debug for TensorViewARM {
+    fn fmt(&self, f: &mut core::fmt::Formatter<'_>) -> core::fmt::Result {
+        write!(f, "0x{:x}", self.0)
+    }
+}
 pub const ARM_TENSORS_SPEC_VERSION: u32 = 2;
 pub const ARM_TENSORS_EXTENSION_NAME: &core::ffi::CStr = c"VK_ARM_tensors";

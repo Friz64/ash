@@ -33,7 +33,7 @@ impl Code for BitMask {
             self.items
                 .iter()
                 .map(|(&name, _item)| {
-                    let name = ctx.enumerator_to_rust(name, bits_name);
+                    let name = ctx.enumerator_to_rust(name, bits_name, false);
                     quote! { const #name = #bits_name_tokens::#name.0; }
                 })
                 .collect::<TokenStream>()
@@ -57,7 +57,7 @@ impl Code for BitMask {
             let mut impl_map = CodeMap::default();
 
             for (&name, Item { required_by, value }) in &self.items {
-                let name = ctx.enumerator_to_rust(name, bits_name);
+                let name = ctx.enumerator_to_rust(name, bits_name, false);
                 let value = match &value {
                     Value::BitPos(bitpos) => {
                         let literal = Literal::u8_unsuffixed(*bitpos);
@@ -68,8 +68,8 @@ impl Code for BitMask {
                         quote! { Self(#expr) }
                     }
                     Value::Alias(enumerator_name) => {
-                        let ident = ctx.enumerator_to_rust(*enumerator_name, bits_name);
-                        quote! { Self::#ident }
+                        let en = ctx.enumerator_to_rust(*enumerator_name, bits_name, false);
+                        quote! { Self::#en }
                     }
                 };
 

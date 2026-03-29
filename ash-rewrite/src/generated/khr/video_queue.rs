@@ -330,10 +330,58 @@ impl VideoComponentBitDepthFlagBitsKHR {
     pub const _12_KHR: Self = Self(1 << 4);
 }
 #[repr(transparent)]
-#[derive(Clone, Copy)]
-pub struct VideoSessionKHR(pub(crate) i32);
+#[derive(Eq, PartialEq, Ord, PartialOrd, Clone, Copy, Hash, Default)]
+pub struct VideoSessionKHR(u64);
+impl crate::Handle for VideoSessionKHR {
+    const TYPE: crate::vk::ObjectType = crate::vk::ObjectType::VIDEO_SESSION_KHR;
+    fn as_raw(self) -> u64 {
+        self.0
+    }
+    fn from_raw(x: u64) -> Self {
+        Self(x)
+    }
+}
+impl VideoSessionKHR {
+    pub const fn null() -> Self {
+        Self(0)
+    }
+}
+impl core::fmt::Pointer for VideoSessionKHR {
+    fn fmt(&self, f: &mut core::fmt::Formatter<'_>) -> core::fmt::Result {
+        write!(f, "0x{:x}", self.0)
+    }
+}
+impl core::fmt::Debug for VideoSessionKHR {
+    fn fmt(&self, f: &mut core::fmt::Formatter<'_>) -> core::fmt::Result {
+        write!(f, "0x{:x}", self.0)
+    }
+}
 #[repr(transparent)]
-#[derive(Clone, Copy)]
-pub struct VideoSessionParametersKHR(pub(crate) i32);
+#[derive(Eq, PartialEq, Ord, PartialOrd, Clone, Copy, Hash, Default)]
+pub struct VideoSessionParametersKHR(u64);
+impl crate::Handle for VideoSessionParametersKHR {
+    const TYPE: crate::vk::ObjectType = crate::vk::ObjectType::VIDEO_SESSION_PARAMETERS_KHR;
+    fn as_raw(self) -> u64 {
+        self.0
+    }
+    fn from_raw(x: u64) -> Self {
+        Self(x)
+    }
+}
+impl VideoSessionParametersKHR {
+    pub const fn null() -> Self {
+        Self(0)
+    }
+}
+impl core::fmt::Pointer for VideoSessionParametersKHR {
+    fn fmt(&self, f: &mut core::fmt::Formatter<'_>) -> core::fmt::Result {
+        write!(f, "0x{:x}", self.0)
+    }
+}
+impl core::fmt::Debug for VideoSessionParametersKHR {
+    fn fmt(&self, f: &mut core::fmt::Formatter<'_>) -> core::fmt::Result {
+        write!(f, "0x{:x}", self.0)
+    }
+}
 pub const KHR_VIDEO_QUEUE_SPEC_VERSION: u32 = 8;
 pub const KHR_VIDEO_QUEUE_EXTENSION_NAME: &core::ffi::CStr = c"VK_KHR_video_queue";

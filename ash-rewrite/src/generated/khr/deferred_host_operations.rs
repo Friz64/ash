@@ -13,7 +13,31 @@ impl crate::vk::ObjectType {
     pub const DEFERRED_OPERATION_KHR: Self = Self(1000268000);
 }
 #[repr(transparent)]
-#[derive(Clone, Copy)]
-pub struct DeferredOperationKHR(pub(crate) i32);
+#[derive(Eq, PartialEq, Ord, PartialOrd, Clone, Copy, Hash, Default)]
+pub struct DeferredOperationKHR(u64);
+impl crate::Handle for DeferredOperationKHR {
+    const TYPE: crate::vk::ObjectType = crate::vk::ObjectType::DEFERRED_OPERATION_KHR;
+    fn as_raw(self) -> u64 {
+        self.0
+    }
+    fn from_raw(x: u64) -> Self {
+        Self(x)
+    }
+}
+impl DeferredOperationKHR {
+    pub const fn null() -> Self {
+        Self(0)
+    }
+}
+impl core::fmt::Pointer for DeferredOperationKHR {
+    fn fmt(&self, f: &mut core::fmt::Formatter<'_>) -> core::fmt::Result {
+        write!(f, "0x{:x}", self.0)
+    }
+}
+impl core::fmt::Debug for DeferredOperationKHR {
+    fn fmt(&self, f: &mut core::fmt::Formatter<'_>) -> core::fmt::Result {
+        write!(f, "0x{:x}", self.0)
+    }
+}
 pub const KHR_DEFERRED_HOST_OPERATIONS_SPEC_VERSION: u32 = 4;
 pub const KHR_DEFERRED_HOST_OPERATIONS_EXTENSION_NAME: &core::ffi::CStr = c"VK_KHR_deferred_host_operations";

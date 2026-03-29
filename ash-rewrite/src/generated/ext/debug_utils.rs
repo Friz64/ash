@@ -112,8 +112,32 @@ bitflags::bitflags! {
     DebugUtilsMessengerCallbackDataFlagsEXT : u32 {}
 }
 #[repr(transparent)]
-#[derive(Clone, Copy)]
-pub struct DebugUtilsMessengerEXT(pub(crate) i32);
+#[derive(Eq, PartialEq, Ord, PartialOrd, Clone, Copy, Hash, Default)]
+pub struct DebugUtilsMessengerEXT(u64);
+impl crate::Handle for DebugUtilsMessengerEXT {
+    const TYPE: crate::vk::ObjectType = crate::vk::ObjectType::DEBUG_UTILS_MESSENGER_EXT;
+    fn as_raw(self) -> u64 {
+        self.0
+    }
+    fn from_raw(x: u64) -> Self {
+        Self(x)
+    }
+}
+impl DebugUtilsMessengerEXT {
+    pub const fn null() -> Self {
+        Self(0)
+    }
+}
+impl core::fmt::Pointer for DebugUtilsMessengerEXT {
+    fn fmt(&self, f: &mut core::fmt::Formatter<'_>) -> core::fmt::Result {
+        write!(f, "0x{:x}", self.0)
+    }
+}
+impl core::fmt::Debug for DebugUtilsMessengerEXT {
+    fn fmt(&self, f: &mut core::fmt::Formatter<'_>) -> core::fmt::Result {
+        write!(f, "0x{:x}", self.0)
+    }
+}
 #[allow(non_camel_case_types)]
 pub type PFN_vkDebugUtilsMessengerCallbackEXT = Option<()>;
 pub const EXT_DEBUG_UTILS_SPEC_VERSION: u32 = 2;

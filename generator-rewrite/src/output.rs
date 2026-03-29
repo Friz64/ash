@@ -122,7 +122,11 @@ impl CodeMap {
         // foo/bar/mod.rs -> (doc comment, child modules)
         let mut mod_files: HashMap<PathBuf, (Option<String>, HashSet<_>)> = Default::default();
         for (destination, content) in self.iter() {
-            let sort_after = matches!(destination.location, RequireLocation::Extension { .. });
+            let sort_pref = match destination.location {
+                RequireLocation::Core { .. } => 0,
+                RequireLocation::Extension { .. } => 1,
+            };
+
             let components = destination.path_components();
 
             let doc = &components.last().unwrap().doc_comment;
@@ -160,14 +164,14 @@ impl CodeMap {
                     (doc, HashSet::new())
                 });
 
-                mod_child_idents.insert((sort_after, component.module_name.clone()));
+                mod_child_idents.insert((sort_pref, component.module_name.clone()));
             }
         }
 
         for (mod_path, (doc, mod_child_idents)) in mod_files {
-            let mut mod_child_idents: Vec<(bool, Ident)> = mod_child_idents.into_iter().collect();
+            let mut mod_child_idents: Vec<(i32, Ident)> = mod_child_idents.into_iter().collect();
             mod_child_idents.sort_unstable();
-            let mod_child_idents = mod_child_idents.iter().map(|(_sort_after, ident)| ident);
+            let mod_child_idents = mod_child_idents.iter().map(|(_sort_pref, ident)| ident);
 
             let doc = doc.map(|doc| quote! { #![doc = #doc] });
             vfs.write(

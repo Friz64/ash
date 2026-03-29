@@ -260,7 +260,31 @@ pub type GeometryFlagsNV = crate::vk::GeometryFlagsKHR;
 pub type GeometryInstanceFlagsNV = crate::vk::GeometryInstanceFlagsKHR;
 pub type BuildAccelerationStructureFlagsNV = crate::vk::BuildAccelerationStructureFlagsKHR;
 #[repr(transparent)]
-#[derive(Clone, Copy)]
-pub struct AccelerationStructureNV(pub(crate) i32);
+#[derive(Eq, PartialEq, Ord, PartialOrd, Clone, Copy, Hash, Default)]
+pub struct AccelerationStructureNV(u64);
+impl crate::Handle for AccelerationStructureNV {
+    const TYPE: crate::vk::ObjectType = crate::vk::ObjectType::ACCELERATION_STRUCTURE_NV;
+    fn as_raw(self) -> u64 {
+        self.0
+    }
+    fn from_raw(x: u64) -> Self {
+        Self(x)
+    }
+}
+impl AccelerationStructureNV {
+    pub const fn null() -> Self {
+        Self(0)
+    }
+}
+impl core::fmt::Pointer for AccelerationStructureNV {
+    fn fmt(&self, f: &mut core::fmt::Formatter<'_>) -> core::fmt::Result {
+        write!(f, "0x{:x}", self.0)
+    }
+}
+impl core::fmt::Debug for AccelerationStructureNV {
+    fn fmt(&self, f: &mut core::fmt::Formatter<'_>) -> core::fmt::Result {
+        write!(f, "0x{:x}", self.0)
+    }
+}
 pub const NV_RAY_TRACING_SPEC_VERSION: u32 = 3;
 pub const NV_RAY_TRACING_EXTENSION_NAME: &core::ffi::CStr = c"VK_NV_ray_tracing";

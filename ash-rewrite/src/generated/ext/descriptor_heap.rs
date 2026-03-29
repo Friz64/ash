@@ -391,7 +391,31 @@ impl crate::vk::ShaderCreateFlagBitsEXT {
     pub const DESCRIPTOR_HEAP_EXT: Self = Self(1 << 10);
 }
 #[repr(transparent)]
-#[derive(Clone, Copy)]
-pub struct TensorARM(pub(crate) i32);
+#[derive(Eq, PartialEq, Ord, PartialOrd, Clone, Copy, Hash, Default)]
+pub struct TensorARM(u64);
+impl crate::Handle for TensorARM {
+    const TYPE: crate::vk::ObjectType = crate::vk::ObjectType::TENSOR_ARM;
+    fn as_raw(self) -> u64 {
+        self.0
+    }
+    fn from_raw(x: u64) -> Self {
+        Self(x)
+    }
+}
+impl TensorARM {
+    pub const fn null() -> Self {
+        Self(0)
+    }
+}
+impl core::fmt::Pointer for TensorARM {
+    fn fmt(&self, f: &mut core::fmt::Formatter<'_>) -> core::fmt::Result {
+        write!(f, "0x{:x}", self.0)
+    }
+}
+impl core::fmt::Debug for TensorARM {
+    fn fmt(&self, f: &mut core::fmt::Formatter<'_>) -> core::fmt::Result {
+        write!(f, "0x{:x}", self.0)
+    }
+}
 pub const EXT_DESCRIPTOR_HEAP_SPEC_VERSION: u32 = 1;
 pub const EXT_DESCRIPTOR_HEAP_EXTENSION_NAME: &core::ffi::CStr = c"VK_EXT_descriptor_heap";

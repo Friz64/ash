@@ -119,8 +119,32 @@ impl crate::vk::PipelineCreateFlagBits2 {
     pub const CAPTURE_DATA_KHR: Self = Self(1 << 31);
 }
 #[repr(transparent)]
-#[derive(Clone, Copy)]
-pub struct PipelineBinaryKHR(pub(crate) i32);
+#[derive(Eq, PartialEq, Ord, PartialOrd, Clone, Copy, Hash, Default)]
+pub struct PipelineBinaryKHR(u64);
+impl crate::Handle for PipelineBinaryKHR {
+    const TYPE: crate::vk::ObjectType = crate::vk::ObjectType::PIPELINE_BINARY_KHR;
+    fn as_raw(self) -> u64 {
+        self.0
+    }
+    fn from_raw(x: u64) -> Self {
+        Self(x)
+    }
+}
+impl PipelineBinaryKHR {
+    pub const fn null() -> Self {
+        Self(0)
+    }
+}
+impl core::fmt::Pointer for PipelineBinaryKHR {
+    fn fmt(&self, f: &mut core::fmt::Formatter<'_>) -> core::fmt::Result {
+        write!(f, "0x{:x}", self.0)
+    }
+}
+impl core::fmt::Debug for PipelineBinaryKHR {
+    fn fmt(&self, f: &mut core::fmt::Formatter<'_>) -> core::fmt::Result {
+        write!(f, "0x{:x}", self.0)
+    }
+}
 pub const MAX_PIPELINE_BINARY_KEY_SIZE_KHR: u32 = 32;
 pub const KHR_PIPELINE_BINARY_SPEC_VERSION: u32 = 1;
 pub const KHR_PIPELINE_BINARY_EXTENSION_NAME: &core::ffi::CStr = c"VK_KHR_pipeline_binary";

@@ -402,8 +402,8 @@ impl BitMask {
 
 #[derive(Debug)]
 pub struct Handle {
-    pub parent: Option<&'static str>,
-    pub objtypeenum: &'static str,
+    pub parent: Option<TypeName>,
+    pub objtypeenum: EnumeratorName,
     pub ty: &'static str,
     pub name: TypeName,
 }
@@ -411,8 +411,8 @@ pub struct Handle {
 impl Handle {
     fn from_node(node: Node) -> Handle {
         Handle {
-            parent: attribute(node, "parent"),
-            objtypeenum: attribute(node, "objtypeenum").unwrap(),
+            parent: attribute(node, "parent").map(TypeName::new),
+            objtypeenum: EnumeratorName::new(attribute(node, "objtypeenum").unwrap()),
             ty: child_text(node, "type").unwrap(),
             name: TypeName::new(child_text(node, "name").unwrap()),
         }

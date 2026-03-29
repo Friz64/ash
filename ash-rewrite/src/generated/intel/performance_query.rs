@@ -120,7 +120,31 @@ impl PerformanceValueTypeINTEL {
     pub const STRING_INTEL: Self = Self(4);
 }
 #[repr(transparent)]
-#[derive(Clone, Copy)]
-pub struct PerformanceConfigurationINTEL(pub(crate) i32);
+#[derive(Eq, PartialEq, Ord, PartialOrd, Clone, Copy, Hash, Default)]
+pub struct PerformanceConfigurationINTEL(u64);
+impl crate::Handle for PerformanceConfigurationINTEL {
+    const TYPE: crate::vk::ObjectType = crate::vk::ObjectType::PERFORMANCE_CONFIGURATION_INTEL;
+    fn as_raw(self) -> u64 {
+        self.0
+    }
+    fn from_raw(x: u64) -> Self {
+        Self(x)
+    }
+}
+impl PerformanceConfigurationINTEL {
+    pub const fn null() -> Self {
+        Self(0)
+    }
+}
+impl core::fmt::Pointer for PerformanceConfigurationINTEL {
+    fn fmt(&self, f: &mut core::fmt::Formatter<'_>) -> core::fmt::Result {
+        write!(f, "0x{:x}", self.0)
+    }
+}
+impl core::fmt::Debug for PerformanceConfigurationINTEL {
+    fn fmt(&self, f: &mut core::fmt::Formatter<'_>) -> core::fmt::Result {
+        write!(f, "0x{:x}", self.0)
+    }
+}
 pub const INTEL_PERFORMANCE_QUERY_SPEC_VERSION: u32 = 2;
 pub const INTEL_PERFORMANCE_QUERY_EXTENSION_NAME: &core::ffi::CStr = c"VK_INTEL_performance_query";

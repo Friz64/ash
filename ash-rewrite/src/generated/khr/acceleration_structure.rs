@@ -426,7 +426,31 @@ impl crate::vk::FormatFeatureFlagBits2 {
     pub const ACCELERATION_STRUCTURE_VERTEX_BUFFER_KHR: Self = Self(1 << 29);
 }
 #[repr(transparent)]
-#[derive(Clone, Copy)]
-pub struct AccelerationStructureKHR(pub(crate) i32);
+#[derive(Eq, PartialEq, Ord, PartialOrd, Clone, Copy, Hash, Default)]
+pub struct AccelerationStructureKHR(u64);
+impl crate::Handle for AccelerationStructureKHR {
+    const TYPE: crate::vk::ObjectType = crate::vk::ObjectType::ACCELERATION_STRUCTURE_KHR;
+    fn as_raw(self) -> u64 {
+        self.0
+    }
+    fn from_raw(x: u64) -> Self {
+        Self(x)
+    }
+}
+impl AccelerationStructureKHR {
+    pub const fn null() -> Self {
+        Self(0)
+    }
+}
+impl core::fmt::Pointer for AccelerationStructureKHR {
+    fn fmt(&self, f: &mut core::fmt::Formatter<'_>) -> core::fmt::Result {
+        write!(f, "0x{:x}", self.0)
+    }
+}
+impl core::fmt::Debug for AccelerationStructureKHR {
+    fn fmt(&self, f: &mut core::fmt::Formatter<'_>) -> core::fmt::Result {
+        write!(f, "0x{:x}", self.0)
+    }
+}
 pub const KHR_ACCELERATION_STRUCTURE_SPEC_VERSION: u32 = 13;
 pub const KHR_ACCELERATION_STRUCTURE_EXTENSION_NAME: &core::ffi::CStr = c"VK_KHR_acceleration_structure";
