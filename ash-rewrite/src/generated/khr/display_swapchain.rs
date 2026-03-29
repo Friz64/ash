@@ -18,5 +18,15 @@ impl crate::vk::StructureType {
 impl crate::vk::Result {
     pub const ERROR_INCOMPATIBLE_DISPLAY_KHR: Self = Self(-1000003001);
 }
+pub type PFN_vkCreateSharedSwapchainsKHR = unsafe extern "system" fn(
+    device: crate::vk::Device,
+    swapchain_count: u32,
+    p_create_infos: *const crate::vk::SwapchainCreateInfoKHR,
+    p_allocator: *const crate::vk::AllocationCallbacks,
+    p_swapchains: *mut crate::vk::SwapchainKHR,
+) -> crate::vk::Result;
 pub const KHR_DISPLAY_SWAPCHAIN_SPEC_VERSION: u32 = 10;
 pub const KHR_DISPLAY_SWAPCHAIN_EXTENSION_NAME: &core::ffi::CStr = c"VK_KHR_display_swapchain";
+pub struct DeviceFn {
+    pub vk_create_shared_swapchains_khr: crate::vk::PFN_vkCreateSharedSwapchainsKHR,
+}

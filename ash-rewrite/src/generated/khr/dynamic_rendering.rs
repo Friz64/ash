@@ -26,5 +26,11 @@ impl crate::vk::RenderingFlagBits {
     pub const RESUMING_KHR: Self = Self::RESUMING;
 }
 pub type RenderingFlagsKHR = crate::vk::RenderingFlags;
+pub type PFN_vkCmdBeginRenderingKHR = crate::vk::PFN_vkCmdBeginRendering;
+pub type PFN_vkCmdEndRenderingKHR = crate::vk::PFN_vkCmdEndRendering;
 pub const KHR_DYNAMIC_RENDERING_SPEC_VERSION: u32 = 1;
 pub const KHR_DYNAMIC_RENDERING_EXTENSION_NAME: &core::ffi::CStr = c"VK_KHR_dynamic_rendering";
+pub struct DeviceFn {
+    pub vk_cmd_begin_rendering_khr: crate::vk::PFN_vkCmdBeginRenderingKHR,
+    pub vk_cmd_end_rendering_khr: crate::vk::PFN_vkCmdEndRenderingKHR,
+}

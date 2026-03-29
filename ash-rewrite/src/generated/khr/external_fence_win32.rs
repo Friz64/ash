@@ -35,5 +35,18 @@ impl crate::vk::StructureType {
     pub const EXPORT_FENCE_WIN32_HANDLE_INFO_KHR: Self = Self(1000114001);
     pub const FENCE_GET_WIN32_HANDLE_INFO_KHR: Self = Self(1000114002);
 }
+pub type PFN_vkGetFenceWin32HandleKHR = unsafe extern "system" fn(
+    device: crate::vk::Device,
+    p_get_win32_handle_info: *const crate::vk::FenceGetWin32HandleInfoKHR,
+    p_handle: *mut crate::platform_types::HANDLE,
+) -> crate::vk::Result;
+pub type PFN_vkImportFenceWin32HandleKHR = unsafe extern "system" fn(
+    device: crate::vk::Device,
+    p_import_fence_win32_handle_info: *const crate::vk::ImportFenceWin32HandleInfoKHR,
+) -> crate::vk::Result;
 pub const KHR_EXTERNAL_FENCE_WIN32_SPEC_VERSION: u32 = 1;
 pub const KHR_EXTERNAL_FENCE_WIN32_EXTENSION_NAME: &core::ffi::CStr = c"VK_KHR_external_fence_win32";
+pub struct DeviceFn {
+    pub vk_get_fence_win32_handle_khr: crate::vk::PFN_vkGetFenceWin32HandleKHR,
+    pub vk_import_fence_win32_handle_khr: crate::vk::PFN_vkImportFenceWin32HandleKHR,
+}

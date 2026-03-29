@@ -24,5 +24,18 @@ impl crate::vk::StructureType {
     pub const IMPORT_FENCE_FD_INFO_KHR: Self = Self(1000115000);
     pub const FENCE_GET_FD_INFO_KHR: Self = Self(1000115001);
 }
+pub type PFN_vkGetFenceFdKHR = unsafe extern "system" fn(
+    device: crate::vk::Device,
+    p_get_fd_info: *const crate::vk::FenceGetFdInfoKHR,
+    p_fd: *mut core::ffi::c_int,
+) -> crate::vk::Result;
+pub type PFN_vkImportFenceFdKHR = unsafe extern "system" fn(
+    device: crate::vk::Device,
+    p_import_fence_fd_info: *const crate::vk::ImportFenceFdInfoKHR,
+) -> crate::vk::Result;
 pub const KHR_EXTERNAL_FENCE_FD_SPEC_VERSION: u32 = 1;
 pub const KHR_EXTERNAL_FENCE_FD_EXTENSION_NAME: &core::ffi::CStr = c"VK_KHR_external_fence_fd";
+pub struct DeviceFn {
+    pub vk_get_fence_fd_khr: crate::vk::PFN_vkGetFenceFdKHR,
+    pub vk_import_fence_fd_khr: crate::vk::PFN_vkImportFenceFdKHR,
+}

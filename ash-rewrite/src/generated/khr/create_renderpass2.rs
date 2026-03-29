@@ -18,5 +18,15 @@ impl crate::vk::StructureType {
     pub const SUBPASS_BEGIN_INFO_KHR: Self = Self::SUBPASS_BEGIN_INFO;
     pub const SUBPASS_END_INFO_KHR: Self = Self::SUBPASS_END_INFO;
 }
+pub type PFN_vkCreateRenderPass2KHR = crate::vk::PFN_vkCreateRenderPass2;
+pub type PFN_vkCmdBeginRenderPass2KHR = crate::vk::PFN_vkCmdBeginRenderPass2;
+pub type PFN_vkCmdNextSubpass2KHR = crate::vk::PFN_vkCmdNextSubpass2;
+pub type PFN_vkCmdEndRenderPass2KHR = crate::vk::PFN_vkCmdEndRenderPass2;
 pub const KHR_CREATE_RENDERPASS_2_SPEC_VERSION: u32 = 1;
 pub const KHR_CREATE_RENDERPASS_2_EXTENSION_NAME: &core::ffi::CStr = c"VK_KHR_create_renderpass2";
+pub struct DeviceFn {
+    pub vk_create_render_pass2_khr: crate::vk::PFN_vkCreateRenderPass2KHR,
+    pub vk_cmd_begin_render_pass2_khr: crate::vk::PFN_vkCmdBeginRenderPass2KHR,
+    pub vk_cmd_next_subpass2_khr: crate::vk::PFN_vkCmdNextSubpass2KHR,
+    pub vk_cmd_end_render_pass2_khr: crate::vk::PFN_vkCmdEndRenderPass2KHR,
+}

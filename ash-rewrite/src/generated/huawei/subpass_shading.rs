@@ -41,5 +41,17 @@ impl crate::vk::ShaderStageFlagBits {
 impl crate::vk::PipelineStageFlagBits2 {
     pub const SUBPASS_SHADER_HUAWEI: Self = Self(1 << 39);
 }
+pub type PFN_vkGetDeviceSubpassShadingMaxWorkgroupSizeHUAWEI = unsafe extern "system" fn(
+    device: crate::vk::Device,
+    renderpass: crate::vk::RenderPass,
+    p_max_workgroup_size: *mut crate::vk::Extent2D,
+) -> crate::vk::Result;
+pub type PFN_vkCmdSubpassShadingHUAWEI = unsafe extern "system" fn(
+    command_buffer: crate::vk::CommandBuffer,
+);
 pub const HUAWEI_SUBPASS_SHADING_SPEC_VERSION: u32 = 3;
 pub const HUAWEI_SUBPASS_SHADING_EXTENSION_NAME: &core::ffi::CStr = c"VK_HUAWEI_subpass_shading";
+pub struct DeviceFn {
+    pub vk_get_device_subpass_shading_max_workgroup_size_huawei: crate::vk::PFN_vkGetDeviceSubpassShadingMaxWorkgroupSizeHUAWEI,
+    pub vk_cmd_subpass_shading_huawei: crate::vk::PFN_vkCmdSubpassShadingHUAWEI,
+}

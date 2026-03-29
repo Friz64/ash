@@ -20,5 +20,9 @@ impl crate::vk::StructureType {
 impl crate::vk::SwapchainCreateFlagBitsKHR {
     pub const DEFERRED_MEMORY_ALLOCATION_EXT: Self = Self::DEFERRED_MEMORY_ALLOCATION_KHR;
 }
+pub type PFN_vkReleaseSwapchainImagesEXT = crate::vk::PFN_vkReleaseSwapchainImagesKHR;
 pub const EXT_SWAPCHAIN_MAINTENANCE_1_SPEC_VERSION: u32 = 1;
 pub const EXT_SWAPCHAIN_MAINTENANCE_1_EXTENSION_NAME: &core::ffi::CStr = c"VK_EXT_swapchain_maintenance1";
+pub struct DeviceFn {
+    pub vk_release_swapchain_images_ext: crate::vk::PFN_vkReleaseSwapchainImagesEXT,
+}

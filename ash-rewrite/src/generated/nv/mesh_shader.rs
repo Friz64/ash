@@ -54,5 +54,31 @@ impl crate::vk::PipelineStageFlagBits {
     pub const TASK_SHADER_NV: Self = Self::TASK_SHADER_EXT;
     pub const MESH_SHADER_NV: Self = Self::MESH_SHADER_EXT;
 }
+pub type PFN_vkCmdDrawMeshTasksNV = unsafe extern "system" fn(
+    command_buffer: crate::vk::CommandBuffer,
+    task_count: u32,
+    first_task: u32,
+);
+pub type PFN_vkCmdDrawMeshTasksIndirectNV = unsafe extern "system" fn(
+    command_buffer: crate::vk::CommandBuffer,
+    buffer: crate::vk::Buffer,
+    offset: crate::vk::DeviceSize,
+    draw_count: u32,
+    stride: u32,
+);
+pub type PFN_vkCmdDrawMeshTasksIndirectCountNV = unsafe extern "system" fn(
+    command_buffer: crate::vk::CommandBuffer,
+    buffer: crate::vk::Buffer,
+    offset: crate::vk::DeviceSize,
+    count_buffer: crate::vk::Buffer,
+    count_buffer_offset: crate::vk::DeviceSize,
+    max_draw_count: u32,
+    stride: u32,
+);
 pub const NV_MESH_SHADER_SPEC_VERSION: u32 = 1;
 pub const NV_MESH_SHADER_EXTENSION_NAME: &core::ffi::CStr = c"VK_NV_mesh_shader";
+pub struct DeviceFn {
+    pub vk_cmd_draw_mesh_tasks_nv: crate::vk::PFN_vkCmdDrawMeshTasksNV,
+    pub vk_cmd_draw_mesh_tasks_indirect_nv: crate::vk::PFN_vkCmdDrawMeshTasksIndirectNV,
+    pub vk_cmd_draw_mesh_tasks_indirect_count_nv: crate::vk::PFN_vkCmdDrawMeshTasksIndirectCountNV,
+}

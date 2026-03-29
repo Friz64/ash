@@ -32,7 +32,7 @@ impl crate::vk::StructureType {
     pub const ANTI_LAG_PRESENTATION_INFO_AMD: Self = Self(1000476002);
 }
 #[repr(transparent)]
-#[derive(Clone, Copy)]
+#[derive(Clone, Copy, PartialEq, Eq, PartialOrd, Ord, Hash, Default)]
 pub struct AntiLagModeAMD(pub(crate) i32);
 ///Provided by [`amd::anti_lag`](crate::amd::anti_lag)
 impl AntiLagModeAMD {
@@ -41,12 +41,19 @@ impl AntiLagModeAMD {
     pub const OFF_AMD: Self = Self(2);
 }
 #[repr(transparent)]
-#[derive(Clone, Copy)]
+#[derive(Clone, Copy, PartialEq, Eq, PartialOrd, Ord, Hash, Default)]
 pub struct AntiLagStageAMD(pub(crate) i32);
 ///Provided by [`amd::anti_lag`](crate::amd::anti_lag)
 impl AntiLagStageAMD {
     pub const INPUT_AMD: Self = Self(0);
     pub const PRESENT_AMD: Self = Self(1);
 }
+pub type PFN_vkAntiLagUpdateAMD = unsafe extern "system" fn(
+    device: crate::vk::Device,
+    p_data: *const crate::vk::AntiLagDataAMD,
+);
 pub const AMD_ANTI_LAG_SPEC_VERSION: u32 = 1;
 pub const AMD_ANTI_LAG_EXTENSION_NAME: &core::ffi::CStr = c"VK_AMD_anti_lag";
+pub struct DeviceFn {
+    pub vk_anti_lag_update_amd: crate::vk::PFN_vkAntiLagUpdateAMD,
+}

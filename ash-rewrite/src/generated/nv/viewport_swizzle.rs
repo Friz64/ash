@@ -23,7 +23,7 @@ impl crate::vk::StructureType {
     pub const PIPELINE_VIEWPORT_SWIZZLE_STATE_CREATE_INFO_NV: Self = Self(1000098000);
 }
 #[repr(transparent)]
-#[derive(Clone, Copy)]
+#[derive(Clone, Copy, PartialEq, Eq, PartialOrd, Ord, Hash, Default)]
 pub struct ViewportCoordinateSwizzleNV(pub(crate) i32);
 ///Provided by [`nv::viewport_swizzle`](crate::nv::viewport_swizzle)
 impl ViewportCoordinateSwizzleNV {

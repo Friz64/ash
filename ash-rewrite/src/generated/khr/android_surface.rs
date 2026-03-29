@@ -17,5 +17,14 @@ bitflags::bitflags! {
     #[repr(transparent)] #[derive(Clone, Copy)] pub struct AndroidSurfaceCreateFlagsKHR :
     u32 {}
 }
+pub type PFN_vkCreateAndroidSurfaceKHR = unsafe extern "system" fn(
+    instance: crate::vk::Instance,
+    p_create_info: *const crate::vk::AndroidSurfaceCreateInfoKHR,
+    p_allocator: *const crate::vk::AllocationCallbacks,
+    p_surface: *mut crate::vk::SurfaceKHR,
+) -> crate::vk::Result;
 pub const KHR_ANDROID_SURFACE_SPEC_VERSION: u32 = 6;
 pub const KHR_ANDROID_SURFACE_EXTENSION_NAME: &core::ffi::CStr = c"VK_KHR_android_surface";
+pub struct InstanceFn {
+    pub vk_create_android_surface_khr: crate::vk::PFN_vkCreateAndroidSurfaceKHR,
+}

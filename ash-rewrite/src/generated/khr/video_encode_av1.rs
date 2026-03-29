@@ -169,7 +169,7 @@ impl crate::vk::StructureType {
     pub const VIDEO_ENCODE_AV1_GOP_REMAINING_FRAME_INFO_KHR: Self = Self(1000513010);
 }
 #[repr(transparent)]
-#[derive(Clone, Copy)]
+#[derive(Clone, Copy, PartialEq, Eq, PartialOrd, Ord, Hash, Default)]
 pub struct VideoEncodeAV1PredictionModeKHR(pub(crate) i32);
 ///Provided by [`khr::video_encode_av1`](crate::khr::video_encode_av1)
 impl VideoEncodeAV1PredictionModeKHR {
@@ -179,7 +179,7 @@ impl VideoEncodeAV1PredictionModeKHR {
     pub const BIDIRECTIONAL_COMPOUND_KHR: Self = Self(3);
 }
 #[repr(transparent)]
-#[derive(Clone, Copy)]
+#[derive(Clone, Copy, PartialEq, Eq, PartialOrd, Ord, Hash, Default)]
 pub struct VideoEncodeAV1RateControlGroupKHR(pub(crate) i32);
 ///Provided by [`khr::video_encode_av1`](crate::khr::video_encode_av1)
 impl VideoEncodeAV1RateControlGroupKHR {

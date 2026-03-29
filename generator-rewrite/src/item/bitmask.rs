@@ -51,7 +51,7 @@ impl Code for BitMask {
             #bits_code
         };
 
-        let mut codemap = CodeMap::new(Destination::new(self.required_by), code);
+        let mut codemap = CodeMap::new(Destination::library(self.required_by), code);
 
         if let Some(bits_name) = self.bits_name {
             let mut impl_map = CodeMap::default();
@@ -74,13 +74,14 @@ impl Code for BitMask {
                 };
 
                 impl_map.extend(CodeMap::new(
-                    Destination::new(*required_by),
+                    Destination::library(*required_by),
                     quote! { pub const #name: Self = #value; },
                 ));
             }
 
             for (&dest, impl_tokens) in impl_map.iter() {
-                let name = ctx.type_to_rust(bits_name, dest != Destination::new(self.required_by));
+                let name =
+                    ctx.type_to_rust(bits_name, dest != Destination::library(self.required_by));
                 let doc = dest.doc_link();
                 codemap.extend(CodeMap::new(
                     dest,

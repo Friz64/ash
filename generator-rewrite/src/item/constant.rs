@@ -25,6 +25,6 @@ impl Code for Constant {
             pub const #name: #ty = #value;
         };
 
-        CodeMap::new(Destination::new(self.required_by), code)
+        CodeMap::new(Destination::library(self.required_by), code)
     }
 }

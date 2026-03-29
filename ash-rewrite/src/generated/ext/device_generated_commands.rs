@@ -224,7 +224,7 @@ impl crate::vk::ObjectType {
     pub const INDIRECT_EXECUTION_SET_EXT: Self = Self(1000572001);
 }
 #[repr(transparent)]
-#[derive(Clone, Copy)]
+#[derive(Clone, Copy, PartialEq, Eq, PartialOrd, Ord, Hash, Default)]
 pub struct IndirectExecutionSetInfoTypeEXT(pub(crate) i32);
 ///Provided by [`ext::device_generated_commands`](crate::ext::device_generated_commands)
 impl IndirectExecutionSetInfoTypeEXT {
@@ -232,7 +232,7 @@ impl IndirectExecutionSetInfoTypeEXT {
     pub const SHADER_OBJECTS_EXT: Self = Self(1);
 }
 #[repr(transparent)]
-#[derive(Clone, Copy)]
+#[derive(Clone, Copy, PartialEq, Eq, PartialOrd, Ord, Hash, Default)]
 pub struct IndirectCommandsTokenTypeEXT(pub(crate) i32);
 ///Provided by [`ext::device_generated_commands`](crate::ext::device_generated_commands)
 impl IndirectCommandsTokenTypeEXT {
@@ -352,5 +352,65 @@ impl core::fmt::Debug for IndirectExecutionSetEXT {
         write!(f, "0x{:x}", self.0)
     }
 }
+pub type PFN_vkCmdExecuteGeneratedCommandsEXT = unsafe extern "system" fn(
+    command_buffer: crate::vk::CommandBuffer,
+    is_preprocessed: crate::vk::Bool32,
+    p_generated_commands_info: *const crate::vk::GeneratedCommandsInfoEXT,
+);
+pub type PFN_vkCmdPreprocessGeneratedCommandsEXT = unsafe extern "system" fn(
+    command_buffer: crate::vk::CommandBuffer,
+    p_generated_commands_info: *const crate::vk::GeneratedCommandsInfoEXT,
+    state_command_buffer: crate::vk::CommandBuffer,
+);
+pub type PFN_vkGetGeneratedCommandsMemoryRequirementsEXT = unsafe extern "system" fn(
+    device: crate::vk::Device,
+    p_info: *const crate::vk::GeneratedCommandsMemoryRequirementsInfoEXT,
+    p_memory_requirements: *mut crate::vk::MemoryRequirements2,
+);
+pub type PFN_vkCreateIndirectCommandsLayoutEXT = unsafe extern "system" fn(
+    device: crate::vk::Device,
+    p_create_info: *const crate::vk::IndirectCommandsLayoutCreateInfoEXT,
+    p_allocator: *const crate::vk::AllocationCallbacks,
+    p_indirect_commands_layout: *mut crate::vk::IndirectCommandsLayoutEXT,
+) -> crate::vk::Result;
+pub type PFN_vkDestroyIndirectCommandsLayoutEXT = unsafe extern "system" fn(
+    device: crate::vk::Device,
+    indirect_commands_layout: crate::vk::IndirectCommandsLayoutEXT,
+    p_allocator: *const crate::vk::AllocationCallbacks,
+);
+pub type PFN_vkCreateIndirectExecutionSetEXT = unsafe extern "system" fn(
+    device: crate::vk::Device,
+    p_create_info: *const crate::vk::IndirectExecutionSetCreateInfoEXT,
+    p_allocator: *const crate::vk::AllocationCallbacks,
+    p_indirect_execution_set: *mut crate::vk::IndirectExecutionSetEXT,
+) -> crate::vk::Result;
+pub type PFN_vkDestroyIndirectExecutionSetEXT = unsafe extern "system" fn(
+    device: crate::vk::Device,
+    indirect_execution_set: crate::vk::IndirectExecutionSetEXT,
+    p_allocator: *const crate::vk::AllocationCallbacks,
+);
+pub type PFN_vkUpdateIndirectExecutionSetPipelineEXT = unsafe extern "system" fn(
+    device: crate::vk::Device,
+    indirect_execution_set: crate::vk::IndirectExecutionSetEXT,
+    execution_set_write_count: u32,
+    p_execution_set_writes: *const crate::vk::WriteIndirectExecutionSetPipelineEXT,
+);
+pub type PFN_vkUpdateIndirectExecutionSetShaderEXT = unsafe extern "system" fn(
+    device: crate::vk::Device,
+    indirect_execution_set: crate::vk::IndirectExecutionSetEXT,
+    execution_set_write_count: u32,
+    p_execution_set_writes: *const crate::vk::WriteIndirectExecutionSetShaderEXT,
+);
 pub const EXT_DEVICE_GENERATED_COMMANDS_SPEC_VERSION: u32 = 1;
 pub const EXT_DEVICE_GENERATED_COMMANDS_EXTENSION_NAME: &core::ffi::CStr = c"VK_EXT_device_generated_commands";
+pub struct DeviceFn {
+    pub vk_cmd_execute_generated_commands_ext: crate::vk::PFN_vkCmdExecuteGeneratedCommandsEXT,
+    pub vk_cmd_preprocess_generated_commands_ext: crate::vk::PFN_vkCmdPreprocessGeneratedCommandsEXT,
+    pub vk_get_generated_commands_memory_requirements_ext: crate::vk::PFN_vkGetGeneratedCommandsMemoryRequirementsEXT,
+    pub vk_create_indirect_commands_layout_ext: crate::vk::PFN_vkCreateIndirectCommandsLayoutEXT,
+    pub vk_destroy_indirect_commands_layout_ext: crate::vk::PFN_vkDestroyIndirectCommandsLayoutEXT,
+    pub vk_create_indirect_execution_set_ext: crate::vk::PFN_vkCreateIndirectExecutionSetEXT,
+    pub vk_destroy_indirect_execution_set_ext: crate::vk::PFN_vkDestroyIndirectExecutionSetEXT,
+    pub vk_update_indirect_execution_set_pipeline_ext: crate::vk::PFN_vkUpdateIndirectExecutionSetPipelineEXT,
+    pub vk_update_indirect_execution_set_shader_ext: crate::vk::PFN_vkUpdateIndirectExecutionSetShaderEXT,
+}

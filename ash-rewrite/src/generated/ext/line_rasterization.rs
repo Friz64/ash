@@ -22,5 +22,9 @@ impl crate::vk::LineRasterizationMode {
     pub const RECTANGULAR_SMOOTH_EXT: Self = Self::RECTANGULAR_SMOOTH;
 }
 pub type LineRasterizationModeEXT = crate::vk::LineRasterizationMode;
+pub type PFN_vkCmdSetLineStippleEXT = crate::vk::PFN_vkCmdSetLineStipple;
 pub const EXT_LINE_RASTERIZATION_SPEC_VERSION: u32 = 1;
 pub const EXT_LINE_RASTERIZATION_EXTENSION_NAME: &core::ffi::CStr = c"VK_EXT_line_rasterization";
+pub struct DeviceFn {
+    pub vk_cmd_set_line_stipple_ext: crate::vk::PFN_vkCmdSetLineStippleEXT,
+}

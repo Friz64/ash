@@ -97,6 +97,58 @@ impl crate::vk::PipelineCreateFlagBits2 {
 impl crate::vk::BufferUsageFlagBits2 {
     pub const EXECUTION_GRAPH_SCRATCH_AMDX: Self = Self(1 << 25);
 }
+pub type PFN_vkGetExecutionGraphPipelineScratchSizeAMDX = unsafe extern "system" fn(
+    device: crate::vk::Device,
+    execution_graph: crate::vk::Pipeline,
+    p_size_info: *mut crate::vk::ExecutionGraphPipelineScratchSizeAMDX,
+) -> crate::vk::Result;
+pub type PFN_vkGetExecutionGraphPipelineNodeIndexAMDX = unsafe extern "system" fn(
+    device: crate::vk::Device,
+    execution_graph: crate::vk::Pipeline,
+    p_node_info: *const crate::vk::PipelineShaderStageNodeCreateInfoAMDX,
+    p_node_index: *mut u32,
+) -> crate::vk::Result;
+pub type PFN_vkCreateExecutionGraphPipelinesAMDX = unsafe extern "system" fn(
+    device: crate::vk::Device,
+    pipeline_cache: crate::vk::PipelineCache,
+    create_info_count: u32,
+    p_create_infos: *const crate::vk::ExecutionGraphPipelineCreateInfoAMDX,
+    p_allocator: *const crate::vk::AllocationCallbacks,
+    p_pipelines: *mut crate::vk::Pipeline,
+) -> crate::vk::Result;
+pub type PFN_vkCmdInitializeGraphScratchMemoryAMDX = unsafe extern "system" fn(
+    command_buffer: crate::vk::CommandBuffer,
+    execution_graph: crate::vk::Pipeline,
+    scratch: crate::vk::DeviceAddress,
+    scratch_size: crate::vk::DeviceSize,
+);
+pub type PFN_vkCmdDispatchGraphAMDX = unsafe extern "system" fn(
+    command_buffer: crate::vk::CommandBuffer,
+    scratch: crate::vk::DeviceAddress,
+    scratch_size: crate::vk::DeviceSize,
+    p_count_info: *const crate::vk::DispatchGraphCountInfoAMDX,
+);
+pub type PFN_vkCmdDispatchGraphIndirectAMDX = unsafe extern "system" fn(
+    command_buffer: crate::vk::CommandBuffer,
+    scratch: crate::vk::DeviceAddress,
+    scratch_size: crate::vk::DeviceSize,
+    p_count_info: *const crate::vk::DispatchGraphCountInfoAMDX,
+);
+pub type PFN_vkCmdDispatchGraphIndirectCountAMDX = unsafe extern "system" fn(
+    command_buffer: crate::vk::CommandBuffer,
+    scratch: crate::vk::DeviceAddress,
+    scratch_size: crate::vk::DeviceSize,
+    count_info: crate::vk::DeviceAddress,
+);
 pub const SHADER_INDEX_UNUSED_AMDX: u32 = (!0);
 pub const AMDX_SHADER_ENQUEUE_SPEC_VERSION: u32 = 2;
 pub const AMDX_SHADER_ENQUEUE_EXTENSION_NAME: &core::ffi::CStr = c"VK_AMDX_shader_enqueue";
+pub struct DeviceFn {
+    pub vk_get_execution_graph_pipeline_scratch_size_amdx: crate::vk::PFN_vkGetExecutionGraphPipelineScratchSizeAMDX,
+    pub vk_get_execution_graph_pipeline_node_index_amdx: crate::vk::PFN_vkGetExecutionGraphPipelineNodeIndexAMDX,
+    pub vk_create_execution_graph_pipelines_amdx: crate::vk::PFN_vkCreateExecutionGraphPipelinesAMDX,
+    pub vk_cmd_initialize_graph_scratch_memory_amdx: crate::vk::PFN_vkCmdInitializeGraphScratchMemoryAMDX,
+    pub vk_cmd_dispatch_graph_amdx: crate::vk::PFN_vkCmdDispatchGraphAMDX,
+    pub vk_cmd_dispatch_graph_indirect_amdx: crate::vk::PFN_vkCmdDispatchGraphIndirectAMDX,
+    pub vk_cmd_dispatch_graph_indirect_count_amdx: crate::vk::PFN_vkCmdDispatchGraphIndirectCountAMDX,
+}

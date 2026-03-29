@@ -17,5 +17,14 @@ bitflags::bitflags! {
     #[repr(transparent)] #[derive(Clone, Copy)] pub struct
     ImagePipeSurfaceCreateFlagsFUCHSIA : u32 {}
 }
+pub type PFN_vkCreateImagePipeSurfaceFUCHSIA = unsafe extern "system" fn(
+    instance: crate::vk::Instance,
+    p_create_info: *const crate::vk::ImagePipeSurfaceCreateInfoFUCHSIA,
+    p_allocator: *const crate::vk::AllocationCallbacks,
+    p_surface: *mut crate::vk::SurfaceKHR,
+) -> crate::vk::Result;
 pub const FUCHSIA_IMAGEPIPE_SURFACE_SPEC_VERSION: u32 = 1;
 pub const FUCHSIA_IMAGEPIPE_SURFACE_EXTENSION_NAME: &core::ffi::CStr = c"VK_FUCHSIA_imagepipe_surface";
+pub struct InstanceFn {
+    pub vk_create_image_pipe_surface_fuchsia: crate::vk::PFN_vkCreateImagePipeSurfaceFUCHSIA,
+}

@@ -14,7 +14,7 @@ impl crate::vk::StructureType {
     pub const VALIDATION_FLAGS_EXT: Self = Self(1000061000);
 }
 #[repr(transparent)]
-#[derive(Clone, Copy)]
+#[derive(Clone, Copy, PartialEq, Eq, PartialOrd, Ord, Hash, Default)]
 pub struct ValidationCheckEXT(pub(crate) i32);
 ///Provided by [`ext::validation_flags`](crate::ext::validation_flags)
 impl ValidationCheckEXT {

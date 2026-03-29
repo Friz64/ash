@@ -84,5 +84,50 @@ impl core::fmt::Debug for ShaderInstrumentationARM {
         write!(f, "0x{:x}", self.0)
     }
 }
+pub type PFN_vkEnumeratePhysicalDeviceShaderInstrumentationMetricsARM = unsafe extern "system" fn(
+    physical_device: crate::vk::PhysicalDevice,
+    p_description_count: *mut u32,
+    p_descriptions: *mut crate::vk::ShaderInstrumentationMetricDescriptionARM,
+) -> crate::vk::Result;
+pub type PFN_vkCreateShaderInstrumentationARM = unsafe extern "system" fn(
+    device: crate::vk::Device,
+    p_create_info: *const crate::vk::ShaderInstrumentationCreateInfoARM,
+    p_allocator: *const crate::vk::AllocationCallbacks,
+    p_instrumentation: *mut crate::vk::ShaderInstrumentationARM,
+) -> crate::vk::Result;
+pub type PFN_vkDestroyShaderInstrumentationARM = unsafe extern "system" fn(
+    device: crate::vk::Device,
+    instrumentation: crate::vk::ShaderInstrumentationARM,
+    p_allocator: *const crate::vk::AllocationCallbacks,
+);
+pub type PFN_vkCmdBeginShaderInstrumentationARM = unsafe extern "system" fn(
+    command_buffer: crate::vk::CommandBuffer,
+    instrumentation: crate::vk::ShaderInstrumentationARM,
+);
+pub type PFN_vkCmdEndShaderInstrumentationARM = unsafe extern "system" fn(
+    command_buffer: crate::vk::CommandBuffer,
+);
+pub type PFN_vkGetShaderInstrumentationValuesARM = unsafe extern "system" fn(
+    device: crate::vk::Device,
+    instrumentation: crate::vk::ShaderInstrumentationARM,
+    p_metric_block_count: *mut u32,
+    p_metric_values: *mut core::ffi::c_void,
+    flags: crate::vk::ShaderInstrumentationValuesFlagsARM,
+) -> crate::vk::Result;
+pub type PFN_vkClearShaderInstrumentationMetricsARM = unsafe extern "system" fn(
+    device: crate::vk::Device,
+    instrumentation: crate::vk::ShaderInstrumentationARM,
+);
 pub const ARM_SHADER_INSTRUMENTATION_SPEC_VERSION: u32 = 1;
 pub const ARM_SHADER_INSTRUMENTATION_EXTENSION_NAME: &core::ffi::CStr = c"VK_ARM_shader_instrumentation";
+pub struct InstanceFn {
+    pub vk_enumerate_physical_device_shader_instrumentation_metrics_arm: crate::vk::PFN_vkEnumeratePhysicalDeviceShaderInstrumentationMetricsARM,
+}
+pub struct DeviceFn {
+    pub vk_create_shader_instrumentation_arm: crate::vk::PFN_vkCreateShaderInstrumentationARM,
+    pub vk_destroy_shader_instrumentation_arm: crate::vk::PFN_vkDestroyShaderInstrumentationARM,
+    pub vk_cmd_begin_shader_instrumentation_arm: crate::vk::PFN_vkCmdBeginShaderInstrumentationARM,
+    pub vk_cmd_end_shader_instrumentation_arm: crate::vk::PFN_vkCmdEndShaderInstrumentationARM,
+    pub vk_get_shader_instrumentation_values_arm: crate::vk::PFN_vkGetShaderInstrumentationValuesARM,
+    pub vk_clear_shader_instrumentation_metrics_arm: crate::vk::PFN_vkClearShaderInstrumentationMetricsARM,
+}

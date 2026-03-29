@@ -175,5 +175,69 @@ impl core::fmt::Debug for SwapchainKHR {
         write!(f, "0x{:x}", self.0)
     }
 }
+pub type PFN_vkCreateSwapchainKHR = unsafe extern "system" fn(
+    device: crate::vk::Device,
+    p_create_info: *const crate::vk::SwapchainCreateInfoKHR,
+    p_allocator: *const crate::vk::AllocationCallbacks,
+    p_swapchain: *mut crate::vk::SwapchainKHR,
+) -> crate::vk::Result;
+pub type PFN_vkDestroySwapchainKHR = unsafe extern "system" fn(
+    device: crate::vk::Device,
+    swapchain: crate::vk::SwapchainKHR,
+    p_allocator: *const crate::vk::AllocationCallbacks,
+);
+pub type PFN_vkGetSwapchainImagesKHR = unsafe extern "system" fn(
+    device: crate::vk::Device,
+    swapchain: crate::vk::SwapchainKHR,
+    p_swapchain_image_count: *mut u32,
+    p_swapchain_images: *mut crate::vk::Image,
+) -> crate::vk::Result;
+pub type PFN_vkAcquireNextImageKHR = unsafe extern "system" fn(
+    device: crate::vk::Device,
+    swapchain: crate::vk::SwapchainKHR,
+    timeout: u64,
+    semaphore: crate::vk::Semaphore,
+    fence: crate::vk::Fence,
+    p_image_index: *mut u32,
+) -> crate::vk::Result;
+pub type PFN_vkQueuePresentKHR = unsafe extern "system" fn(
+    queue: crate::vk::Queue,
+    p_present_info: *const crate::vk::PresentInfoKHR,
+) -> crate::vk::Result;
+pub type PFN_vkGetDeviceGroupPresentCapabilitiesKHR = unsafe extern "system" fn(
+    device: crate::vk::Device,
+    p_device_group_present_capabilities: *mut crate::vk::DeviceGroupPresentCapabilitiesKHR,
+) -> crate::vk::Result;
+pub type PFN_vkGetDeviceGroupSurfacePresentModesKHR = unsafe extern "system" fn(
+    device: crate::vk::Device,
+    surface: crate::vk::SurfaceKHR,
+    p_modes: *mut crate::vk::DeviceGroupPresentModeFlagsKHR,
+) -> crate::vk::Result;
+pub type PFN_vkAcquireNextImage2KHR = unsafe extern "system" fn(
+    device: crate::vk::Device,
+    p_acquire_info: *const crate::vk::AcquireNextImageInfoKHR,
+    p_image_index: *mut u32,
+) -> crate::vk::Result;
+pub type PFN_vkGetPhysicalDevicePresentRectanglesKHR = unsafe extern "system" fn(
+    physical_device: crate::vk::PhysicalDevice,
+    surface: crate::vk::SurfaceKHR,
+    p_rect_count: *mut u32,
+    p_rects: *mut crate::vk::Rect2D,
+) -> crate::vk::Result;
 pub const KHR_SWAPCHAIN_SPEC_VERSION: u32 = 70;
 pub const KHR_SWAPCHAIN_EXTENSION_NAME: &core::ffi::CStr = c"VK_KHR_swapchain";
+pub struct DeviceFn {
+    pub vk_create_swapchain_khr: crate::vk::PFN_vkCreateSwapchainKHR,
+    pub vk_destroy_swapchain_khr: crate::vk::PFN_vkDestroySwapchainKHR,
+    pub vk_get_swapchain_images_khr: crate::vk::PFN_vkGetSwapchainImagesKHR,
+    pub vk_acquire_next_image_khr: crate::vk::PFN_vkAcquireNextImageKHR,
+    pub vk_queue_present_khr: crate::vk::PFN_vkQueuePresentKHR,
+}
+pub struct DeviceFn {
+    pub vk_get_device_group_present_capabilities_khr: crate::vk::PFN_vkGetDeviceGroupPresentCapabilitiesKHR,
+    pub vk_get_device_group_surface_present_modes_khr: crate::vk::PFN_vkGetDeviceGroupSurfacePresentModesKHR,
+    pub vk_acquire_next_image2_khr: crate::vk::PFN_vkAcquireNextImage2KHR,
+}
+pub struct InstanceFn {
+    pub vk_get_physical_device_present_rectangles_khr: crate::vk::PFN_vkGetPhysicalDevicePresentRectanglesKHR,
+}

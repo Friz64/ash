@@ -689,7 +689,7 @@ impl crate::vk::Result {
     pub const ERROR_FRAGMENTATION: Self = Self(-1000161000);
 }
 #[repr(transparent)]
-#[derive(Clone, Copy)]
+#[derive(Clone, Copy, PartialEq, Eq, PartialOrd, Ord, Hash, Default)]
 pub struct SemaphoreType(pub(crate) i32);
 ///Provided by [`vk1_2`](crate::vk1_2)
 impl SemaphoreType {
@@ -697,7 +697,7 @@ impl SemaphoreType {
     pub const TIMELINE: Self = Self(1);
 }
 #[repr(transparent)]
-#[derive(Clone, Copy)]
+#[derive(Clone, Copy, PartialEq, Eq, PartialOrd, Ord, Hash, Default)]
 pub struct SamplerReductionMode(pub(crate) i32);
 ///Provided by [`vk1_2`](crate::vk1_2)
 impl SamplerReductionMode {
@@ -706,7 +706,7 @@ impl SamplerReductionMode {
     pub const MAX: Self = Self(2);
 }
 #[repr(transparent)]
-#[derive(Clone, Copy)]
+#[derive(Clone, Copy, PartialEq, Eq, PartialOrd, Ord, Hash, Default)]
 pub struct DriverId(pub(crate) i32);
 ///Provided by [`vk1_2`](crate::vk1_2)
 impl DriverId {
@@ -740,7 +740,7 @@ impl DriverId {
     pub const MESA_KOSMICKRISP: Self = Self(28);
 }
 #[repr(transparent)]
-#[derive(Clone, Copy)]
+#[derive(Clone, Copy, PartialEq, Eq, PartialOrd, Ord, Hash, Default)]
 pub struct ShaderFloatControlsIndependence(pub(crate) i32);
 ///Provided by [`vk1_2`](crate::vk1_2)
 impl ShaderFloatControlsIndependence {
@@ -836,6 +836,91 @@ impl ResolveModeFlagBits {
     pub const MIN: Self = Self(1 << 2);
     pub const MAX: Self = Self(1 << 3);
 }
+pub type PFN_vkResetQueryPool = unsafe extern "system" fn(
+    device: crate::vk::Device,
+    query_pool: crate::vk::QueryPool,
+    first_query: u32,
+    query_count: u32,
+);
+pub type PFN_vkCreateRenderPass2 = unsafe extern "system" fn(
+    device: crate::vk::Device,
+    p_create_info: *const crate::vk::RenderPassCreateInfo2,
+    p_allocator: *const crate::vk::AllocationCallbacks,
+    p_render_pass: *mut crate::vk::RenderPass,
+) -> crate::vk::Result;
+pub type PFN_vkCmdBeginRenderPass2 = unsafe extern "system" fn(
+    command_buffer: crate::vk::CommandBuffer,
+    p_render_pass_begin: *const crate::vk::RenderPassBeginInfo,
+    p_subpass_begin_info: *const crate::vk::SubpassBeginInfo,
+);
+pub type PFN_vkCmdNextSubpass2 = unsafe extern "system" fn(
+    command_buffer: crate::vk::CommandBuffer,
+    p_subpass_begin_info: *const crate::vk::SubpassBeginInfo,
+    p_subpass_end_info: *const crate::vk::SubpassEndInfo,
+);
+pub type PFN_vkCmdEndRenderPass2 = unsafe extern "system" fn(
+    command_buffer: crate::vk::CommandBuffer,
+    p_subpass_end_info: *const crate::vk::SubpassEndInfo,
+);
+pub type PFN_vkGetSemaphoreCounterValue = unsafe extern "system" fn(
+    device: crate::vk::Device,
+    semaphore: crate::vk::Semaphore,
+    p_value: *mut u64,
+) -> crate::vk::Result;
+pub type PFN_vkWaitSemaphores = unsafe extern "system" fn(
+    device: crate::vk::Device,
+    p_wait_info: *const crate::vk::SemaphoreWaitInfo,
+    timeout: u64,
+) -> crate::vk::Result;
+pub type PFN_vkSignalSemaphore = unsafe extern "system" fn(
+    device: crate::vk::Device,
+    p_signal_info: *const crate::vk::SemaphoreSignalInfo,
+) -> crate::vk::Result;
+pub type PFN_vkCmdDrawIndirectCount = unsafe extern "system" fn(
+    command_buffer: crate::vk::CommandBuffer,
+    buffer: crate::vk::Buffer,
+    offset: crate::vk::DeviceSize,
+    count_buffer: crate::vk::Buffer,
+    count_buffer_offset: crate::vk::DeviceSize,
+    max_draw_count: u32,
+    stride: u32,
+);
+pub type PFN_vkCmdDrawIndexedIndirectCount = unsafe extern "system" fn(
+    command_buffer: crate::vk::CommandBuffer,
+    buffer: crate::vk::Buffer,
+    offset: crate::vk::DeviceSize,
+    count_buffer: crate::vk::Buffer,
+    count_buffer_offset: crate::vk::DeviceSize,
+    max_draw_count: u32,
+    stride: u32,
+);
+pub type PFN_vkGetBufferOpaqueCaptureAddress = unsafe extern "system" fn(
+    device: crate::vk::Device,
+    p_info: *const crate::vk::BufferDeviceAddressInfo,
+) -> u64;
+pub type PFN_vkGetBufferDeviceAddress = unsafe extern "system" fn(
+    device: crate::vk::Device,
+    p_info: *const crate::vk::BufferDeviceAddressInfo,
+) -> crate::vk::DeviceAddress;
+pub type PFN_vkGetDeviceMemoryOpaqueCaptureAddress = unsafe extern "system" fn(
+    device: crate::vk::Device,
+    p_info: *const crate::vk::DeviceMemoryOpaqueCaptureAddressInfo,
+) -> u64;
 pub const MAX_DRIVER_NAME_SIZE: u32 = 256;
 pub const MAX_DRIVER_INFO_SIZE: u32 = 256;
 pub const API_VERSION_1_2: u32 = crate::vk::make_api_version(0, 1, 2, 0);
+pub struct DeviceFnV1_2 {
+    pub vk_reset_query_pool: crate::vk::PFN_vkResetQueryPool,
+    pub vk_create_render_pass2: crate::vk::PFN_vkCreateRenderPass2,
+    pub vk_cmd_begin_render_pass2: crate::vk::PFN_vkCmdBeginRenderPass2,
+    pub vk_cmd_next_subpass2: crate::vk::PFN_vkCmdNextSubpass2,
+    pub vk_cmd_end_render_pass2: crate::vk::PFN_vkCmdEndRenderPass2,
+    pub vk_get_semaphore_counter_value: crate::vk::PFN_vkGetSemaphoreCounterValue,
+    pub vk_wait_semaphores: crate::vk::PFN_vkWaitSemaphores,
+    pub vk_signal_semaphore: crate::vk::PFN_vkSignalSemaphore,
+    pub vk_cmd_draw_indirect_count: crate::vk::PFN_vkCmdDrawIndirectCount,
+    pub vk_cmd_draw_indexed_indirect_count: crate::vk::PFN_vkCmdDrawIndexedIndirectCount,
+    pub vk_get_buffer_opaque_capture_address: crate::vk::PFN_vkGetBufferOpaqueCaptureAddress,
+    pub vk_get_buffer_device_address: crate::vk::PFN_vkGetBufferDeviceAddress,
+    pub vk_get_device_memory_opaque_capture_address: crate::vk::PFN_vkGetDeviceMemoryOpaqueCaptureAddress,
+}

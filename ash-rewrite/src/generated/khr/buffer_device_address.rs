@@ -31,5 +31,13 @@ impl crate::vk::MemoryAllocateFlagBits {
     pub const DEVICE_ADDRESS_KHR: Self = Self::DEVICE_ADDRESS;
     pub const DEVICE_ADDRESS_CAPTURE_REPLAY_KHR: Self = Self::DEVICE_ADDRESS_CAPTURE_REPLAY;
 }
+pub type PFN_vkGetBufferOpaqueCaptureAddressKHR = crate::vk::PFN_vkGetBufferOpaqueCaptureAddress;
+pub type PFN_vkGetBufferDeviceAddressKHR = crate::vk::PFN_vkGetBufferDeviceAddress;
+pub type PFN_vkGetDeviceMemoryOpaqueCaptureAddressKHR = crate::vk::PFN_vkGetDeviceMemoryOpaqueCaptureAddress;
 pub const KHR_BUFFER_DEVICE_ADDRESS_SPEC_VERSION: u32 = 1;
 pub const KHR_BUFFER_DEVICE_ADDRESS_EXTENSION_NAME: &core::ffi::CStr = c"VK_KHR_buffer_device_address";
+pub struct DeviceFn {
+    pub vk_get_buffer_opaque_capture_address_khr: crate::vk::PFN_vkGetBufferOpaqueCaptureAddressKHR,
+    pub vk_get_buffer_device_address_khr: crate::vk::PFN_vkGetBufferDeviceAddressKHR,
+    pub vk_get_device_memory_opaque_capture_address_khr: crate::vk::PFN_vkGetDeviceMemoryOpaqueCaptureAddressKHR,
+}

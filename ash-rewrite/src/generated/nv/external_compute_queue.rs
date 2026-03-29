@@ -77,5 +77,28 @@ impl core::fmt::Debug for ExternalComputeQueueNV {
         core::fmt::Debug::fmt(&self.0, f)
     }
 }
+pub type PFN_vkCreateExternalComputeQueueNV = unsafe extern "system" fn(
+    device: crate::vk::Device,
+    p_create_info: *const crate::vk::ExternalComputeQueueCreateInfoNV,
+    p_allocator: *const crate::vk::AllocationCallbacks,
+    p_external_queue: *mut crate::vk::ExternalComputeQueueNV,
+) -> crate::vk::Result;
+pub type PFN_vkDestroyExternalComputeQueueNV = unsafe extern "system" fn(
+    device: crate::vk::Device,
+    external_queue: crate::vk::ExternalComputeQueueNV,
+    p_allocator: *const crate::vk::AllocationCallbacks,
+);
+pub type PFN_vkGetExternalComputeQueueDataNV = unsafe extern "system" fn(
+    external_queue: crate::vk::ExternalComputeQueueNV,
+    params: *mut crate::vk::ExternalComputeQueueDataParamsNV,
+    p_data: *mut core::ffi::c_void,
+);
 pub const NV_EXTERNAL_COMPUTE_QUEUE_SPEC_VERSION: u32 = 1;
 pub const NV_EXTERNAL_COMPUTE_QUEUE_EXTENSION_NAME: &core::ffi::CStr = c"VK_NV_external_compute_queue";
+pub struct DeviceFn {
+    pub vk_create_external_compute_queue_nv: crate::vk::PFN_vkCreateExternalComputeQueueNV,
+    pub vk_destroy_external_compute_queue_nv: crate::vk::PFN_vkDestroyExternalComputeQueueNV,
+}
+pub struct EntryFn {
+    pub vk_get_external_compute_queue_data_nv: crate::vk::PFN_vkGetExternalComputeQueueDataNV,
+}

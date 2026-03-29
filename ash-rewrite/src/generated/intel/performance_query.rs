@@ -79,21 +79,21 @@ impl crate::vk::ObjectType {
     pub const PERFORMANCE_CONFIGURATION_INTEL: Self = Self(1000210000);
 }
 #[repr(transparent)]
-#[derive(Clone, Copy)]
+#[derive(Clone, Copy, PartialEq, Eq, PartialOrd, Ord, Hash, Default)]
 pub struct PerformanceConfigurationTypeINTEL(pub(crate) i32);
 ///Provided by [`intel::performance_query`](crate::intel::performance_query)
 impl PerformanceConfigurationTypeINTEL {
     pub const COMMAND_QUEUE_METRICS_DISCOVERY_ACTIVATED_INTEL: Self = Self(0);
 }
 #[repr(transparent)]
-#[derive(Clone, Copy)]
+#[derive(Clone, Copy, PartialEq, Eq, PartialOrd, Ord, Hash, Default)]
 pub struct QueryPoolSamplingModeINTEL(pub(crate) i32);
 ///Provided by [`intel::performance_query`](crate::intel::performance_query)
 impl QueryPoolSamplingModeINTEL {
     pub const MANUAL_INTEL: Self = Self(0);
 }
 #[repr(transparent)]
-#[derive(Clone, Copy)]
+#[derive(Clone, Copy, PartialEq, Eq, PartialOrd, Ord, Hash, Default)]
 pub struct PerformanceOverrideTypeINTEL(pub(crate) i32);
 ///Provided by [`intel::performance_query`](crate::intel::performance_query)
 impl PerformanceOverrideTypeINTEL {
@@ -101,7 +101,7 @@ impl PerformanceOverrideTypeINTEL {
     pub const FLUSH_GPU_CACHES_INTEL: Self = Self(1);
 }
 #[repr(transparent)]
-#[derive(Clone, Copy)]
+#[derive(Clone, Copy, PartialEq, Eq, PartialOrd, Ord, Hash, Default)]
 pub struct PerformanceParameterTypeINTEL(pub(crate) i32);
 ///Provided by [`intel::performance_query`](crate::intel::performance_query)
 impl PerformanceParameterTypeINTEL {
@@ -109,7 +109,7 @@ impl PerformanceParameterTypeINTEL {
     pub const STREAM_MARKER_VALIDS_INTEL: Self = Self(1);
 }
 #[repr(transparent)]
-#[derive(Clone, Copy)]
+#[derive(Clone, Copy, PartialEq, Eq, PartialOrd, Ord, Hash, Default)]
 pub struct PerformanceValueTypeINTEL(pub(crate) i32);
 ///Provided by [`intel::performance_query`](crate::intel::performance_query)
 impl PerformanceValueTypeINTEL {
@@ -146,5 +146,53 @@ impl core::fmt::Debug for PerformanceConfigurationINTEL {
         write!(f, "0x{:x}", self.0)
     }
 }
+pub type PFN_vkInitializePerformanceApiINTEL = unsafe extern "system" fn(
+    device: crate::vk::Device,
+    p_initialize_info: *const crate::vk::InitializePerformanceApiInfoINTEL,
+) -> crate::vk::Result;
+pub type PFN_vkUninitializePerformanceApiINTEL = unsafe extern "system" fn(
+    device: crate::vk::Device,
+);
+pub type PFN_vkCmdSetPerformanceMarkerINTEL = unsafe extern "system" fn(
+    command_buffer: crate::vk::CommandBuffer,
+    p_marker_info: *const crate::vk::PerformanceMarkerInfoINTEL,
+) -> crate::vk::Result;
+pub type PFN_vkCmdSetPerformanceStreamMarkerINTEL = unsafe extern "system" fn(
+    command_buffer: crate::vk::CommandBuffer,
+    p_marker_info: *const crate::vk::PerformanceStreamMarkerInfoINTEL,
+) -> crate::vk::Result;
+pub type PFN_vkCmdSetPerformanceOverrideINTEL = unsafe extern "system" fn(
+    command_buffer: crate::vk::CommandBuffer,
+    p_override_info: *const crate::vk::PerformanceOverrideInfoINTEL,
+) -> crate::vk::Result;
+pub type PFN_vkAcquirePerformanceConfigurationINTEL = unsafe extern "system" fn(
+    device: crate::vk::Device,
+    p_acquire_info: *const crate::vk::PerformanceConfigurationAcquireInfoINTEL,
+    p_configuration: *mut crate::vk::PerformanceConfigurationINTEL,
+) -> crate::vk::Result;
+pub type PFN_vkReleasePerformanceConfigurationINTEL = unsafe extern "system" fn(
+    device: crate::vk::Device,
+    configuration: crate::vk::PerformanceConfigurationINTEL,
+) -> crate::vk::Result;
+pub type PFN_vkQueueSetPerformanceConfigurationINTEL = unsafe extern "system" fn(
+    queue: crate::vk::Queue,
+    configuration: crate::vk::PerformanceConfigurationINTEL,
+) -> crate::vk::Result;
+pub type PFN_vkGetPerformanceParameterINTEL = unsafe extern "system" fn(
+    device: crate::vk::Device,
+    parameter: crate::vk::PerformanceParameterTypeINTEL,
+    p_value: *mut crate::vk::PerformanceValueINTEL,
+) -> crate::vk::Result;
 pub const INTEL_PERFORMANCE_QUERY_SPEC_VERSION: u32 = 2;
 pub const INTEL_PERFORMANCE_QUERY_EXTENSION_NAME: &core::ffi::CStr = c"VK_INTEL_performance_query";
+pub struct DeviceFn {
+    pub vk_initialize_performance_api_intel: crate::vk::PFN_vkInitializePerformanceApiINTEL,
+    pub vk_uninitialize_performance_api_intel: crate::vk::PFN_vkUninitializePerformanceApiINTEL,
+    pub vk_cmd_set_performance_marker_intel: crate::vk::PFN_vkCmdSetPerformanceMarkerINTEL,
+    pub vk_cmd_set_performance_stream_marker_intel: crate::vk::PFN_vkCmdSetPerformanceStreamMarkerINTEL,
+    pub vk_cmd_set_performance_override_intel: crate::vk::PFN_vkCmdSetPerformanceOverrideINTEL,
+    pub vk_acquire_performance_configuration_intel: crate::vk::PFN_vkAcquirePerformanceConfigurationINTEL,
+    pub vk_release_performance_configuration_intel: crate::vk::PFN_vkReleasePerformanceConfigurationINTEL,
+    pub vk_queue_set_performance_configuration_intel: crate::vk::PFN_vkQueueSetPerformanceConfigurationINTEL,
+    pub vk_get_performance_parameter_intel: crate::vk::PFN_vkGetPerformanceParameterINTEL,
+}

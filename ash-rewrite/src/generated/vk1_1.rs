@@ -676,7 +676,7 @@ impl crate::vk::Result {
     pub const ERROR_INVALID_EXTERNAL_HANDLE: Self = Self(-1000072003);
 }
 #[repr(transparent)]
-#[derive(Clone, Copy)]
+#[derive(Clone, Copy, PartialEq, Eq, PartialOrd, Ord, Hash, Default)]
 pub struct DescriptorUpdateTemplateType(pub(crate) i32);
 ///Provided by [`vk1_1`](crate::vk1_1)
 impl DescriptorUpdateTemplateType {
@@ -688,7 +688,7 @@ impl crate::vk::ObjectType {
     pub const SAMPLER_YCBCR_CONVERSION: Self = Self(1000156000);
 }
 #[repr(transparent)]
-#[derive(Clone, Copy)]
+#[derive(Clone, Copy, PartialEq, Eq, PartialOrd, Ord, Hash, Default)]
 pub struct PointClippingBehavior(pub(crate) i32);
 ///Provided by [`vk1_1`](crate::vk1_1)
 impl PointClippingBehavior {
@@ -696,7 +696,7 @@ impl PointClippingBehavior {
     pub const USER_CLIP_PLANES_ONLY: Self = Self(1);
 }
 #[repr(transparent)]
-#[derive(Clone, Copy)]
+#[derive(Clone, Copy, PartialEq, Eq, PartialOrd, Ord, Hash, Default)]
 pub struct TessellationDomainOrigin(pub(crate) i32);
 ///Provided by [`vk1_1`](crate::vk1_1)
 impl TessellationDomainOrigin {
@@ -704,7 +704,7 @@ impl TessellationDomainOrigin {
     pub const LOWER_LEFT: Self = Self(1);
 }
 #[repr(transparent)]
-#[derive(Clone, Copy)]
+#[derive(Clone, Copy, PartialEq, Eq, PartialOrd, Ord, Hash, Default)]
 pub struct SamplerYcbcrModelConversion(pub(crate) i32);
 ///Provided by [`vk1_1`](crate::vk1_1)
 impl SamplerYcbcrModelConversion {
@@ -715,7 +715,7 @@ impl SamplerYcbcrModelConversion {
     pub const YCBCR_2020: Self = Self(4);
 }
 #[repr(transparent)]
-#[derive(Clone, Copy)]
+#[derive(Clone, Copy, PartialEq, Eq, PartialOrd, Ord, Hash, Default)]
 pub struct SamplerYcbcrRange(pub(crate) i32);
 ///Provided by [`vk1_1`](crate::vk1_1)
 impl SamplerYcbcrRange {
@@ -723,7 +723,7 @@ impl SamplerYcbcrRange {
     pub const ITU_NARROW: Self = Self(1);
 }
 #[repr(transparent)]
-#[derive(Clone, Copy)]
+#[derive(Clone, Copy, PartialEq, Eq, PartialOrd, Ord, Hash, Default)]
 pub struct ChromaLocation(pub(crate) i32);
 ///Provided by [`vk1_1`](crate::vk1_1)
 impl ChromaLocation {
@@ -1090,7 +1090,186 @@ impl core::fmt::Debug for SamplerYcbcrConversion {
         write!(f, "0x{:x}", self.0)
     }
 }
+pub type PFN_vkEnumerateInstanceVersion = unsafe extern "system" fn(
+    p_api_version: *mut u32,
+) -> crate::vk::Result;
+pub type PFN_vkGetPhysicalDeviceFeatures2 = unsafe extern "system" fn(
+    physical_device: crate::vk::PhysicalDevice,
+    p_features: *mut crate::vk::PhysicalDeviceFeatures2,
+);
+pub type PFN_vkGetPhysicalDeviceProperties2 = unsafe extern "system" fn(
+    physical_device: crate::vk::PhysicalDevice,
+    p_properties: *mut crate::vk::PhysicalDeviceProperties2,
+);
+pub type PFN_vkGetPhysicalDeviceFormatProperties2 = unsafe extern "system" fn(
+    physical_device: crate::vk::PhysicalDevice,
+    format: crate::vk::Format,
+    p_format_properties: *mut crate::vk::FormatProperties2,
+);
+pub type PFN_vkGetPhysicalDeviceImageFormatProperties2 = unsafe extern "system" fn(
+    physical_device: crate::vk::PhysicalDevice,
+    p_image_format_info: *const crate::vk::PhysicalDeviceImageFormatInfo2,
+    p_image_format_properties: *mut crate::vk::ImageFormatProperties2,
+) -> crate::vk::Result;
+pub type PFN_vkGetPhysicalDeviceQueueFamilyProperties2 = unsafe extern "system" fn(
+    physical_device: crate::vk::PhysicalDevice,
+    p_queue_family_property_count: *mut u32,
+    p_queue_family_properties: *mut crate::vk::QueueFamilyProperties2,
+);
+pub type PFN_vkGetPhysicalDeviceMemoryProperties2 = unsafe extern "system" fn(
+    physical_device: crate::vk::PhysicalDevice,
+    p_memory_properties: *mut crate::vk::PhysicalDeviceMemoryProperties2,
+);
+pub type PFN_vkGetPhysicalDeviceSparseImageFormatProperties2 = unsafe extern "system" fn(
+    physical_device: crate::vk::PhysicalDevice,
+    p_format_info: *const crate::vk::PhysicalDeviceSparseImageFormatInfo2,
+    p_property_count: *mut u32,
+    p_properties: *mut crate::vk::SparseImageFormatProperties2,
+);
+pub type PFN_vkTrimCommandPool = unsafe extern "system" fn(
+    device: crate::vk::Device,
+    command_pool: crate::vk::CommandPool,
+    flags: crate::vk::CommandPoolTrimFlags,
+);
+pub type PFN_vkGetPhysicalDeviceExternalBufferProperties = unsafe extern "system" fn(
+    physical_device: crate::vk::PhysicalDevice,
+    p_external_buffer_info: *const crate::vk::PhysicalDeviceExternalBufferInfo,
+    p_external_buffer_properties: *mut crate::vk::ExternalBufferProperties,
+);
+pub type PFN_vkGetPhysicalDeviceExternalSemaphoreProperties = unsafe extern "system" fn(
+    physical_device: crate::vk::PhysicalDevice,
+    p_external_semaphore_info: *const crate::vk::PhysicalDeviceExternalSemaphoreInfo,
+    p_external_semaphore_properties: *mut crate::vk::ExternalSemaphoreProperties,
+);
+pub type PFN_vkGetPhysicalDeviceExternalFenceProperties = unsafe extern "system" fn(
+    physical_device: crate::vk::PhysicalDevice,
+    p_external_fence_info: *const crate::vk::PhysicalDeviceExternalFenceInfo,
+    p_external_fence_properties: *mut crate::vk::ExternalFenceProperties,
+);
+pub type PFN_vkEnumeratePhysicalDeviceGroups = unsafe extern "system" fn(
+    instance: crate::vk::Instance,
+    p_physical_device_group_count: *mut u32,
+    p_physical_device_group_properties: *mut crate::vk::PhysicalDeviceGroupProperties,
+) -> crate::vk::Result;
+pub type PFN_vkGetDeviceGroupPeerMemoryFeatures = unsafe extern "system" fn(
+    device: crate::vk::Device,
+    heap_index: u32,
+    local_device_index: u32,
+    remote_device_index: u32,
+    p_peer_memory_features: *mut crate::vk::PeerMemoryFeatureFlags,
+);
+pub type PFN_vkBindBufferMemory2 = unsafe extern "system" fn(
+    device: crate::vk::Device,
+    bind_info_count: u32,
+    p_bind_infos: *const crate::vk::BindBufferMemoryInfo,
+) -> crate::vk::Result;
+pub type PFN_vkBindImageMemory2 = unsafe extern "system" fn(
+    device: crate::vk::Device,
+    bind_info_count: u32,
+    p_bind_infos: *const crate::vk::BindImageMemoryInfo,
+) -> crate::vk::Result;
+pub type PFN_vkCmdSetDeviceMask = unsafe extern "system" fn(
+    command_buffer: crate::vk::CommandBuffer,
+    device_mask: u32,
+);
+pub type PFN_vkCmdDispatchBase = unsafe extern "system" fn(
+    command_buffer: crate::vk::CommandBuffer,
+    base_group_x: u32,
+    base_group_y: u32,
+    base_group_z: u32,
+    group_count_x: u32,
+    group_count_y: u32,
+    group_count_z: u32,
+);
+pub type PFN_vkCreateDescriptorUpdateTemplate = unsafe extern "system" fn(
+    device: crate::vk::Device,
+    p_create_info: *const crate::vk::DescriptorUpdateTemplateCreateInfo,
+    p_allocator: *const crate::vk::AllocationCallbacks,
+    p_descriptor_update_template: *mut crate::vk::DescriptorUpdateTemplate,
+) -> crate::vk::Result;
+pub type PFN_vkDestroyDescriptorUpdateTemplate = unsafe extern "system" fn(
+    device: crate::vk::Device,
+    descriptor_update_template: crate::vk::DescriptorUpdateTemplate,
+    p_allocator: *const crate::vk::AllocationCallbacks,
+);
+pub type PFN_vkUpdateDescriptorSetWithTemplate = unsafe extern "system" fn(
+    device: crate::vk::Device,
+    descriptor_set: crate::vk::DescriptorSet,
+    descriptor_update_template: crate::vk::DescriptorUpdateTemplate,
+    p_data: *const core::ffi::c_void,
+);
+pub type PFN_vkGetBufferMemoryRequirements2 = unsafe extern "system" fn(
+    device: crate::vk::Device,
+    p_info: *const crate::vk::BufferMemoryRequirementsInfo2,
+    p_memory_requirements: *mut crate::vk::MemoryRequirements2,
+);
+pub type PFN_vkGetImageMemoryRequirements2 = unsafe extern "system" fn(
+    device: crate::vk::Device,
+    p_info: *const crate::vk::ImageMemoryRequirementsInfo2,
+    p_memory_requirements: *mut crate::vk::MemoryRequirements2,
+);
+pub type PFN_vkGetImageSparseMemoryRequirements2 = unsafe extern "system" fn(
+    device: crate::vk::Device,
+    p_info: *const crate::vk::ImageSparseMemoryRequirementsInfo2,
+    p_sparse_memory_requirement_count: *mut u32,
+    p_sparse_memory_requirements: *mut crate::vk::SparseImageMemoryRequirements2,
+);
+pub type PFN_vkCreateSamplerYcbcrConversion = unsafe extern "system" fn(
+    device: crate::vk::Device,
+    p_create_info: *const crate::vk::SamplerYcbcrConversionCreateInfo,
+    p_allocator: *const crate::vk::AllocationCallbacks,
+    p_ycbcr_conversion: *mut crate::vk::SamplerYcbcrConversion,
+) -> crate::vk::Result;
+pub type PFN_vkDestroySamplerYcbcrConversion = unsafe extern "system" fn(
+    device: crate::vk::Device,
+    ycbcr_conversion: crate::vk::SamplerYcbcrConversion,
+    p_allocator: *const crate::vk::AllocationCallbacks,
+);
+pub type PFN_vkGetDeviceQueue2 = unsafe extern "system" fn(
+    device: crate::vk::Device,
+    p_queue_info: *const crate::vk::DeviceQueueInfo2,
+    p_queue: *mut crate::vk::Queue,
+);
+pub type PFN_vkGetDescriptorSetLayoutSupport = unsafe extern "system" fn(
+    device: crate::vk::Device,
+    p_create_info: *const crate::vk::DescriptorSetLayoutCreateInfo,
+    p_support: *mut crate::vk::DescriptorSetLayoutSupport,
+);
 pub const LUID_SIZE: u32 = 8;
 pub const QUEUE_FAMILY_EXTERNAL: u32 = (!1);
 pub const MAX_DEVICE_GROUP_SIZE: u32 = 32;
 pub const API_VERSION_1_1: u32 = crate::vk::make_api_version(0, 1, 1, 0);
+pub struct EntryFnV1_1 {
+    pub vk_enumerate_instance_version: crate::vk::PFN_vkEnumerateInstanceVersion,
+}
+pub struct InstanceFnV1_1 {
+    pub vk_get_physical_device_features2: crate::vk::PFN_vkGetPhysicalDeviceFeatures2,
+    pub vk_get_physical_device_properties2: crate::vk::PFN_vkGetPhysicalDeviceProperties2,
+    pub vk_get_physical_device_format_properties2: crate::vk::PFN_vkGetPhysicalDeviceFormatProperties2,
+    pub vk_get_physical_device_image_format_properties2: crate::vk::PFN_vkGetPhysicalDeviceImageFormatProperties2,
+    pub vk_get_physical_device_queue_family_properties2: crate::vk::PFN_vkGetPhysicalDeviceQueueFamilyProperties2,
+    pub vk_get_physical_device_memory_properties2: crate::vk::PFN_vkGetPhysicalDeviceMemoryProperties2,
+    pub vk_get_physical_device_sparse_image_format_properties2: crate::vk::PFN_vkGetPhysicalDeviceSparseImageFormatProperties2,
+    pub vk_get_physical_device_external_buffer_properties: crate::vk::PFN_vkGetPhysicalDeviceExternalBufferProperties,
+    pub vk_get_physical_device_external_semaphore_properties: crate::vk::PFN_vkGetPhysicalDeviceExternalSemaphoreProperties,
+    pub vk_get_physical_device_external_fence_properties: crate::vk::PFN_vkGetPhysicalDeviceExternalFenceProperties,
+    pub vk_enumerate_physical_device_groups: crate::vk::PFN_vkEnumeratePhysicalDeviceGroups,
+}
+pub struct DeviceFnV1_1 {
+    pub vk_trim_command_pool: crate::vk::PFN_vkTrimCommandPool,
+    pub vk_get_device_group_peer_memory_features: crate::vk::PFN_vkGetDeviceGroupPeerMemoryFeatures,
+    pub vk_bind_buffer_memory2: crate::vk::PFN_vkBindBufferMemory2,
+    pub vk_bind_image_memory2: crate::vk::PFN_vkBindImageMemory2,
+    pub vk_cmd_set_device_mask: crate::vk::PFN_vkCmdSetDeviceMask,
+    pub vk_cmd_dispatch_base: crate::vk::PFN_vkCmdDispatchBase,
+    pub vk_create_descriptor_update_template: crate::vk::PFN_vkCreateDescriptorUpdateTemplate,
+    pub vk_destroy_descriptor_update_template: crate::vk::PFN_vkDestroyDescriptorUpdateTemplate,
+    pub vk_update_descriptor_set_with_template: crate::vk::PFN_vkUpdateDescriptorSetWithTemplate,
+    pub vk_get_buffer_memory_requirements2: crate::vk::PFN_vkGetBufferMemoryRequirements2,
+    pub vk_get_image_memory_requirements2: crate::vk::PFN_vkGetImageMemoryRequirements2,
+    pub vk_get_image_sparse_memory_requirements2: crate::vk::PFN_vkGetImageSparseMemoryRequirements2,
+    pub vk_create_sampler_ycbcr_conversion: crate::vk::PFN_vkCreateSamplerYcbcrConversion,
+    pub vk_destroy_sampler_ycbcr_conversion: crate::vk::PFN_vkDestroySamplerYcbcrConversion,
+    pub vk_get_device_queue2: crate::vk::PFN_vkGetDeviceQueue2,
+    pub vk_get_descriptor_set_layout_support: crate::vk::PFN_vkGetDescriptorSetLayoutSupport,
+}

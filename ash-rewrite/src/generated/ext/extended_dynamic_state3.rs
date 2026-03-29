@@ -107,5 +107,174 @@ impl crate::vk::DynamicState {
     pub const REPRESENTATIVE_FRAGMENT_TEST_ENABLE_NV: Self = Self(1000455031);
     pub const COVERAGE_REDUCTION_MODE_NV: Self = Self(1000455032);
 }
+pub type PFN_vkCmdSetTessellationDomainOriginEXT = unsafe extern "system" fn(
+    command_buffer: crate::vk::CommandBuffer,
+    domain_origin: crate::vk::TessellationDomainOrigin,
+);
+pub type PFN_vkCmdSetDepthClampEnableEXT = unsafe extern "system" fn(
+    command_buffer: crate::vk::CommandBuffer,
+    depth_clamp_enable: crate::vk::Bool32,
+);
+pub type PFN_vkCmdSetPolygonModeEXT = unsafe extern "system" fn(
+    command_buffer: crate::vk::CommandBuffer,
+    polygon_mode: crate::vk::PolygonMode,
+);
+pub type PFN_vkCmdSetRasterizationSamplesEXT = unsafe extern "system" fn(
+    command_buffer: crate::vk::CommandBuffer,
+    rasterization_samples: crate::vk::SampleCountFlagBits,
+);
+pub type PFN_vkCmdSetSampleMaskEXT = unsafe extern "system" fn(
+    command_buffer: crate::vk::CommandBuffer,
+    samples: crate::vk::SampleCountFlagBits,
+    p_sample_mask: *const crate::vk::SampleMask,
+);
+pub type PFN_vkCmdSetAlphaToCoverageEnableEXT = unsafe extern "system" fn(
+    command_buffer: crate::vk::CommandBuffer,
+    alpha_to_coverage_enable: crate::vk::Bool32,
+);
+pub type PFN_vkCmdSetAlphaToOneEnableEXT = unsafe extern "system" fn(
+    command_buffer: crate::vk::CommandBuffer,
+    alpha_to_one_enable: crate::vk::Bool32,
+);
+pub type PFN_vkCmdSetLogicOpEnableEXT = unsafe extern "system" fn(
+    command_buffer: crate::vk::CommandBuffer,
+    logic_op_enable: crate::vk::Bool32,
+);
+pub type PFN_vkCmdSetColorBlendEnableEXT = unsafe extern "system" fn(
+    command_buffer: crate::vk::CommandBuffer,
+    first_attachment: u32,
+    attachment_count: u32,
+    p_color_blend_enables: *const crate::vk::Bool32,
+);
+pub type PFN_vkCmdSetColorBlendEquationEXT = unsafe extern "system" fn(
+    command_buffer: crate::vk::CommandBuffer,
+    first_attachment: u32,
+    attachment_count: u32,
+    p_color_blend_equations: *const crate::vk::ColorBlendEquationEXT,
+);
+pub type PFN_vkCmdSetColorWriteMaskEXT = unsafe extern "system" fn(
+    command_buffer: crate::vk::CommandBuffer,
+    first_attachment: u32,
+    attachment_count: u32,
+    p_color_write_masks: *const crate::vk::ColorComponentFlags,
+);
+pub type PFN_vkCmdSetRasterizationStreamEXT = unsafe extern "system" fn(
+    command_buffer: crate::vk::CommandBuffer,
+    rasterization_stream: u32,
+);
+pub type PFN_vkCmdSetConservativeRasterizationModeEXT = unsafe extern "system" fn(
+    command_buffer: crate::vk::CommandBuffer,
+    conservative_rasterization_mode: crate::vk::ConservativeRasterizationModeEXT,
+);
+pub type PFN_vkCmdSetExtraPrimitiveOverestimationSizeEXT = unsafe extern "system" fn(
+    command_buffer: crate::vk::CommandBuffer,
+    extra_primitive_overestimation_size: core::ffi::c_float,
+);
+pub type PFN_vkCmdSetDepthClipEnableEXT = unsafe extern "system" fn(
+    command_buffer: crate::vk::CommandBuffer,
+    depth_clip_enable: crate::vk::Bool32,
+);
+pub type PFN_vkCmdSetSampleLocationsEnableEXT = unsafe extern "system" fn(
+    command_buffer: crate::vk::CommandBuffer,
+    sample_locations_enable: crate::vk::Bool32,
+);
+pub type PFN_vkCmdSetColorBlendAdvancedEXT = unsafe extern "system" fn(
+    command_buffer: crate::vk::CommandBuffer,
+    first_attachment: u32,
+    attachment_count: u32,
+    p_color_blend_advanced: *const crate::vk::ColorBlendAdvancedEXT,
+);
+pub type PFN_vkCmdSetProvokingVertexModeEXT = unsafe extern "system" fn(
+    command_buffer: crate::vk::CommandBuffer,
+    provoking_vertex_mode: crate::vk::ProvokingVertexModeEXT,
+);
+pub type PFN_vkCmdSetLineRasterizationModeEXT = unsafe extern "system" fn(
+    command_buffer: crate::vk::CommandBuffer,
+    line_rasterization_mode: crate::vk::LineRasterizationModeEXT,
+);
+pub type PFN_vkCmdSetLineStippleEnableEXT = unsafe extern "system" fn(
+    command_buffer: crate::vk::CommandBuffer,
+    stippled_line_enable: crate::vk::Bool32,
+);
+pub type PFN_vkCmdSetDepthClipNegativeOneToOneEXT = unsafe extern "system" fn(
+    command_buffer: crate::vk::CommandBuffer,
+    negative_one_to_one: crate::vk::Bool32,
+);
+pub type PFN_vkCmdSetViewportWScalingEnableNV = unsafe extern "system" fn(
+    command_buffer: crate::vk::CommandBuffer,
+    viewport_w_scaling_enable: crate::vk::Bool32,
+);
+pub type PFN_vkCmdSetViewportSwizzleNV = unsafe extern "system" fn(
+    command_buffer: crate::vk::CommandBuffer,
+    first_viewport: u32,
+    viewport_count: u32,
+    p_viewport_swizzles: *const crate::vk::ViewportSwizzleNV,
+);
+pub type PFN_vkCmdSetCoverageToColorEnableNV = unsafe extern "system" fn(
+    command_buffer: crate::vk::CommandBuffer,
+    coverage_to_color_enable: crate::vk::Bool32,
+);
+pub type PFN_vkCmdSetCoverageToColorLocationNV = unsafe extern "system" fn(
+    command_buffer: crate::vk::CommandBuffer,
+    coverage_to_color_location: u32,
+);
+pub type PFN_vkCmdSetCoverageModulationModeNV = unsafe extern "system" fn(
+    command_buffer: crate::vk::CommandBuffer,
+    coverage_modulation_mode: crate::vk::CoverageModulationModeNV,
+);
+pub type PFN_vkCmdSetCoverageModulationTableEnableNV = unsafe extern "system" fn(
+    command_buffer: crate::vk::CommandBuffer,
+    coverage_modulation_table_enable: crate::vk::Bool32,
+);
+pub type PFN_vkCmdSetCoverageModulationTableNV = unsafe extern "system" fn(
+    command_buffer: crate::vk::CommandBuffer,
+    coverage_modulation_table_count: u32,
+    p_coverage_modulation_table: *const core::ffi::c_float,
+);
+pub type PFN_vkCmdSetShadingRateImageEnableNV = unsafe extern "system" fn(
+    command_buffer: crate::vk::CommandBuffer,
+    shading_rate_image_enable: crate::vk::Bool32,
+);
+pub type PFN_vkCmdSetCoverageReductionModeNV = unsafe extern "system" fn(
+    command_buffer: crate::vk::CommandBuffer,
+    coverage_reduction_mode: crate::vk::CoverageReductionModeNV,
+);
+pub type PFN_vkCmdSetRepresentativeFragmentTestEnableNV = unsafe extern "system" fn(
+    command_buffer: crate::vk::CommandBuffer,
+    representative_fragment_test_enable: crate::vk::Bool32,
+);
 pub const EXT_EXTENDED_DYNAMIC_STATE_3_SPEC_VERSION: u32 = 2;
 pub const EXT_EXTENDED_DYNAMIC_STATE_3_EXTENSION_NAME: &core::ffi::CStr = c"VK_EXT_extended_dynamic_state3";
+pub struct DeviceFn {
+    pub vk_cmd_set_tessellation_domain_origin_ext: crate::vk::PFN_vkCmdSetTessellationDomainOriginEXT,
+    pub vk_cmd_set_depth_clamp_enable_ext: crate::vk::PFN_vkCmdSetDepthClampEnableEXT,
+    pub vk_cmd_set_polygon_mode_ext: crate::vk::PFN_vkCmdSetPolygonModeEXT,
+    pub vk_cmd_set_rasterization_samples_ext: crate::vk::PFN_vkCmdSetRasterizationSamplesEXT,
+    pub vk_cmd_set_sample_mask_ext: crate::vk::PFN_vkCmdSetSampleMaskEXT,
+    pub vk_cmd_set_alpha_to_coverage_enable_ext: crate::vk::PFN_vkCmdSetAlphaToCoverageEnableEXT,
+    pub vk_cmd_set_alpha_to_one_enable_ext: crate::vk::PFN_vkCmdSetAlphaToOneEnableEXT,
+    pub vk_cmd_set_logic_op_enable_ext: crate::vk::PFN_vkCmdSetLogicOpEnableEXT,
+    pub vk_cmd_set_color_blend_enable_ext: crate::vk::PFN_vkCmdSetColorBlendEnableEXT,
+    pub vk_cmd_set_color_blend_equation_ext: crate::vk::PFN_vkCmdSetColorBlendEquationEXT,
+    pub vk_cmd_set_color_write_mask_ext: crate::vk::PFN_vkCmdSetColorWriteMaskEXT,
+    pub vk_cmd_set_rasterization_stream_ext: crate::vk::PFN_vkCmdSetRasterizationStreamEXT,
+    pub vk_cmd_set_conservative_rasterization_mode_ext: crate::vk::PFN_vkCmdSetConservativeRasterizationModeEXT,
+    pub vk_cmd_set_extra_primitive_overestimation_size_ext: crate::vk::PFN_vkCmdSetExtraPrimitiveOverestimationSizeEXT,
+    pub vk_cmd_set_depth_clip_enable_ext: crate::vk::PFN_vkCmdSetDepthClipEnableEXT,
+    pub vk_cmd_set_sample_locations_enable_ext: crate::vk::PFN_vkCmdSetSampleLocationsEnableEXT,
+    pub vk_cmd_set_color_blend_advanced_ext: crate::vk::PFN_vkCmdSetColorBlendAdvancedEXT,
+    pub vk_cmd_set_provoking_vertex_mode_ext: crate::vk::PFN_vkCmdSetProvokingVertexModeEXT,
+    pub vk_cmd_set_line_rasterization_mode_ext: crate::vk::PFN_vkCmdSetLineRasterizationModeEXT,
+    pub vk_cmd_set_line_stipple_enable_ext: crate::vk::PFN_vkCmdSetLineStippleEnableEXT,
+    pub vk_cmd_set_depth_clip_negative_one_to_one_ext: crate::vk::PFN_vkCmdSetDepthClipNegativeOneToOneEXT,
+    pub vk_cmd_set_viewport_w_scaling_enable_nv: crate::vk::PFN_vkCmdSetViewportWScalingEnableNV,
+    pub vk_cmd_set_viewport_swizzle_nv: crate::vk::PFN_vkCmdSetViewportSwizzleNV,
+    pub vk_cmd_set_coverage_to_color_enable_nv: crate::vk::PFN_vkCmdSetCoverageToColorEnableNV,
+    pub vk_cmd_set_coverage_to_color_location_nv: crate::vk::PFN_vkCmdSetCoverageToColorLocationNV,
+    pub vk_cmd_set_coverage_modulation_mode_nv: crate::vk::PFN_vkCmdSetCoverageModulationModeNV,
+    pub vk_cmd_set_coverage_modulation_table_enable_nv: crate::vk::PFN_vkCmdSetCoverageModulationTableEnableNV,
+    pub vk_cmd_set_coverage_modulation_table_nv: crate::vk::PFN_vkCmdSetCoverageModulationTableNV,
+    pub vk_cmd_set_shading_rate_image_enable_nv: crate::vk::PFN_vkCmdSetShadingRateImageEnableNV,
+    pub vk_cmd_set_coverage_reduction_mode_nv: crate::vk::PFN_vkCmdSetCoverageReductionModeNV,
+    pub vk_cmd_set_representative_fragment_test_enable_nv: crate::vk::PFN_vkCmdSetRepresentativeFragmentTestEnableNV,
+}

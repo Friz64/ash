@@ -52,7 +52,7 @@ impl crate::vk::StructureType {
     pub const ACCELERATION_STRUCTURE_GEOMETRY_SPHERES_DATA_NV: Self = Self(1000429010);
 }
 #[repr(transparent)]
-#[derive(Clone, Copy)]
+#[derive(Clone, Copy, PartialEq, Eq, PartialOrd, Ord, Hash, Default)]
 pub struct RayTracingLssIndexingModeNV(pub(crate) i32);
 ///Provided by [`nv::ray_tracing_linear_swept_spheres`](crate::nv::ray_tracing_linear_swept_spheres)
 impl RayTracingLssIndexingModeNV {
@@ -60,7 +60,7 @@ impl RayTracingLssIndexingModeNV {
     pub const SUCCESSIVE_NV: Self = Self(1);
 }
 #[repr(transparent)]
-#[derive(Clone, Copy)]
+#[derive(Clone, Copy, PartialEq, Eq, PartialOrd, Ord, Hash, Default)]
 pub struct RayTracingLssPrimitiveEndCapsModeNV(pub(crate) i32);
 ///Provided by [`nv::ray_tracing_linear_swept_spheres`](crate::nv::ray_tracing_linear_swept_spheres)
 impl RayTracingLssPrimitiveEndCapsModeNV {

@@ -1,7 +1,10 @@
 use crate::{
     decl::{ArrayLen, CPrimaryType, Decl, Mutability, Ty},
     item::Named,
-    name::{CMacroName, ConstantName, EnumeratorName, FuncPointerName, TypeName, VariableName},
+    name::{
+        CMacroName, CommandName, ConstantName, EnumeratorName, FuncPointerName, TypeName,
+        VariableName,
+    },
     xml::cexpr::CExprItem,
 };
 use proc_macro2::{Literal, TokenStream};
@@ -15,6 +18,8 @@ pub trait RustTranslator {
     fn type_to_rust(&self, name: TypeName, with_path: bool) -> TokenStream;
 
     fn func_pointer_to_rust(&self, name: FuncPointerName, with_path: bool) -> TokenStream;
+
+    fn command_to_rust(&self, name: CommandName, with_path: bool) -> TokenStream;
 
     fn constant_to_rust(&self, name: ConstantName, with_path: bool) -> TokenStream;
 
@@ -62,6 +67,12 @@ impl<T: Named<TypeName>> RustName<TypeName> for T {
 impl<T: Named<FuncPointerName>> RustName<FuncPointerName> for T {
     fn rust_name(&self, rust_translator: &impl RustTranslator) -> TokenStream {
         rust_translator.func_pointer_to_rust(self.name(), false)
+    }
+}
+
+impl<T: Named<CommandName>> RustName<CommandName> for T {
+    fn rust_name(&self, rust_translator: &impl RustTranslator) -> TokenStream {
+        rust_translator.command_to_rust(self.name(), false)
     }
 }
 

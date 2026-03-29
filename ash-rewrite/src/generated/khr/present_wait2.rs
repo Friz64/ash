@@ -33,5 +33,13 @@ impl crate::vk::StructureType {
 impl crate::vk::SwapchainCreateFlagBitsKHR {
     pub const PRESENT_WAIT_2_KHR: Self = Self(1 << 7);
 }
+pub type PFN_vkWaitForPresent2KHR = unsafe extern "system" fn(
+    device: crate::vk::Device,
+    swapchain: crate::vk::SwapchainKHR,
+    p_present_wait2_info: *const crate::vk::PresentWait2InfoKHR,
+) -> crate::vk::Result;
 pub const KHR_PRESENT_WAIT_2_SPEC_VERSION: u32 = 1;
 pub const KHR_PRESENT_WAIT_2_EXTENSION_NAME: &core::ffi::CStr = c"VK_KHR_present_wait2";
+pub struct DeviceFn {
+    pub vk_wait_for_present2_khr: crate::vk::PFN_vkWaitForPresent2KHR,
+}

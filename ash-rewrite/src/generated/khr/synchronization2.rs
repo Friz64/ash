@@ -131,5 +131,19 @@ impl crate::vk::SubmitFlagBits {
 pub type AccessFlags2KHR = crate::vk::AccessFlags2;
 pub type PipelineStageFlags2KHR = crate::vk::PipelineStageFlags2;
 pub type SubmitFlagsKHR = crate::vk::SubmitFlags;
+pub type PFN_vkCmdSetEvent2KHR = crate::vk::PFN_vkCmdSetEvent2;
+pub type PFN_vkCmdResetEvent2KHR = crate::vk::PFN_vkCmdResetEvent2;
+pub type PFN_vkCmdWaitEvents2KHR = crate::vk::PFN_vkCmdWaitEvents2;
+pub type PFN_vkCmdPipelineBarrier2KHR = crate::vk::PFN_vkCmdPipelineBarrier2;
+pub type PFN_vkQueueSubmit2KHR = crate::vk::PFN_vkQueueSubmit2;
+pub type PFN_vkCmdWriteTimestamp2KHR = crate::vk::PFN_vkCmdWriteTimestamp2;
 pub const KHR_SYNCHRONIZATION_2_SPEC_VERSION: u32 = 1;
 pub const KHR_SYNCHRONIZATION_2_EXTENSION_NAME: &core::ffi::CStr = c"VK_KHR_synchronization2";
+pub struct DeviceFn {
+    pub vk_cmd_set_event2_khr: crate::vk::PFN_vkCmdSetEvent2KHR,
+    pub vk_cmd_reset_event2_khr: crate::vk::PFN_vkCmdResetEvent2KHR,
+    pub vk_cmd_wait_events2_khr: crate::vk::PFN_vkCmdWaitEvents2KHR,
+    pub vk_cmd_pipeline_barrier2_khr: crate::vk::PFN_vkCmdPipelineBarrier2KHR,
+    pub vk_queue_submit2_khr: crate::vk::PFN_vkQueueSubmit2KHR,
+    pub vk_cmd_write_timestamp2_khr: crate::vk::PFN_vkCmdWriteTimestamp2KHR,
+}

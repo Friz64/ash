@@ -33,5 +33,13 @@ impl crate::vk::ExternalMemoryHandleTypeFlagBits {
 #[allow(non_camel_case_types)]
 #[derive(Clone, Copy)]
 pub struct RemoteAddressNV(pub(crate) *mut core::ffi::c_void);
+pub type PFN_vkGetMemoryRemoteAddressNV = unsafe extern "system" fn(
+    device: crate::vk::Device,
+    p_memory_get_remote_address_info: *const crate::vk::MemoryGetRemoteAddressInfoNV,
+    p_address: *mut crate::vk::RemoteAddressNV,
+) -> crate::vk::Result;
 pub const NV_EXTERNAL_MEMORY_RDMA_SPEC_VERSION: u32 = 1;
 pub const NV_EXTERNAL_MEMORY_RDMA_EXTENSION_NAME: &core::ffi::CStr = c"VK_NV_external_memory_rdma";
+pub struct DeviceFn {
+    pub vk_get_memory_remote_address_nv: crate::vk::PFN_vkGetMemoryRemoteAddressNV,
+}

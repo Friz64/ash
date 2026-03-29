@@ -21,7 +21,7 @@ impl crate::vk::StructureType {
     pub const DISPLAY_MODE_STEREO_PROPERTIES_NV: Self = Self(1000551001);
 }
 #[repr(transparent)]
-#[derive(Clone, Copy)]
+#[derive(Clone, Copy, PartialEq, Eq, PartialOrd, Ord, Hash, Default)]
 pub struct DisplaySurfaceStereoTypeNV(pub(crate) i32);
 ///Provided by [`nv::display_stereo`](crate::nv::display_stereo)
 impl DisplaySurfaceStereoTypeNV {

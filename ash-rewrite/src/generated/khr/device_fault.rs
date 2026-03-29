@@ -75,7 +75,7 @@ impl crate::vk::StructureType {
     pub const DEVICE_FAULT_DEBUG_INFO_KHR: Self = Self(1000573003);
 }
 #[repr(transparent)]
-#[derive(Clone, Copy)]
+#[derive(Clone, Copy, PartialEq, Eq, PartialOrd, Ord, Hash, Default)]
 pub struct DeviceFaultAddressTypeKHR(pub(crate) i32);
 ///Provided by [`khr::device_fault`](crate::khr::device_fault)
 impl DeviceFaultAddressTypeKHR {
@@ -88,7 +88,7 @@ impl DeviceFaultAddressTypeKHR {
     pub const INSTRUCTION_POINTER_FAULT_KHR: Self = Self(6);
 }
 #[repr(transparent)]
-#[derive(Clone, Copy)]
+#[derive(Clone, Copy, PartialEq, Eq, PartialOrd, Ord, Hash, Default)]
 pub struct DeviceFaultVendorBinaryHeaderVersionKHR(pub(crate) i32);
 ///Provided by [`khr::device_fault`](crate::khr::device_fault)
 impl DeviceFaultVendorBinaryHeaderVersionKHR {
@@ -116,5 +116,19 @@ impl DeviceFaultFlagBitsKHR {
     pub const FLAG_WATCHDOG_TIMEOUT_KHR: Self = Self(1 << 4);
     pub const FLAG_OVERFLOW_KHR: Self = Self(1 << 5);
 }
+pub type PFN_vkGetDeviceFaultReportsKHR = unsafe extern "system" fn(
+    device: crate::vk::Device,
+    timeout: u64,
+    p_fault_counts: *mut u32,
+    p_fault_info: *mut crate::vk::DeviceFaultInfoKHR,
+) -> crate::vk::Result;
+pub type PFN_vkGetDeviceFaultDebugInfoKHR = unsafe extern "system" fn(
+    device: crate::vk::Device,
+    p_debug_info: *mut crate::vk::DeviceFaultDebugInfoKHR,
+) -> crate::vk::Result;
 pub const KHR_DEVICE_FAULT_SPEC_VERSION: u32 = 1;
 pub const KHR_DEVICE_FAULT_EXTENSION_NAME: &core::ffi::CStr = c"VK_KHR_device_fault";
+pub struct DeviceFn {
+    pub vk_get_device_fault_reports_khr: crate::vk::PFN_vkGetDeviceFaultReportsKHR,
+    pub vk_get_device_fault_debug_info_khr: crate::vk::PFN_vkGetDeviceFaultDebugInfoKHR,
+}

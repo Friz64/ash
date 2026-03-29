@@ -68,5 +68,21 @@ impl MemoryDecompressionMethodFlagBitsEXT {
 impl crate::vk::BufferUsageFlagBits2 {
     pub const MEMORY_DECOMPRESSION_EXT: Self = Self(1 << 32);
 }
+pub type PFN_vkCmdDecompressMemoryEXT = unsafe extern "system" fn(
+    command_buffer: crate::vk::CommandBuffer,
+    p_decompress_memory_info_ext: *const crate::vk::DecompressMemoryInfoEXT,
+);
+pub type PFN_vkCmdDecompressMemoryIndirectCountEXT = unsafe extern "system" fn(
+    command_buffer: crate::vk::CommandBuffer,
+    decompression_method: crate::vk::MemoryDecompressionMethodFlagsEXT,
+    indirect_commands_address: crate::vk::DeviceAddress,
+    indirect_commands_count_address: crate::vk::DeviceAddress,
+    max_decompression_count: u32,
+    stride: u32,
+);
 pub const EXT_MEMORY_DECOMPRESSION_SPEC_VERSION: u32 = 1;
 pub const EXT_MEMORY_DECOMPRESSION_EXTENSION_NAME: &core::ffi::CStr = c"VK_EXT_memory_decompression";
+pub struct DeviceFn {
+    pub vk_cmd_decompress_memory_ext: crate::vk::PFN_vkCmdDecompressMemoryEXT,
+    pub vk_cmd_decompress_memory_indirect_count_ext: crate::vk::PFN_vkCmdDecompressMemoryIndirectCountEXT,
+}

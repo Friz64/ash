@@ -17,5 +17,14 @@ bitflags::bitflags! {
     #[repr(transparent)] #[derive(Clone, Copy)] pub struct IOSSurfaceCreateFlagsMVK : u32
     {}
 }
+pub type PFN_vkCreateIOSSurfaceMVK = unsafe extern "system" fn(
+    instance: crate::vk::Instance,
+    p_create_info: *const crate::vk::IOSSurfaceCreateInfoMVK,
+    p_allocator: *const crate::vk::AllocationCallbacks,
+    p_surface: *mut crate::vk::SurfaceKHR,
+) -> crate::vk::Result;
 pub const MVK_IOS_SURFACE_SPEC_VERSION: u32 = 3;
 pub const MVK_IOS_SURFACE_EXTENSION_NAME: &core::ffi::CStr = c"VK_MVK_ios_surface";
+pub struct InstanceFn {
+    pub vk_create_ios_surface_mvk: crate::vk::PFN_vkCreateIOSSurfaceMVK,
+}

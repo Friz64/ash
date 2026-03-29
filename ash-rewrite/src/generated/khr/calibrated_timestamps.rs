@@ -13,7 +13,7 @@ impl crate::vk::StructureType {
     pub const CALIBRATED_TIMESTAMP_INFO_KHR: Self = Self(1000184000);
 }
 #[repr(transparent)]
-#[derive(Clone, Copy)]
+#[derive(Clone, Copy, PartialEq, Eq, PartialOrd, Ord, Hash, Default)]
 pub struct TimeDomainKHR(pub(crate) i32);
 ///Provided by [`khr::calibrated_timestamps`](crate::khr::calibrated_timestamps)
 impl TimeDomainKHR {
@@ -22,5 +22,23 @@ impl TimeDomainKHR {
     pub const CLOCK_MONOTONIC_RAW_KHR: Self = Self(2);
     pub const QUERY_PERFORMANCE_COUNTER_KHR: Self = Self(3);
 }
+pub type PFN_vkGetPhysicalDeviceCalibrateableTimeDomainsKHR = unsafe extern "system" fn(
+    physical_device: crate::vk::PhysicalDevice,
+    p_time_domain_count: *mut u32,
+    p_time_domains: *mut crate::vk::TimeDomainKHR,
+) -> crate::vk::Result;
+pub type PFN_vkGetCalibratedTimestampsKHR = unsafe extern "system" fn(
+    device: crate::vk::Device,
+    timestamp_count: u32,
+    p_timestamp_infos: *const crate::vk::CalibratedTimestampInfoKHR,
+    p_timestamps: *mut u64,
+    p_max_deviation: *mut u64,
+) -> crate::vk::Result;
 pub const KHR_CALIBRATED_TIMESTAMPS_SPEC_VERSION: u32 = 1;
 pub const KHR_CALIBRATED_TIMESTAMPS_EXTENSION_NAME: &core::ffi::CStr = c"VK_KHR_calibrated_timestamps";
+pub struct InstanceFn {
+    pub vk_get_physical_device_calibrateable_time_domains_khr: crate::vk::PFN_vkGetPhysicalDeviceCalibrateableTimeDomainsKHR,
+}
+pub struct DeviceFn {
+    pub vk_get_calibrated_timestamps_khr: crate::vk::PFN_vkGetCalibratedTimestampsKHR,
+}

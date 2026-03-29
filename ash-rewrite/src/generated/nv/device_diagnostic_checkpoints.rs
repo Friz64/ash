@@ -38,5 +38,24 @@ impl crate::vk::StructureType {
     pub const QUEUE_FAMILY_CHECKPOINT_PROPERTIES_2_NV: Self = Self(1000314008);
     pub const CHECKPOINT_DATA_2_NV: Self = Self(1000314009);
 }
+pub type PFN_vkCmdSetCheckpointNV = unsafe extern "system" fn(
+    command_buffer: crate::vk::CommandBuffer,
+    p_checkpoint_marker: *const core::ffi::c_void,
+);
+pub type PFN_vkGetQueueCheckpointDataNV = unsafe extern "system" fn(
+    queue: crate::vk::Queue,
+    p_checkpoint_data_count: *mut u32,
+    p_checkpoint_data: *mut crate::vk::CheckpointDataNV,
+);
+pub type PFN_vkGetQueueCheckpointData2NV = unsafe extern "system" fn(
+    queue: crate::vk::Queue,
+    p_checkpoint_data_count: *mut u32,
+    p_checkpoint_data: *mut crate::vk::CheckpointData2NV,
+);
 pub const NV_DEVICE_DIAGNOSTIC_CHECKPOINTS_SPEC_VERSION: u32 = 2;
 pub const NV_DEVICE_DIAGNOSTIC_CHECKPOINTS_EXTENSION_NAME: &core::ffi::CStr = c"VK_NV_device_diagnostic_checkpoints";
+pub struct DeviceFn {
+    pub vk_cmd_set_checkpoint_nv: crate::vk::PFN_vkCmdSetCheckpointNV,
+    pub vk_get_queue_checkpoint_data_nv: crate::vk::PFN_vkGetQueueCheckpointDataNV,
+    pub vk_get_queue_checkpoint_data2_nv: crate::vk::PFN_vkGetQueueCheckpointData2NV,
+}

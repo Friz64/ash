@@ -14,5 +14,13 @@ impl crate::vk::DescriptorUpdateTemplateType {
 impl crate::vk::DescriptorSetLayoutCreateFlagBits {
     pub const PUSH_DESCRIPTOR_KHR: Self = Self::PUSH_DESCRIPTOR;
 }
+pub type PFN_vkCmdPushDescriptorSetKHR = crate::vk::PFN_vkCmdPushDescriptorSet;
+pub type PFN_vkCmdPushDescriptorSetWithTemplateKHR = crate::vk::PFN_vkCmdPushDescriptorSetWithTemplate;
 pub const KHR_PUSH_DESCRIPTOR_SPEC_VERSION: u32 = 2;
 pub const KHR_PUSH_DESCRIPTOR_EXTENSION_NAME: &core::ffi::CStr = c"VK_KHR_push_descriptor";
+pub struct DeviceFn {
+    pub vk_cmd_push_descriptor_set_khr: crate::vk::PFN_vkCmdPushDescriptorSetKHR,
+}
+pub struct DeviceFn {
+    pub vk_cmd_push_descriptor_set_with_template_khr: crate::vk::PFN_vkCmdPushDescriptorSetWithTemplateKHR,
+}

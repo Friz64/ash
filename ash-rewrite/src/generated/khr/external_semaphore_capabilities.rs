@@ -25,5 +25,9 @@ impl crate::vk::ExternalSemaphoreFeatureFlagBits {
 }
 pub type ExternalSemaphoreHandleTypeFlagsKHR = crate::vk::ExternalSemaphoreHandleTypeFlags;
 pub type ExternalSemaphoreFeatureFlagsKHR = crate::vk::ExternalSemaphoreFeatureFlags;
+pub type PFN_vkGetPhysicalDeviceExternalSemaphorePropertiesKHR = crate::vk::PFN_vkGetPhysicalDeviceExternalSemaphoreProperties;
 pub const KHR_EXTERNAL_SEMAPHORE_CAPABILITIES_SPEC_VERSION: u32 = 1;
 pub const KHR_EXTERNAL_SEMAPHORE_CAPABILITIES_EXTENSION_NAME: &core::ffi::CStr = c"VK_KHR_external_semaphore_capabilities";
+pub struct InstanceFn {
+    pub vk_get_physical_device_external_semaphore_properties_khr: crate::vk::PFN_vkGetPhysicalDeviceExternalSemaphorePropertiesKHR,
+}

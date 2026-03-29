@@ -96,5 +96,12 @@ impl ResolveImageFlagBitsKHR {
     pub const SKIP_TRANSFER_FUNCTION_KHR: Self = Self(1 << 0);
     pub const ENABLE_TRANSFER_FUNCTION_KHR: Self = Self(1 << 1);
 }
+pub type PFN_vkCmdEndRendering2KHR = unsafe extern "system" fn(
+    command_buffer: crate::vk::CommandBuffer,
+    p_rendering_end_info: *const crate::vk::RenderingEndInfoKHR,
+);
 pub const KHR_MAINTENANCE_10_SPEC_VERSION: u32 = 1;
 pub const KHR_MAINTENANCE_10_EXTENSION_NAME: &core::ffi::CStr = c"VK_KHR_maintenance10";
+pub struct DeviceFn {
+    pub vk_cmd_end_rendering2_khr: crate::vk::PFN_vkCmdEndRendering2KHR,
+}

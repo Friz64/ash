@@ -22,5 +22,21 @@ impl crate::vk::StructureType {
     pub const SPARSE_IMAGE_FORMAT_PROPERTIES_2_KHR: Self = Self::SPARSE_IMAGE_FORMAT_PROPERTIES_2;
     pub const PHYSICAL_DEVICE_SPARSE_IMAGE_FORMAT_INFO_2_KHR: Self = Self::PHYSICAL_DEVICE_SPARSE_IMAGE_FORMAT_INFO_2;
 }
+pub type PFN_vkGetPhysicalDeviceFeatures2KHR = crate::vk::PFN_vkGetPhysicalDeviceFeatures2;
+pub type PFN_vkGetPhysicalDeviceProperties2KHR = crate::vk::PFN_vkGetPhysicalDeviceProperties2;
+pub type PFN_vkGetPhysicalDeviceFormatProperties2KHR = crate::vk::PFN_vkGetPhysicalDeviceFormatProperties2;
+pub type PFN_vkGetPhysicalDeviceImageFormatProperties2KHR = crate::vk::PFN_vkGetPhysicalDeviceImageFormatProperties2;
+pub type PFN_vkGetPhysicalDeviceQueueFamilyProperties2KHR = crate::vk::PFN_vkGetPhysicalDeviceQueueFamilyProperties2;
+pub type PFN_vkGetPhysicalDeviceMemoryProperties2KHR = crate::vk::PFN_vkGetPhysicalDeviceMemoryProperties2;
+pub type PFN_vkGetPhysicalDeviceSparseImageFormatProperties2KHR = crate::vk::PFN_vkGetPhysicalDeviceSparseImageFormatProperties2;
 pub const KHR_GET_PHYSICAL_DEVICE_PROPERTIES_2_SPEC_VERSION: u32 = 2;
 pub const KHR_GET_PHYSICAL_DEVICE_PROPERTIES_2_EXTENSION_NAME: &core::ffi::CStr = c"VK_KHR_get_physical_device_properties2";
+pub struct InstanceFn {
+    pub vk_get_physical_device_features2_khr: crate::vk::PFN_vkGetPhysicalDeviceFeatures2KHR,
+    pub vk_get_physical_device_properties2_khr: crate::vk::PFN_vkGetPhysicalDeviceProperties2KHR,
+    pub vk_get_physical_device_format_properties2_khr: crate::vk::PFN_vkGetPhysicalDeviceFormatProperties2KHR,
+    pub vk_get_physical_device_image_format_properties2_khr: crate::vk::PFN_vkGetPhysicalDeviceImageFormatProperties2KHR,
+    pub vk_get_physical_device_queue_family_properties2_khr: crate::vk::PFN_vkGetPhysicalDeviceQueueFamilyProperties2KHR,
+    pub vk_get_physical_device_memory_properties2_khr: crate::vk::PFN_vkGetPhysicalDeviceMemoryProperties2KHR,
+    pub vk_get_physical_device_sparse_image_format_properties2_khr: crate::vk::PFN_vkGetPhysicalDeviceSparseImageFormatProperties2KHR,
+}

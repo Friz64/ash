@@ -176,5 +176,33 @@ impl PresentTimingInfoFlagBitsEXT {
     pub const PRESENT_AT_RELATIVE_TIME_EXT: Self = Self(1 << 0);
     pub const PRESENT_AT_NEAREST_REFRESH_CYCLE_EXT: Self = Self(1 << 1);
 }
+pub type PFN_vkSetSwapchainPresentTimingQueueSizeEXT = unsafe extern "system" fn(
+    device: crate::vk::Device,
+    swapchain: crate::vk::SwapchainKHR,
+    size: u32,
+) -> crate::vk::Result;
+pub type PFN_vkGetSwapchainTimingPropertiesEXT = unsafe extern "system" fn(
+    device: crate::vk::Device,
+    swapchain: crate::vk::SwapchainKHR,
+    p_swapchain_timing_properties: *mut crate::vk::SwapchainTimingPropertiesEXT,
+    p_swapchain_timing_properties_counter: *mut u64,
+) -> crate::vk::Result;
+pub type PFN_vkGetSwapchainTimeDomainPropertiesEXT = unsafe extern "system" fn(
+    device: crate::vk::Device,
+    swapchain: crate::vk::SwapchainKHR,
+    p_swapchain_time_domain_properties: *mut crate::vk::SwapchainTimeDomainPropertiesEXT,
+    p_time_domains_counter: *mut u64,
+) -> crate::vk::Result;
+pub type PFN_vkGetPastPresentationTimingEXT = unsafe extern "system" fn(
+    device: crate::vk::Device,
+    p_past_presentation_timing_info: *const crate::vk::PastPresentationTimingInfoEXT,
+    p_past_presentation_timing_properties: *mut crate::vk::PastPresentationTimingPropertiesEXT,
+) -> crate::vk::Result;
 pub const EXT_PRESENT_TIMING_SPEC_VERSION: u32 = 3;
 pub const EXT_PRESENT_TIMING_EXTENSION_NAME: &core::ffi::CStr = c"VK_EXT_present_timing";
+pub struct DeviceFn {
+    pub vk_set_swapchain_present_timing_queue_size_ext: crate::vk::PFN_vkSetSwapchainPresentTimingQueueSizeEXT,
+    pub vk_get_swapchain_timing_properties_ext: crate::vk::PFN_vkGetSwapchainTimingPropertiesEXT,
+    pub vk_get_swapchain_time_domain_properties_ext: crate::vk::PFN_vkGetSwapchainTimeDomainPropertiesEXT,
+    pub vk_get_past_presentation_timing_ext: crate::vk::PFN_vkGetPastPresentationTimingEXT,
+}

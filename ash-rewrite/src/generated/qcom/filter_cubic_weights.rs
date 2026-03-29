@@ -29,7 +29,7 @@ impl crate::vk::StructureType {
     pub const BLIT_IMAGE_CUBIC_WEIGHTS_INFO_QCOM: Self = Self(1000519002);
 }
 #[repr(transparent)]
-#[derive(Clone, Copy)]
+#[derive(Clone, Copy, PartialEq, Eq, PartialOrd, Ord, Hash, Default)]
 pub struct CubicFilterWeightsQCOM(pub(crate) i32);
 ///Provided by [`qcom::filter_cubic_weights`](crate::qcom::filter_cubic_weights)
 impl CubicFilterWeightsQCOM {

@@ -96,7 +96,7 @@ impl crate::vk::StructureType {
     pub const LATENCY_SURFACE_CAPABILITIES_NV: Self = Self(1000505008);
 }
 #[repr(transparent)]
-#[derive(Clone, Copy)]
+#[derive(Clone, Copy, PartialEq, Eq, PartialOrd, Ord, Hash, Default)]
 pub struct LatencyMarkerNV(pub(crate) i32);
 ///Provided by [`nv::low_latency2`](crate::nv::low_latency2)
 impl LatencyMarkerNV {
@@ -114,12 +114,43 @@ impl LatencyMarkerNV {
     pub const OUT_OF_BAND_PRESENT_END_NV: Self = Self(11);
 }
 #[repr(transparent)]
-#[derive(Clone, Copy)]
+#[derive(Clone, Copy, PartialEq, Eq, PartialOrd, Ord, Hash, Default)]
 pub struct OutOfBandQueueTypeNV(pub(crate) i32);
 ///Provided by [`nv::low_latency2`](crate::nv::low_latency2)
 impl OutOfBandQueueTypeNV {
     pub const RENDER_NV: Self = Self(0);
     pub const PRESENT_NV: Self = Self(1);
 }
+pub type PFN_vkSetLatencySleepModeNV = unsafe extern "system" fn(
+    device: crate::vk::Device,
+    swapchain: crate::vk::SwapchainKHR,
+    p_sleep_mode_info: *const crate::vk::LatencySleepModeInfoNV,
+) -> crate::vk::Result;
+pub type PFN_vkLatencySleepNV = unsafe extern "system" fn(
+    device: crate::vk::Device,
+    swapchain: crate::vk::SwapchainKHR,
+    p_sleep_info: *const crate::vk::LatencySleepInfoNV,
+) -> crate::vk::Result;
+pub type PFN_vkSetLatencyMarkerNV = unsafe extern "system" fn(
+    device: crate::vk::Device,
+    swapchain: crate::vk::SwapchainKHR,
+    p_latency_marker_info: *const crate::vk::SetLatencyMarkerInfoNV,
+);
+pub type PFN_vkGetLatencyTimingsNV = unsafe extern "system" fn(
+    device: crate::vk::Device,
+    swapchain: crate::vk::SwapchainKHR,
+    p_latency_marker_info: *mut crate::vk::GetLatencyMarkerInfoNV,
+);
+pub type PFN_vkQueueNotifyOutOfBandNV = unsafe extern "system" fn(
+    queue: crate::vk::Queue,
+    p_queue_type_info: *const crate::vk::OutOfBandQueueTypeInfoNV,
+);
 pub const NV_LOW_LATENCY_2_SPEC_VERSION: u32 = 2;
 pub const NV_LOW_LATENCY_2_EXTENSION_NAME: &core::ffi::CStr = c"VK_NV_low_latency2";
+pub struct DeviceFn {
+    pub vk_set_latency_sleep_mode_nv: crate::vk::PFN_vkSetLatencySleepModeNV,
+    pub vk_latency_sleep_nv: crate::vk::PFN_vkLatencySleepNV,
+    pub vk_set_latency_marker_nv: crate::vk::PFN_vkSetLatencyMarkerNV,
+    pub vk_get_latency_timings_nv: crate::vk::PFN_vkGetLatencyTimingsNV,
+    pub vk_queue_notify_out_of_band_nv: crate::vk::PFN_vkQueueNotifyOutOfBandNV,
+}

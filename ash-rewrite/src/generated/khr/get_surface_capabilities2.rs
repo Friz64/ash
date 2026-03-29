@@ -28,5 +28,20 @@ impl crate::vk::StructureType {
     pub const SURFACE_CAPABILITIES_2_KHR: Self = Self(1000119001);
     pub const SURFACE_FORMAT_2_KHR: Self = Self(1000119002);
 }
+pub type PFN_vkGetPhysicalDeviceSurfaceCapabilities2KHR = unsafe extern "system" fn(
+    physical_device: crate::vk::PhysicalDevice,
+    p_surface_info: *const crate::vk::PhysicalDeviceSurfaceInfo2KHR,
+    p_surface_capabilities: *mut crate::vk::SurfaceCapabilities2KHR,
+) -> crate::vk::Result;
+pub type PFN_vkGetPhysicalDeviceSurfaceFormats2KHR = unsafe extern "system" fn(
+    physical_device: crate::vk::PhysicalDevice,
+    p_surface_info: *const crate::vk::PhysicalDeviceSurfaceInfo2KHR,
+    p_surface_format_count: *mut u32,
+    p_surface_formats: *mut crate::vk::SurfaceFormat2KHR,
+) -> crate::vk::Result;
 pub const KHR_GET_SURFACE_CAPABILITIES_2_SPEC_VERSION: u32 = 1;
 pub const KHR_GET_SURFACE_CAPABILITIES_2_EXTENSION_NAME: &core::ffi::CStr = c"VK_KHR_get_surface_capabilities2";
+pub struct InstanceFn {
+    pub vk_get_physical_device_surface_capabilities2_khr: crate::vk::PFN_vkGetPhysicalDeviceSurfaceCapabilities2KHR,
+    pub vk_get_physical_device_surface_formats2_khr: crate::vk::PFN_vkGetPhysicalDeviceSurfaceFormats2KHR,
+}

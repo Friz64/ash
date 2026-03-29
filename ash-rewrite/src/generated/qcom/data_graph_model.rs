@@ -47,7 +47,7 @@ impl crate::vk::PhysicalDeviceDataGraphOperationTypeARM {
     pub const BUILTIN_MODEL_QCOM: Self = Self(1000629001);
 }
 #[repr(transparent)]
-#[derive(Clone, Copy)]
+#[derive(Clone, Copy, PartialEq, Eq, PartialOrd, Ord, Hash, Default)]
 pub struct DataGraphModelCacheTypeQCOM(pub(crate) i32);
 ///Provided by [`qcom::data_graph_model`](crate::qcom::data_graph_model)
 impl DataGraphModelCacheTypeQCOM {

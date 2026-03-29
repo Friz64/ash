@@ -36,5 +36,14 @@ impl crate::vk::ExternalMemoryHandleTypeFlagBits {
     pub const HOST_ALLOCATION_EXT: Self = Self(1 << 7);
     pub const HOST_MAPPED_FOREIGN_MEMORY_EXT: Self = Self(1 << 8);
 }
+pub type PFN_vkGetMemoryHostPointerPropertiesEXT = unsafe extern "system" fn(
+    device: crate::vk::Device,
+    handle_type: crate::vk::ExternalMemoryHandleTypeFlagBits,
+    p_host_pointer: *const core::ffi::c_void,
+    p_memory_host_pointer_properties: *mut crate::vk::MemoryHostPointerPropertiesEXT,
+) -> crate::vk::Result;
 pub const EXT_EXTERNAL_MEMORY_HOST_SPEC_VERSION: u32 = 1;
 pub const EXT_EXTERNAL_MEMORY_HOST_EXTENSION_NAME: &core::ffi::CStr = c"VK_EXT_external_memory_host";
+pub struct DeviceFn {
+    pub vk_get_memory_host_pointer_properties_ext: crate::vk::PFN_vkGetMemoryHostPointerPropertiesEXT,
+}

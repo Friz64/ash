@@ -52,5 +52,12 @@ impl crate::vk::AccessFlagBits2 {
 impl crate::vk::PipelineStageFlagBits2 {
     pub const ACCELERATION_STRUCTURE_COPY_KHR: Self = Self(1 << 28);
 }
+pub type PFN_vkCmdTraceRaysIndirect2KHR = unsafe extern "system" fn(
+    command_buffer: crate::vk::CommandBuffer,
+    indirect_device_address: crate::vk::DeviceAddress,
+);
 pub const KHR_RAY_TRACING_MAINTENANCE_1_SPEC_VERSION: u32 = 1;
 pub const KHR_RAY_TRACING_MAINTENANCE_1_EXTENSION_NAME: &core::ffi::CStr = c"VK_KHR_ray_tracing_maintenance1";
+pub struct DeviceFn {
+    pub vk_cmd_trace_rays_indirect2_khr: crate::vk::PFN_vkCmdTraceRaysIndirect2KHR,
+}

@@ -16,5 +16,13 @@ impl crate::vk::StructureType {
 impl crate::vk::ImageAspectFlagBits {
     pub const NONE_KHR: Self = Self::NONE;
 }
+pub type PFN_vkGetDeviceBufferMemoryRequirementsKHR = crate::vk::PFN_vkGetDeviceBufferMemoryRequirements;
+pub type PFN_vkGetDeviceImageMemoryRequirementsKHR = crate::vk::PFN_vkGetDeviceImageMemoryRequirements;
+pub type PFN_vkGetDeviceImageSparseMemoryRequirementsKHR = crate::vk::PFN_vkGetDeviceImageSparseMemoryRequirements;
 pub const KHR_MAINTENANCE_4_SPEC_VERSION: u32 = 2;
 pub const KHR_MAINTENANCE_4_EXTENSION_NAME: &core::ffi::CStr = c"VK_KHR_maintenance4";
+pub struct DeviceFn {
+    pub vk_get_device_buffer_memory_requirements_khr: crate::vk::PFN_vkGetDeviceBufferMemoryRequirementsKHR,
+    pub vk_get_device_image_memory_requirements_khr: crate::vk::PFN_vkGetDeviceImageMemoryRequirementsKHR,
+    pub vk_get_device_image_sparse_memory_requirements_khr: crate::vk::PFN_vkGetDeviceImageSparseMemoryRequirementsKHR,
+}

@@ -27,7 +27,7 @@ impl crate::vk::ObjectType {
     pub const VALIDATION_CACHE_EXT: Self = Self(1000160000);
 }
 #[repr(transparent)]
-#[derive(Clone, Copy)]
+#[derive(Clone, Copy, PartialEq, Eq, PartialOrd, Ord, Hash, Default)]
 pub struct ValidationCacheHeaderVersionEXT(pub(crate) i32);
 ///Provided by [`ext::validation_cache`](crate::ext::validation_cache)
 impl ValidationCacheHeaderVersionEXT {
@@ -64,5 +64,34 @@ impl core::fmt::Debug for ValidationCacheEXT {
         write!(f, "0x{:x}", self.0)
     }
 }
+pub type PFN_vkCreateValidationCacheEXT = unsafe extern "system" fn(
+    device: crate::vk::Device,
+    p_create_info: *const crate::vk::ValidationCacheCreateInfoEXT,
+    p_allocator: *const crate::vk::AllocationCallbacks,
+    p_validation_cache: *mut crate::vk::ValidationCacheEXT,
+) -> crate::vk::Result;
+pub type PFN_vkDestroyValidationCacheEXT = unsafe extern "system" fn(
+    device: crate::vk::Device,
+    validation_cache: crate::vk::ValidationCacheEXT,
+    p_allocator: *const crate::vk::AllocationCallbacks,
+);
+pub type PFN_vkGetValidationCacheDataEXT = unsafe extern "system" fn(
+    device: crate::vk::Device,
+    validation_cache: crate::vk::ValidationCacheEXT,
+    p_data_size: *mut usize,
+    p_data: *mut core::ffi::c_void,
+) -> crate::vk::Result;
+pub type PFN_vkMergeValidationCachesEXT = unsafe extern "system" fn(
+    device: crate::vk::Device,
+    dst_cache: crate::vk::ValidationCacheEXT,
+    src_cache_count: u32,
+    p_src_caches: *const crate::vk::ValidationCacheEXT,
+) -> crate::vk::Result;
 pub const EXT_VALIDATION_CACHE_SPEC_VERSION: u32 = 1;
 pub const EXT_VALIDATION_CACHE_EXTENSION_NAME: &core::ffi::CStr = c"VK_EXT_validation_cache";
+pub struct DeviceFn {
+    pub vk_create_validation_cache_ext: crate::vk::PFN_vkCreateValidationCacheEXT,
+    pub vk_destroy_validation_cache_ext: crate::vk::PFN_vkDestroyValidationCacheEXT,
+    pub vk_get_validation_cache_data_ext: crate::vk::PFN_vkGetValidationCacheDataEXT,
+    pub vk_merge_validation_caches_ext: crate::vk::PFN_vkMergeValidationCachesEXT,
+}

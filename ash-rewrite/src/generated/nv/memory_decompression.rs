@@ -19,5 +19,20 @@ impl crate::vk::StructureType {
 }
 pub type MemoryDecompressionMethodFlagBitsNV = crate::vk::MemoryDecompressionMethodFlagBitsEXT;
 pub type MemoryDecompressionMethodFlagsNV = crate::vk::MemoryDecompressionMethodFlagsEXT;
+pub type PFN_vkCmdDecompressMemoryNV = unsafe extern "system" fn(
+    command_buffer: crate::vk::CommandBuffer,
+    decompress_region_count: u32,
+    p_decompress_memory_regions: *const crate::vk::DecompressMemoryRegionNV,
+);
+pub type PFN_vkCmdDecompressMemoryIndirectCountNV = unsafe extern "system" fn(
+    command_buffer: crate::vk::CommandBuffer,
+    indirect_commands_address: crate::vk::DeviceAddress,
+    indirect_commands_count_address: crate::vk::DeviceAddress,
+    stride: u32,
+);
 pub const NV_MEMORY_DECOMPRESSION_SPEC_VERSION: u32 = 1;
 pub const NV_MEMORY_DECOMPRESSION_EXTENSION_NAME: &core::ffi::CStr = c"VK_NV_memory_decompression";
+pub struct DeviceFn {
+    pub vk_cmd_decompress_memory_nv: crate::vk::PFN_vkCmdDecompressMemoryNV,
+    pub vk_cmd_decompress_memory_indirect_count_nv: crate::vk::PFN_vkCmdDecompressMemoryIndirectCountNV,
+}

@@ -36,5 +36,20 @@ impl crate::vk::ExternalMemoryHandleTypeFlagBits {
     pub const MTLTEXTURE_EXT: Self = Self(1 << 17);
     pub const MTLHEAP_EXT: Self = Self(1 << 18);
 }
+pub type PFN_vkGetMemoryMetalHandleEXT = unsafe extern "system" fn(
+    device: crate::vk::Device,
+    p_get_metal_handle_info: *const crate::vk::MemoryGetMetalHandleInfoEXT,
+    p_handle: *mut *mut core::ffi::c_void,
+) -> crate::vk::Result;
+pub type PFN_vkGetMemoryMetalHandlePropertiesEXT = unsafe extern "system" fn(
+    device: crate::vk::Device,
+    handle_type: crate::vk::ExternalMemoryHandleTypeFlagBits,
+    p_handle: *const core::ffi::c_void,
+    p_memory_metal_handle_properties: *mut crate::vk::MemoryMetalHandlePropertiesEXT,
+) -> crate::vk::Result;
 pub const EXT_EXTERNAL_MEMORY_METAL_SPEC_VERSION: u32 = 1;
 pub const EXT_EXTERNAL_MEMORY_METAL_EXTENSION_NAME: &core::ffi::CStr = c"VK_EXT_external_memory_metal";
+pub struct DeviceFn {
+    pub vk_get_memory_metal_handle_ext: crate::vk::PFN_vkGetMemoryMetalHandleEXT,
+    pub vk_get_memory_metal_handle_properties_ext: crate::vk::PFN_vkGetMemoryMetalHandlePropertiesEXT,
+}

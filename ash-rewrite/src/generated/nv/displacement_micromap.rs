@@ -52,7 +52,7 @@ impl crate::vk::MicromapTypeEXT {
     pub const DISPLACEMENT_MICROMAP_NV: Self = Self(1000397000);
 }
 #[repr(transparent)]
-#[derive(Clone, Copy)]
+#[derive(Clone, Copy, PartialEq, Eq, PartialOrd, Ord, Hash, Default)]
 pub struct DisplacementMicromapFormatNV(pub(crate) i32);
 ///Provided by [`nv::displacement_micromap`](crate::nv::displacement_micromap)
 impl DisplacementMicromapFormatNV {

@@ -39,7 +39,7 @@ impl crate::vk::StructureType {
     );
 }
 #[repr(transparent)]
-#[derive(Clone, Copy)]
+#[derive(Clone, Copy, PartialEq, Eq, PartialOrd, Ord, Hash, Default)]
 pub struct FragmentShadingRateNV(pub(crate) i32);
 ///Provided by [`nv::fragment_shading_rate_enums`](crate::nv::fragment_shading_rate_enums)
 impl FragmentShadingRateNV {
@@ -57,12 +57,20 @@ impl FragmentShadingRateNV {
     pub const NO_INVOCATIONS_NV: Self = Self(15);
 }
 #[repr(transparent)]
-#[derive(Clone, Copy)]
+#[derive(Clone, Copy, PartialEq, Eq, PartialOrd, Ord, Hash, Default)]
 pub struct FragmentShadingRateTypeNV(pub(crate) i32);
 ///Provided by [`nv::fragment_shading_rate_enums`](crate::nv::fragment_shading_rate_enums)
 impl FragmentShadingRateTypeNV {
     pub const FRAGMENT_SIZE_NV: Self = Self(0);
     pub const ENUMS_NV: Self = Self(1);
 }
+pub type PFN_vkCmdSetFragmentShadingRateEnumNV = unsafe extern "system" fn(
+    command_buffer: crate::vk::CommandBuffer,
+    shading_rate: crate::vk::FragmentShadingRateNV,
+    combiner_ops: *const [crate::vk::FragmentShadingRateCombinerOpKHR; 2 as _],
+);
 pub const NV_FRAGMENT_SHADING_RATE_ENUMS_SPEC_VERSION: u32 = 1;
 pub const NV_FRAGMENT_SHADING_RATE_ENUMS_EXTENSION_NAME: &core::ffi::CStr = c"VK_NV_fragment_shading_rate_enums";
+pub struct DeviceFn {
+    pub vk_cmd_set_fragment_shading_rate_enum_nv: crate::vk::PFN_vkCmdSetFragmentShadingRateEnumNV,
+}

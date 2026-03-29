@@ -95,5 +95,13 @@ impl crate::vk::ImageAspectFlagBits {
     pub const MEMORY_PLANE_2_EXT: Self = Self(1 << 9);
     pub const MEMORY_PLANE_3_EXT: Self = Self(1 << 10);
 }
+pub type PFN_vkGetImageDrmFormatModifierPropertiesEXT = unsafe extern "system" fn(
+    device: crate::vk::Device,
+    image: crate::vk::Image,
+    p_properties: *mut crate::vk::ImageDrmFormatModifierPropertiesEXT,
+) -> crate::vk::Result;
 pub const EXT_IMAGE_DRM_FORMAT_MODIFIER_SPEC_VERSION: u32 = 2;
 pub const EXT_IMAGE_DRM_FORMAT_MODIFIER_EXTENSION_NAME: &core::ffi::CStr = c"VK_EXT_image_drm_format_modifier";
+pub struct DeviceFn {
+    pub vk_get_image_drm_format_modifier_properties_ext: crate::vk::PFN_vkGetImageDrmFormatModifierPropertiesEXT,
+}

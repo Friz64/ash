@@ -59,5 +59,13 @@ impl crate::vk::ComponentTypeKHR {
 }
 pub type ScopeNV = crate::vk::ScopeKHR;
 pub type ComponentTypeNV = crate::vk::ComponentTypeKHR;
+pub type PFN_vkGetPhysicalDeviceCooperativeMatrixPropertiesNV = unsafe extern "system" fn(
+    physical_device: crate::vk::PhysicalDevice,
+    p_property_count: *mut u32,
+    p_properties: *mut crate::vk::CooperativeMatrixPropertiesNV,
+) -> crate::vk::Result;
 pub const NV_COOPERATIVE_MATRIX_SPEC_VERSION: u32 = 1;
 pub const NV_COOPERATIVE_MATRIX_EXTENSION_NAME: &core::ffi::CStr = c"VK_NV_cooperative_matrix";
+pub struct InstanceFn {
+    pub vk_get_physical_device_cooperative_matrix_properties_nv: crate::vk::PFN_vkGetPhysicalDeviceCooperativeMatrixPropertiesNV,
+}

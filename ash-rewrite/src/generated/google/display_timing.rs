@@ -33,5 +33,20 @@ pub struct PresentTimeGOOGLE {
 impl crate::vk::StructureType {
     pub const PRESENT_TIMES_INFO_GOOGLE: Self = Self(1000092000);
 }
+pub type PFN_vkGetRefreshCycleDurationGOOGLE = unsafe extern "system" fn(
+    device: crate::vk::Device,
+    swapchain: crate::vk::SwapchainKHR,
+    p_display_timing_properties: *mut crate::vk::RefreshCycleDurationGOOGLE,
+) -> crate::vk::Result;
+pub type PFN_vkGetPastPresentationTimingGOOGLE = unsafe extern "system" fn(
+    device: crate::vk::Device,
+    swapchain: crate::vk::SwapchainKHR,
+    p_presentation_timing_count: *mut u32,
+    p_presentation_timings: *mut crate::vk::PastPresentationTimingGOOGLE,
+) -> crate::vk::Result;
 pub const GOOGLE_DISPLAY_TIMING_SPEC_VERSION: u32 = 1;
 pub const GOOGLE_DISPLAY_TIMING_EXTENSION_NAME: &core::ffi::CStr = c"VK_GOOGLE_display_timing";
+pub struct DeviceFn {
+    pub vk_get_refresh_cycle_duration_google: crate::vk::PFN_vkGetRefreshCycleDurationGOOGLE,
+    pub vk_get_past_presentation_timing_google: crate::vk::PFN_vkGetPastPresentationTimingGOOGLE,
+}

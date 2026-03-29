@@ -49,5 +49,24 @@ impl crate::vk::IndirectCommandsTokenTypeNV {
 impl crate::vk::DescriptorSetLayoutCreateFlagBits {
     pub const INDIRECT_BINDABLE_NV: Self = Self(1 << 7);
 }
+pub type PFN_vkCmdUpdatePipelineIndirectBufferNV = unsafe extern "system" fn(
+    command_buffer: crate::vk::CommandBuffer,
+    pipeline_bind_point: crate::vk::PipelineBindPoint,
+    pipeline: crate::vk::Pipeline,
+);
+pub type PFN_vkGetPipelineIndirectMemoryRequirementsNV = unsafe extern "system" fn(
+    device: crate::vk::Device,
+    p_create_info: *const crate::vk::ComputePipelineCreateInfo,
+    p_memory_requirements: *mut crate::vk::MemoryRequirements2,
+);
+pub type PFN_vkGetPipelineIndirectDeviceAddressNV = unsafe extern "system" fn(
+    device: crate::vk::Device,
+    p_info: *const crate::vk::PipelineIndirectDeviceAddressInfoNV,
+) -> crate::vk::DeviceAddress;
 pub const NV_DEVICE_GENERATED_COMMANDS_COMPUTE_SPEC_VERSION: u32 = 2;
 pub const NV_DEVICE_GENERATED_COMMANDS_COMPUTE_EXTENSION_NAME: &core::ffi::CStr = c"VK_NV_device_generated_commands_compute";
+pub struct DeviceFn {
+    pub vk_cmd_update_pipeline_indirect_buffer_nv: crate::vk::PFN_vkCmdUpdatePipelineIndirectBufferNV,
+    pub vk_get_pipeline_indirect_memory_requirements_nv: crate::vk::PFN_vkGetPipelineIndirectMemoryRequirementsNV,
+    pub vk_get_pipeline_indirect_device_address_nv: crate::vk::PFN_vkGetPipelineIndirectDeviceAddressNV,
+}

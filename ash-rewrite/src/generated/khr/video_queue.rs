@@ -198,7 +198,7 @@ impl crate::vk::ObjectType {
     pub const VIDEO_SESSION_PARAMETERS_KHR: Self = Self(1000023001);
 }
 #[repr(transparent)]
-#[derive(Clone, Copy)]
+#[derive(Clone, Copy, PartialEq, Eq, PartialOrd, Ord, Hash, Default)]
 pub struct QueryResultStatusKHR(pub(crate) i32);
 ///Provided by [`khr::video_queue`](crate::khr::video_queue)
 impl QueryResultStatusKHR {
@@ -383,5 +383,83 @@ impl core::fmt::Debug for VideoSessionParametersKHR {
         write!(f, "0x{:x}", self.0)
     }
 }
+pub type PFN_vkGetPhysicalDeviceVideoCapabilitiesKHR = unsafe extern "system" fn(
+    physical_device: crate::vk::PhysicalDevice,
+    p_video_profile: *const crate::vk::VideoProfileInfoKHR,
+    p_capabilities: *mut crate::vk::VideoCapabilitiesKHR,
+) -> crate::vk::Result;
+pub type PFN_vkGetPhysicalDeviceVideoFormatPropertiesKHR = unsafe extern "system" fn(
+    physical_device: crate::vk::PhysicalDevice,
+    p_video_format_info: *const crate::vk::PhysicalDeviceVideoFormatInfoKHR,
+    p_video_format_property_count: *mut u32,
+    p_video_format_properties: *mut crate::vk::VideoFormatPropertiesKHR,
+) -> crate::vk::Result;
+pub type PFN_vkCreateVideoSessionKHR = unsafe extern "system" fn(
+    device: crate::vk::Device,
+    p_create_info: *const crate::vk::VideoSessionCreateInfoKHR,
+    p_allocator: *const crate::vk::AllocationCallbacks,
+    p_video_session: *mut crate::vk::VideoSessionKHR,
+) -> crate::vk::Result;
+pub type PFN_vkDestroyVideoSessionKHR = unsafe extern "system" fn(
+    device: crate::vk::Device,
+    video_session: crate::vk::VideoSessionKHR,
+    p_allocator: *const crate::vk::AllocationCallbacks,
+);
+pub type PFN_vkCreateVideoSessionParametersKHR = unsafe extern "system" fn(
+    device: crate::vk::Device,
+    p_create_info: *const crate::vk::VideoSessionParametersCreateInfoKHR,
+    p_allocator: *const crate::vk::AllocationCallbacks,
+    p_video_session_parameters: *mut crate::vk::VideoSessionParametersKHR,
+) -> crate::vk::Result;
+pub type PFN_vkUpdateVideoSessionParametersKHR = unsafe extern "system" fn(
+    device: crate::vk::Device,
+    video_session_parameters: crate::vk::VideoSessionParametersKHR,
+    p_update_info: *const crate::vk::VideoSessionParametersUpdateInfoKHR,
+) -> crate::vk::Result;
+pub type PFN_vkDestroyVideoSessionParametersKHR = unsafe extern "system" fn(
+    device: crate::vk::Device,
+    video_session_parameters: crate::vk::VideoSessionParametersKHR,
+    p_allocator: *const crate::vk::AllocationCallbacks,
+);
+pub type PFN_vkGetVideoSessionMemoryRequirementsKHR = unsafe extern "system" fn(
+    device: crate::vk::Device,
+    video_session: crate::vk::VideoSessionKHR,
+    p_memory_requirements_count: *mut u32,
+    p_memory_requirements: *mut crate::vk::VideoSessionMemoryRequirementsKHR,
+) -> crate::vk::Result;
+pub type PFN_vkBindVideoSessionMemoryKHR = unsafe extern "system" fn(
+    device: crate::vk::Device,
+    video_session: crate::vk::VideoSessionKHR,
+    bind_session_memory_info_count: u32,
+    p_bind_session_memory_infos: *const crate::vk::BindVideoSessionMemoryInfoKHR,
+) -> crate::vk::Result;
+pub type PFN_vkCmdBeginVideoCodingKHR = unsafe extern "system" fn(
+    command_buffer: crate::vk::CommandBuffer,
+    p_begin_info: *const crate::vk::VideoBeginCodingInfoKHR,
+);
+pub type PFN_vkCmdControlVideoCodingKHR = unsafe extern "system" fn(
+    command_buffer: crate::vk::CommandBuffer,
+    p_coding_control_info: *const crate::vk::VideoCodingControlInfoKHR,
+);
+pub type PFN_vkCmdEndVideoCodingKHR = unsafe extern "system" fn(
+    command_buffer: crate::vk::CommandBuffer,
+    p_end_coding_info: *const crate::vk::VideoEndCodingInfoKHR,
+);
 pub const KHR_VIDEO_QUEUE_SPEC_VERSION: u32 = 8;
 pub const KHR_VIDEO_QUEUE_EXTENSION_NAME: &core::ffi::CStr = c"VK_KHR_video_queue";
+pub struct InstanceFn {
+    pub vk_get_physical_device_video_capabilities_khr: crate::vk::PFN_vkGetPhysicalDeviceVideoCapabilitiesKHR,
+    pub vk_get_physical_device_video_format_properties_khr: crate::vk::PFN_vkGetPhysicalDeviceVideoFormatPropertiesKHR,
+}
+pub struct DeviceFn {
+    pub vk_create_video_session_khr: crate::vk::PFN_vkCreateVideoSessionKHR,
+    pub vk_destroy_video_session_khr: crate::vk::PFN_vkDestroyVideoSessionKHR,
+    pub vk_create_video_session_parameters_khr: crate::vk::PFN_vkCreateVideoSessionParametersKHR,
+    pub vk_update_video_session_parameters_khr: crate::vk::PFN_vkUpdateVideoSessionParametersKHR,
+    pub vk_destroy_video_session_parameters_khr: crate::vk::PFN_vkDestroyVideoSessionParametersKHR,
+    pub vk_get_video_session_memory_requirements_khr: crate::vk::PFN_vkGetVideoSessionMemoryRequirementsKHR,
+    pub vk_bind_video_session_memory_khr: crate::vk::PFN_vkBindVideoSessionMemoryKHR,
+    pub vk_cmd_begin_video_coding_khr: crate::vk::PFN_vkCmdBeginVideoCodingKHR,
+    pub vk_cmd_control_video_coding_khr: crate::vk::PFN_vkCmdControlVideoCodingKHR,
+    pub vk_cmd_end_video_coding_khr: crate::vk::PFN_vkCmdEndVideoCodingKHR,
+}

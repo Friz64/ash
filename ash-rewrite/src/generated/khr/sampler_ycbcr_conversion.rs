@@ -103,5 +103,11 @@ impl crate::vk::ImageAspectFlagBits {
     pub const PLANE_2_KHR: Self = Self::PLANE_2;
 }
 pub type SamplerYcbcrConversionKHR = crate::vk::SamplerYcbcrConversion;
+pub type PFN_vkCreateSamplerYcbcrConversionKHR = crate::vk::PFN_vkCreateSamplerYcbcrConversion;
+pub type PFN_vkDestroySamplerYcbcrConversionKHR = crate::vk::PFN_vkDestroySamplerYcbcrConversion;
 pub const KHR_SAMPLER_YCBCR_CONVERSION_SPEC_VERSION: u32 = 14;
 pub const KHR_SAMPLER_YCBCR_CONVERSION_EXTENSION_NAME: &core::ffi::CStr = c"VK_KHR_sampler_ycbcr_conversion";
+pub struct DeviceFn {
+    pub vk_create_sampler_ycbcr_conversion_khr: crate::vk::PFN_vkCreateSamplerYcbcrConversionKHR,
+    pub vk_destroy_sampler_ycbcr_conversion_khr: crate::vk::PFN_vkDestroySamplerYcbcrConversionKHR,
+}

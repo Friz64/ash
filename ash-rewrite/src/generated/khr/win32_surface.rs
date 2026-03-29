@@ -18,5 +18,19 @@ bitflags::bitflags! {
     #[repr(transparent)] #[derive(Clone, Copy)] pub struct Win32SurfaceCreateFlagsKHR :
     u32 {}
 }
+pub type PFN_vkCreateWin32SurfaceKHR = unsafe extern "system" fn(
+    instance: crate::vk::Instance,
+    p_create_info: *const crate::vk::Win32SurfaceCreateInfoKHR,
+    p_allocator: *const crate::vk::AllocationCallbacks,
+    p_surface: *mut crate::vk::SurfaceKHR,
+) -> crate::vk::Result;
+pub type PFN_vkGetPhysicalDeviceWin32PresentationSupportKHR = unsafe extern "system" fn(
+    physical_device: crate::vk::PhysicalDevice,
+    queue_family_index: u32,
+) -> crate::vk::Bool32;
 pub const KHR_WIN32_SURFACE_SPEC_VERSION: u32 = 6;
 pub const KHR_WIN32_SURFACE_EXTENSION_NAME: &core::ffi::CStr = c"VK_KHR_win32_surface";
+pub struct InstanceFn {
+    pub vk_create_win32_surface_khr: crate::vk::PFN_vkCreateWin32SurfaceKHR,
+    pub vk_get_physical_device_win32_presentation_support_khr: crate::vk::PFN_vkGetPhysicalDeviceWin32PresentationSupportKHR,
+}

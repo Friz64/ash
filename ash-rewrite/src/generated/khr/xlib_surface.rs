@@ -18,5 +18,21 @@ bitflags::bitflags! {
     #[repr(transparent)] #[derive(Clone, Copy)] pub struct XlibSurfaceCreateFlagsKHR :
     u32 {}
 }
+pub type PFN_vkCreateXlibSurfaceKHR = unsafe extern "system" fn(
+    instance: crate::vk::Instance,
+    p_create_info: *const crate::vk::XlibSurfaceCreateInfoKHR,
+    p_allocator: *const crate::vk::AllocationCallbacks,
+    p_surface: *mut crate::vk::SurfaceKHR,
+) -> crate::vk::Result;
+pub type PFN_vkGetPhysicalDeviceXlibPresentationSupportKHR = unsafe extern "system" fn(
+    physical_device: crate::vk::PhysicalDevice,
+    queue_family_index: u32,
+    dpy: *mut crate::platform_types::Display,
+    visual_id: crate::platform_types::VisualID,
+) -> crate::vk::Bool32;
 pub const KHR_XLIB_SURFACE_SPEC_VERSION: u32 = 6;
 pub const KHR_XLIB_SURFACE_EXTENSION_NAME: &core::ffi::CStr = c"VK_KHR_xlib_surface";
+pub struct InstanceFn {
+    pub vk_create_xlib_surface_khr: crate::vk::PFN_vkCreateXlibSurfaceKHR,
+    pub vk_get_physical_device_xlib_presentation_support_khr: crate::vk::PFN_vkGetPhysicalDeviceXlibPresentationSupportKHR,
+}

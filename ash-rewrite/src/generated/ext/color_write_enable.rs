@@ -25,5 +25,13 @@ impl crate::vk::StructureType {
 impl crate::vk::DynamicState {
     pub const COLOR_WRITE_ENABLE_EXT: Self = Self(1000381000);
 }
+pub type PFN_vkCmdSetColorWriteEnableEXT = unsafe extern "system" fn(
+    command_buffer: crate::vk::CommandBuffer,
+    attachment_count: u32,
+    p_color_write_enables: *const crate::vk::Bool32,
+);
 pub const EXT_COLOR_WRITE_ENABLE_SPEC_VERSION: u32 = 1;
 pub const EXT_COLOR_WRITE_ENABLE_EXTENSION_NAME: &core::ffi::CStr = c"VK_EXT_color_write_enable";
+pub struct DeviceFn {
+    pub vk_cmd_set_color_write_enable_ext: crate::vk::PFN_vkCmdSetColorWriteEnableEXT,
+}

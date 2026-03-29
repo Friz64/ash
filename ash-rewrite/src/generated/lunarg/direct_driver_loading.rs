@@ -24,7 +24,7 @@ impl crate::vk::StructureType {
     pub const DIRECT_DRIVER_LOADING_LIST_LUNARG: Self = Self(1000459001);
 }
 #[repr(transparent)]
-#[derive(Clone, Copy)]
+#[derive(Clone, Copy, PartialEq, Eq, PartialOrd, Ord, Hash, Default)]
 pub struct DirectDriverLoadingModeLUNARG(pub(crate) i32);
 ///Provided by [`lunarg::direct_driver_loading`](crate::lunarg::direct_driver_loading)
 impl DirectDriverLoadingModeLUNARG {
@@ -35,7 +35,11 @@ bitflags::bitflags! {
     #[repr(transparent)] #[derive(Clone, Copy)] pub struct DirectDriverLoadingFlagsLUNARG
     : u32 {}
 }
-#[allow(non_camel_case_types)]
-pub type PFN_vkGetInstanceProcAddrLUNARG = Option<()>;
+pub type PFN_vkGetInstanceProcAddrLUNARG = Option<
+    unsafe extern "system" fn(
+        instance: crate::vk::Instance,
+        p_name: *const core::ffi::c_char,
+    ) -> crate::vk::PFN_vkVoidFunction,
+>;
 pub const LUNARG_DIRECT_DRIVER_LOADING_SPEC_VERSION: u32 = 1;
 pub const LUNARG_DIRECT_DRIVER_LOADING_EXTENSION_NAME: &core::ffi::CStr = c"VK_LUNARG_direct_driver_loading";

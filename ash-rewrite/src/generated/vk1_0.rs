@@ -1205,7 +1205,7 @@ pub union ClearValue {
     pub depth_stencil: crate::vk::ClearDepthStencilValue,
 }
 #[repr(transparent)]
-#[derive(Clone, Copy)]
+#[derive(Clone, Copy, PartialEq, Eq, PartialOrd, Ord, Hash, Default)]
 pub struct ImageLayout(pub(crate) i32);
 ///Provided by [`vk1_0`](crate::vk1_0)
 impl ImageLayout {
@@ -1220,7 +1220,7 @@ impl ImageLayout {
     pub const PREINITIALIZED: Self = Self(8);
 }
 #[repr(transparent)]
-#[derive(Clone, Copy)]
+#[derive(Clone, Copy, PartialEq, Eq, PartialOrd, Ord, Hash, Default)]
 pub struct AttachmentLoadOp(pub(crate) i32);
 ///Provided by [`vk1_0`](crate::vk1_0)
 impl AttachmentLoadOp {
@@ -1229,7 +1229,7 @@ impl AttachmentLoadOp {
     pub const DONT_CARE: Self = Self(2);
 }
 #[repr(transparent)]
-#[derive(Clone, Copy)]
+#[derive(Clone, Copy, PartialEq, Eq, PartialOrd, Ord, Hash, Default)]
 pub struct AttachmentStoreOp(pub(crate) i32);
 ///Provided by [`vk1_0`](crate::vk1_0)
 impl AttachmentStoreOp {
@@ -1237,7 +1237,7 @@ impl AttachmentStoreOp {
     pub const DONT_CARE: Self = Self(1);
 }
 #[repr(transparent)]
-#[derive(Clone, Copy)]
+#[derive(Clone, Copy, PartialEq, Eq, PartialOrd, Ord, Hash, Default)]
 pub struct ImageType(pub(crate) i32);
 ///Provided by [`vk1_0`](crate::vk1_0)
 impl ImageType {
@@ -1246,7 +1246,7 @@ impl ImageType {
     pub const _3D: Self = Self(2);
 }
 #[repr(transparent)]
-#[derive(Clone, Copy)]
+#[derive(Clone, Copy, PartialEq, Eq, PartialOrd, Ord, Hash, Default)]
 pub struct ImageTiling(pub(crate) i32);
 ///Provided by [`vk1_0`](crate::vk1_0)
 impl ImageTiling {
@@ -1254,7 +1254,7 @@ impl ImageTiling {
     pub const LINEAR: Self = Self(1);
 }
 #[repr(transparent)]
-#[derive(Clone, Copy)]
+#[derive(Clone, Copy, PartialEq, Eq, PartialOrd, Ord, Hash, Default)]
 pub struct ImageViewType(pub(crate) i32);
 ///Provided by [`vk1_0`](crate::vk1_0)
 impl ImageViewType {
@@ -1267,7 +1267,7 @@ impl ImageViewType {
     pub const CUBE_ARRAY: Self = Self(6);
 }
 #[repr(transparent)]
-#[derive(Clone, Copy)]
+#[derive(Clone, Copy, PartialEq, Eq, PartialOrd, Ord, Hash, Default)]
 pub struct CommandBufferLevel(pub(crate) i32);
 ///Provided by [`vk1_0`](crate::vk1_0)
 impl CommandBufferLevel {
@@ -1275,7 +1275,7 @@ impl CommandBufferLevel {
     pub const SECONDARY: Self = Self(1);
 }
 #[repr(transparent)]
-#[derive(Clone, Copy)]
+#[derive(Clone, Copy, PartialEq, Eq, PartialOrd, Ord, Hash, Default)]
 pub struct ComponentSwizzle(pub(crate) i32);
 ///Provided by [`vk1_0`](crate::vk1_0)
 impl ComponentSwizzle {
@@ -1288,7 +1288,7 @@ impl ComponentSwizzle {
     pub const A: Self = Self(6);
 }
 #[repr(transparent)]
-#[derive(Clone, Copy)]
+#[derive(Clone, Copy, PartialEq, Eq, PartialOrd, Ord, Hash, Default)]
 pub struct DescriptorType(pub(crate) i32);
 ///Provided by [`vk1_0`](crate::vk1_0)
 impl DescriptorType {
@@ -1305,7 +1305,7 @@ impl DescriptorType {
     pub const INPUT_ATTACHMENT: Self = Self(10);
 }
 #[repr(transparent)]
-#[derive(Clone, Copy)]
+#[derive(Clone, Copy, PartialEq, Eq, PartialOrd, Ord, Hash, Default)]
 pub struct QueryType(pub(crate) i32);
 ///Provided by [`vk1_0`](crate::vk1_0)
 impl QueryType {
@@ -1314,7 +1314,7 @@ impl QueryType {
     pub const TIMESTAMP: Self = Self(2);
 }
 #[repr(transparent)]
-#[derive(Clone, Copy)]
+#[derive(Clone, Copy, PartialEq, Eq, PartialOrd, Ord, Hash, Default)]
 pub struct BorderColor(pub(crate) i32);
 ///Provided by [`vk1_0`](crate::vk1_0)
 impl BorderColor {
@@ -1326,7 +1326,7 @@ impl BorderColor {
     pub const INT_OPAQUE_WHITE: Self = Self(5);
 }
 #[repr(transparent)]
-#[derive(Clone, Copy)]
+#[derive(Clone, Copy, PartialEq, Eq, PartialOrd, Ord, Hash, Default)]
 pub struct PipelineBindPoint(pub(crate) i32);
 ///Provided by [`vk1_0`](crate::vk1_0)
 impl PipelineBindPoint {
@@ -1334,14 +1334,14 @@ impl PipelineBindPoint {
     pub const COMPUTE: Self = Self(1);
 }
 #[repr(transparent)]
-#[derive(Clone, Copy)]
+#[derive(Clone, Copy, PartialEq, Eq, PartialOrd, Ord, Hash, Default)]
 pub struct PipelineCacheHeaderVersion(pub(crate) i32);
 ///Provided by [`vk1_0`](crate::vk1_0)
 impl PipelineCacheHeaderVersion {
     pub const ONE: Self = Self(1);
 }
 #[repr(transparent)]
-#[derive(Clone, Copy)]
+#[derive(Clone, Copy, PartialEq, Eq, PartialOrd, Ord, Hash, Default)]
 pub struct PrimitiveTopology(pub(crate) i32);
 ///Provided by [`vk1_0`](crate::vk1_0)
 impl PrimitiveTopology {
@@ -1358,7 +1358,7 @@ impl PrimitiveTopology {
     pub const PATCH_LIST: Self = Self(10);
 }
 #[repr(transparent)]
-#[derive(Clone, Copy)]
+#[derive(Clone, Copy, PartialEq, Eq, PartialOrd, Ord, Hash, Default)]
 pub struct SharingMode(pub(crate) i32);
 ///Provided by [`vk1_0`](crate::vk1_0)
 impl SharingMode {
@@ -1366,7 +1366,7 @@ impl SharingMode {
     pub const CONCURRENT: Self = Self(1);
 }
 #[repr(transparent)]
-#[derive(Clone, Copy)]
+#[derive(Clone, Copy, PartialEq, Eq, PartialOrd, Ord, Hash, Default)]
 pub struct IndexType(pub(crate) i32);
 ///Provided by [`vk1_0`](crate::vk1_0)
 impl IndexType {
@@ -1374,7 +1374,7 @@ impl IndexType {
     pub const UINT32: Self = Self(1);
 }
 #[repr(transparent)]
-#[derive(Clone, Copy)]
+#[derive(Clone, Copy, PartialEq, Eq, PartialOrd, Ord, Hash, Default)]
 pub struct Filter(pub(crate) i32);
 ///Provided by [`vk1_0`](crate::vk1_0)
 impl Filter {
@@ -1382,7 +1382,7 @@ impl Filter {
     pub const LINEAR: Self = Self(1);
 }
 #[repr(transparent)]
-#[derive(Clone, Copy)]
+#[derive(Clone, Copy, PartialEq, Eq, PartialOrd, Ord, Hash, Default)]
 pub struct SamplerMipmapMode(pub(crate) i32);
 ///Provided by [`vk1_0`](crate::vk1_0)
 impl SamplerMipmapMode {
@@ -1390,7 +1390,7 @@ impl SamplerMipmapMode {
     pub const LINEAR: Self = Self(1);
 }
 #[repr(transparent)]
-#[derive(Clone, Copy)]
+#[derive(Clone, Copy, PartialEq, Eq, PartialOrd, Ord, Hash, Default)]
 pub struct SamplerAddressMode(pub(crate) i32);
 ///Provided by [`vk1_0`](crate::vk1_0)
 impl SamplerAddressMode {
@@ -1400,7 +1400,7 @@ impl SamplerAddressMode {
     pub const CLAMP_TO_BORDER: Self = Self(3);
 }
 #[repr(transparent)]
-#[derive(Clone, Copy)]
+#[derive(Clone, Copy, PartialEq, Eq, PartialOrd, Ord, Hash, Default)]
 pub struct CompareOp(pub(crate) i32);
 ///Provided by [`vk1_0`](crate::vk1_0)
 impl CompareOp {
@@ -1414,7 +1414,7 @@ impl CompareOp {
     pub const ALWAYS: Self = Self(7);
 }
 #[repr(transparent)]
-#[derive(Clone, Copy)]
+#[derive(Clone, Copy, PartialEq, Eq, PartialOrd, Ord, Hash, Default)]
 pub struct PolygonMode(pub(crate) i32);
 ///Provided by [`vk1_0`](crate::vk1_0)
 impl PolygonMode {
@@ -1423,7 +1423,7 @@ impl PolygonMode {
     pub const POINT: Self = Self(2);
 }
 #[repr(transparent)]
-#[derive(Clone, Copy)]
+#[derive(Clone, Copy, PartialEq, Eq, PartialOrd, Ord, Hash, Default)]
 pub struct FrontFace(pub(crate) i32);
 ///Provided by [`vk1_0`](crate::vk1_0)
 impl FrontFace {
@@ -1431,7 +1431,7 @@ impl FrontFace {
     pub const CLOCKWISE: Self = Self(1);
 }
 #[repr(transparent)]
-#[derive(Clone, Copy)]
+#[derive(Clone, Copy, PartialEq, Eq, PartialOrd, Ord, Hash, Default)]
 pub struct BlendFactor(pub(crate) i32);
 ///Provided by [`vk1_0`](crate::vk1_0)
 impl BlendFactor {
@@ -1456,7 +1456,7 @@ impl BlendFactor {
     pub const ONE_MINUS_SRC1_ALPHA: Self = Self(18);
 }
 #[repr(transparent)]
-#[derive(Clone, Copy)]
+#[derive(Clone, Copy, PartialEq, Eq, PartialOrd, Ord, Hash, Default)]
 pub struct BlendOp(pub(crate) i32);
 ///Provided by [`vk1_0`](crate::vk1_0)
 impl BlendOp {
@@ -1467,7 +1467,7 @@ impl BlendOp {
     pub const MAX: Self = Self(4);
 }
 #[repr(transparent)]
-#[derive(Clone, Copy)]
+#[derive(Clone, Copy, PartialEq, Eq, PartialOrd, Ord, Hash, Default)]
 pub struct StencilOp(pub(crate) i32);
 ///Provided by [`vk1_0`](crate::vk1_0)
 impl StencilOp {
@@ -1481,7 +1481,7 @@ impl StencilOp {
     pub const DECREMENT_AND_WRAP: Self = Self(7);
 }
 #[repr(transparent)]
-#[derive(Clone, Copy)]
+#[derive(Clone, Copy, PartialEq, Eq, PartialOrd, Ord, Hash, Default)]
 pub struct LogicOp(pub(crate) i32);
 ///Provided by [`vk1_0`](crate::vk1_0)
 impl LogicOp {
@@ -1503,14 +1503,14 @@ impl LogicOp {
     pub const SET: Self = Self(15);
 }
 #[repr(transparent)]
-#[derive(Clone, Copy)]
+#[derive(Clone, Copy, PartialEq, Eq, PartialOrd, Ord, Hash, Default)]
 pub struct InternalAllocationType(pub(crate) i32);
 ///Provided by [`vk1_0`](crate::vk1_0)
 impl InternalAllocationType {
     pub const EXECUTABLE: Self = Self(0);
 }
 #[repr(transparent)]
-#[derive(Clone, Copy)]
+#[derive(Clone, Copy, PartialEq, Eq, PartialOrd, Ord, Hash, Default)]
 pub struct SystemAllocationScope(pub(crate) i32);
 ///Provided by [`vk1_0`](crate::vk1_0)
 impl SystemAllocationScope {
@@ -1521,7 +1521,7 @@ impl SystemAllocationScope {
     pub const INSTANCE: Self = Self(4);
 }
 #[repr(transparent)]
-#[derive(Clone, Copy)]
+#[derive(Clone, Copy, PartialEq, Eq, PartialOrd, Ord, Hash, Default)]
 pub struct PhysicalDeviceType(pub(crate) i32);
 ///Provided by [`vk1_0`](crate::vk1_0)
 impl PhysicalDeviceType {
@@ -1532,7 +1532,7 @@ impl PhysicalDeviceType {
     pub const CPU: Self = Self(4);
 }
 #[repr(transparent)]
-#[derive(Clone, Copy)]
+#[derive(Clone, Copy, PartialEq, Eq, PartialOrd, Ord, Hash, Default)]
 pub struct VertexInputRate(pub(crate) i32);
 ///Provided by [`vk1_0`](crate::vk1_0)
 impl VertexInputRate {
@@ -1540,7 +1540,7 @@ impl VertexInputRate {
     pub const INSTANCE: Self = Self(1);
 }
 #[repr(transparent)]
-#[derive(Clone, Copy)]
+#[derive(Clone, Copy, PartialEq, Eq, PartialOrd, Ord, Hash, Default)]
 pub struct Format(pub(crate) i32);
 ///Provided by [`vk1_0`](crate::vk1_0)
 impl Format {
@@ -1731,7 +1731,7 @@ impl Format {
     pub const ASTC_12X12_SRGB_BLOCK: Self = Self(184);
 }
 #[repr(transparent)]
-#[derive(Clone, Copy)]
+#[derive(Clone, Copy, PartialEq, Eq, PartialOrd, Ord, Hash, Default)]
 pub struct StructureType(pub(crate) i32);
 ///Provided by [`vk1_0`](crate::vk1_0)
 impl StructureType {
@@ -1786,7 +1786,7 @@ impl StructureType {
     pub const LOADER_DEVICE_CREATE_INFO: Self = Self(48);
 }
 #[repr(transparent)]
-#[derive(Clone, Copy)]
+#[derive(Clone, Copy, PartialEq, Eq, PartialOrd, Ord, Hash, Default)]
 pub struct SubpassContents(pub(crate) i32);
 ///Provided by [`vk1_0`](crate::vk1_0)
 impl SubpassContents {
@@ -1794,7 +1794,7 @@ impl SubpassContents {
     pub const SECONDARY_COMMAND_BUFFERS: Self = Self(1);
 }
 #[repr(transparent)]
-#[derive(Clone, Copy)]
+#[derive(Clone, Copy, PartialEq, Eq, PartialOrd, Ord, Hash, Default)]
 pub struct Result(pub(crate) i32);
 ///Provided by [`vk1_0`](crate::vk1_0)
 impl Result {
@@ -1820,7 +1820,7 @@ impl Result {
     pub const ERROR_VALIDATION_FAILED: Self = Self(-1000011001);
 }
 #[repr(transparent)]
-#[derive(Clone, Copy)]
+#[derive(Clone, Copy, PartialEq, Eq, PartialOrd, Ord, Hash, Default)]
 pub struct DynamicState(pub(crate) i32);
 ///Provided by [`vk1_0`](crate::vk1_0)
 impl DynamicState {
@@ -1835,7 +1835,7 @@ impl DynamicState {
     pub const STENCIL_REFERENCE: Self = Self(8);
 }
 #[repr(transparent)]
-#[derive(Clone, Copy)]
+#[derive(Clone, Copy, PartialEq, Eq, PartialOrd, Ord, Hash, Default)]
 pub struct ObjectType(pub(crate) i32);
 ///Provided by [`vk1_0`](crate::vk1_0)
 impl ObjectType {
@@ -1867,7 +1867,7 @@ impl ObjectType {
     pub const COMMAND_POOL: Self = Self(25);
 }
 #[repr(transparent)]
-#[derive(Clone, Copy)]
+#[derive(Clone, Copy, PartialEq, Eq, PartialOrd, Ord, Hash, Default)]
 pub struct VendorId(pub(crate) i32);
 ///Provided by [`vk1_0`](crate::vk1_0)
 impl VendorId {
@@ -3681,18 +3681,843 @@ impl core::fmt::Debug for PipelineCache {
         write!(f, "0x{:x}", self.0)
     }
 }
-#[allow(non_camel_case_types)]
-pub type PFN_vkInternalAllocationNotification = Option<()>;
-#[allow(non_camel_case_types)]
-pub type PFN_vkInternalFreeNotification = Option<()>;
-#[allow(non_camel_case_types)]
-pub type PFN_vkReallocationFunction = Option<()>;
-#[allow(non_camel_case_types)]
-pub type PFN_vkAllocationFunction = Option<()>;
-#[allow(non_camel_case_types)]
-pub type PFN_vkFreeFunction = Option<()>;
-#[allow(non_camel_case_types)]
-pub type PFN_vkVoidFunction = Option<()>;
+pub type PFN_vkInternalAllocationNotification = Option<
+    unsafe extern "system" fn(
+        p_user_data: *mut core::ffi::c_void,
+        size: usize,
+        allocation_type: crate::vk::InternalAllocationType,
+        allocation_scope: crate::vk::SystemAllocationScope,
+    ),
+>;
+pub type PFN_vkInternalFreeNotification = Option<
+    unsafe extern "system" fn(
+        p_user_data: *mut core::ffi::c_void,
+        size: usize,
+        allocation_type: crate::vk::InternalAllocationType,
+        allocation_scope: crate::vk::SystemAllocationScope,
+    ),
+>;
+pub type PFN_vkReallocationFunction = Option<
+    unsafe extern "system" fn(
+        p_user_data: *mut core::ffi::c_void,
+        p_original: *mut core::ffi::c_void,
+        size: usize,
+        alignment: usize,
+        allocation_scope: crate::vk::SystemAllocationScope,
+    ) -> *mut core::ffi::c_void,
+>;
+pub type PFN_vkAllocationFunction = Option<
+    unsafe extern "system" fn(
+        p_user_data: *mut core::ffi::c_void,
+        size: usize,
+        alignment: usize,
+        allocation_scope: crate::vk::SystemAllocationScope,
+    ) -> *mut core::ffi::c_void,
+>;
+pub type PFN_vkFreeFunction = Option<
+    unsafe extern "system" fn(
+        p_user_data: *mut core::ffi::c_void,
+        p_memory: *mut core::ffi::c_void,
+    ),
+>;
+pub type PFN_vkVoidFunction = Option<unsafe extern "system" fn()>;
+pub type PFN_vkCreateInstance = unsafe extern "system" fn(
+    p_create_info: *const crate::vk::InstanceCreateInfo,
+    p_allocator: *const crate::vk::AllocationCallbacks,
+    p_instance: *mut crate::vk::Instance,
+) -> crate::vk::Result;
+pub type PFN_vkDestroyInstance = unsafe extern "system" fn(
+    instance: crate::vk::Instance,
+    p_allocator: *const crate::vk::AllocationCallbacks,
+);
+pub type PFN_vkEnumeratePhysicalDevices = unsafe extern "system" fn(
+    instance: crate::vk::Instance,
+    p_physical_device_count: *mut u32,
+    p_physical_devices: *mut crate::vk::PhysicalDevice,
+) -> crate::vk::Result;
+pub type PFN_vkGetDeviceProcAddr = unsafe extern "system" fn(
+    device: crate::vk::Device,
+    p_name: *const core::ffi::c_char,
+) -> crate::vk::PFN_vkVoidFunction;
+pub type PFN_vkGetInstanceProcAddr = unsafe extern "system" fn(
+    instance: crate::vk::Instance,
+    p_name: *const core::ffi::c_char,
+) -> crate::vk::PFN_vkVoidFunction;
+pub type PFN_vkGetPhysicalDeviceProperties = unsafe extern "system" fn(
+    physical_device: crate::vk::PhysicalDevice,
+    p_properties: *mut crate::vk::PhysicalDeviceProperties,
+);
+pub type PFN_vkGetPhysicalDeviceQueueFamilyProperties = unsafe extern "system" fn(
+    physical_device: crate::vk::PhysicalDevice,
+    p_queue_family_property_count: *mut u32,
+    p_queue_family_properties: *mut crate::vk::QueueFamilyProperties,
+);
+pub type PFN_vkGetPhysicalDeviceMemoryProperties = unsafe extern "system" fn(
+    physical_device: crate::vk::PhysicalDevice,
+    p_memory_properties: *mut crate::vk::PhysicalDeviceMemoryProperties,
+);
+pub type PFN_vkGetPhysicalDeviceFeatures = unsafe extern "system" fn(
+    physical_device: crate::vk::PhysicalDevice,
+    p_features: *mut crate::vk::PhysicalDeviceFeatures,
+);
+pub type PFN_vkGetPhysicalDeviceFormatProperties = unsafe extern "system" fn(
+    physical_device: crate::vk::PhysicalDevice,
+    format: crate::vk::Format,
+    p_format_properties: *mut crate::vk::FormatProperties,
+);
+pub type PFN_vkGetPhysicalDeviceImageFormatProperties = unsafe extern "system" fn(
+    physical_device: crate::vk::PhysicalDevice,
+    format: crate::vk::Format,
+    _type: crate::vk::ImageType,
+    tiling: crate::vk::ImageTiling,
+    usage: crate::vk::ImageUsageFlags,
+    flags: crate::vk::ImageCreateFlags,
+    p_image_format_properties: *mut crate::vk::ImageFormatProperties,
+) -> crate::vk::Result;
+pub type PFN_vkCreateDevice = unsafe extern "system" fn(
+    physical_device: crate::vk::PhysicalDevice,
+    p_create_info: *const crate::vk::DeviceCreateInfo,
+    p_allocator: *const crate::vk::AllocationCallbacks,
+    p_device: *mut crate::vk::Device,
+) -> crate::vk::Result;
+pub type PFN_vkDestroyDevice = unsafe extern "system" fn(
+    device: crate::vk::Device,
+    p_allocator: *const crate::vk::AllocationCallbacks,
+);
+pub type PFN_vkEnumerateInstanceLayerProperties = unsafe extern "system" fn(
+    p_property_count: *mut u32,
+    p_properties: *mut crate::vk::LayerProperties,
+) -> crate::vk::Result;
+pub type PFN_vkEnumerateInstanceExtensionProperties = unsafe extern "system" fn(
+    p_layer_name: *const core::ffi::c_char,
+    p_property_count: *mut u32,
+    p_properties: *mut crate::vk::ExtensionProperties,
+) -> crate::vk::Result;
+pub type PFN_vkEnumerateDeviceLayerProperties = unsafe extern "system" fn(
+    physical_device: crate::vk::PhysicalDevice,
+    p_property_count: *mut u32,
+    p_properties: *mut crate::vk::LayerProperties,
+) -> crate::vk::Result;
+pub type PFN_vkEnumerateDeviceExtensionProperties = unsafe extern "system" fn(
+    physical_device: crate::vk::PhysicalDevice,
+    p_layer_name: *const core::ffi::c_char,
+    p_property_count: *mut u32,
+    p_properties: *mut crate::vk::ExtensionProperties,
+) -> crate::vk::Result;
+pub type PFN_vkGetDeviceQueue = unsafe extern "system" fn(
+    device: crate::vk::Device,
+    queue_family_index: u32,
+    queue_index: u32,
+    p_queue: *mut crate::vk::Queue,
+);
+pub type PFN_vkQueueSubmit = unsafe extern "system" fn(
+    queue: crate::vk::Queue,
+    submit_count: u32,
+    p_submits: *const crate::vk::SubmitInfo,
+    fence: crate::vk::Fence,
+) -> crate::vk::Result;
+pub type PFN_vkQueueWaitIdle = unsafe extern "system" fn(
+    queue: crate::vk::Queue,
+) -> crate::vk::Result;
+pub type PFN_vkDeviceWaitIdle = unsafe extern "system" fn(
+    device: crate::vk::Device,
+) -> crate::vk::Result;
+pub type PFN_vkAllocateMemory = unsafe extern "system" fn(
+    device: crate::vk::Device,
+    p_allocate_info: *const crate::vk::MemoryAllocateInfo,
+    p_allocator: *const crate::vk::AllocationCallbacks,
+    p_memory: *mut crate::vk::DeviceMemory,
+) -> crate::vk::Result;
+pub type PFN_vkFreeMemory = unsafe extern "system" fn(
+    device: crate::vk::Device,
+    memory: crate::vk::DeviceMemory,
+    p_allocator: *const crate::vk::AllocationCallbacks,
+);
+pub type PFN_vkMapMemory = unsafe extern "system" fn(
+    device: crate::vk::Device,
+    memory: crate::vk::DeviceMemory,
+    offset: crate::vk::DeviceSize,
+    size: crate::vk::DeviceSize,
+    flags: crate::vk::MemoryMapFlags,
+    pp_data: *mut *mut core::ffi::c_void,
+) -> crate::vk::Result;
+pub type PFN_vkUnmapMemory = unsafe extern "system" fn(
+    device: crate::vk::Device,
+    memory: crate::vk::DeviceMemory,
+);
+pub type PFN_vkFlushMappedMemoryRanges = unsafe extern "system" fn(
+    device: crate::vk::Device,
+    memory_range_count: u32,
+    p_memory_ranges: *const crate::vk::MappedMemoryRange,
+) -> crate::vk::Result;
+pub type PFN_vkInvalidateMappedMemoryRanges = unsafe extern "system" fn(
+    device: crate::vk::Device,
+    memory_range_count: u32,
+    p_memory_ranges: *const crate::vk::MappedMemoryRange,
+) -> crate::vk::Result;
+pub type PFN_vkGetDeviceMemoryCommitment = unsafe extern "system" fn(
+    device: crate::vk::Device,
+    memory: crate::vk::DeviceMemory,
+    p_committed_memory_in_bytes: *mut crate::vk::DeviceSize,
+);
+pub type PFN_vkGetBufferMemoryRequirements = unsafe extern "system" fn(
+    device: crate::vk::Device,
+    buffer: crate::vk::Buffer,
+    p_memory_requirements: *mut crate::vk::MemoryRequirements,
+);
+pub type PFN_vkBindBufferMemory = unsafe extern "system" fn(
+    device: crate::vk::Device,
+    buffer: crate::vk::Buffer,
+    memory: crate::vk::DeviceMemory,
+    memory_offset: crate::vk::DeviceSize,
+) -> crate::vk::Result;
+pub type PFN_vkGetImageMemoryRequirements = unsafe extern "system" fn(
+    device: crate::vk::Device,
+    image: crate::vk::Image,
+    p_memory_requirements: *mut crate::vk::MemoryRequirements,
+);
+pub type PFN_vkBindImageMemory = unsafe extern "system" fn(
+    device: crate::vk::Device,
+    image: crate::vk::Image,
+    memory: crate::vk::DeviceMemory,
+    memory_offset: crate::vk::DeviceSize,
+) -> crate::vk::Result;
+pub type PFN_vkGetImageSparseMemoryRequirements = unsafe extern "system" fn(
+    device: crate::vk::Device,
+    image: crate::vk::Image,
+    p_sparse_memory_requirement_count: *mut u32,
+    p_sparse_memory_requirements: *mut crate::vk::SparseImageMemoryRequirements,
+);
+pub type PFN_vkGetPhysicalDeviceSparseImageFormatProperties = unsafe extern "system" fn(
+    physical_device: crate::vk::PhysicalDevice,
+    format: crate::vk::Format,
+    _type: crate::vk::ImageType,
+    samples: crate::vk::SampleCountFlagBits,
+    usage: crate::vk::ImageUsageFlags,
+    tiling: crate::vk::ImageTiling,
+    p_property_count: *mut u32,
+    p_properties: *mut crate::vk::SparseImageFormatProperties,
+);
+pub type PFN_vkQueueBindSparse = unsafe extern "system" fn(
+    queue: crate::vk::Queue,
+    bind_info_count: u32,
+    p_bind_info: *const crate::vk::BindSparseInfo,
+    fence: crate::vk::Fence,
+) -> crate::vk::Result;
+pub type PFN_vkCreateFence = unsafe extern "system" fn(
+    device: crate::vk::Device,
+    p_create_info: *const crate::vk::FenceCreateInfo,
+    p_allocator: *const crate::vk::AllocationCallbacks,
+    p_fence: *mut crate::vk::Fence,
+) -> crate::vk::Result;
+pub type PFN_vkDestroyFence = unsafe extern "system" fn(
+    device: crate::vk::Device,
+    fence: crate::vk::Fence,
+    p_allocator: *const crate::vk::AllocationCallbacks,
+);
+pub type PFN_vkResetFences = unsafe extern "system" fn(
+    device: crate::vk::Device,
+    fence_count: u32,
+    p_fences: *const crate::vk::Fence,
+) -> crate::vk::Result;
+pub type PFN_vkGetFenceStatus = unsafe extern "system" fn(
+    device: crate::vk::Device,
+    fence: crate::vk::Fence,
+) -> crate::vk::Result;
+pub type PFN_vkWaitForFences = unsafe extern "system" fn(
+    device: crate::vk::Device,
+    fence_count: u32,
+    p_fences: *const crate::vk::Fence,
+    wait_all: crate::vk::Bool32,
+    timeout: u64,
+) -> crate::vk::Result;
+pub type PFN_vkCreateSemaphore = unsafe extern "system" fn(
+    device: crate::vk::Device,
+    p_create_info: *const crate::vk::SemaphoreCreateInfo,
+    p_allocator: *const crate::vk::AllocationCallbacks,
+    p_semaphore: *mut crate::vk::Semaphore,
+) -> crate::vk::Result;
+pub type PFN_vkDestroySemaphore = unsafe extern "system" fn(
+    device: crate::vk::Device,
+    semaphore: crate::vk::Semaphore,
+    p_allocator: *const crate::vk::AllocationCallbacks,
+);
+pub type PFN_vkCreateEvent = unsafe extern "system" fn(
+    device: crate::vk::Device,
+    p_create_info: *const crate::vk::EventCreateInfo,
+    p_allocator: *const crate::vk::AllocationCallbacks,
+    p_event: *mut crate::vk::Event,
+) -> crate::vk::Result;
+pub type PFN_vkDestroyEvent = unsafe extern "system" fn(
+    device: crate::vk::Device,
+    event: crate::vk::Event,
+    p_allocator: *const crate::vk::AllocationCallbacks,
+);
+pub type PFN_vkGetEventStatus = unsafe extern "system" fn(
+    device: crate::vk::Device,
+    event: crate::vk::Event,
+) -> crate::vk::Result;
+pub type PFN_vkSetEvent = unsafe extern "system" fn(
+    device: crate::vk::Device,
+    event: crate::vk::Event,
+) -> crate::vk::Result;
+pub type PFN_vkResetEvent = unsafe extern "system" fn(
+    device: crate::vk::Device,
+    event: crate::vk::Event,
+) -> crate::vk::Result;
+pub type PFN_vkCreateQueryPool = unsafe extern "system" fn(
+    device: crate::vk::Device,
+    p_create_info: *const crate::vk::QueryPoolCreateInfo,
+    p_allocator: *const crate::vk::AllocationCallbacks,
+    p_query_pool: *mut crate::vk::QueryPool,
+) -> crate::vk::Result;
+pub type PFN_vkDestroyQueryPool = unsafe extern "system" fn(
+    device: crate::vk::Device,
+    query_pool: crate::vk::QueryPool,
+    p_allocator: *const crate::vk::AllocationCallbacks,
+);
+pub type PFN_vkGetQueryPoolResults = unsafe extern "system" fn(
+    device: crate::vk::Device,
+    query_pool: crate::vk::QueryPool,
+    first_query: u32,
+    query_count: u32,
+    data_size: usize,
+    p_data: *mut core::ffi::c_void,
+    stride: crate::vk::DeviceSize,
+    flags: crate::vk::QueryResultFlags,
+) -> crate::vk::Result;
+pub type PFN_vkCreateBuffer = unsafe extern "system" fn(
+    device: crate::vk::Device,
+    p_create_info: *const crate::vk::BufferCreateInfo,
+    p_allocator: *const crate::vk::AllocationCallbacks,
+    p_buffer: *mut crate::vk::Buffer,
+) -> crate::vk::Result;
+pub type PFN_vkDestroyBuffer = unsafe extern "system" fn(
+    device: crate::vk::Device,
+    buffer: crate::vk::Buffer,
+    p_allocator: *const crate::vk::AllocationCallbacks,
+);
+pub type PFN_vkCreateBufferView = unsafe extern "system" fn(
+    device: crate::vk::Device,
+    p_create_info: *const crate::vk::BufferViewCreateInfo,
+    p_allocator: *const crate::vk::AllocationCallbacks,
+    p_view: *mut crate::vk::BufferView,
+) -> crate::vk::Result;
+pub type PFN_vkDestroyBufferView = unsafe extern "system" fn(
+    device: crate::vk::Device,
+    buffer_view: crate::vk::BufferView,
+    p_allocator: *const crate::vk::AllocationCallbacks,
+);
+pub type PFN_vkCreateImage = unsafe extern "system" fn(
+    device: crate::vk::Device,
+    p_create_info: *const crate::vk::ImageCreateInfo,
+    p_allocator: *const crate::vk::AllocationCallbacks,
+    p_image: *mut crate::vk::Image,
+) -> crate::vk::Result;
+pub type PFN_vkDestroyImage = unsafe extern "system" fn(
+    device: crate::vk::Device,
+    image: crate::vk::Image,
+    p_allocator: *const crate::vk::AllocationCallbacks,
+);
+pub type PFN_vkGetImageSubresourceLayout = unsafe extern "system" fn(
+    device: crate::vk::Device,
+    image: crate::vk::Image,
+    p_subresource: *const crate::vk::ImageSubresource,
+    p_layout: *mut crate::vk::SubresourceLayout,
+);
+pub type PFN_vkCreateImageView = unsafe extern "system" fn(
+    device: crate::vk::Device,
+    p_create_info: *const crate::vk::ImageViewCreateInfo,
+    p_allocator: *const crate::vk::AllocationCallbacks,
+    p_view: *mut crate::vk::ImageView,
+) -> crate::vk::Result;
+pub type PFN_vkDestroyImageView = unsafe extern "system" fn(
+    device: crate::vk::Device,
+    image_view: crate::vk::ImageView,
+    p_allocator: *const crate::vk::AllocationCallbacks,
+);
+pub type PFN_vkCreateShaderModule = unsafe extern "system" fn(
+    device: crate::vk::Device,
+    p_create_info: *const crate::vk::ShaderModuleCreateInfo,
+    p_allocator: *const crate::vk::AllocationCallbacks,
+    p_shader_module: *mut crate::vk::ShaderModule,
+) -> crate::vk::Result;
+pub type PFN_vkDestroyShaderModule = unsafe extern "system" fn(
+    device: crate::vk::Device,
+    shader_module: crate::vk::ShaderModule,
+    p_allocator: *const crate::vk::AllocationCallbacks,
+);
+pub type PFN_vkCreatePipelineCache = unsafe extern "system" fn(
+    device: crate::vk::Device,
+    p_create_info: *const crate::vk::PipelineCacheCreateInfo,
+    p_allocator: *const crate::vk::AllocationCallbacks,
+    p_pipeline_cache: *mut crate::vk::PipelineCache,
+) -> crate::vk::Result;
+pub type PFN_vkDestroyPipelineCache = unsafe extern "system" fn(
+    device: crate::vk::Device,
+    pipeline_cache: crate::vk::PipelineCache,
+    p_allocator: *const crate::vk::AllocationCallbacks,
+);
+pub type PFN_vkGetPipelineCacheData = unsafe extern "system" fn(
+    device: crate::vk::Device,
+    pipeline_cache: crate::vk::PipelineCache,
+    p_data_size: *mut usize,
+    p_data: *mut core::ffi::c_void,
+) -> crate::vk::Result;
+pub type PFN_vkMergePipelineCaches = unsafe extern "system" fn(
+    device: crate::vk::Device,
+    dst_cache: crate::vk::PipelineCache,
+    src_cache_count: u32,
+    p_src_caches: *const crate::vk::PipelineCache,
+) -> crate::vk::Result;
+pub type PFN_vkCreateGraphicsPipelines = unsafe extern "system" fn(
+    device: crate::vk::Device,
+    pipeline_cache: crate::vk::PipelineCache,
+    create_info_count: u32,
+    p_create_infos: *const crate::vk::GraphicsPipelineCreateInfo,
+    p_allocator: *const crate::vk::AllocationCallbacks,
+    p_pipelines: *mut crate::vk::Pipeline,
+) -> crate::vk::Result;
+pub type PFN_vkCreateComputePipelines = unsafe extern "system" fn(
+    device: crate::vk::Device,
+    pipeline_cache: crate::vk::PipelineCache,
+    create_info_count: u32,
+    p_create_infos: *const crate::vk::ComputePipelineCreateInfo,
+    p_allocator: *const crate::vk::AllocationCallbacks,
+    p_pipelines: *mut crate::vk::Pipeline,
+) -> crate::vk::Result;
+pub type PFN_vkDestroyPipeline = unsafe extern "system" fn(
+    device: crate::vk::Device,
+    pipeline: crate::vk::Pipeline,
+    p_allocator: *const crate::vk::AllocationCallbacks,
+);
+pub type PFN_vkCreatePipelineLayout = unsafe extern "system" fn(
+    device: crate::vk::Device,
+    p_create_info: *const crate::vk::PipelineLayoutCreateInfo,
+    p_allocator: *const crate::vk::AllocationCallbacks,
+    p_pipeline_layout: *mut crate::vk::PipelineLayout,
+) -> crate::vk::Result;
+pub type PFN_vkDestroyPipelineLayout = unsafe extern "system" fn(
+    device: crate::vk::Device,
+    pipeline_layout: crate::vk::PipelineLayout,
+    p_allocator: *const crate::vk::AllocationCallbacks,
+);
+pub type PFN_vkCreateSampler = unsafe extern "system" fn(
+    device: crate::vk::Device,
+    p_create_info: *const crate::vk::SamplerCreateInfo,
+    p_allocator: *const crate::vk::AllocationCallbacks,
+    p_sampler: *mut crate::vk::Sampler,
+) -> crate::vk::Result;
+pub type PFN_vkDestroySampler = unsafe extern "system" fn(
+    device: crate::vk::Device,
+    sampler: crate::vk::Sampler,
+    p_allocator: *const crate::vk::AllocationCallbacks,
+);
+pub type PFN_vkCreateDescriptorSetLayout = unsafe extern "system" fn(
+    device: crate::vk::Device,
+    p_create_info: *const crate::vk::DescriptorSetLayoutCreateInfo,
+    p_allocator: *const crate::vk::AllocationCallbacks,
+    p_set_layout: *mut crate::vk::DescriptorSetLayout,
+) -> crate::vk::Result;
+pub type PFN_vkDestroyDescriptorSetLayout = unsafe extern "system" fn(
+    device: crate::vk::Device,
+    descriptor_set_layout: crate::vk::DescriptorSetLayout,
+    p_allocator: *const crate::vk::AllocationCallbacks,
+);
+pub type PFN_vkCreateDescriptorPool = unsafe extern "system" fn(
+    device: crate::vk::Device,
+    p_create_info: *const crate::vk::DescriptorPoolCreateInfo,
+    p_allocator: *const crate::vk::AllocationCallbacks,
+    p_descriptor_pool: *mut crate::vk::DescriptorPool,
+) -> crate::vk::Result;
+pub type PFN_vkDestroyDescriptorPool = unsafe extern "system" fn(
+    device: crate::vk::Device,
+    descriptor_pool: crate::vk::DescriptorPool,
+    p_allocator: *const crate::vk::AllocationCallbacks,
+);
+pub type PFN_vkResetDescriptorPool = unsafe extern "system" fn(
+    device: crate::vk::Device,
+    descriptor_pool: crate::vk::DescriptorPool,
+    flags: crate::vk::DescriptorPoolResetFlags,
+) -> crate::vk::Result;
+pub type PFN_vkAllocateDescriptorSets = unsafe extern "system" fn(
+    device: crate::vk::Device,
+    p_allocate_info: *const crate::vk::DescriptorSetAllocateInfo,
+    p_descriptor_sets: *mut crate::vk::DescriptorSet,
+) -> crate::vk::Result;
+pub type PFN_vkFreeDescriptorSets = unsafe extern "system" fn(
+    device: crate::vk::Device,
+    descriptor_pool: crate::vk::DescriptorPool,
+    descriptor_set_count: u32,
+    p_descriptor_sets: *const crate::vk::DescriptorSet,
+) -> crate::vk::Result;
+pub type PFN_vkUpdateDescriptorSets = unsafe extern "system" fn(
+    device: crate::vk::Device,
+    descriptor_write_count: u32,
+    p_descriptor_writes: *const crate::vk::WriteDescriptorSet,
+    descriptor_copy_count: u32,
+    p_descriptor_copies: *const crate::vk::CopyDescriptorSet,
+);
+pub type PFN_vkCreateFramebuffer = unsafe extern "system" fn(
+    device: crate::vk::Device,
+    p_create_info: *const crate::vk::FramebufferCreateInfo,
+    p_allocator: *const crate::vk::AllocationCallbacks,
+    p_framebuffer: *mut crate::vk::Framebuffer,
+) -> crate::vk::Result;
+pub type PFN_vkDestroyFramebuffer = unsafe extern "system" fn(
+    device: crate::vk::Device,
+    framebuffer: crate::vk::Framebuffer,
+    p_allocator: *const crate::vk::AllocationCallbacks,
+);
+pub type PFN_vkCreateRenderPass = unsafe extern "system" fn(
+    device: crate::vk::Device,
+    p_create_info: *const crate::vk::RenderPassCreateInfo,
+    p_allocator: *const crate::vk::AllocationCallbacks,
+    p_render_pass: *mut crate::vk::RenderPass,
+) -> crate::vk::Result;
+pub type PFN_vkDestroyRenderPass = unsafe extern "system" fn(
+    device: crate::vk::Device,
+    render_pass: crate::vk::RenderPass,
+    p_allocator: *const crate::vk::AllocationCallbacks,
+);
+pub type PFN_vkGetRenderAreaGranularity = unsafe extern "system" fn(
+    device: crate::vk::Device,
+    render_pass: crate::vk::RenderPass,
+    p_granularity: *mut crate::vk::Extent2D,
+);
+pub type PFN_vkCreateCommandPool = unsafe extern "system" fn(
+    device: crate::vk::Device,
+    p_create_info: *const crate::vk::CommandPoolCreateInfo,
+    p_allocator: *const crate::vk::AllocationCallbacks,
+    p_command_pool: *mut crate::vk::CommandPool,
+) -> crate::vk::Result;
+pub type PFN_vkDestroyCommandPool = unsafe extern "system" fn(
+    device: crate::vk::Device,
+    command_pool: crate::vk::CommandPool,
+    p_allocator: *const crate::vk::AllocationCallbacks,
+);
+pub type PFN_vkResetCommandPool = unsafe extern "system" fn(
+    device: crate::vk::Device,
+    command_pool: crate::vk::CommandPool,
+    flags: crate::vk::CommandPoolResetFlags,
+) -> crate::vk::Result;
+pub type PFN_vkAllocateCommandBuffers = unsafe extern "system" fn(
+    device: crate::vk::Device,
+    p_allocate_info: *const crate::vk::CommandBufferAllocateInfo,
+    p_command_buffers: *mut crate::vk::CommandBuffer,
+) -> crate::vk::Result;
+pub type PFN_vkFreeCommandBuffers = unsafe extern "system" fn(
+    device: crate::vk::Device,
+    command_pool: crate::vk::CommandPool,
+    command_buffer_count: u32,
+    p_command_buffers: *const crate::vk::CommandBuffer,
+);
+pub type PFN_vkBeginCommandBuffer = unsafe extern "system" fn(
+    command_buffer: crate::vk::CommandBuffer,
+    p_begin_info: *const crate::vk::CommandBufferBeginInfo,
+) -> crate::vk::Result;
+pub type PFN_vkEndCommandBuffer = unsafe extern "system" fn(
+    command_buffer: crate::vk::CommandBuffer,
+) -> crate::vk::Result;
+pub type PFN_vkResetCommandBuffer = unsafe extern "system" fn(
+    command_buffer: crate::vk::CommandBuffer,
+    flags: crate::vk::CommandBufferResetFlags,
+) -> crate::vk::Result;
+pub type PFN_vkCmdBindPipeline = unsafe extern "system" fn(
+    command_buffer: crate::vk::CommandBuffer,
+    pipeline_bind_point: crate::vk::PipelineBindPoint,
+    pipeline: crate::vk::Pipeline,
+);
+pub type PFN_vkCmdSetViewport = unsafe extern "system" fn(
+    command_buffer: crate::vk::CommandBuffer,
+    first_viewport: u32,
+    viewport_count: u32,
+    p_viewports: *const crate::vk::Viewport,
+);
+pub type PFN_vkCmdSetScissor = unsafe extern "system" fn(
+    command_buffer: crate::vk::CommandBuffer,
+    first_scissor: u32,
+    scissor_count: u32,
+    p_scissors: *const crate::vk::Rect2D,
+);
+pub type PFN_vkCmdSetLineWidth = unsafe extern "system" fn(
+    command_buffer: crate::vk::CommandBuffer,
+    line_width: core::ffi::c_float,
+);
+pub type PFN_vkCmdSetDepthBias = unsafe extern "system" fn(
+    command_buffer: crate::vk::CommandBuffer,
+    depth_bias_constant_factor: core::ffi::c_float,
+    depth_bias_clamp: core::ffi::c_float,
+    depth_bias_slope_factor: core::ffi::c_float,
+);
+pub type PFN_vkCmdSetBlendConstants = unsafe extern "system" fn(
+    command_buffer: crate::vk::CommandBuffer,
+    blend_constants: *const [core::ffi::c_float; 4 as _],
+);
+pub type PFN_vkCmdSetDepthBounds = unsafe extern "system" fn(
+    command_buffer: crate::vk::CommandBuffer,
+    min_depth_bounds: core::ffi::c_float,
+    max_depth_bounds: core::ffi::c_float,
+);
+pub type PFN_vkCmdSetStencilCompareMask = unsafe extern "system" fn(
+    command_buffer: crate::vk::CommandBuffer,
+    face_mask: crate::vk::StencilFaceFlags,
+    compare_mask: u32,
+);
+pub type PFN_vkCmdSetStencilWriteMask = unsafe extern "system" fn(
+    command_buffer: crate::vk::CommandBuffer,
+    face_mask: crate::vk::StencilFaceFlags,
+    write_mask: u32,
+);
+pub type PFN_vkCmdSetStencilReference = unsafe extern "system" fn(
+    command_buffer: crate::vk::CommandBuffer,
+    face_mask: crate::vk::StencilFaceFlags,
+    reference: u32,
+);
+pub type PFN_vkCmdBindDescriptorSets = unsafe extern "system" fn(
+    command_buffer: crate::vk::CommandBuffer,
+    pipeline_bind_point: crate::vk::PipelineBindPoint,
+    layout: crate::vk::PipelineLayout,
+    first_set: u32,
+    descriptor_set_count: u32,
+    p_descriptor_sets: *const crate::vk::DescriptorSet,
+    dynamic_offset_count: u32,
+    p_dynamic_offsets: *const u32,
+);
+pub type PFN_vkCmdBindIndexBuffer = unsafe extern "system" fn(
+    command_buffer: crate::vk::CommandBuffer,
+    buffer: crate::vk::Buffer,
+    offset: crate::vk::DeviceSize,
+    index_type: crate::vk::IndexType,
+);
+pub type PFN_vkCmdBindVertexBuffers = unsafe extern "system" fn(
+    command_buffer: crate::vk::CommandBuffer,
+    first_binding: u32,
+    binding_count: u32,
+    p_buffers: *const crate::vk::Buffer,
+    p_offsets: *const crate::vk::DeviceSize,
+);
+pub type PFN_vkCmdDraw = unsafe extern "system" fn(
+    command_buffer: crate::vk::CommandBuffer,
+    vertex_count: u32,
+    instance_count: u32,
+    first_vertex: u32,
+    first_instance: u32,
+);
+pub type PFN_vkCmdDrawIndexed = unsafe extern "system" fn(
+    command_buffer: crate::vk::CommandBuffer,
+    index_count: u32,
+    instance_count: u32,
+    first_index: u32,
+    vertex_offset: i32,
+    first_instance: u32,
+);
+pub type PFN_vkCmdDrawIndirect = unsafe extern "system" fn(
+    command_buffer: crate::vk::CommandBuffer,
+    buffer: crate::vk::Buffer,
+    offset: crate::vk::DeviceSize,
+    draw_count: u32,
+    stride: u32,
+);
+pub type PFN_vkCmdDrawIndexedIndirect = unsafe extern "system" fn(
+    command_buffer: crate::vk::CommandBuffer,
+    buffer: crate::vk::Buffer,
+    offset: crate::vk::DeviceSize,
+    draw_count: u32,
+    stride: u32,
+);
+pub type PFN_vkCmdDispatch = unsafe extern "system" fn(
+    command_buffer: crate::vk::CommandBuffer,
+    group_count_x: u32,
+    group_count_y: u32,
+    group_count_z: u32,
+);
+pub type PFN_vkCmdDispatchIndirect = unsafe extern "system" fn(
+    command_buffer: crate::vk::CommandBuffer,
+    buffer: crate::vk::Buffer,
+    offset: crate::vk::DeviceSize,
+);
+pub type PFN_vkCmdCopyBuffer = unsafe extern "system" fn(
+    command_buffer: crate::vk::CommandBuffer,
+    src_buffer: crate::vk::Buffer,
+    dst_buffer: crate::vk::Buffer,
+    region_count: u32,
+    p_regions: *const crate::vk::BufferCopy,
+);
+pub type PFN_vkCmdCopyImage = unsafe extern "system" fn(
+    command_buffer: crate::vk::CommandBuffer,
+    src_image: crate::vk::Image,
+    src_image_layout: crate::vk::ImageLayout,
+    dst_image: crate::vk::Image,
+    dst_image_layout: crate::vk::ImageLayout,
+    region_count: u32,
+    p_regions: *const crate::vk::ImageCopy,
+);
+pub type PFN_vkCmdBlitImage = unsafe extern "system" fn(
+    command_buffer: crate::vk::CommandBuffer,
+    src_image: crate::vk::Image,
+    src_image_layout: crate::vk::ImageLayout,
+    dst_image: crate::vk::Image,
+    dst_image_layout: crate::vk::ImageLayout,
+    region_count: u32,
+    p_regions: *const crate::vk::ImageBlit,
+    filter: crate::vk::Filter,
+);
+pub type PFN_vkCmdCopyBufferToImage = unsafe extern "system" fn(
+    command_buffer: crate::vk::CommandBuffer,
+    src_buffer: crate::vk::Buffer,
+    dst_image: crate::vk::Image,
+    dst_image_layout: crate::vk::ImageLayout,
+    region_count: u32,
+    p_regions: *const crate::vk::BufferImageCopy,
+);
+pub type PFN_vkCmdCopyImageToBuffer = unsafe extern "system" fn(
+    command_buffer: crate::vk::CommandBuffer,
+    src_image: crate::vk::Image,
+    src_image_layout: crate::vk::ImageLayout,
+    dst_buffer: crate::vk::Buffer,
+    region_count: u32,
+    p_regions: *const crate::vk::BufferImageCopy,
+);
+pub type PFN_vkCmdUpdateBuffer = unsafe extern "system" fn(
+    command_buffer: crate::vk::CommandBuffer,
+    dst_buffer: crate::vk::Buffer,
+    dst_offset: crate::vk::DeviceSize,
+    data_size: crate::vk::DeviceSize,
+    p_data: *const core::ffi::c_void,
+);
+pub type PFN_vkCmdFillBuffer = unsafe extern "system" fn(
+    command_buffer: crate::vk::CommandBuffer,
+    dst_buffer: crate::vk::Buffer,
+    dst_offset: crate::vk::DeviceSize,
+    size: crate::vk::DeviceSize,
+    data: u32,
+);
+pub type PFN_vkCmdClearColorImage = unsafe extern "system" fn(
+    command_buffer: crate::vk::CommandBuffer,
+    image: crate::vk::Image,
+    image_layout: crate::vk::ImageLayout,
+    p_color: *const crate::vk::ClearColorValue,
+    range_count: u32,
+    p_ranges: *const crate::vk::ImageSubresourceRange,
+);
+pub type PFN_vkCmdClearDepthStencilImage = unsafe extern "system" fn(
+    command_buffer: crate::vk::CommandBuffer,
+    image: crate::vk::Image,
+    image_layout: crate::vk::ImageLayout,
+    p_depth_stencil: *const crate::vk::ClearDepthStencilValue,
+    range_count: u32,
+    p_ranges: *const crate::vk::ImageSubresourceRange,
+);
+pub type PFN_vkCmdClearAttachments = unsafe extern "system" fn(
+    command_buffer: crate::vk::CommandBuffer,
+    attachment_count: u32,
+    p_attachments: *const crate::vk::ClearAttachment,
+    rect_count: u32,
+    p_rects: *const crate::vk::ClearRect,
+);
+pub type PFN_vkCmdResolveImage = unsafe extern "system" fn(
+    command_buffer: crate::vk::CommandBuffer,
+    src_image: crate::vk::Image,
+    src_image_layout: crate::vk::ImageLayout,
+    dst_image: crate::vk::Image,
+    dst_image_layout: crate::vk::ImageLayout,
+    region_count: u32,
+    p_regions: *const crate::vk::ImageResolve,
+);
+pub type PFN_vkCmdSetEvent = unsafe extern "system" fn(
+    command_buffer: crate::vk::CommandBuffer,
+    event: crate::vk::Event,
+    stage_mask: crate::vk::PipelineStageFlags,
+);
+pub type PFN_vkCmdResetEvent = unsafe extern "system" fn(
+    command_buffer: crate::vk::CommandBuffer,
+    event: crate::vk::Event,
+    stage_mask: crate::vk::PipelineStageFlags,
+);
+pub type PFN_vkCmdWaitEvents = unsafe extern "system" fn(
+    command_buffer: crate::vk::CommandBuffer,
+    event_count: u32,
+    p_events: *const crate::vk::Event,
+    src_stage_mask: crate::vk::PipelineStageFlags,
+    dst_stage_mask: crate::vk::PipelineStageFlags,
+    memory_barrier_count: u32,
+    p_memory_barriers: *const crate::vk::MemoryBarrier,
+    buffer_memory_barrier_count: u32,
+    p_buffer_memory_barriers: *const crate::vk::BufferMemoryBarrier,
+    image_memory_barrier_count: u32,
+    p_image_memory_barriers: *const crate::vk::ImageMemoryBarrier,
+);
+pub type PFN_vkCmdPipelineBarrier = unsafe extern "system" fn(
+    command_buffer: crate::vk::CommandBuffer,
+    src_stage_mask: crate::vk::PipelineStageFlags,
+    dst_stage_mask: crate::vk::PipelineStageFlags,
+    dependency_flags: crate::vk::DependencyFlags,
+    memory_barrier_count: u32,
+    p_memory_barriers: *const crate::vk::MemoryBarrier,
+    buffer_memory_barrier_count: u32,
+    p_buffer_memory_barriers: *const crate::vk::BufferMemoryBarrier,
+    image_memory_barrier_count: u32,
+    p_image_memory_barriers: *const crate::vk::ImageMemoryBarrier,
+);
+pub type PFN_vkCmdBeginQuery = unsafe extern "system" fn(
+    command_buffer: crate::vk::CommandBuffer,
+    query_pool: crate::vk::QueryPool,
+    query: u32,
+    flags: crate::vk::QueryControlFlags,
+);
+pub type PFN_vkCmdEndQuery = unsafe extern "system" fn(
+    command_buffer: crate::vk::CommandBuffer,
+    query_pool: crate::vk::QueryPool,
+    query: u32,
+);
+pub type PFN_vkCmdResetQueryPool = unsafe extern "system" fn(
+    command_buffer: crate::vk::CommandBuffer,
+    query_pool: crate::vk::QueryPool,
+    first_query: u32,
+    query_count: u32,
+);
+pub type PFN_vkCmdWriteTimestamp = unsafe extern "system" fn(
+    command_buffer: crate::vk::CommandBuffer,
+    pipeline_stage: crate::vk::PipelineStageFlagBits,
+    query_pool: crate::vk::QueryPool,
+    query: u32,
+);
+pub type PFN_vkCmdCopyQueryPoolResults = unsafe extern "system" fn(
+    command_buffer: crate::vk::CommandBuffer,
+    query_pool: crate::vk::QueryPool,
+    first_query: u32,
+    query_count: u32,
+    dst_buffer: crate::vk::Buffer,
+    dst_offset: crate::vk::DeviceSize,
+    stride: crate::vk::DeviceSize,
+    flags: crate::vk::QueryResultFlags,
+);
+pub type PFN_vkCmdPushConstants = unsafe extern "system" fn(
+    command_buffer: crate::vk::CommandBuffer,
+    layout: crate::vk::PipelineLayout,
+    stage_flags: crate::vk::ShaderStageFlags,
+    offset: u32,
+    size: u32,
+    p_values: *const core::ffi::c_void,
+);
+pub type PFN_vkCmdBeginRenderPass = unsafe extern "system" fn(
+    command_buffer: crate::vk::CommandBuffer,
+    p_render_pass_begin: *const crate::vk::RenderPassBeginInfo,
+    contents: crate::vk::SubpassContents,
+);
+pub type PFN_vkCmdNextSubpass = unsafe extern "system" fn(
+    command_buffer: crate::vk::CommandBuffer,
+    contents: crate::vk::SubpassContents,
+);
+pub type PFN_vkCmdEndRenderPass = unsafe extern "system" fn(
+    command_buffer: crate::vk::CommandBuffer,
+);
+pub type PFN_vkCmdExecuteCommands = unsafe extern "system" fn(
+    command_buffer: crate::vk::CommandBuffer,
+    command_buffer_count: u32,
+    p_command_buffers: *const crate::vk::CommandBuffer,
+);
 pub const MAX_PHYSICAL_DEVICE_NAME_SIZE: u32 = 256;
 pub const UUID_SIZE: u32 = 16;
 pub const MAX_EXTENSION_NAME_SIZE: u32 = 256;
@@ -3743,3 +4568,146 @@ pub const HEADER_VERSION_COMPLETE: u32 = crate::vk::make_api_version(
     4,
     crate::vk::HEADER_VERSION,
 );
+pub struct EntryFnV1_0 {
+    pub vk_create_instance: crate::vk::PFN_vkCreateInstance,
+    pub vk_enumerate_instance_layer_properties: crate::vk::PFN_vkEnumerateInstanceLayerProperties,
+    pub vk_enumerate_instance_extension_properties: crate::vk::PFN_vkEnumerateInstanceExtensionProperties,
+}
+pub struct InstanceFnV1_0 {
+    pub vk_destroy_instance: crate::vk::PFN_vkDestroyInstance,
+    pub vk_enumerate_physical_devices: crate::vk::PFN_vkEnumeratePhysicalDevices,
+    pub vk_get_instance_proc_addr: crate::vk::PFN_vkGetInstanceProcAddr,
+    pub vk_get_physical_device_properties: crate::vk::PFN_vkGetPhysicalDeviceProperties,
+    pub vk_get_physical_device_queue_family_properties: crate::vk::PFN_vkGetPhysicalDeviceQueueFamilyProperties,
+    pub vk_get_physical_device_memory_properties: crate::vk::PFN_vkGetPhysicalDeviceMemoryProperties,
+    pub vk_get_physical_device_features: crate::vk::PFN_vkGetPhysicalDeviceFeatures,
+    pub vk_get_physical_device_format_properties: crate::vk::PFN_vkGetPhysicalDeviceFormatProperties,
+    pub vk_get_physical_device_image_format_properties: crate::vk::PFN_vkGetPhysicalDeviceImageFormatProperties,
+    pub vk_create_device: crate::vk::PFN_vkCreateDevice,
+    pub vk_enumerate_device_layer_properties: crate::vk::PFN_vkEnumerateDeviceLayerProperties,
+    pub vk_enumerate_device_extension_properties: crate::vk::PFN_vkEnumerateDeviceExtensionProperties,
+    pub vk_get_physical_device_sparse_image_format_properties: crate::vk::PFN_vkGetPhysicalDeviceSparseImageFormatProperties,
+}
+pub struct DeviceFnV1_0 {
+    pub vk_get_device_proc_addr: crate::vk::PFN_vkGetDeviceProcAddr,
+    pub vk_destroy_device: crate::vk::PFN_vkDestroyDevice,
+    pub vk_get_device_queue: crate::vk::PFN_vkGetDeviceQueue,
+    pub vk_queue_submit: crate::vk::PFN_vkQueueSubmit,
+    pub vk_queue_wait_idle: crate::vk::PFN_vkQueueWaitIdle,
+    pub vk_device_wait_idle: crate::vk::PFN_vkDeviceWaitIdle,
+    pub vk_allocate_memory: crate::vk::PFN_vkAllocateMemory,
+    pub vk_free_memory: crate::vk::PFN_vkFreeMemory,
+    pub vk_map_memory: crate::vk::PFN_vkMapMemory,
+    pub vk_unmap_memory: crate::vk::PFN_vkUnmapMemory,
+    pub vk_flush_mapped_memory_ranges: crate::vk::PFN_vkFlushMappedMemoryRanges,
+    pub vk_invalidate_mapped_memory_ranges: crate::vk::PFN_vkInvalidateMappedMemoryRanges,
+    pub vk_get_device_memory_commitment: crate::vk::PFN_vkGetDeviceMemoryCommitment,
+    pub vk_get_buffer_memory_requirements: crate::vk::PFN_vkGetBufferMemoryRequirements,
+    pub vk_bind_buffer_memory: crate::vk::PFN_vkBindBufferMemory,
+    pub vk_get_image_memory_requirements: crate::vk::PFN_vkGetImageMemoryRequirements,
+    pub vk_bind_image_memory: crate::vk::PFN_vkBindImageMemory,
+    pub vk_get_image_sparse_memory_requirements: crate::vk::PFN_vkGetImageSparseMemoryRequirements,
+    pub vk_queue_bind_sparse: crate::vk::PFN_vkQueueBindSparse,
+    pub vk_create_fence: crate::vk::PFN_vkCreateFence,
+    pub vk_destroy_fence: crate::vk::PFN_vkDestroyFence,
+    pub vk_reset_fences: crate::vk::PFN_vkResetFences,
+    pub vk_get_fence_status: crate::vk::PFN_vkGetFenceStatus,
+    pub vk_wait_for_fences: crate::vk::PFN_vkWaitForFences,
+    pub vk_create_semaphore: crate::vk::PFN_vkCreateSemaphore,
+    pub vk_destroy_semaphore: crate::vk::PFN_vkDestroySemaphore,
+    pub vk_create_event: crate::vk::PFN_vkCreateEvent,
+    pub vk_destroy_event: crate::vk::PFN_vkDestroyEvent,
+    pub vk_get_event_status: crate::vk::PFN_vkGetEventStatus,
+    pub vk_set_event: crate::vk::PFN_vkSetEvent,
+    pub vk_reset_event: crate::vk::PFN_vkResetEvent,
+    pub vk_create_query_pool: crate::vk::PFN_vkCreateQueryPool,
+    pub vk_destroy_query_pool: crate::vk::PFN_vkDestroyQueryPool,
+    pub vk_get_query_pool_results: crate::vk::PFN_vkGetQueryPoolResults,
+    pub vk_create_buffer: crate::vk::PFN_vkCreateBuffer,
+    pub vk_destroy_buffer: crate::vk::PFN_vkDestroyBuffer,
+    pub vk_create_buffer_view: crate::vk::PFN_vkCreateBufferView,
+    pub vk_destroy_buffer_view: crate::vk::PFN_vkDestroyBufferView,
+    pub vk_create_image: crate::vk::PFN_vkCreateImage,
+    pub vk_destroy_image: crate::vk::PFN_vkDestroyImage,
+    pub vk_get_image_subresource_layout: crate::vk::PFN_vkGetImageSubresourceLayout,
+    pub vk_create_image_view: crate::vk::PFN_vkCreateImageView,
+    pub vk_destroy_image_view: crate::vk::PFN_vkDestroyImageView,
+    pub vk_create_shader_module: crate::vk::PFN_vkCreateShaderModule,
+    pub vk_destroy_shader_module: crate::vk::PFN_vkDestroyShaderModule,
+    pub vk_create_pipeline_cache: crate::vk::PFN_vkCreatePipelineCache,
+    pub vk_destroy_pipeline_cache: crate::vk::PFN_vkDestroyPipelineCache,
+    pub vk_get_pipeline_cache_data: crate::vk::PFN_vkGetPipelineCacheData,
+    pub vk_merge_pipeline_caches: crate::vk::PFN_vkMergePipelineCaches,
+    pub vk_create_graphics_pipelines: crate::vk::PFN_vkCreateGraphicsPipelines,
+    pub vk_create_compute_pipelines: crate::vk::PFN_vkCreateComputePipelines,
+    pub vk_destroy_pipeline: crate::vk::PFN_vkDestroyPipeline,
+    pub vk_create_pipeline_layout: crate::vk::PFN_vkCreatePipelineLayout,
+    pub vk_destroy_pipeline_layout: crate::vk::PFN_vkDestroyPipelineLayout,
+    pub vk_create_sampler: crate::vk::PFN_vkCreateSampler,
+    pub vk_destroy_sampler: crate::vk::PFN_vkDestroySampler,
+    pub vk_create_descriptor_set_layout: crate::vk::PFN_vkCreateDescriptorSetLayout,
+    pub vk_destroy_descriptor_set_layout: crate::vk::PFN_vkDestroyDescriptorSetLayout,
+    pub vk_create_descriptor_pool: crate::vk::PFN_vkCreateDescriptorPool,
+    pub vk_destroy_descriptor_pool: crate::vk::PFN_vkDestroyDescriptorPool,
+    pub vk_reset_descriptor_pool: crate::vk::PFN_vkResetDescriptorPool,
+    pub vk_allocate_descriptor_sets: crate::vk::PFN_vkAllocateDescriptorSets,
+    pub vk_free_descriptor_sets: crate::vk::PFN_vkFreeDescriptorSets,
+    pub vk_update_descriptor_sets: crate::vk::PFN_vkUpdateDescriptorSets,
+    pub vk_create_framebuffer: crate::vk::PFN_vkCreateFramebuffer,
+    pub vk_destroy_framebuffer: crate::vk::PFN_vkDestroyFramebuffer,
+    pub vk_create_render_pass: crate::vk::PFN_vkCreateRenderPass,
+    pub vk_destroy_render_pass: crate::vk::PFN_vkDestroyRenderPass,
+    pub vk_get_render_area_granularity: crate::vk::PFN_vkGetRenderAreaGranularity,
+    pub vk_create_command_pool: crate::vk::PFN_vkCreateCommandPool,
+    pub vk_destroy_command_pool: crate::vk::PFN_vkDestroyCommandPool,
+    pub vk_reset_command_pool: crate::vk::PFN_vkResetCommandPool,
+    pub vk_allocate_command_buffers: crate::vk::PFN_vkAllocateCommandBuffers,
+    pub vk_free_command_buffers: crate::vk::PFN_vkFreeCommandBuffers,
+    pub vk_begin_command_buffer: crate::vk::PFN_vkBeginCommandBuffer,
+    pub vk_end_command_buffer: crate::vk::PFN_vkEndCommandBuffer,
+    pub vk_reset_command_buffer: crate::vk::PFN_vkResetCommandBuffer,
+    pub vk_cmd_bind_pipeline: crate::vk::PFN_vkCmdBindPipeline,
+    pub vk_cmd_set_viewport: crate::vk::PFN_vkCmdSetViewport,
+    pub vk_cmd_set_scissor: crate::vk::PFN_vkCmdSetScissor,
+    pub vk_cmd_set_line_width: crate::vk::PFN_vkCmdSetLineWidth,
+    pub vk_cmd_set_depth_bias: crate::vk::PFN_vkCmdSetDepthBias,
+    pub vk_cmd_set_blend_constants: crate::vk::PFN_vkCmdSetBlendConstants,
+    pub vk_cmd_set_depth_bounds: crate::vk::PFN_vkCmdSetDepthBounds,
+    pub vk_cmd_set_stencil_compare_mask: crate::vk::PFN_vkCmdSetStencilCompareMask,
+    pub vk_cmd_set_stencil_write_mask: crate::vk::PFN_vkCmdSetStencilWriteMask,
+    pub vk_cmd_set_stencil_reference: crate::vk::PFN_vkCmdSetStencilReference,
+    pub vk_cmd_bind_descriptor_sets: crate::vk::PFN_vkCmdBindDescriptorSets,
+    pub vk_cmd_bind_index_buffer: crate::vk::PFN_vkCmdBindIndexBuffer,
+    pub vk_cmd_bind_vertex_buffers: crate::vk::PFN_vkCmdBindVertexBuffers,
+    pub vk_cmd_draw: crate::vk::PFN_vkCmdDraw,
+    pub vk_cmd_draw_indexed: crate::vk::PFN_vkCmdDrawIndexed,
+    pub vk_cmd_draw_indirect: crate::vk::PFN_vkCmdDrawIndirect,
+    pub vk_cmd_draw_indexed_indirect: crate::vk::PFN_vkCmdDrawIndexedIndirect,
+    pub vk_cmd_dispatch: crate::vk::PFN_vkCmdDispatch,
+    pub vk_cmd_dispatch_indirect: crate::vk::PFN_vkCmdDispatchIndirect,
+    pub vk_cmd_copy_buffer: crate::vk::PFN_vkCmdCopyBuffer,
+    pub vk_cmd_copy_image: crate::vk::PFN_vkCmdCopyImage,
+    pub vk_cmd_blit_image: crate::vk::PFN_vkCmdBlitImage,
+    pub vk_cmd_copy_buffer_to_image: crate::vk::PFN_vkCmdCopyBufferToImage,
+    pub vk_cmd_copy_image_to_buffer: crate::vk::PFN_vkCmdCopyImageToBuffer,
+    pub vk_cmd_update_buffer: crate::vk::PFN_vkCmdUpdateBuffer,
+    pub vk_cmd_fill_buffer: crate::vk::PFN_vkCmdFillBuffer,
+    pub vk_cmd_clear_color_image: crate::vk::PFN_vkCmdClearColorImage,
+    pub vk_cmd_clear_depth_stencil_image: crate::vk::PFN_vkCmdClearDepthStencilImage,
+    pub vk_cmd_clear_attachments: crate::vk::PFN_vkCmdClearAttachments,
+    pub vk_cmd_resolve_image: crate::vk::PFN_vkCmdResolveImage,
+    pub vk_cmd_set_event: crate::vk::PFN_vkCmdSetEvent,
+    pub vk_cmd_reset_event: crate::vk::PFN_vkCmdResetEvent,
+    pub vk_cmd_wait_events: crate::vk::PFN_vkCmdWaitEvents,
+    pub vk_cmd_pipeline_barrier: crate::vk::PFN_vkCmdPipelineBarrier,
+    pub vk_cmd_begin_query: crate::vk::PFN_vkCmdBeginQuery,
+    pub vk_cmd_end_query: crate::vk::PFN_vkCmdEndQuery,
+    pub vk_cmd_reset_query_pool: crate::vk::PFN_vkCmdResetQueryPool,
+    pub vk_cmd_write_timestamp: crate::vk::PFN_vkCmdWriteTimestamp,
+    pub vk_cmd_copy_query_pool_results: crate::vk::PFN_vkCmdCopyQueryPoolResults,
+    pub vk_cmd_push_constants: crate::vk::PFN_vkCmdPushConstants,
+    pub vk_cmd_begin_render_pass: crate::vk::PFN_vkCmdBeginRenderPass,
+    pub vk_cmd_next_subpass: crate::vk::PFN_vkCmdNextSubpass,
+    pub vk_cmd_end_render_pass: crate::vk::PFN_vkCmdEndRenderPass,
+    pub vk_cmd_execute_commands: crate::vk::PFN_vkCmdExecuteCommands,
+}

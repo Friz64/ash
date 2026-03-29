@@ -24,5 +24,9 @@ impl crate::vk::ExternalFenceFeatureFlagBits {
 }
 pub type ExternalFenceHandleTypeFlagsKHR = crate::vk::ExternalFenceHandleTypeFlags;
 pub type ExternalFenceFeatureFlagsKHR = crate::vk::ExternalFenceFeatureFlags;
+pub type PFN_vkGetPhysicalDeviceExternalFencePropertiesKHR = crate::vk::PFN_vkGetPhysicalDeviceExternalFenceProperties;
 pub const KHR_EXTERNAL_FENCE_CAPABILITIES_SPEC_VERSION: u32 = 1;
 pub const KHR_EXTERNAL_FENCE_CAPABILITIES_EXTENSION_NAME: &core::ffi::CStr = c"VK_KHR_external_fence_capabilities";
+pub struct InstanceFn {
+    pub vk_get_physical_device_external_fence_properties_khr: crate::vk::PFN_vkGetPhysicalDeviceExternalFencePropertiesKHR,
+}

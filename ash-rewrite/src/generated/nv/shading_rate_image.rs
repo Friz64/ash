@@ -78,7 +78,7 @@ impl crate::vk::DynamicState {
     pub const VIEWPORT_COARSE_SAMPLE_ORDER_NV: Self = Self(1000164006);
 }
 #[repr(transparent)]
-#[derive(Clone, Copy)]
+#[derive(Clone, Copy, PartialEq, Eq, PartialOrd, Ord, Hash, Default)]
 pub struct ShadingRatePaletteEntryNV(pub(crate) i32);
 ///Provided by [`nv::shading_rate_image`](crate::nv::shading_rate_image)
 impl ShadingRatePaletteEntryNV {
@@ -96,7 +96,7 @@ impl ShadingRatePaletteEntryNV {
     pub const _1_INVOCATION_PER_4X4_PIXELS_NV: Self = Self(11);
 }
 #[repr(transparent)]
-#[derive(Clone, Copy)]
+#[derive(Clone, Copy, PartialEq, Eq, PartialOrd, Ord, Hash, Default)]
 pub struct CoarseSampleOrderTypeNV(pub(crate) i32);
 ///Provided by [`nv::shading_rate_image`](crate::nv::shading_rate_image)
 impl CoarseSampleOrderTypeNV {
@@ -117,5 +117,27 @@ impl crate::vk::ImageUsageFlagBits {
 impl crate::vk::PipelineStageFlagBits {
     pub const SHADING_RATE_IMAGE_NV: Self = Self::FRAGMENT_SHADING_RATE_ATTACHMENT_KHR;
 }
+pub type PFN_vkCmdBindShadingRateImageNV = unsafe extern "system" fn(
+    command_buffer: crate::vk::CommandBuffer,
+    image_view: crate::vk::ImageView,
+    image_layout: crate::vk::ImageLayout,
+);
+pub type PFN_vkCmdSetViewportShadingRatePaletteNV = unsafe extern "system" fn(
+    command_buffer: crate::vk::CommandBuffer,
+    first_viewport: u32,
+    viewport_count: u32,
+    p_shading_rate_palettes: *const crate::vk::ShadingRatePaletteNV,
+);
+pub type PFN_vkCmdSetCoarseSampleOrderNV = unsafe extern "system" fn(
+    command_buffer: crate::vk::CommandBuffer,
+    sample_order_type: crate::vk::CoarseSampleOrderTypeNV,
+    custom_sample_order_count: u32,
+    p_custom_sample_orders: *const crate::vk::CoarseSampleOrderCustomNV,
+);
 pub const NV_SHADING_RATE_IMAGE_SPEC_VERSION: u32 = 3;
 pub const NV_SHADING_RATE_IMAGE_EXTENSION_NAME: &core::ffi::CStr = c"VK_NV_shading_rate_image";
+pub struct DeviceFn {
+    pub vk_cmd_bind_shading_rate_image_nv: crate::vk::PFN_vkCmdBindShadingRateImageNV,
+    pub vk_cmd_set_viewport_shading_rate_palette_nv: crate::vk::PFN_vkCmdSetViewportShadingRatePaletteNV,
+    pub vk_cmd_set_coarse_sample_order_nv: crate::vk::PFN_vkCmdSetCoarseSampleOrderNV,
+}

@@ -91,7 +91,7 @@ impl crate::vk::ObjectType {
     pub const OPTICAL_FLOW_SESSION_NV: Self = Self(1000464000);
 }
 #[repr(transparent)]
-#[derive(Clone, Copy)]
+#[derive(Clone, Copy, PartialEq, Eq, PartialOrd, Ord, Hash, Default)]
 pub struct OpticalFlowPerformanceLevelNV(pub(crate) i32);
 ///Provided by [`nv::optical_flow`](crate::nv::optical_flow)
 impl OpticalFlowPerformanceLevelNV {
@@ -101,7 +101,7 @@ impl OpticalFlowPerformanceLevelNV {
     pub const FAST_NV: Self = Self(3);
 }
 #[repr(transparent)]
-#[derive(Clone, Copy)]
+#[derive(Clone, Copy, PartialEq, Eq, PartialOrd, Ord, Hash, Default)]
 pub struct OpticalFlowSessionBindingPointNV(pub(crate) i32);
 ///Provided by [`nv::optical_flow`](crate::nv::optical_flow)
 impl OpticalFlowSessionBindingPointNV {
@@ -233,5 +233,43 @@ impl core::fmt::Debug for OpticalFlowSessionNV {
         write!(f, "0x{:x}", self.0)
     }
 }
+pub type PFN_vkGetPhysicalDeviceOpticalFlowImageFormatsNV = unsafe extern "system" fn(
+    physical_device: crate::vk::PhysicalDevice,
+    p_optical_flow_image_format_info: *const crate::vk::OpticalFlowImageFormatInfoNV,
+    p_format_count: *mut u32,
+    p_image_format_properties: *mut crate::vk::OpticalFlowImageFormatPropertiesNV,
+) -> crate::vk::Result;
+pub type PFN_vkCreateOpticalFlowSessionNV = unsafe extern "system" fn(
+    device: crate::vk::Device,
+    p_create_info: *const crate::vk::OpticalFlowSessionCreateInfoNV,
+    p_allocator: *const crate::vk::AllocationCallbacks,
+    p_session: *mut crate::vk::OpticalFlowSessionNV,
+) -> crate::vk::Result;
+pub type PFN_vkDestroyOpticalFlowSessionNV = unsafe extern "system" fn(
+    device: crate::vk::Device,
+    session: crate::vk::OpticalFlowSessionNV,
+    p_allocator: *const crate::vk::AllocationCallbacks,
+);
+pub type PFN_vkBindOpticalFlowSessionImageNV = unsafe extern "system" fn(
+    device: crate::vk::Device,
+    session: crate::vk::OpticalFlowSessionNV,
+    binding_point: crate::vk::OpticalFlowSessionBindingPointNV,
+    view: crate::vk::ImageView,
+    layout: crate::vk::ImageLayout,
+) -> crate::vk::Result;
+pub type PFN_vkCmdOpticalFlowExecuteNV = unsafe extern "system" fn(
+    command_buffer: crate::vk::CommandBuffer,
+    session: crate::vk::OpticalFlowSessionNV,
+    p_execute_info: *const crate::vk::OpticalFlowExecuteInfoNV,
+);
 pub const NV_OPTICAL_FLOW_SPEC_VERSION: u32 = 1;
 pub const NV_OPTICAL_FLOW_EXTENSION_NAME: &core::ffi::CStr = c"VK_NV_optical_flow";
+pub struct InstanceFn {
+    pub vk_get_physical_device_optical_flow_image_formats_nv: crate::vk::PFN_vkGetPhysicalDeviceOpticalFlowImageFormatsNV,
+}
+pub struct DeviceFn {
+    pub vk_create_optical_flow_session_nv: crate::vk::PFN_vkCreateOpticalFlowSessionNV,
+    pub vk_destroy_optical_flow_session_nv: crate::vk::PFN_vkDestroyOpticalFlowSessionNV,
+    pub vk_bind_optical_flow_session_image_nv: crate::vk::PFN_vkBindOpticalFlowSessionImageNV,
+    pub vk_cmd_optical_flow_execute_nv: crate::vk::PFN_vkCmdOpticalFlowExecuteNV,
+}

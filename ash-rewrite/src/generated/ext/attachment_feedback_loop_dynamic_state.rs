@@ -18,5 +18,12 @@ impl crate::vk::StructureType {
 impl crate::vk::DynamicState {
     pub const ATTACHMENT_FEEDBACK_LOOP_ENABLE_EXT: Self = Self(1000524000);
 }
+pub type PFN_vkCmdSetAttachmentFeedbackLoopEnableEXT = unsafe extern "system" fn(
+    command_buffer: crate::vk::CommandBuffer,
+    aspect_mask: crate::vk::ImageAspectFlags,
+);
 pub const EXT_ATTACHMENT_FEEDBACK_LOOP_DYNAMIC_STATE_SPEC_VERSION: u32 = 1;
 pub const EXT_ATTACHMENT_FEEDBACK_LOOP_DYNAMIC_STATE_EXTENSION_NAME: &core::ffi::CStr = c"VK_EXT_attachment_feedback_loop_dynamic_state";
+pub struct DeviceFn {
+    pub vk_cmd_set_attachment_feedback_loop_enable_ext: crate::vk::PFN_vkCmdSetAttachmentFeedbackLoopEnableEXT,
+}

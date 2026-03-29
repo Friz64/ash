@@ -60,7 +60,7 @@ impl crate::vk::SubpassContents {
     pub const INLINE_AND_SECONDARY_COMMAND_BUFFERS_KHR: Self = Self(1000451000);
 }
 #[repr(transparent)]
-#[derive(Clone, Copy)]
+#[derive(Clone, Copy, PartialEq, Eq, PartialOrd, Ord, Hash, Default)]
 pub struct PhysicalDeviceLayeredApiKHR(pub(crate) i32);
 ///Provided by [`khr::maintenance7`](crate::khr::maintenance7)
 impl PhysicalDeviceLayeredApiKHR {

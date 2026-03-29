@@ -33,7 +33,7 @@ impl crate::vk::StructureType {
     pub const PHYSICAL_DEVICE_PROVOKING_VERTEX_PROPERTIES_EXT: Self = Self(1000254002);
 }
 #[repr(transparent)]
-#[derive(Clone, Copy)]
+#[derive(Clone, Copy, PartialEq, Eq, PartialOrd, Ord, Hash, Default)]
 pub struct ProvokingVertexModeEXT(pub(crate) i32);
 ///Provided by [`ext::provoking_vertex`](crate::ext::provoking_vertex)
 impl ProvokingVertexModeEXT {

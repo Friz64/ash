@@ -138,7 +138,75 @@ impl core::fmt::Debug for DebugUtilsMessengerEXT {
         write!(f, "0x{:x}", self.0)
     }
 }
-#[allow(non_camel_case_types)]
-pub type PFN_vkDebugUtilsMessengerCallbackEXT = Option<()>;
+pub type PFN_vkDebugUtilsMessengerCallbackEXT = Option<
+    unsafe extern "system" fn(
+        message_severity: crate::vk::DebugUtilsMessageSeverityFlagBitsEXT,
+        message_types: crate::vk::DebugUtilsMessageTypeFlagsEXT,
+        p_callback_data: *const crate::vk::DebugUtilsMessengerCallbackDataEXT,
+        p_user_data: *mut core::ffi::c_void,
+    ) -> crate::vk::Bool32,
+>;
+pub type PFN_vkSetDebugUtilsObjectNameEXT = unsafe extern "system" fn(
+    device: crate::vk::Device,
+    p_name_info: *const crate::vk::DebugUtilsObjectNameInfoEXT,
+) -> crate::vk::Result;
+pub type PFN_vkSetDebugUtilsObjectTagEXT = unsafe extern "system" fn(
+    device: crate::vk::Device,
+    p_tag_info: *const crate::vk::DebugUtilsObjectTagInfoEXT,
+) -> crate::vk::Result;
+pub type PFN_vkQueueBeginDebugUtilsLabelEXT = unsafe extern "system" fn(
+    queue: crate::vk::Queue,
+    p_label_info: *const crate::vk::DebugUtilsLabelEXT,
+);
+pub type PFN_vkQueueEndDebugUtilsLabelEXT = unsafe extern "system" fn(
+    queue: crate::vk::Queue,
+);
+pub type PFN_vkQueueInsertDebugUtilsLabelEXT = unsafe extern "system" fn(
+    queue: crate::vk::Queue,
+    p_label_info: *const crate::vk::DebugUtilsLabelEXT,
+);
+pub type PFN_vkCmdBeginDebugUtilsLabelEXT = unsafe extern "system" fn(
+    command_buffer: crate::vk::CommandBuffer,
+    p_label_info: *const crate::vk::DebugUtilsLabelEXT,
+);
+pub type PFN_vkCmdEndDebugUtilsLabelEXT = unsafe extern "system" fn(
+    command_buffer: crate::vk::CommandBuffer,
+);
+pub type PFN_vkCmdInsertDebugUtilsLabelEXT = unsafe extern "system" fn(
+    command_buffer: crate::vk::CommandBuffer,
+    p_label_info: *const crate::vk::DebugUtilsLabelEXT,
+);
+pub type PFN_vkCreateDebugUtilsMessengerEXT = unsafe extern "system" fn(
+    instance: crate::vk::Instance,
+    p_create_info: *const crate::vk::DebugUtilsMessengerCreateInfoEXT,
+    p_allocator: *const crate::vk::AllocationCallbacks,
+    p_messenger: *mut crate::vk::DebugUtilsMessengerEXT,
+) -> crate::vk::Result;
+pub type PFN_vkDestroyDebugUtilsMessengerEXT = unsafe extern "system" fn(
+    instance: crate::vk::Instance,
+    messenger: crate::vk::DebugUtilsMessengerEXT,
+    p_allocator: *const crate::vk::AllocationCallbacks,
+);
+pub type PFN_vkSubmitDebugUtilsMessageEXT = unsafe extern "system" fn(
+    instance: crate::vk::Instance,
+    message_severity: crate::vk::DebugUtilsMessageSeverityFlagBitsEXT,
+    message_types: crate::vk::DebugUtilsMessageTypeFlagsEXT,
+    p_callback_data: *const crate::vk::DebugUtilsMessengerCallbackDataEXT,
+);
 pub const EXT_DEBUG_UTILS_SPEC_VERSION: u32 = 2;
 pub const EXT_DEBUG_UTILS_EXTENSION_NAME: &core::ffi::CStr = c"VK_EXT_debug_utils";
+pub struct DeviceFn {
+    pub vk_set_debug_utils_object_name_ext: crate::vk::PFN_vkSetDebugUtilsObjectNameEXT,
+    pub vk_set_debug_utils_object_tag_ext: crate::vk::PFN_vkSetDebugUtilsObjectTagEXT,
+    pub vk_queue_begin_debug_utils_label_ext: crate::vk::PFN_vkQueueBeginDebugUtilsLabelEXT,
+    pub vk_queue_end_debug_utils_label_ext: crate::vk::PFN_vkQueueEndDebugUtilsLabelEXT,
+    pub vk_queue_insert_debug_utils_label_ext: crate::vk::PFN_vkQueueInsertDebugUtilsLabelEXT,
+    pub vk_cmd_begin_debug_utils_label_ext: crate::vk::PFN_vkCmdBeginDebugUtilsLabelEXT,
+    pub vk_cmd_end_debug_utils_label_ext: crate::vk::PFN_vkCmdEndDebugUtilsLabelEXT,
+    pub vk_cmd_insert_debug_utils_label_ext: crate::vk::PFN_vkCmdInsertDebugUtilsLabelEXT,
+}
+pub struct InstanceFn {
+    pub vk_create_debug_utils_messenger_ext: crate::vk::PFN_vkCreateDebugUtilsMessengerEXT,
+    pub vk_destroy_debug_utils_messenger_ext: crate::vk::PFN_vkDestroyDebugUtilsMessengerEXT,
+    pub vk_submit_debug_utils_message_ext: crate::vk::PFN_vkSubmitDebugUtilsMessageEXT,
+}

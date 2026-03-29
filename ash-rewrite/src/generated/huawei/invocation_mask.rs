@@ -24,5 +24,13 @@ impl crate::vk::AccessFlagBits2 {
 impl crate::vk::PipelineStageFlagBits2 {
     pub const INVOCATION_MASK_HUAWEI: Self = Self(1 << 40);
 }
+pub type PFN_vkCmdBindInvocationMaskHUAWEI = unsafe extern "system" fn(
+    command_buffer: crate::vk::CommandBuffer,
+    image_view: crate::vk::ImageView,
+    image_layout: crate::vk::ImageLayout,
+);
 pub const HUAWEI_INVOCATION_MASK_SPEC_VERSION: u32 = 1;
 pub const HUAWEI_INVOCATION_MASK_EXTENSION_NAME: &core::ffi::CStr = c"VK_HUAWEI_invocation_mask";
+pub struct DeviceFn {
+    pub vk_cmd_bind_invocation_mask_huawei: crate::vk::PFN_vkCmdBindInvocationMaskHUAWEI,
+}

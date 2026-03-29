@@ -57,7 +57,7 @@ impl crate::vk::StructureType {
     pub const CONVERT_COOPERATIVE_VECTOR_MATRIX_INFO_NV: Self = Self(1000491004);
 }
 #[repr(transparent)]
-#[derive(Clone, Copy)]
+#[derive(Clone, Copy, PartialEq, Eq, PartialOrd, Ord, Hash, Default)]
 pub struct ComponentTypeKHR(pub(crate) i32);
 ///Provided by [`nv::cooperative_vector`](crate::nv::cooperative_vector)
 impl ComponentTypeKHR {
@@ -78,7 +78,7 @@ impl ComponentTypeKHR {
     pub const FLOAT_E5M2_NV: Self = Self::FLOAT8_E5M2_EXT;
 }
 #[repr(transparent)]
-#[derive(Clone, Copy)]
+#[derive(Clone, Copy, PartialEq, Eq, PartialOrd, Ord, Hash, Default)]
 pub struct CooperativeVectorMatrixLayoutNV(pub(crate) i32);
 ///Provided by [`nv::cooperative_vector`](crate::nv::cooperative_vector)
 impl CooperativeVectorMatrixLayoutNV {
@@ -91,5 +91,26 @@ impl CooperativeVectorMatrixLayoutNV {
 impl crate::vk::PipelineStageFlagBits2 {
     pub const CONVERT_COOPERATIVE_VECTOR_MATRIX_NV: Self = Self(1 << 44);
 }
+pub type PFN_vkGetPhysicalDeviceCooperativeVectorPropertiesNV = unsafe extern "system" fn(
+    physical_device: crate::vk::PhysicalDevice,
+    p_property_count: *mut u32,
+    p_properties: *mut crate::vk::CooperativeVectorPropertiesNV,
+) -> crate::vk::Result;
+pub type PFN_vkConvertCooperativeVectorMatrixNV = unsafe extern "system" fn(
+    device: crate::vk::Device,
+    p_info: *const crate::vk::ConvertCooperativeVectorMatrixInfoNV,
+) -> crate::vk::Result;
+pub type PFN_vkCmdConvertCooperativeVectorMatrixNV = unsafe extern "system" fn(
+    command_buffer: crate::vk::CommandBuffer,
+    info_count: u32,
+    p_infos: *const crate::vk::ConvertCooperativeVectorMatrixInfoNV,
+);
 pub const NV_COOPERATIVE_VECTOR_SPEC_VERSION: u32 = 4;
 pub const NV_COOPERATIVE_VECTOR_EXTENSION_NAME: &core::ffi::CStr = c"VK_NV_cooperative_vector";
+pub struct InstanceFn {
+    pub vk_get_physical_device_cooperative_vector_properties_nv: crate::vk::PFN_vkGetPhysicalDeviceCooperativeVectorPropertiesNV,
+}
+pub struct DeviceFn {
+    pub vk_convert_cooperative_vector_matrix_nv: crate::vk::PFN_vkConvertCooperativeVectorMatrixNV,
+    pub vk_cmd_convert_cooperative_vector_matrix_nv: crate::vk::PFN_vkCmdConvertCooperativeVectorMatrixNV,
+}

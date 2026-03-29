@@ -213,7 +213,7 @@ pub struct StdVideoAV1FilmGrain {
     pub cr_offset: u16,
 }
 #[repr(transparent)]
-#[derive(Clone, Copy)]
+#[derive(Clone, Copy, PartialEq, Eq, PartialOrd, Ord, Hash, Default)]
 pub struct StdVideoAV1Profile(pub(crate) i32);
 ///Provided by [`video::codec_av1std`](crate::video::codec_av1std)
 impl StdVideoAV1Profile {
@@ -223,7 +223,7 @@ impl StdVideoAV1Profile {
     pub const INVALID: Self = Self(0x7FFFFFF);
 }
 #[repr(transparent)]
-#[derive(Clone, Copy)]
+#[derive(Clone, Copy, PartialEq, Eq, PartialOrd, Ord, Hash, Default)]
 pub struct StdVideoAV1Level(pub(crate) i32);
 ///Provided by [`video::codec_av1std`](crate::video::codec_av1std)
 impl StdVideoAV1Level {
@@ -254,7 +254,7 @@ impl StdVideoAV1Level {
     pub const INVALID: Self = Self(0x7FFFFFF);
 }
 #[repr(transparent)]
-#[derive(Clone, Copy)]
+#[derive(Clone, Copy, PartialEq, Eq, PartialOrd, Ord, Hash, Default)]
 pub struct StdVideoAV1FrameType(pub(crate) i32);
 ///Provided by [`video::codec_av1std`](crate::video::codec_av1std)
 impl StdVideoAV1FrameType {
@@ -265,7 +265,7 @@ impl StdVideoAV1FrameType {
     pub const INVALID: Self = Self(0x7FFFFFF);
 }
 #[repr(transparent)]
-#[derive(Clone, Copy)]
+#[derive(Clone, Copy, PartialEq, Eq, PartialOrd, Ord, Hash, Default)]
 pub struct StdVideoAV1ReferenceName(pub(crate) i32);
 ///Provided by [`video::codec_av1std`](crate::video::codec_av1std)
 impl StdVideoAV1ReferenceName {
@@ -280,7 +280,7 @@ impl StdVideoAV1ReferenceName {
     pub const INVALID: Self = Self(0x7FFFFFF);
 }
 #[repr(transparent)]
-#[derive(Clone, Copy)]
+#[derive(Clone, Copy, PartialEq, Eq, PartialOrd, Ord, Hash, Default)]
 pub struct StdVideoAV1InterpolationFilter(pub(crate) i32);
 ///Provided by [`video::codec_av1std`](crate::video::codec_av1std)
 impl StdVideoAV1InterpolationFilter {
@@ -292,7 +292,7 @@ impl StdVideoAV1InterpolationFilter {
     pub const INVALID: Self = Self(0x7FFFFFF);
 }
 #[repr(transparent)]
-#[derive(Clone, Copy)]
+#[derive(Clone, Copy, PartialEq, Eq, PartialOrd, Ord, Hash, Default)]
 pub struct StdVideoAV1TxMode(pub(crate) i32);
 ///Provided by [`video::codec_av1std`](crate::video::codec_av1std)
 impl StdVideoAV1TxMode {
@@ -302,7 +302,7 @@ impl StdVideoAV1TxMode {
     pub const INVALID: Self = Self(0x7FFFFFF);
 }
 #[repr(transparent)]
-#[derive(Clone, Copy)]
+#[derive(Clone, Copy, PartialEq, Eq, PartialOrd, Ord, Hash, Default)]
 pub struct StdVideoAV1FrameRestorationType(pub(crate) i32);
 ///Provided by [`video::codec_av1std`](crate::video::codec_av1std)
 impl StdVideoAV1FrameRestorationType {
@@ -313,7 +313,7 @@ impl StdVideoAV1FrameRestorationType {
     pub const INVALID: Self = Self(0x7FFFFFF);
 }
 #[repr(transparent)]
-#[derive(Clone, Copy)]
+#[derive(Clone, Copy, PartialEq, Eq, PartialOrd, Ord, Hash, Default)]
 pub struct StdVideoAV1ColorPrimaries(pub(crate) i32);
 ///Provided by [`video::codec_av1std`](crate::video::codec_av1std)
 impl StdVideoAV1ColorPrimaries {
@@ -332,7 +332,7 @@ impl StdVideoAV1ColorPrimaries {
     pub const INVALID: Self = Self(0x7FFFFFF);
 }
 #[repr(transparent)]
-#[derive(Clone, Copy)]
+#[derive(Clone, Copy, PartialEq, Eq, PartialOrd, Ord, Hash, Default)]
 pub struct StdVideoAV1TransferCharacteristics(pub(crate) i32);
 ///Provided by [`video::codec_av1std`](crate::video::codec_av1std)
 impl StdVideoAV1TransferCharacteristics {
@@ -358,7 +358,7 @@ impl StdVideoAV1TransferCharacteristics {
     pub const INVALID: Self = Self(0x7FFFFFF);
 }
 #[repr(transparent)]
-#[derive(Clone, Copy)]
+#[derive(Clone, Copy, PartialEq, Eq, PartialOrd, Ord, Hash, Default)]
 pub struct StdVideoAV1MatrixCoefficients(pub(crate) i32);
 ///Provided by [`video::codec_av1std`](crate::video::codec_av1std)
 impl StdVideoAV1MatrixCoefficients {
@@ -380,7 +380,7 @@ impl StdVideoAV1MatrixCoefficients {
     pub const INVALID: Self = Self(0x7FFFFFF);
 }
 #[repr(transparent)]
-#[derive(Clone, Copy)]
+#[derive(Clone, Copy, PartialEq, Eq, PartialOrd, Ord, Hash, Default)]
 pub struct StdVideoAV1ChromaSamplePosition(pub(crate) i32);
 ///Provided by [`video::codec_av1std`](crate::video::codec_av1std)
 impl StdVideoAV1ChromaSamplePosition {

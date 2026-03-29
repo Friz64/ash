@@ -24,5 +24,18 @@ impl crate::vk::StructureType {
     pub const IMPORT_SEMAPHORE_FD_INFO_KHR: Self = Self(1000079000);
     pub const SEMAPHORE_GET_FD_INFO_KHR: Self = Self(1000079001);
 }
+pub type PFN_vkGetSemaphoreFdKHR = unsafe extern "system" fn(
+    device: crate::vk::Device,
+    p_get_fd_info: *const crate::vk::SemaphoreGetFdInfoKHR,
+    p_fd: *mut core::ffi::c_int,
+) -> crate::vk::Result;
+pub type PFN_vkImportSemaphoreFdKHR = unsafe extern "system" fn(
+    device: crate::vk::Device,
+    p_import_semaphore_fd_info: *const crate::vk::ImportSemaphoreFdInfoKHR,
+) -> crate::vk::Result;
 pub const KHR_EXTERNAL_SEMAPHORE_FD_SPEC_VERSION: u32 = 1;
 pub const KHR_EXTERNAL_SEMAPHORE_FD_EXTENSION_NAME: &core::ffi::CStr = c"VK_KHR_external_semaphore_fd";
+pub struct DeviceFn {
+    pub vk_get_semaphore_fd_khr: crate::vk::PFN_vkGetSemaphoreFdKHR,
+    pub vk_import_semaphore_fd_khr: crate::vk::PFN_vkImportSemaphoreFdKHR,
+}

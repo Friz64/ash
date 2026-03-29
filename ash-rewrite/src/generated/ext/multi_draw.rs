@@ -33,5 +33,26 @@ impl crate::vk::StructureType {
     pub const PHYSICAL_DEVICE_MULTI_DRAW_FEATURES_EXT: Self = Self(1000392000);
     pub const PHYSICAL_DEVICE_MULTI_DRAW_PROPERTIES_EXT: Self = Self(1000392001);
 }
+pub type PFN_vkCmdDrawMultiEXT = unsafe extern "system" fn(
+    command_buffer: crate::vk::CommandBuffer,
+    draw_count: u32,
+    p_vertex_info: *const crate::vk::MultiDrawInfoEXT,
+    instance_count: u32,
+    first_instance: u32,
+    stride: u32,
+);
+pub type PFN_vkCmdDrawMultiIndexedEXT = unsafe extern "system" fn(
+    command_buffer: crate::vk::CommandBuffer,
+    draw_count: u32,
+    p_index_info: *const crate::vk::MultiDrawIndexedInfoEXT,
+    instance_count: u32,
+    first_instance: u32,
+    stride: u32,
+    p_vertex_offset: *const i32,
+);
 pub const EXT_MULTI_DRAW_SPEC_VERSION: u32 = 1;
 pub const EXT_MULTI_DRAW_EXTENSION_NAME: &core::ffi::CStr = c"VK_EXT_multi_draw";
+pub struct DeviceFn {
+    pub vk_cmd_draw_multi_ext: crate::vk::PFN_vkCmdDrawMultiEXT,
+    pub vk_cmd_draw_multi_indexed_ext: crate::vk::PFN_vkCmdDrawMultiIndexedEXT,
+}

@@ -299,7 +299,7 @@ impl crate::vk::IndirectCommandsTokenTypeEXT {
     pub const PUSH_DATA_SEQUENCE_INDEX_EXT: Self = Self(1000135001);
 }
 #[repr(transparent)]
-#[derive(Clone, Copy)]
+#[derive(Clone, Copy, PartialEq, Eq, PartialOrd, Ord, Hash, Default)]
 pub struct DescriptorMappingSourceEXT(pub(crate) i32);
 ///Provided by [`ext::descriptor_heap`](crate::ext::descriptor_heap)
 impl DescriptorMappingSourceEXT {
@@ -412,5 +412,69 @@ impl core::fmt::Debug for TensorARM {
         write!(f, "0x{:x}", self.0)
     }
 }
+pub type PFN_vkWriteSamplerDescriptorsEXT = unsafe extern "system" fn(
+    device: crate::vk::Device,
+    sampler_count: u32,
+    p_samplers: *const crate::vk::SamplerCreateInfo,
+    p_descriptors: *const crate::vk::HostAddressRangeEXT,
+) -> crate::vk::Result;
+pub type PFN_vkWriteResourceDescriptorsEXT = unsafe extern "system" fn(
+    device: crate::vk::Device,
+    resource_count: u32,
+    p_resources: *const crate::vk::ResourceDescriptorInfoEXT,
+    p_descriptors: *const crate::vk::HostAddressRangeEXT,
+) -> crate::vk::Result;
+pub type PFN_vkCmdBindSamplerHeapEXT = unsafe extern "system" fn(
+    command_buffer: crate::vk::CommandBuffer,
+    p_bind_info: *const crate::vk::BindHeapInfoEXT,
+);
+pub type PFN_vkCmdBindResourceHeapEXT = unsafe extern "system" fn(
+    command_buffer: crate::vk::CommandBuffer,
+    p_bind_info: *const crate::vk::BindHeapInfoEXT,
+);
+pub type PFN_vkCmdPushDataEXT = unsafe extern "system" fn(
+    command_buffer: crate::vk::CommandBuffer,
+    p_push_data_info: *const crate::vk::PushDataInfoEXT,
+);
+pub type PFN_vkRegisterCustomBorderColorEXT = unsafe extern "system" fn(
+    device: crate::vk::Device,
+    p_border_color: *const crate::vk::SamplerCustomBorderColorCreateInfoEXT,
+    request_index: crate::vk::Bool32,
+    p_index: *mut u32,
+) -> crate::vk::Result;
+pub type PFN_vkUnregisterCustomBorderColorEXT = unsafe extern "system" fn(
+    device: crate::vk::Device,
+    index: u32,
+);
+pub type PFN_vkGetImageOpaqueCaptureDataEXT = unsafe extern "system" fn(
+    device: crate::vk::Device,
+    image_count: u32,
+    p_images: *const crate::vk::Image,
+    p_datas: *mut crate::vk::HostAddressRangeEXT,
+) -> crate::vk::Result;
+pub type PFN_vkGetPhysicalDeviceDescriptorSizeEXT = unsafe extern "system" fn(
+    physical_device: crate::vk::PhysicalDevice,
+    descriptor_type: crate::vk::DescriptorType,
+) -> crate::vk::DeviceSize;
+pub type PFN_vkGetTensorOpaqueCaptureDataARM = unsafe extern "system" fn(
+    device: crate::vk::Device,
+    tensor_count: u32,
+    p_tensors: *const crate::vk::TensorARM,
+    p_datas: *mut crate::vk::HostAddressRangeEXT,
+) -> crate::vk::Result;
 pub const EXT_DESCRIPTOR_HEAP_SPEC_VERSION: u32 = 1;
 pub const EXT_DESCRIPTOR_HEAP_EXTENSION_NAME: &core::ffi::CStr = c"VK_EXT_descriptor_heap";
+pub struct DeviceFn {
+    pub vk_write_sampler_descriptors_ext: crate::vk::PFN_vkWriteSamplerDescriptorsEXT,
+    pub vk_write_resource_descriptors_ext: crate::vk::PFN_vkWriteResourceDescriptorsEXT,
+    pub vk_cmd_bind_sampler_heap_ext: crate::vk::PFN_vkCmdBindSamplerHeapEXT,
+    pub vk_cmd_bind_resource_heap_ext: crate::vk::PFN_vkCmdBindResourceHeapEXT,
+    pub vk_cmd_push_data_ext: crate::vk::PFN_vkCmdPushDataEXT,
+    pub vk_register_custom_border_color_ext: crate::vk::PFN_vkRegisterCustomBorderColorEXT,
+    pub vk_unregister_custom_border_color_ext: crate::vk::PFN_vkUnregisterCustomBorderColorEXT,
+    pub vk_get_image_opaque_capture_data_ext: crate::vk::PFN_vkGetImageOpaqueCaptureDataEXT,
+    pub vk_get_tensor_opaque_capture_data_arm: crate::vk::PFN_vkGetTensorOpaqueCaptureDataARM,
+}
+pub struct InstanceFn {
+    pub vk_get_physical_device_descriptor_size_ext: crate::vk::PFN_vkGetPhysicalDeviceDescriptorSizeEXT,
+}

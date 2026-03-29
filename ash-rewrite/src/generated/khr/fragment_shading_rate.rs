@@ -92,7 +92,7 @@ impl crate::vk::DynamicState {
     pub const FRAGMENT_SHADING_RATE_KHR: Self = Self(1000226000);
 }
 #[repr(transparent)]
-#[derive(Clone, Copy)]
+#[derive(Clone, Copy, PartialEq, Eq, PartialOrd, Ord, Hash, Default)]
 pub struct FragmentShadingRateCombinerOpKHR(pub(crate) i32);
 ///Provided by [`khr::fragment_shading_rate`](crate::khr::fragment_shading_rate)
 impl FragmentShadingRateCombinerOpKHR {
@@ -126,5 +126,21 @@ impl crate::vk::PipelineStageFlagBits {
 impl crate::vk::FormatFeatureFlagBits2 {
     pub const FRAGMENT_SHADING_RATE_ATTACHMENT_KHR: Self = Self(1 << 30);
 }
+pub type PFN_vkCmdSetFragmentShadingRateKHR = unsafe extern "system" fn(
+    command_buffer: crate::vk::CommandBuffer,
+    p_fragment_size: *const crate::vk::Extent2D,
+    combiner_ops: *const [crate::vk::FragmentShadingRateCombinerOpKHR; 2 as _],
+);
+pub type PFN_vkGetPhysicalDeviceFragmentShadingRatesKHR = unsafe extern "system" fn(
+    physical_device: crate::vk::PhysicalDevice,
+    p_fragment_shading_rate_count: *mut u32,
+    p_fragment_shading_rates: *mut crate::vk::PhysicalDeviceFragmentShadingRateKHR,
+) -> crate::vk::Result;
 pub const KHR_FRAGMENT_SHADING_RATE_SPEC_VERSION: u32 = 2;
 pub const KHR_FRAGMENT_SHADING_RATE_EXTENSION_NAME: &core::ffi::CStr = c"VK_KHR_fragment_shading_rate";
+pub struct DeviceFn {
+    pub vk_cmd_set_fragment_shading_rate_khr: crate::vk::PFN_vkCmdSetFragmentShadingRateKHR,
+}
+pub struct InstanceFn {
+    pub vk_get_physical_device_fragment_shading_rates_khr: crate::vk::PFN_vkGetPhysicalDeviceFragmentShadingRatesKHR,
+}

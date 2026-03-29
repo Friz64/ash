@@ -12,5 +12,14 @@ pub struct PhysicalDevicePresentWaitFeaturesKHR {
 impl crate::vk::StructureType {
     pub const PHYSICAL_DEVICE_PRESENT_WAIT_FEATURES_KHR: Self = Self(1000248000);
 }
+pub type PFN_vkWaitForPresentKHR = unsafe extern "system" fn(
+    device: crate::vk::Device,
+    swapchain: crate::vk::SwapchainKHR,
+    present_id: u64,
+    timeout: u64,
+) -> crate::vk::Result;
 pub const KHR_PRESENT_WAIT_SPEC_VERSION: u32 = 1;
 pub const KHR_PRESENT_WAIT_EXTENSION_NAME: &core::ffi::CStr = c"VK_KHR_present_wait";
+pub struct DeviceFn {
+    pub vk_wait_for_present_khr: crate::vk::PFN_vkWaitForPresentKHR,
+}

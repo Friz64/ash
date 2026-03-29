@@ -28,5 +28,21 @@ impl crate::vk::DynamicState {
     pub const EXCLUSIVE_SCISSOR_ENABLE_NV: Self = Self(1000205000);
     pub const EXCLUSIVE_SCISSOR_NV: Self = Self(1000205001);
 }
+pub type PFN_vkCmdSetExclusiveScissorNV = unsafe extern "system" fn(
+    command_buffer: crate::vk::CommandBuffer,
+    first_exclusive_scissor: u32,
+    exclusive_scissor_count: u32,
+    p_exclusive_scissors: *const crate::vk::Rect2D,
+);
+pub type PFN_vkCmdSetExclusiveScissorEnableNV = unsafe extern "system" fn(
+    command_buffer: crate::vk::CommandBuffer,
+    first_exclusive_scissor: u32,
+    exclusive_scissor_count: u32,
+    p_exclusive_scissor_enables: *const crate::vk::Bool32,
+);
 pub const NV_SCISSOR_EXCLUSIVE_SPEC_VERSION: u32 = 2;
 pub const NV_SCISSOR_EXCLUSIVE_EXTENSION_NAME: &core::ffi::CStr = c"VK_NV_scissor_exclusive";
+pub struct DeviceFn {
+    pub vk_cmd_set_exclusive_scissor_nv: crate::vk::PFN_vkCmdSetExclusiveScissorNV,
+    pub vk_cmd_set_exclusive_scissor_enable_nv: crate::vk::PFN_vkCmdSetExclusiveScissorEnableNV,
+}

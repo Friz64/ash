@@ -34,7 +34,7 @@ impl crate::vk::DynamicState {
     pub const DEPTH_CLAMP_RANGE_EXT: Self = Self(1000582000);
 }
 #[repr(transparent)]
-#[derive(Clone, Copy)]
+#[derive(Clone, Copy, PartialEq, Eq, PartialOrd, Ord, Hash, Default)]
 pub struct DepthClampModeEXT(pub(crate) i32);
 ///Provided by [`ext::depth_clamp_control`](crate::ext::depth_clamp_control)
 impl DepthClampModeEXT {
