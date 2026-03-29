@@ -3,13 +3,6 @@
 //![Vulkan Manual Page](https://docs.vulkan.org/refpages/latest/refpages/source/VK_KHR_copy_memory_indirect.html) · Extension `VK_KHR_copy_memory_indirect`
 #[repr(C)]
 #[derive(Clone, Copy)]
-pub struct StridedDeviceAddressRangeKHR {
-    pub address: crate::vk::DeviceAddress,
-    pub size: crate::vk::DeviceSize,
-    pub stride: crate::vk::DeviceSize,
-}
-#[repr(C)]
-#[derive(Clone, Copy)]
 pub struct CopyMemoryIndirectCommandKHR {
     pub src_address: crate::vk::DeviceAddress,
     pub dst_address: crate::vk::DeviceAddress,

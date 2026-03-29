@@ -11,20 +11,6 @@ pub struct PhysicalDeviceFaultFeaturesEXT {
 }
 #[repr(C)]
 #[derive(Clone, Copy)]
-pub struct DeviceFaultAddressInfoEXT {
-    pub address_type: crate::vk::DeviceFaultAddressTypeEXT,
-    pub reported_address: crate::vk::DeviceAddress,
-    pub address_precision: crate::vk::DeviceSize,
-}
-#[repr(C)]
-#[derive(Clone, Copy)]
-pub struct DeviceFaultVendorInfoEXT {
-    pub description: [core::ffi::c_char; crate::vk::MAX_DESCRIPTION_SIZE as _],
-    pub vendor_fault_code: u64,
-    pub vendor_fault_data: u64,
-}
-#[repr(C)]
-#[derive(Clone, Copy)]
 pub struct DeviceFaultCountsEXT {
     pub s_type: crate::vk::StructureType,
     pub p_next: *mut core::ffi::c_void,
@@ -38,50 +24,30 @@ pub struct DeviceFaultInfoEXT {
     pub s_type: crate::vk::StructureType,
     pub p_next: *mut core::ffi::c_void,
     pub description: [core::ffi::c_char; crate::vk::MAX_DESCRIPTION_SIZE as _],
-    pub p_address_infos: *mut crate::vk::DeviceFaultAddressInfoEXT,
-    pub p_vendor_infos: *mut crate::vk::DeviceFaultVendorInfoEXT,
+    pub p_address_infos: *mut crate::vk::DeviceFaultAddressInfoKHR,
+    pub p_vendor_infos: *mut crate::vk::DeviceFaultVendorInfoKHR,
     pub p_vendor_binary_data: *mut core::ffi::c_void,
 }
-#[repr(C)]
-#[derive(Clone, Copy)]
-pub struct DeviceFaultVendorBinaryHeaderVersionOneEXT {
-    pub header_size: u32,
-    pub header_version: crate::vk::DeviceFaultVendorBinaryHeaderVersionEXT,
-    pub vendor_id: u32,
-    pub device_id: u32,
-    pub driver_version: u32,
-    pub pipeline_cache_uuid: [u8; crate::vk::UUID_SIZE as _],
-    pub application_name_offset: u32,
-    pub application_version: u32,
-    pub engine_name_offset: u32,
-    pub engine_version: u32,
-    pub api_version: u32,
-}
+pub type DeviceFaultAddressInfoEXT = crate::vk::DeviceFaultAddressInfoKHR;
+pub type DeviceFaultVendorInfoEXT = crate::vk::DeviceFaultVendorInfoKHR;
+pub type DeviceFaultVendorBinaryHeaderVersionOneEXT = crate::vk::DeviceFaultVendorBinaryHeaderVersionOneKHR;
 ///Provided by [`ext::device_fault`](crate::ext::device_fault)
 impl crate::vk::StructureType {
     pub const PHYSICAL_DEVICE_FAULT_FEATURES_EXT: Self = Self(1000341000);
     pub const DEVICE_FAULT_COUNTS_EXT: Self = Self(1000341001);
     pub const DEVICE_FAULT_INFO_EXT: Self = Self(1000341002);
 }
-#[repr(transparent)]
-#[derive(Clone, Copy)]
-pub struct DeviceFaultAddressTypeEXT(pub(crate) i32);
 ///Provided by [`ext::device_fault`](crate::ext::device_fault)
-impl DeviceFaultAddressTypeEXT {
-    pub const NONE_EXT: Self = Self(0);
-    pub const READ_INVALID_EXT: Self = Self(1);
-    pub const WRITE_INVALID_EXT: Self = Self(2);
-    pub const EXECUTE_INVALID_EXT: Self = Self(3);
-    pub const INSTRUCTION_POINTER_UNKNOWN_EXT: Self = Self(4);
-    pub const INSTRUCTION_POINTER_INVALID_EXT: Self = Self(5);
-    pub const INSTRUCTION_POINTER_FAULT_EXT: Self = Self(6);
+impl crate::vk::DeviceFaultAddressTypeKHR {
+    pub const NONE_EXT: Self = Self::NONE_KHR;
+    pub const READ_INVALID_EXT: Self = Self::READ_INVALID_KHR;
+    pub const WRITE_INVALID_EXT: Self = Self::WRITE_INVALID_KHR;
+    pub const EXECUTE_INVALID_EXT: Self = Self::EXECUTE_INVALID_KHR;
+    pub const INSTRUCTION_POINTER_UNKNOWN_EXT: Self = Self::INSTRUCTION_POINTER_UNKNOWN_KHR;
+    pub const INSTRUCTION_POINTER_INVALID_EXT: Self = Self::INSTRUCTION_POINTER_INVALID_KHR;
+    pub const INSTRUCTION_POINTER_FAULT_EXT: Self = Self::INSTRUCTION_POINTER_FAULT_KHR;
 }
-#[repr(transparent)]
-#[derive(Clone, Copy)]
-pub struct DeviceFaultVendorBinaryHeaderVersionEXT(pub(crate) i32);
-///Provided by [`ext::device_fault`](crate::ext::device_fault)
-impl DeviceFaultVendorBinaryHeaderVersionEXT {
-    pub const ONE_EXT: Self = Self(1);
-}
+pub type DeviceFaultVendorBinaryHeaderVersionEXT = crate::vk::DeviceFaultVendorBinaryHeaderVersionKHR;
+pub type DeviceFaultAddressTypeEXT = crate::vk::DeviceFaultAddressTypeKHR;
 pub const EXT_DEVICE_FAULT_SPEC_VERSION: u32 = 2;
 pub const EXT_DEVICE_FAULT_EXTENSION_NAME: &core::ffi::CStr = c"VK_EXT_device_fault";
