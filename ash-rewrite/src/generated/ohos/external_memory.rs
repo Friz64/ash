@@ -64,5 +64,19 @@ impl crate::vk::StructureType {
 impl crate::vk::ExternalMemoryHandleTypeFlagBits {
     pub const OH_NATIVE_BUFFER_OHOS: Self = Self(1 << 15);
 }
+pub type PFN_vkGetNativeBufferPropertiesOHOS = unsafe extern "system" fn(
+    device: crate::vk::Device,
+    buffer: *const crate::platform_types::OH_NativeBuffer,
+    p_properties: *mut crate::vk::NativeBufferPropertiesOHOS,
+) -> crate::vk::Result;
+pub type PFN_vkGetMemoryNativeBufferOHOS = unsafe extern "system" fn(
+    device: crate::vk::Device,
+    p_info: *const crate::vk::MemoryGetNativeBufferInfoOHOS,
+    p_buffer: *mut *mut crate::platform_types::OH_NativeBuffer,
+) -> crate::vk::Result;
 pub const OHOS_EXTERNAL_MEMORY_SPEC_VERSION: u32 = 1;
 pub const OHOS_EXTERNAL_MEMORY_EXTENSION_NAME: &core::ffi::CStr = c"VK_OHOS_external_memory";
+pub struct DeviceFn {
+    pub vk_get_native_buffer_properties_ohos: crate::vk::PFN_vkGetNativeBufferPropertiesOHOS,
+    pub vk_get_memory_native_buffer_ohos: crate::vk::PFN_vkGetMemoryNativeBufferOHOS,
+}

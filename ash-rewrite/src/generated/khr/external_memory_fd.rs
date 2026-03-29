@@ -30,5 +30,20 @@ impl crate::vk::StructureType {
     pub const MEMORY_FD_PROPERTIES_KHR: Self = Self(1000074001);
     pub const MEMORY_GET_FD_INFO_KHR: Self = Self(1000074002);
 }
+pub type PFN_vkGetMemoryFdKHR = unsafe extern "system" fn(
+    device: crate::vk::Device,
+    p_get_fd_info: *const crate::vk::MemoryGetFdInfoKHR,
+    p_fd: *mut core::ffi::c_int,
+) -> crate::vk::Result;
+pub type PFN_vkGetMemoryFdPropertiesKHR = unsafe extern "system" fn(
+    device: crate::vk::Device,
+    handle_type: crate::vk::ExternalMemoryHandleTypeFlagBits,
+    fd: core::ffi::c_int,
+    p_memory_fd_properties: *mut crate::vk::MemoryFdPropertiesKHR,
+) -> crate::vk::Result;
 pub const KHR_EXTERNAL_MEMORY_FD_SPEC_VERSION: u32 = 1;
 pub const KHR_EXTERNAL_MEMORY_FD_EXTENSION_NAME: &core::ffi::CStr = c"VK_KHR_external_memory_fd";
+pub struct DeviceFn {
+    pub vk_get_memory_fd_khr: crate::vk::PFN_vkGetMemoryFdKHR,
+    pub vk_get_memory_fd_properties_khr: crate::vk::PFN_vkGetMemoryFdPropertiesKHR,
+}

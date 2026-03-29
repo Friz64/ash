@@ -40,5 +40,15 @@ impl crate::vk::StructureType {
 impl crate::vk::DynamicState {
     pub const VERTEX_INPUT_EXT: Self = Self(1000352000);
 }
+pub type PFN_vkCmdSetVertexInputEXT = unsafe extern "system" fn(
+    command_buffer: crate::vk::CommandBuffer,
+    vertex_binding_description_count: u32,
+    p_vertex_binding_descriptions: *const crate::vk::VertexInputBindingDescription2EXT,
+    vertex_attribute_description_count: u32,
+    p_vertex_attribute_descriptions: *const crate::vk::VertexInputAttributeDescription2EXT,
+);
 pub const EXT_VERTEX_INPUT_DYNAMIC_STATE_SPEC_VERSION: u32 = 2;
 pub const EXT_VERTEX_INPUT_DYNAMIC_STATE_EXTENSION_NAME: &core::ffi::CStr = c"VK_EXT_vertex_input_dynamic_state";
+pub struct DeviceFn {
+    pub vk_cmd_set_vertex_input_ext: crate::vk::PFN_vkCmdSetVertexInputEXT,
+}

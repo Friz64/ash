@@ -58,5 +58,16 @@ pub struct ConditionalRenderingFlagBitsEXT(pub(crate) u32);
 impl ConditionalRenderingFlagBitsEXT {
     pub const INVERTED_EXT: Self = Self(1 << 0);
 }
+pub type PFN_vkCmdBeginConditionalRenderingEXT = unsafe extern "system" fn(
+    command_buffer: crate::vk::CommandBuffer,
+    p_conditional_rendering_begin: *const crate::vk::ConditionalRenderingBeginInfoEXT,
+);
+pub type PFN_vkCmdEndConditionalRenderingEXT = unsafe extern "system" fn(
+    command_buffer: crate::vk::CommandBuffer,
+);
 pub const EXT_CONDITIONAL_RENDERING_SPEC_VERSION: u32 = 2;
 pub const EXT_CONDITIONAL_RENDERING_EXTENSION_NAME: &core::ffi::CStr = c"VK_EXT_conditional_rendering";
+pub struct DeviceFn {
+    pub vk_cmd_begin_conditional_rendering_ext: crate::vk::PFN_vkCmdBeginConditionalRenderingEXT,
+    pub vk_cmd_end_conditional_rendering_ext: crate::vk::PFN_vkCmdEndConditionalRenderingEXT,
+}

@@ -32,5 +32,19 @@ impl crate::vk::StructureType {
     pub const DESCRIPTOR_SET_BINDING_REFERENCE_VALVE: Self = Self(1000420001);
     pub const DESCRIPTOR_SET_LAYOUT_HOST_MAPPING_INFO_VALVE: Self = Self(1000420002);
 }
+pub type PFN_vkGetDescriptorSetLayoutHostMappingInfoVALVE = unsafe extern "system" fn(
+    device: crate::vk::Device,
+    p_binding_reference: *const crate::vk::DescriptorSetBindingReferenceVALVE,
+    p_host_mapping: *mut crate::vk::DescriptorSetLayoutHostMappingInfoVALVE,
+);
+pub type PFN_vkGetDescriptorSetHostMappingVALVE = unsafe extern "system" fn(
+    device: crate::vk::Device,
+    descriptor_set: crate::vk::DescriptorSet,
+    pp_data: *mut *mut core::ffi::c_void,
+);
 pub const VALVE_DESCRIPTOR_SET_HOST_MAPPING_SPEC_VERSION: u32 = 1;
 pub const VALVE_DESCRIPTOR_SET_HOST_MAPPING_EXTENSION_NAME: &core::ffi::CStr = c"VK_VALVE_descriptor_set_host_mapping";
+pub struct DeviceFn {
+    pub vk_get_descriptor_set_layout_host_mapping_info_valve: crate::vk::PFN_vkGetDescriptorSetLayoutHostMappingInfoVALVE,
+    pub vk_get_descriptor_set_host_mapping_valve: crate::vk::PFN_vkGetDescriptorSetHostMappingVALVE,
+}

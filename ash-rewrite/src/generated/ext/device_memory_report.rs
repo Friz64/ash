@@ -37,7 +37,7 @@ impl crate::vk::StructureType {
     pub const DEVICE_MEMORY_REPORT_CALLBACK_DATA_EXT: Self = Self(1000284002);
 }
 #[repr(transparent)]
-#[derive(Clone, Copy)]
+#[derive(Clone, Copy, PartialEq, Eq, PartialOrd, Ord, Hash, Default)]
 pub struct DeviceMemoryReportEventTypeEXT(pub(crate) i32);
 ///Provided by [`ext::device_memory_report`](crate::ext::device_memory_report)
 impl DeviceMemoryReportEventTypeEXT {
@@ -51,7 +51,11 @@ bitflags::bitflags! {
     #[repr(transparent)] #[derive(Clone, Copy)] pub struct DeviceMemoryReportFlagsEXT :
     u32 {}
 }
-#[allow(non_camel_case_types)]
-pub type PFN_vkDeviceMemoryReportCallbackEXT = Option<()>;
+pub type PFN_vkDeviceMemoryReportCallbackEXT = Option<
+    unsafe extern "system" fn(
+        p_callback_data: *const crate::vk::DeviceMemoryReportCallbackDataEXT,
+        p_user_data: *mut core::ffi::c_void,
+    ),
+>;
 pub const EXT_DEVICE_MEMORY_REPORT_SPEC_VERSION: u32 = 2;
 pub const EXT_DEVICE_MEMORY_REPORT_EXTENSION_NAME: &core::ffi::CStr = c"VK_EXT_device_memory_report";

@@ -200,7 +200,7 @@ impl crate::vk::StructureType {
     );
 }
 #[repr(transparent)]
-#[derive(Clone, Copy)]
+#[derive(Clone, Copy, PartialEq, Eq, PartialOrd, Ord, Hash, Default)]
 pub struct ClusterAccelerationStructureTypeNV(pub(crate) i32);
 ///Provided by [`nv::cluster_acceleration_structure`](crate::nv::cluster_acceleration_structure)
 impl ClusterAccelerationStructureTypeNV {
@@ -209,7 +209,7 @@ impl ClusterAccelerationStructureTypeNV {
     pub const TRIANGLE_CLUSTER_TEMPLATE_NV: Self = Self(2);
 }
 #[repr(transparent)]
-#[derive(Clone, Copy)]
+#[derive(Clone, Copy, PartialEq, Eq, PartialOrd, Ord, Hash, Default)]
 pub struct ClusterAccelerationStructureOpTypeNV(pub(crate) i32);
 ///Provided by [`nv::cluster_acceleration_structure`](crate::nv::cluster_acceleration_structure)
 impl ClusterAccelerationStructureOpTypeNV {
@@ -221,7 +221,7 @@ impl ClusterAccelerationStructureOpTypeNV {
     pub const GET_CLUSTER_TEMPLATE_INDICES_NV: Self = Self(5);
 }
 #[repr(transparent)]
-#[derive(Clone, Copy)]
+#[derive(Clone, Copy, PartialEq, Eq, PartialOrd, Ord, Hash, Default)]
 pub struct ClusterAccelerationStructureOpModeNV(pub(crate) i32);
 ///Provided by [`nv::cluster_acceleration_structure`](crate::nv::cluster_acceleration_structure)
 impl ClusterAccelerationStructureOpModeNV {
@@ -315,5 +315,18 @@ impl ClusterAccelerationStructureIndexFormatFlagBitsNV {
     pub const _16BIT_NV: Self = Self(1 << 1);
     pub const _32BIT_NV: Self = Self(1 << 2);
 }
+pub type PFN_vkGetClusterAccelerationStructureBuildSizesNV = unsafe extern "system" fn(
+    device: crate::vk::Device,
+    p_info: *const crate::vk::ClusterAccelerationStructureInputInfoNV,
+    p_size_info: *mut crate::vk::AccelerationStructureBuildSizesInfoKHR,
+);
+pub type PFN_vkCmdBuildClusterAccelerationStructureIndirectNV = unsafe extern "system" fn(
+    command_buffer: crate::vk::CommandBuffer,
+    p_command_infos: *const crate::vk::ClusterAccelerationStructureCommandsInfoNV,
+);
 pub const NV_CLUSTER_ACCELERATION_STRUCTURE_SPEC_VERSION: u32 = 4;
 pub const NV_CLUSTER_ACCELERATION_STRUCTURE_EXTENSION_NAME: &core::ffi::CStr = c"VK_NV_cluster_acceleration_structure";
+pub struct DeviceFn {
+    pub vk_get_cluster_acceleration_structure_build_sizes_nv: crate::vk::PFN_vkGetClusterAccelerationStructureBuildSizesNV,
+    pub vk_cmd_build_cluster_acceleration_structure_indirect_nv: crate::vk::PFN_vkCmdBuildClusterAccelerationStructureIndirectNV,
+}

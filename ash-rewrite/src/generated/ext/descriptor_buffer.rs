@@ -207,5 +207,80 @@ impl crate::vk::AccelerationStructureCreateFlagBitsKHR {
 impl crate::vk::AccessFlagBits2 {
     pub const DESCRIPTOR_BUFFER_READ_EXT: Self = Self(1 << 41);
 }
+pub type PFN_vkGetDescriptorSetLayoutSizeEXT = unsafe extern "system" fn(
+    device: crate::vk::Device,
+    layout: crate::vk::DescriptorSetLayout,
+    p_layout_size_in_bytes: *mut crate::vk::DeviceSize,
+);
+pub type PFN_vkGetDescriptorSetLayoutBindingOffsetEXT = unsafe extern "system" fn(
+    device: crate::vk::Device,
+    layout: crate::vk::DescriptorSetLayout,
+    binding: u32,
+    p_offset: *mut crate::vk::DeviceSize,
+);
+pub type PFN_vkGetDescriptorEXT = unsafe extern "system" fn(
+    device: crate::vk::Device,
+    p_descriptor_info: *const crate::vk::DescriptorGetInfoEXT,
+    data_size: usize,
+    p_descriptor: *mut core::ffi::c_void,
+);
+pub type PFN_vkCmdBindDescriptorBuffersEXT = unsafe extern "system" fn(
+    command_buffer: crate::vk::CommandBuffer,
+    buffer_count: u32,
+    p_binding_infos: *const crate::vk::DescriptorBufferBindingInfoEXT,
+);
+pub type PFN_vkCmdSetDescriptorBufferOffsetsEXT = unsafe extern "system" fn(
+    command_buffer: crate::vk::CommandBuffer,
+    pipeline_bind_point: crate::vk::PipelineBindPoint,
+    layout: crate::vk::PipelineLayout,
+    first_set: u32,
+    set_count: u32,
+    p_buffer_indices: *const u32,
+    p_offsets: *const crate::vk::DeviceSize,
+);
+pub type PFN_vkCmdBindDescriptorBufferEmbeddedSamplersEXT = unsafe extern "system" fn(
+    command_buffer: crate::vk::CommandBuffer,
+    pipeline_bind_point: crate::vk::PipelineBindPoint,
+    layout: crate::vk::PipelineLayout,
+    set: u32,
+);
+pub type PFN_vkGetBufferOpaqueCaptureDescriptorDataEXT = unsafe extern "system" fn(
+    device: crate::vk::Device,
+    p_info: *const crate::vk::BufferCaptureDescriptorDataInfoEXT,
+    p_data: *mut core::ffi::c_void,
+) -> crate::vk::Result;
+pub type PFN_vkGetImageOpaqueCaptureDescriptorDataEXT = unsafe extern "system" fn(
+    device: crate::vk::Device,
+    p_info: *const crate::vk::ImageCaptureDescriptorDataInfoEXT,
+    p_data: *mut core::ffi::c_void,
+) -> crate::vk::Result;
+pub type PFN_vkGetImageViewOpaqueCaptureDescriptorDataEXT = unsafe extern "system" fn(
+    device: crate::vk::Device,
+    p_info: *const crate::vk::ImageViewCaptureDescriptorDataInfoEXT,
+    p_data: *mut core::ffi::c_void,
+) -> crate::vk::Result;
+pub type PFN_vkGetSamplerOpaqueCaptureDescriptorDataEXT = unsafe extern "system" fn(
+    device: crate::vk::Device,
+    p_info: *const crate::vk::SamplerCaptureDescriptorDataInfoEXT,
+    p_data: *mut core::ffi::c_void,
+) -> crate::vk::Result;
+pub type PFN_vkGetAccelerationStructureOpaqueCaptureDescriptorDataEXT = unsafe extern "system" fn(
+    device: crate::vk::Device,
+    p_info: *const crate::vk::AccelerationStructureCaptureDescriptorDataInfoEXT,
+    p_data: *mut core::ffi::c_void,
+) -> crate::vk::Result;
 pub const EXT_DESCRIPTOR_BUFFER_SPEC_VERSION: u32 = 1;
 pub const EXT_DESCRIPTOR_BUFFER_EXTENSION_NAME: &core::ffi::CStr = c"VK_EXT_descriptor_buffer";
+pub struct DeviceFn {
+    pub vk_get_descriptor_set_layout_size_ext: crate::vk::PFN_vkGetDescriptorSetLayoutSizeEXT,
+    pub vk_get_descriptor_set_layout_binding_offset_ext: crate::vk::PFN_vkGetDescriptorSetLayoutBindingOffsetEXT,
+    pub vk_get_descriptor_ext: crate::vk::PFN_vkGetDescriptorEXT,
+    pub vk_cmd_bind_descriptor_buffers_ext: crate::vk::PFN_vkCmdBindDescriptorBuffersEXT,
+    pub vk_cmd_set_descriptor_buffer_offsets_ext: crate::vk::PFN_vkCmdSetDescriptorBufferOffsetsEXT,
+    pub vk_cmd_bind_descriptor_buffer_embedded_samplers_ext: crate::vk::PFN_vkCmdBindDescriptorBufferEmbeddedSamplersEXT,
+    pub vk_get_buffer_opaque_capture_descriptor_data_ext: crate::vk::PFN_vkGetBufferOpaqueCaptureDescriptorDataEXT,
+    pub vk_get_image_opaque_capture_descriptor_data_ext: crate::vk::PFN_vkGetImageOpaqueCaptureDescriptorDataEXT,
+    pub vk_get_image_view_opaque_capture_descriptor_data_ext: crate::vk::PFN_vkGetImageViewOpaqueCaptureDescriptorDataEXT,
+    pub vk_get_sampler_opaque_capture_descriptor_data_ext: crate::vk::PFN_vkGetSamplerOpaqueCaptureDescriptorDataEXT,
+    pub vk_get_acceleration_structure_opaque_capture_descriptor_data_ext: crate::vk::PFN_vkGetAccelerationStructureOpaqueCaptureDescriptorDataEXT,
+}

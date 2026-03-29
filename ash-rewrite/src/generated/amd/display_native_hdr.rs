@@ -24,5 +24,13 @@ impl crate::vk::StructureType {
 impl crate::vk::ColorSpaceKHR {
     pub const DISPLAY_NATIVE_AMD: Self = Self(1000213000);
 }
+pub type PFN_vkSetLocalDimmingAMD = unsafe extern "system" fn(
+    device: crate::vk::Device,
+    swap_chain: crate::vk::SwapchainKHR,
+    local_dimming_enable: crate::vk::Bool32,
+);
 pub const AMD_DISPLAY_NATIVE_HDR_SPEC_VERSION: u32 = 1;
 pub const AMD_DISPLAY_NATIVE_HDR_EXTENSION_NAME: &core::ffi::CStr = c"VK_AMD_display_native_hdr";
+pub struct DeviceFn {
+    pub vk_set_local_dimming_amd: crate::vk::PFN_vkSetLocalDimmingAMD,
+}

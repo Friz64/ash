@@ -16,7 +16,7 @@ impl crate::vk::StructureType {
     pub const VALIDATION_FEATURES_EXT: Self = Self(1000247000);
 }
 #[repr(transparent)]
-#[derive(Clone, Copy)]
+#[derive(Clone, Copy, PartialEq, Eq, PartialOrd, Ord, Hash, Default)]
 pub struct ValidationFeatureEnableEXT(pub(crate) i32);
 ///Provided by [`ext::validation_features`](crate::ext::validation_features)
 impl ValidationFeatureEnableEXT {
@@ -27,7 +27,7 @@ impl ValidationFeatureEnableEXT {
     pub const SYNCHRONIZATION_VALIDATION_EXT: Self = Self(4);
 }
 #[repr(transparent)]
-#[derive(Clone, Copy)]
+#[derive(Clone, Copy, PartialEq, Eq, PartialOrd, Ord, Hash, Default)]
 pub struct ValidationFeatureDisableEXT(pub(crate) i32);
 ///Provided by [`ext::validation_features`](crate::ext::validation_features)
 impl ValidationFeatureDisableEXT {

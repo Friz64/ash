@@ -251,7 +251,7 @@ impl crate::vk::DebugReportObjectTypeEXT {
     pub const ACCELERATION_STRUCTURE_KHR_EXT: Self = Self(1000150000);
 }
 #[repr(transparent)]
-#[derive(Clone, Copy)]
+#[derive(Clone, Copy, PartialEq, Eq, PartialOrd, Ord, Hash, Default)]
 pub struct CopyAccelerationStructureModeKHR(pub(crate) i32);
 ///Provided by [`khr::acceleration_structure`](crate::khr::acceleration_structure)
 impl CopyAccelerationStructureModeKHR {
@@ -261,7 +261,7 @@ impl CopyAccelerationStructureModeKHR {
     pub const DESERIALIZE_KHR: Self = Self(3);
 }
 #[repr(transparent)]
-#[derive(Clone, Copy)]
+#[derive(Clone, Copy, PartialEq, Eq, PartialOrd, Ord, Hash, Default)]
 pub struct BuildAccelerationStructureModeKHR(pub(crate) i32);
 ///Provided by [`khr::acceleration_structure`](crate::khr::acceleration_structure)
 impl BuildAccelerationStructureModeKHR {
@@ -269,7 +269,7 @@ impl BuildAccelerationStructureModeKHR {
     pub const UPDATE_KHR: Self = Self(1);
 }
 #[repr(transparent)]
-#[derive(Clone, Copy)]
+#[derive(Clone, Copy, PartialEq, Eq, PartialOrd, Ord, Hash, Default)]
 pub struct AccelerationStructureTypeKHR(pub(crate) i32);
 ///Provided by [`khr::acceleration_structure`](crate::khr::acceleration_structure)
 impl AccelerationStructureTypeKHR {
@@ -278,7 +278,7 @@ impl AccelerationStructureTypeKHR {
     pub const GENERIC_KHR: Self = Self(2);
 }
 #[repr(transparent)]
-#[derive(Clone, Copy)]
+#[derive(Clone, Copy, PartialEq, Eq, PartialOrd, Ord, Hash, Default)]
 pub struct GeometryTypeKHR(pub(crate) i32);
 ///Provided by [`khr::acceleration_structure`](crate::khr::acceleration_structure)
 impl GeometryTypeKHR {
@@ -287,7 +287,7 @@ impl GeometryTypeKHR {
     pub const INSTANCES_KHR: Self = Self(2);
 }
 #[repr(transparent)]
-#[derive(Clone, Copy)]
+#[derive(Clone, Copy, PartialEq, Eq, PartialOrd, Ord, Hash, Default)]
 pub struct AccelerationStructureBuildTypeKHR(pub(crate) i32);
 ///Provided by [`khr::acceleration_structure`](crate::khr::acceleration_structure)
 impl AccelerationStructureBuildTypeKHR {
@@ -296,7 +296,7 @@ impl AccelerationStructureBuildTypeKHR {
     pub const HOST_OR_DEVICE_KHR: Self = Self(2);
 }
 #[repr(transparent)]
-#[derive(Clone, Copy)]
+#[derive(Clone, Copy, PartialEq, Eq, PartialOrd, Ord, Hash, Default)]
 pub struct AccelerationStructureCompatibilityKHR(pub(crate) i32);
 ///Provided by [`khr::acceleration_structure`](crate::khr::acceleration_structure)
 impl AccelerationStructureCompatibilityKHR {
@@ -452,5 +452,115 @@ impl core::fmt::Debug for AccelerationStructureKHR {
         write!(f, "0x{:x}", self.0)
     }
 }
+pub type PFN_vkDestroyAccelerationStructureKHR = unsafe extern "system" fn(
+    device: crate::vk::Device,
+    acceleration_structure: crate::vk::AccelerationStructureKHR,
+    p_allocator: *const crate::vk::AllocationCallbacks,
+);
+pub type PFN_vkCmdCopyAccelerationStructureKHR = unsafe extern "system" fn(
+    command_buffer: crate::vk::CommandBuffer,
+    p_info: *const crate::vk::CopyAccelerationStructureInfoKHR,
+);
+pub type PFN_vkCopyAccelerationStructureKHR = unsafe extern "system" fn(
+    device: crate::vk::Device,
+    deferred_operation: crate::vk::DeferredOperationKHR,
+    p_info: *const crate::vk::CopyAccelerationStructureInfoKHR,
+) -> crate::vk::Result;
+pub type PFN_vkCmdCopyAccelerationStructureToMemoryKHR = unsafe extern "system" fn(
+    command_buffer: crate::vk::CommandBuffer,
+    p_info: *const crate::vk::CopyAccelerationStructureToMemoryInfoKHR,
+);
+pub type PFN_vkCopyAccelerationStructureToMemoryKHR = unsafe extern "system" fn(
+    device: crate::vk::Device,
+    deferred_operation: crate::vk::DeferredOperationKHR,
+    p_info: *const crate::vk::CopyAccelerationStructureToMemoryInfoKHR,
+) -> crate::vk::Result;
+pub type PFN_vkCmdCopyMemoryToAccelerationStructureKHR = unsafe extern "system" fn(
+    command_buffer: crate::vk::CommandBuffer,
+    p_info: *const crate::vk::CopyMemoryToAccelerationStructureInfoKHR,
+);
+pub type PFN_vkCopyMemoryToAccelerationStructureKHR = unsafe extern "system" fn(
+    device: crate::vk::Device,
+    deferred_operation: crate::vk::DeferredOperationKHR,
+    p_info: *const crate::vk::CopyMemoryToAccelerationStructureInfoKHR,
+) -> crate::vk::Result;
+pub type PFN_vkCmdWriteAccelerationStructuresPropertiesKHR = unsafe extern "system" fn(
+    command_buffer: crate::vk::CommandBuffer,
+    acceleration_structure_count: u32,
+    p_acceleration_structures: *const crate::vk::AccelerationStructureKHR,
+    query_type: crate::vk::QueryType,
+    query_pool: crate::vk::QueryPool,
+    first_query: u32,
+);
+pub type PFN_vkWriteAccelerationStructuresPropertiesKHR = unsafe extern "system" fn(
+    device: crate::vk::Device,
+    acceleration_structure_count: u32,
+    p_acceleration_structures: *const crate::vk::AccelerationStructureKHR,
+    query_type: crate::vk::QueryType,
+    data_size: usize,
+    p_data: *mut core::ffi::c_void,
+    stride: usize,
+) -> crate::vk::Result;
+pub type PFN_vkGetDeviceAccelerationStructureCompatibilityKHR = unsafe extern "system" fn(
+    device: crate::vk::Device,
+    p_version_info: *const crate::vk::AccelerationStructureVersionInfoKHR,
+    p_compatibility: *mut crate::vk::AccelerationStructureCompatibilityKHR,
+);
+pub type PFN_vkCreateAccelerationStructureKHR = unsafe extern "system" fn(
+    device: crate::vk::Device,
+    p_create_info: *const crate::vk::AccelerationStructureCreateInfoKHR,
+    p_allocator: *const crate::vk::AllocationCallbacks,
+    p_acceleration_structure: *mut crate::vk::AccelerationStructureKHR,
+) -> crate::vk::Result;
+pub type PFN_vkCmdBuildAccelerationStructuresKHR = unsafe extern "system" fn(
+    command_buffer: crate::vk::CommandBuffer,
+    info_count: u32,
+    p_infos: *const crate::vk::AccelerationStructureBuildGeometryInfoKHR,
+    pp_build_range_infos: *const *const crate::vk::AccelerationStructureBuildRangeInfoKHR,
+);
+pub type PFN_vkCmdBuildAccelerationStructuresIndirectKHR = unsafe extern "system" fn(
+    command_buffer: crate::vk::CommandBuffer,
+    info_count: u32,
+    p_infos: *const crate::vk::AccelerationStructureBuildGeometryInfoKHR,
+    p_indirect_device_addresses: *const crate::vk::DeviceAddress,
+    p_indirect_strides: *const u32,
+    pp_max_primitive_counts: *const *const u32,
+);
+pub type PFN_vkBuildAccelerationStructuresKHR = unsafe extern "system" fn(
+    device: crate::vk::Device,
+    deferred_operation: crate::vk::DeferredOperationKHR,
+    info_count: u32,
+    p_infos: *const crate::vk::AccelerationStructureBuildGeometryInfoKHR,
+    pp_build_range_infos: *const *const crate::vk::AccelerationStructureBuildRangeInfoKHR,
+) -> crate::vk::Result;
+pub type PFN_vkGetAccelerationStructureDeviceAddressKHR = unsafe extern "system" fn(
+    device: crate::vk::Device,
+    p_info: *const crate::vk::AccelerationStructureDeviceAddressInfoKHR,
+) -> crate::vk::DeviceAddress;
+pub type PFN_vkGetAccelerationStructureBuildSizesKHR = unsafe extern "system" fn(
+    device: crate::vk::Device,
+    build_type: crate::vk::AccelerationStructureBuildTypeKHR,
+    p_build_info: *const crate::vk::AccelerationStructureBuildGeometryInfoKHR,
+    p_max_primitive_counts: *const u32,
+    p_size_info: *mut crate::vk::AccelerationStructureBuildSizesInfoKHR,
+);
 pub const KHR_ACCELERATION_STRUCTURE_SPEC_VERSION: u32 = 13;
 pub const KHR_ACCELERATION_STRUCTURE_EXTENSION_NAME: &core::ffi::CStr = c"VK_KHR_acceleration_structure";
+pub struct DeviceFn {
+    pub vk_destroy_acceleration_structure_khr: crate::vk::PFN_vkDestroyAccelerationStructureKHR,
+    pub vk_cmd_copy_acceleration_structure_khr: crate::vk::PFN_vkCmdCopyAccelerationStructureKHR,
+    pub vk_copy_acceleration_structure_khr: crate::vk::PFN_vkCopyAccelerationStructureKHR,
+    pub vk_cmd_copy_acceleration_structure_to_memory_khr: crate::vk::PFN_vkCmdCopyAccelerationStructureToMemoryKHR,
+    pub vk_copy_acceleration_structure_to_memory_khr: crate::vk::PFN_vkCopyAccelerationStructureToMemoryKHR,
+    pub vk_cmd_copy_memory_to_acceleration_structure_khr: crate::vk::PFN_vkCmdCopyMemoryToAccelerationStructureKHR,
+    pub vk_copy_memory_to_acceleration_structure_khr: crate::vk::PFN_vkCopyMemoryToAccelerationStructureKHR,
+    pub vk_cmd_write_acceleration_structures_properties_khr: crate::vk::PFN_vkCmdWriteAccelerationStructuresPropertiesKHR,
+    pub vk_write_acceleration_structures_properties_khr: crate::vk::PFN_vkWriteAccelerationStructuresPropertiesKHR,
+    pub vk_get_device_acceleration_structure_compatibility_khr: crate::vk::PFN_vkGetDeviceAccelerationStructureCompatibilityKHR,
+    pub vk_create_acceleration_structure_khr: crate::vk::PFN_vkCreateAccelerationStructureKHR,
+    pub vk_cmd_build_acceleration_structures_khr: crate::vk::PFN_vkCmdBuildAccelerationStructuresKHR,
+    pub vk_cmd_build_acceleration_structures_indirect_khr: crate::vk::PFN_vkCmdBuildAccelerationStructuresIndirectKHR,
+    pub vk_build_acceleration_structures_khr: crate::vk::PFN_vkBuildAccelerationStructuresKHR,
+    pub vk_get_acceleration_structure_device_address_khr: crate::vk::PFN_vkGetAccelerationStructureDeviceAddressKHR,
+    pub vk_get_acceleration_structure_build_sizes_khr: crate::vk::PFN_vkGetAccelerationStructureBuildSizesKHR,
+}

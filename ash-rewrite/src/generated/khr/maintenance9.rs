@@ -30,7 +30,7 @@ impl crate::vk::StructureType {
     pub const QUEUE_FAMILY_OWNERSHIP_TRANSFER_PROPERTIES_KHR: Self = Self(1000584002);
 }
 #[repr(transparent)]
-#[derive(Clone, Copy)]
+#[derive(Clone, Copy, PartialEq, Eq, PartialOrd, Ord, Hash, Default)]
 pub struct DefaultVertexAttributeValueKHR(pub(crate) i32);
 ///Provided by [`khr::maintenance9`](crate::khr::maintenance9)
 impl DefaultVertexAttributeValueKHR {

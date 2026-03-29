@@ -58,7 +58,7 @@ pub struct StdVideoVP9Segmentation {
         as _]; crate::vk::STD_VIDEO_VP9_MAX_SEGMENTS as _],
 }
 #[repr(transparent)]
-#[derive(Clone, Copy)]
+#[derive(Clone, Copy, PartialEq, Eq, PartialOrd, Ord, Hash, Default)]
 pub struct StdVideoVP9Profile(pub(crate) i32);
 ///Provided by [`video::codec_vp9std`](crate::video::codec_vp9std)
 impl StdVideoVP9Profile {
@@ -69,7 +69,7 @@ impl StdVideoVP9Profile {
     pub const INVALID: Self = Self(0x7FFFFFF);
 }
 #[repr(transparent)]
-#[derive(Clone, Copy)]
+#[derive(Clone, Copy, PartialEq, Eq, PartialOrd, Ord, Hash, Default)]
 pub struct StdVideoVP9Level(pub(crate) i32);
 ///Provided by [`video::codec_vp9std`](crate::video::codec_vp9std)
 impl StdVideoVP9Level {
@@ -90,7 +90,7 @@ impl StdVideoVP9Level {
     pub const INVALID: Self = Self(0x7FFFFFF);
 }
 #[repr(transparent)]
-#[derive(Clone, Copy)]
+#[derive(Clone, Copy, PartialEq, Eq, PartialOrd, Ord, Hash, Default)]
 pub struct StdVideoVP9FrameType(pub(crate) i32);
 ///Provided by [`video::codec_vp9std`](crate::video::codec_vp9std)
 impl StdVideoVP9FrameType {
@@ -99,7 +99,7 @@ impl StdVideoVP9FrameType {
     pub const INVALID: Self = Self(0x7FFFFFF);
 }
 #[repr(transparent)]
-#[derive(Clone, Copy)]
+#[derive(Clone, Copy, PartialEq, Eq, PartialOrd, Ord, Hash, Default)]
 pub struct StdVideoVP9ReferenceName(pub(crate) i32);
 ///Provided by [`video::codec_vp9std`](crate::video::codec_vp9std)
 impl StdVideoVP9ReferenceName {
@@ -110,7 +110,7 @@ impl StdVideoVP9ReferenceName {
     pub const INVALID: Self = Self(0x7FFFFFF);
 }
 #[repr(transparent)]
-#[derive(Clone, Copy)]
+#[derive(Clone, Copy, PartialEq, Eq, PartialOrd, Ord, Hash, Default)]
 pub struct StdVideoVP9InterpolationFilter(pub(crate) i32);
 ///Provided by [`video::codec_vp9std`](crate::video::codec_vp9std)
 impl StdVideoVP9InterpolationFilter {
@@ -122,7 +122,7 @@ impl StdVideoVP9InterpolationFilter {
     pub const INVALID: Self = Self(0x7FFFFFF);
 }
 #[repr(transparent)]
-#[derive(Clone, Copy)]
+#[derive(Clone, Copy, PartialEq, Eq, PartialOrd, Ord, Hash, Default)]
 pub struct StdVideoVP9ColorSpace(pub(crate) i32);
 ///Provided by [`video::codec_vp9std`](crate::video::codec_vp9std)
 impl StdVideoVP9ColorSpace {

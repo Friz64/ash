@@ -17,5 +17,14 @@ bitflags::bitflags! {
     #[repr(transparent)] #[derive(Clone, Copy)] pub struct SurfaceCreateFlagsOHOS : u32
     {}
 }
+pub type PFN_vkCreateSurfaceOHOS = unsafe extern "system" fn(
+    instance: crate::vk::Instance,
+    p_create_info: *const crate::vk::SurfaceCreateInfoOHOS,
+    p_allocator: *const crate::vk::AllocationCallbacks,
+    p_surface: *mut crate::vk::SurfaceKHR,
+) -> crate::vk::Result;
 pub const OHOS_SURFACE_SPEC_VERSION: u32 = 1;
 pub const OHOS_SURFACE_EXTENSION_NAME: &core::ffi::CStr = c"VK_OHOS_surface";
+pub struct InstanceFn {
+    pub vk_create_surface_ohos: crate::vk::PFN_vkCreateSurfaceOHOS,
+}

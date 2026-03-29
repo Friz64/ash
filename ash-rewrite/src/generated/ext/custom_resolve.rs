@@ -45,5 +45,12 @@ impl crate::vk::RenderingFlagBits {
 impl crate::vk::ResolveModeFlagBits {
     pub const CUSTOM_EXT: Self = Self(1 << 5);
 }
+pub type PFN_vkCmdBeginCustomResolveEXT = unsafe extern "system" fn(
+    command_buffer: crate::vk::CommandBuffer,
+    p_begin_custom_resolve_info: *const crate::vk::BeginCustomResolveInfoEXT,
+);
 pub const EXT_CUSTOM_RESOLVE_SPEC_VERSION: u32 = 1;
 pub const EXT_CUSTOM_RESOLVE_EXTENSION_NAME: &core::ffi::CStr = c"VK_EXT_custom_resolve";
+pub struct DeviceFn {
+    pub vk_cmd_begin_custom_resolve_ext: crate::vk::PFN_vkCmdBeginCustomResolveEXT,
+}

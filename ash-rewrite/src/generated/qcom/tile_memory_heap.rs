@@ -62,5 +62,12 @@ impl crate::vk::ImageUsageFlagBits {
 impl crate::vk::BufferUsageFlagBits2 {
     pub const TILE_MEMORY_QCOM: Self = Self(1 << 27);
 }
+pub type PFN_vkCmdBindTileMemoryQCOM = unsafe extern "system" fn(
+    command_buffer: crate::vk::CommandBuffer,
+    p_tile_memory_bind_info: *const crate::vk::TileMemoryBindInfoQCOM,
+);
 pub const QCOM_TILE_MEMORY_HEAP_SPEC_VERSION: u32 = 1;
 pub const QCOM_TILE_MEMORY_HEAP_EXTENSION_NAME: &core::ffi::CStr = c"VK_QCOM_tile_memory_heap";
+pub struct DeviceFn {
+    pub vk_cmd_bind_tile_memory_qcom: crate::vk::PFN_vkCmdBindTileMemoryQCOM,
+}

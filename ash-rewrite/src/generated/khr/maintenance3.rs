@@ -8,5 +8,9 @@ impl crate::vk::StructureType {
     pub const PHYSICAL_DEVICE_MAINTENANCE_3_PROPERTIES_KHR: Self = Self::PHYSICAL_DEVICE_MAINTENANCE_3_PROPERTIES;
     pub const DESCRIPTOR_SET_LAYOUT_SUPPORT_KHR: Self = Self::DESCRIPTOR_SET_LAYOUT_SUPPORT;
 }
+pub type PFN_vkGetDescriptorSetLayoutSupportKHR = crate::vk::PFN_vkGetDescriptorSetLayoutSupport;
 pub const KHR_MAINTENANCE_3_SPEC_VERSION: u32 = 1;
 pub const KHR_MAINTENANCE_3_EXTENSION_NAME: &core::ffi::CStr = c"VK_KHR_maintenance3";
+pub struct DeviceFn {
+    pub vk_get_descriptor_set_layout_support_khr: crate::vk::PFN_vkGetDescriptorSetLayoutSupportKHR,
+}

@@ -22,7 +22,7 @@ pub struct ShaderStatisticsInfoAMD {
     pub compute_work_group_size: [u32; 3 as _],
 }
 #[repr(transparent)]
-#[derive(Clone, Copy)]
+#[derive(Clone, Copy, PartialEq, Eq, PartialOrd, Ord, Hash, Default)]
 pub struct ShaderInfoTypeAMD(pub(crate) i32);
 ///Provided by [`amd::shader_info`](crate::amd::shader_info)
 impl ShaderInfoTypeAMD {
@@ -30,5 +30,16 @@ impl ShaderInfoTypeAMD {
     pub const BINARY_AMD: Self = Self(1);
     pub const DISASSEMBLY_AMD: Self = Self(2);
 }
+pub type PFN_vkGetShaderInfoAMD = unsafe extern "system" fn(
+    device: crate::vk::Device,
+    pipeline: crate::vk::Pipeline,
+    shader_stage: crate::vk::ShaderStageFlagBits,
+    info_type: crate::vk::ShaderInfoTypeAMD,
+    p_info_size: *mut usize,
+    p_info: *mut core::ffi::c_void,
+) -> crate::vk::Result;
 pub const AMD_SHADER_INFO_SPEC_VERSION: u32 = 1;
 pub const AMD_SHADER_INFO_EXTENSION_NAME: &core::ffi::CStr = c"VK_AMD_shader_info";
+pub struct DeviceFn {
+    pub vk_get_shader_info_amd: crate::vk::PFN_vkGetShaderInfoAMD,
+}

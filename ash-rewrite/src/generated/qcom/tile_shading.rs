@@ -89,5 +89,22 @@ impl TileShadingRenderPassFlagBitsQCOM {
     pub const ENABLE_QCOM: Self = Self(1 << 0);
     pub const PER_TILE_EXECUTION_QCOM: Self = Self(1 << 1);
 }
+pub type PFN_vkCmdDispatchTileQCOM = unsafe extern "system" fn(
+    command_buffer: crate::vk::CommandBuffer,
+    p_dispatch_tile_info: *const crate::vk::DispatchTileInfoQCOM,
+);
+pub type PFN_vkCmdBeginPerTileExecutionQCOM = unsafe extern "system" fn(
+    command_buffer: crate::vk::CommandBuffer,
+    p_per_tile_begin_info: *const crate::vk::PerTileBeginInfoQCOM,
+);
+pub type PFN_vkCmdEndPerTileExecutionQCOM = unsafe extern "system" fn(
+    command_buffer: crate::vk::CommandBuffer,
+    p_per_tile_end_info: *const crate::vk::PerTileEndInfoQCOM,
+);
 pub const QCOM_TILE_SHADING_SPEC_VERSION: u32 = 2;
 pub const QCOM_TILE_SHADING_EXTENSION_NAME: &core::ffi::CStr = c"VK_QCOM_tile_shading";
+pub struct DeviceFn {
+    pub vk_cmd_dispatch_tile_qcom: crate::vk::PFN_vkCmdDispatchTileQCOM,
+    pub vk_cmd_begin_per_tile_execution_qcom: crate::vk::PFN_vkCmdBeginPerTileExecutionQCOM,
+    pub vk_cmd_end_per_tile_execution_qcom: crate::vk::PFN_vkCmdEndPerTileExecutionQCOM,
+}

@@ -4,13 +4,18 @@ use heck::ToShoutySnekCase;
 pub struct TypeName(&'static str);
 
 impl TypeName {
-    pub const VK_OBJECT_TYPE: TypeName = TypeName("VkObjectType");
+    pub const VK_OBJECT_TYPE: Self = Self::new("VkObjectType");
+    pub const VK_DEVICE: Self = Self::new("VkDevice");
+    pub const VK_COMMAND_BUFFER: Self = Self::new("VkCommandBuffer");
+    pub const VK_QUEUE: Self = Self::new("VkQueue");
+    pub const VK_INSTANCE: Self = Self::new("VkInstance");
+    pub const VK_PHYSICAL_DEVICE: Self = Self::new("VkPhysicalDevice");
 
-    pub fn new(original: &'static str) -> Self {
+    pub const fn new(original: &'static str) -> Self {
         Self(original)
     }
 
-    pub fn original(&self) -> &'static str {
+    pub const fn original(&self) -> &'static str {
         self.0
     }
 
@@ -31,11 +36,11 @@ impl TypeName {
 pub struct ConstantName(&'static str);
 
 impl ConstantName {
-    pub fn new(original: &'static str) -> Self {
+    pub const fn new(original: &'static str) -> Self {
         Self(original)
     }
 
-    pub fn original(&self) -> &'static str {
+    pub const fn original(&self) -> &'static str {
         self.0
     }
 
@@ -48,11 +53,11 @@ impl ConstantName {
 pub struct EnumeratorName(&'static str);
 
 impl EnumeratorName {
-    pub fn new(original: &'static str) -> Self {
+    pub const fn new(original: &'static str) -> Self {
         Self(original)
     }
 
-    pub fn original(&self) -> &'static str {
+    pub const fn original(&self) -> &'static str {
         self.0
     }
 
@@ -82,11 +87,11 @@ impl EnumeratorName {
 pub struct CMacroName(&'static str);
 
 impl CMacroName {
-    pub fn new(original: &'static str) -> Self {
+    pub const fn new(original: &'static str) -> Self {
         Self(original)
     }
 
-    pub fn original(&self) -> &'static str {
+    pub const fn original(&self) -> &'static str {
         self.0
     }
 
@@ -99,16 +104,16 @@ impl CMacroName {
 pub struct FuncPointerName(&'static str);
 
 impl FuncPointerName {
-    pub fn new(original: &'static str) -> Self {
+    pub const fn new(original: &'static str) -> Self {
         Self(original)
     }
 
-    pub fn original(&self) -> &'static str {
+    pub const fn original(&self) -> &'static str {
         self.0
     }
 
     pub fn as_command_name(&self) -> CommandName {
-        CommandName(self.0.strip_prefix("PFN_").unwrap())
+        CommandName(self.original().strip_prefix("PFN_").unwrap())
     }
 }
 
@@ -116,11 +121,11 @@ impl FuncPointerName {
 pub struct CommandName(&'static str);
 
 impl CommandName {
-    pub fn new(original: &'static str) -> Self {
+    pub const fn new(original: &'static str) -> Self {
         Self(original)
     }
 
-    pub fn original(&self) -> &'static str {
+    pub const fn original(&self) -> &'static str {
         self.0
     }
 }
@@ -129,11 +134,11 @@ impl CommandName {
 pub struct VariableName(&'static str);
 
 impl VariableName {
-    pub fn new(original: &'static str) -> Self {
+    pub const fn new(original: &'static str) -> Self {
         Self(original)
     }
 
-    pub fn original(&self) -> &'static str {
+    pub const fn original(&self) -> &'static str {
         self.0
     }
 }

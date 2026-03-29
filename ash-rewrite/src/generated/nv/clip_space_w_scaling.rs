@@ -24,5 +24,14 @@ impl crate::vk::StructureType {
 impl crate::vk::DynamicState {
     pub const VIEWPORT_W_SCALING_NV: Self = Self(1000087000);
 }
+pub type PFN_vkCmdSetViewportWScalingNV = unsafe extern "system" fn(
+    command_buffer: crate::vk::CommandBuffer,
+    first_viewport: u32,
+    viewport_count: u32,
+    p_viewport_w_scalings: *const crate::vk::ViewportWScalingNV,
+);
 pub const NV_CLIP_SPACE_W_SCALING_SPEC_VERSION: u32 = 1;
 pub const NV_CLIP_SPACE_W_SCALING_EXTENSION_NAME: &core::ffi::CStr = c"VK_NV_clip_space_w_scaling";
+pub struct DeviceFn {
+    pub vk_cmd_set_viewport_w_scaling_nv: crate::vk::PFN_vkCmdSetViewportWScalingNV,
+}

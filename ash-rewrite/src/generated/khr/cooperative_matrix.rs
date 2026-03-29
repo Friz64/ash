@@ -38,7 +38,7 @@ impl crate::vk::StructureType {
     pub const PHYSICAL_DEVICE_COOPERATIVE_MATRIX_PROPERTIES_KHR: Self = Self(1000506002);
 }
 #[repr(transparent)]
-#[derive(Clone, Copy)]
+#[derive(Clone, Copy, PartialEq, Eq, PartialOrd, Ord, Hash, Default)]
 pub struct ScopeKHR(pub(crate) i32);
 ///Provided by [`khr::cooperative_matrix`](crate::khr::cooperative_matrix)
 impl ScopeKHR {
@@ -47,5 +47,13 @@ impl ScopeKHR {
     pub const SUBGROUP_KHR: Self = Self(3);
     pub const QUEUE_FAMILY_KHR: Self = Self(5);
 }
+pub type PFN_vkGetPhysicalDeviceCooperativeMatrixPropertiesKHR = unsafe extern "system" fn(
+    physical_device: crate::vk::PhysicalDevice,
+    p_property_count: *mut u32,
+    p_properties: *mut crate::vk::CooperativeMatrixPropertiesKHR,
+) -> crate::vk::Result;
 pub const KHR_COOPERATIVE_MATRIX_SPEC_VERSION: u32 = 2;
 pub const KHR_COOPERATIVE_MATRIX_EXTENSION_NAME: &core::ffi::CStr = c"VK_KHR_cooperative_matrix";
+pub struct InstanceFn {
+    pub vk_get_physical_device_cooperative_matrix_properties_khr: crate::vk::PFN_vkGetPhysicalDeviceCooperativeMatrixPropertiesKHR,
+}

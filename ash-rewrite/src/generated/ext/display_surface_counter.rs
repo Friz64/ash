@@ -33,5 +33,13 @@ pub struct SurfaceCounterFlagBitsEXT(pub(crate) u32);
 impl SurfaceCounterFlagBitsEXT {
     pub const VBLANK_EXT: Self = Self(1 << 0);
 }
+pub type PFN_vkGetPhysicalDeviceSurfaceCapabilities2EXT = unsafe extern "system" fn(
+    physical_device: crate::vk::PhysicalDevice,
+    surface: crate::vk::SurfaceKHR,
+    p_surface_capabilities: *mut crate::vk::SurfaceCapabilities2EXT,
+) -> crate::vk::Result;
 pub const EXT_DISPLAY_SURFACE_COUNTER_SPEC_VERSION: u32 = 1;
 pub const EXT_DISPLAY_SURFACE_COUNTER_EXTENSION_NAME: &core::ffi::CStr = c"VK_EXT_display_surface_counter";
+pub struct InstanceFn {
+    pub vk_get_physical_device_surface_capabilities2_ext: crate::vk::PFN_vkGetPhysicalDeviceSurfaceCapabilities2EXT,
+}

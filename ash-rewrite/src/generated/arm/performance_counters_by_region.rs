@@ -63,5 +63,15 @@ bitflags::bitflags! {
     #[repr(transparent)] #[derive(Clone, Copy)] pub struct
     PerformanceCounterDescriptionFlagsARM : u32 {}
 }
+pub type PFN_vkEnumeratePhysicalDeviceQueueFamilyPerformanceCountersByRegionARM = unsafe extern "system" fn(
+    physical_device: crate::vk::PhysicalDevice,
+    queue_family_index: u32,
+    p_counter_count: *mut u32,
+    p_counters: *mut crate::vk::PerformanceCounterARM,
+    p_counter_descriptions: *mut crate::vk::PerformanceCounterDescriptionARM,
+) -> crate::vk::Result;
 pub const ARM_PERFORMANCE_COUNTERS_BY_REGION_SPEC_VERSION: u32 = 1;
 pub const ARM_PERFORMANCE_COUNTERS_BY_REGION_EXTENSION_NAME: &core::ffi::CStr = c"VK_ARM_performance_counters_by_region";
+pub struct InstanceFn {
+    pub vk_enumerate_physical_device_queue_family_performance_counters_by_region_arm: crate::vk::PFN_vkEnumeratePhysicalDeviceQueueFamilyPerformanceCountersByRegionARM,
+}

@@ -110,5 +110,12 @@ impl VideoDecodeCapabilityFlagBitsKHR {
 bitflags::bitflags! {
     #[repr(transparent)] #[derive(Clone, Copy)] pub struct VideoDecodeFlagsKHR : u32 {}
 }
+pub type PFN_vkCmdDecodeVideoKHR = unsafe extern "system" fn(
+    command_buffer: crate::vk::CommandBuffer,
+    p_decode_info: *const crate::vk::VideoDecodeInfoKHR,
+);
 pub const KHR_VIDEO_DECODE_QUEUE_SPEC_VERSION: u32 = 8;
 pub const KHR_VIDEO_DECODE_QUEUE_EXTENSION_NAME: &core::ffi::CStr = c"VK_KHR_video_decode_queue";
+pub struct DeviceFn {
+    pub vk_cmd_decode_video_khr: crate::vk::PFN_vkCmdDecodeVideoKHR,
+}

@@ -18,5 +18,20 @@ bitflags::bitflags! {
     #[repr(transparent)] #[derive(Clone, Copy)] pub struct ScreenSurfaceCreateFlagsQNX :
     u32 {}
 }
+pub type PFN_vkCreateScreenSurfaceQNX = unsafe extern "system" fn(
+    instance: crate::vk::Instance,
+    p_create_info: *const crate::vk::ScreenSurfaceCreateInfoQNX,
+    p_allocator: *const crate::vk::AllocationCallbacks,
+    p_surface: *mut crate::vk::SurfaceKHR,
+) -> crate::vk::Result;
+pub type PFN_vkGetPhysicalDeviceScreenPresentationSupportQNX = unsafe extern "system" fn(
+    physical_device: crate::vk::PhysicalDevice,
+    queue_family_index: u32,
+    window: *mut crate::platform_types::_screen_window,
+) -> crate::vk::Bool32;
 pub const QNX_SCREEN_SURFACE_SPEC_VERSION: u32 = 1;
 pub const QNX_SCREEN_SURFACE_EXTENSION_NAME: &core::ffi::CStr = c"VK_QNX_screen_surface";
+pub struct InstanceFn {
+    pub vk_create_screen_surface_qnx: crate::vk::PFN_vkCreateScreenSurfaceQNX,
+    pub vk_get_physical_device_screen_presentation_support_qnx: crate::vk::PFN_vkGetPhysicalDeviceScreenPresentationSupportQNX,
+}

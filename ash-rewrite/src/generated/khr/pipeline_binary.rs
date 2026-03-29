@@ -145,6 +145,41 @@ impl core::fmt::Debug for PipelineBinaryKHR {
         write!(f, "0x{:x}", self.0)
     }
 }
+pub type PFN_vkCreatePipelineBinariesKHR = unsafe extern "system" fn(
+    device: crate::vk::Device,
+    p_create_info: *const crate::vk::PipelineBinaryCreateInfoKHR,
+    p_allocator: *const crate::vk::AllocationCallbacks,
+    p_binaries: *mut crate::vk::PipelineBinaryHandlesInfoKHR,
+) -> crate::vk::Result;
+pub type PFN_vkDestroyPipelineBinaryKHR = unsafe extern "system" fn(
+    device: crate::vk::Device,
+    pipeline_binary: crate::vk::PipelineBinaryKHR,
+    p_allocator: *const crate::vk::AllocationCallbacks,
+);
+pub type PFN_vkGetPipelineKeyKHR = unsafe extern "system" fn(
+    device: crate::vk::Device,
+    p_pipeline_create_info: *const crate::vk::PipelineCreateInfoKHR,
+    p_pipeline_key: *mut crate::vk::PipelineBinaryKeyKHR,
+) -> crate::vk::Result;
+pub type PFN_vkGetPipelineBinaryDataKHR = unsafe extern "system" fn(
+    device: crate::vk::Device,
+    p_info: *const crate::vk::PipelineBinaryDataInfoKHR,
+    p_pipeline_binary_key: *mut crate::vk::PipelineBinaryKeyKHR,
+    p_pipeline_binary_data_size: *mut usize,
+    p_pipeline_binary_data: *mut core::ffi::c_void,
+) -> crate::vk::Result;
+pub type PFN_vkReleaseCapturedPipelineDataKHR = unsafe extern "system" fn(
+    device: crate::vk::Device,
+    p_info: *const crate::vk::ReleaseCapturedPipelineDataInfoKHR,
+    p_allocator: *const crate::vk::AllocationCallbacks,
+) -> crate::vk::Result;
 pub const MAX_PIPELINE_BINARY_KEY_SIZE_KHR: u32 = 32;
 pub const KHR_PIPELINE_BINARY_SPEC_VERSION: u32 = 1;
 pub const KHR_PIPELINE_BINARY_EXTENSION_NAME: &core::ffi::CStr = c"VK_KHR_pipeline_binary";
+pub struct DeviceFn {
+    pub vk_create_pipeline_binaries_khr: crate::vk::PFN_vkCreatePipelineBinariesKHR,
+    pub vk_destroy_pipeline_binary_khr: crate::vk::PFN_vkDestroyPipelineBinaryKHR,
+    pub vk_get_pipeline_key_khr: crate::vk::PFN_vkGetPipelineKeyKHR,
+    pub vk_get_pipeline_binary_data_khr: crate::vk::PFN_vkGetPipelineBinaryDataKHR,
+    pub vk_release_captured_pipeline_data_khr: crate::vk::PFN_vkReleaseCapturedPipelineDataKHR,
+}

@@ -34,5 +34,20 @@ impl crate::vk::StructureType {
 impl crate::vk::ExternalMemoryHandleTypeFlagBits {
     pub const ZIRCON_VMO_FUCHSIA: Self = Self(1 << 11);
 }
+pub type PFN_vkGetMemoryZirconHandleFUCHSIA = unsafe extern "system" fn(
+    device: crate::vk::Device,
+    p_get_zircon_handle_info: *const crate::vk::MemoryGetZirconHandleInfoFUCHSIA,
+    p_zircon_handle: *mut crate::platform_types::zx_handle_t,
+) -> crate::vk::Result;
+pub type PFN_vkGetMemoryZirconHandlePropertiesFUCHSIA = unsafe extern "system" fn(
+    device: crate::vk::Device,
+    handle_type: crate::vk::ExternalMemoryHandleTypeFlagBits,
+    zircon_handle: crate::platform_types::zx_handle_t,
+    p_memory_zircon_handle_properties: *mut crate::vk::MemoryZirconHandlePropertiesFUCHSIA,
+) -> crate::vk::Result;
 pub const FUCHSIA_EXTERNAL_MEMORY_SPEC_VERSION: u32 = 1;
 pub const FUCHSIA_EXTERNAL_MEMORY_EXTENSION_NAME: &core::ffi::CStr = c"VK_FUCHSIA_external_memory";
+pub struct DeviceFn {
+    pub vk_get_memory_zircon_handle_fuchsia: crate::vk::PFN_vkGetMemoryZirconHandleFUCHSIA,
+    pub vk_get_memory_zircon_handle_properties_fuchsia: crate::vk::PFN_vkGetMemoryZirconHandlePropertiesFUCHSIA,
+}

@@ -25,5 +25,14 @@ pub struct HdrMetadataEXT {
 impl crate::vk::StructureType {
     pub const HDR_METADATA_EXT: Self = Self(1000105000);
 }
+pub type PFN_vkSetHdrMetadataEXT = unsafe extern "system" fn(
+    device: crate::vk::Device,
+    swapchain_count: u32,
+    p_swapchains: *const crate::vk::SwapchainKHR,
+    p_metadata: *const crate::vk::HdrMetadataEXT,
+);
 pub const EXT_HDR_METADATA_SPEC_VERSION: u32 = 3;
 pub const EXT_HDR_METADATA_EXTENSION_NAME: &core::ffi::CStr = c"VK_EXT_hdr_metadata";
+pub struct DeviceFn {
+    pub vk_set_hdr_metadata_ext: crate::vk::PFN_vkSetHdrMetadataEXT,
+}

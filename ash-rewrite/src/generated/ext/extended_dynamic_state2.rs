@@ -24,5 +24,23 @@ impl crate::vk::DynamicState {
     pub const LOGIC_OP_EXT: Self = Self(1000377003);
     pub const PRIMITIVE_RESTART_ENABLE_EXT: Self = Self::PRIMITIVE_RESTART_ENABLE;
 }
+pub type PFN_vkCmdSetPatchControlPointsEXT = unsafe extern "system" fn(
+    command_buffer: crate::vk::CommandBuffer,
+    patch_control_points: u32,
+);
+pub type PFN_vkCmdSetLogicOpEXT = unsafe extern "system" fn(
+    command_buffer: crate::vk::CommandBuffer,
+    logic_op: crate::vk::LogicOp,
+);
+pub type PFN_vkCmdSetRasterizerDiscardEnableEXT = crate::vk::PFN_vkCmdSetRasterizerDiscardEnable;
+pub type PFN_vkCmdSetDepthBiasEnableEXT = crate::vk::PFN_vkCmdSetDepthBiasEnable;
+pub type PFN_vkCmdSetPrimitiveRestartEnableEXT = crate::vk::PFN_vkCmdSetPrimitiveRestartEnable;
 pub const EXT_EXTENDED_DYNAMIC_STATE_2_SPEC_VERSION: u32 = 1;
 pub const EXT_EXTENDED_DYNAMIC_STATE_2_EXTENSION_NAME: &core::ffi::CStr = c"VK_EXT_extended_dynamic_state2";
+pub struct DeviceFn {
+    pub vk_cmd_set_patch_control_points_ext: crate::vk::PFN_vkCmdSetPatchControlPointsEXT,
+    pub vk_cmd_set_logic_op_ext: crate::vk::PFN_vkCmdSetLogicOpEXT,
+    pub vk_cmd_set_rasterizer_discard_enable_ext: crate::vk::PFN_vkCmdSetRasterizerDiscardEnableEXT,
+    pub vk_cmd_set_depth_bias_enable_ext: crate::vk::PFN_vkCmdSetDepthBiasEnableEXT,
+    pub vk_cmd_set_primitive_restart_enable_ext: crate::vk::PFN_vkCmdSetPrimitiveRestartEnableEXT,
+}

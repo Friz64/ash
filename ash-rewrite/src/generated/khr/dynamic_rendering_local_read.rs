@@ -14,5 +14,11 @@ impl crate::vk::StructureType {
     pub const RENDERING_ATTACHMENT_LOCATION_INFO_KHR: Self = Self::RENDERING_ATTACHMENT_LOCATION_INFO;
     pub const RENDERING_INPUT_ATTACHMENT_INDEX_INFO_KHR: Self = Self::RENDERING_INPUT_ATTACHMENT_INDEX_INFO;
 }
+pub type PFN_vkCmdSetRenderingAttachmentLocationsKHR = crate::vk::PFN_vkCmdSetRenderingAttachmentLocations;
+pub type PFN_vkCmdSetRenderingInputAttachmentIndicesKHR = crate::vk::PFN_vkCmdSetRenderingInputAttachmentIndices;
 pub const KHR_DYNAMIC_RENDERING_LOCAL_READ_SPEC_VERSION: u32 = 1;
 pub const KHR_DYNAMIC_RENDERING_LOCAL_READ_EXTENSION_NAME: &core::ffi::CStr = c"VK_KHR_dynamic_rendering_local_read";
+pub struct DeviceFn {
+    pub vk_cmd_set_rendering_attachment_locations_khr: crate::vk::PFN_vkCmdSetRenderingAttachmentLocationsKHR,
+    pub vk_cmd_set_rendering_input_attachment_indices_khr: crate::vk::PFN_vkCmdSetRenderingInputAttachmentIndicesKHR,
+}

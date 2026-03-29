@@ -108,7 +108,7 @@ impl crate::vk::StructureType {
     pub const PARTITIONED_ACCELERATION_STRUCTURE_FLAGS_NV: Self = Self(1000570005);
 }
 #[repr(transparent)]
-#[derive(Clone, Copy)]
+#[derive(Clone, Copy, PartialEq, Eq, PartialOrd, Ord, Hash, Default)]
 pub struct PartitionedAccelerationStructureOpTypeNV(pub(crate) i32);
 ///Provided by [`nv::partitioned_acceleration_structure`](crate::nv::partitioned_acceleration_structure)
 impl PartitionedAccelerationStructureOpTypeNV {
@@ -142,6 +142,19 @@ impl PartitionedAccelerationStructureInstanceFlagBitsNV {
     pub const FLAG_FORCE_NO_OPAQUE_NV: Self = Self(1 << 3);
     pub const FLAG_ENABLE_EXPLICIT_BOUNDING_BOX_NV: Self = Self(1 << 4);
 }
+pub type PFN_vkGetPartitionedAccelerationStructuresBuildSizesNV = unsafe extern "system" fn(
+    device: crate::vk::Device,
+    p_info: *const crate::vk::PartitionedAccelerationStructureInstancesInputNV,
+    p_size_info: *mut crate::vk::AccelerationStructureBuildSizesInfoKHR,
+);
+pub type PFN_vkCmdBuildPartitionedAccelerationStructuresNV = unsafe extern "system" fn(
+    command_buffer: crate::vk::CommandBuffer,
+    p_build_info: *const crate::vk::BuildPartitionedAccelerationStructureInfoNV,
+);
 pub const PARTITIONED_ACCELERATION_STRUCTURE_PARTITION_INDEX_GLOBAL_NV: u32 = (!0);
 pub const NV_PARTITIONED_ACCELERATION_STRUCTURE_SPEC_VERSION: u32 = 1;
 pub const NV_PARTITIONED_ACCELERATION_STRUCTURE_EXTENSION_NAME: &core::ffi::CStr = c"VK_NV_partitioned_acceleration_structure";
+pub struct DeviceFn {
+    pub vk_get_partitioned_acceleration_structures_build_sizes_nv: crate::vk::PFN_vkGetPartitionedAccelerationStructuresBuildSizesNV,
+    pub vk_cmd_build_partitioned_acceleration_structures_nv: crate::vk::PFN_vkCmdBuildPartitionedAccelerationStructuresNV,
+}

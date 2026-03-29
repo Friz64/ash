@@ -10,5 +10,11 @@ impl crate::vk::StructureType {
 }
 pub type MemoryUnmapFlagBitsKHR = crate::vk::MemoryUnmapFlagBits;
 pub type MemoryUnmapFlagsKHR = crate::vk::MemoryUnmapFlags;
+pub type PFN_vkMapMemory2KHR = crate::vk::PFN_vkMapMemory2;
+pub type PFN_vkUnmapMemory2KHR = crate::vk::PFN_vkUnmapMemory2;
 pub const KHR_MAP_MEMORY_2_SPEC_VERSION: u32 = 1;
 pub const KHR_MAP_MEMORY_2_EXTENSION_NAME: &core::ffi::CStr = c"VK_KHR_map_memory2";
+pub struct DeviceFn {
+    pub vk_map_memory2_khr: crate::vk::PFN_vkMapMemory2KHR,
+    pub vk_unmap_memory2_khr: crate::vk::PFN_vkUnmapMemory2KHR,
+}

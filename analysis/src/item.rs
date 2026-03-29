@@ -11,7 +11,7 @@ pub mod structure;
 use crate::{
     Library, LibraryName,
     item::{
-        alias::Alias,
+        alias::{CommandAlias, TypeAlias},
         basetype::BaseType,
         bitmask::BitMask,
         cmacro::CMacro,
@@ -80,7 +80,7 @@ pub trait Named<T> {
 
 #[derive(Debug)]
 pub enum TypeItem {
-    Alias(Alias),
+    Alias(TypeAlias),
     Struct(Struct),
     Union(Union),
     Enum(Enum),
@@ -90,11 +90,17 @@ pub enum TypeItem {
     Handle(Handle),
 }
 
+#[derive(Debug)]
+pub enum CommandItem {
+    Alias(CommandAlias),
+    Command(Command),
+}
+
 #[derive(Default, Debug)]
 pub struct Items {
     pub types: IndexMap<TypeName, TypeItem>,
     pub func_pointers: IndexMap<FuncPointerName, FuncPointer>,
-    pub commands: IndexMap<CommandName, Command>,
+    pub commands: IndexMap<CommandName, CommandItem>,
     pub constants: IndexMap<ConstantName, Constant>,
     pub cmacros: IndexMap<CMacroName, CMacro>,
 }
@@ -158,7 +164,7 @@ impl Items {
 
             items.collect_type(
                 &library.xml.struct_aliases,
-                |xml| Alias::new(&require_map, xml),
+                |xml| TypeAlias::new(&require_map, xml),
                 TypeItem::Alias,
             );
 
@@ -176,7 +182,7 @@ impl Items {
 
             items.collect_type(
                 &library.xml.enum_aliases,
-                |xml| Alias::new(&require_map, xml),
+                |xml| TypeAlias::new(&require_map, xml),
                 TypeItem::Alias,
             );
 
@@ -199,7 +205,7 @@ impl Items {
 
             items.collect_type(
                 &library.xml.bitmask_aliases,
-                |xml| Alias::new(&require_map, xml),
+                |xml| TypeAlias::new(&require_map, xml),
                 TypeItem::Alias,
             );
 
@@ -217,7 +223,7 @@ impl Items {
 
             items.collect_type(
                 &library.xml.handle_aliases,
-                |xml| Alias::new(&require_map, xml),
+                |xml| TypeAlias::new(&require_map, xml),
                 TypeItem::Alias,
             );
 
@@ -234,6 +240,18 @@ impl Items {
             Items::collect_item(&mut items.cmacros, &library.xml.cmacros, |xml| {
                 CMacro::new(&require_map, xml)
             });
+
+            items.collect_command(
+                &library.xml.commands,
+                |xml| Command::new(&require_map, xml),
+                CommandItem::Command,
+            );
+
+            items.collect_command(
+                &library.xml.command_aliases,
+                |xml| CommandAlias::new(&require_map, xml),
+                CommandItem::Alias,
+            );
         }
 
         iter_requires(libraries, |library, location, require| {
@@ -269,12 +287,6 @@ impl Items {
                     items.constants.insert(constant.name(), constant);
                 }
             }
-
-            for command in &require.commands {
-                if let Some(command) = Command::from_require(required_by, command) {
-                    items.commands.insert(command.name(), command);
-                }
-            }
         });
 
         items
@@ -291,6 +303,20 @@ impl Items {
                 .into_iter()
                 .filter_map(construct)
                 .map(|ty| (ty.name(), en(ty))),
+        )
+    }
+
+    fn collect_command<'a, X: 'a, T: Named<CommandName>>(
+        &mut self,
+        xml_src: impl IntoIterator<Item = &'a X>,
+        construct: impl FnMut(&X) -> Option<T>,
+        en: impl Fn(T) -> CommandItem,
+    ) {
+        self.commands.extend(
+            xml_src
+                .into_iter()
+                .filter_map(construct)
+                .map(|cmd| (cmd.name(), en(cmd))),
         )
     }
 

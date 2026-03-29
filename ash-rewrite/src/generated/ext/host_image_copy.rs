@@ -40,5 +40,19 @@ impl crate::vk::HostImageCopyFlagBits {
     pub const MEMCPY_EXT: Self = Self::MEMCPY;
 }
 pub type HostImageCopyFlagsEXT = crate::vk::HostImageCopyFlags;
+pub type PFN_vkCopyMemoryToImageEXT = crate::vk::PFN_vkCopyMemoryToImage;
+pub type PFN_vkCopyImageToMemoryEXT = crate::vk::PFN_vkCopyImageToMemory;
+pub type PFN_vkCopyImageToImageEXT = crate::vk::PFN_vkCopyImageToImage;
+pub type PFN_vkTransitionImageLayoutEXT = crate::vk::PFN_vkTransitionImageLayout;
+pub type PFN_vkGetImageSubresourceLayout2EXT = crate::vk::PFN_vkGetImageSubresourceLayout2;
 pub const EXT_HOST_IMAGE_COPY_SPEC_VERSION: u32 = 1;
 pub const EXT_HOST_IMAGE_COPY_EXTENSION_NAME: &core::ffi::CStr = c"VK_EXT_host_image_copy";
+pub struct DeviceFn {
+    pub vk_copy_memory_to_image_ext: crate::vk::PFN_vkCopyMemoryToImageEXT,
+    pub vk_copy_image_to_memory_ext: crate::vk::PFN_vkCopyImageToMemoryEXT,
+    pub vk_copy_image_to_image_ext: crate::vk::PFN_vkCopyImageToImageEXT,
+    pub vk_transition_image_layout_ext: crate::vk::PFN_vkTransitionImageLayoutEXT,
+}
+pub struct DeviceFn {
+    pub vk_get_image_subresource_layout2_ext: crate::vk::PFN_vkGetImageSubresourceLayout2EXT,
+}

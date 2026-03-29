@@ -46,5 +46,13 @@ impl crate::vk::MemoryAllocateFlagBits {
 }
 pub type PeerMemoryFeatureFlagsKHR = crate::vk::PeerMemoryFeatureFlags;
 pub type MemoryAllocateFlagsKHR = crate::vk::MemoryAllocateFlags;
+pub type PFN_vkGetDeviceGroupPeerMemoryFeaturesKHR = crate::vk::PFN_vkGetDeviceGroupPeerMemoryFeatures;
+pub type PFN_vkCmdSetDeviceMaskKHR = crate::vk::PFN_vkCmdSetDeviceMask;
+pub type PFN_vkCmdDispatchBaseKHR = crate::vk::PFN_vkCmdDispatchBase;
 pub const KHR_DEVICE_GROUP_SPEC_VERSION: u32 = 4;
 pub const KHR_DEVICE_GROUP_EXTENSION_NAME: &core::ffi::CStr = c"VK_KHR_device_group";
+pub struct DeviceFn {
+    pub vk_get_device_group_peer_memory_features_khr: crate::vk::PFN_vkGetDeviceGroupPeerMemoryFeaturesKHR,
+    pub vk_cmd_set_device_mask_khr: crate::vk::PFN_vkCmdSetDeviceMaskKHR,
+    pub vk_cmd_dispatch_base_khr: crate::vk::PFN_vkCmdDispatchBaseKHR,
+}

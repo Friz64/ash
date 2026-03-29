@@ -35,7 +35,7 @@ impl crate::vk::GeometryTypeKHR {
     pub const DENSE_GEOMETRY_FORMAT_TRIANGLES_AMDX: Self = Self(1000478000);
 }
 #[repr(transparent)]
-#[derive(Clone, Copy)]
+#[derive(Clone, Copy, PartialEq, Eq, PartialOrd, Ord, Hash, Default)]
 pub struct CompressedTriangleFormatAMDX(pub(crate) i32);
 ///Provided by [`amdx::dense_geometry_format`](crate::amdx::dense_geometry_format)
 impl CompressedTriangleFormatAMDX {

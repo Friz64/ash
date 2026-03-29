@@ -30,7 +30,7 @@ impl crate::vk::DynamicState {
     pub const DISCARD_RECTANGLE_MODE_EXT: Self = Self(1000099002);
 }
 #[repr(transparent)]
-#[derive(Clone, Copy)]
+#[derive(Clone, Copy, PartialEq, Eq, PartialOrd, Ord, Hash, Default)]
 pub struct DiscardRectangleModeEXT(pub(crate) i32);
 ///Provided by [`ext::discard_rectangles`](crate::ext::discard_rectangles)
 impl DiscardRectangleModeEXT {
@@ -41,5 +41,24 @@ bitflags::bitflags! {
     #[repr(transparent)] #[derive(Clone, Copy)] pub struct
     PipelineDiscardRectangleStateCreateFlagsEXT : u32 {}
 }
+pub type PFN_vkCmdSetDiscardRectangleEXT = unsafe extern "system" fn(
+    command_buffer: crate::vk::CommandBuffer,
+    first_discard_rectangle: u32,
+    discard_rectangle_count: u32,
+    p_discard_rectangles: *const crate::vk::Rect2D,
+);
+pub type PFN_vkCmdSetDiscardRectangleEnableEXT = unsafe extern "system" fn(
+    command_buffer: crate::vk::CommandBuffer,
+    discard_rectangle_enable: crate::vk::Bool32,
+);
+pub type PFN_vkCmdSetDiscardRectangleModeEXT = unsafe extern "system" fn(
+    command_buffer: crate::vk::CommandBuffer,
+    discard_rectangle_mode: crate::vk::DiscardRectangleModeEXT,
+);
 pub const EXT_DISCARD_RECTANGLES_SPEC_VERSION: u32 = 2;
 pub const EXT_DISCARD_RECTANGLES_EXTENSION_NAME: &core::ffi::CStr = c"VK_EXT_discard_rectangles";
+pub struct DeviceFn {
+    pub vk_cmd_set_discard_rectangle_ext: crate::vk::PFN_vkCmdSetDiscardRectangleEXT,
+    pub vk_cmd_set_discard_rectangle_enable_ext: crate::vk::PFN_vkCmdSetDiscardRectangleEnableEXT,
+    pub vk_cmd_set_discard_rectangle_mode_ext: crate::vk::PFN_vkCmdSetDiscardRectangleModeEXT,
+}

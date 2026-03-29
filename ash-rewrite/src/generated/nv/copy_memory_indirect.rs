@@ -16,5 +16,24 @@ impl crate::vk::StructureType {
     pub const PHYSICAL_DEVICE_COPY_MEMORY_INDIRECT_FEATURES_NV: Self = Self(1000426000);
     pub const PHYSICAL_DEVICE_COPY_MEMORY_INDIRECT_PROPERTIES_NV: Self = Self::PHYSICAL_DEVICE_COPY_MEMORY_INDIRECT_PROPERTIES_KHR;
 }
+pub type PFN_vkCmdCopyMemoryIndirectNV = unsafe extern "system" fn(
+    command_buffer: crate::vk::CommandBuffer,
+    copy_buffer_address: crate::vk::DeviceAddress,
+    copy_count: u32,
+    stride: u32,
+);
+pub type PFN_vkCmdCopyMemoryToImageIndirectNV = unsafe extern "system" fn(
+    command_buffer: crate::vk::CommandBuffer,
+    copy_buffer_address: crate::vk::DeviceAddress,
+    copy_count: u32,
+    stride: u32,
+    dst_image: crate::vk::Image,
+    dst_image_layout: crate::vk::ImageLayout,
+    p_image_subresources: *const crate::vk::ImageSubresourceLayers,
+);
 pub const NV_COPY_MEMORY_INDIRECT_SPEC_VERSION: u32 = 1;
 pub const NV_COPY_MEMORY_INDIRECT_EXTENSION_NAME: &core::ffi::CStr = c"VK_NV_copy_memory_indirect";
+pub struct DeviceFn {
+    pub vk_cmd_copy_memory_indirect_nv: crate::vk::PFN_vkCmdCopyMemoryIndirectNV,
+    pub vk_cmd_copy_memory_to_image_indirect_nv: crate::vk::PFN_vkCmdCopyMemoryToImageIndirectNV,
+}

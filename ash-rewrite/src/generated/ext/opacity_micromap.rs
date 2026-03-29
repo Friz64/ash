@@ -143,14 +143,14 @@ impl crate::vk::ObjectType {
     pub const MICROMAP_EXT: Self = Self(1000396000);
 }
 #[repr(transparent)]
-#[derive(Clone, Copy)]
+#[derive(Clone, Copy, PartialEq, Eq, PartialOrd, Ord, Hash, Default)]
 pub struct MicromapTypeEXT(pub(crate) i32);
 ///Provided by [`ext::opacity_micromap`](crate::ext::opacity_micromap)
 impl MicromapTypeEXT {
     pub const OPACITY_MICROMAP_EXT: Self = Self(0);
 }
 #[repr(transparent)]
-#[derive(Clone, Copy)]
+#[derive(Clone, Copy, PartialEq, Eq, PartialOrd, Ord, Hash, Default)]
 pub struct CopyMicromapModeEXT(pub(crate) i32);
 ///Provided by [`ext::opacity_micromap`](crate::ext::opacity_micromap)
 impl CopyMicromapModeEXT {
@@ -160,14 +160,14 @@ impl CopyMicromapModeEXT {
     pub const COMPACT_EXT: Self = Self(3);
 }
 #[repr(transparent)]
-#[derive(Clone, Copy)]
+#[derive(Clone, Copy, PartialEq, Eq, PartialOrd, Ord, Hash, Default)]
 pub struct BuildMicromapModeEXT(pub(crate) i32);
 ///Provided by [`ext::opacity_micromap`](crate::ext::opacity_micromap)
 impl BuildMicromapModeEXT {
     pub const BUILD_EXT: Self = Self(0);
 }
 #[repr(transparent)]
-#[derive(Clone, Copy)]
+#[derive(Clone, Copy, PartialEq, Eq, PartialOrd, Ord, Hash, Default)]
 pub struct OpacityMicromapFormatEXT(pub(crate) i32);
 ///Provided by [`ext::opacity_micromap`](crate::ext::opacity_micromap)
 impl OpacityMicromapFormatEXT {
@@ -175,7 +175,7 @@ impl OpacityMicromapFormatEXT {
     pub const _4_STATE_EXT: Self = Self(2);
 }
 #[repr(transparent)]
-#[derive(Clone, Copy)]
+#[derive(Clone, Copy, PartialEq, Eq, PartialOrd, Ord, Hash, Default)]
 pub struct OpacityMicromapSpecialIndexEXT(pub(crate) i32);
 ///Provided by [`ext::opacity_micromap`](crate::ext::opacity_micromap)
 impl OpacityMicromapSpecialIndexEXT {
@@ -267,5 +267,98 @@ impl core::fmt::Debug for MicromapEXT {
         write!(f, "0x{:x}", self.0)
     }
 }
+pub type PFN_vkCreateMicromapEXT = unsafe extern "system" fn(
+    device: crate::vk::Device,
+    p_create_info: *const crate::vk::MicromapCreateInfoEXT,
+    p_allocator: *const crate::vk::AllocationCallbacks,
+    p_micromap: *mut crate::vk::MicromapEXT,
+) -> crate::vk::Result;
+pub type PFN_vkCmdBuildMicromapsEXT = unsafe extern "system" fn(
+    command_buffer: crate::vk::CommandBuffer,
+    info_count: u32,
+    p_infos: *const crate::vk::MicromapBuildInfoEXT,
+);
+pub type PFN_vkBuildMicromapsEXT = unsafe extern "system" fn(
+    device: crate::vk::Device,
+    deferred_operation: crate::vk::DeferredOperationKHR,
+    info_count: u32,
+    p_infos: *const crate::vk::MicromapBuildInfoEXT,
+) -> crate::vk::Result;
+pub type PFN_vkDestroyMicromapEXT = unsafe extern "system" fn(
+    device: crate::vk::Device,
+    micromap: crate::vk::MicromapEXT,
+    p_allocator: *const crate::vk::AllocationCallbacks,
+);
+pub type PFN_vkCmdCopyMicromapEXT = unsafe extern "system" fn(
+    command_buffer: crate::vk::CommandBuffer,
+    p_info: *const crate::vk::CopyMicromapInfoEXT,
+);
+pub type PFN_vkCopyMicromapEXT = unsafe extern "system" fn(
+    device: crate::vk::Device,
+    deferred_operation: crate::vk::DeferredOperationKHR,
+    p_info: *const crate::vk::CopyMicromapInfoEXT,
+) -> crate::vk::Result;
+pub type PFN_vkCmdCopyMicromapToMemoryEXT = unsafe extern "system" fn(
+    command_buffer: crate::vk::CommandBuffer,
+    p_info: *const crate::vk::CopyMicromapToMemoryInfoEXT,
+);
+pub type PFN_vkCopyMicromapToMemoryEXT = unsafe extern "system" fn(
+    device: crate::vk::Device,
+    deferred_operation: crate::vk::DeferredOperationKHR,
+    p_info: *const crate::vk::CopyMicromapToMemoryInfoEXT,
+) -> crate::vk::Result;
+pub type PFN_vkCmdCopyMemoryToMicromapEXT = unsafe extern "system" fn(
+    command_buffer: crate::vk::CommandBuffer,
+    p_info: *const crate::vk::CopyMemoryToMicromapInfoEXT,
+);
+pub type PFN_vkCopyMemoryToMicromapEXT = unsafe extern "system" fn(
+    device: crate::vk::Device,
+    deferred_operation: crate::vk::DeferredOperationKHR,
+    p_info: *const crate::vk::CopyMemoryToMicromapInfoEXT,
+) -> crate::vk::Result;
+pub type PFN_vkCmdWriteMicromapsPropertiesEXT = unsafe extern "system" fn(
+    command_buffer: crate::vk::CommandBuffer,
+    micromap_count: u32,
+    p_micromaps: *const crate::vk::MicromapEXT,
+    query_type: crate::vk::QueryType,
+    query_pool: crate::vk::QueryPool,
+    first_query: u32,
+);
+pub type PFN_vkWriteMicromapsPropertiesEXT = unsafe extern "system" fn(
+    device: crate::vk::Device,
+    micromap_count: u32,
+    p_micromaps: *const crate::vk::MicromapEXT,
+    query_type: crate::vk::QueryType,
+    data_size: usize,
+    p_data: *mut core::ffi::c_void,
+    stride: usize,
+) -> crate::vk::Result;
+pub type PFN_vkGetDeviceMicromapCompatibilityEXT = unsafe extern "system" fn(
+    device: crate::vk::Device,
+    p_version_info: *const crate::vk::MicromapVersionInfoEXT,
+    p_compatibility: *mut crate::vk::AccelerationStructureCompatibilityKHR,
+);
+pub type PFN_vkGetMicromapBuildSizesEXT = unsafe extern "system" fn(
+    device: crate::vk::Device,
+    build_type: crate::vk::AccelerationStructureBuildTypeKHR,
+    p_build_info: *const crate::vk::MicromapBuildInfoEXT,
+    p_size_info: *mut crate::vk::MicromapBuildSizesInfoEXT,
+);
 pub const EXT_OPACITY_MICROMAP_SPEC_VERSION: u32 = 2;
 pub const EXT_OPACITY_MICROMAP_EXTENSION_NAME: &core::ffi::CStr = c"VK_EXT_opacity_micromap";
+pub struct DeviceFn {
+    pub vk_create_micromap_ext: crate::vk::PFN_vkCreateMicromapEXT,
+    pub vk_cmd_build_micromaps_ext: crate::vk::PFN_vkCmdBuildMicromapsEXT,
+    pub vk_build_micromaps_ext: crate::vk::PFN_vkBuildMicromapsEXT,
+    pub vk_destroy_micromap_ext: crate::vk::PFN_vkDestroyMicromapEXT,
+    pub vk_cmd_copy_micromap_ext: crate::vk::PFN_vkCmdCopyMicromapEXT,
+    pub vk_copy_micromap_ext: crate::vk::PFN_vkCopyMicromapEXT,
+    pub vk_cmd_copy_micromap_to_memory_ext: crate::vk::PFN_vkCmdCopyMicromapToMemoryEXT,
+    pub vk_copy_micromap_to_memory_ext: crate::vk::PFN_vkCopyMicromapToMemoryEXT,
+    pub vk_cmd_copy_memory_to_micromap_ext: crate::vk::PFN_vkCmdCopyMemoryToMicromapEXT,
+    pub vk_copy_memory_to_micromap_ext: crate::vk::PFN_vkCopyMemoryToMicromapEXT,
+    pub vk_cmd_write_micromaps_properties_ext: crate::vk::PFN_vkCmdWriteMicromapsPropertiesEXT,
+    pub vk_write_micromaps_properties_ext: crate::vk::PFN_vkWriteMicromapsPropertiesEXT,
+    pub vk_get_device_micromap_compatibility_ext: crate::vk::PFN_vkGetDeviceMicromapCompatibilityEXT,
+    pub vk_get_micromap_build_sizes_ext: crate::vk::PFN_vkGetMicromapBuildSizesEXT,
+}

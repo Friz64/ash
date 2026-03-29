@@ -14,5 +14,13 @@ impl crate::vk::StructureType {
     pub const MEMORY_REQUIREMENTS_2_KHR: Self = Self::MEMORY_REQUIREMENTS_2;
     pub const SPARSE_IMAGE_MEMORY_REQUIREMENTS_2_KHR: Self = Self::SPARSE_IMAGE_MEMORY_REQUIREMENTS_2;
 }
+pub type PFN_vkGetBufferMemoryRequirements2KHR = crate::vk::PFN_vkGetBufferMemoryRequirements2;
+pub type PFN_vkGetImageMemoryRequirements2KHR = crate::vk::PFN_vkGetImageMemoryRequirements2;
+pub type PFN_vkGetImageSparseMemoryRequirements2KHR = crate::vk::PFN_vkGetImageSparseMemoryRequirements2;
 pub const KHR_GET_MEMORY_REQUIREMENTS_2_SPEC_VERSION: u32 = 1;
 pub const KHR_GET_MEMORY_REQUIREMENTS_2_EXTENSION_NAME: &core::ffi::CStr = c"VK_KHR_get_memory_requirements2";
+pub struct DeviceFn {
+    pub vk_get_buffer_memory_requirements2_khr: crate::vk::PFN_vkGetBufferMemoryRequirements2KHR,
+    pub vk_get_image_memory_requirements2_khr: crate::vk::PFN_vkGetImageMemoryRequirements2KHR,
+    pub vk_get_image_sparse_memory_requirements2_khr: crate::vk::PFN_vkGetImageSparseMemoryRequirements2KHR,
+}

@@ -18,5 +18,20 @@ bitflags::bitflags! {
     #[repr(transparent)] #[derive(Clone, Copy)] pub struct UbmSurfaceCreateFlagsSEC : u32
     {}
 }
+pub type PFN_vkCreateUbmSurfaceSEC = unsafe extern "system" fn(
+    instance: crate::vk::Instance,
+    p_create_info: *const crate::vk::UbmSurfaceCreateInfoSEC,
+    p_allocator: *const crate::vk::AllocationCallbacks,
+    p_surface: *mut crate::vk::SurfaceKHR,
+) -> crate::vk::Result;
+pub type PFN_vkGetPhysicalDeviceUbmPresentationSupportSEC = unsafe extern "system" fn(
+    physical_device: crate::vk::PhysicalDevice,
+    queue_family_index: u32,
+    device: *mut crate::platform_types::ubm_device,
+) -> crate::vk::Bool32;
 pub const SEC_UBM_SURFACE_SPEC_VERSION: u32 = 1;
 pub const SEC_UBM_SURFACE_EXTENSION_NAME: &core::ffi::CStr = c"VK_SEC_ubm_surface";
+pub struct InstanceFn {
+    pub vk_create_ubm_surface_sec: crate::vk::PFN_vkCreateUbmSurfaceSEC,
+    pub vk_get_physical_device_ubm_presentation_support_sec: crate::vk::PFN_vkGetPhysicalDeviceUbmPresentationSupportSEC,
+}

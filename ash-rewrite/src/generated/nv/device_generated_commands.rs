@@ -153,7 +153,7 @@ impl crate::vk::ObjectType {
     pub const INDIRECT_COMMANDS_LAYOUT_NV: Self = Self(1000277000);
 }
 #[repr(transparent)]
-#[derive(Clone, Copy)]
+#[derive(Clone, Copy, PartialEq, Eq, PartialOrd, Ord, Hash, Default)]
 pub struct IndirectCommandsTokenTypeNV(pub(crate) i32);
 ///Provided by [`nv::device_generated_commands`](crate::nv::device_generated_commands)
 impl IndirectCommandsTokenTypeNV {
@@ -234,5 +234,44 @@ impl core::fmt::Debug for IndirectCommandsLayoutNV {
         write!(f, "0x{:x}", self.0)
     }
 }
+pub type PFN_vkCmdExecuteGeneratedCommandsNV = unsafe extern "system" fn(
+    command_buffer: crate::vk::CommandBuffer,
+    is_preprocessed: crate::vk::Bool32,
+    p_generated_commands_info: *const crate::vk::GeneratedCommandsInfoNV,
+);
+pub type PFN_vkCmdPreprocessGeneratedCommandsNV = unsafe extern "system" fn(
+    command_buffer: crate::vk::CommandBuffer,
+    p_generated_commands_info: *const crate::vk::GeneratedCommandsInfoNV,
+);
+pub type PFN_vkCmdBindPipelineShaderGroupNV = unsafe extern "system" fn(
+    command_buffer: crate::vk::CommandBuffer,
+    pipeline_bind_point: crate::vk::PipelineBindPoint,
+    pipeline: crate::vk::Pipeline,
+    group_index: u32,
+);
+pub type PFN_vkGetGeneratedCommandsMemoryRequirementsNV = unsafe extern "system" fn(
+    device: crate::vk::Device,
+    p_info: *const crate::vk::GeneratedCommandsMemoryRequirementsInfoNV,
+    p_memory_requirements: *mut crate::vk::MemoryRequirements2,
+);
+pub type PFN_vkCreateIndirectCommandsLayoutNV = unsafe extern "system" fn(
+    device: crate::vk::Device,
+    p_create_info: *const crate::vk::IndirectCommandsLayoutCreateInfoNV,
+    p_allocator: *const crate::vk::AllocationCallbacks,
+    p_indirect_commands_layout: *mut crate::vk::IndirectCommandsLayoutNV,
+) -> crate::vk::Result;
+pub type PFN_vkDestroyIndirectCommandsLayoutNV = unsafe extern "system" fn(
+    device: crate::vk::Device,
+    indirect_commands_layout: crate::vk::IndirectCommandsLayoutNV,
+    p_allocator: *const crate::vk::AllocationCallbacks,
+);
 pub const NV_DEVICE_GENERATED_COMMANDS_SPEC_VERSION: u32 = 3;
 pub const NV_DEVICE_GENERATED_COMMANDS_EXTENSION_NAME: &core::ffi::CStr = c"VK_NV_device_generated_commands";
+pub struct DeviceFn {
+    pub vk_cmd_execute_generated_commands_nv: crate::vk::PFN_vkCmdExecuteGeneratedCommandsNV,
+    pub vk_cmd_preprocess_generated_commands_nv: crate::vk::PFN_vkCmdPreprocessGeneratedCommandsNV,
+    pub vk_cmd_bind_pipeline_shader_group_nv: crate::vk::PFN_vkCmdBindPipelineShaderGroupNV,
+    pub vk_get_generated_commands_memory_requirements_nv: crate::vk::PFN_vkGetGeneratedCommandsMemoryRequirementsNV,
+    pub vk_create_indirect_commands_layout_nv: crate::vk::PFN_vkCreateIndirectCommandsLayoutNV,
+    pub vk_destroy_indirect_commands_layout_nv: crate::vk::PFN_vkDestroyIndirectCommandsLayoutNV,
+}

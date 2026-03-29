@@ -41,5 +41,9 @@ impl crate::vk::StructureType {
 impl crate::vk::ImageCreateFlagBits {
     pub const FRAGMENT_DENSITY_MAP_OFFSET_EXT: Self = Self(1 << 15);
 }
+pub type PFN_vkCmdEndRendering2EXT = crate::vk::PFN_vkCmdEndRendering2KHR;
 pub const EXT_FRAGMENT_DENSITY_MAP_OFFSET_SPEC_VERSION: u32 = 1;
 pub const EXT_FRAGMENT_DENSITY_MAP_OFFSET_EXTENSION_NAME: &core::ffi::CStr = c"VK_EXT_fragment_density_map_offset";
+pub struct DeviceFn {
+    pub vk_cmd_end_rendering2_ext: crate::vk::PFN_vkCmdEndRendering2EXT,
+}

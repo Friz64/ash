@@ -234,21 +234,21 @@ impl crate::vk::ObjectType {
     pub const DATA_GRAPH_PIPELINE_SESSION_ARM: Self = Self(1000507000);
 }
 #[repr(transparent)]
-#[derive(Clone, Copy)]
+#[derive(Clone, Copy, PartialEq, Eq, PartialOrd, Ord, Hash, Default)]
 pub struct DataGraphPipelineSessionBindPointARM(pub(crate) i32);
 ///Provided by [`arm::data_graph`](crate::arm::data_graph)
 impl DataGraphPipelineSessionBindPointARM {
     pub const TRANSIENT_ARM: Self = Self(0);
 }
 #[repr(transparent)]
-#[derive(Clone, Copy)]
+#[derive(Clone, Copy, PartialEq, Eq, PartialOrd, Ord, Hash, Default)]
 pub struct DataGraphPipelineSessionBindPointTypeARM(pub(crate) i32);
 ///Provided by [`arm::data_graph`](crate::arm::data_graph)
 impl DataGraphPipelineSessionBindPointTypeARM {
     pub const MEMORY_ARM: Self = Self(0);
 }
 #[repr(transparent)]
-#[derive(Clone, Copy)]
+#[derive(Clone, Copy, PartialEq, Eq, PartialOrd, Ord, Hash, Default)]
 pub struct DataGraphPipelinePropertyARM(pub(crate) i32);
 ///Provided by [`arm::data_graph`](crate::arm::data_graph)
 impl DataGraphPipelinePropertyARM {
@@ -256,14 +256,14 @@ impl DataGraphPipelinePropertyARM {
     pub const IDENTIFIER_ARM: Self = Self(1);
 }
 #[repr(transparent)]
-#[derive(Clone, Copy)]
+#[derive(Clone, Copy, PartialEq, Eq, PartialOrd, Ord, Hash, Default)]
 pub struct PhysicalDeviceDataGraphProcessingEngineTypeARM(pub(crate) i32);
 ///Provided by [`arm::data_graph`](crate::arm::data_graph)
 impl PhysicalDeviceDataGraphProcessingEngineTypeARM {
     pub const DEFAULT_ARM: Self = Self(0);
 }
 #[repr(transparent)]
-#[derive(Clone, Copy)]
+#[derive(Clone, Copy, PartialEq, Eq, PartialOrd, Ord, Hash, Default)]
 pub struct PhysicalDeviceDataGraphOperationTypeARM(pub(crate) i32);
 ///Provided by [`arm::data_graph`](crate::arm::data_graph)
 impl PhysicalDeviceDataGraphOperationTypeARM {
@@ -340,6 +340,85 @@ impl core::fmt::Debug for DataGraphPipelineSessionARM {
         write!(f, "0x{:x}", self.0)
     }
 }
+pub type PFN_vkCreateDataGraphPipelinesARM = unsafe extern "system" fn(
+    device: crate::vk::Device,
+    deferred_operation: crate::vk::DeferredOperationKHR,
+    pipeline_cache: crate::vk::PipelineCache,
+    create_info_count: u32,
+    p_create_infos: *const crate::vk::DataGraphPipelineCreateInfoARM,
+    p_allocator: *const crate::vk::AllocationCallbacks,
+    p_pipelines: *mut crate::vk::Pipeline,
+) -> crate::vk::Result;
+pub type PFN_vkCreateDataGraphPipelineSessionARM = unsafe extern "system" fn(
+    device: crate::vk::Device,
+    p_create_info: *const crate::vk::DataGraphPipelineSessionCreateInfoARM,
+    p_allocator: *const crate::vk::AllocationCallbacks,
+    p_session: *mut crate::vk::DataGraphPipelineSessionARM,
+) -> crate::vk::Result;
+pub type PFN_vkGetDataGraphPipelineSessionBindPointRequirementsARM = unsafe extern "system" fn(
+    device: crate::vk::Device,
+    p_info: *const crate::vk::DataGraphPipelineSessionBindPointRequirementsInfoARM,
+    p_bind_point_requirement_count: *mut u32,
+    p_bind_point_requirements: *mut crate::vk::DataGraphPipelineSessionBindPointRequirementARM,
+) -> crate::vk::Result;
+pub type PFN_vkGetDataGraphPipelineSessionMemoryRequirementsARM = unsafe extern "system" fn(
+    device: crate::vk::Device,
+    p_info: *const crate::vk::DataGraphPipelineSessionMemoryRequirementsInfoARM,
+    p_memory_requirements: *mut crate::vk::MemoryRequirements2,
+);
+pub type PFN_vkBindDataGraphPipelineSessionMemoryARM = unsafe extern "system" fn(
+    device: crate::vk::Device,
+    bind_info_count: u32,
+    p_bind_infos: *const crate::vk::BindDataGraphPipelineSessionMemoryInfoARM,
+) -> crate::vk::Result;
+pub type PFN_vkDestroyDataGraphPipelineSessionARM = unsafe extern "system" fn(
+    device: crate::vk::Device,
+    session: crate::vk::DataGraphPipelineSessionARM,
+    p_allocator: *const crate::vk::AllocationCallbacks,
+);
+pub type PFN_vkCmdDispatchDataGraphARM = unsafe extern "system" fn(
+    command_buffer: crate::vk::CommandBuffer,
+    session: crate::vk::DataGraphPipelineSessionARM,
+    p_info: *const crate::vk::DataGraphPipelineDispatchInfoARM,
+);
+pub type PFN_vkGetDataGraphPipelineAvailablePropertiesARM = unsafe extern "system" fn(
+    device: crate::vk::Device,
+    p_pipeline_info: *const crate::vk::DataGraphPipelineInfoARM,
+    p_properties_count: *mut u32,
+    p_properties: *mut crate::vk::DataGraphPipelinePropertyARM,
+) -> crate::vk::Result;
+pub type PFN_vkGetDataGraphPipelinePropertiesARM = unsafe extern "system" fn(
+    device: crate::vk::Device,
+    p_pipeline_info: *const crate::vk::DataGraphPipelineInfoARM,
+    properties_count: u32,
+    p_properties: *mut crate::vk::DataGraphPipelinePropertyQueryResultARM,
+) -> crate::vk::Result;
+pub type PFN_vkGetPhysicalDeviceQueueFamilyDataGraphPropertiesARM = unsafe extern "system" fn(
+    physical_device: crate::vk::PhysicalDevice,
+    queue_family_index: u32,
+    p_queue_family_data_graph_property_count: *mut u32,
+    p_queue_family_data_graph_properties: *mut crate::vk::QueueFamilyDataGraphPropertiesARM,
+) -> crate::vk::Result;
+pub type PFN_vkGetPhysicalDeviceQueueFamilyDataGraphProcessingEnginePropertiesARM = unsafe extern "system" fn(
+    physical_device: crate::vk::PhysicalDevice,
+    p_queue_family_data_graph_processing_engine_info: *const crate::vk::PhysicalDeviceQueueFamilyDataGraphProcessingEngineInfoARM,
+    p_queue_family_data_graph_processing_engine_properties: *mut crate::vk::QueueFamilyDataGraphProcessingEnginePropertiesARM,
+);
 pub const MAX_PHYSICAL_DEVICE_DATA_GRAPH_OPERATION_SET_NAME_SIZE_ARM: u32 = 128;
 pub const ARM_DATA_GRAPH_SPEC_VERSION: u32 = 1;
 pub const ARM_DATA_GRAPH_EXTENSION_NAME: &core::ffi::CStr = c"VK_ARM_data_graph";
+pub struct DeviceFn {
+    pub vk_create_data_graph_pipelines_arm: crate::vk::PFN_vkCreateDataGraphPipelinesARM,
+    pub vk_create_data_graph_pipeline_session_arm: crate::vk::PFN_vkCreateDataGraphPipelineSessionARM,
+    pub vk_get_data_graph_pipeline_session_bind_point_requirements_arm: crate::vk::PFN_vkGetDataGraphPipelineSessionBindPointRequirementsARM,
+    pub vk_get_data_graph_pipeline_session_memory_requirements_arm: crate::vk::PFN_vkGetDataGraphPipelineSessionMemoryRequirementsARM,
+    pub vk_bind_data_graph_pipeline_session_memory_arm: crate::vk::PFN_vkBindDataGraphPipelineSessionMemoryARM,
+    pub vk_destroy_data_graph_pipeline_session_arm: crate::vk::PFN_vkDestroyDataGraphPipelineSessionARM,
+    pub vk_cmd_dispatch_data_graph_arm: crate::vk::PFN_vkCmdDispatchDataGraphARM,
+    pub vk_get_data_graph_pipeline_available_properties_arm: crate::vk::PFN_vkGetDataGraphPipelineAvailablePropertiesARM,
+    pub vk_get_data_graph_pipeline_properties_arm: crate::vk::PFN_vkGetDataGraphPipelinePropertiesARM,
+}
+pub struct InstanceFn {
+    pub vk_get_physical_device_queue_family_data_graph_properties_arm: crate::vk::PFN_vkGetPhysicalDeviceQueueFamilyDataGraphPropertiesARM,
+    pub vk_get_physical_device_queue_family_data_graph_processing_engine_properties_arm: crate::vk::PFN_vkGetPhysicalDeviceQueueFamilyDataGraphProcessingEnginePropertiesARM,
+}

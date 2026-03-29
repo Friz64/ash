@@ -139,7 +139,7 @@ impl crate::vk::QueryResultStatusKHR {
     pub const INSUFFICIENTSTREAM_BUFFER_RANGE_KHR: Self = Self(-1000299000);
 }
 #[repr(transparent)]
-#[derive(Clone, Copy)]
+#[derive(Clone, Copy, PartialEq, Eq, PartialOrd, Ord, Hash, Default)]
 pub struct VideoEncodeTuningModeKHR(pub(crate) i32);
 ///Provided by [`khr::video_encode_queue`](crate::khr::video_encode_queue)
 impl VideoEncodeTuningModeKHR {
@@ -296,5 +296,28 @@ impl VideoEncodeRateControlModeFlagBitsKHR {
     pub const CBR_KHR: Self = Self(1 << 1);
     pub const VBR_KHR: Self = Self(1 << 2);
 }
+pub type PFN_vkGetPhysicalDeviceVideoEncodeQualityLevelPropertiesKHR = unsafe extern "system" fn(
+    physical_device: crate::vk::PhysicalDevice,
+    p_quality_level_info: *const crate::vk::PhysicalDeviceVideoEncodeQualityLevelInfoKHR,
+    p_quality_level_properties: *mut crate::vk::VideoEncodeQualityLevelPropertiesKHR,
+) -> crate::vk::Result;
+pub type PFN_vkGetEncodedVideoSessionParametersKHR = unsafe extern "system" fn(
+    device: crate::vk::Device,
+    p_video_session_parameters_info: *const crate::vk::VideoEncodeSessionParametersGetInfoKHR,
+    p_feedback_info: *mut crate::vk::VideoEncodeSessionParametersFeedbackInfoKHR,
+    p_data_size: *mut usize,
+    p_data: *mut core::ffi::c_void,
+) -> crate::vk::Result;
+pub type PFN_vkCmdEncodeVideoKHR = unsafe extern "system" fn(
+    command_buffer: crate::vk::CommandBuffer,
+    p_encode_info: *const crate::vk::VideoEncodeInfoKHR,
+);
 pub const KHR_VIDEO_ENCODE_QUEUE_SPEC_VERSION: u32 = 12;
 pub const KHR_VIDEO_ENCODE_QUEUE_EXTENSION_NAME: &core::ffi::CStr = c"VK_KHR_video_encode_queue";
+pub struct InstanceFn {
+    pub vk_get_physical_device_video_encode_quality_level_properties_khr: crate::vk::PFN_vkGetPhysicalDeviceVideoEncodeQualityLevelPropertiesKHR,
+}
+pub struct DeviceFn {
+    pub vk_get_encoded_video_session_parameters_khr: crate::vk::PFN_vkGetEncodedVideoSessionParametersKHR,
+    pub vk_cmd_encode_video_khr: crate::vk::PFN_vkCmdEncodeVideoKHR,
+}

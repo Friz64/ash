@@ -44,6 +44,20 @@ impl crate::vk::StructureType {
     );
     pub const SHADER_MODULE_IDENTIFIER_EXT: Self = Self(1000462003);
 }
+pub type PFN_vkGetShaderModuleIdentifierEXT = unsafe extern "system" fn(
+    device: crate::vk::Device,
+    shader_module: crate::vk::ShaderModule,
+    p_identifier: *mut crate::vk::ShaderModuleIdentifierEXT,
+);
+pub type PFN_vkGetShaderModuleCreateInfoIdentifierEXT = unsafe extern "system" fn(
+    device: crate::vk::Device,
+    p_create_info: *const crate::vk::ShaderModuleCreateInfo,
+    p_identifier: *mut crate::vk::ShaderModuleIdentifierEXT,
+);
 pub const MAX_SHADER_MODULE_IDENTIFIER_SIZE_EXT: u32 = 32;
 pub const EXT_SHADER_MODULE_IDENTIFIER_SPEC_VERSION: u32 = 1;
 pub const EXT_SHADER_MODULE_IDENTIFIER_EXTENSION_NAME: &core::ffi::CStr = c"VK_EXT_shader_module_identifier";
+pub struct DeviceFn {
+    pub vk_get_shader_module_identifier_ext: crate::vk::PFN_vkGetShaderModuleIdentifierEXT,
+    pub vk_get_shader_module_create_info_identifier_ext: crate::vk::PFN_vkGetShaderModuleCreateInfoIdentifierEXT,
+}

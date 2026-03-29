@@ -122,5 +122,45 @@ impl core::fmt::Debug for CudaFunctionNV {
         write!(f, "0x{:x}", self.0)
     }
 }
+pub type PFN_vkCreateCudaModuleNV = unsafe extern "system" fn(
+    device: crate::vk::Device,
+    p_create_info: *const crate::vk::CudaModuleCreateInfoNV,
+    p_allocator: *const crate::vk::AllocationCallbacks,
+    p_module: *mut crate::vk::CudaModuleNV,
+) -> crate::vk::Result;
+pub type PFN_vkGetCudaModuleCacheNV = unsafe extern "system" fn(
+    device: crate::vk::Device,
+    module: crate::vk::CudaModuleNV,
+    p_cache_size: *mut usize,
+    p_cache_data: *mut core::ffi::c_void,
+) -> crate::vk::Result;
+pub type PFN_vkCreateCudaFunctionNV = unsafe extern "system" fn(
+    device: crate::vk::Device,
+    p_create_info: *const crate::vk::CudaFunctionCreateInfoNV,
+    p_allocator: *const crate::vk::AllocationCallbacks,
+    p_function: *mut crate::vk::CudaFunctionNV,
+) -> crate::vk::Result;
+pub type PFN_vkDestroyCudaModuleNV = unsafe extern "system" fn(
+    device: crate::vk::Device,
+    module: crate::vk::CudaModuleNV,
+    p_allocator: *const crate::vk::AllocationCallbacks,
+);
+pub type PFN_vkDestroyCudaFunctionNV = unsafe extern "system" fn(
+    device: crate::vk::Device,
+    function: crate::vk::CudaFunctionNV,
+    p_allocator: *const crate::vk::AllocationCallbacks,
+);
+pub type PFN_vkCmdCudaLaunchKernelNV = unsafe extern "system" fn(
+    command_buffer: crate::vk::CommandBuffer,
+    p_launch_info: *const crate::vk::CudaLaunchInfoNV,
+);
 pub const NV_CUDA_KERNEL_LAUNCH_SPEC_VERSION: u32 = 2;
 pub const NV_CUDA_KERNEL_LAUNCH_EXTENSION_NAME: &core::ffi::CStr = c"VK_NV_cuda_kernel_launch";
+pub struct DeviceFn {
+    pub vk_create_cuda_module_nv: crate::vk::PFN_vkCreateCudaModuleNV,
+    pub vk_get_cuda_module_cache_nv: crate::vk::PFN_vkGetCudaModuleCacheNV,
+    pub vk_create_cuda_function_nv: crate::vk::PFN_vkCreateCudaFunctionNV,
+    pub vk_destroy_cuda_module_nv: crate::vk::PFN_vkDestroyCudaModuleNV,
+    pub vk_destroy_cuda_function_nv: crate::vk::PFN_vkDestroyCudaFunctionNV,
+    pub vk_cmd_cuda_launch_kernel_nv: crate::vk::PFN_vkCmdCudaLaunchKernelNV,
+}

@@ -91,7 +91,7 @@ impl crate::vk::StructureType {
     );
 }
 #[repr(transparent)]
-#[derive(Clone, Copy)]
+#[derive(Clone, Copy, PartialEq, Eq, PartialOrd, Ord, Hash, Default)]
 pub struct BlendOverlapEXT(pub(crate) i32);
 ///Provided by [`ext::blend_operation_advanced`](crate::ext::blend_operation_advanced)
 impl BlendOverlapEXT {

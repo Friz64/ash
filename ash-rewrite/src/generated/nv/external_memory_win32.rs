@@ -22,5 +22,14 @@ impl crate::vk::StructureType {
     pub const IMPORT_MEMORY_WIN32_HANDLE_INFO_NV: Self = Self(1000057000);
     pub const EXPORT_MEMORY_WIN32_HANDLE_INFO_NV: Self = Self(1000057001);
 }
+pub type PFN_vkGetMemoryWin32HandleNV = unsafe extern "system" fn(
+    device: crate::vk::Device,
+    memory: crate::vk::DeviceMemory,
+    handle_type: crate::vk::ExternalMemoryHandleTypeFlagsNV,
+    p_handle: *mut crate::platform_types::HANDLE,
+) -> crate::vk::Result;
 pub const NV_EXTERNAL_MEMORY_WIN32_SPEC_VERSION: u32 = 1;
 pub const NV_EXTERNAL_MEMORY_WIN32_EXTENSION_NAME: &core::ffi::CStr = c"VK_NV_external_memory_win32";
+pub struct DeviceFn {
+    pub vk_get_memory_win32_handle_nv: crate::vk::PFN_vkGetMemoryWin32HandleNV,
+}

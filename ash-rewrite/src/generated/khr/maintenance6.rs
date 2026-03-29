@@ -41,5 +41,25 @@ impl crate::vk::StructureType {
     pub const SET_DESCRIPTOR_BUFFER_OFFSETS_INFO_EXT: Self = Self(1000545007);
     pub const BIND_DESCRIPTOR_BUFFER_EMBEDDED_SAMPLERS_INFO_EXT: Self = Self(1000545008);
 }
+pub type PFN_vkCmdSetDescriptorBufferOffsets2EXT = unsafe extern "system" fn(
+    command_buffer: crate::vk::CommandBuffer,
+    p_set_descriptor_buffer_offsets_info: *const crate::vk::SetDescriptorBufferOffsetsInfoEXT,
+);
+pub type PFN_vkCmdBindDescriptorBufferEmbeddedSamplers2EXT = unsafe extern "system" fn(
+    command_buffer: crate::vk::CommandBuffer,
+    p_bind_descriptor_buffer_embedded_samplers_info: *const crate::vk::BindDescriptorBufferEmbeddedSamplersInfoEXT,
+);
+pub type PFN_vkCmdBindDescriptorSets2KHR = crate::vk::PFN_vkCmdBindDescriptorSets2;
+pub type PFN_vkCmdPushConstants2KHR = crate::vk::PFN_vkCmdPushConstants2;
+pub type PFN_vkCmdPushDescriptorSet2KHR = crate::vk::PFN_vkCmdPushDescriptorSet2;
+pub type PFN_vkCmdPushDescriptorSetWithTemplate2KHR = crate::vk::PFN_vkCmdPushDescriptorSetWithTemplate2;
 pub const KHR_MAINTENANCE_6_SPEC_VERSION: u32 = 1;
 pub const KHR_MAINTENANCE_6_EXTENSION_NAME: &core::ffi::CStr = c"VK_KHR_maintenance6";
+pub struct DeviceFn {
+    pub vk_cmd_set_descriptor_buffer_offsets2_ext: crate::vk::PFN_vkCmdSetDescriptorBufferOffsets2EXT,
+    pub vk_cmd_bind_descriptor_buffer_embedded_samplers2_ext: crate::vk::PFN_vkCmdBindDescriptorBufferEmbeddedSamplers2EXT,
+    pub vk_cmd_bind_descriptor_sets2_khr: crate::vk::PFN_vkCmdBindDescriptorSets2KHR,
+    pub vk_cmd_push_constants2_khr: crate::vk::PFN_vkCmdPushConstants2KHR,
+    pub vk_cmd_push_descriptor_set2_khr: crate::vk::PFN_vkCmdPushDescriptorSet2KHR,
+    pub vk_cmd_push_descriptor_set_with_template2_khr: crate::vk::PFN_vkCmdPushDescriptorSetWithTemplate2KHR,
+}

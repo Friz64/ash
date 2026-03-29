@@ -29,5 +29,31 @@ impl crate::vk::DynamicState {
     pub const STENCIL_TEST_ENABLE_EXT: Self = Self::STENCIL_TEST_ENABLE;
     pub const STENCIL_OP_EXT: Self = Self::STENCIL_OP;
 }
+pub type PFN_vkCmdSetCullModeEXT = crate::vk::PFN_vkCmdSetCullMode;
+pub type PFN_vkCmdSetFrontFaceEXT = crate::vk::PFN_vkCmdSetFrontFace;
+pub type PFN_vkCmdSetPrimitiveTopologyEXT = crate::vk::PFN_vkCmdSetPrimitiveTopology;
+pub type PFN_vkCmdSetViewportWithCountEXT = crate::vk::PFN_vkCmdSetViewportWithCount;
+pub type PFN_vkCmdSetScissorWithCountEXT = crate::vk::PFN_vkCmdSetScissorWithCount;
+pub type PFN_vkCmdBindVertexBuffers2EXT = crate::vk::PFN_vkCmdBindVertexBuffers2;
+pub type PFN_vkCmdSetDepthTestEnableEXT = crate::vk::PFN_vkCmdSetDepthTestEnable;
+pub type PFN_vkCmdSetDepthWriteEnableEXT = crate::vk::PFN_vkCmdSetDepthWriteEnable;
+pub type PFN_vkCmdSetDepthCompareOpEXT = crate::vk::PFN_vkCmdSetDepthCompareOp;
+pub type PFN_vkCmdSetDepthBoundsTestEnableEXT = crate::vk::PFN_vkCmdSetDepthBoundsTestEnable;
+pub type PFN_vkCmdSetStencilTestEnableEXT = crate::vk::PFN_vkCmdSetStencilTestEnable;
+pub type PFN_vkCmdSetStencilOpEXT = crate::vk::PFN_vkCmdSetStencilOp;
 pub const EXT_EXTENDED_DYNAMIC_STATE_SPEC_VERSION: u32 = 1;
 pub const EXT_EXTENDED_DYNAMIC_STATE_EXTENSION_NAME: &core::ffi::CStr = c"VK_EXT_extended_dynamic_state";
+pub struct DeviceFn {
+    pub vk_cmd_set_cull_mode_ext: crate::vk::PFN_vkCmdSetCullModeEXT,
+    pub vk_cmd_set_front_face_ext: crate::vk::PFN_vkCmdSetFrontFaceEXT,
+    pub vk_cmd_set_primitive_topology_ext: crate::vk::PFN_vkCmdSetPrimitiveTopologyEXT,
+    pub vk_cmd_set_viewport_with_count_ext: crate::vk::PFN_vkCmdSetViewportWithCountEXT,
+    pub vk_cmd_set_scissor_with_count_ext: crate::vk::PFN_vkCmdSetScissorWithCountEXT,
+    pub vk_cmd_bind_vertex_buffers2_ext: crate::vk::PFN_vkCmdBindVertexBuffers2EXT,
+    pub vk_cmd_set_depth_test_enable_ext: crate::vk::PFN_vkCmdSetDepthTestEnableEXT,
+    pub vk_cmd_set_depth_write_enable_ext: crate::vk::PFN_vkCmdSetDepthWriteEnableEXT,
+    pub vk_cmd_set_depth_compare_op_ext: crate::vk::PFN_vkCmdSetDepthCompareOpEXT,
+    pub vk_cmd_set_depth_bounds_test_enable_ext: crate::vk::PFN_vkCmdSetDepthBoundsTestEnableEXT,
+    pub vk_cmd_set_stencil_test_enable_ext: crate::vk::PFN_vkCmdSetStencilTestEnableEXT,
+    pub vk_cmd_set_stencil_op_ext: crate::vk::PFN_vkCmdSetStencilOpEXT,
+}

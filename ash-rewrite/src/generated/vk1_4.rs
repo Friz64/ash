@@ -580,7 +580,7 @@ impl crate::vk::DescriptorUpdateTemplateType {
     pub const PUSH_DESCRIPTORS: Self = Self(1);
 }
 #[repr(transparent)]
-#[derive(Clone, Copy)]
+#[derive(Clone, Copy, PartialEq, Eq, PartialOrd, Ord, Hash, Default)]
 pub struct QueueGlobalPriority(pub(crate) i32);
 ///Provided by [`vk1_4`](crate::vk1_4)
 impl QueueGlobalPriority {
@@ -590,7 +590,7 @@ impl QueueGlobalPriority {
     pub const REALTIME: Self = Self(1024);
 }
 #[repr(transparent)]
-#[derive(Clone, Copy)]
+#[derive(Clone, Copy, PartialEq, Eq, PartialOrd, Ord, Hash, Default)]
 pub struct LineRasterizationMode(pub(crate) i32);
 ///Provided by [`vk1_4`](crate::vk1_4)
 impl LineRasterizationMode {
@@ -600,7 +600,7 @@ impl LineRasterizationMode {
     pub const RECTANGULAR_SMOOTH: Self = Self(3);
 }
 #[repr(transparent)]
-#[derive(Clone, Copy)]
+#[derive(Clone, Copy, PartialEq, Eq, PartialOrd, Ord, Hash, Default)]
 pub struct PipelineRobustnessBufferBehavior(pub(crate) i32);
 ///Provided by [`vk1_4`](crate::vk1_4)
 impl PipelineRobustnessBufferBehavior {
@@ -610,7 +610,7 @@ impl PipelineRobustnessBufferBehavior {
     pub const ROBUST_BUFFER_ACCESS_2: Self = Self(3);
 }
 #[repr(transparent)]
-#[derive(Clone, Copy)]
+#[derive(Clone, Copy, PartialEq, Eq, PartialOrd, Ord, Hash, Default)]
 pub struct PipelineRobustnessImageBehavior(pub(crate) i32);
 ///Provided by [`vk1_4`](crate::vk1_4)
 impl PipelineRobustnessImageBehavior {
@@ -819,5 +819,119 @@ pub struct HostImageCopyFlagBits(pub(crate) u32);
 impl HostImageCopyFlagBits {
     pub const MEMCPY: Self = Self(1 << 0);
 }
+pub type PFN_vkGetRenderingAreaGranularity = unsafe extern "system" fn(
+    device: crate::vk::Device,
+    p_rendering_area_info: *const crate::vk::RenderingAreaInfo,
+    p_granularity: *mut crate::vk::Extent2D,
+);
+pub type PFN_vkCmdPushDescriptorSet = unsafe extern "system" fn(
+    command_buffer: crate::vk::CommandBuffer,
+    pipeline_bind_point: crate::vk::PipelineBindPoint,
+    layout: crate::vk::PipelineLayout,
+    set: u32,
+    descriptor_write_count: u32,
+    p_descriptor_writes: *const crate::vk::WriteDescriptorSet,
+);
+pub type PFN_vkCmdPushDescriptorSetWithTemplate = unsafe extern "system" fn(
+    command_buffer: crate::vk::CommandBuffer,
+    descriptor_update_template: crate::vk::DescriptorUpdateTemplate,
+    layout: crate::vk::PipelineLayout,
+    set: u32,
+    p_data: *const core::ffi::c_void,
+);
+pub type PFN_vkCmdSetLineStipple = unsafe extern "system" fn(
+    command_buffer: crate::vk::CommandBuffer,
+    line_stipple_factor: u32,
+    line_stipple_pattern: u16,
+);
+pub type PFN_vkCmdBindIndexBuffer2 = unsafe extern "system" fn(
+    command_buffer: crate::vk::CommandBuffer,
+    buffer: crate::vk::Buffer,
+    offset: crate::vk::DeviceSize,
+    size: crate::vk::DeviceSize,
+    index_type: crate::vk::IndexType,
+);
+pub type PFN_vkCopyMemoryToImage = unsafe extern "system" fn(
+    device: crate::vk::Device,
+    p_copy_memory_to_image_info: *const crate::vk::CopyMemoryToImageInfo,
+) -> crate::vk::Result;
+pub type PFN_vkCopyImageToMemory = unsafe extern "system" fn(
+    device: crate::vk::Device,
+    p_copy_image_to_memory_info: *const crate::vk::CopyImageToMemoryInfo,
+) -> crate::vk::Result;
+pub type PFN_vkCopyImageToImage = unsafe extern "system" fn(
+    device: crate::vk::Device,
+    p_copy_image_to_image_info: *const crate::vk::CopyImageToImageInfo,
+) -> crate::vk::Result;
+pub type PFN_vkTransitionImageLayout = unsafe extern "system" fn(
+    device: crate::vk::Device,
+    transition_count: u32,
+    p_transitions: *const crate::vk::HostImageLayoutTransitionInfo,
+) -> crate::vk::Result;
+pub type PFN_vkGetImageSubresourceLayout2 = unsafe extern "system" fn(
+    device: crate::vk::Device,
+    image: crate::vk::Image,
+    p_subresource: *const crate::vk::ImageSubresource2,
+    p_layout: *mut crate::vk::SubresourceLayout2,
+);
+pub type PFN_vkGetDeviceImageSubresourceLayout = unsafe extern "system" fn(
+    device: crate::vk::Device,
+    p_info: *const crate::vk::DeviceImageSubresourceInfo,
+    p_layout: *mut crate::vk::SubresourceLayout2,
+);
+pub type PFN_vkMapMemory2 = unsafe extern "system" fn(
+    device: crate::vk::Device,
+    p_memory_map_info: *const crate::vk::MemoryMapInfo,
+    pp_data: *mut *mut core::ffi::c_void,
+) -> crate::vk::Result;
+pub type PFN_vkUnmapMemory2 = unsafe extern "system" fn(
+    device: crate::vk::Device,
+    p_memory_unmap_info: *const crate::vk::MemoryUnmapInfo,
+) -> crate::vk::Result;
+pub type PFN_vkCmdBindDescriptorSets2 = unsafe extern "system" fn(
+    command_buffer: crate::vk::CommandBuffer,
+    p_bind_descriptor_sets_info: *const crate::vk::BindDescriptorSetsInfo,
+);
+pub type PFN_vkCmdPushConstants2 = unsafe extern "system" fn(
+    command_buffer: crate::vk::CommandBuffer,
+    p_push_constants_info: *const crate::vk::PushConstantsInfo,
+);
+pub type PFN_vkCmdPushDescriptorSet2 = unsafe extern "system" fn(
+    command_buffer: crate::vk::CommandBuffer,
+    p_push_descriptor_set_info: *const crate::vk::PushDescriptorSetInfo,
+);
+pub type PFN_vkCmdPushDescriptorSetWithTemplate2 = unsafe extern "system" fn(
+    command_buffer: crate::vk::CommandBuffer,
+    p_push_descriptor_set_with_template_info: *const crate::vk::PushDescriptorSetWithTemplateInfo,
+);
+pub type PFN_vkCmdSetRenderingAttachmentLocations = unsafe extern "system" fn(
+    command_buffer: crate::vk::CommandBuffer,
+    p_location_info: *const crate::vk::RenderingAttachmentLocationInfo,
+);
+pub type PFN_vkCmdSetRenderingInputAttachmentIndices = unsafe extern "system" fn(
+    command_buffer: crate::vk::CommandBuffer,
+    p_input_attachment_index_info: *const crate::vk::RenderingInputAttachmentIndexInfo,
+);
 pub const MAX_GLOBAL_PRIORITY_SIZE: u32 = 16;
 pub const API_VERSION_1_4: u32 = crate::vk::make_api_version(0, 1, 4, 0);
+pub struct DeviceFnV1_4 {
+    pub vk_get_rendering_area_granularity: crate::vk::PFN_vkGetRenderingAreaGranularity,
+    pub vk_cmd_push_descriptor_set: crate::vk::PFN_vkCmdPushDescriptorSet,
+    pub vk_cmd_push_descriptor_set_with_template: crate::vk::PFN_vkCmdPushDescriptorSetWithTemplate,
+    pub vk_cmd_set_line_stipple: crate::vk::PFN_vkCmdSetLineStipple,
+    pub vk_cmd_bind_index_buffer2: crate::vk::PFN_vkCmdBindIndexBuffer2,
+    pub vk_copy_memory_to_image: crate::vk::PFN_vkCopyMemoryToImage,
+    pub vk_copy_image_to_memory: crate::vk::PFN_vkCopyImageToMemory,
+    pub vk_copy_image_to_image: crate::vk::PFN_vkCopyImageToImage,
+    pub vk_transition_image_layout: crate::vk::PFN_vkTransitionImageLayout,
+    pub vk_get_image_subresource_layout2: crate::vk::PFN_vkGetImageSubresourceLayout2,
+    pub vk_get_device_image_subresource_layout: crate::vk::PFN_vkGetDeviceImageSubresourceLayout,
+    pub vk_map_memory2: crate::vk::PFN_vkMapMemory2,
+    pub vk_unmap_memory2: crate::vk::PFN_vkUnmapMemory2,
+    pub vk_cmd_bind_descriptor_sets2: crate::vk::PFN_vkCmdBindDescriptorSets2,
+    pub vk_cmd_push_constants2: crate::vk::PFN_vkCmdPushConstants2,
+    pub vk_cmd_push_descriptor_set2: crate::vk::PFN_vkCmdPushDescriptorSet2,
+    pub vk_cmd_push_descriptor_set_with_template2: crate::vk::PFN_vkCmdPushDescriptorSetWithTemplate2,
+    pub vk_cmd_set_rendering_attachment_locations: crate::vk::PFN_vkCmdSetRenderingAttachmentLocations,
+    pub vk_cmd_set_rendering_input_attachment_indices: crate::vk::PFN_vkCmdSetRenderingInputAttachmentIndices,
+}

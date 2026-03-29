@@ -35,7 +35,7 @@ impl crate::vk::StructureType {
     pub const FRAMEBUFFER_MIXED_SAMPLES_COMBINATION_NV: Self = Self(1000250002);
 }
 #[repr(transparent)]
-#[derive(Clone, Copy)]
+#[derive(Clone, Copy, PartialEq, Eq, PartialOrd, Ord, Hash, Default)]
 pub struct CoverageReductionModeNV(pub(crate) i32);
 ///Provided by [`nv::coverage_reduction_mode`](crate::nv::coverage_reduction_mode)
 impl CoverageReductionModeNV {
@@ -46,5 +46,13 @@ bitflags::bitflags! {
     #[repr(transparent)] #[derive(Clone, Copy)] pub struct
     PipelineCoverageReductionStateCreateFlagsNV : u32 {}
 }
+pub type PFN_vkGetPhysicalDeviceSupportedFramebufferMixedSamplesCombinationsNV = unsafe extern "system" fn(
+    physical_device: crate::vk::PhysicalDevice,
+    p_combination_count: *mut u32,
+    p_combinations: *mut crate::vk::FramebufferMixedSamplesCombinationNV,
+) -> crate::vk::Result;
 pub const NV_COVERAGE_REDUCTION_MODE_SPEC_VERSION: u32 = 1;
 pub const NV_COVERAGE_REDUCTION_MODE_EXTENSION_NAME: &core::ffi::CStr = c"VK_NV_coverage_reduction_mode";
+pub struct InstanceFn {
+    pub vk_get_physical_device_supported_framebuffer_mixed_samples_combinations_nv: crate::vk::PFN_vkGetPhysicalDeviceSupportedFramebufferMixedSamplesCombinationsNV,
+}

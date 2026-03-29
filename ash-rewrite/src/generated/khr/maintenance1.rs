@@ -15,5 +15,9 @@ impl crate::vk::FormatFeatureFlagBits {
     pub const TRANSFER_DST_KHR: Self = Self::TRANSFER_DST;
 }
 pub type CommandPoolTrimFlagsKHR = crate::vk::CommandPoolTrimFlags;
+pub type PFN_vkTrimCommandPoolKHR = crate::vk::PFN_vkTrimCommandPool;
 pub const KHR_MAINTENANCE_1_SPEC_VERSION: u32 = 2;
 pub const KHR_MAINTENANCE_1_EXTENSION_NAME: &core::ffi::CStr = c"VK_KHR_maintenance1";
+pub struct DeviceFn {
+    pub vk_trim_command_pool_khr: crate::vk::PFN_vkTrimCommandPoolKHR,
+}

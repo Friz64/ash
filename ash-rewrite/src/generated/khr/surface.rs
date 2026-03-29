@@ -31,7 +31,7 @@ impl crate::vk::ObjectType {
     pub const SURFACE_KHR: Self = Self(1000000000);
 }
 #[repr(transparent)]
-#[derive(Clone, Copy)]
+#[derive(Clone, Copy, PartialEq, Eq, PartialOrd, Ord, Hash, Default)]
 pub struct PresentModeKHR(pub(crate) i32);
 ///Provided by [`khr::surface`](crate::khr::surface)
 impl PresentModeKHR {
@@ -41,7 +41,7 @@ impl PresentModeKHR {
     pub const FIFO_RELAXED_KHR: Self = Self(3);
 }
 #[repr(transparent)]
-#[derive(Clone, Copy)]
+#[derive(Clone, Copy, PartialEq, Eq, PartialOrd, Ord, Hash, Default)]
 pub struct ColorSpaceKHR(pub(crate) i32);
 ///Provided by [`khr::surface`](crate::khr::surface)
 impl ColorSpaceKHR {
@@ -91,5 +91,40 @@ impl core::fmt::Debug for SurfaceKHR {
         write!(f, "0x{:x}", self.0)
     }
 }
+pub type PFN_vkDestroySurfaceKHR = unsafe extern "system" fn(
+    instance: crate::vk::Instance,
+    surface: crate::vk::SurfaceKHR,
+    p_allocator: *const crate::vk::AllocationCallbacks,
+);
+pub type PFN_vkGetPhysicalDeviceSurfaceSupportKHR = unsafe extern "system" fn(
+    physical_device: crate::vk::PhysicalDevice,
+    queue_family_index: u32,
+    surface: crate::vk::SurfaceKHR,
+    p_supported: *mut crate::vk::Bool32,
+) -> crate::vk::Result;
+pub type PFN_vkGetPhysicalDeviceSurfaceCapabilitiesKHR = unsafe extern "system" fn(
+    physical_device: crate::vk::PhysicalDevice,
+    surface: crate::vk::SurfaceKHR,
+    p_surface_capabilities: *mut crate::vk::SurfaceCapabilitiesKHR,
+) -> crate::vk::Result;
+pub type PFN_vkGetPhysicalDeviceSurfaceFormatsKHR = unsafe extern "system" fn(
+    physical_device: crate::vk::PhysicalDevice,
+    surface: crate::vk::SurfaceKHR,
+    p_surface_format_count: *mut u32,
+    p_surface_formats: *mut crate::vk::SurfaceFormatKHR,
+) -> crate::vk::Result;
+pub type PFN_vkGetPhysicalDeviceSurfacePresentModesKHR = unsafe extern "system" fn(
+    physical_device: crate::vk::PhysicalDevice,
+    surface: crate::vk::SurfaceKHR,
+    p_present_mode_count: *mut u32,
+    p_present_modes: *mut crate::vk::PresentModeKHR,
+) -> crate::vk::Result;
 pub const KHR_SURFACE_SPEC_VERSION: u32 = 25;
 pub const KHR_SURFACE_EXTENSION_NAME: &core::ffi::CStr = c"VK_KHR_surface";
+pub struct InstanceFn {
+    pub vk_destroy_surface_khr: crate::vk::PFN_vkDestroySurfaceKHR,
+    pub vk_get_physical_device_surface_support_khr: crate::vk::PFN_vkGetPhysicalDeviceSurfaceSupportKHR,
+    pub vk_get_physical_device_surface_capabilities_khr: crate::vk::PFN_vkGetPhysicalDeviceSurfaceCapabilitiesKHR,
+    pub vk_get_physical_device_surface_formats_khr: crate::vk::PFN_vkGetPhysicalDeviceSurfaceFormatsKHR,
+    pub vk_get_physical_device_surface_present_modes_khr: crate::vk::PFN_vkGetPhysicalDeviceSurfacePresentModesKHR,
+}

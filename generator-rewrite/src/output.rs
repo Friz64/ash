@@ -12,20 +12,24 @@ use proc_macro2::TokenStream;
 use quote::{format_ident, quote};
 use std::{
     collections::{HashMap, HashSet},
+    hash::Hash,
     io, iter,
     path::{Path, PathBuf},
 };
 use syn::Ident;
 
 #[derive(Debug, Clone, Copy, PartialEq, Eq, Hash)]
-pub struct Destination {
-    pub library: LibraryName,
-    pub location: RequireLocation,
+pub enum Destination {
+    Library {
+        library: LibraryName,
+        location: RequireLocation,
+    },
+    Loader,
 }
 
 impl Destination {
-    pub fn new(required_by: RequiredBy) -> Destination {
-        Destination {
+    pub fn library(required_by: RequiredBy) -> Destination {
+        Destination::Library {
             library: required_by.library,
             // TODO: figure out secondary locations
             // we need to be generating type aliases or smth like that at those...
@@ -41,15 +45,22 @@ struct DestinationPathComponent {
 
 impl Destination {
     fn path_components(&self) -> Vec<DestinationPathComponent> {
-        match self.location {
-            RequireLocation::Core { major, minor } => vec![DestinationPathComponent {
+        match self {
+            Destination::Loader => vec![],
+            Destination::Library {
+                location: RequireLocation::Core { major, minor },
+                ..
+            } => vec![DestinationPathComponent {
                 module_name: format_ident!("vk{major}_{minor}"),
                 doc_comment: crate::refpage_doc(
                     &format!("VK_VERSION_{major}_{minor}"),
                     format!("Vulkan version {major}.{minor}"),
                 ),
             }],
-            RequireLocation::Extension { name } => match self.library {
+            Destination::Library {
+                location: RequireLocation::Extension { name },
+                library,
+            } => match library {
                 LibraryName::Vk => {
                     let vulkan_ext = name.strip_prefix("VK_").unwrap();
                     let (ext_tag, ext_name) = vulkan_ext.split_once('_').unwrap();
@@ -89,26 +100,33 @@ impl Destination {
     }
 }
 
-#[derive(Default)]
-pub struct CodeMap(IndexMap<Destination, TokenStream>);
+pub struct CodeMap<K = Destination>(IndexMap<K, TokenStream>);
 
-impl CodeMap {
-    pub fn new(destination: Destination, tokens: TokenStream) -> CodeMap {
+impl<K> Default for CodeMap<K> {
+    fn default() -> Self {
+        CodeMap(IndexMap::new())
+    }
+}
+
+impl<K: Hash + Eq> CodeMap<K> {
+    pub fn new(key: K, tokens: TokenStream) -> Self {
         let mut map = IndexMap::with_capacity(1);
-        map.insert(destination, tokens);
+        map.insert(key, tokens);
         CodeMap(map)
     }
 
-    pub fn extend(&mut self, other: CodeMap) {
+    pub fn extend(&mut self, other: Self) {
         for (destination, tokens) in other.0 {
             self.0.entry(destination).or_default().extend(tokens);
         }
     }
 
-    pub fn iter(&self) -> impl Iterator<Item = (&Destination, &TokenStream)> {
+    pub fn iter(&self) -> impl Iterator<Item = (&K, &TokenStream)> {
         self.0.iter()
     }
+}
 
+impl CodeMap<Destination> {
     pub fn write(&self, output_path: impl AsRef<Path>) -> io::Result<()> {
         let mut vfs = VirtualRustFs::default();
         vfs.write(
@@ -122,12 +140,20 @@ impl CodeMap {
         // foo/bar/mod.rs -> (doc comment, child modules)
         let mut mod_files: HashMap<PathBuf, (Option<String>, HashSet<_>)> = Default::default();
         for (destination, content) in self.iter() {
-            let sort_pref = match destination.location {
-                RequireLocation::Core { .. } => 0,
-                RequireLocation::Extension { .. } => 1,
+            // This influences the order in which impl blocks show up in rustdoc
+            let sort_pref = match destination {
+                Destination::Library { location, .. } => match location {
+                    RequireLocation::Core { .. } => 0,
+                    RequireLocation::Extension { .. } => 1,
+                },
+                Destination::Loader => 2,
             };
 
             let components = destination.path_components();
+            if components.is_empty() {
+                vfs.write("mod.rs", content.clone());
+                continue;
+            }
 
             let doc = &components.last().unwrap().doc_comment;
             let mut path = PathBuf::from_iter(

@@ -50,5 +50,20 @@ impl crate::vk::QueryPipelineStatisticFlagBits {
 impl crate::vk::PipelineStageFlagBits2 {
     pub const CLUSTER_CULLING_SHADER_HUAWEI: Self = Self(1 << 41);
 }
+pub type PFN_vkCmdDrawClusterHUAWEI = unsafe extern "system" fn(
+    command_buffer: crate::vk::CommandBuffer,
+    group_count_x: u32,
+    group_count_y: u32,
+    group_count_z: u32,
+);
+pub type PFN_vkCmdDrawClusterIndirectHUAWEI = unsafe extern "system" fn(
+    command_buffer: crate::vk::CommandBuffer,
+    buffer: crate::vk::Buffer,
+    offset: crate::vk::DeviceSize,
+);
 pub const HUAWEI_CLUSTER_CULLING_SHADER_SPEC_VERSION: u32 = 3;
 pub const HUAWEI_CLUSTER_CULLING_SHADER_EXTENSION_NAME: &core::ffi::CStr = c"VK_HUAWEI_cluster_culling_shader";
+pub struct DeviceFn {
+    pub vk_cmd_draw_cluster_huawei: crate::vk::PFN_vkCmdDrawClusterHUAWEI,
+    pub vk_cmd_draw_cluster_indirect_huawei: crate::vk::PFN_vkCmdDrawClusterIndirectHUAWEI,
+}

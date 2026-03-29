@@ -40,5 +40,9 @@ impl crate::vk::BufferUsageFlagBits {
 impl crate::vk::BufferCreateFlagBits {
     pub const DEVICE_ADDRESS_CAPTURE_REPLAY_EXT: Self = Self::DEVICE_ADDRESS_CAPTURE_REPLAY;
 }
+pub type PFN_vkGetBufferDeviceAddressEXT = crate::vk::PFN_vkGetBufferDeviceAddress;
 pub const EXT_BUFFER_DEVICE_ADDRESS_SPEC_VERSION: u32 = 2;
 pub const EXT_BUFFER_DEVICE_ADDRESS_EXTENSION_NAME: &core::ffi::CStr = c"VK_EXT_buffer_device_address";
+pub struct DeviceFn {
+    pub vk_get_buffer_device_address_ext: crate::vk::PFN_vkGetBufferDeviceAddressEXT,
+}

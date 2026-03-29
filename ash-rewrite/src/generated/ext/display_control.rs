@@ -37,7 +37,7 @@ impl crate::vk::StructureType {
     pub const SWAPCHAIN_COUNTER_CREATE_INFO_EXT: Self = Self(1000091003);
 }
 #[repr(transparent)]
-#[derive(Clone, Copy)]
+#[derive(Clone, Copy, PartialEq, Eq, PartialOrd, Ord, Hash, Default)]
 pub struct DisplayPowerStateEXT(pub(crate) i32);
 ///Provided by [`ext::display_control`](crate::ext::display_control)
 impl DisplayPowerStateEXT {
@@ -46,18 +46,48 @@ impl DisplayPowerStateEXT {
     pub const ON_EXT: Self = Self(2);
 }
 #[repr(transparent)]
-#[derive(Clone, Copy)]
+#[derive(Clone, Copy, PartialEq, Eq, PartialOrd, Ord, Hash, Default)]
 pub struct DeviceEventTypeEXT(pub(crate) i32);
 ///Provided by [`ext::display_control`](crate::ext::display_control)
 impl DeviceEventTypeEXT {
     pub const DISPLAY_HOTPLUG_EXT: Self = Self(0);
 }
 #[repr(transparent)]
-#[derive(Clone, Copy)]
+#[derive(Clone, Copy, PartialEq, Eq, PartialOrd, Ord, Hash, Default)]
 pub struct DisplayEventTypeEXT(pub(crate) i32);
 ///Provided by [`ext::display_control`](crate::ext::display_control)
 impl DisplayEventTypeEXT {
     pub const FIRST_PIXEL_OUT_EXT: Self = Self(0);
 }
+pub type PFN_vkDisplayPowerControlEXT = unsafe extern "system" fn(
+    device: crate::vk::Device,
+    display: crate::vk::DisplayKHR,
+    p_display_power_info: *const crate::vk::DisplayPowerInfoEXT,
+) -> crate::vk::Result;
+pub type PFN_vkRegisterDeviceEventEXT = unsafe extern "system" fn(
+    device: crate::vk::Device,
+    p_device_event_info: *const crate::vk::DeviceEventInfoEXT,
+    p_allocator: *const crate::vk::AllocationCallbacks,
+    p_fence: *mut crate::vk::Fence,
+) -> crate::vk::Result;
+pub type PFN_vkRegisterDisplayEventEXT = unsafe extern "system" fn(
+    device: crate::vk::Device,
+    display: crate::vk::DisplayKHR,
+    p_display_event_info: *const crate::vk::DisplayEventInfoEXT,
+    p_allocator: *const crate::vk::AllocationCallbacks,
+    p_fence: *mut crate::vk::Fence,
+) -> crate::vk::Result;
+pub type PFN_vkGetSwapchainCounterEXT = unsafe extern "system" fn(
+    device: crate::vk::Device,
+    swapchain: crate::vk::SwapchainKHR,
+    counter: crate::vk::SurfaceCounterFlagBitsEXT,
+    p_counter_value: *mut u64,
+) -> crate::vk::Result;
 pub const EXT_DISPLAY_CONTROL_SPEC_VERSION: u32 = 1;
 pub const EXT_DISPLAY_CONTROL_EXTENSION_NAME: &core::ffi::CStr = c"VK_EXT_display_control";
+pub struct DeviceFn {
+    pub vk_display_power_control_ext: crate::vk::PFN_vkDisplayPowerControlEXT,
+    pub vk_register_device_event_ext: crate::vk::PFN_vkRegisterDeviceEventEXT,
+    pub vk_register_display_event_ext: crate::vk::PFN_vkRegisterDisplayEventEXT,
+    pub vk_get_swapchain_counter_ext: crate::vk::PFN_vkGetSwapchainCounterEXT,
+}

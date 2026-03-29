@@ -13,7 +13,7 @@ impl crate::vk::StructureType {
     pub const DEVICE_MEMORY_OVERALLOCATION_CREATE_INFO_AMD: Self = Self(1000189000);
 }
 #[repr(transparent)]
-#[derive(Clone, Copy)]
+#[derive(Clone, Copy, PartialEq, Eq, PartialOrd, Ord, Hash, Default)]
 pub struct MemoryOverallocationBehaviorAMD(pub(crate) i32);
 ///Provided by [`amd::memory_overallocation_behavior`](crate::amd::memory_overallocation_behavior)
 impl MemoryOverallocationBehaviorAMD {

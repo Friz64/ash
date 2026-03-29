@@ -18,5 +18,20 @@ bitflags::bitflags! {
     #[repr(transparent)] #[derive(Clone, Copy)] pub struct WaylandSurfaceCreateFlagsKHR :
     u32 {}
 }
+pub type PFN_vkCreateWaylandSurfaceKHR = unsafe extern "system" fn(
+    instance: crate::vk::Instance,
+    p_create_info: *const crate::vk::WaylandSurfaceCreateInfoKHR,
+    p_allocator: *const crate::vk::AllocationCallbacks,
+    p_surface: *mut crate::vk::SurfaceKHR,
+) -> crate::vk::Result;
+pub type PFN_vkGetPhysicalDeviceWaylandPresentationSupportKHR = unsafe extern "system" fn(
+    physical_device: crate::vk::PhysicalDevice,
+    queue_family_index: u32,
+    display: *mut crate::platform_types::wl_display,
+) -> crate::vk::Bool32;
 pub const KHR_WAYLAND_SURFACE_SPEC_VERSION: u32 = 6;
 pub const KHR_WAYLAND_SURFACE_EXTENSION_NAME: &core::ffi::CStr = c"VK_KHR_wayland_surface";
+pub struct InstanceFn {
+    pub vk_create_wayland_surface_khr: crate::vk::PFN_vkCreateWaylandSurfaceKHR,
+    pub vk_get_physical_device_wayland_presentation_support_khr: crate::vk::PFN_vkGetPhysicalDeviceWaylandPresentationSupportKHR,
+}

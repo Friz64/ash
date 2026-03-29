@@ -23,5 +23,29 @@ impl crate::vk::StructureType {
     pub const IMAGE_VIEW_HANDLE_INFO_NVX: Self = Self(1000030000);
     pub const IMAGE_VIEW_ADDRESS_PROPERTIES_NVX: Self = Self(1000030001);
 }
+pub type PFN_vkGetImageViewHandleNVX = unsafe extern "system" fn(
+    device: crate::vk::Device,
+    p_info: *const crate::vk::ImageViewHandleInfoNVX,
+) -> u32;
+pub type PFN_vkGetImageViewHandle64NVX = unsafe extern "system" fn(
+    device: crate::vk::Device,
+    p_info: *const crate::vk::ImageViewHandleInfoNVX,
+) -> u64;
+pub type PFN_vkGetImageViewAddressNVX = unsafe extern "system" fn(
+    device: crate::vk::Device,
+    image_view: crate::vk::ImageView,
+    p_properties: *mut crate::vk::ImageViewAddressPropertiesNVX,
+) -> crate::vk::Result;
+pub type PFN_vkGetDeviceCombinedImageSamplerIndexNVX = unsafe extern "system" fn(
+    device: crate::vk::Device,
+    image_view_index: u64,
+    sampler_index: u64,
+) -> u64;
 pub const NVX_IMAGE_VIEW_HANDLE_SPEC_VERSION: u32 = 4;
 pub const NVX_IMAGE_VIEW_HANDLE_EXTENSION_NAME: &core::ffi::CStr = c"VK_NVX_image_view_handle";
+pub struct DeviceFn {
+    pub vk_get_image_view_handle_nvx: crate::vk::PFN_vkGetImageViewHandleNVX,
+    pub vk_get_image_view_handle64_nvx: crate::vk::PFN_vkGetImageViewHandle64NVX,
+    pub vk_get_image_view_address_nvx: crate::vk::PFN_vkGetImageViewAddressNVX,
+    pub vk_get_device_combined_image_sampler_index_nvx: crate::vk::PFN_vkGetDeviceCombinedImageSamplerIndexNVX,
+}

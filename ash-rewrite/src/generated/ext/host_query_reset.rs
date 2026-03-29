@@ -6,5 +6,9 @@ pub type PhysicalDeviceHostQueryResetFeaturesEXT = crate::vk::PhysicalDeviceHost
 impl crate::vk::StructureType {
     pub const PHYSICAL_DEVICE_HOST_QUERY_RESET_FEATURES_EXT: Self = Self::PHYSICAL_DEVICE_HOST_QUERY_RESET_FEATURES;
 }
+pub type PFN_vkResetQueryPoolEXT = crate::vk::PFN_vkResetQueryPool;
 pub const EXT_HOST_QUERY_RESET_SPEC_VERSION: u32 = 1;
 pub const EXT_HOST_QUERY_RESET_EXTENSION_NAME: &core::ffi::CStr = c"VK_EXT_host_query_reset";
+pub struct DeviceFn {
+    pub vk_reset_query_pool_ext: crate::vk::PFN_vkResetQueryPoolEXT,
+}

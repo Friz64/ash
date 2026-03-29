@@ -85,7 +85,7 @@ impl crate::vk::StructureType {
     pub const PERFORMANCE_COUNTER_DESCRIPTION_KHR: Self = Self(1000116006);
 }
 #[repr(transparent)]
-#[derive(Clone, Copy)]
+#[derive(Clone, Copy, PartialEq, Eq, PartialOrd, Ord, Hash, Default)]
 pub struct PerformanceCounterScopeKHR(pub(crate) i32);
 ///Provided by [`khr::performance_query`](crate::khr::performance_query)
 impl PerformanceCounterScopeKHR {
@@ -94,7 +94,7 @@ impl PerformanceCounterScopeKHR {
     pub const COMMAND_KHR: Self = Self(2);
 }
 #[repr(transparent)]
-#[derive(Clone, Copy)]
+#[derive(Clone, Copy, PartialEq, Eq, PartialOrd, Ord, Hash, Default)]
 pub struct PerformanceCounterUnitKHR(pub(crate) i32);
 ///Provided by [`khr::performance_query`](crate::khr::performance_query)
 impl PerformanceCounterUnitKHR {
@@ -111,7 +111,7 @@ impl PerformanceCounterUnitKHR {
     pub const CYCLES_KHR: Self = Self(10);
 }
 #[repr(transparent)]
-#[derive(Clone, Copy)]
+#[derive(Clone, Copy, PartialEq, Eq, PartialOrd, Ord, Hash, Default)]
 pub struct PerformanceCounterStorageKHR(pub(crate) i32);
 ///Provided by [`khr::performance_query`](crate::khr::performance_query)
 impl PerformanceCounterStorageKHR {
@@ -144,5 +144,32 @@ bitflags::bitflags! {
 #[repr(transparent)]
 #[derive(Clone, Copy)]
 pub struct AcquireProfilingLockFlagBitsKHR(pub(crate) u32);
+pub type PFN_vkEnumeratePhysicalDeviceQueueFamilyPerformanceQueryCountersKHR = unsafe extern "system" fn(
+    physical_device: crate::vk::PhysicalDevice,
+    queue_family_index: u32,
+    p_counter_count: *mut u32,
+    p_counters: *mut crate::vk::PerformanceCounterKHR,
+    p_counter_descriptions: *mut crate::vk::PerformanceCounterDescriptionKHR,
+) -> crate::vk::Result;
+pub type PFN_vkGetPhysicalDeviceQueueFamilyPerformanceQueryPassesKHR = unsafe extern "system" fn(
+    physical_device: crate::vk::PhysicalDevice,
+    p_performance_query_create_info: *const crate::vk::QueryPoolPerformanceCreateInfoKHR,
+    p_num_passes: *mut u32,
+);
+pub type PFN_vkAcquireProfilingLockKHR = unsafe extern "system" fn(
+    device: crate::vk::Device,
+    p_info: *const crate::vk::AcquireProfilingLockInfoKHR,
+) -> crate::vk::Result;
+pub type PFN_vkReleaseProfilingLockKHR = unsafe extern "system" fn(
+    device: crate::vk::Device,
+);
 pub const KHR_PERFORMANCE_QUERY_SPEC_VERSION: u32 = 1;
 pub const KHR_PERFORMANCE_QUERY_EXTENSION_NAME: &core::ffi::CStr = c"VK_KHR_performance_query";
+pub struct InstanceFn {
+    pub vk_enumerate_physical_device_queue_family_performance_query_counters_khr: crate::vk::PFN_vkEnumeratePhysicalDeviceQueueFamilyPerformanceQueryCountersKHR,
+    pub vk_get_physical_device_queue_family_performance_query_passes_khr: crate::vk::PFN_vkGetPhysicalDeviceQueueFamilyPerformanceQueryPassesKHR,
+}
+pub struct DeviceFn {
+    pub vk_acquire_profiling_lock_khr: crate::vk::PFN_vkAcquireProfilingLockKHR,
+    pub vk_release_profiling_lock_khr: crate::vk::PFN_vkReleaseProfilingLockKHR,
+}

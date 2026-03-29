@@ -14,5 +14,13 @@ impl crate::vk::StructureType {
         1000412000,
     );
 }
+pub type PFN_vkSetDeviceMemoryPriorityEXT = unsafe extern "system" fn(
+    device: crate::vk::Device,
+    memory: crate::vk::DeviceMemory,
+    priority: core::ffi::c_float,
+);
 pub const EXT_PAGEABLE_DEVICE_LOCAL_MEMORY_SPEC_VERSION: u32 = 1;
 pub const EXT_PAGEABLE_DEVICE_LOCAL_MEMORY_EXTENSION_NAME: &core::ffi::CStr = c"VK_EXT_pageable_device_local_memory";
+pub struct DeviceFn {
+    pub vk_set_device_memory_priority_ext: crate::vk::PFN_vkSetDeviceMemoryPriorityEXT,
+}

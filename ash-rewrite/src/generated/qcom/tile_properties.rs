@@ -22,5 +22,20 @@ impl crate::vk::StructureType {
     pub const PHYSICAL_DEVICE_TILE_PROPERTIES_FEATURES_QCOM: Self = Self(1000484000);
     pub const TILE_PROPERTIES_QCOM: Self = Self(1000484001);
 }
+pub type PFN_vkGetFramebufferTilePropertiesQCOM = unsafe extern "system" fn(
+    device: crate::vk::Device,
+    framebuffer: crate::vk::Framebuffer,
+    p_properties_count: *mut u32,
+    p_properties: *mut crate::vk::TilePropertiesQCOM,
+) -> crate::vk::Result;
+pub type PFN_vkGetDynamicRenderingTilePropertiesQCOM = unsafe extern "system" fn(
+    device: crate::vk::Device,
+    p_rendering_info: *const crate::vk::RenderingInfo,
+    p_properties: *mut crate::vk::TilePropertiesQCOM,
+) -> crate::vk::Result;
 pub const QCOM_TILE_PROPERTIES_SPEC_VERSION: u32 = 1;
 pub const QCOM_TILE_PROPERTIES_EXTENSION_NAME: &core::ffi::CStr = c"VK_QCOM_tile_properties";
+pub struct DeviceFn {
+    pub vk_get_framebuffer_tile_properties_qcom: crate::vk::PFN_vkGetFramebufferTilePropertiesQCOM,
+    pub vk_get_dynamic_rendering_tile_properties_qcom: crate::vk::PFN_vkGetDynamicRenderingTilePropertiesQCOM,
+}

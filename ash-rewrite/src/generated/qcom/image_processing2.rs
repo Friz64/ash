@@ -32,7 +32,7 @@ impl crate::vk::StructureType {
     pub const SAMPLER_BLOCK_MATCH_WINDOW_CREATE_INFO_QCOM: Self = Self(1000518002);
 }
 #[repr(transparent)]
-#[derive(Clone, Copy)]
+#[derive(Clone, Copy, PartialEq, Eq, PartialOrd, Ord, Hash, Default)]
 pub struct BlockMatchWindowCompareModeQCOM(pub(crate) i32);
 ///Provided by [`qcom::image_processing2`](crate::qcom::image_processing2)
 impl BlockMatchWindowCompareModeQCOM {

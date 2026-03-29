@@ -361,7 +361,7 @@ pub struct StdVideoH265PictureParameterSet {
     pub p_predictor_palette_entries: *const crate::vk::StdVideoH265PredictorPaletteEntries,
 }
 #[repr(transparent)]
-#[derive(Clone, Copy)]
+#[derive(Clone, Copy, PartialEq, Eq, PartialOrd, Ord, Hash, Default)]
 pub struct StdVideoH265ChromaFormatIdc(pub(crate) i32);
 ///Provided by [`video::codec_h265std`](crate::video::codec_h265std)
 impl StdVideoH265ChromaFormatIdc {
@@ -372,7 +372,7 @@ impl StdVideoH265ChromaFormatIdc {
     pub const INVALID: Self = Self(0x7FFFFFF);
 }
 #[repr(transparent)]
-#[derive(Clone, Copy)]
+#[derive(Clone, Copy, PartialEq, Eq, PartialOrd, Ord, Hash, Default)]
 pub struct StdVideoH265ProfileIdc(pub(crate) i32);
 ///Provided by [`video::codec_h265std`](crate::video::codec_h265std)
 impl StdVideoH265ProfileIdc {
@@ -384,7 +384,7 @@ impl StdVideoH265ProfileIdc {
     pub const INVALID: Self = Self(0x7FFFFFF);
 }
 #[repr(transparent)]
-#[derive(Clone, Copy)]
+#[derive(Clone, Copy, PartialEq, Eq, PartialOrd, Ord, Hash, Default)]
 pub struct StdVideoH265LevelIdc(pub(crate) i32);
 ///Provided by [`video::codec_h265std`](crate::video::codec_h265std)
 impl StdVideoH265LevelIdc {
@@ -404,7 +404,7 @@ impl StdVideoH265LevelIdc {
     pub const INVALID: Self = Self(0x7FFFFFF);
 }
 #[repr(transparent)]
-#[derive(Clone, Copy)]
+#[derive(Clone, Copy, PartialEq, Eq, PartialOrd, Ord, Hash, Default)]
 pub struct StdVideoH265SliceType(pub(crate) i32);
 ///Provided by [`video::codec_h265std`](crate::video::codec_h265std)
 impl StdVideoH265SliceType {
@@ -414,7 +414,7 @@ impl StdVideoH265SliceType {
     pub const INVALID: Self = Self(0x7FFFFFF);
 }
 #[repr(transparent)]
-#[derive(Clone, Copy)]
+#[derive(Clone, Copy, PartialEq, Eq, PartialOrd, Ord, Hash, Default)]
 pub struct StdVideoH265PictureType(pub(crate) i32);
 ///Provided by [`video::codec_h265std`](crate::video::codec_h265std)
 impl StdVideoH265PictureType {
@@ -425,7 +425,7 @@ impl StdVideoH265PictureType {
     pub const INVALID: Self = Self(0x7FFFFFF);
 }
 #[repr(transparent)]
-#[derive(Clone, Copy)]
+#[derive(Clone, Copy, PartialEq, Eq, PartialOrd, Ord, Hash, Default)]
 pub struct StdVideoH265AspectRatioIdc(pub(crate) i32);
 ///Provided by [`video::codec_h265std`](crate::video::codec_h265std)
 impl StdVideoH265AspectRatioIdc {

@@ -26,7 +26,7 @@ impl crate::vk::StructureType {
     );
 }
 #[repr(transparent)]
-#[derive(Clone, Copy)]
+#[derive(Clone, Copy, PartialEq, Eq, PartialOrd, Ord, Hash, Default)]
 pub struct RayTracingInvocationReorderModeEXT(pub(crate) i32);
 ///Provided by [`ext::ray_tracing_invocation_reorder`](crate::ext::ray_tracing_invocation_reorder)
 impl RayTracingInvocationReorderModeEXT {

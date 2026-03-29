@@ -16,5 +16,14 @@ bitflags::bitflags! {
     #[repr(transparent)] #[derive(Clone, Copy)] pub struct HeadlessSurfaceCreateFlagsEXT
     : u32 {}
 }
+pub type PFN_vkCreateHeadlessSurfaceEXT = unsafe extern "system" fn(
+    instance: crate::vk::Instance,
+    p_create_info: *const crate::vk::HeadlessSurfaceCreateInfoEXT,
+    p_allocator: *const crate::vk::AllocationCallbacks,
+    p_surface: *mut crate::vk::SurfaceKHR,
+) -> crate::vk::Result;
 pub const EXT_HEADLESS_SURFACE_SPEC_VERSION: u32 = 1;
 pub const EXT_HEADLESS_SURFACE_EXTENSION_NAME: &core::ffi::CStr = c"VK_EXT_headless_surface";
+pub struct InstanceFn {
+    pub vk_create_headless_surface_ext: crate::vk::PFN_vkCreateHeadlessSurfaceEXT,
+}

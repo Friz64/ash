@@ -46,5 +46,18 @@ impl crate::vk::StructureType {
     pub const D3D12_FENCE_SUBMIT_INFO_KHR: Self = Self(1000078002);
     pub const SEMAPHORE_GET_WIN32_HANDLE_INFO_KHR: Self = Self(1000078003);
 }
+pub type PFN_vkGetSemaphoreWin32HandleKHR = unsafe extern "system" fn(
+    device: crate::vk::Device,
+    p_get_win32_handle_info: *const crate::vk::SemaphoreGetWin32HandleInfoKHR,
+    p_handle: *mut crate::platform_types::HANDLE,
+) -> crate::vk::Result;
+pub type PFN_vkImportSemaphoreWin32HandleKHR = unsafe extern "system" fn(
+    device: crate::vk::Device,
+    p_import_semaphore_win32_handle_info: *const crate::vk::ImportSemaphoreWin32HandleInfoKHR,
+) -> crate::vk::Result;
 pub const KHR_EXTERNAL_SEMAPHORE_WIN32_SPEC_VERSION: u32 = 1;
 pub const KHR_EXTERNAL_SEMAPHORE_WIN32_EXTENSION_NAME: &core::ffi::CStr = c"VK_KHR_external_semaphore_win32";
+pub struct DeviceFn {
+    pub vk_get_semaphore_win32_handle_khr: crate::vk::PFN_vkGetSemaphoreWin32HandleKHR,
+    pub vk_import_semaphore_win32_handle_khr: crate::vk::PFN_vkImportSemaphoreWin32HandleKHR,
+}

@@ -59,5 +59,13 @@ impl crate::vk::StructureType {
 impl crate::vk::ExternalMemoryHandleTypeFlagBits {
     pub const SCREEN_BUFFER_QNX: Self = Self(1 << 14);
 }
+pub type PFN_vkGetScreenBufferPropertiesQNX = unsafe extern "system" fn(
+    device: crate::vk::Device,
+    buffer: *const crate::platform_types::_screen_buffer,
+    p_properties: *mut crate::vk::ScreenBufferPropertiesQNX,
+) -> crate::vk::Result;
 pub const QNX_EXTERNAL_MEMORY_SCREEN_BUFFER_SPEC_VERSION: u32 = 1;
 pub const QNX_EXTERNAL_MEMORY_SCREEN_BUFFER_EXTENSION_NAME: &core::ffi::CStr = c"VK_QNX_external_memory_screen_buffer";
+pub struct DeviceFn {
+    pub vk_get_screen_buffer_properties_qnx: crate::vk::PFN_vkGetScreenBufferPropertiesQNX,
+}

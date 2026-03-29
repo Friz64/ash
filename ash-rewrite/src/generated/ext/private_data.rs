@@ -16,5 +16,15 @@ impl crate::vk::ObjectType {
 }
 pub type PrivateDataSlotCreateFlagsEXT = crate::vk::PrivateDataSlotCreateFlags;
 pub type PrivateDataSlotEXT = crate::vk::PrivateDataSlot;
+pub type PFN_vkCreatePrivateDataSlotEXT = crate::vk::PFN_vkCreatePrivateDataSlot;
+pub type PFN_vkDestroyPrivateDataSlotEXT = crate::vk::PFN_vkDestroyPrivateDataSlot;
+pub type PFN_vkSetPrivateDataEXT = crate::vk::PFN_vkSetPrivateData;
+pub type PFN_vkGetPrivateDataEXT = crate::vk::PFN_vkGetPrivateData;
 pub const EXT_PRIVATE_DATA_SPEC_VERSION: u32 = 1;
 pub const EXT_PRIVATE_DATA_EXTENSION_NAME: &core::ffi::CStr = c"VK_EXT_private_data";
+pub struct DeviceFn {
+    pub vk_create_private_data_slot_ext: crate::vk::PFN_vkCreatePrivateDataSlotEXT,
+    pub vk_destroy_private_data_slot_ext: crate::vk::PFN_vkDestroyPrivateDataSlotEXT,
+    pub vk_set_private_data_ext: crate::vk::PFN_vkSetPrivateDataEXT,
+    pub vk_get_private_data_ext: crate::vk::PFN_vkGetPrivateDataEXT,
+}

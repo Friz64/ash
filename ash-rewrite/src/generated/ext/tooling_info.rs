@@ -18,5 +18,9 @@ impl crate::vk::ToolPurposeFlagBits {
     pub const DEBUG_MARKERS_EXT: Self = Self(1 << 6);
 }
 pub type ToolPurposeFlagsEXT = crate::vk::ToolPurposeFlags;
+pub type PFN_vkGetPhysicalDeviceToolPropertiesEXT = crate::vk::PFN_vkGetPhysicalDeviceToolProperties;
 pub const EXT_TOOLING_INFO_SPEC_VERSION: u32 = 1;
 pub const EXT_TOOLING_INFO_EXTENSION_NAME: &core::ffi::CStr = c"VK_EXT_tooling_info";
+pub struct InstanceFn {
+    pub vk_get_physical_device_tool_properties_ext: crate::vk::PFN_vkGetPhysicalDeviceToolPropertiesEXT,
+}

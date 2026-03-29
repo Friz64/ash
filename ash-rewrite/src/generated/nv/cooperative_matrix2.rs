@@ -49,5 +49,13 @@ impl crate::vk::StructureType {
         1000593002,
     );
 }
+pub type PFN_vkGetPhysicalDeviceCooperativeMatrixFlexibleDimensionsPropertiesNV = unsafe extern "system" fn(
+    physical_device: crate::vk::PhysicalDevice,
+    p_property_count: *mut u32,
+    p_properties: *mut crate::vk::CooperativeMatrixFlexibleDimensionsPropertiesNV,
+) -> crate::vk::Result;
 pub const NV_COOPERATIVE_MATRIX_2_SPEC_VERSION: u32 = 1;
 pub const NV_COOPERATIVE_MATRIX_2_EXTENSION_NAME: &core::ffi::CStr = c"VK_NV_cooperative_matrix2";
+pub struct InstanceFn {
+    pub vk_get_physical_device_cooperative_matrix_flexible_dimensions_properties_nv: crate::vk::PFN_vkGetPhysicalDeviceCooperativeMatrixFlexibleDimensionsPropertiesNV,
+}

@@ -87,5 +87,17 @@ impl AddressCopyFlagBitsKHR {
     pub const SPARSE_KHR: Self = Self(1 << 1);
     pub const PROTECTED_KHR: Self = Self(1 << 2);
 }
+pub type PFN_vkCmdCopyMemoryIndirectKHR = unsafe extern "system" fn(
+    command_buffer: crate::vk::CommandBuffer,
+    p_copy_memory_indirect_info: *const crate::vk::CopyMemoryIndirectInfoKHR,
+);
+pub type PFN_vkCmdCopyMemoryToImageIndirectKHR = unsafe extern "system" fn(
+    command_buffer: crate::vk::CommandBuffer,
+    p_copy_memory_to_image_indirect_info: *const crate::vk::CopyMemoryToImageIndirectInfoKHR,
+);
 pub const KHR_COPY_MEMORY_INDIRECT_SPEC_VERSION: u32 = 1;
 pub const KHR_COPY_MEMORY_INDIRECT_EXTENSION_NAME: &core::ffi::CStr = c"VK_KHR_copy_memory_indirect";
+pub struct DeviceFn {
+    pub vk_cmd_copy_memory_indirect_khr: crate::vk::PFN_vkCmdCopyMemoryIndirectKHR,
+    pub vk_cmd_copy_memory_to_image_indirect_khr: crate::vk::PFN_vkCmdCopyMemoryToImageIndirectKHR,
+}

@@ -22,5 +22,13 @@ impl crate::vk::StructureType {
     pub const PHYSICAL_DEVICE_PIPELINE_PROPERTIES_FEATURES_EXT: Self = Self(1000372001);
     pub const PIPELINE_INFO_EXT: Self = Self::PIPELINE_INFO_KHR;
 }
+pub type PFN_vkGetPipelinePropertiesEXT = unsafe extern "system" fn(
+    device: crate::vk::Device,
+    p_pipeline_info: *const crate::vk::PipelineInfoEXT,
+    p_pipeline_properties: *mut crate::vk::BaseOutStructure,
+) -> crate::vk::Result;
 pub const EXT_PIPELINE_PROPERTIES_SPEC_VERSION: u32 = 1;
 pub const EXT_PIPELINE_PROPERTIES_EXTENSION_NAME: &core::ffi::CStr = c"VK_EXT_pipeline_properties";
+pub struct DeviceFn {
+    pub vk_get_pipeline_properties_ext: crate::vk::PFN_vkGetPipelinePropertiesEXT,
+}

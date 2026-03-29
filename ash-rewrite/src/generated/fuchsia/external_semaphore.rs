@@ -28,5 +28,18 @@ impl crate::vk::StructureType {
 impl crate::vk::ExternalSemaphoreHandleTypeFlagBits {
     pub const ZIRCON_EVENT_FUCHSIA: Self = Self(1 << 7);
 }
+pub type PFN_vkGetSemaphoreZirconHandleFUCHSIA = unsafe extern "system" fn(
+    device: crate::vk::Device,
+    p_get_zircon_handle_info: *const crate::vk::SemaphoreGetZirconHandleInfoFUCHSIA,
+    p_zircon_handle: *mut crate::platform_types::zx_handle_t,
+) -> crate::vk::Result;
+pub type PFN_vkImportSemaphoreZirconHandleFUCHSIA = unsafe extern "system" fn(
+    device: crate::vk::Device,
+    p_import_semaphore_zircon_handle_info: *const crate::vk::ImportSemaphoreZirconHandleInfoFUCHSIA,
+) -> crate::vk::Result;
 pub const FUCHSIA_EXTERNAL_SEMAPHORE_SPEC_VERSION: u32 = 1;
 pub const FUCHSIA_EXTERNAL_SEMAPHORE_EXTENSION_NAME: &core::ffi::CStr = c"VK_FUCHSIA_external_semaphore";
+pub struct DeviceFn {
+    pub vk_get_semaphore_zircon_handle_fuchsia: crate::vk::PFN_vkGetSemaphoreZirconHandleFUCHSIA,
+    pub vk_import_semaphore_zircon_handle_fuchsia: crate::vk::PFN_vkImportSemaphoreZirconHandleFUCHSIA,
+}

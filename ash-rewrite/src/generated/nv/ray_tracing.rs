@@ -188,7 +188,7 @@ impl crate::vk::GeometryTypeKHR {
     pub const AABBS_NV: Self = Self::AABBS_KHR;
 }
 #[repr(transparent)]
-#[derive(Clone, Copy)]
+#[derive(Clone, Copy, PartialEq, Eq, PartialOrd, Ord, Hash, Default)]
 pub struct AccelerationStructureMemoryRequirementsTypeNV(pub(crate) i32);
 ///Provided by [`nv::ray_tracing`](crate::nv::ray_tracing)
 impl AccelerationStructureMemoryRequirementsTypeNV {
@@ -286,5 +286,102 @@ impl core::fmt::Debug for AccelerationStructureNV {
         write!(f, "0x{:x}", self.0)
     }
 }
+pub type PFN_vkCompileDeferredNV = unsafe extern "system" fn(
+    device: crate::vk::Device,
+    pipeline: crate::vk::Pipeline,
+    shader: u32,
+) -> crate::vk::Result;
+pub type PFN_vkCreateAccelerationStructureNV = unsafe extern "system" fn(
+    device: crate::vk::Device,
+    p_create_info: *const crate::vk::AccelerationStructureCreateInfoNV,
+    p_allocator: *const crate::vk::AllocationCallbacks,
+    p_acceleration_structure: *mut crate::vk::AccelerationStructureNV,
+) -> crate::vk::Result;
+pub type PFN_vkDestroyAccelerationStructureNV = unsafe extern "system" fn(
+    device: crate::vk::Device,
+    acceleration_structure: crate::vk::AccelerationStructureNV,
+    p_allocator: *const crate::vk::AllocationCallbacks,
+);
+pub type PFN_vkGetAccelerationStructureMemoryRequirementsNV = unsafe extern "system" fn(
+    device: crate::vk::Device,
+    p_info: *const crate::vk::AccelerationStructureMemoryRequirementsInfoNV,
+    p_memory_requirements: *mut crate::vk::MemoryRequirements2KHR,
+);
+pub type PFN_vkBindAccelerationStructureMemoryNV = unsafe extern "system" fn(
+    device: crate::vk::Device,
+    bind_info_count: u32,
+    p_bind_infos: *const crate::vk::BindAccelerationStructureMemoryInfoNV,
+) -> crate::vk::Result;
+pub type PFN_vkCmdCopyAccelerationStructureNV = unsafe extern "system" fn(
+    command_buffer: crate::vk::CommandBuffer,
+    dst: crate::vk::AccelerationStructureNV,
+    src: crate::vk::AccelerationStructureNV,
+    mode: crate::vk::CopyAccelerationStructureModeKHR,
+);
+pub type PFN_vkCmdWriteAccelerationStructuresPropertiesNV = unsafe extern "system" fn(
+    command_buffer: crate::vk::CommandBuffer,
+    acceleration_structure_count: u32,
+    p_acceleration_structures: *const crate::vk::AccelerationStructureNV,
+    query_type: crate::vk::QueryType,
+    query_pool: crate::vk::QueryPool,
+    first_query: u32,
+);
+pub type PFN_vkCmdBuildAccelerationStructureNV = unsafe extern "system" fn(
+    command_buffer: crate::vk::CommandBuffer,
+    p_info: *const crate::vk::AccelerationStructureInfoNV,
+    instance_data: crate::vk::Buffer,
+    instance_offset: crate::vk::DeviceSize,
+    update: crate::vk::Bool32,
+    dst: crate::vk::AccelerationStructureNV,
+    src: crate::vk::AccelerationStructureNV,
+    scratch: crate::vk::Buffer,
+    scratch_offset: crate::vk::DeviceSize,
+);
+pub type PFN_vkCmdTraceRaysNV = unsafe extern "system" fn(
+    command_buffer: crate::vk::CommandBuffer,
+    raygen_shader_binding_table_buffer: crate::vk::Buffer,
+    raygen_shader_binding_offset: crate::vk::DeviceSize,
+    miss_shader_binding_table_buffer: crate::vk::Buffer,
+    miss_shader_binding_offset: crate::vk::DeviceSize,
+    miss_shader_binding_stride: crate::vk::DeviceSize,
+    hit_shader_binding_table_buffer: crate::vk::Buffer,
+    hit_shader_binding_offset: crate::vk::DeviceSize,
+    hit_shader_binding_stride: crate::vk::DeviceSize,
+    callable_shader_binding_table_buffer: crate::vk::Buffer,
+    callable_shader_binding_offset: crate::vk::DeviceSize,
+    callable_shader_binding_stride: crate::vk::DeviceSize,
+    width: u32,
+    height: u32,
+    depth: u32,
+);
+pub type PFN_vkGetAccelerationStructureHandleNV = unsafe extern "system" fn(
+    device: crate::vk::Device,
+    acceleration_structure: crate::vk::AccelerationStructureNV,
+    data_size: usize,
+    p_data: *mut core::ffi::c_void,
+) -> crate::vk::Result;
+pub type PFN_vkCreateRayTracingPipelinesNV = unsafe extern "system" fn(
+    device: crate::vk::Device,
+    pipeline_cache: crate::vk::PipelineCache,
+    create_info_count: u32,
+    p_create_infos: *const crate::vk::RayTracingPipelineCreateInfoNV,
+    p_allocator: *const crate::vk::AllocationCallbacks,
+    p_pipelines: *mut crate::vk::Pipeline,
+) -> crate::vk::Result;
+pub type PFN_vkGetRayTracingShaderGroupHandlesNV = crate::vk::PFN_vkGetRayTracingShaderGroupHandlesKHR;
 pub const NV_RAY_TRACING_SPEC_VERSION: u32 = 3;
 pub const NV_RAY_TRACING_EXTENSION_NAME: &core::ffi::CStr = c"VK_NV_ray_tracing";
+pub struct DeviceFn {
+    pub vk_compile_deferred_nv: crate::vk::PFN_vkCompileDeferredNV,
+    pub vk_create_acceleration_structure_nv: crate::vk::PFN_vkCreateAccelerationStructureNV,
+    pub vk_destroy_acceleration_structure_nv: crate::vk::PFN_vkDestroyAccelerationStructureNV,
+    pub vk_get_acceleration_structure_memory_requirements_nv: crate::vk::PFN_vkGetAccelerationStructureMemoryRequirementsNV,
+    pub vk_bind_acceleration_structure_memory_nv: crate::vk::PFN_vkBindAccelerationStructureMemoryNV,
+    pub vk_cmd_copy_acceleration_structure_nv: crate::vk::PFN_vkCmdCopyAccelerationStructureNV,
+    pub vk_cmd_write_acceleration_structures_properties_nv: crate::vk::PFN_vkCmdWriteAccelerationStructuresPropertiesNV,
+    pub vk_cmd_build_acceleration_structure_nv: crate::vk::PFN_vkCmdBuildAccelerationStructureNV,
+    pub vk_cmd_trace_rays_nv: crate::vk::PFN_vkCmdTraceRaysNV,
+    pub vk_get_acceleration_structure_handle_nv: crate::vk::PFN_vkGetAccelerationStructureHandleNV,
+    pub vk_create_ray_tracing_pipelines_nv: crate::vk::PFN_vkCreateRayTracingPipelinesNV,
+    pub vk_get_ray_tracing_shader_group_handles_nv: crate::vk::PFN_vkGetRayTracingShaderGroupHandlesNV,
+}

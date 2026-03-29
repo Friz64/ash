@@ -13,7 +13,7 @@ impl crate::vk::StructureType {
     pub const PHYSICAL_DEVICE_LAYERED_DRIVER_PROPERTIES_MSFT: Self = Self(1000530000);
 }
 #[repr(transparent)]
-#[derive(Clone, Copy)]
+#[derive(Clone, Copy, PartialEq, Eq, PartialOrd, Ord, Hash, Default)]
 pub struct LayeredDriverUnderlyingApiMSFT(pub(crate) i32);
 ///Provided by [`msft::layered_driver`](crate::msft::layered_driver)
 impl LayeredDriverUnderlyingApiMSFT {

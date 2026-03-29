@@ -131,5 +131,12 @@ impl ExportMetalObjectTypeFlagBitsEXT {
     pub const METAL_IOSURFACE_EXT: Self = Self(1 << 4);
     pub const METAL_SHARED_EVENT_EXT: Self = Self(1 << 5);
 }
+pub type PFN_vkExportMetalObjectsEXT = unsafe extern "system" fn(
+    device: crate::vk::Device,
+    p_metal_objects_info: *mut crate::vk::ExportMetalObjectsInfoEXT,
+);
 pub const EXT_METAL_OBJECTS_SPEC_VERSION: u32 = 2;
 pub const EXT_METAL_OBJECTS_EXTENSION_NAME: &core::ffi::CStr = c"VK_EXT_metal_objects";
+pub struct DeviceFn {
+    pub vk_export_metal_objects_ext: crate::vk::PFN_vkExportMetalObjectsEXT,
+}

@@ -212,5 +212,141 @@ impl AddressCommandFlagBitsKHR {
     pub const TRANSFORM_FEEDBACK_BUFFER_USAGE_KHR: Self = Self(1 << 4);
     pub const UNKNOWN_TRANSFORM_FEEDBACK_BUFFER_USAGE_KHR: Self = Self(1 << 5);
 }
+pub type PFN_vkCmdCopyMemoryKHR = unsafe extern "system" fn(
+    command_buffer: crate::vk::CommandBuffer,
+    p_copy_memory_info: *const crate::vk::CopyDeviceMemoryInfoKHR,
+);
+pub type PFN_vkCmdCopyMemoryToImageKHR = unsafe extern "system" fn(
+    command_buffer: crate::vk::CommandBuffer,
+    p_copy_memory_info: *const crate::vk::CopyDeviceMemoryImageInfoKHR,
+);
+pub type PFN_vkCmdCopyImageToMemoryKHR = unsafe extern "system" fn(
+    command_buffer: crate::vk::CommandBuffer,
+    p_copy_memory_info: *const crate::vk::CopyDeviceMemoryImageInfoKHR,
+);
+pub type PFN_vkCmdUpdateMemoryKHR = unsafe extern "system" fn(
+    command_buffer: crate::vk::CommandBuffer,
+    p_dst_range: *const crate::vk::DeviceAddressRangeKHR,
+    dst_flags: crate::vk::AddressCommandFlagsKHR,
+    data_size: crate::vk::DeviceSize,
+    p_data: *const core::ffi::c_void,
+);
+pub type PFN_vkCmdFillMemoryKHR = unsafe extern "system" fn(
+    command_buffer: crate::vk::CommandBuffer,
+    p_dst_range: *const crate::vk::DeviceAddressRangeKHR,
+    dst_flags: crate::vk::AddressCommandFlagsKHR,
+    data: u32,
+);
+pub type PFN_vkCmdCopyQueryPoolResultsToMemoryKHR = unsafe extern "system" fn(
+    command_buffer: crate::vk::CommandBuffer,
+    query_pool: crate::vk::QueryPool,
+    first_query: u32,
+    query_count: u32,
+    p_dst_range: *const crate::vk::StridedDeviceAddressRangeKHR,
+    dst_flags: crate::vk::AddressCommandFlagsKHR,
+    query_result_flags: crate::vk::QueryResultFlags,
+);
+pub type PFN_vkCmdBeginConditionalRendering2EXT = unsafe extern "system" fn(
+    command_buffer: crate::vk::CommandBuffer,
+    p_conditional_rendering_begin: *const crate::vk::ConditionalRenderingBeginInfo2EXT,
+);
+pub type PFN_vkCmdBindTransformFeedbackBuffers2EXT = unsafe extern "system" fn(
+    command_buffer: crate::vk::CommandBuffer,
+    first_binding: u32,
+    binding_count: u32,
+    p_binding_infos: *const crate::vk::BindTransformFeedbackBuffer2InfoEXT,
+);
+pub type PFN_vkCmdBeginTransformFeedback2EXT = unsafe extern "system" fn(
+    command_buffer: crate::vk::CommandBuffer,
+    first_counter_range: u32,
+    counter_range_count: u32,
+    p_counter_infos: *const crate::vk::BindTransformFeedbackBuffer2InfoEXT,
+);
+pub type PFN_vkCmdEndTransformFeedback2EXT = unsafe extern "system" fn(
+    command_buffer: crate::vk::CommandBuffer,
+    first_counter_range: u32,
+    counter_range_count: u32,
+    p_counter_infos: *const crate::vk::BindTransformFeedbackBuffer2InfoEXT,
+);
+pub type PFN_vkCmdDrawIndirectByteCount2EXT = unsafe extern "system" fn(
+    command_buffer: crate::vk::CommandBuffer,
+    instance_count: u32,
+    first_instance: u32,
+    p_counter_info: *const crate::vk::BindTransformFeedbackBuffer2InfoEXT,
+    counter_offset: u32,
+    vertex_stride: u32,
+);
+pub type PFN_vkCmdWriteMarkerToMemoryAMD = unsafe extern "system" fn(
+    command_buffer: crate::vk::CommandBuffer,
+    p_info: *const crate::vk::MemoryMarkerInfoAMD,
+);
+pub type PFN_vkCmdBindIndexBuffer3KHR = unsafe extern "system" fn(
+    command_buffer: crate::vk::CommandBuffer,
+    p_info: *const crate::vk::BindIndexBuffer3InfoKHR,
+);
+pub type PFN_vkCmdBindVertexBuffers3KHR = unsafe extern "system" fn(
+    command_buffer: crate::vk::CommandBuffer,
+    first_binding: u32,
+    binding_count: u32,
+    p_binding_infos: *const crate::vk::BindVertexBuffer3InfoKHR,
+);
+pub type PFN_vkCmdDrawIndirect2KHR = unsafe extern "system" fn(
+    command_buffer: crate::vk::CommandBuffer,
+    p_info: *const crate::vk::DrawIndirect2InfoKHR,
+);
+pub type PFN_vkCmdDrawIndexedIndirect2KHR = unsafe extern "system" fn(
+    command_buffer: crate::vk::CommandBuffer,
+    p_info: *const crate::vk::DrawIndirect2InfoKHR,
+);
+pub type PFN_vkCmdDrawIndirectCount2KHR = unsafe extern "system" fn(
+    command_buffer: crate::vk::CommandBuffer,
+    p_info: *const crate::vk::DrawIndirectCount2InfoKHR,
+);
+pub type PFN_vkCmdDrawIndexedIndirectCount2KHR = unsafe extern "system" fn(
+    command_buffer: crate::vk::CommandBuffer,
+    p_info: *const crate::vk::DrawIndirectCount2InfoKHR,
+);
+pub type PFN_vkCmdDrawMeshTasksIndirect2EXT = unsafe extern "system" fn(
+    command_buffer: crate::vk::CommandBuffer,
+    p_info: *const crate::vk::DrawIndirect2InfoKHR,
+);
+pub type PFN_vkCmdDrawMeshTasksIndirectCount2EXT = unsafe extern "system" fn(
+    command_buffer: crate::vk::CommandBuffer,
+    p_info: *const crate::vk::DrawIndirectCount2InfoKHR,
+);
+pub type PFN_vkCmdDispatchIndirect2KHR = unsafe extern "system" fn(
+    command_buffer: crate::vk::CommandBuffer,
+    p_info: *const crate::vk::DispatchIndirect2InfoKHR,
+);
+pub type PFN_vkCreateAccelerationStructure2KHR = unsafe extern "system" fn(
+    device: crate::vk::Device,
+    p_create_info: *const crate::vk::AccelerationStructureCreateInfo2KHR,
+    p_allocator: *const crate::vk::AllocationCallbacks,
+    p_acceleration_structure: *mut crate::vk::AccelerationStructureKHR,
+) -> crate::vk::Result;
 pub const KHR_DEVICE_ADDRESS_COMMANDS_SPEC_VERSION: u32 = 1;
 pub const KHR_DEVICE_ADDRESS_COMMANDS_EXTENSION_NAME: &core::ffi::CStr = c"VK_KHR_device_address_commands";
+pub struct DeviceFn {
+    pub vk_cmd_copy_memory_khr: crate::vk::PFN_vkCmdCopyMemoryKHR,
+    pub vk_cmd_copy_memory_to_image_khr: crate::vk::PFN_vkCmdCopyMemoryToImageKHR,
+    pub vk_cmd_copy_image_to_memory_khr: crate::vk::PFN_vkCmdCopyImageToMemoryKHR,
+    pub vk_cmd_update_memory_khr: crate::vk::PFN_vkCmdUpdateMemoryKHR,
+    pub vk_cmd_fill_memory_khr: crate::vk::PFN_vkCmdFillMemoryKHR,
+    pub vk_cmd_copy_query_pool_results_to_memory_khr: crate::vk::PFN_vkCmdCopyQueryPoolResultsToMemoryKHR,
+    pub vk_cmd_begin_conditional_rendering2_ext: crate::vk::PFN_vkCmdBeginConditionalRendering2EXT,
+    pub vk_cmd_bind_transform_feedback_buffers2_ext: crate::vk::PFN_vkCmdBindTransformFeedbackBuffers2EXT,
+    pub vk_cmd_begin_transform_feedback2_ext: crate::vk::PFN_vkCmdBeginTransformFeedback2EXT,
+    pub vk_cmd_end_transform_feedback2_ext: crate::vk::PFN_vkCmdEndTransformFeedback2EXT,
+    pub vk_cmd_draw_indirect_byte_count2_ext: crate::vk::PFN_vkCmdDrawIndirectByteCount2EXT,
+    pub vk_cmd_write_marker_to_memory_amd: crate::vk::PFN_vkCmdWriteMarkerToMemoryAMD,
+    pub vk_cmd_bind_index_buffer3_khr: crate::vk::PFN_vkCmdBindIndexBuffer3KHR,
+    pub vk_cmd_bind_vertex_buffers3_khr: crate::vk::PFN_vkCmdBindVertexBuffers3KHR,
+    pub vk_cmd_draw_indirect2_khr: crate::vk::PFN_vkCmdDrawIndirect2KHR,
+    pub vk_cmd_draw_indexed_indirect2_khr: crate::vk::PFN_vkCmdDrawIndexedIndirect2KHR,
+    pub vk_cmd_draw_indirect_count2_khr: crate::vk::PFN_vkCmdDrawIndirectCount2KHR,
+    pub vk_cmd_draw_indexed_indirect_count2_khr: crate::vk::PFN_vkCmdDrawIndexedIndirectCount2KHR,
+    pub vk_cmd_draw_mesh_tasks_indirect2_ext: crate::vk::PFN_vkCmdDrawMeshTasksIndirect2EXT,
+    pub vk_cmd_draw_mesh_tasks_indirect_count2_ext: crate::vk::PFN_vkCmdDrawMeshTasksIndirectCount2EXT,
+    pub vk_cmd_dispatch_indirect2_khr: crate::vk::PFN_vkCmdDispatchIndirect2KHR,
+    pub vk_create_acceleration_structure2_khr: crate::vk::PFN_vkCreateAccelerationStructure2KHR,
+}

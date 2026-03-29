@@ -98,5 +98,15 @@ impl crate::vk::ShaderCreateFlagBitsEXT {
 }
 pub type PipelineCreateFlags2KHR = crate::vk::PipelineCreateFlags2;
 pub type BufferUsageFlags2KHR = crate::vk::BufferUsageFlags2;
+pub type PFN_vkGetRenderingAreaGranularityKHR = crate::vk::PFN_vkGetRenderingAreaGranularity;
+pub type PFN_vkCmdBindIndexBuffer2KHR = crate::vk::PFN_vkCmdBindIndexBuffer2;
+pub type PFN_vkGetImageSubresourceLayout2KHR = crate::vk::PFN_vkGetImageSubresourceLayout2;
+pub type PFN_vkGetDeviceImageSubresourceLayoutKHR = crate::vk::PFN_vkGetDeviceImageSubresourceLayout;
 pub const KHR_MAINTENANCE_5_SPEC_VERSION: u32 = 1;
 pub const KHR_MAINTENANCE_5_EXTENSION_NAME: &core::ffi::CStr = c"VK_KHR_maintenance5";
+pub struct DeviceFn {
+    pub vk_get_rendering_area_granularity_khr: crate::vk::PFN_vkGetRenderingAreaGranularityKHR,
+    pub vk_cmd_bind_index_buffer2_khr: crate::vk::PFN_vkCmdBindIndexBuffer2KHR,
+    pub vk_get_image_subresource_layout2_khr: crate::vk::PFN_vkGetImageSubresourceLayout2KHR,
+    pub vk_get_device_image_subresource_layout_khr: crate::vk::PFN_vkGetDeviceImageSubresourceLayoutKHR,
+}

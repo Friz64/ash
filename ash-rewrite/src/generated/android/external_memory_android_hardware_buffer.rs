@@ -81,5 +81,19 @@ impl crate::vk::StructureType {
 impl crate::vk::ExternalMemoryHandleTypeFlagBits {
     pub const ANDROID_HARDWARE_BUFFER_ANDROID: Self = Self(1 << 10);
 }
+pub type PFN_vkGetAndroidHardwareBufferPropertiesANDROID = unsafe extern "system" fn(
+    device: crate::vk::Device,
+    buffer: *const crate::platform_types::AHardwareBuffer,
+    p_properties: *mut crate::vk::AndroidHardwareBufferPropertiesANDROID,
+) -> crate::vk::Result;
+pub type PFN_vkGetMemoryAndroidHardwareBufferANDROID = unsafe extern "system" fn(
+    device: crate::vk::Device,
+    p_info: *const crate::vk::MemoryGetAndroidHardwareBufferInfoANDROID,
+    p_buffer: *mut *mut crate::platform_types::AHardwareBuffer,
+) -> crate::vk::Result;
 pub const ANDROID_EXTERNAL_MEMORY_ANDROID_HARDWARE_BUFFER_SPEC_VERSION: u32 = 5;
 pub const ANDROID_EXTERNAL_MEMORY_ANDROID_HARDWARE_BUFFER_EXTENSION_NAME: &core::ffi::CStr = c"VK_ANDROID_external_memory_android_hardware_buffer";
+pub struct DeviceFn {
+    pub vk_get_android_hardware_buffer_properties_android: crate::vk::PFN_vkGetAndroidHardwareBufferPropertiesANDROID,
+    pub vk_get_memory_android_hardware_buffer_android: crate::vk::PFN_vkGetMemoryAndroidHardwareBufferANDROID,
+}

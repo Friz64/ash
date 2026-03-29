@@ -41,5 +41,20 @@ impl crate::vk::StructureType {
     pub const MEMORY_WIN32_HANDLE_PROPERTIES_KHR: Self = Self(1000073002);
     pub const MEMORY_GET_WIN32_HANDLE_INFO_KHR: Self = Self(1000073003);
 }
+pub type PFN_vkGetMemoryWin32HandleKHR = unsafe extern "system" fn(
+    device: crate::vk::Device,
+    p_get_win32_handle_info: *const crate::vk::MemoryGetWin32HandleInfoKHR,
+    p_handle: *mut crate::platform_types::HANDLE,
+) -> crate::vk::Result;
+pub type PFN_vkGetMemoryWin32HandlePropertiesKHR = unsafe extern "system" fn(
+    device: crate::vk::Device,
+    handle_type: crate::vk::ExternalMemoryHandleTypeFlagBits,
+    handle: crate::platform_types::HANDLE,
+    p_memory_win32_handle_properties: *mut crate::vk::MemoryWin32HandlePropertiesKHR,
+) -> crate::vk::Result;
 pub const KHR_EXTERNAL_MEMORY_WIN32_SPEC_VERSION: u32 = 1;
 pub const KHR_EXTERNAL_MEMORY_WIN32_EXTENSION_NAME: &core::ffi::CStr = c"VK_KHR_external_memory_win32";
+pub struct DeviceFn {
+    pub vk_get_memory_win32_handle_khr: crate::vk::PFN_vkGetMemoryWin32HandleKHR,
+    pub vk_get_memory_win32_handle_properties_khr: crate::vk::PFN_vkGetMemoryWin32HandlePropertiesKHR,
+}

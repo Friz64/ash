@@ -49,5 +49,13 @@ impl crate::vk::DeviceFaultAddressTypeKHR {
 }
 pub type DeviceFaultVendorBinaryHeaderVersionEXT = crate::vk::DeviceFaultVendorBinaryHeaderVersionKHR;
 pub type DeviceFaultAddressTypeEXT = crate::vk::DeviceFaultAddressTypeKHR;
+pub type PFN_vkGetDeviceFaultInfoEXT = unsafe extern "system" fn(
+    device: crate::vk::Device,
+    p_fault_counts: *mut crate::vk::DeviceFaultCountsEXT,
+    p_fault_info: *mut crate::vk::DeviceFaultInfoEXT,
+) -> crate::vk::Result;
 pub const EXT_DEVICE_FAULT_SPEC_VERSION: u32 = 2;
 pub const EXT_DEVICE_FAULT_EXTENSION_NAME: &core::ffi::CStr = c"VK_EXT_device_fault";
+pub struct DeviceFn {
+    pub vk_get_device_fault_info_ext: crate::vk::PFN_vkGetDeviceFaultInfoEXT,
+}

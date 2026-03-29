@@ -39,5 +39,34 @@ impl core::fmt::Debug for DeferredOperationKHR {
         write!(f, "0x{:x}", self.0)
     }
 }
+pub type PFN_vkCreateDeferredOperationKHR = unsafe extern "system" fn(
+    device: crate::vk::Device,
+    p_allocator: *const crate::vk::AllocationCallbacks,
+    p_deferred_operation: *mut crate::vk::DeferredOperationKHR,
+) -> crate::vk::Result;
+pub type PFN_vkDestroyDeferredOperationKHR = unsafe extern "system" fn(
+    device: crate::vk::Device,
+    operation: crate::vk::DeferredOperationKHR,
+    p_allocator: *const crate::vk::AllocationCallbacks,
+);
+pub type PFN_vkGetDeferredOperationMaxConcurrencyKHR = unsafe extern "system" fn(
+    device: crate::vk::Device,
+    operation: crate::vk::DeferredOperationKHR,
+) -> u32;
+pub type PFN_vkGetDeferredOperationResultKHR = unsafe extern "system" fn(
+    device: crate::vk::Device,
+    operation: crate::vk::DeferredOperationKHR,
+) -> crate::vk::Result;
+pub type PFN_vkDeferredOperationJoinKHR = unsafe extern "system" fn(
+    device: crate::vk::Device,
+    operation: crate::vk::DeferredOperationKHR,
+) -> crate::vk::Result;
 pub const KHR_DEFERRED_HOST_OPERATIONS_SPEC_VERSION: u32 = 4;
 pub const KHR_DEFERRED_HOST_OPERATIONS_EXTENSION_NAME: &core::ffi::CStr = c"VK_KHR_deferred_host_operations";
+pub struct DeviceFn {
+    pub vk_create_deferred_operation_khr: crate::vk::PFN_vkCreateDeferredOperationKHR,
+    pub vk_destroy_deferred_operation_khr: crate::vk::PFN_vkDestroyDeferredOperationKHR,
+    pub vk_get_deferred_operation_max_concurrency_khr: crate::vk::PFN_vkGetDeferredOperationMaxConcurrencyKHR,
+    pub vk_get_deferred_operation_result_khr: crate::vk::PFN_vkGetDeferredOperationResultKHR,
+    pub vk_deferred_operation_join_khr: crate::vk::PFN_vkDeferredOperationJoinKHR,
+}

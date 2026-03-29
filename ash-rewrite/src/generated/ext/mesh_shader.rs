@@ -86,5 +86,32 @@ impl crate::vk::PipelineStageFlagBits {
     pub const TASK_SHADER_EXT: Self = Self(1 << 19);
     pub const MESH_SHADER_EXT: Self = Self(1 << 20);
 }
+pub type PFN_vkCmdDrawMeshTasksEXT = unsafe extern "system" fn(
+    command_buffer: crate::vk::CommandBuffer,
+    group_count_x: u32,
+    group_count_y: u32,
+    group_count_z: u32,
+);
+pub type PFN_vkCmdDrawMeshTasksIndirectEXT = unsafe extern "system" fn(
+    command_buffer: crate::vk::CommandBuffer,
+    buffer: crate::vk::Buffer,
+    offset: crate::vk::DeviceSize,
+    draw_count: u32,
+    stride: u32,
+);
+pub type PFN_vkCmdDrawMeshTasksIndirectCountEXT = unsafe extern "system" fn(
+    command_buffer: crate::vk::CommandBuffer,
+    buffer: crate::vk::Buffer,
+    offset: crate::vk::DeviceSize,
+    count_buffer: crate::vk::Buffer,
+    count_buffer_offset: crate::vk::DeviceSize,
+    max_draw_count: u32,
+    stride: u32,
+);
 pub const EXT_MESH_SHADER_SPEC_VERSION: u32 = 1;
 pub const EXT_MESH_SHADER_EXTENSION_NAME: &core::ffi::CStr = c"VK_EXT_mesh_shader";
+pub struct DeviceFn {
+    pub vk_cmd_draw_mesh_tasks_ext: crate::vk::PFN_vkCmdDrawMeshTasksEXT,
+    pub vk_cmd_draw_mesh_tasks_indirect_ext: crate::vk::PFN_vkCmdDrawMeshTasksIndirectEXT,
+    pub vk_cmd_draw_mesh_tasks_indirect_count_ext: crate::vk::PFN_vkCmdDrawMeshTasksIndirectCountEXT,
+}

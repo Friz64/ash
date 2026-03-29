@@ -173,5 +173,38 @@ impl core::fmt::Debug for BufferCollectionFUCHSIA {
         write!(f, "0x{:x}", self.0)
     }
 }
+pub type PFN_vkCreateBufferCollectionFUCHSIA = unsafe extern "system" fn(
+    device: crate::vk::Device,
+    p_create_info: *const crate::vk::BufferCollectionCreateInfoFUCHSIA,
+    p_allocator: *const crate::vk::AllocationCallbacks,
+    p_collection: *mut crate::vk::BufferCollectionFUCHSIA,
+) -> crate::vk::Result;
+pub type PFN_vkSetBufferCollectionBufferConstraintsFUCHSIA = unsafe extern "system" fn(
+    device: crate::vk::Device,
+    collection: crate::vk::BufferCollectionFUCHSIA,
+    p_buffer_constraints_info: *const crate::vk::BufferConstraintsInfoFUCHSIA,
+) -> crate::vk::Result;
+pub type PFN_vkSetBufferCollectionImageConstraintsFUCHSIA = unsafe extern "system" fn(
+    device: crate::vk::Device,
+    collection: crate::vk::BufferCollectionFUCHSIA,
+    p_image_constraints_info: *const crate::vk::ImageConstraintsInfoFUCHSIA,
+) -> crate::vk::Result;
+pub type PFN_vkDestroyBufferCollectionFUCHSIA = unsafe extern "system" fn(
+    device: crate::vk::Device,
+    collection: crate::vk::BufferCollectionFUCHSIA,
+    p_allocator: *const crate::vk::AllocationCallbacks,
+);
+pub type PFN_vkGetBufferCollectionPropertiesFUCHSIA = unsafe extern "system" fn(
+    device: crate::vk::Device,
+    collection: crate::vk::BufferCollectionFUCHSIA,
+    p_properties: *mut crate::vk::BufferCollectionPropertiesFUCHSIA,
+) -> crate::vk::Result;
 pub const FUCHSIA_BUFFER_COLLECTION_SPEC_VERSION: u32 = 2;
 pub const FUCHSIA_BUFFER_COLLECTION_EXTENSION_NAME: &core::ffi::CStr = c"VK_FUCHSIA_buffer_collection";
+pub struct DeviceFn {
+    pub vk_create_buffer_collection_fuchsia: crate::vk::PFN_vkCreateBufferCollectionFUCHSIA,
+    pub vk_set_buffer_collection_buffer_constraints_fuchsia: crate::vk::PFN_vkSetBufferCollectionBufferConstraintsFUCHSIA,
+    pub vk_set_buffer_collection_image_constraints_fuchsia: crate::vk::PFN_vkSetBufferCollectionImageConstraintsFUCHSIA,
+    pub vk_destroy_buffer_collection_fuchsia: crate::vk::PFN_vkDestroyBufferCollectionFUCHSIA,
+    pub vk_get_buffer_collection_properties_fuchsia: crate::vk::PFN_vkGetBufferCollectionPropertiesFUCHSIA,
+}

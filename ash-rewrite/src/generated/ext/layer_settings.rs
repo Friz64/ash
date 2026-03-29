@@ -23,7 +23,7 @@ impl crate::vk::StructureType {
     pub const LAYER_SETTINGS_CREATE_INFO_EXT: Self = Self(1000496000);
 }
 #[repr(transparent)]
-#[derive(Clone, Copy)]
+#[derive(Clone, Copy, PartialEq, Eq, PartialOrd, Ord, Hash, Default)]
 pub struct LayerSettingTypeEXT(pub(crate) i32);
 ///Provided by [`ext::layer_settings`](crate::ext::layer_settings)
 impl LayerSettingTypeEXT {

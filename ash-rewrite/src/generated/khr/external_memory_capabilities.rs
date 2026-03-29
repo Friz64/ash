@@ -35,5 +35,9 @@ impl crate::vk::ExternalMemoryFeatureFlagBits {
 }
 pub type ExternalMemoryHandleTypeFlagsKHR = crate::vk::ExternalMemoryHandleTypeFlags;
 pub type ExternalMemoryFeatureFlagsKHR = crate::vk::ExternalMemoryFeatureFlags;
+pub type PFN_vkGetPhysicalDeviceExternalBufferPropertiesKHR = crate::vk::PFN_vkGetPhysicalDeviceExternalBufferProperties;
 pub const KHR_EXTERNAL_MEMORY_CAPABILITIES_SPEC_VERSION: u32 = 1;
 pub const KHR_EXTERNAL_MEMORY_CAPABILITIES_EXTENSION_NAME: &core::ffi::CStr = c"VK_KHR_external_memory_capabilities";
+pub struct InstanceFn {
+    pub vk_get_physical_device_external_buffer_properties_khr: crate::vk::PFN_vkGetPhysicalDeviceExternalBufferPropertiesKHR,
+}

@@ -28,5 +28,13 @@ impl crate::vk::SemaphoreWaitFlagBits {
     pub const ANY_KHR: Self = Self::ANY;
 }
 pub type SemaphoreWaitFlagsKHR = crate::vk::SemaphoreWaitFlags;
+pub type PFN_vkGetSemaphoreCounterValueKHR = crate::vk::PFN_vkGetSemaphoreCounterValue;
+pub type PFN_vkWaitSemaphoresKHR = crate::vk::PFN_vkWaitSemaphores;
+pub type PFN_vkSignalSemaphoreKHR = crate::vk::PFN_vkSignalSemaphore;
 pub const KHR_TIMELINE_SEMAPHORE_SPEC_VERSION: u32 = 2;
 pub const KHR_TIMELINE_SEMAPHORE_EXTENSION_NAME: &core::ffi::CStr = c"VK_KHR_timeline_semaphore";
+pub struct DeviceFn {
+    pub vk_get_semaphore_counter_value_khr: crate::vk::PFN_vkGetSemaphoreCounterValueKHR,
+    pub vk_wait_semaphores_khr: crate::vk::PFN_vkWaitSemaphoresKHR,
+    pub vk_signal_semaphore_khr: crate::vk::PFN_vkSignalSemaphoreKHR,
+}

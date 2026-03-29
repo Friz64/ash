@@ -51,7 +51,7 @@ impl crate::vk::ObjectType {
     pub const SHADER_EXT: Self = Self(1000482000);
 }
 #[repr(transparent)]
-#[derive(Clone, Copy)]
+#[derive(Clone, Copy, PartialEq, Eq, PartialOrd, Ord, Hash, Default)]
 pub struct ShaderCodeTypeEXT(pub(crate) i32);
 ///Provided by [`ext::shader_object`](crate::ext::shader_object)
 impl ShaderCodeTypeEXT {
@@ -115,5 +115,43 @@ impl core::fmt::Debug for ShaderEXT {
         write!(f, "0x{:x}", self.0)
     }
 }
+pub type PFN_vkCreateShadersEXT = unsafe extern "system" fn(
+    device: crate::vk::Device,
+    create_info_count: u32,
+    p_create_infos: *const crate::vk::ShaderCreateInfoEXT,
+    p_allocator: *const crate::vk::AllocationCallbacks,
+    p_shaders: *mut crate::vk::ShaderEXT,
+) -> crate::vk::Result;
+pub type PFN_vkDestroyShaderEXT = unsafe extern "system" fn(
+    device: crate::vk::Device,
+    shader: crate::vk::ShaderEXT,
+    p_allocator: *const crate::vk::AllocationCallbacks,
+);
+pub type PFN_vkGetShaderBinaryDataEXT = unsafe extern "system" fn(
+    device: crate::vk::Device,
+    shader: crate::vk::ShaderEXT,
+    p_data_size: *mut usize,
+    p_data: *mut core::ffi::c_void,
+) -> crate::vk::Result;
+pub type PFN_vkCmdBindShadersEXT = unsafe extern "system" fn(
+    command_buffer: crate::vk::CommandBuffer,
+    stage_count: u32,
+    p_stages: *const crate::vk::ShaderStageFlagBits,
+    p_shaders: *const crate::vk::ShaderEXT,
+);
+pub type PFN_vkCmdSetDepthClampRangeEXT = unsafe extern "system" fn(
+    command_buffer: crate::vk::CommandBuffer,
+    depth_clamp_mode: crate::vk::DepthClampModeEXT,
+    p_depth_clamp_range: *const crate::vk::DepthClampRangeEXT,
+);
 pub const EXT_SHADER_OBJECT_SPEC_VERSION: u32 = 1;
 pub const EXT_SHADER_OBJECT_EXTENSION_NAME: &core::ffi::CStr = c"VK_EXT_shader_object";
+pub struct DeviceFn {
+    pub vk_create_shaders_ext: crate::vk::PFN_vkCreateShadersEXT,
+    pub vk_destroy_shader_ext: crate::vk::PFN_vkDestroyShaderEXT,
+    pub vk_get_shader_binary_data_ext: crate::vk::PFN_vkGetShaderBinaryDataEXT,
+    pub vk_cmd_bind_shaders_ext: crate::vk::PFN_vkCmdBindShadersEXT,
+}
+pub struct DeviceFn {
+    pub vk_cmd_set_depth_clamp_range_ext: crate::vk::PFN_vkCmdSetDepthClampRangeEXT,
+}

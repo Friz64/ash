@@ -23,8 +23,15 @@ impl crate::vk::StructureType {
         1000645001,
     );
 }
+pub type PFN_vkCmdSetComputeOccupancyPriorityNV = unsafe extern "system" fn(
+    command_buffer: crate::vk::CommandBuffer,
+    p_parameters: *const crate::vk::ComputeOccupancyPriorityParametersNV,
+);
 pub const COMPUTE_OCCUPANCY_PRIORITY_LOW_NV: core::ffi::c_float = 0.25;
 pub const COMPUTE_OCCUPANCY_PRIORITY_NORMAL_NV: core::ffi::c_float = 0.50;
 pub const COMPUTE_OCCUPANCY_PRIORITY_HIGH_NV: core::ffi::c_float = 0.75;
 pub const NV_COMPUTE_OCCUPANCY_PRIORITY_SPEC_VERSION: u32 = 1;
 pub const NV_COMPUTE_OCCUPANCY_PRIORITY_EXTENSION_NAME: &core::ffi::CStr = c"VK_NV_compute_occupancy_priority";
+pub struct DeviceFn {
+    pub vk_cmd_set_compute_occupancy_priority_nv: crate::vk::PFN_vkCmdSetComputeOccupancyPriorityNV,
+}

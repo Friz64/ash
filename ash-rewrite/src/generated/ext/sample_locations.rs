@@ -81,5 +81,20 @@ impl crate::vk::DynamicState {
 impl crate::vk::ImageCreateFlagBits {
     pub const SAMPLE_LOCATIONS_COMPATIBLE_DEPTH_EXT: Self = Self(1 << 12);
 }
+pub type PFN_vkCmdSetSampleLocationsEXT = unsafe extern "system" fn(
+    command_buffer: crate::vk::CommandBuffer,
+    p_sample_locations_info: *const crate::vk::SampleLocationsInfoEXT,
+);
+pub type PFN_vkGetPhysicalDeviceMultisamplePropertiesEXT = unsafe extern "system" fn(
+    physical_device: crate::vk::PhysicalDevice,
+    samples: crate::vk::SampleCountFlagBits,
+    p_multisample_properties: *mut crate::vk::MultisamplePropertiesEXT,
+);
 pub const EXT_SAMPLE_LOCATIONS_SPEC_VERSION: u32 = 1;
 pub const EXT_SAMPLE_LOCATIONS_EXTENSION_NAME: &core::ffi::CStr = c"VK_EXT_sample_locations";
+pub struct DeviceFn {
+    pub vk_cmd_set_sample_locations_ext: crate::vk::PFN_vkCmdSetSampleLocationsEXT,
+}
+pub struct InstanceFn {
+    pub vk_get_physical_device_multisample_properties_ext: crate::vk::PFN_vkGetPhysicalDeviceMultisamplePropertiesEXT,
+}

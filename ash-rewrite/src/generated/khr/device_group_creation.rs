@@ -12,5 +12,9 @@ impl crate::vk::StructureType {
 impl crate::vk::MemoryHeapFlagBits {
     pub const MULTI_INSTANCE_KHR: Self = Self::MULTI_INSTANCE;
 }
+pub type PFN_vkEnumeratePhysicalDeviceGroupsKHR = crate::vk::PFN_vkEnumeratePhysicalDeviceGroups;
 pub const KHR_DEVICE_GROUP_CREATION_SPEC_VERSION: u32 = 1;
 pub const KHR_DEVICE_GROUP_CREATION_EXTENSION_NAME: &core::ffi::CStr = c"VK_KHR_device_group_creation";
+pub struct InstanceFn {
+    pub vk_enumerate_physical_device_groups_khr: crate::vk::PFN_vkEnumeratePhysicalDeviceGroupsKHR,
+}

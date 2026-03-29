@@ -35,5 +35,31 @@ impl crate::vk::StructureType {
     pub const DEBUG_MARKER_OBJECT_TAG_INFO_EXT: Self = Self(1000022001);
     pub const DEBUG_MARKER_MARKER_INFO_EXT: Self = Self(1000022002);
 }
+pub type PFN_vkDebugMarkerSetObjectNameEXT = unsafe extern "system" fn(
+    device: crate::vk::Device,
+    p_name_info: *const crate::vk::DebugMarkerObjectNameInfoEXT,
+) -> crate::vk::Result;
+pub type PFN_vkDebugMarkerSetObjectTagEXT = unsafe extern "system" fn(
+    device: crate::vk::Device,
+    p_tag_info: *const crate::vk::DebugMarkerObjectTagInfoEXT,
+) -> crate::vk::Result;
+pub type PFN_vkCmdDebugMarkerBeginEXT = unsafe extern "system" fn(
+    command_buffer: crate::vk::CommandBuffer,
+    p_marker_info: *const crate::vk::DebugMarkerMarkerInfoEXT,
+);
+pub type PFN_vkCmdDebugMarkerEndEXT = unsafe extern "system" fn(
+    command_buffer: crate::vk::CommandBuffer,
+);
+pub type PFN_vkCmdDebugMarkerInsertEXT = unsafe extern "system" fn(
+    command_buffer: crate::vk::CommandBuffer,
+    p_marker_info: *const crate::vk::DebugMarkerMarkerInfoEXT,
+);
 pub const EXT_DEBUG_MARKER_SPEC_VERSION: u32 = 4;
 pub const EXT_DEBUG_MARKER_EXTENSION_NAME: &core::ffi::CStr = c"VK_EXT_debug_marker";
+pub struct DeviceFn {
+    pub vk_debug_marker_set_object_name_ext: crate::vk::PFN_vkDebugMarkerSetObjectNameEXT,
+    pub vk_debug_marker_set_object_tag_ext: crate::vk::PFN_vkDebugMarkerSetObjectTagEXT,
+    pub vk_cmd_debug_marker_begin_ext: crate::vk::PFN_vkCmdDebugMarkerBeginEXT,
+    pub vk_cmd_debug_marker_end_ext: crate::vk::PFN_vkCmdDebugMarkerEndEXT,
+    pub vk_cmd_debug_marker_insert_ext: crate::vk::PFN_vkCmdDebugMarkerInsertEXT,
+}

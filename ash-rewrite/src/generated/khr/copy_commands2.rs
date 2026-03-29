@@ -26,5 +26,19 @@ impl crate::vk::StructureType {
     pub const BUFFER_IMAGE_COPY_2_KHR: Self = Self::BUFFER_IMAGE_COPY_2;
     pub const IMAGE_RESOLVE_2_KHR: Self = Self::IMAGE_RESOLVE_2;
 }
+pub type PFN_vkCmdCopyBuffer2KHR = crate::vk::PFN_vkCmdCopyBuffer2;
+pub type PFN_vkCmdCopyImage2KHR = crate::vk::PFN_vkCmdCopyImage2;
+pub type PFN_vkCmdBlitImage2KHR = crate::vk::PFN_vkCmdBlitImage2;
+pub type PFN_vkCmdCopyBufferToImage2KHR = crate::vk::PFN_vkCmdCopyBufferToImage2;
+pub type PFN_vkCmdCopyImageToBuffer2KHR = crate::vk::PFN_vkCmdCopyImageToBuffer2;
+pub type PFN_vkCmdResolveImage2KHR = crate::vk::PFN_vkCmdResolveImage2;
 pub const KHR_COPY_COMMANDS_2_SPEC_VERSION: u32 = 1;
 pub const KHR_COPY_COMMANDS_2_EXTENSION_NAME: &core::ffi::CStr = c"VK_KHR_copy_commands2";
+pub struct DeviceFn {
+    pub vk_cmd_copy_buffer2_khr: crate::vk::PFN_vkCmdCopyBuffer2KHR,
+    pub vk_cmd_copy_image2_khr: crate::vk::PFN_vkCmdCopyImage2KHR,
+    pub vk_cmd_blit_image2_khr: crate::vk::PFN_vkCmdBlitImage2KHR,
+    pub vk_cmd_copy_buffer_to_image2_khr: crate::vk::PFN_vkCmdCopyBufferToImage2KHR,
+    pub vk_cmd_copy_image_to_buffer2_khr: crate::vk::PFN_vkCmdCopyImageToBuffer2KHR,
+    pub vk_cmd_resolve_image2_khr: crate::vk::PFN_vkCmdResolveImage2KHR,
+}

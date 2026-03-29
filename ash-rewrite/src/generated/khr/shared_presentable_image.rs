@@ -21,5 +21,12 @@ impl crate::vk::PresentModeKHR {
     pub const SHARED_DEMAND_REFRESH_KHR: Self = Self(1000111000);
     pub const SHARED_CONTINUOUS_REFRESH_KHR: Self = Self(1000111001);
 }
+pub type PFN_vkGetSwapchainStatusKHR = unsafe extern "system" fn(
+    device: crate::vk::Device,
+    swapchain: crate::vk::SwapchainKHR,
+) -> crate::vk::Result;
 pub const KHR_SHARED_PRESENTABLE_IMAGE_SPEC_VERSION: u32 = 1;
 pub const KHR_SHARED_PRESENTABLE_IMAGE_EXTENSION_NAME: &core::ffi::CStr = c"VK_KHR_shared_presentable_image";
+pub struct DeviceFn {
+    pub vk_get_swapchain_status_khr: crate::vk::PFN_vkGetSwapchainStatusKHR,
+}

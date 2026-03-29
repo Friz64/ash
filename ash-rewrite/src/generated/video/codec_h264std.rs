@@ -142,7 +142,7 @@ pub struct StdVideoH264PictureParameterSet {
     pub p_scaling_lists: *const crate::vk::StdVideoH264ScalingLists,
 }
 #[repr(transparent)]
-#[derive(Clone, Copy)]
+#[derive(Clone, Copy, PartialEq, Eq, PartialOrd, Ord, Hash, Default)]
 pub struct StdVideoH264ChromaFormatIdc(pub(crate) i32);
 ///Provided by [`video::codec_h264std`](crate::video::codec_h264std)
 impl StdVideoH264ChromaFormatIdc {
@@ -153,7 +153,7 @@ impl StdVideoH264ChromaFormatIdc {
     pub const INVALID: Self = Self(0x7FFFFFF);
 }
 #[repr(transparent)]
-#[derive(Clone, Copy)]
+#[derive(Clone, Copy, PartialEq, Eq, PartialOrd, Ord, Hash, Default)]
 pub struct StdVideoH264ProfileIdc(pub(crate) i32);
 ///Provided by [`video::codec_h264std`](crate::video::codec_h264std)
 impl StdVideoH264ProfileIdc {
@@ -164,7 +164,7 @@ impl StdVideoH264ProfileIdc {
     pub const INVALID: Self = Self(0x7FFFFFF);
 }
 #[repr(transparent)]
-#[derive(Clone, Copy)]
+#[derive(Clone, Copy, PartialEq, Eq, PartialOrd, Ord, Hash, Default)]
 pub struct StdVideoH264LevelIdc(pub(crate) i32);
 ///Provided by [`video::codec_h264std`](crate::video::codec_h264std)
 impl StdVideoH264LevelIdc {
@@ -190,7 +190,7 @@ impl StdVideoH264LevelIdc {
     pub const INVALID: Self = Self(0x7FFFFFF);
 }
 #[repr(transparent)]
-#[derive(Clone, Copy)]
+#[derive(Clone, Copy, PartialEq, Eq, PartialOrd, Ord, Hash, Default)]
 pub struct StdVideoH264PocType(pub(crate) i32);
 ///Provided by [`video::codec_h264std`](crate::video::codec_h264std)
 impl StdVideoH264PocType {
@@ -200,7 +200,7 @@ impl StdVideoH264PocType {
     pub const INVALID: Self = Self(0x7FFFFFF);
 }
 #[repr(transparent)]
-#[derive(Clone, Copy)]
+#[derive(Clone, Copy, PartialEq, Eq, PartialOrd, Ord, Hash, Default)]
 pub struct StdVideoH264AspectRatioIdc(pub(crate) i32);
 ///Provided by [`video::codec_h264std`](crate::video::codec_h264std)
 impl StdVideoH264AspectRatioIdc {
@@ -225,7 +225,7 @@ impl StdVideoH264AspectRatioIdc {
     pub const INVALID: Self = Self(0x7FFFFFF);
 }
 #[repr(transparent)]
-#[derive(Clone, Copy)]
+#[derive(Clone, Copy, PartialEq, Eq, PartialOrd, Ord, Hash, Default)]
 pub struct StdVideoH264WeightedBipredIdc(pub(crate) i32);
 ///Provided by [`video::codec_h264std`](crate::video::codec_h264std)
 impl StdVideoH264WeightedBipredIdc {
@@ -235,7 +235,7 @@ impl StdVideoH264WeightedBipredIdc {
     pub const INVALID: Self = Self(0x7FFFFFF);
 }
 #[repr(transparent)]
-#[derive(Clone, Copy)]
+#[derive(Clone, Copy, PartialEq, Eq, PartialOrd, Ord, Hash, Default)]
 pub struct StdVideoH264ModificationOfPicNumsIdc(pub(crate) i32);
 ///Provided by [`video::codec_h264std`](crate::video::codec_h264std)
 impl StdVideoH264ModificationOfPicNumsIdc {
@@ -246,7 +246,7 @@ impl StdVideoH264ModificationOfPicNumsIdc {
     pub const INVALID: Self = Self(0x7FFFFFF);
 }
 #[repr(transparent)]
-#[derive(Clone, Copy)]
+#[derive(Clone, Copy, PartialEq, Eq, PartialOrd, Ord, Hash, Default)]
 pub struct StdVideoH264MemMgmtControlOp(pub(crate) i32);
 ///Provided by [`video::codec_h264std`](crate::video::codec_h264std)
 impl StdVideoH264MemMgmtControlOp {
@@ -260,7 +260,7 @@ impl StdVideoH264MemMgmtControlOp {
     pub const INVALID: Self = Self(0x7FFFFFF);
 }
 #[repr(transparent)]
-#[derive(Clone, Copy)]
+#[derive(Clone, Copy, PartialEq, Eq, PartialOrd, Ord, Hash, Default)]
 pub struct StdVideoH264CabacInitIdc(pub(crate) i32);
 ///Provided by [`video::codec_h264std`](crate::video::codec_h264std)
 impl StdVideoH264CabacInitIdc {
@@ -270,7 +270,7 @@ impl StdVideoH264CabacInitIdc {
     pub const INVALID: Self = Self(0x7FFFFFF);
 }
 #[repr(transparent)]
-#[derive(Clone, Copy)]
+#[derive(Clone, Copy, PartialEq, Eq, PartialOrd, Ord, Hash, Default)]
 pub struct StdVideoH264DisableDeblockingFilterIdc(pub(crate) i32);
 ///Provided by [`video::codec_h264std`](crate::video::codec_h264std)
 impl StdVideoH264DisableDeblockingFilterIdc {
@@ -280,7 +280,7 @@ impl StdVideoH264DisableDeblockingFilterIdc {
     pub const INVALID: Self = Self(0x7FFFFFF);
 }
 #[repr(transparent)]
-#[derive(Clone, Copy)]
+#[derive(Clone, Copy, PartialEq, Eq, PartialOrd, Ord, Hash, Default)]
 pub struct StdVideoH264SliceType(pub(crate) i32);
 ///Provided by [`video::codec_h264std`](crate::video::codec_h264std)
 impl StdVideoH264SliceType {
@@ -290,7 +290,7 @@ impl StdVideoH264SliceType {
     pub const INVALID: Self = Self(0x7FFFFFF);
 }
 #[repr(transparent)]
-#[derive(Clone, Copy)]
+#[derive(Clone, Copy, PartialEq, Eq, PartialOrd, Ord, Hash, Default)]
 pub struct StdVideoH264PictureType(pub(crate) i32);
 ///Provided by [`video::codec_h264std`](crate::video::codec_h264std)
 impl StdVideoH264PictureType {
@@ -301,7 +301,7 @@ impl StdVideoH264PictureType {
     pub const INVALID: Self = Self(0x7FFFFFF);
 }
 #[repr(transparent)]
-#[derive(Clone, Copy)]
+#[derive(Clone, Copy, PartialEq, Eq, PartialOrd, Ord, Hash, Default)]
 pub struct StdVideoH264NonVclNaluType(pub(crate) i32);
 ///Provided by [`video::codec_h264std`](crate::video::codec_h264std)
 impl StdVideoH264NonVclNaluType {

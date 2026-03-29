@@ -12,5 +12,11 @@ impl crate::vk::StructureType {
 impl crate::vk::ImageCreateFlagBits {
     pub const ALIAS_KHR: Self = Self::ALIAS;
 }
+pub type PFN_vkBindBufferMemory2KHR = crate::vk::PFN_vkBindBufferMemory2;
+pub type PFN_vkBindImageMemory2KHR = crate::vk::PFN_vkBindImageMemory2;
 pub const KHR_BIND_MEMORY_2_SPEC_VERSION: u32 = 1;
 pub const KHR_BIND_MEMORY_2_EXTENSION_NAME: &core::ffi::CStr = c"VK_KHR_bind_memory2";
+pub struct DeviceFn {
+    pub vk_bind_buffer_memory2_khr: crate::vk::PFN_vkBindBufferMemory2KHR,
+    pub vk_bind_image_memory2_khr: crate::vk::PFN_vkBindImageMemory2KHR,
+}

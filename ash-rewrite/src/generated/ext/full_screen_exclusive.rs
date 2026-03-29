@@ -33,7 +33,7 @@ impl crate::vk::Result {
     pub const ERROR_FULL_SCREEN_EXCLUSIVE_MODE_LOST_EXT: Self = Self(-1000255000);
 }
 #[repr(transparent)]
-#[derive(Clone, Copy)]
+#[derive(Clone, Copy, PartialEq, Eq, PartialOrd, Ord, Hash, Default)]
 pub struct FullScreenExclusiveEXT(pub(crate) i32);
 ///Provided by [`ext::full_screen_exclusive`](crate::ext::full_screen_exclusive)
 impl FullScreenExclusiveEXT {
@@ -42,5 +42,32 @@ impl FullScreenExclusiveEXT {
     pub const DISALLOWED_EXT: Self = Self(2);
     pub const APPLICATION_CONTROLLED_EXT: Self = Self(3);
 }
+pub type PFN_vkGetPhysicalDeviceSurfacePresentModes2EXT = unsafe extern "system" fn(
+    physical_device: crate::vk::PhysicalDevice,
+    p_surface_info: *const crate::vk::PhysicalDeviceSurfaceInfo2KHR,
+    p_present_mode_count: *mut u32,
+    p_present_modes: *mut crate::vk::PresentModeKHR,
+) -> crate::vk::Result;
+pub type PFN_vkGetDeviceGroupSurfacePresentModes2EXT = unsafe extern "system" fn(
+    device: crate::vk::Device,
+    p_surface_info: *const crate::vk::PhysicalDeviceSurfaceInfo2KHR,
+    p_modes: *mut crate::vk::DeviceGroupPresentModeFlagsKHR,
+) -> crate::vk::Result;
+pub type PFN_vkAcquireFullScreenExclusiveModeEXT = unsafe extern "system" fn(
+    device: crate::vk::Device,
+    swapchain: crate::vk::SwapchainKHR,
+) -> crate::vk::Result;
+pub type PFN_vkReleaseFullScreenExclusiveModeEXT = unsafe extern "system" fn(
+    device: crate::vk::Device,
+    swapchain: crate::vk::SwapchainKHR,
+) -> crate::vk::Result;
 pub const EXT_FULL_SCREEN_EXCLUSIVE_SPEC_VERSION: u32 = 4;
 pub const EXT_FULL_SCREEN_EXCLUSIVE_EXTENSION_NAME: &core::ffi::CStr = c"VK_EXT_full_screen_exclusive";
+pub struct InstanceFn {
+    pub vk_get_physical_device_surface_present_modes2_ext: crate::vk::PFN_vkGetPhysicalDeviceSurfacePresentModes2EXT,
+}
+pub struct DeviceFn {
+    pub vk_get_device_group_surface_present_modes2_ext: crate::vk::PFN_vkGetDeviceGroupSurfacePresentModes2EXT,
+    pub vk_acquire_full_screen_exclusive_mode_ext: crate::vk::PFN_vkAcquireFullScreenExclusiveModeEXT,
+    pub vk_release_full_screen_exclusive_mode_ext: crate::vk::PFN_vkReleaseFullScreenExclusiveModeEXT,
+}

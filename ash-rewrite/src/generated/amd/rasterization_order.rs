@@ -15,7 +15,7 @@ impl crate::vk::StructureType {
     );
 }
 #[repr(transparent)]
-#[derive(Clone, Copy)]
+#[derive(Clone, Copy, PartialEq, Eq, PartialOrd, Ord, Hash, Default)]
 pub struct RasterizationOrderAMD(pub(crate) i32);
 ///Provided by [`amd::rasterization_order`](crate::amd::rasterization_order)
 impl RasterizationOrderAMD {

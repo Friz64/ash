@@ -14,5 +14,13 @@ impl crate::vk::TimeDomainKHR {
     pub const QUERY_PERFORMANCE_COUNTER_EXT: Self = Self::QUERY_PERFORMANCE_COUNTER_KHR;
 }
 pub type TimeDomainEXT = crate::vk::TimeDomainKHR;
+pub type PFN_vkGetPhysicalDeviceCalibrateableTimeDomainsEXT = crate::vk::PFN_vkGetPhysicalDeviceCalibrateableTimeDomainsKHR;
+pub type PFN_vkGetCalibratedTimestampsEXT = crate::vk::PFN_vkGetCalibratedTimestampsKHR;
 pub const EXT_CALIBRATED_TIMESTAMPS_SPEC_VERSION: u32 = 2;
 pub const EXT_CALIBRATED_TIMESTAMPS_EXTENSION_NAME: &core::ffi::CStr = c"VK_EXT_calibrated_timestamps";
+pub struct InstanceFn {
+    pub vk_get_physical_device_calibrateable_time_domains_ext: crate::vk::PFN_vkGetPhysicalDeviceCalibrateableTimeDomainsEXT,
+}
+pub struct DeviceFn {
+    pub vk_get_calibrated_timestamps_ext: crate::vk::PFN_vkGetCalibratedTimestampsEXT,
+}

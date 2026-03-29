@@ -35,7 +35,7 @@ impl crate::vk::StructureType {
     );
 }
 #[repr(transparent)]
-#[derive(Clone, Copy)]
+#[derive(Clone, Copy, PartialEq, Eq, PartialOrd, Ord, Hash, Default)]
 pub struct ConservativeRasterizationModeEXT(pub(crate) i32);
 ///Provided by [`ext::conservative_rasterization`](crate::ext::conservative_rasterization)
 impl ConservativeRasterizationModeEXT {
