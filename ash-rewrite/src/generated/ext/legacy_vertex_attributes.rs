@@ -15,5 +15,14 @@ pub struct PhysicalDeviceLegacyVertexAttributesPropertiesEXT {
     pub p_next: *mut core::ffi::c_void,
     pub native_unaligned_performance: crate::vk::Bool32,
 }
+///Provided by [`ext::legacy_vertex_attributes`](crate::ext::legacy_vertex_attributes)
+impl crate::vk::StructureType {
+    pub const PHYSICAL_DEVICE_LEGACY_VERTEX_ATTRIBUTES_FEATURES_EXT: Self = Self(
+        1000495000,
+    );
+    pub const PHYSICAL_DEVICE_LEGACY_VERTEX_ATTRIBUTES_PROPERTIES_EXT: Self = Self(
+        1000495001,
+    );
+}
 pub const EXT_LEGACY_VERTEX_ATTRIBUTES_SPEC_VERSION: u32 = 1;
 pub const EXT_LEGACY_VERTEX_ATTRIBUTES_EXTENSION_NAME: &core::ffi::CStr = c"VK_EXT_legacy_vertex_attributes";

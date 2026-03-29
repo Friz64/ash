@@ -6,5 +6,13 @@ pub type ImageMemoryRequirementsInfo2KHR = crate::vk::ImageMemoryRequirementsInf
 pub type ImageSparseMemoryRequirementsInfo2KHR = crate::vk::ImageSparseMemoryRequirementsInfo2;
 pub type MemoryRequirements2KHR = crate::vk::MemoryRequirements2;
 pub type SparseImageMemoryRequirements2KHR = crate::vk::SparseImageMemoryRequirements2;
+///Provided by [`khr::get_memory_requirements2`](crate::khr::get_memory_requirements2)
+impl crate::vk::StructureType {
+    pub const BUFFER_MEMORY_REQUIREMENTS_INFO_2_KHR: Self = Self::BUFFER_MEMORY_REQUIREMENTS_INFO_2;
+    pub const IMAGE_MEMORY_REQUIREMENTS_INFO_2_KHR: Self = Self::IMAGE_MEMORY_REQUIREMENTS_INFO_2;
+    pub const IMAGE_SPARSE_MEMORY_REQUIREMENTS_INFO_2_KHR: Self = Self::IMAGE_SPARSE_MEMORY_REQUIREMENTS_INFO_2;
+    pub const MEMORY_REQUIREMENTS_2_KHR: Self = Self::MEMORY_REQUIREMENTS_2;
+    pub const SPARSE_IMAGE_MEMORY_REQUIREMENTS_2_KHR: Self = Self::SPARSE_IMAGE_MEMORY_REQUIREMENTS_2;
+}
 pub const KHR_GET_MEMORY_REQUIREMENTS_2_SPEC_VERSION: u32 = 1;
 pub const KHR_GET_MEMORY_REQUIREMENTS_2_EXTENSION_NAME: &core::ffi::CStr = c"VK_KHR_get_memory_requirements2";

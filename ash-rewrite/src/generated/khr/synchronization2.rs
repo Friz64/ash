@@ -9,6 +9,22 @@ pub type SemaphoreSubmitInfoKHR = crate::vk::SemaphoreSubmitInfo;
 pub type CommandBufferSubmitInfoKHR = crate::vk::CommandBufferSubmitInfo;
 pub type SubmitInfo2KHR = crate::vk::SubmitInfo2;
 pub type PhysicalDeviceSynchronization2FeaturesKHR = crate::vk::PhysicalDeviceSynchronization2Features;
+///Provided by [`khr::synchronization2`](crate::khr::synchronization2)
+impl crate::vk::ImageLayout {
+    pub const READ_ONLY_OPTIMAL_KHR: Self = Self::READ_ONLY_OPTIMAL;
+    pub const ATTACHMENT_OPTIMAL_KHR: Self = Self::ATTACHMENT_OPTIMAL;
+}
+///Provided by [`khr::synchronization2`](crate::khr::synchronization2)
+impl crate::vk::StructureType {
+    pub const MEMORY_BARRIER_2_KHR: Self = Self::MEMORY_BARRIER_2;
+    pub const BUFFER_MEMORY_BARRIER_2_KHR: Self = Self::BUFFER_MEMORY_BARRIER_2;
+    pub const IMAGE_MEMORY_BARRIER_2_KHR: Self = Self::IMAGE_MEMORY_BARRIER_2;
+    pub const DEPENDENCY_INFO_KHR: Self = Self::DEPENDENCY_INFO;
+    pub const SUBMIT_INFO_2_KHR: Self = Self::SUBMIT_INFO_2;
+    pub const SEMAPHORE_SUBMIT_INFO_KHR: Self = Self::SEMAPHORE_SUBMIT_INFO;
+    pub const COMMAND_BUFFER_SUBMIT_INFO_KHR: Self = Self::COMMAND_BUFFER_SUBMIT_INFO;
+    pub const PHYSICAL_DEVICE_SYNCHRONIZATION_2_FEATURES_KHR: Self = Self::PHYSICAL_DEVICE_SYNCHRONIZATION_2_FEATURES;
+}
 pub type AccessFlagBits2KHR = crate::vk::AccessFlagBits2;
 pub type PipelineStageFlagBits2KHR = crate::vk::PipelineStageFlagBits2;
 pub type SubmitFlagBitsKHR = crate::vk::SubmitFlagBits;

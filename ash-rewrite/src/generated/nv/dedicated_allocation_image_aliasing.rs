@@ -8,5 +8,11 @@ pub struct PhysicalDeviceDedicatedAllocationImageAliasingFeaturesNV {
     pub p_next: *mut core::ffi::c_void,
     pub dedicated_allocation_image_aliasing: crate::vk::Bool32,
 }
+///Provided by [`nv::dedicated_allocation_image_aliasing`](crate::nv::dedicated_allocation_image_aliasing)
+impl crate::vk::StructureType {
+    pub const PHYSICAL_DEVICE_DEDICATED_ALLOCATION_IMAGE_ALIASING_FEATURES_NV: Self = Self(
+        1000240000,
+    );
+}
 pub const NV_DEDICATED_ALLOCATION_IMAGE_ALIASING_SPEC_VERSION: u32 = 1;
 pub const NV_DEDICATED_ALLOCATION_IMAGE_ALIASING_EXTENSION_NAME: &core::ffi::CStr = c"VK_NV_dedicated_allocation_image_aliasing";

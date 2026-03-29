@@ -17,5 +17,10 @@ pub struct ExportMemoryWin32HandleInfoNV {
     pub p_attributes: *const crate::platform_types::SECURITY_ATTRIBUTES,
     pub dw_access: crate::platform_types::DWORD,
 }
+///Provided by [`nv::external_memory_win32`](crate::nv::external_memory_win32)
+impl crate::vk::StructureType {
+    pub const IMPORT_MEMORY_WIN32_HANDLE_INFO_NV: Self = Self(1000057000);
+    pub const EXPORT_MEMORY_WIN32_HANDLE_INFO_NV: Self = Self(1000057001);
+}
 pub const NV_EXTERNAL_MEMORY_WIN32_SPEC_VERSION: u32 = 1;
 pub const NV_EXTERNAL_MEMORY_WIN32_EXTENSION_NAME: &core::ffi::CStr = c"VK_NV_external_memory_win32";

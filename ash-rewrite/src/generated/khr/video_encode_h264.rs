@@ -160,6 +160,27 @@ pub struct VideoEncodeH264RateControlLayerInfoKHR {
     pub max_frame_size: crate::vk::VideoEncodeH264FrameSizeKHR,
 }
 ///Provided by [`khr::video_encode_h264`](crate::khr::video_encode_h264)
+impl crate::vk::StructureType {
+    pub const VIDEO_ENCODE_H264_CAPABILITIES_KHR: Self = Self(1000038000);
+    pub const VIDEO_ENCODE_H264_SESSION_PARAMETERS_CREATE_INFO_KHR: Self = Self(
+        1000038001,
+    );
+    pub const VIDEO_ENCODE_H264_SESSION_PARAMETERS_ADD_INFO_KHR: Self = Self(1000038002);
+    pub const VIDEO_ENCODE_H264_PICTURE_INFO_KHR: Self = Self(1000038003);
+    pub const VIDEO_ENCODE_H264_DPB_SLOT_INFO_KHR: Self = Self(1000038004);
+    pub const VIDEO_ENCODE_H264_NALU_SLICE_INFO_KHR: Self = Self(1000038005);
+    pub const VIDEO_ENCODE_H264_GOP_REMAINING_FRAME_INFO_KHR: Self = Self(1000038006);
+    pub const VIDEO_ENCODE_H264_PROFILE_INFO_KHR: Self = Self(1000038007);
+    pub const VIDEO_ENCODE_H264_RATE_CONTROL_INFO_KHR: Self = Self(1000038008);
+    pub const VIDEO_ENCODE_H264_RATE_CONTROL_LAYER_INFO_KHR: Self = Self(1000038009);
+    pub const VIDEO_ENCODE_H264_SESSION_CREATE_INFO_KHR: Self = Self(1000038010);
+    pub const VIDEO_ENCODE_H264_QUALITY_LEVEL_PROPERTIES_KHR: Self = Self(1000038011);
+    pub const VIDEO_ENCODE_H264_SESSION_PARAMETERS_GET_INFO_KHR: Self = Self(1000038012);
+    pub const VIDEO_ENCODE_H264_SESSION_PARAMETERS_FEEDBACK_INFO_KHR: Self = Self(
+        1000038013,
+    );
+}
+///Provided by [`khr::video_encode_h264`](crate::khr::video_encode_h264)
 impl crate::vk::VideoCodecOperationFlagBitsKHR {
     pub const ENCODE_H264_KHR: Self = Self(1 << 16);
 }

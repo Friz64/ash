@@ -86,9 +86,36 @@ pub struct BuildPartitionedAccelerationStructureInfoNV {
     pub src_infos: crate::vk::DeviceAddress,
     pub src_infos_count: crate::vk::DeviceAddress,
 }
+///Provided by [`nv::partitioned_acceleration_structure`](crate::nv::partitioned_acceleration_structure)
+impl crate::vk::DescriptorType {
+    pub const PARTITIONED_ACCELERATION_STRUCTURE_NV: Self = Self(1000570000);
+}
+///Provided by [`nv::partitioned_acceleration_structure`](crate::nv::partitioned_acceleration_structure)
+impl crate::vk::StructureType {
+    pub const PHYSICAL_DEVICE_PARTITIONED_ACCELERATION_STRUCTURE_FEATURES_NV: Self = Self(
+        1000570000,
+    );
+    pub const PHYSICAL_DEVICE_PARTITIONED_ACCELERATION_STRUCTURE_PROPERTIES_NV: Self = Self(
+        1000570001,
+    );
+    pub const WRITE_DESCRIPTOR_SET_PARTITIONED_ACCELERATION_STRUCTURE_NV: Self = Self(
+        1000570002,
+    );
+    pub const PARTITIONED_ACCELERATION_STRUCTURE_INSTANCES_INPUT_NV: Self = Self(
+        1000570003,
+    );
+    pub const BUILD_PARTITIONED_ACCELERATION_STRUCTURE_INFO_NV: Self = Self(1000570004);
+    pub const PARTITIONED_ACCELERATION_STRUCTURE_FLAGS_NV: Self = Self(1000570005);
+}
 #[repr(transparent)]
 #[derive(Clone, Copy)]
 pub struct PartitionedAccelerationStructureOpTypeNV(pub(crate) i32);
+///Provided by [`nv::partitioned_acceleration_structure`](crate::nv::partitioned_acceleration_structure)
+impl PartitionedAccelerationStructureOpTypeNV {
+    pub const WRITE_INSTANCE_NV: Self = Self(0);
+    pub const UPDATE_INSTANCE_NV: Self = Self(1);
+    pub const WRITE_PARTITION_TRANSLATION_NV: Self = Self(2);
+}
 bitflags::bitflags! {
     #[repr(transparent)] #[derive(Clone, Copy)] pub struct
     PartitionedAccelerationStructureInstanceFlagsNV : u32 { const

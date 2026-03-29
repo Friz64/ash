@@ -35,6 +35,21 @@ pub struct RenderingFragmentDensityMapAttachmentInfoEXT {
     pub image_layout: crate::vk::ImageLayout,
 }
 ///Provided by [`ext::fragment_density_map`](crate::ext::fragment_density_map)
+impl crate::vk::ImageLayout {
+    pub const FRAGMENT_DENSITY_MAP_OPTIMAL_EXT: Self = Self(1000218000);
+}
+///Provided by [`ext::fragment_density_map`](crate::ext::fragment_density_map)
+impl crate::vk::StructureType {
+    pub const PHYSICAL_DEVICE_FRAGMENT_DENSITY_MAP_FEATURES_EXT: Self = Self(1000218000);
+    pub const PHYSICAL_DEVICE_FRAGMENT_DENSITY_MAP_PROPERTIES_EXT: Self = Self(
+        1000218001,
+    );
+    pub const RENDER_PASS_FRAGMENT_DENSITY_MAP_CREATE_INFO_EXT: Self = Self(1000218002);
+    pub const RENDERING_FRAGMENT_DENSITY_MAP_ATTACHMENT_INFO_EXT: Self = Self(
+        1000044007,
+    );
+}
+///Provided by [`ext::fragment_density_map`](crate::ext::fragment_density_map)
 impl crate::vk::SamplerCreateFlagBits {
     pub const SUBSAMPLED_EXT: Self = Self(1 << 0);
     pub const SUBSAMPLED_COARSE_RECONSTRUCTION_EXT: Self = Self(1 << 1);

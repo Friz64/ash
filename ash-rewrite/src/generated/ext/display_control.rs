@@ -29,14 +29,35 @@ pub struct SwapchainCounterCreateInfoEXT {
     pub p_next: *const core::ffi::c_void,
     pub surface_counters: crate::vk::SurfaceCounterFlagsEXT,
 }
+///Provided by [`ext::display_control`](crate::ext::display_control)
+impl crate::vk::StructureType {
+    pub const DISPLAY_POWER_INFO_EXT: Self = Self(1000091000);
+    pub const DEVICE_EVENT_INFO_EXT: Self = Self(1000091001);
+    pub const DISPLAY_EVENT_INFO_EXT: Self = Self(1000091002);
+    pub const SWAPCHAIN_COUNTER_CREATE_INFO_EXT: Self = Self(1000091003);
+}
 #[repr(transparent)]
 #[derive(Clone, Copy)]
 pub struct DisplayPowerStateEXT(pub(crate) i32);
+///Provided by [`ext::display_control`](crate::ext::display_control)
+impl DisplayPowerStateEXT {
+    pub const OFF_EXT: Self = Self(0);
+    pub const SUSPEND_EXT: Self = Self(1);
+    pub const ON_EXT: Self = Self(2);
+}
 #[repr(transparent)]
 #[derive(Clone, Copy)]
 pub struct DeviceEventTypeEXT(pub(crate) i32);
+///Provided by [`ext::display_control`](crate::ext::display_control)
+impl DeviceEventTypeEXT {
+    pub const DISPLAY_HOTPLUG_EXT: Self = Self(0);
+}
 #[repr(transparent)]
 #[derive(Clone, Copy)]
 pub struct DisplayEventTypeEXT(pub(crate) i32);
+///Provided by [`ext::display_control`](crate::ext::display_control)
+impl DisplayEventTypeEXT {
+    pub const FIRST_PIXEL_OUT_EXT: Self = Self(0);
+}
 pub const EXT_DISPLAY_CONTROL_SPEC_VERSION: u32 = 1;
 pub const EXT_DISPLAY_CONTROL_EXTENSION_NAME: &core::ffi::CStr = c"VK_EXT_display_control";

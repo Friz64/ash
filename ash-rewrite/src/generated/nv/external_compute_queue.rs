@@ -30,6 +30,19 @@ pub struct PhysicalDeviceExternalComputeQueuePropertiesNV {
     pub external_data_size: u32,
     pub max_external_queues: u32,
 }
+///Provided by [`nv::external_compute_queue`](crate::nv::external_compute_queue)
+impl crate::vk::StructureType {
+    pub const EXTERNAL_COMPUTE_QUEUE_DEVICE_CREATE_INFO_NV: Self = Self(1000556000);
+    pub const EXTERNAL_COMPUTE_QUEUE_CREATE_INFO_NV: Self = Self(1000556001);
+    pub const EXTERNAL_COMPUTE_QUEUE_DATA_PARAMS_NV: Self = Self(1000556002);
+    pub const PHYSICAL_DEVICE_EXTERNAL_COMPUTE_QUEUE_PROPERTIES_NV: Self = Self(
+        1000556003,
+    );
+}
+///Provided by [`nv::external_compute_queue`](crate::nv::external_compute_queue)
+impl crate::vk::ObjectType {
+    pub const EXTERNAL_COMPUTE_QUEUE_NV: Self = Self(1000556000);
+}
 #[repr(transparent)]
 #[derive(Clone, Copy)]
 pub struct ExternalComputeQueueNV(pub(crate) i32);

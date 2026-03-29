@@ -9,6 +9,12 @@ pub struct PhysicalDeviceInternallySynchronizedQueuesFeaturesKHR {
     pub internally_synchronized_queues: crate::vk::Bool32,
 }
 ///Provided by [`khr::internally_synchronized_queues`](crate::khr::internally_synchronized_queues)
+impl crate::vk::StructureType {
+    pub const PHYSICAL_DEVICE_INTERNALLY_SYNCHRONIZED_QUEUES_FEATURES_KHR: Self = Self(
+        1000504000,
+    );
+}
+///Provided by [`khr::internally_synchronized_queues`](crate::khr::internally_synchronized_queues)
 impl crate::vk::DeviceQueueCreateFlagBits {
     pub const INTERNALLY_SYNCHRONIZED_KHR: Self = Self(1 << 2);
 }

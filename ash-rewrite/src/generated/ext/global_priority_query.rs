@@ -3,5 +3,10 @@
 //![Vulkan Manual Page](https://docs.vulkan.org/refpages/latest/refpages/source/VK_EXT_global_priority_query.html) · Extension `VK_EXT_global_priority_query`
 pub type PhysicalDeviceGlobalPriorityQueryFeaturesEXT = crate::vk::PhysicalDeviceGlobalPriorityQueryFeatures;
 pub type QueueFamilyGlobalPriorityPropertiesEXT = crate::vk::QueueFamilyGlobalPriorityProperties;
+///Provided by [`ext::global_priority_query`](crate::ext::global_priority_query)
+impl crate::vk::StructureType {
+    pub const PHYSICAL_DEVICE_GLOBAL_PRIORITY_QUERY_FEATURES_EXT: Self = Self::PHYSICAL_DEVICE_GLOBAL_PRIORITY_QUERY_FEATURES;
+    pub const QUEUE_FAMILY_GLOBAL_PRIORITY_PROPERTIES_EXT: Self = Self::QUEUE_FAMILY_GLOBAL_PRIORITY_PROPERTIES;
+}
 pub const EXT_GLOBAL_PRIORITY_QUERY_SPEC_VERSION: u32 = 1;
 pub const EXT_GLOBAL_PRIORITY_QUERY_EXTENSION_NAME: &core::ffi::CStr = c"VK_EXT_global_priority_query";

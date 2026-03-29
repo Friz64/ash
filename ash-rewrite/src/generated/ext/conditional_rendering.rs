@@ -26,6 +26,16 @@ pub struct PhysicalDeviceConditionalRenderingFeaturesEXT {
     pub inherited_conditional_rendering: crate::vk::Bool32,
 }
 ///Provided by [`ext::conditional_rendering`](crate::ext::conditional_rendering)
+impl crate::vk::StructureType {
+    pub const COMMAND_BUFFER_INHERITANCE_CONDITIONAL_RENDERING_INFO_EXT: Self = Self(
+        1000081000,
+    );
+    pub const PHYSICAL_DEVICE_CONDITIONAL_RENDERING_FEATURES_EXT: Self = Self(
+        1000081001,
+    );
+    pub const CONDITIONAL_RENDERING_BEGIN_INFO_EXT: Self = Self(1000081002);
+}
+///Provided by [`ext::conditional_rendering`](crate::ext::conditional_rendering)
 impl crate::vk::AccessFlagBits {
     pub const CONDITIONAL_RENDERING_READ_EXT: Self = Self(1 << 20);
 }

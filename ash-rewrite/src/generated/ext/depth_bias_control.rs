@@ -28,8 +28,20 @@ pub struct PhysicalDeviceDepthBiasControlFeaturesEXT {
     pub float_representation: crate::vk::Bool32,
     pub depth_bias_exact: crate::vk::Bool32,
 }
+///Provided by [`ext::depth_bias_control`](crate::ext::depth_bias_control)
+impl crate::vk::StructureType {
+    pub const PHYSICAL_DEVICE_DEPTH_BIAS_CONTROL_FEATURES_EXT: Self = Self(1000283000);
+    pub const DEPTH_BIAS_INFO_EXT: Self = Self(1000283001);
+    pub const DEPTH_BIAS_REPRESENTATION_INFO_EXT: Self = Self(1000283002);
+}
 #[repr(transparent)]
 #[derive(Clone, Copy)]
 pub struct DepthBiasRepresentationEXT(pub(crate) i32);
+///Provided by [`ext::depth_bias_control`](crate::ext::depth_bias_control)
+impl DepthBiasRepresentationEXT {
+    pub const LEAST_REPRESENTABLE_VALUE_FORMAT_EXT: Self = Self(0);
+    pub const LEAST_REPRESENTABLE_VALUE_FORCE_UNORM_EXT: Self = Self(1);
+    pub const FLOAT_EXT: Self = Self(2);
+}
 pub const EXT_DEPTH_BIAS_CONTROL_SPEC_VERSION: u32 = 1;
 pub const EXT_DEPTH_BIAS_CONTROL_EXTENSION_NAME: &core::ffi::CStr = c"VK_EXT_depth_bias_control";

@@ -19,5 +19,10 @@ pub struct PhysicalDeviceShaderTileImagePropertiesEXT {
     pub shader_tile_image_read_sample_from_pixel_rate_invocation: crate::vk::Bool32,
     pub shader_tile_image_read_from_helper_invocation: crate::vk::Bool32,
 }
+///Provided by [`ext::shader_tile_image`](crate::ext::shader_tile_image)
+impl crate::vk::StructureType {
+    pub const PHYSICAL_DEVICE_SHADER_TILE_IMAGE_FEATURES_EXT: Self = Self(1000395000);
+    pub const PHYSICAL_DEVICE_SHADER_TILE_IMAGE_PROPERTIES_EXT: Self = Self(1000395001);
+}
 pub const EXT_SHADER_TILE_IMAGE_SPEC_VERSION: u32 = 1;
 pub const EXT_SHADER_TILE_IMAGE_EXTENSION_NAME: &core::ffi::CStr = c"VK_EXT_shader_tile_image";

@@ -8,5 +8,9 @@ pub struct PhysicalDeviceRayQueryFeaturesKHR {
     pub p_next: *mut core::ffi::c_void,
     pub ray_query: crate::vk::Bool32,
 }
+///Provided by [`khr::ray_query`](crate::khr::ray_query)
+impl crate::vk::StructureType {
+    pub const PHYSICAL_DEVICE_RAY_QUERY_FEATURES_KHR: Self = Self(1000348013);
+}
 pub const KHR_RAY_QUERY_SPEC_VERSION: u32 = 1;
 pub const KHR_RAY_QUERY_EXTENSION_NAME: &core::ffi::CStr = c"VK_KHR_ray_query";

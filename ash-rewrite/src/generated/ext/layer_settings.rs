@@ -18,8 +18,23 @@ pub struct LayerSettingEXT {
     pub value_count: u32,
     pub p_values: *const core::ffi::c_void,
 }
+///Provided by [`ext::layer_settings`](crate::ext::layer_settings)
+impl crate::vk::StructureType {
+    pub const LAYER_SETTINGS_CREATE_INFO_EXT: Self = Self(1000496000);
+}
 #[repr(transparent)]
 #[derive(Clone, Copy)]
 pub struct LayerSettingTypeEXT(pub(crate) i32);
+///Provided by [`ext::layer_settings`](crate::ext::layer_settings)
+impl LayerSettingTypeEXT {
+    pub const BOOL32_EXT: Self = Self(0);
+    pub const INT32_EXT: Self = Self(1);
+    pub const INT64_EXT: Self = Self(2);
+    pub const UINT32_EXT: Self = Self(3);
+    pub const UINT64_EXT: Self = Self(4);
+    pub const FLOAT32_EXT: Self = Self(5);
+    pub const FLOAT64_EXT: Self = Self(6);
+    pub const STRING_EXT: Self = Self(7);
+}
 pub const EXT_LAYER_SETTINGS_SPEC_VERSION: u32 = 2;
 pub const EXT_LAYER_SETTINGS_EXTENSION_NAME: &core::ffi::CStr = c"VK_EXT_layer_settings";

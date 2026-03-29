@@ -70,15 +70,58 @@ pub union PerformanceCounterResultKHR {
     pub float32: core::ffi::c_float,
     pub float64: core::ffi::c_double,
 }
+///Provided by [`khr::performance_query`](crate::khr::performance_query)
+impl crate::vk::QueryType {
+    pub const PERFORMANCE_QUERY_KHR: Self = Self(1000116000);
+}
+///Provided by [`khr::performance_query`](crate::khr::performance_query)
+impl crate::vk::StructureType {
+    pub const PHYSICAL_DEVICE_PERFORMANCE_QUERY_FEATURES_KHR: Self = Self(1000116000);
+    pub const PHYSICAL_DEVICE_PERFORMANCE_QUERY_PROPERTIES_KHR: Self = Self(1000116001);
+    pub const QUERY_POOL_PERFORMANCE_CREATE_INFO_KHR: Self = Self(1000116002);
+    pub const PERFORMANCE_QUERY_SUBMIT_INFO_KHR: Self = Self(1000116003);
+    pub const ACQUIRE_PROFILING_LOCK_INFO_KHR: Self = Self(1000116004);
+    pub const PERFORMANCE_COUNTER_KHR: Self = Self(1000116005);
+    pub const PERFORMANCE_COUNTER_DESCRIPTION_KHR: Self = Self(1000116006);
+}
 #[repr(transparent)]
 #[derive(Clone, Copy)]
 pub struct PerformanceCounterScopeKHR(pub(crate) i32);
+///Provided by [`khr::performance_query`](crate::khr::performance_query)
+impl PerformanceCounterScopeKHR {
+    pub const COMMAND_BUFFER_KHR: Self = Self(0);
+    pub const RENDER_PASS_KHR: Self = Self(1);
+    pub const COMMAND_KHR: Self = Self(2);
+}
 #[repr(transparent)]
 #[derive(Clone, Copy)]
 pub struct PerformanceCounterUnitKHR(pub(crate) i32);
+///Provided by [`khr::performance_query`](crate::khr::performance_query)
+impl PerformanceCounterUnitKHR {
+    pub const GENERIC_KHR: Self = Self(0);
+    pub const PERCENTAGE_KHR: Self = Self(1);
+    pub const NANOSECONDS_KHR: Self = Self(2);
+    pub const BYTES_KHR: Self = Self(3);
+    pub const BYTES_PER_SECOND_KHR: Self = Self(4);
+    pub const KELVIN_KHR: Self = Self(5);
+    pub const WATTS_KHR: Self = Self(6);
+    pub const VOLTS_KHR: Self = Self(7);
+    pub const AMPS_KHR: Self = Self(8);
+    pub const HERTZ_KHR: Self = Self(9);
+    pub const CYCLES_KHR: Self = Self(10);
+}
 #[repr(transparent)]
 #[derive(Clone, Copy)]
 pub struct PerformanceCounterStorageKHR(pub(crate) i32);
+///Provided by [`khr::performance_query`](crate::khr::performance_query)
+impl PerformanceCounterStorageKHR {
+    pub const INT32_KHR: Self = Self(0);
+    pub const INT64_KHR: Self = Self(1);
+    pub const UINT32_KHR: Self = Self(2);
+    pub const UINT64_KHR: Self = Self(3);
+    pub const FLOAT32_KHR: Self = Self(4);
+    pub const FLOAT64_KHR: Self = Self(5);
+}
 bitflags::bitflags! {
     #[repr(transparent)] #[derive(Clone, Copy)] pub struct
     PerformanceCounterDescriptionFlagsKHR : u32 { const PERFORMANCE_IMPACTING_KHR =

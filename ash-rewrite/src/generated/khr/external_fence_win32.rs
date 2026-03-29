@@ -29,5 +29,11 @@ pub struct FenceGetWin32HandleInfoKHR {
     pub fence: crate::vk::Fence,
     pub handle_type: crate::vk::ExternalFenceHandleTypeFlagBits,
 }
+///Provided by [`khr::external_fence_win32`](crate::khr::external_fence_win32)
+impl crate::vk::StructureType {
+    pub const IMPORT_FENCE_WIN32_HANDLE_INFO_KHR: Self = Self(1000114000);
+    pub const EXPORT_FENCE_WIN32_HANDLE_INFO_KHR: Self = Self(1000114001);
+    pub const FENCE_GET_WIN32_HANDLE_INFO_KHR: Self = Self(1000114002);
+}
 pub const KHR_EXTERNAL_FENCE_WIN32_SPEC_VERSION: u32 = 1;
 pub const KHR_EXTERNAL_FENCE_WIN32_EXTENSION_NAME: &core::ffi::CStr = c"VK_KHR_external_fence_win32";

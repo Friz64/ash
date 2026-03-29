@@ -6,6 +6,18 @@ pub type RenderingInfoKHR = crate::vk::RenderingInfo;
 pub type RenderingAttachmentInfoKHR = crate::vk::RenderingAttachmentInfo;
 pub type PhysicalDeviceDynamicRenderingFeaturesKHR = crate::vk::PhysicalDeviceDynamicRenderingFeatures;
 pub type CommandBufferInheritanceRenderingInfoKHR = crate::vk::CommandBufferInheritanceRenderingInfo;
+///Provided by [`khr::dynamic_rendering`](crate::khr::dynamic_rendering)
+impl crate::vk::AttachmentStoreOp {
+    pub const NONE_KHR: Self = Self::NONE;
+}
+///Provided by [`khr::dynamic_rendering`](crate::khr::dynamic_rendering)
+impl crate::vk::StructureType {
+    pub const RENDERING_INFO_KHR: Self = Self::RENDERING_INFO;
+    pub const RENDERING_ATTACHMENT_INFO_KHR: Self = Self::RENDERING_ATTACHMENT_INFO;
+    pub const PIPELINE_RENDERING_CREATE_INFO_KHR: Self = Self::PIPELINE_RENDERING_CREATE_INFO;
+    pub const PHYSICAL_DEVICE_DYNAMIC_RENDERING_FEATURES_KHR: Self = Self::PHYSICAL_DEVICE_DYNAMIC_RENDERING_FEATURES;
+    pub const COMMAND_BUFFER_INHERITANCE_RENDERING_INFO_KHR: Self = Self::COMMAND_BUFFER_INHERITANCE_RENDERING_INFO;
+}
 pub type RenderingFlagBitsKHR = crate::vk::RenderingFlagBits;
 ///Provided by [`khr::dynamic_rendering`](crate::khr::dynamic_rendering)
 impl crate::vk::RenderingFlagBits {

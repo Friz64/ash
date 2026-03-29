@@ -56,6 +56,18 @@ pub struct DebugUtilsMessengerCallbackDataEXT {
     pub object_count: u32,
     pub p_objects: *const crate::vk::DebugUtilsObjectNameInfoEXT,
 }
+///Provided by [`ext::debug_utils`](crate::ext::debug_utils)
+impl crate::vk::StructureType {
+    pub const DEBUG_UTILS_OBJECT_NAME_INFO_EXT: Self = Self(1000128000);
+    pub const DEBUG_UTILS_OBJECT_TAG_INFO_EXT: Self = Self(1000128001);
+    pub const DEBUG_UTILS_LABEL_EXT: Self = Self(1000128002);
+    pub const DEBUG_UTILS_MESSENGER_CALLBACK_DATA_EXT: Self = Self(1000128003);
+    pub const DEBUG_UTILS_MESSENGER_CREATE_INFO_EXT: Self = Self(1000128004);
+}
+///Provided by [`ext::debug_utils`](crate::ext::debug_utils)
+impl crate::vk::ObjectType {
+    pub const DEBUG_UTILS_MESSENGER_EXT: Self = Self(1000128000);
+}
 bitflags::bitflags! {
     #[repr(transparent)] #[derive(Clone, Copy)] pub struct
     DebugUtilsMessageSeverityFlagsEXT : u32 { const VERBOSE_EXT =

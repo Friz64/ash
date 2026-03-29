@@ -31,6 +31,19 @@ pub struct ShaderModuleIdentifierEXT {
     pub identifier_size: u32,
     pub identifier: [u8; crate::vk::MAX_SHADER_MODULE_IDENTIFIER_SIZE_EXT as _],
 }
+///Provided by [`ext::shader_module_identifier`](crate::ext::shader_module_identifier)
+impl crate::vk::StructureType {
+    pub const PHYSICAL_DEVICE_SHADER_MODULE_IDENTIFIER_FEATURES_EXT: Self = Self(
+        1000462000,
+    );
+    pub const PHYSICAL_DEVICE_SHADER_MODULE_IDENTIFIER_PROPERTIES_EXT: Self = Self(
+        1000462001,
+    );
+    pub const PIPELINE_SHADER_STAGE_MODULE_IDENTIFIER_CREATE_INFO_EXT: Self = Self(
+        1000462002,
+    );
+    pub const SHADER_MODULE_IDENTIFIER_EXT: Self = Self(1000462003);
+}
 pub const MAX_SHADER_MODULE_IDENTIFIER_SIZE_EXT: u32 = 32;
 pub const EXT_SHADER_MODULE_IDENTIFIER_SPEC_VERSION: u32 = 1;
 pub const EXT_SHADER_MODULE_IDENTIFIER_EXTENSION_NAME: &core::ffi::CStr = c"VK_EXT_shader_module_identifier";

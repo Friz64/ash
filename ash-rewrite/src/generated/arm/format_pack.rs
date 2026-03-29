@@ -8,5 +8,26 @@ pub struct PhysicalDeviceFormatPackFeaturesARM {
     pub p_next: *mut core::ffi::c_void,
     pub format_pack: crate::vk::Bool32,
 }
+///Provided by [`arm::format_pack`](crate::arm::format_pack)
+impl crate::vk::Format {
+    pub const R10X6_UINT_PACK16_ARM: Self = Self(1000609000);
+    pub const R10X6G10X6_UINT_2PACK16_ARM: Self = Self(1000609001);
+    pub const R10X6G10X6B10X6A10X6_UINT_4PACK16_ARM: Self = Self(1000609002);
+    pub const R12X4_UINT_PACK16_ARM: Self = Self(1000609003);
+    pub const R12X4G12X4_UINT_2PACK16_ARM: Self = Self(1000609004);
+    pub const R12X4G12X4B12X4A12X4_UINT_4PACK16_ARM: Self = Self(1000609005);
+    pub const R14X2_UINT_PACK16_ARM: Self = Self(1000609006);
+    pub const R14X2G14X2_UINT_2PACK16_ARM: Self = Self(1000609007);
+    pub const R14X2G14X2B14X2A14X2_UINT_4PACK16_ARM: Self = Self(1000609008);
+    pub const R14X2_UNORM_PACK16_ARM: Self = Self(1000609009);
+    pub const R14X2G14X2_UNORM_2PACK16_ARM: Self = Self(1000609010);
+    pub const R14X2G14X2B14X2A14X2_UNORM_4PACK16_ARM: Self = Self(1000609011);
+    pub const G14X2_B14X2R14X2_2PLANE_420_UNORM_3PACK16_ARM: Self = Self(1000609012);
+    pub const G14X2_B14X2R14X2_2PLANE_422_UNORM_3PACK16_ARM: Self = Self(1000609013);
+}
+///Provided by [`arm::format_pack`](crate::arm::format_pack)
+impl crate::vk::StructureType {
+    pub const PHYSICAL_DEVICE_FORMAT_PACK_FEATURES_ARM: Self = Self(1000609000);
+}
 pub const ARM_FORMAT_PACK_SPEC_VERSION: u32 = 1;
 pub const ARM_FORMAT_PACK_EXTENSION_NAME: &core::ffi::CStr = c"VK_ARM_format_pack";

@@ -31,5 +31,12 @@ pub struct CheckpointData2NV {
     pub stage: crate::vk::PipelineStageFlags2,
     pub p_checkpoint_marker: *mut core::ffi::c_void,
 }
+///Provided by [`nv::device_diagnostic_checkpoints`](crate::nv::device_diagnostic_checkpoints)
+impl crate::vk::StructureType {
+    pub const CHECKPOINT_DATA_NV: Self = Self(1000206000);
+    pub const QUEUE_FAMILY_CHECKPOINT_PROPERTIES_NV: Self = Self(1000206001);
+    pub const QUEUE_FAMILY_CHECKPOINT_PROPERTIES_2_NV: Self = Self(1000314008);
+    pub const CHECKPOINT_DATA_2_NV: Self = Self(1000314009);
+}
 pub const NV_DEVICE_DIAGNOSTIC_CHECKPOINTS_SPEC_VERSION: u32 = 2;
 pub const NV_DEVICE_DIAGNOSTIC_CHECKPOINTS_EXTENSION_NAME: &core::ffi::CStr = c"VK_NV_device_diagnostic_checkpoints";

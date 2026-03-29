@@ -24,6 +24,12 @@ pub struct SurfaceCapabilitiesPresentWait2KHR {
     pub present_wait2_supported: crate::vk::Bool32,
 }
 ///Provided by [`khr::present_wait2`](crate::khr::present_wait2)
+impl crate::vk::StructureType {
+    pub const SURFACE_CAPABILITIES_PRESENT_WAIT_2_KHR: Self = Self(1000480000);
+    pub const PHYSICAL_DEVICE_PRESENT_WAIT_2_FEATURES_KHR: Self = Self(1000480001);
+    pub const PRESENT_WAIT_2_INFO_KHR: Self = Self(1000480002);
+}
+///Provided by [`khr::present_wait2`](crate::khr::present_wait2)
 impl crate::vk::SwapchainCreateFlagBitsKHR {
     pub const PRESENT_WAIT_2_KHR: Self = Self(1 << 7);
 }

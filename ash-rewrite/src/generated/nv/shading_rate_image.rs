@@ -57,12 +57,54 @@ pub struct PipelineViewportCoarseSampleOrderStateCreateInfoNV {
     pub custom_sample_order_count: u32,
     pub p_custom_sample_orders: *const crate::vk::CoarseSampleOrderCustomNV,
 }
+///Provided by [`nv::shading_rate_image`](crate::nv::shading_rate_image)
+impl crate::vk::ImageLayout {
+    pub const SHADING_RATE_OPTIMAL_NV: Self = Self::FRAGMENT_SHADING_RATE_ATTACHMENT_OPTIMAL_KHR;
+}
+///Provided by [`nv::shading_rate_image`](crate::nv::shading_rate_image)
+impl crate::vk::StructureType {
+    pub const PIPELINE_VIEWPORT_SHADING_RATE_IMAGE_STATE_CREATE_INFO_NV: Self = Self(
+        1000164000,
+    );
+    pub const PHYSICAL_DEVICE_SHADING_RATE_IMAGE_FEATURES_NV: Self = Self(1000164001);
+    pub const PHYSICAL_DEVICE_SHADING_RATE_IMAGE_PROPERTIES_NV: Self = Self(1000164002);
+    pub const PIPELINE_VIEWPORT_COARSE_SAMPLE_ORDER_STATE_CREATE_INFO_NV: Self = Self(
+        1000164005,
+    );
+}
+///Provided by [`nv::shading_rate_image`](crate::nv::shading_rate_image)
+impl crate::vk::DynamicState {
+    pub const VIEWPORT_SHADING_RATE_PALETTE_NV: Self = Self(1000164004);
+    pub const VIEWPORT_COARSE_SAMPLE_ORDER_NV: Self = Self(1000164006);
+}
 #[repr(transparent)]
 #[derive(Clone, Copy)]
 pub struct ShadingRatePaletteEntryNV(pub(crate) i32);
+///Provided by [`nv::shading_rate_image`](crate::nv::shading_rate_image)
+impl ShadingRatePaletteEntryNV {
+    pub const NO_INVOCATIONS_NV: Self = Self(0);
+    pub const _16_INVOCATIONS_PER_PIXEL_NV: Self = Self(1);
+    pub const _8_INVOCATIONS_PER_PIXEL_NV: Self = Self(2);
+    pub const _4_INVOCATIONS_PER_PIXEL_NV: Self = Self(3);
+    pub const _2_INVOCATIONS_PER_PIXEL_NV: Self = Self(4);
+    pub const _1_INVOCATION_PER_PIXEL_NV: Self = Self(5);
+    pub const _1_INVOCATION_PER_2X1_PIXELS_NV: Self = Self(6);
+    pub const _1_INVOCATION_PER_1X2_PIXELS_NV: Self = Self(7);
+    pub const _1_INVOCATION_PER_2X2_PIXELS_NV: Self = Self(8);
+    pub const _1_INVOCATION_PER_4X2_PIXELS_NV: Self = Self(9);
+    pub const _1_INVOCATION_PER_2X4_PIXELS_NV: Self = Self(10);
+    pub const _1_INVOCATION_PER_4X4_PIXELS_NV: Self = Self(11);
+}
 #[repr(transparent)]
 #[derive(Clone, Copy)]
 pub struct CoarseSampleOrderTypeNV(pub(crate) i32);
+///Provided by [`nv::shading_rate_image`](crate::nv::shading_rate_image)
+impl CoarseSampleOrderTypeNV {
+    pub const DEFAULT_NV: Self = Self(0);
+    pub const CUSTOM_NV: Self = Self(1);
+    pub const PIXEL_MAJOR_NV: Self = Self(2);
+    pub const SAMPLE_MAJOR_NV: Self = Self(3);
+}
 ///Provided by [`nv::shading_rate_image`](crate::nv::shading_rate_image)
 impl crate::vk::AccessFlagBits {
     pub const SHADING_RATE_IMAGE_READ_NV: Self = Self::FRAGMENT_SHADING_RATE_ATTACHMENT_READ_KHR;

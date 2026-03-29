@@ -9,6 +9,10 @@ pub struct SurfaceCreateInfoOHOS {
     pub flags: crate::vk::SurfaceCreateFlagsOHOS,
     pub window: *mut crate::platform_types::OHNativeWindow,
 }
+///Provided by [`ohos::surface`](crate::ohos::surface)
+impl crate::vk::StructureType {
+    pub const SURFACE_CREATE_INFO_OHOS: Self = Self(1000685000);
+}
 bitflags::bitflags! {
     #[repr(transparent)] #[derive(Clone, Copy)] pub struct SurfaceCreateFlagsOHOS : u32
     {}

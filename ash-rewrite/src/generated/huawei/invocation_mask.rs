@@ -9,6 +9,10 @@ pub struct PhysicalDeviceInvocationMaskFeaturesHUAWEI {
     pub invocation_mask: crate::vk::Bool32,
 }
 ///Provided by [`huawei::invocation_mask`](crate::huawei::invocation_mask)
+impl crate::vk::StructureType {
+    pub const PHYSICAL_DEVICE_INVOCATION_MASK_FEATURES_HUAWEI: Self = Self(1000370000);
+}
+///Provided by [`huawei::invocation_mask`](crate::huawei::invocation_mask)
 impl crate::vk::ImageUsageFlagBits {
     pub const INVOCATION_MASK_HUAWEI: Self = Self(1 << 18);
 }

@@ -16,5 +16,12 @@ pub struct AttachmentFeedbackLoopInfoEXT {
     pub p_next: *const core::ffi::c_void,
     pub feedback_loop_enable: crate::vk::Bool32,
 }
+///Provided by [`khr::unified_image_layouts`](crate::khr::unified_image_layouts)
+impl crate::vk::StructureType {
+    pub const PHYSICAL_DEVICE_UNIFIED_IMAGE_LAYOUTS_FEATURES_KHR: Self = Self(
+        1000527000,
+    );
+    pub const ATTACHMENT_FEEDBACK_LOOP_INFO_EXT: Self = Self(1000527001);
+}
 pub const KHR_UNIFIED_IMAGE_LAYOUTS_SPEC_VERSION: u32 = 1;
 pub const KHR_UNIFIED_IMAGE_LAYOUTS_EXTENSION_NAME: &core::ffi::CStr = c"VK_KHR_unified_image_layouts";

@@ -8,5 +8,11 @@ pub struct PhysicalDevicePipelineCacheIncrementalModeFeaturesSEC {
     pub p_next: *mut core::ffi::c_void,
     pub pipeline_cache_incremental_mode: crate::vk::Bool32,
 }
+///Provided by [`sec::pipeline_cache_incremental_mode`](crate::sec::pipeline_cache_incremental_mode)
+impl crate::vk::StructureType {
+    pub const PHYSICAL_DEVICE_PIPELINE_CACHE_INCREMENTAL_MODE_FEATURES_SEC: Self = Self(
+        1000637000,
+    );
+}
 pub const SEC_PIPELINE_CACHE_INCREMENTAL_MODE_SPEC_VERSION: u32 = 1;
 pub const SEC_PIPELINE_CACHE_INCREMENTAL_MODE_EXTENSION_NAME: &core::ffi::CStr = c"VK_SEC_pipeline_cache_incremental_mode";

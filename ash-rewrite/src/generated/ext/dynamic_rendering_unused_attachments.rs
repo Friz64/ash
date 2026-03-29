@@ -8,5 +8,11 @@ pub struct PhysicalDeviceDynamicRenderingUnusedAttachmentsFeaturesEXT {
     pub p_next: *mut core::ffi::c_void,
     pub dynamic_rendering_unused_attachments: crate::vk::Bool32,
 }
+///Provided by [`ext::dynamic_rendering_unused_attachments`](crate::ext::dynamic_rendering_unused_attachments)
+impl crate::vk::StructureType {
+    pub const PHYSICAL_DEVICE_DYNAMIC_RENDERING_UNUSED_ATTACHMENTS_FEATURES_EXT: Self = Self(
+        1000499000,
+    );
+}
 pub const EXT_DYNAMIC_RENDERING_UNUSED_ATTACHMENTS_SPEC_VERSION: u32 = 1;
 pub const EXT_DYNAMIC_RENDERING_UNUSED_ATTACHMENTS_EXTENSION_NAME: &core::ffi::CStr = c"VK_EXT_dynamic_rendering_unused_attachments";

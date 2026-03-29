@@ -8,5 +8,11 @@ pub struct PhysicalDeviceVertexAttributeRobustnessFeaturesEXT {
     pub p_next: *mut core::ffi::c_void,
     pub vertex_attribute_robustness: crate::vk::Bool32,
 }
+///Provided by [`ext::vertex_attribute_robustness`](crate::ext::vertex_attribute_robustness)
+impl crate::vk::StructureType {
+    pub const PHYSICAL_DEVICE_VERTEX_ATTRIBUTE_ROBUSTNESS_FEATURES_EXT: Self = Self(
+        1000608000,
+    );
+}
 pub const EXT_VERTEX_ATTRIBUTE_ROBUSTNESS_SPEC_VERSION: u32 = 1;
 pub const EXT_VERTEX_ATTRIBUTE_ROBUSTNESS_EXTENSION_NAME: &core::ffi::CStr = c"VK_EXT_vertex_attribute_robustness";

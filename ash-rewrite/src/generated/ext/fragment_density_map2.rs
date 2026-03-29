@@ -19,6 +19,15 @@ pub struct PhysicalDeviceFragmentDensityMap2PropertiesEXT {
     pub max_descriptor_set_subsampled_samplers: u32,
 }
 ///Provided by [`ext::fragment_density_map2`](crate::ext::fragment_density_map2)
+impl crate::vk::StructureType {
+    pub const PHYSICAL_DEVICE_FRAGMENT_DENSITY_MAP_2_FEATURES_EXT: Self = Self(
+        1000332000,
+    );
+    pub const PHYSICAL_DEVICE_FRAGMENT_DENSITY_MAP_2_PROPERTIES_EXT: Self = Self(
+        1000332001,
+    );
+}
+///Provided by [`ext::fragment_density_map2`](crate::ext::fragment_density_map2)
 impl crate::vk::ImageViewCreateFlagBits {
     pub const FRAGMENT_DENSITY_MAP_DEFERRED_EXT: Self = Self(1 << 1);
 }

@@ -8,8 +8,18 @@ pub struct DeviceMemoryOverallocationCreateInfoAMD {
     pub p_next: *const core::ffi::c_void,
     pub overallocation_behavior: crate::vk::MemoryOverallocationBehaviorAMD,
 }
+///Provided by [`amd::memory_overallocation_behavior`](crate::amd::memory_overallocation_behavior)
+impl crate::vk::StructureType {
+    pub const DEVICE_MEMORY_OVERALLOCATION_CREATE_INFO_AMD: Self = Self(1000189000);
+}
 #[repr(transparent)]
 #[derive(Clone, Copy)]
 pub struct MemoryOverallocationBehaviorAMD(pub(crate) i32);
+///Provided by [`amd::memory_overallocation_behavior`](crate::amd::memory_overallocation_behavior)
+impl MemoryOverallocationBehaviorAMD {
+    pub const DEFAULT_AMD: Self = Self(0);
+    pub const ALLOWED_AMD: Self = Self(1);
+    pub const DISALLOWED_AMD: Self = Self(2);
+}
 pub const AMD_MEMORY_OVERALLOCATION_BEHAVIOR_SPEC_VERSION: u32 = 1;
 pub const AMD_MEMORY_OVERALLOCATION_BEHAVIOR_EXTENSION_NAME: &core::ffi::CStr = c"VK_AMD_memory_overallocation_behavior";

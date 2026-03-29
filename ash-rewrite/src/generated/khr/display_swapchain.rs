@@ -10,5 +10,13 @@ pub struct DisplayPresentInfoKHR {
     pub dst_rect: crate::vk::Rect2D,
     pub persistent: crate::vk::Bool32,
 }
+///Provided by [`khr::display_swapchain`](crate::khr::display_swapchain)
+impl crate::vk::StructureType {
+    pub const DISPLAY_PRESENT_INFO_KHR: Self = Self(1000003000);
+}
+///Provided by [`khr::display_swapchain`](crate::khr::display_swapchain)
+impl crate::vk::Result {
+    pub const ERROR_INCOMPATIBLE_DISPLAY_KHR: Self = Self(-1000003001);
+}
 pub const KHR_DISPLAY_SWAPCHAIN_SPEC_VERSION: u32 = 10;
 pub const KHR_DISPLAY_SWAPCHAIN_EXTENSION_NAME: &core::ffi::CStr = c"VK_KHR_display_swapchain";

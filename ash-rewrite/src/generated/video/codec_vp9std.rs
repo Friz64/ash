@@ -60,21 +60,82 @@ pub struct StdVideoVP9Segmentation {
 #[repr(transparent)]
 #[derive(Clone, Copy)]
 pub struct StdVideoVP9Profile(pub(crate) i32);
+///Provided by [`video::codec_vp9std`](crate::video::codec_vp9std)
+impl StdVideoVP9Profile {
+    pub const _0: Self = Self(0);
+    pub const _1: Self = Self(1);
+    pub const _2: Self = Self(2);
+    pub const _3: Self = Self(3);
+    pub const INVALID: Self = Self(0x7FFFFFF);
+}
 #[repr(transparent)]
 #[derive(Clone, Copy)]
 pub struct StdVideoVP9Level(pub(crate) i32);
+///Provided by [`video::codec_vp9std`](crate::video::codec_vp9std)
+impl StdVideoVP9Level {
+    pub const _1_0: Self = Self(0);
+    pub const _1_1: Self = Self(1);
+    pub const _2_0: Self = Self(2);
+    pub const _2_1: Self = Self(3);
+    pub const _3_0: Self = Self(4);
+    pub const _3_1: Self = Self(5);
+    pub const _4_0: Self = Self(6);
+    pub const _4_1: Self = Self(7);
+    pub const _5_0: Self = Self(8);
+    pub const _5_1: Self = Self(9);
+    pub const _5_2: Self = Self(10);
+    pub const _6_0: Self = Self(11);
+    pub const _6_1: Self = Self(12);
+    pub const _6_2: Self = Self(13);
+    pub const INVALID: Self = Self(0x7FFFFFF);
+}
 #[repr(transparent)]
 #[derive(Clone, Copy)]
 pub struct StdVideoVP9FrameType(pub(crate) i32);
+///Provided by [`video::codec_vp9std`](crate::video::codec_vp9std)
+impl StdVideoVP9FrameType {
+    pub const KEY: Self = Self(0);
+    pub const NON_KEY: Self = Self(1);
+    pub const INVALID: Self = Self(0x7FFFFFF);
+}
 #[repr(transparent)]
 #[derive(Clone, Copy)]
 pub struct StdVideoVP9ReferenceName(pub(crate) i32);
+///Provided by [`video::codec_vp9std`](crate::video::codec_vp9std)
+impl StdVideoVP9ReferenceName {
+    pub const INTRA_FRAME: Self = Self(0);
+    pub const LAST_FRAME: Self = Self(1);
+    pub const GOLDEN_FRAME: Self = Self(2);
+    pub const ALTREF_FRAME: Self = Self(3);
+    pub const INVALID: Self = Self(0x7FFFFFF);
+}
 #[repr(transparent)]
 #[derive(Clone, Copy)]
 pub struct StdVideoVP9InterpolationFilter(pub(crate) i32);
+///Provided by [`video::codec_vp9std`](crate::video::codec_vp9std)
+impl StdVideoVP9InterpolationFilter {
+    pub const EIGHTTAP: Self = Self(0);
+    pub const EIGHTTAP_SMOOTH: Self = Self(1);
+    pub const EIGHTTAP_SHARP: Self = Self(2);
+    pub const BILINEAR: Self = Self(3);
+    pub const SWITCHABLE: Self = Self(4);
+    pub const INVALID: Self = Self(0x7FFFFFF);
+}
 #[repr(transparent)]
 #[derive(Clone, Copy)]
 pub struct StdVideoVP9ColorSpace(pub(crate) i32);
+///Provided by [`video::codec_vp9std`](crate::video::codec_vp9std)
+impl StdVideoVP9ColorSpace {
+    pub const UNKNOWN: Self = Self(0);
+    pub const BT_601: Self = Self(1);
+    pub const BT_709: Self = Self(2);
+    pub const SMPTE_170: Self = Self(3);
+    pub const SMPTE_240: Self = Self(4);
+    pub const BT_2020: Self = Self(5);
+    pub const RESERVED: Self = Self(6);
+    pub const RGB: Self = Self(7);
+    pub const INVALID: Self = Self(0x7FFFFFF);
+}
 pub const STD_VIDEO_VP9_NUM_REF_FRAMES: u32 = 8;
 pub const STD_VIDEO_VP9_REFS_PER_FRAME: u32 = 3;
 pub const STD_VIDEO_VP9_MAX_REF_FRAMES: u32 = 4;

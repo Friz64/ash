@@ -15,5 +15,14 @@ pub struct PipelineRepresentativeFragmentTestStateCreateInfoNV {
     pub p_next: *const core::ffi::c_void,
     pub representative_fragment_test_enable: crate::vk::Bool32,
 }
+///Provided by [`nv::representative_fragment_test`](crate::nv::representative_fragment_test)
+impl crate::vk::StructureType {
+    pub const PHYSICAL_DEVICE_REPRESENTATIVE_FRAGMENT_TEST_FEATURES_NV: Self = Self(
+        1000166000,
+    );
+    pub const PIPELINE_REPRESENTATIVE_FRAGMENT_TEST_STATE_CREATE_INFO_NV: Self = Self(
+        1000166001,
+    );
+}
 pub const NV_REPRESENTATIVE_FRAGMENT_TEST_SPEC_VERSION: u32 = 2;
 pub const NV_REPRESENTATIVE_FRAGMENT_TEST_EXTENSION_NAME: &core::ffi::CStr = c"VK_NV_representative_fragment_test";

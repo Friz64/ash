@@ -93,6 +93,28 @@ pub struct PhysicalDevicePipelineBinaryPropertiesKHR {
     pub pipeline_binary_compressed_data: crate::vk::Bool32,
 }
 ///Provided by [`khr::pipeline_binary`](crate::khr::pipeline_binary)
+impl crate::vk::StructureType {
+    pub const PHYSICAL_DEVICE_PIPELINE_BINARY_FEATURES_KHR: Self = Self(1000483000);
+    pub const PIPELINE_BINARY_CREATE_INFO_KHR: Self = Self(1000483001);
+    pub const PIPELINE_BINARY_INFO_KHR: Self = Self(1000483002);
+    pub const PIPELINE_BINARY_KEY_KHR: Self = Self(1000483003);
+    pub const PHYSICAL_DEVICE_PIPELINE_BINARY_PROPERTIES_KHR: Self = Self(1000483004);
+    pub const RELEASE_CAPTURED_PIPELINE_DATA_INFO_KHR: Self = Self(1000483005);
+    pub const PIPELINE_BINARY_DATA_INFO_KHR: Self = Self(1000483006);
+    pub const PIPELINE_CREATE_INFO_KHR: Self = Self(1000483007);
+    pub const DEVICE_PIPELINE_BINARY_INTERNAL_CACHE_CONTROL_KHR: Self = Self(1000483008);
+    pub const PIPELINE_BINARY_HANDLES_INFO_KHR: Self = Self(1000483009);
+}
+///Provided by [`khr::pipeline_binary`](crate::khr::pipeline_binary)
+impl crate::vk::Result {
+    pub const PIPELINE_BINARY_MISSING_KHR: Self = Self(1000483000);
+    pub const ERROR_NOT_ENOUGH_SPACE_KHR: Self = Self(-1000483000);
+}
+///Provided by [`khr::pipeline_binary`](crate::khr::pipeline_binary)
+impl crate::vk::ObjectType {
+    pub const PIPELINE_BINARY_KHR: Self = Self(1000483000);
+}
+///Provided by [`khr::pipeline_binary`](crate::khr::pipeline_binary)
 impl crate::vk::PipelineCreateFlagBits2 {
     pub const CAPTURE_DATA_KHR: Self = Self(1 << 31);
 }

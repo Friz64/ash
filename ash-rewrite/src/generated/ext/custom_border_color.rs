@@ -24,5 +24,18 @@ pub struct PhysicalDeviceCustomBorderColorFeaturesEXT {
     pub custom_border_colors: crate::vk::Bool32,
     pub custom_border_color_without_format: crate::vk::Bool32,
 }
+///Provided by [`ext::custom_border_color`](crate::ext::custom_border_color)
+impl crate::vk::BorderColor {
+    pub const FLOAT_CUSTOM_EXT: Self = Self(1000287003);
+    pub const INT_CUSTOM_EXT: Self = Self(1000287004);
+}
+///Provided by [`ext::custom_border_color`](crate::ext::custom_border_color)
+impl crate::vk::StructureType {
+    pub const SAMPLER_CUSTOM_BORDER_COLOR_CREATE_INFO_EXT: Self = Self(1000287000);
+    pub const PHYSICAL_DEVICE_CUSTOM_BORDER_COLOR_PROPERTIES_EXT: Self = Self(
+        1000287001,
+    );
+    pub const PHYSICAL_DEVICE_CUSTOM_BORDER_COLOR_FEATURES_EXT: Self = Self(1000287002);
+}
 pub const EXT_CUSTOM_BORDER_COLOR_SPEC_VERSION: u32 = 12;
 pub const EXT_CUSTOM_BORDER_COLOR_EXTENSION_NAME: &core::ffi::CStr = c"VK_EXT_custom_border_color";

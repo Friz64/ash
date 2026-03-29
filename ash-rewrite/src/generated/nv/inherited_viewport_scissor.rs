@@ -17,5 +17,14 @@ pub struct CommandBufferInheritanceViewportScissorInfoNV {
     pub viewport_depth_count: u32,
     pub p_viewport_depths: *const crate::vk::Viewport,
 }
+///Provided by [`nv::inherited_viewport_scissor`](crate::nv::inherited_viewport_scissor)
+impl crate::vk::StructureType {
+    pub const PHYSICAL_DEVICE_INHERITED_VIEWPORT_SCISSOR_FEATURES_NV: Self = Self(
+        1000278000,
+    );
+    pub const COMMAND_BUFFER_INHERITANCE_VIEWPORT_SCISSOR_INFO_NV: Self = Self(
+        1000278001,
+    );
+}
 pub const NV_INHERITED_VIEWPORT_SCISSOR_SPEC_VERSION: u32 = 1;
 pub const NV_INHERITED_VIEWPORT_SCISSOR_EXTENSION_NAME: &core::ffi::CStr = c"VK_NV_inherited_viewport_scissor";

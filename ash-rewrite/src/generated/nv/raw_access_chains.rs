@@ -8,5 +8,9 @@ pub struct PhysicalDeviceRawAccessChainsFeaturesNV {
     pub p_next: *mut core::ffi::c_void,
     pub shader_raw_access_chains: crate::vk::Bool32,
 }
+///Provided by [`nv::raw_access_chains`](crate::nv::raw_access_chains)
+impl crate::vk::StructureType {
+    pub const PHYSICAL_DEVICE_RAW_ACCESS_CHAINS_FEATURES_NV: Self = Self(1000555000);
+}
 pub const NV_RAW_ACCESS_CHAINS_SPEC_VERSION: u32 = 1;
 pub const NV_RAW_ACCESS_CHAINS_EXTENSION_NAME: &core::ffi::CStr = c"VK_NV_raw_access_chains";

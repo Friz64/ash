@@ -9,5 +9,11 @@ pub struct PhysicalDeviceShaderImageAtomicInt64FeaturesEXT {
     pub shader_image_int64_atomics: crate::vk::Bool32,
     pub sparse_image_int64_atomics: crate::vk::Bool32,
 }
+///Provided by [`ext::shader_image_atomic_int64`](crate::ext::shader_image_atomic_int64)
+impl crate::vk::StructureType {
+    pub const PHYSICAL_DEVICE_SHADER_IMAGE_ATOMIC_INT64_FEATURES_EXT: Self = Self(
+        1000234000,
+    );
+}
 pub const EXT_SHADER_IMAGE_ATOMIC_INT64_SPEC_VERSION: u32 = 1;
 pub const EXT_SHADER_IMAGE_ATOMIC_INT64_EXTENSION_NAME: &core::ffi::CStr = c"VK_EXT_shader_image_atomic_int64";

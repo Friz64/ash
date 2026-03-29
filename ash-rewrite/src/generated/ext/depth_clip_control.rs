@@ -15,5 +15,12 @@ pub struct PipelineViewportDepthClipControlCreateInfoEXT {
     pub p_next: *const core::ffi::c_void,
     pub negative_one_to_one: crate::vk::Bool32,
 }
+///Provided by [`ext::depth_clip_control`](crate::ext::depth_clip_control)
+impl crate::vk::StructureType {
+    pub const PHYSICAL_DEVICE_DEPTH_CLIP_CONTROL_FEATURES_EXT: Self = Self(1000355000);
+    pub const PIPELINE_VIEWPORT_DEPTH_CLIP_CONTROL_CREATE_INFO_EXT: Self = Self(
+        1000355001,
+    );
+}
 pub const EXT_DEPTH_CLIP_CONTROL_SPEC_VERSION: u32 = 1;
 pub const EXT_DEPTH_CLIP_CONTROL_EXTENSION_NAME: &core::ffi::CStr = c"VK_EXT_depth_clip_control";

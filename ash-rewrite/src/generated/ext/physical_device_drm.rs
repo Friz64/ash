@@ -13,5 +13,9 @@ pub struct PhysicalDeviceDrmPropertiesEXT {
     pub render_major: i64,
     pub render_minor: i64,
 }
+///Provided by [`ext::physical_device_drm`](crate::ext::physical_device_drm)
+impl crate::vk::StructureType {
+    pub const PHYSICAL_DEVICE_DRM_PROPERTIES_EXT: Self = Self(1000353000);
+}
 pub const EXT_PHYSICAL_DEVICE_DRM_SPEC_VERSION: u32 = 1;
 pub const EXT_PHYSICAL_DEVICE_DRM_EXTENSION_NAME: &core::ffi::CStr = c"VK_EXT_physical_device_drm";

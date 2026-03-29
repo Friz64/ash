@@ -17,6 +17,11 @@ pub struct MemoryBarrierAccessFlags3KHR {
     pub dst_access_mask3: crate::vk::AccessFlags3KHR,
 }
 ///Provided by [`khr::maintenance8`](crate::khr::maintenance8)
+impl crate::vk::StructureType {
+    pub const PHYSICAL_DEVICE_MAINTENANCE_8_FEATURES_KHR: Self = Self(1000574000);
+    pub const MEMORY_BARRIER_ACCESS_FLAGS_3_KHR: Self = Self(1000574002);
+}
+///Provided by [`khr::maintenance8`](crate::khr::maintenance8)
 impl crate::vk::PipelineCacheCreateFlagBits {
     pub const INTERNALLY_SYNCHRONIZED_MERGE_KHR: Self = Self(1 << 3);
 }

@@ -46,6 +46,12 @@ pub struct StdVideoDecodeH264ReferenceInfo {
 #[repr(transparent)]
 #[derive(Clone, Copy)]
 pub struct StdVideoDecodeH264FieldOrderCount(pub(crate) i32);
+///Provided by [`video::codec_h264std_decode`](crate::video::codec_h264std_decode)
+impl StdVideoDecodeH264FieldOrderCount {
+    pub const TOP: Self = Self(0);
+    pub const BOTTOM: Self = Self(1);
+    pub const INVALID: Self = Self(0x7FFFFFF);
+}
 pub const STD_VULKAN_VIDEO_CODEC_H264_DECODE_SPEC_VERSION: u32 = crate::vk::STD_VULKAN_VIDEO_CODEC_H264_DECODE_API_VERSION_1_0_0;
 pub const STD_VULKAN_VIDEO_CODEC_H264_DECODE_EXTENSION_NAME: &core::ffi::CStr = c"VK_STD_vulkan_video_codec_h264_decode";
 pub const STD_VIDEO_DECODE_H264_FIELD_ORDER_COUNT_LIST_SIZE: u32 = 2;

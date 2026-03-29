@@ -10,6 +10,10 @@ pub struct WaylandSurfaceCreateInfoKHR {
     pub display: *mut crate::platform_types::wl_display,
     pub surface: *mut crate::platform_types::wl_surface,
 }
+///Provided by [`khr::wayland_surface`](crate::khr::wayland_surface)
+impl crate::vk::StructureType {
+    pub const WAYLAND_SURFACE_CREATE_INFO_KHR: Self = Self(1000006000);
+}
 bitflags::bitflags! {
     #[repr(transparent)] #[derive(Clone, Copy)] pub struct WaylandSurfaceCreateFlagsKHR :
     u32 {}

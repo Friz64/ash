@@ -10,6 +10,10 @@ pub struct XlibSurfaceCreateInfoKHR {
     pub dpy: *mut crate::platform_types::Display,
     pub window: crate::platform_types::Window,
 }
+///Provided by [`khr::xlib_surface`](crate::khr::xlib_surface)
+impl crate::vk::StructureType {
+    pub const XLIB_SURFACE_CREATE_INFO_KHR: Self = Self(1000004000);
+}
 bitflags::bitflags! {
     #[repr(transparent)] #[derive(Clone, Copy)] pub struct XlibSurfaceCreateFlagsKHR :
     u32 {}

@@ -15,8 +15,20 @@ pub struct DisplayModeStereoPropertiesNV {
     pub p_next: *mut core::ffi::c_void,
     pub hdmi3_d_supported: crate::vk::Bool32,
 }
+///Provided by [`nv::display_stereo`](crate::nv::display_stereo)
+impl crate::vk::StructureType {
+    pub const DISPLAY_SURFACE_STEREO_CREATE_INFO_NV: Self = Self(1000551000);
+    pub const DISPLAY_MODE_STEREO_PROPERTIES_NV: Self = Self(1000551001);
+}
 #[repr(transparent)]
 #[derive(Clone, Copy)]
 pub struct DisplaySurfaceStereoTypeNV(pub(crate) i32);
+///Provided by [`nv::display_stereo`](crate::nv::display_stereo)
+impl DisplaySurfaceStereoTypeNV {
+    pub const NONE_NV: Self = Self(0);
+    pub const ONBOARD_DIN_NV: Self = Self(1);
+    pub const HDMI_3D_NV: Self = Self(2);
+    pub const INBAND_DISPLAYPORT_NV: Self = Self(3);
+}
 pub const NV_DISPLAY_STEREO_SPEC_VERSION: u32 = 1;
 pub const NV_DISPLAY_STEREO_EXTENSION_NAME: &core::ffi::CStr = c"VK_NV_display_stereo";

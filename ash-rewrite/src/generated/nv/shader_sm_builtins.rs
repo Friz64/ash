@@ -16,5 +16,10 @@ pub struct PhysicalDeviceShaderSMBuiltinsFeaturesNV {
     pub p_next: *mut core::ffi::c_void,
     pub shader_sm_builtins: crate::vk::Bool32,
 }
+///Provided by [`nv::shader_sm_builtins`](crate::nv::shader_sm_builtins)
+impl crate::vk::StructureType {
+    pub const PHYSICAL_DEVICE_SHADER_SM_BUILTINS_FEATURES_NV: Self = Self(1000154000);
+    pub const PHYSICAL_DEVICE_SHADER_SM_BUILTINS_PROPERTIES_NV: Self = Self(1000154001);
+}
 pub const NV_SHADER_SM_BUILTINS_SPEC_VERSION: u32 = 1;
 pub const NV_SHADER_SM_BUILTINS_EXTENSION_NAME: &core::ffi::CStr = c"VK_NV_shader_sm_builtins";

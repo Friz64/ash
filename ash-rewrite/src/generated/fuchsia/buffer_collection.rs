@@ -98,6 +98,27 @@ pub struct BufferCollectionConstraintsInfoFUCHSIA {
     pub min_buffer_count_for_dedicated_slack: u32,
     pub min_buffer_count_for_shared_slack: u32,
 }
+///Provided by [`fuchsia::buffer_collection`](crate::fuchsia::buffer_collection)
+impl crate::vk::StructureType {
+    pub const BUFFER_COLLECTION_CREATE_INFO_FUCHSIA: Self = Self(1000366000);
+    pub const IMPORT_MEMORY_BUFFER_COLLECTION_FUCHSIA: Self = Self(1000366001);
+    pub const BUFFER_COLLECTION_IMAGE_CREATE_INFO_FUCHSIA: Self = Self(1000366002);
+    pub const BUFFER_COLLECTION_PROPERTIES_FUCHSIA: Self = Self(1000366003);
+    pub const BUFFER_CONSTRAINTS_INFO_FUCHSIA: Self = Self(1000366004);
+    pub const BUFFER_COLLECTION_BUFFER_CREATE_INFO_FUCHSIA: Self = Self(1000366005);
+    pub const IMAGE_CONSTRAINTS_INFO_FUCHSIA: Self = Self(1000366006);
+    pub const IMAGE_FORMAT_CONSTRAINTS_INFO_FUCHSIA: Self = Self(1000366007);
+    pub const SYSMEM_COLOR_SPACE_FUCHSIA: Self = Self(1000366008);
+    pub const BUFFER_COLLECTION_CONSTRAINTS_INFO_FUCHSIA: Self = Self(1000366009);
+}
+///Provided by [`fuchsia::buffer_collection`](crate::fuchsia::buffer_collection)
+impl crate::vk::ObjectType {
+    pub const BUFFER_COLLECTION_FUCHSIA: Self = Self(1000366000);
+}
+///Provided by [`fuchsia::buffer_collection`](crate::fuchsia::buffer_collection)
+impl crate::vk::DebugReportObjectTypeEXT {
+    pub const BUFFER_COLLECTION_FUCHSIA_EXT: Self = Self(1000366000);
+}
 bitflags::bitflags! {
     #[repr(transparent)] #[derive(Clone, Copy)] pub struct
     ImageFormatConstraintsFlagsFUCHSIA : u32 {}

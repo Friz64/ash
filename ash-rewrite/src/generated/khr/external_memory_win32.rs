@@ -34,5 +34,12 @@ pub struct MemoryGetWin32HandleInfoKHR {
     pub memory: crate::vk::DeviceMemory,
     pub handle_type: crate::vk::ExternalMemoryHandleTypeFlagBits,
 }
+///Provided by [`khr::external_memory_win32`](crate::khr::external_memory_win32)
+impl crate::vk::StructureType {
+    pub const IMPORT_MEMORY_WIN32_HANDLE_INFO_KHR: Self = Self(1000073000);
+    pub const EXPORT_MEMORY_WIN32_HANDLE_INFO_KHR: Self = Self(1000073001);
+    pub const MEMORY_WIN32_HANDLE_PROPERTIES_KHR: Self = Self(1000073002);
+    pub const MEMORY_GET_WIN32_HANDLE_INFO_KHR: Self = Self(1000073003);
+}
 pub const KHR_EXTERNAL_MEMORY_WIN32_SPEC_VERSION: u32 = 1;
 pub const KHR_EXTERNAL_MEMORY_WIN32_EXTENSION_NAME: &core::ffi::CStr = c"VK_KHR_external_memory_win32";

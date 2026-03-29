@@ -8,5 +8,26 @@ pub struct PhysicalDeviceExtendedDynamicStateFeaturesEXT {
     pub p_next: *mut core::ffi::c_void,
     pub extended_dynamic_state: crate::vk::Bool32,
 }
+///Provided by [`ext::extended_dynamic_state`](crate::ext::extended_dynamic_state)
+impl crate::vk::StructureType {
+    pub const PHYSICAL_DEVICE_EXTENDED_DYNAMIC_STATE_FEATURES_EXT: Self = Self(
+        1000267000,
+    );
+}
+///Provided by [`ext::extended_dynamic_state`](crate::ext::extended_dynamic_state)
+impl crate::vk::DynamicState {
+    pub const CULL_MODE_EXT: Self = Self::CULL_MODE;
+    pub const FRONT_FACE_EXT: Self = Self::FRONT_FACE;
+    pub const PRIMITIVE_TOPOLOGY_EXT: Self = Self::PRIMITIVE_TOPOLOGY;
+    pub const VIEWPORT_WITH_COUNT_EXT: Self = Self::VIEWPORT_WITH_COUNT;
+    pub const SCISSOR_WITH_COUNT_EXT: Self = Self::SCISSOR_WITH_COUNT;
+    pub const VERTEX_INPUT_BINDING_STRIDE_EXT: Self = Self::VERTEX_INPUT_BINDING_STRIDE;
+    pub const DEPTH_TEST_ENABLE_EXT: Self = Self::DEPTH_TEST_ENABLE;
+    pub const DEPTH_WRITE_ENABLE_EXT: Self = Self::DEPTH_WRITE_ENABLE;
+    pub const DEPTH_COMPARE_OP_EXT: Self = Self::DEPTH_COMPARE_OP;
+    pub const DEPTH_BOUNDS_TEST_ENABLE_EXT: Self = Self::DEPTH_BOUNDS_TEST_ENABLE;
+    pub const STENCIL_TEST_ENABLE_EXT: Self = Self::STENCIL_TEST_ENABLE;
+    pub const STENCIL_OP_EXT: Self = Self::STENCIL_OP;
+}
 pub const EXT_EXTENDED_DYNAMIC_STATE_SPEC_VERSION: u32 = 1;
 pub const EXT_EXTENDED_DYNAMIC_STATE_EXTENSION_NAME: &core::ffi::CStr = c"VK_EXT_extended_dynamic_state";

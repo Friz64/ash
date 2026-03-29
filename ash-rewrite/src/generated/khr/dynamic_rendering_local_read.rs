@@ -4,5 +4,15 @@
 pub type PhysicalDeviceDynamicRenderingLocalReadFeaturesKHR = crate::vk::PhysicalDeviceDynamicRenderingLocalReadFeatures;
 pub type RenderingAttachmentLocationInfoKHR = crate::vk::RenderingAttachmentLocationInfo;
 pub type RenderingInputAttachmentIndexInfoKHR = crate::vk::RenderingInputAttachmentIndexInfo;
+///Provided by [`khr::dynamic_rendering_local_read`](crate::khr::dynamic_rendering_local_read)
+impl crate::vk::ImageLayout {
+    pub const RENDERING_LOCAL_READ_KHR: Self = Self::RENDERING_LOCAL_READ;
+}
+///Provided by [`khr::dynamic_rendering_local_read`](crate::khr::dynamic_rendering_local_read)
+impl crate::vk::StructureType {
+    pub const PHYSICAL_DEVICE_DYNAMIC_RENDERING_LOCAL_READ_FEATURES_KHR: Self = Self::PHYSICAL_DEVICE_DYNAMIC_RENDERING_LOCAL_READ_FEATURES;
+    pub const RENDERING_ATTACHMENT_LOCATION_INFO_KHR: Self = Self::RENDERING_ATTACHMENT_LOCATION_INFO;
+    pub const RENDERING_INPUT_ATTACHMENT_INDEX_INFO_KHR: Self = Self::RENDERING_INPUT_ATTACHMENT_INDEX_INFO;
+}
 pub const KHR_DYNAMIC_RENDERING_LOCAL_READ_SPEC_VERSION: u32 = 1;
 pub const KHR_DYNAMIC_RENDERING_LOCAL_READ_EXTENSION_NAME: &core::ffi::CStr = c"VK_KHR_dynamic_rendering_local_read";

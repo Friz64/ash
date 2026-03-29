@@ -23,6 +23,18 @@ pub struct PipelineFragmentDensityMapLayeredCreateInfoVALVE {
     pub max_fragment_density_map_layers: u32,
 }
 ///Provided by [`valve::fragment_density_map_layered`](crate::valve::fragment_density_map_layered)
+impl crate::vk::StructureType {
+    pub const PHYSICAL_DEVICE_FRAGMENT_DENSITY_MAP_LAYERED_FEATURES_VALVE: Self = Self(
+        1000611000,
+    );
+    pub const PHYSICAL_DEVICE_FRAGMENT_DENSITY_MAP_LAYERED_PROPERTIES_VALVE: Self = Self(
+        1000611001,
+    );
+    pub const PIPELINE_FRAGMENT_DENSITY_MAP_LAYERED_CREATE_INFO_VALVE: Self = Self(
+        1000611002,
+    );
+}
+///Provided by [`valve::fragment_density_map_layered`](crate::valve::fragment_density_map_layered)
 impl crate::vk::RenderPassCreateFlagBits {
     pub const PER_LAYER_FRAGMENT_DENSITY_VALVE: Self = Self(1 << 2);
 }

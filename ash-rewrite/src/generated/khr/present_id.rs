@@ -16,5 +16,10 @@ pub struct PresentIdKHR {
     pub swapchain_count: u32,
     pub p_present_ids: *const u64,
 }
+///Provided by [`khr::present_id`](crate::khr::present_id)
+impl crate::vk::StructureType {
+    pub const PRESENT_ID_KHR: Self = Self(1000294000);
+    pub const PHYSICAL_DEVICE_PRESENT_ID_FEATURES_KHR: Self = Self(1000294001);
+}
 pub const KHR_PRESENT_ID_SPEC_VERSION: u32 = 1;
 pub const KHR_PRESENT_ID_EXTENSION_NAME: &core::ffi::CStr = c"VK_KHR_present_id";

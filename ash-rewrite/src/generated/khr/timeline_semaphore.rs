@@ -7,6 +7,20 @@ pub type SemaphoreTypeCreateInfoKHR = crate::vk::SemaphoreTypeCreateInfo;
 pub type TimelineSemaphoreSubmitInfoKHR = crate::vk::TimelineSemaphoreSubmitInfo;
 pub type SemaphoreWaitInfoKHR = crate::vk::SemaphoreWaitInfo;
 pub type SemaphoreSignalInfoKHR = crate::vk::SemaphoreSignalInfo;
+///Provided by [`khr::timeline_semaphore`](crate::khr::timeline_semaphore)
+impl crate::vk::StructureType {
+    pub const PHYSICAL_DEVICE_TIMELINE_SEMAPHORE_FEATURES_KHR: Self = Self::PHYSICAL_DEVICE_TIMELINE_SEMAPHORE_FEATURES;
+    pub const PHYSICAL_DEVICE_TIMELINE_SEMAPHORE_PROPERTIES_KHR: Self = Self::PHYSICAL_DEVICE_TIMELINE_SEMAPHORE_PROPERTIES;
+    pub const SEMAPHORE_TYPE_CREATE_INFO_KHR: Self = Self::SEMAPHORE_TYPE_CREATE_INFO;
+    pub const TIMELINE_SEMAPHORE_SUBMIT_INFO_KHR: Self = Self::TIMELINE_SEMAPHORE_SUBMIT_INFO;
+    pub const SEMAPHORE_WAIT_INFO_KHR: Self = Self::SEMAPHORE_WAIT_INFO;
+    pub const SEMAPHORE_SIGNAL_INFO_KHR: Self = Self::SEMAPHORE_SIGNAL_INFO;
+}
+///Provided by [`khr::timeline_semaphore`](crate::khr::timeline_semaphore)
+impl crate::vk::SemaphoreType {
+    pub const BINARY_KHR: Self = Self::BINARY;
+    pub const TIMELINE_KHR: Self = Self::TIMELINE;
+}
 pub type SemaphoreTypeKHR = crate::vk::SemaphoreType;
 pub type SemaphoreWaitFlagBitsKHR = crate::vk::SemaphoreWaitFlagBits;
 ///Provided by [`khr::timeline_semaphore`](crate::khr::timeline_semaphore)

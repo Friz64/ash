@@ -30,6 +30,18 @@ pub struct VideoDecodeInfoKHR {
     pub p_reference_slots: *const crate::vk::VideoReferenceSlotInfoKHR,
 }
 ///Provided by [`khr::video_decode_queue`](crate::khr::video_decode_queue)
+impl crate::vk::ImageLayout {
+    pub const VIDEO_DECODE_DST_KHR: Self = Self(1000024000);
+    pub const VIDEO_DECODE_SRC_KHR: Self = Self(1000024001);
+    pub const VIDEO_DECODE_DPB_KHR: Self = Self(1000024002);
+}
+///Provided by [`khr::video_decode_queue`](crate::khr::video_decode_queue)
+impl crate::vk::StructureType {
+    pub const VIDEO_DECODE_INFO_KHR: Self = Self(1000024000);
+    pub const VIDEO_DECODE_CAPABILITIES_KHR: Self = Self(1000024001);
+    pub const VIDEO_DECODE_USAGE_INFO_KHR: Self = Self(1000024002);
+}
+///Provided by [`khr::video_decode_queue`](crate::khr::video_decode_queue)
 impl crate::vk::QueueFlagBits {
     pub const VIDEO_DECODE_KHR: Self = Self(1 << 5);
 }

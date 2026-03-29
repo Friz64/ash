@@ -3,6 +3,11 @@
 //![Vulkan Manual Page](https://docs.vulkan.org/refpages/latest/refpages/source/VK_KHR_depth_stencil_resolve.html) · Extension `VK_KHR_depth_stencil_resolve`
 pub type PhysicalDeviceDepthStencilResolvePropertiesKHR = crate::vk::PhysicalDeviceDepthStencilResolveProperties;
 pub type SubpassDescriptionDepthStencilResolveKHR = crate::vk::SubpassDescriptionDepthStencilResolve;
+///Provided by [`khr::depth_stencil_resolve`](crate::khr::depth_stencil_resolve)
+impl crate::vk::StructureType {
+    pub const PHYSICAL_DEVICE_DEPTH_STENCIL_RESOLVE_PROPERTIES_KHR: Self = Self::PHYSICAL_DEVICE_DEPTH_STENCIL_RESOLVE_PROPERTIES;
+    pub const SUBPASS_DESCRIPTION_DEPTH_STENCIL_RESOLVE_KHR: Self = Self::SUBPASS_DESCRIPTION_DEPTH_STENCIL_RESOLVE;
+}
 pub type ResolveModeFlagBitsKHR = crate::vk::ResolveModeFlagBits;
 ///Provided by [`khr::depth_stencil_resolve`](crate::khr::depth_stencil_resolve)
 impl crate::vk::ResolveModeFlagBits {

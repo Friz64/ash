@@ -2,6 +2,10 @@
 #![cfg_attr(rustfmt, rustfmt_skip)]
 //![Vulkan Manual Page](https://docs.vulkan.org/refpages/latest/refpages/source/VK_KHR_external_fence.html) · Extension `VK_KHR_external_fence`
 pub type ExportFenceCreateInfoKHR = crate::vk::ExportFenceCreateInfo;
+///Provided by [`khr::external_fence`](crate::khr::external_fence)
+impl crate::vk::StructureType {
+    pub const EXPORT_FENCE_CREATE_INFO_KHR: Self = Self::EXPORT_FENCE_CREATE_INFO;
+}
 pub type FenceImportFlagBitsKHR = crate::vk::FenceImportFlagBits;
 ///Provided by [`khr::external_fence`](crate::khr::external_fence)
 impl crate::vk::FenceImportFlagBits {

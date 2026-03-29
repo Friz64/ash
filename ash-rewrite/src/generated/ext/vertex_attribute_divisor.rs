@@ -11,5 +11,13 @@ pub struct PhysicalDeviceVertexAttributeDivisorPropertiesEXT {
 pub type VertexInputBindingDivisorDescriptionEXT = crate::vk::VertexInputBindingDivisorDescription;
 pub type PipelineVertexInputDivisorStateCreateInfoEXT = crate::vk::PipelineVertexInputDivisorStateCreateInfo;
 pub type PhysicalDeviceVertexAttributeDivisorFeaturesEXT = crate::vk::PhysicalDeviceVertexAttributeDivisorFeatures;
+///Provided by [`ext::vertex_attribute_divisor`](crate::ext::vertex_attribute_divisor)
+impl crate::vk::StructureType {
+    pub const PHYSICAL_DEVICE_VERTEX_ATTRIBUTE_DIVISOR_PROPERTIES_EXT: Self = Self(
+        1000190000,
+    );
+    pub const PIPELINE_VERTEX_INPUT_DIVISOR_STATE_CREATE_INFO_EXT: Self = Self::PIPELINE_VERTEX_INPUT_DIVISOR_STATE_CREATE_INFO;
+    pub const PHYSICAL_DEVICE_VERTEX_ATTRIBUTE_DIVISOR_FEATURES_EXT: Self = Self::PHYSICAL_DEVICE_VERTEX_ATTRIBUTE_DIVISOR_FEATURES;
+}
 pub const EXT_VERTEX_ATTRIBUTE_DIVISOR_SPEC_VERSION: u32 = 3;
 pub const EXT_VERTEX_ATTRIBUTE_DIVISOR_EXTENSION_NAME: &core::ffi::CStr = c"VK_EXT_vertex_attribute_divisor";

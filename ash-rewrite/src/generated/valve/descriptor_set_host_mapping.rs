@@ -24,5 +24,13 @@ pub struct DescriptorSetLayoutHostMappingInfoVALVE {
     pub descriptor_offset: usize,
     pub descriptor_size: u32,
 }
+///Provided by [`valve::descriptor_set_host_mapping`](crate::valve::descriptor_set_host_mapping)
+impl crate::vk::StructureType {
+    pub const PHYSICAL_DEVICE_DESCRIPTOR_SET_HOST_MAPPING_FEATURES_VALVE: Self = Self(
+        1000420000,
+    );
+    pub const DESCRIPTOR_SET_BINDING_REFERENCE_VALVE: Self = Self(1000420001);
+    pub const DESCRIPTOR_SET_LAYOUT_HOST_MAPPING_INFO_VALVE: Self = Self(1000420002);
+}
 pub const VALVE_DESCRIPTOR_SET_HOST_MAPPING_SPEC_VERSION: u32 = 1;
 pub const VALVE_DESCRIPTOR_SET_HOST_MAPPING_EXTENSION_NAME: &core::ffi::CStr = c"VK_VALVE_descriptor_set_host_mapping";

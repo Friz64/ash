@@ -15,5 +15,10 @@ pub struct PhysicalDeviceShaderLongVectorPropertiesEXT {
     pub p_next: *mut core::ffi::c_void,
     pub max_vector_components: u32,
 }
+///Provided by [`ext::shader_long_vector`](crate::ext::shader_long_vector)
+impl crate::vk::StructureType {
+    pub const PHYSICAL_DEVICE_SHADER_LONG_VECTOR_FEATURES_EXT: Self = Self(1000635000);
+    pub const PHYSICAL_DEVICE_SHADER_LONG_VECTOR_PROPERTIES_EXT: Self = Self(1000635001);
+}
 pub const EXT_SHADER_LONG_VECTOR_SPEC_VERSION: u32 = 1;
 pub const EXT_SHADER_LONG_VECTOR_EXTENSION_NAME: &core::ffi::CStr = c"VK_EXT_shader_long_vector";

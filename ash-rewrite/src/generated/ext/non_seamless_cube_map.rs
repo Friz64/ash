@@ -9,6 +9,12 @@ pub struct PhysicalDeviceNonSeamlessCubeMapFeaturesEXT {
     pub non_seamless_cube_map: crate::vk::Bool32,
 }
 ///Provided by [`ext::non_seamless_cube_map`](crate::ext::non_seamless_cube_map)
+impl crate::vk::StructureType {
+    pub const PHYSICAL_DEVICE_NON_SEAMLESS_CUBE_MAP_FEATURES_EXT: Self = Self(
+        1000422000,
+    );
+}
+///Provided by [`ext::non_seamless_cube_map`](crate::ext::non_seamless_cube_map)
 impl crate::vk::SamplerCreateFlagBits {
     pub const NON_SEAMLESS_CUBE_MAP_EXT: Self = Self(1 << 2);
 }

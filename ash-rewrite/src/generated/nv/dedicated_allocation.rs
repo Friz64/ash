@@ -23,5 +23,11 @@ pub struct DedicatedAllocationMemoryAllocateInfoNV {
     pub image: crate::vk::Image,
     pub buffer: crate::vk::Buffer,
 }
+///Provided by [`nv::dedicated_allocation`](crate::nv::dedicated_allocation)
+impl crate::vk::StructureType {
+    pub const DEDICATED_ALLOCATION_IMAGE_CREATE_INFO_NV: Self = Self(1000026000);
+    pub const DEDICATED_ALLOCATION_BUFFER_CREATE_INFO_NV: Self = Self(1000026001);
+    pub const DEDICATED_ALLOCATION_MEMORY_ALLOCATE_INFO_NV: Self = Self(1000026002);
+}
 pub const NV_DEDICATED_ALLOCATION_SPEC_VERSION: u32 = 1;
 pub const NV_DEDICATED_ALLOCATION_EXTENSION_NAME: &core::ffi::CStr = c"VK_NV_dedicated_allocation";

@@ -39,5 +39,12 @@ pub struct SemaphoreGetWin32HandleInfoKHR {
     pub semaphore: crate::vk::Semaphore,
     pub handle_type: crate::vk::ExternalSemaphoreHandleTypeFlagBits,
 }
+///Provided by [`khr::external_semaphore_win32`](crate::khr::external_semaphore_win32)
+impl crate::vk::StructureType {
+    pub const IMPORT_SEMAPHORE_WIN32_HANDLE_INFO_KHR: Self = Self(1000078000);
+    pub const EXPORT_SEMAPHORE_WIN32_HANDLE_INFO_KHR: Self = Self(1000078001);
+    pub const D3D12_FENCE_SUBMIT_INFO_KHR: Self = Self(1000078002);
+    pub const SEMAPHORE_GET_WIN32_HANDLE_INFO_KHR: Self = Self(1000078003);
+}
 pub const KHR_EXTERNAL_SEMAPHORE_WIN32_SPEC_VERSION: u32 = 1;
 pub const KHR_EXTERNAL_SEMAPHORE_WIN32_EXTENSION_NAME: &core::ffi::CStr = c"VK_KHR_external_semaphore_win32";

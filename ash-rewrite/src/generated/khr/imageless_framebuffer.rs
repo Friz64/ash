@@ -6,6 +6,13 @@ pub type FramebufferAttachmentsCreateInfoKHR = crate::vk::FramebufferAttachments
 pub type FramebufferAttachmentImageInfoKHR = crate::vk::FramebufferAttachmentImageInfo;
 pub type RenderPassAttachmentBeginInfoKHR = crate::vk::RenderPassAttachmentBeginInfo;
 ///Provided by [`khr::imageless_framebuffer`](crate::khr::imageless_framebuffer)
+impl crate::vk::StructureType {
+    pub const PHYSICAL_DEVICE_IMAGELESS_FRAMEBUFFER_FEATURES_KHR: Self = Self::PHYSICAL_DEVICE_IMAGELESS_FRAMEBUFFER_FEATURES;
+    pub const FRAMEBUFFER_ATTACHMENTS_CREATE_INFO_KHR: Self = Self::FRAMEBUFFER_ATTACHMENTS_CREATE_INFO;
+    pub const FRAMEBUFFER_ATTACHMENT_IMAGE_INFO_KHR: Self = Self::FRAMEBUFFER_ATTACHMENT_IMAGE_INFO;
+    pub const RENDER_PASS_ATTACHMENT_BEGIN_INFO_KHR: Self = Self::RENDER_PASS_ATTACHMENT_BEGIN_INFO;
+}
+///Provided by [`khr::imageless_framebuffer`](crate::khr::imageless_framebuffer)
 impl crate::vk::FramebufferCreateFlagBits {
     pub const IMAGELESS_KHR: Self = Self::IMAGELESS;
 }

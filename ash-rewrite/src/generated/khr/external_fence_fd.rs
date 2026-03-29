@@ -19,5 +19,10 @@ pub struct FenceGetFdInfoKHR {
     pub fence: crate::vk::Fence,
     pub handle_type: crate::vk::ExternalFenceHandleTypeFlagBits,
 }
+///Provided by [`khr::external_fence_fd`](crate::khr::external_fence_fd)
+impl crate::vk::StructureType {
+    pub const IMPORT_FENCE_FD_INFO_KHR: Self = Self(1000115000);
+    pub const FENCE_GET_FD_INFO_KHR: Self = Self(1000115001);
+}
 pub const KHR_EXTERNAL_FENCE_FD_SPEC_VERSION: u32 = 1;
 pub const KHR_EXTERNAL_FENCE_FD_EXTENSION_NAME: &core::ffi::CStr = c"VK_KHR_external_fence_fd";

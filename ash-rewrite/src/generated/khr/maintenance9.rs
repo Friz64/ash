@@ -23,9 +23,20 @@ pub struct QueueFamilyOwnershipTransferPropertiesKHR {
     pub p_next: *mut core::ffi::c_void,
     pub optimal_image_transfer_to_queue_families: u32,
 }
+///Provided by [`khr::maintenance9`](crate::khr::maintenance9)
+impl crate::vk::StructureType {
+    pub const PHYSICAL_DEVICE_MAINTENANCE_9_FEATURES_KHR: Self = Self(1000584000);
+    pub const PHYSICAL_DEVICE_MAINTENANCE_9_PROPERTIES_KHR: Self = Self(1000584001);
+    pub const QUEUE_FAMILY_OWNERSHIP_TRANSFER_PROPERTIES_KHR: Self = Self(1000584002);
+}
 #[repr(transparent)]
 #[derive(Clone, Copy)]
 pub struct DefaultVertexAttributeValueKHR(pub(crate) i32);
+///Provided by [`khr::maintenance9`](crate::khr::maintenance9)
+impl DefaultVertexAttributeValueKHR {
+    pub const ZERO_ZERO_ZERO_ZERO_KHR: Self = Self(0);
+    pub const ZERO_ZERO_ZERO_ONE_KHR: Self = Self(1);
+}
 ///Provided by [`khr::maintenance9`](crate::khr::maintenance9)
 impl crate::vk::QueryPoolCreateFlagBits {
     pub const RESET_KHR: Self = Self(1 << 0);

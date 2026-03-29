@@ -35,9 +35,29 @@ pub struct ShaderCreateInfoEXT {
     pub p_specialization_info: *const crate::vk::SpecializationInfo,
 }
 pub type ShaderRequiredSubgroupSizeCreateInfoEXT = crate::vk::PipelineShaderStageRequiredSubgroupSizeCreateInfo;
+///Provided by [`ext::shader_object`](crate::ext::shader_object)
+impl crate::vk::StructureType {
+    pub const PHYSICAL_DEVICE_SHADER_OBJECT_FEATURES_EXT: Self = Self(1000482000);
+    pub const PHYSICAL_DEVICE_SHADER_OBJECT_PROPERTIES_EXT: Self = Self(1000482001);
+    pub const SHADER_CREATE_INFO_EXT: Self = Self(1000482002);
+    pub const SHADER_REQUIRED_SUBGROUP_SIZE_CREATE_INFO_EXT: Self = Self::PIPELINE_SHADER_STAGE_REQUIRED_SUBGROUP_SIZE_CREATE_INFO;
+}
+///Provided by [`ext::shader_object`](crate::ext::shader_object)
+impl crate::vk::Result {
+    pub const INCOMPATIBLE_SHADER_BINARY_EXT: Self = Self(1000482000);
+}
+///Provided by [`ext::shader_object`](crate::ext::shader_object)
+impl crate::vk::ObjectType {
+    pub const SHADER_EXT: Self = Self(1000482000);
+}
 #[repr(transparent)]
 #[derive(Clone, Copy)]
 pub struct ShaderCodeTypeEXT(pub(crate) i32);
+///Provided by [`ext::shader_object`](crate::ext::shader_object)
+impl ShaderCodeTypeEXT {
+    pub const BINARY_EXT: Self = Self(0);
+    pub const SPIRV_EXT: Self = Self(1);
+}
 bitflags::bitflags! {
     #[repr(transparent)] #[derive(Clone, Copy)] pub struct ShaderCreateFlagsEXT : u32 {
     const LINK_STAGE_EXT = ShaderCreateFlagBitsEXT::LINK_STAGE_EXT.0; const

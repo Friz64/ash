@@ -15,6 +15,20 @@ pub struct PhysicalDeviceRayTracingInvocationReorderPropertiesNV {
     pub p_next: *mut core::ffi::c_void,
     pub ray_tracing_invocation_reorder_reordering_hint: crate::vk::RayTracingInvocationReorderModeEXT,
 }
+///Provided by [`nv::ray_tracing_invocation_reorder`](crate::nv::ray_tracing_invocation_reorder)
+impl crate::vk::StructureType {
+    pub const PHYSICAL_DEVICE_RAY_TRACING_INVOCATION_REORDER_FEATURES_NV: Self = Self(
+        1000490000,
+    );
+    pub const PHYSICAL_DEVICE_RAY_TRACING_INVOCATION_REORDER_PROPERTIES_NV: Self = Self(
+        1000490001,
+    );
+}
+///Provided by [`nv::ray_tracing_invocation_reorder`](crate::nv::ray_tracing_invocation_reorder)
+impl crate::vk::RayTracingInvocationReorderModeEXT {
+    pub const NONE_NV: Self = Self::NONE_EXT;
+    pub const REORDER_NV: Self = Self::REORDER_EXT;
+}
 pub type RayTracingInvocationReorderModeNV = crate::vk::RayTracingInvocationReorderModeEXT;
 pub const NV_RAY_TRACING_INVOCATION_REORDER_SPEC_VERSION: u32 = 1;
 pub const NV_RAY_TRACING_INVOCATION_REORDER_EXTENSION_NAME: &core::ffi::CStr = c"VK_NV_ray_tracing_invocation_reorder";

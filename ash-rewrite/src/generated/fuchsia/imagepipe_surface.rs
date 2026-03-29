@@ -9,6 +9,10 @@ pub struct ImagePipeSurfaceCreateInfoFUCHSIA {
     pub flags: crate::vk::ImagePipeSurfaceCreateFlagsFUCHSIA,
     pub image_pipe_handle: crate::platform_types::zx_handle_t,
 }
+///Provided by [`fuchsia::imagepipe_surface`](crate::fuchsia::imagepipe_surface)
+impl crate::vk::StructureType {
+    pub const IMAGEPIPE_SURFACE_CREATE_INFO_FUCHSIA: Self = Self(1000214000);
+}
 bitflags::bitflags! {
     #[repr(transparent)] #[derive(Clone, Copy)] pub struct
     ImagePipeSurfaceCreateFlagsFUCHSIA : u32 {}

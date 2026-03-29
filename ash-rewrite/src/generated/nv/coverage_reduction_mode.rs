@@ -26,9 +26,22 @@ pub struct FramebufferMixedSamplesCombinationNV {
     pub depth_stencil_samples: crate::vk::SampleCountFlags,
     pub color_samples: crate::vk::SampleCountFlags,
 }
+///Provided by [`nv::coverage_reduction_mode`](crate::nv::coverage_reduction_mode)
+impl crate::vk::StructureType {
+    pub const PHYSICAL_DEVICE_COVERAGE_REDUCTION_MODE_FEATURES_NV: Self = Self(
+        1000250000,
+    );
+    pub const PIPELINE_COVERAGE_REDUCTION_STATE_CREATE_INFO_NV: Self = Self(1000250001);
+    pub const FRAMEBUFFER_MIXED_SAMPLES_COMBINATION_NV: Self = Self(1000250002);
+}
 #[repr(transparent)]
 #[derive(Clone, Copy)]
 pub struct CoverageReductionModeNV(pub(crate) i32);
+///Provided by [`nv::coverage_reduction_mode`](crate::nv::coverage_reduction_mode)
+impl CoverageReductionModeNV {
+    pub const MERGE_NV: Self = Self(0);
+    pub const TRUNCATE_NV: Self = Self(1);
+}
 bitflags::bitflags! {
     #[repr(transparent)] #[derive(Clone, Copy)] pub struct
     PipelineCoverageReductionStateCreateFlagsNV : u32 {}

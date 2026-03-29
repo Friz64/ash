@@ -176,15 +176,63 @@ pub union ClusterAccelerationStructureOpInputNV {
     pub p_triangle_clusters: *mut crate::vk::ClusterAccelerationStructureTriangleClusterInputNV,
     pub p_move_objects: *mut crate::vk::ClusterAccelerationStructureMoveObjectsInputNV,
 }
+///Provided by [`nv::cluster_acceleration_structure`](crate::nv::cluster_acceleration_structure)
+impl crate::vk::StructureType {
+    pub const PHYSICAL_DEVICE_CLUSTER_ACCELERATION_STRUCTURE_FEATURES_NV: Self = Self(
+        1000569000,
+    );
+    pub const PHYSICAL_DEVICE_CLUSTER_ACCELERATION_STRUCTURE_PROPERTIES_NV: Self = Self(
+        1000569001,
+    );
+    pub const CLUSTER_ACCELERATION_STRUCTURE_CLUSTERS_BOTTOM_LEVEL_INPUT_NV: Self = Self(
+        1000569002,
+    );
+    pub const CLUSTER_ACCELERATION_STRUCTURE_TRIANGLE_CLUSTER_INPUT_NV: Self = Self(
+        1000569003,
+    );
+    pub const CLUSTER_ACCELERATION_STRUCTURE_MOVE_OBJECTS_INPUT_NV: Self = Self(
+        1000569004,
+    );
+    pub const CLUSTER_ACCELERATION_STRUCTURE_INPUT_INFO_NV: Self = Self(1000569005);
+    pub const CLUSTER_ACCELERATION_STRUCTURE_COMMANDS_INFO_NV: Self = Self(1000569006);
+    pub const RAY_TRACING_PIPELINE_CLUSTER_ACCELERATION_STRUCTURE_CREATE_INFO_NV: Self = Self(
+        1000569007,
+    );
+}
 #[repr(transparent)]
 #[derive(Clone, Copy)]
 pub struct ClusterAccelerationStructureTypeNV(pub(crate) i32);
+///Provided by [`nv::cluster_acceleration_structure`](crate::nv::cluster_acceleration_structure)
+impl ClusterAccelerationStructureTypeNV {
+    pub const CLUSTERS_BOTTOM_LEVEL_NV: Self = Self(0);
+    pub const TRIANGLE_CLUSTER_NV: Self = Self(1);
+    pub const TRIANGLE_CLUSTER_TEMPLATE_NV: Self = Self(2);
+}
 #[repr(transparent)]
 #[derive(Clone, Copy)]
 pub struct ClusterAccelerationStructureOpTypeNV(pub(crate) i32);
+///Provided by [`nv::cluster_acceleration_structure`](crate::nv::cluster_acceleration_structure)
+impl ClusterAccelerationStructureOpTypeNV {
+    pub const MOVE_OBJECTS_NV: Self = Self(0);
+    pub const BUILD_CLUSTERS_BOTTOM_LEVEL_NV: Self = Self(1);
+    pub const BUILD_TRIANGLE_CLUSTER_NV: Self = Self(2);
+    pub const BUILD_TRIANGLE_CLUSTER_TEMPLATE_NV: Self = Self(3);
+    pub const INSTANTIATE_TRIANGLE_CLUSTER_NV: Self = Self(4);
+    pub const GET_CLUSTER_TEMPLATE_INDICES_NV: Self = Self(5);
+}
 #[repr(transparent)]
 #[derive(Clone, Copy)]
 pub struct ClusterAccelerationStructureOpModeNV(pub(crate) i32);
+///Provided by [`nv::cluster_acceleration_structure`](crate::nv::cluster_acceleration_structure)
+impl ClusterAccelerationStructureOpModeNV {
+    pub const IMPLICIT_DESTINATIONS_NV: Self = Self(0);
+    pub const EXPLICIT_DESTINATIONS_NV: Self = Self(1);
+    pub const COMPUTE_SIZES_NV: Self = Self(2);
+}
+///Provided by [`nv::cluster_acceleration_structure`](crate::nv::cluster_acceleration_structure)
+impl crate::vk::OpacityMicromapSpecialIndexEXT {
+    pub const CLUSTER_GEOMETRY_DISABLE_OPACITY_MICROMAP_NV: Self = Self(-5);
+}
 bitflags::bitflags! {
     #[repr(transparent)] #[derive(Clone, Copy)] pub struct
     ClusterAccelerationStructureGeometryFlagsNV : u32 { const CULL_DISABLE_NV =

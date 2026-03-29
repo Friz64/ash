@@ -26,11 +26,43 @@ pub struct PipelineFragmentShadingRateEnumStateCreateInfoNV {
     pub shading_rate: crate::vk::FragmentShadingRateNV,
     pub combiner_ops: [crate::vk::FragmentShadingRateCombinerOpKHR; 2 as _],
 }
+///Provided by [`nv::fragment_shading_rate_enums`](crate::nv::fragment_shading_rate_enums)
+impl crate::vk::StructureType {
+    pub const PHYSICAL_DEVICE_FRAGMENT_SHADING_RATE_ENUMS_PROPERTIES_NV: Self = Self(
+        1000326000,
+    );
+    pub const PHYSICAL_DEVICE_FRAGMENT_SHADING_RATE_ENUMS_FEATURES_NV: Self = Self(
+        1000326001,
+    );
+    pub const PIPELINE_FRAGMENT_SHADING_RATE_ENUM_STATE_CREATE_INFO_NV: Self = Self(
+        1000326002,
+    );
+}
 #[repr(transparent)]
 #[derive(Clone, Copy)]
 pub struct FragmentShadingRateNV(pub(crate) i32);
+///Provided by [`nv::fragment_shading_rate_enums`](crate::nv::fragment_shading_rate_enums)
+impl FragmentShadingRateNV {
+    pub const _1_INVOCATION_PER_PIXEL_NV: Self = Self(0);
+    pub const _1_INVOCATION_PER_1X2_PIXELS_NV: Self = Self(1);
+    pub const _1_INVOCATION_PER_2X1_PIXELS_NV: Self = Self(4);
+    pub const _1_INVOCATION_PER_2X2_PIXELS_NV: Self = Self(5);
+    pub const _1_INVOCATION_PER_2X4_PIXELS_NV: Self = Self(6);
+    pub const _1_INVOCATION_PER_4X2_PIXELS_NV: Self = Self(9);
+    pub const _1_INVOCATION_PER_4X4_PIXELS_NV: Self = Self(10);
+    pub const _2_INVOCATIONS_PER_PIXEL_NV: Self = Self(11);
+    pub const _4_INVOCATIONS_PER_PIXEL_NV: Self = Self(12);
+    pub const _8_INVOCATIONS_PER_PIXEL_NV: Self = Self(13);
+    pub const _16_INVOCATIONS_PER_PIXEL_NV: Self = Self(14);
+    pub const NO_INVOCATIONS_NV: Self = Self(15);
+}
 #[repr(transparent)]
 #[derive(Clone, Copy)]
 pub struct FragmentShadingRateTypeNV(pub(crate) i32);
+///Provided by [`nv::fragment_shading_rate_enums`](crate::nv::fragment_shading_rate_enums)
+impl FragmentShadingRateTypeNV {
+    pub const FRAGMENT_SIZE_NV: Self = Self(0);
+    pub const ENUMS_NV: Self = Self(1);
+}
 pub const NV_FRAGMENT_SHADING_RATE_ENUMS_SPEC_VERSION: u32 = 1;
 pub const NV_FRAGMENT_SHADING_RATE_ENUMS_EXTENSION_NAME: &core::ffi::CStr = c"VK_NV_fragment_shading_rate_enums";

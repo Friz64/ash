@@ -167,6 +167,27 @@ pub struct VideoEncodeH265DpbSlotInfoKHR {
     pub p_std_reference_info: *const crate::vk::StdVideoEncodeH265ReferenceInfo,
 }
 ///Provided by [`khr::video_encode_h265`](crate::khr::video_encode_h265)
+impl crate::vk::StructureType {
+    pub const VIDEO_ENCODE_H265_CAPABILITIES_KHR: Self = Self(1000039000);
+    pub const VIDEO_ENCODE_H265_SESSION_PARAMETERS_CREATE_INFO_KHR: Self = Self(
+        1000039001,
+    );
+    pub const VIDEO_ENCODE_H265_SESSION_PARAMETERS_ADD_INFO_KHR: Self = Self(1000039002);
+    pub const VIDEO_ENCODE_H265_PICTURE_INFO_KHR: Self = Self(1000039003);
+    pub const VIDEO_ENCODE_H265_DPB_SLOT_INFO_KHR: Self = Self(1000039004);
+    pub const VIDEO_ENCODE_H265_NALU_SLICE_SEGMENT_INFO_KHR: Self = Self(1000039005);
+    pub const VIDEO_ENCODE_H265_GOP_REMAINING_FRAME_INFO_KHR: Self = Self(1000039006);
+    pub const VIDEO_ENCODE_H265_PROFILE_INFO_KHR: Self = Self(1000039007);
+    pub const VIDEO_ENCODE_H265_RATE_CONTROL_INFO_KHR: Self = Self(1000039009);
+    pub const VIDEO_ENCODE_H265_RATE_CONTROL_LAYER_INFO_KHR: Self = Self(1000039010);
+    pub const VIDEO_ENCODE_H265_SESSION_CREATE_INFO_KHR: Self = Self(1000039011);
+    pub const VIDEO_ENCODE_H265_QUALITY_LEVEL_PROPERTIES_KHR: Self = Self(1000039012);
+    pub const VIDEO_ENCODE_H265_SESSION_PARAMETERS_GET_INFO_KHR: Self = Self(1000039013);
+    pub const VIDEO_ENCODE_H265_SESSION_PARAMETERS_FEEDBACK_INFO_KHR: Self = Self(
+        1000039014,
+    );
+}
+///Provided by [`khr::video_encode_h265`](crate::khr::video_encode_h265)
 impl crate::vk::VideoCodecOperationFlagBitsKHR {
     pub const ENCODE_H265_KHR: Self = Self(1 << 17);
 }

@@ -8,5 +8,15 @@ pub struct PhysicalDeviceAttachmentFeedbackLoopDynamicStateFeaturesEXT {
     pub p_next: *mut core::ffi::c_void,
     pub attachment_feedback_loop_dynamic_state: crate::vk::Bool32,
 }
+///Provided by [`ext::attachment_feedback_loop_dynamic_state`](crate::ext::attachment_feedback_loop_dynamic_state)
+impl crate::vk::StructureType {
+    pub const PHYSICAL_DEVICE_ATTACHMENT_FEEDBACK_LOOP_DYNAMIC_STATE_FEATURES_EXT: Self = Self(
+        1000524000,
+    );
+}
+///Provided by [`ext::attachment_feedback_loop_dynamic_state`](crate::ext::attachment_feedback_loop_dynamic_state)
+impl crate::vk::DynamicState {
+    pub const ATTACHMENT_FEEDBACK_LOOP_ENABLE_EXT: Self = Self(1000524000);
+}
 pub const EXT_ATTACHMENT_FEEDBACK_LOOP_DYNAMIC_STATE_SPEC_VERSION: u32 = 1;
 pub const EXT_ATTACHMENT_FEEDBACK_LOOP_DYNAMIC_STATE_EXTENSION_NAME: &core::ffi::CStr = c"VK_EXT_attachment_feedback_loop_dynamic_state";

@@ -12,5 +12,19 @@ pub type BlitImageInfo2KHR = crate::vk::BlitImageInfo2;
 pub type CopyBufferToImageInfo2KHR = crate::vk::CopyBufferToImageInfo2;
 pub type CopyImageToBufferInfo2KHR = crate::vk::CopyImageToBufferInfo2;
 pub type ResolveImageInfo2KHR = crate::vk::ResolveImageInfo2;
+///Provided by [`khr::copy_commands2`](crate::khr::copy_commands2)
+impl crate::vk::StructureType {
+    pub const COPY_BUFFER_INFO_2_KHR: Self = Self::COPY_BUFFER_INFO_2;
+    pub const COPY_IMAGE_INFO_2_KHR: Self = Self::COPY_IMAGE_INFO_2;
+    pub const COPY_BUFFER_TO_IMAGE_INFO_2_KHR: Self = Self::COPY_BUFFER_TO_IMAGE_INFO_2;
+    pub const COPY_IMAGE_TO_BUFFER_INFO_2_KHR: Self = Self::COPY_IMAGE_TO_BUFFER_INFO_2;
+    pub const BLIT_IMAGE_INFO_2_KHR: Self = Self::BLIT_IMAGE_INFO_2;
+    pub const RESOLVE_IMAGE_INFO_2_KHR: Self = Self::RESOLVE_IMAGE_INFO_2;
+    pub const BUFFER_COPY_2_KHR: Self = Self::BUFFER_COPY_2;
+    pub const IMAGE_COPY_2_KHR: Self = Self::IMAGE_COPY_2;
+    pub const IMAGE_BLIT_2_KHR: Self = Self::IMAGE_BLIT_2;
+    pub const BUFFER_IMAGE_COPY_2_KHR: Self = Self::BUFFER_IMAGE_COPY_2;
+    pub const IMAGE_RESOLVE_2_KHR: Self = Self::IMAGE_RESOLVE_2;
+}
 pub const KHR_COPY_COMMANDS_2_SPEC_VERSION: u32 = 1;
 pub const KHR_COPY_COMMANDS_2_EXTENSION_NAME: &core::ffi::CStr = c"VK_KHR_copy_commands2";

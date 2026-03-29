@@ -18,5 +18,10 @@ pub struct PhysicalDeviceRobustness2PropertiesKHR {
     pub robust_storage_buffer_access_size_alignment: crate::vk::DeviceSize,
     pub robust_uniform_buffer_access_size_alignment: crate::vk::DeviceSize,
 }
+///Provided by [`khr::robustness2`](crate::khr::robustness2)
+impl crate::vk::StructureType {
+    pub const PHYSICAL_DEVICE_ROBUSTNESS_2_FEATURES_KHR: Self = Self(1000286000);
+    pub const PHYSICAL_DEVICE_ROBUSTNESS_2_PROPERTIES_KHR: Self = Self(1000286001);
+}
 pub const KHR_ROBUSTNESS_2_SPEC_VERSION: u32 = 1;
 pub const KHR_ROBUSTNESS_2_EXTENSION_NAME: &core::ffi::CStr = c"VK_KHR_robustness2";

@@ -9,6 +9,10 @@ pub struct PhysicalDeviceCoherentMemoryFeaturesAMD {
     pub device_coherent_memory: crate::vk::Bool32,
 }
 ///Provided by [`amd::device_coherent_memory`](crate::amd::device_coherent_memory)
+impl crate::vk::StructureType {
+    pub const PHYSICAL_DEVICE_COHERENT_MEMORY_FEATURES_AMD: Self = Self(1000229000);
+}
+///Provided by [`amd::device_coherent_memory`](crate::amd::device_coherent_memory)
 impl crate::vk::MemoryPropertyFlagBits {
     pub const DEVICE_COHERENT_AMD: Self = Self(1 << 6);
     pub const DEVICE_UNCACHED_AMD: Self = Self(1 << 7);

@@ -4,6 +4,12 @@
 pub type SurfacePresentModeEXT = crate::vk::SurfacePresentModeKHR;
 pub type SurfacePresentScalingCapabilitiesEXT = crate::vk::SurfacePresentScalingCapabilitiesKHR;
 pub type SurfacePresentModeCompatibilityEXT = crate::vk::SurfacePresentModeCompatibilityKHR;
+///Provided by [`ext::surface_maintenance1`](crate::ext::surface_maintenance1)
+impl crate::vk::StructureType {
+    pub const SURFACE_PRESENT_MODE_EXT: Self = Self::SURFACE_PRESENT_MODE_KHR;
+    pub const SURFACE_PRESENT_SCALING_CAPABILITIES_EXT: Self = Self::SURFACE_PRESENT_SCALING_CAPABILITIES_KHR;
+    pub const SURFACE_PRESENT_MODE_COMPATIBILITY_EXT: Self = Self::SURFACE_PRESENT_MODE_COMPATIBILITY_KHR;
+}
 pub type PresentScalingFlagBitsEXT = crate::vk::PresentScalingFlagBitsKHR;
 pub type PresentGravityFlagBitsEXT = crate::vk::PresentGravityFlagBitsKHR;
 pub type PresentScalingFlagsEXT = crate::vk::PresentScalingFlagsKHR;

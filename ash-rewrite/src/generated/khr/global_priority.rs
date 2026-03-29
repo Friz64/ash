@@ -4,6 +4,23 @@
 pub type DeviceQueueGlobalPriorityCreateInfoKHR = crate::vk::DeviceQueueGlobalPriorityCreateInfo;
 pub type PhysicalDeviceGlobalPriorityQueryFeaturesKHR = crate::vk::PhysicalDeviceGlobalPriorityQueryFeatures;
 pub type QueueFamilyGlobalPriorityPropertiesKHR = crate::vk::QueueFamilyGlobalPriorityProperties;
+///Provided by [`khr::global_priority`](crate::khr::global_priority)
+impl crate::vk::StructureType {
+    pub const DEVICE_QUEUE_GLOBAL_PRIORITY_CREATE_INFO_KHR: Self = Self::DEVICE_QUEUE_GLOBAL_PRIORITY_CREATE_INFO;
+    pub const PHYSICAL_DEVICE_GLOBAL_PRIORITY_QUERY_FEATURES_KHR: Self = Self::PHYSICAL_DEVICE_GLOBAL_PRIORITY_QUERY_FEATURES;
+    pub const QUEUE_FAMILY_GLOBAL_PRIORITY_PROPERTIES_KHR: Self = Self::QUEUE_FAMILY_GLOBAL_PRIORITY_PROPERTIES;
+}
+///Provided by [`khr::global_priority`](crate::khr::global_priority)
+impl crate::vk::Result {
+    pub const ERROR_NOT_PERMITTED_KHR: Self = Self::ERROR_NOT_PERMITTED;
+}
+///Provided by [`khr::global_priority`](crate::khr::global_priority)
+impl crate::vk::QueueGlobalPriority {
+    pub const LOW_KHR: Self = Self::LOW;
+    pub const MEDIUM_KHR: Self = Self::MEDIUM;
+    pub const HIGH_KHR: Self = Self::HIGH;
+    pub const REALTIME_KHR: Self = Self::REALTIME;
+}
 pub type QueueGlobalPriorityKHR = crate::vk::QueueGlobalPriority;
 pub const KHR_GLOBAL_PRIORITY_SPEC_VERSION: u32 = 1;
 pub const KHR_GLOBAL_PRIORITY_EXTENSION_NAME: &core::ffi::CStr = c"VK_KHR_global_priority";

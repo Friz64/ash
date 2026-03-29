@@ -29,5 +29,10 @@ pub struct PhysicalDevicePortabilitySubsetPropertiesKHR {
     pub p_next: *mut core::ffi::c_void,
     pub min_vertex_input_binding_stride_alignment: u32,
 }
+///Provided by [`khr::portability_subset`](crate::khr::portability_subset)
+impl crate::vk::StructureType {
+    pub const PHYSICAL_DEVICE_PORTABILITY_SUBSET_FEATURES_KHR: Self = Self(1000163000);
+    pub const PHYSICAL_DEVICE_PORTABILITY_SUBSET_PROPERTIES_KHR: Self = Self(1000163001);
+}
 pub const KHR_PORTABILITY_SUBSET_SPEC_VERSION: u32 = 1;
 pub const KHR_PORTABILITY_SUBSET_EXTENSION_NAME: &core::ffi::CStr = c"VK_KHR_portability_subset";

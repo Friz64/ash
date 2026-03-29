@@ -3,6 +3,10 @@
 //![Vulkan Manual Page](https://docs.vulkan.org/refpages/latest/refpages/source/VK_KHR_shader_subgroup_rotate.html) · Extension `VK_KHR_shader_subgroup_rotate`
 pub type PhysicalDeviceShaderSubgroupRotateFeaturesKHR = crate::vk::PhysicalDeviceShaderSubgroupRotateFeatures;
 ///Provided by [`khr::shader_subgroup_rotate`](crate::khr::shader_subgroup_rotate)
+impl crate::vk::StructureType {
+    pub const PHYSICAL_DEVICE_SHADER_SUBGROUP_ROTATE_FEATURES_KHR: Self = Self::PHYSICAL_DEVICE_SHADER_SUBGROUP_ROTATE_FEATURES;
+}
+///Provided by [`khr::shader_subgroup_rotate`](crate::khr::shader_subgroup_rotate)
 impl crate::vk::SubgroupFeatureFlagBits {
     pub const ROTATE_KHR: Self = Self::ROTATE;
     pub const ROTATE_CLUSTERED_KHR: Self = Self::ROTATE_CLUSTERED;

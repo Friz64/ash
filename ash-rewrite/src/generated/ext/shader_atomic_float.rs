@@ -19,5 +19,9 @@ pub struct PhysicalDeviceShaderAtomicFloatFeaturesEXT {
     pub sparse_image_float32_atomics: crate::vk::Bool32,
     pub sparse_image_float32_atomic_add: crate::vk::Bool32,
 }
+///Provided by [`ext::shader_atomic_float`](crate::ext::shader_atomic_float)
+impl crate::vk::StructureType {
+    pub const PHYSICAL_DEVICE_SHADER_ATOMIC_FLOAT_FEATURES_EXT: Self = Self(1000260000);
+}
 pub const EXT_SHADER_ATOMIC_FLOAT_SPEC_VERSION: u32 = 1;
 pub const EXT_SHADER_ATOMIC_FLOAT_EXTENSION_NAME: &core::ffi::CStr = c"VK_EXT_shader_atomic_float";

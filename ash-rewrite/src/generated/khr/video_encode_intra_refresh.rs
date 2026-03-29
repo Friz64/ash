@@ -42,6 +42,18 @@ pub struct PhysicalDeviceVideoEncodeIntraRefreshFeaturesKHR {
     pub video_encode_intra_refresh: crate::vk::Bool32,
 }
 ///Provided by [`khr::video_encode_intra_refresh`](crate::khr::video_encode_intra_refresh)
+impl crate::vk::StructureType {
+    pub const VIDEO_ENCODE_INTRA_REFRESH_CAPABILITIES_KHR: Self = Self(1000552000);
+    pub const VIDEO_ENCODE_SESSION_INTRA_REFRESH_CREATE_INFO_KHR: Self = Self(
+        1000552001,
+    );
+    pub const VIDEO_ENCODE_INTRA_REFRESH_INFO_KHR: Self = Self(1000552002);
+    pub const VIDEO_REFERENCE_INTRA_REFRESH_INFO_KHR: Self = Self(1000552003);
+    pub const PHYSICAL_DEVICE_VIDEO_ENCODE_INTRA_REFRESH_FEATURES_KHR: Self = Self(
+        1000552004,
+    );
+}
+///Provided by [`khr::video_encode_intra_refresh`](crate::khr::video_encode_intra_refresh)
 impl crate::vk::VideoEncodeFlagBitsKHR {
     pub const INTRA_REFRESH_KHR: Self = Self(1 << 2);
 }

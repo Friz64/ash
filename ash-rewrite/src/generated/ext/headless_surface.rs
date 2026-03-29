@@ -8,6 +8,10 @@ pub struct HeadlessSurfaceCreateInfoEXT {
     pub p_next: *const core::ffi::c_void,
     pub flags: crate::vk::HeadlessSurfaceCreateFlagsEXT,
 }
+///Provided by [`ext::headless_surface`](crate::ext::headless_surface)
+impl crate::vk::StructureType {
+    pub const HEADLESS_SURFACE_CREATE_INFO_EXT: Self = Self(1000256000);
+}
 bitflags::bitflags! {
     #[repr(transparent)] #[derive(Clone, Copy)] pub struct HeadlessSurfaceCreateFlagsEXT
     : u32 {}

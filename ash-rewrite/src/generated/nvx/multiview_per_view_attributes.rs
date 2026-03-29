@@ -17,6 +17,13 @@ pub struct MultiviewPerViewAttributesInfoNVX {
     pub per_view_attributes_position_x_only: crate::vk::Bool32,
 }
 ///Provided by [`nvx::multiview_per_view_attributes`](crate::nvx::multiview_per_view_attributes)
+impl crate::vk::StructureType {
+    pub const PHYSICAL_DEVICE_MULTIVIEW_PER_VIEW_ATTRIBUTES_PROPERTIES_NVX: Self = Self(
+        1000097000,
+    );
+    pub const MULTIVIEW_PER_VIEW_ATTRIBUTES_INFO_NVX: Self = Self(1000044009);
+}
+///Provided by [`nvx::multiview_per_view_attributes`](crate::nvx::multiview_per_view_attributes)
 impl crate::vk::SubpassDescriptionFlagBits {
     pub const PER_VIEW_ATTRIBUTES_NVX: Self = Self(1 << 0);
     pub const PER_VIEW_POSITION_X_ONLY_NVX: Self = Self(1 << 1);

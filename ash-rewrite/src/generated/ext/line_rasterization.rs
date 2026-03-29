@@ -4,6 +4,23 @@
 pub type PhysicalDeviceLineRasterizationFeaturesEXT = crate::vk::PhysicalDeviceLineRasterizationFeatures;
 pub type PhysicalDeviceLineRasterizationPropertiesEXT = crate::vk::PhysicalDeviceLineRasterizationProperties;
 pub type PipelineRasterizationLineStateCreateInfoEXT = crate::vk::PipelineRasterizationLineStateCreateInfo;
+///Provided by [`ext::line_rasterization`](crate::ext::line_rasterization)
+impl crate::vk::StructureType {
+    pub const PHYSICAL_DEVICE_LINE_RASTERIZATION_FEATURES_EXT: Self = Self::PHYSICAL_DEVICE_LINE_RASTERIZATION_FEATURES;
+    pub const PIPELINE_RASTERIZATION_LINE_STATE_CREATE_INFO_EXT: Self = Self::PIPELINE_RASTERIZATION_LINE_STATE_CREATE_INFO;
+    pub const PHYSICAL_DEVICE_LINE_RASTERIZATION_PROPERTIES_EXT: Self = Self::PHYSICAL_DEVICE_LINE_RASTERIZATION_PROPERTIES;
+}
+///Provided by [`ext::line_rasterization`](crate::ext::line_rasterization)
+impl crate::vk::DynamicState {
+    pub const LINE_STIPPLE_EXT: Self = Self::LINE_STIPPLE;
+}
+///Provided by [`ext::line_rasterization`](crate::ext::line_rasterization)
+impl crate::vk::LineRasterizationMode {
+    pub const DEFAULT_EXT: Self = Self::DEFAULT;
+    pub const RECTANGULAR_EXT: Self = Self::RECTANGULAR;
+    pub const BRESENHAM_EXT: Self = Self::BRESENHAM;
+    pub const RECTANGULAR_SMOOTH_EXT: Self = Self::RECTANGULAR_SMOOTH;
+}
 pub type LineRasterizationModeEXT = crate::vk::LineRasterizationMode;
 pub const EXT_LINE_RASTERIZATION_SPEC_VERSION: u32 = 1;
 pub const EXT_LINE_RASTERIZATION_EXTENSION_NAME: &core::ffi::CStr = c"VK_EXT_line_rasterization";

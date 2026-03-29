@@ -54,18 +54,22 @@ impl EnumeratorName {
         self.0
     }
 
-    pub fn stripped(&self, bits_name: TypeName) -> String {
-        let mut prefix = bits_name
-            .tag_trimmed()
-            .replace("FlagBits", "")
-            .TO_SHOUTY_SNEK_CASE();
+    pub fn stripped(&self, type_name: TypeName) -> String {
+        let prefix = if type_name.original() == "VkResult" {
+            String::from("VK_")
+        } else {
+            let mut prefix = type_name
+                .tag_trimmed()
+                .replace("FlagBits", "")
+                .TO_SHOUTY_SNEK_CASE();
 
-        // add _ before trailing number
-        if prefix.ends_with(|c: char| c.is_ascii_digit()) {
-            prefix.insert(prefix.len() - 1, '_');
-        }
+            // add _ before trailing number
+            if prefix.ends_with(|c: char| c.is_ascii_digit()) {
+                prefix.insert(prefix.len() - 1, '_');
+            }
 
-        prefix.push('_');
+            prefix + "_"
+        };
 
         let prefix_stripped = self.original().strip_prefix(&prefix).unwrap();
         prefix_stripped.replace("_BIT", "")

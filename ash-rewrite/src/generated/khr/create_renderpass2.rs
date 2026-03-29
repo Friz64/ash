@@ -8,5 +8,15 @@ pub type SubpassDependency2KHR = crate::vk::SubpassDependency2;
 pub type RenderPassCreateInfo2KHR = crate::vk::RenderPassCreateInfo2;
 pub type SubpassBeginInfoKHR = crate::vk::SubpassBeginInfo;
 pub type SubpassEndInfoKHR = crate::vk::SubpassEndInfo;
+///Provided by [`khr::create_renderpass2`](crate::khr::create_renderpass2)
+impl crate::vk::StructureType {
+    pub const ATTACHMENT_DESCRIPTION_2_KHR: Self = Self::ATTACHMENT_DESCRIPTION_2;
+    pub const ATTACHMENT_REFERENCE_2_KHR: Self = Self::ATTACHMENT_REFERENCE_2;
+    pub const SUBPASS_DESCRIPTION_2_KHR: Self = Self::SUBPASS_DESCRIPTION_2;
+    pub const SUBPASS_DEPENDENCY_2_KHR: Self = Self::SUBPASS_DEPENDENCY_2;
+    pub const RENDER_PASS_CREATE_INFO_2_KHR: Self = Self::RENDER_PASS_CREATE_INFO_2;
+    pub const SUBPASS_BEGIN_INFO_KHR: Self = Self::SUBPASS_BEGIN_INFO;
+    pub const SUBPASS_END_INFO_KHR: Self = Self::SUBPASS_END_INFO;
+}
 pub const KHR_CREATE_RENDERPASS_2_SPEC_VERSION: u32 = 1;
 pub const KHR_CREATE_RENDERPASS_2_EXTENSION_NAME: &core::ffi::CStr = c"VK_KHR_create_renderpass2";

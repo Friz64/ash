@@ -11,5 +11,11 @@ pub struct PhysicalDeviceWorkgroupMemoryExplicitLayoutFeaturesKHR {
     pub workgroup_memory_explicit_layout8_bit_access: crate::vk::Bool32,
     pub workgroup_memory_explicit_layout16_bit_access: crate::vk::Bool32,
 }
+///Provided by [`khr::workgroup_memory_explicit_layout`](crate::khr::workgroup_memory_explicit_layout)
+impl crate::vk::StructureType {
+    pub const PHYSICAL_DEVICE_WORKGROUP_MEMORY_EXPLICIT_LAYOUT_FEATURES_KHR: Self = Self(
+        1000336000,
+    );
+}
 pub const KHR_WORKGROUP_MEMORY_EXPLICIT_LAYOUT_SPEC_VERSION: u32 = 1;
 pub const KHR_WORKGROUP_MEMORY_EXPLICIT_LAYOUT_EXTENSION_NAME: &core::ffi::CStr = c"VK_KHR_workgroup_memory_explicit_layout";

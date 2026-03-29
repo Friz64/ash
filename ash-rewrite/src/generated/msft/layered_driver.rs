@@ -8,8 +8,17 @@ pub struct PhysicalDeviceLayeredDriverPropertiesMSFT {
     pub p_next: *mut core::ffi::c_void,
     pub underlying_api: crate::vk::LayeredDriverUnderlyingApiMSFT,
 }
+///Provided by [`msft::layered_driver`](crate::msft::layered_driver)
+impl crate::vk::StructureType {
+    pub const PHYSICAL_DEVICE_LAYERED_DRIVER_PROPERTIES_MSFT: Self = Self(1000530000);
+}
 #[repr(transparent)]
 #[derive(Clone, Copy)]
 pub struct LayeredDriverUnderlyingApiMSFT(pub(crate) i32);
+///Provided by [`msft::layered_driver`](crate::msft::layered_driver)
+impl LayeredDriverUnderlyingApiMSFT {
+    pub const NONE_MSFT: Self = Self(0);
+    pub const D3D12_MSFT: Self = Self(1);
+}
 pub const MSFT_LAYERED_DRIVER_SPEC_VERSION: u32 = 1;
 pub const MSFT_LAYERED_DRIVER_EXTENSION_NAME: &core::ffi::CStr = c"VK_MSFT_layered_driver";

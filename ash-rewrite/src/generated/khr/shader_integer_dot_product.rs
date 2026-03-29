@@ -3,5 +3,10 @@
 //![Vulkan Manual Page](https://docs.vulkan.org/refpages/latest/refpages/source/VK_KHR_shader_integer_dot_product.html) · Extension `VK_KHR_shader_integer_dot_product`
 pub type PhysicalDeviceShaderIntegerDotProductFeaturesKHR = crate::vk::PhysicalDeviceShaderIntegerDotProductFeatures;
 pub type PhysicalDeviceShaderIntegerDotProductPropertiesKHR = crate::vk::PhysicalDeviceShaderIntegerDotProductProperties;
+///Provided by [`khr::shader_integer_dot_product`](crate::khr::shader_integer_dot_product)
+impl crate::vk::StructureType {
+    pub const PHYSICAL_DEVICE_SHADER_INTEGER_DOT_PRODUCT_FEATURES_KHR: Self = Self::PHYSICAL_DEVICE_SHADER_INTEGER_DOT_PRODUCT_FEATURES;
+    pub const PHYSICAL_DEVICE_SHADER_INTEGER_DOT_PRODUCT_PROPERTIES_KHR: Self = Self::PHYSICAL_DEVICE_SHADER_INTEGER_DOT_PRODUCT_PROPERTIES;
+}
 pub const KHR_SHADER_INTEGER_DOT_PRODUCT_SPEC_VERSION: u32 = 1;
 pub const KHR_SHADER_INTEGER_DOT_PRODUCT_EXTENSION_NAME: &core::ffi::CStr = c"VK_KHR_shader_integer_dot_product";

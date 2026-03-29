@@ -8,5 +8,11 @@ pub struct PhysicalDeviceMultiviewPerViewViewportsFeaturesQCOM {
     pub p_next: *mut core::ffi::c_void,
     pub multiview_per_view_viewports: crate::vk::Bool32,
 }
+///Provided by [`qcom::multiview_per_view_viewports`](crate::qcom::multiview_per_view_viewports)
+impl crate::vk::StructureType {
+    pub const PHYSICAL_DEVICE_MULTIVIEW_PER_VIEW_VIEWPORTS_FEATURES_QCOM: Self = Self(
+        1000488000,
+    );
+}
 pub const QCOM_MULTIVIEW_PER_VIEW_VIEWPORTS_SPEC_VERSION: u32 = 1;
 pub const QCOM_MULTIVIEW_PER_VIEW_VIEWPORTS_EXTENSION_NAME: &core::ffi::CStr = c"VK_QCOM_multiview_per_view_viewports";

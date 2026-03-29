@@ -9,6 +9,10 @@ pub struct IOSSurfaceCreateInfoMVK {
     pub flags: crate::vk::IOSSurfaceCreateFlagsMVK,
     pub p_view: *const core::ffi::c_void,
 }
+///Provided by [`mvk::ios_surface`](crate::mvk::ios_surface)
+impl crate::vk::StructureType {
+    pub const IOS_SURFACE_CREATE_INFO_MVK: Self = Self(1000122000);
+}
 bitflags::bitflags! {
     #[repr(transparent)] #[derive(Clone, Copy)] pub struct IOSSurfaceCreateFlagsMVK : u32
     {}

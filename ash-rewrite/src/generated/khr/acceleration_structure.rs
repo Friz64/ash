@@ -203,24 +203,106 @@ pub union AccelerationStructureGeometryDataKHR {
     pub aabbs: crate::vk::AccelerationStructureGeometryAabbsDataKHR,
     pub instances: crate::vk::AccelerationStructureGeometryInstancesDataKHR,
 }
+///Provided by [`khr::acceleration_structure`](crate::khr::acceleration_structure)
+impl crate::vk::DescriptorType {
+    pub const ACCELERATION_STRUCTURE_KHR: Self = Self(1000150000);
+}
+///Provided by [`khr::acceleration_structure`](crate::khr::acceleration_structure)
+impl crate::vk::QueryType {
+    pub const ACCELERATION_STRUCTURE_COMPACTED_SIZE_KHR: Self = Self(1000150000);
+    pub const ACCELERATION_STRUCTURE_SERIALIZATION_SIZE_KHR: Self = Self(1000150001);
+}
+///Provided by [`khr::acceleration_structure`](crate::khr::acceleration_structure)
+impl crate::vk::IndexType {
+    pub const NONE_KHR: Self = Self(1000165000);
+}
+///Provided by [`khr::acceleration_structure`](crate::khr::acceleration_structure)
+impl crate::vk::StructureType {
+    pub const WRITE_DESCRIPTOR_SET_ACCELERATION_STRUCTURE_KHR: Self = Self(1000150007);
+    pub const ACCELERATION_STRUCTURE_BUILD_GEOMETRY_INFO_KHR: Self = Self(1000150000);
+    pub const ACCELERATION_STRUCTURE_DEVICE_ADDRESS_INFO_KHR: Self = Self(1000150002);
+    pub const ACCELERATION_STRUCTURE_GEOMETRY_AABBS_DATA_KHR: Self = Self(1000150003);
+    pub const ACCELERATION_STRUCTURE_GEOMETRY_INSTANCES_DATA_KHR: Self = Self(
+        1000150004,
+    );
+    pub const ACCELERATION_STRUCTURE_GEOMETRY_TRIANGLES_DATA_KHR: Self = Self(
+        1000150005,
+    );
+    pub const ACCELERATION_STRUCTURE_GEOMETRY_KHR: Self = Self(1000150006);
+    pub const ACCELERATION_STRUCTURE_VERSION_INFO_KHR: Self = Self(1000150009);
+    pub const COPY_ACCELERATION_STRUCTURE_INFO_KHR: Self = Self(1000150010);
+    pub const COPY_ACCELERATION_STRUCTURE_TO_MEMORY_INFO_KHR: Self = Self(1000150011);
+    pub const COPY_MEMORY_TO_ACCELERATION_STRUCTURE_INFO_KHR: Self = Self(1000150012);
+    pub const PHYSICAL_DEVICE_ACCELERATION_STRUCTURE_FEATURES_KHR: Self = Self(
+        1000150013,
+    );
+    pub const PHYSICAL_DEVICE_ACCELERATION_STRUCTURE_PROPERTIES_KHR: Self = Self(
+        1000150014,
+    );
+    pub const ACCELERATION_STRUCTURE_CREATE_INFO_KHR: Self = Self(1000150017);
+    pub const ACCELERATION_STRUCTURE_BUILD_SIZES_INFO_KHR: Self = Self(1000150020);
+}
+///Provided by [`khr::acceleration_structure`](crate::khr::acceleration_structure)
+impl crate::vk::ObjectType {
+    pub const ACCELERATION_STRUCTURE_KHR: Self = Self(1000150000);
+}
+///Provided by [`khr::acceleration_structure`](crate::khr::acceleration_structure)
+impl crate::vk::DebugReportObjectTypeEXT {
+    pub const ACCELERATION_STRUCTURE_KHR_EXT: Self = Self(1000150000);
+}
 #[repr(transparent)]
 #[derive(Clone, Copy)]
 pub struct CopyAccelerationStructureModeKHR(pub(crate) i32);
+///Provided by [`khr::acceleration_structure`](crate::khr::acceleration_structure)
+impl CopyAccelerationStructureModeKHR {
+    pub const CLONE_KHR: Self = Self(0);
+    pub const COMPACT_KHR: Self = Self(1);
+    pub const SERIALIZE_KHR: Self = Self(2);
+    pub const DESERIALIZE_KHR: Self = Self(3);
+}
 #[repr(transparent)]
 #[derive(Clone, Copy)]
 pub struct BuildAccelerationStructureModeKHR(pub(crate) i32);
+///Provided by [`khr::acceleration_structure`](crate::khr::acceleration_structure)
+impl BuildAccelerationStructureModeKHR {
+    pub const BUILD_KHR: Self = Self(0);
+    pub const UPDATE_KHR: Self = Self(1);
+}
 #[repr(transparent)]
 #[derive(Clone, Copy)]
 pub struct AccelerationStructureTypeKHR(pub(crate) i32);
+///Provided by [`khr::acceleration_structure`](crate::khr::acceleration_structure)
+impl AccelerationStructureTypeKHR {
+    pub const TOP_LEVEL_KHR: Self = Self(0);
+    pub const BOTTOM_LEVEL_KHR: Self = Self(1);
+    pub const GENERIC_KHR: Self = Self(2);
+}
 #[repr(transparent)]
 #[derive(Clone, Copy)]
 pub struct GeometryTypeKHR(pub(crate) i32);
+///Provided by [`khr::acceleration_structure`](crate::khr::acceleration_structure)
+impl GeometryTypeKHR {
+    pub const TRIANGLES_KHR: Self = Self(0);
+    pub const AABBS_KHR: Self = Self(1);
+    pub const INSTANCES_KHR: Self = Self(2);
+}
 #[repr(transparent)]
 #[derive(Clone, Copy)]
 pub struct AccelerationStructureBuildTypeKHR(pub(crate) i32);
+///Provided by [`khr::acceleration_structure`](crate::khr::acceleration_structure)
+impl AccelerationStructureBuildTypeKHR {
+    pub const HOST_KHR: Self = Self(0);
+    pub const DEVICE_KHR: Self = Self(1);
+    pub const HOST_OR_DEVICE_KHR: Self = Self(2);
+}
 #[repr(transparent)]
 #[derive(Clone, Copy)]
 pub struct AccelerationStructureCompatibilityKHR(pub(crate) i32);
+///Provided by [`khr::acceleration_structure`](crate::khr::acceleration_structure)
+impl AccelerationStructureCompatibilityKHR {
+    pub const COMPATIBLE_KHR: Self = Self(0);
+    pub const INCOMPATIBLE_KHR: Self = Self(1);
+}
 ///Provided by [`khr::acceleration_structure`](crate::khr::acceleration_structure)
 impl crate::vk::AccessFlagBits {
     pub const ACCELERATION_STRUCTURE_READ_KHR: Self = Self(1 << 21);

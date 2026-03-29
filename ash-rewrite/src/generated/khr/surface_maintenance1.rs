@@ -27,6 +27,12 @@ pub struct SurfacePresentModeCompatibilityKHR {
     pub present_mode_count: u32,
     pub p_present_modes: *mut crate::vk::PresentModeKHR,
 }
+///Provided by [`khr::surface_maintenance1`](crate::khr::surface_maintenance1)
+impl crate::vk::StructureType {
+    pub const SURFACE_PRESENT_MODE_KHR: Self = Self(1000274000);
+    pub const SURFACE_PRESENT_SCALING_CAPABILITIES_KHR: Self = Self(1000274001);
+    pub const SURFACE_PRESENT_MODE_COMPATIBILITY_KHR: Self = Self(1000274002);
+}
 bitflags::bitflags! {
     #[repr(transparent)] #[derive(Clone, Copy)] pub struct PresentScalingFlagsKHR : u32 {
     const ONE_TO_ONE_KHR = PresentScalingFlagBitsKHR::ONE_TO_ONE_KHR.0; const

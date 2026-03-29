@@ -5,6 +5,15 @@ pub type PhysicalDeviceMutableDescriptorTypeFeaturesVALVE = crate::vk::PhysicalD
 pub type MutableDescriptorTypeListVALVE = crate::vk::MutableDescriptorTypeListEXT;
 pub type MutableDescriptorTypeCreateInfoVALVE = crate::vk::MutableDescriptorTypeCreateInfoEXT;
 ///Provided by [`valve::mutable_descriptor_type`](crate::valve::mutable_descriptor_type)
+impl crate::vk::DescriptorType {
+    pub const MUTABLE_VALVE: Self = Self::MUTABLE_EXT;
+}
+///Provided by [`valve::mutable_descriptor_type`](crate::valve::mutable_descriptor_type)
+impl crate::vk::StructureType {
+    pub const PHYSICAL_DEVICE_MUTABLE_DESCRIPTOR_TYPE_FEATURES_VALVE: Self = Self::PHYSICAL_DEVICE_MUTABLE_DESCRIPTOR_TYPE_FEATURES_EXT;
+    pub const MUTABLE_DESCRIPTOR_TYPE_CREATE_INFO_VALVE: Self = Self::MUTABLE_DESCRIPTOR_TYPE_CREATE_INFO_EXT;
+}
+///Provided by [`valve::mutable_descriptor_type`](crate::valve::mutable_descriptor_type)
 impl crate::vk::DescriptorSetLayoutCreateFlagBits {
     pub const HOST_ONLY_POOL_VALVE: Self = Self::HOST_ONLY_POOL_EXT;
 }

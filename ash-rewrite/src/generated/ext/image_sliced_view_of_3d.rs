@@ -16,6 +16,13 @@ pub struct PhysicalDeviceImageSlicedViewOf3DFeaturesEXT {
     pub p_next: *mut core::ffi::c_void,
     pub image_sliced_view_of3_d: crate::vk::Bool32,
 }
+///Provided by [`ext::image_sliced_view_of_3d`](crate::ext::image_sliced_view_of_3d)
+impl crate::vk::StructureType {
+    pub const PHYSICAL_DEVICE_IMAGE_SLICED_VIEW_OF_3D_FEATURES_EXT: Self = Self(
+        1000418000,
+    );
+    pub const IMAGE_VIEW_SLICED_CREATE_INFO_EXT: Self = Self(1000418001);
+}
 pub const REMAINING_3D_SLICES_EXT: u32 = (!0);
 pub const EXT_IMAGE_SLICED_VIEW_OF_3D_SPEC_VERSION: u32 = 1;
 pub const EXT_IMAGE_SLICED_VIEW_OF_3D_EXTENSION_NAME: &core::ffi::CStr = c"VK_EXT_image_sliced_view_of_3d";

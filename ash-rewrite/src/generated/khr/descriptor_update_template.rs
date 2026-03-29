@@ -3,6 +3,22 @@
 //![Vulkan Manual Page](https://docs.vulkan.org/refpages/latest/refpages/source/VK_KHR_descriptor_update_template.html) · Extension `VK_KHR_descriptor_update_template`
 pub type DescriptorUpdateTemplateEntryKHR = crate::vk::DescriptorUpdateTemplateEntry;
 pub type DescriptorUpdateTemplateCreateInfoKHR = crate::vk::DescriptorUpdateTemplateCreateInfo;
+///Provided by [`khr::descriptor_update_template`](crate::khr::descriptor_update_template)
+impl crate::vk::StructureType {
+    pub const DESCRIPTOR_UPDATE_TEMPLATE_CREATE_INFO_KHR: Self = Self::DESCRIPTOR_UPDATE_TEMPLATE_CREATE_INFO;
+}
+///Provided by [`khr::descriptor_update_template`](crate::khr::descriptor_update_template)
+impl crate::vk::DescriptorUpdateTemplateType {
+    pub const DESCRIPTOR_SET_KHR: Self = Self::DESCRIPTOR_SET;
+}
+///Provided by [`khr::descriptor_update_template`](crate::khr::descriptor_update_template)
+impl crate::vk::ObjectType {
+    pub const DESCRIPTOR_UPDATE_TEMPLATE_KHR: Self = Self::DESCRIPTOR_UPDATE_TEMPLATE;
+}
+///Provided by [`khr::descriptor_update_template`](crate::khr::descriptor_update_template)
+impl crate::vk::DebugReportObjectTypeEXT {
+    pub const DESCRIPTOR_UPDATE_TEMPLATE_KHR_EXT: Self = Self::DESCRIPTOR_UPDATE_TEMPLATE_EXT;
+}
 pub type DescriptorUpdateTemplateTypeKHR = crate::vk::DescriptorUpdateTemplateType;
 pub type DescriptorUpdateTemplateCreateFlagsKHR = crate::vk::DescriptorUpdateTemplateCreateFlags;
 pub type DescriptorUpdateTemplateKHR = crate::vk::DescriptorUpdateTemplate;

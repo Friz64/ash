@@ -62,9 +62,27 @@ pub union PipelineExecutableStatisticValueKHR {
     pub u64: u64,
     pub f64: core::ffi::c_double,
 }
+///Provided by [`khr::pipeline_executable_properties`](crate::khr::pipeline_executable_properties)
+impl crate::vk::StructureType {
+    pub const PHYSICAL_DEVICE_PIPELINE_EXECUTABLE_PROPERTIES_FEATURES_KHR: Self = Self(
+        1000269000,
+    );
+    pub const PIPELINE_INFO_KHR: Self = Self(1000269001);
+    pub const PIPELINE_EXECUTABLE_PROPERTIES_KHR: Self = Self(1000269002);
+    pub const PIPELINE_EXECUTABLE_INFO_KHR: Self = Self(1000269003);
+    pub const PIPELINE_EXECUTABLE_STATISTIC_KHR: Self = Self(1000269004);
+    pub const PIPELINE_EXECUTABLE_INTERNAL_REPRESENTATION_KHR: Self = Self(1000269005);
+}
 #[repr(transparent)]
 #[derive(Clone, Copy)]
 pub struct PipelineExecutableStatisticFormatKHR(pub(crate) i32);
+///Provided by [`khr::pipeline_executable_properties`](crate::khr::pipeline_executable_properties)
+impl PipelineExecutableStatisticFormatKHR {
+    pub const BOOL32_KHR: Self = Self(0);
+    pub const INT64_KHR: Self = Self(1);
+    pub const UINT64_KHR: Self = Self(2);
+    pub const FLOAT64_KHR: Self = Self(3);
+}
 ///Provided by [`khr::pipeline_executable_properties`](crate::khr::pipeline_executable_properties)
 impl crate::vk::PipelineCreateFlagBits {
     pub const CAPTURE_STATISTICS_KHR: Self = Self(1 << 6);

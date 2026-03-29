@@ -52,6 +52,15 @@ pub struct ExternalFormatOHOS {
     pub external_format: u64,
 }
 ///Provided by [`ohos::external_memory`](crate::ohos::external_memory)
+impl crate::vk::StructureType {
+    pub const NATIVE_BUFFER_USAGE_OHOS: Self = Self(1000452000);
+    pub const NATIVE_BUFFER_PROPERTIES_OHOS: Self = Self(1000452001);
+    pub const NATIVE_BUFFER_FORMAT_PROPERTIES_OHOS: Self = Self(1000452002);
+    pub const IMPORT_NATIVE_BUFFER_INFO_OHOS: Self = Self(1000452003);
+    pub const MEMORY_GET_NATIVE_BUFFER_INFO_OHOS: Self = Self(1000452004);
+    pub const EXTERNAL_FORMAT_OHOS: Self = Self(1000452005);
+}
+///Provided by [`ohos::external_memory`](crate::ohos::external_memory)
 impl crate::vk::ExternalMemoryHandleTypeFlagBits {
     pub const OH_NATIVE_BUFFER_OHOS: Self = Self(1 << 15);
 }

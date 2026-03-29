@@ -8,5 +8,11 @@ pub struct PhysicalDeviceShaderReplicatedCompositesFeaturesEXT {
     pub p_next: *mut core::ffi::c_void,
     pub shader_replicated_composites: crate::vk::Bool32,
 }
+///Provided by [`ext::shader_replicated_composites`](crate::ext::shader_replicated_composites)
+impl crate::vk::StructureType {
+    pub const PHYSICAL_DEVICE_SHADER_REPLICATED_COMPOSITES_FEATURES_EXT: Self = Self(
+        1000564000,
+    );
+}
 pub const EXT_SHADER_REPLICATED_COMPOSITES_SPEC_VERSION: u32 = 1;
 pub const EXT_SHADER_REPLICATED_COMPOSITES_EXTENSION_NAME: &core::ffi::CStr = c"VK_EXT_shader_replicated_composites";

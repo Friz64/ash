@@ -66,6 +66,18 @@ pub struct MultisamplePropertiesEXT {
     pub max_sample_location_grid_size: crate::vk::Extent2D,
 }
 ///Provided by [`ext::sample_locations`](crate::ext::sample_locations)
+impl crate::vk::StructureType {
+    pub const SAMPLE_LOCATIONS_INFO_EXT: Self = Self(1000143000);
+    pub const RENDER_PASS_SAMPLE_LOCATIONS_BEGIN_INFO_EXT: Self = Self(1000143001);
+    pub const PIPELINE_SAMPLE_LOCATIONS_STATE_CREATE_INFO_EXT: Self = Self(1000143002);
+    pub const PHYSICAL_DEVICE_SAMPLE_LOCATIONS_PROPERTIES_EXT: Self = Self(1000143003);
+    pub const MULTISAMPLE_PROPERTIES_EXT: Self = Self(1000143004);
+}
+///Provided by [`ext::sample_locations`](crate::ext::sample_locations)
+impl crate::vk::DynamicState {
+    pub const SAMPLE_LOCATIONS_EXT: Self = Self(1000143000);
+}
+///Provided by [`ext::sample_locations`](crate::ext::sample_locations)
 impl crate::vk::ImageCreateFlagBits {
     pub const SAMPLE_LOCATIONS_COMPATIBLE_DEPTH_EXT: Self = Self(1 << 12);
 }

@@ -18,9 +18,25 @@ pub struct PipelineDiscardRectangleStateCreateInfoEXT {
     pub discard_rectangle_count: u32,
     pub p_discard_rectangles: *const crate::vk::Rect2D,
 }
+///Provided by [`ext::discard_rectangles`](crate::ext::discard_rectangles)
+impl crate::vk::StructureType {
+    pub const PHYSICAL_DEVICE_DISCARD_RECTANGLE_PROPERTIES_EXT: Self = Self(1000099000);
+    pub const PIPELINE_DISCARD_RECTANGLE_STATE_CREATE_INFO_EXT: Self = Self(1000099001);
+}
+///Provided by [`ext::discard_rectangles`](crate::ext::discard_rectangles)
+impl crate::vk::DynamicState {
+    pub const DISCARD_RECTANGLE_EXT: Self = Self(1000099000);
+    pub const DISCARD_RECTANGLE_ENABLE_EXT: Self = Self(1000099001);
+    pub const DISCARD_RECTANGLE_MODE_EXT: Self = Self(1000099002);
+}
 #[repr(transparent)]
 #[derive(Clone, Copy)]
 pub struct DiscardRectangleModeEXT(pub(crate) i32);
+///Provided by [`ext::discard_rectangles`](crate::ext::discard_rectangles)
+impl DiscardRectangleModeEXT {
+    pub const INCLUSIVE_EXT: Self = Self(0);
+    pub const EXCLUSIVE_EXT: Self = Self(1);
+}
 bitflags::bitflags! {
     #[repr(transparent)] #[derive(Clone, Copy)] pub struct
     PipelineDiscardRectangleStateCreateFlagsEXT : u32 {}

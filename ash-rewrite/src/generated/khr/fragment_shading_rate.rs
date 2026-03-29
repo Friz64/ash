@@ -66,9 +66,42 @@ pub struct RenderingFragmentShadingRateAttachmentInfoKHR {
     pub image_layout: crate::vk::ImageLayout,
     pub shading_rate_attachment_texel_size: crate::vk::Extent2D,
 }
+///Provided by [`khr::fragment_shading_rate`](crate::khr::fragment_shading_rate)
+impl crate::vk::ImageLayout {
+    pub const FRAGMENT_SHADING_RATE_ATTACHMENT_OPTIMAL_KHR: Self = Self(1000164003);
+}
+///Provided by [`khr::fragment_shading_rate`](crate::khr::fragment_shading_rate)
+impl crate::vk::StructureType {
+    pub const FRAGMENT_SHADING_RATE_ATTACHMENT_INFO_KHR: Self = Self(1000226000);
+    pub const PIPELINE_FRAGMENT_SHADING_RATE_STATE_CREATE_INFO_KHR: Self = Self(
+        1000226001,
+    );
+    pub const PHYSICAL_DEVICE_FRAGMENT_SHADING_RATE_PROPERTIES_KHR: Self = Self(
+        1000226002,
+    );
+    pub const PHYSICAL_DEVICE_FRAGMENT_SHADING_RATE_FEATURES_KHR: Self = Self(
+        1000226003,
+    );
+    pub const PHYSICAL_DEVICE_FRAGMENT_SHADING_RATE_KHR: Self = Self(1000226004);
+    pub const RENDERING_FRAGMENT_SHADING_RATE_ATTACHMENT_INFO_KHR: Self = Self(
+        1000044006,
+    );
+}
+///Provided by [`khr::fragment_shading_rate`](crate::khr::fragment_shading_rate)
+impl crate::vk::DynamicState {
+    pub const FRAGMENT_SHADING_RATE_KHR: Self = Self(1000226000);
+}
 #[repr(transparent)]
 #[derive(Clone, Copy)]
 pub struct FragmentShadingRateCombinerOpKHR(pub(crate) i32);
+///Provided by [`khr::fragment_shading_rate`](crate::khr::fragment_shading_rate)
+impl FragmentShadingRateCombinerOpKHR {
+    pub const KEEP_KHR: Self = Self(0);
+    pub const REPLACE_KHR: Self = Self(1);
+    pub const MIN_KHR: Self = Self(2);
+    pub const MAX_KHR: Self = Self(3);
+    pub const MUL_KHR: Self = Self(4);
+}
 ///Provided by [`khr::fragment_shading_rate`](crate::khr::fragment_shading_rate)
 impl crate::vk::AccessFlagBits {
     pub const FRAGMENT_SHADING_RATE_ATTACHMENT_READ_KHR: Self = Self(1 << 23);

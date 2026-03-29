@@ -30,9 +30,23 @@ pub struct DeviceMemoryReportCallbackDataEXT {
     pub object_handle: u64,
     pub heap_index: u32,
 }
+///Provided by [`ext::device_memory_report`](crate::ext::device_memory_report)
+impl crate::vk::StructureType {
+    pub const PHYSICAL_DEVICE_DEVICE_MEMORY_REPORT_FEATURES_EXT: Self = Self(1000284000);
+    pub const DEVICE_DEVICE_MEMORY_REPORT_CREATE_INFO_EXT: Self = Self(1000284001);
+    pub const DEVICE_MEMORY_REPORT_CALLBACK_DATA_EXT: Self = Self(1000284002);
+}
 #[repr(transparent)]
 #[derive(Clone, Copy)]
 pub struct DeviceMemoryReportEventTypeEXT(pub(crate) i32);
+///Provided by [`ext::device_memory_report`](crate::ext::device_memory_report)
+impl DeviceMemoryReportEventTypeEXT {
+    pub const ALLOCATE_EXT: Self = Self(0);
+    pub const FREE_EXT: Self = Self(1);
+    pub const IMPORT_EXT: Self = Self(2);
+    pub const UNIMPORT_EXT: Self = Self(3);
+    pub const ALLOCATION_FAILED_EXT: Self = Self(4);
+}
 bitflags::bitflags! {
     #[repr(transparent)] #[derive(Clone, Copy)] pub struct DeviceMemoryReportFlagsEXT :
     u32 {}

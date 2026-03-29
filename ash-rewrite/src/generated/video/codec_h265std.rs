@@ -363,21 +363,92 @@ pub struct StdVideoH265PictureParameterSet {
 #[repr(transparent)]
 #[derive(Clone, Copy)]
 pub struct StdVideoH265ChromaFormatIdc(pub(crate) i32);
+///Provided by [`video::codec_h265std`](crate::video::codec_h265std)
+impl StdVideoH265ChromaFormatIdc {
+    pub const MONOCHROME: Self = Self(0);
+    pub const _420: Self = Self(1);
+    pub const _422: Self = Self(2);
+    pub const _444: Self = Self(3);
+    pub const INVALID: Self = Self(0x7FFFFFF);
+}
 #[repr(transparent)]
 #[derive(Clone, Copy)]
 pub struct StdVideoH265ProfileIdc(pub(crate) i32);
+///Provided by [`video::codec_h265std`](crate::video::codec_h265std)
+impl StdVideoH265ProfileIdc {
+    pub const MAIN: Self = Self(1);
+    pub const MAIN_10: Self = Self(2);
+    pub const MAIN_STILL_PICTURE: Self = Self(3);
+    pub const FORMAT_RANGE_EXTENSIONS: Self = Self(4);
+    pub const SCC_EXTENSIONS: Self = Self(9);
+    pub const INVALID: Self = Self(0x7FFFFFF);
+}
 #[repr(transparent)]
 #[derive(Clone, Copy)]
 pub struct StdVideoH265LevelIdc(pub(crate) i32);
+///Provided by [`video::codec_h265std`](crate::video::codec_h265std)
+impl StdVideoH265LevelIdc {
+    pub const _1_0: Self = Self(0);
+    pub const _2_0: Self = Self(1);
+    pub const _2_1: Self = Self(2);
+    pub const _3_0: Self = Self(3);
+    pub const _3_1: Self = Self(4);
+    pub const _4_0: Self = Self(5);
+    pub const _4_1: Self = Self(6);
+    pub const _5_0: Self = Self(7);
+    pub const _5_1: Self = Self(8);
+    pub const _5_2: Self = Self(9);
+    pub const _6_0: Self = Self(10);
+    pub const _6_1: Self = Self(11);
+    pub const _6_2: Self = Self(12);
+    pub const INVALID: Self = Self(0x7FFFFFF);
+}
 #[repr(transparent)]
 #[derive(Clone, Copy)]
 pub struct StdVideoH265SliceType(pub(crate) i32);
+///Provided by [`video::codec_h265std`](crate::video::codec_h265std)
+impl StdVideoH265SliceType {
+    pub const B: Self = Self(0);
+    pub const P: Self = Self(1);
+    pub const I: Self = Self(2);
+    pub const INVALID: Self = Self(0x7FFFFFF);
+}
 #[repr(transparent)]
 #[derive(Clone, Copy)]
 pub struct StdVideoH265PictureType(pub(crate) i32);
+///Provided by [`video::codec_h265std`](crate::video::codec_h265std)
+impl StdVideoH265PictureType {
+    pub const P: Self = Self(0);
+    pub const B: Self = Self(1);
+    pub const I: Self = Self(2);
+    pub const IDR: Self = Self(3);
+    pub const INVALID: Self = Self(0x7FFFFFF);
+}
 #[repr(transparent)]
 #[derive(Clone, Copy)]
 pub struct StdVideoH265AspectRatioIdc(pub(crate) i32);
+///Provided by [`video::codec_h265std`](crate::video::codec_h265std)
+impl StdVideoH265AspectRatioIdc {
+    pub const UNSPECIFIED: Self = Self(0);
+    pub const SQUARE: Self = Self(1);
+    pub const _12_11: Self = Self(2);
+    pub const _10_11: Self = Self(3);
+    pub const _16_11: Self = Self(4);
+    pub const _40_33: Self = Self(5);
+    pub const _24_11: Self = Self(6);
+    pub const _20_11: Self = Self(7);
+    pub const _32_11: Self = Self(8);
+    pub const _80_33: Self = Self(9);
+    pub const _18_11: Self = Self(10);
+    pub const _15_11: Self = Self(11);
+    pub const _64_33: Self = Self(12);
+    pub const _160_99: Self = Self(13);
+    pub const _4_3: Self = Self(14);
+    pub const _3_2: Self = Self(15);
+    pub const _2_1: Self = Self(16);
+    pub const EXTENDED_SAR: Self = Self(255);
+    pub const INVALID: Self = Self(0x7FFFFFF);
+}
 pub const STD_VIDEO_H265_CPB_CNT_LIST_SIZE: u32 = 32;
 pub const STD_VIDEO_H265_SUBLAYERS_LIST_SIZE: u32 = 7;
 pub const STD_VIDEO_H265_SCALING_LIST_4X4_NUM_LISTS: u32 = 6;

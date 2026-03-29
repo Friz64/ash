@@ -15,5 +15,10 @@ pub struct ExportMemoryAllocateInfoNV {
     pub p_next: *const core::ffi::c_void,
     pub handle_types: crate::vk::ExternalMemoryHandleTypeFlagsNV,
 }
+///Provided by [`nv::external_memory`](crate::nv::external_memory)
+impl crate::vk::StructureType {
+    pub const EXTERNAL_MEMORY_IMAGE_CREATE_INFO_NV: Self = Self(1000056000);
+    pub const EXPORT_MEMORY_ALLOCATE_INFO_NV: Self = Self(1000056001);
+}
 pub const NV_EXTERNAL_MEMORY_SPEC_VERSION: u32 = 1;
 pub const NV_EXTERNAL_MEMORY_EXTENSION_NAME: &core::ffi::CStr = c"VK_NV_external_memory";

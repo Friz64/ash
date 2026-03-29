@@ -26,6 +26,12 @@ pub struct CustomResolveCreateInfoEXT {
     pub stencil_attachment_format: crate::vk::Format,
 }
 ///Provided by [`ext::custom_resolve`](crate::ext::custom_resolve)
+impl crate::vk::StructureType {
+    pub const PHYSICAL_DEVICE_CUSTOM_RESOLVE_FEATURES_EXT: Self = Self(1000628000);
+    pub const BEGIN_CUSTOM_RESOLVE_INFO_EXT: Self = Self(1000628001);
+    pub const CUSTOM_RESOLVE_CREATE_INFO_EXT: Self = Self(1000628002);
+}
+///Provided by [`ext::custom_resolve`](crate::ext::custom_resolve)
 impl crate::vk::SubpassDescriptionFlagBits {
     pub const FRAGMENT_REGION_EXT: Self = Self(1 << 2);
     pub const CUSTOM_RESOLVE_EXT: Self = Self(1 << 3);

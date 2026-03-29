@@ -20,6 +20,19 @@ pub struct BufferDeviceAddressCreateInfoEXT {
 pub type PhysicalDeviceBufferAddressFeaturesEXT = crate::vk::PhysicalDeviceBufferDeviceAddressFeaturesEXT;
 pub type BufferDeviceAddressInfoEXT = crate::vk::BufferDeviceAddressInfo;
 ///Provided by [`ext::buffer_device_address`](crate::ext::buffer_device_address)
+impl crate::vk::StructureType {
+    pub const PHYSICAL_DEVICE_BUFFER_DEVICE_ADDRESS_FEATURES_EXT: Self = Self(
+        1000244000,
+    );
+    pub const PHYSICAL_DEVICE_BUFFER_ADDRESS_FEATURES_EXT: Self = Self::PHYSICAL_DEVICE_BUFFER_DEVICE_ADDRESS_FEATURES_EXT;
+    pub const BUFFER_DEVICE_ADDRESS_INFO_EXT: Self = Self::BUFFER_DEVICE_ADDRESS_INFO;
+    pub const BUFFER_DEVICE_ADDRESS_CREATE_INFO_EXT: Self = Self(1000244002);
+}
+///Provided by [`ext::buffer_device_address`](crate::ext::buffer_device_address)
+impl crate::vk::Result {
+    pub const ERROR_INVALID_DEVICE_ADDRESS_EXT: Self = Self::ERROR_INVALID_OPAQUE_CAPTURE_ADDRESS;
+}
+///Provided by [`ext::buffer_device_address`](crate::ext::buffer_device_address)
 impl crate::vk::BufferUsageFlagBits {
     pub const SHADER_DEVICE_ADDRESS_EXT: Self = Self::SHADER_DEVICE_ADDRESS;
 }

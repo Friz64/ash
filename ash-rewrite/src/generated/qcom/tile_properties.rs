@@ -17,5 +17,10 @@ pub struct TilePropertiesQCOM {
     pub apron_size: crate::vk::Extent2D,
     pub origin: crate::vk::Offset2D,
 }
+///Provided by [`qcom::tile_properties`](crate::qcom::tile_properties)
+impl crate::vk::StructureType {
+    pub const PHYSICAL_DEVICE_TILE_PROPERTIES_FEATURES_QCOM: Self = Self(1000484000);
+    pub const TILE_PROPERTIES_QCOM: Self = Self(1000484001);
+}
 pub const QCOM_TILE_PROPERTIES_SPEC_VERSION: u32 = 1;
 pub const QCOM_TILE_PROPERTIES_EXTENSION_NAME: &core::ffi::CStr = c"VK_QCOM_tile_properties";

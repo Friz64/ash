@@ -8,5 +8,9 @@ pub struct SurfaceProtectedCapabilitiesKHR {
     pub p_next: *mut core::ffi::c_void,
     pub supports_protected: crate::vk::Bool32,
 }
+///Provided by [`khr::surface_protected_capabilities`](crate::khr::surface_protected_capabilities)
+impl crate::vk::StructureType {
+    pub const SURFACE_PROTECTED_CAPABILITIES_KHR: Self = Self(1000239000);
+}
 pub const KHR_SURFACE_PROTECTED_CAPABILITIES_SPEC_VERSION: u32 = 1;
 pub const KHR_SURFACE_PROTECTED_CAPABILITIES_EXTENSION_NAME: &core::ffi::CStr = c"VK_KHR_surface_protected_capabilities";

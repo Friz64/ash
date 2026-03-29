@@ -18,5 +18,10 @@ pub struct ImageViewAddressPropertiesNVX {
     pub device_address: crate::vk::DeviceAddress,
     pub size: crate::vk::DeviceSize,
 }
+///Provided by [`nvx::image_view_handle`](crate::nvx::image_view_handle)
+impl crate::vk::StructureType {
+    pub const IMAGE_VIEW_HANDLE_INFO_NVX: Self = Self(1000030000);
+    pub const IMAGE_VIEW_ADDRESS_PROPERTIES_NVX: Self = Self(1000030001);
+}
 pub const NVX_IMAGE_VIEW_HANDLE_SPEC_VERSION: u32 = 4;
 pub const NVX_IMAGE_VIEW_HANDLE_EXTENSION_NAME: &core::ffi::CStr = c"VK_NVX_image_view_handle";

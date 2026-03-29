@@ -5,5 +5,11 @@ pub type VertexInputBindingDivisorDescriptionKHR = crate::vk::VertexInputBinding
 pub type PipelineVertexInputDivisorStateCreateInfoKHR = crate::vk::PipelineVertexInputDivisorStateCreateInfo;
 pub type PhysicalDeviceVertexAttributeDivisorPropertiesKHR = crate::vk::PhysicalDeviceVertexAttributeDivisorProperties;
 pub type PhysicalDeviceVertexAttributeDivisorFeaturesKHR = crate::vk::PhysicalDeviceVertexAttributeDivisorFeatures;
+///Provided by [`khr::vertex_attribute_divisor`](crate::khr::vertex_attribute_divisor)
+impl crate::vk::StructureType {
+    pub const PHYSICAL_DEVICE_VERTEX_ATTRIBUTE_DIVISOR_PROPERTIES_KHR: Self = Self::PHYSICAL_DEVICE_VERTEX_ATTRIBUTE_DIVISOR_PROPERTIES;
+    pub const PIPELINE_VERTEX_INPUT_DIVISOR_STATE_CREATE_INFO_KHR: Self = Self::PIPELINE_VERTEX_INPUT_DIVISOR_STATE_CREATE_INFO;
+    pub const PHYSICAL_DEVICE_VERTEX_ATTRIBUTE_DIVISOR_FEATURES_KHR: Self = Self::PHYSICAL_DEVICE_VERTEX_ATTRIBUTE_DIVISOR_FEATURES;
+}
 pub const KHR_VERTEX_ATTRIBUTE_DIVISOR_SPEC_VERSION: u32 = 1;
 pub const KHR_VERTEX_ATTRIBUTE_DIVISOR_EXTENSION_NAME: &core::ffi::CStr = c"VK_KHR_vertex_attribute_divisor";

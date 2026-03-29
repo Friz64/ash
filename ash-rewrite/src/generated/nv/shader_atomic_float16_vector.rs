@@ -8,5 +8,11 @@ pub struct PhysicalDeviceShaderAtomicFloat16VectorFeaturesNV {
     pub p_next: *mut core::ffi::c_void,
     pub shader_float16_vector_atomics: crate::vk::Bool32,
 }
+///Provided by [`nv::shader_atomic_float16_vector`](crate::nv::shader_atomic_float16_vector)
+impl crate::vk::StructureType {
+    pub const PHYSICAL_DEVICE_SHADER_ATOMIC_FLOAT16_VECTOR_FEATURES_NV: Self = Self(
+        1000563000,
+    );
+}
 pub const NV_SHADER_ATOMIC_FLOAT16_VECTOR_SPEC_VERSION: u32 = 1;
 pub const NV_SHADER_ATOMIC_FLOAT16_VECTOR_EXTENSION_NAME: &core::ffi::CStr = c"VK_NV_shader_atomic_float16_vector";

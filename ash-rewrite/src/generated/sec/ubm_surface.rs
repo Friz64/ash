@@ -10,6 +10,10 @@ pub struct UbmSurfaceCreateInfoSEC {
     pub device: *mut crate::platform_types::ubm_device,
     pub surface: *mut crate::platform_types::ubm_surface,
 }
+///Provided by [`sec::ubm_surface`](crate::sec::ubm_surface)
+impl crate::vk::StructureType {
+    pub const UBM_SURFACE_CREATE_INFO_SEC: Self = Self(1000664000);
+}
 bitflags::bitflags! {
     #[repr(transparent)] #[derive(Clone, Copy)] pub struct UbmSurfaceCreateFlagsSEC : u32
     {}

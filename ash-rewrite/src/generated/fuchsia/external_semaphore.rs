@@ -20,6 +20,11 @@ pub struct SemaphoreGetZirconHandleInfoFUCHSIA {
     pub handle_type: crate::vk::ExternalSemaphoreHandleTypeFlagBits,
 }
 ///Provided by [`fuchsia::external_semaphore`](crate::fuchsia::external_semaphore)
+impl crate::vk::StructureType {
+    pub const IMPORT_SEMAPHORE_ZIRCON_HANDLE_INFO_FUCHSIA: Self = Self(1000365000);
+    pub const SEMAPHORE_GET_ZIRCON_HANDLE_INFO_FUCHSIA: Self = Self(1000365001);
+}
+///Provided by [`fuchsia::external_semaphore`](crate::fuchsia::external_semaphore)
 impl crate::vk::ExternalSemaphoreHandleTypeFlagBits {
     pub const ZIRCON_EVENT_FUCHSIA: Self = Self(1 << 7);
 }

@@ -18,6 +18,11 @@ pub struct VideoInlineQueryInfoKHR {
     pub query_count: u32,
 }
 ///Provided by [`khr::video_maintenance1`](crate::khr::video_maintenance1)
+impl crate::vk::StructureType {
+    pub const PHYSICAL_DEVICE_VIDEO_MAINTENANCE_1_FEATURES_KHR: Self = Self(1000515000);
+    pub const VIDEO_INLINE_QUERY_INFO_KHR: Self = Self(1000515001);
+}
+///Provided by [`khr::video_maintenance1`](crate::khr::video_maintenance1)
 impl crate::vk::BufferCreateFlagBits {
     pub const VIDEO_PROFILE_INDEPENDENT_KHR: Self = Self(1 << 6);
 }

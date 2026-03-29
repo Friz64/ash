@@ -39,5 +39,15 @@ pub struct CooperativeMatrixFlexibleDimensionsPropertiesNV {
     pub scope: crate::vk::ScopeKHR,
     pub workgroup_invocations: u32,
 }
+///Provided by [`nv::cooperative_matrix2`](crate::nv::cooperative_matrix2)
+impl crate::vk::StructureType {
+    pub const PHYSICAL_DEVICE_COOPERATIVE_MATRIX_2_FEATURES_NV: Self = Self(1000593000);
+    pub const COOPERATIVE_MATRIX_FLEXIBLE_DIMENSIONS_PROPERTIES_NV: Self = Self(
+        1000593001,
+    );
+    pub const PHYSICAL_DEVICE_COOPERATIVE_MATRIX_2_PROPERTIES_NV: Self = Self(
+        1000593002,
+    );
+}
 pub const NV_COOPERATIVE_MATRIX_2_SPEC_VERSION: u32 = 1;
 pub const NV_COOPERATIVE_MATRIX_2_EXTENSION_NAME: &core::ffi::CStr = c"VK_NV_cooperative_matrix2";

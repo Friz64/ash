@@ -3,6 +3,10 @@
 //![Vulkan Manual Page](https://docs.vulkan.org/refpages/latest/refpages/source/VK_EXT_pipeline_creation_feedback.html) · Extension `VK_EXT_pipeline_creation_feedback`
 pub type PipelineCreationFeedbackEXT = crate::vk::PipelineCreationFeedback;
 pub type PipelineCreationFeedbackCreateInfoEXT = crate::vk::PipelineCreationFeedbackCreateInfo;
+///Provided by [`ext::pipeline_creation_feedback`](crate::ext::pipeline_creation_feedback)
+impl crate::vk::StructureType {
+    pub const PIPELINE_CREATION_FEEDBACK_CREATE_INFO_EXT: Self = Self::PIPELINE_CREATION_FEEDBACK_CREATE_INFO;
+}
 pub type PipelineCreationFeedbackFlagBitsEXT = crate::vk::PipelineCreationFeedbackFlagBits;
 ///Provided by [`ext::pipeline_creation_feedback`](crate::ext::pipeline_creation_feedback)
 impl crate::vk::PipelineCreationFeedbackFlagBits {

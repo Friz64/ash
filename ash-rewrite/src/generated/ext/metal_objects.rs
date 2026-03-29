@@ -94,6 +94,21 @@ pub struct ImportMetalSharedEventInfoEXT {
     pub p_next: *const core::ffi::c_void,
     pub mtl_shared_event: crate::platform_types::MTLSharedEvent_id,
 }
+///Provided by [`ext::metal_objects`](crate::ext::metal_objects)
+impl crate::vk::StructureType {
+    pub const EXPORT_METAL_OBJECT_CREATE_INFO_EXT: Self = Self(1000311000);
+    pub const EXPORT_METAL_OBJECTS_INFO_EXT: Self = Self(1000311001);
+    pub const EXPORT_METAL_DEVICE_INFO_EXT: Self = Self(1000311002);
+    pub const EXPORT_METAL_COMMAND_QUEUE_INFO_EXT: Self = Self(1000311003);
+    pub const EXPORT_METAL_BUFFER_INFO_EXT: Self = Self(1000311004);
+    pub const IMPORT_METAL_BUFFER_INFO_EXT: Self = Self(1000311005);
+    pub const EXPORT_METAL_TEXTURE_INFO_EXT: Self = Self(1000311006);
+    pub const IMPORT_METAL_TEXTURE_INFO_EXT: Self = Self(1000311007);
+    pub const EXPORT_METAL_IO_SURFACE_INFO_EXT: Self = Self(1000311008);
+    pub const IMPORT_METAL_IO_SURFACE_INFO_EXT: Self = Self(1000311009);
+    pub const EXPORT_METAL_SHARED_EVENT_INFO_EXT: Self = Self(1000311010);
+    pub const IMPORT_METAL_SHARED_EVENT_INFO_EXT: Self = Self(1000311011);
+}
 bitflags::bitflags! {
     #[repr(transparent)] #[derive(Clone, Copy)] pub struct ExportMetalObjectTypeFlagsEXT
     : u32 { const METAL_DEVICE_EXT = ExportMetalObjectTypeFlagBitsEXT::METAL_DEVICE_EXT

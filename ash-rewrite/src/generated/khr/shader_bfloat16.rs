@@ -10,5 +10,13 @@ pub struct PhysicalDeviceShaderBfloat16FeaturesKHR {
     pub shader_b_float16_dot_product: crate::vk::Bool32,
     pub shader_b_float16_cooperative_matrix: crate::vk::Bool32,
 }
+///Provided by [`khr::shader_bfloat16`](crate::khr::shader_bfloat16)
+impl crate::vk::StructureType {
+    pub const PHYSICAL_DEVICE_SHADER_BFLOAT16_FEATURES_KHR: Self = Self(1000141000);
+}
+///Provided by [`khr::shader_bfloat16`](crate::khr::shader_bfloat16)
+impl crate::vk::ComponentTypeKHR {
+    pub const BFLOAT16_KHR: Self = Self(1000141000);
+}
 pub const KHR_SHADER_BFLOAT16_SPEC_VERSION: u32 = 1;
 pub const KHR_SHADER_BFLOAT16_EXTENSION_NAME: &core::ffi::CStr = c"VK_KHR_shader_bfloat16";

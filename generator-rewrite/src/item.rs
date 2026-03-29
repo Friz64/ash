@@ -4,7 +4,7 @@ use analysis::{
     name::{CMacroName, ConstantName, EnumeratorName, FuncPointerName, TypeName, VariableName},
     to_rust::RustTranslator,
 };
-use heck::ToSnekCase;
+use heck::{ToShoutySnekCase, ToSnekCase};
 use proc_macro2::TokenStream;
 use quote::quote;
 use syn::Ident;
@@ -62,7 +62,7 @@ impl<'a> RustTranslator for Context<'a> {
     }
 
     fn enumerator_to_rust(&self, name: EnumeratorName, bits_name: TypeName) -> Ident {
-        crate::escape_ident(&name.stripped(bits_name))
+        crate::escape_ident(&name.stripped(bits_name).TO_SHOUTY_SNEK_CASE())
     }
 
     fn type_to_rust(&self, name: TypeName, with_path: bool) -> TokenStream {

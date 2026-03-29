@@ -63,6 +63,15 @@ pub struct PhysicalDeviceCopyMemoryIndirectPropertiesKHR {
     pub supported_queues: crate::vk::QueueFlags,
 }
 ///Provided by [`khr::copy_memory_indirect`](crate::khr::copy_memory_indirect)
+impl crate::vk::StructureType {
+    pub const PHYSICAL_DEVICE_COPY_MEMORY_INDIRECT_FEATURES_KHR: Self = Self(1000549000);
+    pub const PHYSICAL_DEVICE_COPY_MEMORY_INDIRECT_PROPERTIES_KHR: Self = Self(
+        1000426001,
+    );
+    pub const COPY_MEMORY_INDIRECT_INFO_KHR: Self = Self(1000549002);
+    pub const COPY_MEMORY_TO_IMAGE_INDIRECT_INFO_KHR: Self = Self(1000549003);
+}
+///Provided by [`khr::copy_memory_indirect`](crate::khr::copy_memory_indirect)
 impl crate::vk::PipelineStageFlagBits2 {
     pub const COPY_INDIRECT_KHR: Self = Self(1 << 46);
 }

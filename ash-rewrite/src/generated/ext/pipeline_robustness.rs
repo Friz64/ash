@@ -4,6 +4,26 @@
 pub type PhysicalDevicePipelineRobustnessFeaturesEXT = crate::vk::PhysicalDevicePipelineRobustnessFeatures;
 pub type PipelineRobustnessCreateInfoEXT = crate::vk::PipelineRobustnessCreateInfo;
 pub type PhysicalDevicePipelineRobustnessPropertiesEXT = crate::vk::PhysicalDevicePipelineRobustnessProperties;
+///Provided by [`ext::pipeline_robustness`](crate::ext::pipeline_robustness)
+impl crate::vk::StructureType {
+    pub const PIPELINE_ROBUSTNESS_CREATE_INFO_EXT: Self = Self::PIPELINE_ROBUSTNESS_CREATE_INFO;
+    pub const PHYSICAL_DEVICE_PIPELINE_ROBUSTNESS_FEATURES_EXT: Self = Self::PHYSICAL_DEVICE_PIPELINE_ROBUSTNESS_FEATURES;
+    pub const PHYSICAL_DEVICE_PIPELINE_ROBUSTNESS_PROPERTIES_EXT: Self = Self::PHYSICAL_DEVICE_PIPELINE_ROBUSTNESS_PROPERTIES;
+}
+///Provided by [`ext::pipeline_robustness`](crate::ext::pipeline_robustness)
+impl crate::vk::PipelineRobustnessBufferBehavior {
+    pub const DEVICE_DEFAULT_EXT: Self = Self::DEVICE_DEFAULT;
+    pub const DISABLED_EXT: Self = Self::DISABLED;
+    pub const ROBUST_BUFFER_ACCESS_EXT: Self = Self::ROBUST_BUFFER_ACCESS;
+    pub const ROBUST_BUFFER_ACCESS_2_EXT: Self = Self::ROBUST_BUFFER_ACCESS_2;
+}
+///Provided by [`ext::pipeline_robustness`](crate::ext::pipeline_robustness)
+impl crate::vk::PipelineRobustnessImageBehavior {
+    pub const DEVICE_DEFAULT_EXT: Self = Self::DEVICE_DEFAULT;
+    pub const DISABLED_EXT: Self = Self::DISABLED;
+    pub const ROBUST_IMAGE_ACCESS_EXT: Self = Self::ROBUST_IMAGE_ACCESS;
+    pub const ROBUST_IMAGE_ACCESS_2_EXT: Self = Self::ROBUST_IMAGE_ACCESS_2;
+}
 pub type PipelineRobustnessBufferBehaviorEXT = crate::vk::PipelineRobustnessBufferBehavior;
 pub type PipelineRobustnessImageBehaviorEXT = crate::vk::PipelineRobustnessImageBehavior;
 pub const EXT_PIPELINE_ROBUSTNESS_SPEC_VERSION: u32 = 1;

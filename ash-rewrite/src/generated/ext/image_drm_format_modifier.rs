@@ -66,6 +66,29 @@ pub struct DrmFormatModifierProperties2EXT {
     pub drm_format_modifier_tiling_features: crate::vk::FormatFeatureFlags2,
 }
 ///Provided by [`ext::image_drm_format_modifier`](crate::ext::image_drm_format_modifier)
+impl crate::vk::ImageTiling {
+    pub const DRM_FORMAT_MODIFIER_EXT: Self = Self(1000158000);
+}
+///Provided by [`ext::image_drm_format_modifier`](crate::ext::image_drm_format_modifier)
+impl crate::vk::StructureType {
+    pub const DRM_FORMAT_MODIFIER_PROPERTIES_LIST_EXT: Self = Self(1000158000);
+    pub const PHYSICAL_DEVICE_IMAGE_DRM_FORMAT_MODIFIER_INFO_EXT: Self = Self(
+        1000158002,
+    );
+    pub const IMAGE_DRM_FORMAT_MODIFIER_LIST_CREATE_INFO_EXT: Self = Self(1000158003);
+    pub const IMAGE_DRM_FORMAT_MODIFIER_EXPLICIT_CREATE_INFO_EXT: Self = Self(
+        1000158004,
+    );
+    pub const IMAGE_DRM_FORMAT_MODIFIER_PROPERTIES_EXT: Self = Self(1000158005);
+    pub const DRM_FORMAT_MODIFIER_PROPERTIES_LIST_2_EXT: Self = Self(1000158006);
+}
+///Provided by [`ext::image_drm_format_modifier`](crate::ext::image_drm_format_modifier)
+impl crate::vk::Result {
+    pub const ERROR_INVALID_DRM_FORMAT_MODIFIER_PLANE_LAYOUT_EXT: Self = Self(
+        -1000158000,
+    );
+}
+///Provided by [`ext::image_drm_format_modifier`](crate::ext::image_drm_format_modifier)
 impl crate::vk::ImageAspectFlagBits {
     pub const MEMORY_PLANE_0_EXT: Self = Self(1 << 7);
     pub const MEMORY_PLANE_1_EXT: Self = Self(1 << 8);

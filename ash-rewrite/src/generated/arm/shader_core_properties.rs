@@ -10,5 +10,9 @@ pub struct PhysicalDeviceShaderCorePropertiesARM {
     pub texel_rate: u32,
     pub fma_rate: u32,
 }
+///Provided by [`arm::shader_core_properties`](crate::arm::shader_core_properties)
+impl crate::vk::StructureType {
+    pub const PHYSICAL_DEVICE_SHADER_CORE_PROPERTIES_ARM: Self = Self(1000415000);
+}
 pub const ARM_SHADER_CORE_PROPERTIES_SPEC_VERSION: u32 = 1;
 pub const ARM_SHADER_CORE_PROPERTIES_EXTENSION_NAME: &core::ffi::CStr = c"VK_ARM_shader_core_properties";

@@ -21,5 +21,9 @@ pub struct HdrMetadataEXT {
     pub max_content_light_level: core::ffi::c_float,
     pub max_frame_average_light_level: core::ffi::c_float,
 }
+///Provided by [`ext::hdr_metadata`](crate::ext::hdr_metadata)
+impl crate::vk::StructureType {
+    pub const HDR_METADATA_EXT: Self = Self(1000105000);
+}
 pub const EXT_HDR_METADATA_SPEC_VERSION: u32 = 3;
 pub const EXT_HDR_METADATA_EXTENSION_NAME: &core::ffi::CStr = c"VK_EXT_hdr_metadata";

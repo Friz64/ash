@@ -3,6 +3,11 @@
 //![Vulkan Manual Page](https://docs.vulkan.org/refpages/latest/refpages/source/VK_KHR_external_fence_capabilities.html) · Extension `VK_KHR_external_fence_capabilities`
 pub type PhysicalDeviceExternalFenceInfoKHR = crate::vk::PhysicalDeviceExternalFenceInfo;
 pub type ExternalFencePropertiesKHR = crate::vk::ExternalFenceProperties;
+///Provided by [`khr::external_fence_capabilities`](crate::khr::external_fence_capabilities)
+impl crate::vk::StructureType {
+    pub const PHYSICAL_DEVICE_EXTERNAL_FENCE_INFO_KHR: Self = Self::PHYSICAL_DEVICE_EXTERNAL_FENCE_INFO;
+    pub const EXTERNAL_FENCE_PROPERTIES_KHR: Self = Self::EXTERNAL_FENCE_PROPERTIES;
+}
 pub type ExternalFenceHandleTypeFlagBitsKHR = crate::vk::ExternalFenceHandleTypeFlagBits;
 pub type ExternalFenceFeatureFlagBitsKHR = crate::vk::ExternalFenceFeatureFlagBits;
 ///Provided by [`khr::external_fence_capabilities`](crate::khr::external_fence_capabilities)

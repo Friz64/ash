@@ -3,6 +3,11 @@
 //![Vulkan Manual Page](https://docs.vulkan.org/refpages/latest/refpages/source/VK_KHR_map_memory2.html) · Extension `VK_KHR_map_memory2`
 pub type MemoryMapInfoKHR = crate::vk::MemoryMapInfo;
 pub type MemoryUnmapInfoKHR = crate::vk::MemoryUnmapInfo;
+///Provided by [`khr::map_memory2`](crate::khr::map_memory2)
+impl crate::vk::StructureType {
+    pub const MEMORY_MAP_INFO_KHR: Self = Self::MEMORY_MAP_INFO;
+    pub const MEMORY_UNMAP_INFO_KHR: Self = Self::MEMORY_UNMAP_INFO;
+}
 pub type MemoryUnmapFlagBitsKHR = crate::vk::MemoryUnmapFlagBits;
 pub type MemoryUnmapFlagsKHR = crate::vk::MemoryUnmapFlags;
 pub const KHR_MAP_MEMORY_2_SPEC_VERSION: u32 = 1;

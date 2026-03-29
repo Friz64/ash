@@ -133,9 +133,39 @@ pub struct GeneratedCommandsMemoryRequirementsInfoNV {
     pub indirect_commands_layout: crate::vk::IndirectCommandsLayoutNV,
     pub max_sequences_count: u32,
 }
+///Provided by [`nv::device_generated_commands`](crate::nv::device_generated_commands)
+impl crate::vk::StructureType {
+    pub const PHYSICAL_DEVICE_DEVICE_GENERATED_COMMANDS_PROPERTIES_NV: Self = Self(
+        1000277000,
+    );
+    pub const GRAPHICS_SHADER_GROUP_CREATE_INFO_NV: Self = Self(1000277001);
+    pub const GRAPHICS_PIPELINE_SHADER_GROUPS_CREATE_INFO_NV: Self = Self(1000277002);
+    pub const INDIRECT_COMMANDS_LAYOUT_TOKEN_NV: Self = Self(1000277003);
+    pub const INDIRECT_COMMANDS_LAYOUT_CREATE_INFO_NV: Self = Self(1000277004);
+    pub const GENERATED_COMMANDS_INFO_NV: Self = Self(1000277005);
+    pub const GENERATED_COMMANDS_MEMORY_REQUIREMENTS_INFO_NV: Self = Self(1000277006);
+    pub const PHYSICAL_DEVICE_DEVICE_GENERATED_COMMANDS_FEATURES_NV: Self = Self(
+        1000277007,
+    );
+}
+///Provided by [`nv::device_generated_commands`](crate::nv::device_generated_commands)
+impl crate::vk::ObjectType {
+    pub const INDIRECT_COMMANDS_LAYOUT_NV: Self = Self(1000277000);
+}
 #[repr(transparent)]
 #[derive(Clone, Copy)]
 pub struct IndirectCommandsTokenTypeNV(pub(crate) i32);
+///Provided by [`nv::device_generated_commands`](crate::nv::device_generated_commands)
+impl IndirectCommandsTokenTypeNV {
+    pub const SHADER_GROUP_NV: Self = Self(0);
+    pub const STATE_FLAGS_NV: Self = Self(1);
+    pub const INDEX_BUFFER_NV: Self = Self(2);
+    pub const VERTEX_BUFFER_NV: Self = Self(3);
+    pub const PUSH_CONSTANT_NV: Self = Self(4);
+    pub const DRAW_INDEXED_NV: Self = Self(5);
+    pub const DRAW_NV: Self = Self(6);
+    pub const DRAW_TASKS_NV: Self = Self(7);
+}
 ///Provided by [`nv::device_generated_commands`](crate::nv::device_generated_commands)
 impl crate::vk::AccessFlagBits {
     pub const COMMAND_PREPROCESS_READ_NV: Self = Self::COMMAND_PREPROCESS_READ_EXT;

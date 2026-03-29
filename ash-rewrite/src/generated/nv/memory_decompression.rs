@@ -12,6 +12,11 @@ pub struct DecompressMemoryRegionNV {
 }
 pub type PhysicalDeviceMemoryDecompressionFeaturesNV = crate::vk::PhysicalDeviceMemoryDecompressionFeaturesEXT;
 pub type PhysicalDeviceMemoryDecompressionPropertiesNV = crate::vk::PhysicalDeviceMemoryDecompressionPropertiesEXT;
+///Provided by [`nv::memory_decompression`](crate::nv::memory_decompression)
+impl crate::vk::StructureType {
+    pub const PHYSICAL_DEVICE_MEMORY_DECOMPRESSION_FEATURES_NV: Self = Self::PHYSICAL_DEVICE_MEMORY_DECOMPRESSION_FEATURES_EXT;
+    pub const PHYSICAL_DEVICE_MEMORY_DECOMPRESSION_PROPERTIES_NV: Self = Self::PHYSICAL_DEVICE_MEMORY_DECOMPRESSION_PROPERTIES_EXT;
+}
 pub type MemoryDecompressionMethodFlagBitsNV = crate::vk::MemoryDecompressionMethodFlagBitsEXT;
 pub type MemoryDecompressionMethodFlagsNV = crate::vk::MemoryDecompressionMethodFlagsEXT;
 pub const NV_MEMORY_DECOMPRESSION_SPEC_VERSION: u32 = 1;

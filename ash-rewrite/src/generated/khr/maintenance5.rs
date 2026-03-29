@@ -9,6 +9,22 @@ pub type RenderingAreaInfoKHR = crate::vk::RenderingAreaInfo;
 pub type ImageSubresource2KHR = crate::vk::ImageSubresource2;
 pub type SubresourceLayout2KHR = crate::vk::SubresourceLayout2;
 pub type DeviceImageSubresourceInfoKHR = crate::vk::DeviceImageSubresourceInfo;
+///Provided by [`khr::maintenance5`](crate::khr::maintenance5)
+impl crate::vk::Format {
+    pub const A1B5G5R5_UNORM_PACK16_KHR: Self = Self::A1B5G5R5_UNORM_PACK16;
+    pub const A8_UNORM_KHR: Self = Self::A8_UNORM;
+}
+///Provided by [`khr::maintenance5`](crate::khr::maintenance5)
+impl crate::vk::StructureType {
+    pub const PHYSICAL_DEVICE_MAINTENANCE_5_FEATURES_KHR: Self = Self::PHYSICAL_DEVICE_MAINTENANCE_5_FEATURES;
+    pub const PHYSICAL_DEVICE_MAINTENANCE_5_PROPERTIES_KHR: Self = Self::PHYSICAL_DEVICE_MAINTENANCE_5_PROPERTIES;
+    pub const RENDERING_AREA_INFO_KHR: Self = Self::RENDERING_AREA_INFO;
+    pub const DEVICE_IMAGE_SUBRESOURCE_INFO_KHR: Self = Self::DEVICE_IMAGE_SUBRESOURCE_INFO;
+    pub const SUBRESOURCE_LAYOUT_2_KHR: Self = Self::SUBRESOURCE_LAYOUT_2;
+    pub const IMAGE_SUBRESOURCE_2_KHR: Self = Self::IMAGE_SUBRESOURCE_2;
+    pub const PIPELINE_CREATE_FLAGS_2_CREATE_INFO_KHR: Self = Self::PIPELINE_CREATE_FLAGS_2_CREATE_INFO;
+    pub const BUFFER_USAGE_FLAGS_2_CREATE_INFO_KHR: Self = Self::BUFFER_USAGE_FLAGS_2_CREATE_INFO;
+}
 pub type PipelineCreateFlagBits2KHR = crate::vk::PipelineCreateFlagBits2;
 pub type BufferUsageFlagBits2KHR = crate::vk::BufferUsageFlagBits2;
 ///Provided by [`khr::maintenance5`](crate::khr::maintenance5)

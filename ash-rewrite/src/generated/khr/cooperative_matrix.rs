@@ -31,8 +31,21 @@ pub struct PhysicalDeviceCooperativeMatrixPropertiesKHR {
     pub p_next: *mut core::ffi::c_void,
     pub cooperative_matrix_supported_stages: crate::vk::ShaderStageFlags,
 }
+///Provided by [`khr::cooperative_matrix`](crate::khr::cooperative_matrix)
+impl crate::vk::StructureType {
+    pub const PHYSICAL_DEVICE_COOPERATIVE_MATRIX_FEATURES_KHR: Self = Self(1000506000);
+    pub const COOPERATIVE_MATRIX_PROPERTIES_KHR: Self = Self(1000506001);
+    pub const PHYSICAL_DEVICE_COOPERATIVE_MATRIX_PROPERTIES_KHR: Self = Self(1000506002);
+}
 #[repr(transparent)]
 #[derive(Clone, Copy)]
 pub struct ScopeKHR(pub(crate) i32);
+///Provided by [`khr::cooperative_matrix`](crate::khr::cooperative_matrix)
+impl ScopeKHR {
+    pub const DEVICE_KHR: Self = Self(1);
+    pub const WORKGROUP_KHR: Self = Self(2);
+    pub const SUBGROUP_KHR: Self = Self(3);
+    pub const QUEUE_FAMILY_KHR: Self = Self(5);
+}
 pub const KHR_COOPERATIVE_MATRIX_SPEC_VERSION: u32 = 2;
 pub const KHR_COOPERATIVE_MATRIX_EXTENSION_NAME: &core::ffi::CStr = c"VK_KHR_cooperative_matrix";

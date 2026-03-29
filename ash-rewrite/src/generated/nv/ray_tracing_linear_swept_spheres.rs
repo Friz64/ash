@@ -41,12 +41,37 @@ pub struct PhysicalDeviceRayTracingLinearSweptSpheresFeaturesNV {
     pub spheres: crate::vk::Bool32,
     pub linear_swept_spheres: crate::vk::Bool32,
 }
+///Provided by [`nv::ray_tracing_linear_swept_spheres`](crate::nv::ray_tracing_linear_swept_spheres)
+impl crate::vk::StructureType {
+    pub const PHYSICAL_DEVICE_RAY_TRACING_LINEAR_SWEPT_SPHERES_FEATURES_NV: Self = Self(
+        1000429008,
+    );
+    pub const ACCELERATION_STRUCTURE_GEOMETRY_LINEAR_SWEPT_SPHERES_DATA_NV: Self = Self(
+        1000429009,
+    );
+    pub const ACCELERATION_STRUCTURE_GEOMETRY_SPHERES_DATA_NV: Self = Self(1000429010);
+}
 #[repr(transparent)]
 #[derive(Clone, Copy)]
 pub struct RayTracingLssIndexingModeNV(pub(crate) i32);
+///Provided by [`nv::ray_tracing_linear_swept_spheres`](crate::nv::ray_tracing_linear_swept_spheres)
+impl RayTracingLssIndexingModeNV {
+    pub const LIST_NV: Self = Self(0);
+    pub const SUCCESSIVE_NV: Self = Self(1);
+}
 #[repr(transparent)]
 #[derive(Clone, Copy)]
 pub struct RayTracingLssPrimitiveEndCapsModeNV(pub(crate) i32);
+///Provided by [`nv::ray_tracing_linear_swept_spheres`](crate::nv::ray_tracing_linear_swept_spheres)
+impl RayTracingLssPrimitiveEndCapsModeNV {
+    pub const NONE_NV: Self = Self(0);
+    pub const CHAINED_NV: Self = Self(1);
+}
+///Provided by [`nv::ray_tracing_linear_swept_spheres`](crate::nv::ray_tracing_linear_swept_spheres)
+impl crate::vk::GeometryTypeKHR {
+    pub const SPHERES_NV: Self = Self(1000429004);
+    pub const LINEAR_SWEPT_SPHERES_NV: Self = Self(1000429005);
+}
 ///Provided by [`nv::ray_tracing_linear_swept_spheres`](crate::nv::ray_tracing_linear_swept_spheres)
 impl crate::vk::FormatFeatureFlagBits2 {
     pub const ACCELERATION_STRUCTURE_RADIUS_BUFFER_NV: Self = Self(1 << 51);

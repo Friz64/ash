@@ -3,6 +3,15 @@
 //![Vulkan Manual Page](https://docs.vulkan.org/refpages/latest/refpages/source/VK_EXT_pipeline_creation_cache_control.html) · Extension `VK_EXT_pipeline_creation_cache_control`
 pub type PhysicalDevicePipelineCreationCacheControlFeaturesEXT = crate::vk::PhysicalDevicePipelineCreationCacheControlFeatures;
 ///Provided by [`ext::pipeline_creation_cache_control`](crate::ext::pipeline_creation_cache_control)
+impl crate::vk::StructureType {
+    pub const PHYSICAL_DEVICE_PIPELINE_CREATION_CACHE_CONTROL_FEATURES_EXT: Self = Self::PHYSICAL_DEVICE_PIPELINE_CREATION_CACHE_CONTROL_FEATURES;
+}
+///Provided by [`ext::pipeline_creation_cache_control`](crate::ext::pipeline_creation_cache_control)
+impl crate::vk::Result {
+    pub const PIPELINE_COMPILE_REQUIRED_EXT: Self = Self::PIPELINE_COMPILE_REQUIRED;
+    pub const ERROR_PIPELINE_COMPILE_REQUIRED_EXT: Self = Self::PIPELINE_COMPILE_REQUIRED;
+}
+///Provided by [`ext::pipeline_creation_cache_control`](crate::ext::pipeline_creation_cache_control)
 impl crate::vk::PipelineCacheCreateFlagBits {
     pub const EXTERNALLY_SYNCHRONIZED_EXT: Self = Self::EXTERNALLY_SYNCHRONIZED;
 }

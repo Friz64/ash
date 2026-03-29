@@ -7,6 +7,14 @@ pub type ExternalImageFormatPropertiesKHR = crate::vk::ExternalImageFormatProper
 pub type PhysicalDeviceExternalBufferInfoKHR = crate::vk::PhysicalDeviceExternalBufferInfo;
 pub type ExternalBufferPropertiesKHR = crate::vk::ExternalBufferProperties;
 pub type PhysicalDeviceIDPropertiesKHR = crate::vk::PhysicalDeviceIDProperties;
+///Provided by [`khr::external_memory_capabilities`](crate::khr::external_memory_capabilities)
+impl crate::vk::StructureType {
+    pub const PHYSICAL_DEVICE_EXTERNAL_IMAGE_FORMAT_INFO_KHR: Self = Self::PHYSICAL_DEVICE_EXTERNAL_IMAGE_FORMAT_INFO;
+    pub const EXTERNAL_IMAGE_FORMAT_PROPERTIES_KHR: Self = Self::EXTERNAL_IMAGE_FORMAT_PROPERTIES;
+    pub const PHYSICAL_DEVICE_EXTERNAL_BUFFER_INFO_KHR: Self = Self::PHYSICAL_DEVICE_EXTERNAL_BUFFER_INFO;
+    pub const EXTERNAL_BUFFER_PROPERTIES_KHR: Self = Self::EXTERNAL_BUFFER_PROPERTIES;
+    pub const PHYSICAL_DEVICE_ID_PROPERTIES_KHR: Self = Self::PHYSICAL_DEVICE_ID_PROPERTIES;
+}
 pub type ExternalMemoryHandleTypeFlagBitsKHR = crate::vk::ExternalMemoryHandleTypeFlagBits;
 pub type ExternalMemoryFeatureFlagBitsKHR = crate::vk::ExternalMemoryFeatureFlagBits;
 ///Provided by [`khr::external_memory_capabilities`](crate::khr::external_memory_capabilities)

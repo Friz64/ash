@@ -147,6 +147,28 @@ pub union DescriptorDataEXT {
     pub acceleration_structure: crate::vk::DeviceAddress,
 }
 ///Provided by [`ext::descriptor_buffer`](crate::ext::descriptor_buffer)
+impl crate::vk::StructureType {
+    pub const PHYSICAL_DEVICE_DESCRIPTOR_BUFFER_PROPERTIES_EXT: Self = Self(1000316000);
+    pub const PHYSICAL_DEVICE_DESCRIPTOR_BUFFER_DENSITY_MAP_PROPERTIES_EXT: Self = Self(
+        1000316001,
+    );
+    pub const PHYSICAL_DEVICE_DESCRIPTOR_BUFFER_FEATURES_EXT: Self = Self(1000316002);
+    pub const DESCRIPTOR_ADDRESS_INFO_EXT: Self = Self(1000316003);
+    pub const DESCRIPTOR_GET_INFO_EXT: Self = Self(1000316004);
+    pub const BUFFER_CAPTURE_DESCRIPTOR_DATA_INFO_EXT: Self = Self(1000316005);
+    pub const IMAGE_CAPTURE_DESCRIPTOR_DATA_INFO_EXT: Self = Self(1000316006);
+    pub const IMAGE_VIEW_CAPTURE_DESCRIPTOR_DATA_INFO_EXT: Self = Self(1000316007);
+    pub const SAMPLER_CAPTURE_DESCRIPTOR_DATA_INFO_EXT: Self = Self(1000316008);
+    pub const OPAQUE_CAPTURE_DESCRIPTOR_DATA_CREATE_INFO_EXT: Self = Self(1000316010);
+    pub const DESCRIPTOR_BUFFER_BINDING_INFO_EXT: Self = Self(1000316011);
+    pub const DESCRIPTOR_BUFFER_BINDING_PUSH_DESCRIPTOR_BUFFER_HANDLE_EXT: Self = Self(
+        1000316012,
+    );
+    pub const ACCELERATION_STRUCTURE_CAPTURE_DESCRIPTOR_DATA_INFO_EXT: Self = Self(
+        1000316009,
+    );
+}
+///Provided by [`ext::descriptor_buffer`](crate::ext::descriptor_buffer)
 impl crate::vk::SamplerCreateFlagBits {
     pub const DESCRIPTOR_BUFFER_CAPTURE_REPLAY_EXT: Self = Self(1 << 3);
 }

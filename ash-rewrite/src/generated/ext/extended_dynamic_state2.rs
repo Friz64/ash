@@ -10,5 +10,19 @@ pub struct PhysicalDeviceExtendedDynamicState2FeaturesEXT {
     pub extended_dynamic_state2_logic_op: crate::vk::Bool32,
     pub extended_dynamic_state2_patch_control_points: crate::vk::Bool32,
 }
+///Provided by [`ext::extended_dynamic_state2`](crate::ext::extended_dynamic_state2)
+impl crate::vk::StructureType {
+    pub const PHYSICAL_DEVICE_EXTENDED_DYNAMIC_STATE_2_FEATURES_EXT: Self = Self(
+        1000377000,
+    );
+}
+///Provided by [`ext::extended_dynamic_state2`](crate::ext::extended_dynamic_state2)
+impl crate::vk::DynamicState {
+    pub const PATCH_CONTROL_POINTS_EXT: Self = Self(1000377000);
+    pub const RASTERIZER_DISCARD_ENABLE_EXT: Self = Self::RASTERIZER_DISCARD_ENABLE;
+    pub const DEPTH_BIAS_ENABLE_EXT: Self = Self::DEPTH_BIAS_ENABLE;
+    pub const LOGIC_OP_EXT: Self = Self(1000377003);
+    pub const PRIMITIVE_RESTART_ENABLE_EXT: Self = Self::PRIMITIVE_RESTART_ENABLE;
+}
 pub const EXT_EXTENDED_DYNAMIC_STATE_2_SPEC_VERSION: u32 = 1;
 pub const EXT_EXTENDED_DYNAMIC_STATE_2_EXTENSION_NAME: &core::ffi::CStr = c"VK_EXT_extended_dynamic_state2";

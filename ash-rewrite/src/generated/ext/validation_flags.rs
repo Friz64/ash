@@ -9,8 +9,17 @@ pub struct ValidationFlagsEXT {
     pub disabled_validation_check_count: u32,
     pub p_disabled_validation_checks: *const crate::vk::ValidationCheckEXT,
 }
+///Provided by [`ext::validation_flags`](crate::ext::validation_flags)
+impl crate::vk::StructureType {
+    pub const VALIDATION_FLAGS_EXT: Self = Self(1000061000);
+}
 #[repr(transparent)]
 #[derive(Clone, Copy)]
 pub struct ValidationCheckEXT(pub(crate) i32);
+///Provided by [`ext::validation_flags`](crate::ext::validation_flags)
+impl ValidationCheckEXT {
+    pub const ALL_EXT: Self = Self(0);
+    pub const SHADERS_EXT: Self = Self(1);
+}
 pub const EXT_VALIDATION_FLAGS_SPEC_VERSION: u32 = 3;
 pub const EXT_VALIDATION_FLAGS_EXTENSION_NAME: &core::ffi::CStr = c"VK_EXT_validation_flags";

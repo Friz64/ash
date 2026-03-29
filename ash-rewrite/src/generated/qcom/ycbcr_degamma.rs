@@ -16,5 +16,12 @@ pub struct SamplerYcbcrConversionYcbcrDegammaCreateInfoQCOM {
     pub enable_y_degamma: crate::vk::Bool32,
     pub enable_cb_cr_degamma: crate::vk::Bool32,
 }
+///Provided by [`qcom::ycbcr_degamma`](crate::qcom::ycbcr_degamma)
+impl crate::vk::StructureType {
+    pub const PHYSICAL_DEVICE_YCBCR_DEGAMMA_FEATURES_QCOM: Self = Self(1000520000);
+    pub const SAMPLER_YCBCR_CONVERSION_YCBCR_DEGAMMA_CREATE_INFO_QCOM: Self = Self(
+        1000520001,
+    );
+}
 pub const QCOM_YCBCR_DEGAMMA_SPEC_VERSION: u32 = 1;
 pub const QCOM_YCBCR_DEGAMMA_EXTENSION_NAME: &core::ffi::CStr = c"VK_QCOM_ycbcr_degamma";

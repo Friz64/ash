@@ -8,5 +8,11 @@ pub struct PhysicalDeviceCommandBufferInheritanceFeaturesNV {
     pub p_next: *mut core::ffi::c_void,
     pub command_buffer_inheritance: crate::vk::Bool32,
 }
+///Provided by [`nv::command_buffer_inheritance`](crate::nv::command_buffer_inheritance)
+impl crate::vk::StructureType {
+    pub const PHYSICAL_DEVICE_COMMAND_BUFFER_INHERITANCE_FEATURES_NV: Self = Self(
+        1000559000,
+    );
+}
 pub const NV_COMMAND_BUFFER_INHERITANCE_SPEC_VERSION: u32 = 1;
 pub const NV_COMMAND_BUFFER_INHERITANCE_EXTENSION_NAME: &core::ffi::CStr = c"VK_NV_command_buffer_inheritance";

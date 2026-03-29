@@ -6,6 +6,18 @@ pub type PhysicalDeviceDescriptorIndexingPropertiesEXT = crate::vk::PhysicalDevi
 pub type DescriptorSetLayoutBindingFlagsCreateInfoEXT = crate::vk::DescriptorSetLayoutBindingFlagsCreateInfo;
 pub type DescriptorSetVariableDescriptorCountAllocateInfoEXT = crate::vk::DescriptorSetVariableDescriptorCountAllocateInfo;
 pub type DescriptorSetVariableDescriptorCountLayoutSupportEXT = crate::vk::DescriptorSetVariableDescriptorCountLayoutSupport;
+///Provided by [`ext::descriptor_indexing`](crate::ext::descriptor_indexing)
+impl crate::vk::StructureType {
+    pub const DESCRIPTOR_SET_LAYOUT_BINDING_FLAGS_CREATE_INFO_EXT: Self = Self::DESCRIPTOR_SET_LAYOUT_BINDING_FLAGS_CREATE_INFO;
+    pub const PHYSICAL_DEVICE_DESCRIPTOR_INDEXING_FEATURES_EXT: Self = Self::PHYSICAL_DEVICE_DESCRIPTOR_INDEXING_FEATURES;
+    pub const PHYSICAL_DEVICE_DESCRIPTOR_INDEXING_PROPERTIES_EXT: Self = Self::PHYSICAL_DEVICE_DESCRIPTOR_INDEXING_PROPERTIES;
+    pub const DESCRIPTOR_SET_VARIABLE_DESCRIPTOR_COUNT_ALLOCATE_INFO_EXT: Self = Self::DESCRIPTOR_SET_VARIABLE_DESCRIPTOR_COUNT_ALLOCATE_INFO;
+    pub const DESCRIPTOR_SET_VARIABLE_DESCRIPTOR_COUNT_LAYOUT_SUPPORT_EXT: Self = Self::DESCRIPTOR_SET_VARIABLE_DESCRIPTOR_COUNT_LAYOUT_SUPPORT;
+}
+///Provided by [`ext::descriptor_indexing`](crate::ext::descriptor_indexing)
+impl crate::vk::Result {
+    pub const ERROR_FRAGMENTATION_EXT: Self = Self::ERROR_FRAGMENTATION;
+}
 pub type DescriptorBindingFlagBitsEXT = crate::vk::DescriptorBindingFlagBits;
 ///Provided by [`ext::descriptor_indexing`](crate::ext::descriptor_indexing)
 impl crate::vk::DescriptorSetLayoutCreateFlagBits {

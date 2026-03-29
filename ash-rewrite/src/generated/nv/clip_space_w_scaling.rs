@@ -16,5 +16,13 @@ pub struct PipelineViewportWScalingStateCreateInfoNV {
     pub viewport_count: u32,
     pub p_viewport_w_scalings: *const crate::vk::ViewportWScalingNV,
 }
+///Provided by [`nv::clip_space_w_scaling`](crate::nv::clip_space_w_scaling)
+impl crate::vk::StructureType {
+    pub const PIPELINE_VIEWPORT_W_SCALING_STATE_CREATE_INFO_NV: Self = Self(1000087000);
+}
+///Provided by [`nv::clip_space_w_scaling`](crate::nv::clip_space_w_scaling)
+impl crate::vk::DynamicState {
+    pub const VIEWPORT_W_SCALING_NV: Self = Self(1000087000);
+}
 pub const NV_CLIP_SPACE_W_SCALING_SPEC_VERSION: u32 = 1;
 pub const NV_CLIP_SPACE_W_SCALING_EXTENSION_NAME: &core::ffi::CStr = c"VK_NV_clip_space_w_scaling";

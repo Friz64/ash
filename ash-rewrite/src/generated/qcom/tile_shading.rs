@@ -58,6 +58,15 @@ pub struct DispatchTileInfoQCOM {
     pub p_next: *const core::ffi::c_void,
 }
 ///Provided by [`qcom::tile_shading`](crate::qcom::tile_shading)
+impl crate::vk::StructureType {
+    pub const PHYSICAL_DEVICE_TILE_SHADING_FEATURES_QCOM: Self = Self(1000309000);
+    pub const PHYSICAL_DEVICE_TILE_SHADING_PROPERTIES_QCOM: Self = Self(1000309001);
+    pub const RENDER_PASS_TILE_SHADING_CREATE_INFO_QCOM: Self = Self(1000309002);
+    pub const PER_TILE_BEGIN_INFO_QCOM: Self = Self(1000309003);
+    pub const PER_TILE_END_INFO_QCOM: Self = Self(1000309004);
+    pub const DISPATCH_TILE_INFO_QCOM: Self = Self(1000309005);
+}
+///Provided by [`qcom::tile_shading`](crate::qcom::tile_shading)
 impl crate::vk::SubpassDescriptionFlagBits {
     pub const TILE_SHADING_APRON_QCOM: Self = Self(1 << 8);
 }

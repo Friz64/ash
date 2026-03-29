@@ -9,6 +9,16 @@ pub struct PhysicalDeviceZeroInitializeDeviceMemoryFeaturesEXT {
     pub zero_initialize_device_memory: crate::vk::Bool32,
 }
 ///Provided by [`ext::zero_initialize_device_memory`](crate::ext::zero_initialize_device_memory)
+impl crate::vk::ImageLayout {
+    pub const ZERO_INITIALIZED_EXT: Self = Self(1000620000);
+}
+///Provided by [`ext::zero_initialize_device_memory`](crate::ext::zero_initialize_device_memory)
+impl crate::vk::StructureType {
+    pub const PHYSICAL_DEVICE_ZERO_INITIALIZE_DEVICE_MEMORY_FEATURES_EXT: Self = Self(
+        1000620000,
+    );
+}
+///Provided by [`ext::zero_initialize_device_memory`](crate::ext::zero_initialize_device_memory)
 impl crate::vk::MemoryAllocateFlagBits {
     pub const ZERO_INITIALIZE_EXT: Self = Self(1 << 3);
 }

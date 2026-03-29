@@ -8,5 +8,9 @@ pub struct TextureLODGatherFormatPropertiesAMD {
     pub p_next: *mut core::ffi::c_void,
     pub supports_texture_gather_lod_bias_amd: crate::vk::Bool32,
 }
+///Provided by [`amd::texture_gather_bias_lod`](crate::amd::texture_gather_bias_lod)
+impl crate::vk::StructureType {
+    pub const TEXTURE_LOD_GATHER_FORMAT_PROPERTIES_AMD: Self = Self(1000041000);
+}
 pub const AMD_TEXTURE_GATHER_BIAS_LOD_SPEC_VERSION: u32 = 1;
 pub const AMD_TEXTURE_GATHER_BIAS_LOD_EXTENSION_NAME: &core::ffi::CStr = c"VK_AMD_texture_gather_bias_lod";

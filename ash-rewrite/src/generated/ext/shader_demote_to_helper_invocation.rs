@@ -2,5 +2,9 @@
 #![cfg_attr(rustfmt, rustfmt_skip)]
 //![Vulkan Manual Page](https://docs.vulkan.org/refpages/latest/refpages/source/VK_EXT_shader_demote_to_helper_invocation.html) · Extension `VK_EXT_shader_demote_to_helper_invocation`
 pub type PhysicalDeviceShaderDemoteToHelperInvocationFeaturesEXT = crate::vk::PhysicalDeviceShaderDemoteToHelperInvocationFeatures;
+///Provided by [`ext::shader_demote_to_helper_invocation`](crate::ext::shader_demote_to_helper_invocation)
+impl crate::vk::StructureType {
+    pub const PHYSICAL_DEVICE_SHADER_DEMOTE_TO_HELPER_INVOCATION_FEATURES_EXT: Self = Self::PHYSICAL_DEVICE_SHADER_DEMOTE_TO_HELPER_INVOCATION_FEATURES;
+}
 pub const EXT_SHADER_DEMOTE_TO_HELPER_INVOCATION_SPEC_VERSION: u32 = 1;
 pub const EXT_SHADER_DEMOTE_TO_HELPER_INVOCATION_EXTENSION_NAME: &core::ffi::CStr = c"VK_EXT_shader_demote_to_helper_invocation";

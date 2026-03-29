@@ -11,11 +11,34 @@ pub struct ValidationFeaturesEXT {
     pub disabled_validation_feature_count: u32,
     pub p_disabled_validation_features: *const crate::vk::ValidationFeatureDisableEXT,
 }
+///Provided by [`ext::validation_features`](crate::ext::validation_features)
+impl crate::vk::StructureType {
+    pub const VALIDATION_FEATURES_EXT: Self = Self(1000247000);
+}
 #[repr(transparent)]
 #[derive(Clone, Copy)]
 pub struct ValidationFeatureEnableEXT(pub(crate) i32);
+///Provided by [`ext::validation_features`](crate::ext::validation_features)
+impl ValidationFeatureEnableEXT {
+    pub const GPU_ASSISTED_EXT: Self = Self(0);
+    pub const GPU_ASSISTED_RESERVE_BINDING_SLOT_EXT: Self = Self(1);
+    pub const BEST_PRACTICES_EXT: Self = Self(2);
+    pub const DEBUG_PRINTF_EXT: Self = Self(3);
+    pub const SYNCHRONIZATION_VALIDATION_EXT: Self = Self(4);
+}
 #[repr(transparent)]
 #[derive(Clone, Copy)]
 pub struct ValidationFeatureDisableEXT(pub(crate) i32);
+///Provided by [`ext::validation_features`](crate::ext::validation_features)
+impl ValidationFeatureDisableEXT {
+    pub const ALL_EXT: Self = Self(0);
+    pub const SHADERS_EXT: Self = Self(1);
+    pub const THREAD_SAFETY_EXT: Self = Self(2);
+    pub const API_PARAMETERS_EXT: Self = Self(3);
+    pub const OBJECT_LIFETIMES_EXT: Self = Self(4);
+    pub const CORE_CHECKS_EXT: Self = Self(5);
+    pub const UNIQUE_HANDLES_EXT: Self = Self(6);
+    pub const SHADER_VALIDATION_CACHE_EXT: Self = Self(7);
+}
 pub const EXT_VALIDATION_FEATURES_SPEC_VERSION: u32 = 6;
 pub const EXT_VALIDATION_FEATURES_EXTENSION_NAME: &core::ffi::CStr = c"VK_EXT_validation_features";

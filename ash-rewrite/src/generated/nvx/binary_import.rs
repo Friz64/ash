@@ -42,6 +42,23 @@ pub struct CuLaunchInfoNVX {
     pub extra_count: usize,
     pub p_extras: *const *const core::ffi::c_void,
 }
+///Provided by [`nvx::binary_import`](crate::nvx::binary_import)
+impl crate::vk::StructureType {
+    pub const CU_MODULE_CREATE_INFO_NVX: Self = Self(1000029000);
+    pub const CU_FUNCTION_CREATE_INFO_NVX: Self = Self(1000029001);
+    pub const CU_LAUNCH_INFO_NVX: Self = Self(1000029002);
+    pub const CU_MODULE_TEXTURING_MODE_CREATE_INFO_NVX: Self = Self(1000029004);
+}
+///Provided by [`nvx::binary_import`](crate::nvx::binary_import)
+impl crate::vk::ObjectType {
+    pub const CU_MODULE_NVX: Self = Self(1000029000);
+    pub const CU_FUNCTION_NVX: Self = Self(1000029001);
+}
+///Provided by [`nvx::binary_import`](crate::nvx::binary_import)
+impl crate::vk::DebugReportObjectTypeEXT {
+    pub const CU_MODULE_NVX_EXT: Self = Self(1000029000);
+    pub const CU_FUNCTION_NVX_EXT: Self = Self(1000029001);
+}
 #[repr(transparent)]
 #[derive(Clone, Copy)]
 pub struct CuModuleNVX(pub(crate) i32);

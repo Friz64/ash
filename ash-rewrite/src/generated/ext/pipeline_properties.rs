@@ -16,5 +16,11 @@ pub struct PhysicalDevicePipelinePropertiesFeaturesEXT {
     pub pipeline_properties_identifier: crate::vk::Bool32,
 }
 pub type PipelineInfoEXT = crate::vk::PipelineInfoKHR;
+///Provided by [`ext::pipeline_properties`](crate::ext::pipeline_properties)
+impl crate::vk::StructureType {
+    pub const PIPELINE_PROPERTIES_IDENTIFIER_EXT: Self = Self(1000372000);
+    pub const PHYSICAL_DEVICE_PIPELINE_PROPERTIES_FEATURES_EXT: Self = Self(1000372001);
+    pub const PIPELINE_INFO_EXT: Self = Self::PIPELINE_INFO_KHR;
+}
 pub const EXT_PIPELINE_PROPERTIES_SPEC_VERSION: u32 = 1;
 pub const EXT_PIPELINE_PROPERTIES_EXTENSION_NAME: &core::ffi::CStr = c"VK_EXT_pipeline_properties";

@@ -103,6 +103,28 @@ pub struct SwapchainCalibratedTimestampInfoEXT {
     pub time_domain_id: u64,
 }
 ///Provided by [`ext::present_timing`](crate::ext::present_timing)
+impl crate::vk::StructureType {
+    pub const PHYSICAL_DEVICE_PRESENT_TIMING_FEATURES_EXT: Self = Self(1000208000);
+    pub const SWAPCHAIN_TIMING_PROPERTIES_EXT: Self = Self(1000208001);
+    pub const SWAPCHAIN_TIME_DOMAIN_PROPERTIES_EXT: Self = Self(1000208002);
+    pub const PRESENT_TIMINGS_INFO_EXT: Self = Self(1000208003);
+    pub const PRESENT_TIMING_INFO_EXT: Self = Self(1000208004);
+    pub const PAST_PRESENTATION_TIMING_INFO_EXT: Self = Self(1000208005);
+    pub const PAST_PRESENTATION_TIMING_PROPERTIES_EXT: Self = Self(1000208006);
+    pub const PAST_PRESENTATION_TIMING_EXT: Self = Self(1000208007);
+    pub const PRESENT_TIMING_SURFACE_CAPABILITIES_EXT: Self = Self(1000208008);
+    pub const SWAPCHAIN_CALIBRATED_TIMESTAMP_INFO_EXT: Self = Self(1000208009);
+}
+///Provided by [`ext::present_timing`](crate::ext::present_timing)
+impl crate::vk::Result {
+    pub const ERROR_PRESENT_TIMING_QUEUE_FULL_EXT: Self = Self(-1000208000);
+}
+///Provided by [`ext::present_timing`](crate::ext::present_timing)
+impl crate::vk::TimeDomainKHR {
+    pub const PRESENT_STAGE_LOCAL_EXT: Self = Self(1000208000);
+    pub const SWAPCHAIN_LOCAL_EXT: Self = Self(1000208001);
+}
+///Provided by [`ext::present_timing`](crate::ext::present_timing)
 impl crate::vk::SwapchainCreateFlagBitsKHR {
     pub const PRESENT_TIMING_EXT: Self = Self(1 << 9);
 }

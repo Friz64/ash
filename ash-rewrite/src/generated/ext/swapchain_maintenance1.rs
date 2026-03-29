@@ -8,6 +8,15 @@ pub type SwapchainPresentModeInfoEXT = crate::vk::SwapchainPresentModeInfoKHR;
 pub type SwapchainPresentScalingCreateInfoEXT = crate::vk::SwapchainPresentScalingCreateInfoKHR;
 pub type ReleaseSwapchainImagesInfoEXT = crate::vk::ReleaseSwapchainImagesInfoKHR;
 ///Provided by [`ext::swapchain_maintenance1`](crate::ext::swapchain_maintenance1)
+impl crate::vk::StructureType {
+    pub const PHYSICAL_DEVICE_SWAPCHAIN_MAINTENANCE_1_FEATURES_EXT: Self = Self::PHYSICAL_DEVICE_SWAPCHAIN_MAINTENANCE_1_FEATURES_KHR;
+    pub const SWAPCHAIN_PRESENT_FENCE_INFO_EXT: Self = Self::SWAPCHAIN_PRESENT_FENCE_INFO_KHR;
+    pub const SWAPCHAIN_PRESENT_MODES_CREATE_INFO_EXT: Self = Self::SWAPCHAIN_PRESENT_MODES_CREATE_INFO_KHR;
+    pub const SWAPCHAIN_PRESENT_MODE_INFO_EXT: Self = Self::SWAPCHAIN_PRESENT_MODE_INFO_KHR;
+    pub const SWAPCHAIN_PRESENT_SCALING_CREATE_INFO_EXT: Self = Self::SWAPCHAIN_PRESENT_SCALING_CREATE_INFO_KHR;
+    pub const RELEASE_SWAPCHAIN_IMAGES_INFO_EXT: Self = Self::RELEASE_SWAPCHAIN_IMAGES_INFO_KHR;
+}
+///Provided by [`ext::swapchain_maintenance1`](crate::ext::swapchain_maintenance1)
 impl crate::vk::SwapchainCreateFlagBitsKHR {
     pub const DEFERRED_MEMORY_ALLOCATION_EXT: Self = Self::DEFERRED_MEMORY_ALLOCATION_KHR;
 }

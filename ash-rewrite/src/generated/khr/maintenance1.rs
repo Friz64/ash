@@ -2,6 +2,10 @@
 #![cfg_attr(rustfmt, rustfmt_skip)]
 //![Vulkan Manual Page](https://docs.vulkan.org/refpages/latest/refpages/source/VK_KHR_maintenance1.html) · Extension `VK_KHR_maintenance1`
 ///Provided by [`khr::maintenance1`](crate::khr::maintenance1)
+impl crate::vk::Result {
+    pub const ERROR_OUT_OF_POOL_MEMORY_KHR: Self = Self::ERROR_OUT_OF_POOL_MEMORY;
+}
+///Provided by [`khr::maintenance1`](crate::khr::maintenance1)
 impl crate::vk::ImageCreateFlagBits {
     pub const _2D_ARRAY_COMPATIBLE_KHR: Self = Self::_2D_ARRAY_COMPATIBLE;
 }

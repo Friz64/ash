@@ -17,9 +17,22 @@ pub struct ShaderModuleValidationCacheCreateInfoEXT {
     pub p_next: *const core::ffi::c_void,
     pub validation_cache: crate::vk::ValidationCacheEXT,
 }
+///Provided by [`ext::validation_cache`](crate::ext::validation_cache)
+impl crate::vk::StructureType {
+    pub const VALIDATION_CACHE_CREATE_INFO_EXT: Self = Self(1000160000);
+    pub const SHADER_MODULE_VALIDATION_CACHE_CREATE_INFO_EXT: Self = Self(1000160001);
+}
+///Provided by [`ext::validation_cache`](crate::ext::validation_cache)
+impl crate::vk::ObjectType {
+    pub const VALIDATION_CACHE_EXT: Self = Self(1000160000);
+}
 #[repr(transparent)]
 #[derive(Clone, Copy)]
 pub struct ValidationCacheHeaderVersionEXT(pub(crate) i32);
+///Provided by [`ext::validation_cache`](crate::ext::validation_cache)
+impl ValidationCacheHeaderVersionEXT {
+    pub const ONE_EXT: Self = Self(1);
+}
 bitflags::bitflags! {
     #[repr(transparent)] #[derive(Clone, Copy)] pub struct ValidationCacheCreateFlagsEXT
     : u32 {}

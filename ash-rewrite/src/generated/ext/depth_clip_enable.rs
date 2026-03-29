@@ -16,6 +16,13 @@ pub struct PipelineRasterizationDepthClipStateCreateInfoEXT {
     pub flags: crate::vk::PipelineRasterizationDepthClipStateCreateFlagsEXT,
     pub depth_clip_enable: crate::vk::Bool32,
 }
+///Provided by [`ext::depth_clip_enable`](crate::ext::depth_clip_enable)
+impl crate::vk::StructureType {
+    pub const PHYSICAL_DEVICE_DEPTH_CLIP_ENABLE_FEATURES_EXT: Self = Self(1000102000);
+    pub const PIPELINE_RASTERIZATION_DEPTH_CLIP_STATE_CREATE_INFO_EXT: Self = Self(
+        1000102001,
+    );
+}
 bitflags::bitflags! {
     #[repr(transparent)] #[derive(Clone, Copy)] pub struct
     PipelineRasterizationDepthClipStateCreateFlagsEXT : u32 {}

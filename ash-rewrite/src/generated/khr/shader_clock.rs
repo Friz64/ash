@@ -9,5 +9,9 @@ pub struct PhysicalDeviceShaderClockFeaturesKHR {
     pub shader_subgroup_clock: crate::vk::Bool32,
     pub shader_device_clock: crate::vk::Bool32,
 }
+///Provided by [`khr::shader_clock`](crate::khr::shader_clock)
+impl crate::vk::StructureType {
+    pub const PHYSICAL_DEVICE_SHADER_CLOCK_FEATURES_KHR: Self = Self(1000181000);
+}
 pub const KHR_SHADER_CLOCK_SPEC_VERSION: u32 = 1;
 pub const KHR_SHADER_CLOCK_EXTENSION_NAME: &core::ffi::CStr = c"VK_KHR_shader_clock";

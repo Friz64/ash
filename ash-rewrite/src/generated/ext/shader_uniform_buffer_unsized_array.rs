@@ -8,5 +8,11 @@ pub struct PhysicalDeviceShaderUniformBufferUnsizedArrayFeaturesEXT {
     pub p_next: *mut core::ffi::c_void,
     pub shader_uniform_buffer_unsized_array: crate::vk::Bool32,
 }
+///Provided by [`ext::shader_uniform_buffer_unsized_array`](crate::ext::shader_uniform_buffer_unsized_array)
+impl crate::vk::StructureType {
+    pub const PHYSICAL_DEVICE_SHADER_UNIFORM_BUFFER_UNSIZED_ARRAY_FEATURES_EXT: Self = Self(
+        1000642000,
+    );
+}
 pub const EXT_SHADER_UNIFORM_BUFFER_UNSIZED_ARRAY_SPEC_VERSION: u32 = 1;
 pub const EXT_SHADER_UNIFORM_BUFFER_UNSIZED_ARRAY_EXTENSION_NAME: &core::ffi::CStr = c"VK_EXT_shader_uniform_buffer_unsized_array";

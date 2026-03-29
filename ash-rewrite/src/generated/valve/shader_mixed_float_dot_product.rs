@@ -11,5 +11,11 @@ pub struct PhysicalDeviceShaderMixedFloatDotProductFeaturesVALVE {
     pub shader_mixed_float_dot_product_b_float16_acc: crate::vk::Bool32,
     pub shader_mixed_float_dot_product_float8_acc_float32: crate::vk::Bool32,
 }
+///Provided by [`valve::shader_mixed_float_dot_product`](crate::valve::shader_mixed_float_dot_product)
+impl crate::vk::StructureType {
+    pub const PHYSICAL_DEVICE_SHADER_MIXED_FLOAT_DOT_PRODUCT_FEATURES_VALVE: Self = Self(
+        1000673000,
+    );
+}
 pub const VALVE_SHADER_MIXED_FLOAT_DOT_PRODUCT_SPEC_VERSION: u32 = 1;
 pub const VALVE_SHADER_MIXED_FLOAT_DOT_PRODUCT_EXTENSION_NAME: &core::ffi::CStr = c"VK_VALVE_shader_mixed_float_dot_product";

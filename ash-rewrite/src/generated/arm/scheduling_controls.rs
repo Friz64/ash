@@ -22,6 +22,14 @@ pub struct PhysicalDeviceSchedulingControlsPropertiesARM {
     pub p_next: *mut core::ffi::c_void,
     pub scheduling_controls_flags: crate::vk::PhysicalDeviceSchedulingControlsFlagsARM,
 }
+///Provided by [`arm::scheduling_controls`](crate::arm::scheduling_controls)
+impl crate::vk::StructureType {
+    pub const DEVICE_QUEUE_SHADER_CORE_CONTROL_CREATE_INFO_ARM: Self = Self(1000417000);
+    pub const PHYSICAL_DEVICE_SCHEDULING_CONTROLS_FEATURES_ARM: Self = Self(1000417001);
+    pub const PHYSICAL_DEVICE_SCHEDULING_CONTROLS_PROPERTIES_ARM: Self = Self(
+        1000417002,
+    );
+}
 bitflags::bitflags! {
     #[repr(transparent)] #[derive(Clone, Copy)] pub struct
     PhysicalDeviceSchedulingControlsFlagsARM : u64 { const SHADER_CORE_COUNT_ARM =
