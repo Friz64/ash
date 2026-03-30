@@ -7,7 +7,7 @@ pub struct VideoEncodeH264CapabilitiesKHR {
     pub s_type: crate::vk::StructureType,
     pub p_next: *mut core::ffi::c_void,
     pub flags: crate::vk::VideoEncodeH264CapabilityFlagsKHR,
-    pub max_level_idc: crate::vk::StdVideoH264LevelIdc,
+    pub max_level_idc: crate::vk::H264LevelIdc,
     pub max_slice_count: u32,
     pub max_p_picture_l0_reference_count: u32,
     pub max_b_picture_l0_reference_count: u32,
@@ -41,7 +41,7 @@ pub struct VideoEncodeH264SessionCreateInfoKHR {
     pub s_type: crate::vk::StructureType,
     pub p_next: *const core::ffi::c_void,
     pub use_max_level_idc: crate::vk::Bool32,
-    pub max_level_idc: crate::vk::StdVideoH264LevelIdc,
+    pub max_level_idc: crate::vk::H264LevelIdc,
 }
 #[repr(C)]
 #[derive(Clone, Copy)]
@@ -49,9 +49,9 @@ pub struct VideoEncodeH264SessionParametersAddInfoKHR {
     pub s_type: crate::vk::StructureType,
     pub p_next: *const core::ffi::c_void,
     pub std_sps_count: u32,
-    pub p_std_sp_ss: *const crate::vk::StdVideoH264SequenceParameterSet,
+    pub p_std_sp_ss: *const crate::vk::H264SequenceParameterSet,
     pub std_pps_count: u32,
-    pub p_std_pp_ss: *const crate::vk::StdVideoH264PictureParameterSet,
+    pub p_std_pp_ss: *const crate::vk::H264PictureParameterSet,
 }
 #[repr(C)]
 #[derive(Clone, Copy)]
@@ -85,7 +85,7 @@ pub struct VideoEncodeH264SessionParametersFeedbackInfoKHR {
 pub struct VideoEncodeH264DpbSlotInfoKHR {
     pub s_type: crate::vk::StructureType,
     pub p_next: *const core::ffi::c_void,
-    pub p_std_reference_info: *const crate::vk::StdVideoEncodeH264ReferenceInfo,
+    pub p_std_reference_info: *const crate::vk::EncodeH264ReferenceInfo,
 }
 #[repr(C)]
 #[derive(Clone, Copy)]
@@ -94,7 +94,7 @@ pub struct VideoEncodeH264PictureInfoKHR {
     pub p_next: *const core::ffi::c_void,
     pub nalu_slice_entry_count: u32,
     pub p_nalu_slice_entries: *const crate::vk::VideoEncodeH264NaluSliceInfoKHR,
-    pub p_std_picture_info: *const crate::vk::StdVideoEncodeH264PictureInfo,
+    pub p_std_picture_info: *const crate::vk::EncodeH264PictureInfo,
     pub generate_prefix_nalu: crate::vk::Bool32,
 }
 #[repr(C)]
@@ -102,7 +102,7 @@ pub struct VideoEncodeH264PictureInfoKHR {
 pub struct VideoEncodeH264ProfileInfoKHR {
     pub s_type: crate::vk::StructureType,
     pub p_next: *const core::ffi::c_void,
-    pub std_profile_idc: crate::vk::StdVideoH264ProfileIdc,
+    pub std_profile_idc: crate::vk::H264ProfileIdc,
 }
 #[repr(C)]
 #[derive(Clone, Copy)]
@@ -110,7 +110,7 @@ pub struct VideoEncodeH264NaluSliceInfoKHR {
     pub s_type: crate::vk::StructureType,
     pub p_next: *const core::ffi::c_void,
     pub constant_qp: i32,
-    pub p_std_slice_header: *const crate::vk::StdVideoEncodeH264SliceHeader,
+    pub p_std_slice_header: *const crate::vk::EncodeH264SliceHeader,
 }
 #[repr(C)]
 #[derive(Clone, Copy)]

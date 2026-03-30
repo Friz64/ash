@@ -3,7 +3,7 @@
 //!Items provided by `vulkan_video_codec_av1std_decode`
 #[repr(C)]
 #[derive(Clone, Copy)]
-pub struct StdVideoDecodeAV1PictureInfoFlags {
+pub struct DecodeAV1PictureInfoFlags {
     /**- `error_resilient_mode` @ `0..1`
 - `disable_cdf_update` @ `1..2`
 - `use_superres` @ `2..3`
@@ -37,16 +37,16 @@ pub struct StdVideoDecodeAV1PictureInfoFlags {
 }
 #[repr(C)]
 #[derive(Clone, Copy)]
-pub struct StdVideoDecodeAV1PictureInfo {
-    pub flags: crate::vk::StdVideoDecodeAV1PictureInfoFlags,
-    pub frame_type: crate::vk::StdVideoAV1FrameType,
+pub struct DecodeAV1PictureInfo {
+    pub flags: crate::vk::DecodeAV1PictureInfoFlags,
+    pub frame_type: crate::vk::AV1FrameType,
     pub current_frame_id: u32,
     pub order_hint: u8,
     pub primary_ref_frame: u8,
     pub refresh_frame_flags: u8,
     pub reserved1: u8,
-    pub interpolation_filter: crate::vk::StdVideoAV1InterpolationFilter,
-    pub tx_mode: crate::vk::StdVideoAV1TxMode,
+    pub interpolation_filter: crate::vk::AV1InterpolationFilter,
+    pub tx_mode: crate::vk::AV1TxMode,
     pub delta_q_res: u8,
     pub delta_lf_res: u8,
     pub skip_mode_frame: [u8; crate::vk::STD_VIDEO_AV1_SKIP_MODE_FRAMES as _],
@@ -54,26 +54,26 @@ pub struct StdVideoDecodeAV1PictureInfo {
     pub reserved2: [u8; 3 as _],
     pub order_hints: [u8; crate::vk::STD_VIDEO_AV1_NUM_REF_FRAMES as _],
     pub expected_frame_id: [u32; crate::vk::STD_VIDEO_AV1_NUM_REF_FRAMES as _],
-    pub p_tile_info: *const crate::vk::StdVideoAV1TileInfo,
-    pub p_quantization: *const crate::vk::StdVideoAV1Quantization,
-    pub p_segmentation: *const crate::vk::StdVideoAV1Segmentation,
-    pub p_loop_filter: *const crate::vk::StdVideoAV1LoopFilter,
-    pub p_cdef: *const crate::vk::StdVideoAV1CDEF,
-    pub p_loop_restoration: *const crate::vk::StdVideoAV1LoopRestoration,
-    pub p_global_motion: *const crate::vk::StdVideoAV1GlobalMotion,
-    pub p_film_grain: *const crate::vk::StdVideoAV1FilmGrain,
+    pub p_tile_info: *const crate::vk::AV1TileInfo,
+    pub p_quantization: *const crate::vk::AV1Quantization,
+    pub p_segmentation: *const crate::vk::AV1Segmentation,
+    pub p_loop_filter: *const crate::vk::AV1LoopFilter,
+    pub p_cdef: *const crate::vk::AV1CDEF,
+    pub p_loop_restoration: *const crate::vk::AV1LoopRestoration,
+    pub p_global_motion: *const crate::vk::AV1GlobalMotion,
+    pub p_film_grain: *const crate::vk::AV1FilmGrain,
 }
 #[repr(C)]
 #[derive(Clone, Copy)]
-pub struct StdVideoDecodeAV1ReferenceInfoFlags {
+pub struct DecodeAV1ReferenceInfoFlags {
     /**- `disable_frame_end_update_cdf` @ `0..1`
 - `segmentation_enabled` @ `1..2`*/
     pub bitfield0: u32,
 }
 #[repr(C)]
 #[derive(Clone, Copy)]
-pub struct StdVideoDecodeAV1ReferenceInfo {
-    pub flags: crate::vk::StdVideoDecodeAV1ReferenceInfoFlags,
+pub struct DecodeAV1ReferenceInfo {
+    pub flags: crate::vk::DecodeAV1ReferenceInfoFlags,
     pub frame_type: u8,
     pub ref_frame_sign_bias: u8,
     pub order_hint: u8,

@@ -90,6 +90,27 @@ pub enum TypeItem {
     Handle(Handle),
 }
 
+impl TypeItem {
+    pub fn required_by(&self, items: &Items) -> RequiredBy {
+        match self {
+            TypeItem::Alias(item) => item.required_by,
+            TypeItem::Struct(item) => item.required_by,
+            TypeItem::Union(item) => item.required_by,
+            TypeItem::Enum(item) => item.required_by,
+            TypeItem::BitMask(item) => item.required_by,
+            TypeItem::BitMaskBits { bitmask_name } => {
+                let TypeItem::BitMask(bitmask) = &items.types[bitmask_name] else {
+                    unreachable!()
+                };
+
+                bitmask.required_by
+            }
+            TypeItem::BaseType(item) => item.required_by,
+            TypeItem::Handle(item) => item.required_by,
+        }
+    }
+}
+
 #[derive(Debug)]
 pub enum CommandItem {
     Alias(CommandAlias),

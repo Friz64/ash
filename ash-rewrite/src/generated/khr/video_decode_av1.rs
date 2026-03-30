@@ -6,7 +6,7 @@
 pub struct VideoDecodeAV1ProfileInfoKHR {
     pub s_type: crate::vk::StructureType,
     pub p_next: *const core::ffi::c_void,
-    pub std_profile: crate::vk::StdVideoAV1Profile,
+    pub std_profile: crate::vk::AV1Profile,
     pub film_grain_support: crate::vk::Bool32,
 }
 #[repr(C)]
@@ -14,21 +14,21 @@ pub struct VideoDecodeAV1ProfileInfoKHR {
 pub struct VideoDecodeAV1CapabilitiesKHR {
     pub s_type: crate::vk::StructureType,
     pub p_next: *mut core::ffi::c_void,
-    pub max_level: crate::vk::StdVideoAV1Level,
+    pub max_level: crate::vk::AV1Level,
 }
 #[repr(C)]
 #[derive(Clone, Copy)]
 pub struct VideoDecodeAV1SessionParametersCreateInfoKHR {
     pub s_type: crate::vk::StructureType,
     pub p_next: *const core::ffi::c_void,
-    pub p_std_sequence_header: *const crate::vk::StdVideoAV1SequenceHeader,
+    pub p_std_sequence_header: *const crate::vk::AV1SequenceHeader,
 }
 #[repr(C)]
 #[derive(Clone, Copy)]
 pub struct VideoDecodeAV1PictureInfoKHR {
     pub s_type: crate::vk::StructureType,
     pub p_next: *const core::ffi::c_void,
-    pub p_std_picture_info: *const crate::vk::StdVideoDecodeAV1PictureInfo,
+    pub p_std_picture_info: *const crate::vk::DecodeAV1PictureInfo,
     pub reference_name_slot_indices: [i32; crate::vk::MAX_VIDEO_AV1_REFERENCES_PER_FRAME_KHR
         as _],
     pub frame_header_offset: u32,
@@ -41,7 +41,7 @@ pub struct VideoDecodeAV1PictureInfoKHR {
 pub struct VideoDecodeAV1DpbSlotInfoKHR {
     pub s_type: crate::vk::StructureType,
     pub p_next: *const core::ffi::c_void,
-    pub p_std_reference_info: *const crate::vk::StdVideoDecodeAV1ReferenceInfo,
+    pub p_std_reference_info: *const crate::vk::DecodeAV1ReferenceInfo,
 }
 ///Provided by [`khr::video_decode_av1`](crate::khr::video_decode_av1)
 impl crate::vk::StructureType {

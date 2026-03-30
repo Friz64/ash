@@ -13,24 +13,24 @@ pub struct PhysicalDeviceVideoMaintenance2FeaturesKHR {
 pub struct VideoDecodeH264InlineSessionParametersInfoKHR {
     pub s_type: crate::vk::StructureType,
     pub p_next: *const core::ffi::c_void,
-    pub p_std_sps: *const crate::vk::StdVideoH264SequenceParameterSet,
-    pub p_std_pps: *const crate::vk::StdVideoH264PictureParameterSet,
+    pub p_std_sps: *const crate::vk::H264SequenceParameterSet,
+    pub p_std_pps: *const crate::vk::H264PictureParameterSet,
 }
 #[repr(C)]
 #[derive(Clone, Copy)]
 pub struct VideoDecodeH265InlineSessionParametersInfoKHR {
     pub s_type: crate::vk::StructureType,
     pub p_next: *const core::ffi::c_void,
-    pub p_std_vps: *const crate::vk::StdVideoH265VideoParameterSet,
-    pub p_std_sps: *const crate::vk::StdVideoH265SequenceParameterSet,
-    pub p_std_pps: *const crate::vk::StdVideoH265PictureParameterSet,
+    pub p_std_vps: *const crate::vk::H265VideoParameterSet,
+    pub p_std_sps: *const crate::vk::H265SequenceParameterSet,
+    pub p_std_pps: *const crate::vk::H265PictureParameterSet,
 }
 #[repr(C)]
 #[derive(Clone, Copy)]
 pub struct VideoDecodeAV1InlineSessionParametersInfoKHR {
     pub s_type: crate::vk::StructureType,
     pub p_next: *const core::ffi::c_void,
-    pub p_std_sequence_header: *const crate::vk::StdVideoAV1SequenceHeader,
+    pub p_std_sequence_header: *const crate::vk::AV1SequenceHeader,
 }
 ///Provided by [`khr::video_maintenance2`](crate::khr::video_maintenance2)
 impl crate::vk::StructureType {

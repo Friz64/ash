@@ -3,13 +3,13 @@
 //!Items provided by `vulkan_video_codec_av1std_encode`
 #[repr(C)]
 #[derive(Clone, Copy)]
-pub struct StdVideoEncodeAV1ExtensionHeader {
+pub struct EncodeAV1ExtensionHeader {
     pub temporal_id: u8,
     pub spatial_id: u8,
 }
 #[repr(C)]
 #[derive(Clone, Copy)]
-pub struct StdVideoEncodeAV1DecoderModelInfo {
+pub struct EncodeAV1DecoderModelInfo {
     pub buffer_delay_length_minus_1: u8,
     pub buffer_removal_time_length_minus_1: u8,
     pub frame_presentation_time_length_minus_1: u8,
@@ -18,7 +18,7 @@ pub struct StdVideoEncodeAV1DecoderModelInfo {
 }
 #[repr(C)]
 #[derive(Clone, Copy)]
-pub struct StdVideoEncodeAV1OperatingPointInfoFlags {
+pub struct EncodeAV1OperatingPointInfoFlags {
     /**- `decoder_model_present_for_this_op` @ `0..1`
 - `low_delay_mode_flag` @ `1..2`
 - `initial_display_delay_present_for_this_op` @ `2..3`*/
@@ -26,8 +26,8 @@ pub struct StdVideoEncodeAV1OperatingPointInfoFlags {
 }
 #[repr(C)]
 #[derive(Clone, Copy)]
-pub struct StdVideoEncodeAV1OperatingPointInfo {
-    pub flags: crate::vk::StdVideoEncodeAV1OperatingPointInfoFlags,
+pub struct EncodeAV1OperatingPointInfo {
+    pub flags: crate::vk::EncodeAV1OperatingPointInfoFlags,
     pub operating_point_idc: u16,
     pub seq_level_idx: u8,
     pub seq_tier: u8,
@@ -37,7 +37,7 @@ pub struct StdVideoEncodeAV1OperatingPointInfo {
 }
 #[repr(C)]
 #[derive(Clone, Copy)]
-pub struct StdVideoEncodeAV1PictureInfoFlags {
+pub struct EncodeAV1PictureInfoFlags {
     /**- `error_resilient_mode` @ `0..1`
 - `disable_cdf_update` @ `1..2`
 - `use_superres` @ `2..3`
@@ -71,9 +71,9 @@ pub struct StdVideoEncodeAV1PictureInfoFlags {
 }
 #[repr(C)]
 #[derive(Clone, Copy)]
-pub struct StdVideoEncodeAV1PictureInfo {
-    pub flags: crate::vk::StdVideoEncodeAV1PictureInfoFlags,
-    pub frame_type: crate::vk::StdVideoAV1FrameType,
+pub struct EncodeAV1PictureInfo {
+    pub flags: crate::vk::EncodeAV1PictureInfoFlags,
+    pub frame_type: crate::vk::AV1FrameType,
     pub frame_presentation_time: u32,
     pub current_frame_id: u32,
     pub order_hint: u8,
@@ -82,40 +82,40 @@ pub struct StdVideoEncodeAV1PictureInfo {
     pub coded_denom: u8,
     pub render_width_minus_1: u16,
     pub render_height_minus_1: u16,
-    pub interpolation_filter: crate::vk::StdVideoAV1InterpolationFilter,
-    pub tx_mode: crate::vk::StdVideoAV1TxMode,
+    pub interpolation_filter: crate::vk::AV1InterpolationFilter,
+    pub tx_mode: crate::vk::AV1TxMode,
     pub delta_q_res: u8,
     pub delta_lf_res: u8,
     pub ref_order_hint: [u8; crate::vk::STD_VIDEO_AV1_NUM_REF_FRAMES as _],
     pub ref_frame_idx: [i8; crate::vk::STD_VIDEO_AV1_REFS_PER_FRAME as _],
     pub reserved1: [u8; 3 as _],
     pub delta_frame_id_minus_1: [u32; crate::vk::STD_VIDEO_AV1_REFS_PER_FRAME as _],
-    pub p_tile_info: *const crate::vk::StdVideoAV1TileInfo,
-    pub p_quantization: *const crate::vk::StdVideoAV1Quantization,
-    pub p_segmentation: *const crate::vk::StdVideoAV1Segmentation,
-    pub p_loop_filter: *const crate::vk::StdVideoAV1LoopFilter,
-    pub p_cdef: *const crate::vk::StdVideoAV1CDEF,
-    pub p_loop_restoration: *const crate::vk::StdVideoAV1LoopRestoration,
-    pub p_global_motion: *const crate::vk::StdVideoAV1GlobalMotion,
-    pub p_extension_header: *const crate::vk::StdVideoEncodeAV1ExtensionHeader,
+    pub p_tile_info: *const crate::vk::AV1TileInfo,
+    pub p_quantization: *const crate::vk::AV1Quantization,
+    pub p_segmentation: *const crate::vk::AV1Segmentation,
+    pub p_loop_filter: *const crate::vk::AV1LoopFilter,
+    pub p_cdef: *const crate::vk::AV1CDEF,
+    pub p_loop_restoration: *const crate::vk::AV1LoopRestoration,
+    pub p_global_motion: *const crate::vk::AV1GlobalMotion,
+    pub p_extension_header: *const crate::vk::EncodeAV1ExtensionHeader,
     pub p_buffer_removal_times: *const u32,
 }
 #[repr(C)]
 #[derive(Clone, Copy)]
-pub struct StdVideoEncodeAV1ReferenceInfoFlags {
+pub struct EncodeAV1ReferenceInfoFlags {
     /**- `disable_frame_end_update_cdf` @ `0..1`
 - `segmentation_enabled` @ `1..2`*/
     pub bitfield0: u32,
 }
 #[repr(C)]
 #[derive(Clone, Copy)]
-pub struct StdVideoEncodeAV1ReferenceInfo {
-    pub flags: crate::vk::StdVideoEncodeAV1ReferenceInfoFlags,
+pub struct EncodeAV1ReferenceInfo {
+    pub flags: crate::vk::EncodeAV1ReferenceInfoFlags,
     pub ref_frame_id: u32,
-    pub frame_type: crate::vk::StdVideoAV1FrameType,
+    pub frame_type: crate::vk::AV1FrameType,
     pub order_hint: u8,
     pub reserved1: [u8; 3 as _],
-    pub p_extension_header: *const crate::vk::StdVideoEncodeAV1ExtensionHeader,
+    pub p_extension_header: *const crate::vk::EncodeAV1ExtensionHeader,
 }
 pub const STD_VULKAN_VIDEO_CODEC_AV1_ENCODE_SPEC_VERSION: u32 = crate::vk::STD_VULKAN_VIDEO_CODEC_AV1_ENCODE_API_VERSION_1_0_0;
 pub const STD_VULKAN_VIDEO_CODEC_AV1_ENCODE_EXTENSION_NAME: &core::ffi::CStr = c"VK_STD_vulkan_video_codec_av1_encode";

@@ -3,7 +3,7 @@
 //!Items provided by `vulkan_video_codec_h265std_decode`
 #[repr(C)]
 #[derive(Clone, Copy)]
-pub struct StdVideoDecodeH265PictureInfoFlags {
+pub struct DecodeH265PictureInfoFlags {
     /**- `IrapPicFlag` @ `0..1`
 - `IdrPicFlag` @ `1..2`
 - `IsReference` @ `2..3`
@@ -12,8 +12,8 @@ pub struct StdVideoDecodeH265PictureInfoFlags {
 }
 #[repr(C)]
 #[derive(Clone, Copy)]
-pub struct StdVideoDecodeH265PictureInfo {
-    pub flags: crate::vk::StdVideoDecodeH265PictureInfoFlags,
+pub struct DecodeH265PictureInfo {
+    pub flags: crate::vk::DecodeH265PictureInfoFlags,
     pub sps_video_parameter_set_id: u8,
     pub pps_seq_parameter_set_id: u8,
     pub pps_pic_parameter_set_id: u8,
@@ -30,15 +30,15 @@ pub struct StdVideoDecodeH265PictureInfo {
 }
 #[repr(C)]
 #[derive(Clone, Copy)]
-pub struct StdVideoDecodeH265ReferenceInfoFlags {
+pub struct DecodeH265ReferenceInfoFlags {
     /**- `used_for_long_term_reference` @ `0..1`
 - `unused_for_reference` @ `1..2`*/
     pub bitfield0: u32,
 }
 #[repr(C)]
 #[derive(Clone, Copy)]
-pub struct StdVideoDecodeH265ReferenceInfo {
-    pub flags: crate::vk::StdVideoDecodeH265ReferenceInfoFlags,
+pub struct DecodeH265ReferenceInfo {
+    pub flags: crate::vk::DecodeH265ReferenceInfoFlags,
     pub pic_order_cnt_val: i32,
 }
 pub const STD_VULKAN_VIDEO_CODEC_H265_DECODE_SPEC_VERSION: u32 = crate::vk::STD_VULKAN_VIDEO_CODEC_H265_DECODE_API_VERSION_1_0_0;

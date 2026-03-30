@@ -20,7 +20,7 @@ impl Code for Enum {
             pub struct #name(pub(crate) i32);
         };
 
-        let mut codemap = CodeMap::new(Destination::library(self.required_by), code);
+        let mut codemap = CodeMap::new(Destination::new(self.required_by), code);
         let mut impl_map = CodeMap::default();
 
         for (&name, Item { required_by, value }) in &self.items {
@@ -41,13 +41,13 @@ impl Code for Enum {
             };
 
             impl_map.extend(CodeMap::new(
-                Destination::library(*required_by),
+                Destination::new(*required_by),
                 quote! { pub const #name: Self = #value; },
             ));
         }
 
         for (&dest, impl_tokens) in impl_map.iter() {
-            let name = ctx.type_to_rust(self.name, dest != Destination::library(self.required_by));
+            let name = ctx.type_to_rust(self.name, dest != Destination::new(self.required_by));
             let doc = dest.doc_link();
             codemap.extend(CodeMap::new(
                 dest,

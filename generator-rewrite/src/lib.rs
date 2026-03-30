@@ -68,7 +68,8 @@ impl<'a> RustTranslator for Context<'a> {
     }
 
     fn type_to_rust(&self, name: TypeName, with_path: bool) -> TokenStream {
-        let ident: Ident = syn::parse_str(name.prefix_trimmed()).unwrap();
+        let required_by = self.items.types[&name].required_by(self.items);
+        let ident: Ident = syn::parse_str(name.prefix_trimmed(required_by.library)).unwrap();
         let path = with_path.then(|| quote! { crate::vk:: });
         quote! { #path #ident }
     }

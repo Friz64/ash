@@ -3,7 +3,7 @@
 //!Items provided by `vulkan_video_codec_h264std_encode`
 #[repr(C)]
 #[derive(Clone, Copy)]
-pub struct StdVideoEncodeH264WeightTableFlags {
+pub struct EncodeH264WeightTableFlags {
     pub luma_weight_l0_flag: u32,
     pub chroma_weight_l0_flag: u32,
     pub luma_weight_l1_flag: u32,
@@ -11,8 +11,8 @@ pub struct StdVideoEncodeH264WeightTableFlags {
 }
 #[repr(C)]
 #[derive(Clone, Copy)]
-pub struct StdVideoEncodeH264WeightTable {
-    pub flags: crate::vk::StdVideoEncodeH264WeightTableFlags,
+pub struct EncodeH264WeightTable {
+    pub flags: crate::vk::EncodeH264WeightTableFlags,
     pub luma_log2_weight_denom: u8,
     pub chroma_log2_weight_denom: u8,
     pub luma_weight_l0: [i8; crate::vk::STD_VIDEO_H264_MAX_NUM_LIST_REF as _],
@@ -30,14 +30,14 @@ pub struct StdVideoEncodeH264WeightTable {
 }
 #[repr(C)]
 #[derive(Clone, Copy)]
-pub struct StdVideoEncodeH264SliceHeaderFlags {
+pub struct EncodeH264SliceHeaderFlags {
     /**- `direct_spatial_mv_pred_flag` @ `0..1`
 - `num_ref_idx_active_override_flag` @ `1..2`*/
     pub bitfield0: u32,
 }
 #[repr(C)]
 #[derive(Clone, Copy)]
-pub struct StdVideoEncodeH264PictureInfoFlags {
+pub struct EncodeH264PictureInfoFlags {
     /**- `IdrPicFlag` @ `0..1`
 - `is_reference` @ `1..2`
 - `no_output_of_prior_pics_flag` @ `2..3`
@@ -47,28 +47,28 @@ pub struct StdVideoEncodeH264PictureInfoFlags {
 }
 #[repr(C)]
 #[derive(Clone, Copy)]
-pub struct StdVideoEncodeH264ReferenceInfoFlags {
+pub struct EncodeH264ReferenceInfoFlags {
     ///- `used_for_long_term_reference` @ `0..1`
     pub bitfield0: u32,
 }
 #[repr(C)]
 #[derive(Clone, Copy)]
-pub struct StdVideoEncodeH264ReferenceListsInfoFlags {
+pub struct EncodeH264ReferenceListsInfoFlags {
     /**- `ref_pic_list_modification_flag_l0` @ `0..1`
 - `ref_pic_list_modification_flag_l1` @ `1..2`*/
     pub bitfield0: u32,
 }
 #[repr(C)]
 #[derive(Clone, Copy)]
-pub struct StdVideoEncodeH264RefListModEntry {
-    pub modification_of_pic_nums_idc: crate::vk::StdVideoH264ModificationOfPicNumsIdc,
+pub struct EncodeH264RefListModEntry {
+    pub modification_of_pic_nums_idc: crate::vk::H264ModificationOfPicNumsIdc,
     pub abs_diff_pic_num_minus1: u16,
     pub long_term_pic_num: u16,
 }
 #[repr(C)]
 #[derive(Clone, Copy)]
-pub struct StdVideoEncodeH264RefPicMarkingEntry {
-    pub memory_management_control_operation: crate::vk::StdVideoH264MemMgmtControlOp,
+pub struct EncodeH264RefPicMarkingEntry {
+    pub memory_management_control_operation: crate::vk::H264MemMgmtControlOp,
     pub difference_of_pic_nums_minus1: u16,
     pub long_term_pic_num: u16,
     pub long_term_frame_idx: u16,
@@ -76,8 +76,8 @@ pub struct StdVideoEncodeH264RefPicMarkingEntry {
 }
 #[repr(C)]
 #[derive(Clone, Copy)]
-pub struct StdVideoEncodeH264ReferenceListsInfo {
-    pub flags: crate::vk::StdVideoEncodeH264ReferenceListsInfoFlags,
+pub struct EncodeH264ReferenceListsInfo {
+    pub flags: crate::vk::EncodeH264ReferenceListsInfoFlags,
     pub num_ref_idx_l0_active_minus1: u8,
     pub num_ref_idx_l1_active_minus1: u8,
     pub ref_pic_list0: [u8; crate::vk::STD_VIDEO_H264_MAX_NUM_LIST_REF as _],
@@ -86,29 +86,29 @@ pub struct StdVideoEncodeH264ReferenceListsInfo {
     pub ref_list1_mod_op_count: u8,
     pub ref_pic_marking_op_count: u8,
     pub reserved1: [u8; 7 as _],
-    pub p_ref_list0_mod_operations: *const crate::vk::StdVideoEncodeH264RefListModEntry,
-    pub p_ref_list1_mod_operations: *const crate::vk::StdVideoEncodeH264RefListModEntry,
-    pub p_ref_pic_marking_operations: *const crate::vk::StdVideoEncodeH264RefPicMarkingEntry,
+    pub p_ref_list0_mod_operations: *const crate::vk::EncodeH264RefListModEntry,
+    pub p_ref_list1_mod_operations: *const crate::vk::EncodeH264RefListModEntry,
+    pub p_ref_pic_marking_operations: *const crate::vk::EncodeH264RefPicMarkingEntry,
 }
 #[repr(C)]
 #[derive(Clone, Copy)]
-pub struct StdVideoEncodeH264PictureInfo {
-    pub flags: crate::vk::StdVideoEncodeH264PictureInfoFlags,
+pub struct EncodeH264PictureInfo {
+    pub flags: crate::vk::EncodeH264PictureInfoFlags,
     pub seq_parameter_set_id: u8,
     pub pic_parameter_set_id: u8,
     pub idr_pic_id: u16,
-    pub primary_pic_type: crate::vk::StdVideoH264PictureType,
+    pub primary_pic_type: crate::vk::H264PictureType,
     pub frame_num: u32,
     pub pic_order_cnt: i32,
     pub temporal_id: u8,
     pub reserved1: [u8; 3 as _],
-    pub p_ref_lists: *const crate::vk::StdVideoEncodeH264ReferenceListsInfo,
+    pub p_ref_lists: *const crate::vk::EncodeH264ReferenceListsInfo,
 }
 #[repr(C)]
 #[derive(Clone, Copy)]
-pub struct StdVideoEncodeH264ReferenceInfo {
-    pub flags: crate::vk::StdVideoEncodeH264ReferenceInfoFlags,
-    pub primary_pic_type: crate::vk::StdVideoH264PictureType,
+pub struct EncodeH264ReferenceInfo {
+    pub flags: crate::vk::EncodeH264ReferenceInfoFlags,
+    pub primary_pic_type: crate::vk::H264PictureType,
     pub frame_num: u32,
     pub pic_order_cnt: i32,
     pub long_term_pic_num: u16,
@@ -117,17 +117,17 @@ pub struct StdVideoEncodeH264ReferenceInfo {
 }
 #[repr(C)]
 #[derive(Clone, Copy)]
-pub struct StdVideoEncodeH264SliceHeader {
-    pub flags: crate::vk::StdVideoEncodeH264SliceHeaderFlags,
+pub struct EncodeH264SliceHeader {
+    pub flags: crate::vk::EncodeH264SliceHeaderFlags,
     pub first_mb_in_slice: u32,
-    pub slice_type: crate::vk::StdVideoH264SliceType,
+    pub slice_type: crate::vk::H264SliceType,
     pub slice_alpha_c0_offset_div2: i8,
     pub slice_beta_offset_div2: i8,
     pub slice_qp_delta: i8,
     pub reserved1: u8,
-    pub cabac_init_idc: crate::vk::StdVideoH264CabacInitIdc,
-    pub disable_deblocking_filter_idc: crate::vk::StdVideoH264DisableDeblockingFilterIdc,
-    pub p_weight_table: *const crate::vk::StdVideoEncodeH264WeightTable,
+    pub cabac_init_idc: crate::vk::H264CabacInitIdc,
+    pub disable_deblocking_filter_idc: crate::vk::H264DisableDeblockingFilterIdc,
+    pub p_weight_table: *const crate::vk::EncodeH264WeightTable,
 }
 pub const STD_VULKAN_VIDEO_CODEC_H264_ENCODE_SPEC_VERSION: u32 = crate::vk::STD_VULKAN_VIDEO_CODEC_H264_ENCODE_API_VERSION_1_0_0;
 pub const STD_VULKAN_VIDEO_CODEC_H264_ENCODE_EXTENSION_NAME: &core::ffi::CStr = c"VK_STD_vulkan_video_codec_h264_encode";

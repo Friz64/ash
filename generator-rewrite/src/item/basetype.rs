@@ -17,6 +17,6 @@ impl Code for BaseType {
             pub struct #name(pub(crate) #ty);
         };
 
-        CodeMap::new(Destination::library(self.required_by), code)
+        CodeMap::new(Destination::new(self.required_by), code)
     }
 }

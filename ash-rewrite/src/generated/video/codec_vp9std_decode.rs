@@ -3,7 +3,7 @@
 //!Items provided by `vulkan_video_codec_vp9std_decode`
 #[repr(C)]
 #[derive(Clone, Copy)]
-pub struct StdVideoDecodeVP9PictureInfoFlags {
+pub struct DecodeVP9PictureInfoFlags {
     /**- `error_resilient_mode` @ `0..1`
 - `intra_only` @ `1..2`
 - `allow_high_precision_mv` @ `2..3`
@@ -16,15 +16,15 @@ pub struct StdVideoDecodeVP9PictureInfoFlags {
 }
 #[repr(C)]
 #[derive(Clone, Copy)]
-pub struct StdVideoDecodeVP9PictureInfo {
-    pub flags: crate::vk::StdVideoDecodeVP9PictureInfoFlags,
-    pub profile: crate::vk::StdVideoVP9Profile,
-    pub frame_type: crate::vk::StdVideoVP9FrameType,
+pub struct DecodeVP9PictureInfo {
+    pub flags: crate::vk::DecodeVP9PictureInfoFlags,
+    pub profile: crate::vk::VP9Profile,
+    pub frame_type: crate::vk::VP9FrameType,
     pub frame_context_idx: u8,
     pub reset_frame_context: u8,
     pub refresh_frame_flags: u8,
     pub ref_frame_sign_bias_mask: u8,
-    pub interpolation_filter: crate::vk::StdVideoVP9InterpolationFilter,
+    pub interpolation_filter: crate::vk::VP9InterpolationFilter,
     pub base_q_idx: u8,
     pub delta_q_y_dc: i8,
     pub delta_q_uv_dc: i8,
@@ -32,9 +32,9 @@ pub struct StdVideoDecodeVP9PictureInfo {
     pub tile_cols_log2: u8,
     pub tile_rows_log2: u8,
     pub reserved1: [u16; 3 as _],
-    pub p_color_config: *const crate::vk::StdVideoVP9ColorConfig,
-    pub p_loop_filter: *const crate::vk::StdVideoVP9LoopFilter,
-    pub p_segmentation: *const crate::vk::StdVideoVP9Segmentation,
+    pub p_color_config: *const crate::vk::VP9ColorConfig,
+    pub p_loop_filter: *const crate::vk::VP9LoopFilter,
+    pub p_segmentation: *const crate::vk::VP9Segmentation,
 }
 pub const STD_VULKAN_VIDEO_CODEC_VP9_DECODE_SPEC_VERSION: u32 = crate::vk::STD_VULKAN_VIDEO_CODEC_VP9_DECODE_API_VERSION_1_0_0;
 pub const STD_VULKAN_VIDEO_CODEC_VP9_DECODE_EXTENSION_NAME: &core::ffi::CStr = c"VK_STD_vulkan_video_codec_vp9_decode";

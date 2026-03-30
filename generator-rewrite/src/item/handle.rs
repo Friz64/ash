@@ -98,6 +98,6 @@ impl Code for Handle {
             }
         };
 
-        CodeMap::new(Destination::library(self.required_by), code)
+        CodeMap::new(Destination::new(self.required_by), code)
     }
 }
