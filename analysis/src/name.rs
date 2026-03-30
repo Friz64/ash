@@ -1,5 +1,7 @@
 use heck::ToShoutySnekCase;
 
+use crate::LibraryName;
+
 #[derive(Debug, PartialEq, Eq, Hash, Clone, Copy)]
 pub struct TypeName(&'static str);
 
@@ -19,8 +21,13 @@ impl TypeName {
         self.0
     }
 
-    pub fn prefix_trimmed(&self) -> &'static str {
-        self.original().trim_start_matches("Vk")
+    pub fn prefix_trimmed(&self, library: LibraryName) -> &'static str {
+        let prefix = match library {
+            LibraryName::Vk => "Vk",
+            LibraryName::Video => "StdVideo",
+        };
+
+        self.original().strip_prefix(prefix).unwrap()
     }
 
     pub fn tag_trimmed(&self) -> &'static str {
@@ -96,7 +103,7 @@ impl CMacroName {
     }
 
     pub fn prefix_trimmed(&self) -> &'static str {
-        self.original().trim_start_matches("VK_")
+        self.original().strip_prefix("VK_").unwrap()
     }
 }
 
@@ -121,12 +128,18 @@ impl FuncPointerName {
 pub struct CommandName(&'static str);
 
 impl CommandName {
+    pub const VK_GET_INSTANCE_PROC_ADDR: Self = Self::new("vkGetInstanceProcAddr");
+
     pub const fn new(original: &'static str) -> Self {
         Self(original)
     }
 
     pub const fn original(&self) -> &'static str {
         self.0
+    }
+
+    pub fn prefix_trimmed(&self) -> &'static str {
+        self.original().strip_prefix("vk").unwrap()
     }
 }
 

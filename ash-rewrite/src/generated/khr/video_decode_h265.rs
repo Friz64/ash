@@ -6,14 +6,14 @@
 pub struct VideoDecodeH265ProfileInfoKHR {
     pub s_type: crate::vk::StructureType,
     pub p_next: *const core::ffi::c_void,
-    pub std_profile_idc: crate::vk::StdVideoH265ProfileIdc,
+    pub std_profile_idc: crate::vk::H265ProfileIdc,
 }
 #[repr(C)]
 #[derive(Clone, Copy)]
 pub struct VideoDecodeH265CapabilitiesKHR {
     pub s_type: crate::vk::StructureType,
     pub p_next: *mut core::ffi::c_void,
-    pub max_level_idc: crate::vk::StdVideoH265LevelIdc,
+    pub max_level_idc: crate::vk::H265LevelIdc,
 }
 #[repr(C)]
 #[derive(Clone, Copy)]
@@ -21,11 +21,11 @@ pub struct VideoDecodeH265SessionParametersAddInfoKHR {
     pub s_type: crate::vk::StructureType,
     pub p_next: *const core::ffi::c_void,
     pub std_vps_count: u32,
-    pub p_std_vp_ss: *const crate::vk::StdVideoH265VideoParameterSet,
+    pub p_std_vp_ss: *const crate::vk::H265VideoParameterSet,
     pub std_sps_count: u32,
-    pub p_std_sp_ss: *const crate::vk::StdVideoH265SequenceParameterSet,
+    pub p_std_sp_ss: *const crate::vk::H265SequenceParameterSet,
     pub std_pps_count: u32,
-    pub p_std_pp_ss: *const crate::vk::StdVideoH265PictureParameterSet,
+    pub p_std_pp_ss: *const crate::vk::H265PictureParameterSet,
 }
 #[repr(C)]
 #[derive(Clone, Copy)]
@@ -42,7 +42,7 @@ pub struct VideoDecodeH265SessionParametersCreateInfoKHR {
 pub struct VideoDecodeH265PictureInfoKHR {
     pub s_type: crate::vk::StructureType,
     pub p_next: *const core::ffi::c_void,
-    pub p_std_picture_info: *const crate::vk::StdVideoDecodeH265PictureInfo,
+    pub p_std_picture_info: *const crate::vk::DecodeH265PictureInfo,
     pub slice_segment_count: u32,
     pub p_slice_segment_offsets: *const u32,
 }
@@ -51,7 +51,7 @@ pub struct VideoDecodeH265PictureInfoKHR {
 pub struct VideoDecodeH265DpbSlotInfoKHR {
     pub s_type: crate::vk::StructureType,
     pub p_next: *const core::ffi::c_void,
-    pub p_std_reference_info: *const crate::vk::StdVideoDecodeH265ReferenceInfo,
+    pub p_std_reference_info: *const crate::vk::DecodeH265ReferenceInfo,
 }
 ///Provided by [`khr::video_decode_h265`](crate::khr::video_decode_h265)
 impl crate::vk::StructureType {

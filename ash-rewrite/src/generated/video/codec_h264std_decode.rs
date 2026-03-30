@@ -3,7 +3,7 @@
 //!Items provided by `vulkan_video_codec_h264std_decode`
 #[repr(C)]
 #[derive(Clone, Copy)]
-pub struct StdVideoDecodeH264PictureInfoFlags {
+pub struct DecodeH264PictureInfoFlags {
     /**- `field_pic_flag` @ `0..1`
 - `is_intra` @ `1..2`
 - `IdrPicFlag` @ `2..3`
@@ -14,8 +14,8 @@ pub struct StdVideoDecodeH264PictureInfoFlags {
 }
 #[repr(C)]
 #[derive(Clone, Copy)]
-pub struct StdVideoDecodeH264PictureInfo {
-    pub flags: crate::vk::StdVideoDecodeH264PictureInfoFlags,
+pub struct DecodeH264PictureInfo {
+    pub flags: crate::vk::DecodeH264PictureInfoFlags,
     pub seq_parameter_set_id: u8,
     pub pic_parameter_set_id: u8,
     pub reserved1: u8,
@@ -27,7 +27,7 @@ pub struct StdVideoDecodeH264PictureInfo {
 }
 #[repr(C)]
 #[derive(Clone, Copy)]
-pub struct StdVideoDecodeH264ReferenceInfoFlags {
+pub struct DecodeH264ReferenceInfoFlags {
     /**- `top_field_flag` @ `0..1`
 - `bottom_field_flag` @ `1..2`
 - `used_for_long_term_reference` @ `2..3`
@@ -36,8 +36,8 @@ pub struct StdVideoDecodeH264ReferenceInfoFlags {
 }
 #[repr(C)]
 #[derive(Clone, Copy)]
-pub struct StdVideoDecodeH264ReferenceInfo {
-    pub flags: crate::vk::StdVideoDecodeH264ReferenceInfoFlags,
+pub struct DecodeH264ReferenceInfo {
+    pub flags: crate::vk::DecodeH264ReferenceInfoFlags,
     pub frame_num: u16,
     pub reserved: u16,
     pub pic_order_cnt: [i32; crate::vk::STD_VIDEO_DECODE_H264_FIELD_ORDER_COUNT_LIST_SIZE
@@ -45,9 +45,9 @@ pub struct StdVideoDecodeH264ReferenceInfo {
 }
 #[repr(transparent)]
 #[derive(Clone, Copy, PartialEq, Eq, PartialOrd, Ord, Hash, Default)]
-pub struct StdVideoDecodeH264FieldOrderCount(pub(crate) i32);
+pub struct DecodeH264FieldOrderCount(pub(crate) i32);
 ///Provided by [`video::codec_h264std_decode`](crate::video::codec_h264std_decode)
-impl StdVideoDecodeH264FieldOrderCount {
+impl DecodeH264FieldOrderCount {
     pub const TOP: Self = Self(0);
     pub const BOTTOM: Self = Self(1);
     pub const INVALID: Self = Self(0x7FFFFFF);

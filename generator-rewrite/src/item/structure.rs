@@ -42,7 +42,7 @@ impl Code for Struct {
             }
         };
 
-        CodeMap::new(Destination::library(self.required_by), code)
+        CodeMap::new(Destination::new(self.required_by), code)
     }
 }
 
@@ -61,6 +61,6 @@ impl Code for Union {
             }
         };
 
-        CodeMap::new(Destination::library(self.required_by), code)
+        CodeMap::new(Destination::new(self.required_by), code)
     }
 }

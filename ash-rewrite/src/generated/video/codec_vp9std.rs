@@ -3,31 +3,31 @@
 //!Items provided by `vulkan_video_codec_vp9std`
 #[repr(C)]
 #[derive(Clone, Copy)]
-pub struct StdVideoVP9ColorConfigFlags {
+pub struct VP9ColorConfigFlags {
     ///- `color_range` @ `0..1`
     pub bitfield0: u32,
 }
 #[repr(C)]
 #[derive(Clone, Copy)]
-pub struct StdVideoVP9ColorConfig {
-    pub flags: crate::vk::StdVideoVP9ColorConfigFlags,
+pub struct VP9ColorConfig {
+    pub flags: crate::vk::VP9ColorConfigFlags,
     pub bit_depth: u8,
     pub subsampling_x: u8,
     pub subsampling_y: u8,
     pub reserved1: u8,
-    pub color_space: crate::vk::StdVideoVP9ColorSpace,
+    pub color_space: crate::vk::VP9ColorSpace,
 }
 #[repr(C)]
 #[derive(Clone, Copy)]
-pub struct StdVideoVP9LoopFilterFlags {
+pub struct VP9LoopFilterFlags {
     /**- `loop_filter_delta_enabled` @ `0..1`
 - `loop_filter_delta_update` @ `1..2`*/
     pub bitfield0: u32,
 }
 #[repr(C)]
 #[derive(Clone, Copy)]
-pub struct StdVideoVP9LoopFilter {
-    pub flags: crate::vk::StdVideoVP9LoopFilterFlags,
+pub struct VP9LoopFilter {
+    pub flags: crate::vk::VP9LoopFilterFlags,
     pub loop_filter_level: u8,
     pub loop_filter_sharpness: u8,
     pub update_ref_delta: u8,
@@ -38,7 +38,7 @@ pub struct StdVideoVP9LoopFilter {
 }
 #[repr(C)]
 #[derive(Clone, Copy)]
-pub struct StdVideoVP9SegmentationFlags {
+pub struct VP9SegmentationFlags {
     /**- `segmentation_update_map` @ `0..1`
 - `segmentation_temporal_update` @ `1..2`
 - `segmentation_update_data` @ `2..3`
@@ -47,8 +47,8 @@ pub struct StdVideoVP9SegmentationFlags {
 }
 #[repr(C)]
 #[derive(Clone, Copy)]
-pub struct StdVideoVP9Segmentation {
-    pub flags: crate::vk::StdVideoVP9SegmentationFlags,
+pub struct VP9Segmentation {
+    pub flags: crate::vk::VP9SegmentationFlags,
     pub segmentation_tree_probs: [u8; crate::vk::STD_VIDEO_VP9_MAX_SEGMENTATION_TREE_PROBS
         as _],
     pub segmentation_pred_prob: [u8; crate::vk::STD_VIDEO_VP9_MAX_SEGMENTATION_PRED_PROB
@@ -59,9 +59,9 @@ pub struct StdVideoVP9Segmentation {
 }
 #[repr(transparent)]
 #[derive(Clone, Copy, PartialEq, Eq, PartialOrd, Ord, Hash, Default)]
-pub struct StdVideoVP9Profile(pub(crate) i32);
+pub struct VP9Profile(pub(crate) i32);
 ///Provided by [`video::codec_vp9std`](crate::video::codec_vp9std)
-impl StdVideoVP9Profile {
+impl VP9Profile {
     pub const _0: Self = Self(0);
     pub const _1: Self = Self(1);
     pub const _2: Self = Self(2);
@@ -70,9 +70,9 @@ impl StdVideoVP9Profile {
 }
 #[repr(transparent)]
 #[derive(Clone, Copy, PartialEq, Eq, PartialOrd, Ord, Hash, Default)]
-pub struct StdVideoVP9Level(pub(crate) i32);
+pub struct VP9Level(pub(crate) i32);
 ///Provided by [`video::codec_vp9std`](crate::video::codec_vp9std)
-impl StdVideoVP9Level {
+impl VP9Level {
     pub const _1_0: Self = Self(0);
     pub const _1_1: Self = Self(1);
     pub const _2_0: Self = Self(2);
@@ -91,18 +91,18 @@ impl StdVideoVP9Level {
 }
 #[repr(transparent)]
 #[derive(Clone, Copy, PartialEq, Eq, PartialOrd, Ord, Hash, Default)]
-pub struct StdVideoVP9FrameType(pub(crate) i32);
+pub struct VP9FrameType(pub(crate) i32);
 ///Provided by [`video::codec_vp9std`](crate::video::codec_vp9std)
-impl StdVideoVP9FrameType {
+impl VP9FrameType {
     pub const KEY: Self = Self(0);
     pub const NON_KEY: Self = Self(1);
     pub const INVALID: Self = Self(0x7FFFFFF);
 }
 #[repr(transparent)]
 #[derive(Clone, Copy, PartialEq, Eq, PartialOrd, Ord, Hash, Default)]
-pub struct StdVideoVP9ReferenceName(pub(crate) i32);
+pub struct VP9ReferenceName(pub(crate) i32);
 ///Provided by [`video::codec_vp9std`](crate::video::codec_vp9std)
-impl StdVideoVP9ReferenceName {
+impl VP9ReferenceName {
     pub const INTRA_FRAME: Self = Self(0);
     pub const LAST_FRAME: Self = Self(1);
     pub const GOLDEN_FRAME: Self = Self(2);
@@ -111,9 +111,9 @@ impl StdVideoVP9ReferenceName {
 }
 #[repr(transparent)]
 #[derive(Clone, Copy, PartialEq, Eq, PartialOrd, Ord, Hash, Default)]
-pub struct StdVideoVP9InterpolationFilter(pub(crate) i32);
+pub struct VP9InterpolationFilter(pub(crate) i32);
 ///Provided by [`video::codec_vp9std`](crate::video::codec_vp9std)
-impl StdVideoVP9InterpolationFilter {
+impl VP9InterpolationFilter {
     pub const EIGHTTAP: Self = Self(0);
     pub const EIGHTTAP_SMOOTH: Self = Self(1);
     pub const EIGHTTAP_SHARP: Self = Self(2);
@@ -123,9 +123,9 @@ impl StdVideoVP9InterpolationFilter {
 }
 #[repr(transparent)]
 #[derive(Clone, Copy, PartialEq, Eq, PartialOrd, Ord, Hash, Default)]
-pub struct StdVideoVP9ColorSpace(pub(crate) i32);
+pub struct VP9ColorSpace(pub(crate) i32);
 ///Provided by [`video::codec_vp9std`](crate::video::codec_vp9std)
-impl StdVideoVP9ColorSpace {
+impl VP9ColorSpace {
     pub const UNKNOWN: Self = Self(0);
     pub const BT_601: Self = Self(1);
     pub const BT_709: Self = Self(2);

@@ -13,21 +13,21 @@ pub struct PhysicalDeviceVideoDecodeVP9FeaturesKHR {
 pub struct VideoDecodeVP9ProfileInfoKHR {
     pub s_type: crate::vk::StructureType,
     pub p_next: *const core::ffi::c_void,
-    pub std_profile: crate::vk::StdVideoVP9Profile,
+    pub std_profile: crate::vk::VP9Profile,
 }
 #[repr(C)]
 #[derive(Clone, Copy)]
 pub struct VideoDecodeVP9CapabilitiesKHR {
     pub s_type: crate::vk::StructureType,
     pub p_next: *mut core::ffi::c_void,
-    pub max_level: crate::vk::StdVideoVP9Level,
+    pub max_level: crate::vk::VP9Level,
 }
 #[repr(C)]
 #[derive(Clone, Copy)]
 pub struct VideoDecodeVP9PictureInfoKHR {
     pub s_type: crate::vk::StructureType,
     pub p_next: *const core::ffi::c_void,
-    pub p_std_picture_info: *const crate::vk::StdVideoDecodeVP9PictureInfo,
+    pub p_std_picture_info: *const crate::vk::DecodeVP9PictureInfo,
     pub reference_name_slot_indices: [i32; crate::vk::MAX_VIDEO_VP9_REFERENCES_PER_FRAME_KHR
         as _],
     pub uncompressed_header_offset: u32,

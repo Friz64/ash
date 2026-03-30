@@ -6,12 +6,12 @@ use analysis::{
     item::{RequireLocation, RequiredBy},
 };
 use heck::ToSnekCase;
-use indexmap::IndexMap;
+use indexmap::{IndexMap, IndexSet};
 use itertools::Itertools;
 use proc_macro2::TokenStream;
 use quote::{format_ident, quote};
 use std::{
-    collections::{HashMap, HashSet},
+    collections::HashMap,
     hash::Hash,
     io, iter,
     path::{Path, PathBuf},
@@ -19,21 +19,20 @@ use std::{
 use syn::Ident;
 
 #[derive(Debug, Clone, Copy, PartialEq, Eq, Hash)]
-pub enum Destination {
-    Library {
-        library: LibraryName,
-        location: RequireLocation,
-    },
-    Loader,
+pub struct Destination {
+    pub library: LibraryName,
+    pub location: RequireLocation,
+    pub reexport: bool,
 }
 
 impl Destination {
-    pub fn library(required_by: RequiredBy) -> Destination {
-        Destination::Library {
+    pub fn new(required_by: RequiredBy) -> Destination {
+        Destination {
             library: required_by.library,
             // TODO: figure out secondary locations
             // we need to be generating type aliases or smth like that at those...
             location: required_by.primary_location(),
+            reexport: true,
         }
     }
 }
@@ -45,22 +44,15 @@ struct DestinationPathComponent {
 
 impl Destination {
     fn path_components(&self) -> Vec<DestinationPathComponent> {
-        match self {
-            Destination::Loader => vec![],
-            Destination::Library {
-                location: RequireLocation::Core { major, minor },
-                ..
-            } => vec![DestinationPathComponent {
+        match self.location {
+            RequireLocation::Core { major, minor } => vec![DestinationPathComponent {
                 module_name: format_ident!("vk{major}_{minor}"),
                 doc_comment: crate::refpage_doc(
                     &format!("VK_VERSION_{major}_{minor}"),
                     format!("Vulkan version {major}.{minor}"),
                 ),
             }],
-            Destination::Library {
-                location: RequireLocation::Extension { name },
-                library,
-            } => match library {
+            RequireLocation::Extension { name } => match self.library {
                 LibraryName::Vk => {
                     let vulkan_ext = name.strip_prefix("VK_").unwrap();
                     let (ext_tag, ext_name) = vulkan_ext.split_once('_').unwrap();
@@ -100,18 +92,13 @@ impl Destination {
     }
 }
 
-pub struct CodeMap<K = Destination>(IndexMap<K, TokenStream>);
+#[derive(Default)]
+pub struct CodeMap(IndexMap<Destination, TokenStream>);
 
-impl<K> Default for CodeMap<K> {
-    fn default() -> Self {
-        CodeMap(IndexMap::new())
-    }
-}
-
-impl<K: Hash + Eq> CodeMap<K> {
-    pub fn new(key: K, tokens: TokenStream) -> Self {
+impl CodeMap {
+    pub fn new(dest: Destination, tokens: TokenStream) -> Self {
         let mut map = IndexMap::with_capacity(1);
-        map.insert(key, tokens);
+        map.insert(dest, tokens);
         CodeMap(map)
     }
 
@@ -121,12 +108,10 @@ impl<K: Hash + Eq> CodeMap<K> {
         }
     }
 
-    pub fn iter(&self) -> impl Iterator<Item = (&K, &TokenStream)> {
+    pub fn iter(&self) -> impl Iterator<Item = (&Destination, &TokenStream)> {
         self.0.iter()
     }
-}
 
-impl CodeMap<Destination> {
     pub fn write(&self, output_path: impl AsRef<Path>) -> io::Result<()> {
         let mut vfs = VirtualRustFs::default();
         vfs.write(
@@ -137,18 +122,21 @@ impl CodeMap<Destination> {
             },
         );
 
-        // foo/bar/mod.rs -> (doc comment, child modules)
-        let mut mod_files: HashMap<PathBuf, (Option<String>, HashSet<_>)> = Default::default();
-        for (destination, content) in self.iter() {
-            // This influences the order in which impl blocks show up in rustdoc
-            let sort_pref = match destination {
-                Destination::Library { location, .. } => match location {
-                    RequireLocation::Core { .. } => 0,
-                    RequireLocation::Extension { .. } => 1,
-                },
-                Destination::Loader => 2,
-            };
+        struct ModFile {
+            doc_comment: Option<String>,
+            child_modules: IndexSet<Ident>,
+        }
 
+        struct SourceFile {
+            destination: Destination,
+            doc_comment: String,
+            reexport_content: TokenStream,
+            content: TokenStream,
+        }
+
+        let mut mod_files: HashMap<PathBuf, ModFile> = Default::default();
+        let mut source_files: HashMap<PathBuf, SourceFile> = Default::default();
+        for (destination, content) in self.iter() {
             let components = destination.path_components();
             if components.is_empty() {
                 vfs.write("mod.rs", content.clone());
@@ -162,19 +150,23 @@ impl CodeMap<Destination> {
             );
             path.add_extension("rs");
 
-            vfs.write(
-                path,
-                quote! {
-                    #![doc = #doc]
-                    #content
-                },
-            );
+            let source_file = source_files.entry(path).or_insert_with(|| SourceFile {
+                destination: *destination,
+                doc_comment: doc.into(),
+                reexport_content: TokenStream::new(),
+                content: TokenStream::new(),
+            });
 
-            let component_idents = components.iter().map(|component| &component.module_name);
-            vfs.write(
-                "vk.rs",
-                quote! { pub use super:: #( #component_idents ) :: * ::*; },
-            );
+            if destination.reexport {
+                source_file.reexport_content.extend(content.clone());
+            } else {
+                source_file.content.extend(content.clone());
+            }
+
+            let sort_order = match destination.location {
+                RequireLocation::Core { .. } => 1,
+                RequireLocation::Extension { .. } => 2,
+            };
 
             // collect mod.rs files to be created
             for (i, component) in components.iter().enumerate() {
@@ -185,21 +177,52 @@ impl CodeMap<Destination> {
                         .chain(iter::once(PathBuf::from("mod.rs"))),
                 );
 
-                let (_, mod_child_idents) = mod_files.entry(mod_path).or_insert_with(|| {
-                    let doc = (parent_path.last()).map(|component| component.doc_comment.clone());
-                    (doc, HashSet::new())
+                let mod_file = mod_files.entry(mod_path).or_insert_with(|| ModFile {
+                    doc_comment: (parent_path.last())
+                        .map(|component| component.doc_comment.clone()),
+                    child_modules: IndexSet::new(),
                 });
 
-                mod_child_idents.insert((sort_pref, component.module_name.clone()));
+                (mod_file.child_modules)
+                    .insert_sorted_by_key(component.module_name.clone(), |_| sort_order);
             }
         }
 
-        for (mod_path, (doc, mod_child_idents)) in mod_files {
-            let mut mod_child_idents: Vec<(i32, Ident)> = mod_child_idents.into_iter().collect();
-            mod_child_idents.sort_unstable();
-            let mod_child_idents = mod_child_idents.iter().map(|(_sort_pref, ident)| ident);
+        for (source_path, source_file) in source_files {
+            let doc = source_file.doc_comment;
+            let content = source_file.content;
+            let mut reexport_content = source_file.reexport_content;
+            if !reexport_content.is_empty() {
+                let mut module = None;
+                if !content.is_empty() {
+                    module = Some(quote! { ::reexport });
+                    reexport_content = quote! {
+                        pub(crate) mod reexport { #reexport_content }
+                        pub use reexport::*;
+                    };
+                }
 
-            let doc = doc.map(|doc| quote! { #![doc = #doc] });
+                let components = source_file.destination.path_components();
+                let component_idents = components.iter().map(|component| &component.module_name);
+                vfs.write(
+                    "vk.rs",
+                    quote! { pub use super:: #( #component_idents ) :: * #module ::*; },
+                );
+            }
+
+            vfs.write(
+                source_path,
+                quote! {
+                    #![doc = #doc]
+                    #content
+                    #reexport_content
+                },
+            );
+        }
+
+        for (mod_path, mod_file) in mod_files {
+            let doc = mod_file.doc_comment.map(|doc| quote! { #![doc = #doc] });
+            let mod_child_idents = mod_file.child_modules.iter();
             vfs.write(
                 mod_path,
                 quote! {

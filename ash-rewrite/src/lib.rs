@@ -117,3 +117,8 @@ where
         }
     }
 }
+
+pub use entry::*;
+pub use vk1_0::EntryFnV1_0;
+pub use vk1_0::StaticFn;
+pub use vk1_1::EntryFnV1_1;

@@ -5,6 +5,7 @@ members = [
     "ash",
     "ash-examples",
     "ash-rewrite",
+    "ash-rewrite-examples",
     "ash-window",
     "generator",
     "generator-rewrite",

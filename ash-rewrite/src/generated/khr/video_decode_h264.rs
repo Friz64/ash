@@ -6,7 +6,7 @@
 pub struct VideoDecodeH264ProfileInfoKHR {
     pub s_type: crate::vk::StructureType,
     pub p_next: *const core::ffi::c_void,
-    pub std_profile_idc: crate::vk::StdVideoH264ProfileIdc,
+    pub std_profile_idc: crate::vk::H264ProfileIdc,
     pub picture_layout: crate::vk::VideoDecodeH264PictureLayoutFlagBitsKHR,
 }
 #[repr(C)]
@@ -14,7 +14,7 @@ pub struct VideoDecodeH264ProfileInfoKHR {
 pub struct VideoDecodeH264CapabilitiesKHR {
     pub s_type: crate::vk::StructureType,
     pub p_next: *mut core::ffi::c_void,
-    pub max_level_idc: crate::vk::StdVideoH264LevelIdc,
+    pub max_level_idc: crate::vk::H264LevelIdc,
     pub field_offset_granularity: crate::vk::Offset2D,
 }
 #[repr(C)]
@@ -23,9 +23,9 @@ pub struct VideoDecodeH264SessionParametersAddInfoKHR {
     pub s_type: crate::vk::StructureType,
     pub p_next: *const core::ffi::c_void,
     pub std_sps_count: u32,
-    pub p_std_sp_ss: *const crate::vk::StdVideoH264SequenceParameterSet,
+    pub p_std_sp_ss: *const crate::vk::H264SequenceParameterSet,
     pub std_pps_count: u32,
-    pub p_std_pp_ss: *const crate::vk::StdVideoH264PictureParameterSet,
+    pub p_std_pp_ss: *const crate::vk::H264PictureParameterSet,
 }
 #[repr(C)]
 #[derive(Clone, Copy)]
@@ -41,7 +41,7 @@ pub struct VideoDecodeH264SessionParametersCreateInfoKHR {
 pub struct VideoDecodeH264PictureInfoKHR {
     pub s_type: crate::vk::StructureType,
     pub p_next: *const core::ffi::c_void,
-    pub p_std_picture_info: *const crate::vk::StdVideoDecodeH264PictureInfo,
+    pub p_std_picture_info: *const crate::vk::DecodeH264PictureInfo,
     pub slice_count: u32,
     pub p_slice_offsets: *const u32,
 }
@@ -50,7 +50,7 @@ pub struct VideoDecodeH264PictureInfoKHR {
 pub struct VideoDecodeH264DpbSlotInfoKHR {
     pub s_type: crate::vk::StructureType,
     pub p_next: *const core::ffi::c_void,
-    pub p_std_reference_info: *const crate::vk::StdVideoDecodeH264ReferenceInfo,
+    pub p_std_reference_info: *const crate::vk::DecodeH264ReferenceInfo,
 }
 ///Provided by [`khr::video_decode_h264`](crate::khr::video_decode_h264)
 impl crate::vk::StructureType {

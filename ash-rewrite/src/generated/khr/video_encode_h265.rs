@@ -7,7 +7,7 @@ pub struct VideoEncodeH265CapabilitiesKHR {
     pub s_type: crate::vk::StructureType,
     pub p_next: *mut core::ffi::c_void,
     pub flags: crate::vk::VideoEncodeH265CapabilityFlagsKHR,
-    pub max_level_idc: crate::vk::StdVideoH265LevelIdc,
+    pub max_level_idc: crate::vk::H265LevelIdc,
     pub max_slice_segment_count: u32,
     pub max_tiles: crate::vk::Extent2D,
     pub ctb_sizes: crate::vk::VideoEncodeH265CtbSizeFlagsKHR,
@@ -43,7 +43,7 @@ pub struct VideoEncodeH265SessionCreateInfoKHR {
     pub s_type: crate::vk::StructureType,
     pub p_next: *const core::ffi::c_void,
     pub use_max_level_idc: crate::vk::Bool32,
-    pub max_level_idc: crate::vk::StdVideoH265LevelIdc,
+    pub max_level_idc: crate::vk::H265LevelIdc,
 }
 #[repr(C)]
 #[derive(Clone, Copy)]
@@ -51,11 +51,11 @@ pub struct VideoEncodeH265SessionParametersAddInfoKHR {
     pub s_type: crate::vk::StructureType,
     pub p_next: *const core::ffi::c_void,
     pub std_vps_count: u32,
-    pub p_std_vp_ss: *const crate::vk::StdVideoH265VideoParameterSet,
+    pub p_std_vp_ss: *const crate::vk::H265VideoParameterSet,
     pub std_sps_count: u32,
-    pub p_std_sp_ss: *const crate::vk::StdVideoH265SequenceParameterSet,
+    pub p_std_sp_ss: *const crate::vk::H265SequenceParameterSet,
     pub std_pps_count: u32,
-    pub p_std_pp_ss: *const crate::vk::StdVideoH265PictureParameterSet,
+    pub p_std_pp_ss: *const crate::vk::H265PictureParameterSet,
 }
 #[repr(C)]
 #[derive(Clone, Copy)]
@@ -95,7 +95,7 @@ pub struct VideoEncodeH265PictureInfoKHR {
     pub p_next: *const core::ffi::c_void,
     pub nalu_slice_segment_entry_count: u32,
     pub p_nalu_slice_segment_entries: *const crate::vk::VideoEncodeH265NaluSliceSegmentInfoKHR,
-    pub p_std_picture_info: *const crate::vk::StdVideoEncodeH265PictureInfo,
+    pub p_std_picture_info: *const crate::vk::EncodeH265PictureInfo,
 }
 #[repr(C)]
 #[derive(Clone, Copy)]
@@ -103,7 +103,7 @@ pub struct VideoEncodeH265NaluSliceSegmentInfoKHR {
     pub s_type: crate::vk::StructureType,
     pub p_next: *const core::ffi::c_void,
     pub constant_qp: i32,
-    pub p_std_slice_segment_header: *const crate::vk::StdVideoEncodeH265SliceSegmentHeader,
+    pub p_std_slice_segment_header: *const crate::vk::EncodeH265SliceSegmentHeader,
 }
 #[repr(C)]
 #[derive(Clone, Copy)]
@@ -157,14 +157,14 @@ pub struct VideoEncodeH265RateControlLayerInfoKHR {
 pub struct VideoEncodeH265ProfileInfoKHR {
     pub s_type: crate::vk::StructureType,
     pub p_next: *const core::ffi::c_void,
-    pub std_profile_idc: crate::vk::StdVideoH265ProfileIdc,
+    pub std_profile_idc: crate::vk::H265ProfileIdc,
 }
 #[repr(C)]
 #[derive(Clone, Copy)]
 pub struct VideoEncodeH265DpbSlotInfoKHR {
     pub s_type: crate::vk::StructureType,
     pub p_next: *const core::ffi::c_void,
-    pub p_std_reference_info: *const crate::vk::StdVideoEncodeH265ReferenceInfo,
+    pub p_std_reference_info: *const crate::vk::EncodeH265ReferenceInfo,
 }
 ///Provided by [`khr::video_encode_h265`](crate::khr::video_encode_h265)
 impl crate::vk::StructureType {

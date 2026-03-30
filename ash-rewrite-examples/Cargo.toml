@@ -1,0 +1,7 @@
+[package]
+name = "ash-rewrite-examples"
+version = "0.1.0"
+edition = "2024"
+
+[dependencies]
+ash-rewrite = { path = "../ash-rewrite" }

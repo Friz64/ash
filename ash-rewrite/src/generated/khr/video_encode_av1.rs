@@ -7,7 +7,7 @@ pub struct VideoEncodeAV1CapabilitiesKHR {
     pub s_type: crate::vk::StructureType,
     pub p_next: *mut core::ffi::c_void,
     pub flags: crate::vk::VideoEncodeAV1CapabilityFlagsKHR,
-    pub max_level: crate::vk::StdVideoAV1Level,
+    pub max_level: crate::vk::AV1Level,
     pub coded_picture_alignment: crate::vk::Extent2D,
     pub max_tiles: crate::vk::Extent2D,
     pub min_tile_size: crate::vk::Extent2D,
@@ -65,24 +65,24 @@ pub struct VideoEncodeAV1SessionCreateInfoKHR {
     pub s_type: crate::vk::StructureType,
     pub p_next: *const core::ffi::c_void,
     pub use_max_level: crate::vk::Bool32,
-    pub max_level: crate::vk::StdVideoAV1Level,
+    pub max_level: crate::vk::AV1Level,
 }
 #[repr(C)]
 #[derive(Clone, Copy)]
 pub struct VideoEncodeAV1SessionParametersCreateInfoKHR {
     pub s_type: crate::vk::StructureType,
     pub p_next: *const core::ffi::c_void,
-    pub p_std_sequence_header: *const crate::vk::StdVideoAV1SequenceHeader,
-    pub p_std_decoder_model_info: *const crate::vk::StdVideoEncodeAV1DecoderModelInfo,
+    pub p_std_sequence_header: *const crate::vk::AV1SequenceHeader,
+    pub p_std_decoder_model_info: *const crate::vk::EncodeAV1DecoderModelInfo,
     pub std_operating_point_count: u32,
-    pub p_std_operating_points: *const crate::vk::StdVideoEncodeAV1OperatingPointInfo,
+    pub p_std_operating_points: *const crate::vk::EncodeAV1OperatingPointInfo,
 }
 #[repr(C)]
 #[derive(Clone, Copy)]
 pub struct VideoEncodeAV1DpbSlotInfoKHR {
     pub s_type: crate::vk::StructureType,
     pub p_next: *const core::ffi::c_void,
-    pub p_std_reference_info: *const crate::vk::StdVideoEncodeAV1ReferenceInfo,
+    pub p_std_reference_info: *const crate::vk::EncodeAV1ReferenceInfo,
 }
 #[repr(C)]
 #[derive(Clone, Copy)]
@@ -92,7 +92,7 @@ pub struct VideoEncodeAV1PictureInfoKHR {
     pub prediction_mode: crate::vk::VideoEncodeAV1PredictionModeKHR,
     pub rate_control_group: crate::vk::VideoEncodeAV1RateControlGroupKHR,
     pub constant_q_index: u32,
-    pub p_std_picture_info: *const crate::vk::StdVideoEncodeAV1PictureInfo,
+    pub p_std_picture_info: *const crate::vk::EncodeAV1PictureInfo,
     pub reference_name_slot_indices: [i32; crate::vk::MAX_VIDEO_AV1_REFERENCES_PER_FRAME_KHR
         as _],
     pub primary_reference_cdf_only: crate::vk::Bool32,
@@ -103,7 +103,7 @@ pub struct VideoEncodeAV1PictureInfoKHR {
 pub struct VideoEncodeAV1ProfileInfoKHR {
     pub s_type: crate::vk::StructureType,
     pub p_next: *const core::ffi::c_void,
-    pub std_profile: crate::vk::StdVideoAV1Profile,
+    pub std_profile: crate::vk::AV1Profile,
 }
 #[repr(C)]
 #[derive(Clone, Copy)]

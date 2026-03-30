@@ -3,7 +3,7 @@
 //!Items provided by `vulkan_video_codec_av1std`
 #[repr(C)]
 #[derive(Clone, Copy)]
-pub struct StdVideoAV1ColorConfigFlags {
+pub struct AV1ColorConfigFlags {
     /**- `mono_chrome` @ `0..1`
 - `color_range` @ `1..2`
 - `separate_uv_delta_q` @ `2..3`
@@ -12,34 +12,34 @@ pub struct StdVideoAV1ColorConfigFlags {
 }
 #[repr(C)]
 #[derive(Clone, Copy)]
-pub struct StdVideoAV1ColorConfig {
-    pub flags: crate::vk::StdVideoAV1ColorConfigFlags,
+pub struct AV1ColorConfig {
+    pub flags: crate::vk::AV1ColorConfigFlags,
     pub bit_depth: u8,
     pub subsampling_x: u8,
     pub subsampling_y: u8,
     pub reserved1: u8,
-    pub color_primaries: crate::vk::StdVideoAV1ColorPrimaries,
-    pub transfer_characteristics: crate::vk::StdVideoAV1TransferCharacteristics,
-    pub matrix_coefficients: crate::vk::StdVideoAV1MatrixCoefficients,
-    pub chroma_sample_position: crate::vk::StdVideoAV1ChromaSamplePosition,
+    pub color_primaries: crate::vk::AV1ColorPrimaries,
+    pub transfer_characteristics: crate::vk::AV1TransferCharacteristics,
+    pub matrix_coefficients: crate::vk::AV1MatrixCoefficients,
+    pub chroma_sample_position: crate::vk::AV1ChromaSamplePosition,
 }
 #[repr(C)]
 #[derive(Clone, Copy)]
-pub struct StdVideoAV1TimingInfoFlags {
+pub struct AV1TimingInfoFlags {
     ///- `equal_picture_interval` @ `0..1`
     pub bitfield0: u32,
 }
 #[repr(C)]
 #[derive(Clone, Copy)]
-pub struct StdVideoAV1TimingInfo {
-    pub flags: crate::vk::StdVideoAV1TimingInfoFlags,
+pub struct AV1TimingInfo {
+    pub flags: crate::vk::AV1TimingInfoFlags,
     pub num_units_in_display_tick: u32,
     pub time_scale: u32,
     pub num_ticks_per_picture_minus_1: u32,
 }
 #[repr(C)]
 #[derive(Clone, Copy)]
-pub struct StdVideoAV1SequenceHeaderFlags {
+pub struct AV1SequenceHeaderFlags {
     /**- `still_picture` @ `0..1`
 - `reduced_still_picture_header` @ `1..2`
 - `use_128x128_superblock` @ `2..3`
@@ -63,9 +63,9 @@ pub struct StdVideoAV1SequenceHeaderFlags {
 }
 #[repr(C)]
 #[derive(Clone, Copy)]
-pub struct StdVideoAV1SequenceHeader {
-    pub flags: crate::vk::StdVideoAV1SequenceHeaderFlags,
-    pub seq_profile: crate::vk::StdVideoAV1Profile,
+pub struct AV1SequenceHeader {
+    pub flags: crate::vk::AV1SequenceHeaderFlags,
+    pub seq_profile: crate::vk::AV1Profile,
     pub frame_width_bits_minus_1: u8,
     pub frame_height_bits_minus_1: u8,
     pub max_frame_width_minus_1: u16,
@@ -76,20 +76,20 @@ pub struct StdVideoAV1SequenceHeader {
     pub seq_force_integer_mv: u8,
     pub seq_force_screen_content_tools: u8,
     pub reserved1: [u8; 5 as _],
-    pub p_color_config: *const crate::vk::StdVideoAV1ColorConfig,
-    pub p_timing_info: *const crate::vk::StdVideoAV1TimingInfo,
+    pub p_color_config: *const crate::vk::AV1ColorConfig,
+    pub p_timing_info: *const crate::vk::AV1TimingInfo,
 }
 #[repr(C)]
 #[derive(Clone, Copy)]
-pub struct StdVideoAV1LoopFilterFlags {
+pub struct AV1LoopFilterFlags {
     /**- `loop_filter_delta_enabled` @ `0..1`
 - `loop_filter_delta_update` @ `1..2`*/
     pub bitfield0: u32,
 }
 #[repr(C)]
 #[derive(Clone, Copy)]
-pub struct StdVideoAV1LoopFilter {
-    pub flags: crate::vk::StdVideoAV1LoopFilterFlags,
+pub struct AV1LoopFilter {
+    pub flags: crate::vk::AV1LoopFilterFlags,
     pub loop_filter_level: [u8; crate::vk::STD_VIDEO_AV1_MAX_LOOP_FILTER_STRENGTHS as _],
     pub loop_filter_sharpness: u8,
     pub update_ref_delta: u8,
@@ -100,15 +100,15 @@ pub struct StdVideoAV1LoopFilter {
 }
 #[repr(C)]
 #[derive(Clone, Copy)]
-pub struct StdVideoAV1QuantizationFlags {
+pub struct AV1QuantizationFlags {
     /**- `using_qmatrix` @ `0..1`
 - `diff_uv_delta` @ `1..2`*/
     pub bitfield0: u32,
 }
 #[repr(C)]
 #[derive(Clone, Copy)]
-pub struct StdVideoAV1Quantization {
-    pub flags: crate::vk::StdVideoAV1QuantizationFlags,
+pub struct AV1Quantization {
+    pub flags: crate::vk::AV1QuantizationFlags,
     pub base_q_idx: u8,
     pub delta_qy_dc: i8,
     pub delta_qu_dc: i8,
@@ -121,21 +121,21 @@ pub struct StdVideoAV1Quantization {
 }
 #[repr(C)]
 #[derive(Clone, Copy)]
-pub struct StdVideoAV1Segmentation {
+pub struct AV1Segmentation {
     pub feature_enabled: [u8; crate::vk::STD_VIDEO_AV1_MAX_SEGMENTS as _],
     pub feature_data: [[i16; crate::vk::STD_VIDEO_AV1_SEG_LVL_MAX
         as _]; crate::vk::STD_VIDEO_AV1_MAX_SEGMENTS as _],
 }
 #[repr(C)]
 #[derive(Clone, Copy)]
-pub struct StdVideoAV1TileInfoFlags {
+pub struct AV1TileInfoFlags {
     ///- `uniform_tile_spacing_flag` @ `0..1`
     pub bitfield0: u32,
 }
 #[repr(C)]
 #[derive(Clone, Copy)]
-pub struct StdVideoAV1TileInfo {
-    pub flags: crate::vk::StdVideoAV1TileInfoFlags,
+pub struct AV1TileInfo {
+    pub flags: crate::vk::AV1TileInfoFlags,
     pub tile_cols: u8,
     pub tile_rows: u8,
     pub context_update_tile_id: u16,
@@ -148,7 +148,7 @@ pub struct StdVideoAV1TileInfo {
 }
 #[repr(C)]
 #[derive(Clone, Copy)]
-pub struct StdVideoAV1CDEF {
+pub struct AV1CDEF {
     pub cdef_damping_minus_3: u8,
     pub cdef_bits: u8,
     pub cdef_y_pri_strength: [u8; crate::vk::STD_VIDEO_AV1_MAX_CDEF_FILTER_STRENGTHS
@@ -162,21 +162,21 @@ pub struct StdVideoAV1CDEF {
 }
 #[repr(C)]
 #[derive(Clone, Copy)]
-pub struct StdVideoAV1LoopRestoration {
-    pub frame_restoration_type: [crate::vk::StdVideoAV1FrameRestorationType; crate::vk::STD_VIDEO_AV1_MAX_NUM_PLANES
+pub struct AV1LoopRestoration {
+    pub frame_restoration_type: [crate::vk::AV1FrameRestorationType; crate::vk::STD_VIDEO_AV1_MAX_NUM_PLANES
         as _],
     pub loop_restoration_size: [u16; crate::vk::STD_VIDEO_AV1_MAX_NUM_PLANES as _],
 }
 #[repr(C)]
 #[derive(Clone, Copy)]
-pub struct StdVideoAV1GlobalMotion {
+pub struct AV1GlobalMotion {
     pub gm_type: [u8; crate::vk::STD_VIDEO_AV1_NUM_REF_FRAMES as _],
     pub gm_params: [[i32; crate::vk::STD_VIDEO_AV1_GLOBAL_MOTION_PARAMS
         as _]; crate::vk::STD_VIDEO_AV1_NUM_REF_FRAMES as _],
 }
 #[repr(C)]
 #[derive(Clone, Copy)]
-pub struct StdVideoAV1FilmGrainFlags {
+pub struct AV1FilmGrainFlags {
     /**- `chroma_scaling_from_luma` @ `0..1`
 - `overlap_flag` @ `1..2`
 - `clip_to_restricted_range` @ `2..3`
@@ -185,8 +185,8 @@ pub struct StdVideoAV1FilmGrainFlags {
 }
 #[repr(C)]
 #[derive(Clone, Copy)]
-pub struct StdVideoAV1FilmGrain {
-    pub flags: crate::vk::StdVideoAV1FilmGrainFlags,
+pub struct AV1FilmGrain {
+    pub flags: crate::vk::AV1FilmGrainFlags,
     pub grain_scaling_minus_8: u8,
     pub ar_coeff_lag: u8,
     pub ar_coeff_shift_minus_6: u8,
@@ -214,9 +214,9 @@ pub struct StdVideoAV1FilmGrain {
 }
 #[repr(transparent)]
 #[derive(Clone, Copy, PartialEq, Eq, PartialOrd, Ord, Hash, Default)]
-pub struct StdVideoAV1Profile(pub(crate) i32);
+pub struct AV1Profile(pub(crate) i32);
 ///Provided by [`video::codec_av1std`](crate::video::codec_av1std)
-impl StdVideoAV1Profile {
+impl AV1Profile {
     pub const MAIN: Self = Self(0);
     pub const HIGH: Self = Self(1);
     pub const PROFESSIONAL: Self = Self(2);
@@ -224,9 +224,9 @@ impl StdVideoAV1Profile {
 }
 #[repr(transparent)]
 #[derive(Clone, Copy, PartialEq, Eq, PartialOrd, Ord, Hash, Default)]
-pub struct StdVideoAV1Level(pub(crate) i32);
+pub struct AV1Level(pub(crate) i32);
 ///Provided by [`video::codec_av1std`](crate::video::codec_av1std)
-impl StdVideoAV1Level {
+impl AV1Level {
     pub const _2_0: Self = Self(0);
     pub const _2_1: Self = Self(1);
     pub const _2_2: Self = Self(2);
@@ -255,9 +255,9 @@ impl StdVideoAV1Level {
 }
 #[repr(transparent)]
 #[derive(Clone, Copy, PartialEq, Eq, PartialOrd, Ord, Hash, Default)]
-pub struct StdVideoAV1FrameType(pub(crate) i32);
+pub struct AV1FrameType(pub(crate) i32);
 ///Provided by [`video::codec_av1std`](crate::video::codec_av1std)
-impl StdVideoAV1FrameType {
+impl AV1FrameType {
     pub const KEY: Self = Self(0);
     pub const INTER: Self = Self(1);
     pub const INTRA_ONLY: Self = Self(2);
@@ -266,9 +266,9 @@ impl StdVideoAV1FrameType {
 }
 #[repr(transparent)]
 #[derive(Clone, Copy, PartialEq, Eq, PartialOrd, Ord, Hash, Default)]
-pub struct StdVideoAV1ReferenceName(pub(crate) i32);
+pub struct AV1ReferenceName(pub(crate) i32);
 ///Provided by [`video::codec_av1std`](crate::video::codec_av1std)
-impl StdVideoAV1ReferenceName {
+impl AV1ReferenceName {
     pub const INTRA_FRAME: Self = Self(0);
     pub const LAST_FRAME: Self = Self(1);
     pub const LAST2_FRAME: Self = Self(2);
@@ -281,9 +281,9 @@ impl StdVideoAV1ReferenceName {
 }
 #[repr(transparent)]
 #[derive(Clone, Copy, PartialEq, Eq, PartialOrd, Ord, Hash, Default)]
-pub struct StdVideoAV1InterpolationFilter(pub(crate) i32);
+pub struct AV1InterpolationFilter(pub(crate) i32);
 ///Provided by [`video::codec_av1std`](crate::video::codec_av1std)
-impl StdVideoAV1InterpolationFilter {
+impl AV1InterpolationFilter {
     pub const EIGHTTAP: Self = Self(0);
     pub const EIGHTTAP_SMOOTH: Self = Self(1);
     pub const EIGHTTAP_SHARP: Self = Self(2);
@@ -293,9 +293,9 @@ impl StdVideoAV1InterpolationFilter {
 }
 #[repr(transparent)]
 #[derive(Clone, Copy, PartialEq, Eq, PartialOrd, Ord, Hash, Default)]
-pub struct StdVideoAV1TxMode(pub(crate) i32);
+pub struct AV1TxMode(pub(crate) i32);
 ///Provided by [`video::codec_av1std`](crate::video::codec_av1std)
-impl StdVideoAV1TxMode {
+impl AV1TxMode {
     pub const ONLY_4X4: Self = Self(0);
     pub const LARGEST: Self = Self(1);
     pub const SELECT: Self = Self(2);
@@ -303,9 +303,9 @@ impl StdVideoAV1TxMode {
 }
 #[repr(transparent)]
 #[derive(Clone, Copy, PartialEq, Eq, PartialOrd, Ord, Hash, Default)]
-pub struct StdVideoAV1FrameRestorationType(pub(crate) i32);
+pub struct AV1FrameRestorationType(pub(crate) i32);
 ///Provided by [`video::codec_av1std`](crate::video::codec_av1std)
-impl StdVideoAV1FrameRestorationType {
+impl AV1FrameRestorationType {
     pub const NONE: Self = Self(0);
     pub const WIENER: Self = Self(1);
     pub const SGRPROJ: Self = Self(2);
@@ -314,9 +314,9 @@ impl StdVideoAV1FrameRestorationType {
 }
 #[repr(transparent)]
 #[derive(Clone, Copy, PartialEq, Eq, PartialOrd, Ord, Hash, Default)]
-pub struct StdVideoAV1ColorPrimaries(pub(crate) i32);
+pub struct AV1ColorPrimaries(pub(crate) i32);
 ///Provided by [`video::codec_av1std`](crate::video::codec_av1std)
-impl StdVideoAV1ColorPrimaries {
+impl AV1ColorPrimaries {
     pub const BT_709: Self = Self(1);
     pub const UNSPECIFIED: Self = Self(2);
     pub const BT_470_M: Self = Self(4);
@@ -333,9 +333,9 @@ impl StdVideoAV1ColorPrimaries {
 }
 #[repr(transparent)]
 #[derive(Clone, Copy, PartialEq, Eq, PartialOrd, Ord, Hash, Default)]
-pub struct StdVideoAV1TransferCharacteristics(pub(crate) i32);
+pub struct AV1TransferCharacteristics(pub(crate) i32);
 ///Provided by [`video::codec_av1std`](crate::video::codec_av1std)
-impl StdVideoAV1TransferCharacteristics {
+impl AV1TransferCharacteristics {
     pub const RESERVED_0: Self = Self(0);
     pub const BT_709: Self = Self(1);
     pub const UNSPECIFIED: Self = Self(2);
@@ -359,9 +359,9 @@ impl StdVideoAV1TransferCharacteristics {
 }
 #[repr(transparent)]
 #[derive(Clone, Copy, PartialEq, Eq, PartialOrd, Ord, Hash, Default)]
-pub struct StdVideoAV1MatrixCoefficients(pub(crate) i32);
+pub struct AV1MatrixCoefficients(pub(crate) i32);
 ///Provided by [`video::codec_av1std`](crate::video::codec_av1std)
-impl StdVideoAV1MatrixCoefficients {
+impl AV1MatrixCoefficients {
     pub const IDENTITY: Self = Self(0);
     pub const BT_709: Self = Self(1);
     pub const UNSPECIFIED: Self = Self(2);
@@ -381,9 +381,9 @@ impl StdVideoAV1MatrixCoefficients {
 }
 #[repr(transparent)]
 #[derive(Clone, Copy, PartialEq, Eq, PartialOrd, Ord, Hash, Default)]
-pub struct StdVideoAV1ChromaSamplePosition(pub(crate) i32);
+pub struct AV1ChromaSamplePosition(pub(crate) i32);
 ///Provided by [`video::codec_av1std`](crate::video::codec_av1std)
-impl StdVideoAV1ChromaSamplePosition {
+impl AV1ChromaSamplePosition {
     pub const UNKNOWN: Self = Self(0);
     pub const VERTICAL: Self = Self(1);
     pub const COLOCATED: Self = Self(2);
