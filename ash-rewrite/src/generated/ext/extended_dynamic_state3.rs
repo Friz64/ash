@@ -499,7 +499,7 @@ impl DeviceFn {
 pub(crate) mod reexport {
     #[repr(C)]
     #[derive(Clone, Copy)]
-    pub struct PhysicalDeviceExtendedDynamicState3FeaturesEXT {
+    pub struct PhysicalDeviceExtendedDynamicState3FeaturesEXT<'a> {
         pub s_type: crate::vk::StructureType,
         pub p_next: *mut core::ffi::c_void,
         pub extended_dynamic_state3_tessellation_domain_origin: crate::vk::Bool32,
@@ -533,13 +533,15 @@ pub(crate) mod reexport {
         pub extended_dynamic_state3_coverage_reduction_mode: crate::vk::Bool32,
         pub extended_dynamic_state3_representative_fragment_test_enable: crate::vk::Bool32,
         pub extended_dynamic_state3_shading_rate_image_enable: crate::vk::Bool32,
+        pub _marker: ::core::marker::PhantomData<&'a ()>,
     }
     #[repr(C)]
     #[derive(Clone, Copy)]
-    pub struct PhysicalDeviceExtendedDynamicState3PropertiesEXT {
+    pub struct PhysicalDeviceExtendedDynamicState3PropertiesEXT<'a> {
         pub s_type: crate::vk::StructureType,
         pub p_next: *mut core::ffi::c_void,
         pub dynamic_primitive_topology_unrestricted: crate::vk::Bool32,
+        pub _marker: ::core::marker::PhantomData<&'a ()>,
     }
     #[repr(C)]
     #[derive(Clone, Copy)]

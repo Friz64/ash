@@ -20,7 +20,7 @@ impl DeviceFn {
             cmd_begin_custom_resolve_ext: unsafe {
                 unsafe extern "system" fn cmd_begin_custom_resolve_ext(
                     _: crate::vk::CommandBuffer,
-                    _: *const crate::vk::BeginCustomResolveInfoEXT,
+                    _: *const crate::vk::BeginCustomResolveInfoEXT<'_>,
                 ) {
                     panic!("unable to load vkCmdBeginCustomResolveEXT")
                 }
@@ -37,20 +37,22 @@ impl DeviceFn {
 pub(crate) mod reexport {
     #[repr(C)]
     #[derive(Clone, Copy)]
-    pub struct BeginCustomResolveInfoEXT {
+    pub struct BeginCustomResolveInfoEXT<'a> {
         pub s_type: crate::vk::StructureType,
         pub p_next: *mut core::ffi::c_void,
+        pub _marker: ::core::marker::PhantomData<&'a ()>,
     }
     #[repr(C)]
     #[derive(Clone, Copy)]
-    pub struct PhysicalDeviceCustomResolveFeaturesEXT {
+    pub struct PhysicalDeviceCustomResolveFeaturesEXT<'a> {
         pub s_type: crate::vk::StructureType,
         pub p_next: *mut core::ffi::c_void,
         pub custom_resolve: crate::vk::Bool32,
+        pub _marker: ::core::marker::PhantomData<&'a ()>,
     }
     #[repr(C)]
     #[derive(Clone, Copy)]
-    pub struct CustomResolveCreateInfoEXT {
+    pub struct CustomResolveCreateInfoEXT<'a> {
         pub s_type: crate::vk::StructureType,
         pub p_next: *const core::ffi::c_void,
         pub custom_resolve: crate::vk::Bool32,
@@ -58,6 +60,7 @@ pub(crate) mod reexport {
         pub p_color_attachment_formats: *const crate::vk::Format,
         pub depth_attachment_format: crate::vk::Format,
         pub stencil_attachment_format: crate::vk::Format,
+        pub _marker: ::core::marker::PhantomData<&'a ()>,
     }
     ///Provided by [`ext::custom_resolve`](crate::ext::custom_resolve)
     impl crate::vk::StructureType {
@@ -81,7 +84,7 @@ pub(crate) mod reexport {
     }
     pub type PFN_vkCmdBeginCustomResolveEXT = unsafe extern "system" fn(
         command_buffer: crate::vk::CommandBuffer,
-        p_begin_custom_resolve_info: *const crate::vk::BeginCustomResolveInfoEXT,
+        p_begin_custom_resolve_info: *const crate::vk::BeginCustomResolveInfoEXT<'_>,
     );
     pub const EXT_CUSTOM_RESOLVE_SPEC_VERSION: u32 = 1;
     pub const EXT_CUSTOM_RESOLVE_EXTENSION_NAME: &core::ffi::CStr = c"VK_EXT_custom_resolve";

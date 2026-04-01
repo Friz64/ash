@@ -3,10 +3,11 @@
 //![Vulkan Manual Page](https://docs.vulkan.org/refpages/latest/refpages/source/VK_GGP_frame_token.html) · Extension `VK_GGP_frame_token`
 #[repr(C)]
 #[derive(Clone, Copy)]
-pub struct PresentFrameTokenGGP {
+pub struct PresentFrameTokenGGP<'a> {
     pub s_type: crate::vk::StructureType,
     pub p_next: *const core::ffi::c_void,
     pub frame_token: crate::platform_types::GgpFrameToken,
+    pub _marker: ::core::marker::PhantomData<&'a ()>,
 }
 ///Provided by [`ggp::frame_token`](crate::ggp::frame_token)
 impl crate::vk::StructureType {

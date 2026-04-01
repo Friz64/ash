@@ -129,6 +129,7 @@ pub struct CommandName(&'static str);
 
 impl CommandName {
     pub const VK_GET_INSTANCE_PROC_ADDR: Self = Self::new("vkGetInstanceProcAddr");
+    pub const VK_GET_DEVICE_PROC_ADDR: Self = Self::new("vkGetDeviceProcAddr");
 
     pub const fn new(original: &'static str) -> Self {
         Self(original)

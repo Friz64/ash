@@ -3,37 +3,41 @@
 //![Vulkan Manual Page](https://docs.vulkan.org/refpages/latest/refpages/source/VK_VALVE_video_encode_rgb_conversion.html) · Extension `VK_VALVE_video_encode_rgb_conversion`
 #[repr(C)]
 #[derive(Clone, Copy)]
-pub struct PhysicalDeviceVideoEncodeRgbConversionFeaturesVALVE {
+pub struct PhysicalDeviceVideoEncodeRgbConversionFeaturesVALVE<'a> {
     pub s_type: crate::vk::StructureType,
     pub p_next: *mut core::ffi::c_void,
     pub video_encode_rgb_conversion: crate::vk::Bool32,
+    pub _marker: ::core::marker::PhantomData<&'a ()>,
 }
 #[repr(C)]
 #[derive(Clone, Copy)]
-pub struct VideoEncodeRgbConversionCapabilitiesVALVE {
+pub struct VideoEncodeRgbConversionCapabilitiesVALVE<'a> {
     pub s_type: crate::vk::StructureType,
     pub p_next: *mut core::ffi::c_void,
     pub rgb_models: crate::vk::VideoEncodeRgbModelConversionFlagsVALVE,
     pub rgb_ranges: crate::vk::VideoEncodeRgbRangeCompressionFlagsVALVE,
     pub x_chroma_offsets: crate::vk::VideoEncodeRgbChromaOffsetFlagsVALVE,
     pub y_chroma_offsets: crate::vk::VideoEncodeRgbChromaOffsetFlagsVALVE,
+    pub _marker: ::core::marker::PhantomData<&'a ()>,
 }
 #[repr(C)]
 #[derive(Clone, Copy)]
-pub struct VideoEncodeProfileRgbConversionInfoVALVE {
+pub struct VideoEncodeProfileRgbConversionInfoVALVE<'a> {
     pub s_type: crate::vk::StructureType,
     pub p_next: *const core::ffi::c_void,
     pub perform_encode_rgb_conversion: crate::vk::Bool32,
+    pub _marker: ::core::marker::PhantomData<&'a ()>,
 }
 #[repr(C)]
 #[derive(Clone, Copy)]
-pub struct VideoEncodeSessionRgbConversionCreateInfoVALVE {
+pub struct VideoEncodeSessionRgbConversionCreateInfoVALVE<'a> {
     pub s_type: crate::vk::StructureType,
     pub p_next: *const core::ffi::c_void,
     pub rgb_model: crate::vk::VideoEncodeRgbModelConversionFlagBitsVALVE,
     pub rgb_range: crate::vk::VideoEncodeRgbRangeCompressionFlagBitsVALVE,
     pub x_chroma_offset: crate::vk::VideoEncodeRgbChromaOffsetFlagBitsVALVE,
     pub y_chroma_offset: crate::vk::VideoEncodeRgbChromaOffsetFlagBitsVALVE,
+    pub _marker: ::core::marker::PhantomData<&'a ()>,
 }
 ///Provided by [`valve::video_encode_rgb_conversion`](crate::valve::video_encode_rgb_conversion)
 impl crate::vk::StructureType {

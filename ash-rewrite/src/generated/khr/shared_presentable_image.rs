@@ -37,10 +37,11 @@ impl DeviceFn {
 pub(crate) mod reexport {
     #[repr(C)]
     #[derive(Clone, Copy)]
-    pub struct SharedPresentSurfaceCapabilitiesKHR {
+    pub struct SharedPresentSurfaceCapabilitiesKHR<'a> {
         pub s_type: crate::vk::StructureType,
         pub p_next: *mut core::ffi::c_void,
         pub shared_present_supported_usage_flags: crate::vk::ImageUsageFlags,
+        pub _marker: ::core::marker::PhantomData<&'a ()>,
     }
     ///Provided by [`khr::shared_presentable_image`](crate::khr::shared_presentable_image)
     impl crate::vk::ImageLayout {

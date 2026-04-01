@@ -21,8 +21,8 @@ impl InstanceFn {
             create_xcb_surface_khr: unsafe {
                 unsafe extern "system" fn create_xcb_surface_khr(
                     _: crate::vk::Instance,
-                    _: *const crate::vk::XcbSurfaceCreateInfoKHR,
-                    _: *const crate::vk::AllocationCallbacks,
+                    _: *const crate::vk::XcbSurfaceCreateInfoKHR<'_>,
+                    _: *const crate::vk::AllocationCallbacks<'_>,
                     _: *mut crate::vk::SurfaceKHR,
                 ) -> crate::vk::Result {
                     panic!("unable to load vkCreateXcbSurfaceKHR")
@@ -56,12 +56,13 @@ impl InstanceFn {
 pub(crate) mod reexport {
     #[repr(C)]
     #[derive(Clone, Copy)]
-    pub struct XcbSurfaceCreateInfoKHR {
+    pub struct XcbSurfaceCreateInfoKHR<'a> {
         pub s_type: crate::vk::StructureType,
         pub p_next: *const core::ffi::c_void,
         pub flags: crate::vk::XcbSurfaceCreateFlagsKHR,
         pub connection: *mut crate::platform_types::xcb_connection_t,
         pub window: crate::platform_types::xcb_window_t,
+        pub _marker: ::core::marker::PhantomData<&'a ()>,
     }
     ///Provided by [`khr::xcb_surface`](crate::khr::xcb_surface)
     impl crate::vk::StructureType {
@@ -73,8 +74,8 @@ pub(crate) mod reexport {
     }
     pub type PFN_vkCreateXcbSurfaceKHR = unsafe extern "system" fn(
         instance: crate::vk::Instance,
-        p_create_info: *const crate::vk::XcbSurfaceCreateInfoKHR,
-        p_allocator: *const crate::vk::AllocationCallbacks,
+        p_create_info: *const crate::vk::XcbSurfaceCreateInfoKHR<'_>,
+        p_allocator: *const crate::vk::AllocationCallbacks<'_>,
         p_surface: *mut crate::vk::SurfaceKHR,
     ) -> crate::vk::Result;
     pub type PFN_vkGetPhysicalDeviceXcbPresentationSupportKHR = unsafe extern "system" fn(

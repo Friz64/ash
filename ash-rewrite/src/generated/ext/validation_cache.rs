@@ -23,8 +23,8 @@ impl DeviceFn {
             create_validation_cache_ext: unsafe {
                 unsafe extern "system" fn create_validation_cache_ext(
                     _: crate::vk::Device,
-                    _: *const crate::vk::ValidationCacheCreateInfoEXT,
-                    _: *const crate::vk::AllocationCallbacks,
+                    _: *const crate::vk::ValidationCacheCreateInfoEXT<'_>,
+                    _: *const crate::vk::AllocationCallbacks<'_>,
                     _: *mut crate::vk::ValidationCacheEXT,
                 ) -> crate::vk::Result {
                     panic!("unable to load vkCreateValidationCacheEXT")
@@ -40,7 +40,7 @@ impl DeviceFn {
                 unsafe extern "system" fn destroy_validation_cache_ext(
                     _: crate::vk::Device,
                     _: crate::vk::ValidationCacheEXT,
-                    _: *const crate::vk::AllocationCallbacks,
+                    _: *const crate::vk::AllocationCallbacks<'_>,
                 ) {
                     panic!("unable to load vkDestroyValidationCacheEXT")
                 }
@@ -89,19 +89,21 @@ impl DeviceFn {
 pub(crate) mod reexport {
     #[repr(C)]
     #[derive(Clone, Copy)]
-    pub struct ValidationCacheCreateInfoEXT {
+    pub struct ValidationCacheCreateInfoEXT<'a> {
         pub s_type: crate::vk::StructureType,
         pub p_next: *const core::ffi::c_void,
         pub flags: crate::vk::ValidationCacheCreateFlagsEXT,
         pub initial_data_size: usize,
         pub p_initial_data: *const core::ffi::c_void,
+        pub _marker: ::core::marker::PhantomData<&'a ()>,
     }
     #[repr(C)]
     #[derive(Clone, Copy)]
-    pub struct ShaderModuleValidationCacheCreateInfoEXT {
+    pub struct ShaderModuleValidationCacheCreateInfoEXT<'a> {
         pub s_type: crate::vk::StructureType,
         pub p_next: *const core::ffi::c_void,
         pub validation_cache: crate::vk::ValidationCacheEXT,
+        pub _marker: ::core::marker::PhantomData<&'a ()>,
     }
     ///Provided by [`ext::validation_cache`](crate::ext::validation_cache)
     impl crate::vk::StructureType {
@@ -116,6 +118,7 @@ pub(crate) mod reexport {
     }
     #[repr(transparent)]
     #[derive(Clone, Copy, PartialEq, Eq, PartialOrd, Ord, Hash, Default)]
+    #[derive(Debug)]
     pub struct ValidationCacheHeaderVersionEXT(pub(crate) i32);
     ///Provided by [`ext::validation_cache`](crate::ext::validation_cache)
     impl ValidationCacheHeaderVersionEXT {
@@ -154,14 +157,14 @@ pub(crate) mod reexport {
     }
     pub type PFN_vkCreateValidationCacheEXT = unsafe extern "system" fn(
         device: crate::vk::Device,
-        p_create_info: *const crate::vk::ValidationCacheCreateInfoEXT,
-        p_allocator: *const crate::vk::AllocationCallbacks,
+        p_create_info: *const crate::vk::ValidationCacheCreateInfoEXT<'_>,
+        p_allocator: *const crate::vk::AllocationCallbacks<'_>,
         p_validation_cache: *mut crate::vk::ValidationCacheEXT,
     ) -> crate::vk::Result;
     pub type PFN_vkDestroyValidationCacheEXT = unsafe extern "system" fn(
         device: crate::vk::Device,
         validation_cache: crate::vk::ValidationCacheEXT,
-        p_allocator: *const crate::vk::AllocationCallbacks,
+        p_allocator: *const crate::vk::AllocationCallbacks<'_>,
     );
     pub type PFN_vkGetValidationCacheDataEXT = unsafe extern "system" fn(
         device: crate::vk::Device,

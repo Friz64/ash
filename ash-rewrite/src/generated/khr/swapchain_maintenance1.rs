@@ -20,7 +20,7 @@ impl DeviceFn {
             release_swapchain_images_khr: unsafe {
                 unsafe extern "system" fn release_swapchain_images_khr(
                     _: crate::vk::Device,
-                    _: *const crate::vk::ReleaseSwapchainImagesInfoKHR,
+                    _: *const crate::vk::ReleaseSwapchainImagesInfoKHR<'_>,
                 ) -> crate::vk::Result {
                     panic!("unable to load vkReleaseSwapchainImagesKHR")
                 }
@@ -37,52 +37,58 @@ impl DeviceFn {
 pub(crate) mod reexport {
     #[repr(C)]
     #[derive(Clone, Copy)]
-    pub struct PhysicalDeviceSwapchainMaintenance1FeaturesKHR {
+    pub struct PhysicalDeviceSwapchainMaintenance1FeaturesKHR<'a> {
         pub s_type: crate::vk::StructureType,
         pub p_next: *mut core::ffi::c_void,
         pub swapchain_maintenance1: crate::vk::Bool32,
+        pub _marker: ::core::marker::PhantomData<&'a ()>,
     }
     #[repr(C)]
     #[derive(Clone, Copy)]
-    pub struct SwapchainPresentFenceInfoKHR {
+    pub struct SwapchainPresentFenceInfoKHR<'a> {
         pub s_type: crate::vk::StructureType,
         pub p_next: *const core::ffi::c_void,
         pub swapchain_count: u32,
         pub p_fences: *const crate::vk::Fence,
+        pub _marker: ::core::marker::PhantomData<&'a ()>,
     }
     #[repr(C)]
     #[derive(Clone, Copy)]
-    pub struct SwapchainPresentModesCreateInfoKHR {
+    pub struct SwapchainPresentModesCreateInfoKHR<'a> {
         pub s_type: crate::vk::StructureType,
         pub p_next: *const core::ffi::c_void,
         pub present_mode_count: u32,
         pub p_present_modes: *const crate::vk::PresentModeKHR,
+        pub _marker: ::core::marker::PhantomData<&'a ()>,
     }
     #[repr(C)]
     #[derive(Clone, Copy)]
-    pub struct SwapchainPresentModeInfoKHR {
+    pub struct SwapchainPresentModeInfoKHR<'a> {
         pub s_type: crate::vk::StructureType,
         pub p_next: *const core::ffi::c_void,
         pub swapchain_count: u32,
         pub p_present_modes: *const crate::vk::PresentModeKHR,
+        pub _marker: ::core::marker::PhantomData<&'a ()>,
     }
     #[repr(C)]
     #[derive(Clone, Copy)]
-    pub struct SwapchainPresentScalingCreateInfoKHR {
+    pub struct SwapchainPresentScalingCreateInfoKHR<'a> {
         pub s_type: crate::vk::StructureType,
         pub p_next: *const core::ffi::c_void,
         pub scaling_behavior: crate::vk::PresentScalingFlagsKHR,
         pub present_gravity_x: crate::vk::PresentGravityFlagsKHR,
         pub present_gravity_y: crate::vk::PresentGravityFlagsKHR,
+        pub _marker: ::core::marker::PhantomData<&'a ()>,
     }
     #[repr(C)]
     #[derive(Clone, Copy)]
-    pub struct ReleaseSwapchainImagesInfoKHR {
+    pub struct ReleaseSwapchainImagesInfoKHR<'a> {
         pub s_type: crate::vk::StructureType,
         pub p_next: *const core::ffi::c_void,
         pub swapchain: crate::vk::SwapchainKHR,
         pub image_index_count: u32,
         pub p_image_indices: *const u32,
+        pub _marker: ::core::marker::PhantomData<&'a ()>,
     }
     ///Provided by [`khr::swapchain_maintenance1`](crate::khr::swapchain_maintenance1)
     impl crate::vk::StructureType {
@@ -101,7 +107,7 @@ pub(crate) mod reexport {
     }
     pub type PFN_vkReleaseSwapchainImagesKHR = unsafe extern "system" fn(
         device: crate::vk::Device,
-        p_release_info: *const crate::vk::ReleaseSwapchainImagesInfoKHR,
+        p_release_info: *const crate::vk::ReleaseSwapchainImagesInfoKHR<'_>,
     ) -> crate::vk::Result;
     pub const KHR_SWAPCHAIN_MAINTENANCE_1_SPEC_VERSION: u32 = 1;
     pub const KHR_SWAPCHAIN_MAINTENANCE_1_EXTENSION_NAME: &core::ffi::CStr = c"VK_KHR_swapchain_maintenance1";

@@ -20,8 +20,8 @@ impl InstanceFn {
             create_ios_surface_mvk: unsafe {
                 unsafe extern "system" fn create_ios_surface_mvk(
                     _: crate::vk::Instance,
-                    _: *const crate::vk::IOSSurfaceCreateInfoMVK,
-                    _: *const crate::vk::AllocationCallbacks,
+                    _: *const crate::vk::IOSSurfaceCreateInfoMVK<'_>,
+                    _: *const crate::vk::AllocationCallbacks<'_>,
                     _: *mut crate::vk::SurfaceKHR,
                 ) -> crate::vk::Result {
                     panic!("unable to load vkCreateIOSSurfaceMVK")
@@ -39,11 +39,12 @@ impl InstanceFn {
 pub(crate) mod reexport {
     #[repr(C)]
     #[derive(Clone, Copy)]
-    pub struct IOSSurfaceCreateInfoMVK {
+    pub struct IOSSurfaceCreateInfoMVK<'a> {
         pub s_type: crate::vk::StructureType,
         pub p_next: *const core::ffi::c_void,
         pub flags: crate::vk::IOSSurfaceCreateFlagsMVK,
         pub p_view: *const core::ffi::c_void,
+        pub _marker: ::core::marker::PhantomData<&'a ()>,
     }
     ///Provided by [`mvk::ios_surface`](crate::mvk::ios_surface)
     impl crate::vk::StructureType {
@@ -55,8 +56,8 @@ pub(crate) mod reexport {
     }
     pub type PFN_vkCreateIOSSurfaceMVK = unsafe extern "system" fn(
         instance: crate::vk::Instance,
-        p_create_info: *const crate::vk::IOSSurfaceCreateInfoMVK,
-        p_allocator: *const crate::vk::AllocationCallbacks,
+        p_create_info: *const crate::vk::IOSSurfaceCreateInfoMVK<'_>,
+        p_allocator: *const crate::vk::AllocationCallbacks<'_>,
         p_surface: *mut crate::vk::SurfaceKHR,
     ) -> crate::vk::Result;
     pub const MVK_IOS_SURFACE_SPEC_VERSION: u32 = 3;

@@ -3,10 +3,11 @@
 //![Vulkan Manual Page](https://docs.vulkan.org/refpages/latest/refpages/source/VK_NV_low_latency.html) · Extension `VK_NV_low_latency`
 #[repr(C)]
 #[derive(Clone, Copy)]
-pub struct QueryLowLatencySupportNV {
+pub struct QueryLowLatencySupportNV<'a> {
     pub s_type: crate::vk::StructureType,
     pub p_next: *const core::ffi::c_void,
     pub p_queried_low_latency_data: *mut core::ffi::c_void,
+    pub _marker: ::core::marker::PhantomData<&'a ()>,
 }
 ///Provided by [`nv::low_latency`](crate::nv::low_latency)
 impl crate::vk::StructureType {

@@ -3,18 +3,20 @@
 //![Vulkan Manual Page](https://docs.vulkan.org/refpages/latest/refpages/source/VK_EXT_depth_clip_enable.html) · Extension `VK_EXT_depth_clip_enable`
 #[repr(C)]
 #[derive(Clone, Copy)]
-pub struct PhysicalDeviceDepthClipEnableFeaturesEXT {
+pub struct PhysicalDeviceDepthClipEnableFeaturesEXT<'a> {
     pub s_type: crate::vk::StructureType,
     pub p_next: *mut core::ffi::c_void,
     pub depth_clip_enable: crate::vk::Bool32,
+    pub _marker: ::core::marker::PhantomData<&'a ()>,
 }
 #[repr(C)]
 #[derive(Clone, Copy)]
-pub struct PipelineRasterizationDepthClipStateCreateInfoEXT {
+pub struct PipelineRasterizationDepthClipStateCreateInfoEXT<'a> {
     pub s_type: crate::vk::StructureType,
     pub p_next: *const core::ffi::c_void,
     pub flags: crate::vk::PipelineRasterizationDepthClipStateCreateFlagsEXT,
     pub depth_clip_enable: crate::vk::Bool32,
+    pub _marker: ::core::marker::PhantomData<&'a ()>,
 }
 ///Provided by [`ext::depth_clip_enable`](crate::ext::depth_clip_enable)
 impl crate::vk::StructureType {

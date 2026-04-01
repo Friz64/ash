@@ -21,7 +21,7 @@ impl InstanceFn {
                 unsafe extern "system" fn get_physical_device_surface_capabilities2_ext(
                     _: crate::vk::PhysicalDevice,
                     _: crate::vk::SurfaceKHR,
-                    _: *mut crate::vk::SurfaceCapabilities2EXT,
+                    _: *mut crate::vk::SurfaceCapabilities2EXT<'_>,
                 ) -> crate::vk::Result {
                     panic!("unable to load vkGetPhysicalDeviceSurfaceCapabilities2EXT")
                 }
@@ -38,7 +38,7 @@ impl InstanceFn {
 pub(crate) mod reexport {
     #[repr(C)]
     #[derive(Clone, Copy)]
-    pub struct SurfaceCapabilities2EXT {
+    pub struct SurfaceCapabilities2EXT<'a> {
         pub s_type: crate::vk::StructureType,
         pub p_next: *mut core::ffi::c_void,
         pub min_image_count: u32,
@@ -52,6 +52,7 @@ pub(crate) mod reexport {
         pub supported_composite_alpha: crate::vk::CompositeAlphaFlagsKHR,
         pub supported_usage_flags: crate::vk::ImageUsageFlags,
         pub supported_surface_counters: crate::vk::SurfaceCounterFlagsEXT,
+        pub _marker: ::core::marker::PhantomData<&'a ()>,
     }
     ///Provided by [`ext::display_surface_counter`](crate::ext::display_surface_counter)
     impl crate::vk::StructureType {
@@ -71,7 +72,7 @@ pub(crate) mod reexport {
     pub type PFN_vkGetPhysicalDeviceSurfaceCapabilities2EXT = unsafe extern "system" fn(
         physical_device: crate::vk::PhysicalDevice,
         surface: crate::vk::SurfaceKHR,
-        p_surface_capabilities: *mut crate::vk::SurfaceCapabilities2EXT,
+        p_surface_capabilities: *mut crate::vk::SurfaceCapabilities2EXT<'_>,
     ) -> crate::vk::Result;
     pub const EXT_DISPLAY_SURFACE_COUNTER_SPEC_VERSION: u32 = 1;
     pub const EXT_DISPLAY_SURFACE_COUNTER_EXTENSION_NAME: &core::ffi::CStr = c"VK_EXT_display_surface_counter";

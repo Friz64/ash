@@ -21,7 +21,7 @@ impl InstanceFn {
                 unsafe extern "system" fn get_physical_device_cooperative_matrix_properties_khr(
                     _: crate::vk::PhysicalDevice,
                     _: *mut u32,
-                    _: *mut crate::vk::CooperativeMatrixPropertiesKHR,
+                    _: *mut crate::vk::CooperativeMatrixPropertiesKHR<'_>,
                 ) -> crate::vk::Result {
                     panic!(
                         "unable to load vkGetPhysicalDeviceCooperativeMatrixPropertiesKHR"
@@ -40,15 +40,16 @@ impl InstanceFn {
 pub(crate) mod reexport {
     #[repr(C)]
     #[derive(Clone, Copy)]
-    pub struct PhysicalDeviceCooperativeMatrixFeaturesKHR {
+    pub struct PhysicalDeviceCooperativeMatrixFeaturesKHR<'a> {
         pub s_type: crate::vk::StructureType,
         pub p_next: *mut core::ffi::c_void,
         pub cooperative_matrix: crate::vk::Bool32,
         pub cooperative_matrix_robust_buffer_access: crate::vk::Bool32,
+        pub _marker: ::core::marker::PhantomData<&'a ()>,
     }
     #[repr(C)]
     #[derive(Clone, Copy)]
-    pub struct CooperativeMatrixPropertiesKHR {
+    pub struct CooperativeMatrixPropertiesKHR<'a> {
         pub s_type: crate::vk::StructureType,
         pub p_next: *mut core::ffi::c_void,
         pub m_size: u32,
@@ -60,13 +61,15 @@ pub(crate) mod reexport {
         pub result_type: crate::vk::ComponentTypeKHR,
         pub saturating_accumulation: crate::vk::Bool32,
         pub scope: crate::vk::ScopeKHR,
+        pub _marker: ::core::marker::PhantomData<&'a ()>,
     }
     #[repr(C)]
     #[derive(Clone, Copy)]
-    pub struct PhysicalDeviceCooperativeMatrixPropertiesKHR {
+    pub struct PhysicalDeviceCooperativeMatrixPropertiesKHR<'a> {
         pub s_type: crate::vk::StructureType,
         pub p_next: *mut core::ffi::c_void,
         pub cooperative_matrix_supported_stages: crate::vk::ShaderStageFlags,
+        pub _marker: ::core::marker::PhantomData<&'a ()>,
     }
     ///Provided by [`khr::cooperative_matrix`](crate::khr::cooperative_matrix)
     impl crate::vk::StructureType {
@@ -80,6 +83,7 @@ pub(crate) mod reexport {
     }
     #[repr(transparent)]
     #[derive(Clone, Copy, PartialEq, Eq, PartialOrd, Ord, Hash, Default)]
+    #[derive(Debug)]
     pub struct ScopeKHR(pub(crate) i32);
     ///Provided by [`khr::cooperative_matrix`](crate::khr::cooperative_matrix)
     impl ScopeKHR {
@@ -91,7 +95,7 @@ pub(crate) mod reexport {
     pub type PFN_vkGetPhysicalDeviceCooperativeMatrixPropertiesKHR = unsafe extern "system" fn(
         physical_device: crate::vk::PhysicalDevice,
         p_property_count: *mut u32,
-        p_properties: *mut crate::vk::CooperativeMatrixPropertiesKHR,
+        p_properties: *mut crate::vk::CooperativeMatrixPropertiesKHR<'_>,
     ) -> crate::vk::Result;
     pub const KHR_COOPERATIVE_MATRIX_SPEC_VERSION: u32 = 2;
     pub const KHR_COOPERATIVE_MATRIX_EXTENSION_NAME: &core::ffi::CStr = c"VK_KHR_cooperative_matrix";

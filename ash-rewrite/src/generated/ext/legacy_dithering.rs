@@ -3,10 +3,11 @@
 //![Vulkan Manual Page](https://docs.vulkan.org/refpages/latest/refpages/source/VK_EXT_legacy_dithering.html) · Extension `VK_EXT_legacy_dithering`
 #[repr(C)]
 #[derive(Clone, Copy)]
-pub struct PhysicalDeviceLegacyDitheringFeaturesEXT {
+pub struct PhysicalDeviceLegacyDitheringFeaturesEXT<'a> {
     pub s_type: crate::vk::StructureType,
     pub p_next: *mut core::ffi::c_void,
     pub legacy_dithering: crate::vk::Bool32,
+    pub _marker: ::core::marker::PhantomData<&'a ()>,
 }
 ///Provided by [`ext::legacy_dithering`](crate::ext::legacy_dithering)
 impl crate::vk::StructureType {

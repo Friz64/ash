@@ -3,18 +3,20 @@
 //![Vulkan Manual Page](https://docs.vulkan.org/refpages/latest/refpages/source/VK_NV_present_metering.html) · Extension `VK_NV_present_metering`
 #[repr(C)]
 #[derive(Clone, Copy)]
-pub struct SetPresentConfigNV {
+pub struct SetPresentConfigNV<'a> {
     pub s_type: crate::vk::StructureType,
     pub p_next: *const core::ffi::c_void,
     pub num_frames_per_batch: u32,
     pub present_config_feedback: u32,
+    pub _marker: ::core::marker::PhantomData<&'a ()>,
 }
 #[repr(C)]
 #[derive(Clone, Copy)]
-pub struct PhysicalDevicePresentMeteringFeaturesNV {
+pub struct PhysicalDevicePresentMeteringFeaturesNV<'a> {
     pub s_type: crate::vk::StructureType,
     pub p_next: *mut core::ffi::c_void,
     pub present_metering: crate::vk::Bool32,
+    pub _marker: ::core::marker::PhantomData<&'a ()>,
 }
 ///Provided by [`nv::present_metering`](crate::nv::present_metering)
 impl crate::vk::StructureType {

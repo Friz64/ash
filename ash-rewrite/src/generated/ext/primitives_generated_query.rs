@@ -3,12 +3,13 @@
 //![Vulkan Manual Page](https://docs.vulkan.org/refpages/latest/refpages/source/VK_EXT_primitives_generated_query.html) · Extension `VK_EXT_primitives_generated_query`
 #[repr(C)]
 #[derive(Clone, Copy)]
-pub struct PhysicalDevicePrimitivesGeneratedQueryFeaturesEXT {
+pub struct PhysicalDevicePrimitivesGeneratedQueryFeaturesEXT<'a> {
     pub s_type: crate::vk::StructureType,
     pub p_next: *mut core::ffi::c_void,
     pub primitives_generated_query: crate::vk::Bool32,
     pub primitives_generated_query_with_rasterizer_discard: crate::vk::Bool32,
     pub primitives_generated_query_with_non_zero_streams: crate::vk::Bool32,
+    pub _marker: ::core::marker::PhantomData<&'a ()>,
 }
 ///Provided by [`ext::primitives_generated_query`](crate::ext::primitives_generated_query)
 impl crate::vk::QueryType {

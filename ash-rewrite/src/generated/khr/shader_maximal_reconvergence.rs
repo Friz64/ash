@@ -3,10 +3,11 @@
 //![Vulkan Manual Page](https://docs.vulkan.org/refpages/latest/refpages/source/VK_KHR_shader_maximal_reconvergence.html) · Extension `VK_KHR_shader_maximal_reconvergence`
 #[repr(C)]
 #[derive(Clone, Copy)]
-pub struct PhysicalDeviceShaderMaximalReconvergenceFeaturesKHR {
+pub struct PhysicalDeviceShaderMaximalReconvergenceFeaturesKHR<'a> {
     pub s_type: crate::vk::StructureType,
     pub p_next: *mut core::ffi::c_void,
     pub shader_maximal_reconvergence: crate::vk::Bool32,
+    pub _marker: ::core::marker::PhantomData<&'a ()>,
 }
 ///Provided by [`khr::shader_maximal_reconvergence`](crate::khr::shader_maximal_reconvergence)
 impl crate::vk::StructureType {

@@ -3,19 +3,21 @@
 //![Vulkan Manual Page](https://docs.vulkan.org/refpages/latest/refpages/source/VK_KHR_video_maintenance1.html) · Extension `VK_KHR_video_maintenance1`
 #[repr(C)]
 #[derive(Clone, Copy)]
-pub struct PhysicalDeviceVideoMaintenance1FeaturesKHR {
+pub struct PhysicalDeviceVideoMaintenance1FeaturesKHR<'a> {
     pub s_type: crate::vk::StructureType,
     pub p_next: *mut core::ffi::c_void,
     pub video_maintenance1: crate::vk::Bool32,
+    pub _marker: ::core::marker::PhantomData<&'a ()>,
 }
 #[repr(C)]
 #[derive(Clone, Copy)]
-pub struct VideoInlineQueryInfoKHR {
+pub struct VideoInlineQueryInfoKHR<'a> {
     pub s_type: crate::vk::StructureType,
     pub p_next: *const core::ffi::c_void,
     pub query_pool: crate::vk::QueryPool,
     pub first_query: u32,
     pub query_count: u32,
+    pub _marker: ::core::marker::PhantomData<&'a ()>,
 }
 ///Provided by [`khr::video_maintenance1`](crate::khr::video_maintenance1)
 impl crate::vk::StructureType {

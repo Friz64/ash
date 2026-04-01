@@ -20,8 +20,8 @@ impl InstanceFn {
             create_mac_os_surface_mvk: unsafe {
                 unsafe extern "system" fn create_mac_os_surface_mvk(
                     _: crate::vk::Instance,
-                    _: *const crate::vk::MacOSSurfaceCreateInfoMVK,
-                    _: *const crate::vk::AllocationCallbacks,
+                    _: *const crate::vk::MacOSSurfaceCreateInfoMVK<'_>,
+                    _: *const crate::vk::AllocationCallbacks<'_>,
                     _: *mut crate::vk::SurfaceKHR,
                 ) -> crate::vk::Result {
                     panic!("unable to load vkCreateMacOSSurfaceMVK")
@@ -39,11 +39,12 @@ impl InstanceFn {
 pub(crate) mod reexport {
     #[repr(C)]
     #[derive(Clone, Copy)]
-    pub struct MacOSSurfaceCreateInfoMVK {
+    pub struct MacOSSurfaceCreateInfoMVK<'a> {
         pub s_type: crate::vk::StructureType,
         pub p_next: *const core::ffi::c_void,
         pub flags: crate::vk::MacOSSurfaceCreateFlagsMVK,
         pub p_view: *const core::ffi::c_void,
+        pub _marker: ::core::marker::PhantomData<&'a ()>,
     }
     ///Provided by [`mvk::macos_surface`](crate::mvk::macos_surface)
     impl crate::vk::StructureType {
@@ -55,8 +56,8 @@ pub(crate) mod reexport {
     }
     pub type PFN_vkCreateMacOSSurfaceMVK = unsafe extern "system" fn(
         instance: crate::vk::Instance,
-        p_create_info: *const crate::vk::MacOSSurfaceCreateInfoMVK,
-        p_allocator: *const crate::vk::AllocationCallbacks,
+        p_create_info: *const crate::vk::MacOSSurfaceCreateInfoMVK<'_>,
+        p_allocator: *const crate::vk::AllocationCallbacks<'_>,
         p_surface: *mut crate::vk::SurfaceKHR,
     ) -> crate::vk::Result;
     pub const MVK_MACOS_SURFACE_SPEC_VERSION: u32 = 3;

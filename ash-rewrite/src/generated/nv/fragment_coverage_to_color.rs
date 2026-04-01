@@ -3,12 +3,13 @@
 //![Vulkan Manual Page](https://docs.vulkan.org/refpages/latest/refpages/source/VK_NV_fragment_coverage_to_color.html) · Extension `VK_NV_fragment_coverage_to_color`
 #[repr(C)]
 #[derive(Clone, Copy)]
-pub struct PipelineCoverageToColorStateCreateInfoNV {
+pub struct PipelineCoverageToColorStateCreateInfoNV<'a> {
     pub s_type: crate::vk::StructureType,
     pub p_next: *const core::ffi::c_void,
     pub flags: crate::vk::PipelineCoverageToColorStateCreateFlagsNV,
     pub coverage_to_color_enable: crate::vk::Bool32,
     pub coverage_to_color_location: u32,
+    pub _marker: ::core::marker::PhantomData<&'a ()>,
 }
 ///Provided by [`nv::fragment_coverage_to_color`](crate::nv::fragment_coverage_to_color)
 impl crate::vk::StructureType {

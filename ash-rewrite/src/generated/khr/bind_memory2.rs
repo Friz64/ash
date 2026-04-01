@@ -22,7 +22,7 @@ impl DeviceFn {
                 unsafe extern "system" fn bind_buffer_memory2_khr(
                     _: crate::vk::Device,
                     _: u32,
-                    _: *const crate::vk::BindBufferMemoryInfo,
+                    _: *const crate::vk::BindBufferMemoryInfo<'_>,
                 ) -> crate::vk::Result {
                     panic!("unable to load vkBindBufferMemory2KHR")
                 }
@@ -37,7 +37,7 @@ impl DeviceFn {
                 unsafe extern "system" fn bind_image_memory2_khr(
                     _: crate::vk::Device,
                     _: u32,
-                    _: *const crate::vk::BindImageMemoryInfo,
+                    _: *const crate::vk::BindImageMemoryInfo<'_>,
                 ) -> crate::vk::Result {
                     panic!("unable to load vkBindImageMemory2KHR")
                 }
@@ -52,8 +52,8 @@ impl DeviceFn {
     }
 }
 pub(crate) mod reexport {
-    pub type BindBufferMemoryInfoKHR = crate::vk::BindBufferMemoryInfo;
-    pub type BindImageMemoryInfoKHR = crate::vk::BindImageMemoryInfo;
+    pub type BindBufferMemoryInfoKHR<'a> = crate::vk::BindBufferMemoryInfo<'a>;
+    pub type BindImageMemoryInfoKHR<'a> = crate::vk::BindImageMemoryInfo<'a>;
     ///Provided by [`khr::bind_memory2`](crate::khr::bind_memory2)
     impl crate::vk::StructureType {
         pub const BIND_BUFFER_MEMORY_INFO_KHR: Self = Self::BIND_BUFFER_MEMORY_INFO;

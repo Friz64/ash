@@ -62,8 +62,12 @@ pub(crate) mod reexport {
         pub decompressed_size: crate::vk::DeviceSize,
         pub decompression_method: crate::vk::MemoryDecompressionMethodFlagsNV,
     }
-    pub type PhysicalDeviceMemoryDecompressionFeaturesNV = crate::vk::PhysicalDeviceMemoryDecompressionFeaturesEXT;
-    pub type PhysicalDeviceMemoryDecompressionPropertiesNV = crate::vk::PhysicalDeviceMemoryDecompressionPropertiesEXT;
+    pub type PhysicalDeviceMemoryDecompressionFeaturesNV<'a> = crate::vk::PhysicalDeviceMemoryDecompressionFeaturesEXT<
+        'a,
+    >;
+    pub type PhysicalDeviceMemoryDecompressionPropertiesNV<'a> = crate::vk::PhysicalDeviceMemoryDecompressionPropertiesEXT<
+        'a,
+    >;
     ///Provided by [`nv::memory_decompression`](crate::nv::memory_decompression)
     impl crate::vk::StructureType {
         pub const PHYSICAL_DEVICE_MEMORY_DECOMPRESSION_FEATURES_NV: Self = Self::PHYSICAL_DEVICE_MEMORY_DECOMPRESSION_FEATURES_EXT;

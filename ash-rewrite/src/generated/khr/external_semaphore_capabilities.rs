@@ -20,8 +20,8 @@ impl InstanceFn {
             get_physical_device_external_semaphore_properties_khr: unsafe {
                 unsafe extern "system" fn get_physical_device_external_semaphore_properties_khr(
                     _: crate::vk::PhysicalDevice,
-                    _: *const crate::vk::PhysicalDeviceExternalSemaphoreInfo,
-                    _: *mut crate::vk::ExternalSemaphoreProperties,
+                    _: *const crate::vk::PhysicalDeviceExternalSemaphoreInfo<'_>,
+                    _: *mut crate::vk::ExternalSemaphoreProperties<'_>,
                 ) {
                     panic!(
                         "unable to load vkGetPhysicalDeviceExternalSemaphorePropertiesKHR"
@@ -38,8 +38,12 @@ impl InstanceFn {
     }
 }
 pub(crate) mod reexport {
-    pub type PhysicalDeviceExternalSemaphoreInfoKHR = crate::vk::PhysicalDeviceExternalSemaphoreInfo;
-    pub type ExternalSemaphorePropertiesKHR = crate::vk::ExternalSemaphoreProperties;
+    pub type PhysicalDeviceExternalSemaphoreInfoKHR<'a> = crate::vk::PhysicalDeviceExternalSemaphoreInfo<
+        'a,
+    >;
+    pub type ExternalSemaphorePropertiesKHR<'a> = crate::vk::ExternalSemaphoreProperties<
+        'a,
+    >;
     ///Provided by [`khr::external_semaphore_capabilities`](crate::khr::external_semaphore_capabilities)
     impl crate::vk::StructureType {
         pub const PHYSICAL_DEVICE_EXTERNAL_SEMAPHORE_INFO_KHR: Self = Self::PHYSICAL_DEVICE_EXTERNAL_SEMAPHORE_INFO;

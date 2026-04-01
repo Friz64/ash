@@ -3,7 +3,7 @@
 //![Vulkan Manual Page](https://docs.vulkan.org/refpages/latest/refpages/source/VK_NV_framebuffer_mixed_samples.html) · Extension `VK_NV_framebuffer_mixed_samples`
 #[repr(C)]
 #[derive(Clone, Copy)]
-pub struct PipelineCoverageModulationStateCreateInfoNV {
+pub struct PipelineCoverageModulationStateCreateInfoNV<'a> {
     pub s_type: crate::vk::StructureType,
     pub p_next: *const core::ffi::c_void,
     pub flags: crate::vk::PipelineCoverageModulationStateCreateFlagsNV,
@@ -11,8 +11,9 @@ pub struct PipelineCoverageModulationStateCreateInfoNV {
     pub coverage_modulation_table_enable: crate::vk::Bool32,
     pub coverage_modulation_table_count: u32,
     pub p_coverage_modulation_table: *const core::ffi::c_float,
+    pub _marker: ::core::marker::PhantomData<&'a ()>,
 }
-pub type AttachmentSampleCountInfoNV = crate::vk::AttachmentSampleCountInfoAMD;
+pub type AttachmentSampleCountInfoNV<'a> = crate::vk::AttachmentSampleCountInfoAMD<'a>;
 ///Provided by [`nv::framebuffer_mixed_samples`](crate::nv::framebuffer_mixed_samples)
 impl crate::vk::StructureType {
     pub const PIPELINE_COVERAGE_MODULATION_STATE_CREATE_INFO_NV: Self = Self(1000152000);
@@ -20,6 +21,7 @@ impl crate::vk::StructureType {
 }
 #[repr(transparent)]
 #[derive(Clone, Copy, PartialEq, Eq, PartialOrd, Ord, Hash, Default)]
+#[derive(Debug)]
 pub struct CoverageModulationModeNV(pub(crate) i32);
 ///Provided by [`nv::framebuffer_mixed_samples`](crate::nv::framebuffer_mixed_samples)
 impl CoverageModulationModeNV {

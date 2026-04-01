@@ -3,18 +3,20 @@
 //![Vulkan Manual Page](https://docs.vulkan.org/refpages/latest/refpages/source/VK_HUAWEI_hdr_vivid.html) · Extension `VK_HUAWEI_hdr_vivid`
 #[repr(C)]
 #[derive(Clone, Copy)]
-pub struct HdrVividDynamicMetadataHUAWEI {
+pub struct HdrVividDynamicMetadataHUAWEI<'a> {
     pub s_type: crate::vk::StructureType,
     pub p_next: *const core::ffi::c_void,
     pub dynamic_metadata_size: usize,
     pub p_dynamic_metadata: *const core::ffi::c_void,
+    pub _marker: ::core::marker::PhantomData<&'a ()>,
 }
 #[repr(C)]
 #[derive(Clone, Copy)]
-pub struct PhysicalDeviceHdrVividFeaturesHUAWEI {
+pub struct PhysicalDeviceHdrVividFeaturesHUAWEI<'a> {
     pub s_type: crate::vk::StructureType,
     pub p_next: *mut core::ffi::c_void,
     pub hdr_vivid: crate::vk::Bool32,
+    pub _marker: ::core::marker::PhantomData<&'a ()>,
 }
 ///Provided by [`huawei::hdr_vivid`](crate::huawei::hdr_vivid)
 impl crate::vk::StructureType {

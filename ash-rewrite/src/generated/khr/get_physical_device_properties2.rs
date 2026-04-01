@@ -26,7 +26,7 @@ impl InstanceFn {
             get_physical_device_features2_khr: unsafe {
                 unsafe extern "system" fn get_physical_device_features2_khr(
                     _: crate::vk::PhysicalDevice,
-                    _: *mut crate::vk::PhysicalDeviceFeatures2,
+                    _: *mut crate::vk::PhysicalDeviceFeatures2<'_>,
                 ) {
                     panic!("unable to load vkGetPhysicalDeviceFeatures2KHR")
                 }
@@ -40,7 +40,7 @@ impl InstanceFn {
             get_physical_device_properties2_khr: unsafe {
                 unsafe extern "system" fn get_physical_device_properties2_khr(
                     _: crate::vk::PhysicalDevice,
-                    _: *mut crate::vk::PhysicalDeviceProperties2,
+                    _: *mut crate::vk::PhysicalDeviceProperties2<'_>,
                 ) {
                     panic!("unable to load vkGetPhysicalDeviceProperties2KHR")
                 }
@@ -55,7 +55,7 @@ impl InstanceFn {
                 unsafe extern "system" fn get_physical_device_format_properties2_khr(
                     _: crate::vk::PhysicalDevice,
                     _: crate::vk::Format,
-                    _: *mut crate::vk::FormatProperties2,
+                    _: *mut crate::vk::FormatProperties2<'_>,
                 ) {
                     panic!("unable to load vkGetPhysicalDeviceFormatProperties2KHR")
                 }
@@ -69,8 +69,8 @@ impl InstanceFn {
             get_physical_device_image_format_properties2_khr: unsafe {
                 unsafe extern "system" fn get_physical_device_image_format_properties2_khr(
                     _: crate::vk::PhysicalDevice,
-                    _: *const crate::vk::PhysicalDeviceImageFormatInfo2,
-                    _: *mut crate::vk::ImageFormatProperties2,
+                    _: *const crate::vk::PhysicalDeviceImageFormatInfo2<'_>,
+                    _: *mut crate::vk::ImageFormatProperties2<'_>,
                 ) -> crate::vk::Result {
                     panic!("unable to load vkGetPhysicalDeviceImageFormatProperties2KHR")
                 }
@@ -85,7 +85,7 @@ impl InstanceFn {
                 unsafe extern "system" fn get_physical_device_queue_family_properties2_khr(
                     _: crate::vk::PhysicalDevice,
                     _: *mut u32,
-                    _: *mut crate::vk::QueueFamilyProperties2,
+                    _: *mut crate::vk::QueueFamilyProperties2<'_>,
                 ) {
                     panic!("unable to load vkGetPhysicalDeviceQueueFamilyProperties2KHR")
                 }
@@ -99,7 +99,7 @@ impl InstanceFn {
             get_physical_device_memory_properties2_khr: unsafe {
                 unsafe extern "system" fn get_physical_device_memory_properties2_khr(
                     _: crate::vk::PhysicalDevice,
-                    _: *mut crate::vk::PhysicalDeviceMemoryProperties2,
+                    _: *mut crate::vk::PhysicalDeviceMemoryProperties2<'_>,
                 ) {
                     panic!("unable to load vkGetPhysicalDeviceMemoryProperties2KHR")
                 }
@@ -113,9 +113,9 @@ impl InstanceFn {
             get_physical_device_sparse_image_format_properties2_khr: unsafe {
                 unsafe extern "system" fn get_physical_device_sparse_image_format_properties2_khr(
                     _: crate::vk::PhysicalDevice,
-                    _: *const crate::vk::PhysicalDeviceSparseImageFormatInfo2,
+                    _: *const crate::vk::PhysicalDeviceSparseImageFormatInfo2<'_>,
                     _: *mut u32,
-                    _: *mut crate::vk::SparseImageFormatProperties2,
+                    _: *mut crate::vk::SparseImageFormatProperties2<'_>,
                 ) {
                     panic!(
                         "unable to load vkGetPhysicalDeviceSparseImageFormatProperties2KHR"
@@ -132,15 +132,23 @@ impl InstanceFn {
     }
 }
 pub(crate) mod reexport {
-    pub type PhysicalDeviceFeatures2KHR = crate::vk::PhysicalDeviceFeatures2;
-    pub type PhysicalDeviceProperties2KHR = crate::vk::PhysicalDeviceProperties2;
-    pub type FormatProperties2KHR = crate::vk::FormatProperties2;
-    pub type ImageFormatProperties2KHR = crate::vk::ImageFormatProperties2;
-    pub type PhysicalDeviceImageFormatInfo2KHR = crate::vk::PhysicalDeviceImageFormatInfo2;
-    pub type QueueFamilyProperties2KHR = crate::vk::QueueFamilyProperties2;
-    pub type PhysicalDeviceMemoryProperties2KHR = crate::vk::PhysicalDeviceMemoryProperties2;
-    pub type SparseImageFormatProperties2KHR = crate::vk::SparseImageFormatProperties2;
-    pub type PhysicalDeviceSparseImageFormatInfo2KHR = crate::vk::PhysicalDeviceSparseImageFormatInfo2;
+    pub type PhysicalDeviceFeatures2KHR<'a> = crate::vk::PhysicalDeviceFeatures2<'a>;
+    pub type PhysicalDeviceProperties2KHR<'a> = crate::vk::PhysicalDeviceProperties2<'a>;
+    pub type FormatProperties2KHR<'a> = crate::vk::FormatProperties2<'a>;
+    pub type ImageFormatProperties2KHR<'a> = crate::vk::ImageFormatProperties2<'a>;
+    pub type PhysicalDeviceImageFormatInfo2KHR<'a> = crate::vk::PhysicalDeviceImageFormatInfo2<
+        'a,
+    >;
+    pub type QueueFamilyProperties2KHR<'a> = crate::vk::QueueFamilyProperties2<'a>;
+    pub type PhysicalDeviceMemoryProperties2KHR<'a> = crate::vk::PhysicalDeviceMemoryProperties2<
+        'a,
+    >;
+    pub type SparseImageFormatProperties2KHR<'a> = crate::vk::SparseImageFormatProperties2<
+        'a,
+    >;
+    pub type PhysicalDeviceSparseImageFormatInfo2KHR<'a> = crate::vk::PhysicalDeviceSparseImageFormatInfo2<
+        'a,
+    >;
     ///Provided by [`khr::get_physical_device_properties2`](crate::khr::get_physical_device_properties2)
     impl crate::vk::StructureType {
         pub const PHYSICAL_DEVICE_FEATURES_2_KHR: Self = Self::PHYSICAL_DEVICE_FEATURES_2;

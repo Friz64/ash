@@ -3,36 +3,40 @@
 //![Vulkan Manual Page](https://docs.vulkan.org/refpages/latest/refpages/source/VK_KHR_video_decode_vp9.html) · Extension `VK_KHR_video_decode_vp9`
 #[repr(C)]
 #[derive(Clone, Copy)]
-pub struct PhysicalDeviceVideoDecodeVP9FeaturesKHR {
+pub struct PhysicalDeviceVideoDecodeVP9FeaturesKHR<'a> {
     pub s_type: crate::vk::StructureType,
     pub p_next: *mut core::ffi::c_void,
     pub video_decode_vp9: crate::vk::Bool32,
+    pub _marker: ::core::marker::PhantomData<&'a ()>,
 }
 #[repr(C)]
 #[derive(Clone, Copy)]
-pub struct VideoDecodeVP9ProfileInfoKHR {
+pub struct VideoDecodeVP9ProfileInfoKHR<'a> {
     pub s_type: crate::vk::StructureType,
     pub p_next: *const core::ffi::c_void,
     pub std_profile: crate::vk::VP9Profile,
+    pub _marker: ::core::marker::PhantomData<&'a ()>,
 }
 #[repr(C)]
 #[derive(Clone, Copy)]
-pub struct VideoDecodeVP9CapabilitiesKHR {
+pub struct VideoDecodeVP9CapabilitiesKHR<'a> {
     pub s_type: crate::vk::StructureType,
     pub p_next: *mut core::ffi::c_void,
     pub max_level: crate::vk::VP9Level,
+    pub _marker: ::core::marker::PhantomData<&'a ()>,
 }
 #[repr(C)]
 #[derive(Clone, Copy)]
-pub struct VideoDecodeVP9PictureInfoKHR {
+pub struct VideoDecodeVP9PictureInfoKHR<'a> {
     pub s_type: crate::vk::StructureType,
     pub p_next: *const core::ffi::c_void,
-    pub p_std_picture_info: *const crate::vk::DecodeVP9PictureInfo,
+    pub p_std_picture_info: *const crate::vk::DecodeVP9PictureInfo<'a>,
     pub reference_name_slot_indices: [i32; crate::vk::MAX_VIDEO_VP9_REFERENCES_PER_FRAME_KHR
         as _],
     pub uncompressed_header_offset: u32,
     pub compressed_header_offset: u32,
     pub tiles_offset: u32,
+    pub _marker: ::core::marker::PhantomData<&'a ()>,
 }
 ///Provided by [`khr::video_decode_vp9`](crate::khr::video_decode_vp9)
 impl crate::vk::StructureType {

@@ -20,8 +20,8 @@ impl InstanceFn {
             create_surface_ohos: unsafe {
                 unsafe extern "system" fn create_surface_ohos(
                     _: crate::vk::Instance,
-                    _: *const crate::vk::SurfaceCreateInfoOHOS,
-                    _: *const crate::vk::AllocationCallbacks,
+                    _: *const crate::vk::SurfaceCreateInfoOHOS<'_>,
+                    _: *const crate::vk::AllocationCallbacks<'_>,
                     _: *mut crate::vk::SurfaceKHR,
                 ) -> crate::vk::Result {
                     panic!("unable to load vkCreateSurfaceOHOS")
@@ -39,11 +39,12 @@ impl InstanceFn {
 pub(crate) mod reexport {
     #[repr(C)]
     #[derive(Clone, Copy)]
-    pub struct SurfaceCreateInfoOHOS {
+    pub struct SurfaceCreateInfoOHOS<'a> {
         pub s_type: crate::vk::StructureType,
         pub p_next: *const core::ffi::c_void,
         pub flags: crate::vk::SurfaceCreateFlagsOHOS,
         pub window: *mut crate::platform_types::OHNativeWindow,
+        pub _marker: ::core::marker::PhantomData<&'a ()>,
     }
     ///Provided by [`ohos::surface`](crate::ohos::surface)
     impl crate::vk::StructureType {
@@ -55,8 +56,8 @@ pub(crate) mod reexport {
     }
     pub type PFN_vkCreateSurfaceOHOS = unsafe extern "system" fn(
         instance: crate::vk::Instance,
-        p_create_info: *const crate::vk::SurfaceCreateInfoOHOS,
-        p_allocator: *const crate::vk::AllocationCallbacks,
+        p_create_info: *const crate::vk::SurfaceCreateInfoOHOS<'_>,
+        p_allocator: *const crate::vk::AllocationCallbacks<'_>,
         p_surface: *mut crate::vk::SurfaceKHR,
     ) -> crate::vk::Result;
     pub const OHOS_SURFACE_SPEC_VERSION: u32 = 1;

@@ -21,7 +21,7 @@ impl DeviceFn {
                 unsafe extern "system" fn get_screen_buffer_properties_qnx(
                     _: crate::vk::Device,
                     _: *const crate::platform_types::_screen_buffer,
-                    _: *mut crate::vk::ScreenBufferPropertiesQNX,
+                    _: *mut crate::vk::ScreenBufferPropertiesQNX<'_>,
                 ) -> crate::vk::Result {
                     panic!("unable to load vkGetScreenBufferPropertiesQNX")
                 }
@@ -38,22 +38,24 @@ impl DeviceFn {
 pub(crate) mod reexport {
     #[repr(C)]
     #[derive(Clone, Copy)]
-    pub struct ImportScreenBufferInfoQNX {
+    pub struct ImportScreenBufferInfoQNX<'a> {
         pub s_type: crate::vk::StructureType,
         pub p_next: *const core::ffi::c_void,
         pub buffer: *mut crate::platform_types::_screen_buffer,
+        pub _marker: ::core::marker::PhantomData<&'a ()>,
     }
     #[repr(C)]
     #[derive(Clone, Copy)]
-    pub struct ScreenBufferPropertiesQNX {
+    pub struct ScreenBufferPropertiesQNX<'a> {
         pub s_type: crate::vk::StructureType,
         pub p_next: *mut core::ffi::c_void,
         pub allocation_size: crate::vk::DeviceSize,
         pub memory_type_bits: u32,
+        pub _marker: ::core::marker::PhantomData<&'a ()>,
     }
     #[repr(C)]
     #[derive(Clone, Copy)]
-    pub struct ScreenBufferFormatPropertiesQNX {
+    pub struct ScreenBufferFormatPropertiesQNX<'a> {
         pub s_type: crate::vk::StructureType,
         pub p_next: *mut core::ffi::c_void,
         pub format: crate::vk::Format,
@@ -65,20 +67,23 @@ pub(crate) mod reexport {
         pub suggested_ycbcr_range: crate::vk::SamplerYcbcrRange,
         pub suggested_x_chroma_offset: crate::vk::ChromaLocation,
         pub suggested_y_chroma_offset: crate::vk::ChromaLocation,
+        pub _marker: ::core::marker::PhantomData<&'a ()>,
     }
     #[repr(C)]
     #[derive(Clone, Copy)]
-    pub struct ExternalFormatQNX {
+    pub struct ExternalFormatQNX<'a> {
         pub s_type: crate::vk::StructureType,
         pub p_next: *mut core::ffi::c_void,
         pub external_format: u64,
+        pub _marker: ::core::marker::PhantomData<&'a ()>,
     }
     #[repr(C)]
     #[derive(Clone, Copy)]
-    pub struct PhysicalDeviceExternalMemoryScreenBufferFeaturesQNX {
+    pub struct PhysicalDeviceExternalMemoryScreenBufferFeaturesQNX<'a> {
         pub s_type: crate::vk::StructureType,
         pub p_next: *mut core::ffi::c_void,
         pub screen_buffer_import: crate::vk::Bool32,
+        pub _marker: ::core::marker::PhantomData<&'a ()>,
     }
     ///Provided by [`qnx::external_memory_screen_buffer`](crate::qnx::external_memory_screen_buffer)
     impl crate::vk::StructureType {
@@ -97,7 +102,7 @@ pub(crate) mod reexport {
     pub type PFN_vkGetScreenBufferPropertiesQNX = unsafe extern "system" fn(
         device: crate::vk::Device,
         buffer: *const crate::platform_types::_screen_buffer,
-        p_properties: *mut crate::vk::ScreenBufferPropertiesQNX,
+        p_properties: *mut crate::vk::ScreenBufferPropertiesQNX<'_>,
     ) -> crate::vk::Result;
     pub const QNX_EXTERNAL_MEMORY_SCREEN_BUFFER_SPEC_VERSION: u32 = 1;
     pub const QNX_EXTERNAL_MEMORY_SCREEN_BUFFER_EXTENSION_NAME: &core::ffi::CStr = c"VK_QNX_external_memory_screen_buffer";

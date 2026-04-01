@@ -24,7 +24,7 @@ impl DeviceFn {
             copy_memory_to_image_ext: unsafe {
                 unsafe extern "system" fn copy_memory_to_image_ext(
                     _: crate::vk::Device,
-                    _: *const crate::vk::CopyMemoryToImageInfo,
+                    _: *const crate::vk::CopyMemoryToImageInfo<'_>,
                 ) -> crate::vk::Result {
                     panic!("unable to load vkCopyMemoryToImageEXT")
                 }
@@ -38,7 +38,7 @@ impl DeviceFn {
             copy_image_to_memory_ext: unsafe {
                 unsafe extern "system" fn copy_image_to_memory_ext(
                     _: crate::vk::Device,
-                    _: *const crate::vk::CopyImageToMemoryInfo,
+                    _: *const crate::vk::CopyImageToMemoryInfo<'_>,
                 ) -> crate::vk::Result {
                     panic!("unable to load vkCopyImageToMemoryEXT")
                 }
@@ -52,7 +52,7 @@ impl DeviceFn {
             copy_image_to_image_ext: unsafe {
                 unsafe extern "system" fn copy_image_to_image_ext(
                     _: crate::vk::Device,
-                    _: *const crate::vk::CopyImageToImageInfo,
+                    _: *const crate::vk::CopyImageToImageInfo<'_>,
                 ) -> crate::vk::Result {
                     panic!("unable to load vkCopyImageToImageEXT")
                 }
@@ -67,7 +67,7 @@ impl DeviceFn {
                 unsafe extern "system" fn transition_image_layout_ext(
                     _: crate::vk::Device,
                     _: u32,
-                    _: *const crate::vk::HostImageLayoutTransitionInfo,
+                    _: *const crate::vk::HostImageLayoutTransitionInfo<'_>,
                 ) -> crate::vk::Result {
                     panic!("unable to load vkTransitionImageLayoutEXT")
                 }
@@ -82,8 +82,8 @@ impl DeviceFn {
                 unsafe extern "system" fn get_image_subresource_layout2_ext(
                     _: crate::vk::Device,
                     _: crate::vk::Image,
-                    _: *const crate::vk::ImageSubresource2,
-                    _: *mut crate::vk::SubresourceLayout2,
+                    _: *const crate::vk::ImageSubresource2<'_>,
+                    _: *mut crate::vk::SubresourceLayout2<'_>,
                 ) {
                     panic!("unable to load vkGetImageSubresourceLayout2EXT")
                 }
@@ -98,18 +98,26 @@ impl DeviceFn {
     }
 }
 pub(crate) mod reexport {
-    pub type PhysicalDeviceHostImageCopyFeaturesEXT = crate::vk::PhysicalDeviceHostImageCopyFeatures;
-    pub type PhysicalDeviceHostImageCopyPropertiesEXT = crate::vk::PhysicalDeviceHostImageCopyProperties;
-    pub type MemoryToImageCopyEXT = crate::vk::MemoryToImageCopy;
-    pub type ImageToMemoryCopyEXT = crate::vk::ImageToMemoryCopy;
-    pub type CopyMemoryToImageInfoEXT = crate::vk::CopyMemoryToImageInfo;
-    pub type CopyImageToMemoryInfoEXT = crate::vk::CopyImageToMemoryInfo;
-    pub type CopyImageToImageInfoEXT = crate::vk::CopyImageToImageInfo;
-    pub type HostImageLayoutTransitionInfoEXT = crate::vk::HostImageLayoutTransitionInfo;
-    pub type SubresourceHostMemcpySizeEXT = crate::vk::SubresourceHostMemcpySize;
-    pub type HostImageCopyDevicePerformanceQueryEXT = crate::vk::HostImageCopyDevicePerformanceQuery;
-    pub type ImageSubresource2EXT = crate::vk::ImageSubresource2;
-    pub type SubresourceLayout2EXT = crate::vk::SubresourceLayout2;
+    pub type PhysicalDeviceHostImageCopyFeaturesEXT<'a> = crate::vk::PhysicalDeviceHostImageCopyFeatures<
+        'a,
+    >;
+    pub type PhysicalDeviceHostImageCopyPropertiesEXT<'a> = crate::vk::PhysicalDeviceHostImageCopyProperties<
+        'a,
+    >;
+    pub type MemoryToImageCopyEXT<'a> = crate::vk::MemoryToImageCopy<'a>;
+    pub type ImageToMemoryCopyEXT<'a> = crate::vk::ImageToMemoryCopy<'a>;
+    pub type CopyMemoryToImageInfoEXT<'a> = crate::vk::CopyMemoryToImageInfo<'a>;
+    pub type CopyImageToMemoryInfoEXT<'a> = crate::vk::CopyImageToMemoryInfo<'a>;
+    pub type CopyImageToImageInfoEXT<'a> = crate::vk::CopyImageToImageInfo<'a>;
+    pub type HostImageLayoutTransitionInfoEXT<'a> = crate::vk::HostImageLayoutTransitionInfo<
+        'a,
+    >;
+    pub type SubresourceHostMemcpySizeEXT<'a> = crate::vk::SubresourceHostMemcpySize<'a>;
+    pub type HostImageCopyDevicePerformanceQueryEXT<'a> = crate::vk::HostImageCopyDevicePerformanceQuery<
+        'a,
+    >;
+    pub type ImageSubresource2EXT<'a> = crate::vk::ImageSubresource2<'a>;
+    pub type SubresourceLayout2EXT<'a> = crate::vk::SubresourceLayout2<'a>;
     ///Provided by [`ext::host_image_copy`](crate::ext::host_image_copy)
     impl crate::vk::StructureType {
         pub const PHYSICAL_DEVICE_HOST_IMAGE_COPY_FEATURES_EXT: Self = Self::PHYSICAL_DEVICE_HOST_IMAGE_COPY_FEATURES;

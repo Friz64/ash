@@ -57,7 +57,7 @@ impl DeviceFn {
                 unsafe extern "system" fn get_calibrated_timestamps_khr(
                     _: crate::vk::Device,
                     _: u32,
-                    _: *const crate::vk::CalibratedTimestampInfoKHR,
+                    _: *const crate::vk::CalibratedTimestampInfoKHR<'_>,
                     _: *mut u64,
                     _: *mut u64,
                 ) -> crate::vk::Result {
@@ -76,10 +76,11 @@ impl DeviceFn {
 pub(crate) mod reexport {
     #[repr(C)]
     #[derive(Clone, Copy)]
-    pub struct CalibratedTimestampInfoKHR {
+    pub struct CalibratedTimestampInfoKHR<'a> {
         pub s_type: crate::vk::StructureType,
         pub p_next: *const core::ffi::c_void,
         pub time_domain: crate::vk::TimeDomainKHR,
+        pub _marker: ::core::marker::PhantomData<&'a ()>,
     }
     ///Provided by [`khr::calibrated_timestamps`](crate::khr::calibrated_timestamps)
     impl crate::vk::StructureType {
@@ -87,6 +88,7 @@ pub(crate) mod reexport {
     }
     #[repr(transparent)]
     #[derive(Clone, Copy, PartialEq, Eq, PartialOrd, Ord, Hash, Default)]
+    #[derive(Debug)]
     pub struct TimeDomainKHR(pub(crate) i32);
     ///Provided by [`khr::calibrated_timestamps`](crate::khr::calibrated_timestamps)
     impl TimeDomainKHR {
@@ -103,7 +105,7 @@ pub(crate) mod reexport {
     pub type PFN_vkGetCalibratedTimestampsKHR = unsafe extern "system" fn(
         device: crate::vk::Device,
         timestamp_count: u32,
-        p_timestamp_infos: *const crate::vk::CalibratedTimestampInfoKHR,
+        p_timestamp_infos: *const crate::vk::CalibratedTimestampInfoKHR<'_>,
         p_timestamps: *mut u64,
         p_max_deviation: *mut u64,
     ) -> crate::vk::Result;

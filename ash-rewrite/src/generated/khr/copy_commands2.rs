@@ -25,7 +25,7 @@ impl DeviceFn {
             cmd_copy_buffer2_khr: unsafe {
                 unsafe extern "system" fn cmd_copy_buffer2_khr(
                     _: crate::vk::CommandBuffer,
-                    _: *const crate::vk::CopyBufferInfo2,
+                    _: *const crate::vk::CopyBufferInfo2<'_>,
                 ) {
                     panic!("unable to load vkCmdCopyBuffer2KHR")
                 }
@@ -39,7 +39,7 @@ impl DeviceFn {
             cmd_copy_image2_khr: unsafe {
                 unsafe extern "system" fn cmd_copy_image2_khr(
                     _: crate::vk::CommandBuffer,
-                    _: *const crate::vk::CopyImageInfo2,
+                    _: *const crate::vk::CopyImageInfo2<'_>,
                 ) {
                     panic!("unable to load vkCmdCopyImage2KHR")
                 }
@@ -53,7 +53,7 @@ impl DeviceFn {
             cmd_blit_image2_khr: unsafe {
                 unsafe extern "system" fn cmd_blit_image2_khr(
                     _: crate::vk::CommandBuffer,
-                    _: *const crate::vk::BlitImageInfo2,
+                    _: *const crate::vk::BlitImageInfo2<'_>,
                 ) {
                     panic!("unable to load vkCmdBlitImage2KHR")
                 }
@@ -67,7 +67,7 @@ impl DeviceFn {
             cmd_copy_buffer_to_image2_khr: unsafe {
                 unsafe extern "system" fn cmd_copy_buffer_to_image2_khr(
                     _: crate::vk::CommandBuffer,
-                    _: *const crate::vk::CopyBufferToImageInfo2,
+                    _: *const crate::vk::CopyBufferToImageInfo2<'_>,
                 ) {
                     panic!("unable to load vkCmdCopyBufferToImage2KHR")
                 }
@@ -81,7 +81,7 @@ impl DeviceFn {
             cmd_copy_image_to_buffer2_khr: unsafe {
                 unsafe extern "system" fn cmd_copy_image_to_buffer2_khr(
                     _: crate::vk::CommandBuffer,
-                    _: *const crate::vk::CopyImageToBufferInfo2,
+                    _: *const crate::vk::CopyImageToBufferInfo2<'_>,
                 ) {
                     panic!("unable to load vkCmdCopyImageToBuffer2KHR")
                 }
@@ -95,7 +95,7 @@ impl DeviceFn {
             cmd_resolve_image2_khr: unsafe {
                 unsafe extern "system" fn cmd_resolve_image2_khr(
                     _: crate::vk::CommandBuffer,
-                    _: *const crate::vk::ResolveImageInfo2,
+                    _: *const crate::vk::ResolveImageInfo2<'_>,
                 ) {
                     panic!("unable to load vkCmdResolveImage2KHR")
                 }
@@ -110,17 +110,17 @@ impl DeviceFn {
     }
 }
 pub(crate) mod reexport {
-    pub type BufferCopy2KHR = crate::vk::BufferCopy2;
-    pub type ImageCopy2KHR = crate::vk::ImageCopy2;
-    pub type ImageBlit2KHR = crate::vk::ImageBlit2;
-    pub type BufferImageCopy2KHR = crate::vk::BufferImageCopy2;
-    pub type ImageResolve2KHR = crate::vk::ImageResolve2;
-    pub type CopyBufferInfo2KHR = crate::vk::CopyBufferInfo2;
-    pub type CopyImageInfo2KHR = crate::vk::CopyImageInfo2;
-    pub type BlitImageInfo2KHR = crate::vk::BlitImageInfo2;
-    pub type CopyBufferToImageInfo2KHR = crate::vk::CopyBufferToImageInfo2;
-    pub type CopyImageToBufferInfo2KHR = crate::vk::CopyImageToBufferInfo2;
-    pub type ResolveImageInfo2KHR = crate::vk::ResolveImageInfo2;
+    pub type BufferCopy2KHR<'a> = crate::vk::BufferCopy2<'a>;
+    pub type ImageCopy2KHR<'a> = crate::vk::ImageCopy2<'a>;
+    pub type ImageBlit2KHR<'a> = crate::vk::ImageBlit2<'a>;
+    pub type BufferImageCopy2KHR<'a> = crate::vk::BufferImageCopy2<'a>;
+    pub type ImageResolve2KHR<'a> = crate::vk::ImageResolve2<'a>;
+    pub type CopyBufferInfo2KHR<'a> = crate::vk::CopyBufferInfo2<'a>;
+    pub type CopyImageInfo2KHR<'a> = crate::vk::CopyImageInfo2<'a>;
+    pub type BlitImageInfo2KHR<'a> = crate::vk::BlitImageInfo2<'a>;
+    pub type CopyBufferToImageInfo2KHR<'a> = crate::vk::CopyBufferToImageInfo2<'a>;
+    pub type CopyImageToBufferInfo2KHR<'a> = crate::vk::CopyImageToBufferInfo2<'a>;
+    pub type ResolveImageInfo2KHR<'a> = crate::vk::ResolveImageInfo2<'a>;
     ///Provided by [`khr::copy_commands2`](crate::khr::copy_commands2)
     impl crate::vk::StructureType {
         pub const COPY_BUFFER_INFO_2_KHR: Self = Self::COPY_BUFFER_INFO_2;

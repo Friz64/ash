@@ -22,7 +22,7 @@ impl DeviceFn {
                     _: crate::vk::Device,
                     _: u32,
                     _: *const crate::vk::SwapchainKHR,
-                    _: *const crate::vk::HdrMetadataEXT,
+                    _: *const crate::vk::HdrMetadataEXT<'_>,
                 ) {
                     panic!("unable to load vkSetHdrMetadataEXT")
                 }
@@ -45,7 +45,7 @@ pub(crate) mod reexport {
     }
     #[repr(C)]
     #[derive(Clone, Copy)]
-    pub struct HdrMetadataEXT {
+    pub struct HdrMetadataEXT<'a> {
         pub s_type: crate::vk::StructureType,
         pub p_next: *const core::ffi::c_void,
         pub display_primary_red: crate::vk::XYColorEXT,
@@ -56,6 +56,7 @@ pub(crate) mod reexport {
         pub min_luminance: core::ffi::c_float,
         pub max_content_light_level: core::ffi::c_float,
         pub max_frame_average_light_level: core::ffi::c_float,
+        pub _marker: ::core::marker::PhantomData<&'a ()>,
     }
     ///Provided by [`ext::hdr_metadata`](crate::ext::hdr_metadata)
     impl crate::vk::StructureType {
@@ -65,7 +66,7 @@ pub(crate) mod reexport {
         device: crate::vk::Device,
         swapchain_count: u32,
         p_swapchains: *const crate::vk::SwapchainKHR,
-        p_metadata: *const crate::vk::HdrMetadataEXT,
+        p_metadata: *const crate::vk::HdrMetadataEXT<'_>,
     );
     pub const EXT_HDR_METADATA_SPEC_VERSION: u32 = 3;
     pub const EXT_HDR_METADATA_EXTENSION_NAME: &core::ffi::CStr = c"VK_EXT_hdr_metadata";

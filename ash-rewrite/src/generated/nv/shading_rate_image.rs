@@ -39,7 +39,7 @@ impl DeviceFn {
                     _: crate::vk::CommandBuffer,
                     _: u32,
                     _: u32,
-                    _: *const crate::vk::ShadingRatePaletteNV,
+                    _: *const crate::vk::ShadingRatePaletteNV<'_>,
                 ) {
                     panic!("unable to load vkCmdSetViewportShadingRatePaletteNV")
                 }
@@ -55,7 +55,7 @@ impl DeviceFn {
                     _: crate::vk::CommandBuffer,
                     _: crate::vk::CoarseSampleOrderTypeNV,
                     _: u32,
-                    _: *const crate::vk::CoarseSampleOrderCustomNV,
+                    _: *const crate::vk::CoarseSampleOrderCustomNV<'_>,
                 ) {
                     panic!("unable to load vkCmdSetCoarseSampleOrderNV")
                 }
@@ -72,35 +72,39 @@ impl DeviceFn {
 pub(crate) mod reexport {
     #[repr(C)]
     #[derive(Clone, Copy)]
-    pub struct ShadingRatePaletteNV {
+    pub struct ShadingRatePaletteNV<'a> {
         pub shading_rate_palette_entry_count: u32,
         pub p_shading_rate_palette_entries: *const crate::vk::ShadingRatePaletteEntryNV,
+        pub _marker: ::core::marker::PhantomData<&'a ()>,
     }
     #[repr(C)]
     #[derive(Clone, Copy)]
-    pub struct PipelineViewportShadingRateImageStateCreateInfoNV {
+    pub struct PipelineViewportShadingRateImageStateCreateInfoNV<'a> {
         pub s_type: crate::vk::StructureType,
         pub p_next: *const core::ffi::c_void,
         pub shading_rate_image_enable: crate::vk::Bool32,
         pub viewport_count: u32,
-        pub p_shading_rate_palettes: *const crate::vk::ShadingRatePaletteNV,
+        pub p_shading_rate_palettes: *const crate::vk::ShadingRatePaletteNV<'a>,
+        pub _marker: ::core::marker::PhantomData<&'a ()>,
     }
     #[repr(C)]
     #[derive(Clone, Copy)]
-    pub struct PhysicalDeviceShadingRateImageFeaturesNV {
+    pub struct PhysicalDeviceShadingRateImageFeaturesNV<'a> {
         pub s_type: crate::vk::StructureType,
         pub p_next: *mut core::ffi::c_void,
         pub shading_rate_image: crate::vk::Bool32,
         pub shading_rate_coarse_sample_order: crate::vk::Bool32,
+        pub _marker: ::core::marker::PhantomData<&'a ()>,
     }
     #[repr(C)]
     #[derive(Clone, Copy)]
-    pub struct PhysicalDeviceShadingRateImagePropertiesNV {
+    pub struct PhysicalDeviceShadingRateImagePropertiesNV<'a> {
         pub s_type: crate::vk::StructureType,
         pub p_next: *mut core::ffi::c_void,
         pub shading_rate_texel_size: crate::vk::Extent2D,
         pub shading_rate_palette_size: u32,
         pub shading_rate_max_coarse_samples: u32,
+        pub _marker: ::core::marker::PhantomData<&'a ()>,
     }
     #[repr(C)]
     #[derive(Clone, Copy)]
@@ -111,20 +115,22 @@ pub(crate) mod reexport {
     }
     #[repr(C)]
     #[derive(Clone, Copy)]
-    pub struct CoarseSampleOrderCustomNV {
+    pub struct CoarseSampleOrderCustomNV<'a> {
         pub shading_rate: crate::vk::ShadingRatePaletteEntryNV,
         pub sample_count: u32,
         pub sample_location_count: u32,
         pub p_sample_locations: *const crate::vk::CoarseSampleLocationNV,
+        pub _marker: ::core::marker::PhantomData<&'a ()>,
     }
     #[repr(C)]
     #[derive(Clone, Copy)]
-    pub struct PipelineViewportCoarseSampleOrderStateCreateInfoNV {
+    pub struct PipelineViewportCoarseSampleOrderStateCreateInfoNV<'a> {
         pub s_type: crate::vk::StructureType,
         pub p_next: *const core::ffi::c_void,
         pub sample_order_type: crate::vk::CoarseSampleOrderTypeNV,
         pub custom_sample_order_count: u32,
-        pub p_custom_sample_orders: *const crate::vk::CoarseSampleOrderCustomNV,
+        pub p_custom_sample_orders: *const crate::vk::CoarseSampleOrderCustomNV<'a>,
+        pub _marker: ::core::marker::PhantomData<&'a ()>,
     }
     ///Provided by [`nv::shading_rate_image`](crate::nv::shading_rate_image)
     impl crate::vk::ImageLayout {
@@ -152,6 +158,7 @@ pub(crate) mod reexport {
     }
     #[repr(transparent)]
     #[derive(Clone, Copy, PartialEq, Eq, PartialOrd, Ord, Hash, Default)]
+    #[derive(Debug)]
     pub struct ShadingRatePaletteEntryNV(pub(crate) i32);
     ///Provided by [`nv::shading_rate_image`](crate::nv::shading_rate_image)
     impl ShadingRatePaletteEntryNV {
@@ -170,6 +177,7 @@ pub(crate) mod reexport {
     }
     #[repr(transparent)]
     #[derive(Clone, Copy, PartialEq, Eq, PartialOrd, Ord, Hash, Default)]
+    #[derive(Debug)]
     pub struct CoarseSampleOrderTypeNV(pub(crate) i32);
     ///Provided by [`nv::shading_rate_image`](crate::nv::shading_rate_image)
     impl CoarseSampleOrderTypeNV {
@@ -199,13 +207,13 @@ pub(crate) mod reexport {
         command_buffer: crate::vk::CommandBuffer,
         first_viewport: u32,
         viewport_count: u32,
-        p_shading_rate_palettes: *const crate::vk::ShadingRatePaletteNV,
+        p_shading_rate_palettes: *const crate::vk::ShadingRatePaletteNV<'_>,
     );
     pub type PFN_vkCmdSetCoarseSampleOrderNV = unsafe extern "system" fn(
         command_buffer: crate::vk::CommandBuffer,
         sample_order_type: crate::vk::CoarseSampleOrderTypeNV,
         custom_sample_order_count: u32,
-        p_custom_sample_orders: *const crate::vk::CoarseSampleOrderCustomNV,
+        p_custom_sample_orders: *const crate::vk::CoarseSampleOrderCustomNV<'_>,
     );
     pub const NV_SHADING_RATE_IMAGE_SPEC_VERSION: u32 = 3;
     pub const NV_SHADING_RATE_IMAGE_EXTENSION_NAME: &core::ffi::CStr = c"VK_NV_shading_rate_image";

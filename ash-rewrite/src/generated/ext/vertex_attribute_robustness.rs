@@ -3,10 +3,11 @@
 //![Vulkan Manual Page](https://docs.vulkan.org/refpages/latest/refpages/source/VK_EXT_vertex_attribute_robustness.html) · Extension `VK_EXT_vertex_attribute_robustness`
 #[repr(C)]
 #[derive(Clone, Copy)]
-pub struct PhysicalDeviceVertexAttributeRobustnessFeaturesEXT {
+pub struct PhysicalDeviceVertexAttributeRobustnessFeaturesEXT<'a> {
     pub s_type: crate::vk::StructureType,
     pub p_next: *mut core::ffi::c_void,
     pub vertex_attribute_robustness: crate::vk::Bool32,
+    pub _marker: ::core::marker::PhantomData<&'a ()>,
 }
 ///Provided by [`ext::vertex_attribute_robustness`](crate::ext::vertex_attribute_robustness)
 impl crate::vk::StructureType {

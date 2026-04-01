@@ -163,6 +163,7 @@ impl CodeMap {
                 source_file.content.extend(content.clone());
             }
 
+            // this affects the order impl blocks show up in rustdoc
             let sort_order = match destination.location {
                 RequireLocation::Core { .. } => 1,
                 RequireLocation::Extension { .. } => 2,
@@ -232,6 +233,7 @@ impl CodeMap {
             );
         }
 
+        vfs.write("vk.rs", quote! { pub use crate::Handle; });
         vfs.sync_to(output_path)
     }
 }

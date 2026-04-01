@@ -59,14 +59,17 @@ impl DeviceFn {
 pub(crate) mod reexport {
     #[repr(C)]
     #[derive(Clone, Copy)]
-    pub struct PhysicalDeviceCopyMemoryIndirectFeaturesNV {
+    pub struct PhysicalDeviceCopyMemoryIndirectFeaturesNV<'a> {
         pub s_type: crate::vk::StructureType,
         pub p_next: *mut core::ffi::c_void,
         pub indirect_copy: crate::vk::Bool32,
+        pub _marker: ::core::marker::PhantomData<&'a ()>,
     }
     pub type CopyMemoryIndirectCommandNV = crate::vk::CopyMemoryIndirectCommandKHR;
     pub type CopyMemoryToImageIndirectCommandNV = crate::vk::CopyMemoryToImageIndirectCommandKHR;
-    pub type PhysicalDeviceCopyMemoryIndirectPropertiesNV = crate::vk::PhysicalDeviceCopyMemoryIndirectPropertiesKHR;
+    pub type PhysicalDeviceCopyMemoryIndirectPropertiesNV<'a> = crate::vk::PhysicalDeviceCopyMemoryIndirectPropertiesKHR<
+        'a,
+    >;
     ///Provided by [`nv::copy_memory_indirect`](crate::nv::copy_memory_indirect)
     impl crate::vk::StructureType {
         pub const PHYSICAL_DEVICE_COPY_MEMORY_INDIRECT_FEATURES_NV: Self = Self(

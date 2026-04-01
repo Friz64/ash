@@ -20,7 +20,7 @@ impl DeviceFn {
             get_memory_remote_address_nv: unsafe {
                 unsafe extern "system" fn get_memory_remote_address_nv(
                     _: crate::vk::Device,
-                    _: *const crate::vk::MemoryGetRemoteAddressInfoNV,
+                    _: *const crate::vk::MemoryGetRemoteAddressInfoNV<'_>,
                     _: *mut crate::vk::RemoteAddressNV,
                 ) -> crate::vk::Result {
                     panic!("unable to load vkGetMemoryRemoteAddressNV")
@@ -38,18 +38,20 @@ impl DeviceFn {
 pub(crate) mod reexport {
     #[repr(C)]
     #[derive(Clone, Copy)]
-    pub struct PhysicalDeviceExternalMemoryRDMAFeaturesNV {
+    pub struct PhysicalDeviceExternalMemoryRDMAFeaturesNV<'a> {
         pub s_type: crate::vk::StructureType,
         pub p_next: *mut core::ffi::c_void,
         pub external_memory_rdma: crate::vk::Bool32,
+        pub _marker: ::core::marker::PhantomData<&'a ()>,
     }
     #[repr(C)]
     #[derive(Clone, Copy)]
-    pub struct MemoryGetRemoteAddressInfoNV {
+    pub struct MemoryGetRemoteAddressInfoNV<'a> {
         pub s_type: crate::vk::StructureType,
         pub p_next: *const core::ffi::c_void,
         pub memory: crate::vk::DeviceMemory,
         pub handle_type: crate::vk::ExternalMemoryHandleTypeFlagBits,
+        pub _marker: ::core::marker::PhantomData<&'a ()>,
     }
     ///Provided by [`nv::external_memory_rdma`](crate::nv::external_memory_rdma)
     impl crate::vk::StructureType {
@@ -66,13 +68,12 @@ pub(crate) mod reexport {
     impl crate::vk::ExternalMemoryHandleTypeFlagBits {
         pub const RDMA_ADDRESS_NV: Self = Self(1 << 12);
     }
-    #[repr(transparent)]
-    #[allow(non_camel_case_types)]
-    #[derive(Clone, Copy)]
-    pub struct RemoteAddressNV(pub(crate) *mut core::ffi::c_void);
+    pub type RemoteAddressNV = *mut core::ffi::c_void;
     pub type PFN_vkGetMemoryRemoteAddressNV = unsafe extern "system" fn(
         device: crate::vk::Device,
-        p_memory_get_remote_address_info: *const crate::vk::MemoryGetRemoteAddressInfoNV,
+        p_memory_get_remote_address_info: *const crate::vk::MemoryGetRemoteAddressInfoNV<
+            '_,
+        >,
         p_address: *mut crate::vk::RemoteAddressNV,
     ) -> crate::vk::Result;
     pub const NV_EXTERNAL_MEMORY_RDMA_SPEC_VERSION: u32 = 1;

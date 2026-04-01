@@ -20,7 +20,7 @@ impl DeviceFn {
             cmd_end_rendering2_ext: unsafe {
                 unsafe extern "system" fn cmd_end_rendering2_ext(
                     _: crate::vk::CommandBuffer,
-                    _: *const crate::vk::RenderingEndInfoKHR,
+                    _: *const crate::vk::RenderingEndInfoKHR<'_>,
                 ) {
                     panic!("unable to load vkCmdEndRendering2EXT")
                 }
@@ -37,27 +37,30 @@ impl DeviceFn {
 pub(crate) mod reexport {
     #[repr(C)]
     #[derive(Clone, Copy)]
-    pub struct PhysicalDeviceFragmentDensityMapOffsetFeaturesEXT {
+    pub struct PhysicalDeviceFragmentDensityMapOffsetFeaturesEXT<'a> {
         pub s_type: crate::vk::StructureType,
         pub p_next: *mut core::ffi::c_void,
         pub fragment_density_map_offset: crate::vk::Bool32,
+        pub _marker: ::core::marker::PhantomData<&'a ()>,
     }
     #[repr(C)]
     #[derive(Clone, Copy)]
-    pub struct PhysicalDeviceFragmentDensityMapOffsetPropertiesEXT {
+    pub struct PhysicalDeviceFragmentDensityMapOffsetPropertiesEXT<'a> {
         pub s_type: crate::vk::StructureType,
         pub p_next: *mut core::ffi::c_void,
         pub fragment_density_offset_granularity: crate::vk::Extent2D,
+        pub _marker: ::core::marker::PhantomData<&'a ()>,
     }
     #[repr(C)]
     #[derive(Clone, Copy)]
-    pub struct RenderPassFragmentDensityMapOffsetEndInfoEXT {
+    pub struct RenderPassFragmentDensityMapOffsetEndInfoEXT<'a> {
         pub s_type: crate::vk::StructureType,
         pub p_next: *const core::ffi::c_void,
         pub fragment_density_offset_count: u32,
         pub p_fragment_density_offsets: *const crate::vk::Offset2D,
+        pub _marker: ::core::marker::PhantomData<&'a ()>,
     }
-    pub type RenderingEndInfoEXT = crate::vk::RenderingEndInfoKHR;
+    pub type RenderingEndInfoEXT<'a> = crate::vk::RenderingEndInfoKHR<'a>;
     ///Provided by [`ext::fragment_density_map_offset`](crate::ext::fragment_density_map_offset)
     impl crate::vk::StructureType {
         pub const PHYSICAL_DEVICE_FRAGMENT_DENSITY_MAP_OFFSET_FEATURES_EXT: Self = Self(

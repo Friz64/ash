@@ -55,11 +55,12 @@ pub(crate) mod reexport {
     }
     #[repr(C)]
     #[derive(Clone, Copy)]
-    pub struct PhysicalDeviceRayTracingMaintenance1FeaturesKHR {
+    pub struct PhysicalDeviceRayTracingMaintenance1FeaturesKHR<'a> {
         pub s_type: crate::vk::StructureType,
         pub p_next: *mut core::ffi::c_void,
         pub ray_tracing_maintenance1: crate::vk::Bool32,
         pub ray_tracing_pipeline_trace_rays_indirect2: crate::vk::Bool32,
+        pub _marker: ::core::marker::PhantomData<&'a ()>,
     }
     ///Provided by [`khr::ray_tracing_maintenance1`](crate::khr::ray_tracing_maintenance1)
     impl crate::vk::QueryType {

@@ -22,8 +22,8 @@ impl DeviceFn {
             get_device_buffer_memory_requirements_khr: unsafe {
                 unsafe extern "system" fn get_device_buffer_memory_requirements_khr(
                     _: crate::vk::Device,
-                    _: *const crate::vk::DeviceBufferMemoryRequirements,
-                    _: *mut crate::vk::MemoryRequirements2,
+                    _: *const crate::vk::DeviceBufferMemoryRequirements<'_>,
+                    _: *mut crate::vk::MemoryRequirements2<'_>,
                 ) {
                     panic!("unable to load vkGetDeviceBufferMemoryRequirementsKHR")
                 }
@@ -37,8 +37,8 @@ impl DeviceFn {
             get_device_image_memory_requirements_khr: unsafe {
                 unsafe extern "system" fn get_device_image_memory_requirements_khr(
                     _: crate::vk::Device,
-                    _: *const crate::vk::DeviceImageMemoryRequirements,
-                    _: *mut crate::vk::MemoryRequirements2,
+                    _: *const crate::vk::DeviceImageMemoryRequirements<'_>,
+                    _: *mut crate::vk::MemoryRequirements2<'_>,
                 ) {
                     panic!("unable to load vkGetDeviceImageMemoryRequirementsKHR")
                 }
@@ -52,9 +52,9 @@ impl DeviceFn {
             get_device_image_sparse_memory_requirements_khr: unsafe {
                 unsafe extern "system" fn get_device_image_sparse_memory_requirements_khr(
                     _: crate::vk::Device,
-                    _: *const crate::vk::DeviceImageMemoryRequirements,
+                    _: *const crate::vk::DeviceImageMemoryRequirements<'_>,
                     _: *mut u32,
-                    _: *mut crate::vk::SparseImageMemoryRequirements2,
+                    _: *mut crate::vk::SparseImageMemoryRequirements2<'_>,
                 ) {
                     panic!("unable to load vkGetDeviceImageSparseMemoryRequirementsKHR")
                 }
@@ -69,10 +69,18 @@ impl DeviceFn {
     }
 }
 pub(crate) mod reexport {
-    pub type DeviceBufferMemoryRequirementsKHR = crate::vk::DeviceBufferMemoryRequirements;
-    pub type DeviceImageMemoryRequirementsKHR = crate::vk::DeviceImageMemoryRequirements;
-    pub type PhysicalDeviceMaintenance4FeaturesKHR = crate::vk::PhysicalDeviceMaintenance4Features;
-    pub type PhysicalDeviceMaintenance4PropertiesKHR = crate::vk::PhysicalDeviceMaintenance4Properties;
+    pub type DeviceBufferMemoryRequirementsKHR<'a> = crate::vk::DeviceBufferMemoryRequirements<
+        'a,
+    >;
+    pub type DeviceImageMemoryRequirementsKHR<'a> = crate::vk::DeviceImageMemoryRequirements<
+        'a,
+    >;
+    pub type PhysicalDeviceMaintenance4FeaturesKHR<'a> = crate::vk::PhysicalDeviceMaintenance4Features<
+        'a,
+    >;
+    pub type PhysicalDeviceMaintenance4PropertiesKHR<'a> = crate::vk::PhysicalDeviceMaintenance4Properties<
+        'a,
+    >;
     ///Provided by [`khr::maintenance4`](crate::khr::maintenance4)
     impl crate::vk::StructureType {
         pub const PHYSICAL_DEVICE_MAINTENANCE_4_FEATURES_KHR: Self = Self::PHYSICAL_DEVICE_MAINTENANCE_4_FEATURES;

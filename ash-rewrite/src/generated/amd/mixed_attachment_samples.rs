@@ -3,12 +3,13 @@
 //![Vulkan Manual Page](https://docs.vulkan.org/refpages/latest/refpages/source/VK_AMD_mixed_attachment_samples.html) · Extension `VK_AMD_mixed_attachment_samples`
 #[repr(C)]
 #[derive(Clone, Copy)]
-pub struct AttachmentSampleCountInfoAMD {
+pub struct AttachmentSampleCountInfoAMD<'a> {
     pub s_type: crate::vk::StructureType,
     pub p_next: *const core::ffi::c_void,
     pub color_attachment_count: u32,
     pub p_color_attachment_samples: *const crate::vk::SampleCountFlagBits,
     pub depth_stencil_attachment_samples: crate::vk::SampleCountFlagBits,
+    pub _marker: ::core::marker::PhantomData<&'a ()>,
 }
 ///Provided by [`amd::mixed_attachment_samples`](crate::amd::mixed_attachment_samples)
 impl crate::vk::StructureType {

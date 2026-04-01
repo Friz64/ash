@@ -55,7 +55,7 @@ impl InstanceFn {
                 unsafe extern "system" fn get_physical_device_fragment_shading_rates_khr(
                     _: crate::vk::PhysicalDevice,
                     _: *mut u32,
-                    _: *mut crate::vk::PhysicalDeviceFragmentShadingRateKHR,
+                    _: *mut crate::vk::PhysicalDeviceFragmentShadingRateKHR<'_>,
                 ) -> crate::vk::Result {
                     panic!("unable to load vkGetPhysicalDeviceFragmentShadingRatesKHR")
                 }
@@ -72,32 +72,37 @@ impl InstanceFn {
 pub(crate) mod reexport {
     #[repr(C)]
     #[derive(Clone, Copy)]
-    pub struct FragmentShadingRateAttachmentInfoKHR {
+    pub struct FragmentShadingRateAttachmentInfoKHR<'a> {
         pub s_type: crate::vk::StructureType,
         pub p_next: *const core::ffi::c_void,
-        pub p_fragment_shading_rate_attachment: *const crate::vk::AttachmentReference2,
+        pub p_fragment_shading_rate_attachment: *const crate::vk::AttachmentReference2<
+            'a,
+        >,
         pub shading_rate_attachment_texel_size: crate::vk::Extent2D,
+        pub _marker: ::core::marker::PhantomData<&'a ()>,
     }
     #[repr(C)]
     #[derive(Clone, Copy)]
-    pub struct PipelineFragmentShadingRateStateCreateInfoKHR {
+    pub struct PipelineFragmentShadingRateStateCreateInfoKHR<'a> {
         pub s_type: crate::vk::StructureType,
         pub p_next: *const core::ffi::c_void,
         pub fragment_size: crate::vk::Extent2D,
         pub combiner_ops: [crate::vk::FragmentShadingRateCombinerOpKHR; 2 as _],
+        pub _marker: ::core::marker::PhantomData<&'a ()>,
     }
     #[repr(C)]
     #[derive(Clone, Copy)]
-    pub struct PhysicalDeviceFragmentShadingRateFeaturesKHR {
+    pub struct PhysicalDeviceFragmentShadingRateFeaturesKHR<'a> {
         pub s_type: crate::vk::StructureType,
         pub p_next: *mut core::ffi::c_void,
         pub pipeline_fragment_shading_rate: crate::vk::Bool32,
         pub primitive_fragment_shading_rate: crate::vk::Bool32,
         pub attachment_fragment_shading_rate: crate::vk::Bool32,
+        pub _marker: ::core::marker::PhantomData<&'a ()>,
     }
     #[repr(C)]
     #[derive(Clone, Copy)]
-    pub struct PhysicalDeviceFragmentShadingRatePropertiesKHR {
+    pub struct PhysicalDeviceFragmentShadingRatePropertiesKHR<'a> {
         pub s_type: crate::vk::StructureType,
         pub p_next: *mut core::ffi::c_void,
         pub min_fragment_shading_rate_attachment_texel_size: crate::vk::Extent2D,
@@ -117,23 +122,26 @@ pub(crate) mod reexport {
         pub fragment_shading_rate_with_fragment_shader_interlock: crate::vk::Bool32,
         pub fragment_shading_rate_with_custom_sample_locations: crate::vk::Bool32,
         pub fragment_shading_rate_strict_multiply_combiner: crate::vk::Bool32,
+        pub _marker: ::core::marker::PhantomData<&'a ()>,
     }
     #[repr(C)]
     #[derive(Clone, Copy)]
-    pub struct PhysicalDeviceFragmentShadingRateKHR {
+    pub struct PhysicalDeviceFragmentShadingRateKHR<'a> {
         pub s_type: crate::vk::StructureType,
         pub p_next: *mut core::ffi::c_void,
         pub sample_counts: crate::vk::SampleCountFlags,
         pub fragment_size: crate::vk::Extent2D,
+        pub _marker: ::core::marker::PhantomData<&'a ()>,
     }
     #[repr(C)]
     #[derive(Clone, Copy)]
-    pub struct RenderingFragmentShadingRateAttachmentInfoKHR {
+    pub struct RenderingFragmentShadingRateAttachmentInfoKHR<'a> {
         pub s_type: crate::vk::StructureType,
         pub p_next: *const core::ffi::c_void,
         pub image_view: crate::vk::ImageView,
         pub image_layout: crate::vk::ImageLayout,
         pub shading_rate_attachment_texel_size: crate::vk::Extent2D,
+        pub _marker: ::core::marker::PhantomData<&'a ()>,
     }
     ///Provided by [`khr::fragment_shading_rate`](crate::khr::fragment_shading_rate)
     impl crate::vk::ImageLayout {
@@ -162,6 +170,7 @@ pub(crate) mod reexport {
     }
     #[repr(transparent)]
     #[derive(Clone, Copy, PartialEq, Eq, PartialOrd, Ord, Hash, Default)]
+    #[derive(Debug)]
     pub struct FragmentShadingRateCombinerOpKHR(pub(crate) i32);
     ///Provided by [`khr::fragment_shading_rate`](crate::khr::fragment_shading_rate)
     impl FragmentShadingRateCombinerOpKHR {
@@ -203,7 +212,9 @@ pub(crate) mod reexport {
     pub type PFN_vkGetPhysicalDeviceFragmentShadingRatesKHR = unsafe extern "system" fn(
         physical_device: crate::vk::PhysicalDevice,
         p_fragment_shading_rate_count: *mut u32,
-        p_fragment_shading_rates: *mut crate::vk::PhysicalDeviceFragmentShadingRateKHR,
+        p_fragment_shading_rates: *mut crate::vk::PhysicalDeviceFragmentShadingRateKHR<
+            '_,
+        >,
     ) -> crate::vk::Result;
     pub const KHR_FRAGMENT_SHADING_RATE_SPEC_VERSION: u32 = 2;
     pub const KHR_FRAGMENT_SHADING_RATE_EXTENSION_NAME: &core::ffi::CStr = c"VK_KHR_fragment_shading_rate";

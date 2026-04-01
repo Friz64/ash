@@ -3,7 +3,7 @@
 //![Vulkan Manual Page](https://docs.vulkan.org/refpages/latest/refpages/source/VK_EXT_physical_device_drm.html) · Extension `VK_EXT_physical_device_drm`
 #[repr(C)]
 #[derive(Clone, Copy)]
-pub struct PhysicalDeviceDrmPropertiesEXT {
+pub struct PhysicalDeviceDrmPropertiesEXT<'a> {
     pub s_type: crate::vk::StructureType,
     pub p_next: *mut core::ffi::c_void,
     pub has_primary: crate::vk::Bool32,
@@ -12,6 +12,7 @@ pub struct PhysicalDeviceDrmPropertiesEXT {
     pub primary_minor: i64,
     pub render_major: i64,
     pub render_minor: i64,
+    pub _marker: ::core::marker::PhantomData<&'a ()>,
 }
 ///Provided by [`ext::physical_device_drm`](crate::ext::physical_device_drm)
 impl crate::vk::StructureType {

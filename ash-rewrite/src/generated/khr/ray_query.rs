@@ -3,10 +3,11 @@
 //![Vulkan Manual Page](https://docs.vulkan.org/refpages/latest/refpages/source/VK_KHR_ray_query.html) · Extension `VK_KHR_ray_query`
 #[repr(C)]
 #[derive(Clone, Copy)]
-pub struct PhysicalDeviceRayQueryFeaturesKHR {
+pub struct PhysicalDeviceRayQueryFeaturesKHR<'a> {
     pub s_type: crate::vk::StructureType,
     pub p_next: *mut core::ffi::c_void,
     pub ray_query: crate::vk::Bool32,
+    pub _marker: ::core::marker::PhantomData<&'a ()>,
 }
 ///Provided by [`khr::ray_query`](crate::khr::ray_query)
 impl crate::vk::StructureType {

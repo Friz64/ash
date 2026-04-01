@@ -5,6 +5,7 @@ use crate::{
 use analysis::{
     decl::Ty,
     item::{CommandItem, RequireLocation, function::Command},
+    lifetime::Lifetime,
     name::{CommandName, TypeName},
     to_rust::RustTranslator,
 };
@@ -28,6 +29,8 @@ impl FunctionType {
     fn of_command(command: &Command) -> FunctionType {
         if command.name == CommandName::VK_GET_INSTANCE_PROC_ADDR {
             return FunctionType::Static;
+        } else if command.name == CommandName::VK_GET_DEVICE_PROC_ADDR {
+            return FunctionType::Instance;
         }
 
         let first_param = command.params.first().expect("cmds should have params");
@@ -98,12 +101,12 @@ pub fn generate_code(ctx: &Context, codemap: &mut CodeMap) {
         let cstr = Literal::c_string(&CString::new(name.original()).unwrap());
 
         let params = command.params.iter().map(|param| {
-            let ty = param.decl.ty.to_rust(ctx);
+            let ty = param.decl.ty.to_rust(ctx, &Lifetime::placeholder());
             quote! { _: #ty }
         });
 
         let ret = command.return_type.as_ref().map(|ty| {
-            let rust_ty = ty.to_rust(ctx);
+            let rust_ty = ty.to_rust(ctx, &Lifetime::placeholder());
             quote! { -> #rust_ty }
         });
 

@@ -3,7 +3,7 @@
 //![Vulkan Manual Page](https://docs.vulkan.org/refpages/latest/refpages/source/VK_NV_win32_keyed_mutex.html) · Extension `VK_NV_win32_keyed_mutex`
 #[repr(C)]
 #[derive(Clone, Copy)]
-pub struct Win32KeyedMutexAcquireReleaseInfoNV {
+pub struct Win32KeyedMutexAcquireReleaseInfoNV<'a> {
     pub s_type: crate::vk::StructureType,
     pub p_next: *const core::ffi::c_void,
     pub acquire_count: u32,
@@ -13,6 +13,7 @@ pub struct Win32KeyedMutexAcquireReleaseInfoNV {
     pub release_count: u32,
     pub p_release_syncs: *const crate::vk::DeviceMemory,
     pub p_release_keys: *const u64,
+    pub _marker: ::core::marker::PhantomData<&'a ()>,
 }
 ///Provided by [`nv::win32_keyed_mutex`](crate::nv::win32_keyed_mutex)
 impl crate::vk::StructureType {

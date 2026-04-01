@@ -3,18 +3,20 @@
 //![Vulkan Manual Page](https://docs.vulkan.org/refpages/latest/refpages/source/VK_EXT_image_sliced_view_of_3d.html) · Extension `VK_EXT_image_sliced_view_of_3d`
 #[repr(C)]
 #[derive(Clone, Copy)]
-pub struct ImageViewSlicedCreateInfoEXT {
+pub struct ImageViewSlicedCreateInfoEXT<'a> {
     pub s_type: crate::vk::StructureType,
     pub p_next: *const core::ffi::c_void,
     pub slice_offset: u32,
     pub slice_count: u32,
+    pub _marker: ::core::marker::PhantomData<&'a ()>,
 }
 #[repr(C)]
 #[derive(Clone, Copy)]
-pub struct PhysicalDeviceImageSlicedViewOf3DFeaturesEXT {
+pub struct PhysicalDeviceImageSlicedViewOf3DFeaturesEXT<'a> {
     pub s_type: crate::vk::StructureType,
     pub p_next: *mut core::ffi::c_void,
     pub image_sliced_view_of3_d: crate::vk::Bool32,
+    pub _marker: ::core::marker::PhantomData<&'a ()>,
 }
 ///Provided by [`ext::image_sliced_view_of_3d`](crate::ext::image_sliced_view_of_3d)
 impl crate::vk::StructureType {

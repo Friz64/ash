@@ -21,7 +21,7 @@ impl DeviceFn {
             cmd_decompress_memory_ext: unsafe {
                 unsafe extern "system" fn cmd_decompress_memory_ext(
                     _: crate::vk::CommandBuffer,
-                    _: *const crate::vk::DecompressMemoryInfoEXT,
+                    _: *const crate::vk::DecompressMemoryInfoEXT<'_>,
                 ) {
                     panic!("unable to load vkCmdDecompressMemoryEXT")
                 }
@@ -56,18 +56,20 @@ impl DeviceFn {
 pub(crate) mod reexport {
     #[repr(C)]
     #[derive(Clone, Copy)]
-    pub struct PhysicalDeviceMemoryDecompressionFeaturesEXT {
+    pub struct PhysicalDeviceMemoryDecompressionFeaturesEXT<'a> {
         pub s_type: crate::vk::StructureType,
         pub p_next: *mut core::ffi::c_void,
         pub memory_decompression: crate::vk::Bool32,
+        pub _marker: ::core::marker::PhantomData<&'a ()>,
     }
     #[repr(C)]
     #[derive(Clone, Copy)]
-    pub struct PhysicalDeviceMemoryDecompressionPropertiesEXT {
+    pub struct PhysicalDeviceMemoryDecompressionPropertiesEXT<'a> {
         pub s_type: crate::vk::StructureType,
         pub p_next: *mut core::ffi::c_void,
         pub decompression_methods: crate::vk::MemoryDecompressionMethodFlagsEXT,
         pub max_decompression_indirect_count: u64,
+        pub _marker: ::core::marker::PhantomData<&'a ()>,
     }
     #[repr(C)]
     #[derive(Clone, Copy)]
@@ -79,12 +81,13 @@ pub(crate) mod reexport {
     }
     #[repr(C)]
     #[derive(Clone, Copy)]
-    pub struct DecompressMemoryInfoEXT {
+    pub struct DecompressMemoryInfoEXT<'a> {
         pub s_type: crate::vk::StructureType,
         pub p_next: *const core::ffi::c_void,
         pub decompression_method: crate::vk::MemoryDecompressionMethodFlagsEXT,
         pub region_count: u32,
         pub p_regions: *const crate::vk::DecompressMemoryRegionEXT,
+        pub _marker: ::core::marker::PhantomData<&'a ()>,
     }
     ///Provided by [`ext::memory_decompression`](crate::ext::memory_decompression)
     impl crate::vk::StructureType {
@@ -125,7 +128,7 @@ pub(crate) mod reexport {
     }
     pub type PFN_vkCmdDecompressMemoryEXT = unsafe extern "system" fn(
         command_buffer: crate::vk::CommandBuffer,
-        p_decompress_memory_info_ext: *const crate::vk::DecompressMemoryInfoEXT,
+        p_decompress_memory_info_ext: *const crate::vk::DecompressMemoryInfoEXT<'_>,
     );
     pub type PFN_vkCmdDecompressMemoryIndirectCountEXT = unsafe extern "system" fn(
         command_buffer: crate::vk::CommandBuffer,

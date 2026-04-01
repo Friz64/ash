@@ -21,7 +21,7 @@ impl DeviceFn {
             cmd_begin_rendering_khr: unsafe {
                 unsafe extern "system" fn cmd_begin_rendering_khr(
                     _: crate::vk::CommandBuffer,
-                    _: *const crate::vk::RenderingInfo,
+                    _: *const crate::vk::RenderingInfo<'_>,
                 ) {
                     panic!("unable to load vkCmdBeginRenderingKHR")
                 }
@@ -49,11 +49,17 @@ impl DeviceFn {
     }
 }
 pub(crate) mod reexport {
-    pub type PipelineRenderingCreateInfoKHR = crate::vk::PipelineRenderingCreateInfo;
-    pub type RenderingInfoKHR = crate::vk::RenderingInfo;
-    pub type RenderingAttachmentInfoKHR = crate::vk::RenderingAttachmentInfo;
-    pub type PhysicalDeviceDynamicRenderingFeaturesKHR = crate::vk::PhysicalDeviceDynamicRenderingFeatures;
-    pub type CommandBufferInheritanceRenderingInfoKHR = crate::vk::CommandBufferInheritanceRenderingInfo;
+    pub type PipelineRenderingCreateInfoKHR<'a> = crate::vk::PipelineRenderingCreateInfo<
+        'a,
+    >;
+    pub type RenderingInfoKHR<'a> = crate::vk::RenderingInfo<'a>;
+    pub type RenderingAttachmentInfoKHR<'a> = crate::vk::RenderingAttachmentInfo<'a>;
+    pub type PhysicalDeviceDynamicRenderingFeaturesKHR<'a> = crate::vk::PhysicalDeviceDynamicRenderingFeatures<
+        'a,
+    >;
+    pub type CommandBufferInheritanceRenderingInfoKHR<'a> = crate::vk::CommandBufferInheritanceRenderingInfo<
+        'a,
+    >;
     ///Provided by [`khr::dynamic_rendering`](crate::khr::dynamic_rendering)
     impl crate::vk::AttachmentStoreOp {
         pub const NONE_KHR: Self = Self::NONE;

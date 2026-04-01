@@ -3,11 +3,12 @@
 //![Vulkan Manual Page](https://docs.vulkan.org/refpages/latest/refpages/source/VK_EXT_shader_image_atomic_int64.html) · Extension `VK_EXT_shader_image_atomic_int64`
 #[repr(C)]
 #[derive(Clone, Copy)]
-pub struct PhysicalDeviceShaderImageAtomicInt64FeaturesEXT {
+pub struct PhysicalDeviceShaderImageAtomicInt64FeaturesEXT<'a> {
     pub s_type: crate::vk::StructureType,
     pub p_next: *mut core::ffi::c_void,
     pub shader_image_int64_atomics: crate::vk::Bool32,
     pub sparse_image_int64_atomics: crate::vk::Bool32,
+    pub _marker: ::core::marker::PhantomData<&'a ()>,
 }
 ///Provided by [`ext::shader_image_atomic_int64`](crate::ext::shader_image_atomic_int64)
 impl crate::vk::StructureType {

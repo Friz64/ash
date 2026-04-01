@@ -3,17 +3,19 @@
 //![Vulkan Manual Page](https://docs.vulkan.org/refpages/latest/refpages/source/VK_EXT_legacy_vertex_attributes.html) · Extension `VK_EXT_legacy_vertex_attributes`
 #[repr(C)]
 #[derive(Clone, Copy)]
-pub struct PhysicalDeviceLegacyVertexAttributesFeaturesEXT {
+pub struct PhysicalDeviceLegacyVertexAttributesFeaturesEXT<'a> {
     pub s_type: crate::vk::StructureType,
     pub p_next: *mut core::ffi::c_void,
     pub legacy_vertex_attributes: crate::vk::Bool32,
+    pub _marker: ::core::marker::PhantomData<&'a ()>,
 }
 #[repr(C)]
 #[derive(Clone, Copy)]
-pub struct PhysicalDeviceLegacyVertexAttributesPropertiesEXT {
+pub struct PhysicalDeviceLegacyVertexAttributesPropertiesEXT<'a> {
     pub s_type: crate::vk::StructureType,
     pub p_next: *mut core::ffi::c_void,
     pub native_unaligned_performance: crate::vk::Bool32,
+    pub _marker: ::core::marker::PhantomData<&'a ()>,
 }
 ///Provided by [`ext::legacy_vertex_attributes`](crate::ext::legacy_vertex_attributes)
 impl crate::vk::StructureType {

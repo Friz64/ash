@@ -3,25 +3,28 @@
 //![Vulkan Manual Page](https://docs.vulkan.org/refpages/latest/refpages/source/VK_EXT_multisampled_render_to_single_sampled.html) · Extension `VK_EXT_multisampled_render_to_single_sampled`
 #[repr(C)]
 #[derive(Clone, Copy)]
-pub struct PhysicalDeviceMultisampledRenderToSingleSampledFeaturesEXT {
+pub struct PhysicalDeviceMultisampledRenderToSingleSampledFeaturesEXT<'a> {
     pub s_type: crate::vk::StructureType,
     pub p_next: *mut core::ffi::c_void,
     pub multisampled_render_to_single_sampled: crate::vk::Bool32,
+    pub _marker: ::core::marker::PhantomData<&'a ()>,
 }
 #[repr(C)]
 #[derive(Clone, Copy)]
-pub struct SubpassResolvePerformanceQueryEXT {
+pub struct SubpassResolvePerformanceQueryEXT<'a> {
     pub s_type: crate::vk::StructureType,
     pub p_next: *mut core::ffi::c_void,
     pub optimal: crate::vk::Bool32,
+    pub _marker: ::core::marker::PhantomData<&'a ()>,
 }
 #[repr(C)]
 #[derive(Clone, Copy)]
-pub struct MultisampledRenderToSingleSampledInfoEXT {
+pub struct MultisampledRenderToSingleSampledInfoEXT<'a> {
     pub s_type: crate::vk::StructureType,
     pub p_next: *const core::ffi::c_void,
     pub multisampled_render_to_single_sampled_enable: crate::vk::Bool32,
     pub rasterization_samples: crate::vk::SampleCountFlagBits,
+    pub _marker: ::core::marker::PhantomData<&'a ()>,
 }
 ///Provided by [`ext::multisampled_render_to_single_sampled`](crate::ext::multisampled_render_to_single_sampled)
 impl crate::vk::StructureType {

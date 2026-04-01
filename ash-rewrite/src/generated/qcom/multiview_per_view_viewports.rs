@@ -3,10 +3,11 @@
 //![Vulkan Manual Page](https://docs.vulkan.org/refpages/latest/refpages/source/VK_QCOM_multiview_per_view_viewports.html) · Extension `VK_QCOM_multiview_per_view_viewports`
 #[repr(C)]
 #[derive(Clone, Copy)]
-pub struct PhysicalDeviceMultiviewPerViewViewportsFeaturesQCOM {
+pub struct PhysicalDeviceMultiviewPerViewViewportsFeaturesQCOM<'a> {
     pub s_type: crate::vk::StructureType,
     pub p_next: *mut core::ffi::c_void,
     pub multiview_per_view_viewports: crate::vk::Bool32,
+    pub _marker: ::core::marker::PhantomData<&'a ()>,
 }
 ///Provided by [`qcom::multiview_per_view_viewports`](crate::qcom::multiview_per_view_viewports)
 impl crate::vk::StructureType {

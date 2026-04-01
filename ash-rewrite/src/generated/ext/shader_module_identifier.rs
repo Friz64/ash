@@ -22,7 +22,7 @@ impl DeviceFn {
                 unsafe extern "system" fn get_shader_module_identifier_ext(
                     _: crate::vk::Device,
                     _: crate::vk::ShaderModule,
-                    _: *mut crate::vk::ShaderModuleIdentifierEXT,
+                    _: *mut crate::vk::ShaderModuleIdentifierEXT<'_>,
                 ) {
                     panic!("unable to load vkGetShaderModuleIdentifierEXT")
                 }
@@ -36,8 +36,8 @@ impl DeviceFn {
             get_shader_module_create_info_identifier_ext: unsafe {
                 unsafe extern "system" fn get_shader_module_create_info_identifier_ext(
                     _: crate::vk::Device,
-                    _: *const crate::vk::ShaderModuleCreateInfo,
-                    _: *mut crate::vk::ShaderModuleIdentifierEXT,
+                    _: *const crate::vk::ShaderModuleCreateInfo<'_>,
+                    _: *mut crate::vk::ShaderModuleIdentifierEXT<'_>,
                 ) {
                     panic!("unable to load vkGetShaderModuleCreateInfoIdentifierEXT")
                 }
@@ -54,33 +54,37 @@ impl DeviceFn {
 pub(crate) mod reexport {
     #[repr(C)]
     #[derive(Clone, Copy)]
-    pub struct PhysicalDeviceShaderModuleIdentifierFeaturesEXT {
+    pub struct PhysicalDeviceShaderModuleIdentifierFeaturesEXT<'a> {
         pub s_type: crate::vk::StructureType,
         pub p_next: *mut core::ffi::c_void,
         pub shader_module_identifier: crate::vk::Bool32,
+        pub _marker: ::core::marker::PhantomData<&'a ()>,
     }
     #[repr(C)]
     #[derive(Clone, Copy)]
-    pub struct PhysicalDeviceShaderModuleIdentifierPropertiesEXT {
+    pub struct PhysicalDeviceShaderModuleIdentifierPropertiesEXT<'a> {
         pub s_type: crate::vk::StructureType,
         pub p_next: *mut core::ffi::c_void,
         pub shader_module_identifier_algorithm_uuid: [u8; crate::vk::UUID_SIZE as _],
+        pub _marker: ::core::marker::PhantomData<&'a ()>,
     }
     #[repr(C)]
     #[derive(Clone, Copy)]
-    pub struct PipelineShaderStageModuleIdentifierCreateInfoEXT {
+    pub struct PipelineShaderStageModuleIdentifierCreateInfoEXT<'a> {
         pub s_type: crate::vk::StructureType,
         pub p_next: *const core::ffi::c_void,
         pub identifier_size: u32,
         pub p_identifier: *const u8,
+        pub _marker: ::core::marker::PhantomData<&'a ()>,
     }
     #[repr(C)]
     #[derive(Clone, Copy)]
-    pub struct ShaderModuleIdentifierEXT {
+    pub struct ShaderModuleIdentifierEXT<'a> {
         pub s_type: crate::vk::StructureType,
         pub p_next: *mut core::ffi::c_void,
         pub identifier_size: u32,
         pub identifier: [u8; crate::vk::MAX_SHADER_MODULE_IDENTIFIER_SIZE_EXT as _],
+        pub _marker: ::core::marker::PhantomData<&'a ()>,
     }
     ///Provided by [`ext::shader_module_identifier`](crate::ext::shader_module_identifier)
     impl crate::vk::StructureType {
@@ -98,12 +102,12 @@ pub(crate) mod reexport {
     pub type PFN_vkGetShaderModuleIdentifierEXT = unsafe extern "system" fn(
         device: crate::vk::Device,
         shader_module: crate::vk::ShaderModule,
-        p_identifier: *mut crate::vk::ShaderModuleIdentifierEXT,
+        p_identifier: *mut crate::vk::ShaderModuleIdentifierEXT<'_>,
     );
     pub type PFN_vkGetShaderModuleCreateInfoIdentifierEXT = unsafe extern "system" fn(
         device: crate::vk::Device,
-        p_create_info: *const crate::vk::ShaderModuleCreateInfo,
-        p_identifier: *mut crate::vk::ShaderModuleIdentifierEXT,
+        p_create_info: *const crate::vk::ShaderModuleCreateInfo<'_>,
+        p_identifier: *mut crate::vk::ShaderModuleIdentifierEXT<'_>,
     );
     pub const MAX_SHADER_MODULE_IDENTIFIER_SIZE_EXT: u32 = 32;
     pub const EXT_SHADER_MODULE_IDENTIFIER_SPEC_VERSION: u32 = 1;

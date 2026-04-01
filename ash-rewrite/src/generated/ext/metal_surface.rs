@@ -20,8 +20,8 @@ impl InstanceFn {
             create_metal_surface_ext: unsafe {
                 unsafe extern "system" fn create_metal_surface_ext(
                     _: crate::vk::Instance,
-                    _: *const crate::vk::MetalSurfaceCreateInfoEXT,
-                    _: *const crate::vk::AllocationCallbacks,
+                    _: *const crate::vk::MetalSurfaceCreateInfoEXT<'_>,
+                    _: *const crate::vk::AllocationCallbacks<'_>,
                     _: *mut crate::vk::SurfaceKHR,
                 ) -> crate::vk::Result {
                     panic!("unable to load vkCreateMetalSurfaceEXT")
@@ -39,11 +39,12 @@ impl InstanceFn {
 pub(crate) mod reexport {
     #[repr(C)]
     #[derive(Clone, Copy)]
-    pub struct MetalSurfaceCreateInfoEXT {
+    pub struct MetalSurfaceCreateInfoEXT<'a> {
         pub s_type: crate::vk::StructureType,
         pub p_next: *const core::ffi::c_void,
         pub flags: crate::vk::MetalSurfaceCreateFlagsEXT,
         pub p_layer: *const crate::platform_types::CAMetalLayer,
+        pub _marker: ::core::marker::PhantomData<&'a ()>,
     }
     ///Provided by [`ext::metal_surface`](crate::ext::metal_surface)
     impl crate::vk::StructureType {
@@ -55,8 +56,8 @@ pub(crate) mod reexport {
     }
     pub type PFN_vkCreateMetalSurfaceEXT = unsafe extern "system" fn(
         instance: crate::vk::Instance,
-        p_create_info: *const crate::vk::MetalSurfaceCreateInfoEXT,
-        p_allocator: *const crate::vk::AllocationCallbacks,
+        p_create_info: *const crate::vk::MetalSurfaceCreateInfoEXT<'_>,
+        p_allocator: *const crate::vk::AllocationCallbacks<'_>,
         p_surface: *mut crate::vk::SurfaceKHR,
     ) -> crate::vk::Result;
     pub const EXT_METAL_SURFACE_SPEC_VERSION: u32 = 1;

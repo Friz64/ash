@@ -24,7 +24,7 @@ impl DeviceFn {
             create_deferred_operation_khr: unsafe {
                 unsafe extern "system" fn create_deferred_operation_khr(
                     _: crate::vk::Device,
-                    _: *const crate::vk::AllocationCallbacks,
+                    _: *const crate::vk::AllocationCallbacks<'_>,
                     _: *mut crate::vk::DeferredOperationKHR,
                 ) -> crate::vk::Result {
                     panic!("unable to load vkCreateDeferredOperationKHR")
@@ -40,7 +40,7 @@ impl DeviceFn {
                 unsafe extern "system" fn destroy_deferred_operation_khr(
                     _: crate::vk::Device,
                     _: crate::vk::DeferredOperationKHR,
-                    _: *const crate::vk::AllocationCallbacks,
+                    _: *const crate::vk::AllocationCallbacks<'_>,
                 ) {
                     panic!("unable to load vkDestroyDeferredOperationKHR")
                 }
@@ -137,13 +137,13 @@ pub(crate) mod reexport {
     }
     pub type PFN_vkCreateDeferredOperationKHR = unsafe extern "system" fn(
         device: crate::vk::Device,
-        p_allocator: *const crate::vk::AllocationCallbacks,
+        p_allocator: *const crate::vk::AllocationCallbacks<'_>,
         p_deferred_operation: *mut crate::vk::DeferredOperationKHR,
     ) -> crate::vk::Result;
     pub type PFN_vkDestroyDeferredOperationKHR = unsafe extern "system" fn(
         device: crate::vk::Device,
         operation: crate::vk::DeferredOperationKHR,
-        p_allocator: *const crate::vk::AllocationCallbacks,
+        p_allocator: *const crate::vk::AllocationCallbacks<'_>,
     );
     pub type PFN_vkGetDeferredOperationMaxConcurrencyKHR = unsafe extern "system" fn(
         device: crate::vk::Device,

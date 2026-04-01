@@ -3,10 +3,11 @@
 //![Vulkan Manual Page](https://docs.vulkan.org/refpages/latest/refpages/source/VK_EXT_ycbcr_2plane_444_formats.html) · Extension `VK_EXT_ycbcr_2plane_444_formats`
 #[repr(C)]
 #[derive(Clone, Copy)]
-pub struct PhysicalDeviceYcbcr2Plane444FormatsFeaturesEXT {
+pub struct PhysicalDeviceYcbcr2Plane444FormatsFeaturesEXT<'a> {
     pub s_type: crate::vk::StructureType,
     pub p_next: *mut core::ffi::c_void,
     pub ycbcr2plane444_formats: crate::vk::Bool32,
+    pub _marker: ::core::marker::PhantomData<&'a ()>,
 }
 ///Provided by [`ext::ycbcr_2plane_444_formats`](crate::ext::ycbcr_2plane_444_formats)
 impl crate::vk::Format {

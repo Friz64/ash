@@ -36,9 +36,15 @@ impl DeviceFn {
     }
 }
 pub(crate) mod reexport {
-    pub type PhysicalDeviceLineRasterizationFeaturesKHR = crate::vk::PhysicalDeviceLineRasterizationFeatures;
-    pub type PhysicalDeviceLineRasterizationPropertiesKHR = crate::vk::PhysicalDeviceLineRasterizationProperties;
-    pub type PipelineRasterizationLineStateCreateInfoKHR = crate::vk::PipelineRasterizationLineStateCreateInfo;
+    pub type PhysicalDeviceLineRasterizationFeaturesKHR<'a> = crate::vk::PhysicalDeviceLineRasterizationFeatures<
+        'a,
+    >;
+    pub type PhysicalDeviceLineRasterizationPropertiesKHR<'a> = crate::vk::PhysicalDeviceLineRasterizationProperties<
+        'a,
+    >;
+    pub type PipelineRasterizationLineStateCreateInfoKHR<'a> = crate::vk::PipelineRasterizationLineStateCreateInfo<
+        'a,
+    >;
     ///Provided by [`khr::line_rasterization`](crate::khr::line_rasterization)
     impl crate::vk::StructureType {
         pub const PHYSICAL_DEVICE_LINE_RASTERIZATION_FEATURES_KHR: Self = Self::PHYSICAL_DEVICE_LINE_RASTERIZATION_FEATURES;

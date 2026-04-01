@@ -20,8 +20,8 @@ impl DeviceFn {
             get_descriptor_set_layout_support_khr: unsafe {
                 unsafe extern "system" fn get_descriptor_set_layout_support_khr(
                     _: crate::vk::Device,
-                    _: *const crate::vk::DescriptorSetLayoutCreateInfo,
-                    _: *mut crate::vk::DescriptorSetLayoutSupport,
+                    _: *const crate::vk::DescriptorSetLayoutCreateInfo<'_>,
+                    _: *mut crate::vk::DescriptorSetLayoutSupport<'_>,
                 ) {
                     panic!("unable to load vkGetDescriptorSetLayoutSupportKHR")
                 }
@@ -36,8 +36,12 @@ impl DeviceFn {
     }
 }
 pub(crate) mod reexport {
-    pub type PhysicalDeviceMaintenance3PropertiesKHR = crate::vk::PhysicalDeviceMaintenance3Properties;
-    pub type DescriptorSetLayoutSupportKHR = crate::vk::DescriptorSetLayoutSupport;
+    pub type PhysicalDeviceMaintenance3PropertiesKHR<'a> = crate::vk::PhysicalDeviceMaintenance3Properties<
+        'a,
+    >;
+    pub type DescriptorSetLayoutSupportKHR<'a> = crate::vk::DescriptorSetLayoutSupport<
+        'a,
+    >;
     ///Provided by [`khr::maintenance3`](crate::khr::maintenance3)
     impl crate::vk::StructureType {
         pub const PHYSICAL_DEVICE_MAINTENANCE_3_PROPERTIES_KHR: Self = Self::PHYSICAL_DEVICE_MAINTENANCE_3_PROPERTIES;

@@ -3,13 +3,14 @@
 //![Vulkan Manual Page](https://docs.vulkan.org/refpages/latest/refpages/source/VK_VALVE_shader_mixed_float_dot_product.html) · Extension `VK_VALVE_shader_mixed_float_dot_product`
 #[repr(C)]
 #[derive(Clone, Copy)]
-pub struct PhysicalDeviceShaderMixedFloatDotProductFeaturesVALVE {
+pub struct PhysicalDeviceShaderMixedFloatDotProductFeaturesVALVE<'a> {
     pub s_type: crate::vk::StructureType,
     pub p_next: *mut core::ffi::c_void,
     pub shader_mixed_float_dot_product_float16_acc_float32: crate::vk::Bool32,
     pub shader_mixed_float_dot_product_float16_acc_float16: crate::vk::Bool32,
     pub shader_mixed_float_dot_product_b_float16_acc: crate::vk::Bool32,
     pub shader_mixed_float_dot_product_float8_acc_float32: crate::vk::Bool32,
+    pub _marker: ::core::marker::PhantomData<&'a ()>,
 }
 ///Provided by [`valve::shader_mixed_float_dot_product`](crate::valve::shader_mixed_float_dot_product)
 impl crate::vk::StructureType {

@@ -132,15 +132,16 @@ impl DeviceFn {
 pub(crate) mod reexport {
     #[repr(C)]
     #[derive(Clone, Copy)]
-    pub struct PhysicalDeviceTransformFeedbackFeaturesEXT {
+    pub struct PhysicalDeviceTransformFeedbackFeaturesEXT<'a> {
         pub s_type: crate::vk::StructureType,
         pub p_next: *mut core::ffi::c_void,
         pub transform_feedback: crate::vk::Bool32,
         pub geometry_streams: crate::vk::Bool32,
+        pub _marker: ::core::marker::PhantomData<&'a ()>,
     }
     #[repr(C)]
     #[derive(Clone, Copy)]
-    pub struct PhysicalDeviceTransformFeedbackPropertiesEXT {
+    pub struct PhysicalDeviceTransformFeedbackPropertiesEXT<'a> {
         pub s_type: crate::vk::StructureType,
         pub p_next: *mut core::ffi::c_void,
         pub max_transform_feedback_streams: u32,
@@ -153,14 +154,16 @@ pub(crate) mod reexport {
         pub transform_feedback_streams_lines_triangles: crate::vk::Bool32,
         pub transform_feedback_rasterization_stream_select: crate::vk::Bool32,
         pub transform_feedback_draw: crate::vk::Bool32,
+        pub _marker: ::core::marker::PhantomData<&'a ()>,
     }
     #[repr(C)]
     #[derive(Clone, Copy)]
-    pub struct PipelineRasterizationStateStreamCreateInfoEXT {
+    pub struct PipelineRasterizationStateStreamCreateInfoEXT<'a> {
         pub s_type: crate::vk::StructureType,
         pub p_next: *const core::ffi::c_void,
         pub flags: crate::vk::PipelineRasterizationStateStreamCreateFlagsEXT,
         pub rasterization_stream: u32,
+        pub _marker: ::core::marker::PhantomData<&'a ()>,
     }
     ///Provided by [`ext::transform_feedback`](crate::ext::transform_feedback)
     impl crate::vk::QueryType {

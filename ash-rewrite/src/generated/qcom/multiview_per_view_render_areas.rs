@@ -3,18 +3,20 @@
 //![Vulkan Manual Page](https://docs.vulkan.org/refpages/latest/refpages/source/VK_QCOM_multiview_per_view_render_areas.html) · Extension `VK_QCOM_multiview_per_view_render_areas`
 #[repr(C)]
 #[derive(Clone, Copy)]
-pub struct PhysicalDeviceMultiviewPerViewRenderAreasFeaturesQCOM {
+pub struct PhysicalDeviceMultiviewPerViewRenderAreasFeaturesQCOM<'a> {
     pub s_type: crate::vk::StructureType,
     pub p_next: *mut core::ffi::c_void,
     pub multiview_per_view_render_areas: crate::vk::Bool32,
+    pub _marker: ::core::marker::PhantomData<&'a ()>,
 }
 #[repr(C)]
 #[derive(Clone, Copy)]
-pub struct MultiviewPerViewRenderAreasRenderPassBeginInfoQCOM {
+pub struct MultiviewPerViewRenderAreasRenderPassBeginInfoQCOM<'a> {
     pub s_type: crate::vk::StructureType,
     pub p_next: *const core::ffi::c_void,
     pub per_view_render_area_count: u32,
     pub p_per_view_render_areas: *const crate::vk::Rect2D,
+    pub _marker: ::core::marker::PhantomData<&'a ()>,
 }
 ///Provided by [`qcom::multiview_per_view_render_areas`](crate::qcom::multiview_per_view_render_areas)
 impl crate::vk::StructureType {

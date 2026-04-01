@@ -3,12 +3,13 @@
 //![Vulkan Manual Page](https://docs.vulkan.org/refpages/latest/refpages/source/VK_KHR_shader_fma.html) · Extension `VK_KHR_shader_fma`
 #[repr(C)]
 #[derive(Clone, Copy)]
-pub struct PhysicalDeviceShaderFmaFeaturesKHR {
+pub struct PhysicalDeviceShaderFmaFeaturesKHR<'a> {
     pub s_type: crate::vk::StructureType,
     pub p_next: *mut core::ffi::c_void,
     pub shader_fma_float16: crate::vk::Bool32,
     pub shader_fma_float32: crate::vk::Bool32,
     pub shader_fma_float64: crate::vk::Bool32,
+    pub _marker: ::core::marker::PhantomData<&'a ()>,
 }
 ///Provided by [`khr::shader_fma`](crate::khr::shader_fma)
 impl crate::vk::StructureType {

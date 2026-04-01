@@ -3,7 +3,7 @@
 //![Vulkan Manual Page](https://docs.vulkan.org/refpages/latest/refpages/source/VK_KHR_video_encode_intra_refresh.html) · Extension `VK_KHR_video_encode_intra_refresh`
 #[repr(C)]
 #[derive(Clone, Copy)]
-pub struct VideoEncodeIntraRefreshCapabilitiesKHR {
+pub struct VideoEncodeIntraRefreshCapabilitiesKHR<'a> {
     pub s_type: crate::vk::StructureType,
     pub p_next: *mut core::ffi::c_void,
     pub intra_refresh_modes: crate::vk::VideoEncodeIntraRefreshModeFlagsKHR,
@@ -11,35 +11,40 @@ pub struct VideoEncodeIntraRefreshCapabilitiesKHR {
     pub max_intra_refresh_active_reference_pictures: u32,
     pub partition_independent_intra_refresh_regions: crate::vk::Bool32,
     pub non_rectangular_intra_refresh_regions: crate::vk::Bool32,
+    pub _marker: ::core::marker::PhantomData<&'a ()>,
 }
 #[repr(C)]
 #[derive(Clone, Copy)]
-pub struct VideoEncodeSessionIntraRefreshCreateInfoKHR {
+pub struct VideoEncodeSessionIntraRefreshCreateInfoKHR<'a> {
     pub s_type: crate::vk::StructureType,
     pub p_next: *const core::ffi::c_void,
     pub intra_refresh_mode: crate::vk::VideoEncodeIntraRefreshModeFlagBitsKHR,
+    pub _marker: ::core::marker::PhantomData<&'a ()>,
 }
 #[repr(C)]
 #[derive(Clone, Copy)]
-pub struct VideoEncodeIntraRefreshInfoKHR {
+pub struct VideoEncodeIntraRefreshInfoKHR<'a> {
     pub s_type: crate::vk::StructureType,
     pub p_next: *const core::ffi::c_void,
     pub intra_refresh_cycle_duration: u32,
     pub intra_refresh_index: u32,
+    pub _marker: ::core::marker::PhantomData<&'a ()>,
 }
 #[repr(C)]
 #[derive(Clone, Copy)]
-pub struct VideoReferenceIntraRefreshInfoKHR {
+pub struct VideoReferenceIntraRefreshInfoKHR<'a> {
     pub s_type: crate::vk::StructureType,
     pub p_next: *const core::ffi::c_void,
     pub dirty_intra_refresh_regions: u32,
+    pub _marker: ::core::marker::PhantomData<&'a ()>,
 }
 #[repr(C)]
 #[derive(Clone, Copy)]
-pub struct PhysicalDeviceVideoEncodeIntraRefreshFeaturesKHR {
+pub struct PhysicalDeviceVideoEncodeIntraRefreshFeaturesKHR<'a> {
     pub s_type: crate::vk::StructureType,
     pub p_next: *mut core::ffi::c_void,
     pub video_encode_intra_refresh: crate::vk::Bool32,
+    pub _marker: ::core::marker::PhantomData<&'a ()>,
 }
 ///Provided by [`khr::video_encode_intra_refresh`](crate::khr::video_encode_intra_refresh)
 impl crate::vk::StructureType {

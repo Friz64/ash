@@ -3,10 +3,11 @@
 //![Vulkan Manual Page](https://docs.vulkan.org/refpages/latest/refpages/source/VK_KHR_internally_synchronized_queues.html) · Extension `VK_KHR_internally_synchronized_queues`
 #[repr(C)]
 #[derive(Clone, Copy)]
-pub struct PhysicalDeviceInternallySynchronizedQueuesFeaturesKHR {
+pub struct PhysicalDeviceInternallySynchronizedQueuesFeaturesKHR<'a> {
     pub s_type: crate::vk::StructureType,
     pub p_next: *mut core::ffi::c_void,
     pub internally_synchronized_queues: crate::vk::Bool32,
+    pub _marker: ::core::marker::PhantomData<&'a ()>,
 }
 ///Provided by [`khr::internally_synchronized_queues`](crate::khr::internally_synchronized_queues)
 impl crate::vk::StructureType {

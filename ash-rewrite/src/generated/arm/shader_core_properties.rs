@@ -3,12 +3,13 @@
 //![Vulkan Manual Page](https://docs.vulkan.org/refpages/latest/refpages/source/VK_ARM_shader_core_properties.html) · Extension `VK_ARM_shader_core_properties`
 #[repr(C)]
 #[derive(Clone, Copy)]
-pub struct PhysicalDeviceShaderCorePropertiesARM {
+pub struct PhysicalDeviceShaderCorePropertiesARM<'a> {
     pub s_type: crate::vk::StructureType,
     pub p_next: *mut core::ffi::c_void,
     pub pixel_rate: u32,
     pub texel_rate: u32,
     pub fma_rate: u32,
+    pub _marker: ::core::marker::PhantomData<&'a ()>,
 }
 ///Provided by [`arm::shader_core_properties`](crate::arm::shader_core_properties)
 impl crate::vk::StructureType {

@@ -3,21 +3,23 @@
 //![Vulkan Manual Page](https://docs.vulkan.org/refpages/latest/refpages/source/VK_NV_displacement_micromap.html) · Extension `VK_NV_displacement_micromap`
 #[repr(C)]
 #[derive(Clone, Copy)]
-pub struct PhysicalDeviceDisplacementMicromapFeaturesNV {
+pub struct PhysicalDeviceDisplacementMicromapFeaturesNV<'a> {
     pub s_type: crate::vk::StructureType,
     pub p_next: *mut core::ffi::c_void,
     pub displacement_micromap: crate::vk::Bool32,
+    pub _marker: ::core::marker::PhantomData<&'a ()>,
 }
 #[repr(C)]
 #[derive(Clone, Copy)]
-pub struct PhysicalDeviceDisplacementMicromapPropertiesNV {
+pub struct PhysicalDeviceDisplacementMicromapPropertiesNV<'a> {
     pub s_type: crate::vk::StructureType,
     pub p_next: *mut core::ffi::c_void,
     pub max_displacement_micromap_subdivision_level: u32,
+    pub _marker: ::core::marker::PhantomData<&'a ()>,
 }
 #[repr(C)]
 #[derive(Clone, Copy)]
-pub struct AccelerationStructureTrianglesDisplacementMicromapNV {
+pub struct AccelerationStructureTrianglesDisplacementMicromapNV<'a> {
     pub s_type: crate::vk::StructureType,
     pub p_next: *mut core::ffi::c_void,
     pub displacement_bias_and_scale_format: crate::vk::Format,
@@ -36,6 +38,7 @@ pub struct AccelerationStructureTrianglesDisplacementMicromapNV {
     pub p_usage_counts: *const crate::vk::MicromapUsageEXT,
     pub pp_usage_counts: *const *const crate::vk::MicromapUsageEXT,
     pub micromap: crate::vk::MicromapEXT,
+    pub _marker: ::core::marker::PhantomData<&'a ()>,
 }
 ///Provided by [`nv::displacement_micromap`](crate::nv::displacement_micromap)
 impl crate::vk::StructureType {
@@ -53,6 +56,7 @@ impl crate::vk::MicromapTypeEXT {
 }
 #[repr(transparent)]
 #[derive(Clone, Copy, PartialEq, Eq, PartialOrd, Ord, Hash, Default)]
+#[derive(Debug)]
 pub struct DisplacementMicromapFormatNV(pub(crate) i32);
 ///Provided by [`nv::displacement_micromap`](crate::nv::displacement_micromap)
 impl DisplacementMicromapFormatNV {

@@ -37,7 +37,7 @@ pub struct DecodeAV1PictureInfoFlags {
 }
 #[repr(C)]
 #[derive(Clone, Copy)]
-pub struct DecodeAV1PictureInfo {
+pub struct DecodeAV1PictureInfo<'a> {
     pub flags: crate::vk::DecodeAV1PictureInfoFlags,
     pub frame_type: crate::vk::AV1FrameType,
     pub current_frame_id: u32,
@@ -54,7 +54,7 @@ pub struct DecodeAV1PictureInfo {
     pub reserved2: [u8; 3 as _],
     pub order_hints: [u8; crate::vk::STD_VIDEO_AV1_NUM_REF_FRAMES as _],
     pub expected_frame_id: [u32; crate::vk::STD_VIDEO_AV1_NUM_REF_FRAMES as _],
-    pub p_tile_info: *const crate::vk::AV1TileInfo,
+    pub p_tile_info: *const crate::vk::AV1TileInfo<'a>,
     pub p_quantization: *const crate::vk::AV1Quantization,
     pub p_segmentation: *const crate::vk::AV1Segmentation,
     pub p_loop_filter: *const crate::vk::AV1LoopFilter,
@@ -62,6 +62,7 @@ pub struct DecodeAV1PictureInfo {
     pub p_loop_restoration: *const crate::vk::AV1LoopRestoration,
     pub p_global_motion: *const crate::vk::AV1GlobalMotion,
     pub p_film_grain: *const crate::vk::AV1FilmGrain,
+    pub _marker: ::core::marker::PhantomData<&'a ()>,
 }
 #[repr(C)]
 #[derive(Clone, Copy)]

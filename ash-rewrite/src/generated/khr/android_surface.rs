@@ -20,8 +20,8 @@ impl InstanceFn {
             create_android_surface_khr: unsafe {
                 unsafe extern "system" fn create_android_surface_khr(
                     _: crate::vk::Instance,
-                    _: *const crate::vk::AndroidSurfaceCreateInfoKHR,
-                    _: *const crate::vk::AllocationCallbacks,
+                    _: *const crate::vk::AndroidSurfaceCreateInfoKHR<'_>,
+                    _: *const crate::vk::AllocationCallbacks<'_>,
                     _: *mut crate::vk::SurfaceKHR,
                 ) -> crate::vk::Result {
                     panic!("unable to load vkCreateAndroidSurfaceKHR")
@@ -39,11 +39,12 @@ impl InstanceFn {
 pub(crate) mod reexport {
     #[repr(C)]
     #[derive(Clone, Copy)]
-    pub struct AndroidSurfaceCreateInfoKHR {
+    pub struct AndroidSurfaceCreateInfoKHR<'a> {
         pub s_type: crate::vk::StructureType,
         pub p_next: *const core::ffi::c_void,
         pub flags: crate::vk::AndroidSurfaceCreateFlagsKHR,
         pub window: *mut crate::platform_types::ANativeWindow,
+        pub _marker: ::core::marker::PhantomData<&'a ()>,
     }
     ///Provided by [`khr::android_surface`](crate::khr::android_surface)
     impl crate::vk::StructureType {
@@ -55,8 +56,8 @@ pub(crate) mod reexport {
     }
     pub type PFN_vkCreateAndroidSurfaceKHR = unsafe extern "system" fn(
         instance: crate::vk::Instance,
-        p_create_info: *const crate::vk::AndroidSurfaceCreateInfoKHR,
-        p_allocator: *const crate::vk::AllocationCallbacks,
+        p_create_info: *const crate::vk::AndroidSurfaceCreateInfoKHR<'_>,
+        p_allocator: *const crate::vk::AllocationCallbacks<'_>,
         p_surface: *mut crate::vk::SurfaceKHR,
     ) -> crate::vk::Result;
     pub const KHR_ANDROID_SURFACE_SPEC_VERSION: u32 = 6;

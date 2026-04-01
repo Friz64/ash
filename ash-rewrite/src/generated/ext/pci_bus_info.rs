@@ -3,13 +3,14 @@
 //![Vulkan Manual Page](https://docs.vulkan.org/refpages/latest/refpages/source/VK_EXT_pci_bus_info.html) · Extension `VK_EXT_pci_bus_info`
 #[repr(C)]
 #[derive(Clone, Copy)]
-pub struct PhysicalDevicePCIBusInfoPropertiesEXT {
+pub struct PhysicalDevicePCIBusInfoPropertiesEXT<'a> {
     pub s_type: crate::vk::StructureType,
     pub p_next: *mut core::ffi::c_void,
     pub pci_domain: u32,
     pub pci_bus: u32,
     pub pci_device: u32,
     pub pci_function: u32,
+    pub _marker: ::core::marker::PhantomData<&'a ()>,
 }
 ///Provided by [`ext::pci_bus_info`](crate::ext::pci_bus_info)
 impl crate::vk::StructureType {

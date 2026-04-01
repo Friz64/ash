@@ -21,7 +21,7 @@ impl DeviceFn {
             cmd_copy_memory_indirect_khr: unsafe {
                 unsafe extern "system" fn cmd_copy_memory_indirect_khr(
                     _: crate::vk::CommandBuffer,
-                    _: *const crate::vk::CopyMemoryIndirectInfoKHR,
+                    _: *const crate::vk::CopyMemoryIndirectInfoKHR<'_>,
                 ) {
                     panic!("unable to load vkCmdCopyMemoryIndirectKHR")
                 }
@@ -35,7 +35,7 @@ impl DeviceFn {
             cmd_copy_memory_to_image_indirect_khr: unsafe {
                 unsafe extern "system" fn cmd_copy_memory_to_image_indirect_khr(
                     _: crate::vk::CommandBuffer,
-                    _: *const crate::vk::CopyMemoryToImageIndirectInfoKHR,
+                    _: *const crate::vk::CopyMemoryToImageIndirectInfoKHR<'_>,
                 ) {
                     panic!("unable to load vkCmdCopyMemoryToImageIndirectKHR")
                 }
@@ -59,13 +59,14 @@ pub(crate) mod reexport {
     }
     #[repr(C)]
     #[derive(Clone, Copy)]
-    pub struct CopyMemoryIndirectInfoKHR {
+    pub struct CopyMemoryIndirectInfoKHR<'a> {
         pub s_type: crate::vk::StructureType,
         pub p_next: *const core::ffi::c_void,
         pub src_copy_flags: crate::vk::AddressCopyFlagsKHR,
         pub dst_copy_flags: crate::vk::AddressCopyFlagsKHR,
         pub copy_count: u32,
         pub copy_address_range: crate::vk::StridedDeviceAddressRangeKHR,
+        pub _marker: ::core::marker::PhantomData<&'a ()>,
     }
     #[repr(C)]
     #[derive(Clone, Copy)]
@@ -79,7 +80,7 @@ pub(crate) mod reexport {
     }
     #[repr(C)]
     #[derive(Clone, Copy)]
-    pub struct CopyMemoryToImageIndirectInfoKHR {
+    pub struct CopyMemoryToImageIndirectInfoKHR<'a> {
         pub s_type: crate::vk::StructureType,
         pub p_next: *const core::ffi::c_void,
         pub src_copy_flags: crate::vk::AddressCopyFlagsKHR,
@@ -88,21 +89,24 @@ pub(crate) mod reexport {
         pub dst_image: crate::vk::Image,
         pub dst_image_layout: crate::vk::ImageLayout,
         pub p_image_subresources: *const crate::vk::ImageSubresourceLayers,
+        pub _marker: ::core::marker::PhantomData<&'a ()>,
     }
     #[repr(C)]
     #[derive(Clone, Copy)]
-    pub struct PhysicalDeviceCopyMemoryIndirectFeaturesKHR {
+    pub struct PhysicalDeviceCopyMemoryIndirectFeaturesKHR<'a> {
         pub s_type: crate::vk::StructureType,
         pub p_next: *mut core::ffi::c_void,
         pub indirect_memory_copy: crate::vk::Bool32,
         pub indirect_memory_to_image_copy: crate::vk::Bool32,
+        pub _marker: ::core::marker::PhantomData<&'a ()>,
     }
     #[repr(C)]
     #[derive(Clone, Copy)]
-    pub struct PhysicalDeviceCopyMemoryIndirectPropertiesKHR {
+    pub struct PhysicalDeviceCopyMemoryIndirectPropertiesKHR<'a> {
         pub s_type: crate::vk::StructureType,
         pub p_next: *mut core::ffi::c_void,
         pub supported_queues: crate::vk::QueueFlags,
+        pub _marker: ::core::marker::PhantomData<&'a ()>,
     }
     ///Provided by [`khr::copy_memory_indirect`](crate::khr::copy_memory_indirect)
     impl crate::vk::StructureType {
@@ -140,11 +144,13 @@ pub(crate) mod reexport {
     }
     pub type PFN_vkCmdCopyMemoryIndirectKHR = unsafe extern "system" fn(
         command_buffer: crate::vk::CommandBuffer,
-        p_copy_memory_indirect_info: *const crate::vk::CopyMemoryIndirectInfoKHR,
+        p_copy_memory_indirect_info: *const crate::vk::CopyMemoryIndirectInfoKHR<'_>,
     );
     pub type PFN_vkCmdCopyMemoryToImageIndirectKHR = unsafe extern "system" fn(
         command_buffer: crate::vk::CommandBuffer,
-        p_copy_memory_to_image_indirect_info: *const crate::vk::CopyMemoryToImageIndirectInfoKHR,
+        p_copy_memory_to_image_indirect_info: *const crate::vk::CopyMemoryToImageIndirectInfoKHR<
+            '_,
+        >,
     );
     pub const KHR_COPY_MEMORY_INDIRECT_SPEC_VERSION: u32 = 1;
     pub const KHR_COPY_MEMORY_INDIRECT_EXTENSION_NAME: &core::ffi::CStr = c"VK_KHR_copy_memory_indirect";

@@ -45,6 +45,7 @@ pub struct DecodeH264ReferenceInfo {
 }
 #[repr(transparent)]
 #[derive(Clone, Copy, PartialEq, Eq, PartialOrd, Ord, Hash, Default)]
+#[derive(Debug)]
 pub struct DecodeH264FieldOrderCount(pub(crate) i32);
 ///Provided by [`video::codec_h264std_decode`](crate::video::codec_h264std_decode)
 impl DecodeH264FieldOrderCount {

@@ -21,8 +21,8 @@ impl DeviceFn {
             get_cluster_acceleration_structure_build_sizes_nv: unsafe {
                 unsafe extern "system" fn get_cluster_acceleration_structure_build_sizes_nv(
                     _: crate::vk::Device,
-                    _: *const crate::vk::ClusterAccelerationStructureInputInfoNV,
-                    _: *mut crate::vk::AccelerationStructureBuildSizesInfoKHR,
+                    _: *const crate::vk::ClusterAccelerationStructureInputInfoNV<'_>,
+                    _: *mut crate::vk::AccelerationStructureBuildSizesInfoKHR<'_>,
                 ) {
                     panic!(
                         "unable to load vkGetClusterAccelerationStructureBuildSizesNV"
@@ -38,7 +38,7 @@ impl DeviceFn {
             cmd_build_cluster_acceleration_structure_indirect_nv: unsafe {
                 unsafe extern "system" fn cmd_build_cluster_acceleration_structure_indirect_nv(
                     _: crate::vk::CommandBuffer,
-                    _: *const crate::vk::ClusterAccelerationStructureCommandsInfoNV,
+                    _: *const crate::vk::ClusterAccelerationStructureCommandsInfoNV<'_>,
                 ) {
                     panic!(
                         "unable to load vkCmdBuildClusterAccelerationStructureIndirectNV"
@@ -57,14 +57,15 @@ impl DeviceFn {
 pub(crate) mod reexport {
     #[repr(C)]
     #[derive(Clone, Copy)]
-    pub struct PhysicalDeviceClusterAccelerationStructureFeaturesNV {
+    pub struct PhysicalDeviceClusterAccelerationStructureFeaturesNV<'a> {
         pub s_type: crate::vk::StructureType,
         pub p_next: *mut core::ffi::c_void,
         pub cluster_acceleration_structure: crate::vk::Bool32,
+        pub _marker: ::core::marker::PhantomData<&'a ()>,
     }
     #[repr(C)]
     #[derive(Clone, Copy)]
-    pub struct PhysicalDeviceClusterAccelerationStructurePropertiesNV {
+    pub struct PhysicalDeviceClusterAccelerationStructurePropertiesNV<'a> {
         pub s_type: crate::vk::StructureType,
         pub p_next: *mut core::ffi::c_void,
         pub max_vertices_per_cluster: u32,
@@ -75,6 +76,7 @@ pub(crate) mod reexport {
         pub cluster_bottom_level_byte_alignment: u32,
         pub cluster_template_bounds_byte_alignment: u32,
         pub max_cluster_geometry_index: u32,
+        pub _marker: ::core::marker::PhantomData<&'a ()>,
     }
     #[repr(C)]
     #[derive(Clone, Copy)]
@@ -84,10 +86,11 @@ pub(crate) mod reexport {
     }
     #[repr(C)]
     #[derive(Clone, Copy)]
-    pub struct RayTracingPipelineClusterAccelerationStructureCreateInfoNV {
+    pub struct RayTracingPipelineClusterAccelerationStructureCreateInfoNV<'a> {
         pub s_type: crate::vk::StructureType,
         pub p_next: *mut core::ffi::c_void,
         pub allow_cluster_acceleration_structure: crate::vk::Bool32,
+        pub _marker: ::core::marker::PhantomData<&'a ()>,
     }
     #[repr(C)]
     #[derive(Clone, Copy)]
@@ -169,15 +172,16 @@ pub(crate) mod reexport {
     }
     #[repr(C)]
     #[derive(Clone, Copy)]
-    pub struct ClusterAccelerationStructureClustersBottomLevelInputNV {
+    pub struct ClusterAccelerationStructureClustersBottomLevelInputNV<'a> {
         pub s_type: crate::vk::StructureType,
         pub p_next: *mut core::ffi::c_void,
         pub max_total_cluster_count: u32,
         pub max_cluster_count_per_acceleration_structure: u32,
+        pub _marker: ::core::marker::PhantomData<&'a ()>,
     }
     #[repr(C)]
     #[derive(Clone, Copy)]
-    pub struct ClusterAccelerationStructureTriangleClusterInputNV {
+    pub struct ClusterAccelerationStructureTriangleClusterInputNV<'a> {
         pub s_type: crate::vk::StructureType,
         pub p_next: *mut core::ffi::c_void,
         pub vertex_format: crate::vk::Format,
@@ -188,33 +192,36 @@ pub(crate) mod reexport {
         pub max_total_triangle_count: u32,
         pub max_total_vertex_count: u32,
         pub min_position_truncate_bit_count: u32,
+        pub _marker: ::core::marker::PhantomData<&'a ()>,
     }
     #[repr(C)]
     #[derive(Clone, Copy)]
-    pub struct ClusterAccelerationStructureMoveObjectsInputNV {
+    pub struct ClusterAccelerationStructureMoveObjectsInputNV<'a> {
         pub s_type: crate::vk::StructureType,
         pub p_next: *mut core::ffi::c_void,
         pub _type: crate::vk::ClusterAccelerationStructureTypeNV,
         pub no_move_overlap: crate::vk::Bool32,
         pub max_moved_bytes: crate::vk::DeviceSize,
+        pub _marker: ::core::marker::PhantomData<&'a ()>,
     }
     #[repr(C)]
     #[derive(Clone, Copy)]
-    pub struct ClusterAccelerationStructureInputInfoNV {
+    pub struct ClusterAccelerationStructureInputInfoNV<'a> {
         pub s_type: crate::vk::StructureType,
         pub p_next: *mut core::ffi::c_void,
         pub max_acceleration_structure_count: u32,
         pub flags: crate::vk::BuildAccelerationStructureFlagsKHR,
         pub op_type: crate::vk::ClusterAccelerationStructureOpTypeNV,
         pub op_mode: crate::vk::ClusterAccelerationStructureOpModeNV,
-        pub op_input: crate::vk::ClusterAccelerationStructureOpInputNV,
+        pub op_input: crate::vk::ClusterAccelerationStructureOpInputNV<'a>,
+        pub _marker: ::core::marker::PhantomData<&'a ()>,
     }
     #[repr(C)]
     #[derive(Clone, Copy)]
-    pub struct ClusterAccelerationStructureCommandsInfoNV {
+    pub struct ClusterAccelerationStructureCommandsInfoNV<'a> {
         pub s_type: crate::vk::StructureType,
         pub p_next: *mut core::ffi::c_void,
-        pub input: crate::vk::ClusterAccelerationStructureInputInfoNV,
+        pub input: crate::vk::ClusterAccelerationStructureInputInfoNV<'a>,
         pub dst_implicit_data: crate::vk::DeviceAddress,
         pub scratch_data: crate::vk::DeviceAddress,
         pub dst_addresses_array: crate::vk::StridedDeviceAddressRegionKHR,
@@ -222,13 +229,20 @@ pub(crate) mod reexport {
         pub src_infos_array: crate::vk::StridedDeviceAddressRegionKHR,
         pub src_infos_count: crate::vk::DeviceAddress,
         pub address_resolution_flags: crate::vk::ClusterAccelerationStructureAddressResolutionFlagsNV,
+        pub _marker: ::core::marker::PhantomData<&'a ()>,
     }
     #[repr(C)]
     #[derive(Clone, Copy)]
-    pub union ClusterAccelerationStructureOpInputNV {
-        pub p_clusters_bottom_level: *mut crate::vk::ClusterAccelerationStructureClustersBottomLevelInputNV,
-        pub p_triangle_clusters: *mut crate::vk::ClusterAccelerationStructureTriangleClusterInputNV,
-        pub p_move_objects: *mut crate::vk::ClusterAccelerationStructureMoveObjectsInputNV,
+    pub union ClusterAccelerationStructureOpInputNV<'a> {
+        pub p_clusters_bottom_level: *mut crate::vk::ClusterAccelerationStructureClustersBottomLevelInputNV<
+            'a,
+        >,
+        pub p_triangle_clusters: *mut crate::vk::ClusterAccelerationStructureTriangleClusterInputNV<
+            'a,
+        >,
+        pub p_move_objects: *mut crate::vk::ClusterAccelerationStructureMoveObjectsInputNV<
+            'a,
+        >,
     }
     ///Provided by [`nv::cluster_acceleration_structure`](crate::nv::cluster_acceleration_structure)
     impl crate::vk::StructureType {
@@ -257,6 +271,7 @@ pub(crate) mod reexport {
     }
     #[repr(transparent)]
     #[derive(Clone, Copy, PartialEq, Eq, PartialOrd, Ord, Hash, Default)]
+    #[derive(Debug)]
     pub struct ClusterAccelerationStructureTypeNV(pub(crate) i32);
     ///Provided by [`nv::cluster_acceleration_structure`](crate::nv::cluster_acceleration_structure)
     impl ClusterAccelerationStructureTypeNV {
@@ -266,6 +281,7 @@ pub(crate) mod reexport {
     }
     #[repr(transparent)]
     #[derive(Clone, Copy, PartialEq, Eq, PartialOrd, Ord, Hash, Default)]
+    #[derive(Debug)]
     pub struct ClusterAccelerationStructureOpTypeNV(pub(crate) i32);
     ///Provided by [`nv::cluster_acceleration_structure`](crate::nv::cluster_acceleration_structure)
     impl ClusterAccelerationStructureOpTypeNV {
@@ -278,6 +294,7 @@ pub(crate) mod reexport {
     }
     #[repr(transparent)]
     #[derive(Clone, Copy, PartialEq, Eq, PartialOrd, Ord, Hash, Default)]
+    #[derive(Debug)]
     pub struct ClusterAccelerationStructureOpModeNV(pub(crate) i32);
     ///Provided by [`nv::cluster_acceleration_structure`](crate::nv::cluster_acceleration_structure)
     impl ClusterAccelerationStructureOpModeNV {
@@ -374,12 +391,12 @@ pub(crate) mod reexport {
     }
     pub type PFN_vkGetClusterAccelerationStructureBuildSizesNV = unsafe extern "system" fn(
         device: crate::vk::Device,
-        p_info: *const crate::vk::ClusterAccelerationStructureInputInfoNV,
-        p_size_info: *mut crate::vk::AccelerationStructureBuildSizesInfoKHR,
+        p_info: *const crate::vk::ClusterAccelerationStructureInputInfoNV<'_>,
+        p_size_info: *mut crate::vk::AccelerationStructureBuildSizesInfoKHR<'_>,
     );
     pub type PFN_vkCmdBuildClusterAccelerationStructureIndirectNV = unsafe extern "system" fn(
         command_buffer: crate::vk::CommandBuffer,
-        p_command_infos: *const crate::vk::ClusterAccelerationStructureCommandsInfoNV,
+        p_command_infos: *const crate::vk::ClusterAccelerationStructureCommandsInfoNV<'_>,
     );
     pub const NV_CLUSTER_ACCELERATION_STRUCTURE_SPEC_VERSION: u32 = 4;
     pub const NV_CLUSTER_ACCELERATION_STRUCTURE_EXTENSION_NAME: &core::ffi::CStr = c"VK_NV_cluster_acceleration_structure";

@@ -3,18 +3,20 @@
 //![Vulkan Manual Page](https://docs.vulkan.org/refpages/latest/refpages/source/VK_EXT_ray_tracing_invocation_reorder.html) · Extension `VK_EXT_ray_tracing_invocation_reorder`
 #[repr(C)]
 #[derive(Clone, Copy)]
-pub struct PhysicalDeviceRayTracingInvocationReorderFeaturesEXT {
+pub struct PhysicalDeviceRayTracingInvocationReorderFeaturesEXT<'a> {
     pub s_type: crate::vk::StructureType,
     pub p_next: *mut core::ffi::c_void,
     pub ray_tracing_invocation_reorder: crate::vk::Bool32,
+    pub _marker: ::core::marker::PhantomData<&'a ()>,
 }
 #[repr(C)]
 #[derive(Clone, Copy)]
-pub struct PhysicalDeviceRayTracingInvocationReorderPropertiesEXT {
+pub struct PhysicalDeviceRayTracingInvocationReorderPropertiesEXT<'a> {
     pub s_type: crate::vk::StructureType,
     pub p_next: *mut core::ffi::c_void,
     pub ray_tracing_invocation_reorder_reordering_hint: crate::vk::RayTracingInvocationReorderModeEXT,
     pub max_shader_binding_table_record_index: u32,
+    pub _marker: ::core::marker::PhantomData<&'a ()>,
 }
 ///Provided by [`ext::ray_tracing_invocation_reorder`](crate::ext::ray_tracing_invocation_reorder)
 impl crate::vk::StructureType {
@@ -27,6 +29,7 @@ impl crate::vk::StructureType {
 }
 #[repr(transparent)]
 #[derive(Clone, Copy, PartialEq, Eq, PartialOrd, Ord, Hash, Default)]
+#[derive(Debug)]
 pub struct RayTracingInvocationReorderModeEXT(pub(crate) i32);
 ///Provided by [`ext::ray_tracing_invocation_reorder`](crate::ext::ray_tracing_invocation_reorder)
 impl RayTracingInvocationReorderModeEXT {

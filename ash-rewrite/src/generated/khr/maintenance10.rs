@@ -20,7 +20,7 @@ impl DeviceFn {
             cmd_end_rendering2_khr: unsafe {
                 unsafe extern "system" fn cmd_end_rendering2_khr(
                     _: crate::vk::CommandBuffer,
-                    _: *const crate::vk::RenderingEndInfoKHR,
+                    _: *const crate::vk::RenderingEndInfoKHR<'_>,
                 ) {
                     panic!("unable to load vkCmdEndRendering2KHR")
                 }
@@ -37,41 +37,46 @@ impl DeviceFn {
 pub(crate) mod reexport {
     #[repr(C)]
     #[derive(Clone, Copy)]
-    pub struct PhysicalDeviceMaintenance10PropertiesKHR {
+    pub struct PhysicalDeviceMaintenance10PropertiesKHR<'a> {
         pub s_type: crate::vk::StructureType,
         pub p_next: *mut core::ffi::c_void,
         pub rgba4_opaque_black_swizzled: crate::vk::Bool32,
         pub resolve_srgb_format_applies_transfer_function: crate::vk::Bool32,
         pub resolve_srgb_format_supports_transfer_function_control: crate::vk::Bool32,
+        pub _marker: ::core::marker::PhantomData<&'a ()>,
     }
     #[repr(C)]
     #[derive(Clone, Copy)]
-    pub struct PhysicalDeviceMaintenance10FeaturesKHR {
+    pub struct PhysicalDeviceMaintenance10FeaturesKHR<'a> {
         pub s_type: crate::vk::StructureType,
         pub p_next: *mut core::ffi::c_void,
         pub maintenance10: crate::vk::Bool32,
+        pub _marker: ::core::marker::PhantomData<&'a ()>,
     }
     #[repr(C)]
     #[derive(Clone, Copy)]
-    pub struct RenderingEndInfoKHR {
+    pub struct RenderingEndInfoKHR<'a> {
         pub s_type: crate::vk::StructureType,
         pub p_next: *const core::ffi::c_void,
+        pub _marker: ::core::marker::PhantomData<&'a ()>,
     }
     #[repr(C)]
     #[derive(Clone, Copy)]
-    pub struct RenderingAttachmentFlagsInfoKHR {
+    pub struct RenderingAttachmentFlagsInfoKHR<'a> {
         pub s_type: crate::vk::StructureType,
         pub p_next: *const core::ffi::c_void,
         pub flags: crate::vk::RenderingAttachmentFlagsKHR,
+        pub _marker: ::core::marker::PhantomData<&'a ()>,
     }
     #[repr(C)]
     #[derive(Clone, Copy)]
-    pub struct ResolveImageModeInfoKHR {
+    pub struct ResolveImageModeInfoKHR<'a> {
         pub s_type: crate::vk::StructureType,
         pub p_next: *const core::ffi::c_void,
         pub flags: crate::vk::ResolveImageFlagsKHR,
         pub resolve_mode: crate::vk::ResolveModeFlagBits,
         pub stencil_resolve_mode: crate::vk::ResolveModeFlagBits,
+        pub _marker: ::core::marker::PhantomData<&'a ()>,
     }
     ///Provided by [`khr::maintenance10`](crate::khr::maintenance10)
     impl crate::vk::StructureType {
@@ -132,7 +137,7 @@ pub(crate) mod reexport {
     }
     pub type PFN_vkCmdEndRendering2KHR = unsafe extern "system" fn(
         command_buffer: crate::vk::CommandBuffer,
-        p_rendering_end_info: *const crate::vk::RenderingEndInfoKHR,
+        p_rendering_end_info: *const crate::vk::RenderingEndInfoKHR<'_>,
     );
     pub const KHR_MAINTENANCE_10_SPEC_VERSION: u32 = 1;
     pub const KHR_MAINTENANCE_10_EXTENSION_NAME: &core::ffi::CStr = c"VK_KHR_maintenance10";

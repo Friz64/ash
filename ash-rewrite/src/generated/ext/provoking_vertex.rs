@@ -3,26 +3,29 @@
 //![Vulkan Manual Page](https://docs.vulkan.org/refpages/latest/refpages/source/VK_EXT_provoking_vertex.html) · Extension `VK_EXT_provoking_vertex`
 #[repr(C)]
 #[derive(Clone, Copy)]
-pub struct PhysicalDeviceProvokingVertexFeaturesEXT {
+pub struct PhysicalDeviceProvokingVertexFeaturesEXT<'a> {
     pub s_type: crate::vk::StructureType,
     pub p_next: *mut core::ffi::c_void,
     pub provoking_vertex_last: crate::vk::Bool32,
     pub transform_feedback_preserves_provoking_vertex: crate::vk::Bool32,
+    pub _marker: ::core::marker::PhantomData<&'a ()>,
 }
 #[repr(C)]
 #[derive(Clone, Copy)]
-pub struct PhysicalDeviceProvokingVertexPropertiesEXT {
+pub struct PhysicalDeviceProvokingVertexPropertiesEXT<'a> {
     pub s_type: crate::vk::StructureType,
     pub p_next: *mut core::ffi::c_void,
     pub provoking_vertex_mode_per_pipeline: crate::vk::Bool32,
     pub transform_feedback_preserves_triangle_fan_provoking_vertex: crate::vk::Bool32,
+    pub _marker: ::core::marker::PhantomData<&'a ()>,
 }
 #[repr(C)]
 #[derive(Clone, Copy)]
-pub struct PipelineRasterizationProvokingVertexStateCreateInfoEXT {
+pub struct PipelineRasterizationProvokingVertexStateCreateInfoEXT<'a> {
     pub s_type: crate::vk::StructureType,
     pub p_next: *const core::ffi::c_void,
     pub provoking_vertex_mode: crate::vk::ProvokingVertexModeEXT,
+    pub _marker: ::core::marker::PhantomData<&'a ()>,
 }
 ///Provided by [`ext::provoking_vertex`](crate::ext::provoking_vertex)
 impl crate::vk::StructureType {
@@ -34,6 +37,7 @@ impl crate::vk::StructureType {
 }
 #[repr(transparent)]
 #[derive(Clone, Copy, PartialEq, Eq, PartialOrd, Ord, Hash, Default)]
+#[derive(Debug)]
 pub struct ProvokingVertexModeEXT(pub(crate) i32);
 ///Provided by [`ext::provoking_vertex`](crate::ext::provoking_vertex)
 impl ProvokingVertexModeEXT {

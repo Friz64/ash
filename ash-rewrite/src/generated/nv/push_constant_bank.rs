@@ -3,27 +3,30 @@
 //![Vulkan Manual Page](https://docs.vulkan.org/refpages/latest/refpages/source/VK_NV_push_constant_bank.html) · Extension `VK_NV_push_constant_bank`
 #[repr(C)]
 #[derive(Clone, Copy)]
-pub struct PushConstantBankInfoNV {
+pub struct PushConstantBankInfoNV<'a> {
     pub s_type: crate::vk::StructureType,
     pub p_next: *const core::ffi::c_void,
     pub bank: u32,
+    pub _marker: ::core::marker::PhantomData<&'a ()>,
 }
 #[repr(C)]
 #[derive(Clone, Copy)]
-pub struct PhysicalDevicePushConstantBankFeaturesNV {
+pub struct PhysicalDevicePushConstantBankFeaturesNV<'a> {
     pub s_type: crate::vk::StructureType,
     pub p_next: *mut core::ffi::c_void,
     pub push_constant_bank: crate::vk::Bool32,
+    pub _marker: ::core::marker::PhantomData<&'a ()>,
 }
 #[repr(C)]
 #[derive(Clone, Copy)]
-pub struct PhysicalDevicePushConstantBankPropertiesNV {
+pub struct PhysicalDevicePushConstantBankPropertiesNV<'a> {
     pub s_type: crate::vk::StructureType,
     pub p_next: *mut core::ffi::c_void,
     pub max_graphics_push_constant_banks: u32,
     pub max_compute_push_constant_banks: u32,
     pub max_graphics_push_data_banks: u32,
     pub max_compute_push_data_banks: u32,
+    pub _marker: ::core::marker::PhantomData<&'a ()>,
 }
 ///Provided by [`nv::push_constant_bank`](crate::nv::push_constant_bank)
 impl crate::vk::StructureType {

@@ -3,18 +3,20 @@
 //![Vulkan Manual Page](https://docs.vulkan.org/refpages/latest/refpages/source/VK_KHR_maintenance8.html) · Extension `VK_KHR_maintenance8`
 #[repr(C)]
 #[derive(Clone, Copy)]
-pub struct PhysicalDeviceMaintenance8FeaturesKHR {
+pub struct PhysicalDeviceMaintenance8FeaturesKHR<'a> {
     pub s_type: crate::vk::StructureType,
     pub p_next: *mut core::ffi::c_void,
     pub maintenance8: crate::vk::Bool32,
+    pub _marker: ::core::marker::PhantomData<&'a ()>,
 }
 #[repr(C)]
 #[derive(Clone, Copy)]
-pub struct MemoryBarrierAccessFlags3KHR {
+pub struct MemoryBarrierAccessFlags3KHR<'a> {
     pub s_type: crate::vk::StructureType,
     pub p_next: *const core::ffi::c_void,
     pub src_access_mask3: crate::vk::AccessFlags3KHR,
     pub dst_access_mask3: crate::vk::AccessFlags3KHR,
+    pub _marker: ::core::marker::PhantomData<&'a ()>,
 }
 ///Provided by [`khr::maintenance8`](crate::khr::maintenance8)
 impl crate::vk::StructureType {

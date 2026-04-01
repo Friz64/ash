@@ -24,7 +24,7 @@ impl DeviceFn {
                 unsafe extern "system" fn display_power_control_ext(
                     _: crate::vk::Device,
                     _: crate::vk::DisplayKHR,
-                    _: *const crate::vk::DisplayPowerInfoEXT,
+                    _: *const crate::vk::DisplayPowerInfoEXT<'_>,
                 ) -> crate::vk::Result {
                     panic!("unable to load vkDisplayPowerControlEXT")
                 }
@@ -38,8 +38,8 @@ impl DeviceFn {
             register_device_event_ext: unsafe {
                 unsafe extern "system" fn register_device_event_ext(
                     _: crate::vk::Device,
-                    _: *const crate::vk::DeviceEventInfoEXT,
-                    _: *const crate::vk::AllocationCallbacks,
+                    _: *const crate::vk::DeviceEventInfoEXT<'_>,
+                    _: *const crate::vk::AllocationCallbacks<'_>,
                     _: *mut crate::vk::Fence,
                 ) -> crate::vk::Result {
                     panic!("unable to load vkRegisterDeviceEventEXT")
@@ -55,8 +55,8 @@ impl DeviceFn {
                 unsafe extern "system" fn register_display_event_ext(
                     _: crate::vk::Device,
                     _: crate::vk::DisplayKHR,
-                    _: *const crate::vk::DisplayEventInfoEXT,
-                    _: *const crate::vk::AllocationCallbacks,
+                    _: *const crate::vk::DisplayEventInfoEXT<'_>,
+                    _: *const crate::vk::AllocationCallbacks<'_>,
                     _: *mut crate::vk::Fence,
                 ) -> crate::vk::Result {
                     panic!("unable to load vkRegisterDisplayEventEXT")
@@ -90,31 +90,35 @@ impl DeviceFn {
 pub(crate) mod reexport {
     #[repr(C)]
     #[derive(Clone, Copy)]
-    pub struct DisplayPowerInfoEXT {
+    pub struct DisplayPowerInfoEXT<'a> {
         pub s_type: crate::vk::StructureType,
         pub p_next: *const core::ffi::c_void,
         pub power_state: crate::vk::DisplayPowerStateEXT,
+        pub _marker: ::core::marker::PhantomData<&'a ()>,
     }
     #[repr(C)]
     #[derive(Clone, Copy)]
-    pub struct DeviceEventInfoEXT {
+    pub struct DeviceEventInfoEXT<'a> {
         pub s_type: crate::vk::StructureType,
         pub p_next: *const core::ffi::c_void,
         pub device_event: crate::vk::DeviceEventTypeEXT,
+        pub _marker: ::core::marker::PhantomData<&'a ()>,
     }
     #[repr(C)]
     #[derive(Clone, Copy)]
-    pub struct DisplayEventInfoEXT {
+    pub struct DisplayEventInfoEXT<'a> {
         pub s_type: crate::vk::StructureType,
         pub p_next: *const core::ffi::c_void,
         pub display_event: crate::vk::DisplayEventTypeEXT,
+        pub _marker: ::core::marker::PhantomData<&'a ()>,
     }
     #[repr(C)]
     #[derive(Clone, Copy)]
-    pub struct SwapchainCounterCreateInfoEXT {
+    pub struct SwapchainCounterCreateInfoEXT<'a> {
         pub s_type: crate::vk::StructureType,
         pub p_next: *const core::ffi::c_void,
         pub surface_counters: crate::vk::SurfaceCounterFlagsEXT,
+        pub _marker: ::core::marker::PhantomData<&'a ()>,
     }
     ///Provided by [`ext::display_control`](crate::ext::display_control)
     impl crate::vk::StructureType {
@@ -125,6 +129,7 @@ pub(crate) mod reexport {
     }
     #[repr(transparent)]
     #[derive(Clone, Copy, PartialEq, Eq, PartialOrd, Ord, Hash, Default)]
+    #[derive(Debug)]
     pub struct DisplayPowerStateEXT(pub(crate) i32);
     ///Provided by [`ext::display_control`](crate::ext::display_control)
     impl DisplayPowerStateEXT {
@@ -134,6 +139,7 @@ pub(crate) mod reexport {
     }
     #[repr(transparent)]
     #[derive(Clone, Copy, PartialEq, Eq, PartialOrd, Ord, Hash, Default)]
+    #[derive(Debug)]
     pub struct DeviceEventTypeEXT(pub(crate) i32);
     ///Provided by [`ext::display_control`](crate::ext::display_control)
     impl DeviceEventTypeEXT {
@@ -141,6 +147,7 @@ pub(crate) mod reexport {
     }
     #[repr(transparent)]
     #[derive(Clone, Copy, PartialEq, Eq, PartialOrd, Ord, Hash, Default)]
+    #[derive(Debug)]
     pub struct DisplayEventTypeEXT(pub(crate) i32);
     ///Provided by [`ext::display_control`](crate::ext::display_control)
     impl DisplayEventTypeEXT {
@@ -149,19 +156,19 @@ pub(crate) mod reexport {
     pub type PFN_vkDisplayPowerControlEXT = unsafe extern "system" fn(
         device: crate::vk::Device,
         display: crate::vk::DisplayKHR,
-        p_display_power_info: *const crate::vk::DisplayPowerInfoEXT,
+        p_display_power_info: *const crate::vk::DisplayPowerInfoEXT<'_>,
     ) -> crate::vk::Result;
     pub type PFN_vkRegisterDeviceEventEXT = unsafe extern "system" fn(
         device: crate::vk::Device,
-        p_device_event_info: *const crate::vk::DeviceEventInfoEXT,
-        p_allocator: *const crate::vk::AllocationCallbacks,
+        p_device_event_info: *const crate::vk::DeviceEventInfoEXT<'_>,
+        p_allocator: *const crate::vk::AllocationCallbacks<'_>,
         p_fence: *mut crate::vk::Fence,
     ) -> crate::vk::Result;
     pub type PFN_vkRegisterDisplayEventEXT = unsafe extern "system" fn(
         device: crate::vk::Device,
         display: crate::vk::DisplayKHR,
-        p_display_event_info: *const crate::vk::DisplayEventInfoEXT,
-        p_allocator: *const crate::vk::AllocationCallbacks,
+        p_display_event_info: *const crate::vk::DisplayEventInfoEXT<'_>,
+        p_allocator: *const crate::vk::AllocationCallbacks<'_>,
         p_fence: *mut crate::vk::Fence,
     ) -> crate::vk::Result;
     pub type PFN_vkGetSwapchainCounterEXT = unsafe extern "system" fn(

@@ -38,28 +38,31 @@ impl DeviceFn {
 pub(crate) mod reexport {
     #[repr(C)]
     #[derive(Clone, Copy)]
-    pub struct PhysicalDeviceFragmentShadingRateEnumsFeaturesNV {
+    pub struct PhysicalDeviceFragmentShadingRateEnumsFeaturesNV<'a> {
         pub s_type: crate::vk::StructureType,
         pub p_next: *mut core::ffi::c_void,
         pub fragment_shading_rate_enums: crate::vk::Bool32,
         pub supersample_fragment_shading_rates: crate::vk::Bool32,
         pub no_invocation_fragment_shading_rates: crate::vk::Bool32,
+        pub _marker: ::core::marker::PhantomData<&'a ()>,
     }
     #[repr(C)]
     #[derive(Clone, Copy)]
-    pub struct PhysicalDeviceFragmentShadingRateEnumsPropertiesNV {
+    pub struct PhysicalDeviceFragmentShadingRateEnumsPropertiesNV<'a> {
         pub s_type: crate::vk::StructureType,
         pub p_next: *mut core::ffi::c_void,
         pub max_fragment_shading_rate_invocation_count: crate::vk::SampleCountFlagBits,
+        pub _marker: ::core::marker::PhantomData<&'a ()>,
     }
     #[repr(C)]
     #[derive(Clone, Copy)]
-    pub struct PipelineFragmentShadingRateEnumStateCreateInfoNV {
+    pub struct PipelineFragmentShadingRateEnumStateCreateInfoNV<'a> {
         pub s_type: crate::vk::StructureType,
         pub p_next: *const core::ffi::c_void,
         pub shading_rate_type: crate::vk::FragmentShadingRateTypeNV,
         pub shading_rate: crate::vk::FragmentShadingRateNV,
         pub combiner_ops: [crate::vk::FragmentShadingRateCombinerOpKHR; 2 as _],
+        pub _marker: ::core::marker::PhantomData<&'a ()>,
     }
     ///Provided by [`nv::fragment_shading_rate_enums`](crate::nv::fragment_shading_rate_enums)
     impl crate::vk::StructureType {
@@ -75,6 +78,7 @@ pub(crate) mod reexport {
     }
     #[repr(transparent)]
     #[derive(Clone, Copy, PartialEq, Eq, PartialOrd, Ord, Hash, Default)]
+    #[derive(Debug)]
     pub struct FragmentShadingRateNV(pub(crate) i32);
     ///Provided by [`nv::fragment_shading_rate_enums`](crate::nv::fragment_shading_rate_enums)
     impl FragmentShadingRateNV {
@@ -93,6 +97,7 @@ pub(crate) mod reexport {
     }
     #[repr(transparent)]
     #[derive(Clone, Copy, PartialEq, Eq, PartialOrd, Ord, Hash, Default)]
+    #[derive(Debug)]
     pub struct FragmentShadingRateTypeNV(pub(crate) i32);
     ///Provided by [`nv::fragment_shading_rate_enums`](crate::nv::fragment_shading_rate_enums)
     impl FragmentShadingRateTypeNV {

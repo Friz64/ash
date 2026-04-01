@@ -39,7 +39,7 @@ impl DeviceFn {
                 unsafe extern "system" fn get_swapchain_timing_properties_ext(
                     _: crate::vk::Device,
                     _: crate::vk::SwapchainKHR,
-                    _: *mut crate::vk::SwapchainTimingPropertiesEXT,
+                    _: *mut crate::vk::SwapchainTimingPropertiesEXT<'_>,
                     _: *mut u64,
                 ) -> crate::vk::Result {
                     panic!("unable to load vkGetSwapchainTimingPropertiesEXT")
@@ -55,7 +55,7 @@ impl DeviceFn {
                 unsafe extern "system" fn get_swapchain_time_domain_properties_ext(
                     _: crate::vk::Device,
                     _: crate::vk::SwapchainKHR,
-                    _: *mut crate::vk::SwapchainTimeDomainPropertiesEXT,
+                    _: *mut crate::vk::SwapchainTimeDomainPropertiesEXT<'_>,
                     _: *mut u64,
                 ) -> crate::vk::Result {
                     panic!("unable to load vkGetSwapchainTimeDomainPropertiesEXT")
@@ -70,8 +70,8 @@ impl DeviceFn {
             get_past_presentation_timing_ext: unsafe {
                 unsafe extern "system" fn get_past_presentation_timing_ext(
                     _: crate::vk::Device,
-                    _: *const crate::vk::PastPresentationTimingInfoEXT,
-                    _: *mut crate::vk::PastPresentationTimingPropertiesEXT,
+                    _: *const crate::vk::PastPresentationTimingInfoEXT<'_>,
+                    _: *mut crate::vk::PastPresentationTimingPropertiesEXT<'_>,
                 ) -> crate::vk::Result {
                     panic!("unable to load vkGetPastPresentationTimingEXT")
                 }
@@ -88,39 +88,43 @@ impl DeviceFn {
 pub(crate) mod reexport {
     #[repr(C)]
     #[derive(Clone, Copy)]
-    pub struct PhysicalDevicePresentTimingFeaturesEXT {
+    pub struct PhysicalDevicePresentTimingFeaturesEXT<'a> {
         pub s_type: crate::vk::StructureType,
         pub p_next: *mut core::ffi::c_void,
         pub present_timing: crate::vk::Bool32,
         pub present_at_absolute_time: crate::vk::Bool32,
         pub present_at_relative_time: crate::vk::Bool32,
+        pub _marker: ::core::marker::PhantomData<&'a ()>,
     }
     #[repr(C)]
     #[derive(Clone, Copy)]
-    pub struct PresentTimingSurfaceCapabilitiesEXT {
+    pub struct PresentTimingSurfaceCapabilitiesEXT<'a> {
         pub s_type: crate::vk::StructureType,
         pub p_next: *mut core::ffi::c_void,
         pub present_timing_supported: crate::vk::Bool32,
         pub present_at_absolute_time_supported: crate::vk::Bool32,
         pub present_at_relative_time_supported: crate::vk::Bool32,
         pub present_stage_queries: crate::vk::PresentStageFlagsEXT,
+        pub _marker: ::core::marker::PhantomData<&'a ()>,
     }
     #[repr(C)]
     #[derive(Clone, Copy)]
-    pub struct SwapchainTimingPropertiesEXT {
+    pub struct SwapchainTimingPropertiesEXT<'a> {
         pub s_type: crate::vk::StructureType,
         pub p_next: *mut core::ffi::c_void,
         pub refresh_duration: u64,
         pub refresh_interval: u64,
+        pub _marker: ::core::marker::PhantomData<&'a ()>,
     }
     #[repr(C)]
     #[derive(Clone, Copy)]
-    pub struct SwapchainTimeDomainPropertiesEXT {
+    pub struct SwapchainTimeDomainPropertiesEXT<'a> {
         pub s_type: crate::vk::StructureType,
         pub p_next: *mut core::ffi::c_void,
         pub time_domain_count: u32,
         pub p_time_domains: *mut crate::vk::TimeDomainKHR,
         pub p_time_domain_ids: *mut u64,
+        pub _marker: ::core::marker::PhantomData<&'a ()>,
     }
     #[repr(C)]
     #[derive(Clone, Copy)]
@@ -130,25 +134,27 @@ pub(crate) mod reexport {
     }
     #[repr(C)]
     #[derive(Clone, Copy)]
-    pub struct PastPresentationTimingInfoEXT {
+    pub struct PastPresentationTimingInfoEXT<'a> {
         pub s_type: crate::vk::StructureType,
         pub p_next: *const core::ffi::c_void,
         pub flags: crate::vk::PastPresentationTimingFlagsEXT,
         pub swapchain: crate::vk::SwapchainKHR,
+        pub _marker: ::core::marker::PhantomData<&'a ()>,
     }
     #[repr(C)]
     #[derive(Clone, Copy)]
-    pub struct PastPresentationTimingPropertiesEXT {
+    pub struct PastPresentationTimingPropertiesEXT<'a> {
         pub s_type: crate::vk::StructureType,
         pub p_next: *mut core::ffi::c_void,
         pub timing_properties_counter: u64,
         pub time_domains_counter: u64,
         pub presentation_timing_count: u32,
-        pub p_presentation_timings: *mut crate::vk::PastPresentationTimingEXT,
+        pub p_presentation_timings: *mut crate::vk::PastPresentationTimingEXT<'a>,
+        pub _marker: ::core::marker::PhantomData<&'a ()>,
     }
     #[repr(C)]
     #[derive(Clone, Copy)]
-    pub struct PastPresentationTimingEXT {
+    pub struct PastPresentationTimingEXT<'a> {
         pub s_type: crate::vk::StructureType,
         pub p_next: *mut core::ffi::c_void,
         pub present_id: u64,
@@ -158,18 +164,20 @@ pub(crate) mod reexport {
         pub time_domain: crate::vk::TimeDomainKHR,
         pub time_domain_id: u64,
         pub report_complete: crate::vk::Bool32,
+        pub _marker: ::core::marker::PhantomData<&'a ()>,
     }
     #[repr(C)]
     #[derive(Clone, Copy)]
-    pub struct PresentTimingsInfoEXT {
+    pub struct PresentTimingsInfoEXT<'a> {
         pub s_type: crate::vk::StructureType,
         pub p_next: *const core::ffi::c_void,
         pub swapchain_count: u32,
-        pub p_timing_infos: *const crate::vk::PresentTimingInfoEXT,
+        pub p_timing_infos: *const crate::vk::PresentTimingInfoEXT<'a>,
+        pub _marker: ::core::marker::PhantomData<&'a ()>,
     }
     #[repr(C)]
     #[derive(Clone, Copy)]
-    pub struct PresentTimingInfoEXT {
+    pub struct PresentTimingInfoEXT<'a> {
         pub s_type: crate::vk::StructureType,
         pub p_next: *const core::ffi::c_void,
         pub flags: crate::vk::PresentTimingInfoFlagsEXT,
@@ -177,15 +185,17 @@ pub(crate) mod reexport {
         pub time_domain_id: u64,
         pub present_stage_queries: crate::vk::PresentStageFlagsEXT,
         pub target_time_domain_present_stage: crate::vk::PresentStageFlagsEXT,
+        pub _marker: ::core::marker::PhantomData<&'a ()>,
     }
     #[repr(C)]
     #[derive(Clone, Copy)]
-    pub struct SwapchainCalibratedTimestampInfoEXT {
+    pub struct SwapchainCalibratedTimestampInfoEXT<'a> {
         pub s_type: crate::vk::StructureType,
         pub p_next: *const core::ffi::c_void,
         pub swapchain: crate::vk::SwapchainKHR,
         pub present_stage: crate::vk::PresentStageFlagsEXT,
         pub time_domain_id: u64,
+        pub _marker: ::core::marker::PhantomData<&'a ()>,
     }
     ///Provided by [`ext::present_timing`](crate::ext::present_timing)
     impl crate::vk::StructureType {
@@ -270,19 +280,25 @@ pub(crate) mod reexport {
     pub type PFN_vkGetSwapchainTimingPropertiesEXT = unsafe extern "system" fn(
         device: crate::vk::Device,
         swapchain: crate::vk::SwapchainKHR,
-        p_swapchain_timing_properties: *mut crate::vk::SwapchainTimingPropertiesEXT,
+        p_swapchain_timing_properties: *mut crate::vk::SwapchainTimingPropertiesEXT<'_>,
         p_swapchain_timing_properties_counter: *mut u64,
     ) -> crate::vk::Result;
     pub type PFN_vkGetSwapchainTimeDomainPropertiesEXT = unsafe extern "system" fn(
         device: crate::vk::Device,
         swapchain: crate::vk::SwapchainKHR,
-        p_swapchain_time_domain_properties: *mut crate::vk::SwapchainTimeDomainPropertiesEXT,
+        p_swapchain_time_domain_properties: *mut crate::vk::SwapchainTimeDomainPropertiesEXT<
+            '_,
+        >,
         p_time_domains_counter: *mut u64,
     ) -> crate::vk::Result;
     pub type PFN_vkGetPastPresentationTimingEXT = unsafe extern "system" fn(
         device: crate::vk::Device,
-        p_past_presentation_timing_info: *const crate::vk::PastPresentationTimingInfoEXT,
-        p_past_presentation_timing_properties: *mut crate::vk::PastPresentationTimingPropertiesEXT,
+        p_past_presentation_timing_info: *const crate::vk::PastPresentationTimingInfoEXT<
+            '_,
+        >,
+        p_past_presentation_timing_properties: *mut crate::vk::PastPresentationTimingPropertiesEXT<
+            '_,
+        >,
     ) -> crate::vk::Result;
     pub const EXT_PRESENT_TIMING_SPEC_VERSION: u32 = 3;
     pub const EXT_PRESENT_TIMING_EXTENSION_NAME: &core::ffi::CStr = c"VK_EXT_present_timing";

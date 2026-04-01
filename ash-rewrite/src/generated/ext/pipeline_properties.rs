@@ -20,8 +20,8 @@ impl DeviceFn {
             get_pipeline_properties_ext: unsafe {
                 unsafe extern "system" fn get_pipeline_properties_ext(
                     _: crate::vk::Device,
-                    _: *const crate::vk::PipelineInfoEXT,
-                    _: *mut crate::vk::BaseOutStructure,
+                    _: *const crate::vk::PipelineInfoEXT<'_>,
+                    _: *mut crate::vk::BaseOutStructure<'_>,
                 ) -> crate::vk::Result {
                     panic!("unable to load vkGetPipelinePropertiesEXT")
                 }
@@ -38,19 +38,21 @@ impl DeviceFn {
 pub(crate) mod reexport {
     #[repr(C)]
     #[derive(Clone, Copy)]
-    pub struct PipelinePropertiesIdentifierEXT {
+    pub struct PipelinePropertiesIdentifierEXT<'a> {
         pub s_type: crate::vk::StructureType,
         pub p_next: *mut core::ffi::c_void,
         pub pipeline_identifier: [u8; crate::vk::UUID_SIZE as _],
+        pub _marker: ::core::marker::PhantomData<&'a ()>,
     }
     #[repr(C)]
     #[derive(Clone, Copy)]
-    pub struct PhysicalDevicePipelinePropertiesFeaturesEXT {
+    pub struct PhysicalDevicePipelinePropertiesFeaturesEXT<'a> {
         pub s_type: crate::vk::StructureType,
         pub p_next: *mut core::ffi::c_void,
         pub pipeline_properties_identifier: crate::vk::Bool32,
+        pub _marker: ::core::marker::PhantomData<&'a ()>,
     }
-    pub type PipelineInfoEXT = crate::vk::PipelineInfoKHR;
+    pub type PipelineInfoEXT<'a> = crate::vk::PipelineInfoKHR<'a>;
     ///Provided by [`ext::pipeline_properties`](crate::ext::pipeline_properties)
     impl crate::vk::StructureType {
         pub const PIPELINE_PROPERTIES_IDENTIFIER_EXT: Self = Self(1000372000);
@@ -61,8 +63,8 @@ pub(crate) mod reexport {
     }
     pub type PFN_vkGetPipelinePropertiesEXT = unsafe extern "system" fn(
         device: crate::vk::Device,
-        p_pipeline_info: *const crate::vk::PipelineInfoEXT,
-        p_pipeline_properties: *mut crate::vk::BaseOutStructure,
+        p_pipeline_info: *const crate::vk::PipelineInfoEXT<'_>,
+        p_pipeline_properties: *mut crate::vk::BaseOutStructure<'_>,
     ) -> crate::vk::Result;
     pub const EXT_PIPELINE_PROPERTIES_SPEC_VERSION: u32 = 1;
     pub const EXT_PIPELINE_PROPERTIES_EXTENSION_NAME: &core::ffi::CStr = c"VK_EXT_pipeline_properties";

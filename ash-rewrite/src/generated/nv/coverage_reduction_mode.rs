@@ -21,7 +21,7 @@ impl InstanceFn {
                 unsafe extern "system" fn get_physical_device_supported_framebuffer_mixed_samples_combinations_nv(
                     _: crate::vk::PhysicalDevice,
                     _: *mut u32,
-                    _: *mut crate::vk::FramebufferMixedSamplesCombinationNV,
+                    _: *mut crate::vk::FramebufferMixedSamplesCombinationNV<'_>,
                 ) -> crate::vk::Result {
                     panic!(
                         "unable to load vkGetPhysicalDeviceSupportedFramebufferMixedSamplesCombinationsNV"
@@ -42,28 +42,31 @@ impl InstanceFn {
 pub(crate) mod reexport {
     #[repr(C)]
     #[derive(Clone, Copy)]
-    pub struct PhysicalDeviceCoverageReductionModeFeaturesNV {
+    pub struct PhysicalDeviceCoverageReductionModeFeaturesNV<'a> {
         pub s_type: crate::vk::StructureType,
         pub p_next: *mut core::ffi::c_void,
         pub coverage_reduction_mode: crate::vk::Bool32,
+        pub _marker: ::core::marker::PhantomData<&'a ()>,
     }
     #[repr(C)]
     #[derive(Clone, Copy)]
-    pub struct PipelineCoverageReductionStateCreateInfoNV {
+    pub struct PipelineCoverageReductionStateCreateInfoNV<'a> {
         pub s_type: crate::vk::StructureType,
         pub p_next: *const core::ffi::c_void,
         pub flags: crate::vk::PipelineCoverageReductionStateCreateFlagsNV,
         pub coverage_reduction_mode: crate::vk::CoverageReductionModeNV,
+        pub _marker: ::core::marker::PhantomData<&'a ()>,
     }
     #[repr(C)]
     #[derive(Clone, Copy)]
-    pub struct FramebufferMixedSamplesCombinationNV {
+    pub struct FramebufferMixedSamplesCombinationNV<'a> {
         pub s_type: crate::vk::StructureType,
         pub p_next: *mut core::ffi::c_void,
         pub coverage_reduction_mode: crate::vk::CoverageReductionModeNV,
         pub rasterization_samples: crate::vk::SampleCountFlagBits,
         pub depth_stencil_samples: crate::vk::SampleCountFlags,
         pub color_samples: crate::vk::SampleCountFlags,
+        pub _marker: ::core::marker::PhantomData<&'a ()>,
     }
     ///Provided by [`nv::coverage_reduction_mode`](crate::nv::coverage_reduction_mode)
     impl crate::vk::StructureType {
@@ -77,6 +80,7 @@ pub(crate) mod reexport {
     }
     #[repr(transparent)]
     #[derive(Clone, Copy, PartialEq, Eq, PartialOrd, Ord, Hash, Default)]
+    #[derive(Debug)]
     pub struct CoverageReductionModeNV(pub(crate) i32);
     ///Provided by [`nv::coverage_reduction_mode`](crate::nv::coverage_reduction_mode)
     impl CoverageReductionModeNV {
@@ -90,7 +94,7 @@ pub(crate) mod reexport {
     pub type PFN_vkGetPhysicalDeviceSupportedFramebufferMixedSamplesCombinationsNV = unsafe extern "system" fn(
         physical_device: crate::vk::PhysicalDevice,
         p_combination_count: *mut u32,
-        p_combinations: *mut crate::vk::FramebufferMixedSamplesCombinationNV,
+        p_combinations: *mut crate::vk::FramebufferMixedSamplesCombinationNV<'_>,
     ) -> crate::vk::Result;
     pub const NV_COVERAGE_REDUCTION_MODE_SPEC_VERSION: u32 = 1;
     pub const NV_COVERAGE_REDUCTION_MODE_EXTENSION_NAME: &core::ffi::CStr = c"VK_NV_coverage_reduction_mode";

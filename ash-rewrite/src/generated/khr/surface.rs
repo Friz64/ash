@@ -25,7 +25,7 @@ impl InstanceFn {
                 unsafe extern "system" fn destroy_surface_khr(
                     _: crate::vk::Instance,
                     _: crate::vk::SurfaceKHR,
-                    _: *const crate::vk::AllocationCallbacks,
+                    _: *const crate::vk::AllocationCallbacks<'_>,
                 ) {
                     panic!("unable to load vkDestroySurfaceKHR")
                 }
@@ -134,6 +134,7 @@ pub(crate) mod reexport {
     }
     #[repr(transparent)]
     #[derive(Clone, Copy, PartialEq, Eq, PartialOrd, Ord, Hash, Default)]
+    #[derive(Debug)]
     pub struct PresentModeKHR(pub(crate) i32);
     ///Provided by [`khr::surface`](crate::khr::surface)
     impl PresentModeKHR {
@@ -144,6 +145,7 @@ pub(crate) mod reexport {
     }
     #[repr(transparent)]
     #[derive(Clone, Copy, PartialEq, Eq, PartialOrd, Ord, Hash, Default)]
+    #[derive(Debug)]
     pub struct ColorSpaceKHR(pub(crate) i32);
     ///Provided by [`khr::surface`](crate::khr::surface)
     impl ColorSpaceKHR {
@@ -196,7 +198,7 @@ pub(crate) mod reexport {
     pub type PFN_vkDestroySurfaceKHR = unsafe extern "system" fn(
         instance: crate::vk::Instance,
         surface: crate::vk::SurfaceKHR,
-        p_allocator: *const crate::vk::AllocationCallbacks,
+        p_allocator: *const crate::vk::AllocationCallbacks<'_>,
     );
     pub type PFN_vkGetPhysicalDeviceSurfaceSupportKHR = unsafe extern "system" fn(
         physical_device: crate::vk::PhysicalDevice,

@@ -21,8 +21,8 @@ impl DeviceFn {
             create_sampler_ycbcr_conversion_khr: unsafe {
                 unsafe extern "system" fn create_sampler_ycbcr_conversion_khr(
                     _: crate::vk::Device,
-                    _: *const crate::vk::SamplerYcbcrConversionCreateInfo,
-                    _: *const crate::vk::AllocationCallbacks,
+                    _: *const crate::vk::SamplerYcbcrConversionCreateInfo<'_>,
+                    _: *const crate::vk::AllocationCallbacks<'_>,
                     _: *mut crate::vk::SamplerYcbcrConversion,
                 ) -> crate::vk::Result {
                     panic!("unable to load vkCreateSamplerYcbcrConversionKHR")
@@ -38,7 +38,7 @@ impl DeviceFn {
                 unsafe extern "system" fn destroy_sampler_ycbcr_conversion_khr(
                     _: crate::vk::Device,
                     _: crate::vk::SamplerYcbcrConversion,
-                    _: *const crate::vk::AllocationCallbacks,
+                    _: *const crate::vk::AllocationCallbacks<'_>,
                 ) {
                     panic!("unable to load vkDestroySamplerYcbcrConversionKHR")
                 }
@@ -53,12 +53,22 @@ impl DeviceFn {
     }
 }
 pub(crate) mod reexport {
-    pub type SamplerYcbcrConversionInfoKHR = crate::vk::SamplerYcbcrConversionInfo;
-    pub type SamplerYcbcrConversionCreateInfoKHR = crate::vk::SamplerYcbcrConversionCreateInfo;
-    pub type BindImagePlaneMemoryInfoKHR = crate::vk::BindImagePlaneMemoryInfo;
-    pub type ImagePlaneMemoryRequirementsInfoKHR = crate::vk::ImagePlaneMemoryRequirementsInfo;
-    pub type PhysicalDeviceSamplerYcbcrConversionFeaturesKHR = crate::vk::PhysicalDeviceSamplerYcbcrConversionFeatures;
-    pub type SamplerYcbcrConversionImageFormatPropertiesKHR = crate::vk::SamplerYcbcrConversionImageFormatProperties;
+    pub type SamplerYcbcrConversionInfoKHR<'a> = crate::vk::SamplerYcbcrConversionInfo<
+        'a,
+    >;
+    pub type SamplerYcbcrConversionCreateInfoKHR<'a> = crate::vk::SamplerYcbcrConversionCreateInfo<
+        'a,
+    >;
+    pub type BindImagePlaneMemoryInfoKHR<'a> = crate::vk::BindImagePlaneMemoryInfo<'a>;
+    pub type ImagePlaneMemoryRequirementsInfoKHR<'a> = crate::vk::ImagePlaneMemoryRequirementsInfo<
+        'a,
+    >;
+    pub type PhysicalDeviceSamplerYcbcrConversionFeaturesKHR<'a> = crate::vk::PhysicalDeviceSamplerYcbcrConversionFeatures<
+        'a,
+    >;
+    pub type SamplerYcbcrConversionImageFormatPropertiesKHR<'a> = crate::vk::SamplerYcbcrConversionImageFormatProperties<
+        'a,
+    >;
     ///Provided by [`khr::sampler_ycbcr_conversion`](crate::khr::sampler_ycbcr_conversion)
     impl crate::vk::Format {
         pub const G8B8G8R8_422_UNORM_KHR: Self = Self::G8B8G8R8_422_UNORM;

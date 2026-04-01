@@ -3,20 +3,22 @@
 //![Vulkan Manual Page](https://docs.vulkan.org/refpages/latest/refpages/source/VK_EXT_fragment_density_map2.html) · Extension `VK_EXT_fragment_density_map2`
 #[repr(C)]
 #[derive(Clone, Copy)]
-pub struct PhysicalDeviceFragmentDensityMap2FeaturesEXT {
+pub struct PhysicalDeviceFragmentDensityMap2FeaturesEXT<'a> {
     pub s_type: crate::vk::StructureType,
     pub p_next: *mut core::ffi::c_void,
     pub fragment_density_map_deferred: crate::vk::Bool32,
+    pub _marker: ::core::marker::PhantomData<&'a ()>,
 }
 #[repr(C)]
 #[derive(Clone, Copy)]
-pub struct PhysicalDeviceFragmentDensityMap2PropertiesEXT {
+pub struct PhysicalDeviceFragmentDensityMap2PropertiesEXT<'a> {
     pub s_type: crate::vk::StructureType,
     pub p_next: *mut core::ffi::c_void,
     pub subsampled_loads: crate::vk::Bool32,
     pub subsampled_coarse_reconstruction_early_access: crate::vk::Bool32,
     pub max_subsampled_array_layers: u32,
     pub max_descriptor_set_subsampled_samplers: u32,
+    pub _marker: ::core::marker::PhantomData<&'a ()>,
 }
 ///Provided by [`ext::fragment_density_map2`](crate::ext::fragment_density_map2)
 impl crate::vk::StructureType {

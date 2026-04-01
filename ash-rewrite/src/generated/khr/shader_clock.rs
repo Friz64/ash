@@ -3,11 +3,12 @@
 //![Vulkan Manual Page](https://docs.vulkan.org/refpages/latest/refpages/source/VK_KHR_shader_clock.html) · Extension `VK_KHR_shader_clock`
 #[repr(C)]
 #[derive(Clone, Copy)]
-pub struct PhysicalDeviceShaderClockFeaturesKHR {
+pub struct PhysicalDeviceShaderClockFeaturesKHR<'a> {
     pub s_type: crate::vk::StructureType,
     pub p_next: *mut core::ffi::c_void,
     pub shader_subgroup_clock: crate::vk::Bool32,
     pub shader_device_clock: crate::vk::Bool32,
+    pub _marker: ::core::marker::PhantomData<&'a ()>,
 }
 ///Provided by [`khr::shader_clock`](crate::khr::shader_clock)
 impl crate::vk::StructureType {

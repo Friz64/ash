@@ -29,8 +29,8 @@ impl DeviceFn {
             create_tensor_arm: unsafe {
                 unsafe extern "system" fn create_tensor_arm(
                     _: crate::vk::Device,
-                    _: *const crate::vk::TensorCreateInfoARM,
-                    _: *const crate::vk::AllocationCallbacks,
+                    _: *const crate::vk::TensorCreateInfoARM<'_>,
+                    _: *const crate::vk::AllocationCallbacks<'_>,
                     _: *mut crate::vk::TensorARM,
                 ) -> crate::vk::Result {
                     panic!("unable to load vkCreateTensorARM")
@@ -46,7 +46,7 @@ impl DeviceFn {
                 unsafe extern "system" fn destroy_tensor_arm(
                     _: crate::vk::Device,
                     _: crate::vk::TensorARM,
-                    _: *const crate::vk::AllocationCallbacks,
+                    _: *const crate::vk::AllocationCallbacks<'_>,
                 ) {
                     panic!("unable to load vkDestroyTensorARM")
                 }
@@ -60,8 +60,8 @@ impl DeviceFn {
             create_tensor_view_arm: unsafe {
                 unsafe extern "system" fn create_tensor_view_arm(
                     _: crate::vk::Device,
-                    _: *const crate::vk::TensorViewCreateInfoARM,
-                    _: *const crate::vk::AllocationCallbacks,
+                    _: *const crate::vk::TensorViewCreateInfoARM<'_>,
+                    _: *const crate::vk::AllocationCallbacks<'_>,
                     _: *mut crate::vk::TensorViewARM,
                 ) -> crate::vk::Result {
                     panic!("unable to load vkCreateTensorViewARM")
@@ -77,7 +77,7 @@ impl DeviceFn {
                 unsafe extern "system" fn destroy_tensor_view_arm(
                     _: crate::vk::Device,
                     _: crate::vk::TensorViewARM,
-                    _: *const crate::vk::AllocationCallbacks,
+                    _: *const crate::vk::AllocationCallbacks<'_>,
                 ) {
                     panic!("unable to load vkDestroyTensorViewARM")
                 }
@@ -91,8 +91,8 @@ impl DeviceFn {
             get_tensor_memory_requirements_arm: unsafe {
                 unsafe extern "system" fn get_tensor_memory_requirements_arm(
                     _: crate::vk::Device,
-                    _: *const crate::vk::TensorMemoryRequirementsInfoARM,
-                    _: *mut crate::vk::MemoryRequirements2,
+                    _: *const crate::vk::TensorMemoryRequirementsInfoARM<'_>,
+                    _: *mut crate::vk::MemoryRequirements2<'_>,
                 ) {
                     panic!("unable to load vkGetTensorMemoryRequirementsARM")
                 }
@@ -107,7 +107,7 @@ impl DeviceFn {
                 unsafe extern "system" fn bind_tensor_memory_arm(
                     _: crate::vk::Device,
                     _: u32,
-                    _: *const crate::vk::BindTensorMemoryInfoARM,
+                    _: *const crate::vk::BindTensorMemoryInfoARM<'_>,
                 ) -> crate::vk::Result {
                     panic!("unable to load vkBindTensorMemoryARM")
                 }
@@ -121,8 +121,8 @@ impl DeviceFn {
             get_device_tensor_memory_requirements_arm: unsafe {
                 unsafe extern "system" fn get_device_tensor_memory_requirements_arm(
                     _: crate::vk::Device,
-                    _: *const crate::vk::DeviceTensorMemoryRequirementsARM,
-                    _: *mut crate::vk::MemoryRequirements2,
+                    _: *const crate::vk::DeviceTensorMemoryRequirementsARM<'_>,
+                    _: *mut crate::vk::MemoryRequirements2<'_>,
                 ) {
                     panic!("unable to load vkGetDeviceTensorMemoryRequirementsARM")
                 }
@@ -136,7 +136,7 @@ impl DeviceFn {
             cmd_copy_tensor_arm: unsafe {
                 unsafe extern "system" fn cmd_copy_tensor_arm(
                     _: crate::vk::CommandBuffer,
-                    _: *const crate::vk::CopyTensorInfoARM,
+                    _: *const crate::vk::CopyTensorInfoARM<'_>,
                 ) {
                     panic!("unable to load vkCmdCopyTensorARM")
                 }
@@ -150,7 +150,7 @@ impl DeviceFn {
             get_tensor_opaque_capture_descriptor_data_arm: unsafe {
                 unsafe extern "system" fn get_tensor_opaque_capture_descriptor_data_arm(
                     _: crate::vk::Device,
-                    _: *const crate::vk::TensorCaptureDescriptorDataInfoARM,
+                    _: *const crate::vk::TensorCaptureDescriptorDataInfoARM<'_>,
                     _: *mut core::ffi::c_void,
                 ) -> crate::vk::Result {
                     panic!("unable to load vkGetTensorOpaqueCaptureDescriptorDataARM")
@@ -165,7 +165,7 @@ impl DeviceFn {
             get_tensor_view_opaque_capture_descriptor_data_arm: unsafe {
                 unsafe extern "system" fn get_tensor_view_opaque_capture_descriptor_data_arm(
                     _: crate::vk::Device,
-                    _: *const crate::vk::TensorViewCaptureDescriptorDataInfoARM,
+                    _: *const crate::vk::TensorViewCaptureDescriptorDataInfoARM<'_>,
                     _: *mut core::ffi::c_void,
                 ) -> crate::vk::Result {
                     panic!(
@@ -201,8 +201,8 @@ impl InstanceFn {
             get_physical_device_external_tensor_properties_arm: unsafe {
                 unsafe extern "system" fn get_physical_device_external_tensor_properties_arm(
                     _: crate::vk::PhysicalDevice,
-                    _: *const crate::vk::PhysicalDeviceExternalTensorInfoARM,
-                    _: *mut crate::vk::ExternalTensorPropertiesARM,
+                    _: *const crate::vk::PhysicalDeviceExternalTensorInfoARM<'_>,
+                    _: *mut crate::vk::ExternalTensorPropertiesARM<'_>,
                 ) {
                     panic!(
                         "unable to load vkGetPhysicalDeviceExternalTensorPropertiesARM"
@@ -221,7 +221,7 @@ impl InstanceFn {
 pub(crate) mod reexport {
     #[repr(C)]
     #[derive(Clone, Copy)]
-    pub struct TensorDescriptionARM {
+    pub struct TensorDescriptionARM<'a> {
         pub s_type: crate::vk::StructureType,
         pub p_next: *const core::ffi::c_void,
         pub tiling: crate::vk::TensorTilingARM,
@@ -230,53 +230,59 @@ pub(crate) mod reexport {
         pub p_dimensions: *const i64,
         pub p_strides: *const i64,
         pub usage: crate::vk::TensorUsageFlagsARM,
+        pub _marker: ::core::marker::PhantomData<&'a ()>,
     }
     #[repr(C)]
     #[derive(Clone, Copy)]
-    pub struct TensorCreateInfoARM {
+    pub struct TensorCreateInfoARM<'a> {
         pub s_type: crate::vk::StructureType,
         pub p_next: *const core::ffi::c_void,
         pub flags: crate::vk::TensorCreateFlagsARM,
-        pub p_description: *const crate::vk::TensorDescriptionARM,
+        pub p_description: *const crate::vk::TensorDescriptionARM<'a>,
         pub sharing_mode: crate::vk::SharingMode,
         pub queue_family_index_count: u32,
         pub p_queue_family_indices: *const u32,
+        pub _marker: ::core::marker::PhantomData<&'a ()>,
     }
     #[repr(C)]
     #[derive(Clone, Copy)]
-    pub struct TensorMemoryRequirementsInfoARM {
+    pub struct TensorMemoryRequirementsInfoARM<'a> {
         pub s_type: crate::vk::StructureType,
         pub p_next: *const core::ffi::c_void,
         pub tensor: crate::vk::TensorARM,
+        pub _marker: ::core::marker::PhantomData<&'a ()>,
     }
     #[repr(C)]
     #[derive(Clone, Copy)]
-    pub struct BindTensorMemoryInfoARM {
+    pub struct BindTensorMemoryInfoARM<'a> {
         pub s_type: crate::vk::StructureType,
         pub p_next: *const core::ffi::c_void,
         pub tensor: crate::vk::TensorARM,
         pub memory: crate::vk::DeviceMemory,
         pub memory_offset: crate::vk::DeviceSize,
+        pub _marker: ::core::marker::PhantomData<&'a ()>,
     }
     #[repr(C)]
     #[derive(Clone, Copy)]
-    pub struct WriteDescriptorSetTensorARM {
+    pub struct WriteDescriptorSetTensorARM<'a> {
         pub s_type: crate::vk::StructureType,
         pub p_next: *const core::ffi::c_void,
         pub tensor_view_count: u32,
         pub p_tensor_views: *const crate::vk::TensorViewARM,
+        pub _marker: ::core::marker::PhantomData<&'a ()>,
     }
     #[repr(C)]
     #[derive(Clone, Copy)]
-    pub struct TensorFormatPropertiesARM {
+    pub struct TensorFormatPropertiesARM<'a> {
         pub s_type: crate::vk::StructureType,
         pub p_next: *mut core::ffi::c_void,
         pub optimal_tiling_tensor_features: crate::vk::FormatFeatureFlags2,
         pub linear_tiling_tensor_features: crate::vk::FormatFeatureFlags2,
+        pub _marker: ::core::marker::PhantomData<&'a ()>,
     }
     #[repr(C)]
     #[derive(Clone, Copy)]
-    pub struct PhysicalDeviceTensorPropertiesARM {
+    pub struct PhysicalDeviceTensorPropertiesARM<'a> {
         pub s_type: crate::vk::StructureType,
         pub p_next: *mut core::ffi::c_void,
         pub max_tensor_dimension_count: u32,
@@ -292,10 +298,11 @@ pub(crate) mod reexport {
         pub max_per_stage_descriptor_update_after_bind_storage_tensors: u32,
         pub shader_storage_tensor_array_non_uniform_indexing_native: crate::vk::Bool32,
         pub shader_tensor_supported_stages: crate::vk::ShaderStageFlags,
+        pub _marker: ::core::marker::PhantomData<&'a ()>,
     }
     #[repr(C)]
     #[derive(Clone, Copy)]
-    pub struct TensorMemoryBarrierARM {
+    pub struct TensorMemoryBarrierARM<'a> {
         pub s_type: crate::vk::StructureType,
         pub p_next: *const core::ffi::c_void,
         pub src_stage_mask: crate::vk::PipelineStageFlags2,
@@ -305,18 +312,20 @@ pub(crate) mod reexport {
         pub src_queue_family_index: u32,
         pub dst_queue_family_index: u32,
         pub tensor: crate::vk::TensorARM,
+        pub _marker: ::core::marker::PhantomData<&'a ()>,
     }
     #[repr(C)]
     #[derive(Clone, Copy)]
-    pub struct TensorDependencyInfoARM {
+    pub struct TensorDependencyInfoARM<'a> {
         pub s_type: crate::vk::StructureType,
         pub p_next: *const core::ffi::c_void,
         pub tensor_memory_barrier_count: u32,
-        pub p_tensor_memory_barriers: *const crate::vk::TensorMemoryBarrierARM,
+        pub p_tensor_memory_barriers: *const crate::vk::TensorMemoryBarrierARM<'a>,
+        pub _marker: ::core::marker::PhantomData<&'a ()>,
     }
     #[repr(C)]
     #[derive(Clone, Copy)]
-    pub struct PhysicalDeviceTensorFeaturesARM {
+    pub struct PhysicalDeviceTensorFeaturesARM<'a> {
         pub s_type: crate::vk::StructureType,
         pub p_next: *mut core::ffi::c_void,
         pub tensor_non_packed: crate::vk::Bool32,
@@ -325,108 +334,122 @@ pub(crate) mod reexport {
         pub shader_storage_tensor_array_non_uniform_indexing: crate::vk::Bool32,
         pub descriptor_binding_storage_tensor_update_after_bind: crate::vk::Bool32,
         pub tensors: crate::vk::Bool32,
+        pub _marker: ::core::marker::PhantomData<&'a ()>,
     }
     #[repr(C)]
     #[derive(Clone, Copy)]
-    pub struct DeviceTensorMemoryRequirementsARM {
+    pub struct DeviceTensorMemoryRequirementsARM<'a> {
         pub s_type: crate::vk::StructureType,
         pub p_next: *const core::ffi::c_void,
-        pub p_create_info: *const crate::vk::TensorCreateInfoARM,
+        pub p_create_info: *const crate::vk::TensorCreateInfoARM<'a>,
+        pub _marker: ::core::marker::PhantomData<&'a ()>,
     }
     #[repr(C)]
     #[derive(Clone, Copy)]
-    pub struct CopyTensorInfoARM {
+    pub struct CopyTensorInfoARM<'a> {
         pub s_type: crate::vk::StructureType,
         pub p_next: *const core::ffi::c_void,
         pub src_tensor: crate::vk::TensorARM,
         pub dst_tensor: crate::vk::TensorARM,
         pub region_count: u32,
-        pub p_regions: *const crate::vk::TensorCopyARM,
+        pub p_regions: *const crate::vk::TensorCopyARM<'a>,
+        pub _marker: ::core::marker::PhantomData<&'a ()>,
     }
     #[repr(C)]
     #[derive(Clone, Copy)]
-    pub struct TensorCopyARM {
+    pub struct TensorCopyARM<'a> {
         pub s_type: crate::vk::StructureType,
         pub p_next: *const core::ffi::c_void,
         pub dimension_count: u32,
         pub p_src_offset: *const u64,
         pub p_dst_offset: *const u64,
         pub p_extent: *const u64,
+        pub _marker: ::core::marker::PhantomData<&'a ()>,
     }
     #[repr(C)]
     #[derive(Clone, Copy)]
-    pub struct MemoryDedicatedAllocateInfoTensorARM {
+    pub struct MemoryDedicatedAllocateInfoTensorARM<'a> {
         pub s_type: crate::vk::StructureType,
         pub p_next: *const core::ffi::c_void,
         pub tensor: crate::vk::TensorARM,
+        pub _marker: ::core::marker::PhantomData<&'a ()>,
     }
     #[repr(C)]
     #[derive(Clone, Copy)]
-    pub struct PhysicalDeviceDescriptorBufferTensorPropertiesARM {
+    pub struct PhysicalDeviceDescriptorBufferTensorPropertiesARM<'a> {
         pub s_type: crate::vk::StructureType,
         pub p_next: *mut core::ffi::c_void,
         pub tensor_capture_replay_descriptor_data_size: usize,
         pub tensor_view_capture_replay_descriptor_data_size: usize,
         pub tensor_descriptor_size: usize,
+        pub _marker: ::core::marker::PhantomData<&'a ()>,
     }
     #[repr(C)]
     #[derive(Clone, Copy)]
-    pub struct PhysicalDeviceDescriptorBufferTensorFeaturesARM {
+    pub struct PhysicalDeviceDescriptorBufferTensorFeaturesARM<'a> {
         pub s_type: crate::vk::StructureType,
         pub p_next: *mut core::ffi::c_void,
         pub descriptor_buffer_tensor_descriptors: crate::vk::Bool32,
+        pub _marker: ::core::marker::PhantomData<&'a ()>,
     }
     #[repr(C)]
     #[derive(Clone, Copy)]
-    pub struct TensorCaptureDescriptorDataInfoARM {
+    pub struct TensorCaptureDescriptorDataInfoARM<'a> {
         pub s_type: crate::vk::StructureType,
         pub p_next: *const core::ffi::c_void,
         pub tensor: crate::vk::TensorARM,
+        pub _marker: ::core::marker::PhantomData<&'a ()>,
     }
     #[repr(C)]
     #[derive(Clone, Copy)]
-    pub struct TensorViewCaptureDescriptorDataInfoARM {
+    pub struct TensorViewCaptureDescriptorDataInfoARM<'a> {
         pub s_type: crate::vk::StructureType,
         pub p_next: *const core::ffi::c_void,
         pub tensor_view: crate::vk::TensorViewARM,
+        pub _marker: ::core::marker::PhantomData<&'a ()>,
     }
     #[repr(C)]
     #[derive(Clone, Copy)]
-    pub struct DescriptorGetTensorInfoARM {
+    pub struct DescriptorGetTensorInfoARM<'a> {
         pub s_type: crate::vk::StructureType,
         pub p_next: *const core::ffi::c_void,
         pub tensor_view: crate::vk::TensorViewARM,
+        pub _marker: ::core::marker::PhantomData<&'a ()>,
     }
     #[repr(C)]
     #[derive(Clone, Copy)]
-    pub struct FrameBoundaryTensorsARM {
+    pub struct FrameBoundaryTensorsARM<'a> {
         pub s_type: crate::vk::StructureType,
         pub p_next: *const core::ffi::c_void,
         pub tensor_count: u32,
         pub p_tensors: *const crate::vk::TensorARM,
+        pub _marker: ::core::marker::PhantomData<&'a ()>,
     }
     #[repr(C)]
     #[derive(Clone, Copy)]
-    pub struct PhysicalDeviceExternalTensorInfoARM {
+    pub struct PhysicalDeviceExternalTensorInfoARM<'a> {
         pub s_type: crate::vk::StructureType,
         pub p_next: *const core::ffi::c_void,
         pub flags: crate::vk::TensorCreateFlagsARM,
-        pub p_description: *const crate::vk::TensorDescriptionARM,
+        pub p_description: *const crate::vk::TensorDescriptionARM<'a>,
         pub handle_type: crate::vk::ExternalMemoryHandleTypeFlagBits,
+        pub _marker: ::core::marker::PhantomData<&'a ()>,
     }
     #[repr(C)]
     #[derive(Clone, Copy)]
-    pub struct ExternalTensorPropertiesARM {
+    pub struct ExternalTensorPropertiesARM<'a> {
         pub s_type: crate::vk::StructureType,
         pub p_next: *const core::ffi::c_void,
         pub external_memory_properties: crate::vk::ExternalMemoryProperties,
+        pub _marker: ::core::marker::PhantomData<&'a ()>,
     }
     #[repr(C)]
     #[derive(Clone, Copy)]
-    pub struct ExternalMemoryTensorCreateInfoARM {
+    pub struct ExternalMemoryTensorCreateInfoARM<'a> {
         pub s_type: crate::vk::StructureType,
         pub p_next: *const core::ffi::c_void,
         pub handle_types: crate::vk::ExternalMemoryHandleTypeFlags,
+        pub _marker: ::core::marker::PhantomData<&'a ()>,
     }
     ///Provided by [`arm::tensors`](crate::arm::tensors)
     impl crate::vk::ImageLayout {
@@ -481,6 +504,7 @@ pub(crate) mod reexport {
     }
     #[repr(transparent)]
     #[derive(Clone, Copy, PartialEq, Eq, PartialOrd, Ord, Hash, Default)]
+    #[derive(Debug)]
     pub struct TensorTilingARM(pub(crate) i32);
     ///Provided by [`arm::tensors`](crate::arm::tensors)
     impl TensorTilingARM {
@@ -565,59 +589,61 @@ pub(crate) mod reexport {
     }
     pub type PFN_vkCreateTensorARM = unsafe extern "system" fn(
         device: crate::vk::Device,
-        p_create_info: *const crate::vk::TensorCreateInfoARM,
-        p_allocator: *const crate::vk::AllocationCallbacks,
+        p_create_info: *const crate::vk::TensorCreateInfoARM<'_>,
+        p_allocator: *const crate::vk::AllocationCallbacks<'_>,
         p_tensor: *mut crate::vk::TensorARM,
     ) -> crate::vk::Result;
     pub type PFN_vkDestroyTensorARM = unsafe extern "system" fn(
         device: crate::vk::Device,
         tensor: crate::vk::TensorARM,
-        p_allocator: *const crate::vk::AllocationCallbacks,
+        p_allocator: *const crate::vk::AllocationCallbacks<'_>,
     );
     pub type PFN_vkCreateTensorViewARM = unsafe extern "system" fn(
         device: crate::vk::Device,
-        p_create_info: *const crate::vk::TensorViewCreateInfoARM,
-        p_allocator: *const crate::vk::AllocationCallbacks,
+        p_create_info: *const crate::vk::TensorViewCreateInfoARM<'_>,
+        p_allocator: *const crate::vk::AllocationCallbacks<'_>,
         p_view: *mut crate::vk::TensorViewARM,
     ) -> crate::vk::Result;
     pub type PFN_vkDestroyTensorViewARM = unsafe extern "system" fn(
         device: crate::vk::Device,
         tensor_view: crate::vk::TensorViewARM,
-        p_allocator: *const crate::vk::AllocationCallbacks,
+        p_allocator: *const crate::vk::AllocationCallbacks<'_>,
     );
     pub type PFN_vkGetTensorMemoryRequirementsARM = unsafe extern "system" fn(
         device: crate::vk::Device,
-        p_info: *const crate::vk::TensorMemoryRequirementsInfoARM,
-        p_memory_requirements: *mut crate::vk::MemoryRequirements2,
+        p_info: *const crate::vk::TensorMemoryRequirementsInfoARM<'_>,
+        p_memory_requirements: *mut crate::vk::MemoryRequirements2<'_>,
     );
     pub type PFN_vkBindTensorMemoryARM = unsafe extern "system" fn(
         device: crate::vk::Device,
         bind_info_count: u32,
-        p_bind_infos: *const crate::vk::BindTensorMemoryInfoARM,
+        p_bind_infos: *const crate::vk::BindTensorMemoryInfoARM<'_>,
     ) -> crate::vk::Result;
     pub type PFN_vkGetDeviceTensorMemoryRequirementsARM = unsafe extern "system" fn(
         device: crate::vk::Device,
-        p_info: *const crate::vk::DeviceTensorMemoryRequirementsARM,
-        p_memory_requirements: *mut crate::vk::MemoryRequirements2,
+        p_info: *const crate::vk::DeviceTensorMemoryRequirementsARM<'_>,
+        p_memory_requirements: *mut crate::vk::MemoryRequirements2<'_>,
     );
     pub type PFN_vkCmdCopyTensorARM = unsafe extern "system" fn(
         command_buffer: crate::vk::CommandBuffer,
-        p_copy_tensor_info: *const crate::vk::CopyTensorInfoARM,
+        p_copy_tensor_info: *const crate::vk::CopyTensorInfoARM<'_>,
     );
     pub type PFN_vkGetTensorOpaqueCaptureDescriptorDataARM = unsafe extern "system" fn(
         device: crate::vk::Device,
-        p_info: *const crate::vk::TensorCaptureDescriptorDataInfoARM,
+        p_info: *const crate::vk::TensorCaptureDescriptorDataInfoARM<'_>,
         p_data: *mut core::ffi::c_void,
     ) -> crate::vk::Result;
     pub type PFN_vkGetTensorViewOpaqueCaptureDescriptorDataARM = unsafe extern "system" fn(
         device: crate::vk::Device,
-        p_info: *const crate::vk::TensorViewCaptureDescriptorDataInfoARM,
+        p_info: *const crate::vk::TensorViewCaptureDescriptorDataInfoARM<'_>,
         p_data: *mut core::ffi::c_void,
     ) -> crate::vk::Result;
     pub type PFN_vkGetPhysicalDeviceExternalTensorPropertiesARM = unsafe extern "system" fn(
         physical_device: crate::vk::PhysicalDevice,
-        p_external_tensor_info: *const crate::vk::PhysicalDeviceExternalTensorInfoARM,
-        p_external_tensor_properties: *mut crate::vk::ExternalTensorPropertiesARM,
+        p_external_tensor_info: *const crate::vk::PhysicalDeviceExternalTensorInfoARM<
+            '_,
+        >,
+        p_external_tensor_properties: *mut crate::vk::ExternalTensorPropertiesARM<'_>,
     );
     pub const ARM_TENSORS_SPEC_VERSION: u32 = 2;
     pub const ARM_TENSORS_EXTENSION_NAME: &core::ffi::CStr = c"VK_ARM_tensors";

@@ -21,7 +21,7 @@ impl InstanceFn {
                 unsafe extern "system" fn get_physical_device_cooperative_vector_properties_nv(
                     _: crate::vk::PhysicalDevice,
                     _: *mut u32,
-                    _: *mut crate::vk::CooperativeVectorPropertiesNV,
+                    _: *mut crate::vk::CooperativeVectorPropertiesNV<'_>,
                 ) -> crate::vk::Result {
                     panic!(
                         "unable to load vkGetPhysicalDeviceCooperativeVectorPropertiesNV"
@@ -57,7 +57,7 @@ impl DeviceFn {
             convert_cooperative_vector_matrix_nv: unsafe {
                 unsafe extern "system" fn convert_cooperative_vector_matrix_nv(
                     _: crate::vk::Device,
-                    _: *const crate::vk::ConvertCooperativeVectorMatrixInfoNV,
+                    _: *const crate::vk::ConvertCooperativeVectorMatrixInfoNV<'_>,
                 ) -> crate::vk::Result {
                     panic!("unable to load vkConvertCooperativeVectorMatrixNV")
                 }
@@ -72,7 +72,7 @@ impl DeviceFn {
                 unsafe extern "system" fn cmd_convert_cooperative_vector_matrix_nv(
                     _: crate::vk::CommandBuffer,
                     _: u32,
-                    _: *const crate::vk::ConvertCooperativeVectorMatrixInfoNV,
+                    _: *const crate::vk::ConvertCooperativeVectorMatrixInfoNV<'_>,
                 ) {
                     panic!("unable to load vkCmdConvertCooperativeVectorMatrixNV")
                 }
@@ -89,15 +89,16 @@ impl DeviceFn {
 pub(crate) mod reexport {
     #[repr(C)]
     #[derive(Clone, Copy)]
-    pub struct PhysicalDeviceCooperativeVectorFeaturesNV {
+    pub struct PhysicalDeviceCooperativeVectorFeaturesNV<'a> {
         pub s_type: crate::vk::StructureType,
         pub p_next: *mut core::ffi::c_void,
         pub cooperative_vector: crate::vk::Bool32,
         pub cooperative_vector_training: crate::vk::Bool32,
+        pub _marker: ::core::marker::PhantomData<&'a ()>,
     }
     #[repr(C)]
     #[derive(Clone, Copy)]
-    pub struct CooperativeVectorPropertiesNV {
+    pub struct CooperativeVectorPropertiesNV<'a> {
         pub s_type: crate::vk::StructureType,
         pub p_next: *mut core::ffi::c_void,
         pub input_type: crate::vk::ComponentTypeKHR,
@@ -106,20 +107,22 @@ pub(crate) mod reexport {
         pub bias_interpretation: crate::vk::ComponentTypeKHR,
         pub result_type: crate::vk::ComponentTypeKHR,
         pub transpose: crate::vk::Bool32,
+        pub _marker: ::core::marker::PhantomData<&'a ()>,
     }
     #[repr(C)]
     #[derive(Clone, Copy)]
-    pub struct PhysicalDeviceCooperativeVectorPropertiesNV {
+    pub struct PhysicalDeviceCooperativeVectorPropertiesNV<'a> {
         pub s_type: crate::vk::StructureType,
         pub p_next: *mut core::ffi::c_void,
         pub cooperative_vector_supported_stages: crate::vk::ShaderStageFlags,
         pub cooperative_vector_training_float16_accumulation: crate::vk::Bool32,
         pub cooperative_vector_training_float32_accumulation: crate::vk::Bool32,
         pub max_cooperative_vector_components: u32,
+        pub _marker: ::core::marker::PhantomData<&'a ()>,
     }
     #[repr(C)]
     #[derive(Clone, Copy)]
-    pub struct ConvertCooperativeVectorMatrixInfoNV {
+    pub struct ConvertCooperativeVectorMatrixInfoNV<'a> {
         pub s_type: crate::vk::StructureType,
         pub p_next: *const core::ffi::c_void,
         pub src_size: usize,
@@ -134,6 +137,7 @@ pub(crate) mod reexport {
         pub src_stride: usize,
         pub dst_layout: crate::vk::CooperativeVectorMatrixLayoutNV,
         pub dst_stride: usize,
+        pub _marker: ::core::marker::PhantomData<&'a ()>,
     }
     ///Provided by [`nv::cooperative_vector`](crate::nv::cooperative_vector)
     impl crate::vk::StructureType {
@@ -148,6 +152,7 @@ pub(crate) mod reexport {
     }
     #[repr(transparent)]
     #[derive(Clone, Copy, PartialEq, Eq, PartialOrd, Ord, Hash, Default)]
+    #[derive(Debug)]
     pub struct ComponentTypeKHR(pub(crate) i32);
     ///Provided by [`nv::cooperative_vector`](crate::nv::cooperative_vector)
     impl ComponentTypeKHR {
@@ -169,6 +174,7 @@ pub(crate) mod reexport {
     }
     #[repr(transparent)]
     #[derive(Clone, Copy, PartialEq, Eq, PartialOrd, Ord, Hash, Default)]
+    #[derive(Debug)]
     pub struct CooperativeVectorMatrixLayoutNV(pub(crate) i32);
     ///Provided by [`nv::cooperative_vector`](crate::nv::cooperative_vector)
     impl CooperativeVectorMatrixLayoutNV {
@@ -184,16 +190,16 @@ pub(crate) mod reexport {
     pub type PFN_vkGetPhysicalDeviceCooperativeVectorPropertiesNV = unsafe extern "system" fn(
         physical_device: crate::vk::PhysicalDevice,
         p_property_count: *mut u32,
-        p_properties: *mut crate::vk::CooperativeVectorPropertiesNV,
+        p_properties: *mut crate::vk::CooperativeVectorPropertiesNV<'_>,
     ) -> crate::vk::Result;
     pub type PFN_vkConvertCooperativeVectorMatrixNV = unsafe extern "system" fn(
         device: crate::vk::Device,
-        p_info: *const crate::vk::ConvertCooperativeVectorMatrixInfoNV,
+        p_info: *const crate::vk::ConvertCooperativeVectorMatrixInfoNV<'_>,
     ) -> crate::vk::Result;
     pub type PFN_vkCmdConvertCooperativeVectorMatrixNV = unsafe extern "system" fn(
         command_buffer: crate::vk::CommandBuffer,
         info_count: u32,
-        p_infos: *const crate::vk::ConvertCooperativeVectorMatrixInfoNV,
+        p_infos: *const crate::vk::ConvertCooperativeVectorMatrixInfoNV<'_>,
     );
     pub const NV_COOPERATIVE_VECTOR_SPEC_VERSION: u32 = 4;
     pub const NV_COOPERATIVE_VECTOR_EXTENSION_NAME: &core::ffi::CStr = c"VK_NV_cooperative_vector";

@@ -21,7 +21,7 @@ impl DeviceFn {
             cmd_set_rendering_attachment_locations_khr: unsafe {
                 unsafe extern "system" fn cmd_set_rendering_attachment_locations_khr(
                     _: crate::vk::CommandBuffer,
-                    _: *const crate::vk::RenderingAttachmentLocationInfo,
+                    _: *const crate::vk::RenderingAttachmentLocationInfo<'_>,
                 ) {
                     panic!("unable to load vkCmdSetRenderingAttachmentLocationsKHR")
                 }
@@ -35,7 +35,7 @@ impl DeviceFn {
             cmd_set_rendering_input_attachment_indices_khr: unsafe {
                 unsafe extern "system" fn cmd_set_rendering_input_attachment_indices_khr(
                     _: crate::vk::CommandBuffer,
-                    _: *const crate::vk::RenderingInputAttachmentIndexInfo,
+                    _: *const crate::vk::RenderingInputAttachmentIndexInfo<'_>,
                 ) {
                     panic!("unable to load vkCmdSetRenderingInputAttachmentIndicesKHR")
                 }
@@ -50,9 +50,15 @@ impl DeviceFn {
     }
 }
 pub(crate) mod reexport {
-    pub type PhysicalDeviceDynamicRenderingLocalReadFeaturesKHR = crate::vk::PhysicalDeviceDynamicRenderingLocalReadFeatures;
-    pub type RenderingAttachmentLocationInfoKHR = crate::vk::RenderingAttachmentLocationInfo;
-    pub type RenderingInputAttachmentIndexInfoKHR = crate::vk::RenderingInputAttachmentIndexInfo;
+    pub type PhysicalDeviceDynamicRenderingLocalReadFeaturesKHR<'a> = crate::vk::PhysicalDeviceDynamicRenderingLocalReadFeatures<
+        'a,
+    >;
+    pub type RenderingAttachmentLocationInfoKHR<'a> = crate::vk::RenderingAttachmentLocationInfo<
+        'a,
+    >;
+    pub type RenderingInputAttachmentIndexInfoKHR<'a> = crate::vk::RenderingInputAttachmentIndexInfo<
+        'a,
+    >;
     ///Provided by [`khr::dynamic_rendering_local_read`](crate::khr::dynamic_rendering_local_read)
     impl crate::vk::ImageLayout {
         pub const RENDERING_LOCAL_READ_KHR: Self = Self::RENDERING_LOCAL_READ;

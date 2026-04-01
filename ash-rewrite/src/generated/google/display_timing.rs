@@ -69,11 +69,12 @@ pub(crate) mod reexport {
     }
     #[repr(C)]
     #[derive(Clone, Copy)]
-    pub struct PresentTimesInfoGOOGLE {
+    pub struct PresentTimesInfoGOOGLE<'a> {
         pub s_type: crate::vk::StructureType,
         pub p_next: *const core::ffi::c_void,
         pub swapchain_count: u32,
         pub p_times: *const crate::vk::PresentTimeGOOGLE,
+        pub _marker: ::core::marker::PhantomData<&'a ()>,
     }
     #[repr(C)]
     #[derive(Clone, Copy)]

@@ -21,7 +21,7 @@ impl DeviceFn {
             get_fence_fd_khr: unsafe {
                 unsafe extern "system" fn get_fence_fd_khr(
                     _: crate::vk::Device,
-                    _: *const crate::vk::FenceGetFdInfoKHR,
+                    _: *const crate::vk::FenceGetFdInfoKHR<'_>,
                     _: *mut core::ffi::c_int,
                 ) -> crate::vk::Result {
                     panic!("unable to load vkGetFenceFdKHR")
@@ -36,7 +36,7 @@ impl DeviceFn {
             import_fence_fd_khr: unsafe {
                 unsafe extern "system" fn import_fence_fd_khr(
                     _: crate::vk::Device,
-                    _: *const crate::vk::ImportFenceFdInfoKHR,
+                    _: *const crate::vk::ImportFenceFdInfoKHR<'_>,
                 ) -> crate::vk::Result {
                     panic!("unable to load vkImportFenceFdKHR")
                 }
@@ -53,21 +53,23 @@ impl DeviceFn {
 pub(crate) mod reexport {
     #[repr(C)]
     #[derive(Clone, Copy)]
-    pub struct ImportFenceFdInfoKHR {
+    pub struct ImportFenceFdInfoKHR<'a> {
         pub s_type: crate::vk::StructureType,
         pub p_next: *const core::ffi::c_void,
         pub fence: crate::vk::Fence,
         pub flags: crate::vk::FenceImportFlags,
         pub handle_type: crate::vk::ExternalFenceHandleTypeFlagBits,
         pub fd: core::ffi::c_int,
+        pub _marker: ::core::marker::PhantomData<&'a ()>,
     }
     #[repr(C)]
     #[derive(Clone, Copy)]
-    pub struct FenceGetFdInfoKHR {
+    pub struct FenceGetFdInfoKHR<'a> {
         pub s_type: crate::vk::StructureType,
         pub p_next: *const core::ffi::c_void,
         pub fence: crate::vk::Fence,
         pub handle_type: crate::vk::ExternalFenceHandleTypeFlagBits,
+        pub _marker: ::core::marker::PhantomData<&'a ()>,
     }
     ///Provided by [`khr::external_fence_fd`](crate::khr::external_fence_fd)
     impl crate::vk::StructureType {
@@ -76,12 +78,12 @@ pub(crate) mod reexport {
     }
     pub type PFN_vkGetFenceFdKHR = unsafe extern "system" fn(
         device: crate::vk::Device,
-        p_get_fd_info: *const crate::vk::FenceGetFdInfoKHR,
+        p_get_fd_info: *const crate::vk::FenceGetFdInfoKHR<'_>,
         p_fd: *mut core::ffi::c_int,
     ) -> crate::vk::Result;
     pub type PFN_vkImportFenceFdKHR = unsafe extern "system" fn(
         device: crate::vk::Device,
-        p_import_fence_fd_info: *const crate::vk::ImportFenceFdInfoKHR,
+        p_import_fence_fd_info: *const crate::vk::ImportFenceFdInfoKHR<'_>,
     ) -> crate::vk::Result;
     pub const KHR_EXTERNAL_FENCE_FD_SPEC_VERSION: u32 = 1;
     pub const KHR_EXTERNAL_FENCE_FD_EXTENSION_NAME: &core::ffi::CStr = c"VK_KHR_external_fence_fd";

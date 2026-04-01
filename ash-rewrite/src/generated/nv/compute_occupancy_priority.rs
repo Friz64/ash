@@ -20,7 +20,7 @@ impl DeviceFn {
             cmd_set_compute_occupancy_priority_nv: unsafe {
                 unsafe extern "system" fn cmd_set_compute_occupancy_priority_nv(
                     _: crate::vk::CommandBuffer,
-                    _: *const crate::vk::ComputeOccupancyPriorityParametersNV,
+                    _: *const crate::vk::ComputeOccupancyPriorityParametersNV<'_>,
                 ) {
                     panic!("unable to load vkCmdSetComputeOccupancyPriorityNV")
                 }
@@ -37,18 +37,20 @@ impl DeviceFn {
 pub(crate) mod reexport {
     #[repr(C)]
     #[derive(Clone, Copy)]
-    pub struct ComputeOccupancyPriorityParametersNV {
+    pub struct ComputeOccupancyPriorityParametersNV<'a> {
         pub s_type: crate::vk::StructureType,
         pub p_next: *const core::ffi::c_void,
         pub occupancy_priority: core::ffi::c_float,
         pub occupancy_throttling: core::ffi::c_float,
+        pub _marker: ::core::marker::PhantomData<&'a ()>,
     }
     #[repr(C)]
     #[derive(Clone, Copy)]
-    pub struct PhysicalDeviceComputeOccupancyPriorityFeaturesNV {
+    pub struct PhysicalDeviceComputeOccupancyPriorityFeaturesNV<'a> {
         pub s_type: crate::vk::StructureType,
         pub p_next: *mut core::ffi::c_void,
         pub compute_occupancy_priority: crate::vk::Bool32,
+        pub _marker: ::core::marker::PhantomData<&'a ()>,
     }
     ///Provided by [`nv::compute_occupancy_priority`](crate::nv::compute_occupancy_priority)
     impl crate::vk::StructureType {
@@ -59,7 +61,7 @@ pub(crate) mod reexport {
     }
     pub type PFN_vkCmdSetComputeOccupancyPriorityNV = unsafe extern "system" fn(
         command_buffer: crate::vk::CommandBuffer,
-        p_parameters: *const crate::vk::ComputeOccupancyPriorityParametersNV,
+        p_parameters: *const crate::vk::ComputeOccupancyPriorityParametersNV<'_>,
     );
     pub const COMPUTE_OCCUPANCY_PRIORITY_LOW_NV: core::ffi::c_float = 0.25;
     pub const COMPUTE_OCCUPANCY_PRIORITY_NORMAL_NV: core::ffi::c_float = 0.50;

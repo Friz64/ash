@@ -23,7 +23,7 @@ impl DeviceFn {
             get_rendering_area_granularity_khr: unsafe {
                 unsafe extern "system" fn get_rendering_area_granularity_khr(
                     _: crate::vk::Device,
-                    _: *const crate::vk::RenderingAreaInfo,
+                    _: *const crate::vk::RenderingAreaInfo<'_>,
                     _: *mut crate::vk::Extent2D,
                 ) {
                     panic!("unable to load vkGetRenderingAreaGranularityKHR")
@@ -56,8 +56,8 @@ impl DeviceFn {
                 unsafe extern "system" fn get_image_subresource_layout2_khr(
                     _: crate::vk::Device,
                     _: crate::vk::Image,
-                    _: *const crate::vk::ImageSubresource2,
-                    _: *mut crate::vk::SubresourceLayout2,
+                    _: *const crate::vk::ImageSubresource2<'_>,
+                    _: *mut crate::vk::SubresourceLayout2<'_>,
                 ) {
                     panic!("unable to load vkGetImageSubresourceLayout2KHR")
                 }
@@ -71,8 +71,8 @@ impl DeviceFn {
             get_device_image_subresource_layout_khr: unsafe {
                 unsafe extern "system" fn get_device_image_subresource_layout_khr(
                     _: crate::vk::Device,
-                    _: *const crate::vk::DeviceImageSubresourceInfo,
-                    _: *mut crate::vk::SubresourceLayout2,
+                    _: *const crate::vk::DeviceImageSubresourceInfo<'_>,
+                    _: *mut crate::vk::SubresourceLayout2<'_>,
                 ) {
                     panic!("unable to load vkGetDeviceImageSubresourceLayoutKHR")
                 }
@@ -87,14 +87,24 @@ impl DeviceFn {
     }
 }
 pub(crate) mod reexport {
-    pub type BufferUsageFlags2CreateInfoKHR = crate::vk::BufferUsageFlags2CreateInfo;
-    pub type PipelineCreateFlags2CreateInfoKHR = crate::vk::PipelineCreateFlags2CreateInfo;
-    pub type PhysicalDeviceMaintenance5FeaturesKHR = crate::vk::PhysicalDeviceMaintenance5Features;
-    pub type PhysicalDeviceMaintenance5PropertiesKHR = crate::vk::PhysicalDeviceMaintenance5Properties;
-    pub type RenderingAreaInfoKHR = crate::vk::RenderingAreaInfo;
-    pub type ImageSubresource2KHR = crate::vk::ImageSubresource2;
-    pub type SubresourceLayout2KHR = crate::vk::SubresourceLayout2;
-    pub type DeviceImageSubresourceInfoKHR = crate::vk::DeviceImageSubresourceInfo;
+    pub type BufferUsageFlags2CreateInfoKHR<'a> = crate::vk::BufferUsageFlags2CreateInfo<
+        'a,
+    >;
+    pub type PipelineCreateFlags2CreateInfoKHR<'a> = crate::vk::PipelineCreateFlags2CreateInfo<
+        'a,
+    >;
+    pub type PhysicalDeviceMaintenance5FeaturesKHR<'a> = crate::vk::PhysicalDeviceMaintenance5Features<
+        'a,
+    >;
+    pub type PhysicalDeviceMaintenance5PropertiesKHR<'a> = crate::vk::PhysicalDeviceMaintenance5Properties<
+        'a,
+    >;
+    pub type RenderingAreaInfoKHR<'a> = crate::vk::RenderingAreaInfo<'a>;
+    pub type ImageSubresource2KHR<'a> = crate::vk::ImageSubresource2<'a>;
+    pub type SubresourceLayout2KHR<'a> = crate::vk::SubresourceLayout2<'a>;
+    pub type DeviceImageSubresourceInfoKHR<'a> = crate::vk::DeviceImageSubresourceInfo<
+        'a,
+    >;
     ///Provided by [`khr::maintenance5`](crate::khr::maintenance5)
     impl crate::vk::Format {
         pub const A1B5G5R5_UNORM_PACK16_KHR: Self = Self::A1B5G5R5_UNORM_PACK16;

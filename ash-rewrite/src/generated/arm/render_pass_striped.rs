@@ -3,41 +3,46 @@
 //![Vulkan Manual Page](https://docs.vulkan.org/refpages/latest/refpages/source/VK_ARM_render_pass_striped.html) · Extension `VK_ARM_render_pass_striped`
 #[repr(C)]
 #[derive(Clone, Copy)]
-pub struct PhysicalDeviceRenderPassStripedFeaturesARM {
+pub struct PhysicalDeviceRenderPassStripedFeaturesARM<'a> {
     pub s_type: crate::vk::StructureType,
     pub p_next: *mut core::ffi::c_void,
     pub render_pass_striped: crate::vk::Bool32,
+    pub _marker: ::core::marker::PhantomData<&'a ()>,
 }
 #[repr(C)]
 #[derive(Clone, Copy)]
-pub struct PhysicalDeviceRenderPassStripedPropertiesARM {
+pub struct PhysicalDeviceRenderPassStripedPropertiesARM<'a> {
     pub s_type: crate::vk::StructureType,
     pub p_next: *mut core::ffi::c_void,
     pub render_pass_stripe_granularity: crate::vk::Extent2D,
     pub max_render_pass_stripes: u32,
+    pub _marker: ::core::marker::PhantomData<&'a ()>,
 }
 #[repr(C)]
 #[derive(Clone, Copy)]
-pub struct RenderPassStripeInfoARM {
+pub struct RenderPassStripeInfoARM<'a> {
     pub s_type: crate::vk::StructureType,
     pub p_next: *const core::ffi::c_void,
     pub stripe_area: crate::vk::Rect2D,
+    pub _marker: ::core::marker::PhantomData<&'a ()>,
 }
 #[repr(C)]
 #[derive(Clone, Copy)]
-pub struct RenderPassStripeBeginInfoARM {
+pub struct RenderPassStripeBeginInfoARM<'a> {
     pub s_type: crate::vk::StructureType,
     pub p_next: *const core::ffi::c_void,
     pub stripe_info_count: u32,
-    pub p_stripe_infos: *const crate::vk::RenderPassStripeInfoARM,
+    pub p_stripe_infos: *const crate::vk::RenderPassStripeInfoARM<'a>,
+    pub _marker: ::core::marker::PhantomData<&'a ()>,
 }
 #[repr(C)]
 #[derive(Clone, Copy)]
-pub struct RenderPassStripeSubmitInfoARM {
+pub struct RenderPassStripeSubmitInfoARM<'a> {
     pub s_type: crate::vk::StructureType,
     pub p_next: *const core::ffi::c_void,
     pub stripe_semaphore_info_count: u32,
-    pub p_stripe_semaphore_infos: *const crate::vk::SemaphoreSubmitInfo,
+    pub p_stripe_semaphore_infos: *const crate::vk::SemaphoreSubmitInfo<'a>,
+    pub _marker: ::core::marker::PhantomData<&'a ()>,
 }
 ///Provided by [`arm::render_pass_striped`](crate::arm::render_pass_striped)
 impl crate::vk::StructureType {

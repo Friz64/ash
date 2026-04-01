@@ -21,7 +21,7 @@ impl DeviceFn {
             get_fence_win32_handle_khr: unsafe {
                 unsafe extern "system" fn get_fence_win32_handle_khr(
                     _: crate::vk::Device,
-                    _: *const crate::vk::FenceGetWin32HandleInfoKHR,
+                    _: *const crate::vk::FenceGetWin32HandleInfoKHR<'_>,
                     _: *mut crate::platform_types::HANDLE,
                 ) -> crate::vk::Result {
                     panic!("unable to load vkGetFenceWin32HandleKHR")
@@ -36,7 +36,7 @@ impl DeviceFn {
             import_fence_win32_handle_khr: unsafe {
                 unsafe extern "system" fn import_fence_win32_handle_khr(
                     _: crate::vk::Device,
-                    _: *const crate::vk::ImportFenceWin32HandleInfoKHR,
+                    _: *const crate::vk::ImportFenceWin32HandleInfoKHR<'_>,
                 ) -> crate::vk::Result {
                     panic!("unable to load vkImportFenceWin32HandleKHR")
                 }
@@ -53,7 +53,7 @@ impl DeviceFn {
 pub(crate) mod reexport {
     #[repr(C)]
     #[derive(Clone, Copy)]
-    pub struct ImportFenceWin32HandleInfoKHR {
+    pub struct ImportFenceWin32HandleInfoKHR<'a> {
         pub s_type: crate::vk::StructureType,
         pub p_next: *const core::ffi::c_void,
         pub fence: crate::vk::Fence,
@@ -61,23 +61,26 @@ pub(crate) mod reexport {
         pub handle_type: crate::vk::ExternalFenceHandleTypeFlagBits,
         pub handle: crate::platform_types::HANDLE,
         pub name: crate::platform_types::LPCWSTR,
+        pub _marker: ::core::marker::PhantomData<&'a ()>,
     }
     #[repr(C)]
     #[derive(Clone, Copy)]
-    pub struct ExportFenceWin32HandleInfoKHR {
+    pub struct ExportFenceWin32HandleInfoKHR<'a> {
         pub s_type: crate::vk::StructureType,
         pub p_next: *const core::ffi::c_void,
         pub p_attributes: *const crate::platform_types::SECURITY_ATTRIBUTES,
         pub dw_access: crate::platform_types::DWORD,
         pub name: crate::platform_types::LPCWSTR,
+        pub _marker: ::core::marker::PhantomData<&'a ()>,
     }
     #[repr(C)]
     #[derive(Clone, Copy)]
-    pub struct FenceGetWin32HandleInfoKHR {
+    pub struct FenceGetWin32HandleInfoKHR<'a> {
         pub s_type: crate::vk::StructureType,
         pub p_next: *const core::ffi::c_void,
         pub fence: crate::vk::Fence,
         pub handle_type: crate::vk::ExternalFenceHandleTypeFlagBits,
+        pub _marker: ::core::marker::PhantomData<&'a ()>,
     }
     ///Provided by [`khr::external_fence_win32`](crate::khr::external_fence_win32)
     impl crate::vk::StructureType {
@@ -87,12 +90,14 @@ pub(crate) mod reexport {
     }
     pub type PFN_vkGetFenceWin32HandleKHR = unsafe extern "system" fn(
         device: crate::vk::Device,
-        p_get_win32_handle_info: *const crate::vk::FenceGetWin32HandleInfoKHR,
+        p_get_win32_handle_info: *const crate::vk::FenceGetWin32HandleInfoKHR<'_>,
         p_handle: *mut crate::platform_types::HANDLE,
     ) -> crate::vk::Result;
     pub type PFN_vkImportFenceWin32HandleKHR = unsafe extern "system" fn(
         device: crate::vk::Device,
-        p_import_fence_win32_handle_info: *const crate::vk::ImportFenceWin32HandleInfoKHR,
+        p_import_fence_win32_handle_info: *const crate::vk::ImportFenceWin32HandleInfoKHR<
+            '_,
+        >,
     ) -> crate::vk::Result;
     pub const KHR_EXTERNAL_FENCE_WIN32_SPEC_VERSION: u32 = 1;
     pub const KHR_EXTERNAL_FENCE_WIN32_EXTENSION_NAME: &core::ffi::CStr = c"VK_KHR_external_fence_win32";

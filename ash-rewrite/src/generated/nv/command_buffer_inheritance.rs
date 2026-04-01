@@ -3,10 +3,11 @@
 //![Vulkan Manual Page](https://docs.vulkan.org/refpages/latest/refpages/source/VK_NV_command_buffer_inheritance.html) · Extension `VK_NV_command_buffer_inheritance`
 #[repr(C)]
 #[derive(Clone, Copy)]
-pub struct PhysicalDeviceCommandBufferInheritanceFeaturesNV {
+pub struct PhysicalDeviceCommandBufferInheritanceFeaturesNV<'a> {
     pub s_type: crate::vk::StructureType,
     pub p_next: *mut core::ffi::c_void,
     pub command_buffer_inheritance: crate::vk::Bool32,
+    pub _marker: ::core::marker::PhantomData<&'a ()>,
 }
 ///Provided by [`nv::command_buffer_inheritance`](crate::nv::command_buffer_inheritance)
 impl crate::vk::StructureType {

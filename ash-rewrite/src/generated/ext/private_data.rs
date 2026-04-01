@@ -23,8 +23,8 @@ impl DeviceFn {
             create_private_data_slot_ext: unsafe {
                 unsafe extern "system" fn create_private_data_slot_ext(
                     _: crate::vk::Device,
-                    _: *const crate::vk::PrivateDataSlotCreateInfo,
-                    _: *const crate::vk::AllocationCallbacks,
+                    _: *const crate::vk::PrivateDataSlotCreateInfo<'_>,
+                    _: *const crate::vk::AllocationCallbacks<'_>,
                     _: *mut crate::vk::PrivateDataSlot,
                 ) -> crate::vk::Result {
                     panic!("unable to load vkCreatePrivateDataSlotEXT")
@@ -40,7 +40,7 @@ impl DeviceFn {
                 unsafe extern "system" fn destroy_private_data_slot_ext(
                     _: crate::vk::Device,
                     _: crate::vk::PrivateDataSlot,
-                    _: *const crate::vk::AllocationCallbacks,
+                    _: *const crate::vk::AllocationCallbacks<'_>,
                 ) {
                     panic!("unable to load vkDestroyPrivateDataSlotEXT")
                 }
@@ -89,9 +89,13 @@ impl DeviceFn {
     }
 }
 pub(crate) mod reexport {
-    pub type DevicePrivateDataCreateInfoEXT = crate::vk::DevicePrivateDataCreateInfo;
-    pub type PrivateDataSlotCreateInfoEXT = crate::vk::PrivateDataSlotCreateInfo;
-    pub type PhysicalDevicePrivateDataFeaturesEXT = crate::vk::PhysicalDevicePrivateDataFeatures;
+    pub type DevicePrivateDataCreateInfoEXT<'a> = crate::vk::DevicePrivateDataCreateInfo<
+        'a,
+    >;
+    pub type PrivateDataSlotCreateInfoEXT<'a> = crate::vk::PrivateDataSlotCreateInfo<'a>;
+    pub type PhysicalDevicePrivateDataFeaturesEXT<'a> = crate::vk::PhysicalDevicePrivateDataFeatures<
+        'a,
+    >;
     ///Provided by [`ext::private_data`](crate::ext::private_data)
     impl crate::vk::StructureType {
         pub const PHYSICAL_DEVICE_PRIVATE_DATA_FEATURES_EXT: Self = Self::PHYSICAL_DEVICE_PRIVATE_DATA_FEATURES;

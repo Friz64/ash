@@ -1,19 +1,33 @@
 pub mod decl;
 pub mod item;
+pub mod lifetime;
 pub mod name;
 pub mod to_rust;
 pub mod xml;
 
+use crate::name::TypeName;
 use item::Items;
-use std::{ffi::OsStr, fs, path::Path};
+use std::{collections::HashMap, ffi::OsStr, fs, path::Path};
 use tracing::{debug, error_span};
 
 /// Holds the analysis results for easy querying.
 #[derive(Debug)]
+pub struct AnalysisResult {
+    pub items: Items,
+    type_has_lifetime: HashMap<TypeName, bool>,
+}
+
+impl AnalysisResult {
+    pub fn type_has_lifetime(&self, type_name: TypeName) -> bool {
+        self.type_has_lifetime[&type_name]
+    }
+}
+
+#[derive(Debug)]
 pub struct Analysis {
     vk: Library,
     video: Library,
-    items: Items,
+    result: AnalysisResult,
 }
 
 impl Analysis {
@@ -25,8 +39,14 @@ impl Analysis {
         let video = Library::new(vulkan_headers_path.join("registry/video.xml"));
 
         let items = Items::collect(&[&vk, &video]);
-
-        Analysis { vk, video, items }
+        Analysis {
+            vk,
+            video,
+            result: AnalysisResult {
+                type_has_lifetime: lifetime::lifetime_propagation(&items.types),
+                items,
+            },
+        }
     }
 
     pub fn vk(&self) -> &Library {
@@ -37,8 +57,8 @@ impl Analysis {
         &self.video
     }
 
-    pub fn items(&self) -> &Items {
-        &self.items
+    pub fn result(&self) -> &AnalysisResult {
+        &self.result
     }
 }
 

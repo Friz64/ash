@@ -3,14 +3,19 @@
 //![Vulkan Manual Page](https://docs.vulkan.org/refpages/latest/refpages/source/VK_EXT_vertex_attribute_divisor.html) · Extension `VK_EXT_vertex_attribute_divisor`
 #[repr(C)]
 #[derive(Clone, Copy)]
-pub struct PhysicalDeviceVertexAttributeDivisorPropertiesEXT {
+pub struct PhysicalDeviceVertexAttributeDivisorPropertiesEXT<'a> {
     pub s_type: crate::vk::StructureType,
     pub p_next: *mut core::ffi::c_void,
     pub max_vertex_attrib_divisor: u32,
+    pub _marker: ::core::marker::PhantomData<&'a ()>,
 }
 pub type VertexInputBindingDivisorDescriptionEXT = crate::vk::VertexInputBindingDivisorDescription;
-pub type PipelineVertexInputDivisorStateCreateInfoEXT = crate::vk::PipelineVertexInputDivisorStateCreateInfo;
-pub type PhysicalDeviceVertexAttributeDivisorFeaturesEXT = crate::vk::PhysicalDeviceVertexAttributeDivisorFeatures;
+pub type PipelineVertexInputDivisorStateCreateInfoEXT<'a> = crate::vk::PipelineVertexInputDivisorStateCreateInfo<
+    'a,
+>;
+pub type PhysicalDeviceVertexAttributeDivisorFeaturesEXT<'a> = crate::vk::PhysicalDeviceVertexAttributeDivisorFeatures<
+    'a,
+>;
 ///Provided by [`ext::vertex_attribute_divisor`](crate::ext::vertex_attribute_divisor)
 impl crate::vk::StructureType {
     pub const PHYSICAL_DEVICE_VERTEX_ATTRIBUTE_DIVISOR_PROPERTIES_EXT: Self = Self(

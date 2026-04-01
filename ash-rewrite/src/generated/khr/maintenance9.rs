@@ -3,25 +3,28 @@
 //![Vulkan Manual Page](https://docs.vulkan.org/refpages/latest/refpages/source/VK_KHR_maintenance9.html) · Extension `VK_KHR_maintenance9`
 #[repr(C)]
 #[derive(Clone, Copy)]
-pub struct PhysicalDeviceMaintenance9FeaturesKHR {
+pub struct PhysicalDeviceMaintenance9FeaturesKHR<'a> {
     pub s_type: crate::vk::StructureType,
     pub p_next: *mut core::ffi::c_void,
     pub maintenance9: crate::vk::Bool32,
+    pub _marker: ::core::marker::PhantomData<&'a ()>,
 }
 #[repr(C)]
 #[derive(Clone, Copy)]
-pub struct PhysicalDeviceMaintenance9PropertiesKHR {
+pub struct PhysicalDeviceMaintenance9PropertiesKHR<'a> {
     pub s_type: crate::vk::StructureType,
     pub p_next: *mut core::ffi::c_void,
     pub image2_d_view_of3_d_sparse: crate::vk::Bool32,
     pub default_vertex_attribute_value: crate::vk::DefaultVertexAttributeValueKHR,
+    pub _marker: ::core::marker::PhantomData<&'a ()>,
 }
 #[repr(C)]
 #[derive(Clone, Copy)]
-pub struct QueueFamilyOwnershipTransferPropertiesKHR {
+pub struct QueueFamilyOwnershipTransferPropertiesKHR<'a> {
     pub s_type: crate::vk::StructureType,
     pub p_next: *mut core::ffi::c_void,
     pub optimal_image_transfer_to_queue_families: u32,
+    pub _marker: ::core::marker::PhantomData<&'a ()>,
 }
 ///Provided by [`khr::maintenance9`](crate::khr::maintenance9)
 impl crate::vk::StructureType {
@@ -31,6 +34,7 @@ impl crate::vk::StructureType {
 }
 #[repr(transparent)]
 #[derive(Clone, Copy, PartialEq, Eq, PartialOrd, Ord, Hash, Default)]
+#[derive(Debug)]
 pub struct DefaultVertexAttributeValueKHR(pub(crate) i32);
 ///Provided by [`khr::maintenance9`](crate::khr::maintenance9)
 impl DefaultVertexAttributeValueKHR {

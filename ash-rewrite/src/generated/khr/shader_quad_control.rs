@@ -3,10 +3,11 @@
 //![Vulkan Manual Page](https://docs.vulkan.org/refpages/latest/refpages/source/VK_KHR_shader_quad_control.html) · Extension `VK_KHR_shader_quad_control`
 #[repr(C)]
 #[derive(Clone, Copy)]
-pub struct PhysicalDeviceShaderQuadControlFeaturesKHR {
+pub struct PhysicalDeviceShaderQuadControlFeaturesKHR<'a> {
     pub s_type: crate::vk::StructureType,
     pub p_next: *mut core::ffi::c_void,
     pub shader_quad_control: crate::vk::Bool32,
+    pub _marker: ::core::marker::PhantomData<&'a ()>,
 }
 ///Provided by [`khr::shader_quad_control`](crate::khr::shader_quad_control)
 impl crate::vk::StructureType {

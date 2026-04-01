@@ -21,7 +21,7 @@ impl DeviceFn {
             get_semaphore_win32_handle_khr: unsafe {
                 unsafe extern "system" fn get_semaphore_win32_handle_khr(
                     _: crate::vk::Device,
-                    _: *const crate::vk::SemaphoreGetWin32HandleInfoKHR,
+                    _: *const crate::vk::SemaphoreGetWin32HandleInfoKHR<'_>,
                     _: *mut crate::platform_types::HANDLE,
                 ) -> crate::vk::Result {
                     panic!("unable to load vkGetSemaphoreWin32HandleKHR")
@@ -36,7 +36,7 @@ impl DeviceFn {
             import_semaphore_win32_handle_khr: unsafe {
                 unsafe extern "system" fn import_semaphore_win32_handle_khr(
                     _: crate::vk::Device,
-                    _: *const crate::vk::ImportSemaphoreWin32HandleInfoKHR,
+                    _: *const crate::vk::ImportSemaphoreWin32HandleInfoKHR<'_>,
                 ) -> crate::vk::Result {
                     panic!("unable to load vkImportSemaphoreWin32HandleKHR")
                 }
@@ -53,7 +53,7 @@ impl DeviceFn {
 pub(crate) mod reexport {
     #[repr(C)]
     #[derive(Clone, Copy)]
-    pub struct ImportSemaphoreWin32HandleInfoKHR {
+    pub struct ImportSemaphoreWin32HandleInfoKHR<'a> {
         pub s_type: crate::vk::StructureType,
         pub p_next: *const core::ffi::c_void,
         pub semaphore: crate::vk::Semaphore,
@@ -61,33 +61,37 @@ pub(crate) mod reexport {
         pub handle_type: crate::vk::ExternalSemaphoreHandleTypeFlagBits,
         pub handle: crate::platform_types::HANDLE,
         pub name: crate::platform_types::LPCWSTR,
+        pub _marker: ::core::marker::PhantomData<&'a ()>,
     }
     #[repr(C)]
     #[derive(Clone, Copy)]
-    pub struct ExportSemaphoreWin32HandleInfoKHR {
+    pub struct ExportSemaphoreWin32HandleInfoKHR<'a> {
         pub s_type: crate::vk::StructureType,
         pub p_next: *const core::ffi::c_void,
         pub p_attributes: *const crate::platform_types::SECURITY_ATTRIBUTES,
         pub dw_access: crate::platform_types::DWORD,
         pub name: crate::platform_types::LPCWSTR,
+        pub _marker: ::core::marker::PhantomData<&'a ()>,
     }
     #[repr(C)]
     #[derive(Clone, Copy)]
-    pub struct D3D12FenceSubmitInfoKHR {
+    pub struct D3D12FenceSubmitInfoKHR<'a> {
         pub s_type: crate::vk::StructureType,
         pub p_next: *const core::ffi::c_void,
         pub wait_semaphore_values_count: u32,
         pub p_wait_semaphore_values: *const u64,
         pub signal_semaphore_values_count: u32,
         pub p_signal_semaphore_values: *const u64,
+        pub _marker: ::core::marker::PhantomData<&'a ()>,
     }
     #[repr(C)]
     #[derive(Clone, Copy)]
-    pub struct SemaphoreGetWin32HandleInfoKHR {
+    pub struct SemaphoreGetWin32HandleInfoKHR<'a> {
         pub s_type: crate::vk::StructureType,
         pub p_next: *const core::ffi::c_void,
         pub semaphore: crate::vk::Semaphore,
         pub handle_type: crate::vk::ExternalSemaphoreHandleTypeFlagBits,
+        pub _marker: ::core::marker::PhantomData<&'a ()>,
     }
     ///Provided by [`khr::external_semaphore_win32`](crate::khr::external_semaphore_win32)
     impl crate::vk::StructureType {
@@ -98,12 +102,14 @@ pub(crate) mod reexport {
     }
     pub type PFN_vkGetSemaphoreWin32HandleKHR = unsafe extern "system" fn(
         device: crate::vk::Device,
-        p_get_win32_handle_info: *const crate::vk::SemaphoreGetWin32HandleInfoKHR,
+        p_get_win32_handle_info: *const crate::vk::SemaphoreGetWin32HandleInfoKHR<'_>,
         p_handle: *mut crate::platform_types::HANDLE,
     ) -> crate::vk::Result;
     pub type PFN_vkImportSemaphoreWin32HandleKHR = unsafe extern "system" fn(
         device: crate::vk::Device,
-        p_import_semaphore_win32_handle_info: *const crate::vk::ImportSemaphoreWin32HandleInfoKHR,
+        p_import_semaphore_win32_handle_info: *const crate::vk::ImportSemaphoreWin32HandleInfoKHR<
+            '_,
+        >,
     ) -> crate::vk::Result;
     pub const KHR_EXTERNAL_SEMAPHORE_WIN32_SPEC_VERSION: u32 = 1;
     pub const KHR_EXTERNAL_SEMAPHORE_WIN32_EXTENSION_NAME: &core::ffi::CStr = c"VK_KHR_external_semaphore_win32";

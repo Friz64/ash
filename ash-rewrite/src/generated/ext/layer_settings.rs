@@ -3,20 +3,22 @@
 //![Vulkan Manual Page](https://docs.vulkan.org/refpages/latest/refpages/source/VK_EXT_layer_settings.html) · Extension `VK_EXT_layer_settings`
 #[repr(C)]
 #[derive(Clone, Copy)]
-pub struct LayerSettingsCreateInfoEXT {
+pub struct LayerSettingsCreateInfoEXT<'a> {
     pub s_type: crate::vk::StructureType,
     pub p_next: *const core::ffi::c_void,
     pub setting_count: u32,
-    pub p_settings: *const crate::vk::LayerSettingEXT,
+    pub p_settings: *const crate::vk::LayerSettingEXT<'a>,
+    pub _marker: ::core::marker::PhantomData<&'a ()>,
 }
 #[repr(C)]
 #[derive(Clone, Copy)]
-pub struct LayerSettingEXT {
+pub struct LayerSettingEXT<'a> {
     pub p_layer_name: *const core::ffi::c_char,
     pub p_setting_name: *const core::ffi::c_char,
     pub _type: crate::vk::LayerSettingTypeEXT,
     pub value_count: u32,
     pub p_values: *const core::ffi::c_void,
+    pub _marker: ::core::marker::PhantomData<&'a ()>,
 }
 ///Provided by [`ext::layer_settings`](crate::ext::layer_settings)
 impl crate::vk::StructureType {
@@ -24,6 +26,7 @@ impl crate::vk::StructureType {
 }
 #[repr(transparent)]
 #[derive(Clone, Copy, PartialEq, Eq, PartialOrd, Ord, Hash, Default)]
+#[derive(Debug)]
 pub struct LayerSettingTypeEXT(pub(crate) i32);
 ///Provided by [`ext::layer_settings`](crate::ext::layer_settings)
 impl LayerSettingTypeEXT {

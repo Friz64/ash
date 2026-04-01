@@ -3,24 +3,27 @@
 //![Vulkan Manual Page](https://docs.vulkan.org/refpages/latest/refpages/source/VK_QCOM_filter_cubic_weights.html) · Extension `VK_QCOM_filter_cubic_weights`
 #[repr(C)]
 #[derive(Clone, Copy)]
-pub struct PhysicalDeviceCubicWeightsFeaturesQCOM {
+pub struct PhysicalDeviceCubicWeightsFeaturesQCOM<'a> {
     pub s_type: crate::vk::StructureType,
     pub p_next: *mut core::ffi::c_void,
     pub selectable_cubic_weights: crate::vk::Bool32,
+    pub _marker: ::core::marker::PhantomData<&'a ()>,
 }
 #[repr(C)]
 #[derive(Clone, Copy)]
-pub struct SamplerCubicWeightsCreateInfoQCOM {
+pub struct SamplerCubicWeightsCreateInfoQCOM<'a> {
     pub s_type: crate::vk::StructureType,
     pub p_next: *const core::ffi::c_void,
     pub cubic_weights: crate::vk::CubicFilterWeightsQCOM,
+    pub _marker: ::core::marker::PhantomData<&'a ()>,
 }
 #[repr(C)]
 #[derive(Clone, Copy)]
-pub struct BlitImageCubicWeightsInfoQCOM {
+pub struct BlitImageCubicWeightsInfoQCOM<'a> {
     pub s_type: crate::vk::StructureType,
     pub p_next: *const core::ffi::c_void,
     pub cubic_weights: crate::vk::CubicFilterWeightsQCOM,
+    pub _marker: ::core::marker::PhantomData<&'a ()>,
 }
 ///Provided by [`qcom::filter_cubic_weights`](crate::qcom::filter_cubic_weights)
 impl crate::vk::StructureType {
@@ -30,6 +33,7 @@ impl crate::vk::StructureType {
 }
 #[repr(transparent)]
 #[derive(Clone, Copy, PartialEq, Eq, PartialOrd, Ord, Hash, Default)]
+#[derive(Debug)]
 pub struct CubicFilterWeightsQCOM(pub(crate) i32);
 ///Provided by [`qcom::filter_cubic_weights`](crate::qcom::filter_cubic_weights)
 impl CubicFilterWeightsQCOM {

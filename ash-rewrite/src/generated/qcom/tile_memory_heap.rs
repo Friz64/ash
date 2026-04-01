@@ -20,7 +20,7 @@ impl DeviceFn {
             cmd_bind_tile_memory_qcom: unsafe {
                 unsafe extern "system" fn cmd_bind_tile_memory_qcom(
                     _: crate::vk::CommandBuffer,
-                    _: *const crate::vk::TileMemoryBindInfoQCOM,
+                    _: *const crate::vk::TileMemoryBindInfoQCOM<'_>,
                 ) {
                     panic!("unable to load vkCmdBindTileMemoryQCOM")
                 }
@@ -37,40 +37,45 @@ impl DeviceFn {
 pub(crate) mod reexport {
     #[repr(C)]
     #[derive(Clone, Copy)]
-    pub struct TileMemoryBindInfoQCOM {
+    pub struct TileMemoryBindInfoQCOM<'a> {
         pub s_type: crate::vk::StructureType,
         pub p_next: *const core::ffi::c_void,
         pub memory: crate::vk::DeviceMemory,
+        pub _marker: ::core::marker::PhantomData<&'a ()>,
     }
     #[repr(C)]
     #[derive(Clone, Copy)]
-    pub struct PhysicalDeviceTileMemoryHeapFeaturesQCOM {
+    pub struct PhysicalDeviceTileMemoryHeapFeaturesQCOM<'a> {
         pub s_type: crate::vk::StructureType,
         pub p_next: *mut core::ffi::c_void,
         pub tile_memory_heap: crate::vk::Bool32,
+        pub _marker: ::core::marker::PhantomData<&'a ()>,
     }
     #[repr(C)]
     #[derive(Clone, Copy)]
-    pub struct PhysicalDeviceTileMemoryHeapPropertiesQCOM {
+    pub struct PhysicalDeviceTileMemoryHeapPropertiesQCOM<'a> {
         pub s_type: crate::vk::StructureType,
         pub p_next: *mut core::ffi::c_void,
         pub queue_submit_boundary: crate::vk::Bool32,
         pub tile_buffer_transfers: crate::vk::Bool32,
+        pub _marker: ::core::marker::PhantomData<&'a ()>,
     }
     #[repr(C)]
     #[derive(Clone, Copy)]
-    pub struct TileMemorySizeInfoQCOM {
+    pub struct TileMemorySizeInfoQCOM<'a> {
         pub s_type: crate::vk::StructureType,
         pub p_next: *const core::ffi::c_void,
         pub size: crate::vk::DeviceSize,
+        pub _marker: ::core::marker::PhantomData<&'a ()>,
     }
     #[repr(C)]
     #[derive(Clone, Copy)]
-    pub struct TileMemoryRequirementsQCOM {
+    pub struct TileMemoryRequirementsQCOM<'a> {
         pub s_type: crate::vk::StructureType,
         pub p_next: *mut core::ffi::c_void,
         pub size: crate::vk::DeviceSize,
         pub alignment: crate::vk::DeviceSize,
+        pub _marker: ::core::marker::PhantomData<&'a ()>,
     }
     ///Provided by [`qcom::tile_memory_heap`](crate::qcom::tile_memory_heap)
     impl crate::vk::StructureType {
@@ -102,7 +107,7 @@ pub(crate) mod reexport {
     }
     pub type PFN_vkCmdBindTileMemoryQCOM = unsafe extern "system" fn(
         command_buffer: crate::vk::CommandBuffer,
-        p_tile_memory_bind_info: *const crate::vk::TileMemoryBindInfoQCOM,
+        p_tile_memory_bind_info: *const crate::vk::TileMemoryBindInfoQCOM<'_>,
     );
     pub const QCOM_TILE_MEMORY_HEAP_SPEC_VERSION: u32 = 1;
     pub const QCOM_TILE_MEMORY_HEAP_EXTENSION_NAME: &core::ffi::CStr = c"VK_QCOM_tile_memory_heap";

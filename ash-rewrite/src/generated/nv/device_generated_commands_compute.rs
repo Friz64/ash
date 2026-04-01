@@ -37,8 +37,8 @@ impl DeviceFn {
             get_pipeline_indirect_memory_requirements_nv: unsafe {
                 unsafe extern "system" fn get_pipeline_indirect_memory_requirements_nv(
                     _: crate::vk::Device,
-                    _: *const crate::vk::ComputePipelineCreateInfo,
-                    _: *mut crate::vk::MemoryRequirements2,
+                    _: *const crate::vk::ComputePipelineCreateInfo<'_>,
+                    _: *mut crate::vk::MemoryRequirements2<'_>,
                 ) {
                     panic!("unable to load vkGetPipelineIndirectMemoryRequirementsNV")
                 }
@@ -52,7 +52,7 @@ impl DeviceFn {
             get_pipeline_indirect_device_address_nv: unsafe {
                 unsafe extern "system" fn get_pipeline_indirect_device_address_nv(
                     _: crate::vk::Device,
-                    _: *const crate::vk::PipelineIndirectDeviceAddressInfoNV,
+                    _: *const crate::vk::PipelineIndirectDeviceAddressInfoNV<'_>,
                 ) -> crate::vk::DeviceAddress {
                     panic!("unable to load vkGetPipelineIndirectDeviceAddressNV")
                 }
@@ -69,29 +69,32 @@ impl DeviceFn {
 pub(crate) mod reexport {
     #[repr(C)]
     #[derive(Clone, Copy)]
-    pub struct ComputePipelineIndirectBufferInfoNV {
+    pub struct ComputePipelineIndirectBufferInfoNV<'a> {
         pub s_type: crate::vk::StructureType,
         pub p_next: *const core::ffi::c_void,
         pub device_address: crate::vk::DeviceAddress,
         pub size: crate::vk::DeviceSize,
         pub pipeline_device_address_capture_replay: crate::vk::DeviceAddress,
+        pub _marker: ::core::marker::PhantomData<&'a ()>,
     }
     #[repr(C)]
     #[derive(Clone, Copy)]
-    pub struct PhysicalDeviceDeviceGeneratedCommandsComputeFeaturesNV {
+    pub struct PhysicalDeviceDeviceGeneratedCommandsComputeFeaturesNV<'a> {
         pub s_type: crate::vk::StructureType,
         pub p_next: *mut core::ffi::c_void,
         pub device_generated_compute: crate::vk::Bool32,
         pub device_generated_compute_pipelines: crate::vk::Bool32,
         pub device_generated_compute_capture_replay: crate::vk::Bool32,
+        pub _marker: ::core::marker::PhantomData<&'a ()>,
     }
     #[repr(C)]
     #[derive(Clone, Copy)]
-    pub struct PipelineIndirectDeviceAddressInfoNV {
+    pub struct PipelineIndirectDeviceAddressInfoNV<'a> {
         pub s_type: crate::vk::StructureType,
         pub p_next: *const core::ffi::c_void,
         pub pipeline_bind_point: crate::vk::PipelineBindPoint,
         pub pipeline: crate::vk::Pipeline,
+        pub _marker: ::core::marker::PhantomData<&'a ()>,
     }
     #[repr(C)]
     #[derive(Clone, Copy)]
@@ -122,12 +125,12 @@ pub(crate) mod reexport {
     );
     pub type PFN_vkGetPipelineIndirectMemoryRequirementsNV = unsafe extern "system" fn(
         device: crate::vk::Device,
-        p_create_info: *const crate::vk::ComputePipelineCreateInfo,
-        p_memory_requirements: *mut crate::vk::MemoryRequirements2,
+        p_create_info: *const crate::vk::ComputePipelineCreateInfo<'_>,
+        p_memory_requirements: *mut crate::vk::MemoryRequirements2<'_>,
     );
     pub type PFN_vkGetPipelineIndirectDeviceAddressNV = unsafe extern "system" fn(
         device: crate::vk::Device,
-        p_info: *const crate::vk::PipelineIndirectDeviceAddressInfoNV,
+        p_info: *const crate::vk::PipelineIndirectDeviceAddressInfoNV<'_>,
     ) -> crate::vk::DeviceAddress;
     pub const NV_DEVICE_GENERATED_COMMANDS_COMPUTE_SPEC_VERSION: u32 = 2;
     pub const NV_DEVICE_GENERATED_COMMANDS_COMPUTE_EXTENSION_NAME: &core::ffi::CStr = c"VK_NV_device_generated_commands_compute";

@@ -3,10 +3,11 @@
 //![Vulkan Manual Page](https://docs.vulkan.org/refpages/latest/refpages/source/VK_KHR_shader_constant_data.html) · Extension `VK_KHR_shader_constant_data`
 #[repr(C)]
 #[derive(Clone, Copy)]
-pub struct PhysicalDeviceShaderConstantDataFeaturesKHR {
+pub struct PhysicalDeviceShaderConstantDataFeaturesKHR<'a> {
     pub s_type: crate::vk::StructureType,
     pub p_next: *mut core::ffi::c_void,
     pub shader_constant_data: crate::vk::Bool32,
+    pub _marker: ::core::marker::PhantomData<&'a ()>,
 }
 ///Provided by [`khr::shader_constant_data`](crate::khr::shader_constant_data)
 impl crate::vk::StructureType {

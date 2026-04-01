@@ -22,7 +22,7 @@ impl DeviceFn {
                 unsafe extern "system" fn get_native_buffer_properties_ohos(
                     _: crate::vk::Device,
                     _: *const crate::platform_types::OH_NativeBuffer,
-                    _: *mut crate::vk::NativeBufferPropertiesOHOS,
+                    _: *mut crate::vk::NativeBufferPropertiesOHOS<'_>,
                 ) -> crate::vk::Result {
                     panic!("unable to load vkGetNativeBufferPropertiesOHOS")
                 }
@@ -36,7 +36,7 @@ impl DeviceFn {
             get_memory_native_buffer_ohos: unsafe {
                 unsafe extern "system" fn get_memory_native_buffer_ohos(
                     _: crate::vk::Device,
-                    _: *const crate::vk::MemoryGetNativeBufferInfoOHOS,
+                    _: *const crate::vk::MemoryGetNativeBufferInfoOHOS<'_>,
                     _: *mut *mut crate::platform_types::OH_NativeBuffer,
                 ) -> crate::vk::Result {
                     panic!("unable to load vkGetMemoryNativeBufferOHOS")
@@ -54,22 +54,24 @@ impl DeviceFn {
 pub(crate) mod reexport {
     #[repr(C)]
     #[derive(Clone, Copy)]
-    pub struct NativeBufferUsageOHOS {
+    pub struct NativeBufferUsageOHOS<'a> {
         pub s_type: crate::vk::StructureType,
         pub p_next: *mut core::ffi::c_void,
         pub ohos_native_buffer_usage: u64,
+        pub _marker: ::core::marker::PhantomData<&'a ()>,
     }
     #[repr(C)]
     #[derive(Clone, Copy)]
-    pub struct NativeBufferPropertiesOHOS {
+    pub struct NativeBufferPropertiesOHOS<'a> {
         pub s_type: crate::vk::StructureType,
         pub p_next: *mut core::ffi::c_void,
         pub allocation_size: crate::vk::DeviceSize,
         pub memory_type_bits: u32,
+        pub _marker: ::core::marker::PhantomData<&'a ()>,
     }
     #[repr(C)]
     #[derive(Clone, Copy)]
-    pub struct NativeBufferFormatPropertiesOHOS {
+    pub struct NativeBufferFormatPropertiesOHOS<'a> {
         pub s_type: crate::vk::StructureType,
         pub p_next: *mut core::ffi::c_void,
         pub format: crate::vk::Format,
@@ -80,27 +82,31 @@ pub(crate) mod reexport {
         pub suggested_ycbcr_range: crate::vk::SamplerYcbcrRange,
         pub suggested_x_chroma_offset: crate::vk::ChromaLocation,
         pub suggested_y_chroma_offset: crate::vk::ChromaLocation,
+        pub _marker: ::core::marker::PhantomData<&'a ()>,
     }
     #[repr(C)]
     #[derive(Clone, Copy)]
-    pub struct ImportNativeBufferInfoOHOS {
+    pub struct ImportNativeBufferInfoOHOS<'a> {
         pub s_type: crate::vk::StructureType,
         pub p_next: *const core::ffi::c_void,
         pub buffer: *mut crate::platform_types::OH_NativeBuffer,
+        pub _marker: ::core::marker::PhantomData<&'a ()>,
     }
     #[repr(C)]
     #[derive(Clone, Copy)]
-    pub struct MemoryGetNativeBufferInfoOHOS {
+    pub struct MemoryGetNativeBufferInfoOHOS<'a> {
         pub s_type: crate::vk::StructureType,
         pub p_next: *const core::ffi::c_void,
         pub memory: crate::vk::DeviceMemory,
+        pub _marker: ::core::marker::PhantomData<&'a ()>,
     }
     #[repr(C)]
     #[derive(Clone, Copy)]
-    pub struct ExternalFormatOHOS {
+    pub struct ExternalFormatOHOS<'a> {
         pub s_type: crate::vk::StructureType,
         pub p_next: *mut core::ffi::c_void,
         pub external_format: u64,
+        pub _marker: ::core::marker::PhantomData<&'a ()>,
     }
     ///Provided by [`ohos::external_memory`](crate::ohos::external_memory)
     impl crate::vk::StructureType {
@@ -118,11 +124,11 @@ pub(crate) mod reexport {
     pub type PFN_vkGetNativeBufferPropertiesOHOS = unsafe extern "system" fn(
         device: crate::vk::Device,
         buffer: *const crate::platform_types::OH_NativeBuffer,
-        p_properties: *mut crate::vk::NativeBufferPropertiesOHOS,
+        p_properties: *mut crate::vk::NativeBufferPropertiesOHOS<'_>,
     ) -> crate::vk::Result;
     pub type PFN_vkGetMemoryNativeBufferOHOS = unsafe extern "system" fn(
         device: crate::vk::Device,
-        p_info: *const crate::vk::MemoryGetNativeBufferInfoOHOS,
+        p_info: *const crate::vk::MemoryGetNativeBufferInfoOHOS<'_>,
         p_buffer: *mut *mut crate::platform_types::OH_NativeBuffer,
     ) -> crate::vk::Result;
     pub const OHOS_EXTERNAL_MEMORY_SPEC_VERSION: u32 = 1;

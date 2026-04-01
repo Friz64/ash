@@ -3,10 +3,11 @@
 //![Vulkan Manual Page](https://docs.vulkan.org/refpages/latest/refpages/source/VK_EXT_texture_compression_astc_3d.html) · Extension `VK_EXT_texture_compression_astc_3d`
 #[repr(C)]
 #[derive(Clone, Copy)]
-pub struct PhysicalDeviceTextureCompressionASTC3DFeaturesEXT {
+pub struct PhysicalDeviceTextureCompressionASTC3DFeaturesEXT<'a> {
     pub s_type: crate::vk::StructureType,
     pub p_next: *mut core::ffi::c_void,
     pub texture_compression_astc_3d: crate::vk::Bool32,
+    pub _marker: ::core::marker::PhantomData<&'a ()>,
 }
 ///Provided by [`ext::texture_compression_astc_3d`](crate::ext::texture_compression_astc_3d)
 impl crate::vk::Format {

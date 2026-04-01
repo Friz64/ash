@@ -2,10 +2,16 @@
 #![cfg_attr(rustfmt, rustfmt_skip)]
 //![Vulkan Manual Page](https://docs.vulkan.org/refpages/latest/refpages/source/VK_KHR_maintenance2.html) · Extension `VK_KHR_maintenance2`
 pub type InputAttachmentAspectReferenceKHR = crate::vk::InputAttachmentAspectReference;
-pub type RenderPassInputAttachmentAspectCreateInfoKHR = crate::vk::RenderPassInputAttachmentAspectCreateInfo;
-pub type PhysicalDevicePointClippingPropertiesKHR = crate::vk::PhysicalDevicePointClippingProperties;
-pub type ImageViewUsageCreateInfoKHR = crate::vk::ImageViewUsageCreateInfo;
-pub type PipelineTessellationDomainOriginStateCreateInfoKHR = crate::vk::PipelineTessellationDomainOriginStateCreateInfo;
+pub type RenderPassInputAttachmentAspectCreateInfoKHR<'a> = crate::vk::RenderPassInputAttachmentAspectCreateInfo<
+    'a,
+>;
+pub type PhysicalDevicePointClippingPropertiesKHR<'a> = crate::vk::PhysicalDevicePointClippingProperties<
+    'a,
+>;
+pub type ImageViewUsageCreateInfoKHR<'a> = crate::vk::ImageViewUsageCreateInfo<'a>;
+pub type PipelineTessellationDomainOriginStateCreateInfoKHR<'a> = crate::vk::PipelineTessellationDomainOriginStateCreateInfo<
+    'a,
+>;
 ///Provided by [`khr::maintenance2`](crate::khr::maintenance2)
 impl crate::vk::ImageLayout {
     pub const DEPTH_READ_ONLY_STENCIL_ATTACHMENT_OPTIMAL_KHR: Self = Self::DEPTH_READ_ONLY_STENCIL_ATTACHMENT_OPTIMAL;

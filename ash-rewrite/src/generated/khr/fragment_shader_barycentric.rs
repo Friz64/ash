@@ -3,17 +3,19 @@
 //![Vulkan Manual Page](https://docs.vulkan.org/refpages/latest/refpages/source/VK_KHR_fragment_shader_barycentric.html) · Extension `VK_KHR_fragment_shader_barycentric`
 #[repr(C)]
 #[derive(Clone, Copy)]
-pub struct PhysicalDeviceFragmentShaderBarycentricFeaturesKHR {
+pub struct PhysicalDeviceFragmentShaderBarycentricFeaturesKHR<'a> {
     pub s_type: crate::vk::StructureType,
     pub p_next: *mut core::ffi::c_void,
     pub fragment_shader_barycentric: crate::vk::Bool32,
+    pub _marker: ::core::marker::PhantomData<&'a ()>,
 }
 #[repr(C)]
 #[derive(Clone, Copy)]
-pub struct PhysicalDeviceFragmentShaderBarycentricPropertiesKHR {
+pub struct PhysicalDeviceFragmentShaderBarycentricPropertiesKHR<'a> {
     pub s_type: crate::vk::StructureType,
     pub p_next: *mut core::ffi::c_void,
     pub tri_strip_vertex_order_independent_of_provoking_vertex: crate::vk::Bool32,
+    pub _marker: ::core::marker::PhantomData<&'a ()>,
 }
 ///Provided by [`khr::fragment_shader_barycentric`](crate::khr::fragment_shader_barycentric)
 impl crate::vk::StructureType {

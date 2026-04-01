@@ -3,26 +3,29 @@
 //![Vulkan Manual Page](https://docs.vulkan.org/refpages/latest/refpages/source/VK_EXT_map_memory_placed.html) · Extension `VK_EXT_map_memory_placed`
 #[repr(C)]
 #[derive(Clone, Copy)]
-pub struct PhysicalDeviceMapMemoryPlacedFeaturesEXT {
+pub struct PhysicalDeviceMapMemoryPlacedFeaturesEXT<'a> {
     pub s_type: crate::vk::StructureType,
     pub p_next: *mut core::ffi::c_void,
     pub memory_map_placed: crate::vk::Bool32,
     pub memory_map_range_placed: crate::vk::Bool32,
     pub memory_unmap_reserve: crate::vk::Bool32,
+    pub _marker: ::core::marker::PhantomData<&'a ()>,
 }
 #[repr(C)]
 #[derive(Clone, Copy)]
-pub struct PhysicalDeviceMapMemoryPlacedPropertiesEXT {
+pub struct PhysicalDeviceMapMemoryPlacedPropertiesEXT<'a> {
     pub s_type: crate::vk::StructureType,
     pub p_next: *mut core::ffi::c_void,
     pub min_placed_memory_map_alignment: crate::vk::DeviceSize,
+    pub _marker: ::core::marker::PhantomData<&'a ()>,
 }
 #[repr(C)]
 #[derive(Clone, Copy)]
-pub struct MemoryMapPlacedInfoEXT {
+pub struct MemoryMapPlacedInfoEXT<'a> {
     pub s_type: crate::vk::StructureType,
     pub p_next: *const core::ffi::c_void,
     pub p_placed_address: *mut core::ffi::c_void,
+    pub _marker: ::core::marker::PhantomData<&'a ()>,
 }
 ///Provided by [`ext::map_memory_placed`](crate::ext::map_memory_placed)
 impl crate::vk::StructureType {

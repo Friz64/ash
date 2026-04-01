@@ -38,18 +38,20 @@ impl DeviceFn {
 pub(crate) mod reexport {
     #[repr(C)]
     #[derive(Clone, Copy)]
-    pub struct PhysicalDeviceColorWriteEnableFeaturesEXT {
+    pub struct PhysicalDeviceColorWriteEnableFeaturesEXT<'a> {
         pub s_type: crate::vk::StructureType,
         pub p_next: *mut core::ffi::c_void,
         pub color_write_enable: crate::vk::Bool32,
+        pub _marker: ::core::marker::PhantomData<&'a ()>,
     }
     #[repr(C)]
     #[derive(Clone, Copy)]
-    pub struct PipelineColorWriteCreateInfoEXT {
+    pub struct PipelineColorWriteCreateInfoEXT<'a> {
         pub s_type: crate::vk::StructureType,
         pub p_next: *const core::ffi::c_void,
         pub attachment_count: u32,
         pub p_color_write_enables: *const crate::vk::Bool32,
+        pub _marker: ::core::marker::PhantomData<&'a ()>,
     }
     ///Provided by [`ext::color_write_enable`](crate::ext::color_write_enable)
     impl crate::vk::StructureType {

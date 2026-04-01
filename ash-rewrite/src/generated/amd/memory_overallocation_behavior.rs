@@ -3,10 +3,11 @@
 //![Vulkan Manual Page](https://docs.vulkan.org/refpages/latest/refpages/source/VK_AMD_memory_overallocation_behavior.html) · Extension `VK_AMD_memory_overallocation_behavior`
 #[repr(C)]
 #[derive(Clone, Copy)]
-pub struct DeviceMemoryOverallocationCreateInfoAMD {
+pub struct DeviceMemoryOverallocationCreateInfoAMD<'a> {
     pub s_type: crate::vk::StructureType,
     pub p_next: *const core::ffi::c_void,
     pub overallocation_behavior: crate::vk::MemoryOverallocationBehaviorAMD,
+    pub _marker: ::core::marker::PhantomData<&'a ()>,
 }
 ///Provided by [`amd::memory_overallocation_behavior`](crate::amd::memory_overallocation_behavior)
 impl crate::vk::StructureType {
@@ -14,6 +15,7 @@ impl crate::vk::StructureType {
 }
 #[repr(transparent)]
 #[derive(Clone, Copy, PartialEq, Eq, PartialOrd, Ord, Hash, Default)]
+#[derive(Debug)]
 pub struct MemoryOverallocationBehaviorAMD(pub(crate) i32);
 ///Provided by [`amd::memory_overallocation_behavior`](crate::amd::memory_overallocation_behavior)
 impl MemoryOverallocationBehaviorAMD {

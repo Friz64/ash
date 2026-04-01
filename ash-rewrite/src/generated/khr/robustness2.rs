@@ -3,20 +3,22 @@
 //![Vulkan Manual Page](https://docs.vulkan.org/refpages/latest/refpages/source/VK_KHR_robustness2.html) · Extension `VK_KHR_robustness2`
 #[repr(C)]
 #[derive(Clone, Copy)]
-pub struct PhysicalDeviceRobustness2FeaturesKHR {
+pub struct PhysicalDeviceRobustness2FeaturesKHR<'a> {
     pub s_type: crate::vk::StructureType,
     pub p_next: *mut core::ffi::c_void,
     pub robust_buffer_access2: crate::vk::Bool32,
     pub robust_image_access2: crate::vk::Bool32,
     pub null_descriptor: crate::vk::Bool32,
+    pub _marker: ::core::marker::PhantomData<&'a ()>,
 }
 #[repr(C)]
 #[derive(Clone, Copy)]
-pub struct PhysicalDeviceRobustness2PropertiesKHR {
+pub struct PhysicalDeviceRobustness2PropertiesKHR<'a> {
     pub s_type: crate::vk::StructureType,
     pub p_next: *mut core::ffi::c_void,
     pub robust_storage_buffer_access_size_alignment: crate::vk::DeviceSize,
     pub robust_uniform_buffer_access_size_alignment: crate::vk::DeviceSize,
+    pub _marker: ::core::marker::PhantomData<&'a ()>,
 }
 ///Provided by [`khr::robustness2`](crate::khr::robustness2)
 impl crate::vk::StructureType {

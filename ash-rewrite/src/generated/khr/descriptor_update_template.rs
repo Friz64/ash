@@ -22,8 +22,8 @@ impl DeviceFn {
             create_descriptor_update_template_khr: unsafe {
                 unsafe extern "system" fn create_descriptor_update_template_khr(
                     _: crate::vk::Device,
-                    _: *const crate::vk::DescriptorUpdateTemplateCreateInfo,
-                    _: *const crate::vk::AllocationCallbacks,
+                    _: *const crate::vk::DescriptorUpdateTemplateCreateInfo<'_>,
+                    _: *const crate::vk::AllocationCallbacks<'_>,
                     _: *mut crate::vk::DescriptorUpdateTemplate,
                 ) -> crate::vk::Result {
                     panic!("unable to load vkCreateDescriptorUpdateTemplateKHR")
@@ -39,7 +39,7 @@ impl DeviceFn {
                 unsafe extern "system" fn destroy_descriptor_update_template_khr(
                     _: crate::vk::Device,
                     _: crate::vk::DescriptorUpdateTemplate,
-                    _: *const crate::vk::AllocationCallbacks,
+                    _: *const crate::vk::AllocationCallbacks<'_>,
                 ) {
                     panic!("unable to load vkDestroyDescriptorUpdateTemplateKHR")
                 }
@@ -71,7 +71,9 @@ impl DeviceFn {
 }
 pub(crate) mod reexport {
     pub type DescriptorUpdateTemplateEntryKHR = crate::vk::DescriptorUpdateTemplateEntry;
-    pub type DescriptorUpdateTemplateCreateInfoKHR = crate::vk::DescriptorUpdateTemplateCreateInfo;
+    pub type DescriptorUpdateTemplateCreateInfoKHR<'a> = crate::vk::DescriptorUpdateTemplateCreateInfo<
+        'a,
+    >;
     ///Provided by [`khr::descriptor_update_template`](crate::khr::descriptor_update_template)
     impl crate::vk::StructureType {
         pub const DESCRIPTOR_UPDATE_TEMPLATE_CREATE_INFO_KHR: Self = Self::DESCRIPTOR_UPDATE_TEMPLATE_CREATE_INFO;

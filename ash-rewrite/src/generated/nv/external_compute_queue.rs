@@ -21,8 +21,8 @@ impl DeviceFn {
             create_external_compute_queue_nv: unsafe {
                 unsafe extern "system" fn create_external_compute_queue_nv(
                     _: crate::vk::Device,
-                    _: *const crate::vk::ExternalComputeQueueCreateInfoNV,
-                    _: *const crate::vk::AllocationCallbacks,
+                    _: *const crate::vk::ExternalComputeQueueCreateInfoNV<'_>,
+                    _: *const crate::vk::AllocationCallbacks<'_>,
                     _: *mut crate::vk::ExternalComputeQueueNV,
                 ) -> crate::vk::Result {
                     panic!("unable to load vkCreateExternalComputeQueueNV")
@@ -38,7 +38,7 @@ impl DeviceFn {
                 unsafe extern "system" fn destroy_external_compute_queue_nv(
                     _: crate::vk::Device,
                     _: crate::vk::ExternalComputeQueueNV,
-                    _: *const crate::vk::AllocationCallbacks,
+                    _: *const crate::vk::AllocationCallbacks<'_>,
                 ) {
                     panic!("unable to load vkDestroyExternalComputeQueueNV")
                 }
@@ -71,7 +71,7 @@ impl EntryFn {
             get_external_compute_queue_data_nv: unsafe {
                 unsafe extern "system" fn get_external_compute_queue_data_nv(
                     _: crate::vk::ExternalComputeQueueNV,
-                    _: *mut crate::vk::ExternalComputeQueueDataParamsNV,
+                    _: *mut crate::vk::ExternalComputeQueueDataParamsNV<'_>,
                     _: *mut core::ffi::c_void,
                 ) {
                     panic!("unable to load vkGetExternalComputeQueueDataNV")
@@ -89,32 +89,36 @@ impl EntryFn {
 pub(crate) mod reexport {
     #[repr(C)]
     #[derive(Clone, Copy)]
-    pub struct ExternalComputeQueueDeviceCreateInfoNV {
+    pub struct ExternalComputeQueueDeviceCreateInfoNV<'a> {
         pub s_type: crate::vk::StructureType,
         pub p_next: *const core::ffi::c_void,
         pub reserved_external_queues: u32,
+        pub _marker: ::core::marker::PhantomData<&'a ()>,
     }
     #[repr(C)]
     #[derive(Clone, Copy)]
-    pub struct ExternalComputeQueueCreateInfoNV {
+    pub struct ExternalComputeQueueCreateInfoNV<'a> {
         pub s_type: crate::vk::StructureType,
         pub p_next: *const core::ffi::c_void,
         pub preferred_queue: crate::vk::Queue,
+        pub _marker: ::core::marker::PhantomData<&'a ()>,
     }
     #[repr(C)]
     #[derive(Clone, Copy)]
-    pub struct ExternalComputeQueueDataParamsNV {
+    pub struct ExternalComputeQueueDataParamsNV<'a> {
         pub s_type: crate::vk::StructureType,
         pub p_next: *const core::ffi::c_void,
         pub device_index: u32,
+        pub _marker: ::core::marker::PhantomData<&'a ()>,
     }
     #[repr(C)]
     #[derive(Clone, Copy)]
-    pub struct PhysicalDeviceExternalComputeQueuePropertiesNV {
+    pub struct PhysicalDeviceExternalComputeQueuePropertiesNV<'a> {
         pub s_type: crate::vk::StructureType,
         pub p_next: *mut core::ffi::c_void,
         pub external_data_size: u32,
         pub max_external_queues: u32,
+        pub _marker: ::core::marker::PhantomData<&'a ()>,
     }
     ///Provided by [`nv::external_compute_queue`](crate::nv::external_compute_queue)
     impl crate::vk::StructureType {
@@ -165,18 +169,18 @@ pub(crate) mod reexport {
     }
     pub type PFN_vkCreateExternalComputeQueueNV = unsafe extern "system" fn(
         device: crate::vk::Device,
-        p_create_info: *const crate::vk::ExternalComputeQueueCreateInfoNV,
-        p_allocator: *const crate::vk::AllocationCallbacks,
+        p_create_info: *const crate::vk::ExternalComputeQueueCreateInfoNV<'_>,
+        p_allocator: *const crate::vk::AllocationCallbacks<'_>,
         p_external_queue: *mut crate::vk::ExternalComputeQueueNV,
     ) -> crate::vk::Result;
     pub type PFN_vkDestroyExternalComputeQueueNV = unsafe extern "system" fn(
         device: crate::vk::Device,
         external_queue: crate::vk::ExternalComputeQueueNV,
-        p_allocator: *const crate::vk::AllocationCallbacks,
+        p_allocator: *const crate::vk::AllocationCallbacks<'_>,
     );
     pub type PFN_vkGetExternalComputeQueueDataNV = unsafe extern "system" fn(
         external_queue: crate::vk::ExternalComputeQueueNV,
-        params: *mut crate::vk::ExternalComputeQueueDataParamsNV,
+        params: *mut crate::vk::ExternalComputeQueueDataParamsNV<'_>,
         p_data: *mut core::ffi::c_void,
     );
     pub const NV_EXTERNAL_COMPUTE_QUEUE_SPEC_VERSION: u32 = 1;

@@ -3,19 +3,21 @@
 //![Vulkan Manual Page](https://docs.vulkan.org/refpages/latest/refpages/source/VK_NV_extended_sparse_address_space.html) · Extension `VK_NV_extended_sparse_address_space`
 #[repr(C)]
 #[derive(Clone, Copy)]
-pub struct PhysicalDeviceExtendedSparseAddressSpaceFeaturesNV {
+pub struct PhysicalDeviceExtendedSparseAddressSpaceFeaturesNV<'a> {
     pub s_type: crate::vk::StructureType,
     pub p_next: *mut core::ffi::c_void,
     pub extended_sparse_address_space: crate::vk::Bool32,
+    pub _marker: ::core::marker::PhantomData<&'a ()>,
 }
 #[repr(C)]
 #[derive(Clone, Copy)]
-pub struct PhysicalDeviceExtendedSparseAddressSpacePropertiesNV {
+pub struct PhysicalDeviceExtendedSparseAddressSpacePropertiesNV<'a> {
     pub s_type: crate::vk::StructureType,
     pub p_next: *mut core::ffi::c_void,
     pub extended_sparse_address_space_size: crate::vk::DeviceSize,
     pub extended_sparse_image_usage_flags: crate::vk::ImageUsageFlags,
     pub extended_sparse_buffer_usage_flags: crate::vk::BufferUsageFlags,
+    pub _marker: ::core::marker::PhantomData<&'a ()>,
 }
 ///Provided by [`nv::extended_sparse_address_space`](crate::nv::extended_sparse_address_space)
 impl crate::vk::StructureType {

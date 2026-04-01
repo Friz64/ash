@@ -21,7 +21,7 @@ impl DeviceFn {
             get_memory_zircon_handle_fuchsia: unsafe {
                 unsafe extern "system" fn get_memory_zircon_handle_fuchsia(
                     _: crate::vk::Device,
-                    _: *const crate::vk::MemoryGetZirconHandleInfoFUCHSIA,
+                    _: *const crate::vk::MemoryGetZirconHandleInfoFUCHSIA<'_>,
                     _: *mut crate::platform_types::zx_handle_t,
                 ) -> crate::vk::Result {
                     panic!("unable to load vkGetMemoryZirconHandleFUCHSIA")
@@ -38,7 +38,7 @@ impl DeviceFn {
                     _: crate::vk::Device,
                     _: crate::vk::ExternalMemoryHandleTypeFlagBits,
                     _: crate::platform_types::zx_handle_t,
-                    _: *mut crate::vk::MemoryZirconHandlePropertiesFUCHSIA,
+                    _: *mut crate::vk::MemoryZirconHandlePropertiesFUCHSIA<'_>,
                 ) -> crate::vk::Result {
                     panic!("unable to load vkGetMemoryZirconHandlePropertiesFUCHSIA")
                 }
@@ -55,26 +55,29 @@ impl DeviceFn {
 pub(crate) mod reexport {
     #[repr(C)]
     #[derive(Clone, Copy)]
-    pub struct ImportMemoryZirconHandleInfoFUCHSIA {
+    pub struct ImportMemoryZirconHandleInfoFUCHSIA<'a> {
         pub s_type: crate::vk::StructureType,
         pub p_next: *const core::ffi::c_void,
         pub handle_type: crate::vk::ExternalMemoryHandleTypeFlagBits,
         pub handle: crate::platform_types::zx_handle_t,
+        pub _marker: ::core::marker::PhantomData<&'a ()>,
     }
     #[repr(C)]
     #[derive(Clone, Copy)]
-    pub struct MemoryZirconHandlePropertiesFUCHSIA {
+    pub struct MemoryZirconHandlePropertiesFUCHSIA<'a> {
         pub s_type: crate::vk::StructureType,
         pub p_next: *mut core::ffi::c_void,
         pub memory_type_bits: u32,
+        pub _marker: ::core::marker::PhantomData<&'a ()>,
     }
     #[repr(C)]
     #[derive(Clone, Copy)]
-    pub struct MemoryGetZirconHandleInfoFUCHSIA {
+    pub struct MemoryGetZirconHandleInfoFUCHSIA<'a> {
         pub s_type: crate::vk::StructureType,
         pub p_next: *const core::ffi::c_void,
         pub memory: crate::vk::DeviceMemory,
         pub handle_type: crate::vk::ExternalMemoryHandleTypeFlagBits,
+        pub _marker: ::core::marker::PhantomData<&'a ()>,
     }
     ///Provided by [`fuchsia::external_memory`](crate::fuchsia::external_memory)
     impl crate::vk::StructureType {
@@ -88,14 +91,16 @@ pub(crate) mod reexport {
     }
     pub type PFN_vkGetMemoryZirconHandleFUCHSIA = unsafe extern "system" fn(
         device: crate::vk::Device,
-        p_get_zircon_handle_info: *const crate::vk::MemoryGetZirconHandleInfoFUCHSIA,
+        p_get_zircon_handle_info: *const crate::vk::MemoryGetZirconHandleInfoFUCHSIA<'_>,
         p_zircon_handle: *mut crate::platform_types::zx_handle_t,
     ) -> crate::vk::Result;
     pub type PFN_vkGetMemoryZirconHandlePropertiesFUCHSIA = unsafe extern "system" fn(
         device: crate::vk::Device,
         handle_type: crate::vk::ExternalMemoryHandleTypeFlagBits,
         zircon_handle: crate::platform_types::zx_handle_t,
-        p_memory_zircon_handle_properties: *mut crate::vk::MemoryZirconHandlePropertiesFUCHSIA,
+        p_memory_zircon_handle_properties: *mut crate::vk::MemoryZirconHandlePropertiesFUCHSIA<
+            '_,
+        >,
     ) -> crate::vk::Result;
     pub const FUCHSIA_EXTERNAL_MEMORY_SPEC_VERSION: u32 = 1;
     pub const FUCHSIA_EXTERNAL_MEMORY_EXTENSION_NAME: &core::ffi::CStr = c"VK_FUCHSIA_external_memory";

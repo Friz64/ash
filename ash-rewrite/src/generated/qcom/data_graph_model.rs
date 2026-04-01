@@ -13,17 +13,19 @@ pub struct PipelineCacheHeaderVersionDataGraphQCOM {
 }
 #[repr(C)]
 #[derive(Clone, Copy)]
-pub struct DataGraphPipelineBuiltinModelCreateInfoQCOM {
+pub struct DataGraphPipelineBuiltinModelCreateInfoQCOM<'a> {
     pub s_type: crate::vk::StructureType,
     pub p_next: *const core::ffi::c_void,
     pub p_operation: *const crate::vk::PhysicalDeviceDataGraphOperationSupportARM,
+    pub _marker: ::core::marker::PhantomData<&'a ()>,
 }
 #[repr(C)]
 #[derive(Clone, Copy)]
-pub struct PhysicalDeviceDataGraphModelFeaturesQCOM {
+pub struct PhysicalDeviceDataGraphModelFeaturesQCOM<'a> {
     pub s_type: crate::vk::StructureType,
     pub p_next: *mut core::ffi::c_void,
     pub data_graph_model: crate::vk::Bool32,
+    pub _marker: ::core::marker::PhantomData<&'a ()>,
 }
 ///Provided by [`qcom::data_graph_model`](crate::qcom::data_graph_model)
 impl crate::vk::PipelineCacheHeaderVersion {
@@ -48,6 +50,7 @@ impl crate::vk::PhysicalDeviceDataGraphOperationTypeARM {
 }
 #[repr(transparent)]
 #[derive(Clone, Copy, PartialEq, Eq, PartialOrd, Ord, Hash, Default)]
+#[derive(Debug)]
 pub struct DataGraphModelCacheTypeQCOM(pub(crate) i32);
 ///Provided by [`qcom::data_graph_model`](crate::qcom::data_graph_model)
 impl DataGraphModelCacheTypeQCOM {

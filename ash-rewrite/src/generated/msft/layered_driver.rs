@@ -3,10 +3,11 @@
 //![Vulkan Manual Page](https://docs.vulkan.org/refpages/latest/refpages/source/VK_MSFT_layered_driver.html) · Extension `VK_MSFT_layered_driver`
 #[repr(C)]
 #[derive(Clone, Copy)]
-pub struct PhysicalDeviceLayeredDriverPropertiesMSFT {
+pub struct PhysicalDeviceLayeredDriverPropertiesMSFT<'a> {
     pub s_type: crate::vk::StructureType,
     pub p_next: *mut core::ffi::c_void,
     pub underlying_api: crate::vk::LayeredDriverUnderlyingApiMSFT,
+    pub _marker: ::core::marker::PhantomData<&'a ()>,
 }
 ///Provided by [`msft::layered_driver`](crate::msft::layered_driver)
 impl crate::vk::StructureType {
@@ -14,6 +15,7 @@ impl crate::vk::StructureType {
 }
 #[repr(transparent)]
 #[derive(Clone, Copy, PartialEq, Eq, PartialOrd, Ord, Hash, Default)]
+#[derive(Debug)]
 pub struct LayeredDriverUnderlyingApiMSFT(pub(crate) i32);
 ///Provided by [`msft::layered_driver`](crate::msft::layered_driver)
 impl LayeredDriverUnderlyingApiMSFT {

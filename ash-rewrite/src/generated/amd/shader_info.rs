@@ -61,6 +61,7 @@ pub(crate) mod reexport {
     }
     #[repr(transparent)]
     #[derive(Clone, Copy, PartialEq, Eq, PartialOrd, Ord, Hash, Default)]
+    #[derive(Debug)]
     pub struct ShaderInfoTypeAMD(pub(crate) i32);
     ///Provided by [`amd::shader_info`](crate::amd::shader_info)
     impl ShaderInfoTypeAMD {

@@ -76,15 +76,16 @@ impl DeviceFn {
 pub(crate) mod reexport {
     #[repr(C)]
     #[derive(Clone, Copy)]
-    pub struct PhysicalDeviceMeshShaderFeaturesNV {
+    pub struct PhysicalDeviceMeshShaderFeaturesNV<'a> {
         pub s_type: crate::vk::StructureType,
         pub p_next: *mut core::ffi::c_void,
         pub task_shader: crate::vk::Bool32,
         pub mesh_shader: crate::vk::Bool32,
+        pub _marker: ::core::marker::PhantomData<&'a ()>,
     }
     #[repr(C)]
     #[derive(Clone, Copy)]
-    pub struct PhysicalDeviceMeshShaderPropertiesNV {
+    pub struct PhysicalDeviceMeshShaderPropertiesNV<'a> {
         pub s_type: crate::vk::StructureType,
         pub p_next: *mut core::ffi::c_void,
         pub max_draw_mesh_tasks_count: u32,
@@ -100,6 +101,7 @@ pub(crate) mod reexport {
         pub max_mesh_multiview_view_count: u32,
         pub mesh_output_per_vertex_granularity: u32,
         pub mesh_output_per_primitive_granularity: u32,
+        pub _marker: ::core::marker::PhantomData<&'a ()>,
     }
     #[repr(C)]
     #[derive(Clone, Copy)]

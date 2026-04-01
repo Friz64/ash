@@ -3,13 +3,14 @@
 //![Vulkan Manual Page](https://docs.vulkan.org/refpages/latest/refpages/source/VK_EXT_validation_features.html) · Extension `VK_EXT_validation_features`
 #[repr(C)]
 #[derive(Clone, Copy)]
-pub struct ValidationFeaturesEXT {
+pub struct ValidationFeaturesEXT<'a> {
     pub s_type: crate::vk::StructureType,
     pub p_next: *const core::ffi::c_void,
     pub enabled_validation_feature_count: u32,
     pub p_enabled_validation_features: *const crate::vk::ValidationFeatureEnableEXT,
     pub disabled_validation_feature_count: u32,
     pub p_disabled_validation_features: *const crate::vk::ValidationFeatureDisableEXT,
+    pub _marker: ::core::marker::PhantomData<&'a ()>,
 }
 ///Provided by [`ext::validation_features`](crate::ext::validation_features)
 impl crate::vk::StructureType {
@@ -17,6 +18,7 @@ impl crate::vk::StructureType {
 }
 #[repr(transparent)]
 #[derive(Clone, Copy, PartialEq, Eq, PartialOrd, Ord, Hash, Default)]
+#[derive(Debug)]
 pub struct ValidationFeatureEnableEXT(pub(crate) i32);
 ///Provided by [`ext::validation_features`](crate::ext::validation_features)
 impl ValidationFeatureEnableEXT {
@@ -28,6 +30,7 @@ impl ValidationFeatureEnableEXT {
 }
 #[repr(transparent)]
 #[derive(Clone, Copy, PartialEq, Eq, PartialOrd, Ord, Hash, Default)]
+#[derive(Debug)]
 pub struct ValidationFeatureDisableEXT(pub(crate) i32);
 ///Provided by [`ext::validation_features`](crate::ext::validation_features)
 impl ValidationFeatureDisableEXT {

@@ -20,7 +20,7 @@ impl DeviceFn {
             cmd_decode_video_khr: unsafe {
                 unsafe extern "system" fn cmd_decode_video_khr(
                     _: crate::vk::CommandBuffer,
-                    _: *const crate::vk::VideoDecodeInfoKHR,
+                    _: *const crate::vk::VideoDecodeInfoKHR<'_>,
                 ) {
                     panic!("unable to load vkCmdDecodeVideoKHR")
                 }
@@ -37,31 +37,34 @@ impl DeviceFn {
 pub(crate) mod reexport {
     #[repr(C)]
     #[derive(Clone, Copy)]
-    pub struct VideoDecodeCapabilitiesKHR {
+    pub struct VideoDecodeCapabilitiesKHR<'a> {
         pub s_type: crate::vk::StructureType,
         pub p_next: *mut core::ffi::c_void,
         pub flags: crate::vk::VideoDecodeCapabilityFlagsKHR,
+        pub _marker: ::core::marker::PhantomData<&'a ()>,
     }
     #[repr(C)]
     #[derive(Clone, Copy)]
-    pub struct VideoDecodeUsageInfoKHR {
+    pub struct VideoDecodeUsageInfoKHR<'a> {
         pub s_type: crate::vk::StructureType,
         pub p_next: *const core::ffi::c_void,
         pub video_usage_hints: crate::vk::VideoDecodeUsageFlagsKHR,
+        pub _marker: ::core::marker::PhantomData<&'a ()>,
     }
     #[repr(C)]
     #[derive(Clone, Copy)]
-    pub struct VideoDecodeInfoKHR {
+    pub struct VideoDecodeInfoKHR<'a> {
         pub s_type: crate::vk::StructureType,
         pub p_next: *const core::ffi::c_void,
         pub flags: crate::vk::VideoDecodeFlagsKHR,
         pub src_buffer: crate::vk::Buffer,
         pub src_buffer_offset: crate::vk::DeviceSize,
         pub src_buffer_range: crate::vk::DeviceSize,
-        pub dst_picture_resource: crate::vk::VideoPictureResourceInfoKHR,
-        pub p_setup_reference_slot: *const crate::vk::VideoReferenceSlotInfoKHR,
+        pub dst_picture_resource: crate::vk::VideoPictureResourceInfoKHR<'a>,
+        pub p_setup_reference_slot: *const crate::vk::VideoReferenceSlotInfoKHR<'a>,
         pub reference_slot_count: u32,
-        pub p_reference_slots: *const crate::vk::VideoReferenceSlotInfoKHR,
+        pub p_reference_slots: *const crate::vk::VideoReferenceSlotInfoKHR<'a>,
+        pub _marker: ::core::marker::PhantomData<&'a ()>,
     }
     ///Provided by [`khr::video_decode_queue`](crate::khr::video_decode_queue)
     impl crate::vk::ImageLayout {
@@ -147,7 +150,7 @@ pub(crate) mod reexport {
     }
     pub type PFN_vkCmdDecodeVideoKHR = unsafe extern "system" fn(
         command_buffer: crate::vk::CommandBuffer,
-        p_decode_info: *const crate::vk::VideoDecodeInfoKHR,
+        p_decode_info: *const crate::vk::VideoDecodeInfoKHR<'_>,
     );
     pub const KHR_VIDEO_DECODE_QUEUE_SPEC_VERSION: u32 = 8;
     pub const KHR_VIDEO_DECODE_QUEUE_EXTENSION_NAME: &core::ffi::CStr = c"VK_KHR_video_decode_queue";

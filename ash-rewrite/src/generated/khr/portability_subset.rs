@@ -3,7 +3,7 @@
 //![Vulkan Manual Page](https://docs.vulkan.org/refpages/latest/refpages/source/VK_KHR_portability_subset.html) · Extension `VK_KHR_portability_subset`
 #[repr(C)]
 #[derive(Clone, Copy)]
-pub struct PhysicalDevicePortabilitySubsetFeaturesKHR {
+pub struct PhysicalDevicePortabilitySubsetFeaturesKHR<'a> {
     pub s_type: crate::vk::StructureType,
     pub p_next: *mut core::ffi::c_void,
     pub constant_alpha_color_blend_factors: crate::vk::Bool32,
@@ -21,13 +21,15 @@ pub struct PhysicalDevicePortabilitySubsetFeaturesKHR {
     pub tessellation_point_mode: crate::vk::Bool32,
     pub triangle_fans: crate::vk::Bool32,
     pub vertex_attribute_access_beyond_stride: crate::vk::Bool32,
+    pub _marker: ::core::marker::PhantomData<&'a ()>,
 }
 #[repr(C)]
 #[derive(Clone, Copy)]
-pub struct PhysicalDevicePortabilitySubsetPropertiesKHR {
+pub struct PhysicalDevicePortabilitySubsetPropertiesKHR<'a> {
     pub s_type: crate::vk::StructureType,
     pub p_next: *mut core::ffi::c_void,
     pub min_vertex_input_binding_stride_alignment: u32,
+    pub _marker: ::core::marker::PhantomData<&'a ()>,
 }
 ///Provided by [`khr::portability_subset`](crate::khr::portability_subset)
 impl crate::vk::StructureType {

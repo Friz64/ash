@@ -21,8 +21,10 @@ impl DeviceFn {
             get_partitioned_acceleration_structures_build_sizes_nv: unsafe {
                 unsafe extern "system" fn get_partitioned_acceleration_structures_build_sizes_nv(
                     _: crate::vk::Device,
-                    _: *const crate::vk::PartitionedAccelerationStructureInstancesInputNV,
-                    _: *mut crate::vk::AccelerationStructureBuildSizesInfoKHR,
+                    _: *const crate::vk::PartitionedAccelerationStructureInstancesInputNV<
+                        '_,
+                    >,
+                    _: *mut crate::vk::AccelerationStructureBuildSizesInfoKHR<'_>,
                 ) {
                     panic!(
                         "unable to load vkGetPartitionedAccelerationStructuresBuildSizesNV"
@@ -38,7 +40,7 @@ impl DeviceFn {
             cmd_build_partitioned_acceleration_structures_nv: unsafe {
                 unsafe extern "system" fn cmd_build_partitioned_acceleration_structures_nv(
                     _: crate::vk::CommandBuffer,
-                    _: *const crate::vk::BuildPartitionedAccelerationStructureInfoNV,
+                    _: *const crate::vk::BuildPartitionedAccelerationStructureInfoNV<'_>,
                 ) {
                     panic!(
                         "unable to load vkCmdBuildPartitionedAccelerationStructuresNV"
@@ -57,17 +59,19 @@ impl DeviceFn {
 pub(crate) mod reexport {
     #[repr(C)]
     #[derive(Clone, Copy)]
-    pub struct PhysicalDevicePartitionedAccelerationStructureFeaturesNV {
+    pub struct PhysicalDevicePartitionedAccelerationStructureFeaturesNV<'a> {
         pub s_type: crate::vk::StructureType,
         pub p_next: *mut core::ffi::c_void,
         pub partitioned_acceleration_structure: crate::vk::Bool32,
+        pub _marker: ::core::marker::PhantomData<&'a ()>,
     }
     #[repr(C)]
     #[derive(Clone, Copy)]
-    pub struct PhysicalDevicePartitionedAccelerationStructurePropertiesNV {
+    pub struct PhysicalDevicePartitionedAccelerationStructurePropertiesNV<'a> {
         pub s_type: crate::vk::StructureType,
         pub p_next: *mut core::ffi::c_void,
         pub max_partition_count: u32,
+        pub _marker: ::core::marker::PhantomData<&'a ()>,
     }
     #[repr(C)]
     #[derive(Clone, Copy)]
@@ -78,10 +82,11 @@ pub(crate) mod reexport {
     }
     #[repr(C)]
     #[derive(Clone, Copy)]
-    pub struct PartitionedAccelerationStructureFlagsNV {
+    pub struct PartitionedAccelerationStructureFlagsNV<'a> {
         pub s_type: crate::vk::StructureType,
         pub p_next: *mut core::ffi::c_void,
         pub enable_partition_translation: crate::vk::Bool32,
+        pub _marker: ::core::marker::PhantomData<&'a ()>,
     }
     #[repr(C)]
     #[derive(Clone, Copy)]
@@ -111,15 +116,16 @@ pub(crate) mod reexport {
     }
     #[repr(C)]
     #[derive(Clone, Copy)]
-    pub struct WriteDescriptorSetPartitionedAccelerationStructureNV {
+    pub struct WriteDescriptorSetPartitionedAccelerationStructureNV<'a> {
         pub s_type: crate::vk::StructureType,
         pub p_next: *mut core::ffi::c_void,
         pub acceleration_structure_count: u32,
         pub p_acceleration_structures: *const crate::vk::DeviceAddress,
+        pub _marker: ::core::marker::PhantomData<&'a ()>,
     }
     #[repr(C)]
     #[derive(Clone, Copy)]
-    pub struct PartitionedAccelerationStructureInstancesInputNV {
+    pub struct PartitionedAccelerationStructureInstancesInputNV<'a> {
         pub s_type: crate::vk::StructureType,
         pub p_next: *mut core::ffi::c_void,
         pub flags: crate::vk::BuildAccelerationStructureFlagsKHR,
@@ -127,18 +133,20 @@ pub(crate) mod reexport {
         pub max_instance_per_partition_count: u32,
         pub partition_count: u32,
         pub max_instance_in_global_partition_count: u32,
+        pub _marker: ::core::marker::PhantomData<&'a ()>,
     }
     #[repr(C)]
     #[derive(Clone, Copy)]
-    pub struct BuildPartitionedAccelerationStructureInfoNV {
+    pub struct BuildPartitionedAccelerationStructureInfoNV<'a> {
         pub s_type: crate::vk::StructureType,
         pub p_next: *mut core::ffi::c_void,
-        pub input: crate::vk::PartitionedAccelerationStructureInstancesInputNV,
+        pub input: crate::vk::PartitionedAccelerationStructureInstancesInputNV<'a>,
         pub src_acceleration_structure_data: crate::vk::DeviceAddress,
         pub dst_acceleration_structure_data: crate::vk::DeviceAddress,
         pub scratch_data: crate::vk::DeviceAddress,
         pub src_infos: crate::vk::DeviceAddress,
         pub src_infos_count: crate::vk::DeviceAddress,
+        pub _marker: ::core::marker::PhantomData<&'a ()>,
     }
     ///Provided by [`nv::partitioned_acceleration_structure`](crate::nv::partitioned_acceleration_structure)
     impl crate::vk::DescriptorType {
@@ -165,6 +173,7 @@ pub(crate) mod reexport {
     }
     #[repr(transparent)]
     #[derive(Clone, Copy, PartialEq, Eq, PartialOrd, Ord, Hash, Default)]
+    #[derive(Debug)]
     pub struct PartitionedAccelerationStructureOpTypeNV(pub(crate) i32);
     ///Provided by [`nv::partitioned_acceleration_structure`](crate::nv::partitioned_acceleration_structure)
     impl PartitionedAccelerationStructureOpTypeNV {
@@ -200,12 +209,12 @@ pub(crate) mod reexport {
     }
     pub type PFN_vkGetPartitionedAccelerationStructuresBuildSizesNV = unsafe extern "system" fn(
         device: crate::vk::Device,
-        p_info: *const crate::vk::PartitionedAccelerationStructureInstancesInputNV,
-        p_size_info: *mut crate::vk::AccelerationStructureBuildSizesInfoKHR,
+        p_info: *const crate::vk::PartitionedAccelerationStructureInstancesInputNV<'_>,
+        p_size_info: *mut crate::vk::AccelerationStructureBuildSizesInfoKHR<'_>,
     );
     pub type PFN_vkCmdBuildPartitionedAccelerationStructuresNV = unsafe extern "system" fn(
         command_buffer: crate::vk::CommandBuffer,
-        p_build_info: *const crate::vk::BuildPartitionedAccelerationStructureInfoNV,
+        p_build_info: *const crate::vk::BuildPartitionedAccelerationStructureInfoNV<'_>,
     );
     pub const PARTITIONED_ACCELERATION_STRUCTURE_PARTITION_INDEX_GLOBAL_NV: u32 = (!0);
     pub const NV_PARTITIONED_ACCELERATION_STRUCTURE_SPEC_VERSION: u32 = 1;

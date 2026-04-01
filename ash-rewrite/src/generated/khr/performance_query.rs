@@ -23,8 +23,8 @@ impl InstanceFn {
                     _: crate::vk::PhysicalDevice,
                     _: u32,
                     _: *mut u32,
-                    _: *mut crate::vk::PerformanceCounterKHR,
-                    _: *mut crate::vk::PerformanceCounterDescriptionKHR,
+                    _: *mut crate::vk::PerformanceCounterKHR<'_>,
+                    _: *mut crate::vk::PerformanceCounterDescriptionKHR<'_>,
                 ) -> crate::vk::Result {
                     panic!(
                         "unable to load vkEnumeratePhysicalDeviceQueueFamilyPerformanceQueryCountersKHR"
@@ -42,7 +42,7 @@ impl InstanceFn {
             get_physical_device_queue_family_performance_query_passes_khr: unsafe {
                 unsafe extern "system" fn get_physical_device_queue_family_performance_query_passes_khr(
                     _: crate::vk::PhysicalDevice,
-                    _: *const crate::vk::QueryPoolPerformanceCreateInfoKHR,
+                    _: *const crate::vk::QueryPoolPerformanceCreateInfoKHR<'_>,
                     _: *mut u32,
                 ) {
                     panic!(
@@ -79,7 +79,7 @@ impl DeviceFn {
             acquire_profiling_lock_khr: unsafe {
                 unsafe extern "system" fn acquire_profiling_lock_khr(
                     _: crate::vk::Device,
-                    _: *const crate::vk::AcquireProfilingLockInfoKHR,
+                    _: *const crate::vk::AcquireProfilingLockInfoKHR<'_>,
                 ) -> crate::vk::Result {
                     panic!("unable to load vkAcquireProfilingLockKHR")
                 }
@@ -109,62 +109,69 @@ impl DeviceFn {
 pub(crate) mod reexport {
     #[repr(C)]
     #[derive(Clone, Copy)]
-    pub struct PhysicalDevicePerformanceQueryFeaturesKHR {
+    pub struct PhysicalDevicePerformanceQueryFeaturesKHR<'a> {
         pub s_type: crate::vk::StructureType,
         pub p_next: *mut core::ffi::c_void,
         pub performance_counter_query_pools: crate::vk::Bool32,
         pub performance_counter_multiple_query_pools: crate::vk::Bool32,
+        pub _marker: ::core::marker::PhantomData<&'a ()>,
     }
     #[repr(C)]
     #[derive(Clone, Copy)]
-    pub struct PhysicalDevicePerformanceQueryPropertiesKHR {
+    pub struct PhysicalDevicePerformanceQueryPropertiesKHR<'a> {
         pub s_type: crate::vk::StructureType,
         pub p_next: *mut core::ffi::c_void,
         pub allow_command_buffer_query_copies: crate::vk::Bool32,
+        pub _marker: ::core::marker::PhantomData<&'a ()>,
     }
     #[repr(C)]
     #[derive(Clone, Copy)]
-    pub struct PerformanceCounterKHR {
+    pub struct PerformanceCounterKHR<'a> {
         pub s_type: crate::vk::StructureType,
         pub p_next: *mut core::ffi::c_void,
         pub unit: crate::vk::PerformanceCounterUnitKHR,
         pub scope: crate::vk::PerformanceCounterScopeKHR,
         pub storage: crate::vk::PerformanceCounterStorageKHR,
         pub uuid: [u8; crate::vk::UUID_SIZE as _],
+        pub _marker: ::core::marker::PhantomData<&'a ()>,
     }
     #[repr(C)]
     #[derive(Clone, Copy)]
-    pub struct PerformanceCounterDescriptionKHR {
+    pub struct PerformanceCounterDescriptionKHR<'a> {
         pub s_type: crate::vk::StructureType,
         pub p_next: *mut core::ffi::c_void,
         pub flags: crate::vk::PerformanceCounterDescriptionFlagsKHR,
         pub name: [core::ffi::c_char; crate::vk::MAX_DESCRIPTION_SIZE as _],
         pub category: [core::ffi::c_char; crate::vk::MAX_DESCRIPTION_SIZE as _],
         pub description: [core::ffi::c_char; crate::vk::MAX_DESCRIPTION_SIZE as _],
+        pub _marker: ::core::marker::PhantomData<&'a ()>,
     }
     #[repr(C)]
     #[derive(Clone, Copy)]
-    pub struct QueryPoolPerformanceCreateInfoKHR {
+    pub struct QueryPoolPerformanceCreateInfoKHR<'a> {
         pub s_type: crate::vk::StructureType,
         pub p_next: *const core::ffi::c_void,
         pub queue_family_index: u32,
         pub counter_index_count: u32,
         pub p_counter_indices: *const u32,
+        pub _marker: ::core::marker::PhantomData<&'a ()>,
     }
     #[repr(C)]
     #[derive(Clone, Copy)]
-    pub struct AcquireProfilingLockInfoKHR {
+    pub struct AcquireProfilingLockInfoKHR<'a> {
         pub s_type: crate::vk::StructureType,
         pub p_next: *const core::ffi::c_void,
         pub flags: crate::vk::AcquireProfilingLockFlagsKHR,
         pub timeout: u64,
+        pub _marker: ::core::marker::PhantomData<&'a ()>,
     }
     #[repr(C)]
     #[derive(Clone, Copy)]
-    pub struct PerformanceQuerySubmitInfoKHR {
+    pub struct PerformanceQuerySubmitInfoKHR<'a> {
         pub s_type: crate::vk::StructureType,
         pub p_next: *const core::ffi::c_void,
         pub counter_pass_index: u32,
+        pub _marker: ::core::marker::PhantomData<&'a ()>,
     }
     #[repr(C)]
     #[derive(Clone, Copy)]
@@ -196,6 +203,7 @@ pub(crate) mod reexport {
     }
     #[repr(transparent)]
     #[derive(Clone, Copy, PartialEq, Eq, PartialOrd, Ord, Hash, Default)]
+    #[derive(Debug)]
     pub struct PerformanceCounterScopeKHR(pub(crate) i32);
     ///Provided by [`khr::performance_query`](crate::khr::performance_query)
     impl PerformanceCounterScopeKHR {
@@ -205,6 +213,7 @@ pub(crate) mod reexport {
     }
     #[repr(transparent)]
     #[derive(Clone, Copy, PartialEq, Eq, PartialOrd, Ord, Hash, Default)]
+    #[derive(Debug)]
     pub struct PerformanceCounterUnitKHR(pub(crate) i32);
     ///Provided by [`khr::performance_query`](crate::khr::performance_query)
     impl PerformanceCounterUnitKHR {
@@ -222,6 +231,7 @@ pub(crate) mod reexport {
     }
     #[repr(transparent)]
     #[derive(Clone, Copy, PartialEq, Eq, PartialOrd, Ord, Hash, Default)]
+    #[derive(Debug)]
     pub struct PerformanceCounterStorageKHR(pub(crate) i32);
     ///Provided by [`khr::performance_query`](crate::khr::performance_query)
     impl PerformanceCounterStorageKHR {
@@ -258,17 +268,19 @@ pub(crate) mod reexport {
         physical_device: crate::vk::PhysicalDevice,
         queue_family_index: u32,
         p_counter_count: *mut u32,
-        p_counters: *mut crate::vk::PerformanceCounterKHR,
-        p_counter_descriptions: *mut crate::vk::PerformanceCounterDescriptionKHR,
+        p_counters: *mut crate::vk::PerformanceCounterKHR<'_>,
+        p_counter_descriptions: *mut crate::vk::PerformanceCounterDescriptionKHR<'_>,
     ) -> crate::vk::Result;
     pub type PFN_vkGetPhysicalDeviceQueueFamilyPerformanceQueryPassesKHR = unsafe extern "system" fn(
         physical_device: crate::vk::PhysicalDevice,
-        p_performance_query_create_info: *const crate::vk::QueryPoolPerformanceCreateInfoKHR,
+        p_performance_query_create_info: *const crate::vk::QueryPoolPerformanceCreateInfoKHR<
+            '_,
+        >,
         p_num_passes: *mut u32,
     );
     pub type PFN_vkAcquireProfilingLockKHR = unsafe extern "system" fn(
         device: crate::vk::Device,
-        p_info: *const crate::vk::AcquireProfilingLockInfoKHR,
+        p_info: *const crate::vk::AcquireProfilingLockInfoKHR<'_>,
     ) -> crate::vk::Result;
     pub type PFN_vkReleaseProfilingLockKHR = unsafe extern "system" fn(
         device: crate::vk::Device,

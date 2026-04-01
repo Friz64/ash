@@ -38,10 +38,11 @@ impl DeviceFn {
 pub(crate) mod reexport {
     #[repr(C)]
     #[derive(Clone, Copy)]
-    pub struct PhysicalDevicePageableDeviceLocalMemoryFeaturesEXT {
+    pub struct PhysicalDevicePageableDeviceLocalMemoryFeaturesEXT<'a> {
         pub s_type: crate::vk::StructureType,
         pub p_next: *mut core::ffi::c_void,
         pub pageable_device_local_memory: crate::vk::Bool32,
+        pub _marker: ::core::marker::PhantomData<&'a ()>,
     }
     ///Provided by [`ext::pageable_device_local_memory`](crate::ext::pageable_device_local_memory)
     impl crate::vk::StructureType {

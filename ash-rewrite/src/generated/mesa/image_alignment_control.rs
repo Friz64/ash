@@ -3,24 +3,27 @@
 //![Vulkan Manual Page](https://docs.vulkan.org/refpages/latest/refpages/source/VK_MESA_image_alignment_control.html) · Extension `VK_MESA_image_alignment_control`
 #[repr(C)]
 #[derive(Clone, Copy)]
-pub struct PhysicalDeviceImageAlignmentControlFeaturesMESA {
+pub struct PhysicalDeviceImageAlignmentControlFeaturesMESA<'a> {
     pub s_type: crate::vk::StructureType,
     pub p_next: *mut core::ffi::c_void,
     pub image_alignment_control: crate::vk::Bool32,
+    pub _marker: ::core::marker::PhantomData<&'a ()>,
 }
 #[repr(C)]
 #[derive(Clone, Copy)]
-pub struct PhysicalDeviceImageAlignmentControlPropertiesMESA {
+pub struct PhysicalDeviceImageAlignmentControlPropertiesMESA<'a> {
     pub s_type: crate::vk::StructureType,
     pub p_next: *mut core::ffi::c_void,
     pub supported_image_alignment_mask: u32,
+    pub _marker: ::core::marker::PhantomData<&'a ()>,
 }
 #[repr(C)]
 #[derive(Clone, Copy)]
-pub struct ImageAlignmentControlCreateInfoMESA {
+pub struct ImageAlignmentControlCreateInfoMESA<'a> {
     pub s_type: crate::vk::StructureType,
     pub p_next: *const core::ffi::c_void,
     pub maximum_requested_alignment: u32,
+    pub _marker: ::core::marker::PhantomData<&'a ()>,
 }
 ///Provided by [`mesa::image_alignment_control`](crate::mesa::image_alignment_control)
 impl crate::vk::StructureType {

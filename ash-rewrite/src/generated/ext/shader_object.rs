@@ -25,8 +25,8 @@ impl DeviceFn {
                 unsafe extern "system" fn create_shaders_ext(
                     _: crate::vk::Device,
                     _: u32,
-                    _: *const crate::vk::ShaderCreateInfoEXT,
-                    _: *const crate::vk::AllocationCallbacks,
+                    _: *const crate::vk::ShaderCreateInfoEXT<'_>,
+                    _: *const crate::vk::AllocationCallbacks<'_>,
                     _: *mut crate::vk::ShaderEXT,
                 ) -> crate::vk::Result {
                     panic!("unable to load vkCreateShadersEXT")
@@ -42,7 +42,7 @@ impl DeviceFn {
                 unsafe extern "system" fn destroy_shader_ext(
                     _: crate::vk::Device,
                     _: crate::vk::ShaderEXT,
-                    _: *const crate::vk::AllocationCallbacks,
+                    _: *const crate::vk::AllocationCallbacks<'_>,
                 ) {
                     panic!("unable to load vkDestroyShaderEXT")
                 }
@@ -106,22 +106,24 @@ impl DeviceFn {
 pub(crate) mod reexport {
     #[repr(C)]
     #[derive(Clone, Copy)]
-    pub struct PhysicalDeviceShaderObjectFeaturesEXT {
+    pub struct PhysicalDeviceShaderObjectFeaturesEXT<'a> {
         pub s_type: crate::vk::StructureType,
         pub p_next: *mut core::ffi::c_void,
         pub shader_object: crate::vk::Bool32,
+        pub _marker: ::core::marker::PhantomData<&'a ()>,
     }
     #[repr(C)]
     #[derive(Clone, Copy)]
-    pub struct PhysicalDeviceShaderObjectPropertiesEXT {
+    pub struct PhysicalDeviceShaderObjectPropertiesEXT<'a> {
         pub s_type: crate::vk::StructureType,
         pub p_next: *mut core::ffi::c_void,
         pub shader_binary_uuid: [u8; crate::vk::UUID_SIZE as _],
         pub shader_binary_version: u32,
+        pub _marker: ::core::marker::PhantomData<&'a ()>,
     }
     #[repr(C)]
     #[derive(Clone, Copy)]
-    pub struct ShaderCreateInfoEXT {
+    pub struct ShaderCreateInfoEXT<'a> {
         pub s_type: crate::vk::StructureType,
         pub p_next: *const core::ffi::c_void,
         pub flags: crate::vk::ShaderCreateFlagsEXT,
@@ -135,9 +137,12 @@ pub(crate) mod reexport {
         pub p_set_layouts: *const crate::vk::DescriptorSetLayout,
         pub push_constant_range_count: u32,
         pub p_push_constant_ranges: *const crate::vk::PushConstantRange,
-        pub p_specialization_info: *const crate::vk::SpecializationInfo,
+        pub p_specialization_info: *const crate::vk::SpecializationInfo<'a>,
+        pub _marker: ::core::marker::PhantomData<&'a ()>,
     }
-    pub type ShaderRequiredSubgroupSizeCreateInfoEXT = crate::vk::PipelineShaderStageRequiredSubgroupSizeCreateInfo;
+    pub type ShaderRequiredSubgroupSizeCreateInfoEXT<'a> = crate::vk::PipelineShaderStageRequiredSubgroupSizeCreateInfo<
+        'a,
+    >;
     ///Provided by [`ext::shader_object`](crate::ext::shader_object)
     impl crate::vk::StructureType {
         pub const PHYSICAL_DEVICE_SHADER_OBJECT_FEATURES_EXT: Self = Self(1000482000);
@@ -155,6 +160,7 @@ pub(crate) mod reexport {
     }
     #[repr(transparent)]
     #[derive(Clone, Copy, PartialEq, Eq, PartialOrd, Ord, Hash, Default)]
+    #[derive(Debug)]
     pub struct ShaderCodeTypeEXT(pub(crate) i32);
     ///Provided by [`ext::shader_object`](crate::ext::shader_object)
     impl ShaderCodeTypeEXT {
@@ -221,14 +227,14 @@ pub(crate) mod reexport {
     pub type PFN_vkCreateShadersEXT = unsafe extern "system" fn(
         device: crate::vk::Device,
         create_info_count: u32,
-        p_create_infos: *const crate::vk::ShaderCreateInfoEXT,
-        p_allocator: *const crate::vk::AllocationCallbacks,
+        p_create_infos: *const crate::vk::ShaderCreateInfoEXT<'_>,
+        p_allocator: *const crate::vk::AllocationCallbacks<'_>,
         p_shaders: *mut crate::vk::ShaderEXT,
     ) -> crate::vk::Result;
     pub type PFN_vkDestroyShaderEXT = unsafe extern "system" fn(
         device: crate::vk::Device,
         shader: crate::vk::ShaderEXT,
-        p_allocator: *const crate::vk::AllocationCallbacks,
+        p_allocator: *const crate::vk::AllocationCallbacks<'_>,
     );
     pub type PFN_vkGetShaderBinaryDataEXT = unsafe extern "system" fn(
         device: crate::vk::Device,

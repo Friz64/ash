@@ -39,19 +39,21 @@ impl DeviceFn {
 pub(crate) mod reexport {
     #[repr(C)]
     #[derive(Clone, Copy)]
-    pub struct ImportMemoryWin32HandleInfoNV {
+    pub struct ImportMemoryWin32HandleInfoNV<'a> {
         pub s_type: crate::vk::StructureType,
         pub p_next: *const core::ffi::c_void,
         pub handle_type: crate::vk::ExternalMemoryHandleTypeFlagsNV,
         pub handle: crate::platform_types::HANDLE,
+        pub _marker: ::core::marker::PhantomData<&'a ()>,
     }
     #[repr(C)]
     #[derive(Clone, Copy)]
-    pub struct ExportMemoryWin32HandleInfoNV {
+    pub struct ExportMemoryWin32HandleInfoNV<'a> {
         pub s_type: crate::vk::StructureType,
         pub p_next: *const core::ffi::c_void,
         pub p_attributes: *const crate::platform_types::SECURITY_ATTRIBUTES,
         pub dw_access: crate::platform_types::DWORD,
+        pub _marker: ::core::marker::PhantomData<&'a ()>,
     }
     ///Provided by [`nv::external_memory_win32`](crate::nv::external_memory_win32)
     impl crate::vk::StructureType {

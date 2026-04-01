@@ -3,7 +3,7 @@
 //![Vulkan Manual Page](https://docs.vulkan.org/refpages/latest/refpages/source/VK_EXT_frame_boundary.html) · Extension `VK_EXT_frame_boundary`
 #[repr(C)]
 #[derive(Clone, Copy)]
-pub struct FrameBoundaryEXT {
+pub struct FrameBoundaryEXT<'a> {
     pub s_type: crate::vk::StructureType,
     pub p_next: *const core::ffi::c_void,
     pub flags: crate::vk::FrameBoundaryFlagsEXT,
@@ -15,13 +15,15 @@ pub struct FrameBoundaryEXT {
     pub tag_name: u64,
     pub tag_size: usize,
     pub p_tag: *const core::ffi::c_void,
+    pub _marker: ::core::marker::PhantomData<&'a ()>,
 }
 #[repr(C)]
 #[derive(Clone, Copy)]
-pub struct PhysicalDeviceFrameBoundaryFeaturesEXT {
+pub struct PhysicalDeviceFrameBoundaryFeaturesEXT<'a> {
     pub s_type: crate::vk::StructureType,
     pub p_next: *mut core::ffi::c_void,
     pub frame_boundary: crate::vk::Bool32,
+    pub _marker: ::core::marker::PhantomData<&'a ()>,
 }
 ///Provided by [`ext::frame_boundary`](crate::ext::frame_boundary)
 impl crate::vk::StructureType {

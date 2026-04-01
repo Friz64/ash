@@ -21,8 +21,8 @@ impl EntryFnV1_0 {
         Self {
             create_instance: unsafe {
                 unsafe extern "system" fn create_instance(
-                    _: *const crate::vk::InstanceCreateInfo,
-                    _: *const crate::vk::AllocationCallbacks,
+                    _: *const crate::vk::InstanceCreateInfo<'_>,
+                    _: *const crate::vk::AllocationCallbacks<'_>,
                     _: *mut crate::vk::Instance,
                 ) -> crate::vk::Result {
                     panic!("unable to load vkCreateInstance")
@@ -66,6 +66,7 @@ impl EntryFnV1_0 {
 pub struct InstanceFnV1_0 {
     pub destroy_instance: crate::vk::PFN_vkDestroyInstance,
     pub enumerate_physical_devices: crate::vk::PFN_vkEnumeratePhysicalDevices,
+    pub get_device_proc_addr: crate::vk::PFN_vkGetDeviceProcAddr,
     pub get_physical_device_properties: crate::vk::PFN_vkGetPhysicalDeviceProperties,
     pub get_physical_device_queue_family_properties: crate::vk::PFN_vkGetPhysicalDeviceQueueFamilyProperties,
     pub get_physical_device_memory_properties: crate::vk::PFN_vkGetPhysicalDeviceMemoryProperties,
@@ -92,7 +93,7 @@ impl InstanceFnV1_0 {
             destroy_instance: unsafe {
                 unsafe extern "system" fn destroy_instance(
                     _: crate::vk::Instance,
-                    _: *const crate::vk::AllocationCallbacks,
+                    _: *const crate::vk::AllocationCallbacks<'_>,
                 ) {
                     panic!("unable to load vkDestroyInstance")
                 }
@@ -114,6 +115,20 @@ impl InstanceFnV1_0 {
                 let val = _f(c"vkEnumeratePhysicalDevices");
                 if val.is_null() {
                     enumerate_physical_devices
+                } else {
+                    ::core::mem::transmute(val)
+                }
+            },
+            get_device_proc_addr: unsafe {
+                unsafe extern "system" fn get_device_proc_addr(
+                    _: crate::vk::Device,
+                    _: *const core::ffi::c_char,
+                ) -> crate::vk::PFN_vkVoidFunction {
+                    panic!("unable to load vkGetDeviceProcAddr")
+                }
+                let val = _f(c"vkGetDeviceProcAddr");
+                if val.is_null() {
+                    get_device_proc_addr
                 } else {
                     ::core::mem::transmute(val)
                 }
@@ -212,8 +227,8 @@ impl InstanceFnV1_0 {
             create_device: unsafe {
                 unsafe extern "system" fn create_device(
                     _: crate::vk::PhysicalDevice,
-                    _: *const crate::vk::DeviceCreateInfo,
-                    _: *const crate::vk::AllocationCallbacks,
+                    _: *const crate::vk::DeviceCreateInfo<'_>,
+                    _: *const crate::vk::AllocationCallbacks<'_>,
                     _: *mut crate::vk::Device,
                 ) -> crate::vk::Result {
                     panic!("unable to load vkCreateDevice")
@@ -278,8 +293,40 @@ impl InstanceFnV1_0 {
     }
 }
 #[derive(Clone)]
+pub struct StaticFn {
+    pub get_instance_proc_addr: crate::vk::PFN_vkGetInstanceProcAddr,
+}
+unsafe impl Send for StaticFn {}
+unsafe impl Sync for StaticFn {}
+impl StaticFn {
+    pub fn load<F: FnMut(&::core::ffi::CStr) -> *const ::core::ffi::c_void>(
+        mut f: F,
+    ) -> Self {
+        Self::load_erased(&mut f)
+    }
+    fn load_erased(
+        _f: &mut dyn FnMut(&::core::ffi::CStr) -> *const ::core::ffi::c_void,
+    ) -> Self {
+        Self {
+            get_instance_proc_addr: unsafe {
+                unsafe extern "system" fn get_instance_proc_addr(
+                    _: crate::vk::Instance,
+                    _: *const core::ffi::c_char,
+                ) -> crate::vk::PFN_vkVoidFunction {
+                    panic!("unable to load vkGetInstanceProcAddr")
+                }
+                let val = _f(c"vkGetInstanceProcAddr");
+                if val.is_null() {
+                    get_instance_proc_addr
+                } else {
+                    ::core::mem::transmute(val)
+                }
+            },
+        }
+    }
+}
+#[derive(Clone)]
 pub struct DeviceFnV1_0 {
-    pub get_device_proc_addr: crate::vk::PFN_vkGetDeviceProcAddr,
     pub destroy_device: crate::vk::PFN_vkDestroyDevice,
     pub get_device_queue: crate::vk::PFN_vkGetDeviceQueue,
     pub queue_submit: crate::vk::PFN_vkQueueSubmit,
@@ -413,24 +460,10 @@ impl DeviceFnV1_0 {
         _f: &mut dyn FnMut(&::core::ffi::CStr) -> *const ::core::ffi::c_void,
     ) -> Self {
         Self {
-            get_device_proc_addr: unsafe {
-                unsafe extern "system" fn get_device_proc_addr(
-                    _: crate::vk::Device,
-                    _: *const core::ffi::c_char,
-                ) -> crate::vk::PFN_vkVoidFunction {
-                    panic!("unable to load vkGetDeviceProcAddr")
-                }
-                let val = _f(c"vkGetDeviceProcAddr");
-                if val.is_null() {
-                    get_device_proc_addr
-                } else {
-                    ::core::mem::transmute(val)
-                }
-            },
             destroy_device: unsafe {
                 unsafe extern "system" fn destroy_device(
                     _: crate::vk::Device,
-                    _: *const crate::vk::AllocationCallbacks,
+                    _: *const crate::vk::AllocationCallbacks<'_>,
                 ) {
                     panic!("unable to load vkDestroyDevice")
                 }
@@ -457,7 +490,7 @@ impl DeviceFnV1_0 {
                 unsafe extern "system" fn queue_submit(
                     _: crate::vk::Queue,
                     _: u32,
-                    _: *const crate::vk::SubmitInfo,
+                    _: *const crate::vk::SubmitInfo<'_>,
                     _: crate::vk::Fence,
                 ) -> crate::vk::Result {
                     panic!("unable to load vkQueueSubmit")
@@ -490,8 +523,8 @@ impl DeviceFnV1_0 {
             allocate_memory: unsafe {
                 unsafe extern "system" fn allocate_memory(
                     _: crate::vk::Device,
-                    _: *const crate::vk::MemoryAllocateInfo,
-                    _: *const crate::vk::AllocationCallbacks,
+                    _: *const crate::vk::MemoryAllocateInfo<'_>,
+                    _: *const crate::vk::AllocationCallbacks<'_>,
                     _: *mut crate::vk::DeviceMemory,
                 ) -> crate::vk::Result {
                     panic!("unable to load vkAllocateMemory")
@@ -503,7 +536,7 @@ impl DeviceFnV1_0 {
                 unsafe extern "system" fn free_memory(
                     _: crate::vk::Device,
                     _: crate::vk::DeviceMemory,
-                    _: *const crate::vk::AllocationCallbacks,
+                    _: *const crate::vk::AllocationCallbacks<'_>,
                 ) {
                     panic!("unable to load vkFreeMemory")
                 }
@@ -538,7 +571,7 @@ impl DeviceFnV1_0 {
                 unsafe extern "system" fn flush_mapped_memory_ranges(
                     _: crate::vk::Device,
                     _: u32,
-                    _: *const crate::vk::MappedMemoryRange,
+                    _: *const crate::vk::MappedMemoryRange<'_>,
                 ) -> crate::vk::Result {
                     panic!("unable to load vkFlushMappedMemoryRanges")
                 }
@@ -553,7 +586,7 @@ impl DeviceFnV1_0 {
                 unsafe extern "system" fn invalidate_mapped_memory_ranges(
                     _: crate::vk::Device,
                     _: u32,
-                    _: *const crate::vk::MappedMemoryRange,
+                    _: *const crate::vk::MappedMemoryRange<'_>,
                 ) -> crate::vk::Result {
                     panic!("unable to load vkInvalidateMappedMemoryRanges")
                 }
@@ -661,7 +694,7 @@ impl DeviceFnV1_0 {
                 unsafe extern "system" fn queue_bind_sparse(
                     _: crate::vk::Queue,
                     _: u32,
-                    _: *const crate::vk::BindSparseInfo,
+                    _: *const crate::vk::BindSparseInfo<'_>,
                     _: crate::vk::Fence,
                 ) -> crate::vk::Result {
                     panic!("unable to load vkQueueBindSparse")
@@ -676,8 +709,8 @@ impl DeviceFnV1_0 {
             create_fence: unsafe {
                 unsafe extern "system" fn create_fence(
                     _: crate::vk::Device,
-                    _: *const crate::vk::FenceCreateInfo,
-                    _: *const crate::vk::AllocationCallbacks,
+                    _: *const crate::vk::FenceCreateInfo<'_>,
+                    _: *const crate::vk::AllocationCallbacks<'_>,
                     _: *mut crate::vk::Fence,
                 ) -> crate::vk::Result {
                     panic!("unable to load vkCreateFence")
@@ -689,7 +722,7 @@ impl DeviceFnV1_0 {
                 unsafe extern "system" fn destroy_fence(
                     _: crate::vk::Device,
                     _: crate::vk::Fence,
-                    _: *const crate::vk::AllocationCallbacks,
+                    _: *const crate::vk::AllocationCallbacks<'_>,
                 ) {
                     panic!("unable to load vkDestroyFence")
                 }
@@ -737,8 +770,8 @@ impl DeviceFnV1_0 {
             create_semaphore: unsafe {
                 unsafe extern "system" fn create_semaphore(
                     _: crate::vk::Device,
-                    _: *const crate::vk::SemaphoreCreateInfo,
-                    _: *const crate::vk::AllocationCallbacks,
+                    _: *const crate::vk::SemaphoreCreateInfo<'_>,
+                    _: *const crate::vk::AllocationCallbacks<'_>,
                     _: *mut crate::vk::Semaphore,
                 ) -> crate::vk::Result {
                     panic!("unable to load vkCreateSemaphore")
@@ -754,7 +787,7 @@ impl DeviceFnV1_0 {
                 unsafe extern "system" fn destroy_semaphore(
                     _: crate::vk::Device,
                     _: crate::vk::Semaphore,
-                    _: *const crate::vk::AllocationCallbacks,
+                    _: *const crate::vk::AllocationCallbacks<'_>,
                 ) {
                     panic!("unable to load vkDestroySemaphore")
                 }
@@ -768,8 +801,8 @@ impl DeviceFnV1_0 {
             create_event: unsafe {
                 unsafe extern "system" fn create_event(
                     _: crate::vk::Device,
-                    _: *const crate::vk::EventCreateInfo,
-                    _: *const crate::vk::AllocationCallbacks,
+                    _: *const crate::vk::EventCreateInfo<'_>,
+                    _: *const crate::vk::AllocationCallbacks<'_>,
                     _: *mut crate::vk::Event,
                 ) -> crate::vk::Result {
                     panic!("unable to load vkCreateEvent")
@@ -781,7 +814,7 @@ impl DeviceFnV1_0 {
                 unsafe extern "system" fn destroy_event(
                     _: crate::vk::Device,
                     _: crate::vk::Event,
-                    _: *const crate::vk::AllocationCallbacks,
+                    _: *const crate::vk::AllocationCallbacks<'_>,
                 ) {
                     panic!("unable to load vkDestroyEvent")
                 }
@@ -825,8 +858,8 @@ impl DeviceFnV1_0 {
             create_query_pool: unsafe {
                 unsafe extern "system" fn create_query_pool(
                     _: crate::vk::Device,
-                    _: *const crate::vk::QueryPoolCreateInfo,
-                    _: *const crate::vk::AllocationCallbacks,
+                    _: *const crate::vk::QueryPoolCreateInfo<'_>,
+                    _: *const crate::vk::AllocationCallbacks<'_>,
                     _: *mut crate::vk::QueryPool,
                 ) -> crate::vk::Result {
                     panic!("unable to load vkCreateQueryPool")
@@ -842,7 +875,7 @@ impl DeviceFnV1_0 {
                 unsafe extern "system" fn destroy_query_pool(
                     _: crate::vk::Device,
                     _: crate::vk::QueryPool,
-                    _: *const crate::vk::AllocationCallbacks,
+                    _: *const crate::vk::AllocationCallbacks<'_>,
                 ) {
                     panic!("unable to load vkDestroyQueryPool")
                 }
@@ -876,8 +909,8 @@ impl DeviceFnV1_0 {
             create_buffer: unsafe {
                 unsafe extern "system" fn create_buffer(
                     _: crate::vk::Device,
-                    _: *const crate::vk::BufferCreateInfo,
-                    _: *const crate::vk::AllocationCallbacks,
+                    _: *const crate::vk::BufferCreateInfo<'_>,
+                    _: *const crate::vk::AllocationCallbacks<'_>,
                     _: *mut crate::vk::Buffer,
                 ) -> crate::vk::Result {
                     panic!("unable to load vkCreateBuffer")
@@ -889,7 +922,7 @@ impl DeviceFnV1_0 {
                 unsafe extern "system" fn destroy_buffer(
                     _: crate::vk::Device,
                     _: crate::vk::Buffer,
-                    _: *const crate::vk::AllocationCallbacks,
+                    _: *const crate::vk::AllocationCallbacks<'_>,
                 ) {
                     panic!("unable to load vkDestroyBuffer")
                 }
@@ -899,8 +932,8 @@ impl DeviceFnV1_0 {
             create_buffer_view: unsafe {
                 unsafe extern "system" fn create_buffer_view(
                     _: crate::vk::Device,
-                    _: *const crate::vk::BufferViewCreateInfo,
-                    _: *const crate::vk::AllocationCallbacks,
+                    _: *const crate::vk::BufferViewCreateInfo<'_>,
+                    _: *const crate::vk::AllocationCallbacks<'_>,
                     _: *mut crate::vk::BufferView,
                 ) -> crate::vk::Result {
                     panic!("unable to load vkCreateBufferView")
@@ -916,7 +949,7 @@ impl DeviceFnV1_0 {
                 unsafe extern "system" fn destroy_buffer_view(
                     _: crate::vk::Device,
                     _: crate::vk::BufferView,
-                    _: *const crate::vk::AllocationCallbacks,
+                    _: *const crate::vk::AllocationCallbacks<'_>,
                 ) {
                     panic!("unable to load vkDestroyBufferView")
                 }
@@ -930,8 +963,8 @@ impl DeviceFnV1_0 {
             create_image: unsafe {
                 unsafe extern "system" fn create_image(
                     _: crate::vk::Device,
-                    _: *const crate::vk::ImageCreateInfo,
-                    _: *const crate::vk::AllocationCallbacks,
+                    _: *const crate::vk::ImageCreateInfo<'_>,
+                    _: *const crate::vk::AllocationCallbacks<'_>,
                     _: *mut crate::vk::Image,
                 ) -> crate::vk::Result {
                     panic!("unable to load vkCreateImage")
@@ -943,7 +976,7 @@ impl DeviceFnV1_0 {
                 unsafe extern "system" fn destroy_image(
                     _: crate::vk::Device,
                     _: crate::vk::Image,
-                    _: *const crate::vk::AllocationCallbacks,
+                    _: *const crate::vk::AllocationCallbacks<'_>,
                 ) {
                     panic!("unable to load vkDestroyImage")
                 }
@@ -969,8 +1002,8 @@ impl DeviceFnV1_0 {
             create_image_view: unsafe {
                 unsafe extern "system" fn create_image_view(
                     _: crate::vk::Device,
-                    _: *const crate::vk::ImageViewCreateInfo,
-                    _: *const crate::vk::AllocationCallbacks,
+                    _: *const crate::vk::ImageViewCreateInfo<'_>,
+                    _: *const crate::vk::AllocationCallbacks<'_>,
                     _: *mut crate::vk::ImageView,
                 ) -> crate::vk::Result {
                     panic!("unable to load vkCreateImageView")
@@ -986,7 +1019,7 @@ impl DeviceFnV1_0 {
                 unsafe extern "system" fn destroy_image_view(
                     _: crate::vk::Device,
                     _: crate::vk::ImageView,
-                    _: *const crate::vk::AllocationCallbacks,
+                    _: *const crate::vk::AllocationCallbacks<'_>,
                 ) {
                     panic!("unable to load vkDestroyImageView")
                 }
@@ -1000,8 +1033,8 @@ impl DeviceFnV1_0 {
             create_shader_module: unsafe {
                 unsafe extern "system" fn create_shader_module(
                     _: crate::vk::Device,
-                    _: *const crate::vk::ShaderModuleCreateInfo,
-                    _: *const crate::vk::AllocationCallbacks,
+                    _: *const crate::vk::ShaderModuleCreateInfo<'_>,
+                    _: *const crate::vk::AllocationCallbacks<'_>,
                     _: *mut crate::vk::ShaderModule,
                 ) -> crate::vk::Result {
                     panic!("unable to load vkCreateShaderModule")
@@ -1017,7 +1050,7 @@ impl DeviceFnV1_0 {
                 unsafe extern "system" fn destroy_shader_module(
                     _: crate::vk::Device,
                     _: crate::vk::ShaderModule,
-                    _: *const crate::vk::AllocationCallbacks,
+                    _: *const crate::vk::AllocationCallbacks<'_>,
                 ) {
                     panic!("unable to load vkDestroyShaderModule")
                 }
@@ -1031,8 +1064,8 @@ impl DeviceFnV1_0 {
             create_pipeline_cache: unsafe {
                 unsafe extern "system" fn create_pipeline_cache(
                     _: crate::vk::Device,
-                    _: *const crate::vk::PipelineCacheCreateInfo,
-                    _: *const crate::vk::AllocationCallbacks,
+                    _: *const crate::vk::PipelineCacheCreateInfo<'_>,
+                    _: *const crate::vk::AllocationCallbacks<'_>,
                     _: *mut crate::vk::PipelineCache,
                 ) -> crate::vk::Result {
                     panic!("unable to load vkCreatePipelineCache")
@@ -1048,7 +1081,7 @@ impl DeviceFnV1_0 {
                 unsafe extern "system" fn destroy_pipeline_cache(
                     _: crate::vk::Device,
                     _: crate::vk::PipelineCache,
-                    _: *const crate::vk::AllocationCallbacks,
+                    _: *const crate::vk::AllocationCallbacks<'_>,
                 ) {
                     panic!("unable to load vkDestroyPipelineCache")
                 }
@@ -1096,8 +1129,8 @@ impl DeviceFnV1_0 {
                     _: crate::vk::Device,
                     _: crate::vk::PipelineCache,
                     _: u32,
-                    _: *const crate::vk::GraphicsPipelineCreateInfo,
-                    _: *const crate::vk::AllocationCallbacks,
+                    _: *const crate::vk::GraphicsPipelineCreateInfo<'_>,
+                    _: *const crate::vk::AllocationCallbacks<'_>,
                     _: *mut crate::vk::Pipeline,
                 ) -> crate::vk::Result {
                     panic!("unable to load vkCreateGraphicsPipelines")
@@ -1114,8 +1147,8 @@ impl DeviceFnV1_0 {
                     _: crate::vk::Device,
                     _: crate::vk::PipelineCache,
                     _: u32,
-                    _: *const crate::vk::ComputePipelineCreateInfo,
-                    _: *const crate::vk::AllocationCallbacks,
+                    _: *const crate::vk::ComputePipelineCreateInfo<'_>,
+                    _: *const crate::vk::AllocationCallbacks<'_>,
                     _: *mut crate::vk::Pipeline,
                 ) -> crate::vk::Result {
                     panic!("unable to load vkCreateComputePipelines")
@@ -1131,7 +1164,7 @@ impl DeviceFnV1_0 {
                 unsafe extern "system" fn destroy_pipeline(
                     _: crate::vk::Device,
                     _: crate::vk::Pipeline,
-                    _: *const crate::vk::AllocationCallbacks,
+                    _: *const crate::vk::AllocationCallbacks<'_>,
                 ) {
                     panic!("unable to load vkDestroyPipeline")
                 }
@@ -1145,8 +1178,8 @@ impl DeviceFnV1_0 {
             create_pipeline_layout: unsafe {
                 unsafe extern "system" fn create_pipeline_layout(
                     _: crate::vk::Device,
-                    _: *const crate::vk::PipelineLayoutCreateInfo,
-                    _: *const crate::vk::AllocationCallbacks,
+                    _: *const crate::vk::PipelineLayoutCreateInfo<'_>,
+                    _: *const crate::vk::AllocationCallbacks<'_>,
                     _: *mut crate::vk::PipelineLayout,
                 ) -> crate::vk::Result {
                     panic!("unable to load vkCreatePipelineLayout")
@@ -1162,7 +1195,7 @@ impl DeviceFnV1_0 {
                 unsafe extern "system" fn destroy_pipeline_layout(
                     _: crate::vk::Device,
                     _: crate::vk::PipelineLayout,
-                    _: *const crate::vk::AllocationCallbacks,
+                    _: *const crate::vk::AllocationCallbacks<'_>,
                 ) {
                     panic!("unable to load vkDestroyPipelineLayout")
                 }
@@ -1176,8 +1209,8 @@ impl DeviceFnV1_0 {
             create_sampler: unsafe {
                 unsafe extern "system" fn create_sampler(
                     _: crate::vk::Device,
-                    _: *const crate::vk::SamplerCreateInfo,
-                    _: *const crate::vk::AllocationCallbacks,
+                    _: *const crate::vk::SamplerCreateInfo<'_>,
+                    _: *const crate::vk::AllocationCallbacks<'_>,
                     _: *mut crate::vk::Sampler,
                 ) -> crate::vk::Result {
                     panic!("unable to load vkCreateSampler")
@@ -1189,7 +1222,7 @@ impl DeviceFnV1_0 {
                 unsafe extern "system" fn destroy_sampler(
                     _: crate::vk::Device,
                     _: crate::vk::Sampler,
-                    _: *const crate::vk::AllocationCallbacks,
+                    _: *const crate::vk::AllocationCallbacks<'_>,
                 ) {
                     panic!("unable to load vkDestroySampler")
                 }
@@ -1199,8 +1232,8 @@ impl DeviceFnV1_0 {
             create_descriptor_set_layout: unsafe {
                 unsafe extern "system" fn create_descriptor_set_layout(
                     _: crate::vk::Device,
-                    _: *const crate::vk::DescriptorSetLayoutCreateInfo,
-                    _: *const crate::vk::AllocationCallbacks,
+                    _: *const crate::vk::DescriptorSetLayoutCreateInfo<'_>,
+                    _: *const crate::vk::AllocationCallbacks<'_>,
                     _: *mut crate::vk::DescriptorSetLayout,
                 ) -> crate::vk::Result {
                     panic!("unable to load vkCreateDescriptorSetLayout")
@@ -1216,7 +1249,7 @@ impl DeviceFnV1_0 {
                 unsafe extern "system" fn destroy_descriptor_set_layout(
                     _: crate::vk::Device,
                     _: crate::vk::DescriptorSetLayout,
-                    _: *const crate::vk::AllocationCallbacks,
+                    _: *const crate::vk::AllocationCallbacks<'_>,
                 ) {
                     panic!("unable to load vkDestroyDescriptorSetLayout")
                 }
@@ -1230,8 +1263,8 @@ impl DeviceFnV1_0 {
             create_descriptor_pool: unsafe {
                 unsafe extern "system" fn create_descriptor_pool(
                     _: crate::vk::Device,
-                    _: *const crate::vk::DescriptorPoolCreateInfo,
-                    _: *const crate::vk::AllocationCallbacks,
+                    _: *const crate::vk::DescriptorPoolCreateInfo<'_>,
+                    _: *const crate::vk::AllocationCallbacks<'_>,
                     _: *mut crate::vk::DescriptorPool,
                 ) -> crate::vk::Result {
                     panic!("unable to load vkCreateDescriptorPool")
@@ -1247,7 +1280,7 @@ impl DeviceFnV1_0 {
                 unsafe extern "system" fn destroy_descriptor_pool(
                     _: crate::vk::Device,
                     _: crate::vk::DescriptorPool,
-                    _: *const crate::vk::AllocationCallbacks,
+                    _: *const crate::vk::AllocationCallbacks<'_>,
                 ) {
                     panic!("unable to load vkDestroyDescriptorPool")
                 }
@@ -1276,7 +1309,7 @@ impl DeviceFnV1_0 {
             allocate_descriptor_sets: unsafe {
                 unsafe extern "system" fn allocate_descriptor_sets(
                     _: crate::vk::Device,
-                    _: *const crate::vk::DescriptorSetAllocateInfo,
+                    _: *const crate::vk::DescriptorSetAllocateInfo<'_>,
                     _: *mut crate::vk::DescriptorSet,
                 ) -> crate::vk::Result {
                     panic!("unable to load vkAllocateDescriptorSets")
@@ -1308,9 +1341,9 @@ impl DeviceFnV1_0 {
                 unsafe extern "system" fn update_descriptor_sets(
                     _: crate::vk::Device,
                     _: u32,
-                    _: *const crate::vk::WriteDescriptorSet,
+                    _: *const crate::vk::WriteDescriptorSet<'_>,
                     _: u32,
-                    _: *const crate::vk::CopyDescriptorSet,
+                    _: *const crate::vk::CopyDescriptorSet<'_>,
                 ) {
                     panic!("unable to load vkUpdateDescriptorSets")
                 }
@@ -1324,8 +1357,8 @@ impl DeviceFnV1_0 {
             create_framebuffer: unsafe {
                 unsafe extern "system" fn create_framebuffer(
                     _: crate::vk::Device,
-                    _: *const crate::vk::FramebufferCreateInfo,
-                    _: *const crate::vk::AllocationCallbacks,
+                    _: *const crate::vk::FramebufferCreateInfo<'_>,
+                    _: *const crate::vk::AllocationCallbacks<'_>,
                     _: *mut crate::vk::Framebuffer,
                 ) -> crate::vk::Result {
                     panic!("unable to load vkCreateFramebuffer")
@@ -1341,7 +1374,7 @@ impl DeviceFnV1_0 {
                 unsafe extern "system" fn destroy_framebuffer(
                     _: crate::vk::Device,
                     _: crate::vk::Framebuffer,
-                    _: *const crate::vk::AllocationCallbacks,
+                    _: *const crate::vk::AllocationCallbacks<'_>,
                 ) {
                     panic!("unable to load vkDestroyFramebuffer")
                 }
@@ -1355,8 +1388,8 @@ impl DeviceFnV1_0 {
             create_render_pass: unsafe {
                 unsafe extern "system" fn create_render_pass(
                     _: crate::vk::Device,
-                    _: *const crate::vk::RenderPassCreateInfo,
-                    _: *const crate::vk::AllocationCallbacks,
+                    _: *const crate::vk::RenderPassCreateInfo<'_>,
+                    _: *const crate::vk::AllocationCallbacks<'_>,
                     _: *mut crate::vk::RenderPass,
                 ) -> crate::vk::Result {
                     panic!("unable to load vkCreateRenderPass")
@@ -1372,7 +1405,7 @@ impl DeviceFnV1_0 {
                 unsafe extern "system" fn destroy_render_pass(
                     _: crate::vk::Device,
                     _: crate::vk::RenderPass,
-                    _: *const crate::vk::AllocationCallbacks,
+                    _: *const crate::vk::AllocationCallbacks<'_>,
                 ) {
                     panic!("unable to load vkDestroyRenderPass")
                 }
@@ -1401,8 +1434,8 @@ impl DeviceFnV1_0 {
             create_command_pool: unsafe {
                 unsafe extern "system" fn create_command_pool(
                     _: crate::vk::Device,
-                    _: *const crate::vk::CommandPoolCreateInfo,
-                    _: *const crate::vk::AllocationCallbacks,
+                    _: *const crate::vk::CommandPoolCreateInfo<'_>,
+                    _: *const crate::vk::AllocationCallbacks<'_>,
                     _: *mut crate::vk::CommandPool,
                 ) -> crate::vk::Result {
                     panic!("unable to load vkCreateCommandPool")
@@ -1418,7 +1451,7 @@ impl DeviceFnV1_0 {
                 unsafe extern "system" fn destroy_command_pool(
                     _: crate::vk::Device,
                     _: crate::vk::CommandPool,
-                    _: *const crate::vk::AllocationCallbacks,
+                    _: *const crate::vk::AllocationCallbacks<'_>,
                 ) {
                     panic!("unable to load vkDestroyCommandPool")
                 }
@@ -1447,7 +1480,7 @@ impl DeviceFnV1_0 {
             allocate_command_buffers: unsafe {
                 unsafe extern "system" fn allocate_command_buffers(
                     _: crate::vk::Device,
-                    _: *const crate::vk::CommandBufferAllocateInfo,
+                    _: *const crate::vk::CommandBufferAllocateInfo<'_>,
                     _: *mut crate::vk::CommandBuffer,
                 ) -> crate::vk::Result {
                     panic!("unable to load vkAllocateCommandBuffers")
@@ -1478,7 +1511,7 @@ impl DeviceFnV1_0 {
             begin_command_buffer: unsafe {
                 unsafe extern "system" fn begin_command_buffer(
                     _: crate::vk::CommandBuffer,
-                    _: *const crate::vk::CommandBufferBeginInfo,
+                    _: *const crate::vk::CommandBufferBeginInfo<'_>,
                 ) -> crate::vk::Result {
                     panic!("unable to load vkBeginCommandBuffer")
                 }
@@ -2020,11 +2053,11 @@ impl DeviceFnV1_0 {
                     _: crate::vk::PipelineStageFlags,
                     _: crate::vk::PipelineStageFlags,
                     _: u32,
-                    _: *const crate::vk::MemoryBarrier,
+                    _: *const crate::vk::MemoryBarrier<'_>,
                     _: u32,
-                    _: *const crate::vk::BufferMemoryBarrier,
+                    _: *const crate::vk::BufferMemoryBarrier<'_>,
                     _: u32,
-                    _: *const crate::vk::ImageMemoryBarrier,
+                    _: *const crate::vk::ImageMemoryBarrier<'_>,
                 ) {
                     panic!("unable to load vkCmdWaitEvents")
                 }
@@ -2038,11 +2071,11 @@ impl DeviceFnV1_0 {
                     _: crate::vk::PipelineStageFlags,
                     _: crate::vk::DependencyFlags,
                     _: u32,
-                    _: *const crate::vk::MemoryBarrier,
+                    _: *const crate::vk::MemoryBarrier<'_>,
                     _: u32,
-                    _: *const crate::vk::BufferMemoryBarrier,
+                    _: *const crate::vk::BufferMemoryBarrier<'_>,
                     _: u32,
-                    _: *const crate::vk::ImageMemoryBarrier,
+                    _: *const crate::vk::ImageMemoryBarrier<'_>,
                 ) {
                     panic!("unable to load vkCmdPipelineBarrier")
                 }
@@ -2149,7 +2182,7 @@ impl DeviceFnV1_0 {
             cmd_begin_render_pass: unsafe {
                 unsafe extern "system" fn cmd_begin_render_pass(
                     _: crate::vk::CommandBuffer,
-                    _: *const crate::vk::RenderPassBeginInfo,
+                    _: *const crate::vk::RenderPassBeginInfo<'_>,
                     _: crate::vk::SubpassContents,
                 ) {
                     panic!("unable to load vkCmdBeginRenderPass")
@@ -2206,51 +2239,20 @@ impl DeviceFnV1_0 {
         }
     }
 }
-#[derive(Clone)]
-pub struct StaticFn {
-    pub get_instance_proc_addr: crate::vk::PFN_vkGetInstanceProcAddr,
-}
-unsafe impl Send for StaticFn {}
-unsafe impl Sync for StaticFn {}
-impl StaticFn {
-    pub fn load<F: FnMut(&::core::ffi::CStr) -> *const ::core::ffi::c_void>(
-        mut f: F,
-    ) -> Self {
-        Self::load_erased(&mut f)
-    }
-    fn load_erased(
-        _f: &mut dyn FnMut(&::core::ffi::CStr) -> *const ::core::ffi::c_void,
-    ) -> Self {
-        Self {
-            get_instance_proc_addr: unsafe {
-                unsafe extern "system" fn get_instance_proc_addr(
-                    _: crate::vk::Instance,
-                    _: *const core::ffi::c_char,
-                ) -> crate::vk::PFN_vkVoidFunction {
-                    panic!("unable to load vkGetInstanceProcAddr")
-                }
-                let val = _f(c"vkGetInstanceProcAddr");
-                if val.is_null() {
-                    get_instance_proc_addr
-                } else {
-                    ::core::mem::transmute(val)
-                }
-            },
-        }
-    }
-}
 pub(crate) mod reexport {
     #[repr(C)]
     #[derive(Clone, Copy)]
-    pub struct BaseOutStructure {
+    pub struct BaseOutStructure<'a> {
         pub s_type: crate::vk::StructureType,
-        pub p_next: *mut crate::vk::BaseOutStructure,
+        pub p_next: *mut crate::vk::BaseOutStructure<'a>,
+        pub _marker: ::core::marker::PhantomData<&'a ()>,
     }
     #[repr(C)]
     #[derive(Clone, Copy)]
-    pub struct BaseInStructure {
+    pub struct BaseInStructure<'a> {
         pub s_type: crate::vk::StructureType,
-        pub p_next: *const crate::vk::BaseInStructure,
+        pub p_next: *const crate::vk::BaseInStructure<'a>,
+        pub _marker: ::core::marker::PhantomData<&'a ()>,
     }
     #[repr(C)]
     #[derive(Clone, Copy)]
@@ -2339,7 +2341,7 @@ pub(crate) mod reexport {
     }
     #[repr(C)]
     #[derive(Clone, Copy)]
-    pub struct ApplicationInfo {
+    pub struct ApplicationInfo<'a> {
         pub s_type: crate::vk::StructureType,
         pub p_next: *const core::ffi::c_void,
         pub p_application_name: *const core::ffi::c_char,
@@ -2347,52 +2349,57 @@ pub(crate) mod reexport {
         pub p_engine_name: *const core::ffi::c_char,
         pub engine_version: u32,
         pub api_version: u32,
+        pub _marker: ::core::marker::PhantomData<&'a ()>,
     }
     #[repr(C)]
     #[derive(Clone, Copy)]
-    pub struct AllocationCallbacks {
+    pub struct AllocationCallbacks<'a> {
         pub p_user_data: *mut core::ffi::c_void,
         pub pfn_allocation: crate::vk::PFN_vkAllocationFunction,
         pub pfn_reallocation: crate::vk::PFN_vkReallocationFunction,
         pub pfn_free: crate::vk::PFN_vkFreeFunction,
         pub pfn_internal_allocation: crate::vk::PFN_vkInternalAllocationNotification,
         pub pfn_internal_free: crate::vk::PFN_vkInternalFreeNotification,
+        pub _marker: ::core::marker::PhantomData<&'a ()>,
     }
     #[repr(C)]
     #[derive(Clone, Copy)]
-    pub struct DeviceQueueCreateInfo {
+    pub struct DeviceQueueCreateInfo<'a> {
         pub s_type: crate::vk::StructureType,
         pub p_next: *const core::ffi::c_void,
         pub flags: crate::vk::DeviceQueueCreateFlags,
         pub queue_family_index: u32,
         pub queue_count: u32,
         pub p_queue_priorities: *const core::ffi::c_float,
+        pub _marker: ::core::marker::PhantomData<&'a ()>,
     }
     #[repr(C)]
     #[derive(Clone, Copy)]
-    pub struct DeviceCreateInfo {
+    pub struct DeviceCreateInfo<'a> {
         pub s_type: crate::vk::StructureType,
         pub p_next: *const core::ffi::c_void,
         pub flags: crate::vk::DeviceCreateFlags,
         pub queue_create_info_count: u32,
-        pub p_queue_create_infos: *const crate::vk::DeviceQueueCreateInfo,
+        pub p_queue_create_infos: *const crate::vk::DeviceQueueCreateInfo<'a>,
         pub enabled_layer_count: u32,
         pub pp_enabled_layer_names: *const *const core::ffi::c_char,
         pub enabled_extension_count: u32,
         pub pp_enabled_extension_names: *const *const core::ffi::c_char,
         pub p_enabled_features: *const crate::vk::PhysicalDeviceFeatures,
+        pub _marker: ::core::marker::PhantomData<&'a ()>,
     }
     #[repr(C)]
     #[derive(Clone, Copy)]
-    pub struct InstanceCreateInfo {
+    pub struct InstanceCreateInfo<'a> {
         pub s_type: crate::vk::StructureType,
         pub p_next: *const core::ffi::c_void,
         pub flags: crate::vk::InstanceCreateFlags,
-        pub p_application_info: *const crate::vk::ApplicationInfo,
+        pub p_application_info: *const crate::vk::ApplicationInfo<'a>,
         pub enabled_layer_count: u32,
         pub pp_enabled_layer_names: *const *const core::ffi::c_char,
         pub enabled_extension_count: u32,
         pub pp_enabled_extension_names: *const *const core::ffi::c_char,
+        pub _marker: ::core::marker::PhantomData<&'a ()>,
     }
     #[repr(C)]
     #[derive(Clone, Copy)]
@@ -2412,11 +2419,12 @@ pub(crate) mod reexport {
     }
     #[repr(C)]
     #[derive(Clone, Copy)]
-    pub struct MemoryAllocateInfo {
+    pub struct MemoryAllocateInfo<'a> {
         pub s_type: crate::vk::StructureType,
         pub p_next: *const core::ffi::c_void,
         pub allocation_size: crate::vk::DeviceSize,
         pub memory_type_index: u32,
+        pub _marker: ::core::marker::PhantomData<&'a ()>,
     }
     #[repr(C)]
     #[derive(Clone, Copy)]
@@ -2455,12 +2463,13 @@ pub(crate) mod reexport {
     }
     #[repr(C)]
     #[derive(Clone, Copy)]
-    pub struct MappedMemoryRange {
+    pub struct MappedMemoryRange<'a> {
         pub s_type: crate::vk::StructureType,
         pub p_next: *const core::ffi::c_void,
         pub memory: crate::vk::DeviceMemory,
         pub offset: crate::vk::DeviceSize,
         pub size: crate::vk::DeviceSize,
+        pub _marker: ::core::marker::PhantomData<&'a ()>,
     }
     #[repr(C)]
     #[derive(Clone, Copy)]
@@ -2494,7 +2503,7 @@ pub(crate) mod reexport {
     }
     #[repr(C)]
     #[derive(Clone, Copy)]
-    pub struct WriteDescriptorSet {
+    pub struct WriteDescriptorSet<'a> {
         pub s_type: crate::vk::StructureType,
         pub p_next: *const core::ffi::c_void,
         pub dst_set: crate::vk::DescriptorSet,
@@ -2505,10 +2514,11 @@ pub(crate) mod reexport {
         pub p_image_info: *const crate::vk::DescriptorImageInfo,
         pub p_buffer_info: *const crate::vk::DescriptorBufferInfo,
         pub p_texel_buffer_view: *const crate::vk::BufferView,
+        pub _marker: ::core::marker::PhantomData<&'a ()>,
     }
     #[repr(C)]
     #[derive(Clone, Copy)]
-    pub struct CopyDescriptorSet {
+    pub struct CopyDescriptorSet<'a> {
         pub s_type: crate::vk::StructureType,
         pub p_next: *const core::ffi::c_void,
         pub src_set: crate::vk::DescriptorSet,
@@ -2518,10 +2528,11 @@ pub(crate) mod reexport {
         pub dst_binding: u32,
         pub dst_array_element: u32,
         pub descriptor_count: u32,
+        pub _marker: ::core::marker::PhantomData<&'a ()>,
     }
     #[repr(C)]
     #[derive(Clone, Copy)]
-    pub struct BufferCreateInfo {
+    pub struct BufferCreateInfo<'a> {
         pub s_type: crate::vk::StructureType,
         pub p_next: *const core::ffi::c_void,
         pub flags: crate::vk::BufferCreateFlags,
@@ -2530,10 +2541,11 @@ pub(crate) mod reexport {
         pub sharing_mode: crate::vk::SharingMode,
         pub queue_family_index_count: u32,
         pub p_queue_family_indices: *const u32,
+        pub _marker: ::core::marker::PhantomData<&'a ()>,
     }
     #[repr(C)]
     #[derive(Clone, Copy)]
-    pub struct BufferViewCreateInfo {
+    pub struct BufferViewCreateInfo<'a> {
         pub s_type: crate::vk::StructureType,
         pub p_next: *const core::ffi::c_void,
         pub flags: crate::vk::BufferViewCreateFlags,
@@ -2541,6 +2553,7 @@ pub(crate) mod reexport {
         pub format: crate::vk::Format,
         pub offset: crate::vk::DeviceSize,
         pub range: crate::vk::DeviceSize,
+        pub _marker: ::core::marker::PhantomData<&'a ()>,
     }
     #[repr(C)]
     #[derive(Clone, Copy)]
@@ -2568,15 +2581,16 @@ pub(crate) mod reexport {
     }
     #[repr(C)]
     #[derive(Clone, Copy)]
-    pub struct MemoryBarrier {
+    pub struct MemoryBarrier<'a> {
         pub s_type: crate::vk::StructureType,
         pub p_next: *const core::ffi::c_void,
         pub src_access_mask: crate::vk::AccessFlags,
         pub dst_access_mask: crate::vk::AccessFlags,
+        pub _marker: ::core::marker::PhantomData<&'a ()>,
     }
     #[repr(C)]
     #[derive(Clone, Copy)]
-    pub struct BufferMemoryBarrier {
+    pub struct BufferMemoryBarrier<'a> {
         pub s_type: crate::vk::StructureType,
         pub p_next: *const core::ffi::c_void,
         pub src_access_mask: crate::vk::AccessFlags,
@@ -2586,10 +2600,11 @@ pub(crate) mod reexport {
         pub buffer: crate::vk::Buffer,
         pub offset: crate::vk::DeviceSize,
         pub size: crate::vk::DeviceSize,
+        pub _marker: ::core::marker::PhantomData<&'a ()>,
     }
     #[repr(C)]
     #[derive(Clone, Copy)]
-    pub struct ImageMemoryBarrier {
+    pub struct ImageMemoryBarrier<'a> {
         pub s_type: crate::vk::StructureType,
         pub p_next: *const core::ffi::c_void,
         pub src_access_mask: crate::vk::AccessFlags,
@@ -2600,10 +2615,11 @@ pub(crate) mod reexport {
         pub dst_queue_family_index: u32,
         pub image: crate::vk::Image,
         pub subresource_range: crate::vk::ImageSubresourceRange,
+        pub _marker: ::core::marker::PhantomData<&'a ()>,
     }
     #[repr(C)]
     #[derive(Clone, Copy)]
-    pub struct ImageCreateInfo {
+    pub struct ImageCreateInfo<'a> {
         pub s_type: crate::vk::StructureType,
         pub p_next: *const core::ffi::c_void,
         pub flags: crate::vk::ImageCreateFlags,
@@ -2619,6 +2635,7 @@ pub(crate) mod reexport {
         pub queue_family_index_count: u32,
         pub p_queue_family_indices: *const u32,
         pub initial_layout: crate::vk::ImageLayout,
+        pub _marker: ::core::marker::PhantomData<&'a ()>,
     }
     #[repr(C)]
     #[derive(Clone, Copy)]
@@ -2631,7 +2648,7 @@ pub(crate) mod reexport {
     }
     #[repr(C)]
     #[derive(Clone, Copy)]
-    pub struct ImageViewCreateInfo {
+    pub struct ImageViewCreateInfo<'a> {
         pub s_type: crate::vk::StructureType,
         pub p_next: *const core::ffi::c_void,
         pub flags: crate::vk::ImageViewCreateFlags,
@@ -2640,6 +2657,7 @@ pub(crate) mod reexport {
         pub format: crate::vk::Format,
         pub components: crate::vk::ComponentMapping,
         pub subresource_range: crate::vk::ImageSubresourceRange,
+        pub _marker: ::core::marker::PhantomData<&'a ()>,
     }
     #[repr(C)]
     #[derive(Clone, Copy)]
@@ -2669,40 +2687,44 @@ pub(crate) mod reexport {
     }
     #[repr(C)]
     #[derive(Clone, Copy)]
-    pub struct SparseBufferMemoryBindInfo {
+    pub struct SparseBufferMemoryBindInfo<'a> {
         pub buffer: crate::vk::Buffer,
         pub bind_count: u32,
         pub p_binds: *const crate::vk::SparseMemoryBind,
+        pub _marker: ::core::marker::PhantomData<&'a ()>,
     }
     #[repr(C)]
     #[derive(Clone, Copy)]
-    pub struct SparseImageOpaqueMemoryBindInfo {
+    pub struct SparseImageOpaqueMemoryBindInfo<'a> {
         pub image: crate::vk::Image,
         pub bind_count: u32,
         pub p_binds: *const crate::vk::SparseMemoryBind,
+        pub _marker: ::core::marker::PhantomData<&'a ()>,
     }
     #[repr(C)]
     #[derive(Clone, Copy)]
-    pub struct SparseImageMemoryBindInfo {
+    pub struct SparseImageMemoryBindInfo<'a> {
         pub image: crate::vk::Image,
         pub bind_count: u32,
         pub p_binds: *const crate::vk::SparseImageMemoryBind,
+        pub _marker: ::core::marker::PhantomData<&'a ()>,
     }
     #[repr(C)]
     #[derive(Clone, Copy)]
-    pub struct BindSparseInfo {
+    pub struct BindSparseInfo<'a> {
         pub s_type: crate::vk::StructureType,
         pub p_next: *const core::ffi::c_void,
         pub wait_semaphore_count: u32,
         pub p_wait_semaphores: *const crate::vk::Semaphore,
         pub buffer_bind_count: u32,
-        pub p_buffer_binds: *const crate::vk::SparseBufferMemoryBindInfo,
+        pub p_buffer_binds: *const crate::vk::SparseBufferMemoryBindInfo<'a>,
         pub image_opaque_bind_count: u32,
-        pub p_image_opaque_binds: *const crate::vk::SparseImageOpaqueMemoryBindInfo,
+        pub p_image_opaque_binds: *const crate::vk::SparseImageOpaqueMemoryBindInfo<'a>,
         pub image_bind_count: u32,
-        pub p_image_binds: *const crate::vk::SparseImageMemoryBindInfo,
+        pub p_image_binds: *const crate::vk::SparseImageMemoryBindInfo<'a>,
         pub signal_semaphore_count: u32,
         pub p_signal_semaphores: *const crate::vk::Semaphore,
+        pub _marker: ::core::marker::PhantomData<&'a ()>,
     }
     #[repr(C)]
     #[derive(Clone, Copy)]
@@ -2742,30 +2764,33 @@ pub(crate) mod reexport {
     }
     #[repr(C)]
     #[derive(Clone, Copy)]
-    pub struct ShaderModuleCreateInfo {
+    pub struct ShaderModuleCreateInfo<'a> {
         pub s_type: crate::vk::StructureType,
         pub p_next: *const core::ffi::c_void,
         pub flags: crate::vk::ShaderModuleCreateFlags,
         pub code_size: usize,
         pub p_code: *const u32,
+        pub _marker: ::core::marker::PhantomData<&'a ()>,
     }
     #[repr(C)]
     #[derive(Clone, Copy)]
-    pub struct DescriptorSetLayoutBinding {
+    pub struct DescriptorSetLayoutBinding<'a> {
         pub binding: u32,
         pub descriptor_type: crate::vk::DescriptorType,
         pub descriptor_count: u32,
         pub stage_flags: crate::vk::ShaderStageFlags,
         pub p_immutable_samplers: *const crate::vk::Sampler,
+        pub _marker: ::core::marker::PhantomData<&'a ()>,
     }
     #[repr(C)]
     #[derive(Clone, Copy)]
-    pub struct DescriptorSetLayoutCreateInfo {
+    pub struct DescriptorSetLayoutCreateInfo<'a> {
         pub s_type: crate::vk::StructureType,
         pub p_next: *const core::ffi::c_void,
         pub flags: crate::vk::DescriptorSetLayoutCreateFlags,
         pub binding_count: u32,
-        pub p_bindings: *const crate::vk::DescriptorSetLayoutBinding,
+        pub p_bindings: *const crate::vk::DescriptorSetLayoutBinding<'a>,
+        pub _marker: ::core::marker::PhantomData<&'a ()>,
     }
     #[repr(C)]
     #[derive(Clone, Copy)]
@@ -2775,22 +2800,24 @@ pub(crate) mod reexport {
     }
     #[repr(C)]
     #[derive(Clone, Copy)]
-    pub struct DescriptorPoolCreateInfo {
+    pub struct DescriptorPoolCreateInfo<'a> {
         pub s_type: crate::vk::StructureType,
         pub p_next: *const core::ffi::c_void,
         pub flags: crate::vk::DescriptorPoolCreateFlags,
         pub max_sets: u32,
         pub pool_size_count: u32,
         pub p_pool_sizes: *const crate::vk::DescriptorPoolSize,
+        pub _marker: ::core::marker::PhantomData<&'a ()>,
     }
     #[repr(C)]
     #[derive(Clone, Copy)]
-    pub struct DescriptorSetAllocateInfo {
+    pub struct DescriptorSetAllocateInfo<'a> {
         pub s_type: crate::vk::StructureType,
         pub p_next: *const core::ffi::c_void,
         pub descriptor_pool: crate::vk::DescriptorPool,
         pub descriptor_set_count: u32,
         pub p_set_layouts: *const crate::vk::DescriptorSetLayout,
+        pub _marker: ::core::marker::PhantomData<&'a ()>,
     }
     #[repr(C)]
     #[derive(Clone, Copy)]
@@ -2801,33 +2828,36 @@ pub(crate) mod reexport {
     }
     #[repr(C)]
     #[derive(Clone, Copy)]
-    pub struct SpecializationInfo {
+    pub struct SpecializationInfo<'a> {
         pub map_entry_count: u32,
         pub p_map_entries: *const crate::vk::SpecializationMapEntry,
         pub data_size: usize,
         pub p_data: *const core::ffi::c_void,
+        pub _marker: ::core::marker::PhantomData<&'a ()>,
     }
     #[repr(C)]
     #[derive(Clone, Copy)]
-    pub struct PipelineShaderStageCreateInfo {
+    pub struct PipelineShaderStageCreateInfo<'a> {
         pub s_type: crate::vk::StructureType,
         pub p_next: *const core::ffi::c_void,
         pub flags: crate::vk::PipelineShaderStageCreateFlags,
         pub stage: crate::vk::ShaderStageFlagBits,
         pub module: crate::vk::ShaderModule,
         pub p_name: *const core::ffi::c_char,
-        pub p_specialization_info: *const crate::vk::SpecializationInfo,
+        pub p_specialization_info: *const crate::vk::SpecializationInfo<'a>,
+        pub _marker: ::core::marker::PhantomData<&'a ()>,
     }
     #[repr(C)]
     #[derive(Clone, Copy)]
-    pub struct ComputePipelineCreateInfo {
+    pub struct ComputePipelineCreateInfo<'a> {
         pub s_type: crate::vk::StructureType,
         pub p_next: *const core::ffi::c_void,
         pub flags: crate::vk::PipelineCreateFlags,
-        pub stage: crate::vk::PipelineShaderStageCreateInfo,
+        pub stage: crate::vk::PipelineShaderStageCreateInfo<'a>,
         pub layout: crate::vk::PipelineLayout,
         pub base_pipeline_handle: crate::vk::Pipeline,
         pub base_pipeline_index: i32,
+        pub _marker: ::core::marker::PhantomData<&'a ()>,
     }
     #[repr(C)]
     #[derive(Clone, Copy)]
@@ -2846,7 +2876,7 @@ pub(crate) mod reexport {
     }
     #[repr(C)]
     #[derive(Clone, Copy)]
-    pub struct PipelineVertexInputStateCreateInfo {
+    pub struct PipelineVertexInputStateCreateInfo<'a> {
         pub s_type: crate::vk::StructureType,
         pub p_next: *const core::ffi::c_void,
         pub flags: crate::vk::PipelineVertexInputStateCreateFlags,
@@ -2854,27 +2884,30 @@ pub(crate) mod reexport {
         pub p_vertex_binding_descriptions: *const crate::vk::VertexInputBindingDescription,
         pub vertex_attribute_description_count: u32,
         pub p_vertex_attribute_descriptions: *const crate::vk::VertexInputAttributeDescription,
+        pub _marker: ::core::marker::PhantomData<&'a ()>,
     }
     #[repr(C)]
     #[derive(Clone, Copy)]
-    pub struct PipelineInputAssemblyStateCreateInfo {
+    pub struct PipelineInputAssemblyStateCreateInfo<'a> {
         pub s_type: crate::vk::StructureType,
         pub p_next: *const core::ffi::c_void,
         pub flags: crate::vk::PipelineInputAssemblyStateCreateFlags,
         pub topology: crate::vk::PrimitiveTopology,
         pub primitive_restart_enable: crate::vk::Bool32,
+        pub _marker: ::core::marker::PhantomData<&'a ()>,
     }
     #[repr(C)]
     #[derive(Clone, Copy)]
-    pub struct PipelineTessellationStateCreateInfo {
+    pub struct PipelineTessellationStateCreateInfo<'a> {
         pub s_type: crate::vk::StructureType,
         pub p_next: *const core::ffi::c_void,
         pub flags: crate::vk::PipelineTessellationStateCreateFlags,
         pub patch_control_points: u32,
+        pub _marker: ::core::marker::PhantomData<&'a ()>,
     }
     #[repr(C)]
     #[derive(Clone, Copy)]
-    pub struct PipelineViewportStateCreateInfo {
+    pub struct PipelineViewportStateCreateInfo<'a> {
         pub s_type: crate::vk::StructureType,
         pub p_next: *const core::ffi::c_void,
         pub flags: crate::vk::PipelineViewportStateCreateFlags,
@@ -2882,10 +2915,11 @@ pub(crate) mod reexport {
         pub p_viewports: *const crate::vk::Viewport,
         pub scissor_count: u32,
         pub p_scissors: *const crate::vk::Rect2D,
+        pub _marker: ::core::marker::PhantomData<&'a ()>,
     }
     #[repr(C)]
     #[derive(Clone, Copy)]
-    pub struct PipelineRasterizationStateCreateInfo {
+    pub struct PipelineRasterizationStateCreateInfo<'a> {
         pub s_type: crate::vk::StructureType,
         pub p_next: *const core::ffi::c_void,
         pub flags: crate::vk::PipelineRasterizationStateCreateFlags,
@@ -2899,10 +2933,11 @@ pub(crate) mod reexport {
         pub depth_bias_clamp: core::ffi::c_float,
         pub depth_bias_slope_factor: core::ffi::c_float,
         pub line_width: core::ffi::c_float,
+        pub _marker: ::core::marker::PhantomData<&'a ()>,
     }
     #[repr(C)]
     #[derive(Clone, Copy)]
-    pub struct PipelineMultisampleStateCreateInfo {
+    pub struct PipelineMultisampleStateCreateInfo<'a> {
         pub s_type: crate::vk::StructureType,
         pub p_next: *const core::ffi::c_void,
         pub flags: crate::vk::PipelineMultisampleStateCreateFlags,
@@ -2912,6 +2947,7 @@ pub(crate) mod reexport {
         pub p_sample_mask: *const crate::vk::SampleMask,
         pub alpha_to_coverage_enable: crate::vk::Bool32,
         pub alpha_to_one_enable: crate::vk::Bool32,
+        pub _marker: ::core::marker::PhantomData<&'a ()>,
     }
     #[repr(C)]
     #[derive(Clone, Copy)]
@@ -2927,7 +2963,7 @@ pub(crate) mod reexport {
     }
     #[repr(C)]
     #[derive(Clone, Copy)]
-    pub struct PipelineColorBlendStateCreateInfo {
+    pub struct PipelineColorBlendStateCreateInfo<'a> {
         pub s_type: crate::vk::StructureType,
         pub p_next: *const core::ffi::c_void,
         pub flags: crate::vk::PipelineColorBlendStateCreateFlags,
@@ -2936,15 +2972,17 @@ pub(crate) mod reexport {
         pub attachment_count: u32,
         pub p_attachments: *const crate::vk::PipelineColorBlendAttachmentState,
         pub blend_constants: [core::ffi::c_float; 4 as _],
+        pub _marker: ::core::marker::PhantomData<&'a ()>,
     }
     #[repr(C)]
     #[derive(Clone, Copy)]
-    pub struct PipelineDynamicStateCreateInfo {
+    pub struct PipelineDynamicStateCreateInfo<'a> {
         pub s_type: crate::vk::StructureType,
         pub p_next: *const core::ffi::c_void,
         pub flags: crate::vk::PipelineDynamicStateCreateFlags,
         pub dynamic_state_count: u32,
         pub p_dynamic_states: *const crate::vk::DynamicState,
+        pub _marker: ::core::marker::PhantomData<&'a ()>,
     }
     #[repr(C)]
     #[derive(Clone, Copy)]
@@ -2959,7 +2997,7 @@ pub(crate) mod reexport {
     }
     #[repr(C)]
     #[derive(Clone, Copy)]
-    pub struct PipelineDepthStencilStateCreateInfo {
+    pub struct PipelineDepthStencilStateCreateInfo<'a> {
         pub s_type: crate::vk::StructureType,
         pub p_next: *const core::ffi::c_void,
         pub flags: crate::vk::PipelineDepthStencilStateCreateFlags,
@@ -2972,38 +3010,53 @@ pub(crate) mod reexport {
         pub back: crate::vk::StencilOpState,
         pub min_depth_bounds: core::ffi::c_float,
         pub max_depth_bounds: core::ffi::c_float,
+        pub _marker: ::core::marker::PhantomData<&'a ()>,
     }
     #[repr(C)]
     #[derive(Clone, Copy)]
-    pub struct GraphicsPipelineCreateInfo {
+    pub struct GraphicsPipelineCreateInfo<'a> {
         pub s_type: crate::vk::StructureType,
         pub p_next: *const core::ffi::c_void,
         pub flags: crate::vk::PipelineCreateFlags,
         pub stage_count: u32,
-        pub p_stages: *const crate::vk::PipelineShaderStageCreateInfo,
-        pub p_vertex_input_state: *const crate::vk::PipelineVertexInputStateCreateInfo,
-        pub p_input_assembly_state: *const crate::vk::PipelineInputAssemblyStateCreateInfo,
-        pub p_tessellation_state: *const crate::vk::PipelineTessellationStateCreateInfo,
-        pub p_viewport_state: *const crate::vk::PipelineViewportStateCreateInfo,
-        pub p_rasterization_state: *const crate::vk::PipelineRasterizationStateCreateInfo,
-        pub p_multisample_state: *const crate::vk::PipelineMultisampleStateCreateInfo,
-        pub p_depth_stencil_state: *const crate::vk::PipelineDepthStencilStateCreateInfo,
-        pub p_color_blend_state: *const crate::vk::PipelineColorBlendStateCreateInfo,
-        pub p_dynamic_state: *const crate::vk::PipelineDynamicStateCreateInfo,
+        pub p_stages: *const crate::vk::PipelineShaderStageCreateInfo<'a>,
+        pub p_vertex_input_state: *const crate::vk::PipelineVertexInputStateCreateInfo<
+            'a,
+        >,
+        pub p_input_assembly_state: *const crate::vk::PipelineInputAssemblyStateCreateInfo<
+            'a,
+        >,
+        pub p_tessellation_state: *const crate::vk::PipelineTessellationStateCreateInfo<
+            'a,
+        >,
+        pub p_viewport_state: *const crate::vk::PipelineViewportStateCreateInfo<'a>,
+        pub p_rasterization_state: *const crate::vk::PipelineRasterizationStateCreateInfo<
+            'a,
+        >,
+        pub p_multisample_state: *const crate::vk::PipelineMultisampleStateCreateInfo<
+            'a,
+        >,
+        pub p_depth_stencil_state: *const crate::vk::PipelineDepthStencilStateCreateInfo<
+            'a,
+        >,
+        pub p_color_blend_state: *const crate::vk::PipelineColorBlendStateCreateInfo<'a>,
+        pub p_dynamic_state: *const crate::vk::PipelineDynamicStateCreateInfo<'a>,
         pub layout: crate::vk::PipelineLayout,
         pub render_pass: crate::vk::RenderPass,
         pub subpass: u32,
         pub base_pipeline_handle: crate::vk::Pipeline,
         pub base_pipeline_index: i32,
+        pub _marker: ::core::marker::PhantomData<&'a ()>,
     }
     #[repr(C)]
     #[derive(Clone, Copy)]
-    pub struct PipelineCacheCreateInfo {
+    pub struct PipelineCacheCreateInfo<'a> {
         pub s_type: crate::vk::StructureType,
         pub p_next: *const core::ffi::c_void,
         pub flags: crate::vk::PipelineCacheCreateFlags,
         pub initial_data_size: usize,
         pub p_initial_data: *const core::ffi::c_void,
+        pub _marker: ::core::marker::PhantomData<&'a ()>,
     }
     #[repr(C)]
     #[derive(Clone, Copy)]
@@ -3023,7 +3076,7 @@ pub(crate) mod reexport {
     }
     #[repr(C)]
     #[derive(Clone, Copy)]
-    pub struct PipelineLayoutCreateInfo {
+    pub struct PipelineLayoutCreateInfo<'a> {
         pub s_type: crate::vk::StructureType,
         pub p_next: *const core::ffi::c_void,
         pub flags: crate::vk::PipelineLayoutCreateFlags,
@@ -3031,10 +3084,11 @@ pub(crate) mod reexport {
         pub p_set_layouts: *const crate::vk::DescriptorSetLayout,
         pub push_constant_range_count: u32,
         pub p_push_constant_ranges: *const crate::vk::PushConstantRange,
+        pub _marker: ::core::marker::PhantomData<&'a ()>,
     }
     #[repr(C)]
     #[derive(Clone, Copy)]
-    pub struct SamplerCreateInfo {
+    pub struct SamplerCreateInfo<'a> {
         pub s_type: crate::vk::StructureType,
         pub p_next: *const core::ffi::c_void,
         pub flags: crate::vk::SamplerCreateFlags,
@@ -3053,27 +3107,30 @@ pub(crate) mod reexport {
         pub max_lod: core::ffi::c_float,
         pub border_color: crate::vk::BorderColor,
         pub unnormalized_coordinates: crate::vk::Bool32,
+        pub _marker: ::core::marker::PhantomData<&'a ()>,
     }
     #[repr(C)]
     #[derive(Clone, Copy)]
-    pub struct CommandPoolCreateInfo {
+    pub struct CommandPoolCreateInfo<'a> {
         pub s_type: crate::vk::StructureType,
         pub p_next: *const core::ffi::c_void,
         pub flags: crate::vk::CommandPoolCreateFlags,
         pub queue_family_index: u32,
+        pub _marker: ::core::marker::PhantomData<&'a ()>,
     }
     #[repr(C)]
     #[derive(Clone, Copy)]
-    pub struct CommandBufferAllocateInfo {
+    pub struct CommandBufferAllocateInfo<'a> {
         pub s_type: crate::vk::StructureType,
         pub p_next: *const core::ffi::c_void,
         pub command_pool: crate::vk::CommandPool,
         pub level: crate::vk::CommandBufferLevel,
         pub command_buffer_count: u32,
+        pub _marker: ::core::marker::PhantomData<&'a ()>,
     }
     #[repr(C)]
     #[derive(Clone, Copy)]
-    pub struct CommandBufferInheritanceInfo {
+    pub struct CommandBufferInheritanceInfo<'a> {
         pub s_type: crate::vk::StructureType,
         pub p_next: *const core::ffi::c_void,
         pub render_pass: crate::vk::RenderPass,
@@ -3082,18 +3139,20 @@ pub(crate) mod reexport {
         pub occlusion_query_enable: crate::vk::Bool32,
         pub query_flags: crate::vk::QueryControlFlags,
         pub pipeline_statistics: crate::vk::QueryPipelineStatisticFlags,
+        pub _marker: ::core::marker::PhantomData<&'a ()>,
     }
     #[repr(C)]
     #[derive(Clone, Copy)]
-    pub struct CommandBufferBeginInfo {
+    pub struct CommandBufferBeginInfo<'a> {
         pub s_type: crate::vk::StructureType,
         pub p_next: *const core::ffi::c_void,
         pub flags: crate::vk::CommandBufferUsageFlags,
-        pub p_inheritance_info: *const crate::vk::CommandBufferInheritanceInfo,
+        pub p_inheritance_info: *const crate::vk::CommandBufferInheritanceInfo<'a>,
+        pub _marker: ::core::marker::PhantomData<&'a ()>,
     }
     #[repr(C)]
     #[derive(Clone, Copy)]
-    pub struct RenderPassBeginInfo {
+    pub struct RenderPassBeginInfo<'a> {
         pub s_type: crate::vk::StructureType,
         pub p_next: *const core::ffi::c_void,
         pub render_pass: crate::vk::RenderPass,
@@ -3101,6 +3160,7 @@ pub(crate) mod reexport {
         pub render_area: crate::vk::Rect2D,
         pub clear_value_count: u32,
         pub p_clear_values: *const crate::vk::ClearValue,
+        pub _marker: ::core::marker::PhantomData<&'a ()>,
     }
     #[repr(C)]
     #[derive(Clone, Copy)]
@@ -3136,7 +3196,7 @@ pub(crate) mod reexport {
     }
     #[repr(C)]
     #[derive(Clone, Copy)]
-    pub struct SubpassDescription {
+    pub struct SubpassDescription<'a> {
         pub flags: crate::vk::SubpassDescriptionFlags,
         pub pipeline_bind_point: crate::vk::PipelineBindPoint,
         pub input_attachment_count: u32,
@@ -3147,6 +3207,7 @@ pub(crate) mod reexport {
         pub p_depth_stencil_attachment: *const crate::vk::AttachmentReference,
         pub preserve_attachment_count: u32,
         pub p_preserve_attachments: *const u32,
+        pub _marker: ::core::marker::PhantomData<&'a ()>,
     }
     #[repr(C)]
     #[derive(Clone, Copy)]
@@ -3161,30 +3222,33 @@ pub(crate) mod reexport {
     }
     #[repr(C)]
     #[derive(Clone, Copy)]
-    pub struct RenderPassCreateInfo {
+    pub struct RenderPassCreateInfo<'a> {
         pub s_type: crate::vk::StructureType,
         pub p_next: *const core::ffi::c_void,
         pub flags: crate::vk::RenderPassCreateFlags,
         pub attachment_count: u32,
         pub p_attachments: *const crate::vk::AttachmentDescription,
         pub subpass_count: u32,
-        pub p_subpasses: *const crate::vk::SubpassDescription,
+        pub p_subpasses: *const crate::vk::SubpassDescription<'a>,
         pub dependency_count: u32,
         pub p_dependencies: *const crate::vk::SubpassDependency,
+        pub _marker: ::core::marker::PhantomData<&'a ()>,
     }
     #[repr(C)]
     #[derive(Clone, Copy)]
-    pub struct EventCreateInfo {
+    pub struct EventCreateInfo<'a> {
         pub s_type: crate::vk::StructureType,
         pub p_next: *const core::ffi::c_void,
         pub flags: crate::vk::EventCreateFlags,
+        pub _marker: ::core::marker::PhantomData<&'a ()>,
     }
     #[repr(C)]
     #[derive(Clone, Copy)]
-    pub struct FenceCreateInfo {
+    pub struct FenceCreateInfo<'a> {
         pub s_type: crate::vk::StructureType,
         pub p_next: *const core::ffi::c_void,
         pub flags: crate::vk::FenceCreateFlags,
+        pub _marker: ::core::marker::PhantomData<&'a ()>,
     }
     #[repr(C)]
     #[derive(Clone, Copy)]
@@ -3366,24 +3430,26 @@ pub(crate) mod reexport {
     }
     #[repr(C)]
     #[derive(Clone, Copy)]
-    pub struct SemaphoreCreateInfo {
+    pub struct SemaphoreCreateInfo<'a> {
         pub s_type: crate::vk::StructureType,
         pub p_next: *const core::ffi::c_void,
         pub flags: crate::vk::SemaphoreCreateFlags,
+        pub _marker: ::core::marker::PhantomData<&'a ()>,
     }
     #[repr(C)]
     #[derive(Clone, Copy)]
-    pub struct QueryPoolCreateInfo {
+    pub struct QueryPoolCreateInfo<'a> {
         pub s_type: crate::vk::StructureType,
         pub p_next: *const core::ffi::c_void,
         pub flags: crate::vk::QueryPoolCreateFlags,
         pub query_type: crate::vk::QueryType,
         pub query_count: u32,
         pub pipeline_statistics: crate::vk::QueryPipelineStatisticFlags,
+        pub _marker: ::core::marker::PhantomData<&'a ()>,
     }
     #[repr(C)]
     #[derive(Clone, Copy)]
-    pub struct FramebufferCreateInfo {
+    pub struct FramebufferCreateInfo<'a> {
         pub s_type: crate::vk::StructureType,
         pub p_next: *const core::ffi::c_void,
         pub flags: crate::vk::FramebufferCreateFlags,
@@ -3393,6 +3459,7 @@ pub(crate) mod reexport {
         pub width: u32,
         pub height: u32,
         pub layers: u32,
+        pub _marker: ::core::marker::PhantomData<&'a ()>,
     }
     #[repr(C)]
     #[derive(Clone, Copy)]
@@ -3420,7 +3487,7 @@ pub(crate) mod reexport {
     }
     #[repr(C)]
     #[derive(Clone, Copy)]
-    pub struct SubmitInfo {
+    pub struct SubmitInfo<'a> {
         pub s_type: crate::vk::StructureType,
         pub p_next: *const core::ffi::c_void,
         pub wait_semaphore_count: u32,
@@ -3430,6 +3497,7 @@ pub(crate) mod reexport {
         pub p_command_buffers: *const crate::vk::CommandBuffer,
         pub signal_semaphore_count: u32,
         pub p_signal_semaphores: *const crate::vk::Semaphore,
+        pub _marker: ::core::marker::PhantomData<&'a ()>,
     }
     #[repr(C)]
     #[derive(Clone, Copy)]
@@ -3446,6 +3514,7 @@ pub(crate) mod reexport {
     }
     #[repr(transparent)]
     #[derive(Clone, Copy, PartialEq, Eq, PartialOrd, Ord, Hash, Default)]
+    #[derive(Debug)]
     pub struct ImageLayout(pub(crate) i32);
     ///Provided by [`vk1_0`](crate::vk1_0)
     impl ImageLayout {
@@ -3461,6 +3530,7 @@ pub(crate) mod reexport {
     }
     #[repr(transparent)]
     #[derive(Clone, Copy, PartialEq, Eq, PartialOrd, Ord, Hash, Default)]
+    #[derive(Debug)]
     pub struct AttachmentLoadOp(pub(crate) i32);
     ///Provided by [`vk1_0`](crate::vk1_0)
     impl AttachmentLoadOp {
@@ -3470,6 +3540,7 @@ pub(crate) mod reexport {
     }
     #[repr(transparent)]
     #[derive(Clone, Copy, PartialEq, Eq, PartialOrd, Ord, Hash, Default)]
+    #[derive(Debug)]
     pub struct AttachmentStoreOp(pub(crate) i32);
     ///Provided by [`vk1_0`](crate::vk1_0)
     impl AttachmentStoreOp {
@@ -3478,6 +3549,7 @@ pub(crate) mod reexport {
     }
     #[repr(transparent)]
     #[derive(Clone, Copy, PartialEq, Eq, PartialOrd, Ord, Hash, Default)]
+    #[derive(Debug)]
     pub struct ImageType(pub(crate) i32);
     ///Provided by [`vk1_0`](crate::vk1_0)
     impl ImageType {
@@ -3487,6 +3559,7 @@ pub(crate) mod reexport {
     }
     #[repr(transparent)]
     #[derive(Clone, Copy, PartialEq, Eq, PartialOrd, Ord, Hash, Default)]
+    #[derive(Debug)]
     pub struct ImageTiling(pub(crate) i32);
     ///Provided by [`vk1_0`](crate::vk1_0)
     impl ImageTiling {
@@ -3495,6 +3568,7 @@ pub(crate) mod reexport {
     }
     #[repr(transparent)]
     #[derive(Clone, Copy, PartialEq, Eq, PartialOrd, Ord, Hash, Default)]
+    #[derive(Debug)]
     pub struct ImageViewType(pub(crate) i32);
     ///Provided by [`vk1_0`](crate::vk1_0)
     impl ImageViewType {
@@ -3508,6 +3582,7 @@ pub(crate) mod reexport {
     }
     #[repr(transparent)]
     #[derive(Clone, Copy, PartialEq, Eq, PartialOrd, Ord, Hash, Default)]
+    #[derive(Debug)]
     pub struct CommandBufferLevel(pub(crate) i32);
     ///Provided by [`vk1_0`](crate::vk1_0)
     impl CommandBufferLevel {
@@ -3516,6 +3591,7 @@ pub(crate) mod reexport {
     }
     #[repr(transparent)]
     #[derive(Clone, Copy, PartialEq, Eq, PartialOrd, Ord, Hash, Default)]
+    #[derive(Debug)]
     pub struct ComponentSwizzle(pub(crate) i32);
     ///Provided by [`vk1_0`](crate::vk1_0)
     impl ComponentSwizzle {
@@ -3529,6 +3605,7 @@ pub(crate) mod reexport {
     }
     #[repr(transparent)]
     #[derive(Clone, Copy, PartialEq, Eq, PartialOrd, Ord, Hash, Default)]
+    #[derive(Debug)]
     pub struct DescriptorType(pub(crate) i32);
     ///Provided by [`vk1_0`](crate::vk1_0)
     impl DescriptorType {
@@ -3546,6 +3623,7 @@ pub(crate) mod reexport {
     }
     #[repr(transparent)]
     #[derive(Clone, Copy, PartialEq, Eq, PartialOrd, Ord, Hash, Default)]
+    #[derive(Debug)]
     pub struct QueryType(pub(crate) i32);
     ///Provided by [`vk1_0`](crate::vk1_0)
     impl QueryType {
@@ -3555,6 +3633,7 @@ pub(crate) mod reexport {
     }
     #[repr(transparent)]
     #[derive(Clone, Copy, PartialEq, Eq, PartialOrd, Ord, Hash, Default)]
+    #[derive(Debug)]
     pub struct BorderColor(pub(crate) i32);
     ///Provided by [`vk1_0`](crate::vk1_0)
     impl BorderColor {
@@ -3567,6 +3646,7 @@ pub(crate) mod reexport {
     }
     #[repr(transparent)]
     #[derive(Clone, Copy, PartialEq, Eq, PartialOrd, Ord, Hash, Default)]
+    #[derive(Debug)]
     pub struct PipelineBindPoint(pub(crate) i32);
     ///Provided by [`vk1_0`](crate::vk1_0)
     impl PipelineBindPoint {
@@ -3575,6 +3655,7 @@ pub(crate) mod reexport {
     }
     #[repr(transparent)]
     #[derive(Clone, Copy, PartialEq, Eq, PartialOrd, Ord, Hash, Default)]
+    #[derive(Debug)]
     pub struct PipelineCacheHeaderVersion(pub(crate) i32);
     ///Provided by [`vk1_0`](crate::vk1_0)
     impl PipelineCacheHeaderVersion {
@@ -3582,6 +3663,7 @@ pub(crate) mod reexport {
     }
     #[repr(transparent)]
     #[derive(Clone, Copy, PartialEq, Eq, PartialOrd, Ord, Hash, Default)]
+    #[derive(Debug)]
     pub struct PrimitiveTopology(pub(crate) i32);
     ///Provided by [`vk1_0`](crate::vk1_0)
     impl PrimitiveTopology {
@@ -3599,6 +3681,7 @@ pub(crate) mod reexport {
     }
     #[repr(transparent)]
     #[derive(Clone, Copy, PartialEq, Eq, PartialOrd, Ord, Hash, Default)]
+    #[derive(Debug)]
     pub struct SharingMode(pub(crate) i32);
     ///Provided by [`vk1_0`](crate::vk1_0)
     impl SharingMode {
@@ -3607,6 +3690,7 @@ pub(crate) mod reexport {
     }
     #[repr(transparent)]
     #[derive(Clone, Copy, PartialEq, Eq, PartialOrd, Ord, Hash, Default)]
+    #[derive(Debug)]
     pub struct IndexType(pub(crate) i32);
     ///Provided by [`vk1_0`](crate::vk1_0)
     impl IndexType {
@@ -3615,6 +3699,7 @@ pub(crate) mod reexport {
     }
     #[repr(transparent)]
     #[derive(Clone, Copy, PartialEq, Eq, PartialOrd, Ord, Hash, Default)]
+    #[derive(Debug)]
     pub struct Filter(pub(crate) i32);
     ///Provided by [`vk1_0`](crate::vk1_0)
     impl Filter {
@@ -3623,6 +3708,7 @@ pub(crate) mod reexport {
     }
     #[repr(transparent)]
     #[derive(Clone, Copy, PartialEq, Eq, PartialOrd, Ord, Hash, Default)]
+    #[derive(Debug)]
     pub struct SamplerMipmapMode(pub(crate) i32);
     ///Provided by [`vk1_0`](crate::vk1_0)
     impl SamplerMipmapMode {
@@ -3631,6 +3717,7 @@ pub(crate) mod reexport {
     }
     #[repr(transparent)]
     #[derive(Clone, Copy, PartialEq, Eq, PartialOrd, Ord, Hash, Default)]
+    #[derive(Debug)]
     pub struct SamplerAddressMode(pub(crate) i32);
     ///Provided by [`vk1_0`](crate::vk1_0)
     impl SamplerAddressMode {
@@ -3641,6 +3728,7 @@ pub(crate) mod reexport {
     }
     #[repr(transparent)]
     #[derive(Clone, Copy, PartialEq, Eq, PartialOrd, Ord, Hash, Default)]
+    #[derive(Debug)]
     pub struct CompareOp(pub(crate) i32);
     ///Provided by [`vk1_0`](crate::vk1_0)
     impl CompareOp {
@@ -3655,6 +3743,7 @@ pub(crate) mod reexport {
     }
     #[repr(transparent)]
     #[derive(Clone, Copy, PartialEq, Eq, PartialOrd, Ord, Hash, Default)]
+    #[derive(Debug)]
     pub struct PolygonMode(pub(crate) i32);
     ///Provided by [`vk1_0`](crate::vk1_0)
     impl PolygonMode {
@@ -3664,6 +3753,7 @@ pub(crate) mod reexport {
     }
     #[repr(transparent)]
     #[derive(Clone, Copy, PartialEq, Eq, PartialOrd, Ord, Hash, Default)]
+    #[derive(Debug)]
     pub struct FrontFace(pub(crate) i32);
     ///Provided by [`vk1_0`](crate::vk1_0)
     impl FrontFace {
@@ -3672,6 +3762,7 @@ pub(crate) mod reexport {
     }
     #[repr(transparent)]
     #[derive(Clone, Copy, PartialEq, Eq, PartialOrd, Ord, Hash, Default)]
+    #[derive(Debug)]
     pub struct BlendFactor(pub(crate) i32);
     ///Provided by [`vk1_0`](crate::vk1_0)
     impl BlendFactor {
@@ -3697,6 +3788,7 @@ pub(crate) mod reexport {
     }
     #[repr(transparent)]
     #[derive(Clone, Copy, PartialEq, Eq, PartialOrd, Ord, Hash, Default)]
+    #[derive(Debug)]
     pub struct BlendOp(pub(crate) i32);
     ///Provided by [`vk1_0`](crate::vk1_0)
     impl BlendOp {
@@ -3708,6 +3800,7 @@ pub(crate) mod reexport {
     }
     #[repr(transparent)]
     #[derive(Clone, Copy, PartialEq, Eq, PartialOrd, Ord, Hash, Default)]
+    #[derive(Debug)]
     pub struct StencilOp(pub(crate) i32);
     ///Provided by [`vk1_0`](crate::vk1_0)
     impl StencilOp {
@@ -3722,6 +3815,7 @@ pub(crate) mod reexport {
     }
     #[repr(transparent)]
     #[derive(Clone, Copy, PartialEq, Eq, PartialOrd, Ord, Hash, Default)]
+    #[derive(Debug)]
     pub struct LogicOp(pub(crate) i32);
     ///Provided by [`vk1_0`](crate::vk1_0)
     impl LogicOp {
@@ -3744,6 +3838,7 @@ pub(crate) mod reexport {
     }
     #[repr(transparent)]
     #[derive(Clone, Copy, PartialEq, Eq, PartialOrd, Ord, Hash, Default)]
+    #[derive(Debug)]
     pub struct InternalAllocationType(pub(crate) i32);
     ///Provided by [`vk1_0`](crate::vk1_0)
     impl InternalAllocationType {
@@ -3751,6 +3846,7 @@ pub(crate) mod reexport {
     }
     #[repr(transparent)]
     #[derive(Clone, Copy, PartialEq, Eq, PartialOrd, Ord, Hash, Default)]
+    #[derive(Debug)]
     pub struct SystemAllocationScope(pub(crate) i32);
     ///Provided by [`vk1_0`](crate::vk1_0)
     impl SystemAllocationScope {
@@ -3762,6 +3858,7 @@ pub(crate) mod reexport {
     }
     #[repr(transparent)]
     #[derive(Clone, Copy, PartialEq, Eq, PartialOrd, Ord, Hash, Default)]
+    #[derive(Debug)]
     pub struct PhysicalDeviceType(pub(crate) i32);
     ///Provided by [`vk1_0`](crate::vk1_0)
     impl PhysicalDeviceType {
@@ -3773,6 +3870,7 @@ pub(crate) mod reexport {
     }
     #[repr(transparent)]
     #[derive(Clone, Copy, PartialEq, Eq, PartialOrd, Ord, Hash, Default)]
+    #[derive(Debug)]
     pub struct VertexInputRate(pub(crate) i32);
     ///Provided by [`vk1_0`](crate::vk1_0)
     impl VertexInputRate {
@@ -3781,6 +3879,7 @@ pub(crate) mod reexport {
     }
     #[repr(transparent)]
     #[derive(Clone, Copy, PartialEq, Eq, PartialOrd, Ord, Hash, Default)]
+    #[derive(Debug)]
     pub struct Format(pub(crate) i32);
     ///Provided by [`vk1_0`](crate::vk1_0)
     impl Format {
@@ -3972,6 +4071,7 @@ pub(crate) mod reexport {
     }
     #[repr(transparent)]
     #[derive(Clone, Copy, PartialEq, Eq, PartialOrd, Ord, Hash, Default)]
+    #[derive(Debug)]
     pub struct StructureType(pub(crate) i32);
     ///Provided by [`vk1_0`](crate::vk1_0)
     impl StructureType {
@@ -4027,6 +4127,7 @@ pub(crate) mod reexport {
     }
     #[repr(transparent)]
     #[derive(Clone, Copy, PartialEq, Eq, PartialOrd, Ord, Hash, Default)]
+    #[derive(Debug)]
     pub struct SubpassContents(pub(crate) i32);
     ///Provided by [`vk1_0`](crate::vk1_0)
     impl SubpassContents {
@@ -4035,6 +4136,7 @@ pub(crate) mod reexport {
     }
     #[repr(transparent)]
     #[derive(Clone, Copy, PartialEq, Eq, PartialOrd, Ord, Hash, Default)]
+    #[derive(Debug)]
     pub struct Result(pub(crate) i32);
     ///Provided by [`vk1_0`](crate::vk1_0)
     impl Result {
@@ -4061,6 +4163,7 @@ pub(crate) mod reexport {
     }
     #[repr(transparent)]
     #[derive(Clone, Copy, PartialEq, Eq, PartialOrd, Ord, Hash, Default)]
+    #[derive(Debug)]
     pub struct DynamicState(pub(crate) i32);
     ///Provided by [`vk1_0`](crate::vk1_0)
     impl DynamicState {
@@ -4076,6 +4179,7 @@ pub(crate) mod reexport {
     }
     #[repr(transparent)]
     #[derive(Clone, Copy, PartialEq, Eq, PartialOrd, Ord, Hash, Default)]
+    #[derive(Debug)]
     pub struct ObjectType(pub(crate) i32);
     ///Provided by [`vk1_0`](crate::vk1_0)
     impl ObjectType {
@@ -4108,6 +4212,7 @@ pub(crate) mod reexport {
     }
     #[repr(transparent)]
     #[derive(Clone, Copy, PartialEq, Eq, PartialOrd, Ord, Hash, Default)]
+    #[derive(Debug)]
     pub struct VendorId(pub(crate) i32);
     ///Provided by [`vk1_0`](crate::vk1_0)
     impl VendorId {
@@ -5215,26 +5320,11 @@ pub(crate) mod reexport {
     impl DependencyFlagBits {
         pub const BY_REGION: Self = Self(1 << 0);
     }
-    #[repr(transparent)]
-    #[allow(non_camel_case_types)]
-    #[derive(Clone, Copy)]
-    pub struct SampleMask(pub(crate) u32);
-    #[repr(transparent)]
-    #[allow(non_camel_case_types)]
-    #[derive(Clone, Copy)]
-    pub struct Bool32(pub(crate) u32);
-    #[repr(transparent)]
-    #[allow(non_camel_case_types)]
-    #[derive(Clone, Copy)]
-    pub struct Flags(pub(crate) u32);
-    #[repr(transparent)]
-    #[allow(non_camel_case_types)]
-    #[derive(Clone, Copy)]
-    pub struct DeviceSize(pub(crate) u64);
-    #[repr(transparent)]
-    #[allow(non_camel_case_types)]
-    #[derive(Clone, Copy)]
-    pub struct DeviceAddress(pub(crate) u64);
+    pub type SampleMask = u32;
+    pub type Bool32 = u32;
+    pub type Flags = u32;
+    pub type DeviceSize = u64;
+    pub type DeviceAddress = u64;
     #[repr(transparent)]
     #[derive(Eq, PartialEq, Ord, PartialOrd, Clone, Copy, Hash)]
     pub struct Instance(*mut u8);
@@ -5986,13 +6076,13 @@ pub(crate) mod reexport {
     >;
     pub type PFN_vkVoidFunction = Option<unsafe extern "system" fn()>;
     pub type PFN_vkCreateInstance = unsafe extern "system" fn(
-        p_create_info: *const crate::vk::InstanceCreateInfo,
-        p_allocator: *const crate::vk::AllocationCallbacks,
+        p_create_info: *const crate::vk::InstanceCreateInfo<'_>,
+        p_allocator: *const crate::vk::AllocationCallbacks<'_>,
         p_instance: *mut crate::vk::Instance,
     ) -> crate::vk::Result;
     pub type PFN_vkDestroyInstance = unsafe extern "system" fn(
         instance: crate::vk::Instance,
-        p_allocator: *const crate::vk::AllocationCallbacks,
+        p_allocator: *const crate::vk::AllocationCallbacks<'_>,
     );
     pub type PFN_vkEnumeratePhysicalDevices = unsafe extern "system" fn(
         instance: crate::vk::Instance,
@@ -6040,13 +6130,13 @@ pub(crate) mod reexport {
     ) -> crate::vk::Result;
     pub type PFN_vkCreateDevice = unsafe extern "system" fn(
         physical_device: crate::vk::PhysicalDevice,
-        p_create_info: *const crate::vk::DeviceCreateInfo,
-        p_allocator: *const crate::vk::AllocationCallbacks,
+        p_create_info: *const crate::vk::DeviceCreateInfo<'_>,
+        p_allocator: *const crate::vk::AllocationCallbacks<'_>,
         p_device: *mut crate::vk::Device,
     ) -> crate::vk::Result;
     pub type PFN_vkDestroyDevice = unsafe extern "system" fn(
         device: crate::vk::Device,
-        p_allocator: *const crate::vk::AllocationCallbacks,
+        p_allocator: *const crate::vk::AllocationCallbacks<'_>,
     );
     pub type PFN_vkEnumerateInstanceLayerProperties = unsafe extern "system" fn(
         p_property_count: *mut u32,
@@ -6077,7 +6167,7 @@ pub(crate) mod reexport {
     pub type PFN_vkQueueSubmit = unsafe extern "system" fn(
         queue: crate::vk::Queue,
         submit_count: u32,
-        p_submits: *const crate::vk::SubmitInfo,
+        p_submits: *const crate::vk::SubmitInfo<'_>,
         fence: crate::vk::Fence,
     ) -> crate::vk::Result;
     pub type PFN_vkQueueWaitIdle = unsafe extern "system" fn(
@@ -6088,14 +6178,14 @@ pub(crate) mod reexport {
     ) -> crate::vk::Result;
     pub type PFN_vkAllocateMemory = unsafe extern "system" fn(
         device: crate::vk::Device,
-        p_allocate_info: *const crate::vk::MemoryAllocateInfo,
-        p_allocator: *const crate::vk::AllocationCallbacks,
+        p_allocate_info: *const crate::vk::MemoryAllocateInfo<'_>,
+        p_allocator: *const crate::vk::AllocationCallbacks<'_>,
         p_memory: *mut crate::vk::DeviceMemory,
     ) -> crate::vk::Result;
     pub type PFN_vkFreeMemory = unsafe extern "system" fn(
         device: crate::vk::Device,
         memory: crate::vk::DeviceMemory,
-        p_allocator: *const crate::vk::AllocationCallbacks,
+        p_allocator: *const crate::vk::AllocationCallbacks<'_>,
     );
     pub type PFN_vkMapMemory = unsafe extern "system" fn(
         device: crate::vk::Device,
@@ -6112,12 +6202,12 @@ pub(crate) mod reexport {
     pub type PFN_vkFlushMappedMemoryRanges = unsafe extern "system" fn(
         device: crate::vk::Device,
         memory_range_count: u32,
-        p_memory_ranges: *const crate::vk::MappedMemoryRange,
+        p_memory_ranges: *const crate::vk::MappedMemoryRange<'_>,
     ) -> crate::vk::Result;
     pub type PFN_vkInvalidateMappedMemoryRanges = unsafe extern "system" fn(
         device: crate::vk::Device,
         memory_range_count: u32,
-        p_memory_ranges: *const crate::vk::MappedMemoryRange,
+        p_memory_ranges: *const crate::vk::MappedMemoryRange<'_>,
     ) -> crate::vk::Result;
     pub type PFN_vkGetDeviceMemoryCommitment = unsafe extern "system" fn(
         device: crate::vk::Device,
@@ -6165,19 +6255,19 @@ pub(crate) mod reexport {
     pub type PFN_vkQueueBindSparse = unsafe extern "system" fn(
         queue: crate::vk::Queue,
         bind_info_count: u32,
-        p_bind_info: *const crate::vk::BindSparseInfo,
+        p_bind_info: *const crate::vk::BindSparseInfo<'_>,
         fence: crate::vk::Fence,
     ) -> crate::vk::Result;
     pub type PFN_vkCreateFence = unsafe extern "system" fn(
         device: crate::vk::Device,
-        p_create_info: *const crate::vk::FenceCreateInfo,
-        p_allocator: *const crate::vk::AllocationCallbacks,
+        p_create_info: *const crate::vk::FenceCreateInfo<'_>,
+        p_allocator: *const crate::vk::AllocationCallbacks<'_>,
         p_fence: *mut crate::vk::Fence,
     ) -> crate::vk::Result;
     pub type PFN_vkDestroyFence = unsafe extern "system" fn(
         device: crate::vk::Device,
         fence: crate::vk::Fence,
-        p_allocator: *const crate::vk::AllocationCallbacks,
+        p_allocator: *const crate::vk::AllocationCallbacks<'_>,
     );
     pub type PFN_vkResetFences = unsafe extern "system" fn(
         device: crate::vk::Device,
@@ -6197,25 +6287,25 @@ pub(crate) mod reexport {
     ) -> crate::vk::Result;
     pub type PFN_vkCreateSemaphore = unsafe extern "system" fn(
         device: crate::vk::Device,
-        p_create_info: *const crate::vk::SemaphoreCreateInfo,
-        p_allocator: *const crate::vk::AllocationCallbacks,
+        p_create_info: *const crate::vk::SemaphoreCreateInfo<'_>,
+        p_allocator: *const crate::vk::AllocationCallbacks<'_>,
         p_semaphore: *mut crate::vk::Semaphore,
     ) -> crate::vk::Result;
     pub type PFN_vkDestroySemaphore = unsafe extern "system" fn(
         device: crate::vk::Device,
         semaphore: crate::vk::Semaphore,
-        p_allocator: *const crate::vk::AllocationCallbacks,
+        p_allocator: *const crate::vk::AllocationCallbacks<'_>,
     );
     pub type PFN_vkCreateEvent = unsafe extern "system" fn(
         device: crate::vk::Device,
-        p_create_info: *const crate::vk::EventCreateInfo,
-        p_allocator: *const crate::vk::AllocationCallbacks,
+        p_create_info: *const crate::vk::EventCreateInfo<'_>,
+        p_allocator: *const crate::vk::AllocationCallbacks<'_>,
         p_event: *mut crate::vk::Event,
     ) -> crate::vk::Result;
     pub type PFN_vkDestroyEvent = unsafe extern "system" fn(
         device: crate::vk::Device,
         event: crate::vk::Event,
-        p_allocator: *const crate::vk::AllocationCallbacks,
+        p_allocator: *const crate::vk::AllocationCallbacks<'_>,
     );
     pub type PFN_vkGetEventStatus = unsafe extern "system" fn(
         device: crate::vk::Device,
@@ -6231,14 +6321,14 @@ pub(crate) mod reexport {
     ) -> crate::vk::Result;
     pub type PFN_vkCreateQueryPool = unsafe extern "system" fn(
         device: crate::vk::Device,
-        p_create_info: *const crate::vk::QueryPoolCreateInfo,
-        p_allocator: *const crate::vk::AllocationCallbacks,
+        p_create_info: *const crate::vk::QueryPoolCreateInfo<'_>,
+        p_allocator: *const crate::vk::AllocationCallbacks<'_>,
         p_query_pool: *mut crate::vk::QueryPool,
     ) -> crate::vk::Result;
     pub type PFN_vkDestroyQueryPool = unsafe extern "system" fn(
         device: crate::vk::Device,
         query_pool: crate::vk::QueryPool,
-        p_allocator: *const crate::vk::AllocationCallbacks,
+        p_allocator: *const crate::vk::AllocationCallbacks<'_>,
     );
     pub type PFN_vkGetQueryPoolResults = unsafe extern "system" fn(
         device: crate::vk::Device,
@@ -6252,36 +6342,36 @@ pub(crate) mod reexport {
     ) -> crate::vk::Result;
     pub type PFN_vkCreateBuffer = unsafe extern "system" fn(
         device: crate::vk::Device,
-        p_create_info: *const crate::vk::BufferCreateInfo,
-        p_allocator: *const crate::vk::AllocationCallbacks,
+        p_create_info: *const crate::vk::BufferCreateInfo<'_>,
+        p_allocator: *const crate::vk::AllocationCallbacks<'_>,
         p_buffer: *mut crate::vk::Buffer,
     ) -> crate::vk::Result;
     pub type PFN_vkDestroyBuffer = unsafe extern "system" fn(
         device: crate::vk::Device,
         buffer: crate::vk::Buffer,
-        p_allocator: *const crate::vk::AllocationCallbacks,
+        p_allocator: *const crate::vk::AllocationCallbacks<'_>,
     );
     pub type PFN_vkCreateBufferView = unsafe extern "system" fn(
         device: crate::vk::Device,
-        p_create_info: *const crate::vk::BufferViewCreateInfo,
-        p_allocator: *const crate::vk::AllocationCallbacks,
+        p_create_info: *const crate::vk::BufferViewCreateInfo<'_>,
+        p_allocator: *const crate::vk::AllocationCallbacks<'_>,
         p_view: *mut crate::vk::BufferView,
     ) -> crate::vk::Result;
     pub type PFN_vkDestroyBufferView = unsafe extern "system" fn(
         device: crate::vk::Device,
         buffer_view: crate::vk::BufferView,
-        p_allocator: *const crate::vk::AllocationCallbacks,
+        p_allocator: *const crate::vk::AllocationCallbacks<'_>,
     );
     pub type PFN_vkCreateImage = unsafe extern "system" fn(
         device: crate::vk::Device,
-        p_create_info: *const crate::vk::ImageCreateInfo,
-        p_allocator: *const crate::vk::AllocationCallbacks,
+        p_create_info: *const crate::vk::ImageCreateInfo<'_>,
+        p_allocator: *const crate::vk::AllocationCallbacks<'_>,
         p_image: *mut crate::vk::Image,
     ) -> crate::vk::Result;
     pub type PFN_vkDestroyImage = unsafe extern "system" fn(
         device: crate::vk::Device,
         image: crate::vk::Image,
-        p_allocator: *const crate::vk::AllocationCallbacks,
+        p_allocator: *const crate::vk::AllocationCallbacks<'_>,
     );
     pub type PFN_vkGetImageSubresourceLayout = unsafe extern "system" fn(
         device: crate::vk::Device,
@@ -6291,36 +6381,36 @@ pub(crate) mod reexport {
     );
     pub type PFN_vkCreateImageView = unsafe extern "system" fn(
         device: crate::vk::Device,
-        p_create_info: *const crate::vk::ImageViewCreateInfo,
-        p_allocator: *const crate::vk::AllocationCallbacks,
+        p_create_info: *const crate::vk::ImageViewCreateInfo<'_>,
+        p_allocator: *const crate::vk::AllocationCallbacks<'_>,
         p_view: *mut crate::vk::ImageView,
     ) -> crate::vk::Result;
     pub type PFN_vkDestroyImageView = unsafe extern "system" fn(
         device: crate::vk::Device,
         image_view: crate::vk::ImageView,
-        p_allocator: *const crate::vk::AllocationCallbacks,
+        p_allocator: *const crate::vk::AllocationCallbacks<'_>,
     );
     pub type PFN_vkCreateShaderModule = unsafe extern "system" fn(
         device: crate::vk::Device,
-        p_create_info: *const crate::vk::ShaderModuleCreateInfo,
-        p_allocator: *const crate::vk::AllocationCallbacks,
+        p_create_info: *const crate::vk::ShaderModuleCreateInfo<'_>,
+        p_allocator: *const crate::vk::AllocationCallbacks<'_>,
         p_shader_module: *mut crate::vk::ShaderModule,
     ) -> crate::vk::Result;
     pub type PFN_vkDestroyShaderModule = unsafe extern "system" fn(
         device: crate::vk::Device,
         shader_module: crate::vk::ShaderModule,
-        p_allocator: *const crate::vk::AllocationCallbacks,
+        p_allocator: *const crate::vk::AllocationCallbacks<'_>,
     );
     pub type PFN_vkCreatePipelineCache = unsafe extern "system" fn(
         device: crate::vk::Device,
-        p_create_info: *const crate::vk::PipelineCacheCreateInfo,
-        p_allocator: *const crate::vk::AllocationCallbacks,
+        p_create_info: *const crate::vk::PipelineCacheCreateInfo<'_>,
+        p_allocator: *const crate::vk::AllocationCallbacks<'_>,
         p_pipeline_cache: *mut crate::vk::PipelineCache,
     ) -> crate::vk::Result;
     pub type PFN_vkDestroyPipelineCache = unsafe extern "system" fn(
         device: crate::vk::Device,
         pipeline_cache: crate::vk::PipelineCache,
-        p_allocator: *const crate::vk::AllocationCallbacks,
+        p_allocator: *const crate::vk::AllocationCallbacks<'_>,
     );
     pub type PFN_vkGetPipelineCacheData = unsafe extern "system" fn(
         device: crate::vk::Device,
@@ -6338,66 +6428,66 @@ pub(crate) mod reexport {
         device: crate::vk::Device,
         pipeline_cache: crate::vk::PipelineCache,
         create_info_count: u32,
-        p_create_infos: *const crate::vk::GraphicsPipelineCreateInfo,
-        p_allocator: *const crate::vk::AllocationCallbacks,
+        p_create_infos: *const crate::vk::GraphicsPipelineCreateInfo<'_>,
+        p_allocator: *const crate::vk::AllocationCallbacks<'_>,
         p_pipelines: *mut crate::vk::Pipeline,
     ) -> crate::vk::Result;
     pub type PFN_vkCreateComputePipelines = unsafe extern "system" fn(
         device: crate::vk::Device,
         pipeline_cache: crate::vk::PipelineCache,
         create_info_count: u32,
-        p_create_infos: *const crate::vk::ComputePipelineCreateInfo,
-        p_allocator: *const crate::vk::AllocationCallbacks,
+        p_create_infos: *const crate::vk::ComputePipelineCreateInfo<'_>,
+        p_allocator: *const crate::vk::AllocationCallbacks<'_>,
         p_pipelines: *mut crate::vk::Pipeline,
     ) -> crate::vk::Result;
     pub type PFN_vkDestroyPipeline = unsafe extern "system" fn(
         device: crate::vk::Device,
         pipeline: crate::vk::Pipeline,
-        p_allocator: *const crate::vk::AllocationCallbacks,
+        p_allocator: *const crate::vk::AllocationCallbacks<'_>,
     );
     pub type PFN_vkCreatePipelineLayout = unsafe extern "system" fn(
         device: crate::vk::Device,
-        p_create_info: *const crate::vk::PipelineLayoutCreateInfo,
-        p_allocator: *const crate::vk::AllocationCallbacks,
+        p_create_info: *const crate::vk::PipelineLayoutCreateInfo<'_>,
+        p_allocator: *const crate::vk::AllocationCallbacks<'_>,
         p_pipeline_layout: *mut crate::vk::PipelineLayout,
     ) -> crate::vk::Result;
     pub type PFN_vkDestroyPipelineLayout = unsafe extern "system" fn(
         device: crate::vk::Device,
         pipeline_layout: crate::vk::PipelineLayout,
-        p_allocator: *const crate::vk::AllocationCallbacks,
+        p_allocator: *const crate::vk::AllocationCallbacks<'_>,
     );
     pub type PFN_vkCreateSampler = unsafe extern "system" fn(
         device: crate::vk::Device,
-        p_create_info: *const crate::vk::SamplerCreateInfo,
-        p_allocator: *const crate::vk::AllocationCallbacks,
+        p_create_info: *const crate::vk::SamplerCreateInfo<'_>,
+        p_allocator: *const crate::vk::AllocationCallbacks<'_>,
         p_sampler: *mut crate::vk::Sampler,
     ) -> crate::vk::Result;
     pub type PFN_vkDestroySampler = unsafe extern "system" fn(
         device: crate::vk::Device,
         sampler: crate::vk::Sampler,
-        p_allocator: *const crate::vk::AllocationCallbacks,
+        p_allocator: *const crate::vk::AllocationCallbacks<'_>,
     );
     pub type PFN_vkCreateDescriptorSetLayout = unsafe extern "system" fn(
         device: crate::vk::Device,
-        p_create_info: *const crate::vk::DescriptorSetLayoutCreateInfo,
-        p_allocator: *const crate::vk::AllocationCallbacks,
+        p_create_info: *const crate::vk::DescriptorSetLayoutCreateInfo<'_>,
+        p_allocator: *const crate::vk::AllocationCallbacks<'_>,
         p_set_layout: *mut crate::vk::DescriptorSetLayout,
     ) -> crate::vk::Result;
     pub type PFN_vkDestroyDescriptorSetLayout = unsafe extern "system" fn(
         device: crate::vk::Device,
         descriptor_set_layout: crate::vk::DescriptorSetLayout,
-        p_allocator: *const crate::vk::AllocationCallbacks,
+        p_allocator: *const crate::vk::AllocationCallbacks<'_>,
     );
     pub type PFN_vkCreateDescriptorPool = unsafe extern "system" fn(
         device: crate::vk::Device,
-        p_create_info: *const crate::vk::DescriptorPoolCreateInfo,
-        p_allocator: *const crate::vk::AllocationCallbacks,
+        p_create_info: *const crate::vk::DescriptorPoolCreateInfo<'_>,
+        p_allocator: *const crate::vk::AllocationCallbacks<'_>,
         p_descriptor_pool: *mut crate::vk::DescriptorPool,
     ) -> crate::vk::Result;
     pub type PFN_vkDestroyDescriptorPool = unsafe extern "system" fn(
         device: crate::vk::Device,
         descriptor_pool: crate::vk::DescriptorPool,
-        p_allocator: *const crate::vk::AllocationCallbacks,
+        p_allocator: *const crate::vk::AllocationCallbacks<'_>,
     );
     pub type PFN_vkResetDescriptorPool = unsafe extern "system" fn(
         device: crate::vk::Device,
@@ -6406,7 +6496,7 @@ pub(crate) mod reexport {
     ) -> crate::vk::Result;
     pub type PFN_vkAllocateDescriptorSets = unsafe extern "system" fn(
         device: crate::vk::Device,
-        p_allocate_info: *const crate::vk::DescriptorSetAllocateInfo,
+        p_allocate_info: *const crate::vk::DescriptorSetAllocateInfo<'_>,
         p_descriptor_sets: *mut crate::vk::DescriptorSet,
     ) -> crate::vk::Result;
     pub type PFN_vkFreeDescriptorSets = unsafe extern "system" fn(
@@ -6418,31 +6508,31 @@ pub(crate) mod reexport {
     pub type PFN_vkUpdateDescriptorSets = unsafe extern "system" fn(
         device: crate::vk::Device,
         descriptor_write_count: u32,
-        p_descriptor_writes: *const crate::vk::WriteDescriptorSet,
+        p_descriptor_writes: *const crate::vk::WriteDescriptorSet<'_>,
         descriptor_copy_count: u32,
-        p_descriptor_copies: *const crate::vk::CopyDescriptorSet,
+        p_descriptor_copies: *const crate::vk::CopyDescriptorSet<'_>,
     );
     pub type PFN_vkCreateFramebuffer = unsafe extern "system" fn(
         device: crate::vk::Device,
-        p_create_info: *const crate::vk::FramebufferCreateInfo,
-        p_allocator: *const crate::vk::AllocationCallbacks,
+        p_create_info: *const crate::vk::FramebufferCreateInfo<'_>,
+        p_allocator: *const crate::vk::AllocationCallbacks<'_>,
         p_framebuffer: *mut crate::vk::Framebuffer,
     ) -> crate::vk::Result;
     pub type PFN_vkDestroyFramebuffer = unsafe extern "system" fn(
         device: crate::vk::Device,
         framebuffer: crate::vk::Framebuffer,
-        p_allocator: *const crate::vk::AllocationCallbacks,
+        p_allocator: *const crate::vk::AllocationCallbacks<'_>,
     );
     pub type PFN_vkCreateRenderPass = unsafe extern "system" fn(
         device: crate::vk::Device,
-        p_create_info: *const crate::vk::RenderPassCreateInfo,
-        p_allocator: *const crate::vk::AllocationCallbacks,
+        p_create_info: *const crate::vk::RenderPassCreateInfo<'_>,
+        p_allocator: *const crate::vk::AllocationCallbacks<'_>,
         p_render_pass: *mut crate::vk::RenderPass,
     ) -> crate::vk::Result;
     pub type PFN_vkDestroyRenderPass = unsafe extern "system" fn(
         device: crate::vk::Device,
         render_pass: crate::vk::RenderPass,
-        p_allocator: *const crate::vk::AllocationCallbacks,
+        p_allocator: *const crate::vk::AllocationCallbacks<'_>,
     );
     pub type PFN_vkGetRenderAreaGranularity = unsafe extern "system" fn(
         device: crate::vk::Device,
@@ -6451,14 +6541,14 @@ pub(crate) mod reexport {
     );
     pub type PFN_vkCreateCommandPool = unsafe extern "system" fn(
         device: crate::vk::Device,
-        p_create_info: *const crate::vk::CommandPoolCreateInfo,
-        p_allocator: *const crate::vk::AllocationCallbacks,
+        p_create_info: *const crate::vk::CommandPoolCreateInfo<'_>,
+        p_allocator: *const crate::vk::AllocationCallbacks<'_>,
         p_command_pool: *mut crate::vk::CommandPool,
     ) -> crate::vk::Result;
     pub type PFN_vkDestroyCommandPool = unsafe extern "system" fn(
         device: crate::vk::Device,
         command_pool: crate::vk::CommandPool,
-        p_allocator: *const crate::vk::AllocationCallbacks,
+        p_allocator: *const crate::vk::AllocationCallbacks<'_>,
     );
     pub type PFN_vkResetCommandPool = unsafe extern "system" fn(
         device: crate::vk::Device,
@@ -6467,7 +6557,7 @@ pub(crate) mod reexport {
     ) -> crate::vk::Result;
     pub type PFN_vkAllocateCommandBuffers = unsafe extern "system" fn(
         device: crate::vk::Device,
-        p_allocate_info: *const crate::vk::CommandBufferAllocateInfo,
+        p_allocate_info: *const crate::vk::CommandBufferAllocateInfo<'_>,
         p_command_buffers: *mut crate::vk::CommandBuffer,
     ) -> crate::vk::Result;
     pub type PFN_vkFreeCommandBuffers = unsafe extern "system" fn(
@@ -6478,7 +6568,7 @@ pub(crate) mod reexport {
     );
     pub type PFN_vkBeginCommandBuffer = unsafe extern "system" fn(
         command_buffer: crate::vk::CommandBuffer,
-        p_begin_info: *const crate::vk::CommandBufferBeginInfo,
+        p_begin_info: *const crate::vk::CommandBufferBeginInfo<'_>,
     ) -> crate::vk::Result;
     pub type PFN_vkEndCommandBuffer = unsafe extern "system" fn(
         command_buffer: crate::vk::CommandBuffer,
@@ -6706,11 +6796,11 @@ pub(crate) mod reexport {
         src_stage_mask: crate::vk::PipelineStageFlags,
         dst_stage_mask: crate::vk::PipelineStageFlags,
         memory_barrier_count: u32,
-        p_memory_barriers: *const crate::vk::MemoryBarrier,
+        p_memory_barriers: *const crate::vk::MemoryBarrier<'_>,
         buffer_memory_barrier_count: u32,
-        p_buffer_memory_barriers: *const crate::vk::BufferMemoryBarrier,
+        p_buffer_memory_barriers: *const crate::vk::BufferMemoryBarrier<'_>,
         image_memory_barrier_count: u32,
-        p_image_memory_barriers: *const crate::vk::ImageMemoryBarrier,
+        p_image_memory_barriers: *const crate::vk::ImageMemoryBarrier<'_>,
     );
     pub type PFN_vkCmdPipelineBarrier = unsafe extern "system" fn(
         command_buffer: crate::vk::CommandBuffer,
@@ -6718,11 +6808,11 @@ pub(crate) mod reexport {
         dst_stage_mask: crate::vk::PipelineStageFlags,
         dependency_flags: crate::vk::DependencyFlags,
         memory_barrier_count: u32,
-        p_memory_barriers: *const crate::vk::MemoryBarrier,
+        p_memory_barriers: *const crate::vk::MemoryBarrier<'_>,
         buffer_memory_barrier_count: u32,
-        p_buffer_memory_barriers: *const crate::vk::BufferMemoryBarrier,
+        p_buffer_memory_barriers: *const crate::vk::BufferMemoryBarrier<'_>,
         image_memory_barrier_count: u32,
-        p_image_memory_barriers: *const crate::vk::ImageMemoryBarrier,
+        p_image_memory_barriers: *const crate::vk::ImageMemoryBarrier<'_>,
     );
     pub type PFN_vkCmdBeginQuery = unsafe extern "system" fn(
         command_buffer: crate::vk::CommandBuffer,
@@ -6767,7 +6857,7 @@ pub(crate) mod reexport {
     );
     pub type PFN_vkCmdBeginRenderPass = unsafe extern "system" fn(
         command_buffer: crate::vk::CommandBuffer,
-        p_render_pass_begin: *const crate::vk::RenderPassBeginInfo,
+        p_render_pass_begin: *const crate::vk::RenderPassBeginInfo<'_>,
         contents: crate::vk::SubpassContents,
     );
     pub type PFN_vkCmdNextSubpass = unsafe extern "system" fn(

@@ -3,55 +3,63 @@
 //![Vulkan Manual Page](https://docs.vulkan.org/refpages/latest/refpages/source/VK_KHR_video_decode_h265.html) · Extension `VK_KHR_video_decode_h265`
 #[repr(C)]
 #[derive(Clone, Copy)]
-pub struct VideoDecodeH265ProfileInfoKHR {
+pub struct VideoDecodeH265ProfileInfoKHR<'a> {
     pub s_type: crate::vk::StructureType,
     pub p_next: *const core::ffi::c_void,
     pub std_profile_idc: crate::vk::H265ProfileIdc,
+    pub _marker: ::core::marker::PhantomData<&'a ()>,
 }
 #[repr(C)]
 #[derive(Clone, Copy)]
-pub struct VideoDecodeH265CapabilitiesKHR {
+pub struct VideoDecodeH265CapabilitiesKHR<'a> {
     pub s_type: crate::vk::StructureType,
     pub p_next: *mut core::ffi::c_void,
     pub max_level_idc: crate::vk::H265LevelIdc,
+    pub _marker: ::core::marker::PhantomData<&'a ()>,
 }
 #[repr(C)]
 #[derive(Clone, Copy)]
-pub struct VideoDecodeH265SessionParametersAddInfoKHR {
+pub struct VideoDecodeH265SessionParametersAddInfoKHR<'a> {
     pub s_type: crate::vk::StructureType,
     pub p_next: *const core::ffi::c_void,
     pub std_vps_count: u32,
-    pub p_std_vp_ss: *const crate::vk::H265VideoParameterSet,
+    pub p_std_vp_ss: *const crate::vk::H265VideoParameterSet<'a>,
     pub std_sps_count: u32,
-    pub p_std_sp_ss: *const crate::vk::H265SequenceParameterSet,
+    pub p_std_sp_ss: *const crate::vk::H265SequenceParameterSet<'a>,
     pub std_pps_count: u32,
-    pub p_std_pp_ss: *const crate::vk::H265PictureParameterSet,
+    pub p_std_pp_ss: *const crate::vk::H265PictureParameterSet<'a>,
+    pub _marker: ::core::marker::PhantomData<&'a ()>,
 }
 #[repr(C)]
 #[derive(Clone, Copy)]
-pub struct VideoDecodeH265SessionParametersCreateInfoKHR {
+pub struct VideoDecodeH265SessionParametersCreateInfoKHR<'a> {
     pub s_type: crate::vk::StructureType,
     pub p_next: *const core::ffi::c_void,
     pub max_std_vps_count: u32,
     pub max_std_sps_count: u32,
     pub max_std_pps_count: u32,
-    pub p_parameters_add_info: *const crate::vk::VideoDecodeH265SessionParametersAddInfoKHR,
+    pub p_parameters_add_info: *const crate::vk::VideoDecodeH265SessionParametersAddInfoKHR<
+        'a,
+    >,
+    pub _marker: ::core::marker::PhantomData<&'a ()>,
 }
 #[repr(C)]
 #[derive(Clone, Copy)]
-pub struct VideoDecodeH265PictureInfoKHR {
+pub struct VideoDecodeH265PictureInfoKHR<'a> {
     pub s_type: crate::vk::StructureType,
     pub p_next: *const core::ffi::c_void,
     pub p_std_picture_info: *const crate::vk::DecodeH265PictureInfo,
     pub slice_segment_count: u32,
     pub p_slice_segment_offsets: *const u32,
+    pub _marker: ::core::marker::PhantomData<&'a ()>,
 }
 #[repr(C)]
 #[derive(Clone, Copy)]
-pub struct VideoDecodeH265DpbSlotInfoKHR {
+pub struct VideoDecodeH265DpbSlotInfoKHR<'a> {
     pub s_type: crate::vk::StructureType,
     pub p_next: *const core::ffi::c_void,
     pub p_std_reference_info: *const crate::vk::DecodeH265ReferenceInfo,
+    pub _marker: ::core::marker::PhantomData<&'a ()>,
 }
 ///Provided by [`khr::video_decode_h265`](crate::khr::video_decode_h265)
 impl crate::vk::StructureType {

@@ -20,7 +20,7 @@ impl DeviceFn {
             export_metal_objects_ext: unsafe {
                 unsafe extern "system" fn export_metal_objects_ext(
                     _: crate::vk::Device,
-                    _: *mut crate::vk::ExportMetalObjectsInfoEXT,
+                    _: *mut crate::vk::ExportMetalObjectsInfoEXT<'_>,
                 ) {
                     panic!("unable to load vkExportMetalObjectsEXT")
                 }
@@ -37,50 +37,56 @@ impl DeviceFn {
 pub(crate) mod reexport {
     #[repr(C)]
     #[derive(Clone, Copy)]
-    pub struct ExportMetalObjectCreateInfoEXT {
+    pub struct ExportMetalObjectCreateInfoEXT<'a> {
         pub s_type: crate::vk::StructureType,
         pub p_next: *const core::ffi::c_void,
         pub export_object_type: crate::vk::ExportMetalObjectTypeFlagBitsEXT,
+        pub _marker: ::core::marker::PhantomData<&'a ()>,
     }
     #[repr(C)]
     #[derive(Clone, Copy)]
-    pub struct ExportMetalObjectsInfoEXT {
+    pub struct ExportMetalObjectsInfoEXT<'a> {
         pub s_type: crate::vk::StructureType,
         pub p_next: *const core::ffi::c_void,
+        pub _marker: ::core::marker::PhantomData<&'a ()>,
     }
     #[repr(C)]
     #[derive(Clone, Copy)]
-    pub struct ExportMetalDeviceInfoEXT {
+    pub struct ExportMetalDeviceInfoEXT<'a> {
         pub s_type: crate::vk::StructureType,
         pub p_next: *const core::ffi::c_void,
         pub mtl_device: crate::platform_types::MTLDevice_id,
+        pub _marker: ::core::marker::PhantomData<&'a ()>,
     }
     #[repr(C)]
     #[derive(Clone, Copy)]
-    pub struct ExportMetalCommandQueueInfoEXT {
+    pub struct ExportMetalCommandQueueInfoEXT<'a> {
         pub s_type: crate::vk::StructureType,
         pub p_next: *const core::ffi::c_void,
         pub queue: crate::vk::Queue,
         pub mtl_command_queue: crate::platform_types::MTLCommandQueue_id,
+        pub _marker: ::core::marker::PhantomData<&'a ()>,
     }
     #[repr(C)]
     #[derive(Clone, Copy)]
-    pub struct ExportMetalBufferInfoEXT {
+    pub struct ExportMetalBufferInfoEXT<'a> {
         pub s_type: crate::vk::StructureType,
         pub p_next: *const core::ffi::c_void,
         pub memory: crate::vk::DeviceMemory,
         pub mtl_buffer: crate::platform_types::MTLBuffer_id,
+        pub _marker: ::core::marker::PhantomData<&'a ()>,
     }
     #[repr(C)]
     #[derive(Clone, Copy)]
-    pub struct ImportMetalBufferInfoEXT {
+    pub struct ImportMetalBufferInfoEXT<'a> {
         pub s_type: crate::vk::StructureType,
         pub p_next: *const core::ffi::c_void,
         pub mtl_buffer: crate::platform_types::MTLBuffer_id,
+        pub _marker: ::core::marker::PhantomData<&'a ()>,
     }
     #[repr(C)]
     #[derive(Clone, Copy)]
-    pub struct ExportMetalTextureInfoEXT {
+    pub struct ExportMetalTextureInfoEXT<'a> {
         pub s_type: crate::vk::StructureType,
         pub p_next: *const core::ffi::c_void,
         pub image: crate::vk::Image,
@@ -88,45 +94,51 @@ pub(crate) mod reexport {
         pub buffer_view: crate::vk::BufferView,
         pub plane: crate::vk::ImageAspectFlagBits,
         pub mtl_texture: crate::platform_types::MTLTexture_id,
+        pub _marker: ::core::marker::PhantomData<&'a ()>,
     }
     #[repr(C)]
     #[derive(Clone, Copy)]
-    pub struct ImportMetalTextureInfoEXT {
+    pub struct ImportMetalTextureInfoEXT<'a> {
         pub s_type: crate::vk::StructureType,
         pub p_next: *const core::ffi::c_void,
         pub plane: crate::vk::ImageAspectFlagBits,
         pub mtl_texture: crate::platform_types::MTLTexture_id,
+        pub _marker: ::core::marker::PhantomData<&'a ()>,
     }
     #[repr(C)]
     #[derive(Clone, Copy)]
-    pub struct ExportMetalIOSurfaceInfoEXT {
+    pub struct ExportMetalIOSurfaceInfoEXT<'a> {
         pub s_type: crate::vk::StructureType,
         pub p_next: *const core::ffi::c_void,
         pub image: crate::vk::Image,
         pub io_surface: crate::platform_types::IOSurfaceRef,
+        pub _marker: ::core::marker::PhantomData<&'a ()>,
     }
     #[repr(C)]
     #[derive(Clone, Copy)]
-    pub struct ImportMetalIOSurfaceInfoEXT {
+    pub struct ImportMetalIOSurfaceInfoEXT<'a> {
         pub s_type: crate::vk::StructureType,
         pub p_next: *const core::ffi::c_void,
         pub io_surface: crate::platform_types::IOSurfaceRef,
+        pub _marker: ::core::marker::PhantomData<&'a ()>,
     }
     #[repr(C)]
     #[derive(Clone, Copy)]
-    pub struct ExportMetalSharedEventInfoEXT {
+    pub struct ExportMetalSharedEventInfoEXT<'a> {
         pub s_type: crate::vk::StructureType,
         pub p_next: *const core::ffi::c_void,
         pub semaphore: crate::vk::Semaphore,
         pub event: crate::vk::Event,
         pub mtl_shared_event: crate::platform_types::MTLSharedEvent_id,
+        pub _marker: ::core::marker::PhantomData<&'a ()>,
     }
     #[repr(C)]
     #[derive(Clone, Copy)]
-    pub struct ImportMetalSharedEventInfoEXT {
+    pub struct ImportMetalSharedEventInfoEXT<'a> {
         pub s_type: crate::vk::StructureType,
         pub p_next: *const core::ffi::c_void,
         pub mtl_shared_event: crate::platform_types::MTLSharedEvent_id,
+        pub _marker: ::core::marker::PhantomData<&'a ()>,
     }
     ///Provided by [`ext::metal_objects`](crate::ext::metal_objects)
     impl crate::vk::StructureType {
@@ -169,7 +181,7 @@ pub(crate) mod reexport {
     }
     pub type PFN_vkExportMetalObjectsEXT = unsafe extern "system" fn(
         device: crate::vk::Device,
-        p_metal_objects_info: *mut crate::vk::ExportMetalObjectsInfoEXT,
+        p_metal_objects_info: *mut crate::vk::ExportMetalObjectsInfoEXT<'_>,
     );
     pub const EXT_METAL_OBJECTS_SPEC_VERSION: u32 = 2;
     pub const EXT_METAL_OBJECTS_EXTENSION_NAME: &core::ffi::CStr = c"VK_EXT_metal_objects";

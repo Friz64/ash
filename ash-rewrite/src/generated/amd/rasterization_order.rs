@@ -3,10 +3,11 @@
 //![Vulkan Manual Page](https://docs.vulkan.org/refpages/latest/refpages/source/VK_AMD_rasterization_order.html) · Extension `VK_AMD_rasterization_order`
 #[repr(C)]
 #[derive(Clone, Copy)]
-pub struct PipelineRasterizationStateRasterizationOrderAMD {
+pub struct PipelineRasterizationStateRasterizationOrderAMD<'a> {
     pub s_type: crate::vk::StructureType,
     pub p_next: *const core::ffi::c_void,
     pub rasterization_order: crate::vk::RasterizationOrderAMD,
+    pub _marker: ::core::marker::PhantomData<&'a ()>,
 }
 ///Provided by [`amd::rasterization_order`](crate::amd::rasterization_order)
 impl crate::vk::StructureType {
@@ -16,6 +17,7 @@ impl crate::vk::StructureType {
 }
 #[repr(transparent)]
 #[derive(Clone, Copy, PartialEq, Eq, PartialOrd, Ord, Hash, Default)]
+#[derive(Debug)]
 pub struct RasterizationOrderAMD(pub(crate) i32);
 ///Provided by [`amd::rasterization_order`](crate::amd::rasterization_order)
 impl RasterizationOrderAMD {

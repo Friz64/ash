@@ -3,26 +3,29 @@
 //![Vulkan Manual Page](https://docs.vulkan.org/refpages/latest/refpages/source/VK_EXT_custom_border_color.html) · Extension `VK_EXT_custom_border_color`
 #[repr(C)]
 #[derive(Clone, Copy)]
-pub struct SamplerCustomBorderColorCreateInfoEXT {
+pub struct SamplerCustomBorderColorCreateInfoEXT<'a> {
     pub s_type: crate::vk::StructureType,
     pub p_next: *const core::ffi::c_void,
     pub custom_border_color: crate::vk::ClearColorValue,
     pub format: crate::vk::Format,
+    pub _marker: ::core::marker::PhantomData<&'a ()>,
 }
 #[repr(C)]
 #[derive(Clone, Copy)]
-pub struct PhysicalDeviceCustomBorderColorPropertiesEXT {
+pub struct PhysicalDeviceCustomBorderColorPropertiesEXT<'a> {
     pub s_type: crate::vk::StructureType,
     pub p_next: *mut core::ffi::c_void,
     pub max_custom_border_color_samplers: u32,
+    pub _marker: ::core::marker::PhantomData<&'a ()>,
 }
 #[repr(C)]
 #[derive(Clone, Copy)]
-pub struct PhysicalDeviceCustomBorderColorFeaturesEXT {
+pub struct PhysicalDeviceCustomBorderColorFeaturesEXT<'a> {
     pub s_type: crate::vk::StructureType,
     pub p_next: *mut core::ffi::c_void,
     pub custom_border_colors: crate::vk::Bool32,
     pub custom_border_color_without_format: crate::vk::Bool32,
+    pub _marker: ::core::marker::PhantomData<&'a ()>,
 }
 ///Provided by [`ext::custom_border_color`](crate::ext::custom_border_color)
 impl crate::vk::BorderColor {

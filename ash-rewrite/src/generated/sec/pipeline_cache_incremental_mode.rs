@@ -3,10 +3,11 @@
 //![Vulkan Manual Page](https://docs.vulkan.org/refpages/latest/refpages/source/VK_SEC_pipeline_cache_incremental_mode.html) · Extension `VK_SEC_pipeline_cache_incremental_mode`
 #[repr(C)]
 #[derive(Clone, Copy)]
-pub struct PhysicalDevicePipelineCacheIncrementalModeFeaturesSEC {
+pub struct PhysicalDevicePipelineCacheIncrementalModeFeaturesSEC<'a> {
     pub s_type: crate::vk::StructureType,
     pub p_next: *mut core::ffi::c_void,
     pub pipeline_cache_incremental_mode: crate::vk::Bool32,
+    pub _marker: ::core::marker::PhantomData<&'a ()>,
 }
 ///Provided by [`sec::pipeline_cache_incremental_mode`](crate::sec::pipeline_cache_incremental_mode)
 impl crate::vk::StructureType {

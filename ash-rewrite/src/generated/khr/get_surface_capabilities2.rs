@@ -21,8 +21,8 @@ impl InstanceFn {
             get_physical_device_surface_capabilities2_khr: unsafe {
                 unsafe extern "system" fn get_physical_device_surface_capabilities2_khr(
                     _: crate::vk::PhysicalDevice,
-                    _: *const crate::vk::PhysicalDeviceSurfaceInfo2KHR,
-                    _: *mut crate::vk::SurfaceCapabilities2KHR,
+                    _: *const crate::vk::PhysicalDeviceSurfaceInfo2KHR<'_>,
+                    _: *mut crate::vk::SurfaceCapabilities2KHR<'_>,
                 ) -> crate::vk::Result {
                     panic!("unable to load vkGetPhysicalDeviceSurfaceCapabilities2KHR")
                 }
@@ -36,9 +36,9 @@ impl InstanceFn {
             get_physical_device_surface_formats2_khr: unsafe {
                 unsafe extern "system" fn get_physical_device_surface_formats2_khr(
                     _: crate::vk::PhysicalDevice,
-                    _: *const crate::vk::PhysicalDeviceSurfaceInfo2KHR,
+                    _: *const crate::vk::PhysicalDeviceSurfaceInfo2KHR<'_>,
                     _: *mut u32,
-                    _: *mut crate::vk::SurfaceFormat2KHR,
+                    _: *mut crate::vk::SurfaceFormat2KHR<'_>,
                 ) -> crate::vk::Result {
                     panic!("unable to load vkGetPhysicalDeviceSurfaceFormats2KHR")
                 }
@@ -55,24 +55,27 @@ impl InstanceFn {
 pub(crate) mod reexport {
     #[repr(C)]
     #[derive(Clone, Copy)]
-    pub struct PhysicalDeviceSurfaceInfo2KHR {
+    pub struct PhysicalDeviceSurfaceInfo2KHR<'a> {
         pub s_type: crate::vk::StructureType,
         pub p_next: *const core::ffi::c_void,
         pub surface: crate::vk::SurfaceKHR,
+        pub _marker: ::core::marker::PhantomData<&'a ()>,
     }
     #[repr(C)]
     #[derive(Clone, Copy)]
-    pub struct SurfaceCapabilities2KHR {
+    pub struct SurfaceCapabilities2KHR<'a> {
         pub s_type: crate::vk::StructureType,
         pub p_next: *mut core::ffi::c_void,
         pub surface_capabilities: crate::vk::SurfaceCapabilitiesKHR,
+        pub _marker: ::core::marker::PhantomData<&'a ()>,
     }
     #[repr(C)]
     #[derive(Clone, Copy)]
-    pub struct SurfaceFormat2KHR {
+    pub struct SurfaceFormat2KHR<'a> {
         pub s_type: crate::vk::StructureType,
         pub p_next: *mut core::ffi::c_void,
         pub surface_format: crate::vk::SurfaceFormatKHR,
+        pub _marker: ::core::marker::PhantomData<&'a ()>,
     }
     ///Provided by [`khr::get_surface_capabilities2`](crate::khr::get_surface_capabilities2)
     impl crate::vk::StructureType {
@@ -82,14 +85,14 @@ pub(crate) mod reexport {
     }
     pub type PFN_vkGetPhysicalDeviceSurfaceCapabilities2KHR = unsafe extern "system" fn(
         physical_device: crate::vk::PhysicalDevice,
-        p_surface_info: *const crate::vk::PhysicalDeviceSurfaceInfo2KHR,
-        p_surface_capabilities: *mut crate::vk::SurfaceCapabilities2KHR,
+        p_surface_info: *const crate::vk::PhysicalDeviceSurfaceInfo2KHR<'_>,
+        p_surface_capabilities: *mut crate::vk::SurfaceCapabilities2KHR<'_>,
     ) -> crate::vk::Result;
     pub type PFN_vkGetPhysicalDeviceSurfaceFormats2KHR = unsafe extern "system" fn(
         physical_device: crate::vk::PhysicalDevice,
-        p_surface_info: *const crate::vk::PhysicalDeviceSurfaceInfo2KHR,
+        p_surface_info: *const crate::vk::PhysicalDeviceSurfaceInfo2KHR<'_>,
         p_surface_format_count: *mut u32,
-        p_surface_formats: *mut crate::vk::SurfaceFormat2KHR,
+        p_surface_formats: *mut crate::vk::SurfaceFormat2KHR<'_>,
     ) -> crate::vk::Result;
     pub const KHR_GET_SURFACE_CAPABILITIES_2_SPEC_VERSION: u32 = 1;
     pub const KHR_GET_SURFACE_CAPABILITIES_2_EXTENSION_NAME: &core::ffi::CStr = c"VK_KHR_get_surface_capabilities2";

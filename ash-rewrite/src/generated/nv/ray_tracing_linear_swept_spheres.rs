@@ -3,7 +3,7 @@
 //![Vulkan Manual Page](https://docs.vulkan.org/refpages/latest/refpages/source/VK_NV_ray_tracing_linear_swept_spheres.html) · Extension `VK_NV_ray_tracing_linear_swept_spheres`
 #[repr(C)]
 #[derive(Clone, Copy)]
-pub struct AccelerationStructureGeometryLinearSweptSpheresDataNV {
+pub struct AccelerationStructureGeometryLinearSweptSpheresDataNV<'a> {
     pub s_type: crate::vk::StructureType,
     pub p_next: *const core::ffi::c_void,
     pub vertex_format: crate::vk::Format,
@@ -17,10 +17,11 @@ pub struct AccelerationStructureGeometryLinearSweptSpheresDataNV {
     pub index_stride: crate::vk::DeviceSize,
     pub indexing_mode: crate::vk::RayTracingLssIndexingModeNV,
     pub end_caps_mode: crate::vk::RayTracingLssPrimitiveEndCapsModeNV,
+    pub _marker: ::core::marker::PhantomData<&'a ()>,
 }
 #[repr(C)]
 #[derive(Clone, Copy)]
-pub struct AccelerationStructureGeometrySpheresDataNV {
+pub struct AccelerationStructureGeometrySpheresDataNV<'a> {
     pub s_type: crate::vk::StructureType,
     pub p_next: *const core::ffi::c_void,
     pub vertex_format: crate::vk::Format,
@@ -32,14 +33,16 @@ pub struct AccelerationStructureGeometrySpheresDataNV {
     pub index_type: crate::vk::IndexType,
     pub index_data: crate::vk::DeviceOrHostAddressConstKHR,
     pub index_stride: crate::vk::DeviceSize,
+    pub _marker: ::core::marker::PhantomData<&'a ()>,
 }
 #[repr(C)]
 #[derive(Clone, Copy)]
-pub struct PhysicalDeviceRayTracingLinearSweptSpheresFeaturesNV {
+pub struct PhysicalDeviceRayTracingLinearSweptSpheresFeaturesNV<'a> {
     pub s_type: crate::vk::StructureType,
     pub p_next: *mut core::ffi::c_void,
     pub spheres: crate::vk::Bool32,
     pub linear_swept_spheres: crate::vk::Bool32,
+    pub _marker: ::core::marker::PhantomData<&'a ()>,
 }
 ///Provided by [`nv::ray_tracing_linear_swept_spheres`](crate::nv::ray_tracing_linear_swept_spheres)
 impl crate::vk::StructureType {
@@ -53,6 +56,7 @@ impl crate::vk::StructureType {
 }
 #[repr(transparent)]
 #[derive(Clone, Copy, PartialEq, Eq, PartialOrd, Ord, Hash, Default)]
+#[derive(Debug)]
 pub struct RayTracingLssIndexingModeNV(pub(crate) i32);
 ///Provided by [`nv::ray_tracing_linear_swept_spheres`](crate::nv::ray_tracing_linear_swept_spheres)
 impl RayTracingLssIndexingModeNV {
@@ -61,6 +65,7 @@ impl RayTracingLssIndexingModeNV {
 }
 #[repr(transparent)]
 #[derive(Clone, Copy, PartialEq, Eq, PartialOrd, Ord, Hash, Default)]
+#[derive(Debug)]
 pub struct RayTracingLssPrimitiveEndCapsModeNV(pub(crate) i32);
 ///Provided by [`nv::ray_tracing_linear_swept_spheres`](crate::nv::ray_tracing_linear_swept_spheres)
 impl RayTracingLssPrimitiveEndCapsModeNV {

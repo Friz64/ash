@@ -3,10 +3,11 @@
 //![Vulkan Manual Page](https://docs.vulkan.org/refpages/latest/refpages/source/VK_EXT_zero_initialize_device_memory.html) · Extension `VK_EXT_zero_initialize_device_memory`
 #[repr(C)]
 #[derive(Clone, Copy)]
-pub struct PhysicalDeviceZeroInitializeDeviceMemoryFeaturesEXT {
+pub struct PhysicalDeviceZeroInitializeDeviceMemoryFeaturesEXT<'a> {
     pub s_type: crate::vk::StructureType,
     pub p_next: *mut core::ffi::c_void,
     pub zero_initialize_device_memory: crate::vk::Bool32,
+    pub _marker: ::core::marker::PhantomData<&'a ()>,
 }
 ///Provided by [`ext::zero_initialize_device_memory`](crate::ext::zero_initialize_device_memory)
 impl crate::vk::ImageLayout {

@@ -27,7 +27,7 @@ impl InstanceFn {
                 unsafe extern "system" fn get_physical_device_display_properties_khr(
                     _: crate::vk::PhysicalDevice,
                     _: *mut u32,
-                    _: *mut crate::vk::DisplayPropertiesKHR,
+                    _: *mut crate::vk::DisplayPropertiesKHR<'_>,
                 ) -> crate::vk::Result {
                     panic!("unable to load vkGetPhysicalDeviceDisplayPropertiesKHR")
                 }
@@ -89,8 +89,8 @@ impl InstanceFn {
                 unsafe extern "system" fn create_display_mode_khr(
                     _: crate::vk::PhysicalDevice,
                     _: crate::vk::DisplayKHR,
-                    _: *const crate::vk::DisplayModeCreateInfoKHR,
-                    _: *const crate::vk::AllocationCallbacks,
+                    _: *const crate::vk::DisplayModeCreateInfoKHR<'_>,
+                    _: *const crate::vk::AllocationCallbacks<'_>,
                     _: *mut crate::vk::DisplayModeKHR,
                 ) -> crate::vk::Result {
                     panic!("unable to load vkCreateDisplayModeKHR")
@@ -121,8 +121,8 @@ impl InstanceFn {
             create_display_plane_surface_khr: unsafe {
                 unsafe extern "system" fn create_display_plane_surface_khr(
                     _: crate::vk::Instance,
-                    _: *const crate::vk::DisplaySurfaceCreateInfoKHR,
-                    _: *const crate::vk::AllocationCallbacks,
+                    _: *const crate::vk::DisplaySurfaceCreateInfoKHR<'_>,
+                    _: *const crate::vk::AllocationCallbacks<'_>,
                     _: *mut crate::vk::SurfaceKHR,
                 ) -> crate::vk::Result {
                     panic!("unable to load vkCreateDisplayPlaneSurfaceKHR")
@@ -140,7 +140,7 @@ impl InstanceFn {
 pub(crate) mod reexport {
     #[repr(C)]
     #[derive(Clone, Copy)]
-    pub struct DisplayPropertiesKHR {
+    pub struct DisplayPropertiesKHR<'a> {
         pub display: crate::vk::DisplayKHR,
         pub display_name: *const core::ffi::c_char,
         pub physical_dimensions: crate::vk::Extent2D,
@@ -148,6 +148,7 @@ pub(crate) mod reexport {
         pub supported_transforms: crate::vk::SurfaceTransformFlagsKHR,
         pub plane_reorder_possible: crate::vk::Bool32,
         pub persistent_content: crate::vk::Bool32,
+        pub _marker: ::core::marker::PhantomData<&'a ()>,
     }
     #[repr(C)]
     #[derive(Clone, Copy)]
@@ -169,11 +170,12 @@ pub(crate) mod reexport {
     }
     #[repr(C)]
     #[derive(Clone, Copy)]
-    pub struct DisplayModeCreateInfoKHR {
+    pub struct DisplayModeCreateInfoKHR<'a> {
         pub s_type: crate::vk::StructureType,
         pub p_next: *const core::ffi::c_void,
         pub flags: crate::vk::DisplayModeCreateFlagsKHR,
         pub parameters: crate::vk::DisplayModeParametersKHR,
+        pub _marker: ::core::marker::PhantomData<&'a ()>,
     }
     #[repr(C)]
     #[derive(Clone, Copy)]
@@ -190,7 +192,7 @@ pub(crate) mod reexport {
     }
     #[repr(C)]
     #[derive(Clone, Copy)]
-    pub struct DisplaySurfaceCreateInfoKHR {
+    pub struct DisplaySurfaceCreateInfoKHR<'a> {
         pub s_type: crate::vk::StructureType,
         pub p_next: *const core::ffi::c_void,
         pub flags: crate::vk::DisplaySurfaceCreateFlagsKHR,
@@ -201,6 +203,7 @@ pub(crate) mod reexport {
         pub global_alpha: core::ffi::c_float,
         pub alpha_mode: crate::vk::DisplayPlaneAlphaFlagBitsKHR,
         pub image_extent: crate::vk::Extent2D,
+        pub _marker: ::core::marker::PhantomData<&'a ()>,
     }
     ///Provided by [`khr::display`](crate::khr::display)
     impl crate::vk::StructureType {
@@ -324,7 +327,7 @@ pub(crate) mod reexport {
     pub type PFN_vkGetPhysicalDeviceDisplayPropertiesKHR = unsafe extern "system" fn(
         physical_device: crate::vk::PhysicalDevice,
         p_property_count: *mut u32,
-        p_properties: *mut crate::vk::DisplayPropertiesKHR,
+        p_properties: *mut crate::vk::DisplayPropertiesKHR<'_>,
     ) -> crate::vk::Result;
     pub type PFN_vkGetPhysicalDeviceDisplayPlanePropertiesKHR = unsafe extern "system" fn(
         physical_device: crate::vk::PhysicalDevice,
@@ -346,8 +349,8 @@ pub(crate) mod reexport {
     pub type PFN_vkCreateDisplayModeKHR = unsafe extern "system" fn(
         physical_device: crate::vk::PhysicalDevice,
         display: crate::vk::DisplayKHR,
-        p_create_info: *const crate::vk::DisplayModeCreateInfoKHR,
-        p_allocator: *const crate::vk::AllocationCallbacks,
+        p_create_info: *const crate::vk::DisplayModeCreateInfoKHR<'_>,
+        p_allocator: *const crate::vk::AllocationCallbacks<'_>,
         p_mode: *mut crate::vk::DisplayModeKHR,
     ) -> crate::vk::Result;
     pub type PFN_vkGetDisplayPlaneCapabilitiesKHR = unsafe extern "system" fn(
@@ -358,8 +361,8 @@ pub(crate) mod reexport {
     ) -> crate::vk::Result;
     pub type PFN_vkCreateDisplayPlaneSurfaceKHR = unsafe extern "system" fn(
         instance: crate::vk::Instance,
-        p_create_info: *const crate::vk::DisplaySurfaceCreateInfoKHR,
-        p_allocator: *const crate::vk::AllocationCallbacks,
+        p_create_info: *const crate::vk::DisplaySurfaceCreateInfoKHR<'_>,
+        p_allocator: *const crate::vk::AllocationCallbacks<'_>,
         p_surface: *mut crate::vk::SurfaceKHR,
     ) -> crate::vk::Result;
     pub const KHR_DISPLAY_SPEC_VERSION: u32 = 23;

@@ -20,8 +20,8 @@ impl InstanceFn {
             get_physical_device_external_buffer_properties_khr: unsafe {
                 unsafe extern "system" fn get_physical_device_external_buffer_properties_khr(
                     _: crate::vk::PhysicalDevice,
-                    _: *const crate::vk::PhysicalDeviceExternalBufferInfo,
-                    _: *mut crate::vk::ExternalBufferProperties,
+                    _: *const crate::vk::PhysicalDeviceExternalBufferInfo<'_>,
+                    _: *mut crate::vk::ExternalBufferProperties<'_>,
                 ) {
                     panic!(
                         "unable to load vkGetPhysicalDeviceExternalBufferPropertiesKHR"
@@ -39,11 +39,19 @@ impl InstanceFn {
 }
 pub(crate) mod reexport {
     pub type ExternalMemoryPropertiesKHR = crate::vk::ExternalMemoryProperties;
-    pub type PhysicalDeviceExternalImageFormatInfoKHR = crate::vk::PhysicalDeviceExternalImageFormatInfo;
-    pub type ExternalImageFormatPropertiesKHR = crate::vk::ExternalImageFormatProperties;
-    pub type PhysicalDeviceExternalBufferInfoKHR = crate::vk::PhysicalDeviceExternalBufferInfo;
-    pub type ExternalBufferPropertiesKHR = crate::vk::ExternalBufferProperties;
-    pub type PhysicalDeviceIDPropertiesKHR = crate::vk::PhysicalDeviceIDProperties;
+    pub type PhysicalDeviceExternalImageFormatInfoKHR<'a> = crate::vk::PhysicalDeviceExternalImageFormatInfo<
+        'a,
+    >;
+    pub type ExternalImageFormatPropertiesKHR<'a> = crate::vk::ExternalImageFormatProperties<
+        'a,
+    >;
+    pub type PhysicalDeviceExternalBufferInfoKHR<'a> = crate::vk::PhysicalDeviceExternalBufferInfo<
+        'a,
+    >;
+    pub type ExternalBufferPropertiesKHR<'a> = crate::vk::ExternalBufferProperties<'a>;
+    pub type PhysicalDeviceIDPropertiesKHR<'a> = crate::vk::PhysicalDeviceIDProperties<
+        'a,
+    >;
     ///Provided by [`khr::external_memory_capabilities`](crate::khr::external_memory_capabilities)
     impl crate::vk::StructureType {
         pub const PHYSICAL_DEVICE_EXTERNAL_IMAGE_FORMAT_INFO_KHR: Self = Self::PHYSICAL_DEVICE_EXTERNAL_IMAGE_FORMAT_INFO;

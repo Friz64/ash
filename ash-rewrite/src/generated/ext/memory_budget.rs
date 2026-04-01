@@ -3,11 +3,12 @@
 //![Vulkan Manual Page](https://docs.vulkan.org/refpages/latest/refpages/source/VK_EXT_memory_budget.html) · Extension `VK_EXT_memory_budget`
 #[repr(C)]
 #[derive(Clone, Copy)]
-pub struct PhysicalDeviceMemoryBudgetPropertiesEXT {
+pub struct PhysicalDeviceMemoryBudgetPropertiesEXT<'a> {
     pub s_type: crate::vk::StructureType,
     pub p_next: *mut core::ffi::c_void,
     pub heap_budget: [crate::vk::DeviceSize; crate::vk::MAX_MEMORY_HEAPS as _],
     pub heap_usage: [crate::vk::DeviceSize; crate::vk::MAX_MEMORY_HEAPS as _],
+    pub _marker: ::core::marker::PhantomData<&'a ()>,
 }
 ///Provided by [`ext::memory_budget`](crate::ext::memory_budget)
 impl crate::vk::StructureType {

@@ -3,17 +3,19 @@
 //![Vulkan Manual Page](https://docs.vulkan.org/refpages/latest/refpages/source/VK_KHR_incremental_present.html) · Extension `VK_KHR_incremental_present`
 #[repr(C)]
 #[derive(Clone, Copy)]
-pub struct PresentRegionsKHR {
+pub struct PresentRegionsKHR<'a> {
     pub s_type: crate::vk::StructureType,
     pub p_next: *const core::ffi::c_void,
     pub swapchain_count: u32,
-    pub p_regions: *const crate::vk::PresentRegionKHR,
+    pub p_regions: *const crate::vk::PresentRegionKHR<'a>,
+    pub _marker: ::core::marker::PhantomData<&'a ()>,
 }
 #[repr(C)]
 #[derive(Clone, Copy)]
-pub struct PresentRegionKHR {
+pub struct PresentRegionKHR<'a> {
     pub rectangle_count: u32,
     pub p_rectangles: *const crate::vk::RectLayerKHR,
+    pub _marker: ::core::marker::PhantomData<&'a ()>,
 }
 #[repr(C)]
 #[derive(Clone, Copy)]

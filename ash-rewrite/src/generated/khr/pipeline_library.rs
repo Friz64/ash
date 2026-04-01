@@ -3,11 +3,12 @@
 //![Vulkan Manual Page](https://docs.vulkan.org/refpages/latest/refpages/source/VK_KHR_pipeline_library.html) · Extension `VK_KHR_pipeline_library`
 #[repr(C)]
 #[derive(Clone, Copy)]
-pub struct PipelineLibraryCreateInfoKHR {
+pub struct PipelineLibraryCreateInfoKHR<'a> {
     pub s_type: crate::vk::StructureType,
     pub p_next: *const core::ffi::c_void,
     pub library_count: u32,
     pub p_libraries: *const crate::vk::Pipeline,
+    pub _marker: ::core::marker::PhantomData<&'a ()>,
 }
 ///Provided by [`khr::pipeline_library`](crate::khr::pipeline_library)
 impl crate::vk::StructureType {

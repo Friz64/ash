@@ -3,10 +3,11 @@
 //![Vulkan Manual Page](https://docs.vulkan.org/refpages/latest/refpages/source/VK_AMD_pipeline_compiler_control.html) · Extension `VK_AMD_pipeline_compiler_control`
 #[repr(C)]
 #[derive(Clone, Copy)]
-pub struct PipelineCompilerControlCreateInfoAMD {
+pub struct PipelineCompilerControlCreateInfoAMD<'a> {
     pub s_type: crate::vk::StructureType,
     pub p_next: *const core::ffi::c_void,
     pub compiler_control_flags: crate::vk::PipelineCompilerControlFlagsAMD,
+    pub _marker: ::core::marker::PhantomData<&'a ()>,
 }
 ///Provided by [`amd::pipeline_compiler_control`](crate::amd::pipeline_compiler_control)
 impl crate::vk::StructureType {

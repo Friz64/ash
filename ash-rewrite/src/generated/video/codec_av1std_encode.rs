@@ -71,7 +71,7 @@ pub struct EncodeAV1PictureInfoFlags {
 }
 #[repr(C)]
 #[derive(Clone, Copy)]
-pub struct EncodeAV1PictureInfo {
+pub struct EncodeAV1PictureInfo<'a> {
     pub flags: crate::vk::EncodeAV1PictureInfoFlags,
     pub frame_type: crate::vk::AV1FrameType,
     pub frame_presentation_time: u32,
@@ -90,7 +90,7 @@ pub struct EncodeAV1PictureInfo {
     pub ref_frame_idx: [i8; crate::vk::STD_VIDEO_AV1_REFS_PER_FRAME as _],
     pub reserved1: [u8; 3 as _],
     pub delta_frame_id_minus_1: [u32; crate::vk::STD_VIDEO_AV1_REFS_PER_FRAME as _],
-    pub p_tile_info: *const crate::vk::AV1TileInfo,
+    pub p_tile_info: *const crate::vk::AV1TileInfo<'a>,
     pub p_quantization: *const crate::vk::AV1Quantization,
     pub p_segmentation: *const crate::vk::AV1Segmentation,
     pub p_loop_filter: *const crate::vk::AV1LoopFilter,
@@ -99,6 +99,7 @@ pub struct EncodeAV1PictureInfo {
     pub p_global_motion: *const crate::vk::AV1GlobalMotion,
     pub p_extension_header: *const crate::vk::EncodeAV1ExtensionHeader,
     pub p_buffer_removal_times: *const u32,
+    pub _marker: ::core::marker::PhantomData<&'a ()>,
 }
 #[repr(C)]
 #[derive(Clone, Copy)]
@@ -109,13 +110,14 @@ pub struct EncodeAV1ReferenceInfoFlags {
 }
 #[repr(C)]
 #[derive(Clone, Copy)]
-pub struct EncodeAV1ReferenceInfo {
+pub struct EncodeAV1ReferenceInfo<'a> {
     pub flags: crate::vk::EncodeAV1ReferenceInfoFlags,
     pub ref_frame_id: u32,
     pub frame_type: crate::vk::AV1FrameType,
     pub order_hint: u8,
     pub reserved1: [u8; 3 as _],
     pub p_extension_header: *const crate::vk::EncodeAV1ExtensionHeader,
+    pub _marker: ::core::marker::PhantomData<&'a ()>,
 }
 pub const STD_VULKAN_VIDEO_CODEC_AV1_ENCODE_SPEC_VERSION: u32 = crate::vk::STD_VULKAN_VIDEO_CODEC_AV1_ENCODE_API_VERSION_1_0_0;
 pub const STD_VULKAN_VIDEO_CODEC_AV1_ENCODE_EXTENSION_NAME: &core::ffi::CStr = c"VK_STD_vulkan_video_codec_av1_encode";
