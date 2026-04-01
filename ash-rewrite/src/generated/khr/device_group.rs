@@ -73,13 +73,21 @@ impl DeviceFn {
     }
 }
 pub(crate) mod reexport {
-    pub type MemoryAllocateFlagsInfoKHR = crate::vk::MemoryAllocateFlagsInfo;
-    pub type BindBufferMemoryDeviceGroupInfoKHR = crate::vk::BindBufferMemoryDeviceGroupInfo;
-    pub type BindImageMemoryDeviceGroupInfoKHR = crate::vk::BindImageMemoryDeviceGroupInfo;
-    pub type DeviceGroupRenderPassBeginInfoKHR = crate::vk::DeviceGroupRenderPassBeginInfo;
-    pub type DeviceGroupCommandBufferBeginInfoKHR = crate::vk::DeviceGroupCommandBufferBeginInfo;
-    pub type DeviceGroupSubmitInfoKHR = crate::vk::DeviceGroupSubmitInfo;
-    pub type DeviceGroupBindSparseInfoKHR = crate::vk::DeviceGroupBindSparseInfo;
+    pub type MemoryAllocateFlagsInfoKHR<'a> = crate::vk::MemoryAllocateFlagsInfo<'a>;
+    pub type BindBufferMemoryDeviceGroupInfoKHR<'a> = crate::vk::BindBufferMemoryDeviceGroupInfo<
+        'a,
+    >;
+    pub type BindImageMemoryDeviceGroupInfoKHR<'a> = crate::vk::BindImageMemoryDeviceGroupInfo<
+        'a,
+    >;
+    pub type DeviceGroupRenderPassBeginInfoKHR<'a> = crate::vk::DeviceGroupRenderPassBeginInfo<
+        'a,
+    >;
+    pub type DeviceGroupCommandBufferBeginInfoKHR<'a> = crate::vk::DeviceGroupCommandBufferBeginInfo<
+        'a,
+    >;
+    pub type DeviceGroupSubmitInfoKHR<'a> = crate::vk::DeviceGroupSubmitInfo<'a>;
+    pub type DeviceGroupBindSparseInfoKHR<'a> = crate::vk::DeviceGroupBindSparseInfo<'a>;
     ///Provided by [`khr::device_group`](crate::khr::device_group)
     impl crate::vk::StructureType {
         pub const MEMORY_ALLOCATE_FLAGS_INFO_KHR: Self = Self::MEMORY_ALLOCATE_FLAGS_INFO;

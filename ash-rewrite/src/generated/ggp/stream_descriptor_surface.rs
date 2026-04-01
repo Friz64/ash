@@ -20,8 +20,8 @@ impl InstanceFn {
             create_stream_descriptor_surface_ggp: unsafe {
                 unsafe extern "system" fn create_stream_descriptor_surface_ggp(
                     _: crate::vk::Instance,
-                    _: *const crate::vk::StreamDescriptorSurfaceCreateInfoGGP,
-                    _: *const crate::vk::AllocationCallbacks,
+                    _: *const crate::vk::StreamDescriptorSurfaceCreateInfoGGP<'_>,
+                    _: *const crate::vk::AllocationCallbacks<'_>,
                     _: *mut crate::vk::SurfaceKHR,
                 ) -> crate::vk::Result {
                     panic!("unable to load vkCreateStreamDescriptorSurfaceGGP")
@@ -39,11 +39,12 @@ impl InstanceFn {
 pub(crate) mod reexport {
     #[repr(C)]
     #[derive(Clone, Copy)]
-    pub struct StreamDescriptorSurfaceCreateInfoGGP {
+    pub struct StreamDescriptorSurfaceCreateInfoGGP<'a> {
         pub s_type: crate::vk::StructureType,
         pub p_next: *const core::ffi::c_void,
         pub flags: crate::vk::StreamDescriptorSurfaceCreateFlagsGGP,
         pub stream_descriptor: crate::platform_types::GgpStreamDescriptor,
+        pub _marker: ::core::marker::PhantomData<&'a ()>,
     }
     ///Provided by [`ggp::stream_descriptor_surface`](crate::ggp::stream_descriptor_surface)
     impl crate::vk::StructureType {
@@ -55,8 +56,8 @@ pub(crate) mod reexport {
     }
     pub type PFN_vkCreateStreamDescriptorSurfaceGGP = unsafe extern "system" fn(
         instance: crate::vk::Instance,
-        p_create_info: *const crate::vk::StreamDescriptorSurfaceCreateInfoGGP,
-        p_allocator: *const crate::vk::AllocationCallbacks,
+        p_create_info: *const crate::vk::StreamDescriptorSurfaceCreateInfoGGP<'_>,
+        p_allocator: *const crate::vk::AllocationCallbacks<'_>,
         p_surface: *mut crate::vk::SurfaceKHR,
     ) -> crate::vk::Result;
     pub const GGP_STREAM_DESCRIPTOR_SURFACE_SPEC_VERSION: u32 = 1;

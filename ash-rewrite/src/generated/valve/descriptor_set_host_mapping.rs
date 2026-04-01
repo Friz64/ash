@@ -21,8 +21,8 @@ impl DeviceFn {
             get_descriptor_set_layout_host_mapping_info_valve: unsafe {
                 unsafe extern "system" fn get_descriptor_set_layout_host_mapping_info_valve(
                     _: crate::vk::Device,
-                    _: *const crate::vk::DescriptorSetBindingReferenceVALVE,
-                    _: *mut crate::vk::DescriptorSetLayoutHostMappingInfoVALVE,
+                    _: *const crate::vk::DescriptorSetBindingReferenceVALVE<'_>,
+                    _: *mut crate::vk::DescriptorSetLayoutHostMappingInfoVALVE<'_>,
                 ) {
                     panic!("unable to load vkGetDescriptorSetLayoutHostMappingInfoVALVE")
                 }
@@ -54,26 +54,29 @@ impl DeviceFn {
 pub(crate) mod reexport {
     #[repr(C)]
     #[derive(Clone, Copy)]
-    pub struct PhysicalDeviceDescriptorSetHostMappingFeaturesVALVE {
+    pub struct PhysicalDeviceDescriptorSetHostMappingFeaturesVALVE<'a> {
         pub s_type: crate::vk::StructureType,
         pub p_next: *mut core::ffi::c_void,
         pub descriptor_set_host_mapping: crate::vk::Bool32,
+        pub _marker: ::core::marker::PhantomData<&'a ()>,
     }
     #[repr(C)]
     #[derive(Clone, Copy)]
-    pub struct DescriptorSetBindingReferenceVALVE {
+    pub struct DescriptorSetBindingReferenceVALVE<'a> {
         pub s_type: crate::vk::StructureType,
         pub p_next: *const core::ffi::c_void,
         pub descriptor_set_layout: crate::vk::DescriptorSetLayout,
         pub binding: u32,
+        pub _marker: ::core::marker::PhantomData<&'a ()>,
     }
     #[repr(C)]
     #[derive(Clone, Copy)]
-    pub struct DescriptorSetLayoutHostMappingInfoVALVE {
+    pub struct DescriptorSetLayoutHostMappingInfoVALVE<'a> {
         pub s_type: crate::vk::StructureType,
         pub p_next: *mut core::ffi::c_void,
         pub descriptor_offset: usize,
         pub descriptor_size: u32,
+        pub _marker: ::core::marker::PhantomData<&'a ()>,
     }
     ///Provided by [`valve::descriptor_set_host_mapping`](crate::valve::descriptor_set_host_mapping)
     impl crate::vk::StructureType {
@@ -85,8 +88,8 @@ pub(crate) mod reexport {
     }
     pub type PFN_vkGetDescriptorSetLayoutHostMappingInfoVALVE = unsafe extern "system" fn(
         device: crate::vk::Device,
-        p_binding_reference: *const crate::vk::DescriptorSetBindingReferenceVALVE,
-        p_host_mapping: *mut crate::vk::DescriptorSetLayoutHostMappingInfoVALVE,
+        p_binding_reference: *const crate::vk::DescriptorSetBindingReferenceVALVE<'_>,
+        p_host_mapping: *mut crate::vk::DescriptorSetLayoutHostMappingInfoVALVE<'_>,
     );
     pub type PFN_vkGetDescriptorSetHostMappingVALVE = unsafe extern "system" fn(
         device: crate::vk::Device,

@@ -3,14 +3,15 @@
 //![Vulkan Manual Page](https://docs.vulkan.org/refpages/latest/refpages/source/VK_KHR_surface_maintenance1.html) · Extension `VK_KHR_surface_maintenance1`
 #[repr(C)]
 #[derive(Clone, Copy)]
-pub struct SurfacePresentModeKHR {
+pub struct SurfacePresentModeKHR<'a> {
     pub s_type: crate::vk::StructureType,
     pub p_next: *mut core::ffi::c_void,
     pub present_mode: crate::vk::PresentModeKHR,
+    pub _marker: ::core::marker::PhantomData<&'a ()>,
 }
 #[repr(C)]
 #[derive(Clone, Copy)]
-pub struct SurfacePresentScalingCapabilitiesKHR {
+pub struct SurfacePresentScalingCapabilitiesKHR<'a> {
     pub s_type: crate::vk::StructureType,
     pub p_next: *mut core::ffi::c_void,
     pub supported_present_scaling: crate::vk::PresentScalingFlagsKHR,
@@ -18,14 +19,16 @@ pub struct SurfacePresentScalingCapabilitiesKHR {
     pub supported_present_gravity_y: crate::vk::PresentGravityFlagsKHR,
     pub min_scaled_image_extent: crate::vk::Extent2D,
     pub max_scaled_image_extent: crate::vk::Extent2D,
+    pub _marker: ::core::marker::PhantomData<&'a ()>,
 }
 #[repr(C)]
 #[derive(Clone, Copy)]
-pub struct SurfacePresentModeCompatibilityKHR {
+pub struct SurfacePresentModeCompatibilityKHR<'a> {
     pub s_type: crate::vk::StructureType,
     pub p_next: *mut core::ffi::c_void,
     pub present_mode_count: u32,
     pub p_present_modes: *mut crate::vk::PresentModeKHR,
+    pub _marker: ::core::marker::PhantomData<&'a ()>,
 }
 ///Provided by [`khr::surface_maintenance1`](crate::khr::surface_maintenance1)
 impl crate::vk::StructureType {

@@ -3,14 +3,15 @@
 //![Vulkan Manual Page](https://docs.vulkan.org/refpages/latest/refpages/source/VK_AMDX_dense_geometry_format.html) · Extension `VK_AMDX_dense_geometry_format`
 #[repr(C)]
 #[derive(Clone, Copy)]
-pub struct PhysicalDeviceDenseGeometryFormatFeaturesAMDX {
+pub struct PhysicalDeviceDenseGeometryFormatFeaturesAMDX<'a> {
     pub s_type: crate::vk::StructureType,
     pub p_next: *mut core::ffi::c_void,
     pub dense_geometry_format: crate::vk::Bool32,
+    pub _marker: ::core::marker::PhantomData<&'a ()>,
 }
 #[repr(C)]
 #[derive(Clone, Copy)]
-pub struct AccelerationStructureDenseGeometryFormatTrianglesDataAMDX {
+pub struct AccelerationStructureDenseGeometryFormatTrianglesDataAMDX<'a> {
     pub s_type: crate::vk::StructureType,
     pub p_next: *const core::ffi::c_void,
     pub compressed_data: crate::vk::DeviceOrHostAddressConstKHR,
@@ -20,6 +21,7 @@ pub struct AccelerationStructureDenseGeometryFormatTrianglesDataAMDX {
     pub max_primitive_index: u32,
     pub max_geometry_index: u32,
     pub format: crate::vk::CompressedTriangleFormatAMDX,
+    pub _marker: ::core::marker::PhantomData<&'a ()>,
 }
 ///Provided by [`amdx::dense_geometry_format`](crate::amdx::dense_geometry_format)
 impl crate::vk::StructureType {
@@ -36,6 +38,7 @@ impl crate::vk::GeometryTypeKHR {
 }
 #[repr(transparent)]
 #[derive(Clone, Copy, PartialEq, Eq, PartialOrd, Ord, Hash, Default)]
+#[derive(Debug)]
 pub struct CompressedTriangleFormatAMDX(pub(crate) i32);
 ///Provided by [`amdx::dense_geometry_format`](crate::amdx::dense_geometry_format)
 impl CompressedTriangleFormatAMDX {

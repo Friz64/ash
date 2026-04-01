@@ -3,17 +3,19 @@
 //![Vulkan Manual Page](https://docs.vulkan.org/refpages/latest/refpages/source/VK_EXT_shader_long_vector.html) · Extension `VK_EXT_shader_long_vector`
 #[repr(C)]
 #[derive(Clone, Copy)]
-pub struct PhysicalDeviceShaderLongVectorFeaturesEXT {
+pub struct PhysicalDeviceShaderLongVectorFeaturesEXT<'a> {
     pub s_type: crate::vk::StructureType,
     pub p_next: *mut core::ffi::c_void,
     pub long_vector: crate::vk::Bool32,
+    pub _marker: ::core::marker::PhantomData<&'a ()>,
 }
 #[repr(C)]
 #[derive(Clone, Copy)]
-pub struct PhysicalDeviceShaderLongVectorPropertiesEXT {
+pub struct PhysicalDeviceShaderLongVectorPropertiesEXT<'a> {
     pub s_type: crate::vk::StructureType,
     pub p_next: *mut core::ffi::c_void,
     pub max_vector_components: u32,
+    pub _marker: ::core::marker::PhantomData<&'a ()>,
 }
 ///Provided by [`ext::shader_long_vector`](crate::ext::shader_long_vector)
 impl crate::vk::StructureType {

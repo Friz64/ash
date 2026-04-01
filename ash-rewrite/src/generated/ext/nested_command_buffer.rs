@@ -3,19 +3,21 @@
 //![Vulkan Manual Page](https://docs.vulkan.org/refpages/latest/refpages/source/VK_EXT_nested_command_buffer.html) · Extension `VK_EXT_nested_command_buffer`
 #[repr(C)]
 #[derive(Clone, Copy)]
-pub struct PhysicalDeviceNestedCommandBufferFeaturesEXT {
+pub struct PhysicalDeviceNestedCommandBufferFeaturesEXT<'a> {
     pub s_type: crate::vk::StructureType,
     pub p_next: *mut core::ffi::c_void,
     pub nested_command_buffer: crate::vk::Bool32,
     pub nested_command_buffer_rendering: crate::vk::Bool32,
     pub nested_command_buffer_simultaneous_use: crate::vk::Bool32,
+    pub _marker: ::core::marker::PhantomData<&'a ()>,
 }
 #[repr(C)]
 #[derive(Clone, Copy)]
-pub struct PhysicalDeviceNestedCommandBufferPropertiesEXT {
+pub struct PhysicalDeviceNestedCommandBufferPropertiesEXT<'a> {
     pub s_type: crate::vk::StructureType,
     pub p_next: *mut core::ffi::c_void,
     pub max_command_buffer_nesting_level: u32,
+    pub _marker: ::core::marker::PhantomData<&'a ()>,
 }
 ///Provided by [`ext::nested_command_buffer`](crate::ext::nested_command_buffer)
 impl crate::vk::StructureType {

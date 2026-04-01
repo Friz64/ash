@@ -25,8 +25,8 @@ impl DeviceFn {
             create_cuda_module_nv: unsafe {
                 unsafe extern "system" fn create_cuda_module_nv(
                     _: crate::vk::Device,
-                    _: *const crate::vk::CudaModuleCreateInfoNV,
-                    _: *const crate::vk::AllocationCallbacks,
+                    _: *const crate::vk::CudaModuleCreateInfoNV<'_>,
+                    _: *const crate::vk::AllocationCallbacks<'_>,
                     _: *mut crate::vk::CudaModuleNV,
                 ) -> crate::vk::Result {
                     panic!("unable to load vkCreateCudaModuleNV")
@@ -57,8 +57,8 @@ impl DeviceFn {
             create_cuda_function_nv: unsafe {
                 unsafe extern "system" fn create_cuda_function_nv(
                     _: crate::vk::Device,
-                    _: *const crate::vk::CudaFunctionCreateInfoNV,
-                    _: *const crate::vk::AllocationCallbacks,
+                    _: *const crate::vk::CudaFunctionCreateInfoNV<'_>,
+                    _: *const crate::vk::AllocationCallbacks<'_>,
                     _: *mut crate::vk::CudaFunctionNV,
                 ) -> crate::vk::Result {
                     panic!("unable to load vkCreateCudaFunctionNV")
@@ -74,7 +74,7 @@ impl DeviceFn {
                 unsafe extern "system" fn destroy_cuda_module_nv(
                     _: crate::vk::Device,
                     _: crate::vk::CudaModuleNV,
-                    _: *const crate::vk::AllocationCallbacks,
+                    _: *const crate::vk::AllocationCallbacks<'_>,
                 ) {
                     panic!("unable to load vkDestroyCudaModuleNV")
                 }
@@ -89,7 +89,7 @@ impl DeviceFn {
                 unsafe extern "system" fn destroy_cuda_function_nv(
                     _: crate::vk::Device,
                     _: crate::vk::CudaFunctionNV,
-                    _: *const crate::vk::AllocationCallbacks,
+                    _: *const crate::vk::AllocationCallbacks<'_>,
                 ) {
                     panic!("unable to load vkDestroyCudaFunctionNV")
                 }
@@ -103,7 +103,7 @@ impl DeviceFn {
             cmd_cuda_launch_kernel_nv: unsafe {
                 unsafe extern "system" fn cmd_cuda_launch_kernel_nv(
                     _: crate::vk::CommandBuffer,
-                    _: *const crate::vk::CudaLaunchInfoNV,
+                    _: *const crate::vk::CudaLaunchInfoNV<'_>,
                 ) {
                     panic!("unable to load vkCmdCudaLaunchKernelNV")
                 }
@@ -120,23 +120,25 @@ impl DeviceFn {
 pub(crate) mod reexport {
     #[repr(C)]
     #[derive(Clone, Copy)]
-    pub struct CudaModuleCreateInfoNV {
+    pub struct CudaModuleCreateInfoNV<'a> {
         pub s_type: crate::vk::StructureType,
         pub p_next: *const core::ffi::c_void,
         pub data_size: usize,
         pub p_data: *const core::ffi::c_void,
+        pub _marker: ::core::marker::PhantomData<&'a ()>,
     }
     #[repr(C)]
     #[derive(Clone, Copy)]
-    pub struct CudaFunctionCreateInfoNV {
+    pub struct CudaFunctionCreateInfoNV<'a> {
         pub s_type: crate::vk::StructureType,
         pub p_next: *const core::ffi::c_void,
         pub module: crate::vk::CudaModuleNV,
         pub p_name: *const core::ffi::c_char,
+        pub _marker: ::core::marker::PhantomData<&'a ()>,
     }
     #[repr(C)]
     #[derive(Clone, Copy)]
-    pub struct CudaLaunchInfoNV {
+    pub struct CudaLaunchInfoNV<'a> {
         pub s_type: crate::vk::StructureType,
         pub p_next: *const core::ffi::c_void,
         pub function: crate::vk::CudaFunctionNV,
@@ -151,21 +153,24 @@ pub(crate) mod reexport {
         pub p_params: *const *const core::ffi::c_void,
         pub extra_count: usize,
         pub p_extras: *const *const core::ffi::c_void,
+        pub _marker: ::core::marker::PhantomData<&'a ()>,
     }
     #[repr(C)]
     #[derive(Clone, Copy)]
-    pub struct PhysicalDeviceCudaKernelLaunchFeaturesNV {
+    pub struct PhysicalDeviceCudaKernelLaunchFeaturesNV<'a> {
         pub s_type: crate::vk::StructureType,
         pub p_next: *mut core::ffi::c_void,
         pub cuda_kernel_launch_features: crate::vk::Bool32,
+        pub _marker: ::core::marker::PhantomData<&'a ()>,
     }
     #[repr(C)]
     #[derive(Clone, Copy)]
-    pub struct PhysicalDeviceCudaKernelLaunchPropertiesNV {
+    pub struct PhysicalDeviceCudaKernelLaunchPropertiesNV<'a> {
         pub s_type: crate::vk::StructureType,
         pub p_next: *mut core::ffi::c_void,
         pub compute_capability_minor: u32,
         pub compute_capability_major: u32,
+        pub _marker: ::core::marker::PhantomData<&'a ()>,
     }
     ///Provided by [`nv::cuda_kernel_launch`](crate::nv::cuda_kernel_launch)
     impl crate::vk::StructureType {
@@ -245,8 +250,8 @@ pub(crate) mod reexport {
     }
     pub type PFN_vkCreateCudaModuleNV = unsafe extern "system" fn(
         device: crate::vk::Device,
-        p_create_info: *const crate::vk::CudaModuleCreateInfoNV,
-        p_allocator: *const crate::vk::AllocationCallbacks,
+        p_create_info: *const crate::vk::CudaModuleCreateInfoNV<'_>,
+        p_allocator: *const crate::vk::AllocationCallbacks<'_>,
         p_module: *mut crate::vk::CudaModuleNV,
     ) -> crate::vk::Result;
     pub type PFN_vkGetCudaModuleCacheNV = unsafe extern "system" fn(
@@ -257,23 +262,23 @@ pub(crate) mod reexport {
     ) -> crate::vk::Result;
     pub type PFN_vkCreateCudaFunctionNV = unsafe extern "system" fn(
         device: crate::vk::Device,
-        p_create_info: *const crate::vk::CudaFunctionCreateInfoNV,
-        p_allocator: *const crate::vk::AllocationCallbacks,
+        p_create_info: *const crate::vk::CudaFunctionCreateInfoNV<'_>,
+        p_allocator: *const crate::vk::AllocationCallbacks<'_>,
         p_function: *mut crate::vk::CudaFunctionNV,
     ) -> crate::vk::Result;
     pub type PFN_vkDestroyCudaModuleNV = unsafe extern "system" fn(
         device: crate::vk::Device,
         module: crate::vk::CudaModuleNV,
-        p_allocator: *const crate::vk::AllocationCallbacks,
+        p_allocator: *const crate::vk::AllocationCallbacks<'_>,
     );
     pub type PFN_vkDestroyCudaFunctionNV = unsafe extern "system" fn(
         device: crate::vk::Device,
         function: crate::vk::CudaFunctionNV,
-        p_allocator: *const crate::vk::AllocationCallbacks,
+        p_allocator: *const crate::vk::AllocationCallbacks<'_>,
     );
     pub type PFN_vkCmdCudaLaunchKernelNV = unsafe extern "system" fn(
         command_buffer: crate::vk::CommandBuffer,
-        p_launch_info: *const crate::vk::CudaLaunchInfoNV,
+        p_launch_info: *const crate::vk::CudaLaunchInfoNV<'_>,
     );
     pub const NV_CUDA_KERNEL_LAUNCH_SPEC_VERSION: u32 = 2;
     pub const NV_CUDA_KERNEL_LAUNCH_EXTENSION_NAME: &core::ffi::CStr = c"VK_NV_cuda_kernel_launch";

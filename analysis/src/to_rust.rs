@@ -1,6 +1,6 @@
 use crate::{
     decl::{ArrayLen, CPrimaryType, Decl, Mutability, Ty},
-    item::Named,
+    lifetime::Lifetime,
     name::{
         CMacroName, CommandName, ConstantName, EnumeratorName, FuncPointerName, TypeName,
         VariableName,
@@ -15,24 +15,24 @@ use syn::Ident;
 pub trait RustTranslator {
     fn var_name_to_rust(&self, name: VariableName) -> Ident;
 
-    fn type_to_rust(&self, name: TypeName, with_path: bool) -> TokenStream;
+    fn type_to_rust(&self, name: TypeName, qualified: bool, lifetime: &Lifetime) -> TokenStream;
 
-    fn func_pointer_to_rust(&self, name: FuncPointerName, with_path: bool) -> TokenStream;
+    fn func_pointer_to_rust(&self, name: FuncPointerName, qualified: bool) -> TokenStream;
 
-    fn command_to_rust(&self, name: CommandName, with_path: bool) -> TokenStream;
+    fn command_to_rust(&self, name: CommandName, qualified: bool) -> TokenStream;
 
-    fn constant_to_rust(&self, name: ConstantName, with_path: bool) -> TokenStream;
+    fn constant_to_rust(&self, name: ConstantName, qualified: bool) -> TokenStream;
 
     fn enumerator_to_rust(
         &self,
         name: EnumeratorName,
         type_name: TypeName,
-        with_path: bool,
+        qualified: bool,
     ) -> TokenStream;
 
-    fn cmacro_to_rust(&self, name: CMacroName, with_path: bool) -> TokenStream;
+    fn cmacro_to_rust(&self, name: CMacroName, qualified: bool) -> TokenStream;
 
-    fn platform_type_to_rust(&self, raw: &'static str, with_path: bool) -> TokenStream;
+    fn platform_type_to_rust(&self, raw: &'static str, qualified: bool) -> TokenStream;
 
     fn primary_type_to_rust(&self, primary_ty: CPrimaryType) -> TokenStream {
         match primary_ty {
@@ -54,53 +54,19 @@ pub trait RustTranslator {
     }
 }
 
-pub trait RustName<N> {
-    fn rust_name(&self, rust_translator: &impl RustTranslator) -> TokenStream;
-}
-
-impl<T: Named<TypeName>> RustName<TypeName> for T {
-    fn rust_name(&self, rust_translator: &impl RustTranslator) -> TokenStream {
-        rust_translator.type_to_rust(self.name(), false)
-    }
-}
-
-impl<T: Named<FuncPointerName>> RustName<FuncPointerName> for T {
-    fn rust_name(&self, rust_translator: &impl RustTranslator) -> TokenStream {
-        rust_translator.func_pointer_to_rust(self.name(), false)
-    }
-}
-
-impl<T: Named<CommandName>> RustName<CommandName> for T {
-    fn rust_name(&self, rust_translator: &impl RustTranslator) -> TokenStream {
-        rust_translator.command_to_rust(self.name(), false)
-    }
-}
-
-impl<T: Named<ConstantName>> RustName<ConstantName> for T {
-    fn rust_name(&self, rust_translator: &impl RustTranslator) -> TokenStream {
-        rust_translator.constant_to_rust(self.name(), false)
-    }
-}
-
-impl<T: Named<CMacroName>> RustName<CMacroName> for T {
-    fn rust_name(&self, rust_translator: &impl RustTranslator) -> TokenStream {
-        rust_translator.cmacro_to_rust(self.name(), false)
-    }
-}
-
 impl Decl {
     /// Gives you this declaration in the form of `#name: #ty`.
-    pub fn to_rust(&self, translator: &impl RustTranslator) -> TokenStream {
+    pub fn to_rust(&self, translator: &impl RustTranslator, lifetime: &Lifetime) -> TokenStream {
         let name = translator.var_name_to_rust(self.name);
-        let ty = self.ty.to_rust(translator);
+        let ty = self.ty.to_rust(translator, lifetime);
         quote! { #name: #ty }
     }
 }
 
 impl Ty {
-    pub fn to_rust(&self, translator: &impl RustTranslator) -> TokenStream {
+    pub fn to_rust(&self, translator: &impl RustTranslator, lifetime: &Lifetime) -> TokenStream {
         match self {
-            Ty::SpecType(name) => translator.type_to_rust(*name, true),
+            Ty::SpecType(name) => translator.type_to_rust(*name, true, lifetime),
             Ty::SpecFuncPointer(name) => translator.func_pointer_to_rust(*name, true),
             Ty::CPrimary(base_ty) => translator.primary_type_to_rust(*base_ty),
             Ty::Platform(raw) => translator.platform_type_to_rust(raw, true),
@@ -110,7 +76,7 @@ impl Ty {
                     Mutability::Mut => quote! { mut },
                 };
 
-                let ty = ty.to_rust(translator);
+                let ty = ty.to_rust(translator, lifetime);
                 quote! { * #mutability #ty }
             }
             Ty::Ref(ty, mutability) => {
@@ -119,11 +85,11 @@ impl Ty {
                     Mutability::Mut => quote! { mut },
                 };
 
-                let ty = ty.to_rust(translator);
-                quote! { & #mutability #ty }
+                let ty = ty.to_rust(translator, lifetime);
+                quote! { & #lifetime #mutability #ty }
             }
             Ty::Array(ty, array_len) => {
-                let ty = ty.to_rust(translator);
+                let ty = ty.to_rust(translator, lifetime);
                 let array_len = match array_len {
                     ArrayLen::Constant(constant) => translator.constant_to_rust(*constant, true),
                     ArrayLen::Literal(value) => {

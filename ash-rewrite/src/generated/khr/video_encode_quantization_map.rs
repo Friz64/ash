@@ -3,77 +3,87 @@
 //![Vulkan Manual Page](https://docs.vulkan.org/refpages/latest/refpages/source/VK_KHR_video_encode_quantization_map.html) · Extension `VK_KHR_video_encode_quantization_map`
 #[repr(C)]
 #[derive(Clone, Copy)]
-pub struct VideoEncodeQuantizationMapCapabilitiesKHR {
+pub struct VideoEncodeQuantizationMapCapabilitiesKHR<'a> {
     pub s_type: crate::vk::StructureType,
     pub p_next: *mut core::ffi::c_void,
     pub max_quantization_map_extent: crate::vk::Extent2D,
+    pub _marker: ::core::marker::PhantomData<&'a ()>,
 }
 #[repr(C)]
 #[derive(Clone, Copy)]
-pub struct VideoEncodeH264QuantizationMapCapabilitiesKHR {
+pub struct VideoEncodeH264QuantizationMapCapabilitiesKHR<'a> {
     pub s_type: crate::vk::StructureType,
     pub p_next: *mut core::ffi::c_void,
     pub min_qp_delta: i32,
     pub max_qp_delta: i32,
+    pub _marker: ::core::marker::PhantomData<&'a ()>,
 }
 #[repr(C)]
 #[derive(Clone, Copy)]
-pub struct VideoEncodeH265QuantizationMapCapabilitiesKHR {
+pub struct VideoEncodeH265QuantizationMapCapabilitiesKHR<'a> {
     pub s_type: crate::vk::StructureType,
     pub p_next: *mut core::ffi::c_void,
     pub min_qp_delta: i32,
     pub max_qp_delta: i32,
+    pub _marker: ::core::marker::PhantomData<&'a ()>,
 }
 #[repr(C)]
 #[derive(Clone, Copy)]
-pub struct VideoEncodeAV1QuantizationMapCapabilitiesKHR {
+pub struct VideoEncodeAV1QuantizationMapCapabilitiesKHR<'a> {
     pub s_type: crate::vk::StructureType,
     pub p_next: *mut core::ffi::c_void,
     pub min_q_index_delta: i32,
     pub max_q_index_delta: i32,
+    pub _marker: ::core::marker::PhantomData<&'a ()>,
 }
 #[repr(C)]
 #[derive(Clone, Copy)]
-pub struct VideoFormatQuantizationMapPropertiesKHR {
+pub struct VideoFormatQuantizationMapPropertiesKHR<'a> {
     pub s_type: crate::vk::StructureType,
     pub p_next: *mut core::ffi::c_void,
     pub quantization_map_texel_size: crate::vk::Extent2D,
+    pub _marker: ::core::marker::PhantomData<&'a ()>,
 }
 #[repr(C)]
 #[derive(Clone, Copy)]
-pub struct VideoFormatH265QuantizationMapPropertiesKHR {
+pub struct VideoFormatH265QuantizationMapPropertiesKHR<'a> {
     pub s_type: crate::vk::StructureType,
     pub p_next: *mut core::ffi::c_void,
     pub compatible_ctb_sizes: crate::vk::VideoEncodeH265CtbSizeFlagsKHR,
+    pub _marker: ::core::marker::PhantomData<&'a ()>,
 }
 #[repr(C)]
 #[derive(Clone, Copy)]
-pub struct VideoFormatAV1QuantizationMapPropertiesKHR {
+pub struct VideoFormatAV1QuantizationMapPropertiesKHR<'a> {
     pub s_type: crate::vk::StructureType,
     pub p_next: *mut core::ffi::c_void,
     pub compatible_superblock_sizes: crate::vk::VideoEncodeAV1SuperblockSizeFlagsKHR,
+    pub _marker: ::core::marker::PhantomData<&'a ()>,
 }
 #[repr(C)]
 #[derive(Clone, Copy)]
-pub struct VideoEncodeQuantizationMapInfoKHR {
+pub struct VideoEncodeQuantizationMapInfoKHR<'a> {
     pub s_type: crate::vk::StructureType,
     pub p_next: *const core::ffi::c_void,
     pub quantization_map: crate::vk::ImageView,
     pub quantization_map_extent: crate::vk::Extent2D,
+    pub _marker: ::core::marker::PhantomData<&'a ()>,
 }
 #[repr(C)]
 #[derive(Clone, Copy)]
-pub struct VideoEncodeQuantizationMapSessionParametersCreateInfoKHR {
+pub struct VideoEncodeQuantizationMapSessionParametersCreateInfoKHR<'a> {
     pub s_type: crate::vk::StructureType,
     pub p_next: *const core::ffi::c_void,
     pub quantization_map_texel_size: crate::vk::Extent2D,
+    pub _marker: ::core::marker::PhantomData<&'a ()>,
 }
 #[repr(C)]
 #[derive(Clone, Copy)]
-pub struct PhysicalDeviceVideoEncodeQuantizationMapFeaturesKHR {
+pub struct PhysicalDeviceVideoEncodeQuantizationMapFeaturesKHR<'a> {
     pub s_type: crate::vk::StructureType,
     pub p_next: *mut core::ffi::c_void,
     pub video_encode_quantization_map: crate::vk::Bool32,
+    pub _marker: ::core::marker::PhantomData<&'a ()>,
 }
 ///Provided by [`khr::video_encode_quantization_map`](crate::khr::video_encode_quantization_map)
 impl crate::vk::ImageLayout {

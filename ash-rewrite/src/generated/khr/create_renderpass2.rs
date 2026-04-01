@@ -23,8 +23,8 @@ impl DeviceFn {
             create_render_pass2_khr: unsafe {
                 unsafe extern "system" fn create_render_pass2_khr(
                     _: crate::vk::Device,
-                    _: *const crate::vk::RenderPassCreateInfo2,
-                    _: *const crate::vk::AllocationCallbacks,
+                    _: *const crate::vk::RenderPassCreateInfo2<'_>,
+                    _: *const crate::vk::AllocationCallbacks<'_>,
                     _: *mut crate::vk::RenderPass,
                 ) -> crate::vk::Result {
                     panic!("unable to load vkCreateRenderPass2KHR")
@@ -39,8 +39,8 @@ impl DeviceFn {
             cmd_begin_render_pass2_khr: unsafe {
                 unsafe extern "system" fn cmd_begin_render_pass2_khr(
                     _: crate::vk::CommandBuffer,
-                    _: *const crate::vk::RenderPassBeginInfo,
-                    _: *const crate::vk::SubpassBeginInfo,
+                    _: *const crate::vk::RenderPassBeginInfo<'_>,
+                    _: *const crate::vk::SubpassBeginInfo<'_>,
                 ) {
                     panic!("unable to load vkCmdBeginRenderPass2KHR")
                 }
@@ -54,8 +54,8 @@ impl DeviceFn {
             cmd_next_subpass2_khr: unsafe {
                 unsafe extern "system" fn cmd_next_subpass2_khr(
                     _: crate::vk::CommandBuffer,
-                    _: *const crate::vk::SubpassBeginInfo,
-                    _: *const crate::vk::SubpassEndInfo,
+                    _: *const crate::vk::SubpassBeginInfo<'_>,
+                    _: *const crate::vk::SubpassEndInfo<'_>,
                 ) {
                     panic!("unable to load vkCmdNextSubpass2KHR")
                 }
@@ -69,7 +69,7 @@ impl DeviceFn {
             cmd_end_render_pass2_khr: unsafe {
                 unsafe extern "system" fn cmd_end_render_pass2_khr(
                     _: crate::vk::CommandBuffer,
-                    _: *const crate::vk::SubpassEndInfo,
+                    _: *const crate::vk::SubpassEndInfo<'_>,
                 ) {
                     panic!("unable to load vkCmdEndRenderPass2KHR")
                 }
@@ -84,13 +84,13 @@ impl DeviceFn {
     }
 }
 pub(crate) mod reexport {
-    pub type AttachmentDescription2KHR = crate::vk::AttachmentDescription2;
-    pub type AttachmentReference2KHR = crate::vk::AttachmentReference2;
-    pub type SubpassDescription2KHR = crate::vk::SubpassDescription2;
-    pub type SubpassDependency2KHR = crate::vk::SubpassDependency2;
-    pub type RenderPassCreateInfo2KHR = crate::vk::RenderPassCreateInfo2;
-    pub type SubpassBeginInfoKHR = crate::vk::SubpassBeginInfo;
-    pub type SubpassEndInfoKHR = crate::vk::SubpassEndInfo;
+    pub type AttachmentDescription2KHR<'a> = crate::vk::AttachmentDescription2<'a>;
+    pub type AttachmentReference2KHR<'a> = crate::vk::AttachmentReference2<'a>;
+    pub type SubpassDescription2KHR<'a> = crate::vk::SubpassDescription2<'a>;
+    pub type SubpassDependency2KHR<'a> = crate::vk::SubpassDependency2<'a>;
+    pub type RenderPassCreateInfo2KHR<'a> = crate::vk::RenderPassCreateInfo2<'a>;
+    pub type SubpassBeginInfoKHR<'a> = crate::vk::SubpassBeginInfo<'a>;
+    pub type SubpassEndInfoKHR<'a> = crate::vk::SubpassEndInfo<'a>;
     ///Provided by [`khr::create_renderpass2`](crate::khr::create_renderpass2)
     impl crate::vk::StructureType {
         pub const ATTACHMENT_DESCRIPTION_2_KHR: Self = Self::ATTACHMENT_DESCRIPTION_2;

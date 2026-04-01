@@ -3,27 +3,30 @@
 //![Vulkan Manual Page](https://docs.vulkan.org/refpages/latest/refpages/source/VK_EXT_image_compression_control.html) · Extension `VK_EXT_image_compression_control`
 #[repr(C)]
 #[derive(Clone, Copy)]
-pub struct ImageCompressionControlEXT {
+pub struct ImageCompressionControlEXT<'a> {
     pub s_type: crate::vk::StructureType,
     pub p_next: *const core::ffi::c_void,
     pub flags: crate::vk::ImageCompressionFlagsEXT,
     pub compression_control_plane_count: u32,
     pub p_fixed_rate_flags: *mut crate::vk::ImageCompressionFixedRateFlagsEXT,
+    pub _marker: ::core::marker::PhantomData<&'a ()>,
 }
 #[repr(C)]
 #[derive(Clone, Copy)]
-pub struct PhysicalDeviceImageCompressionControlFeaturesEXT {
+pub struct PhysicalDeviceImageCompressionControlFeaturesEXT<'a> {
     pub s_type: crate::vk::StructureType,
     pub p_next: *mut core::ffi::c_void,
     pub image_compression_control: crate::vk::Bool32,
+    pub _marker: ::core::marker::PhantomData<&'a ()>,
 }
 #[repr(C)]
 #[derive(Clone, Copy)]
-pub struct ImageCompressionPropertiesEXT {
+pub struct ImageCompressionPropertiesEXT<'a> {
     pub s_type: crate::vk::StructureType,
     pub p_next: *mut core::ffi::c_void,
     pub image_compression_flags: crate::vk::ImageCompressionFlagsEXT,
     pub image_compression_fixed_rate_flags: crate::vk::ImageCompressionFixedRateFlagsEXT,
+    pub _marker: ::core::marker::PhantomData<&'a ()>,
 }
 ///Provided by [`ext::image_compression_control`](crate::ext::image_compression_control)
 impl crate::vk::StructureType {

@@ -3,11 +3,12 @@
 //![Vulkan Manual Page](https://docs.vulkan.org/refpages/latest/refpages/source/VK_EXT_4444_formats.html) · Extension `VK_EXT_4444_formats`
 #[repr(C)]
 #[derive(Clone, Copy)]
-pub struct PhysicalDevice4444FormatsFeaturesEXT {
+pub struct PhysicalDevice4444FormatsFeaturesEXT<'a> {
     pub s_type: crate::vk::StructureType,
     pub p_next: *mut core::ffi::c_void,
     pub format_a4r4g4b4: crate::vk::Bool32,
     pub format_a4b4g4r4: crate::vk::Bool32,
+    pub _marker: ::core::marker::PhantomData<&'a ()>,
 }
 ///Provided by [`ext::_4444_formats`](crate::ext::_4444_formats)
 impl crate::vk::Format {

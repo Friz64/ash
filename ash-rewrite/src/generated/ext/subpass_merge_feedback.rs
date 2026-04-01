@@ -3,10 +3,11 @@
 //![Vulkan Manual Page](https://docs.vulkan.org/refpages/latest/refpages/source/VK_EXT_subpass_merge_feedback.html) · Extension `VK_EXT_subpass_merge_feedback`
 #[repr(C)]
 #[derive(Clone, Copy)]
-pub struct RenderPassCreationControlEXT {
+pub struct RenderPassCreationControlEXT<'a> {
     pub s_type: crate::vk::StructureType,
     pub p_next: *const core::ffi::c_void,
     pub disallow_merging: crate::vk::Bool32,
+    pub _marker: ::core::marker::PhantomData<&'a ()>,
 }
 #[repr(C)]
 #[derive(Clone, Copy)]
@@ -15,10 +16,11 @@ pub struct RenderPassCreationFeedbackInfoEXT {
 }
 #[repr(C)]
 #[derive(Clone, Copy)]
-pub struct RenderPassCreationFeedbackCreateInfoEXT {
+pub struct RenderPassCreationFeedbackCreateInfoEXT<'a> {
     pub s_type: crate::vk::StructureType,
     pub p_next: *const core::ffi::c_void,
     pub p_render_pass_feedback: *mut crate::vk::RenderPassCreationFeedbackInfoEXT,
+    pub _marker: ::core::marker::PhantomData<&'a ()>,
 }
 #[repr(C)]
 #[derive(Clone, Copy)]
@@ -29,17 +31,19 @@ pub struct RenderPassSubpassFeedbackInfoEXT {
 }
 #[repr(C)]
 #[derive(Clone, Copy)]
-pub struct RenderPassSubpassFeedbackCreateInfoEXT {
+pub struct RenderPassSubpassFeedbackCreateInfoEXT<'a> {
     pub s_type: crate::vk::StructureType,
     pub p_next: *const core::ffi::c_void,
     pub p_subpass_feedback: *mut crate::vk::RenderPassSubpassFeedbackInfoEXT,
+    pub _marker: ::core::marker::PhantomData<&'a ()>,
 }
 #[repr(C)]
 #[derive(Clone, Copy)]
-pub struct PhysicalDeviceSubpassMergeFeedbackFeaturesEXT {
+pub struct PhysicalDeviceSubpassMergeFeedbackFeaturesEXT<'a> {
     pub s_type: crate::vk::StructureType,
     pub p_next: *mut core::ffi::c_void,
     pub subpass_merge_feedback: crate::vk::Bool32,
+    pub _marker: ::core::marker::PhantomData<&'a ()>,
 }
 ///Provided by [`ext::subpass_merge_feedback`](crate::ext::subpass_merge_feedback)
 impl crate::vk::StructureType {
@@ -52,6 +56,7 @@ impl crate::vk::StructureType {
 }
 #[repr(transparent)]
 #[derive(Clone, Copy, PartialEq, Eq, PartialOrd, Ord, Hash, Default)]
+#[derive(Debug)]
 pub struct SubpassMergeStatusEXT(pub(crate) i32);
 ///Provided by [`ext::subpass_merge_feedback`](crate::ext::subpass_merge_feedback)
 impl SubpassMergeStatusEXT {

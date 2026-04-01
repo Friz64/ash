@@ -37,10 +37,11 @@ impl DeviceFn {
 pub(crate) mod reexport {
     #[repr(C)]
     #[derive(Clone, Copy)]
-    pub struct PhysicalDeviceAttachmentFeedbackLoopDynamicStateFeaturesEXT {
+    pub struct PhysicalDeviceAttachmentFeedbackLoopDynamicStateFeaturesEXT<'a> {
         pub s_type: crate::vk::StructureType,
         pub p_next: *mut core::ffi::c_void,
         pub attachment_feedback_loop_dynamic_state: crate::vk::Bool32,
+        pub _marker: ::core::marker::PhantomData<&'a ()>,
     }
     ///Provided by [`ext::attachment_feedback_loop_dynamic_state`](crate::ext::attachment_feedback_loop_dynamic_state)
     impl crate::vk::StructureType {

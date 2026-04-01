@@ -45,12 +45,13 @@ pub(crate) mod reexport {
     }
     #[repr(C)]
     #[derive(Clone, Copy)]
-    pub struct PipelineViewportWScalingStateCreateInfoNV {
+    pub struct PipelineViewportWScalingStateCreateInfoNV<'a> {
         pub s_type: crate::vk::StructureType,
         pub p_next: *const core::ffi::c_void,
         pub viewport_w_scaling_enable: crate::vk::Bool32,
         pub viewport_count: u32,
         pub p_viewport_w_scalings: *const crate::vk::ViewportWScalingNV,
+        pub _marker: ::core::marker::PhantomData<&'a ()>,
     }
     ///Provided by [`nv::clip_space_w_scaling`](crate::nv::clip_space_w_scaling)
     impl crate::vk::StructureType {

@@ -3,18 +3,20 @@
 //![Vulkan Manual Page](https://docs.vulkan.org/refpages/latest/refpages/source/VK_EXT_filter_cubic.html) · Extension `VK_EXT_filter_cubic`
 #[repr(C)]
 #[derive(Clone, Copy)]
-pub struct PhysicalDeviceImageViewImageFormatInfoEXT {
+pub struct PhysicalDeviceImageViewImageFormatInfoEXT<'a> {
     pub s_type: crate::vk::StructureType,
     pub p_next: *mut core::ffi::c_void,
     pub image_view_type: crate::vk::ImageViewType,
+    pub _marker: ::core::marker::PhantomData<&'a ()>,
 }
 #[repr(C)]
 #[derive(Clone, Copy)]
-pub struct FilterCubicImageViewImageFormatPropertiesEXT {
+pub struct FilterCubicImageViewImageFormatPropertiesEXT<'a> {
     pub s_type: crate::vk::StructureType,
     pub p_next: *mut core::ffi::c_void,
     pub filter_cubic: crate::vk::Bool32,
     pub filter_cubic_minmax: crate::vk::Bool32,
+    pub _marker: ::core::marker::PhantomData<&'a ()>,
 }
 ///Provided by [`ext::filter_cubic`](crate::ext::filter_cubic)
 impl crate::vk::Filter {

@@ -3,45 +3,50 @@
 //![Vulkan Manual Page](https://docs.vulkan.org/refpages/latest/refpages/source/VK_KHR_video_decode_av1.html) · Extension `VK_KHR_video_decode_av1`
 #[repr(C)]
 #[derive(Clone, Copy)]
-pub struct VideoDecodeAV1ProfileInfoKHR {
+pub struct VideoDecodeAV1ProfileInfoKHR<'a> {
     pub s_type: crate::vk::StructureType,
     pub p_next: *const core::ffi::c_void,
     pub std_profile: crate::vk::AV1Profile,
     pub film_grain_support: crate::vk::Bool32,
+    pub _marker: ::core::marker::PhantomData<&'a ()>,
 }
 #[repr(C)]
 #[derive(Clone, Copy)]
-pub struct VideoDecodeAV1CapabilitiesKHR {
+pub struct VideoDecodeAV1CapabilitiesKHR<'a> {
     pub s_type: crate::vk::StructureType,
     pub p_next: *mut core::ffi::c_void,
     pub max_level: crate::vk::AV1Level,
+    pub _marker: ::core::marker::PhantomData<&'a ()>,
 }
 #[repr(C)]
 #[derive(Clone, Copy)]
-pub struct VideoDecodeAV1SessionParametersCreateInfoKHR {
+pub struct VideoDecodeAV1SessionParametersCreateInfoKHR<'a> {
     pub s_type: crate::vk::StructureType,
     pub p_next: *const core::ffi::c_void,
-    pub p_std_sequence_header: *const crate::vk::AV1SequenceHeader,
+    pub p_std_sequence_header: *const crate::vk::AV1SequenceHeader<'a>,
+    pub _marker: ::core::marker::PhantomData<&'a ()>,
 }
 #[repr(C)]
 #[derive(Clone, Copy)]
-pub struct VideoDecodeAV1PictureInfoKHR {
+pub struct VideoDecodeAV1PictureInfoKHR<'a> {
     pub s_type: crate::vk::StructureType,
     pub p_next: *const core::ffi::c_void,
-    pub p_std_picture_info: *const crate::vk::DecodeAV1PictureInfo,
+    pub p_std_picture_info: *const crate::vk::DecodeAV1PictureInfo<'a>,
     pub reference_name_slot_indices: [i32; crate::vk::MAX_VIDEO_AV1_REFERENCES_PER_FRAME_KHR
         as _],
     pub frame_header_offset: u32,
     pub tile_count: u32,
     pub p_tile_offsets: *const u32,
     pub p_tile_sizes: *const u32,
+    pub _marker: ::core::marker::PhantomData<&'a ()>,
 }
 #[repr(C)]
 #[derive(Clone, Copy)]
-pub struct VideoDecodeAV1DpbSlotInfoKHR {
+pub struct VideoDecodeAV1DpbSlotInfoKHR<'a> {
     pub s_type: crate::vk::StructureType,
     pub p_next: *const core::ffi::c_void,
     pub p_std_reference_info: *const crate::vk::DecodeAV1ReferenceInfo,
+    pub _marker: ::core::marker::PhantomData<&'a ()>,
 }
 ///Provided by [`khr::video_decode_av1`](crate::khr::video_decode_av1)
 impl crate::vk::StructureType {

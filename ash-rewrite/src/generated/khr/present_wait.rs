@@ -39,10 +39,11 @@ impl DeviceFn {
 pub(crate) mod reexport {
     #[repr(C)]
     #[derive(Clone, Copy)]
-    pub struct PhysicalDevicePresentWaitFeaturesKHR {
+    pub struct PhysicalDevicePresentWaitFeaturesKHR<'a> {
         pub s_type: crate::vk::StructureType,
         pub p_next: *mut core::ffi::c_void,
         pub present_wait: crate::vk::Bool32,
+        pub _marker: ::core::marker::PhantomData<&'a ()>,
     }
     ///Provided by [`khr::present_wait`](crate::khr::present_wait)
     impl crate::vk::StructureType {

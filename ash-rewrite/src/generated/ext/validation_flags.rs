@@ -3,11 +3,12 @@
 //![Vulkan Manual Page](https://docs.vulkan.org/refpages/latest/refpages/source/VK_EXT_validation_flags.html) · Extension `VK_EXT_validation_flags`
 #[repr(C)]
 #[derive(Clone, Copy)]
-pub struct ValidationFlagsEXT {
+pub struct ValidationFlagsEXT<'a> {
     pub s_type: crate::vk::StructureType,
     pub p_next: *const core::ffi::c_void,
     pub disabled_validation_check_count: u32,
     pub p_disabled_validation_checks: *const crate::vk::ValidationCheckEXT,
+    pub _marker: ::core::marker::PhantomData<&'a ()>,
 }
 ///Provided by [`ext::validation_flags`](crate::ext::validation_flags)
 impl crate::vk::StructureType {
@@ -15,6 +16,7 @@ impl crate::vk::StructureType {
 }
 #[repr(transparent)]
 #[derive(Clone, Copy, PartialEq, Eq, PartialOrd, Ord, Hash, Default)]
+#[derive(Debug)]
 pub struct ValidationCheckEXT(pub(crate) i32);
 ///Provided by [`ext::validation_flags`](crate::ext::validation_flags)
 impl ValidationCheckEXT {

@@ -2,7 +2,9 @@
 #![cfg_attr(rustfmt, rustfmt_skip)]
 //![Vulkan Manual Page](https://docs.vulkan.org/refpages/latest/refpages/source/VK_KHR_driver_properties.html) · Extension `VK_KHR_driver_properties`
 pub type ConformanceVersionKHR = crate::vk::ConformanceVersion;
-pub type PhysicalDeviceDriverPropertiesKHR = crate::vk::PhysicalDeviceDriverProperties;
+pub type PhysicalDeviceDriverPropertiesKHR<'a> = crate::vk::PhysicalDeviceDriverProperties<
+    'a,
+>;
 ///Provided by [`khr::driver_properties`](crate::khr::driver_properties)
 impl crate::vk::StructureType {
     pub const PHYSICAL_DEVICE_DRIVER_PROPERTIES_KHR: Self = Self::PHYSICAL_DEVICE_DRIVER_PROPERTIES;

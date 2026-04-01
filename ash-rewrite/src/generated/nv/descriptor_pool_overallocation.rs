@@ -3,10 +3,11 @@
 //![Vulkan Manual Page](https://docs.vulkan.org/refpages/latest/refpages/source/VK_NV_descriptor_pool_overallocation.html) · Extension `VK_NV_descriptor_pool_overallocation`
 #[repr(C)]
 #[derive(Clone, Copy)]
-pub struct PhysicalDeviceDescriptorPoolOverallocationFeaturesNV {
+pub struct PhysicalDeviceDescriptorPoolOverallocationFeaturesNV<'a> {
     pub s_type: crate::vk::StructureType,
     pub p_next: *mut core::ffi::c_void,
     pub descriptor_pool_overallocation: crate::vk::Bool32,
+    pub _marker: ::core::marker::PhantomData<&'a ()>,
 }
 ///Provided by [`nv::descriptor_pool_overallocation`](crate::nv::descriptor_pool_overallocation)
 impl crate::vk::StructureType {

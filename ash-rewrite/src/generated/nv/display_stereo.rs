@@ -3,17 +3,19 @@
 //![Vulkan Manual Page](https://docs.vulkan.org/refpages/latest/refpages/source/VK_NV_display_stereo.html) · Extension `VK_NV_display_stereo`
 #[repr(C)]
 #[derive(Clone, Copy)]
-pub struct DisplaySurfaceStereoCreateInfoNV {
+pub struct DisplaySurfaceStereoCreateInfoNV<'a> {
     pub s_type: crate::vk::StructureType,
     pub p_next: *const core::ffi::c_void,
     pub stereo_type: crate::vk::DisplaySurfaceStereoTypeNV,
+    pub _marker: ::core::marker::PhantomData<&'a ()>,
 }
 #[repr(C)]
 #[derive(Clone, Copy)]
-pub struct DisplayModeStereoPropertiesNV {
+pub struct DisplayModeStereoPropertiesNV<'a> {
     pub s_type: crate::vk::StructureType,
     pub p_next: *mut core::ffi::c_void,
     pub hdmi3_d_supported: crate::vk::Bool32,
+    pub _marker: ::core::marker::PhantomData<&'a ()>,
 }
 ///Provided by [`nv::display_stereo`](crate::nv::display_stereo)
 impl crate::vk::StructureType {
@@ -22,6 +24,7 @@ impl crate::vk::StructureType {
 }
 #[repr(transparent)]
 #[derive(Clone, Copy, PartialEq, Eq, PartialOrd, Ord, Hash, Default)]
+#[derive(Debug)]
 pub struct DisplaySurfaceStereoTypeNV(pub(crate) i32);
 ///Provided by [`nv::display_stereo`](crate::nv::display_stereo)
 impl DisplaySurfaceStereoTypeNV {

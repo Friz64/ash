@@ -20,8 +20,8 @@ impl InstanceFn {
             create_vi_surface_nn: unsafe {
                 unsafe extern "system" fn create_vi_surface_nn(
                     _: crate::vk::Instance,
-                    _: *const crate::vk::ViSurfaceCreateInfoNN,
-                    _: *const crate::vk::AllocationCallbacks,
+                    _: *const crate::vk::ViSurfaceCreateInfoNN<'_>,
+                    _: *const crate::vk::AllocationCallbacks<'_>,
                     _: *mut crate::vk::SurfaceKHR,
                 ) -> crate::vk::Result {
                     panic!("unable to load vkCreateViSurfaceNN")
@@ -39,11 +39,12 @@ impl InstanceFn {
 pub(crate) mod reexport {
     #[repr(C)]
     #[derive(Clone, Copy)]
-    pub struct ViSurfaceCreateInfoNN {
+    pub struct ViSurfaceCreateInfoNN<'a> {
         pub s_type: crate::vk::StructureType,
         pub p_next: *const core::ffi::c_void,
         pub flags: crate::vk::ViSurfaceCreateFlagsNN,
         pub window: *mut core::ffi::c_void,
+        pub _marker: ::core::marker::PhantomData<&'a ()>,
     }
     ///Provided by [`nn::vi_surface`](crate::nn::vi_surface)
     impl crate::vk::StructureType {
@@ -55,8 +56,8 @@ pub(crate) mod reexport {
     }
     pub type PFN_vkCreateViSurfaceNN = unsafe extern "system" fn(
         instance: crate::vk::Instance,
-        p_create_info: *const crate::vk::ViSurfaceCreateInfoNN,
-        p_allocator: *const crate::vk::AllocationCallbacks,
+        p_create_info: *const crate::vk::ViSurfaceCreateInfoNN<'_>,
+        p_allocator: *const crate::vk::AllocationCallbacks<'_>,
         p_surface: *mut crate::vk::SurfaceKHR,
     ) -> crate::vk::Result;
     pub const NN_VI_SURFACE_SPEC_VERSION: u32 = 1;

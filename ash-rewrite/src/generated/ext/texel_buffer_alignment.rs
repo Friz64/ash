@@ -3,12 +3,15 @@
 //![Vulkan Manual Page](https://docs.vulkan.org/refpages/latest/refpages/source/VK_EXT_texel_buffer_alignment.html) · Extension `VK_EXT_texel_buffer_alignment`
 #[repr(C)]
 #[derive(Clone, Copy)]
-pub struct PhysicalDeviceTexelBufferAlignmentFeaturesEXT {
+pub struct PhysicalDeviceTexelBufferAlignmentFeaturesEXT<'a> {
     pub s_type: crate::vk::StructureType,
     pub p_next: *mut core::ffi::c_void,
     pub texel_buffer_alignment: crate::vk::Bool32,
+    pub _marker: ::core::marker::PhantomData<&'a ()>,
 }
-pub type PhysicalDeviceTexelBufferAlignmentPropertiesEXT = crate::vk::PhysicalDeviceTexelBufferAlignmentProperties;
+pub type PhysicalDeviceTexelBufferAlignmentPropertiesEXT<'a> = crate::vk::PhysicalDeviceTexelBufferAlignmentProperties<
+    'a,
+>;
 ///Provided by [`ext::texel_buffer_alignment`](crate::ext::texel_buffer_alignment)
 impl crate::vk::StructureType {
     pub const PHYSICAL_DEVICE_TEXEL_BUFFER_ALIGNMENT_FEATURES_EXT: Self = Self(

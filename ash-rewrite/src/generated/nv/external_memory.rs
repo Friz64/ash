@@ -3,17 +3,19 @@
 //![Vulkan Manual Page](https://docs.vulkan.org/refpages/latest/refpages/source/VK_NV_external_memory.html) · Extension `VK_NV_external_memory`
 #[repr(C)]
 #[derive(Clone, Copy)]
-pub struct ExternalMemoryImageCreateInfoNV {
+pub struct ExternalMemoryImageCreateInfoNV<'a> {
     pub s_type: crate::vk::StructureType,
     pub p_next: *const core::ffi::c_void,
     pub handle_types: crate::vk::ExternalMemoryHandleTypeFlagsNV,
+    pub _marker: ::core::marker::PhantomData<&'a ()>,
 }
 #[repr(C)]
 #[derive(Clone, Copy)]
-pub struct ExportMemoryAllocateInfoNV {
+pub struct ExportMemoryAllocateInfoNV<'a> {
     pub s_type: crate::vk::StructureType,
     pub p_next: *const core::ffi::c_void,
     pub handle_types: crate::vk::ExternalMemoryHandleTypeFlagsNV,
+    pub _marker: ::core::marker::PhantomData<&'a ()>,
 }
 ///Provided by [`nv::external_memory`](crate::nv::external_memory)
 impl crate::vk::StructureType {

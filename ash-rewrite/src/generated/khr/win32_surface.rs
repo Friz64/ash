@@ -21,8 +21,8 @@ impl InstanceFn {
             create_win32_surface_khr: unsafe {
                 unsafe extern "system" fn create_win32_surface_khr(
                     _: crate::vk::Instance,
-                    _: *const crate::vk::Win32SurfaceCreateInfoKHR,
-                    _: *const crate::vk::AllocationCallbacks,
+                    _: *const crate::vk::Win32SurfaceCreateInfoKHR<'_>,
+                    _: *const crate::vk::AllocationCallbacks<'_>,
                     _: *mut crate::vk::SurfaceKHR,
                 ) -> crate::vk::Result {
                     panic!("unable to load vkCreateWin32SurfaceKHR")
@@ -56,12 +56,13 @@ impl InstanceFn {
 pub(crate) mod reexport {
     #[repr(C)]
     #[derive(Clone, Copy)]
-    pub struct Win32SurfaceCreateInfoKHR {
+    pub struct Win32SurfaceCreateInfoKHR<'a> {
         pub s_type: crate::vk::StructureType,
         pub p_next: *const core::ffi::c_void,
         pub flags: crate::vk::Win32SurfaceCreateFlagsKHR,
         pub hinstance: crate::platform_types::HINSTANCE,
         pub hwnd: crate::platform_types::HWND,
+        pub _marker: ::core::marker::PhantomData<&'a ()>,
     }
     ///Provided by [`khr::win32_surface`](crate::khr::win32_surface)
     impl crate::vk::StructureType {
@@ -73,8 +74,8 @@ pub(crate) mod reexport {
     }
     pub type PFN_vkCreateWin32SurfaceKHR = unsafe extern "system" fn(
         instance: crate::vk::Instance,
-        p_create_info: *const crate::vk::Win32SurfaceCreateInfoKHR,
-        p_allocator: *const crate::vk::AllocationCallbacks,
+        p_create_info: *const crate::vk::Win32SurfaceCreateInfoKHR<'_>,
+        p_allocator: *const crate::vk::AllocationCallbacks<'_>,
         p_surface: *mut crate::vk::SurfaceKHR,
     ) -> crate::vk::Result;
     pub type PFN_vkGetPhysicalDeviceWin32PresentationSupportKHR = unsafe extern "system" fn(

@@ -3,10 +3,11 @@
 //![Vulkan Manual Page](https://docs.vulkan.org/refpages/latest/refpages/source/VK_KHR_surface_protected_capabilities.html) · Extension `VK_KHR_surface_protected_capabilities`
 #[repr(C)]
 #[derive(Clone, Copy)]
-pub struct SurfaceProtectedCapabilitiesKHR {
+pub struct SurfaceProtectedCapabilitiesKHR<'a> {
     pub s_type: crate::vk::StructureType,
     pub p_next: *mut core::ffi::c_void,
     pub supports_protected: crate::vk::Bool32,
+    pub _marker: ::core::marker::PhantomData<&'a ()>,
 }
 ///Provided by [`khr::surface_protected_capabilities`](crate::khr::surface_protected_capabilities)
 impl crate::vk::StructureType {

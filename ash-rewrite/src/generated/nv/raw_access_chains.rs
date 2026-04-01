@@ -3,10 +3,11 @@
 //![Vulkan Manual Page](https://docs.vulkan.org/refpages/latest/refpages/source/VK_NV_raw_access_chains.html) · Extension `VK_NV_raw_access_chains`
 #[repr(C)]
 #[derive(Clone, Copy)]
-pub struct PhysicalDeviceRawAccessChainsFeaturesNV {
+pub struct PhysicalDeviceRawAccessChainsFeaturesNV<'a> {
     pub s_type: crate::vk::StructureType,
     pub p_next: *mut core::ffi::c_void,
     pub shader_raw_access_chains: crate::vk::Bool32,
+    pub _marker: ::core::marker::PhantomData<&'a ()>,
 }
 ///Provided by [`nv::raw_access_chains`](crate::nv::raw_access_chains)
 impl crate::vk::StructureType {

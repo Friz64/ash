@@ -3,10 +3,11 @@
 //![Vulkan Manual Page](https://docs.vulkan.org/refpages/latest/refpages/source/VK_EXT_image_compression_control_swapchain.html) · Extension `VK_EXT_image_compression_control_swapchain`
 #[repr(C)]
 #[derive(Clone, Copy)]
-pub struct PhysicalDeviceImageCompressionControlSwapchainFeaturesEXT {
+pub struct PhysicalDeviceImageCompressionControlSwapchainFeaturesEXT<'a> {
     pub s_type: crate::vk::StructureType,
     pub p_next: *mut core::ffi::c_void,
     pub image_compression_control_swapchain: crate::vk::Bool32,
+    pub _marker: ::core::marker::PhantomData<&'a ()>,
 }
 ///Provided by [`ext::image_compression_control_swapchain`](crate::ext::image_compression_control_swapchain)
 impl crate::vk::StructureType {

@@ -22,7 +22,7 @@ impl DeviceFn {
                     _: crate::vk::Device,
                     _: crate::vk::ExternalMemoryHandleTypeFlagBits,
                     _: *const core::ffi::c_void,
-                    _: *mut crate::vk::MemoryHostPointerPropertiesEXT,
+                    _: *mut crate::vk::MemoryHostPointerPropertiesEXT<'_>,
                 ) -> crate::vk::Result {
                     panic!("unable to load vkGetMemoryHostPointerPropertiesEXT")
                 }
@@ -39,25 +39,28 @@ impl DeviceFn {
 pub(crate) mod reexport {
     #[repr(C)]
     #[derive(Clone, Copy)]
-    pub struct ImportMemoryHostPointerInfoEXT {
+    pub struct ImportMemoryHostPointerInfoEXT<'a> {
         pub s_type: crate::vk::StructureType,
         pub p_next: *const core::ffi::c_void,
         pub handle_type: crate::vk::ExternalMemoryHandleTypeFlagBits,
         pub p_host_pointer: *mut core::ffi::c_void,
+        pub _marker: ::core::marker::PhantomData<&'a ()>,
     }
     #[repr(C)]
     #[derive(Clone, Copy)]
-    pub struct MemoryHostPointerPropertiesEXT {
+    pub struct MemoryHostPointerPropertiesEXT<'a> {
         pub s_type: crate::vk::StructureType,
         pub p_next: *mut core::ffi::c_void,
         pub memory_type_bits: u32,
+        pub _marker: ::core::marker::PhantomData<&'a ()>,
     }
     #[repr(C)]
     #[derive(Clone, Copy)]
-    pub struct PhysicalDeviceExternalMemoryHostPropertiesEXT {
+    pub struct PhysicalDeviceExternalMemoryHostPropertiesEXT<'a> {
         pub s_type: crate::vk::StructureType,
         pub p_next: *mut core::ffi::c_void,
         pub min_imported_host_pointer_alignment: crate::vk::DeviceSize,
+        pub _marker: ::core::marker::PhantomData<&'a ()>,
     }
     ///Provided by [`ext::external_memory_host`](crate::ext::external_memory_host)
     impl crate::vk::StructureType {
@@ -76,7 +79,9 @@ pub(crate) mod reexport {
         device: crate::vk::Device,
         handle_type: crate::vk::ExternalMemoryHandleTypeFlagBits,
         p_host_pointer: *const core::ffi::c_void,
-        p_memory_host_pointer_properties: *mut crate::vk::MemoryHostPointerPropertiesEXT,
+        p_memory_host_pointer_properties: *mut crate::vk::MemoryHostPointerPropertiesEXT<
+            '_,
+        >,
     ) -> crate::vk::Result;
     pub const EXT_EXTERNAL_MEMORY_HOST_SPEC_VERSION: u32 = 1;
     pub const EXT_EXTERNAL_MEMORY_HOST_EXTENSION_NAME: &core::ffi::CStr = c"VK_EXT_external_memory_host";

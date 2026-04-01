@@ -48,8 +48,8 @@ impl DeviceFnV1_2 {
             create_render_pass2: unsafe {
                 unsafe extern "system" fn create_render_pass2(
                     _: crate::vk::Device,
-                    _: *const crate::vk::RenderPassCreateInfo2,
-                    _: *const crate::vk::AllocationCallbacks,
+                    _: *const crate::vk::RenderPassCreateInfo2<'_>,
+                    _: *const crate::vk::AllocationCallbacks<'_>,
                     _: *mut crate::vk::RenderPass,
                 ) -> crate::vk::Result {
                     panic!("unable to load vkCreateRenderPass2")
@@ -64,8 +64,8 @@ impl DeviceFnV1_2 {
             cmd_begin_render_pass2: unsafe {
                 unsafe extern "system" fn cmd_begin_render_pass2(
                     _: crate::vk::CommandBuffer,
-                    _: *const crate::vk::RenderPassBeginInfo,
-                    _: *const crate::vk::SubpassBeginInfo,
+                    _: *const crate::vk::RenderPassBeginInfo<'_>,
+                    _: *const crate::vk::SubpassBeginInfo<'_>,
                 ) {
                     panic!("unable to load vkCmdBeginRenderPass2")
                 }
@@ -79,8 +79,8 @@ impl DeviceFnV1_2 {
             cmd_next_subpass2: unsafe {
                 unsafe extern "system" fn cmd_next_subpass2(
                     _: crate::vk::CommandBuffer,
-                    _: *const crate::vk::SubpassBeginInfo,
-                    _: *const crate::vk::SubpassEndInfo,
+                    _: *const crate::vk::SubpassBeginInfo<'_>,
+                    _: *const crate::vk::SubpassEndInfo<'_>,
                 ) {
                     panic!("unable to load vkCmdNextSubpass2")
                 }
@@ -94,7 +94,7 @@ impl DeviceFnV1_2 {
             cmd_end_render_pass2: unsafe {
                 unsafe extern "system" fn cmd_end_render_pass2(
                     _: crate::vk::CommandBuffer,
-                    _: *const crate::vk::SubpassEndInfo,
+                    _: *const crate::vk::SubpassEndInfo<'_>,
                 ) {
                     panic!("unable to load vkCmdEndRenderPass2")
                 }
@@ -123,7 +123,7 @@ impl DeviceFnV1_2 {
             wait_semaphores: unsafe {
                 unsafe extern "system" fn wait_semaphores(
                     _: crate::vk::Device,
-                    _: *const crate::vk::SemaphoreWaitInfo,
+                    _: *const crate::vk::SemaphoreWaitInfo<'_>,
                     _: u64,
                 ) -> crate::vk::Result {
                     panic!("unable to load vkWaitSemaphores")
@@ -134,7 +134,7 @@ impl DeviceFnV1_2 {
             signal_semaphore: unsafe {
                 unsafe extern "system" fn signal_semaphore(
                     _: crate::vk::Device,
-                    _: *const crate::vk::SemaphoreSignalInfo,
+                    _: *const crate::vk::SemaphoreSignalInfo<'_>,
                 ) -> crate::vk::Result {
                     panic!("unable to load vkSignalSemaphore")
                 }
@@ -186,7 +186,7 @@ impl DeviceFnV1_2 {
             get_buffer_opaque_capture_address: unsafe {
                 unsafe extern "system" fn get_buffer_opaque_capture_address(
                     _: crate::vk::Device,
-                    _: *const crate::vk::BufferDeviceAddressInfo,
+                    _: *const crate::vk::BufferDeviceAddressInfo<'_>,
                 ) -> u64 {
                     panic!("unable to load vkGetBufferOpaqueCaptureAddress")
                 }
@@ -200,7 +200,7 @@ impl DeviceFnV1_2 {
             get_buffer_device_address: unsafe {
                 unsafe extern "system" fn get_buffer_device_address(
                     _: crate::vk::Device,
-                    _: *const crate::vk::BufferDeviceAddressInfo,
+                    _: *const crate::vk::BufferDeviceAddressInfo<'_>,
                 ) -> crate::vk::DeviceAddress {
                     panic!("unable to load vkGetBufferDeviceAddress")
                 }
@@ -214,7 +214,7 @@ impl DeviceFnV1_2 {
             get_device_memory_opaque_capture_address: unsafe {
                 unsafe extern "system" fn get_device_memory_opaque_capture_address(
                     _: crate::vk::Device,
-                    _: *const crate::vk::DeviceMemoryOpaqueCaptureAddressInfo,
+                    _: *const crate::vk::DeviceMemoryOpaqueCaptureAddressInfo<'_>,
                 ) -> u64 {
                     panic!("unable to load vkGetDeviceMemoryOpaqueCaptureAddress")
                 }
@@ -239,55 +239,61 @@ pub(crate) mod reexport {
     }
     #[repr(C)]
     #[derive(Clone, Copy)]
-    pub struct PhysicalDeviceDriverProperties {
+    pub struct PhysicalDeviceDriverProperties<'a> {
         pub s_type: crate::vk::StructureType,
         pub p_next: *mut core::ffi::c_void,
         pub driver_id: crate::vk::DriverId,
         pub driver_name: [core::ffi::c_char; crate::vk::MAX_DRIVER_NAME_SIZE as _],
         pub driver_info: [core::ffi::c_char; crate::vk::MAX_DRIVER_INFO_SIZE as _],
         pub conformance_version: crate::vk::ConformanceVersion,
+        pub _marker: ::core::marker::PhantomData<&'a ()>,
     }
     #[repr(C)]
     #[derive(Clone, Copy)]
-    pub struct PhysicalDeviceShaderSubgroupExtendedTypesFeatures {
+    pub struct PhysicalDeviceShaderSubgroupExtendedTypesFeatures<'a> {
         pub s_type: crate::vk::StructureType,
         pub p_next: *mut core::ffi::c_void,
         pub shader_subgroup_extended_types: crate::vk::Bool32,
+        pub _marker: ::core::marker::PhantomData<&'a ()>,
     }
     #[repr(C)]
     #[derive(Clone, Copy)]
-    pub struct PhysicalDeviceSamplerFilterMinmaxProperties {
+    pub struct PhysicalDeviceSamplerFilterMinmaxProperties<'a> {
         pub s_type: crate::vk::StructureType,
         pub p_next: *mut core::ffi::c_void,
         pub filter_minmax_single_component_formats: crate::vk::Bool32,
         pub filter_minmax_image_component_mapping: crate::vk::Bool32,
+        pub _marker: ::core::marker::PhantomData<&'a ()>,
     }
     #[repr(C)]
     #[derive(Clone, Copy)]
-    pub struct SamplerReductionModeCreateInfo {
+    pub struct SamplerReductionModeCreateInfo<'a> {
         pub s_type: crate::vk::StructureType,
         pub p_next: *const core::ffi::c_void,
         pub reduction_mode: crate::vk::SamplerReductionMode,
+        pub _marker: ::core::marker::PhantomData<&'a ()>,
     }
     #[repr(C)]
     #[derive(Clone, Copy)]
-    pub struct ImageFormatListCreateInfo {
+    pub struct ImageFormatListCreateInfo<'a> {
         pub s_type: crate::vk::StructureType,
         pub p_next: *const core::ffi::c_void,
         pub view_format_count: u32,
         pub p_view_formats: *const crate::vk::Format,
+        pub _marker: ::core::marker::PhantomData<&'a ()>,
     }
     #[repr(C)]
     #[derive(Clone, Copy)]
-    pub struct PhysicalDeviceShaderFloat16Int8Features {
+    pub struct PhysicalDeviceShaderFloat16Int8Features<'a> {
         pub s_type: crate::vk::StructureType,
         pub p_next: *mut core::ffi::c_void,
         pub shader_float16: crate::vk::Bool32,
         pub shader_int8: crate::vk::Bool32,
+        pub _marker: ::core::marker::PhantomData<&'a ()>,
     }
     #[repr(C)]
     #[derive(Clone, Copy)]
-    pub struct PhysicalDeviceFloatControlsProperties {
+    pub struct PhysicalDeviceFloatControlsProperties<'a> {
         pub s_type: crate::vk::StructureType,
         pub p_next: *mut core::ffi::c_void,
         pub denorm_behavior_independence: crate::vk::ShaderFloatControlsIndependence,
@@ -307,17 +313,19 @@ pub(crate) mod reexport {
         pub shader_rounding_mode_rtz_float16: crate::vk::Bool32,
         pub shader_rounding_mode_rtz_float32: crate::vk::Bool32,
         pub shader_rounding_mode_rtz_float64: crate::vk::Bool32,
+        pub _marker: ::core::marker::PhantomData<&'a ()>,
     }
     #[repr(C)]
     #[derive(Clone, Copy)]
-    pub struct PhysicalDeviceHostQueryResetFeatures {
+    pub struct PhysicalDeviceHostQueryResetFeatures<'a> {
         pub s_type: crate::vk::StructureType,
         pub p_next: *mut core::ffi::c_void,
         pub host_query_reset: crate::vk::Bool32,
+        pub _marker: ::core::marker::PhantomData<&'a ()>,
     }
     #[repr(C)]
     #[derive(Clone, Copy)]
-    pub struct PhysicalDeviceDescriptorIndexingFeatures {
+    pub struct PhysicalDeviceDescriptorIndexingFeatures<'a> {
         pub s_type: crate::vk::StructureType,
         pub p_next: *mut core::ffi::c_void,
         pub shader_input_attachment_array_dynamic_indexing: crate::vk::Bool32,
@@ -340,10 +348,11 @@ pub(crate) mod reexport {
         pub descriptor_binding_partially_bound: crate::vk::Bool32,
         pub descriptor_binding_variable_descriptor_count: crate::vk::Bool32,
         pub runtime_descriptor_array: crate::vk::Bool32,
+        pub _marker: ::core::marker::PhantomData<&'a ()>,
     }
     #[repr(C)]
     #[derive(Clone, Copy)]
-    pub struct PhysicalDeviceDescriptorIndexingProperties {
+    pub struct PhysicalDeviceDescriptorIndexingProperties<'a> {
         pub s_type: crate::vk::StructureType,
         pub p_next: *mut core::ffi::c_void,
         pub max_update_after_bind_descriptors_in_all_pools: u32,
@@ -369,33 +378,37 @@ pub(crate) mod reexport {
         pub max_descriptor_set_update_after_bind_sampled_images: u32,
         pub max_descriptor_set_update_after_bind_storage_images: u32,
         pub max_descriptor_set_update_after_bind_input_attachments: u32,
+        pub _marker: ::core::marker::PhantomData<&'a ()>,
     }
     #[repr(C)]
     #[derive(Clone, Copy)]
-    pub struct DescriptorSetLayoutBindingFlagsCreateInfo {
+    pub struct DescriptorSetLayoutBindingFlagsCreateInfo<'a> {
         pub s_type: crate::vk::StructureType,
         pub p_next: *const core::ffi::c_void,
         pub binding_count: u32,
         pub p_binding_flags: *const crate::vk::DescriptorBindingFlags,
+        pub _marker: ::core::marker::PhantomData<&'a ()>,
     }
     #[repr(C)]
     #[derive(Clone, Copy)]
-    pub struct DescriptorSetVariableDescriptorCountAllocateInfo {
+    pub struct DescriptorSetVariableDescriptorCountAllocateInfo<'a> {
         pub s_type: crate::vk::StructureType,
         pub p_next: *const core::ffi::c_void,
         pub descriptor_set_count: u32,
         pub p_descriptor_counts: *const u32,
+        pub _marker: ::core::marker::PhantomData<&'a ()>,
     }
     #[repr(C)]
     #[derive(Clone, Copy)]
-    pub struct DescriptorSetVariableDescriptorCountLayoutSupport {
+    pub struct DescriptorSetVariableDescriptorCountLayoutSupport<'a> {
         pub s_type: crate::vk::StructureType,
         pub p_next: *mut core::ffi::c_void,
         pub max_variable_descriptor_count: u32,
+        pub _marker: ::core::marker::PhantomData<&'a ()>,
     }
     #[repr(C)]
     #[derive(Clone, Copy)]
-    pub struct AttachmentDescription2 {
+    pub struct AttachmentDescription2<'a> {
         pub s_type: crate::vk::StructureType,
         pub p_next: *const core::ffi::c_void,
         pub flags: crate::vk::AttachmentDescriptionFlags,
@@ -407,36 +420,39 @@ pub(crate) mod reexport {
         pub stencil_store_op: crate::vk::AttachmentStoreOp,
         pub initial_layout: crate::vk::ImageLayout,
         pub final_layout: crate::vk::ImageLayout,
+        pub _marker: ::core::marker::PhantomData<&'a ()>,
     }
     #[repr(C)]
     #[derive(Clone, Copy)]
-    pub struct AttachmentReference2 {
+    pub struct AttachmentReference2<'a> {
         pub s_type: crate::vk::StructureType,
         pub p_next: *const core::ffi::c_void,
         pub attachment: u32,
         pub layout: crate::vk::ImageLayout,
         pub aspect_mask: crate::vk::ImageAspectFlags,
+        pub _marker: ::core::marker::PhantomData<&'a ()>,
     }
     #[repr(C)]
     #[derive(Clone, Copy)]
-    pub struct SubpassDescription2 {
+    pub struct SubpassDescription2<'a> {
         pub s_type: crate::vk::StructureType,
         pub p_next: *const core::ffi::c_void,
         pub flags: crate::vk::SubpassDescriptionFlags,
         pub pipeline_bind_point: crate::vk::PipelineBindPoint,
         pub view_mask: u32,
         pub input_attachment_count: u32,
-        pub p_input_attachments: *const crate::vk::AttachmentReference2,
+        pub p_input_attachments: *const crate::vk::AttachmentReference2<'a>,
         pub color_attachment_count: u32,
-        pub p_color_attachments: *const crate::vk::AttachmentReference2,
-        pub p_resolve_attachments: *const crate::vk::AttachmentReference2,
-        pub p_depth_stencil_attachment: *const crate::vk::AttachmentReference2,
+        pub p_color_attachments: *const crate::vk::AttachmentReference2<'a>,
+        pub p_resolve_attachments: *const crate::vk::AttachmentReference2<'a>,
+        pub p_depth_stencil_attachment: *const crate::vk::AttachmentReference2<'a>,
         pub preserve_attachment_count: u32,
         pub p_preserve_attachments: *const u32,
+        pub _marker: ::core::marker::PhantomData<&'a ()>,
     }
     #[repr(C)]
     #[derive(Clone, Copy)]
-    pub struct SubpassDependency2 {
+    pub struct SubpassDependency2<'a> {
         pub s_type: crate::vk::StructureType,
         pub p_next: *const core::ffi::c_void,
         pub src_subpass: u32,
@@ -447,192 +463,219 @@ pub(crate) mod reexport {
         pub dst_access_mask: crate::vk::AccessFlags,
         pub dependency_flags: crate::vk::DependencyFlags,
         pub view_offset: i32,
+        pub _marker: ::core::marker::PhantomData<&'a ()>,
     }
     #[repr(C)]
     #[derive(Clone, Copy)]
-    pub struct RenderPassCreateInfo2 {
+    pub struct RenderPassCreateInfo2<'a> {
         pub s_type: crate::vk::StructureType,
         pub p_next: *const core::ffi::c_void,
         pub flags: crate::vk::RenderPassCreateFlags,
         pub attachment_count: u32,
-        pub p_attachments: *const crate::vk::AttachmentDescription2,
+        pub p_attachments: *const crate::vk::AttachmentDescription2<'a>,
         pub subpass_count: u32,
-        pub p_subpasses: *const crate::vk::SubpassDescription2,
+        pub p_subpasses: *const crate::vk::SubpassDescription2<'a>,
         pub dependency_count: u32,
-        pub p_dependencies: *const crate::vk::SubpassDependency2,
+        pub p_dependencies: *const crate::vk::SubpassDependency2<'a>,
         pub correlated_view_mask_count: u32,
         pub p_correlated_view_masks: *const u32,
+        pub _marker: ::core::marker::PhantomData<&'a ()>,
     }
     #[repr(C)]
     #[derive(Clone, Copy)]
-    pub struct SubpassBeginInfo {
+    pub struct SubpassBeginInfo<'a> {
         pub s_type: crate::vk::StructureType,
         pub p_next: *const core::ffi::c_void,
         pub contents: crate::vk::SubpassContents,
+        pub _marker: ::core::marker::PhantomData<&'a ()>,
     }
     #[repr(C)]
     #[derive(Clone, Copy)]
-    pub struct SubpassEndInfo {
+    pub struct SubpassEndInfo<'a> {
         pub s_type: crate::vk::StructureType,
         pub p_next: *const core::ffi::c_void,
+        pub _marker: ::core::marker::PhantomData<&'a ()>,
     }
     #[repr(C)]
     #[derive(Clone, Copy)]
-    pub struct PhysicalDeviceTimelineSemaphoreFeatures {
+    pub struct PhysicalDeviceTimelineSemaphoreFeatures<'a> {
         pub s_type: crate::vk::StructureType,
         pub p_next: *mut core::ffi::c_void,
         pub timeline_semaphore: crate::vk::Bool32,
+        pub _marker: ::core::marker::PhantomData<&'a ()>,
     }
     #[repr(C)]
     #[derive(Clone, Copy)]
-    pub struct PhysicalDeviceTimelineSemaphoreProperties {
+    pub struct PhysicalDeviceTimelineSemaphoreProperties<'a> {
         pub s_type: crate::vk::StructureType,
         pub p_next: *mut core::ffi::c_void,
         pub max_timeline_semaphore_value_difference: u64,
+        pub _marker: ::core::marker::PhantomData<&'a ()>,
     }
     #[repr(C)]
     #[derive(Clone, Copy)]
-    pub struct SemaphoreTypeCreateInfo {
+    pub struct SemaphoreTypeCreateInfo<'a> {
         pub s_type: crate::vk::StructureType,
         pub p_next: *const core::ffi::c_void,
         pub semaphore_type: crate::vk::SemaphoreType,
         pub initial_value: u64,
+        pub _marker: ::core::marker::PhantomData<&'a ()>,
     }
     #[repr(C)]
     #[derive(Clone, Copy)]
-    pub struct TimelineSemaphoreSubmitInfo {
+    pub struct TimelineSemaphoreSubmitInfo<'a> {
         pub s_type: crate::vk::StructureType,
         pub p_next: *const core::ffi::c_void,
         pub wait_semaphore_value_count: u32,
         pub p_wait_semaphore_values: *const u64,
         pub signal_semaphore_value_count: u32,
         pub p_signal_semaphore_values: *const u64,
+        pub _marker: ::core::marker::PhantomData<&'a ()>,
     }
     #[repr(C)]
     #[derive(Clone, Copy)]
-    pub struct SemaphoreWaitInfo {
+    pub struct SemaphoreWaitInfo<'a> {
         pub s_type: crate::vk::StructureType,
         pub p_next: *const core::ffi::c_void,
         pub flags: crate::vk::SemaphoreWaitFlags,
         pub semaphore_count: u32,
         pub p_semaphores: *const crate::vk::Semaphore,
         pub p_values: *const u64,
+        pub _marker: ::core::marker::PhantomData<&'a ()>,
     }
     #[repr(C)]
     #[derive(Clone, Copy)]
-    pub struct SemaphoreSignalInfo {
+    pub struct SemaphoreSignalInfo<'a> {
         pub s_type: crate::vk::StructureType,
         pub p_next: *const core::ffi::c_void,
         pub semaphore: crate::vk::Semaphore,
         pub value: u64,
+        pub _marker: ::core::marker::PhantomData<&'a ()>,
     }
     #[repr(C)]
     #[derive(Clone, Copy)]
-    pub struct PhysicalDevice8BitStorageFeatures {
+    pub struct PhysicalDevice8BitStorageFeatures<'a> {
         pub s_type: crate::vk::StructureType,
         pub p_next: *mut core::ffi::c_void,
         pub storage_buffer8_bit_access: crate::vk::Bool32,
         pub uniform_and_storage_buffer8_bit_access: crate::vk::Bool32,
         pub storage_push_constant8: crate::vk::Bool32,
+        pub _marker: ::core::marker::PhantomData<&'a ()>,
     }
     #[repr(C)]
     #[derive(Clone, Copy)]
-    pub struct PhysicalDeviceVulkanMemoryModelFeatures {
+    pub struct PhysicalDeviceVulkanMemoryModelFeatures<'a> {
         pub s_type: crate::vk::StructureType,
         pub p_next: *mut core::ffi::c_void,
         pub vulkan_memory_model: crate::vk::Bool32,
         pub vulkan_memory_model_device_scope: crate::vk::Bool32,
         pub vulkan_memory_model_availability_visibility_chains: crate::vk::Bool32,
+        pub _marker: ::core::marker::PhantomData<&'a ()>,
     }
     #[repr(C)]
     #[derive(Clone, Copy)]
-    pub struct PhysicalDeviceShaderAtomicInt64Features {
+    pub struct PhysicalDeviceShaderAtomicInt64Features<'a> {
         pub s_type: crate::vk::StructureType,
         pub p_next: *mut core::ffi::c_void,
         pub shader_buffer_int64_atomics: crate::vk::Bool32,
         pub shader_shared_int64_atomics: crate::vk::Bool32,
+        pub _marker: ::core::marker::PhantomData<&'a ()>,
     }
     #[repr(C)]
     #[derive(Clone, Copy)]
-    pub struct PhysicalDeviceDepthStencilResolveProperties {
+    pub struct PhysicalDeviceDepthStencilResolveProperties<'a> {
         pub s_type: crate::vk::StructureType,
         pub p_next: *mut core::ffi::c_void,
         pub supported_depth_resolve_modes: crate::vk::ResolveModeFlags,
         pub supported_stencil_resolve_modes: crate::vk::ResolveModeFlags,
         pub independent_resolve_none: crate::vk::Bool32,
         pub independent_resolve: crate::vk::Bool32,
+        pub _marker: ::core::marker::PhantomData<&'a ()>,
     }
     #[repr(C)]
     #[derive(Clone, Copy)]
-    pub struct SubpassDescriptionDepthStencilResolve {
+    pub struct SubpassDescriptionDepthStencilResolve<'a> {
         pub s_type: crate::vk::StructureType,
         pub p_next: *const core::ffi::c_void,
         pub depth_resolve_mode: crate::vk::ResolveModeFlagBits,
         pub stencil_resolve_mode: crate::vk::ResolveModeFlagBits,
-        pub p_depth_stencil_resolve_attachment: *const crate::vk::AttachmentReference2,
+        pub p_depth_stencil_resolve_attachment: *const crate::vk::AttachmentReference2<
+            'a,
+        >,
+        pub _marker: ::core::marker::PhantomData<&'a ()>,
     }
     #[repr(C)]
     #[derive(Clone, Copy)]
-    pub struct ImageStencilUsageCreateInfo {
+    pub struct ImageStencilUsageCreateInfo<'a> {
         pub s_type: crate::vk::StructureType,
         pub p_next: *const core::ffi::c_void,
         pub stencil_usage: crate::vk::ImageUsageFlags,
+        pub _marker: ::core::marker::PhantomData<&'a ()>,
     }
     #[repr(C)]
     #[derive(Clone, Copy)]
-    pub struct PhysicalDeviceScalarBlockLayoutFeatures {
+    pub struct PhysicalDeviceScalarBlockLayoutFeatures<'a> {
         pub s_type: crate::vk::StructureType,
         pub p_next: *mut core::ffi::c_void,
         pub scalar_block_layout: crate::vk::Bool32,
+        pub _marker: ::core::marker::PhantomData<&'a ()>,
     }
     #[repr(C)]
     #[derive(Clone, Copy)]
-    pub struct PhysicalDeviceUniformBufferStandardLayoutFeatures {
+    pub struct PhysicalDeviceUniformBufferStandardLayoutFeatures<'a> {
         pub s_type: crate::vk::StructureType,
         pub p_next: *mut core::ffi::c_void,
         pub uniform_buffer_standard_layout: crate::vk::Bool32,
+        pub _marker: ::core::marker::PhantomData<&'a ()>,
     }
     #[repr(C)]
     #[derive(Clone, Copy)]
-    pub struct PhysicalDeviceBufferDeviceAddressFeatures {
+    pub struct PhysicalDeviceBufferDeviceAddressFeatures<'a> {
         pub s_type: crate::vk::StructureType,
         pub p_next: *mut core::ffi::c_void,
         pub buffer_device_address: crate::vk::Bool32,
         pub buffer_device_address_capture_replay: crate::vk::Bool32,
         pub buffer_device_address_multi_device: crate::vk::Bool32,
+        pub _marker: ::core::marker::PhantomData<&'a ()>,
     }
     #[repr(C)]
     #[derive(Clone, Copy)]
-    pub struct BufferDeviceAddressInfo {
+    pub struct BufferDeviceAddressInfo<'a> {
         pub s_type: crate::vk::StructureType,
         pub p_next: *const core::ffi::c_void,
         pub buffer: crate::vk::Buffer,
+        pub _marker: ::core::marker::PhantomData<&'a ()>,
     }
     #[repr(C)]
     #[derive(Clone, Copy)]
-    pub struct BufferOpaqueCaptureAddressCreateInfo {
+    pub struct BufferOpaqueCaptureAddressCreateInfo<'a> {
         pub s_type: crate::vk::StructureType,
         pub p_next: *const core::ffi::c_void,
         pub opaque_capture_address: u64,
+        pub _marker: ::core::marker::PhantomData<&'a ()>,
     }
     #[repr(C)]
     #[derive(Clone, Copy)]
-    pub struct PhysicalDeviceImagelessFramebufferFeatures {
+    pub struct PhysicalDeviceImagelessFramebufferFeatures<'a> {
         pub s_type: crate::vk::StructureType,
         pub p_next: *mut core::ffi::c_void,
         pub imageless_framebuffer: crate::vk::Bool32,
+        pub _marker: ::core::marker::PhantomData<&'a ()>,
     }
     #[repr(C)]
     #[derive(Clone, Copy)]
-    pub struct FramebufferAttachmentsCreateInfo {
+    pub struct FramebufferAttachmentsCreateInfo<'a> {
         pub s_type: crate::vk::StructureType,
         pub p_next: *const core::ffi::c_void,
         pub attachment_image_info_count: u32,
-        pub p_attachment_image_infos: *const crate::vk::FramebufferAttachmentImageInfo,
+        pub p_attachment_image_infos: *const crate::vk::FramebufferAttachmentImageInfo<
+            'a,
+        >,
+        pub _marker: ::core::marker::PhantomData<&'a ()>,
     }
     #[repr(C)]
     #[derive(Clone, Copy)]
-    pub struct FramebufferAttachmentImageInfo {
+    pub struct FramebufferAttachmentImageInfo<'a> {
         pub s_type: crate::vk::StructureType,
         pub p_next: *const core::ffi::c_void,
         pub flags: crate::vk::ImageCreateFlags,
@@ -642,54 +685,61 @@ pub(crate) mod reexport {
         pub layer_count: u32,
         pub view_format_count: u32,
         pub p_view_formats: *const crate::vk::Format,
+        pub _marker: ::core::marker::PhantomData<&'a ()>,
     }
     #[repr(C)]
     #[derive(Clone, Copy)]
-    pub struct RenderPassAttachmentBeginInfo {
+    pub struct RenderPassAttachmentBeginInfo<'a> {
         pub s_type: crate::vk::StructureType,
         pub p_next: *const core::ffi::c_void,
         pub attachment_count: u32,
         pub p_attachments: *const crate::vk::ImageView,
+        pub _marker: ::core::marker::PhantomData<&'a ()>,
     }
     #[repr(C)]
     #[derive(Clone, Copy)]
-    pub struct PhysicalDeviceSeparateDepthStencilLayoutsFeatures {
+    pub struct PhysicalDeviceSeparateDepthStencilLayoutsFeatures<'a> {
         pub s_type: crate::vk::StructureType,
         pub p_next: *mut core::ffi::c_void,
         pub separate_depth_stencil_layouts: crate::vk::Bool32,
+        pub _marker: ::core::marker::PhantomData<&'a ()>,
     }
     #[repr(C)]
     #[derive(Clone, Copy)]
-    pub struct AttachmentReferenceStencilLayout {
+    pub struct AttachmentReferenceStencilLayout<'a> {
         pub s_type: crate::vk::StructureType,
         pub p_next: *mut core::ffi::c_void,
         pub stencil_layout: crate::vk::ImageLayout,
+        pub _marker: ::core::marker::PhantomData<&'a ()>,
     }
     #[repr(C)]
     #[derive(Clone, Copy)]
-    pub struct AttachmentDescriptionStencilLayout {
+    pub struct AttachmentDescriptionStencilLayout<'a> {
         pub s_type: crate::vk::StructureType,
         pub p_next: *mut core::ffi::c_void,
         pub stencil_initial_layout: crate::vk::ImageLayout,
         pub stencil_final_layout: crate::vk::ImageLayout,
+        pub _marker: ::core::marker::PhantomData<&'a ()>,
     }
     #[repr(C)]
     #[derive(Clone, Copy)]
-    pub struct MemoryOpaqueCaptureAddressAllocateInfo {
+    pub struct MemoryOpaqueCaptureAddressAllocateInfo<'a> {
         pub s_type: crate::vk::StructureType,
         pub p_next: *const core::ffi::c_void,
         pub opaque_capture_address: u64,
+        pub _marker: ::core::marker::PhantomData<&'a ()>,
     }
     #[repr(C)]
     #[derive(Clone, Copy)]
-    pub struct DeviceMemoryOpaqueCaptureAddressInfo {
+    pub struct DeviceMemoryOpaqueCaptureAddressInfo<'a> {
         pub s_type: crate::vk::StructureType,
         pub p_next: *const core::ffi::c_void,
         pub memory: crate::vk::DeviceMemory,
+        pub _marker: ::core::marker::PhantomData<&'a ()>,
     }
     #[repr(C)]
     #[derive(Clone, Copy)]
-    pub struct PhysicalDeviceVulkan11Features {
+    pub struct PhysicalDeviceVulkan11Features<'a> {
         pub s_type: crate::vk::StructureType,
         pub p_next: *mut core::ffi::c_void,
         pub storage_buffer16_bit_access: crate::vk::Bool32,
@@ -704,10 +754,11 @@ pub(crate) mod reexport {
         pub protected_memory: crate::vk::Bool32,
         pub sampler_ycbcr_conversion: crate::vk::Bool32,
         pub shader_draw_parameters: crate::vk::Bool32,
+        pub _marker: ::core::marker::PhantomData<&'a ()>,
     }
     #[repr(C)]
     #[derive(Clone, Copy)]
-    pub struct PhysicalDeviceVulkan11Properties {
+    pub struct PhysicalDeviceVulkan11Properties<'a> {
         pub s_type: crate::vk::StructureType,
         pub p_next: *mut core::ffi::c_void,
         pub device_uuid: [u8; crate::vk::UUID_SIZE as _],
@@ -725,10 +776,11 @@ pub(crate) mod reexport {
         pub protected_no_fault: crate::vk::Bool32,
         pub max_per_set_descriptors: u32,
         pub max_memory_allocation_size: crate::vk::DeviceSize,
+        pub _marker: ::core::marker::PhantomData<&'a ()>,
     }
     #[repr(C)]
     #[derive(Clone, Copy)]
-    pub struct PhysicalDeviceVulkan12Features {
+    pub struct PhysicalDeviceVulkan12Features<'a> {
         pub s_type: crate::vk::StructureType,
         pub p_next: *mut core::ffi::c_void,
         pub sampler_mirror_clamp_to_edge: crate::vk::Bool32,
@@ -778,10 +830,11 @@ pub(crate) mod reexport {
         pub shader_output_viewport_index: crate::vk::Bool32,
         pub shader_output_layer: crate::vk::Bool32,
         pub subgroup_broadcast_dynamic_id: crate::vk::Bool32,
+        pub _marker: ::core::marker::PhantomData<&'a ()>,
     }
     #[repr(C)]
     #[derive(Clone, Copy)]
-    pub struct PhysicalDeviceVulkan12Properties {
+    pub struct PhysicalDeviceVulkan12Properties<'a> {
         pub s_type: crate::vk::StructureType,
         pub p_next: *mut core::ffi::c_void,
         pub driver_id: crate::vk::DriverId,
@@ -836,6 +889,7 @@ pub(crate) mod reexport {
         pub filter_minmax_image_component_mapping: crate::vk::Bool32,
         pub max_timeline_semaphore_value_difference: u64,
         pub framebuffer_integer_color_sample_counts: crate::vk::SampleCountFlags,
+        pub _marker: ::core::marker::PhantomData<&'a ()>,
     }
     ///Provided by [`vk1_2`](crate::vk1_2)
     impl crate::vk::ImageLayout {
@@ -930,6 +984,7 @@ pub(crate) mod reexport {
     }
     #[repr(transparent)]
     #[derive(Clone, Copy, PartialEq, Eq, PartialOrd, Ord, Hash, Default)]
+    #[derive(Debug)]
     pub struct SemaphoreType(pub(crate) i32);
     ///Provided by [`vk1_2`](crate::vk1_2)
     impl SemaphoreType {
@@ -938,6 +993,7 @@ pub(crate) mod reexport {
     }
     #[repr(transparent)]
     #[derive(Clone, Copy, PartialEq, Eq, PartialOrd, Ord, Hash, Default)]
+    #[derive(Debug)]
     pub struct SamplerReductionMode(pub(crate) i32);
     ///Provided by [`vk1_2`](crate::vk1_2)
     impl SamplerReductionMode {
@@ -947,6 +1003,7 @@ pub(crate) mod reexport {
     }
     #[repr(transparent)]
     #[derive(Clone, Copy, PartialEq, Eq, PartialOrd, Ord, Hash, Default)]
+    #[derive(Debug)]
     pub struct DriverId(pub(crate) i32);
     ///Provided by [`vk1_2`](crate::vk1_2)
     impl DriverId {
@@ -981,6 +1038,7 @@ pub(crate) mod reexport {
     }
     #[repr(transparent)]
     #[derive(Clone, Copy, PartialEq, Eq, PartialOrd, Ord, Hash, Default)]
+    #[derive(Debug)]
     pub struct ShaderFloatControlsIndependence(pub(crate) i32);
     ///Provided by [`vk1_2`](crate::vk1_2)
     impl ShaderFloatControlsIndependence {
@@ -1085,23 +1143,23 @@ pub(crate) mod reexport {
     );
     pub type PFN_vkCreateRenderPass2 = unsafe extern "system" fn(
         device: crate::vk::Device,
-        p_create_info: *const crate::vk::RenderPassCreateInfo2,
-        p_allocator: *const crate::vk::AllocationCallbacks,
+        p_create_info: *const crate::vk::RenderPassCreateInfo2<'_>,
+        p_allocator: *const crate::vk::AllocationCallbacks<'_>,
         p_render_pass: *mut crate::vk::RenderPass,
     ) -> crate::vk::Result;
     pub type PFN_vkCmdBeginRenderPass2 = unsafe extern "system" fn(
         command_buffer: crate::vk::CommandBuffer,
-        p_render_pass_begin: *const crate::vk::RenderPassBeginInfo,
-        p_subpass_begin_info: *const crate::vk::SubpassBeginInfo,
+        p_render_pass_begin: *const crate::vk::RenderPassBeginInfo<'_>,
+        p_subpass_begin_info: *const crate::vk::SubpassBeginInfo<'_>,
     );
     pub type PFN_vkCmdNextSubpass2 = unsafe extern "system" fn(
         command_buffer: crate::vk::CommandBuffer,
-        p_subpass_begin_info: *const crate::vk::SubpassBeginInfo,
-        p_subpass_end_info: *const crate::vk::SubpassEndInfo,
+        p_subpass_begin_info: *const crate::vk::SubpassBeginInfo<'_>,
+        p_subpass_end_info: *const crate::vk::SubpassEndInfo<'_>,
     );
     pub type PFN_vkCmdEndRenderPass2 = unsafe extern "system" fn(
         command_buffer: crate::vk::CommandBuffer,
-        p_subpass_end_info: *const crate::vk::SubpassEndInfo,
+        p_subpass_end_info: *const crate::vk::SubpassEndInfo<'_>,
     );
     pub type PFN_vkGetSemaphoreCounterValue = unsafe extern "system" fn(
         device: crate::vk::Device,
@@ -1110,12 +1168,12 @@ pub(crate) mod reexport {
     ) -> crate::vk::Result;
     pub type PFN_vkWaitSemaphores = unsafe extern "system" fn(
         device: crate::vk::Device,
-        p_wait_info: *const crate::vk::SemaphoreWaitInfo,
+        p_wait_info: *const crate::vk::SemaphoreWaitInfo<'_>,
         timeout: u64,
     ) -> crate::vk::Result;
     pub type PFN_vkSignalSemaphore = unsafe extern "system" fn(
         device: crate::vk::Device,
-        p_signal_info: *const crate::vk::SemaphoreSignalInfo,
+        p_signal_info: *const crate::vk::SemaphoreSignalInfo<'_>,
     ) -> crate::vk::Result;
     pub type PFN_vkCmdDrawIndirectCount = unsafe extern "system" fn(
         command_buffer: crate::vk::CommandBuffer,
@@ -1137,15 +1195,15 @@ pub(crate) mod reexport {
     );
     pub type PFN_vkGetBufferOpaqueCaptureAddress = unsafe extern "system" fn(
         device: crate::vk::Device,
-        p_info: *const crate::vk::BufferDeviceAddressInfo,
+        p_info: *const crate::vk::BufferDeviceAddressInfo<'_>,
     ) -> u64;
     pub type PFN_vkGetBufferDeviceAddress = unsafe extern "system" fn(
         device: crate::vk::Device,
-        p_info: *const crate::vk::BufferDeviceAddressInfo,
+        p_info: *const crate::vk::BufferDeviceAddressInfo<'_>,
     ) -> crate::vk::DeviceAddress;
     pub type PFN_vkGetDeviceMemoryOpaqueCaptureAddress = unsafe extern "system" fn(
         device: crate::vk::Device,
-        p_info: *const crate::vk::DeviceMemoryOpaqueCaptureAddressInfo,
+        p_info: *const crate::vk::DeviceMemoryOpaqueCaptureAddressInfo<'_>,
     ) -> u64;
     pub const MAX_DRIVER_NAME_SIZE: u32 = 256;
     pub const MAX_DRIVER_INFO_SIZE: u32 = 256;

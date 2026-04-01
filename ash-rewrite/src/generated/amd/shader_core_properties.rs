@@ -3,7 +3,7 @@
 //![Vulkan Manual Page](https://docs.vulkan.org/refpages/latest/refpages/source/VK_AMD_shader_core_properties.html) · Extension `VK_AMD_shader_core_properties`
 #[repr(C)]
 #[derive(Clone, Copy)]
-pub struct PhysicalDeviceShaderCorePropertiesAMD {
+pub struct PhysicalDeviceShaderCorePropertiesAMD<'a> {
     pub s_type: crate::vk::StructureType,
     pub p_next: *mut core::ffi::c_void,
     pub shader_engine_count: u32,
@@ -20,6 +20,7 @@ pub struct PhysicalDeviceShaderCorePropertiesAMD {
     pub min_vgpr_allocation: u32,
     pub max_vgpr_allocation: u32,
     pub vgpr_allocation_granularity: u32,
+    pub _marker: ::core::marker::PhantomData<&'a ()>,
 }
 ///Provided by [`amd::shader_core_properties`](crate::amd::shader_core_properties)
 impl crate::vk::StructureType {

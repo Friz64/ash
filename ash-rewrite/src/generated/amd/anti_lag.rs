@@ -20,7 +20,7 @@ impl DeviceFn {
             anti_lag_update_amd: unsafe {
                 unsafe extern "system" fn anti_lag_update_amd(
                     _: crate::vk::Device,
-                    _: *const crate::vk::AntiLagDataAMD,
+                    _: *const crate::vk::AntiLagDataAMD<'_>,
                 ) {
                     panic!("unable to load vkAntiLagUpdateAMD")
                 }
@@ -37,27 +37,30 @@ impl DeviceFn {
 pub(crate) mod reexport {
     #[repr(C)]
     #[derive(Clone, Copy)]
-    pub struct PhysicalDeviceAntiLagFeaturesAMD {
+    pub struct PhysicalDeviceAntiLagFeaturesAMD<'a> {
         pub s_type: crate::vk::StructureType,
         pub p_next: *mut core::ffi::c_void,
         pub anti_lag: crate::vk::Bool32,
+        pub _marker: ::core::marker::PhantomData<&'a ()>,
     }
     #[repr(C)]
     #[derive(Clone, Copy)]
-    pub struct AntiLagDataAMD {
+    pub struct AntiLagDataAMD<'a> {
         pub s_type: crate::vk::StructureType,
         pub p_next: *const core::ffi::c_void,
         pub mode: crate::vk::AntiLagModeAMD,
         pub max_fps: u32,
-        pub p_presentation_info: *const crate::vk::AntiLagPresentationInfoAMD,
+        pub p_presentation_info: *const crate::vk::AntiLagPresentationInfoAMD<'a>,
+        pub _marker: ::core::marker::PhantomData<&'a ()>,
     }
     #[repr(C)]
     #[derive(Clone, Copy)]
-    pub struct AntiLagPresentationInfoAMD {
+    pub struct AntiLagPresentationInfoAMD<'a> {
         pub s_type: crate::vk::StructureType,
         pub p_next: *mut core::ffi::c_void,
         pub stage: crate::vk::AntiLagStageAMD,
         pub frame_index: u64,
+        pub _marker: ::core::marker::PhantomData<&'a ()>,
     }
     ///Provided by [`amd::anti_lag`](crate::amd::anti_lag)
     impl crate::vk::StructureType {
@@ -67,6 +70,7 @@ pub(crate) mod reexport {
     }
     #[repr(transparent)]
     #[derive(Clone, Copy, PartialEq, Eq, PartialOrd, Ord, Hash, Default)]
+    #[derive(Debug)]
     pub struct AntiLagModeAMD(pub(crate) i32);
     ///Provided by [`amd::anti_lag`](crate::amd::anti_lag)
     impl AntiLagModeAMD {
@@ -76,6 +80,7 @@ pub(crate) mod reexport {
     }
     #[repr(transparent)]
     #[derive(Clone, Copy, PartialEq, Eq, PartialOrd, Ord, Hash, Default)]
+    #[derive(Debug)]
     pub struct AntiLagStageAMD(pub(crate) i32);
     ///Provided by [`amd::anti_lag`](crate::amd::anti_lag)
     impl AntiLagStageAMD {
@@ -84,7 +89,7 @@ pub(crate) mod reexport {
     }
     pub type PFN_vkAntiLagUpdateAMD = unsafe extern "system" fn(
         device: crate::vk::Device,
-        p_data: *const crate::vk::AntiLagDataAMD,
+        p_data: *const crate::vk::AntiLagDataAMD<'_>,
     );
     pub const AMD_ANTI_LAG_SPEC_VERSION: u32 = 1;
     pub const AMD_ANTI_LAG_EXTENSION_NAME: &core::ffi::CStr = c"VK_AMD_anti_lag";

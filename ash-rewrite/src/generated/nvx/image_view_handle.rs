@@ -23,7 +23,7 @@ impl DeviceFn {
             get_image_view_handle_nvx: unsafe {
                 unsafe extern "system" fn get_image_view_handle_nvx(
                     _: crate::vk::Device,
-                    _: *const crate::vk::ImageViewHandleInfoNVX,
+                    _: *const crate::vk::ImageViewHandleInfoNVX<'_>,
                 ) -> u32 {
                     panic!("unable to load vkGetImageViewHandleNVX")
                 }
@@ -37,7 +37,7 @@ impl DeviceFn {
             get_image_view_handle64_nvx: unsafe {
                 unsafe extern "system" fn get_image_view_handle64_nvx(
                     _: crate::vk::Device,
-                    _: *const crate::vk::ImageViewHandleInfoNVX,
+                    _: *const crate::vk::ImageViewHandleInfoNVX<'_>,
                 ) -> u64 {
                     panic!("unable to load vkGetImageViewHandle64NVX")
                 }
@@ -52,7 +52,7 @@ impl DeviceFn {
                 unsafe extern "system" fn get_image_view_address_nvx(
                     _: crate::vk::Device,
                     _: crate::vk::ImageView,
-                    _: *mut crate::vk::ImageViewAddressPropertiesNVX,
+                    _: *mut crate::vk::ImageViewAddressPropertiesNVX<'_>,
                 ) -> crate::vk::Result {
                     panic!("unable to load vkGetImageViewAddressNVX")
                 }
@@ -84,20 +84,22 @@ impl DeviceFn {
 pub(crate) mod reexport {
     #[repr(C)]
     #[derive(Clone, Copy)]
-    pub struct ImageViewHandleInfoNVX {
+    pub struct ImageViewHandleInfoNVX<'a> {
         pub s_type: crate::vk::StructureType,
         pub p_next: *const core::ffi::c_void,
         pub image_view: crate::vk::ImageView,
         pub descriptor_type: crate::vk::DescriptorType,
         pub sampler: crate::vk::Sampler,
+        pub _marker: ::core::marker::PhantomData<&'a ()>,
     }
     #[repr(C)]
     #[derive(Clone, Copy)]
-    pub struct ImageViewAddressPropertiesNVX {
+    pub struct ImageViewAddressPropertiesNVX<'a> {
         pub s_type: crate::vk::StructureType,
         pub p_next: *mut core::ffi::c_void,
         pub device_address: crate::vk::DeviceAddress,
         pub size: crate::vk::DeviceSize,
+        pub _marker: ::core::marker::PhantomData<&'a ()>,
     }
     ///Provided by [`nvx::image_view_handle`](crate::nvx::image_view_handle)
     impl crate::vk::StructureType {
@@ -106,16 +108,16 @@ pub(crate) mod reexport {
     }
     pub type PFN_vkGetImageViewHandleNVX = unsafe extern "system" fn(
         device: crate::vk::Device,
-        p_info: *const crate::vk::ImageViewHandleInfoNVX,
+        p_info: *const crate::vk::ImageViewHandleInfoNVX<'_>,
     ) -> u32;
     pub type PFN_vkGetImageViewHandle64NVX = unsafe extern "system" fn(
         device: crate::vk::Device,
-        p_info: *const crate::vk::ImageViewHandleInfoNVX,
+        p_info: *const crate::vk::ImageViewHandleInfoNVX<'_>,
     ) -> u64;
     pub type PFN_vkGetImageViewAddressNVX = unsafe extern "system" fn(
         device: crate::vk::Device,
         image_view: crate::vk::ImageView,
-        p_properties: *mut crate::vk::ImageViewAddressPropertiesNVX,
+        p_properties: *mut crate::vk::ImageViewAddressPropertiesNVX<'_>,
     ) -> crate::vk::Result;
     pub type PFN_vkGetDeviceCombinedImageSamplerIndexNVX = unsafe extern "system" fn(
         device: crate::vk::Device,

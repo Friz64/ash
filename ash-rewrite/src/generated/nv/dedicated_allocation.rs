@@ -3,25 +3,28 @@
 //![Vulkan Manual Page](https://docs.vulkan.org/refpages/latest/refpages/source/VK_NV_dedicated_allocation.html) · Extension `VK_NV_dedicated_allocation`
 #[repr(C)]
 #[derive(Clone, Copy)]
-pub struct DedicatedAllocationImageCreateInfoNV {
+pub struct DedicatedAllocationImageCreateInfoNV<'a> {
     pub s_type: crate::vk::StructureType,
     pub p_next: *const core::ffi::c_void,
     pub dedicated_allocation: crate::vk::Bool32,
+    pub _marker: ::core::marker::PhantomData<&'a ()>,
 }
 #[repr(C)]
 #[derive(Clone, Copy)]
-pub struct DedicatedAllocationBufferCreateInfoNV {
+pub struct DedicatedAllocationBufferCreateInfoNV<'a> {
     pub s_type: crate::vk::StructureType,
     pub p_next: *const core::ffi::c_void,
     pub dedicated_allocation: crate::vk::Bool32,
+    pub _marker: ::core::marker::PhantomData<&'a ()>,
 }
 #[repr(C)]
 #[derive(Clone, Copy)]
-pub struct DedicatedAllocationMemoryAllocateInfoNV {
+pub struct DedicatedAllocationMemoryAllocateInfoNV<'a> {
     pub s_type: crate::vk::StructureType,
     pub p_next: *const core::ffi::c_void,
     pub image: crate::vk::Image,
     pub buffer: crate::vk::Buffer,
+    pub _marker: ::core::marker::PhantomData<&'a ()>,
 }
 ///Provided by [`nv::dedicated_allocation`](crate::nv::dedicated_allocation)
 impl crate::vk::StructureType {

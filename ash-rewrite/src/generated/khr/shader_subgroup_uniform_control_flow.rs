@@ -3,10 +3,11 @@
 //![Vulkan Manual Page](https://docs.vulkan.org/refpages/latest/refpages/source/VK_KHR_shader_subgroup_uniform_control_flow.html) · Extension `VK_KHR_shader_subgroup_uniform_control_flow`
 #[repr(C)]
 #[derive(Clone, Copy)]
-pub struct PhysicalDeviceShaderSubgroupUniformControlFlowFeaturesKHR {
+pub struct PhysicalDeviceShaderSubgroupUniformControlFlowFeaturesKHR<'a> {
     pub s_type: crate::vk::StructureType,
     pub p_next: *mut core::ffi::c_void,
     pub shader_subgroup_uniform_control_flow: crate::vk::Bool32,
+    pub _marker: ::core::marker::PhantomData<&'a ()>,
 }
 ///Provided by [`khr::shader_subgroup_uniform_control_flow`](crate::khr::shader_subgroup_uniform_control_flow)
 impl crate::vk::StructureType {

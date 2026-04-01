@@ -33,8 +33,8 @@ impl DeviceFn {
             create_micromap_ext: unsafe {
                 unsafe extern "system" fn create_micromap_ext(
                     _: crate::vk::Device,
-                    _: *const crate::vk::MicromapCreateInfoEXT,
-                    _: *const crate::vk::AllocationCallbacks,
+                    _: *const crate::vk::MicromapCreateInfoEXT<'_>,
+                    _: *const crate::vk::AllocationCallbacks<'_>,
                     _: *mut crate::vk::MicromapEXT,
                 ) -> crate::vk::Result {
                     panic!("unable to load vkCreateMicromapEXT")
@@ -50,7 +50,7 @@ impl DeviceFn {
                 unsafe extern "system" fn cmd_build_micromaps_ext(
                     _: crate::vk::CommandBuffer,
                     _: u32,
-                    _: *const crate::vk::MicromapBuildInfoEXT,
+                    _: *const crate::vk::MicromapBuildInfoEXT<'_>,
                 ) {
                     panic!("unable to load vkCmdBuildMicromapsEXT")
                 }
@@ -66,7 +66,7 @@ impl DeviceFn {
                     _: crate::vk::Device,
                     _: crate::vk::DeferredOperationKHR,
                     _: u32,
-                    _: *const crate::vk::MicromapBuildInfoEXT,
+                    _: *const crate::vk::MicromapBuildInfoEXT<'_>,
                 ) -> crate::vk::Result {
                     panic!("unable to load vkBuildMicromapsEXT")
                 }
@@ -81,7 +81,7 @@ impl DeviceFn {
                 unsafe extern "system" fn destroy_micromap_ext(
                     _: crate::vk::Device,
                     _: crate::vk::MicromapEXT,
-                    _: *const crate::vk::AllocationCallbacks,
+                    _: *const crate::vk::AllocationCallbacks<'_>,
                 ) {
                     panic!("unable to load vkDestroyMicromapEXT")
                 }
@@ -95,7 +95,7 @@ impl DeviceFn {
             cmd_copy_micromap_ext: unsafe {
                 unsafe extern "system" fn cmd_copy_micromap_ext(
                     _: crate::vk::CommandBuffer,
-                    _: *const crate::vk::CopyMicromapInfoEXT,
+                    _: *const crate::vk::CopyMicromapInfoEXT<'_>,
                 ) {
                     panic!("unable to load vkCmdCopyMicromapEXT")
                 }
@@ -110,7 +110,7 @@ impl DeviceFn {
                 unsafe extern "system" fn copy_micromap_ext(
                     _: crate::vk::Device,
                     _: crate::vk::DeferredOperationKHR,
-                    _: *const crate::vk::CopyMicromapInfoEXT,
+                    _: *const crate::vk::CopyMicromapInfoEXT<'_>,
                 ) -> crate::vk::Result {
                     panic!("unable to load vkCopyMicromapEXT")
                 }
@@ -124,7 +124,7 @@ impl DeviceFn {
             cmd_copy_micromap_to_memory_ext: unsafe {
                 unsafe extern "system" fn cmd_copy_micromap_to_memory_ext(
                     _: crate::vk::CommandBuffer,
-                    _: *const crate::vk::CopyMicromapToMemoryInfoEXT,
+                    _: *const crate::vk::CopyMicromapToMemoryInfoEXT<'_>,
                 ) {
                     panic!("unable to load vkCmdCopyMicromapToMemoryEXT")
                 }
@@ -139,7 +139,7 @@ impl DeviceFn {
                 unsafe extern "system" fn copy_micromap_to_memory_ext(
                     _: crate::vk::Device,
                     _: crate::vk::DeferredOperationKHR,
-                    _: *const crate::vk::CopyMicromapToMemoryInfoEXT,
+                    _: *const crate::vk::CopyMicromapToMemoryInfoEXT<'_>,
                 ) -> crate::vk::Result {
                     panic!("unable to load vkCopyMicromapToMemoryEXT")
                 }
@@ -153,7 +153,7 @@ impl DeviceFn {
             cmd_copy_memory_to_micromap_ext: unsafe {
                 unsafe extern "system" fn cmd_copy_memory_to_micromap_ext(
                     _: crate::vk::CommandBuffer,
-                    _: *const crate::vk::CopyMemoryToMicromapInfoEXT,
+                    _: *const crate::vk::CopyMemoryToMicromapInfoEXT<'_>,
                 ) {
                     panic!("unable to load vkCmdCopyMemoryToMicromapEXT")
                 }
@@ -168,7 +168,7 @@ impl DeviceFn {
                 unsafe extern "system" fn copy_memory_to_micromap_ext(
                     _: crate::vk::Device,
                     _: crate::vk::DeferredOperationKHR,
-                    _: *const crate::vk::CopyMemoryToMicromapInfoEXT,
+                    _: *const crate::vk::CopyMemoryToMicromapInfoEXT<'_>,
                 ) -> crate::vk::Result {
                     panic!("unable to load vkCopyMemoryToMicromapEXT")
                 }
@@ -219,7 +219,7 @@ impl DeviceFn {
             get_device_micromap_compatibility_ext: unsafe {
                 unsafe extern "system" fn get_device_micromap_compatibility_ext(
                     _: crate::vk::Device,
-                    _: *const crate::vk::MicromapVersionInfoEXT,
+                    _: *const crate::vk::MicromapVersionInfoEXT<'_>,
                     _: *mut crate::vk::AccelerationStructureCompatibilityKHR,
                 ) {
                     panic!("unable to load vkGetDeviceMicromapCompatibilityEXT")
@@ -235,8 +235,8 @@ impl DeviceFn {
                 unsafe extern "system" fn get_micromap_build_sizes_ext(
                     _: crate::vk::Device,
                     _: crate::vk::AccelerationStructureBuildTypeKHR,
-                    _: *const crate::vk::MicromapBuildInfoEXT,
-                    _: *mut crate::vk::MicromapBuildSizesInfoEXT,
+                    _: *const crate::vk::MicromapBuildInfoEXT<'_>,
+                    _: *mut crate::vk::MicromapBuildSizesInfoEXT<'_>,
                 ) {
                     panic!("unable to load vkGetMicromapBuildSizesEXT")
                 }
@@ -253,7 +253,7 @@ impl DeviceFn {
 pub(crate) mod reexport {
     #[repr(C)]
     #[derive(Clone, Copy)]
-    pub struct MicromapBuildInfoEXT {
+    pub struct MicromapBuildInfoEXT<'a> {
         pub s_type: crate::vk::StructureType,
         pub p_next: *const core::ffi::c_void,
         pub _type: crate::vk::MicromapTypeEXT,
@@ -267,10 +267,11 @@ pub(crate) mod reexport {
         pub scratch_data: crate::vk::DeviceOrHostAddressKHR,
         pub triangle_array: crate::vk::DeviceOrHostAddressConstKHR,
         pub triangle_array_stride: crate::vk::DeviceSize,
+        pub _marker: ::core::marker::PhantomData<&'a ()>,
     }
     #[repr(C)]
     #[derive(Clone, Copy)]
-    pub struct MicromapCreateInfoEXT {
+    pub struct MicromapCreateInfoEXT<'a> {
         pub s_type: crate::vk::StructureType,
         pub p_next: *const core::ffi::c_void,
         pub create_flags: crate::vk::MicromapCreateFlagsEXT,
@@ -279,49 +280,55 @@ pub(crate) mod reexport {
         pub size: crate::vk::DeviceSize,
         pub _type: crate::vk::MicromapTypeEXT,
         pub device_address: crate::vk::DeviceAddress,
+        pub _marker: ::core::marker::PhantomData<&'a ()>,
     }
     #[repr(C)]
     #[derive(Clone, Copy)]
-    pub struct MicromapVersionInfoEXT {
+    pub struct MicromapVersionInfoEXT<'a> {
         pub s_type: crate::vk::StructureType,
         pub p_next: *const core::ffi::c_void,
         pub p_version_data: *const u8,
+        pub _marker: ::core::marker::PhantomData<&'a ()>,
     }
     #[repr(C)]
     #[derive(Clone, Copy)]
-    pub struct CopyMicromapInfoEXT {
+    pub struct CopyMicromapInfoEXT<'a> {
         pub s_type: crate::vk::StructureType,
         pub p_next: *const core::ffi::c_void,
         pub src: crate::vk::MicromapEXT,
         pub dst: crate::vk::MicromapEXT,
         pub mode: crate::vk::CopyMicromapModeEXT,
+        pub _marker: ::core::marker::PhantomData<&'a ()>,
     }
     #[repr(C)]
     #[derive(Clone, Copy)]
-    pub struct CopyMicromapToMemoryInfoEXT {
+    pub struct CopyMicromapToMemoryInfoEXT<'a> {
         pub s_type: crate::vk::StructureType,
         pub p_next: *const core::ffi::c_void,
         pub src: crate::vk::MicromapEXT,
         pub dst: crate::vk::DeviceOrHostAddressKHR,
         pub mode: crate::vk::CopyMicromapModeEXT,
+        pub _marker: ::core::marker::PhantomData<&'a ()>,
     }
     #[repr(C)]
     #[derive(Clone, Copy)]
-    pub struct CopyMemoryToMicromapInfoEXT {
+    pub struct CopyMemoryToMicromapInfoEXT<'a> {
         pub s_type: crate::vk::StructureType,
         pub p_next: *const core::ffi::c_void,
         pub src: crate::vk::DeviceOrHostAddressConstKHR,
         pub dst: crate::vk::MicromapEXT,
         pub mode: crate::vk::CopyMicromapModeEXT,
+        pub _marker: ::core::marker::PhantomData<&'a ()>,
     }
     #[repr(C)]
     #[derive(Clone, Copy)]
-    pub struct MicromapBuildSizesInfoEXT {
+    pub struct MicromapBuildSizesInfoEXT<'a> {
         pub s_type: crate::vk::StructureType,
         pub p_next: *const core::ffi::c_void,
         pub micromap_size: crate::vk::DeviceSize,
         pub build_scratch_size: crate::vk::DeviceSize,
         pub discardable: crate::vk::Bool32,
+        pub _marker: ::core::marker::PhantomData<&'a ()>,
     }
     #[repr(C)]
     #[derive(Clone, Copy)]
@@ -339,24 +346,26 @@ pub(crate) mod reexport {
     }
     #[repr(C)]
     #[derive(Clone, Copy)]
-    pub struct PhysicalDeviceOpacityMicromapFeaturesEXT {
+    pub struct PhysicalDeviceOpacityMicromapFeaturesEXT<'a> {
         pub s_type: crate::vk::StructureType,
         pub p_next: *mut core::ffi::c_void,
         pub micromap: crate::vk::Bool32,
         pub micromap_capture_replay: crate::vk::Bool32,
         pub micromap_host_commands: crate::vk::Bool32,
+        pub _marker: ::core::marker::PhantomData<&'a ()>,
     }
     #[repr(C)]
     #[derive(Clone, Copy)]
-    pub struct PhysicalDeviceOpacityMicromapPropertiesEXT {
+    pub struct PhysicalDeviceOpacityMicromapPropertiesEXT<'a> {
         pub s_type: crate::vk::StructureType,
         pub p_next: *mut core::ffi::c_void,
         pub max_opacity2_state_subdivision_level: u32,
         pub max_opacity4_state_subdivision_level: u32,
+        pub _marker: ::core::marker::PhantomData<&'a ()>,
     }
     #[repr(C)]
     #[derive(Clone, Copy)]
-    pub struct AccelerationStructureTrianglesOpacityMicromapEXT {
+    pub struct AccelerationStructureTrianglesOpacityMicromapEXT<'a> {
         pub s_type: crate::vk::StructureType,
         pub p_next: *mut core::ffi::c_void,
         pub index_type: crate::vk::IndexType,
@@ -367,6 +376,7 @@ pub(crate) mod reexport {
         pub p_usage_counts: *const crate::vk::MicromapUsageEXT,
         pub pp_usage_counts: *const *const crate::vk::MicromapUsageEXT,
         pub micromap: crate::vk::MicromapEXT,
+        pub _marker: ::core::marker::PhantomData<&'a ()>,
     }
     ///Provided by [`ext::opacity_micromap`](crate::ext::opacity_micromap)
     impl crate::vk::QueryType {
@@ -396,6 +406,7 @@ pub(crate) mod reexport {
     }
     #[repr(transparent)]
     #[derive(Clone, Copy, PartialEq, Eq, PartialOrd, Ord, Hash, Default)]
+    #[derive(Debug)]
     pub struct MicromapTypeEXT(pub(crate) i32);
     ///Provided by [`ext::opacity_micromap`](crate::ext::opacity_micromap)
     impl MicromapTypeEXT {
@@ -403,6 +414,7 @@ pub(crate) mod reexport {
     }
     #[repr(transparent)]
     #[derive(Clone, Copy, PartialEq, Eq, PartialOrd, Ord, Hash, Default)]
+    #[derive(Debug)]
     pub struct CopyMicromapModeEXT(pub(crate) i32);
     ///Provided by [`ext::opacity_micromap`](crate::ext::opacity_micromap)
     impl CopyMicromapModeEXT {
@@ -413,6 +425,7 @@ pub(crate) mod reexport {
     }
     #[repr(transparent)]
     #[derive(Clone, Copy, PartialEq, Eq, PartialOrd, Ord, Hash, Default)]
+    #[derive(Debug)]
     pub struct BuildMicromapModeEXT(pub(crate) i32);
     ///Provided by [`ext::opacity_micromap`](crate::ext::opacity_micromap)
     impl BuildMicromapModeEXT {
@@ -420,6 +433,7 @@ pub(crate) mod reexport {
     }
     #[repr(transparent)]
     #[derive(Clone, Copy, PartialEq, Eq, PartialOrd, Ord, Hash, Default)]
+    #[derive(Debug)]
     pub struct OpacityMicromapFormatEXT(pub(crate) i32);
     ///Provided by [`ext::opacity_micromap`](crate::ext::opacity_micromap)
     impl OpacityMicromapFormatEXT {
@@ -428,6 +442,7 @@ pub(crate) mod reexport {
     }
     #[repr(transparent)]
     #[derive(Clone, Copy, PartialEq, Eq, PartialOrd, Ord, Hash, Default)]
+    #[derive(Debug)]
     pub struct OpacityMicromapSpecialIndexEXT(pub(crate) i32);
     ///Provided by [`ext::opacity_micromap`](crate::ext::opacity_micromap)
     impl OpacityMicromapSpecialIndexEXT {
@@ -522,52 +537,52 @@ pub(crate) mod reexport {
     }
     pub type PFN_vkCreateMicromapEXT = unsafe extern "system" fn(
         device: crate::vk::Device,
-        p_create_info: *const crate::vk::MicromapCreateInfoEXT,
-        p_allocator: *const crate::vk::AllocationCallbacks,
+        p_create_info: *const crate::vk::MicromapCreateInfoEXT<'_>,
+        p_allocator: *const crate::vk::AllocationCallbacks<'_>,
         p_micromap: *mut crate::vk::MicromapEXT,
     ) -> crate::vk::Result;
     pub type PFN_vkCmdBuildMicromapsEXT = unsafe extern "system" fn(
         command_buffer: crate::vk::CommandBuffer,
         info_count: u32,
-        p_infos: *const crate::vk::MicromapBuildInfoEXT,
+        p_infos: *const crate::vk::MicromapBuildInfoEXT<'_>,
     );
     pub type PFN_vkBuildMicromapsEXT = unsafe extern "system" fn(
         device: crate::vk::Device,
         deferred_operation: crate::vk::DeferredOperationKHR,
         info_count: u32,
-        p_infos: *const crate::vk::MicromapBuildInfoEXT,
+        p_infos: *const crate::vk::MicromapBuildInfoEXT<'_>,
     ) -> crate::vk::Result;
     pub type PFN_vkDestroyMicromapEXT = unsafe extern "system" fn(
         device: crate::vk::Device,
         micromap: crate::vk::MicromapEXT,
-        p_allocator: *const crate::vk::AllocationCallbacks,
+        p_allocator: *const crate::vk::AllocationCallbacks<'_>,
     );
     pub type PFN_vkCmdCopyMicromapEXT = unsafe extern "system" fn(
         command_buffer: crate::vk::CommandBuffer,
-        p_info: *const crate::vk::CopyMicromapInfoEXT,
+        p_info: *const crate::vk::CopyMicromapInfoEXT<'_>,
     );
     pub type PFN_vkCopyMicromapEXT = unsafe extern "system" fn(
         device: crate::vk::Device,
         deferred_operation: crate::vk::DeferredOperationKHR,
-        p_info: *const crate::vk::CopyMicromapInfoEXT,
+        p_info: *const crate::vk::CopyMicromapInfoEXT<'_>,
     ) -> crate::vk::Result;
     pub type PFN_vkCmdCopyMicromapToMemoryEXT = unsafe extern "system" fn(
         command_buffer: crate::vk::CommandBuffer,
-        p_info: *const crate::vk::CopyMicromapToMemoryInfoEXT,
+        p_info: *const crate::vk::CopyMicromapToMemoryInfoEXT<'_>,
     );
     pub type PFN_vkCopyMicromapToMemoryEXT = unsafe extern "system" fn(
         device: crate::vk::Device,
         deferred_operation: crate::vk::DeferredOperationKHR,
-        p_info: *const crate::vk::CopyMicromapToMemoryInfoEXT,
+        p_info: *const crate::vk::CopyMicromapToMemoryInfoEXT<'_>,
     ) -> crate::vk::Result;
     pub type PFN_vkCmdCopyMemoryToMicromapEXT = unsafe extern "system" fn(
         command_buffer: crate::vk::CommandBuffer,
-        p_info: *const crate::vk::CopyMemoryToMicromapInfoEXT,
+        p_info: *const crate::vk::CopyMemoryToMicromapInfoEXT<'_>,
     );
     pub type PFN_vkCopyMemoryToMicromapEXT = unsafe extern "system" fn(
         device: crate::vk::Device,
         deferred_operation: crate::vk::DeferredOperationKHR,
-        p_info: *const crate::vk::CopyMemoryToMicromapInfoEXT,
+        p_info: *const crate::vk::CopyMemoryToMicromapInfoEXT<'_>,
     ) -> crate::vk::Result;
     pub type PFN_vkCmdWriteMicromapsPropertiesEXT = unsafe extern "system" fn(
         command_buffer: crate::vk::CommandBuffer,
@@ -588,14 +603,14 @@ pub(crate) mod reexport {
     ) -> crate::vk::Result;
     pub type PFN_vkGetDeviceMicromapCompatibilityEXT = unsafe extern "system" fn(
         device: crate::vk::Device,
-        p_version_info: *const crate::vk::MicromapVersionInfoEXT,
+        p_version_info: *const crate::vk::MicromapVersionInfoEXT<'_>,
         p_compatibility: *mut crate::vk::AccelerationStructureCompatibilityKHR,
     );
     pub type PFN_vkGetMicromapBuildSizesEXT = unsafe extern "system" fn(
         device: crate::vk::Device,
         build_type: crate::vk::AccelerationStructureBuildTypeKHR,
-        p_build_info: *const crate::vk::MicromapBuildInfoEXT,
-        p_size_info: *mut crate::vk::MicromapBuildSizesInfoEXT,
+        p_build_info: *const crate::vk::MicromapBuildInfoEXT<'_>,
+        p_size_info: *mut crate::vk::MicromapBuildSizesInfoEXT<'_>,
     );
     pub const EXT_OPACITY_MICROMAP_SPEC_VERSION: u32 = 2;
     pub const EXT_OPACITY_MICROMAP_EXTENSION_NAME: &core::ffi::CStr = c"VK_EXT_opacity_micromap";

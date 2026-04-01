@@ -3,18 +3,20 @@
 //![Vulkan Manual Page](https://docs.vulkan.org/refpages/latest/refpages/source/VK_NV_shader_sm_builtins.html) · Extension `VK_NV_shader_sm_builtins`
 #[repr(C)]
 #[derive(Clone, Copy)]
-pub struct PhysicalDeviceShaderSMBuiltinsPropertiesNV {
+pub struct PhysicalDeviceShaderSMBuiltinsPropertiesNV<'a> {
     pub s_type: crate::vk::StructureType,
     pub p_next: *mut core::ffi::c_void,
     pub shader_sm_count: u32,
     pub shader_warps_per_sm: u32,
+    pub _marker: ::core::marker::PhantomData<&'a ()>,
 }
 #[repr(C)]
 #[derive(Clone, Copy)]
-pub struct PhysicalDeviceShaderSMBuiltinsFeaturesNV {
+pub struct PhysicalDeviceShaderSMBuiltinsFeaturesNV<'a> {
     pub s_type: crate::vk::StructureType,
     pub p_next: *mut core::ffi::c_void,
     pub shader_sm_builtins: crate::vk::Bool32,
+    pub _marker: ::core::marker::PhantomData<&'a ()>,
 }
 ///Provided by [`nv::shader_sm_builtins`](crate::nv::shader_sm_builtins)
 impl crate::vk::StructureType {

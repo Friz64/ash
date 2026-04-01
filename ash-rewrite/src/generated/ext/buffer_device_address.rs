@@ -20,7 +20,7 @@ impl DeviceFn {
             get_buffer_device_address_ext: unsafe {
                 unsafe extern "system" fn get_buffer_device_address_ext(
                     _: crate::vk::Device,
-                    _: *const crate::vk::BufferDeviceAddressInfo,
+                    _: *const crate::vk::BufferDeviceAddressInfo<'_>,
                 ) -> crate::vk::DeviceAddress {
                     panic!("unable to load vkGetBufferDeviceAddressEXT")
                 }
@@ -37,22 +37,26 @@ impl DeviceFn {
 pub(crate) mod reexport {
     #[repr(C)]
     #[derive(Clone, Copy)]
-    pub struct PhysicalDeviceBufferDeviceAddressFeaturesEXT {
+    pub struct PhysicalDeviceBufferDeviceAddressFeaturesEXT<'a> {
         pub s_type: crate::vk::StructureType,
         pub p_next: *mut core::ffi::c_void,
         pub buffer_device_address: crate::vk::Bool32,
         pub buffer_device_address_capture_replay: crate::vk::Bool32,
         pub buffer_device_address_multi_device: crate::vk::Bool32,
+        pub _marker: ::core::marker::PhantomData<&'a ()>,
     }
     #[repr(C)]
     #[derive(Clone, Copy)]
-    pub struct BufferDeviceAddressCreateInfoEXT {
+    pub struct BufferDeviceAddressCreateInfoEXT<'a> {
         pub s_type: crate::vk::StructureType,
         pub p_next: *const core::ffi::c_void,
         pub device_address: crate::vk::DeviceAddress,
+        pub _marker: ::core::marker::PhantomData<&'a ()>,
     }
-    pub type PhysicalDeviceBufferAddressFeaturesEXT = crate::vk::PhysicalDeviceBufferDeviceAddressFeaturesEXT;
-    pub type BufferDeviceAddressInfoEXT = crate::vk::BufferDeviceAddressInfo;
+    pub type PhysicalDeviceBufferAddressFeaturesEXT<'a> = crate::vk::PhysicalDeviceBufferDeviceAddressFeaturesEXT<
+        'a,
+    >;
+    pub type BufferDeviceAddressInfoEXT<'a> = crate::vk::BufferDeviceAddressInfo<'a>;
     ///Provided by [`ext::buffer_device_address`](crate::ext::buffer_device_address)
     impl crate::vk::StructureType {
         pub const PHYSICAL_DEVICE_BUFFER_DEVICE_ADDRESS_FEATURES_EXT: Self = Self(

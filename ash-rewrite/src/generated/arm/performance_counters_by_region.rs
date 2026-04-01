@@ -22,8 +22,8 @@ impl InstanceFn {
                     _: crate::vk::PhysicalDevice,
                     _: u32,
                     _: *mut u32,
-                    _: *mut crate::vk::PerformanceCounterARM,
-                    _: *mut crate::vk::PerformanceCounterDescriptionARM,
+                    _: *mut crate::vk::PerformanceCounterARM<'_>,
+                    _: *mut crate::vk::PerformanceCounterDescriptionARM<'_>,
                 ) -> crate::vk::Result {
                     panic!(
                         "unable to load vkEnumeratePhysicalDeviceQueueFamilyPerformanceCountersByRegionARM"
@@ -44,14 +44,15 @@ impl InstanceFn {
 pub(crate) mod reexport {
     #[repr(C)]
     #[derive(Clone, Copy)]
-    pub struct PhysicalDevicePerformanceCountersByRegionFeaturesARM {
+    pub struct PhysicalDevicePerformanceCountersByRegionFeaturesARM<'a> {
         pub s_type: crate::vk::StructureType,
         pub p_next: *mut core::ffi::c_void,
         pub performance_counters_by_region: crate::vk::Bool32,
+        pub _marker: ::core::marker::PhantomData<&'a ()>,
     }
     #[repr(C)]
     #[derive(Clone, Copy)]
-    pub struct PhysicalDevicePerformanceCountersByRegionPropertiesARM {
+    pub struct PhysicalDevicePerformanceCountersByRegionPropertiesARM<'a> {
         pub s_type: crate::vk::StructureType,
         pub p_next: *mut core::ffi::c_void,
         pub max_per_region_performance_counters: u32,
@@ -59,25 +60,28 @@ pub(crate) mod reexport {
         pub row_stride_alignment: u32,
         pub region_alignment: u32,
         pub identity_transform_order: crate::vk::Bool32,
+        pub _marker: ::core::marker::PhantomData<&'a ()>,
     }
     #[repr(C)]
     #[derive(Clone, Copy)]
-    pub struct PerformanceCounterARM {
+    pub struct PerformanceCounterARM<'a> {
         pub s_type: crate::vk::StructureType,
         pub p_next: *mut core::ffi::c_void,
         pub counter_id: u32,
+        pub _marker: ::core::marker::PhantomData<&'a ()>,
     }
     #[repr(C)]
     #[derive(Clone, Copy)]
-    pub struct PerformanceCounterDescriptionARM {
+    pub struct PerformanceCounterDescriptionARM<'a> {
         pub s_type: crate::vk::StructureType,
         pub p_next: *mut core::ffi::c_void,
         pub flags: crate::vk::PerformanceCounterDescriptionFlagsARM,
         pub name: [core::ffi::c_char; crate::vk::MAX_DESCRIPTION_SIZE as _],
+        pub _marker: ::core::marker::PhantomData<&'a ()>,
     }
     #[repr(C)]
     #[derive(Clone, Copy)]
-    pub struct RenderPassPerformanceCountersByRegionBeginInfoARM {
+    pub struct RenderPassPerformanceCountersByRegionBeginInfoARM<'a> {
         pub s_type: crate::vk::StructureType,
         pub p_next: *mut core::ffi::c_void,
         pub counter_address_count: u32,
@@ -85,6 +89,7 @@ pub(crate) mod reexport {
         pub serialize_regions: crate::vk::Bool32,
         pub counter_index_count: u32,
         pub p_counter_indices: *mut u32,
+        pub _marker: ::core::marker::PhantomData<&'a ()>,
     }
     ///Provided by [`arm::performance_counters_by_region`](crate::arm::performance_counters_by_region)
     impl crate::vk::StructureType {
@@ -108,8 +113,8 @@ pub(crate) mod reexport {
         physical_device: crate::vk::PhysicalDevice,
         queue_family_index: u32,
         p_counter_count: *mut u32,
-        p_counters: *mut crate::vk::PerformanceCounterARM,
-        p_counter_descriptions: *mut crate::vk::PerformanceCounterDescriptionARM,
+        p_counters: *mut crate::vk::PerformanceCounterARM<'_>,
+        p_counter_descriptions: *mut crate::vk::PerformanceCounterDescriptionARM<'_>,
     ) -> crate::vk::Result;
     pub const ARM_PERFORMANCE_COUNTERS_BY_REGION_SPEC_VERSION: u32 = 1;
     pub const ARM_PERFORMANCE_COUNTERS_BY_REGION_EXTENSION_NAME: &core::ffi::CStr = c"VK_ARM_performance_counters_by_region";

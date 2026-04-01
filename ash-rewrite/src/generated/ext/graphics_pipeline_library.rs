@@ -3,25 +3,28 @@
 //![Vulkan Manual Page](https://docs.vulkan.org/refpages/latest/refpages/source/VK_EXT_graphics_pipeline_library.html) · Extension `VK_EXT_graphics_pipeline_library`
 #[repr(C)]
 #[derive(Clone, Copy)]
-pub struct PhysicalDeviceGraphicsPipelineLibraryFeaturesEXT {
+pub struct PhysicalDeviceGraphicsPipelineLibraryFeaturesEXT<'a> {
     pub s_type: crate::vk::StructureType,
     pub p_next: *mut core::ffi::c_void,
     pub graphics_pipeline_library: crate::vk::Bool32,
+    pub _marker: ::core::marker::PhantomData<&'a ()>,
 }
 #[repr(C)]
 #[derive(Clone, Copy)]
-pub struct PhysicalDeviceGraphicsPipelineLibraryPropertiesEXT {
+pub struct PhysicalDeviceGraphicsPipelineLibraryPropertiesEXT<'a> {
     pub s_type: crate::vk::StructureType,
     pub p_next: *mut core::ffi::c_void,
     pub graphics_pipeline_library_fast_linking: crate::vk::Bool32,
     pub graphics_pipeline_library_independent_interpolation_decoration: crate::vk::Bool32,
+    pub _marker: ::core::marker::PhantomData<&'a ()>,
 }
 #[repr(C)]
 #[derive(Clone, Copy)]
-pub struct GraphicsPipelineLibraryCreateInfoEXT {
+pub struct GraphicsPipelineLibraryCreateInfoEXT<'a> {
     pub s_type: crate::vk::StructureType,
     pub p_next: *const core::ffi::c_void,
     pub flags: crate::vk::GraphicsPipelineLibraryFlagsEXT,
+    pub _marker: ::core::marker::PhantomData<&'a ()>,
 }
 ///Provided by [`ext::graphics_pipeline_library`](crate::ext::graphics_pipeline_library)
 impl crate::vk::StructureType {

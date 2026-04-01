@@ -82,18 +82,6 @@ impl Struct {
             members,
         })
     }
-
-    pub fn has_pointer(&self) -> bool {
-        self.members.iter().any(|member| {
-            matches!(
-                member,
-                StructMember::Normal(Decl {
-                    ty: Ty::Ptr(..),
-                    ..
-                })
-            )
-        })
-    }
 }
 
 #[derive(Debug)]

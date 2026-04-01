@@ -3,17 +3,19 @@
 //![Vulkan Manual Page](https://docs.vulkan.org/refpages/latest/refpages/source/VK_NV_device_diagnostics_config.html) · Extension `VK_NV_device_diagnostics_config`
 #[repr(C)]
 #[derive(Clone, Copy)]
-pub struct PhysicalDeviceDiagnosticsConfigFeaturesNV {
+pub struct PhysicalDeviceDiagnosticsConfigFeaturesNV<'a> {
     pub s_type: crate::vk::StructureType,
     pub p_next: *mut core::ffi::c_void,
     pub diagnostics_config: crate::vk::Bool32,
+    pub _marker: ::core::marker::PhantomData<&'a ()>,
 }
 #[repr(C)]
 #[derive(Clone, Copy)]
-pub struct DeviceDiagnosticsConfigCreateInfoNV {
+pub struct DeviceDiagnosticsConfigCreateInfoNV<'a> {
     pub s_type: crate::vk::StructureType,
     pub p_next: *const core::ffi::c_void,
     pub flags: crate::vk::DeviceDiagnosticsConfigFlagsNV,
+    pub _marker: ::core::marker::PhantomData<&'a ()>,
 }
 ///Provided by [`nv::device_diagnostics_config`](crate::nv::device_diagnostics_config)
 impl crate::vk::StructureType {

@@ -1,8 +1,12 @@
 use super::{Code, Context};
 use crate::output::{CodeMap, Destination};
 use analysis::{
-    item::enumeration::{Enum, Item, Value},
-    to_rust::{RustName, RustTranslator},
+    item::{
+        Named,
+        enumeration::{Enum, Item, Value},
+    },
+    lifetime::Lifetime,
+    to_rust::RustTranslator,
     xml::cexpr::CExprItem,
 };
 use proc_macro2::Literal;
@@ -13,10 +17,11 @@ impl Code for Enum {
     #[instrument(skip(ctx))]
     fn code(&self, ctx: &Context) -> CodeMap {
         trace!("generating");
-        let name = self.rust_name(ctx);
+        let name = ctx.type_to_rust(self.name(), false, &Lifetime::placeholder());
         let code = quote! {
             #[repr(transparent)]
             #[derive(Clone, Copy, PartialEq, Eq, PartialOrd, Ord, Hash, Default)]
+            #[derive(Debug)] // TODO: proper impl
             pub struct #name(pub(crate) i32);
         };
 
@@ -47,7 +52,12 @@ impl Code for Enum {
         }
 
         for (&dest, impl_tokens) in impl_map.iter() {
-            let name = ctx.type_to_rust(self.name, dest != Destination::new(self.required_by));
+            let name = ctx.type_to_rust(
+                self.name,
+                dest != Destination::new(self.required_by),
+                &Lifetime::placeholder(),
+            );
+
             let doc = dest.doc_link();
             codemap.extend(CodeMap::new(
                 dest,

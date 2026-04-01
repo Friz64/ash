@@ -3,10 +3,11 @@
 //![Vulkan Manual Page](https://docs.vulkan.org/refpages/latest/refpages/source/VK_NV_dedicated_allocation_image_aliasing.html) · Extension `VK_NV_dedicated_allocation_image_aliasing`
 #[repr(C)]
 #[derive(Clone, Copy)]
-pub struct PhysicalDeviceDedicatedAllocationImageAliasingFeaturesNV {
+pub struct PhysicalDeviceDedicatedAllocationImageAliasingFeaturesNV<'a> {
     pub s_type: crate::vk::StructureType,
     pub p_next: *mut core::ffi::c_void,
     pub dedicated_allocation_image_aliasing: crate::vk::Bool32,
+    pub _marker: ::core::marker::PhantomData<&'a ()>,
 }
 ///Provided by [`nv::dedicated_allocation_image_aliasing`](crate::nv::dedicated_allocation_image_aliasing)
 impl crate::vk::StructureType {

@@ -59,6 +59,7 @@ pub struct VP9Segmentation {
 }
 #[repr(transparent)]
 #[derive(Clone, Copy, PartialEq, Eq, PartialOrd, Ord, Hash, Default)]
+#[derive(Debug)]
 pub struct VP9Profile(pub(crate) i32);
 ///Provided by [`video::codec_vp9std`](crate::video::codec_vp9std)
 impl VP9Profile {
@@ -70,6 +71,7 @@ impl VP9Profile {
 }
 #[repr(transparent)]
 #[derive(Clone, Copy, PartialEq, Eq, PartialOrd, Ord, Hash, Default)]
+#[derive(Debug)]
 pub struct VP9Level(pub(crate) i32);
 ///Provided by [`video::codec_vp9std`](crate::video::codec_vp9std)
 impl VP9Level {
@@ -91,6 +93,7 @@ impl VP9Level {
 }
 #[repr(transparent)]
 #[derive(Clone, Copy, PartialEq, Eq, PartialOrd, Ord, Hash, Default)]
+#[derive(Debug)]
 pub struct VP9FrameType(pub(crate) i32);
 ///Provided by [`video::codec_vp9std`](crate::video::codec_vp9std)
 impl VP9FrameType {
@@ -100,6 +103,7 @@ impl VP9FrameType {
 }
 #[repr(transparent)]
 #[derive(Clone, Copy, PartialEq, Eq, PartialOrd, Ord, Hash, Default)]
+#[derive(Debug)]
 pub struct VP9ReferenceName(pub(crate) i32);
 ///Provided by [`video::codec_vp9std`](crate::video::codec_vp9std)
 impl VP9ReferenceName {
@@ -111,6 +115,7 @@ impl VP9ReferenceName {
 }
 #[repr(transparent)]
 #[derive(Clone, Copy, PartialEq, Eq, PartialOrd, Ord, Hash, Default)]
+#[derive(Debug)]
 pub struct VP9InterpolationFilter(pub(crate) i32);
 ///Provided by [`video::codec_vp9std`](crate::video::codec_vp9std)
 impl VP9InterpolationFilter {
@@ -123,6 +128,7 @@ impl VP9InterpolationFilter {
 }
 #[repr(transparent)]
 #[derive(Clone, Copy, PartialEq, Eq, PartialOrd, Ord, Hash, Default)]
+#[derive(Debug)]
 pub struct VP9ColorSpace(pub(crate) i32);
 ///Provided by [`video::codec_vp9std`](crate::video::codec_vp9std)
 impl VP9ColorSpace {

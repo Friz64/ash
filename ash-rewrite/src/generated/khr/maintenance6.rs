@@ -25,7 +25,7 @@ impl DeviceFn {
             cmd_set_descriptor_buffer_offsets2_ext: unsafe {
                 unsafe extern "system" fn cmd_set_descriptor_buffer_offsets2_ext(
                     _: crate::vk::CommandBuffer,
-                    _: *const crate::vk::SetDescriptorBufferOffsetsInfoEXT,
+                    _: *const crate::vk::SetDescriptorBufferOffsetsInfoEXT<'_>,
                 ) {
                     panic!("unable to load vkCmdSetDescriptorBufferOffsets2EXT")
                 }
@@ -39,7 +39,7 @@ impl DeviceFn {
             cmd_bind_descriptor_buffer_embedded_samplers2_ext: unsafe {
                 unsafe extern "system" fn cmd_bind_descriptor_buffer_embedded_samplers2_ext(
                     _: crate::vk::CommandBuffer,
-                    _: *const crate::vk::BindDescriptorBufferEmbeddedSamplersInfoEXT,
+                    _: *const crate::vk::BindDescriptorBufferEmbeddedSamplersInfoEXT<'_>,
                 ) {
                     panic!(
                         "unable to load vkCmdBindDescriptorBufferEmbeddedSamplers2EXT"
@@ -55,7 +55,7 @@ impl DeviceFn {
             cmd_bind_descriptor_sets2_khr: unsafe {
                 unsafe extern "system" fn cmd_bind_descriptor_sets2_khr(
                     _: crate::vk::CommandBuffer,
-                    _: *const crate::vk::BindDescriptorSetsInfo,
+                    _: *const crate::vk::BindDescriptorSetsInfo<'_>,
                 ) {
                     panic!("unable to load vkCmdBindDescriptorSets2KHR")
                 }
@@ -69,7 +69,7 @@ impl DeviceFn {
             cmd_push_constants2_khr: unsafe {
                 unsafe extern "system" fn cmd_push_constants2_khr(
                     _: crate::vk::CommandBuffer,
-                    _: *const crate::vk::PushConstantsInfo,
+                    _: *const crate::vk::PushConstantsInfo<'_>,
                 ) {
                     panic!("unable to load vkCmdPushConstants2KHR")
                 }
@@ -83,7 +83,7 @@ impl DeviceFn {
             cmd_push_descriptor_set2_khr: unsafe {
                 unsafe extern "system" fn cmd_push_descriptor_set2_khr(
                     _: crate::vk::CommandBuffer,
-                    _: *const crate::vk::PushDescriptorSetInfo,
+                    _: *const crate::vk::PushDescriptorSetInfo<'_>,
                 ) {
                     panic!("unable to load vkCmdPushDescriptorSet2KHR")
                 }
@@ -97,7 +97,7 @@ impl DeviceFn {
             cmd_push_descriptor_set_with_template2_khr: unsafe {
                 unsafe extern "system" fn cmd_push_descriptor_set_with_template2_khr(
                     _: crate::vk::CommandBuffer,
-                    _: *const crate::vk::PushDescriptorSetWithTemplateInfo,
+                    _: *const crate::vk::PushDescriptorSetWithTemplateInfo<'_>,
                 ) {
                     panic!("unable to load vkCmdPushDescriptorSetWithTemplate2KHR")
                 }
@@ -114,7 +114,7 @@ impl DeviceFn {
 pub(crate) mod reexport {
     #[repr(C)]
     #[derive(Clone, Copy)]
-    pub struct SetDescriptorBufferOffsetsInfoEXT {
+    pub struct SetDescriptorBufferOffsetsInfoEXT<'a> {
         pub s_type: crate::vk::StructureType,
         pub p_next: *const core::ffi::c_void,
         pub stage_flags: crate::vk::ShaderStageFlags,
@@ -123,23 +123,31 @@ pub(crate) mod reexport {
         pub set_count: u32,
         pub p_buffer_indices: *const u32,
         pub p_offsets: *const crate::vk::DeviceSize,
+        pub _marker: ::core::marker::PhantomData<&'a ()>,
     }
     #[repr(C)]
     #[derive(Clone, Copy)]
-    pub struct BindDescriptorBufferEmbeddedSamplersInfoEXT {
+    pub struct BindDescriptorBufferEmbeddedSamplersInfoEXT<'a> {
         pub s_type: crate::vk::StructureType,
         pub p_next: *const core::ffi::c_void,
         pub stage_flags: crate::vk::ShaderStageFlags,
         pub layout: crate::vk::PipelineLayout,
         pub set: u32,
+        pub _marker: ::core::marker::PhantomData<&'a ()>,
     }
-    pub type PhysicalDeviceMaintenance6FeaturesKHR = crate::vk::PhysicalDeviceMaintenance6Features;
-    pub type PhysicalDeviceMaintenance6PropertiesKHR = crate::vk::PhysicalDeviceMaintenance6Properties;
-    pub type BindMemoryStatusKHR = crate::vk::BindMemoryStatus;
-    pub type BindDescriptorSetsInfoKHR = crate::vk::BindDescriptorSetsInfo;
-    pub type PushConstantsInfoKHR = crate::vk::PushConstantsInfo;
-    pub type PushDescriptorSetInfoKHR = crate::vk::PushDescriptorSetInfo;
-    pub type PushDescriptorSetWithTemplateInfoKHR = crate::vk::PushDescriptorSetWithTemplateInfo;
+    pub type PhysicalDeviceMaintenance6FeaturesKHR<'a> = crate::vk::PhysicalDeviceMaintenance6Features<
+        'a,
+    >;
+    pub type PhysicalDeviceMaintenance6PropertiesKHR<'a> = crate::vk::PhysicalDeviceMaintenance6Properties<
+        'a,
+    >;
+    pub type BindMemoryStatusKHR<'a> = crate::vk::BindMemoryStatus<'a>;
+    pub type BindDescriptorSetsInfoKHR<'a> = crate::vk::BindDescriptorSetsInfo<'a>;
+    pub type PushConstantsInfoKHR<'a> = crate::vk::PushConstantsInfo<'a>;
+    pub type PushDescriptorSetInfoKHR<'a> = crate::vk::PushDescriptorSetInfo<'a>;
+    pub type PushDescriptorSetWithTemplateInfoKHR<'a> = crate::vk::PushDescriptorSetWithTemplateInfo<
+        'a,
+    >;
     ///Provided by [`khr::maintenance6`](crate::khr::maintenance6)
     impl crate::vk::StructureType {
         pub const PHYSICAL_DEVICE_MAINTENANCE_6_FEATURES_KHR: Self = Self::PHYSICAL_DEVICE_MAINTENANCE_6_FEATURES;
@@ -156,11 +164,15 @@ pub(crate) mod reexport {
     }
     pub type PFN_vkCmdSetDescriptorBufferOffsets2EXT = unsafe extern "system" fn(
         command_buffer: crate::vk::CommandBuffer,
-        p_set_descriptor_buffer_offsets_info: *const crate::vk::SetDescriptorBufferOffsetsInfoEXT,
+        p_set_descriptor_buffer_offsets_info: *const crate::vk::SetDescriptorBufferOffsetsInfoEXT<
+            '_,
+        >,
     );
     pub type PFN_vkCmdBindDescriptorBufferEmbeddedSamplers2EXT = unsafe extern "system" fn(
         command_buffer: crate::vk::CommandBuffer,
-        p_bind_descriptor_buffer_embedded_samplers_info: *const crate::vk::BindDescriptorBufferEmbeddedSamplersInfoEXT,
+        p_bind_descriptor_buffer_embedded_samplers_info: *const crate::vk::BindDescriptorBufferEmbeddedSamplersInfoEXT<
+            '_,
+        >,
     );
     pub type PFN_vkCmdBindDescriptorSets2KHR = crate::vk::PFN_vkCmdBindDescriptorSets2;
     pub type PFN_vkCmdPushConstants2KHR = crate::vk::PFN_vkCmdPushConstants2;

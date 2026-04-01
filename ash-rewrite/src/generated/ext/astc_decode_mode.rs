@@ -3,17 +3,19 @@
 //![Vulkan Manual Page](https://docs.vulkan.org/refpages/latest/refpages/source/VK_EXT_astc_decode_mode.html) · Extension `VK_EXT_astc_decode_mode`
 #[repr(C)]
 #[derive(Clone, Copy)]
-pub struct ImageViewASTCDecodeModeEXT {
+pub struct ImageViewASTCDecodeModeEXT<'a> {
     pub s_type: crate::vk::StructureType,
     pub p_next: *const core::ffi::c_void,
     pub decode_mode: crate::vk::Format,
+    pub _marker: ::core::marker::PhantomData<&'a ()>,
 }
 #[repr(C)]
 #[derive(Clone, Copy)]
-pub struct PhysicalDeviceASTCDecodeFeaturesEXT {
+pub struct PhysicalDeviceASTCDecodeFeaturesEXT<'a> {
     pub s_type: crate::vk::StructureType,
     pub p_next: *mut core::ffi::c_void,
     pub decode_mode_shared_exponent: crate::vk::Bool32,
+    pub _marker: ::core::marker::PhantomData<&'a ()>,
 }
 ///Provided by [`ext::astc_decode_mode`](crate::ext::astc_decode_mode)
 impl crate::vk::StructureType {

@@ -21,7 +21,7 @@ impl DeviceFn {
             get_memory_win32_handle_khr: unsafe {
                 unsafe extern "system" fn get_memory_win32_handle_khr(
                     _: crate::vk::Device,
-                    _: *const crate::vk::MemoryGetWin32HandleInfoKHR,
+                    _: *const crate::vk::MemoryGetWin32HandleInfoKHR<'_>,
                     _: *mut crate::platform_types::HANDLE,
                 ) -> crate::vk::Result {
                     panic!("unable to load vkGetMemoryWin32HandleKHR")
@@ -38,7 +38,7 @@ impl DeviceFn {
                     _: crate::vk::Device,
                     _: crate::vk::ExternalMemoryHandleTypeFlagBits,
                     _: crate::platform_types::HANDLE,
-                    _: *mut crate::vk::MemoryWin32HandlePropertiesKHR,
+                    _: *mut crate::vk::MemoryWin32HandlePropertiesKHR<'_>,
                 ) -> crate::vk::Result {
                     panic!("unable to load vkGetMemoryWin32HandlePropertiesKHR")
                 }
@@ -55,36 +55,40 @@ impl DeviceFn {
 pub(crate) mod reexport {
     #[repr(C)]
     #[derive(Clone, Copy)]
-    pub struct ImportMemoryWin32HandleInfoKHR {
+    pub struct ImportMemoryWin32HandleInfoKHR<'a> {
         pub s_type: crate::vk::StructureType,
         pub p_next: *const core::ffi::c_void,
         pub handle_type: crate::vk::ExternalMemoryHandleTypeFlagBits,
         pub handle: crate::platform_types::HANDLE,
         pub name: crate::platform_types::LPCWSTR,
+        pub _marker: ::core::marker::PhantomData<&'a ()>,
     }
     #[repr(C)]
     #[derive(Clone, Copy)]
-    pub struct ExportMemoryWin32HandleInfoKHR {
+    pub struct ExportMemoryWin32HandleInfoKHR<'a> {
         pub s_type: crate::vk::StructureType,
         pub p_next: *const core::ffi::c_void,
         pub p_attributes: *const crate::platform_types::SECURITY_ATTRIBUTES,
         pub dw_access: crate::platform_types::DWORD,
         pub name: crate::platform_types::LPCWSTR,
+        pub _marker: ::core::marker::PhantomData<&'a ()>,
     }
     #[repr(C)]
     #[derive(Clone, Copy)]
-    pub struct MemoryWin32HandlePropertiesKHR {
+    pub struct MemoryWin32HandlePropertiesKHR<'a> {
         pub s_type: crate::vk::StructureType,
         pub p_next: *mut core::ffi::c_void,
         pub memory_type_bits: u32,
+        pub _marker: ::core::marker::PhantomData<&'a ()>,
     }
     #[repr(C)]
     #[derive(Clone, Copy)]
-    pub struct MemoryGetWin32HandleInfoKHR {
+    pub struct MemoryGetWin32HandleInfoKHR<'a> {
         pub s_type: crate::vk::StructureType,
         pub p_next: *const core::ffi::c_void,
         pub memory: crate::vk::DeviceMemory,
         pub handle_type: crate::vk::ExternalMemoryHandleTypeFlagBits,
+        pub _marker: ::core::marker::PhantomData<&'a ()>,
     }
     ///Provided by [`khr::external_memory_win32`](crate::khr::external_memory_win32)
     impl crate::vk::StructureType {
@@ -95,14 +99,16 @@ pub(crate) mod reexport {
     }
     pub type PFN_vkGetMemoryWin32HandleKHR = unsafe extern "system" fn(
         device: crate::vk::Device,
-        p_get_win32_handle_info: *const crate::vk::MemoryGetWin32HandleInfoKHR,
+        p_get_win32_handle_info: *const crate::vk::MemoryGetWin32HandleInfoKHR<'_>,
         p_handle: *mut crate::platform_types::HANDLE,
     ) -> crate::vk::Result;
     pub type PFN_vkGetMemoryWin32HandlePropertiesKHR = unsafe extern "system" fn(
         device: crate::vk::Device,
         handle_type: crate::vk::ExternalMemoryHandleTypeFlagBits,
         handle: crate::platform_types::HANDLE,
-        p_memory_win32_handle_properties: *mut crate::vk::MemoryWin32HandlePropertiesKHR,
+        p_memory_win32_handle_properties: *mut crate::vk::MemoryWin32HandlePropertiesKHR<
+            '_,
+        >,
     ) -> crate::vk::Result;
     pub const KHR_EXTERNAL_MEMORY_WIN32_SPEC_VERSION: u32 = 1;
     pub const KHR_EXTERNAL_MEMORY_WIN32_EXTENSION_NAME: &core::ffi::CStr = c"VK_KHR_external_memory_win32";

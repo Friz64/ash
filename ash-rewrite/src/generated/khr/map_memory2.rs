@@ -21,7 +21,7 @@ impl DeviceFn {
             map_memory2_khr: unsafe {
                 unsafe extern "system" fn map_memory2_khr(
                     _: crate::vk::Device,
-                    _: *const crate::vk::MemoryMapInfo,
+                    _: *const crate::vk::MemoryMapInfo<'_>,
                     _: *mut *mut core::ffi::c_void,
                 ) -> crate::vk::Result {
                     panic!("unable to load vkMapMemory2KHR")
@@ -32,7 +32,7 @@ impl DeviceFn {
             unmap_memory2_khr: unsafe {
                 unsafe extern "system" fn unmap_memory2_khr(
                     _: crate::vk::Device,
-                    _: *const crate::vk::MemoryUnmapInfo,
+                    _: *const crate::vk::MemoryUnmapInfo<'_>,
                 ) -> crate::vk::Result {
                     panic!("unable to load vkUnmapMemory2KHR")
                 }
@@ -47,8 +47,8 @@ impl DeviceFn {
     }
 }
 pub(crate) mod reexport {
-    pub type MemoryMapInfoKHR = crate::vk::MemoryMapInfo;
-    pub type MemoryUnmapInfoKHR = crate::vk::MemoryUnmapInfo;
+    pub type MemoryMapInfoKHR<'a> = crate::vk::MemoryMapInfo<'a>;
+    pub type MemoryUnmapInfoKHR<'a> = crate::vk::MemoryUnmapInfo<'a>;
     ///Provided by [`khr::map_memory2`](crate::khr::map_memory2)
     impl crate::vk::StructureType {
         pub const MEMORY_MAP_INFO_KHR: Self = Self::MEMORY_MAP_INFO;

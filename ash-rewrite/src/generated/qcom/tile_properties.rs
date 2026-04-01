@@ -23,7 +23,7 @@ impl DeviceFn {
                     _: crate::vk::Device,
                     _: crate::vk::Framebuffer,
                     _: *mut u32,
-                    _: *mut crate::vk::TilePropertiesQCOM,
+                    _: *mut crate::vk::TilePropertiesQCOM<'_>,
                 ) -> crate::vk::Result {
                     panic!("unable to load vkGetFramebufferTilePropertiesQCOM")
                 }
@@ -37,8 +37,8 @@ impl DeviceFn {
             get_dynamic_rendering_tile_properties_qcom: unsafe {
                 unsafe extern "system" fn get_dynamic_rendering_tile_properties_qcom(
                     _: crate::vk::Device,
-                    _: *const crate::vk::RenderingInfo,
-                    _: *mut crate::vk::TilePropertiesQCOM,
+                    _: *const crate::vk::RenderingInfo<'_>,
+                    _: *mut crate::vk::TilePropertiesQCOM<'_>,
                 ) -> crate::vk::Result {
                     panic!("unable to load vkGetDynamicRenderingTilePropertiesQCOM")
                 }
@@ -55,19 +55,21 @@ impl DeviceFn {
 pub(crate) mod reexport {
     #[repr(C)]
     #[derive(Clone, Copy)]
-    pub struct PhysicalDeviceTilePropertiesFeaturesQCOM {
+    pub struct PhysicalDeviceTilePropertiesFeaturesQCOM<'a> {
         pub s_type: crate::vk::StructureType,
         pub p_next: *mut core::ffi::c_void,
         pub tile_properties: crate::vk::Bool32,
+        pub _marker: ::core::marker::PhantomData<&'a ()>,
     }
     #[repr(C)]
     #[derive(Clone, Copy)]
-    pub struct TilePropertiesQCOM {
+    pub struct TilePropertiesQCOM<'a> {
         pub s_type: crate::vk::StructureType,
         pub p_next: *mut core::ffi::c_void,
         pub tile_size: crate::vk::Extent3D,
         pub apron_size: crate::vk::Extent2D,
         pub origin: crate::vk::Offset2D,
+        pub _marker: ::core::marker::PhantomData<&'a ()>,
     }
     ///Provided by [`qcom::tile_properties`](crate::qcom::tile_properties)
     impl crate::vk::StructureType {
@@ -78,12 +80,12 @@ pub(crate) mod reexport {
         device: crate::vk::Device,
         framebuffer: crate::vk::Framebuffer,
         p_properties_count: *mut u32,
-        p_properties: *mut crate::vk::TilePropertiesQCOM,
+        p_properties: *mut crate::vk::TilePropertiesQCOM<'_>,
     ) -> crate::vk::Result;
     pub type PFN_vkGetDynamicRenderingTilePropertiesQCOM = unsafe extern "system" fn(
         device: crate::vk::Device,
-        p_rendering_info: *const crate::vk::RenderingInfo,
-        p_properties: *mut crate::vk::TilePropertiesQCOM,
+        p_rendering_info: *const crate::vk::RenderingInfo<'_>,
+        p_properties: *mut crate::vk::TilePropertiesQCOM<'_>,
     ) -> crate::vk::Result;
     pub const QCOM_TILE_PROPERTIES_SPEC_VERSION: u32 = 1;
     pub const QCOM_TILE_PROPERTIES_EXTENSION_NAME: &core::ffi::CStr = c"VK_QCOM_tile_properties";

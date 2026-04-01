@@ -3,23 +3,25 @@
 //![Vulkan Manual Page](https://docs.vulkan.org/refpages/latest/refpages/source/VK_EXT_device_memory_report.html) · Extension `VK_EXT_device_memory_report`
 #[repr(C)]
 #[derive(Clone, Copy)]
-pub struct PhysicalDeviceDeviceMemoryReportFeaturesEXT {
+pub struct PhysicalDeviceDeviceMemoryReportFeaturesEXT<'a> {
     pub s_type: crate::vk::StructureType,
     pub p_next: *mut core::ffi::c_void,
     pub device_memory_report: crate::vk::Bool32,
+    pub _marker: ::core::marker::PhantomData<&'a ()>,
 }
 #[repr(C)]
 #[derive(Clone, Copy)]
-pub struct DeviceDeviceMemoryReportCreateInfoEXT {
+pub struct DeviceDeviceMemoryReportCreateInfoEXT<'a> {
     pub s_type: crate::vk::StructureType,
     pub p_next: *const core::ffi::c_void,
     pub flags: crate::vk::DeviceMemoryReportFlagsEXT,
     pub pfn_user_callback: crate::vk::PFN_vkDeviceMemoryReportCallbackEXT,
     pub p_user_data: *mut core::ffi::c_void,
+    pub _marker: ::core::marker::PhantomData<&'a ()>,
 }
 #[repr(C)]
 #[derive(Clone, Copy)]
-pub struct DeviceMemoryReportCallbackDataEXT {
+pub struct DeviceMemoryReportCallbackDataEXT<'a> {
     pub s_type: crate::vk::StructureType,
     pub p_next: *mut core::ffi::c_void,
     pub flags: crate::vk::DeviceMemoryReportFlagsEXT,
@@ -29,6 +31,7 @@ pub struct DeviceMemoryReportCallbackDataEXT {
     pub object_type: crate::vk::ObjectType,
     pub object_handle: u64,
     pub heap_index: u32,
+    pub _marker: ::core::marker::PhantomData<&'a ()>,
 }
 ///Provided by [`ext::device_memory_report`](crate::ext::device_memory_report)
 impl crate::vk::StructureType {
@@ -38,6 +41,7 @@ impl crate::vk::StructureType {
 }
 #[repr(transparent)]
 #[derive(Clone, Copy, PartialEq, Eq, PartialOrd, Ord, Hash, Default)]
+#[derive(Debug)]
 pub struct DeviceMemoryReportEventTypeEXT(pub(crate) i32);
 ///Provided by [`ext::device_memory_report`](crate::ext::device_memory_report)
 impl DeviceMemoryReportEventTypeEXT {
@@ -53,7 +57,7 @@ bitflags::bitflags! {
 }
 pub type PFN_vkDeviceMemoryReportCallbackEXT = Option<
     unsafe extern "system" fn(
-        p_callback_data: *const crate::vk::DeviceMemoryReportCallbackDataEXT,
+        p_callback_data: *const crate::vk::DeviceMemoryReportCallbackDataEXT<'_>,
         p_user_data: *mut core::ffi::c_void,
     ),
 >;

@@ -20,7 +20,7 @@ impl DeviceFn {
             cmd_set_sample_locations_ext: unsafe {
                 unsafe extern "system" fn cmd_set_sample_locations_ext(
                     _: crate::vk::CommandBuffer,
-                    _: *const crate::vk::SampleLocationsInfoEXT,
+                    _: *const crate::vk::SampleLocationsInfoEXT<'_>,
                 ) {
                     panic!("unable to load vkCmdSetSampleLocationsEXT")
                 }
@@ -54,7 +54,7 @@ impl InstanceFn {
                 unsafe extern "system" fn get_physical_device_multisample_properties_ext(
                     _: crate::vk::PhysicalDevice,
                     _: crate::vk::SampleCountFlagBits,
-                    _: *mut crate::vk::MultisamplePropertiesEXT,
+                    _: *mut crate::vk::MultisamplePropertiesEXT<'_>,
                 ) {
                     panic!("unable to load vkGetPhysicalDeviceMultisamplePropertiesEXT")
                 }
@@ -77,47 +77,56 @@ pub(crate) mod reexport {
     }
     #[repr(C)]
     #[derive(Clone, Copy)]
-    pub struct SampleLocationsInfoEXT {
+    pub struct SampleLocationsInfoEXT<'a> {
         pub s_type: crate::vk::StructureType,
         pub p_next: *const core::ffi::c_void,
         pub sample_locations_per_pixel: crate::vk::SampleCountFlagBits,
         pub sample_location_grid_size: crate::vk::Extent2D,
         pub sample_locations_count: u32,
         pub p_sample_locations: *const crate::vk::SampleLocationEXT,
+        pub _marker: ::core::marker::PhantomData<&'a ()>,
     }
     #[repr(C)]
     #[derive(Clone, Copy)]
-    pub struct AttachmentSampleLocationsEXT {
+    pub struct AttachmentSampleLocationsEXT<'a> {
         pub attachment_index: u32,
-        pub sample_locations_info: crate::vk::SampleLocationsInfoEXT,
+        pub sample_locations_info: crate::vk::SampleLocationsInfoEXT<'a>,
+        pub _marker: ::core::marker::PhantomData<&'a ()>,
     }
     #[repr(C)]
     #[derive(Clone, Copy)]
-    pub struct SubpassSampleLocationsEXT {
+    pub struct SubpassSampleLocationsEXT<'a> {
         pub subpass_index: u32,
-        pub sample_locations_info: crate::vk::SampleLocationsInfoEXT,
+        pub sample_locations_info: crate::vk::SampleLocationsInfoEXT<'a>,
+        pub _marker: ::core::marker::PhantomData<&'a ()>,
     }
     #[repr(C)]
     #[derive(Clone, Copy)]
-    pub struct RenderPassSampleLocationsBeginInfoEXT {
+    pub struct RenderPassSampleLocationsBeginInfoEXT<'a> {
         pub s_type: crate::vk::StructureType,
         pub p_next: *const core::ffi::c_void,
         pub attachment_initial_sample_locations_count: u32,
-        pub p_attachment_initial_sample_locations: *const crate::vk::AttachmentSampleLocationsEXT,
+        pub p_attachment_initial_sample_locations: *const crate::vk::AttachmentSampleLocationsEXT<
+            'a,
+        >,
         pub post_subpass_sample_locations_count: u32,
-        pub p_post_subpass_sample_locations: *const crate::vk::SubpassSampleLocationsEXT,
+        pub p_post_subpass_sample_locations: *const crate::vk::SubpassSampleLocationsEXT<
+            'a,
+        >,
+        pub _marker: ::core::marker::PhantomData<&'a ()>,
     }
     #[repr(C)]
     #[derive(Clone, Copy)]
-    pub struct PipelineSampleLocationsStateCreateInfoEXT {
+    pub struct PipelineSampleLocationsStateCreateInfoEXT<'a> {
         pub s_type: crate::vk::StructureType,
         pub p_next: *const core::ffi::c_void,
         pub sample_locations_enable: crate::vk::Bool32,
-        pub sample_locations_info: crate::vk::SampleLocationsInfoEXT,
+        pub sample_locations_info: crate::vk::SampleLocationsInfoEXT<'a>,
+        pub _marker: ::core::marker::PhantomData<&'a ()>,
     }
     #[repr(C)]
     #[derive(Clone, Copy)]
-    pub struct PhysicalDeviceSampleLocationsPropertiesEXT {
+    pub struct PhysicalDeviceSampleLocationsPropertiesEXT<'a> {
         pub s_type: crate::vk::StructureType,
         pub p_next: *mut core::ffi::c_void,
         pub sample_location_sample_counts: crate::vk::SampleCountFlags,
@@ -125,13 +134,15 @@ pub(crate) mod reexport {
         pub sample_location_coordinate_range: [core::ffi::c_float; 2 as _],
         pub sample_location_sub_pixel_bits: u32,
         pub variable_sample_locations: crate::vk::Bool32,
+        pub _marker: ::core::marker::PhantomData<&'a ()>,
     }
     #[repr(C)]
     #[derive(Clone, Copy)]
-    pub struct MultisamplePropertiesEXT {
+    pub struct MultisamplePropertiesEXT<'a> {
         pub s_type: crate::vk::StructureType,
         pub p_next: *mut core::ffi::c_void,
         pub max_sample_location_grid_size: crate::vk::Extent2D,
+        pub _marker: ::core::marker::PhantomData<&'a ()>,
     }
     ///Provided by [`ext::sample_locations`](crate::ext::sample_locations)
     impl crate::vk::StructureType {
@@ -155,12 +166,12 @@ pub(crate) mod reexport {
     }
     pub type PFN_vkCmdSetSampleLocationsEXT = unsafe extern "system" fn(
         command_buffer: crate::vk::CommandBuffer,
-        p_sample_locations_info: *const crate::vk::SampleLocationsInfoEXT,
+        p_sample_locations_info: *const crate::vk::SampleLocationsInfoEXT<'_>,
     );
     pub type PFN_vkGetPhysicalDeviceMultisamplePropertiesEXT = unsafe extern "system" fn(
         physical_device: crate::vk::PhysicalDevice,
         samples: crate::vk::SampleCountFlagBits,
-        p_multisample_properties: *mut crate::vk::MultisamplePropertiesEXT,
+        p_multisample_properties: *mut crate::vk::MultisamplePropertiesEXT<'_>,
     );
     pub const EXT_SAMPLE_LOCATIONS_SPEC_VERSION: u32 = 1;
     pub const EXT_SAMPLE_LOCATIONS_EXTENSION_NAME: &core::ffi::CStr = c"VK_EXT_sample_locations";

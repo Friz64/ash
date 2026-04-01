@@ -46,8 +46,8 @@ impl DeviceFn {
             create_acceleration_structure_nv: unsafe {
                 unsafe extern "system" fn create_acceleration_structure_nv(
                     _: crate::vk::Device,
-                    _: *const crate::vk::AccelerationStructureCreateInfoNV,
-                    _: *const crate::vk::AllocationCallbacks,
+                    _: *const crate::vk::AccelerationStructureCreateInfoNV<'_>,
+                    _: *const crate::vk::AllocationCallbacks<'_>,
                     _: *mut crate::vk::AccelerationStructureNV,
                 ) -> crate::vk::Result {
                     panic!("unable to load vkCreateAccelerationStructureNV")
@@ -63,7 +63,7 @@ impl DeviceFn {
                 unsafe extern "system" fn destroy_acceleration_structure_nv(
                     _: crate::vk::Device,
                     _: crate::vk::AccelerationStructureNV,
-                    _: *const crate::vk::AllocationCallbacks,
+                    _: *const crate::vk::AllocationCallbacks<'_>,
                 ) {
                     panic!("unable to load vkDestroyAccelerationStructureNV")
                 }
@@ -77,8 +77,10 @@ impl DeviceFn {
             get_acceleration_structure_memory_requirements_nv: unsafe {
                 unsafe extern "system" fn get_acceleration_structure_memory_requirements_nv(
                     _: crate::vk::Device,
-                    _: *const crate::vk::AccelerationStructureMemoryRequirementsInfoNV,
-                    _: *mut crate::vk::MemoryRequirements2KHR,
+                    _: *const crate::vk::AccelerationStructureMemoryRequirementsInfoNV<
+                        '_,
+                    >,
+                    _: *mut crate::vk::MemoryRequirements2KHR<'_>,
                 ) {
                     panic!(
                         "unable to load vkGetAccelerationStructureMemoryRequirementsNV"
@@ -95,7 +97,7 @@ impl DeviceFn {
                 unsafe extern "system" fn bind_acceleration_structure_memory_nv(
                     _: crate::vk::Device,
                     _: u32,
-                    _: *const crate::vk::BindAccelerationStructureMemoryInfoNV,
+                    _: *const crate::vk::BindAccelerationStructureMemoryInfoNV<'_>,
                 ) -> crate::vk::Result {
                     panic!("unable to load vkBindAccelerationStructureMemoryNV")
                 }
@@ -143,7 +145,7 @@ impl DeviceFn {
             cmd_build_acceleration_structure_nv: unsafe {
                 unsafe extern "system" fn cmd_build_acceleration_structure_nv(
                     _: crate::vk::CommandBuffer,
-                    _: *const crate::vk::AccelerationStructureInfoNV,
+                    _: *const crate::vk::AccelerationStructureInfoNV<'_>,
                     _: crate::vk::Buffer,
                     _: crate::vk::DeviceSize,
                     _: crate::vk::Bool32,
@@ -209,8 +211,8 @@ impl DeviceFn {
                     _: crate::vk::Device,
                     _: crate::vk::PipelineCache,
                     _: u32,
-                    _: *const crate::vk::RayTracingPipelineCreateInfoNV,
-                    _: *const crate::vk::AllocationCallbacks,
+                    _: *const crate::vk::RayTracingPipelineCreateInfoNV<'_>,
+                    _: *const crate::vk::AllocationCallbacks<'_>,
                     _: *mut crate::vk::Pipeline,
                 ) -> crate::vk::Result {
                     panic!("unable to load vkCreateRayTracingPipelinesNV")
@@ -246,7 +248,7 @@ impl DeviceFn {
 pub(crate) mod reexport {
     #[repr(C)]
     #[derive(Clone, Copy)]
-    pub struct RayTracingShaderGroupCreateInfoNV {
+    pub struct RayTracingShaderGroupCreateInfoNV<'a> {
         pub s_type: crate::vk::StructureType,
         pub p_next: *const core::ffi::c_void,
         pub _type: crate::vk::RayTracingShaderGroupTypeKHR,
@@ -254,25 +256,27 @@ pub(crate) mod reexport {
         pub closest_hit_shader: u32,
         pub any_hit_shader: u32,
         pub intersection_shader: u32,
+        pub _marker: ::core::marker::PhantomData<&'a ()>,
     }
     #[repr(C)]
     #[derive(Clone, Copy)]
-    pub struct RayTracingPipelineCreateInfoNV {
+    pub struct RayTracingPipelineCreateInfoNV<'a> {
         pub s_type: crate::vk::StructureType,
         pub p_next: *const core::ffi::c_void,
         pub flags: crate::vk::PipelineCreateFlags,
         pub stage_count: u32,
-        pub p_stages: *const crate::vk::PipelineShaderStageCreateInfo,
+        pub p_stages: *const crate::vk::PipelineShaderStageCreateInfo<'a>,
         pub group_count: u32,
-        pub p_groups: *const crate::vk::RayTracingShaderGroupCreateInfoNV,
+        pub p_groups: *const crate::vk::RayTracingShaderGroupCreateInfoNV<'a>,
         pub max_recursion_depth: u32,
         pub layout: crate::vk::PipelineLayout,
         pub base_pipeline_handle: crate::vk::Pipeline,
         pub base_pipeline_index: i32,
+        pub _marker: ::core::marker::PhantomData<&'a ()>,
     }
     #[repr(C)]
     #[derive(Clone, Copy)]
-    pub struct GeometryTrianglesNV {
+    pub struct GeometryTrianglesNV<'a> {
         pub s_type: crate::vk::StructureType,
         pub p_next: *const core::ffi::c_void,
         pub vertex_data: crate::vk::Buffer,
@@ -286,54 +290,60 @@ pub(crate) mod reexport {
         pub index_type: crate::vk::IndexType,
         pub transform_data: crate::vk::Buffer,
         pub transform_offset: crate::vk::DeviceSize,
+        pub _marker: ::core::marker::PhantomData<&'a ()>,
     }
     #[repr(C)]
     #[derive(Clone, Copy)]
-    pub struct GeometryAABBNV {
+    pub struct GeometryAABBNV<'a> {
         pub s_type: crate::vk::StructureType,
         pub p_next: *const core::ffi::c_void,
         pub aabb_data: crate::vk::Buffer,
         pub num_aab_bs: u32,
         pub stride: u32,
         pub offset: crate::vk::DeviceSize,
+        pub _marker: ::core::marker::PhantomData<&'a ()>,
     }
     #[repr(C)]
     #[derive(Clone, Copy)]
-    pub struct GeometryDataNV {
-        pub triangles: crate::vk::GeometryTrianglesNV,
-        pub aabbs: crate::vk::GeometryAABBNV,
+    pub struct GeometryDataNV<'a> {
+        pub triangles: crate::vk::GeometryTrianglesNV<'a>,
+        pub aabbs: crate::vk::GeometryAABBNV<'a>,
+        pub _marker: ::core::marker::PhantomData<&'a ()>,
     }
     #[repr(C)]
     #[derive(Clone, Copy)]
-    pub struct GeometryNV {
+    pub struct GeometryNV<'a> {
         pub s_type: crate::vk::StructureType,
         pub p_next: *const core::ffi::c_void,
         pub geometry_type: crate::vk::GeometryTypeKHR,
-        pub geometry: crate::vk::GeometryDataNV,
+        pub geometry: crate::vk::GeometryDataNV<'a>,
         pub flags: crate::vk::GeometryFlagsKHR,
+        pub _marker: ::core::marker::PhantomData<&'a ()>,
     }
     #[repr(C)]
     #[derive(Clone, Copy)]
-    pub struct AccelerationStructureInfoNV {
+    pub struct AccelerationStructureInfoNV<'a> {
         pub s_type: crate::vk::StructureType,
         pub p_next: *const core::ffi::c_void,
         pub _type: crate::vk::AccelerationStructureTypeNV,
         pub flags: crate::vk::BuildAccelerationStructureFlagsNV,
         pub instance_count: u32,
         pub geometry_count: u32,
-        pub p_geometries: *const crate::vk::GeometryNV,
+        pub p_geometries: *const crate::vk::GeometryNV<'a>,
+        pub _marker: ::core::marker::PhantomData<&'a ()>,
     }
     #[repr(C)]
     #[derive(Clone, Copy)]
-    pub struct AccelerationStructureCreateInfoNV {
+    pub struct AccelerationStructureCreateInfoNV<'a> {
         pub s_type: crate::vk::StructureType,
         pub p_next: *const core::ffi::c_void,
         pub compacted_size: crate::vk::DeviceSize,
-        pub info: crate::vk::AccelerationStructureInfoNV,
+        pub info: crate::vk::AccelerationStructureInfoNV<'a>,
+        pub _marker: ::core::marker::PhantomData<&'a ()>,
     }
     #[repr(C)]
     #[derive(Clone, Copy)]
-    pub struct BindAccelerationStructureMemoryInfoNV {
+    pub struct BindAccelerationStructureMemoryInfoNV<'a> {
         pub s_type: crate::vk::StructureType,
         pub p_next: *const core::ffi::c_void,
         pub acceleration_structure: crate::vk::AccelerationStructureNV,
@@ -341,26 +351,29 @@ pub(crate) mod reexport {
         pub memory_offset: crate::vk::DeviceSize,
         pub device_index_count: u32,
         pub p_device_indices: *const u32,
+        pub _marker: ::core::marker::PhantomData<&'a ()>,
     }
     #[repr(C)]
     #[derive(Clone, Copy)]
-    pub struct WriteDescriptorSetAccelerationStructureNV {
+    pub struct WriteDescriptorSetAccelerationStructureNV<'a> {
         pub s_type: crate::vk::StructureType,
         pub p_next: *const core::ffi::c_void,
         pub acceleration_structure_count: u32,
         pub p_acceleration_structures: *const crate::vk::AccelerationStructureNV,
+        pub _marker: ::core::marker::PhantomData<&'a ()>,
     }
     #[repr(C)]
     #[derive(Clone, Copy)]
-    pub struct AccelerationStructureMemoryRequirementsInfoNV {
+    pub struct AccelerationStructureMemoryRequirementsInfoNV<'a> {
         pub s_type: crate::vk::StructureType,
         pub p_next: *const core::ffi::c_void,
         pub _type: crate::vk::AccelerationStructureMemoryRequirementsTypeNV,
         pub acceleration_structure: crate::vk::AccelerationStructureNV,
+        pub _marker: ::core::marker::PhantomData<&'a ()>,
     }
     #[repr(C)]
     #[derive(Clone, Copy)]
-    pub struct PhysicalDeviceRayTracingPropertiesNV {
+    pub struct PhysicalDeviceRayTracingPropertiesNV<'a> {
         pub s_type: crate::vk::StructureType,
         pub p_next: *mut core::ffi::c_void,
         pub shader_group_handle_size: u32,
@@ -371,6 +384,7 @@ pub(crate) mod reexport {
         pub max_instance_count: u64,
         pub max_triangle_count: u64,
         pub max_descriptor_set_acceleration_structures: u32,
+        pub _marker: ::core::marker::PhantomData<&'a ()>,
     }
     pub type AabbPositionsNV = crate::vk::AabbPositionsKHR;
     pub type TransformMatrixNV = crate::vk::TransformMatrixKHR;
@@ -434,6 +448,7 @@ pub(crate) mod reexport {
     }
     #[repr(transparent)]
     #[derive(Clone, Copy, PartialEq, Eq, PartialOrd, Ord, Hash, Default)]
+    #[derive(Debug)]
     pub struct AccelerationStructureMemoryRequirementsTypeNV(pub(crate) i32);
     ///Provided by [`nv::ray_tracing`](crate::nv::ray_tracing)
     impl AccelerationStructureMemoryRequirementsTypeNV {
@@ -538,24 +553,24 @@ pub(crate) mod reexport {
     ) -> crate::vk::Result;
     pub type PFN_vkCreateAccelerationStructureNV = unsafe extern "system" fn(
         device: crate::vk::Device,
-        p_create_info: *const crate::vk::AccelerationStructureCreateInfoNV,
-        p_allocator: *const crate::vk::AllocationCallbacks,
+        p_create_info: *const crate::vk::AccelerationStructureCreateInfoNV<'_>,
+        p_allocator: *const crate::vk::AllocationCallbacks<'_>,
         p_acceleration_structure: *mut crate::vk::AccelerationStructureNV,
     ) -> crate::vk::Result;
     pub type PFN_vkDestroyAccelerationStructureNV = unsafe extern "system" fn(
         device: crate::vk::Device,
         acceleration_structure: crate::vk::AccelerationStructureNV,
-        p_allocator: *const crate::vk::AllocationCallbacks,
+        p_allocator: *const crate::vk::AllocationCallbacks<'_>,
     );
     pub type PFN_vkGetAccelerationStructureMemoryRequirementsNV = unsafe extern "system" fn(
         device: crate::vk::Device,
-        p_info: *const crate::vk::AccelerationStructureMemoryRequirementsInfoNV,
-        p_memory_requirements: *mut crate::vk::MemoryRequirements2KHR,
+        p_info: *const crate::vk::AccelerationStructureMemoryRequirementsInfoNV<'_>,
+        p_memory_requirements: *mut crate::vk::MemoryRequirements2KHR<'_>,
     );
     pub type PFN_vkBindAccelerationStructureMemoryNV = unsafe extern "system" fn(
         device: crate::vk::Device,
         bind_info_count: u32,
-        p_bind_infos: *const crate::vk::BindAccelerationStructureMemoryInfoNV,
+        p_bind_infos: *const crate::vk::BindAccelerationStructureMemoryInfoNV<'_>,
     ) -> crate::vk::Result;
     pub type PFN_vkCmdCopyAccelerationStructureNV = unsafe extern "system" fn(
         command_buffer: crate::vk::CommandBuffer,
@@ -573,7 +588,7 @@ pub(crate) mod reexport {
     );
     pub type PFN_vkCmdBuildAccelerationStructureNV = unsafe extern "system" fn(
         command_buffer: crate::vk::CommandBuffer,
-        p_info: *const crate::vk::AccelerationStructureInfoNV,
+        p_info: *const crate::vk::AccelerationStructureInfoNV<'_>,
         instance_data: crate::vk::Buffer,
         instance_offset: crate::vk::DeviceSize,
         update: crate::vk::Bool32,
@@ -609,8 +624,8 @@ pub(crate) mod reexport {
         device: crate::vk::Device,
         pipeline_cache: crate::vk::PipelineCache,
         create_info_count: u32,
-        p_create_infos: *const crate::vk::RayTracingPipelineCreateInfoNV,
-        p_allocator: *const crate::vk::AllocationCallbacks,
+        p_create_infos: *const crate::vk::RayTracingPipelineCreateInfoNV<'_>,
+        p_allocator: *const crate::vk::AllocationCallbacks<'_>,
         p_pipelines: *mut crate::vk::Pipeline,
     ) -> crate::vk::Result;
     pub type PFN_vkGetRayTracingShaderGroupHandlesNV = crate::vk::PFN_vkGetRayTracingShaderGroupHandlesKHR;

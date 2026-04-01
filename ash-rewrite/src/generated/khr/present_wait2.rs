@@ -21,7 +21,7 @@ impl DeviceFn {
                 unsafe extern "system" fn wait_for_present2_khr(
                     _: crate::vk::Device,
                     _: crate::vk::SwapchainKHR,
-                    _: *const crate::vk::PresentWait2InfoKHR,
+                    _: *const crate::vk::PresentWait2InfoKHR<'_>,
                 ) -> crate::vk::Result {
                     panic!("unable to load vkWaitForPresent2KHR")
                 }
@@ -38,25 +38,28 @@ impl DeviceFn {
 pub(crate) mod reexport {
     #[repr(C)]
     #[derive(Clone, Copy)]
-    pub struct PresentWait2InfoKHR {
+    pub struct PresentWait2InfoKHR<'a> {
         pub s_type: crate::vk::StructureType,
         pub p_next: *const core::ffi::c_void,
         pub present_id: u64,
         pub timeout: u64,
+        pub _marker: ::core::marker::PhantomData<&'a ()>,
     }
     #[repr(C)]
     #[derive(Clone, Copy)]
-    pub struct PhysicalDevicePresentWait2FeaturesKHR {
+    pub struct PhysicalDevicePresentWait2FeaturesKHR<'a> {
         pub s_type: crate::vk::StructureType,
         pub p_next: *mut core::ffi::c_void,
         pub present_wait2: crate::vk::Bool32,
+        pub _marker: ::core::marker::PhantomData<&'a ()>,
     }
     #[repr(C)]
     #[derive(Clone, Copy)]
-    pub struct SurfaceCapabilitiesPresentWait2KHR {
+    pub struct SurfaceCapabilitiesPresentWait2KHR<'a> {
         pub s_type: crate::vk::StructureType,
         pub p_next: *mut core::ffi::c_void,
         pub present_wait2_supported: crate::vk::Bool32,
+        pub _marker: ::core::marker::PhantomData<&'a ()>,
     }
     ///Provided by [`khr::present_wait2`](crate::khr::present_wait2)
     impl crate::vk::StructureType {
@@ -71,7 +74,7 @@ pub(crate) mod reexport {
     pub type PFN_vkWaitForPresent2KHR = unsafe extern "system" fn(
         device: crate::vk::Device,
         swapchain: crate::vk::SwapchainKHR,
-        p_present_wait2_info: *const crate::vk::PresentWait2InfoKHR,
+        p_present_wait2_info: *const crate::vk::PresentWait2InfoKHR<'_>,
     ) -> crate::vk::Result;
     pub const KHR_PRESENT_WAIT_2_SPEC_VERSION: u32 = 1;
     pub const KHR_PRESENT_WAIT_2_EXTENSION_NAME: &core::ffi::CStr = c"VK_KHR_present_wait2";

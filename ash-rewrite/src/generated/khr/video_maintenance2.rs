@@ -3,34 +3,38 @@
 //![Vulkan Manual Page](https://docs.vulkan.org/refpages/latest/refpages/source/VK_KHR_video_maintenance2.html) · Extension `VK_KHR_video_maintenance2`
 #[repr(C)]
 #[derive(Clone, Copy)]
-pub struct PhysicalDeviceVideoMaintenance2FeaturesKHR {
+pub struct PhysicalDeviceVideoMaintenance2FeaturesKHR<'a> {
     pub s_type: crate::vk::StructureType,
     pub p_next: *mut core::ffi::c_void,
     pub video_maintenance2: crate::vk::Bool32,
+    pub _marker: ::core::marker::PhantomData<&'a ()>,
 }
 #[repr(C)]
 #[derive(Clone, Copy)]
-pub struct VideoDecodeH264InlineSessionParametersInfoKHR {
+pub struct VideoDecodeH264InlineSessionParametersInfoKHR<'a> {
     pub s_type: crate::vk::StructureType,
     pub p_next: *const core::ffi::c_void,
-    pub p_std_sps: *const crate::vk::H264SequenceParameterSet,
-    pub p_std_pps: *const crate::vk::H264PictureParameterSet,
+    pub p_std_sps: *const crate::vk::H264SequenceParameterSet<'a>,
+    pub p_std_pps: *const crate::vk::H264PictureParameterSet<'a>,
+    pub _marker: ::core::marker::PhantomData<&'a ()>,
 }
 #[repr(C)]
 #[derive(Clone, Copy)]
-pub struct VideoDecodeH265InlineSessionParametersInfoKHR {
+pub struct VideoDecodeH265InlineSessionParametersInfoKHR<'a> {
     pub s_type: crate::vk::StructureType,
     pub p_next: *const core::ffi::c_void,
-    pub p_std_vps: *const crate::vk::H265VideoParameterSet,
-    pub p_std_sps: *const crate::vk::H265SequenceParameterSet,
-    pub p_std_pps: *const crate::vk::H265PictureParameterSet,
+    pub p_std_vps: *const crate::vk::H265VideoParameterSet<'a>,
+    pub p_std_sps: *const crate::vk::H265SequenceParameterSet<'a>,
+    pub p_std_pps: *const crate::vk::H265PictureParameterSet<'a>,
+    pub _marker: ::core::marker::PhantomData<&'a ()>,
 }
 #[repr(C)]
 #[derive(Clone, Copy)]
-pub struct VideoDecodeAV1InlineSessionParametersInfoKHR {
+pub struct VideoDecodeAV1InlineSessionParametersInfoKHR<'a> {
     pub s_type: crate::vk::StructureType,
     pub p_next: *const core::ffi::c_void,
-    pub p_std_sequence_header: *const crate::vk::AV1SequenceHeader,
+    pub p_std_sequence_header: *const crate::vk::AV1SequenceHeader<'a>,
+    pub _marker: ::core::marker::PhantomData<&'a ()>,
 }
 ///Provided by [`khr::video_maintenance2`](crate::khr::video_maintenance2)
 impl crate::vk::StructureType {

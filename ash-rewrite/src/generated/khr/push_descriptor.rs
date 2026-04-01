@@ -25,7 +25,7 @@ impl DeviceFn {
                     _: crate::vk::PipelineLayout,
                     _: u32,
                     _: u32,
-                    _: *const crate::vk::WriteDescriptorSet,
+                    _: *const crate::vk::WriteDescriptorSet<'_>,
                 ) {
                     panic!("unable to load vkCmdPushDescriptorSetKHR")
                 }
@@ -57,7 +57,9 @@ impl DeviceFn {
     }
 }
 pub(crate) mod reexport {
-    pub type PhysicalDevicePushDescriptorPropertiesKHR = crate::vk::PhysicalDevicePushDescriptorProperties;
+    pub type PhysicalDevicePushDescriptorPropertiesKHR<'a> = crate::vk::PhysicalDevicePushDescriptorProperties<
+        'a,
+    >;
     ///Provided by [`khr::push_descriptor`](crate::khr::push_descriptor)
     impl crate::vk::StructureType {
         pub const PHYSICAL_DEVICE_PUSH_DESCRIPTOR_PROPERTIES_KHR: Self = Self::PHYSICAL_DEVICE_PUSH_DESCRIPTOR_PROPERTIES;

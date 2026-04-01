@@ -1,9 +1,9 @@
-//rewrite-todo use super::Instance;
+use super::Instance;
 #[cfg(doc)]
 use crate::khr;
 use crate::read_into_uninitialized_vector;
 use crate::vk;
-//rewrite-todo use crate::RawPtr;
+use crate::RawPtr;
 use crate::VkResult;
 use alloc::vec::Vec;
 use core::ffi;
@@ -239,7 +239,6 @@ impl Entry {
         }
     }
 
-    /*rewrite-todo
     /// <https://registry.khronos.org/vulkan/specs/1.3-extensions/man/html/vkCreateInstance.html>
     ///
     /// # Safety
@@ -266,7 +265,6 @@ impl Entry {
         .assume_init_on_success(instance)?;
         Ok(Instance::load(&self.static_fn, instance))
     }
-    */
 
     /// <https://registry.khronos.org/vulkan/specs/1.3-extensions/man/html/vkEnumerateInstanceLayerProperties.html>
     #[inline]

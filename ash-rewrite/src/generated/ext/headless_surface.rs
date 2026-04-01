@@ -20,8 +20,8 @@ impl InstanceFn {
             create_headless_surface_ext: unsafe {
                 unsafe extern "system" fn create_headless_surface_ext(
                     _: crate::vk::Instance,
-                    _: *const crate::vk::HeadlessSurfaceCreateInfoEXT,
-                    _: *const crate::vk::AllocationCallbacks,
+                    _: *const crate::vk::HeadlessSurfaceCreateInfoEXT<'_>,
+                    _: *const crate::vk::AllocationCallbacks<'_>,
                     _: *mut crate::vk::SurfaceKHR,
                 ) -> crate::vk::Result {
                     panic!("unable to load vkCreateHeadlessSurfaceEXT")
@@ -39,10 +39,11 @@ impl InstanceFn {
 pub(crate) mod reexport {
     #[repr(C)]
     #[derive(Clone, Copy)]
-    pub struct HeadlessSurfaceCreateInfoEXT {
+    pub struct HeadlessSurfaceCreateInfoEXT<'a> {
         pub s_type: crate::vk::StructureType,
         pub p_next: *const core::ffi::c_void,
         pub flags: crate::vk::HeadlessSurfaceCreateFlagsEXT,
+        pub _marker: ::core::marker::PhantomData<&'a ()>,
     }
     ///Provided by [`ext::headless_surface`](crate::ext::headless_surface)
     impl crate::vk::StructureType {
@@ -54,8 +55,8 @@ pub(crate) mod reexport {
     }
     pub type PFN_vkCreateHeadlessSurfaceEXT = unsafe extern "system" fn(
         instance: crate::vk::Instance,
-        p_create_info: *const crate::vk::HeadlessSurfaceCreateInfoEXT,
-        p_allocator: *const crate::vk::AllocationCallbacks,
+        p_create_info: *const crate::vk::HeadlessSurfaceCreateInfoEXT<'_>,
+        p_allocator: *const crate::vk::AllocationCallbacks<'_>,
         p_surface: *mut crate::vk::SurfaceKHR,
     ) -> crate::vk::Result;
     pub const EXT_HEADLESS_SURFACE_SPEC_VERSION: u32 = 1;

@@ -3,7 +3,7 @@
 //![Vulkan Manual Page](https://docs.vulkan.org/refpages/latest/refpages/source/VK_EXT_conservative_rasterization.html) · Extension `VK_EXT_conservative_rasterization`
 #[repr(C)]
 #[derive(Clone, Copy)]
-pub struct PhysicalDeviceConservativeRasterizationPropertiesEXT {
+pub struct PhysicalDeviceConservativeRasterizationPropertiesEXT<'a> {
     pub s_type: crate::vk::StructureType,
     pub p_next: *mut core::ffi::c_void,
     pub primitive_overestimation_size: core::ffi::c_float,
@@ -15,15 +15,17 @@ pub struct PhysicalDeviceConservativeRasterizationPropertiesEXT {
     pub degenerate_lines_rasterized: crate::vk::Bool32,
     pub fully_covered_fragment_shader_input_variable: crate::vk::Bool32,
     pub conservative_rasterization_post_depth_coverage: crate::vk::Bool32,
+    pub _marker: ::core::marker::PhantomData<&'a ()>,
 }
 #[repr(C)]
 #[derive(Clone, Copy)]
-pub struct PipelineRasterizationConservativeStateCreateInfoEXT {
+pub struct PipelineRasterizationConservativeStateCreateInfoEXT<'a> {
     pub s_type: crate::vk::StructureType,
     pub p_next: *const core::ffi::c_void,
     pub flags: crate::vk::PipelineRasterizationConservativeStateCreateFlagsEXT,
     pub conservative_rasterization_mode: crate::vk::ConservativeRasterizationModeEXT,
     pub extra_primitive_overestimation_size: core::ffi::c_float,
+    pub _marker: ::core::marker::PhantomData<&'a ()>,
 }
 ///Provided by [`ext::conservative_rasterization`](crate::ext::conservative_rasterization)
 impl crate::vk::StructureType {
@@ -36,6 +38,7 @@ impl crate::vk::StructureType {
 }
 #[repr(transparent)]
 #[derive(Clone, Copy, PartialEq, Eq, PartialOrd, Ord, Hash, Default)]
+#[derive(Debug)]
 pub struct ConservativeRasterizationModeEXT(pub(crate) i32);
 ///Provided by [`ext::conservative_rasterization`](crate::ext::conservative_rasterization)
 impl ConservativeRasterizationModeEXT {

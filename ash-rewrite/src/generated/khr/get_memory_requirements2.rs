@@ -22,8 +22,8 @@ impl DeviceFn {
             get_buffer_memory_requirements2_khr: unsafe {
                 unsafe extern "system" fn get_buffer_memory_requirements2_khr(
                     _: crate::vk::Device,
-                    _: *const crate::vk::BufferMemoryRequirementsInfo2,
-                    _: *mut crate::vk::MemoryRequirements2,
+                    _: *const crate::vk::BufferMemoryRequirementsInfo2<'_>,
+                    _: *mut crate::vk::MemoryRequirements2<'_>,
                 ) {
                     panic!("unable to load vkGetBufferMemoryRequirements2KHR")
                 }
@@ -37,8 +37,8 @@ impl DeviceFn {
             get_image_memory_requirements2_khr: unsafe {
                 unsafe extern "system" fn get_image_memory_requirements2_khr(
                     _: crate::vk::Device,
-                    _: *const crate::vk::ImageMemoryRequirementsInfo2,
-                    _: *mut crate::vk::MemoryRequirements2,
+                    _: *const crate::vk::ImageMemoryRequirementsInfo2<'_>,
+                    _: *mut crate::vk::MemoryRequirements2<'_>,
                 ) {
                     panic!("unable to load vkGetImageMemoryRequirements2KHR")
                 }
@@ -52,9 +52,9 @@ impl DeviceFn {
             get_image_sparse_memory_requirements2_khr: unsafe {
                 unsafe extern "system" fn get_image_sparse_memory_requirements2_khr(
                     _: crate::vk::Device,
-                    _: *const crate::vk::ImageSparseMemoryRequirementsInfo2,
+                    _: *const crate::vk::ImageSparseMemoryRequirementsInfo2<'_>,
                     _: *mut u32,
-                    _: *mut crate::vk::SparseImageMemoryRequirements2,
+                    _: *mut crate::vk::SparseImageMemoryRequirements2<'_>,
                 ) {
                     panic!("unable to load vkGetImageSparseMemoryRequirements2KHR")
                 }
@@ -69,11 +69,19 @@ impl DeviceFn {
     }
 }
 pub(crate) mod reexport {
-    pub type BufferMemoryRequirementsInfo2KHR = crate::vk::BufferMemoryRequirementsInfo2;
-    pub type ImageMemoryRequirementsInfo2KHR = crate::vk::ImageMemoryRequirementsInfo2;
-    pub type ImageSparseMemoryRequirementsInfo2KHR = crate::vk::ImageSparseMemoryRequirementsInfo2;
-    pub type MemoryRequirements2KHR = crate::vk::MemoryRequirements2;
-    pub type SparseImageMemoryRequirements2KHR = crate::vk::SparseImageMemoryRequirements2;
+    pub type BufferMemoryRequirementsInfo2KHR<'a> = crate::vk::BufferMemoryRequirementsInfo2<
+        'a,
+    >;
+    pub type ImageMemoryRequirementsInfo2KHR<'a> = crate::vk::ImageMemoryRequirementsInfo2<
+        'a,
+    >;
+    pub type ImageSparseMemoryRequirementsInfo2KHR<'a> = crate::vk::ImageSparseMemoryRequirementsInfo2<
+        'a,
+    >;
+    pub type MemoryRequirements2KHR<'a> = crate::vk::MemoryRequirements2<'a>;
+    pub type SparseImageMemoryRequirements2KHR<'a> = crate::vk::SparseImageMemoryRequirements2<
+        'a,
+    >;
     ///Provided by [`khr::get_memory_requirements2`](crate::khr::get_memory_requirements2)
     impl crate::vk::StructureType {
         pub const BUFFER_MEMORY_REQUIREMENTS_INFO_2_KHR: Self = Self::BUFFER_MEMORY_REQUIREMENTS_INFO_2;

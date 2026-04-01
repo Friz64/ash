@@ -26,7 +26,7 @@ impl DeviceFn {
                 unsafe extern "system" fn cmd_execute_generated_commands_nv(
                     _: crate::vk::CommandBuffer,
                     _: crate::vk::Bool32,
-                    _: *const crate::vk::GeneratedCommandsInfoNV,
+                    _: *const crate::vk::GeneratedCommandsInfoNV<'_>,
                 ) {
                     panic!("unable to load vkCmdExecuteGeneratedCommandsNV")
                 }
@@ -40,7 +40,7 @@ impl DeviceFn {
             cmd_preprocess_generated_commands_nv: unsafe {
                 unsafe extern "system" fn cmd_preprocess_generated_commands_nv(
                     _: crate::vk::CommandBuffer,
-                    _: *const crate::vk::GeneratedCommandsInfoNV,
+                    _: *const crate::vk::GeneratedCommandsInfoNV<'_>,
                 ) {
                     panic!("unable to load vkCmdPreprocessGeneratedCommandsNV")
                 }
@@ -70,8 +70,8 @@ impl DeviceFn {
             get_generated_commands_memory_requirements_nv: unsafe {
                 unsafe extern "system" fn get_generated_commands_memory_requirements_nv(
                     _: crate::vk::Device,
-                    _: *const crate::vk::GeneratedCommandsMemoryRequirementsInfoNV,
-                    _: *mut crate::vk::MemoryRequirements2,
+                    _: *const crate::vk::GeneratedCommandsMemoryRequirementsInfoNV<'_>,
+                    _: *mut crate::vk::MemoryRequirements2<'_>,
                 ) {
                     panic!("unable to load vkGetGeneratedCommandsMemoryRequirementsNV")
                 }
@@ -85,8 +85,8 @@ impl DeviceFn {
             create_indirect_commands_layout_nv: unsafe {
                 unsafe extern "system" fn create_indirect_commands_layout_nv(
                     _: crate::vk::Device,
-                    _: *const crate::vk::IndirectCommandsLayoutCreateInfoNV,
-                    _: *const crate::vk::AllocationCallbacks,
+                    _: *const crate::vk::IndirectCommandsLayoutCreateInfoNV<'_>,
+                    _: *const crate::vk::AllocationCallbacks<'_>,
                     _: *mut crate::vk::IndirectCommandsLayoutNV,
                 ) -> crate::vk::Result {
                     panic!("unable to load vkCreateIndirectCommandsLayoutNV")
@@ -102,7 +102,7 @@ impl DeviceFn {
                 unsafe extern "system" fn destroy_indirect_commands_layout_nv(
                     _: crate::vk::Device,
                     _: crate::vk::IndirectCommandsLayoutNV,
-                    _: *const crate::vk::AllocationCallbacks,
+                    _: *const crate::vk::AllocationCallbacks<'_>,
                 ) {
                     panic!("unable to load vkDestroyIndirectCommandsLayoutNV")
                 }
@@ -119,14 +119,15 @@ impl DeviceFn {
 pub(crate) mod reexport {
     #[repr(C)]
     #[derive(Clone, Copy)]
-    pub struct PhysicalDeviceDeviceGeneratedCommandsFeaturesNV {
+    pub struct PhysicalDeviceDeviceGeneratedCommandsFeaturesNV<'a> {
         pub s_type: crate::vk::StructureType,
         pub p_next: *mut core::ffi::c_void,
         pub device_generated_commands: crate::vk::Bool32,
+        pub _marker: ::core::marker::PhantomData<&'a ()>,
     }
     #[repr(C)]
     #[derive(Clone, Copy)]
-    pub struct PhysicalDeviceDeviceGeneratedCommandsPropertiesNV {
+    pub struct PhysicalDeviceDeviceGeneratedCommandsPropertiesNV<'a> {
         pub s_type: crate::vk::StructureType,
         pub p_next: *mut core::ffi::c_void,
         pub max_graphics_shader_group_count: u32,
@@ -138,26 +139,33 @@ pub(crate) mod reexport {
         pub min_sequences_count_buffer_offset_alignment: u32,
         pub min_sequences_index_buffer_offset_alignment: u32,
         pub min_indirect_commands_buffer_offset_alignment: u32,
+        pub _marker: ::core::marker::PhantomData<&'a ()>,
     }
     #[repr(C)]
     #[derive(Clone, Copy)]
-    pub struct GraphicsShaderGroupCreateInfoNV {
+    pub struct GraphicsShaderGroupCreateInfoNV<'a> {
         pub s_type: crate::vk::StructureType,
         pub p_next: *const core::ffi::c_void,
         pub stage_count: u32,
-        pub p_stages: *const crate::vk::PipelineShaderStageCreateInfo,
-        pub p_vertex_input_state: *const crate::vk::PipelineVertexInputStateCreateInfo,
-        pub p_tessellation_state: *const crate::vk::PipelineTessellationStateCreateInfo,
+        pub p_stages: *const crate::vk::PipelineShaderStageCreateInfo<'a>,
+        pub p_vertex_input_state: *const crate::vk::PipelineVertexInputStateCreateInfo<
+            'a,
+        >,
+        pub p_tessellation_state: *const crate::vk::PipelineTessellationStateCreateInfo<
+            'a,
+        >,
+        pub _marker: ::core::marker::PhantomData<&'a ()>,
     }
     #[repr(C)]
     #[derive(Clone, Copy)]
-    pub struct GraphicsPipelineShaderGroupsCreateInfoNV {
+    pub struct GraphicsPipelineShaderGroupsCreateInfoNV<'a> {
         pub s_type: crate::vk::StructureType,
         pub p_next: *const core::ffi::c_void,
         pub group_count: u32,
-        pub p_groups: *const crate::vk::GraphicsShaderGroupCreateInfoNV,
+        pub p_groups: *const crate::vk::GraphicsShaderGroupCreateInfoNV<'a>,
         pub pipeline_count: u32,
         pub p_pipelines: *const crate::vk::Pipeline,
+        pub _marker: ::core::marker::PhantomData<&'a ()>,
     }
     #[repr(C)]
     #[derive(Clone, Copy)]
@@ -191,7 +199,7 @@ pub(crate) mod reexport {
     }
     #[repr(C)]
     #[derive(Clone, Copy)]
-    pub struct IndirectCommandsLayoutTokenNV {
+    pub struct IndirectCommandsLayoutTokenNV<'a> {
         pub s_type: crate::vk::StructureType,
         pub p_next: *const core::ffi::c_void,
         pub token_type: crate::vk::IndirectCommandsTokenTypeNV,
@@ -207,22 +215,24 @@ pub(crate) mod reexport {
         pub index_type_count: u32,
         pub p_index_types: *const crate::vk::IndexType,
         pub p_index_type_values: *const u32,
+        pub _marker: ::core::marker::PhantomData<&'a ()>,
     }
     #[repr(C)]
     #[derive(Clone, Copy)]
-    pub struct IndirectCommandsLayoutCreateInfoNV {
+    pub struct IndirectCommandsLayoutCreateInfoNV<'a> {
         pub s_type: crate::vk::StructureType,
         pub p_next: *const core::ffi::c_void,
         pub flags: crate::vk::IndirectCommandsLayoutUsageFlagsNV,
         pub pipeline_bind_point: crate::vk::PipelineBindPoint,
         pub token_count: u32,
-        pub p_tokens: *const crate::vk::IndirectCommandsLayoutTokenNV,
+        pub p_tokens: *const crate::vk::IndirectCommandsLayoutTokenNV<'a>,
         pub stream_count: u32,
         pub p_stream_strides: *const u32,
+        pub _marker: ::core::marker::PhantomData<&'a ()>,
     }
     #[repr(C)]
     #[derive(Clone, Copy)]
-    pub struct GeneratedCommandsInfoNV {
+    pub struct GeneratedCommandsInfoNV<'a> {
         pub s_type: crate::vk::StructureType,
         pub p_next: *const core::ffi::c_void,
         pub pipeline_bind_point: crate::vk::PipelineBindPoint,
@@ -238,16 +248,18 @@ pub(crate) mod reexport {
         pub sequences_count_offset: crate::vk::DeviceSize,
         pub sequences_index_buffer: crate::vk::Buffer,
         pub sequences_index_offset: crate::vk::DeviceSize,
+        pub _marker: ::core::marker::PhantomData<&'a ()>,
     }
     #[repr(C)]
     #[derive(Clone, Copy)]
-    pub struct GeneratedCommandsMemoryRequirementsInfoNV {
+    pub struct GeneratedCommandsMemoryRequirementsInfoNV<'a> {
         pub s_type: crate::vk::StructureType,
         pub p_next: *const core::ffi::c_void,
         pub pipeline_bind_point: crate::vk::PipelineBindPoint,
         pub pipeline: crate::vk::Pipeline,
         pub indirect_commands_layout: crate::vk::IndirectCommandsLayoutNV,
         pub max_sequences_count: u32,
+        pub _marker: ::core::marker::PhantomData<&'a ()>,
     }
     ///Provided by [`nv::device_generated_commands`](crate::nv::device_generated_commands)
     impl crate::vk::StructureType {
@@ -274,6 +286,7 @@ pub(crate) mod reexport {
     }
     #[repr(transparent)]
     #[derive(Clone, Copy, PartialEq, Eq, PartialOrd, Ord, Hash, Default)]
+    #[derive(Debug)]
     pub struct IndirectCommandsTokenTypeNV(pub(crate) i32);
     ///Provided by [`nv::device_generated_commands`](crate::nv::device_generated_commands)
     impl IndirectCommandsTokenTypeNV {
@@ -358,11 +371,11 @@ pub(crate) mod reexport {
     pub type PFN_vkCmdExecuteGeneratedCommandsNV = unsafe extern "system" fn(
         command_buffer: crate::vk::CommandBuffer,
         is_preprocessed: crate::vk::Bool32,
-        p_generated_commands_info: *const crate::vk::GeneratedCommandsInfoNV,
+        p_generated_commands_info: *const crate::vk::GeneratedCommandsInfoNV<'_>,
     );
     pub type PFN_vkCmdPreprocessGeneratedCommandsNV = unsafe extern "system" fn(
         command_buffer: crate::vk::CommandBuffer,
-        p_generated_commands_info: *const crate::vk::GeneratedCommandsInfoNV,
+        p_generated_commands_info: *const crate::vk::GeneratedCommandsInfoNV<'_>,
     );
     pub type PFN_vkCmdBindPipelineShaderGroupNV = unsafe extern "system" fn(
         command_buffer: crate::vk::CommandBuffer,
@@ -372,19 +385,19 @@ pub(crate) mod reexport {
     );
     pub type PFN_vkGetGeneratedCommandsMemoryRequirementsNV = unsafe extern "system" fn(
         device: crate::vk::Device,
-        p_info: *const crate::vk::GeneratedCommandsMemoryRequirementsInfoNV,
-        p_memory_requirements: *mut crate::vk::MemoryRequirements2,
+        p_info: *const crate::vk::GeneratedCommandsMemoryRequirementsInfoNV<'_>,
+        p_memory_requirements: *mut crate::vk::MemoryRequirements2<'_>,
     );
     pub type PFN_vkCreateIndirectCommandsLayoutNV = unsafe extern "system" fn(
         device: crate::vk::Device,
-        p_create_info: *const crate::vk::IndirectCommandsLayoutCreateInfoNV,
-        p_allocator: *const crate::vk::AllocationCallbacks,
+        p_create_info: *const crate::vk::IndirectCommandsLayoutCreateInfoNV<'_>,
+        p_allocator: *const crate::vk::AllocationCallbacks<'_>,
         p_indirect_commands_layout: *mut crate::vk::IndirectCommandsLayoutNV,
     ) -> crate::vk::Result;
     pub type PFN_vkDestroyIndirectCommandsLayoutNV = unsafe extern "system" fn(
         device: crate::vk::Device,
         indirect_commands_layout: crate::vk::IndirectCommandsLayoutNV,
-        p_allocator: *const crate::vk::AllocationCallbacks,
+        p_allocator: *const crate::vk::AllocationCallbacks<'_>,
     );
     pub const NV_DEVICE_GENERATED_COMMANDS_SPEC_VERSION: u32 = 3;
     pub const NV_DEVICE_GENERATED_COMMANDS_EXTENSION_NAME: &core::ffi::CStr = c"VK_NV_device_generated_commands";

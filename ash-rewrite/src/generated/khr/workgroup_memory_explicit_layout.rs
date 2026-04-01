@@ -3,13 +3,14 @@
 //![Vulkan Manual Page](https://docs.vulkan.org/refpages/latest/refpages/source/VK_KHR_workgroup_memory_explicit_layout.html) · Extension `VK_KHR_workgroup_memory_explicit_layout`
 #[repr(C)]
 #[derive(Clone, Copy)]
-pub struct PhysicalDeviceWorkgroupMemoryExplicitLayoutFeaturesKHR {
+pub struct PhysicalDeviceWorkgroupMemoryExplicitLayoutFeaturesKHR<'a> {
     pub s_type: crate::vk::StructureType,
     pub p_next: *mut core::ffi::c_void,
     pub workgroup_memory_explicit_layout: crate::vk::Bool32,
     pub workgroup_memory_explicit_layout_scalar_block_layout: crate::vk::Bool32,
     pub workgroup_memory_explicit_layout8_bit_access: crate::vk::Bool32,
     pub workgroup_memory_explicit_layout16_bit_access: crate::vk::Bool32,
+    pub _marker: ::core::marker::PhantomData<&'a ()>,
 }
 ///Provided by [`khr::workgroup_memory_explicit_layout`](crate::khr::workgroup_memory_explicit_layout)
 impl crate::vk::StructureType {

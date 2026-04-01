@@ -21,7 +21,7 @@ impl InstanceFn {
                 unsafe extern "system" fn enumerate_physical_device_shader_instrumentation_metrics_arm(
                     _: crate::vk::PhysicalDevice,
                     _: *mut u32,
-                    _: *mut crate::vk::ShaderInstrumentationMetricDescriptionARM,
+                    _: *mut crate::vk::ShaderInstrumentationMetricDescriptionARM<'_>,
                 ) -> crate::vk::Result {
                     panic!(
                         "unable to load vkEnumeratePhysicalDeviceShaderInstrumentationMetricsARM"
@@ -63,8 +63,8 @@ impl DeviceFn {
             create_shader_instrumentation_arm: unsafe {
                 unsafe extern "system" fn create_shader_instrumentation_arm(
                     _: crate::vk::Device,
-                    _: *const crate::vk::ShaderInstrumentationCreateInfoARM,
-                    _: *const crate::vk::AllocationCallbacks,
+                    _: *const crate::vk::ShaderInstrumentationCreateInfoARM<'_>,
+                    _: *const crate::vk::AllocationCallbacks<'_>,
                     _: *mut crate::vk::ShaderInstrumentationARM,
                 ) -> crate::vk::Result {
                     panic!("unable to load vkCreateShaderInstrumentationARM")
@@ -80,7 +80,7 @@ impl DeviceFn {
                 unsafe extern "system" fn destroy_shader_instrumentation_arm(
                     _: crate::vk::Device,
                     _: crate::vk::ShaderInstrumentationARM,
-                    _: *const crate::vk::AllocationCallbacks,
+                    _: *const crate::vk::AllocationCallbacks<'_>,
                 ) {
                     panic!("unable to load vkDestroyShaderInstrumentationARM")
                 }
@@ -155,32 +155,36 @@ impl DeviceFn {
 pub(crate) mod reexport {
     #[repr(C)]
     #[derive(Clone, Copy)]
-    pub struct PhysicalDeviceShaderInstrumentationFeaturesARM {
+    pub struct PhysicalDeviceShaderInstrumentationFeaturesARM<'a> {
         pub s_type: crate::vk::StructureType,
         pub p_next: *mut core::ffi::c_void,
         pub shader_instrumentation: crate::vk::Bool32,
+        pub _marker: ::core::marker::PhantomData<&'a ()>,
     }
     #[repr(C)]
     #[derive(Clone, Copy)]
-    pub struct PhysicalDeviceShaderInstrumentationPropertiesARM {
+    pub struct PhysicalDeviceShaderInstrumentationPropertiesARM<'a> {
         pub s_type: crate::vk::StructureType,
         pub p_next: *mut core::ffi::c_void,
         pub num_metrics: u32,
         pub per_basic_block_granularity: crate::vk::Bool32,
+        pub _marker: ::core::marker::PhantomData<&'a ()>,
     }
     #[repr(C)]
     #[derive(Clone, Copy)]
-    pub struct ShaderInstrumentationCreateInfoARM {
+    pub struct ShaderInstrumentationCreateInfoARM<'a> {
         pub s_type: crate::vk::StructureType,
         pub p_next: *mut core::ffi::c_void,
+        pub _marker: ::core::marker::PhantomData<&'a ()>,
     }
     #[repr(C)]
     #[derive(Clone, Copy)]
-    pub struct ShaderInstrumentationMetricDescriptionARM {
+    pub struct ShaderInstrumentationMetricDescriptionARM<'a> {
         pub s_type: crate::vk::StructureType,
         pub p_next: *mut core::ffi::c_void,
         pub name: [core::ffi::c_char; crate::vk::MAX_DESCRIPTION_SIZE as _],
         pub description: [core::ffi::c_char; crate::vk::MAX_DESCRIPTION_SIZE as _],
+        pub _marker: ::core::marker::PhantomData<&'a ()>,
     }
     #[repr(C)]
     #[derive(Clone, Copy)]
@@ -239,18 +243,18 @@ pub(crate) mod reexport {
     pub type PFN_vkEnumeratePhysicalDeviceShaderInstrumentationMetricsARM = unsafe extern "system" fn(
         physical_device: crate::vk::PhysicalDevice,
         p_description_count: *mut u32,
-        p_descriptions: *mut crate::vk::ShaderInstrumentationMetricDescriptionARM,
+        p_descriptions: *mut crate::vk::ShaderInstrumentationMetricDescriptionARM<'_>,
     ) -> crate::vk::Result;
     pub type PFN_vkCreateShaderInstrumentationARM = unsafe extern "system" fn(
         device: crate::vk::Device,
-        p_create_info: *const crate::vk::ShaderInstrumentationCreateInfoARM,
-        p_allocator: *const crate::vk::AllocationCallbacks,
+        p_create_info: *const crate::vk::ShaderInstrumentationCreateInfoARM<'_>,
+        p_allocator: *const crate::vk::AllocationCallbacks<'_>,
         p_instrumentation: *mut crate::vk::ShaderInstrumentationARM,
     ) -> crate::vk::Result;
     pub type PFN_vkDestroyShaderInstrumentationARM = unsafe extern "system" fn(
         device: crate::vk::Device,
         instrumentation: crate::vk::ShaderInstrumentationARM,
-        p_allocator: *const crate::vk::AllocationCallbacks,
+        p_allocator: *const crate::vk::AllocationCallbacks<'_>,
     );
     pub type PFN_vkCmdBeginShaderInstrumentationARM = unsafe extern "system" fn(
         command_buffer: crate::vk::CommandBuffer,

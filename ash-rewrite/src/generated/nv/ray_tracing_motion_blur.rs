@@ -3,26 +3,29 @@
 //![Vulkan Manual Page](https://docs.vulkan.org/refpages/latest/refpages/source/VK_NV_ray_tracing_motion_blur.html) · Extension `VK_NV_ray_tracing_motion_blur`
 #[repr(C)]
 #[derive(Clone, Copy)]
-pub struct PhysicalDeviceRayTracingMotionBlurFeaturesNV {
+pub struct PhysicalDeviceRayTracingMotionBlurFeaturesNV<'a> {
     pub s_type: crate::vk::StructureType,
     pub p_next: *mut core::ffi::c_void,
     pub ray_tracing_motion_blur: crate::vk::Bool32,
     pub ray_tracing_motion_blur_pipeline_trace_rays_indirect: crate::vk::Bool32,
+    pub _marker: ::core::marker::PhantomData<&'a ()>,
 }
 #[repr(C)]
 #[derive(Clone, Copy)]
-pub struct AccelerationStructureGeometryMotionTrianglesDataNV {
+pub struct AccelerationStructureGeometryMotionTrianglesDataNV<'a> {
     pub s_type: crate::vk::StructureType,
     pub p_next: *const core::ffi::c_void,
     pub vertex_data: crate::vk::DeviceOrHostAddressConstKHR,
+    pub _marker: ::core::marker::PhantomData<&'a ()>,
 }
 #[repr(C)]
 #[derive(Clone, Copy)]
-pub struct AccelerationStructureMotionInfoNV {
+pub struct AccelerationStructureMotionInfoNV<'a> {
     pub s_type: crate::vk::StructureType,
     pub p_next: *const core::ffi::c_void,
     pub max_instances: u32,
     pub flags: crate::vk::AccelerationStructureMotionInfoFlagsNV,
+    pub _marker: ::core::marker::PhantomData<&'a ()>,
 }
 #[repr(C)]
 #[derive(Clone, Copy)]
@@ -96,6 +99,7 @@ impl crate::vk::StructureType {
 }
 #[repr(transparent)]
 #[derive(Clone, Copy, PartialEq, Eq, PartialOrd, Ord, Hash, Default)]
+#[derive(Debug)]
 pub struct AccelerationStructureMotionInstanceTypeNV(pub(crate) i32);
 ///Provided by [`nv::ray_tracing_motion_blur`](crate::nv::ray_tracing_motion_blur)
 impl AccelerationStructureMotionInstanceTypeNV {

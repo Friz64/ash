@@ -3,31 +3,34 @@
 //![Vulkan Manual Page](https://docs.vulkan.org/refpages/latest/refpages/source/VK_QCOM_image_processing.html) · Extension `VK_QCOM_image_processing`
 #[repr(C)]
 #[derive(Clone, Copy)]
-pub struct ImageViewSampleWeightCreateInfoQCOM {
+pub struct ImageViewSampleWeightCreateInfoQCOM<'a> {
     pub s_type: crate::vk::StructureType,
     pub p_next: *const core::ffi::c_void,
     pub filter_center: crate::vk::Offset2D,
     pub filter_size: crate::vk::Extent2D,
     pub num_phases: u32,
+    pub _marker: ::core::marker::PhantomData<&'a ()>,
 }
 #[repr(C)]
 #[derive(Clone, Copy)]
-pub struct PhysicalDeviceImageProcessingFeaturesQCOM {
+pub struct PhysicalDeviceImageProcessingFeaturesQCOM<'a> {
     pub s_type: crate::vk::StructureType,
     pub p_next: *mut core::ffi::c_void,
     pub texture_sample_weighted: crate::vk::Bool32,
     pub texture_box_filter: crate::vk::Bool32,
     pub texture_block_match: crate::vk::Bool32,
+    pub _marker: ::core::marker::PhantomData<&'a ()>,
 }
 #[repr(C)]
 #[derive(Clone, Copy)]
-pub struct PhysicalDeviceImageProcessingPropertiesQCOM {
+pub struct PhysicalDeviceImageProcessingPropertiesQCOM<'a> {
     pub s_type: crate::vk::StructureType,
     pub p_next: *mut core::ffi::c_void,
     pub max_weight_filter_phases: u32,
     pub max_weight_filter_dimension: crate::vk::Extent2D,
     pub max_block_match_region: crate::vk::Extent2D,
     pub max_box_filter_block_size: crate::vk::Extent2D,
+    pub _marker: ::core::marker::PhantomData<&'a ()>,
 }
 ///Provided by [`qcom::image_processing`](crate::qcom::image_processing)
 impl crate::vk::DescriptorType {

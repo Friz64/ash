@@ -21,8 +21,8 @@ impl InstanceFn {
             get_physical_device_video_capabilities_khr: unsafe {
                 unsafe extern "system" fn get_physical_device_video_capabilities_khr(
                     _: crate::vk::PhysicalDevice,
-                    _: *const crate::vk::VideoProfileInfoKHR,
-                    _: *mut crate::vk::VideoCapabilitiesKHR,
+                    _: *const crate::vk::VideoProfileInfoKHR<'_>,
+                    _: *mut crate::vk::VideoCapabilitiesKHR<'_>,
                 ) -> crate::vk::Result {
                     panic!("unable to load vkGetPhysicalDeviceVideoCapabilitiesKHR")
                 }
@@ -36,9 +36,9 @@ impl InstanceFn {
             get_physical_device_video_format_properties_khr: unsafe {
                 unsafe extern "system" fn get_physical_device_video_format_properties_khr(
                     _: crate::vk::PhysicalDevice,
-                    _: *const crate::vk::PhysicalDeviceVideoFormatInfoKHR,
+                    _: *const crate::vk::PhysicalDeviceVideoFormatInfoKHR<'_>,
                     _: *mut u32,
-                    _: *mut crate::vk::VideoFormatPropertiesKHR,
+                    _: *mut crate::vk::VideoFormatPropertiesKHR<'_>,
                 ) -> crate::vk::Result {
                     panic!("unable to load vkGetPhysicalDeviceVideoFormatPropertiesKHR")
                 }
@@ -80,8 +80,8 @@ impl DeviceFn {
             create_video_session_khr: unsafe {
                 unsafe extern "system" fn create_video_session_khr(
                     _: crate::vk::Device,
-                    _: *const crate::vk::VideoSessionCreateInfoKHR,
-                    _: *const crate::vk::AllocationCallbacks,
+                    _: *const crate::vk::VideoSessionCreateInfoKHR<'_>,
+                    _: *const crate::vk::AllocationCallbacks<'_>,
                     _: *mut crate::vk::VideoSessionKHR,
                 ) -> crate::vk::Result {
                     panic!("unable to load vkCreateVideoSessionKHR")
@@ -97,7 +97,7 @@ impl DeviceFn {
                 unsafe extern "system" fn destroy_video_session_khr(
                     _: crate::vk::Device,
                     _: crate::vk::VideoSessionKHR,
-                    _: *const crate::vk::AllocationCallbacks,
+                    _: *const crate::vk::AllocationCallbacks<'_>,
                 ) {
                     panic!("unable to load vkDestroyVideoSessionKHR")
                 }
@@ -111,8 +111,8 @@ impl DeviceFn {
             create_video_session_parameters_khr: unsafe {
                 unsafe extern "system" fn create_video_session_parameters_khr(
                     _: crate::vk::Device,
-                    _: *const crate::vk::VideoSessionParametersCreateInfoKHR,
-                    _: *const crate::vk::AllocationCallbacks,
+                    _: *const crate::vk::VideoSessionParametersCreateInfoKHR<'_>,
+                    _: *const crate::vk::AllocationCallbacks<'_>,
                     _: *mut crate::vk::VideoSessionParametersKHR,
                 ) -> crate::vk::Result {
                     panic!("unable to load vkCreateVideoSessionParametersKHR")
@@ -128,7 +128,7 @@ impl DeviceFn {
                 unsafe extern "system" fn update_video_session_parameters_khr(
                     _: crate::vk::Device,
                     _: crate::vk::VideoSessionParametersKHR,
-                    _: *const crate::vk::VideoSessionParametersUpdateInfoKHR,
+                    _: *const crate::vk::VideoSessionParametersUpdateInfoKHR<'_>,
                 ) -> crate::vk::Result {
                     panic!("unable to load vkUpdateVideoSessionParametersKHR")
                 }
@@ -143,7 +143,7 @@ impl DeviceFn {
                 unsafe extern "system" fn destroy_video_session_parameters_khr(
                     _: crate::vk::Device,
                     _: crate::vk::VideoSessionParametersKHR,
-                    _: *const crate::vk::AllocationCallbacks,
+                    _: *const crate::vk::AllocationCallbacks<'_>,
                 ) {
                     panic!("unable to load vkDestroyVideoSessionParametersKHR")
                 }
@@ -159,7 +159,7 @@ impl DeviceFn {
                     _: crate::vk::Device,
                     _: crate::vk::VideoSessionKHR,
                     _: *mut u32,
-                    _: *mut crate::vk::VideoSessionMemoryRequirementsKHR,
+                    _: *mut crate::vk::VideoSessionMemoryRequirementsKHR<'_>,
                 ) -> crate::vk::Result {
                     panic!("unable to load vkGetVideoSessionMemoryRequirementsKHR")
                 }
@@ -175,7 +175,7 @@ impl DeviceFn {
                     _: crate::vk::Device,
                     _: crate::vk::VideoSessionKHR,
                     _: u32,
-                    _: *const crate::vk::BindVideoSessionMemoryInfoKHR,
+                    _: *const crate::vk::BindVideoSessionMemoryInfoKHR<'_>,
                 ) -> crate::vk::Result {
                     panic!("unable to load vkBindVideoSessionMemoryKHR")
                 }
@@ -189,7 +189,7 @@ impl DeviceFn {
             cmd_begin_video_coding_khr: unsafe {
                 unsafe extern "system" fn cmd_begin_video_coding_khr(
                     _: crate::vk::CommandBuffer,
-                    _: *const crate::vk::VideoBeginCodingInfoKHR,
+                    _: *const crate::vk::VideoBeginCodingInfoKHR<'_>,
                 ) {
                     panic!("unable to load vkCmdBeginVideoCodingKHR")
                 }
@@ -203,7 +203,7 @@ impl DeviceFn {
             cmd_control_video_coding_khr: unsafe {
                 unsafe extern "system" fn cmd_control_video_coding_khr(
                     _: crate::vk::CommandBuffer,
-                    _: *const crate::vk::VideoCodingControlInfoKHR,
+                    _: *const crate::vk::VideoCodingControlInfoKHR<'_>,
                 ) {
                     panic!("unable to load vkCmdControlVideoCodingKHR")
                 }
@@ -217,7 +217,7 @@ impl DeviceFn {
             cmd_end_video_coding_khr: unsafe {
                 unsafe extern "system" fn cmd_end_video_coding_khr(
                     _: crate::vk::CommandBuffer,
-                    _: *const crate::vk::VideoEndCodingInfoKHR,
+                    _: *const crate::vk::VideoEndCodingInfoKHR<'_>,
                 ) {
                     panic!("unable to load vkCmdEndVideoCodingKHR")
                 }
@@ -234,36 +234,40 @@ impl DeviceFn {
 pub(crate) mod reexport {
     #[repr(C)]
     #[derive(Clone, Copy)]
-    pub struct QueueFamilyVideoPropertiesKHR {
+    pub struct QueueFamilyVideoPropertiesKHR<'a> {
         pub s_type: crate::vk::StructureType,
         pub p_next: *mut core::ffi::c_void,
         pub video_codec_operations: crate::vk::VideoCodecOperationFlagsKHR,
+        pub _marker: ::core::marker::PhantomData<&'a ()>,
     }
     #[repr(C)]
     #[derive(Clone, Copy)]
-    pub struct QueueFamilyQueryResultStatusPropertiesKHR {
+    pub struct QueueFamilyQueryResultStatusPropertiesKHR<'a> {
         pub s_type: crate::vk::StructureType,
         pub p_next: *mut core::ffi::c_void,
         pub query_result_status_support: crate::vk::Bool32,
+        pub _marker: ::core::marker::PhantomData<&'a ()>,
     }
     #[repr(C)]
     #[derive(Clone, Copy)]
-    pub struct VideoProfileListInfoKHR {
+    pub struct VideoProfileListInfoKHR<'a> {
         pub s_type: crate::vk::StructureType,
         pub p_next: *const core::ffi::c_void,
         pub profile_count: u32,
-        pub p_profiles: *const crate::vk::VideoProfileInfoKHR,
+        pub p_profiles: *const crate::vk::VideoProfileInfoKHR<'a>,
+        pub _marker: ::core::marker::PhantomData<&'a ()>,
     }
     #[repr(C)]
     #[derive(Clone, Copy)]
-    pub struct PhysicalDeviceVideoFormatInfoKHR {
+    pub struct PhysicalDeviceVideoFormatInfoKHR<'a> {
         pub s_type: crate::vk::StructureType,
         pub p_next: *const core::ffi::c_void,
         pub image_usage: crate::vk::ImageUsageFlags,
+        pub _marker: ::core::marker::PhantomData<&'a ()>,
     }
     #[repr(C)]
     #[derive(Clone, Copy)]
-    pub struct VideoFormatPropertiesKHR {
+    pub struct VideoFormatPropertiesKHR<'a> {
         pub s_type: crate::vk::StructureType,
         pub p_next: *mut core::ffi::c_void,
         pub format: crate::vk::Format,
@@ -272,20 +276,22 @@ pub(crate) mod reexport {
         pub image_type: crate::vk::ImageType,
         pub image_tiling: crate::vk::ImageTiling,
         pub image_usage_flags: crate::vk::ImageUsageFlags,
+        pub _marker: ::core::marker::PhantomData<&'a ()>,
     }
     #[repr(C)]
     #[derive(Clone, Copy)]
-    pub struct VideoProfileInfoKHR {
+    pub struct VideoProfileInfoKHR<'a> {
         pub s_type: crate::vk::StructureType,
         pub p_next: *const core::ffi::c_void,
         pub video_codec_operation: crate::vk::VideoCodecOperationFlagBitsKHR,
         pub chroma_subsampling: crate::vk::VideoChromaSubsamplingFlagsKHR,
         pub luma_bit_depth: crate::vk::VideoComponentBitDepthFlagsKHR,
         pub chroma_bit_depth: crate::vk::VideoComponentBitDepthFlagsKHR,
+        pub _marker: ::core::marker::PhantomData<&'a ()>,
     }
     #[repr(C)]
     #[derive(Clone, Copy)]
-    pub struct VideoCapabilitiesKHR {
+    pub struct VideoCapabilitiesKHR<'a> {
         pub s_type: crate::vk::StructureType,
         pub p_next: *mut core::ffi::c_void,
         pub flags: crate::vk::VideoCapabilityFlagsKHR,
@@ -297,98 +303,109 @@ pub(crate) mod reexport {
         pub max_dpb_slots: u32,
         pub max_active_reference_pictures: u32,
         pub std_header_version: crate::vk::ExtensionProperties,
+        pub _marker: ::core::marker::PhantomData<&'a ()>,
     }
     #[repr(C)]
     #[derive(Clone, Copy)]
-    pub struct VideoSessionMemoryRequirementsKHR {
+    pub struct VideoSessionMemoryRequirementsKHR<'a> {
         pub s_type: crate::vk::StructureType,
         pub p_next: *mut core::ffi::c_void,
         pub memory_bind_index: u32,
         pub memory_requirements: crate::vk::MemoryRequirements,
+        pub _marker: ::core::marker::PhantomData<&'a ()>,
     }
     #[repr(C)]
     #[derive(Clone, Copy)]
-    pub struct BindVideoSessionMemoryInfoKHR {
+    pub struct BindVideoSessionMemoryInfoKHR<'a> {
         pub s_type: crate::vk::StructureType,
         pub p_next: *const core::ffi::c_void,
         pub memory_bind_index: u32,
         pub memory: crate::vk::DeviceMemory,
         pub memory_offset: crate::vk::DeviceSize,
         pub memory_size: crate::vk::DeviceSize,
+        pub _marker: ::core::marker::PhantomData<&'a ()>,
     }
     #[repr(C)]
     #[derive(Clone, Copy)]
-    pub struct VideoPictureResourceInfoKHR {
+    pub struct VideoPictureResourceInfoKHR<'a> {
         pub s_type: crate::vk::StructureType,
         pub p_next: *const core::ffi::c_void,
         pub coded_offset: crate::vk::Offset2D,
         pub coded_extent: crate::vk::Extent2D,
         pub base_array_layer: u32,
         pub image_view_binding: crate::vk::ImageView,
+        pub _marker: ::core::marker::PhantomData<&'a ()>,
     }
     #[repr(C)]
     #[derive(Clone, Copy)]
-    pub struct VideoReferenceSlotInfoKHR {
+    pub struct VideoReferenceSlotInfoKHR<'a> {
         pub s_type: crate::vk::StructureType,
         pub p_next: *const core::ffi::c_void,
         pub slot_index: i32,
-        pub p_picture_resource: *const crate::vk::VideoPictureResourceInfoKHR,
+        pub p_picture_resource: *const crate::vk::VideoPictureResourceInfoKHR<'a>,
+        pub _marker: ::core::marker::PhantomData<&'a ()>,
     }
     #[repr(C)]
     #[derive(Clone, Copy)]
-    pub struct VideoSessionCreateInfoKHR {
+    pub struct VideoSessionCreateInfoKHR<'a> {
         pub s_type: crate::vk::StructureType,
         pub p_next: *const core::ffi::c_void,
         pub queue_family_index: u32,
         pub flags: crate::vk::VideoSessionCreateFlagsKHR,
-        pub p_video_profile: *const crate::vk::VideoProfileInfoKHR,
+        pub p_video_profile: *const crate::vk::VideoProfileInfoKHR<'a>,
         pub picture_format: crate::vk::Format,
         pub max_coded_extent: crate::vk::Extent2D,
         pub reference_picture_format: crate::vk::Format,
         pub max_dpb_slots: u32,
         pub max_active_reference_pictures: u32,
         pub p_std_header_version: *const crate::vk::ExtensionProperties,
+        pub _marker: ::core::marker::PhantomData<&'a ()>,
     }
     #[repr(C)]
     #[derive(Clone, Copy)]
-    pub struct VideoSessionParametersCreateInfoKHR {
+    pub struct VideoSessionParametersCreateInfoKHR<'a> {
         pub s_type: crate::vk::StructureType,
         pub p_next: *const core::ffi::c_void,
         pub flags: crate::vk::VideoSessionParametersCreateFlagsKHR,
         pub video_session_parameters_template: crate::vk::VideoSessionParametersKHR,
         pub video_session: crate::vk::VideoSessionKHR,
+        pub _marker: ::core::marker::PhantomData<&'a ()>,
     }
     #[repr(C)]
     #[derive(Clone, Copy)]
-    pub struct VideoSessionParametersUpdateInfoKHR {
+    pub struct VideoSessionParametersUpdateInfoKHR<'a> {
         pub s_type: crate::vk::StructureType,
         pub p_next: *const core::ffi::c_void,
         pub update_sequence_count: u32,
+        pub _marker: ::core::marker::PhantomData<&'a ()>,
     }
     #[repr(C)]
     #[derive(Clone, Copy)]
-    pub struct VideoBeginCodingInfoKHR {
+    pub struct VideoBeginCodingInfoKHR<'a> {
         pub s_type: crate::vk::StructureType,
         pub p_next: *const core::ffi::c_void,
         pub flags: crate::vk::VideoBeginCodingFlagsKHR,
         pub video_session: crate::vk::VideoSessionKHR,
         pub video_session_parameters: crate::vk::VideoSessionParametersKHR,
         pub reference_slot_count: u32,
-        pub p_reference_slots: *const crate::vk::VideoReferenceSlotInfoKHR,
+        pub p_reference_slots: *const crate::vk::VideoReferenceSlotInfoKHR<'a>,
+        pub _marker: ::core::marker::PhantomData<&'a ()>,
     }
     #[repr(C)]
     #[derive(Clone, Copy)]
-    pub struct VideoEndCodingInfoKHR {
+    pub struct VideoEndCodingInfoKHR<'a> {
         pub s_type: crate::vk::StructureType,
         pub p_next: *const core::ffi::c_void,
         pub flags: crate::vk::VideoEndCodingFlagsKHR,
+        pub _marker: ::core::marker::PhantomData<&'a ()>,
     }
     #[repr(C)]
     #[derive(Clone, Copy)]
-    pub struct VideoCodingControlInfoKHR {
+    pub struct VideoCodingControlInfoKHR<'a> {
         pub s_type: crate::vk::StructureType,
         pub p_next: *const core::ffi::c_void,
         pub flags: crate::vk::VideoCodingControlFlagsKHR,
+        pub _marker: ::core::marker::PhantomData<&'a ()>,
     }
     ///Provided by [`khr::video_queue`](crate::khr::video_queue)
     impl crate::vk::QueryType {
@@ -434,6 +451,7 @@ pub(crate) mod reexport {
     }
     #[repr(transparent)]
     #[derive(Clone, Copy, PartialEq, Eq, PartialOrd, Ord, Hash, Default)]
+    #[derive(Debug)]
     pub struct QueryResultStatusKHR(pub(crate) i32);
     ///Provided by [`khr::video_queue`](crate::khr::video_queue)
     impl QueryResultStatusKHR {
@@ -625,65 +643,65 @@ pub(crate) mod reexport {
     }
     pub type PFN_vkGetPhysicalDeviceVideoCapabilitiesKHR = unsafe extern "system" fn(
         physical_device: crate::vk::PhysicalDevice,
-        p_video_profile: *const crate::vk::VideoProfileInfoKHR,
-        p_capabilities: *mut crate::vk::VideoCapabilitiesKHR,
+        p_video_profile: *const crate::vk::VideoProfileInfoKHR<'_>,
+        p_capabilities: *mut crate::vk::VideoCapabilitiesKHR<'_>,
     ) -> crate::vk::Result;
     pub type PFN_vkGetPhysicalDeviceVideoFormatPropertiesKHR = unsafe extern "system" fn(
         physical_device: crate::vk::PhysicalDevice,
-        p_video_format_info: *const crate::vk::PhysicalDeviceVideoFormatInfoKHR,
+        p_video_format_info: *const crate::vk::PhysicalDeviceVideoFormatInfoKHR<'_>,
         p_video_format_property_count: *mut u32,
-        p_video_format_properties: *mut crate::vk::VideoFormatPropertiesKHR,
+        p_video_format_properties: *mut crate::vk::VideoFormatPropertiesKHR<'_>,
     ) -> crate::vk::Result;
     pub type PFN_vkCreateVideoSessionKHR = unsafe extern "system" fn(
         device: crate::vk::Device,
-        p_create_info: *const crate::vk::VideoSessionCreateInfoKHR,
-        p_allocator: *const crate::vk::AllocationCallbacks,
+        p_create_info: *const crate::vk::VideoSessionCreateInfoKHR<'_>,
+        p_allocator: *const crate::vk::AllocationCallbacks<'_>,
         p_video_session: *mut crate::vk::VideoSessionKHR,
     ) -> crate::vk::Result;
     pub type PFN_vkDestroyVideoSessionKHR = unsafe extern "system" fn(
         device: crate::vk::Device,
         video_session: crate::vk::VideoSessionKHR,
-        p_allocator: *const crate::vk::AllocationCallbacks,
+        p_allocator: *const crate::vk::AllocationCallbacks<'_>,
     );
     pub type PFN_vkCreateVideoSessionParametersKHR = unsafe extern "system" fn(
         device: crate::vk::Device,
-        p_create_info: *const crate::vk::VideoSessionParametersCreateInfoKHR,
-        p_allocator: *const crate::vk::AllocationCallbacks,
+        p_create_info: *const crate::vk::VideoSessionParametersCreateInfoKHR<'_>,
+        p_allocator: *const crate::vk::AllocationCallbacks<'_>,
         p_video_session_parameters: *mut crate::vk::VideoSessionParametersKHR,
     ) -> crate::vk::Result;
     pub type PFN_vkUpdateVideoSessionParametersKHR = unsafe extern "system" fn(
         device: crate::vk::Device,
         video_session_parameters: crate::vk::VideoSessionParametersKHR,
-        p_update_info: *const crate::vk::VideoSessionParametersUpdateInfoKHR,
+        p_update_info: *const crate::vk::VideoSessionParametersUpdateInfoKHR<'_>,
     ) -> crate::vk::Result;
     pub type PFN_vkDestroyVideoSessionParametersKHR = unsafe extern "system" fn(
         device: crate::vk::Device,
         video_session_parameters: crate::vk::VideoSessionParametersKHR,
-        p_allocator: *const crate::vk::AllocationCallbacks,
+        p_allocator: *const crate::vk::AllocationCallbacks<'_>,
     );
     pub type PFN_vkGetVideoSessionMemoryRequirementsKHR = unsafe extern "system" fn(
         device: crate::vk::Device,
         video_session: crate::vk::VideoSessionKHR,
         p_memory_requirements_count: *mut u32,
-        p_memory_requirements: *mut crate::vk::VideoSessionMemoryRequirementsKHR,
+        p_memory_requirements: *mut crate::vk::VideoSessionMemoryRequirementsKHR<'_>,
     ) -> crate::vk::Result;
     pub type PFN_vkBindVideoSessionMemoryKHR = unsafe extern "system" fn(
         device: crate::vk::Device,
         video_session: crate::vk::VideoSessionKHR,
         bind_session_memory_info_count: u32,
-        p_bind_session_memory_infos: *const crate::vk::BindVideoSessionMemoryInfoKHR,
+        p_bind_session_memory_infos: *const crate::vk::BindVideoSessionMemoryInfoKHR<'_>,
     ) -> crate::vk::Result;
     pub type PFN_vkCmdBeginVideoCodingKHR = unsafe extern "system" fn(
         command_buffer: crate::vk::CommandBuffer,
-        p_begin_info: *const crate::vk::VideoBeginCodingInfoKHR,
+        p_begin_info: *const crate::vk::VideoBeginCodingInfoKHR<'_>,
     );
     pub type PFN_vkCmdControlVideoCodingKHR = unsafe extern "system" fn(
         command_buffer: crate::vk::CommandBuffer,
-        p_coding_control_info: *const crate::vk::VideoCodingControlInfoKHR,
+        p_coding_control_info: *const crate::vk::VideoCodingControlInfoKHR<'_>,
     );
     pub type PFN_vkCmdEndVideoCodingKHR = unsafe extern "system" fn(
         command_buffer: crate::vk::CommandBuffer,
-        p_end_coding_info: *const crate::vk::VideoEndCodingInfoKHR,
+        p_end_coding_info: *const crate::vk::VideoEndCodingInfoKHR<'_>,
     );
     pub const KHR_VIDEO_QUEUE_SPEC_VERSION: u32 = 8;
     pub const KHR_VIDEO_QUEUE_EXTENSION_NAME: &core::ffi::CStr = c"VK_KHR_video_queue";

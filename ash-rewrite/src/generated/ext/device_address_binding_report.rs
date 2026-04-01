@@ -3,20 +3,22 @@
 //![Vulkan Manual Page](https://docs.vulkan.org/refpages/latest/refpages/source/VK_EXT_device_address_binding_report.html) · Extension `VK_EXT_device_address_binding_report`
 #[repr(C)]
 #[derive(Clone, Copy)]
-pub struct PhysicalDeviceAddressBindingReportFeaturesEXT {
+pub struct PhysicalDeviceAddressBindingReportFeaturesEXT<'a> {
     pub s_type: crate::vk::StructureType,
     pub p_next: *mut core::ffi::c_void,
     pub report_address_binding: crate::vk::Bool32,
+    pub _marker: ::core::marker::PhantomData<&'a ()>,
 }
 #[repr(C)]
 #[derive(Clone, Copy)]
-pub struct DeviceAddressBindingCallbackDataEXT {
+pub struct DeviceAddressBindingCallbackDataEXT<'a> {
     pub s_type: crate::vk::StructureType,
     pub p_next: *mut core::ffi::c_void,
     pub flags: crate::vk::DeviceAddressBindingFlagsEXT,
     pub base_address: crate::vk::DeviceAddress,
     pub size: crate::vk::DeviceSize,
     pub binding_type: crate::vk::DeviceAddressBindingTypeEXT,
+    pub _marker: ::core::marker::PhantomData<&'a ()>,
 }
 ///Provided by [`ext::device_address_binding_report`](crate::ext::device_address_binding_report)
 impl crate::vk::StructureType {
@@ -27,6 +29,7 @@ impl crate::vk::StructureType {
 }
 #[repr(transparent)]
 #[derive(Clone, Copy, PartialEq, Eq, PartialOrd, Ord, Hash, Default)]
+#[derive(Debug)]
 pub struct DeviceAddressBindingTypeEXT(pub(crate) i32);
 ///Provided by [`ext::device_address_binding_report`](crate::ext::device_address_binding_report)
 impl DeviceAddressBindingTypeEXT {

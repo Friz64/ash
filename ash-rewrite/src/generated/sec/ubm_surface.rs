@@ -21,8 +21,8 @@ impl InstanceFn {
             create_ubm_surface_sec: unsafe {
                 unsafe extern "system" fn create_ubm_surface_sec(
                     _: crate::vk::Instance,
-                    _: *const crate::vk::UbmSurfaceCreateInfoSEC,
-                    _: *const crate::vk::AllocationCallbacks,
+                    _: *const crate::vk::UbmSurfaceCreateInfoSEC<'_>,
+                    _: *const crate::vk::AllocationCallbacks<'_>,
                     _: *mut crate::vk::SurfaceKHR,
                 ) -> crate::vk::Result {
                     panic!("unable to load vkCreateUbmSurfaceSEC")
@@ -55,12 +55,13 @@ impl InstanceFn {
 pub(crate) mod reexport {
     #[repr(C)]
     #[derive(Clone, Copy)]
-    pub struct UbmSurfaceCreateInfoSEC {
+    pub struct UbmSurfaceCreateInfoSEC<'a> {
         pub s_type: crate::vk::StructureType,
         pub p_next: *const core::ffi::c_void,
         pub flags: crate::vk::UbmSurfaceCreateFlagsSEC,
         pub device: *mut crate::platform_types::ubm_device,
         pub surface: *mut crate::platform_types::ubm_surface,
+        pub _marker: ::core::marker::PhantomData<&'a ()>,
     }
     ///Provided by [`sec::ubm_surface`](crate::sec::ubm_surface)
     impl crate::vk::StructureType {
@@ -72,8 +73,8 @@ pub(crate) mod reexport {
     }
     pub type PFN_vkCreateUbmSurfaceSEC = unsafe extern "system" fn(
         instance: crate::vk::Instance,
-        p_create_info: *const crate::vk::UbmSurfaceCreateInfoSEC,
-        p_allocator: *const crate::vk::AllocationCallbacks,
+        p_create_info: *const crate::vk::UbmSurfaceCreateInfoSEC<'_>,
+        p_allocator: *const crate::vk::AllocationCallbacks<'_>,
         p_surface: *mut crate::vk::SurfaceKHR,
     ) -> crate::vk::Result;
     pub type PFN_vkGetPhysicalDeviceUbmPresentationSupportSEC = unsafe extern "system" fn(

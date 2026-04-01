@@ -21,7 +21,7 @@ impl InstanceFn {
                 unsafe extern "system" fn get_physical_device_tool_properties_ext(
                     _: crate::vk::PhysicalDevice,
                     _: *mut u32,
-                    _: *mut crate::vk::PhysicalDeviceToolProperties,
+                    _: *mut crate::vk::PhysicalDeviceToolProperties<'_>,
                 ) -> crate::vk::Result {
                     panic!("unable to load vkGetPhysicalDeviceToolPropertiesEXT")
                 }
@@ -36,7 +36,9 @@ impl InstanceFn {
     }
 }
 pub(crate) mod reexport {
-    pub type PhysicalDeviceToolPropertiesEXT = crate::vk::PhysicalDeviceToolProperties;
+    pub type PhysicalDeviceToolPropertiesEXT<'a> = crate::vk::PhysicalDeviceToolProperties<
+        'a,
+    >;
     ///Provided by [`ext::tooling_info`](crate::ext::tooling_info)
     impl crate::vk::StructureType {
         pub const PHYSICAL_DEVICE_TOOL_PROPERTIES_EXT: Self = Self::PHYSICAL_DEVICE_TOOL_PROPERTIES;

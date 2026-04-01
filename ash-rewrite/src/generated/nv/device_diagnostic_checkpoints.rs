@@ -37,7 +37,7 @@ impl DeviceFn {
                 unsafe extern "system" fn get_queue_checkpoint_data_nv(
                     _: crate::vk::Queue,
                     _: *mut u32,
-                    _: *mut crate::vk::CheckpointDataNV,
+                    _: *mut crate::vk::CheckpointDataNV<'_>,
                 ) {
                     panic!("unable to load vkGetQueueCheckpointDataNV")
                 }
@@ -52,7 +52,7 @@ impl DeviceFn {
                 unsafe extern "system" fn get_queue_checkpoint_data2_nv(
                     _: crate::vk::Queue,
                     _: *mut u32,
-                    _: *mut crate::vk::CheckpointData2NV,
+                    _: *mut crate::vk::CheckpointData2NV<'_>,
                 ) {
                     panic!("unable to load vkGetQueueCheckpointData2NV")
                 }
@@ -69,33 +69,37 @@ impl DeviceFn {
 pub(crate) mod reexport {
     #[repr(C)]
     #[derive(Clone, Copy)]
-    pub struct QueueFamilyCheckpointPropertiesNV {
+    pub struct QueueFamilyCheckpointPropertiesNV<'a> {
         pub s_type: crate::vk::StructureType,
         pub p_next: *mut core::ffi::c_void,
         pub checkpoint_execution_stage_mask: crate::vk::PipelineStageFlags,
+        pub _marker: ::core::marker::PhantomData<&'a ()>,
     }
     #[repr(C)]
     #[derive(Clone, Copy)]
-    pub struct CheckpointDataNV {
+    pub struct CheckpointDataNV<'a> {
         pub s_type: crate::vk::StructureType,
         pub p_next: *mut core::ffi::c_void,
         pub stage: crate::vk::PipelineStageFlagBits,
         pub p_checkpoint_marker: *mut core::ffi::c_void,
+        pub _marker: ::core::marker::PhantomData<&'a ()>,
     }
     #[repr(C)]
     #[derive(Clone, Copy)]
-    pub struct QueueFamilyCheckpointProperties2NV {
+    pub struct QueueFamilyCheckpointProperties2NV<'a> {
         pub s_type: crate::vk::StructureType,
         pub p_next: *mut core::ffi::c_void,
         pub checkpoint_execution_stage_mask: crate::vk::PipelineStageFlags2,
+        pub _marker: ::core::marker::PhantomData<&'a ()>,
     }
     #[repr(C)]
     #[derive(Clone, Copy)]
-    pub struct CheckpointData2NV {
+    pub struct CheckpointData2NV<'a> {
         pub s_type: crate::vk::StructureType,
         pub p_next: *mut core::ffi::c_void,
         pub stage: crate::vk::PipelineStageFlags2,
         pub p_checkpoint_marker: *mut core::ffi::c_void,
+        pub _marker: ::core::marker::PhantomData<&'a ()>,
     }
     ///Provided by [`nv::device_diagnostic_checkpoints`](crate::nv::device_diagnostic_checkpoints)
     impl crate::vk::StructureType {
@@ -111,12 +115,12 @@ pub(crate) mod reexport {
     pub type PFN_vkGetQueueCheckpointDataNV = unsafe extern "system" fn(
         queue: crate::vk::Queue,
         p_checkpoint_data_count: *mut u32,
-        p_checkpoint_data: *mut crate::vk::CheckpointDataNV,
+        p_checkpoint_data: *mut crate::vk::CheckpointDataNV<'_>,
     );
     pub type PFN_vkGetQueueCheckpointData2NV = unsafe extern "system" fn(
         queue: crate::vk::Queue,
         p_checkpoint_data_count: *mut u32,
-        p_checkpoint_data: *mut crate::vk::CheckpointData2NV,
+        p_checkpoint_data: *mut crate::vk::CheckpointData2NV<'_>,
     );
     pub const NV_DEVICE_DIAGNOSTIC_CHECKPOINTS_SPEC_VERSION: u32 = 2;
     pub const NV_DEVICE_DIAGNOSTIC_CHECKPOINTS_EXTENSION_NAME: &core::ffi::CStr = c"VK_NV_device_diagnostic_checkpoints";

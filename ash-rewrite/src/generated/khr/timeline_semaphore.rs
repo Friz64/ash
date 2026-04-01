@@ -37,7 +37,7 @@ impl DeviceFn {
             wait_semaphores_khr: unsafe {
                 unsafe extern "system" fn wait_semaphores_khr(
                     _: crate::vk::Device,
-                    _: *const crate::vk::SemaphoreWaitInfo,
+                    _: *const crate::vk::SemaphoreWaitInfo<'_>,
                     _: u64,
                 ) -> crate::vk::Result {
                     panic!("unable to load vkWaitSemaphoresKHR")
@@ -52,7 +52,7 @@ impl DeviceFn {
             signal_semaphore_khr: unsafe {
                 unsafe extern "system" fn signal_semaphore_khr(
                     _: crate::vk::Device,
-                    _: *const crate::vk::SemaphoreSignalInfo,
+                    _: *const crate::vk::SemaphoreSignalInfo<'_>,
                 ) -> crate::vk::Result {
                     panic!("unable to load vkSignalSemaphoreKHR")
                 }
@@ -67,12 +67,18 @@ impl DeviceFn {
     }
 }
 pub(crate) mod reexport {
-    pub type PhysicalDeviceTimelineSemaphoreFeaturesKHR = crate::vk::PhysicalDeviceTimelineSemaphoreFeatures;
-    pub type PhysicalDeviceTimelineSemaphorePropertiesKHR = crate::vk::PhysicalDeviceTimelineSemaphoreProperties;
-    pub type SemaphoreTypeCreateInfoKHR = crate::vk::SemaphoreTypeCreateInfo;
-    pub type TimelineSemaphoreSubmitInfoKHR = crate::vk::TimelineSemaphoreSubmitInfo;
-    pub type SemaphoreWaitInfoKHR = crate::vk::SemaphoreWaitInfo;
-    pub type SemaphoreSignalInfoKHR = crate::vk::SemaphoreSignalInfo;
+    pub type PhysicalDeviceTimelineSemaphoreFeaturesKHR<'a> = crate::vk::PhysicalDeviceTimelineSemaphoreFeatures<
+        'a,
+    >;
+    pub type PhysicalDeviceTimelineSemaphorePropertiesKHR<'a> = crate::vk::PhysicalDeviceTimelineSemaphoreProperties<
+        'a,
+    >;
+    pub type SemaphoreTypeCreateInfoKHR<'a> = crate::vk::SemaphoreTypeCreateInfo<'a>;
+    pub type TimelineSemaphoreSubmitInfoKHR<'a> = crate::vk::TimelineSemaphoreSubmitInfo<
+        'a,
+    >;
+    pub type SemaphoreWaitInfoKHR<'a> = crate::vk::SemaphoreWaitInfo<'a>;
+    pub type SemaphoreSignalInfoKHR<'a> = crate::vk::SemaphoreSignalInfo<'a>;
     ///Provided by [`khr::timeline_semaphore`](crate::khr::timeline_semaphore)
     impl crate::vk::StructureType {
         pub const PHYSICAL_DEVICE_TIMELINE_SEMAPHORE_FEATURES_KHR: Self = Self::PHYSICAL_DEVICE_TIMELINE_SEMAPHORE_FEATURES;

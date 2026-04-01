@@ -21,8 +21,8 @@ impl InstanceFn {
             create_screen_surface_qnx: unsafe {
                 unsafe extern "system" fn create_screen_surface_qnx(
                     _: crate::vk::Instance,
-                    _: *const crate::vk::ScreenSurfaceCreateInfoQNX,
-                    _: *const crate::vk::AllocationCallbacks,
+                    _: *const crate::vk::ScreenSurfaceCreateInfoQNX<'_>,
+                    _: *const crate::vk::AllocationCallbacks<'_>,
                     _: *mut crate::vk::SurfaceKHR,
                 ) -> crate::vk::Result {
                     panic!("unable to load vkCreateScreenSurfaceQNX")
@@ -57,12 +57,13 @@ impl InstanceFn {
 pub(crate) mod reexport {
     #[repr(C)]
     #[derive(Clone, Copy)]
-    pub struct ScreenSurfaceCreateInfoQNX {
+    pub struct ScreenSurfaceCreateInfoQNX<'a> {
         pub s_type: crate::vk::StructureType,
         pub p_next: *const core::ffi::c_void,
         pub flags: crate::vk::ScreenSurfaceCreateFlagsQNX,
         pub context: *mut crate::platform_types::_screen_context,
         pub window: *mut crate::platform_types::_screen_window,
+        pub _marker: ::core::marker::PhantomData<&'a ()>,
     }
     ///Provided by [`qnx::screen_surface`](crate::qnx::screen_surface)
     impl crate::vk::StructureType {
@@ -74,8 +75,8 @@ pub(crate) mod reexport {
     }
     pub type PFN_vkCreateScreenSurfaceQNX = unsafe extern "system" fn(
         instance: crate::vk::Instance,
-        p_create_info: *const crate::vk::ScreenSurfaceCreateInfoQNX,
-        p_allocator: *const crate::vk::AllocationCallbacks,
+        p_create_info: *const crate::vk::ScreenSurfaceCreateInfoQNX<'_>,
+        p_allocator: *const crate::vk::AllocationCallbacks<'_>,
         p_surface: *mut crate::vk::SurfaceKHR,
     ) -> crate::vk::Result;
     pub type PFN_vkGetPhysicalDeviceScreenPresentationSupportQNX = unsafe extern "system" fn(

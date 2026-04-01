@@ -54,25 +54,28 @@ impl DeviceFn {
 pub(crate) mod reexport {
     #[repr(C)]
     #[derive(Clone, Copy)]
-    pub struct SubpassShadingPipelineCreateInfoHUAWEI {
+    pub struct SubpassShadingPipelineCreateInfoHUAWEI<'a> {
         pub s_type: crate::vk::StructureType,
         pub p_next: *mut core::ffi::c_void,
         pub render_pass: crate::vk::RenderPass,
         pub subpass: u32,
+        pub _marker: ::core::marker::PhantomData<&'a ()>,
     }
     #[repr(C)]
     #[derive(Clone, Copy)]
-    pub struct PhysicalDeviceSubpassShadingPropertiesHUAWEI {
+    pub struct PhysicalDeviceSubpassShadingPropertiesHUAWEI<'a> {
         pub s_type: crate::vk::StructureType,
         pub p_next: *mut core::ffi::c_void,
         pub max_subpass_shading_workgroup_size_aspect_ratio: u32,
+        pub _marker: ::core::marker::PhantomData<&'a ()>,
     }
     #[repr(C)]
     #[derive(Clone, Copy)]
-    pub struct PhysicalDeviceSubpassShadingFeaturesHUAWEI {
+    pub struct PhysicalDeviceSubpassShadingFeaturesHUAWEI<'a> {
         pub s_type: crate::vk::StructureType,
         pub p_next: *mut core::ffi::c_void,
         pub subpass_shading: crate::vk::Bool32,
+        pub _marker: ::core::marker::PhantomData<&'a ()>,
     }
     ///Provided by [`huawei::subpass_shading`](crate::huawei::subpass_shading)
     impl crate::vk::PipelineBindPoint {

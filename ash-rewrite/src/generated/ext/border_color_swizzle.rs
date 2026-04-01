@@ -3,19 +3,21 @@
 //![Vulkan Manual Page](https://docs.vulkan.org/refpages/latest/refpages/source/VK_EXT_border_color_swizzle.html) · Extension `VK_EXT_border_color_swizzle`
 #[repr(C)]
 #[derive(Clone, Copy)]
-pub struct SamplerBorderColorComponentMappingCreateInfoEXT {
+pub struct SamplerBorderColorComponentMappingCreateInfoEXT<'a> {
     pub s_type: crate::vk::StructureType,
     pub p_next: *const core::ffi::c_void,
     pub components: crate::vk::ComponentMapping,
     pub srgb: crate::vk::Bool32,
+    pub _marker: ::core::marker::PhantomData<&'a ()>,
 }
 #[repr(C)]
 #[derive(Clone, Copy)]
-pub struct PhysicalDeviceBorderColorSwizzleFeaturesEXT {
+pub struct PhysicalDeviceBorderColorSwizzleFeaturesEXT<'a> {
     pub s_type: crate::vk::StructureType,
     pub p_next: *mut core::ffi::c_void,
     pub border_color_swizzle: crate::vk::Bool32,
     pub border_color_swizzle_from_image: crate::vk::Bool32,
+    pub _marker: ::core::marker::PhantomData<&'a ()>,
 }
 ///Provided by [`ext::border_color_swizzle`](crate::ext::border_color_swizzle)
 impl crate::vk::StructureType {

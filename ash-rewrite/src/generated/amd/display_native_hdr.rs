@@ -38,17 +38,19 @@ impl DeviceFn {
 pub(crate) mod reexport {
     #[repr(C)]
     #[derive(Clone, Copy)]
-    pub struct DisplayNativeHdrSurfaceCapabilitiesAMD {
+    pub struct DisplayNativeHdrSurfaceCapabilitiesAMD<'a> {
         pub s_type: crate::vk::StructureType,
         pub p_next: *mut core::ffi::c_void,
         pub local_dimming_support: crate::vk::Bool32,
+        pub _marker: ::core::marker::PhantomData<&'a ()>,
     }
     #[repr(C)]
     #[derive(Clone, Copy)]
-    pub struct SwapchainDisplayNativeHdrCreateInfoAMD {
+    pub struct SwapchainDisplayNativeHdrCreateInfoAMD<'a> {
         pub s_type: crate::vk::StructureType,
         pub p_next: *const core::ffi::c_void,
         pub local_dimming_enable: crate::vk::Bool32,
+        pub _marker: ::core::marker::PhantomData<&'a ()>,
     }
     ///Provided by [`amd::display_native_hdr`](crate::amd::display_native_hdr)
     impl crate::vk::StructureType {

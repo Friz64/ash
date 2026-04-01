@@ -11,12 +11,13 @@ pub struct ViewportSwizzleNV {
 }
 #[repr(C)]
 #[derive(Clone, Copy)]
-pub struct PipelineViewportSwizzleStateCreateInfoNV {
+pub struct PipelineViewportSwizzleStateCreateInfoNV<'a> {
     pub s_type: crate::vk::StructureType,
     pub p_next: *const core::ffi::c_void,
     pub flags: crate::vk::PipelineViewportSwizzleStateCreateFlagsNV,
     pub viewport_count: u32,
     pub p_viewport_swizzles: *const crate::vk::ViewportSwizzleNV,
+    pub _marker: ::core::marker::PhantomData<&'a ()>,
 }
 ///Provided by [`nv::viewport_swizzle`](crate::nv::viewport_swizzle)
 impl crate::vk::StructureType {
@@ -24,6 +25,7 @@ impl crate::vk::StructureType {
 }
 #[repr(transparent)]
 #[derive(Clone, Copy, PartialEq, Eq, PartialOrd, Ord, Hash, Default)]
+#[derive(Debug)]
 pub struct ViewportCoordinateSwizzleNV(pub(crate) i32);
 ///Provided by [`nv::viewport_swizzle`](crate::nv::viewport_swizzle)
 impl ViewportCoordinateSwizzleNV {

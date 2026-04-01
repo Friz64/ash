@@ -21,9 +21,9 @@ impl DeviceFn {
                 unsafe extern "system" fn cmd_set_vertex_input_ext(
                     _: crate::vk::CommandBuffer,
                     _: u32,
-                    _: *const crate::vk::VertexInputBindingDescription2EXT,
+                    _: *const crate::vk::VertexInputBindingDescription2EXT<'_>,
                     _: u32,
-                    _: *const crate::vk::VertexInputAttributeDescription2EXT,
+                    _: *const crate::vk::VertexInputAttributeDescription2EXT<'_>,
                 ) {
                     panic!("unable to load vkCmdSetVertexInputEXT")
                 }
@@ -40,30 +40,33 @@ impl DeviceFn {
 pub(crate) mod reexport {
     #[repr(C)]
     #[derive(Clone, Copy)]
-    pub struct PhysicalDeviceVertexInputDynamicStateFeaturesEXT {
+    pub struct PhysicalDeviceVertexInputDynamicStateFeaturesEXT<'a> {
         pub s_type: crate::vk::StructureType,
         pub p_next: *mut core::ffi::c_void,
         pub vertex_input_dynamic_state: crate::vk::Bool32,
+        pub _marker: ::core::marker::PhantomData<&'a ()>,
     }
     #[repr(C)]
     #[derive(Clone, Copy)]
-    pub struct VertexInputBindingDescription2EXT {
+    pub struct VertexInputBindingDescription2EXT<'a> {
         pub s_type: crate::vk::StructureType,
         pub p_next: *mut core::ffi::c_void,
         pub binding: u32,
         pub stride: u32,
         pub input_rate: crate::vk::VertexInputRate,
         pub divisor: u32,
+        pub _marker: ::core::marker::PhantomData<&'a ()>,
     }
     #[repr(C)]
     #[derive(Clone, Copy)]
-    pub struct VertexInputAttributeDescription2EXT {
+    pub struct VertexInputAttributeDescription2EXT<'a> {
         pub s_type: crate::vk::StructureType,
         pub p_next: *mut core::ffi::c_void,
         pub location: u32,
         pub binding: u32,
         pub format: crate::vk::Format,
         pub offset: u32,
+        pub _marker: ::core::marker::PhantomData<&'a ()>,
     }
     ///Provided by [`ext::vertex_input_dynamic_state`](crate::ext::vertex_input_dynamic_state)
     impl crate::vk::StructureType {
@@ -80,9 +83,13 @@ pub(crate) mod reexport {
     pub type PFN_vkCmdSetVertexInputEXT = unsafe extern "system" fn(
         command_buffer: crate::vk::CommandBuffer,
         vertex_binding_description_count: u32,
-        p_vertex_binding_descriptions: *const crate::vk::VertexInputBindingDescription2EXT,
+        p_vertex_binding_descriptions: *const crate::vk::VertexInputBindingDescription2EXT<
+            '_,
+        >,
         vertex_attribute_description_count: u32,
-        p_vertex_attribute_descriptions: *const crate::vk::VertexInputAttributeDescription2EXT,
+        p_vertex_attribute_descriptions: *const crate::vk::VertexInputAttributeDescription2EXT<
+            '_,
+        >,
     );
     pub const EXT_VERTEX_INPUT_DYNAMIC_STATE_SPEC_VERSION: u32 = 2;
     pub const EXT_VERTEX_INPUT_DYNAMIC_STATE_EXTENSION_NAME: &core::ffi::CStr = c"VK_EXT_vertex_input_dynamic_state";

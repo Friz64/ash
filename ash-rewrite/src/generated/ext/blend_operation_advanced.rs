@@ -3,14 +3,15 @@
 //![Vulkan Manual Page](https://docs.vulkan.org/refpages/latest/refpages/source/VK_EXT_blend_operation_advanced.html) · Extension `VK_EXT_blend_operation_advanced`
 #[repr(C)]
 #[derive(Clone, Copy)]
-pub struct PhysicalDeviceBlendOperationAdvancedFeaturesEXT {
+pub struct PhysicalDeviceBlendOperationAdvancedFeaturesEXT<'a> {
     pub s_type: crate::vk::StructureType,
     pub p_next: *mut core::ffi::c_void,
     pub advanced_blend_coherent_operations: crate::vk::Bool32,
+    pub _marker: ::core::marker::PhantomData<&'a ()>,
 }
 #[repr(C)]
 #[derive(Clone, Copy)]
-pub struct PhysicalDeviceBlendOperationAdvancedPropertiesEXT {
+pub struct PhysicalDeviceBlendOperationAdvancedPropertiesEXT<'a> {
     pub s_type: crate::vk::StructureType,
     pub p_next: *mut core::ffi::c_void,
     pub advanced_blend_max_color_attachments: u32,
@@ -19,15 +20,17 @@ pub struct PhysicalDeviceBlendOperationAdvancedPropertiesEXT {
     pub advanced_blend_non_premultiplied_dst_color: crate::vk::Bool32,
     pub advanced_blend_correlated_overlap: crate::vk::Bool32,
     pub advanced_blend_all_operations: crate::vk::Bool32,
+    pub _marker: ::core::marker::PhantomData<&'a ()>,
 }
 #[repr(C)]
 #[derive(Clone, Copy)]
-pub struct PipelineColorBlendAdvancedStateCreateInfoEXT {
+pub struct PipelineColorBlendAdvancedStateCreateInfoEXT<'a> {
     pub s_type: crate::vk::StructureType,
     pub p_next: *const core::ffi::c_void,
     pub src_premultiplied: crate::vk::Bool32,
     pub dst_premultiplied: crate::vk::Bool32,
     pub blend_overlap: crate::vk::BlendOverlapEXT,
+    pub _marker: ::core::marker::PhantomData<&'a ()>,
 }
 ///Provided by [`ext::blend_operation_advanced`](crate::ext::blend_operation_advanced)
 impl crate::vk::BlendOp {
@@ -92,6 +95,7 @@ impl crate::vk::StructureType {
 }
 #[repr(transparent)]
 #[derive(Clone, Copy, PartialEq, Eq, PartialOrd, Ord, Hash, Default)]
+#[derive(Debug)]
 pub struct BlendOverlapEXT(pub(crate) i32);
 ///Provided by [`ext::blend_operation_advanced`](crate::ext::blend_operation_advanced)
 impl BlendOverlapEXT {

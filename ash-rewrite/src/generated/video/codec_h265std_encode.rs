@@ -58,7 +58,7 @@ pub struct EncodeH265SliceSegmentHeaderFlags {
 }
 #[repr(C)]
 #[derive(Clone, Copy)]
-pub struct EncodeH265SliceSegmentHeader {
+pub struct EncodeH265SliceSegmentHeader<'a> {
     pub flags: crate::vk::EncodeH265SliceSegmentHeaderFlags,
     pub slice_type: crate::vk::H265SliceType,
     pub slice_segment_address: u32,
@@ -74,6 +74,7 @@ pub struct EncodeH265SliceSegmentHeader {
     pub slice_qp_delta: i8,
     pub reserved1: u16,
     pub p_weight_table: *const crate::vk::EncodeH265WeightTable,
+    pub _marker: ::core::marker::PhantomData<&'a ()>,
 }
 #[repr(C)]
 #[derive(Clone, Copy)]
@@ -109,7 +110,7 @@ pub struct EncodeH265PictureInfoFlags {
 }
 #[repr(C)]
 #[derive(Clone, Copy)]
-pub struct EncodeH265PictureInfo {
+pub struct EncodeH265PictureInfo<'a> {
     pub flags: crate::vk::EncodeH265PictureInfoFlags,
     pub pic_type: crate::vk::H265PictureType,
     pub sps_video_parameter_set_id: u8,
@@ -122,6 +123,7 @@ pub struct EncodeH265PictureInfo {
     pub p_ref_lists: *const crate::vk::EncodeH265ReferenceListsInfo,
     pub p_short_term_ref_pic_set: *const crate::vk::H265ShortTermRefPicSet,
     pub p_long_term_ref_pics: *const crate::vk::EncodeH265LongTermRefPics,
+    pub _marker: ::core::marker::PhantomData<&'a ()>,
 }
 #[repr(C)]
 #[derive(Clone, Copy)]

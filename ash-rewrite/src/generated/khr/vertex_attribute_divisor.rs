@@ -2,9 +2,15 @@
 #![cfg_attr(rustfmt, rustfmt_skip)]
 //![Vulkan Manual Page](https://docs.vulkan.org/refpages/latest/refpages/source/VK_KHR_vertex_attribute_divisor.html) · Extension `VK_KHR_vertex_attribute_divisor`
 pub type VertexInputBindingDivisorDescriptionKHR = crate::vk::VertexInputBindingDivisorDescription;
-pub type PipelineVertexInputDivisorStateCreateInfoKHR = crate::vk::PipelineVertexInputDivisorStateCreateInfo;
-pub type PhysicalDeviceVertexAttributeDivisorPropertiesKHR = crate::vk::PhysicalDeviceVertexAttributeDivisorProperties;
-pub type PhysicalDeviceVertexAttributeDivisorFeaturesKHR = crate::vk::PhysicalDeviceVertexAttributeDivisorFeatures;
+pub type PipelineVertexInputDivisorStateCreateInfoKHR<'a> = crate::vk::PipelineVertexInputDivisorStateCreateInfo<
+    'a,
+>;
+pub type PhysicalDeviceVertexAttributeDivisorPropertiesKHR<'a> = crate::vk::PhysicalDeviceVertexAttributeDivisorProperties<
+    'a,
+>;
+pub type PhysicalDeviceVertexAttributeDivisorFeaturesKHR<'a> = crate::vk::PhysicalDeviceVertexAttributeDivisorFeatures<
+    'a,
+>;
 ///Provided by [`khr::vertex_attribute_divisor`](crate::khr::vertex_attribute_divisor)
 impl crate::vk::StructureType {
     pub const PHYSICAL_DEVICE_VERTEX_ATTRIBUTE_DIVISOR_PROPERTIES_KHR: Self = Self::PHYSICAL_DEVICE_VERTEX_ATTRIBUTE_DIVISOR_PROPERTIES;

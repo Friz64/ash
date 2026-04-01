@@ -3,18 +3,20 @@
 //![Vulkan Manual Page](https://docs.vulkan.org/refpages/latest/refpages/source/VK_SEC_amigo_profiling.html) · Extension `VK_SEC_amigo_profiling`
 #[repr(C)]
 #[derive(Clone, Copy)]
-pub struct PhysicalDeviceAmigoProfilingFeaturesSEC {
+pub struct PhysicalDeviceAmigoProfilingFeaturesSEC<'a> {
     pub s_type: crate::vk::StructureType,
     pub p_next: *mut core::ffi::c_void,
     pub amigo_profiling: crate::vk::Bool32,
+    pub _marker: ::core::marker::PhantomData<&'a ()>,
 }
 #[repr(C)]
 #[derive(Clone, Copy)]
-pub struct AmigoProfilingSubmitInfoSEC {
+pub struct AmigoProfilingSubmitInfoSEC<'a> {
     pub s_type: crate::vk::StructureType,
     pub p_next: *const core::ffi::c_void,
     pub first_draw_timestamp: u64,
     pub swap_buffer_timestamp: u64,
+    pub _marker: ::core::marker::PhantomData<&'a ()>,
 }
 ///Provided by [`sec::amigo_profiling`](crate::sec::amigo_profiling)
 impl crate::vk::StructureType {

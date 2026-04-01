@@ -3,24 +3,27 @@
 //![Vulkan Manual Page](https://docs.vulkan.org/refpages/latest/refpages/source/VK_VALVE_fragment_density_map_layered.html) · Extension `VK_VALVE_fragment_density_map_layered`
 #[repr(C)]
 #[derive(Clone, Copy)]
-pub struct PhysicalDeviceFragmentDensityMapLayeredPropertiesVALVE {
+pub struct PhysicalDeviceFragmentDensityMapLayeredPropertiesVALVE<'a> {
     pub s_type: crate::vk::StructureType,
     pub p_next: *mut core::ffi::c_void,
     pub max_fragment_density_map_layers: u32,
+    pub _marker: ::core::marker::PhantomData<&'a ()>,
 }
 #[repr(C)]
 #[derive(Clone, Copy)]
-pub struct PhysicalDeviceFragmentDensityMapLayeredFeaturesVALVE {
+pub struct PhysicalDeviceFragmentDensityMapLayeredFeaturesVALVE<'a> {
     pub s_type: crate::vk::StructureType,
     pub p_next: *mut core::ffi::c_void,
     pub fragment_density_map_layered: crate::vk::Bool32,
+    pub _marker: ::core::marker::PhantomData<&'a ()>,
 }
 #[repr(C)]
 #[derive(Clone, Copy)]
-pub struct PipelineFragmentDensityMapLayeredCreateInfoVALVE {
+pub struct PipelineFragmentDensityMapLayeredCreateInfoVALVE<'a> {
     pub s_type: crate::vk::StructureType,
     pub p_next: *const core::ffi::c_void,
     pub max_fragment_density_map_layers: u32,
+    pub _marker: ::core::marker::PhantomData<&'a ()>,
 }
 ///Provided by [`valve::fragment_density_map_layered`](crate::valve::fragment_density_map_layered)
 impl crate::vk::StructureType {

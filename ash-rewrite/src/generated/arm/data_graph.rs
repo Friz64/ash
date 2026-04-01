@@ -31,8 +31,8 @@ impl DeviceFn {
                     _: crate::vk::DeferredOperationKHR,
                     _: crate::vk::PipelineCache,
                     _: u32,
-                    _: *const crate::vk::DataGraphPipelineCreateInfoARM,
-                    _: *const crate::vk::AllocationCallbacks,
+                    _: *const crate::vk::DataGraphPipelineCreateInfoARM<'_>,
+                    _: *const crate::vk::AllocationCallbacks<'_>,
                     _: *mut crate::vk::Pipeline,
                 ) -> crate::vk::Result {
                     panic!("unable to load vkCreateDataGraphPipelinesARM")
@@ -47,8 +47,8 @@ impl DeviceFn {
             create_data_graph_pipeline_session_arm: unsafe {
                 unsafe extern "system" fn create_data_graph_pipeline_session_arm(
                     _: crate::vk::Device,
-                    _: *const crate::vk::DataGraphPipelineSessionCreateInfoARM,
-                    _: *const crate::vk::AllocationCallbacks,
+                    _: *const crate::vk::DataGraphPipelineSessionCreateInfoARM<'_>,
+                    _: *const crate::vk::AllocationCallbacks<'_>,
                     _: *mut crate::vk::DataGraphPipelineSessionARM,
                 ) -> crate::vk::Result {
                     panic!("unable to load vkCreateDataGraphPipelineSessionARM")
@@ -63,9 +63,13 @@ impl DeviceFn {
             get_data_graph_pipeline_session_bind_point_requirements_arm: unsafe {
                 unsafe extern "system" fn get_data_graph_pipeline_session_bind_point_requirements_arm(
                     _: crate::vk::Device,
-                    _: *const crate::vk::DataGraphPipelineSessionBindPointRequirementsInfoARM,
+                    _: *const crate::vk::DataGraphPipelineSessionBindPointRequirementsInfoARM<
+                        '_,
+                    >,
                     _: *mut u32,
-                    _: *mut crate::vk::DataGraphPipelineSessionBindPointRequirementARM,
+                    _: *mut crate::vk::DataGraphPipelineSessionBindPointRequirementARM<
+                        '_,
+                    >,
                 ) -> crate::vk::Result {
                     panic!(
                         "unable to load vkGetDataGraphPipelineSessionBindPointRequirementsARM"
@@ -81,8 +85,10 @@ impl DeviceFn {
             get_data_graph_pipeline_session_memory_requirements_arm: unsafe {
                 unsafe extern "system" fn get_data_graph_pipeline_session_memory_requirements_arm(
                     _: crate::vk::Device,
-                    _: *const crate::vk::DataGraphPipelineSessionMemoryRequirementsInfoARM,
-                    _: *mut crate::vk::MemoryRequirements2,
+                    _: *const crate::vk::DataGraphPipelineSessionMemoryRequirementsInfoARM<
+                        '_,
+                    >,
+                    _: *mut crate::vk::MemoryRequirements2<'_>,
                 ) {
                     panic!(
                         "unable to load vkGetDataGraphPipelineSessionMemoryRequirementsARM"
@@ -99,7 +105,7 @@ impl DeviceFn {
                 unsafe extern "system" fn bind_data_graph_pipeline_session_memory_arm(
                     _: crate::vk::Device,
                     _: u32,
-                    _: *const crate::vk::BindDataGraphPipelineSessionMemoryInfoARM,
+                    _: *const crate::vk::BindDataGraphPipelineSessionMemoryInfoARM<'_>,
                 ) -> crate::vk::Result {
                     panic!("unable to load vkBindDataGraphPipelineSessionMemoryARM")
                 }
@@ -114,7 +120,7 @@ impl DeviceFn {
                 unsafe extern "system" fn destroy_data_graph_pipeline_session_arm(
                     _: crate::vk::Device,
                     _: crate::vk::DataGraphPipelineSessionARM,
-                    _: *const crate::vk::AllocationCallbacks,
+                    _: *const crate::vk::AllocationCallbacks<'_>,
                 ) {
                     panic!("unable to load vkDestroyDataGraphPipelineSessionARM")
                 }
@@ -129,7 +135,7 @@ impl DeviceFn {
                 unsafe extern "system" fn cmd_dispatch_data_graph_arm(
                     _: crate::vk::CommandBuffer,
                     _: crate::vk::DataGraphPipelineSessionARM,
-                    _: *const crate::vk::DataGraphPipelineDispatchInfoARM,
+                    _: *const crate::vk::DataGraphPipelineDispatchInfoARM<'_>,
                 ) {
                     panic!("unable to load vkCmdDispatchDataGraphARM")
                 }
@@ -143,7 +149,7 @@ impl DeviceFn {
             get_data_graph_pipeline_available_properties_arm: unsafe {
                 unsafe extern "system" fn get_data_graph_pipeline_available_properties_arm(
                     _: crate::vk::Device,
-                    _: *const crate::vk::DataGraphPipelineInfoARM,
+                    _: *const crate::vk::DataGraphPipelineInfoARM<'_>,
                     _: *mut u32,
                     _: *mut crate::vk::DataGraphPipelinePropertyARM,
                 ) -> crate::vk::Result {
@@ -159,9 +165,9 @@ impl DeviceFn {
             get_data_graph_pipeline_properties_arm: unsafe {
                 unsafe extern "system" fn get_data_graph_pipeline_properties_arm(
                     _: crate::vk::Device,
-                    _: *const crate::vk::DataGraphPipelineInfoARM,
+                    _: *const crate::vk::DataGraphPipelineInfoARM<'_>,
                     _: u32,
-                    _: *mut crate::vk::DataGraphPipelinePropertyQueryResultARM,
+                    _: *mut crate::vk::DataGraphPipelinePropertyQueryResultARM<'_>,
                 ) -> crate::vk::Result {
                     panic!("unable to load vkGetDataGraphPipelinePropertiesARM")
                 }
@@ -197,7 +203,7 @@ impl InstanceFn {
                     _: crate::vk::PhysicalDevice,
                     _: u32,
                     _: *mut u32,
-                    _: *mut crate::vk::QueueFamilyDataGraphPropertiesARM,
+                    _: *mut crate::vk::QueueFamilyDataGraphPropertiesARM<'_>,
                 ) -> crate::vk::Result {
                     panic!(
                         "unable to load vkGetPhysicalDeviceQueueFamilyDataGraphPropertiesARM"
@@ -213,8 +219,12 @@ impl InstanceFn {
             get_physical_device_queue_family_data_graph_processing_engine_properties_arm: unsafe {
                 unsafe extern "system" fn get_physical_device_queue_family_data_graph_processing_engine_properties_arm(
                     _: crate::vk::PhysicalDevice,
-                    _: *const crate::vk::PhysicalDeviceQueueFamilyDataGraphProcessingEngineInfoARM,
-                    _: *mut crate::vk::QueueFamilyDataGraphProcessingEnginePropertiesARM,
+                    _: *const crate::vk::PhysicalDeviceQueueFamilyDataGraphProcessingEngineInfoARM<
+                        '_,
+                    >,
+                    _: *mut crate::vk::QueueFamilyDataGraphProcessingEnginePropertiesARM<
+                        '_,
+                    >,
                 ) {
                     panic!(
                         "unable to load vkGetPhysicalDeviceQueueFamilyDataGraphProcessingEnginePropertiesARM"
@@ -235,7 +245,7 @@ impl InstanceFn {
 pub(crate) mod reexport {
     #[repr(C)]
     #[derive(Clone, Copy)]
-    pub struct PhysicalDeviceDataGraphFeaturesARM {
+    pub struct PhysicalDeviceDataGraphFeaturesARM<'a> {
         pub s_type: crate::vk::StructureType,
         pub p_next: *mut core::ffi::c_void,
         pub data_graph: crate::vk::Bool32,
@@ -243,97 +253,108 @@ pub(crate) mod reexport {
         pub data_graph_specialization_constants: crate::vk::Bool32,
         pub data_graph_descriptor_buffer: crate::vk::Bool32,
         pub data_graph_shader_module: crate::vk::Bool32,
+        pub _marker: ::core::marker::PhantomData<&'a ()>,
     }
     #[repr(C)]
     #[derive(Clone, Copy)]
-    pub struct DataGraphPipelineConstantTensorSemiStructuredSparsityInfoARM {
+    pub struct DataGraphPipelineConstantTensorSemiStructuredSparsityInfoARM<'a> {
         pub s_type: crate::vk::StructureType,
         pub p_next: *const core::ffi::c_void,
         pub dimension: u32,
         pub zero_count: u32,
         pub group_size: u32,
+        pub _marker: ::core::marker::PhantomData<&'a ()>,
     }
     #[repr(C)]
     #[derive(Clone, Copy)]
-    pub struct DataGraphPipelineConstantARM {
+    pub struct DataGraphPipelineConstantARM<'a> {
         pub s_type: crate::vk::StructureType,
         pub p_next: *const core::ffi::c_void,
         pub id: u32,
         pub p_constant_data: *const core::ffi::c_void,
+        pub _marker: ::core::marker::PhantomData<&'a ()>,
     }
     #[repr(C)]
     #[derive(Clone, Copy)]
-    pub struct DataGraphPipelineResourceInfoARM {
+    pub struct DataGraphPipelineResourceInfoARM<'a> {
         pub s_type: crate::vk::StructureType,
         pub p_next: *const core::ffi::c_void,
         pub descriptor_set: u32,
         pub binding: u32,
         pub array_element: u32,
+        pub _marker: ::core::marker::PhantomData<&'a ()>,
     }
     #[repr(C)]
     #[derive(Clone, Copy)]
-    pub struct DataGraphPipelineCompilerControlCreateInfoARM {
+    pub struct DataGraphPipelineCompilerControlCreateInfoARM<'a> {
         pub s_type: crate::vk::StructureType,
         pub p_next: *const core::ffi::c_void,
         pub p_vendor_options: *const core::ffi::c_char,
+        pub _marker: ::core::marker::PhantomData<&'a ()>,
     }
     #[repr(C)]
     #[derive(Clone, Copy)]
-    pub struct DataGraphPipelineCreateInfoARM {
+    pub struct DataGraphPipelineCreateInfoARM<'a> {
         pub s_type: crate::vk::StructureType,
         pub p_next: *const core::ffi::c_void,
         pub flags: crate::vk::PipelineCreateFlags2KHR,
         pub layout: crate::vk::PipelineLayout,
         pub resource_info_count: u32,
-        pub p_resource_infos: *const crate::vk::DataGraphPipelineResourceInfoARM,
+        pub p_resource_infos: *const crate::vk::DataGraphPipelineResourceInfoARM<'a>,
+        pub _marker: ::core::marker::PhantomData<&'a ()>,
     }
     #[repr(C)]
     #[derive(Clone, Copy)]
-    pub struct DataGraphPipelineShaderModuleCreateInfoARM {
+    pub struct DataGraphPipelineShaderModuleCreateInfoARM<'a> {
         pub s_type: crate::vk::StructureType,
         pub p_next: *const core::ffi::c_void,
         pub module: crate::vk::ShaderModule,
         pub p_name: *const core::ffi::c_char,
-        pub p_specialization_info: *const crate::vk::SpecializationInfo,
+        pub p_specialization_info: *const crate::vk::SpecializationInfo<'a>,
         pub constant_count: u32,
-        pub p_constants: *const crate::vk::DataGraphPipelineConstantARM,
+        pub p_constants: *const crate::vk::DataGraphPipelineConstantARM<'a>,
+        pub _marker: ::core::marker::PhantomData<&'a ()>,
     }
     #[repr(C)]
     #[derive(Clone, Copy)]
-    pub struct DataGraphPipelineSessionCreateInfoARM {
+    pub struct DataGraphPipelineSessionCreateInfoARM<'a> {
         pub s_type: crate::vk::StructureType,
         pub p_next: *const core::ffi::c_void,
         pub flags: crate::vk::DataGraphPipelineSessionCreateFlagsARM,
         pub data_graph_pipeline: crate::vk::Pipeline,
+        pub _marker: ::core::marker::PhantomData<&'a ()>,
     }
     #[repr(C)]
     #[derive(Clone, Copy)]
-    pub struct DataGraphPipelineSessionBindPointRequirementsInfoARM {
+    pub struct DataGraphPipelineSessionBindPointRequirementsInfoARM<'a> {
         pub s_type: crate::vk::StructureType,
         pub p_next: *const core::ffi::c_void,
         pub session: crate::vk::DataGraphPipelineSessionARM,
+        pub _marker: ::core::marker::PhantomData<&'a ()>,
     }
     #[repr(C)]
     #[derive(Clone, Copy)]
-    pub struct DataGraphPipelineSessionBindPointRequirementARM {
+    pub struct DataGraphPipelineSessionBindPointRequirementARM<'a> {
         pub s_type: crate::vk::StructureType,
         pub p_next: *mut core::ffi::c_void,
         pub bind_point: crate::vk::DataGraphPipelineSessionBindPointARM,
         pub bind_point_type: crate::vk::DataGraphPipelineSessionBindPointTypeARM,
         pub num_objects: u32,
+        pub _marker: ::core::marker::PhantomData<&'a ()>,
     }
     #[repr(C)]
     #[derive(Clone, Copy)]
-    pub struct DataGraphPipelineSessionMemoryRequirementsInfoARM {
+    pub struct DataGraphPipelineSessionMemoryRequirementsInfoARM<'a> {
         pub s_type: crate::vk::StructureType,
         pub p_next: *const core::ffi::c_void,
         pub session: crate::vk::DataGraphPipelineSessionARM,
         pub bind_point: crate::vk::DataGraphPipelineSessionBindPointARM,
         pub object_index: u32,
+        pub _marker: ::core::marker::PhantomData<&'a ()>,
     }
     #[repr(C)]
     #[derive(Clone, Copy)]
-    pub struct BindDataGraphPipelineSessionMemoryInfoARM {
+    pub struct BindDataGraphPipelineSessionMemoryInfoARM<'a> {
         pub s_type: crate::vk::StructureType,
         pub p_next: *const core::ffi::c_void,
         pub session: crate::vk::DataGraphPipelineSessionARM,
@@ -341,38 +362,43 @@ pub(crate) mod reexport {
         pub object_index: u32,
         pub memory: crate::vk::DeviceMemory,
         pub memory_offset: crate::vk::DeviceSize,
+        pub _marker: ::core::marker::PhantomData<&'a ()>,
     }
     #[repr(C)]
     #[derive(Clone, Copy)]
-    pub struct DataGraphPipelineInfoARM {
+    pub struct DataGraphPipelineInfoARM<'a> {
         pub s_type: crate::vk::StructureType,
         pub p_next: *const core::ffi::c_void,
         pub data_graph_pipeline: crate::vk::Pipeline,
+        pub _marker: ::core::marker::PhantomData<&'a ()>,
     }
     #[repr(C)]
     #[derive(Clone, Copy)]
-    pub struct DataGraphPipelinePropertyQueryResultARM {
+    pub struct DataGraphPipelinePropertyQueryResultARM<'a> {
         pub s_type: crate::vk::StructureType,
         pub p_next: *mut core::ffi::c_void,
         pub property: crate::vk::DataGraphPipelinePropertyARM,
         pub is_text: crate::vk::Bool32,
         pub data_size: usize,
         pub p_data: *mut core::ffi::c_void,
+        pub _marker: ::core::marker::PhantomData<&'a ()>,
     }
     #[repr(C)]
     #[derive(Clone, Copy)]
-    pub struct DataGraphPipelineIdentifierCreateInfoARM {
+    pub struct DataGraphPipelineIdentifierCreateInfoARM<'a> {
         pub s_type: crate::vk::StructureType,
         pub p_next: *const core::ffi::c_void,
         pub identifier_size: u32,
         pub p_identifier: *const u8,
+        pub _marker: ::core::marker::PhantomData<&'a ()>,
     }
     #[repr(C)]
     #[derive(Clone, Copy)]
-    pub struct DataGraphPipelineDispatchInfoARM {
+    pub struct DataGraphPipelineDispatchInfoARM<'a> {
         pub s_type: crate::vk::StructureType,
         pub p_next: *mut core::ffi::c_void,
         pub flags: crate::vk::DataGraphPipelineDispatchFlagsARM,
+        pub _marker: ::core::marker::PhantomData<&'a ()>,
     }
     #[repr(C)]
     #[derive(Clone, Copy)]
@@ -390,35 +416,39 @@ pub(crate) mod reexport {
     }
     #[repr(C)]
     #[derive(Clone, Copy)]
-    pub struct QueueFamilyDataGraphPropertiesARM {
+    pub struct QueueFamilyDataGraphPropertiesARM<'a> {
         pub s_type: crate::vk::StructureType,
         pub p_next: *mut core::ffi::c_void,
         pub engine: crate::vk::PhysicalDeviceDataGraphProcessingEngineARM,
         pub operation: crate::vk::PhysicalDeviceDataGraphOperationSupportARM,
+        pub _marker: ::core::marker::PhantomData<&'a ()>,
     }
     #[repr(C)]
     #[derive(Clone, Copy)]
-    pub struct PhysicalDeviceQueueFamilyDataGraphProcessingEngineInfoARM {
+    pub struct PhysicalDeviceQueueFamilyDataGraphProcessingEngineInfoARM<'a> {
         pub s_type: crate::vk::StructureType,
         pub p_next: *const core::ffi::c_void,
         pub queue_family_index: u32,
         pub engine_type: crate::vk::PhysicalDeviceDataGraphProcessingEngineTypeARM,
+        pub _marker: ::core::marker::PhantomData<&'a ()>,
     }
     #[repr(C)]
     #[derive(Clone, Copy)]
-    pub struct QueueFamilyDataGraphProcessingEnginePropertiesARM {
+    pub struct QueueFamilyDataGraphProcessingEnginePropertiesARM<'a> {
         pub s_type: crate::vk::StructureType,
         pub p_next: *mut core::ffi::c_void,
         pub foreign_semaphore_handle_types: crate::vk::ExternalSemaphoreHandleTypeFlags,
         pub foreign_memory_handle_types: crate::vk::ExternalMemoryHandleTypeFlags,
+        pub _marker: ::core::marker::PhantomData<&'a ()>,
     }
     #[repr(C)]
     #[derive(Clone, Copy)]
-    pub struct DataGraphProcessingEngineCreateInfoARM {
+    pub struct DataGraphProcessingEngineCreateInfoARM<'a> {
         pub s_type: crate::vk::StructureType,
         pub p_next: *const core::ffi::c_void,
         pub processing_engine_count: u32,
         pub p_processing_engines: *mut crate::vk::PhysicalDeviceDataGraphProcessingEngineARM,
+        pub _marker: ::core::marker::PhantomData<&'a ()>,
     }
     ///Provided by [`arm::data_graph`](crate::arm::data_graph)
     impl crate::vk::PipelineBindPoint {
@@ -473,6 +503,7 @@ pub(crate) mod reexport {
     }
     #[repr(transparent)]
     #[derive(Clone, Copy, PartialEq, Eq, PartialOrd, Ord, Hash, Default)]
+    #[derive(Debug)]
     pub struct DataGraphPipelineSessionBindPointARM(pub(crate) i32);
     ///Provided by [`arm::data_graph`](crate::arm::data_graph)
     impl DataGraphPipelineSessionBindPointARM {
@@ -480,6 +511,7 @@ pub(crate) mod reexport {
     }
     #[repr(transparent)]
     #[derive(Clone, Copy, PartialEq, Eq, PartialOrd, Ord, Hash, Default)]
+    #[derive(Debug)]
     pub struct DataGraphPipelineSessionBindPointTypeARM(pub(crate) i32);
     ///Provided by [`arm::data_graph`](crate::arm::data_graph)
     impl DataGraphPipelineSessionBindPointTypeARM {
@@ -487,6 +519,7 @@ pub(crate) mod reexport {
     }
     #[repr(transparent)]
     #[derive(Clone, Copy, PartialEq, Eq, PartialOrd, Ord, Hash, Default)]
+    #[derive(Debug)]
     pub struct DataGraphPipelinePropertyARM(pub(crate) i32);
     ///Provided by [`arm::data_graph`](crate::arm::data_graph)
     impl DataGraphPipelinePropertyARM {
@@ -495,6 +528,7 @@ pub(crate) mod reexport {
     }
     #[repr(transparent)]
     #[derive(Clone, Copy, PartialEq, Eq, PartialOrd, Ord, Hash, Default)]
+    #[derive(Debug)]
     pub struct PhysicalDeviceDataGraphProcessingEngineTypeARM(pub(crate) i32);
     ///Provided by [`arm::data_graph`](crate::arm::data_graph)
     impl PhysicalDeviceDataGraphProcessingEngineTypeARM {
@@ -502,6 +536,7 @@ pub(crate) mod reexport {
     }
     #[repr(transparent)]
     #[derive(Clone, Copy, PartialEq, Eq, PartialOrd, Ord, Hash, Default)]
+    #[derive(Debug)]
     pub struct PhysicalDeviceDataGraphOperationTypeARM(pub(crate) i32);
     ///Provided by [`arm::data_graph`](crate::arm::data_graph)
     impl PhysicalDeviceDataGraphOperationTypeARM {
@@ -583,64 +618,74 @@ pub(crate) mod reexport {
         deferred_operation: crate::vk::DeferredOperationKHR,
         pipeline_cache: crate::vk::PipelineCache,
         create_info_count: u32,
-        p_create_infos: *const crate::vk::DataGraphPipelineCreateInfoARM,
-        p_allocator: *const crate::vk::AllocationCallbacks,
+        p_create_infos: *const crate::vk::DataGraphPipelineCreateInfoARM<'_>,
+        p_allocator: *const crate::vk::AllocationCallbacks<'_>,
         p_pipelines: *mut crate::vk::Pipeline,
     ) -> crate::vk::Result;
     pub type PFN_vkCreateDataGraphPipelineSessionARM = unsafe extern "system" fn(
         device: crate::vk::Device,
-        p_create_info: *const crate::vk::DataGraphPipelineSessionCreateInfoARM,
-        p_allocator: *const crate::vk::AllocationCallbacks,
+        p_create_info: *const crate::vk::DataGraphPipelineSessionCreateInfoARM<'_>,
+        p_allocator: *const crate::vk::AllocationCallbacks<'_>,
         p_session: *mut crate::vk::DataGraphPipelineSessionARM,
     ) -> crate::vk::Result;
     pub type PFN_vkGetDataGraphPipelineSessionBindPointRequirementsARM = unsafe extern "system" fn(
         device: crate::vk::Device,
-        p_info: *const crate::vk::DataGraphPipelineSessionBindPointRequirementsInfoARM,
+        p_info: *const crate::vk::DataGraphPipelineSessionBindPointRequirementsInfoARM<
+            '_,
+        >,
         p_bind_point_requirement_count: *mut u32,
-        p_bind_point_requirements: *mut crate::vk::DataGraphPipelineSessionBindPointRequirementARM,
+        p_bind_point_requirements: *mut crate::vk::DataGraphPipelineSessionBindPointRequirementARM<
+            '_,
+        >,
     ) -> crate::vk::Result;
     pub type PFN_vkGetDataGraphPipelineSessionMemoryRequirementsARM = unsafe extern "system" fn(
         device: crate::vk::Device,
-        p_info: *const crate::vk::DataGraphPipelineSessionMemoryRequirementsInfoARM,
-        p_memory_requirements: *mut crate::vk::MemoryRequirements2,
+        p_info: *const crate::vk::DataGraphPipelineSessionMemoryRequirementsInfoARM<'_>,
+        p_memory_requirements: *mut crate::vk::MemoryRequirements2<'_>,
     );
     pub type PFN_vkBindDataGraphPipelineSessionMemoryARM = unsafe extern "system" fn(
         device: crate::vk::Device,
         bind_info_count: u32,
-        p_bind_infos: *const crate::vk::BindDataGraphPipelineSessionMemoryInfoARM,
+        p_bind_infos: *const crate::vk::BindDataGraphPipelineSessionMemoryInfoARM<'_>,
     ) -> crate::vk::Result;
     pub type PFN_vkDestroyDataGraphPipelineSessionARM = unsafe extern "system" fn(
         device: crate::vk::Device,
         session: crate::vk::DataGraphPipelineSessionARM,
-        p_allocator: *const crate::vk::AllocationCallbacks,
+        p_allocator: *const crate::vk::AllocationCallbacks<'_>,
     );
     pub type PFN_vkCmdDispatchDataGraphARM = unsafe extern "system" fn(
         command_buffer: crate::vk::CommandBuffer,
         session: crate::vk::DataGraphPipelineSessionARM,
-        p_info: *const crate::vk::DataGraphPipelineDispatchInfoARM,
+        p_info: *const crate::vk::DataGraphPipelineDispatchInfoARM<'_>,
     );
     pub type PFN_vkGetDataGraphPipelineAvailablePropertiesARM = unsafe extern "system" fn(
         device: crate::vk::Device,
-        p_pipeline_info: *const crate::vk::DataGraphPipelineInfoARM,
+        p_pipeline_info: *const crate::vk::DataGraphPipelineInfoARM<'_>,
         p_properties_count: *mut u32,
         p_properties: *mut crate::vk::DataGraphPipelinePropertyARM,
     ) -> crate::vk::Result;
     pub type PFN_vkGetDataGraphPipelinePropertiesARM = unsafe extern "system" fn(
         device: crate::vk::Device,
-        p_pipeline_info: *const crate::vk::DataGraphPipelineInfoARM,
+        p_pipeline_info: *const crate::vk::DataGraphPipelineInfoARM<'_>,
         properties_count: u32,
-        p_properties: *mut crate::vk::DataGraphPipelinePropertyQueryResultARM,
+        p_properties: *mut crate::vk::DataGraphPipelinePropertyQueryResultARM<'_>,
     ) -> crate::vk::Result;
     pub type PFN_vkGetPhysicalDeviceQueueFamilyDataGraphPropertiesARM = unsafe extern "system" fn(
         physical_device: crate::vk::PhysicalDevice,
         queue_family_index: u32,
         p_queue_family_data_graph_property_count: *mut u32,
-        p_queue_family_data_graph_properties: *mut crate::vk::QueueFamilyDataGraphPropertiesARM,
+        p_queue_family_data_graph_properties: *mut crate::vk::QueueFamilyDataGraphPropertiesARM<
+            '_,
+        >,
     ) -> crate::vk::Result;
     pub type PFN_vkGetPhysicalDeviceQueueFamilyDataGraphProcessingEnginePropertiesARM = unsafe extern "system" fn(
         physical_device: crate::vk::PhysicalDevice,
-        p_queue_family_data_graph_processing_engine_info: *const crate::vk::PhysicalDeviceQueueFamilyDataGraphProcessingEngineInfoARM,
-        p_queue_family_data_graph_processing_engine_properties: *mut crate::vk::QueueFamilyDataGraphProcessingEnginePropertiesARM,
+        p_queue_family_data_graph_processing_engine_info: *const crate::vk::PhysicalDeviceQueueFamilyDataGraphProcessingEngineInfoARM<
+            '_,
+        >,
+        p_queue_family_data_graph_processing_engine_properties: *mut crate::vk::QueueFamilyDataGraphProcessingEnginePropertiesARM<
+            '_,
+        >,
     );
     pub const MAX_PHYSICAL_DEVICE_DATA_GRAPH_OPERATION_SET_NAME_SIZE_ARM: u32 = 128;
     pub const ARM_DATA_GRAPH_SPEC_VERSION: u32 = 1;

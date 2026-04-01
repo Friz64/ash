@@ -3,7 +3,7 @@
 //![Vulkan Manual Page](https://docs.vulkan.org/refpages/latest/refpages/source/VK_EXT_shader_atomic_float.html) · Extension `VK_EXT_shader_atomic_float`
 #[repr(C)]
 #[derive(Clone, Copy)]
-pub struct PhysicalDeviceShaderAtomicFloatFeaturesEXT {
+pub struct PhysicalDeviceShaderAtomicFloatFeaturesEXT<'a> {
     pub s_type: crate::vk::StructureType,
     pub p_next: *mut core::ffi::c_void,
     pub shader_buffer_float32_atomics: crate::vk::Bool32,
@@ -18,6 +18,7 @@ pub struct PhysicalDeviceShaderAtomicFloatFeaturesEXT {
     pub shader_image_float32_atomic_add: crate::vk::Bool32,
     pub sparse_image_float32_atomics: crate::vk::Bool32,
     pub sparse_image_float32_atomic_add: crate::vk::Bool32,
+    pub _marker: ::core::marker::PhantomData<&'a ()>,
 }
 ///Provided by [`ext::shader_atomic_float`](crate::ext::shader_atomic_float)
 impl crate::vk::StructureType {

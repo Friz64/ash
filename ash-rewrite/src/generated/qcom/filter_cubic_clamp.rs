@@ -3,10 +3,11 @@
 //![Vulkan Manual Page](https://docs.vulkan.org/refpages/latest/refpages/source/VK_QCOM_filter_cubic_clamp.html) · Extension `VK_QCOM_filter_cubic_clamp`
 #[repr(C)]
 #[derive(Clone, Copy)]
-pub struct PhysicalDeviceCubicClampFeaturesQCOM {
+pub struct PhysicalDeviceCubicClampFeaturesQCOM<'a> {
     pub s_type: crate::vk::StructureType,
     pub p_next: *mut core::ffi::c_void,
     pub cubic_range_clamp: crate::vk::Bool32,
+    pub _marker: ::core::marker::PhantomData<&'a ()>,
 }
 ///Provided by [`qcom::filter_cubic_clamp`](crate::qcom::filter_cubic_clamp)
 impl crate::vk::StructureType {

@@ -3,10 +3,11 @@
 //![Vulkan Manual Page](https://docs.vulkan.org/refpages/latest/refpages/source/VK_KHR_ray_tracing_position_fetch.html) · Extension `VK_KHR_ray_tracing_position_fetch`
 #[repr(C)]
 #[derive(Clone, Copy)]
-pub struct PhysicalDeviceRayTracingPositionFetchFeaturesKHR {
+pub struct PhysicalDeviceRayTracingPositionFetchFeaturesKHR<'a> {
     pub s_type: crate::vk::StructureType,
     pub p_next: *mut core::ffi::c_void,
     pub ray_tracing_position_fetch: crate::vk::Bool32,
+    pub _marker: ::core::marker::PhantomData<&'a ()>,
 }
 ///Provided by [`khr::ray_tracing_position_fetch`](crate::khr::ray_tracing_position_fetch)
 impl crate::vk::StructureType {

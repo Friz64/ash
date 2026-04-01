@@ -21,7 +21,7 @@ impl DeviceFn {
                 unsafe extern "system" fn get_image_drm_format_modifier_properties_ext(
                     _: crate::vk::Device,
                     _: crate::vk::Image,
-                    _: *mut crate::vk::ImageDrmFormatModifierPropertiesEXT,
+                    _: *mut crate::vk::ImageDrmFormatModifierPropertiesEXT<'_>,
                 ) -> crate::vk::Result {
                     panic!("unable to load vkGetImageDrmFormatModifierPropertiesEXT")
                 }
@@ -38,11 +38,12 @@ impl DeviceFn {
 pub(crate) mod reexport {
     #[repr(C)]
     #[derive(Clone, Copy)]
-    pub struct DrmFormatModifierPropertiesListEXT {
+    pub struct DrmFormatModifierPropertiesListEXT<'a> {
         pub s_type: crate::vk::StructureType,
         pub p_next: *mut core::ffi::c_void,
         pub drm_format_modifier_count: u32,
         pub p_drm_format_modifier_properties: *mut crate::vk::DrmFormatModifierPropertiesEXT,
+        pub _marker: ::core::marker::PhantomData<&'a ()>,
     }
     #[repr(C)]
     #[derive(Clone, Copy)]
@@ -53,45 +54,50 @@ pub(crate) mod reexport {
     }
     #[repr(C)]
     #[derive(Clone, Copy)]
-    pub struct PhysicalDeviceImageDrmFormatModifierInfoEXT {
+    pub struct PhysicalDeviceImageDrmFormatModifierInfoEXT<'a> {
         pub s_type: crate::vk::StructureType,
         pub p_next: *const core::ffi::c_void,
         pub drm_format_modifier: u64,
         pub sharing_mode: crate::vk::SharingMode,
         pub queue_family_index_count: u32,
         pub p_queue_family_indices: *const u32,
+        pub _marker: ::core::marker::PhantomData<&'a ()>,
     }
     #[repr(C)]
     #[derive(Clone, Copy)]
-    pub struct ImageDrmFormatModifierListCreateInfoEXT {
+    pub struct ImageDrmFormatModifierListCreateInfoEXT<'a> {
         pub s_type: crate::vk::StructureType,
         pub p_next: *const core::ffi::c_void,
         pub drm_format_modifier_count: u32,
         pub p_drm_format_modifiers: *const u64,
+        pub _marker: ::core::marker::PhantomData<&'a ()>,
     }
     #[repr(C)]
     #[derive(Clone, Copy)]
-    pub struct ImageDrmFormatModifierExplicitCreateInfoEXT {
+    pub struct ImageDrmFormatModifierExplicitCreateInfoEXT<'a> {
         pub s_type: crate::vk::StructureType,
         pub p_next: *const core::ffi::c_void,
         pub drm_format_modifier: u64,
         pub drm_format_modifier_plane_count: u32,
         pub p_plane_layouts: *const crate::vk::SubresourceLayout,
+        pub _marker: ::core::marker::PhantomData<&'a ()>,
     }
     #[repr(C)]
     #[derive(Clone, Copy)]
-    pub struct ImageDrmFormatModifierPropertiesEXT {
+    pub struct ImageDrmFormatModifierPropertiesEXT<'a> {
         pub s_type: crate::vk::StructureType,
         pub p_next: *mut core::ffi::c_void,
         pub drm_format_modifier: u64,
+        pub _marker: ::core::marker::PhantomData<&'a ()>,
     }
     #[repr(C)]
     #[derive(Clone, Copy)]
-    pub struct DrmFormatModifierPropertiesList2EXT {
+    pub struct DrmFormatModifierPropertiesList2EXT<'a> {
         pub s_type: crate::vk::StructureType,
         pub p_next: *mut core::ffi::c_void,
         pub drm_format_modifier_count: u32,
         pub p_drm_format_modifier_properties: *mut crate::vk::DrmFormatModifierProperties2EXT,
+        pub _marker: ::core::marker::PhantomData<&'a ()>,
     }
     #[repr(C)]
     #[derive(Clone, Copy)]
@@ -135,7 +141,7 @@ pub(crate) mod reexport {
     pub type PFN_vkGetImageDrmFormatModifierPropertiesEXT = unsafe extern "system" fn(
         device: crate::vk::Device,
         image: crate::vk::Image,
-        p_properties: *mut crate::vk::ImageDrmFormatModifierPropertiesEXT,
+        p_properties: *mut crate::vk::ImageDrmFormatModifierPropertiesEXT<'_>,
     ) -> crate::vk::Result;
     pub const EXT_IMAGE_DRM_FORMAT_MODIFIER_SPEC_VERSION: u32 = 2;
     pub const EXT_IMAGE_DRM_FORMAT_MODIFIER_EXTENSION_NAME: &core::ffi::CStr = c"VK_EXT_image_drm_format_modifier";

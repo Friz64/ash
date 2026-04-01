@@ -21,7 +21,7 @@ impl InstanceFn {
                 unsafe extern "system" fn get_physical_device_cooperative_matrix_properties_nv(
                     _: crate::vk::PhysicalDevice,
                     _: *mut u32,
-                    _: *mut crate::vk::CooperativeMatrixPropertiesNV,
+                    _: *mut crate::vk::CooperativeMatrixPropertiesNV<'_>,
                 ) -> crate::vk::Result {
                     panic!(
                         "unable to load vkGetPhysicalDeviceCooperativeMatrixPropertiesNV"
@@ -40,22 +40,24 @@ impl InstanceFn {
 pub(crate) mod reexport {
     #[repr(C)]
     #[derive(Clone, Copy)]
-    pub struct PhysicalDeviceCooperativeMatrixFeaturesNV {
+    pub struct PhysicalDeviceCooperativeMatrixFeaturesNV<'a> {
         pub s_type: crate::vk::StructureType,
         pub p_next: *mut core::ffi::c_void,
         pub cooperative_matrix: crate::vk::Bool32,
         pub cooperative_matrix_robust_buffer_access: crate::vk::Bool32,
+        pub _marker: ::core::marker::PhantomData<&'a ()>,
     }
     #[repr(C)]
     #[derive(Clone, Copy)]
-    pub struct PhysicalDeviceCooperativeMatrixPropertiesNV {
+    pub struct PhysicalDeviceCooperativeMatrixPropertiesNV<'a> {
         pub s_type: crate::vk::StructureType,
         pub p_next: *mut core::ffi::c_void,
         pub cooperative_matrix_supported_stages: crate::vk::ShaderStageFlags,
+        pub _marker: ::core::marker::PhantomData<&'a ()>,
     }
     #[repr(C)]
     #[derive(Clone, Copy)]
-    pub struct CooperativeMatrixPropertiesNV {
+    pub struct CooperativeMatrixPropertiesNV<'a> {
         pub s_type: crate::vk::StructureType,
         pub p_next: *mut core::ffi::c_void,
         pub m_size: u32,
@@ -66,6 +68,7 @@ pub(crate) mod reexport {
         pub c_type: crate::vk::ComponentTypeNV,
         pub d_type: crate::vk::ComponentTypeNV,
         pub scope: crate::vk::ScopeNV,
+        pub _marker: ::core::marker::PhantomData<&'a ()>,
     }
     ///Provided by [`nv::cooperative_matrix`](crate::nv::cooperative_matrix)
     impl crate::vk::StructureType {
@@ -103,7 +106,7 @@ pub(crate) mod reexport {
     pub type PFN_vkGetPhysicalDeviceCooperativeMatrixPropertiesNV = unsafe extern "system" fn(
         physical_device: crate::vk::PhysicalDevice,
         p_property_count: *mut u32,
-        p_properties: *mut crate::vk::CooperativeMatrixPropertiesNV,
+        p_properties: *mut crate::vk::CooperativeMatrixPropertiesNV<'_>,
     ) -> crate::vk::Result;
     pub const NV_COOPERATIVE_MATRIX_SPEC_VERSION: u32 = 1;
     pub const NV_COOPERATIVE_MATRIX_EXTENSION_NAME: &core::ffi::CStr = c"VK_NV_cooperative_matrix";

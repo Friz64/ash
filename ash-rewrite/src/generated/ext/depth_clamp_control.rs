@@ -3,18 +3,20 @@
 //![Vulkan Manual Page](https://docs.vulkan.org/refpages/latest/refpages/source/VK_EXT_depth_clamp_control.html) · Extension `VK_EXT_depth_clamp_control`
 #[repr(C)]
 #[derive(Clone, Copy)]
-pub struct PhysicalDeviceDepthClampControlFeaturesEXT {
+pub struct PhysicalDeviceDepthClampControlFeaturesEXT<'a> {
     pub s_type: crate::vk::StructureType,
     pub p_next: *mut core::ffi::c_void,
     pub depth_clamp_control: crate::vk::Bool32,
+    pub _marker: ::core::marker::PhantomData<&'a ()>,
 }
 #[repr(C)]
 #[derive(Clone, Copy)]
-pub struct PipelineViewportDepthClampControlCreateInfoEXT {
+pub struct PipelineViewportDepthClampControlCreateInfoEXT<'a> {
     pub s_type: crate::vk::StructureType,
     pub p_next: *const core::ffi::c_void,
     pub depth_clamp_mode: crate::vk::DepthClampModeEXT,
     pub p_depth_clamp_range: *const crate::vk::DepthClampRangeEXT,
+    pub _marker: ::core::marker::PhantomData<&'a ()>,
 }
 #[repr(C)]
 #[derive(Clone, Copy)]
@@ -35,6 +37,7 @@ impl crate::vk::DynamicState {
 }
 #[repr(transparent)]
 #[derive(Clone, Copy, PartialEq, Eq, PartialOrd, Ord, Hash, Default)]
+#[derive(Debug)]
 pub struct DepthClampModeEXT(pub(crate) i32);
 ///Provided by [`ext::depth_clamp_control`](crate::ext::depth_clamp_control)
 impl DepthClampModeEXT {

@@ -3,11 +3,12 @@
 //![Vulkan Manual Page](https://docs.vulkan.org/refpages/latest/refpages/source/VK_AMD_shader_core_properties2.html) · Extension `VK_AMD_shader_core_properties2`
 #[repr(C)]
 #[derive(Clone, Copy)]
-pub struct PhysicalDeviceShaderCoreProperties2AMD {
+pub struct PhysicalDeviceShaderCoreProperties2AMD<'a> {
     pub s_type: crate::vk::StructureType,
     pub p_next: *mut core::ffi::c_void,
     pub shader_core_features: crate::vk::ShaderCorePropertiesFlagsAMD,
     pub active_compute_unit_count: u32,
+    pub _marker: ::core::marker::PhantomData<&'a ()>,
 }
 ///Provided by [`amd::shader_core_properties2`](crate::amd::shader_core_properties2)
 impl crate::vk::StructureType {

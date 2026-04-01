@@ -3,24 +3,27 @@
 //![Vulkan Manual Page](https://docs.vulkan.org/refpages/latest/refpages/source/VK_ARM_scheduling_controls.html) · Extension `VK_ARM_scheduling_controls`
 #[repr(C)]
 #[derive(Clone, Copy)]
-pub struct DeviceQueueShaderCoreControlCreateInfoARM {
+pub struct DeviceQueueShaderCoreControlCreateInfoARM<'a> {
     pub s_type: crate::vk::StructureType,
     pub p_next: *mut core::ffi::c_void,
     pub shader_core_count: u32,
+    pub _marker: ::core::marker::PhantomData<&'a ()>,
 }
 #[repr(C)]
 #[derive(Clone, Copy)]
-pub struct PhysicalDeviceSchedulingControlsFeaturesARM {
+pub struct PhysicalDeviceSchedulingControlsFeaturesARM<'a> {
     pub s_type: crate::vk::StructureType,
     pub p_next: *mut core::ffi::c_void,
     pub scheduling_controls: crate::vk::Bool32,
+    pub _marker: ::core::marker::PhantomData<&'a ()>,
 }
 #[repr(C)]
 #[derive(Clone, Copy)]
-pub struct PhysicalDeviceSchedulingControlsPropertiesARM {
+pub struct PhysicalDeviceSchedulingControlsPropertiesARM<'a> {
     pub s_type: crate::vk::StructureType,
     pub p_next: *mut core::ffi::c_void,
     pub scheduling_controls_flags: crate::vk::PhysicalDeviceSchedulingControlsFlagsARM,
+    pub _marker: ::core::marker::PhantomData<&'a ()>,
 }
 ///Provided by [`arm::scheduling_controls`](crate::arm::scheduling_controls)
 impl crate::vk::StructureType {

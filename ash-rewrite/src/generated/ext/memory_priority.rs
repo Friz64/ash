@@ -3,17 +3,19 @@
 //![Vulkan Manual Page](https://docs.vulkan.org/refpages/latest/refpages/source/VK_EXT_memory_priority.html) · Extension `VK_EXT_memory_priority`
 #[repr(C)]
 #[derive(Clone, Copy)]
-pub struct PhysicalDeviceMemoryPriorityFeaturesEXT {
+pub struct PhysicalDeviceMemoryPriorityFeaturesEXT<'a> {
     pub s_type: crate::vk::StructureType,
     pub p_next: *mut core::ffi::c_void,
     pub memory_priority: crate::vk::Bool32,
+    pub _marker: ::core::marker::PhantomData<&'a ()>,
 }
 #[repr(C)]
 #[derive(Clone, Copy)]
-pub struct MemoryPriorityAllocateInfoEXT {
+pub struct MemoryPriorityAllocateInfoEXT<'a> {
     pub s_type: crate::vk::StructureType,
     pub p_next: *const core::ffi::c_void,
     pub priority: core::ffi::c_float,
+    pub _marker: ::core::marker::PhantomData<&'a ()>,
 }
 ///Provided by [`ext::memory_priority`](crate::ext::memory_priority)
 impl crate::vk::StructureType {

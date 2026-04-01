@@ -56,18 +56,20 @@ impl DeviceFn {
 pub(crate) mod reexport {
     #[repr(C)]
     #[derive(Clone, Copy)]
-    pub struct PhysicalDeviceExclusiveScissorFeaturesNV {
+    pub struct PhysicalDeviceExclusiveScissorFeaturesNV<'a> {
         pub s_type: crate::vk::StructureType,
         pub p_next: *mut core::ffi::c_void,
         pub exclusive_scissor: crate::vk::Bool32,
+        pub _marker: ::core::marker::PhantomData<&'a ()>,
     }
     #[repr(C)]
     #[derive(Clone, Copy)]
-    pub struct PipelineViewportExclusiveScissorStateCreateInfoNV {
+    pub struct PipelineViewportExclusiveScissorStateCreateInfoNV<'a> {
         pub s_type: crate::vk::StructureType,
         pub p_next: *const core::ffi::c_void,
         pub exclusive_scissor_count: u32,
         pub p_exclusive_scissors: *const crate::vk::Rect2D,
+        pub _marker: ::core::marker::PhantomData<&'a ()>,
     }
     ///Provided by [`nv::scissor_exclusive`](crate::nv::scissor_exclusive)
     impl crate::vk::StructureType {

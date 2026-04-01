@@ -21,7 +21,7 @@ impl InstanceFn {
                 unsafe extern "system" fn enumerate_physical_device_groups_khr(
                     _: crate::vk::Instance,
                     _: *mut u32,
-                    _: *mut crate::vk::PhysicalDeviceGroupProperties,
+                    _: *mut crate::vk::PhysicalDeviceGroupProperties<'_>,
                 ) -> crate::vk::Result {
                     panic!("unable to load vkEnumeratePhysicalDeviceGroupsKHR")
                 }
@@ -36,8 +36,12 @@ impl InstanceFn {
     }
 }
 pub(crate) mod reexport {
-    pub type PhysicalDeviceGroupPropertiesKHR = crate::vk::PhysicalDeviceGroupProperties;
-    pub type DeviceGroupDeviceCreateInfoKHR = crate::vk::DeviceGroupDeviceCreateInfo;
+    pub type PhysicalDeviceGroupPropertiesKHR<'a> = crate::vk::PhysicalDeviceGroupProperties<
+        'a,
+    >;
+    pub type DeviceGroupDeviceCreateInfoKHR<'a> = crate::vk::DeviceGroupDeviceCreateInfo<
+        'a,
+    >;
     ///Provided by [`khr::device_group_creation`](crate::khr::device_group_creation)
     impl crate::vk::StructureType {
         pub const PHYSICAL_DEVICE_GROUP_PROPERTIES_KHR: Self = Self::PHYSICAL_DEVICE_GROUP_PROPERTIES;

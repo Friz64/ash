@@ -69,20 +69,22 @@ impl DeviceFn {
 pub(crate) mod reexport {
     #[repr(C)]
     #[derive(Clone, Copy)]
-    pub struct PhysicalDeviceDiscardRectanglePropertiesEXT {
+    pub struct PhysicalDeviceDiscardRectanglePropertiesEXT<'a> {
         pub s_type: crate::vk::StructureType,
         pub p_next: *mut core::ffi::c_void,
         pub max_discard_rectangles: u32,
+        pub _marker: ::core::marker::PhantomData<&'a ()>,
     }
     #[repr(C)]
     #[derive(Clone, Copy)]
-    pub struct PipelineDiscardRectangleStateCreateInfoEXT {
+    pub struct PipelineDiscardRectangleStateCreateInfoEXT<'a> {
         pub s_type: crate::vk::StructureType,
         pub p_next: *const core::ffi::c_void,
         pub flags: crate::vk::PipelineDiscardRectangleStateCreateFlagsEXT,
         pub discard_rectangle_mode: crate::vk::DiscardRectangleModeEXT,
         pub discard_rectangle_count: u32,
         pub p_discard_rectangles: *const crate::vk::Rect2D,
+        pub _marker: ::core::marker::PhantomData<&'a ()>,
     }
     ///Provided by [`ext::discard_rectangles`](crate::ext::discard_rectangles)
     impl crate::vk::StructureType {
@@ -101,6 +103,7 @@ pub(crate) mod reexport {
     }
     #[repr(transparent)]
     #[derive(Clone, Copy, PartialEq, Eq, PartialOrd, Ord, Hash, Default)]
+    #[derive(Debug)]
     pub struct DiscardRectangleModeEXT(pub(crate) i32);
     ///Provided by [`ext::discard_rectangles`](crate::ext::discard_rectangles)
     impl DiscardRectangleModeEXT {

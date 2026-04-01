@@ -37,7 +37,9 @@ impl DeviceFn {
     }
 }
 pub(crate) mod reexport {
-    pub type PhysicalDeviceHostQueryResetFeaturesEXT = crate::vk::PhysicalDeviceHostQueryResetFeatures;
+    pub type PhysicalDeviceHostQueryResetFeaturesEXT<'a> = crate::vk::PhysicalDeviceHostQueryResetFeatures<
+        'a,
+    >;
     ///Provided by [`ext::host_query_reset`](crate::ext::host_query_reset)
     impl crate::vk::StructureType {
         pub const PHYSICAL_DEVICE_HOST_QUERY_RESET_FEATURES_EXT: Self = Self::PHYSICAL_DEVICE_HOST_QUERY_RESET_FEATURES;

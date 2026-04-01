@@ -3,7 +3,10 @@
 
 extern crate alloc;
 
+mod device;
 mod entry;
+mod instance;
+
 #[allow(unused_parens, clippy::double_parens, non_camel_case_types)]
 mod generated;
 /// Type definitions for platform-specific external types
@@ -118,7 +121,16 @@ where
     }
 }
 
+pub use device::*;
 pub use entry::*;
+pub use instance::*;
+pub use vk1_0::DeviceFnV1_0;
 pub use vk1_0::EntryFnV1_0;
+pub use vk1_0::InstanceFnV1_0;
 pub use vk1_0::StaticFn;
+pub use vk1_1::DeviceFnV1_1;
 pub use vk1_1::EntryFnV1_1;
+pub use vk1_1::InstanceFnV1_1;
+pub use vk1_2::DeviceFnV1_2;
+pub use vk1_3::DeviceFnV1_3;
+pub use vk1_3::InstanceFnV1_3;

@@ -3,10 +3,11 @@
 //![Vulkan Manual Page](https://docs.vulkan.org/refpages/latest/refpages/source/VK_KHR_shader_untyped_pointers.html) · Extension `VK_KHR_shader_untyped_pointers`
 #[repr(C)]
 #[derive(Clone, Copy)]
-pub struct PhysicalDeviceShaderUntypedPointersFeaturesKHR {
+pub struct PhysicalDeviceShaderUntypedPointersFeaturesKHR<'a> {
     pub s_type: crate::vk::StructureType,
     pub p_next: *mut core::ffi::c_void,
     pub shader_untyped_pointers: crate::vk::Bool32,
+    pub _marker: ::core::marker::PhantomData<&'a ()>,
 }
 ///Provided by [`khr::shader_untyped_pointers`](crate::khr::shader_untyped_pointers)
 impl crate::vk::StructureType {

@@ -3,10 +3,11 @@
 //![Vulkan Manual Page](https://docs.vulkan.org/refpages/latest/refpages/source/VK_EXT_non_seamless_cube_map.html) · Extension `VK_EXT_non_seamless_cube_map`
 #[repr(C)]
 #[derive(Clone, Copy)]
-pub struct PhysicalDeviceNonSeamlessCubeMapFeaturesEXT {
+pub struct PhysicalDeviceNonSeamlessCubeMapFeaturesEXT<'a> {
     pub s_type: crate::vk::StructureType,
     pub p_next: *mut core::ffi::c_void,
     pub non_seamless_cube_map: crate::vk::Bool32,
+    pub _marker: ::core::marker::PhantomData<&'a ()>,
 }
 ///Provided by [`ext::non_seamless_cube_map`](crate::ext::non_seamless_cube_map)
 impl crate::vk::StructureType {

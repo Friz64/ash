@@ -3,10 +3,11 @@
 //![Vulkan Manual Page](https://docs.vulkan.org/refpages/latest/refpages/source/VK_AMD_shader_early_and_late_fragment_tests.html) · Extension `VK_AMD_shader_early_and_late_fragment_tests`
 #[repr(C)]
 #[derive(Clone, Copy)]
-pub struct PhysicalDeviceShaderEarlyAndLateFragmentTestsFeaturesAMD {
+pub struct PhysicalDeviceShaderEarlyAndLateFragmentTestsFeaturesAMD<'a> {
     pub s_type: crate::vk::StructureType,
     pub p_next: *mut core::ffi::c_void,
     pub shader_early_and_late_fragment_tests: crate::vk::Bool32,
+    pub _marker: ::core::marker::PhantomData<&'a ()>,
 }
 ///Provided by [`amd::shader_early_and_late_fragment_tests`](crate::amd::shader_early_and_late_fragment_tests)
 impl crate::vk::StructureType {

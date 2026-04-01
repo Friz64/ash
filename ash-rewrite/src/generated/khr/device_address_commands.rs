@@ -41,7 +41,7 @@ impl DeviceFn {
             cmd_copy_memory_khr: unsafe {
                 unsafe extern "system" fn cmd_copy_memory_khr(
                     _: crate::vk::CommandBuffer,
-                    _: *const crate::vk::CopyDeviceMemoryInfoKHR,
+                    _: *const crate::vk::CopyDeviceMemoryInfoKHR<'_>,
                 ) {
                     panic!("unable to load vkCmdCopyMemoryKHR")
                 }
@@ -55,7 +55,7 @@ impl DeviceFn {
             cmd_copy_memory_to_image_khr: unsafe {
                 unsafe extern "system" fn cmd_copy_memory_to_image_khr(
                     _: crate::vk::CommandBuffer,
-                    _: *const crate::vk::CopyDeviceMemoryImageInfoKHR,
+                    _: *const crate::vk::CopyDeviceMemoryImageInfoKHR<'_>,
                 ) {
                     panic!("unable to load vkCmdCopyMemoryToImageKHR")
                 }
@@ -69,7 +69,7 @@ impl DeviceFn {
             cmd_copy_image_to_memory_khr: unsafe {
                 unsafe extern "system" fn cmd_copy_image_to_memory_khr(
                     _: crate::vk::CommandBuffer,
-                    _: *const crate::vk::CopyDeviceMemoryImageInfoKHR,
+                    _: *const crate::vk::CopyDeviceMemoryImageInfoKHR<'_>,
                 ) {
                     panic!("unable to load vkCmdCopyImageToMemoryKHR")
                 }
@@ -135,7 +135,7 @@ impl DeviceFn {
             cmd_begin_conditional_rendering2_ext: unsafe {
                 unsafe extern "system" fn cmd_begin_conditional_rendering2_ext(
                     _: crate::vk::CommandBuffer,
-                    _: *const crate::vk::ConditionalRenderingBeginInfo2EXT,
+                    _: *const crate::vk::ConditionalRenderingBeginInfo2EXT<'_>,
                 ) {
                     panic!("unable to load vkCmdBeginConditionalRendering2EXT")
                 }
@@ -151,7 +151,7 @@ impl DeviceFn {
                     _: crate::vk::CommandBuffer,
                     _: u32,
                     _: u32,
-                    _: *const crate::vk::BindTransformFeedbackBuffer2InfoEXT,
+                    _: *const crate::vk::BindTransformFeedbackBuffer2InfoEXT<'_>,
                 ) {
                     panic!("unable to load vkCmdBindTransformFeedbackBuffers2EXT")
                 }
@@ -167,7 +167,7 @@ impl DeviceFn {
                     _: crate::vk::CommandBuffer,
                     _: u32,
                     _: u32,
-                    _: *const crate::vk::BindTransformFeedbackBuffer2InfoEXT,
+                    _: *const crate::vk::BindTransformFeedbackBuffer2InfoEXT<'_>,
                 ) {
                     panic!("unable to load vkCmdBeginTransformFeedback2EXT")
                 }
@@ -183,7 +183,7 @@ impl DeviceFn {
                     _: crate::vk::CommandBuffer,
                     _: u32,
                     _: u32,
-                    _: *const crate::vk::BindTransformFeedbackBuffer2InfoEXT,
+                    _: *const crate::vk::BindTransformFeedbackBuffer2InfoEXT<'_>,
                 ) {
                     panic!("unable to load vkCmdEndTransformFeedback2EXT")
                 }
@@ -199,7 +199,7 @@ impl DeviceFn {
                     _: crate::vk::CommandBuffer,
                     _: u32,
                     _: u32,
-                    _: *const crate::vk::BindTransformFeedbackBuffer2InfoEXT,
+                    _: *const crate::vk::BindTransformFeedbackBuffer2InfoEXT<'_>,
                     _: u32,
                     _: u32,
                 ) {
@@ -215,7 +215,7 @@ impl DeviceFn {
             cmd_write_marker_to_memory_amd: unsafe {
                 unsafe extern "system" fn cmd_write_marker_to_memory_amd(
                     _: crate::vk::CommandBuffer,
-                    _: *const crate::vk::MemoryMarkerInfoAMD,
+                    _: *const crate::vk::MemoryMarkerInfoAMD<'_>,
                 ) {
                     panic!("unable to load vkCmdWriteMarkerToMemoryAMD")
                 }
@@ -229,7 +229,7 @@ impl DeviceFn {
             cmd_bind_index_buffer3_khr: unsafe {
                 unsafe extern "system" fn cmd_bind_index_buffer3_khr(
                     _: crate::vk::CommandBuffer,
-                    _: *const crate::vk::BindIndexBuffer3InfoKHR,
+                    _: *const crate::vk::BindIndexBuffer3InfoKHR<'_>,
                 ) {
                     panic!("unable to load vkCmdBindIndexBuffer3KHR")
                 }
@@ -245,7 +245,7 @@ impl DeviceFn {
                     _: crate::vk::CommandBuffer,
                     _: u32,
                     _: u32,
-                    _: *const crate::vk::BindVertexBuffer3InfoKHR,
+                    _: *const crate::vk::BindVertexBuffer3InfoKHR<'_>,
                 ) {
                     panic!("unable to load vkCmdBindVertexBuffers3KHR")
                 }
@@ -259,7 +259,7 @@ impl DeviceFn {
             cmd_draw_indirect2_khr: unsafe {
                 unsafe extern "system" fn cmd_draw_indirect2_khr(
                     _: crate::vk::CommandBuffer,
-                    _: *const crate::vk::DrawIndirect2InfoKHR,
+                    _: *const crate::vk::DrawIndirect2InfoKHR<'_>,
                 ) {
                     panic!("unable to load vkCmdDrawIndirect2KHR")
                 }
@@ -273,7 +273,7 @@ impl DeviceFn {
             cmd_draw_indexed_indirect2_khr: unsafe {
                 unsafe extern "system" fn cmd_draw_indexed_indirect2_khr(
                     _: crate::vk::CommandBuffer,
-                    _: *const crate::vk::DrawIndirect2InfoKHR,
+                    _: *const crate::vk::DrawIndirect2InfoKHR<'_>,
                 ) {
                     panic!("unable to load vkCmdDrawIndexedIndirect2KHR")
                 }
@@ -287,7 +287,7 @@ impl DeviceFn {
             cmd_draw_indirect_count2_khr: unsafe {
                 unsafe extern "system" fn cmd_draw_indirect_count2_khr(
                     _: crate::vk::CommandBuffer,
-                    _: *const crate::vk::DrawIndirectCount2InfoKHR,
+                    _: *const crate::vk::DrawIndirectCount2InfoKHR<'_>,
                 ) {
                     panic!("unable to load vkCmdDrawIndirectCount2KHR")
                 }
@@ -301,7 +301,7 @@ impl DeviceFn {
             cmd_draw_indexed_indirect_count2_khr: unsafe {
                 unsafe extern "system" fn cmd_draw_indexed_indirect_count2_khr(
                     _: crate::vk::CommandBuffer,
-                    _: *const crate::vk::DrawIndirectCount2InfoKHR,
+                    _: *const crate::vk::DrawIndirectCount2InfoKHR<'_>,
                 ) {
                     panic!("unable to load vkCmdDrawIndexedIndirectCount2KHR")
                 }
@@ -315,7 +315,7 @@ impl DeviceFn {
             cmd_draw_mesh_tasks_indirect2_ext: unsafe {
                 unsafe extern "system" fn cmd_draw_mesh_tasks_indirect2_ext(
                     _: crate::vk::CommandBuffer,
-                    _: *const crate::vk::DrawIndirect2InfoKHR,
+                    _: *const crate::vk::DrawIndirect2InfoKHR<'_>,
                 ) {
                     panic!("unable to load vkCmdDrawMeshTasksIndirect2EXT")
                 }
@@ -329,7 +329,7 @@ impl DeviceFn {
             cmd_draw_mesh_tasks_indirect_count2_ext: unsafe {
                 unsafe extern "system" fn cmd_draw_mesh_tasks_indirect_count2_ext(
                     _: crate::vk::CommandBuffer,
-                    _: *const crate::vk::DrawIndirectCount2InfoKHR,
+                    _: *const crate::vk::DrawIndirectCount2InfoKHR<'_>,
                 ) {
                     panic!("unable to load vkCmdDrawMeshTasksIndirectCount2EXT")
                 }
@@ -343,7 +343,7 @@ impl DeviceFn {
             cmd_dispatch_indirect2_khr: unsafe {
                 unsafe extern "system" fn cmd_dispatch_indirect2_khr(
                     _: crate::vk::CommandBuffer,
-                    _: *const crate::vk::DispatchIndirect2InfoKHR,
+                    _: *const crate::vk::DispatchIndirect2InfoKHR<'_>,
                 ) {
                     panic!("unable to load vkCmdDispatchIndirect2KHR")
                 }
@@ -357,8 +357,8 @@ impl DeviceFn {
             create_acceleration_structure2_khr: unsafe {
                 unsafe extern "system" fn create_acceleration_structure2_khr(
                     _: crate::vk::Device,
-                    _: *const crate::vk::AccelerationStructureCreateInfo2KHR,
-                    _: *const crate::vk::AllocationCallbacks,
+                    _: *const crate::vk::AccelerationStructureCreateInfo2KHR<'_>,
+                    _: *const crate::vk::AllocationCallbacks<'_>,
                     _: *mut crate::vk::AccelerationStructureKHR,
                 ) -> crate::vk::Result {
                     panic!("unable to load vkCreateAccelerationStructure2KHR")
@@ -389,25 +389,27 @@ pub(crate) mod reexport {
     }
     #[repr(C)]
     #[derive(Clone, Copy)]
-    pub struct DeviceMemoryCopyKHR {
+    pub struct DeviceMemoryCopyKHR<'a> {
         pub s_type: crate::vk::StructureType,
         pub p_next: *const core::ffi::c_void,
         pub src_range: crate::vk::DeviceAddressRangeKHR,
         pub src_flags: crate::vk::AddressCommandFlagsKHR,
         pub dst_range: crate::vk::DeviceAddressRangeKHR,
         pub dst_flags: crate::vk::AddressCommandFlagsKHR,
+        pub _marker: ::core::marker::PhantomData<&'a ()>,
     }
     #[repr(C)]
     #[derive(Clone, Copy)]
-    pub struct CopyDeviceMemoryInfoKHR {
+    pub struct CopyDeviceMemoryInfoKHR<'a> {
         pub s_type: crate::vk::StructureType,
         pub p_next: *const core::ffi::c_void,
         pub region_count: u32,
-        pub p_regions: *const crate::vk::DeviceMemoryCopyKHR,
+        pub p_regions: *const crate::vk::DeviceMemoryCopyKHR<'a>,
+        pub _marker: ::core::marker::PhantomData<&'a ()>,
     }
     #[repr(C)]
     #[derive(Clone, Copy)]
-    pub struct DeviceMemoryImageCopyKHR {
+    pub struct DeviceMemoryImageCopyKHR<'a> {
         pub s_type: crate::vk::StructureType,
         pub p_next: *const core::ffi::c_void,
         pub address_range: crate::vk::DeviceAddressRangeKHR,
@@ -418,27 +420,30 @@ pub(crate) mod reexport {
         pub image_layout: crate::vk::ImageLayout,
         pub image_offset: crate::vk::Offset3D,
         pub image_extent: crate::vk::Extent3D,
+        pub _marker: ::core::marker::PhantomData<&'a ()>,
     }
     #[repr(C)]
     #[derive(Clone, Copy)]
-    pub struct CopyDeviceMemoryImageInfoKHR {
+    pub struct CopyDeviceMemoryImageInfoKHR<'a> {
         pub s_type: crate::vk::StructureType,
         pub p_next: *const core::ffi::c_void,
         pub image: crate::vk::Image,
         pub region_count: u32,
-        pub p_regions: *const crate::vk::DeviceMemoryImageCopyKHR,
+        pub p_regions: *const crate::vk::DeviceMemoryImageCopyKHR<'a>,
+        pub _marker: ::core::marker::PhantomData<&'a ()>,
     }
     #[repr(C)]
     #[derive(Clone, Copy)]
-    pub struct MemoryRangeBarriersInfoKHR {
+    pub struct MemoryRangeBarriersInfoKHR<'a> {
         pub s_type: crate::vk::StructureType,
         pub p_next: *const core::ffi::c_void,
         pub memory_range_barrier_count: u32,
-        pub p_memory_range_barriers: *const crate::vk::MemoryRangeBarrierKHR,
+        pub p_memory_range_barriers: *const crate::vk::MemoryRangeBarrierKHR<'a>,
+        pub _marker: ::core::marker::PhantomData<&'a ()>,
     }
     #[repr(C)]
     #[derive(Clone, Copy)]
-    pub struct MemoryRangeBarrierKHR {
+    pub struct MemoryRangeBarrierKHR<'a> {
         pub s_type: crate::vk::StructureType,
         pub p_next: *const core::ffi::c_void,
         pub src_stage_mask: crate::vk::PipelineStageFlags2,
@@ -449,63 +454,70 @@ pub(crate) mod reexport {
         pub dst_queue_family_index: u32,
         pub address_range: crate::vk::DeviceAddressRangeKHR,
         pub address_flags: crate::vk::AddressCommandFlagsKHR,
+        pub _marker: ::core::marker::PhantomData<&'a ()>,
     }
     #[repr(C)]
     #[derive(Clone, Copy)]
-    pub struct PhysicalDeviceDeviceAddressCommandsFeaturesKHR {
+    pub struct PhysicalDeviceDeviceAddressCommandsFeaturesKHR<'a> {
         pub s_type: crate::vk::StructureType,
         pub p_next: *mut core::ffi::c_void,
         pub device_address_commands: crate::vk::Bool32,
+        pub _marker: ::core::marker::PhantomData<&'a ()>,
     }
     #[repr(C)]
     #[derive(Clone, Copy)]
-    pub struct ConditionalRenderingBeginInfo2EXT {
+    pub struct ConditionalRenderingBeginInfo2EXT<'a> {
         pub s_type: crate::vk::StructureType,
         pub p_next: *const core::ffi::c_void,
         pub address_range: crate::vk::DeviceAddressRangeKHR,
         pub address_flags: crate::vk::AddressCommandFlagsKHR,
         pub flags: crate::vk::ConditionalRenderingFlagsEXT,
+        pub _marker: ::core::marker::PhantomData<&'a ()>,
     }
     #[repr(C)]
     #[derive(Clone, Copy)]
-    pub struct AccelerationStructureCreateInfo2KHR {
+    pub struct AccelerationStructureCreateInfo2KHR<'a> {
         pub s_type: crate::vk::StructureType,
         pub p_next: *const core::ffi::c_void,
         pub create_flags: crate::vk::AccelerationStructureCreateFlagsKHR,
         pub address_range: crate::vk::DeviceAddressRangeKHR,
         pub address_flags: crate::vk::AddressCommandFlagsKHR,
         pub _type: crate::vk::AccelerationStructureTypeKHR,
+        pub _marker: ::core::marker::PhantomData<&'a ()>,
     }
     #[repr(C)]
     #[derive(Clone, Copy)]
-    pub struct BindIndexBuffer3InfoKHR {
+    pub struct BindIndexBuffer3InfoKHR<'a> {
         pub s_type: crate::vk::StructureType,
         pub p_next: *const core::ffi::c_void,
         pub address_range: crate::vk::DeviceAddressRangeKHR,
         pub address_flags: crate::vk::AddressCommandFlagsKHR,
         pub index_type: crate::vk::IndexType,
+        pub _marker: ::core::marker::PhantomData<&'a ()>,
     }
     #[repr(C)]
     #[derive(Clone, Copy)]
-    pub struct BindVertexBuffer3InfoKHR {
+    pub struct BindVertexBuffer3InfoKHR<'a> {
         pub s_type: crate::vk::StructureType,
         pub p_next: *const core::ffi::c_void,
         pub set_stride: crate::vk::Bool32,
         pub address_range: crate::vk::StridedDeviceAddressRangeKHR,
         pub address_flags: crate::vk::AddressCommandFlagsKHR,
+        pub _marker: ::core::marker::PhantomData<&'a ()>,
     }
     #[repr(C)]
     #[derive(Clone, Copy)]
-    pub struct DrawIndirect2InfoKHR {
+    pub struct DrawIndirect2InfoKHR<'a> {
         pub s_type: crate::vk::StructureType,
         pub p_next: *const core::ffi::c_void,
         pub address_range: crate::vk::StridedDeviceAddressRangeKHR,
         pub address_flags: crate::vk::AddressCommandFlagsKHR,
         pub draw_count: u32,
+        pub _marker: ::core::marker::PhantomData<&'a ()>,
     }
     #[repr(C)]
     #[derive(Clone, Copy)]
-    pub struct DrawIndirectCount2InfoKHR {
+    pub struct DrawIndirectCount2InfoKHR<'a> {
         pub s_type: crate::vk::StructureType,
         pub p_next: *const core::ffi::c_void,
         pub address_range: crate::vk::StridedDeviceAddressRangeKHR,
@@ -513,32 +525,36 @@ pub(crate) mod reexport {
         pub count_address_range: crate::vk::DeviceAddressRangeKHR,
         pub count_address_flags: crate::vk::AddressCommandFlagsKHR,
         pub max_draw_count: u32,
+        pub _marker: ::core::marker::PhantomData<&'a ()>,
     }
     #[repr(C)]
     #[derive(Clone, Copy)]
-    pub struct DispatchIndirect2InfoKHR {
+    pub struct DispatchIndirect2InfoKHR<'a> {
         pub s_type: crate::vk::StructureType,
         pub p_next: *const core::ffi::c_void,
         pub address_range: crate::vk::DeviceAddressRangeKHR,
         pub address_flags: crate::vk::AddressCommandFlagsKHR,
+        pub _marker: ::core::marker::PhantomData<&'a ()>,
     }
     #[repr(C)]
     #[derive(Clone, Copy)]
-    pub struct BindTransformFeedbackBuffer2InfoEXT {
+    pub struct BindTransformFeedbackBuffer2InfoEXT<'a> {
         pub s_type: crate::vk::StructureType,
         pub p_next: *const core::ffi::c_void,
         pub address_range: crate::vk::DeviceAddressRangeKHR,
         pub address_flags: crate::vk::AddressCommandFlagsKHR,
+        pub _marker: ::core::marker::PhantomData<&'a ()>,
     }
     #[repr(C)]
     #[derive(Clone, Copy)]
-    pub struct MemoryMarkerInfoAMD {
+    pub struct MemoryMarkerInfoAMD<'a> {
         pub s_type: crate::vk::StructureType,
         pub p_next: *const core::ffi::c_void,
         pub stage: crate::vk::PipelineStageFlags2KHR,
         pub dst_range: crate::vk::DeviceAddressRangeKHR,
         pub dst_flags: crate::vk::AddressCommandFlagsKHR,
         pub marker: u32,
+        pub _marker: ::core::marker::PhantomData<&'a ()>,
     }
     ///Provided by [`khr::device_address_commands`](crate::khr::device_address_commands)
     impl crate::vk::StructureType {
@@ -587,15 +603,15 @@ pub(crate) mod reexport {
     }
     pub type PFN_vkCmdCopyMemoryKHR = unsafe extern "system" fn(
         command_buffer: crate::vk::CommandBuffer,
-        p_copy_memory_info: *const crate::vk::CopyDeviceMemoryInfoKHR,
+        p_copy_memory_info: *const crate::vk::CopyDeviceMemoryInfoKHR<'_>,
     );
     pub type PFN_vkCmdCopyMemoryToImageKHR = unsafe extern "system" fn(
         command_buffer: crate::vk::CommandBuffer,
-        p_copy_memory_info: *const crate::vk::CopyDeviceMemoryImageInfoKHR,
+        p_copy_memory_info: *const crate::vk::CopyDeviceMemoryImageInfoKHR<'_>,
     );
     pub type PFN_vkCmdCopyImageToMemoryKHR = unsafe extern "system" fn(
         command_buffer: crate::vk::CommandBuffer,
-        p_copy_memory_info: *const crate::vk::CopyDeviceMemoryImageInfoKHR,
+        p_copy_memory_info: *const crate::vk::CopyDeviceMemoryImageInfoKHR<'_>,
     );
     pub type PFN_vkCmdUpdateMemoryKHR = unsafe extern "system" fn(
         command_buffer: crate::vk::CommandBuffer,
@@ -621,80 +637,82 @@ pub(crate) mod reexport {
     );
     pub type PFN_vkCmdBeginConditionalRendering2EXT = unsafe extern "system" fn(
         command_buffer: crate::vk::CommandBuffer,
-        p_conditional_rendering_begin: *const crate::vk::ConditionalRenderingBeginInfo2EXT,
+        p_conditional_rendering_begin: *const crate::vk::ConditionalRenderingBeginInfo2EXT<
+            '_,
+        >,
     );
     pub type PFN_vkCmdBindTransformFeedbackBuffers2EXT = unsafe extern "system" fn(
         command_buffer: crate::vk::CommandBuffer,
         first_binding: u32,
         binding_count: u32,
-        p_binding_infos: *const crate::vk::BindTransformFeedbackBuffer2InfoEXT,
+        p_binding_infos: *const crate::vk::BindTransformFeedbackBuffer2InfoEXT<'_>,
     );
     pub type PFN_vkCmdBeginTransformFeedback2EXT = unsafe extern "system" fn(
         command_buffer: crate::vk::CommandBuffer,
         first_counter_range: u32,
         counter_range_count: u32,
-        p_counter_infos: *const crate::vk::BindTransformFeedbackBuffer2InfoEXT,
+        p_counter_infos: *const crate::vk::BindTransformFeedbackBuffer2InfoEXT<'_>,
     );
     pub type PFN_vkCmdEndTransformFeedback2EXT = unsafe extern "system" fn(
         command_buffer: crate::vk::CommandBuffer,
         first_counter_range: u32,
         counter_range_count: u32,
-        p_counter_infos: *const crate::vk::BindTransformFeedbackBuffer2InfoEXT,
+        p_counter_infos: *const crate::vk::BindTransformFeedbackBuffer2InfoEXT<'_>,
     );
     pub type PFN_vkCmdDrawIndirectByteCount2EXT = unsafe extern "system" fn(
         command_buffer: crate::vk::CommandBuffer,
         instance_count: u32,
         first_instance: u32,
-        p_counter_info: *const crate::vk::BindTransformFeedbackBuffer2InfoEXT,
+        p_counter_info: *const crate::vk::BindTransformFeedbackBuffer2InfoEXT<'_>,
         counter_offset: u32,
         vertex_stride: u32,
     );
     pub type PFN_vkCmdWriteMarkerToMemoryAMD = unsafe extern "system" fn(
         command_buffer: crate::vk::CommandBuffer,
-        p_info: *const crate::vk::MemoryMarkerInfoAMD,
+        p_info: *const crate::vk::MemoryMarkerInfoAMD<'_>,
     );
     pub type PFN_vkCmdBindIndexBuffer3KHR = unsafe extern "system" fn(
         command_buffer: crate::vk::CommandBuffer,
-        p_info: *const crate::vk::BindIndexBuffer3InfoKHR,
+        p_info: *const crate::vk::BindIndexBuffer3InfoKHR<'_>,
     );
     pub type PFN_vkCmdBindVertexBuffers3KHR = unsafe extern "system" fn(
         command_buffer: crate::vk::CommandBuffer,
         first_binding: u32,
         binding_count: u32,
-        p_binding_infos: *const crate::vk::BindVertexBuffer3InfoKHR,
+        p_binding_infos: *const crate::vk::BindVertexBuffer3InfoKHR<'_>,
     );
     pub type PFN_vkCmdDrawIndirect2KHR = unsafe extern "system" fn(
         command_buffer: crate::vk::CommandBuffer,
-        p_info: *const crate::vk::DrawIndirect2InfoKHR,
+        p_info: *const crate::vk::DrawIndirect2InfoKHR<'_>,
     );
     pub type PFN_vkCmdDrawIndexedIndirect2KHR = unsafe extern "system" fn(
         command_buffer: crate::vk::CommandBuffer,
-        p_info: *const crate::vk::DrawIndirect2InfoKHR,
+        p_info: *const crate::vk::DrawIndirect2InfoKHR<'_>,
     );
     pub type PFN_vkCmdDrawIndirectCount2KHR = unsafe extern "system" fn(
         command_buffer: crate::vk::CommandBuffer,
-        p_info: *const crate::vk::DrawIndirectCount2InfoKHR,
+        p_info: *const crate::vk::DrawIndirectCount2InfoKHR<'_>,
     );
     pub type PFN_vkCmdDrawIndexedIndirectCount2KHR = unsafe extern "system" fn(
         command_buffer: crate::vk::CommandBuffer,
-        p_info: *const crate::vk::DrawIndirectCount2InfoKHR,
+        p_info: *const crate::vk::DrawIndirectCount2InfoKHR<'_>,
     );
     pub type PFN_vkCmdDrawMeshTasksIndirect2EXT = unsafe extern "system" fn(
         command_buffer: crate::vk::CommandBuffer,
-        p_info: *const crate::vk::DrawIndirect2InfoKHR,
+        p_info: *const crate::vk::DrawIndirect2InfoKHR<'_>,
     );
     pub type PFN_vkCmdDrawMeshTasksIndirectCount2EXT = unsafe extern "system" fn(
         command_buffer: crate::vk::CommandBuffer,
-        p_info: *const crate::vk::DrawIndirectCount2InfoKHR,
+        p_info: *const crate::vk::DrawIndirectCount2InfoKHR<'_>,
     );
     pub type PFN_vkCmdDispatchIndirect2KHR = unsafe extern "system" fn(
         command_buffer: crate::vk::CommandBuffer,
-        p_info: *const crate::vk::DispatchIndirect2InfoKHR,
+        p_info: *const crate::vk::DispatchIndirect2InfoKHR<'_>,
     );
     pub type PFN_vkCreateAccelerationStructure2KHR = unsafe extern "system" fn(
         device: crate::vk::Device,
-        p_create_info: *const crate::vk::AccelerationStructureCreateInfo2KHR,
-        p_allocator: *const crate::vk::AllocationCallbacks,
+        p_create_info: *const crate::vk::AccelerationStructureCreateInfo2KHR<'_>,
+        p_allocator: *const crate::vk::AllocationCallbacks<'_>,
         p_acceleration_structure: *mut crate::vk::AccelerationStructureKHR,
     ) -> crate::vk::Result;
     pub const KHR_DEVICE_ADDRESS_COMMANDS_SPEC_VERSION: u32 = 1;

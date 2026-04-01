@@ -26,7 +26,7 @@ impl DeviceFn {
                 unsafe extern "system" fn cmd_set_event2_khr(
                     _: crate::vk::CommandBuffer,
                     _: crate::vk::Event,
-                    _: *const crate::vk::DependencyInfo,
+                    _: *const crate::vk::DependencyInfo<'_>,
                 ) {
                     panic!("unable to load vkCmdSetEvent2KHR")
                 }
@@ -57,7 +57,7 @@ impl DeviceFn {
                     _: crate::vk::CommandBuffer,
                     _: u32,
                     _: *const crate::vk::Event,
-                    _: *const crate::vk::DependencyInfo,
+                    _: *const crate::vk::DependencyInfo<'_>,
                 ) {
                     panic!("unable to load vkCmdWaitEvents2KHR")
                 }
@@ -71,7 +71,7 @@ impl DeviceFn {
             cmd_pipeline_barrier2_khr: unsafe {
                 unsafe extern "system" fn cmd_pipeline_barrier2_khr(
                     _: crate::vk::CommandBuffer,
-                    _: *const crate::vk::DependencyInfo,
+                    _: *const crate::vk::DependencyInfo<'_>,
                 ) {
                     panic!("unable to load vkCmdPipelineBarrier2KHR")
                 }
@@ -86,7 +86,7 @@ impl DeviceFn {
                 unsafe extern "system" fn queue_submit2_khr(
                     _: crate::vk::Queue,
                     _: u32,
-                    _: *const crate::vk::SubmitInfo2,
+                    _: *const crate::vk::SubmitInfo2<'_>,
                     _: crate::vk::Fence,
                 ) -> crate::vk::Result {
                     panic!("unable to load vkQueueSubmit2KHR")
@@ -118,14 +118,16 @@ impl DeviceFn {
     }
 }
 pub(crate) mod reexport {
-    pub type MemoryBarrier2KHR = crate::vk::MemoryBarrier2;
-    pub type ImageMemoryBarrier2KHR = crate::vk::ImageMemoryBarrier2;
-    pub type BufferMemoryBarrier2KHR = crate::vk::BufferMemoryBarrier2;
-    pub type DependencyInfoKHR = crate::vk::DependencyInfo;
-    pub type SemaphoreSubmitInfoKHR = crate::vk::SemaphoreSubmitInfo;
-    pub type CommandBufferSubmitInfoKHR = crate::vk::CommandBufferSubmitInfo;
-    pub type SubmitInfo2KHR = crate::vk::SubmitInfo2;
-    pub type PhysicalDeviceSynchronization2FeaturesKHR = crate::vk::PhysicalDeviceSynchronization2Features;
+    pub type MemoryBarrier2KHR<'a> = crate::vk::MemoryBarrier2<'a>;
+    pub type ImageMemoryBarrier2KHR<'a> = crate::vk::ImageMemoryBarrier2<'a>;
+    pub type BufferMemoryBarrier2KHR<'a> = crate::vk::BufferMemoryBarrier2<'a>;
+    pub type DependencyInfoKHR<'a> = crate::vk::DependencyInfo<'a>;
+    pub type SemaphoreSubmitInfoKHR<'a> = crate::vk::SemaphoreSubmitInfo<'a>;
+    pub type CommandBufferSubmitInfoKHR<'a> = crate::vk::CommandBufferSubmitInfo<'a>;
+    pub type SubmitInfo2KHR<'a> = crate::vk::SubmitInfo2<'a>;
+    pub type PhysicalDeviceSynchronization2FeaturesKHR<'a> = crate::vk::PhysicalDeviceSynchronization2Features<
+        'a,
+    >;
     ///Provided by [`khr::synchronization2`](crate::khr::synchronization2)
     impl crate::vk::ImageLayout {
         pub const READ_ONLY_OPTIMAL_KHR: Self = Self::READ_ONLY_OPTIMAL;

@@ -3,24 +3,29 @@
 //![Vulkan Manual Page](https://docs.vulkan.org/refpages/latest/refpages/source/VK_EXT_mutable_descriptor_type.html) · Extension `VK_EXT_mutable_descriptor_type`
 #[repr(C)]
 #[derive(Clone, Copy)]
-pub struct PhysicalDeviceMutableDescriptorTypeFeaturesEXT {
+pub struct PhysicalDeviceMutableDescriptorTypeFeaturesEXT<'a> {
     pub s_type: crate::vk::StructureType,
     pub p_next: *mut core::ffi::c_void,
     pub mutable_descriptor_type: crate::vk::Bool32,
+    pub _marker: ::core::marker::PhantomData<&'a ()>,
 }
 #[repr(C)]
 #[derive(Clone, Copy)]
-pub struct MutableDescriptorTypeListEXT {
+pub struct MutableDescriptorTypeListEXT<'a> {
     pub descriptor_type_count: u32,
     pub p_descriptor_types: *const crate::vk::DescriptorType,
+    pub _marker: ::core::marker::PhantomData<&'a ()>,
 }
 #[repr(C)]
 #[derive(Clone, Copy)]
-pub struct MutableDescriptorTypeCreateInfoEXT {
+pub struct MutableDescriptorTypeCreateInfoEXT<'a> {
     pub s_type: crate::vk::StructureType,
     pub p_next: *const core::ffi::c_void,
     pub mutable_descriptor_type_list_count: u32,
-    pub p_mutable_descriptor_type_lists: *const crate::vk::MutableDescriptorTypeListEXT,
+    pub p_mutable_descriptor_type_lists: *const crate::vk::MutableDescriptorTypeListEXT<
+        'a,
+    >,
+    pub _marker: ::core::marker::PhantomData<&'a ()>,
 }
 ///Provided by [`ext::mutable_descriptor_type`](crate::ext::mutable_descriptor_type)
 impl crate::vk::DescriptorType {

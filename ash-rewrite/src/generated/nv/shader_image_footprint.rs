@@ -3,10 +3,11 @@
 //![Vulkan Manual Page](https://docs.vulkan.org/refpages/latest/refpages/source/VK_NV_shader_image_footprint.html) · Extension `VK_NV_shader_image_footprint`
 #[repr(C)]
 #[derive(Clone, Copy)]
-pub struct PhysicalDeviceShaderImageFootprintFeaturesNV {
+pub struct PhysicalDeviceShaderImageFootprintFeaturesNV<'a> {
     pub s_type: crate::vk::StructureType,
     pub p_next: *mut core::ffi::c_void,
     pub image_footprint: crate::vk::Bool32,
+    pub _marker: ::core::marker::PhantomData<&'a ()>,
 }
 ///Provided by [`nv::shader_image_footprint`](crate::nv::shader_image_footprint)
 impl crate::vk::StructureType {

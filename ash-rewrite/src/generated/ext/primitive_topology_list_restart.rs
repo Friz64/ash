@@ -3,11 +3,12 @@
 //![Vulkan Manual Page](https://docs.vulkan.org/refpages/latest/refpages/source/VK_EXT_primitive_topology_list_restart.html) · Extension `VK_EXT_primitive_topology_list_restart`
 #[repr(C)]
 #[derive(Clone, Copy)]
-pub struct PhysicalDevicePrimitiveTopologyListRestartFeaturesEXT {
+pub struct PhysicalDevicePrimitiveTopologyListRestartFeaturesEXT<'a> {
     pub s_type: crate::vk::StructureType,
     pub p_next: *mut core::ffi::c_void,
     pub primitive_topology_list_restart: crate::vk::Bool32,
     pub primitive_topology_patch_list_restart: crate::vk::Bool32,
+    pub _marker: ::core::marker::PhantomData<&'a ()>,
 }
 ///Provided by [`ext::primitive_topology_list_restart`](crate::ext::primitive_topology_list_restart)
 impl crate::vk::StructureType {

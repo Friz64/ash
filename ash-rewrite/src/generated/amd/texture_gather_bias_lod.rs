@@ -3,10 +3,11 @@
 //![Vulkan Manual Page](https://docs.vulkan.org/refpages/latest/refpages/source/VK_AMD_texture_gather_bias_lod.html) · Extension `VK_AMD_texture_gather_bias_lod`
 #[repr(C)]
 #[derive(Clone, Copy)]
-pub struct TextureLODGatherFormatPropertiesAMD {
+pub struct TextureLODGatherFormatPropertiesAMD<'a> {
     pub s_type: crate::vk::StructureType,
     pub p_next: *mut core::ffi::c_void,
     pub supports_texture_gather_lod_bias_amd: crate::vk::Bool32,
+    pub _marker: ::core::marker::PhantomData<&'a ()>,
 }
 ///Provided by [`amd::texture_gather_bias_lod`](crate::amd::texture_gather_bias_lod)
 impl crate::vk::StructureType {

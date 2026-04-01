@@ -21,7 +21,7 @@ impl DeviceFn {
             cmd_begin_conditional_rendering_ext: unsafe {
                 unsafe extern "system" fn cmd_begin_conditional_rendering_ext(
                     _: crate::vk::CommandBuffer,
-                    _: *const crate::vk::ConditionalRenderingBeginInfoEXT,
+                    _: *const crate::vk::ConditionalRenderingBeginInfoEXT<'_>,
                 ) {
                     panic!("unable to load vkCmdBeginConditionalRenderingEXT")
                 }
@@ -51,27 +51,30 @@ impl DeviceFn {
 pub(crate) mod reexport {
     #[repr(C)]
     #[derive(Clone, Copy)]
-    pub struct ConditionalRenderingBeginInfoEXT {
+    pub struct ConditionalRenderingBeginInfoEXT<'a> {
         pub s_type: crate::vk::StructureType,
         pub p_next: *const core::ffi::c_void,
         pub buffer: crate::vk::Buffer,
         pub offset: crate::vk::DeviceSize,
         pub flags: crate::vk::ConditionalRenderingFlagsEXT,
+        pub _marker: ::core::marker::PhantomData<&'a ()>,
     }
     #[repr(C)]
     #[derive(Clone, Copy)]
-    pub struct CommandBufferInheritanceConditionalRenderingInfoEXT {
+    pub struct CommandBufferInheritanceConditionalRenderingInfoEXT<'a> {
         pub s_type: crate::vk::StructureType,
         pub p_next: *const core::ffi::c_void,
         pub conditional_rendering_enable: crate::vk::Bool32,
+        pub _marker: ::core::marker::PhantomData<&'a ()>,
     }
     #[repr(C)]
     #[derive(Clone, Copy)]
-    pub struct PhysicalDeviceConditionalRenderingFeaturesEXT {
+    pub struct PhysicalDeviceConditionalRenderingFeaturesEXT<'a> {
         pub s_type: crate::vk::StructureType,
         pub p_next: *mut core::ffi::c_void,
         pub conditional_rendering: crate::vk::Bool32,
         pub inherited_conditional_rendering: crate::vk::Bool32,
+        pub _marker: ::core::marker::PhantomData<&'a ()>,
     }
     ///Provided by [`ext::conditional_rendering`](crate::ext::conditional_rendering)
     impl crate::vk::StructureType {
@@ -109,7 +112,9 @@ pub(crate) mod reexport {
     }
     pub type PFN_vkCmdBeginConditionalRenderingEXT = unsafe extern "system" fn(
         command_buffer: crate::vk::CommandBuffer,
-        p_conditional_rendering_begin: *const crate::vk::ConditionalRenderingBeginInfoEXT,
+        p_conditional_rendering_begin: *const crate::vk::ConditionalRenderingBeginInfoEXT<
+            '_,
+        >,
     );
     pub type PFN_vkCmdEndConditionalRenderingEXT = unsafe extern "system" fn(
         command_buffer: crate::vk::CommandBuffer,

@@ -22,7 +22,7 @@ impl DeviceFn {
             get_buffer_opaque_capture_address_khr: unsafe {
                 unsafe extern "system" fn get_buffer_opaque_capture_address_khr(
                     _: crate::vk::Device,
-                    _: *const crate::vk::BufferDeviceAddressInfo,
+                    _: *const crate::vk::BufferDeviceAddressInfo<'_>,
                 ) -> u64 {
                     panic!("unable to load vkGetBufferOpaqueCaptureAddressKHR")
                 }
@@ -36,7 +36,7 @@ impl DeviceFn {
             get_buffer_device_address_khr: unsafe {
                 unsafe extern "system" fn get_buffer_device_address_khr(
                     _: crate::vk::Device,
-                    _: *const crate::vk::BufferDeviceAddressInfo,
+                    _: *const crate::vk::BufferDeviceAddressInfo<'_>,
                 ) -> crate::vk::DeviceAddress {
                     panic!("unable to load vkGetBufferDeviceAddressKHR")
                 }
@@ -50,7 +50,7 @@ impl DeviceFn {
             get_device_memory_opaque_capture_address_khr: unsafe {
                 unsafe extern "system" fn get_device_memory_opaque_capture_address_khr(
                     _: crate::vk::Device,
-                    _: *const crate::vk::DeviceMemoryOpaqueCaptureAddressInfo,
+                    _: *const crate::vk::DeviceMemoryOpaqueCaptureAddressInfo<'_>,
                 ) -> u64 {
                     panic!("unable to load vkGetDeviceMemoryOpaqueCaptureAddressKHR")
                 }
@@ -65,11 +65,19 @@ impl DeviceFn {
     }
 }
 pub(crate) mod reexport {
-    pub type PhysicalDeviceBufferDeviceAddressFeaturesKHR = crate::vk::PhysicalDeviceBufferDeviceAddressFeatures;
-    pub type BufferDeviceAddressInfoKHR = crate::vk::BufferDeviceAddressInfo;
-    pub type BufferOpaqueCaptureAddressCreateInfoKHR = crate::vk::BufferOpaqueCaptureAddressCreateInfo;
-    pub type MemoryOpaqueCaptureAddressAllocateInfoKHR = crate::vk::MemoryOpaqueCaptureAddressAllocateInfo;
-    pub type DeviceMemoryOpaqueCaptureAddressInfoKHR = crate::vk::DeviceMemoryOpaqueCaptureAddressInfo;
+    pub type PhysicalDeviceBufferDeviceAddressFeaturesKHR<'a> = crate::vk::PhysicalDeviceBufferDeviceAddressFeatures<
+        'a,
+    >;
+    pub type BufferDeviceAddressInfoKHR<'a> = crate::vk::BufferDeviceAddressInfo<'a>;
+    pub type BufferOpaqueCaptureAddressCreateInfoKHR<'a> = crate::vk::BufferOpaqueCaptureAddressCreateInfo<
+        'a,
+    >;
+    pub type MemoryOpaqueCaptureAddressAllocateInfoKHR<'a> = crate::vk::MemoryOpaqueCaptureAddressAllocateInfo<
+        'a,
+    >;
+    pub type DeviceMemoryOpaqueCaptureAddressInfoKHR<'a> = crate::vk::DeviceMemoryOpaqueCaptureAddressInfo<
+        'a,
+    >;
     ///Provided by [`khr::buffer_device_address`](crate::khr::buffer_device_address)
     impl crate::vk::StructureType {
         pub const PHYSICAL_DEVICE_BUFFER_DEVICE_ADDRESS_FEATURES_KHR: Self = Self::PHYSICAL_DEVICE_BUFFER_DEVICE_ADDRESS_FEATURES;

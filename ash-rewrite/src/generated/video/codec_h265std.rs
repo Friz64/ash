@@ -52,7 +52,7 @@ pub struct H265HrdFlags {
 }
 #[repr(C)]
 #[derive(Clone, Copy)]
-pub struct H265HrdParameters {
+pub struct H265HrdParameters<'a> {
     pub flags: crate::vk::H265HrdFlags,
     pub tick_divisor_minus2: u8,
     pub du_cpb_removal_delay_increment_length_minus1: u8,
@@ -69,6 +69,7 @@ pub struct H265HrdParameters {
     pub reserved: [u16; 3 as _],
     pub p_sub_layer_hrd_parameters_nal: *const crate::vk::H265SubLayerHrdParameters,
     pub p_sub_layer_hrd_parameters_vcl: *const crate::vk::H265SubLayerHrdParameters,
+    pub _marker: ::core::marker::PhantomData<&'a ()>,
 }
 #[repr(C)]
 #[derive(Clone, Copy)]
@@ -81,7 +82,7 @@ pub struct H265VpsFlags {
 }
 #[repr(C)]
 #[derive(Clone, Copy)]
-pub struct H265VideoParameterSet {
+pub struct H265VideoParameterSet<'a> {
     pub flags: crate::vk::H265VpsFlags,
     pub vps_video_parameter_set_id: u8,
     pub vps_max_sub_layers_minus1: u8,
@@ -92,8 +93,9 @@ pub struct H265VideoParameterSet {
     pub vps_num_ticks_poc_diff_one_minus1: u32,
     pub reserved3: u32,
     pub p_dec_pic_buf_mgr: *const crate::vk::H265DecPicBufMgr,
-    pub p_hrd_parameters: *const crate::vk::H265HrdParameters,
+    pub p_hrd_parameters: *const crate::vk::H265HrdParameters<'a>,
     pub p_profile_tier_level: *const crate::vk::H265ProfileTierLevel,
+    pub _marker: ::core::marker::PhantomData<&'a ()>,
 }
 #[repr(C)]
 #[derive(Clone, Copy)]
@@ -168,7 +170,7 @@ pub struct H265SpsVuiFlags {
 }
 #[repr(C)]
 #[derive(Clone, Copy)]
-pub struct H265SequenceParameterSetVui {
+pub struct H265SequenceParameterSetVui<'a> {
     pub flags: crate::vk::H265SpsVuiFlags,
     pub aspect_ratio_idc: crate::vk::H265AspectRatioIdc,
     pub sar_width: u16,
@@ -194,7 +196,8 @@ pub struct H265SequenceParameterSetVui {
     pub max_bits_per_min_cu_denom: u8,
     pub log2_max_mv_length_horizontal: u8,
     pub log2_max_mv_length_vertical: u8,
-    pub p_hrd_parameters: *const crate::vk::H265HrdParameters,
+    pub p_hrd_parameters: *const crate::vk::H265HrdParameters<'a>,
+    pub _marker: ::core::marker::PhantomData<&'a ()>,
 }
 #[repr(C)]
 #[derive(Clone, Copy)]
@@ -239,7 +242,7 @@ pub struct H265SpsFlags {
 }
 #[repr(C)]
 #[derive(Clone, Copy)]
-pub struct H265SequenceParameterSet {
+pub struct H265SequenceParameterSet<'a> {
     pub flags: crate::vk::H265SpsFlags,
     pub chroma_format_idc: crate::vk::H265ChromaFormatIdc,
     pub pic_width_in_luma_samples: u32,
@@ -277,8 +280,9 @@ pub struct H265SequenceParameterSet {
     pub p_scaling_lists: *const crate::vk::H265ScalingLists,
     pub p_short_term_ref_pic_set: *const crate::vk::H265ShortTermRefPicSet,
     pub p_long_term_ref_pics_sps: *const crate::vk::H265LongTermRefPicsSps,
-    pub p_sequence_parameter_set_vui: *const crate::vk::H265SequenceParameterSetVui,
+    pub p_sequence_parameter_set_vui: *const crate::vk::H265SequenceParameterSetVui<'a>,
     pub p_predictor_palette_entries: *const crate::vk::H265PredictorPaletteEntries,
+    pub _marker: ::core::marker::PhantomData<&'a ()>,
 }
 #[repr(C)]
 #[derive(Clone, Copy)]
@@ -318,7 +322,7 @@ pub struct H265PpsFlags {
 }
 #[repr(C)]
 #[derive(Clone, Copy)]
-pub struct H265PictureParameterSet {
+pub struct H265PictureParameterSet<'a> {
     pub flags: crate::vk::H265PpsFlags,
     pub pps_pic_parameter_set_id: u8,
     pub pps_seq_parameter_set_id: u8,
@@ -359,9 +363,11 @@ pub struct H265PictureParameterSet {
     pub reserved3: u32,
     pub p_scaling_lists: *const crate::vk::H265ScalingLists,
     pub p_predictor_palette_entries: *const crate::vk::H265PredictorPaletteEntries,
+    pub _marker: ::core::marker::PhantomData<&'a ()>,
 }
 #[repr(transparent)]
 #[derive(Clone, Copy, PartialEq, Eq, PartialOrd, Ord, Hash, Default)]
+#[derive(Debug)]
 pub struct H265ChromaFormatIdc(pub(crate) i32);
 ///Provided by [`video::codec_h265std`](crate::video::codec_h265std)
 impl H265ChromaFormatIdc {
@@ -373,6 +379,7 @@ impl H265ChromaFormatIdc {
 }
 #[repr(transparent)]
 #[derive(Clone, Copy, PartialEq, Eq, PartialOrd, Ord, Hash, Default)]
+#[derive(Debug)]
 pub struct H265ProfileIdc(pub(crate) i32);
 ///Provided by [`video::codec_h265std`](crate::video::codec_h265std)
 impl H265ProfileIdc {
@@ -385,6 +392,7 @@ impl H265ProfileIdc {
 }
 #[repr(transparent)]
 #[derive(Clone, Copy, PartialEq, Eq, PartialOrd, Ord, Hash, Default)]
+#[derive(Debug)]
 pub struct H265LevelIdc(pub(crate) i32);
 ///Provided by [`video::codec_h265std`](crate::video::codec_h265std)
 impl H265LevelIdc {
@@ -405,6 +413,7 @@ impl H265LevelIdc {
 }
 #[repr(transparent)]
 #[derive(Clone, Copy, PartialEq, Eq, PartialOrd, Ord, Hash, Default)]
+#[derive(Debug)]
 pub struct H265SliceType(pub(crate) i32);
 ///Provided by [`video::codec_h265std`](crate::video::codec_h265std)
 impl H265SliceType {
@@ -415,6 +424,7 @@ impl H265SliceType {
 }
 #[repr(transparent)]
 #[derive(Clone, Copy, PartialEq, Eq, PartialOrd, Ord, Hash, Default)]
+#[derive(Debug)]
 pub struct H265PictureType(pub(crate) i32);
 ///Provided by [`video::codec_h265std`](crate::video::codec_h265std)
 impl H265PictureType {
@@ -426,6 +436,7 @@ impl H265PictureType {
 }
 #[repr(transparent)]
 #[derive(Clone, Copy, PartialEq, Eq, PartialOrd, Ord, Hash, Default)]
+#[derive(Debug)]
 pub struct H265AspectRatioIdc(pub(crate) i32);
 ///Provided by [`video::codec_h265std`](crate::video::codec_h265std)
 impl H265AspectRatioIdc {

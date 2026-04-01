@@ -3,11 +3,12 @@
 //![Vulkan Manual Page](https://docs.vulkan.org/refpages/latest/refpages/source/VK_EXT_shader_float8.html) · Extension `VK_EXT_shader_float8`
 #[repr(C)]
 #[derive(Clone, Copy)]
-pub struct PhysicalDeviceShaderFloat8FeaturesEXT {
+pub struct PhysicalDeviceShaderFloat8FeaturesEXT<'a> {
     pub s_type: crate::vk::StructureType,
     pub p_next: *mut core::ffi::c_void,
     pub shader_float8: crate::vk::Bool32,
     pub shader_float8_cooperative_matrix: crate::vk::Bool32,
+    pub _marker: ::core::marker::PhantomData<&'a ()>,
 }
 ///Provided by [`ext::shader_float8`](crate::ext::shader_float8)
 impl crate::vk::StructureType {

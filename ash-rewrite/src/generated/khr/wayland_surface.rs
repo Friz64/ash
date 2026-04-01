@@ -21,8 +21,8 @@ impl InstanceFn {
             create_wayland_surface_khr: unsafe {
                 unsafe extern "system" fn create_wayland_surface_khr(
                     _: crate::vk::Instance,
-                    _: *const crate::vk::WaylandSurfaceCreateInfoKHR,
-                    _: *const crate::vk::AllocationCallbacks,
+                    _: *const crate::vk::WaylandSurfaceCreateInfoKHR<'_>,
+                    _: *const crate::vk::AllocationCallbacks<'_>,
                     _: *mut crate::vk::SurfaceKHR,
                 ) -> crate::vk::Result {
                     panic!("unable to load vkCreateWaylandSurfaceKHR")
@@ -57,12 +57,13 @@ impl InstanceFn {
 pub(crate) mod reexport {
     #[repr(C)]
     #[derive(Clone, Copy)]
-    pub struct WaylandSurfaceCreateInfoKHR {
+    pub struct WaylandSurfaceCreateInfoKHR<'a> {
         pub s_type: crate::vk::StructureType,
         pub p_next: *const core::ffi::c_void,
         pub flags: crate::vk::WaylandSurfaceCreateFlagsKHR,
         pub display: *mut crate::platform_types::wl_display,
         pub surface: *mut crate::platform_types::wl_surface,
+        pub _marker: ::core::marker::PhantomData<&'a ()>,
     }
     ///Provided by [`khr::wayland_surface`](crate::khr::wayland_surface)
     impl crate::vk::StructureType {
@@ -74,8 +75,8 @@ pub(crate) mod reexport {
     }
     pub type PFN_vkCreateWaylandSurfaceKHR = unsafe extern "system" fn(
         instance: crate::vk::Instance,
-        p_create_info: *const crate::vk::WaylandSurfaceCreateInfoKHR,
-        p_allocator: *const crate::vk::AllocationCallbacks,
+        p_create_info: *const crate::vk::WaylandSurfaceCreateInfoKHR<'_>,
+        p_allocator: *const crate::vk::AllocationCallbacks<'_>,
         p_surface: *mut crate::vk::SurfaceKHR,
     ) -> crate::vk::Result;
     pub type PFN_vkGetPhysicalDeviceWaylandPresentationSupportKHR = unsafe extern "system" fn(

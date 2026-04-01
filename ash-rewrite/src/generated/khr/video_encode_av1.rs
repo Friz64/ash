@@ -3,7 +3,7 @@
 //![Vulkan Manual Page](https://docs.vulkan.org/refpages/latest/refpages/source/VK_KHR_video_encode_av1.html) · Extension `VK_KHR_video_encode_av1`
 #[repr(C)]
 #[derive(Clone, Copy)]
-pub struct VideoEncodeAV1CapabilitiesKHR {
+pub struct VideoEncodeAV1CapabilitiesKHR<'a> {
     pub s_type: crate::vk::StructureType,
     pub p_next: *mut core::ffi::c_void,
     pub flags: crate::vk::VideoEncodeAV1CapabilityFlagsKHR,
@@ -30,10 +30,11 @@ pub struct VideoEncodeAV1CapabilitiesKHR {
     pub prefers_gop_remaining_frames: crate::vk::Bool32,
     pub requires_gop_remaining_frames: crate::vk::Bool32,
     pub std_syntax_flags: crate::vk::VideoEncodeAV1StdFlagsKHR,
+    pub _marker: ::core::marker::PhantomData<&'a ()>,
 }
 #[repr(C)]
 #[derive(Clone, Copy)]
-pub struct VideoEncodeAV1QualityLevelPropertiesKHR {
+pub struct VideoEncodeAV1QualityLevelPropertiesKHR<'a> {
     pub s_type: crate::vk::StructureType,
     pub p_next: *mut core::ffi::c_void,
     pub preferred_rate_control_flags: crate::vk::VideoEncodeAV1RateControlFlagsKHR,
@@ -51,63 +52,70 @@ pub struct VideoEncodeAV1QualityLevelPropertiesKHR {
     pub preferred_max_bidirectional_compound_group1_reference_count: u32,
     pub preferred_max_bidirectional_compound_group2_reference_count: u32,
     pub preferred_bidirectional_compound_reference_name_mask: u32,
+    pub _marker: ::core::marker::PhantomData<&'a ()>,
 }
 #[repr(C)]
 #[derive(Clone, Copy)]
-pub struct PhysicalDeviceVideoEncodeAV1FeaturesKHR {
+pub struct PhysicalDeviceVideoEncodeAV1FeaturesKHR<'a> {
     pub s_type: crate::vk::StructureType,
     pub p_next: *mut core::ffi::c_void,
     pub video_encode_av1: crate::vk::Bool32,
+    pub _marker: ::core::marker::PhantomData<&'a ()>,
 }
 #[repr(C)]
 #[derive(Clone, Copy)]
-pub struct VideoEncodeAV1SessionCreateInfoKHR {
+pub struct VideoEncodeAV1SessionCreateInfoKHR<'a> {
     pub s_type: crate::vk::StructureType,
     pub p_next: *const core::ffi::c_void,
     pub use_max_level: crate::vk::Bool32,
     pub max_level: crate::vk::AV1Level,
+    pub _marker: ::core::marker::PhantomData<&'a ()>,
 }
 #[repr(C)]
 #[derive(Clone, Copy)]
-pub struct VideoEncodeAV1SessionParametersCreateInfoKHR {
+pub struct VideoEncodeAV1SessionParametersCreateInfoKHR<'a> {
     pub s_type: crate::vk::StructureType,
     pub p_next: *const core::ffi::c_void,
-    pub p_std_sequence_header: *const crate::vk::AV1SequenceHeader,
+    pub p_std_sequence_header: *const crate::vk::AV1SequenceHeader<'a>,
     pub p_std_decoder_model_info: *const crate::vk::EncodeAV1DecoderModelInfo,
     pub std_operating_point_count: u32,
     pub p_std_operating_points: *const crate::vk::EncodeAV1OperatingPointInfo,
+    pub _marker: ::core::marker::PhantomData<&'a ()>,
 }
 #[repr(C)]
 #[derive(Clone, Copy)]
-pub struct VideoEncodeAV1DpbSlotInfoKHR {
+pub struct VideoEncodeAV1DpbSlotInfoKHR<'a> {
     pub s_type: crate::vk::StructureType,
     pub p_next: *const core::ffi::c_void,
-    pub p_std_reference_info: *const crate::vk::EncodeAV1ReferenceInfo,
+    pub p_std_reference_info: *const crate::vk::EncodeAV1ReferenceInfo<'a>,
+    pub _marker: ::core::marker::PhantomData<&'a ()>,
 }
 #[repr(C)]
 #[derive(Clone, Copy)]
-pub struct VideoEncodeAV1PictureInfoKHR {
+pub struct VideoEncodeAV1PictureInfoKHR<'a> {
     pub s_type: crate::vk::StructureType,
     pub p_next: *const core::ffi::c_void,
     pub prediction_mode: crate::vk::VideoEncodeAV1PredictionModeKHR,
     pub rate_control_group: crate::vk::VideoEncodeAV1RateControlGroupKHR,
     pub constant_q_index: u32,
-    pub p_std_picture_info: *const crate::vk::EncodeAV1PictureInfo,
+    pub p_std_picture_info: *const crate::vk::EncodeAV1PictureInfo<'a>,
     pub reference_name_slot_indices: [i32; crate::vk::MAX_VIDEO_AV1_REFERENCES_PER_FRAME_KHR
         as _],
     pub primary_reference_cdf_only: crate::vk::Bool32,
     pub generate_obu_extension_header: crate::vk::Bool32,
+    pub _marker: ::core::marker::PhantomData<&'a ()>,
 }
 #[repr(C)]
 #[derive(Clone, Copy)]
-pub struct VideoEncodeAV1ProfileInfoKHR {
+pub struct VideoEncodeAV1ProfileInfoKHR<'a> {
     pub s_type: crate::vk::StructureType,
     pub p_next: *const core::ffi::c_void,
     pub std_profile: crate::vk::AV1Profile,
+    pub _marker: ::core::marker::PhantomData<&'a ()>,
 }
 #[repr(C)]
 #[derive(Clone, Copy)]
-pub struct VideoEncodeAV1RateControlInfoKHR {
+pub struct VideoEncodeAV1RateControlInfoKHR<'a> {
     pub s_type: crate::vk::StructureType,
     pub p_next: *const core::ffi::c_void,
     pub flags: crate::vk::VideoEncodeAV1RateControlFlagsKHR,
@@ -115,6 +123,7 @@ pub struct VideoEncodeAV1RateControlInfoKHR {
     pub key_frame_period: u32,
     pub consecutive_bipredictive_frame_count: u32,
     pub temporal_layer_count: u32,
+    pub _marker: ::core::marker::PhantomData<&'a ()>,
 }
 #[repr(C)]
 #[derive(Clone, Copy)]
@@ -132,17 +141,18 @@ pub struct VideoEncodeAV1FrameSizeKHR {
 }
 #[repr(C)]
 #[derive(Clone, Copy)]
-pub struct VideoEncodeAV1GopRemainingFrameInfoKHR {
+pub struct VideoEncodeAV1GopRemainingFrameInfoKHR<'a> {
     pub s_type: crate::vk::StructureType,
     pub p_next: *const core::ffi::c_void,
     pub use_gop_remaining_frames: crate::vk::Bool32,
     pub gop_remaining_intra: u32,
     pub gop_remaining_predictive: u32,
     pub gop_remaining_bipredictive: u32,
+    pub _marker: ::core::marker::PhantomData<&'a ()>,
 }
 #[repr(C)]
 #[derive(Clone, Copy)]
-pub struct VideoEncodeAV1RateControlLayerInfoKHR {
+pub struct VideoEncodeAV1RateControlLayerInfoKHR<'a> {
     pub s_type: crate::vk::StructureType,
     pub p_next: *const core::ffi::c_void,
     pub use_min_q_index: crate::vk::Bool32,
@@ -151,6 +161,7 @@ pub struct VideoEncodeAV1RateControlLayerInfoKHR {
     pub max_q_index: crate::vk::VideoEncodeAV1QIndexKHR,
     pub use_max_frame_size: crate::vk::Bool32,
     pub max_frame_size: crate::vk::VideoEncodeAV1FrameSizeKHR,
+    pub _marker: ::core::marker::PhantomData<&'a ()>,
 }
 ///Provided by [`khr::video_encode_av1`](crate::khr::video_encode_av1)
 impl crate::vk::StructureType {
@@ -170,6 +181,7 @@ impl crate::vk::StructureType {
 }
 #[repr(transparent)]
 #[derive(Clone, Copy, PartialEq, Eq, PartialOrd, Ord, Hash, Default)]
+#[derive(Debug)]
 pub struct VideoEncodeAV1PredictionModeKHR(pub(crate) i32);
 ///Provided by [`khr::video_encode_av1`](crate::khr::video_encode_av1)
 impl VideoEncodeAV1PredictionModeKHR {
@@ -180,6 +192,7 @@ impl VideoEncodeAV1PredictionModeKHR {
 }
 #[repr(transparent)]
 #[derive(Clone, Copy, PartialEq, Eq, PartialOrd, Ord, Hash, Default)]
+#[derive(Debug)]
 pub struct VideoEncodeAV1RateControlGroupKHR(pub(crate) i32);
 ///Provided by [`khr::video_encode_av1`](crate::khr::video_encode_av1)
 impl VideoEncodeAV1RateControlGroupKHR {

@@ -3,25 +3,28 @@
 //![Vulkan Manual Page](https://docs.vulkan.org/refpages/latest/refpages/source/VK_QCOM_image_processing2.html) · Extension `VK_QCOM_image_processing2`
 #[repr(C)]
 #[derive(Clone, Copy)]
-pub struct PhysicalDeviceImageProcessing2FeaturesQCOM {
+pub struct PhysicalDeviceImageProcessing2FeaturesQCOM<'a> {
     pub s_type: crate::vk::StructureType,
     pub p_next: *mut core::ffi::c_void,
     pub texture_block_match2: crate::vk::Bool32,
+    pub _marker: ::core::marker::PhantomData<&'a ()>,
 }
 #[repr(C)]
 #[derive(Clone, Copy)]
-pub struct PhysicalDeviceImageProcessing2PropertiesQCOM {
+pub struct PhysicalDeviceImageProcessing2PropertiesQCOM<'a> {
     pub s_type: crate::vk::StructureType,
     pub p_next: *mut core::ffi::c_void,
     pub max_block_match_window: crate::vk::Extent2D,
+    pub _marker: ::core::marker::PhantomData<&'a ()>,
 }
 #[repr(C)]
 #[derive(Clone, Copy)]
-pub struct SamplerBlockMatchWindowCreateInfoQCOM {
+pub struct SamplerBlockMatchWindowCreateInfoQCOM<'a> {
     pub s_type: crate::vk::StructureType,
     pub p_next: *const core::ffi::c_void,
     pub window_extent: crate::vk::Extent2D,
     pub window_compare_mode: crate::vk::BlockMatchWindowCompareModeQCOM,
+    pub _marker: ::core::marker::PhantomData<&'a ()>,
 }
 ///Provided by [`qcom::image_processing2`](crate::qcom::image_processing2)
 impl crate::vk::StructureType {
@@ -33,6 +36,7 @@ impl crate::vk::StructureType {
 }
 #[repr(transparent)]
 #[derive(Clone, Copy, PartialEq, Eq, PartialOrd, Ord, Hash, Default)]
+#[derive(Debug)]
 pub struct BlockMatchWindowCompareModeQCOM(pub(crate) i32);
 ///Provided by [`qcom::image_processing2`](crate::qcom::image_processing2)
 impl BlockMatchWindowCompareModeQCOM {

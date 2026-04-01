@@ -20,8 +20,8 @@ impl InstanceFn {
             get_physical_device_external_fence_properties_khr: unsafe {
                 unsafe extern "system" fn get_physical_device_external_fence_properties_khr(
                     _: crate::vk::PhysicalDevice,
-                    _: *const crate::vk::PhysicalDeviceExternalFenceInfo,
-                    _: *mut crate::vk::ExternalFenceProperties,
+                    _: *const crate::vk::PhysicalDeviceExternalFenceInfo<'_>,
+                    _: *mut crate::vk::ExternalFenceProperties<'_>,
                 ) {
                     panic!(
                         "unable to load vkGetPhysicalDeviceExternalFencePropertiesKHR"
@@ -38,8 +38,10 @@ impl InstanceFn {
     }
 }
 pub(crate) mod reexport {
-    pub type PhysicalDeviceExternalFenceInfoKHR = crate::vk::PhysicalDeviceExternalFenceInfo;
-    pub type ExternalFencePropertiesKHR = crate::vk::ExternalFenceProperties;
+    pub type PhysicalDeviceExternalFenceInfoKHR<'a> = crate::vk::PhysicalDeviceExternalFenceInfo<
+        'a,
+    >;
+    pub type ExternalFencePropertiesKHR<'a> = crate::vk::ExternalFenceProperties<'a>;
     ///Provided by [`khr::external_fence_capabilities`](crate::khr::external_fence_capabilities)
     impl crate::vk::StructureType {
         pub const PHYSICAL_DEVICE_EXTERNAL_FENCE_INFO_KHR: Self = Self::PHYSICAL_DEVICE_EXTERNAL_FENCE_INFO;

@@ -24,8 +24,8 @@ impl DeviceFn {
             create_cu_module_nvx: unsafe {
                 unsafe extern "system" fn create_cu_module_nvx(
                     _: crate::vk::Device,
-                    _: *const crate::vk::CuModuleCreateInfoNVX,
-                    _: *const crate::vk::AllocationCallbacks,
+                    _: *const crate::vk::CuModuleCreateInfoNVX<'_>,
+                    _: *const crate::vk::AllocationCallbacks<'_>,
                     _: *mut crate::vk::CuModuleNVX,
                 ) -> crate::vk::Result {
                     panic!("unable to load vkCreateCuModuleNVX")
@@ -40,8 +40,8 @@ impl DeviceFn {
             create_cu_function_nvx: unsafe {
                 unsafe extern "system" fn create_cu_function_nvx(
                     _: crate::vk::Device,
-                    _: *const crate::vk::CuFunctionCreateInfoNVX,
-                    _: *const crate::vk::AllocationCallbacks,
+                    _: *const crate::vk::CuFunctionCreateInfoNVX<'_>,
+                    _: *const crate::vk::AllocationCallbacks<'_>,
                     _: *mut crate::vk::CuFunctionNVX,
                 ) -> crate::vk::Result {
                     panic!("unable to load vkCreateCuFunctionNVX")
@@ -57,7 +57,7 @@ impl DeviceFn {
                 unsafe extern "system" fn destroy_cu_module_nvx(
                     _: crate::vk::Device,
                     _: crate::vk::CuModuleNVX,
-                    _: *const crate::vk::AllocationCallbacks,
+                    _: *const crate::vk::AllocationCallbacks<'_>,
                 ) {
                     panic!("unable to load vkDestroyCuModuleNVX")
                 }
@@ -72,7 +72,7 @@ impl DeviceFn {
                 unsafe extern "system" fn destroy_cu_function_nvx(
                     _: crate::vk::Device,
                     _: crate::vk::CuFunctionNVX,
-                    _: *const crate::vk::AllocationCallbacks,
+                    _: *const crate::vk::AllocationCallbacks<'_>,
                 ) {
                     panic!("unable to load vkDestroyCuFunctionNVX")
                 }
@@ -86,7 +86,7 @@ impl DeviceFn {
             cmd_cu_launch_kernel_nvx: unsafe {
                 unsafe extern "system" fn cmd_cu_launch_kernel_nvx(
                     _: crate::vk::CommandBuffer,
-                    _: *const crate::vk::CuLaunchInfoNVX,
+                    _: *const crate::vk::CuLaunchInfoNVX<'_>,
                 ) {
                     panic!("unable to load vkCmdCuLaunchKernelNVX")
                 }
@@ -103,30 +103,33 @@ impl DeviceFn {
 pub(crate) mod reexport {
     #[repr(C)]
     #[derive(Clone, Copy)]
-    pub struct CuModuleCreateInfoNVX {
+    pub struct CuModuleCreateInfoNVX<'a> {
         pub s_type: crate::vk::StructureType,
         pub p_next: *const core::ffi::c_void,
         pub data_size: usize,
         pub p_data: *const core::ffi::c_void,
+        pub _marker: ::core::marker::PhantomData<&'a ()>,
     }
     #[repr(C)]
     #[derive(Clone, Copy)]
-    pub struct CuModuleTexturingModeCreateInfoNVX {
+    pub struct CuModuleTexturingModeCreateInfoNVX<'a> {
         pub s_type: crate::vk::StructureType,
         pub p_next: *const core::ffi::c_void,
         pub use64bit_texturing: crate::vk::Bool32,
+        pub _marker: ::core::marker::PhantomData<&'a ()>,
     }
     #[repr(C)]
     #[derive(Clone, Copy)]
-    pub struct CuFunctionCreateInfoNVX {
+    pub struct CuFunctionCreateInfoNVX<'a> {
         pub s_type: crate::vk::StructureType,
         pub p_next: *const core::ffi::c_void,
         pub module: crate::vk::CuModuleNVX,
         pub p_name: *const core::ffi::c_char,
+        pub _marker: ::core::marker::PhantomData<&'a ()>,
     }
     #[repr(C)]
     #[derive(Clone, Copy)]
-    pub struct CuLaunchInfoNVX {
+    pub struct CuLaunchInfoNVX<'a> {
         pub s_type: crate::vk::StructureType,
         pub p_next: *const core::ffi::c_void,
         pub function: crate::vk::CuFunctionNVX,
@@ -141,6 +144,7 @@ pub(crate) mod reexport {
         pub p_params: *const *const core::ffi::c_void,
         pub extra_count: usize,
         pub p_extras: *const *const core::ffi::c_void,
+        pub _marker: ::core::marker::PhantomData<&'a ()>,
     }
     ///Provided by [`nvx::binary_import`](crate::nvx::binary_import)
     impl crate::vk::StructureType {
@@ -215,29 +219,29 @@ pub(crate) mod reexport {
     }
     pub type PFN_vkCreateCuModuleNVX = unsafe extern "system" fn(
         device: crate::vk::Device,
-        p_create_info: *const crate::vk::CuModuleCreateInfoNVX,
-        p_allocator: *const crate::vk::AllocationCallbacks,
+        p_create_info: *const crate::vk::CuModuleCreateInfoNVX<'_>,
+        p_allocator: *const crate::vk::AllocationCallbacks<'_>,
         p_module: *mut crate::vk::CuModuleNVX,
     ) -> crate::vk::Result;
     pub type PFN_vkCreateCuFunctionNVX = unsafe extern "system" fn(
         device: crate::vk::Device,
-        p_create_info: *const crate::vk::CuFunctionCreateInfoNVX,
-        p_allocator: *const crate::vk::AllocationCallbacks,
+        p_create_info: *const crate::vk::CuFunctionCreateInfoNVX<'_>,
+        p_allocator: *const crate::vk::AllocationCallbacks<'_>,
         p_function: *mut crate::vk::CuFunctionNVX,
     ) -> crate::vk::Result;
     pub type PFN_vkDestroyCuModuleNVX = unsafe extern "system" fn(
         device: crate::vk::Device,
         module: crate::vk::CuModuleNVX,
-        p_allocator: *const crate::vk::AllocationCallbacks,
+        p_allocator: *const crate::vk::AllocationCallbacks<'_>,
     );
     pub type PFN_vkDestroyCuFunctionNVX = unsafe extern "system" fn(
         device: crate::vk::Device,
         function: crate::vk::CuFunctionNVX,
-        p_allocator: *const crate::vk::AllocationCallbacks,
+        p_allocator: *const crate::vk::AllocationCallbacks<'_>,
     );
     pub type PFN_vkCmdCuLaunchKernelNVX = unsafe extern "system" fn(
         command_buffer: crate::vk::CommandBuffer,
-        p_launch_info: *const crate::vk::CuLaunchInfoNVX,
+        p_launch_info: *const crate::vk::CuLaunchInfoNVX<'_>,
     );
     pub const NVX_BINARY_IMPORT_SPEC_VERSION: u32 = 2;
     pub const NVX_BINARY_IMPORT_EXTENSION_NAME: &core::ffi::CStr = c"VK_NVX_binary_import";

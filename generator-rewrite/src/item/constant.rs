@@ -1,8 +1,11 @@
 use super::{Code, Context};
 use crate::output::{CodeMap, Destination};
 use analysis::{
-    item::constant::{Constant, ConstantType},
-    to_rust::{RustName, RustTranslator},
+    item::{
+        Named,
+        constant::{Constant, ConstantType},
+    },
+    to_rust::RustTranslator,
     xml::cexpr::CExprItem,
 };
 use quote::quote;
@@ -12,7 +15,7 @@ impl Code for Constant {
     #[instrument(skip(ctx))]
     fn code(&self, ctx: &Context) -> CodeMap {
         trace!("generating");
-        let name = self.rust_name(ctx);
+        let name = ctx.constant_to_rust(self.name(), false);
 
         let ty = match self.ty {
             ConstantType::Integer(primary_ty) => ctx.primary_type_to_rust(primary_ty),

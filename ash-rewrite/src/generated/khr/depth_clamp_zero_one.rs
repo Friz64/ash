@@ -3,10 +3,11 @@
 //![Vulkan Manual Page](https://docs.vulkan.org/refpages/latest/refpages/source/VK_KHR_depth_clamp_zero_one.html) · Extension `VK_KHR_depth_clamp_zero_one`
 #[repr(C)]
 #[derive(Clone, Copy)]
-pub struct PhysicalDeviceDepthClampZeroOneFeaturesKHR {
+pub struct PhysicalDeviceDepthClampZeroOneFeaturesKHR<'a> {
     pub s_type: crate::vk::StructureType,
     pub p_next: *mut core::ffi::c_void,
     pub depth_clamp_zero_one: crate::vk::Bool32,
+    pub _marker: ::core::marker::PhantomData<&'a ()>,
 }
 ///Provided by [`khr::depth_clamp_zero_one`](crate::khr::depth_clamp_zero_one)
 impl crate::vk::StructureType {

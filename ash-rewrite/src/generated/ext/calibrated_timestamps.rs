@@ -57,7 +57,7 @@ impl DeviceFn {
                 unsafe extern "system" fn get_calibrated_timestamps_ext(
                     _: crate::vk::Device,
                     _: u32,
-                    _: *const crate::vk::CalibratedTimestampInfoKHR,
+                    _: *const crate::vk::CalibratedTimestampInfoKHR<'_>,
                     _: *mut u64,
                     _: *mut u64,
                 ) -> crate::vk::Result {
@@ -74,7 +74,7 @@ impl DeviceFn {
     }
 }
 pub(crate) mod reexport {
-    pub type CalibratedTimestampInfoEXT = crate::vk::CalibratedTimestampInfoKHR;
+    pub type CalibratedTimestampInfoEXT<'a> = crate::vk::CalibratedTimestampInfoKHR<'a>;
     ///Provided by [`ext::calibrated_timestamps`](crate::ext::calibrated_timestamps)
     impl crate::vk::StructureType {
         pub const CALIBRATED_TIMESTAMP_INFO_EXT: Self = Self::CALIBRATED_TIMESTAMP_INFO_KHR;

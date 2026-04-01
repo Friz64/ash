@@ -20,8 +20,8 @@ impl DeviceFn {
             get_device_fault_info_ext: unsafe {
                 unsafe extern "system" fn get_device_fault_info_ext(
                     _: crate::vk::Device,
-                    _: *mut crate::vk::DeviceFaultCountsEXT,
-                    _: *mut crate::vk::DeviceFaultInfoEXT,
+                    _: *mut crate::vk::DeviceFaultCountsEXT<'_>,
+                    _: *mut crate::vk::DeviceFaultInfoEXT<'_>,
                 ) -> crate::vk::Result {
                     panic!("unable to load vkGetDeviceFaultInfoEXT")
                 }
@@ -38,30 +38,33 @@ impl DeviceFn {
 pub(crate) mod reexport {
     #[repr(C)]
     #[derive(Clone, Copy)]
-    pub struct PhysicalDeviceFaultFeaturesEXT {
+    pub struct PhysicalDeviceFaultFeaturesEXT<'a> {
         pub s_type: crate::vk::StructureType,
         pub p_next: *mut core::ffi::c_void,
         pub device_fault: crate::vk::Bool32,
         pub device_fault_vendor_binary: crate::vk::Bool32,
+        pub _marker: ::core::marker::PhantomData<&'a ()>,
     }
     #[repr(C)]
     #[derive(Clone, Copy)]
-    pub struct DeviceFaultCountsEXT {
+    pub struct DeviceFaultCountsEXT<'a> {
         pub s_type: crate::vk::StructureType,
         pub p_next: *mut core::ffi::c_void,
         pub address_info_count: u32,
         pub vendor_info_count: u32,
         pub vendor_binary_size: crate::vk::DeviceSize,
+        pub _marker: ::core::marker::PhantomData<&'a ()>,
     }
     #[repr(C)]
     #[derive(Clone, Copy)]
-    pub struct DeviceFaultInfoEXT {
+    pub struct DeviceFaultInfoEXT<'a> {
         pub s_type: crate::vk::StructureType,
         pub p_next: *mut core::ffi::c_void,
         pub description: [core::ffi::c_char; crate::vk::MAX_DESCRIPTION_SIZE as _],
         pub p_address_infos: *mut crate::vk::DeviceFaultAddressInfoKHR,
         pub p_vendor_infos: *mut crate::vk::DeviceFaultVendorInfoKHR,
         pub p_vendor_binary_data: *mut core::ffi::c_void,
+        pub _marker: ::core::marker::PhantomData<&'a ()>,
     }
     pub type DeviceFaultAddressInfoEXT = crate::vk::DeviceFaultAddressInfoKHR;
     pub type DeviceFaultVendorInfoEXT = crate::vk::DeviceFaultVendorInfoKHR;
@@ -86,8 +89,8 @@ pub(crate) mod reexport {
     pub type DeviceFaultAddressTypeEXT = crate::vk::DeviceFaultAddressTypeKHR;
     pub type PFN_vkGetDeviceFaultInfoEXT = unsafe extern "system" fn(
         device: crate::vk::Device,
-        p_fault_counts: *mut crate::vk::DeviceFaultCountsEXT,
-        p_fault_info: *mut crate::vk::DeviceFaultInfoEXT,
+        p_fault_counts: *mut crate::vk::DeviceFaultCountsEXT<'_>,
+        p_fault_info: *mut crate::vk::DeviceFaultInfoEXT<'_>,
     ) -> crate::vk::Result;
     pub const EXT_DEVICE_FAULT_SPEC_VERSION: u32 = 2;
     pub const EXT_DEVICE_FAULT_EXTENSION_NAME: &core::ffi::CStr = c"VK_EXT_device_fault";

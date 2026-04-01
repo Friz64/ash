@@ -63,7 +63,7 @@ pub struct AV1SequenceHeaderFlags {
 }
 #[repr(C)]
 #[derive(Clone, Copy)]
-pub struct AV1SequenceHeader {
+pub struct AV1SequenceHeader<'a> {
     pub flags: crate::vk::AV1SequenceHeaderFlags,
     pub seq_profile: crate::vk::AV1Profile,
     pub frame_width_bits_minus_1: u8,
@@ -78,6 +78,7 @@ pub struct AV1SequenceHeader {
     pub reserved1: [u8; 5 as _],
     pub p_color_config: *const crate::vk::AV1ColorConfig,
     pub p_timing_info: *const crate::vk::AV1TimingInfo,
+    pub _marker: ::core::marker::PhantomData<&'a ()>,
 }
 #[repr(C)]
 #[derive(Clone, Copy)]
@@ -134,7 +135,7 @@ pub struct AV1TileInfoFlags {
 }
 #[repr(C)]
 #[derive(Clone, Copy)]
-pub struct AV1TileInfo {
+pub struct AV1TileInfo<'a> {
     pub flags: crate::vk::AV1TileInfoFlags,
     pub tile_cols: u8,
     pub tile_rows: u8,
@@ -145,6 +146,7 @@ pub struct AV1TileInfo {
     pub p_mi_row_starts: *const u16,
     pub p_width_in_sbs_minus1: *const u16,
     pub p_height_in_sbs_minus1: *const u16,
+    pub _marker: ::core::marker::PhantomData<&'a ()>,
 }
 #[repr(C)]
 #[derive(Clone, Copy)]
@@ -214,6 +216,7 @@ pub struct AV1FilmGrain {
 }
 #[repr(transparent)]
 #[derive(Clone, Copy, PartialEq, Eq, PartialOrd, Ord, Hash, Default)]
+#[derive(Debug)]
 pub struct AV1Profile(pub(crate) i32);
 ///Provided by [`video::codec_av1std`](crate::video::codec_av1std)
 impl AV1Profile {
@@ -224,6 +227,7 @@ impl AV1Profile {
 }
 #[repr(transparent)]
 #[derive(Clone, Copy, PartialEq, Eq, PartialOrd, Ord, Hash, Default)]
+#[derive(Debug)]
 pub struct AV1Level(pub(crate) i32);
 ///Provided by [`video::codec_av1std`](crate::video::codec_av1std)
 impl AV1Level {
@@ -255,6 +259,7 @@ impl AV1Level {
 }
 #[repr(transparent)]
 #[derive(Clone, Copy, PartialEq, Eq, PartialOrd, Ord, Hash, Default)]
+#[derive(Debug)]
 pub struct AV1FrameType(pub(crate) i32);
 ///Provided by [`video::codec_av1std`](crate::video::codec_av1std)
 impl AV1FrameType {
@@ -266,6 +271,7 @@ impl AV1FrameType {
 }
 #[repr(transparent)]
 #[derive(Clone, Copy, PartialEq, Eq, PartialOrd, Ord, Hash, Default)]
+#[derive(Debug)]
 pub struct AV1ReferenceName(pub(crate) i32);
 ///Provided by [`video::codec_av1std`](crate::video::codec_av1std)
 impl AV1ReferenceName {
@@ -281,6 +287,7 @@ impl AV1ReferenceName {
 }
 #[repr(transparent)]
 #[derive(Clone, Copy, PartialEq, Eq, PartialOrd, Ord, Hash, Default)]
+#[derive(Debug)]
 pub struct AV1InterpolationFilter(pub(crate) i32);
 ///Provided by [`video::codec_av1std`](crate::video::codec_av1std)
 impl AV1InterpolationFilter {
@@ -293,6 +300,7 @@ impl AV1InterpolationFilter {
 }
 #[repr(transparent)]
 #[derive(Clone, Copy, PartialEq, Eq, PartialOrd, Ord, Hash, Default)]
+#[derive(Debug)]
 pub struct AV1TxMode(pub(crate) i32);
 ///Provided by [`video::codec_av1std`](crate::video::codec_av1std)
 impl AV1TxMode {
@@ -303,6 +311,7 @@ impl AV1TxMode {
 }
 #[repr(transparent)]
 #[derive(Clone, Copy, PartialEq, Eq, PartialOrd, Ord, Hash, Default)]
+#[derive(Debug)]
 pub struct AV1FrameRestorationType(pub(crate) i32);
 ///Provided by [`video::codec_av1std`](crate::video::codec_av1std)
 impl AV1FrameRestorationType {
@@ -314,6 +323,7 @@ impl AV1FrameRestorationType {
 }
 #[repr(transparent)]
 #[derive(Clone, Copy, PartialEq, Eq, PartialOrd, Ord, Hash, Default)]
+#[derive(Debug)]
 pub struct AV1ColorPrimaries(pub(crate) i32);
 ///Provided by [`video::codec_av1std`](crate::video::codec_av1std)
 impl AV1ColorPrimaries {
@@ -333,6 +343,7 @@ impl AV1ColorPrimaries {
 }
 #[repr(transparent)]
 #[derive(Clone, Copy, PartialEq, Eq, PartialOrd, Ord, Hash, Default)]
+#[derive(Debug)]
 pub struct AV1TransferCharacteristics(pub(crate) i32);
 ///Provided by [`video::codec_av1std`](crate::video::codec_av1std)
 impl AV1TransferCharacteristics {
@@ -359,6 +370,7 @@ impl AV1TransferCharacteristics {
 }
 #[repr(transparent)]
 #[derive(Clone, Copy, PartialEq, Eq, PartialOrd, Ord, Hash, Default)]
+#[derive(Debug)]
 pub struct AV1MatrixCoefficients(pub(crate) i32);
 ///Provided by [`video::codec_av1std`](crate::video::codec_av1std)
 impl AV1MatrixCoefficients {
@@ -381,6 +393,7 @@ impl AV1MatrixCoefficients {
 }
 #[repr(transparent)]
 #[derive(Clone, Copy, PartialEq, Eq, PartialOrd, Ord, Hash, Default)]
+#[derive(Debug)]
 pub struct AV1ChromaSamplePosition(pub(crate) i32);
 ///Provided by [`video::codec_av1std`](crate::video::codec_av1std)
 impl AV1ChromaSamplePosition {

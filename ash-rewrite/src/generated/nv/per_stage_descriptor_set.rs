@@ -3,11 +3,12 @@
 //![Vulkan Manual Page](https://docs.vulkan.org/refpages/latest/refpages/source/VK_NV_per_stage_descriptor_set.html) · Extension `VK_NV_per_stage_descriptor_set`
 #[repr(C)]
 #[derive(Clone, Copy)]
-pub struct PhysicalDevicePerStageDescriptorSetFeaturesNV {
+pub struct PhysicalDevicePerStageDescriptorSetFeaturesNV<'a> {
     pub s_type: crate::vk::StructureType,
     pub p_next: *mut core::ffi::c_void,
     pub per_stage_descriptor_set: crate::vk::Bool32,
     pub dynamic_pipeline_layout: crate::vk::Bool32,
+    pub _marker: ::core::marker::PhantomData<&'a ()>,
 }
 ///Provided by [`nv::per_stage_descriptor_set`](crate::nv::per_stage_descriptor_set)
 impl crate::vk::StructureType {

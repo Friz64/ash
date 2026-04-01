@@ -21,7 +21,7 @@ impl DeviceFn {
             get_memory_fd_khr: unsafe {
                 unsafe extern "system" fn get_memory_fd_khr(
                     _: crate::vk::Device,
-                    _: *const crate::vk::MemoryGetFdInfoKHR,
+                    _: *const crate::vk::MemoryGetFdInfoKHR<'_>,
                     _: *mut core::ffi::c_int,
                 ) -> crate::vk::Result {
                     panic!("unable to load vkGetMemoryFdKHR")
@@ -38,7 +38,7 @@ impl DeviceFn {
                     _: crate::vk::Device,
                     _: crate::vk::ExternalMemoryHandleTypeFlagBits,
                     _: core::ffi::c_int,
-                    _: *mut crate::vk::MemoryFdPropertiesKHR,
+                    _: *mut crate::vk::MemoryFdPropertiesKHR<'_>,
                 ) -> crate::vk::Result {
                     panic!("unable to load vkGetMemoryFdPropertiesKHR")
                 }
@@ -55,26 +55,29 @@ impl DeviceFn {
 pub(crate) mod reexport {
     #[repr(C)]
     #[derive(Clone, Copy)]
-    pub struct ImportMemoryFdInfoKHR {
+    pub struct ImportMemoryFdInfoKHR<'a> {
         pub s_type: crate::vk::StructureType,
         pub p_next: *const core::ffi::c_void,
         pub handle_type: crate::vk::ExternalMemoryHandleTypeFlagBits,
         pub fd: core::ffi::c_int,
+        pub _marker: ::core::marker::PhantomData<&'a ()>,
     }
     #[repr(C)]
     #[derive(Clone, Copy)]
-    pub struct MemoryFdPropertiesKHR {
+    pub struct MemoryFdPropertiesKHR<'a> {
         pub s_type: crate::vk::StructureType,
         pub p_next: *mut core::ffi::c_void,
         pub memory_type_bits: u32,
+        pub _marker: ::core::marker::PhantomData<&'a ()>,
     }
     #[repr(C)]
     #[derive(Clone, Copy)]
-    pub struct MemoryGetFdInfoKHR {
+    pub struct MemoryGetFdInfoKHR<'a> {
         pub s_type: crate::vk::StructureType,
         pub p_next: *const core::ffi::c_void,
         pub memory: crate::vk::DeviceMemory,
         pub handle_type: crate::vk::ExternalMemoryHandleTypeFlagBits,
+        pub _marker: ::core::marker::PhantomData<&'a ()>,
     }
     ///Provided by [`khr::external_memory_fd`](crate::khr::external_memory_fd)
     impl crate::vk::StructureType {
@@ -84,14 +87,14 @@ pub(crate) mod reexport {
     }
     pub type PFN_vkGetMemoryFdKHR = unsafe extern "system" fn(
         device: crate::vk::Device,
-        p_get_fd_info: *const crate::vk::MemoryGetFdInfoKHR,
+        p_get_fd_info: *const crate::vk::MemoryGetFdInfoKHR<'_>,
         p_fd: *mut core::ffi::c_int,
     ) -> crate::vk::Result;
     pub type PFN_vkGetMemoryFdPropertiesKHR = unsafe extern "system" fn(
         device: crate::vk::Device,
         handle_type: crate::vk::ExternalMemoryHandleTypeFlagBits,
         fd: core::ffi::c_int,
-        p_memory_fd_properties: *mut crate::vk::MemoryFdPropertiesKHR,
+        p_memory_fd_properties: *mut crate::vk::MemoryFdPropertiesKHR<'_>,
     ) -> crate::vk::Result;
     pub const KHR_EXTERNAL_MEMORY_FD_SPEC_VERSION: u32 = 1;
     pub const KHR_EXTERNAL_MEMORY_FD_EXTENSION_NAME: &core::ffi::CStr = c"VK_KHR_external_memory_fd";

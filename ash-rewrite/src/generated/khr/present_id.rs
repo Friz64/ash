@@ -3,18 +3,20 @@
 //![Vulkan Manual Page](https://docs.vulkan.org/refpages/latest/refpages/source/VK_KHR_present_id.html) · Extension `VK_KHR_present_id`
 #[repr(C)]
 #[derive(Clone, Copy)]
-pub struct PhysicalDevicePresentIdFeaturesKHR {
+pub struct PhysicalDevicePresentIdFeaturesKHR<'a> {
     pub s_type: crate::vk::StructureType,
     pub p_next: *mut core::ffi::c_void,
     pub present_id: crate::vk::Bool32,
+    pub _marker: ::core::marker::PhantomData<&'a ()>,
 }
 #[repr(C)]
 #[derive(Clone, Copy)]
-pub struct PresentIdKHR {
+pub struct PresentIdKHR<'a> {
     pub s_type: crate::vk::StructureType,
     pub p_next: *const core::ffi::c_void,
     pub swapchain_count: u32,
     pub p_present_ids: *const u64,
+    pub _marker: ::core::marker::PhantomData<&'a ()>,
 }
 ///Provided by [`khr::present_id`](crate::khr::present_id)
 impl crate::vk::StructureType {

@@ -3,25 +3,28 @@
 //![Vulkan Manual Page](https://docs.vulkan.org/refpages/latest/refpages/source/VK_KHR_shader_abort.html) · Extension `VK_KHR_shader_abort`
 #[repr(C)]
 #[derive(Clone, Copy)]
-pub struct PhysicalDeviceShaderAbortFeaturesKHR {
+pub struct PhysicalDeviceShaderAbortFeaturesKHR<'a> {
     pub s_type: crate::vk::StructureType,
     pub p_next: *mut core::ffi::c_void,
     pub shader_abort: crate::vk::Bool32,
+    pub _marker: ::core::marker::PhantomData<&'a ()>,
 }
 #[repr(C)]
 #[derive(Clone, Copy)]
-pub struct PhysicalDeviceShaderAbortPropertiesKHR {
+pub struct PhysicalDeviceShaderAbortPropertiesKHR<'a> {
     pub s_type: crate::vk::StructureType,
     pub p_next: *mut core::ffi::c_void,
     pub max_shader_abort_message_size: u64,
+    pub _marker: ::core::marker::PhantomData<&'a ()>,
 }
 #[repr(C)]
 #[derive(Clone, Copy)]
-pub struct DeviceFaultShaderAbortMessageInfoKHR {
+pub struct DeviceFaultShaderAbortMessageInfoKHR<'a> {
     pub s_type: crate::vk::StructureType,
     pub p_next: *mut core::ffi::c_void,
     pub message_data_size: u64,
     pub p_message_data: *mut core::ffi::c_void,
+    pub _marker: ::core::marker::PhantomData<&'a ()>,
 }
 ///Provided by [`khr::shader_abort`](crate::khr::shader_abort)
 impl crate::vk::StructureType {

@@ -3,10 +3,11 @@
 //![Vulkan Manual Page](https://docs.vulkan.org/refpages/latest/refpages/source/VK_EXT_shader_uniform_buffer_unsized_array.html) · Extension `VK_EXT_shader_uniform_buffer_unsized_array`
 #[repr(C)]
 #[derive(Clone, Copy)]
-pub struct PhysicalDeviceShaderUniformBufferUnsizedArrayFeaturesEXT {
+pub struct PhysicalDeviceShaderUniformBufferUnsizedArrayFeaturesEXT<'a> {
     pub s_type: crate::vk::StructureType,
     pub p_next: *mut core::ffi::c_void,
     pub shader_uniform_buffer_unsized_array: crate::vk::Bool32,
+    pub _marker: ::core::marker::PhantomData<&'a ()>,
 }
 ///Provided by [`ext::shader_uniform_buffer_unsized_array`](crate::ext::shader_uniform_buffer_unsized_array)
 impl crate::vk::StructureType {

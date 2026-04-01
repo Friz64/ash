@@ -3,10 +3,11 @@
 //![Vulkan Manual Page](https://docs.vulkan.org/refpages/latest/refpages/source/VK_NV_ray_tracing_validation.html) · Extension `VK_NV_ray_tracing_validation`
 #[repr(C)]
 #[derive(Clone, Copy)]
-pub struct PhysicalDeviceRayTracingValidationFeaturesNV {
+pub struct PhysicalDeviceRayTracingValidationFeaturesNV<'a> {
     pub s_type: crate::vk::StructureType,
     pub p_next: *mut core::ffi::c_void,
     pub ray_tracing_validation: crate::vk::Bool32,
+    pub _marker: ::core::marker::PhantomData<&'a ()>,
 }
 ///Provided by [`nv::ray_tracing_validation`](crate::nv::ray_tracing_validation)
 impl crate::vk::StructureType {

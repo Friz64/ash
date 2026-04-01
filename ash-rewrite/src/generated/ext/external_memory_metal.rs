@@ -21,7 +21,7 @@ impl DeviceFn {
             get_memory_metal_handle_ext: unsafe {
                 unsafe extern "system" fn get_memory_metal_handle_ext(
                     _: crate::vk::Device,
-                    _: *const crate::vk::MemoryGetMetalHandleInfoEXT,
+                    _: *const crate::vk::MemoryGetMetalHandleInfoEXT<'_>,
                     _: *mut *mut core::ffi::c_void,
                 ) -> crate::vk::Result {
                     panic!("unable to load vkGetMemoryMetalHandleEXT")
@@ -38,7 +38,7 @@ impl DeviceFn {
                     _: crate::vk::Device,
                     _: crate::vk::ExternalMemoryHandleTypeFlagBits,
                     _: *const core::ffi::c_void,
-                    _: *mut crate::vk::MemoryMetalHandlePropertiesEXT,
+                    _: *mut crate::vk::MemoryMetalHandlePropertiesEXT<'_>,
                 ) -> crate::vk::Result {
                     panic!("unable to load vkGetMemoryMetalHandlePropertiesEXT")
                 }
@@ -55,26 +55,29 @@ impl DeviceFn {
 pub(crate) mod reexport {
     #[repr(C)]
     #[derive(Clone, Copy)]
-    pub struct ImportMemoryMetalHandleInfoEXT {
+    pub struct ImportMemoryMetalHandleInfoEXT<'a> {
         pub s_type: crate::vk::StructureType,
         pub p_next: *const core::ffi::c_void,
         pub handle_type: crate::vk::ExternalMemoryHandleTypeFlagBits,
         pub handle: *mut core::ffi::c_void,
+        pub _marker: ::core::marker::PhantomData<&'a ()>,
     }
     #[repr(C)]
     #[derive(Clone, Copy)]
-    pub struct MemoryMetalHandlePropertiesEXT {
+    pub struct MemoryMetalHandlePropertiesEXT<'a> {
         pub s_type: crate::vk::StructureType,
         pub p_next: *mut core::ffi::c_void,
         pub memory_type_bits: u32,
+        pub _marker: ::core::marker::PhantomData<&'a ()>,
     }
     #[repr(C)]
     #[derive(Clone, Copy)]
-    pub struct MemoryGetMetalHandleInfoEXT {
+    pub struct MemoryGetMetalHandleInfoEXT<'a> {
         pub s_type: crate::vk::StructureType,
         pub p_next: *const core::ffi::c_void,
         pub memory: crate::vk::DeviceMemory,
         pub handle_type: crate::vk::ExternalMemoryHandleTypeFlagBits,
+        pub _marker: ::core::marker::PhantomData<&'a ()>,
     }
     ///Provided by [`ext::external_memory_metal`](crate::ext::external_memory_metal)
     impl crate::vk::StructureType {
@@ -90,14 +93,16 @@ pub(crate) mod reexport {
     }
     pub type PFN_vkGetMemoryMetalHandleEXT = unsafe extern "system" fn(
         device: crate::vk::Device,
-        p_get_metal_handle_info: *const crate::vk::MemoryGetMetalHandleInfoEXT,
+        p_get_metal_handle_info: *const crate::vk::MemoryGetMetalHandleInfoEXT<'_>,
         p_handle: *mut *mut core::ffi::c_void,
     ) -> crate::vk::Result;
     pub type PFN_vkGetMemoryMetalHandlePropertiesEXT = unsafe extern "system" fn(
         device: crate::vk::Device,
         handle_type: crate::vk::ExternalMemoryHandleTypeFlagBits,
         p_handle: *const core::ffi::c_void,
-        p_memory_metal_handle_properties: *mut crate::vk::MemoryMetalHandlePropertiesEXT,
+        p_memory_metal_handle_properties: *mut crate::vk::MemoryMetalHandlePropertiesEXT<
+            '_,
+        >,
     ) -> crate::vk::Result;
     pub const EXT_EXTERNAL_MEMORY_METAL_SPEC_VERSION: u32 = 1;
     pub const EXT_EXTERNAL_MEMORY_METAL_EXTENSION_NAME: &core::ffi::CStr = c"VK_EXT_external_memory_metal";

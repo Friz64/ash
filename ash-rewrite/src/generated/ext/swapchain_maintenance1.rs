@@ -20,7 +20,7 @@ impl DeviceFn {
             release_swapchain_images_ext: unsafe {
                 unsafe extern "system" fn release_swapchain_images_ext(
                     _: crate::vk::Device,
-                    _: *const crate::vk::ReleaseSwapchainImagesInfoKHR,
+                    _: *const crate::vk::ReleaseSwapchainImagesInfoKHR<'_>,
                 ) -> crate::vk::Result {
                     panic!("unable to load vkReleaseSwapchainImagesEXT")
                 }
@@ -35,12 +35,24 @@ impl DeviceFn {
     }
 }
 pub(crate) mod reexport {
-    pub type PhysicalDeviceSwapchainMaintenance1FeaturesEXT = crate::vk::PhysicalDeviceSwapchainMaintenance1FeaturesKHR;
-    pub type SwapchainPresentFenceInfoEXT = crate::vk::SwapchainPresentFenceInfoKHR;
-    pub type SwapchainPresentModesCreateInfoEXT = crate::vk::SwapchainPresentModesCreateInfoKHR;
-    pub type SwapchainPresentModeInfoEXT = crate::vk::SwapchainPresentModeInfoKHR;
-    pub type SwapchainPresentScalingCreateInfoEXT = crate::vk::SwapchainPresentScalingCreateInfoKHR;
-    pub type ReleaseSwapchainImagesInfoEXT = crate::vk::ReleaseSwapchainImagesInfoKHR;
+    pub type PhysicalDeviceSwapchainMaintenance1FeaturesEXT<'a> = crate::vk::PhysicalDeviceSwapchainMaintenance1FeaturesKHR<
+        'a,
+    >;
+    pub type SwapchainPresentFenceInfoEXT<'a> = crate::vk::SwapchainPresentFenceInfoKHR<
+        'a,
+    >;
+    pub type SwapchainPresentModesCreateInfoEXT<'a> = crate::vk::SwapchainPresentModesCreateInfoKHR<
+        'a,
+    >;
+    pub type SwapchainPresentModeInfoEXT<'a> = crate::vk::SwapchainPresentModeInfoKHR<
+        'a,
+    >;
+    pub type SwapchainPresentScalingCreateInfoEXT<'a> = crate::vk::SwapchainPresentScalingCreateInfoKHR<
+        'a,
+    >;
+    pub type ReleaseSwapchainImagesInfoEXT<'a> = crate::vk::ReleaseSwapchainImagesInfoKHR<
+        'a,
+    >;
     ///Provided by [`ext::swapchain_maintenance1`](crate::ext::swapchain_maintenance1)
     impl crate::vk::StructureType {
         pub const PHYSICAL_DEVICE_SWAPCHAIN_MAINTENANCE_1_FEATURES_EXT: Self = Self::PHYSICAL_DEVICE_SWAPCHAIN_MAINTENANCE_1_FEATURES_KHR;

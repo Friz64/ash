@@ -21,8 +21,8 @@ impl DeviceFn {
                 unsafe extern "system" fn create_shared_swapchains_khr(
                     _: crate::vk::Device,
                     _: u32,
-                    _: *const crate::vk::SwapchainCreateInfoKHR,
-                    _: *const crate::vk::AllocationCallbacks,
+                    _: *const crate::vk::SwapchainCreateInfoKHR<'_>,
+                    _: *const crate::vk::AllocationCallbacks<'_>,
                     _: *mut crate::vk::SwapchainKHR,
                 ) -> crate::vk::Result {
                     panic!("unable to load vkCreateSharedSwapchainsKHR")
@@ -40,12 +40,13 @@ impl DeviceFn {
 pub(crate) mod reexport {
     #[repr(C)]
     #[derive(Clone, Copy)]
-    pub struct DisplayPresentInfoKHR {
+    pub struct DisplayPresentInfoKHR<'a> {
         pub s_type: crate::vk::StructureType,
         pub p_next: *const core::ffi::c_void,
         pub src_rect: crate::vk::Rect2D,
         pub dst_rect: crate::vk::Rect2D,
         pub persistent: crate::vk::Bool32,
+        pub _marker: ::core::marker::PhantomData<&'a ()>,
     }
     ///Provided by [`khr::display_swapchain`](crate::khr::display_swapchain)
     impl crate::vk::StructureType {
@@ -58,8 +59,8 @@ pub(crate) mod reexport {
     pub type PFN_vkCreateSharedSwapchainsKHR = unsafe extern "system" fn(
         device: crate::vk::Device,
         swapchain_count: u32,
-        p_create_infos: *const crate::vk::SwapchainCreateInfoKHR,
-        p_allocator: *const crate::vk::AllocationCallbacks,
+        p_create_infos: *const crate::vk::SwapchainCreateInfoKHR<'_>,
+        p_allocator: *const crate::vk::AllocationCallbacks<'_>,
         p_swapchains: *mut crate::vk::SwapchainKHR,
     ) -> crate::vk::Result;
     pub const KHR_DISPLAY_SWAPCHAIN_SPEC_VERSION: u32 = 10;

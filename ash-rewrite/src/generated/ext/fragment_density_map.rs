@@ -3,36 +3,40 @@
 //![Vulkan Manual Page](https://docs.vulkan.org/refpages/latest/refpages/source/VK_EXT_fragment_density_map.html) · Extension `VK_EXT_fragment_density_map`
 #[repr(C)]
 #[derive(Clone, Copy)]
-pub struct PhysicalDeviceFragmentDensityMapFeaturesEXT {
+pub struct PhysicalDeviceFragmentDensityMapFeaturesEXT<'a> {
     pub s_type: crate::vk::StructureType,
     pub p_next: *mut core::ffi::c_void,
     pub fragment_density_map: crate::vk::Bool32,
     pub fragment_density_map_dynamic: crate::vk::Bool32,
     pub fragment_density_map_non_subsampled_images: crate::vk::Bool32,
+    pub _marker: ::core::marker::PhantomData<&'a ()>,
 }
 #[repr(C)]
 #[derive(Clone, Copy)]
-pub struct PhysicalDeviceFragmentDensityMapPropertiesEXT {
+pub struct PhysicalDeviceFragmentDensityMapPropertiesEXT<'a> {
     pub s_type: crate::vk::StructureType,
     pub p_next: *mut core::ffi::c_void,
     pub min_fragment_density_texel_size: crate::vk::Extent2D,
     pub max_fragment_density_texel_size: crate::vk::Extent2D,
     pub fragment_density_invocations: crate::vk::Bool32,
+    pub _marker: ::core::marker::PhantomData<&'a ()>,
 }
 #[repr(C)]
 #[derive(Clone, Copy)]
-pub struct RenderPassFragmentDensityMapCreateInfoEXT {
+pub struct RenderPassFragmentDensityMapCreateInfoEXT<'a> {
     pub s_type: crate::vk::StructureType,
     pub p_next: *const core::ffi::c_void,
     pub fragment_density_map_attachment: crate::vk::AttachmentReference,
+    pub _marker: ::core::marker::PhantomData<&'a ()>,
 }
 #[repr(C)]
 #[derive(Clone, Copy)]
-pub struct RenderingFragmentDensityMapAttachmentInfoEXT {
+pub struct RenderingFragmentDensityMapAttachmentInfoEXT<'a> {
     pub s_type: crate::vk::StructureType,
     pub p_next: *const core::ffi::c_void,
     pub image_view: crate::vk::ImageView,
     pub image_layout: crate::vk::ImageLayout,
+    pub _marker: ::core::marker::PhantomData<&'a ()>,
 }
 ///Provided by [`ext::fragment_density_map`](crate::ext::fragment_density_map)
 impl crate::vk::ImageLayout {

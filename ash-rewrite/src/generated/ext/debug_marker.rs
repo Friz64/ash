@@ -24,7 +24,7 @@ impl DeviceFn {
             debug_marker_set_object_name_ext: unsafe {
                 unsafe extern "system" fn debug_marker_set_object_name_ext(
                     _: crate::vk::Device,
-                    _: *const crate::vk::DebugMarkerObjectNameInfoEXT,
+                    _: *const crate::vk::DebugMarkerObjectNameInfoEXT<'_>,
                 ) -> crate::vk::Result {
                     panic!("unable to load vkDebugMarkerSetObjectNameEXT")
                 }
@@ -38,7 +38,7 @@ impl DeviceFn {
             debug_marker_set_object_tag_ext: unsafe {
                 unsafe extern "system" fn debug_marker_set_object_tag_ext(
                     _: crate::vk::Device,
-                    _: *const crate::vk::DebugMarkerObjectTagInfoEXT,
+                    _: *const crate::vk::DebugMarkerObjectTagInfoEXT<'_>,
                 ) -> crate::vk::Result {
                     panic!("unable to load vkDebugMarkerSetObjectTagEXT")
                 }
@@ -52,7 +52,7 @@ impl DeviceFn {
             cmd_debug_marker_begin_ext: unsafe {
                 unsafe extern "system" fn cmd_debug_marker_begin_ext(
                     _: crate::vk::CommandBuffer,
-                    _: *const crate::vk::DebugMarkerMarkerInfoEXT,
+                    _: *const crate::vk::DebugMarkerMarkerInfoEXT<'_>,
                 ) {
                     panic!("unable to load vkCmdDebugMarkerBeginEXT")
                 }
@@ -79,7 +79,7 @@ impl DeviceFn {
             cmd_debug_marker_insert_ext: unsafe {
                 unsafe extern "system" fn cmd_debug_marker_insert_ext(
                     _: crate::vk::CommandBuffer,
-                    _: *const crate::vk::DebugMarkerMarkerInfoEXT,
+                    _: *const crate::vk::DebugMarkerMarkerInfoEXT<'_>,
                 ) {
                     panic!("unable to load vkCmdDebugMarkerInsertEXT")
                 }
@@ -96,16 +96,17 @@ impl DeviceFn {
 pub(crate) mod reexport {
     #[repr(C)]
     #[derive(Clone, Copy)]
-    pub struct DebugMarkerObjectNameInfoEXT {
+    pub struct DebugMarkerObjectNameInfoEXT<'a> {
         pub s_type: crate::vk::StructureType,
         pub p_next: *const core::ffi::c_void,
         pub object_type: crate::vk::DebugReportObjectTypeEXT,
         pub object: u64,
         pub p_object_name: *const core::ffi::c_char,
+        pub _marker: ::core::marker::PhantomData<&'a ()>,
     }
     #[repr(C)]
     #[derive(Clone, Copy)]
-    pub struct DebugMarkerObjectTagInfoEXT {
+    pub struct DebugMarkerObjectTagInfoEXT<'a> {
         pub s_type: crate::vk::StructureType,
         pub p_next: *const core::ffi::c_void,
         pub object_type: crate::vk::DebugReportObjectTypeEXT,
@@ -113,14 +114,16 @@ pub(crate) mod reexport {
         pub tag_name: u64,
         pub tag_size: usize,
         pub p_tag: *const core::ffi::c_void,
+        pub _marker: ::core::marker::PhantomData<&'a ()>,
     }
     #[repr(C)]
     #[derive(Clone, Copy)]
-    pub struct DebugMarkerMarkerInfoEXT {
+    pub struct DebugMarkerMarkerInfoEXT<'a> {
         pub s_type: crate::vk::StructureType,
         pub p_next: *const core::ffi::c_void,
         pub p_marker_name: *const core::ffi::c_char,
         pub color: [core::ffi::c_float; 4 as _],
+        pub _marker: ::core::marker::PhantomData<&'a ()>,
     }
     ///Provided by [`ext::debug_marker`](crate::ext::debug_marker)
     impl crate::vk::StructureType {
@@ -130,22 +133,22 @@ pub(crate) mod reexport {
     }
     pub type PFN_vkDebugMarkerSetObjectNameEXT = unsafe extern "system" fn(
         device: crate::vk::Device,
-        p_name_info: *const crate::vk::DebugMarkerObjectNameInfoEXT,
+        p_name_info: *const crate::vk::DebugMarkerObjectNameInfoEXT<'_>,
     ) -> crate::vk::Result;
     pub type PFN_vkDebugMarkerSetObjectTagEXT = unsafe extern "system" fn(
         device: crate::vk::Device,
-        p_tag_info: *const crate::vk::DebugMarkerObjectTagInfoEXT,
+        p_tag_info: *const crate::vk::DebugMarkerObjectTagInfoEXT<'_>,
     ) -> crate::vk::Result;
     pub type PFN_vkCmdDebugMarkerBeginEXT = unsafe extern "system" fn(
         command_buffer: crate::vk::CommandBuffer,
-        p_marker_info: *const crate::vk::DebugMarkerMarkerInfoEXT,
+        p_marker_info: *const crate::vk::DebugMarkerMarkerInfoEXT<'_>,
     );
     pub type PFN_vkCmdDebugMarkerEndEXT = unsafe extern "system" fn(
         command_buffer: crate::vk::CommandBuffer,
     );
     pub type PFN_vkCmdDebugMarkerInsertEXT = unsafe extern "system" fn(
         command_buffer: crate::vk::CommandBuffer,
-        p_marker_info: *const crate::vk::DebugMarkerMarkerInfoEXT,
+        p_marker_info: *const crate::vk::DebugMarkerMarkerInfoEXT<'_>,
     );
     pub const EXT_DEBUG_MARKER_SPEC_VERSION: u32 = 4;
     pub const EXT_DEBUG_MARKER_EXTENSION_NAME: &core::ffi::CStr = c"VK_EXT_debug_marker";

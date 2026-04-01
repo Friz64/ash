@@ -1,8 +1,12 @@
 use super::{Code, Context};
 use crate::output::{CodeMap, Destination};
 use analysis::{
-    item::bitmask::{BitMask, BitWidth, Item, Value},
-    to_rust::{RustName, RustTranslator},
+    item::{
+        Named,
+        bitmask::{BitMask, BitWidth, Item, Value},
+    },
+    lifetime::Lifetime,
+    to_rust::RustTranslator,
     xml::cexpr::CExprItem,
 };
 use proc_macro2::{Literal, TokenStream};
@@ -13,31 +17,30 @@ impl Code for BitMask {
     #[instrument(skip(ctx))]
     fn code(&self, ctx: &Context) -> CodeMap {
         trace!("generating");
-        let name = self.rust_name(ctx);
+        let name = ctx.type_to_rust(self.name(), false, &Lifetime::placeholder());
         let base_ty = match self.bitwidth {
             BitWidth::Bits32 => quote! { u32 },
             BitWidth::Bits64 => quote! { u64 },
         };
 
-        let bits_code = self.bits_name.map(|bits_name| {
-            let name = ctx.type_to_rust(bits_name, false);
-            quote! {
+        let mut bits_code = TokenStream::default();
+        let mut values = TokenStream::default();
+        if let Some(bits_name) = self.bits_name {
+            let bits_name_tokens = ctx.type_to_rust(bits_name, false, &Lifetime::placeholder());
+
+            bits_code = quote! {
                 #[repr(transparent)]
                 #[derive(Clone, Copy)]
-                pub struct #name(pub(crate) #base_ty);
-            }
-        });
+                pub struct #bits_name_tokens(pub(crate) #base_ty);
+            };
 
-        let values = self.bits_name.map(|bits_name| {
-            let bits_name_tokens = ctx.type_to_rust(bits_name, false);
-            self.items
-                .iter()
+            values = (self.items.iter())
                 .map(|(&name, _item)| {
                     let name = ctx.enumerator_to_rust(name, bits_name, false);
                     quote! { const #name = #bits_name_tokens::#name.0; }
                 })
-                .collect::<TokenStream>()
-        });
+                .collect::<TokenStream>();
+        }
 
         let code = quote! {
             bitflags::bitflags! {
@@ -80,8 +83,12 @@ impl Code for BitMask {
             }
 
             for (&dest, impl_tokens) in impl_map.iter() {
-                let name =
-                    ctx.type_to_rust(bits_name, dest != Destination::new(self.required_by));
+                let name = ctx.type_to_rust(
+                    bits_name,
+                    dest != Destination::new(self.required_by),
+                    &Lifetime::placeholder(),
+                );
+
                 let doc = dest.doc_link();
                 codemap.extend(CodeMap::new(
                     dest,
