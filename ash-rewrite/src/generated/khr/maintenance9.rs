@@ -38,6 +38,14 @@ impl crate::vk::StructureType {
 pub struct DefaultVertexAttributeValueKHR(pub(crate) i32);
 ///Provided by [`khr::maintenance9`](crate::khr::maintenance9)
 impl DefaultVertexAttributeValueKHR {
+    #[inline]
+    pub const fn from_raw(x: i32) -> Self {
+        Self(x)
+    }
+    #[inline]
+    pub const fn as_raw(self) -> i32 {
+        self.0
+    }
     pub const ZERO_ZERO_ZERO_ZERO_KHR: Self = Self(0);
     pub const ZERO_ZERO_ZERO_ONE_KHR: Self = Self(1);
 }

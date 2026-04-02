@@ -42,6 +42,14 @@ impl crate::vk::StructureType {
 pub struct ConservativeRasterizationModeEXT(pub(crate) i32);
 ///Provided by [`ext::conservative_rasterization`](crate::ext::conservative_rasterization)
 impl ConservativeRasterizationModeEXT {
+    #[inline]
+    pub const fn from_raw(x: i32) -> Self {
+        Self(x)
+    }
+    #[inline]
+    pub const fn as_raw(self) -> i32 {
+        self.0
+    }
     pub const DISABLED_EXT: Self = Self(0);
     pub const OVERESTIMATE_EXT: Self = Self(1);
     pub const UNDERESTIMATE_EXT: Self = Self(2);

@@ -290,6 +290,14 @@ pub(crate) mod reexport {
     pub struct IndirectCommandsTokenTypeNV(pub(crate) i32);
     ///Provided by [`nv::device_generated_commands`](crate::nv::device_generated_commands)
     impl IndirectCommandsTokenTypeNV {
+        #[inline]
+        pub const fn from_raw(x: i32) -> Self {
+            Self(x)
+        }
+        #[inline]
+        pub const fn as_raw(self) -> i32 {
+            self.0
+        }
         pub const SHADER_GROUP_NV: Self = Self(0);
         pub const STATE_FLAGS_NV: Self = Self(1);
         pub const INDEX_BUFFER_NV: Self = Self(2);

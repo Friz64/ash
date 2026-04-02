@@ -174,6 +174,14 @@ pub(crate) mod reexport {
     pub struct FragmentShadingRateCombinerOpKHR(pub(crate) i32);
     ///Provided by [`khr::fragment_shading_rate`](crate::khr::fragment_shading_rate)
     impl FragmentShadingRateCombinerOpKHR {
+        #[inline]
+        pub const fn from_raw(x: i32) -> Self {
+            Self(x)
+        }
+        #[inline]
+        pub const fn as_raw(self) -> i32 {
+            self.0
+        }
         pub const KEEP_KHR: Self = Self(0);
         pub const REPLACE_KHR: Self = Self(1);
         pub const MIN_KHR: Self = Self(2);

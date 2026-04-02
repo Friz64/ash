@@ -249,6 +249,14 @@ pub(crate) mod reexport {
     pub struct PerformanceConfigurationTypeINTEL(pub(crate) i32);
     ///Provided by [`intel::performance_query`](crate::intel::performance_query)
     impl PerformanceConfigurationTypeINTEL {
+        #[inline]
+        pub const fn from_raw(x: i32) -> Self {
+            Self(x)
+        }
+        #[inline]
+        pub const fn as_raw(self) -> i32 {
+            self.0
+        }
         pub const COMMAND_QUEUE_METRICS_DISCOVERY_ACTIVATED_INTEL: Self = Self(0);
     }
     #[repr(transparent)]
@@ -257,6 +265,14 @@ pub(crate) mod reexport {
     pub struct QueryPoolSamplingModeINTEL(pub(crate) i32);
     ///Provided by [`intel::performance_query`](crate::intel::performance_query)
     impl QueryPoolSamplingModeINTEL {
+        #[inline]
+        pub const fn from_raw(x: i32) -> Self {
+            Self(x)
+        }
+        #[inline]
+        pub const fn as_raw(self) -> i32 {
+            self.0
+        }
         pub const MANUAL_INTEL: Self = Self(0);
     }
     #[repr(transparent)]
@@ -265,6 +281,14 @@ pub(crate) mod reexport {
     pub struct PerformanceOverrideTypeINTEL(pub(crate) i32);
     ///Provided by [`intel::performance_query`](crate::intel::performance_query)
     impl PerformanceOverrideTypeINTEL {
+        #[inline]
+        pub const fn from_raw(x: i32) -> Self {
+            Self(x)
+        }
+        #[inline]
+        pub const fn as_raw(self) -> i32 {
+            self.0
+        }
         pub const NULL_HARDWARE_INTEL: Self = Self(0);
         pub const FLUSH_GPU_CACHES_INTEL: Self = Self(1);
     }
@@ -274,6 +298,14 @@ pub(crate) mod reexport {
     pub struct PerformanceParameterTypeINTEL(pub(crate) i32);
     ///Provided by [`intel::performance_query`](crate::intel::performance_query)
     impl PerformanceParameterTypeINTEL {
+        #[inline]
+        pub const fn from_raw(x: i32) -> Self {
+            Self(x)
+        }
+        #[inline]
+        pub const fn as_raw(self) -> i32 {
+            self.0
+        }
         pub const HW_COUNTERS_SUPPORTED_INTEL: Self = Self(0);
         pub const STREAM_MARKER_VALIDS_INTEL: Self = Self(1);
     }
@@ -283,6 +315,14 @@ pub(crate) mod reexport {
     pub struct PerformanceValueTypeINTEL(pub(crate) i32);
     ///Provided by [`intel::performance_query`](crate::intel::performance_query)
     impl PerformanceValueTypeINTEL {
+        #[inline]
+        pub const fn from_raw(x: i32) -> Self {
+            Self(x)
+        }
+        #[inline]
+        pub const fn as_raw(self) -> i32 {
+            self.0
+        }
         pub const UINT32_INTEL: Self = Self(0);
         pub const UINT64_INTEL: Self = Self(1);
         pub const FLOAT_INTEL: Self = Self(2);

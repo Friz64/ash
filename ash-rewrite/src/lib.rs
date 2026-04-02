@@ -7,7 +7,12 @@ mod device;
 mod entry;
 mod instance;
 
-#[allow(unused_parens, clippy::double_parens, non_camel_case_types)]
+#[allow(
+    unused_parens,
+    clippy::double_parens,
+    non_camel_case_types,
+    clippy::missing_transmute_annotations
+)]
 mod generated;
 /// Type definitions for platform-specific external types
 pub mod platform_types;
@@ -49,11 +54,11 @@ impl<T> RawPtr<T> for Option<&T> {
 }
 
 pub trait RawMutPtr<T> {
-    unsafe fn to_raw_mut_ptr(self) -> *mut T;
+    fn to_raw_mut_ptr(self) -> *mut T;
 }
 
 impl<T> RawMutPtr<T> for Option<&mut T> {
-    unsafe fn to_raw_mut_ptr(self) -> *mut T {
+    fn to_raw_mut_ptr(self) -> *mut T {
         match self {
             Some(inner) => inner,
             None => ptr::null_mut(),
@@ -77,11 +82,19 @@ impl vk::Result {
         }
     }
 
+    /// # Safety
+    ///
+    /// [`mem::MaybeUninit::assume_init`]'s safety rules apply
+    /// if `self` is exactly equal to [`vk::Result::SUCCESS`], i.e. 0.
     #[inline]
     pub unsafe fn assume_init_on_success<T>(self, v: mem::MaybeUninit<T>) -> VkResult<T> {
         self.result().map(move |()| v.assume_init())
     }
 
+    /// # Safety
+    ///
+    /// [`Vec::set_len`]'s safety rules apply
+    /// if `self` is exactly equal to [`vk::Result::SUCCESS`], i.e. 0.
     #[inline]
     pub unsafe fn set_vec_len_on_success<T>(self, mut v: Vec<T>, len: usize) -> VkResult<Vec<T>> {
         self.result().map(move |()| {

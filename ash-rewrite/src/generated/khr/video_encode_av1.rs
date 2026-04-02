@@ -185,6 +185,14 @@ impl crate::vk::StructureType {
 pub struct VideoEncodeAV1PredictionModeKHR(pub(crate) i32);
 ///Provided by [`khr::video_encode_av1`](crate::khr::video_encode_av1)
 impl VideoEncodeAV1PredictionModeKHR {
+    #[inline]
+    pub const fn from_raw(x: i32) -> Self {
+        Self(x)
+    }
+    #[inline]
+    pub const fn as_raw(self) -> i32 {
+        self.0
+    }
     pub const INTRA_ONLY_KHR: Self = Self(0);
     pub const SINGLE_REFERENCE_KHR: Self = Self(1);
     pub const UNIDIRECTIONAL_COMPOUND_KHR: Self = Self(2);
@@ -196,6 +204,14 @@ impl VideoEncodeAV1PredictionModeKHR {
 pub struct VideoEncodeAV1RateControlGroupKHR(pub(crate) i32);
 ///Provided by [`khr::video_encode_av1`](crate::khr::video_encode_av1)
 impl VideoEncodeAV1RateControlGroupKHR {
+    #[inline]
+    pub const fn from_raw(x: i32) -> Self {
+        Self(x)
+    }
+    #[inline]
+    pub const fn as_raw(self) -> i32 {
+        self.0
+    }
     pub const INTRA_KHR: Self = Self(0);
     pub const PREDICTIVE_KHR: Self = Self(1);
     pub const BIPREDICTIVE_KHR: Self = Self(2);

@@ -29,6 +29,14 @@ impl crate::vk::StructureType {
 pub struct ViewportCoordinateSwizzleNV(pub(crate) i32);
 ///Provided by [`nv::viewport_swizzle`](crate::nv::viewport_swizzle)
 impl ViewportCoordinateSwizzleNV {
+    #[inline]
+    pub const fn from_raw(x: i32) -> Self {
+        Self(x)
+    }
+    #[inline]
+    pub const fn as_raw(self) -> i32 {
+        self.0
+    }
     pub const POSITIVE_X_NV: Self = Self(0);
     pub const NEGATIVE_X_NV: Self = Self(1);
     pub const POSITIVE_Y_NV: Self = Self(2);

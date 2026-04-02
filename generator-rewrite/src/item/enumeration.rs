@@ -26,7 +26,20 @@ impl Code for Enum {
         };
 
         let mut codemap = CodeMap::new(Destination::new(self.required_by), code);
-        let mut impl_map = CodeMap::default();
+        let mut impl_map = CodeMap::new(
+            Destination::new(self.required_by),
+            quote! {
+                #[inline]
+                pub const fn from_raw(x: i32) -> Self {
+                    Self(x)
+                }
+
+                #[inline]
+                pub const fn as_raw(self) -> i32 {
+                    self.0
+                }
+            },
+        );
 
         for (&name, Item { required_by, value }) in &self.items {
             let name = ctx.enumerator_to_rust(name, self.name, false);
@@ -63,10 +76,34 @@ impl Code for Enum {
                 dest,
                 quote! {
                     #[doc = #doc]
-                    impl #name { #impl_tokens }
+                    impl #name {
+                        // TODO: pull doc from xml
+                        #impl_tokens
+                    }
                 },
             ));
         }
+
+        /*
+        codemap.extend(CodeMap::new(
+            Destination::new(self.required_by),
+            quote! {
+                #[cfg(feature = "std")]
+                impl std::error::Error for #name {}
+
+                impl fmt::Display for Result {
+                    fn fmt(&self, fmt: &mut fmt::Formatter<'_>) -> fmt::Result {
+                        let name = match * self {  Self :: ERROR_UNKNOWN => Some ("An unknown error has occurred, due to an implementation or application bug") , _ => None , } ;
+                        if let Some(x) = name {
+                            fmt.write_str(x)
+                        } else {
+                            <Self as fmt::Debug>::fmt(self, fmt)
+                        }
+                    }
+                }
+            },
+        ));
+        */
 
         codemap
     }

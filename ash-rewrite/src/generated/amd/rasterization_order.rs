@@ -21,6 +21,14 @@ impl crate::vk::StructureType {
 pub struct RasterizationOrderAMD(pub(crate) i32);
 ///Provided by [`amd::rasterization_order`](crate::amd::rasterization_order)
 impl RasterizationOrderAMD {
+    #[inline]
+    pub const fn from_raw(x: i32) -> Self {
+        Self(x)
+    }
+    #[inline]
+    pub const fn as_raw(self) -> i32 {
+        self.0
+    }
     pub const STRICT_AMD: Self = Self(0);
     pub const RELAXED_AMD: Self = Self(1);
 }

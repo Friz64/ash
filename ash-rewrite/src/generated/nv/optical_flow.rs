@@ -226,6 +226,14 @@ pub(crate) mod reexport {
     pub struct OpticalFlowPerformanceLevelNV(pub(crate) i32);
     ///Provided by [`nv::optical_flow`](crate::nv::optical_flow)
     impl OpticalFlowPerformanceLevelNV {
+        #[inline]
+        pub const fn from_raw(x: i32) -> Self {
+            Self(x)
+        }
+        #[inline]
+        pub const fn as_raw(self) -> i32 {
+            self.0
+        }
         pub const UNKNOWN_NV: Self = Self(0);
         pub const SLOW_NV: Self = Self(1);
         pub const MEDIUM_NV: Self = Self(2);
@@ -237,6 +245,14 @@ pub(crate) mod reexport {
     pub struct OpticalFlowSessionBindingPointNV(pub(crate) i32);
     ///Provided by [`nv::optical_flow`](crate::nv::optical_flow)
     impl OpticalFlowSessionBindingPointNV {
+        #[inline]
+        pub const fn from_raw(x: i32) -> Self {
+            Self(x)
+        }
+        #[inline]
+        pub const fn as_raw(self) -> i32 {
+            self.0
+        }
         pub const UNKNOWN_NV: Self = Self(0);
         pub const INPUT_NV: Self = Self(1);
         pub const REFERENCE_NV: Self = Self(2);

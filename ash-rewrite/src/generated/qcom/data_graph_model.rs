@@ -54,6 +54,14 @@ impl crate::vk::PhysicalDeviceDataGraphOperationTypeARM {
 pub struct DataGraphModelCacheTypeQCOM(pub(crate) i32);
 ///Provided by [`qcom::data_graph_model`](crate::qcom::data_graph_model)
 impl DataGraphModelCacheTypeQCOM {
+    #[inline]
+    pub const fn from_raw(x: i32) -> Self {
+        Self(x)
+    }
+    #[inline]
+    pub const fn as_raw(self) -> i32 {
+        self.0
+    }
     pub const GENERIC_BINARY_QCOM: Self = Self(0);
 }
 pub const DATA_GRAPH_MODEL_TOOLCHAIN_VERSION_LENGTH_QCOM: u32 = 3;

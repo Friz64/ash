@@ -87,6 +87,14 @@ pub(crate) mod reexport {
     pub struct ScopeKHR(pub(crate) i32);
     ///Provided by [`khr::cooperative_matrix`](crate::khr::cooperative_matrix)
     impl ScopeKHR {
+        #[inline]
+        pub const fn from_raw(x: i32) -> Self {
+            Self(x)
+        }
+        #[inline]
+        pub const fn as_raw(self) -> i32 {
+            self.0
+        }
         pub const DEVICE_KHR: Self = Self(1);
         pub const WORKGROUP_KHR: Self = Self(2);
         pub const SUBGROUP_KHR: Self = Self(3);

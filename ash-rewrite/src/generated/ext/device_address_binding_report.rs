@@ -33,6 +33,14 @@ impl crate::vk::StructureType {
 pub struct DeviceAddressBindingTypeEXT(pub(crate) i32);
 ///Provided by [`ext::device_address_binding_report`](crate::ext::device_address_binding_report)
 impl DeviceAddressBindingTypeEXT {
+    #[inline]
+    pub const fn from_raw(x: i32) -> Self {
+        Self(x)
+    }
+    #[inline]
+    pub const fn as_raw(self) -> i32 {
+        self.0
+    }
     pub const BIND_EXT: Self = Self(0);
     pub const UNBIND_EXT: Self = Self(1);
 }

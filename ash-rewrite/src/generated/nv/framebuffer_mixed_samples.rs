@@ -25,6 +25,14 @@ impl crate::vk::StructureType {
 pub struct CoverageModulationModeNV(pub(crate) i32);
 ///Provided by [`nv::framebuffer_mixed_samples`](crate::nv::framebuffer_mixed_samples)
 impl CoverageModulationModeNV {
+    #[inline]
+    pub const fn from_raw(x: i32) -> Self {
+        Self(x)
+    }
+    #[inline]
+    pub const fn as_raw(self) -> i32 {
+        self.0
+    }
     pub const NONE_NV: Self = Self(0);
     pub const RGB_NV: Self = Self(1);
     pub const ALPHA_NV: Self = Self(2);

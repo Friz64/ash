@@ -162,6 +162,14 @@ pub(crate) mod reexport {
     pub struct ShadingRatePaletteEntryNV(pub(crate) i32);
     ///Provided by [`nv::shading_rate_image`](crate::nv::shading_rate_image)
     impl ShadingRatePaletteEntryNV {
+        #[inline]
+        pub const fn from_raw(x: i32) -> Self {
+            Self(x)
+        }
+        #[inline]
+        pub const fn as_raw(self) -> i32 {
+            self.0
+        }
         pub const NO_INVOCATIONS_NV: Self = Self(0);
         pub const _16_INVOCATIONS_PER_PIXEL_NV: Self = Self(1);
         pub const _8_INVOCATIONS_PER_PIXEL_NV: Self = Self(2);
@@ -181,6 +189,14 @@ pub(crate) mod reexport {
     pub struct CoarseSampleOrderTypeNV(pub(crate) i32);
     ///Provided by [`nv::shading_rate_image`](crate::nv::shading_rate_image)
     impl CoarseSampleOrderTypeNV {
+        #[inline]
+        pub const fn from_raw(x: i32) -> Self {
+            Self(x)
+        }
+        #[inline]
+        pub const fn as_raw(self) -> i32 {
+            self.0
+        }
         pub const DEFAULT_NV: Self = Self(0);
         pub const CUSTOM_NV: Self = Self(1);
         pub const PIXEL_MAJOR_NV: Self = Self(2);

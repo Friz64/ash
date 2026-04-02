@@ -60,6 +60,14 @@ impl crate::vk::StructureType {
 pub struct SubpassMergeStatusEXT(pub(crate) i32);
 ///Provided by [`ext::subpass_merge_feedback`](crate::ext::subpass_merge_feedback)
 impl SubpassMergeStatusEXT {
+    #[inline]
+    pub const fn from_raw(x: i32) -> Self {
+        Self(x)
+    }
+    #[inline]
+    pub const fn as_raw(self) -> i32 {
+        self.0
+    }
     pub const MERGED_EXT: Self = Self(0);
     pub const DISALLOWED_EXT: Self = Self(1);
     pub const NOT_MERGED_SIDE_EFFECTS_EXT: Self = Self(2);

@@ -138,6 +138,14 @@ pub(crate) mod reexport {
     pub struct PresentModeKHR(pub(crate) i32);
     ///Provided by [`khr::surface`](crate::khr::surface)
     impl PresentModeKHR {
+        #[inline]
+        pub const fn from_raw(x: i32) -> Self {
+            Self(x)
+        }
+        #[inline]
+        pub const fn as_raw(self) -> i32 {
+            self.0
+        }
         pub const IMMEDIATE_KHR: Self = Self(0);
         pub const MAILBOX_KHR: Self = Self(1);
         pub const FIFO_KHR: Self = Self(2);
@@ -149,6 +157,14 @@ pub(crate) mod reexport {
     pub struct ColorSpaceKHR(pub(crate) i32);
     ///Provided by [`khr::surface`](crate::khr::surface)
     impl ColorSpaceKHR {
+        #[inline]
+        pub const fn from_raw(x: i32) -> Self {
+            Self(x)
+        }
+        #[inline]
+        pub const fn as_raw(self) -> i32 {
+            self.0
+        }
         pub const SRGB_NONLINEAR_KHR: Self = Self(0);
     }
     bitflags::bitflags! {

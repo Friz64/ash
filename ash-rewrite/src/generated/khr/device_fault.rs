@@ -135,6 +135,14 @@ pub(crate) mod reexport {
     pub struct DeviceFaultAddressTypeKHR(pub(crate) i32);
     ///Provided by [`khr::device_fault`](crate::khr::device_fault)
     impl DeviceFaultAddressTypeKHR {
+        #[inline]
+        pub const fn from_raw(x: i32) -> Self {
+            Self(x)
+        }
+        #[inline]
+        pub const fn as_raw(self) -> i32 {
+            self.0
+        }
         pub const NONE_KHR: Self = Self(0);
         pub const READ_INVALID_KHR: Self = Self(1);
         pub const WRITE_INVALID_KHR: Self = Self(2);
@@ -149,6 +157,14 @@ pub(crate) mod reexport {
     pub struct DeviceFaultVendorBinaryHeaderVersionKHR(pub(crate) i32);
     ///Provided by [`khr::device_fault`](crate::khr::device_fault)
     impl DeviceFaultVendorBinaryHeaderVersionKHR {
+        #[inline]
+        pub const fn from_raw(x: i32) -> Self {
+            Self(x)
+        }
+        #[inline]
+        pub const fn as_raw(self) -> i32 {
+            self.0
+        }
         pub const ONE_KHR: Self = Self(1);
         pub const ONE_EXT: Self = Self::ONE_KHR;
     }

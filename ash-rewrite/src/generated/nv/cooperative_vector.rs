@@ -156,6 +156,14 @@ pub(crate) mod reexport {
     pub struct ComponentTypeKHR(pub(crate) i32);
     ///Provided by [`nv::cooperative_vector`](crate::nv::cooperative_vector)
     impl ComponentTypeKHR {
+        #[inline]
+        pub const fn from_raw(x: i32) -> Self {
+            Self(x)
+        }
+        #[inline]
+        pub const fn as_raw(self) -> i32 {
+            self.0
+        }
         pub const FLOAT16_KHR: Self = Self(0);
         pub const FLOAT32_KHR: Self = Self(1);
         pub const FLOAT64_KHR: Self = Self(2);
@@ -178,6 +186,14 @@ pub(crate) mod reexport {
     pub struct CooperativeVectorMatrixLayoutNV(pub(crate) i32);
     ///Provided by [`nv::cooperative_vector`](crate::nv::cooperative_vector)
     impl CooperativeVectorMatrixLayoutNV {
+        #[inline]
+        pub const fn from_raw(x: i32) -> Self {
+            Self(x)
+        }
+        #[inline]
+        pub const fn as_raw(self) -> i32 {
+            self.0
+        }
         pub const ROW_MAJOR_NV: Self = Self(0);
         pub const COLUMN_MAJOR_NV: Self = Self(1);
         pub const INFERENCING_OPTIMAL_NV: Self = Self(2);

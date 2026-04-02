@@ -19,6 +19,14 @@ impl crate::vk::StructureType {
 pub struct LayeredDriverUnderlyingApiMSFT(pub(crate) i32);
 ///Provided by [`msft::layered_driver`](crate::msft::layered_driver)
 impl LayeredDriverUnderlyingApiMSFT {
+    #[inline]
+    pub const fn from_raw(x: i32) -> Self {
+        Self(x)
+    }
+    #[inline]
+    pub const fn as_raw(self) -> i32 {
+        self.0
+    }
     pub const NONE_MSFT: Self = Self(0);
     pub const D3D12_MSFT: Self = Self(1);
 }
