@@ -103,6 +103,14 @@ impl crate::vk::StructureType {
 pub struct AccelerationStructureMotionInstanceTypeNV(pub(crate) i32);
 ///Provided by [`nv::ray_tracing_motion_blur`](crate::nv::ray_tracing_motion_blur)
 impl AccelerationStructureMotionInstanceTypeNV {
+    #[inline]
+    pub const fn from_raw(x: i32) -> Self {
+        Self(x)
+    }
+    #[inline]
+    pub const fn as_raw(self) -> i32 {
+        self.0
+    }
     pub const STATIC_NV: Self = Self(0);
     pub const MATRIX_MOTION_NV: Self = Self(1);
     pub const SRT_MOTION_NV: Self = Self(2);

@@ -102,6 +102,14 @@ pub(crate) mod reexport {
     pub struct DebugReportObjectTypeEXT(pub(crate) i32);
     ///Provided by [`ext::debug_report`](crate::ext::debug_report)
     impl DebugReportObjectTypeEXT {
+        #[inline]
+        pub const fn from_raw(x: i32) -> Self {
+            Self(x)
+        }
+        #[inline]
+        pub const fn as_raw(self) -> i32 {
+            self.0
+        }
         pub const UNKNOWN_EXT: Self = Self(0);
         pub const INSTANCE_EXT: Self = Self(1);
         pub const PHYSICAL_DEVICE_EXT: Self = Self(2);

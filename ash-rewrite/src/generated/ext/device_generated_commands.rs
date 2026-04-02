@@ -414,6 +414,14 @@ pub(crate) mod reexport {
     pub struct IndirectExecutionSetInfoTypeEXT(pub(crate) i32);
     ///Provided by [`ext::device_generated_commands`](crate::ext::device_generated_commands)
     impl IndirectExecutionSetInfoTypeEXT {
+        #[inline]
+        pub const fn from_raw(x: i32) -> Self {
+            Self(x)
+        }
+        #[inline]
+        pub const fn as_raw(self) -> i32 {
+            self.0
+        }
         pub const PIPELINES_EXT: Self = Self(0);
         pub const SHADER_OBJECTS_EXT: Self = Self(1);
     }
@@ -423,6 +431,14 @@ pub(crate) mod reexport {
     pub struct IndirectCommandsTokenTypeEXT(pub(crate) i32);
     ///Provided by [`ext::device_generated_commands`](crate::ext::device_generated_commands)
     impl IndirectCommandsTokenTypeEXT {
+        #[inline]
+        pub const fn from_raw(x: i32) -> Self {
+            Self(x)
+        }
+        #[inline]
+        pub const fn as_raw(self) -> i32 {
+            self.0
+        }
         pub const EXECUTION_SET_EXT: Self = Self(0);
         pub const PUSH_CONSTANT_EXT: Self = Self(1);
         pub const SEQUENCE_INDEX_EXT: Self = Self(2);

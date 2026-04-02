@@ -3518,6 +3518,14 @@ pub(crate) mod reexport {
     pub struct ImageLayout(pub(crate) i32);
     ///Provided by [`vk1_0`](crate::vk1_0)
     impl ImageLayout {
+        #[inline]
+        pub const fn from_raw(x: i32) -> Self {
+            Self(x)
+        }
+        #[inline]
+        pub const fn as_raw(self) -> i32 {
+            self.0
+        }
         pub const UNDEFINED: Self = Self(0);
         pub const GENERAL: Self = Self(1);
         pub const COLOR_ATTACHMENT_OPTIMAL: Self = Self(2);
@@ -3534,6 +3542,14 @@ pub(crate) mod reexport {
     pub struct AttachmentLoadOp(pub(crate) i32);
     ///Provided by [`vk1_0`](crate::vk1_0)
     impl AttachmentLoadOp {
+        #[inline]
+        pub const fn from_raw(x: i32) -> Self {
+            Self(x)
+        }
+        #[inline]
+        pub const fn as_raw(self) -> i32 {
+            self.0
+        }
         pub const LOAD: Self = Self(0);
         pub const CLEAR: Self = Self(1);
         pub const DONT_CARE: Self = Self(2);
@@ -3544,6 +3560,14 @@ pub(crate) mod reexport {
     pub struct AttachmentStoreOp(pub(crate) i32);
     ///Provided by [`vk1_0`](crate::vk1_0)
     impl AttachmentStoreOp {
+        #[inline]
+        pub const fn from_raw(x: i32) -> Self {
+            Self(x)
+        }
+        #[inline]
+        pub const fn as_raw(self) -> i32 {
+            self.0
+        }
         pub const STORE: Self = Self(0);
         pub const DONT_CARE: Self = Self(1);
     }
@@ -3553,6 +3577,14 @@ pub(crate) mod reexport {
     pub struct ImageType(pub(crate) i32);
     ///Provided by [`vk1_0`](crate::vk1_0)
     impl ImageType {
+        #[inline]
+        pub const fn from_raw(x: i32) -> Self {
+            Self(x)
+        }
+        #[inline]
+        pub const fn as_raw(self) -> i32 {
+            self.0
+        }
         pub const _1D: Self = Self(0);
         pub const _2D: Self = Self(1);
         pub const _3D: Self = Self(2);
@@ -3563,6 +3595,14 @@ pub(crate) mod reexport {
     pub struct ImageTiling(pub(crate) i32);
     ///Provided by [`vk1_0`](crate::vk1_0)
     impl ImageTiling {
+        #[inline]
+        pub const fn from_raw(x: i32) -> Self {
+            Self(x)
+        }
+        #[inline]
+        pub const fn as_raw(self) -> i32 {
+            self.0
+        }
         pub const OPTIMAL: Self = Self(0);
         pub const LINEAR: Self = Self(1);
     }
@@ -3572,6 +3612,14 @@ pub(crate) mod reexport {
     pub struct ImageViewType(pub(crate) i32);
     ///Provided by [`vk1_0`](crate::vk1_0)
     impl ImageViewType {
+        #[inline]
+        pub const fn from_raw(x: i32) -> Self {
+            Self(x)
+        }
+        #[inline]
+        pub const fn as_raw(self) -> i32 {
+            self.0
+        }
         pub const _1D: Self = Self(0);
         pub const _2D: Self = Self(1);
         pub const _3D: Self = Self(2);
@@ -3586,6 +3634,14 @@ pub(crate) mod reexport {
     pub struct CommandBufferLevel(pub(crate) i32);
     ///Provided by [`vk1_0`](crate::vk1_0)
     impl CommandBufferLevel {
+        #[inline]
+        pub const fn from_raw(x: i32) -> Self {
+            Self(x)
+        }
+        #[inline]
+        pub const fn as_raw(self) -> i32 {
+            self.0
+        }
         pub const PRIMARY: Self = Self(0);
         pub const SECONDARY: Self = Self(1);
     }
@@ -3595,6 +3651,14 @@ pub(crate) mod reexport {
     pub struct ComponentSwizzle(pub(crate) i32);
     ///Provided by [`vk1_0`](crate::vk1_0)
     impl ComponentSwizzle {
+        #[inline]
+        pub const fn from_raw(x: i32) -> Self {
+            Self(x)
+        }
+        #[inline]
+        pub const fn as_raw(self) -> i32 {
+            self.0
+        }
         pub const IDENTITY: Self = Self(0);
         pub const ZERO: Self = Self(1);
         pub const ONE: Self = Self(2);
@@ -3609,6 +3673,14 @@ pub(crate) mod reexport {
     pub struct DescriptorType(pub(crate) i32);
     ///Provided by [`vk1_0`](crate::vk1_0)
     impl DescriptorType {
+        #[inline]
+        pub const fn from_raw(x: i32) -> Self {
+            Self(x)
+        }
+        #[inline]
+        pub const fn as_raw(self) -> i32 {
+            self.0
+        }
         pub const SAMPLER: Self = Self(0);
         pub const COMBINED_IMAGE_SAMPLER: Self = Self(1);
         pub const SAMPLED_IMAGE: Self = Self(2);
@@ -3627,6 +3699,14 @@ pub(crate) mod reexport {
     pub struct QueryType(pub(crate) i32);
     ///Provided by [`vk1_0`](crate::vk1_0)
     impl QueryType {
+        #[inline]
+        pub const fn from_raw(x: i32) -> Self {
+            Self(x)
+        }
+        #[inline]
+        pub const fn as_raw(self) -> i32 {
+            self.0
+        }
         pub const OCCLUSION: Self = Self(0);
         pub const PIPELINE_STATISTICS: Self = Self(1);
         pub const TIMESTAMP: Self = Self(2);
@@ -3637,6 +3717,14 @@ pub(crate) mod reexport {
     pub struct BorderColor(pub(crate) i32);
     ///Provided by [`vk1_0`](crate::vk1_0)
     impl BorderColor {
+        #[inline]
+        pub const fn from_raw(x: i32) -> Self {
+            Self(x)
+        }
+        #[inline]
+        pub const fn as_raw(self) -> i32 {
+            self.0
+        }
         pub const FLOAT_TRANSPARENT_BLACK: Self = Self(0);
         pub const INT_TRANSPARENT_BLACK: Self = Self(1);
         pub const FLOAT_OPAQUE_BLACK: Self = Self(2);
@@ -3650,6 +3738,14 @@ pub(crate) mod reexport {
     pub struct PipelineBindPoint(pub(crate) i32);
     ///Provided by [`vk1_0`](crate::vk1_0)
     impl PipelineBindPoint {
+        #[inline]
+        pub const fn from_raw(x: i32) -> Self {
+            Self(x)
+        }
+        #[inline]
+        pub const fn as_raw(self) -> i32 {
+            self.0
+        }
         pub const GRAPHICS: Self = Self(0);
         pub const COMPUTE: Self = Self(1);
     }
@@ -3659,6 +3755,14 @@ pub(crate) mod reexport {
     pub struct PipelineCacheHeaderVersion(pub(crate) i32);
     ///Provided by [`vk1_0`](crate::vk1_0)
     impl PipelineCacheHeaderVersion {
+        #[inline]
+        pub const fn from_raw(x: i32) -> Self {
+            Self(x)
+        }
+        #[inline]
+        pub const fn as_raw(self) -> i32 {
+            self.0
+        }
         pub const ONE: Self = Self(1);
     }
     #[repr(transparent)]
@@ -3667,6 +3771,14 @@ pub(crate) mod reexport {
     pub struct PrimitiveTopology(pub(crate) i32);
     ///Provided by [`vk1_0`](crate::vk1_0)
     impl PrimitiveTopology {
+        #[inline]
+        pub const fn from_raw(x: i32) -> Self {
+            Self(x)
+        }
+        #[inline]
+        pub const fn as_raw(self) -> i32 {
+            self.0
+        }
         pub const POINT_LIST: Self = Self(0);
         pub const LINE_LIST: Self = Self(1);
         pub const LINE_STRIP: Self = Self(2);
@@ -3685,6 +3797,14 @@ pub(crate) mod reexport {
     pub struct SharingMode(pub(crate) i32);
     ///Provided by [`vk1_0`](crate::vk1_0)
     impl SharingMode {
+        #[inline]
+        pub const fn from_raw(x: i32) -> Self {
+            Self(x)
+        }
+        #[inline]
+        pub const fn as_raw(self) -> i32 {
+            self.0
+        }
         pub const EXCLUSIVE: Self = Self(0);
         pub const CONCURRENT: Self = Self(1);
     }
@@ -3694,6 +3814,14 @@ pub(crate) mod reexport {
     pub struct IndexType(pub(crate) i32);
     ///Provided by [`vk1_0`](crate::vk1_0)
     impl IndexType {
+        #[inline]
+        pub const fn from_raw(x: i32) -> Self {
+            Self(x)
+        }
+        #[inline]
+        pub const fn as_raw(self) -> i32 {
+            self.0
+        }
         pub const UINT16: Self = Self(0);
         pub const UINT32: Self = Self(1);
     }
@@ -3703,6 +3831,14 @@ pub(crate) mod reexport {
     pub struct Filter(pub(crate) i32);
     ///Provided by [`vk1_0`](crate::vk1_0)
     impl Filter {
+        #[inline]
+        pub const fn from_raw(x: i32) -> Self {
+            Self(x)
+        }
+        #[inline]
+        pub const fn as_raw(self) -> i32 {
+            self.0
+        }
         pub const NEAREST: Self = Self(0);
         pub const LINEAR: Self = Self(1);
     }
@@ -3712,6 +3848,14 @@ pub(crate) mod reexport {
     pub struct SamplerMipmapMode(pub(crate) i32);
     ///Provided by [`vk1_0`](crate::vk1_0)
     impl SamplerMipmapMode {
+        #[inline]
+        pub const fn from_raw(x: i32) -> Self {
+            Self(x)
+        }
+        #[inline]
+        pub const fn as_raw(self) -> i32 {
+            self.0
+        }
         pub const NEAREST: Self = Self(0);
         pub const LINEAR: Self = Self(1);
     }
@@ -3721,6 +3865,14 @@ pub(crate) mod reexport {
     pub struct SamplerAddressMode(pub(crate) i32);
     ///Provided by [`vk1_0`](crate::vk1_0)
     impl SamplerAddressMode {
+        #[inline]
+        pub const fn from_raw(x: i32) -> Self {
+            Self(x)
+        }
+        #[inline]
+        pub const fn as_raw(self) -> i32 {
+            self.0
+        }
         pub const REPEAT: Self = Self(0);
         pub const MIRRORED_REPEAT: Self = Self(1);
         pub const CLAMP_TO_EDGE: Self = Self(2);
@@ -3732,6 +3884,14 @@ pub(crate) mod reexport {
     pub struct CompareOp(pub(crate) i32);
     ///Provided by [`vk1_0`](crate::vk1_0)
     impl CompareOp {
+        #[inline]
+        pub const fn from_raw(x: i32) -> Self {
+            Self(x)
+        }
+        #[inline]
+        pub const fn as_raw(self) -> i32 {
+            self.0
+        }
         pub const NEVER: Self = Self(0);
         pub const LESS: Self = Self(1);
         pub const EQUAL: Self = Self(2);
@@ -3747,6 +3907,14 @@ pub(crate) mod reexport {
     pub struct PolygonMode(pub(crate) i32);
     ///Provided by [`vk1_0`](crate::vk1_0)
     impl PolygonMode {
+        #[inline]
+        pub const fn from_raw(x: i32) -> Self {
+            Self(x)
+        }
+        #[inline]
+        pub const fn as_raw(self) -> i32 {
+            self.0
+        }
         pub const FILL: Self = Self(0);
         pub const LINE: Self = Self(1);
         pub const POINT: Self = Self(2);
@@ -3757,6 +3925,14 @@ pub(crate) mod reexport {
     pub struct FrontFace(pub(crate) i32);
     ///Provided by [`vk1_0`](crate::vk1_0)
     impl FrontFace {
+        #[inline]
+        pub const fn from_raw(x: i32) -> Self {
+            Self(x)
+        }
+        #[inline]
+        pub const fn as_raw(self) -> i32 {
+            self.0
+        }
         pub const COUNTER_CLOCKWISE: Self = Self(0);
         pub const CLOCKWISE: Self = Self(1);
     }
@@ -3766,6 +3942,14 @@ pub(crate) mod reexport {
     pub struct BlendFactor(pub(crate) i32);
     ///Provided by [`vk1_0`](crate::vk1_0)
     impl BlendFactor {
+        #[inline]
+        pub const fn from_raw(x: i32) -> Self {
+            Self(x)
+        }
+        #[inline]
+        pub const fn as_raw(self) -> i32 {
+            self.0
+        }
         pub const ZERO: Self = Self(0);
         pub const ONE: Self = Self(1);
         pub const SRC_COLOR: Self = Self(2);
@@ -3792,6 +3976,14 @@ pub(crate) mod reexport {
     pub struct BlendOp(pub(crate) i32);
     ///Provided by [`vk1_0`](crate::vk1_0)
     impl BlendOp {
+        #[inline]
+        pub const fn from_raw(x: i32) -> Self {
+            Self(x)
+        }
+        #[inline]
+        pub const fn as_raw(self) -> i32 {
+            self.0
+        }
         pub const ADD: Self = Self(0);
         pub const SUBTRACT: Self = Self(1);
         pub const REVERSE_SUBTRACT: Self = Self(2);
@@ -3804,6 +3996,14 @@ pub(crate) mod reexport {
     pub struct StencilOp(pub(crate) i32);
     ///Provided by [`vk1_0`](crate::vk1_0)
     impl StencilOp {
+        #[inline]
+        pub const fn from_raw(x: i32) -> Self {
+            Self(x)
+        }
+        #[inline]
+        pub const fn as_raw(self) -> i32 {
+            self.0
+        }
         pub const KEEP: Self = Self(0);
         pub const ZERO: Self = Self(1);
         pub const REPLACE: Self = Self(2);
@@ -3819,6 +4019,14 @@ pub(crate) mod reexport {
     pub struct LogicOp(pub(crate) i32);
     ///Provided by [`vk1_0`](crate::vk1_0)
     impl LogicOp {
+        #[inline]
+        pub const fn from_raw(x: i32) -> Self {
+            Self(x)
+        }
+        #[inline]
+        pub const fn as_raw(self) -> i32 {
+            self.0
+        }
         pub const CLEAR: Self = Self(0);
         pub const AND: Self = Self(1);
         pub const AND_REVERSE: Self = Self(2);
@@ -3842,6 +4050,14 @@ pub(crate) mod reexport {
     pub struct InternalAllocationType(pub(crate) i32);
     ///Provided by [`vk1_0`](crate::vk1_0)
     impl InternalAllocationType {
+        #[inline]
+        pub const fn from_raw(x: i32) -> Self {
+            Self(x)
+        }
+        #[inline]
+        pub const fn as_raw(self) -> i32 {
+            self.0
+        }
         pub const EXECUTABLE: Self = Self(0);
     }
     #[repr(transparent)]
@@ -3850,6 +4066,14 @@ pub(crate) mod reexport {
     pub struct SystemAllocationScope(pub(crate) i32);
     ///Provided by [`vk1_0`](crate::vk1_0)
     impl SystemAllocationScope {
+        #[inline]
+        pub const fn from_raw(x: i32) -> Self {
+            Self(x)
+        }
+        #[inline]
+        pub const fn as_raw(self) -> i32 {
+            self.0
+        }
         pub const COMMAND: Self = Self(0);
         pub const OBJECT: Self = Self(1);
         pub const CACHE: Self = Self(2);
@@ -3862,6 +4086,14 @@ pub(crate) mod reexport {
     pub struct PhysicalDeviceType(pub(crate) i32);
     ///Provided by [`vk1_0`](crate::vk1_0)
     impl PhysicalDeviceType {
+        #[inline]
+        pub const fn from_raw(x: i32) -> Self {
+            Self(x)
+        }
+        #[inline]
+        pub const fn as_raw(self) -> i32 {
+            self.0
+        }
         pub const OTHER: Self = Self(0);
         pub const INTEGRATED_GPU: Self = Self(1);
         pub const DISCRETE_GPU: Self = Self(2);
@@ -3874,6 +4106,14 @@ pub(crate) mod reexport {
     pub struct VertexInputRate(pub(crate) i32);
     ///Provided by [`vk1_0`](crate::vk1_0)
     impl VertexInputRate {
+        #[inline]
+        pub const fn from_raw(x: i32) -> Self {
+            Self(x)
+        }
+        #[inline]
+        pub const fn as_raw(self) -> i32 {
+            self.0
+        }
         pub const VERTEX: Self = Self(0);
         pub const INSTANCE: Self = Self(1);
     }
@@ -3883,6 +4123,14 @@ pub(crate) mod reexport {
     pub struct Format(pub(crate) i32);
     ///Provided by [`vk1_0`](crate::vk1_0)
     impl Format {
+        #[inline]
+        pub const fn from_raw(x: i32) -> Self {
+            Self(x)
+        }
+        #[inline]
+        pub const fn as_raw(self) -> i32 {
+            self.0
+        }
         pub const UNDEFINED: Self = Self(0);
         pub const R4G4_UNORM_PACK8: Self = Self(1);
         pub const R4G4B4A4_UNORM_PACK16: Self = Self(2);
@@ -4075,6 +4323,14 @@ pub(crate) mod reexport {
     pub struct StructureType(pub(crate) i32);
     ///Provided by [`vk1_0`](crate::vk1_0)
     impl StructureType {
+        #[inline]
+        pub const fn from_raw(x: i32) -> Self {
+            Self(x)
+        }
+        #[inline]
+        pub const fn as_raw(self) -> i32 {
+            self.0
+        }
         pub const APPLICATION_INFO: Self = Self(0);
         pub const INSTANCE_CREATE_INFO: Self = Self(1);
         pub const DEVICE_QUEUE_CREATE_INFO: Self = Self(2);
@@ -4131,6 +4387,14 @@ pub(crate) mod reexport {
     pub struct SubpassContents(pub(crate) i32);
     ///Provided by [`vk1_0`](crate::vk1_0)
     impl SubpassContents {
+        #[inline]
+        pub const fn from_raw(x: i32) -> Self {
+            Self(x)
+        }
+        #[inline]
+        pub const fn as_raw(self) -> i32 {
+            self.0
+        }
         pub const INLINE: Self = Self(0);
         pub const SECONDARY_COMMAND_BUFFERS: Self = Self(1);
     }
@@ -4140,6 +4404,14 @@ pub(crate) mod reexport {
     pub struct Result(pub(crate) i32);
     ///Provided by [`vk1_0`](crate::vk1_0)
     impl Result {
+        #[inline]
+        pub const fn from_raw(x: i32) -> Self {
+            Self(x)
+        }
+        #[inline]
+        pub const fn as_raw(self) -> i32 {
+            self.0
+        }
         pub const SUCCESS: Self = Self(0);
         pub const NOT_READY: Self = Self(1);
         pub const TIMEOUT: Self = Self(2);
@@ -4167,6 +4439,14 @@ pub(crate) mod reexport {
     pub struct DynamicState(pub(crate) i32);
     ///Provided by [`vk1_0`](crate::vk1_0)
     impl DynamicState {
+        #[inline]
+        pub const fn from_raw(x: i32) -> Self {
+            Self(x)
+        }
+        #[inline]
+        pub const fn as_raw(self) -> i32 {
+            self.0
+        }
         pub const VIEWPORT: Self = Self(0);
         pub const SCISSOR: Self = Self(1);
         pub const LINE_WIDTH: Self = Self(2);
@@ -4183,6 +4463,14 @@ pub(crate) mod reexport {
     pub struct ObjectType(pub(crate) i32);
     ///Provided by [`vk1_0`](crate::vk1_0)
     impl ObjectType {
+        #[inline]
+        pub const fn from_raw(x: i32) -> Self {
+            Self(x)
+        }
+        #[inline]
+        pub const fn as_raw(self) -> i32 {
+            self.0
+        }
         pub const UNKNOWN: Self = Self(0);
         pub const INSTANCE: Self = Self(1);
         pub const PHYSICAL_DEVICE: Self = Self(2);
@@ -4216,6 +4504,14 @@ pub(crate) mod reexport {
     pub struct VendorId(pub(crate) i32);
     ///Provided by [`vk1_0`](crate::vk1_0)
     impl VendorId {
+        #[inline]
+        pub const fn from_raw(x: i32) -> Self {
+            Self(x)
+        }
+        #[inline]
+        pub const fn as_raw(self) -> i32 {
+            self.0
+        }
         pub const KHRONOS: Self = Self(0x10000);
         pub const VIV: Self = Self(0x10001);
         pub const VSI: Self = Self(0x10002);

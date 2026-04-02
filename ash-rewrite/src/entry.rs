@@ -1,3 +1,4 @@
+#![allow(clippy::missing_safety_doc, clippy::missing_transmute_annotations)]
 use super::Instance;
 #[cfg(doc)]
 use crate::khr;

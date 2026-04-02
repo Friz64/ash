@@ -33,6 +33,14 @@ impl crate::vk::StructureType {
 pub struct RayTracingInvocationReorderModeEXT(pub(crate) i32);
 ///Provided by [`ext::ray_tracing_invocation_reorder`](crate::ext::ray_tracing_invocation_reorder)
 impl RayTracingInvocationReorderModeEXT {
+    #[inline]
+    pub const fn from_raw(x: i32) -> Self {
+        Self(x)
+    }
+    #[inline]
+    pub const fn as_raw(self) -> i32 {
+        self.0
+    }
     pub const NONE_EXT: Self = Self(0);
     pub const REORDER_EXT: Self = Self(1);
 }

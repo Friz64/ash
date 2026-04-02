@@ -92,6 +92,14 @@ pub(crate) mod reexport {
     pub struct TimeDomainKHR(pub(crate) i32);
     ///Provided by [`khr::calibrated_timestamps`](crate::khr::calibrated_timestamps)
     impl TimeDomainKHR {
+        #[inline]
+        pub const fn from_raw(x: i32) -> Self {
+            Self(x)
+        }
+        #[inline]
+        pub const fn as_raw(self) -> i32 {
+            self.0
+        }
         pub const DEVICE_KHR: Self = Self(0);
         pub const CLOCK_MONOTONIC_KHR: Self = Self(1);
         pub const CLOCK_MONOTONIC_RAW_KHR: Self = Self(2);

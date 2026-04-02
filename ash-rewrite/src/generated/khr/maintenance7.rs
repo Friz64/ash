@@ -70,6 +70,14 @@ impl crate::vk::SubpassContents {
 pub struct PhysicalDeviceLayeredApiKHR(pub(crate) i32);
 ///Provided by [`khr::maintenance7`](crate::khr::maintenance7)
 impl PhysicalDeviceLayeredApiKHR {
+    #[inline]
+    pub const fn from_raw(x: i32) -> Self {
+        Self(x)
+    }
+    #[inline]
+    pub const fn as_raw(self) -> i32 {
+        self.0
+    }
     pub const VULKAN_KHR: Self = Self(0);
     pub const D3D12_KHR: Self = Self(1);
     pub const METAL_KHR: Self = Self(2);

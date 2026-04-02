@@ -1,3 +1,4 @@
+#![allow(clippy::missing_safety_doc)]
 use super::Device;
 #[cfg(doc)]
 use super::Entry;

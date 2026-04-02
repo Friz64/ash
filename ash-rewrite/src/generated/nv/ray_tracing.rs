@@ -452,6 +452,14 @@ pub(crate) mod reexport {
     pub struct AccelerationStructureMemoryRequirementsTypeNV(pub(crate) i32);
     ///Provided by [`nv::ray_tracing`](crate::nv::ray_tracing)
     impl AccelerationStructureMemoryRequirementsTypeNV {
+        #[inline]
+        pub const fn from_raw(x: i32) -> Self {
+            Self(x)
+        }
+        #[inline]
+        pub const fn as_raw(self) -> i32 {
+            self.0
+        }
         pub const OBJECT_NV: Self = Self(0);
         pub const BUILD_SCRATCH_NV: Self = Self(1);
         pub const UPDATE_SCRATCH_NV: Self = Self(2);

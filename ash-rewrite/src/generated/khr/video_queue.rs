@@ -455,6 +455,14 @@ pub(crate) mod reexport {
     pub struct QueryResultStatusKHR(pub(crate) i32);
     ///Provided by [`khr::video_queue`](crate::khr::video_queue)
     impl QueryResultStatusKHR {
+        #[inline]
+        pub const fn from_raw(x: i32) -> Self {
+            Self(x)
+        }
+        #[inline]
+        pub const fn as_raw(self) -> i32 {
+            self.0
+        }
         pub const ERROR_KHR: Self = Self(-1);
         pub const NOT_READY_KHR: Self = Self(0);
         pub const COMPLETE_KHR: Self = Self(1);

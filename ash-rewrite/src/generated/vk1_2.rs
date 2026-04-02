@@ -988,6 +988,14 @@ pub(crate) mod reexport {
     pub struct SemaphoreType(pub(crate) i32);
     ///Provided by [`vk1_2`](crate::vk1_2)
     impl SemaphoreType {
+        #[inline]
+        pub const fn from_raw(x: i32) -> Self {
+            Self(x)
+        }
+        #[inline]
+        pub const fn as_raw(self) -> i32 {
+            self.0
+        }
         pub const BINARY: Self = Self(0);
         pub const TIMELINE: Self = Self(1);
     }
@@ -997,6 +1005,14 @@ pub(crate) mod reexport {
     pub struct SamplerReductionMode(pub(crate) i32);
     ///Provided by [`vk1_2`](crate::vk1_2)
     impl SamplerReductionMode {
+        #[inline]
+        pub const fn from_raw(x: i32) -> Self {
+            Self(x)
+        }
+        #[inline]
+        pub const fn as_raw(self) -> i32 {
+            self.0
+        }
         pub const WEIGHTED_AVERAGE: Self = Self(0);
         pub const MIN: Self = Self(1);
         pub const MAX: Self = Self(2);
@@ -1007,6 +1023,14 @@ pub(crate) mod reexport {
     pub struct DriverId(pub(crate) i32);
     ///Provided by [`vk1_2`](crate::vk1_2)
     impl DriverId {
+        #[inline]
+        pub const fn from_raw(x: i32) -> Self {
+            Self(x)
+        }
+        #[inline]
+        pub const fn as_raw(self) -> i32 {
+            self.0
+        }
         pub const AMD_PROPRIETARY: Self = Self(1);
         pub const AMD_OPEN_SOURCE: Self = Self(2);
         pub const MESA_RADV: Self = Self(3);
@@ -1042,6 +1066,14 @@ pub(crate) mod reexport {
     pub struct ShaderFloatControlsIndependence(pub(crate) i32);
     ///Provided by [`vk1_2`](crate::vk1_2)
     impl ShaderFloatControlsIndependence {
+        #[inline]
+        pub const fn from_raw(x: i32) -> Self {
+            Self(x)
+        }
+        #[inline]
+        pub const fn as_raw(self) -> i32 {
+            self.0
+        }
         pub const _32_ONLY: Self = Self(0);
         pub const ALL: Self = Self(1);
         pub const NONE: Self = Self(2);

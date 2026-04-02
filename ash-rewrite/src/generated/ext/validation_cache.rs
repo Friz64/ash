@@ -122,6 +122,14 @@ pub(crate) mod reexport {
     pub struct ValidationCacheHeaderVersionEXT(pub(crate) i32);
     ///Provided by [`ext::validation_cache`](crate::ext::validation_cache)
     impl ValidationCacheHeaderVersionEXT {
+        #[inline]
+        pub const fn from_raw(x: i32) -> Self {
+            Self(x)
+        }
+        #[inline]
+        pub const fn as_raw(self) -> i32 {
+            self.0
+        }
         pub const ONE_EXT: Self = Self(1);
     }
     bitflags::bitflags! {

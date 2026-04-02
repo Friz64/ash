@@ -40,6 +40,14 @@ impl crate::vk::StructureType {
 pub struct BlockMatchWindowCompareModeQCOM(pub(crate) i32);
 ///Provided by [`qcom::image_processing2`](crate::qcom::image_processing2)
 impl BlockMatchWindowCompareModeQCOM {
+    #[inline]
+    pub const fn from_raw(x: i32) -> Self {
+        Self(x)
+    }
+    #[inline]
+    pub const fn as_raw(self) -> i32 {
+        self.0
+    }
     pub const MIN_QCOM: Self = Self(0);
     pub const MAX_QCOM: Self = Self(1);
 }

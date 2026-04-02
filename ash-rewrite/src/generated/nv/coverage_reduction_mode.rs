@@ -84,6 +84,14 @@ pub(crate) mod reexport {
     pub struct CoverageReductionModeNV(pub(crate) i32);
     ///Provided by [`nv::coverage_reduction_mode`](crate::nv::coverage_reduction_mode)
     impl CoverageReductionModeNV {
+        #[inline]
+        pub const fn from_raw(x: i32) -> Self {
+            Self(x)
+        }
+        #[inline]
+        pub const fn as_raw(self) -> i32 {
+            self.0
+        }
         pub const MERGE_NV: Self = Self(0);
         pub const TRUNCATE_NV: Self = Self(1);
     }

@@ -150,6 +150,14 @@ pub struct H264PictureParameterSet<'a> {
 pub struct H264ChromaFormatIdc(pub(crate) i32);
 ///Provided by [`video::codec_h264std`](crate::video::codec_h264std)
 impl H264ChromaFormatIdc {
+    #[inline]
+    pub const fn from_raw(x: i32) -> Self {
+        Self(x)
+    }
+    #[inline]
+    pub const fn as_raw(self) -> i32 {
+        self.0
+    }
     pub const MONOCHROME: Self = Self(0);
     pub const _420: Self = Self(1);
     pub const _422: Self = Self(2);
@@ -162,6 +170,14 @@ impl H264ChromaFormatIdc {
 pub struct H264ProfileIdc(pub(crate) i32);
 ///Provided by [`video::codec_h264std`](crate::video::codec_h264std)
 impl H264ProfileIdc {
+    #[inline]
+    pub const fn from_raw(x: i32) -> Self {
+        Self(x)
+    }
+    #[inline]
+    pub const fn as_raw(self) -> i32 {
+        self.0
+    }
     pub const BASELINE: Self = Self(66);
     pub const MAIN: Self = Self(77);
     pub const HIGH: Self = Self(100);
@@ -174,6 +190,14 @@ impl H264ProfileIdc {
 pub struct H264LevelIdc(pub(crate) i32);
 ///Provided by [`video::codec_h264std`](crate::video::codec_h264std)
 impl H264LevelIdc {
+    #[inline]
+    pub const fn from_raw(x: i32) -> Self {
+        Self(x)
+    }
+    #[inline]
+    pub const fn as_raw(self) -> i32 {
+        self.0
+    }
     pub const _1_0: Self = Self(0);
     pub const _1_1: Self = Self(1);
     pub const _1_2: Self = Self(2);
@@ -201,6 +225,14 @@ impl H264LevelIdc {
 pub struct H264PocType(pub(crate) i32);
 ///Provided by [`video::codec_h264std`](crate::video::codec_h264std)
 impl H264PocType {
+    #[inline]
+    pub const fn from_raw(x: i32) -> Self {
+        Self(x)
+    }
+    #[inline]
+    pub const fn as_raw(self) -> i32 {
+        self.0
+    }
     pub const _0: Self = Self(0);
     pub const _1: Self = Self(1);
     pub const _2: Self = Self(2);
@@ -212,6 +244,14 @@ impl H264PocType {
 pub struct H264AspectRatioIdc(pub(crate) i32);
 ///Provided by [`video::codec_h264std`](crate::video::codec_h264std)
 impl H264AspectRatioIdc {
+    #[inline]
+    pub const fn from_raw(x: i32) -> Self {
+        Self(x)
+    }
+    #[inline]
+    pub const fn as_raw(self) -> i32 {
+        self.0
+    }
     pub const UNSPECIFIED: Self = Self(0);
     pub const SQUARE: Self = Self(1);
     pub const _12_11: Self = Self(2);
@@ -238,6 +278,14 @@ impl H264AspectRatioIdc {
 pub struct H264WeightedBipredIdc(pub(crate) i32);
 ///Provided by [`video::codec_h264std`](crate::video::codec_h264std)
 impl H264WeightedBipredIdc {
+    #[inline]
+    pub const fn from_raw(x: i32) -> Self {
+        Self(x)
+    }
+    #[inline]
+    pub const fn as_raw(self) -> i32 {
+        self.0
+    }
     pub const DEFAULT: Self = Self(0);
     pub const EXPLICIT: Self = Self(1);
     pub const IMPLICIT: Self = Self(2);
@@ -249,6 +297,14 @@ impl H264WeightedBipredIdc {
 pub struct H264ModificationOfPicNumsIdc(pub(crate) i32);
 ///Provided by [`video::codec_h264std`](crate::video::codec_h264std)
 impl H264ModificationOfPicNumsIdc {
+    #[inline]
+    pub const fn from_raw(x: i32) -> Self {
+        Self(x)
+    }
+    #[inline]
+    pub const fn as_raw(self) -> i32 {
+        self.0
+    }
     pub const SHORT_TERM_SUBTRACT: Self = Self(0);
     pub const SHORT_TERM_ADD: Self = Self(1);
     pub const LONG_TERM: Self = Self(2);
@@ -261,6 +317,14 @@ impl H264ModificationOfPicNumsIdc {
 pub struct H264MemMgmtControlOp(pub(crate) i32);
 ///Provided by [`video::codec_h264std`](crate::video::codec_h264std)
 impl H264MemMgmtControlOp {
+    #[inline]
+    pub const fn from_raw(x: i32) -> Self {
+        Self(x)
+    }
+    #[inline]
+    pub const fn as_raw(self) -> i32 {
+        self.0
+    }
     pub const END: Self = Self(0);
     pub const UNMARK_SHORT_TERM: Self = Self(1);
     pub const UNMARK_LONG_TERM: Self = Self(2);
@@ -276,6 +340,14 @@ impl H264MemMgmtControlOp {
 pub struct H264CabacInitIdc(pub(crate) i32);
 ///Provided by [`video::codec_h264std`](crate::video::codec_h264std)
 impl H264CabacInitIdc {
+    #[inline]
+    pub const fn from_raw(x: i32) -> Self {
+        Self(x)
+    }
+    #[inline]
+    pub const fn as_raw(self) -> i32 {
+        self.0
+    }
     pub const _0: Self = Self(0);
     pub const _1: Self = Self(1);
     pub const _2: Self = Self(2);
@@ -287,6 +359,14 @@ impl H264CabacInitIdc {
 pub struct H264DisableDeblockingFilterIdc(pub(crate) i32);
 ///Provided by [`video::codec_h264std`](crate::video::codec_h264std)
 impl H264DisableDeblockingFilterIdc {
+    #[inline]
+    pub const fn from_raw(x: i32) -> Self {
+        Self(x)
+    }
+    #[inline]
+    pub const fn as_raw(self) -> i32 {
+        self.0
+    }
     pub const DISABLED: Self = Self(0);
     pub const ENABLED: Self = Self(1);
     pub const PARTIAL: Self = Self(2);
@@ -298,6 +378,14 @@ impl H264DisableDeblockingFilterIdc {
 pub struct H264SliceType(pub(crate) i32);
 ///Provided by [`video::codec_h264std`](crate::video::codec_h264std)
 impl H264SliceType {
+    #[inline]
+    pub const fn from_raw(x: i32) -> Self {
+        Self(x)
+    }
+    #[inline]
+    pub const fn as_raw(self) -> i32 {
+        self.0
+    }
     pub const P: Self = Self(0);
     pub const B: Self = Self(1);
     pub const I: Self = Self(2);
@@ -309,6 +397,14 @@ impl H264SliceType {
 pub struct H264PictureType(pub(crate) i32);
 ///Provided by [`video::codec_h264std`](crate::video::codec_h264std)
 impl H264PictureType {
+    #[inline]
+    pub const fn from_raw(x: i32) -> Self {
+        Self(x)
+    }
+    #[inline]
+    pub const fn as_raw(self) -> i32 {
+        self.0
+    }
     pub const P: Self = Self(0);
     pub const B: Self = Self(1);
     pub const I: Self = Self(2);
@@ -321,6 +417,14 @@ impl H264PictureType {
 pub struct H264NonVclNaluType(pub(crate) i32);
 ///Provided by [`video::codec_h264std`](crate::video::codec_h264std)
 impl H264NonVclNaluType {
+    #[inline]
+    pub const fn from_raw(x: i32) -> Self {
+        Self(x)
+    }
+    #[inline]
+    pub const fn as_raw(self) -> i32 {
+        self.0
+    }
     pub const SPS: Self = Self(0);
     pub const PPS: Self = Self(1);
     pub const AUD: Self = Self(2);

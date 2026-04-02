@@ -508,6 +508,14 @@ pub(crate) mod reexport {
     pub struct TensorTilingARM(pub(crate) i32);
     ///Provided by [`arm::tensors`](crate::arm::tensors)
     impl TensorTilingARM {
+        #[inline]
+        pub const fn from_raw(x: i32) -> Self {
+            Self(x)
+        }
+        #[inline]
+        pub const fn as_raw(self) -> i32 {
+            self.0
+        }
         pub const OPTIMAL_ARM: Self = Self(0);
         pub const LINEAR_ARM: Self = Self(1);
     }

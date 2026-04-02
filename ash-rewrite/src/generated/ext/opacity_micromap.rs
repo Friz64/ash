@@ -410,6 +410,14 @@ pub(crate) mod reexport {
     pub struct MicromapTypeEXT(pub(crate) i32);
     ///Provided by [`ext::opacity_micromap`](crate::ext::opacity_micromap)
     impl MicromapTypeEXT {
+        #[inline]
+        pub const fn from_raw(x: i32) -> Self {
+            Self(x)
+        }
+        #[inline]
+        pub const fn as_raw(self) -> i32 {
+            self.0
+        }
         pub const OPACITY_MICROMAP_EXT: Self = Self(0);
     }
     #[repr(transparent)]
@@ -418,6 +426,14 @@ pub(crate) mod reexport {
     pub struct CopyMicromapModeEXT(pub(crate) i32);
     ///Provided by [`ext::opacity_micromap`](crate::ext::opacity_micromap)
     impl CopyMicromapModeEXT {
+        #[inline]
+        pub const fn from_raw(x: i32) -> Self {
+            Self(x)
+        }
+        #[inline]
+        pub const fn as_raw(self) -> i32 {
+            self.0
+        }
         pub const CLONE_EXT: Self = Self(0);
         pub const SERIALIZE_EXT: Self = Self(1);
         pub const DESERIALIZE_EXT: Self = Self(2);
@@ -429,6 +445,14 @@ pub(crate) mod reexport {
     pub struct BuildMicromapModeEXT(pub(crate) i32);
     ///Provided by [`ext::opacity_micromap`](crate::ext::opacity_micromap)
     impl BuildMicromapModeEXT {
+        #[inline]
+        pub const fn from_raw(x: i32) -> Self {
+            Self(x)
+        }
+        #[inline]
+        pub const fn as_raw(self) -> i32 {
+            self.0
+        }
         pub const BUILD_EXT: Self = Self(0);
     }
     #[repr(transparent)]
@@ -437,6 +461,14 @@ pub(crate) mod reexport {
     pub struct OpacityMicromapFormatEXT(pub(crate) i32);
     ///Provided by [`ext::opacity_micromap`](crate::ext::opacity_micromap)
     impl OpacityMicromapFormatEXT {
+        #[inline]
+        pub const fn from_raw(x: i32) -> Self {
+            Self(x)
+        }
+        #[inline]
+        pub const fn as_raw(self) -> i32 {
+            self.0
+        }
         pub const _2_STATE_EXT: Self = Self(1);
         pub const _4_STATE_EXT: Self = Self(2);
     }
@@ -446,6 +478,14 @@ pub(crate) mod reexport {
     pub struct OpacityMicromapSpecialIndexEXT(pub(crate) i32);
     ///Provided by [`ext::opacity_micromap`](crate::ext::opacity_micromap)
     impl OpacityMicromapSpecialIndexEXT {
+        #[inline]
+        pub const fn from_raw(x: i32) -> Self {
+            Self(x)
+        }
+        #[inline]
+        pub const fn as_raw(self) -> i32 {
+            self.0
+        }
         pub const FULLY_TRANSPARENT_EXT: Self = Self(-1);
         pub const FULLY_OPAQUE_EXT: Self = Self(-2);
         pub const FULLY_UNKNOWN_TRANSPARENT_EXT: Self = Self(-3);

@@ -31,6 +31,14 @@ impl crate::vk::StructureType {
 pub struct DirectDriverLoadingModeLUNARG(pub(crate) i32);
 ///Provided by [`lunarg::direct_driver_loading`](crate::lunarg::direct_driver_loading)
 impl DirectDriverLoadingModeLUNARG {
+    #[inline]
+    pub const fn from_raw(x: i32) -> Self {
+        Self(x)
+    }
+    #[inline]
+    pub const fn as_raw(self) -> i32 {
+        self.0
+    }
     pub const EXCLUSIVE_LUNARG: Self = Self(0);
     pub const INCLUSIVE_LUNARG: Self = Self(1);
 }

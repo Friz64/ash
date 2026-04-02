@@ -960,6 +960,14 @@ pub(crate) mod reexport {
     pub struct QueueGlobalPriority(pub(crate) i32);
     ///Provided by [`vk1_4`](crate::vk1_4)
     impl QueueGlobalPriority {
+        #[inline]
+        pub const fn from_raw(x: i32) -> Self {
+            Self(x)
+        }
+        #[inline]
+        pub const fn as_raw(self) -> i32 {
+            self.0
+        }
         pub const LOW: Self = Self(128);
         pub const MEDIUM: Self = Self(256);
         pub const HIGH: Self = Self(512);
@@ -971,6 +979,14 @@ pub(crate) mod reexport {
     pub struct LineRasterizationMode(pub(crate) i32);
     ///Provided by [`vk1_4`](crate::vk1_4)
     impl LineRasterizationMode {
+        #[inline]
+        pub const fn from_raw(x: i32) -> Self {
+            Self(x)
+        }
+        #[inline]
+        pub const fn as_raw(self) -> i32 {
+            self.0
+        }
         pub const DEFAULT: Self = Self(0);
         pub const RECTANGULAR: Self = Self(1);
         pub const BRESENHAM: Self = Self(2);
@@ -982,6 +998,14 @@ pub(crate) mod reexport {
     pub struct PipelineRobustnessBufferBehavior(pub(crate) i32);
     ///Provided by [`vk1_4`](crate::vk1_4)
     impl PipelineRobustnessBufferBehavior {
+        #[inline]
+        pub const fn from_raw(x: i32) -> Self {
+            Self(x)
+        }
+        #[inline]
+        pub const fn as_raw(self) -> i32 {
+            self.0
+        }
         pub const DEVICE_DEFAULT: Self = Self(0);
         pub const DISABLED: Self = Self(1);
         pub const ROBUST_BUFFER_ACCESS: Self = Self(2);
@@ -993,6 +1017,14 @@ pub(crate) mod reexport {
     pub struct PipelineRobustnessImageBehavior(pub(crate) i32);
     ///Provided by [`vk1_4`](crate::vk1_4)
     impl PipelineRobustnessImageBehavior {
+        #[inline]
+        pub const fn from_raw(x: i32) -> Self {
+            Self(x)
+        }
+        #[inline]
+        pub const fn as_raw(self) -> i32 {
+            self.0
+        }
         pub const DEVICE_DEFAULT: Self = Self(0);
         pub const DISABLED: Self = Self(1);
         pub const ROBUST_IMAGE_ACCESS: Self = Self(2);

@@ -60,6 +60,14 @@ impl crate::vk::StructureType {
 pub struct RayTracingLssIndexingModeNV(pub(crate) i32);
 ///Provided by [`nv::ray_tracing_linear_swept_spheres`](crate::nv::ray_tracing_linear_swept_spheres)
 impl RayTracingLssIndexingModeNV {
+    #[inline]
+    pub const fn from_raw(x: i32) -> Self {
+        Self(x)
+    }
+    #[inline]
+    pub const fn as_raw(self) -> i32 {
+        self.0
+    }
     pub const LIST_NV: Self = Self(0);
     pub const SUCCESSIVE_NV: Self = Self(1);
 }
@@ -69,6 +77,14 @@ impl RayTracingLssIndexingModeNV {
 pub struct RayTracingLssPrimitiveEndCapsModeNV(pub(crate) i32);
 ///Provided by [`nv::ray_tracing_linear_swept_spheres`](crate::nv::ray_tracing_linear_swept_spheres)
 impl RayTracingLssPrimitiveEndCapsModeNV {
+    #[inline]
+    pub const fn from_raw(x: i32) -> Self {
+        Self(x)
+    }
+    #[inline]
+    pub const fn as_raw(self) -> i32 {
+        self.0
+    }
     pub const NONE_NV: Self = Self(0);
     pub const CHAINED_NV: Self = Self(1);
 }

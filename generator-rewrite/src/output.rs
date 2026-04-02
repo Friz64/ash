@@ -11,7 +11,6 @@ use itertools::Itertools;
 use proc_macro2::TokenStream;
 use quote::{format_ident, quote};
 use std::{
-    collections::HashMap,
     hash::Hash,
     io, iter,
     path::{Path, PathBuf},
@@ -134,8 +133,8 @@ impl CodeMap {
             content: TokenStream,
         }
 
-        let mut mod_files: HashMap<PathBuf, ModFile> = Default::default();
-        let mut source_files: HashMap<PathBuf, SourceFile> = Default::default();
+        let mut mod_files: IndexMap<PathBuf, ModFile> = Default::default();
+        let mut source_files: IndexMap<PathBuf, SourceFile> = Default::default();
         for (destination, content) in self.iter() {
             let components = destination.path_components();
             if components.is_empty() {

@@ -41,6 +41,14 @@ impl crate::vk::StructureType {
 pub struct ProvokingVertexModeEXT(pub(crate) i32);
 ///Provided by [`ext::provoking_vertex`](crate::ext::provoking_vertex)
 impl ProvokingVertexModeEXT {
+    #[inline]
+    pub const fn from_raw(x: i32) -> Self {
+        Self(x)
+    }
+    #[inline]
+    pub const fn as_raw(self) -> i32 {
+        self.0
+    }
     pub const FIRST_VERTEX_EXT: Self = Self(0);
     pub const LAST_VERTEX_EXT: Self = Self(1);
 }

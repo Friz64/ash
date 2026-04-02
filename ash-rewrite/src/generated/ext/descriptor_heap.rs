@@ -532,6 +532,14 @@ pub(crate) mod reexport {
     pub struct DescriptorMappingSourceEXT(pub(crate) i32);
     ///Provided by [`ext::descriptor_heap`](crate::ext::descriptor_heap)
     impl DescriptorMappingSourceEXT {
+        #[inline]
+        pub const fn from_raw(x: i32) -> Self {
+            Self(x)
+        }
+        #[inline]
+        pub const fn as_raw(self) -> i32 {
+            self.0
+        }
         pub const HEAP_WITH_CONSTANT_OFFSET_EXT: Self = Self(0);
         pub const HEAP_WITH_PUSH_INDEX_EXT: Self = Self(1);
         pub const HEAP_WITH_INDIRECT_INDEX_EXT: Self = Self(2);

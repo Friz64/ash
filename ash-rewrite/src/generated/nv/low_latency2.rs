@@ -208,6 +208,14 @@ pub(crate) mod reexport {
     pub struct LatencyMarkerNV(pub(crate) i32);
     ///Provided by [`nv::low_latency2`](crate::nv::low_latency2)
     impl LatencyMarkerNV {
+        #[inline]
+        pub const fn from_raw(x: i32) -> Self {
+            Self(x)
+        }
+        #[inline]
+        pub const fn as_raw(self) -> i32 {
+            self.0
+        }
         pub const SIMULATION_START_NV: Self = Self(0);
         pub const SIMULATION_END_NV: Self = Self(1);
         pub const RENDERSUBMIT_START_NV: Self = Self(2);
@@ -227,6 +235,14 @@ pub(crate) mod reexport {
     pub struct OutOfBandQueueTypeNV(pub(crate) i32);
     ///Provided by [`nv::low_latency2`](crate::nv::low_latency2)
     impl OutOfBandQueueTypeNV {
+        #[inline]
+        pub const fn from_raw(x: i32) -> Self {
+            Self(x)
+        }
+        #[inline]
+        pub const fn as_raw(self) -> i32 {
+            self.0
+        }
         pub const RENDER_NV: Self = Self(0);
         pub const PRESENT_NV: Self = Self(1);
     }

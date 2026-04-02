@@ -60,6 +60,14 @@ impl crate::vk::MicromapTypeEXT {
 pub struct DisplacementMicromapFormatNV(pub(crate) i32);
 ///Provided by [`nv::displacement_micromap`](crate::nv::displacement_micromap)
 impl DisplacementMicromapFormatNV {
+    #[inline]
+    pub const fn from_raw(x: i32) -> Self {
+        Self(x)
+    }
+    #[inline]
+    pub const fn as_raw(self) -> i32 {
+        self.0
+    }
     pub const _64_TRIANGLES_64_BYTES_NV: Self = Self(1);
     pub const _256_TRIANGLES_128_BYTES_NV: Self = Self(2);
     pub const _1024_TRIANGLES_128_BYTES_NV: Self = Self(3);

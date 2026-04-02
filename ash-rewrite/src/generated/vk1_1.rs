@@ -1270,6 +1270,14 @@ pub(crate) mod reexport {
     pub struct DescriptorUpdateTemplateType(pub(crate) i32);
     ///Provided by [`vk1_1`](crate::vk1_1)
     impl DescriptorUpdateTemplateType {
+        #[inline]
+        pub const fn from_raw(x: i32) -> Self {
+            Self(x)
+        }
+        #[inline]
+        pub const fn as_raw(self) -> i32 {
+            self.0
+        }
         pub const DESCRIPTOR_SET: Self = Self(0);
     }
     ///Provided by [`vk1_1`](crate::vk1_1)
@@ -1283,6 +1291,14 @@ pub(crate) mod reexport {
     pub struct PointClippingBehavior(pub(crate) i32);
     ///Provided by [`vk1_1`](crate::vk1_1)
     impl PointClippingBehavior {
+        #[inline]
+        pub const fn from_raw(x: i32) -> Self {
+            Self(x)
+        }
+        #[inline]
+        pub const fn as_raw(self) -> i32 {
+            self.0
+        }
         pub const ALL_CLIP_PLANES: Self = Self(0);
         pub const USER_CLIP_PLANES_ONLY: Self = Self(1);
     }
@@ -1292,6 +1308,14 @@ pub(crate) mod reexport {
     pub struct TessellationDomainOrigin(pub(crate) i32);
     ///Provided by [`vk1_1`](crate::vk1_1)
     impl TessellationDomainOrigin {
+        #[inline]
+        pub const fn from_raw(x: i32) -> Self {
+            Self(x)
+        }
+        #[inline]
+        pub const fn as_raw(self) -> i32 {
+            self.0
+        }
         pub const UPPER_LEFT: Self = Self(0);
         pub const LOWER_LEFT: Self = Self(1);
     }
@@ -1301,6 +1325,14 @@ pub(crate) mod reexport {
     pub struct SamplerYcbcrModelConversion(pub(crate) i32);
     ///Provided by [`vk1_1`](crate::vk1_1)
     impl SamplerYcbcrModelConversion {
+        #[inline]
+        pub const fn from_raw(x: i32) -> Self {
+            Self(x)
+        }
+        #[inline]
+        pub const fn as_raw(self) -> i32 {
+            self.0
+        }
         pub const RGB_IDENTITY: Self = Self(0);
         pub const YCBCR_IDENTITY: Self = Self(1);
         pub const YCBCR_709: Self = Self(2);
@@ -1313,6 +1345,14 @@ pub(crate) mod reexport {
     pub struct SamplerYcbcrRange(pub(crate) i32);
     ///Provided by [`vk1_1`](crate::vk1_1)
     impl SamplerYcbcrRange {
+        #[inline]
+        pub const fn from_raw(x: i32) -> Self {
+            Self(x)
+        }
+        #[inline]
+        pub const fn as_raw(self) -> i32 {
+            self.0
+        }
         pub const ITU_FULL: Self = Self(0);
         pub const ITU_NARROW: Self = Self(1);
     }
@@ -1322,6 +1362,14 @@ pub(crate) mod reexport {
     pub struct ChromaLocation(pub(crate) i32);
     ///Provided by [`vk1_1`](crate::vk1_1)
     impl ChromaLocation {
+        #[inline]
+        pub const fn from_raw(x: i32) -> Self {
+            Self(x)
+        }
+        #[inline]
+        pub const fn as_raw(self) -> i32 {
+            self.0
+        }
         pub const COSITED_EVEN: Self = Self(0);
         pub const MIDPOINT: Self = Self(1);
     }

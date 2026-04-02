@@ -507,6 +507,14 @@ pub(crate) mod reexport {
     pub struct DataGraphPipelineSessionBindPointARM(pub(crate) i32);
     ///Provided by [`arm::data_graph`](crate::arm::data_graph)
     impl DataGraphPipelineSessionBindPointARM {
+        #[inline]
+        pub const fn from_raw(x: i32) -> Self {
+            Self(x)
+        }
+        #[inline]
+        pub const fn as_raw(self) -> i32 {
+            self.0
+        }
         pub const TRANSIENT_ARM: Self = Self(0);
     }
     #[repr(transparent)]
@@ -515,6 +523,14 @@ pub(crate) mod reexport {
     pub struct DataGraphPipelineSessionBindPointTypeARM(pub(crate) i32);
     ///Provided by [`arm::data_graph`](crate::arm::data_graph)
     impl DataGraphPipelineSessionBindPointTypeARM {
+        #[inline]
+        pub const fn from_raw(x: i32) -> Self {
+            Self(x)
+        }
+        #[inline]
+        pub const fn as_raw(self) -> i32 {
+            self.0
+        }
         pub const MEMORY_ARM: Self = Self(0);
     }
     #[repr(transparent)]
@@ -523,6 +539,14 @@ pub(crate) mod reexport {
     pub struct DataGraphPipelinePropertyARM(pub(crate) i32);
     ///Provided by [`arm::data_graph`](crate::arm::data_graph)
     impl DataGraphPipelinePropertyARM {
+        #[inline]
+        pub const fn from_raw(x: i32) -> Self {
+            Self(x)
+        }
+        #[inline]
+        pub const fn as_raw(self) -> i32 {
+            self.0
+        }
         pub const CREATION_LOG_ARM: Self = Self(0);
         pub const IDENTIFIER_ARM: Self = Self(1);
     }
@@ -532,6 +556,14 @@ pub(crate) mod reexport {
     pub struct PhysicalDeviceDataGraphProcessingEngineTypeARM(pub(crate) i32);
     ///Provided by [`arm::data_graph`](crate::arm::data_graph)
     impl PhysicalDeviceDataGraphProcessingEngineTypeARM {
+        #[inline]
+        pub const fn from_raw(x: i32) -> Self {
+            Self(x)
+        }
+        #[inline]
+        pub const fn as_raw(self) -> i32 {
+            self.0
+        }
         pub const DEFAULT_ARM: Self = Self(0);
     }
     #[repr(transparent)]
@@ -540,6 +572,14 @@ pub(crate) mod reexport {
     pub struct PhysicalDeviceDataGraphOperationTypeARM(pub(crate) i32);
     ///Provided by [`arm::data_graph`](crate::arm::data_graph)
     impl PhysicalDeviceDataGraphOperationTypeARM {
+        #[inline]
+        pub const fn from_raw(x: i32) -> Self {
+            Self(x)
+        }
+        #[inline]
+        pub const fn as_raw(self) -> i32 {
+            self.0
+        }
         pub const SPIRV_EXTENDED_INSTRUCTION_SET_ARM: Self = Self(0);
     }
     ///Provided by [`arm::data_graph`](crate::arm::data_graph)

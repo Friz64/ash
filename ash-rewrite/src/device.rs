@@ -1,4 +1,8 @@
-#![allow(clippy::trivially_copy_pass_by_ref)]
+#![allow(
+    clippy::trivially_copy_pass_by_ref,
+    clippy::missing_safety_doc,
+    clippy::too_many_arguments
+)]
 use crate::read_into_uninitialized_vector;
 use crate::vk;
 use crate::RawPtr;

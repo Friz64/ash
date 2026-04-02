@@ -220,6 +220,14 @@ pub struct AV1FilmGrain {
 pub struct AV1Profile(pub(crate) i32);
 ///Provided by [`video::codec_av1std`](crate::video::codec_av1std)
 impl AV1Profile {
+    #[inline]
+    pub const fn from_raw(x: i32) -> Self {
+        Self(x)
+    }
+    #[inline]
+    pub const fn as_raw(self) -> i32 {
+        self.0
+    }
     pub const MAIN: Self = Self(0);
     pub const HIGH: Self = Self(1);
     pub const PROFESSIONAL: Self = Self(2);
@@ -231,6 +239,14 @@ impl AV1Profile {
 pub struct AV1Level(pub(crate) i32);
 ///Provided by [`video::codec_av1std`](crate::video::codec_av1std)
 impl AV1Level {
+    #[inline]
+    pub const fn from_raw(x: i32) -> Self {
+        Self(x)
+    }
+    #[inline]
+    pub const fn as_raw(self) -> i32 {
+        self.0
+    }
     pub const _2_0: Self = Self(0);
     pub const _2_1: Self = Self(1);
     pub const _2_2: Self = Self(2);
@@ -263,6 +279,14 @@ impl AV1Level {
 pub struct AV1FrameType(pub(crate) i32);
 ///Provided by [`video::codec_av1std`](crate::video::codec_av1std)
 impl AV1FrameType {
+    #[inline]
+    pub const fn from_raw(x: i32) -> Self {
+        Self(x)
+    }
+    #[inline]
+    pub const fn as_raw(self) -> i32 {
+        self.0
+    }
     pub const KEY: Self = Self(0);
     pub const INTER: Self = Self(1);
     pub const INTRA_ONLY: Self = Self(2);
@@ -275,6 +299,14 @@ impl AV1FrameType {
 pub struct AV1ReferenceName(pub(crate) i32);
 ///Provided by [`video::codec_av1std`](crate::video::codec_av1std)
 impl AV1ReferenceName {
+    #[inline]
+    pub const fn from_raw(x: i32) -> Self {
+        Self(x)
+    }
+    #[inline]
+    pub const fn as_raw(self) -> i32 {
+        self.0
+    }
     pub const INTRA_FRAME: Self = Self(0);
     pub const LAST_FRAME: Self = Self(1);
     pub const LAST2_FRAME: Self = Self(2);
@@ -291,6 +323,14 @@ impl AV1ReferenceName {
 pub struct AV1InterpolationFilter(pub(crate) i32);
 ///Provided by [`video::codec_av1std`](crate::video::codec_av1std)
 impl AV1InterpolationFilter {
+    #[inline]
+    pub const fn from_raw(x: i32) -> Self {
+        Self(x)
+    }
+    #[inline]
+    pub const fn as_raw(self) -> i32 {
+        self.0
+    }
     pub const EIGHTTAP: Self = Self(0);
     pub const EIGHTTAP_SMOOTH: Self = Self(1);
     pub const EIGHTTAP_SHARP: Self = Self(2);
@@ -304,6 +344,14 @@ impl AV1InterpolationFilter {
 pub struct AV1TxMode(pub(crate) i32);
 ///Provided by [`video::codec_av1std`](crate::video::codec_av1std)
 impl AV1TxMode {
+    #[inline]
+    pub const fn from_raw(x: i32) -> Self {
+        Self(x)
+    }
+    #[inline]
+    pub const fn as_raw(self) -> i32 {
+        self.0
+    }
     pub const ONLY_4X4: Self = Self(0);
     pub const LARGEST: Self = Self(1);
     pub const SELECT: Self = Self(2);
@@ -315,6 +363,14 @@ impl AV1TxMode {
 pub struct AV1FrameRestorationType(pub(crate) i32);
 ///Provided by [`video::codec_av1std`](crate::video::codec_av1std)
 impl AV1FrameRestorationType {
+    #[inline]
+    pub const fn from_raw(x: i32) -> Self {
+        Self(x)
+    }
+    #[inline]
+    pub const fn as_raw(self) -> i32 {
+        self.0
+    }
     pub const NONE: Self = Self(0);
     pub const WIENER: Self = Self(1);
     pub const SGRPROJ: Self = Self(2);
@@ -327,6 +383,14 @@ impl AV1FrameRestorationType {
 pub struct AV1ColorPrimaries(pub(crate) i32);
 ///Provided by [`video::codec_av1std`](crate::video::codec_av1std)
 impl AV1ColorPrimaries {
+    #[inline]
+    pub const fn from_raw(x: i32) -> Self {
+        Self(x)
+    }
+    #[inline]
+    pub const fn as_raw(self) -> i32 {
+        self.0
+    }
     pub const BT_709: Self = Self(1);
     pub const UNSPECIFIED: Self = Self(2);
     pub const BT_470_M: Self = Self(4);
@@ -347,6 +411,14 @@ impl AV1ColorPrimaries {
 pub struct AV1TransferCharacteristics(pub(crate) i32);
 ///Provided by [`video::codec_av1std`](crate::video::codec_av1std)
 impl AV1TransferCharacteristics {
+    #[inline]
+    pub const fn from_raw(x: i32) -> Self {
+        Self(x)
+    }
+    #[inline]
+    pub const fn as_raw(self) -> i32 {
+        self.0
+    }
     pub const RESERVED_0: Self = Self(0);
     pub const BT_709: Self = Self(1);
     pub const UNSPECIFIED: Self = Self(2);
@@ -374,6 +446,14 @@ impl AV1TransferCharacteristics {
 pub struct AV1MatrixCoefficients(pub(crate) i32);
 ///Provided by [`video::codec_av1std`](crate::video::codec_av1std)
 impl AV1MatrixCoefficients {
+    #[inline]
+    pub const fn from_raw(x: i32) -> Self {
+        Self(x)
+    }
+    #[inline]
+    pub const fn as_raw(self) -> i32 {
+        self.0
+    }
     pub const IDENTITY: Self = Self(0);
     pub const BT_709: Self = Self(1);
     pub const UNSPECIFIED: Self = Self(2);
@@ -397,6 +477,14 @@ impl AV1MatrixCoefficients {
 pub struct AV1ChromaSamplePosition(pub(crate) i32);
 ///Provided by [`video::codec_av1std`](crate::video::codec_av1std)
 impl AV1ChromaSamplePosition {
+    #[inline]
+    pub const fn from_raw(x: i32) -> Self {
+        Self(x)
+    }
+    #[inline]
+    pub const fn as_raw(self) -> i32 {
+        self.0
+    }
     pub const UNKNOWN: Self = Self(0);
     pub const VERTICAL: Self = Self(1);
     pub const COLOCATED: Self = Self(2);
