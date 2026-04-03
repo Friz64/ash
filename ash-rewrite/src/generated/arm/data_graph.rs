@@ -297,7 +297,7 @@ pub(crate) mod reexport {
     pub struct DataGraphPipelineCreateInfoARM<'a> {
         pub s_type: crate::vk::StructureType,
         pub p_next: *const core::ffi::c_void,
-        pub flags: crate::vk::PipelineCreateFlags2KHR,
+        pub flags: crate::vk::PipelineCreateFlags2,
         pub layout: crate::vk::PipelineLayout,
         pub resource_info_count: u32,
         pub p_resource_infos: *const crate::vk::DataGraphPipelineResourceInfoARM<'a>,

@@ -2,7 +2,6 @@
 #![cfg_attr(rustfmt, rustfmt_skip)]
 //!Extensions tagged ARM
 pub mod shader_core_properties;
-pub mod scheduling_controls;
 pub mod render_pass_striped;
 pub mod pipeline_opacity_micromap;
 pub mod format_pack;
@@ -11,4 +10,6 @@ pub mod shader_instrumentation;
 pub mod tensors;
 pub mod data_graph;
 pub mod performance_counters_by_region;
+pub mod data_graph_instruction_set_tosa;
+pub mod scheduling_controls;
 pub mod shader_core_builtins;
