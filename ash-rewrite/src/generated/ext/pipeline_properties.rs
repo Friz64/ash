@@ -20,7 +20,7 @@ impl DeviceFn {
             get_pipeline_properties_ext: unsafe {
                 unsafe extern "system" fn get_pipeline_properties_ext(
                     _: crate::vk::Device,
-                    _: *const crate::vk::PipelineInfoEXT<'_>,
+                    _: *const crate::vk::PipelineInfoKHR<'_>,
                     _: *mut crate::vk::BaseOutStructure<'_>,
                 ) -> crate::vk::Result {
                     panic!("unable to load vkGetPipelinePropertiesEXT")
@@ -63,7 +63,7 @@ pub(crate) mod reexport {
     }
     pub type PFN_vkGetPipelinePropertiesEXT = unsafe extern "system" fn(
         device: crate::vk::Device,
-        p_pipeline_info: *const crate::vk::PipelineInfoEXT<'_>,
+        p_pipeline_info: *const crate::vk::PipelineInfoKHR<'_>,
         p_pipeline_properties: *mut crate::vk::BaseOutStructure<'_>,
     ) -> crate::vk::Result;
     pub const EXT_PIPELINE_PROPERTIES_SPEC_VERSION: u32 = 1;

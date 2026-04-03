@@ -60,7 +60,7 @@ pub(crate) mod reexport {
         pub dst_address: crate::vk::DeviceAddress,
         pub compressed_size: crate::vk::DeviceSize,
         pub decompressed_size: crate::vk::DeviceSize,
-        pub decompression_method: crate::vk::MemoryDecompressionMethodFlagsNV,
+        pub decompression_method: crate::vk::MemoryDecompressionMethodFlagsEXT,
     }
     pub type PhysicalDeviceMemoryDecompressionFeaturesNV<'a> = crate::vk::PhysicalDeviceMemoryDecompressionFeaturesEXT<
         'a,

@@ -95,6 +95,7 @@ pub mod shader_subgroup_vote;
 pub mod shader_stencil_export;
 pub mod post_depth_coverage;
 pub mod shader_viewport_index_layer;
+pub mod primitive_restart_index;
 pub mod attachment_feedback_loop_dynamic_state;
 pub mod conditional_rendering;
 pub mod custom_resolve;

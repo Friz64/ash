@@ -12,6 +12,6 @@ proc-macro2 = { version = "1", default-features = false }
 quote = { version = "1", default-features = false }
 syn = { version = "2", default-features = false, features = ["parsing"] }
 prettyplease = "0.2"
-indexmap = "2"
-heck = "0.5.0"
-itertools = "0.14.0"
+indexmap = "2.11"
+heck = "0.5"
+itertools = "0.14"

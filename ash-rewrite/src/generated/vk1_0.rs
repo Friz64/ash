@@ -7216,7 +7216,7 @@ pub(crate) mod reexport {
         ((version) & 0xFFF)
     }
     pub const API_VERSION_1_0: u32 = crate::vk::make_api_version(0, 1, 0, 0);
-    pub const HEADER_VERSION: u32 = 347;
+    pub const HEADER_VERSION: u32 = 348;
     pub const HEADER_VERSION_COMPLETE: u32 = crate::vk::make_api_version(
         0,
         1,

@@ -233,36 +233,6 @@ pub(crate) mod reexport {
         pub const PER_PIXEL_PREMULTIPLIED_KHR: Self = Self(1 << 3);
     }
     bitflags::bitflags! {
-        #[repr(transparent)] #[derive(Clone, Copy)] pub struct SurfaceTransformFlagsKHR :
-        u32 { const IDENTITY_KHR = SurfaceTransformFlagBitsKHR::IDENTITY_KHR.0; const
-        ROTATE_90_KHR = SurfaceTransformFlagBitsKHR::ROTATE_90_KHR.0; const
-        ROTATE_180_KHR = SurfaceTransformFlagBitsKHR::ROTATE_180_KHR.0; const
-        ROTATE_270_KHR = SurfaceTransformFlagBitsKHR::ROTATE_270_KHR.0; const
-        HORIZONTAL_MIRROR_KHR = SurfaceTransformFlagBitsKHR::HORIZONTAL_MIRROR_KHR.0;
-        const HORIZONTAL_MIRROR_ROTATE_90_KHR =
-        SurfaceTransformFlagBitsKHR::HORIZONTAL_MIRROR_ROTATE_90_KHR.0; const
-        HORIZONTAL_MIRROR_ROTATE_180_KHR =
-        SurfaceTransformFlagBitsKHR::HORIZONTAL_MIRROR_ROTATE_180_KHR.0; const
-        HORIZONTAL_MIRROR_ROTATE_270_KHR =
-        SurfaceTransformFlagBitsKHR::HORIZONTAL_MIRROR_ROTATE_270_KHR.0; const
-        INHERIT_KHR = SurfaceTransformFlagBitsKHR::INHERIT_KHR.0; }
-    }
-    #[repr(transparent)]
-    #[derive(Clone, Copy)]
-    pub struct SurfaceTransformFlagBitsKHR(pub(crate) u32);
-    ///Provided by [`khr::display`](crate::khr::display)
-    impl SurfaceTransformFlagBitsKHR {
-        pub const IDENTITY_KHR: Self = Self(1 << 0);
-        pub const ROTATE_90_KHR: Self = Self(1 << 1);
-        pub const ROTATE_180_KHR: Self = Self(1 << 2);
-        pub const ROTATE_270_KHR: Self = Self(1 << 3);
-        pub const HORIZONTAL_MIRROR_KHR: Self = Self(1 << 4);
-        pub const HORIZONTAL_MIRROR_ROTATE_90_KHR: Self = Self(1 << 5);
-        pub const HORIZONTAL_MIRROR_ROTATE_180_KHR: Self = Self(1 << 6);
-        pub const HORIZONTAL_MIRROR_ROTATE_270_KHR: Self = Self(1 << 7);
-        pub const INHERIT_KHR: Self = Self(1 << 8);
-    }
-    bitflags::bitflags! {
         #[repr(transparent)] #[derive(Clone, Copy)] pub struct DisplayModeCreateFlagsKHR
         : u32 {}
     }

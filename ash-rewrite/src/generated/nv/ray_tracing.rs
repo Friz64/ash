@@ -80,7 +80,7 @@ impl DeviceFn {
                     _: *const crate::vk::AccelerationStructureMemoryRequirementsInfoNV<
                         '_,
                     >,
-                    _: *mut crate::vk::MemoryRequirements2KHR<'_>,
+                    _: *mut crate::vk::MemoryRequirements2<'_>,
                 ) {
                     panic!(
                         "unable to load vkGetAccelerationStructureMemoryRequirementsNV"
@@ -326,7 +326,7 @@ pub(crate) mod reexport {
         pub s_type: crate::vk::StructureType,
         pub p_next: *const core::ffi::c_void,
         pub _type: crate::vk::AccelerationStructureTypeNV,
-        pub flags: crate::vk::BuildAccelerationStructureFlagsNV,
+        pub flags: crate::vk::BuildAccelerationStructureFlagsKHR,
         pub instance_count: u32,
         pub geometry_count: u32,
         pub p_geometries: *const crate::vk::GeometryNV<'a>,
@@ -573,7 +573,7 @@ pub(crate) mod reexport {
     pub type PFN_vkGetAccelerationStructureMemoryRequirementsNV = unsafe extern "system" fn(
         device: crate::vk::Device,
         p_info: *const crate::vk::AccelerationStructureMemoryRequirementsInfoNV<'_>,
-        p_memory_requirements: *mut crate::vk::MemoryRequirements2KHR<'_>,
+        p_memory_requirements: *mut crate::vk::MemoryRequirements2<'_>,
     );
     pub type PFN_vkBindAccelerationStructureMemoryNV = unsafe extern "system" fn(
         device: crate::vk::Device,

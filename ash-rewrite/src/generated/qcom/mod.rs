@@ -17,4 +17,5 @@ pub mod render_pass_shader_resolve;
 pub mod tile_memory_heap;
 pub mod tile_properties;
 pub mod tile_shading;
+pub mod queue_perf_hint;
 pub mod data_graph_model;
