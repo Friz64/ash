@@ -62,15 +62,23 @@ impl crate::vk::StructureType {
 impl crate::vk::VideoEncodeFlagBitsKHR {
     pub const INTRA_REFRESH_KHR: Self = Self(1 << 2);
 }
-bitflags::bitflags! {
-    #[repr(transparent)] #[derive(Clone, Copy)] pub struct
-    VideoEncodeIntraRefreshModeFlagsKHR : u32 { const NONE_KHR =
-    VideoEncodeIntraRefreshModeFlagBitsKHR::NONE_KHR.0; const PER_PICTURE_PARTITION_KHR =
-    VideoEncodeIntraRefreshModeFlagBitsKHR::PER_PICTURE_PARTITION_KHR.0; const
-    BLOCK_BASED_KHR = VideoEncodeIntraRefreshModeFlagBitsKHR::BLOCK_BASED_KHR.0; const
-    BLOCK_ROW_BASED_KHR = VideoEncodeIntraRefreshModeFlagBitsKHR::BLOCK_ROW_BASED_KHR.0;
-    const BLOCK_COLUMN_BASED_KHR =
-    VideoEncodeIntraRefreshModeFlagBitsKHR::BLOCK_COLUMN_BASED_KHR.0; }
+#[repr(transparent)]
+#[derive(Clone, Copy)]
+pub struct VideoEncodeIntraRefreshModeFlagsKHR(u32);
+impl VideoEncodeIntraRefreshModeFlagsKHR {
+    pub const NONE_KHR: Self = Self(VideoEncodeIntraRefreshModeFlagBitsKHR::NONE_KHR.0);
+    pub const PER_PICTURE_PARTITION_KHR: Self = Self(
+        VideoEncodeIntraRefreshModeFlagBitsKHR::PER_PICTURE_PARTITION_KHR.0,
+    );
+    pub const BLOCK_BASED_KHR: Self = Self(
+        VideoEncodeIntraRefreshModeFlagBitsKHR::BLOCK_BASED_KHR.0,
+    );
+    pub const BLOCK_ROW_BASED_KHR: Self = Self(
+        VideoEncodeIntraRefreshModeFlagBitsKHR::BLOCK_ROW_BASED_KHR.0,
+    );
+    pub const BLOCK_COLUMN_BASED_KHR: Self = Self(
+        VideoEncodeIntraRefreshModeFlagBitsKHR::BLOCK_COLUMN_BASED_KHR.0,
+    );
 }
 #[repr(transparent)]
 #[derive(Clone, Copy)]

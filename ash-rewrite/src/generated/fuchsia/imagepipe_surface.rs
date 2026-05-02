@@ -50,10 +50,10 @@ pub(crate) mod reexport {
     impl crate::vk::StructureType {
         pub const IMAGEPIPE_SURFACE_CREATE_INFO_FUCHSIA: Self = Self(1000214000);
     }
-    bitflags::bitflags! {
-        #[repr(transparent)] #[derive(Clone, Copy)] pub struct
-        ImagePipeSurfaceCreateFlagsFUCHSIA : u32 {}
-    }
+    #[repr(transparent)]
+    #[derive(Clone, Copy)]
+    pub struct ImagePipeSurfaceCreateFlagsFUCHSIA(u32);
+    impl ImagePipeSurfaceCreateFlagsFUCHSIA {}
     pub type PFN_vkCreateImagePipeSurfaceFUCHSIA = unsafe extern "system" fn(
         instance: crate::vk::Instance,
         p_create_info: *const crate::vk::ImagePipeSurfaceCreateInfoFUCHSIA<'_>,

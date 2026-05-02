@@ -15,9 +15,9 @@ pub struct PipelineCoverageToColorStateCreateInfoNV<'a> {
 impl crate::vk::StructureType {
     pub const PIPELINE_COVERAGE_TO_COLOR_STATE_CREATE_INFO_NV: Self = Self(1000149000);
 }
-bitflags::bitflags! {
-    #[repr(transparent)] #[derive(Clone, Copy)] pub struct
-    PipelineCoverageToColorStateCreateFlagsNV : u32 {}
-}
+#[repr(transparent)]
+#[derive(Clone, Copy)]
+pub struct PipelineCoverageToColorStateCreateFlagsNV(u32);
+impl PipelineCoverageToColorStateCreateFlagsNV {}
 pub const NV_FRAGMENT_COVERAGE_TO_COLOR_SPEC_VERSION: u32 = 1;
 pub const NV_FRAGMENT_COVERAGE_TO_COLOR_EXTENSION_NAME: &core::ffi::CStr = c"VK_NV_fragment_coverage_to_color";

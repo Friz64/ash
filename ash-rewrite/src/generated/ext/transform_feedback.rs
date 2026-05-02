@@ -196,10 +196,10 @@ pub(crate) mod reexport {
     impl crate::vk::PipelineStageFlagBits {
         pub const TRANSFORM_FEEDBACK_EXT: Self = Self(1 << 24);
     }
-    bitflags::bitflags! {
-        #[repr(transparent)] #[derive(Clone, Copy)] pub struct
-        PipelineRasterizationStateStreamCreateFlagsEXT : u32 {}
-    }
+    #[repr(transparent)]
+    #[derive(Clone, Copy)]
+    pub struct PipelineRasterizationStateStreamCreateFlagsEXT(u32);
+    impl PipelineRasterizationStateStreamCreateFlagsEXT {}
     pub type PFN_vkCmdBindTransformFeedbackBuffersEXT = unsafe extern "system" fn(
         command_buffer: crate::vk::CommandBuffer,
         first_binding: u32,

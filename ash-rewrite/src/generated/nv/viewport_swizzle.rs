@@ -46,9 +46,9 @@ impl ViewportCoordinateSwizzleNV {
     pub const POSITIVE_W_NV: Self = Self(6);
     pub const NEGATIVE_W_NV: Self = Self(7);
 }
-bitflags::bitflags! {
-    #[repr(transparent)] #[derive(Clone, Copy)] pub struct
-    PipelineViewportSwizzleStateCreateFlagsNV : u32 {}
-}
+#[repr(transparent)]
+#[derive(Clone, Copy)]
+pub struct PipelineViewportSwizzleStateCreateFlagsNV(u32);
+impl PipelineViewportSwizzleStateCreateFlagsNV {}
 pub const NV_VIEWPORT_SWIZZLE_SPEC_VERSION: u32 = 1;
 pub const NV_VIEWPORT_SWIZZLE_EXTENSION_NAME: &core::ffi::CStr = c"VK_NV_viewport_swizzle";

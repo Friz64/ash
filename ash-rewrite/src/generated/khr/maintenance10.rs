@@ -102,14 +102,19 @@ pub(crate) mod reexport {
     impl crate::vk::RenderingFlagBits {
         pub const LOCAL_READ_CONCURRENT_ACCESS_CONTROL_KHR: Self = Self(1 << 8);
     }
-    bitflags::bitflags! {
-        #[repr(transparent)] #[derive(Clone, Copy)] pub struct
-        RenderingAttachmentFlagsKHR : u32 { const INPUT_ATTACHMENT_FEEDBACK_KHR =
-        RenderingAttachmentFlagBitsKHR::INPUT_ATTACHMENT_FEEDBACK_KHR.0; const
-        RESOLVE_SKIP_TRANSFER_FUNCTION_KHR =
-        RenderingAttachmentFlagBitsKHR::RESOLVE_SKIP_TRANSFER_FUNCTION_KHR.0; const
-        RESOLVE_ENABLE_TRANSFER_FUNCTION_KHR =
-        RenderingAttachmentFlagBitsKHR::RESOLVE_ENABLE_TRANSFER_FUNCTION_KHR.0; }
+    #[repr(transparent)]
+    #[derive(Clone, Copy)]
+    pub struct RenderingAttachmentFlagsKHR(u32);
+    impl RenderingAttachmentFlagsKHR {
+        pub const INPUT_ATTACHMENT_FEEDBACK_KHR: Self = Self(
+            RenderingAttachmentFlagBitsKHR::INPUT_ATTACHMENT_FEEDBACK_KHR.0,
+        );
+        pub const RESOLVE_SKIP_TRANSFER_FUNCTION_KHR: Self = Self(
+            RenderingAttachmentFlagBitsKHR::RESOLVE_SKIP_TRANSFER_FUNCTION_KHR.0,
+        );
+        pub const RESOLVE_ENABLE_TRANSFER_FUNCTION_KHR: Self = Self(
+            RenderingAttachmentFlagBitsKHR::RESOLVE_ENABLE_TRANSFER_FUNCTION_KHR.0,
+        );
     }
     #[repr(transparent)]
     #[derive(Clone, Copy)]
@@ -120,12 +125,16 @@ pub(crate) mod reexport {
         pub const RESOLVE_SKIP_TRANSFER_FUNCTION_KHR: Self = Self(1 << 1);
         pub const RESOLVE_ENABLE_TRANSFER_FUNCTION_KHR: Self = Self(1 << 2);
     }
-    bitflags::bitflags! {
-        #[repr(transparent)] #[derive(Clone, Copy)] pub struct ResolveImageFlagsKHR : u32
-        { const SKIP_TRANSFER_FUNCTION_KHR =
-        ResolveImageFlagBitsKHR::SKIP_TRANSFER_FUNCTION_KHR.0; const
-        ENABLE_TRANSFER_FUNCTION_KHR =
-        ResolveImageFlagBitsKHR::ENABLE_TRANSFER_FUNCTION_KHR.0; }
+    #[repr(transparent)]
+    #[derive(Clone, Copy)]
+    pub struct ResolveImageFlagsKHR(u32);
+    impl ResolveImageFlagsKHR {
+        pub const SKIP_TRANSFER_FUNCTION_KHR: Self = Self(
+            ResolveImageFlagBitsKHR::SKIP_TRANSFER_FUNCTION_KHR.0,
+        );
+        pub const ENABLE_TRANSFER_FUNCTION_KHR: Self = Self(
+            ResolveImageFlagBitsKHR::ENABLE_TRANSFER_FUNCTION_KHR.0,
+        );
     }
     #[repr(transparent)]
     #[derive(Clone, Copy)]

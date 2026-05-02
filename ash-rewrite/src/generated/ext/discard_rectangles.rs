@@ -118,10 +118,10 @@ pub(crate) mod reexport {
         pub const INCLUSIVE_EXT: Self = Self(0);
         pub const EXCLUSIVE_EXT: Self = Self(1);
     }
-    bitflags::bitflags! {
-        #[repr(transparent)] #[derive(Clone, Copy)] pub struct
-        PipelineDiscardRectangleStateCreateFlagsEXT : u32 {}
-    }
+    #[repr(transparent)]
+    #[derive(Clone, Copy)]
+    pub struct PipelineDiscardRectangleStateCreateFlagsEXT(u32);
+    impl PipelineDiscardRectangleStateCreateFlagsEXT {}
     pub type PFN_vkCmdSetDiscardRectangleEXT = unsafe extern "system" fn(
         command_buffer: crate::vk::CommandBuffer,
         first_discard_rectangle: u32,

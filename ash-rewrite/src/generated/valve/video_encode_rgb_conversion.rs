@@ -50,16 +50,25 @@ impl crate::vk::StructureType {
         1000390003,
     );
 }
-bitflags::bitflags! {
-    #[repr(transparent)] #[derive(Clone, Copy)] pub struct
-    VideoEncodeRgbModelConversionFlagsVALVE : u32 { const RGB_IDENTITY_VALVE =
-    VideoEncodeRgbModelConversionFlagBitsVALVE::RGB_IDENTITY_VALVE.0; const
-    YCBCR_IDENTITY_VALVE =
-    VideoEncodeRgbModelConversionFlagBitsVALVE::YCBCR_IDENTITY_VALVE.0; const
-    YCBCR_709_VALVE = VideoEncodeRgbModelConversionFlagBitsVALVE::YCBCR_709_VALVE.0;
-    const YCBCR_601_VALVE = VideoEncodeRgbModelConversionFlagBitsVALVE::YCBCR_601_VALVE
-    .0; const YCBCR_2020_VALVE =
-    VideoEncodeRgbModelConversionFlagBitsVALVE::YCBCR_2020_VALVE.0; }
+#[repr(transparent)]
+#[derive(Clone, Copy)]
+pub struct VideoEncodeRgbModelConversionFlagsVALVE(u32);
+impl VideoEncodeRgbModelConversionFlagsVALVE {
+    pub const RGB_IDENTITY_VALVE: Self = Self(
+        VideoEncodeRgbModelConversionFlagBitsVALVE::RGB_IDENTITY_VALVE.0,
+    );
+    pub const YCBCR_IDENTITY_VALVE: Self = Self(
+        VideoEncodeRgbModelConversionFlagBitsVALVE::YCBCR_IDENTITY_VALVE.0,
+    );
+    pub const YCBCR_709_VALVE: Self = Self(
+        VideoEncodeRgbModelConversionFlagBitsVALVE::YCBCR_709_VALVE.0,
+    );
+    pub const YCBCR_601_VALVE: Self = Self(
+        VideoEncodeRgbModelConversionFlagBitsVALVE::YCBCR_601_VALVE.0,
+    );
+    pub const YCBCR_2020_VALVE: Self = Self(
+        VideoEncodeRgbModelConversionFlagBitsVALVE::YCBCR_2020_VALVE.0,
+    );
 }
 #[repr(transparent)]
 #[derive(Clone, Copy)]
@@ -72,12 +81,16 @@ impl VideoEncodeRgbModelConversionFlagBitsVALVE {
     pub const YCBCR_601_VALVE: Self = Self(1 << 3);
     pub const YCBCR_2020_VALVE: Self = Self(1 << 4);
 }
-bitflags::bitflags! {
-    #[repr(transparent)] #[derive(Clone, Copy)] pub struct
-    VideoEncodeRgbRangeCompressionFlagsVALVE : u32 { const FULL_RANGE_VALVE =
-    VideoEncodeRgbRangeCompressionFlagBitsVALVE::FULL_RANGE_VALVE.0; const
-    NARROW_RANGE_VALVE = VideoEncodeRgbRangeCompressionFlagBitsVALVE::NARROW_RANGE_VALVE
-    .0; }
+#[repr(transparent)]
+#[derive(Clone, Copy)]
+pub struct VideoEncodeRgbRangeCompressionFlagsVALVE(u32);
+impl VideoEncodeRgbRangeCompressionFlagsVALVE {
+    pub const FULL_RANGE_VALVE: Self = Self(
+        VideoEncodeRgbRangeCompressionFlagBitsVALVE::FULL_RANGE_VALVE.0,
+    );
+    pub const NARROW_RANGE_VALVE: Self = Self(
+        VideoEncodeRgbRangeCompressionFlagBitsVALVE::NARROW_RANGE_VALVE.0,
+    );
 }
 #[repr(transparent)]
 #[derive(Clone, Copy)]
@@ -87,11 +100,16 @@ impl VideoEncodeRgbRangeCompressionFlagBitsVALVE {
     pub const FULL_RANGE_VALVE: Self = Self(1 << 0);
     pub const NARROW_RANGE_VALVE: Self = Self(1 << 1);
 }
-bitflags::bitflags! {
-    #[repr(transparent)] #[derive(Clone, Copy)] pub struct
-    VideoEncodeRgbChromaOffsetFlagsVALVE : u32 { const COSITED_EVEN_VALVE =
-    VideoEncodeRgbChromaOffsetFlagBitsVALVE::COSITED_EVEN_VALVE.0; const MIDPOINT_VALVE =
-    VideoEncodeRgbChromaOffsetFlagBitsVALVE::MIDPOINT_VALVE.0; }
+#[repr(transparent)]
+#[derive(Clone, Copy)]
+pub struct VideoEncodeRgbChromaOffsetFlagsVALVE(u32);
+impl VideoEncodeRgbChromaOffsetFlagsVALVE {
+    pub const COSITED_EVEN_VALVE: Self = Self(
+        VideoEncodeRgbChromaOffsetFlagBitsVALVE::COSITED_EVEN_VALVE.0,
+    );
+    pub const MIDPOINT_VALVE: Self = Self(
+        VideoEncodeRgbChromaOffsetFlagBitsVALVE::MIDPOINT_VALVE.0,
+    );
 }
 #[repr(transparent)]
 #[derive(Clone, Copy)]

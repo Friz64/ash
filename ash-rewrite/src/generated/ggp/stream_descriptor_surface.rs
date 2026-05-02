@@ -50,10 +50,10 @@ pub(crate) mod reexport {
     impl crate::vk::StructureType {
         pub const STREAM_DESCRIPTOR_SURFACE_CREATE_INFO_GGP: Self = Self(1000049000);
     }
-    bitflags::bitflags! {
-        #[repr(transparent)] #[derive(Clone, Copy)] pub struct
-        StreamDescriptorSurfaceCreateFlagsGGP : u32 {}
-    }
+    #[repr(transparent)]
+    #[derive(Clone, Copy)]
+    pub struct StreamDescriptorSurfaceCreateFlagsGGP(u32);
+    impl StreamDescriptorSurfaceCreateFlagsGGP {}
     pub type PFN_vkCreateStreamDescriptorSurfaceGGP = unsafe extern "system" fn(
         instance: crate::vk::Instance,
         p_create_info: *const crate::vk::StreamDescriptorSurfaceCreateInfoGGP<'_>,

@@ -266,12 +266,16 @@ pub(crate) mod reexport {
         pub const FLOAT32_KHR: Self = Self(4);
         pub const FLOAT64_KHR: Self = Self(5);
     }
-    bitflags::bitflags! {
-        #[repr(transparent)] #[derive(Clone, Copy)] pub struct
-        PerformanceCounterDescriptionFlagsKHR : u32 { const PERFORMANCE_IMPACTING_KHR =
-        PerformanceCounterDescriptionFlagBitsKHR::PERFORMANCE_IMPACTING_KHR.0; const
-        CONCURRENTLY_IMPACTED_KHR =
-        PerformanceCounterDescriptionFlagBitsKHR::CONCURRENTLY_IMPACTED_KHR.0; }
+    #[repr(transparent)]
+    #[derive(Clone, Copy)]
+    pub struct PerformanceCounterDescriptionFlagsKHR(u32);
+    impl PerformanceCounterDescriptionFlagsKHR {
+        pub const PERFORMANCE_IMPACTING_KHR: Self = Self(
+            PerformanceCounterDescriptionFlagBitsKHR::PERFORMANCE_IMPACTING_KHR.0,
+        );
+        pub const CONCURRENTLY_IMPACTED_KHR: Self = Self(
+            PerformanceCounterDescriptionFlagBitsKHR::CONCURRENTLY_IMPACTED_KHR.0,
+        );
     }
     #[repr(transparent)]
     #[derive(Clone, Copy)]
@@ -281,10 +285,10 @@ pub(crate) mod reexport {
         pub const PERFORMANCE_IMPACTING_KHR: Self = Self(1 << 0);
         pub const CONCURRENTLY_IMPACTED_KHR: Self = Self(1 << 1);
     }
-    bitflags::bitflags! {
-        #[repr(transparent)] #[derive(Clone, Copy)] pub struct
-        AcquireProfilingLockFlagsKHR : u32 {}
-    }
+    #[repr(transparent)]
+    #[derive(Clone, Copy)]
+    pub struct AcquireProfilingLockFlagsKHR(u32);
+    impl AcquireProfilingLockFlagsKHR {}
     #[repr(transparent)]
     #[derive(Clone, Copy)]
     pub struct AcquireProfilingLockFlagBitsKHR(pub(crate) u32);

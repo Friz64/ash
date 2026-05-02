@@ -577,17 +577,26 @@ pub(crate) mod reexport {
         pub const MEMORY_MARKER_INFO_AMD: Self = Self(1000318014);
         pub const ACCELERATION_STRUCTURE_CREATE_INFO_2_KHR: Self = Self(1000318015);
     }
-    bitflags::bitflags! {
-        #[repr(transparent)] #[derive(Clone, Copy)] pub struct AddressCommandFlagsKHR :
-        u32 { const PROTECTED_KHR = AddressCommandFlagBitsKHR::PROTECTED_KHR.0; const
-        FULLY_BOUND_KHR = AddressCommandFlagBitsKHR::FULLY_BOUND_KHR.0; const
-        STORAGE_BUFFER_USAGE_KHR = AddressCommandFlagBitsKHR::STORAGE_BUFFER_USAGE_KHR.0;
-        const UNKNOWN_STORAGE_BUFFER_USAGE_KHR =
-        AddressCommandFlagBitsKHR::UNKNOWN_STORAGE_BUFFER_USAGE_KHR.0; const
-        TRANSFORM_FEEDBACK_BUFFER_USAGE_KHR =
-        AddressCommandFlagBitsKHR::TRANSFORM_FEEDBACK_BUFFER_USAGE_KHR.0; const
-        UNKNOWN_TRANSFORM_FEEDBACK_BUFFER_USAGE_KHR =
-        AddressCommandFlagBitsKHR::UNKNOWN_TRANSFORM_FEEDBACK_BUFFER_USAGE_KHR.0; }
+    #[repr(transparent)]
+    #[derive(Clone, Copy)]
+    pub struct AddressCommandFlagsKHR(u32);
+    impl AddressCommandFlagsKHR {
+        pub const PROTECTED_KHR: Self = Self(AddressCommandFlagBitsKHR::PROTECTED_KHR.0);
+        pub const FULLY_BOUND_KHR: Self = Self(
+            AddressCommandFlagBitsKHR::FULLY_BOUND_KHR.0,
+        );
+        pub const STORAGE_BUFFER_USAGE_KHR: Self = Self(
+            AddressCommandFlagBitsKHR::STORAGE_BUFFER_USAGE_KHR.0,
+        );
+        pub const UNKNOWN_STORAGE_BUFFER_USAGE_KHR: Self = Self(
+            AddressCommandFlagBitsKHR::UNKNOWN_STORAGE_BUFFER_USAGE_KHR.0,
+        );
+        pub const TRANSFORM_FEEDBACK_BUFFER_USAGE_KHR: Self = Self(
+            AddressCommandFlagBitsKHR::TRANSFORM_FEEDBACK_BUFFER_USAGE_KHR.0,
+        );
+        pub const UNKNOWN_TRANSFORM_FEEDBACK_BUFFER_USAGE_KHR: Self = Self(
+            AddressCommandFlagBitsKHR::UNKNOWN_TRANSFORM_FEEDBACK_BUFFER_USAGE_KHR.0,
+        );
     }
     #[repr(transparent)]
     #[derive(Clone, Copy)]

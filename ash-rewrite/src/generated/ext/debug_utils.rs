@@ -278,13 +278,22 @@ pub(crate) mod reexport {
     impl crate::vk::ObjectType {
         pub const DEBUG_UTILS_MESSENGER_EXT: Self = Self(1000128000);
     }
-    bitflags::bitflags! {
-        #[repr(transparent)] #[derive(Clone, Copy)] pub struct
-        DebugUtilsMessageSeverityFlagsEXT : u32 { const VERBOSE_EXT =
-        DebugUtilsMessageSeverityFlagBitsEXT::VERBOSE_EXT.0; const INFO_EXT =
-        DebugUtilsMessageSeverityFlagBitsEXT::INFO_EXT.0; const WARNING_EXT =
-        DebugUtilsMessageSeverityFlagBitsEXT::WARNING_EXT.0; const ERROR_EXT =
-        DebugUtilsMessageSeverityFlagBitsEXT::ERROR_EXT.0; }
+    #[repr(transparent)]
+    #[derive(Clone, Copy)]
+    pub struct DebugUtilsMessageSeverityFlagsEXT(u32);
+    impl DebugUtilsMessageSeverityFlagsEXT {
+        pub const VERBOSE_EXT: Self = Self(
+            DebugUtilsMessageSeverityFlagBitsEXT::VERBOSE_EXT.0,
+        );
+        pub const INFO_EXT: Self = Self(
+            DebugUtilsMessageSeverityFlagBitsEXT::INFO_EXT.0,
+        );
+        pub const WARNING_EXT: Self = Self(
+            DebugUtilsMessageSeverityFlagBitsEXT::WARNING_EXT.0,
+        );
+        pub const ERROR_EXT: Self = Self(
+            DebugUtilsMessageSeverityFlagBitsEXT::ERROR_EXT.0,
+        );
     }
     #[repr(transparent)]
     #[derive(Clone, Copy)]
@@ -296,14 +305,22 @@ pub(crate) mod reexport {
         pub const WARNING_EXT: Self = Self(1 << 8);
         pub const ERROR_EXT: Self = Self(1 << 12);
     }
-    bitflags::bitflags! {
-        #[repr(transparent)] #[derive(Clone, Copy)] pub struct
-        DebugUtilsMessageTypeFlagsEXT : u32 { const GENERAL_EXT =
-        DebugUtilsMessageTypeFlagBitsEXT::GENERAL_EXT.0; const VALIDATION_EXT =
-        DebugUtilsMessageTypeFlagBitsEXT::VALIDATION_EXT.0; const PERFORMANCE_EXT =
-        DebugUtilsMessageTypeFlagBitsEXT::PERFORMANCE_EXT.0; const
-        DEVICE_ADDRESS_BINDING_EXT =
-        DebugUtilsMessageTypeFlagBitsEXT::DEVICE_ADDRESS_BINDING_EXT.0; }
+    #[repr(transparent)]
+    #[derive(Clone, Copy)]
+    pub struct DebugUtilsMessageTypeFlagsEXT(u32);
+    impl DebugUtilsMessageTypeFlagsEXT {
+        pub const GENERAL_EXT: Self = Self(
+            DebugUtilsMessageTypeFlagBitsEXT::GENERAL_EXT.0,
+        );
+        pub const VALIDATION_EXT: Self = Self(
+            DebugUtilsMessageTypeFlagBitsEXT::VALIDATION_EXT.0,
+        );
+        pub const PERFORMANCE_EXT: Self = Self(
+            DebugUtilsMessageTypeFlagBitsEXT::PERFORMANCE_EXT.0,
+        );
+        pub const DEVICE_ADDRESS_BINDING_EXT: Self = Self(
+            DebugUtilsMessageTypeFlagBitsEXT::DEVICE_ADDRESS_BINDING_EXT.0,
+        );
     }
     #[repr(transparent)]
     #[derive(Clone, Copy)]
@@ -314,14 +331,14 @@ pub(crate) mod reexport {
         pub const VALIDATION_EXT: Self = Self(1 << 1);
         pub const PERFORMANCE_EXT: Self = Self(1 << 2);
     }
-    bitflags::bitflags! {
-        #[repr(transparent)] #[derive(Clone, Copy)] pub struct
-        DebugUtilsMessengerCreateFlagsEXT : u32 {}
-    }
-    bitflags::bitflags! {
-        #[repr(transparent)] #[derive(Clone, Copy)] pub struct
-        DebugUtilsMessengerCallbackDataFlagsEXT : u32 {}
-    }
+    #[repr(transparent)]
+    #[derive(Clone, Copy)]
+    pub struct DebugUtilsMessengerCreateFlagsEXT(u32);
+    impl DebugUtilsMessengerCreateFlagsEXT {}
+    #[repr(transparent)]
+    #[derive(Clone, Copy)]
+    pub struct DebugUtilsMessengerCallbackDataFlagsEXT(u32);
+    impl DebugUtilsMessengerCallbackDataFlagsEXT {}
     #[repr(transparent)]
     #[derive(Eq, PartialEq, Ord, PartialOrd, Clone, Copy, Hash, Default)]
     pub struct DebugUtilsMessengerEXT(u64);

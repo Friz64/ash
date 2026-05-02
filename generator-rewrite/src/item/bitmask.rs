@@ -37,18 +37,18 @@ impl Code for BitMask {
             values = (self.items.iter())
                 .map(|(&name, _item)| {
                     let name = ctx.enumerator_to_rust(name, bits_name, false);
-                    quote! { const #name = #bits_name_tokens::#name.0; }
+                    quote! { pub const #name: Self = Self(#bits_name_tokens::#name.0); }
                 })
                 .collect::<TokenStream>();
         }
 
         let code = quote! {
-            bitflags::bitflags! {
-                #[repr(transparent)]
-                #[derive(Clone, Copy)]
-                pub struct #name: #base_ty {
-                    #values
-                }
+            #[repr(transparent)]
+            #[derive(Clone, Copy)]
+            pub struct #name(#base_ty);
+
+            impl #name {
+                #values
             }
 
             #bits_code

@@ -58,9 +58,11 @@ pub(crate) mod reexport {
     impl crate::vk::StructureType {
         pub const SURFACE_CAPABILITIES_2_EXT: Self = Self(1000090000);
     }
-    bitflags::bitflags! {
-        #[repr(transparent)] #[derive(Clone, Copy)] pub struct SurfaceCounterFlagsEXT :
-        u32 { const VBLANK_EXT = SurfaceCounterFlagBitsEXT::VBLANK_EXT.0; }
+    #[repr(transparent)]
+    #[derive(Clone, Copy)]
+    pub struct SurfaceCounterFlagsEXT(u32);
+    impl SurfaceCounterFlagsEXT {
+        pub const VBLANK_EXT: Self = Self(SurfaceCounterFlagBitsEXT::VBLANK_EXT.0);
     }
     #[repr(transparent)]
     #[derive(Clone, Copy)]

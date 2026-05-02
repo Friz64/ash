@@ -127,13 +127,13 @@ impl crate::vk::BuildAccelerationStructureFlagBitsKHR {
 impl crate::vk::AccelerationStructureCreateFlagBitsKHR {
     pub const MOTION_NV: Self = Self(1 << 2);
 }
-bitflags::bitflags! {
-    #[repr(transparent)] #[derive(Clone, Copy)] pub struct
-    AccelerationStructureMotionInfoFlagsNV : u32 {}
-}
-bitflags::bitflags! {
-    #[repr(transparent)] #[derive(Clone, Copy)] pub struct
-    AccelerationStructureMotionInstanceFlagsNV : u32 {}
-}
+#[repr(transparent)]
+#[derive(Clone, Copy)]
+pub struct AccelerationStructureMotionInfoFlagsNV(u32);
+impl AccelerationStructureMotionInfoFlagsNV {}
+#[repr(transparent)]
+#[derive(Clone, Copy)]
+pub struct AccelerationStructureMotionInstanceFlagsNV(u32);
+impl AccelerationStructureMotionInstanceFlagsNV {}
 pub const NV_RAY_TRACING_MOTION_BLUR_SPEC_VERSION: u32 = 1;
 pub const NV_RAY_TRACING_MOTION_BLUR_EXTENSION_NAME: &core::ffi::CStr = c"VK_NV_ray_tracing_motion_blur";

@@ -607,12 +607,16 @@ pub(crate) mod reexport {
     impl crate::vk::TensorUsageFlagBitsARM {
         pub const DATA_GRAPH_ARM: Self = Self(1 << 5);
     }
-    bitflags::bitflags! {
-        #[repr(transparent)] #[derive(Clone, Copy)] pub struct
-        DataGraphPipelineSessionCreateFlagsARM : u64 { const PROTECTED_ARM =
-        DataGraphPipelineSessionCreateFlagBitsARM::PROTECTED_ARM.0; const
-        OPTICAL_FLOW_CACHE_ARM =
-        DataGraphPipelineSessionCreateFlagBitsARM::OPTICAL_FLOW_CACHE_ARM.0; }
+    #[repr(transparent)]
+    #[derive(Clone, Copy)]
+    pub struct DataGraphPipelineSessionCreateFlagsARM(u64);
+    impl DataGraphPipelineSessionCreateFlagsARM {
+        pub const PROTECTED_ARM: Self = Self(
+            DataGraphPipelineSessionCreateFlagBitsARM::PROTECTED_ARM.0,
+        );
+        pub const OPTICAL_FLOW_CACHE_ARM: Self = Self(
+            DataGraphPipelineSessionCreateFlagBitsARM::OPTICAL_FLOW_CACHE_ARM.0,
+        );
     }
     #[repr(transparent)]
     #[derive(Clone, Copy)]
@@ -621,10 +625,10 @@ pub(crate) mod reexport {
     impl DataGraphPipelineSessionCreateFlagBitsARM {
         pub const PROTECTED_ARM: Self = Self(1 << 0);
     }
-    bitflags::bitflags! {
-        #[repr(transparent)] #[derive(Clone, Copy)] pub struct
-        DataGraphPipelineDispatchFlagsARM : u64 {}
-    }
+    #[repr(transparent)]
+    #[derive(Clone, Copy)]
+    pub struct DataGraphPipelineDispatchFlagsARM(u64);
+    impl DataGraphPipelineDispatchFlagsARM {}
     #[repr(transparent)]
     #[derive(Clone, Copy)]
     pub struct DataGraphPipelineDispatchFlagBitsARM(pub(crate) u64);

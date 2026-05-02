@@ -302,19 +302,34 @@ pub(crate) mod reexport {
     impl crate::vk::ObjectType {
         pub const SWAPCHAIN_KHR: Self = Self(1000001000);
     }
-    bitflags::bitflags! {
-        #[repr(transparent)] #[derive(Clone, Copy)] pub struct SwapchainCreateFlagsKHR :
-        u32 { const SPLIT_INSTANCE_BIND_REGIONS_KHR =
-        SwapchainCreateFlagBitsKHR::SPLIT_INSTANCE_BIND_REGIONS_KHR.0; const
-        PROTECTED_KHR = SwapchainCreateFlagBitsKHR::PROTECTED_KHR.0; const
-        MUTABLE_FORMAT_KHR = SwapchainCreateFlagBitsKHR::MUTABLE_FORMAT_KHR.0; const
-        PRESENT_TIMING_EXT = SwapchainCreateFlagBitsKHR::PRESENT_TIMING_EXT.0; const
-        DEFERRED_MEMORY_ALLOCATION_EXT =
-        SwapchainCreateFlagBitsKHR::DEFERRED_MEMORY_ALLOCATION_EXT.0; const
-        PRESENT_ID_2_KHR = SwapchainCreateFlagBitsKHR::PRESENT_ID_2_KHR.0; const
-        PRESENT_WAIT_2_KHR = SwapchainCreateFlagBitsKHR::PRESENT_WAIT_2_KHR.0; const
-        DEFERRED_MEMORY_ALLOCATION_KHR =
-        SwapchainCreateFlagBitsKHR::DEFERRED_MEMORY_ALLOCATION_KHR.0; }
+    #[repr(transparent)]
+    #[derive(Clone, Copy)]
+    pub struct SwapchainCreateFlagsKHR(u32);
+    impl SwapchainCreateFlagsKHR {
+        pub const SPLIT_INSTANCE_BIND_REGIONS_KHR: Self = Self(
+            SwapchainCreateFlagBitsKHR::SPLIT_INSTANCE_BIND_REGIONS_KHR.0,
+        );
+        pub const PROTECTED_KHR: Self = Self(
+            SwapchainCreateFlagBitsKHR::PROTECTED_KHR.0,
+        );
+        pub const MUTABLE_FORMAT_KHR: Self = Self(
+            SwapchainCreateFlagBitsKHR::MUTABLE_FORMAT_KHR.0,
+        );
+        pub const PRESENT_TIMING_EXT: Self = Self(
+            SwapchainCreateFlagBitsKHR::PRESENT_TIMING_EXT.0,
+        );
+        pub const DEFERRED_MEMORY_ALLOCATION_EXT: Self = Self(
+            SwapchainCreateFlagBitsKHR::DEFERRED_MEMORY_ALLOCATION_EXT.0,
+        );
+        pub const PRESENT_ID_2_KHR: Self = Self(
+            SwapchainCreateFlagBitsKHR::PRESENT_ID_2_KHR.0,
+        );
+        pub const PRESENT_WAIT_2_KHR: Self = Self(
+            SwapchainCreateFlagBitsKHR::PRESENT_WAIT_2_KHR.0,
+        );
+        pub const DEFERRED_MEMORY_ALLOCATION_KHR: Self = Self(
+            SwapchainCreateFlagBitsKHR::DEFERRED_MEMORY_ALLOCATION_KHR.0,
+        );
     }
     #[repr(transparent)]
     #[derive(Clone, Copy)]
@@ -324,13 +339,18 @@ pub(crate) mod reexport {
         pub const SPLIT_INSTANCE_BIND_REGIONS_KHR: Self = Self(1 << 0);
         pub const PROTECTED_KHR: Self = Self(1 << 1);
     }
-    bitflags::bitflags! {
-        #[repr(transparent)] #[derive(Clone, Copy)] pub struct
-        DeviceGroupPresentModeFlagsKHR : u32 { const LOCAL_KHR =
-        DeviceGroupPresentModeFlagBitsKHR::LOCAL_KHR.0; const REMOTE_KHR =
-        DeviceGroupPresentModeFlagBitsKHR::REMOTE_KHR.0; const SUM_KHR =
-        DeviceGroupPresentModeFlagBitsKHR::SUM_KHR.0; const LOCAL_MULTI_DEVICE_KHR =
-        DeviceGroupPresentModeFlagBitsKHR::LOCAL_MULTI_DEVICE_KHR.0; }
+    #[repr(transparent)]
+    #[derive(Clone, Copy)]
+    pub struct DeviceGroupPresentModeFlagsKHR(u32);
+    impl DeviceGroupPresentModeFlagsKHR {
+        pub const LOCAL_KHR: Self = Self(DeviceGroupPresentModeFlagBitsKHR::LOCAL_KHR.0);
+        pub const REMOTE_KHR: Self = Self(
+            DeviceGroupPresentModeFlagBitsKHR::REMOTE_KHR.0,
+        );
+        pub const SUM_KHR: Self = Self(DeviceGroupPresentModeFlagBitsKHR::SUM_KHR.0);
+        pub const LOCAL_MULTI_DEVICE_KHR: Self = Self(
+            DeviceGroupPresentModeFlagBitsKHR::LOCAL_MULTI_DEVICE_KHR.0,
+        );
     }
     #[repr(transparent)]
     #[derive(Clone, Copy)]

@@ -45,15 +45,22 @@ impl crate::vk::PipelineCreateFlagBits {
     pub const RETAIN_LINK_TIME_OPTIMIZATION_INFO_EXT: Self = Self(1 << 23);
     pub const LINK_TIME_OPTIMIZATION_EXT: Self = Self(1 << 10);
 }
-bitflags::bitflags! {
-    #[repr(transparent)] #[derive(Clone, Copy)] pub struct
-    GraphicsPipelineLibraryFlagsEXT : u32 { const VERTEX_INPUT_INTERFACE_EXT =
-    GraphicsPipelineLibraryFlagBitsEXT::VERTEX_INPUT_INTERFACE_EXT.0; const
-    PRE_RASTERIZATION_SHADERS_EXT =
-    GraphicsPipelineLibraryFlagBitsEXT::PRE_RASTERIZATION_SHADERS_EXT.0; const
-    FRAGMENT_SHADER_EXT = GraphicsPipelineLibraryFlagBitsEXT::FRAGMENT_SHADER_EXT.0;
-    const FRAGMENT_OUTPUT_INTERFACE_EXT =
-    GraphicsPipelineLibraryFlagBitsEXT::FRAGMENT_OUTPUT_INTERFACE_EXT.0; }
+#[repr(transparent)]
+#[derive(Clone, Copy)]
+pub struct GraphicsPipelineLibraryFlagsEXT(u32);
+impl GraphicsPipelineLibraryFlagsEXT {
+    pub const VERTEX_INPUT_INTERFACE_EXT: Self = Self(
+        GraphicsPipelineLibraryFlagBitsEXT::VERTEX_INPUT_INTERFACE_EXT.0,
+    );
+    pub const PRE_RASTERIZATION_SHADERS_EXT: Self = Self(
+        GraphicsPipelineLibraryFlagBitsEXT::PRE_RASTERIZATION_SHADERS_EXT.0,
+    );
+    pub const FRAGMENT_SHADER_EXT: Self = Self(
+        GraphicsPipelineLibraryFlagBitsEXT::FRAGMENT_SHADER_EXT.0,
+    );
+    pub const FRAGMENT_OUTPUT_INTERFACE_EXT: Self = Self(
+        GraphicsPipelineLibraryFlagBitsEXT::FRAGMENT_OUTPUT_INTERFACE_EXT.0,
+    );
 }
 #[repr(transparent)]
 #[derive(Clone, Copy)]

@@ -25,9 +25,9 @@ impl crate::vk::StructureType {
         1000102001,
     );
 }
-bitflags::bitflags! {
-    #[repr(transparent)] #[derive(Clone, Copy)] pub struct
-    PipelineRasterizationDepthClipStateCreateFlagsEXT : u32 {}
-}
+#[repr(transparent)]
+#[derive(Clone, Copy)]
+pub struct PipelineRasterizationDepthClipStateCreateFlagsEXT(u32);
+impl PipelineRasterizationDepthClipStateCreateFlagsEXT {}
 pub const EXT_DEPTH_CLIP_ENABLE_SPEC_VERSION: u32 = 1;
 pub const EXT_DEPTH_CLIP_ENABLE_EXTENSION_NAME: &core::ffi::CStr = c"VK_EXT_depth_clip_enable";

@@ -95,10 +95,10 @@ pub(crate) mod reexport {
         pub const MERGE_NV: Self = Self(0);
         pub const TRUNCATE_NV: Self = Self(1);
     }
-    bitflags::bitflags! {
-        #[repr(transparent)] #[derive(Clone, Copy)] pub struct
-        PipelineCoverageReductionStateCreateFlagsNV : u32 {}
-    }
+    #[repr(transparent)]
+    #[derive(Clone, Copy)]
+    pub struct PipelineCoverageReductionStateCreateFlagsNV(u32);
+    impl PipelineCoverageReductionStateCreateFlagsNV {}
     pub type PFN_vkGetPhysicalDeviceSupportedFramebufferMixedSamplesCombinationsNV = unsafe extern "system" fn(
         physical_device: crate::vk::PhysicalDevice,
         p_combination_count: *mut u32,

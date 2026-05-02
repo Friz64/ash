@@ -95,12 +95,16 @@ pub(crate) mod reexport {
             1000417004,
         );
     }
-    bitflags::bitflags! {
-        #[repr(transparent)] #[derive(Clone, Copy)] pub struct
-        PhysicalDeviceSchedulingControlsFlagsARM : u64 { const SHADER_CORE_COUNT_ARM =
-        PhysicalDeviceSchedulingControlsFlagBitsARM::SHADER_CORE_COUNT_ARM.0; const
-        DISPATCH_PARAMETERS_ARM =
-        PhysicalDeviceSchedulingControlsFlagBitsARM::DISPATCH_PARAMETERS_ARM.0; }
+    #[repr(transparent)]
+    #[derive(Clone, Copy)]
+    pub struct PhysicalDeviceSchedulingControlsFlagsARM(u64);
+    impl PhysicalDeviceSchedulingControlsFlagsARM {
+        pub const SHADER_CORE_COUNT_ARM: Self = Self(
+            PhysicalDeviceSchedulingControlsFlagBitsARM::SHADER_CORE_COUNT_ARM.0,
+        );
+        pub const DISPATCH_PARAMETERS_ARM: Self = Self(
+            PhysicalDeviceSchedulingControlsFlagBitsARM::DISPATCH_PARAMETERS_ARM.0,
+        );
     }
     #[repr(transparent)]
     #[derive(Clone, Copy)]

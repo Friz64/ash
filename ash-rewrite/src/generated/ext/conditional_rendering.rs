@@ -98,10 +98,13 @@ pub(crate) mod reexport {
     impl crate::vk::PipelineStageFlagBits {
         pub const CONDITIONAL_RENDERING_EXT: Self = Self(1 << 18);
     }
-    bitflags::bitflags! {
-        #[repr(transparent)] #[derive(Clone, Copy)] pub struct
-        ConditionalRenderingFlagsEXT : u32 { const INVERTED_EXT =
-        ConditionalRenderingFlagBitsEXT::INVERTED_EXT.0; }
+    #[repr(transparent)]
+    #[derive(Clone, Copy)]
+    pub struct ConditionalRenderingFlagsEXT(u32);
+    impl ConditionalRenderingFlagsEXT {
+        pub const INVERTED_EXT: Self = Self(
+            ConditionalRenderingFlagBitsEXT::INVERTED_EXT.0,
+        );
     }
     #[repr(transparent)]
     #[derive(Clone, Copy)]

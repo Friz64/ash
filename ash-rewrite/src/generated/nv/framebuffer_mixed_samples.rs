@@ -38,9 +38,9 @@ impl CoverageModulationModeNV {
     pub const ALPHA_NV: Self = Self(2);
     pub const RGBA_NV: Self = Self(3);
 }
-bitflags::bitflags! {
-    #[repr(transparent)] #[derive(Clone, Copy)] pub struct
-    PipelineCoverageModulationStateCreateFlagsNV : u32 {}
-}
+#[repr(transparent)]
+#[derive(Clone, Copy)]
+pub struct PipelineCoverageModulationStateCreateFlagsNV(u32);
+impl PipelineCoverageModulationStateCreateFlagsNV {}
 pub const NV_FRAMEBUFFER_MIXED_SAMPLES_SPEC_VERSION: u32 = 1;
 pub const NV_FRAMEBUFFER_MIXED_SAMPLES_EXTENSION_NAME: &core::ffi::CStr = c"VK_NV_framebuffer_mixed_samples";

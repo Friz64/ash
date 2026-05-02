@@ -50,10 +50,10 @@ pub(crate) mod reexport {
     impl crate::vk::StructureType {
         pub const VI_SURFACE_CREATE_INFO_NN: Self = Self(1000062000);
     }
-    bitflags::bitflags! {
-        #[repr(transparent)] #[derive(Clone, Copy)] pub struct ViSurfaceCreateFlagsNN :
-        u32 {}
-    }
+    #[repr(transparent)]
+    #[derive(Clone, Copy)]
+    pub struct ViSurfaceCreateFlagsNN(u32);
+    impl ViSurfaceCreateFlagsNN {}
     pub type PFN_vkCreateViSurfaceNN = unsafe extern "system" fn(
         instance: crate::vk::Instance,
         p_create_info: *const crate::vk::ViSurfaceCreateInfoNN<'_>,

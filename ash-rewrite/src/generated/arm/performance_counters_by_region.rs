@@ -105,10 +105,10 @@ pub(crate) mod reexport {
             1000605004,
         );
     }
-    bitflags::bitflags! {
-        #[repr(transparent)] #[derive(Clone, Copy)] pub struct
-        PerformanceCounterDescriptionFlagsARM : u32 {}
-    }
+    #[repr(transparent)]
+    #[derive(Clone, Copy)]
+    pub struct PerformanceCounterDescriptionFlagsARM(u32);
+    impl PerformanceCounterDescriptionFlagsARM {}
     pub type PFN_vkEnumeratePhysicalDeviceQueueFamilyPerformanceCountersByRegionARM = unsafe extern "system" fn(
         physical_device: crate::vk::PhysicalDevice,
         queue_family_index: u32,
