@@ -70,10 +70,10 @@ pub(crate) mod reexport {
     impl crate::vk::StructureType {
         pub const XLIB_SURFACE_CREATE_INFO_KHR: Self = Self(1000004000);
     }
-    bitflags::bitflags! {
-        #[repr(transparent)] #[derive(Clone, Copy)] pub struct XlibSurfaceCreateFlagsKHR
-        : u32 {}
-    }
+    #[repr(transparent)]
+    #[derive(Clone, Copy)]
+    pub struct XlibSurfaceCreateFlagsKHR(u32);
+    impl XlibSurfaceCreateFlagsKHR {}
     pub type PFN_vkCreateXlibSurfaceKHR = unsafe extern "system" fn(
         instance: crate::vk::Instance,
         p_create_info: *const crate::vk::XlibSurfaceCreateInfoKHR<'_>,

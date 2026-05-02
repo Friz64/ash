@@ -51,13 +51,22 @@ pub(crate) mod reexport {
         pub export_from_imported_handle_types: crate::vk::ExternalMemoryHandleTypeFlagsNV,
         pub compatible_handle_types: crate::vk::ExternalMemoryHandleTypeFlagsNV,
     }
-    bitflags::bitflags! {
-        #[repr(transparent)] #[derive(Clone, Copy)] pub struct
-        ExternalMemoryHandleTypeFlagsNV : u32 { const OPAQUE_WIN32_NV =
-        ExternalMemoryHandleTypeFlagBitsNV::OPAQUE_WIN32_NV.0; const OPAQUE_WIN32_KMT_NV
-        = ExternalMemoryHandleTypeFlagBitsNV::OPAQUE_WIN32_KMT_NV.0; const D3D11_IMAGE_NV
-        = ExternalMemoryHandleTypeFlagBitsNV::D3D11_IMAGE_NV.0; const D3D11_IMAGE_KMT_NV
-        = ExternalMemoryHandleTypeFlagBitsNV::D3D11_IMAGE_KMT_NV.0; }
+    #[repr(transparent)]
+    #[derive(Clone, Copy)]
+    pub struct ExternalMemoryHandleTypeFlagsNV(u32);
+    impl ExternalMemoryHandleTypeFlagsNV {
+        pub const OPAQUE_WIN32_NV: Self = Self(
+            ExternalMemoryHandleTypeFlagBitsNV::OPAQUE_WIN32_NV.0,
+        );
+        pub const OPAQUE_WIN32_KMT_NV: Self = Self(
+            ExternalMemoryHandleTypeFlagBitsNV::OPAQUE_WIN32_KMT_NV.0,
+        );
+        pub const D3D11_IMAGE_NV: Self = Self(
+            ExternalMemoryHandleTypeFlagBitsNV::D3D11_IMAGE_NV.0,
+        );
+        pub const D3D11_IMAGE_KMT_NV: Self = Self(
+            ExternalMemoryHandleTypeFlagBitsNV::D3D11_IMAGE_KMT_NV.0,
+        );
     }
     #[repr(transparent)]
     #[derive(Clone, Copy)]
@@ -69,12 +78,19 @@ pub(crate) mod reexport {
         pub const D3D11_IMAGE_NV: Self = Self(1 << 2);
         pub const D3D11_IMAGE_KMT_NV: Self = Self(1 << 3);
     }
-    bitflags::bitflags! {
-        #[repr(transparent)] #[derive(Clone, Copy)] pub struct
-        ExternalMemoryFeatureFlagsNV : u32 { const DEDICATED_ONLY_NV =
-        ExternalMemoryFeatureFlagBitsNV::DEDICATED_ONLY_NV.0; const EXPORTABLE_NV =
-        ExternalMemoryFeatureFlagBitsNV::EXPORTABLE_NV.0; const IMPORTABLE_NV =
-        ExternalMemoryFeatureFlagBitsNV::IMPORTABLE_NV.0; }
+    #[repr(transparent)]
+    #[derive(Clone, Copy)]
+    pub struct ExternalMemoryFeatureFlagsNV(u32);
+    impl ExternalMemoryFeatureFlagsNV {
+        pub const DEDICATED_ONLY_NV: Self = Self(
+            ExternalMemoryFeatureFlagBitsNV::DEDICATED_ONLY_NV.0,
+        );
+        pub const EXPORTABLE_NV: Self = Self(
+            ExternalMemoryFeatureFlagBitsNV::EXPORTABLE_NV.0,
+        );
+        pub const IMPORTABLE_NV: Self = Self(
+            ExternalMemoryFeatureFlagBitsNV::IMPORTABLE_NV.0,
+        );
     }
     #[repr(transparent)]
     #[derive(Clone, Copy)]

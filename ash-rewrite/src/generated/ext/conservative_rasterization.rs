@@ -54,9 +54,9 @@ impl ConservativeRasterizationModeEXT {
     pub const OVERESTIMATE_EXT: Self = Self(1);
     pub const UNDERESTIMATE_EXT: Self = Self(2);
 }
-bitflags::bitflags! {
-    #[repr(transparent)] #[derive(Clone, Copy)] pub struct
-    PipelineRasterizationConservativeStateCreateFlagsEXT : u32 {}
-}
+#[repr(transparent)]
+#[derive(Clone, Copy)]
+pub struct PipelineRasterizationConservativeStateCreateFlagsEXT(u32);
+impl PipelineRasterizationConservativeStateCreateFlagsEXT {}
 pub const EXT_CONSERVATIVE_RASTERIZATION_SPEC_VERSION: u32 = 1;
 pub const EXT_CONSERVATIVE_RASTERIZATION_EXTENSION_NAME: &core::ffi::CStr = c"VK_EXT_conservative_rasterization";

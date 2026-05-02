@@ -112,12 +112,18 @@ pub(crate) mod reexport {
         pub const VIDEO_DECODE_OUTPUT_KHR: Self = Self(1 << 25);
         pub const VIDEO_DECODE_DPB_KHR: Self = Self(1 << 26);
     }
-    bitflags::bitflags! {
-        #[repr(transparent)] #[derive(Clone, Copy)] pub struct VideoDecodeUsageFlagsKHR :
-        u32 { const DEFAULT_KHR = VideoDecodeUsageFlagBitsKHR::DEFAULT_KHR.0; const
-        TRANSCODING_KHR = VideoDecodeUsageFlagBitsKHR::TRANSCODING_KHR.0; const
-        OFFLINE_KHR = VideoDecodeUsageFlagBitsKHR::OFFLINE_KHR.0; const STREAMING_KHR =
-        VideoDecodeUsageFlagBitsKHR::STREAMING_KHR.0; }
+    #[repr(transparent)]
+    #[derive(Clone, Copy)]
+    pub struct VideoDecodeUsageFlagsKHR(u32);
+    impl VideoDecodeUsageFlagsKHR {
+        pub const DEFAULT_KHR: Self = Self(VideoDecodeUsageFlagBitsKHR::DEFAULT_KHR.0);
+        pub const TRANSCODING_KHR: Self = Self(
+            VideoDecodeUsageFlagBitsKHR::TRANSCODING_KHR.0,
+        );
+        pub const OFFLINE_KHR: Self = Self(VideoDecodeUsageFlagBitsKHR::OFFLINE_KHR.0);
+        pub const STREAMING_KHR: Self = Self(
+            VideoDecodeUsageFlagBitsKHR::STREAMING_KHR.0,
+        );
     }
     #[repr(transparent)]
     #[derive(Clone, Copy)]
@@ -129,12 +135,16 @@ pub(crate) mod reexport {
         pub const OFFLINE_KHR: Self = Self(1 << 1);
         pub const STREAMING_KHR: Self = Self(1 << 2);
     }
-    bitflags::bitflags! {
-        #[repr(transparent)] #[derive(Clone, Copy)] pub struct
-        VideoDecodeCapabilityFlagsKHR : u32 { const DPB_AND_OUTPUT_COINCIDE_KHR =
-        VideoDecodeCapabilityFlagBitsKHR::DPB_AND_OUTPUT_COINCIDE_KHR.0; const
-        DPB_AND_OUTPUT_DISTINCT_KHR =
-        VideoDecodeCapabilityFlagBitsKHR::DPB_AND_OUTPUT_DISTINCT_KHR.0; }
+    #[repr(transparent)]
+    #[derive(Clone, Copy)]
+    pub struct VideoDecodeCapabilityFlagsKHR(u32);
+    impl VideoDecodeCapabilityFlagsKHR {
+        pub const DPB_AND_OUTPUT_COINCIDE_KHR: Self = Self(
+            VideoDecodeCapabilityFlagBitsKHR::DPB_AND_OUTPUT_COINCIDE_KHR.0,
+        );
+        pub const DPB_AND_OUTPUT_DISTINCT_KHR: Self = Self(
+            VideoDecodeCapabilityFlagBitsKHR::DPB_AND_OUTPUT_DISTINCT_KHR.0,
+        );
     }
     #[repr(transparent)]
     #[derive(Clone, Copy)]
@@ -144,10 +154,10 @@ pub(crate) mod reexport {
         pub const DPB_AND_OUTPUT_COINCIDE_KHR: Self = Self(1 << 0);
         pub const DPB_AND_OUTPUT_DISTINCT_KHR: Self = Self(1 << 1);
     }
-    bitflags::bitflags! {
-        #[repr(transparent)] #[derive(Clone, Copy)] pub struct VideoDecodeFlagsKHR : u32
-        {}
-    }
+    #[repr(transparent)]
+    #[derive(Clone, Copy)]
+    pub struct VideoDecodeFlagsKHR(u32);
+    impl VideoDecodeFlagsKHR {}
     pub type PFN_vkCmdDecodeVideoKHR = unsafe extern "system" fn(
         command_buffer: crate::vk::CommandBuffer,
         p_decode_info: *const crate::vk::VideoDecodeInfoKHR<'_>,

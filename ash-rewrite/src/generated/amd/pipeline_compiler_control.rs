@@ -13,10 +13,10 @@ pub struct PipelineCompilerControlCreateInfoAMD<'a> {
 impl crate::vk::StructureType {
     pub const PIPELINE_COMPILER_CONTROL_CREATE_INFO_AMD: Self = Self(1000183000);
 }
-bitflags::bitflags! {
-    #[repr(transparent)] #[derive(Clone, Copy)] pub struct
-    PipelineCompilerControlFlagsAMD : u32 {}
-}
+#[repr(transparent)]
+#[derive(Clone, Copy)]
+pub struct PipelineCompilerControlFlagsAMD(u32);
+impl PipelineCompilerControlFlagsAMD {}
 #[repr(transparent)]
 #[derive(Clone, Copy)]
 pub struct PipelineCompilerControlFlagBitsAMD(pub(crate) u32);

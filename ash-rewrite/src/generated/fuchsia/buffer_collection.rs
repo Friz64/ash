@@ -237,22 +237,29 @@ pub(crate) mod reexport {
     impl crate::vk::DebugReportObjectTypeEXT {
         pub const BUFFER_COLLECTION_FUCHSIA_EXT: Self = Self(1000366000);
     }
-    bitflags::bitflags! {
-        #[repr(transparent)] #[derive(Clone, Copy)] pub struct
-        ImageFormatConstraintsFlagsFUCHSIA : u32 {}
-    }
-    bitflags::bitflags! {
-        #[repr(transparent)] #[derive(Clone, Copy)] pub struct
-        ImageConstraintsInfoFlagsFUCHSIA : u32 { const CPU_READ_RARELY_FUCHSIA =
-        ImageConstraintsInfoFlagBitsFUCHSIA::CPU_READ_RARELY_FUCHSIA.0; const
-        CPU_READ_OFTEN_FUCHSIA =
-        ImageConstraintsInfoFlagBitsFUCHSIA::CPU_READ_OFTEN_FUCHSIA.0; const
-        CPU_WRITE_RARELY_FUCHSIA =
-        ImageConstraintsInfoFlagBitsFUCHSIA::CPU_WRITE_RARELY_FUCHSIA.0; const
-        CPU_WRITE_OFTEN_FUCHSIA =
-        ImageConstraintsInfoFlagBitsFUCHSIA::CPU_WRITE_OFTEN_FUCHSIA.0; const
-        PROTECTED_OPTIONAL_FUCHSIA =
-        ImageConstraintsInfoFlagBitsFUCHSIA::PROTECTED_OPTIONAL_FUCHSIA.0; }
+    #[repr(transparent)]
+    #[derive(Clone, Copy)]
+    pub struct ImageFormatConstraintsFlagsFUCHSIA(u32);
+    impl ImageFormatConstraintsFlagsFUCHSIA {}
+    #[repr(transparent)]
+    #[derive(Clone, Copy)]
+    pub struct ImageConstraintsInfoFlagsFUCHSIA(u32);
+    impl ImageConstraintsInfoFlagsFUCHSIA {
+        pub const CPU_READ_RARELY_FUCHSIA: Self = Self(
+            ImageConstraintsInfoFlagBitsFUCHSIA::CPU_READ_RARELY_FUCHSIA.0,
+        );
+        pub const CPU_READ_OFTEN_FUCHSIA: Self = Self(
+            ImageConstraintsInfoFlagBitsFUCHSIA::CPU_READ_OFTEN_FUCHSIA.0,
+        );
+        pub const CPU_WRITE_RARELY_FUCHSIA: Self = Self(
+            ImageConstraintsInfoFlagBitsFUCHSIA::CPU_WRITE_RARELY_FUCHSIA.0,
+        );
+        pub const CPU_WRITE_OFTEN_FUCHSIA: Self = Self(
+            ImageConstraintsInfoFlagBitsFUCHSIA::CPU_WRITE_OFTEN_FUCHSIA.0,
+        );
+        pub const PROTECTED_OPTIONAL_FUCHSIA: Self = Self(
+            ImageConstraintsInfoFlagBitsFUCHSIA::PROTECTED_OPTIONAL_FUCHSIA.0,
+        );
     }
     #[repr(transparent)]
     #[derive(Clone, Copy)]

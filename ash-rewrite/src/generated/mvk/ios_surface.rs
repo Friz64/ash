@@ -50,10 +50,10 @@ pub(crate) mod reexport {
     impl crate::vk::StructureType {
         pub const IOS_SURFACE_CREATE_INFO_MVK: Self = Self(1000122000);
     }
-    bitflags::bitflags! {
-        #[repr(transparent)] #[derive(Clone, Copy)] pub struct IOSSurfaceCreateFlagsMVK :
-        u32 {}
-    }
+    #[repr(transparent)]
+    #[derive(Clone, Copy)]
+    pub struct IOSSurfaceCreateFlagsMVK(u32);
+    impl IOSSurfaceCreateFlagsMVK {}
     pub type PFN_vkCreateIOSSurfaceMVK = unsafe extern "system" fn(
         instance: crate::vk::Instance,
         p_create_info: *const crate::vk::IOSSurfaceCreateInfoMVK<'_>,

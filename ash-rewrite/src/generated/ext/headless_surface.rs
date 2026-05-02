@@ -49,10 +49,10 @@ pub(crate) mod reexport {
     impl crate::vk::StructureType {
         pub const HEADLESS_SURFACE_CREATE_INFO_EXT: Self = Self(1000256000);
     }
-    bitflags::bitflags! {
-        #[repr(transparent)] #[derive(Clone, Copy)] pub struct
-        HeadlessSurfaceCreateFlagsEXT : u32 {}
-    }
+    #[repr(transparent)]
+    #[derive(Clone, Copy)]
+    pub struct HeadlessSurfaceCreateFlagsEXT(u32);
+    impl HeadlessSurfaceCreateFlagsEXT {}
     pub type PFN_vkCreateHeadlessSurfaceEXT = unsafe extern "system" fn(
         instance: crate::vk::Instance,
         p_create_info: *const crate::vk::HeadlessSurfaceCreateInfoEXT<'_>,

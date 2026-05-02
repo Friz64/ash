@@ -132,10 +132,10 @@ pub(crate) mod reexport {
         }
         pub const ONE_EXT: Self = Self(1);
     }
-    bitflags::bitflags! {
-        #[repr(transparent)] #[derive(Clone, Copy)] pub struct
-        ValidationCacheCreateFlagsEXT : u32 {}
-    }
+    #[repr(transparent)]
+    #[derive(Clone, Copy)]
+    pub struct ValidationCacheCreateFlagsEXT(u32);
+    impl ValidationCacheCreateFlagsEXT {}
     #[repr(transparent)]
     #[derive(Eq, PartialEq, Ord, PartialOrd, Clone, Copy, Hash, Default)]
     pub struct ValidationCacheEXT(u64);

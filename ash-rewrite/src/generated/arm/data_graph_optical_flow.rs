@@ -238,14 +238,25 @@ pub(crate) mod reexport {
     impl crate::vk::DataGraphPipelineSessionCreateFlagBitsARM {
         pub const OPTICAL_FLOW_CACHE_ARM: Self = Self(1 << 1);
     }
-    bitflags::bitflags! {
-        #[repr(transparent)] #[derive(Clone, Copy)] pub struct
-        DataGraphOpticalFlowGridSizeFlagsARM : u32 { const UNKNOWN_ARM =
-        DataGraphOpticalFlowGridSizeFlagBitsARM::UNKNOWN_ARM.0; const _1X1_ARM =
-        DataGraphOpticalFlowGridSizeFlagBitsARM::_1X1_ARM.0; const _2X2_ARM =
-        DataGraphOpticalFlowGridSizeFlagBitsARM::_2X2_ARM.0; const _4X4_ARM =
-        DataGraphOpticalFlowGridSizeFlagBitsARM::_4X4_ARM.0; const _8X8_ARM =
-        DataGraphOpticalFlowGridSizeFlagBitsARM::_8X8_ARM.0; }
+    #[repr(transparent)]
+    #[derive(Clone, Copy)]
+    pub struct DataGraphOpticalFlowGridSizeFlagsARM(u32);
+    impl DataGraphOpticalFlowGridSizeFlagsARM {
+        pub const UNKNOWN_ARM: Self = Self(
+            DataGraphOpticalFlowGridSizeFlagBitsARM::UNKNOWN_ARM.0,
+        );
+        pub const _1X1_ARM: Self = Self(
+            DataGraphOpticalFlowGridSizeFlagBitsARM::_1X1_ARM.0,
+        );
+        pub const _2X2_ARM: Self = Self(
+            DataGraphOpticalFlowGridSizeFlagBitsARM::_2X2_ARM.0,
+        );
+        pub const _4X4_ARM: Self = Self(
+            DataGraphOpticalFlowGridSizeFlagBitsARM::_4X4_ARM.0,
+        );
+        pub const _8X8_ARM: Self = Self(
+            DataGraphOpticalFlowGridSizeFlagBitsARM::_8X8_ARM.0,
+        );
     }
     #[repr(transparent)]
     #[derive(Clone, Copy)]
@@ -258,14 +269,25 @@ pub(crate) mod reexport {
         pub const _4X4_ARM: Self = Self(1 << 2);
         pub const _8X8_ARM: Self = Self(1 << 3);
     }
-    bitflags::bitflags! {
-        #[repr(transparent)] #[derive(Clone, Copy)] pub struct
-        DataGraphOpticalFlowImageUsageFlagsARM : u32 { const UNKNOWN_ARM =
-        DataGraphOpticalFlowImageUsageFlagBitsARM::UNKNOWN_ARM.0; const INPUT_ARM =
-        DataGraphOpticalFlowImageUsageFlagBitsARM::INPUT_ARM.0; const OUTPUT_ARM =
-        DataGraphOpticalFlowImageUsageFlagBitsARM::OUTPUT_ARM.0; const HINT_ARM =
-        DataGraphOpticalFlowImageUsageFlagBitsARM::HINT_ARM.0; const COST_ARM =
-        DataGraphOpticalFlowImageUsageFlagBitsARM::COST_ARM.0; }
+    #[repr(transparent)]
+    #[derive(Clone, Copy)]
+    pub struct DataGraphOpticalFlowImageUsageFlagsARM(u32);
+    impl DataGraphOpticalFlowImageUsageFlagsARM {
+        pub const UNKNOWN_ARM: Self = Self(
+            DataGraphOpticalFlowImageUsageFlagBitsARM::UNKNOWN_ARM.0,
+        );
+        pub const INPUT_ARM: Self = Self(
+            DataGraphOpticalFlowImageUsageFlagBitsARM::INPUT_ARM.0,
+        );
+        pub const OUTPUT_ARM: Self = Self(
+            DataGraphOpticalFlowImageUsageFlagBitsARM::OUTPUT_ARM.0,
+        );
+        pub const HINT_ARM: Self = Self(
+            DataGraphOpticalFlowImageUsageFlagBitsARM::HINT_ARM.0,
+        );
+        pub const COST_ARM: Self = Self(
+            DataGraphOpticalFlowImageUsageFlagBitsARM::COST_ARM.0,
+        );
     }
     #[repr(transparent)]
     #[derive(Clone, Copy)]
@@ -278,12 +300,19 @@ pub(crate) mod reexport {
         pub const HINT_ARM: Self = Self(1 << 2);
         pub const COST_ARM: Self = Self(1 << 3);
     }
-    bitflags::bitflags! {
-        #[repr(transparent)] #[derive(Clone, Copy)] pub struct
-        DataGraphOpticalFlowCreateFlagsARM : u32 { const ENABLE_HINT_ARM =
-        DataGraphOpticalFlowCreateFlagBitsARM::ENABLE_HINT_ARM.0; const ENABLE_COST_ARM =
-        DataGraphOpticalFlowCreateFlagBitsARM::ENABLE_COST_ARM.0; const RESERVED_30_ARM =
-        DataGraphOpticalFlowCreateFlagBitsARM::RESERVED_30_ARM.0; }
+    #[repr(transparent)]
+    #[derive(Clone, Copy)]
+    pub struct DataGraphOpticalFlowCreateFlagsARM(u32);
+    impl DataGraphOpticalFlowCreateFlagsARM {
+        pub const ENABLE_HINT_ARM: Self = Self(
+            DataGraphOpticalFlowCreateFlagBitsARM::ENABLE_HINT_ARM.0,
+        );
+        pub const ENABLE_COST_ARM: Self = Self(
+            DataGraphOpticalFlowCreateFlagBitsARM::ENABLE_COST_ARM.0,
+        );
+        pub const RESERVED_30_ARM: Self = Self(
+            DataGraphOpticalFlowCreateFlagBitsARM::RESERVED_30_ARM.0,
+        );
     }
     #[repr(transparent)]
     #[derive(Clone, Copy)]
@@ -294,17 +323,25 @@ pub(crate) mod reexport {
         pub const ENABLE_COST_ARM: Self = Self(1 << 1);
         pub const RESERVED_30_ARM: Self = Self(1 << 30);
     }
-    bitflags::bitflags! {
-        #[repr(transparent)] #[derive(Clone, Copy)] pub struct
-        DataGraphOpticalFlowExecuteFlagsARM : u32 { const DISABLE_TEMPORAL_HINTS_ARM =
-        DataGraphOpticalFlowExecuteFlagBitsARM::DISABLE_TEMPORAL_HINTS_ARM.0; const
-        INPUT_UNCHANGED_ARM = DataGraphOpticalFlowExecuteFlagBitsARM::INPUT_UNCHANGED_ARM
-        .0; const REFERENCE_UNCHANGED_ARM =
-        DataGraphOpticalFlowExecuteFlagBitsARM::REFERENCE_UNCHANGED_ARM.0; const
-        INPUT_IS_PREVIOUS_REFERENCE_ARM =
-        DataGraphOpticalFlowExecuteFlagBitsARM::INPUT_IS_PREVIOUS_REFERENCE_ARM.0; const
-        REFERENCE_IS_PREVIOUS_INPUT_ARM =
-        DataGraphOpticalFlowExecuteFlagBitsARM::REFERENCE_IS_PREVIOUS_INPUT_ARM.0; }
+    #[repr(transparent)]
+    #[derive(Clone, Copy)]
+    pub struct DataGraphOpticalFlowExecuteFlagsARM(u32);
+    impl DataGraphOpticalFlowExecuteFlagsARM {
+        pub const DISABLE_TEMPORAL_HINTS_ARM: Self = Self(
+            DataGraphOpticalFlowExecuteFlagBitsARM::DISABLE_TEMPORAL_HINTS_ARM.0,
+        );
+        pub const INPUT_UNCHANGED_ARM: Self = Self(
+            DataGraphOpticalFlowExecuteFlagBitsARM::INPUT_UNCHANGED_ARM.0,
+        );
+        pub const REFERENCE_UNCHANGED_ARM: Self = Self(
+            DataGraphOpticalFlowExecuteFlagBitsARM::REFERENCE_UNCHANGED_ARM.0,
+        );
+        pub const INPUT_IS_PREVIOUS_REFERENCE_ARM: Self = Self(
+            DataGraphOpticalFlowExecuteFlagBitsARM::INPUT_IS_PREVIOUS_REFERENCE_ARM.0,
+        );
+        pub const REFERENCE_IS_PREVIOUS_INPUT_ARM: Self = Self(
+            DataGraphOpticalFlowExecuteFlagBitsARM::REFERENCE_IS_PREVIOUS_INPUT_ARM.0,
+        );
     }
     #[repr(transparent)]
     #[derive(Clone, Copy)]

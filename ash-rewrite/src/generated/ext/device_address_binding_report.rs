@@ -48,10 +48,13 @@ impl DeviceAddressBindingTypeEXT {
 impl crate::vk::DebugUtilsMessageTypeFlagBitsEXT {
     pub const DEVICE_ADDRESS_BINDING_EXT: Self = Self(1 << 3);
 }
-bitflags::bitflags! {
-    #[repr(transparent)] #[derive(Clone, Copy)] pub struct DeviceAddressBindingFlagsEXT :
-    u32 { const INTERNAL_OBJECT_EXT =
-    DeviceAddressBindingFlagBitsEXT::INTERNAL_OBJECT_EXT.0; }
+#[repr(transparent)]
+#[derive(Clone, Copy)]
+pub struct DeviceAddressBindingFlagsEXT(u32);
+impl DeviceAddressBindingFlagsEXT {
+    pub const INTERNAL_OBJECT_EXT: Self = Self(
+        DeviceAddressBindingFlagBitsEXT::INTERNAL_OBJECT_EXT.0,
+    );
 }
 #[repr(transparent)]
 #[derive(Clone, Copy)]

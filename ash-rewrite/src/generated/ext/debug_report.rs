@@ -145,13 +145,19 @@ pub(crate) mod reexport {
         pub const SAMPLER_YCBCR_CONVERSION_EXT: Self = Self(1000156000);
         pub const DESCRIPTOR_UPDATE_TEMPLATE_EXT: Self = Self(1000085000);
     }
-    bitflags::bitflags! {
-        #[repr(transparent)] #[derive(Clone, Copy)] pub struct DebugReportFlagsEXT : u32
-        { const INFORMATION_EXT = DebugReportFlagBitsEXT::INFORMATION_EXT.0; const
-        WARNING_EXT = DebugReportFlagBitsEXT::WARNING_EXT.0; const
-        PERFORMANCE_WARNING_EXT = DebugReportFlagBitsEXT::PERFORMANCE_WARNING_EXT.0;
-        const ERROR_EXT = DebugReportFlagBitsEXT::ERROR_EXT.0; const DEBUG_EXT =
-        DebugReportFlagBitsEXT::DEBUG_EXT.0; }
+    #[repr(transparent)]
+    #[derive(Clone, Copy)]
+    pub struct DebugReportFlagsEXT(u32);
+    impl DebugReportFlagsEXT {
+        pub const INFORMATION_EXT: Self = Self(
+            DebugReportFlagBitsEXT::INFORMATION_EXT.0,
+        );
+        pub const WARNING_EXT: Self = Self(DebugReportFlagBitsEXT::WARNING_EXT.0);
+        pub const PERFORMANCE_WARNING_EXT: Self = Self(
+            DebugReportFlagBitsEXT::PERFORMANCE_WARNING_EXT.0,
+        );
+        pub const ERROR_EXT: Self = Self(DebugReportFlagBitsEXT::ERROR_EXT.0);
+        pub const DEBUG_EXT: Self = Self(DebugReportFlagBitsEXT::DEBUG_EXT.0);
     }
     #[repr(transparent)]
     #[derive(Clone, Copy)]

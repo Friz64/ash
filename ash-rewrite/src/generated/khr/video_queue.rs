@@ -471,17 +471,32 @@ pub(crate) mod reexport {
     impl crate::vk::QueryResultFlagBits {
         pub const WITH_STATUS_KHR: Self = Self(1 << 4);
     }
-    bitflags::bitflags! {
-        #[repr(transparent)] #[derive(Clone, Copy)] pub struct
-        VideoCodecOperationFlagsKHR : u32 { const NONE_KHR =
-        VideoCodecOperationFlagBitsKHR::NONE_KHR.0; const ENCODE_H264_KHR =
-        VideoCodecOperationFlagBitsKHR::ENCODE_H264_KHR.0; const ENCODE_H265_KHR =
-        VideoCodecOperationFlagBitsKHR::ENCODE_H265_KHR.0; const DECODE_H264_KHR =
-        VideoCodecOperationFlagBitsKHR::DECODE_H264_KHR.0; const DECODE_H265_KHR =
-        VideoCodecOperationFlagBitsKHR::DECODE_H265_KHR.0; const DECODE_AV1_KHR =
-        VideoCodecOperationFlagBitsKHR::DECODE_AV1_KHR.0; const ENCODE_AV1_KHR =
-        VideoCodecOperationFlagBitsKHR::ENCODE_AV1_KHR.0; const DECODE_VP9_KHR =
-        VideoCodecOperationFlagBitsKHR::DECODE_VP9_KHR.0; }
+    #[repr(transparent)]
+    #[derive(Clone, Copy)]
+    pub struct VideoCodecOperationFlagsKHR(u32);
+    impl VideoCodecOperationFlagsKHR {
+        pub const NONE_KHR: Self = Self(VideoCodecOperationFlagBitsKHR::NONE_KHR.0);
+        pub const ENCODE_H264_KHR: Self = Self(
+            VideoCodecOperationFlagBitsKHR::ENCODE_H264_KHR.0,
+        );
+        pub const ENCODE_H265_KHR: Self = Self(
+            VideoCodecOperationFlagBitsKHR::ENCODE_H265_KHR.0,
+        );
+        pub const DECODE_H264_KHR: Self = Self(
+            VideoCodecOperationFlagBitsKHR::DECODE_H264_KHR.0,
+        );
+        pub const DECODE_H265_KHR: Self = Self(
+            VideoCodecOperationFlagBitsKHR::DECODE_H265_KHR.0,
+        );
+        pub const DECODE_AV1_KHR: Self = Self(
+            VideoCodecOperationFlagBitsKHR::DECODE_AV1_KHR.0,
+        );
+        pub const ENCODE_AV1_KHR: Self = Self(
+            VideoCodecOperationFlagBitsKHR::ENCODE_AV1_KHR.0,
+        );
+        pub const DECODE_VP9_KHR: Self = Self(
+            VideoCodecOperationFlagBitsKHR::DECODE_VP9_KHR.0,
+        );
     }
     #[repr(transparent)]
     #[derive(Clone, Copy)]
@@ -490,12 +505,16 @@ pub(crate) mod reexport {
     impl VideoCodecOperationFlagBitsKHR {
         pub const NONE_KHR: Self = Self(0);
     }
-    bitflags::bitflags! {
-        #[repr(transparent)] #[derive(Clone, Copy)] pub struct VideoCapabilityFlagsKHR :
-        u32 { const PROTECTED_CONTENT_KHR =
-        VideoCapabilityFlagBitsKHR::PROTECTED_CONTENT_KHR.0; const
-        SEPARATE_REFERENCE_IMAGES_KHR =
-        VideoCapabilityFlagBitsKHR::SEPARATE_REFERENCE_IMAGES_KHR.0; }
+    #[repr(transparent)]
+    #[derive(Clone, Copy)]
+    pub struct VideoCapabilityFlagsKHR(u32);
+    impl VideoCapabilityFlagsKHR {
+        pub const PROTECTED_CONTENT_KHR: Self = Self(
+            VideoCapabilityFlagBitsKHR::PROTECTED_CONTENT_KHR.0,
+        );
+        pub const SEPARATE_REFERENCE_IMAGES_KHR: Self = Self(
+            VideoCapabilityFlagBitsKHR::SEPARATE_REFERENCE_IMAGES_KHR.0,
+        );
     }
     #[repr(transparent)]
     #[derive(Clone, Copy)]
@@ -505,19 +524,28 @@ pub(crate) mod reexport {
         pub const PROTECTED_CONTENT_KHR: Self = Self(1 << 0);
         pub const SEPARATE_REFERENCE_IMAGES_KHR: Self = Self(1 << 1);
     }
-    bitflags::bitflags! {
-        #[repr(transparent)] #[derive(Clone, Copy)] pub struct VideoSessionCreateFlagsKHR
-        : u32 { const PROTECTED_CONTENT_KHR =
-        VideoSessionCreateFlagBitsKHR::PROTECTED_CONTENT_KHR.0; const
-        ALLOW_ENCODE_PARAMETER_OPTIMIZATIONS_KHR =
-        VideoSessionCreateFlagBitsKHR::ALLOW_ENCODE_PARAMETER_OPTIMIZATIONS_KHR.0; const
-        INLINE_QUERIES_KHR = VideoSessionCreateFlagBitsKHR::INLINE_QUERIES_KHR.0; const
-        ALLOW_ENCODE_QUANTIZATION_DELTA_MAP_KHR =
-        VideoSessionCreateFlagBitsKHR::ALLOW_ENCODE_QUANTIZATION_DELTA_MAP_KHR.0; const
-        ALLOW_ENCODE_EMPHASIS_MAP_KHR =
-        VideoSessionCreateFlagBitsKHR::ALLOW_ENCODE_EMPHASIS_MAP_KHR.0; const
-        INLINE_SESSION_PARAMETERS_KHR =
-        VideoSessionCreateFlagBitsKHR::INLINE_SESSION_PARAMETERS_KHR.0; }
+    #[repr(transparent)]
+    #[derive(Clone, Copy)]
+    pub struct VideoSessionCreateFlagsKHR(u32);
+    impl VideoSessionCreateFlagsKHR {
+        pub const PROTECTED_CONTENT_KHR: Self = Self(
+            VideoSessionCreateFlagBitsKHR::PROTECTED_CONTENT_KHR.0,
+        );
+        pub const ALLOW_ENCODE_PARAMETER_OPTIMIZATIONS_KHR: Self = Self(
+            VideoSessionCreateFlagBitsKHR::ALLOW_ENCODE_PARAMETER_OPTIMIZATIONS_KHR.0,
+        );
+        pub const INLINE_QUERIES_KHR: Self = Self(
+            VideoSessionCreateFlagBitsKHR::INLINE_QUERIES_KHR.0,
+        );
+        pub const ALLOW_ENCODE_QUANTIZATION_DELTA_MAP_KHR: Self = Self(
+            VideoSessionCreateFlagBitsKHR::ALLOW_ENCODE_QUANTIZATION_DELTA_MAP_KHR.0,
+        );
+        pub const ALLOW_ENCODE_EMPHASIS_MAP_KHR: Self = Self(
+            VideoSessionCreateFlagBitsKHR::ALLOW_ENCODE_EMPHASIS_MAP_KHR.0,
+        );
+        pub const INLINE_SESSION_PARAMETERS_KHR: Self = Self(
+            VideoSessionCreateFlagBitsKHR::INLINE_SESSION_PARAMETERS_KHR.0,
+        );
     }
     #[repr(transparent)]
     #[derive(Clone, Copy)]
@@ -526,29 +554,36 @@ pub(crate) mod reexport {
     impl VideoSessionCreateFlagBitsKHR {
         pub const PROTECTED_CONTENT_KHR: Self = Self(1 << 0);
     }
-    bitflags::bitflags! {
-        #[repr(transparent)] #[derive(Clone, Copy)] pub struct
-        VideoSessionParametersCreateFlagsKHR : u32 { const
-        QUANTIZATION_MAP_COMPATIBLE_KHR =
-        VideoSessionParametersCreateFlagBitsKHR::QUANTIZATION_MAP_COMPATIBLE_KHR.0; }
+    #[repr(transparent)]
+    #[derive(Clone, Copy)]
+    pub struct VideoSessionParametersCreateFlagsKHR(u32);
+    impl VideoSessionParametersCreateFlagsKHR {
+        pub const QUANTIZATION_MAP_COMPATIBLE_KHR: Self = Self(
+            VideoSessionParametersCreateFlagBitsKHR::QUANTIZATION_MAP_COMPATIBLE_KHR.0,
+        );
     }
     #[repr(transparent)]
     #[derive(Clone, Copy)]
     pub struct VideoSessionParametersCreateFlagBitsKHR(pub(crate) u32);
-    bitflags::bitflags! {
-        #[repr(transparent)] #[derive(Clone, Copy)] pub struct VideoBeginCodingFlagsKHR :
-        u32 {}
-    }
-    bitflags::bitflags! {
-        #[repr(transparent)] #[derive(Clone, Copy)] pub struct VideoEndCodingFlagsKHR :
-        u32 {}
-    }
-    bitflags::bitflags! {
-        #[repr(transparent)] #[derive(Clone, Copy)] pub struct VideoCodingControlFlagsKHR
-        : u32 { const RESET_KHR = VideoCodingControlFlagBitsKHR::RESET_KHR.0; const
-        ENCODE_RATE_CONTROL_KHR = VideoCodingControlFlagBitsKHR::ENCODE_RATE_CONTROL_KHR
-        .0; const ENCODE_QUALITY_LEVEL_KHR =
-        VideoCodingControlFlagBitsKHR::ENCODE_QUALITY_LEVEL_KHR.0; }
+    #[repr(transparent)]
+    #[derive(Clone, Copy)]
+    pub struct VideoBeginCodingFlagsKHR(u32);
+    impl VideoBeginCodingFlagsKHR {}
+    #[repr(transparent)]
+    #[derive(Clone, Copy)]
+    pub struct VideoEndCodingFlagsKHR(u32);
+    impl VideoEndCodingFlagsKHR {}
+    #[repr(transparent)]
+    #[derive(Clone, Copy)]
+    pub struct VideoCodingControlFlagsKHR(u32);
+    impl VideoCodingControlFlagsKHR {
+        pub const RESET_KHR: Self = Self(VideoCodingControlFlagBitsKHR::RESET_KHR.0);
+        pub const ENCODE_RATE_CONTROL_KHR: Self = Self(
+            VideoCodingControlFlagBitsKHR::ENCODE_RATE_CONTROL_KHR.0,
+        );
+        pub const ENCODE_QUALITY_LEVEL_KHR: Self = Self(
+            VideoCodingControlFlagBitsKHR::ENCODE_QUALITY_LEVEL_KHR.0,
+        );
     }
     #[repr(transparent)]
     #[derive(Clone, Copy)]
@@ -557,14 +592,19 @@ pub(crate) mod reexport {
     impl VideoCodingControlFlagBitsKHR {
         pub const RESET_KHR: Self = Self(1 << 0);
     }
-    bitflags::bitflags! {
-        #[repr(transparent)] #[derive(Clone, Copy)] pub struct
-        VideoChromaSubsamplingFlagsKHR : u32 { const INVALID_KHR =
-        VideoChromaSubsamplingFlagBitsKHR::INVALID_KHR.0; const MONOCHROME_KHR =
-        VideoChromaSubsamplingFlagBitsKHR::MONOCHROME_KHR.0; const _420_KHR =
-        VideoChromaSubsamplingFlagBitsKHR::_420_KHR.0; const _422_KHR =
-        VideoChromaSubsamplingFlagBitsKHR::_422_KHR.0; const _444_KHR =
-        VideoChromaSubsamplingFlagBitsKHR::_444_KHR.0; }
+    #[repr(transparent)]
+    #[derive(Clone, Copy)]
+    pub struct VideoChromaSubsamplingFlagsKHR(u32);
+    impl VideoChromaSubsamplingFlagsKHR {
+        pub const INVALID_KHR: Self = Self(
+            VideoChromaSubsamplingFlagBitsKHR::INVALID_KHR.0,
+        );
+        pub const MONOCHROME_KHR: Self = Self(
+            VideoChromaSubsamplingFlagBitsKHR::MONOCHROME_KHR.0,
+        );
+        pub const _420_KHR: Self = Self(VideoChromaSubsamplingFlagBitsKHR::_420_KHR.0);
+        pub const _422_KHR: Self = Self(VideoChromaSubsamplingFlagBitsKHR::_422_KHR.0);
+        pub const _444_KHR: Self = Self(VideoChromaSubsamplingFlagBitsKHR::_444_KHR.0);
     }
     #[repr(transparent)]
     #[derive(Clone, Copy)]
@@ -577,13 +617,16 @@ pub(crate) mod reexport {
         pub const _422_KHR: Self = Self(1 << 2);
         pub const _444_KHR: Self = Self(1 << 3);
     }
-    bitflags::bitflags! {
-        #[repr(transparent)] #[derive(Clone, Copy)] pub struct
-        VideoComponentBitDepthFlagsKHR : u32 { const INVALID_KHR =
-        VideoComponentBitDepthFlagBitsKHR::INVALID_KHR.0; const _8_KHR =
-        VideoComponentBitDepthFlagBitsKHR::_8_KHR.0; const _10_KHR =
-        VideoComponentBitDepthFlagBitsKHR::_10_KHR.0; const _12_KHR =
-        VideoComponentBitDepthFlagBitsKHR::_12_KHR.0; }
+    #[repr(transparent)]
+    #[derive(Clone, Copy)]
+    pub struct VideoComponentBitDepthFlagsKHR(u32);
+    impl VideoComponentBitDepthFlagsKHR {
+        pub const INVALID_KHR: Self = Self(
+            VideoComponentBitDepthFlagBitsKHR::INVALID_KHR.0,
+        );
+        pub const _8_KHR: Self = Self(VideoComponentBitDepthFlagBitsKHR::_8_KHR.0);
+        pub const _10_KHR: Self = Self(VideoComponentBitDepthFlagBitsKHR::_10_KHR.0);
+        pub const _12_KHR: Self = Self(VideoComponentBitDepthFlagBitsKHR::_12_KHR.0);
     }
     #[repr(transparent)]
     #[derive(Clone, Copy)]

@@ -459,12 +459,16 @@ pub(crate) mod reexport {
     impl crate::vk::PipelineStageFlagBits {
         pub const COMMAND_PREPROCESS_EXT: Self = Self(1 << 17);
     }
-    bitflags::bitflags! {
-        #[repr(transparent)] #[derive(Clone, Copy)] pub struct
-        IndirectCommandsLayoutUsageFlagsEXT : u32 { const EXPLICIT_PREPROCESS_EXT =
-        IndirectCommandsLayoutUsageFlagBitsEXT::EXPLICIT_PREPROCESS_EXT.0; const
-        UNORDERED_SEQUENCES_EXT =
-        IndirectCommandsLayoutUsageFlagBitsEXT::UNORDERED_SEQUENCES_EXT.0; }
+    #[repr(transparent)]
+    #[derive(Clone, Copy)]
+    pub struct IndirectCommandsLayoutUsageFlagsEXT(u32);
+    impl IndirectCommandsLayoutUsageFlagsEXT {
+        pub const EXPLICIT_PREPROCESS_EXT: Self = Self(
+            IndirectCommandsLayoutUsageFlagBitsEXT::EXPLICIT_PREPROCESS_EXT.0,
+        );
+        pub const UNORDERED_SEQUENCES_EXT: Self = Self(
+            IndirectCommandsLayoutUsageFlagBitsEXT::UNORDERED_SEQUENCES_EXT.0,
+        );
     }
     #[repr(transparent)]
     #[derive(Clone, Copy)]
@@ -474,12 +478,16 @@ pub(crate) mod reexport {
         pub const EXPLICIT_PREPROCESS_EXT: Self = Self(1 << 0);
         pub const UNORDERED_SEQUENCES_EXT: Self = Self(1 << 1);
     }
-    bitflags::bitflags! {
-        #[repr(transparent)] #[derive(Clone, Copy)] pub struct
-        IndirectCommandsInputModeFlagsEXT : u32 { const VULKAN_INDEX_BUFFER_EXT =
-        IndirectCommandsInputModeFlagBitsEXT::VULKAN_INDEX_BUFFER_EXT.0; const
-        DXGI_INDEX_BUFFER_EXT =
-        IndirectCommandsInputModeFlagBitsEXT::DXGI_INDEX_BUFFER_EXT.0; }
+    #[repr(transparent)]
+    #[derive(Clone, Copy)]
+    pub struct IndirectCommandsInputModeFlagsEXT(u32);
+    impl IndirectCommandsInputModeFlagsEXT {
+        pub const VULKAN_INDEX_BUFFER_EXT: Self = Self(
+            IndirectCommandsInputModeFlagBitsEXT::VULKAN_INDEX_BUFFER_EXT.0,
+        );
+        pub const DXGI_INDEX_BUFFER_EXT: Self = Self(
+            IndirectCommandsInputModeFlagBitsEXT::DXGI_INDEX_BUFFER_EXT.0,
+        );
     }
     #[repr(transparent)]
     #[derive(Clone, Copy)]

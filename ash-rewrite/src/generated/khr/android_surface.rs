@@ -50,10 +50,10 @@ pub(crate) mod reexport {
     impl crate::vk::StructureType {
         pub const ANDROID_SURFACE_CREATE_INFO_KHR: Self = Self(1000008000);
     }
-    bitflags::bitflags! {
-        #[repr(transparent)] #[derive(Clone, Copy)] pub struct
-        AndroidSurfaceCreateFlagsKHR : u32 {}
-    }
+    #[repr(transparent)]
+    #[derive(Clone, Copy)]
+    pub struct AndroidSurfaceCreateFlagsKHR(u32);
+    impl AndroidSurfaceCreateFlagsKHR {}
     pub type PFN_vkCreateAndroidSurfaceKHR = unsafe extern "system" fn(
         instance: crate::vk::Instance,
         p_create_info: *const crate::vk::AndroidSurfaceCreateInfoKHR<'_>,

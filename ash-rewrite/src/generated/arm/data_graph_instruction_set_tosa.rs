@@ -80,13 +80,22 @@ pub(crate) mod reexport {
         pub const NONE_ARM: Self = Self(0);
         pub const _8K_ARM: Self = Self(1);
     }
-    bitflags::bitflags! {
-        #[repr(transparent)] #[derive(Clone, Copy)] pub struct
-        DataGraphTOSAQualityFlagsARM : u32 { const ACCELERATED_ARM =
-        DataGraphTOSAQualityFlagBitsARM::ACCELERATED_ARM.0; const CONFORMANT_ARM =
-        DataGraphTOSAQualityFlagBitsARM::CONFORMANT_ARM.0; const EXPERIMENTAL_ARM =
-        DataGraphTOSAQualityFlagBitsARM::EXPERIMENTAL_ARM.0; const DEPRECATED_ARM =
-        DataGraphTOSAQualityFlagBitsARM::DEPRECATED_ARM.0; }
+    #[repr(transparent)]
+    #[derive(Clone, Copy)]
+    pub struct DataGraphTOSAQualityFlagsARM(u32);
+    impl DataGraphTOSAQualityFlagsARM {
+        pub const ACCELERATED_ARM: Self = Self(
+            DataGraphTOSAQualityFlagBitsARM::ACCELERATED_ARM.0,
+        );
+        pub const CONFORMANT_ARM: Self = Self(
+            DataGraphTOSAQualityFlagBitsARM::CONFORMANT_ARM.0,
+        );
+        pub const EXPERIMENTAL_ARM: Self = Self(
+            DataGraphTOSAQualityFlagBitsARM::EXPERIMENTAL_ARM.0,
+        );
+        pub const DEPRECATED_ARM: Self = Self(
+            DataGraphTOSAQualityFlagBitsARM::DEPRECATED_ARM.0,
+        );
     }
     #[repr(transparent)]
     #[derive(Clone, Copy)]

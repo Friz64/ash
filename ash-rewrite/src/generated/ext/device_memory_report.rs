@@ -59,10 +59,10 @@ impl DeviceMemoryReportEventTypeEXT {
     pub const UNIMPORT_EXT: Self = Self(3);
     pub const ALLOCATION_FAILED_EXT: Self = Self(4);
 }
-bitflags::bitflags! {
-    #[repr(transparent)] #[derive(Clone, Copy)] pub struct DeviceMemoryReportFlagsEXT :
-    u32 {}
-}
+#[repr(transparent)]
+#[derive(Clone, Copy)]
+pub struct DeviceMemoryReportFlagsEXT(u32);
+impl DeviceMemoryReportFlagsEXT {}
 pub type PFN_vkDeviceMemoryReportCallbackEXT = Option<
     unsafe extern "system" fn(
         p_callback_data: *const crate::vk::DeviceMemoryReportCallbackDataEXT<'_>,

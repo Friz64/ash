@@ -209,10 +209,10 @@ pub(crate) mod reexport {
     impl crate::vk::ObjectType {
         pub const SHADER_INSTRUMENTATION_ARM: Self = Self(1000607000);
     }
-    bitflags::bitflags! {
-        #[repr(transparent)] #[derive(Clone, Copy)] pub struct
-        ShaderInstrumentationValuesFlagsARM : u32 {}
-    }
+    #[repr(transparent)]
+    #[derive(Clone, Copy)]
+    pub struct ShaderInstrumentationValuesFlagsARM(u32);
+    impl ShaderInstrumentationValuesFlagsARM {}
     #[repr(transparent)]
     #[derive(Eq, PartialEq, Ord, PartialOrd, Clone, Copy, Hash, Default)]
     pub struct ShaderInstrumentationARM(u64);

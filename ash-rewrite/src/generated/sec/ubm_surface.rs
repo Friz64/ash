@@ -67,10 +67,10 @@ pub(crate) mod reexport {
     impl crate::vk::StructureType {
         pub const UBM_SURFACE_CREATE_INFO_SEC: Self = Self(1000664000);
     }
-    bitflags::bitflags! {
-        #[repr(transparent)] #[derive(Clone, Copy)] pub struct UbmSurfaceCreateFlagsSEC :
-        u32 {}
-    }
+    #[repr(transparent)]
+    #[derive(Clone, Copy)]
+    pub struct UbmSurfaceCreateFlagsSEC(u32);
+    impl UbmSurfaceCreateFlagsSEC {}
     pub type PFN_vkCreateUbmSurfaceSEC = unsafe extern "system" fn(
         instance: crate::vk::Instance,
         p_create_info: *const crate::vk::UbmSurfaceCreateInfoSEC<'_>,

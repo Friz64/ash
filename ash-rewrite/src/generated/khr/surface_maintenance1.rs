@@ -36,14 +36,20 @@ impl crate::vk::StructureType {
     pub const SURFACE_PRESENT_SCALING_CAPABILITIES_KHR: Self = Self(1000274001);
     pub const SURFACE_PRESENT_MODE_COMPATIBILITY_KHR: Self = Self(1000274002);
 }
-bitflags::bitflags! {
-    #[repr(transparent)] #[derive(Clone, Copy)] pub struct PresentScalingFlagsKHR : u32 {
-    const ONE_TO_ONE_KHR = PresentScalingFlagBitsKHR::ONE_TO_ONE_KHR.0; const
-    ONE_TO_ONE_EXT = PresentScalingFlagBitsKHR::ONE_TO_ONE_EXT.0; const
-    ASPECT_RATIO_STRETCH_KHR = PresentScalingFlagBitsKHR::ASPECT_RATIO_STRETCH_KHR.0;
-    const ASPECT_RATIO_STRETCH_EXT = PresentScalingFlagBitsKHR::ASPECT_RATIO_STRETCH_EXT
-    .0; const STRETCH_KHR = PresentScalingFlagBitsKHR::STRETCH_KHR.0; const STRETCH_EXT =
-    PresentScalingFlagBitsKHR::STRETCH_EXT.0; }
+#[repr(transparent)]
+#[derive(Clone, Copy)]
+pub struct PresentScalingFlagsKHR(u32);
+impl PresentScalingFlagsKHR {
+    pub const ONE_TO_ONE_KHR: Self = Self(PresentScalingFlagBitsKHR::ONE_TO_ONE_KHR.0);
+    pub const ONE_TO_ONE_EXT: Self = Self(PresentScalingFlagBitsKHR::ONE_TO_ONE_EXT.0);
+    pub const ASPECT_RATIO_STRETCH_KHR: Self = Self(
+        PresentScalingFlagBitsKHR::ASPECT_RATIO_STRETCH_KHR.0,
+    );
+    pub const ASPECT_RATIO_STRETCH_EXT: Self = Self(
+        PresentScalingFlagBitsKHR::ASPECT_RATIO_STRETCH_EXT.0,
+    );
+    pub const STRETCH_KHR: Self = Self(PresentScalingFlagBitsKHR::STRETCH_KHR.0);
+    pub const STRETCH_EXT: Self = Self(PresentScalingFlagBitsKHR::STRETCH_EXT.0);
 }
 #[repr(transparent)]
 #[derive(Clone, Copy)]
@@ -57,14 +63,16 @@ impl PresentScalingFlagBitsKHR {
     pub const STRETCH_KHR: Self = Self(1 << 2);
     pub const STRETCH_EXT: Self = Self::STRETCH_KHR;
 }
-bitflags::bitflags! {
-    #[repr(transparent)] #[derive(Clone, Copy)] pub struct PresentGravityFlagsKHR : u32 {
-    const MIN_KHR = PresentGravityFlagBitsKHR::MIN_KHR.0; const MIN_EXT =
-    PresentGravityFlagBitsKHR::MIN_EXT.0; const MAX_KHR =
-    PresentGravityFlagBitsKHR::MAX_KHR.0; const MAX_EXT =
-    PresentGravityFlagBitsKHR::MAX_EXT.0; const CENTERED_KHR =
-    PresentGravityFlagBitsKHR::CENTERED_KHR.0; const CENTERED_EXT =
-    PresentGravityFlagBitsKHR::CENTERED_EXT.0; }
+#[repr(transparent)]
+#[derive(Clone, Copy)]
+pub struct PresentGravityFlagsKHR(u32);
+impl PresentGravityFlagsKHR {
+    pub const MIN_KHR: Self = Self(PresentGravityFlagBitsKHR::MIN_KHR.0);
+    pub const MIN_EXT: Self = Self(PresentGravityFlagBitsKHR::MIN_EXT.0);
+    pub const MAX_KHR: Self = Self(PresentGravityFlagBitsKHR::MAX_KHR.0);
+    pub const MAX_EXT: Self = Self(PresentGravityFlagBitsKHR::MAX_EXT.0);
+    pub const CENTERED_KHR: Self = Self(PresentGravityFlagBitsKHR::CENTERED_KHR.0);
+    pub const CENTERED_EXT: Self = Self(PresentGravityFlagBitsKHR::CENTERED_EXT.0);
 }
 #[repr(transparent)]
 #[derive(Clone, Copy)]

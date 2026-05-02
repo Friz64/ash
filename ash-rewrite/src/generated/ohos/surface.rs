@@ -50,10 +50,10 @@ pub(crate) mod reexport {
     impl crate::vk::StructureType {
         pub const SURFACE_CREATE_INFO_OHOS: Self = Self(1000685000);
     }
-    bitflags::bitflags! {
-        #[repr(transparent)] #[derive(Clone, Copy)] pub struct SurfaceCreateFlagsOHOS :
-        u32 {}
-    }
+    #[repr(transparent)]
+    #[derive(Clone, Copy)]
+    pub struct SurfaceCreateFlagsOHOS(u32);
+    impl SurfaceCreateFlagsOHOS {}
     pub type PFN_vkCreateSurfaceOHOS = unsafe extern "system" fn(
         instance: crate::vk::Instance,
         p_create_info: *const crate::vk::SurfaceCreateInfoOHOS<'_>,

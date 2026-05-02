@@ -127,11 +127,15 @@ pub(crate) mod reexport {
     impl crate::vk::FormatFeatureFlagBits2 {
         pub const COPY_IMAGE_INDIRECT_DST_KHR: Self = Self(1 << 59);
     }
-    bitflags::bitflags! {
-        #[repr(transparent)] #[derive(Clone, Copy)] pub struct AddressCopyFlagsKHR : u32
-        { const DEVICE_LOCAL_KHR = AddressCopyFlagBitsKHR::DEVICE_LOCAL_KHR.0; const
-        SPARSE_KHR = AddressCopyFlagBitsKHR::SPARSE_KHR.0; const PROTECTED_KHR =
-        AddressCopyFlagBitsKHR::PROTECTED_KHR.0; }
+    #[repr(transparent)]
+    #[derive(Clone, Copy)]
+    pub struct AddressCopyFlagsKHR(u32);
+    impl AddressCopyFlagsKHR {
+        pub const DEVICE_LOCAL_KHR: Self = Self(
+            AddressCopyFlagBitsKHR::DEVICE_LOCAL_KHR.0,
+        );
+        pub const SPARSE_KHR: Self = Self(AddressCopyFlagBitsKHR::SPARSE_KHR.0);
+        pub const PROTECTED_KHR: Self = Self(AddressCopyFlagBitsKHR::PROTECTED_KHR.0);
     }
     #[repr(transparent)]
     #[derive(Clone, Copy)]

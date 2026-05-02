@@ -42,12 +42,18 @@ impl crate::vk::StructureType {
 impl crate::vk::Result {
     pub const ERROR_COMPRESSION_EXHAUSTED_EXT: Self = Self(-1000338000);
 }
-bitflags::bitflags! {
-    #[repr(transparent)] #[derive(Clone, Copy)] pub struct ImageCompressionFlagsEXT : u32
-    { const DEFAULT_EXT = ImageCompressionFlagBitsEXT::DEFAULT_EXT.0; const
-    FIXED_RATE_DEFAULT_EXT = ImageCompressionFlagBitsEXT::FIXED_RATE_DEFAULT_EXT.0; const
-    FIXED_RATE_EXPLICIT_EXT = ImageCompressionFlagBitsEXT::FIXED_RATE_EXPLICIT_EXT.0;
-    const DISABLED_EXT = ImageCompressionFlagBitsEXT::DISABLED_EXT.0; }
+#[repr(transparent)]
+#[derive(Clone, Copy)]
+pub struct ImageCompressionFlagsEXT(u32);
+impl ImageCompressionFlagsEXT {
+    pub const DEFAULT_EXT: Self = Self(ImageCompressionFlagBitsEXT::DEFAULT_EXT.0);
+    pub const FIXED_RATE_DEFAULT_EXT: Self = Self(
+        ImageCompressionFlagBitsEXT::FIXED_RATE_DEFAULT_EXT.0,
+    );
+    pub const FIXED_RATE_EXPLICIT_EXT: Self = Self(
+        ImageCompressionFlagBitsEXT::FIXED_RATE_EXPLICIT_EXT.0,
+    );
+    pub const DISABLED_EXT: Self = Self(ImageCompressionFlagBitsEXT::DISABLED_EXT.0);
 }
 #[repr(transparent)]
 #[derive(Clone, Copy)]
@@ -59,34 +65,65 @@ impl ImageCompressionFlagBitsEXT {
     pub const FIXED_RATE_EXPLICIT_EXT: Self = Self(1 << 1);
     pub const DISABLED_EXT: Self = Self(1 << 2);
 }
-bitflags::bitflags! {
-    #[repr(transparent)] #[derive(Clone, Copy)] pub struct
-    ImageCompressionFixedRateFlagsEXT : u32 { const NONE_EXT =
-    ImageCompressionFixedRateFlagBitsEXT::NONE_EXT.0; const _1BPC_EXT =
-    ImageCompressionFixedRateFlagBitsEXT::_1BPC_EXT.0; const _2BPC_EXT =
-    ImageCompressionFixedRateFlagBitsEXT::_2BPC_EXT.0; const _3BPC_EXT =
-    ImageCompressionFixedRateFlagBitsEXT::_3BPC_EXT.0; const _4BPC_EXT =
-    ImageCompressionFixedRateFlagBitsEXT::_4BPC_EXT.0; const _5BPC_EXT =
-    ImageCompressionFixedRateFlagBitsEXT::_5BPC_EXT.0; const _6BPC_EXT =
-    ImageCompressionFixedRateFlagBitsEXT::_6BPC_EXT.0; const _7BPC_EXT =
-    ImageCompressionFixedRateFlagBitsEXT::_7BPC_EXT.0; const _8BPC_EXT =
-    ImageCompressionFixedRateFlagBitsEXT::_8BPC_EXT.0; const _9BPC_EXT =
-    ImageCompressionFixedRateFlagBitsEXT::_9BPC_EXT.0; const _10BPC_EXT =
-    ImageCompressionFixedRateFlagBitsEXT::_10BPC_EXT.0; const _11BPC_EXT =
-    ImageCompressionFixedRateFlagBitsEXT::_11BPC_EXT.0; const _12BPC_EXT =
-    ImageCompressionFixedRateFlagBitsEXT::_12BPC_EXT.0; const _13BPC_EXT =
-    ImageCompressionFixedRateFlagBitsEXT::_13BPC_EXT.0; const _14BPC_EXT =
-    ImageCompressionFixedRateFlagBitsEXT::_14BPC_EXT.0; const _15BPC_EXT =
-    ImageCompressionFixedRateFlagBitsEXT::_15BPC_EXT.0; const _16BPC_EXT =
-    ImageCompressionFixedRateFlagBitsEXT::_16BPC_EXT.0; const _17BPC_EXT =
-    ImageCompressionFixedRateFlagBitsEXT::_17BPC_EXT.0; const _18BPC_EXT =
-    ImageCompressionFixedRateFlagBitsEXT::_18BPC_EXT.0; const _19BPC_EXT =
-    ImageCompressionFixedRateFlagBitsEXT::_19BPC_EXT.0; const _20BPC_EXT =
-    ImageCompressionFixedRateFlagBitsEXT::_20BPC_EXT.0; const _21BPC_EXT =
-    ImageCompressionFixedRateFlagBitsEXT::_21BPC_EXT.0; const _22BPC_EXT =
-    ImageCompressionFixedRateFlagBitsEXT::_22BPC_EXT.0; const _23BPC_EXT =
-    ImageCompressionFixedRateFlagBitsEXT::_23BPC_EXT.0; const _24BPC_EXT =
-    ImageCompressionFixedRateFlagBitsEXT::_24BPC_EXT.0; }
+#[repr(transparent)]
+#[derive(Clone, Copy)]
+pub struct ImageCompressionFixedRateFlagsEXT(u32);
+impl ImageCompressionFixedRateFlagsEXT {
+    pub const NONE_EXT: Self = Self(ImageCompressionFixedRateFlagBitsEXT::NONE_EXT.0);
+    pub const _1BPC_EXT: Self = Self(ImageCompressionFixedRateFlagBitsEXT::_1BPC_EXT.0);
+    pub const _2BPC_EXT: Self = Self(ImageCompressionFixedRateFlagBitsEXT::_2BPC_EXT.0);
+    pub const _3BPC_EXT: Self = Self(ImageCompressionFixedRateFlagBitsEXT::_3BPC_EXT.0);
+    pub const _4BPC_EXT: Self = Self(ImageCompressionFixedRateFlagBitsEXT::_4BPC_EXT.0);
+    pub const _5BPC_EXT: Self = Self(ImageCompressionFixedRateFlagBitsEXT::_5BPC_EXT.0);
+    pub const _6BPC_EXT: Self = Self(ImageCompressionFixedRateFlagBitsEXT::_6BPC_EXT.0);
+    pub const _7BPC_EXT: Self = Self(ImageCompressionFixedRateFlagBitsEXT::_7BPC_EXT.0);
+    pub const _8BPC_EXT: Self = Self(ImageCompressionFixedRateFlagBitsEXT::_8BPC_EXT.0);
+    pub const _9BPC_EXT: Self = Self(ImageCompressionFixedRateFlagBitsEXT::_9BPC_EXT.0);
+    pub const _10BPC_EXT: Self = Self(
+        ImageCompressionFixedRateFlagBitsEXT::_10BPC_EXT.0,
+    );
+    pub const _11BPC_EXT: Self = Self(
+        ImageCompressionFixedRateFlagBitsEXT::_11BPC_EXT.0,
+    );
+    pub const _12BPC_EXT: Self = Self(
+        ImageCompressionFixedRateFlagBitsEXT::_12BPC_EXT.0,
+    );
+    pub const _13BPC_EXT: Self = Self(
+        ImageCompressionFixedRateFlagBitsEXT::_13BPC_EXT.0,
+    );
+    pub const _14BPC_EXT: Self = Self(
+        ImageCompressionFixedRateFlagBitsEXT::_14BPC_EXT.0,
+    );
+    pub const _15BPC_EXT: Self = Self(
+        ImageCompressionFixedRateFlagBitsEXT::_15BPC_EXT.0,
+    );
+    pub const _16BPC_EXT: Self = Self(
+        ImageCompressionFixedRateFlagBitsEXT::_16BPC_EXT.0,
+    );
+    pub const _17BPC_EXT: Self = Self(
+        ImageCompressionFixedRateFlagBitsEXT::_17BPC_EXT.0,
+    );
+    pub const _18BPC_EXT: Self = Self(
+        ImageCompressionFixedRateFlagBitsEXT::_18BPC_EXT.0,
+    );
+    pub const _19BPC_EXT: Self = Self(
+        ImageCompressionFixedRateFlagBitsEXT::_19BPC_EXT.0,
+    );
+    pub const _20BPC_EXT: Self = Self(
+        ImageCompressionFixedRateFlagBitsEXT::_20BPC_EXT.0,
+    );
+    pub const _21BPC_EXT: Self = Self(
+        ImageCompressionFixedRateFlagBitsEXT::_21BPC_EXT.0,
+    );
+    pub const _22BPC_EXT: Self = Self(
+        ImageCompressionFixedRateFlagBitsEXT::_22BPC_EXT.0,
+    );
+    pub const _23BPC_EXT: Self = Self(
+        ImageCompressionFixedRateFlagBitsEXT::_23BPC_EXT.0,
+    );
+    pub const _24BPC_EXT: Self = Self(
+        ImageCompressionFixedRateFlagBitsEXT::_24BPC_EXT.0,
+    );
 }
 #[repr(transparent)]
 #[derive(Clone, Copy)]

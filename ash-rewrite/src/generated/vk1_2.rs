@@ -1102,10 +1102,12 @@ pub(crate) mod reexport {
     impl crate::vk::DescriptorPoolCreateFlagBits {
         pub const UPDATE_AFTER_BIND: Self = Self(1 << 1);
     }
-    bitflags::bitflags! {
-        #[repr(transparent)] #[derive(Clone, Copy)] pub struct SemaphoreWaitFlags : u32 {
-        const ANY = SemaphoreWaitFlagBits::ANY.0; const ANY_KHR =
-        SemaphoreWaitFlagBits::ANY_KHR.0; }
+    #[repr(transparent)]
+    #[derive(Clone, Copy)]
+    pub struct SemaphoreWaitFlags(u32);
+    impl SemaphoreWaitFlags {
+        pub const ANY: Self = Self(SemaphoreWaitFlagBits::ANY.0);
+        pub const ANY_KHR: Self = Self(SemaphoreWaitFlagBits::ANY_KHR.0);
     }
     #[repr(transparent)]
     #[derive(Clone, Copy)]
@@ -1119,19 +1121,34 @@ pub(crate) mod reexport {
         pub const DEVICE_ADDRESS: Self = Self(1 << 1);
         pub const DEVICE_ADDRESS_CAPTURE_REPLAY: Self = Self(1 << 2);
     }
-    bitflags::bitflags! {
-        #[repr(transparent)] #[derive(Clone, Copy)] pub struct DescriptorBindingFlags :
-        u32 { const UPDATE_AFTER_BIND = DescriptorBindingFlagBits::UPDATE_AFTER_BIND.0;
-        const UPDATE_UNUSED_WHILE_PENDING =
-        DescriptorBindingFlagBits::UPDATE_UNUSED_WHILE_PENDING.0; const PARTIALLY_BOUND =
-        DescriptorBindingFlagBits::PARTIALLY_BOUND.0; const VARIABLE_DESCRIPTOR_COUNT =
-        DescriptorBindingFlagBits::VARIABLE_DESCRIPTOR_COUNT.0; const
-        UPDATE_AFTER_BIND_EXT = DescriptorBindingFlagBits::UPDATE_AFTER_BIND_EXT.0; const
-        UPDATE_UNUSED_WHILE_PENDING_EXT =
-        DescriptorBindingFlagBits::UPDATE_UNUSED_WHILE_PENDING_EXT.0; const
-        PARTIALLY_BOUND_EXT = DescriptorBindingFlagBits::PARTIALLY_BOUND_EXT.0; const
-        VARIABLE_DESCRIPTOR_COUNT_EXT =
-        DescriptorBindingFlagBits::VARIABLE_DESCRIPTOR_COUNT_EXT.0; }
+    #[repr(transparent)]
+    #[derive(Clone, Copy)]
+    pub struct DescriptorBindingFlags(u32);
+    impl DescriptorBindingFlags {
+        pub const UPDATE_AFTER_BIND: Self = Self(
+            DescriptorBindingFlagBits::UPDATE_AFTER_BIND.0,
+        );
+        pub const UPDATE_UNUSED_WHILE_PENDING: Self = Self(
+            DescriptorBindingFlagBits::UPDATE_UNUSED_WHILE_PENDING.0,
+        );
+        pub const PARTIALLY_BOUND: Self = Self(
+            DescriptorBindingFlagBits::PARTIALLY_BOUND.0,
+        );
+        pub const VARIABLE_DESCRIPTOR_COUNT: Self = Self(
+            DescriptorBindingFlagBits::VARIABLE_DESCRIPTOR_COUNT.0,
+        );
+        pub const UPDATE_AFTER_BIND_EXT: Self = Self(
+            DescriptorBindingFlagBits::UPDATE_AFTER_BIND_EXT.0,
+        );
+        pub const UPDATE_UNUSED_WHILE_PENDING_EXT: Self = Self(
+            DescriptorBindingFlagBits::UPDATE_UNUSED_WHILE_PENDING_EXT.0,
+        );
+        pub const PARTIALLY_BOUND_EXT: Self = Self(
+            DescriptorBindingFlagBits::PARTIALLY_BOUND_EXT.0,
+        );
+        pub const VARIABLE_DESCRIPTOR_COUNT_EXT: Self = Self(
+            DescriptorBindingFlagBits::VARIABLE_DESCRIPTOR_COUNT_EXT.0,
+        );
     }
     #[repr(transparent)]
     #[derive(Clone, Copy)]
@@ -1143,18 +1160,24 @@ pub(crate) mod reexport {
         pub const PARTIALLY_BOUND: Self = Self(1 << 2);
         pub const VARIABLE_DESCRIPTOR_COUNT: Self = Self(1 << 3);
     }
-    bitflags::bitflags! {
-        #[repr(transparent)] #[derive(Clone, Copy)] pub struct ResolveModeFlags : u32 {
-        const NONE = ResolveModeFlagBits::NONE.0; const SAMPLE_ZERO =
-        ResolveModeFlagBits::SAMPLE_ZERO.0; const AVERAGE = ResolveModeFlagBits::AVERAGE
-        .0; const MIN = ResolveModeFlagBits::MIN.0; const MAX = ResolveModeFlagBits::MAX
-        .0; const NONE_KHR = ResolveModeFlagBits::NONE_KHR.0; const SAMPLE_ZERO_KHR =
-        ResolveModeFlagBits::SAMPLE_ZERO_KHR.0; const AVERAGE_KHR =
-        ResolveModeFlagBits::AVERAGE_KHR.0; const MIN_KHR = ResolveModeFlagBits::MIN_KHR
-        .0; const MAX_KHR = ResolveModeFlagBits::MAX_KHR.0; const
-        EXTERNAL_FORMAT_DOWNSAMPLE_ANDROID =
-        ResolveModeFlagBits::EXTERNAL_FORMAT_DOWNSAMPLE_ANDROID.0; const CUSTOM_EXT =
-        ResolveModeFlagBits::CUSTOM_EXT.0; }
+    #[repr(transparent)]
+    #[derive(Clone, Copy)]
+    pub struct ResolveModeFlags(u32);
+    impl ResolveModeFlags {
+        pub const NONE: Self = Self(ResolveModeFlagBits::NONE.0);
+        pub const SAMPLE_ZERO: Self = Self(ResolveModeFlagBits::SAMPLE_ZERO.0);
+        pub const AVERAGE: Self = Self(ResolveModeFlagBits::AVERAGE.0);
+        pub const MIN: Self = Self(ResolveModeFlagBits::MIN.0);
+        pub const MAX: Self = Self(ResolveModeFlagBits::MAX.0);
+        pub const NONE_KHR: Self = Self(ResolveModeFlagBits::NONE_KHR.0);
+        pub const SAMPLE_ZERO_KHR: Self = Self(ResolveModeFlagBits::SAMPLE_ZERO_KHR.0);
+        pub const AVERAGE_KHR: Self = Self(ResolveModeFlagBits::AVERAGE_KHR.0);
+        pub const MIN_KHR: Self = Self(ResolveModeFlagBits::MIN_KHR.0);
+        pub const MAX_KHR: Self = Self(ResolveModeFlagBits::MAX_KHR.0);
+        pub const EXTERNAL_FORMAT_DOWNSAMPLE_ANDROID: Self = Self(
+            ResolveModeFlagBits::EXTERNAL_FORMAT_DOWNSAMPLE_ANDROID.0,
+        );
+        pub const CUSTOM_EXT: Self = Self(ResolveModeFlagBits::CUSTOM_EXT.0);
     }
     #[repr(transparent)]
     #[derive(Clone, Copy)]

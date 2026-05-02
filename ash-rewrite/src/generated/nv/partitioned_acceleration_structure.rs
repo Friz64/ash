@@ -189,20 +189,28 @@ pub(crate) mod reexport {
         pub const UPDATE_INSTANCE_NV: Self = Self(1);
         pub const WRITE_PARTITION_TRANSLATION_NV: Self = Self(2);
     }
-    bitflags::bitflags! {
-        #[repr(transparent)] #[derive(Clone, Copy)] pub struct
-        PartitionedAccelerationStructureInstanceFlagsNV : u32 { const
-        FLAG_TRIANGLE_FACING_CULL_DISABLE_NV =
-        PartitionedAccelerationStructureInstanceFlagBitsNV::FLAG_TRIANGLE_FACING_CULL_DISABLE_NV
-        .0; const FLAG_TRIANGLE_FLIP_FACING_NV =
-        PartitionedAccelerationStructureInstanceFlagBitsNV::FLAG_TRIANGLE_FLIP_FACING_NV
-        .0; const FLAG_FORCE_OPAQUE_NV =
-        PartitionedAccelerationStructureInstanceFlagBitsNV::FLAG_FORCE_OPAQUE_NV.0; const
-        FLAG_FORCE_NO_OPAQUE_NV =
-        PartitionedAccelerationStructureInstanceFlagBitsNV::FLAG_FORCE_NO_OPAQUE_NV.0;
-        const FLAG_ENABLE_EXPLICIT_BOUNDING_BOX_NV =
-        PartitionedAccelerationStructureInstanceFlagBitsNV::FLAG_ENABLE_EXPLICIT_BOUNDING_BOX_NV
-        .0; }
+    #[repr(transparent)]
+    #[derive(Clone, Copy)]
+    pub struct PartitionedAccelerationStructureInstanceFlagsNV(u32);
+    impl PartitionedAccelerationStructureInstanceFlagsNV {
+        pub const FLAG_TRIANGLE_FACING_CULL_DISABLE_NV: Self = Self(
+            PartitionedAccelerationStructureInstanceFlagBitsNV::FLAG_TRIANGLE_FACING_CULL_DISABLE_NV
+                .0,
+        );
+        pub const FLAG_TRIANGLE_FLIP_FACING_NV: Self = Self(
+            PartitionedAccelerationStructureInstanceFlagBitsNV::FLAG_TRIANGLE_FLIP_FACING_NV
+                .0,
+        );
+        pub const FLAG_FORCE_OPAQUE_NV: Self = Self(
+            PartitionedAccelerationStructureInstanceFlagBitsNV::FLAG_FORCE_OPAQUE_NV.0,
+        );
+        pub const FLAG_FORCE_NO_OPAQUE_NV: Self = Self(
+            PartitionedAccelerationStructureInstanceFlagBitsNV::FLAG_FORCE_NO_OPAQUE_NV.0,
+        );
+        pub const FLAG_ENABLE_EXPLICIT_BOUNDING_BOX_NV: Self = Self(
+            PartitionedAccelerationStructureInstanceFlagBitsNV::FLAG_ENABLE_EXPLICIT_BOUNDING_BOX_NV
+                .0,
+        );
     }
     #[repr(transparent)]
     #[derive(Clone, Copy)]

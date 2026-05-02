@@ -215,12 +215,18 @@ pub(crate) mod reexport {
         pub const DISPLAY_KHR: Self = Self(1000002000);
         pub const DISPLAY_MODE_KHR: Self = Self(1000002001);
     }
-    bitflags::bitflags! {
-        #[repr(transparent)] #[derive(Clone, Copy)] pub struct DisplayPlaneAlphaFlagsKHR
-        : u32 { const OPAQUE_KHR = DisplayPlaneAlphaFlagBitsKHR::OPAQUE_KHR.0; const
-        GLOBAL_KHR = DisplayPlaneAlphaFlagBitsKHR::GLOBAL_KHR.0; const PER_PIXEL_KHR =
-        DisplayPlaneAlphaFlagBitsKHR::PER_PIXEL_KHR.0; const PER_PIXEL_PREMULTIPLIED_KHR
-        = DisplayPlaneAlphaFlagBitsKHR::PER_PIXEL_PREMULTIPLIED_KHR.0; }
+    #[repr(transparent)]
+    #[derive(Clone, Copy)]
+    pub struct DisplayPlaneAlphaFlagsKHR(u32);
+    impl DisplayPlaneAlphaFlagsKHR {
+        pub const OPAQUE_KHR: Self = Self(DisplayPlaneAlphaFlagBitsKHR::OPAQUE_KHR.0);
+        pub const GLOBAL_KHR: Self = Self(DisplayPlaneAlphaFlagBitsKHR::GLOBAL_KHR.0);
+        pub const PER_PIXEL_KHR: Self = Self(
+            DisplayPlaneAlphaFlagBitsKHR::PER_PIXEL_KHR.0,
+        );
+        pub const PER_PIXEL_PREMULTIPLIED_KHR: Self = Self(
+            DisplayPlaneAlphaFlagBitsKHR::PER_PIXEL_PREMULTIPLIED_KHR.0,
+        );
     }
     #[repr(transparent)]
     #[derive(Clone, Copy)]
@@ -232,14 +238,14 @@ pub(crate) mod reexport {
         pub const PER_PIXEL_KHR: Self = Self(1 << 2);
         pub const PER_PIXEL_PREMULTIPLIED_KHR: Self = Self(1 << 3);
     }
-    bitflags::bitflags! {
-        #[repr(transparent)] #[derive(Clone, Copy)] pub struct DisplayModeCreateFlagsKHR
-        : u32 {}
-    }
-    bitflags::bitflags! {
-        #[repr(transparent)] #[derive(Clone, Copy)] pub struct
-        DisplaySurfaceCreateFlagsKHR : u32 {}
-    }
+    #[repr(transparent)]
+    #[derive(Clone, Copy)]
+    pub struct DisplayModeCreateFlagsKHR(u32);
+    impl DisplayModeCreateFlagsKHR {}
+    #[repr(transparent)]
+    #[derive(Clone, Copy)]
+    pub struct DisplaySurfaceCreateFlagsKHR(u32);
+    impl DisplaySurfaceCreateFlagsKHR {}
     #[repr(transparent)]
     #[derive(Eq, PartialEq, Ord, PartialOrd, Clone, Copy, Hash, Default)]
     pub struct DisplayKHR(u64);

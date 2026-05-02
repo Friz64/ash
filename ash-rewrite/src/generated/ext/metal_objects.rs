@@ -155,17 +155,28 @@ pub(crate) mod reexport {
         pub const EXPORT_METAL_SHARED_EVENT_INFO_EXT: Self = Self(1000311010);
         pub const IMPORT_METAL_SHARED_EVENT_INFO_EXT: Self = Self(1000311011);
     }
-    bitflags::bitflags! {
-        #[repr(transparent)] #[derive(Clone, Copy)] pub struct
-        ExportMetalObjectTypeFlagsEXT : u32 { const METAL_DEVICE_EXT =
-        ExportMetalObjectTypeFlagBitsEXT::METAL_DEVICE_EXT.0; const
-        METAL_COMMAND_QUEUE_EXT =
-        ExportMetalObjectTypeFlagBitsEXT::METAL_COMMAND_QUEUE_EXT.0; const
-        METAL_BUFFER_EXT = ExportMetalObjectTypeFlagBitsEXT::METAL_BUFFER_EXT.0; const
-        METAL_TEXTURE_EXT = ExportMetalObjectTypeFlagBitsEXT::METAL_TEXTURE_EXT.0; const
-        METAL_IOSURFACE_EXT = ExportMetalObjectTypeFlagBitsEXT::METAL_IOSURFACE_EXT.0;
-        const METAL_SHARED_EVENT_EXT =
-        ExportMetalObjectTypeFlagBitsEXT::METAL_SHARED_EVENT_EXT.0; }
+    #[repr(transparent)]
+    #[derive(Clone, Copy)]
+    pub struct ExportMetalObjectTypeFlagsEXT(u32);
+    impl ExportMetalObjectTypeFlagsEXT {
+        pub const METAL_DEVICE_EXT: Self = Self(
+            ExportMetalObjectTypeFlagBitsEXT::METAL_DEVICE_EXT.0,
+        );
+        pub const METAL_COMMAND_QUEUE_EXT: Self = Self(
+            ExportMetalObjectTypeFlagBitsEXT::METAL_COMMAND_QUEUE_EXT.0,
+        );
+        pub const METAL_BUFFER_EXT: Self = Self(
+            ExportMetalObjectTypeFlagBitsEXT::METAL_BUFFER_EXT.0,
+        );
+        pub const METAL_TEXTURE_EXT: Self = Self(
+            ExportMetalObjectTypeFlagBitsEXT::METAL_TEXTURE_EXT.0,
+        );
+        pub const METAL_IOSURFACE_EXT: Self = Self(
+            ExportMetalObjectTypeFlagBitsEXT::METAL_IOSURFACE_EXT.0,
+        );
+        pub const METAL_SHARED_EVENT_EXT: Self = Self(
+            ExportMetalObjectTypeFlagBitsEXT::METAL_SHARED_EVENT_EXT.0,
+        );
     }
     #[repr(transparent)]
     #[derive(Clone, Copy)]

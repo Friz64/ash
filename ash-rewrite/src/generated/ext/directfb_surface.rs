@@ -69,10 +69,10 @@ pub(crate) mod reexport {
     impl crate::vk::StructureType {
         pub const DIRECTFB_SURFACE_CREATE_INFO_EXT: Self = Self(1000346000);
     }
-    bitflags::bitflags! {
-        #[repr(transparent)] #[derive(Clone, Copy)] pub struct
-        DirectFBSurfaceCreateFlagsEXT : u32 {}
-    }
+    #[repr(transparent)]
+    #[derive(Clone, Copy)]
+    pub struct DirectFBSurfaceCreateFlagsEXT(u32);
+    impl DirectFBSurfaceCreateFlagsEXT {}
     pub type PFN_vkCreateDirectFBSurfaceEXT = unsafe extern "system" fn(
         instance: crate::vk::Instance,
         p_create_info: *const crate::vk::DirectFBSurfaceCreateInfoEXT<'_>,

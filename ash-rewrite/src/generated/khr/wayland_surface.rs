@@ -69,10 +69,10 @@ pub(crate) mod reexport {
     impl crate::vk::StructureType {
         pub const WAYLAND_SURFACE_CREATE_INFO_KHR: Self = Self(1000006000);
     }
-    bitflags::bitflags! {
-        #[repr(transparent)] #[derive(Clone, Copy)] pub struct
-        WaylandSurfaceCreateFlagsKHR : u32 {}
-    }
+    #[repr(transparent)]
+    #[derive(Clone, Copy)]
+    pub struct WaylandSurfaceCreateFlagsKHR(u32);
+    impl WaylandSurfaceCreateFlagsKHR {}
     pub type PFN_vkCreateWaylandSurfaceKHR = unsafe extern "system" fn(
         instance: crate::vk::Instance,
         p_create_info: *const crate::vk::WaylandSurfaceCreateInfoKHR<'_>,

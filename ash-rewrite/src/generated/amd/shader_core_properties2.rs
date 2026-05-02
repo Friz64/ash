@@ -14,10 +14,10 @@ pub struct PhysicalDeviceShaderCoreProperties2AMD<'a> {
 impl crate::vk::StructureType {
     pub const PHYSICAL_DEVICE_SHADER_CORE_PROPERTIES_2_AMD: Self = Self(1000227000);
 }
-bitflags::bitflags! {
-    #[repr(transparent)] #[derive(Clone, Copy)] pub struct ShaderCorePropertiesFlagsAMD :
-    u32 {}
-}
+#[repr(transparent)]
+#[derive(Clone, Copy)]
+pub struct ShaderCorePropertiesFlagsAMD(u32);
+impl ShaderCorePropertiesFlagsAMD {}
 #[repr(transparent)]
 #[derive(Clone, Copy)]
 pub struct ShaderCorePropertiesFlagBitsAMD(pub(crate) u32);

@@ -42,10 +42,10 @@ impl DirectDriverLoadingModeLUNARG {
     pub const EXCLUSIVE_LUNARG: Self = Self(0);
     pub const INCLUSIVE_LUNARG: Self = Self(1);
 }
-bitflags::bitflags! {
-    #[repr(transparent)] #[derive(Clone, Copy)] pub struct DirectDriverLoadingFlagsLUNARG
-    : u32 {}
-}
+#[repr(transparent)]
+#[derive(Clone, Copy)]
+pub struct DirectDriverLoadingFlagsLUNARG(u32);
+impl DirectDriverLoadingFlagsLUNARG {}
 pub type PFN_vkGetInstanceProcAddrLUNARG = Option<
     unsafe extern "system" fn(
         instance: crate::vk::Instance,

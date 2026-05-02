@@ -168,15 +168,28 @@ pub(crate) mod reexport {
         pub const ONE_KHR: Self = Self(1);
         pub const ONE_EXT: Self = Self::ONE_KHR;
     }
-    bitflags::bitflags! {
-        #[repr(transparent)] #[derive(Clone, Copy)] pub struct DeviceFaultFlagsKHR : u32
-        { const FLAG_DEVICE_LOST_KHR = DeviceFaultFlagBitsKHR::FLAG_DEVICE_LOST_KHR.0;
-        const FLAG_MEMORY_ADDRESS_KHR = DeviceFaultFlagBitsKHR::FLAG_MEMORY_ADDRESS_KHR
-        .0; const FLAG_INSTRUCTION_ADDRESS_KHR =
-        DeviceFaultFlagBitsKHR::FLAG_INSTRUCTION_ADDRESS_KHR.0; const FLAG_VENDOR_KHR =
-        DeviceFaultFlagBitsKHR::FLAG_VENDOR_KHR.0; const FLAG_WATCHDOG_TIMEOUT_KHR =
-        DeviceFaultFlagBitsKHR::FLAG_WATCHDOG_TIMEOUT_KHR.0; const FLAG_OVERFLOW_KHR =
-        DeviceFaultFlagBitsKHR::FLAG_OVERFLOW_KHR.0; }
+    #[repr(transparent)]
+    #[derive(Clone, Copy)]
+    pub struct DeviceFaultFlagsKHR(u32);
+    impl DeviceFaultFlagsKHR {
+        pub const FLAG_DEVICE_LOST_KHR: Self = Self(
+            DeviceFaultFlagBitsKHR::FLAG_DEVICE_LOST_KHR.0,
+        );
+        pub const FLAG_MEMORY_ADDRESS_KHR: Self = Self(
+            DeviceFaultFlagBitsKHR::FLAG_MEMORY_ADDRESS_KHR.0,
+        );
+        pub const FLAG_INSTRUCTION_ADDRESS_KHR: Self = Self(
+            DeviceFaultFlagBitsKHR::FLAG_INSTRUCTION_ADDRESS_KHR.0,
+        );
+        pub const FLAG_VENDOR_KHR: Self = Self(
+            DeviceFaultFlagBitsKHR::FLAG_VENDOR_KHR.0,
+        );
+        pub const FLAG_WATCHDOG_TIMEOUT_KHR: Self = Self(
+            DeviceFaultFlagBitsKHR::FLAG_WATCHDOG_TIMEOUT_KHR.0,
+        );
+        pub const FLAG_OVERFLOW_KHR: Self = Self(
+            DeviceFaultFlagBitsKHR::FLAG_OVERFLOW_KHR.0,
+        );
     }
     #[repr(transparent)]
     #[derive(Clone, Copy)]

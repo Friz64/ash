@@ -528,14 +528,20 @@ pub(crate) mod reexport {
         pub const TENSOR_SHADER_ARM: Self = Self(1 << 39);
         pub const TENSOR_IMAGE_ALIASING_ARM: Self = Self(1 << 43);
     }
-    bitflags::bitflags! {
-        #[repr(transparent)] #[derive(Clone, Copy)] pub struct TensorCreateFlagsARM : u64
-        { const MUTABLE_FORMAT_ARM = TensorCreateFlagBitsARM::MUTABLE_FORMAT_ARM.0; const
-        PROTECTED_ARM = TensorCreateFlagBitsARM::PROTECTED_ARM.0; const
-        DESCRIPTOR_HEAP_CAPTURE_REPLAY_ARM =
-        TensorCreateFlagBitsARM::DESCRIPTOR_HEAP_CAPTURE_REPLAY_ARM.0; const
-        DESCRIPTOR_BUFFER_CAPTURE_REPLAY_ARM =
-        TensorCreateFlagBitsARM::DESCRIPTOR_BUFFER_CAPTURE_REPLAY_ARM.0; }
+    #[repr(transparent)]
+    #[derive(Clone, Copy)]
+    pub struct TensorCreateFlagsARM(u64);
+    impl TensorCreateFlagsARM {
+        pub const MUTABLE_FORMAT_ARM: Self = Self(
+            TensorCreateFlagBitsARM::MUTABLE_FORMAT_ARM.0,
+        );
+        pub const PROTECTED_ARM: Self = Self(TensorCreateFlagBitsARM::PROTECTED_ARM.0);
+        pub const DESCRIPTOR_HEAP_CAPTURE_REPLAY_ARM: Self = Self(
+            TensorCreateFlagBitsARM::DESCRIPTOR_HEAP_CAPTURE_REPLAY_ARM.0,
+        );
+        pub const DESCRIPTOR_BUFFER_CAPTURE_REPLAY_ARM: Self = Self(
+            TensorCreateFlagBitsARM::DESCRIPTOR_BUFFER_CAPTURE_REPLAY_ARM.0,
+        );
     }
     #[repr(transparent)]
     #[derive(Clone, Copy)]
@@ -546,13 +552,21 @@ pub(crate) mod reexport {
         pub const PROTECTED_ARM: Self = Self(1 << 1);
         pub const DESCRIPTOR_BUFFER_CAPTURE_REPLAY_ARM: Self = Self(1 << 2);
     }
-    bitflags::bitflags! {
-        #[repr(transparent)] #[derive(Clone, Copy)] pub struct TensorUsageFlagsARM : u64
-        { const SHADER_ARM = TensorUsageFlagBitsARM::SHADER_ARM.0; const TRANSFER_SRC_ARM
-        = TensorUsageFlagBitsARM::TRANSFER_SRC_ARM.0; const TRANSFER_DST_ARM =
-        TensorUsageFlagBitsARM::TRANSFER_DST_ARM.0; const IMAGE_ALIASING_ARM =
-        TensorUsageFlagBitsARM::IMAGE_ALIASING_ARM.0; const DATA_GRAPH_ARM =
-        TensorUsageFlagBitsARM::DATA_GRAPH_ARM.0; }
+    #[repr(transparent)]
+    #[derive(Clone, Copy)]
+    pub struct TensorUsageFlagsARM(u64);
+    impl TensorUsageFlagsARM {
+        pub const SHADER_ARM: Self = Self(TensorUsageFlagBitsARM::SHADER_ARM.0);
+        pub const TRANSFER_SRC_ARM: Self = Self(
+            TensorUsageFlagBitsARM::TRANSFER_SRC_ARM.0,
+        );
+        pub const TRANSFER_DST_ARM: Self = Self(
+            TensorUsageFlagBitsARM::TRANSFER_DST_ARM.0,
+        );
+        pub const IMAGE_ALIASING_ARM: Self = Self(
+            TensorUsageFlagBitsARM::IMAGE_ALIASING_ARM.0,
+        );
+        pub const DATA_GRAPH_ARM: Self = Self(TensorUsageFlagBitsARM::DATA_GRAPH_ARM.0);
     }
     #[repr(transparent)]
     #[derive(Clone, Copy)]
