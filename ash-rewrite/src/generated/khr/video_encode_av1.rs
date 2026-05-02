@@ -242,6 +242,68 @@ impl VideoEncodeAV1CapabilityFlagsKHR {
     pub const COMPOUND_PREDICTION_INTRA_REFRESH_KHR: Self = Self(
         VideoEncodeAV1CapabilityFlagBitsKHR::COMPOUND_PREDICTION_INTRA_REFRESH_KHR.0,
     );
+    pub const fn empty() -> Self {
+        Self(0)
+    }
+    pub const fn from_raw(x: u32) -> Self {
+        Self(x)
+    }
+    pub const fn as_raw(self) -> u32 {
+        self.0
+    }
+    pub const fn is_empty(self) -> bool {
+        self.0 == Self::empty().0
+    }
+    pub const fn intersects(self, other: Self) -> bool {
+        !Self(self.0 & other.0).is_empty()
+    }
+    pub const fn contains(self, other: Self) -> bool {
+        self.0 & other.0 == other.0
+    }
+}
+impl ::core::default::Default for VideoEncodeAV1CapabilityFlagsKHR {
+    fn default() -> Self {
+        Self::empty()
+    }
+}
+impl ::core::ops::BitOr for VideoEncodeAV1CapabilityFlagsKHR {
+    type Output = Self;
+    fn bitor(self, rhs: Self) -> Self {
+        Self(self.0 | rhs.0)
+    }
+}
+impl ::core::ops::BitOrAssign for VideoEncodeAV1CapabilityFlagsKHR {
+    fn bitor_assign(&mut self, rhs: Self) {
+        *self = *self | rhs;
+    }
+}
+impl ::core::ops::BitAnd for VideoEncodeAV1CapabilityFlagsKHR {
+    type Output = Self;
+    fn bitand(self, rhs: Self) -> Self {
+        Self(self.0 & rhs.0)
+    }
+}
+impl ::core::ops::BitAndAssign for VideoEncodeAV1CapabilityFlagsKHR {
+    fn bitand_assign(&mut self, rhs: Self) {
+        *self = *self & rhs;
+    }
+}
+impl ::core::ops::BitXor for VideoEncodeAV1CapabilityFlagsKHR {
+    type Output = Self;
+    fn bitxor(self, rhs: Self) -> Self {
+        Self(self.0 ^ rhs.0)
+    }
+}
+impl ::core::ops::BitXorAssign for VideoEncodeAV1CapabilityFlagsKHR {
+    fn bitxor_assign(&mut self, rhs: Self) {
+        *self = *self ^ rhs;
+    }
+}
+impl ::core::ops::Not for VideoEncodeAV1CapabilityFlagsKHR {
+    type Output = Self;
+    fn not(self) -> Self {
+        Self(!self.0)
+    }
 }
 #[repr(transparent)]
 #[derive(Clone, Copy)]
@@ -268,6 +330,68 @@ impl VideoEncodeAV1StdFlagsKHR {
         VideoEncodeAV1StdFlagBitsKHR::PRIMARY_REF_FRAME_KHR.0,
     );
     pub const DELTA_Q_KHR: Self = Self(VideoEncodeAV1StdFlagBitsKHR::DELTA_Q_KHR.0);
+    pub const fn empty() -> Self {
+        Self(0)
+    }
+    pub const fn from_raw(x: u32) -> Self {
+        Self(x)
+    }
+    pub const fn as_raw(self) -> u32 {
+        self.0
+    }
+    pub const fn is_empty(self) -> bool {
+        self.0 == Self::empty().0
+    }
+    pub const fn intersects(self, other: Self) -> bool {
+        !Self(self.0 & other.0).is_empty()
+    }
+    pub const fn contains(self, other: Self) -> bool {
+        self.0 & other.0 == other.0
+    }
+}
+impl ::core::default::Default for VideoEncodeAV1StdFlagsKHR {
+    fn default() -> Self {
+        Self::empty()
+    }
+}
+impl ::core::ops::BitOr for VideoEncodeAV1StdFlagsKHR {
+    type Output = Self;
+    fn bitor(self, rhs: Self) -> Self {
+        Self(self.0 | rhs.0)
+    }
+}
+impl ::core::ops::BitOrAssign for VideoEncodeAV1StdFlagsKHR {
+    fn bitor_assign(&mut self, rhs: Self) {
+        *self = *self | rhs;
+    }
+}
+impl ::core::ops::BitAnd for VideoEncodeAV1StdFlagsKHR {
+    type Output = Self;
+    fn bitand(self, rhs: Self) -> Self {
+        Self(self.0 & rhs.0)
+    }
+}
+impl ::core::ops::BitAndAssign for VideoEncodeAV1StdFlagsKHR {
+    fn bitand_assign(&mut self, rhs: Self) {
+        *self = *self & rhs;
+    }
+}
+impl ::core::ops::BitXor for VideoEncodeAV1StdFlagsKHR {
+    type Output = Self;
+    fn bitxor(self, rhs: Self) -> Self {
+        Self(self.0 ^ rhs.0)
+    }
+}
+impl ::core::ops::BitXorAssign for VideoEncodeAV1StdFlagsKHR {
+    fn bitxor_assign(&mut self, rhs: Self) {
+        *self = *self ^ rhs;
+    }
+}
+impl ::core::ops::Not for VideoEncodeAV1StdFlagsKHR {
+    type Output = Self;
+    fn not(self) -> Self {
+        Self(!self.0)
+    }
 }
 #[repr(transparent)]
 #[derive(Clone, Copy)]
@@ -295,6 +419,68 @@ impl VideoEncodeAV1RateControlFlagsKHR {
     pub const REFERENCE_PATTERN_DYADIC_KHR: Self = Self(
         VideoEncodeAV1RateControlFlagBitsKHR::REFERENCE_PATTERN_DYADIC_KHR.0,
     );
+    pub const fn empty() -> Self {
+        Self(0)
+    }
+    pub const fn from_raw(x: u32) -> Self {
+        Self(x)
+    }
+    pub const fn as_raw(self) -> u32 {
+        self.0
+    }
+    pub const fn is_empty(self) -> bool {
+        self.0 == Self::empty().0
+    }
+    pub const fn intersects(self, other: Self) -> bool {
+        !Self(self.0 & other.0).is_empty()
+    }
+    pub const fn contains(self, other: Self) -> bool {
+        self.0 & other.0 == other.0
+    }
+}
+impl ::core::default::Default for VideoEncodeAV1RateControlFlagsKHR {
+    fn default() -> Self {
+        Self::empty()
+    }
+}
+impl ::core::ops::BitOr for VideoEncodeAV1RateControlFlagsKHR {
+    type Output = Self;
+    fn bitor(self, rhs: Self) -> Self {
+        Self(self.0 | rhs.0)
+    }
+}
+impl ::core::ops::BitOrAssign for VideoEncodeAV1RateControlFlagsKHR {
+    fn bitor_assign(&mut self, rhs: Self) {
+        *self = *self | rhs;
+    }
+}
+impl ::core::ops::BitAnd for VideoEncodeAV1RateControlFlagsKHR {
+    type Output = Self;
+    fn bitand(self, rhs: Self) -> Self {
+        Self(self.0 & rhs.0)
+    }
+}
+impl ::core::ops::BitAndAssign for VideoEncodeAV1RateControlFlagsKHR {
+    fn bitand_assign(&mut self, rhs: Self) {
+        *self = *self & rhs;
+    }
+}
+impl ::core::ops::BitXor for VideoEncodeAV1RateControlFlagsKHR {
+    type Output = Self;
+    fn bitxor(self, rhs: Self) -> Self {
+        Self(self.0 ^ rhs.0)
+    }
+}
+impl ::core::ops::BitXorAssign for VideoEncodeAV1RateControlFlagsKHR {
+    fn bitxor_assign(&mut self, rhs: Self) {
+        *self = *self ^ rhs;
+    }
+}
+impl ::core::ops::Not for VideoEncodeAV1RateControlFlagsKHR {
+    type Output = Self;
+    fn not(self) -> Self {
+        Self(!self.0)
+    }
 }
 #[repr(transparent)]
 #[derive(Clone, Copy)]
@@ -312,6 +498,68 @@ pub struct VideoEncodeAV1SuperblockSizeFlagsKHR(u32);
 impl VideoEncodeAV1SuperblockSizeFlagsKHR {
     pub const _64_KHR: Self = Self(VideoEncodeAV1SuperblockSizeFlagBitsKHR::_64_KHR.0);
     pub const _128_KHR: Self = Self(VideoEncodeAV1SuperblockSizeFlagBitsKHR::_128_KHR.0);
+    pub const fn empty() -> Self {
+        Self(0)
+    }
+    pub const fn from_raw(x: u32) -> Self {
+        Self(x)
+    }
+    pub const fn as_raw(self) -> u32 {
+        self.0
+    }
+    pub const fn is_empty(self) -> bool {
+        self.0 == Self::empty().0
+    }
+    pub const fn intersects(self, other: Self) -> bool {
+        !Self(self.0 & other.0).is_empty()
+    }
+    pub const fn contains(self, other: Self) -> bool {
+        self.0 & other.0 == other.0
+    }
+}
+impl ::core::default::Default for VideoEncodeAV1SuperblockSizeFlagsKHR {
+    fn default() -> Self {
+        Self::empty()
+    }
+}
+impl ::core::ops::BitOr for VideoEncodeAV1SuperblockSizeFlagsKHR {
+    type Output = Self;
+    fn bitor(self, rhs: Self) -> Self {
+        Self(self.0 | rhs.0)
+    }
+}
+impl ::core::ops::BitOrAssign for VideoEncodeAV1SuperblockSizeFlagsKHR {
+    fn bitor_assign(&mut self, rhs: Self) {
+        *self = *self | rhs;
+    }
+}
+impl ::core::ops::BitAnd for VideoEncodeAV1SuperblockSizeFlagsKHR {
+    type Output = Self;
+    fn bitand(self, rhs: Self) -> Self {
+        Self(self.0 & rhs.0)
+    }
+}
+impl ::core::ops::BitAndAssign for VideoEncodeAV1SuperblockSizeFlagsKHR {
+    fn bitand_assign(&mut self, rhs: Self) {
+        *self = *self & rhs;
+    }
+}
+impl ::core::ops::BitXor for VideoEncodeAV1SuperblockSizeFlagsKHR {
+    type Output = Self;
+    fn bitxor(self, rhs: Self) -> Self {
+        Self(self.0 ^ rhs.0)
+    }
+}
+impl ::core::ops::BitXorAssign for VideoEncodeAV1SuperblockSizeFlagsKHR {
+    fn bitxor_assign(&mut self, rhs: Self) {
+        *self = *self ^ rhs;
+    }
+}
+impl ::core::ops::Not for VideoEncodeAV1SuperblockSizeFlagsKHR {
+    type Output = Self;
+    fn not(self) -> Self {
+        Self(!self.0)
+    }
 }
 #[repr(transparent)]
 #[derive(Clone, Copy)]

@@ -49,6 +49,86 @@ impl Code for BitMask {
 
             impl #name {
                 #values
+
+                pub const fn empty() -> Self { 
+                    Self(0)
+                }
+
+                pub const fn from_raw(x: #base_ty) -> Self {
+                    Self(x)
+                }
+
+                pub const fn as_raw(self) -> #base_ty {
+                    self.0
+                }
+
+                pub const fn is_empty(self) -> bool {
+                    self.0 == Self::empty().0
+                }
+
+                pub const fn intersects(self, other: Self) -> bool {
+                    !Self(self.0 & other.0).is_empty()
+                }
+
+                pub const fn contains(self, other: Self) -> bool {
+                    self.0 & other.0 == other.0
+                }
+            }
+
+            impl ::core::default::Default for #name {
+                fn default() -> Self {
+                    Self::empty()
+                }
+            }
+
+            impl ::core::ops::BitOr for #name {
+                type Output = Self;
+
+                fn bitor(self, rhs: Self) -> Self {
+                    Self(self.0 | rhs.0)
+                }
+            }
+
+            impl ::core::ops::BitOrAssign for #name {
+                fn bitor_assign(&mut self, rhs: Self) {
+                    *self = *self | rhs;
+                }
+            }
+
+            impl ::core::ops::BitAnd for #name {
+                type Output = Self;
+
+                fn bitand(self, rhs: Self) -> Self {
+                    Self(self.0 & rhs.0)
+                }
+            }
+
+            impl ::core::ops::BitAndAssign for #name {
+                fn bitand_assign(&mut self, rhs: Self) {
+                    *self = *self & rhs;
+                }
+            }
+
+            impl ::core::ops::BitXor for #name {
+                type Output = Self;
+
+                fn bitxor(self, rhs: Self) -> Self {
+                    Self(self.0 ^ rhs.0)
+                }
+            }
+
+            impl ::core::ops::BitXorAssign for #name {
+                fn bitxor_assign(&mut self, rhs: Self) {
+                    *self = *self ^ rhs;
+                }
+            }
+
+            impl ::core::ops::Not for #name {
+                type Output = Self;
+
+                fn not(self) -> Self {
+                    Self(!self.0)
+                }
             }
 
             #bits_code
