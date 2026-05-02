@@ -8,6 +8,7 @@ pub mod present_id2;
 pub mod maintenance7;
 pub mod maintenance8;
 pub mod maintenance9;
+pub mod maintenance11;
 pub mod compute_shader_derivatives;
 pub mod ray_query;
 pub mod surface_protected_capabilities;

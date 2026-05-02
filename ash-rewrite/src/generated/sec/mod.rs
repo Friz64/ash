@@ -2,5 +2,6 @@
 #![cfg_attr(rustfmt, rustfmt_skip)]
 //!Extensions tagged SEC
 pub mod amigo_profiling;
+pub mod throttle_hint;
 pub mod pipeline_cache_incremental_mode;
 pub mod ubm_surface;

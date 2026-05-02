@@ -1801,7 +1801,13 @@ pub(crate) mod reexport {
         STENCIL_COPY_ON_COMPUTE_QUEUE_KHR =
         FormatFeatureFlagBits2::STENCIL_COPY_ON_COMPUTE_QUEUE_KHR.0; const
         STENCIL_COPY_ON_TRANSFER_QUEUE_KHR =
-        FormatFeatureFlagBits2::STENCIL_COPY_ON_TRANSFER_QUEUE_KHR.0; }
+        FormatFeatureFlagBits2::STENCIL_COPY_ON_TRANSFER_QUEUE_KHR.0; const
+        DATA_GRAPH_OPTICAL_FLOW_IMAGE_ARM =
+        FormatFeatureFlagBits2::DATA_GRAPH_OPTICAL_FLOW_IMAGE_ARM.0; const
+        DATA_GRAPH_OPTICAL_FLOW_VECTOR_ARM =
+        FormatFeatureFlagBits2::DATA_GRAPH_OPTICAL_FLOW_VECTOR_ARM.0; const
+        DATA_GRAPH_OPTICAL_FLOW_COST_ARM =
+        FormatFeatureFlagBits2::DATA_GRAPH_OPTICAL_FLOW_COST_ARM.0; }
     }
     #[repr(transparent)]
     #[derive(Clone, Copy)]

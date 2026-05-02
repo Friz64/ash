@@ -44,5 +44,5 @@ impl RayTracingInvocationReorderModeEXT {
     pub const NONE_EXT: Self = Self(0);
     pub const REORDER_EXT: Self = Self(1);
 }
-pub const EXT_RAY_TRACING_INVOCATION_REORDER_SPEC_VERSION: u32 = 1;
+pub const EXT_RAY_TRACING_INVOCATION_REORDER_SPEC_VERSION: u32 = 2;
 pub const EXT_RAY_TRACING_INVOCATION_REORDER_EXTENSION_NAME: &core::ffi::CStr = c"VK_EXT_ray_tracing_invocation_reorder";
