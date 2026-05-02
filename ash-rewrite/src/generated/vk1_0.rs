@@ -4561,7 +4561,8 @@ pub(crate) mod reexport {
     bitflags::bitflags! {
         #[repr(transparent)] #[derive(Clone, Copy)] pub struct PipelineLayoutCreateFlags
         : u32 { const INDEPENDENT_SETS_EXT =
-        PipelineLayoutCreateFlagBits::INDEPENDENT_SETS_EXT.0; }
+        PipelineLayoutCreateFlagBits::INDEPENDENT_SETS_EXT.0; const NO_TASK_SHADER_KHR =
+        PipelineLayoutCreateFlagBits::NO_TASK_SHADER_KHR.0; }
     }
     #[repr(transparent)]
     #[derive(Clone, Copy)]
@@ -5017,7 +5018,9 @@ pub(crate) mod reexport {
         VIDEO_PROFILE_INDEPENDENT_KHR =
         ImageCreateFlagBits::VIDEO_PROFILE_INDEPENDENT_KHR.0; const
         FRAGMENT_DENSITY_MAP_OFFSET_EXT =
-        ImageCreateFlagBits::FRAGMENT_DENSITY_MAP_OFFSET_EXT.0; }
+        ImageCreateFlagBits::FRAGMENT_DENSITY_MAP_OFFSET_EXT.0; const
+        ALIAS_SINGLE_LAYER_DESCRIPTOR_KHR =
+        ImageCreateFlagBits::ALIAS_SINGLE_LAYER_DESCRIPTOR_KHR.0; }
     }
     #[repr(transparent)]
     #[derive(Clone, Copy)]
@@ -7216,7 +7219,7 @@ pub(crate) mod reexport {
         ((version) & 0xFFF)
     }
     pub const API_VERSION_1_0: u32 = crate::vk::make_api_version(0, 1, 0, 0);
-    pub const HEADER_VERSION: u32 = 348;
+    pub const HEADER_VERSION: u32 = 350;
     pub const HEADER_VERSION_COMPLETE: u32 = crate::vk::make_api_version(
         0,
         1,

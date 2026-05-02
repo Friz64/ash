@@ -190,7 +190,8 @@ pub(crate) mod reexport {
         FRAGMENT_DENSITY_MAP_ATTACHMENT_EXT =
         ShaderCreateFlagBitsEXT::FRAGMENT_DENSITY_MAP_ATTACHMENT_EXT.0; const
         INDIRECT_BINDABLE_EXT = ShaderCreateFlagBitsEXT::INDIRECT_BINDABLE_EXT.0; const
-        _64_INDEXING_EXT = ShaderCreateFlagBitsEXT::_64_INDEXING_EXT.0; }
+        _64_INDEXING_EXT = ShaderCreateFlagBitsEXT::_64_INDEXING_EXT.0; const
+        INDEPENDENT_SETS_KHR = ShaderCreateFlagBitsEXT::INDEPENDENT_SETS_KHR.0; }
     }
     #[repr(transparent)]
     #[derive(Clone, Copy)]

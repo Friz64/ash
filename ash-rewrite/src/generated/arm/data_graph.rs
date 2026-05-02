@@ -610,7 +610,9 @@ pub(crate) mod reexport {
     bitflags::bitflags! {
         #[repr(transparent)] #[derive(Clone, Copy)] pub struct
         DataGraphPipelineSessionCreateFlagsARM : u64 { const PROTECTED_ARM =
-        DataGraphPipelineSessionCreateFlagBitsARM::PROTECTED_ARM.0; }
+        DataGraphPipelineSessionCreateFlagBitsARM::PROTECTED_ARM.0; const
+        OPTICAL_FLOW_CACHE_ARM =
+        DataGraphPipelineSessionCreateFlagBitsARM::OPTICAL_FLOW_CACHE_ARM.0; }
     }
     #[repr(transparent)]
     #[derive(Clone, Copy)]
