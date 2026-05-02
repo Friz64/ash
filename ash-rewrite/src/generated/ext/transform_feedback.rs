@@ -199,7 +199,70 @@ pub(crate) mod reexport {
     #[repr(transparent)]
     #[derive(Clone, Copy)]
     pub struct PipelineRasterizationStateStreamCreateFlagsEXT(u32);
-    impl PipelineRasterizationStateStreamCreateFlagsEXT {}
+    impl PipelineRasterizationStateStreamCreateFlagsEXT {
+        pub const fn empty() -> Self {
+            Self(0)
+        }
+        pub const fn from_raw(x: u32) -> Self {
+            Self(x)
+        }
+        pub const fn as_raw(self) -> u32 {
+            self.0
+        }
+        pub const fn is_empty(self) -> bool {
+            self.0 == Self::empty().0
+        }
+        pub const fn intersects(self, other: Self) -> bool {
+            !Self(self.0 & other.0).is_empty()
+        }
+        pub const fn contains(self, other: Self) -> bool {
+            self.0 & other.0 == other.0
+        }
+    }
+    impl ::core::default::Default for PipelineRasterizationStateStreamCreateFlagsEXT {
+        fn default() -> Self {
+            Self::empty()
+        }
+    }
+    impl ::core::ops::BitOr for PipelineRasterizationStateStreamCreateFlagsEXT {
+        type Output = Self;
+        fn bitor(self, rhs: Self) -> Self {
+            Self(self.0 | rhs.0)
+        }
+    }
+    impl ::core::ops::BitOrAssign for PipelineRasterizationStateStreamCreateFlagsEXT {
+        fn bitor_assign(&mut self, rhs: Self) {
+            *self = *self | rhs;
+        }
+    }
+    impl ::core::ops::BitAnd for PipelineRasterizationStateStreamCreateFlagsEXT {
+        type Output = Self;
+        fn bitand(self, rhs: Self) -> Self {
+            Self(self.0 & rhs.0)
+        }
+    }
+    impl ::core::ops::BitAndAssign for PipelineRasterizationStateStreamCreateFlagsEXT {
+        fn bitand_assign(&mut self, rhs: Self) {
+            *self = *self & rhs;
+        }
+    }
+    impl ::core::ops::BitXor for PipelineRasterizationStateStreamCreateFlagsEXT {
+        type Output = Self;
+        fn bitxor(self, rhs: Self) -> Self {
+            Self(self.0 ^ rhs.0)
+        }
+    }
+    impl ::core::ops::BitXorAssign for PipelineRasterizationStateStreamCreateFlagsEXT {
+        fn bitxor_assign(&mut self, rhs: Self) {
+            *self = *self ^ rhs;
+        }
+    }
+    impl ::core::ops::Not for PipelineRasterizationStateStreamCreateFlagsEXT {
+        type Output = Self;
+        fn not(self) -> Self {
+            Self(!self.0)
+        }
+    }
     pub type PFN_vkCmdBindTransformFeedbackBuffersEXT = unsafe extern "system" fn(
         command_buffer: crate::vk::CommandBuffer,
         first_binding: u32,

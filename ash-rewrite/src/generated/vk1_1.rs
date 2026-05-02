@@ -1467,6 +1467,68 @@ pub(crate) mod reexport {
         pub const PARTITIONED_EXT: Self = Self(
             SubgroupFeatureFlagBits::PARTITIONED_EXT.0,
         );
+        pub const fn empty() -> Self {
+            Self(0)
+        }
+        pub const fn from_raw(x: u32) -> Self {
+            Self(x)
+        }
+        pub const fn as_raw(self) -> u32 {
+            self.0
+        }
+        pub const fn is_empty(self) -> bool {
+            self.0 == Self::empty().0
+        }
+        pub const fn intersects(self, other: Self) -> bool {
+            !Self(self.0 & other.0).is_empty()
+        }
+        pub const fn contains(self, other: Self) -> bool {
+            self.0 & other.0 == other.0
+        }
+    }
+    impl ::core::default::Default for SubgroupFeatureFlags {
+        fn default() -> Self {
+            Self::empty()
+        }
+    }
+    impl ::core::ops::BitOr for SubgroupFeatureFlags {
+        type Output = Self;
+        fn bitor(self, rhs: Self) -> Self {
+            Self(self.0 | rhs.0)
+        }
+    }
+    impl ::core::ops::BitOrAssign for SubgroupFeatureFlags {
+        fn bitor_assign(&mut self, rhs: Self) {
+            *self = *self | rhs;
+        }
+    }
+    impl ::core::ops::BitAnd for SubgroupFeatureFlags {
+        type Output = Self;
+        fn bitand(self, rhs: Self) -> Self {
+            Self(self.0 & rhs.0)
+        }
+    }
+    impl ::core::ops::BitAndAssign for SubgroupFeatureFlags {
+        fn bitand_assign(&mut self, rhs: Self) {
+            *self = *self & rhs;
+        }
+    }
+    impl ::core::ops::BitXor for SubgroupFeatureFlags {
+        type Output = Self;
+        fn bitxor(self, rhs: Self) -> Self {
+            Self(self.0 ^ rhs.0)
+        }
+    }
+    impl ::core::ops::BitXorAssign for SubgroupFeatureFlags {
+        fn bitxor_assign(&mut self, rhs: Self) {
+            *self = *self ^ rhs;
+        }
+    }
+    impl ::core::ops::Not for SubgroupFeatureFlags {
+        type Output = Self;
+        fn not(self) -> Self {
+            Self(!self.0)
+        }
     }
     #[repr(transparent)]
     #[derive(Clone, Copy)]
@@ -1485,7 +1547,70 @@ pub(crate) mod reexport {
     #[repr(transparent)]
     #[derive(Clone, Copy)]
     pub struct DescriptorUpdateTemplateCreateFlags(u32);
-    impl DescriptorUpdateTemplateCreateFlags {}
+    impl DescriptorUpdateTemplateCreateFlags {
+        pub const fn empty() -> Self {
+            Self(0)
+        }
+        pub const fn from_raw(x: u32) -> Self {
+            Self(x)
+        }
+        pub const fn as_raw(self) -> u32 {
+            self.0
+        }
+        pub const fn is_empty(self) -> bool {
+            self.0 == Self::empty().0
+        }
+        pub const fn intersects(self, other: Self) -> bool {
+            !Self(self.0 & other.0).is_empty()
+        }
+        pub const fn contains(self, other: Self) -> bool {
+            self.0 & other.0 == other.0
+        }
+    }
+    impl ::core::default::Default for DescriptorUpdateTemplateCreateFlags {
+        fn default() -> Self {
+            Self::empty()
+        }
+    }
+    impl ::core::ops::BitOr for DescriptorUpdateTemplateCreateFlags {
+        type Output = Self;
+        fn bitor(self, rhs: Self) -> Self {
+            Self(self.0 | rhs.0)
+        }
+    }
+    impl ::core::ops::BitOrAssign for DescriptorUpdateTemplateCreateFlags {
+        fn bitor_assign(&mut self, rhs: Self) {
+            *self = *self | rhs;
+        }
+    }
+    impl ::core::ops::BitAnd for DescriptorUpdateTemplateCreateFlags {
+        type Output = Self;
+        fn bitand(self, rhs: Self) -> Self {
+            Self(self.0 & rhs.0)
+        }
+    }
+    impl ::core::ops::BitAndAssign for DescriptorUpdateTemplateCreateFlags {
+        fn bitand_assign(&mut self, rhs: Self) {
+            *self = *self & rhs;
+        }
+    }
+    impl ::core::ops::BitXor for DescriptorUpdateTemplateCreateFlags {
+        type Output = Self;
+        fn bitxor(self, rhs: Self) -> Self {
+            Self(self.0 ^ rhs.0)
+        }
+    }
+    impl ::core::ops::BitXorAssign for DescriptorUpdateTemplateCreateFlags {
+        fn bitxor_assign(&mut self, rhs: Self) {
+            *self = *self ^ rhs;
+        }
+    }
+    impl ::core::ops::Not for DescriptorUpdateTemplateCreateFlags {
+        type Output = Self;
+        fn not(self) -> Self {
+            Self(!self.0)
+        }
+    }
     #[repr(transparent)]
     #[derive(Clone, Copy)]
     pub struct PeerMemoryFeatureFlags(u32);
@@ -1502,6 +1627,68 @@ pub(crate) mod reexport {
         pub const GENERIC_DST_KHR: Self = Self(
             PeerMemoryFeatureFlagBits::GENERIC_DST_KHR.0,
         );
+        pub const fn empty() -> Self {
+            Self(0)
+        }
+        pub const fn from_raw(x: u32) -> Self {
+            Self(x)
+        }
+        pub const fn as_raw(self) -> u32 {
+            self.0
+        }
+        pub const fn is_empty(self) -> bool {
+            self.0 == Self::empty().0
+        }
+        pub const fn intersects(self, other: Self) -> bool {
+            !Self(self.0 & other.0).is_empty()
+        }
+        pub const fn contains(self, other: Self) -> bool {
+            self.0 & other.0 == other.0
+        }
+    }
+    impl ::core::default::Default for PeerMemoryFeatureFlags {
+        fn default() -> Self {
+            Self::empty()
+        }
+    }
+    impl ::core::ops::BitOr for PeerMemoryFeatureFlags {
+        type Output = Self;
+        fn bitor(self, rhs: Self) -> Self {
+            Self(self.0 | rhs.0)
+        }
+    }
+    impl ::core::ops::BitOrAssign for PeerMemoryFeatureFlags {
+        fn bitor_assign(&mut self, rhs: Self) {
+            *self = *self | rhs;
+        }
+    }
+    impl ::core::ops::BitAnd for PeerMemoryFeatureFlags {
+        type Output = Self;
+        fn bitand(self, rhs: Self) -> Self {
+            Self(self.0 & rhs.0)
+        }
+    }
+    impl ::core::ops::BitAndAssign for PeerMemoryFeatureFlags {
+        fn bitand_assign(&mut self, rhs: Self) {
+            *self = *self & rhs;
+        }
+    }
+    impl ::core::ops::BitXor for PeerMemoryFeatureFlags {
+        type Output = Self;
+        fn bitxor(self, rhs: Self) -> Self {
+            Self(self.0 ^ rhs.0)
+        }
+    }
+    impl ::core::ops::BitXorAssign for PeerMemoryFeatureFlags {
+        fn bitxor_assign(&mut self, rhs: Self) {
+            *self = *self ^ rhs;
+        }
+    }
+    impl ::core::ops::Not for PeerMemoryFeatureFlags {
+        type Output = Self;
+        fn not(self) -> Self {
+            Self(!self.0)
+        }
     }
     #[repr(transparent)]
     #[derive(Clone, Copy)]
@@ -1534,6 +1721,68 @@ pub(crate) mod reexport {
         pub const ZERO_INITIALIZE_EXT: Self = Self(
             MemoryAllocateFlagBits::ZERO_INITIALIZE_EXT.0,
         );
+        pub const fn empty() -> Self {
+            Self(0)
+        }
+        pub const fn from_raw(x: u32) -> Self {
+            Self(x)
+        }
+        pub const fn as_raw(self) -> u32 {
+            self.0
+        }
+        pub const fn is_empty(self) -> bool {
+            self.0 == Self::empty().0
+        }
+        pub const fn intersects(self, other: Self) -> bool {
+            !Self(self.0 & other.0).is_empty()
+        }
+        pub const fn contains(self, other: Self) -> bool {
+            self.0 & other.0 == other.0
+        }
+    }
+    impl ::core::default::Default for MemoryAllocateFlags {
+        fn default() -> Self {
+            Self::empty()
+        }
+    }
+    impl ::core::ops::BitOr for MemoryAllocateFlags {
+        type Output = Self;
+        fn bitor(self, rhs: Self) -> Self {
+            Self(self.0 | rhs.0)
+        }
+    }
+    impl ::core::ops::BitOrAssign for MemoryAllocateFlags {
+        fn bitor_assign(&mut self, rhs: Self) {
+            *self = *self | rhs;
+        }
+    }
+    impl ::core::ops::BitAnd for MemoryAllocateFlags {
+        type Output = Self;
+        fn bitand(self, rhs: Self) -> Self {
+            Self(self.0 & rhs.0)
+        }
+    }
+    impl ::core::ops::BitAndAssign for MemoryAllocateFlags {
+        fn bitand_assign(&mut self, rhs: Self) {
+            *self = *self & rhs;
+        }
+    }
+    impl ::core::ops::BitXor for MemoryAllocateFlags {
+        type Output = Self;
+        fn bitxor(self, rhs: Self) -> Self {
+            Self(self.0 ^ rhs.0)
+        }
+    }
+    impl ::core::ops::BitXorAssign for MemoryAllocateFlags {
+        fn bitxor_assign(&mut self, rhs: Self) {
+            *self = *self ^ rhs;
+        }
+    }
+    impl ::core::ops::Not for MemoryAllocateFlags {
+        type Output = Self;
+        fn not(self) -> Self {
+            Self(!self.0)
+        }
     }
     #[repr(transparent)]
     #[derive(Clone, Copy)]
@@ -1545,7 +1794,70 @@ pub(crate) mod reexport {
     #[repr(transparent)]
     #[derive(Clone, Copy)]
     pub struct CommandPoolTrimFlags(u32);
-    impl CommandPoolTrimFlags {}
+    impl CommandPoolTrimFlags {
+        pub const fn empty() -> Self {
+            Self(0)
+        }
+        pub const fn from_raw(x: u32) -> Self {
+            Self(x)
+        }
+        pub const fn as_raw(self) -> u32 {
+            self.0
+        }
+        pub const fn is_empty(self) -> bool {
+            self.0 == Self::empty().0
+        }
+        pub const fn intersects(self, other: Self) -> bool {
+            !Self(self.0 & other.0).is_empty()
+        }
+        pub const fn contains(self, other: Self) -> bool {
+            self.0 & other.0 == other.0
+        }
+    }
+    impl ::core::default::Default for CommandPoolTrimFlags {
+        fn default() -> Self {
+            Self::empty()
+        }
+    }
+    impl ::core::ops::BitOr for CommandPoolTrimFlags {
+        type Output = Self;
+        fn bitor(self, rhs: Self) -> Self {
+            Self(self.0 | rhs.0)
+        }
+    }
+    impl ::core::ops::BitOrAssign for CommandPoolTrimFlags {
+        fn bitor_assign(&mut self, rhs: Self) {
+            *self = *self | rhs;
+        }
+    }
+    impl ::core::ops::BitAnd for CommandPoolTrimFlags {
+        type Output = Self;
+        fn bitand(self, rhs: Self) -> Self {
+            Self(self.0 & rhs.0)
+        }
+    }
+    impl ::core::ops::BitAndAssign for CommandPoolTrimFlags {
+        fn bitand_assign(&mut self, rhs: Self) {
+            *self = *self & rhs;
+        }
+    }
+    impl ::core::ops::BitXor for CommandPoolTrimFlags {
+        type Output = Self;
+        fn bitxor(self, rhs: Self) -> Self {
+            Self(self.0 ^ rhs.0)
+        }
+    }
+    impl ::core::ops::BitXorAssign for CommandPoolTrimFlags {
+        fn bitxor_assign(&mut self, rhs: Self) {
+            *self = *self ^ rhs;
+        }
+    }
+    impl ::core::ops::Not for CommandPoolTrimFlags {
+        type Output = Self;
+        fn not(self) -> Self {
+            Self(!self.0)
+        }
+    }
     #[repr(transparent)]
     #[derive(Clone, Copy)]
     pub struct ExternalMemoryHandleTypeFlags(u32);
@@ -1623,6 +1935,68 @@ pub(crate) mod reexport {
         pub const MTLHEAP_EXT: Self = Self(
             ExternalMemoryHandleTypeFlagBits::MTLHEAP_EXT.0,
         );
+        pub const fn empty() -> Self {
+            Self(0)
+        }
+        pub const fn from_raw(x: u32) -> Self {
+            Self(x)
+        }
+        pub const fn as_raw(self) -> u32 {
+            self.0
+        }
+        pub const fn is_empty(self) -> bool {
+            self.0 == Self::empty().0
+        }
+        pub const fn intersects(self, other: Self) -> bool {
+            !Self(self.0 & other.0).is_empty()
+        }
+        pub const fn contains(self, other: Self) -> bool {
+            self.0 & other.0 == other.0
+        }
+    }
+    impl ::core::default::Default for ExternalMemoryHandleTypeFlags {
+        fn default() -> Self {
+            Self::empty()
+        }
+    }
+    impl ::core::ops::BitOr for ExternalMemoryHandleTypeFlags {
+        type Output = Self;
+        fn bitor(self, rhs: Self) -> Self {
+            Self(self.0 | rhs.0)
+        }
+    }
+    impl ::core::ops::BitOrAssign for ExternalMemoryHandleTypeFlags {
+        fn bitor_assign(&mut self, rhs: Self) {
+            *self = *self | rhs;
+        }
+    }
+    impl ::core::ops::BitAnd for ExternalMemoryHandleTypeFlags {
+        type Output = Self;
+        fn bitand(self, rhs: Self) -> Self {
+            Self(self.0 & rhs.0)
+        }
+    }
+    impl ::core::ops::BitAndAssign for ExternalMemoryHandleTypeFlags {
+        fn bitand_assign(&mut self, rhs: Self) {
+            *self = *self & rhs;
+        }
+    }
+    impl ::core::ops::BitXor for ExternalMemoryHandleTypeFlags {
+        type Output = Self;
+        fn bitxor(self, rhs: Self) -> Self {
+            Self(self.0 ^ rhs.0)
+        }
+    }
+    impl ::core::ops::BitXorAssign for ExternalMemoryHandleTypeFlags {
+        fn bitxor_assign(&mut self, rhs: Self) {
+            *self = *self ^ rhs;
+        }
+    }
+    impl ::core::ops::Not for ExternalMemoryHandleTypeFlags {
+        type Output = Self;
+        fn not(self) -> Self {
+            Self(!self.0)
+        }
     }
     #[repr(transparent)]
     #[derive(Clone, Copy)]
@@ -1655,6 +2029,68 @@ pub(crate) mod reexport {
         pub const IMPORTABLE_KHR: Self = Self(
             ExternalMemoryFeatureFlagBits::IMPORTABLE_KHR.0,
         );
+        pub const fn empty() -> Self {
+            Self(0)
+        }
+        pub const fn from_raw(x: u32) -> Self {
+            Self(x)
+        }
+        pub const fn as_raw(self) -> u32 {
+            self.0
+        }
+        pub const fn is_empty(self) -> bool {
+            self.0 == Self::empty().0
+        }
+        pub const fn intersects(self, other: Self) -> bool {
+            !Self(self.0 & other.0).is_empty()
+        }
+        pub const fn contains(self, other: Self) -> bool {
+            self.0 & other.0 == other.0
+        }
+    }
+    impl ::core::default::Default for ExternalMemoryFeatureFlags {
+        fn default() -> Self {
+            Self::empty()
+        }
+    }
+    impl ::core::ops::BitOr for ExternalMemoryFeatureFlags {
+        type Output = Self;
+        fn bitor(self, rhs: Self) -> Self {
+            Self(self.0 | rhs.0)
+        }
+    }
+    impl ::core::ops::BitOrAssign for ExternalMemoryFeatureFlags {
+        fn bitor_assign(&mut self, rhs: Self) {
+            *self = *self | rhs;
+        }
+    }
+    impl ::core::ops::BitAnd for ExternalMemoryFeatureFlags {
+        type Output = Self;
+        fn bitand(self, rhs: Self) -> Self {
+            Self(self.0 & rhs.0)
+        }
+    }
+    impl ::core::ops::BitAndAssign for ExternalMemoryFeatureFlags {
+        fn bitand_assign(&mut self, rhs: Self) {
+            *self = *self & rhs;
+        }
+    }
+    impl ::core::ops::BitXor for ExternalMemoryFeatureFlags {
+        type Output = Self;
+        fn bitxor(self, rhs: Self) -> Self {
+            Self(self.0 ^ rhs.0)
+        }
+    }
+    impl ::core::ops::BitXorAssign for ExternalMemoryFeatureFlags {
+        fn bitxor_assign(&mut self, rhs: Self) {
+            *self = *self ^ rhs;
+        }
+    }
+    impl ::core::ops::Not for ExternalMemoryFeatureFlags {
+        type Output = Self;
+        fn not(self) -> Self {
+            Self(!self.0)
+        }
     }
     #[repr(transparent)]
     #[derive(Clone, Copy)]
@@ -1703,6 +2139,68 @@ pub(crate) mod reexport {
         pub const ZIRCON_EVENT_FUCHSIA: Self = Self(
             ExternalSemaphoreHandleTypeFlagBits::ZIRCON_EVENT_FUCHSIA.0,
         );
+        pub const fn empty() -> Self {
+            Self(0)
+        }
+        pub const fn from_raw(x: u32) -> Self {
+            Self(x)
+        }
+        pub const fn as_raw(self) -> u32 {
+            self.0
+        }
+        pub const fn is_empty(self) -> bool {
+            self.0 == Self::empty().0
+        }
+        pub const fn intersects(self, other: Self) -> bool {
+            !Self(self.0 & other.0).is_empty()
+        }
+        pub const fn contains(self, other: Self) -> bool {
+            self.0 & other.0 == other.0
+        }
+    }
+    impl ::core::default::Default for ExternalSemaphoreHandleTypeFlags {
+        fn default() -> Self {
+            Self::empty()
+        }
+    }
+    impl ::core::ops::BitOr for ExternalSemaphoreHandleTypeFlags {
+        type Output = Self;
+        fn bitor(self, rhs: Self) -> Self {
+            Self(self.0 | rhs.0)
+        }
+    }
+    impl ::core::ops::BitOrAssign for ExternalSemaphoreHandleTypeFlags {
+        fn bitor_assign(&mut self, rhs: Self) {
+            *self = *self | rhs;
+        }
+    }
+    impl ::core::ops::BitAnd for ExternalSemaphoreHandleTypeFlags {
+        type Output = Self;
+        fn bitand(self, rhs: Self) -> Self {
+            Self(self.0 & rhs.0)
+        }
+    }
+    impl ::core::ops::BitAndAssign for ExternalSemaphoreHandleTypeFlags {
+        fn bitand_assign(&mut self, rhs: Self) {
+            *self = *self & rhs;
+        }
+    }
+    impl ::core::ops::BitXor for ExternalSemaphoreHandleTypeFlags {
+        type Output = Self;
+        fn bitxor(self, rhs: Self) -> Self {
+            Self(self.0 ^ rhs.0)
+        }
+    }
+    impl ::core::ops::BitXorAssign for ExternalSemaphoreHandleTypeFlags {
+        fn bitxor_assign(&mut self, rhs: Self) {
+            *self = *self ^ rhs;
+        }
+    }
+    impl ::core::ops::Not for ExternalSemaphoreHandleTypeFlags {
+        type Output = Self;
+        fn not(self) -> Self {
+            Self(!self.0)
+        }
     }
     #[repr(transparent)]
     #[derive(Clone, Copy)]
@@ -1732,6 +2230,68 @@ pub(crate) mod reexport {
         pub const IMPORTABLE_KHR: Self = Self(
             ExternalSemaphoreFeatureFlagBits::IMPORTABLE_KHR.0,
         );
+        pub const fn empty() -> Self {
+            Self(0)
+        }
+        pub const fn from_raw(x: u32) -> Self {
+            Self(x)
+        }
+        pub const fn as_raw(self) -> u32 {
+            self.0
+        }
+        pub const fn is_empty(self) -> bool {
+            self.0 == Self::empty().0
+        }
+        pub const fn intersects(self, other: Self) -> bool {
+            !Self(self.0 & other.0).is_empty()
+        }
+        pub const fn contains(self, other: Self) -> bool {
+            self.0 & other.0 == other.0
+        }
+    }
+    impl ::core::default::Default for ExternalSemaphoreFeatureFlags {
+        fn default() -> Self {
+            Self::empty()
+        }
+    }
+    impl ::core::ops::BitOr for ExternalSemaphoreFeatureFlags {
+        type Output = Self;
+        fn bitor(self, rhs: Self) -> Self {
+            Self(self.0 | rhs.0)
+        }
+    }
+    impl ::core::ops::BitOrAssign for ExternalSemaphoreFeatureFlags {
+        fn bitor_assign(&mut self, rhs: Self) {
+            *self = *self | rhs;
+        }
+    }
+    impl ::core::ops::BitAnd for ExternalSemaphoreFeatureFlags {
+        type Output = Self;
+        fn bitand(self, rhs: Self) -> Self {
+            Self(self.0 & rhs.0)
+        }
+    }
+    impl ::core::ops::BitAndAssign for ExternalSemaphoreFeatureFlags {
+        fn bitand_assign(&mut self, rhs: Self) {
+            *self = *self & rhs;
+        }
+    }
+    impl ::core::ops::BitXor for ExternalSemaphoreFeatureFlags {
+        type Output = Self;
+        fn bitxor(self, rhs: Self) -> Self {
+            Self(self.0 ^ rhs.0)
+        }
+    }
+    impl ::core::ops::BitXorAssign for ExternalSemaphoreFeatureFlags {
+        fn bitxor_assign(&mut self, rhs: Self) {
+            *self = *self ^ rhs;
+        }
+    }
+    impl ::core::ops::Not for ExternalSemaphoreFeatureFlags {
+        type Output = Self;
+        fn not(self) -> Self {
+            Self(!self.0)
+        }
     }
     #[repr(transparent)]
     #[derive(Clone, Copy)]
@@ -1747,6 +2307,68 @@ pub(crate) mod reexport {
     impl SemaphoreImportFlags {
         pub const TEMPORARY: Self = Self(SemaphoreImportFlagBits::TEMPORARY.0);
         pub const TEMPORARY_KHR: Self = Self(SemaphoreImportFlagBits::TEMPORARY_KHR.0);
+        pub const fn empty() -> Self {
+            Self(0)
+        }
+        pub const fn from_raw(x: u32) -> Self {
+            Self(x)
+        }
+        pub const fn as_raw(self) -> u32 {
+            self.0
+        }
+        pub const fn is_empty(self) -> bool {
+            self.0 == Self::empty().0
+        }
+        pub const fn intersects(self, other: Self) -> bool {
+            !Self(self.0 & other.0).is_empty()
+        }
+        pub const fn contains(self, other: Self) -> bool {
+            self.0 & other.0 == other.0
+        }
+    }
+    impl ::core::default::Default for SemaphoreImportFlags {
+        fn default() -> Self {
+            Self::empty()
+        }
+    }
+    impl ::core::ops::BitOr for SemaphoreImportFlags {
+        type Output = Self;
+        fn bitor(self, rhs: Self) -> Self {
+            Self(self.0 | rhs.0)
+        }
+    }
+    impl ::core::ops::BitOrAssign for SemaphoreImportFlags {
+        fn bitor_assign(&mut self, rhs: Self) {
+            *self = *self | rhs;
+        }
+    }
+    impl ::core::ops::BitAnd for SemaphoreImportFlags {
+        type Output = Self;
+        fn bitand(self, rhs: Self) -> Self {
+            Self(self.0 & rhs.0)
+        }
+    }
+    impl ::core::ops::BitAndAssign for SemaphoreImportFlags {
+        fn bitand_assign(&mut self, rhs: Self) {
+            *self = *self & rhs;
+        }
+    }
+    impl ::core::ops::BitXor for SemaphoreImportFlags {
+        type Output = Self;
+        fn bitxor(self, rhs: Self) -> Self {
+            Self(self.0 ^ rhs.0)
+        }
+    }
+    impl ::core::ops::BitXorAssign for SemaphoreImportFlags {
+        fn bitxor_assign(&mut self, rhs: Self) {
+            *self = *self ^ rhs;
+        }
+    }
+    impl ::core::ops::Not for SemaphoreImportFlags {
+        type Output = Self;
+        fn not(self) -> Self {
+            Self(!self.0)
+        }
     }
     #[repr(transparent)]
     #[derive(Clone, Copy)]
@@ -1779,6 +2401,68 @@ pub(crate) mod reexport {
         pub const SYNC_FD_KHR: Self = Self(
             ExternalFenceHandleTypeFlagBits::SYNC_FD_KHR.0,
         );
+        pub const fn empty() -> Self {
+            Self(0)
+        }
+        pub const fn from_raw(x: u32) -> Self {
+            Self(x)
+        }
+        pub const fn as_raw(self) -> u32 {
+            self.0
+        }
+        pub const fn is_empty(self) -> bool {
+            self.0 == Self::empty().0
+        }
+        pub const fn intersects(self, other: Self) -> bool {
+            !Self(self.0 & other.0).is_empty()
+        }
+        pub const fn contains(self, other: Self) -> bool {
+            self.0 & other.0 == other.0
+        }
+    }
+    impl ::core::default::Default for ExternalFenceHandleTypeFlags {
+        fn default() -> Self {
+            Self::empty()
+        }
+    }
+    impl ::core::ops::BitOr for ExternalFenceHandleTypeFlags {
+        type Output = Self;
+        fn bitor(self, rhs: Self) -> Self {
+            Self(self.0 | rhs.0)
+        }
+    }
+    impl ::core::ops::BitOrAssign for ExternalFenceHandleTypeFlags {
+        fn bitor_assign(&mut self, rhs: Self) {
+            *self = *self | rhs;
+        }
+    }
+    impl ::core::ops::BitAnd for ExternalFenceHandleTypeFlags {
+        type Output = Self;
+        fn bitand(self, rhs: Self) -> Self {
+            Self(self.0 & rhs.0)
+        }
+    }
+    impl ::core::ops::BitAndAssign for ExternalFenceHandleTypeFlags {
+        fn bitand_assign(&mut self, rhs: Self) {
+            *self = *self & rhs;
+        }
+    }
+    impl ::core::ops::BitXor for ExternalFenceHandleTypeFlags {
+        type Output = Self;
+        fn bitxor(self, rhs: Self) -> Self {
+            Self(self.0 ^ rhs.0)
+        }
+    }
+    impl ::core::ops::BitXorAssign for ExternalFenceHandleTypeFlags {
+        fn bitxor_assign(&mut self, rhs: Self) {
+            *self = *self ^ rhs;
+        }
+    }
+    impl ::core::ops::Not for ExternalFenceHandleTypeFlags {
+        type Output = Self;
+        fn not(self) -> Self {
+            Self(!self.0)
+        }
     }
     #[repr(transparent)]
     #[derive(Clone, Copy)]
@@ -1802,6 +2486,68 @@ pub(crate) mod reexport {
         pub const IMPORTABLE_KHR: Self = Self(
             ExternalFenceFeatureFlagBits::IMPORTABLE_KHR.0,
         );
+        pub const fn empty() -> Self {
+            Self(0)
+        }
+        pub const fn from_raw(x: u32) -> Self {
+            Self(x)
+        }
+        pub const fn as_raw(self) -> u32 {
+            self.0
+        }
+        pub const fn is_empty(self) -> bool {
+            self.0 == Self::empty().0
+        }
+        pub const fn intersects(self, other: Self) -> bool {
+            !Self(self.0 & other.0).is_empty()
+        }
+        pub const fn contains(self, other: Self) -> bool {
+            self.0 & other.0 == other.0
+        }
+    }
+    impl ::core::default::Default for ExternalFenceFeatureFlags {
+        fn default() -> Self {
+            Self::empty()
+        }
+    }
+    impl ::core::ops::BitOr for ExternalFenceFeatureFlags {
+        type Output = Self;
+        fn bitor(self, rhs: Self) -> Self {
+            Self(self.0 | rhs.0)
+        }
+    }
+    impl ::core::ops::BitOrAssign for ExternalFenceFeatureFlags {
+        fn bitor_assign(&mut self, rhs: Self) {
+            *self = *self | rhs;
+        }
+    }
+    impl ::core::ops::BitAnd for ExternalFenceFeatureFlags {
+        type Output = Self;
+        fn bitand(self, rhs: Self) -> Self {
+            Self(self.0 & rhs.0)
+        }
+    }
+    impl ::core::ops::BitAndAssign for ExternalFenceFeatureFlags {
+        fn bitand_assign(&mut self, rhs: Self) {
+            *self = *self & rhs;
+        }
+    }
+    impl ::core::ops::BitXor for ExternalFenceFeatureFlags {
+        type Output = Self;
+        fn bitxor(self, rhs: Self) -> Self {
+            Self(self.0 ^ rhs.0)
+        }
+    }
+    impl ::core::ops::BitXorAssign for ExternalFenceFeatureFlags {
+        fn bitxor_assign(&mut self, rhs: Self) {
+            *self = *self ^ rhs;
+        }
+    }
+    impl ::core::ops::Not for ExternalFenceFeatureFlags {
+        type Output = Self;
+        fn not(self) -> Self {
+            Self(!self.0)
+        }
     }
     #[repr(transparent)]
     #[derive(Clone, Copy)]
@@ -1817,6 +2563,68 @@ pub(crate) mod reexport {
     impl FenceImportFlags {
         pub const TEMPORARY: Self = Self(FenceImportFlagBits::TEMPORARY.0);
         pub const TEMPORARY_KHR: Self = Self(FenceImportFlagBits::TEMPORARY_KHR.0);
+        pub const fn empty() -> Self {
+            Self(0)
+        }
+        pub const fn from_raw(x: u32) -> Self {
+            Self(x)
+        }
+        pub const fn as_raw(self) -> u32 {
+            self.0
+        }
+        pub const fn is_empty(self) -> bool {
+            self.0 == Self::empty().0
+        }
+        pub const fn intersects(self, other: Self) -> bool {
+            !Self(self.0 & other.0).is_empty()
+        }
+        pub const fn contains(self, other: Self) -> bool {
+            self.0 & other.0 == other.0
+        }
+    }
+    impl ::core::default::Default for FenceImportFlags {
+        fn default() -> Self {
+            Self::empty()
+        }
+    }
+    impl ::core::ops::BitOr for FenceImportFlags {
+        type Output = Self;
+        fn bitor(self, rhs: Self) -> Self {
+            Self(self.0 | rhs.0)
+        }
+    }
+    impl ::core::ops::BitOrAssign for FenceImportFlags {
+        fn bitor_assign(&mut self, rhs: Self) {
+            *self = *self | rhs;
+        }
+    }
+    impl ::core::ops::BitAnd for FenceImportFlags {
+        type Output = Self;
+        fn bitand(self, rhs: Self) -> Self {
+            Self(self.0 & rhs.0)
+        }
+    }
+    impl ::core::ops::BitAndAssign for FenceImportFlags {
+        fn bitand_assign(&mut self, rhs: Self) {
+            *self = *self & rhs;
+        }
+    }
+    impl ::core::ops::BitXor for FenceImportFlags {
+        type Output = Self;
+        fn bitxor(self, rhs: Self) -> Self {
+            Self(self.0 ^ rhs.0)
+        }
+    }
+    impl ::core::ops::BitXorAssign for FenceImportFlags {
+        fn bitxor_assign(&mut self, rhs: Self) {
+            *self = *self ^ rhs;
+        }
+    }
+    impl ::core::ops::Not for FenceImportFlags {
+        type Output = Self;
+        fn not(self) -> Self {
+            Self(!self.0)
+        }
     }
     #[repr(transparent)]
     #[derive(Clone, Copy)]

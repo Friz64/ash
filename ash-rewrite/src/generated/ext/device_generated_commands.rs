@@ -469,6 +469,68 @@ pub(crate) mod reexport {
         pub const UNORDERED_SEQUENCES_EXT: Self = Self(
             IndirectCommandsLayoutUsageFlagBitsEXT::UNORDERED_SEQUENCES_EXT.0,
         );
+        pub const fn empty() -> Self {
+            Self(0)
+        }
+        pub const fn from_raw(x: u32) -> Self {
+            Self(x)
+        }
+        pub const fn as_raw(self) -> u32 {
+            self.0
+        }
+        pub const fn is_empty(self) -> bool {
+            self.0 == Self::empty().0
+        }
+        pub const fn intersects(self, other: Self) -> bool {
+            !Self(self.0 & other.0).is_empty()
+        }
+        pub const fn contains(self, other: Self) -> bool {
+            self.0 & other.0 == other.0
+        }
+    }
+    impl ::core::default::Default for IndirectCommandsLayoutUsageFlagsEXT {
+        fn default() -> Self {
+            Self::empty()
+        }
+    }
+    impl ::core::ops::BitOr for IndirectCommandsLayoutUsageFlagsEXT {
+        type Output = Self;
+        fn bitor(self, rhs: Self) -> Self {
+            Self(self.0 | rhs.0)
+        }
+    }
+    impl ::core::ops::BitOrAssign for IndirectCommandsLayoutUsageFlagsEXT {
+        fn bitor_assign(&mut self, rhs: Self) {
+            *self = *self | rhs;
+        }
+    }
+    impl ::core::ops::BitAnd for IndirectCommandsLayoutUsageFlagsEXT {
+        type Output = Self;
+        fn bitand(self, rhs: Self) -> Self {
+            Self(self.0 & rhs.0)
+        }
+    }
+    impl ::core::ops::BitAndAssign for IndirectCommandsLayoutUsageFlagsEXT {
+        fn bitand_assign(&mut self, rhs: Self) {
+            *self = *self & rhs;
+        }
+    }
+    impl ::core::ops::BitXor for IndirectCommandsLayoutUsageFlagsEXT {
+        type Output = Self;
+        fn bitxor(self, rhs: Self) -> Self {
+            Self(self.0 ^ rhs.0)
+        }
+    }
+    impl ::core::ops::BitXorAssign for IndirectCommandsLayoutUsageFlagsEXT {
+        fn bitxor_assign(&mut self, rhs: Self) {
+            *self = *self ^ rhs;
+        }
+    }
+    impl ::core::ops::Not for IndirectCommandsLayoutUsageFlagsEXT {
+        type Output = Self;
+        fn not(self) -> Self {
+            Self(!self.0)
+        }
     }
     #[repr(transparent)]
     #[derive(Clone, Copy)]
@@ -488,6 +550,68 @@ pub(crate) mod reexport {
         pub const DXGI_INDEX_BUFFER_EXT: Self = Self(
             IndirectCommandsInputModeFlagBitsEXT::DXGI_INDEX_BUFFER_EXT.0,
         );
+        pub const fn empty() -> Self {
+            Self(0)
+        }
+        pub const fn from_raw(x: u32) -> Self {
+            Self(x)
+        }
+        pub const fn as_raw(self) -> u32 {
+            self.0
+        }
+        pub const fn is_empty(self) -> bool {
+            self.0 == Self::empty().0
+        }
+        pub const fn intersects(self, other: Self) -> bool {
+            !Self(self.0 & other.0).is_empty()
+        }
+        pub const fn contains(self, other: Self) -> bool {
+            self.0 & other.0 == other.0
+        }
+    }
+    impl ::core::default::Default for IndirectCommandsInputModeFlagsEXT {
+        fn default() -> Self {
+            Self::empty()
+        }
+    }
+    impl ::core::ops::BitOr for IndirectCommandsInputModeFlagsEXT {
+        type Output = Self;
+        fn bitor(self, rhs: Self) -> Self {
+            Self(self.0 | rhs.0)
+        }
+    }
+    impl ::core::ops::BitOrAssign for IndirectCommandsInputModeFlagsEXT {
+        fn bitor_assign(&mut self, rhs: Self) {
+            *self = *self | rhs;
+        }
+    }
+    impl ::core::ops::BitAnd for IndirectCommandsInputModeFlagsEXT {
+        type Output = Self;
+        fn bitand(self, rhs: Self) -> Self {
+            Self(self.0 & rhs.0)
+        }
+    }
+    impl ::core::ops::BitAndAssign for IndirectCommandsInputModeFlagsEXT {
+        fn bitand_assign(&mut self, rhs: Self) {
+            *self = *self & rhs;
+        }
+    }
+    impl ::core::ops::BitXor for IndirectCommandsInputModeFlagsEXT {
+        type Output = Self;
+        fn bitxor(self, rhs: Self) -> Self {
+            Self(self.0 ^ rhs.0)
+        }
+    }
+    impl ::core::ops::BitXorAssign for IndirectCommandsInputModeFlagsEXT {
+        fn bitxor_assign(&mut self, rhs: Self) {
+            *self = *self ^ rhs;
+        }
+    }
+    impl ::core::ops::Not for IndirectCommandsInputModeFlagsEXT {
+        type Output = Self;
+        fn not(self) -> Self {
+            Self(!self.0)
+        }
     }
     #[repr(transparent)]
     #[derive(Clone, Copy)]
