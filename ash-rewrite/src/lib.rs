@@ -18,7 +18,8 @@ mod generated;
 pub mod platform_types;
 
 pub use generated::*;
-use std::{mem, ptr};
+use core::{mem, ptr};
+use alloc::vec::Vec;
 
 #[allow(clippy::wrong_self_convention)]
 pub trait Handle: Sized {
