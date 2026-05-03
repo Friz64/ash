@@ -17,8 +17,9 @@ mod generated;
 /// Type definitions for platform-specific external types
 pub mod platform_types;
 
+use alloc::vec::Vec;
+use core::{mem, ptr};
 pub use generated::*;
-use std::{mem, ptr};
 
 #[allow(clippy::wrong_self_convention)]
 pub trait Handle: Sized {

@@ -965,11 +965,7 @@ mod tests {
         );
 
         let waff3 = Registry::parse(xml_input, LibraryName::Vk, "vulkan");
-        std::fs::write(
-            "/home/friz64/source/ash/target/waff3",
-            format!("{waff3:#?}"),
-        )
-        .unwrap();
+        std::fs::write("../target/waff3", format!("{waff3:#?}")).unwrap();
     }
 
     #[test]
@@ -982,10 +978,6 @@ mod tests {
         );
 
         let waff3 = Registry::parse(xml_input, LibraryName::Video, "vulkan");
-        std::fs::write(
-            "/home/friz64/source/ash/target/waff3video",
-            format!("{waff3:#?}"),
-        )
-        .unwrap();
+        std::fs::write("../target/waff3video", format!("{waff3:#?}")).unwrap();
     }
 }
