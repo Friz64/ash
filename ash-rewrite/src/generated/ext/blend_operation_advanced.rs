@@ -9,6 +9,10 @@ pub struct PhysicalDeviceBlendOperationAdvancedFeaturesEXT<'a> {
     pub advanced_blend_coherent_operations: crate::vk::Bool32,
     pub _marker: ::core::marker::PhantomData<&'a ()>,
 }
+unsafe impl<'a> crate::TaggedStructure<'a>
+for PhysicalDeviceBlendOperationAdvancedFeaturesEXT<'a> {
+    const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::PHYSICAL_DEVICE_BLEND_OPERATION_ADVANCED_FEATURES_EXT;
+}
 #[repr(C)]
 #[derive(Clone, Copy)]
 pub struct PhysicalDeviceBlendOperationAdvancedPropertiesEXT<'a> {
@@ -22,6 +26,10 @@ pub struct PhysicalDeviceBlendOperationAdvancedPropertiesEXT<'a> {
     pub advanced_blend_all_operations: crate::vk::Bool32,
     pub _marker: ::core::marker::PhantomData<&'a ()>,
 }
+unsafe impl<'a> crate::TaggedStructure<'a>
+for PhysicalDeviceBlendOperationAdvancedPropertiesEXT<'a> {
+    const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::PHYSICAL_DEVICE_BLEND_OPERATION_ADVANCED_PROPERTIES_EXT;
+}
 #[repr(C)]
 #[derive(Clone, Copy)]
 pub struct PipelineColorBlendAdvancedStateCreateInfoEXT<'a> {
@@ -31,6 +39,10 @@ pub struct PipelineColorBlendAdvancedStateCreateInfoEXT<'a> {
     pub dst_premultiplied: crate::vk::Bool32,
     pub blend_overlap: crate::vk::BlendOverlapEXT,
     pub _marker: ::core::marker::PhantomData<&'a ()>,
+}
+unsafe impl<'a> crate::TaggedStructure<'a>
+for PipelineColorBlendAdvancedStateCreateInfoEXT<'a> {
+    const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::PIPELINE_COLOR_BLEND_ADVANCED_STATE_CREATE_INFO_EXT;
 }
 ///Provided by [`ext::blend_operation_advanced`](crate::ext::blend_operation_advanced)
 impl crate::vk::BlendOp {

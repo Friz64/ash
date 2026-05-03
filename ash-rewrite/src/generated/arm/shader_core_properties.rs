@@ -11,6 +11,10 @@ pub struct PhysicalDeviceShaderCorePropertiesARM<'a> {
     pub fma_rate: u32,
     pub _marker: ::core::marker::PhantomData<&'a ()>,
 }
+unsafe impl<'a> crate::TaggedStructure<'a>
+for PhysicalDeviceShaderCorePropertiesARM<'a> {
+    const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::PHYSICAL_DEVICE_SHADER_CORE_PROPERTIES_ARM;
+}
 ///Provided by [`arm::shader_core_properties`](crate::arm::shader_core_properties)
 impl crate::vk::StructureType {
     pub const PHYSICAL_DEVICE_SHADER_CORE_PROPERTIES_ARM: Self = Self(1000415000);

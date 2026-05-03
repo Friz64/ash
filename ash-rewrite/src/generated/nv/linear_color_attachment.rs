@@ -9,6 +9,10 @@ pub struct PhysicalDeviceLinearColorAttachmentFeaturesNV<'a> {
     pub linear_color_attachment: crate::vk::Bool32,
     pub _marker: ::core::marker::PhantomData<&'a ()>,
 }
+unsafe impl<'a> crate::TaggedStructure<'a>
+for PhysicalDeviceLinearColorAttachmentFeaturesNV<'a> {
+    const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::PHYSICAL_DEVICE_LINEAR_COLOR_ATTACHMENT_FEATURES_NV;
+}
 ///Provided by [`nv::linear_color_attachment`](crate::nv::linear_color_attachment)
 impl crate::vk::StructureType {
     pub const PHYSICAL_DEVICE_LINEAR_COLOR_ATTACHMENT_FEATURES_NV: Self = Self(

@@ -50,6 +50,10 @@ pub(crate) mod reexport {
         pub performance_counters_by_region: crate::vk::Bool32,
         pub _marker: ::core::marker::PhantomData<&'a ()>,
     }
+    unsafe impl<'a> crate::TaggedStructure<'a>
+    for PhysicalDevicePerformanceCountersByRegionFeaturesARM<'a> {
+        const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::PHYSICAL_DEVICE_PERFORMANCE_COUNTERS_BY_REGION_FEATURES_ARM;
+    }
     #[repr(C)]
     #[derive(Clone, Copy)]
     pub struct PhysicalDevicePerformanceCountersByRegionPropertiesARM<'a> {
@@ -62,6 +66,10 @@ pub(crate) mod reexport {
         pub identity_transform_order: crate::vk::Bool32,
         pub _marker: ::core::marker::PhantomData<&'a ()>,
     }
+    unsafe impl<'a> crate::TaggedStructure<'a>
+    for PhysicalDevicePerformanceCountersByRegionPropertiesARM<'a> {
+        const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::PHYSICAL_DEVICE_PERFORMANCE_COUNTERS_BY_REGION_PROPERTIES_ARM;
+    }
     #[repr(C)]
     #[derive(Clone, Copy)]
     pub struct PerformanceCounterARM<'a> {
@@ -69,6 +77,9 @@ pub(crate) mod reexport {
         pub p_next: *mut core::ffi::c_void,
         pub counter_id: u32,
         pub _marker: ::core::marker::PhantomData<&'a ()>,
+    }
+    unsafe impl<'a> crate::TaggedStructure<'a> for PerformanceCounterARM<'a> {
+        const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::PERFORMANCE_COUNTER_ARM;
     }
     #[repr(C)]
     #[derive(Clone, Copy)]
@@ -78,6 +89,9 @@ pub(crate) mod reexport {
         pub flags: crate::vk::PerformanceCounterDescriptionFlagsARM,
         pub name: [core::ffi::c_char; crate::vk::MAX_DESCRIPTION_SIZE as _],
         pub _marker: ::core::marker::PhantomData<&'a ()>,
+    }
+    unsafe impl<'a> crate::TaggedStructure<'a> for PerformanceCounterDescriptionARM<'a> {
+        const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::PERFORMANCE_COUNTER_DESCRIPTION_ARM;
     }
     #[repr(C)]
     #[derive(Clone, Copy)]
@@ -90,6 +104,10 @@ pub(crate) mod reexport {
         pub counter_index_count: u32,
         pub p_counter_indices: *mut u32,
         pub _marker: ::core::marker::PhantomData<&'a ()>,
+    }
+    unsafe impl<'a> crate::TaggedStructure<'a>
+    for RenderPassPerformanceCountersByRegionBeginInfoARM<'a> {
+        const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::RENDER_PASS_PERFORMANCE_COUNTERS_BY_REGION_BEGIN_INFO_ARM;
     }
     ///Provided by [`arm::performance_counters_by_region`](crate::arm::performance_counters_by_region)
     impl crate::vk::StructureType {

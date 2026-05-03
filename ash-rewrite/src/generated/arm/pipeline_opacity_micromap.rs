@@ -9,6 +9,10 @@ pub struct PhysicalDevicePipelineOpacityMicromapFeaturesARM<'a> {
     pub pipeline_opacity_micromap: crate::vk::Bool32,
     pub _marker: ::core::marker::PhantomData<&'a ()>,
 }
+unsafe impl<'a> crate::TaggedStructure<'a>
+for PhysicalDevicePipelineOpacityMicromapFeaturesARM<'a> {
+    const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::PHYSICAL_DEVICE_PIPELINE_OPACITY_MICROMAP_FEATURES_ARM;
+}
 ///Provided by [`arm::pipeline_opacity_micromap`](crate::arm::pipeline_opacity_micromap)
 impl crate::vk::StructureType {
     pub const PHYSICAL_DEVICE_PIPELINE_OPACITY_MICROMAP_FEATURES_ARM: Self = Self(

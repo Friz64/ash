@@ -9,6 +9,10 @@ pub struct PhysicalDeviceShaderLongVectorFeaturesEXT<'a> {
     pub long_vector: crate::vk::Bool32,
     pub _marker: ::core::marker::PhantomData<&'a ()>,
 }
+unsafe impl<'a> crate::TaggedStructure<'a>
+for PhysicalDeviceShaderLongVectorFeaturesEXT<'a> {
+    const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::PHYSICAL_DEVICE_SHADER_LONG_VECTOR_FEATURES_EXT;
+}
 #[repr(C)]
 #[derive(Clone, Copy)]
 pub struct PhysicalDeviceShaderLongVectorPropertiesEXT<'a> {
@@ -16,6 +20,10 @@ pub struct PhysicalDeviceShaderLongVectorPropertiesEXT<'a> {
     pub p_next: *mut core::ffi::c_void,
     pub max_vector_components: u32,
     pub _marker: ::core::marker::PhantomData<&'a ()>,
+}
+unsafe impl<'a> crate::TaggedStructure<'a>
+for PhysicalDeviceShaderLongVectorPropertiesEXT<'a> {
+    const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::PHYSICAL_DEVICE_SHADER_LONG_VECTOR_PROPERTIES_EXT;
 }
 ///Provided by [`ext::shader_long_vector`](crate::ext::shader_long_vector)
 impl crate::vk::StructureType {

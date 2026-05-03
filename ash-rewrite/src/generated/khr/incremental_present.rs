@@ -10,6 +10,9 @@ pub struct PresentRegionsKHR<'a> {
     pub p_regions: *const crate::vk::PresentRegionKHR<'a>,
     pub _marker: ::core::marker::PhantomData<&'a ()>,
 }
+unsafe impl<'a> crate::TaggedStructure<'a> for PresentRegionsKHR<'a> {
+    const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::PRESENT_REGIONS_KHR;
+}
 #[repr(C)]
 #[derive(Clone, Copy)]
 pub struct PresentRegionKHR<'a> {

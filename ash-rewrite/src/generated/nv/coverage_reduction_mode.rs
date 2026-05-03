@@ -48,6 +48,10 @@ pub(crate) mod reexport {
         pub coverage_reduction_mode: crate::vk::Bool32,
         pub _marker: ::core::marker::PhantomData<&'a ()>,
     }
+    unsafe impl<'a> crate::TaggedStructure<'a>
+    for PhysicalDeviceCoverageReductionModeFeaturesNV<'a> {
+        const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::PHYSICAL_DEVICE_COVERAGE_REDUCTION_MODE_FEATURES_NV;
+    }
     #[repr(C)]
     #[derive(Clone, Copy)]
     pub struct PipelineCoverageReductionStateCreateInfoNV<'a> {
@@ -56,6 +60,10 @@ pub(crate) mod reexport {
         pub flags: crate::vk::PipelineCoverageReductionStateCreateFlagsNV,
         pub coverage_reduction_mode: crate::vk::CoverageReductionModeNV,
         pub _marker: ::core::marker::PhantomData<&'a ()>,
+    }
+    unsafe impl<'a> crate::TaggedStructure<'a>
+    for PipelineCoverageReductionStateCreateInfoNV<'a> {
+        const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::PIPELINE_COVERAGE_REDUCTION_STATE_CREATE_INFO_NV;
     }
     #[repr(C)]
     #[derive(Clone, Copy)]
@@ -67,6 +75,10 @@ pub(crate) mod reexport {
         pub depth_stencil_samples: crate::vk::SampleCountFlags,
         pub color_samples: crate::vk::SampleCountFlags,
         pub _marker: ::core::marker::PhantomData<&'a ()>,
+    }
+    unsafe impl<'a> crate::TaggedStructure<'a>
+    for FramebufferMixedSamplesCombinationNV<'a> {
+        const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::FRAMEBUFFER_MIXED_SAMPLES_COMBINATION_NV;
     }
     ///Provided by [`nv::coverage_reduction_mode`](crate::nv::coverage_reduction_mode)
     impl crate::vk::StructureType {

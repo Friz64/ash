@@ -9,6 +9,9 @@ pub struct DisplaySurfaceStereoCreateInfoNV<'a> {
     pub stereo_type: crate::vk::DisplaySurfaceStereoTypeNV,
     pub _marker: ::core::marker::PhantomData<&'a ()>,
 }
+unsafe impl<'a> crate::TaggedStructure<'a> for DisplaySurfaceStereoCreateInfoNV<'a> {
+    const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::DISPLAY_SURFACE_STEREO_CREATE_INFO_NV;
+}
 #[repr(C)]
 #[derive(Clone, Copy)]
 pub struct DisplayModeStereoPropertiesNV<'a> {
@@ -16,6 +19,9 @@ pub struct DisplayModeStereoPropertiesNV<'a> {
     pub p_next: *mut core::ffi::c_void,
     pub hdmi3_d_supported: crate::vk::Bool32,
     pub _marker: ::core::marker::PhantomData<&'a ()>,
+}
+unsafe impl<'a> crate::TaggedStructure<'a> for DisplayModeStereoPropertiesNV<'a> {
+    const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::DISPLAY_MODE_STEREO_PROPERTIES_NV;
 }
 ///Provided by [`nv::display_stereo`](crate::nv::display_stereo)
 impl crate::vk::StructureType {

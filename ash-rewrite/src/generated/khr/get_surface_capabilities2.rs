@@ -61,6 +61,9 @@ pub(crate) mod reexport {
         pub surface: crate::vk::SurfaceKHR,
         pub _marker: ::core::marker::PhantomData<&'a ()>,
     }
+    unsafe impl<'a> crate::TaggedStructure<'a> for PhysicalDeviceSurfaceInfo2KHR<'a> {
+        const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::PHYSICAL_DEVICE_SURFACE_INFO_2_KHR;
+    }
     #[repr(C)]
     #[derive(Clone, Copy)]
     pub struct SurfaceCapabilities2KHR<'a> {
@@ -69,6 +72,9 @@ pub(crate) mod reexport {
         pub surface_capabilities: crate::vk::SurfaceCapabilitiesKHR,
         pub _marker: ::core::marker::PhantomData<&'a ()>,
     }
+    unsafe impl<'a> crate::TaggedStructure<'a> for SurfaceCapabilities2KHR<'a> {
+        const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::SURFACE_CAPABILITIES_2_KHR;
+    }
     #[repr(C)]
     #[derive(Clone, Copy)]
     pub struct SurfaceFormat2KHR<'a> {
@@ -76,6 +82,9 @@ pub(crate) mod reexport {
         pub p_next: *mut core::ffi::c_void,
         pub surface_format: crate::vk::SurfaceFormatKHR,
         pub _marker: ::core::marker::PhantomData<&'a ()>,
+    }
+    unsafe impl<'a> crate::TaggedStructure<'a> for SurfaceFormat2KHR<'a> {
+        const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::SURFACE_FORMAT_2_KHR;
     }
     ///Provided by [`khr::get_surface_capabilities2`](crate::khr::get_surface_capabilities2)
     impl crate::vk::StructureType {

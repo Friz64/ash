@@ -13,6 +13,10 @@ pub struct VideoEncodeIntraRefreshCapabilitiesKHR<'a> {
     pub non_rectangular_intra_refresh_regions: crate::vk::Bool32,
     pub _marker: ::core::marker::PhantomData<&'a ()>,
 }
+unsafe impl<'a> crate::TaggedStructure<'a>
+for VideoEncodeIntraRefreshCapabilitiesKHR<'a> {
+    const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::VIDEO_ENCODE_INTRA_REFRESH_CAPABILITIES_KHR;
+}
 #[repr(C)]
 #[derive(Clone, Copy)]
 pub struct VideoEncodeSessionIntraRefreshCreateInfoKHR<'a> {
@@ -20,6 +24,10 @@ pub struct VideoEncodeSessionIntraRefreshCreateInfoKHR<'a> {
     pub p_next: *const core::ffi::c_void,
     pub intra_refresh_mode: crate::vk::VideoEncodeIntraRefreshModeFlagBitsKHR,
     pub _marker: ::core::marker::PhantomData<&'a ()>,
+}
+unsafe impl<'a> crate::TaggedStructure<'a>
+for VideoEncodeSessionIntraRefreshCreateInfoKHR<'a> {
+    const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::VIDEO_ENCODE_SESSION_INTRA_REFRESH_CREATE_INFO_KHR;
 }
 #[repr(C)]
 #[derive(Clone, Copy)]
@@ -30,6 +38,9 @@ pub struct VideoEncodeIntraRefreshInfoKHR<'a> {
     pub intra_refresh_index: u32,
     pub _marker: ::core::marker::PhantomData<&'a ()>,
 }
+unsafe impl<'a> crate::TaggedStructure<'a> for VideoEncodeIntraRefreshInfoKHR<'a> {
+    const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::VIDEO_ENCODE_INTRA_REFRESH_INFO_KHR;
+}
 #[repr(C)]
 #[derive(Clone, Copy)]
 pub struct VideoReferenceIntraRefreshInfoKHR<'a> {
@@ -38,6 +49,9 @@ pub struct VideoReferenceIntraRefreshInfoKHR<'a> {
     pub dirty_intra_refresh_regions: u32,
     pub _marker: ::core::marker::PhantomData<&'a ()>,
 }
+unsafe impl<'a> crate::TaggedStructure<'a> for VideoReferenceIntraRefreshInfoKHR<'a> {
+    const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::VIDEO_REFERENCE_INTRA_REFRESH_INFO_KHR;
+}
 #[repr(C)]
 #[derive(Clone, Copy)]
 pub struct PhysicalDeviceVideoEncodeIntraRefreshFeaturesKHR<'a> {
@@ -45,6 +59,10 @@ pub struct PhysicalDeviceVideoEncodeIntraRefreshFeaturesKHR<'a> {
     pub p_next: *mut core::ffi::c_void,
     pub video_encode_intra_refresh: crate::vk::Bool32,
     pub _marker: ::core::marker::PhantomData<&'a ()>,
+}
+unsafe impl<'a> crate::TaggedStructure<'a>
+for PhysicalDeviceVideoEncodeIntraRefreshFeaturesKHR<'a> {
+    const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::PHYSICAL_DEVICE_VIDEO_ENCODE_INTRA_REFRESH_FEATURES_KHR;
 }
 ///Provided by [`khr::video_encode_intra_refresh`](crate::khr::video_encode_intra_refresh)
 impl crate::vk::StructureType {

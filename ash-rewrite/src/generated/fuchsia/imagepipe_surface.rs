@@ -46,6 +46,10 @@ pub(crate) mod reexport {
         pub image_pipe_handle: crate::platform_types::zx_handle_t,
         pub _marker: ::core::marker::PhantomData<&'a ()>,
     }
+    unsafe impl<'a> crate::TaggedStructure<'a>
+    for ImagePipeSurfaceCreateInfoFUCHSIA<'a> {
+        const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::IMAGEPIPE_SURFACE_CREATE_INFO_FUCHSIA;
+    }
     ///Provided by [`fuchsia::imagepipe_surface`](crate::fuchsia::imagepipe_surface)
     impl crate::vk::StructureType {
         pub const IMAGEPIPE_SURFACE_CREATE_INFO_FUCHSIA: Self = Self(1000214000);

@@ -19,6 +19,10 @@ pub struct PipelineViewportSwizzleStateCreateInfoNV<'a> {
     pub p_viewport_swizzles: *const crate::vk::ViewportSwizzleNV,
     pub _marker: ::core::marker::PhantomData<&'a ()>,
 }
+unsafe impl<'a> crate::TaggedStructure<'a>
+for PipelineViewportSwizzleStateCreateInfoNV<'a> {
+    const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::PIPELINE_VIEWPORT_SWIZZLE_STATE_CREATE_INFO_NV;
+}
 ///Provided by [`nv::viewport_swizzle`](crate::nv::viewport_swizzle)
 impl crate::vk::StructureType {
     pub const PIPELINE_VIEWPORT_SWIZZLE_STATE_CREATE_INFO_NV: Self = Self(1000098000);

@@ -11,6 +11,10 @@ pub struct PipelineCoverageToColorStateCreateInfoNV<'a> {
     pub coverage_to_color_location: u32,
     pub _marker: ::core::marker::PhantomData<&'a ()>,
 }
+unsafe impl<'a> crate::TaggedStructure<'a>
+for PipelineCoverageToColorStateCreateInfoNV<'a> {
+    const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::PIPELINE_COVERAGE_TO_COLOR_STATE_CREATE_INFO_NV;
+}
 ///Provided by [`nv::fragment_coverage_to_color`](crate::nv::fragment_coverage_to_color)
 impl crate::vk::StructureType {
     pub const PIPELINE_COVERAGE_TO_COLOR_STATE_CREATE_INFO_NV: Self = Self(1000149000);

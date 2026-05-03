@@ -9,6 +9,10 @@ pub struct PhysicalDeviceShaderUniformBufferUnsizedArrayFeaturesEXT<'a> {
     pub shader_uniform_buffer_unsized_array: crate::vk::Bool32,
     pub _marker: ::core::marker::PhantomData<&'a ()>,
 }
+unsafe impl<'a> crate::TaggedStructure<'a>
+for PhysicalDeviceShaderUniformBufferUnsizedArrayFeaturesEXT<'a> {
+    const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::PHYSICAL_DEVICE_SHADER_UNIFORM_BUFFER_UNSIZED_ARRAY_FEATURES_EXT;
+}
 ///Provided by [`ext::shader_uniform_buffer_unsized_array`](crate::ext::shader_uniform_buffer_unsized_array)
 impl crate::vk::StructureType {
     pub const PHYSICAL_DEVICE_SHADER_UNIFORM_BUFFER_UNSIZED_ARRAY_FEATURES_EXT: Self = Self(

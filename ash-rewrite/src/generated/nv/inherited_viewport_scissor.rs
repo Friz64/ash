@@ -9,6 +9,10 @@ pub struct PhysicalDeviceInheritedViewportScissorFeaturesNV<'a> {
     pub inherited_viewport_scissor2_d: crate::vk::Bool32,
     pub _marker: ::core::marker::PhantomData<&'a ()>,
 }
+unsafe impl<'a> crate::TaggedStructure<'a>
+for PhysicalDeviceInheritedViewportScissorFeaturesNV<'a> {
+    const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::PHYSICAL_DEVICE_INHERITED_VIEWPORT_SCISSOR_FEATURES_NV;
+}
 #[repr(C)]
 #[derive(Clone, Copy)]
 pub struct CommandBufferInheritanceViewportScissorInfoNV<'a> {
@@ -18,6 +22,10 @@ pub struct CommandBufferInheritanceViewportScissorInfoNV<'a> {
     pub viewport_depth_count: u32,
     pub p_viewport_depths: *const crate::vk::Viewport,
     pub _marker: ::core::marker::PhantomData<&'a ()>,
+}
+unsafe impl<'a> crate::TaggedStructure<'a>
+for CommandBufferInheritanceViewportScissorInfoNV<'a> {
+    const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::COMMAND_BUFFER_INHERITANCE_VIEWPORT_SCISSOR_INFO_NV;
 }
 ///Provided by [`nv::inherited_viewport_scissor`](crate::nv::inherited_viewport_scissor)
 impl crate::vk::StructureType {

@@ -10,6 +10,9 @@ pub struct HdrVividDynamicMetadataHUAWEI<'a> {
     pub p_dynamic_metadata: *const core::ffi::c_void,
     pub _marker: ::core::marker::PhantomData<&'a ()>,
 }
+unsafe impl<'a> crate::TaggedStructure<'a> for HdrVividDynamicMetadataHUAWEI<'a> {
+    const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::HDR_VIVID_DYNAMIC_METADATA_HUAWEI;
+}
 #[repr(C)]
 #[derive(Clone, Copy)]
 pub struct PhysicalDeviceHdrVividFeaturesHUAWEI<'a> {
@@ -17,6 +20,9 @@ pub struct PhysicalDeviceHdrVividFeaturesHUAWEI<'a> {
     pub p_next: *mut core::ffi::c_void,
     pub hdr_vivid: crate::vk::Bool32,
     pub _marker: ::core::marker::PhantomData<&'a ()>,
+}
+unsafe impl<'a> crate::TaggedStructure<'a> for PhysicalDeviceHdrVividFeaturesHUAWEI<'a> {
+    const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::PHYSICAL_DEVICE_HDR_VIVID_FEATURES_HUAWEI;
 }
 ///Provided by [`huawei::hdr_vivid`](crate::huawei::hdr_vivid)
 impl crate::vk::StructureType {

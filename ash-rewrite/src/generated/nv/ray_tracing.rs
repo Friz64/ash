@@ -258,6 +258,10 @@ pub(crate) mod reexport {
         pub intersection_shader: u32,
         pub _marker: ::core::marker::PhantomData<&'a ()>,
     }
+    unsafe impl<'a> crate::TaggedStructure<'a>
+    for RayTracingShaderGroupCreateInfoNV<'a> {
+        const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::RAY_TRACING_SHADER_GROUP_CREATE_INFO_NV;
+    }
     #[repr(C)]
     #[derive(Clone, Copy)]
     pub struct RayTracingPipelineCreateInfoNV<'a> {
@@ -273,6 +277,9 @@ pub(crate) mod reexport {
         pub base_pipeline_handle: crate::vk::Pipeline,
         pub base_pipeline_index: i32,
         pub _marker: ::core::marker::PhantomData<&'a ()>,
+    }
+    unsafe impl<'a> crate::TaggedStructure<'a> for RayTracingPipelineCreateInfoNV<'a> {
+        const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::RAY_TRACING_PIPELINE_CREATE_INFO_NV;
     }
     #[repr(C)]
     #[derive(Clone, Copy)]
@@ -292,6 +299,9 @@ pub(crate) mod reexport {
         pub transform_offset: crate::vk::DeviceSize,
         pub _marker: ::core::marker::PhantomData<&'a ()>,
     }
+    unsafe impl<'a> crate::TaggedStructure<'a> for GeometryTrianglesNV<'a> {
+        const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::GEOMETRY_TRIANGLES_NV;
+    }
     #[repr(C)]
     #[derive(Clone, Copy)]
     pub struct GeometryAABBNV<'a> {
@@ -302,6 +312,9 @@ pub(crate) mod reexport {
         pub stride: u32,
         pub offset: crate::vk::DeviceSize,
         pub _marker: ::core::marker::PhantomData<&'a ()>,
+    }
+    unsafe impl<'a> crate::TaggedStructure<'a> for GeometryAABBNV<'a> {
+        const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::GEOMETRY_AABB_NV;
     }
     #[repr(C)]
     #[derive(Clone, Copy)]
@@ -320,6 +333,9 @@ pub(crate) mod reexport {
         pub flags: crate::vk::GeometryFlagsKHR,
         pub _marker: ::core::marker::PhantomData<&'a ()>,
     }
+    unsafe impl<'a> crate::TaggedStructure<'a> for GeometryNV<'a> {
+        const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::GEOMETRY_NV;
+    }
     #[repr(C)]
     #[derive(Clone, Copy)]
     pub struct AccelerationStructureInfoNV<'a> {
@@ -332,6 +348,9 @@ pub(crate) mod reexport {
         pub p_geometries: *const crate::vk::GeometryNV<'a>,
         pub _marker: ::core::marker::PhantomData<&'a ()>,
     }
+    unsafe impl<'a> crate::TaggedStructure<'a> for AccelerationStructureInfoNV<'a> {
+        const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::ACCELERATION_STRUCTURE_INFO_NV;
+    }
     #[repr(C)]
     #[derive(Clone, Copy)]
     pub struct AccelerationStructureCreateInfoNV<'a> {
@@ -340,6 +359,10 @@ pub(crate) mod reexport {
         pub compacted_size: crate::vk::DeviceSize,
         pub info: crate::vk::AccelerationStructureInfoNV<'a>,
         pub _marker: ::core::marker::PhantomData<&'a ()>,
+    }
+    unsafe impl<'a> crate::TaggedStructure<'a>
+    for AccelerationStructureCreateInfoNV<'a> {
+        const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::ACCELERATION_STRUCTURE_CREATE_INFO_NV;
     }
     #[repr(C)]
     #[derive(Clone, Copy)]
@@ -353,6 +376,10 @@ pub(crate) mod reexport {
         pub p_device_indices: *const u32,
         pub _marker: ::core::marker::PhantomData<&'a ()>,
     }
+    unsafe impl<'a> crate::TaggedStructure<'a>
+    for BindAccelerationStructureMemoryInfoNV<'a> {
+        const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::BIND_ACCELERATION_STRUCTURE_MEMORY_INFO_NV;
+    }
     #[repr(C)]
     #[derive(Clone, Copy)]
     pub struct WriteDescriptorSetAccelerationStructureNV<'a> {
@@ -362,6 +389,10 @@ pub(crate) mod reexport {
         pub p_acceleration_structures: *const crate::vk::AccelerationStructureNV,
         pub _marker: ::core::marker::PhantomData<&'a ()>,
     }
+    unsafe impl<'a> crate::TaggedStructure<'a>
+    for WriteDescriptorSetAccelerationStructureNV<'a> {
+        const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::WRITE_DESCRIPTOR_SET_ACCELERATION_STRUCTURE_NV;
+    }
     #[repr(C)]
     #[derive(Clone, Copy)]
     pub struct AccelerationStructureMemoryRequirementsInfoNV<'a> {
@@ -370,6 +401,10 @@ pub(crate) mod reexport {
         pub _type: crate::vk::AccelerationStructureMemoryRequirementsTypeNV,
         pub acceleration_structure: crate::vk::AccelerationStructureNV,
         pub _marker: ::core::marker::PhantomData<&'a ()>,
+    }
+    unsafe impl<'a> crate::TaggedStructure<'a>
+    for AccelerationStructureMemoryRequirementsInfoNV<'a> {
+        const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::ACCELERATION_STRUCTURE_MEMORY_REQUIREMENTS_INFO_NV;
     }
     #[repr(C)]
     #[derive(Clone, Copy)]
@@ -385,6 +420,10 @@ pub(crate) mod reexport {
         pub max_triangle_count: u64,
         pub max_descriptor_set_acceleration_structures: u32,
         pub _marker: ::core::marker::PhantomData<&'a ()>,
+    }
+    unsafe impl<'a> crate::TaggedStructure<'a>
+    for PhysicalDeviceRayTracingPropertiesNV<'a> {
+        const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::PHYSICAL_DEVICE_RAY_TRACING_PROPERTIES_NV;
     }
     pub type AabbPositionsNV = crate::vk::AabbPositionsKHR;
     pub type TransformMatrixNV = crate::vk::TransformMatrixKHR;

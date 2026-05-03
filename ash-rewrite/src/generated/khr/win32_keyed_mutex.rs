@@ -15,6 +15,9 @@ pub struct Win32KeyedMutexAcquireReleaseInfoKHR<'a> {
     pub p_release_keys: *const u64,
     pub _marker: ::core::marker::PhantomData<&'a ()>,
 }
+unsafe impl<'a> crate::TaggedStructure<'a> for Win32KeyedMutexAcquireReleaseInfoKHR<'a> {
+    const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::WIN32_KEYED_MUTEX_ACQUIRE_RELEASE_INFO_KHR;
+}
 ///Provided by [`khr::win32_keyed_mutex`](crate::khr::win32_keyed_mutex)
 impl crate::vk::StructureType {
     pub const WIN32_KEYED_MUTEX_ACQUIRE_RELEASE_INFO_KHR: Self = Self(1000075000);

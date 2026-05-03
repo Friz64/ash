@@ -535,6 +535,10 @@ pub(crate) mod reexport {
         pub extended_dynamic_state3_shading_rate_image_enable: crate::vk::Bool32,
         pub _marker: ::core::marker::PhantomData<&'a ()>,
     }
+    unsafe impl<'a> crate::TaggedStructure<'a>
+    for PhysicalDeviceExtendedDynamicState3FeaturesEXT<'a> {
+        const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::PHYSICAL_DEVICE_EXTENDED_DYNAMIC_STATE_3_FEATURES_EXT;
+    }
     #[repr(C)]
     #[derive(Clone, Copy)]
     pub struct PhysicalDeviceExtendedDynamicState3PropertiesEXT<'a> {
@@ -542,6 +546,10 @@ pub(crate) mod reexport {
         pub p_next: *mut core::ffi::c_void,
         pub dynamic_primitive_topology_unrestricted: crate::vk::Bool32,
         pub _marker: ::core::marker::PhantomData<&'a ()>,
+    }
+    unsafe impl<'a> crate::TaggedStructure<'a>
+    for PhysicalDeviceExtendedDynamicState3PropertiesEXT<'a> {
+        const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::PHYSICAL_DEVICE_EXTENDED_DYNAMIC_STATE_3_PROPERTIES_EXT;
     }
     #[repr(C)]
     #[derive(Clone, Copy)]

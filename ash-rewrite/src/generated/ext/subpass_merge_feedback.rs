@@ -9,6 +9,9 @@ pub struct RenderPassCreationControlEXT<'a> {
     pub disallow_merging: crate::vk::Bool32,
     pub _marker: ::core::marker::PhantomData<&'a ()>,
 }
+unsafe impl<'a> crate::TaggedStructure<'a> for RenderPassCreationControlEXT<'a> {
+    const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::RENDER_PASS_CREATION_CONTROL_EXT;
+}
 #[repr(C)]
 #[derive(Clone, Copy)]
 pub struct RenderPassCreationFeedbackInfoEXT {
@@ -21,6 +24,10 @@ pub struct RenderPassCreationFeedbackCreateInfoEXT<'a> {
     pub p_next: *const core::ffi::c_void,
     pub p_render_pass_feedback: *mut crate::vk::RenderPassCreationFeedbackInfoEXT,
     pub _marker: ::core::marker::PhantomData<&'a ()>,
+}
+unsafe impl<'a> crate::TaggedStructure<'a>
+for RenderPassCreationFeedbackCreateInfoEXT<'a> {
+    const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::RENDER_PASS_CREATION_FEEDBACK_CREATE_INFO_EXT;
 }
 #[repr(C)]
 #[derive(Clone, Copy)]
@@ -37,6 +44,10 @@ pub struct RenderPassSubpassFeedbackCreateInfoEXT<'a> {
     pub p_subpass_feedback: *mut crate::vk::RenderPassSubpassFeedbackInfoEXT,
     pub _marker: ::core::marker::PhantomData<&'a ()>,
 }
+unsafe impl<'a> crate::TaggedStructure<'a>
+for RenderPassSubpassFeedbackCreateInfoEXT<'a> {
+    const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::RENDER_PASS_SUBPASS_FEEDBACK_CREATE_INFO_EXT;
+}
 #[repr(C)]
 #[derive(Clone, Copy)]
 pub struct PhysicalDeviceSubpassMergeFeedbackFeaturesEXT<'a> {
@@ -44,6 +55,10 @@ pub struct PhysicalDeviceSubpassMergeFeedbackFeaturesEXT<'a> {
     pub p_next: *mut core::ffi::c_void,
     pub subpass_merge_feedback: crate::vk::Bool32,
     pub _marker: ::core::marker::PhantomData<&'a ()>,
+}
+unsafe impl<'a> crate::TaggedStructure<'a>
+for PhysicalDeviceSubpassMergeFeedbackFeaturesEXT<'a> {
+    const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::PHYSICAL_DEVICE_SUBPASS_MERGE_FEEDBACK_FEATURES_EXT;
 }
 ///Provided by [`ext::subpass_merge_feedback`](crate::ext::subpass_merge_feedback)
 impl crate::vk::StructureType {

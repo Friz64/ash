@@ -11,6 +11,9 @@ pub struct ImageViewSampleWeightCreateInfoQCOM<'a> {
     pub num_phases: u32,
     pub _marker: ::core::marker::PhantomData<&'a ()>,
 }
+unsafe impl<'a> crate::TaggedStructure<'a> for ImageViewSampleWeightCreateInfoQCOM<'a> {
+    const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::IMAGE_VIEW_SAMPLE_WEIGHT_CREATE_INFO_QCOM;
+}
 #[repr(C)]
 #[derive(Clone, Copy)]
 pub struct PhysicalDeviceImageProcessingFeaturesQCOM<'a> {
@@ -20,6 +23,10 @@ pub struct PhysicalDeviceImageProcessingFeaturesQCOM<'a> {
     pub texture_box_filter: crate::vk::Bool32,
     pub texture_block_match: crate::vk::Bool32,
     pub _marker: ::core::marker::PhantomData<&'a ()>,
+}
+unsafe impl<'a> crate::TaggedStructure<'a>
+for PhysicalDeviceImageProcessingFeaturesQCOM<'a> {
+    const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::PHYSICAL_DEVICE_IMAGE_PROCESSING_FEATURES_QCOM;
 }
 #[repr(C)]
 #[derive(Clone, Copy)]
@@ -31,6 +38,10 @@ pub struct PhysicalDeviceImageProcessingPropertiesQCOM<'a> {
     pub max_block_match_region: crate::vk::Extent2D,
     pub max_box_filter_block_size: crate::vk::Extent2D,
     pub _marker: ::core::marker::PhantomData<&'a ()>,
+}
+unsafe impl<'a> crate::TaggedStructure<'a>
+for PhysicalDeviceImageProcessingPropertiesQCOM<'a> {
+    const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::PHYSICAL_DEVICE_IMAGE_PROCESSING_PROPERTIES_QCOM;
 }
 ///Provided by [`qcom::image_processing`](crate::qcom::image_processing)
 impl crate::vk::DescriptorType {

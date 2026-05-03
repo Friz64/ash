@@ -10,6 +10,9 @@ pub struct VideoDecodeAV1ProfileInfoKHR<'a> {
     pub film_grain_support: crate::vk::Bool32,
     pub _marker: ::core::marker::PhantomData<&'a ()>,
 }
+unsafe impl<'a> crate::TaggedStructure<'a> for VideoDecodeAV1ProfileInfoKHR<'a> {
+    const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::VIDEO_DECODE_AV1_PROFILE_INFO_KHR;
+}
 #[repr(C)]
 #[derive(Clone, Copy)]
 pub struct VideoDecodeAV1CapabilitiesKHR<'a> {
@@ -18,6 +21,9 @@ pub struct VideoDecodeAV1CapabilitiesKHR<'a> {
     pub max_level: crate::vk::AV1Level,
     pub _marker: ::core::marker::PhantomData<&'a ()>,
 }
+unsafe impl<'a> crate::TaggedStructure<'a> for VideoDecodeAV1CapabilitiesKHR<'a> {
+    const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::VIDEO_DECODE_AV1_CAPABILITIES_KHR;
+}
 #[repr(C)]
 #[derive(Clone, Copy)]
 pub struct VideoDecodeAV1SessionParametersCreateInfoKHR<'a> {
@@ -25,6 +31,10 @@ pub struct VideoDecodeAV1SessionParametersCreateInfoKHR<'a> {
     pub p_next: *const core::ffi::c_void,
     pub p_std_sequence_header: *const crate::vk::AV1SequenceHeader<'a>,
     pub _marker: ::core::marker::PhantomData<&'a ()>,
+}
+unsafe impl<'a> crate::TaggedStructure<'a>
+for VideoDecodeAV1SessionParametersCreateInfoKHR<'a> {
+    const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::VIDEO_DECODE_AV1_SESSION_PARAMETERS_CREATE_INFO_KHR;
 }
 #[repr(C)]
 #[derive(Clone, Copy)]
@@ -40,6 +50,9 @@ pub struct VideoDecodeAV1PictureInfoKHR<'a> {
     pub p_tile_sizes: *const u32,
     pub _marker: ::core::marker::PhantomData<&'a ()>,
 }
+unsafe impl<'a> crate::TaggedStructure<'a> for VideoDecodeAV1PictureInfoKHR<'a> {
+    const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::VIDEO_DECODE_AV1_PICTURE_INFO_KHR;
+}
 #[repr(C)]
 #[derive(Clone, Copy)]
 pub struct VideoDecodeAV1DpbSlotInfoKHR<'a> {
@@ -47,6 +60,9 @@ pub struct VideoDecodeAV1DpbSlotInfoKHR<'a> {
     pub p_next: *const core::ffi::c_void,
     pub p_std_reference_info: *const crate::vk::DecodeAV1ReferenceInfo,
     pub _marker: ::core::marker::PhantomData<&'a ()>,
+}
+unsafe impl<'a> crate::TaggedStructure<'a> for VideoDecodeAV1DpbSlotInfoKHR<'a> {
+    const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::VIDEO_DECODE_AV1_DPB_SLOT_INFO_KHR;
 }
 ///Provided by [`khr::video_decode_av1`](crate::khr::video_decode_av1)
 impl crate::vk::StructureType {

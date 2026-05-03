@@ -301,6 +301,10 @@ pub(crate) mod reexport {
         pub p_acceleration_structures: *const crate::vk::AccelerationStructureKHR,
         pub _marker: ::core::marker::PhantomData<&'a ()>,
     }
+    unsafe impl<'a> crate::TaggedStructure<'a>
+    for WriteDescriptorSetAccelerationStructureKHR<'a> {
+        const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::WRITE_DESCRIPTOR_SET_ACCELERATION_STRUCTURE_KHR;
+    }
     #[repr(C)]
     #[derive(Clone, Copy)]
     pub struct PhysicalDeviceAccelerationStructureFeaturesKHR<'a> {
@@ -312,6 +316,10 @@ pub(crate) mod reexport {
         pub acceleration_structure_host_commands: crate::vk::Bool32,
         pub descriptor_binding_acceleration_structure_update_after_bind: crate::vk::Bool32,
         pub _marker: ::core::marker::PhantomData<&'a ()>,
+    }
+    unsafe impl<'a> crate::TaggedStructure<'a>
+    for PhysicalDeviceAccelerationStructureFeaturesKHR<'a> {
+        const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::PHYSICAL_DEVICE_ACCELERATION_STRUCTURE_FEATURES_KHR;
     }
     #[repr(C)]
     #[derive(Clone, Copy)]
@@ -328,6 +336,10 @@ pub(crate) mod reexport {
         pub min_acceleration_structure_scratch_offset_alignment: u32,
         pub _marker: ::core::marker::PhantomData<&'a ()>,
     }
+    unsafe impl<'a> crate::TaggedStructure<'a>
+    for PhysicalDeviceAccelerationStructurePropertiesKHR<'a> {
+        const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::PHYSICAL_DEVICE_ACCELERATION_STRUCTURE_PROPERTIES_KHR;
+    }
     #[repr(C)]
     #[derive(Clone, Copy)]
     pub struct AccelerationStructureGeometryTrianglesDataKHR<'a> {
@@ -342,6 +354,10 @@ pub(crate) mod reexport {
         pub transform_data: crate::vk::DeviceOrHostAddressConstKHR,
         pub _marker: ::core::marker::PhantomData<&'a ()>,
     }
+    unsafe impl<'a> crate::TaggedStructure<'a>
+    for AccelerationStructureGeometryTrianglesDataKHR<'a> {
+        const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::ACCELERATION_STRUCTURE_GEOMETRY_TRIANGLES_DATA_KHR;
+    }
     #[repr(C)]
     #[derive(Clone, Copy)]
     pub struct AccelerationStructureGeometryAabbsDataKHR<'a> {
@@ -350,6 +366,10 @@ pub(crate) mod reexport {
         pub data: crate::vk::DeviceOrHostAddressConstKHR,
         pub stride: crate::vk::DeviceSize,
         pub _marker: ::core::marker::PhantomData<&'a ()>,
+    }
+    unsafe impl<'a> crate::TaggedStructure<'a>
+    for AccelerationStructureGeometryAabbsDataKHR<'a> {
+        const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::ACCELERATION_STRUCTURE_GEOMETRY_AABBS_DATA_KHR;
     }
     #[repr(C)]
     #[derive(Clone, Copy)]
@@ -360,6 +380,10 @@ pub(crate) mod reexport {
         pub data: crate::vk::DeviceOrHostAddressConstKHR,
         pub _marker: ::core::marker::PhantomData<&'a ()>,
     }
+    unsafe impl<'a> crate::TaggedStructure<'a>
+    for AccelerationStructureGeometryInstancesDataKHR<'a> {
+        const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::ACCELERATION_STRUCTURE_GEOMETRY_INSTANCES_DATA_KHR;
+    }
     #[repr(C)]
     #[derive(Clone, Copy)]
     pub struct AccelerationStructureGeometryKHR<'a> {
@@ -369,6 +393,9 @@ pub(crate) mod reexport {
         pub geometry: crate::vk::AccelerationStructureGeometryDataKHR<'a>,
         pub flags: crate::vk::GeometryFlagsKHR,
         pub _marker: ::core::marker::PhantomData<&'a ()>,
+    }
+    unsafe impl<'a> crate::TaggedStructure<'a> for AccelerationStructureGeometryKHR<'a> {
+        const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::ACCELERATION_STRUCTURE_GEOMETRY_KHR;
     }
     #[repr(C)]
     #[derive(Clone, Copy)]
@@ -385,6 +412,10 @@ pub(crate) mod reexport {
         pub pp_geometries: *const *const crate::vk::AccelerationStructureGeometryKHR<'a>,
         pub scratch_data: crate::vk::DeviceOrHostAddressKHR,
         pub _marker: ::core::marker::PhantomData<&'a ()>,
+    }
+    unsafe impl<'a> crate::TaggedStructure<'a>
+    for AccelerationStructureBuildGeometryInfoKHR<'a> {
+        const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::ACCELERATION_STRUCTURE_BUILD_GEOMETRY_INFO_KHR;
     }
     #[repr(C)]
     #[derive(Clone, Copy)]
@@ -406,6 +437,10 @@ pub(crate) mod reexport {
         pub _type: crate::vk::AccelerationStructureTypeKHR,
         pub device_address: crate::vk::DeviceAddress,
         pub _marker: ::core::marker::PhantomData<&'a ()>,
+    }
+    unsafe impl<'a> crate::TaggedStructure<'a>
+    for AccelerationStructureCreateInfoKHR<'a> {
+        const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::ACCELERATION_STRUCTURE_CREATE_INFO_KHR;
     }
     #[repr(C)]
     #[derive(Clone, Copy)]
@@ -442,6 +477,10 @@ pub(crate) mod reexport {
         pub acceleration_structure: crate::vk::AccelerationStructureKHR,
         pub _marker: ::core::marker::PhantomData<&'a ()>,
     }
+    unsafe impl<'a> crate::TaggedStructure<'a>
+    for AccelerationStructureDeviceAddressInfoKHR<'a> {
+        const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::ACCELERATION_STRUCTURE_DEVICE_ADDRESS_INFO_KHR;
+    }
     #[repr(C)]
     #[derive(Clone, Copy)]
     pub struct AccelerationStructureVersionInfoKHR<'a> {
@@ -449,6 +488,10 @@ pub(crate) mod reexport {
         pub p_next: *const core::ffi::c_void,
         pub p_version_data: *const u8,
         pub _marker: ::core::marker::PhantomData<&'a ()>,
+    }
+    unsafe impl<'a> crate::TaggedStructure<'a>
+    for AccelerationStructureVersionInfoKHR<'a> {
+        const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::ACCELERATION_STRUCTURE_VERSION_INFO_KHR;
     }
     #[repr(C)]
     #[derive(Clone, Copy)]
@@ -460,6 +503,9 @@ pub(crate) mod reexport {
         pub mode: crate::vk::CopyAccelerationStructureModeKHR,
         pub _marker: ::core::marker::PhantomData<&'a ()>,
     }
+    unsafe impl<'a> crate::TaggedStructure<'a> for CopyAccelerationStructureInfoKHR<'a> {
+        const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::COPY_ACCELERATION_STRUCTURE_INFO_KHR;
+    }
     #[repr(C)]
     #[derive(Clone, Copy)]
     pub struct CopyAccelerationStructureToMemoryInfoKHR<'a> {
@@ -469,6 +515,10 @@ pub(crate) mod reexport {
         pub dst: crate::vk::DeviceOrHostAddressKHR,
         pub mode: crate::vk::CopyAccelerationStructureModeKHR,
         pub _marker: ::core::marker::PhantomData<&'a ()>,
+    }
+    unsafe impl<'a> crate::TaggedStructure<'a>
+    for CopyAccelerationStructureToMemoryInfoKHR<'a> {
+        const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::COPY_ACCELERATION_STRUCTURE_TO_MEMORY_INFO_KHR;
     }
     #[repr(C)]
     #[derive(Clone, Copy)]
@@ -480,6 +530,10 @@ pub(crate) mod reexport {
         pub mode: crate::vk::CopyAccelerationStructureModeKHR,
         pub _marker: ::core::marker::PhantomData<&'a ()>,
     }
+    unsafe impl<'a> crate::TaggedStructure<'a>
+    for CopyMemoryToAccelerationStructureInfoKHR<'a> {
+        const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::COPY_MEMORY_TO_ACCELERATION_STRUCTURE_INFO_KHR;
+    }
     #[repr(C)]
     #[derive(Clone, Copy)]
     pub struct AccelerationStructureBuildSizesInfoKHR<'a> {
@@ -489,6 +543,10 @@ pub(crate) mod reexport {
         pub update_scratch_size: crate::vk::DeviceSize,
         pub build_scratch_size: crate::vk::DeviceSize,
         pub _marker: ::core::marker::PhantomData<&'a ()>,
+    }
+    unsafe impl<'a> crate::TaggedStructure<'a>
+    for AccelerationStructureBuildSizesInfoKHR<'a> {
+        const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::ACCELERATION_STRUCTURE_BUILD_SIZES_INFO_KHR;
     }
     #[repr(C)]
     #[derive(Clone, Copy)]

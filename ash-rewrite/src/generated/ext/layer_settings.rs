@@ -10,6 +10,9 @@ pub struct LayerSettingsCreateInfoEXT<'a> {
     pub p_settings: *const crate::vk::LayerSettingEXT<'a>,
     pub _marker: ::core::marker::PhantomData<&'a ()>,
 }
+unsafe impl<'a> crate::TaggedStructure<'a> for LayerSettingsCreateInfoEXT<'a> {
+    const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::LAYER_SETTINGS_CREATE_INFO_EXT;
+}
 #[repr(C)]
 #[derive(Clone, Copy)]
 pub struct LayerSettingEXT<'a> {

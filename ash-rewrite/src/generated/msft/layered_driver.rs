@@ -9,6 +9,10 @@ pub struct PhysicalDeviceLayeredDriverPropertiesMSFT<'a> {
     pub underlying_api: crate::vk::LayeredDriverUnderlyingApiMSFT,
     pub _marker: ::core::marker::PhantomData<&'a ()>,
 }
+unsafe impl<'a> crate::TaggedStructure<'a>
+for PhysicalDeviceLayeredDriverPropertiesMSFT<'a> {
+    const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::PHYSICAL_DEVICE_LAYERED_DRIVER_PROPERTIES_MSFT;
+}
 ///Provided by [`msft::layered_driver`](crate::msft::layered_driver)
 impl crate::vk::StructureType {
     pub const PHYSICAL_DEVICE_LAYERED_DRIVER_PROPERTIES_MSFT: Self = Self(1000530000);

@@ -95,6 +95,9 @@ pub(crate) mod reexport {
         pub display_properties: crate::vk::DisplayPropertiesKHR<'a>,
         pub _marker: ::core::marker::PhantomData<&'a ()>,
     }
+    unsafe impl<'a> crate::TaggedStructure<'a> for DisplayProperties2KHR<'a> {
+        const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::DISPLAY_PROPERTIES_2_KHR;
+    }
     #[repr(C)]
     #[derive(Clone, Copy)]
     pub struct DisplayPlaneProperties2KHR<'a> {
@@ -103,6 +106,9 @@ pub(crate) mod reexport {
         pub display_plane_properties: crate::vk::DisplayPlanePropertiesKHR,
         pub _marker: ::core::marker::PhantomData<&'a ()>,
     }
+    unsafe impl<'a> crate::TaggedStructure<'a> for DisplayPlaneProperties2KHR<'a> {
+        const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::DISPLAY_PLANE_PROPERTIES_2_KHR;
+    }
     #[repr(C)]
     #[derive(Clone, Copy)]
     pub struct DisplayModeProperties2KHR<'a> {
@@ -110,6 +116,9 @@ pub(crate) mod reexport {
         pub p_next: *mut core::ffi::c_void,
         pub display_mode_properties: crate::vk::DisplayModePropertiesKHR,
         pub _marker: ::core::marker::PhantomData<&'a ()>,
+    }
+    unsafe impl<'a> crate::TaggedStructure<'a> for DisplayModeProperties2KHR<'a> {
+        const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::DISPLAY_MODE_PROPERTIES_2_KHR;
     }
     #[repr(C)]
     #[derive(Clone, Copy)]
@@ -120,6 +129,9 @@ pub(crate) mod reexport {
         pub plane_index: u32,
         pub _marker: ::core::marker::PhantomData<&'a ()>,
     }
+    unsafe impl<'a> crate::TaggedStructure<'a> for DisplayPlaneInfo2KHR<'a> {
+        const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::DISPLAY_PLANE_INFO_2_KHR;
+    }
     #[repr(C)]
     #[derive(Clone, Copy)]
     pub struct DisplayPlaneCapabilities2KHR<'a> {
@@ -127,6 +139,9 @@ pub(crate) mod reexport {
         pub p_next: *mut core::ffi::c_void,
         pub capabilities: crate::vk::DisplayPlaneCapabilitiesKHR,
         pub _marker: ::core::marker::PhantomData<&'a ()>,
+    }
+    unsafe impl<'a> crate::TaggedStructure<'a> for DisplayPlaneCapabilities2KHR<'a> {
+        const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::DISPLAY_PLANE_CAPABILITIES_2_KHR;
     }
     ///Provided by [`khr::get_display_properties2`](crate::khr::get_display_properties2)
     impl crate::vk::StructureType {

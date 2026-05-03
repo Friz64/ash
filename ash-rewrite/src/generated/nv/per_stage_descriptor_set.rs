@@ -10,6 +10,10 @@ pub struct PhysicalDevicePerStageDescriptorSetFeaturesNV<'a> {
     pub dynamic_pipeline_layout: crate::vk::Bool32,
     pub _marker: ::core::marker::PhantomData<&'a ()>,
 }
+unsafe impl<'a> crate::TaggedStructure<'a>
+for PhysicalDevicePerStageDescriptorSetFeaturesNV<'a> {
+    const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::PHYSICAL_DEVICE_PER_STAGE_DESCRIPTOR_SET_FEATURES_NV;
+}
 ///Provided by [`nv::per_stage_descriptor_set`](crate::nv::per_stage_descriptor_set)
 impl crate::vk::StructureType {
     pub const PHYSICAL_DEVICE_PER_STAGE_DESCRIPTOR_SET_FEATURES_NV: Self = Self(

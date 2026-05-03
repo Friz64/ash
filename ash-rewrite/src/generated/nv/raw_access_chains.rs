@@ -9,6 +9,10 @@ pub struct PhysicalDeviceRawAccessChainsFeaturesNV<'a> {
     pub shader_raw_access_chains: crate::vk::Bool32,
     pub _marker: ::core::marker::PhantomData<&'a ()>,
 }
+unsafe impl<'a> crate::TaggedStructure<'a>
+for PhysicalDeviceRawAccessChainsFeaturesNV<'a> {
+    const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::PHYSICAL_DEVICE_RAW_ACCESS_CHAINS_FEATURES_NV;
+}
 ///Provided by [`nv::raw_access_chains`](crate::nv::raw_access_chains)
 impl crate::vk::StructureType {
     pub const PHYSICAL_DEVICE_RAW_ACCESS_CHAINS_FEATURES_NV: Self = Self(1000555000);

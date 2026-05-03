@@ -9,6 +9,10 @@ pub struct PhysicalDeviceCoherentMemoryFeaturesAMD<'a> {
     pub device_coherent_memory: crate::vk::Bool32,
     pub _marker: ::core::marker::PhantomData<&'a ()>,
 }
+unsafe impl<'a> crate::TaggedStructure<'a>
+for PhysicalDeviceCoherentMemoryFeaturesAMD<'a> {
+    const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::PHYSICAL_DEVICE_COHERENT_MEMORY_FEATURES_AMD;
+}
 ///Provided by [`amd::device_coherent_memory`](crate::amd::device_coherent_memory)
 impl crate::vk::StructureType {
     pub const PHYSICAL_DEVICE_COHERENT_MEMORY_FEATURES_AMD: Self = Self(1000229000);

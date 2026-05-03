@@ -84,6 +84,9 @@ pub(crate) mod reexport {
         pub p_user_data: *mut core::ffi::c_void,
         pub _marker: ::core::marker::PhantomData<&'a ()>,
     }
+    unsafe impl<'a> crate::TaggedStructure<'a> for DebugReportCallbackCreateInfoEXT<'a> {
+        const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::DEBUG_REPORT_CALLBACK_CREATE_INFO_EXT;
+    }
     ///Provided by [`ext::debug_report`](crate::ext::debug_report)
     impl crate::vk::StructureType {
         pub const DEBUG_REPORT_CALLBACK_CREATE_INFO_EXT: Self = Self(1000011000);

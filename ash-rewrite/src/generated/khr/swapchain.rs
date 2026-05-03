@@ -209,6 +209,9 @@ pub(crate) mod reexport {
         pub old_swapchain: crate::vk::SwapchainKHR,
         pub _marker: ::core::marker::PhantomData<&'a ()>,
     }
+    unsafe impl<'a> crate::TaggedStructure<'a> for SwapchainCreateInfoKHR<'a> {
+        const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::SWAPCHAIN_CREATE_INFO_KHR;
+    }
     #[repr(C)]
     #[derive(Clone, Copy)]
     pub struct PresentInfoKHR<'a> {
@@ -222,6 +225,9 @@ pub(crate) mod reexport {
         pub p_results: *mut crate::vk::Result,
         pub _marker: ::core::marker::PhantomData<&'a ()>,
     }
+    unsafe impl<'a> crate::TaggedStructure<'a> for PresentInfoKHR<'a> {
+        const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::PRESENT_INFO_KHR;
+    }
     #[repr(C)]
     #[derive(Clone, Copy)]
     pub struct DeviceGroupPresentCapabilitiesKHR<'a> {
@@ -231,6 +237,10 @@ pub(crate) mod reexport {
         pub modes: crate::vk::DeviceGroupPresentModeFlagsKHR,
         pub _marker: ::core::marker::PhantomData<&'a ()>,
     }
+    unsafe impl<'a> crate::TaggedStructure<'a>
+    for DeviceGroupPresentCapabilitiesKHR<'a> {
+        const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::DEVICE_GROUP_PRESENT_CAPABILITIES_KHR;
+    }
     #[repr(C)]
     #[derive(Clone, Copy)]
     pub struct ImageSwapchainCreateInfoKHR<'a> {
@@ -238,6 +248,9 @@ pub(crate) mod reexport {
         pub p_next: *const core::ffi::c_void,
         pub swapchain: crate::vk::SwapchainKHR,
         pub _marker: ::core::marker::PhantomData<&'a ()>,
+    }
+    unsafe impl<'a> crate::TaggedStructure<'a> for ImageSwapchainCreateInfoKHR<'a> {
+        const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::IMAGE_SWAPCHAIN_CREATE_INFO_KHR;
     }
     #[repr(C)]
     #[derive(Clone, Copy)]
@@ -247,6 +260,9 @@ pub(crate) mod reexport {
         pub swapchain: crate::vk::SwapchainKHR,
         pub image_index: u32,
         pub _marker: ::core::marker::PhantomData<&'a ()>,
+    }
+    unsafe impl<'a> crate::TaggedStructure<'a> for BindImageMemorySwapchainInfoKHR<'a> {
+        const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::BIND_IMAGE_MEMORY_SWAPCHAIN_INFO_KHR;
     }
     #[repr(C)]
     #[derive(Clone, Copy)]
@@ -260,6 +276,9 @@ pub(crate) mod reexport {
         pub device_mask: u32,
         pub _marker: ::core::marker::PhantomData<&'a ()>,
     }
+    unsafe impl<'a> crate::TaggedStructure<'a> for AcquireNextImageInfoKHR<'a> {
+        const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::ACQUIRE_NEXT_IMAGE_INFO_KHR;
+    }
     #[repr(C)]
     #[derive(Clone, Copy)]
     pub struct DeviceGroupPresentInfoKHR<'a> {
@@ -270,6 +289,9 @@ pub(crate) mod reexport {
         pub mode: crate::vk::DeviceGroupPresentModeFlagBitsKHR,
         pub _marker: ::core::marker::PhantomData<&'a ()>,
     }
+    unsafe impl<'a> crate::TaggedStructure<'a> for DeviceGroupPresentInfoKHR<'a> {
+        const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::DEVICE_GROUP_PRESENT_INFO_KHR;
+    }
     #[repr(C)]
     #[derive(Clone, Copy)]
     pub struct DeviceGroupSwapchainCreateInfoKHR<'a> {
@@ -277,6 +299,10 @@ pub(crate) mod reexport {
         pub p_next: *const core::ffi::c_void,
         pub modes: crate::vk::DeviceGroupPresentModeFlagsKHR,
         pub _marker: ::core::marker::PhantomData<&'a ()>,
+    }
+    unsafe impl<'a> crate::TaggedStructure<'a>
+    for DeviceGroupSwapchainCreateInfoKHR<'a> {
+        const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::DEVICE_GROUP_SWAPCHAIN_CREATE_INFO_KHR;
     }
     ///Provided by [`khr::swapchain`](crate::khr::swapchain)
     impl crate::vk::ImageLayout {

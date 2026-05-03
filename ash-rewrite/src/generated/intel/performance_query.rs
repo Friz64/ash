@@ -170,6 +170,10 @@ pub(crate) mod reexport {
         pub p_user_data: *mut core::ffi::c_void,
         pub _marker: ::core::marker::PhantomData<&'a ()>,
     }
+    unsafe impl<'a> crate::TaggedStructure<'a>
+    for InitializePerformanceApiInfoINTEL<'a> {
+        const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::INITIALIZE_PERFORMANCE_API_INFO_INTEL;
+    }
     #[repr(C)]
     #[derive(Clone, Copy)]
     pub struct QueryPoolPerformanceQueryCreateInfoINTEL<'a> {
@@ -177,6 +181,10 @@ pub(crate) mod reexport {
         pub p_next: *const core::ffi::c_void,
         pub performance_counters_sampling: crate::vk::QueryPoolSamplingModeINTEL,
         pub _marker: ::core::marker::PhantomData<&'a ()>,
+    }
+    unsafe impl<'a> crate::TaggedStructure<'a>
+    for QueryPoolPerformanceQueryCreateInfoINTEL<'a> {
+        const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::QUERY_POOL_PERFORMANCE_QUERY_CREATE_INFO_INTEL;
     }
     #[repr(C)]
     #[derive(Clone, Copy)]
@@ -186,6 +194,9 @@ pub(crate) mod reexport {
         pub marker: u64,
         pub _marker: ::core::marker::PhantomData<&'a ()>,
     }
+    unsafe impl<'a> crate::TaggedStructure<'a> for PerformanceMarkerInfoINTEL<'a> {
+        const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::PERFORMANCE_MARKER_INFO_INTEL;
+    }
     #[repr(C)]
     #[derive(Clone, Copy)]
     pub struct PerformanceStreamMarkerInfoINTEL<'a> {
@@ -193,6 +204,9 @@ pub(crate) mod reexport {
         pub p_next: *const core::ffi::c_void,
         pub marker: u32,
         pub _marker: ::core::marker::PhantomData<&'a ()>,
+    }
+    unsafe impl<'a> crate::TaggedStructure<'a> for PerformanceStreamMarkerInfoINTEL<'a> {
+        const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::PERFORMANCE_STREAM_MARKER_INFO_INTEL;
     }
     #[repr(C)]
     #[derive(Clone, Copy)]
@@ -204,6 +218,9 @@ pub(crate) mod reexport {
         pub parameter: u64,
         pub _marker: ::core::marker::PhantomData<&'a ()>,
     }
+    unsafe impl<'a> crate::TaggedStructure<'a> for PerformanceOverrideInfoINTEL<'a> {
+        const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::PERFORMANCE_OVERRIDE_INFO_INTEL;
+    }
     #[repr(C)]
     #[derive(Clone, Copy)]
     pub struct PerformanceConfigurationAcquireInfoINTEL<'a> {
@@ -211,6 +228,10 @@ pub(crate) mod reexport {
         pub p_next: *const core::ffi::c_void,
         pub _type: crate::vk::PerformanceConfigurationTypeINTEL,
         pub _marker: ::core::marker::PhantomData<&'a ()>,
+    }
+    unsafe impl<'a> crate::TaggedStructure<'a>
+    for PerformanceConfigurationAcquireInfoINTEL<'a> {
+        const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::PERFORMANCE_CONFIGURATION_ACQUIRE_INFO_INTEL;
     }
     pub type QueryPoolCreateInfoINTEL<'a> = crate::vk::QueryPoolPerformanceQueryCreateInfoINTEL<
         'a,

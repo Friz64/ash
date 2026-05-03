@@ -10,6 +10,10 @@ pub struct PhysicalDeviceShaderFloat8FeaturesEXT<'a> {
     pub shader_float8_cooperative_matrix: crate::vk::Bool32,
     pub _marker: ::core::marker::PhantomData<&'a ()>,
 }
+unsafe impl<'a> crate::TaggedStructure<'a>
+for PhysicalDeviceShaderFloat8FeaturesEXT<'a> {
+    const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::PHYSICAL_DEVICE_SHADER_FLOAT8_FEATURES_EXT;
+}
 ///Provided by [`ext::shader_float8`](crate::ext::shader_float8)
 impl crate::vk::StructureType {
     pub const PHYSICAL_DEVICE_SHADER_FLOAT8_FEATURES_EXT: Self = Self(1000567000);

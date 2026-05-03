@@ -9,6 +9,10 @@ pub struct PhysicalDeviceMutableDescriptorTypeFeaturesEXT<'a> {
     pub mutable_descriptor_type: crate::vk::Bool32,
     pub _marker: ::core::marker::PhantomData<&'a ()>,
 }
+unsafe impl<'a> crate::TaggedStructure<'a>
+for PhysicalDeviceMutableDescriptorTypeFeaturesEXT<'a> {
+    const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::PHYSICAL_DEVICE_MUTABLE_DESCRIPTOR_TYPE_FEATURES_EXT;
+}
 #[repr(C)]
 #[derive(Clone, Copy)]
 pub struct MutableDescriptorTypeListEXT<'a> {
@@ -26,6 +30,9 @@ pub struct MutableDescriptorTypeCreateInfoEXT<'a> {
         'a,
     >,
     pub _marker: ::core::marker::PhantomData<&'a ()>,
+}
+unsafe impl<'a> crate::TaggedStructure<'a> for MutableDescriptorTypeCreateInfoEXT<'a> {
+    const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::MUTABLE_DESCRIPTOR_TYPE_CREATE_INFO_EXT;
 }
 ///Provided by [`ext::mutable_descriptor_type`](crate::ext::mutable_descriptor_type)
 impl crate::vk::DescriptorType {

@@ -9,6 +9,10 @@ pub struct PhysicalDeviceShaderUntypedPointersFeaturesKHR<'a> {
     pub shader_untyped_pointers: crate::vk::Bool32,
     pub _marker: ::core::marker::PhantomData<&'a ()>,
 }
+unsafe impl<'a> crate::TaggedStructure<'a>
+for PhysicalDeviceShaderUntypedPointersFeaturesKHR<'a> {
+    const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::PHYSICAL_DEVICE_SHADER_UNTYPED_POINTERS_FEATURES_KHR;
+}
 ///Provided by [`khr::shader_untyped_pointers`](crate::khr::shader_untyped_pointers)
 impl crate::vk::StructureType {
     pub const PHYSICAL_DEVICE_SHADER_UNTYPED_POINTERS_FEATURES_KHR: Self = Self(

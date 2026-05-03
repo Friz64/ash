@@ -58,6 +58,9 @@ pub(crate) mod reexport {
         pub max_frame_average_light_level: core::ffi::c_float,
         pub _marker: ::core::marker::PhantomData<&'a ()>,
     }
+    unsafe impl<'a> crate::TaggedStructure<'a> for HdrMetadataEXT<'a> {
+        const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::HDR_METADATA_EXT;
+    }
     ///Provided by [`ext::hdr_metadata`](crate::ext::hdr_metadata)
     impl crate::vk::StructureType {
         pub const HDR_METADATA_EXT: Self = Self(1000105000);

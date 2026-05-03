@@ -105,6 +105,10 @@ pub(crate) mod reexport {
         pub extended_dynamic_state2_patch_control_points: crate::vk::Bool32,
         pub _marker: ::core::marker::PhantomData<&'a ()>,
     }
+    unsafe impl<'a> crate::TaggedStructure<'a>
+    for PhysicalDeviceExtendedDynamicState2FeaturesEXT<'a> {
+        const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::PHYSICAL_DEVICE_EXTENDED_DYNAMIC_STATE_2_FEATURES_EXT;
+    }
     ///Provided by [`ext::extended_dynamic_state2`](crate::ext::extended_dynamic_state2)
     impl crate::vk::StructureType {
         pub const PHYSICAL_DEVICE_EXTENDED_DYNAMIC_STATE_2_FEATURES_EXT: Self = Self(

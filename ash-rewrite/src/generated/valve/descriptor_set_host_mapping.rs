@@ -60,6 +60,10 @@ pub(crate) mod reexport {
         pub descriptor_set_host_mapping: crate::vk::Bool32,
         pub _marker: ::core::marker::PhantomData<&'a ()>,
     }
+    unsafe impl<'a> crate::TaggedStructure<'a>
+    for PhysicalDeviceDescriptorSetHostMappingFeaturesVALVE<'a> {
+        const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::PHYSICAL_DEVICE_DESCRIPTOR_SET_HOST_MAPPING_FEATURES_VALVE;
+    }
     #[repr(C)]
     #[derive(Clone, Copy)]
     pub struct DescriptorSetBindingReferenceVALVE<'a> {
@@ -69,6 +73,10 @@ pub(crate) mod reexport {
         pub binding: u32,
         pub _marker: ::core::marker::PhantomData<&'a ()>,
     }
+    unsafe impl<'a> crate::TaggedStructure<'a>
+    for DescriptorSetBindingReferenceVALVE<'a> {
+        const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::DESCRIPTOR_SET_BINDING_REFERENCE_VALVE;
+    }
     #[repr(C)]
     #[derive(Clone, Copy)]
     pub struct DescriptorSetLayoutHostMappingInfoVALVE<'a> {
@@ -77,6 +85,10 @@ pub(crate) mod reexport {
         pub descriptor_offset: usize,
         pub descriptor_size: u32,
         pub _marker: ::core::marker::PhantomData<&'a ()>,
+    }
+    unsafe impl<'a> crate::TaggedStructure<'a>
+    for DescriptorSetLayoutHostMappingInfoVALVE<'a> {
+        const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::DESCRIPTOR_SET_LAYOUT_HOST_MAPPING_INFO_VALVE;
     }
     ///Provided by [`valve::descriptor_set_host_mapping`](crate::valve::descriptor_set_host_mapping)
     impl crate::vk::StructureType {

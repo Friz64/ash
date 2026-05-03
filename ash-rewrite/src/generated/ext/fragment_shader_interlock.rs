@@ -11,6 +11,10 @@ pub struct PhysicalDeviceFragmentShaderInterlockFeaturesEXT<'a> {
     pub fragment_shader_shading_rate_interlock: crate::vk::Bool32,
     pub _marker: ::core::marker::PhantomData<&'a ()>,
 }
+unsafe impl<'a> crate::TaggedStructure<'a>
+for PhysicalDeviceFragmentShaderInterlockFeaturesEXT<'a> {
+    const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::PHYSICAL_DEVICE_FRAGMENT_SHADER_INTERLOCK_FEATURES_EXT;
+}
 ///Provided by [`ext::fragment_shader_interlock`](crate::ext::fragment_shader_interlock)
 impl crate::vk::StructureType {
     pub const PHYSICAL_DEVICE_FRAGMENT_SHADER_INTERLOCK_FEATURES_EXT: Self = Self(

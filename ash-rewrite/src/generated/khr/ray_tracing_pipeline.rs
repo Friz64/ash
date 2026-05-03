@@ -165,6 +165,10 @@ pub(crate) mod reexport {
         pub p_shader_group_capture_replay_handle: *const core::ffi::c_void,
         pub _marker: ::core::marker::PhantomData<&'a ()>,
     }
+    unsafe impl<'a> crate::TaggedStructure<'a>
+    for RayTracingShaderGroupCreateInfoKHR<'a> {
+        const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::RAY_TRACING_SHADER_GROUP_CREATE_INFO_KHR;
+    }
     #[repr(C)]
     #[derive(Clone, Copy)]
     pub struct RayTracingPipelineCreateInfoKHR<'a> {
@@ -186,6 +190,9 @@ pub(crate) mod reexport {
         pub base_pipeline_index: i32,
         pub _marker: ::core::marker::PhantomData<&'a ()>,
     }
+    unsafe impl<'a> crate::TaggedStructure<'a> for RayTracingPipelineCreateInfoKHR<'a> {
+        const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::RAY_TRACING_PIPELINE_CREATE_INFO_KHR;
+    }
     #[repr(C)]
     #[derive(Clone, Copy)]
     pub struct PhysicalDeviceRayTracingPipelineFeaturesKHR<'a> {
@@ -197,6 +204,10 @@ pub(crate) mod reexport {
         pub ray_tracing_pipeline_trace_rays_indirect: crate::vk::Bool32,
         pub ray_traversal_primitive_culling: crate::vk::Bool32,
         pub _marker: ::core::marker::PhantomData<&'a ()>,
+    }
+    unsafe impl<'a> crate::TaggedStructure<'a>
+    for PhysicalDeviceRayTracingPipelineFeaturesKHR<'a> {
+        const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::PHYSICAL_DEVICE_RAY_TRACING_PIPELINE_FEATURES_KHR;
     }
     #[repr(C)]
     #[derive(Clone, Copy)]
@@ -212,6 +223,10 @@ pub(crate) mod reexport {
         pub shader_group_handle_alignment: u32,
         pub max_ray_hit_attribute_size: u32,
         pub _marker: ::core::marker::PhantomData<&'a ()>,
+    }
+    unsafe impl<'a> crate::TaggedStructure<'a>
+    for PhysicalDeviceRayTracingPipelinePropertiesKHR<'a> {
+        const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::PHYSICAL_DEVICE_RAY_TRACING_PIPELINE_PROPERTIES_KHR;
     }
     #[repr(C)]
     #[derive(Clone, Copy)]
@@ -235,6 +250,10 @@ pub(crate) mod reexport {
         pub max_pipeline_ray_payload_size: u32,
         pub max_pipeline_ray_hit_attribute_size: u32,
         pub _marker: ::core::marker::PhantomData<&'a ()>,
+    }
+    unsafe impl<'a> crate::TaggedStructure<'a>
+    for RayTracingPipelineInterfaceCreateInfoKHR<'a> {
+        const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::RAY_TRACING_PIPELINE_INTERFACE_CREATE_INFO_KHR;
     }
     ///Provided by [`khr::ray_tracing_pipeline`](crate::khr::ray_tracing_pipeline)
     impl crate::vk::PipelineBindPoint {

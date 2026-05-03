@@ -9,6 +9,9 @@ pub struct SurfaceProtectedCapabilitiesKHR<'a> {
     pub supports_protected: crate::vk::Bool32,
     pub _marker: ::core::marker::PhantomData<&'a ()>,
 }
+unsafe impl<'a> crate::TaggedStructure<'a> for SurfaceProtectedCapabilitiesKHR<'a> {
+    const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::SURFACE_PROTECTED_CAPABILITIES_KHR;
+}
 ///Provided by [`khr::surface_protected_capabilities`](crate::khr::surface_protected_capabilities)
 impl crate::vk::StructureType {
     pub const SURFACE_PROTECTED_CAPABILITIES_KHR: Self = Self(1000239000);

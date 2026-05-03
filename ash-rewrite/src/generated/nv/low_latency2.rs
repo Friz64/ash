@@ -109,6 +109,9 @@ pub(crate) mod reexport {
         pub minimum_interval_us: u32,
         pub _marker: ::core::marker::PhantomData<&'a ()>,
     }
+    unsafe impl<'a> crate::TaggedStructure<'a> for LatencySleepModeInfoNV<'a> {
+        const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::LATENCY_SLEEP_MODE_INFO_NV;
+    }
     #[repr(C)]
     #[derive(Clone, Copy)]
     pub struct LatencySleepInfoNV<'a> {
@@ -117,6 +120,9 @@ pub(crate) mod reexport {
         pub signal_semaphore: crate::vk::Semaphore,
         pub value: u64,
         pub _marker: ::core::marker::PhantomData<&'a ()>,
+    }
+    unsafe impl<'a> crate::TaggedStructure<'a> for LatencySleepInfoNV<'a> {
+        const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::LATENCY_SLEEP_INFO_NV;
     }
     #[repr(C)]
     #[derive(Clone, Copy)]
@@ -127,6 +133,9 @@ pub(crate) mod reexport {
         pub marker: crate::vk::LatencyMarkerNV,
         pub _marker: ::core::marker::PhantomData<&'a ()>,
     }
+    unsafe impl<'a> crate::TaggedStructure<'a> for SetLatencyMarkerInfoNV<'a> {
+        const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::SET_LATENCY_MARKER_INFO_NV;
+    }
     #[repr(C)]
     #[derive(Clone, Copy)]
     pub struct GetLatencyMarkerInfoNV<'a> {
@@ -135,6 +144,9 @@ pub(crate) mod reexport {
         pub timing_count: u32,
         pub p_timings: *mut crate::vk::LatencyTimingsFrameReportNV<'a>,
         pub _marker: ::core::marker::PhantomData<&'a ()>,
+    }
+    unsafe impl<'a> crate::TaggedStructure<'a> for GetLatencyMarkerInfoNV<'a> {
+        const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::GET_LATENCY_MARKER_INFO_NV;
     }
     #[repr(C)]
     #[derive(Clone, Copy)]
@@ -157,6 +169,9 @@ pub(crate) mod reexport {
         pub gpu_render_end_time_us: u64,
         pub _marker: ::core::marker::PhantomData<&'a ()>,
     }
+    unsafe impl<'a> crate::TaggedStructure<'a> for LatencyTimingsFrameReportNV<'a> {
+        const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::LATENCY_TIMINGS_FRAME_REPORT_NV;
+    }
     #[repr(C)]
     #[derive(Clone, Copy)]
     pub struct OutOfBandQueueTypeInfoNV<'a> {
@@ -164,6 +179,9 @@ pub(crate) mod reexport {
         pub p_next: *const core::ffi::c_void,
         pub queue_type: crate::vk::OutOfBandQueueTypeNV,
         pub _marker: ::core::marker::PhantomData<&'a ()>,
+    }
+    unsafe impl<'a> crate::TaggedStructure<'a> for OutOfBandQueueTypeInfoNV<'a> {
+        const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::OUT_OF_BAND_QUEUE_TYPE_INFO_NV;
     }
     #[repr(C)]
     #[derive(Clone, Copy)]
@@ -173,6 +191,9 @@ pub(crate) mod reexport {
         pub present_id: u64,
         pub _marker: ::core::marker::PhantomData<&'a ()>,
     }
+    unsafe impl<'a> crate::TaggedStructure<'a> for LatencySubmissionPresentIdNV<'a> {
+        const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::LATENCY_SUBMISSION_PRESENT_ID_NV;
+    }
     #[repr(C)]
     #[derive(Clone, Copy)]
     pub struct SwapchainLatencyCreateInfoNV<'a> {
@@ -180,6 +201,9 @@ pub(crate) mod reexport {
         pub p_next: *const core::ffi::c_void,
         pub latency_mode_enable: crate::vk::Bool32,
         pub _marker: ::core::marker::PhantomData<&'a ()>,
+    }
+    unsafe impl<'a> crate::TaggedStructure<'a> for SwapchainLatencyCreateInfoNV<'a> {
+        const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::SWAPCHAIN_LATENCY_CREATE_INFO_NV;
     }
     #[repr(C)]
     #[derive(Clone, Copy)]
@@ -189,6 +213,9 @@ pub(crate) mod reexport {
         pub present_mode_count: u32,
         pub p_present_modes: *mut crate::vk::PresentModeKHR,
         pub _marker: ::core::marker::PhantomData<&'a ()>,
+    }
+    unsafe impl<'a> crate::TaggedStructure<'a> for LatencySurfaceCapabilitiesNV<'a> {
+        const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::LATENCY_SURFACE_CAPABILITIES_NV;
     }
     ///Provided by [`nv::low_latency2`](crate::nv::low_latency2)
     impl crate::vk::StructureType {

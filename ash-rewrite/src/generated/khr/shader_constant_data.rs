@@ -9,6 +9,10 @@ pub struct PhysicalDeviceShaderConstantDataFeaturesKHR<'a> {
     pub shader_constant_data: crate::vk::Bool32,
     pub _marker: ::core::marker::PhantomData<&'a ()>,
 }
+unsafe impl<'a> crate::TaggedStructure<'a>
+for PhysicalDeviceShaderConstantDataFeaturesKHR<'a> {
+    const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::PHYSICAL_DEVICE_SHADER_CONSTANT_DATA_FEATURES_KHR;
+}
 ///Provided by [`khr::shader_constant_data`](crate::khr::shader_constant_data)
 impl crate::vk::StructureType {
     pub const PHYSICAL_DEVICE_SHADER_CONSTANT_DATA_FEATURES_KHR: Self = Self(1000231000);

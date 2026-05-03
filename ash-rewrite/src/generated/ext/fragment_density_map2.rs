@@ -9,6 +9,10 @@ pub struct PhysicalDeviceFragmentDensityMap2FeaturesEXT<'a> {
     pub fragment_density_map_deferred: crate::vk::Bool32,
     pub _marker: ::core::marker::PhantomData<&'a ()>,
 }
+unsafe impl<'a> crate::TaggedStructure<'a>
+for PhysicalDeviceFragmentDensityMap2FeaturesEXT<'a> {
+    const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::PHYSICAL_DEVICE_FRAGMENT_DENSITY_MAP_2_FEATURES_EXT;
+}
 #[repr(C)]
 #[derive(Clone, Copy)]
 pub struct PhysicalDeviceFragmentDensityMap2PropertiesEXT<'a> {
@@ -19,6 +23,10 @@ pub struct PhysicalDeviceFragmentDensityMap2PropertiesEXT<'a> {
     pub max_subsampled_array_layers: u32,
     pub max_descriptor_set_subsampled_samplers: u32,
     pub _marker: ::core::marker::PhantomData<&'a ()>,
+}
+unsafe impl<'a> crate::TaggedStructure<'a>
+for PhysicalDeviceFragmentDensityMap2PropertiesEXT<'a> {
+    const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::PHYSICAL_DEVICE_FRAGMENT_DENSITY_MAP_2_PROPERTIES_EXT;
 }
 ///Provided by [`ext::fragment_density_map2`](crate::ext::fragment_density_map2)
 impl crate::vk::StructureType {

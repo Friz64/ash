@@ -10,6 +10,10 @@ pub struct PhysicalDeviceProvokingVertexFeaturesEXT<'a> {
     pub transform_feedback_preserves_provoking_vertex: crate::vk::Bool32,
     pub _marker: ::core::marker::PhantomData<&'a ()>,
 }
+unsafe impl<'a> crate::TaggedStructure<'a>
+for PhysicalDeviceProvokingVertexFeaturesEXT<'a> {
+    const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::PHYSICAL_DEVICE_PROVOKING_VERTEX_FEATURES_EXT;
+}
 #[repr(C)]
 #[derive(Clone, Copy)]
 pub struct PhysicalDeviceProvokingVertexPropertiesEXT<'a> {
@@ -19,6 +23,10 @@ pub struct PhysicalDeviceProvokingVertexPropertiesEXT<'a> {
     pub transform_feedback_preserves_triangle_fan_provoking_vertex: crate::vk::Bool32,
     pub _marker: ::core::marker::PhantomData<&'a ()>,
 }
+unsafe impl<'a> crate::TaggedStructure<'a>
+for PhysicalDeviceProvokingVertexPropertiesEXT<'a> {
+    const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::PHYSICAL_DEVICE_PROVOKING_VERTEX_PROPERTIES_EXT;
+}
 #[repr(C)]
 #[derive(Clone, Copy)]
 pub struct PipelineRasterizationProvokingVertexStateCreateInfoEXT<'a> {
@@ -26,6 +34,10 @@ pub struct PipelineRasterizationProvokingVertexStateCreateInfoEXT<'a> {
     pub p_next: *const core::ffi::c_void,
     pub provoking_vertex_mode: crate::vk::ProvokingVertexModeEXT,
     pub _marker: ::core::marker::PhantomData<&'a ()>,
+}
+unsafe impl<'a> crate::TaggedStructure<'a>
+for PipelineRasterizationProvokingVertexStateCreateInfoEXT<'a> {
+    const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::PIPELINE_RASTERIZATION_PROVOKING_VERTEX_STATE_CREATE_INFO_EXT;
 }
 ///Provided by [`ext::provoking_vertex`](crate::ext::provoking_vertex)
 impl crate::vk::StructureType {

@@ -43,6 +43,10 @@ pub(crate) mod reexport {
         pub attachment_feedback_loop_dynamic_state: crate::vk::Bool32,
         pub _marker: ::core::marker::PhantomData<&'a ()>,
     }
+    unsafe impl<'a> crate::TaggedStructure<'a>
+    for PhysicalDeviceAttachmentFeedbackLoopDynamicStateFeaturesEXT<'a> {
+        const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::PHYSICAL_DEVICE_ATTACHMENT_FEEDBACK_LOOP_DYNAMIC_STATE_FEATURES_EXT;
+    }
     ///Provided by [`ext::attachment_feedback_loop_dynamic_state`](crate::ext::attachment_feedback_loop_dynamic_state)
     impl crate::vk::StructureType {
         pub const PHYSICAL_DEVICE_ATTACHMENT_FEEDBACK_LOOP_DYNAMIC_STATE_FEATURES_EXT: Self = Self(

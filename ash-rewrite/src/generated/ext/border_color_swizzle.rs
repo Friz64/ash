@@ -10,6 +10,10 @@ pub struct SamplerBorderColorComponentMappingCreateInfoEXT<'a> {
     pub srgb: crate::vk::Bool32,
     pub _marker: ::core::marker::PhantomData<&'a ()>,
 }
+unsafe impl<'a> crate::TaggedStructure<'a>
+for SamplerBorderColorComponentMappingCreateInfoEXT<'a> {
+    const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::SAMPLER_BORDER_COLOR_COMPONENT_MAPPING_CREATE_INFO_EXT;
+}
 #[repr(C)]
 #[derive(Clone, Copy)]
 pub struct PhysicalDeviceBorderColorSwizzleFeaturesEXT<'a> {
@@ -18,6 +22,10 @@ pub struct PhysicalDeviceBorderColorSwizzleFeaturesEXT<'a> {
     pub border_color_swizzle: crate::vk::Bool32,
     pub border_color_swizzle_from_image: crate::vk::Bool32,
     pub _marker: ::core::marker::PhantomData<&'a ()>,
+}
+unsafe impl<'a> crate::TaggedStructure<'a>
+for PhysicalDeviceBorderColorSwizzleFeaturesEXT<'a> {
+    const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::PHYSICAL_DEVICE_BORDER_COLOR_SWIZZLE_FEATURES_EXT;
 }
 ///Provided by [`ext::border_color_swizzle`](crate::ext::border_color_swizzle)
 impl crate::vk::StructureType {

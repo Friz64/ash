@@ -23,6 +23,10 @@ pub struct PhysicalDevicePortabilitySubsetFeaturesKHR<'a> {
     pub vertex_attribute_access_beyond_stride: crate::vk::Bool32,
     pub _marker: ::core::marker::PhantomData<&'a ()>,
 }
+unsafe impl<'a> crate::TaggedStructure<'a>
+for PhysicalDevicePortabilitySubsetFeaturesKHR<'a> {
+    const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::PHYSICAL_DEVICE_PORTABILITY_SUBSET_FEATURES_KHR;
+}
 #[repr(C)]
 #[derive(Clone, Copy)]
 pub struct PhysicalDevicePortabilitySubsetPropertiesKHR<'a> {
@@ -30,6 +34,10 @@ pub struct PhysicalDevicePortabilitySubsetPropertiesKHR<'a> {
     pub p_next: *mut core::ffi::c_void,
     pub min_vertex_input_binding_stride_alignment: u32,
     pub _marker: ::core::marker::PhantomData<&'a ()>,
+}
+unsafe impl<'a> crate::TaggedStructure<'a>
+for PhysicalDevicePortabilitySubsetPropertiesKHR<'a> {
+    const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::PHYSICAL_DEVICE_PORTABILITY_SUBSET_PROPERTIES_KHR;
 }
 ///Provided by [`khr::portability_subset`](crate::khr::portability_subset)
 impl crate::vk::StructureType {

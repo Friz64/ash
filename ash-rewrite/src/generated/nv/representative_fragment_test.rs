@@ -9,6 +9,10 @@ pub struct PhysicalDeviceRepresentativeFragmentTestFeaturesNV<'a> {
     pub representative_fragment_test: crate::vk::Bool32,
     pub _marker: ::core::marker::PhantomData<&'a ()>,
 }
+unsafe impl<'a> crate::TaggedStructure<'a>
+for PhysicalDeviceRepresentativeFragmentTestFeaturesNV<'a> {
+    const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::PHYSICAL_DEVICE_REPRESENTATIVE_FRAGMENT_TEST_FEATURES_NV;
+}
 #[repr(C)]
 #[derive(Clone, Copy)]
 pub struct PipelineRepresentativeFragmentTestStateCreateInfoNV<'a> {
@@ -16,6 +20,10 @@ pub struct PipelineRepresentativeFragmentTestStateCreateInfoNV<'a> {
     pub p_next: *const core::ffi::c_void,
     pub representative_fragment_test_enable: crate::vk::Bool32,
     pub _marker: ::core::marker::PhantomData<&'a ()>,
+}
+unsafe impl<'a> crate::TaggedStructure<'a>
+for PipelineRepresentativeFragmentTestStateCreateInfoNV<'a> {
+    const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::PIPELINE_REPRESENTATIVE_FRAGMENT_TEST_STATE_CREATE_INFO_NV;
 }
 ///Provided by [`nv::representative_fragment_test`](crate::nv::representative_fragment_test)
 impl crate::vk::StructureType {

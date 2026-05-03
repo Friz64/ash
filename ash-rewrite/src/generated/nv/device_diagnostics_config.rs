@@ -9,6 +9,10 @@ pub struct PhysicalDeviceDiagnosticsConfigFeaturesNV<'a> {
     pub diagnostics_config: crate::vk::Bool32,
     pub _marker: ::core::marker::PhantomData<&'a ()>,
 }
+unsafe impl<'a> crate::TaggedStructure<'a>
+for PhysicalDeviceDiagnosticsConfigFeaturesNV<'a> {
+    const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::PHYSICAL_DEVICE_DIAGNOSTICS_CONFIG_FEATURES_NV;
+}
 #[repr(C)]
 #[derive(Clone, Copy)]
 pub struct DeviceDiagnosticsConfigCreateInfoNV<'a> {
@@ -16,6 +20,9 @@ pub struct DeviceDiagnosticsConfigCreateInfoNV<'a> {
     pub p_next: *const core::ffi::c_void,
     pub flags: crate::vk::DeviceDiagnosticsConfigFlagsNV,
     pub _marker: ::core::marker::PhantomData<&'a ()>,
+}
+unsafe impl<'a> crate::TaggedStructure<'a> for DeviceDiagnosticsConfigCreateInfoNV<'a> {
+    const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::DEVICE_DIAGNOSTICS_CONFIG_CREATE_INFO_NV;
 }
 ///Provided by [`nv::device_diagnostics_config`](crate::nv::device_diagnostics_config)
 impl crate::vk::StructureType {

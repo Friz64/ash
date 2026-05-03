@@ -43,6 +43,15 @@ impl Code for Struct {
             quote! { pub _marker: ::core::marker::PhantomData<& #lifetime ()> }
         });
 
+        let impl_tagged_structure = self.structure_type.as_ref().map(|ty| {
+            let structure_ty = ctx.type_to_rust(ty.ty, true, &lifetime);
+            let ty = ctx.enumerator_to_rust(ty.enumerator, ty.ty, true);
+            quote! {
+                unsafe impl<'a> crate::TaggedStructure<'a> for #name {
+                    const STRUCTURE_TYPE: #structure_ty = #ty;
+                }
+            }
+        });
         let code = quote! {
             #[repr(C)]
             #[derive(Clone, Copy)]
@@ -50,6 +59,8 @@ impl Code for Struct {
                 #( #members, )*
                 #lifetime_marker
             }
+
+            #impl_tagged_structure
         };
 
         CodeMap::new(Destination::new(self.required_by), code)

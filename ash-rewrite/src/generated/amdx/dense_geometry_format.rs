@@ -9,6 +9,10 @@ pub struct PhysicalDeviceDenseGeometryFormatFeaturesAMDX<'a> {
     pub dense_geometry_format: crate::vk::Bool32,
     pub _marker: ::core::marker::PhantomData<&'a ()>,
 }
+unsafe impl<'a> crate::TaggedStructure<'a>
+for PhysicalDeviceDenseGeometryFormatFeaturesAMDX<'a> {
+    const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::PHYSICAL_DEVICE_DENSE_GEOMETRY_FORMAT_FEATURES_AMDX;
+}
 #[repr(C)]
 #[derive(Clone, Copy)]
 pub struct AccelerationStructureDenseGeometryFormatTrianglesDataAMDX<'a> {
@@ -22,6 +26,10 @@ pub struct AccelerationStructureDenseGeometryFormatTrianglesDataAMDX<'a> {
     pub max_geometry_index: u32,
     pub format: crate::vk::CompressedTriangleFormatAMDX,
     pub _marker: ::core::marker::PhantomData<&'a ()>,
+}
+unsafe impl<'a> crate::TaggedStructure<'a>
+for AccelerationStructureDenseGeometryFormatTrianglesDataAMDX<'a> {
+    const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::ACCELERATION_STRUCTURE_DENSE_GEOMETRY_FORMAT_TRIANGLES_DATA_AMDX;
 }
 ///Provided by [`amdx::dense_geometry_format`](crate::amdx::dense_geometry_format)
 impl crate::vk::StructureType {

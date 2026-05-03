@@ -10,6 +10,10 @@ pub struct PhysicalDeviceShaderImageAtomicInt64FeaturesEXT<'a> {
     pub sparse_image_int64_atomics: crate::vk::Bool32,
     pub _marker: ::core::marker::PhantomData<&'a ()>,
 }
+unsafe impl<'a> crate::TaggedStructure<'a>
+for PhysicalDeviceShaderImageAtomicInt64FeaturesEXT<'a> {
+    const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::PHYSICAL_DEVICE_SHADER_IMAGE_ATOMIC_INT64_FEATURES_EXT;
+}
 ///Provided by [`ext::shader_image_atomic_int64`](crate::ext::shader_image_atomic_int64)
 impl crate::vk::StructureType {
     pub const PHYSICAL_DEVICE_SHADER_IMAGE_ATOMIC_INT64_FEATURES_EXT: Self = Self(

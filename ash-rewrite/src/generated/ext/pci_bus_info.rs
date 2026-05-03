@@ -12,6 +12,10 @@ pub struct PhysicalDevicePCIBusInfoPropertiesEXT<'a> {
     pub pci_function: u32,
     pub _marker: ::core::marker::PhantomData<&'a ()>,
 }
+unsafe impl<'a> crate::TaggedStructure<'a>
+for PhysicalDevicePCIBusInfoPropertiesEXT<'a> {
+    const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::PHYSICAL_DEVICE_PCI_BUS_INFO_PROPERTIES_EXT;
+}
 ///Provided by [`ext::pci_bus_info`](crate::ext::pci_bus_info)
 impl crate::vk::StructureType {
     pub const PHYSICAL_DEVICE_PCI_BUS_INFO_PROPERTIES_EXT: Self = Self(1000212000);

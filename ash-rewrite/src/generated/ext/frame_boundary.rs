@@ -17,6 +17,9 @@ pub struct FrameBoundaryEXT<'a> {
     pub p_tag: *const core::ffi::c_void,
     pub _marker: ::core::marker::PhantomData<&'a ()>,
 }
+unsafe impl<'a> crate::TaggedStructure<'a> for FrameBoundaryEXT<'a> {
+    const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::FRAME_BOUNDARY_EXT;
+}
 #[repr(C)]
 #[derive(Clone, Copy)]
 pub struct PhysicalDeviceFrameBoundaryFeaturesEXT<'a> {
@@ -24,6 +27,10 @@ pub struct PhysicalDeviceFrameBoundaryFeaturesEXT<'a> {
     pub p_next: *mut core::ffi::c_void,
     pub frame_boundary: crate::vk::Bool32,
     pub _marker: ::core::marker::PhantomData<&'a ()>,
+}
+unsafe impl<'a> crate::TaggedStructure<'a>
+for PhysicalDeviceFrameBoundaryFeaturesEXT<'a> {
+    const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::PHYSICAL_DEVICE_FRAME_BOUNDARY_FEATURES_EXT;
 }
 ///Provided by [`ext::frame_boundary`](crate::ext::frame_boundary)
 impl crate::vk::StructureType {

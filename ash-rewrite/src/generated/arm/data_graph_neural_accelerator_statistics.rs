@@ -9,6 +9,10 @@ pub struct PhysicalDeviceDataGraphNeuralAcceleratorStatisticsFeaturesARM<'a> {
     pub data_graph_neural_accelerator_statistics: crate::vk::Bool32,
     pub _marker: ::core::marker::PhantomData<&'a ()>,
 }
+unsafe impl<'a> crate::TaggedStructure<'a>
+for PhysicalDeviceDataGraphNeuralAcceleratorStatisticsFeaturesARM<'a> {
+    const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::PHYSICAL_DEVICE_DATA_GRAPH_NEURAL_ACCELERATOR_STATISTICS_FEATURES_ARM;
+}
 #[repr(C)]
 #[derive(Clone, Copy)]
 pub struct DataGraphPipelineNeuralStatisticsCreateInfoARM<'a> {
@@ -17,6 +21,10 @@ pub struct DataGraphPipelineNeuralStatisticsCreateInfoARM<'a> {
     pub allow_neural_statistics: crate::vk::Bool32,
     pub _marker: ::core::marker::PhantomData<&'a ()>,
 }
+unsafe impl<'a> crate::TaggedStructure<'a>
+for DataGraphPipelineNeuralStatisticsCreateInfoARM<'a> {
+    const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::DATA_GRAPH_PIPELINE_NEURAL_STATISTICS_CREATE_INFO_ARM;
+}
 #[repr(C)]
 #[derive(Clone, Copy)]
 pub struct DataGraphPipelineSessionNeuralStatisticsCreateInfoARM<'a> {
@@ -24,6 +32,10 @@ pub struct DataGraphPipelineSessionNeuralStatisticsCreateInfoARM<'a> {
     pub p_next: *const core::ffi::c_void,
     pub mode: crate::vk::NeuralAcceleratorStatisticsModeARM,
     pub _marker: ::core::marker::PhantomData<&'a ()>,
+}
+unsafe impl<'a> crate::TaggedStructure<'a>
+for DataGraphPipelineSessionNeuralStatisticsCreateInfoARM<'a> {
+    const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::DATA_GRAPH_PIPELINE_SESSION_NEURAL_STATISTICS_CREATE_INFO_ARM;
 }
 ///Provided by [`arm::data_graph_neural_accelerator_statistics`](crate::arm::data_graph_neural_accelerator_statistics)
 impl crate::vk::StructureType {

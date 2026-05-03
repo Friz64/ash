@@ -59,6 +59,9 @@ pub(crate) mod reexport {
         pub flags: crate::vk::ConditionalRenderingFlagsEXT,
         pub _marker: ::core::marker::PhantomData<&'a ()>,
     }
+    unsafe impl<'a> crate::TaggedStructure<'a> for ConditionalRenderingBeginInfoEXT<'a> {
+        const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::CONDITIONAL_RENDERING_BEGIN_INFO_EXT;
+    }
     #[repr(C)]
     #[derive(Clone, Copy)]
     pub struct CommandBufferInheritanceConditionalRenderingInfoEXT<'a> {
@@ -66,6 +69,10 @@ pub(crate) mod reexport {
         pub p_next: *const core::ffi::c_void,
         pub conditional_rendering_enable: crate::vk::Bool32,
         pub _marker: ::core::marker::PhantomData<&'a ()>,
+    }
+    unsafe impl<'a> crate::TaggedStructure<'a>
+    for CommandBufferInheritanceConditionalRenderingInfoEXT<'a> {
+        const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::COMMAND_BUFFER_INHERITANCE_CONDITIONAL_RENDERING_INFO_EXT;
     }
     #[repr(C)]
     #[derive(Clone, Copy)]
@@ -75,6 +82,10 @@ pub(crate) mod reexport {
         pub conditional_rendering: crate::vk::Bool32,
         pub inherited_conditional_rendering: crate::vk::Bool32,
         pub _marker: ::core::marker::PhantomData<&'a ()>,
+    }
+    unsafe impl<'a> crate::TaggedStructure<'a>
+    for PhysicalDeviceConditionalRenderingFeaturesEXT<'a> {
+        const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::PHYSICAL_DEVICE_CONDITIONAL_RENDERING_FEATURES_EXT;
     }
     ///Provided by [`ext::conditional_rendering`](crate::ext::conditional_rendering)
     impl crate::vk::StructureType {

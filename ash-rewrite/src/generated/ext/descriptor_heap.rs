@@ -208,6 +208,9 @@ pub(crate) mod reexport {
         pub format: crate::vk::Format,
         pub _marker: ::core::marker::PhantomData<&'a ()>,
     }
+    unsafe impl<'a> crate::TaggedStructure<'a> for TensorViewCreateInfoARM<'a> {
+        const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::TENSOR_VIEW_CREATE_INFO_ARM;
+    }
     #[repr(C)]
     #[derive(Clone, Copy)]
     pub struct HostAddressRangeEXT<'a> {
@@ -231,6 +234,9 @@ pub(crate) mod reexport {
         pub address_range: crate::vk::DeviceAddressRangeEXT,
         pub _marker: ::core::marker::PhantomData<&'a ()>,
     }
+    unsafe impl<'a> crate::TaggedStructure<'a> for TexelBufferDescriptorInfoEXT<'a> {
+        const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::TEXEL_BUFFER_DESCRIPTOR_INFO_EXT;
+    }
     #[repr(C)]
     #[derive(Clone, Copy)]
     pub struct ImageDescriptorInfoEXT<'a> {
@@ -240,6 +246,9 @@ pub(crate) mod reexport {
         pub layout: crate::vk::ImageLayout,
         pub _marker: ::core::marker::PhantomData<&'a ()>,
     }
+    unsafe impl<'a> crate::TaggedStructure<'a> for ImageDescriptorInfoEXT<'a> {
+        const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::IMAGE_DESCRIPTOR_INFO_EXT;
+    }
     #[repr(C)]
     #[derive(Clone, Copy)]
     pub struct ResourceDescriptorInfoEXT<'a> {
@@ -248,6 +257,9 @@ pub(crate) mod reexport {
         pub _type: crate::vk::DescriptorType,
         pub data: crate::vk::ResourceDescriptorDataEXT<'a>,
         pub _marker: ::core::marker::PhantomData<&'a ()>,
+    }
+    unsafe impl<'a> crate::TaggedStructure<'a> for ResourceDescriptorInfoEXT<'a> {
+        const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::RESOURCE_DESCRIPTOR_INFO_EXT;
     }
     #[repr(C)]
     #[derive(Clone, Copy)]
@@ -259,6 +271,9 @@ pub(crate) mod reexport {
         pub reserved_range_size: crate::vk::DeviceSize,
         pub _marker: ::core::marker::PhantomData<&'a ()>,
     }
+    unsafe impl<'a> crate::TaggedStructure<'a> for BindHeapInfoEXT<'a> {
+        const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::BIND_HEAP_INFO_EXT;
+    }
     #[repr(C)]
     #[derive(Clone, Copy)]
     pub struct PushDataInfoEXT<'a> {
@@ -267,6 +282,9 @@ pub(crate) mod reexport {
         pub offset: u32,
         pub data: crate::vk::HostAddressRangeConstEXT<'a>,
         pub _marker: ::core::marker::PhantomData<&'a ()>,
+    }
+    unsafe impl<'a> crate::TaggedStructure<'a> for PushDataInfoEXT<'a> {
+        const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::PUSH_DATA_INFO_EXT;
     }
     #[repr(C)]
     #[derive(Clone, Copy)]
@@ -365,6 +383,10 @@ pub(crate) mod reexport {
         pub source_data: crate::vk::DescriptorMappingSourceDataEXT<'a>,
         pub _marker: ::core::marker::PhantomData<&'a ()>,
     }
+    unsafe impl<'a> crate::TaggedStructure<'a>
+    for DescriptorSetAndBindingMappingEXT<'a> {
+        const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::DESCRIPTOR_SET_AND_BINDING_MAPPING_EXT;
+    }
     #[repr(C)]
     #[derive(Clone, Copy)]
     pub struct ShaderDescriptorSetAndBindingMappingInfoEXT<'a> {
@@ -374,6 +396,10 @@ pub(crate) mod reexport {
         pub p_mappings: *const crate::vk::DescriptorSetAndBindingMappingEXT<'a>,
         pub _marker: ::core::marker::PhantomData<&'a ()>,
     }
+    unsafe impl<'a> crate::TaggedStructure<'a>
+    for ShaderDescriptorSetAndBindingMappingInfoEXT<'a> {
+        const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::SHADER_DESCRIPTOR_SET_AND_BINDING_MAPPING_INFO_EXT;
+    }
     #[repr(C)]
     #[derive(Clone, Copy)]
     pub struct SamplerCustomBorderColorIndexCreateInfoEXT<'a> {
@@ -382,6 +408,10 @@ pub(crate) mod reexport {
         pub index: u32,
         pub _marker: ::core::marker::PhantomData<&'a ()>,
     }
+    unsafe impl<'a> crate::TaggedStructure<'a>
+    for SamplerCustomBorderColorIndexCreateInfoEXT<'a> {
+        const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::SAMPLER_CUSTOM_BORDER_COLOR_INDEX_CREATE_INFO_EXT;
+    }
     #[repr(C)]
     #[derive(Clone, Copy)]
     pub struct OpaqueCaptureDataCreateInfoEXT<'a> {
@@ -389,6 +419,9 @@ pub(crate) mod reexport {
         pub p_next: *const core::ffi::c_void,
         pub p_data: *const crate::vk::HostAddressRangeConstEXT<'a>,
         pub _marker: ::core::marker::PhantomData<&'a ()>,
+    }
+    unsafe impl<'a> crate::TaggedStructure<'a> for OpaqueCaptureDataCreateInfoEXT<'a> {
+        const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::OPAQUE_CAPTURE_DATA_CREATE_INFO_EXT;
     }
     #[repr(C)]
     #[derive(Clone, Copy)]
@@ -399,6 +432,10 @@ pub(crate) mod reexport {
         pub push_data_size: u32,
         pub _marker: ::core::marker::PhantomData<&'a ()>,
     }
+    unsafe impl<'a> crate::TaggedStructure<'a>
+    for IndirectCommandsLayoutPushDataTokenNV<'a> {
+        const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::INDIRECT_COMMANDS_LAYOUT_PUSH_DATA_TOKEN_NV;
+    }
     #[repr(C)]
     #[derive(Clone, Copy)]
     pub struct SubsampledImageFormatPropertiesEXT<'a> {
@@ -406,6 +443,10 @@ pub(crate) mod reexport {
         pub p_next: *const core::ffi::c_void,
         pub subsampled_image_descriptor_count: u32,
         pub _marker: ::core::marker::PhantomData<&'a ()>,
+    }
+    unsafe impl<'a> crate::TaggedStructure<'a>
+    for SubsampledImageFormatPropertiesEXT<'a> {
+        const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::SUBSAMPLED_IMAGE_FORMAT_PROPERTIES_EXT;
     }
     #[repr(C)]
     #[derive(Clone, Copy)]
@@ -415,6 +456,10 @@ pub(crate) mod reexport {
         pub descriptor_heap: crate::vk::Bool32,
         pub descriptor_heap_capture_replay: crate::vk::Bool32,
         pub _marker: ::core::marker::PhantomData<&'a ()>,
+    }
+    unsafe impl<'a> crate::TaggedStructure<'a>
+    for PhysicalDeviceDescriptorHeapFeaturesEXT<'a> {
+        const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::PHYSICAL_DEVICE_DESCRIPTOR_HEAP_FEATURES_EXT;
     }
     #[repr(C)]
     #[derive(Clone, Copy)]
@@ -442,6 +487,10 @@ pub(crate) mod reexport {
         pub protected_descriptor_heaps: crate::vk::Bool32,
         pub _marker: ::core::marker::PhantomData<&'a ()>,
     }
+    unsafe impl<'a> crate::TaggedStructure<'a>
+    for PhysicalDeviceDescriptorHeapPropertiesEXT<'a> {
+        const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::PHYSICAL_DEVICE_DESCRIPTOR_HEAP_PROPERTIES_EXT;
+    }
     #[repr(C)]
     #[derive(Clone, Copy)]
     pub struct CommandBufferInheritanceDescriptorHeapInfoEXT<'a> {
@@ -450,6 +499,10 @@ pub(crate) mod reexport {
         pub p_sampler_heap_bind_info: *const crate::vk::BindHeapInfoEXT<'a>,
         pub p_resource_heap_bind_info: *const crate::vk::BindHeapInfoEXT<'a>,
         pub _marker: ::core::marker::PhantomData<&'a ()>,
+    }
+    unsafe impl<'a> crate::TaggedStructure<'a>
+    for CommandBufferInheritanceDescriptorHeapInfoEXT<'a> {
+        const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::COMMAND_BUFFER_INHERITANCE_DESCRIPTOR_HEAP_INFO_EXT;
     }
     #[repr(C)]
     #[derive(Clone, Copy)]
@@ -460,6 +513,10 @@ pub(crate) mod reexport {
         pub tensor_descriptor_alignment: crate::vk::DeviceSize,
         pub tensor_capture_replay_opaque_data_size: usize,
         pub _marker: ::core::marker::PhantomData<&'a ()>,
+    }
+    unsafe impl<'a> crate::TaggedStructure<'a>
+    for PhysicalDeviceDescriptorHeapTensorPropertiesARM<'a> {
+        const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::PHYSICAL_DEVICE_DESCRIPTOR_HEAP_TENSOR_PROPERTIES_ARM;
     }
     pub type DeviceAddressRangeEXT = crate::vk::DeviceAddressRangeKHR;
     #[repr(C)]

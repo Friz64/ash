@@ -10,6 +10,9 @@ pub struct PipelineLibraryCreateInfoKHR<'a> {
     pub p_libraries: *const crate::vk::Pipeline,
     pub _marker: ::core::marker::PhantomData<&'a ()>,
 }
+unsafe impl<'a> crate::TaggedStructure<'a> for PipelineLibraryCreateInfoKHR<'a> {
+    const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::PIPELINE_LIBRARY_CREATE_INFO_KHR;
+}
 ///Provided by [`khr::pipeline_library`](crate::khr::pipeline_library)
 impl crate::vk::StructureType {
     pub const PIPELINE_LIBRARY_CREATE_INFO_KHR: Self = Self(1000290000);

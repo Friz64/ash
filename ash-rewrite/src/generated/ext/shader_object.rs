@@ -112,6 +112,10 @@ pub(crate) mod reexport {
         pub shader_object: crate::vk::Bool32,
         pub _marker: ::core::marker::PhantomData<&'a ()>,
     }
+    unsafe impl<'a> crate::TaggedStructure<'a>
+    for PhysicalDeviceShaderObjectFeaturesEXT<'a> {
+        const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::PHYSICAL_DEVICE_SHADER_OBJECT_FEATURES_EXT;
+    }
     #[repr(C)]
     #[derive(Clone, Copy)]
     pub struct PhysicalDeviceShaderObjectPropertiesEXT<'a> {
@@ -120,6 +124,10 @@ pub(crate) mod reexport {
         pub shader_binary_uuid: [u8; crate::vk::UUID_SIZE as _],
         pub shader_binary_version: u32,
         pub _marker: ::core::marker::PhantomData<&'a ()>,
+    }
+    unsafe impl<'a> crate::TaggedStructure<'a>
+    for PhysicalDeviceShaderObjectPropertiesEXT<'a> {
+        const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::PHYSICAL_DEVICE_SHADER_OBJECT_PROPERTIES_EXT;
     }
     #[repr(C)]
     #[derive(Clone, Copy)]
@@ -139,6 +147,9 @@ pub(crate) mod reexport {
         pub p_push_constant_ranges: *const crate::vk::PushConstantRange,
         pub p_specialization_info: *const crate::vk::SpecializationInfo<'a>,
         pub _marker: ::core::marker::PhantomData<&'a ()>,
+    }
+    unsafe impl<'a> crate::TaggedStructure<'a> for ShaderCreateInfoEXT<'a> {
+        const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::SHADER_CREATE_INFO_EXT;
     }
     pub type ShaderRequiredSubgroupSizeCreateInfoEXT<'a> = crate::vk::PipelineShaderStageRequiredSubgroupSizeCreateInfo<
         'a,

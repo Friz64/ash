@@ -11,6 +11,10 @@ pub struct PhysicalDevicePrimitivesGeneratedQueryFeaturesEXT<'a> {
     pub primitives_generated_query_with_non_zero_streams: crate::vk::Bool32,
     pub _marker: ::core::marker::PhantomData<&'a ()>,
 }
+unsafe impl<'a> crate::TaggedStructure<'a>
+for PhysicalDevicePrimitivesGeneratedQueryFeaturesEXT<'a> {
+    const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::PHYSICAL_DEVICE_PRIMITIVES_GENERATED_QUERY_FEATURES_EXT;
+}
 ///Provided by [`ext::primitives_generated_query`](crate::ext::primitives_generated_query)
 impl crate::vk::QueryType {
     pub const PRIMITIVES_GENERATED_EXT: Self = Self(1000382000);

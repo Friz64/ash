@@ -9,6 +9,10 @@ pub struct PhysicalDeviceVertexAttributeDivisorPropertiesEXT<'a> {
     pub max_vertex_attrib_divisor: u32,
     pub _marker: ::core::marker::PhantomData<&'a ()>,
 }
+unsafe impl<'a> crate::TaggedStructure<'a>
+for PhysicalDeviceVertexAttributeDivisorPropertiesEXT<'a> {
+    const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::PHYSICAL_DEVICE_VERTEX_ATTRIBUTE_DIVISOR_PROPERTIES_EXT;
+}
 pub type VertexInputBindingDivisorDescriptionEXT = crate::vk::VertexInputBindingDivisorDescription;
 pub type PipelineVertexInputDivisorStateCreateInfoEXT<'a> = crate::vk::PipelineVertexInputDivisorStateCreateInfo<
     'a,

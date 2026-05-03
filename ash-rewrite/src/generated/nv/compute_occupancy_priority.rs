@@ -44,6 +44,10 @@ pub(crate) mod reexport {
         pub occupancy_throttling: core::ffi::c_float,
         pub _marker: ::core::marker::PhantomData<&'a ()>,
     }
+    unsafe impl<'a> crate::TaggedStructure<'a>
+    for ComputeOccupancyPriorityParametersNV<'a> {
+        const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::COMPUTE_OCCUPANCY_PRIORITY_PARAMETERS_NV;
+    }
     #[repr(C)]
     #[derive(Clone, Copy)]
     pub struct PhysicalDeviceComputeOccupancyPriorityFeaturesNV<'a> {
@@ -51,6 +55,10 @@ pub(crate) mod reexport {
         pub p_next: *mut core::ffi::c_void,
         pub compute_occupancy_priority: crate::vk::Bool32,
         pub _marker: ::core::marker::PhantomData<&'a ()>,
+    }
+    unsafe impl<'a> crate::TaggedStructure<'a>
+    for PhysicalDeviceComputeOccupancyPriorityFeaturesNV<'a> {
+        const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::PHYSICAL_DEVICE_COMPUTE_OCCUPANCY_PRIORITY_FEATURES_NV;
     }
     ///Provided by [`nv::compute_occupancy_priority`](crate::nv::compute_occupancy_priority)
     impl crate::vk::StructureType {

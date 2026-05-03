@@ -9,6 +9,10 @@ pub struct PhysicalDevicePipelineLibraryGroupHandlesFeaturesEXT<'a> {
     pub pipeline_library_group_handles: crate::vk::Bool32,
     pub _marker: ::core::marker::PhantomData<&'a ()>,
 }
+unsafe impl<'a> crate::TaggedStructure<'a>
+for PhysicalDevicePipelineLibraryGroupHandlesFeaturesEXT<'a> {
+    const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::PHYSICAL_DEVICE_PIPELINE_LIBRARY_GROUP_HANDLES_FEATURES_EXT;
+}
 ///Provided by [`ext::pipeline_library_group_handles`](crate::ext::pipeline_library_group_handles)
 impl crate::vk::StructureType {
     pub const PHYSICAL_DEVICE_PIPELINE_LIBRARY_GROUP_HANDLES_FEATURES_EXT: Self = Self(

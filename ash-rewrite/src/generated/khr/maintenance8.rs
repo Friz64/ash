@@ -9,6 +9,10 @@ pub struct PhysicalDeviceMaintenance8FeaturesKHR<'a> {
     pub maintenance8: crate::vk::Bool32,
     pub _marker: ::core::marker::PhantomData<&'a ()>,
 }
+unsafe impl<'a> crate::TaggedStructure<'a>
+for PhysicalDeviceMaintenance8FeaturesKHR<'a> {
+    const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::PHYSICAL_DEVICE_MAINTENANCE_8_FEATURES_KHR;
+}
 #[repr(C)]
 #[derive(Clone, Copy)]
 pub struct MemoryBarrierAccessFlags3KHR<'a> {
@@ -17,6 +21,9 @@ pub struct MemoryBarrierAccessFlags3KHR<'a> {
     pub src_access_mask3: crate::vk::AccessFlags3KHR,
     pub dst_access_mask3: crate::vk::AccessFlags3KHR,
     pub _marker: ::core::marker::PhantomData<&'a ()>,
+}
+unsafe impl<'a> crate::TaggedStructure<'a> for MemoryBarrierAccessFlags3KHR<'a> {
+    const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::MEMORY_BARRIER_ACCESS_FLAGS_3_KHR;
 }
 ///Provided by [`khr::maintenance8`](crate::khr::maintenance8)
 impl crate::vk::StructureType {

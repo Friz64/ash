@@ -83,6 +83,10 @@ pub(crate) mod reexport {
         pub mesh_shader: crate::vk::Bool32,
         pub _marker: ::core::marker::PhantomData<&'a ()>,
     }
+    unsafe impl<'a> crate::TaggedStructure<'a>
+    for PhysicalDeviceMeshShaderFeaturesNV<'a> {
+        const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::PHYSICAL_DEVICE_MESH_SHADER_FEATURES_NV;
+    }
     #[repr(C)]
     #[derive(Clone, Copy)]
     pub struct PhysicalDeviceMeshShaderPropertiesNV<'a> {
@@ -102,6 +106,10 @@ pub(crate) mod reexport {
         pub mesh_output_per_vertex_granularity: u32,
         pub mesh_output_per_primitive_granularity: u32,
         pub _marker: ::core::marker::PhantomData<&'a ()>,
+    }
+    unsafe impl<'a> crate::TaggedStructure<'a>
+    for PhysicalDeviceMeshShaderPropertiesNV<'a> {
+        const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::PHYSICAL_DEVICE_MESH_SHADER_PROPERTIES_NV;
     }
     #[repr(C)]
     #[derive(Clone, Copy)]

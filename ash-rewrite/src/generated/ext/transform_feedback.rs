@@ -139,6 +139,10 @@ pub(crate) mod reexport {
         pub geometry_streams: crate::vk::Bool32,
         pub _marker: ::core::marker::PhantomData<&'a ()>,
     }
+    unsafe impl<'a> crate::TaggedStructure<'a>
+    for PhysicalDeviceTransformFeedbackFeaturesEXT<'a> {
+        const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::PHYSICAL_DEVICE_TRANSFORM_FEEDBACK_FEATURES_EXT;
+    }
     #[repr(C)]
     #[derive(Clone, Copy)]
     pub struct PhysicalDeviceTransformFeedbackPropertiesEXT<'a> {
@@ -156,6 +160,10 @@ pub(crate) mod reexport {
         pub transform_feedback_draw: crate::vk::Bool32,
         pub _marker: ::core::marker::PhantomData<&'a ()>,
     }
+    unsafe impl<'a> crate::TaggedStructure<'a>
+    for PhysicalDeviceTransformFeedbackPropertiesEXT<'a> {
+        const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::PHYSICAL_DEVICE_TRANSFORM_FEEDBACK_PROPERTIES_EXT;
+    }
     #[repr(C)]
     #[derive(Clone, Copy)]
     pub struct PipelineRasterizationStateStreamCreateInfoEXT<'a> {
@@ -164,6 +172,10 @@ pub(crate) mod reexport {
         pub flags: crate::vk::PipelineRasterizationStateStreamCreateFlagsEXT,
         pub rasterization_stream: u32,
         pub _marker: ::core::marker::PhantomData<&'a ()>,
+    }
+    unsafe impl<'a> crate::TaggedStructure<'a>
+    for PipelineRasterizationStateStreamCreateInfoEXT<'a> {
+        const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::PIPELINE_RASTERIZATION_STATE_STREAM_CREATE_INFO_EXT;
     }
     ///Provided by [`ext::transform_feedback`](crate::ext::transform_feedback)
     impl crate::vk::QueryType {

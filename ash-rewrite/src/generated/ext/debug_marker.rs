@@ -104,6 +104,9 @@ pub(crate) mod reexport {
         pub p_object_name: *const core::ffi::c_char,
         pub _marker: ::core::marker::PhantomData<&'a ()>,
     }
+    unsafe impl<'a> crate::TaggedStructure<'a> for DebugMarkerObjectNameInfoEXT<'a> {
+        const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::DEBUG_MARKER_OBJECT_NAME_INFO_EXT;
+    }
     #[repr(C)]
     #[derive(Clone, Copy)]
     pub struct DebugMarkerObjectTagInfoEXT<'a> {
@@ -116,6 +119,9 @@ pub(crate) mod reexport {
         pub p_tag: *const core::ffi::c_void,
         pub _marker: ::core::marker::PhantomData<&'a ()>,
     }
+    unsafe impl<'a> crate::TaggedStructure<'a> for DebugMarkerObjectTagInfoEXT<'a> {
+        const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::DEBUG_MARKER_OBJECT_TAG_INFO_EXT;
+    }
     #[repr(C)]
     #[derive(Clone, Copy)]
     pub struct DebugMarkerMarkerInfoEXT<'a> {
@@ -124,6 +130,9 @@ pub(crate) mod reexport {
         pub p_marker_name: *const core::ffi::c_char,
         pub color: [core::ffi::c_float; 4 as _],
         pub _marker: ::core::marker::PhantomData<&'a ()>,
+    }
+    unsafe impl<'a> crate::TaggedStructure<'a> for DebugMarkerMarkerInfoEXT<'a> {
+        const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::DEBUG_MARKER_MARKER_INFO_EXT;
     }
     ///Provided by [`ext::debug_marker`](crate::ext::debug_marker)
     impl crate::vk::StructureType {

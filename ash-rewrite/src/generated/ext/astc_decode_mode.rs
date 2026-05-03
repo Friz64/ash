@@ -9,6 +9,9 @@ pub struct ImageViewASTCDecodeModeEXT<'a> {
     pub decode_mode: crate::vk::Format,
     pub _marker: ::core::marker::PhantomData<&'a ()>,
 }
+unsafe impl<'a> crate::TaggedStructure<'a> for ImageViewASTCDecodeModeEXT<'a> {
+    const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::IMAGE_VIEW_ASTC_DECODE_MODE_EXT;
+}
 #[repr(C)]
 #[derive(Clone, Copy)]
 pub struct PhysicalDeviceASTCDecodeFeaturesEXT<'a> {
@@ -16,6 +19,9 @@ pub struct PhysicalDeviceASTCDecodeFeaturesEXT<'a> {
     pub p_next: *mut core::ffi::c_void,
     pub decode_mode_shared_exponent: crate::vk::Bool32,
     pub _marker: ::core::marker::PhantomData<&'a ()>,
+}
+unsafe impl<'a> crate::TaggedStructure<'a> for PhysicalDeviceASTCDecodeFeaturesEXT<'a> {
+    const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::PHYSICAL_DEVICE_ASTC_DECODE_FEATURES_EXT;
 }
 ///Provided by [`ext::astc_decode_mode`](crate::ext::astc_decode_mode)
 impl crate::vk::StructureType {

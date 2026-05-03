@@ -60,6 +60,9 @@ pub(crate) mod reexport {
         pub ohos_native_buffer_usage: u64,
         pub _marker: ::core::marker::PhantomData<&'a ()>,
     }
+    unsafe impl<'a> crate::TaggedStructure<'a> for NativeBufferUsageOHOS<'a> {
+        const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::NATIVE_BUFFER_USAGE_OHOS;
+    }
     #[repr(C)]
     #[derive(Clone, Copy)]
     pub struct NativeBufferPropertiesOHOS<'a> {
@@ -68,6 +71,9 @@ pub(crate) mod reexport {
         pub allocation_size: crate::vk::DeviceSize,
         pub memory_type_bits: u32,
         pub _marker: ::core::marker::PhantomData<&'a ()>,
+    }
+    unsafe impl<'a> crate::TaggedStructure<'a> for NativeBufferPropertiesOHOS<'a> {
+        const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::NATIVE_BUFFER_PROPERTIES_OHOS;
     }
     #[repr(C)]
     #[derive(Clone, Copy)]
@@ -84,6 +90,9 @@ pub(crate) mod reexport {
         pub suggested_y_chroma_offset: crate::vk::ChromaLocation,
         pub _marker: ::core::marker::PhantomData<&'a ()>,
     }
+    unsafe impl<'a> crate::TaggedStructure<'a> for NativeBufferFormatPropertiesOHOS<'a> {
+        const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::NATIVE_BUFFER_FORMAT_PROPERTIES_OHOS;
+    }
     #[repr(C)]
     #[derive(Clone, Copy)]
     pub struct ImportNativeBufferInfoOHOS<'a> {
@@ -91,6 +100,9 @@ pub(crate) mod reexport {
         pub p_next: *const core::ffi::c_void,
         pub buffer: *mut crate::platform_types::OH_NativeBuffer,
         pub _marker: ::core::marker::PhantomData<&'a ()>,
+    }
+    unsafe impl<'a> crate::TaggedStructure<'a> for ImportNativeBufferInfoOHOS<'a> {
+        const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::IMPORT_NATIVE_BUFFER_INFO_OHOS;
     }
     #[repr(C)]
     #[derive(Clone, Copy)]
@@ -100,6 +112,9 @@ pub(crate) mod reexport {
         pub memory: crate::vk::DeviceMemory,
         pub _marker: ::core::marker::PhantomData<&'a ()>,
     }
+    unsafe impl<'a> crate::TaggedStructure<'a> for MemoryGetNativeBufferInfoOHOS<'a> {
+        const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::MEMORY_GET_NATIVE_BUFFER_INFO_OHOS;
+    }
     #[repr(C)]
     #[derive(Clone, Copy)]
     pub struct ExternalFormatOHOS<'a> {
@@ -107,6 +122,9 @@ pub(crate) mod reexport {
         pub p_next: *mut core::ffi::c_void,
         pub external_format: u64,
         pub _marker: ::core::marker::PhantomData<&'a ()>,
+    }
+    unsafe impl<'a> crate::TaggedStructure<'a> for ExternalFormatOHOS<'a> {
+        const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::EXTERNAL_FORMAT_OHOS;
     }
     ///Provided by [`ohos::external_memory`](crate::ohos::external_memory)
     impl crate::vk::StructureType {

@@ -46,6 +46,9 @@ pub(crate) mod reexport {
         pub window: *mut core::ffi::c_void,
         pub _marker: ::core::marker::PhantomData<&'a ()>,
     }
+    unsafe impl<'a> crate::TaggedStructure<'a> for ViSurfaceCreateInfoNN<'a> {
+        const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::VI_SURFACE_CREATE_INFO_NN;
+    }
     ///Provided by [`nn::vi_surface`](crate::nn::vi_surface)
     impl crate::vk::StructureType {
         pub const VI_SURFACE_CREATE_INFO_NN: Self = Self(1000062000);

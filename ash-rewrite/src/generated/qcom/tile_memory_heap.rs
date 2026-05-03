@@ -43,6 +43,9 @@ pub(crate) mod reexport {
         pub memory: crate::vk::DeviceMemory,
         pub _marker: ::core::marker::PhantomData<&'a ()>,
     }
+    unsafe impl<'a> crate::TaggedStructure<'a> for TileMemoryBindInfoQCOM<'a> {
+        const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::TILE_MEMORY_BIND_INFO_QCOM;
+    }
     #[repr(C)]
     #[derive(Clone, Copy)]
     pub struct PhysicalDeviceTileMemoryHeapFeaturesQCOM<'a> {
@@ -50,6 +53,10 @@ pub(crate) mod reexport {
         pub p_next: *mut core::ffi::c_void,
         pub tile_memory_heap: crate::vk::Bool32,
         pub _marker: ::core::marker::PhantomData<&'a ()>,
+    }
+    unsafe impl<'a> crate::TaggedStructure<'a>
+    for PhysicalDeviceTileMemoryHeapFeaturesQCOM<'a> {
+        const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::PHYSICAL_DEVICE_TILE_MEMORY_HEAP_FEATURES_QCOM;
     }
     #[repr(C)]
     #[derive(Clone, Copy)]
@@ -60,6 +67,10 @@ pub(crate) mod reexport {
         pub tile_buffer_transfers: crate::vk::Bool32,
         pub _marker: ::core::marker::PhantomData<&'a ()>,
     }
+    unsafe impl<'a> crate::TaggedStructure<'a>
+    for PhysicalDeviceTileMemoryHeapPropertiesQCOM<'a> {
+        const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::PHYSICAL_DEVICE_TILE_MEMORY_HEAP_PROPERTIES_QCOM;
+    }
     #[repr(C)]
     #[derive(Clone, Copy)]
     pub struct TileMemorySizeInfoQCOM<'a> {
@@ -67,6 +78,9 @@ pub(crate) mod reexport {
         pub p_next: *const core::ffi::c_void,
         pub size: crate::vk::DeviceSize,
         pub _marker: ::core::marker::PhantomData<&'a ()>,
+    }
+    unsafe impl<'a> crate::TaggedStructure<'a> for TileMemorySizeInfoQCOM<'a> {
+        const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::TILE_MEMORY_SIZE_INFO_QCOM;
     }
     #[repr(C)]
     #[derive(Clone, Copy)]
@@ -76,6 +90,9 @@ pub(crate) mod reexport {
         pub size: crate::vk::DeviceSize,
         pub alignment: crate::vk::DeviceSize,
         pub _marker: ::core::marker::PhantomData<&'a ()>,
+    }
+    unsafe impl<'a> crate::TaggedStructure<'a> for TileMemoryRequirementsQCOM<'a> {
+        const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::TILE_MEMORY_REQUIREMENTS_QCOM;
     }
     ///Provided by [`qcom::tile_memory_heap`](crate::qcom::tile_memory_heap)
     impl crate::vk::StructureType {

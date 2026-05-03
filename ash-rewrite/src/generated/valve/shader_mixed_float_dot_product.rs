@@ -12,6 +12,10 @@ pub struct PhysicalDeviceShaderMixedFloatDotProductFeaturesVALVE<'a> {
     pub shader_mixed_float_dot_product_float8_acc_float32: crate::vk::Bool32,
     pub _marker: ::core::marker::PhantomData<&'a ()>,
 }
+unsafe impl<'a> crate::TaggedStructure<'a>
+for PhysicalDeviceShaderMixedFloatDotProductFeaturesVALVE<'a> {
+    const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::PHYSICAL_DEVICE_SHADER_MIXED_FLOAT_DOT_PRODUCT_FEATURES_VALVE;
+}
 ///Provided by [`valve::shader_mixed_float_dot_product`](crate::valve::shader_mixed_float_dot_product)
 impl crate::vk::StructureType {
     pub const PHYSICAL_DEVICE_SHADER_MIXED_FLOAT_DOT_PRODUCT_FEATURES_VALVE: Self = Self(

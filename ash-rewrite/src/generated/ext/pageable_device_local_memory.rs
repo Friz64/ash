@@ -44,6 +44,10 @@ pub(crate) mod reexport {
         pub pageable_device_local_memory: crate::vk::Bool32,
         pub _marker: ::core::marker::PhantomData<&'a ()>,
     }
+    unsafe impl<'a> crate::TaggedStructure<'a>
+    for PhysicalDevicePageableDeviceLocalMemoryFeaturesEXT<'a> {
+        const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::PHYSICAL_DEVICE_PAGEABLE_DEVICE_LOCAL_MEMORY_FEATURES_EXT;
+    }
     ///Provided by [`ext::pageable_device_local_memory`](crate::ext::pageable_device_local_memory)
     impl crate::vk::StructureType {
         pub const PHYSICAL_DEVICE_PAGEABLE_DEVICE_LOCAL_MEMORY_FEATURES_EXT: Self = Self(

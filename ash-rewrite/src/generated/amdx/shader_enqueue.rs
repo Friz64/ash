@@ -154,6 +154,10 @@ pub(crate) mod reexport {
         pub max_execution_graph_workgroups: u32,
         pub _marker: ::core::marker::PhantomData<&'a ()>,
     }
+    unsafe impl<'a> crate::TaggedStructure<'a>
+    for PhysicalDeviceShaderEnqueuePropertiesAMDX<'a> {
+        const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::PHYSICAL_DEVICE_SHADER_ENQUEUE_PROPERTIES_AMDX;
+    }
     #[repr(C)]
     #[derive(Clone, Copy)]
     pub struct PhysicalDeviceShaderEnqueueFeaturesAMDX<'a> {
@@ -162,6 +166,10 @@ pub(crate) mod reexport {
         pub shader_enqueue: crate::vk::Bool32,
         pub shader_mesh_enqueue: crate::vk::Bool32,
         pub _marker: ::core::marker::PhantomData<&'a ()>,
+    }
+    unsafe impl<'a> crate::TaggedStructure<'a>
+    for PhysicalDeviceShaderEnqueueFeaturesAMDX<'a> {
+        const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::PHYSICAL_DEVICE_SHADER_ENQUEUE_FEATURES_AMDX;
     }
     #[repr(C)]
     #[derive(Clone, Copy)]
@@ -177,6 +185,10 @@ pub(crate) mod reexport {
         pub base_pipeline_index: i32,
         pub _marker: ::core::marker::PhantomData<&'a ()>,
     }
+    unsafe impl<'a> crate::TaggedStructure<'a>
+    for ExecutionGraphPipelineCreateInfoAMDX<'a> {
+        const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::EXECUTION_GRAPH_PIPELINE_CREATE_INFO_AMDX;
+    }
     #[repr(C)]
     #[derive(Clone, Copy)]
     pub struct PipelineShaderStageNodeCreateInfoAMDX<'a> {
@@ -185,6 +197,10 @@ pub(crate) mod reexport {
         pub p_name: *const core::ffi::c_char,
         pub index: u32,
         pub _marker: ::core::marker::PhantomData<&'a ()>,
+    }
+    unsafe impl<'a> crate::TaggedStructure<'a>
+    for PipelineShaderStageNodeCreateInfoAMDX<'a> {
+        const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::PIPELINE_SHADER_STAGE_NODE_CREATE_INFO_AMDX;
     }
     #[repr(C)]
     #[derive(Clone, Copy)]
@@ -195,6 +211,10 @@ pub(crate) mod reexport {
         pub max_size: crate::vk::DeviceSize,
         pub size_granularity: crate::vk::DeviceSize,
         pub _marker: ::core::marker::PhantomData<&'a ()>,
+    }
+    unsafe impl<'a> crate::TaggedStructure<'a>
+    for ExecutionGraphPipelineScratchSizeAMDX<'a> {
+        const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::EXECUTION_GRAPH_PIPELINE_SCRATCH_SIZE_AMDX;
     }
     #[repr(C)]
     #[derive(Clone, Copy)]

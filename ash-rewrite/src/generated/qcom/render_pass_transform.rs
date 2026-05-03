@@ -9,6 +9,9 @@ pub struct RenderPassTransformBeginInfoQCOM<'a> {
     pub transform: crate::vk::SurfaceTransformFlagBitsKHR,
     pub _marker: ::core::marker::PhantomData<&'a ()>,
 }
+unsafe impl<'a> crate::TaggedStructure<'a> for RenderPassTransformBeginInfoQCOM<'a> {
+    const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::RENDER_PASS_TRANSFORM_BEGIN_INFO_QCOM;
+}
 #[repr(C)]
 #[derive(Clone, Copy)]
 pub struct CommandBufferInheritanceRenderPassTransformInfoQCOM<'a> {
@@ -17,6 +20,10 @@ pub struct CommandBufferInheritanceRenderPassTransformInfoQCOM<'a> {
     pub transform: crate::vk::SurfaceTransformFlagBitsKHR,
     pub render_area: crate::vk::Rect2D,
     pub _marker: ::core::marker::PhantomData<&'a ()>,
+}
+unsafe impl<'a> crate::TaggedStructure<'a>
+for CommandBufferInheritanceRenderPassTransformInfoQCOM<'a> {
+    const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::COMMAND_BUFFER_INHERITANCE_RENDER_PASS_TRANSFORM_INFO_QCOM;
 }
 ///Provided by [`qcom::render_pass_transform`](crate::qcom::render_pass_transform)
 impl crate::vk::StructureType {

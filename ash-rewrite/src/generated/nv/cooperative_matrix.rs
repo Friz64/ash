@@ -47,6 +47,10 @@ pub(crate) mod reexport {
         pub cooperative_matrix_robust_buffer_access: crate::vk::Bool32,
         pub _marker: ::core::marker::PhantomData<&'a ()>,
     }
+    unsafe impl<'a> crate::TaggedStructure<'a>
+    for PhysicalDeviceCooperativeMatrixFeaturesNV<'a> {
+        const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::PHYSICAL_DEVICE_COOPERATIVE_MATRIX_FEATURES_NV;
+    }
     #[repr(C)]
     #[derive(Clone, Copy)]
     pub struct PhysicalDeviceCooperativeMatrixPropertiesNV<'a> {
@@ -54,6 +58,10 @@ pub(crate) mod reexport {
         pub p_next: *mut core::ffi::c_void,
         pub cooperative_matrix_supported_stages: crate::vk::ShaderStageFlags,
         pub _marker: ::core::marker::PhantomData<&'a ()>,
+    }
+    unsafe impl<'a> crate::TaggedStructure<'a>
+    for PhysicalDeviceCooperativeMatrixPropertiesNV<'a> {
+        const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::PHYSICAL_DEVICE_COOPERATIVE_MATRIX_PROPERTIES_NV;
     }
     #[repr(C)]
     #[derive(Clone, Copy)]
@@ -69,6 +77,9 @@ pub(crate) mod reexport {
         pub d_type: crate::vk::ComponentTypeNV,
         pub scope: crate::vk::ScopeNV,
         pub _marker: ::core::marker::PhantomData<&'a ()>,
+    }
+    unsafe impl<'a> crate::TaggedStructure<'a> for CooperativeMatrixPropertiesNV<'a> {
+        const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::COOPERATIVE_MATRIX_PROPERTIES_NV;
     }
     ///Provided by [`nv::cooperative_matrix`](crate::nv::cooperative_matrix)
     impl crate::vk::StructureType {

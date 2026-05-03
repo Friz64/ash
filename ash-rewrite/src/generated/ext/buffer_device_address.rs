@@ -45,6 +45,10 @@ pub(crate) mod reexport {
         pub buffer_device_address_multi_device: crate::vk::Bool32,
         pub _marker: ::core::marker::PhantomData<&'a ()>,
     }
+    unsafe impl<'a> crate::TaggedStructure<'a>
+    for PhysicalDeviceBufferDeviceAddressFeaturesEXT<'a> {
+        const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::PHYSICAL_DEVICE_BUFFER_DEVICE_ADDRESS_FEATURES_EXT;
+    }
     #[repr(C)]
     #[derive(Clone, Copy)]
     pub struct BufferDeviceAddressCreateInfoEXT<'a> {
@@ -52,6 +56,9 @@ pub(crate) mod reexport {
         pub p_next: *const core::ffi::c_void,
         pub device_address: crate::vk::DeviceAddress,
         pub _marker: ::core::marker::PhantomData<&'a ()>,
+    }
+    unsafe impl<'a> crate::TaggedStructure<'a> for BufferDeviceAddressCreateInfoEXT<'a> {
+        const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::BUFFER_DEVICE_ADDRESS_CREATE_INFO_EXT;
     }
     pub type PhysicalDeviceBufferAddressFeaturesEXT<'a> = crate::vk::PhysicalDeviceBufferDeviceAddressFeaturesEXT<
         'a,

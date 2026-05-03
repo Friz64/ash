@@ -9,6 +9,10 @@ pub struct PhysicalDeviceThrottleHintFeaturesSEC<'a> {
     pub throttle_hint: crate::vk::Bool32,
     pub _marker: ::core::marker::PhantomData<&'a ()>,
 }
+unsafe impl<'a> crate::TaggedStructure<'a>
+for PhysicalDeviceThrottleHintFeaturesSEC<'a> {
+    const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::PHYSICAL_DEVICE_THROTTLE_HINT_FEATURES_SEC;
+}
 #[repr(C)]
 #[derive(Clone, Copy)]
 pub struct ThrottleHintSubmitInfoSEC<'a> {
@@ -16,6 +20,9 @@ pub struct ThrottleHintSubmitInfoSEC<'a> {
     pub p_next: *const core::ffi::c_void,
     pub throttle_hint: crate::vk::ThrottleHintTypeSEC,
     pub _marker: ::core::marker::PhantomData<&'a ()>,
+}
+unsafe impl<'a> crate::TaggedStructure<'a> for ThrottleHintSubmitInfoSEC<'a> {
+    const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::THROTTLE_HINT_SUBMIT_INFO_SEC;
 }
 ///Provided by [`sec::throttle_hint`](crate::sec::throttle_hint)
 impl crate::vk::StructureType {

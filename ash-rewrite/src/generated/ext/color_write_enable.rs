@@ -44,6 +44,10 @@ pub(crate) mod reexport {
         pub color_write_enable: crate::vk::Bool32,
         pub _marker: ::core::marker::PhantomData<&'a ()>,
     }
+    unsafe impl<'a> crate::TaggedStructure<'a>
+    for PhysicalDeviceColorWriteEnableFeaturesEXT<'a> {
+        const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::PHYSICAL_DEVICE_COLOR_WRITE_ENABLE_FEATURES_EXT;
+    }
     #[repr(C)]
     #[derive(Clone, Copy)]
     pub struct PipelineColorWriteCreateInfoEXT<'a> {
@@ -52,6 +56,9 @@ pub(crate) mod reexport {
         pub attachment_count: u32,
         pub p_color_write_enables: *const crate::vk::Bool32,
         pub _marker: ::core::marker::PhantomData<&'a ()>,
+    }
+    unsafe impl<'a> crate::TaggedStructure<'a> for PipelineColorWriteCreateInfoEXT<'a> {
+        const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::PIPELINE_COLOR_WRITE_CREATE_INFO_EXT;
     }
     ///Provided by [`ext::color_write_enable`](crate::ext::color_write_enable)
     impl crate::vk::StructureType {

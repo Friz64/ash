@@ -9,6 +9,10 @@ pub struct PhysicalDeviceAmigoProfilingFeaturesSEC<'a> {
     pub amigo_profiling: crate::vk::Bool32,
     pub _marker: ::core::marker::PhantomData<&'a ()>,
 }
+unsafe impl<'a> crate::TaggedStructure<'a>
+for PhysicalDeviceAmigoProfilingFeaturesSEC<'a> {
+    const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::PHYSICAL_DEVICE_AMIGO_PROFILING_FEATURES_SEC;
+}
 #[repr(C)]
 #[derive(Clone, Copy)]
 pub struct AmigoProfilingSubmitInfoSEC<'a> {
@@ -17,6 +21,9 @@ pub struct AmigoProfilingSubmitInfoSEC<'a> {
     pub first_draw_timestamp: u64,
     pub swap_buffer_timestamp: u64,
     pub _marker: ::core::marker::PhantomData<&'a ()>,
+}
+unsafe impl<'a> crate::TaggedStructure<'a> for AmigoProfilingSubmitInfoSEC<'a> {
+    const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::AMIGO_PROFILING_SUBMIT_INFO_SEC;
 }
 ///Provided by [`sec::amigo_profiling`](crate::sec::amigo_profiling)
 impl crate::vk::StructureType {

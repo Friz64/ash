@@ -43,6 +43,9 @@ pub(crate) mod reexport {
         pub flags: crate::vk::VideoDecodeCapabilityFlagsKHR,
         pub _marker: ::core::marker::PhantomData<&'a ()>,
     }
+    unsafe impl<'a> crate::TaggedStructure<'a> for VideoDecodeCapabilitiesKHR<'a> {
+        const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::VIDEO_DECODE_CAPABILITIES_KHR;
+    }
     #[repr(C)]
     #[derive(Clone, Copy)]
     pub struct VideoDecodeUsageInfoKHR<'a> {
@@ -50,6 +53,9 @@ pub(crate) mod reexport {
         pub p_next: *const core::ffi::c_void,
         pub video_usage_hints: crate::vk::VideoDecodeUsageFlagsKHR,
         pub _marker: ::core::marker::PhantomData<&'a ()>,
+    }
+    unsafe impl<'a> crate::TaggedStructure<'a> for VideoDecodeUsageInfoKHR<'a> {
+        const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::VIDEO_DECODE_USAGE_INFO_KHR;
     }
     #[repr(C)]
     #[derive(Clone, Copy)]
@@ -65,6 +71,9 @@ pub(crate) mod reexport {
         pub reference_slot_count: u32,
         pub p_reference_slots: *const crate::vk::VideoReferenceSlotInfoKHR<'a>,
         pub _marker: ::core::marker::PhantomData<&'a ()>,
+    }
+    unsafe impl<'a> crate::TaggedStructure<'a> for VideoDecodeInfoKHR<'a> {
+        const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::VIDEO_DECODE_INFO_KHR;
     }
     ///Provided by [`khr::video_decode_queue`](crate::khr::video_decode_queue)
     impl crate::vk::ImageLayout {

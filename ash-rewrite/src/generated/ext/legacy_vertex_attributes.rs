@@ -9,6 +9,10 @@ pub struct PhysicalDeviceLegacyVertexAttributesFeaturesEXT<'a> {
     pub legacy_vertex_attributes: crate::vk::Bool32,
     pub _marker: ::core::marker::PhantomData<&'a ()>,
 }
+unsafe impl<'a> crate::TaggedStructure<'a>
+for PhysicalDeviceLegacyVertexAttributesFeaturesEXT<'a> {
+    const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::PHYSICAL_DEVICE_LEGACY_VERTEX_ATTRIBUTES_FEATURES_EXT;
+}
 #[repr(C)]
 #[derive(Clone, Copy)]
 pub struct PhysicalDeviceLegacyVertexAttributesPropertiesEXT<'a> {
@@ -16,6 +20,10 @@ pub struct PhysicalDeviceLegacyVertexAttributesPropertiesEXT<'a> {
     pub p_next: *mut core::ffi::c_void,
     pub native_unaligned_performance: crate::vk::Bool32,
     pub _marker: ::core::marker::PhantomData<&'a ()>,
+}
+unsafe impl<'a> crate::TaggedStructure<'a>
+for PhysicalDeviceLegacyVertexAttributesPropertiesEXT<'a> {
+    const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::PHYSICAL_DEVICE_LEGACY_VERTEX_ATTRIBUTES_PROPERTIES_EXT;
 }
 ///Provided by [`ext::legacy_vertex_attributes`](crate::ext::legacy_vertex_attributes)
 impl crate::vk::StructureType {

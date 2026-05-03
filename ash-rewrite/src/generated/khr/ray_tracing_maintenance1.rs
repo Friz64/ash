@@ -62,6 +62,10 @@ pub(crate) mod reexport {
         pub ray_tracing_pipeline_trace_rays_indirect2: crate::vk::Bool32,
         pub _marker: ::core::marker::PhantomData<&'a ()>,
     }
+    unsafe impl<'a> crate::TaggedStructure<'a>
+    for PhysicalDeviceRayTracingMaintenance1FeaturesKHR<'a> {
+        const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::PHYSICAL_DEVICE_RAY_TRACING_MAINTENANCE_1_FEATURES_KHR;
+    }
     ///Provided by [`khr::ray_tracing_maintenance1`](crate::khr::ray_tracing_maintenance1)
     impl crate::vk::QueryType {
         pub const ACCELERATION_STRUCTURE_SERIALIZATION_BOTTOM_LEVEL_POINTERS_KHR: Self = Self(

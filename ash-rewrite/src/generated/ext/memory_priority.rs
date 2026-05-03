@@ -9,6 +9,10 @@ pub struct PhysicalDeviceMemoryPriorityFeaturesEXT<'a> {
     pub memory_priority: crate::vk::Bool32,
     pub _marker: ::core::marker::PhantomData<&'a ()>,
 }
+unsafe impl<'a> crate::TaggedStructure<'a>
+for PhysicalDeviceMemoryPriorityFeaturesEXT<'a> {
+    const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::PHYSICAL_DEVICE_MEMORY_PRIORITY_FEATURES_EXT;
+}
 #[repr(C)]
 #[derive(Clone, Copy)]
 pub struct MemoryPriorityAllocateInfoEXT<'a> {
@@ -16,6 +20,9 @@ pub struct MemoryPriorityAllocateInfoEXT<'a> {
     pub p_next: *const core::ffi::c_void,
     pub priority: core::ffi::c_float,
     pub _marker: ::core::marker::PhantomData<&'a ()>,
+}
+unsafe impl<'a> crate::TaggedStructure<'a> for MemoryPriorityAllocateInfoEXT<'a> {
+    const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::MEMORY_PRIORITY_ALLOCATE_INFO_EXT;
 }
 ///Provided by [`ext::memory_priority`](crate::ext::memory_priority)
 impl crate::vk::StructureType {

@@ -45,6 +45,9 @@ pub(crate) mod reexport {
         pub depth_bias_slope_factor: core::ffi::c_float,
         pub _marker: ::core::marker::PhantomData<&'a ()>,
     }
+    unsafe impl<'a> crate::TaggedStructure<'a> for DepthBiasInfoEXT<'a> {
+        const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::DEPTH_BIAS_INFO_EXT;
+    }
     #[repr(C)]
     #[derive(Clone, Copy)]
     pub struct DepthBiasRepresentationInfoEXT<'a> {
@@ -53,6 +56,9 @@ pub(crate) mod reexport {
         pub depth_bias_representation: crate::vk::DepthBiasRepresentationEXT,
         pub depth_bias_exact: crate::vk::Bool32,
         pub _marker: ::core::marker::PhantomData<&'a ()>,
+    }
+    unsafe impl<'a> crate::TaggedStructure<'a> for DepthBiasRepresentationInfoEXT<'a> {
+        const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::DEPTH_BIAS_REPRESENTATION_INFO_EXT;
     }
     #[repr(C)]
     #[derive(Clone, Copy)]
@@ -64,6 +70,10 @@ pub(crate) mod reexport {
         pub float_representation: crate::vk::Bool32,
         pub depth_bias_exact: crate::vk::Bool32,
         pub _marker: ::core::marker::PhantomData<&'a ()>,
+    }
+    unsafe impl<'a> crate::TaggedStructure<'a>
+    for PhysicalDeviceDepthBiasControlFeaturesEXT<'a> {
+        const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::PHYSICAL_DEVICE_DEPTH_BIAS_CONTROL_FEATURES_EXT;
     }
     ///Provided by [`ext::depth_bias_control`](crate::ext::depth_bias_control)
     impl crate::vk::StructureType {

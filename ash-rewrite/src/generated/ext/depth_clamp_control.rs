@@ -9,6 +9,10 @@ pub struct PhysicalDeviceDepthClampControlFeaturesEXT<'a> {
     pub depth_clamp_control: crate::vk::Bool32,
     pub _marker: ::core::marker::PhantomData<&'a ()>,
 }
+unsafe impl<'a> crate::TaggedStructure<'a>
+for PhysicalDeviceDepthClampControlFeaturesEXT<'a> {
+    const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::PHYSICAL_DEVICE_DEPTH_CLAMP_CONTROL_FEATURES_EXT;
+}
 #[repr(C)]
 #[derive(Clone, Copy)]
 pub struct PipelineViewportDepthClampControlCreateInfoEXT<'a> {
@@ -17,6 +21,10 @@ pub struct PipelineViewportDepthClampControlCreateInfoEXT<'a> {
     pub depth_clamp_mode: crate::vk::DepthClampModeEXT,
     pub p_depth_clamp_range: *const crate::vk::DepthClampRangeEXT,
     pub _marker: ::core::marker::PhantomData<&'a ()>,
+}
+unsafe impl<'a> crate::TaggedStructure<'a>
+for PipelineViewportDepthClampControlCreateInfoEXT<'a> {
+    const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::PIPELINE_VIEWPORT_DEPTH_CLAMP_CONTROL_CREATE_INFO_EXT;
 }
 #[repr(C)]
 #[derive(Clone, Copy)]

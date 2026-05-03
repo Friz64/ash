@@ -9,6 +9,9 @@ pub struct CopyCommandTransformInfoQCOM<'a> {
     pub transform: crate::vk::SurfaceTransformFlagBitsKHR,
     pub _marker: ::core::marker::PhantomData<&'a ()>,
 }
+unsafe impl<'a> crate::TaggedStructure<'a> for CopyCommandTransformInfoQCOM<'a> {
+    const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::COPY_COMMAND_TRANSFORM_INFO_QCOM;
+}
 ///Provided by [`qcom::rotated_copy_commands`](crate::qcom::rotated_copy_commands)
 impl crate::vk::StructureType {
     pub const COPY_COMMAND_TRANSFORM_INFO_QCOM: Self = Self(1000333000);

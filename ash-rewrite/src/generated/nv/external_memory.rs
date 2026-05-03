@@ -9,6 +9,9 @@ pub struct ExternalMemoryImageCreateInfoNV<'a> {
     pub handle_types: crate::vk::ExternalMemoryHandleTypeFlagsNV,
     pub _marker: ::core::marker::PhantomData<&'a ()>,
 }
+unsafe impl<'a> crate::TaggedStructure<'a> for ExternalMemoryImageCreateInfoNV<'a> {
+    const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::EXTERNAL_MEMORY_IMAGE_CREATE_INFO_NV;
+}
 #[repr(C)]
 #[derive(Clone, Copy)]
 pub struct ExportMemoryAllocateInfoNV<'a> {
@@ -16,6 +19,9 @@ pub struct ExportMemoryAllocateInfoNV<'a> {
     pub p_next: *const core::ffi::c_void,
     pub handle_types: crate::vk::ExternalMemoryHandleTypeFlagsNV,
     pub _marker: ::core::marker::PhantomData<&'a ()>,
+}
+unsafe impl<'a> crate::TaggedStructure<'a> for ExportMemoryAllocateInfoNV<'a> {
+    const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::EXPORT_MEMORY_ALLOCATE_INFO_NV;
 }
 ///Provided by [`nv::external_memory`](crate::nv::external_memory)
 impl crate::vk::StructureType {

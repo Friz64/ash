@@ -9,6 +9,9 @@ pub struct PhysicalDeviceCubicClampFeaturesQCOM<'a> {
     pub cubic_range_clamp: crate::vk::Bool32,
     pub _marker: ::core::marker::PhantomData<&'a ()>,
 }
+unsafe impl<'a> crate::TaggedStructure<'a> for PhysicalDeviceCubicClampFeaturesQCOM<'a> {
+    const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::PHYSICAL_DEVICE_CUBIC_CLAMP_FEATURES_QCOM;
+}
 ///Provided by [`qcom::filter_cubic_clamp`](crate::qcom::filter_cubic_clamp)
 impl crate::vk::StructureType {
     pub const PHYSICAL_DEVICE_CUBIC_CLAMP_FEATURES_QCOM: Self = Self(1000521000);

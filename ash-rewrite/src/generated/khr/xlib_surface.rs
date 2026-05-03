@@ -66,6 +66,9 @@ pub(crate) mod reexport {
         pub window: crate::platform_types::Window,
         pub _marker: ::core::marker::PhantomData<&'a ()>,
     }
+    unsafe impl<'a> crate::TaggedStructure<'a> for XlibSurfaceCreateInfoKHR<'a> {
+        const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::XLIB_SURFACE_CREATE_INFO_KHR;
+    }
     ///Provided by [`khr::xlib_surface`](crate::khr::xlib_surface)
     impl crate::vk::StructureType {
         pub const XLIB_SURFACE_CREATE_INFO_KHR: Self = Self(1000004000);

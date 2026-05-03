@@ -10,6 +10,10 @@ pub struct PhysicalDeviceRayTracingMotionBlurFeaturesNV<'a> {
     pub ray_tracing_motion_blur_pipeline_trace_rays_indirect: crate::vk::Bool32,
     pub _marker: ::core::marker::PhantomData<&'a ()>,
 }
+unsafe impl<'a> crate::TaggedStructure<'a>
+for PhysicalDeviceRayTracingMotionBlurFeaturesNV<'a> {
+    const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::PHYSICAL_DEVICE_RAY_TRACING_MOTION_BLUR_FEATURES_NV;
+}
 #[repr(C)]
 #[derive(Clone, Copy)]
 pub struct AccelerationStructureGeometryMotionTrianglesDataNV<'a> {
@@ -17,6 +21,10 @@ pub struct AccelerationStructureGeometryMotionTrianglesDataNV<'a> {
     pub p_next: *const core::ffi::c_void,
     pub vertex_data: crate::vk::DeviceOrHostAddressConstKHR,
     pub _marker: ::core::marker::PhantomData<&'a ()>,
+}
+unsafe impl<'a> crate::TaggedStructure<'a>
+for AccelerationStructureGeometryMotionTrianglesDataNV<'a> {
+    const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::ACCELERATION_STRUCTURE_GEOMETRY_MOTION_TRIANGLES_DATA_NV;
 }
 #[repr(C)]
 #[derive(Clone, Copy)]
@@ -26,6 +34,9 @@ pub struct AccelerationStructureMotionInfoNV<'a> {
     pub max_instances: u32,
     pub flags: crate::vk::AccelerationStructureMotionInfoFlagsNV,
     pub _marker: ::core::marker::PhantomData<&'a ()>,
+}
+unsafe impl<'a> crate::TaggedStructure<'a> for AccelerationStructureMotionInfoNV<'a> {
+    const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::ACCELERATION_STRUCTURE_MOTION_INFO_NV;
 }
 #[repr(C)]
 #[derive(Clone, Copy)]

@@ -92,6 +92,9 @@ pub(crate) mod reexport {
         pub sampler: crate::vk::Sampler,
         pub _marker: ::core::marker::PhantomData<&'a ()>,
     }
+    unsafe impl<'a> crate::TaggedStructure<'a> for ImageViewHandleInfoNVX<'a> {
+        const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::IMAGE_VIEW_HANDLE_INFO_NVX;
+    }
     #[repr(C)]
     #[derive(Clone, Copy)]
     pub struct ImageViewAddressPropertiesNVX<'a> {
@@ -100,6 +103,9 @@ pub(crate) mod reexport {
         pub device_address: crate::vk::DeviceAddress,
         pub size: crate::vk::DeviceSize,
         pub _marker: ::core::marker::PhantomData<&'a ()>,
+    }
+    unsafe impl<'a> crate::TaggedStructure<'a> for ImageViewAddressPropertiesNVX<'a> {
+        const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::IMAGE_VIEW_ADDRESS_PROPERTIES_NVX;
     }
     ///Provided by [`nvx::image_view_handle`](crate::nvx::image_view_handle)
     impl crate::vk::StructureType {

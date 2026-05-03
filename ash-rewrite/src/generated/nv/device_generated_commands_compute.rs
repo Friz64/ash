@@ -77,6 +77,10 @@ pub(crate) mod reexport {
         pub pipeline_device_address_capture_replay: crate::vk::DeviceAddress,
         pub _marker: ::core::marker::PhantomData<&'a ()>,
     }
+    unsafe impl<'a> crate::TaggedStructure<'a>
+    for ComputePipelineIndirectBufferInfoNV<'a> {
+        const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::COMPUTE_PIPELINE_INDIRECT_BUFFER_INFO_NV;
+    }
     #[repr(C)]
     #[derive(Clone, Copy)]
     pub struct PhysicalDeviceDeviceGeneratedCommandsComputeFeaturesNV<'a> {
@@ -87,6 +91,10 @@ pub(crate) mod reexport {
         pub device_generated_compute_capture_replay: crate::vk::Bool32,
         pub _marker: ::core::marker::PhantomData<&'a ()>,
     }
+    unsafe impl<'a> crate::TaggedStructure<'a>
+    for PhysicalDeviceDeviceGeneratedCommandsComputeFeaturesNV<'a> {
+        const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::PHYSICAL_DEVICE_DEVICE_GENERATED_COMMANDS_COMPUTE_FEATURES_NV;
+    }
     #[repr(C)]
     #[derive(Clone, Copy)]
     pub struct PipelineIndirectDeviceAddressInfoNV<'a> {
@@ -95,6 +103,10 @@ pub(crate) mod reexport {
         pub pipeline_bind_point: crate::vk::PipelineBindPoint,
         pub pipeline: crate::vk::Pipeline,
         pub _marker: ::core::marker::PhantomData<&'a ()>,
+    }
+    unsafe impl<'a> crate::TaggedStructure<'a>
+    for PipelineIndirectDeviceAddressInfoNV<'a> {
+        const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::PIPELINE_INDIRECT_DEVICE_ADDRESS_INFO_NV;
     }
     #[repr(C)]
     #[derive(Clone, Copy)]

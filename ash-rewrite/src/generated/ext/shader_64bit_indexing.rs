@@ -9,6 +9,10 @@ pub struct PhysicalDeviceShader64BitIndexingFeaturesEXT<'a> {
     pub shader64_bit_indexing: crate::vk::Bool32,
     pub _marker: ::core::marker::PhantomData<&'a ()>,
 }
+unsafe impl<'a> crate::TaggedStructure<'a>
+for PhysicalDeviceShader64BitIndexingFeaturesEXT<'a> {
+    const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::PHYSICAL_DEVICE_SHADER_64_INDEXING_FEATURES_EXT;
+}
 ///Provided by [`ext::shader_64bit_indexing`](crate::ext::shader_64bit_indexing)
 impl crate::vk::StructureType {
     pub const PHYSICAL_DEVICE_SHADER_64_INDEXING_FEATURES_EXT: Self = Self(1000627000);

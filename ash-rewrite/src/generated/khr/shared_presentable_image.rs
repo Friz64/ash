@@ -43,6 +43,10 @@ pub(crate) mod reexport {
         pub shared_present_supported_usage_flags: crate::vk::ImageUsageFlags,
         pub _marker: ::core::marker::PhantomData<&'a ()>,
     }
+    unsafe impl<'a> crate::TaggedStructure<'a>
+    for SharedPresentSurfaceCapabilitiesKHR<'a> {
+        const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::SHARED_PRESENT_SURFACE_CAPABILITIES_KHR;
+    }
     ///Provided by [`khr::shared_presentable_image`](crate::khr::shared_presentable_image)
     impl crate::vk::ImageLayout {
         pub const SHARED_PRESENT_KHR: Self = Self(1000111000);

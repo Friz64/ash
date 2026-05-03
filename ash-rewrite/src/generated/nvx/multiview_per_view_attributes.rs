@@ -9,6 +9,10 @@ pub struct PhysicalDeviceMultiviewPerViewAttributesPropertiesNVX<'a> {
     pub per_view_position_all_components: crate::vk::Bool32,
     pub _marker: ::core::marker::PhantomData<&'a ()>,
 }
+unsafe impl<'a> crate::TaggedStructure<'a>
+for PhysicalDeviceMultiviewPerViewAttributesPropertiesNVX<'a> {
+    const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::PHYSICAL_DEVICE_MULTIVIEW_PER_VIEW_ATTRIBUTES_PROPERTIES_NVX;
+}
 #[repr(C)]
 #[derive(Clone, Copy)]
 pub struct MultiviewPerViewAttributesInfoNVX<'a> {
@@ -17,6 +21,9 @@ pub struct MultiviewPerViewAttributesInfoNVX<'a> {
     pub per_view_attributes: crate::vk::Bool32,
     pub per_view_attributes_position_x_only: crate::vk::Bool32,
     pub _marker: ::core::marker::PhantomData<&'a ()>,
+}
+unsafe impl<'a> crate::TaggedStructure<'a> for MultiviewPerViewAttributesInfoNVX<'a> {
+    const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::MULTIVIEW_PER_VIEW_ATTRIBUTES_INFO_NVX;
 }
 ///Provided by [`nvx::multiview_per_view_attributes`](crate::nvx::multiview_per_view_attributes)
 impl crate::vk::StructureType {

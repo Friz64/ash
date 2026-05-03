@@ -10,6 +10,10 @@ pub struct PhysicalDeviceShaderCoreProperties2AMD<'a> {
     pub active_compute_unit_count: u32,
     pub _marker: ::core::marker::PhantomData<&'a ()>,
 }
+unsafe impl<'a> crate::TaggedStructure<'a>
+for PhysicalDeviceShaderCoreProperties2AMD<'a> {
+    const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::PHYSICAL_DEVICE_SHADER_CORE_PROPERTIES_2_AMD;
+}
 ///Provided by [`amd::shader_core_properties2`](crate::amd::shader_core_properties2)
 impl crate::vk::StructureType {
     pub const PHYSICAL_DEVICE_SHADER_CORE_PROPERTIES_2_AMD: Self = Self(1000227000);

@@ -10,6 +10,9 @@ pub struct ImageViewSlicedCreateInfoEXT<'a> {
     pub slice_count: u32,
     pub _marker: ::core::marker::PhantomData<&'a ()>,
 }
+unsafe impl<'a> crate::TaggedStructure<'a> for ImageViewSlicedCreateInfoEXT<'a> {
+    const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::IMAGE_VIEW_SLICED_CREATE_INFO_EXT;
+}
 #[repr(C)]
 #[derive(Clone, Copy)]
 pub struct PhysicalDeviceImageSlicedViewOf3DFeaturesEXT<'a> {
@@ -17,6 +20,10 @@ pub struct PhysicalDeviceImageSlicedViewOf3DFeaturesEXT<'a> {
     pub p_next: *mut core::ffi::c_void,
     pub image_sliced_view_of3_d: crate::vk::Bool32,
     pub _marker: ::core::marker::PhantomData<&'a ()>,
+}
+unsafe impl<'a> crate::TaggedStructure<'a>
+for PhysicalDeviceImageSlicedViewOf3DFeaturesEXT<'a> {
+    const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::PHYSICAL_DEVICE_IMAGE_SLICED_VIEW_OF_3D_FEATURES_EXT;
 }
 ///Provided by [`ext::image_sliced_view_of_3d`](crate::ext::image_sliced_view_of_3d)
 impl crate::vk::StructureType {

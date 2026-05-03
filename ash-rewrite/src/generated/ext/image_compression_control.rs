@@ -11,6 +11,9 @@ pub struct ImageCompressionControlEXT<'a> {
     pub p_fixed_rate_flags: *mut crate::vk::ImageCompressionFixedRateFlagsEXT,
     pub _marker: ::core::marker::PhantomData<&'a ()>,
 }
+unsafe impl<'a> crate::TaggedStructure<'a> for ImageCompressionControlEXT<'a> {
+    const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::IMAGE_COMPRESSION_CONTROL_EXT;
+}
 #[repr(C)]
 #[derive(Clone, Copy)]
 pub struct PhysicalDeviceImageCompressionControlFeaturesEXT<'a> {
@@ -18,6 +21,10 @@ pub struct PhysicalDeviceImageCompressionControlFeaturesEXT<'a> {
     pub p_next: *mut core::ffi::c_void,
     pub image_compression_control: crate::vk::Bool32,
     pub _marker: ::core::marker::PhantomData<&'a ()>,
+}
+unsafe impl<'a> crate::TaggedStructure<'a>
+for PhysicalDeviceImageCompressionControlFeaturesEXT<'a> {
+    const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::PHYSICAL_DEVICE_IMAGE_COMPRESSION_CONTROL_FEATURES_EXT;
 }
 #[repr(C)]
 #[derive(Clone, Copy)]
@@ -27,6 +34,9 @@ pub struct ImageCompressionPropertiesEXT<'a> {
     pub image_compression_flags: crate::vk::ImageCompressionFlagsEXT,
     pub image_compression_fixed_rate_flags: crate::vk::ImageCompressionFixedRateFlagsEXT,
     pub _marker: ::core::marker::PhantomData<&'a ()>,
+}
+unsafe impl<'a> crate::TaggedStructure<'a> for ImageCompressionPropertiesEXT<'a> {
+    const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::IMAGE_COMPRESSION_PROPERTIES_EXT;
 }
 ///Provided by [`ext::image_compression_control`](crate::ext::image_compression_control)
 impl crate::vk::StructureType {

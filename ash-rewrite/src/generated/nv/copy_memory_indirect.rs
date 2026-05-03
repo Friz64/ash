@@ -65,6 +65,10 @@ pub(crate) mod reexport {
         pub indirect_copy: crate::vk::Bool32,
         pub _marker: ::core::marker::PhantomData<&'a ()>,
     }
+    unsafe impl<'a> crate::TaggedStructure<'a>
+    for PhysicalDeviceCopyMemoryIndirectFeaturesNV<'a> {
+        const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::PHYSICAL_DEVICE_COPY_MEMORY_INDIRECT_FEATURES_NV;
+    }
     pub type CopyMemoryIndirectCommandNV = crate::vk::CopyMemoryIndirectCommandKHR;
     pub type CopyMemoryToImageIndirectCommandNV = crate::vk::CopyMemoryToImageIndirectCommandKHR;
     pub type PhysicalDeviceCopyMemoryIndirectPropertiesNV<'a> = crate::vk::PhysicalDeviceCopyMemoryIndirectPropertiesKHR<

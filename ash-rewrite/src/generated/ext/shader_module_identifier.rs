@@ -60,6 +60,10 @@ pub(crate) mod reexport {
         pub shader_module_identifier: crate::vk::Bool32,
         pub _marker: ::core::marker::PhantomData<&'a ()>,
     }
+    unsafe impl<'a> crate::TaggedStructure<'a>
+    for PhysicalDeviceShaderModuleIdentifierFeaturesEXT<'a> {
+        const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::PHYSICAL_DEVICE_SHADER_MODULE_IDENTIFIER_FEATURES_EXT;
+    }
     #[repr(C)]
     #[derive(Clone, Copy)]
     pub struct PhysicalDeviceShaderModuleIdentifierPropertiesEXT<'a> {
@@ -67,6 +71,10 @@ pub(crate) mod reexport {
         pub p_next: *mut core::ffi::c_void,
         pub shader_module_identifier_algorithm_uuid: [u8; crate::vk::UUID_SIZE as _],
         pub _marker: ::core::marker::PhantomData<&'a ()>,
+    }
+    unsafe impl<'a> crate::TaggedStructure<'a>
+    for PhysicalDeviceShaderModuleIdentifierPropertiesEXT<'a> {
+        const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::PHYSICAL_DEVICE_SHADER_MODULE_IDENTIFIER_PROPERTIES_EXT;
     }
     #[repr(C)]
     #[derive(Clone, Copy)]
@@ -77,6 +85,10 @@ pub(crate) mod reexport {
         pub p_identifier: *const u8,
         pub _marker: ::core::marker::PhantomData<&'a ()>,
     }
+    unsafe impl<'a> crate::TaggedStructure<'a>
+    for PipelineShaderStageModuleIdentifierCreateInfoEXT<'a> {
+        const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::PIPELINE_SHADER_STAGE_MODULE_IDENTIFIER_CREATE_INFO_EXT;
+    }
     #[repr(C)]
     #[derive(Clone, Copy)]
     pub struct ShaderModuleIdentifierEXT<'a> {
@@ -85,6 +97,9 @@ pub(crate) mod reexport {
         pub identifier_size: u32,
         pub identifier: [u8; crate::vk::MAX_SHADER_MODULE_IDENTIFIER_SIZE_EXT as _],
         pub _marker: ::core::marker::PhantomData<&'a ()>,
+    }
+    unsafe impl<'a> crate::TaggedStructure<'a> for ShaderModuleIdentifierEXT<'a> {
+        const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::SHADER_MODULE_IDENTIFIER_EXT;
     }
     ///Provided by [`ext::shader_module_identifier`](crate::ext::shader_module_identifier)
     impl crate::vk::StructureType {

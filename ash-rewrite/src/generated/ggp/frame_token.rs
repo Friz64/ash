@@ -9,6 +9,9 @@ pub struct PresentFrameTokenGGP<'a> {
     pub frame_token: crate::platform_types::GgpFrameToken,
     pub _marker: ::core::marker::PhantomData<&'a ()>,
 }
+unsafe impl<'a> crate::TaggedStructure<'a> for PresentFrameTokenGGP<'a> {
+    const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::PRESENT_FRAME_TOKEN_GGP;
+}
 ///Provided by [`ggp::frame_token`](crate::ggp::frame_token)
 impl crate::vk::StructureType {
     pub const PRESENT_FRAME_TOKEN_GGP: Self = Self(1000191000);

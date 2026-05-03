@@ -9,6 +9,10 @@ pub struct PhysicalDeviceNonSeamlessCubeMapFeaturesEXT<'a> {
     pub non_seamless_cube_map: crate::vk::Bool32,
     pub _marker: ::core::marker::PhantomData<&'a ()>,
 }
+unsafe impl<'a> crate::TaggedStructure<'a>
+for PhysicalDeviceNonSeamlessCubeMapFeaturesEXT<'a> {
+    const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::PHYSICAL_DEVICE_NON_SEAMLESS_CUBE_MAP_FEATURES_EXT;
+}
 ///Provided by [`ext::non_seamless_cube_map`](crate::ext::non_seamless_cube_map)
 impl crate::vk::StructureType {
     pub const PHYSICAL_DEVICE_NON_SEAMLESS_CUBE_MAP_FEATURES_EXT: Self = Self(

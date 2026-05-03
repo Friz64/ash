@@ -20,6 +20,10 @@ pub struct PhysicalDeviceShaderAtomicFloatFeaturesEXT<'a> {
     pub sparse_image_float32_atomic_add: crate::vk::Bool32,
     pub _marker: ::core::marker::PhantomData<&'a ()>,
 }
+unsafe impl<'a> crate::TaggedStructure<'a>
+for PhysicalDeviceShaderAtomicFloatFeaturesEXT<'a> {
+    const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::PHYSICAL_DEVICE_SHADER_ATOMIC_FLOAT_FEATURES_EXT;
+}
 ///Provided by [`ext::shader_atomic_float`](crate::ext::shader_atomic_float)
 impl crate::vk::StructureType {
     pub const PHYSICAL_DEVICE_SHADER_ATOMIC_FLOAT_FEATURES_EXT: Self = Self(1000260000);

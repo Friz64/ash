@@ -62,6 +62,10 @@ pub(crate) mod reexport {
         pub memory_decompression: crate::vk::Bool32,
         pub _marker: ::core::marker::PhantomData<&'a ()>,
     }
+    unsafe impl<'a> crate::TaggedStructure<'a>
+    for PhysicalDeviceMemoryDecompressionFeaturesEXT<'a> {
+        const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::PHYSICAL_DEVICE_MEMORY_DECOMPRESSION_FEATURES_EXT;
+    }
     #[repr(C)]
     #[derive(Clone, Copy)]
     pub struct PhysicalDeviceMemoryDecompressionPropertiesEXT<'a> {
@@ -70,6 +74,10 @@ pub(crate) mod reexport {
         pub decompression_methods: crate::vk::MemoryDecompressionMethodFlagsEXT,
         pub max_decompression_indirect_count: u64,
         pub _marker: ::core::marker::PhantomData<&'a ()>,
+    }
+    unsafe impl<'a> crate::TaggedStructure<'a>
+    for PhysicalDeviceMemoryDecompressionPropertiesEXT<'a> {
+        const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::PHYSICAL_DEVICE_MEMORY_DECOMPRESSION_PROPERTIES_EXT;
     }
     #[repr(C)]
     #[derive(Clone, Copy)]
@@ -88,6 +96,9 @@ pub(crate) mod reexport {
         pub region_count: u32,
         pub p_regions: *const crate::vk::DecompressMemoryRegionEXT,
         pub _marker: ::core::marker::PhantomData<&'a ()>,
+    }
+    unsafe impl<'a> crate::TaggedStructure<'a> for DecompressMemoryInfoEXT<'a> {
+        const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::DECOMPRESS_MEMORY_INFO_EXT;
     }
     ///Provided by [`ext::memory_decompression`](crate::ext::memory_decompression)
     impl crate::vk::StructureType {

@@ -45,6 +45,10 @@ pub(crate) mod reexport {
         pub present_wait: crate::vk::Bool32,
         pub _marker: ::core::marker::PhantomData<&'a ()>,
     }
+    unsafe impl<'a> crate::TaggedStructure<'a>
+    for PhysicalDevicePresentWaitFeaturesKHR<'a> {
+        const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::PHYSICAL_DEVICE_PRESENT_WAIT_FEATURES_KHR;
+    }
     ///Provided by [`khr::present_wait`](crate::khr::present_wait)
     impl crate::vk::StructureType {
         pub const PHYSICAL_DEVICE_PRESENT_WAIT_FEATURES_KHR: Self = Self(1000248000);

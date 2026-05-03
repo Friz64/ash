@@ -63,6 +63,9 @@ pub(crate) mod reexport {
         pub surface: *mut crate::platform_types::ubm_surface,
         pub _marker: ::core::marker::PhantomData<&'a ()>,
     }
+    unsafe impl<'a> crate::TaggedStructure<'a> for UbmSurfaceCreateInfoSEC<'a> {
+        const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::UBM_SURFACE_CREATE_INFO_SEC;
+    }
     ///Provided by [`sec::ubm_surface`](crate::sec::ubm_surface)
     impl crate::vk::StructureType {
         pub const UBM_SURFACE_CREATE_INFO_SEC: Self = Self(1000664000);

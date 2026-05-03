@@ -62,6 +62,10 @@ pub(crate) mod reexport {
         pub exclusive_scissor: crate::vk::Bool32,
         pub _marker: ::core::marker::PhantomData<&'a ()>,
     }
+    unsafe impl<'a> crate::TaggedStructure<'a>
+    for PhysicalDeviceExclusiveScissorFeaturesNV<'a> {
+        const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::PHYSICAL_DEVICE_EXCLUSIVE_SCISSOR_FEATURES_NV;
+    }
     #[repr(C)]
     #[derive(Clone, Copy)]
     pub struct PipelineViewportExclusiveScissorStateCreateInfoNV<'a> {
@@ -70,6 +74,10 @@ pub(crate) mod reexport {
         pub exclusive_scissor_count: u32,
         pub p_exclusive_scissors: *const crate::vk::Rect2D,
         pub _marker: ::core::marker::PhantomData<&'a ()>,
+    }
+    unsafe impl<'a> crate::TaggedStructure<'a>
+    for PipelineViewportExclusiveScissorStateCreateInfoNV<'a> {
+        const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::PIPELINE_VIEWPORT_EXCLUSIVE_SCISSOR_STATE_CREATE_INFO_NV;
     }
     ///Provided by [`nv::scissor_exclusive`](crate::nv::scissor_exclusive)
     impl crate::vk::StructureType {

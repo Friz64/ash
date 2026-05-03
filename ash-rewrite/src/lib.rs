@@ -84,7 +84,7 @@ impl vk::Result {
     }
 
     /// # Safety
-    ///
+///
     /// [`mem::MaybeUninit::assume_init`]'s safety rules apply
     /// if `self` is exactly equal to [`vk::Result::SUCCESS`], i.e. 0.
     #[inline]
@@ -135,6 +135,11 @@ where
     }
 }
 
+
+pub unsafe trait TaggedStructure<'a>: Sized {
+    const STRUCTURE_TYPE: StructureType;
+}
+
 pub use device::*;
 pub use entry::*;
 pub use instance::*;
@@ -148,3 +153,6 @@ pub use vk1_1::InstanceFnV1_1;
 pub use vk1_2::DeviceFnV1_2;
 pub use vk1_3::DeviceFnV1_3;
 pub use vk1_3::InstanceFnV1_3;
+
+use self::generated::vk::StructureType;
+

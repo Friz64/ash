@@ -97,6 +97,9 @@ pub(crate) mod reexport {
         pub p_initial_data: *const core::ffi::c_void,
         pub _marker: ::core::marker::PhantomData<&'a ()>,
     }
+    unsafe impl<'a> crate::TaggedStructure<'a> for ValidationCacheCreateInfoEXT<'a> {
+        const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::VALIDATION_CACHE_CREATE_INFO_EXT;
+    }
     #[repr(C)]
     #[derive(Clone, Copy)]
     pub struct ShaderModuleValidationCacheCreateInfoEXT<'a> {
@@ -104,6 +107,10 @@ pub(crate) mod reexport {
         pub p_next: *const core::ffi::c_void,
         pub validation_cache: crate::vk::ValidationCacheEXT,
         pub _marker: ::core::marker::PhantomData<&'a ()>,
+    }
+    unsafe impl<'a> crate::TaggedStructure<'a>
+    for ShaderModuleValidationCacheCreateInfoEXT<'a> {
+        const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::SHADER_MODULE_VALIDATION_CACHE_CREATE_INFO_EXT;
     }
     ///Provided by [`ext::validation_cache`](crate::ext::validation_cache)
     impl crate::vk::StructureType {
