@@ -497,6 +497,68 @@ pub(crate) mod reexport {
         pub const DECODE_VP9_KHR: Self = Self(
             VideoCodecOperationFlagBitsKHR::DECODE_VP9_KHR.0,
         );
+        pub const fn empty() -> Self {
+            Self(0)
+        }
+        pub const fn from_raw(x: u32) -> Self {
+            Self(x)
+        }
+        pub const fn as_raw(self) -> u32 {
+            self.0
+        }
+        pub const fn is_empty(self) -> bool {
+            self.0 == Self::empty().0
+        }
+        pub const fn intersects(self, other: Self) -> bool {
+            !Self(self.0 & other.0).is_empty()
+        }
+        pub const fn contains(self, other: Self) -> bool {
+            self.0 & other.0 == other.0
+        }
+    }
+    impl Default for VideoCodecOperationFlagsKHR {
+        fn default() -> Self {
+            Self::empty()
+        }
+    }
+    impl core::ops::BitOr for VideoCodecOperationFlagsKHR {
+        type Output = Self;
+        fn bitor(self, rhs: Self) -> Self {
+            Self(self.0 | rhs.0)
+        }
+    }
+    impl core::ops::BitOrAssign for VideoCodecOperationFlagsKHR {
+        fn bitor_assign(&mut self, rhs: Self) {
+            *self = *self | rhs;
+        }
+    }
+    impl core::ops::BitAnd for VideoCodecOperationFlagsKHR {
+        type Output = Self;
+        fn bitand(self, rhs: Self) -> Self {
+            Self(self.0 & rhs.0)
+        }
+    }
+    impl core::ops::BitAndAssign for VideoCodecOperationFlagsKHR {
+        fn bitand_assign(&mut self, rhs: Self) {
+            *self = *self & rhs;
+        }
+    }
+    impl core::ops::BitXor for VideoCodecOperationFlagsKHR {
+        type Output = Self;
+        fn bitxor(self, rhs: Self) -> Self {
+            Self(self.0 ^ rhs.0)
+        }
+    }
+    impl core::ops::BitXorAssign for VideoCodecOperationFlagsKHR {
+        fn bitxor_assign(&mut self, rhs: Self) {
+            *self = *self ^ rhs;
+        }
+    }
+    impl core::ops::Not for VideoCodecOperationFlagsKHR {
+        type Output = Self;
+        fn not(self) -> Self {
+            Self(!self.0)
+        }
     }
     #[repr(transparent)]
     #[derive(Clone, Copy)]
@@ -515,6 +577,68 @@ pub(crate) mod reexport {
         pub const SEPARATE_REFERENCE_IMAGES_KHR: Self = Self(
             VideoCapabilityFlagBitsKHR::SEPARATE_REFERENCE_IMAGES_KHR.0,
         );
+        pub const fn empty() -> Self {
+            Self(0)
+        }
+        pub const fn from_raw(x: u32) -> Self {
+            Self(x)
+        }
+        pub const fn as_raw(self) -> u32 {
+            self.0
+        }
+        pub const fn is_empty(self) -> bool {
+            self.0 == Self::empty().0
+        }
+        pub const fn intersects(self, other: Self) -> bool {
+            !Self(self.0 & other.0).is_empty()
+        }
+        pub const fn contains(self, other: Self) -> bool {
+            self.0 & other.0 == other.0
+        }
+    }
+    impl Default for VideoCapabilityFlagsKHR {
+        fn default() -> Self {
+            Self::empty()
+        }
+    }
+    impl core::ops::BitOr for VideoCapabilityFlagsKHR {
+        type Output = Self;
+        fn bitor(self, rhs: Self) -> Self {
+            Self(self.0 | rhs.0)
+        }
+    }
+    impl core::ops::BitOrAssign for VideoCapabilityFlagsKHR {
+        fn bitor_assign(&mut self, rhs: Self) {
+            *self = *self | rhs;
+        }
+    }
+    impl core::ops::BitAnd for VideoCapabilityFlagsKHR {
+        type Output = Self;
+        fn bitand(self, rhs: Self) -> Self {
+            Self(self.0 & rhs.0)
+        }
+    }
+    impl core::ops::BitAndAssign for VideoCapabilityFlagsKHR {
+        fn bitand_assign(&mut self, rhs: Self) {
+            *self = *self & rhs;
+        }
+    }
+    impl core::ops::BitXor for VideoCapabilityFlagsKHR {
+        type Output = Self;
+        fn bitxor(self, rhs: Self) -> Self {
+            Self(self.0 ^ rhs.0)
+        }
+    }
+    impl core::ops::BitXorAssign for VideoCapabilityFlagsKHR {
+        fn bitxor_assign(&mut self, rhs: Self) {
+            *self = *self ^ rhs;
+        }
+    }
+    impl core::ops::Not for VideoCapabilityFlagsKHR {
+        type Output = Self;
+        fn not(self) -> Self {
+            Self(!self.0)
+        }
     }
     #[repr(transparent)]
     #[derive(Clone, Copy)]
@@ -546,6 +670,68 @@ pub(crate) mod reexport {
         pub const INLINE_SESSION_PARAMETERS_KHR: Self = Self(
             VideoSessionCreateFlagBitsKHR::INLINE_SESSION_PARAMETERS_KHR.0,
         );
+        pub const fn empty() -> Self {
+            Self(0)
+        }
+        pub const fn from_raw(x: u32) -> Self {
+            Self(x)
+        }
+        pub const fn as_raw(self) -> u32 {
+            self.0
+        }
+        pub const fn is_empty(self) -> bool {
+            self.0 == Self::empty().0
+        }
+        pub const fn intersects(self, other: Self) -> bool {
+            !Self(self.0 & other.0).is_empty()
+        }
+        pub const fn contains(self, other: Self) -> bool {
+            self.0 & other.0 == other.0
+        }
+    }
+    impl Default for VideoSessionCreateFlagsKHR {
+        fn default() -> Self {
+            Self::empty()
+        }
+    }
+    impl core::ops::BitOr for VideoSessionCreateFlagsKHR {
+        type Output = Self;
+        fn bitor(self, rhs: Self) -> Self {
+            Self(self.0 | rhs.0)
+        }
+    }
+    impl core::ops::BitOrAssign for VideoSessionCreateFlagsKHR {
+        fn bitor_assign(&mut self, rhs: Self) {
+            *self = *self | rhs;
+        }
+    }
+    impl core::ops::BitAnd for VideoSessionCreateFlagsKHR {
+        type Output = Self;
+        fn bitand(self, rhs: Self) -> Self {
+            Self(self.0 & rhs.0)
+        }
+    }
+    impl core::ops::BitAndAssign for VideoSessionCreateFlagsKHR {
+        fn bitand_assign(&mut self, rhs: Self) {
+            *self = *self & rhs;
+        }
+    }
+    impl core::ops::BitXor for VideoSessionCreateFlagsKHR {
+        type Output = Self;
+        fn bitxor(self, rhs: Self) -> Self {
+            Self(self.0 ^ rhs.0)
+        }
+    }
+    impl core::ops::BitXorAssign for VideoSessionCreateFlagsKHR {
+        fn bitxor_assign(&mut self, rhs: Self) {
+            *self = *self ^ rhs;
+        }
+    }
+    impl core::ops::Not for VideoSessionCreateFlagsKHR {
+        type Output = Self;
+        fn not(self) -> Self {
+            Self(!self.0)
+        }
     }
     #[repr(transparent)]
     #[derive(Clone, Copy)]
@@ -561,6 +747,68 @@ pub(crate) mod reexport {
         pub const QUANTIZATION_MAP_COMPATIBLE_KHR: Self = Self(
             VideoSessionParametersCreateFlagBitsKHR::QUANTIZATION_MAP_COMPATIBLE_KHR.0,
         );
+        pub const fn empty() -> Self {
+            Self(0)
+        }
+        pub const fn from_raw(x: u32) -> Self {
+            Self(x)
+        }
+        pub const fn as_raw(self) -> u32 {
+            self.0
+        }
+        pub const fn is_empty(self) -> bool {
+            self.0 == Self::empty().0
+        }
+        pub const fn intersects(self, other: Self) -> bool {
+            !Self(self.0 & other.0).is_empty()
+        }
+        pub const fn contains(self, other: Self) -> bool {
+            self.0 & other.0 == other.0
+        }
+    }
+    impl Default for VideoSessionParametersCreateFlagsKHR {
+        fn default() -> Self {
+            Self::empty()
+        }
+    }
+    impl core::ops::BitOr for VideoSessionParametersCreateFlagsKHR {
+        type Output = Self;
+        fn bitor(self, rhs: Self) -> Self {
+            Self(self.0 | rhs.0)
+        }
+    }
+    impl core::ops::BitOrAssign for VideoSessionParametersCreateFlagsKHR {
+        fn bitor_assign(&mut self, rhs: Self) {
+            *self = *self | rhs;
+        }
+    }
+    impl core::ops::BitAnd for VideoSessionParametersCreateFlagsKHR {
+        type Output = Self;
+        fn bitand(self, rhs: Self) -> Self {
+            Self(self.0 & rhs.0)
+        }
+    }
+    impl core::ops::BitAndAssign for VideoSessionParametersCreateFlagsKHR {
+        fn bitand_assign(&mut self, rhs: Self) {
+            *self = *self & rhs;
+        }
+    }
+    impl core::ops::BitXor for VideoSessionParametersCreateFlagsKHR {
+        type Output = Self;
+        fn bitxor(self, rhs: Self) -> Self {
+            Self(self.0 ^ rhs.0)
+        }
+    }
+    impl core::ops::BitXorAssign for VideoSessionParametersCreateFlagsKHR {
+        fn bitxor_assign(&mut self, rhs: Self) {
+            *self = *self ^ rhs;
+        }
+    }
+    impl core::ops::Not for VideoSessionParametersCreateFlagsKHR {
+        type Output = Self;
+        fn not(self) -> Self {
+            Self(!self.0)
+        }
     }
     #[repr(transparent)]
     #[derive(Clone, Copy)]
@@ -568,11 +816,137 @@ pub(crate) mod reexport {
     #[repr(transparent)]
     #[derive(Clone, Copy)]
     pub struct VideoBeginCodingFlagsKHR(u32);
-    impl VideoBeginCodingFlagsKHR {}
+    impl VideoBeginCodingFlagsKHR {
+        pub const fn empty() -> Self {
+            Self(0)
+        }
+        pub const fn from_raw(x: u32) -> Self {
+            Self(x)
+        }
+        pub const fn as_raw(self) -> u32 {
+            self.0
+        }
+        pub const fn is_empty(self) -> bool {
+            self.0 == Self::empty().0
+        }
+        pub const fn intersects(self, other: Self) -> bool {
+            !Self(self.0 & other.0).is_empty()
+        }
+        pub const fn contains(self, other: Self) -> bool {
+            self.0 & other.0 == other.0
+        }
+    }
+    impl Default for VideoBeginCodingFlagsKHR {
+        fn default() -> Self {
+            Self::empty()
+        }
+    }
+    impl core::ops::BitOr for VideoBeginCodingFlagsKHR {
+        type Output = Self;
+        fn bitor(self, rhs: Self) -> Self {
+            Self(self.0 | rhs.0)
+        }
+    }
+    impl core::ops::BitOrAssign for VideoBeginCodingFlagsKHR {
+        fn bitor_assign(&mut self, rhs: Self) {
+            *self = *self | rhs;
+        }
+    }
+    impl core::ops::BitAnd for VideoBeginCodingFlagsKHR {
+        type Output = Self;
+        fn bitand(self, rhs: Self) -> Self {
+            Self(self.0 & rhs.0)
+        }
+    }
+    impl core::ops::BitAndAssign for VideoBeginCodingFlagsKHR {
+        fn bitand_assign(&mut self, rhs: Self) {
+            *self = *self & rhs;
+        }
+    }
+    impl core::ops::BitXor for VideoBeginCodingFlagsKHR {
+        type Output = Self;
+        fn bitxor(self, rhs: Self) -> Self {
+            Self(self.0 ^ rhs.0)
+        }
+    }
+    impl core::ops::BitXorAssign for VideoBeginCodingFlagsKHR {
+        fn bitxor_assign(&mut self, rhs: Self) {
+            *self = *self ^ rhs;
+        }
+    }
+    impl core::ops::Not for VideoBeginCodingFlagsKHR {
+        type Output = Self;
+        fn not(self) -> Self {
+            Self(!self.0)
+        }
+    }
     #[repr(transparent)]
     #[derive(Clone, Copy)]
     pub struct VideoEndCodingFlagsKHR(u32);
-    impl VideoEndCodingFlagsKHR {}
+    impl VideoEndCodingFlagsKHR {
+        pub const fn empty() -> Self {
+            Self(0)
+        }
+        pub const fn from_raw(x: u32) -> Self {
+            Self(x)
+        }
+        pub const fn as_raw(self) -> u32 {
+            self.0
+        }
+        pub const fn is_empty(self) -> bool {
+            self.0 == Self::empty().0
+        }
+        pub const fn intersects(self, other: Self) -> bool {
+            !Self(self.0 & other.0).is_empty()
+        }
+        pub const fn contains(self, other: Self) -> bool {
+            self.0 & other.0 == other.0
+        }
+    }
+    impl Default for VideoEndCodingFlagsKHR {
+        fn default() -> Self {
+            Self::empty()
+        }
+    }
+    impl core::ops::BitOr for VideoEndCodingFlagsKHR {
+        type Output = Self;
+        fn bitor(self, rhs: Self) -> Self {
+            Self(self.0 | rhs.0)
+        }
+    }
+    impl core::ops::BitOrAssign for VideoEndCodingFlagsKHR {
+        fn bitor_assign(&mut self, rhs: Self) {
+            *self = *self | rhs;
+        }
+    }
+    impl core::ops::BitAnd for VideoEndCodingFlagsKHR {
+        type Output = Self;
+        fn bitand(self, rhs: Self) -> Self {
+            Self(self.0 & rhs.0)
+        }
+    }
+    impl core::ops::BitAndAssign for VideoEndCodingFlagsKHR {
+        fn bitand_assign(&mut self, rhs: Self) {
+            *self = *self & rhs;
+        }
+    }
+    impl core::ops::BitXor for VideoEndCodingFlagsKHR {
+        type Output = Self;
+        fn bitxor(self, rhs: Self) -> Self {
+            Self(self.0 ^ rhs.0)
+        }
+    }
+    impl core::ops::BitXorAssign for VideoEndCodingFlagsKHR {
+        fn bitxor_assign(&mut self, rhs: Self) {
+            *self = *self ^ rhs;
+        }
+    }
+    impl core::ops::Not for VideoEndCodingFlagsKHR {
+        type Output = Self;
+        fn not(self) -> Self {
+            Self(!self.0)
+        }
+    }
     #[repr(transparent)]
     #[derive(Clone, Copy)]
     pub struct VideoCodingControlFlagsKHR(u32);
@@ -584,6 +958,68 @@ pub(crate) mod reexport {
         pub const ENCODE_QUALITY_LEVEL_KHR: Self = Self(
             VideoCodingControlFlagBitsKHR::ENCODE_QUALITY_LEVEL_KHR.0,
         );
+        pub const fn empty() -> Self {
+            Self(0)
+        }
+        pub const fn from_raw(x: u32) -> Self {
+            Self(x)
+        }
+        pub const fn as_raw(self) -> u32 {
+            self.0
+        }
+        pub const fn is_empty(self) -> bool {
+            self.0 == Self::empty().0
+        }
+        pub const fn intersects(self, other: Self) -> bool {
+            !Self(self.0 & other.0).is_empty()
+        }
+        pub const fn contains(self, other: Self) -> bool {
+            self.0 & other.0 == other.0
+        }
+    }
+    impl Default for VideoCodingControlFlagsKHR {
+        fn default() -> Self {
+            Self::empty()
+        }
+    }
+    impl core::ops::BitOr for VideoCodingControlFlagsKHR {
+        type Output = Self;
+        fn bitor(self, rhs: Self) -> Self {
+            Self(self.0 | rhs.0)
+        }
+    }
+    impl core::ops::BitOrAssign for VideoCodingControlFlagsKHR {
+        fn bitor_assign(&mut self, rhs: Self) {
+            *self = *self | rhs;
+        }
+    }
+    impl core::ops::BitAnd for VideoCodingControlFlagsKHR {
+        type Output = Self;
+        fn bitand(self, rhs: Self) -> Self {
+            Self(self.0 & rhs.0)
+        }
+    }
+    impl core::ops::BitAndAssign for VideoCodingControlFlagsKHR {
+        fn bitand_assign(&mut self, rhs: Self) {
+            *self = *self & rhs;
+        }
+    }
+    impl core::ops::BitXor for VideoCodingControlFlagsKHR {
+        type Output = Self;
+        fn bitxor(self, rhs: Self) -> Self {
+            Self(self.0 ^ rhs.0)
+        }
+    }
+    impl core::ops::BitXorAssign for VideoCodingControlFlagsKHR {
+        fn bitxor_assign(&mut self, rhs: Self) {
+            *self = *self ^ rhs;
+        }
+    }
+    impl core::ops::Not for VideoCodingControlFlagsKHR {
+        type Output = Self;
+        fn not(self) -> Self {
+            Self(!self.0)
+        }
     }
     #[repr(transparent)]
     #[derive(Clone, Copy)]
@@ -605,6 +1041,68 @@ pub(crate) mod reexport {
         pub const _420_KHR: Self = Self(VideoChromaSubsamplingFlagBitsKHR::_420_KHR.0);
         pub const _422_KHR: Self = Self(VideoChromaSubsamplingFlagBitsKHR::_422_KHR.0);
         pub const _444_KHR: Self = Self(VideoChromaSubsamplingFlagBitsKHR::_444_KHR.0);
+        pub const fn empty() -> Self {
+            Self(0)
+        }
+        pub const fn from_raw(x: u32) -> Self {
+            Self(x)
+        }
+        pub const fn as_raw(self) -> u32 {
+            self.0
+        }
+        pub const fn is_empty(self) -> bool {
+            self.0 == Self::empty().0
+        }
+        pub const fn intersects(self, other: Self) -> bool {
+            !Self(self.0 & other.0).is_empty()
+        }
+        pub const fn contains(self, other: Self) -> bool {
+            self.0 & other.0 == other.0
+        }
+    }
+    impl Default for VideoChromaSubsamplingFlagsKHR {
+        fn default() -> Self {
+            Self::empty()
+        }
+    }
+    impl core::ops::BitOr for VideoChromaSubsamplingFlagsKHR {
+        type Output = Self;
+        fn bitor(self, rhs: Self) -> Self {
+            Self(self.0 | rhs.0)
+        }
+    }
+    impl core::ops::BitOrAssign for VideoChromaSubsamplingFlagsKHR {
+        fn bitor_assign(&mut self, rhs: Self) {
+            *self = *self | rhs;
+        }
+    }
+    impl core::ops::BitAnd for VideoChromaSubsamplingFlagsKHR {
+        type Output = Self;
+        fn bitand(self, rhs: Self) -> Self {
+            Self(self.0 & rhs.0)
+        }
+    }
+    impl core::ops::BitAndAssign for VideoChromaSubsamplingFlagsKHR {
+        fn bitand_assign(&mut self, rhs: Self) {
+            *self = *self & rhs;
+        }
+    }
+    impl core::ops::BitXor for VideoChromaSubsamplingFlagsKHR {
+        type Output = Self;
+        fn bitxor(self, rhs: Self) -> Self {
+            Self(self.0 ^ rhs.0)
+        }
+    }
+    impl core::ops::BitXorAssign for VideoChromaSubsamplingFlagsKHR {
+        fn bitxor_assign(&mut self, rhs: Self) {
+            *self = *self ^ rhs;
+        }
+    }
+    impl core::ops::Not for VideoChromaSubsamplingFlagsKHR {
+        type Output = Self;
+        fn not(self) -> Self {
+            Self(!self.0)
+        }
     }
     #[repr(transparent)]
     #[derive(Clone, Copy)]
@@ -627,6 +1125,68 @@ pub(crate) mod reexport {
         pub const _8_KHR: Self = Self(VideoComponentBitDepthFlagBitsKHR::_8_KHR.0);
         pub const _10_KHR: Self = Self(VideoComponentBitDepthFlagBitsKHR::_10_KHR.0);
         pub const _12_KHR: Self = Self(VideoComponentBitDepthFlagBitsKHR::_12_KHR.0);
+        pub const fn empty() -> Self {
+            Self(0)
+        }
+        pub const fn from_raw(x: u32) -> Self {
+            Self(x)
+        }
+        pub const fn as_raw(self) -> u32 {
+            self.0
+        }
+        pub const fn is_empty(self) -> bool {
+            self.0 == Self::empty().0
+        }
+        pub const fn intersects(self, other: Self) -> bool {
+            !Self(self.0 & other.0).is_empty()
+        }
+        pub const fn contains(self, other: Self) -> bool {
+            self.0 & other.0 == other.0
+        }
+    }
+    impl Default for VideoComponentBitDepthFlagsKHR {
+        fn default() -> Self {
+            Self::empty()
+        }
+    }
+    impl core::ops::BitOr for VideoComponentBitDepthFlagsKHR {
+        type Output = Self;
+        fn bitor(self, rhs: Self) -> Self {
+            Self(self.0 | rhs.0)
+        }
+    }
+    impl core::ops::BitOrAssign for VideoComponentBitDepthFlagsKHR {
+        fn bitor_assign(&mut self, rhs: Self) {
+            *self = *self | rhs;
+        }
+    }
+    impl core::ops::BitAnd for VideoComponentBitDepthFlagsKHR {
+        type Output = Self;
+        fn bitand(self, rhs: Self) -> Self {
+            Self(self.0 & rhs.0)
+        }
+    }
+    impl core::ops::BitAndAssign for VideoComponentBitDepthFlagsKHR {
+        fn bitand_assign(&mut self, rhs: Self) {
+            *self = *self & rhs;
+        }
+    }
+    impl core::ops::BitXor for VideoComponentBitDepthFlagsKHR {
+        type Output = Self;
+        fn bitxor(self, rhs: Self) -> Self {
+            Self(self.0 ^ rhs.0)
+        }
+    }
+    impl core::ops::BitXorAssign for VideoComponentBitDepthFlagsKHR {
+        fn bitxor_assign(&mut self, rhs: Self) {
+            *self = *self ^ rhs;
+        }
+    }
+    impl core::ops::Not for VideoComponentBitDepthFlagsKHR {
+        type Output = Self;
+        fn not(self) -> Self {
+            Self(!self.0)
+        }
     }
     #[repr(transparent)]
     #[derive(Clone, Copy)]

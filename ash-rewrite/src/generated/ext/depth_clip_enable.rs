@@ -28,6 +28,69 @@ impl crate::vk::StructureType {
 #[repr(transparent)]
 #[derive(Clone, Copy)]
 pub struct PipelineRasterizationDepthClipStateCreateFlagsEXT(u32);
-impl PipelineRasterizationDepthClipStateCreateFlagsEXT {}
+impl PipelineRasterizationDepthClipStateCreateFlagsEXT {
+    pub const fn empty() -> Self {
+        Self(0)
+    }
+    pub const fn from_raw(x: u32) -> Self {
+        Self(x)
+    }
+    pub const fn as_raw(self) -> u32 {
+        self.0
+    }
+    pub const fn is_empty(self) -> bool {
+        self.0 == Self::empty().0
+    }
+    pub const fn intersects(self, other: Self) -> bool {
+        !Self(self.0 & other.0).is_empty()
+    }
+    pub const fn contains(self, other: Self) -> bool {
+        self.0 & other.0 == other.0
+    }
+}
+impl Default for PipelineRasterizationDepthClipStateCreateFlagsEXT {
+    fn default() -> Self {
+        Self::empty()
+    }
+}
+impl core::ops::BitOr for PipelineRasterizationDepthClipStateCreateFlagsEXT {
+    type Output = Self;
+    fn bitor(self, rhs: Self) -> Self {
+        Self(self.0 | rhs.0)
+    }
+}
+impl core::ops::BitOrAssign for PipelineRasterizationDepthClipStateCreateFlagsEXT {
+    fn bitor_assign(&mut self, rhs: Self) {
+        *self = *self | rhs;
+    }
+}
+impl core::ops::BitAnd for PipelineRasterizationDepthClipStateCreateFlagsEXT {
+    type Output = Self;
+    fn bitand(self, rhs: Self) -> Self {
+        Self(self.0 & rhs.0)
+    }
+}
+impl core::ops::BitAndAssign for PipelineRasterizationDepthClipStateCreateFlagsEXT {
+    fn bitand_assign(&mut self, rhs: Self) {
+        *self = *self & rhs;
+    }
+}
+impl core::ops::BitXor for PipelineRasterizationDepthClipStateCreateFlagsEXT {
+    type Output = Self;
+    fn bitxor(self, rhs: Self) -> Self {
+        Self(self.0 ^ rhs.0)
+    }
+}
+impl core::ops::BitXorAssign for PipelineRasterizationDepthClipStateCreateFlagsEXT {
+    fn bitxor_assign(&mut self, rhs: Self) {
+        *self = *self ^ rhs;
+    }
+}
+impl core::ops::Not for PipelineRasterizationDepthClipStateCreateFlagsEXT {
+    type Output = Self;
+    fn not(self) -> Self {
+        Self(!self.0)
+    }
+}
 pub const EXT_DEPTH_CLIP_ENABLE_SPEC_VERSION: u32 = 1;
 pub const EXT_DEPTH_CLIP_ENABLE_EXTENSION_NAME: &core::ffi::CStr = c"VK_EXT_depth_clip_enable";

@@ -17,7 +17,70 @@ impl crate::vk::StructureType {
 #[repr(transparent)]
 #[derive(Clone, Copy)]
 pub struct ShaderCorePropertiesFlagsAMD(u32);
-impl ShaderCorePropertiesFlagsAMD {}
+impl ShaderCorePropertiesFlagsAMD {
+    pub const fn empty() -> Self {
+        Self(0)
+    }
+    pub const fn from_raw(x: u32) -> Self {
+        Self(x)
+    }
+    pub const fn as_raw(self) -> u32 {
+        self.0
+    }
+    pub const fn is_empty(self) -> bool {
+        self.0 == Self::empty().0
+    }
+    pub const fn intersects(self, other: Self) -> bool {
+        !Self(self.0 & other.0).is_empty()
+    }
+    pub const fn contains(self, other: Self) -> bool {
+        self.0 & other.0 == other.0
+    }
+}
+impl Default for ShaderCorePropertiesFlagsAMD {
+    fn default() -> Self {
+        Self::empty()
+    }
+}
+impl core::ops::BitOr for ShaderCorePropertiesFlagsAMD {
+    type Output = Self;
+    fn bitor(self, rhs: Self) -> Self {
+        Self(self.0 | rhs.0)
+    }
+}
+impl core::ops::BitOrAssign for ShaderCorePropertiesFlagsAMD {
+    fn bitor_assign(&mut self, rhs: Self) {
+        *self = *self | rhs;
+    }
+}
+impl core::ops::BitAnd for ShaderCorePropertiesFlagsAMD {
+    type Output = Self;
+    fn bitand(self, rhs: Self) -> Self {
+        Self(self.0 & rhs.0)
+    }
+}
+impl core::ops::BitAndAssign for ShaderCorePropertiesFlagsAMD {
+    fn bitand_assign(&mut self, rhs: Self) {
+        *self = *self & rhs;
+    }
+}
+impl core::ops::BitXor for ShaderCorePropertiesFlagsAMD {
+    type Output = Self;
+    fn bitxor(self, rhs: Self) -> Self {
+        Self(self.0 ^ rhs.0)
+    }
+}
+impl core::ops::BitXorAssign for ShaderCorePropertiesFlagsAMD {
+    fn bitxor_assign(&mut self, rhs: Self) {
+        *self = *self ^ rhs;
+    }
+}
+impl core::ops::Not for ShaderCorePropertiesFlagsAMD {
+    type Output = Self;
+    fn not(self) -> Self {
+        Self(!self.0)
+    }
+}
 #[repr(transparent)]
 #[derive(Clone, Copy)]
 pub struct ShaderCorePropertiesFlagBitsAMD(pub(crate) u32);

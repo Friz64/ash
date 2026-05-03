@@ -344,6 +344,68 @@ pub(crate) mod reexport {
         pub const OPAQUE_NV: Self = Self(
             ClusterAccelerationStructureGeometryFlagBitsNV::OPAQUE_NV.0,
         );
+        pub const fn empty() -> Self {
+            Self(0)
+        }
+        pub const fn from_raw(x: u32) -> Self {
+            Self(x)
+        }
+        pub const fn as_raw(self) -> u32 {
+            self.0
+        }
+        pub const fn is_empty(self) -> bool {
+            self.0 == Self::empty().0
+        }
+        pub const fn intersects(self, other: Self) -> bool {
+            !Self(self.0 & other.0).is_empty()
+        }
+        pub const fn contains(self, other: Self) -> bool {
+            self.0 & other.0 == other.0
+        }
+    }
+    impl Default for ClusterAccelerationStructureGeometryFlagsNV {
+        fn default() -> Self {
+            Self::empty()
+        }
+    }
+    impl core::ops::BitOr for ClusterAccelerationStructureGeometryFlagsNV {
+        type Output = Self;
+        fn bitor(self, rhs: Self) -> Self {
+            Self(self.0 | rhs.0)
+        }
+    }
+    impl core::ops::BitOrAssign for ClusterAccelerationStructureGeometryFlagsNV {
+        fn bitor_assign(&mut self, rhs: Self) {
+            *self = *self | rhs;
+        }
+    }
+    impl core::ops::BitAnd for ClusterAccelerationStructureGeometryFlagsNV {
+        type Output = Self;
+        fn bitand(self, rhs: Self) -> Self {
+            Self(self.0 & rhs.0)
+        }
+    }
+    impl core::ops::BitAndAssign for ClusterAccelerationStructureGeometryFlagsNV {
+        fn bitand_assign(&mut self, rhs: Self) {
+            *self = *self & rhs;
+        }
+    }
+    impl core::ops::BitXor for ClusterAccelerationStructureGeometryFlagsNV {
+        type Output = Self;
+        fn bitxor(self, rhs: Self) -> Self {
+            Self(self.0 ^ rhs.0)
+        }
+    }
+    impl core::ops::BitXorAssign for ClusterAccelerationStructureGeometryFlagsNV {
+        fn bitxor_assign(&mut self, rhs: Self) {
+            *self = *self ^ rhs;
+        }
+    }
+    impl core::ops::Not for ClusterAccelerationStructureGeometryFlagsNV {
+        type Output = Self;
+        fn not(self) -> Self {
+            Self(!self.0)
+        }
     }
     #[repr(transparent)]
     #[derive(Clone, Copy)]
@@ -362,6 +424,68 @@ pub(crate) mod reexport {
             ClusterAccelerationStructureClusterFlagBitsNV::ALLOW_DISABLE_OPACITY_MICROMAPS_NV
                 .0,
         );
+        pub const fn empty() -> Self {
+            Self(0)
+        }
+        pub const fn from_raw(x: u32) -> Self {
+            Self(x)
+        }
+        pub const fn as_raw(self) -> u32 {
+            self.0
+        }
+        pub const fn is_empty(self) -> bool {
+            self.0 == Self::empty().0
+        }
+        pub const fn intersects(self, other: Self) -> bool {
+            !Self(self.0 & other.0).is_empty()
+        }
+        pub const fn contains(self, other: Self) -> bool {
+            self.0 & other.0 == other.0
+        }
+    }
+    impl Default for ClusterAccelerationStructureClusterFlagsNV {
+        fn default() -> Self {
+            Self::empty()
+        }
+    }
+    impl core::ops::BitOr for ClusterAccelerationStructureClusterFlagsNV {
+        type Output = Self;
+        fn bitor(self, rhs: Self) -> Self {
+            Self(self.0 | rhs.0)
+        }
+    }
+    impl core::ops::BitOrAssign for ClusterAccelerationStructureClusterFlagsNV {
+        fn bitor_assign(&mut self, rhs: Self) {
+            *self = *self | rhs;
+        }
+    }
+    impl core::ops::BitAnd for ClusterAccelerationStructureClusterFlagsNV {
+        type Output = Self;
+        fn bitand(self, rhs: Self) -> Self {
+            Self(self.0 & rhs.0)
+        }
+    }
+    impl core::ops::BitAndAssign for ClusterAccelerationStructureClusterFlagsNV {
+        fn bitand_assign(&mut self, rhs: Self) {
+            *self = *self & rhs;
+        }
+    }
+    impl core::ops::BitXor for ClusterAccelerationStructureClusterFlagsNV {
+        type Output = Self;
+        fn bitxor(self, rhs: Self) -> Self {
+            Self(self.0 ^ rhs.0)
+        }
+    }
+    impl core::ops::BitXorAssign for ClusterAccelerationStructureClusterFlagsNV {
+        fn bitxor_assign(&mut self, rhs: Self) {
+            *self = *self ^ rhs;
+        }
+    }
+    impl core::ops::Not for ClusterAccelerationStructureClusterFlagsNV {
+        type Output = Self;
+        fn not(self) -> Self {
+            Self(!self.0)
+        }
     }
     #[repr(transparent)]
     #[derive(Clone, Copy)]
@@ -401,6 +525,71 @@ pub(crate) mod reexport {
             ClusterAccelerationStructureAddressResolutionFlagBitsNV::INDIRECTED_SRC_INFOS_COUNT_NV
                 .0,
         );
+        pub const fn empty() -> Self {
+            Self(0)
+        }
+        pub const fn from_raw(x: u32) -> Self {
+            Self(x)
+        }
+        pub const fn as_raw(self) -> u32 {
+            self.0
+        }
+        pub const fn is_empty(self) -> bool {
+            self.0 == Self::empty().0
+        }
+        pub const fn intersects(self, other: Self) -> bool {
+            !Self(self.0 & other.0).is_empty()
+        }
+        pub const fn contains(self, other: Self) -> bool {
+            self.0 & other.0 == other.0
+        }
+    }
+    impl Default for ClusterAccelerationStructureAddressResolutionFlagsNV {
+        fn default() -> Self {
+            Self::empty()
+        }
+    }
+    impl core::ops::BitOr for ClusterAccelerationStructureAddressResolutionFlagsNV {
+        type Output = Self;
+        fn bitor(self, rhs: Self) -> Self {
+            Self(self.0 | rhs.0)
+        }
+    }
+    impl core::ops::BitOrAssign
+    for ClusterAccelerationStructureAddressResolutionFlagsNV {
+        fn bitor_assign(&mut self, rhs: Self) {
+            *self = *self | rhs;
+        }
+    }
+    impl core::ops::BitAnd for ClusterAccelerationStructureAddressResolutionFlagsNV {
+        type Output = Self;
+        fn bitand(self, rhs: Self) -> Self {
+            Self(self.0 & rhs.0)
+        }
+    }
+    impl core::ops::BitAndAssign
+    for ClusterAccelerationStructureAddressResolutionFlagsNV {
+        fn bitand_assign(&mut self, rhs: Self) {
+            *self = *self & rhs;
+        }
+    }
+    impl core::ops::BitXor for ClusterAccelerationStructureAddressResolutionFlagsNV {
+        type Output = Self;
+        fn bitxor(self, rhs: Self) -> Self {
+            Self(self.0 ^ rhs.0)
+        }
+    }
+    impl core::ops::BitXorAssign
+    for ClusterAccelerationStructureAddressResolutionFlagsNV {
+        fn bitxor_assign(&mut self, rhs: Self) {
+            *self = *self ^ rhs;
+        }
+    }
+    impl core::ops::Not for ClusterAccelerationStructureAddressResolutionFlagsNV {
+        type Output = Self;
+        fn not(self) -> Self {
+            Self(!self.0)
+        }
     }
     #[repr(transparent)]
     #[derive(Clone, Copy)]
@@ -432,6 +621,68 @@ pub(crate) mod reexport {
         pub const _32BIT_NV: Self = Self(
             ClusterAccelerationStructureIndexFormatFlagBitsNV::_32BIT_NV.0,
         );
+        pub const fn empty() -> Self {
+            Self(0)
+        }
+        pub const fn from_raw(x: u32) -> Self {
+            Self(x)
+        }
+        pub const fn as_raw(self) -> u32 {
+            self.0
+        }
+        pub const fn is_empty(self) -> bool {
+            self.0 == Self::empty().0
+        }
+        pub const fn intersects(self, other: Self) -> bool {
+            !Self(self.0 & other.0).is_empty()
+        }
+        pub const fn contains(self, other: Self) -> bool {
+            self.0 & other.0 == other.0
+        }
+    }
+    impl Default for ClusterAccelerationStructureIndexFormatFlagsNV {
+        fn default() -> Self {
+            Self::empty()
+        }
+    }
+    impl core::ops::BitOr for ClusterAccelerationStructureIndexFormatFlagsNV {
+        type Output = Self;
+        fn bitor(self, rhs: Self) -> Self {
+            Self(self.0 | rhs.0)
+        }
+    }
+    impl core::ops::BitOrAssign for ClusterAccelerationStructureIndexFormatFlagsNV {
+        fn bitor_assign(&mut self, rhs: Self) {
+            *self = *self | rhs;
+        }
+    }
+    impl core::ops::BitAnd for ClusterAccelerationStructureIndexFormatFlagsNV {
+        type Output = Self;
+        fn bitand(self, rhs: Self) -> Self {
+            Self(self.0 & rhs.0)
+        }
+    }
+    impl core::ops::BitAndAssign for ClusterAccelerationStructureIndexFormatFlagsNV {
+        fn bitand_assign(&mut self, rhs: Self) {
+            *self = *self & rhs;
+        }
+    }
+    impl core::ops::BitXor for ClusterAccelerationStructureIndexFormatFlagsNV {
+        type Output = Self;
+        fn bitxor(self, rhs: Self) -> Self {
+            Self(self.0 ^ rhs.0)
+        }
+    }
+    impl core::ops::BitXorAssign for ClusterAccelerationStructureIndexFormatFlagsNV {
+        fn bitxor_assign(&mut self, rhs: Self) {
+            *self = *self ^ rhs;
+        }
+    }
+    impl core::ops::Not for ClusterAccelerationStructureIndexFormatFlagsNV {
+        type Output = Self;
+        fn not(self) -> Self {
+            Self(!self.0)
+        }
     }
     #[repr(transparent)]
     #[derive(Clone, Copy)]

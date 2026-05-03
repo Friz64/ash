@@ -41,6 +41,69 @@ impl CoverageModulationModeNV {
 #[repr(transparent)]
 #[derive(Clone, Copy)]
 pub struct PipelineCoverageModulationStateCreateFlagsNV(u32);
-impl PipelineCoverageModulationStateCreateFlagsNV {}
+impl PipelineCoverageModulationStateCreateFlagsNV {
+    pub const fn empty() -> Self {
+        Self(0)
+    }
+    pub const fn from_raw(x: u32) -> Self {
+        Self(x)
+    }
+    pub const fn as_raw(self) -> u32 {
+        self.0
+    }
+    pub const fn is_empty(self) -> bool {
+        self.0 == Self::empty().0
+    }
+    pub const fn intersects(self, other: Self) -> bool {
+        !Self(self.0 & other.0).is_empty()
+    }
+    pub const fn contains(self, other: Self) -> bool {
+        self.0 & other.0 == other.0
+    }
+}
+impl Default for PipelineCoverageModulationStateCreateFlagsNV {
+    fn default() -> Self {
+        Self::empty()
+    }
+}
+impl core::ops::BitOr for PipelineCoverageModulationStateCreateFlagsNV {
+    type Output = Self;
+    fn bitor(self, rhs: Self) -> Self {
+        Self(self.0 | rhs.0)
+    }
+}
+impl core::ops::BitOrAssign for PipelineCoverageModulationStateCreateFlagsNV {
+    fn bitor_assign(&mut self, rhs: Self) {
+        *self = *self | rhs;
+    }
+}
+impl core::ops::BitAnd for PipelineCoverageModulationStateCreateFlagsNV {
+    type Output = Self;
+    fn bitand(self, rhs: Self) -> Self {
+        Self(self.0 & rhs.0)
+    }
+}
+impl core::ops::BitAndAssign for PipelineCoverageModulationStateCreateFlagsNV {
+    fn bitand_assign(&mut self, rhs: Self) {
+        *self = *self & rhs;
+    }
+}
+impl core::ops::BitXor for PipelineCoverageModulationStateCreateFlagsNV {
+    type Output = Self;
+    fn bitxor(self, rhs: Self) -> Self {
+        Self(self.0 ^ rhs.0)
+    }
+}
+impl core::ops::BitXorAssign for PipelineCoverageModulationStateCreateFlagsNV {
+    fn bitxor_assign(&mut self, rhs: Self) {
+        *self = *self ^ rhs;
+    }
+}
+impl core::ops::Not for PipelineCoverageModulationStateCreateFlagsNV {
+    type Output = Self;
+    fn not(self) -> Self {
+        Self(!self.0)
+    }
+}
 pub const NV_FRAMEBUFFER_MIXED_SAMPLES_SPEC_VERSION: u32 = 1;
 pub const NV_FRAMEBUFFER_MIXED_SAMPLES_EXTENSION_NAME: &core::ffi::CStr = c"VK_NV_framebuffer_mixed_samples";

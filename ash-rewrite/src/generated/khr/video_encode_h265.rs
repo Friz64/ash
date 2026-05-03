@@ -249,6 +249,68 @@ impl VideoEncodeH265CapabilityFlagsKHR {
     pub const CU_QP_DIFF_WRAPAROUND_KHR: Self = Self(
         VideoEncodeH265CapabilityFlagBitsKHR::CU_QP_DIFF_WRAPAROUND_KHR.0,
     );
+    pub const fn empty() -> Self {
+        Self(0)
+    }
+    pub const fn from_raw(x: u32) -> Self {
+        Self(x)
+    }
+    pub const fn as_raw(self) -> u32 {
+        self.0
+    }
+    pub const fn is_empty(self) -> bool {
+        self.0 == Self::empty().0
+    }
+    pub const fn intersects(self, other: Self) -> bool {
+        !Self(self.0 & other.0).is_empty()
+    }
+    pub const fn contains(self, other: Self) -> bool {
+        self.0 & other.0 == other.0
+    }
+}
+impl Default for VideoEncodeH265CapabilityFlagsKHR {
+    fn default() -> Self {
+        Self::empty()
+    }
+}
+impl core::ops::BitOr for VideoEncodeH265CapabilityFlagsKHR {
+    type Output = Self;
+    fn bitor(self, rhs: Self) -> Self {
+        Self(self.0 | rhs.0)
+    }
+}
+impl core::ops::BitOrAssign for VideoEncodeH265CapabilityFlagsKHR {
+    fn bitor_assign(&mut self, rhs: Self) {
+        *self = *self | rhs;
+    }
+}
+impl core::ops::BitAnd for VideoEncodeH265CapabilityFlagsKHR {
+    type Output = Self;
+    fn bitand(self, rhs: Self) -> Self {
+        Self(self.0 & rhs.0)
+    }
+}
+impl core::ops::BitAndAssign for VideoEncodeH265CapabilityFlagsKHR {
+    fn bitand_assign(&mut self, rhs: Self) {
+        *self = *self & rhs;
+    }
+}
+impl core::ops::BitXor for VideoEncodeH265CapabilityFlagsKHR {
+    type Output = Self;
+    fn bitxor(self, rhs: Self) -> Self {
+        Self(self.0 ^ rhs.0)
+    }
+}
+impl core::ops::BitXorAssign for VideoEncodeH265CapabilityFlagsKHR {
+    fn bitxor_assign(&mut self, rhs: Self) {
+        *self = *self ^ rhs;
+    }
+}
+impl core::ops::Not for VideoEncodeH265CapabilityFlagsKHR {
+    type Output = Self;
+    fn not(self) -> Self {
+        Self(!self.0)
+    }
 }
 #[repr(transparent)]
 #[derive(Clone, Copy)]
@@ -333,6 +395,68 @@ impl VideoEncodeH265StdFlagsKHR {
     pub const DIFFERENT_SLICE_QP_DELTA_KHR: Self = Self(
         VideoEncodeH265StdFlagBitsKHR::DIFFERENT_SLICE_QP_DELTA_KHR.0,
     );
+    pub const fn empty() -> Self {
+        Self(0)
+    }
+    pub const fn from_raw(x: u32) -> Self {
+        Self(x)
+    }
+    pub const fn as_raw(self) -> u32 {
+        self.0
+    }
+    pub const fn is_empty(self) -> bool {
+        self.0 == Self::empty().0
+    }
+    pub const fn intersects(self, other: Self) -> bool {
+        !Self(self.0 & other.0).is_empty()
+    }
+    pub const fn contains(self, other: Self) -> bool {
+        self.0 & other.0 == other.0
+    }
+}
+impl Default for VideoEncodeH265StdFlagsKHR {
+    fn default() -> Self {
+        Self::empty()
+    }
+}
+impl core::ops::BitOr for VideoEncodeH265StdFlagsKHR {
+    type Output = Self;
+    fn bitor(self, rhs: Self) -> Self {
+        Self(self.0 | rhs.0)
+    }
+}
+impl core::ops::BitOrAssign for VideoEncodeH265StdFlagsKHR {
+    fn bitor_assign(&mut self, rhs: Self) {
+        *self = *self | rhs;
+    }
+}
+impl core::ops::BitAnd for VideoEncodeH265StdFlagsKHR {
+    type Output = Self;
+    fn bitand(self, rhs: Self) -> Self {
+        Self(self.0 & rhs.0)
+    }
+}
+impl core::ops::BitAndAssign for VideoEncodeH265StdFlagsKHR {
+    fn bitand_assign(&mut self, rhs: Self) {
+        *self = *self & rhs;
+    }
+}
+impl core::ops::BitXor for VideoEncodeH265StdFlagsKHR {
+    type Output = Self;
+    fn bitxor(self, rhs: Self) -> Self {
+        Self(self.0 ^ rhs.0)
+    }
+}
+impl core::ops::BitXorAssign for VideoEncodeH265StdFlagsKHR {
+    fn bitxor_assign(&mut self, rhs: Self) {
+        *self = *self ^ rhs;
+    }
+}
+impl core::ops::Not for VideoEncodeH265StdFlagsKHR {
+    type Output = Self;
+    fn not(self) -> Self {
+        Self(!self.0)
+    }
 }
 #[repr(transparent)]
 #[derive(Clone, Copy)]
@@ -380,6 +504,68 @@ impl VideoEncodeH265RateControlFlagsKHR {
     pub const TEMPORAL_SUB_LAYER_PATTERN_DYADIC_KHR: Self = Self(
         VideoEncodeH265RateControlFlagBitsKHR::TEMPORAL_SUB_LAYER_PATTERN_DYADIC_KHR.0,
     );
+    pub const fn empty() -> Self {
+        Self(0)
+    }
+    pub const fn from_raw(x: u32) -> Self {
+        Self(x)
+    }
+    pub const fn as_raw(self) -> u32 {
+        self.0
+    }
+    pub const fn is_empty(self) -> bool {
+        self.0 == Self::empty().0
+    }
+    pub const fn intersects(self, other: Self) -> bool {
+        !Self(self.0 & other.0).is_empty()
+    }
+    pub const fn contains(self, other: Self) -> bool {
+        self.0 & other.0 == other.0
+    }
+}
+impl Default for VideoEncodeH265RateControlFlagsKHR {
+    fn default() -> Self {
+        Self::empty()
+    }
+}
+impl core::ops::BitOr for VideoEncodeH265RateControlFlagsKHR {
+    type Output = Self;
+    fn bitor(self, rhs: Self) -> Self {
+        Self(self.0 | rhs.0)
+    }
+}
+impl core::ops::BitOrAssign for VideoEncodeH265RateControlFlagsKHR {
+    fn bitor_assign(&mut self, rhs: Self) {
+        *self = *self | rhs;
+    }
+}
+impl core::ops::BitAnd for VideoEncodeH265RateControlFlagsKHR {
+    type Output = Self;
+    fn bitand(self, rhs: Self) -> Self {
+        Self(self.0 & rhs.0)
+    }
+}
+impl core::ops::BitAndAssign for VideoEncodeH265RateControlFlagsKHR {
+    fn bitand_assign(&mut self, rhs: Self) {
+        *self = *self & rhs;
+    }
+}
+impl core::ops::BitXor for VideoEncodeH265RateControlFlagsKHR {
+    type Output = Self;
+    fn bitxor(self, rhs: Self) -> Self {
+        Self(self.0 ^ rhs.0)
+    }
+}
+impl core::ops::BitXorAssign for VideoEncodeH265RateControlFlagsKHR {
+    fn bitxor_assign(&mut self, rhs: Self) {
+        *self = *self ^ rhs;
+    }
+}
+impl core::ops::Not for VideoEncodeH265RateControlFlagsKHR {
+    type Output = Self;
+    fn not(self) -> Self {
+        Self(!self.0)
+    }
 }
 #[repr(transparent)]
 #[derive(Clone, Copy)]
@@ -399,6 +585,68 @@ impl VideoEncodeH265CtbSizeFlagsKHR {
     pub const _16_KHR: Self = Self(VideoEncodeH265CtbSizeFlagBitsKHR::_16_KHR.0);
     pub const _32_KHR: Self = Self(VideoEncodeH265CtbSizeFlagBitsKHR::_32_KHR.0);
     pub const _64_KHR: Self = Self(VideoEncodeH265CtbSizeFlagBitsKHR::_64_KHR.0);
+    pub const fn empty() -> Self {
+        Self(0)
+    }
+    pub const fn from_raw(x: u32) -> Self {
+        Self(x)
+    }
+    pub const fn as_raw(self) -> u32 {
+        self.0
+    }
+    pub const fn is_empty(self) -> bool {
+        self.0 == Self::empty().0
+    }
+    pub const fn intersects(self, other: Self) -> bool {
+        !Self(self.0 & other.0).is_empty()
+    }
+    pub const fn contains(self, other: Self) -> bool {
+        self.0 & other.0 == other.0
+    }
+}
+impl Default for VideoEncodeH265CtbSizeFlagsKHR {
+    fn default() -> Self {
+        Self::empty()
+    }
+}
+impl core::ops::BitOr for VideoEncodeH265CtbSizeFlagsKHR {
+    type Output = Self;
+    fn bitor(self, rhs: Self) -> Self {
+        Self(self.0 | rhs.0)
+    }
+}
+impl core::ops::BitOrAssign for VideoEncodeH265CtbSizeFlagsKHR {
+    fn bitor_assign(&mut self, rhs: Self) {
+        *self = *self | rhs;
+    }
+}
+impl core::ops::BitAnd for VideoEncodeH265CtbSizeFlagsKHR {
+    type Output = Self;
+    fn bitand(self, rhs: Self) -> Self {
+        Self(self.0 & rhs.0)
+    }
+}
+impl core::ops::BitAndAssign for VideoEncodeH265CtbSizeFlagsKHR {
+    fn bitand_assign(&mut self, rhs: Self) {
+        *self = *self & rhs;
+    }
+}
+impl core::ops::BitXor for VideoEncodeH265CtbSizeFlagsKHR {
+    type Output = Self;
+    fn bitxor(self, rhs: Self) -> Self {
+        Self(self.0 ^ rhs.0)
+    }
+}
+impl core::ops::BitXorAssign for VideoEncodeH265CtbSizeFlagsKHR {
+    fn bitxor_assign(&mut self, rhs: Self) {
+        *self = *self ^ rhs;
+    }
+}
+impl core::ops::Not for VideoEncodeH265CtbSizeFlagsKHR {
+    type Output = Self;
+    fn not(self) -> Self {
+        Self(!self.0)
+    }
 }
 #[repr(transparent)]
 #[derive(Clone, Copy)]
@@ -425,6 +673,68 @@ impl VideoEncodeH265TransformBlockSizeFlagsKHR {
     pub const _32_KHR: Self = Self(
         VideoEncodeH265TransformBlockSizeFlagBitsKHR::_32_KHR.0,
     );
+    pub const fn empty() -> Self {
+        Self(0)
+    }
+    pub const fn from_raw(x: u32) -> Self {
+        Self(x)
+    }
+    pub const fn as_raw(self) -> u32 {
+        self.0
+    }
+    pub const fn is_empty(self) -> bool {
+        self.0 == Self::empty().0
+    }
+    pub const fn intersects(self, other: Self) -> bool {
+        !Self(self.0 & other.0).is_empty()
+    }
+    pub const fn contains(self, other: Self) -> bool {
+        self.0 & other.0 == other.0
+    }
+}
+impl Default for VideoEncodeH265TransformBlockSizeFlagsKHR {
+    fn default() -> Self {
+        Self::empty()
+    }
+}
+impl core::ops::BitOr for VideoEncodeH265TransformBlockSizeFlagsKHR {
+    type Output = Self;
+    fn bitor(self, rhs: Self) -> Self {
+        Self(self.0 | rhs.0)
+    }
+}
+impl core::ops::BitOrAssign for VideoEncodeH265TransformBlockSizeFlagsKHR {
+    fn bitor_assign(&mut self, rhs: Self) {
+        *self = *self | rhs;
+    }
+}
+impl core::ops::BitAnd for VideoEncodeH265TransformBlockSizeFlagsKHR {
+    type Output = Self;
+    fn bitand(self, rhs: Self) -> Self {
+        Self(self.0 & rhs.0)
+    }
+}
+impl core::ops::BitAndAssign for VideoEncodeH265TransformBlockSizeFlagsKHR {
+    fn bitand_assign(&mut self, rhs: Self) {
+        *self = *self & rhs;
+    }
+}
+impl core::ops::BitXor for VideoEncodeH265TransformBlockSizeFlagsKHR {
+    type Output = Self;
+    fn bitxor(self, rhs: Self) -> Self {
+        Self(self.0 ^ rhs.0)
+    }
+}
+impl core::ops::BitXorAssign for VideoEncodeH265TransformBlockSizeFlagsKHR {
+    fn bitxor_assign(&mut self, rhs: Self) {
+        *self = *self ^ rhs;
+    }
+}
+impl core::ops::Not for VideoEncodeH265TransformBlockSizeFlagsKHR {
+    type Output = Self;
+    fn not(self) -> Self {
+        Self(!self.0)
+    }
 }
 #[repr(transparent)]
 #[derive(Clone, Copy)]

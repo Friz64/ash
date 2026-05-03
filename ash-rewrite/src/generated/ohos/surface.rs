@@ -53,7 +53,70 @@ pub(crate) mod reexport {
     #[repr(transparent)]
     #[derive(Clone, Copy)]
     pub struct SurfaceCreateFlagsOHOS(u32);
-    impl SurfaceCreateFlagsOHOS {}
+    impl SurfaceCreateFlagsOHOS {
+        pub const fn empty() -> Self {
+            Self(0)
+        }
+        pub const fn from_raw(x: u32) -> Self {
+            Self(x)
+        }
+        pub const fn as_raw(self) -> u32 {
+            self.0
+        }
+        pub const fn is_empty(self) -> bool {
+            self.0 == Self::empty().0
+        }
+        pub const fn intersects(self, other: Self) -> bool {
+            !Self(self.0 & other.0).is_empty()
+        }
+        pub const fn contains(self, other: Self) -> bool {
+            self.0 & other.0 == other.0
+        }
+    }
+    impl Default for SurfaceCreateFlagsOHOS {
+        fn default() -> Self {
+            Self::empty()
+        }
+    }
+    impl core::ops::BitOr for SurfaceCreateFlagsOHOS {
+        type Output = Self;
+        fn bitor(self, rhs: Self) -> Self {
+            Self(self.0 | rhs.0)
+        }
+    }
+    impl core::ops::BitOrAssign for SurfaceCreateFlagsOHOS {
+        fn bitor_assign(&mut self, rhs: Self) {
+            *self = *self | rhs;
+        }
+    }
+    impl core::ops::BitAnd for SurfaceCreateFlagsOHOS {
+        type Output = Self;
+        fn bitand(self, rhs: Self) -> Self {
+            Self(self.0 & rhs.0)
+        }
+    }
+    impl core::ops::BitAndAssign for SurfaceCreateFlagsOHOS {
+        fn bitand_assign(&mut self, rhs: Self) {
+            *self = *self & rhs;
+        }
+    }
+    impl core::ops::BitXor for SurfaceCreateFlagsOHOS {
+        type Output = Self;
+        fn bitxor(self, rhs: Self) -> Self {
+            Self(self.0 ^ rhs.0)
+        }
+    }
+    impl core::ops::BitXorAssign for SurfaceCreateFlagsOHOS {
+        fn bitxor_assign(&mut self, rhs: Self) {
+            *self = *self ^ rhs;
+        }
+    }
+    impl core::ops::Not for SurfaceCreateFlagsOHOS {
+        type Output = Self;
+        fn not(self) -> Self {
+            Self(!self.0)
+        }
+    }
     pub type PFN_vkCreateSurfaceOHOS = unsafe extern "system" fn(
         instance: crate::vk::Instance,
         p_create_info: *const crate::vk::SurfaceCreateInfoOHOS<'_>,

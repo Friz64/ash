@@ -55,6 +55,68 @@ impl DeviceAddressBindingFlagsEXT {
     pub const INTERNAL_OBJECT_EXT: Self = Self(
         DeviceAddressBindingFlagBitsEXT::INTERNAL_OBJECT_EXT.0,
     );
+    pub const fn empty() -> Self {
+        Self(0)
+    }
+    pub const fn from_raw(x: u32) -> Self {
+        Self(x)
+    }
+    pub const fn as_raw(self) -> u32 {
+        self.0
+    }
+    pub const fn is_empty(self) -> bool {
+        self.0 == Self::empty().0
+    }
+    pub const fn intersects(self, other: Self) -> bool {
+        !Self(self.0 & other.0).is_empty()
+    }
+    pub const fn contains(self, other: Self) -> bool {
+        self.0 & other.0 == other.0
+    }
+}
+impl Default for DeviceAddressBindingFlagsEXT {
+    fn default() -> Self {
+        Self::empty()
+    }
+}
+impl core::ops::BitOr for DeviceAddressBindingFlagsEXT {
+    type Output = Self;
+    fn bitor(self, rhs: Self) -> Self {
+        Self(self.0 | rhs.0)
+    }
+}
+impl core::ops::BitOrAssign for DeviceAddressBindingFlagsEXT {
+    fn bitor_assign(&mut self, rhs: Self) {
+        *self = *self | rhs;
+    }
+}
+impl core::ops::BitAnd for DeviceAddressBindingFlagsEXT {
+    type Output = Self;
+    fn bitand(self, rhs: Self) -> Self {
+        Self(self.0 & rhs.0)
+    }
+}
+impl core::ops::BitAndAssign for DeviceAddressBindingFlagsEXT {
+    fn bitand_assign(&mut self, rhs: Self) {
+        *self = *self & rhs;
+    }
+}
+impl core::ops::BitXor for DeviceAddressBindingFlagsEXT {
+    type Output = Self;
+    fn bitxor(self, rhs: Self) -> Self {
+        Self(self.0 ^ rhs.0)
+    }
+}
+impl core::ops::BitXorAssign for DeviceAddressBindingFlagsEXT {
+    fn bitxor_assign(&mut self, rhs: Self) {
+        *self = *self ^ rhs;
+    }
+}
+impl core::ops::Not for DeviceAddressBindingFlagsEXT {
+    type Output = Self;
+    fn not(self) -> Self {
+        Self(!self.0)
+    }
 }
 #[repr(transparent)]
 #[derive(Clone, Copy)]

@@ -69,6 +69,68 @@ impl VideoEncodeRgbModelConversionFlagsVALVE {
     pub const YCBCR_2020_VALVE: Self = Self(
         VideoEncodeRgbModelConversionFlagBitsVALVE::YCBCR_2020_VALVE.0,
     );
+    pub const fn empty() -> Self {
+        Self(0)
+    }
+    pub const fn from_raw(x: u32) -> Self {
+        Self(x)
+    }
+    pub const fn as_raw(self) -> u32 {
+        self.0
+    }
+    pub const fn is_empty(self) -> bool {
+        self.0 == Self::empty().0
+    }
+    pub const fn intersects(self, other: Self) -> bool {
+        !Self(self.0 & other.0).is_empty()
+    }
+    pub const fn contains(self, other: Self) -> bool {
+        self.0 & other.0 == other.0
+    }
+}
+impl Default for VideoEncodeRgbModelConversionFlagsVALVE {
+    fn default() -> Self {
+        Self::empty()
+    }
+}
+impl core::ops::BitOr for VideoEncodeRgbModelConversionFlagsVALVE {
+    type Output = Self;
+    fn bitor(self, rhs: Self) -> Self {
+        Self(self.0 | rhs.0)
+    }
+}
+impl core::ops::BitOrAssign for VideoEncodeRgbModelConversionFlagsVALVE {
+    fn bitor_assign(&mut self, rhs: Self) {
+        *self = *self | rhs;
+    }
+}
+impl core::ops::BitAnd for VideoEncodeRgbModelConversionFlagsVALVE {
+    type Output = Self;
+    fn bitand(self, rhs: Self) -> Self {
+        Self(self.0 & rhs.0)
+    }
+}
+impl core::ops::BitAndAssign for VideoEncodeRgbModelConversionFlagsVALVE {
+    fn bitand_assign(&mut self, rhs: Self) {
+        *self = *self & rhs;
+    }
+}
+impl core::ops::BitXor for VideoEncodeRgbModelConversionFlagsVALVE {
+    type Output = Self;
+    fn bitxor(self, rhs: Self) -> Self {
+        Self(self.0 ^ rhs.0)
+    }
+}
+impl core::ops::BitXorAssign for VideoEncodeRgbModelConversionFlagsVALVE {
+    fn bitxor_assign(&mut self, rhs: Self) {
+        *self = *self ^ rhs;
+    }
+}
+impl core::ops::Not for VideoEncodeRgbModelConversionFlagsVALVE {
+    type Output = Self;
+    fn not(self) -> Self {
+        Self(!self.0)
+    }
 }
 #[repr(transparent)]
 #[derive(Clone, Copy)]
@@ -91,6 +153,68 @@ impl VideoEncodeRgbRangeCompressionFlagsVALVE {
     pub const NARROW_RANGE_VALVE: Self = Self(
         VideoEncodeRgbRangeCompressionFlagBitsVALVE::NARROW_RANGE_VALVE.0,
     );
+    pub const fn empty() -> Self {
+        Self(0)
+    }
+    pub const fn from_raw(x: u32) -> Self {
+        Self(x)
+    }
+    pub const fn as_raw(self) -> u32 {
+        self.0
+    }
+    pub const fn is_empty(self) -> bool {
+        self.0 == Self::empty().0
+    }
+    pub const fn intersects(self, other: Self) -> bool {
+        !Self(self.0 & other.0).is_empty()
+    }
+    pub const fn contains(self, other: Self) -> bool {
+        self.0 & other.0 == other.0
+    }
+}
+impl Default for VideoEncodeRgbRangeCompressionFlagsVALVE {
+    fn default() -> Self {
+        Self::empty()
+    }
+}
+impl core::ops::BitOr for VideoEncodeRgbRangeCompressionFlagsVALVE {
+    type Output = Self;
+    fn bitor(self, rhs: Self) -> Self {
+        Self(self.0 | rhs.0)
+    }
+}
+impl core::ops::BitOrAssign for VideoEncodeRgbRangeCompressionFlagsVALVE {
+    fn bitor_assign(&mut self, rhs: Self) {
+        *self = *self | rhs;
+    }
+}
+impl core::ops::BitAnd for VideoEncodeRgbRangeCompressionFlagsVALVE {
+    type Output = Self;
+    fn bitand(self, rhs: Self) -> Self {
+        Self(self.0 & rhs.0)
+    }
+}
+impl core::ops::BitAndAssign for VideoEncodeRgbRangeCompressionFlagsVALVE {
+    fn bitand_assign(&mut self, rhs: Self) {
+        *self = *self & rhs;
+    }
+}
+impl core::ops::BitXor for VideoEncodeRgbRangeCompressionFlagsVALVE {
+    type Output = Self;
+    fn bitxor(self, rhs: Self) -> Self {
+        Self(self.0 ^ rhs.0)
+    }
+}
+impl core::ops::BitXorAssign for VideoEncodeRgbRangeCompressionFlagsVALVE {
+    fn bitxor_assign(&mut self, rhs: Self) {
+        *self = *self ^ rhs;
+    }
+}
+impl core::ops::Not for VideoEncodeRgbRangeCompressionFlagsVALVE {
+    type Output = Self;
+    fn not(self) -> Self {
+        Self(!self.0)
+    }
 }
 #[repr(transparent)]
 #[derive(Clone, Copy)]
@@ -110,6 +234,68 @@ impl VideoEncodeRgbChromaOffsetFlagsVALVE {
     pub const MIDPOINT_VALVE: Self = Self(
         VideoEncodeRgbChromaOffsetFlagBitsVALVE::MIDPOINT_VALVE.0,
     );
+    pub const fn empty() -> Self {
+        Self(0)
+    }
+    pub const fn from_raw(x: u32) -> Self {
+        Self(x)
+    }
+    pub const fn as_raw(self) -> u32 {
+        self.0
+    }
+    pub const fn is_empty(self) -> bool {
+        self.0 == Self::empty().0
+    }
+    pub const fn intersects(self, other: Self) -> bool {
+        !Self(self.0 & other.0).is_empty()
+    }
+    pub const fn contains(self, other: Self) -> bool {
+        self.0 & other.0 == other.0
+    }
+}
+impl Default for VideoEncodeRgbChromaOffsetFlagsVALVE {
+    fn default() -> Self {
+        Self::empty()
+    }
+}
+impl core::ops::BitOr for VideoEncodeRgbChromaOffsetFlagsVALVE {
+    type Output = Self;
+    fn bitor(self, rhs: Self) -> Self {
+        Self(self.0 | rhs.0)
+    }
+}
+impl core::ops::BitOrAssign for VideoEncodeRgbChromaOffsetFlagsVALVE {
+    fn bitor_assign(&mut self, rhs: Self) {
+        *self = *self | rhs;
+    }
+}
+impl core::ops::BitAnd for VideoEncodeRgbChromaOffsetFlagsVALVE {
+    type Output = Self;
+    fn bitand(self, rhs: Self) -> Self {
+        Self(self.0 & rhs.0)
+    }
+}
+impl core::ops::BitAndAssign for VideoEncodeRgbChromaOffsetFlagsVALVE {
+    fn bitand_assign(&mut self, rhs: Self) {
+        *self = *self & rhs;
+    }
+}
+impl core::ops::BitXor for VideoEncodeRgbChromaOffsetFlagsVALVE {
+    type Output = Self;
+    fn bitxor(self, rhs: Self) -> Self {
+        Self(self.0 ^ rhs.0)
+    }
+}
+impl core::ops::BitXorAssign for VideoEncodeRgbChromaOffsetFlagsVALVE {
+    fn bitxor_assign(&mut self, rhs: Self) {
+        *self = *self ^ rhs;
+    }
+}
+impl core::ops::Not for VideoEncodeRgbChromaOffsetFlagsVALVE {
+    type Output = Self;
+    fn not(self) -> Self {
+        Self(!self.0)
+    }
 }
 #[repr(transparent)]
 #[derive(Clone, Copy)]

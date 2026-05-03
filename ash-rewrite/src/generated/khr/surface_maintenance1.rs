@@ -50,6 +50,68 @@ impl PresentScalingFlagsKHR {
     );
     pub const STRETCH_KHR: Self = Self(PresentScalingFlagBitsKHR::STRETCH_KHR.0);
     pub const STRETCH_EXT: Self = Self(PresentScalingFlagBitsKHR::STRETCH_EXT.0);
+    pub const fn empty() -> Self {
+        Self(0)
+    }
+    pub const fn from_raw(x: u32) -> Self {
+        Self(x)
+    }
+    pub const fn as_raw(self) -> u32 {
+        self.0
+    }
+    pub const fn is_empty(self) -> bool {
+        self.0 == Self::empty().0
+    }
+    pub const fn intersects(self, other: Self) -> bool {
+        !Self(self.0 & other.0).is_empty()
+    }
+    pub const fn contains(self, other: Self) -> bool {
+        self.0 & other.0 == other.0
+    }
+}
+impl Default for PresentScalingFlagsKHR {
+    fn default() -> Self {
+        Self::empty()
+    }
+}
+impl core::ops::BitOr for PresentScalingFlagsKHR {
+    type Output = Self;
+    fn bitor(self, rhs: Self) -> Self {
+        Self(self.0 | rhs.0)
+    }
+}
+impl core::ops::BitOrAssign for PresentScalingFlagsKHR {
+    fn bitor_assign(&mut self, rhs: Self) {
+        *self = *self | rhs;
+    }
+}
+impl core::ops::BitAnd for PresentScalingFlagsKHR {
+    type Output = Self;
+    fn bitand(self, rhs: Self) -> Self {
+        Self(self.0 & rhs.0)
+    }
+}
+impl core::ops::BitAndAssign for PresentScalingFlagsKHR {
+    fn bitand_assign(&mut self, rhs: Self) {
+        *self = *self & rhs;
+    }
+}
+impl core::ops::BitXor for PresentScalingFlagsKHR {
+    type Output = Self;
+    fn bitxor(self, rhs: Self) -> Self {
+        Self(self.0 ^ rhs.0)
+    }
+}
+impl core::ops::BitXorAssign for PresentScalingFlagsKHR {
+    fn bitxor_assign(&mut self, rhs: Self) {
+        *self = *self ^ rhs;
+    }
+}
+impl core::ops::Not for PresentScalingFlagsKHR {
+    type Output = Self;
+    fn not(self) -> Self {
+        Self(!self.0)
+    }
 }
 #[repr(transparent)]
 #[derive(Clone, Copy)]
@@ -73,6 +135,68 @@ impl PresentGravityFlagsKHR {
     pub const MAX_EXT: Self = Self(PresentGravityFlagBitsKHR::MAX_EXT.0);
     pub const CENTERED_KHR: Self = Self(PresentGravityFlagBitsKHR::CENTERED_KHR.0);
     pub const CENTERED_EXT: Self = Self(PresentGravityFlagBitsKHR::CENTERED_EXT.0);
+    pub const fn empty() -> Self {
+        Self(0)
+    }
+    pub const fn from_raw(x: u32) -> Self {
+        Self(x)
+    }
+    pub const fn as_raw(self) -> u32 {
+        self.0
+    }
+    pub const fn is_empty(self) -> bool {
+        self.0 == Self::empty().0
+    }
+    pub const fn intersects(self, other: Self) -> bool {
+        !Self(self.0 & other.0).is_empty()
+    }
+    pub const fn contains(self, other: Self) -> bool {
+        self.0 & other.0 == other.0
+    }
+}
+impl Default for PresentGravityFlagsKHR {
+    fn default() -> Self {
+        Self::empty()
+    }
+}
+impl core::ops::BitOr for PresentGravityFlagsKHR {
+    type Output = Self;
+    fn bitor(self, rhs: Self) -> Self {
+        Self(self.0 | rhs.0)
+    }
+}
+impl core::ops::BitOrAssign for PresentGravityFlagsKHR {
+    fn bitor_assign(&mut self, rhs: Self) {
+        *self = *self | rhs;
+    }
+}
+impl core::ops::BitAnd for PresentGravityFlagsKHR {
+    type Output = Self;
+    fn bitand(self, rhs: Self) -> Self {
+        Self(self.0 & rhs.0)
+    }
+}
+impl core::ops::BitAndAssign for PresentGravityFlagsKHR {
+    fn bitand_assign(&mut self, rhs: Self) {
+        *self = *self & rhs;
+    }
+}
+impl core::ops::BitXor for PresentGravityFlagsKHR {
+    type Output = Self;
+    fn bitxor(self, rhs: Self) -> Self {
+        Self(self.0 ^ rhs.0)
+    }
+}
+impl core::ops::BitXorAssign for PresentGravityFlagsKHR {
+    fn bitxor_assign(&mut self, rhs: Self) {
+        *self = *self ^ rhs;
+    }
+}
+impl core::ops::Not for PresentGravityFlagsKHR {
+    type Output = Self;
+    fn not(self) -> Self {
+        Self(!self.0)
+    }
 }
 #[repr(transparent)]
 #[derive(Clone, Copy)]
