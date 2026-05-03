@@ -75,7 +75,7 @@ impl Code for BitMask {
                 }
             }
 
-            impl ::core::default::Default for #name {
+            impl Default for #name {
                 fn default() -> Self {
                     Self::empty()
                 }

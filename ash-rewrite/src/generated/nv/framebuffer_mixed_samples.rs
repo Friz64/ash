@@ -61,7 +61,7 @@ impl PipelineCoverageModulationStateCreateFlagsNV {
         self.0 & other.0 == other.0
     }
 }
-impl ::core::default::Default for PipelineCoverageModulationStateCreateFlagsNV {
+impl Default for PipelineCoverageModulationStateCreateFlagsNV {
     fn default() -> Self {
         Self::empty()
     }

@@ -276,7 +276,7 @@ pub(crate) mod reexport {
             self.0 & other.0 == other.0
         }
     }
-    impl ::core::default::Default for DataGraphOpticalFlowGridSizeFlagsARM {
+    impl Default for DataGraphOpticalFlowGridSizeFlagsARM {
         fn default() -> Self {
             Self::empty()
         }
@@ -369,7 +369,7 @@ pub(crate) mod reexport {
             self.0 & other.0 == other.0
         }
     }
-    impl ::core::default::Default for DataGraphOpticalFlowImageUsageFlagsARM {
+    impl Default for DataGraphOpticalFlowImageUsageFlagsARM {
         fn default() -> Self {
             Self::empty()
         }
@@ -456,7 +456,7 @@ pub(crate) mod reexport {
             self.0 & other.0 == other.0
         }
     }
-    impl ::core::default::Default for DataGraphOpticalFlowCreateFlagsARM {
+    impl Default for DataGraphOpticalFlowCreateFlagsARM {
         fn default() -> Self {
             Self::empty()
         }
@@ -547,7 +547,7 @@ pub(crate) mod reexport {
             self.0 & other.0 == other.0
         }
     }
-    impl ::core::default::Default for DataGraphOpticalFlowExecuteFlagsARM {
+    impl Default for DataGraphOpticalFlowExecuteFlagsARM {
         fn default() -> Self {
             Self::empty()
         }

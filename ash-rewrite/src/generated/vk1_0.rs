@@ -4546,7 +4546,7 @@ pub(crate) mod reexport {
             self.0 & other.0 == other.0
         }
     }
-    impl ::core::default::Default for FramebufferCreateFlags {
+    impl Default for FramebufferCreateFlags {
         fn default() -> Self {
             Self::empty()
         }
@@ -4617,7 +4617,7 @@ pub(crate) mod reexport {
             self.0 & other.0 == other.0
         }
     }
-    impl ::core::default::Default for QueryPoolCreateFlags {
+    impl Default for QueryPoolCreateFlags {
         fn default() -> Self {
             Self::empty()
         }
@@ -4693,7 +4693,7 @@ pub(crate) mod reexport {
             self.0 & other.0 == other.0
         }
     }
-    impl ::core::default::Default for RenderPassCreateFlags {
+    impl Default for RenderPassCreateFlags {
         fn default() -> Self {
             Self::empty()
         }
@@ -4776,7 +4776,7 @@ pub(crate) mod reexport {
             self.0 & other.0 == other.0
         }
     }
-    impl ::core::default::Default for SamplerCreateFlags {
+    impl Default for SamplerCreateFlags {
         fn default() -> Self {
             Self::empty()
         }
@@ -4852,7 +4852,7 @@ pub(crate) mod reexport {
             self.0 & other.0 == other.0
         }
     }
-    impl ::core::default::Default for PipelineLayoutCreateFlags {
+    impl Default for PipelineLayoutCreateFlags {
         fn default() -> Self {
             Self::empty()
         }
@@ -4931,7 +4931,7 @@ pub(crate) mod reexport {
             self.0 & other.0 == other.0
         }
     }
-    impl ::core::default::Default for PipelineCacheCreateFlags {
+    impl Default for PipelineCacheCreateFlags {
         fn default() -> Self {
             Self::empty()
         }
@@ -5017,7 +5017,7 @@ pub(crate) mod reexport {
             self.0 & other.0 == other.0
         }
     }
-    impl ::core::default::Default for PipelineDepthStencilStateCreateFlags {
+    impl Default for PipelineDepthStencilStateCreateFlags {
         fn default() -> Self {
             Self::empty()
         }
@@ -5087,7 +5087,7 @@ pub(crate) mod reexport {
             self.0 & other.0 == other.0
         }
     }
-    impl ::core::default::Default for PipelineDynamicStateCreateFlags {
+    impl Default for PipelineDynamicStateCreateFlags {
         fn default() -> Self {
             Self::empty()
         }
@@ -5162,7 +5162,7 @@ pub(crate) mod reexport {
             self.0 & other.0 == other.0
         }
     }
-    impl ::core::default::Default for PipelineColorBlendStateCreateFlags {
+    impl Default for PipelineColorBlendStateCreateFlags {
         fn default() -> Self {
             Self::empty()
         }
@@ -5232,7 +5232,7 @@ pub(crate) mod reexport {
             self.0 & other.0 == other.0
         }
     }
-    impl ::core::default::Default for PipelineMultisampleStateCreateFlags {
+    impl Default for PipelineMultisampleStateCreateFlags {
         fn default() -> Self {
             Self::empty()
         }
@@ -5299,7 +5299,7 @@ pub(crate) mod reexport {
             self.0 & other.0 == other.0
         }
     }
-    impl ::core::default::Default for PipelineRasterizationStateCreateFlags {
+    impl Default for PipelineRasterizationStateCreateFlags {
         fn default() -> Self {
             Self::empty()
         }
@@ -5366,7 +5366,7 @@ pub(crate) mod reexport {
             self.0 & other.0 == other.0
         }
     }
-    impl ::core::default::Default for PipelineViewportStateCreateFlags {
+    impl Default for PipelineViewportStateCreateFlags {
         fn default() -> Self {
             Self::empty()
         }
@@ -5433,7 +5433,7 @@ pub(crate) mod reexport {
             self.0 & other.0 == other.0
         }
     }
-    impl ::core::default::Default for PipelineTessellationStateCreateFlags {
+    impl Default for PipelineTessellationStateCreateFlags {
         fn default() -> Self {
             Self::empty()
         }
@@ -5500,7 +5500,7 @@ pub(crate) mod reexport {
             self.0 & other.0 == other.0
         }
     }
-    impl ::core::default::Default for PipelineInputAssemblyStateCreateFlags {
+    impl Default for PipelineInputAssemblyStateCreateFlags {
         fn default() -> Self {
             Self::empty()
         }
@@ -5567,7 +5567,7 @@ pub(crate) mod reexport {
             self.0 & other.0 == other.0
         }
     }
-    impl ::core::default::Default for PipelineVertexInputStateCreateFlags {
+    impl Default for PipelineVertexInputStateCreateFlags {
         fn default() -> Self {
             Self::empty()
         }
@@ -5646,7 +5646,7 @@ pub(crate) mod reexport {
             self.0 & other.0 == other.0
         }
     }
-    impl ::core::default::Default for PipelineShaderStageCreateFlags {
+    impl Default for PipelineShaderStageCreateFlags {
         fn default() -> Self {
             Self::empty()
         }
@@ -5746,7 +5746,7 @@ pub(crate) mod reexport {
             self.0 & other.0 == other.0
         }
     }
-    impl ::core::default::Default for DescriptorSetLayoutCreateFlags {
+    impl Default for DescriptorSetLayoutCreateFlags {
         fn default() -> Self {
             Self::empty()
         }
@@ -5816,7 +5816,7 @@ pub(crate) mod reexport {
             self.0 & other.0 == other.0
         }
     }
-    impl ::core::default::Default for BufferViewCreateFlags {
+    impl Default for BufferViewCreateFlags {
         fn default() -> Self {
             Self::empty()
         }
@@ -5886,7 +5886,7 @@ pub(crate) mod reexport {
             self.0 & other.0 == other.0
         }
     }
-    impl ::core::default::Default for InstanceCreateFlags {
+    impl Default for InstanceCreateFlags {
         fn default() -> Self {
             Self::empty()
         }
@@ -5956,7 +5956,7 @@ pub(crate) mod reexport {
             self.0 & other.0 == other.0
         }
     }
-    impl ::core::default::Default for DeviceCreateFlags {
+    impl Default for DeviceCreateFlags {
         fn default() -> Self {
             Self::empty()
         }
@@ -6027,7 +6027,7 @@ pub(crate) mod reexport {
             self.0 & other.0 == other.0
         }
     }
-    impl ::core::default::Default for DeviceQueueCreateFlags {
+    impl Default for DeviceQueueCreateFlags {
         fn default() -> Self {
             Self::empty()
         }
@@ -6106,7 +6106,7 @@ pub(crate) mod reexport {
             self.0 & other.0 == other.0
         }
     }
-    impl ::core::default::Default for QueueFlags {
+    impl Default for QueueFlags {
         fn default() -> Self {
             Self::empty()
         }
@@ -6200,7 +6200,7 @@ pub(crate) mod reexport {
             self.0 & other.0 == other.0
         }
     }
-    impl ::core::default::Default for MemoryPropertyFlags {
+    impl Default for MemoryPropertyFlags {
         fn default() -> Self {
             Self::empty()
         }
@@ -6284,7 +6284,7 @@ pub(crate) mod reexport {
             self.0 & other.0 == other.0
         }
     }
-    impl ::core::default::Default for MemoryHeapFlags {
+    impl Default for MemoryHeapFlags {
         fn default() -> Self {
             Self::empty()
         }
@@ -6439,7 +6439,7 @@ pub(crate) mod reexport {
             self.0 & other.0 == other.0
         }
     }
-    impl ::core::default::Default for AccessFlags {
+    impl Default for AccessFlags {
         fn default() -> Self {
             Self::empty()
         }
@@ -6604,7 +6604,7 @@ pub(crate) mod reexport {
             self.0 & other.0 == other.0
         }
     }
-    impl ::core::default::Default for BufferUsageFlags {
+    impl Default for BufferUsageFlags {
         fn default() -> Self {
             Self::empty()
         }
@@ -6707,7 +6707,7 @@ pub(crate) mod reexport {
             self.0 & other.0 == other.0
         }
     }
-    impl ::core::default::Default for BufferCreateFlags {
+    impl Default for BufferCreateFlags {
         fn default() -> Self {
             Self::empty()
         }
@@ -6817,7 +6817,7 @@ pub(crate) mod reexport {
             self.0 & other.0 == other.0
         }
     }
-    impl ::core::default::Default for ShaderStageFlags {
+    impl Default for ShaderStageFlags {
         fn default() -> Self {
             Self::empty()
         }
@@ -6963,7 +6963,7 @@ pub(crate) mod reexport {
             self.0 & other.0 == other.0
         }
     }
-    impl ::core::default::Default for ImageUsageFlags {
+    impl Default for ImageUsageFlags {
         fn default() -> Self {
             Self::empty()
         }
@@ -7107,7 +7107,7 @@ pub(crate) mod reexport {
             self.0 & other.0 == other.0
         }
     }
-    impl ::core::default::Default for ImageCreateFlags {
+    impl Default for ImageCreateFlags {
         fn default() -> Self {
             Self::empty()
         }
@@ -7194,7 +7194,7 @@ pub(crate) mod reexport {
             self.0 & other.0 == other.0
         }
     }
-    impl ::core::default::Default for ImageViewCreateFlags {
+    impl Default for ImageViewCreateFlags {
         fn default() -> Self {
             Self::empty()
         }
@@ -7369,7 +7369,7 @@ pub(crate) mod reexport {
             self.0 & other.0 == other.0
         }
     }
-    impl ::core::default::Default for PipelineCreateFlags {
+    impl Default for PipelineCreateFlags {
         fn default() -> Self {
             Self::empty()
         }
@@ -7449,7 +7449,7 @@ pub(crate) mod reexport {
             self.0 & other.0 == other.0
         }
     }
-    impl ::core::default::Default for ColorComponentFlags {
+    impl Default for ColorComponentFlags {
         fn default() -> Self {
             Self::empty()
         }
@@ -7527,7 +7527,7 @@ pub(crate) mod reexport {
             self.0 & other.0 == other.0
         }
     }
-    impl ::core::default::Default for FenceCreateFlags {
+    impl Default for FenceCreateFlags {
         fn default() -> Self {
             Self::empty()
         }
@@ -7601,7 +7601,7 @@ pub(crate) mod reexport {
             self.0 & other.0 == other.0
         }
     }
-    impl ::core::default::Default for SemaphoreCreateFlags {
+    impl Default for SemaphoreCreateFlags {
         fn default() -> Self {
             Self::empty()
         }
@@ -7782,7 +7782,7 @@ pub(crate) mod reexport {
             self.0 & other.0 == other.0
         }
     }
-    impl ::core::default::Default for FormatFeatureFlags {
+    impl Default for FormatFeatureFlags {
         fn default() -> Self {
             Self::empty()
         }
@@ -7869,7 +7869,7 @@ pub(crate) mod reexport {
             self.0 & other.0 == other.0
         }
     }
-    impl ::core::default::Default for QueryControlFlags {
+    impl Default for QueryControlFlags {
         fn default() -> Self {
             Self::empty()
         }
@@ -7950,7 +7950,7 @@ pub(crate) mod reexport {
             self.0 & other.0 == other.0
         }
     }
-    impl ::core::default::Default for QueryResultFlags {
+    impl Default for QueryResultFlags {
         fn default() -> Self {
             Self::empty()
         }
@@ -8027,7 +8027,7 @@ pub(crate) mod reexport {
             self.0 & other.0 == other.0
         }
     }
-    impl ::core::default::Default for ShaderModuleCreateFlags {
+    impl Default for ShaderModuleCreateFlags {
         fn default() -> Self {
             Self::empty()
         }
@@ -8096,7 +8096,7 @@ pub(crate) mod reexport {
             self.0 & other.0 == other.0
         }
     }
-    impl ::core::default::Default for EventCreateFlags {
+    impl Default for EventCreateFlags {
         fn default() -> Self {
             Self::empty()
         }
@@ -8171,7 +8171,7 @@ pub(crate) mod reexport {
             self.0 & other.0 == other.0
         }
     }
-    impl ::core::default::Default for CommandPoolCreateFlags {
+    impl Default for CommandPoolCreateFlags {
         fn default() -> Self {
             Self::empty()
         }
@@ -8249,7 +8249,7 @@ pub(crate) mod reexport {
             self.0 & other.0 == other.0
         }
     }
-    impl ::core::default::Default for CommandPoolResetFlags {
+    impl Default for CommandPoolResetFlags {
         fn default() -> Self {
             Self::empty()
         }
@@ -8326,7 +8326,7 @@ pub(crate) mod reexport {
             self.0 & other.0 == other.0
         }
     }
-    impl ::core::default::Default for CommandBufferResetFlags {
+    impl Default for CommandBufferResetFlags {
         fn default() -> Self {
             Self::empty()
         }
@@ -8409,7 +8409,7 @@ pub(crate) mod reexport {
             self.0 & other.0 == other.0
         }
     }
-    impl ::core::default::Default for CommandBufferUsageFlags {
+    impl Default for CommandBufferUsageFlags {
         fn default() -> Self {
             Self::empty()
         }
@@ -8527,7 +8527,7 @@ pub(crate) mod reexport {
             self.0 & other.0 == other.0
         }
     }
-    impl ::core::default::Default for QueryPipelineStatisticFlags {
+    impl Default for QueryPipelineStatisticFlags {
         fn default() -> Self {
             Self::empty()
         }
@@ -8612,7 +8612,7 @@ pub(crate) mod reexport {
             self.0 & other.0 == other.0
         }
     }
-    impl ::core::default::Default for MemoryMapFlags {
+    impl Default for MemoryMapFlags {
         fn default() -> Self {
             Self::empty()
         }
@@ -8706,7 +8706,7 @@ pub(crate) mod reexport {
             self.0 & other.0 == other.0
         }
     }
-    impl ::core::default::Default for ImageAspectFlags {
+    impl Default for ImageAspectFlags {
         fn default() -> Self {
             Self::empty()
         }
@@ -8784,7 +8784,7 @@ pub(crate) mod reexport {
             self.0 & other.0 == other.0
         }
     }
-    impl ::core::default::Default for SparseMemoryBindFlags {
+    impl Default for SparseMemoryBindFlags {
         fn default() -> Self {
             Self::empty()
         }
@@ -8867,7 +8867,7 @@ pub(crate) mod reexport {
             self.0 & other.0 == other.0
         }
     }
-    impl ::core::default::Default for SparseImageFormatFlags {
+    impl Default for SparseImageFormatFlags {
         fn default() -> Self {
             Self::empty()
         }
@@ -8987,7 +8987,7 @@ pub(crate) mod reexport {
             self.0 & other.0 == other.0
         }
     }
-    impl ::core::default::Default for SubpassDescriptionFlags {
+    impl Default for SubpassDescriptionFlags {
         fn default() -> Self {
             Self::empty()
         }
@@ -9123,7 +9123,7 @@ pub(crate) mod reexport {
             self.0 & other.0 == other.0
         }
     }
-    impl ::core::default::Default for PipelineStageFlags {
+    impl Default for PipelineStageFlags {
         fn default() -> Self {
             Self::empty()
         }
@@ -9220,7 +9220,7 @@ pub(crate) mod reexport {
             self.0 & other.0 == other.0
         }
     }
-    impl ::core::default::Default for SampleCountFlags {
+    impl Default for SampleCountFlags {
         fn default() -> Self {
             Self::empty()
         }
@@ -9307,7 +9307,7 @@ pub(crate) mod reexport {
             self.0 & other.0 == other.0
         }
     }
-    impl ::core::default::Default for AttachmentDescriptionFlags {
+    impl Default for AttachmentDescriptionFlags {
         fn default() -> Self {
             Self::empty()
         }
@@ -9384,7 +9384,7 @@ pub(crate) mod reexport {
             self.0 & other.0 == other.0
         }
     }
-    impl ::core::default::Default for StencilFaceFlags {
+    impl Default for StencilFaceFlags {
         fn default() -> Self {
             Self::empty()
         }
@@ -9464,7 +9464,7 @@ pub(crate) mod reexport {
             self.0 & other.0 == other.0
         }
     }
-    impl ::core::default::Default for CullModeFlags {
+    impl Default for CullModeFlags {
         fn default() -> Self {
             Self::empty()
         }
@@ -9562,7 +9562,7 @@ pub(crate) mod reexport {
             self.0 & other.0 == other.0
         }
     }
-    impl ::core::default::Default for DescriptorPoolCreateFlags {
+    impl Default for DescriptorPoolCreateFlags {
         fn default() -> Self {
             Self::empty()
         }
@@ -9636,7 +9636,7 @@ pub(crate) mod reexport {
             self.0 & other.0 == other.0
         }
     }
-    impl ::core::default::Default for DescriptorPoolResetFlags {
+    impl Default for DescriptorPoolResetFlags {
         fn default() -> Self {
             Self::empty()
         }
@@ -9717,7 +9717,7 @@ pub(crate) mod reexport {
             self.0 & other.0 == other.0
         }
     }
-    impl ::core::default::Default for DependencyFlags {
+    impl Default for DependencyFlags {
         fn default() -> Self {
             Self::empty()
         }

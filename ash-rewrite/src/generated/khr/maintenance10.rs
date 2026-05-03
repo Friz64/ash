@@ -134,7 +134,7 @@ pub(crate) mod reexport {
             self.0 & other.0 == other.0
         }
     }
-    impl ::core::default::Default for RenderingAttachmentFlagsKHR {
+    impl Default for RenderingAttachmentFlagsKHR {
         fn default() -> Self {
             Self::empty()
         }
@@ -216,7 +216,7 @@ pub(crate) mod reexport {
             self.0 & other.0 == other.0
         }
     }
-    impl ::core::default::Default for ResolveImageFlagsKHR {
+    impl Default for ResolveImageFlagsKHR {
         fn default() -> Self {
             Self::empty()
         }

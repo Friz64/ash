@@ -82,7 +82,7 @@ impl DeviceMemoryReportFlagsEXT {
         self.0 & other.0 == other.0
     }
 }
-impl ::core::default::Default for DeviceMemoryReportFlagsEXT {
+impl Default for DeviceMemoryReportFlagsEXT {
     fn default() -> Self {
         Self::empty()
     }

@@ -73,7 +73,7 @@ pub(crate) mod reexport {
             self.0 & other.0 == other.0
         }
     }
-    impl ::core::default::Default for ViSurfaceCreateFlagsNN {
+    impl Default for ViSurfaceCreateFlagsNN {
         fn default() -> Self {
             Self::empty()
         }

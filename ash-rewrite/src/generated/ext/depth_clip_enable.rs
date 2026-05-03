@@ -48,7 +48,7 @@ impl PipelineRasterizationDepthClipStateCreateFlagsEXT {
         self.0 & other.0 == other.0
     }
 }
-impl ::core::default::Default for PipelineRasterizationDepthClipStateCreateFlagsEXT {
+impl Default for PipelineRasterizationDepthClipStateCreateFlagsEXT {
     fn default() -> Self {
         Self::empty()
     }

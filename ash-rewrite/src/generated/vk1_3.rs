@@ -1441,7 +1441,7 @@ pub(crate) mod reexport {
             self.0 & other.0 == other.0
         }
     }
-    impl ::core::default::Default for PrivateDataSlotCreateFlags {
+    impl Default for PrivateDataSlotCreateFlags {
         fn default() -> Self {
             Self::empty()
         }
@@ -1522,7 +1522,7 @@ pub(crate) mod reexport {
             self.0 & other.0 == other.0
         }
     }
-    impl ::core::default::Default for PipelineCreationFeedbackFlags {
+    impl Default for PipelineCreationFeedbackFlags {
         fn default() -> Self {
             Self::empty()
         }
@@ -1781,7 +1781,7 @@ pub(crate) mod reexport {
             self.0 & other.0 == other.0
         }
     }
-    impl ::core::default::Default for AccessFlags2 {
+    impl Default for AccessFlags2 {
         fn default() -> Self {
             Self::empty()
         }
@@ -2058,7 +2058,7 @@ pub(crate) mod reexport {
             self.0 & other.0 == other.0
         }
     }
-    impl ::core::default::Default for PipelineStageFlags2 {
+    impl Default for PipelineStageFlags2 {
         fn default() -> Self {
             Self::empty()
         }
@@ -2396,7 +2396,7 @@ pub(crate) mod reexport {
             self.0 & other.0 == other.0
         }
     }
-    impl ::core::default::Default for FormatFeatureFlags2 {
+    impl Default for FormatFeatureFlags2 {
         fn default() -> Self {
             Self::empty()
         }
@@ -2533,7 +2533,7 @@ pub(crate) mod reexport {
             self.0 & other.0 == other.0
         }
     }
-    impl ::core::default::Default for RenderingFlags {
+    impl Default for RenderingFlags {
         fn default() -> Self {
             Self::empty()
         }
@@ -2633,7 +2633,7 @@ pub(crate) mod reexport {
             self.0 & other.0 == other.0
         }
     }
-    impl ::core::default::Default for ToolPurposeFlags {
+    impl Default for ToolPurposeFlags {
         fn default() -> Self {
             Self::empty()
         }
@@ -2713,7 +2713,7 @@ pub(crate) mod reexport {
             self.0 & other.0 == other.0
         }
     }
-    impl ::core::default::Default for SubmitFlags {
+    impl Default for SubmitFlags {
         fn default() -> Self {
             Self::empty()
         }

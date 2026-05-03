@@ -177,7 +177,7 @@ pub(crate) mod reexport {
             self.0 & other.0 == other.0
         }
     }
-    impl ::core::default::Default for DebugReportFlagsEXT {
+    impl Default for DebugReportFlagsEXT {
         fn default() -> Self {
             Self::empty()
         }

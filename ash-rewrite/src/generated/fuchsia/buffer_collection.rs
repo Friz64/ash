@@ -260,7 +260,7 @@ pub(crate) mod reexport {
             self.0 & other.0 == other.0
         }
     }
-    impl ::core::default::Default for ImageFormatConstraintsFlagsFUCHSIA {
+    impl Default for ImageFormatConstraintsFlagsFUCHSIA {
         fn default() -> Self {
             Self::empty()
         }
@@ -342,7 +342,7 @@ pub(crate) mod reexport {
             self.0 & other.0 == other.0
         }
     }
-    impl ::core::default::Default for ImageConstraintsInfoFlagsFUCHSIA {
+    impl Default for ImageConstraintsInfoFlagsFUCHSIA {
         fn default() -> Self {
             Self::empty()
         }

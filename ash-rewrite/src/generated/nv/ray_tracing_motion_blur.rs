@@ -150,7 +150,7 @@ impl AccelerationStructureMotionInfoFlagsNV {
         self.0 & other.0 == other.0
     }
 }
-impl ::core::default::Default for AccelerationStructureMotionInfoFlagsNV {
+impl Default for AccelerationStructureMotionInfoFlagsNV {
     fn default() -> Self {
         Self::empty()
     }
@@ -217,7 +217,7 @@ impl AccelerationStructureMotionInstanceFlagsNV {
         self.0 & other.0 == other.0
     }
 }
-impl ::core::default::Default for AccelerationStructureMotionInstanceFlagsNV {
+impl Default for AccelerationStructureMotionInstanceFlagsNV {
     fn default() -> Self {
         Self::empty()
     }

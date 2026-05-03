@@ -310,7 +310,7 @@ pub(crate) mod reexport {
             self.0 & other.0 == other.0
         }
     }
-    impl ::core::default::Default for OpticalFlowGridSizeFlagsNV {
+    impl Default for OpticalFlowGridSizeFlagsNV {
         fn default() -> Self {
             Self::empty()
         }
@@ -396,7 +396,7 @@ pub(crate) mod reexport {
             self.0 & other.0 == other.0
         }
     }
-    impl ::core::default::Default for OpticalFlowUsageFlagsNV {
+    impl Default for OpticalFlowUsageFlagsNV {
         fn default() -> Self {
             Self::empty()
         }
@@ -490,7 +490,7 @@ pub(crate) mod reexport {
             self.0 & other.0 == other.0
         }
     }
-    impl ::core::default::Default for OpticalFlowSessionCreateFlagsNV {
+    impl Default for OpticalFlowSessionCreateFlagsNV {
         fn default() -> Self {
             Self::empty()
         }
@@ -571,7 +571,7 @@ pub(crate) mod reexport {
             self.0 & other.0 == other.0
         }
     }
-    impl ::core::default::Default for OpticalFlowExecuteFlagsNV {
+    impl Default for OpticalFlowExecuteFlagsNV {
         fn default() -> Self {
             Self::empty()
         }

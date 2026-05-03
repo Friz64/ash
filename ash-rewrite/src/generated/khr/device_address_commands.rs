@@ -616,7 +616,7 @@ pub(crate) mod reexport {
             self.0 & other.0 == other.0
         }
     }
-    impl ::core::default::Default for AddressCommandFlagsKHR {
+    impl Default for AddressCommandFlagsKHR {
         fn default() -> Self {
             Self::empty()
         }

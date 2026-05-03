@@ -88,7 +88,7 @@ impl VideoEncodeRgbModelConversionFlagsVALVE {
         self.0 & other.0 == other.0
     }
 }
-impl ::core::default::Default for VideoEncodeRgbModelConversionFlagsVALVE {
+impl Default for VideoEncodeRgbModelConversionFlagsVALVE {
     fn default() -> Self {
         Self::empty()
     }
@@ -172,7 +172,7 @@ impl VideoEncodeRgbRangeCompressionFlagsVALVE {
         self.0 & other.0 == other.0
     }
 }
-impl ::core::default::Default for VideoEncodeRgbRangeCompressionFlagsVALVE {
+impl Default for VideoEncodeRgbRangeCompressionFlagsVALVE {
     fn default() -> Self {
         Self::empty()
     }
@@ -253,7 +253,7 @@ impl VideoEncodeRgbChromaOffsetFlagsVALVE {
         self.0 & other.0 == other.0
     }
 }
-impl ::core::default::Default for VideoEncodeRgbChromaOffsetFlagsVALVE {
+impl Default for VideoEncodeRgbChromaOffsetFlagsVALVE {
     fn default() -> Self {
         Self::empty()
     }

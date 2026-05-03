@@ -516,7 +516,7 @@ pub(crate) mod reexport {
             self.0 & other.0 == other.0
         }
     }
-    impl ::core::default::Default for VideoCodecOperationFlagsKHR {
+    impl Default for VideoCodecOperationFlagsKHR {
         fn default() -> Self {
             Self::empty()
         }
@@ -596,7 +596,7 @@ pub(crate) mod reexport {
             self.0 & other.0 == other.0
         }
     }
-    impl ::core::default::Default for VideoCapabilityFlagsKHR {
+    impl Default for VideoCapabilityFlagsKHR {
         fn default() -> Self {
             Self::empty()
         }
@@ -689,7 +689,7 @@ pub(crate) mod reexport {
             self.0 & other.0 == other.0
         }
     }
-    impl ::core::default::Default for VideoSessionCreateFlagsKHR {
+    impl Default for VideoSessionCreateFlagsKHR {
         fn default() -> Self {
             Self::empty()
         }
@@ -766,7 +766,7 @@ pub(crate) mod reexport {
             self.0 & other.0 == other.0
         }
     }
-    impl ::core::default::Default for VideoSessionParametersCreateFlagsKHR {
+    impl Default for VideoSessionParametersCreateFlagsKHR {
         fn default() -> Self {
             Self::empty()
         }
@@ -836,7 +836,7 @@ pub(crate) mod reexport {
             self.0 & other.0 == other.0
         }
     }
-    impl ::core::default::Default for VideoBeginCodingFlagsKHR {
+    impl Default for VideoBeginCodingFlagsKHR {
         fn default() -> Self {
             Self::empty()
         }
@@ -903,7 +903,7 @@ pub(crate) mod reexport {
             self.0 & other.0 == other.0
         }
     }
-    impl ::core::default::Default for VideoEndCodingFlagsKHR {
+    impl Default for VideoEndCodingFlagsKHR {
         fn default() -> Self {
             Self::empty()
         }
@@ -977,7 +977,7 @@ pub(crate) mod reexport {
             self.0 & other.0 == other.0
         }
     }
-    impl ::core::default::Default for VideoCodingControlFlagsKHR {
+    impl Default for VideoCodingControlFlagsKHR {
         fn default() -> Self {
             Self::empty()
         }
@@ -1060,7 +1060,7 @@ pub(crate) mod reexport {
             self.0 & other.0 == other.0
         }
     }
-    impl ::core::default::Default for VideoChromaSubsamplingFlagsKHR {
+    impl Default for VideoChromaSubsamplingFlagsKHR {
         fn default() -> Self {
             Self::empty()
         }
@@ -1144,7 +1144,7 @@ pub(crate) mod reexport {
             self.0 & other.0 == other.0
         }
     }
-    impl ::core::default::Default for VideoComponentBitDepthFlagsKHR {
+    impl Default for VideoComponentBitDepthFlagsKHR {
         fn default() -> Self {
             Self::empty()
         }

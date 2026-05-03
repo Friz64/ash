@@ -80,7 +80,7 @@ impl GraphicsPipelineLibraryFlagsEXT {
         self.0 & other.0 == other.0
     }
 }
-impl ::core::default::Default for GraphicsPipelineLibraryFlagsEXT {
+impl Default for GraphicsPipelineLibraryFlagsEXT {
     fn default() -> Self {
         Self::empty()
     }

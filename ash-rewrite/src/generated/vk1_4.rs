@@ -1067,7 +1067,7 @@ pub(crate) mod reexport {
             self.0 & other.0 == other.0
         }
     }
-    impl ::core::default::Default for MemoryUnmapFlags {
+    impl Default for MemoryUnmapFlags {
         fn default() -> Self {
             Self::empty()
         }
@@ -1292,7 +1292,7 @@ pub(crate) mod reexport {
             self.0 & other.0 == other.0
         }
     }
-    impl ::core::default::Default for PipelineCreateFlags2 {
+    impl Default for PipelineCreateFlags2 {
         fn default() -> Self {
             Self::empty()
         }
@@ -1487,7 +1487,7 @@ pub(crate) mod reexport {
             self.0 & other.0 == other.0
         }
     }
-    impl ::core::default::Default for BufferUsageFlags2 {
+    impl Default for BufferUsageFlags2 {
         fn default() -> Self {
             Self::empty()
         }
@@ -1572,7 +1572,7 @@ pub(crate) mod reexport {
             self.0 & other.0 == other.0
         }
     }
-    impl ::core::default::Default for HostImageCopyFlags {
+    impl Default for HostImageCopyFlags {
         fn default() -> Self {
             Self::empty()
         }

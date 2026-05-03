@@ -82,7 +82,7 @@ pub(crate) mod reexport {
             self.0 & other.0 == other.0
         }
     }
-    impl ::core::default::Default for SurfaceCounterFlagsEXT {
+    impl Default for SurfaceCounterFlagsEXT {
         fn default() -> Self {
             Self::empty()
         }

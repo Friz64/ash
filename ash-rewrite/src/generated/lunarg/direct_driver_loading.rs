@@ -65,7 +65,7 @@ impl DirectDriverLoadingFlagsLUNARG {
         self.0 & other.0 == other.0
     }
 }
-impl ::core::default::Default for DirectDriverLoadingFlagsLUNARG {
+impl Default for DirectDriverLoadingFlagsLUNARG {
     fn default() -> Self {
         Self::empty()
     }

@@ -115,7 +115,7 @@ pub(crate) mod reexport {
             self.0 & other.0 == other.0
         }
     }
-    impl ::core::default::Default for DataGraphTOSAQualityFlagsARM {
+    impl Default for DataGraphTOSAQualityFlagsARM {
         fn default() -> Self {
             Self::empty()
         }

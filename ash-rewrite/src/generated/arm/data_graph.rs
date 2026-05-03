@@ -636,7 +636,7 @@ pub(crate) mod reexport {
             self.0 & other.0 == other.0
         }
     }
-    impl ::core::default::Default for DataGraphPipelineSessionCreateFlagsARM {
+    impl Default for DataGraphPipelineSessionCreateFlagsARM {
         fn default() -> Self {
             Self::empty()
         }
@@ -710,7 +710,7 @@ pub(crate) mod reexport {
             self.0 & other.0 == other.0
         }
     }
-    impl ::core::default::Default for DataGraphPipelineDispatchFlagsARM {
+    impl Default for DataGraphPipelineDispatchFlagsARM {
         fn default() -> Self {
             Self::empty()
         }

@@ -256,7 +256,7 @@ impl VideoEncodeH264CapabilityFlagsKHR {
         self.0 & other.0 == other.0
     }
 }
-impl ::core::default::Default for VideoEncodeH264CapabilityFlagsKHR {
+impl Default for VideoEncodeH264CapabilityFlagsKHR {
     fn default() -> Self {
         Self::empty()
     }
@@ -398,7 +398,7 @@ impl VideoEncodeH264StdFlagsKHR {
         self.0 & other.0 == other.0
     }
 }
-impl ::core::default::Default for VideoEncodeH264StdFlagsKHR {
+impl Default for VideoEncodeH264StdFlagsKHR {
     fn default() -> Self {
         Self::empty()
     }
@@ -506,7 +506,7 @@ impl VideoEncodeH264RateControlFlagsKHR {
         self.0 & other.0 == other.0
     }
 }
-impl ::core::default::Default for VideoEncodeH264RateControlFlagsKHR {
+impl Default for VideoEncodeH264RateControlFlagsKHR {
     fn default() -> Self {
         Self::empty()
     }

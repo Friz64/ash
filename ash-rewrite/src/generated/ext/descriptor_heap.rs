@@ -603,7 +603,7 @@ pub(crate) mod reexport {
             self.0 & other.0 == other.0
         }
     }
-    impl ::core::default::Default for TensorViewCreateFlagsARM {
+    impl Default for TensorViewCreateFlagsARM {
         fn default() -> Self {
             Self::empty()
         }
@@ -700,7 +700,7 @@ pub(crate) mod reexport {
             self.0 & other.0 == other.0
         }
     }
-    impl ::core::default::Default for SpirvResourceTypeFlagsEXT {
+    impl Default for SpirvResourceTypeFlagsEXT {
         fn default() -> Self {
             Self::empty()
         }

@@ -338,7 +338,7 @@ pub(crate) mod reexport {
             self.0 & other.0 == other.0
         }
     }
-    impl ::core::default::Default for VideoEncodeFlagsKHR {
+    impl Default for VideoEncodeFlagsKHR {
         fn default() -> Self {
             Self::empty()
         }
@@ -421,7 +421,7 @@ pub(crate) mod reexport {
             self.0 & other.0 == other.0
         }
     }
-    impl ::core::default::Default for VideoEncodeUsageFlagsKHR {
+    impl Default for VideoEncodeUsageFlagsKHR {
         fn default() -> Self {
             Self::empty()
         }
@@ -505,7 +505,7 @@ pub(crate) mod reexport {
             self.0 & other.0 == other.0
         }
     }
-    impl ::core::default::Default for VideoEncodeContentFlagsKHR {
+    impl Default for VideoEncodeContentFlagsKHR {
         fn default() -> Self {
             Self::empty()
         }
@@ -595,7 +595,7 @@ pub(crate) mod reexport {
             self.0 & other.0 == other.0
         }
     }
-    impl ::core::default::Default for VideoEncodeCapabilityFlagsKHR {
+    impl Default for VideoEncodeCapabilityFlagsKHR {
         fn default() -> Self {
             Self::empty()
         }
@@ -679,7 +679,7 @@ pub(crate) mod reexport {
             self.0 & other.0 == other.0
         }
     }
-    impl ::core::default::Default for VideoEncodeFeedbackFlagsKHR {
+    impl Default for VideoEncodeFeedbackFlagsKHR {
         fn default() -> Self {
             Self::empty()
         }
@@ -755,7 +755,7 @@ pub(crate) mod reexport {
             self.0 & other.0 == other.0
         }
     }
-    impl ::core::default::Default for VideoEncodeRateControlFlagsKHR {
+    impl Default for VideoEncodeRateControlFlagsKHR {
         fn default() -> Self {
             Self::empty()
         }
@@ -830,7 +830,7 @@ pub(crate) mod reexport {
             self.0 & other.0 == other.0
         }
     }
-    impl ::core::default::Default for VideoEncodeRateControlModeFlagsKHR {
+    impl Default for VideoEncodeRateControlModeFlagsKHR {
         fn default() -> Self {
             Self::empty()
         }

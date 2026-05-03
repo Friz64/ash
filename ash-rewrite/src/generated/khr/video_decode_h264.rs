@@ -107,7 +107,7 @@ impl VideoDecodeH264PictureLayoutFlagsKHR {
         self.0 & other.0 == other.0
     }
 }
-impl ::core::default::Default for VideoDecodeH264PictureLayoutFlagsKHR {
+impl Default for VideoDecodeH264PictureLayoutFlagsKHR {
     fn default() -> Self {
         Self::empty()
     }

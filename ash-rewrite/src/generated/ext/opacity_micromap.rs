@@ -552,7 +552,7 @@ pub(crate) mod reexport {
             self.0 & other.0 == other.0
         }
     }
-    impl ::core::default::Default for BuildMicromapFlagsEXT {
+    impl Default for BuildMicromapFlagsEXT {
         fn default() -> Self {
             Self::empty()
         }
@@ -631,7 +631,7 @@ pub(crate) mod reexport {
             self.0 & other.0 == other.0
         }
     }
-    impl ::core::default::Default for MicromapCreateFlagsEXT {
+    impl Default for MicromapCreateFlagsEXT {
         fn default() -> Self {
             Self::empty()
         }

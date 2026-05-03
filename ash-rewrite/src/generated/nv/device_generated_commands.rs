@@ -352,7 +352,7 @@ pub(crate) mod reexport {
             self.0 & other.0 == other.0
         }
     }
-    impl ::core::default::Default for IndirectCommandsLayoutUsageFlagsNV {
+    impl Default for IndirectCommandsLayoutUsageFlagsNV {
         fn default() -> Self {
             Self::empty()
         }
@@ -431,7 +431,7 @@ pub(crate) mod reexport {
             self.0 & other.0 == other.0
         }
     }
-    impl ::core::default::Default for IndirectStateFlagsNV {
+    impl Default for IndirectStateFlagsNV {
         fn default() -> Self {
             Self::empty()
         }

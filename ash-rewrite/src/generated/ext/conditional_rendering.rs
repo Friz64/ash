@@ -124,7 +124,7 @@ pub(crate) mod reexport {
             self.0 & other.0 == other.0
         }
     }
-    impl ::core::default::Default for ConditionalRenderingFlagsEXT {
+    impl Default for ConditionalRenderingFlagsEXT {
         fn default() -> Self {
             Self::empty()
         }

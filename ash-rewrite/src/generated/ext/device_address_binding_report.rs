@@ -74,7 +74,7 @@ impl DeviceAddressBindingFlagsEXT {
         self.0 & other.0 == other.0
     }
 }
-impl ::core::default::Default for DeviceAddressBindingFlagsEXT {
+impl Default for DeviceAddressBindingFlagsEXT {
     fn default() -> Self {
         Self::empty()
     }

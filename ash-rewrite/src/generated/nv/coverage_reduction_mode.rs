@@ -118,7 +118,7 @@ pub(crate) mod reexport {
             self.0 & other.0 == other.0
         }
     }
-    impl ::core::default::Default for PipelineCoverageReductionStateCreateFlagsNV {
+    impl Default for PipelineCoverageReductionStateCreateFlagsNV {
         fn default() -> Self {
             Self::empty()
         }

@@ -258,7 +258,7 @@ pub(crate) mod reexport {
             self.0 & other.0 == other.0
         }
     }
-    impl ::core::default::Default for PresentStageFlagsEXT {
+    impl Default for PresentStageFlagsEXT {
         fn default() -> Self {
             Self::empty()
         }
@@ -341,7 +341,7 @@ pub(crate) mod reexport {
             self.0 & other.0 == other.0
         }
     }
-    impl ::core::default::Default for PastPresentationTimingFlagsEXT {
+    impl Default for PastPresentationTimingFlagsEXT {
         fn default() -> Self {
             Self::empty()
         }
@@ -422,7 +422,7 @@ pub(crate) mod reexport {
             self.0 & other.0 == other.0
         }
     }
-    impl ::core::default::Default for PresentTimingInfoFlagsEXT {
+    impl Default for PresentTimingInfoFlagsEXT {
         fn default() -> Self {
             Self::empty()
         }

@@ -54,7 +54,7 @@ impl FrameBoundaryFlagsEXT {
         self.0 & other.0 == other.0
     }
 }
-impl ::core::default::Default for FrameBoundaryFlagsEXT {
+impl Default for FrameBoundaryFlagsEXT {
     fn default() -> Self {
         Self::empty()
     }

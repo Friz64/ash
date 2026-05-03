@@ -69,7 +69,7 @@ impl PipelineViewportSwizzleStateCreateFlagsNV {
         self.0 & other.0 == other.0
     }
 }
-impl ::core::default::Default for PipelineViewportSwizzleStateCreateFlagsNV {
+impl Default for PipelineViewportSwizzleStateCreateFlagsNV {
     fn default() -> Self {
         Self::empty()
     }
