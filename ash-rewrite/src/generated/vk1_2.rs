@@ -1127,7 +1127,7 @@ pub(crate) mod reexport {
             self.0 & other.0 == other.0
         }
     }
-    impl ::core::default::Default for SemaphoreWaitFlags {
+    impl Default for SemaphoreWaitFlags {
         fn default() -> Self {
             Self::empty()
         }
@@ -1230,7 +1230,7 @@ pub(crate) mod reexport {
             self.0 & other.0 == other.0
         }
     }
-    impl ::core::default::Default for DescriptorBindingFlags {
+    impl Default for DescriptorBindingFlags {
         fn default() -> Self {
             Self::empty()
         }
@@ -1321,7 +1321,7 @@ pub(crate) mod reexport {
             self.0 & other.0 == other.0
         }
     }
-    impl ::core::default::Default for ResolveModeFlags {
+    impl Default for ResolveModeFlags {
         fn default() -> Self {
             Self::empty()
         }

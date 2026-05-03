@@ -86,7 +86,7 @@ pub(crate) mod reexport {
             self.0 & other.0 == other.0
         }
     }
-    impl ::core::default::Default for ExternalMemoryHandleTypeFlagsNV {
+    impl Default for ExternalMemoryHandleTypeFlagsNV {
         fn default() -> Self {
             Self::empty()
         }
@@ -172,7 +172,7 @@ pub(crate) mod reexport {
             self.0 & other.0 == other.0
         }
     }
-    impl ::core::default::Default for ExternalMemoryFeatureFlagsNV {
+    impl Default for ExternalMemoryFeatureFlagsNV {
         fn default() -> Self {
             Self::empty()
         }

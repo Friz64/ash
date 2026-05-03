@@ -90,7 +90,7 @@ pub(crate) mod reexport {
             self.0 & other.0 == other.0
         }
     }
-    impl ::core::default::Default for UbmSurfaceCreateFlagsSEC {
+    impl Default for UbmSurfaceCreateFlagsSEC {
         fn default() -> Self {
             Self::empty()
         }

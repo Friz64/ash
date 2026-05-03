@@ -73,7 +73,7 @@ pub(crate) mod reexport {
             self.0 & other.0 == other.0
         }
     }
-    impl ::core::default::Default for ImagePipeSurfaceCreateFlagsFUCHSIA {
+    impl Default for ImagePipeSurfaceCreateFlagsFUCHSIA {
         fn default() -> Self {
             Self::empty()
         }

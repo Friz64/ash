@@ -98,7 +98,7 @@ impl VideoEncodeIntraRefreshModeFlagsKHR {
         self.0 & other.0 == other.0
     }
 }
-impl ::core::default::Default for VideoEncodeIntraRefreshModeFlagsKHR {
+impl Default for VideoEncodeIntraRefreshModeFlagsKHR {
     fn default() -> Self {
         Self::empty()
     }

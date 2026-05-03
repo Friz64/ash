@@ -128,7 +128,7 @@ pub(crate) mod reexport {
             self.0 & other.0 == other.0
         }
     }
-    impl ::core::default::Default for PerformanceCounterDescriptionFlagsARM {
+    impl Default for PerformanceCounterDescriptionFlagsARM {
         fn default() -> Self {
             Self::empty()
         }

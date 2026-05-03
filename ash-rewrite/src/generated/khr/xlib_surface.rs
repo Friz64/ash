@@ -93,7 +93,7 @@ pub(crate) mod reexport {
             self.0 & other.0 == other.0
         }
     }
-    impl ::core::default::Default for XlibSurfaceCreateFlagsKHR {
+    impl Default for XlibSurfaceCreateFlagsKHR {
         fn default() -> Self {
             Self::empty()
         }

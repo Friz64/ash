@@ -38,7 +38,7 @@ impl PipelineCoverageToColorStateCreateFlagsNV {
         self.0 & other.0 == other.0
     }
 }
-impl ::core::default::Default for PipelineCoverageToColorStateCreateFlagsNV {
+impl Default for PipelineCoverageToColorStateCreateFlagsNV {
     fn default() -> Self {
         Self::empty()
     }

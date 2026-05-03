@@ -219,7 +219,7 @@ pub(crate) mod reexport {
             self.0 & other.0 == other.0
         }
     }
-    impl ::core::default::Default for PipelineRasterizationStateStreamCreateFlagsEXT {
+    impl Default for PipelineRasterizationStateStreamCreateFlagsEXT {
         fn default() -> Self {
             Self::empty()
         }

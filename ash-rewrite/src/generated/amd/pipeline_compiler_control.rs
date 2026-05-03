@@ -36,7 +36,7 @@ impl PipelineCompilerControlFlagsAMD {
         self.0 & other.0 == other.0
     }
 }
-impl ::core::default::Default for PipelineCompilerControlFlagsAMD {
+impl Default for PipelineCompilerControlFlagsAMD {
     fn default() -> Self {
         Self::empty()
     }

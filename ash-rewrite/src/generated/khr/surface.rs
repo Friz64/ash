@@ -198,7 +198,7 @@ pub(crate) mod reexport {
             self.0 & other.0 == other.0
         }
     }
-    impl ::core::default::Default for CompositeAlphaFlagsKHR {
+    impl Default for CompositeAlphaFlagsKHR {
         fn default() -> Self {
             Self::empty()
         }
@@ -298,7 +298,7 @@ pub(crate) mod reexport {
             self.0 & other.0 == other.0
         }
     }
-    impl ::core::default::Default for SurfaceTransformFlagsKHR {
+    impl Default for SurfaceTransformFlagsKHR {
         fn default() -> Self {
             Self::empty()
         }

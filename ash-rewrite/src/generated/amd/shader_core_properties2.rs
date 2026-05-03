@@ -37,7 +37,7 @@ impl ShaderCorePropertiesFlagsAMD {
         self.0 & other.0 == other.0
     }
 }
-impl ::core::default::Default for ShaderCorePropertiesFlagsAMD {
+impl Default for ShaderCorePropertiesFlagsAMD {
     fn default() -> Self {
         Self::empty()
     }

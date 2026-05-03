@@ -313,7 +313,7 @@ pub(crate) mod reexport {
             self.0 & other.0 == other.0
         }
     }
-    impl ::core::default::Default for DebugUtilsMessageSeverityFlagsEXT {
+    impl Default for DebugUtilsMessageSeverityFlagsEXT {
         fn default() -> Self {
             Self::empty()
         }
@@ -402,7 +402,7 @@ pub(crate) mod reexport {
             self.0 & other.0 == other.0
         }
     }
-    impl ::core::default::Default for DebugUtilsMessageTypeFlagsEXT {
+    impl Default for DebugUtilsMessageTypeFlagsEXT {
         fn default() -> Self {
             Self::empty()
         }
@@ -478,7 +478,7 @@ pub(crate) mod reexport {
             self.0 & other.0 == other.0
         }
     }
-    impl ::core::default::Default for DebugUtilsMessengerCreateFlagsEXT {
+    impl Default for DebugUtilsMessengerCreateFlagsEXT {
         fn default() -> Self {
             Self::empty()
         }
@@ -545,7 +545,7 @@ pub(crate) mod reexport {
             self.0 & other.0 == other.0
         }
     }
-    impl ::core::default::Default for DebugUtilsMessengerCallbackDataFlagsEXT {
+    impl Default for DebugUtilsMessengerCallbackDataFlagsEXT {
         fn default() -> Self {
             Self::empty()
         }

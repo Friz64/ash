@@ -155,7 +155,7 @@ pub(crate) mod reexport {
             self.0 & other.0 == other.0
         }
     }
-    impl ::core::default::Default for ValidationCacheCreateFlagsEXT {
+    impl Default for ValidationCacheCreateFlagsEXT {
         fn default() -> Self {
             Self::empty()
         }

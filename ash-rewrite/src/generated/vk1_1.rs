@@ -1486,7 +1486,7 @@ pub(crate) mod reexport {
             self.0 & other.0 == other.0
         }
     }
-    impl ::core::default::Default for SubgroupFeatureFlags {
+    impl Default for SubgroupFeatureFlags {
         fn default() -> Self {
             Self::empty()
         }
@@ -1567,7 +1567,7 @@ pub(crate) mod reexport {
             self.0 & other.0 == other.0
         }
     }
-    impl ::core::default::Default for DescriptorUpdateTemplateCreateFlags {
+    impl Default for DescriptorUpdateTemplateCreateFlags {
         fn default() -> Self {
             Self::empty()
         }
@@ -1646,7 +1646,7 @@ pub(crate) mod reexport {
             self.0 & other.0 == other.0
         }
     }
-    impl ::core::default::Default for PeerMemoryFeatureFlags {
+    impl Default for PeerMemoryFeatureFlags {
         fn default() -> Self {
             Self::empty()
         }
@@ -1740,7 +1740,7 @@ pub(crate) mod reexport {
             self.0 & other.0 == other.0
         }
     }
-    impl ::core::default::Default for MemoryAllocateFlags {
+    impl Default for MemoryAllocateFlags {
         fn default() -> Self {
             Self::empty()
         }
@@ -1814,7 +1814,7 @@ pub(crate) mod reexport {
             self.0 & other.0 == other.0
         }
     }
-    impl ::core::default::Default for CommandPoolTrimFlags {
+    impl Default for CommandPoolTrimFlags {
         fn default() -> Self {
             Self::empty()
         }
@@ -1954,7 +1954,7 @@ pub(crate) mod reexport {
             self.0 & other.0 == other.0
         }
     }
-    impl ::core::default::Default for ExternalMemoryHandleTypeFlags {
+    impl Default for ExternalMemoryHandleTypeFlags {
         fn default() -> Self {
             Self::empty()
         }
@@ -2048,7 +2048,7 @@ pub(crate) mod reexport {
             self.0 & other.0 == other.0
         }
     }
-    impl ::core::default::Default for ExternalMemoryFeatureFlags {
+    impl Default for ExternalMemoryFeatureFlags {
         fn default() -> Self {
             Self::empty()
         }
@@ -2158,7 +2158,7 @@ pub(crate) mod reexport {
             self.0 & other.0 == other.0
         }
     }
-    impl ::core::default::Default for ExternalSemaphoreHandleTypeFlags {
+    impl Default for ExternalSemaphoreHandleTypeFlags {
         fn default() -> Self {
             Self::empty()
         }
@@ -2249,7 +2249,7 @@ pub(crate) mod reexport {
             self.0 & other.0 == other.0
         }
     }
-    impl ::core::default::Default for ExternalSemaphoreFeatureFlags {
+    impl Default for ExternalSemaphoreFeatureFlags {
         fn default() -> Self {
             Self::empty()
         }
@@ -2326,7 +2326,7 @@ pub(crate) mod reexport {
             self.0 & other.0 == other.0
         }
     }
-    impl ::core::default::Default for SemaphoreImportFlags {
+    impl Default for SemaphoreImportFlags {
         fn default() -> Self {
             Self::empty()
         }
@@ -2420,7 +2420,7 @@ pub(crate) mod reexport {
             self.0 & other.0 == other.0
         }
     }
-    impl ::core::default::Default for ExternalFenceHandleTypeFlags {
+    impl Default for ExternalFenceHandleTypeFlags {
         fn default() -> Self {
             Self::empty()
         }
@@ -2505,7 +2505,7 @@ pub(crate) mod reexport {
             self.0 & other.0 == other.0
         }
     }
-    impl ::core::default::Default for ExternalFenceFeatureFlags {
+    impl Default for ExternalFenceFeatureFlags {
         fn default() -> Self {
             Self::empty()
         }
@@ -2582,7 +2582,7 @@ pub(crate) mod reexport {
             self.0 & other.0 == other.0
         }
     }
-    impl ::core::default::Default for FenceImportFlags {
+    impl Default for FenceImportFlags {
         fn default() -> Self {
             Self::empty()
         }

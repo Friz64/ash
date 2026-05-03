@@ -57,7 +57,7 @@ impl DeviceDiagnosticsConfigFlagsNV {
         self.0 & other.0 == other.0
     }
 }
-impl ::core::default::Default for DeviceDiagnosticsConfigFlagsNV {
+impl Default for DeviceDiagnosticsConfigFlagsNV {
     fn default() -> Self {
         Self::empty()
     }

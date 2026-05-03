@@ -73,7 +73,7 @@ pub(crate) mod reexport {
             self.0 & other.0 == other.0
         }
     }
-    impl ::core::default::Default for MetalSurfaceCreateFlagsEXT {
+    impl Default for MetalSurfaceCreateFlagsEXT {
         fn default() -> Self {
             Self::empty()
         }

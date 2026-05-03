@@ -724,7 +724,7 @@ pub(crate) mod reexport {
             self.0 & other.0 == other.0
         }
     }
-    impl ::core::default::Default for GeometryFlagsKHR {
+    impl Default for GeometryFlagsKHR {
         fn default() -> Self {
             Self::empty()
         }
@@ -832,7 +832,7 @@ pub(crate) mod reexport {
             self.0 & other.0 == other.0
         }
     }
-    impl ::core::default::Default for GeometryInstanceFlagsKHR {
+    impl Default for GeometryInstanceFlagsKHR {
         fn default() -> Self {
             Self::empty()
         }
@@ -963,7 +963,7 @@ pub(crate) mod reexport {
             self.0 & other.0 == other.0
         }
     }
-    impl ::core::default::Default for BuildAccelerationStructureFlagsKHR {
+    impl Default for BuildAccelerationStructureFlagsKHR {
         fn default() -> Self {
             Self::empty()
         }
@@ -1051,7 +1051,7 @@ pub(crate) mod reexport {
             self.0 & other.0 == other.0
         }
     }
-    impl ::core::default::Default for AccelerationStructureCreateFlagsKHR {
+    impl Default for AccelerationStructureCreateFlagsKHR {
         fn default() -> Self {
             Self::empty()
         }

@@ -246,7 +246,7 @@ pub(crate) mod reexport {
             self.0 & other.0 == other.0
         }
     }
-    impl ::core::default::Default for DisplayPlaneAlphaFlagsKHR {
+    impl Default for DisplayPlaneAlphaFlagsKHR {
         fn default() -> Self {
             Self::empty()
         }
@@ -323,7 +323,7 @@ pub(crate) mod reexport {
             self.0 & other.0 == other.0
         }
     }
-    impl ::core::default::Default for DisplayModeCreateFlagsKHR {
+    impl Default for DisplayModeCreateFlagsKHR {
         fn default() -> Self {
             Self::empty()
         }
@@ -390,7 +390,7 @@ pub(crate) mod reexport {
             self.0 & other.0 == other.0
         }
     }
-    impl ::core::default::Default for DisplaySurfaceCreateFlagsKHR {
+    impl Default for DisplaySurfaceCreateFlagsKHR {
         fn default() -> Self {
             Self::empty()
         }

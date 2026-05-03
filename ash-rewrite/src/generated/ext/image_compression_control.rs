@@ -73,7 +73,7 @@ impl ImageCompressionFlagsEXT {
         self.0 & other.0 == other.0
     }
 }
-impl ::core::default::Default for ImageCompressionFlagsEXT {
+impl Default for ImageCompressionFlagsEXT {
     fn default() -> Self {
         Self::empty()
     }
@@ -205,7 +205,7 @@ impl ImageCompressionFixedRateFlagsEXT {
         self.0 & other.0 == other.0
     }
 }
-impl ::core::default::Default for ImageCompressionFixedRateFlagsEXT {
+impl Default for ImageCompressionFixedRateFlagsEXT {
     fn default() -> Self {
         Self::empty()
     }

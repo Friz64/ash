@@ -69,7 +69,7 @@ impl PresentScalingFlagsKHR {
         self.0 & other.0 == other.0
     }
 }
-impl ::core::default::Default for PresentScalingFlagsKHR {
+impl Default for PresentScalingFlagsKHR {
     fn default() -> Self {
         Self::empty()
     }
@@ -154,7 +154,7 @@ impl PresentGravityFlagsKHR {
         self.0 & other.0 == other.0
     }
 }
-impl ::core::default::Default for PresentGravityFlagsKHR {
+impl Default for PresentGravityFlagsKHR {
     fn default() -> Self {
         Self::empty()
     }

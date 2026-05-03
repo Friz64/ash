@@ -561,7 +561,7 @@ pub(crate) mod reexport {
             self.0 & other.0 == other.0
         }
     }
-    impl ::core::default::Default for TensorCreateFlagsARM {
+    impl Default for TensorCreateFlagsARM {
         fn default() -> Self {
             Self::empty()
         }
@@ -648,7 +648,7 @@ pub(crate) mod reexport {
             self.0 & other.0 == other.0
         }
     }
-    impl ::core::default::Default for TensorUsageFlagsARM {
+    impl Default for TensorUsageFlagsARM {
         fn default() -> Self {
             Self::empty()
         }

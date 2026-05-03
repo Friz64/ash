@@ -363,7 +363,7 @@ pub(crate) mod reexport {
             self.0 & other.0 == other.0
         }
     }
-    impl ::core::default::Default for ClusterAccelerationStructureGeometryFlagsNV {
+    impl Default for ClusterAccelerationStructureGeometryFlagsNV {
         fn default() -> Self {
             Self::empty()
         }
@@ -443,7 +443,7 @@ pub(crate) mod reexport {
             self.0 & other.0 == other.0
         }
     }
-    impl ::core::default::Default for ClusterAccelerationStructureClusterFlagsNV {
+    impl Default for ClusterAccelerationStructureClusterFlagsNV {
         fn default() -> Self {
             Self::empty()
         }
@@ -544,8 +544,7 @@ pub(crate) mod reexport {
             self.0 & other.0 == other.0
         }
     }
-    impl ::core::default::Default
-    for ClusterAccelerationStructureAddressResolutionFlagsNV {
+    impl Default for ClusterAccelerationStructureAddressResolutionFlagsNV {
         fn default() -> Self {
             Self::empty()
         }
@@ -641,7 +640,7 @@ pub(crate) mod reexport {
             self.0 & other.0 == other.0
         }
     }
-    impl ::core::default::Default for ClusterAccelerationStructureIndexFormatFlagsNV {
+    impl Default for ClusterAccelerationStructureIndexFormatFlagsNV {
         fn default() -> Self {
             Self::empty()
         }

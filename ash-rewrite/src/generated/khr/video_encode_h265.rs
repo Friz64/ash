@@ -268,7 +268,7 @@ impl VideoEncodeH265CapabilityFlagsKHR {
         self.0 & other.0 == other.0
     }
 }
-impl ::core::default::Default for VideoEncodeH265CapabilityFlagsKHR {
+impl Default for VideoEncodeH265CapabilityFlagsKHR {
     fn default() -> Self {
         Self::empty()
     }
@@ -414,7 +414,7 @@ impl VideoEncodeH265StdFlagsKHR {
         self.0 & other.0 == other.0
     }
 }
-impl ::core::default::Default for VideoEncodeH265StdFlagsKHR {
+impl Default for VideoEncodeH265StdFlagsKHR {
     fn default() -> Self {
         Self::empty()
     }
@@ -523,7 +523,7 @@ impl VideoEncodeH265RateControlFlagsKHR {
         self.0 & other.0 == other.0
     }
 }
-impl ::core::default::Default for VideoEncodeH265RateControlFlagsKHR {
+impl Default for VideoEncodeH265RateControlFlagsKHR {
     fn default() -> Self {
         Self::empty()
     }
@@ -604,7 +604,7 @@ impl VideoEncodeH265CtbSizeFlagsKHR {
         self.0 & other.0 == other.0
     }
 }
-impl ::core::default::Default for VideoEncodeH265CtbSizeFlagsKHR {
+impl Default for VideoEncodeH265CtbSizeFlagsKHR {
     fn default() -> Self {
         Self::empty()
     }
@@ -692,7 +692,7 @@ impl VideoEncodeH265TransformBlockSizeFlagsKHR {
         self.0 & other.0 == other.0
     }
 }
-impl ::core::default::Default for VideoEncodeH265TransformBlockSizeFlagsKHR {
+impl Default for VideoEncodeH265TransformBlockSizeFlagsKHR {
     fn default() -> Self {
         Self::empty()
     }

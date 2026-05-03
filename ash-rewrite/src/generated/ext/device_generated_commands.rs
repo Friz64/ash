@@ -488,7 +488,7 @@ pub(crate) mod reexport {
             self.0 & other.0 == other.0
         }
     }
-    impl ::core::default::Default for IndirectCommandsLayoutUsageFlagsEXT {
+    impl Default for IndirectCommandsLayoutUsageFlagsEXT {
         fn default() -> Self {
             Self::empty()
         }
@@ -569,7 +569,7 @@ pub(crate) mod reexport {
             self.0 & other.0 == other.0
         }
     }
-    impl ::core::default::Default for IndirectCommandsInputModeFlagsEXT {
+    impl Default for IndirectCommandsInputModeFlagsEXT {
         fn default() -> Self {
             Self::empty()
         }

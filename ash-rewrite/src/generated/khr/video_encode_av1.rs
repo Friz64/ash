@@ -261,7 +261,7 @@ impl VideoEncodeAV1CapabilityFlagsKHR {
         self.0 & other.0 == other.0
     }
 }
-impl ::core::default::Default for VideoEncodeAV1CapabilityFlagsKHR {
+impl Default for VideoEncodeAV1CapabilityFlagsKHR {
     fn default() -> Self {
         Self::empty()
     }
@@ -349,7 +349,7 @@ impl VideoEncodeAV1StdFlagsKHR {
         self.0 & other.0 == other.0
     }
 }
-impl ::core::default::Default for VideoEncodeAV1StdFlagsKHR {
+impl Default for VideoEncodeAV1StdFlagsKHR {
     fn default() -> Self {
         Self::empty()
     }
@@ -438,7 +438,7 @@ impl VideoEncodeAV1RateControlFlagsKHR {
         self.0 & other.0 == other.0
     }
 }
-impl ::core::default::Default for VideoEncodeAV1RateControlFlagsKHR {
+impl Default for VideoEncodeAV1RateControlFlagsKHR {
     fn default() -> Self {
         Self::empty()
     }
@@ -517,7 +517,7 @@ impl VideoEncodeAV1SuperblockSizeFlagsKHR {
         self.0 & other.0 == other.0
     }
 }
-impl ::core::default::Default for VideoEncodeAV1SuperblockSizeFlagsKHR {
+impl Default for VideoEncodeAV1SuperblockSizeFlagsKHR {
     fn default() -> Self {
         Self::empty()
     }

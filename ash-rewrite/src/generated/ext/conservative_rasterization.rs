@@ -77,7 +77,7 @@ impl PipelineRasterizationConservativeStateCreateFlagsEXT {
         self.0 & other.0 == other.0
     }
 }
-impl ::core::default::Default for PipelineRasterizationConservativeStateCreateFlagsEXT {
+impl Default for PipelineRasterizationConservativeStateCreateFlagsEXT {
     fn default() -> Self {
         Self::empty()
     }
