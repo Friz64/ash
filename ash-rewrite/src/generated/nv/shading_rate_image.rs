@@ -87,6 +87,10 @@ pub(crate) mod reexport {
         pub p_shading_rate_palettes: *const crate::vk::ShadingRatePaletteNV<'a>,
         pub _marker: ::core::marker::PhantomData<&'a ()>,
     }
+    unsafe impl<'a> crate::TaggedStructure<'a>
+    for PipelineViewportShadingRateImageStateCreateInfoNV<'a> {
+        const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::PIPELINE_VIEWPORT_SHADING_RATE_IMAGE_STATE_CREATE_INFO_NV;
+    }
     #[repr(C)]
     #[derive(Clone, Copy)]
     pub struct PhysicalDeviceShadingRateImageFeaturesNV<'a> {
@@ -95,6 +99,10 @@ pub(crate) mod reexport {
         pub shading_rate_image: crate::vk::Bool32,
         pub shading_rate_coarse_sample_order: crate::vk::Bool32,
         pub _marker: ::core::marker::PhantomData<&'a ()>,
+    }
+    unsafe impl<'a> crate::TaggedStructure<'a>
+    for PhysicalDeviceShadingRateImageFeaturesNV<'a> {
+        const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::PHYSICAL_DEVICE_SHADING_RATE_IMAGE_FEATURES_NV;
     }
     #[repr(C)]
     #[derive(Clone, Copy)]
@@ -105,6 +113,10 @@ pub(crate) mod reexport {
         pub shading_rate_palette_size: u32,
         pub shading_rate_max_coarse_samples: u32,
         pub _marker: ::core::marker::PhantomData<&'a ()>,
+    }
+    unsafe impl<'a> crate::TaggedStructure<'a>
+    for PhysicalDeviceShadingRateImagePropertiesNV<'a> {
+        const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::PHYSICAL_DEVICE_SHADING_RATE_IMAGE_PROPERTIES_NV;
     }
     #[repr(C)]
     #[derive(Clone, Copy)]
@@ -131,6 +143,10 @@ pub(crate) mod reexport {
         pub custom_sample_order_count: u32,
         pub p_custom_sample_orders: *const crate::vk::CoarseSampleOrderCustomNV<'a>,
         pub _marker: ::core::marker::PhantomData<&'a ()>,
+    }
+    unsafe impl<'a> crate::TaggedStructure<'a>
+    for PipelineViewportCoarseSampleOrderStateCreateInfoNV<'a> {
+        const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::PIPELINE_VIEWPORT_COARSE_SAMPLE_ORDER_STATE_CREATE_INFO_NV;
     }
     ///Provided by [`nv::shading_rate_image`](crate::nv::shading_rate_image)
     impl crate::vk::ImageLayout {

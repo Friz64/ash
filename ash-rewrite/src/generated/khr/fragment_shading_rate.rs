@@ -81,6 +81,10 @@ pub(crate) mod reexport {
         pub shading_rate_attachment_texel_size: crate::vk::Extent2D,
         pub _marker: ::core::marker::PhantomData<&'a ()>,
     }
+    unsafe impl<'a> crate::TaggedStructure<'a>
+    for FragmentShadingRateAttachmentInfoKHR<'a> {
+        const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::FRAGMENT_SHADING_RATE_ATTACHMENT_INFO_KHR;
+    }
     #[repr(C)]
     #[derive(Clone, Copy)]
     pub struct PipelineFragmentShadingRateStateCreateInfoKHR<'a> {
@@ -89,6 +93,10 @@ pub(crate) mod reexport {
         pub fragment_size: crate::vk::Extent2D,
         pub combiner_ops: [crate::vk::FragmentShadingRateCombinerOpKHR; 2 as _],
         pub _marker: ::core::marker::PhantomData<&'a ()>,
+    }
+    unsafe impl<'a> crate::TaggedStructure<'a>
+    for PipelineFragmentShadingRateStateCreateInfoKHR<'a> {
+        const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::PIPELINE_FRAGMENT_SHADING_RATE_STATE_CREATE_INFO_KHR;
     }
     #[repr(C)]
     #[derive(Clone, Copy)]
@@ -99,6 +107,10 @@ pub(crate) mod reexport {
         pub primitive_fragment_shading_rate: crate::vk::Bool32,
         pub attachment_fragment_shading_rate: crate::vk::Bool32,
         pub _marker: ::core::marker::PhantomData<&'a ()>,
+    }
+    unsafe impl<'a> crate::TaggedStructure<'a>
+    for PhysicalDeviceFragmentShadingRateFeaturesKHR<'a> {
+        const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::PHYSICAL_DEVICE_FRAGMENT_SHADING_RATE_FEATURES_KHR;
     }
     #[repr(C)]
     #[derive(Clone, Copy)]
@@ -124,6 +136,10 @@ pub(crate) mod reexport {
         pub fragment_shading_rate_strict_multiply_combiner: crate::vk::Bool32,
         pub _marker: ::core::marker::PhantomData<&'a ()>,
     }
+    unsafe impl<'a> crate::TaggedStructure<'a>
+    for PhysicalDeviceFragmentShadingRatePropertiesKHR<'a> {
+        const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::PHYSICAL_DEVICE_FRAGMENT_SHADING_RATE_PROPERTIES_KHR;
+    }
     #[repr(C)]
     #[derive(Clone, Copy)]
     pub struct PhysicalDeviceFragmentShadingRateKHR<'a> {
@@ -132,6 +148,10 @@ pub(crate) mod reexport {
         pub sample_counts: crate::vk::SampleCountFlags,
         pub fragment_size: crate::vk::Extent2D,
         pub _marker: ::core::marker::PhantomData<&'a ()>,
+    }
+    unsafe impl<'a> crate::TaggedStructure<'a>
+    for PhysicalDeviceFragmentShadingRateKHR<'a> {
+        const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::PHYSICAL_DEVICE_FRAGMENT_SHADING_RATE_KHR;
     }
     #[repr(C)]
     #[derive(Clone, Copy)]
@@ -142,6 +162,10 @@ pub(crate) mod reexport {
         pub image_layout: crate::vk::ImageLayout,
         pub shading_rate_attachment_texel_size: crate::vk::Extent2D,
         pub _marker: ::core::marker::PhantomData<&'a ()>,
+    }
+    unsafe impl<'a> crate::TaggedStructure<'a>
+    for RenderingFragmentShadingRateAttachmentInfoKHR<'a> {
+        const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::RENDERING_FRAGMENT_SHADING_RATE_ATTACHMENT_INFO_KHR;
     }
     ///Provided by [`khr::fragment_shading_rate`](crate::khr::fragment_shading_rate)
     impl crate::vk::ImageLayout {

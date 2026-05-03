@@ -9,6 +9,10 @@ pub struct PhysicalDeviceVideoEncodeRgbConversionFeaturesVALVE<'a> {
     pub video_encode_rgb_conversion: crate::vk::Bool32,
     pub _marker: ::core::marker::PhantomData<&'a ()>,
 }
+unsafe impl<'a> crate::TaggedStructure<'a>
+for PhysicalDeviceVideoEncodeRgbConversionFeaturesVALVE<'a> {
+    const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::PHYSICAL_DEVICE_VIDEO_ENCODE_RGB_CONVERSION_FEATURES_VALVE;
+}
 #[repr(C)]
 #[derive(Clone, Copy)]
 pub struct VideoEncodeRgbConversionCapabilitiesVALVE<'a> {
@@ -20,6 +24,10 @@ pub struct VideoEncodeRgbConversionCapabilitiesVALVE<'a> {
     pub y_chroma_offsets: crate::vk::VideoEncodeRgbChromaOffsetFlagsVALVE,
     pub _marker: ::core::marker::PhantomData<&'a ()>,
 }
+unsafe impl<'a> crate::TaggedStructure<'a>
+for VideoEncodeRgbConversionCapabilitiesVALVE<'a> {
+    const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::VIDEO_ENCODE_RGB_CONVERSION_CAPABILITIES_VALVE;
+}
 #[repr(C)]
 #[derive(Clone, Copy)]
 pub struct VideoEncodeProfileRgbConversionInfoVALVE<'a> {
@@ -27,6 +35,10 @@ pub struct VideoEncodeProfileRgbConversionInfoVALVE<'a> {
     pub p_next: *const core::ffi::c_void,
     pub perform_encode_rgb_conversion: crate::vk::Bool32,
     pub _marker: ::core::marker::PhantomData<&'a ()>,
+}
+unsafe impl<'a> crate::TaggedStructure<'a>
+for VideoEncodeProfileRgbConversionInfoVALVE<'a> {
+    const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::VIDEO_ENCODE_PROFILE_RGB_CONVERSION_INFO_VALVE;
 }
 #[repr(C)]
 #[derive(Clone, Copy)]
@@ -38,6 +50,10 @@ pub struct VideoEncodeSessionRgbConversionCreateInfoVALVE<'a> {
     pub x_chroma_offset: crate::vk::VideoEncodeRgbChromaOffsetFlagBitsVALVE,
     pub y_chroma_offset: crate::vk::VideoEncodeRgbChromaOffsetFlagBitsVALVE,
     pub _marker: ::core::marker::PhantomData<&'a ()>,
+}
+unsafe impl<'a> crate::TaggedStructure<'a>
+for VideoEncodeSessionRgbConversionCreateInfoVALVE<'a> {
+    const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::VIDEO_ENCODE_SESSION_RGB_CONVERSION_CREATE_INFO_VALVE;
 }
 ///Provided by [`valve::video_encode_rgb_conversion`](crate::valve::video_encode_rgb_conversion)
 impl crate::vk::StructureType {

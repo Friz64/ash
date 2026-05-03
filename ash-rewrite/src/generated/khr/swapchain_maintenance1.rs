@@ -43,6 +43,10 @@ pub(crate) mod reexport {
         pub swapchain_maintenance1: crate::vk::Bool32,
         pub _marker: ::core::marker::PhantomData<&'a ()>,
     }
+    unsafe impl<'a> crate::TaggedStructure<'a>
+    for PhysicalDeviceSwapchainMaintenance1FeaturesKHR<'a> {
+        const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::PHYSICAL_DEVICE_SWAPCHAIN_MAINTENANCE_1_FEATURES_KHR;
+    }
     #[repr(C)]
     #[derive(Clone, Copy)]
     pub struct SwapchainPresentFenceInfoKHR<'a> {
@@ -51,6 +55,9 @@ pub(crate) mod reexport {
         pub swapchain_count: u32,
         pub p_fences: *const crate::vk::Fence,
         pub _marker: ::core::marker::PhantomData<&'a ()>,
+    }
+    unsafe impl<'a> crate::TaggedStructure<'a> for SwapchainPresentFenceInfoKHR<'a> {
+        const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::SWAPCHAIN_PRESENT_FENCE_INFO_KHR;
     }
     #[repr(C)]
     #[derive(Clone, Copy)]
@@ -61,6 +68,10 @@ pub(crate) mod reexport {
         pub p_present_modes: *const crate::vk::PresentModeKHR,
         pub _marker: ::core::marker::PhantomData<&'a ()>,
     }
+    unsafe impl<'a> crate::TaggedStructure<'a>
+    for SwapchainPresentModesCreateInfoKHR<'a> {
+        const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::SWAPCHAIN_PRESENT_MODES_CREATE_INFO_KHR;
+    }
     #[repr(C)]
     #[derive(Clone, Copy)]
     pub struct SwapchainPresentModeInfoKHR<'a> {
@@ -69,6 +80,9 @@ pub(crate) mod reexport {
         pub swapchain_count: u32,
         pub p_present_modes: *const crate::vk::PresentModeKHR,
         pub _marker: ::core::marker::PhantomData<&'a ()>,
+    }
+    unsafe impl<'a> crate::TaggedStructure<'a> for SwapchainPresentModeInfoKHR<'a> {
+        const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::SWAPCHAIN_PRESENT_MODE_INFO_KHR;
     }
     #[repr(C)]
     #[derive(Clone, Copy)]
@@ -80,6 +94,10 @@ pub(crate) mod reexport {
         pub present_gravity_y: crate::vk::PresentGravityFlagsKHR,
         pub _marker: ::core::marker::PhantomData<&'a ()>,
     }
+    unsafe impl<'a> crate::TaggedStructure<'a>
+    for SwapchainPresentScalingCreateInfoKHR<'a> {
+        const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::SWAPCHAIN_PRESENT_SCALING_CREATE_INFO_KHR;
+    }
     #[repr(C)]
     #[derive(Clone, Copy)]
     pub struct ReleaseSwapchainImagesInfoKHR<'a> {
@@ -89,6 +107,9 @@ pub(crate) mod reexport {
         pub image_index_count: u32,
         pub p_image_indices: *const u32,
         pub _marker: ::core::marker::PhantomData<&'a ()>,
+    }
+    unsafe impl<'a> crate::TaggedStructure<'a> for ReleaseSwapchainImagesInfoKHR<'a> {
+        const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::RELEASE_SWAPCHAIN_IMAGES_INFO_KHR;
     }
     ///Provided by [`khr::swapchain_maintenance1`](crate::khr::swapchain_maintenance1)
     impl crate::vk::StructureType {

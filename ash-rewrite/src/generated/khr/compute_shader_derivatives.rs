@@ -10,6 +10,10 @@ pub struct PhysicalDeviceComputeShaderDerivativesFeaturesKHR<'a> {
     pub compute_derivative_group_linear: crate::vk::Bool32,
     pub _marker: ::core::marker::PhantomData<&'a ()>,
 }
+unsafe impl<'a> crate::TaggedStructure<'a>
+for PhysicalDeviceComputeShaderDerivativesFeaturesKHR<'a> {
+    const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::PHYSICAL_DEVICE_COMPUTE_SHADER_DERIVATIVES_FEATURES_KHR;
+}
 #[repr(C)]
 #[derive(Clone, Copy)]
 pub struct PhysicalDeviceComputeShaderDerivativesPropertiesKHR<'a> {
@@ -17,6 +21,10 @@ pub struct PhysicalDeviceComputeShaderDerivativesPropertiesKHR<'a> {
     pub p_next: *mut core::ffi::c_void,
     pub mesh_and_task_shader_derivatives: crate::vk::Bool32,
     pub _marker: ::core::marker::PhantomData<&'a ()>,
+}
+unsafe impl<'a> crate::TaggedStructure<'a>
+for PhysicalDeviceComputeShaderDerivativesPropertiesKHR<'a> {
+    const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::PHYSICAL_DEVICE_COMPUTE_SHADER_DERIVATIVES_PROPERTIES_KHR;
 }
 ///Provided by [`khr::compute_shader_derivatives`](crate::khr::compute_shader_derivatives)
 impl crate::vk::StructureType {

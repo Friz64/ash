@@ -9,6 +9,10 @@ pub struct PhysicalDeviceVideoMaintenance1FeaturesKHR<'a> {
     pub video_maintenance1: crate::vk::Bool32,
     pub _marker: ::core::marker::PhantomData<&'a ()>,
 }
+unsafe impl<'a> crate::TaggedStructure<'a>
+for PhysicalDeviceVideoMaintenance1FeaturesKHR<'a> {
+    const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::PHYSICAL_DEVICE_VIDEO_MAINTENANCE_1_FEATURES_KHR;
+}
 #[repr(C)]
 #[derive(Clone, Copy)]
 pub struct VideoInlineQueryInfoKHR<'a> {
@@ -18,6 +22,9 @@ pub struct VideoInlineQueryInfoKHR<'a> {
     pub first_query: u32,
     pub query_count: u32,
     pub _marker: ::core::marker::PhantomData<&'a ()>,
+}
+unsafe impl<'a> crate::TaggedStructure<'a> for VideoInlineQueryInfoKHR<'a> {
+    const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::VIDEO_INLINE_QUERY_INFO_KHR;
 }
 ///Provided by [`khr::video_maintenance1`](crate::khr::video_maintenance1)
 impl crate::vk::StructureType {

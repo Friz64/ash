@@ -13,6 +13,10 @@ pub struct PipelineCoverageModulationStateCreateInfoNV<'a> {
     pub p_coverage_modulation_table: *const core::ffi::c_float,
     pub _marker: ::core::marker::PhantomData<&'a ()>,
 }
+unsafe impl<'a> crate::TaggedStructure<'a>
+for PipelineCoverageModulationStateCreateInfoNV<'a> {
+    const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::PIPELINE_COVERAGE_MODULATION_STATE_CREATE_INFO_NV;
+}
 pub type AttachmentSampleCountInfoNV<'a> = crate::vk::AttachmentSampleCountInfoAMD<'a>;
 ///Provided by [`nv::framebuffer_mixed_samples`](crate::nv::framebuffer_mixed_samples)
 impl crate::vk::StructureType {

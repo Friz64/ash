@@ -9,6 +9,10 @@ pub struct PhysicalDeviceCornerSampledImageFeaturesNV<'a> {
     pub corner_sampled_image: crate::vk::Bool32,
     pub _marker: ::core::marker::PhantomData<&'a ()>,
 }
+unsafe impl<'a> crate::TaggedStructure<'a>
+for PhysicalDeviceCornerSampledImageFeaturesNV<'a> {
+    const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::PHYSICAL_DEVICE_CORNER_SAMPLED_IMAGE_FEATURES_NV;
+}
 ///Provided by [`nv::corner_sampled_image`](crate::nv::corner_sampled_image)
 impl crate::vk::StructureType {
     pub const PHYSICAL_DEVICE_CORNER_SAMPLED_IMAGE_FEATURES_NV: Self = Self(1000050000);

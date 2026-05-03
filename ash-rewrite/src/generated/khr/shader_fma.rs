@@ -11,6 +11,9 @@ pub struct PhysicalDeviceShaderFmaFeaturesKHR<'a> {
     pub shader_fma_float64: crate::vk::Bool32,
     pub _marker: ::core::marker::PhantomData<&'a ()>,
 }
+unsafe impl<'a> crate::TaggedStructure<'a> for PhysicalDeviceShaderFmaFeaturesKHR<'a> {
+    const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::PHYSICAL_DEVICE_SHADER_FMA_FEATURES_KHR;
+}
 ///Provided by [`khr::shader_fma`](crate::khr::shader_fma)
 impl crate::vk::StructureType {
     pub const PHYSICAL_DEVICE_SHADER_FMA_FEATURES_KHR: Self = Self(1000579000);

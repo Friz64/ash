@@ -76,6 +76,9 @@ pub(crate) mod reexport {
         pub p_times: *const crate::vk::PresentTimeGOOGLE,
         pub _marker: ::core::marker::PhantomData<&'a ()>,
     }
+    unsafe impl<'a> crate::TaggedStructure<'a> for PresentTimesInfoGOOGLE<'a> {
+        const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::PRESENT_TIMES_INFO_GOOGLE;
+    }
     #[repr(C)]
     #[derive(Clone, Copy)]
     pub struct PresentTimeGOOGLE {

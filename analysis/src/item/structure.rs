@@ -1,7 +1,7 @@
 use crate::{
     decl::{Decl, Ty},
     item::{Named, RequireMap, RequiredBy},
-    name::TypeName,
+    name::{EnumeratorName, TypeName, VariableName},
     xml,
 };
 use std::{cmp::Ordering, ops::Range};
@@ -23,7 +23,14 @@ pub enum StructMember {
 pub struct Struct {
     pub required_by: RequiredBy,
     pub name: TypeName,
+    pub structure_type: Option<StructureType>,
     pub members: Vec<StructMember>,
+}
+
+#[derive(Debug)]
+pub struct StructureType {
+    pub enumerator: EnumeratorName,
+    pub ty: TypeName,
 }
 
 impl Named<TypeName> for Struct {
@@ -40,6 +47,9 @@ impl Struct {
 
         let mut members = Vec::new();
         let mut used_bitwidth = None;
+
+        let mut structure_type = None;
+
         for member in &xml.members {
             let decl = Decl::from_c(require_map, &member.c_decl);
             if let Some(width) = member.c_decl.bitfield_width {
@@ -72,6 +82,17 @@ impl Struct {
                 }
             } else {
                 assert_eq!(used_bitwidth, None, "bitfield not fully used");
+                // should exist only once
+                if let Some(value) = member.values
+                    && let Ty::SpecType(ty) = decl.ty
+                    && ty.original() == "VkStructureType"
+                    && decl.name.original() == "sType"
+                {
+                    structure_type = Some(StructureType {
+                        enumerator: EnumeratorName::new(value),
+                        ty,
+                    });
+                }
                 members.push(StructMember::Normal(decl));
             }
         }
@@ -79,6 +100,7 @@ impl Struct {
         Some(Struct {
             required_by,
             name: xml.name,
+            structure_type,
             members,
         })
     }

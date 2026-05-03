@@ -79,6 +79,9 @@ pub(crate) mod reexport {
         pub vendor_info: crate::vk::DeviceFaultVendorInfoKHR,
         pub _marker: ::core::marker::PhantomData<&'a ()>,
     }
+    unsafe impl<'a> crate::TaggedStructure<'a> for DeviceFaultInfoKHR<'a> {
+        const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::DEVICE_FAULT_INFO_KHR;
+    }
     #[repr(C)]
     #[derive(Clone, Copy)]
     pub struct DeviceFaultDebugInfoKHR<'a> {
@@ -87,6 +90,9 @@ pub(crate) mod reexport {
         pub vendor_binary_size: u32,
         pub p_vendor_binary_data: *mut core::ffi::c_void,
         pub _marker: ::core::marker::PhantomData<&'a ()>,
+    }
+    unsafe impl<'a> crate::TaggedStructure<'a> for DeviceFaultDebugInfoKHR<'a> {
+        const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::DEVICE_FAULT_DEBUG_INFO_KHR;
     }
     #[repr(C)]
     #[derive(Clone, Copy)]
@@ -114,6 +120,9 @@ pub(crate) mod reexport {
         pub device_fault_device_lost_on_masked: crate::vk::Bool32,
         pub _marker: ::core::marker::PhantomData<&'a ()>,
     }
+    unsafe impl<'a> crate::TaggedStructure<'a> for PhysicalDeviceFaultFeaturesKHR<'a> {
+        const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::PHYSICAL_DEVICE_FAULT_FEATURES_KHR;
+    }
     #[repr(C)]
     #[derive(Clone, Copy)]
     pub struct PhysicalDeviceFaultPropertiesKHR<'a> {
@@ -121,6 +130,9 @@ pub(crate) mod reexport {
         pub p_next: *mut core::ffi::c_void,
         pub max_device_fault_count: u32,
         pub _marker: ::core::marker::PhantomData<&'a ()>,
+    }
+    unsafe impl<'a> crate::TaggedStructure<'a> for PhysicalDeviceFaultPropertiesKHR<'a> {
+        const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::PHYSICAL_DEVICE_FAULT_PROPERTIES_KHR;
     }
     ///Provided by [`khr::device_fault`](crate::khr::device_fault)
     impl crate::vk::StructureType {

@@ -9,6 +9,10 @@ pub struct PhysicalDeviceCooperativeMatrixConversionFeaturesQCOM<'a> {
     pub cooperative_matrix_conversion: crate::vk::Bool32,
     pub _marker: ::core::marker::PhantomData<&'a ()>,
 }
+unsafe impl<'a> crate::TaggedStructure<'a>
+for PhysicalDeviceCooperativeMatrixConversionFeaturesQCOM<'a> {
+    const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::PHYSICAL_DEVICE_COOPERATIVE_MATRIX_CONVERSION_FEATURES_QCOM;
+}
 ///Provided by [`qcom::cooperative_matrix_conversion`](crate::qcom::cooperative_matrix_conversion)
 impl crate::vk::StructureType {
     pub const PHYSICAL_DEVICE_COOPERATIVE_MATRIX_CONVERSION_FEATURES_QCOM: Self = Self(

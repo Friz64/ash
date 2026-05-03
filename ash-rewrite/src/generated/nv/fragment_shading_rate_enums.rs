@@ -46,6 +46,10 @@ pub(crate) mod reexport {
         pub no_invocation_fragment_shading_rates: crate::vk::Bool32,
         pub _marker: ::core::marker::PhantomData<&'a ()>,
     }
+    unsafe impl<'a> crate::TaggedStructure<'a>
+    for PhysicalDeviceFragmentShadingRateEnumsFeaturesNV<'a> {
+        const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::PHYSICAL_DEVICE_FRAGMENT_SHADING_RATE_ENUMS_FEATURES_NV;
+    }
     #[repr(C)]
     #[derive(Clone, Copy)]
     pub struct PhysicalDeviceFragmentShadingRateEnumsPropertiesNV<'a> {
@@ -53,6 +57,10 @@ pub(crate) mod reexport {
         pub p_next: *mut core::ffi::c_void,
         pub max_fragment_shading_rate_invocation_count: crate::vk::SampleCountFlagBits,
         pub _marker: ::core::marker::PhantomData<&'a ()>,
+    }
+    unsafe impl<'a> crate::TaggedStructure<'a>
+    for PhysicalDeviceFragmentShadingRateEnumsPropertiesNV<'a> {
+        const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::PHYSICAL_DEVICE_FRAGMENT_SHADING_RATE_ENUMS_PROPERTIES_NV;
     }
     #[repr(C)]
     #[derive(Clone, Copy)]
@@ -63,6 +71,10 @@ pub(crate) mod reexport {
         pub shading_rate: crate::vk::FragmentShadingRateNV,
         pub combiner_ops: [crate::vk::FragmentShadingRateCombinerOpKHR; 2 as _],
         pub _marker: ::core::marker::PhantomData<&'a ()>,
+    }
+    unsafe impl<'a> crate::TaggedStructure<'a>
+    for PipelineFragmentShadingRateEnumStateCreateInfoNV<'a> {
+        const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::PIPELINE_FRAGMENT_SHADING_RATE_ENUM_STATE_CREATE_INFO_NV;
     }
     ///Provided by [`nv::fragment_shading_rate_enums`](crate::nv::fragment_shading_rate_enums)
     impl crate::vk::StructureType {

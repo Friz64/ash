@@ -9,6 +9,10 @@ pub struct PhysicalDeviceMaintenance9FeaturesKHR<'a> {
     pub maintenance9: crate::vk::Bool32,
     pub _marker: ::core::marker::PhantomData<&'a ()>,
 }
+unsafe impl<'a> crate::TaggedStructure<'a>
+for PhysicalDeviceMaintenance9FeaturesKHR<'a> {
+    const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::PHYSICAL_DEVICE_MAINTENANCE_9_FEATURES_KHR;
+}
 #[repr(C)]
 #[derive(Clone, Copy)]
 pub struct PhysicalDeviceMaintenance9PropertiesKHR<'a> {
@@ -18,6 +22,10 @@ pub struct PhysicalDeviceMaintenance9PropertiesKHR<'a> {
     pub default_vertex_attribute_value: crate::vk::DefaultVertexAttributeValueKHR,
     pub _marker: ::core::marker::PhantomData<&'a ()>,
 }
+unsafe impl<'a> crate::TaggedStructure<'a>
+for PhysicalDeviceMaintenance9PropertiesKHR<'a> {
+    const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::PHYSICAL_DEVICE_MAINTENANCE_9_PROPERTIES_KHR;
+}
 #[repr(C)]
 #[derive(Clone, Copy)]
 pub struct QueueFamilyOwnershipTransferPropertiesKHR<'a> {
@@ -25,6 +33,10 @@ pub struct QueueFamilyOwnershipTransferPropertiesKHR<'a> {
     pub p_next: *mut core::ffi::c_void,
     pub optimal_image_transfer_to_queue_families: u32,
     pub _marker: ::core::marker::PhantomData<&'a ()>,
+}
+unsafe impl<'a> crate::TaggedStructure<'a>
+for QueueFamilyOwnershipTransferPropertiesKHR<'a> {
+    const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::QUEUE_FAMILY_OWNERSHIP_TRANSFER_PROPERTIES_KHR;
 }
 ///Provided by [`khr::maintenance9`](crate::khr::maintenance9)
 impl crate::vk::StructureType {

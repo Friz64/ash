@@ -9,6 +9,10 @@ pub struct PhysicalDeviceRGBA10X6FormatsFeaturesEXT<'a> {
     pub format_rgba10x6_without_y_cb_cr_sampler: crate::vk::Bool32,
     pub _marker: ::core::marker::PhantomData<&'a ()>,
 }
+unsafe impl<'a> crate::TaggedStructure<'a>
+for PhysicalDeviceRGBA10X6FormatsFeaturesEXT<'a> {
+    const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::PHYSICAL_DEVICE_RGBA10X6_FORMATS_FEATURES_EXT;
+}
 ///Provided by [`ext::rgba10x6_formats`](crate::ext::rgba10x6_formats)
 impl crate::vk::StructureType {
     pub const PHYSICAL_DEVICE_RGBA10X6_FORMATS_FEATURES_EXT: Self = Self(1000344000);

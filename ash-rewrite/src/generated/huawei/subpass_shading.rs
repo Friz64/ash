@@ -61,6 +61,10 @@ pub(crate) mod reexport {
         pub subpass: u32,
         pub _marker: ::core::marker::PhantomData<&'a ()>,
     }
+    unsafe impl<'a> crate::TaggedStructure<'a>
+    for SubpassShadingPipelineCreateInfoHUAWEI<'a> {
+        const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::SUBPASS_SHADING_PIPELINE_CREATE_INFO_HUAWEI;
+    }
     #[repr(C)]
     #[derive(Clone, Copy)]
     pub struct PhysicalDeviceSubpassShadingPropertiesHUAWEI<'a> {
@@ -69,6 +73,10 @@ pub(crate) mod reexport {
         pub max_subpass_shading_workgroup_size_aspect_ratio: u32,
         pub _marker: ::core::marker::PhantomData<&'a ()>,
     }
+    unsafe impl<'a> crate::TaggedStructure<'a>
+    for PhysicalDeviceSubpassShadingPropertiesHUAWEI<'a> {
+        const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::PHYSICAL_DEVICE_SUBPASS_SHADING_PROPERTIES_HUAWEI;
+    }
     #[repr(C)]
     #[derive(Clone, Copy)]
     pub struct PhysicalDeviceSubpassShadingFeaturesHUAWEI<'a> {
@@ -76,6 +84,10 @@ pub(crate) mod reexport {
         pub p_next: *mut core::ffi::c_void,
         pub subpass_shading: crate::vk::Bool32,
         pub _marker: ::core::marker::PhantomData<&'a ()>,
+    }
+    unsafe impl<'a> crate::TaggedStructure<'a>
+    for PhysicalDeviceSubpassShadingFeaturesHUAWEI<'a> {
+        const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::PHYSICAL_DEVICE_SUBPASS_SHADING_FEATURES_HUAWEI;
     }
     ///Provided by [`huawei::subpass_shading`](crate::huawei::subpass_shading)
     impl crate::vk::PipelineBindPoint {

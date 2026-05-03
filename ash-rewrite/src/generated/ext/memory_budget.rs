@@ -10,6 +10,10 @@ pub struct PhysicalDeviceMemoryBudgetPropertiesEXT<'a> {
     pub heap_usage: [crate::vk::DeviceSize; crate::vk::MAX_MEMORY_HEAPS as _],
     pub _marker: ::core::marker::PhantomData<&'a ()>,
 }
+unsafe impl<'a> crate::TaggedStructure<'a>
+for PhysicalDeviceMemoryBudgetPropertiesEXT<'a> {
+    const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::PHYSICAL_DEVICE_MEMORY_BUDGET_PROPERTIES_EXT;
+}
 ///Provided by [`ext::memory_budget`](crate::ext::memory_budget)
 impl crate::vk::StructureType {
     pub const PHYSICAL_DEVICE_MEMORY_BUDGET_PROPERTIES_EXT: Self = Self(1000237000);

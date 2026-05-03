@@ -42,6 +42,9 @@ pub(crate) mod reexport {
         pub p_next: *mut core::ffi::c_void,
         pub _marker: ::core::marker::PhantomData<&'a ()>,
     }
+    unsafe impl<'a> crate::TaggedStructure<'a> for BeginCustomResolveInfoEXT<'a> {
+        const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::BEGIN_CUSTOM_RESOLVE_INFO_EXT;
+    }
     #[repr(C)]
     #[derive(Clone, Copy)]
     pub struct PhysicalDeviceCustomResolveFeaturesEXT<'a> {
@@ -49,6 +52,10 @@ pub(crate) mod reexport {
         pub p_next: *mut core::ffi::c_void,
         pub custom_resolve: crate::vk::Bool32,
         pub _marker: ::core::marker::PhantomData<&'a ()>,
+    }
+    unsafe impl<'a> crate::TaggedStructure<'a>
+    for PhysicalDeviceCustomResolveFeaturesEXT<'a> {
+        const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::PHYSICAL_DEVICE_CUSTOM_RESOLVE_FEATURES_EXT;
     }
     #[repr(C)]
     #[derive(Clone, Copy)]
@@ -61,6 +68,9 @@ pub(crate) mod reexport {
         pub depth_attachment_format: crate::vk::Format,
         pub stencil_attachment_format: crate::vk::Format,
         pub _marker: ::core::marker::PhantomData<&'a ()>,
+    }
+    unsafe impl<'a> crate::TaggedStructure<'a> for CustomResolveCreateInfoEXT<'a> {
+        const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::CUSTOM_RESOLVE_CREATE_INFO_EXT;
     }
     ///Provided by [`ext::custom_resolve`](crate::ext::custom_resolve)
     impl crate::vk::StructureType {

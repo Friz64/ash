@@ -177,6 +177,9 @@ pub(crate) mod reexport {
         pub parameters: crate::vk::DisplayModeParametersKHR,
         pub _marker: ::core::marker::PhantomData<&'a ()>,
     }
+    unsafe impl<'a> crate::TaggedStructure<'a> for DisplayModeCreateInfoKHR<'a> {
+        const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::DISPLAY_MODE_CREATE_INFO_KHR;
+    }
     #[repr(C)]
     #[derive(Clone, Copy)]
     pub struct DisplayPlaneCapabilitiesKHR {
@@ -204,6 +207,9 @@ pub(crate) mod reexport {
         pub alpha_mode: crate::vk::DisplayPlaneAlphaFlagBitsKHR,
         pub image_extent: crate::vk::Extent2D,
         pub _marker: ::core::marker::PhantomData<&'a ()>,
+    }
+    unsafe impl<'a> crate::TaggedStructure<'a> for DisplaySurfaceCreateInfoKHR<'a> {
+        const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::DISPLAY_SURFACE_CREATE_INFO_KHR;
     }
     ///Provided by [`khr::display`](crate::khr::display)
     impl crate::vk::StructureType {

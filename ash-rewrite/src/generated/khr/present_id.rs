@@ -9,6 +9,9 @@ pub struct PhysicalDevicePresentIdFeaturesKHR<'a> {
     pub present_id: crate::vk::Bool32,
     pub _marker: ::core::marker::PhantomData<&'a ()>,
 }
+unsafe impl<'a> crate::TaggedStructure<'a> for PhysicalDevicePresentIdFeaturesKHR<'a> {
+    const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::PHYSICAL_DEVICE_PRESENT_ID_FEATURES_KHR;
+}
 #[repr(C)]
 #[derive(Clone, Copy)]
 pub struct PresentIdKHR<'a> {
@@ -17,6 +20,9 @@ pub struct PresentIdKHR<'a> {
     pub swapchain_count: u32,
     pub p_present_ids: *const u64,
     pub _marker: ::core::marker::PhantomData<&'a ()>,
+}
+unsafe impl<'a> crate::TaggedStructure<'a> for PresentIdKHR<'a> {
+    const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::PRESENT_ID_KHR;
 }
 ///Provided by [`khr::present_id`](crate::khr::present_id)
 impl crate::vk::StructureType {

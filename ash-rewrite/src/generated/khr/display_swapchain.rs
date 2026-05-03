@@ -48,6 +48,9 @@ pub(crate) mod reexport {
         pub persistent: crate::vk::Bool32,
         pub _marker: ::core::marker::PhantomData<&'a ()>,
     }
+    unsafe impl<'a> crate::TaggedStructure<'a> for DisplayPresentInfoKHR<'a> {
+        const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::DISPLAY_PRESENT_INFO_KHR;
+    }
     ///Provided by [`khr::display_swapchain`](crate::khr::display_swapchain)
     impl crate::vk::StructureType {
         pub const DISPLAY_PRESENT_INFO_KHR: Self = Self(1000003000);

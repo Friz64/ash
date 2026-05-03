@@ -65,6 +65,9 @@ pub(crate) mod reexport {
         pub surface: *mut crate::platform_types::wl_surface,
         pub _marker: ::core::marker::PhantomData<&'a ()>,
     }
+    unsafe impl<'a> crate::TaggedStructure<'a> for WaylandSurfaceCreateInfoKHR<'a> {
+        const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::WAYLAND_SURFACE_CREATE_INFO_KHR;
+    }
     ///Provided by [`khr::wayland_surface`](crate::khr::wayland_surface)
     impl crate::vk::StructureType {
         pub const WAYLAND_SURFACE_CREATE_INFO_KHR: Self = Self(1000006000);

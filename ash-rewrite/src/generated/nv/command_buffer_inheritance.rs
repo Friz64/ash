@@ -9,6 +9,10 @@ pub struct PhysicalDeviceCommandBufferInheritanceFeaturesNV<'a> {
     pub command_buffer_inheritance: crate::vk::Bool32,
     pub _marker: ::core::marker::PhantomData<&'a ()>,
 }
+unsafe impl<'a> crate::TaggedStructure<'a>
+for PhysicalDeviceCommandBufferInheritanceFeaturesNV<'a> {
+    const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::PHYSICAL_DEVICE_COMMAND_BUFFER_INHERITANCE_FEATURES_NV;
+}
 ///Provided by [`nv::command_buffer_inheritance`](crate::nv::command_buffer_inheritance)
 impl crate::vk::StructureType {
     pub const PHYSICAL_DEVICE_COMMAND_BUFFER_INHERITANCE_FEATURES_NV: Self = Self(

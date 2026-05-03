@@ -125,6 +125,10 @@ pub(crate) mod reexport {
         pub p_offsets: *const crate::vk::DeviceSize,
         pub _marker: ::core::marker::PhantomData<&'a ()>,
     }
+    unsafe impl<'a> crate::TaggedStructure<'a>
+    for SetDescriptorBufferOffsetsInfoEXT<'a> {
+        const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::SET_DESCRIPTOR_BUFFER_OFFSETS_INFO_EXT;
+    }
     #[repr(C)]
     #[derive(Clone, Copy)]
     pub struct BindDescriptorBufferEmbeddedSamplersInfoEXT<'a> {
@@ -134,6 +138,10 @@ pub(crate) mod reexport {
         pub layout: crate::vk::PipelineLayout,
         pub set: u32,
         pub _marker: ::core::marker::PhantomData<&'a ()>,
+    }
+    unsafe impl<'a> crate::TaggedStructure<'a>
+    for BindDescriptorBufferEmbeddedSamplersInfoEXT<'a> {
+        const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::BIND_DESCRIPTOR_BUFFER_EMBEDDED_SAMPLERS_INFO_EXT;
     }
     pub type PhysicalDeviceMaintenance6FeaturesKHR<'a> = crate::vk::PhysicalDeviceMaintenance6Features<
         'a,

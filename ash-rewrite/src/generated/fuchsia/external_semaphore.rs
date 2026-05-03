@@ -62,6 +62,10 @@ pub(crate) mod reexport {
         pub zircon_handle: crate::platform_types::zx_handle_t,
         pub _marker: ::core::marker::PhantomData<&'a ()>,
     }
+    unsafe impl<'a> crate::TaggedStructure<'a>
+    for ImportSemaphoreZirconHandleInfoFUCHSIA<'a> {
+        const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::IMPORT_SEMAPHORE_ZIRCON_HANDLE_INFO_FUCHSIA;
+    }
     #[repr(C)]
     #[derive(Clone, Copy)]
     pub struct SemaphoreGetZirconHandleInfoFUCHSIA<'a> {
@@ -70,6 +74,10 @@ pub(crate) mod reexport {
         pub semaphore: crate::vk::Semaphore,
         pub handle_type: crate::vk::ExternalSemaphoreHandleTypeFlagBits,
         pub _marker: ::core::marker::PhantomData<&'a ()>,
+    }
+    unsafe impl<'a> crate::TaggedStructure<'a>
+    for SemaphoreGetZirconHandleInfoFUCHSIA<'a> {
+        const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::SEMAPHORE_GET_ZIRCON_HANDLE_INFO_FUCHSIA;
     }
     ///Provided by [`fuchsia::external_semaphore`](crate::fuchsia::external_semaphore)
     impl crate::vk::StructureType {

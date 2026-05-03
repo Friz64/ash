@@ -9,6 +9,10 @@ pub struct PhysicalDeviceFragmentShaderBarycentricFeaturesKHR<'a> {
     pub fragment_shader_barycentric: crate::vk::Bool32,
     pub _marker: ::core::marker::PhantomData<&'a ()>,
 }
+unsafe impl<'a> crate::TaggedStructure<'a>
+for PhysicalDeviceFragmentShaderBarycentricFeaturesKHR<'a> {
+    const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::PHYSICAL_DEVICE_FRAGMENT_SHADER_BARYCENTRIC_FEATURES_KHR;
+}
 #[repr(C)]
 #[derive(Clone, Copy)]
 pub struct PhysicalDeviceFragmentShaderBarycentricPropertiesKHR<'a> {
@@ -16,6 +20,10 @@ pub struct PhysicalDeviceFragmentShaderBarycentricPropertiesKHR<'a> {
     pub p_next: *mut core::ffi::c_void,
     pub tri_strip_vertex_order_independent_of_provoking_vertex: crate::vk::Bool32,
     pub _marker: ::core::marker::PhantomData<&'a ()>,
+}
+unsafe impl<'a> crate::TaggedStructure<'a>
+for PhysicalDeviceFragmentShaderBarycentricPropertiesKHR<'a> {
+    const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::PHYSICAL_DEVICE_FRAGMENT_SHADER_BARYCENTRIC_PROPERTIES_KHR;
 }
 ///Provided by [`khr::fragment_shader_barycentric`](crate::khr::fragment_shader_barycentric)
 impl crate::vk::StructureType {

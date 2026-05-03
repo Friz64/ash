@@ -43,6 +43,10 @@ pub(crate) mod reexport {
         pub fragment_density_map_offset: crate::vk::Bool32,
         pub _marker: ::core::marker::PhantomData<&'a ()>,
     }
+    unsafe impl<'a> crate::TaggedStructure<'a>
+    for PhysicalDeviceFragmentDensityMapOffsetFeaturesEXT<'a> {
+        const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::PHYSICAL_DEVICE_FRAGMENT_DENSITY_MAP_OFFSET_FEATURES_EXT;
+    }
     #[repr(C)]
     #[derive(Clone, Copy)]
     pub struct PhysicalDeviceFragmentDensityMapOffsetPropertiesEXT<'a> {
@@ -50,6 +54,10 @@ pub(crate) mod reexport {
         pub p_next: *mut core::ffi::c_void,
         pub fragment_density_offset_granularity: crate::vk::Extent2D,
         pub _marker: ::core::marker::PhantomData<&'a ()>,
+    }
+    unsafe impl<'a> crate::TaggedStructure<'a>
+    for PhysicalDeviceFragmentDensityMapOffsetPropertiesEXT<'a> {
+        const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::PHYSICAL_DEVICE_FRAGMENT_DENSITY_MAP_OFFSET_PROPERTIES_EXT;
     }
     #[repr(C)]
     #[derive(Clone, Copy)]
@@ -59,6 +67,10 @@ pub(crate) mod reexport {
         pub fragment_density_offset_count: u32,
         pub p_fragment_density_offsets: *const crate::vk::Offset2D,
         pub _marker: ::core::marker::PhantomData<&'a ()>,
+    }
+    unsafe impl<'a> crate::TaggedStructure<'a>
+    for RenderPassFragmentDensityMapOffsetEndInfoEXT<'a> {
+        const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::RENDER_PASS_FRAGMENT_DENSITY_MAP_OFFSET_END_INFO_EXT;
     }
     pub type RenderingEndInfoEXT<'a> = crate::vk::RenderingEndInfoKHR<'a>;
     ///Provided by [`ext::fragment_density_map_offset`](crate::ext::fragment_density_map_offset)

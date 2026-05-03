@@ -9,6 +9,10 @@ pub struct PhysicalDeviceCubicWeightsFeaturesQCOM<'a> {
     pub selectable_cubic_weights: crate::vk::Bool32,
     pub _marker: ::core::marker::PhantomData<&'a ()>,
 }
+unsafe impl<'a> crate::TaggedStructure<'a>
+for PhysicalDeviceCubicWeightsFeaturesQCOM<'a> {
+    const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::PHYSICAL_DEVICE_CUBIC_WEIGHTS_FEATURES_QCOM;
+}
 #[repr(C)]
 #[derive(Clone, Copy)]
 pub struct SamplerCubicWeightsCreateInfoQCOM<'a> {
@@ -17,6 +21,9 @@ pub struct SamplerCubicWeightsCreateInfoQCOM<'a> {
     pub cubic_weights: crate::vk::CubicFilterWeightsQCOM,
     pub _marker: ::core::marker::PhantomData<&'a ()>,
 }
+unsafe impl<'a> crate::TaggedStructure<'a> for SamplerCubicWeightsCreateInfoQCOM<'a> {
+    const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::SAMPLER_CUBIC_WEIGHTS_CREATE_INFO_QCOM;
+}
 #[repr(C)]
 #[derive(Clone, Copy)]
 pub struct BlitImageCubicWeightsInfoQCOM<'a> {
@@ -24,6 +31,9 @@ pub struct BlitImageCubicWeightsInfoQCOM<'a> {
     pub p_next: *const core::ffi::c_void,
     pub cubic_weights: crate::vk::CubicFilterWeightsQCOM,
     pub _marker: ::core::marker::PhantomData<&'a ()>,
+}
+unsafe impl<'a> crate::TaggedStructure<'a> for BlitImageCubicWeightsInfoQCOM<'a> {
+    const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::BLIT_IMAGE_CUBIC_WEIGHTS_INFO_QCOM;
 }
 ///Provided by [`qcom::filter_cubic_weights`](crate::qcom::filter_cubic_weights)
 impl crate::vk::StructureType {

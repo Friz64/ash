@@ -22,6 +22,10 @@ pub struct PhysicalDeviceShaderCorePropertiesAMD<'a> {
     pub vgpr_allocation_granularity: u32,
     pub _marker: ::core::marker::PhantomData<&'a ()>,
 }
+unsafe impl<'a> crate::TaggedStructure<'a>
+for PhysicalDeviceShaderCorePropertiesAMD<'a> {
+    const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::PHYSICAL_DEVICE_SHADER_CORE_PROPERTIES_AMD;
+}
 ///Provided by [`amd::shader_core_properties`](crate::amd::shader_core_properties)
 impl crate::vk::StructureType {
     pub const PHYSICAL_DEVICE_SHADER_CORE_PROPERTIES_AMD: Self = Self(1000185000);

@@ -43,12 +43,18 @@ pub(crate) mod reexport {
         pub export_object_type: crate::vk::ExportMetalObjectTypeFlagBitsEXT,
         pub _marker: ::core::marker::PhantomData<&'a ()>,
     }
+    unsafe impl<'a> crate::TaggedStructure<'a> for ExportMetalObjectCreateInfoEXT<'a> {
+        const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::EXPORT_METAL_OBJECT_CREATE_INFO_EXT;
+    }
     #[repr(C)]
     #[derive(Clone, Copy)]
     pub struct ExportMetalObjectsInfoEXT<'a> {
         pub s_type: crate::vk::StructureType,
         pub p_next: *const core::ffi::c_void,
         pub _marker: ::core::marker::PhantomData<&'a ()>,
+    }
+    unsafe impl<'a> crate::TaggedStructure<'a> for ExportMetalObjectsInfoEXT<'a> {
+        const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::EXPORT_METAL_OBJECTS_INFO_EXT;
     }
     #[repr(C)]
     #[derive(Clone, Copy)]
@@ -57,6 +63,9 @@ pub(crate) mod reexport {
         pub p_next: *const core::ffi::c_void,
         pub mtl_device: crate::platform_types::MTLDevice_id,
         pub _marker: ::core::marker::PhantomData<&'a ()>,
+    }
+    unsafe impl<'a> crate::TaggedStructure<'a> for ExportMetalDeviceInfoEXT<'a> {
+        const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::EXPORT_METAL_DEVICE_INFO_EXT;
     }
     #[repr(C)]
     #[derive(Clone, Copy)]
@@ -67,6 +76,9 @@ pub(crate) mod reexport {
         pub mtl_command_queue: crate::platform_types::MTLCommandQueue_id,
         pub _marker: ::core::marker::PhantomData<&'a ()>,
     }
+    unsafe impl<'a> crate::TaggedStructure<'a> for ExportMetalCommandQueueInfoEXT<'a> {
+        const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::EXPORT_METAL_COMMAND_QUEUE_INFO_EXT;
+    }
     #[repr(C)]
     #[derive(Clone, Copy)]
     pub struct ExportMetalBufferInfoEXT<'a> {
@@ -76,6 +88,9 @@ pub(crate) mod reexport {
         pub mtl_buffer: crate::platform_types::MTLBuffer_id,
         pub _marker: ::core::marker::PhantomData<&'a ()>,
     }
+    unsafe impl<'a> crate::TaggedStructure<'a> for ExportMetalBufferInfoEXT<'a> {
+        const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::EXPORT_METAL_BUFFER_INFO_EXT;
+    }
     #[repr(C)]
     #[derive(Clone, Copy)]
     pub struct ImportMetalBufferInfoEXT<'a> {
@@ -83,6 +98,9 @@ pub(crate) mod reexport {
         pub p_next: *const core::ffi::c_void,
         pub mtl_buffer: crate::platform_types::MTLBuffer_id,
         pub _marker: ::core::marker::PhantomData<&'a ()>,
+    }
+    unsafe impl<'a> crate::TaggedStructure<'a> for ImportMetalBufferInfoEXT<'a> {
+        const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::IMPORT_METAL_BUFFER_INFO_EXT;
     }
     #[repr(C)]
     #[derive(Clone, Copy)]
@@ -96,6 +114,9 @@ pub(crate) mod reexport {
         pub mtl_texture: crate::platform_types::MTLTexture_id,
         pub _marker: ::core::marker::PhantomData<&'a ()>,
     }
+    unsafe impl<'a> crate::TaggedStructure<'a> for ExportMetalTextureInfoEXT<'a> {
+        const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::EXPORT_METAL_TEXTURE_INFO_EXT;
+    }
     #[repr(C)]
     #[derive(Clone, Copy)]
     pub struct ImportMetalTextureInfoEXT<'a> {
@@ -104,6 +125,9 @@ pub(crate) mod reexport {
         pub plane: crate::vk::ImageAspectFlagBits,
         pub mtl_texture: crate::platform_types::MTLTexture_id,
         pub _marker: ::core::marker::PhantomData<&'a ()>,
+    }
+    unsafe impl<'a> crate::TaggedStructure<'a> for ImportMetalTextureInfoEXT<'a> {
+        const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::IMPORT_METAL_TEXTURE_INFO_EXT;
     }
     #[repr(C)]
     #[derive(Clone, Copy)]
@@ -114,6 +138,9 @@ pub(crate) mod reexport {
         pub io_surface: crate::platform_types::IOSurfaceRef,
         pub _marker: ::core::marker::PhantomData<&'a ()>,
     }
+    unsafe impl<'a> crate::TaggedStructure<'a> for ExportMetalIOSurfaceInfoEXT<'a> {
+        const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::EXPORT_METAL_IO_SURFACE_INFO_EXT;
+    }
     #[repr(C)]
     #[derive(Clone, Copy)]
     pub struct ImportMetalIOSurfaceInfoEXT<'a> {
@@ -121,6 +148,9 @@ pub(crate) mod reexport {
         pub p_next: *const core::ffi::c_void,
         pub io_surface: crate::platform_types::IOSurfaceRef,
         pub _marker: ::core::marker::PhantomData<&'a ()>,
+    }
+    unsafe impl<'a> crate::TaggedStructure<'a> for ImportMetalIOSurfaceInfoEXT<'a> {
+        const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::IMPORT_METAL_IO_SURFACE_INFO_EXT;
     }
     #[repr(C)]
     #[derive(Clone, Copy)]
@@ -132,6 +162,9 @@ pub(crate) mod reexport {
         pub mtl_shared_event: crate::platform_types::MTLSharedEvent_id,
         pub _marker: ::core::marker::PhantomData<&'a ()>,
     }
+    unsafe impl<'a> crate::TaggedStructure<'a> for ExportMetalSharedEventInfoEXT<'a> {
+        const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::EXPORT_METAL_SHARED_EVENT_INFO_EXT;
+    }
     #[repr(C)]
     #[derive(Clone, Copy)]
     pub struct ImportMetalSharedEventInfoEXT<'a> {
@@ -139,6 +172,9 @@ pub(crate) mod reexport {
         pub p_next: *const core::ffi::c_void,
         pub mtl_shared_event: crate::platform_types::MTLSharedEvent_id,
         pub _marker: ::core::marker::PhantomData<&'a ()>,
+    }
+    unsafe impl<'a> crate::TaggedStructure<'a> for ImportMetalSharedEventInfoEXT<'a> {
+        const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::IMPORT_METAL_SHARED_EVENT_INFO_EXT;
     }
     ///Provided by [`ext::metal_objects`](crate::ext::metal_objects)
     impl crate::vk::StructureType {

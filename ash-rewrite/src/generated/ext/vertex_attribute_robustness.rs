@@ -9,6 +9,10 @@ pub struct PhysicalDeviceVertexAttributeRobustnessFeaturesEXT<'a> {
     pub vertex_attribute_robustness: crate::vk::Bool32,
     pub _marker: ::core::marker::PhantomData<&'a ()>,
 }
+unsafe impl<'a> crate::TaggedStructure<'a>
+for PhysicalDeviceVertexAttributeRobustnessFeaturesEXT<'a> {
+    const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::PHYSICAL_DEVICE_VERTEX_ATTRIBUTE_ROBUSTNESS_FEATURES_EXT;
+}
 ///Provided by [`ext::vertex_attribute_robustness`](crate::ext::vertex_attribute_robustness)
 impl crate::vk::StructureType {
     pub const PHYSICAL_DEVICE_VERTEX_ATTRIBUTE_ROBUSTNESS_FEATURES_EXT: Self = Self(

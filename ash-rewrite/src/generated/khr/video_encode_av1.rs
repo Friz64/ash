@@ -32,6 +32,9 @@ pub struct VideoEncodeAV1CapabilitiesKHR<'a> {
     pub std_syntax_flags: crate::vk::VideoEncodeAV1StdFlagsKHR,
     pub _marker: ::core::marker::PhantomData<&'a ()>,
 }
+unsafe impl<'a> crate::TaggedStructure<'a> for VideoEncodeAV1CapabilitiesKHR<'a> {
+    const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::VIDEO_ENCODE_AV1_CAPABILITIES_KHR;
+}
 #[repr(C)]
 #[derive(Clone, Copy)]
 pub struct VideoEncodeAV1QualityLevelPropertiesKHR<'a> {
@@ -54,6 +57,10 @@ pub struct VideoEncodeAV1QualityLevelPropertiesKHR<'a> {
     pub preferred_bidirectional_compound_reference_name_mask: u32,
     pub _marker: ::core::marker::PhantomData<&'a ()>,
 }
+unsafe impl<'a> crate::TaggedStructure<'a>
+for VideoEncodeAV1QualityLevelPropertiesKHR<'a> {
+    const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::VIDEO_ENCODE_AV1_QUALITY_LEVEL_PROPERTIES_KHR;
+}
 #[repr(C)]
 #[derive(Clone, Copy)]
 pub struct PhysicalDeviceVideoEncodeAV1FeaturesKHR<'a> {
@@ -61,6 +68,10 @@ pub struct PhysicalDeviceVideoEncodeAV1FeaturesKHR<'a> {
     pub p_next: *mut core::ffi::c_void,
     pub video_encode_av1: crate::vk::Bool32,
     pub _marker: ::core::marker::PhantomData<&'a ()>,
+}
+unsafe impl<'a> crate::TaggedStructure<'a>
+for PhysicalDeviceVideoEncodeAV1FeaturesKHR<'a> {
+    const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::PHYSICAL_DEVICE_VIDEO_ENCODE_AV1_FEATURES_KHR;
 }
 #[repr(C)]
 #[derive(Clone, Copy)]
@@ -70,6 +81,9 @@ pub struct VideoEncodeAV1SessionCreateInfoKHR<'a> {
     pub use_max_level: crate::vk::Bool32,
     pub max_level: crate::vk::AV1Level,
     pub _marker: ::core::marker::PhantomData<&'a ()>,
+}
+unsafe impl<'a> crate::TaggedStructure<'a> for VideoEncodeAV1SessionCreateInfoKHR<'a> {
+    const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::VIDEO_ENCODE_AV1_SESSION_CREATE_INFO_KHR;
 }
 #[repr(C)]
 #[derive(Clone, Copy)]
@@ -82,6 +96,10 @@ pub struct VideoEncodeAV1SessionParametersCreateInfoKHR<'a> {
     pub p_std_operating_points: *const crate::vk::EncodeAV1OperatingPointInfo,
     pub _marker: ::core::marker::PhantomData<&'a ()>,
 }
+unsafe impl<'a> crate::TaggedStructure<'a>
+for VideoEncodeAV1SessionParametersCreateInfoKHR<'a> {
+    const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::VIDEO_ENCODE_AV1_SESSION_PARAMETERS_CREATE_INFO_KHR;
+}
 #[repr(C)]
 #[derive(Clone, Copy)]
 pub struct VideoEncodeAV1DpbSlotInfoKHR<'a> {
@@ -89,6 +107,9 @@ pub struct VideoEncodeAV1DpbSlotInfoKHR<'a> {
     pub p_next: *const core::ffi::c_void,
     pub p_std_reference_info: *const crate::vk::EncodeAV1ReferenceInfo<'a>,
     pub _marker: ::core::marker::PhantomData<&'a ()>,
+}
+unsafe impl<'a> crate::TaggedStructure<'a> for VideoEncodeAV1DpbSlotInfoKHR<'a> {
+    const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::VIDEO_ENCODE_AV1_DPB_SLOT_INFO_KHR;
 }
 #[repr(C)]
 #[derive(Clone, Copy)]
@@ -105,6 +126,9 @@ pub struct VideoEncodeAV1PictureInfoKHR<'a> {
     pub generate_obu_extension_header: crate::vk::Bool32,
     pub _marker: ::core::marker::PhantomData<&'a ()>,
 }
+unsafe impl<'a> crate::TaggedStructure<'a> for VideoEncodeAV1PictureInfoKHR<'a> {
+    const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::VIDEO_ENCODE_AV1_PICTURE_INFO_KHR;
+}
 #[repr(C)]
 #[derive(Clone, Copy)]
 pub struct VideoEncodeAV1ProfileInfoKHR<'a> {
@@ -112,6 +136,9 @@ pub struct VideoEncodeAV1ProfileInfoKHR<'a> {
     pub p_next: *const core::ffi::c_void,
     pub std_profile: crate::vk::AV1Profile,
     pub _marker: ::core::marker::PhantomData<&'a ()>,
+}
+unsafe impl<'a> crate::TaggedStructure<'a> for VideoEncodeAV1ProfileInfoKHR<'a> {
+    const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::VIDEO_ENCODE_AV1_PROFILE_INFO_KHR;
 }
 #[repr(C)]
 #[derive(Clone, Copy)]
@@ -124,6 +151,9 @@ pub struct VideoEncodeAV1RateControlInfoKHR<'a> {
     pub consecutive_bipredictive_frame_count: u32,
     pub temporal_layer_count: u32,
     pub _marker: ::core::marker::PhantomData<&'a ()>,
+}
+unsafe impl<'a> crate::TaggedStructure<'a> for VideoEncodeAV1RateControlInfoKHR<'a> {
+    const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::VIDEO_ENCODE_AV1_RATE_CONTROL_INFO_KHR;
 }
 #[repr(C)]
 #[derive(Clone, Copy)]
@@ -150,6 +180,10 @@ pub struct VideoEncodeAV1GopRemainingFrameInfoKHR<'a> {
     pub gop_remaining_bipredictive: u32,
     pub _marker: ::core::marker::PhantomData<&'a ()>,
 }
+unsafe impl<'a> crate::TaggedStructure<'a>
+for VideoEncodeAV1GopRemainingFrameInfoKHR<'a> {
+    const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::VIDEO_ENCODE_AV1_GOP_REMAINING_FRAME_INFO_KHR;
+}
 #[repr(C)]
 #[derive(Clone, Copy)]
 pub struct VideoEncodeAV1RateControlLayerInfoKHR<'a> {
@@ -162,6 +196,10 @@ pub struct VideoEncodeAV1RateControlLayerInfoKHR<'a> {
     pub use_max_frame_size: crate::vk::Bool32,
     pub max_frame_size: crate::vk::VideoEncodeAV1FrameSizeKHR,
     pub _marker: ::core::marker::PhantomData<&'a ()>,
+}
+unsafe impl<'a> crate::TaggedStructure<'a>
+for VideoEncodeAV1RateControlLayerInfoKHR<'a> {
+    const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::VIDEO_ENCODE_AV1_RATE_CONTROL_LAYER_INFO_KHR;
 }
 ///Provided by [`khr::video_encode_av1`](crate::khr::video_encode_av1)
 impl crate::vk::StructureType {

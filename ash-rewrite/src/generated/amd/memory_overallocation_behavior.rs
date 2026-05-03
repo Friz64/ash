@@ -9,6 +9,10 @@ pub struct DeviceMemoryOverallocationCreateInfoAMD<'a> {
     pub overallocation_behavior: crate::vk::MemoryOverallocationBehaviorAMD,
     pub _marker: ::core::marker::PhantomData<&'a ()>,
 }
+unsafe impl<'a> crate::TaggedStructure<'a>
+for DeviceMemoryOverallocationCreateInfoAMD<'a> {
+    const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::DEVICE_MEMORY_OVERALLOCATION_CREATE_INFO_AMD;
+}
 ///Provided by [`amd::memory_overallocation_behavior`](crate::amd::memory_overallocation_behavior)
 impl crate::vk::StructureType {
     pub const DEVICE_MEMORY_OVERALLOCATION_CREATE_INFO_AMD: Self = Self(1000189000);

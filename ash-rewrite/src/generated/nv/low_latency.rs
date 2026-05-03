@@ -9,6 +9,9 @@ pub struct QueryLowLatencySupportNV<'a> {
     pub p_queried_low_latency_data: *mut core::ffi::c_void,
     pub _marker: ::core::marker::PhantomData<&'a ()>,
 }
+unsafe impl<'a> crate::TaggedStructure<'a> for QueryLowLatencySupportNV<'a> {
+    const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::QUERY_LOW_LATENCY_SUPPORT_NV;
+}
 ///Provided by [`nv::low_latency`](crate::nv::low_latency)
 impl crate::vk::StructureType {
     pub const QUERY_LOW_LATENCY_SUPPORT_NV: Self = Self(1000310000);

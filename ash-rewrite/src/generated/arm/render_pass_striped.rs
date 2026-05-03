@@ -9,6 +9,10 @@ pub struct PhysicalDeviceRenderPassStripedFeaturesARM<'a> {
     pub render_pass_striped: crate::vk::Bool32,
     pub _marker: ::core::marker::PhantomData<&'a ()>,
 }
+unsafe impl<'a> crate::TaggedStructure<'a>
+for PhysicalDeviceRenderPassStripedFeaturesARM<'a> {
+    const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::PHYSICAL_DEVICE_RENDER_PASS_STRIPED_FEATURES_ARM;
+}
 #[repr(C)]
 #[derive(Clone, Copy)]
 pub struct PhysicalDeviceRenderPassStripedPropertiesARM<'a> {
@@ -18,6 +22,10 @@ pub struct PhysicalDeviceRenderPassStripedPropertiesARM<'a> {
     pub max_render_pass_stripes: u32,
     pub _marker: ::core::marker::PhantomData<&'a ()>,
 }
+unsafe impl<'a> crate::TaggedStructure<'a>
+for PhysicalDeviceRenderPassStripedPropertiesARM<'a> {
+    const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::PHYSICAL_DEVICE_RENDER_PASS_STRIPED_PROPERTIES_ARM;
+}
 #[repr(C)]
 #[derive(Clone, Copy)]
 pub struct RenderPassStripeInfoARM<'a> {
@@ -25,6 +33,9 @@ pub struct RenderPassStripeInfoARM<'a> {
     pub p_next: *const core::ffi::c_void,
     pub stripe_area: crate::vk::Rect2D,
     pub _marker: ::core::marker::PhantomData<&'a ()>,
+}
+unsafe impl<'a> crate::TaggedStructure<'a> for RenderPassStripeInfoARM<'a> {
+    const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::RENDER_PASS_STRIPE_INFO_ARM;
 }
 #[repr(C)]
 #[derive(Clone, Copy)]
@@ -35,6 +46,9 @@ pub struct RenderPassStripeBeginInfoARM<'a> {
     pub p_stripe_infos: *const crate::vk::RenderPassStripeInfoARM<'a>,
     pub _marker: ::core::marker::PhantomData<&'a ()>,
 }
+unsafe impl<'a> crate::TaggedStructure<'a> for RenderPassStripeBeginInfoARM<'a> {
+    const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::RENDER_PASS_STRIPE_BEGIN_INFO_ARM;
+}
 #[repr(C)]
 #[derive(Clone, Copy)]
 pub struct RenderPassStripeSubmitInfoARM<'a> {
@@ -43,6 +57,9 @@ pub struct RenderPassStripeSubmitInfoARM<'a> {
     pub stripe_semaphore_info_count: u32,
     pub p_stripe_semaphore_infos: *const crate::vk::SemaphoreSubmitInfo<'a>,
     pub _marker: ::core::marker::PhantomData<&'a ()>,
+}
+unsafe impl<'a> crate::TaggedStructure<'a> for RenderPassStripeSubmitInfoARM<'a> {
+    const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::RENDER_PASS_STRIPE_SUBMIT_INFO_ARM;
 }
 ///Provided by [`arm::render_pass_striped`](crate::arm::render_pass_striped)
 impl crate::vk::StructureType {

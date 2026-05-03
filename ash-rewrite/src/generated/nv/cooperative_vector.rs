@@ -96,6 +96,10 @@ pub(crate) mod reexport {
         pub cooperative_vector_training: crate::vk::Bool32,
         pub _marker: ::core::marker::PhantomData<&'a ()>,
     }
+    unsafe impl<'a> crate::TaggedStructure<'a>
+    for PhysicalDeviceCooperativeVectorFeaturesNV<'a> {
+        const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::PHYSICAL_DEVICE_COOPERATIVE_VECTOR_FEATURES_NV;
+    }
     #[repr(C)]
     #[derive(Clone, Copy)]
     pub struct CooperativeVectorPropertiesNV<'a> {
@@ -109,6 +113,9 @@ pub(crate) mod reexport {
         pub transpose: crate::vk::Bool32,
         pub _marker: ::core::marker::PhantomData<&'a ()>,
     }
+    unsafe impl<'a> crate::TaggedStructure<'a> for CooperativeVectorPropertiesNV<'a> {
+        const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::COOPERATIVE_VECTOR_PROPERTIES_NV;
+    }
     #[repr(C)]
     #[derive(Clone, Copy)]
     pub struct PhysicalDeviceCooperativeVectorPropertiesNV<'a> {
@@ -119,6 +126,10 @@ pub(crate) mod reexport {
         pub cooperative_vector_training_float32_accumulation: crate::vk::Bool32,
         pub max_cooperative_vector_components: u32,
         pub _marker: ::core::marker::PhantomData<&'a ()>,
+    }
+    unsafe impl<'a> crate::TaggedStructure<'a>
+    for PhysicalDeviceCooperativeVectorPropertiesNV<'a> {
+        const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::PHYSICAL_DEVICE_COOPERATIVE_VECTOR_PROPERTIES_NV;
     }
     #[repr(C)]
     #[derive(Clone, Copy)]
@@ -138,6 +149,10 @@ pub(crate) mod reexport {
         pub dst_layout: crate::vk::CooperativeVectorMatrixLayoutNV,
         pub dst_stride: usize,
         pub _marker: ::core::marker::PhantomData<&'a ()>,
+    }
+    unsafe impl<'a> crate::TaggedStructure<'a>
+    for ConvertCooperativeVectorMatrixInfoNV<'a> {
+        const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::CONVERT_COOPERATIVE_VECTOR_MATRIX_INFO_NV;
     }
     ///Provided by [`nv::cooperative_vector`](crate::nv::cooperative_vector)
     impl crate::vk::StructureType {

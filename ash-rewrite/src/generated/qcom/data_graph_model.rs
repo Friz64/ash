@@ -19,6 +19,10 @@ pub struct DataGraphPipelineBuiltinModelCreateInfoQCOM<'a> {
     pub p_operation: *const crate::vk::PhysicalDeviceDataGraphOperationSupportARM,
     pub _marker: ::core::marker::PhantomData<&'a ()>,
 }
+unsafe impl<'a> crate::TaggedStructure<'a>
+for DataGraphPipelineBuiltinModelCreateInfoQCOM<'a> {
+    const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::DATA_GRAPH_PIPELINE_BUILTIN_MODEL_CREATE_INFO_QCOM;
+}
 #[repr(C)]
 #[derive(Clone, Copy)]
 pub struct PhysicalDeviceDataGraphModelFeaturesQCOM<'a> {
@@ -26,6 +30,10 @@ pub struct PhysicalDeviceDataGraphModelFeaturesQCOM<'a> {
     pub p_next: *mut core::ffi::c_void,
     pub data_graph_model: crate::vk::Bool32,
     pub _marker: ::core::marker::PhantomData<&'a ()>,
+}
+unsafe impl<'a> crate::TaggedStructure<'a>
+for PhysicalDeviceDataGraphModelFeaturesQCOM<'a> {
+    const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::PHYSICAL_DEVICE_DATA_GRAPH_MODEL_FEATURES_QCOM;
 }
 ///Provided by [`qcom::data_graph_model`](crate::qcom::data_graph_model)
 impl crate::vk::PipelineCacheHeaderVersion {

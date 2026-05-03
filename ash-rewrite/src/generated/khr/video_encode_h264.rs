@@ -21,6 +21,9 @@ pub struct VideoEncodeH264CapabilitiesKHR<'a> {
     pub std_syntax_flags: crate::vk::VideoEncodeH264StdFlagsKHR,
     pub _marker: ::core::marker::PhantomData<&'a ()>,
 }
+unsafe impl<'a> crate::TaggedStructure<'a> for VideoEncodeH264CapabilitiesKHR<'a> {
+    const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::VIDEO_ENCODE_H264_CAPABILITIES_KHR;
+}
 #[repr(C)]
 #[derive(Clone, Copy)]
 pub struct VideoEncodeH264QualityLevelPropertiesKHR<'a> {
@@ -37,6 +40,10 @@ pub struct VideoEncodeH264QualityLevelPropertiesKHR<'a> {
     pub preferred_std_entropy_coding_mode_flag: crate::vk::Bool32,
     pub _marker: ::core::marker::PhantomData<&'a ()>,
 }
+unsafe impl<'a> crate::TaggedStructure<'a>
+for VideoEncodeH264QualityLevelPropertiesKHR<'a> {
+    const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::VIDEO_ENCODE_H264_QUALITY_LEVEL_PROPERTIES_KHR;
+}
 #[repr(C)]
 #[derive(Clone, Copy)]
 pub struct VideoEncodeH264SessionCreateInfoKHR<'a> {
@@ -45,6 +52,9 @@ pub struct VideoEncodeH264SessionCreateInfoKHR<'a> {
     pub use_max_level_idc: crate::vk::Bool32,
     pub max_level_idc: crate::vk::H264LevelIdc,
     pub _marker: ::core::marker::PhantomData<&'a ()>,
+}
+unsafe impl<'a> crate::TaggedStructure<'a> for VideoEncodeH264SessionCreateInfoKHR<'a> {
+    const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::VIDEO_ENCODE_H264_SESSION_CREATE_INFO_KHR;
 }
 #[repr(C)]
 #[derive(Clone, Copy)]
@@ -56,6 +66,10 @@ pub struct VideoEncodeH264SessionParametersAddInfoKHR<'a> {
     pub std_pps_count: u32,
     pub p_std_pp_ss: *const crate::vk::H264PictureParameterSet<'a>,
     pub _marker: ::core::marker::PhantomData<&'a ()>,
+}
+unsafe impl<'a> crate::TaggedStructure<'a>
+for VideoEncodeH264SessionParametersAddInfoKHR<'a> {
+    const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::VIDEO_ENCODE_H264_SESSION_PARAMETERS_ADD_INFO_KHR;
 }
 #[repr(C)]
 #[derive(Clone, Copy)]
@@ -69,6 +83,10 @@ pub struct VideoEncodeH264SessionParametersCreateInfoKHR<'a> {
     >,
     pub _marker: ::core::marker::PhantomData<&'a ()>,
 }
+unsafe impl<'a> crate::TaggedStructure<'a>
+for VideoEncodeH264SessionParametersCreateInfoKHR<'a> {
+    const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::VIDEO_ENCODE_H264_SESSION_PARAMETERS_CREATE_INFO_KHR;
+}
 #[repr(C)]
 #[derive(Clone, Copy)]
 pub struct VideoEncodeH264SessionParametersGetInfoKHR<'a> {
@@ -80,6 +98,10 @@ pub struct VideoEncodeH264SessionParametersGetInfoKHR<'a> {
     pub std_pps_id: u32,
     pub _marker: ::core::marker::PhantomData<&'a ()>,
 }
+unsafe impl<'a> crate::TaggedStructure<'a>
+for VideoEncodeH264SessionParametersGetInfoKHR<'a> {
+    const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::VIDEO_ENCODE_H264_SESSION_PARAMETERS_GET_INFO_KHR;
+}
 #[repr(C)]
 #[derive(Clone, Copy)]
 pub struct VideoEncodeH264SessionParametersFeedbackInfoKHR<'a> {
@@ -89,6 +111,10 @@ pub struct VideoEncodeH264SessionParametersFeedbackInfoKHR<'a> {
     pub has_std_pps_overrides: crate::vk::Bool32,
     pub _marker: ::core::marker::PhantomData<&'a ()>,
 }
+unsafe impl<'a> crate::TaggedStructure<'a>
+for VideoEncodeH264SessionParametersFeedbackInfoKHR<'a> {
+    const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::VIDEO_ENCODE_H264_SESSION_PARAMETERS_FEEDBACK_INFO_KHR;
+}
 #[repr(C)]
 #[derive(Clone, Copy)]
 pub struct VideoEncodeH264DpbSlotInfoKHR<'a> {
@@ -96,6 +122,9 @@ pub struct VideoEncodeH264DpbSlotInfoKHR<'a> {
     pub p_next: *const core::ffi::c_void,
     pub p_std_reference_info: *const crate::vk::EncodeH264ReferenceInfo,
     pub _marker: ::core::marker::PhantomData<&'a ()>,
+}
+unsafe impl<'a> crate::TaggedStructure<'a> for VideoEncodeH264DpbSlotInfoKHR<'a> {
+    const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::VIDEO_ENCODE_H264_DPB_SLOT_INFO_KHR;
 }
 #[repr(C)]
 #[derive(Clone, Copy)]
@@ -108,6 +137,9 @@ pub struct VideoEncodeH264PictureInfoKHR<'a> {
     pub generate_prefix_nalu: crate::vk::Bool32,
     pub _marker: ::core::marker::PhantomData<&'a ()>,
 }
+unsafe impl<'a> crate::TaggedStructure<'a> for VideoEncodeH264PictureInfoKHR<'a> {
+    const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::VIDEO_ENCODE_H264_PICTURE_INFO_KHR;
+}
 #[repr(C)]
 #[derive(Clone, Copy)]
 pub struct VideoEncodeH264ProfileInfoKHR<'a> {
@@ -115,6 +147,9 @@ pub struct VideoEncodeH264ProfileInfoKHR<'a> {
     pub p_next: *const core::ffi::c_void,
     pub std_profile_idc: crate::vk::H264ProfileIdc,
     pub _marker: ::core::marker::PhantomData<&'a ()>,
+}
+unsafe impl<'a> crate::TaggedStructure<'a> for VideoEncodeH264ProfileInfoKHR<'a> {
+    const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::VIDEO_ENCODE_H264_PROFILE_INFO_KHR;
 }
 #[repr(C)]
 #[derive(Clone, Copy)]
@@ -124,6 +159,9 @@ pub struct VideoEncodeH264NaluSliceInfoKHR<'a> {
     pub constant_qp: i32,
     pub p_std_slice_header: *const crate::vk::EncodeH264SliceHeader<'a>,
     pub _marker: ::core::marker::PhantomData<&'a ()>,
+}
+unsafe impl<'a> crate::TaggedStructure<'a> for VideoEncodeH264NaluSliceInfoKHR<'a> {
+    const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::VIDEO_ENCODE_H264_NALU_SLICE_INFO_KHR;
 }
 #[repr(C)]
 #[derive(Clone, Copy)]
@@ -136,6 +174,9 @@ pub struct VideoEncodeH264RateControlInfoKHR<'a> {
     pub consecutive_b_frame_count: u32,
     pub temporal_layer_count: u32,
     pub _marker: ::core::marker::PhantomData<&'a ()>,
+}
+unsafe impl<'a> crate::TaggedStructure<'a> for VideoEncodeH264RateControlInfoKHR<'a> {
+    const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::VIDEO_ENCODE_H264_RATE_CONTROL_INFO_KHR;
 }
 #[repr(C)]
 #[derive(Clone, Copy)]
@@ -162,6 +203,10 @@ pub struct VideoEncodeH264GopRemainingFrameInfoKHR<'a> {
     pub gop_remaining_b: u32,
     pub _marker: ::core::marker::PhantomData<&'a ()>,
 }
+unsafe impl<'a> crate::TaggedStructure<'a>
+for VideoEncodeH264GopRemainingFrameInfoKHR<'a> {
+    const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::VIDEO_ENCODE_H264_GOP_REMAINING_FRAME_INFO_KHR;
+}
 #[repr(C)]
 #[derive(Clone, Copy)]
 pub struct VideoEncodeH264RateControlLayerInfoKHR<'a> {
@@ -174,6 +219,10 @@ pub struct VideoEncodeH264RateControlLayerInfoKHR<'a> {
     pub use_max_frame_size: crate::vk::Bool32,
     pub max_frame_size: crate::vk::VideoEncodeH264FrameSizeKHR,
     pub _marker: ::core::marker::PhantomData<&'a ()>,
+}
+unsafe impl<'a> crate::TaggedStructure<'a>
+for VideoEncodeH264RateControlLayerInfoKHR<'a> {
+    const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::VIDEO_ENCODE_H264_RATE_CONTROL_LAYER_INFO_KHR;
 }
 ///Provided by [`khr::video_encode_h264`](crate::khr::video_encode_h264)
 impl crate::vk::StructureType {

@@ -9,6 +9,10 @@ pub struct PhysicalDeviceDepthClampZeroOneFeaturesKHR<'a> {
     pub depth_clamp_zero_one: crate::vk::Bool32,
     pub _marker: ::core::marker::PhantomData<&'a ()>,
 }
+unsafe impl<'a> crate::TaggedStructure<'a>
+for PhysicalDeviceDepthClampZeroOneFeaturesKHR<'a> {
+    const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::PHYSICAL_DEVICE_DEPTH_CLAMP_ZERO_ONE_FEATURES_KHR;
+}
 ///Provided by [`khr::depth_clamp_zero_one`](crate::khr::depth_clamp_zero_one)
 impl crate::vk::StructureType {
     pub const PHYSICAL_DEVICE_DEPTH_CLAMP_ZERO_ONE_FEATURES_KHR: Self = Self(1000421000);

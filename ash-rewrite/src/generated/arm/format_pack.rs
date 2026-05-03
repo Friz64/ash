@@ -9,6 +9,9 @@ pub struct PhysicalDeviceFormatPackFeaturesARM<'a> {
     pub format_pack: crate::vk::Bool32,
     pub _marker: ::core::marker::PhantomData<&'a ()>,
 }
+unsafe impl<'a> crate::TaggedStructure<'a> for PhysicalDeviceFormatPackFeaturesARM<'a> {
+    const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::PHYSICAL_DEVICE_FORMAT_PACK_FEATURES_ARM;
+}
 ///Provided by [`arm::format_pack`](crate::arm::format_pack)
 impl crate::vk::Format {
     pub const R10X6_UINT_PACK16_ARM: Self = Self(1000609000);

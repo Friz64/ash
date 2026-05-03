@@ -9,6 +9,9 @@ pub struct PushConstantBankInfoNV<'a> {
     pub bank: u32,
     pub _marker: ::core::marker::PhantomData<&'a ()>,
 }
+unsafe impl<'a> crate::TaggedStructure<'a> for PushConstantBankInfoNV<'a> {
+    const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::PUSH_CONSTANT_BANK_INFO_NV;
+}
 #[repr(C)]
 #[derive(Clone, Copy)]
 pub struct PhysicalDevicePushConstantBankFeaturesNV<'a> {
@@ -16,6 +19,10 @@ pub struct PhysicalDevicePushConstantBankFeaturesNV<'a> {
     pub p_next: *mut core::ffi::c_void,
     pub push_constant_bank: crate::vk::Bool32,
     pub _marker: ::core::marker::PhantomData<&'a ()>,
+}
+unsafe impl<'a> crate::TaggedStructure<'a>
+for PhysicalDevicePushConstantBankFeaturesNV<'a> {
+    const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::PHYSICAL_DEVICE_PUSH_CONSTANT_BANK_FEATURES_NV;
 }
 #[repr(C)]
 #[derive(Clone, Copy)]
@@ -27,6 +34,10 @@ pub struct PhysicalDevicePushConstantBankPropertiesNV<'a> {
     pub max_graphics_push_data_banks: u32,
     pub max_compute_push_data_banks: u32,
     pub _marker: ::core::marker::PhantomData<&'a ()>,
+}
+unsafe impl<'a> crate::TaggedStructure<'a>
+for PhysicalDevicePushConstantBankPropertiesNV<'a> {
+    const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::PHYSICAL_DEVICE_PUSH_CONSTANT_BANK_PROPERTIES_NV;
 }
 ///Provided by [`nv::push_constant_bank`](crate::nv::push_constant_bank)
 impl crate::vk::StructureType {

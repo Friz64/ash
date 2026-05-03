@@ -9,6 +9,10 @@ pub struct PhysicalDeviceYcbcr2Plane444FormatsFeaturesEXT<'a> {
     pub ycbcr2plane444_formats: crate::vk::Bool32,
     pub _marker: ::core::marker::PhantomData<&'a ()>,
 }
+unsafe impl<'a> crate::TaggedStructure<'a>
+for PhysicalDeviceYcbcr2Plane444FormatsFeaturesEXT<'a> {
+    const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::PHYSICAL_DEVICE_YCBCR_2_PLANE_444_FORMATS_FEATURES_EXT;
+}
 ///Provided by [`ext::ycbcr_2plane_444_formats`](crate::ext::ycbcr_2plane_444_formats)
 impl crate::vk::Format {
     pub const G8_B8R8_2PLANE_444_UNORM_EXT: Self = Self::G8_B8R8_2PLANE_444_UNORM;

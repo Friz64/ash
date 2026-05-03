@@ -61,6 +61,10 @@ pub(crate) mod reexport {
         pub tile_properties: crate::vk::Bool32,
         pub _marker: ::core::marker::PhantomData<&'a ()>,
     }
+    unsafe impl<'a> crate::TaggedStructure<'a>
+    for PhysicalDeviceTilePropertiesFeaturesQCOM<'a> {
+        const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::PHYSICAL_DEVICE_TILE_PROPERTIES_FEATURES_QCOM;
+    }
     #[repr(C)]
     #[derive(Clone, Copy)]
     pub struct TilePropertiesQCOM<'a> {
@@ -70,6 +74,9 @@ pub(crate) mod reexport {
         pub apron_size: crate::vk::Extent2D,
         pub origin: crate::vk::Offset2D,
         pub _marker: ::core::marker::PhantomData<&'a ()>,
+    }
+    unsafe impl<'a> crate::TaggedStructure<'a> for TilePropertiesQCOM<'a> {
+        const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::TILE_PROPERTIES_QCOM;
     }
     ///Provided by [`qcom::tile_properties`](crate::qcom::tile_properties)
     impl crate::vk::StructureType {

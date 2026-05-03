@@ -9,6 +9,10 @@ pub struct PhysicalDeviceExternalFormatResolveFeaturesANDROID<'a> {
     pub external_format_resolve: crate::vk::Bool32,
     pub _marker: ::core::marker::PhantomData<&'a ()>,
 }
+unsafe impl<'a> crate::TaggedStructure<'a>
+for PhysicalDeviceExternalFormatResolveFeaturesANDROID<'a> {
+    const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::PHYSICAL_DEVICE_EXTERNAL_FORMAT_RESOLVE_FEATURES_ANDROID;
+}
 #[repr(C)]
 #[derive(Clone, Copy)]
 pub struct PhysicalDeviceExternalFormatResolvePropertiesANDROID<'a> {
@@ -19,6 +23,10 @@ pub struct PhysicalDeviceExternalFormatResolvePropertiesANDROID<'a> {
     pub external_format_resolve_chroma_offset_y: crate::vk::ChromaLocation,
     pub _marker: ::core::marker::PhantomData<&'a ()>,
 }
+unsafe impl<'a> crate::TaggedStructure<'a>
+for PhysicalDeviceExternalFormatResolvePropertiesANDROID<'a> {
+    const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::PHYSICAL_DEVICE_EXTERNAL_FORMAT_RESOLVE_PROPERTIES_ANDROID;
+}
 #[repr(C)]
 #[derive(Clone, Copy)]
 pub struct AndroidHardwareBufferFormatResolvePropertiesANDROID<'a> {
@@ -26,6 +34,10 @@ pub struct AndroidHardwareBufferFormatResolvePropertiesANDROID<'a> {
     pub p_next: *mut core::ffi::c_void,
     pub color_attachment_format: crate::vk::Format,
     pub _marker: ::core::marker::PhantomData<&'a ()>,
+}
+unsafe impl<'a> crate::TaggedStructure<'a>
+for AndroidHardwareBufferFormatResolvePropertiesANDROID<'a> {
+    const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::ANDROID_HARDWARE_BUFFER_FORMAT_RESOLVE_PROPERTIES_ANDROID;
 }
 ///Provided by [`android::external_format_resolve`](crate::android::external_format_resolve)
 impl crate::vk::StructureType {

@@ -9,6 +9,9 @@ pub struct PhysicalDeviceRayQueryFeaturesKHR<'a> {
     pub ray_query: crate::vk::Bool32,
     pub _marker: ::core::marker::PhantomData<&'a ()>,
 }
+unsafe impl<'a> crate::TaggedStructure<'a> for PhysicalDeviceRayQueryFeaturesKHR<'a> {
+    const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::PHYSICAL_DEVICE_RAY_QUERY_FEATURES_KHR;
+}
 ///Provided by [`khr::ray_query`](crate::khr::ray_query)
 impl crate::vk::StructureType {
     pub const PHYSICAL_DEVICE_RAY_QUERY_FEATURES_KHR: Self = Self(1000348013);

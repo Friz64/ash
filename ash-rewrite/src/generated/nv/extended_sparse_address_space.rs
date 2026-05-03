@@ -9,6 +9,10 @@ pub struct PhysicalDeviceExtendedSparseAddressSpaceFeaturesNV<'a> {
     pub extended_sparse_address_space: crate::vk::Bool32,
     pub _marker: ::core::marker::PhantomData<&'a ()>,
 }
+unsafe impl<'a> crate::TaggedStructure<'a>
+for PhysicalDeviceExtendedSparseAddressSpaceFeaturesNV<'a> {
+    const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::PHYSICAL_DEVICE_EXTENDED_SPARSE_ADDRESS_SPACE_FEATURES_NV;
+}
 #[repr(C)]
 #[derive(Clone, Copy)]
 pub struct PhysicalDeviceExtendedSparseAddressSpacePropertiesNV<'a> {
@@ -18,6 +22,10 @@ pub struct PhysicalDeviceExtendedSparseAddressSpacePropertiesNV<'a> {
     pub extended_sparse_image_usage_flags: crate::vk::ImageUsageFlags,
     pub extended_sparse_buffer_usage_flags: crate::vk::BufferUsageFlags,
     pub _marker: ::core::marker::PhantomData<&'a ()>,
+}
+unsafe impl<'a> crate::TaggedStructure<'a>
+for PhysicalDeviceExtendedSparseAddressSpacePropertiesNV<'a> {
+    const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::PHYSICAL_DEVICE_EXTENDED_SPARSE_ADDRESS_SPACE_PROPERTIES_NV;
 }
 ///Provided by [`nv::extended_sparse_address_space`](crate::nv::extended_sparse_address_space)
 impl crate::vk::StructureType {

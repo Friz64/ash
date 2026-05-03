@@ -9,6 +9,10 @@ pub struct PhysicalDeviceMultisampledRenderToSingleSampledFeaturesEXT<'a> {
     pub multisampled_render_to_single_sampled: crate::vk::Bool32,
     pub _marker: ::core::marker::PhantomData<&'a ()>,
 }
+unsafe impl<'a> crate::TaggedStructure<'a>
+for PhysicalDeviceMultisampledRenderToSingleSampledFeaturesEXT<'a> {
+    const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::PHYSICAL_DEVICE_MULTISAMPLED_RENDER_TO_SINGLE_SAMPLED_FEATURES_EXT;
+}
 #[repr(C)]
 #[derive(Clone, Copy)]
 pub struct SubpassResolvePerformanceQueryEXT<'a> {
@@ -16,6 +20,9 @@ pub struct SubpassResolvePerformanceQueryEXT<'a> {
     pub p_next: *mut core::ffi::c_void,
     pub optimal: crate::vk::Bool32,
     pub _marker: ::core::marker::PhantomData<&'a ()>,
+}
+unsafe impl<'a> crate::TaggedStructure<'a> for SubpassResolvePerformanceQueryEXT<'a> {
+    const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::SUBPASS_RESOLVE_PERFORMANCE_QUERY_EXT;
 }
 #[repr(C)]
 #[derive(Clone, Copy)]
@@ -25,6 +32,10 @@ pub struct MultisampledRenderToSingleSampledInfoEXT<'a> {
     pub multisampled_render_to_single_sampled_enable: crate::vk::Bool32,
     pub rasterization_samples: crate::vk::SampleCountFlagBits,
     pub _marker: ::core::marker::PhantomData<&'a ()>,
+}
+unsafe impl<'a> crate::TaggedStructure<'a>
+for MultisampledRenderToSingleSampledInfoEXT<'a> {
+    const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::MULTISAMPLED_RENDER_TO_SINGLE_SAMPLED_INFO_EXT;
 }
 ///Provided by [`ext::multisampled_render_to_single_sampled`](crate::ext::multisampled_render_to_single_sampled)
 impl crate::vk::StructureType {

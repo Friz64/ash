@@ -87,6 +87,10 @@ pub(crate) mod reexport {
         pub mesh_shader_queries: crate::vk::Bool32,
         pub _marker: ::core::marker::PhantomData<&'a ()>,
     }
+    unsafe impl<'a> crate::TaggedStructure<'a>
+    for PhysicalDeviceMeshShaderFeaturesEXT<'a> {
+        const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::PHYSICAL_DEVICE_MESH_SHADER_FEATURES_EXT;
+    }
     #[repr(C)]
     #[derive(Clone, Copy)]
     pub struct PhysicalDeviceMeshShaderPropertiesEXT<'a> {
@@ -121,6 +125,10 @@ pub(crate) mod reexport {
         pub prefers_compact_vertex_output: crate::vk::Bool32,
         pub prefers_compact_primitive_output: crate::vk::Bool32,
         pub _marker: ::core::marker::PhantomData<&'a ()>,
+    }
+    unsafe impl<'a> crate::TaggedStructure<'a>
+    for PhysicalDeviceMeshShaderPropertiesEXT<'a> {
+        const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::PHYSICAL_DEVICE_MESH_SHADER_PROPERTIES_EXT;
     }
     #[repr(C)]
     #[derive(Clone, Copy)]

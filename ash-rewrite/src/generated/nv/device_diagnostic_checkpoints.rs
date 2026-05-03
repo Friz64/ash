@@ -75,6 +75,10 @@ pub(crate) mod reexport {
         pub checkpoint_execution_stage_mask: crate::vk::PipelineStageFlags,
         pub _marker: ::core::marker::PhantomData<&'a ()>,
     }
+    unsafe impl<'a> crate::TaggedStructure<'a>
+    for QueueFamilyCheckpointPropertiesNV<'a> {
+        const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::QUEUE_FAMILY_CHECKPOINT_PROPERTIES_NV;
+    }
     #[repr(C)]
     #[derive(Clone, Copy)]
     pub struct CheckpointDataNV<'a> {
@@ -84,6 +88,9 @@ pub(crate) mod reexport {
         pub p_checkpoint_marker: *mut core::ffi::c_void,
         pub _marker: ::core::marker::PhantomData<&'a ()>,
     }
+    unsafe impl<'a> crate::TaggedStructure<'a> for CheckpointDataNV<'a> {
+        const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::CHECKPOINT_DATA_NV;
+    }
     #[repr(C)]
     #[derive(Clone, Copy)]
     pub struct QueueFamilyCheckpointProperties2NV<'a> {
@@ -91,6 +98,10 @@ pub(crate) mod reexport {
         pub p_next: *mut core::ffi::c_void,
         pub checkpoint_execution_stage_mask: crate::vk::PipelineStageFlags2,
         pub _marker: ::core::marker::PhantomData<&'a ()>,
+    }
+    unsafe impl<'a> crate::TaggedStructure<'a>
+    for QueueFamilyCheckpointProperties2NV<'a> {
+        const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::QUEUE_FAMILY_CHECKPOINT_PROPERTIES_2_NV;
     }
     #[repr(C)]
     #[derive(Clone, Copy)]
@@ -100,6 +111,9 @@ pub(crate) mod reexport {
         pub stage: crate::vk::PipelineStageFlags2,
         pub p_checkpoint_marker: *mut core::ffi::c_void,
         pub _marker: ::core::marker::PhantomData<&'a ()>,
+    }
+    unsafe impl<'a> crate::TaggedStructure<'a> for CheckpointData2NV<'a> {
+        const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::CHECKPOINT_DATA_2_NV;
     }
     ///Provided by [`nv::device_diagnostic_checkpoints`](crate::nv::device_diagnostic_checkpoints)
     impl crate::vk::StructureType {

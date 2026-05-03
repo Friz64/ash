@@ -9,6 +9,10 @@ pub struct PhysicalDeviceShaderReplicatedCompositesFeaturesEXT<'a> {
     pub shader_replicated_composites: crate::vk::Bool32,
     pub _marker: ::core::marker::PhantomData<&'a ()>,
 }
+unsafe impl<'a> crate::TaggedStructure<'a>
+for PhysicalDeviceShaderReplicatedCompositesFeaturesEXT<'a> {
+    const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::PHYSICAL_DEVICE_SHADER_REPLICATED_COMPOSITES_FEATURES_EXT;
+}
 ///Provided by [`ext::shader_replicated_composites`](crate::ext::shader_replicated_composites)
 impl crate::vk::StructureType {
     pub const PHYSICAL_DEVICE_SHADER_REPLICATED_COMPOSITES_FEATURES_EXT: Self = Self(

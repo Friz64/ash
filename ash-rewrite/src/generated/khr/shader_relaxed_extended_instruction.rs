@@ -9,6 +9,10 @@ pub struct PhysicalDeviceShaderRelaxedExtendedInstructionFeaturesKHR<'a> {
     pub shader_relaxed_extended_instruction: crate::vk::Bool32,
     pub _marker: ::core::marker::PhantomData<&'a ()>,
 }
+unsafe impl<'a> crate::TaggedStructure<'a>
+for PhysicalDeviceShaderRelaxedExtendedInstructionFeaturesKHR<'a> {
+    const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::PHYSICAL_DEVICE_SHADER_RELAXED_EXTENDED_INSTRUCTION_FEATURES_KHR;
+}
 ///Provided by [`khr::shader_relaxed_extended_instruction`](crate::khr::shader_relaxed_extended_instruction)
 impl crate::vk::StructureType {
     pub const PHYSICAL_DEVICE_SHADER_RELAXED_EXTENDED_INSTRUCTION_FEATURES_KHR: Self = Self(

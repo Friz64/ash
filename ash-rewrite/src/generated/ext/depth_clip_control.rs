@@ -9,6 +9,10 @@ pub struct PhysicalDeviceDepthClipControlFeaturesEXT<'a> {
     pub depth_clip_control: crate::vk::Bool32,
     pub _marker: ::core::marker::PhantomData<&'a ()>,
 }
+unsafe impl<'a> crate::TaggedStructure<'a>
+for PhysicalDeviceDepthClipControlFeaturesEXT<'a> {
+    const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::PHYSICAL_DEVICE_DEPTH_CLIP_CONTROL_FEATURES_EXT;
+}
 #[repr(C)]
 #[derive(Clone, Copy)]
 pub struct PipelineViewportDepthClipControlCreateInfoEXT<'a> {
@@ -16,6 +20,10 @@ pub struct PipelineViewportDepthClipControlCreateInfoEXT<'a> {
     pub p_next: *const core::ffi::c_void,
     pub negative_one_to_one: crate::vk::Bool32,
     pub _marker: ::core::marker::PhantomData<&'a ()>,
+}
+unsafe impl<'a> crate::TaggedStructure<'a>
+for PipelineViewportDepthClipControlCreateInfoEXT<'a> {
+    const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::PIPELINE_VIEWPORT_DEPTH_CLIP_CONTROL_CREATE_INFO_EXT;
 }
 ///Provided by [`ext::depth_clip_control`](crate::ext::depth_clip_control)
 impl crate::vk::StructureType {

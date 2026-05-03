@@ -9,6 +9,10 @@ pub struct PhysicalDeviceImageCompressionControlSwapchainFeaturesEXT<'a> {
     pub image_compression_control_swapchain: crate::vk::Bool32,
     pub _marker: ::core::marker::PhantomData<&'a ()>,
 }
+unsafe impl<'a> crate::TaggedStructure<'a>
+for PhysicalDeviceImageCompressionControlSwapchainFeaturesEXT<'a> {
+    const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::PHYSICAL_DEVICE_IMAGE_COMPRESSION_CONTROL_SWAPCHAIN_FEATURES_EXT;
+}
 ///Provided by [`ext::image_compression_control_swapchain`](crate::ext::image_compression_control_swapchain)
 impl crate::vk::StructureType {
     pub const PHYSICAL_DEVICE_IMAGE_COMPRESSION_CONTROL_SWAPCHAIN_FEATURES_EXT: Self = Self(

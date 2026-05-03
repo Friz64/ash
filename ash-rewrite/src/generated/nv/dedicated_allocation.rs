@@ -9,6 +9,9 @@ pub struct DedicatedAllocationImageCreateInfoNV<'a> {
     pub dedicated_allocation: crate::vk::Bool32,
     pub _marker: ::core::marker::PhantomData<&'a ()>,
 }
+unsafe impl<'a> crate::TaggedStructure<'a> for DedicatedAllocationImageCreateInfoNV<'a> {
+    const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::DEDICATED_ALLOCATION_IMAGE_CREATE_INFO_NV;
+}
 #[repr(C)]
 #[derive(Clone, Copy)]
 pub struct DedicatedAllocationBufferCreateInfoNV<'a> {
@@ -16,6 +19,10 @@ pub struct DedicatedAllocationBufferCreateInfoNV<'a> {
     pub p_next: *const core::ffi::c_void,
     pub dedicated_allocation: crate::vk::Bool32,
     pub _marker: ::core::marker::PhantomData<&'a ()>,
+}
+unsafe impl<'a> crate::TaggedStructure<'a>
+for DedicatedAllocationBufferCreateInfoNV<'a> {
+    const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::DEDICATED_ALLOCATION_BUFFER_CREATE_INFO_NV;
 }
 #[repr(C)]
 #[derive(Clone, Copy)]
@@ -25,6 +32,10 @@ pub struct DedicatedAllocationMemoryAllocateInfoNV<'a> {
     pub image: crate::vk::Image,
     pub buffer: crate::vk::Buffer,
     pub _marker: ::core::marker::PhantomData<&'a ()>,
+}
+unsafe impl<'a> crate::TaggedStructure<'a>
+for DedicatedAllocationMemoryAllocateInfoNV<'a> {
+    const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::DEDICATED_ALLOCATION_MEMORY_ALLOCATE_INFO_NV;
 }
 ///Provided by [`nv::dedicated_allocation`](crate::nv::dedicated_allocation)
 impl crate::vk::StructureType {

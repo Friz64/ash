@@ -9,6 +9,10 @@ pub struct PhysicalDeviceShaderAtomicFloat16VectorFeaturesNV<'a> {
     pub shader_float16_vector_atomics: crate::vk::Bool32,
     pub _marker: ::core::marker::PhantomData<&'a ()>,
 }
+unsafe impl<'a> crate::TaggedStructure<'a>
+for PhysicalDeviceShaderAtomicFloat16VectorFeaturesNV<'a> {
+    const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::PHYSICAL_DEVICE_SHADER_ATOMIC_FLOAT16_VECTOR_FEATURES_NV;
+}
 ///Provided by [`nv::shader_atomic_float16_vector`](crate::nv::shader_atomic_float16_vector)
 impl crate::vk::StructureType {
     pub const PHYSICAL_DEVICE_SHADER_ATOMIC_FLOAT16_VECTOR_FEATURES_NV: Self = Self(

@@ -109,6 +109,10 @@ pub(crate) mod reexport {
         pub full_screen_exclusive: crate::vk::FullScreenExclusiveEXT,
         pub _marker: ::core::marker::PhantomData<&'a ()>,
     }
+    unsafe impl<'a> crate::TaggedStructure<'a>
+    for SurfaceFullScreenExclusiveInfoEXT<'a> {
+        const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::SURFACE_FULL_SCREEN_EXCLUSIVE_INFO_EXT;
+    }
     #[repr(C)]
     #[derive(Clone, Copy)]
     pub struct SurfaceFullScreenExclusiveWin32InfoEXT<'a> {
@@ -117,6 +121,10 @@ pub(crate) mod reexport {
         pub hmonitor: crate::platform_types::HMONITOR,
         pub _marker: ::core::marker::PhantomData<&'a ()>,
     }
+    unsafe impl<'a> crate::TaggedStructure<'a>
+    for SurfaceFullScreenExclusiveWin32InfoEXT<'a> {
+        const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::SURFACE_FULL_SCREEN_EXCLUSIVE_WIN32_INFO_EXT;
+    }
     #[repr(C)]
     #[derive(Clone, Copy)]
     pub struct SurfaceCapabilitiesFullScreenExclusiveEXT<'a> {
@@ -124,6 +132,10 @@ pub(crate) mod reexport {
         pub p_next: *mut core::ffi::c_void,
         pub full_screen_exclusive_supported: crate::vk::Bool32,
         pub _marker: ::core::marker::PhantomData<&'a ()>,
+    }
+    unsafe impl<'a> crate::TaggedStructure<'a>
+    for SurfaceCapabilitiesFullScreenExclusiveEXT<'a> {
+        const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::SURFACE_CAPABILITIES_FULL_SCREEN_EXCLUSIVE_EXT;
     }
     ///Provided by [`ext::full_screen_exclusive`](crate::ext::full_screen_exclusive)
     impl crate::vk::StructureType {

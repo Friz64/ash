@@ -9,6 +9,10 @@ pub struct PhysicalDeviceMaintenance7FeaturesKHR<'a> {
     pub maintenance7: crate::vk::Bool32,
     pub _marker: ::core::marker::PhantomData<&'a ()>,
 }
+unsafe impl<'a> crate::TaggedStructure<'a>
+for PhysicalDeviceMaintenance7FeaturesKHR<'a> {
+    const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::PHYSICAL_DEVICE_MAINTENANCE_7_FEATURES_KHR;
+}
 #[repr(C)]
 #[derive(Clone, Copy)]
 pub struct PhysicalDeviceMaintenance7PropertiesKHR<'a> {
@@ -24,6 +28,10 @@ pub struct PhysicalDeviceMaintenance7PropertiesKHR<'a> {
     pub max_descriptor_set_update_after_bind_total_buffers_dynamic: u32,
     pub _marker: ::core::marker::PhantomData<&'a ()>,
 }
+unsafe impl<'a> crate::TaggedStructure<'a>
+for PhysicalDeviceMaintenance7PropertiesKHR<'a> {
+    const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::PHYSICAL_DEVICE_MAINTENANCE_7_PROPERTIES_KHR;
+}
 #[repr(C)]
 #[derive(Clone, Copy)]
 pub struct PhysicalDeviceLayeredApiPropertiesListKHR<'a> {
@@ -32,6 +40,10 @@ pub struct PhysicalDeviceLayeredApiPropertiesListKHR<'a> {
     pub layered_api_count: u32,
     pub p_layered_apis: *mut crate::vk::PhysicalDeviceLayeredApiPropertiesKHR<'a>,
     pub _marker: ::core::marker::PhantomData<&'a ()>,
+}
+unsafe impl<'a> crate::TaggedStructure<'a>
+for PhysicalDeviceLayeredApiPropertiesListKHR<'a> {
+    const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::PHYSICAL_DEVICE_LAYERED_API_PROPERTIES_LIST_KHR;
 }
 #[repr(C)]
 #[derive(Clone, Copy)]
@@ -44,6 +56,10 @@ pub struct PhysicalDeviceLayeredApiPropertiesKHR<'a> {
     pub device_name: [core::ffi::c_char; crate::vk::MAX_PHYSICAL_DEVICE_NAME_SIZE as _],
     pub _marker: ::core::marker::PhantomData<&'a ()>,
 }
+unsafe impl<'a> crate::TaggedStructure<'a>
+for PhysicalDeviceLayeredApiPropertiesKHR<'a> {
+    const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::PHYSICAL_DEVICE_LAYERED_API_PROPERTIES_KHR;
+}
 #[repr(C)]
 #[derive(Clone, Copy)]
 pub struct PhysicalDeviceLayeredApiVulkanPropertiesKHR<'a> {
@@ -51,6 +67,10 @@ pub struct PhysicalDeviceLayeredApiVulkanPropertiesKHR<'a> {
     pub p_next: *mut core::ffi::c_void,
     pub properties: crate::vk::PhysicalDeviceProperties2<'a>,
     pub _marker: ::core::marker::PhantomData<&'a ()>,
+}
+unsafe impl<'a> crate::TaggedStructure<'a>
+for PhysicalDeviceLayeredApiVulkanPropertiesKHR<'a> {
+    const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::PHYSICAL_DEVICE_LAYERED_API_VULKAN_PROPERTIES_KHR;
 }
 ///Provided by [`khr::maintenance7`](crate::khr::maintenance7)
 impl crate::vk::StructureType {

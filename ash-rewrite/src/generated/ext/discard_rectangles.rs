@@ -75,6 +75,10 @@ pub(crate) mod reexport {
         pub max_discard_rectangles: u32,
         pub _marker: ::core::marker::PhantomData<&'a ()>,
     }
+    unsafe impl<'a> crate::TaggedStructure<'a>
+    for PhysicalDeviceDiscardRectanglePropertiesEXT<'a> {
+        const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::PHYSICAL_DEVICE_DISCARD_RECTANGLE_PROPERTIES_EXT;
+    }
     #[repr(C)]
     #[derive(Clone, Copy)]
     pub struct PipelineDiscardRectangleStateCreateInfoEXT<'a> {
@@ -85,6 +89,10 @@ pub(crate) mod reexport {
         pub discard_rectangle_count: u32,
         pub p_discard_rectangles: *const crate::vk::Rect2D,
         pub _marker: ::core::marker::PhantomData<&'a ()>,
+    }
+    unsafe impl<'a> crate::TaggedStructure<'a>
+    for PipelineDiscardRectangleStateCreateInfoEXT<'a> {
+        const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::PIPELINE_DISCARD_RECTANGLE_STATE_CREATE_INFO_EXT;
     }
     ///Provided by [`ext::discard_rectangles`](crate::ext::discard_rectangles)
     impl crate::vk::StructureType {

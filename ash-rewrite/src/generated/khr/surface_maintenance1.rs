@@ -9,6 +9,9 @@ pub struct SurfacePresentModeKHR<'a> {
     pub present_mode: crate::vk::PresentModeKHR,
     pub _marker: ::core::marker::PhantomData<&'a ()>,
 }
+unsafe impl<'a> crate::TaggedStructure<'a> for SurfacePresentModeKHR<'a> {
+    const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::SURFACE_PRESENT_MODE_KHR;
+}
 #[repr(C)]
 #[derive(Clone, Copy)]
 pub struct SurfacePresentScalingCapabilitiesKHR<'a> {
@@ -21,6 +24,9 @@ pub struct SurfacePresentScalingCapabilitiesKHR<'a> {
     pub max_scaled_image_extent: crate::vk::Extent2D,
     pub _marker: ::core::marker::PhantomData<&'a ()>,
 }
+unsafe impl<'a> crate::TaggedStructure<'a> for SurfacePresentScalingCapabilitiesKHR<'a> {
+    const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::SURFACE_PRESENT_SCALING_CAPABILITIES_KHR;
+}
 #[repr(C)]
 #[derive(Clone, Copy)]
 pub struct SurfacePresentModeCompatibilityKHR<'a> {
@@ -29,6 +35,9 @@ pub struct SurfacePresentModeCompatibilityKHR<'a> {
     pub present_mode_count: u32,
     pub p_present_modes: *mut crate::vk::PresentModeKHR,
     pub _marker: ::core::marker::PhantomData<&'a ()>,
+}
+unsafe impl<'a> crate::TaggedStructure<'a> for SurfacePresentModeCompatibilityKHR<'a> {
+    const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::SURFACE_PRESENT_MODE_COMPATIBILITY_KHR;
 }
 ///Provided by [`khr::surface_maintenance1`](crate::khr::surface_maintenance1)
 impl crate::vk::StructureType {

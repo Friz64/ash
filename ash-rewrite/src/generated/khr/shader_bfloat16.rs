@@ -11,6 +11,10 @@ pub struct PhysicalDeviceShaderBfloat16FeaturesKHR<'a> {
     pub shader_b_float16_cooperative_matrix: crate::vk::Bool32,
     pub _marker: ::core::marker::PhantomData<&'a ()>,
 }
+unsafe impl<'a> crate::TaggedStructure<'a>
+for PhysicalDeviceShaderBfloat16FeaturesKHR<'a> {
+    const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::PHYSICAL_DEVICE_SHADER_BFLOAT16_FEATURES_KHR;
+}
 ///Provided by [`khr::shader_bfloat16`](crate::khr::shader_bfloat16)
 impl crate::vk::StructureType {
     pub const PHYSICAL_DEVICE_SHADER_BFLOAT16_FEATURES_KHR: Self = Self(1000141000);

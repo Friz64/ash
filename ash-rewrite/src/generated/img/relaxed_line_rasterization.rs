@@ -9,6 +9,10 @@ pub struct PhysicalDeviceRelaxedLineRasterizationFeaturesIMG<'a> {
     pub relaxed_line_rasterization: crate::vk::Bool32,
     pub _marker: ::core::marker::PhantomData<&'a ()>,
 }
+unsafe impl<'a> crate::TaggedStructure<'a>
+for PhysicalDeviceRelaxedLineRasterizationFeaturesIMG<'a> {
+    const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::PHYSICAL_DEVICE_RELAXED_LINE_RASTERIZATION_FEATURES_IMG;
+}
 ///Provided by [`img::relaxed_line_rasterization`](crate::img::relaxed_line_rasterization)
 impl crate::vk::StructureType {
     pub const PHYSICAL_DEVICE_RELAXED_LINE_RASTERIZATION_FEATURES_IMG: Self = Self(

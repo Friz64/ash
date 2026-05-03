@@ -11,6 +11,10 @@ pub struct PhysicalDeviceMapMemoryPlacedFeaturesEXT<'a> {
     pub memory_unmap_reserve: crate::vk::Bool32,
     pub _marker: ::core::marker::PhantomData<&'a ()>,
 }
+unsafe impl<'a> crate::TaggedStructure<'a>
+for PhysicalDeviceMapMemoryPlacedFeaturesEXT<'a> {
+    const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::PHYSICAL_DEVICE_MAP_MEMORY_PLACED_FEATURES_EXT;
+}
 #[repr(C)]
 #[derive(Clone, Copy)]
 pub struct PhysicalDeviceMapMemoryPlacedPropertiesEXT<'a> {
@@ -19,6 +23,10 @@ pub struct PhysicalDeviceMapMemoryPlacedPropertiesEXT<'a> {
     pub min_placed_memory_map_alignment: crate::vk::DeviceSize,
     pub _marker: ::core::marker::PhantomData<&'a ()>,
 }
+unsafe impl<'a> crate::TaggedStructure<'a>
+for PhysicalDeviceMapMemoryPlacedPropertiesEXT<'a> {
+    const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::PHYSICAL_DEVICE_MAP_MEMORY_PLACED_PROPERTIES_EXT;
+}
 #[repr(C)]
 #[derive(Clone, Copy)]
 pub struct MemoryMapPlacedInfoEXT<'a> {
@@ -26,6 +34,9 @@ pub struct MemoryMapPlacedInfoEXT<'a> {
     pub p_next: *const core::ffi::c_void,
     pub p_placed_address: *mut core::ffi::c_void,
     pub _marker: ::core::marker::PhantomData<&'a ()>,
+}
+unsafe impl<'a> crate::TaggedStructure<'a> for MemoryMapPlacedInfoEXT<'a> {
+    const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::MEMORY_MAP_PLACED_INFO_EXT;
 }
 ///Provided by [`ext::map_memory_placed`](crate::ext::map_memory_placed)
 impl crate::vk::StructureType {

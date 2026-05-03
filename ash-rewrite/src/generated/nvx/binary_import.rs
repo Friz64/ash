@@ -110,6 +110,9 @@ pub(crate) mod reexport {
         pub p_data: *const core::ffi::c_void,
         pub _marker: ::core::marker::PhantomData<&'a ()>,
     }
+    unsafe impl<'a> crate::TaggedStructure<'a> for CuModuleCreateInfoNVX<'a> {
+        const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::CU_MODULE_CREATE_INFO_NVX;
+    }
     #[repr(C)]
     #[derive(Clone, Copy)]
     pub struct CuModuleTexturingModeCreateInfoNVX<'a> {
@@ -117,6 +120,10 @@ pub(crate) mod reexport {
         pub p_next: *const core::ffi::c_void,
         pub use64bit_texturing: crate::vk::Bool32,
         pub _marker: ::core::marker::PhantomData<&'a ()>,
+    }
+    unsafe impl<'a> crate::TaggedStructure<'a>
+    for CuModuleTexturingModeCreateInfoNVX<'a> {
+        const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::CU_MODULE_TEXTURING_MODE_CREATE_INFO_NVX;
     }
     #[repr(C)]
     #[derive(Clone, Copy)]
@@ -126,6 +133,9 @@ pub(crate) mod reexport {
         pub module: crate::vk::CuModuleNVX,
         pub p_name: *const core::ffi::c_char,
         pub _marker: ::core::marker::PhantomData<&'a ()>,
+    }
+    unsafe impl<'a> crate::TaggedStructure<'a> for CuFunctionCreateInfoNVX<'a> {
+        const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::CU_FUNCTION_CREATE_INFO_NVX;
     }
     #[repr(C)]
     #[derive(Clone, Copy)]
@@ -145,6 +155,9 @@ pub(crate) mod reexport {
         pub extra_count: usize,
         pub p_extras: *const *const core::ffi::c_void,
         pub _marker: ::core::marker::PhantomData<&'a ()>,
+    }
+    unsafe impl<'a> crate::TaggedStructure<'a> for CuLaunchInfoNVX<'a> {
+        const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::CU_LAUNCH_INFO_NVX;
     }
     ///Provided by [`nvx::binary_import`](crate::nvx::binary_import)
     impl crate::vk::StructureType {

@@ -127,6 +127,9 @@ pub(crate) mod reexport {
         pub p_data: *const core::ffi::c_void,
         pub _marker: ::core::marker::PhantomData<&'a ()>,
     }
+    unsafe impl<'a> crate::TaggedStructure<'a> for CudaModuleCreateInfoNV<'a> {
+        const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::CUDA_MODULE_CREATE_INFO_NV;
+    }
     #[repr(C)]
     #[derive(Clone, Copy)]
     pub struct CudaFunctionCreateInfoNV<'a> {
@@ -135,6 +138,9 @@ pub(crate) mod reexport {
         pub module: crate::vk::CudaModuleNV,
         pub p_name: *const core::ffi::c_char,
         pub _marker: ::core::marker::PhantomData<&'a ()>,
+    }
+    unsafe impl<'a> crate::TaggedStructure<'a> for CudaFunctionCreateInfoNV<'a> {
+        const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::CUDA_FUNCTION_CREATE_INFO_NV;
     }
     #[repr(C)]
     #[derive(Clone, Copy)]
@@ -155,6 +161,9 @@ pub(crate) mod reexport {
         pub p_extras: *const *const core::ffi::c_void,
         pub _marker: ::core::marker::PhantomData<&'a ()>,
     }
+    unsafe impl<'a> crate::TaggedStructure<'a> for CudaLaunchInfoNV<'a> {
+        const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::CUDA_LAUNCH_INFO_NV;
+    }
     #[repr(C)]
     #[derive(Clone, Copy)]
     pub struct PhysicalDeviceCudaKernelLaunchFeaturesNV<'a> {
@@ -162,6 +171,10 @@ pub(crate) mod reexport {
         pub p_next: *mut core::ffi::c_void,
         pub cuda_kernel_launch_features: crate::vk::Bool32,
         pub _marker: ::core::marker::PhantomData<&'a ()>,
+    }
+    unsafe impl<'a> crate::TaggedStructure<'a>
+    for PhysicalDeviceCudaKernelLaunchFeaturesNV<'a> {
+        const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::PHYSICAL_DEVICE_CUDA_KERNEL_LAUNCH_FEATURES_NV;
     }
     #[repr(C)]
     #[derive(Clone, Copy)]
@@ -171,6 +184,10 @@ pub(crate) mod reexport {
         pub compute_capability_minor: u32,
         pub compute_capability_major: u32,
         pub _marker: ::core::marker::PhantomData<&'a ()>,
+    }
+    unsafe impl<'a> crate::TaggedStructure<'a>
+    for PhysicalDeviceCudaKernelLaunchPropertiesNV<'a> {
+        const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::PHYSICAL_DEVICE_CUDA_KERNEL_LAUNCH_PROPERTIES_NV;
     }
     ///Provided by [`nv::cuda_kernel_launch`](crate::nv::cuda_kernel_launch)
     impl crate::vk::StructureType {

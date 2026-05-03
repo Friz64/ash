@@ -9,6 +9,10 @@ pub struct PhysicalDeviceTextureCompressionASTC3DFeaturesEXT<'a> {
     pub texture_compression_astc_3d: crate::vk::Bool32,
     pub _marker: ::core::marker::PhantomData<&'a ()>,
 }
+unsafe impl<'a> crate::TaggedStructure<'a>
+for PhysicalDeviceTextureCompressionASTC3DFeaturesEXT<'a> {
+    const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::PHYSICAL_DEVICE_TEXTURE_COMPRESSION_ASTC_3D_FEATURES_EXT;
+}
 ///Provided by [`ext::texture_compression_astc_3d`](crate::ext::texture_compression_astc_3d)
 impl crate::vk::Format {
     pub const ASTC_3X3X3_UNORM_BLOCK_EXT: Self = Self(1000288000);

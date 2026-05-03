@@ -81,6 +81,10 @@ pub(crate) mod reexport {
         pub pipeline_executable_info: crate::vk::Bool32,
         pub _marker: ::core::marker::PhantomData<&'a ()>,
     }
+    unsafe impl<'a> crate::TaggedStructure<'a>
+    for PhysicalDevicePipelineExecutablePropertiesFeaturesKHR<'a> {
+        const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::PHYSICAL_DEVICE_PIPELINE_EXECUTABLE_PROPERTIES_FEATURES_KHR;
+    }
     #[repr(C)]
     #[derive(Clone, Copy)]
     pub struct PipelineInfoKHR<'a> {
@@ -88,6 +92,9 @@ pub(crate) mod reexport {
         pub p_next: *const core::ffi::c_void,
         pub pipeline: crate::vk::Pipeline,
         pub _marker: ::core::marker::PhantomData<&'a ()>,
+    }
+    unsafe impl<'a> crate::TaggedStructure<'a> for PipelineInfoKHR<'a> {
+        const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::PIPELINE_INFO_KHR;
     }
     #[repr(C)]
     #[derive(Clone, Copy)]
@@ -100,6 +107,9 @@ pub(crate) mod reexport {
         pub subgroup_size: u32,
         pub _marker: ::core::marker::PhantomData<&'a ()>,
     }
+    unsafe impl<'a> crate::TaggedStructure<'a> for PipelineExecutablePropertiesKHR<'a> {
+        const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::PIPELINE_EXECUTABLE_PROPERTIES_KHR;
+    }
     #[repr(C)]
     #[derive(Clone, Copy)]
     pub struct PipelineExecutableInfoKHR<'a> {
@@ -108,6 +118,9 @@ pub(crate) mod reexport {
         pub pipeline: crate::vk::Pipeline,
         pub executable_index: u32,
         pub _marker: ::core::marker::PhantomData<&'a ()>,
+    }
+    unsafe impl<'a> crate::TaggedStructure<'a> for PipelineExecutableInfoKHR<'a> {
+        const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::PIPELINE_EXECUTABLE_INFO_KHR;
     }
     #[repr(C)]
     #[derive(Clone, Copy)]
@@ -120,6 +133,9 @@ pub(crate) mod reexport {
         pub value: crate::vk::PipelineExecutableStatisticValueKHR,
         pub _marker: ::core::marker::PhantomData<&'a ()>,
     }
+    unsafe impl<'a> crate::TaggedStructure<'a> for PipelineExecutableStatisticKHR<'a> {
+        const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::PIPELINE_EXECUTABLE_STATISTIC_KHR;
+    }
     #[repr(C)]
     #[derive(Clone, Copy)]
     pub struct PipelineExecutableInternalRepresentationKHR<'a> {
@@ -131,6 +147,10 @@ pub(crate) mod reexport {
         pub data_size: usize,
         pub p_data: *mut core::ffi::c_void,
         pub _marker: ::core::marker::PhantomData<&'a ()>,
+    }
+    unsafe impl<'a> crate::TaggedStructure<'a>
+    for PipelineExecutableInternalRepresentationKHR<'a> {
+        const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::PIPELINE_EXECUTABLE_INTERNAL_REPRESENTATION_KHR;
     }
     #[repr(C)]
     #[derive(Clone, Copy)]

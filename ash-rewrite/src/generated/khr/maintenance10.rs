@@ -45,6 +45,10 @@ pub(crate) mod reexport {
         pub resolve_srgb_format_supports_transfer_function_control: crate::vk::Bool32,
         pub _marker: ::core::marker::PhantomData<&'a ()>,
     }
+    unsafe impl<'a> crate::TaggedStructure<'a>
+    for PhysicalDeviceMaintenance10PropertiesKHR<'a> {
+        const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::PHYSICAL_DEVICE_MAINTENANCE_10_PROPERTIES_KHR;
+    }
     #[repr(C)]
     #[derive(Clone, Copy)]
     pub struct PhysicalDeviceMaintenance10FeaturesKHR<'a> {
@@ -53,12 +57,19 @@ pub(crate) mod reexport {
         pub maintenance10: crate::vk::Bool32,
         pub _marker: ::core::marker::PhantomData<&'a ()>,
     }
+    unsafe impl<'a> crate::TaggedStructure<'a>
+    for PhysicalDeviceMaintenance10FeaturesKHR<'a> {
+        const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::PHYSICAL_DEVICE_MAINTENANCE_10_FEATURES_KHR;
+    }
     #[repr(C)]
     #[derive(Clone, Copy)]
     pub struct RenderingEndInfoKHR<'a> {
         pub s_type: crate::vk::StructureType,
         pub p_next: *const core::ffi::c_void,
         pub _marker: ::core::marker::PhantomData<&'a ()>,
+    }
+    unsafe impl<'a> crate::TaggedStructure<'a> for RenderingEndInfoKHR<'a> {
+        const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::RENDERING_END_INFO_KHR;
     }
     #[repr(C)]
     #[derive(Clone, Copy)]
@@ -67,6 +78,9 @@ pub(crate) mod reexport {
         pub p_next: *const core::ffi::c_void,
         pub flags: crate::vk::RenderingAttachmentFlagsKHR,
         pub _marker: ::core::marker::PhantomData<&'a ()>,
+    }
+    unsafe impl<'a> crate::TaggedStructure<'a> for RenderingAttachmentFlagsInfoKHR<'a> {
+        const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::RENDERING_ATTACHMENT_FLAGS_INFO_KHR;
     }
     #[repr(C)]
     #[derive(Clone, Copy)]
@@ -77,6 +91,9 @@ pub(crate) mod reexport {
         pub resolve_mode: crate::vk::ResolveModeFlagBits,
         pub stencil_resolve_mode: crate::vk::ResolveModeFlagBits,
         pub _marker: ::core::marker::PhantomData<&'a ()>,
+    }
+    unsafe impl<'a> crate::TaggedStructure<'a> for ResolveImageModeInfoKHR<'a> {
+        const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::RESOLVE_IMAGE_MODE_INFO_KHR;
     }
     ///Provided by [`khr::maintenance10`](crate::khr::maintenance10)
     impl crate::vk::StructureType {

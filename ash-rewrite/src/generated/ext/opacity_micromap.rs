@@ -269,6 +269,9 @@ pub(crate) mod reexport {
         pub triangle_array_stride: crate::vk::DeviceSize,
         pub _marker: ::core::marker::PhantomData<&'a ()>,
     }
+    unsafe impl<'a> crate::TaggedStructure<'a> for MicromapBuildInfoEXT<'a> {
+        const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::MICROMAP_BUILD_INFO_EXT;
+    }
     #[repr(C)]
     #[derive(Clone, Copy)]
     pub struct MicromapCreateInfoEXT<'a> {
@@ -282,6 +285,9 @@ pub(crate) mod reexport {
         pub device_address: crate::vk::DeviceAddress,
         pub _marker: ::core::marker::PhantomData<&'a ()>,
     }
+    unsafe impl<'a> crate::TaggedStructure<'a> for MicromapCreateInfoEXT<'a> {
+        const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::MICROMAP_CREATE_INFO_EXT;
+    }
     #[repr(C)]
     #[derive(Clone, Copy)]
     pub struct MicromapVersionInfoEXT<'a> {
@@ -289,6 +295,9 @@ pub(crate) mod reexport {
         pub p_next: *const core::ffi::c_void,
         pub p_version_data: *const u8,
         pub _marker: ::core::marker::PhantomData<&'a ()>,
+    }
+    unsafe impl<'a> crate::TaggedStructure<'a> for MicromapVersionInfoEXT<'a> {
+        const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::MICROMAP_VERSION_INFO_EXT;
     }
     #[repr(C)]
     #[derive(Clone, Copy)]
@@ -300,6 +309,9 @@ pub(crate) mod reexport {
         pub mode: crate::vk::CopyMicromapModeEXT,
         pub _marker: ::core::marker::PhantomData<&'a ()>,
     }
+    unsafe impl<'a> crate::TaggedStructure<'a> for CopyMicromapInfoEXT<'a> {
+        const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::COPY_MICROMAP_INFO_EXT;
+    }
     #[repr(C)]
     #[derive(Clone, Copy)]
     pub struct CopyMicromapToMemoryInfoEXT<'a> {
@@ -309,6 +321,9 @@ pub(crate) mod reexport {
         pub dst: crate::vk::DeviceOrHostAddressKHR,
         pub mode: crate::vk::CopyMicromapModeEXT,
         pub _marker: ::core::marker::PhantomData<&'a ()>,
+    }
+    unsafe impl<'a> crate::TaggedStructure<'a> for CopyMicromapToMemoryInfoEXT<'a> {
+        const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::COPY_MICROMAP_TO_MEMORY_INFO_EXT;
     }
     #[repr(C)]
     #[derive(Clone, Copy)]
@@ -320,6 +335,9 @@ pub(crate) mod reexport {
         pub mode: crate::vk::CopyMicromapModeEXT,
         pub _marker: ::core::marker::PhantomData<&'a ()>,
     }
+    unsafe impl<'a> crate::TaggedStructure<'a> for CopyMemoryToMicromapInfoEXT<'a> {
+        const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::COPY_MEMORY_TO_MICROMAP_INFO_EXT;
+    }
     #[repr(C)]
     #[derive(Clone, Copy)]
     pub struct MicromapBuildSizesInfoEXT<'a> {
@@ -329,6 +347,9 @@ pub(crate) mod reexport {
         pub build_scratch_size: crate::vk::DeviceSize,
         pub discardable: crate::vk::Bool32,
         pub _marker: ::core::marker::PhantomData<&'a ()>,
+    }
+    unsafe impl<'a> crate::TaggedStructure<'a> for MicromapBuildSizesInfoEXT<'a> {
+        const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::MICROMAP_BUILD_SIZES_INFO_EXT;
     }
     #[repr(C)]
     #[derive(Clone, Copy)]
@@ -354,6 +375,10 @@ pub(crate) mod reexport {
         pub micromap_host_commands: crate::vk::Bool32,
         pub _marker: ::core::marker::PhantomData<&'a ()>,
     }
+    unsafe impl<'a> crate::TaggedStructure<'a>
+    for PhysicalDeviceOpacityMicromapFeaturesEXT<'a> {
+        const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::PHYSICAL_DEVICE_OPACITY_MICROMAP_FEATURES_EXT;
+    }
     #[repr(C)]
     #[derive(Clone, Copy)]
     pub struct PhysicalDeviceOpacityMicromapPropertiesEXT<'a> {
@@ -362,6 +387,10 @@ pub(crate) mod reexport {
         pub max_opacity2_state_subdivision_level: u32,
         pub max_opacity4_state_subdivision_level: u32,
         pub _marker: ::core::marker::PhantomData<&'a ()>,
+    }
+    unsafe impl<'a> crate::TaggedStructure<'a>
+    for PhysicalDeviceOpacityMicromapPropertiesEXT<'a> {
+        const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::PHYSICAL_DEVICE_OPACITY_MICROMAP_PROPERTIES_EXT;
     }
     #[repr(C)]
     #[derive(Clone, Copy)]
@@ -377,6 +406,10 @@ pub(crate) mod reexport {
         pub pp_usage_counts: *const *const crate::vk::MicromapUsageEXT,
         pub micromap: crate::vk::MicromapEXT,
         pub _marker: ::core::marker::PhantomData<&'a ()>,
+    }
+    unsafe impl<'a> crate::TaggedStructure<'a>
+    for AccelerationStructureTrianglesOpacityMicromapEXT<'a> {
+        const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::ACCELERATION_STRUCTURE_TRIANGLES_OPACITY_MICROMAP_EXT;
     }
     ///Provided by [`ext::opacity_micromap`](crate::ext::opacity_micromap)
     impl crate::vk::QueryType {

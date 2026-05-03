@@ -10,6 +10,10 @@ pub struct PhysicalDeviceShaderSMBuiltinsPropertiesNV<'a> {
     pub shader_warps_per_sm: u32,
     pub _marker: ::core::marker::PhantomData<&'a ()>,
 }
+unsafe impl<'a> crate::TaggedStructure<'a>
+for PhysicalDeviceShaderSMBuiltinsPropertiesNV<'a> {
+    const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::PHYSICAL_DEVICE_SHADER_SM_BUILTINS_PROPERTIES_NV;
+}
 #[repr(C)]
 #[derive(Clone, Copy)]
 pub struct PhysicalDeviceShaderSMBuiltinsFeaturesNV<'a> {
@@ -17,6 +21,10 @@ pub struct PhysicalDeviceShaderSMBuiltinsFeaturesNV<'a> {
     pub p_next: *mut core::ffi::c_void,
     pub shader_sm_builtins: crate::vk::Bool32,
     pub _marker: ::core::marker::PhantomData<&'a ()>,
+}
+unsafe impl<'a> crate::TaggedStructure<'a>
+for PhysicalDeviceShaderSMBuiltinsFeaturesNV<'a> {
+    const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::PHYSICAL_DEVICE_SHADER_SM_BUILTINS_FEATURES_NV;
 }
 ///Provided by [`nv::shader_sm_builtins`](crate::nv::shader_sm_builtins)
 impl crate::vk::StructureType {

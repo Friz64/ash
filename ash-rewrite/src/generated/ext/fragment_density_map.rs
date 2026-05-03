@@ -11,6 +11,10 @@ pub struct PhysicalDeviceFragmentDensityMapFeaturesEXT<'a> {
     pub fragment_density_map_non_subsampled_images: crate::vk::Bool32,
     pub _marker: ::core::marker::PhantomData<&'a ()>,
 }
+unsafe impl<'a> crate::TaggedStructure<'a>
+for PhysicalDeviceFragmentDensityMapFeaturesEXT<'a> {
+    const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::PHYSICAL_DEVICE_FRAGMENT_DENSITY_MAP_FEATURES_EXT;
+}
 #[repr(C)]
 #[derive(Clone, Copy)]
 pub struct PhysicalDeviceFragmentDensityMapPropertiesEXT<'a> {
@@ -21,6 +25,10 @@ pub struct PhysicalDeviceFragmentDensityMapPropertiesEXT<'a> {
     pub fragment_density_invocations: crate::vk::Bool32,
     pub _marker: ::core::marker::PhantomData<&'a ()>,
 }
+unsafe impl<'a> crate::TaggedStructure<'a>
+for PhysicalDeviceFragmentDensityMapPropertiesEXT<'a> {
+    const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::PHYSICAL_DEVICE_FRAGMENT_DENSITY_MAP_PROPERTIES_EXT;
+}
 #[repr(C)]
 #[derive(Clone, Copy)]
 pub struct RenderPassFragmentDensityMapCreateInfoEXT<'a> {
@@ -28,6 +36,10 @@ pub struct RenderPassFragmentDensityMapCreateInfoEXT<'a> {
     pub p_next: *const core::ffi::c_void,
     pub fragment_density_map_attachment: crate::vk::AttachmentReference,
     pub _marker: ::core::marker::PhantomData<&'a ()>,
+}
+unsafe impl<'a> crate::TaggedStructure<'a>
+for RenderPassFragmentDensityMapCreateInfoEXT<'a> {
+    const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::RENDER_PASS_FRAGMENT_DENSITY_MAP_CREATE_INFO_EXT;
 }
 #[repr(C)]
 #[derive(Clone, Copy)]
@@ -37,6 +49,10 @@ pub struct RenderingFragmentDensityMapAttachmentInfoEXT<'a> {
     pub image_view: crate::vk::ImageView,
     pub image_layout: crate::vk::ImageLayout,
     pub _marker: ::core::marker::PhantomData<&'a ()>,
+}
+unsafe impl<'a> crate::TaggedStructure<'a>
+for RenderingFragmentDensityMapAttachmentInfoEXT<'a> {
+    const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::RENDERING_FRAGMENT_DENSITY_MAP_ATTACHMENT_INFO_EXT;
 }
 ///Provided by [`ext::fragment_density_map`](crate::ext::fragment_density_map)
 impl crate::vk::ImageLayout {

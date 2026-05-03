@@ -9,6 +9,10 @@ pub struct PhysicalDeviceMultiviewPerViewViewportsFeaturesQCOM<'a> {
     pub multiview_per_view_viewports: crate::vk::Bool32,
     pub _marker: ::core::marker::PhantomData<&'a ()>,
 }
+unsafe impl<'a> crate::TaggedStructure<'a>
+for PhysicalDeviceMultiviewPerViewViewportsFeaturesQCOM<'a> {
+    const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::PHYSICAL_DEVICE_MULTIVIEW_PER_VIEW_VIEWPORTS_FEATURES_QCOM;
+}
 ///Provided by [`qcom::multiview_per_view_viewports`](crate::qcom::multiview_per_view_viewports)
 impl crate::vk::StructureType {
     pub const PHYSICAL_DEVICE_MULTIVIEW_PER_VIEW_VIEWPORTS_FEATURES_QCOM: Self = Self(

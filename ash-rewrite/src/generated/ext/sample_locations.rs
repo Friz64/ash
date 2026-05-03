@@ -86,6 +86,9 @@ pub(crate) mod reexport {
         pub p_sample_locations: *const crate::vk::SampleLocationEXT,
         pub _marker: ::core::marker::PhantomData<&'a ()>,
     }
+    unsafe impl<'a> crate::TaggedStructure<'a> for SampleLocationsInfoEXT<'a> {
+        const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::SAMPLE_LOCATIONS_INFO_EXT;
+    }
     #[repr(C)]
     #[derive(Clone, Copy)]
     pub struct AttachmentSampleLocationsEXT<'a> {
@@ -115,6 +118,10 @@ pub(crate) mod reexport {
         >,
         pub _marker: ::core::marker::PhantomData<&'a ()>,
     }
+    unsafe impl<'a> crate::TaggedStructure<'a>
+    for RenderPassSampleLocationsBeginInfoEXT<'a> {
+        const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::RENDER_PASS_SAMPLE_LOCATIONS_BEGIN_INFO_EXT;
+    }
     #[repr(C)]
     #[derive(Clone, Copy)]
     pub struct PipelineSampleLocationsStateCreateInfoEXT<'a> {
@@ -123,6 +130,10 @@ pub(crate) mod reexport {
         pub sample_locations_enable: crate::vk::Bool32,
         pub sample_locations_info: crate::vk::SampleLocationsInfoEXT<'a>,
         pub _marker: ::core::marker::PhantomData<&'a ()>,
+    }
+    unsafe impl<'a> crate::TaggedStructure<'a>
+    for PipelineSampleLocationsStateCreateInfoEXT<'a> {
+        const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::PIPELINE_SAMPLE_LOCATIONS_STATE_CREATE_INFO_EXT;
     }
     #[repr(C)]
     #[derive(Clone, Copy)]
@@ -136,6 +147,10 @@ pub(crate) mod reexport {
         pub variable_sample_locations: crate::vk::Bool32,
         pub _marker: ::core::marker::PhantomData<&'a ()>,
     }
+    unsafe impl<'a> crate::TaggedStructure<'a>
+    for PhysicalDeviceSampleLocationsPropertiesEXT<'a> {
+        const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::PHYSICAL_DEVICE_SAMPLE_LOCATIONS_PROPERTIES_EXT;
+    }
     #[repr(C)]
     #[derive(Clone, Copy)]
     pub struct MultisamplePropertiesEXT<'a> {
@@ -143,6 +158,9 @@ pub(crate) mod reexport {
         pub p_next: *mut core::ffi::c_void,
         pub max_sample_location_grid_size: crate::vk::Extent2D,
         pub _marker: ::core::marker::PhantomData<&'a ()>,
+    }
+    unsafe impl<'a> crate::TaggedStructure<'a> for MultisamplePropertiesEXT<'a> {
+        const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::MULTISAMPLE_PROPERTIES_EXT;
     }
     ///Provided by [`ext::sample_locations`](crate::ext::sample_locations)
     impl crate::vk::StructureType {

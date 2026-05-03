@@ -322,6 +322,9 @@ pub(crate) mod reexport {
         pub usage: crate::vk::BufferUsageFlags2,
         pub _marker: ::core::marker::PhantomData<&'a ()>,
     }
+    unsafe impl<'a> crate::TaggedStructure<'a> for BufferUsageFlags2CreateInfo<'a> {
+        const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::BUFFER_USAGE_FLAGS_2_CREATE_INFO;
+    }
     #[repr(C)]
     #[derive(Clone, Copy)]
     pub struct PipelineCreateFlags2CreateInfo<'a> {
@@ -329,6 +332,9 @@ pub(crate) mod reexport {
         pub p_next: *const core::ffi::c_void,
         pub flags: crate::vk::PipelineCreateFlags2,
         pub _marker: ::core::marker::PhantomData<&'a ()>,
+    }
+    unsafe impl<'a> crate::TaggedStructure<'a> for PipelineCreateFlags2CreateInfo<'a> {
+        const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::PIPELINE_CREATE_FLAGS_2_CREATE_INFO;
     }
     #[repr(C)]
     #[derive(Clone, Copy)]
@@ -338,6 +344,10 @@ pub(crate) mod reexport {
         pub max_push_descriptors: u32,
         pub _marker: ::core::marker::PhantomData<&'a ()>,
     }
+    unsafe impl<'a> crate::TaggedStructure<'a>
+    for PhysicalDevicePushDescriptorProperties<'a> {
+        const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::PHYSICAL_DEVICE_PUSH_DESCRIPTOR_PROPERTIES;
+    }
     #[repr(C)]
     #[derive(Clone, Copy)]
     pub struct PhysicalDeviceMaintenance5Features<'a> {
@@ -345,6 +355,10 @@ pub(crate) mod reexport {
         pub p_next: *mut core::ffi::c_void,
         pub maintenance5: crate::vk::Bool32,
         pub _marker: ::core::marker::PhantomData<&'a ()>,
+    }
+    unsafe impl<'a> crate::TaggedStructure<'a>
+    for PhysicalDeviceMaintenance5Features<'a> {
+        const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::PHYSICAL_DEVICE_MAINTENANCE_5_FEATURES;
     }
     #[repr(C)]
     #[derive(Clone, Copy)]
@@ -359,6 +373,10 @@ pub(crate) mod reexport {
         pub non_strict_wide_lines_use_parallelogram: crate::vk::Bool32,
         pub _marker: ::core::marker::PhantomData<&'a ()>,
     }
+    unsafe impl<'a> crate::TaggedStructure<'a>
+    for PhysicalDeviceMaintenance5Properties<'a> {
+        const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::PHYSICAL_DEVICE_MAINTENANCE_5_PROPERTIES;
+    }
     #[repr(C)]
     #[derive(Clone, Copy)]
     pub struct PhysicalDeviceMaintenance6Features<'a> {
@@ -366,6 +384,10 @@ pub(crate) mod reexport {
         pub p_next: *mut core::ffi::c_void,
         pub maintenance6: crate::vk::Bool32,
         pub _marker: ::core::marker::PhantomData<&'a ()>,
+    }
+    unsafe impl<'a> crate::TaggedStructure<'a>
+    for PhysicalDeviceMaintenance6Features<'a> {
+        const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::PHYSICAL_DEVICE_MAINTENANCE_6_FEATURES;
     }
     #[repr(C)]
     #[derive(Clone, Copy)]
@@ -376,6 +398,10 @@ pub(crate) mod reexport {
         pub max_combined_image_sampler_descriptor_count: u32,
         pub fragment_shading_rate_clamp_combiner_inputs: crate::vk::Bool32,
         pub _marker: ::core::marker::PhantomData<&'a ()>,
+    }
+    unsafe impl<'a> crate::TaggedStructure<'a>
+    for PhysicalDeviceMaintenance6Properties<'a> {
+        const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::PHYSICAL_DEVICE_MAINTENANCE_6_PROPERTIES;
     }
     #[repr(C)]
     #[derive(Clone, Copy)]
@@ -389,6 +415,9 @@ pub(crate) mod reexport {
         pub stencil_attachment_format: crate::vk::Format,
         pub _marker: ::core::marker::PhantomData<&'a ()>,
     }
+    unsafe impl<'a> crate::TaggedStructure<'a> for RenderingAreaInfo<'a> {
+        const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::RENDERING_AREA_INFO;
+    }
     #[repr(C)]
     #[derive(Clone, Copy)]
     pub struct DeviceQueueGlobalPriorityCreateInfo<'a> {
@@ -397,6 +426,10 @@ pub(crate) mod reexport {
         pub global_priority: crate::vk::QueueGlobalPriority,
         pub _marker: ::core::marker::PhantomData<&'a ()>,
     }
+    unsafe impl<'a> crate::TaggedStructure<'a>
+    for DeviceQueueGlobalPriorityCreateInfo<'a> {
+        const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::DEVICE_QUEUE_GLOBAL_PRIORITY_CREATE_INFO;
+    }
     #[repr(C)]
     #[derive(Clone, Copy)]
     pub struct PhysicalDeviceGlobalPriorityQueryFeatures<'a> {
@@ -404,6 +437,10 @@ pub(crate) mod reexport {
         pub p_next: *mut core::ffi::c_void,
         pub global_priority_query: crate::vk::Bool32,
         pub _marker: ::core::marker::PhantomData<&'a ()>,
+    }
+    unsafe impl<'a> crate::TaggedStructure<'a>
+    for PhysicalDeviceGlobalPriorityQueryFeatures<'a> {
+        const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::PHYSICAL_DEVICE_GLOBAL_PRIORITY_QUERY_FEATURES;
     }
     #[repr(C)]
     #[derive(Clone, Copy)]
@@ -414,6 +451,10 @@ pub(crate) mod reexport {
         pub priorities: [crate::vk::QueueGlobalPriority; crate::vk::MAX_GLOBAL_PRIORITY_SIZE
             as _],
         pub _marker: ::core::marker::PhantomData<&'a ()>,
+    }
+    unsafe impl<'a> crate::TaggedStructure<'a>
+    for QueueFamilyGlobalPriorityProperties<'a> {
+        const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::QUEUE_FAMILY_GLOBAL_PRIORITY_PROPERTIES;
     }
     #[repr(C)]
     #[derive(Clone, Copy)]
@@ -430,6 +471,10 @@ pub(crate) mod reexport {
         pub p_vertex_binding_divisors: *const crate::vk::VertexInputBindingDivisorDescription,
         pub _marker: ::core::marker::PhantomData<&'a ()>,
     }
+    unsafe impl<'a> crate::TaggedStructure<'a>
+    for PipelineVertexInputDivisorStateCreateInfo<'a> {
+        const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::PIPELINE_VERTEX_INPUT_DIVISOR_STATE_CREATE_INFO;
+    }
     #[repr(C)]
     #[derive(Clone, Copy)]
     pub struct PhysicalDeviceVertexAttributeDivisorProperties<'a> {
@@ -438,6 +483,10 @@ pub(crate) mod reexport {
         pub max_vertex_attrib_divisor: u32,
         pub supports_non_zero_first_instance: crate::vk::Bool32,
         pub _marker: ::core::marker::PhantomData<&'a ()>,
+    }
+    unsafe impl<'a> crate::TaggedStructure<'a>
+    for PhysicalDeviceVertexAttributeDivisorProperties<'a> {
+        const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::PHYSICAL_DEVICE_VERTEX_ATTRIBUTE_DIVISOR_PROPERTIES;
     }
     #[repr(C)]
     #[derive(Clone, Copy)]
@@ -448,6 +497,10 @@ pub(crate) mod reexport {
         pub vertex_attribute_instance_rate_zero_divisor: crate::vk::Bool32,
         pub _marker: ::core::marker::PhantomData<&'a ()>,
     }
+    unsafe impl<'a> crate::TaggedStructure<'a>
+    for PhysicalDeviceVertexAttributeDivisorFeatures<'a> {
+        const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::PHYSICAL_DEVICE_VERTEX_ATTRIBUTE_DIVISOR_FEATURES;
+    }
     #[repr(C)]
     #[derive(Clone, Copy)]
     pub struct PhysicalDeviceIndexTypeUint8Features<'a> {
@@ -455,6 +508,10 @@ pub(crate) mod reexport {
         pub p_next: *mut core::ffi::c_void,
         pub index_type_uint8: crate::vk::Bool32,
         pub _marker: ::core::marker::PhantomData<&'a ()>,
+    }
+    unsafe impl<'a> crate::TaggedStructure<'a>
+    for PhysicalDeviceIndexTypeUint8Features<'a> {
+        const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::PHYSICAL_DEVICE_INDEX_TYPE_UINT8_FEATURES;
     }
     #[repr(C)]
     #[derive(Clone, Copy)]
@@ -469,6 +526,10 @@ pub(crate) mod reexport {
         pub stippled_smooth_lines: crate::vk::Bool32,
         pub _marker: ::core::marker::PhantomData<&'a ()>,
     }
+    unsafe impl<'a> crate::TaggedStructure<'a>
+    for PhysicalDeviceLineRasterizationFeatures<'a> {
+        const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::PHYSICAL_DEVICE_LINE_RASTERIZATION_FEATURES;
+    }
     #[repr(C)]
     #[derive(Clone, Copy)]
     pub struct PhysicalDeviceLineRasterizationProperties<'a> {
@@ -476,6 +537,10 @@ pub(crate) mod reexport {
         pub p_next: *mut core::ffi::c_void,
         pub line_sub_pixel_precision_bits: u32,
         pub _marker: ::core::marker::PhantomData<&'a ()>,
+    }
+    unsafe impl<'a> crate::TaggedStructure<'a>
+    for PhysicalDeviceLineRasterizationProperties<'a> {
+        const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::PHYSICAL_DEVICE_LINE_RASTERIZATION_PROPERTIES;
     }
     #[repr(C)]
     #[derive(Clone, Copy)]
@@ -487,6 +552,10 @@ pub(crate) mod reexport {
         pub line_stipple_factor: u32,
         pub line_stipple_pattern: u16,
         pub _marker: ::core::marker::PhantomData<&'a ()>,
+    }
+    unsafe impl<'a> crate::TaggedStructure<'a>
+    for PipelineRasterizationLineStateCreateInfo<'a> {
+        const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::PIPELINE_RASTERIZATION_LINE_STATE_CREATE_INFO;
     }
     #[repr(C)]
     #[derive(Clone, Copy)]
@@ -515,6 +584,9 @@ pub(crate) mod reexport {
         pub host_image_copy: crate::vk::Bool32,
         pub push_descriptor: crate::vk::Bool32,
         pub _marker: ::core::marker::PhantomData<&'a ()>,
+    }
+    unsafe impl<'a> crate::TaggedStructure<'a> for PhysicalDeviceVulkan14Features<'a> {
+        const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::PHYSICAL_DEVICE_VULKAN_1_4_FEATURES;
     }
     #[repr(C)]
     #[derive(Clone, Copy)]
@@ -548,6 +620,9 @@ pub(crate) mod reexport {
         pub identical_memory_type_requirements: crate::vk::Bool32,
         pub _marker: ::core::marker::PhantomData<&'a ()>,
     }
+    unsafe impl<'a> crate::TaggedStructure<'a> for PhysicalDeviceVulkan14Properties<'a> {
+        const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::PHYSICAL_DEVICE_VULKAN_1_4_PROPERTIES;
+    }
     #[repr(C)]
     #[derive(Clone, Copy)]
     pub struct PhysicalDeviceHostImageCopyFeatures<'a> {
@@ -555,6 +630,10 @@ pub(crate) mod reexport {
         pub p_next: *mut core::ffi::c_void,
         pub host_image_copy: crate::vk::Bool32,
         pub _marker: ::core::marker::PhantomData<&'a ()>,
+    }
+    unsafe impl<'a> crate::TaggedStructure<'a>
+    for PhysicalDeviceHostImageCopyFeatures<'a> {
+        const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::PHYSICAL_DEVICE_HOST_IMAGE_COPY_FEATURES;
     }
     #[repr(C)]
     #[derive(Clone, Copy)]
@@ -569,6 +648,10 @@ pub(crate) mod reexport {
         pub identical_memory_type_requirements: crate::vk::Bool32,
         pub _marker: ::core::marker::PhantomData<&'a ()>,
     }
+    unsafe impl<'a> crate::TaggedStructure<'a>
+    for PhysicalDeviceHostImageCopyProperties<'a> {
+        const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::PHYSICAL_DEVICE_HOST_IMAGE_COPY_PROPERTIES;
+    }
     #[repr(C)]
     #[derive(Clone, Copy)]
     pub struct MemoryToImageCopy<'a> {
@@ -581,6 +664,9 @@ pub(crate) mod reexport {
         pub image_offset: crate::vk::Offset3D,
         pub image_extent: crate::vk::Extent3D,
         pub _marker: ::core::marker::PhantomData<&'a ()>,
+    }
+    unsafe impl<'a> crate::TaggedStructure<'a> for MemoryToImageCopy<'a> {
+        const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::MEMORY_TO_IMAGE_COPY;
     }
     #[repr(C)]
     #[derive(Clone, Copy)]
@@ -595,6 +681,9 @@ pub(crate) mod reexport {
         pub image_extent: crate::vk::Extent3D,
         pub _marker: ::core::marker::PhantomData<&'a ()>,
     }
+    unsafe impl<'a> crate::TaggedStructure<'a> for ImageToMemoryCopy<'a> {
+        const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::IMAGE_TO_MEMORY_COPY;
+    }
     #[repr(C)]
     #[derive(Clone, Copy)]
     pub struct CopyMemoryToImageInfo<'a> {
@@ -607,6 +696,9 @@ pub(crate) mod reexport {
         pub p_regions: *const crate::vk::MemoryToImageCopy<'a>,
         pub _marker: ::core::marker::PhantomData<&'a ()>,
     }
+    unsafe impl<'a> crate::TaggedStructure<'a> for CopyMemoryToImageInfo<'a> {
+        const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::COPY_MEMORY_TO_IMAGE_INFO;
+    }
     #[repr(C)]
     #[derive(Clone, Copy)]
     pub struct CopyImageToMemoryInfo<'a> {
@@ -618,6 +710,9 @@ pub(crate) mod reexport {
         pub region_count: u32,
         pub p_regions: *const crate::vk::ImageToMemoryCopy<'a>,
         pub _marker: ::core::marker::PhantomData<&'a ()>,
+    }
+    unsafe impl<'a> crate::TaggedStructure<'a> for CopyImageToMemoryInfo<'a> {
+        const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::COPY_IMAGE_TO_MEMORY_INFO;
     }
     #[repr(C)]
     #[derive(Clone, Copy)]
@@ -633,6 +728,9 @@ pub(crate) mod reexport {
         pub p_regions: *const crate::vk::ImageCopy2<'a>,
         pub _marker: ::core::marker::PhantomData<&'a ()>,
     }
+    unsafe impl<'a> crate::TaggedStructure<'a> for CopyImageToImageInfo<'a> {
+        const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::COPY_IMAGE_TO_IMAGE_INFO;
+    }
     #[repr(C)]
     #[derive(Clone, Copy)]
     pub struct HostImageLayoutTransitionInfo<'a> {
@@ -644,6 +742,9 @@ pub(crate) mod reexport {
         pub subresource_range: crate::vk::ImageSubresourceRange,
         pub _marker: ::core::marker::PhantomData<&'a ()>,
     }
+    unsafe impl<'a> crate::TaggedStructure<'a> for HostImageLayoutTransitionInfo<'a> {
+        const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::HOST_IMAGE_LAYOUT_TRANSITION_INFO;
+    }
     #[repr(C)]
     #[derive(Clone, Copy)]
     pub struct SubresourceHostMemcpySize<'a> {
@@ -651,6 +752,9 @@ pub(crate) mod reexport {
         pub p_next: *mut core::ffi::c_void,
         pub size: crate::vk::DeviceSize,
         pub _marker: ::core::marker::PhantomData<&'a ()>,
+    }
+    unsafe impl<'a> crate::TaggedStructure<'a> for SubresourceHostMemcpySize<'a> {
+        const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::SUBRESOURCE_HOST_MEMCPY_SIZE;
     }
     #[repr(C)]
     #[derive(Clone, Copy)]
@@ -661,6 +765,10 @@ pub(crate) mod reexport {
         pub identical_memory_layout: crate::vk::Bool32,
         pub _marker: ::core::marker::PhantomData<&'a ()>,
     }
+    unsafe impl<'a> crate::TaggedStructure<'a>
+    for HostImageCopyDevicePerformanceQuery<'a> {
+        const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::HOST_IMAGE_COPY_DEVICE_PERFORMANCE_QUERY;
+    }
     #[repr(C)]
     #[derive(Clone, Copy)]
     pub struct PhysicalDevicePipelineProtectedAccessFeatures<'a> {
@@ -668,6 +776,10 @@ pub(crate) mod reexport {
         pub p_next: *mut core::ffi::c_void,
         pub pipeline_protected_access: crate::vk::Bool32,
         pub _marker: ::core::marker::PhantomData<&'a ()>,
+    }
+    unsafe impl<'a> crate::TaggedStructure<'a>
+    for PhysicalDevicePipelineProtectedAccessFeatures<'a> {
+        const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::PHYSICAL_DEVICE_PIPELINE_PROTECTED_ACCESS_FEATURES;
     }
     #[repr(C)]
     #[derive(Clone, Copy)]
@@ -677,6 +789,9 @@ pub(crate) mod reexport {
         pub image_subresource: crate::vk::ImageSubresource,
         pub _marker: ::core::marker::PhantomData<&'a ()>,
     }
+    unsafe impl<'a> crate::TaggedStructure<'a> for ImageSubresource2<'a> {
+        const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::IMAGE_SUBRESOURCE_2;
+    }
     #[repr(C)]
     #[derive(Clone, Copy)]
     pub struct SubresourceLayout2<'a> {
@@ -685,6 +800,9 @@ pub(crate) mod reexport {
         pub subresource_layout: crate::vk::SubresourceLayout,
         pub _marker: ::core::marker::PhantomData<&'a ()>,
     }
+    unsafe impl<'a> crate::TaggedStructure<'a> for SubresourceLayout2<'a> {
+        const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::SUBRESOURCE_LAYOUT_2;
+    }
     #[repr(C)]
     #[derive(Clone, Copy)]
     pub struct PhysicalDevicePipelineRobustnessFeatures<'a> {
@@ -692,6 +810,10 @@ pub(crate) mod reexport {
         pub p_next: *mut core::ffi::c_void,
         pub pipeline_robustness: crate::vk::Bool32,
         pub _marker: ::core::marker::PhantomData<&'a ()>,
+    }
+    unsafe impl<'a> crate::TaggedStructure<'a>
+    for PhysicalDevicePipelineRobustnessFeatures<'a> {
+        const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::PHYSICAL_DEVICE_PIPELINE_ROBUSTNESS_FEATURES;
     }
     #[repr(C)]
     #[derive(Clone, Copy)]
@@ -704,6 +826,9 @@ pub(crate) mod reexport {
         pub images: crate::vk::PipelineRobustnessImageBehavior,
         pub _marker: ::core::marker::PhantomData<&'a ()>,
     }
+    unsafe impl<'a> crate::TaggedStructure<'a> for PipelineRobustnessCreateInfo<'a> {
+        const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::PIPELINE_ROBUSTNESS_CREATE_INFO;
+    }
     #[repr(C)]
     #[derive(Clone, Copy)]
     pub struct PhysicalDevicePipelineRobustnessProperties<'a> {
@@ -715,6 +840,10 @@ pub(crate) mod reexport {
         pub default_robustness_images: crate::vk::PipelineRobustnessImageBehavior,
         pub _marker: ::core::marker::PhantomData<&'a ()>,
     }
+    unsafe impl<'a> crate::TaggedStructure<'a>
+    for PhysicalDevicePipelineRobustnessProperties<'a> {
+        const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::PHYSICAL_DEVICE_PIPELINE_ROBUSTNESS_PROPERTIES;
+    }
     #[repr(C)]
     #[derive(Clone, Copy)]
     pub struct DeviceImageSubresourceInfo<'a> {
@@ -723,6 +852,9 @@ pub(crate) mod reexport {
         pub p_create_info: *const crate::vk::ImageCreateInfo<'a>,
         pub p_subresource: *const crate::vk::ImageSubresource2<'a>,
         pub _marker: ::core::marker::PhantomData<&'a ()>,
+    }
+    unsafe impl<'a> crate::TaggedStructure<'a> for DeviceImageSubresourceInfo<'a> {
+        const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::DEVICE_IMAGE_SUBRESOURCE_INFO;
     }
     #[repr(C)]
     #[derive(Clone, Copy)]
@@ -735,6 +867,9 @@ pub(crate) mod reexport {
         pub size: crate::vk::DeviceSize,
         pub _marker: ::core::marker::PhantomData<&'a ()>,
     }
+    unsafe impl<'a> crate::TaggedStructure<'a> for MemoryMapInfo<'a> {
+        const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::MEMORY_MAP_INFO;
+    }
     #[repr(C)]
     #[derive(Clone, Copy)]
     pub struct MemoryUnmapInfo<'a> {
@@ -744,6 +879,9 @@ pub(crate) mod reexport {
         pub memory: crate::vk::DeviceMemory,
         pub _marker: ::core::marker::PhantomData<&'a ()>,
     }
+    unsafe impl<'a> crate::TaggedStructure<'a> for MemoryUnmapInfo<'a> {
+        const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::MEMORY_UNMAP_INFO;
+    }
     #[repr(C)]
     #[derive(Clone, Copy)]
     pub struct BindMemoryStatus<'a> {
@@ -751,6 +889,9 @@ pub(crate) mod reexport {
         pub p_next: *const core::ffi::c_void,
         pub p_result: *mut crate::vk::Result,
         pub _marker: ::core::marker::PhantomData<&'a ()>,
+    }
+    unsafe impl<'a> crate::TaggedStructure<'a> for BindMemoryStatus<'a> {
+        const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::BIND_MEMORY_STATUS;
     }
     #[repr(C)]
     #[derive(Clone, Copy)]
@@ -766,6 +907,9 @@ pub(crate) mod reexport {
         pub p_dynamic_offsets: *const u32,
         pub _marker: ::core::marker::PhantomData<&'a ()>,
     }
+    unsafe impl<'a> crate::TaggedStructure<'a> for BindDescriptorSetsInfo<'a> {
+        const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::BIND_DESCRIPTOR_SETS_INFO;
+    }
     #[repr(C)]
     #[derive(Clone, Copy)]
     pub struct PushConstantsInfo<'a> {
@@ -777,6 +921,9 @@ pub(crate) mod reexport {
         pub size: u32,
         pub p_values: *const core::ffi::c_void,
         pub _marker: ::core::marker::PhantomData<&'a ()>,
+    }
+    unsafe impl<'a> crate::TaggedStructure<'a> for PushConstantsInfo<'a> {
+        const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::PUSH_CONSTANTS_INFO;
     }
     #[repr(C)]
     #[derive(Clone, Copy)]
@@ -790,6 +937,9 @@ pub(crate) mod reexport {
         pub p_descriptor_writes: *const crate::vk::WriteDescriptorSet<'a>,
         pub _marker: ::core::marker::PhantomData<&'a ()>,
     }
+    unsafe impl<'a> crate::TaggedStructure<'a> for PushDescriptorSetInfo<'a> {
+        const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::PUSH_DESCRIPTOR_SET_INFO;
+    }
     #[repr(C)]
     #[derive(Clone, Copy)]
     pub struct PushDescriptorSetWithTemplateInfo<'a> {
@@ -801,6 +951,10 @@ pub(crate) mod reexport {
         pub p_data: *const core::ffi::c_void,
         pub _marker: ::core::marker::PhantomData<&'a ()>,
     }
+    unsafe impl<'a> crate::TaggedStructure<'a>
+    for PushDescriptorSetWithTemplateInfo<'a> {
+        const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::PUSH_DESCRIPTOR_SET_WITH_TEMPLATE_INFO;
+    }
     #[repr(C)]
     #[derive(Clone, Copy)]
     pub struct PhysicalDeviceShaderSubgroupRotateFeatures<'a> {
@@ -810,6 +964,10 @@ pub(crate) mod reexport {
         pub shader_subgroup_rotate_clustered: crate::vk::Bool32,
         pub _marker: ::core::marker::PhantomData<&'a ()>,
     }
+    unsafe impl<'a> crate::TaggedStructure<'a>
+    for PhysicalDeviceShaderSubgroupRotateFeatures<'a> {
+        const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::PHYSICAL_DEVICE_SHADER_SUBGROUP_ROTATE_FEATURES;
+    }
     #[repr(C)]
     #[derive(Clone, Copy)]
     pub struct PhysicalDeviceShaderExpectAssumeFeatures<'a> {
@@ -817,6 +975,10 @@ pub(crate) mod reexport {
         pub p_next: *mut core::ffi::c_void,
         pub shader_expect_assume: crate::vk::Bool32,
         pub _marker: ::core::marker::PhantomData<&'a ()>,
+    }
+    unsafe impl<'a> crate::TaggedStructure<'a>
+    for PhysicalDeviceShaderExpectAssumeFeatures<'a> {
+        const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::PHYSICAL_DEVICE_SHADER_EXPECT_ASSUME_FEATURES;
     }
     #[repr(C)]
     #[derive(Clone, Copy)]
@@ -826,6 +988,10 @@ pub(crate) mod reexport {
         pub shader_float_controls2: crate::vk::Bool32,
         pub _marker: ::core::marker::PhantomData<&'a ()>,
     }
+    unsafe impl<'a> crate::TaggedStructure<'a>
+    for PhysicalDeviceShaderFloatControls2Features<'a> {
+        const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::PHYSICAL_DEVICE_SHADER_FLOAT_CONTROLS_2_FEATURES;
+    }
     #[repr(C)]
     #[derive(Clone, Copy)]
     pub struct PhysicalDeviceDynamicRenderingLocalReadFeatures<'a> {
@@ -833,6 +999,10 @@ pub(crate) mod reexport {
         pub p_next: *mut core::ffi::c_void,
         pub dynamic_rendering_local_read: crate::vk::Bool32,
         pub _marker: ::core::marker::PhantomData<&'a ()>,
+    }
+    unsafe impl<'a> crate::TaggedStructure<'a>
+    for PhysicalDeviceDynamicRenderingLocalReadFeatures<'a> {
+        const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::PHYSICAL_DEVICE_DYNAMIC_RENDERING_LOCAL_READ_FEATURES;
     }
     #[repr(C)]
     #[derive(Clone, Copy)]
@@ -842,6 +1012,9 @@ pub(crate) mod reexport {
         pub color_attachment_count: u32,
         pub p_color_attachment_locations: *const u32,
         pub _marker: ::core::marker::PhantomData<&'a ()>,
+    }
+    unsafe impl<'a> crate::TaggedStructure<'a> for RenderingAttachmentLocationInfo<'a> {
+        const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::RENDERING_ATTACHMENT_LOCATION_INFO;
     }
     #[repr(C)]
     #[derive(Clone, Copy)]
@@ -853,6 +1026,10 @@ pub(crate) mod reexport {
         pub p_depth_input_attachment_index: *const u32,
         pub p_stencil_input_attachment_index: *const u32,
         pub _marker: ::core::marker::PhantomData<&'a ()>,
+    }
+    unsafe impl<'a> crate::TaggedStructure<'a>
+    for RenderingInputAttachmentIndexInfo<'a> {
+        const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::RENDERING_INPUT_ATTACHMENT_INDEX_INFO;
     }
     ///Provided by [`vk1_4`](crate::vk1_4)
     impl crate::vk::ImageLayout {

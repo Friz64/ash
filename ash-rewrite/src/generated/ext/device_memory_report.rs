@@ -9,6 +9,10 @@ pub struct PhysicalDeviceDeviceMemoryReportFeaturesEXT<'a> {
     pub device_memory_report: crate::vk::Bool32,
     pub _marker: ::core::marker::PhantomData<&'a ()>,
 }
+unsafe impl<'a> crate::TaggedStructure<'a>
+for PhysicalDeviceDeviceMemoryReportFeaturesEXT<'a> {
+    const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::PHYSICAL_DEVICE_DEVICE_MEMORY_REPORT_FEATURES_EXT;
+}
 #[repr(C)]
 #[derive(Clone, Copy)]
 pub struct DeviceDeviceMemoryReportCreateInfoEXT<'a> {
@@ -18,6 +22,10 @@ pub struct DeviceDeviceMemoryReportCreateInfoEXT<'a> {
     pub pfn_user_callback: crate::vk::PFN_vkDeviceMemoryReportCallbackEXT,
     pub p_user_data: *mut core::ffi::c_void,
     pub _marker: ::core::marker::PhantomData<&'a ()>,
+}
+unsafe impl<'a> crate::TaggedStructure<'a>
+for DeviceDeviceMemoryReportCreateInfoEXT<'a> {
+    const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::DEVICE_DEVICE_MEMORY_REPORT_CREATE_INFO_EXT;
 }
 #[repr(C)]
 #[derive(Clone, Copy)]
@@ -32,6 +40,9 @@ pub struct DeviceMemoryReportCallbackDataEXT<'a> {
     pub object_handle: u64,
     pub heap_index: u32,
     pub _marker: ::core::marker::PhantomData<&'a ()>,
+}
+unsafe impl<'a> crate::TaggedStructure<'a> for DeviceMemoryReportCallbackDataEXT<'a> {
+    const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::DEVICE_MEMORY_REPORT_CALLBACK_DATA_EXT;
 }
 ///Provided by [`ext::device_memory_report`](crate::ext::device_memory_report)
 impl crate::vk::StructureType {

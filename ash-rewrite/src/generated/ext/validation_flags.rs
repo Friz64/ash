@@ -10,6 +10,9 @@ pub struct ValidationFlagsEXT<'a> {
     pub p_disabled_validation_checks: *const crate::vk::ValidationCheckEXT,
     pub _marker: ::core::marker::PhantomData<&'a ()>,
 }
+unsafe impl<'a> crate::TaggedStructure<'a> for ValidationFlagsEXT<'a> {
+    const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::VALIDATION_FLAGS_EXT;
+}
 ///Provided by [`ext::validation_flags`](crate::ext::validation_flags)
 impl crate::vk::StructureType {
     pub const VALIDATION_FLAGS_EXT: Self = Self(1000061000);

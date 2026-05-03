@@ -9,6 +9,10 @@ pub struct PhysicalDeviceInternallySynchronizedQueuesFeaturesKHR<'a> {
     pub internally_synchronized_queues: crate::vk::Bool32,
     pub _marker: ::core::marker::PhantomData<&'a ()>,
 }
+unsafe impl<'a> crate::TaggedStructure<'a>
+for PhysicalDeviceInternallySynchronizedQueuesFeaturesKHR<'a> {
+    const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::PHYSICAL_DEVICE_INTERNALLY_SYNCHRONIZED_QUEUES_FEATURES_KHR;
+}
 ///Provided by [`khr::internally_synchronized_queues`](crate::khr::internally_synchronized_queues)
 impl crate::vk::StructureType {
     pub const PHYSICAL_DEVICE_INTERNALLY_SYNCHRONIZED_QUEUES_FEATURES_KHR: Self = Self(

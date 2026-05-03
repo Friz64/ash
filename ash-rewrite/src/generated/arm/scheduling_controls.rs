@@ -43,6 +43,10 @@ pub(crate) mod reexport {
         pub shader_core_count: u32,
         pub _marker: ::core::marker::PhantomData<&'a ()>,
     }
+    unsafe impl<'a> crate::TaggedStructure<'a>
+    for DeviceQueueShaderCoreControlCreateInfoARM<'a> {
+        const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::DEVICE_QUEUE_SHADER_CORE_CONTROL_CREATE_INFO_ARM;
+    }
     #[repr(C)]
     #[derive(Clone, Copy)]
     pub struct PhysicalDeviceSchedulingControlsFeaturesARM<'a> {
@@ -51,6 +55,10 @@ pub(crate) mod reexport {
         pub scheduling_controls: crate::vk::Bool32,
         pub _marker: ::core::marker::PhantomData<&'a ()>,
     }
+    unsafe impl<'a> crate::TaggedStructure<'a>
+    for PhysicalDeviceSchedulingControlsFeaturesARM<'a> {
+        const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::PHYSICAL_DEVICE_SCHEDULING_CONTROLS_FEATURES_ARM;
+    }
     #[repr(C)]
     #[derive(Clone, Copy)]
     pub struct PhysicalDeviceSchedulingControlsPropertiesARM<'a> {
@@ -58,6 +66,10 @@ pub(crate) mod reexport {
         pub p_next: *mut core::ffi::c_void,
         pub scheduling_controls_flags: crate::vk::PhysicalDeviceSchedulingControlsFlagsARM,
         pub _marker: ::core::marker::PhantomData<&'a ()>,
+    }
+    unsafe impl<'a> crate::TaggedStructure<'a>
+    for PhysicalDeviceSchedulingControlsPropertiesARM<'a> {
+        const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::PHYSICAL_DEVICE_SCHEDULING_CONTROLS_PROPERTIES_ARM;
     }
     #[repr(C)]
     #[derive(Clone, Copy)]
@@ -69,6 +81,10 @@ pub(crate) mod reexport {
         pub scheduling_controls_max_work_group_batch_size: u32,
         pub _marker: ::core::marker::PhantomData<&'a ()>,
     }
+    unsafe impl<'a> crate::TaggedStructure<'a>
+    for PhysicalDeviceSchedulingControlsDispatchParametersPropertiesARM<'a> {
+        const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::PHYSICAL_DEVICE_SCHEDULING_CONTROLS_DISPATCH_PARAMETERS_PROPERTIES_ARM;
+    }
     #[repr(C)]
     #[derive(Clone, Copy)]
     pub struct DispatchParametersARM<'a> {
@@ -78,6 +94,9 @@ pub(crate) mod reexport {
         pub max_queued_work_group_batches: u32,
         pub max_warps_per_shader_core: u32,
         pub _marker: ::core::marker::PhantomData<&'a ()>,
+    }
+    unsafe impl<'a> crate::TaggedStructure<'a> for DispatchParametersARM<'a> {
+        const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::DISPATCH_PARAMETERS_ARM;
     }
     ///Provided by [`arm::scheduling_controls`](crate::arm::scheduling_controls)
     impl crate::vk::StructureType {

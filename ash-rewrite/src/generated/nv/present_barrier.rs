@@ -9,6 +9,10 @@ pub struct PhysicalDevicePresentBarrierFeaturesNV<'a> {
     pub present_barrier: crate::vk::Bool32,
     pub _marker: ::core::marker::PhantomData<&'a ()>,
 }
+unsafe impl<'a> crate::TaggedStructure<'a>
+for PhysicalDevicePresentBarrierFeaturesNV<'a> {
+    const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::PHYSICAL_DEVICE_PRESENT_BARRIER_FEATURES_NV;
+}
 #[repr(C)]
 #[derive(Clone, Copy)]
 pub struct SurfaceCapabilitiesPresentBarrierNV<'a> {
@@ -17,6 +21,9 @@ pub struct SurfaceCapabilitiesPresentBarrierNV<'a> {
     pub present_barrier_supported: crate::vk::Bool32,
     pub _marker: ::core::marker::PhantomData<&'a ()>,
 }
+unsafe impl<'a> crate::TaggedStructure<'a> for SurfaceCapabilitiesPresentBarrierNV<'a> {
+    const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::SURFACE_CAPABILITIES_PRESENT_BARRIER_NV;
+}
 #[repr(C)]
 #[derive(Clone, Copy)]
 pub struct SwapchainPresentBarrierCreateInfoNV<'a> {
@@ -24,6 +31,9 @@ pub struct SwapchainPresentBarrierCreateInfoNV<'a> {
     pub p_next: *mut core::ffi::c_void,
     pub present_barrier_enable: crate::vk::Bool32,
     pub _marker: ::core::marker::PhantomData<&'a ()>,
+}
+unsafe impl<'a> crate::TaggedStructure<'a> for SwapchainPresentBarrierCreateInfoNV<'a> {
+    const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::SWAPCHAIN_PRESENT_BARRIER_CREATE_INFO_NV;
 }
 ///Provided by [`nv::present_barrier`](crate::nv::present_barrier)
 impl crate::vk::StructureType {

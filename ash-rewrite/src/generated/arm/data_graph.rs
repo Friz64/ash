@@ -255,6 +255,10 @@ pub(crate) mod reexport {
         pub data_graph_shader_module: crate::vk::Bool32,
         pub _marker: ::core::marker::PhantomData<&'a ()>,
     }
+    unsafe impl<'a> crate::TaggedStructure<'a>
+    for PhysicalDeviceDataGraphFeaturesARM<'a> {
+        const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::PHYSICAL_DEVICE_DATA_GRAPH_FEATURES_ARM;
+    }
     #[repr(C)]
     #[derive(Clone, Copy)]
     pub struct DataGraphPipelineConstantTensorSemiStructuredSparsityInfoARM<'a> {
@@ -265,6 +269,10 @@ pub(crate) mod reexport {
         pub group_size: u32,
         pub _marker: ::core::marker::PhantomData<&'a ()>,
     }
+    unsafe impl<'a> crate::TaggedStructure<'a>
+    for DataGraphPipelineConstantTensorSemiStructuredSparsityInfoARM<'a> {
+        const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::DATA_GRAPH_PIPELINE_CONSTANT_TENSOR_SEMI_STRUCTURED_SPARSITY_INFO_ARM;
+    }
     #[repr(C)]
     #[derive(Clone, Copy)]
     pub struct DataGraphPipelineConstantARM<'a> {
@@ -273,6 +281,9 @@ pub(crate) mod reexport {
         pub id: u32,
         pub p_constant_data: *const core::ffi::c_void,
         pub _marker: ::core::marker::PhantomData<&'a ()>,
+    }
+    unsafe impl<'a> crate::TaggedStructure<'a> for DataGraphPipelineConstantARM<'a> {
+        const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::DATA_GRAPH_PIPELINE_CONSTANT_ARM;
     }
     #[repr(C)]
     #[derive(Clone, Copy)]
@@ -284,6 +295,9 @@ pub(crate) mod reexport {
         pub array_element: u32,
         pub _marker: ::core::marker::PhantomData<&'a ()>,
     }
+    unsafe impl<'a> crate::TaggedStructure<'a> for DataGraphPipelineResourceInfoARM<'a> {
+        const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::DATA_GRAPH_PIPELINE_RESOURCE_INFO_ARM;
+    }
     #[repr(C)]
     #[derive(Clone, Copy)]
     pub struct DataGraphPipelineCompilerControlCreateInfoARM<'a> {
@@ -291,6 +305,10 @@ pub(crate) mod reexport {
         pub p_next: *const core::ffi::c_void,
         pub p_vendor_options: *const core::ffi::c_char,
         pub _marker: ::core::marker::PhantomData<&'a ()>,
+    }
+    unsafe impl<'a> crate::TaggedStructure<'a>
+    for DataGraphPipelineCompilerControlCreateInfoARM<'a> {
+        const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::DATA_GRAPH_PIPELINE_COMPILER_CONTROL_CREATE_INFO_ARM;
     }
     #[repr(C)]
     #[derive(Clone, Copy)]
@@ -302,6 +320,9 @@ pub(crate) mod reexport {
         pub resource_info_count: u32,
         pub p_resource_infos: *const crate::vk::DataGraphPipelineResourceInfoARM<'a>,
         pub _marker: ::core::marker::PhantomData<&'a ()>,
+    }
+    unsafe impl<'a> crate::TaggedStructure<'a> for DataGraphPipelineCreateInfoARM<'a> {
+        const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::DATA_GRAPH_PIPELINE_CREATE_INFO_ARM;
     }
     #[repr(C)]
     #[derive(Clone, Copy)]
@@ -315,6 +336,10 @@ pub(crate) mod reexport {
         pub p_constants: *const crate::vk::DataGraphPipelineConstantARM<'a>,
         pub _marker: ::core::marker::PhantomData<&'a ()>,
     }
+    unsafe impl<'a> crate::TaggedStructure<'a>
+    for DataGraphPipelineShaderModuleCreateInfoARM<'a> {
+        const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::DATA_GRAPH_PIPELINE_SHADER_MODULE_CREATE_INFO_ARM;
+    }
     #[repr(C)]
     #[derive(Clone, Copy)]
     pub struct DataGraphPipelineSessionCreateInfoARM<'a> {
@@ -324,6 +349,10 @@ pub(crate) mod reexport {
         pub data_graph_pipeline: crate::vk::Pipeline,
         pub _marker: ::core::marker::PhantomData<&'a ()>,
     }
+    unsafe impl<'a> crate::TaggedStructure<'a>
+    for DataGraphPipelineSessionCreateInfoARM<'a> {
+        const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::DATA_GRAPH_PIPELINE_SESSION_CREATE_INFO_ARM;
+    }
     #[repr(C)]
     #[derive(Clone, Copy)]
     pub struct DataGraphPipelineSessionBindPointRequirementsInfoARM<'a> {
@@ -331,6 +360,10 @@ pub(crate) mod reexport {
         pub p_next: *const core::ffi::c_void,
         pub session: crate::vk::DataGraphPipelineSessionARM,
         pub _marker: ::core::marker::PhantomData<&'a ()>,
+    }
+    unsafe impl<'a> crate::TaggedStructure<'a>
+    for DataGraphPipelineSessionBindPointRequirementsInfoARM<'a> {
+        const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::DATA_GRAPH_PIPELINE_SESSION_BIND_POINT_REQUIREMENTS_INFO_ARM;
     }
     #[repr(C)]
     #[derive(Clone, Copy)]
@@ -342,6 +375,10 @@ pub(crate) mod reexport {
         pub num_objects: u32,
         pub _marker: ::core::marker::PhantomData<&'a ()>,
     }
+    unsafe impl<'a> crate::TaggedStructure<'a>
+    for DataGraphPipelineSessionBindPointRequirementARM<'a> {
+        const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::DATA_GRAPH_PIPELINE_SESSION_BIND_POINT_REQUIREMENT_ARM;
+    }
     #[repr(C)]
     #[derive(Clone, Copy)]
     pub struct DataGraphPipelineSessionMemoryRequirementsInfoARM<'a> {
@@ -351,6 +388,10 @@ pub(crate) mod reexport {
         pub bind_point: crate::vk::DataGraphPipelineSessionBindPointARM,
         pub object_index: u32,
         pub _marker: ::core::marker::PhantomData<&'a ()>,
+    }
+    unsafe impl<'a> crate::TaggedStructure<'a>
+    for DataGraphPipelineSessionMemoryRequirementsInfoARM<'a> {
+        const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::DATA_GRAPH_PIPELINE_SESSION_MEMORY_REQUIREMENTS_INFO_ARM;
     }
     #[repr(C)]
     #[derive(Clone, Copy)]
@@ -364,6 +405,10 @@ pub(crate) mod reexport {
         pub memory_offset: crate::vk::DeviceSize,
         pub _marker: ::core::marker::PhantomData<&'a ()>,
     }
+    unsafe impl<'a> crate::TaggedStructure<'a>
+    for BindDataGraphPipelineSessionMemoryInfoARM<'a> {
+        const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::BIND_DATA_GRAPH_PIPELINE_SESSION_MEMORY_INFO_ARM;
+    }
     #[repr(C)]
     #[derive(Clone, Copy)]
     pub struct DataGraphPipelineInfoARM<'a> {
@@ -371,6 +416,9 @@ pub(crate) mod reexport {
         pub p_next: *const core::ffi::c_void,
         pub data_graph_pipeline: crate::vk::Pipeline,
         pub _marker: ::core::marker::PhantomData<&'a ()>,
+    }
+    unsafe impl<'a> crate::TaggedStructure<'a> for DataGraphPipelineInfoARM<'a> {
+        const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::DATA_GRAPH_PIPELINE_INFO_ARM;
     }
     #[repr(C)]
     #[derive(Clone, Copy)]
@@ -383,6 +431,10 @@ pub(crate) mod reexport {
         pub p_data: *mut core::ffi::c_void,
         pub _marker: ::core::marker::PhantomData<&'a ()>,
     }
+    unsafe impl<'a> crate::TaggedStructure<'a>
+    for DataGraphPipelinePropertyQueryResultARM<'a> {
+        const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::DATA_GRAPH_PIPELINE_PROPERTY_QUERY_RESULT_ARM;
+    }
     #[repr(C)]
     #[derive(Clone, Copy)]
     pub struct DataGraphPipelineIdentifierCreateInfoARM<'a> {
@@ -392,6 +444,10 @@ pub(crate) mod reexport {
         pub p_identifier: *const u8,
         pub _marker: ::core::marker::PhantomData<&'a ()>,
     }
+    unsafe impl<'a> crate::TaggedStructure<'a>
+    for DataGraphPipelineIdentifierCreateInfoARM<'a> {
+        const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::DATA_GRAPH_PIPELINE_IDENTIFIER_CREATE_INFO_ARM;
+    }
     #[repr(C)]
     #[derive(Clone, Copy)]
     pub struct DataGraphPipelineDispatchInfoARM<'a> {
@@ -399,6 +455,9 @@ pub(crate) mod reexport {
         pub p_next: *mut core::ffi::c_void,
         pub flags: crate::vk::DataGraphPipelineDispatchFlagsARM,
         pub _marker: ::core::marker::PhantomData<&'a ()>,
+    }
+    unsafe impl<'a> crate::TaggedStructure<'a> for DataGraphPipelineDispatchInfoARM<'a> {
+        const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::DATA_GRAPH_PIPELINE_DISPATCH_INFO_ARM;
     }
     #[repr(C)]
     #[derive(Clone, Copy)]
@@ -423,6 +482,10 @@ pub(crate) mod reexport {
         pub operation: crate::vk::PhysicalDeviceDataGraphOperationSupportARM,
         pub _marker: ::core::marker::PhantomData<&'a ()>,
     }
+    unsafe impl<'a> crate::TaggedStructure<'a>
+    for QueueFamilyDataGraphPropertiesARM<'a> {
+        const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::QUEUE_FAMILY_DATA_GRAPH_PROPERTIES_ARM;
+    }
     #[repr(C)]
     #[derive(Clone, Copy)]
     pub struct PhysicalDeviceQueueFamilyDataGraphProcessingEngineInfoARM<'a> {
@@ -431,6 +494,10 @@ pub(crate) mod reexport {
         pub queue_family_index: u32,
         pub engine_type: crate::vk::PhysicalDeviceDataGraphProcessingEngineTypeARM,
         pub _marker: ::core::marker::PhantomData<&'a ()>,
+    }
+    unsafe impl<'a> crate::TaggedStructure<'a>
+    for PhysicalDeviceQueueFamilyDataGraphProcessingEngineInfoARM<'a> {
+        const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::PHYSICAL_DEVICE_QUEUE_FAMILY_DATA_GRAPH_PROCESSING_ENGINE_INFO_ARM;
     }
     #[repr(C)]
     #[derive(Clone, Copy)]
@@ -441,6 +508,10 @@ pub(crate) mod reexport {
         pub foreign_memory_handle_types: crate::vk::ExternalMemoryHandleTypeFlags,
         pub _marker: ::core::marker::PhantomData<&'a ()>,
     }
+    unsafe impl<'a> crate::TaggedStructure<'a>
+    for QueueFamilyDataGraphProcessingEnginePropertiesARM<'a> {
+        const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::QUEUE_FAMILY_DATA_GRAPH_PROCESSING_ENGINE_PROPERTIES_ARM;
+    }
     #[repr(C)]
     #[derive(Clone, Copy)]
     pub struct DataGraphProcessingEngineCreateInfoARM<'a> {
@@ -449,6 +520,10 @@ pub(crate) mod reexport {
         pub processing_engine_count: u32,
         pub p_processing_engines: *mut crate::vk::PhysicalDeviceDataGraphProcessingEngineARM,
         pub _marker: ::core::marker::PhantomData<&'a ()>,
+    }
+    unsafe impl<'a> crate::TaggedStructure<'a>
+    for DataGraphProcessingEngineCreateInfoARM<'a> {
+        const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::DATA_GRAPH_PROCESSING_ENGINE_CREATE_INFO_ARM;
     }
     ///Provided by [`arm::data_graph`](crate::arm::data_graph)
     impl crate::vk::PipelineBindPoint {

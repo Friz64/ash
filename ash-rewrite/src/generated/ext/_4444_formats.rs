@@ -10,6 +10,9 @@ pub struct PhysicalDevice4444FormatsFeaturesEXT<'a> {
     pub format_a4b4g4r4: crate::vk::Bool32,
     pub _marker: ::core::marker::PhantomData<&'a ()>,
 }
+unsafe impl<'a> crate::TaggedStructure<'a> for PhysicalDevice4444FormatsFeaturesEXT<'a> {
+    const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::PHYSICAL_DEVICE_4444_FORMATS_FEATURES_EXT;
+}
 ///Provided by [`ext::_4444_formats`](crate::ext::_4444_formats)
 impl crate::vk::Format {
     pub const A4R4G4B4_UNORM_PACK16_EXT: Self = Self::A4R4G4B4_UNORM_PACK16;

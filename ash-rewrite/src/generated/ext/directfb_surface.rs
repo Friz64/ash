@@ -65,6 +65,9 @@ pub(crate) mod reexport {
         pub surface: *mut crate::platform_types::IDirectFBSurface,
         pub _marker: ::core::marker::PhantomData<&'a ()>,
     }
+    unsafe impl<'a> crate::TaggedStructure<'a> for DirectFBSurfaceCreateInfoEXT<'a> {
+        const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::DIRECTFB_SURFACE_CREATE_INFO_EXT;
+    }
     ///Provided by [`ext::directfb_surface`](crate::ext::directfb_surface)
     impl crate::vk::StructureType {
         pub const DIRECTFB_SURFACE_CREATE_INFO_EXT: Self = Self(1000346000);

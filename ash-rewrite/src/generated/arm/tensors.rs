@@ -232,6 +232,9 @@ pub(crate) mod reexport {
         pub usage: crate::vk::TensorUsageFlagsARM,
         pub _marker: ::core::marker::PhantomData<&'a ()>,
     }
+    unsafe impl<'a> crate::TaggedStructure<'a> for TensorDescriptionARM<'a> {
+        const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::TENSOR_DESCRIPTION_ARM;
+    }
     #[repr(C)]
     #[derive(Clone, Copy)]
     pub struct TensorCreateInfoARM<'a> {
@@ -244,6 +247,9 @@ pub(crate) mod reexport {
         pub p_queue_family_indices: *const u32,
         pub _marker: ::core::marker::PhantomData<&'a ()>,
     }
+    unsafe impl<'a> crate::TaggedStructure<'a> for TensorCreateInfoARM<'a> {
+        const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::TENSOR_CREATE_INFO_ARM;
+    }
     #[repr(C)]
     #[derive(Clone, Copy)]
     pub struct TensorMemoryRequirementsInfoARM<'a> {
@@ -251,6 +257,9 @@ pub(crate) mod reexport {
         pub p_next: *const core::ffi::c_void,
         pub tensor: crate::vk::TensorARM,
         pub _marker: ::core::marker::PhantomData<&'a ()>,
+    }
+    unsafe impl<'a> crate::TaggedStructure<'a> for TensorMemoryRequirementsInfoARM<'a> {
+        const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::TENSOR_MEMORY_REQUIREMENTS_INFO_ARM;
     }
     #[repr(C)]
     #[derive(Clone, Copy)]
@@ -262,6 +271,9 @@ pub(crate) mod reexport {
         pub memory_offset: crate::vk::DeviceSize,
         pub _marker: ::core::marker::PhantomData<&'a ()>,
     }
+    unsafe impl<'a> crate::TaggedStructure<'a> for BindTensorMemoryInfoARM<'a> {
+        const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::BIND_TENSOR_MEMORY_INFO_ARM;
+    }
     #[repr(C)]
     #[derive(Clone, Copy)]
     pub struct WriteDescriptorSetTensorARM<'a> {
@@ -271,6 +283,9 @@ pub(crate) mod reexport {
         pub p_tensor_views: *const crate::vk::TensorViewARM,
         pub _marker: ::core::marker::PhantomData<&'a ()>,
     }
+    unsafe impl<'a> crate::TaggedStructure<'a> for WriteDescriptorSetTensorARM<'a> {
+        const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::WRITE_DESCRIPTOR_SET_TENSOR_ARM;
+    }
     #[repr(C)]
     #[derive(Clone, Copy)]
     pub struct TensorFormatPropertiesARM<'a> {
@@ -279,6 +294,9 @@ pub(crate) mod reexport {
         pub optimal_tiling_tensor_features: crate::vk::FormatFeatureFlags2,
         pub linear_tiling_tensor_features: crate::vk::FormatFeatureFlags2,
         pub _marker: ::core::marker::PhantomData<&'a ()>,
+    }
+    unsafe impl<'a> crate::TaggedStructure<'a> for TensorFormatPropertiesARM<'a> {
+        const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::TENSOR_FORMAT_PROPERTIES_ARM;
     }
     #[repr(C)]
     #[derive(Clone, Copy)]
@@ -300,6 +318,10 @@ pub(crate) mod reexport {
         pub shader_tensor_supported_stages: crate::vk::ShaderStageFlags,
         pub _marker: ::core::marker::PhantomData<&'a ()>,
     }
+    unsafe impl<'a> crate::TaggedStructure<'a>
+    for PhysicalDeviceTensorPropertiesARM<'a> {
+        const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::PHYSICAL_DEVICE_TENSOR_PROPERTIES_ARM;
+    }
     #[repr(C)]
     #[derive(Clone, Copy)]
     pub struct TensorMemoryBarrierARM<'a> {
@@ -314,6 +336,9 @@ pub(crate) mod reexport {
         pub tensor: crate::vk::TensorARM,
         pub _marker: ::core::marker::PhantomData<&'a ()>,
     }
+    unsafe impl<'a> crate::TaggedStructure<'a> for TensorMemoryBarrierARM<'a> {
+        const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::TENSOR_MEMORY_BARRIER_ARM;
+    }
     #[repr(C)]
     #[derive(Clone, Copy)]
     pub struct TensorDependencyInfoARM<'a> {
@@ -322,6 +347,9 @@ pub(crate) mod reexport {
         pub tensor_memory_barrier_count: u32,
         pub p_tensor_memory_barriers: *const crate::vk::TensorMemoryBarrierARM<'a>,
         pub _marker: ::core::marker::PhantomData<&'a ()>,
+    }
+    unsafe impl<'a> crate::TaggedStructure<'a> for TensorDependencyInfoARM<'a> {
+        const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::TENSOR_DEPENDENCY_INFO_ARM;
     }
     #[repr(C)]
     #[derive(Clone, Copy)]
@@ -336,6 +364,9 @@ pub(crate) mod reexport {
         pub tensors: crate::vk::Bool32,
         pub _marker: ::core::marker::PhantomData<&'a ()>,
     }
+    unsafe impl<'a> crate::TaggedStructure<'a> for PhysicalDeviceTensorFeaturesARM<'a> {
+        const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::PHYSICAL_DEVICE_TENSOR_FEATURES_ARM;
+    }
     #[repr(C)]
     #[derive(Clone, Copy)]
     pub struct DeviceTensorMemoryRequirementsARM<'a> {
@@ -343,6 +374,10 @@ pub(crate) mod reexport {
         pub p_next: *const core::ffi::c_void,
         pub p_create_info: *const crate::vk::TensorCreateInfoARM<'a>,
         pub _marker: ::core::marker::PhantomData<&'a ()>,
+    }
+    unsafe impl<'a> crate::TaggedStructure<'a>
+    for DeviceTensorMemoryRequirementsARM<'a> {
+        const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::DEVICE_TENSOR_MEMORY_REQUIREMENTS_ARM;
     }
     #[repr(C)]
     #[derive(Clone, Copy)]
@@ -355,6 +390,9 @@ pub(crate) mod reexport {
         pub p_regions: *const crate::vk::TensorCopyARM<'a>,
         pub _marker: ::core::marker::PhantomData<&'a ()>,
     }
+    unsafe impl<'a> crate::TaggedStructure<'a> for CopyTensorInfoARM<'a> {
+        const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::COPY_TENSOR_INFO_ARM;
+    }
     #[repr(C)]
     #[derive(Clone, Copy)]
     pub struct TensorCopyARM<'a> {
@@ -366,6 +404,9 @@ pub(crate) mod reexport {
         pub p_extent: *const u64,
         pub _marker: ::core::marker::PhantomData<&'a ()>,
     }
+    unsafe impl<'a> crate::TaggedStructure<'a> for TensorCopyARM<'a> {
+        const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::TENSOR_COPY_ARM;
+    }
     #[repr(C)]
     #[derive(Clone, Copy)]
     pub struct MemoryDedicatedAllocateInfoTensorARM<'a> {
@@ -373,6 +414,10 @@ pub(crate) mod reexport {
         pub p_next: *const core::ffi::c_void,
         pub tensor: crate::vk::TensorARM,
         pub _marker: ::core::marker::PhantomData<&'a ()>,
+    }
+    unsafe impl<'a> crate::TaggedStructure<'a>
+    for MemoryDedicatedAllocateInfoTensorARM<'a> {
+        const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::MEMORY_DEDICATED_ALLOCATE_INFO_TENSOR_ARM;
     }
     #[repr(C)]
     #[derive(Clone, Copy)]
@@ -384,6 +429,10 @@ pub(crate) mod reexport {
         pub tensor_descriptor_size: usize,
         pub _marker: ::core::marker::PhantomData<&'a ()>,
     }
+    unsafe impl<'a> crate::TaggedStructure<'a>
+    for PhysicalDeviceDescriptorBufferTensorPropertiesARM<'a> {
+        const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::PHYSICAL_DEVICE_DESCRIPTOR_BUFFER_TENSOR_PROPERTIES_ARM;
+    }
     #[repr(C)]
     #[derive(Clone, Copy)]
     pub struct PhysicalDeviceDescriptorBufferTensorFeaturesARM<'a> {
@@ -391,6 +440,10 @@ pub(crate) mod reexport {
         pub p_next: *mut core::ffi::c_void,
         pub descriptor_buffer_tensor_descriptors: crate::vk::Bool32,
         pub _marker: ::core::marker::PhantomData<&'a ()>,
+    }
+    unsafe impl<'a> crate::TaggedStructure<'a>
+    for PhysicalDeviceDescriptorBufferTensorFeaturesARM<'a> {
+        const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::PHYSICAL_DEVICE_DESCRIPTOR_BUFFER_TENSOR_FEATURES_ARM;
     }
     #[repr(C)]
     #[derive(Clone, Copy)]
@@ -400,6 +453,10 @@ pub(crate) mod reexport {
         pub tensor: crate::vk::TensorARM,
         pub _marker: ::core::marker::PhantomData<&'a ()>,
     }
+    unsafe impl<'a> crate::TaggedStructure<'a>
+    for TensorCaptureDescriptorDataInfoARM<'a> {
+        const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::TENSOR_CAPTURE_DESCRIPTOR_DATA_INFO_ARM;
+    }
     #[repr(C)]
     #[derive(Clone, Copy)]
     pub struct TensorViewCaptureDescriptorDataInfoARM<'a> {
@@ -407,6 +464,10 @@ pub(crate) mod reexport {
         pub p_next: *const core::ffi::c_void,
         pub tensor_view: crate::vk::TensorViewARM,
         pub _marker: ::core::marker::PhantomData<&'a ()>,
+    }
+    unsafe impl<'a> crate::TaggedStructure<'a>
+    for TensorViewCaptureDescriptorDataInfoARM<'a> {
+        const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::TENSOR_VIEW_CAPTURE_DESCRIPTOR_DATA_INFO_ARM;
     }
     #[repr(C)]
     #[derive(Clone, Copy)]
@@ -416,6 +477,9 @@ pub(crate) mod reexport {
         pub tensor_view: crate::vk::TensorViewARM,
         pub _marker: ::core::marker::PhantomData<&'a ()>,
     }
+    unsafe impl<'a> crate::TaggedStructure<'a> for DescriptorGetTensorInfoARM<'a> {
+        const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::DESCRIPTOR_GET_TENSOR_INFO_ARM;
+    }
     #[repr(C)]
     #[derive(Clone, Copy)]
     pub struct FrameBoundaryTensorsARM<'a> {
@@ -424,6 +488,9 @@ pub(crate) mod reexport {
         pub tensor_count: u32,
         pub p_tensors: *const crate::vk::TensorARM,
         pub _marker: ::core::marker::PhantomData<&'a ()>,
+    }
+    unsafe impl<'a> crate::TaggedStructure<'a> for FrameBoundaryTensorsARM<'a> {
+        const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::FRAME_BOUNDARY_TENSORS_ARM;
     }
     #[repr(C)]
     #[derive(Clone, Copy)]
@@ -435,6 +502,10 @@ pub(crate) mod reexport {
         pub handle_type: crate::vk::ExternalMemoryHandleTypeFlagBits,
         pub _marker: ::core::marker::PhantomData<&'a ()>,
     }
+    unsafe impl<'a> crate::TaggedStructure<'a>
+    for PhysicalDeviceExternalTensorInfoARM<'a> {
+        const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::PHYSICAL_DEVICE_EXTERNAL_TENSOR_INFO_ARM;
+    }
     #[repr(C)]
     #[derive(Clone, Copy)]
     pub struct ExternalTensorPropertiesARM<'a> {
@@ -443,6 +514,9 @@ pub(crate) mod reexport {
         pub external_memory_properties: crate::vk::ExternalMemoryProperties,
         pub _marker: ::core::marker::PhantomData<&'a ()>,
     }
+    unsafe impl<'a> crate::TaggedStructure<'a> for ExternalTensorPropertiesARM<'a> {
+        const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::EXTERNAL_TENSOR_PROPERTIES_ARM;
+    }
     #[repr(C)]
     #[derive(Clone, Copy)]
     pub struct ExternalMemoryTensorCreateInfoARM<'a> {
@@ -450,6 +524,10 @@ pub(crate) mod reexport {
         pub p_next: *const core::ffi::c_void,
         pub handle_types: crate::vk::ExternalMemoryHandleTypeFlags,
         pub _marker: ::core::marker::PhantomData<&'a ()>,
+    }
+    unsafe impl<'a> crate::TaggedStructure<'a>
+    for ExternalMemoryTensorCreateInfoARM<'a> {
+        const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::EXTERNAL_MEMORY_TENSOR_CREATE_INFO_ARM;
     }
     ///Provided by [`arm::tensors`](crate::arm::tensors)
     impl crate::vk::ImageLayout {

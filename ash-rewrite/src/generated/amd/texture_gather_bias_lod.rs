@@ -9,6 +9,9 @@ pub struct TextureLODGatherFormatPropertiesAMD<'a> {
     pub supports_texture_gather_lod_bias_amd: crate::vk::Bool32,
     pub _marker: ::core::marker::PhantomData<&'a ()>,
 }
+unsafe impl<'a> crate::TaggedStructure<'a> for TextureLODGatherFormatPropertiesAMD<'a> {
+    const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::TEXTURE_LOD_GATHER_FORMAT_PROPERTIES_AMD;
+}
 ///Provided by [`amd::texture_gather_bias_lod`](crate::amd::texture_gather_bias_lod)
 impl crate::vk::StructureType {
     pub const TEXTURE_LOD_GATHER_FORMAT_PROPERTIES_AMD: Self = Self(1000041000);

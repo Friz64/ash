@@ -9,6 +9,10 @@ pub struct PhysicalDevicePipelineCacheIncrementalModeFeaturesSEC<'a> {
     pub pipeline_cache_incremental_mode: crate::vk::Bool32,
     pub _marker: ::core::marker::PhantomData<&'a ()>,
 }
+unsafe impl<'a> crate::TaggedStructure<'a>
+for PhysicalDevicePipelineCacheIncrementalModeFeaturesSEC<'a> {
+    const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::PHYSICAL_DEVICE_PIPELINE_CACHE_INCREMENTAL_MODE_FEATURES_SEC;
+}
 ///Provided by [`sec::pipeline_cache_incremental_mode`](crate::sec::pipeline_cache_incremental_mode)
 impl crate::vk::StructureType {
     pub const PHYSICAL_DEVICE_PIPELINE_CACHE_INCREMENTAL_MODE_FEATURES_SEC: Self = Self(

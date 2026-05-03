@@ -125,6 +125,10 @@ pub(crate) mod reexport {
         pub device_generated_commands: crate::vk::Bool32,
         pub _marker: ::core::marker::PhantomData<&'a ()>,
     }
+    unsafe impl<'a> crate::TaggedStructure<'a>
+    for PhysicalDeviceDeviceGeneratedCommandsFeaturesNV<'a> {
+        const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::PHYSICAL_DEVICE_DEVICE_GENERATED_COMMANDS_FEATURES_NV;
+    }
     #[repr(C)]
     #[derive(Clone, Copy)]
     pub struct PhysicalDeviceDeviceGeneratedCommandsPropertiesNV<'a> {
@@ -141,6 +145,10 @@ pub(crate) mod reexport {
         pub min_indirect_commands_buffer_offset_alignment: u32,
         pub _marker: ::core::marker::PhantomData<&'a ()>,
     }
+    unsafe impl<'a> crate::TaggedStructure<'a>
+    for PhysicalDeviceDeviceGeneratedCommandsPropertiesNV<'a> {
+        const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::PHYSICAL_DEVICE_DEVICE_GENERATED_COMMANDS_PROPERTIES_NV;
+    }
     #[repr(C)]
     #[derive(Clone, Copy)]
     pub struct GraphicsShaderGroupCreateInfoNV<'a> {
@@ -156,6 +164,9 @@ pub(crate) mod reexport {
         >,
         pub _marker: ::core::marker::PhantomData<&'a ()>,
     }
+    unsafe impl<'a> crate::TaggedStructure<'a> for GraphicsShaderGroupCreateInfoNV<'a> {
+        const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::GRAPHICS_SHADER_GROUP_CREATE_INFO_NV;
+    }
     #[repr(C)]
     #[derive(Clone, Copy)]
     pub struct GraphicsPipelineShaderGroupsCreateInfoNV<'a> {
@@ -166,6 +177,10 @@ pub(crate) mod reexport {
         pub pipeline_count: u32,
         pub p_pipelines: *const crate::vk::Pipeline,
         pub _marker: ::core::marker::PhantomData<&'a ()>,
+    }
+    unsafe impl<'a> crate::TaggedStructure<'a>
+    for GraphicsPipelineShaderGroupsCreateInfoNV<'a> {
+        const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::GRAPHICS_PIPELINE_SHADER_GROUPS_CREATE_INFO_NV;
     }
     #[repr(C)]
     #[derive(Clone, Copy)]
@@ -217,6 +232,9 @@ pub(crate) mod reexport {
         pub p_index_type_values: *const u32,
         pub _marker: ::core::marker::PhantomData<&'a ()>,
     }
+    unsafe impl<'a> crate::TaggedStructure<'a> for IndirectCommandsLayoutTokenNV<'a> {
+        const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::INDIRECT_COMMANDS_LAYOUT_TOKEN_NV;
+    }
     #[repr(C)]
     #[derive(Clone, Copy)]
     pub struct IndirectCommandsLayoutCreateInfoNV<'a> {
@@ -229,6 +247,10 @@ pub(crate) mod reexport {
         pub stream_count: u32,
         pub p_stream_strides: *const u32,
         pub _marker: ::core::marker::PhantomData<&'a ()>,
+    }
+    unsafe impl<'a> crate::TaggedStructure<'a>
+    for IndirectCommandsLayoutCreateInfoNV<'a> {
+        const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::INDIRECT_COMMANDS_LAYOUT_CREATE_INFO_NV;
     }
     #[repr(C)]
     #[derive(Clone, Copy)]
@@ -250,6 +272,9 @@ pub(crate) mod reexport {
         pub sequences_index_offset: crate::vk::DeviceSize,
         pub _marker: ::core::marker::PhantomData<&'a ()>,
     }
+    unsafe impl<'a> crate::TaggedStructure<'a> for GeneratedCommandsInfoNV<'a> {
+        const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::GENERATED_COMMANDS_INFO_NV;
+    }
     #[repr(C)]
     #[derive(Clone, Copy)]
     pub struct GeneratedCommandsMemoryRequirementsInfoNV<'a> {
@@ -260,6 +285,10 @@ pub(crate) mod reexport {
         pub indirect_commands_layout: crate::vk::IndirectCommandsLayoutNV,
         pub max_sequences_count: u32,
         pub _marker: ::core::marker::PhantomData<&'a ()>,
+    }
+    unsafe impl<'a> crate::TaggedStructure<'a>
+    for GeneratedCommandsMemoryRequirementsInfoNV<'a> {
+        const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::GENERATED_COMMANDS_MEMORY_REQUIREMENTS_INFO_NV;
     }
     ///Provided by [`nv::device_generated_commands`](crate::nv::device_generated_commands)
     impl crate::vk::StructureType {

@@ -19,6 +19,10 @@ pub struct AccelerationStructureGeometryLinearSweptSpheresDataNV<'a> {
     pub end_caps_mode: crate::vk::RayTracingLssPrimitiveEndCapsModeNV,
     pub _marker: ::core::marker::PhantomData<&'a ()>,
 }
+unsafe impl<'a> crate::TaggedStructure<'a>
+for AccelerationStructureGeometryLinearSweptSpheresDataNV<'a> {
+    const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::ACCELERATION_STRUCTURE_GEOMETRY_LINEAR_SWEPT_SPHERES_DATA_NV;
+}
 #[repr(C)]
 #[derive(Clone, Copy)]
 pub struct AccelerationStructureGeometrySpheresDataNV<'a> {
@@ -35,6 +39,10 @@ pub struct AccelerationStructureGeometrySpheresDataNV<'a> {
     pub index_stride: crate::vk::DeviceSize,
     pub _marker: ::core::marker::PhantomData<&'a ()>,
 }
+unsafe impl<'a> crate::TaggedStructure<'a>
+for AccelerationStructureGeometrySpheresDataNV<'a> {
+    const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::ACCELERATION_STRUCTURE_GEOMETRY_SPHERES_DATA_NV;
+}
 #[repr(C)]
 #[derive(Clone, Copy)]
 pub struct PhysicalDeviceRayTracingLinearSweptSpheresFeaturesNV<'a> {
@@ -43,6 +51,10 @@ pub struct PhysicalDeviceRayTracingLinearSweptSpheresFeaturesNV<'a> {
     pub spheres: crate::vk::Bool32,
     pub linear_swept_spheres: crate::vk::Bool32,
     pub _marker: ::core::marker::PhantomData<&'a ()>,
+}
+unsafe impl<'a> crate::TaggedStructure<'a>
+for PhysicalDeviceRayTracingLinearSweptSpheresFeaturesNV<'a> {
+    const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::PHYSICAL_DEVICE_RAY_TRACING_LINEAR_SWEPT_SPHERES_FEATURES_NV;
 }
 ///Provided by [`nv::ray_tracing_linear_swept_spheres`](crate::nv::ray_tracing_linear_swept_spheres)
 impl crate::vk::StructureType {

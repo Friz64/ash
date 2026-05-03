@@ -9,6 +9,10 @@ pub struct PhysicalDeviceYcbcrImageArraysFeaturesEXT<'a> {
     pub ycbcr_image_arrays: crate::vk::Bool32,
     pub _marker: ::core::marker::PhantomData<&'a ()>,
 }
+unsafe impl<'a> crate::TaggedStructure<'a>
+for PhysicalDeviceYcbcrImageArraysFeaturesEXT<'a> {
+    const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::PHYSICAL_DEVICE_YCBCR_IMAGE_ARRAYS_FEATURES_EXT;
+}
 ///Provided by [`ext::ycbcr_image_arrays`](crate::ext::ycbcr_image_arrays)
 impl crate::vk::StructureType {
     pub const PHYSICAL_DEVICE_YCBCR_IMAGE_ARRAYS_FEATURES_EXT: Self = Self(1000252000);

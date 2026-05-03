@@ -44,6 +44,9 @@ pub(crate) mod reexport {
         pub pipeline_identifier: [u8; crate::vk::UUID_SIZE as _],
         pub _marker: ::core::marker::PhantomData<&'a ()>,
     }
+    unsafe impl<'a> crate::TaggedStructure<'a> for PipelinePropertiesIdentifierEXT<'a> {
+        const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::PIPELINE_PROPERTIES_IDENTIFIER_EXT;
+    }
     #[repr(C)]
     #[derive(Clone, Copy)]
     pub struct PhysicalDevicePipelinePropertiesFeaturesEXT<'a> {
@@ -51,6 +54,10 @@ pub(crate) mod reexport {
         pub p_next: *mut core::ffi::c_void,
         pub pipeline_properties_identifier: crate::vk::Bool32,
         pub _marker: ::core::marker::PhantomData<&'a ()>,
+    }
+    unsafe impl<'a> crate::TaggedStructure<'a>
+    for PhysicalDevicePipelinePropertiesFeaturesEXT<'a> {
+        const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::PHYSICAL_DEVICE_PIPELINE_PROPERTIES_FEATURES_EXT;
     }
     pub type PipelineInfoEXT<'a> = crate::vk::PipelineInfoKHR<'a>;
     ///Provided by [`ext::pipeline_properties`](crate::ext::pipeline_properties)

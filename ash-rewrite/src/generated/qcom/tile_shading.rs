@@ -86,6 +86,10 @@ pub(crate) mod reexport {
         pub tile_shading_image_processing: crate::vk::Bool32,
         pub _marker: ::core::marker::PhantomData<&'a ()>,
     }
+    unsafe impl<'a> crate::TaggedStructure<'a>
+    for PhysicalDeviceTileShadingFeaturesQCOM<'a> {
+        const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::PHYSICAL_DEVICE_TILE_SHADING_FEATURES_QCOM;
+    }
     #[repr(C)]
     #[derive(Clone, Copy)]
     pub struct PhysicalDeviceTileShadingPropertiesQCOM<'a> {
@@ -97,6 +101,10 @@ pub(crate) mod reexport {
         pub max_tile_shading_rate: crate::vk::Extent2D,
         pub _marker: ::core::marker::PhantomData<&'a ()>,
     }
+    unsafe impl<'a> crate::TaggedStructure<'a>
+    for PhysicalDeviceTileShadingPropertiesQCOM<'a> {
+        const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::PHYSICAL_DEVICE_TILE_SHADING_PROPERTIES_QCOM;
+    }
     #[repr(C)]
     #[derive(Clone, Copy)]
     pub struct RenderPassTileShadingCreateInfoQCOM<'a> {
@@ -106,12 +114,19 @@ pub(crate) mod reexport {
         pub tile_apron_size: crate::vk::Extent2D,
         pub _marker: ::core::marker::PhantomData<&'a ()>,
     }
+    unsafe impl<'a> crate::TaggedStructure<'a>
+    for RenderPassTileShadingCreateInfoQCOM<'a> {
+        const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::RENDER_PASS_TILE_SHADING_CREATE_INFO_QCOM;
+    }
     #[repr(C)]
     #[derive(Clone, Copy)]
     pub struct PerTileBeginInfoQCOM<'a> {
         pub s_type: crate::vk::StructureType,
         pub p_next: *const core::ffi::c_void,
         pub _marker: ::core::marker::PhantomData<&'a ()>,
+    }
+    unsafe impl<'a> crate::TaggedStructure<'a> for PerTileBeginInfoQCOM<'a> {
+        const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::PER_TILE_BEGIN_INFO_QCOM;
     }
     #[repr(C)]
     #[derive(Clone, Copy)]
@@ -120,12 +135,18 @@ pub(crate) mod reexport {
         pub p_next: *const core::ffi::c_void,
         pub _marker: ::core::marker::PhantomData<&'a ()>,
     }
+    unsafe impl<'a> crate::TaggedStructure<'a> for PerTileEndInfoQCOM<'a> {
+        const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::PER_TILE_END_INFO_QCOM;
+    }
     #[repr(C)]
     #[derive(Clone, Copy)]
     pub struct DispatchTileInfoQCOM<'a> {
         pub s_type: crate::vk::StructureType,
         pub p_next: *const core::ffi::c_void,
         pub _marker: ::core::marker::PhantomData<&'a ()>,
+    }
+    unsafe impl<'a> crate::TaggedStructure<'a> for DispatchTileInfoQCOM<'a> {
+        const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::DISPATCH_TILE_INFO_QCOM;
     }
     ///Provided by [`qcom::tile_shading`](crate::qcom::tile_shading)
     impl crate::vk::StructureType {

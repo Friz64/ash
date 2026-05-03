@@ -63,6 +63,10 @@ pub(crate) mod reexport {
         pub cluster_acceleration_structure: crate::vk::Bool32,
         pub _marker: ::core::marker::PhantomData<&'a ()>,
     }
+    unsafe impl<'a> crate::TaggedStructure<'a>
+    for PhysicalDeviceClusterAccelerationStructureFeaturesNV<'a> {
+        const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::PHYSICAL_DEVICE_CLUSTER_ACCELERATION_STRUCTURE_FEATURES_NV;
+    }
     #[repr(C)]
     #[derive(Clone, Copy)]
     pub struct PhysicalDeviceClusterAccelerationStructurePropertiesNV<'a> {
@@ -78,6 +82,10 @@ pub(crate) mod reexport {
         pub max_cluster_geometry_index: u32,
         pub _marker: ::core::marker::PhantomData<&'a ()>,
     }
+    unsafe impl<'a> crate::TaggedStructure<'a>
+    for PhysicalDeviceClusterAccelerationStructurePropertiesNV<'a> {
+        const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::PHYSICAL_DEVICE_CLUSTER_ACCELERATION_STRUCTURE_PROPERTIES_NV;
+    }
     #[repr(C)]
     #[derive(Clone, Copy)]
     pub struct StridedDeviceAddressNV {
@@ -91,6 +99,10 @@ pub(crate) mod reexport {
         pub p_next: *mut core::ffi::c_void,
         pub allow_cluster_acceleration_structure: crate::vk::Bool32,
         pub _marker: ::core::marker::PhantomData<&'a ()>,
+    }
+    unsafe impl<'a> crate::TaggedStructure<'a>
+    for RayTracingPipelineClusterAccelerationStructureCreateInfoNV<'a> {
+        const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::RAY_TRACING_PIPELINE_CLUSTER_ACCELERATION_STRUCTURE_CREATE_INFO_NV;
     }
     #[repr(C)]
     #[derive(Clone, Copy)]
@@ -179,6 +191,10 @@ pub(crate) mod reexport {
         pub max_cluster_count_per_acceleration_structure: u32,
         pub _marker: ::core::marker::PhantomData<&'a ()>,
     }
+    unsafe impl<'a> crate::TaggedStructure<'a>
+    for ClusterAccelerationStructureClustersBottomLevelInputNV<'a> {
+        const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::CLUSTER_ACCELERATION_STRUCTURE_CLUSTERS_BOTTOM_LEVEL_INPUT_NV;
+    }
     #[repr(C)]
     #[derive(Clone, Copy)]
     pub struct ClusterAccelerationStructureTriangleClusterInputNV<'a> {
@@ -194,6 +210,10 @@ pub(crate) mod reexport {
         pub min_position_truncate_bit_count: u32,
         pub _marker: ::core::marker::PhantomData<&'a ()>,
     }
+    unsafe impl<'a> crate::TaggedStructure<'a>
+    for ClusterAccelerationStructureTriangleClusterInputNV<'a> {
+        const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::CLUSTER_ACCELERATION_STRUCTURE_TRIANGLE_CLUSTER_INPUT_NV;
+    }
     #[repr(C)]
     #[derive(Clone, Copy)]
     pub struct ClusterAccelerationStructureMoveObjectsInputNV<'a> {
@@ -203,6 +223,10 @@ pub(crate) mod reexport {
         pub no_move_overlap: crate::vk::Bool32,
         pub max_moved_bytes: crate::vk::DeviceSize,
         pub _marker: ::core::marker::PhantomData<&'a ()>,
+    }
+    unsafe impl<'a> crate::TaggedStructure<'a>
+    for ClusterAccelerationStructureMoveObjectsInputNV<'a> {
+        const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::CLUSTER_ACCELERATION_STRUCTURE_MOVE_OBJECTS_INPUT_NV;
     }
     #[repr(C)]
     #[derive(Clone, Copy)]
@@ -215,6 +239,10 @@ pub(crate) mod reexport {
         pub op_mode: crate::vk::ClusterAccelerationStructureOpModeNV,
         pub op_input: crate::vk::ClusterAccelerationStructureOpInputNV<'a>,
         pub _marker: ::core::marker::PhantomData<&'a ()>,
+    }
+    unsafe impl<'a> crate::TaggedStructure<'a>
+    for ClusterAccelerationStructureInputInfoNV<'a> {
+        const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::CLUSTER_ACCELERATION_STRUCTURE_INPUT_INFO_NV;
     }
     #[repr(C)]
     #[derive(Clone, Copy)]
@@ -230,6 +258,10 @@ pub(crate) mod reexport {
         pub src_infos_count: crate::vk::DeviceAddress,
         pub address_resolution_flags: crate::vk::ClusterAccelerationStructureAddressResolutionFlagsNV,
         pub _marker: ::core::marker::PhantomData<&'a ()>,
+    }
+    unsafe impl<'a> crate::TaggedStructure<'a>
+    for ClusterAccelerationStructureCommandsInfoNV<'a> {
+        const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::CLUSTER_ACCELERATION_STRUCTURE_COMMANDS_INFO_NV;
     }
     #[repr(C)]
     #[derive(Clone, Copy)]

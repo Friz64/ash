@@ -11,6 +11,9 @@ pub struct PhysicalDeviceRobustness2FeaturesKHR<'a> {
     pub null_descriptor: crate::vk::Bool32,
     pub _marker: ::core::marker::PhantomData<&'a ()>,
 }
+unsafe impl<'a> crate::TaggedStructure<'a> for PhysicalDeviceRobustness2FeaturesKHR<'a> {
+    const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::PHYSICAL_DEVICE_ROBUSTNESS_2_FEATURES_KHR;
+}
 #[repr(C)]
 #[derive(Clone, Copy)]
 pub struct PhysicalDeviceRobustness2PropertiesKHR<'a> {
@@ -19,6 +22,10 @@ pub struct PhysicalDeviceRobustness2PropertiesKHR<'a> {
     pub robust_storage_buffer_access_size_alignment: crate::vk::DeviceSize,
     pub robust_uniform_buffer_access_size_alignment: crate::vk::DeviceSize,
     pub _marker: ::core::marker::PhantomData<&'a ()>,
+}
+unsafe impl<'a> crate::TaggedStructure<'a>
+for PhysicalDeviceRobustness2PropertiesKHR<'a> {
+    const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::PHYSICAL_DEVICE_ROBUSTNESS_2_PROPERTIES_KHR;
 }
 ///Provided by [`khr::robustness2`](crate::khr::robustness2)
 impl crate::vk::StructureType {

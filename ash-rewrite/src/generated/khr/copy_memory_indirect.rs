@@ -68,6 +68,9 @@ pub(crate) mod reexport {
         pub copy_address_range: crate::vk::StridedDeviceAddressRangeKHR,
         pub _marker: ::core::marker::PhantomData<&'a ()>,
     }
+    unsafe impl<'a> crate::TaggedStructure<'a> for CopyMemoryIndirectInfoKHR<'a> {
+        const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::COPY_MEMORY_INDIRECT_INFO_KHR;
+    }
     #[repr(C)]
     #[derive(Clone, Copy)]
     pub struct CopyMemoryToImageIndirectCommandKHR {
@@ -91,6 +94,9 @@ pub(crate) mod reexport {
         pub p_image_subresources: *const crate::vk::ImageSubresourceLayers,
         pub _marker: ::core::marker::PhantomData<&'a ()>,
     }
+    unsafe impl<'a> crate::TaggedStructure<'a> for CopyMemoryToImageIndirectInfoKHR<'a> {
+        const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::COPY_MEMORY_TO_IMAGE_INDIRECT_INFO_KHR;
+    }
     #[repr(C)]
     #[derive(Clone, Copy)]
     pub struct PhysicalDeviceCopyMemoryIndirectFeaturesKHR<'a> {
@@ -100,6 +106,10 @@ pub(crate) mod reexport {
         pub indirect_memory_to_image_copy: crate::vk::Bool32,
         pub _marker: ::core::marker::PhantomData<&'a ()>,
     }
+    unsafe impl<'a> crate::TaggedStructure<'a>
+    for PhysicalDeviceCopyMemoryIndirectFeaturesKHR<'a> {
+        const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::PHYSICAL_DEVICE_COPY_MEMORY_INDIRECT_FEATURES_KHR;
+    }
     #[repr(C)]
     #[derive(Clone, Copy)]
     pub struct PhysicalDeviceCopyMemoryIndirectPropertiesKHR<'a> {
@@ -107,6 +117,10 @@ pub(crate) mod reexport {
         pub p_next: *mut core::ffi::c_void,
         pub supported_queues: crate::vk::QueueFlags,
         pub _marker: ::core::marker::PhantomData<&'a ()>,
+    }
+    unsafe impl<'a> crate::TaggedStructure<'a>
+    for PhysicalDeviceCopyMemoryIndirectPropertiesKHR<'a> {
+        const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::PHYSICAL_DEVICE_COPY_MEMORY_INDIRECT_PROPERTIES_KHR;
     }
     ///Provided by [`khr::copy_memory_indirect`](crate::khr::copy_memory_indirect)
     impl crate::vk::StructureType {

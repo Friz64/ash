@@ -62,6 +62,9 @@ pub(crate) mod reexport {
         pub fd: core::ffi::c_int,
         pub _marker: ::core::marker::PhantomData<&'a ()>,
     }
+    unsafe impl<'a> crate::TaggedStructure<'a> for ImportFenceFdInfoKHR<'a> {
+        const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::IMPORT_FENCE_FD_INFO_KHR;
+    }
     #[repr(C)]
     #[derive(Clone, Copy)]
     pub struct FenceGetFdInfoKHR<'a> {
@@ -70,6 +73,9 @@ pub(crate) mod reexport {
         pub fence: crate::vk::Fence,
         pub handle_type: crate::vk::ExternalFenceHandleTypeFlagBits,
         pub _marker: ::core::marker::PhantomData<&'a ()>,
+    }
+    unsafe impl<'a> crate::TaggedStructure<'a> for FenceGetFdInfoKHR<'a> {
+        const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::FENCE_GET_FD_INFO_KHR;
     }
     ///Provided by [`khr::external_fence_fd`](crate::khr::external_fence_fd)
     impl crate::vk::StructureType {

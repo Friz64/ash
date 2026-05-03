@@ -46,6 +46,9 @@ pub(crate) mod reexport {
         pub p_host_pointer: *mut core::ffi::c_void,
         pub _marker: ::core::marker::PhantomData<&'a ()>,
     }
+    unsafe impl<'a> crate::TaggedStructure<'a> for ImportMemoryHostPointerInfoEXT<'a> {
+        const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::IMPORT_MEMORY_HOST_POINTER_INFO_EXT;
+    }
     #[repr(C)]
     #[derive(Clone, Copy)]
     pub struct MemoryHostPointerPropertiesEXT<'a> {
@@ -54,6 +57,9 @@ pub(crate) mod reexport {
         pub memory_type_bits: u32,
         pub _marker: ::core::marker::PhantomData<&'a ()>,
     }
+    unsafe impl<'a> crate::TaggedStructure<'a> for MemoryHostPointerPropertiesEXT<'a> {
+        const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::MEMORY_HOST_POINTER_PROPERTIES_EXT;
+    }
     #[repr(C)]
     #[derive(Clone, Copy)]
     pub struct PhysicalDeviceExternalMemoryHostPropertiesEXT<'a> {
@@ -61,6 +67,10 @@ pub(crate) mod reexport {
         pub p_next: *mut core::ffi::c_void,
         pub min_imported_host_pointer_alignment: crate::vk::DeviceSize,
         pub _marker: ::core::marker::PhantomData<&'a ()>,
+    }
+    unsafe impl<'a> crate::TaggedStructure<'a>
+    for PhysicalDeviceExternalMemoryHostPropertiesEXT<'a> {
+        const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::PHYSICAL_DEVICE_EXTERNAL_MEMORY_HOST_PROPERTIES_EXT;
     }
     ///Provided by [`ext::external_memory_host`](crate::ext::external_memory_host)
     impl crate::vk::StructureType {

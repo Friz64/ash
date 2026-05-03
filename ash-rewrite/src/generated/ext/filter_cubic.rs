@@ -9,6 +9,10 @@ pub struct PhysicalDeviceImageViewImageFormatInfoEXT<'a> {
     pub image_view_type: crate::vk::ImageViewType,
     pub _marker: ::core::marker::PhantomData<&'a ()>,
 }
+unsafe impl<'a> crate::TaggedStructure<'a>
+for PhysicalDeviceImageViewImageFormatInfoEXT<'a> {
+    const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::PHYSICAL_DEVICE_IMAGE_VIEW_IMAGE_FORMAT_INFO_EXT;
+}
 #[repr(C)]
 #[derive(Clone, Copy)]
 pub struct FilterCubicImageViewImageFormatPropertiesEXT<'a> {
@@ -17,6 +21,10 @@ pub struct FilterCubicImageViewImageFormatPropertiesEXT<'a> {
     pub filter_cubic: crate::vk::Bool32,
     pub filter_cubic_minmax: crate::vk::Bool32,
     pub _marker: ::core::marker::PhantomData<&'a ()>,
+}
+unsafe impl<'a> crate::TaggedStructure<'a>
+for FilterCubicImageViewImageFormatPropertiesEXT<'a> {
+    const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::FILTER_CUBIC_IMAGE_VIEW_IMAGE_FORMAT_PROPERTIES_EXT;
 }
 ///Provided by [`ext::filter_cubic`](crate::ext::filter_cubic)
 impl crate::vk::Filter {

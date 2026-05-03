@@ -60,6 +60,10 @@ pub(crate) mod reexport {
         pub buffer: *mut crate::platform_types::AHardwareBuffer,
         pub _marker: ::core::marker::PhantomData<&'a ()>,
     }
+    unsafe impl<'a> crate::TaggedStructure<'a>
+    for ImportAndroidHardwareBufferInfoANDROID<'a> {
+        const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::IMPORT_ANDROID_HARDWARE_BUFFER_INFO_ANDROID;
+    }
     #[repr(C)]
     #[derive(Clone, Copy)]
     pub struct AndroidHardwareBufferUsageANDROID<'a> {
@@ -67,6 +71,10 @@ pub(crate) mod reexport {
         pub p_next: *mut core::ffi::c_void,
         pub android_hardware_buffer_usage: u64,
         pub _marker: ::core::marker::PhantomData<&'a ()>,
+    }
+    unsafe impl<'a> crate::TaggedStructure<'a>
+    for AndroidHardwareBufferUsageANDROID<'a> {
+        const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::ANDROID_HARDWARE_BUFFER_USAGE_ANDROID;
     }
     #[repr(C)]
     #[derive(Clone, Copy)]
@@ -77,6 +85,10 @@ pub(crate) mod reexport {
         pub memory_type_bits: u32,
         pub _marker: ::core::marker::PhantomData<&'a ()>,
     }
+    unsafe impl<'a> crate::TaggedStructure<'a>
+    for AndroidHardwareBufferPropertiesANDROID<'a> {
+        const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::ANDROID_HARDWARE_BUFFER_PROPERTIES_ANDROID;
+    }
     #[repr(C)]
     #[derive(Clone, Copy)]
     pub struct MemoryGetAndroidHardwareBufferInfoANDROID<'a> {
@@ -84,6 +96,10 @@ pub(crate) mod reexport {
         pub p_next: *const core::ffi::c_void,
         pub memory: crate::vk::DeviceMemory,
         pub _marker: ::core::marker::PhantomData<&'a ()>,
+    }
+    unsafe impl<'a> crate::TaggedStructure<'a>
+    for MemoryGetAndroidHardwareBufferInfoANDROID<'a> {
+        const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::MEMORY_GET_ANDROID_HARDWARE_BUFFER_INFO_ANDROID;
     }
     #[repr(C)]
     #[derive(Clone, Copy)]
@@ -100,6 +116,10 @@ pub(crate) mod reexport {
         pub suggested_y_chroma_offset: crate::vk::ChromaLocation,
         pub _marker: ::core::marker::PhantomData<&'a ()>,
     }
+    unsafe impl<'a> crate::TaggedStructure<'a>
+    for AndroidHardwareBufferFormatPropertiesANDROID<'a> {
+        const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::ANDROID_HARDWARE_BUFFER_FORMAT_PROPERTIES_ANDROID;
+    }
     #[repr(C)]
     #[derive(Clone, Copy)]
     pub struct ExternalFormatANDROID<'a> {
@@ -107,6 +127,9 @@ pub(crate) mod reexport {
         pub p_next: *mut core::ffi::c_void,
         pub external_format: u64,
         pub _marker: ::core::marker::PhantomData<&'a ()>,
+    }
+    unsafe impl<'a> crate::TaggedStructure<'a> for ExternalFormatANDROID<'a> {
+        const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::EXTERNAL_FORMAT_ANDROID;
     }
     #[repr(C)]
     #[derive(Clone, Copy)]
@@ -122,6 +145,10 @@ pub(crate) mod reexport {
         pub suggested_x_chroma_offset: crate::vk::ChromaLocation,
         pub suggested_y_chroma_offset: crate::vk::ChromaLocation,
         pub _marker: ::core::marker::PhantomData<&'a ()>,
+    }
+    unsafe impl<'a> crate::TaggedStructure<'a>
+    for AndroidHardwareBufferFormatProperties2ANDROID<'a> {
+        const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::ANDROID_HARDWARE_BUFFER_FORMAT_PROPERTIES_2_ANDROID;
     }
     ///Provided by [`android::external_memory_android_hardware_buffer`](crate::android::external_memory_android_hardware_buffer)
     impl crate::vk::StructureType {

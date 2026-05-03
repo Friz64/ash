@@ -9,6 +9,10 @@ pub struct PipelineRasterizationStateRasterizationOrderAMD<'a> {
     pub rasterization_order: crate::vk::RasterizationOrderAMD,
     pub _marker: ::core::marker::PhantomData<&'a ()>,
 }
+unsafe impl<'a> crate::TaggedStructure<'a>
+for PipelineRasterizationStateRasterizationOrderAMD<'a> {
+    const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::PIPELINE_RASTERIZATION_STATE_RASTERIZATION_ORDER_AMD;
+}
 ///Provided by [`amd::rasterization_order`](crate::amd::rasterization_order)
 impl crate::vk::StructureType {
     pub const PIPELINE_RASTERIZATION_STATE_RASTERIZATION_ORDER_AMD: Self = Self(

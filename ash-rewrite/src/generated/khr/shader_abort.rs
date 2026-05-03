@@ -9,6 +9,9 @@ pub struct PhysicalDeviceShaderAbortFeaturesKHR<'a> {
     pub shader_abort: crate::vk::Bool32,
     pub _marker: ::core::marker::PhantomData<&'a ()>,
 }
+unsafe impl<'a> crate::TaggedStructure<'a> for PhysicalDeviceShaderAbortFeaturesKHR<'a> {
+    const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::PHYSICAL_DEVICE_SHADER_ABORT_FEATURES_KHR;
+}
 #[repr(C)]
 #[derive(Clone, Copy)]
 pub struct PhysicalDeviceShaderAbortPropertiesKHR<'a> {
@@ -16,6 +19,10 @@ pub struct PhysicalDeviceShaderAbortPropertiesKHR<'a> {
     pub p_next: *mut core::ffi::c_void,
     pub max_shader_abort_message_size: u64,
     pub _marker: ::core::marker::PhantomData<&'a ()>,
+}
+unsafe impl<'a> crate::TaggedStructure<'a>
+for PhysicalDeviceShaderAbortPropertiesKHR<'a> {
+    const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::PHYSICAL_DEVICE_SHADER_ABORT_PROPERTIES_KHR;
 }
 #[repr(C)]
 #[derive(Clone, Copy)]
@@ -25,6 +32,9 @@ pub struct DeviceFaultShaderAbortMessageInfoKHR<'a> {
     pub message_data_size: u64,
     pub p_message_data: *mut core::ffi::c_void,
     pub _marker: ::core::marker::PhantomData<&'a ()>,
+}
+unsafe impl<'a> crate::TaggedStructure<'a> for DeviceFaultShaderAbortMessageInfoKHR<'a> {
+    const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::DEVICE_FAULT_SHADER_ABORT_MESSAGE_INFO_KHR;
 }
 ///Provided by [`khr::shader_abort`](crate::khr::shader_abort)
 impl crate::vk::StructureType {

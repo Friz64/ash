@@ -63,6 +63,9 @@ pub(crate) mod reexport {
         pub name: crate::platform_types::LPCWSTR,
         pub _marker: ::core::marker::PhantomData<&'a ()>,
     }
+    unsafe impl<'a> crate::TaggedStructure<'a> for ImportFenceWin32HandleInfoKHR<'a> {
+        const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::IMPORT_FENCE_WIN32_HANDLE_INFO_KHR;
+    }
     #[repr(C)]
     #[derive(Clone, Copy)]
     pub struct ExportFenceWin32HandleInfoKHR<'a> {
@@ -73,6 +76,9 @@ pub(crate) mod reexport {
         pub name: crate::platform_types::LPCWSTR,
         pub _marker: ::core::marker::PhantomData<&'a ()>,
     }
+    unsafe impl<'a> crate::TaggedStructure<'a> for ExportFenceWin32HandleInfoKHR<'a> {
+        const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::EXPORT_FENCE_WIN32_HANDLE_INFO_KHR;
+    }
     #[repr(C)]
     #[derive(Clone, Copy)]
     pub struct FenceGetWin32HandleInfoKHR<'a> {
@@ -81,6 +87,9 @@ pub(crate) mod reexport {
         pub fence: crate::vk::Fence,
         pub handle_type: crate::vk::ExternalFenceHandleTypeFlagBits,
         pub _marker: ::core::marker::PhantomData<&'a ()>,
+    }
+    unsafe impl<'a> crate::TaggedStructure<'a> for FenceGetWin32HandleInfoKHR<'a> {
+        const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::FENCE_GET_WIN32_HANDLE_INFO_KHR;
     }
     ///Provided by [`khr::external_fence_win32`](crate::khr::external_fence_win32)
     impl crate::vk::StructureType {

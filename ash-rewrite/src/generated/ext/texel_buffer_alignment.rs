@@ -9,6 +9,10 @@ pub struct PhysicalDeviceTexelBufferAlignmentFeaturesEXT<'a> {
     pub texel_buffer_alignment: crate::vk::Bool32,
     pub _marker: ::core::marker::PhantomData<&'a ()>,
 }
+unsafe impl<'a> crate::TaggedStructure<'a>
+for PhysicalDeviceTexelBufferAlignmentFeaturesEXT<'a> {
+    const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::PHYSICAL_DEVICE_TEXEL_BUFFER_ALIGNMENT_FEATURES_EXT;
+}
 pub type PhysicalDeviceTexelBufferAlignmentPropertiesEXT<'a> = crate::vk::PhysicalDeviceTexelBufferAlignmentProperties<
     'a,
 >;

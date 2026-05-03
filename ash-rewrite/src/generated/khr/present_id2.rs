@@ -9,6 +9,9 @@ pub struct PhysicalDevicePresentId2FeaturesKHR<'a> {
     pub present_id2: crate::vk::Bool32,
     pub _marker: ::core::marker::PhantomData<&'a ()>,
 }
+unsafe impl<'a> crate::TaggedStructure<'a> for PhysicalDevicePresentId2FeaturesKHR<'a> {
+    const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::PHYSICAL_DEVICE_PRESENT_ID_2_FEATURES_KHR;
+}
 #[repr(C)]
 #[derive(Clone, Copy)]
 pub struct PresentId2KHR<'a> {
@@ -18,6 +21,9 @@ pub struct PresentId2KHR<'a> {
     pub p_present_ids: *const u64,
     pub _marker: ::core::marker::PhantomData<&'a ()>,
 }
+unsafe impl<'a> crate::TaggedStructure<'a> for PresentId2KHR<'a> {
+    const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::PRESENT_ID_2_KHR;
+}
 #[repr(C)]
 #[derive(Clone, Copy)]
 pub struct SurfaceCapabilitiesPresentId2KHR<'a> {
@@ -25,6 +31,9 @@ pub struct SurfaceCapabilitiesPresentId2KHR<'a> {
     pub p_next: *mut core::ffi::c_void,
     pub present_id2_supported: crate::vk::Bool32,
     pub _marker: ::core::marker::PhantomData<&'a ()>,
+}
+unsafe impl<'a> crate::TaggedStructure<'a> for SurfaceCapabilitiesPresentId2KHR<'a> {
+    const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::SURFACE_CAPABILITIES_PRESENT_ID_2_KHR;
 }
 ///Provided by [`khr::present_id2`](crate::khr::present_id2)
 impl crate::vk::StructureType {

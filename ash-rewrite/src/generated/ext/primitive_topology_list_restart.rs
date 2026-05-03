@@ -10,6 +10,10 @@ pub struct PhysicalDevicePrimitiveTopologyListRestartFeaturesEXT<'a> {
     pub primitive_topology_patch_list_restart: crate::vk::Bool32,
     pub _marker: ::core::marker::PhantomData<&'a ()>,
 }
+unsafe impl<'a> crate::TaggedStructure<'a>
+for PhysicalDevicePrimitiveTopologyListRestartFeaturesEXT<'a> {
+    const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::PHYSICAL_DEVICE_PRIMITIVE_TOPOLOGY_LIST_RESTART_FEATURES_EXT;
+}
 ///Provided by [`ext::primitive_topology_list_restart`](crate::ext::primitive_topology_list_restart)
 impl crate::vk::StructureType {
     pub const PHYSICAL_DEVICE_PRIMITIVE_TOPOLOGY_LIST_RESTART_FEATURES_EXT: Self = Self(

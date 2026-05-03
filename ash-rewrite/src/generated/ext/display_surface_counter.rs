@@ -54,6 +54,9 @@ pub(crate) mod reexport {
         pub supported_surface_counters: crate::vk::SurfaceCounterFlagsEXT,
         pub _marker: ::core::marker::PhantomData<&'a ()>,
     }
+    unsafe impl<'a> crate::TaggedStructure<'a> for SurfaceCapabilities2EXT<'a> {
+        const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::SURFACE_CAPABILITIES_2_EXT;
+    }
     ///Provided by [`ext::display_surface_counter`](crate::ext::display_surface_counter)
     impl crate::vk::StructureType {
         pub const SURFACE_CAPABILITIES_2_EXT: Self = Self(1000090000);

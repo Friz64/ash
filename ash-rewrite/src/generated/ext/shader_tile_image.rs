@@ -11,6 +11,10 @@ pub struct PhysicalDeviceShaderTileImageFeaturesEXT<'a> {
     pub shader_tile_image_stencil_read_access: crate::vk::Bool32,
     pub _marker: ::core::marker::PhantomData<&'a ()>,
 }
+unsafe impl<'a> crate::TaggedStructure<'a>
+for PhysicalDeviceShaderTileImageFeaturesEXT<'a> {
+    const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::PHYSICAL_DEVICE_SHADER_TILE_IMAGE_FEATURES_EXT;
+}
 #[repr(C)]
 #[derive(Clone, Copy)]
 pub struct PhysicalDeviceShaderTileImagePropertiesEXT<'a> {
@@ -20,6 +24,10 @@ pub struct PhysicalDeviceShaderTileImagePropertiesEXT<'a> {
     pub shader_tile_image_read_sample_from_pixel_rate_invocation: crate::vk::Bool32,
     pub shader_tile_image_read_from_helper_invocation: crate::vk::Bool32,
     pub _marker: ::core::marker::PhantomData<&'a ()>,
+}
+unsafe impl<'a> crate::TaggedStructure<'a>
+for PhysicalDeviceShaderTileImagePropertiesEXT<'a> {
+    const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::PHYSICAL_DEVICE_SHADER_TILE_IMAGE_PROPERTIES_EXT;
 }
 ///Provided by [`ext::shader_tile_image`](crate::ext::shader_tile_image)
 impl crate::vk::StructureType {

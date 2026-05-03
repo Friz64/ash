@@ -9,6 +9,9 @@ pub struct PipelineCompilerControlCreateInfoAMD<'a> {
     pub compiler_control_flags: crate::vk::PipelineCompilerControlFlagsAMD,
     pub _marker: ::core::marker::PhantomData<&'a ()>,
 }
+unsafe impl<'a> crate::TaggedStructure<'a> for PipelineCompilerControlCreateInfoAMD<'a> {
+    const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::PIPELINE_COMPILER_CONTROL_CREATE_INFO_AMD;
+}
 ///Provided by [`amd::pipeline_compiler_control`](crate::amd::pipeline_compiler_control)
 impl crate::vk::StructureType {
     pub const PIPELINE_COMPILER_CONTROL_CREATE_INFO_AMD: Self = Self(1000183000);

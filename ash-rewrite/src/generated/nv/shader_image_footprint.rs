@@ -9,6 +9,10 @@ pub struct PhysicalDeviceShaderImageFootprintFeaturesNV<'a> {
     pub image_footprint: crate::vk::Bool32,
     pub _marker: ::core::marker::PhantomData<&'a ()>,
 }
+unsafe impl<'a> crate::TaggedStructure<'a>
+for PhysicalDeviceShaderImageFootprintFeaturesNV<'a> {
+    const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::PHYSICAL_DEVICE_SHADER_IMAGE_FOOTPRINT_FEATURES_NV;
+}
 ///Provided by [`nv::shader_image_footprint`](crate::nv::shader_image_footprint)
 impl crate::vk::StructureType {
     pub const PHYSICAL_DEVICE_SHADER_IMAGE_FOOTPRINT_FEATURES_NV: Self = Self(

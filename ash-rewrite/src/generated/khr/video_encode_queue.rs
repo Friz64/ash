@@ -99,6 +99,10 @@ pub(crate) mod reexport {
         pub video_session_parameters: crate::vk::VideoSessionParametersKHR,
         pub _marker: ::core::marker::PhantomData<&'a ()>,
     }
+    unsafe impl<'a> crate::TaggedStructure<'a>
+    for VideoEncodeSessionParametersGetInfoKHR<'a> {
+        const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::VIDEO_ENCODE_SESSION_PARAMETERS_GET_INFO_KHR;
+    }
     #[repr(C)]
     #[derive(Clone, Copy)]
     pub struct VideoEncodeSessionParametersFeedbackInfoKHR<'a> {
@@ -106,6 +110,10 @@ pub(crate) mod reexport {
         pub p_next: *mut core::ffi::c_void,
         pub has_overrides: crate::vk::Bool32,
         pub _marker: ::core::marker::PhantomData<&'a ()>,
+    }
+    unsafe impl<'a> crate::TaggedStructure<'a>
+    for VideoEncodeSessionParametersFeedbackInfoKHR<'a> {
+        const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::VIDEO_ENCODE_SESSION_PARAMETERS_FEEDBACK_INFO_KHR;
     }
     #[repr(C)]
     #[derive(Clone, Copy)]
@@ -116,6 +124,9 @@ pub(crate) mod reexport {
         pub video_content_hints: crate::vk::VideoEncodeContentFlagsKHR,
         pub tuning_mode: crate::vk::VideoEncodeTuningModeKHR,
         pub _marker: ::core::marker::PhantomData<&'a ()>,
+    }
+    unsafe impl<'a> crate::TaggedStructure<'a> for VideoEncodeUsageInfoKHR<'a> {
+        const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::VIDEO_ENCODE_USAGE_INFO_KHR;
     }
     #[repr(C)]
     #[derive(Clone, Copy)]
@@ -133,6 +144,9 @@ pub(crate) mod reexport {
         pub preceding_externally_encoded_bytes: u32,
         pub _marker: ::core::marker::PhantomData<&'a ()>,
     }
+    unsafe impl<'a> crate::TaggedStructure<'a> for VideoEncodeInfoKHR<'a> {
+        const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::VIDEO_ENCODE_INFO_KHR;
+    }
     #[repr(C)]
     #[derive(Clone, Copy)]
     pub struct QueryPoolVideoEncodeFeedbackCreateInfoKHR<'a> {
@@ -141,6 +155,10 @@ pub(crate) mod reexport {
         pub encode_feedback_flags: crate::vk::VideoEncodeFeedbackFlagsKHR,
         pub _marker: ::core::marker::PhantomData<&'a ()>,
     }
+    unsafe impl<'a> crate::TaggedStructure<'a>
+    for QueryPoolVideoEncodeFeedbackCreateInfoKHR<'a> {
+        const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::QUERY_POOL_VIDEO_ENCODE_FEEDBACK_CREATE_INFO_KHR;
+    }
     #[repr(C)]
     #[derive(Clone, Copy)]
     pub struct VideoEncodeQualityLevelInfoKHR<'a> {
@@ -148,6 +166,9 @@ pub(crate) mod reexport {
         pub p_next: *const core::ffi::c_void,
         pub quality_level: u32,
         pub _marker: ::core::marker::PhantomData<&'a ()>,
+    }
+    unsafe impl<'a> crate::TaggedStructure<'a> for VideoEncodeQualityLevelInfoKHR<'a> {
+        const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::VIDEO_ENCODE_QUALITY_LEVEL_INFO_KHR;
     }
     #[repr(C)]
     #[derive(Clone, Copy)]
@@ -158,6 +179,10 @@ pub(crate) mod reexport {
         pub quality_level: u32,
         pub _marker: ::core::marker::PhantomData<&'a ()>,
     }
+    unsafe impl<'a> crate::TaggedStructure<'a>
+    for PhysicalDeviceVideoEncodeQualityLevelInfoKHR<'a> {
+        const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::PHYSICAL_DEVICE_VIDEO_ENCODE_QUALITY_LEVEL_INFO_KHR;
+    }
     #[repr(C)]
     #[derive(Clone, Copy)]
     pub struct VideoEncodeQualityLevelPropertiesKHR<'a> {
@@ -166,6 +191,10 @@ pub(crate) mod reexport {
         pub preferred_rate_control_mode: crate::vk::VideoEncodeRateControlModeFlagBitsKHR,
         pub preferred_rate_control_layer_count: u32,
         pub _marker: ::core::marker::PhantomData<&'a ()>,
+    }
+    unsafe impl<'a> crate::TaggedStructure<'a>
+    for VideoEncodeQualityLevelPropertiesKHR<'a> {
+        const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::VIDEO_ENCODE_QUALITY_LEVEL_PROPERTIES_KHR;
     }
     #[repr(C)]
     #[derive(Clone, Copy)]
@@ -180,6 +209,9 @@ pub(crate) mod reexport {
         pub initial_virtual_buffer_size_in_ms: u32,
         pub _marker: ::core::marker::PhantomData<&'a ()>,
     }
+    unsafe impl<'a> crate::TaggedStructure<'a> for VideoEncodeRateControlInfoKHR<'a> {
+        const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::VIDEO_ENCODE_RATE_CONTROL_INFO_KHR;
+    }
     #[repr(C)]
     #[derive(Clone, Copy)]
     pub struct VideoEncodeRateControlLayerInfoKHR<'a> {
@@ -190,6 +222,10 @@ pub(crate) mod reexport {
         pub frame_rate_numerator: u32,
         pub frame_rate_denominator: u32,
         pub _marker: ::core::marker::PhantomData<&'a ()>,
+    }
+    unsafe impl<'a> crate::TaggedStructure<'a>
+    for VideoEncodeRateControlLayerInfoKHR<'a> {
+        const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::VIDEO_ENCODE_RATE_CONTROL_LAYER_INFO_KHR;
     }
     #[repr(C)]
     #[derive(Clone, Copy)]
@@ -204,6 +240,9 @@ pub(crate) mod reexport {
         pub encode_input_picture_granularity: crate::vk::Extent2D,
         pub supported_encode_feedback_flags: crate::vk::VideoEncodeFeedbackFlagsKHR,
         pub _marker: ::core::marker::PhantomData<&'a ()>,
+    }
+    unsafe impl<'a> crate::TaggedStructure<'a> for VideoEncodeCapabilitiesKHR<'a> {
+        const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::VIDEO_ENCODE_CAPABILITIES_KHR;
     }
     ///Provided by [`khr::video_encode_queue`](crate::khr::video_encode_queue)
     impl crate::vk::ImageLayout {

@@ -9,6 +9,10 @@ pub struct PhysicalDevicePresentModeFifoLatestReadyFeaturesKHR<'a> {
     pub present_mode_fifo_latest_ready: crate::vk::Bool32,
     pub _marker: ::core::marker::PhantomData<&'a ()>,
 }
+unsafe impl<'a> crate::TaggedStructure<'a>
+for PhysicalDevicePresentModeFifoLatestReadyFeaturesKHR<'a> {
+    const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::PHYSICAL_DEVICE_PRESENT_MODE_FIFO_LATEST_READY_FEATURES_KHR;
+}
 ///Provided by [`khr::present_mode_fifo_latest_ready`](crate::khr::present_mode_fifo_latest_ready)
 impl crate::vk::StructureType {
     pub const PHYSICAL_DEVICE_PRESENT_MODE_FIFO_LATEST_READY_FEATURES_KHR: Self = Self(

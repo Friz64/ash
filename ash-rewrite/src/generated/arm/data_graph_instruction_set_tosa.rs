@@ -59,6 +59,10 @@ pub(crate) mod reexport {
         pub level: crate::vk::DataGraphTOSALevelARM,
         pub _marker: ::core::marker::PhantomData<&'a ()>,
     }
+    unsafe impl<'a> crate::TaggedStructure<'a>
+    for QueueFamilyDataGraphTOSAPropertiesARM<'a> {
+        const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::QUEUE_FAMILY_DATA_GRAPH_TOSA_PROPERTIES_ARM;
+    }
     ///Provided by [`arm::data_graph_instruction_set_tosa`](crate::arm::data_graph_instruction_set_tosa)
     impl crate::vk::StructureType {
         pub const QUEUE_FAMILY_DATA_GRAPH_TOSA_PROPERTIES_ARM: Self = Self(1000508000);

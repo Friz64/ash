@@ -62,6 +62,10 @@ pub(crate) mod reexport {
         pub handle: crate::platform_types::zx_handle_t,
         pub _marker: ::core::marker::PhantomData<&'a ()>,
     }
+    unsafe impl<'a> crate::TaggedStructure<'a>
+    for ImportMemoryZirconHandleInfoFUCHSIA<'a> {
+        const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::IMPORT_MEMORY_ZIRCON_HANDLE_INFO_FUCHSIA;
+    }
     #[repr(C)]
     #[derive(Clone, Copy)]
     pub struct MemoryZirconHandlePropertiesFUCHSIA<'a> {
@@ -69,6 +73,10 @@ pub(crate) mod reexport {
         pub p_next: *mut core::ffi::c_void,
         pub memory_type_bits: u32,
         pub _marker: ::core::marker::PhantomData<&'a ()>,
+    }
+    unsafe impl<'a> crate::TaggedStructure<'a>
+    for MemoryZirconHandlePropertiesFUCHSIA<'a> {
+        const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::MEMORY_ZIRCON_HANDLE_PROPERTIES_FUCHSIA;
     }
     #[repr(C)]
     #[derive(Clone, Copy)]
@@ -78,6 +86,9 @@ pub(crate) mod reexport {
         pub memory: crate::vk::DeviceMemory,
         pub handle_type: crate::vk::ExternalMemoryHandleTypeFlagBits,
         pub _marker: ::core::marker::PhantomData<&'a ()>,
+    }
+    unsafe impl<'a> crate::TaggedStructure<'a> for MemoryGetZirconHandleInfoFUCHSIA<'a> {
+        const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::MEMORY_GET_ZIRCON_HANDLE_INFO_FUCHSIA;
     }
     ///Provided by [`fuchsia::external_memory`](crate::fuchsia::external_memory)
     impl crate::vk::StructureType {

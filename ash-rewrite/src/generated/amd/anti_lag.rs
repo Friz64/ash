@@ -43,6 +43,9 @@ pub(crate) mod reexport {
         pub anti_lag: crate::vk::Bool32,
         pub _marker: ::core::marker::PhantomData<&'a ()>,
     }
+    unsafe impl<'a> crate::TaggedStructure<'a> for PhysicalDeviceAntiLagFeaturesAMD<'a> {
+        const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::PHYSICAL_DEVICE_ANTI_LAG_FEATURES_AMD;
+    }
     #[repr(C)]
     #[derive(Clone, Copy)]
     pub struct AntiLagDataAMD<'a> {
@@ -53,6 +56,9 @@ pub(crate) mod reexport {
         pub p_presentation_info: *const crate::vk::AntiLagPresentationInfoAMD<'a>,
         pub _marker: ::core::marker::PhantomData<&'a ()>,
     }
+    unsafe impl<'a> crate::TaggedStructure<'a> for AntiLagDataAMD<'a> {
+        const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::ANTI_LAG_DATA_AMD;
+    }
     #[repr(C)]
     #[derive(Clone, Copy)]
     pub struct AntiLagPresentationInfoAMD<'a> {
@@ -61,6 +67,9 @@ pub(crate) mod reexport {
         pub stage: crate::vk::AntiLagStageAMD,
         pub frame_index: u64,
         pub _marker: ::core::marker::PhantomData<&'a ()>,
+    }
+    unsafe impl<'a> crate::TaggedStructure<'a> for AntiLagPresentationInfoAMD<'a> {
+        const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::ANTI_LAG_PRESENTATION_INFO_AMD;
     }
     ///Provided by [`amd::anti_lag`](crate::amd::anti_lag)
     impl crate::vk::StructureType {

@@ -11,6 +11,9 @@ pub struct AttachmentSampleCountInfoAMD<'a> {
     pub depth_stencil_attachment_samples: crate::vk::SampleCountFlagBits,
     pub _marker: ::core::marker::PhantomData<&'a ()>,
 }
+unsafe impl<'a> crate::TaggedStructure<'a> for AttachmentSampleCountInfoAMD<'a> {
+    const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::ATTACHMENT_SAMPLE_COUNT_INFO_AMD;
+}
 ///Provided by [`amd::mixed_attachment_samples`](crate::amd::mixed_attachment_samples)
 impl crate::vk::StructureType {
     pub const ATTACHMENT_SAMPLE_COUNT_INFO_AMD: Self = Self(1000044008);

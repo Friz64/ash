@@ -116,6 +116,10 @@ pub(crate) mod reexport {
         pub performance_counter_multiple_query_pools: crate::vk::Bool32,
         pub _marker: ::core::marker::PhantomData<&'a ()>,
     }
+    unsafe impl<'a> crate::TaggedStructure<'a>
+    for PhysicalDevicePerformanceQueryFeaturesKHR<'a> {
+        const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::PHYSICAL_DEVICE_PERFORMANCE_QUERY_FEATURES_KHR;
+    }
     #[repr(C)]
     #[derive(Clone, Copy)]
     pub struct PhysicalDevicePerformanceQueryPropertiesKHR<'a> {
@@ -123,6 +127,10 @@ pub(crate) mod reexport {
         pub p_next: *mut core::ffi::c_void,
         pub allow_command_buffer_query_copies: crate::vk::Bool32,
         pub _marker: ::core::marker::PhantomData<&'a ()>,
+    }
+    unsafe impl<'a> crate::TaggedStructure<'a>
+    for PhysicalDevicePerformanceQueryPropertiesKHR<'a> {
+        const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::PHYSICAL_DEVICE_PERFORMANCE_QUERY_PROPERTIES_KHR;
     }
     #[repr(C)]
     #[derive(Clone, Copy)]
@@ -135,6 +143,9 @@ pub(crate) mod reexport {
         pub uuid: [u8; crate::vk::UUID_SIZE as _],
         pub _marker: ::core::marker::PhantomData<&'a ()>,
     }
+    unsafe impl<'a> crate::TaggedStructure<'a> for PerformanceCounterKHR<'a> {
+        const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::PERFORMANCE_COUNTER_KHR;
+    }
     #[repr(C)]
     #[derive(Clone, Copy)]
     pub struct PerformanceCounterDescriptionKHR<'a> {
@@ -146,6 +157,9 @@ pub(crate) mod reexport {
         pub description: [core::ffi::c_char; crate::vk::MAX_DESCRIPTION_SIZE as _],
         pub _marker: ::core::marker::PhantomData<&'a ()>,
     }
+    unsafe impl<'a> crate::TaggedStructure<'a> for PerformanceCounterDescriptionKHR<'a> {
+        const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::PERFORMANCE_COUNTER_DESCRIPTION_KHR;
+    }
     #[repr(C)]
     #[derive(Clone, Copy)]
     pub struct QueryPoolPerformanceCreateInfoKHR<'a> {
@@ -156,6 +170,10 @@ pub(crate) mod reexport {
         pub p_counter_indices: *const u32,
         pub _marker: ::core::marker::PhantomData<&'a ()>,
     }
+    unsafe impl<'a> crate::TaggedStructure<'a>
+    for QueryPoolPerformanceCreateInfoKHR<'a> {
+        const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::QUERY_POOL_PERFORMANCE_CREATE_INFO_KHR;
+    }
     #[repr(C)]
     #[derive(Clone, Copy)]
     pub struct AcquireProfilingLockInfoKHR<'a> {
@@ -165,6 +183,9 @@ pub(crate) mod reexport {
         pub timeout: u64,
         pub _marker: ::core::marker::PhantomData<&'a ()>,
     }
+    unsafe impl<'a> crate::TaggedStructure<'a> for AcquireProfilingLockInfoKHR<'a> {
+        const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::ACQUIRE_PROFILING_LOCK_INFO_KHR;
+    }
     #[repr(C)]
     #[derive(Clone, Copy)]
     pub struct PerformanceQuerySubmitInfoKHR<'a> {
@@ -172,6 +193,9 @@ pub(crate) mod reexport {
         pub p_next: *const core::ffi::c_void,
         pub counter_pass_index: u32,
         pub _marker: ::core::marker::PhantomData<&'a ()>,
+    }
+    unsafe impl<'a> crate::TaggedStructure<'a> for PerformanceQuerySubmitInfoKHR<'a> {
+        const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::PERFORMANCE_QUERY_SUBMIT_INFO_KHR;
     }
     #[repr(C)]
     #[derive(Clone, Copy)]

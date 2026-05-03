@@ -53,6 +53,10 @@ pub(crate) mod reexport {
         pub p_viewport_w_scalings: *const crate::vk::ViewportWScalingNV,
         pub _marker: ::core::marker::PhantomData<&'a ()>,
     }
+    unsafe impl<'a> crate::TaggedStructure<'a>
+    for PipelineViewportWScalingStateCreateInfoNV<'a> {
+        const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::PIPELINE_VIEWPORT_W_SCALING_STATE_CREATE_INFO_NV;
+    }
     ///Provided by [`nv::clip_space_w_scaling`](crate::nv::clip_space_w_scaling)
     impl crate::vk::StructureType {
         pub const PIPELINE_VIEWPORT_W_SCALING_STATE_CREATE_INFO_NV: Self = Self(

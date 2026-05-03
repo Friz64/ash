@@ -95,6 +95,10 @@ pub(crate) mod reexport {
         pub reserved_external_queues: u32,
         pub _marker: ::core::marker::PhantomData<&'a ()>,
     }
+    unsafe impl<'a> crate::TaggedStructure<'a>
+    for ExternalComputeQueueDeviceCreateInfoNV<'a> {
+        const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::EXTERNAL_COMPUTE_QUEUE_DEVICE_CREATE_INFO_NV;
+    }
     #[repr(C)]
     #[derive(Clone, Copy)]
     pub struct ExternalComputeQueueCreateInfoNV<'a> {
@@ -102,6 +106,9 @@ pub(crate) mod reexport {
         pub p_next: *const core::ffi::c_void,
         pub preferred_queue: crate::vk::Queue,
         pub _marker: ::core::marker::PhantomData<&'a ()>,
+    }
+    unsafe impl<'a> crate::TaggedStructure<'a> for ExternalComputeQueueCreateInfoNV<'a> {
+        const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::EXTERNAL_COMPUTE_QUEUE_CREATE_INFO_NV;
     }
     #[repr(C)]
     #[derive(Clone, Copy)]
@@ -111,6 +118,9 @@ pub(crate) mod reexport {
         pub device_index: u32,
         pub _marker: ::core::marker::PhantomData<&'a ()>,
     }
+    unsafe impl<'a> crate::TaggedStructure<'a> for ExternalComputeQueueDataParamsNV<'a> {
+        const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::EXTERNAL_COMPUTE_QUEUE_DATA_PARAMS_NV;
+    }
     #[repr(C)]
     #[derive(Clone, Copy)]
     pub struct PhysicalDeviceExternalComputeQueuePropertiesNV<'a> {
@@ -119,6 +129,10 @@ pub(crate) mod reexport {
         pub external_data_size: u32,
         pub max_external_queues: u32,
         pub _marker: ::core::marker::PhantomData<&'a ()>,
+    }
+    unsafe impl<'a> crate::TaggedStructure<'a>
+    for PhysicalDeviceExternalComputeQueuePropertiesNV<'a> {
+        const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::PHYSICAL_DEVICE_EXTERNAL_COMPUTE_QUEUE_PROPERTIES_NV;
     }
     ///Provided by [`nv::external_compute_queue`](crate::nv::external_compute_queue)
     impl crate::vk::StructureType {
