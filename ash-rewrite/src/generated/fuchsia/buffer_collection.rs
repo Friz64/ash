@@ -265,40 +265,40 @@ pub(crate) mod reexport {
             Self::empty()
         }
     }
-    impl ::core::ops::BitOr for ImageFormatConstraintsFlagsFUCHSIA {
+    impl core::ops::BitOr for ImageFormatConstraintsFlagsFUCHSIA {
         type Output = Self;
         fn bitor(self, rhs: Self) -> Self {
             Self(self.0 | rhs.0)
         }
     }
-    impl ::core::ops::BitOrAssign for ImageFormatConstraintsFlagsFUCHSIA {
+    impl core::ops::BitOrAssign for ImageFormatConstraintsFlagsFUCHSIA {
         fn bitor_assign(&mut self, rhs: Self) {
             *self = *self | rhs;
         }
     }
-    impl ::core::ops::BitAnd for ImageFormatConstraintsFlagsFUCHSIA {
+    impl core::ops::BitAnd for ImageFormatConstraintsFlagsFUCHSIA {
         type Output = Self;
         fn bitand(self, rhs: Self) -> Self {
             Self(self.0 & rhs.0)
         }
     }
-    impl ::core::ops::BitAndAssign for ImageFormatConstraintsFlagsFUCHSIA {
+    impl core::ops::BitAndAssign for ImageFormatConstraintsFlagsFUCHSIA {
         fn bitand_assign(&mut self, rhs: Self) {
             *self = *self & rhs;
         }
     }
-    impl ::core::ops::BitXor for ImageFormatConstraintsFlagsFUCHSIA {
+    impl core::ops::BitXor for ImageFormatConstraintsFlagsFUCHSIA {
         type Output = Self;
         fn bitxor(self, rhs: Self) -> Self {
             Self(self.0 ^ rhs.0)
         }
     }
-    impl ::core::ops::BitXorAssign for ImageFormatConstraintsFlagsFUCHSIA {
+    impl core::ops::BitXorAssign for ImageFormatConstraintsFlagsFUCHSIA {
         fn bitxor_assign(&mut self, rhs: Self) {
             *self = *self ^ rhs;
         }
     }
-    impl ::core::ops::Not for ImageFormatConstraintsFlagsFUCHSIA {
+    impl core::ops::Not for ImageFormatConstraintsFlagsFUCHSIA {
         type Output = Self;
         fn not(self) -> Self {
             Self(!self.0)
@@ -347,40 +347,40 @@ pub(crate) mod reexport {
             Self::empty()
         }
     }
-    impl ::core::ops::BitOr for ImageConstraintsInfoFlagsFUCHSIA {
+    impl core::ops::BitOr for ImageConstraintsInfoFlagsFUCHSIA {
         type Output = Self;
         fn bitor(self, rhs: Self) -> Self {
             Self(self.0 | rhs.0)
         }
     }
-    impl ::core::ops::BitOrAssign for ImageConstraintsInfoFlagsFUCHSIA {
+    impl core::ops::BitOrAssign for ImageConstraintsInfoFlagsFUCHSIA {
         fn bitor_assign(&mut self, rhs: Self) {
             *self = *self | rhs;
         }
     }
-    impl ::core::ops::BitAnd for ImageConstraintsInfoFlagsFUCHSIA {
+    impl core::ops::BitAnd for ImageConstraintsInfoFlagsFUCHSIA {
         type Output = Self;
         fn bitand(self, rhs: Self) -> Self {
             Self(self.0 & rhs.0)
         }
     }
-    impl ::core::ops::BitAndAssign for ImageConstraintsInfoFlagsFUCHSIA {
+    impl core::ops::BitAndAssign for ImageConstraintsInfoFlagsFUCHSIA {
         fn bitand_assign(&mut self, rhs: Self) {
             *self = *self & rhs;
         }
     }
-    impl ::core::ops::BitXor for ImageConstraintsInfoFlagsFUCHSIA {
+    impl core::ops::BitXor for ImageConstraintsInfoFlagsFUCHSIA {
         type Output = Self;
         fn bitxor(self, rhs: Self) -> Self {
             Self(self.0 ^ rhs.0)
         }
     }
-    impl ::core::ops::BitXorAssign for ImageConstraintsInfoFlagsFUCHSIA {
+    impl core::ops::BitXorAssign for ImageConstraintsInfoFlagsFUCHSIA {
         fn bitxor_assign(&mut self, rhs: Self) {
             *self = *self ^ rhs;
         }
     }
-    impl ::core::ops::Not for ImageConstraintsInfoFlagsFUCHSIA {
+    impl core::ops::Not for ImageConstraintsInfoFlagsFUCHSIA {
         type Output = Self;
         fn not(self) -> Self {
             Self(!self.0)

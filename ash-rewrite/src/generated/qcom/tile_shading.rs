@@ -179,40 +179,40 @@ pub(crate) mod reexport {
             Self::empty()
         }
     }
-    impl ::core::ops::BitOr for TileShadingRenderPassFlagsQCOM {
+    impl core::ops::BitOr for TileShadingRenderPassFlagsQCOM {
         type Output = Self;
         fn bitor(self, rhs: Self) -> Self {
             Self(self.0 | rhs.0)
         }
     }
-    impl ::core::ops::BitOrAssign for TileShadingRenderPassFlagsQCOM {
+    impl core::ops::BitOrAssign for TileShadingRenderPassFlagsQCOM {
         fn bitor_assign(&mut self, rhs: Self) {
             *self = *self | rhs;
         }
     }
-    impl ::core::ops::BitAnd for TileShadingRenderPassFlagsQCOM {
+    impl core::ops::BitAnd for TileShadingRenderPassFlagsQCOM {
         type Output = Self;
         fn bitand(self, rhs: Self) -> Self {
             Self(self.0 & rhs.0)
         }
     }
-    impl ::core::ops::BitAndAssign for TileShadingRenderPassFlagsQCOM {
+    impl core::ops::BitAndAssign for TileShadingRenderPassFlagsQCOM {
         fn bitand_assign(&mut self, rhs: Self) {
             *self = *self & rhs;
         }
     }
-    impl ::core::ops::BitXor for TileShadingRenderPassFlagsQCOM {
+    impl core::ops::BitXor for TileShadingRenderPassFlagsQCOM {
         type Output = Self;
         fn bitxor(self, rhs: Self) -> Self {
             Self(self.0 ^ rhs.0)
         }
     }
-    impl ::core::ops::BitXorAssign for TileShadingRenderPassFlagsQCOM {
+    impl core::ops::BitXorAssign for TileShadingRenderPassFlagsQCOM {
         fn bitxor_assign(&mut self, rhs: Self) {
             *self = *self ^ rhs;
         }
     }
-    impl ::core::ops::Not for TileShadingRenderPassFlagsQCOM {
+    impl core::ops::Not for TileShadingRenderPassFlagsQCOM {
         type Output = Self;
         fn not(self) -> Self {
             Self(!self.0)

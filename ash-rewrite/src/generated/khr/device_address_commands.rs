@@ -621,40 +621,40 @@ pub(crate) mod reexport {
             Self::empty()
         }
     }
-    impl ::core::ops::BitOr for AddressCommandFlagsKHR {
+    impl core::ops::BitOr for AddressCommandFlagsKHR {
         type Output = Self;
         fn bitor(self, rhs: Self) -> Self {
             Self(self.0 | rhs.0)
         }
     }
-    impl ::core::ops::BitOrAssign for AddressCommandFlagsKHR {
+    impl core::ops::BitOrAssign for AddressCommandFlagsKHR {
         fn bitor_assign(&mut self, rhs: Self) {
             *self = *self | rhs;
         }
     }
-    impl ::core::ops::BitAnd for AddressCommandFlagsKHR {
+    impl core::ops::BitAnd for AddressCommandFlagsKHR {
         type Output = Self;
         fn bitand(self, rhs: Self) -> Self {
             Self(self.0 & rhs.0)
         }
     }
-    impl ::core::ops::BitAndAssign for AddressCommandFlagsKHR {
+    impl core::ops::BitAndAssign for AddressCommandFlagsKHR {
         fn bitand_assign(&mut self, rhs: Self) {
             *self = *self & rhs;
         }
     }
-    impl ::core::ops::BitXor for AddressCommandFlagsKHR {
+    impl core::ops::BitXor for AddressCommandFlagsKHR {
         type Output = Self;
         fn bitxor(self, rhs: Self) -> Self {
             Self(self.0 ^ rhs.0)
         }
     }
-    impl ::core::ops::BitXorAssign for AddressCommandFlagsKHR {
+    impl core::ops::BitXorAssign for AddressCommandFlagsKHR {
         fn bitxor_assign(&mut self, rhs: Self) {
             *self = *self ^ rhs;
         }
     }
-    impl ::core::ops::Not for AddressCommandFlagsKHR {
+    impl core::ops::Not for AddressCommandFlagsKHR {
         type Output = Self;
         fn not(self) -> Self {
             Self(!self.0)

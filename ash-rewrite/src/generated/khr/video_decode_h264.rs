@@ -112,40 +112,40 @@ impl Default for VideoDecodeH264PictureLayoutFlagsKHR {
         Self::empty()
     }
 }
-impl ::core::ops::BitOr for VideoDecodeH264PictureLayoutFlagsKHR {
+impl core::ops::BitOr for VideoDecodeH264PictureLayoutFlagsKHR {
     type Output = Self;
     fn bitor(self, rhs: Self) -> Self {
         Self(self.0 | rhs.0)
     }
 }
-impl ::core::ops::BitOrAssign for VideoDecodeH264PictureLayoutFlagsKHR {
+impl core::ops::BitOrAssign for VideoDecodeH264PictureLayoutFlagsKHR {
     fn bitor_assign(&mut self, rhs: Self) {
         *self = *self | rhs;
     }
 }
-impl ::core::ops::BitAnd for VideoDecodeH264PictureLayoutFlagsKHR {
+impl core::ops::BitAnd for VideoDecodeH264PictureLayoutFlagsKHR {
     type Output = Self;
     fn bitand(self, rhs: Self) -> Self {
         Self(self.0 & rhs.0)
     }
 }
-impl ::core::ops::BitAndAssign for VideoDecodeH264PictureLayoutFlagsKHR {
+impl core::ops::BitAndAssign for VideoDecodeH264PictureLayoutFlagsKHR {
     fn bitand_assign(&mut self, rhs: Self) {
         *self = *self & rhs;
     }
 }
-impl ::core::ops::BitXor for VideoDecodeH264PictureLayoutFlagsKHR {
+impl core::ops::BitXor for VideoDecodeH264PictureLayoutFlagsKHR {
     type Output = Self;
     fn bitxor(self, rhs: Self) -> Self {
         Self(self.0 ^ rhs.0)
     }
 }
-impl ::core::ops::BitXorAssign for VideoDecodeH264PictureLayoutFlagsKHR {
+impl core::ops::BitXorAssign for VideoDecodeH264PictureLayoutFlagsKHR {
     fn bitxor_assign(&mut self, rhs: Self) {
         *self = *self ^ rhs;
     }
 }
-impl ::core::ops::Not for VideoDecodeH264PictureLayoutFlagsKHR {
+impl core::ops::Not for VideoDecodeH264PictureLayoutFlagsKHR {
     type Output = Self;
     fn not(self) -> Self {
         Self(!self.0)

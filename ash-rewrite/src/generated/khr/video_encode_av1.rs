@@ -266,40 +266,40 @@ impl Default for VideoEncodeAV1CapabilityFlagsKHR {
         Self::empty()
     }
 }
-impl ::core::ops::BitOr for VideoEncodeAV1CapabilityFlagsKHR {
+impl core::ops::BitOr for VideoEncodeAV1CapabilityFlagsKHR {
     type Output = Self;
     fn bitor(self, rhs: Self) -> Self {
         Self(self.0 | rhs.0)
     }
 }
-impl ::core::ops::BitOrAssign for VideoEncodeAV1CapabilityFlagsKHR {
+impl core::ops::BitOrAssign for VideoEncodeAV1CapabilityFlagsKHR {
     fn bitor_assign(&mut self, rhs: Self) {
         *self = *self | rhs;
     }
 }
-impl ::core::ops::BitAnd for VideoEncodeAV1CapabilityFlagsKHR {
+impl core::ops::BitAnd for VideoEncodeAV1CapabilityFlagsKHR {
     type Output = Self;
     fn bitand(self, rhs: Self) -> Self {
         Self(self.0 & rhs.0)
     }
 }
-impl ::core::ops::BitAndAssign for VideoEncodeAV1CapabilityFlagsKHR {
+impl core::ops::BitAndAssign for VideoEncodeAV1CapabilityFlagsKHR {
     fn bitand_assign(&mut self, rhs: Self) {
         *self = *self & rhs;
     }
 }
-impl ::core::ops::BitXor for VideoEncodeAV1CapabilityFlagsKHR {
+impl core::ops::BitXor for VideoEncodeAV1CapabilityFlagsKHR {
     type Output = Self;
     fn bitxor(self, rhs: Self) -> Self {
         Self(self.0 ^ rhs.0)
     }
 }
-impl ::core::ops::BitXorAssign for VideoEncodeAV1CapabilityFlagsKHR {
+impl core::ops::BitXorAssign for VideoEncodeAV1CapabilityFlagsKHR {
     fn bitxor_assign(&mut self, rhs: Self) {
         *self = *self ^ rhs;
     }
 }
-impl ::core::ops::Not for VideoEncodeAV1CapabilityFlagsKHR {
+impl core::ops::Not for VideoEncodeAV1CapabilityFlagsKHR {
     type Output = Self;
     fn not(self) -> Self {
         Self(!self.0)
@@ -354,40 +354,40 @@ impl Default for VideoEncodeAV1StdFlagsKHR {
         Self::empty()
     }
 }
-impl ::core::ops::BitOr for VideoEncodeAV1StdFlagsKHR {
+impl core::ops::BitOr for VideoEncodeAV1StdFlagsKHR {
     type Output = Self;
     fn bitor(self, rhs: Self) -> Self {
         Self(self.0 | rhs.0)
     }
 }
-impl ::core::ops::BitOrAssign for VideoEncodeAV1StdFlagsKHR {
+impl core::ops::BitOrAssign for VideoEncodeAV1StdFlagsKHR {
     fn bitor_assign(&mut self, rhs: Self) {
         *self = *self | rhs;
     }
 }
-impl ::core::ops::BitAnd for VideoEncodeAV1StdFlagsKHR {
+impl core::ops::BitAnd for VideoEncodeAV1StdFlagsKHR {
     type Output = Self;
     fn bitand(self, rhs: Self) -> Self {
         Self(self.0 & rhs.0)
     }
 }
-impl ::core::ops::BitAndAssign for VideoEncodeAV1StdFlagsKHR {
+impl core::ops::BitAndAssign for VideoEncodeAV1StdFlagsKHR {
     fn bitand_assign(&mut self, rhs: Self) {
         *self = *self & rhs;
     }
 }
-impl ::core::ops::BitXor for VideoEncodeAV1StdFlagsKHR {
+impl core::ops::BitXor for VideoEncodeAV1StdFlagsKHR {
     type Output = Self;
     fn bitxor(self, rhs: Self) -> Self {
         Self(self.0 ^ rhs.0)
     }
 }
-impl ::core::ops::BitXorAssign for VideoEncodeAV1StdFlagsKHR {
+impl core::ops::BitXorAssign for VideoEncodeAV1StdFlagsKHR {
     fn bitxor_assign(&mut self, rhs: Self) {
         *self = *self ^ rhs;
     }
 }
-impl ::core::ops::Not for VideoEncodeAV1StdFlagsKHR {
+impl core::ops::Not for VideoEncodeAV1StdFlagsKHR {
     type Output = Self;
     fn not(self) -> Self {
         Self(!self.0)
@@ -443,40 +443,40 @@ impl Default for VideoEncodeAV1RateControlFlagsKHR {
         Self::empty()
     }
 }
-impl ::core::ops::BitOr for VideoEncodeAV1RateControlFlagsKHR {
+impl core::ops::BitOr for VideoEncodeAV1RateControlFlagsKHR {
     type Output = Self;
     fn bitor(self, rhs: Self) -> Self {
         Self(self.0 | rhs.0)
     }
 }
-impl ::core::ops::BitOrAssign for VideoEncodeAV1RateControlFlagsKHR {
+impl core::ops::BitOrAssign for VideoEncodeAV1RateControlFlagsKHR {
     fn bitor_assign(&mut self, rhs: Self) {
         *self = *self | rhs;
     }
 }
-impl ::core::ops::BitAnd for VideoEncodeAV1RateControlFlagsKHR {
+impl core::ops::BitAnd for VideoEncodeAV1RateControlFlagsKHR {
     type Output = Self;
     fn bitand(self, rhs: Self) -> Self {
         Self(self.0 & rhs.0)
     }
 }
-impl ::core::ops::BitAndAssign for VideoEncodeAV1RateControlFlagsKHR {
+impl core::ops::BitAndAssign for VideoEncodeAV1RateControlFlagsKHR {
     fn bitand_assign(&mut self, rhs: Self) {
         *self = *self & rhs;
     }
 }
-impl ::core::ops::BitXor for VideoEncodeAV1RateControlFlagsKHR {
+impl core::ops::BitXor for VideoEncodeAV1RateControlFlagsKHR {
     type Output = Self;
     fn bitxor(self, rhs: Self) -> Self {
         Self(self.0 ^ rhs.0)
     }
 }
-impl ::core::ops::BitXorAssign for VideoEncodeAV1RateControlFlagsKHR {
+impl core::ops::BitXorAssign for VideoEncodeAV1RateControlFlagsKHR {
     fn bitxor_assign(&mut self, rhs: Self) {
         *self = *self ^ rhs;
     }
 }
-impl ::core::ops::Not for VideoEncodeAV1RateControlFlagsKHR {
+impl core::ops::Not for VideoEncodeAV1RateControlFlagsKHR {
     type Output = Self;
     fn not(self) -> Self {
         Self(!self.0)
@@ -522,40 +522,40 @@ impl Default for VideoEncodeAV1SuperblockSizeFlagsKHR {
         Self::empty()
     }
 }
-impl ::core::ops::BitOr for VideoEncodeAV1SuperblockSizeFlagsKHR {
+impl core::ops::BitOr for VideoEncodeAV1SuperblockSizeFlagsKHR {
     type Output = Self;
     fn bitor(self, rhs: Self) -> Self {
         Self(self.0 | rhs.0)
     }
 }
-impl ::core::ops::BitOrAssign for VideoEncodeAV1SuperblockSizeFlagsKHR {
+impl core::ops::BitOrAssign for VideoEncodeAV1SuperblockSizeFlagsKHR {
     fn bitor_assign(&mut self, rhs: Self) {
         *self = *self | rhs;
     }
 }
-impl ::core::ops::BitAnd for VideoEncodeAV1SuperblockSizeFlagsKHR {
+impl core::ops::BitAnd for VideoEncodeAV1SuperblockSizeFlagsKHR {
     type Output = Self;
     fn bitand(self, rhs: Self) -> Self {
         Self(self.0 & rhs.0)
     }
 }
-impl ::core::ops::BitAndAssign for VideoEncodeAV1SuperblockSizeFlagsKHR {
+impl core::ops::BitAndAssign for VideoEncodeAV1SuperblockSizeFlagsKHR {
     fn bitand_assign(&mut self, rhs: Self) {
         *self = *self & rhs;
     }
 }
-impl ::core::ops::BitXor for VideoEncodeAV1SuperblockSizeFlagsKHR {
+impl core::ops::BitXor for VideoEncodeAV1SuperblockSizeFlagsKHR {
     type Output = Self;
     fn bitxor(self, rhs: Self) -> Self {
         Self(self.0 ^ rhs.0)
     }
 }
-impl ::core::ops::BitXorAssign for VideoEncodeAV1SuperblockSizeFlagsKHR {
+impl core::ops::BitXorAssign for VideoEncodeAV1SuperblockSizeFlagsKHR {
     fn bitxor_assign(&mut self, rhs: Self) {
         *self = *self ^ rhs;
     }
 }
-impl ::core::ops::Not for VideoEncodeAV1SuperblockSizeFlagsKHR {
+impl core::ops::Not for VideoEncodeAV1SuperblockSizeFlagsKHR {
     type Output = Self;
     fn not(self) -> Self {
         Self(!self.0)

@@ -224,40 +224,40 @@ pub(crate) mod reexport {
             Self::empty()
         }
     }
-    impl ::core::ops::BitOr for PipelineRasterizationStateStreamCreateFlagsEXT {
+    impl core::ops::BitOr for PipelineRasterizationStateStreamCreateFlagsEXT {
         type Output = Self;
         fn bitor(self, rhs: Self) -> Self {
             Self(self.0 | rhs.0)
         }
     }
-    impl ::core::ops::BitOrAssign for PipelineRasterizationStateStreamCreateFlagsEXT {
+    impl core::ops::BitOrAssign for PipelineRasterizationStateStreamCreateFlagsEXT {
         fn bitor_assign(&mut self, rhs: Self) {
             *self = *self | rhs;
         }
     }
-    impl ::core::ops::BitAnd for PipelineRasterizationStateStreamCreateFlagsEXT {
+    impl core::ops::BitAnd for PipelineRasterizationStateStreamCreateFlagsEXT {
         type Output = Self;
         fn bitand(self, rhs: Self) -> Self {
             Self(self.0 & rhs.0)
         }
     }
-    impl ::core::ops::BitAndAssign for PipelineRasterizationStateStreamCreateFlagsEXT {
+    impl core::ops::BitAndAssign for PipelineRasterizationStateStreamCreateFlagsEXT {
         fn bitand_assign(&mut self, rhs: Self) {
             *self = *self & rhs;
         }
     }
-    impl ::core::ops::BitXor for PipelineRasterizationStateStreamCreateFlagsEXT {
+    impl core::ops::BitXor for PipelineRasterizationStateStreamCreateFlagsEXT {
         type Output = Self;
         fn bitxor(self, rhs: Self) -> Self {
             Self(self.0 ^ rhs.0)
         }
     }
-    impl ::core::ops::BitXorAssign for PipelineRasterizationStateStreamCreateFlagsEXT {
+    impl core::ops::BitXorAssign for PipelineRasterizationStateStreamCreateFlagsEXT {
         fn bitxor_assign(&mut self, rhs: Self) {
             *self = *self ^ rhs;
         }
     }
-    impl ::core::ops::Not for PipelineRasterizationStateStreamCreateFlagsEXT {
+    impl core::ops::Not for PipelineRasterizationStateStreamCreateFlagsEXT {
         type Output = Self;
         fn not(self) -> Self {
             Self(!self.0)

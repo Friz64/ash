@@ -78,40 +78,40 @@ pub(crate) mod reexport {
             Self::empty()
         }
     }
-    impl ::core::ops::BitOr for SurfaceCreateFlagsOHOS {
+    impl core::ops::BitOr for SurfaceCreateFlagsOHOS {
         type Output = Self;
         fn bitor(self, rhs: Self) -> Self {
             Self(self.0 | rhs.0)
         }
     }
-    impl ::core::ops::BitOrAssign for SurfaceCreateFlagsOHOS {
+    impl core::ops::BitOrAssign for SurfaceCreateFlagsOHOS {
         fn bitor_assign(&mut self, rhs: Self) {
             *self = *self | rhs;
         }
     }
-    impl ::core::ops::BitAnd for SurfaceCreateFlagsOHOS {
+    impl core::ops::BitAnd for SurfaceCreateFlagsOHOS {
         type Output = Self;
         fn bitand(self, rhs: Self) -> Self {
             Self(self.0 & rhs.0)
         }
     }
-    impl ::core::ops::BitAndAssign for SurfaceCreateFlagsOHOS {
+    impl core::ops::BitAndAssign for SurfaceCreateFlagsOHOS {
         fn bitand_assign(&mut self, rhs: Self) {
             *self = *self & rhs;
         }
     }
-    impl ::core::ops::BitXor for SurfaceCreateFlagsOHOS {
+    impl core::ops::BitXor for SurfaceCreateFlagsOHOS {
         type Output = Self;
         fn bitxor(self, rhs: Self) -> Self {
             Self(self.0 ^ rhs.0)
         }
     }
-    impl ::core::ops::BitXorAssign for SurfaceCreateFlagsOHOS {
+    impl core::ops::BitXorAssign for SurfaceCreateFlagsOHOS {
         fn bitxor_assign(&mut self, rhs: Self) {
             *self = *self ^ rhs;
         }
     }
-    impl ::core::ops::Not for SurfaceCreateFlagsOHOS {
+    impl core::ops::Not for SurfaceCreateFlagsOHOS {
         type Output = Self;
         fn not(self) -> Self {
             Self(!self.0)

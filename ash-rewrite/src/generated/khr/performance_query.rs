@@ -300,40 +300,40 @@ pub(crate) mod reexport {
             Self::empty()
         }
     }
-    impl ::core::ops::BitOr for PerformanceCounterDescriptionFlagsKHR {
+    impl core::ops::BitOr for PerformanceCounterDescriptionFlagsKHR {
         type Output = Self;
         fn bitor(self, rhs: Self) -> Self {
             Self(self.0 | rhs.0)
         }
     }
-    impl ::core::ops::BitOrAssign for PerformanceCounterDescriptionFlagsKHR {
+    impl core::ops::BitOrAssign for PerformanceCounterDescriptionFlagsKHR {
         fn bitor_assign(&mut self, rhs: Self) {
             *self = *self | rhs;
         }
     }
-    impl ::core::ops::BitAnd for PerformanceCounterDescriptionFlagsKHR {
+    impl core::ops::BitAnd for PerformanceCounterDescriptionFlagsKHR {
         type Output = Self;
         fn bitand(self, rhs: Self) -> Self {
             Self(self.0 & rhs.0)
         }
     }
-    impl ::core::ops::BitAndAssign for PerformanceCounterDescriptionFlagsKHR {
+    impl core::ops::BitAndAssign for PerformanceCounterDescriptionFlagsKHR {
         fn bitand_assign(&mut self, rhs: Self) {
             *self = *self & rhs;
         }
     }
-    impl ::core::ops::BitXor for PerformanceCounterDescriptionFlagsKHR {
+    impl core::ops::BitXor for PerformanceCounterDescriptionFlagsKHR {
         type Output = Self;
         fn bitxor(self, rhs: Self) -> Self {
             Self(self.0 ^ rhs.0)
         }
     }
-    impl ::core::ops::BitXorAssign for PerformanceCounterDescriptionFlagsKHR {
+    impl core::ops::BitXorAssign for PerformanceCounterDescriptionFlagsKHR {
         fn bitxor_assign(&mut self, rhs: Self) {
             *self = *self ^ rhs;
         }
     }
-    impl ::core::ops::Not for PerformanceCounterDescriptionFlagsKHR {
+    impl core::ops::Not for PerformanceCounterDescriptionFlagsKHR {
         type Output = Self;
         fn not(self) -> Self {
             Self(!self.0)
@@ -375,40 +375,40 @@ pub(crate) mod reexport {
             Self::empty()
         }
     }
-    impl ::core::ops::BitOr for AcquireProfilingLockFlagsKHR {
+    impl core::ops::BitOr for AcquireProfilingLockFlagsKHR {
         type Output = Self;
         fn bitor(self, rhs: Self) -> Self {
             Self(self.0 | rhs.0)
         }
     }
-    impl ::core::ops::BitOrAssign for AcquireProfilingLockFlagsKHR {
+    impl core::ops::BitOrAssign for AcquireProfilingLockFlagsKHR {
         fn bitor_assign(&mut self, rhs: Self) {
             *self = *self | rhs;
         }
     }
-    impl ::core::ops::BitAnd for AcquireProfilingLockFlagsKHR {
+    impl core::ops::BitAnd for AcquireProfilingLockFlagsKHR {
         type Output = Self;
         fn bitand(self, rhs: Self) -> Self {
             Self(self.0 & rhs.0)
         }
     }
-    impl ::core::ops::BitAndAssign for AcquireProfilingLockFlagsKHR {
+    impl core::ops::BitAndAssign for AcquireProfilingLockFlagsKHR {
         fn bitand_assign(&mut self, rhs: Self) {
             *self = *self & rhs;
         }
     }
-    impl ::core::ops::BitXor for AcquireProfilingLockFlagsKHR {
+    impl core::ops::BitXor for AcquireProfilingLockFlagsKHR {
         type Output = Self;
         fn bitxor(self, rhs: Self) -> Self {
             Self(self.0 ^ rhs.0)
         }
     }
-    impl ::core::ops::BitXorAssign for AcquireProfilingLockFlagsKHR {
+    impl core::ops::BitXorAssign for AcquireProfilingLockFlagsKHR {
         fn bitxor_assign(&mut self, rhs: Self) {
             *self = *self ^ rhs;
         }
     }
-    impl ::core::ops::Not for AcquireProfilingLockFlagsKHR {
+    impl core::ops::Not for AcquireProfilingLockFlagsKHR {
         type Output = Self;
         fn not(self) -> Self {
             Self(!self.0)

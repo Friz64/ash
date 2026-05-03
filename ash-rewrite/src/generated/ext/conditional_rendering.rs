@@ -129,40 +129,40 @@ pub(crate) mod reexport {
             Self::empty()
         }
     }
-    impl ::core::ops::BitOr for ConditionalRenderingFlagsEXT {
+    impl core::ops::BitOr for ConditionalRenderingFlagsEXT {
         type Output = Self;
         fn bitor(self, rhs: Self) -> Self {
             Self(self.0 | rhs.0)
         }
     }
-    impl ::core::ops::BitOrAssign for ConditionalRenderingFlagsEXT {
+    impl core::ops::BitOrAssign for ConditionalRenderingFlagsEXT {
         fn bitor_assign(&mut self, rhs: Self) {
             *self = *self | rhs;
         }
     }
-    impl ::core::ops::BitAnd for ConditionalRenderingFlagsEXT {
+    impl core::ops::BitAnd for ConditionalRenderingFlagsEXT {
         type Output = Self;
         fn bitand(self, rhs: Self) -> Self {
             Self(self.0 & rhs.0)
         }
     }
-    impl ::core::ops::BitAndAssign for ConditionalRenderingFlagsEXT {
+    impl core::ops::BitAndAssign for ConditionalRenderingFlagsEXT {
         fn bitand_assign(&mut self, rhs: Self) {
             *self = *self & rhs;
         }
     }
-    impl ::core::ops::BitXor for ConditionalRenderingFlagsEXT {
+    impl core::ops::BitXor for ConditionalRenderingFlagsEXT {
         type Output = Self;
         fn bitxor(self, rhs: Self) -> Self {
             Self(self.0 ^ rhs.0)
         }
     }
-    impl ::core::ops::BitXorAssign for ConditionalRenderingFlagsEXT {
+    impl core::ops::BitXorAssign for ConditionalRenderingFlagsEXT {
         fn bitxor_assign(&mut self, rhs: Self) {
             *self = *self ^ rhs;
         }
     }
-    impl ::core::ops::Not for ConditionalRenderingFlagsEXT {
+    impl core::ops::Not for ConditionalRenderingFlagsEXT {
         type Output = Self;
         fn not(self) -> Self {
             Self(!self.0)

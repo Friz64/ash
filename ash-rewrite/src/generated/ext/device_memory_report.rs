@@ -87,40 +87,40 @@ impl Default for DeviceMemoryReportFlagsEXT {
         Self::empty()
     }
 }
-impl ::core::ops::BitOr for DeviceMemoryReportFlagsEXT {
+impl core::ops::BitOr for DeviceMemoryReportFlagsEXT {
     type Output = Self;
     fn bitor(self, rhs: Self) -> Self {
         Self(self.0 | rhs.0)
     }
 }
-impl ::core::ops::BitOrAssign for DeviceMemoryReportFlagsEXT {
+impl core::ops::BitOrAssign for DeviceMemoryReportFlagsEXT {
     fn bitor_assign(&mut self, rhs: Self) {
         *self = *self | rhs;
     }
 }
-impl ::core::ops::BitAnd for DeviceMemoryReportFlagsEXT {
+impl core::ops::BitAnd for DeviceMemoryReportFlagsEXT {
     type Output = Self;
     fn bitand(self, rhs: Self) -> Self {
         Self(self.0 & rhs.0)
     }
 }
-impl ::core::ops::BitAndAssign for DeviceMemoryReportFlagsEXT {
+impl core::ops::BitAndAssign for DeviceMemoryReportFlagsEXT {
     fn bitand_assign(&mut self, rhs: Self) {
         *self = *self & rhs;
     }
 }
-impl ::core::ops::BitXor for DeviceMemoryReportFlagsEXT {
+impl core::ops::BitXor for DeviceMemoryReportFlagsEXT {
     type Output = Self;
     fn bitxor(self, rhs: Self) -> Self {
         Self(self.0 ^ rhs.0)
     }
 }
-impl ::core::ops::BitXorAssign for DeviceMemoryReportFlagsEXT {
+impl core::ops::BitXorAssign for DeviceMemoryReportFlagsEXT {
     fn bitxor_assign(&mut self, rhs: Self) {
         *self = *self ^ rhs;
     }
 }
-impl ::core::ops::Not for DeviceMemoryReportFlagsEXT {
+impl core::ops::Not for DeviceMemoryReportFlagsEXT {
     type Output = Self;
     fn not(self) -> Self {
         Self(!self.0)

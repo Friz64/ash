@@ -146,40 +146,40 @@ pub(crate) mod reexport {
             Self::empty()
         }
     }
-    impl ::core::ops::BitOr for PipelineDiscardRectangleStateCreateFlagsEXT {
+    impl core::ops::BitOr for PipelineDiscardRectangleStateCreateFlagsEXT {
         type Output = Self;
         fn bitor(self, rhs: Self) -> Self {
             Self(self.0 | rhs.0)
         }
     }
-    impl ::core::ops::BitOrAssign for PipelineDiscardRectangleStateCreateFlagsEXT {
+    impl core::ops::BitOrAssign for PipelineDiscardRectangleStateCreateFlagsEXT {
         fn bitor_assign(&mut self, rhs: Self) {
             *self = *self | rhs;
         }
     }
-    impl ::core::ops::BitAnd for PipelineDiscardRectangleStateCreateFlagsEXT {
+    impl core::ops::BitAnd for PipelineDiscardRectangleStateCreateFlagsEXT {
         type Output = Self;
         fn bitand(self, rhs: Self) -> Self {
             Self(self.0 & rhs.0)
         }
     }
-    impl ::core::ops::BitAndAssign for PipelineDiscardRectangleStateCreateFlagsEXT {
+    impl core::ops::BitAndAssign for PipelineDiscardRectangleStateCreateFlagsEXT {
         fn bitand_assign(&mut self, rhs: Self) {
             *self = *self & rhs;
         }
     }
-    impl ::core::ops::BitXor for PipelineDiscardRectangleStateCreateFlagsEXT {
+    impl core::ops::BitXor for PipelineDiscardRectangleStateCreateFlagsEXT {
         type Output = Self;
         fn bitxor(self, rhs: Self) -> Self {
             Self(self.0 ^ rhs.0)
         }
     }
-    impl ::core::ops::BitXorAssign for PipelineDiscardRectangleStateCreateFlagsEXT {
+    impl core::ops::BitXorAssign for PipelineDiscardRectangleStateCreateFlagsEXT {
         fn bitxor_assign(&mut self, rhs: Self) {
             *self = *self ^ rhs;
         }
     }
-    impl ::core::ops::Not for PipelineDiscardRectangleStateCreateFlagsEXT {
+    impl core::ops::Not for PipelineDiscardRectangleStateCreateFlagsEXT {
         type Output = Self;
         fn not(self) -> Self {
             Self(!self.0)

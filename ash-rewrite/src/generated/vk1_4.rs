@@ -1072,40 +1072,40 @@ pub(crate) mod reexport {
             Self::empty()
         }
     }
-    impl ::core::ops::BitOr for MemoryUnmapFlags {
+    impl core::ops::BitOr for MemoryUnmapFlags {
         type Output = Self;
         fn bitor(self, rhs: Self) -> Self {
             Self(self.0 | rhs.0)
         }
     }
-    impl ::core::ops::BitOrAssign for MemoryUnmapFlags {
+    impl core::ops::BitOrAssign for MemoryUnmapFlags {
         fn bitor_assign(&mut self, rhs: Self) {
             *self = *self | rhs;
         }
     }
-    impl ::core::ops::BitAnd for MemoryUnmapFlags {
+    impl core::ops::BitAnd for MemoryUnmapFlags {
         type Output = Self;
         fn bitand(self, rhs: Self) -> Self {
             Self(self.0 & rhs.0)
         }
     }
-    impl ::core::ops::BitAndAssign for MemoryUnmapFlags {
+    impl core::ops::BitAndAssign for MemoryUnmapFlags {
         fn bitand_assign(&mut self, rhs: Self) {
             *self = *self & rhs;
         }
     }
-    impl ::core::ops::BitXor for MemoryUnmapFlags {
+    impl core::ops::BitXor for MemoryUnmapFlags {
         type Output = Self;
         fn bitxor(self, rhs: Self) -> Self {
             Self(self.0 ^ rhs.0)
         }
     }
-    impl ::core::ops::BitXorAssign for MemoryUnmapFlags {
+    impl core::ops::BitXorAssign for MemoryUnmapFlags {
         fn bitxor_assign(&mut self, rhs: Self) {
             *self = *self ^ rhs;
         }
     }
-    impl ::core::ops::Not for MemoryUnmapFlags {
+    impl core::ops::Not for MemoryUnmapFlags {
         type Output = Self;
         fn not(self) -> Self {
             Self(!self.0)
@@ -1297,40 +1297,40 @@ pub(crate) mod reexport {
             Self::empty()
         }
     }
-    impl ::core::ops::BitOr for PipelineCreateFlags2 {
+    impl core::ops::BitOr for PipelineCreateFlags2 {
         type Output = Self;
         fn bitor(self, rhs: Self) -> Self {
             Self(self.0 | rhs.0)
         }
     }
-    impl ::core::ops::BitOrAssign for PipelineCreateFlags2 {
+    impl core::ops::BitOrAssign for PipelineCreateFlags2 {
         fn bitor_assign(&mut self, rhs: Self) {
             *self = *self | rhs;
         }
     }
-    impl ::core::ops::BitAnd for PipelineCreateFlags2 {
+    impl core::ops::BitAnd for PipelineCreateFlags2 {
         type Output = Self;
         fn bitand(self, rhs: Self) -> Self {
             Self(self.0 & rhs.0)
         }
     }
-    impl ::core::ops::BitAndAssign for PipelineCreateFlags2 {
+    impl core::ops::BitAndAssign for PipelineCreateFlags2 {
         fn bitand_assign(&mut self, rhs: Self) {
             *self = *self & rhs;
         }
     }
-    impl ::core::ops::BitXor for PipelineCreateFlags2 {
+    impl core::ops::BitXor for PipelineCreateFlags2 {
         type Output = Self;
         fn bitxor(self, rhs: Self) -> Self {
             Self(self.0 ^ rhs.0)
         }
     }
-    impl ::core::ops::BitXorAssign for PipelineCreateFlags2 {
+    impl core::ops::BitXorAssign for PipelineCreateFlags2 {
         fn bitxor_assign(&mut self, rhs: Self) {
             *self = *self ^ rhs;
         }
     }
-    impl ::core::ops::Not for PipelineCreateFlags2 {
+    impl core::ops::Not for PipelineCreateFlags2 {
         type Output = Self;
         fn not(self) -> Self {
             Self(!self.0)
@@ -1492,40 +1492,40 @@ pub(crate) mod reexport {
             Self::empty()
         }
     }
-    impl ::core::ops::BitOr for BufferUsageFlags2 {
+    impl core::ops::BitOr for BufferUsageFlags2 {
         type Output = Self;
         fn bitor(self, rhs: Self) -> Self {
             Self(self.0 | rhs.0)
         }
     }
-    impl ::core::ops::BitOrAssign for BufferUsageFlags2 {
+    impl core::ops::BitOrAssign for BufferUsageFlags2 {
         fn bitor_assign(&mut self, rhs: Self) {
             *self = *self | rhs;
         }
     }
-    impl ::core::ops::BitAnd for BufferUsageFlags2 {
+    impl core::ops::BitAnd for BufferUsageFlags2 {
         type Output = Self;
         fn bitand(self, rhs: Self) -> Self {
             Self(self.0 & rhs.0)
         }
     }
-    impl ::core::ops::BitAndAssign for BufferUsageFlags2 {
+    impl core::ops::BitAndAssign for BufferUsageFlags2 {
         fn bitand_assign(&mut self, rhs: Self) {
             *self = *self & rhs;
         }
     }
-    impl ::core::ops::BitXor for BufferUsageFlags2 {
+    impl core::ops::BitXor for BufferUsageFlags2 {
         type Output = Self;
         fn bitxor(self, rhs: Self) -> Self {
             Self(self.0 ^ rhs.0)
         }
     }
-    impl ::core::ops::BitXorAssign for BufferUsageFlags2 {
+    impl core::ops::BitXorAssign for BufferUsageFlags2 {
         fn bitxor_assign(&mut self, rhs: Self) {
             *self = *self ^ rhs;
         }
     }
-    impl ::core::ops::Not for BufferUsageFlags2 {
+    impl core::ops::Not for BufferUsageFlags2 {
         type Output = Self;
         fn not(self) -> Self {
             Self(!self.0)
@@ -1577,40 +1577,40 @@ pub(crate) mod reexport {
             Self::empty()
         }
     }
-    impl ::core::ops::BitOr for HostImageCopyFlags {
+    impl core::ops::BitOr for HostImageCopyFlags {
         type Output = Self;
         fn bitor(self, rhs: Self) -> Self {
             Self(self.0 | rhs.0)
         }
     }
-    impl ::core::ops::BitOrAssign for HostImageCopyFlags {
+    impl core::ops::BitOrAssign for HostImageCopyFlags {
         fn bitor_assign(&mut self, rhs: Self) {
             *self = *self | rhs;
         }
     }
-    impl ::core::ops::BitAnd for HostImageCopyFlags {
+    impl core::ops::BitAnd for HostImageCopyFlags {
         type Output = Self;
         fn bitand(self, rhs: Self) -> Self {
             Self(self.0 & rhs.0)
         }
     }
-    impl ::core::ops::BitAndAssign for HostImageCopyFlags {
+    impl core::ops::BitAndAssign for HostImageCopyFlags {
         fn bitand_assign(&mut self, rhs: Self) {
             *self = *self & rhs;
         }
     }
-    impl ::core::ops::BitXor for HostImageCopyFlags {
+    impl core::ops::BitXor for HostImageCopyFlags {
         type Output = Self;
         fn bitxor(self, rhs: Self) -> Self {
             Self(self.0 ^ rhs.0)
         }
     }
-    impl ::core::ops::BitXorAssign for HostImageCopyFlags {
+    impl core::ops::BitXorAssign for HostImageCopyFlags {
         fn bitxor_assign(&mut self, rhs: Self) {
             *self = *self ^ rhs;
         }
     }
-    impl ::core::ops::Not for HostImageCopyFlags {
+    impl core::ops::Not for HostImageCopyFlags {
         type Output = Self;
         fn not(self) -> Self {
             Self(!self.0)

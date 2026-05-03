@@ -357,40 +357,40 @@ pub(crate) mod reexport {
             Self::empty()
         }
     }
-    impl ::core::ops::BitOr for IndirectCommandsLayoutUsageFlagsNV {
+    impl core::ops::BitOr for IndirectCommandsLayoutUsageFlagsNV {
         type Output = Self;
         fn bitor(self, rhs: Self) -> Self {
             Self(self.0 | rhs.0)
         }
     }
-    impl ::core::ops::BitOrAssign for IndirectCommandsLayoutUsageFlagsNV {
+    impl core::ops::BitOrAssign for IndirectCommandsLayoutUsageFlagsNV {
         fn bitor_assign(&mut self, rhs: Self) {
             *self = *self | rhs;
         }
     }
-    impl ::core::ops::BitAnd for IndirectCommandsLayoutUsageFlagsNV {
+    impl core::ops::BitAnd for IndirectCommandsLayoutUsageFlagsNV {
         type Output = Self;
         fn bitand(self, rhs: Self) -> Self {
             Self(self.0 & rhs.0)
         }
     }
-    impl ::core::ops::BitAndAssign for IndirectCommandsLayoutUsageFlagsNV {
+    impl core::ops::BitAndAssign for IndirectCommandsLayoutUsageFlagsNV {
         fn bitand_assign(&mut self, rhs: Self) {
             *self = *self & rhs;
         }
     }
-    impl ::core::ops::BitXor for IndirectCommandsLayoutUsageFlagsNV {
+    impl core::ops::BitXor for IndirectCommandsLayoutUsageFlagsNV {
         type Output = Self;
         fn bitxor(self, rhs: Self) -> Self {
             Self(self.0 ^ rhs.0)
         }
     }
-    impl ::core::ops::BitXorAssign for IndirectCommandsLayoutUsageFlagsNV {
+    impl core::ops::BitXorAssign for IndirectCommandsLayoutUsageFlagsNV {
         fn bitxor_assign(&mut self, rhs: Self) {
             *self = *self ^ rhs;
         }
     }
-    impl ::core::ops::Not for IndirectCommandsLayoutUsageFlagsNV {
+    impl core::ops::Not for IndirectCommandsLayoutUsageFlagsNV {
         type Output = Self;
         fn not(self) -> Self {
             Self(!self.0)
@@ -436,40 +436,40 @@ pub(crate) mod reexport {
             Self::empty()
         }
     }
-    impl ::core::ops::BitOr for IndirectStateFlagsNV {
+    impl core::ops::BitOr for IndirectStateFlagsNV {
         type Output = Self;
         fn bitor(self, rhs: Self) -> Self {
             Self(self.0 | rhs.0)
         }
     }
-    impl ::core::ops::BitOrAssign for IndirectStateFlagsNV {
+    impl core::ops::BitOrAssign for IndirectStateFlagsNV {
         fn bitor_assign(&mut self, rhs: Self) {
             *self = *self | rhs;
         }
     }
-    impl ::core::ops::BitAnd for IndirectStateFlagsNV {
+    impl core::ops::BitAnd for IndirectStateFlagsNV {
         type Output = Self;
         fn bitand(self, rhs: Self) -> Self {
             Self(self.0 & rhs.0)
         }
     }
-    impl ::core::ops::BitAndAssign for IndirectStateFlagsNV {
+    impl core::ops::BitAndAssign for IndirectStateFlagsNV {
         fn bitand_assign(&mut self, rhs: Self) {
             *self = *self & rhs;
         }
     }
-    impl ::core::ops::BitXor for IndirectStateFlagsNV {
+    impl core::ops::BitXor for IndirectStateFlagsNV {
         type Output = Self;
         fn bitxor(self, rhs: Self) -> Self {
             Self(self.0 ^ rhs.0)
         }
     }
-    impl ::core::ops::BitXorAssign for IndirectStateFlagsNV {
+    impl core::ops::BitXorAssign for IndirectStateFlagsNV {
         fn bitxor_assign(&mut self, rhs: Self) {
             *self = *self ^ rhs;
         }
     }
-    impl ::core::ops::Not for IndirectStateFlagsNV {
+    impl core::ops::Not for IndirectStateFlagsNV {
         type Output = Self;
         fn not(self) -> Self {
             Self(!self.0)

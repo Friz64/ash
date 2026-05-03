@@ -281,40 +281,40 @@ pub(crate) mod reexport {
             Self::empty()
         }
     }
-    impl ::core::ops::BitOr for DataGraphOpticalFlowGridSizeFlagsARM {
+    impl core::ops::BitOr for DataGraphOpticalFlowGridSizeFlagsARM {
         type Output = Self;
         fn bitor(self, rhs: Self) -> Self {
             Self(self.0 | rhs.0)
         }
     }
-    impl ::core::ops::BitOrAssign for DataGraphOpticalFlowGridSizeFlagsARM {
+    impl core::ops::BitOrAssign for DataGraphOpticalFlowGridSizeFlagsARM {
         fn bitor_assign(&mut self, rhs: Self) {
             *self = *self | rhs;
         }
     }
-    impl ::core::ops::BitAnd for DataGraphOpticalFlowGridSizeFlagsARM {
+    impl core::ops::BitAnd for DataGraphOpticalFlowGridSizeFlagsARM {
         type Output = Self;
         fn bitand(self, rhs: Self) -> Self {
             Self(self.0 & rhs.0)
         }
     }
-    impl ::core::ops::BitAndAssign for DataGraphOpticalFlowGridSizeFlagsARM {
+    impl core::ops::BitAndAssign for DataGraphOpticalFlowGridSizeFlagsARM {
         fn bitand_assign(&mut self, rhs: Self) {
             *self = *self & rhs;
         }
     }
-    impl ::core::ops::BitXor for DataGraphOpticalFlowGridSizeFlagsARM {
+    impl core::ops::BitXor for DataGraphOpticalFlowGridSizeFlagsARM {
         type Output = Self;
         fn bitxor(self, rhs: Self) -> Self {
             Self(self.0 ^ rhs.0)
         }
     }
-    impl ::core::ops::BitXorAssign for DataGraphOpticalFlowGridSizeFlagsARM {
+    impl core::ops::BitXorAssign for DataGraphOpticalFlowGridSizeFlagsARM {
         fn bitxor_assign(&mut self, rhs: Self) {
             *self = *self ^ rhs;
         }
     }
-    impl ::core::ops::Not for DataGraphOpticalFlowGridSizeFlagsARM {
+    impl core::ops::Not for DataGraphOpticalFlowGridSizeFlagsARM {
         type Output = Self;
         fn not(self) -> Self {
             Self(!self.0)
@@ -374,40 +374,40 @@ pub(crate) mod reexport {
             Self::empty()
         }
     }
-    impl ::core::ops::BitOr for DataGraphOpticalFlowImageUsageFlagsARM {
+    impl core::ops::BitOr for DataGraphOpticalFlowImageUsageFlagsARM {
         type Output = Self;
         fn bitor(self, rhs: Self) -> Self {
             Self(self.0 | rhs.0)
         }
     }
-    impl ::core::ops::BitOrAssign for DataGraphOpticalFlowImageUsageFlagsARM {
+    impl core::ops::BitOrAssign for DataGraphOpticalFlowImageUsageFlagsARM {
         fn bitor_assign(&mut self, rhs: Self) {
             *self = *self | rhs;
         }
     }
-    impl ::core::ops::BitAnd for DataGraphOpticalFlowImageUsageFlagsARM {
+    impl core::ops::BitAnd for DataGraphOpticalFlowImageUsageFlagsARM {
         type Output = Self;
         fn bitand(self, rhs: Self) -> Self {
             Self(self.0 & rhs.0)
         }
     }
-    impl ::core::ops::BitAndAssign for DataGraphOpticalFlowImageUsageFlagsARM {
+    impl core::ops::BitAndAssign for DataGraphOpticalFlowImageUsageFlagsARM {
         fn bitand_assign(&mut self, rhs: Self) {
             *self = *self & rhs;
         }
     }
-    impl ::core::ops::BitXor for DataGraphOpticalFlowImageUsageFlagsARM {
+    impl core::ops::BitXor for DataGraphOpticalFlowImageUsageFlagsARM {
         type Output = Self;
         fn bitxor(self, rhs: Self) -> Self {
             Self(self.0 ^ rhs.0)
         }
     }
-    impl ::core::ops::BitXorAssign for DataGraphOpticalFlowImageUsageFlagsARM {
+    impl core::ops::BitXorAssign for DataGraphOpticalFlowImageUsageFlagsARM {
         fn bitxor_assign(&mut self, rhs: Self) {
             *self = *self ^ rhs;
         }
     }
-    impl ::core::ops::Not for DataGraphOpticalFlowImageUsageFlagsARM {
+    impl core::ops::Not for DataGraphOpticalFlowImageUsageFlagsARM {
         type Output = Self;
         fn not(self) -> Self {
             Self(!self.0)
@@ -461,40 +461,40 @@ pub(crate) mod reexport {
             Self::empty()
         }
     }
-    impl ::core::ops::BitOr for DataGraphOpticalFlowCreateFlagsARM {
+    impl core::ops::BitOr for DataGraphOpticalFlowCreateFlagsARM {
         type Output = Self;
         fn bitor(self, rhs: Self) -> Self {
             Self(self.0 | rhs.0)
         }
     }
-    impl ::core::ops::BitOrAssign for DataGraphOpticalFlowCreateFlagsARM {
+    impl core::ops::BitOrAssign for DataGraphOpticalFlowCreateFlagsARM {
         fn bitor_assign(&mut self, rhs: Self) {
             *self = *self | rhs;
         }
     }
-    impl ::core::ops::BitAnd for DataGraphOpticalFlowCreateFlagsARM {
+    impl core::ops::BitAnd for DataGraphOpticalFlowCreateFlagsARM {
         type Output = Self;
         fn bitand(self, rhs: Self) -> Self {
             Self(self.0 & rhs.0)
         }
     }
-    impl ::core::ops::BitAndAssign for DataGraphOpticalFlowCreateFlagsARM {
+    impl core::ops::BitAndAssign for DataGraphOpticalFlowCreateFlagsARM {
         fn bitand_assign(&mut self, rhs: Self) {
             *self = *self & rhs;
         }
     }
-    impl ::core::ops::BitXor for DataGraphOpticalFlowCreateFlagsARM {
+    impl core::ops::BitXor for DataGraphOpticalFlowCreateFlagsARM {
         type Output = Self;
         fn bitxor(self, rhs: Self) -> Self {
             Self(self.0 ^ rhs.0)
         }
     }
-    impl ::core::ops::BitXorAssign for DataGraphOpticalFlowCreateFlagsARM {
+    impl core::ops::BitXorAssign for DataGraphOpticalFlowCreateFlagsARM {
         fn bitxor_assign(&mut self, rhs: Self) {
             *self = *self ^ rhs;
         }
     }
-    impl ::core::ops::Not for DataGraphOpticalFlowCreateFlagsARM {
+    impl core::ops::Not for DataGraphOpticalFlowCreateFlagsARM {
         type Output = Self;
         fn not(self) -> Self {
             Self(!self.0)
@@ -552,40 +552,40 @@ pub(crate) mod reexport {
             Self::empty()
         }
     }
-    impl ::core::ops::BitOr for DataGraphOpticalFlowExecuteFlagsARM {
+    impl core::ops::BitOr for DataGraphOpticalFlowExecuteFlagsARM {
         type Output = Self;
         fn bitor(self, rhs: Self) -> Self {
             Self(self.0 | rhs.0)
         }
     }
-    impl ::core::ops::BitOrAssign for DataGraphOpticalFlowExecuteFlagsARM {
+    impl core::ops::BitOrAssign for DataGraphOpticalFlowExecuteFlagsARM {
         fn bitor_assign(&mut self, rhs: Self) {
             *self = *self | rhs;
         }
     }
-    impl ::core::ops::BitAnd for DataGraphOpticalFlowExecuteFlagsARM {
+    impl core::ops::BitAnd for DataGraphOpticalFlowExecuteFlagsARM {
         type Output = Self;
         fn bitand(self, rhs: Self) -> Self {
             Self(self.0 & rhs.0)
         }
     }
-    impl ::core::ops::BitAndAssign for DataGraphOpticalFlowExecuteFlagsARM {
+    impl core::ops::BitAndAssign for DataGraphOpticalFlowExecuteFlagsARM {
         fn bitand_assign(&mut self, rhs: Self) {
             *self = *self & rhs;
         }
     }
-    impl ::core::ops::BitXor for DataGraphOpticalFlowExecuteFlagsARM {
+    impl core::ops::BitXor for DataGraphOpticalFlowExecuteFlagsARM {
         type Output = Self;
         fn bitxor(self, rhs: Self) -> Self {
             Self(self.0 ^ rhs.0)
         }
     }
-    impl ::core::ops::BitXorAssign for DataGraphOpticalFlowExecuteFlagsARM {
+    impl core::ops::BitXorAssign for DataGraphOpticalFlowExecuteFlagsARM {
         fn bitxor_assign(&mut self, rhs: Self) {
             *self = *self ^ rhs;
         }
     }
-    impl ::core::ops::Not for DataGraphOpticalFlowExecuteFlagsARM {
+    impl core::ops::Not for DataGraphOpticalFlowExecuteFlagsARM {
         type Output = Self;
         fn not(self) -> Self {
             Self(!self.0)

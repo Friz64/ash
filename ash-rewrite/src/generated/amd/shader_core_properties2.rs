@@ -42,40 +42,40 @@ impl Default for ShaderCorePropertiesFlagsAMD {
         Self::empty()
     }
 }
-impl ::core::ops::BitOr for ShaderCorePropertiesFlagsAMD {
+impl core::ops::BitOr for ShaderCorePropertiesFlagsAMD {
     type Output = Self;
     fn bitor(self, rhs: Self) -> Self {
         Self(self.0 | rhs.0)
     }
 }
-impl ::core::ops::BitOrAssign for ShaderCorePropertiesFlagsAMD {
+impl core::ops::BitOrAssign for ShaderCorePropertiesFlagsAMD {
     fn bitor_assign(&mut self, rhs: Self) {
         *self = *self | rhs;
     }
 }
-impl ::core::ops::BitAnd for ShaderCorePropertiesFlagsAMD {
+impl core::ops::BitAnd for ShaderCorePropertiesFlagsAMD {
     type Output = Self;
     fn bitand(self, rhs: Self) -> Self {
         Self(self.0 & rhs.0)
     }
 }
-impl ::core::ops::BitAndAssign for ShaderCorePropertiesFlagsAMD {
+impl core::ops::BitAndAssign for ShaderCorePropertiesFlagsAMD {
     fn bitand_assign(&mut self, rhs: Self) {
         *self = *self & rhs;
     }
 }
-impl ::core::ops::BitXor for ShaderCorePropertiesFlagsAMD {
+impl core::ops::BitXor for ShaderCorePropertiesFlagsAMD {
     type Output = Self;
     fn bitxor(self, rhs: Self) -> Self {
         Self(self.0 ^ rhs.0)
     }
 }
-impl ::core::ops::BitXorAssign for ShaderCorePropertiesFlagsAMD {
+impl core::ops::BitXorAssign for ShaderCorePropertiesFlagsAMD {
     fn bitxor_assign(&mut self, rhs: Self) {
         *self = *self ^ rhs;
     }
 }
-impl ::core::ops::Not for ShaderCorePropertiesFlagsAMD {
+impl core::ops::Not for ShaderCorePropertiesFlagsAMD {
     type Output = Self;
     fn not(self) -> Self {
         Self(!self.0)

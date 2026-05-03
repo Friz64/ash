@@ -4551,40 +4551,40 @@ pub(crate) mod reexport {
             Self::empty()
         }
     }
-    impl ::core::ops::BitOr for FramebufferCreateFlags {
+    impl core::ops::BitOr for FramebufferCreateFlags {
         type Output = Self;
         fn bitor(self, rhs: Self) -> Self {
             Self(self.0 | rhs.0)
         }
     }
-    impl ::core::ops::BitOrAssign for FramebufferCreateFlags {
+    impl core::ops::BitOrAssign for FramebufferCreateFlags {
         fn bitor_assign(&mut self, rhs: Self) {
             *self = *self | rhs;
         }
     }
-    impl ::core::ops::BitAnd for FramebufferCreateFlags {
+    impl core::ops::BitAnd for FramebufferCreateFlags {
         type Output = Self;
         fn bitand(self, rhs: Self) -> Self {
             Self(self.0 & rhs.0)
         }
     }
-    impl ::core::ops::BitAndAssign for FramebufferCreateFlags {
+    impl core::ops::BitAndAssign for FramebufferCreateFlags {
         fn bitand_assign(&mut self, rhs: Self) {
             *self = *self & rhs;
         }
     }
-    impl ::core::ops::BitXor for FramebufferCreateFlags {
+    impl core::ops::BitXor for FramebufferCreateFlags {
         type Output = Self;
         fn bitxor(self, rhs: Self) -> Self {
             Self(self.0 ^ rhs.0)
         }
     }
-    impl ::core::ops::BitXorAssign for FramebufferCreateFlags {
+    impl core::ops::BitXorAssign for FramebufferCreateFlags {
         fn bitxor_assign(&mut self, rhs: Self) {
             *self = *self ^ rhs;
         }
     }
-    impl ::core::ops::Not for FramebufferCreateFlags {
+    impl core::ops::Not for FramebufferCreateFlags {
         type Output = Self;
         fn not(self) -> Self {
             Self(!self.0)
@@ -4622,40 +4622,40 @@ pub(crate) mod reexport {
             Self::empty()
         }
     }
-    impl ::core::ops::BitOr for QueryPoolCreateFlags {
+    impl core::ops::BitOr for QueryPoolCreateFlags {
         type Output = Self;
         fn bitor(self, rhs: Self) -> Self {
             Self(self.0 | rhs.0)
         }
     }
-    impl ::core::ops::BitOrAssign for QueryPoolCreateFlags {
+    impl core::ops::BitOrAssign for QueryPoolCreateFlags {
         fn bitor_assign(&mut self, rhs: Self) {
             *self = *self | rhs;
         }
     }
-    impl ::core::ops::BitAnd for QueryPoolCreateFlags {
+    impl core::ops::BitAnd for QueryPoolCreateFlags {
         type Output = Self;
         fn bitand(self, rhs: Self) -> Self {
             Self(self.0 & rhs.0)
         }
     }
-    impl ::core::ops::BitAndAssign for QueryPoolCreateFlags {
+    impl core::ops::BitAndAssign for QueryPoolCreateFlags {
         fn bitand_assign(&mut self, rhs: Self) {
             *self = *self & rhs;
         }
     }
-    impl ::core::ops::BitXor for QueryPoolCreateFlags {
+    impl core::ops::BitXor for QueryPoolCreateFlags {
         type Output = Self;
         fn bitxor(self, rhs: Self) -> Self {
             Self(self.0 ^ rhs.0)
         }
     }
-    impl ::core::ops::BitXorAssign for QueryPoolCreateFlags {
+    impl core::ops::BitXorAssign for QueryPoolCreateFlags {
         fn bitxor_assign(&mut self, rhs: Self) {
             *self = *self ^ rhs;
         }
     }
-    impl ::core::ops::Not for QueryPoolCreateFlags {
+    impl core::ops::Not for QueryPoolCreateFlags {
         type Output = Self;
         fn not(self) -> Self {
             Self(!self.0)
@@ -4698,40 +4698,40 @@ pub(crate) mod reexport {
             Self::empty()
         }
     }
-    impl ::core::ops::BitOr for RenderPassCreateFlags {
+    impl core::ops::BitOr for RenderPassCreateFlags {
         type Output = Self;
         fn bitor(self, rhs: Self) -> Self {
             Self(self.0 | rhs.0)
         }
     }
-    impl ::core::ops::BitOrAssign for RenderPassCreateFlags {
+    impl core::ops::BitOrAssign for RenderPassCreateFlags {
         fn bitor_assign(&mut self, rhs: Self) {
             *self = *self | rhs;
         }
     }
-    impl ::core::ops::BitAnd for RenderPassCreateFlags {
+    impl core::ops::BitAnd for RenderPassCreateFlags {
         type Output = Self;
         fn bitand(self, rhs: Self) -> Self {
             Self(self.0 & rhs.0)
         }
     }
-    impl ::core::ops::BitAndAssign for RenderPassCreateFlags {
+    impl core::ops::BitAndAssign for RenderPassCreateFlags {
         fn bitand_assign(&mut self, rhs: Self) {
             *self = *self & rhs;
         }
     }
-    impl ::core::ops::BitXor for RenderPassCreateFlags {
+    impl core::ops::BitXor for RenderPassCreateFlags {
         type Output = Self;
         fn bitxor(self, rhs: Self) -> Self {
             Self(self.0 ^ rhs.0)
         }
     }
-    impl ::core::ops::BitXorAssign for RenderPassCreateFlags {
+    impl core::ops::BitXorAssign for RenderPassCreateFlags {
         fn bitxor_assign(&mut self, rhs: Self) {
             *self = *self ^ rhs;
         }
     }
-    impl ::core::ops::Not for RenderPassCreateFlags {
+    impl core::ops::Not for RenderPassCreateFlags {
         type Output = Self;
         fn not(self) -> Self {
             Self(!self.0)
@@ -4781,40 +4781,40 @@ pub(crate) mod reexport {
             Self::empty()
         }
     }
-    impl ::core::ops::BitOr for SamplerCreateFlags {
+    impl core::ops::BitOr for SamplerCreateFlags {
         type Output = Self;
         fn bitor(self, rhs: Self) -> Self {
             Self(self.0 | rhs.0)
         }
     }
-    impl ::core::ops::BitOrAssign for SamplerCreateFlags {
+    impl core::ops::BitOrAssign for SamplerCreateFlags {
         fn bitor_assign(&mut self, rhs: Self) {
             *self = *self | rhs;
         }
     }
-    impl ::core::ops::BitAnd for SamplerCreateFlags {
+    impl core::ops::BitAnd for SamplerCreateFlags {
         type Output = Self;
         fn bitand(self, rhs: Self) -> Self {
             Self(self.0 & rhs.0)
         }
     }
-    impl ::core::ops::BitAndAssign for SamplerCreateFlags {
+    impl core::ops::BitAndAssign for SamplerCreateFlags {
         fn bitand_assign(&mut self, rhs: Self) {
             *self = *self & rhs;
         }
     }
-    impl ::core::ops::BitXor for SamplerCreateFlags {
+    impl core::ops::BitXor for SamplerCreateFlags {
         type Output = Self;
         fn bitxor(self, rhs: Self) -> Self {
             Self(self.0 ^ rhs.0)
         }
     }
-    impl ::core::ops::BitXorAssign for SamplerCreateFlags {
+    impl core::ops::BitXorAssign for SamplerCreateFlags {
         fn bitxor_assign(&mut self, rhs: Self) {
             *self = *self ^ rhs;
         }
     }
-    impl ::core::ops::Not for SamplerCreateFlags {
+    impl core::ops::Not for SamplerCreateFlags {
         type Output = Self;
         fn not(self) -> Self {
             Self(!self.0)
@@ -4857,40 +4857,40 @@ pub(crate) mod reexport {
             Self::empty()
         }
     }
-    impl ::core::ops::BitOr for PipelineLayoutCreateFlags {
+    impl core::ops::BitOr for PipelineLayoutCreateFlags {
         type Output = Self;
         fn bitor(self, rhs: Self) -> Self {
             Self(self.0 | rhs.0)
         }
     }
-    impl ::core::ops::BitOrAssign for PipelineLayoutCreateFlags {
+    impl core::ops::BitOrAssign for PipelineLayoutCreateFlags {
         fn bitor_assign(&mut self, rhs: Self) {
             *self = *self | rhs;
         }
     }
-    impl ::core::ops::BitAnd for PipelineLayoutCreateFlags {
+    impl core::ops::BitAnd for PipelineLayoutCreateFlags {
         type Output = Self;
         fn bitand(self, rhs: Self) -> Self {
             Self(self.0 & rhs.0)
         }
     }
-    impl ::core::ops::BitAndAssign for PipelineLayoutCreateFlags {
+    impl core::ops::BitAndAssign for PipelineLayoutCreateFlags {
         fn bitand_assign(&mut self, rhs: Self) {
             *self = *self & rhs;
         }
     }
-    impl ::core::ops::BitXor for PipelineLayoutCreateFlags {
+    impl core::ops::BitXor for PipelineLayoutCreateFlags {
         type Output = Self;
         fn bitxor(self, rhs: Self) -> Self {
             Self(self.0 ^ rhs.0)
         }
     }
-    impl ::core::ops::BitXorAssign for PipelineLayoutCreateFlags {
+    impl core::ops::BitXorAssign for PipelineLayoutCreateFlags {
         fn bitxor_assign(&mut self, rhs: Self) {
             *self = *self ^ rhs;
         }
     }
-    impl ::core::ops::Not for PipelineLayoutCreateFlags {
+    impl core::ops::Not for PipelineLayoutCreateFlags {
         type Output = Self;
         fn not(self) -> Self {
             Self(!self.0)
@@ -4936,40 +4936,40 @@ pub(crate) mod reexport {
             Self::empty()
         }
     }
-    impl ::core::ops::BitOr for PipelineCacheCreateFlags {
+    impl core::ops::BitOr for PipelineCacheCreateFlags {
         type Output = Self;
         fn bitor(self, rhs: Self) -> Self {
             Self(self.0 | rhs.0)
         }
     }
-    impl ::core::ops::BitOrAssign for PipelineCacheCreateFlags {
+    impl core::ops::BitOrAssign for PipelineCacheCreateFlags {
         fn bitor_assign(&mut self, rhs: Self) {
             *self = *self | rhs;
         }
     }
-    impl ::core::ops::BitAnd for PipelineCacheCreateFlags {
+    impl core::ops::BitAnd for PipelineCacheCreateFlags {
         type Output = Self;
         fn bitand(self, rhs: Self) -> Self {
             Self(self.0 & rhs.0)
         }
     }
-    impl ::core::ops::BitAndAssign for PipelineCacheCreateFlags {
+    impl core::ops::BitAndAssign for PipelineCacheCreateFlags {
         fn bitand_assign(&mut self, rhs: Self) {
             *self = *self & rhs;
         }
     }
-    impl ::core::ops::BitXor for PipelineCacheCreateFlags {
+    impl core::ops::BitXor for PipelineCacheCreateFlags {
         type Output = Self;
         fn bitxor(self, rhs: Self) -> Self {
             Self(self.0 ^ rhs.0)
         }
     }
-    impl ::core::ops::BitXorAssign for PipelineCacheCreateFlags {
+    impl core::ops::BitXorAssign for PipelineCacheCreateFlags {
         fn bitxor_assign(&mut self, rhs: Self) {
             *self = *self ^ rhs;
         }
     }
-    impl ::core::ops::Not for PipelineCacheCreateFlags {
+    impl core::ops::Not for PipelineCacheCreateFlags {
         type Output = Self;
         fn not(self) -> Self {
             Self(!self.0)
@@ -5022,40 +5022,40 @@ pub(crate) mod reexport {
             Self::empty()
         }
     }
-    impl ::core::ops::BitOr for PipelineDepthStencilStateCreateFlags {
+    impl core::ops::BitOr for PipelineDepthStencilStateCreateFlags {
         type Output = Self;
         fn bitor(self, rhs: Self) -> Self {
             Self(self.0 | rhs.0)
         }
     }
-    impl ::core::ops::BitOrAssign for PipelineDepthStencilStateCreateFlags {
+    impl core::ops::BitOrAssign for PipelineDepthStencilStateCreateFlags {
         fn bitor_assign(&mut self, rhs: Self) {
             *self = *self | rhs;
         }
     }
-    impl ::core::ops::BitAnd for PipelineDepthStencilStateCreateFlags {
+    impl core::ops::BitAnd for PipelineDepthStencilStateCreateFlags {
         type Output = Self;
         fn bitand(self, rhs: Self) -> Self {
             Self(self.0 & rhs.0)
         }
     }
-    impl ::core::ops::BitAndAssign for PipelineDepthStencilStateCreateFlags {
+    impl core::ops::BitAndAssign for PipelineDepthStencilStateCreateFlags {
         fn bitand_assign(&mut self, rhs: Self) {
             *self = *self & rhs;
         }
     }
-    impl ::core::ops::BitXor for PipelineDepthStencilStateCreateFlags {
+    impl core::ops::BitXor for PipelineDepthStencilStateCreateFlags {
         type Output = Self;
         fn bitxor(self, rhs: Self) -> Self {
             Self(self.0 ^ rhs.0)
         }
     }
-    impl ::core::ops::BitXorAssign for PipelineDepthStencilStateCreateFlags {
+    impl core::ops::BitXorAssign for PipelineDepthStencilStateCreateFlags {
         fn bitxor_assign(&mut self, rhs: Self) {
             *self = *self ^ rhs;
         }
     }
-    impl ::core::ops::Not for PipelineDepthStencilStateCreateFlags {
+    impl core::ops::Not for PipelineDepthStencilStateCreateFlags {
         type Output = Self;
         fn not(self) -> Self {
             Self(!self.0)
@@ -5092,40 +5092,40 @@ pub(crate) mod reexport {
             Self::empty()
         }
     }
-    impl ::core::ops::BitOr for PipelineDynamicStateCreateFlags {
+    impl core::ops::BitOr for PipelineDynamicStateCreateFlags {
         type Output = Self;
         fn bitor(self, rhs: Self) -> Self {
             Self(self.0 | rhs.0)
         }
     }
-    impl ::core::ops::BitOrAssign for PipelineDynamicStateCreateFlags {
+    impl core::ops::BitOrAssign for PipelineDynamicStateCreateFlags {
         fn bitor_assign(&mut self, rhs: Self) {
             *self = *self | rhs;
         }
     }
-    impl ::core::ops::BitAnd for PipelineDynamicStateCreateFlags {
+    impl core::ops::BitAnd for PipelineDynamicStateCreateFlags {
         type Output = Self;
         fn bitand(self, rhs: Self) -> Self {
             Self(self.0 & rhs.0)
         }
     }
-    impl ::core::ops::BitAndAssign for PipelineDynamicStateCreateFlags {
+    impl core::ops::BitAndAssign for PipelineDynamicStateCreateFlags {
         fn bitand_assign(&mut self, rhs: Self) {
             *self = *self & rhs;
         }
     }
-    impl ::core::ops::BitXor for PipelineDynamicStateCreateFlags {
+    impl core::ops::BitXor for PipelineDynamicStateCreateFlags {
         type Output = Self;
         fn bitxor(self, rhs: Self) -> Self {
             Self(self.0 ^ rhs.0)
         }
     }
-    impl ::core::ops::BitXorAssign for PipelineDynamicStateCreateFlags {
+    impl core::ops::BitXorAssign for PipelineDynamicStateCreateFlags {
         fn bitxor_assign(&mut self, rhs: Self) {
             *self = *self ^ rhs;
         }
     }
-    impl ::core::ops::Not for PipelineDynamicStateCreateFlags {
+    impl core::ops::Not for PipelineDynamicStateCreateFlags {
         type Output = Self;
         fn not(self) -> Self {
             Self(!self.0)
@@ -5167,40 +5167,40 @@ pub(crate) mod reexport {
             Self::empty()
         }
     }
-    impl ::core::ops::BitOr for PipelineColorBlendStateCreateFlags {
+    impl core::ops::BitOr for PipelineColorBlendStateCreateFlags {
         type Output = Self;
         fn bitor(self, rhs: Self) -> Self {
             Self(self.0 | rhs.0)
         }
     }
-    impl ::core::ops::BitOrAssign for PipelineColorBlendStateCreateFlags {
+    impl core::ops::BitOrAssign for PipelineColorBlendStateCreateFlags {
         fn bitor_assign(&mut self, rhs: Self) {
             *self = *self | rhs;
         }
     }
-    impl ::core::ops::BitAnd for PipelineColorBlendStateCreateFlags {
+    impl core::ops::BitAnd for PipelineColorBlendStateCreateFlags {
         type Output = Self;
         fn bitand(self, rhs: Self) -> Self {
             Self(self.0 & rhs.0)
         }
     }
-    impl ::core::ops::BitAndAssign for PipelineColorBlendStateCreateFlags {
+    impl core::ops::BitAndAssign for PipelineColorBlendStateCreateFlags {
         fn bitand_assign(&mut self, rhs: Self) {
             *self = *self & rhs;
         }
     }
-    impl ::core::ops::BitXor for PipelineColorBlendStateCreateFlags {
+    impl core::ops::BitXor for PipelineColorBlendStateCreateFlags {
         type Output = Self;
         fn bitxor(self, rhs: Self) -> Self {
             Self(self.0 ^ rhs.0)
         }
     }
-    impl ::core::ops::BitXorAssign for PipelineColorBlendStateCreateFlags {
+    impl core::ops::BitXorAssign for PipelineColorBlendStateCreateFlags {
         fn bitxor_assign(&mut self, rhs: Self) {
             *self = *self ^ rhs;
         }
     }
-    impl ::core::ops::Not for PipelineColorBlendStateCreateFlags {
+    impl core::ops::Not for PipelineColorBlendStateCreateFlags {
         type Output = Self;
         fn not(self) -> Self {
             Self(!self.0)
@@ -5237,40 +5237,40 @@ pub(crate) mod reexport {
             Self::empty()
         }
     }
-    impl ::core::ops::BitOr for PipelineMultisampleStateCreateFlags {
+    impl core::ops::BitOr for PipelineMultisampleStateCreateFlags {
         type Output = Self;
         fn bitor(self, rhs: Self) -> Self {
             Self(self.0 | rhs.0)
         }
     }
-    impl ::core::ops::BitOrAssign for PipelineMultisampleStateCreateFlags {
+    impl core::ops::BitOrAssign for PipelineMultisampleStateCreateFlags {
         fn bitor_assign(&mut self, rhs: Self) {
             *self = *self | rhs;
         }
     }
-    impl ::core::ops::BitAnd for PipelineMultisampleStateCreateFlags {
+    impl core::ops::BitAnd for PipelineMultisampleStateCreateFlags {
         type Output = Self;
         fn bitand(self, rhs: Self) -> Self {
             Self(self.0 & rhs.0)
         }
     }
-    impl ::core::ops::BitAndAssign for PipelineMultisampleStateCreateFlags {
+    impl core::ops::BitAndAssign for PipelineMultisampleStateCreateFlags {
         fn bitand_assign(&mut self, rhs: Self) {
             *self = *self & rhs;
         }
     }
-    impl ::core::ops::BitXor for PipelineMultisampleStateCreateFlags {
+    impl core::ops::BitXor for PipelineMultisampleStateCreateFlags {
         type Output = Self;
         fn bitxor(self, rhs: Self) -> Self {
             Self(self.0 ^ rhs.0)
         }
     }
-    impl ::core::ops::BitXorAssign for PipelineMultisampleStateCreateFlags {
+    impl core::ops::BitXorAssign for PipelineMultisampleStateCreateFlags {
         fn bitxor_assign(&mut self, rhs: Self) {
             *self = *self ^ rhs;
         }
     }
-    impl ::core::ops::Not for PipelineMultisampleStateCreateFlags {
+    impl core::ops::Not for PipelineMultisampleStateCreateFlags {
         type Output = Self;
         fn not(self) -> Self {
             Self(!self.0)
@@ -5304,40 +5304,40 @@ pub(crate) mod reexport {
             Self::empty()
         }
     }
-    impl ::core::ops::BitOr for PipelineRasterizationStateCreateFlags {
+    impl core::ops::BitOr for PipelineRasterizationStateCreateFlags {
         type Output = Self;
         fn bitor(self, rhs: Self) -> Self {
             Self(self.0 | rhs.0)
         }
     }
-    impl ::core::ops::BitOrAssign for PipelineRasterizationStateCreateFlags {
+    impl core::ops::BitOrAssign for PipelineRasterizationStateCreateFlags {
         fn bitor_assign(&mut self, rhs: Self) {
             *self = *self | rhs;
         }
     }
-    impl ::core::ops::BitAnd for PipelineRasterizationStateCreateFlags {
+    impl core::ops::BitAnd for PipelineRasterizationStateCreateFlags {
         type Output = Self;
         fn bitand(self, rhs: Self) -> Self {
             Self(self.0 & rhs.0)
         }
     }
-    impl ::core::ops::BitAndAssign for PipelineRasterizationStateCreateFlags {
+    impl core::ops::BitAndAssign for PipelineRasterizationStateCreateFlags {
         fn bitand_assign(&mut self, rhs: Self) {
             *self = *self & rhs;
         }
     }
-    impl ::core::ops::BitXor for PipelineRasterizationStateCreateFlags {
+    impl core::ops::BitXor for PipelineRasterizationStateCreateFlags {
         type Output = Self;
         fn bitxor(self, rhs: Self) -> Self {
             Self(self.0 ^ rhs.0)
         }
     }
-    impl ::core::ops::BitXorAssign for PipelineRasterizationStateCreateFlags {
+    impl core::ops::BitXorAssign for PipelineRasterizationStateCreateFlags {
         fn bitxor_assign(&mut self, rhs: Self) {
             *self = *self ^ rhs;
         }
     }
-    impl ::core::ops::Not for PipelineRasterizationStateCreateFlags {
+    impl core::ops::Not for PipelineRasterizationStateCreateFlags {
         type Output = Self;
         fn not(self) -> Self {
             Self(!self.0)
@@ -5371,40 +5371,40 @@ pub(crate) mod reexport {
             Self::empty()
         }
     }
-    impl ::core::ops::BitOr for PipelineViewportStateCreateFlags {
+    impl core::ops::BitOr for PipelineViewportStateCreateFlags {
         type Output = Self;
         fn bitor(self, rhs: Self) -> Self {
             Self(self.0 | rhs.0)
         }
     }
-    impl ::core::ops::BitOrAssign for PipelineViewportStateCreateFlags {
+    impl core::ops::BitOrAssign for PipelineViewportStateCreateFlags {
         fn bitor_assign(&mut self, rhs: Self) {
             *self = *self | rhs;
         }
     }
-    impl ::core::ops::BitAnd for PipelineViewportStateCreateFlags {
+    impl core::ops::BitAnd for PipelineViewportStateCreateFlags {
         type Output = Self;
         fn bitand(self, rhs: Self) -> Self {
             Self(self.0 & rhs.0)
         }
     }
-    impl ::core::ops::BitAndAssign for PipelineViewportStateCreateFlags {
+    impl core::ops::BitAndAssign for PipelineViewportStateCreateFlags {
         fn bitand_assign(&mut self, rhs: Self) {
             *self = *self & rhs;
         }
     }
-    impl ::core::ops::BitXor for PipelineViewportStateCreateFlags {
+    impl core::ops::BitXor for PipelineViewportStateCreateFlags {
         type Output = Self;
         fn bitxor(self, rhs: Self) -> Self {
             Self(self.0 ^ rhs.0)
         }
     }
-    impl ::core::ops::BitXorAssign for PipelineViewportStateCreateFlags {
+    impl core::ops::BitXorAssign for PipelineViewportStateCreateFlags {
         fn bitxor_assign(&mut self, rhs: Self) {
             *self = *self ^ rhs;
         }
     }
-    impl ::core::ops::Not for PipelineViewportStateCreateFlags {
+    impl core::ops::Not for PipelineViewportStateCreateFlags {
         type Output = Self;
         fn not(self) -> Self {
             Self(!self.0)
@@ -5438,40 +5438,40 @@ pub(crate) mod reexport {
             Self::empty()
         }
     }
-    impl ::core::ops::BitOr for PipelineTessellationStateCreateFlags {
+    impl core::ops::BitOr for PipelineTessellationStateCreateFlags {
         type Output = Self;
         fn bitor(self, rhs: Self) -> Self {
             Self(self.0 | rhs.0)
         }
     }
-    impl ::core::ops::BitOrAssign for PipelineTessellationStateCreateFlags {
+    impl core::ops::BitOrAssign for PipelineTessellationStateCreateFlags {
         fn bitor_assign(&mut self, rhs: Self) {
             *self = *self | rhs;
         }
     }
-    impl ::core::ops::BitAnd for PipelineTessellationStateCreateFlags {
+    impl core::ops::BitAnd for PipelineTessellationStateCreateFlags {
         type Output = Self;
         fn bitand(self, rhs: Self) -> Self {
             Self(self.0 & rhs.0)
         }
     }
-    impl ::core::ops::BitAndAssign for PipelineTessellationStateCreateFlags {
+    impl core::ops::BitAndAssign for PipelineTessellationStateCreateFlags {
         fn bitand_assign(&mut self, rhs: Self) {
             *self = *self & rhs;
         }
     }
-    impl ::core::ops::BitXor for PipelineTessellationStateCreateFlags {
+    impl core::ops::BitXor for PipelineTessellationStateCreateFlags {
         type Output = Self;
         fn bitxor(self, rhs: Self) -> Self {
             Self(self.0 ^ rhs.0)
         }
     }
-    impl ::core::ops::BitXorAssign for PipelineTessellationStateCreateFlags {
+    impl core::ops::BitXorAssign for PipelineTessellationStateCreateFlags {
         fn bitxor_assign(&mut self, rhs: Self) {
             *self = *self ^ rhs;
         }
     }
-    impl ::core::ops::Not for PipelineTessellationStateCreateFlags {
+    impl core::ops::Not for PipelineTessellationStateCreateFlags {
         type Output = Self;
         fn not(self) -> Self {
             Self(!self.0)
@@ -5505,40 +5505,40 @@ pub(crate) mod reexport {
             Self::empty()
         }
     }
-    impl ::core::ops::BitOr for PipelineInputAssemblyStateCreateFlags {
+    impl core::ops::BitOr for PipelineInputAssemblyStateCreateFlags {
         type Output = Self;
         fn bitor(self, rhs: Self) -> Self {
             Self(self.0 | rhs.0)
         }
     }
-    impl ::core::ops::BitOrAssign for PipelineInputAssemblyStateCreateFlags {
+    impl core::ops::BitOrAssign for PipelineInputAssemblyStateCreateFlags {
         fn bitor_assign(&mut self, rhs: Self) {
             *self = *self | rhs;
         }
     }
-    impl ::core::ops::BitAnd for PipelineInputAssemblyStateCreateFlags {
+    impl core::ops::BitAnd for PipelineInputAssemblyStateCreateFlags {
         type Output = Self;
         fn bitand(self, rhs: Self) -> Self {
             Self(self.0 & rhs.0)
         }
     }
-    impl ::core::ops::BitAndAssign for PipelineInputAssemblyStateCreateFlags {
+    impl core::ops::BitAndAssign for PipelineInputAssemblyStateCreateFlags {
         fn bitand_assign(&mut self, rhs: Self) {
             *self = *self & rhs;
         }
     }
-    impl ::core::ops::BitXor for PipelineInputAssemblyStateCreateFlags {
+    impl core::ops::BitXor for PipelineInputAssemblyStateCreateFlags {
         type Output = Self;
         fn bitxor(self, rhs: Self) -> Self {
             Self(self.0 ^ rhs.0)
         }
     }
-    impl ::core::ops::BitXorAssign for PipelineInputAssemblyStateCreateFlags {
+    impl core::ops::BitXorAssign for PipelineInputAssemblyStateCreateFlags {
         fn bitxor_assign(&mut self, rhs: Self) {
             *self = *self ^ rhs;
         }
     }
-    impl ::core::ops::Not for PipelineInputAssemblyStateCreateFlags {
+    impl core::ops::Not for PipelineInputAssemblyStateCreateFlags {
         type Output = Self;
         fn not(self) -> Self {
             Self(!self.0)
@@ -5572,40 +5572,40 @@ pub(crate) mod reexport {
             Self::empty()
         }
     }
-    impl ::core::ops::BitOr for PipelineVertexInputStateCreateFlags {
+    impl core::ops::BitOr for PipelineVertexInputStateCreateFlags {
         type Output = Self;
         fn bitor(self, rhs: Self) -> Self {
             Self(self.0 | rhs.0)
         }
     }
-    impl ::core::ops::BitOrAssign for PipelineVertexInputStateCreateFlags {
+    impl core::ops::BitOrAssign for PipelineVertexInputStateCreateFlags {
         fn bitor_assign(&mut self, rhs: Self) {
             *self = *self | rhs;
         }
     }
-    impl ::core::ops::BitAnd for PipelineVertexInputStateCreateFlags {
+    impl core::ops::BitAnd for PipelineVertexInputStateCreateFlags {
         type Output = Self;
         fn bitand(self, rhs: Self) -> Self {
             Self(self.0 & rhs.0)
         }
     }
-    impl ::core::ops::BitAndAssign for PipelineVertexInputStateCreateFlags {
+    impl core::ops::BitAndAssign for PipelineVertexInputStateCreateFlags {
         fn bitand_assign(&mut self, rhs: Self) {
             *self = *self & rhs;
         }
     }
-    impl ::core::ops::BitXor for PipelineVertexInputStateCreateFlags {
+    impl core::ops::BitXor for PipelineVertexInputStateCreateFlags {
         type Output = Self;
         fn bitxor(self, rhs: Self) -> Self {
             Self(self.0 ^ rhs.0)
         }
     }
-    impl ::core::ops::BitXorAssign for PipelineVertexInputStateCreateFlags {
+    impl core::ops::BitXorAssign for PipelineVertexInputStateCreateFlags {
         fn bitxor_assign(&mut self, rhs: Self) {
             *self = *self ^ rhs;
         }
     }
-    impl ::core::ops::Not for PipelineVertexInputStateCreateFlags {
+    impl core::ops::Not for PipelineVertexInputStateCreateFlags {
         type Output = Self;
         fn not(self) -> Self {
             Self(!self.0)
@@ -5651,40 +5651,40 @@ pub(crate) mod reexport {
             Self::empty()
         }
     }
-    impl ::core::ops::BitOr for PipelineShaderStageCreateFlags {
+    impl core::ops::BitOr for PipelineShaderStageCreateFlags {
         type Output = Self;
         fn bitor(self, rhs: Self) -> Self {
             Self(self.0 | rhs.0)
         }
     }
-    impl ::core::ops::BitOrAssign for PipelineShaderStageCreateFlags {
+    impl core::ops::BitOrAssign for PipelineShaderStageCreateFlags {
         fn bitor_assign(&mut self, rhs: Self) {
             *self = *self | rhs;
         }
     }
-    impl ::core::ops::BitAnd for PipelineShaderStageCreateFlags {
+    impl core::ops::BitAnd for PipelineShaderStageCreateFlags {
         type Output = Self;
         fn bitand(self, rhs: Self) -> Self {
             Self(self.0 & rhs.0)
         }
     }
-    impl ::core::ops::BitAndAssign for PipelineShaderStageCreateFlags {
+    impl core::ops::BitAndAssign for PipelineShaderStageCreateFlags {
         fn bitand_assign(&mut self, rhs: Self) {
             *self = *self & rhs;
         }
     }
-    impl ::core::ops::BitXor for PipelineShaderStageCreateFlags {
+    impl core::ops::BitXor for PipelineShaderStageCreateFlags {
         type Output = Self;
         fn bitxor(self, rhs: Self) -> Self {
             Self(self.0 ^ rhs.0)
         }
     }
-    impl ::core::ops::BitXorAssign for PipelineShaderStageCreateFlags {
+    impl core::ops::BitXorAssign for PipelineShaderStageCreateFlags {
         fn bitxor_assign(&mut self, rhs: Self) {
             *self = *self ^ rhs;
         }
     }
-    impl ::core::ops::Not for PipelineShaderStageCreateFlags {
+    impl core::ops::Not for PipelineShaderStageCreateFlags {
         type Output = Self;
         fn not(self) -> Self {
             Self(!self.0)
@@ -5751,40 +5751,40 @@ pub(crate) mod reexport {
             Self::empty()
         }
     }
-    impl ::core::ops::BitOr for DescriptorSetLayoutCreateFlags {
+    impl core::ops::BitOr for DescriptorSetLayoutCreateFlags {
         type Output = Self;
         fn bitor(self, rhs: Self) -> Self {
             Self(self.0 | rhs.0)
         }
     }
-    impl ::core::ops::BitOrAssign for DescriptorSetLayoutCreateFlags {
+    impl core::ops::BitOrAssign for DescriptorSetLayoutCreateFlags {
         fn bitor_assign(&mut self, rhs: Self) {
             *self = *self | rhs;
         }
     }
-    impl ::core::ops::BitAnd for DescriptorSetLayoutCreateFlags {
+    impl core::ops::BitAnd for DescriptorSetLayoutCreateFlags {
         type Output = Self;
         fn bitand(self, rhs: Self) -> Self {
             Self(self.0 & rhs.0)
         }
     }
-    impl ::core::ops::BitAndAssign for DescriptorSetLayoutCreateFlags {
+    impl core::ops::BitAndAssign for DescriptorSetLayoutCreateFlags {
         fn bitand_assign(&mut self, rhs: Self) {
             *self = *self & rhs;
         }
     }
-    impl ::core::ops::BitXor for DescriptorSetLayoutCreateFlags {
+    impl core::ops::BitXor for DescriptorSetLayoutCreateFlags {
         type Output = Self;
         fn bitxor(self, rhs: Self) -> Self {
             Self(self.0 ^ rhs.0)
         }
     }
-    impl ::core::ops::BitXorAssign for DescriptorSetLayoutCreateFlags {
+    impl core::ops::BitXorAssign for DescriptorSetLayoutCreateFlags {
         fn bitxor_assign(&mut self, rhs: Self) {
             *self = *self ^ rhs;
         }
     }
-    impl ::core::ops::Not for DescriptorSetLayoutCreateFlags {
+    impl core::ops::Not for DescriptorSetLayoutCreateFlags {
         type Output = Self;
         fn not(self) -> Self {
             Self(!self.0)
@@ -5821,40 +5821,40 @@ pub(crate) mod reexport {
             Self::empty()
         }
     }
-    impl ::core::ops::BitOr for BufferViewCreateFlags {
+    impl core::ops::BitOr for BufferViewCreateFlags {
         type Output = Self;
         fn bitor(self, rhs: Self) -> Self {
             Self(self.0 | rhs.0)
         }
     }
-    impl ::core::ops::BitOrAssign for BufferViewCreateFlags {
+    impl core::ops::BitOrAssign for BufferViewCreateFlags {
         fn bitor_assign(&mut self, rhs: Self) {
             *self = *self | rhs;
         }
     }
-    impl ::core::ops::BitAnd for BufferViewCreateFlags {
+    impl core::ops::BitAnd for BufferViewCreateFlags {
         type Output = Self;
         fn bitand(self, rhs: Self) -> Self {
             Self(self.0 & rhs.0)
         }
     }
-    impl ::core::ops::BitAndAssign for BufferViewCreateFlags {
+    impl core::ops::BitAndAssign for BufferViewCreateFlags {
         fn bitand_assign(&mut self, rhs: Self) {
             *self = *self & rhs;
         }
     }
-    impl ::core::ops::BitXor for BufferViewCreateFlags {
+    impl core::ops::BitXor for BufferViewCreateFlags {
         type Output = Self;
         fn bitxor(self, rhs: Self) -> Self {
             Self(self.0 ^ rhs.0)
         }
     }
-    impl ::core::ops::BitXorAssign for BufferViewCreateFlags {
+    impl core::ops::BitXorAssign for BufferViewCreateFlags {
         fn bitxor_assign(&mut self, rhs: Self) {
             *self = *self ^ rhs;
         }
     }
-    impl ::core::ops::Not for BufferViewCreateFlags {
+    impl core::ops::Not for BufferViewCreateFlags {
         type Output = Self;
         fn not(self) -> Self {
             Self(!self.0)
@@ -5891,40 +5891,40 @@ pub(crate) mod reexport {
             Self::empty()
         }
     }
-    impl ::core::ops::BitOr for InstanceCreateFlags {
+    impl core::ops::BitOr for InstanceCreateFlags {
         type Output = Self;
         fn bitor(self, rhs: Self) -> Self {
             Self(self.0 | rhs.0)
         }
     }
-    impl ::core::ops::BitOrAssign for InstanceCreateFlags {
+    impl core::ops::BitOrAssign for InstanceCreateFlags {
         fn bitor_assign(&mut self, rhs: Self) {
             *self = *self | rhs;
         }
     }
-    impl ::core::ops::BitAnd for InstanceCreateFlags {
+    impl core::ops::BitAnd for InstanceCreateFlags {
         type Output = Self;
         fn bitand(self, rhs: Self) -> Self {
             Self(self.0 & rhs.0)
         }
     }
-    impl ::core::ops::BitAndAssign for InstanceCreateFlags {
+    impl core::ops::BitAndAssign for InstanceCreateFlags {
         fn bitand_assign(&mut self, rhs: Self) {
             *self = *self & rhs;
         }
     }
-    impl ::core::ops::BitXor for InstanceCreateFlags {
+    impl core::ops::BitXor for InstanceCreateFlags {
         type Output = Self;
         fn bitxor(self, rhs: Self) -> Self {
             Self(self.0 ^ rhs.0)
         }
     }
-    impl ::core::ops::BitXorAssign for InstanceCreateFlags {
+    impl core::ops::BitXorAssign for InstanceCreateFlags {
         fn bitxor_assign(&mut self, rhs: Self) {
             *self = *self ^ rhs;
         }
     }
-    impl ::core::ops::Not for InstanceCreateFlags {
+    impl core::ops::Not for InstanceCreateFlags {
         type Output = Self;
         fn not(self) -> Self {
             Self(!self.0)
@@ -5961,40 +5961,40 @@ pub(crate) mod reexport {
             Self::empty()
         }
     }
-    impl ::core::ops::BitOr for DeviceCreateFlags {
+    impl core::ops::BitOr for DeviceCreateFlags {
         type Output = Self;
         fn bitor(self, rhs: Self) -> Self {
             Self(self.0 | rhs.0)
         }
     }
-    impl ::core::ops::BitOrAssign for DeviceCreateFlags {
+    impl core::ops::BitOrAssign for DeviceCreateFlags {
         fn bitor_assign(&mut self, rhs: Self) {
             *self = *self | rhs;
         }
     }
-    impl ::core::ops::BitAnd for DeviceCreateFlags {
+    impl core::ops::BitAnd for DeviceCreateFlags {
         type Output = Self;
         fn bitand(self, rhs: Self) -> Self {
             Self(self.0 & rhs.0)
         }
     }
-    impl ::core::ops::BitAndAssign for DeviceCreateFlags {
+    impl core::ops::BitAndAssign for DeviceCreateFlags {
         fn bitand_assign(&mut self, rhs: Self) {
             *self = *self & rhs;
         }
     }
-    impl ::core::ops::BitXor for DeviceCreateFlags {
+    impl core::ops::BitXor for DeviceCreateFlags {
         type Output = Self;
         fn bitxor(self, rhs: Self) -> Self {
             Self(self.0 ^ rhs.0)
         }
     }
-    impl ::core::ops::BitXorAssign for DeviceCreateFlags {
+    impl core::ops::BitXorAssign for DeviceCreateFlags {
         fn bitxor_assign(&mut self, rhs: Self) {
             *self = *self ^ rhs;
         }
     }
-    impl ::core::ops::Not for DeviceCreateFlags {
+    impl core::ops::Not for DeviceCreateFlags {
         type Output = Self;
         fn not(self) -> Self {
             Self(!self.0)
@@ -6032,40 +6032,40 @@ pub(crate) mod reexport {
             Self::empty()
         }
     }
-    impl ::core::ops::BitOr for DeviceQueueCreateFlags {
+    impl core::ops::BitOr for DeviceQueueCreateFlags {
         type Output = Self;
         fn bitor(self, rhs: Self) -> Self {
             Self(self.0 | rhs.0)
         }
     }
-    impl ::core::ops::BitOrAssign for DeviceQueueCreateFlags {
+    impl core::ops::BitOrAssign for DeviceQueueCreateFlags {
         fn bitor_assign(&mut self, rhs: Self) {
             *self = *self | rhs;
         }
     }
-    impl ::core::ops::BitAnd for DeviceQueueCreateFlags {
+    impl core::ops::BitAnd for DeviceQueueCreateFlags {
         type Output = Self;
         fn bitand(self, rhs: Self) -> Self {
             Self(self.0 & rhs.0)
         }
     }
-    impl ::core::ops::BitAndAssign for DeviceQueueCreateFlags {
+    impl core::ops::BitAndAssign for DeviceQueueCreateFlags {
         fn bitand_assign(&mut self, rhs: Self) {
             *self = *self & rhs;
         }
     }
-    impl ::core::ops::BitXor for DeviceQueueCreateFlags {
+    impl core::ops::BitXor for DeviceQueueCreateFlags {
         type Output = Self;
         fn bitxor(self, rhs: Self) -> Self {
             Self(self.0 ^ rhs.0)
         }
     }
-    impl ::core::ops::BitXorAssign for DeviceQueueCreateFlags {
+    impl core::ops::BitXorAssign for DeviceQueueCreateFlags {
         fn bitxor_assign(&mut self, rhs: Self) {
             *self = *self ^ rhs;
         }
     }
-    impl ::core::ops::Not for DeviceQueueCreateFlags {
+    impl core::ops::Not for DeviceQueueCreateFlags {
         type Output = Self;
         fn not(self) -> Self {
             Self(!self.0)
@@ -6111,40 +6111,40 @@ pub(crate) mod reexport {
             Self::empty()
         }
     }
-    impl ::core::ops::BitOr for QueueFlags {
+    impl core::ops::BitOr for QueueFlags {
         type Output = Self;
         fn bitor(self, rhs: Self) -> Self {
             Self(self.0 | rhs.0)
         }
     }
-    impl ::core::ops::BitOrAssign for QueueFlags {
+    impl core::ops::BitOrAssign for QueueFlags {
         fn bitor_assign(&mut self, rhs: Self) {
             *self = *self | rhs;
         }
     }
-    impl ::core::ops::BitAnd for QueueFlags {
+    impl core::ops::BitAnd for QueueFlags {
         type Output = Self;
         fn bitand(self, rhs: Self) -> Self {
             Self(self.0 & rhs.0)
         }
     }
-    impl ::core::ops::BitAndAssign for QueueFlags {
+    impl core::ops::BitAndAssign for QueueFlags {
         fn bitand_assign(&mut self, rhs: Self) {
             *self = *self & rhs;
         }
     }
-    impl ::core::ops::BitXor for QueueFlags {
+    impl core::ops::BitXor for QueueFlags {
         type Output = Self;
         fn bitxor(self, rhs: Self) -> Self {
             Self(self.0 ^ rhs.0)
         }
     }
-    impl ::core::ops::BitXorAssign for QueueFlags {
+    impl core::ops::BitXorAssign for QueueFlags {
         fn bitxor_assign(&mut self, rhs: Self) {
             *self = *self ^ rhs;
         }
     }
-    impl ::core::ops::Not for QueueFlags {
+    impl core::ops::Not for QueueFlags {
         type Output = Self;
         fn not(self) -> Self {
             Self(!self.0)
@@ -6205,40 +6205,40 @@ pub(crate) mod reexport {
             Self::empty()
         }
     }
-    impl ::core::ops::BitOr for MemoryPropertyFlags {
+    impl core::ops::BitOr for MemoryPropertyFlags {
         type Output = Self;
         fn bitor(self, rhs: Self) -> Self {
             Self(self.0 | rhs.0)
         }
     }
-    impl ::core::ops::BitOrAssign for MemoryPropertyFlags {
+    impl core::ops::BitOrAssign for MemoryPropertyFlags {
         fn bitor_assign(&mut self, rhs: Self) {
             *self = *self | rhs;
         }
     }
-    impl ::core::ops::BitAnd for MemoryPropertyFlags {
+    impl core::ops::BitAnd for MemoryPropertyFlags {
         type Output = Self;
         fn bitand(self, rhs: Self) -> Self {
             Self(self.0 & rhs.0)
         }
     }
-    impl ::core::ops::BitAndAssign for MemoryPropertyFlags {
+    impl core::ops::BitAndAssign for MemoryPropertyFlags {
         fn bitand_assign(&mut self, rhs: Self) {
             *self = *self & rhs;
         }
     }
-    impl ::core::ops::BitXor for MemoryPropertyFlags {
+    impl core::ops::BitXor for MemoryPropertyFlags {
         type Output = Self;
         fn bitxor(self, rhs: Self) -> Self {
             Self(self.0 ^ rhs.0)
         }
     }
-    impl ::core::ops::BitXorAssign for MemoryPropertyFlags {
+    impl core::ops::BitXorAssign for MemoryPropertyFlags {
         fn bitxor_assign(&mut self, rhs: Self) {
             *self = *self ^ rhs;
         }
     }
-    impl ::core::ops::Not for MemoryPropertyFlags {
+    impl core::ops::Not for MemoryPropertyFlags {
         type Output = Self;
         fn not(self) -> Self {
             Self(!self.0)
@@ -6289,40 +6289,40 @@ pub(crate) mod reexport {
             Self::empty()
         }
     }
-    impl ::core::ops::BitOr for MemoryHeapFlags {
+    impl core::ops::BitOr for MemoryHeapFlags {
         type Output = Self;
         fn bitor(self, rhs: Self) -> Self {
             Self(self.0 | rhs.0)
         }
     }
-    impl ::core::ops::BitOrAssign for MemoryHeapFlags {
+    impl core::ops::BitOrAssign for MemoryHeapFlags {
         fn bitor_assign(&mut self, rhs: Self) {
             *self = *self | rhs;
         }
     }
-    impl ::core::ops::BitAnd for MemoryHeapFlags {
+    impl core::ops::BitAnd for MemoryHeapFlags {
         type Output = Self;
         fn bitand(self, rhs: Self) -> Self {
             Self(self.0 & rhs.0)
         }
     }
-    impl ::core::ops::BitAndAssign for MemoryHeapFlags {
+    impl core::ops::BitAndAssign for MemoryHeapFlags {
         fn bitand_assign(&mut self, rhs: Self) {
             *self = *self & rhs;
         }
     }
-    impl ::core::ops::BitXor for MemoryHeapFlags {
+    impl core::ops::BitXor for MemoryHeapFlags {
         type Output = Self;
         fn bitxor(self, rhs: Self) -> Self {
             Self(self.0 ^ rhs.0)
         }
     }
-    impl ::core::ops::BitXorAssign for MemoryHeapFlags {
+    impl core::ops::BitXorAssign for MemoryHeapFlags {
         fn bitxor_assign(&mut self, rhs: Self) {
             *self = *self ^ rhs;
         }
     }
-    impl ::core::ops::Not for MemoryHeapFlags {
+    impl core::ops::Not for MemoryHeapFlags {
         type Output = Self;
         fn not(self) -> Self {
             Self(!self.0)
@@ -6444,40 +6444,40 @@ pub(crate) mod reexport {
             Self::empty()
         }
     }
-    impl ::core::ops::BitOr for AccessFlags {
+    impl core::ops::BitOr for AccessFlags {
         type Output = Self;
         fn bitor(self, rhs: Self) -> Self {
             Self(self.0 | rhs.0)
         }
     }
-    impl ::core::ops::BitOrAssign for AccessFlags {
+    impl core::ops::BitOrAssign for AccessFlags {
         fn bitor_assign(&mut self, rhs: Self) {
             *self = *self | rhs;
         }
     }
-    impl ::core::ops::BitAnd for AccessFlags {
+    impl core::ops::BitAnd for AccessFlags {
         type Output = Self;
         fn bitand(self, rhs: Self) -> Self {
             Self(self.0 & rhs.0)
         }
     }
-    impl ::core::ops::BitAndAssign for AccessFlags {
+    impl core::ops::BitAndAssign for AccessFlags {
         fn bitand_assign(&mut self, rhs: Self) {
             *self = *self & rhs;
         }
     }
-    impl ::core::ops::BitXor for AccessFlags {
+    impl core::ops::BitXor for AccessFlags {
         type Output = Self;
         fn bitxor(self, rhs: Self) -> Self {
             Self(self.0 ^ rhs.0)
         }
     }
-    impl ::core::ops::BitXorAssign for AccessFlags {
+    impl core::ops::BitXorAssign for AccessFlags {
         fn bitxor_assign(&mut self, rhs: Self) {
             *self = *self ^ rhs;
         }
     }
-    impl ::core::ops::Not for AccessFlags {
+    impl core::ops::Not for AccessFlags {
         type Output = Self;
         fn not(self) -> Self {
             Self(!self.0)
@@ -6609,40 +6609,40 @@ pub(crate) mod reexport {
             Self::empty()
         }
     }
-    impl ::core::ops::BitOr for BufferUsageFlags {
+    impl core::ops::BitOr for BufferUsageFlags {
         type Output = Self;
         fn bitor(self, rhs: Self) -> Self {
             Self(self.0 | rhs.0)
         }
     }
-    impl ::core::ops::BitOrAssign for BufferUsageFlags {
+    impl core::ops::BitOrAssign for BufferUsageFlags {
         fn bitor_assign(&mut self, rhs: Self) {
             *self = *self | rhs;
         }
     }
-    impl ::core::ops::BitAnd for BufferUsageFlags {
+    impl core::ops::BitAnd for BufferUsageFlags {
         type Output = Self;
         fn bitand(self, rhs: Self) -> Self {
             Self(self.0 & rhs.0)
         }
     }
-    impl ::core::ops::BitAndAssign for BufferUsageFlags {
+    impl core::ops::BitAndAssign for BufferUsageFlags {
         fn bitand_assign(&mut self, rhs: Self) {
             *self = *self & rhs;
         }
     }
-    impl ::core::ops::BitXor for BufferUsageFlags {
+    impl core::ops::BitXor for BufferUsageFlags {
         type Output = Self;
         fn bitxor(self, rhs: Self) -> Self {
             Self(self.0 ^ rhs.0)
         }
     }
-    impl ::core::ops::BitXorAssign for BufferUsageFlags {
+    impl core::ops::BitXorAssign for BufferUsageFlags {
         fn bitxor_assign(&mut self, rhs: Self) {
             *self = *self ^ rhs;
         }
     }
-    impl ::core::ops::Not for BufferUsageFlags {
+    impl core::ops::Not for BufferUsageFlags {
         type Output = Self;
         fn not(self) -> Self {
             Self(!self.0)
@@ -6712,40 +6712,40 @@ pub(crate) mod reexport {
             Self::empty()
         }
     }
-    impl ::core::ops::BitOr for BufferCreateFlags {
+    impl core::ops::BitOr for BufferCreateFlags {
         type Output = Self;
         fn bitor(self, rhs: Self) -> Self {
             Self(self.0 | rhs.0)
         }
     }
-    impl ::core::ops::BitOrAssign for BufferCreateFlags {
+    impl core::ops::BitOrAssign for BufferCreateFlags {
         fn bitor_assign(&mut self, rhs: Self) {
             *self = *self | rhs;
         }
     }
-    impl ::core::ops::BitAnd for BufferCreateFlags {
+    impl core::ops::BitAnd for BufferCreateFlags {
         type Output = Self;
         fn bitand(self, rhs: Self) -> Self {
             Self(self.0 & rhs.0)
         }
     }
-    impl ::core::ops::BitAndAssign for BufferCreateFlags {
+    impl core::ops::BitAndAssign for BufferCreateFlags {
         fn bitand_assign(&mut self, rhs: Self) {
             *self = *self & rhs;
         }
     }
-    impl ::core::ops::BitXor for BufferCreateFlags {
+    impl core::ops::BitXor for BufferCreateFlags {
         type Output = Self;
         fn bitxor(self, rhs: Self) -> Self {
             Self(self.0 ^ rhs.0)
         }
     }
-    impl ::core::ops::BitXorAssign for BufferCreateFlags {
+    impl core::ops::BitXorAssign for BufferCreateFlags {
         fn bitxor_assign(&mut self, rhs: Self) {
             *self = *self ^ rhs;
         }
     }
-    impl ::core::ops::Not for BufferCreateFlags {
+    impl core::ops::Not for BufferCreateFlags {
         type Output = Self;
         fn not(self) -> Self {
             Self(!self.0)
@@ -6822,40 +6822,40 @@ pub(crate) mod reexport {
             Self::empty()
         }
     }
-    impl ::core::ops::BitOr for ShaderStageFlags {
+    impl core::ops::BitOr for ShaderStageFlags {
         type Output = Self;
         fn bitor(self, rhs: Self) -> Self {
             Self(self.0 | rhs.0)
         }
     }
-    impl ::core::ops::BitOrAssign for ShaderStageFlags {
+    impl core::ops::BitOrAssign for ShaderStageFlags {
         fn bitor_assign(&mut self, rhs: Self) {
             *self = *self | rhs;
         }
     }
-    impl ::core::ops::BitAnd for ShaderStageFlags {
+    impl core::ops::BitAnd for ShaderStageFlags {
         type Output = Self;
         fn bitand(self, rhs: Self) -> Self {
             Self(self.0 & rhs.0)
         }
     }
-    impl ::core::ops::BitAndAssign for ShaderStageFlags {
+    impl core::ops::BitAndAssign for ShaderStageFlags {
         fn bitand_assign(&mut self, rhs: Self) {
             *self = *self & rhs;
         }
     }
-    impl ::core::ops::BitXor for ShaderStageFlags {
+    impl core::ops::BitXor for ShaderStageFlags {
         type Output = Self;
         fn bitxor(self, rhs: Self) -> Self {
             Self(self.0 ^ rhs.0)
         }
     }
-    impl ::core::ops::BitXorAssign for ShaderStageFlags {
+    impl core::ops::BitXorAssign for ShaderStageFlags {
         fn bitxor_assign(&mut self, rhs: Self) {
             *self = *self ^ rhs;
         }
     }
-    impl ::core::ops::Not for ShaderStageFlags {
+    impl core::ops::Not for ShaderStageFlags {
         type Output = Self;
         fn not(self) -> Self {
             Self(!self.0)
@@ -6968,40 +6968,40 @@ pub(crate) mod reexport {
             Self::empty()
         }
     }
-    impl ::core::ops::BitOr for ImageUsageFlags {
+    impl core::ops::BitOr for ImageUsageFlags {
         type Output = Self;
         fn bitor(self, rhs: Self) -> Self {
             Self(self.0 | rhs.0)
         }
     }
-    impl ::core::ops::BitOrAssign for ImageUsageFlags {
+    impl core::ops::BitOrAssign for ImageUsageFlags {
         fn bitor_assign(&mut self, rhs: Self) {
             *self = *self | rhs;
         }
     }
-    impl ::core::ops::BitAnd for ImageUsageFlags {
+    impl core::ops::BitAnd for ImageUsageFlags {
         type Output = Self;
         fn bitand(self, rhs: Self) -> Self {
             Self(self.0 & rhs.0)
         }
     }
-    impl ::core::ops::BitAndAssign for ImageUsageFlags {
+    impl core::ops::BitAndAssign for ImageUsageFlags {
         fn bitand_assign(&mut self, rhs: Self) {
             *self = *self & rhs;
         }
     }
-    impl ::core::ops::BitXor for ImageUsageFlags {
+    impl core::ops::BitXor for ImageUsageFlags {
         type Output = Self;
         fn bitxor(self, rhs: Self) -> Self {
             Self(self.0 ^ rhs.0)
         }
     }
-    impl ::core::ops::BitXorAssign for ImageUsageFlags {
+    impl core::ops::BitXorAssign for ImageUsageFlags {
         fn bitxor_assign(&mut self, rhs: Self) {
             *self = *self ^ rhs;
         }
     }
-    impl ::core::ops::Not for ImageUsageFlags {
+    impl core::ops::Not for ImageUsageFlags {
         type Output = Self;
         fn not(self) -> Self {
             Self(!self.0)
@@ -7112,40 +7112,40 @@ pub(crate) mod reexport {
             Self::empty()
         }
     }
-    impl ::core::ops::BitOr for ImageCreateFlags {
+    impl core::ops::BitOr for ImageCreateFlags {
         type Output = Self;
         fn bitor(self, rhs: Self) -> Self {
             Self(self.0 | rhs.0)
         }
     }
-    impl ::core::ops::BitOrAssign for ImageCreateFlags {
+    impl core::ops::BitOrAssign for ImageCreateFlags {
         fn bitor_assign(&mut self, rhs: Self) {
             *self = *self | rhs;
         }
     }
-    impl ::core::ops::BitAnd for ImageCreateFlags {
+    impl core::ops::BitAnd for ImageCreateFlags {
         type Output = Self;
         fn bitand(self, rhs: Self) -> Self {
             Self(self.0 & rhs.0)
         }
     }
-    impl ::core::ops::BitAndAssign for ImageCreateFlags {
+    impl core::ops::BitAndAssign for ImageCreateFlags {
         fn bitand_assign(&mut self, rhs: Self) {
             *self = *self & rhs;
         }
     }
-    impl ::core::ops::BitXor for ImageCreateFlags {
+    impl core::ops::BitXor for ImageCreateFlags {
         type Output = Self;
         fn bitxor(self, rhs: Self) -> Self {
             Self(self.0 ^ rhs.0)
         }
     }
-    impl ::core::ops::BitXorAssign for ImageCreateFlags {
+    impl core::ops::BitXorAssign for ImageCreateFlags {
         fn bitxor_assign(&mut self, rhs: Self) {
             *self = *self ^ rhs;
         }
     }
-    impl ::core::ops::Not for ImageCreateFlags {
+    impl core::ops::Not for ImageCreateFlags {
         type Output = Self;
         fn not(self) -> Self {
             Self(!self.0)
@@ -7199,40 +7199,40 @@ pub(crate) mod reexport {
             Self::empty()
         }
     }
-    impl ::core::ops::BitOr for ImageViewCreateFlags {
+    impl core::ops::BitOr for ImageViewCreateFlags {
         type Output = Self;
         fn bitor(self, rhs: Self) -> Self {
             Self(self.0 | rhs.0)
         }
     }
-    impl ::core::ops::BitOrAssign for ImageViewCreateFlags {
+    impl core::ops::BitOrAssign for ImageViewCreateFlags {
         fn bitor_assign(&mut self, rhs: Self) {
             *self = *self | rhs;
         }
     }
-    impl ::core::ops::BitAnd for ImageViewCreateFlags {
+    impl core::ops::BitAnd for ImageViewCreateFlags {
         type Output = Self;
         fn bitand(self, rhs: Self) -> Self {
             Self(self.0 & rhs.0)
         }
     }
-    impl ::core::ops::BitAndAssign for ImageViewCreateFlags {
+    impl core::ops::BitAndAssign for ImageViewCreateFlags {
         fn bitand_assign(&mut self, rhs: Self) {
             *self = *self & rhs;
         }
     }
-    impl ::core::ops::BitXor for ImageViewCreateFlags {
+    impl core::ops::BitXor for ImageViewCreateFlags {
         type Output = Self;
         fn bitxor(self, rhs: Self) -> Self {
             Self(self.0 ^ rhs.0)
         }
     }
-    impl ::core::ops::BitXorAssign for ImageViewCreateFlags {
+    impl core::ops::BitXorAssign for ImageViewCreateFlags {
         fn bitxor_assign(&mut self, rhs: Self) {
             *self = *self ^ rhs;
         }
     }
-    impl ::core::ops::Not for ImageViewCreateFlags {
+    impl core::ops::Not for ImageViewCreateFlags {
         type Output = Self;
         fn not(self) -> Self {
             Self(!self.0)
@@ -7374,40 +7374,40 @@ pub(crate) mod reexport {
             Self::empty()
         }
     }
-    impl ::core::ops::BitOr for PipelineCreateFlags {
+    impl core::ops::BitOr for PipelineCreateFlags {
         type Output = Self;
         fn bitor(self, rhs: Self) -> Self {
             Self(self.0 | rhs.0)
         }
     }
-    impl ::core::ops::BitOrAssign for PipelineCreateFlags {
+    impl core::ops::BitOrAssign for PipelineCreateFlags {
         fn bitor_assign(&mut self, rhs: Self) {
             *self = *self | rhs;
         }
     }
-    impl ::core::ops::BitAnd for PipelineCreateFlags {
+    impl core::ops::BitAnd for PipelineCreateFlags {
         type Output = Self;
         fn bitand(self, rhs: Self) -> Self {
             Self(self.0 & rhs.0)
         }
     }
-    impl ::core::ops::BitAndAssign for PipelineCreateFlags {
+    impl core::ops::BitAndAssign for PipelineCreateFlags {
         fn bitand_assign(&mut self, rhs: Self) {
             *self = *self & rhs;
         }
     }
-    impl ::core::ops::BitXor for PipelineCreateFlags {
+    impl core::ops::BitXor for PipelineCreateFlags {
         type Output = Self;
         fn bitxor(self, rhs: Self) -> Self {
             Self(self.0 ^ rhs.0)
         }
     }
-    impl ::core::ops::BitXorAssign for PipelineCreateFlags {
+    impl core::ops::BitXorAssign for PipelineCreateFlags {
         fn bitxor_assign(&mut self, rhs: Self) {
             *self = *self ^ rhs;
         }
     }
-    impl ::core::ops::Not for PipelineCreateFlags {
+    impl core::ops::Not for PipelineCreateFlags {
         type Output = Self;
         fn not(self) -> Self {
             Self(!self.0)
@@ -7454,40 +7454,40 @@ pub(crate) mod reexport {
             Self::empty()
         }
     }
-    impl ::core::ops::BitOr for ColorComponentFlags {
+    impl core::ops::BitOr for ColorComponentFlags {
         type Output = Self;
         fn bitor(self, rhs: Self) -> Self {
             Self(self.0 | rhs.0)
         }
     }
-    impl ::core::ops::BitOrAssign for ColorComponentFlags {
+    impl core::ops::BitOrAssign for ColorComponentFlags {
         fn bitor_assign(&mut self, rhs: Self) {
             *self = *self | rhs;
         }
     }
-    impl ::core::ops::BitAnd for ColorComponentFlags {
+    impl core::ops::BitAnd for ColorComponentFlags {
         type Output = Self;
         fn bitand(self, rhs: Self) -> Self {
             Self(self.0 & rhs.0)
         }
     }
-    impl ::core::ops::BitAndAssign for ColorComponentFlags {
+    impl core::ops::BitAndAssign for ColorComponentFlags {
         fn bitand_assign(&mut self, rhs: Self) {
             *self = *self & rhs;
         }
     }
-    impl ::core::ops::BitXor for ColorComponentFlags {
+    impl core::ops::BitXor for ColorComponentFlags {
         type Output = Self;
         fn bitxor(self, rhs: Self) -> Self {
             Self(self.0 ^ rhs.0)
         }
     }
-    impl ::core::ops::BitXorAssign for ColorComponentFlags {
+    impl core::ops::BitXorAssign for ColorComponentFlags {
         fn bitxor_assign(&mut self, rhs: Self) {
             *self = *self ^ rhs;
         }
     }
-    impl ::core::ops::Not for ColorComponentFlags {
+    impl core::ops::Not for ColorComponentFlags {
         type Output = Self;
         fn not(self) -> Self {
             Self(!self.0)
@@ -7532,40 +7532,40 @@ pub(crate) mod reexport {
             Self::empty()
         }
     }
-    impl ::core::ops::BitOr for FenceCreateFlags {
+    impl core::ops::BitOr for FenceCreateFlags {
         type Output = Self;
         fn bitor(self, rhs: Self) -> Self {
             Self(self.0 | rhs.0)
         }
     }
-    impl ::core::ops::BitOrAssign for FenceCreateFlags {
+    impl core::ops::BitOrAssign for FenceCreateFlags {
         fn bitor_assign(&mut self, rhs: Self) {
             *self = *self | rhs;
         }
     }
-    impl ::core::ops::BitAnd for FenceCreateFlags {
+    impl core::ops::BitAnd for FenceCreateFlags {
         type Output = Self;
         fn bitand(self, rhs: Self) -> Self {
             Self(self.0 & rhs.0)
         }
     }
-    impl ::core::ops::BitAndAssign for FenceCreateFlags {
+    impl core::ops::BitAndAssign for FenceCreateFlags {
         fn bitand_assign(&mut self, rhs: Self) {
             *self = *self & rhs;
         }
     }
-    impl ::core::ops::BitXor for FenceCreateFlags {
+    impl core::ops::BitXor for FenceCreateFlags {
         type Output = Self;
         fn bitxor(self, rhs: Self) -> Self {
             Self(self.0 ^ rhs.0)
         }
     }
-    impl ::core::ops::BitXorAssign for FenceCreateFlags {
+    impl core::ops::BitXorAssign for FenceCreateFlags {
         fn bitxor_assign(&mut self, rhs: Self) {
             *self = *self ^ rhs;
         }
     }
-    impl ::core::ops::Not for FenceCreateFlags {
+    impl core::ops::Not for FenceCreateFlags {
         type Output = Self;
         fn not(self) -> Self {
             Self(!self.0)
@@ -7606,40 +7606,40 @@ pub(crate) mod reexport {
             Self::empty()
         }
     }
-    impl ::core::ops::BitOr for SemaphoreCreateFlags {
+    impl core::ops::BitOr for SemaphoreCreateFlags {
         type Output = Self;
         fn bitor(self, rhs: Self) -> Self {
             Self(self.0 | rhs.0)
         }
     }
-    impl ::core::ops::BitOrAssign for SemaphoreCreateFlags {
+    impl core::ops::BitOrAssign for SemaphoreCreateFlags {
         fn bitor_assign(&mut self, rhs: Self) {
             *self = *self | rhs;
         }
     }
-    impl ::core::ops::BitAnd for SemaphoreCreateFlags {
+    impl core::ops::BitAnd for SemaphoreCreateFlags {
         type Output = Self;
         fn bitand(self, rhs: Self) -> Self {
             Self(self.0 & rhs.0)
         }
     }
-    impl ::core::ops::BitAndAssign for SemaphoreCreateFlags {
+    impl core::ops::BitAndAssign for SemaphoreCreateFlags {
         fn bitand_assign(&mut self, rhs: Self) {
             *self = *self & rhs;
         }
     }
-    impl ::core::ops::BitXor for SemaphoreCreateFlags {
+    impl core::ops::BitXor for SemaphoreCreateFlags {
         type Output = Self;
         fn bitxor(self, rhs: Self) -> Self {
             Self(self.0 ^ rhs.0)
         }
     }
-    impl ::core::ops::BitXorAssign for SemaphoreCreateFlags {
+    impl core::ops::BitXorAssign for SemaphoreCreateFlags {
         fn bitxor_assign(&mut self, rhs: Self) {
             *self = *self ^ rhs;
         }
     }
-    impl ::core::ops::Not for SemaphoreCreateFlags {
+    impl core::ops::Not for SemaphoreCreateFlags {
         type Output = Self;
         fn not(self) -> Self {
             Self(!self.0)
@@ -7787,40 +7787,40 @@ pub(crate) mod reexport {
             Self::empty()
         }
     }
-    impl ::core::ops::BitOr for FormatFeatureFlags {
+    impl core::ops::BitOr for FormatFeatureFlags {
         type Output = Self;
         fn bitor(self, rhs: Self) -> Self {
             Self(self.0 | rhs.0)
         }
     }
-    impl ::core::ops::BitOrAssign for FormatFeatureFlags {
+    impl core::ops::BitOrAssign for FormatFeatureFlags {
         fn bitor_assign(&mut self, rhs: Self) {
             *self = *self | rhs;
         }
     }
-    impl ::core::ops::BitAnd for FormatFeatureFlags {
+    impl core::ops::BitAnd for FormatFeatureFlags {
         type Output = Self;
         fn bitand(self, rhs: Self) -> Self {
             Self(self.0 & rhs.0)
         }
     }
-    impl ::core::ops::BitAndAssign for FormatFeatureFlags {
+    impl core::ops::BitAndAssign for FormatFeatureFlags {
         fn bitand_assign(&mut self, rhs: Self) {
             *self = *self & rhs;
         }
     }
-    impl ::core::ops::BitXor for FormatFeatureFlags {
+    impl core::ops::BitXor for FormatFeatureFlags {
         type Output = Self;
         fn bitxor(self, rhs: Self) -> Self {
             Self(self.0 ^ rhs.0)
         }
     }
-    impl ::core::ops::BitXorAssign for FormatFeatureFlags {
+    impl core::ops::BitXorAssign for FormatFeatureFlags {
         fn bitxor_assign(&mut self, rhs: Self) {
             *self = *self ^ rhs;
         }
     }
-    impl ::core::ops::Not for FormatFeatureFlags {
+    impl core::ops::Not for FormatFeatureFlags {
         type Output = Self;
         fn not(self) -> Self {
             Self(!self.0)
@@ -7874,40 +7874,40 @@ pub(crate) mod reexport {
             Self::empty()
         }
     }
-    impl ::core::ops::BitOr for QueryControlFlags {
+    impl core::ops::BitOr for QueryControlFlags {
         type Output = Self;
         fn bitor(self, rhs: Self) -> Self {
             Self(self.0 | rhs.0)
         }
     }
-    impl ::core::ops::BitOrAssign for QueryControlFlags {
+    impl core::ops::BitOrAssign for QueryControlFlags {
         fn bitor_assign(&mut self, rhs: Self) {
             *self = *self | rhs;
         }
     }
-    impl ::core::ops::BitAnd for QueryControlFlags {
+    impl core::ops::BitAnd for QueryControlFlags {
         type Output = Self;
         fn bitand(self, rhs: Self) -> Self {
             Self(self.0 & rhs.0)
         }
     }
-    impl ::core::ops::BitAndAssign for QueryControlFlags {
+    impl core::ops::BitAndAssign for QueryControlFlags {
         fn bitand_assign(&mut self, rhs: Self) {
             *self = *self & rhs;
         }
     }
-    impl ::core::ops::BitXor for QueryControlFlags {
+    impl core::ops::BitXor for QueryControlFlags {
         type Output = Self;
         fn bitxor(self, rhs: Self) -> Self {
             Self(self.0 ^ rhs.0)
         }
     }
-    impl ::core::ops::BitXorAssign for QueryControlFlags {
+    impl core::ops::BitXorAssign for QueryControlFlags {
         fn bitxor_assign(&mut self, rhs: Self) {
             *self = *self ^ rhs;
         }
     }
-    impl ::core::ops::Not for QueryControlFlags {
+    impl core::ops::Not for QueryControlFlags {
         type Output = Self;
         fn not(self) -> Self {
             Self(!self.0)
@@ -7955,40 +7955,40 @@ pub(crate) mod reexport {
             Self::empty()
         }
     }
-    impl ::core::ops::BitOr for QueryResultFlags {
+    impl core::ops::BitOr for QueryResultFlags {
         type Output = Self;
         fn bitor(self, rhs: Self) -> Self {
             Self(self.0 | rhs.0)
         }
     }
-    impl ::core::ops::BitOrAssign for QueryResultFlags {
+    impl core::ops::BitOrAssign for QueryResultFlags {
         fn bitor_assign(&mut self, rhs: Self) {
             *self = *self | rhs;
         }
     }
-    impl ::core::ops::BitAnd for QueryResultFlags {
+    impl core::ops::BitAnd for QueryResultFlags {
         type Output = Self;
         fn bitand(self, rhs: Self) -> Self {
             Self(self.0 & rhs.0)
         }
     }
-    impl ::core::ops::BitAndAssign for QueryResultFlags {
+    impl core::ops::BitAndAssign for QueryResultFlags {
         fn bitand_assign(&mut self, rhs: Self) {
             *self = *self & rhs;
         }
     }
-    impl ::core::ops::BitXor for QueryResultFlags {
+    impl core::ops::BitXor for QueryResultFlags {
         type Output = Self;
         fn bitxor(self, rhs: Self) -> Self {
             Self(self.0 ^ rhs.0)
         }
     }
-    impl ::core::ops::BitXorAssign for QueryResultFlags {
+    impl core::ops::BitXorAssign for QueryResultFlags {
         fn bitxor_assign(&mut self, rhs: Self) {
             *self = *self ^ rhs;
         }
     }
-    impl ::core::ops::Not for QueryResultFlags {
+    impl core::ops::Not for QueryResultFlags {
         type Output = Self;
         fn not(self) -> Self {
             Self(!self.0)
@@ -8032,40 +8032,40 @@ pub(crate) mod reexport {
             Self::empty()
         }
     }
-    impl ::core::ops::BitOr for ShaderModuleCreateFlags {
+    impl core::ops::BitOr for ShaderModuleCreateFlags {
         type Output = Self;
         fn bitor(self, rhs: Self) -> Self {
             Self(self.0 | rhs.0)
         }
     }
-    impl ::core::ops::BitOrAssign for ShaderModuleCreateFlags {
+    impl core::ops::BitOrAssign for ShaderModuleCreateFlags {
         fn bitor_assign(&mut self, rhs: Self) {
             *self = *self | rhs;
         }
     }
-    impl ::core::ops::BitAnd for ShaderModuleCreateFlags {
+    impl core::ops::BitAnd for ShaderModuleCreateFlags {
         type Output = Self;
         fn bitand(self, rhs: Self) -> Self {
             Self(self.0 & rhs.0)
         }
     }
-    impl ::core::ops::BitAndAssign for ShaderModuleCreateFlags {
+    impl core::ops::BitAndAssign for ShaderModuleCreateFlags {
         fn bitand_assign(&mut self, rhs: Self) {
             *self = *self & rhs;
         }
     }
-    impl ::core::ops::BitXor for ShaderModuleCreateFlags {
+    impl core::ops::BitXor for ShaderModuleCreateFlags {
         type Output = Self;
         fn bitxor(self, rhs: Self) -> Self {
             Self(self.0 ^ rhs.0)
         }
     }
-    impl ::core::ops::BitXorAssign for ShaderModuleCreateFlags {
+    impl core::ops::BitXorAssign for ShaderModuleCreateFlags {
         fn bitxor_assign(&mut self, rhs: Self) {
             *self = *self ^ rhs;
         }
     }
-    impl ::core::ops::Not for ShaderModuleCreateFlags {
+    impl core::ops::Not for ShaderModuleCreateFlags {
         type Output = Self;
         fn not(self) -> Self {
             Self(!self.0)
@@ -8101,40 +8101,40 @@ pub(crate) mod reexport {
             Self::empty()
         }
     }
-    impl ::core::ops::BitOr for EventCreateFlags {
+    impl core::ops::BitOr for EventCreateFlags {
         type Output = Self;
         fn bitor(self, rhs: Self) -> Self {
             Self(self.0 | rhs.0)
         }
     }
-    impl ::core::ops::BitOrAssign for EventCreateFlags {
+    impl core::ops::BitOrAssign for EventCreateFlags {
         fn bitor_assign(&mut self, rhs: Self) {
             *self = *self | rhs;
         }
     }
-    impl ::core::ops::BitAnd for EventCreateFlags {
+    impl core::ops::BitAnd for EventCreateFlags {
         type Output = Self;
         fn bitand(self, rhs: Self) -> Self {
             Self(self.0 & rhs.0)
         }
     }
-    impl ::core::ops::BitAndAssign for EventCreateFlags {
+    impl core::ops::BitAndAssign for EventCreateFlags {
         fn bitand_assign(&mut self, rhs: Self) {
             *self = *self & rhs;
         }
     }
-    impl ::core::ops::BitXor for EventCreateFlags {
+    impl core::ops::BitXor for EventCreateFlags {
         type Output = Self;
         fn bitxor(self, rhs: Self) -> Self {
             Self(self.0 ^ rhs.0)
         }
     }
-    impl ::core::ops::BitXorAssign for EventCreateFlags {
+    impl core::ops::BitXorAssign for EventCreateFlags {
         fn bitxor_assign(&mut self, rhs: Self) {
             *self = *self ^ rhs;
         }
     }
-    impl ::core::ops::Not for EventCreateFlags {
+    impl core::ops::Not for EventCreateFlags {
         type Output = Self;
         fn not(self) -> Self {
             Self(!self.0)
@@ -8176,40 +8176,40 @@ pub(crate) mod reexport {
             Self::empty()
         }
     }
-    impl ::core::ops::BitOr for CommandPoolCreateFlags {
+    impl core::ops::BitOr for CommandPoolCreateFlags {
         type Output = Self;
         fn bitor(self, rhs: Self) -> Self {
             Self(self.0 | rhs.0)
         }
     }
-    impl ::core::ops::BitOrAssign for CommandPoolCreateFlags {
+    impl core::ops::BitOrAssign for CommandPoolCreateFlags {
         fn bitor_assign(&mut self, rhs: Self) {
             *self = *self | rhs;
         }
     }
-    impl ::core::ops::BitAnd for CommandPoolCreateFlags {
+    impl core::ops::BitAnd for CommandPoolCreateFlags {
         type Output = Self;
         fn bitand(self, rhs: Self) -> Self {
             Self(self.0 & rhs.0)
         }
     }
-    impl ::core::ops::BitAndAssign for CommandPoolCreateFlags {
+    impl core::ops::BitAndAssign for CommandPoolCreateFlags {
         fn bitand_assign(&mut self, rhs: Self) {
             *self = *self & rhs;
         }
     }
-    impl ::core::ops::BitXor for CommandPoolCreateFlags {
+    impl core::ops::BitXor for CommandPoolCreateFlags {
         type Output = Self;
         fn bitxor(self, rhs: Self) -> Self {
             Self(self.0 ^ rhs.0)
         }
     }
-    impl ::core::ops::BitXorAssign for CommandPoolCreateFlags {
+    impl core::ops::BitXorAssign for CommandPoolCreateFlags {
         fn bitxor_assign(&mut self, rhs: Self) {
             *self = *self ^ rhs;
         }
     }
-    impl ::core::ops::Not for CommandPoolCreateFlags {
+    impl core::ops::Not for CommandPoolCreateFlags {
         type Output = Self;
         fn not(self) -> Self {
             Self(!self.0)
@@ -8254,40 +8254,40 @@ pub(crate) mod reexport {
             Self::empty()
         }
     }
-    impl ::core::ops::BitOr for CommandPoolResetFlags {
+    impl core::ops::BitOr for CommandPoolResetFlags {
         type Output = Self;
         fn bitor(self, rhs: Self) -> Self {
             Self(self.0 | rhs.0)
         }
     }
-    impl ::core::ops::BitOrAssign for CommandPoolResetFlags {
+    impl core::ops::BitOrAssign for CommandPoolResetFlags {
         fn bitor_assign(&mut self, rhs: Self) {
             *self = *self | rhs;
         }
     }
-    impl ::core::ops::BitAnd for CommandPoolResetFlags {
+    impl core::ops::BitAnd for CommandPoolResetFlags {
         type Output = Self;
         fn bitand(self, rhs: Self) -> Self {
             Self(self.0 & rhs.0)
         }
     }
-    impl ::core::ops::BitAndAssign for CommandPoolResetFlags {
+    impl core::ops::BitAndAssign for CommandPoolResetFlags {
         fn bitand_assign(&mut self, rhs: Self) {
             *self = *self & rhs;
         }
     }
-    impl ::core::ops::BitXor for CommandPoolResetFlags {
+    impl core::ops::BitXor for CommandPoolResetFlags {
         type Output = Self;
         fn bitxor(self, rhs: Self) -> Self {
             Self(self.0 ^ rhs.0)
         }
     }
-    impl ::core::ops::BitXorAssign for CommandPoolResetFlags {
+    impl core::ops::BitXorAssign for CommandPoolResetFlags {
         fn bitxor_assign(&mut self, rhs: Self) {
             *self = *self ^ rhs;
         }
     }
-    impl ::core::ops::Not for CommandPoolResetFlags {
+    impl core::ops::Not for CommandPoolResetFlags {
         type Output = Self;
         fn not(self) -> Self {
             Self(!self.0)
@@ -8331,40 +8331,40 @@ pub(crate) mod reexport {
             Self::empty()
         }
     }
-    impl ::core::ops::BitOr for CommandBufferResetFlags {
+    impl core::ops::BitOr for CommandBufferResetFlags {
         type Output = Self;
         fn bitor(self, rhs: Self) -> Self {
             Self(self.0 | rhs.0)
         }
     }
-    impl ::core::ops::BitOrAssign for CommandBufferResetFlags {
+    impl core::ops::BitOrAssign for CommandBufferResetFlags {
         fn bitor_assign(&mut self, rhs: Self) {
             *self = *self | rhs;
         }
     }
-    impl ::core::ops::BitAnd for CommandBufferResetFlags {
+    impl core::ops::BitAnd for CommandBufferResetFlags {
         type Output = Self;
         fn bitand(self, rhs: Self) -> Self {
             Self(self.0 & rhs.0)
         }
     }
-    impl ::core::ops::BitAndAssign for CommandBufferResetFlags {
+    impl core::ops::BitAndAssign for CommandBufferResetFlags {
         fn bitand_assign(&mut self, rhs: Self) {
             *self = *self & rhs;
         }
     }
-    impl ::core::ops::BitXor for CommandBufferResetFlags {
+    impl core::ops::BitXor for CommandBufferResetFlags {
         type Output = Self;
         fn bitxor(self, rhs: Self) -> Self {
             Self(self.0 ^ rhs.0)
         }
     }
-    impl ::core::ops::BitXorAssign for CommandBufferResetFlags {
+    impl core::ops::BitXorAssign for CommandBufferResetFlags {
         fn bitxor_assign(&mut self, rhs: Self) {
             *self = *self ^ rhs;
         }
     }
-    impl ::core::ops::Not for CommandBufferResetFlags {
+    impl core::ops::Not for CommandBufferResetFlags {
         type Output = Self;
         fn not(self) -> Self {
             Self(!self.0)
@@ -8414,40 +8414,40 @@ pub(crate) mod reexport {
             Self::empty()
         }
     }
-    impl ::core::ops::BitOr for CommandBufferUsageFlags {
+    impl core::ops::BitOr for CommandBufferUsageFlags {
         type Output = Self;
         fn bitor(self, rhs: Self) -> Self {
             Self(self.0 | rhs.0)
         }
     }
-    impl ::core::ops::BitOrAssign for CommandBufferUsageFlags {
+    impl core::ops::BitOrAssign for CommandBufferUsageFlags {
         fn bitor_assign(&mut self, rhs: Self) {
             *self = *self | rhs;
         }
     }
-    impl ::core::ops::BitAnd for CommandBufferUsageFlags {
+    impl core::ops::BitAnd for CommandBufferUsageFlags {
         type Output = Self;
         fn bitand(self, rhs: Self) -> Self {
             Self(self.0 & rhs.0)
         }
     }
-    impl ::core::ops::BitAndAssign for CommandBufferUsageFlags {
+    impl core::ops::BitAndAssign for CommandBufferUsageFlags {
         fn bitand_assign(&mut self, rhs: Self) {
             *self = *self & rhs;
         }
     }
-    impl ::core::ops::BitXor for CommandBufferUsageFlags {
+    impl core::ops::BitXor for CommandBufferUsageFlags {
         type Output = Self;
         fn bitxor(self, rhs: Self) -> Self {
             Self(self.0 ^ rhs.0)
         }
     }
-    impl ::core::ops::BitXorAssign for CommandBufferUsageFlags {
+    impl core::ops::BitXorAssign for CommandBufferUsageFlags {
         fn bitxor_assign(&mut self, rhs: Self) {
             *self = *self ^ rhs;
         }
     }
-    impl ::core::ops::Not for CommandBufferUsageFlags {
+    impl core::ops::Not for CommandBufferUsageFlags {
         type Output = Self;
         fn not(self) -> Self {
             Self(!self.0)
@@ -8532,40 +8532,40 @@ pub(crate) mod reexport {
             Self::empty()
         }
     }
-    impl ::core::ops::BitOr for QueryPipelineStatisticFlags {
+    impl core::ops::BitOr for QueryPipelineStatisticFlags {
         type Output = Self;
         fn bitor(self, rhs: Self) -> Self {
             Self(self.0 | rhs.0)
         }
     }
-    impl ::core::ops::BitOrAssign for QueryPipelineStatisticFlags {
+    impl core::ops::BitOrAssign for QueryPipelineStatisticFlags {
         fn bitor_assign(&mut self, rhs: Self) {
             *self = *self | rhs;
         }
     }
-    impl ::core::ops::BitAnd for QueryPipelineStatisticFlags {
+    impl core::ops::BitAnd for QueryPipelineStatisticFlags {
         type Output = Self;
         fn bitand(self, rhs: Self) -> Self {
             Self(self.0 & rhs.0)
         }
     }
-    impl ::core::ops::BitAndAssign for QueryPipelineStatisticFlags {
+    impl core::ops::BitAndAssign for QueryPipelineStatisticFlags {
         fn bitand_assign(&mut self, rhs: Self) {
             *self = *self & rhs;
         }
     }
-    impl ::core::ops::BitXor for QueryPipelineStatisticFlags {
+    impl core::ops::BitXor for QueryPipelineStatisticFlags {
         type Output = Self;
         fn bitxor(self, rhs: Self) -> Self {
             Self(self.0 ^ rhs.0)
         }
     }
-    impl ::core::ops::BitXorAssign for QueryPipelineStatisticFlags {
+    impl core::ops::BitXorAssign for QueryPipelineStatisticFlags {
         fn bitxor_assign(&mut self, rhs: Self) {
             *self = *self ^ rhs;
         }
     }
-    impl ::core::ops::Not for QueryPipelineStatisticFlags {
+    impl core::ops::Not for QueryPipelineStatisticFlags {
         type Output = Self;
         fn not(self) -> Self {
             Self(!self.0)
@@ -8617,40 +8617,40 @@ pub(crate) mod reexport {
             Self::empty()
         }
     }
-    impl ::core::ops::BitOr for MemoryMapFlags {
+    impl core::ops::BitOr for MemoryMapFlags {
         type Output = Self;
         fn bitor(self, rhs: Self) -> Self {
             Self(self.0 | rhs.0)
         }
     }
-    impl ::core::ops::BitOrAssign for MemoryMapFlags {
+    impl core::ops::BitOrAssign for MemoryMapFlags {
         fn bitor_assign(&mut self, rhs: Self) {
             *self = *self | rhs;
         }
     }
-    impl ::core::ops::BitAnd for MemoryMapFlags {
+    impl core::ops::BitAnd for MemoryMapFlags {
         type Output = Self;
         fn bitand(self, rhs: Self) -> Self {
             Self(self.0 & rhs.0)
         }
     }
-    impl ::core::ops::BitAndAssign for MemoryMapFlags {
+    impl core::ops::BitAndAssign for MemoryMapFlags {
         fn bitand_assign(&mut self, rhs: Self) {
             *self = *self & rhs;
         }
     }
-    impl ::core::ops::BitXor for MemoryMapFlags {
+    impl core::ops::BitXor for MemoryMapFlags {
         type Output = Self;
         fn bitxor(self, rhs: Self) -> Self {
             Self(self.0 ^ rhs.0)
         }
     }
-    impl ::core::ops::BitXorAssign for MemoryMapFlags {
+    impl core::ops::BitXorAssign for MemoryMapFlags {
         fn bitxor_assign(&mut self, rhs: Self) {
             *self = *self ^ rhs;
         }
     }
-    impl ::core::ops::Not for MemoryMapFlags {
+    impl core::ops::Not for MemoryMapFlags {
         type Output = Self;
         fn not(self) -> Self {
             Self(!self.0)
@@ -8711,40 +8711,40 @@ pub(crate) mod reexport {
             Self::empty()
         }
     }
-    impl ::core::ops::BitOr for ImageAspectFlags {
+    impl core::ops::BitOr for ImageAspectFlags {
         type Output = Self;
         fn bitor(self, rhs: Self) -> Self {
             Self(self.0 | rhs.0)
         }
     }
-    impl ::core::ops::BitOrAssign for ImageAspectFlags {
+    impl core::ops::BitOrAssign for ImageAspectFlags {
         fn bitor_assign(&mut self, rhs: Self) {
             *self = *self | rhs;
         }
     }
-    impl ::core::ops::BitAnd for ImageAspectFlags {
+    impl core::ops::BitAnd for ImageAspectFlags {
         type Output = Self;
         fn bitand(self, rhs: Self) -> Self {
             Self(self.0 & rhs.0)
         }
     }
-    impl ::core::ops::BitAndAssign for ImageAspectFlags {
+    impl core::ops::BitAndAssign for ImageAspectFlags {
         fn bitand_assign(&mut self, rhs: Self) {
             *self = *self & rhs;
         }
     }
-    impl ::core::ops::BitXor for ImageAspectFlags {
+    impl core::ops::BitXor for ImageAspectFlags {
         type Output = Self;
         fn bitxor(self, rhs: Self) -> Self {
             Self(self.0 ^ rhs.0)
         }
     }
-    impl ::core::ops::BitXorAssign for ImageAspectFlags {
+    impl core::ops::BitXorAssign for ImageAspectFlags {
         fn bitxor_assign(&mut self, rhs: Self) {
             *self = *self ^ rhs;
         }
     }
-    impl ::core::ops::Not for ImageAspectFlags {
+    impl core::ops::Not for ImageAspectFlags {
         type Output = Self;
         fn not(self) -> Self {
             Self(!self.0)
@@ -8789,40 +8789,40 @@ pub(crate) mod reexport {
             Self::empty()
         }
     }
-    impl ::core::ops::BitOr for SparseMemoryBindFlags {
+    impl core::ops::BitOr for SparseMemoryBindFlags {
         type Output = Self;
         fn bitor(self, rhs: Self) -> Self {
             Self(self.0 | rhs.0)
         }
     }
-    impl ::core::ops::BitOrAssign for SparseMemoryBindFlags {
+    impl core::ops::BitOrAssign for SparseMemoryBindFlags {
         fn bitor_assign(&mut self, rhs: Self) {
             *self = *self | rhs;
         }
     }
-    impl ::core::ops::BitAnd for SparseMemoryBindFlags {
+    impl core::ops::BitAnd for SparseMemoryBindFlags {
         type Output = Self;
         fn bitand(self, rhs: Self) -> Self {
             Self(self.0 & rhs.0)
         }
     }
-    impl ::core::ops::BitAndAssign for SparseMemoryBindFlags {
+    impl core::ops::BitAndAssign for SparseMemoryBindFlags {
         fn bitand_assign(&mut self, rhs: Self) {
             *self = *self & rhs;
         }
     }
-    impl ::core::ops::BitXor for SparseMemoryBindFlags {
+    impl core::ops::BitXor for SparseMemoryBindFlags {
         type Output = Self;
         fn bitxor(self, rhs: Self) -> Self {
             Self(self.0 ^ rhs.0)
         }
     }
-    impl ::core::ops::BitXorAssign for SparseMemoryBindFlags {
+    impl core::ops::BitXorAssign for SparseMemoryBindFlags {
         fn bitxor_assign(&mut self, rhs: Self) {
             *self = *self ^ rhs;
         }
     }
-    impl ::core::ops::Not for SparseMemoryBindFlags {
+    impl core::ops::Not for SparseMemoryBindFlags {
         type Output = Self;
         fn not(self) -> Self {
             Self(!self.0)
@@ -8872,40 +8872,40 @@ pub(crate) mod reexport {
             Self::empty()
         }
     }
-    impl ::core::ops::BitOr for SparseImageFormatFlags {
+    impl core::ops::BitOr for SparseImageFormatFlags {
         type Output = Self;
         fn bitor(self, rhs: Self) -> Self {
             Self(self.0 | rhs.0)
         }
     }
-    impl ::core::ops::BitOrAssign for SparseImageFormatFlags {
+    impl core::ops::BitOrAssign for SparseImageFormatFlags {
         fn bitor_assign(&mut self, rhs: Self) {
             *self = *self | rhs;
         }
     }
-    impl ::core::ops::BitAnd for SparseImageFormatFlags {
+    impl core::ops::BitAnd for SparseImageFormatFlags {
         type Output = Self;
         fn bitand(self, rhs: Self) -> Self {
             Self(self.0 & rhs.0)
         }
     }
-    impl ::core::ops::BitAndAssign for SparseImageFormatFlags {
+    impl core::ops::BitAndAssign for SparseImageFormatFlags {
         fn bitand_assign(&mut self, rhs: Self) {
             *self = *self & rhs;
         }
     }
-    impl ::core::ops::BitXor for SparseImageFormatFlags {
+    impl core::ops::BitXor for SparseImageFormatFlags {
         type Output = Self;
         fn bitxor(self, rhs: Self) -> Self {
             Self(self.0 ^ rhs.0)
         }
     }
-    impl ::core::ops::BitXorAssign for SparseImageFormatFlags {
+    impl core::ops::BitXorAssign for SparseImageFormatFlags {
         fn bitxor_assign(&mut self, rhs: Self) {
             *self = *self ^ rhs;
         }
     }
-    impl ::core::ops::Not for SparseImageFormatFlags {
+    impl core::ops::Not for SparseImageFormatFlags {
         type Output = Self;
         fn not(self) -> Self {
             Self(!self.0)
@@ -8992,40 +8992,40 @@ pub(crate) mod reexport {
             Self::empty()
         }
     }
-    impl ::core::ops::BitOr for SubpassDescriptionFlags {
+    impl core::ops::BitOr for SubpassDescriptionFlags {
         type Output = Self;
         fn bitor(self, rhs: Self) -> Self {
             Self(self.0 | rhs.0)
         }
     }
-    impl ::core::ops::BitOrAssign for SubpassDescriptionFlags {
+    impl core::ops::BitOrAssign for SubpassDescriptionFlags {
         fn bitor_assign(&mut self, rhs: Self) {
             *self = *self | rhs;
         }
     }
-    impl ::core::ops::BitAnd for SubpassDescriptionFlags {
+    impl core::ops::BitAnd for SubpassDescriptionFlags {
         type Output = Self;
         fn bitand(self, rhs: Self) -> Self {
             Self(self.0 & rhs.0)
         }
     }
-    impl ::core::ops::BitAndAssign for SubpassDescriptionFlags {
+    impl core::ops::BitAndAssign for SubpassDescriptionFlags {
         fn bitand_assign(&mut self, rhs: Self) {
             *self = *self & rhs;
         }
     }
-    impl ::core::ops::BitXor for SubpassDescriptionFlags {
+    impl core::ops::BitXor for SubpassDescriptionFlags {
         type Output = Self;
         fn bitxor(self, rhs: Self) -> Self {
             Self(self.0 ^ rhs.0)
         }
     }
-    impl ::core::ops::BitXorAssign for SubpassDescriptionFlags {
+    impl core::ops::BitXorAssign for SubpassDescriptionFlags {
         fn bitxor_assign(&mut self, rhs: Self) {
             *self = *self ^ rhs;
         }
     }
-    impl ::core::ops::Not for SubpassDescriptionFlags {
+    impl core::ops::Not for SubpassDescriptionFlags {
         type Output = Self;
         fn not(self) -> Self {
             Self(!self.0)
@@ -9128,40 +9128,40 @@ pub(crate) mod reexport {
             Self::empty()
         }
     }
-    impl ::core::ops::BitOr for PipelineStageFlags {
+    impl core::ops::BitOr for PipelineStageFlags {
         type Output = Self;
         fn bitor(self, rhs: Self) -> Self {
             Self(self.0 | rhs.0)
         }
     }
-    impl ::core::ops::BitOrAssign for PipelineStageFlags {
+    impl core::ops::BitOrAssign for PipelineStageFlags {
         fn bitor_assign(&mut self, rhs: Self) {
             *self = *self | rhs;
         }
     }
-    impl ::core::ops::BitAnd for PipelineStageFlags {
+    impl core::ops::BitAnd for PipelineStageFlags {
         type Output = Self;
         fn bitand(self, rhs: Self) -> Self {
             Self(self.0 & rhs.0)
         }
     }
-    impl ::core::ops::BitAndAssign for PipelineStageFlags {
+    impl core::ops::BitAndAssign for PipelineStageFlags {
         fn bitand_assign(&mut self, rhs: Self) {
             *self = *self & rhs;
         }
     }
-    impl ::core::ops::BitXor for PipelineStageFlags {
+    impl core::ops::BitXor for PipelineStageFlags {
         type Output = Self;
         fn bitxor(self, rhs: Self) -> Self {
             Self(self.0 ^ rhs.0)
         }
     }
-    impl ::core::ops::BitXorAssign for PipelineStageFlags {
+    impl core::ops::BitXorAssign for PipelineStageFlags {
         fn bitxor_assign(&mut self, rhs: Self) {
             *self = *self ^ rhs;
         }
     }
-    impl ::core::ops::Not for PipelineStageFlags {
+    impl core::ops::Not for PipelineStageFlags {
         type Output = Self;
         fn not(self) -> Self {
             Self(!self.0)
@@ -9225,40 +9225,40 @@ pub(crate) mod reexport {
             Self::empty()
         }
     }
-    impl ::core::ops::BitOr for SampleCountFlags {
+    impl core::ops::BitOr for SampleCountFlags {
         type Output = Self;
         fn bitor(self, rhs: Self) -> Self {
             Self(self.0 | rhs.0)
         }
     }
-    impl ::core::ops::BitOrAssign for SampleCountFlags {
+    impl core::ops::BitOrAssign for SampleCountFlags {
         fn bitor_assign(&mut self, rhs: Self) {
             *self = *self | rhs;
         }
     }
-    impl ::core::ops::BitAnd for SampleCountFlags {
+    impl core::ops::BitAnd for SampleCountFlags {
         type Output = Self;
         fn bitand(self, rhs: Self) -> Self {
             Self(self.0 & rhs.0)
         }
     }
-    impl ::core::ops::BitAndAssign for SampleCountFlags {
+    impl core::ops::BitAndAssign for SampleCountFlags {
         fn bitand_assign(&mut self, rhs: Self) {
             *self = *self & rhs;
         }
     }
-    impl ::core::ops::BitXor for SampleCountFlags {
+    impl core::ops::BitXor for SampleCountFlags {
         type Output = Self;
         fn bitxor(self, rhs: Self) -> Self {
             Self(self.0 ^ rhs.0)
         }
     }
-    impl ::core::ops::BitXorAssign for SampleCountFlags {
+    impl core::ops::BitXorAssign for SampleCountFlags {
         fn bitxor_assign(&mut self, rhs: Self) {
             *self = *self ^ rhs;
         }
     }
-    impl ::core::ops::Not for SampleCountFlags {
+    impl core::ops::Not for SampleCountFlags {
         type Output = Self;
         fn not(self) -> Self {
             Self(!self.0)
@@ -9312,40 +9312,40 @@ pub(crate) mod reexport {
             Self::empty()
         }
     }
-    impl ::core::ops::BitOr for AttachmentDescriptionFlags {
+    impl core::ops::BitOr for AttachmentDescriptionFlags {
         type Output = Self;
         fn bitor(self, rhs: Self) -> Self {
             Self(self.0 | rhs.0)
         }
     }
-    impl ::core::ops::BitOrAssign for AttachmentDescriptionFlags {
+    impl core::ops::BitOrAssign for AttachmentDescriptionFlags {
         fn bitor_assign(&mut self, rhs: Self) {
             *self = *self | rhs;
         }
     }
-    impl ::core::ops::BitAnd for AttachmentDescriptionFlags {
+    impl core::ops::BitAnd for AttachmentDescriptionFlags {
         type Output = Self;
         fn bitand(self, rhs: Self) -> Self {
             Self(self.0 & rhs.0)
         }
     }
-    impl ::core::ops::BitAndAssign for AttachmentDescriptionFlags {
+    impl core::ops::BitAndAssign for AttachmentDescriptionFlags {
         fn bitand_assign(&mut self, rhs: Self) {
             *self = *self & rhs;
         }
     }
-    impl ::core::ops::BitXor for AttachmentDescriptionFlags {
+    impl core::ops::BitXor for AttachmentDescriptionFlags {
         type Output = Self;
         fn bitxor(self, rhs: Self) -> Self {
             Self(self.0 ^ rhs.0)
         }
     }
-    impl ::core::ops::BitXorAssign for AttachmentDescriptionFlags {
+    impl core::ops::BitXorAssign for AttachmentDescriptionFlags {
         fn bitxor_assign(&mut self, rhs: Self) {
             *self = *self ^ rhs;
         }
     }
-    impl ::core::ops::Not for AttachmentDescriptionFlags {
+    impl core::ops::Not for AttachmentDescriptionFlags {
         type Output = Self;
         fn not(self) -> Self {
             Self(!self.0)
@@ -9389,40 +9389,40 @@ pub(crate) mod reexport {
             Self::empty()
         }
     }
-    impl ::core::ops::BitOr for StencilFaceFlags {
+    impl core::ops::BitOr for StencilFaceFlags {
         type Output = Self;
         fn bitor(self, rhs: Self) -> Self {
             Self(self.0 | rhs.0)
         }
     }
-    impl ::core::ops::BitOrAssign for StencilFaceFlags {
+    impl core::ops::BitOrAssign for StencilFaceFlags {
         fn bitor_assign(&mut self, rhs: Self) {
             *self = *self | rhs;
         }
     }
-    impl ::core::ops::BitAnd for StencilFaceFlags {
+    impl core::ops::BitAnd for StencilFaceFlags {
         type Output = Self;
         fn bitand(self, rhs: Self) -> Self {
             Self(self.0 & rhs.0)
         }
     }
-    impl ::core::ops::BitAndAssign for StencilFaceFlags {
+    impl core::ops::BitAndAssign for StencilFaceFlags {
         fn bitand_assign(&mut self, rhs: Self) {
             *self = *self & rhs;
         }
     }
-    impl ::core::ops::BitXor for StencilFaceFlags {
+    impl core::ops::BitXor for StencilFaceFlags {
         type Output = Self;
         fn bitxor(self, rhs: Self) -> Self {
             Self(self.0 ^ rhs.0)
         }
     }
-    impl ::core::ops::BitXorAssign for StencilFaceFlags {
+    impl core::ops::BitXorAssign for StencilFaceFlags {
         fn bitxor_assign(&mut self, rhs: Self) {
             *self = *self ^ rhs;
         }
     }
-    impl ::core::ops::Not for StencilFaceFlags {
+    impl core::ops::Not for StencilFaceFlags {
         type Output = Self;
         fn not(self) -> Self {
             Self(!self.0)
@@ -9469,40 +9469,40 @@ pub(crate) mod reexport {
             Self::empty()
         }
     }
-    impl ::core::ops::BitOr for CullModeFlags {
+    impl core::ops::BitOr for CullModeFlags {
         type Output = Self;
         fn bitor(self, rhs: Self) -> Self {
             Self(self.0 | rhs.0)
         }
     }
-    impl ::core::ops::BitOrAssign for CullModeFlags {
+    impl core::ops::BitOrAssign for CullModeFlags {
         fn bitor_assign(&mut self, rhs: Self) {
             *self = *self | rhs;
         }
     }
-    impl ::core::ops::BitAnd for CullModeFlags {
+    impl core::ops::BitAnd for CullModeFlags {
         type Output = Self;
         fn bitand(self, rhs: Self) -> Self {
             Self(self.0 & rhs.0)
         }
     }
-    impl ::core::ops::BitAndAssign for CullModeFlags {
+    impl core::ops::BitAndAssign for CullModeFlags {
         fn bitand_assign(&mut self, rhs: Self) {
             *self = *self & rhs;
         }
     }
-    impl ::core::ops::BitXor for CullModeFlags {
+    impl core::ops::BitXor for CullModeFlags {
         type Output = Self;
         fn bitxor(self, rhs: Self) -> Self {
             Self(self.0 ^ rhs.0)
         }
     }
-    impl ::core::ops::BitXorAssign for CullModeFlags {
+    impl core::ops::BitXorAssign for CullModeFlags {
         fn bitxor_assign(&mut self, rhs: Self) {
             *self = *self ^ rhs;
         }
     }
-    impl ::core::ops::Not for CullModeFlags {
+    impl core::ops::Not for CullModeFlags {
         type Output = Self;
         fn not(self) -> Self {
             Self(!self.0)
@@ -9567,40 +9567,40 @@ pub(crate) mod reexport {
             Self::empty()
         }
     }
-    impl ::core::ops::BitOr for DescriptorPoolCreateFlags {
+    impl core::ops::BitOr for DescriptorPoolCreateFlags {
         type Output = Self;
         fn bitor(self, rhs: Self) -> Self {
             Self(self.0 | rhs.0)
         }
     }
-    impl ::core::ops::BitOrAssign for DescriptorPoolCreateFlags {
+    impl core::ops::BitOrAssign for DescriptorPoolCreateFlags {
         fn bitor_assign(&mut self, rhs: Self) {
             *self = *self | rhs;
         }
     }
-    impl ::core::ops::BitAnd for DescriptorPoolCreateFlags {
+    impl core::ops::BitAnd for DescriptorPoolCreateFlags {
         type Output = Self;
         fn bitand(self, rhs: Self) -> Self {
             Self(self.0 & rhs.0)
         }
     }
-    impl ::core::ops::BitAndAssign for DescriptorPoolCreateFlags {
+    impl core::ops::BitAndAssign for DescriptorPoolCreateFlags {
         fn bitand_assign(&mut self, rhs: Self) {
             *self = *self & rhs;
         }
     }
-    impl ::core::ops::BitXor for DescriptorPoolCreateFlags {
+    impl core::ops::BitXor for DescriptorPoolCreateFlags {
         type Output = Self;
         fn bitxor(self, rhs: Self) -> Self {
             Self(self.0 ^ rhs.0)
         }
     }
-    impl ::core::ops::BitXorAssign for DescriptorPoolCreateFlags {
+    impl core::ops::BitXorAssign for DescriptorPoolCreateFlags {
         fn bitxor_assign(&mut self, rhs: Self) {
             *self = *self ^ rhs;
         }
     }
-    impl ::core::ops::Not for DescriptorPoolCreateFlags {
+    impl core::ops::Not for DescriptorPoolCreateFlags {
         type Output = Self;
         fn not(self) -> Self {
             Self(!self.0)
@@ -9641,40 +9641,40 @@ pub(crate) mod reexport {
             Self::empty()
         }
     }
-    impl ::core::ops::BitOr for DescriptorPoolResetFlags {
+    impl core::ops::BitOr for DescriptorPoolResetFlags {
         type Output = Self;
         fn bitor(self, rhs: Self) -> Self {
             Self(self.0 | rhs.0)
         }
     }
-    impl ::core::ops::BitOrAssign for DescriptorPoolResetFlags {
+    impl core::ops::BitOrAssign for DescriptorPoolResetFlags {
         fn bitor_assign(&mut self, rhs: Self) {
             *self = *self | rhs;
         }
     }
-    impl ::core::ops::BitAnd for DescriptorPoolResetFlags {
+    impl core::ops::BitAnd for DescriptorPoolResetFlags {
         type Output = Self;
         fn bitand(self, rhs: Self) -> Self {
             Self(self.0 & rhs.0)
         }
     }
-    impl ::core::ops::BitAndAssign for DescriptorPoolResetFlags {
+    impl core::ops::BitAndAssign for DescriptorPoolResetFlags {
         fn bitand_assign(&mut self, rhs: Self) {
             *self = *self & rhs;
         }
     }
-    impl ::core::ops::BitXor for DescriptorPoolResetFlags {
+    impl core::ops::BitXor for DescriptorPoolResetFlags {
         type Output = Self;
         fn bitxor(self, rhs: Self) -> Self {
             Self(self.0 ^ rhs.0)
         }
     }
-    impl ::core::ops::BitXorAssign for DescriptorPoolResetFlags {
+    impl core::ops::BitXorAssign for DescriptorPoolResetFlags {
         fn bitxor_assign(&mut self, rhs: Self) {
             *self = *self ^ rhs;
         }
     }
-    impl ::core::ops::Not for DescriptorPoolResetFlags {
+    impl core::ops::Not for DescriptorPoolResetFlags {
         type Output = Self;
         fn not(self) -> Self {
             Self(!self.0)
@@ -9722,40 +9722,40 @@ pub(crate) mod reexport {
             Self::empty()
         }
     }
-    impl ::core::ops::BitOr for DependencyFlags {
+    impl core::ops::BitOr for DependencyFlags {
         type Output = Self;
         fn bitor(self, rhs: Self) -> Self {
             Self(self.0 | rhs.0)
         }
     }
-    impl ::core::ops::BitOrAssign for DependencyFlags {
+    impl core::ops::BitOrAssign for DependencyFlags {
         fn bitor_assign(&mut self, rhs: Self) {
             *self = *self | rhs;
         }
     }
-    impl ::core::ops::BitAnd for DependencyFlags {
+    impl core::ops::BitAnd for DependencyFlags {
         type Output = Self;
         fn bitand(self, rhs: Self) -> Self {
             Self(self.0 & rhs.0)
         }
     }
-    impl ::core::ops::BitAndAssign for DependencyFlags {
+    impl core::ops::BitAndAssign for DependencyFlags {
         fn bitand_assign(&mut self, rhs: Self) {
             *self = *self & rhs;
         }
     }
-    impl ::core::ops::BitXor for DependencyFlags {
+    impl core::ops::BitXor for DependencyFlags {
         type Output = Self;
         fn bitxor(self, rhs: Self) -> Self {
             Self(self.0 ^ rhs.0)
         }
     }
-    impl ::core::ops::BitXorAssign for DependencyFlags {
+    impl core::ops::BitXorAssign for DependencyFlags {
         fn bitxor_assign(&mut self, rhs: Self) {
             *self = *self ^ rhs;
         }
     }
-    impl ::core::ops::Not for DependencyFlags {
+    impl core::ops::Not for DependencyFlags {
         type Output = Self;
         fn not(self) -> Self {
             Self(!self.0)

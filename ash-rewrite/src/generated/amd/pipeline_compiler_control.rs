@@ -41,40 +41,40 @@ impl Default for PipelineCompilerControlFlagsAMD {
         Self::empty()
     }
 }
-impl ::core::ops::BitOr for PipelineCompilerControlFlagsAMD {
+impl core::ops::BitOr for PipelineCompilerControlFlagsAMD {
     type Output = Self;
     fn bitor(self, rhs: Self) -> Self {
         Self(self.0 | rhs.0)
     }
 }
-impl ::core::ops::BitOrAssign for PipelineCompilerControlFlagsAMD {
+impl core::ops::BitOrAssign for PipelineCompilerControlFlagsAMD {
     fn bitor_assign(&mut self, rhs: Self) {
         *self = *self | rhs;
     }
 }
-impl ::core::ops::BitAnd for PipelineCompilerControlFlagsAMD {
+impl core::ops::BitAnd for PipelineCompilerControlFlagsAMD {
     type Output = Self;
     fn bitand(self, rhs: Self) -> Self {
         Self(self.0 & rhs.0)
     }
 }
-impl ::core::ops::BitAndAssign for PipelineCompilerControlFlagsAMD {
+impl core::ops::BitAndAssign for PipelineCompilerControlFlagsAMD {
     fn bitand_assign(&mut self, rhs: Self) {
         *self = *self & rhs;
     }
 }
-impl ::core::ops::BitXor for PipelineCompilerControlFlagsAMD {
+impl core::ops::BitXor for PipelineCompilerControlFlagsAMD {
     type Output = Self;
     fn bitxor(self, rhs: Self) -> Self {
         Self(self.0 ^ rhs.0)
     }
 }
-impl ::core::ops::BitXorAssign for PipelineCompilerControlFlagsAMD {
+impl core::ops::BitXorAssign for PipelineCompilerControlFlagsAMD {
     fn bitxor_assign(&mut self, rhs: Self) {
         *self = *self ^ rhs;
     }
 }
-impl ::core::ops::Not for PipelineCompilerControlFlagsAMD {
+impl core::ops::Not for PipelineCompilerControlFlagsAMD {
     type Output = Self;
     fn not(self) -> Self {
         Self(!self.0)

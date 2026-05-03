@@ -203,40 +203,40 @@ pub(crate) mod reexport {
             Self::empty()
         }
     }
-    impl ::core::ops::BitOr for CompositeAlphaFlagsKHR {
+    impl core::ops::BitOr for CompositeAlphaFlagsKHR {
         type Output = Self;
         fn bitor(self, rhs: Self) -> Self {
             Self(self.0 | rhs.0)
         }
     }
-    impl ::core::ops::BitOrAssign for CompositeAlphaFlagsKHR {
+    impl core::ops::BitOrAssign for CompositeAlphaFlagsKHR {
         fn bitor_assign(&mut self, rhs: Self) {
             *self = *self | rhs;
         }
     }
-    impl ::core::ops::BitAnd for CompositeAlphaFlagsKHR {
+    impl core::ops::BitAnd for CompositeAlphaFlagsKHR {
         type Output = Self;
         fn bitand(self, rhs: Self) -> Self {
             Self(self.0 & rhs.0)
         }
     }
-    impl ::core::ops::BitAndAssign for CompositeAlphaFlagsKHR {
+    impl core::ops::BitAndAssign for CompositeAlphaFlagsKHR {
         fn bitand_assign(&mut self, rhs: Self) {
             *self = *self & rhs;
         }
     }
-    impl ::core::ops::BitXor for CompositeAlphaFlagsKHR {
+    impl core::ops::BitXor for CompositeAlphaFlagsKHR {
         type Output = Self;
         fn bitxor(self, rhs: Self) -> Self {
             Self(self.0 ^ rhs.0)
         }
     }
-    impl ::core::ops::BitXorAssign for CompositeAlphaFlagsKHR {
+    impl core::ops::BitXorAssign for CompositeAlphaFlagsKHR {
         fn bitxor_assign(&mut self, rhs: Self) {
             *self = *self ^ rhs;
         }
     }
-    impl ::core::ops::Not for CompositeAlphaFlagsKHR {
+    impl core::ops::Not for CompositeAlphaFlagsKHR {
         type Output = Self;
         fn not(self) -> Self {
             Self(!self.0)
@@ -303,40 +303,40 @@ pub(crate) mod reexport {
             Self::empty()
         }
     }
-    impl ::core::ops::BitOr for SurfaceTransformFlagsKHR {
+    impl core::ops::BitOr for SurfaceTransformFlagsKHR {
         type Output = Self;
         fn bitor(self, rhs: Self) -> Self {
             Self(self.0 | rhs.0)
         }
     }
-    impl ::core::ops::BitOrAssign for SurfaceTransformFlagsKHR {
+    impl core::ops::BitOrAssign for SurfaceTransformFlagsKHR {
         fn bitor_assign(&mut self, rhs: Self) {
             *self = *self | rhs;
         }
     }
-    impl ::core::ops::BitAnd for SurfaceTransformFlagsKHR {
+    impl core::ops::BitAnd for SurfaceTransformFlagsKHR {
         type Output = Self;
         fn bitand(self, rhs: Self) -> Self {
             Self(self.0 & rhs.0)
         }
     }
-    impl ::core::ops::BitAndAssign for SurfaceTransformFlagsKHR {
+    impl core::ops::BitAndAssign for SurfaceTransformFlagsKHR {
         fn bitand_assign(&mut self, rhs: Self) {
             *self = *self & rhs;
         }
     }
-    impl ::core::ops::BitXor for SurfaceTransformFlagsKHR {
+    impl core::ops::BitXor for SurfaceTransformFlagsKHR {
         type Output = Self;
         fn bitxor(self, rhs: Self) -> Self {
             Self(self.0 ^ rhs.0)
         }
     }
-    impl ::core::ops::BitXorAssign for SurfaceTransformFlagsKHR {
+    impl core::ops::BitXorAssign for SurfaceTransformFlagsKHR {
         fn bitxor_assign(&mut self, rhs: Self) {
             *self = *self ^ rhs;
         }
     }
-    impl ::core::ops::Not for SurfaceTransformFlagsKHR {
+    impl core::ops::Not for SurfaceTransformFlagsKHR {
         type Output = Self;
         fn not(self) -> Self {
             Self(!self.0)

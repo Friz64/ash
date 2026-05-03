@@ -129,40 +129,40 @@ pub(crate) mod reexport {
             Self::empty()
         }
     }
-    impl ::core::ops::BitOr for PhysicalDeviceSchedulingControlsFlagsARM {
+    impl core::ops::BitOr for PhysicalDeviceSchedulingControlsFlagsARM {
         type Output = Self;
         fn bitor(self, rhs: Self) -> Self {
             Self(self.0 | rhs.0)
         }
     }
-    impl ::core::ops::BitOrAssign for PhysicalDeviceSchedulingControlsFlagsARM {
+    impl core::ops::BitOrAssign for PhysicalDeviceSchedulingControlsFlagsARM {
         fn bitor_assign(&mut self, rhs: Self) {
             *self = *self | rhs;
         }
     }
-    impl ::core::ops::BitAnd for PhysicalDeviceSchedulingControlsFlagsARM {
+    impl core::ops::BitAnd for PhysicalDeviceSchedulingControlsFlagsARM {
         type Output = Self;
         fn bitand(self, rhs: Self) -> Self {
             Self(self.0 & rhs.0)
         }
     }
-    impl ::core::ops::BitAndAssign for PhysicalDeviceSchedulingControlsFlagsARM {
+    impl core::ops::BitAndAssign for PhysicalDeviceSchedulingControlsFlagsARM {
         fn bitand_assign(&mut self, rhs: Self) {
             *self = *self & rhs;
         }
     }
-    impl ::core::ops::BitXor for PhysicalDeviceSchedulingControlsFlagsARM {
+    impl core::ops::BitXor for PhysicalDeviceSchedulingControlsFlagsARM {
         type Output = Self;
         fn bitxor(self, rhs: Self) -> Self {
             Self(self.0 ^ rhs.0)
         }
     }
-    impl ::core::ops::BitXorAssign for PhysicalDeviceSchedulingControlsFlagsARM {
+    impl core::ops::BitXorAssign for PhysicalDeviceSchedulingControlsFlagsARM {
         fn bitxor_assign(&mut self, rhs: Self) {
             *self = *self ^ rhs;
         }
     }
-    impl ::core::ops::Not for PhysicalDeviceSchedulingControlsFlagsARM {
+    impl core::ops::Not for PhysicalDeviceSchedulingControlsFlagsARM {
         type Output = Self;
         fn not(self) -> Self {
             Self(!self.0)

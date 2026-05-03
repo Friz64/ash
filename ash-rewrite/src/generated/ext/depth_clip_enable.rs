@@ -53,40 +53,40 @@ impl Default for PipelineRasterizationDepthClipStateCreateFlagsEXT {
         Self::empty()
     }
 }
-impl ::core::ops::BitOr for PipelineRasterizationDepthClipStateCreateFlagsEXT {
+impl core::ops::BitOr for PipelineRasterizationDepthClipStateCreateFlagsEXT {
     type Output = Self;
     fn bitor(self, rhs: Self) -> Self {
         Self(self.0 | rhs.0)
     }
 }
-impl ::core::ops::BitOrAssign for PipelineRasterizationDepthClipStateCreateFlagsEXT {
+impl core::ops::BitOrAssign for PipelineRasterizationDepthClipStateCreateFlagsEXT {
     fn bitor_assign(&mut self, rhs: Self) {
         *self = *self | rhs;
     }
 }
-impl ::core::ops::BitAnd for PipelineRasterizationDepthClipStateCreateFlagsEXT {
+impl core::ops::BitAnd for PipelineRasterizationDepthClipStateCreateFlagsEXT {
     type Output = Self;
     fn bitand(self, rhs: Self) -> Self {
         Self(self.0 & rhs.0)
     }
 }
-impl ::core::ops::BitAndAssign for PipelineRasterizationDepthClipStateCreateFlagsEXT {
+impl core::ops::BitAndAssign for PipelineRasterizationDepthClipStateCreateFlagsEXT {
     fn bitand_assign(&mut self, rhs: Self) {
         *self = *self & rhs;
     }
 }
-impl ::core::ops::BitXor for PipelineRasterizationDepthClipStateCreateFlagsEXT {
+impl core::ops::BitXor for PipelineRasterizationDepthClipStateCreateFlagsEXT {
     type Output = Self;
     fn bitxor(self, rhs: Self) -> Self {
         Self(self.0 ^ rhs.0)
     }
 }
-impl ::core::ops::BitXorAssign for PipelineRasterizationDepthClipStateCreateFlagsEXT {
+impl core::ops::BitXorAssign for PipelineRasterizationDepthClipStateCreateFlagsEXT {
     fn bitxor_assign(&mut self, rhs: Self) {
         *self = *self ^ rhs;
     }
 }
-impl ::core::ops::Not for PipelineRasterizationDepthClipStateCreateFlagsEXT {
+impl core::ops::Not for PipelineRasterizationDepthClipStateCreateFlagsEXT {
     type Output = Self;
     fn not(self) -> Self {
         Self(!self.0)

@@ -142,40 +142,40 @@ pub(crate) mod reexport {
             Self::empty()
         }
     }
-    impl ::core::ops::BitOr for MemoryDecompressionMethodFlagsEXT {
+    impl core::ops::BitOr for MemoryDecompressionMethodFlagsEXT {
         type Output = Self;
         fn bitor(self, rhs: Self) -> Self {
             Self(self.0 | rhs.0)
         }
     }
-    impl ::core::ops::BitOrAssign for MemoryDecompressionMethodFlagsEXT {
+    impl core::ops::BitOrAssign for MemoryDecompressionMethodFlagsEXT {
         fn bitor_assign(&mut self, rhs: Self) {
             *self = *self | rhs;
         }
     }
-    impl ::core::ops::BitAnd for MemoryDecompressionMethodFlagsEXT {
+    impl core::ops::BitAnd for MemoryDecompressionMethodFlagsEXT {
         type Output = Self;
         fn bitand(self, rhs: Self) -> Self {
             Self(self.0 & rhs.0)
         }
     }
-    impl ::core::ops::BitAndAssign for MemoryDecompressionMethodFlagsEXT {
+    impl core::ops::BitAndAssign for MemoryDecompressionMethodFlagsEXT {
         fn bitand_assign(&mut self, rhs: Self) {
             *self = *self & rhs;
         }
     }
-    impl ::core::ops::BitXor for MemoryDecompressionMethodFlagsEXT {
+    impl core::ops::BitXor for MemoryDecompressionMethodFlagsEXT {
         type Output = Self;
         fn bitxor(self, rhs: Self) -> Self {
             Self(self.0 ^ rhs.0)
         }
     }
-    impl ::core::ops::BitXorAssign for MemoryDecompressionMethodFlagsEXT {
+    impl core::ops::BitXorAssign for MemoryDecompressionMethodFlagsEXT {
         fn bitxor_assign(&mut self, rhs: Self) {
             *self = *self ^ rhs;
         }
     }
-    impl ::core::ops::Not for MemoryDecompressionMethodFlagsEXT {
+    impl core::ops::Not for MemoryDecompressionMethodFlagsEXT {
         type Output = Self;
         fn not(self) -> Self {
             Self(!self.0)

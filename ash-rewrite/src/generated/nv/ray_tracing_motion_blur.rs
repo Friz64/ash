@@ -155,40 +155,40 @@ impl Default for AccelerationStructureMotionInfoFlagsNV {
         Self::empty()
     }
 }
-impl ::core::ops::BitOr for AccelerationStructureMotionInfoFlagsNV {
+impl core::ops::BitOr for AccelerationStructureMotionInfoFlagsNV {
     type Output = Self;
     fn bitor(self, rhs: Self) -> Self {
         Self(self.0 | rhs.0)
     }
 }
-impl ::core::ops::BitOrAssign for AccelerationStructureMotionInfoFlagsNV {
+impl core::ops::BitOrAssign for AccelerationStructureMotionInfoFlagsNV {
     fn bitor_assign(&mut self, rhs: Self) {
         *self = *self | rhs;
     }
 }
-impl ::core::ops::BitAnd for AccelerationStructureMotionInfoFlagsNV {
+impl core::ops::BitAnd for AccelerationStructureMotionInfoFlagsNV {
     type Output = Self;
     fn bitand(self, rhs: Self) -> Self {
         Self(self.0 & rhs.0)
     }
 }
-impl ::core::ops::BitAndAssign for AccelerationStructureMotionInfoFlagsNV {
+impl core::ops::BitAndAssign for AccelerationStructureMotionInfoFlagsNV {
     fn bitand_assign(&mut self, rhs: Self) {
         *self = *self & rhs;
     }
 }
-impl ::core::ops::BitXor for AccelerationStructureMotionInfoFlagsNV {
+impl core::ops::BitXor for AccelerationStructureMotionInfoFlagsNV {
     type Output = Self;
     fn bitxor(self, rhs: Self) -> Self {
         Self(self.0 ^ rhs.0)
     }
 }
-impl ::core::ops::BitXorAssign for AccelerationStructureMotionInfoFlagsNV {
+impl core::ops::BitXorAssign for AccelerationStructureMotionInfoFlagsNV {
     fn bitxor_assign(&mut self, rhs: Self) {
         *self = *self ^ rhs;
     }
 }
-impl ::core::ops::Not for AccelerationStructureMotionInfoFlagsNV {
+impl core::ops::Not for AccelerationStructureMotionInfoFlagsNV {
     type Output = Self;
     fn not(self) -> Self {
         Self(!self.0)
@@ -222,40 +222,40 @@ impl Default for AccelerationStructureMotionInstanceFlagsNV {
         Self::empty()
     }
 }
-impl ::core::ops::BitOr for AccelerationStructureMotionInstanceFlagsNV {
+impl core::ops::BitOr for AccelerationStructureMotionInstanceFlagsNV {
     type Output = Self;
     fn bitor(self, rhs: Self) -> Self {
         Self(self.0 | rhs.0)
     }
 }
-impl ::core::ops::BitOrAssign for AccelerationStructureMotionInstanceFlagsNV {
+impl core::ops::BitOrAssign for AccelerationStructureMotionInstanceFlagsNV {
     fn bitor_assign(&mut self, rhs: Self) {
         *self = *self | rhs;
     }
 }
-impl ::core::ops::BitAnd for AccelerationStructureMotionInstanceFlagsNV {
+impl core::ops::BitAnd for AccelerationStructureMotionInstanceFlagsNV {
     type Output = Self;
     fn bitand(self, rhs: Self) -> Self {
         Self(self.0 & rhs.0)
     }
 }
-impl ::core::ops::BitAndAssign for AccelerationStructureMotionInstanceFlagsNV {
+impl core::ops::BitAndAssign for AccelerationStructureMotionInstanceFlagsNV {
     fn bitand_assign(&mut self, rhs: Self) {
         *self = *self & rhs;
     }
 }
-impl ::core::ops::BitXor for AccelerationStructureMotionInstanceFlagsNV {
+impl core::ops::BitXor for AccelerationStructureMotionInstanceFlagsNV {
     type Output = Self;
     fn bitxor(self, rhs: Self) -> Self {
         Self(self.0 ^ rhs.0)
     }
 }
-impl ::core::ops::BitXorAssign for AccelerationStructureMotionInstanceFlagsNV {
+impl core::ops::BitXorAssign for AccelerationStructureMotionInstanceFlagsNV {
     fn bitxor_assign(&mut self, rhs: Self) {
         *self = *self ^ rhs;
     }
 }
-impl ::core::ops::Not for AccelerationStructureMotionInstanceFlagsNV {
+impl core::ops::Not for AccelerationStructureMotionInstanceFlagsNV {
     type Output = Self;
     fn not(self) -> Self {
         Self(!self.0)

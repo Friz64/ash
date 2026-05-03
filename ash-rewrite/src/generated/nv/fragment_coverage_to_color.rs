@@ -43,40 +43,40 @@ impl Default for PipelineCoverageToColorStateCreateFlagsNV {
         Self::empty()
     }
 }
-impl ::core::ops::BitOr for PipelineCoverageToColorStateCreateFlagsNV {
+impl core::ops::BitOr for PipelineCoverageToColorStateCreateFlagsNV {
     type Output = Self;
     fn bitor(self, rhs: Self) -> Self {
         Self(self.0 | rhs.0)
     }
 }
-impl ::core::ops::BitOrAssign for PipelineCoverageToColorStateCreateFlagsNV {
+impl core::ops::BitOrAssign for PipelineCoverageToColorStateCreateFlagsNV {
     fn bitor_assign(&mut self, rhs: Self) {
         *self = *self | rhs;
     }
 }
-impl ::core::ops::BitAnd for PipelineCoverageToColorStateCreateFlagsNV {
+impl core::ops::BitAnd for PipelineCoverageToColorStateCreateFlagsNV {
     type Output = Self;
     fn bitand(self, rhs: Self) -> Self {
         Self(self.0 & rhs.0)
     }
 }
-impl ::core::ops::BitAndAssign for PipelineCoverageToColorStateCreateFlagsNV {
+impl core::ops::BitAndAssign for PipelineCoverageToColorStateCreateFlagsNV {
     fn bitand_assign(&mut self, rhs: Self) {
         *self = *self & rhs;
     }
 }
-impl ::core::ops::BitXor for PipelineCoverageToColorStateCreateFlagsNV {
+impl core::ops::BitXor for PipelineCoverageToColorStateCreateFlagsNV {
     type Output = Self;
     fn bitxor(self, rhs: Self) -> Self {
         Self(self.0 ^ rhs.0)
     }
 }
-impl ::core::ops::BitXorAssign for PipelineCoverageToColorStateCreateFlagsNV {
+impl core::ops::BitXorAssign for PipelineCoverageToColorStateCreateFlagsNV {
     fn bitxor_assign(&mut self, rhs: Self) {
         *self = *self ^ rhs;
     }
 }
-impl ::core::ops::Not for PipelineCoverageToColorStateCreateFlagsNV {
+impl core::ops::Not for PipelineCoverageToColorStateCreateFlagsNV {
     type Output = Self;
     fn not(self) -> Self {
         Self(!self.0)

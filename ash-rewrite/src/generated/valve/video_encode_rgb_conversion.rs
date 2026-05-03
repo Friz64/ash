@@ -93,40 +93,40 @@ impl Default for VideoEncodeRgbModelConversionFlagsVALVE {
         Self::empty()
     }
 }
-impl ::core::ops::BitOr for VideoEncodeRgbModelConversionFlagsVALVE {
+impl core::ops::BitOr for VideoEncodeRgbModelConversionFlagsVALVE {
     type Output = Self;
     fn bitor(self, rhs: Self) -> Self {
         Self(self.0 | rhs.0)
     }
 }
-impl ::core::ops::BitOrAssign for VideoEncodeRgbModelConversionFlagsVALVE {
+impl core::ops::BitOrAssign for VideoEncodeRgbModelConversionFlagsVALVE {
     fn bitor_assign(&mut self, rhs: Self) {
         *self = *self | rhs;
     }
 }
-impl ::core::ops::BitAnd for VideoEncodeRgbModelConversionFlagsVALVE {
+impl core::ops::BitAnd for VideoEncodeRgbModelConversionFlagsVALVE {
     type Output = Self;
     fn bitand(self, rhs: Self) -> Self {
         Self(self.0 & rhs.0)
     }
 }
-impl ::core::ops::BitAndAssign for VideoEncodeRgbModelConversionFlagsVALVE {
+impl core::ops::BitAndAssign for VideoEncodeRgbModelConversionFlagsVALVE {
     fn bitand_assign(&mut self, rhs: Self) {
         *self = *self & rhs;
     }
 }
-impl ::core::ops::BitXor for VideoEncodeRgbModelConversionFlagsVALVE {
+impl core::ops::BitXor for VideoEncodeRgbModelConversionFlagsVALVE {
     type Output = Self;
     fn bitxor(self, rhs: Self) -> Self {
         Self(self.0 ^ rhs.0)
     }
 }
-impl ::core::ops::BitXorAssign for VideoEncodeRgbModelConversionFlagsVALVE {
+impl core::ops::BitXorAssign for VideoEncodeRgbModelConversionFlagsVALVE {
     fn bitxor_assign(&mut self, rhs: Self) {
         *self = *self ^ rhs;
     }
 }
-impl ::core::ops::Not for VideoEncodeRgbModelConversionFlagsVALVE {
+impl core::ops::Not for VideoEncodeRgbModelConversionFlagsVALVE {
     type Output = Self;
     fn not(self) -> Self {
         Self(!self.0)
@@ -177,40 +177,40 @@ impl Default for VideoEncodeRgbRangeCompressionFlagsVALVE {
         Self::empty()
     }
 }
-impl ::core::ops::BitOr for VideoEncodeRgbRangeCompressionFlagsVALVE {
+impl core::ops::BitOr for VideoEncodeRgbRangeCompressionFlagsVALVE {
     type Output = Self;
     fn bitor(self, rhs: Self) -> Self {
         Self(self.0 | rhs.0)
     }
 }
-impl ::core::ops::BitOrAssign for VideoEncodeRgbRangeCompressionFlagsVALVE {
+impl core::ops::BitOrAssign for VideoEncodeRgbRangeCompressionFlagsVALVE {
     fn bitor_assign(&mut self, rhs: Self) {
         *self = *self | rhs;
     }
 }
-impl ::core::ops::BitAnd for VideoEncodeRgbRangeCompressionFlagsVALVE {
+impl core::ops::BitAnd for VideoEncodeRgbRangeCompressionFlagsVALVE {
     type Output = Self;
     fn bitand(self, rhs: Self) -> Self {
         Self(self.0 & rhs.0)
     }
 }
-impl ::core::ops::BitAndAssign for VideoEncodeRgbRangeCompressionFlagsVALVE {
+impl core::ops::BitAndAssign for VideoEncodeRgbRangeCompressionFlagsVALVE {
     fn bitand_assign(&mut self, rhs: Self) {
         *self = *self & rhs;
     }
 }
-impl ::core::ops::BitXor for VideoEncodeRgbRangeCompressionFlagsVALVE {
+impl core::ops::BitXor for VideoEncodeRgbRangeCompressionFlagsVALVE {
     type Output = Self;
     fn bitxor(self, rhs: Self) -> Self {
         Self(self.0 ^ rhs.0)
     }
 }
-impl ::core::ops::BitXorAssign for VideoEncodeRgbRangeCompressionFlagsVALVE {
+impl core::ops::BitXorAssign for VideoEncodeRgbRangeCompressionFlagsVALVE {
     fn bitxor_assign(&mut self, rhs: Self) {
         *self = *self ^ rhs;
     }
 }
-impl ::core::ops::Not for VideoEncodeRgbRangeCompressionFlagsVALVE {
+impl core::ops::Not for VideoEncodeRgbRangeCompressionFlagsVALVE {
     type Output = Self;
     fn not(self) -> Self {
         Self(!self.0)
@@ -258,40 +258,40 @@ impl Default for VideoEncodeRgbChromaOffsetFlagsVALVE {
         Self::empty()
     }
 }
-impl ::core::ops::BitOr for VideoEncodeRgbChromaOffsetFlagsVALVE {
+impl core::ops::BitOr for VideoEncodeRgbChromaOffsetFlagsVALVE {
     type Output = Self;
     fn bitor(self, rhs: Self) -> Self {
         Self(self.0 | rhs.0)
     }
 }
-impl ::core::ops::BitOrAssign for VideoEncodeRgbChromaOffsetFlagsVALVE {
+impl core::ops::BitOrAssign for VideoEncodeRgbChromaOffsetFlagsVALVE {
     fn bitor_assign(&mut self, rhs: Self) {
         *self = *self | rhs;
     }
 }
-impl ::core::ops::BitAnd for VideoEncodeRgbChromaOffsetFlagsVALVE {
+impl core::ops::BitAnd for VideoEncodeRgbChromaOffsetFlagsVALVE {
     type Output = Self;
     fn bitand(self, rhs: Self) -> Self {
         Self(self.0 & rhs.0)
     }
 }
-impl ::core::ops::BitAndAssign for VideoEncodeRgbChromaOffsetFlagsVALVE {
+impl core::ops::BitAndAssign for VideoEncodeRgbChromaOffsetFlagsVALVE {
     fn bitand_assign(&mut self, rhs: Self) {
         *self = *self & rhs;
     }
 }
-impl ::core::ops::BitXor for VideoEncodeRgbChromaOffsetFlagsVALVE {
+impl core::ops::BitXor for VideoEncodeRgbChromaOffsetFlagsVALVE {
     type Output = Self;
     fn bitxor(self, rhs: Self) -> Self {
         Self(self.0 ^ rhs.0)
     }
 }
-impl ::core::ops::BitXorAssign for VideoEncodeRgbChromaOffsetFlagsVALVE {
+impl core::ops::BitXorAssign for VideoEncodeRgbChromaOffsetFlagsVALVE {
     fn bitxor_assign(&mut self, rhs: Self) {
         *self = *self ^ rhs;
     }
 }
-impl ::core::ops::Not for VideoEncodeRgbChromaOffsetFlagsVALVE {
+impl core::ops::Not for VideoEncodeRgbChromaOffsetFlagsVALVE {
     type Output = Self;
     fn not(self) -> Self {
         Self(!self.0)

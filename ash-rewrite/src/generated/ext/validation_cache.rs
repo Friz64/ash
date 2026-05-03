@@ -160,40 +160,40 @@ pub(crate) mod reexport {
             Self::empty()
         }
     }
-    impl ::core::ops::BitOr for ValidationCacheCreateFlagsEXT {
+    impl core::ops::BitOr for ValidationCacheCreateFlagsEXT {
         type Output = Self;
         fn bitor(self, rhs: Self) -> Self {
             Self(self.0 | rhs.0)
         }
     }
-    impl ::core::ops::BitOrAssign for ValidationCacheCreateFlagsEXT {
+    impl core::ops::BitOrAssign for ValidationCacheCreateFlagsEXT {
         fn bitor_assign(&mut self, rhs: Self) {
             *self = *self | rhs;
         }
     }
-    impl ::core::ops::BitAnd for ValidationCacheCreateFlagsEXT {
+    impl core::ops::BitAnd for ValidationCacheCreateFlagsEXT {
         type Output = Self;
         fn bitand(self, rhs: Self) -> Self {
             Self(self.0 & rhs.0)
         }
     }
-    impl ::core::ops::BitAndAssign for ValidationCacheCreateFlagsEXT {
+    impl core::ops::BitAndAssign for ValidationCacheCreateFlagsEXT {
         fn bitand_assign(&mut self, rhs: Self) {
             *self = *self & rhs;
         }
     }
-    impl ::core::ops::BitXor for ValidationCacheCreateFlagsEXT {
+    impl core::ops::BitXor for ValidationCacheCreateFlagsEXT {
         type Output = Self;
         fn bitxor(self, rhs: Self) -> Self {
             Self(self.0 ^ rhs.0)
         }
     }
-    impl ::core::ops::BitXorAssign for ValidationCacheCreateFlagsEXT {
+    impl core::ops::BitXorAssign for ValidationCacheCreateFlagsEXT {
         fn bitxor_assign(&mut self, rhs: Self) {
             *self = *self ^ rhs;
         }
     }
-    impl ::core::ops::Not for ValidationCacheCreateFlagsEXT {
+    impl core::ops::Not for ValidationCacheCreateFlagsEXT {
         type Output = Self;
         fn not(self) -> Self {
             Self(!self.0)

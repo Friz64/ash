@@ -251,40 +251,40 @@ pub(crate) mod reexport {
             Self::empty()
         }
     }
-    impl ::core::ops::BitOr for DisplayPlaneAlphaFlagsKHR {
+    impl core::ops::BitOr for DisplayPlaneAlphaFlagsKHR {
         type Output = Self;
         fn bitor(self, rhs: Self) -> Self {
             Self(self.0 | rhs.0)
         }
     }
-    impl ::core::ops::BitOrAssign for DisplayPlaneAlphaFlagsKHR {
+    impl core::ops::BitOrAssign for DisplayPlaneAlphaFlagsKHR {
         fn bitor_assign(&mut self, rhs: Self) {
             *self = *self | rhs;
         }
     }
-    impl ::core::ops::BitAnd for DisplayPlaneAlphaFlagsKHR {
+    impl core::ops::BitAnd for DisplayPlaneAlphaFlagsKHR {
         type Output = Self;
         fn bitand(self, rhs: Self) -> Self {
             Self(self.0 & rhs.0)
         }
     }
-    impl ::core::ops::BitAndAssign for DisplayPlaneAlphaFlagsKHR {
+    impl core::ops::BitAndAssign for DisplayPlaneAlphaFlagsKHR {
         fn bitand_assign(&mut self, rhs: Self) {
             *self = *self & rhs;
         }
     }
-    impl ::core::ops::BitXor for DisplayPlaneAlphaFlagsKHR {
+    impl core::ops::BitXor for DisplayPlaneAlphaFlagsKHR {
         type Output = Self;
         fn bitxor(self, rhs: Self) -> Self {
             Self(self.0 ^ rhs.0)
         }
     }
-    impl ::core::ops::BitXorAssign for DisplayPlaneAlphaFlagsKHR {
+    impl core::ops::BitXorAssign for DisplayPlaneAlphaFlagsKHR {
         fn bitxor_assign(&mut self, rhs: Self) {
             *self = *self ^ rhs;
         }
     }
-    impl ::core::ops::Not for DisplayPlaneAlphaFlagsKHR {
+    impl core::ops::Not for DisplayPlaneAlphaFlagsKHR {
         type Output = Self;
         fn not(self) -> Self {
             Self(!self.0)
@@ -328,40 +328,40 @@ pub(crate) mod reexport {
             Self::empty()
         }
     }
-    impl ::core::ops::BitOr for DisplayModeCreateFlagsKHR {
+    impl core::ops::BitOr for DisplayModeCreateFlagsKHR {
         type Output = Self;
         fn bitor(self, rhs: Self) -> Self {
             Self(self.0 | rhs.0)
         }
     }
-    impl ::core::ops::BitOrAssign for DisplayModeCreateFlagsKHR {
+    impl core::ops::BitOrAssign for DisplayModeCreateFlagsKHR {
         fn bitor_assign(&mut self, rhs: Self) {
             *self = *self | rhs;
         }
     }
-    impl ::core::ops::BitAnd for DisplayModeCreateFlagsKHR {
+    impl core::ops::BitAnd for DisplayModeCreateFlagsKHR {
         type Output = Self;
         fn bitand(self, rhs: Self) -> Self {
             Self(self.0 & rhs.0)
         }
     }
-    impl ::core::ops::BitAndAssign for DisplayModeCreateFlagsKHR {
+    impl core::ops::BitAndAssign for DisplayModeCreateFlagsKHR {
         fn bitand_assign(&mut self, rhs: Self) {
             *self = *self & rhs;
         }
     }
-    impl ::core::ops::BitXor for DisplayModeCreateFlagsKHR {
+    impl core::ops::BitXor for DisplayModeCreateFlagsKHR {
         type Output = Self;
         fn bitxor(self, rhs: Self) -> Self {
             Self(self.0 ^ rhs.0)
         }
     }
-    impl ::core::ops::BitXorAssign for DisplayModeCreateFlagsKHR {
+    impl core::ops::BitXorAssign for DisplayModeCreateFlagsKHR {
         fn bitxor_assign(&mut self, rhs: Self) {
             *self = *self ^ rhs;
         }
     }
-    impl ::core::ops::Not for DisplayModeCreateFlagsKHR {
+    impl core::ops::Not for DisplayModeCreateFlagsKHR {
         type Output = Self;
         fn not(self) -> Self {
             Self(!self.0)
@@ -395,40 +395,40 @@ pub(crate) mod reexport {
             Self::empty()
         }
     }
-    impl ::core::ops::BitOr for DisplaySurfaceCreateFlagsKHR {
+    impl core::ops::BitOr for DisplaySurfaceCreateFlagsKHR {
         type Output = Self;
         fn bitor(self, rhs: Self) -> Self {
             Self(self.0 | rhs.0)
         }
     }
-    impl ::core::ops::BitOrAssign for DisplaySurfaceCreateFlagsKHR {
+    impl core::ops::BitOrAssign for DisplaySurfaceCreateFlagsKHR {
         fn bitor_assign(&mut self, rhs: Self) {
             *self = *self | rhs;
         }
     }
-    impl ::core::ops::BitAnd for DisplaySurfaceCreateFlagsKHR {
+    impl core::ops::BitAnd for DisplaySurfaceCreateFlagsKHR {
         type Output = Self;
         fn bitand(self, rhs: Self) -> Self {
             Self(self.0 & rhs.0)
         }
     }
-    impl ::core::ops::BitAndAssign for DisplaySurfaceCreateFlagsKHR {
+    impl core::ops::BitAndAssign for DisplaySurfaceCreateFlagsKHR {
         fn bitand_assign(&mut self, rhs: Self) {
             *self = *self & rhs;
         }
     }
-    impl ::core::ops::BitXor for DisplaySurfaceCreateFlagsKHR {
+    impl core::ops::BitXor for DisplaySurfaceCreateFlagsKHR {
         type Output = Self;
         fn bitxor(self, rhs: Self) -> Self {
             Self(self.0 ^ rhs.0)
         }
     }
-    impl ::core::ops::BitXorAssign for DisplaySurfaceCreateFlagsKHR {
+    impl core::ops::BitXorAssign for DisplaySurfaceCreateFlagsKHR {
         fn bitxor_assign(&mut self, rhs: Self) {
             *self = *self ^ rhs;
         }
     }
-    impl ::core::ops::Not for DisplaySurfaceCreateFlagsKHR {
+    impl core::ops::Not for DisplaySurfaceCreateFlagsKHR {
         type Output = Self;
         fn not(self) -> Self {
             Self(!self.0)

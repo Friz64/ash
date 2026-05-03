@@ -66,40 +66,40 @@ impl Default for PipelineCoverageModulationStateCreateFlagsNV {
         Self::empty()
     }
 }
-impl ::core::ops::BitOr for PipelineCoverageModulationStateCreateFlagsNV {
+impl core::ops::BitOr for PipelineCoverageModulationStateCreateFlagsNV {
     type Output = Self;
     fn bitor(self, rhs: Self) -> Self {
         Self(self.0 | rhs.0)
     }
 }
-impl ::core::ops::BitOrAssign for PipelineCoverageModulationStateCreateFlagsNV {
+impl core::ops::BitOrAssign for PipelineCoverageModulationStateCreateFlagsNV {
     fn bitor_assign(&mut self, rhs: Self) {
         *self = *self | rhs;
     }
 }
-impl ::core::ops::BitAnd for PipelineCoverageModulationStateCreateFlagsNV {
+impl core::ops::BitAnd for PipelineCoverageModulationStateCreateFlagsNV {
     type Output = Self;
     fn bitand(self, rhs: Self) -> Self {
         Self(self.0 & rhs.0)
     }
 }
-impl ::core::ops::BitAndAssign for PipelineCoverageModulationStateCreateFlagsNV {
+impl core::ops::BitAndAssign for PipelineCoverageModulationStateCreateFlagsNV {
     fn bitand_assign(&mut self, rhs: Self) {
         *self = *self & rhs;
     }
 }
-impl ::core::ops::BitXor for PipelineCoverageModulationStateCreateFlagsNV {
+impl core::ops::BitXor for PipelineCoverageModulationStateCreateFlagsNV {
     type Output = Self;
     fn bitxor(self, rhs: Self) -> Self {
         Self(self.0 ^ rhs.0)
     }
 }
-impl ::core::ops::BitXorAssign for PipelineCoverageModulationStateCreateFlagsNV {
+impl core::ops::BitXorAssign for PipelineCoverageModulationStateCreateFlagsNV {
     fn bitxor_assign(&mut self, rhs: Self) {
         *self = *self ^ rhs;
     }
 }
-impl ::core::ops::Not for PipelineCoverageModulationStateCreateFlagsNV {
+impl core::ops::Not for PipelineCoverageModulationStateCreateFlagsNV {
     type Output = Self;
     fn not(self) -> Self {
         Self(!self.0)

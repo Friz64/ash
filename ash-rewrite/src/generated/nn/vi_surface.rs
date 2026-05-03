@@ -78,40 +78,40 @@ pub(crate) mod reexport {
             Self::empty()
         }
     }
-    impl ::core::ops::BitOr for ViSurfaceCreateFlagsNN {
+    impl core::ops::BitOr for ViSurfaceCreateFlagsNN {
         type Output = Self;
         fn bitor(self, rhs: Self) -> Self {
             Self(self.0 | rhs.0)
         }
     }
-    impl ::core::ops::BitOrAssign for ViSurfaceCreateFlagsNN {
+    impl core::ops::BitOrAssign for ViSurfaceCreateFlagsNN {
         fn bitor_assign(&mut self, rhs: Self) {
             *self = *self | rhs;
         }
     }
-    impl ::core::ops::BitAnd for ViSurfaceCreateFlagsNN {
+    impl core::ops::BitAnd for ViSurfaceCreateFlagsNN {
         type Output = Self;
         fn bitand(self, rhs: Self) -> Self {
             Self(self.0 & rhs.0)
         }
     }
-    impl ::core::ops::BitAndAssign for ViSurfaceCreateFlagsNN {
+    impl core::ops::BitAndAssign for ViSurfaceCreateFlagsNN {
         fn bitand_assign(&mut self, rhs: Self) {
             *self = *self & rhs;
         }
     }
-    impl ::core::ops::BitXor for ViSurfaceCreateFlagsNN {
+    impl core::ops::BitXor for ViSurfaceCreateFlagsNN {
         type Output = Self;
         fn bitxor(self, rhs: Self) -> Self {
             Self(self.0 ^ rhs.0)
         }
     }
-    impl ::core::ops::BitXorAssign for ViSurfaceCreateFlagsNN {
+    impl core::ops::BitXorAssign for ViSurfaceCreateFlagsNN {
         fn bitxor_assign(&mut self, rhs: Self) {
             *self = *self ^ rhs;
         }
     }
-    impl ::core::ops::Not for ViSurfaceCreateFlagsNN {
+    impl core::ops::Not for ViSurfaceCreateFlagsNN {
         type Output = Self;
         fn not(self) -> Self {
             Self(!self.0)

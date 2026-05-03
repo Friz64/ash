@@ -95,40 +95,40 @@ pub(crate) mod reexport {
             Self::empty()
         }
     }
-    impl ::core::ops::BitOr for UbmSurfaceCreateFlagsSEC {
+    impl core::ops::BitOr for UbmSurfaceCreateFlagsSEC {
         type Output = Self;
         fn bitor(self, rhs: Self) -> Self {
             Self(self.0 | rhs.0)
         }
     }
-    impl ::core::ops::BitOrAssign for UbmSurfaceCreateFlagsSEC {
+    impl core::ops::BitOrAssign for UbmSurfaceCreateFlagsSEC {
         fn bitor_assign(&mut self, rhs: Self) {
             *self = *self | rhs;
         }
     }
-    impl ::core::ops::BitAnd for UbmSurfaceCreateFlagsSEC {
+    impl core::ops::BitAnd for UbmSurfaceCreateFlagsSEC {
         type Output = Self;
         fn bitand(self, rhs: Self) -> Self {
             Self(self.0 & rhs.0)
         }
     }
-    impl ::core::ops::BitAndAssign for UbmSurfaceCreateFlagsSEC {
+    impl core::ops::BitAndAssign for UbmSurfaceCreateFlagsSEC {
         fn bitand_assign(&mut self, rhs: Self) {
             *self = *self & rhs;
         }
     }
-    impl ::core::ops::BitXor for UbmSurfaceCreateFlagsSEC {
+    impl core::ops::BitXor for UbmSurfaceCreateFlagsSEC {
         type Output = Self;
         fn bitxor(self, rhs: Self) -> Self {
             Self(self.0 ^ rhs.0)
         }
     }
-    impl ::core::ops::BitXorAssign for UbmSurfaceCreateFlagsSEC {
+    impl core::ops::BitXorAssign for UbmSurfaceCreateFlagsSEC {
         fn bitxor_assign(&mut self, rhs: Self) {
             *self = *self ^ rhs;
         }
     }
-    impl ::core::ops::Not for UbmSurfaceCreateFlagsSEC {
+    impl core::ops::Not for UbmSurfaceCreateFlagsSEC {
         type Output = Self;
         fn not(self) -> Self {
             Self(!self.0)
