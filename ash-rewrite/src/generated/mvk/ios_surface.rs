@@ -78,40 +78,40 @@ pub(crate) mod reexport {
             Self::empty()
         }
     }
-    impl ::core::ops::BitOr for IOSSurfaceCreateFlagsMVK {
+    impl core::ops::BitOr for IOSSurfaceCreateFlagsMVK {
         type Output = Self;
         fn bitor(self, rhs: Self) -> Self {
             Self(self.0 | rhs.0)
         }
     }
-    impl ::core::ops::BitOrAssign for IOSSurfaceCreateFlagsMVK {
+    impl core::ops::BitOrAssign for IOSSurfaceCreateFlagsMVK {
         fn bitor_assign(&mut self, rhs: Self) {
             *self = *self | rhs;
         }
     }
-    impl ::core::ops::BitAnd for IOSSurfaceCreateFlagsMVK {
+    impl core::ops::BitAnd for IOSSurfaceCreateFlagsMVK {
         type Output = Self;
         fn bitand(self, rhs: Self) -> Self {
             Self(self.0 & rhs.0)
         }
     }
-    impl ::core::ops::BitAndAssign for IOSSurfaceCreateFlagsMVK {
+    impl core::ops::BitAndAssign for IOSSurfaceCreateFlagsMVK {
         fn bitand_assign(&mut self, rhs: Self) {
             *self = *self & rhs;
         }
     }
-    impl ::core::ops::BitXor for IOSSurfaceCreateFlagsMVK {
+    impl core::ops::BitXor for IOSSurfaceCreateFlagsMVK {
         type Output = Self;
         fn bitxor(self, rhs: Self) -> Self {
             Self(self.0 ^ rhs.0)
         }
     }
-    impl ::core::ops::BitXorAssign for IOSSurfaceCreateFlagsMVK {
+    impl core::ops::BitXorAssign for IOSSurfaceCreateFlagsMVK {
         fn bitxor_assign(&mut self, rhs: Self) {
             *self = *self ^ rhs;
         }
     }
-    impl ::core::ops::Not for IOSSurfaceCreateFlagsMVK {
+    impl core::ops::Not for IOSSurfaceCreateFlagsMVK {
         type Output = Self;
         fn not(self) -> Self {
             Self(!self.0)

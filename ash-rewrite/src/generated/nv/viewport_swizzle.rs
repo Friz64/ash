@@ -74,40 +74,40 @@ impl Default for PipelineViewportSwizzleStateCreateFlagsNV {
         Self::empty()
     }
 }
-impl ::core::ops::BitOr for PipelineViewportSwizzleStateCreateFlagsNV {
+impl core::ops::BitOr for PipelineViewportSwizzleStateCreateFlagsNV {
     type Output = Self;
     fn bitor(self, rhs: Self) -> Self {
         Self(self.0 | rhs.0)
     }
 }
-impl ::core::ops::BitOrAssign for PipelineViewportSwizzleStateCreateFlagsNV {
+impl core::ops::BitOrAssign for PipelineViewportSwizzleStateCreateFlagsNV {
     fn bitor_assign(&mut self, rhs: Self) {
         *self = *self | rhs;
     }
 }
-impl ::core::ops::BitAnd for PipelineViewportSwizzleStateCreateFlagsNV {
+impl core::ops::BitAnd for PipelineViewportSwizzleStateCreateFlagsNV {
     type Output = Self;
     fn bitand(self, rhs: Self) -> Self {
         Self(self.0 & rhs.0)
     }
 }
-impl ::core::ops::BitAndAssign for PipelineViewportSwizzleStateCreateFlagsNV {
+impl core::ops::BitAndAssign for PipelineViewportSwizzleStateCreateFlagsNV {
     fn bitand_assign(&mut self, rhs: Self) {
         *self = *self & rhs;
     }
 }
-impl ::core::ops::BitXor for PipelineViewportSwizzleStateCreateFlagsNV {
+impl core::ops::BitXor for PipelineViewportSwizzleStateCreateFlagsNV {
     type Output = Self;
     fn bitxor(self, rhs: Self) -> Self {
         Self(self.0 ^ rhs.0)
     }
 }
-impl ::core::ops::BitXorAssign for PipelineViewportSwizzleStateCreateFlagsNV {
+impl core::ops::BitXorAssign for PipelineViewportSwizzleStateCreateFlagsNV {
     fn bitxor_assign(&mut self, rhs: Self) {
         *self = *self ^ rhs;
     }
 }
-impl ::core::ops::Not for PipelineViewportSwizzleStateCreateFlagsNV {
+impl core::ops::Not for PipelineViewportSwizzleStateCreateFlagsNV {
     type Output = Self;
     fn not(self) -> Self {
         Self(!self.0)

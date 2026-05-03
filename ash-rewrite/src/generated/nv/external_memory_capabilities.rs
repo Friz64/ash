@@ -91,40 +91,40 @@ pub(crate) mod reexport {
             Self::empty()
         }
     }
-    impl ::core::ops::BitOr for ExternalMemoryHandleTypeFlagsNV {
+    impl core::ops::BitOr for ExternalMemoryHandleTypeFlagsNV {
         type Output = Self;
         fn bitor(self, rhs: Self) -> Self {
             Self(self.0 | rhs.0)
         }
     }
-    impl ::core::ops::BitOrAssign for ExternalMemoryHandleTypeFlagsNV {
+    impl core::ops::BitOrAssign for ExternalMemoryHandleTypeFlagsNV {
         fn bitor_assign(&mut self, rhs: Self) {
             *self = *self | rhs;
         }
     }
-    impl ::core::ops::BitAnd for ExternalMemoryHandleTypeFlagsNV {
+    impl core::ops::BitAnd for ExternalMemoryHandleTypeFlagsNV {
         type Output = Self;
         fn bitand(self, rhs: Self) -> Self {
             Self(self.0 & rhs.0)
         }
     }
-    impl ::core::ops::BitAndAssign for ExternalMemoryHandleTypeFlagsNV {
+    impl core::ops::BitAndAssign for ExternalMemoryHandleTypeFlagsNV {
         fn bitand_assign(&mut self, rhs: Self) {
             *self = *self & rhs;
         }
     }
-    impl ::core::ops::BitXor for ExternalMemoryHandleTypeFlagsNV {
+    impl core::ops::BitXor for ExternalMemoryHandleTypeFlagsNV {
         type Output = Self;
         fn bitxor(self, rhs: Self) -> Self {
             Self(self.0 ^ rhs.0)
         }
     }
-    impl ::core::ops::BitXorAssign for ExternalMemoryHandleTypeFlagsNV {
+    impl core::ops::BitXorAssign for ExternalMemoryHandleTypeFlagsNV {
         fn bitxor_assign(&mut self, rhs: Self) {
             *self = *self ^ rhs;
         }
     }
-    impl ::core::ops::Not for ExternalMemoryHandleTypeFlagsNV {
+    impl core::ops::Not for ExternalMemoryHandleTypeFlagsNV {
         type Output = Self;
         fn not(self) -> Self {
             Self(!self.0)
@@ -177,40 +177,40 @@ pub(crate) mod reexport {
             Self::empty()
         }
     }
-    impl ::core::ops::BitOr for ExternalMemoryFeatureFlagsNV {
+    impl core::ops::BitOr for ExternalMemoryFeatureFlagsNV {
         type Output = Self;
         fn bitor(self, rhs: Self) -> Self {
             Self(self.0 | rhs.0)
         }
     }
-    impl ::core::ops::BitOrAssign for ExternalMemoryFeatureFlagsNV {
+    impl core::ops::BitOrAssign for ExternalMemoryFeatureFlagsNV {
         fn bitor_assign(&mut self, rhs: Self) {
             *self = *self | rhs;
         }
     }
-    impl ::core::ops::BitAnd for ExternalMemoryFeatureFlagsNV {
+    impl core::ops::BitAnd for ExternalMemoryFeatureFlagsNV {
         type Output = Self;
         fn bitand(self, rhs: Self) -> Self {
             Self(self.0 & rhs.0)
         }
     }
-    impl ::core::ops::BitAndAssign for ExternalMemoryFeatureFlagsNV {
+    impl core::ops::BitAndAssign for ExternalMemoryFeatureFlagsNV {
         fn bitand_assign(&mut self, rhs: Self) {
             *self = *self & rhs;
         }
     }
-    impl ::core::ops::BitXor for ExternalMemoryFeatureFlagsNV {
+    impl core::ops::BitXor for ExternalMemoryFeatureFlagsNV {
         type Output = Self;
         fn bitxor(self, rhs: Self) -> Self {
             Self(self.0 ^ rhs.0)
         }
     }
-    impl ::core::ops::BitXorAssign for ExternalMemoryFeatureFlagsNV {
+    impl core::ops::BitXorAssign for ExternalMemoryFeatureFlagsNV {
         fn bitxor_assign(&mut self, rhs: Self) {
             *self = *self ^ rhs;
         }
     }
-    impl ::core::ops::Not for ExternalMemoryFeatureFlagsNV {
+    impl core::ops::Not for ExternalMemoryFeatureFlagsNV {
         type Output = Self;
         fn not(self) -> Self {
             Self(!self.0)

@@ -214,40 +214,40 @@ pub(crate) mod reexport {
             Self::empty()
         }
     }
-    impl ::core::ops::BitOr for DeviceFaultFlagsKHR {
+    impl core::ops::BitOr for DeviceFaultFlagsKHR {
         type Output = Self;
         fn bitor(self, rhs: Self) -> Self {
             Self(self.0 | rhs.0)
         }
     }
-    impl ::core::ops::BitOrAssign for DeviceFaultFlagsKHR {
+    impl core::ops::BitOrAssign for DeviceFaultFlagsKHR {
         fn bitor_assign(&mut self, rhs: Self) {
             *self = *self | rhs;
         }
     }
-    impl ::core::ops::BitAnd for DeviceFaultFlagsKHR {
+    impl core::ops::BitAnd for DeviceFaultFlagsKHR {
         type Output = Self;
         fn bitand(self, rhs: Self) -> Self {
             Self(self.0 & rhs.0)
         }
     }
-    impl ::core::ops::BitAndAssign for DeviceFaultFlagsKHR {
+    impl core::ops::BitAndAssign for DeviceFaultFlagsKHR {
         fn bitand_assign(&mut self, rhs: Self) {
             *self = *self & rhs;
         }
     }
-    impl ::core::ops::BitXor for DeviceFaultFlagsKHR {
+    impl core::ops::BitXor for DeviceFaultFlagsKHR {
         type Output = Self;
         fn bitxor(self, rhs: Self) -> Self {
             Self(self.0 ^ rhs.0)
         }
     }
-    impl ::core::ops::BitXorAssign for DeviceFaultFlagsKHR {
+    impl core::ops::BitXorAssign for DeviceFaultFlagsKHR {
         fn bitxor_assign(&mut self, rhs: Self) {
             *self = *self ^ rhs;
         }
     }
-    impl ::core::ops::Not for DeviceFaultFlagsKHR {
+    impl core::ops::Not for DeviceFaultFlagsKHR {
         type Output = Self;
         fn not(self) -> Self {
             Self(!self.0)

@@ -139,40 +139,40 @@ pub(crate) mod reexport {
             Self::empty()
         }
     }
-    impl ::core::ops::BitOr for RenderingAttachmentFlagsKHR {
+    impl core::ops::BitOr for RenderingAttachmentFlagsKHR {
         type Output = Self;
         fn bitor(self, rhs: Self) -> Self {
             Self(self.0 | rhs.0)
         }
     }
-    impl ::core::ops::BitOrAssign for RenderingAttachmentFlagsKHR {
+    impl core::ops::BitOrAssign for RenderingAttachmentFlagsKHR {
         fn bitor_assign(&mut self, rhs: Self) {
             *self = *self | rhs;
         }
     }
-    impl ::core::ops::BitAnd for RenderingAttachmentFlagsKHR {
+    impl core::ops::BitAnd for RenderingAttachmentFlagsKHR {
         type Output = Self;
         fn bitand(self, rhs: Self) -> Self {
             Self(self.0 & rhs.0)
         }
     }
-    impl ::core::ops::BitAndAssign for RenderingAttachmentFlagsKHR {
+    impl core::ops::BitAndAssign for RenderingAttachmentFlagsKHR {
         fn bitand_assign(&mut self, rhs: Self) {
             *self = *self & rhs;
         }
     }
-    impl ::core::ops::BitXor for RenderingAttachmentFlagsKHR {
+    impl core::ops::BitXor for RenderingAttachmentFlagsKHR {
         type Output = Self;
         fn bitxor(self, rhs: Self) -> Self {
             Self(self.0 ^ rhs.0)
         }
     }
-    impl ::core::ops::BitXorAssign for RenderingAttachmentFlagsKHR {
+    impl core::ops::BitXorAssign for RenderingAttachmentFlagsKHR {
         fn bitxor_assign(&mut self, rhs: Self) {
             *self = *self ^ rhs;
         }
     }
-    impl ::core::ops::Not for RenderingAttachmentFlagsKHR {
+    impl core::ops::Not for RenderingAttachmentFlagsKHR {
         type Output = Self;
         fn not(self) -> Self {
             Self(!self.0)
@@ -221,40 +221,40 @@ pub(crate) mod reexport {
             Self::empty()
         }
     }
-    impl ::core::ops::BitOr for ResolveImageFlagsKHR {
+    impl core::ops::BitOr for ResolveImageFlagsKHR {
         type Output = Self;
         fn bitor(self, rhs: Self) -> Self {
             Self(self.0 | rhs.0)
         }
     }
-    impl ::core::ops::BitOrAssign for ResolveImageFlagsKHR {
+    impl core::ops::BitOrAssign for ResolveImageFlagsKHR {
         fn bitor_assign(&mut self, rhs: Self) {
             *self = *self | rhs;
         }
     }
-    impl ::core::ops::BitAnd for ResolveImageFlagsKHR {
+    impl core::ops::BitAnd for ResolveImageFlagsKHR {
         type Output = Self;
         fn bitand(self, rhs: Self) -> Self {
             Self(self.0 & rhs.0)
         }
     }
-    impl ::core::ops::BitAndAssign for ResolveImageFlagsKHR {
+    impl core::ops::BitAndAssign for ResolveImageFlagsKHR {
         fn bitand_assign(&mut self, rhs: Self) {
             *self = *self & rhs;
         }
     }
-    impl ::core::ops::BitXor for ResolveImageFlagsKHR {
+    impl core::ops::BitXor for ResolveImageFlagsKHR {
         type Output = Self;
         fn bitxor(self, rhs: Self) -> Self {
             Self(self.0 ^ rhs.0)
         }
     }
-    impl ::core::ops::BitXorAssign for ResolveImageFlagsKHR {
+    impl core::ops::BitXorAssign for ResolveImageFlagsKHR {
         fn bitxor_assign(&mut self, rhs: Self) {
             *self = *self ^ rhs;
         }
     }
-    impl ::core::ops::Not for ResolveImageFlagsKHR {
+    impl core::ops::Not for ResolveImageFlagsKHR {
         type Output = Self;
         fn not(self) -> Self {
             Self(!self.0)

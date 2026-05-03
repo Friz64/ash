@@ -78,40 +78,40 @@ impl Default for ImageCompressionFlagsEXT {
         Self::empty()
     }
 }
-impl ::core::ops::BitOr for ImageCompressionFlagsEXT {
+impl core::ops::BitOr for ImageCompressionFlagsEXT {
     type Output = Self;
     fn bitor(self, rhs: Self) -> Self {
         Self(self.0 | rhs.0)
     }
 }
-impl ::core::ops::BitOrAssign for ImageCompressionFlagsEXT {
+impl core::ops::BitOrAssign for ImageCompressionFlagsEXT {
     fn bitor_assign(&mut self, rhs: Self) {
         *self = *self | rhs;
     }
 }
-impl ::core::ops::BitAnd for ImageCompressionFlagsEXT {
+impl core::ops::BitAnd for ImageCompressionFlagsEXT {
     type Output = Self;
     fn bitand(self, rhs: Self) -> Self {
         Self(self.0 & rhs.0)
     }
 }
-impl ::core::ops::BitAndAssign for ImageCompressionFlagsEXT {
+impl core::ops::BitAndAssign for ImageCompressionFlagsEXT {
     fn bitand_assign(&mut self, rhs: Self) {
         *self = *self & rhs;
     }
 }
-impl ::core::ops::BitXor for ImageCompressionFlagsEXT {
+impl core::ops::BitXor for ImageCompressionFlagsEXT {
     type Output = Self;
     fn bitxor(self, rhs: Self) -> Self {
         Self(self.0 ^ rhs.0)
     }
 }
-impl ::core::ops::BitXorAssign for ImageCompressionFlagsEXT {
+impl core::ops::BitXorAssign for ImageCompressionFlagsEXT {
     fn bitxor_assign(&mut self, rhs: Self) {
         *self = *self ^ rhs;
     }
 }
-impl ::core::ops::Not for ImageCompressionFlagsEXT {
+impl core::ops::Not for ImageCompressionFlagsEXT {
     type Output = Self;
     fn not(self) -> Self {
         Self(!self.0)
@@ -210,40 +210,40 @@ impl Default for ImageCompressionFixedRateFlagsEXT {
         Self::empty()
     }
 }
-impl ::core::ops::BitOr for ImageCompressionFixedRateFlagsEXT {
+impl core::ops::BitOr for ImageCompressionFixedRateFlagsEXT {
     type Output = Self;
     fn bitor(self, rhs: Self) -> Self {
         Self(self.0 | rhs.0)
     }
 }
-impl ::core::ops::BitOrAssign for ImageCompressionFixedRateFlagsEXT {
+impl core::ops::BitOrAssign for ImageCompressionFixedRateFlagsEXT {
     fn bitor_assign(&mut self, rhs: Self) {
         *self = *self | rhs;
     }
 }
-impl ::core::ops::BitAnd for ImageCompressionFixedRateFlagsEXT {
+impl core::ops::BitAnd for ImageCompressionFixedRateFlagsEXT {
     type Output = Self;
     fn bitand(self, rhs: Self) -> Self {
         Self(self.0 & rhs.0)
     }
 }
-impl ::core::ops::BitAndAssign for ImageCompressionFixedRateFlagsEXT {
+impl core::ops::BitAndAssign for ImageCompressionFixedRateFlagsEXT {
     fn bitand_assign(&mut self, rhs: Self) {
         *self = *self & rhs;
     }
 }
-impl ::core::ops::BitXor for ImageCompressionFixedRateFlagsEXT {
+impl core::ops::BitXor for ImageCompressionFixedRateFlagsEXT {
     type Output = Self;
     fn bitxor(self, rhs: Self) -> Self {
         Self(self.0 ^ rhs.0)
     }
 }
-impl ::core::ops::BitXorAssign for ImageCompressionFixedRateFlagsEXT {
+impl core::ops::BitXorAssign for ImageCompressionFixedRateFlagsEXT {
     fn bitxor_assign(&mut self, rhs: Self) {
         *self = *self ^ rhs;
     }
 }
-impl ::core::ops::Not for ImageCompressionFixedRateFlagsEXT {
+impl core::ops::Not for ImageCompressionFixedRateFlagsEXT {
     type Output = Self;
     fn not(self) -> Self {
         Self(!self.0)

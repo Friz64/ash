@@ -557,40 +557,40 @@ pub(crate) mod reexport {
             Self::empty()
         }
     }
-    impl ::core::ops::BitOr for BuildMicromapFlagsEXT {
+    impl core::ops::BitOr for BuildMicromapFlagsEXT {
         type Output = Self;
         fn bitor(self, rhs: Self) -> Self {
             Self(self.0 | rhs.0)
         }
     }
-    impl ::core::ops::BitOrAssign for BuildMicromapFlagsEXT {
+    impl core::ops::BitOrAssign for BuildMicromapFlagsEXT {
         fn bitor_assign(&mut self, rhs: Self) {
             *self = *self | rhs;
         }
     }
-    impl ::core::ops::BitAnd for BuildMicromapFlagsEXT {
+    impl core::ops::BitAnd for BuildMicromapFlagsEXT {
         type Output = Self;
         fn bitand(self, rhs: Self) -> Self {
             Self(self.0 & rhs.0)
         }
     }
-    impl ::core::ops::BitAndAssign for BuildMicromapFlagsEXT {
+    impl core::ops::BitAndAssign for BuildMicromapFlagsEXT {
         fn bitand_assign(&mut self, rhs: Self) {
             *self = *self & rhs;
         }
     }
-    impl ::core::ops::BitXor for BuildMicromapFlagsEXT {
+    impl core::ops::BitXor for BuildMicromapFlagsEXT {
         type Output = Self;
         fn bitxor(self, rhs: Self) -> Self {
             Self(self.0 ^ rhs.0)
         }
     }
-    impl ::core::ops::BitXorAssign for BuildMicromapFlagsEXT {
+    impl core::ops::BitXorAssign for BuildMicromapFlagsEXT {
         fn bitxor_assign(&mut self, rhs: Self) {
             *self = *self ^ rhs;
         }
     }
-    impl ::core::ops::Not for BuildMicromapFlagsEXT {
+    impl core::ops::Not for BuildMicromapFlagsEXT {
         type Output = Self;
         fn not(self) -> Self {
             Self(!self.0)
@@ -636,40 +636,40 @@ pub(crate) mod reexport {
             Self::empty()
         }
     }
-    impl ::core::ops::BitOr for MicromapCreateFlagsEXT {
+    impl core::ops::BitOr for MicromapCreateFlagsEXT {
         type Output = Self;
         fn bitor(self, rhs: Self) -> Self {
             Self(self.0 | rhs.0)
         }
     }
-    impl ::core::ops::BitOrAssign for MicromapCreateFlagsEXT {
+    impl core::ops::BitOrAssign for MicromapCreateFlagsEXT {
         fn bitor_assign(&mut self, rhs: Self) {
             *self = *self | rhs;
         }
     }
-    impl ::core::ops::BitAnd for MicromapCreateFlagsEXT {
+    impl core::ops::BitAnd for MicromapCreateFlagsEXT {
         type Output = Self;
         fn bitand(self, rhs: Self) -> Self {
             Self(self.0 & rhs.0)
         }
     }
-    impl ::core::ops::BitAndAssign for MicromapCreateFlagsEXT {
+    impl core::ops::BitAndAssign for MicromapCreateFlagsEXT {
         fn bitand_assign(&mut self, rhs: Self) {
             *self = *self & rhs;
         }
     }
-    impl ::core::ops::BitXor for MicromapCreateFlagsEXT {
+    impl core::ops::BitXor for MicromapCreateFlagsEXT {
         type Output = Self;
         fn bitxor(self, rhs: Self) -> Self {
             Self(self.0 ^ rhs.0)
         }
     }
-    impl ::core::ops::BitXorAssign for MicromapCreateFlagsEXT {
+    impl core::ops::BitXorAssign for MicromapCreateFlagsEXT {
         fn bitxor_assign(&mut self, rhs: Self) {
             *self = *self ^ rhs;
         }
     }
-    impl ::core::ops::Not for MicromapCreateFlagsEXT {
+    impl core::ops::Not for MicromapCreateFlagsEXT {
         type Output = Self;
         fn not(self) -> Self {
             Self(!self.0)

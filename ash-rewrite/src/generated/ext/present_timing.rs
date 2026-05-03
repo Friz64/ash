@@ -263,40 +263,40 @@ pub(crate) mod reexport {
             Self::empty()
         }
     }
-    impl ::core::ops::BitOr for PresentStageFlagsEXT {
+    impl core::ops::BitOr for PresentStageFlagsEXT {
         type Output = Self;
         fn bitor(self, rhs: Self) -> Self {
             Self(self.0 | rhs.0)
         }
     }
-    impl ::core::ops::BitOrAssign for PresentStageFlagsEXT {
+    impl core::ops::BitOrAssign for PresentStageFlagsEXT {
         fn bitor_assign(&mut self, rhs: Self) {
             *self = *self | rhs;
         }
     }
-    impl ::core::ops::BitAnd for PresentStageFlagsEXT {
+    impl core::ops::BitAnd for PresentStageFlagsEXT {
         type Output = Self;
         fn bitand(self, rhs: Self) -> Self {
             Self(self.0 & rhs.0)
         }
     }
-    impl ::core::ops::BitAndAssign for PresentStageFlagsEXT {
+    impl core::ops::BitAndAssign for PresentStageFlagsEXT {
         fn bitand_assign(&mut self, rhs: Self) {
             *self = *self & rhs;
         }
     }
-    impl ::core::ops::BitXor for PresentStageFlagsEXT {
+    impl core::ops::BitXor for PresentStageFlagsEXT {
         type Output = Self;
         fn bitxor(self, rhs: Self) -> Self {
             Self(self.0 ^ rhs.0)
         }
     }
-    impl ::core::ops::BitXorAssign for PresentStageFlagsEXT {
+    impl core::ops::BitXorAssign for PresentStageFlagsEXT {
         fn bitxor_assign(&mut self, rhs: Self) {
             *self = *self ^ rhs;
         }
     }
-    impl ::core::ops::Not for PresentStageFlagsEXT {
+    impl core::ops::Not for PresentStageFlagsEXT {
         type Output = Self;
         fn not(self) -> Self {
             Self(!self.0)
@@ -346,40 +346,40 @@ pub(crate) mod reexport {
             Self::empty()
         }
     }
-    impl ::core::ops::BitOr for PastPresentationTimingFlagsEXT {
+    impl core::ops::BitOr for PastPresentationTimingFlagsEXT {
         type Output = Self;
         fn bitor(self, rhs: Self) -> Self {
             Self(self.0 | rhs.0)
         }
     }
-    impl ::core::ops::BitOrAssign for PastPresentationTimingFlagsEXT {
+    impl core::ops::BitOrAssign for PastPresentationTimingFlagsEXT {
         fn bitor_assign(&mut self, rhs: Self) {
             *self = *self | rhs;
         }
     }
-    impl ::core::ops::BitAnd for PastPresentationTimingFlagsEXT {
+    impl core::ops::BitAnd for PastPresentationTimingFlagsEXT {
         type Output = Self;
         fn bitand(self, rhs: Self) -> Self {
             Self(self.0 & rhs.0)
         }
     }
-    impl ::core::ops::BitAndAssign for PastPresentationTimingFlagsEXT {
+    impl core::ops::BitAndAssign for PastPresentationTimingFlagsEXT {
         fn bitand_assign(&mut self, rhs: Self) {
             *self = *self & rhs;
         }
     }
-    impl ::core::ops::BitXor for PastPresentationTimingFlagsEXT {
+    impl core::ops::BitXor for PastPresentationTimingFlagsEXT {
         type Output = Self;
         fn bitxor(self, rhs: Self) -> Self {
             Self(self.0 ^ rhs.0)
         }
     }
-    impl ::core::ops::BitXorAssign for PastPresentationTimingFlagsEXT {
+    impl core::ops::BitXorAssign for PastPresentationTimingFlagsEXT {
         fn bitxor_assign(&mut self, rhs: Self) {
             *self = *self ^ rhs;
         }
     }
-    impl ::core::ops::Not for PastPresentationTimingFlagsEXT {
+    impl core::ops::Not for PastPresentationTimingFlagsEXT {
         type Output = Self;
         fn not(self) -> Self {
             Self(!self.0)
@@ -427,40 +427,40 @@ pub(crate) mod reexport {
             Self::empty()
         }
     }
-    impl ::core::ops::BitOr for PresentTimingInfoFlagsEXT {
+    impl core::ops::BitOr for PresentTimingInfoFlagsEXT {
         type Output = Self;
         fn bitor(self, rhs: Self) -> Self {
             Self(self.0 | rhs.0)
         }
     }
-    impl ::core::ops::BitOrAssign for PresentTimingInfoFlagsEXT {
+    impl core::ops::BitOrAssign for PresentTimingInfoFlagsEXT {
         fn bitor_assign(&mut self, rhs: Self) {
             *self = *self | rhs;
         }
     }
-    impl ::core::ops::BitAnd for PresentTimingInfoFlagsEXT {
+    impl core::ops::BitAnd for PresentTimingInfoFlagsEXT {
         type Output = Self;
         fn bitand(self, rhs: Self) -> Self {
             Self(self.0 & rhs.0)
         }
     }
-    impl ::core::ops::BitAndAssign for PresentTimingInfoFlagsEXT {
+    impl core::ops::BitAndAssign for PresentTimingInfoFlagsEXT {
         fn bitand_assign(&mut self, rhs: Self) {
             *self = *self & rhs;
         }
     }
-    impl ::core::ops::BitXor for PresentTimingInfoFlagsEXT {
+    impl core::ops::BitXor for PresentTimingInfoFlagsEXT {
         type Output = Self;
         fn bitxor(self, rhs: Self) -> Self {
             Self(self.0 ^ rhs.0)
         }
     }
-    impl ::core::ops::BitXorAssign for PresentTimingInfoFlagsEXT {
+    impl core::ops::BitXorAssign for PresentTimingInfoFlagsEXT {
         fn bitxor_assign(&mut self, rhs: Self) {
             *self = *self ^ rhs;
         }
     }
-    impl ::core::ops::Not for PresentTimingInfoFlagsEXT {
+    impl core::ops::Not for PresentTimingInfoFlagsEXT {
         type Output = Self;
         fn not(self) -> Self {
             Self(!self.0)

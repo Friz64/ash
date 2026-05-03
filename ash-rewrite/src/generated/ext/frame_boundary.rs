@@ -59,40 +59,40 @@ impl Default for FrameBoundaryFlagsEXT {
         Self::empty()
     }
 }
-impl ::core::ops::BitOr for FrameBoundaryFlagsEXT {
+impl core::ops::BitOr for FrameBoundaryFlagsEXT {
     type Output = Self;
     fn bitor(self, rhs: Self) -> Self {
         Self(self.0 | rhs.0)
     }
 }
-impl ::core::ops::BitOrAssign for FrameBoundaryFlagsEXT {
+impl core::ops::BitOrAssign for FrameBoundaryFlagsEXT {
     fn bitor_assign(&mut self, rhs: Self) {
         *self = *self | rhs;
     }
 }
-impl ::core::ops::BitAnd for FrameBoundaryFlagsEXT {
+impl core::ops::BitAnd for FrameBoundaryFlagsEXT {
     type Output = Self;
     fn bitand(self, rhs: Self) -> Self {
         Self(self.0 & rhs.0)
     }
 }
-impl ::core::ops::BitAndAssign for FrameBoundaryFlagsEXT {
+impl core::ops::BitAndAssign for FrameBoundaryFlagsEXT {
     fn bitand_assign(&mut self, rhs: Self) {
         *self = *self & rhs;
     }
 }
-impl ::core::ops::BitXor for FrameBoundaryFlagsEXT {
+impl core::ops::BitXor for FrameBoundaryFlagsEXT {
     type Output = Self;
     fn bitxor(self, rhs: Self) -> Self {
         Self(self.0 ^ rhs.0)
     }
 }
-impl ::core::ops::BitXorAssign for FrameBoundaryFlagsEXT {
+impl core::ops::BitXorAssign for FrameBoundaryFlagsEXT {
     fn bitxor_assign(&mut self, rhs: Self) {
         *self = *self ^ rhs;
     }
 }
-impl ::core::ops::Not for FrameBoundaryFlagsEXT {
+impl core::ops::Not for FrameBoundaryFlagsEXT {
     type Output = Self;
     fn not(self) -> Self {
         Self(!self.0)

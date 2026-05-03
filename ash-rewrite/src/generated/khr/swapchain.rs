@@ -354,40 +354,40 @@ pub(crate) mod reexport {
             Self::empty()
         }
     }
-    impl ::core::ops::BitOr for SwapchainCreateFlagsKHR {
+    impl core::ops::BitOr for SwapchainCreateFlagsKHR {
         type Output = Self;
         fn bitor(self, rhs: Self) -> Self {
             Self(self.0 | rhs.0)
         }
     }
-    impl ::core::ops::BitOrAssign for SwapchainCreateFlagsKHR {
+    impl core::ops::BitOrAssign for SwapchainCreateFlagsKHR {
         fn bitor_assign(&mut self, rhs: Self) {
             *self = *self | rhs;
         }
     }
-    impl ::core::ops::BitAnd for SwapchainCreateFlagsKHR {
+    impl core::ops::BitAnd for SwapchainCreateFlagsKHR {
         type Output = Self;
         fn bitand(self, rhs: Self) -> Self {
             Self(self.0 & rhs.0)
         }
     }
-    impl ::core::ops::BitAndAssign for SwapchainCreateFlagsKHR {
+    impl core::ops::BitAndAssign for SwapchainCreateFlagsKHR {
         fn bitand_assign(&mut self, rhs: Self) {
             *self = *self & rhs;
         }
     }
-    impl ::core::ops::BitXor for SwapchainCreateFlagsKHR {
+    impl core::ops::BitXor for SwapchainCreateFlagsKHR {
         type Output = Self;
         fn bitxor(self, rhs: Self) -> Self {
             Self(self.0 ^ rhs.0)
         }
     }
-    impl ::core::ops::BitXorAssign for SwapchainCreateFlagsKHR {
+    impl core::ops::BitXorAssign for SwapchainCreateFlagsKHR {
         fn bitxor_assign(&mut self, rhs: Self) {
             *self = *self ^ rhs;
         }
     }
-    impl ::core::ops::Not for SwapchainCreateFlagsKHR {
+    impl core::ops::Not for SwapchainCreateFlagsKHR {
         type Output = Self;
         fn not(self) -> Self {
             Self(!self.0)
@@ -437,40 +437,40 @@ pub(crate) mod reexport {
             Self::empty()
         }
     }
-    impl ::core::ops::BitOr for DeviceGroupPresentModeFlagsKHR {
+    impl core::ops::BitOr for DeviceGroupPresentModeFlagsKHR {
         type Output = Self;
         fn bitor(self, rhs: Self) -> Self {
             Self(self.0 | rhs.0)
         }
     }
-    impl ::core::ops::BitOrAssign for DeviceGroupPresentModeFlagsKHR {
+    impl core::ops::BitOrAssign for DeviceGroupPresentModeFlagsKHR {
         fn bitor_assign(&mut self, rhs: Self) {
             *self = *self | rhs;
         }
     }
-    impl ::core::ops::BitAnd for DeviceGroupPresentModeFlagsKHR {
+    impl core::ops::BitAnd for DeviceGroupPresentModeFlagsKHR {
         type Output = Self;
         fn bitand(self, rhs: Self) -> Self {
             Self(self.0 & rhs.0)
         }
     }
-    impl ::core::ops::BitAndAssign for DeviceGroupPresentModeFlagsKHR {
+    impl core::ops::BitAndAssign for DeviceGroupPresentModeFlagsKHR {
         fn bitand_assign(&mut self, rhs: Self) {
             *self = *self & rhs;
         }
     }
-    impl ::core::ops::BitXor for DeviceGroupPresentModeFlagsKHR {
+    impl core::ops::BitXor for DeviceGroupPresentModeFlagsKHR {
         type Output = Self;
         fn bitxor(self, rhs: Self) -> Self {
             Self(self.0 ^ rhs.0)
         }
     }
-    impl ::core::ops::BitXorAssign for DeviceGroupPresentModeFlagsKHR {
+    impl core::ops::BitXorAssign for DeviceGroupPresentModeFlagsKHR {
         fn bitxor_assign(&mut self, rhs: Self) {
             *self = *self ^ rhs;
         }
     }
-    impl ::core::ops::Not for DeviceGroupPresentModeFlagsKHR {
+    impl core::ops::Not for DeviceGroupPresentModeFlagsKHR {
         type Output = Self;
         fn not(self) -> Self {
             Self(!self.0)

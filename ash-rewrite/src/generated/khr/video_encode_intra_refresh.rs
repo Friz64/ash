@@ -103,40 +103,40 @@ impl Default for VideoEncodeIntraRefreshModeFlagsKHR {
         Self::empty()
     }
 }
-impl ::core::ops::BitOr for VideoEncodeIntraRefreshModeFlagsKHR {
+impl core::ops::BitOr for VideoEncodeIntraRefreshModeFlagsKHR {
     type Output = Self;
     fn bitor(self, rhs: Self) -> Self {
         Self(self.0 | rhs.0)
     }
 }
-impl ::core::ops::BitOrAssign for VideoEncodeIntraRefreshModeFlagsKHR {
+impl core::ops::BitOrAssign for VideoEncodeIntraRefreshModeFlagsKHR {
     fn bitor_assign(&mut self, rhs: Self) {
         *self = *self | rhs;
     }
 }
-impl ::core::ops::BitAnd for VideoEncodeIntraRefreshModeFlagsKHR {
+impl core::ops::BitAnd for VideoEncodeIntraRefreshModeFlagsKHR {
     type Output = Self;
     fn bitand(self, rhs: Self) -> Self {
         Self(self.0 & rhs.0)
     }
 }
-impl ::core::ops::BitAndAssign for VideoEncodeIntraRefreshModeFlagsKHR {
+impl core::ops::BitAndAssign for VideoEncodeIntraRefreshModeFlagsKHR {
     fn bitand_assign(&mut self, rhs: Self) {
         *self = *self & rhs;
     }
 }
-impl ::core::ops::BitXor for VideoEncodeIntraRefreshModeFlagsKHR {
+impl core::ops::BitXor for VideoEncodeIntraRefreshModeFlagsKHR {
     type Output = Self;
     fn bitxor(self, rhs: Self) -> Self {
         Self(self.0 ^ rhs.0)
     }
 }
-impl ::core::ops::BitXorAssign for VideoEncodeIntraRefreshModeFlagsKHR {
+impl core::ops::BitXorAssign for VideoEncodeIntraRefreshModeFlagsKHR {
     fn bitxor_assign(&mut self, rhs: Self) {
         *self = *self ^ rhs;
     }
 }
-impl ::core::ops::Not for VideoEncodeIntraRefreshModeFlagsKHR {
+impl core::ops::Not for VideoEncodeIntraRefreshModeFlagsKHR {
     type Output = Self;
     fn not(self) -> Self {
         Self(!self.0)

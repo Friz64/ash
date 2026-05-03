@@ -318,40 +318,40 @@ pub(crate) mod reexport {
             Self::empty()
         }
     }
-    impl ::core::ops::BitOr for DebugUtilsMessageSeverityFlagsEXT {
+    impl core::ops::BitOr for DebugUtilsMessageSeverityFlagsEXT {
         type Output = Self;
         fn bitor(self, rhs: Self) -> Self {
             Self(self.0 | rhs.0)
         }
     }
-    impl ::core::ops::BitOrAssign for DebugUtilsMessageSeverityFlagsEXT {
+    impl core::ops::BitOrAssign for DebugUtilsMessageSeverityFlagsEXT {
         fn bitor_assign(&mut self, rhs: Self) {
             *self = *self | rhs;
         }
     }
-    impl ::core::ops::BitAnd for DebugUtilsMessageSeverityFlagsEXT {
+    impl core::ops::BitAnd for DebugUtilsMessageSeverityFlagsEXT {
         type Output = Self;
         fn bitand(self, rhs: Self) -> Self {
             Self(self.0 & rhs.0)
         }
     }
-    impl ::core::ops::BitAndAssign for DebugUtilsMessageSeverityFlagsEXT {
+    impl core::ops::BitAndAssign for DebugUtilsMessageSeverityFlagsEXT {
         fn bitand_assign(&mut self, rhs: Self) {
             *self = *self & rhs;
         }
     }
-    impl ::core::ops::BitXor for DebugUtilsMessageSeverityFlagsEXT {
+    impl core::ops::BitXor for DebugUtilsMessageSeverityFlagsEXT {
         type Output = Self;
         fn bitxor(self, rhs: Self) -> Self {
             Self(self.0 ^ rhs.0)
         }
     }
-    impl ::core::ops::BitXorAssign for DebugUtilsMessageSeverityFlagsEXT {
+    impl core::ops::BitXorAssign for DebugUtilsMessageSeverityFlagsEXT {
         fn bitxor_assign(&mut self, rhs: Self) {
             *self = *self ^ rhs;
         }
     }
-    impl ::core::ops::Not for DebugUtilsMessageSeverityFlagsEXT {
+    impl core::ops::Not for DebugUtilsMessageSeverityFlagsEXT {
         type Output = Self;
         fn not(self) -> Self {
             Self(!self.0)
@@ -407,40 +407,40 @@ pub(crate) mod reexport {
             Self::empty()
         }
     }
-    impl ::core::ops::BitOr for DebugUtilsMessageTypeFlagsEXT {
+    impl core::ops::BitOr for DebugUtilsMessageTypeFlagsEXT {
         type Output = Self;
         fn bitor(self, rhs: Self) -> Self {
             Self(self.0 | rhs.0)
         }
     }
-    impl ::core::ops::BitOrAssign for DebugUtilsMessageTypeFlagsEXT {
+    impl core::ops::BitOrAssign for DebugUtilsMessageTypeFlagsEXT {
         fn bitor_assign(&mut self, rhs: Self) {
             *self = *self | rhs;
         }
     }
-    impl ::core::ops::BitAnd for DebugUtilsMessageTypeFlagsEXT {
+    impl core::ops::BitAnd for DebugUtilsMessageTypeFlagsEXT {
         type Output = Self;
         fn bitand(self, rhs: Self) -> Self {
             Self(self.0 & rhs.0)
         }
     }
-    impl ::core::ops::BitAndAssign for DebugUtilsMessageTypeFlagsEXT {
+    impl core::ops::BitAndAssign for DebugUtilsMessageTypeFlagsEXT {
         fn bitand_assign(&mut self, rhs: Self) {
             *self = *self & rhs;
         }
     }
-    impl ::core::ops::BitXor for DebugUtilsMessageTypeFlagsEXT {
+    impl core::ops::BitXor for DebugUtilsMessageTypeFlagsEXT {
         type Output = Self;
         fn bitxor(self, rhs: Self) -> Self {
             Self(self.0 ^ rhs.0)
         }
     }
-    impl ::core::ops::BitXorAssign for DebugUtilsMessageTypeFlagsEXT {
+    impl core::ops::BitXorAssign for DebugUtilsMessageTypeFlagsEXT {
         fn bitxor_assign(&mut self, rhs: Self) {
             *self = *self ^ rhs;
         }
     }
-    impl ::core::ops::Not for DebugUtilsMessageTypeFlagsEXT {
+    impl core::ops::Not for DebugUtilsMessageTypeFlagsEXT {
         type Output = Self;
         fn not(self) -> Self {
             Self(!self.0)
@@ -483,40 +483,40 @@ pub(crate) mod reexport {
             Self::empty()
         }
     }
-    impl ::core::ops::BitOr for DebugUtilsMessengerCreateFlagsEXT {
+    impl core::ops::BitOr for DebugUtilsMessengerCreateFlagsEXT {
         type Output = Self;
         fn bitor(self, rhs: Self) -> Self {
             Self(self.0 | rhs.0)
         }
     }
-    impl ::core::ops::BitOrAssign for DebugUtilsMessengerCreateFlagsEXT {
+    impl core::ops::BitOrAssign for DebugUtilsMessengerCreateFlagsEXT {
         fn bitor_assign(&mut self, rhs: Self) {
             *self = *self | rhs;
         }
     }
-    impl ::core::ops::BitAnd for DebugUtilsMessengerCreateFlagsEXT {
+    impl core::ops::BitAnd for DebugUtilsMessengerCreateFlagsEXT {
         type Output = Self;
         fn bitand(self, rhs: Self) -> Self {
             Self(self.0 & rhs.0)
         }
     }
-    impl ::core::ops::BitAndAssign for DebugUtilsMessengerCreateFlagsEXT {
+    impl core::ops::BitAndAssign for DebugUtilsMessengerCreateFlagsEXT {
         fn bitand_assign(&mut self, rhs: Self) {
             *self = *self & rhs;
         }
     }
-    impl ::core::ops::BitXor for DebugUtilsMessengerCreateFlagsEXT {
+    impl core::ops::BitXor for DebugUtilsMessengerCreateFlagsEXT {
         type Output = Self;
         fn bitxor(self, rhs: Self) -> Self {
             Self(self.0 ^ rhs.0)
         }
     }
-    impl ::core::ops::BitXorAssign for DebugUtilsMessengerCreateFlagsEXT {
+    impl core::ops::BitXorAssign for DebugUtilsMessengerCreateFlagsEXT {
         fn bitxor_assign(&mut self, rhs: Self) {
             *self = *self ^ rhs;
         }
     }
-    impl ::core::ops::Not for DebugUtilsMessengerCreateFlagsEXT {
+    impl core::ops::Not for DebugUtilsMessengerCreateFlagsEXT {
         type Output = Self;
         fn not(self) -> Self {
             Self(!self.0)
@@ -550,40 +550,40 @@ pub(crate) mod reexport {
             Self::empty()
         }
     }
-    impl ::core::ops::BitOr for DebugUtilsMessengerCallbackDataFlagsEXT {
+    impl core::ops::BitOr for DebugUtilsMessengerCallbackDataFlagsEXT {
         type Output = Self;
         fn bitor(self, rhs: Self) -> Self {
             Self(self.0 | rhs.0)
         }
     }
-    impl ::core::ops::BitOrAssign for DebugUtilsMessengerCallbackDataFlagsEXT {
+    impl core::ops::BitOrAssign for DebugUtilsMessengerCallbackDataFlagsEXT {
         fn bitor_assign(&mut self, rhs: Self) {
             *self = *self | rhs;
         }
     }
-    impl ::core::ops::BitAnd for DebugUtilsMessengerCallbackDataFlagsEXT {
+    impl core::ops::BitAnd for DebugUtilsMessengerCallbackDataFlagsEXT {
         type Output = Self;
         fn bitand(self, rhs: Self) -> Self {
             Self(self.0 & rhs.0)
         }
     }
-    impl ::core::ops::BitAndAssign for DebugUtilsMessengerCallbackDataFlagsEXT {
+    impl core::ops::BitAndAssign for DebugUtilsMessengerCallbackDataFlagsEXT {
         fn bitand_assign(&mut self, rhs: Self) {
             *self = *self & rhs;
         }
     }
-    impl ::core::ops::BitXor for DebugUtilsMessengerCallbackDataFlagsEXT {
+    impl core::ops::BitXor for DebugUtilsMessengerCallbackDataFlagsEXT {
         type Output = Self;
         fn bitxor(self, rhs: Self) -> Self {
             Self(self.0 ^ rhs.0)
         }
     }
-    impl ::core::ops::BitXorAssign for DebugUtilsMessengerCallbackDataFlagsEXT {
+    impl core::ops::BitXorAssign for DebugUtilsMessengerCallbackDataFlagsEXT {
         fn bitxor_assign(&mut self, rhs: Self) {
             *self = *self ^ rhs;
         }
     }
-    impl ::core::ops::Not for DebugUtilsMessengerCallbackDataFlagsEXT {
+    impl core::ops::Not for DebugUtilsMessengerCallbackDataFlagsEXT {
         type Output = Self;
         fn not(self) -> Self {
             Self(!self.0)

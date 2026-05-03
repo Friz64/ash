@@ -493,40 +493,40 @@ pub(crate) mod reexport {
             Self::empty()
         }
     }
-    impl ::core::ops::BitOr for IndirectCommandsLayoutUsageFlagsEXT {
+    impl core::ops::BitOr for IndirectCommandsLayoutUsageFlagsEXT {
         type Output = Self;
         fn bitor(self, rhs: Self) -> Self {
             Self(self.0 | rhs.0)
         }
     }
-    impl ::core::ops::BitOrAssign for IndirectCommandsLayoutUsageFlagsEXT {
+    impl core::ops::BitOrAssign for IndirectCommandsLayoutUsageFlagsEXT {
         fn bitor_assign(&mut self, rhs: Self) {
             *self = *self | rhs;
         }
     }
-    impl ::core::ops::BitAnd for IndirectCommandsLayoutUsageFlagsEXT {
+    impl core::ops::BitAnd for IndirectCommandsLayoutUsageFlagsEXT {
         type Output = Self;
         fn bitand(self, rhs: Self) -> Self {
             Self(self.0 & rhs.0)
         }
     }
-    impl ::core::ops::BitAndAssign for IndirectCommandsLayoutUsageFlagsEXT {
+    impl core::ops::BitAndAssign for IndirectCommandsLayoutUsageFlagsEXT {
         fn bitand_assign(&mut self, rhs: Self) {
             *self = *self & rhs;
         }
     }
-    impl ::core::ops::BitXor for IndirectCommandsLayoutUsageFlagsEXT {
+    impl core::ops::BitXor for IndirectCommandsLayoutUsageFlagsEXT {
         type Output = Self;
         fn bitxor(self, rhs: Self) -> Self {
             Self(self.0 ^ rhs.0)
         }
     }
-    impl ::core::ops::BitXorAssign for IndirectCommandsLayoutUsageFlagsEXT {
+    impl core::ops::BitXorAssign for IndirectCommandsLayoutUsageFlagsEXT {
         fn bitxor_assign(&mut self, rhs: Self) {
             *self = *self ^ rhs;
         }
     }
-    impl ::core::ops::Not for IndirectCommandsLayoutUsageFlagsEXT {
+    impl core::ops::Not for IndirectCommandsLayoutUsageFlagsEXT {
         type Output = Self;
         fn not(self) -> Self {
             Self(!self.0)
@@ -574,40 +574,40 @@ pub(crate) mod reexport {
             Self::empty()
         }
     }
-    impl ::core::ops::BitOr for IndirectCommandsInputModeFlagsEXT {
+    impl core::ops::BitOr for IndirectCommandsInputModeFlagsEXT {
         type Output = Self;
         fn bitor(self, rhs: Self) -> Self {
             Self(self.0 | rhs.0)
         }
     }
-    impl ::core::ops::BitOrAssign for IndirectCommandsInputModeFlagsEXT {
+    impl core::ops::BitOrAssign for IndirectCommandsInputModeFlagsEXT {
         fn bitor_assign(&mut self, rhs: Self) {
             *self = *self | rhs;
         }
     }
-    impl ::core::ops::BitAnd for IndirectCommandsInputModeFlagsEXT {
+    impl core::ops::BitAnd for IndirectCommandsInputModeFlagsEXT {
         type Output = Self;
         fn bitand(self, rhs: Self) -> Self {
             Self(self.0 & rhs.0)
         }
     }
-    impl ::core::ops::BitAndAssign for IndirectCommandsInputModeFlagsEXT {
+    impl core::ops::BitAndAssign for IndirectCommandsInputModeFlagsEXT {
         fn bitand_assign(&mut self, rhs: Self) {
             *self = *self & rhs;
         }
     }
-    impl ::core::ops::BitXor for IndirectCommandsInputModeFlagsEXT {
+    impl core::ops::BitXor for IndirectCommandsInputModeFlagsEXT {
         type Output = Self;
         fn bitxor(self, rhs: Self) -> Self {
             Self(self.0 ^ rhs.0)
         }
     }
-    impl ::core::ops::BitXorAssign for IndirectCommandsInputModeFlagsEXT {
+    impl core::ops::BitXorAssign for IndirectCommandsInputModeFlagsEXT {
         fn bitxor_assign(&mut self, rhs: Self) {
             *self = *self ^ rhs;
         }
     }
-    impl ::core::ops::Not for IndirectCommandsInputModeFlagsEXT {
+    impl core::ops::Not for IndirectCommandsInputModeFlagsEXT {
         type Output = Self;
         fn not(self) -> Self {
             Self(!self.0)

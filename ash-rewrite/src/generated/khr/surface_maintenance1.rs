@@ -74,40 +74,40 @@ impl Default for PresentScalingFlagsKHR {
         Self::empty()
     }
 }
-impl ::core::ops::BitOr for PresentScalingFlagsKHR {
+impl core::ops::BitOr for PresentScalingFlagsKHR {
     type Output = Self;
     fn bitor(self, rhs: Self) -> Self {
         Self(self.0 | rhs.0)
     }
 }
-impl ::core::ops::BitOrAssign for PresentScalingFlagsKHR {
+impl core::ops::BitOrAssign for PresentScalingFlagsKHR {
     fn bitor_assign(&mut self, rhs: Self) {
         *self = *self | rhs;
     }
 }
-impl ::core::ops::BitAnd for PresentScalingFlagsKHR {
+impl core::ops::BitAnd for PresentScalingFlagsKHR {
     type Output = Self;
     fn bitand(self, rhs: Self) -> Self {
         Self(self.0 & rhs.0)
     }
 }
-impl ::core::ops::BitAndAssign for PresentScalingFlagsKHR {
+impl core::ops::BitAndAssign for PresentScalingFlagsKHR {
     fn bitand_assign(&mut self, rhs: Self) {
         *self = *self & rhs;
     }
 }
-impl ::core::ops::BitXor for PresentScalingFlagsKHR {
+impl core::ops::BitXor for PresentScalingFlagsKHR {
     type Output = Self;
     fn bitxor(self, rhs: Self) -> Self {
         Self(self.0 ^ rhs.0)
     }
 }
-impl ::core::ops::BitXorAssign for PresentScalingFlagsKHR {
+impl core::ops::BitXorAssign for PresentScalingFlagsKHR {
     fn bitxor_assign(&mut self, rhs: Self) {
         *self = *self ^ rhs;
     }
 }
-impl ::core::ops::Not for PresentScalingFlagsKHR {
+impl core::ops::Not for PresentScalingFlagsKHR {
     type Output = Self;
     fn not(self) -> Self {
         Self(!self.0)
@@ -159,40 +159,40 @@ impl Default for PresentGravityFlagsKHR {
         Self::empty()
     }
 }
-impl ::core::ops::BitOr for PresentGravityFlagsKHR {
+impl core::ops::BitOr for PresentGravityFlagsKHR {
     type Output = Self;
     fn bitor(self, rhs: Self) -> Self {
         Self(self.0 | rhs.0)
     }
 }
-impl ::core::ops::BitOrAssign for PresentGravityFlagsKHR {
+impl core::ops::BitOrAssign for PresentGravityFlagsKHR {
     fn bitor_assign(&mut self, rhs: Self) {
         *self = *self | rhs;
     }
 }
-impl ::core::ops::BitAnd for PresentGravityFlagsKHR {
+impl core::ops::BitAnd for PresentGravityFlagsKHR {
     type Output = Self;
     fn bitand(self, rhs: Self) -> Self {
         Self(self.0 & rhs.0)
     }
 }
-impl ::core::ops::BitAndAssign for PresentGravityFlagsKHR {
+impl core::ops::BitAndAssign for PresentGravityFlagsKHR {
     fn bitand_assign(&mut self, rhs: Self) {
         *self = *self & rhs;
     }
 }
-impl ::core::ops::BitXor for PresentGravityFlagsKHR {
+impl core::ops::BitXor for PresentGravityFlagsKHR {
     type Output = Self;
     fn bitxor(self, rhs: Self) -> Self {
         Self(self.0 ^ rhs.0)
     }
 }
-impl ::core::ops::BitXorAssign for PresentGravityFlagsKHR {
+impl core::ops::BitXorAssign for PresentGravityFlagsKHR {
     fn bitxor_assign(&mut self, rhs: Self) {
         *self = *self ^ rhs;
     }
 }
-impl ::core::ops::Not for PresentGravityFlagsKHR {
+impl core::ops::Not for PresentGravityFlagsKHR {
     type Output = Self;
     fn not(self) -> Self {
         Self(!self.0)

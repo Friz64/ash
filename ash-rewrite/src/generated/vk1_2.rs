@@ -1132,40 +1132,40 @@ pub(crate) mod reexport {
             Self::empty()
         }
     }
-    impl ::core::ops::BitOr for SemaphoreWaitFlags {
+    impl core::ops::BitOr for SemaphoreWaitFlags {
         type Output = Self;
         fn bitor(self, rhs: Self) -> Self {
             Self(self.0 | rhs.0)
         }
     }
-    impl ::core::ops::BitOrAssign for SemaphoreWaitFlags {
+    impl core::ops::BitOrAssign for SemaphoreWaitFlags {
         fn bitor_assign(&mut self, rhs: Self) {
             *self = *self | rhs;
         }
     }
-    impl ::core::ops::BitAnd for SemaphoreWaitFlags {
+    impl core::ops::BitAnd for SemaphoreWaitFlags {
         type Output = Self;
         fn bitand(self, rhs: Self) -> Self {
             Self(self.0 & rhs.0)
         }
     }
-    impl ::core::ops::BitAndAssign for SemaphoreWaitFlags {
+    impl core::ops::BitAndAssign for SemaphoreWaitFlags {
         fn bitand_assign(&mut self, rhs: Self) {
             *self = *self & rhs;
         }
     }
-    impl ::core::ops::BitXor for SemaphoreWaitFlags {
+    impl core::ops::BitXor for SemaphoreWaitFlags {
         type Output = Self;
         fn bitxor(self, rhs: Self) -> Self {
             Self(self.0 ^ rhs.0)
         }
     }
-    impl ::core::ops::BitXorAssign for SemaphoreWaitFlags {
+    impl core::ops::BitXorAssign for SemaphoreWaitFlags {
         fn bitxor_assign(&mut self, rhs: Self) {
             *self = *self ^ rhs;
         }
     }
-    impl ::core::ops::Not for SemaphoreWaitFlags {
+    impl core::ops::Not for SemaphoreWaitFlags {
         type Output = Self;
         fn not(self) -> Self {
             Self(!self.0)
@@ -1235,40 +1235,40 @@ pub(crate) mod reexport {
             Self::empty()
         }
     }
-    impl ::core::ops::BitOr for DescriptorBindingFlags {
+    impl core::ops::BitOr for DescriptorBindingFlags {
         type Output = Self;
         fn bitor(self, rhs: Self) -> Self {
             Self(self.0 | rhs.0)
         }
     }
-    impl ::core::ops::BitOrAssign for DescriptorBindingFlags {
+    impl core::ops::BitOrAssign for DescriptorBindingFlags {
         fn bitor_assign(&mut self, rhs: Self) {
             *self = *self | rhs;
         }
     }
-    impl ::core::ops::BitAnd for DescriptorBindingFlags {
+    impl core::ops::BitAnd for DescriptorBindingFlags {
         type Output = Self;
         fn bitand(self, rhs: Self) -> Self {
             Self(self.0 & rhs.0)
         }
     }
-    impl ::core::ops::BitAndAssign for DescriptorBindingFlags {
+    impl core::ops::BitAndAssign for DescriptorBindingFlags {
         fn bitand_assign(&mut self, rhs: Self) {
             *self = *self & rhs;
         }
     }
-    impl ::core::ops::BitXor for DescriptorBindingFlags {
+    impl core::ops::BitXor for DescriptorBindingFlags {
         type Output = Self;
         fn bitxor(self, rhs: Self) -> Self {
             Self(self.0 ^ rhs.0)
         }
     }
-    impl ::core::ops::BitXorAssign for DescriptorBindingFlags {
+    impl core::ops::BitXorAssign for DescriptorBindingFlags {
         fn bitxor_assign(&mut self, rhs: Self) {
             *self = *self ^ rhs;
         }
     }
-    impl ::core::ops::Not for DescriptorBindingFlags {
+    impl core::ops::Not for DescriptorBindingFlags {
         type Output = Self;
         fn not(self) -> Self {
             Self(!self.0)
@@ -1326,40 +1326,40 @@ pub(crate) mod reexport {
             Self::empty()
         }
     }
-    impl ::core::ops::BitOr for ResolveModeFlags {
+    impl core::ops::BitOr for ResolveModeFlags {
         type Output = Self;
         fn bitor(self, rhs: Self) -> Self {
             Self(self.0 | rhs.0)
         }
     }
-    impl ::core::ops::BitOrAssign for ResolveModeFlags {
+    impl core::ops::BitOrAssign for ResolveModeFlags {
         fn bitor_assign(&mut self, rhs: Self) {
             *self = *self | rhs;
         }
     }
-    impl ::core::ops::BitAnd for ResolveModeFlags {
+    impl core::ops::BitAnd for ResolveModeFlags {
         type Output = Self;
         fn bitand(self, rhs: Self) -> Self {
             Self(self.0 & rhs.0)
         }
     }
-    impl ::core::ops::BitAndAssign for ResolveModeFlags {
+    impl core::ops::BitAndAssign for ResolveModeFlags {
         fn bitand_assign(&mut self, rhs: Self) {
             *self = *self & rhs;
         }
     }
-    impl ::core::ops::BitXor for ResolveModeFlags {
+    impl core::ops::BitXor for ResolveModeFlags {
         type Output = Self;
         fn bitxor(self, rhs: Self) -> Self {
             Self(self.0 ^ rhs.0)
         }
     }
-    impl ::core::ops::BitXorAssign for ResolveModeFlags {
+    impl core::ops::BitXorAssign for ResolveModeFlags {
         fn bitxor_assign(&mut self, rhs: Self) {
             *self = *self ^ rhs;
         }
     }
-    impl ::core::ops::Not for ResolveModeFlags {
+    impl core::ops::Not for ResolveModeFlags {
         type Output = Self;
         fn not(self) -> Self {
             Self(!self.0)

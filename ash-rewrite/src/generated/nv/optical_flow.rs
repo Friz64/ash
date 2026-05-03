@@ -315,40 +315,40 @@ pub(crate) mod reexport {
             Self::empty()
         }
     }
-    impl ::core::ops::BitOr for OpticalFlowGridSizeFlagsNV {
+    impl core::ops::BitOr for OpticalFlowGridSizeFlagsNV {
         type Output = Self;
         fn bitor(self, rhs: Self) -> Self {
             Self(self.0 | rhs.0)
         }
     }
-    impl ::core::ops::BitOrAssign for OpticalFlowGridSizeFlagsNV {
+    impl core::ops::BitOrAssign for OpticalFlowGridSizeFlagsNV {
         fn bitor_assign(&mut self, rhs: Self) {
             *self = *self | rhs;
         }
     }
-    impl ::core::ops::BitAnd for OpticalFlowGridSizeFlagsNV {
+    impl core::ops::BitAnd for OpticalFlowGridSizeFlagsNV {
         type Output = Self;
         fn bitand(self, rhs: Self) -> Self {
             Self(self.0 & rhs.0)
         }
     }
-    impl ::core::ops::BitAndAssign for OpticalFlowGridSizeFlagsNV {
+    impl core::ops::BitAndAssign for OpticalFlowGridSizeFlagsNV {
         fn bitand_assign(&mut self, rhs: Self) {
             *self = *self & rhs;
         }
     }
-    impl ::core::ops::BitXor for OpticalFlowGridSizeFlagsNV {
+    impl core::ops::BitXor for OpticalFlowGridSizeFlagsNV {
         type Output = Self;
         fn bitxor(self, rhs: Self) -> Self {
             Self(self.0 ^ rhs.0)
         }
     }
-    impl ::core::ops::BitXorAssign for OpticalFlowGridSizeFlagsNV {
+    impl core::ops::BitXorAssign for OpticalFlowGridSizeFlagsNV {
         fn bitxor_assign(&mut self, rhs: Self) {
             *self = *self ^ rhs;
         }
     }
-    impl ::core::ops::Not for OpticalFlowGridSizeFlagsNV {
+    impl core::ops::Not for OpticalFlowGridSizeFlagsNV {
         type Output = Self;
         fn not(self) -> Self {
             Self(!self.0)
@@ -401,40 +401,40 @@ pub(crate) mod reexport {
             Self::empty()
         }
     }
-    impl ::core::ops::BitOr for OpticalFlowUsageFlagsNV {
+    impl core::ops::BitOr for OpticalFlowUsageFlagsNV {
         type Output = Self;
         fn bitor(self, rhs: Self) -> Self {
             Self(self.0 | rhs.0)
         }
     }
-    impl ::core::ops::BitOrAssign for OpticalFlowUsageFlagsNV {
+    impl core::ops::BitOrAssign for OpticalFlowUsageFlagsNV {
         fn bitor_assign(&mut self, rhs: Self) {
             *self = *self | rhs;
         }
     }
-    impl ::core::ops::BitAnd for OpticalFlowUsageFlagsNV {
+    impl core::ops::BitAnd for OpticalFlowUsageFlagsNV {
         type Output = Self;
         fn bitand(self, rhs: Self) -> Self {
             Self(self.0 & rhs.0)
         }
     }
-    impl ::core::ops::BitAndAssign for OpticalFlowUsageFlagsNV {
+    impl core::ops::BitAndAssign for OpticalFlowUsageFlagsNV {
         fn bitand_assign(&mut self, rhs: Self) {
             *self = *self & rhs;
         }
     }
-    impl ::core::ops::BitXor for OpticalFlowUsageFlagsNV {
+    impl core::ops::BitXor for OpticalFlowUsageFlagsNV {
         type Output = Self;
         fn bitxor(self, rhs: Self) -> Self {
             Self(self.0 ^ rhs.0)
         }
     }
-    impl ::core::ops::BitXorAssign for OpticalFlowUsageFlagsNV {
+    impl core::ops::BitXorAssign for OpticalFlowUsageFlagsNV {
         fn bitxor_assign(&mut self, rhs: Self) {
             *self = *self ^ rhs;
         }
     }
-    impl ::core::ops::Not for OpticalFlowUsageFlagsNV {
+    impl core::ops::Not for OpticalFlowUsageFlagsNV {
         type Output = Self;
         fn not(self) -> Self {
             Self(!self.0)
@@ -495,40 +495,40 @@ pub(crate) mod reexport {
             Self::empty()
         }
     }
-    impl ::core::ops::BitOr for OpticalFlowSessionCreateFlagsNV {
+    impl core::ops::BitOr for OpticalFlowSessionCreateFlagsNV {
         type Output = Self;
         fn bitor(self, rhs: Self) -> Self {
             Self(self.0 | rhs.0)
         }
     }
-    impl ::core::ops::BitOrAssign for OpticalFlowSessionCreateFlagsNV {
+    impl core::ops::BitOrAssign for OpticalFlowSessionCreateFlagsNV {
         fn bitor_assign(&mut self, rhs: Self) {
             *self = *self | rhs;
         }
     }
-    impl ::core::ops::BitAnd for OpticalFlowSessionCreateFlagsNV {
+    impl core::ops::BitAnd for OpticalFlowSessionCreateFlagsNV {
         type Output = Self;
         fn bitand(self, rhs: Self) -> Self {
             Self(self.0 & rhs.0)
         }
     }
-    impl ::core::ops::BitAndAssign for OpticalFlowSessionCreateFlagsNV {
+    impl core::ops::BitAndAssign for OpticalFlowSessionCreateFlagsNV {
         fn bitand_assign(&mut self, rhs: Self) {
             *self = *self & rhs;
         }
     }
-    impl ::core::ops::BitXor for OpticalFlowSessionCreateFlagsNV {
+    impl core::ops::BitXor for OpticalFlowSessionCreateFlagsNV {
         type Output = Self;
         fn bitxor(self, rhs: Self) -> Self {
             Self(self.0 ^ rhs.0)
         }
     }
-    impl ::core::ops::BitXorAssign for OpticalFlowSessionCreateFlagsNV {
+    impl core::ops::BitXorAssign for OpticalFlowSessionCreateFlagsNV {
         fn bitxor_assign(&mut self, rhs: Self) {
             *self = *self ^ rhs;
         }
     }
-    impl ::core::ops::Not for OpticalFlowSessionCreateFlagsNV {
+    impl core::ops::Not for OpticalFlowSessionCreateFlagsNV {
         type Output = Self;
         fn not(self) -> Self {
             Self(!self.0)
@@ -576,40 +576,40 @@ pub(crate) mod reexport {
             Self::empty()
         }
     }
-    impl ::core::ops::BitOr for OpticalFlowExecuteFlagsNV {
+    impl core::ops::BitOr for OpticalFlowExecuteFlagsNV {
         type Output = Self;
         fn bitor(self, rhs: Self) -> Self {
             Self(self.0 | rhs.0)
         }
     }
-    impl ::core::ops::BitOrAssign for OpticalFlowExecuteFlagsNV {
+    impl core::ops::BitOrAssign for OpticalFlowExecuteFlagsNV {
         fn bitor_assign(&mut self, rhs: Self) {
             *self = *self | rhs;
         }
     }
-    impl ::core::ops::BitAnd for OpticalFlowExecuteFlagsNV {
+    impl core::ops::BitAnd for OpticalFlowExecuteFlagsNV {
         type Output = Self;
         fn bitand(self, rhs: Self) -> Self {
             Self(self.0 & rhs.0)
         }
     }
-    impl ::core::ops::BitAndAssign for OpticalFlowExecuteFlagsNV {
+    impl core::ops::BitAndAssign for OpticalFlowExecuteFlagsNV {
         fn bitand_assign(&mut self, rhs: Self) {
             *self = *self & rhs;
         }
     }
-    impl ::core::ops::BitXor for OpticalFlowExecuteFlagsNV {
+    impl core::ops::BitXor for OpticalFlowExecuteFlagsNV {
         type Output = Self;
         fn bitxor(self, rhs: Self) -> Self {
             Self(self.0 ^ rhs.0)
         }
     }
-    impl ::core::ops::BitXorAssign for OpticalFlowExecuteFlagsNV {
+    impl core::ops::BitXorAssign for OpticalFlowExecuteFlagsNV {
         fn bitxor_assign(&mut self, rhs: Self) {
             *self = *self ^ rhs;
         }
     }
-    impl ::core::ops::Not for OpticalFlowExecuteFlagsNV {
+    impl core::ops::Not for OpticalFlowExecuteFlagsNV {
         type Output = Self;
         fn not(self) -> Self {
             Self(!self.0)

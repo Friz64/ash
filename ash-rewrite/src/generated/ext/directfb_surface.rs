@@ -97,40 +97,40 @@ pub(crate) mod reexport {
             Self::empty()
         }
     }
-    impl ::core::ops::BitOr for DirectFBSurfaceCreateFlagsEXT {
+    impl core::ops::BitOr for DirectFBSurfaceCreateFlagsEXT {
         type Output = Self;
         fn bitor(self, rhs: Self) -> Self {
             Self(self.0 | rhs.0)
         }
     }
-    impl ::core::ops::BitOrAssign for DirectFBSurfaceCreateFlagsEXT {
+    impl core::ops::BitOrAssign for DirectFBSurfaceCreateFlagsEXT {
         fn bitor_assign(&mut self, rhs: Self) {
             *self = *self | rhs;
         }
     }
-    impl ::core::ops::BitAnd for DirectFBSurfaceCreateFlagsEXT {
+    impl core::ops::BitAnd for DirectFBSurfaceCreateFlagsEXT {
         type Output = Self;
         fn bitand(self, rhs: Self) -> Self {
             Self(self.0 & rhs.0)
         }
     }
-    impl ::core::ops::BitAndAssign for DirectFBSurfaceCreateFlagsEXT {
+    impl core::ops::BitAndAssign for DirectFBSurfaceCreateFlagsEXT {
         fn bitand_assign(&mut self, rhs: Self) {
             *self = *self & rhs;
         }
     }
-    impl ::core::ops::BitXor for DirectFBSurfaceCreateFlagsEXT {
+    impl core::ops::BitXor for DirectFBSurfaceCreateFlagsEXT {
         type Output = Self;
         fn bitxor(self, rhs: Self) -> Self {
             Self(self.0 ^ rhs.0)
         }
     }
-    impl ::core::ops::BitXorAssign for DirectFBSurfaceCreateFlagsEXT {
+    impl core::ops::BitXorAssign for DirectFBSurfaceCreateFlagsEXT {
         fn bitxor_assign(&mut self, rhs: Self) {
             *self = *self ^ rhs;
         }
     }
-    impl ::core::ops::Not for DirectFBSurfaceCreateFlagsEXT {
+    impl core::ops::Not for DirectFBSurfaceCreateFlagsEXT {
         type Output = Self;
         fn not(self) -> Self {
             Self(!self.0)

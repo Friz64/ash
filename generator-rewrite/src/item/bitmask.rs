@@ -81,7 +81,7 @@ impl Code for BitMask {
                 }
             }
 
-            impl ::core::ops::BitOr for #name {
+            impl core::ops::BitOr for #name {
                 type Output = Self;
 
                 fn bitor(self, rhs: Self) -> Self {
@@ -89,13 +89,13 @@ impl Code for BitMask {
                 }
             }
 
-            impl ::core::ops::BitOrAssign for #name {
+            impl core::ops::BitOrAssign for #name {
                 fn bitor_assign(&mut self, rhs: Self) {
                     *self = *self | rhs;
                 }
             }
 
-            impl ::core::ops::BitAnd for #name {
+            impl core::ops::BitAnd for #name {
                 type Output = Self;
 
                 fn bitand(self, rhs: Self) -> Self {
@@ -103,13 +103,13 @@ impl Code for BitMask {
                 }
             }
 
-            impl ::core::ops::BitAndAssign for #name {
+            impl core::ops::BitAndAssign for #name {
                 fn bitand_assign(&mut self, rhs: Self) {
                     *self = *self & rhs;
                 }
             }
 
-            impl ::core::ops::BitXor for #name {
+            impl core::ops::BitXor for #name {
                 type Output = Self;
 
                 fn bitxor(self, rhs: Self) -> Self {
@@ -117,13 +117,13 @@ impl Code for BitMask {
                 }
             }
 
-            impl ::core::ops::BitXorAssign for #name {
+            impl core::ops::BitXorAssign for #name {
                 fn bitxor_assign(&mut self, rhs: Self) {
                     *self = *self ^ rhs;
                 }
             }
 
-            impl ::core::ops::Not for #name {
+            impl core::ops::Not for #name {
                 type Output = Self;
 
                 fn not(self) -> Self {

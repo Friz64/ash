@@ -70,40 +70,40 @@ impl Default for DirectDriverLoadingFlagsLUNARG {
         Self::empty()
     }
 }
-impl ::core::ops::BitOr for DirectDriverLoadingFlagsLUNARG {
+impl core::ops::BitOr for DirectDriverLoadingFlagsLUNARG {
     type Output = Self;
     fn bitor(self, rhs: Self) -> Self {
         Self(self.0 | rhs.0)
     }
 }
-impl ::core::ops::BitOrAssign for DirectDriverLoadingFlagsLUNARG {
+impl core::ops::BitOrAssign for DirectDriverLoadingFlagsLUNARG {
     fn bitor_assign(&mut self, rhs: Self) {
         *self = *self | rhs;
     }
 }
-impl ::core::ops::BitAnd for DirectDriverLoadingFlagsLUNARG {
+impl core::ops::BitAnd for DirectDriverLoadingFlagsLUNARG {
     type Output = Self;
     fn bitand(self, rhs: Self) -> Self {
         Self(self.0 & rhs.0)
     }
 }
-impl ::core::ops::BitAndAssign for DirectDriverLoadingFlagsLUNARG {
+impl core::ops::BitAndAssign for DirectDriverLoadingFlagsLUNARG {
     fn bitand_assign(&mut self, rhs: Self) {
         *self = *self & rhs;
     }
 }
-impl ::core::ops::BitXor for DirectDriverLoadingFlagsLUNARG {
+impl core::ops::BitXor for DirectDriverLoadingFlagsLUNARG {
     type Output = Self;
     fn bitxor(self, rhs: Self) -> Self {
         Self(self.0 ^ rhs.0)
     }
 }
-impl ::core::ops::BitXorAssign for DirectDriverLoadingFlagsLUNARG {
+impl core::ops::BitXorAssign for DirectDriverLoadingFlagsLUNARG {
     fn bitxor_assign(&mut self, rhs: Self) {
         *self = *self ^ rhs;
     }
 }
-impl ::core::ops::Not for DirectDriverLoadingFlagsLUNARG {
+impl core::ops::Not for DirectDriverLoadingFlagsLUNARG {
     type Output = Self;
     fn not(self) -> Self {
         Self(!self.0)

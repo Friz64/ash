@@ -60,40 +60,40 @@ impl Default for AccessFlags3KHR {
         Self::empty()
     }
 }
-impl ::core::ops::BitOr for AccessFlags3KHR {
+impl core::ops::BitOr for AccessFlags3KHR {
     type Output = Self;
     fn bitor(self, rhs: Self) -> Self {
         Self(self.0 | rhs.0)
     }
 }
-impl ::core::ops::BitOrAssign for AccessFlags3KHR {
+impl core::ops::BitOrAssign for AccessFlags3KHR {
     fn bitor_assign(&mut self, rhs: Self) {
         *self = *self | rhs;
     }
 }
-impl ::core::ops::BitAnd for AccessFlags3KHR {
+impl core::ops::BitAnd for AccessFlags3KHR {
     type Output = Self;
     fn bitand(self, rhs: Self) -> Self {
         Self(self.0 & rhs.0)
     }
 }
-impl ::core::ops::BitAndAssign for AccessFlags3KHR {
+impl core::ops::BitAndAssign for AccessFlags3KHR {
     fn bitand_assign(&mut self, rhs: Self) {
         *self = *self & rhs;
     }
 }
-impl ::core::ops::BitXor for AccessFlags3KHR {
+impl core::ops::BitXor for AccessFlags3KHR {
     type Output = Self;
     fn bitxor(self, rhs: Self) -> Self {
         Self(self.0 ^ rhs.0)
     }
 }
-impl ::core::ops::BitXorAssign for AccessFlags3KHR {
+impl core::ops::BitXorAssign for AccessFlags3KHR {
     fn bitxor_assign(&mut self, rhs: Self) {
         *self = *self ^ rhs;
     }
 }
-impl ::core::ops::Not for AccessFlags3KHR {
+impl core::ops::Not for AccessFlags3KHR {
     type Output = Self;
     fn not(self) -> Self {
         Self(!self.0)

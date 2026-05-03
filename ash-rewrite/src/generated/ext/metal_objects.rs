@@ -201,40 +201,40 @@ pub(crate) mod reexport {
             Self::empty()
         }
     }
-    impl ::core::ops::BitOr for ExportMetalObjectTypeFlagsEXT {
+    impl core::ops::BitOr for ExportMetalObjectTypeFlagsEXT {
         type Output = Self;
         fn bitor(self, rhs: Self) -> Self {
             Self(self.0 | rhs.0)
         }
     }
-    impl ::core::ops::BitOrAssign for ExportMetalObjectTypeFlagsEXT {
+    impl core::ops::BitOrAssign for ExportMetalObjectTypeFlagsEXT {
         fn bitor_assign(&mut self, rhs: Self) {
             *self = *self | rhs;
         }
     }
-    impl ::core::ops::BitAnd for ExportMetalObjectTypeFlagsEXT {
+    impl core::ops::BitAnd for ExportMetalObjectTypeFlagsEXT {
         type Output = Self;
         fn bitand(self, rhs: Self) -> Self {
             Self(self.0 & rhs.0)
         }
     }
-    impl ::core::ops::BitAndAssign for ExportMetalObjectTypeFlagsEXT {
+    impl core::ops::BitAndAssign for ExportMetalObjectTypeFlagsEXT {
         fn bitand_assign(&mut self, rhs: Self) {
             *self = *self & rhs;
         }
     }
-    impl ::core::ops::BitXor for ExportMetalObjectTypeFlagsEXT {
+    impl core::ops::BitXor for ExportMetalObjectTypeFlagsEXT {
         type Output = Self;
         fn bitxor(self, rhs: Self) -> Self {
             Self(self.0 ^ rhs.0)
         }
     }
-    impl ::core::ops::BitXorAssign for ExportMetalObjectTypeFlagsEXT {
+    impl core::ops::BitXorAssign for ExportMetalObjectTypeFlagsEXT {
         fn bitxor_assign(&mut self, rhs: Self) {
             *self = *self ^ rhs;
         }
     }
-    impl ::core::ops::Not for ExportMetalObjectTypeFlagsEXT {
+    impl core::ops::Not for ExportMetalObjectTypeFlagsEXT {
         type Output = Self;
         fn not(self) -> Self {
             Self(!self.0)

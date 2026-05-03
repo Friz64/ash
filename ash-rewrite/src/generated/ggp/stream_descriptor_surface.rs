@@ -78,40 +78,40 @@ pub(crate) mod reexport {
             Self::empty()
         }
     }
-    impl ::core::ops::BitOr for StreamDescriptorSurfaceCreateFlagsGGP {
+    impl core::ops::BitOr for StreamDescriptorSurfaceCreateFlagsGGP {
         type Output = Self;
         fn bitor(self, rhs: Self) -> Self {
             Self(self.0 | rhs.0)
         }
     }
-    impl ::core::ops::BitOrAssign for StreamDescriptorSurfaceCreateFlagsGGP {
+    impl core::ops::BitOrAssign for StreamDescriptorSurfaceCreateFlagsGGP {
         fn bitor_assign(&mut self, rhs: Self) {
             *self = *self | rhs;
         }
     }
-    impl ::core::ops::BitAnd for StreamDescriptorSurfaceCreateFlagsGGP {
+    impl core::ops::BitAnd for StreamDescriptorSurfaceCreateFlagsGGP {
         type Output = Self;
         fn bitand(self, rhs: Self) -> Self {
             Self(self.0 & rhs.0)
         }
     }
-    impl ::core::ops::BitAndAssign for StreamDescriptorSurfaceCreateFlagsGGP {
+    impl core::ops::BitAndAssign for StreamDescriptorSurfaceCreateFlagsGGP {
         fn bitand_assign(&mut self, rhs: Self) {
             *self = *self & rhs;
         }
     }
-    impl ::core::ops::BitXor for StreamDescriptorSurfaceCreateFlagsGGP {
+    impl core::ops::BitXor for StreamDescriptorSurfaceCreateFlagsGGP {
         type Output = Self;
         fn bitxor(self, rhs: Self) -> Self {
             Self(self.0 ^ rhs.0)
         }
     }
-    impl ::core::ops::BitXorAssign for StreamDescriptorSurfaceCreateFlagsGGP {
+    impl core::ops::BitXorAssign for StreamDescriptorSurfaceCreateFlagsGGP {
         fn bitxor_assign(&mut self, rhs: Self) {
             *self = *self ^ rhs;
         }
     }
-    impl ::core::ops::Not for StreamDescriptorSurfaceCreateFlagsGGP {
+    impl core::ops::Not for StreamDescriptorSurfaceCreateFlagsGGP {
         type Output = Self;
         fn not(self) -> Self {
             Self(!self.0)

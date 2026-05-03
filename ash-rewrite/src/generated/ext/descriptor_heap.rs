@@ -608,40 +608,40 @@ pub(crate) mod reexport {
             Self::empty()
         }
     }
-    impl ::core::ops::BitOr for TensorViewCreateFlagsARM {
+    impl core::ops::BitOr for TensorViewCreateFlagsARM {
         type Output = Self;
         fn bitor(self, rhs: Self) -> Self {
             Self(self.0 | rhs.0)
         }
     }
-    impl ::core::ops::BitOrAssign for TensorViewCreateFlagsARM {
+    impl core::ops::BitOrAssign for TensorViewCreateFlagsARM {
         fn bitor_assign(&mut self, rhs: Self) {
             *self = *self | rhs;
         }
     }
-    impl ::core::ops::BitAnd for TensorViewCreateFlagsARM {
+    impl core::ops::BitAnd for TensorViewCreateFlagsARM {
         type Output = Self;
         fn bitand(self, rhs: Self) -> Self {
             Self(self.0 & rhs.0)
         }
     }
-    impl ::core::ops::BitAndAssign for TensorViewCreateFlagsARM {
+    impl core::ops::BitAndAssign for TensorViewCreateFlagsARM {
         fn bitand_assign(&mut self, rhs: Self) {
             *self = *self & rhs;
         }
     }
-    impl ::core::ops::BitXor for TensorViewCreateFlagsARM {
+    impl core::ops::BitXor for TensorViewCreateFlagsARM {
         type Output = Self;
         fn bitxor(self, rhs: Self) -> Self {
             Self(self.0 ^ rhs.0)
         }
     }
-    impl ::core::ops::BitXorAssign for TensorViewCreateFlagsARM {
+    impl core::ops::BitXorAssign for TensorViewCreateFlagsARM {
         fn bitxor_assign(&mut self, rhs: Self) {
             *self = *self ^ rhs;
         }
     }
-    impl ::core::ops::Not for TensorViewCreateFlagsARM {
+    impl core::ops::Not for TensorViewCreateFlagsARM {
         type Output = Self;
         fn not(self) -> Self {
             Self(!self.0)
@@ -705,40 +705,40 @@ pub(crate) mod reexport {
             Self::empty()
         }
     }
-    impl ::core::ops::BitOr for SpirvResourceTypeFlagsEXT {
+    impl core::ops::BitOr for SpirvResourceTypeFlagsEXT {
         type Output = Self;
         fn bitor(self, rhs: Self) -> Self {
             Self(self.0 | rhs.0)
         }
     }
-    impl ::core::ops::BitOrAssign for SpirvResourceTypeFlagsEXT {
+    impl core::ops::BitOrAssign for SpirvResourceTypeFlagsEXT {
         fn bitor_assign(&mut self, rhs: Self) {
             *self = *self | rhs;
         }
     }
-    impl ::core::ops::BitAnd for SpirvResourceTypeFlagsEXT {
+    impl core::ops::BitAnd for SpirvResourceTypeFlagsEXT {
         type Output = Self;
         fn bitand(self, rhs: Self) -> Self {
             Self(self.0 & rhs.0)
         }
     }
-    impl ::core::ops::BitAndAssign for SpirvResourceTypeFlagsEXT {
+    impl core::ops::BitAndAssign for SpirvResourceTypeFlagsEXT {
         fn bitand_assign(&mut self, rhs: Self) {
             *self = *self & rhs;
         }
     }
-    impl ::core::ops::BitXor for SpirvResourceTypeFlagsEXT {
+    impl core::ops::BitXor for SpirvResourceTypeFlagsEXT {
         type Output = Self;
         fn bitxor(self, rhs: Self) -> Self {
             Self(self.0 ^ rhs.0)
         }
     }
-    impl ::core::ops::BitXorAssign for SpirvResourceTypeFlagsEXT {
+    impl core::ops::BitXorAssign for SpirvResourceTypeFlagsEXT {
         fn bitxor_assign(&mut self, rhs: Self) {
             *self = *self ^ rhs;
         }
     }
-    impl ::core::ops::Not for SpirvResourceTypeFlagsEXT {
+    impl core::ops::Not for SpirvResourceTypeFlagsEXT {
         type Output = Self;
         fn not(self) -> Self {
             Self(!self.0)

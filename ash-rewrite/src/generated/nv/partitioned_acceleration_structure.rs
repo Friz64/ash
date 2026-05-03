@@ -235,40 +235,40 @@ pub(crate) mod reexport {
             Self::empty()
         }
     }
-    impl ::core::ops::BitOr for PartitionedAccelerationStructureInstanceFlagsNV {
+    impl core::ops::BitOr for PartitionedAccelerationStructureInstanceFlagsNV {
         type Output = Self;
         fn bitor(self, rhs: Self) -> Self {
             Self(self.0 | rhs.0)
         }
     }
-    impl ::core::ops::BitOrAssign for PartitionedAccelerationStructureInstanceFlagsNV {
+    impl core::ops::BitOrAssign for PartitionedAccelerationStructureInstanceFlagsNV {
         fn bitor_assign(&mut self, rhs: Self) {
             *self = *self | rhs;
         }
     }
-    impl ::core::ops::BitAnd for PartitionedAccelerationStructureInstanceFlagsNV {
+    impl core::ops::BitAnd for PartitionedAccelerationStructureInstanceFlagsNV {
         type Output = Self;
         fn bitand(self, rhs: Self) -> Self {
             Self(self.0 & rhs.0)
         }
     }
-    impl ::core::ops::BitAndAssign for PartitionedAccelerationStructureInstanceFlagsNV {
+    impl core::ops::BitAndAssign for PartitionedAccelerationStructureInstanceFlagsNV {
         fn bitand_assign(&mut self, rhs: Self) {
             *self = *self & rhs;
         }
     }
-    impl ::core::ops::BitXor for PartitionedAccelerationStructureInstanceFlagsNV {
+    impl core::ops::BitXor for PartitionedAccelerationStructureInstanceFlagsNV {
         type Output = Self;
         fn bitxor(self, rhs: Self) -> Self {
             Self(self.0 ^ rhs.0)
         }
     }
-    impl ::core::ops::BitXorAssign for PartitionedAccelerationStructureInstanceFlagsNV {
+    impl core::ops::BitXorAssign for PartitionedAccelerationStructureInstanceFlagsNV {
         fn bitxor_assign(&mut self, rhs: Self) {
             *self = *self ^ rhs;
         }
     }
-    impl ::core::ops::Not for PartitionedAccelerationStructureInstanceFlagsNV {
+    impl core::ops::Not for PartitionedAccelerationStructureInstanceFlagsNV {
         type Output = Self;
         fn not(self) -> Self {
             Self(!self.0)

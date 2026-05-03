@@ -641,40 +641,40 @@ pub(crate) mod reexport {
             Self::empty()
         }
     }
-    impl ::core::ops::BitOr for DataGraphPipelineSessionCreateFlagsARM {
+    impl core::ops::BitOr for DataGraphPipelineSessionCreateFlagsARM {
         type Output = Self;
         fn bitor(self, rhs: Self) -> Self {
             Self(self.0 | rhs.0)
         }
     }
-    impl ::core::ops::BitOrAssign for DataGraphPipelineSessionCreateFlagsARM {
+    impl core::ops::BitOrAssign for DataGraphPipelineSessionCreateFlagsARM {
         fn bitor_assign(&mut self, rhs: Self) {
             *self = *self | rhs;
         }
     }
-    impl ::core::ops::BitAnd for DataGraphPipelineSessionCreateFlagsARM {
+    impl core::ops::BitAnd for DataGraphPipelineSessionCreateFlagsARM {
         type Output = Self;
         fn bitand(self, rhs: Self) -> Self {
             Self(self.0 & rhs.0)
         }
     }
-    impl ::core::ops::BitAndAssign for DataGraphPipelineSessionCreateFlagsARM {
+    impl core::ops::BitAndAssign for DataGraphPipelineSessionCreateFlagsARM {
         fn bitand_assign(&mut self, rhs: Self) {
             *self = *self & rhs;
         }
     }
-    impl ::core::ops::BitXor for DataGraphPipelineSessionCreateFlagsARM {
+    impl core::ops::BitXor for DataGraphPipelineSessionCreateFlagsARM {
         type Output = Self;
         fn bitxor(self, rhs: Self) -> Self {
             Self(self.0 ^ rhs.0)
         }
     }
-    impl ::core::ops::BitXorAssign for DataGraphPipelineSessionCreateFlagsARM {
+    impl core::ops::BitXorAssign for DataGraphPipelineSessionCreateFlagsARM {
         fn bitxor_assign(&mut self, rhs: Self) {
             *self = *self ^ rhs;
         }
     }
-    impl ::core::ops::Not for DataGraphPipelineSessionCreateFlagsARM {
+    impl core::ops::Not for DataGraphPipelineSessionCreateFlagsARM {
         type Output = Self;
         fn not(self) -> Self {
             Self(!self.0)
@@ -715,40 +715,40 @@ pub(crate) mod reexport {
             Self::empty()
         }
     }
-    impl ::core::ops::BitOr for DataGraphPipelineDispatchFlagsARM {
+    impl core::ops::BitOr for DataGraphPipelineDispatchFlagsARM {
         type Output = Self;
         fn bitor(self, rhs: Self) -> Self {
             Self(self.0 | rhs.0)
         }
     }
-    impl ::core::ops::BitOrAssign for DataGraphPipelineDispatchFlagsARM {
+    impl core::ops::BitOrAssign for DataGraphPipelineDispatchFlagsARM {
         fn bitor_assign(&mut self, rhs: Self) {
             *self = *self | rhs;
         }
     }
-    impl ::core::ops::BitAnd for DataGraphPipelineDispatchFlagsARM {
+    impl core::ops::BitAnd for DataGraphPipelineDispatchFlagsARM {
         type Output = Self;
         fn bitand(self, rhs: Self) -> Self {
             Self(self.0 & rhs.0)
         }
     }
-    impl ::core::ops::BitAndAssign for DataGraphPipelineDispatchFlagsARM {
+    impl core::ops::BitAndAssign for DataGraphPipelineDispatchFlagsARM {
         fn bitand_assign(&mut self, rhs: Self) {
             *self = *self & rhs;
         }
     }
-    impl ::core::ops::BitXor for DataGraphPipelineDispatchFlagsARM {
+    impl core::ops::BitXor for DataGraphPipelineDispatchFlagsARM {
         type Output = Self;
         fn bitxor(self, rhs: Self) -> Self {
             Self(self.0 ^ rhs.0)
         }
     }
-    impl ::core::ops::BitXorAssign for DataGraphPipelineDispatchFlagsARM {
+    impl core::ops::BitXorAssign for DataGraphPipelineDispatchFlagsARM {
         fn bitxor_assign(&mut self, rhs: Self) {
             *self = *self ^ rhs;
         }
     }
-    impl ::core::ops::Not for DataGraphPipelineDispatchFlagsARM {
+    impl core::ops::Not for DataGraphPipelineDispatchFlagsARM {
         type Output = Self;
         fn not(self) -> Self {
             Self(!self.0)

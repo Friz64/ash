@@ -85,40 +85,40 @@ impl Default for GraphicsPipelineLibraryFlagsEXT {
         Self::empty()
     }
 }
-impl ::core::ops::BitOr for GraphicsPipelineLibraryFlagsEXT {
+impl core::ops::BitOr for GraphicsPipelineLibraryFlagsEXT {
     type Output = Self;
     fn bitor(self, rhs: Self) -> Self {
         Self(self.0 | rhs.0)
     }
 }
-impl ::core::ops::BitOrAssign for GraphicsPipelineLibraryFlagsEXT {
+impl core::ops::BitOrAssign for GraphicsPipelineLibraryFlagsEXT {
     fn bitor_assign(&mut self, rhs: Self) {
         *self = *self | rhs;
     }
 }
-impl ::core::ops::BitAnd for GraphicsPipelineLibraryFlagsEXT {
+impl core::ops::BitAnd for GraphicsPipelineLibraryFlagsEXT {
     type Output = Self;
     fn bitand(self, rhs: Self) -> Self {
         Self(self.0 & rhs.0)
     }
 }
-impl ::core::ops::BitAndAssign for GraphicsPipelineLibraryFlagsEXT {
+impl core::ops::BitAndAssign for GraphicsPipelineLibraryFlagsEXT {
     fn bitand_assign(&mut self, rhs: Self) {
         *self = *self & rhs;
     }
 }
-impl ::core::ops::BitXor for GraphicsPipelineLibraryFlagsEXT {
+impl core::ops::BitXor for GraphicsPipelineLibraryFlagsEXT {
     type Output = Self;
     fn bitxor(self, rhs: Self) -> Self {
         Self(self.0 ^ rhs.0)
     }
 }
-impl ::core::ops::BitXorAssign for GraphicsPipelineLibraryFlagsEXT {
+impl core::ops::BitXorAssign for GraphicsPipelineLibraryFlagsEXT {
     fn bitxor_assign(&mut self, rhs: Self) {
         *self = *self ^ rhs;
     }
 }
-impl ::core::ops::Not for GraphicsPipelineLibraryFlagsEXT {
+impl core::ops::Not for GraphicsPipelineLibraryFlagsEXT {
     type Output = Self;
     fn not(self) -> Self {
         Self(!self.0)
