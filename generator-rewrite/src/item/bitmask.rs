@@ -50,7 +50,7 @@ impl Code for BitMask {
             impl #name {
                 #values
 
-                pub const fn empty() -> Self { 
+                pub const fn empty() -> Self {
                     Self(0)
                 }
 
