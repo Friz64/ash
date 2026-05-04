@@ -305,6 +305,17 @@ pub(crate) mod reexport {
     for WriteDescriptorSetAccelerationStructureKHR<'a> {
         const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::WRITE_DESCRIPTOR_SET_ACCELERATION_STRUCTURE_KHR;
     }
+    impl<'a> Default for WriteDescriptorSetAccelerationStructureKHR<'a> {
+        fn default() -> Self {
+            Self {
+                s_type: <Self as crate::TaggedStructure>::STRUCTURE_TYPE,
+                p_next: Default::default(),
+                acceleration_structure_count: Default::default(),
+                p_acceleration_structures: Default::default(),
+                _marker: ::core::marker::PhantomData,
+            }
+        }
+    }
     #[repr(C)]
     #[derive(Clone, Copy)]
     pub struct PhysicalDeviceAccelerationStructureFeaturesKHR<'a> {
@@ -320,6 +331,20 @@ pub(crate) mod reexport {
     unsafe impl<'a> crate::TaggedStructure<'a>
     for PhysicalDeviceAccelerationStructureFeaturesKHR<'a> {
         const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::PHYSICAL_DEVICE_ACCELERATION_STRUCTURE_FEATURES_KHR;
+    }
+    impl<'a> Default for PhysicalDeviceAccelerationStructureFeaturesKHR<'a> {
+        fn default() -> Self {
+            Self {
+                s_type: <Self as crate::TaggedStructure>::STRUCTURE_TYPE,
+                p_next: Default::default(),
+                acceleration_structure: Default::default(),
+                acceleration_structure_capture_replay: Default::default(),
+                acceleration_structure_indirect_build: Default::default(),
+                acceleration_structure_host_commands: Default::default(),
+                descriptor_binding_acceleration_structure_update_after_bind: Default::default(),
+                _marker: ::core::marker::PhantomData,
+            }
+        }
     }
     #[repr(C)]
     #[derive(Clone, Copy)]
@@ -340,6 +365,23 @@ pub(crate) mod reexport {
     for PhysicalDeviceAccelerationStructurePropertiesKHR<'a> {
         const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::PHYSICAL_DEVICE_ACCELERATION_STRUCTURE_PROPERTIES_KHR;
     }
+    impl<'a> Default for PhysicalDeviceAccelerationStructurePropertiesKHR<'a> {
+        fn default() -> Self {
+            Self {
+                s_type: <Self as crate::TaggedStructure>::STRUCTURE_TYPE,
+                p_next: Default::default(),
+                max_geometry_count: Default::default(),
+                max_instance_count: Default::default(),
+                max_primitive_count: Default::default(),
+                max_per_stage_descriptor_acceleration_structures: Default::default(),
+                max_per_stage_descriptor_update_after_bind_acceleration_structures: Default::default(),
+                max_descriptor_set_acceleration_structures: Default::default(),
+                max_descriptor_set_update_after_bind_acceleration_structures: Default::default(),
+                min_acceleration_structure_scratch_offset_alignment: Default::default(),
+                _marker: ::core::marker::PhantomData,
+            }
+        }
+    }
     #[repr(C)]
     #[derive(Clone, Copy)]
     pub struct AccelerationStructureGeometryTrianglesDataKHR<'a> {
@@ -358,6 +400,22 @@ pub(crate) mod reexport {
     for AccelerationStructureGeometryTrianglesDataKHR<'a> {
         const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::ACCELERATION_STRUCTURE_GEOMETRY_TRIANGLES_DATA_KHR;
     }
+    impl<'a> Default for AccelerationStructureGeometryTrianglesDataKHR<'a> {
+        fn default() -> Self {
+            Self {
+                s_type: <Self as crate::TaggedStructure>::STRUCTURE_TYPE,
+                p_next: Default::default(),
+                vertex_format: Default::default(),
+                vertex_data: Default::default(),
+                vertex_stride: Default::default(),
+                max_vertex: Default::default(),
+                index_type: Default::default(),
+                index_data: Default::default(),
+                transform_data: Default::default(),
+                _marker: ::core::marker::PhantomData,
+            }
+        }
+    }
     #[repr(C)]
     #[derive(Clone, Copy)]
     pub struct AccelerationStructureGeometryAabbsDataKHR<'a> {
@@ -370,6 +428,17 @@ pub(crate) mod reexport {
     unsafe impl<'a> crate::TaggedStructure<'a>
     for AccelerationStructureGeometryAabbsDataKHR<'a> {
         const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::ACCELERATION_STRUCTURE_GEOMETRY_AABBS_DATA_KHR;
+    }
+    impl<'a> Default for AccelerationStructureGeometryAabbsDataKHR<'a> {
+        fn default() -> Self {
+            Self {
+                s_type: <Self as crate::TaggedStructure>::STRUCTURE_TYPE,
+                p_next: Default::default(),
+                data: Default::default(),
+                stride: Default::default(),
+                _marker: ::core::marker::PhantomData,
+            }
+        }
     }
     #[repr(C)]
     #[derive(Clone, Copy)]
@@ -384,6 +453,17 @@ pub(crate) mod reexport {
     for AccelerationStructureGeometryInstancesDataKHR<'a> {
         const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::ACCELERATION_STRUCTURE_GEOMETRY_INSTANCES_DATA_KHR;
     }
+    impl<'a> Default for AccelerationStructureGeometryInstancesDataKHR<'a> {
+        fn default() -> Self {
+            Self {
+                s_type: <Self as crate::TaggedStructure>::STRUCTURE_TYPE,
+                p_next: Default::default(),
+                array_of_pointers: Default::default(),
+                data: Default::default(),
+                _marker: ::core::marker::PhantomData,
+            }
+        }
+    }
     #[repr(C)]
     #[derive(Clone, Copy)]
     pub struct AccelerationStructureGeometryKHR<'a> {
@@ -396,6 +476,18 @@ pub(crate) mod reexport {
     }
     unsafe impl<'a> crate::TaggedStructure<'a> for AccelerationStructureGeometryKHR<'a> {
         const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::ACCELERATION_STRUCTURE_GEOMETRY_KHR;
+    }
+    impl<'a> Default for AccelerationStructureGeometryKHR<'a> {
+        fn default() -> Self {
+            Self {
+                s_type: <Self as crate::TaggedStructure>::STRUCTURE_TYPE,
+                p_next: Default::default(),
+                geometry_type: Default::default(),
+                geometry: Default::default(),
+                flags: Default::default(),
+                _marker: ::core::marker::PhantomData,
+            }
+        }
     }
     #[repr(C)]
     #[derive(Clone, Copy)]
@@ -417,8 +509,26 @@ pub(crate) mod reexport {
     for AccelerationStructureBuildGeometryInfoKHR<'a> {
         const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::ACCELERATION_STRUCTURE_BUILD_GEOMETRY_INFO_KHR;
     }
+    impl<'a> Default for AccelerationStructureBuildGeometryInfoKHR<'a> {
+        fn default() -> Self {
+            Self {
+                s_type: <Self as crate::TaggedStructure>::STRUCTURE_TYPE,
+                p_next: Default::default(),
+                _type: Default::default(),
+                flags: Default::default(),
+                mode: Default::default(),
+                src_acceleration_structure: Default::default(),
+                dst_acceleration_structure: Default::default(),
+                geometry_count: Default::default(),
+                p_geometries: Default::default(),
+                pp_geometries: Default::default(),
+                scratch_data: Default::default(),
+                _marker: ::core::marker::PhantomData,
+            }
+        }
+    }
     #[repr(C)]
-    #[derive(Clone, Copy)]
+    #[derive(Clone, Copy, Default)]
     pub struct AccelerationStructureBuildRangeInfoKHR {
         pub primitive_count: u32,
         pub primitive_offset: u32,
@@ -442,8 +552,23 @@ pub(crate) mod reexport {
     for AccelerationStructureCreateInfoKHR<'a> {
         const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::ACCELERATION_STRUCTURE_CREATE_INFO_KHR;
     }
+    impl<'a> Default for AccelerationStructureCreateInfoKHR<'a> {
+        fn default() -> Self {
+            Self {
+                s_type: <Self as crate::TaggedStructure>::STRUCTURE_TYPE,
+                p_next: Default::default(),
+                create_flags: Default::default(),
+                buffer: Default::default(),
+                offset: Default::default(),
+                size: Default::default(),
+                _type: Default::default(),
+                device_address: Default::default(),
+                _marker: ::core::marker::PhantomData,
+            }
+        }
+    }
     #[repr(C)]
-    #[derive(Clone, Copy)]
+    #[derive(Clone, Copy, Default)]
     pub struct AabbPositionsKHR {
         pub min_x: core::ffi::c_float,
         pub min_y: core::ffi::c_float,
@@ -457,8 +582,15 @@ pub(crate) mod reexport {
     pub struct TransformMatrixKHR {
         pub matrix: [[core::ffi::c_float; 4 as _]; 3 as _],
     }
+    impl Default for TransformMatrixKHR {
+        fn default() -> Self {
+            Self {
+                matrix: unsafe { core::mem::zeroed() },
+            }
+        }
+    }
     #[repr(C)]
-    #[derive(Clone, Copy)]
+    #[derive(Clone, Copy, Default)]
     pub struct AccelerationStructureInstanceKHR {
         pub transform: crate::vk::TransformMatrixKHR,
         /**- `instanceCustomIndex` @ `0..24`
@@ -481,6 +613,16 @@ pub(crate) mod reexport {
     for AccelerationStructureDeviceAddressInfoKHR<'a> {
         const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::ACCELERATION_STRUCTURE_DEVICE_ADDRESS_INFO_KHR;
     }
+    impl<'a> Default for AccelerationStructureDeviceAddressInfoKHR<'a> {
+        fn default() -> Self {
+            Self {
+                s_type: <Self as crate::TaggedStructure>::STRUCTURE_TYPE,
+                p_next: Default::default(),
+                acceleration_structure: Default::default(),
+                _marker: ::core::marker::PhantomData,
+            }
+        }
+    }
     #[repr(C)]
     #[derive(Clone, Copy)]
     pub struct AccelerationStructureVersionInfoKHR<'a> {
@@ -492,6 +634,16 @@ pub(crate) mod reexport {
     unsafe impl<'a> crate::TaggedStructure<'a>
     for AccelerationStructureVersionInfoKHR<'a> {
         const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::ACCELERATION_STRUCTURE_VERSION_INFO_KHR;
+    }
+    impl<'a> Default for AccelerationStructureVersionInfoKHR<'a> {
+        fn default() -> Self {
+            Self {
+                s_type: <Self as crate::TaggedStructure>::STRUCTURE_TYPE,
+                p_next: Default::default(),
+                p_version_data: Default::default(),
+                _marker: ::core::marker::PhantomData,
+            }
+        }
     }
     #[repr(C)]
     #[derive(Clone, Copy)]
@@ -505,6 +657,18 @@ pub(crate) mod reexport {
     }
     unsafe impl<'a> crate::TaggedStructure<'a> for CopyAccelerationStructureInfoKHR<'a> {
         const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::COPY_ACCELERATION_STRUCTURE_INFO_KHR;
+    }
+    impl<'a> Default for CopyAccelerationStructureInfoKHR<'a> {
+        fn default() -> Self {
+            Self {
+                s_type: <Self as crate::TaggedStructure>::STRUCTURE_TYPE,
+                p_next: Default::default(),
+                src: Default::default(),
+                dst: Default::default(),
+                mode: Default::default(),
+                _marker: ::core::marker::PhantomData,
+            }
+        }
     }
     #[repr(C)]
     #[derive(Clone, Copy)]
@@ -520,6 +684,18 @@ pub(crate) mod reexport {
     for CopyAccelerationStructureToMemoryInfoKHR<'a> {
         const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::COPY_ACCELERATION_STRUCTURE_TO_MEMORY_INFO_KHR;
     }
+    impl<'a> Default for CopyAccelerationStructureToMemoryInfoKHR<'a> {
+        fn default() -> Self {
+            Self {
+                s_type: <Self as crate::TaggedStructure>::STRUCTURE_TYPE,
+                p_next: Default::default(),
+                src: Default::default(),
+                dst: Default::default(),
+                mode: Default::default(),
+                _marker: ::core::marker::PhantomData,
+            }
+        }
+    }
     #[repr(C)]
     #[derive(Clone, Copy)]
     pub struct CopyMemoryToAccelerationStructureInfoKHR<'a> {
@@ -533,6 +709,18 @@ pub(crate) mod reexport {
     unsafe impl<'a> crate::TaggedStructure<'a>
     for CopyMemoryToAccelerationStructureInfoKHR<'a> {
         const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::COPY_MEMORY_TO_ACCELERATION_STRUCTURE_INFO_KHR;
+    }
+    impl<'a> Default for CopyMemoryToAccelerationStructureInfoKHR<'a> {
+        fn default() -> Self {
+            Self {
+                s_type: <Self as crate::TaggedStructure>::STRUCTURE_TYPE,
+                p_next: Default::default(),
+                src: Default::default(),
+                dst: Default::default(),
+                mode: Default::default(),
+                _marker: ::core::marker::PhantomData,
+            }
+        }
     }
     #[repr(C)]
     #[derive(Clone, Copy)]
@@ -548,11 +736,28 @@ pub(crate) mod reexport {
     for AccelerationStructureBuildSizesInfoKHR<'a> {
         const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::ACCELERATION_STRUCTURE_BUILD_SIZES_INFO_KHR;
     }
+    impl<'a> Default for AccelerationStructureBuildSizesInfoKHR<'a> {
+        fn default() -> Self {
+            Self {
+                s_type: <Self as crate::TaggedStructure>::STRUCTURE_TYPE,
+                p_next: Default::default(),
+                acceleration_structure_size: Default::default(),
+                update_scratch_size: Default::default(),
+                build_scratch_size: Default::default(),
+                _marker: ::core::marker::PhantomData,
+            }
+        }
+    }
     #[repr(C)]
     #[derive(Clone, Copy)]
     pub union DeviceOrHostAddressKHR {
         pub device_address: crate::vk::DeviceAddress,
         pub host_address: *mut core::ffi::c_void,
+    }
+    impl Default for DeviceOrHostAddressKHR {
+        fn default() -> Self {
+            unsafe { core::mem::zeroed() }
+        }
     }
     #[repr(C)]
     #[derive(Clone, Copy)]
@@ -560,12 +765,22 @@ pub(crate) mod reexport {
         pub device_address: crate::vk::DeviceAddress,
         pub host_address: *const core::ffi::c_void,
     }
+    impl Default for DeviceOrHostAddressConstKHR {
+        fn default() -> Self {
+            unsafe { core::mem::zeroed() }
+        }
+    }
     #[repr(C)]
     #[derive(Clone, Copy)]
     pub union AccelerationStructureGeometryDataKHR<'a> {
         pub triangles: crate::vk::AccelerationStructureGeometryTrianglesDataKHR<'a>,
         pub aabbs: crate::vk::AccelerationStructureGeometryAabbsDataKHR<'a>,
         pub instances: crate::vk::AccelerationStructureGeometryInstancesDataKHR<'a>,
+    }
+    impl<'a> Default for AccelerationStructureGeometryDataKHR<'a> {
+        fn default() -> Self {
+            unsafe { core::mem::zeroed() }
+        }
     }
     ///Provided by [`khr::acceleration_structure`](crate::khr::acceleration_structure)
     impl crate::vk::DescriptorType {
@@ -827,7 +1042,7 @@ pub(crate) mod reexport {
         }
     }
     #[repr(transparent)]
-    #[derive(Clone, Copy)]
+    #[derive(Clone, Copy, Default)]
     pub struct GeometryFlagBitsKHR(pub(crate) u32);
     ///Provided by [`khr::acceleration_structure`](crate::khr::acceleration_structure)
     impl GeometryFlagBitsKHR {
@@ -935,7 +1150,7 @@ pub(crate) mod reexport {
         }
     }
     #[repr(transparent)]
-    #[derive(Clone, Copy)]
+    #[derive(Clone, Copy, Default)]
     pub struct GeometryInstanceFlagBitsKHR(pub(crate) u32);
     ///Provided by [`khr::acceleration_structure`](crate::khr::acceleration_structure)
     impl GeometryInstanceFlagBitsKHR {
@@ -1066,7 +1281,7 @@ pub(crate) mod reexport {
         }
     }
     #[repr(transparent)]
-    #[derive(Clone, Copy)]
+    #[derive(Clone, Copy, Default)]
     pub struct BuildAccelerationStructureFlagBitsKHR(pub(crate) u32);
     ///Provided by [`khr::acceleration_structure`](crate::khr::acceleration_structure)
     impl BuildAccelerationStructureFlagBitsKHR {
@@ -1154,7 +1369,7 @@ pub(crate) mod reexport {
         }
     }
     #[repr(transparent)]
-    #[derive(Clone, Copy)]
+    #[derive(Clone, Copy, Default)]
     pub struct AccelerationStructureCreateFlagBitsKHR(pub(crate) u32);
     ///Provided by [`khr::acceleration_structure`](crate::khr::acceleration_structure)
     impl AccelerationStructureCreateFlagBitsKHR {

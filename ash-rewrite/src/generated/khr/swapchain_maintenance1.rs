@@ -47,6 +47,16 @@ pub(crate) mod reexport {
     for PhysicalDeviceSwapchainMaintenance1FeaturesKHR<'a> {
         const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::PHYSICAL_DEVICE_SWAPCHAIN_MAINTENANCE_1_FEATURES_KHR;
     }
+    impl<'a> Default for PhysicalDeviceSwapchainMaintenance1FeaturesKHR<'a> {
+        fn default() -> Self {
+            Self {
+                s_type: <Self as crate::TaggedStructure>::STRUCTURE_TYPE,
+                p_next: Default::default(),
+                swapchain_maintenance1: Default::default(),
+                _marker: ::core::marker::PhantomData,
+            }
+        }
+    }
     #[repr(C)]
     #[derive(Clone, Copy)]
     pub struct SwapchainPresentFenceInfoKHR<'a> {
@@ -58,6 +68,17 @@ pub(crate) mod reexport {
     }
     unsafe impl<'a> crate::TaggedStructure<'a> for SwapchainPresentFenceInfoKHR<'a> {
         const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::SWAPCHAIN_PRESENT_FENCE_INFO_KHR;
+    }
+    impl<'a> Default for SwapchainPresentFenceInfoKHR<'a> {
+        fn default() -> Self {
+            Self {
+                s_type: <Self as crate::TaggedStructure>::STRUCTURE_TYPE,
+                p_next: Default::default(),
+                swapchain_count: Default::default(),
+                p_fences: Default::default(),
+                _marker: ::core::marker::PhantomData,
+            }
+        }
     }
     #[repr(C)]
     #[derive(Clone, Copy)]
@@ -72,6 +93,17 @@ pub(crate) mod reexport {
     for SwapchainPresentModesCreateInfoKHR<'a> {
         const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::SWAPCHAIN_PRESENT_MODES_CREATE_INFO_KHR;
     }
+    impl<'a> Default for SwapchainPresentModesCreateInfoKHR<'a> {
+        fn default() -> Self {
+            Self {
+                s_type: <Self as crate::TaggedStructure>::STRUCTURE_TYPE,
+                p_next: Default::default(),
+                present_mode_count: Default::default(),
+                p_present_modes: Default::default(),
+                _marker: ::core::marker::PhantomData,
+            }
+        }
+    }
     #[repr(C)]
     #[derive(Clone, Copy)]
     pub struct SwapchainPresentModeInfoKHR<'a> {
@@ -83,6 +115,17 @@ pub(crate) mod reexport {
     }
     unsafe impl<'a> crate::TaggedStructure<'a> for SwapchainPresentModeInfoKHR<'a> {
         const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::SWAPCHAIN_PRESENT_MODE_INFO_KHR;
+    }
+    impl<'a> Default for SwapchainPresentModeInfoKHR<'a> {
+        fn default() -> Self {
+            Self {
+                s_type: <Self as crate::TaggedStructure>::STRUCTURE_TYPE,
+                p_next: Default::default(),
+                swapchain_count: Default::default(),
+                p_present_modes: Default::default(),
+                _marker: ::core::marker::PhantomData,
+            }
+        }
     }
     #[repr(C)]
     #[derive(Clone, Copy)]
@@ -98,6 +141,18 @@ pub(crate) mod reexport {
     for SwapchainPresentScalingCreateInfoKHR<'a> {
         const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::SWAPCHAIN_PRESENT_SCALING_CREATE_INFO_KHR;
     }
+    impl<'a> Default for SwapchainPresentScalingCreateInfoKHR<'a> {
+        fn default() -> Self {
+            Self {
+                s_type: <Self as crate::TaggedStructure>::STRUCTURE_TYPE,
+                p_next: Default::default(),
+                scaling_behavior: Default::default(),
+                present_gravity_x: Default::default(),
+                present_gravity_y: Default::default(),
+                _marker: ::core::marker::PhantomData,
+            }
+        }
+    }
     #[repr(C)]
     #[derive(Clone, Copy)]
     pub struct ReleaseSwapchainImagesInfoKHR<'a> {
@@ -110,6 +165,18 @@ pub(crate) mod reexport {
     }
     unsafe impl<'a> crate::TaggedStructure<'a> for ReleaseSwapchainImagesInfoKHR<'a> {
         const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::RELEASE_SWAPCHAIN_IMAGES_INFO_KHR;
+    }
+    impl<'a> Default for ReleaseSwapchainImagesInfoKHR<'a> {
+        fn default() -> Self {
+            Self {
+                s_type: <Self as crate::TaggedStructure>::STRUCTURE_TYPE,
+                p_next: Default::default(),
+                swapchain: Default::default(),
+                image_index_count: Default::default(),
+                p_image_indices: Default::default(),
+                _marker: ::core::marker::PhantomData,
+            }
+        }
     }
     ///Provided by [`khr::swapchain_maintenance1`](crate::khr::swapchain_maintenance1)
     impl crate::vk::StructureType {

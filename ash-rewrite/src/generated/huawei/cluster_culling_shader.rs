@@ -68,6 +68,19 @@ pub(crate) mod reexport {
     for PhysicalDeviceClusterCullingShaderPropertiesHUAWEI<'a> {
         const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::PHYSICAL_DEVICE_CLUSTER_CULLING_SHADER_PROPERTIES_HUAWEI;
     }
+    impl<'a> Default for PhysicalDeviceClusterCullingShaderPropertiesHUAWEI<'a> {
+        fn default() -> Self {
+            Self {
+                s_type: <Self as crate::TaggedStructure>::STRUCTURE_TYPE,
+                p_next: Default::default(),
+                max_work_group_count: unsafe { core::mem::zeroed() },
+                max_work_group_size: unsafe { core::mem::zeroed() },
+                max_output_cluster_count: Default::default(),
+                indirect_buffer_offset_alignment: Default::default(),
+                _marker: ::core::marker::PhantomData,
+            }
+        }
+    }
     #[repr(C)]
     #[derive(Clone, Copy)]
     pub struct PhysicalDeviceClusterCullingShaderFeaturesHUAWEI<'a> {
@@ -81,6 +94,17 @@ pub(crate) mod reexport {
     for PhysicalDeviceClusterCullingShaderFeaturesHUAWEI<'a> {
         const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::PHYSICAL_DEVICE_CLUSTER_CULLING_SHADER_FEATURES_HUAWEI;
     }
+    impl<'a> Default for PhysicalDeviceClusterCullingShaderFeaturesHUAWEI<'a> {
+        fn default() -> Self {
+            Self {
+                s_type: <Self as crate::TaggedStructure>::STRUCTURE_TYPE,
+                p_next: Default::default(),
+                clusterculling_shader: Default::default(),
+                multiview_cluster_culling_shader: Default::default(),
+                _marker: ::core::marker::PhantomData,
+            }
+        }
+    }
     #[repr(C)]
     #[derive(Clone, Copy)]
     pub struct PhysicalDeviceClusterCullingShaderVrsFeaturesHUAWEI<'a> {
@@ -92,6 +116,16 @@ pub(crate) mod reexport {
     unsafe impl<'a> crate::TaggedStructure<'a>
     for PhysicalDeviceClusterCullingShaderVrsFeaturesHUAWEI<'a> {
         const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::PHYSICAL_DEVICE_CLUSTER_CULLING_SHADER_VRS_FEATURES_HUAWEI;
+    }
+    impl<'a> Default for PhysicalDeviceClusterCullingShaderVrsFeaturesHUAWEI<'a> {
+        fn default() -> Self {
+            Self {
+                s_type: <Self as crate::TaggedStructure>::STRUCTURE_TYPE,
+                p_next: Default::default(),
+                cluster_shading_rate: Default::default(),
+                _marker: ::core::marker::PhantomData,
+            }
+        }
     }
     ///Provided by [`huawei::cluster_culling_shader`](crate::huawei::cluster_culling_shader)
     impl crate::vk::StructureType {

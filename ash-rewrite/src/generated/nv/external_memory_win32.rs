@@ -49,6 +49,17 @@ pub(crate) mod reexport {
     unsafe impl<'a> crate::TaggedStructure<'a> for ImportMemoryWin32HandleInfoNV<'a> {
         const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::IMPORT_MEMORY_WIN32_HANDLE_INFO_NV;
     }
+    impl<'a> Default for ImportMemoryWin32HandleInfoNV<'a> {
+        fn default() -> Self {
+            Self {
+                s_type: <Self as crate::TaggedStructure>::STRUCTURE_TYPE,
+                p_next: Default::default(),
+                handle_type: Default::default(),
+                handle: Default::default(),
+                _marker: ::core::marker::PhantomData,
+            }
+        }
+    }
     #[repr(C)]
     #[derive(Clone, Copy)]
     pub struct ExportMemoryWin32HandleInfoNV<'a> {
@@ -60,6 +71,17 @@ pub(crate) mod reexport {
     }
     unsafe impl<'a> crate::TaggedStructure<'a> for ExportMemoryWin32HandleInfoNV<'a> {
         const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::EXPORT_MEMORY_WIN32_HANDLE_INFO_NV;
+    }
+    impl<'a> Default for ExportMemoryWin32HandleInfoNV<'a> {
+        fn default() -> Self {
+            Self {
+                s_type: <Self as crate::TaggedStructure>::STRUCTURE_TYPE,
+                p_next: Default::default(),
+                p_attributes: Default::default(),
+                dw_access: Default::default(),
+                _marker: ::core::marker::PhantomData,
+            }
+        }
     }
     ///Provided by [`nv::external_memory_win32`](crate::nv::external_memory_win32)
     impl crate::vk::StructureType {

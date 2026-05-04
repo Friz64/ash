@@ -13,6 +13,16 @@ unsafe impl<'a> crate::TaggedStructure<'a>
 for PhysicalDeviceShaderRelaxedExtendedInstructionFeaturesKHR<'a> {
     const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::PHYSICAL_DEVICE_SHADER_RELAXED_EXTENDED_INSTRUCTION_FEATURES_KHR;
 }
+impl<'a> Default for PhysicalDeviceShaderRelaxedExtendedInstructionFeaturesKHR<'a> {
+    fn default() -> Self {
+        Self {
+            s_type: <Self as crate::TaggedStructure>::STRUCTURE_TYPE,
+            p_next: Default::default(),
+            shader_relaxed_extended_instruction: Default::default(),
+            _marker: ::core::marker::PhantomData,
+        }
+    }
+}
 ///Provided by [`khr::shader_relaxed_extended_instruction`](crate::khr::shader_relaxed_extended_instruction)
 impl crate::vk::StructureType {
     pub const PHYSICAL_DEVICE_SHADER_RELAXED_EXTENDED_INSTRUCTION_FEATURES_KHR: Self = Self(

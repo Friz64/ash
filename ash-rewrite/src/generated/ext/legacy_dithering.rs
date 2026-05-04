@@ -13,6 +13,16 @@ unsafe impl<'a> crate::TaggedStructure<'a>
 for PhysicalDeviceLegacyDitheringFeaturesEXT<'a> {
     const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::PHYSICAL_DEVICE_LEGACY_DITHERING_FEATURES_EXT;
 }
+impl<'a> Default for PhysicalDeviceLegacyDitheringFeaturesEXT<'a> {
+    fn default() -> Self {
+        Self {
+            s_type: <Self as crate::TaggedStructure>::STRUCTURE_TYPE,
+            p_next: Default::default(),
+            legacy_dithering: Default::default(),
+            _marker: ::core::marker::PhantomData,
+        }
+    }
+}
 ///Provided by [`ext::legacy_dithering`](crate::ext::legacy_dithering)
 impl crate::vk::StructureType {
     pub const PHYSICAL_DEVICE_LEGACY_DITHERING_FEATURES_EXT: Self = Self(1000465000);

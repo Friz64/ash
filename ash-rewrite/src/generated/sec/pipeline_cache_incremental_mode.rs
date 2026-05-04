@@ -13,6 +13,16 @@ unsafe impl<'a> crate::TaggedStructure<'a>
 for PhysicalDevicePipelineCacheIncrementalModeFeaturesSEC<'a> {
     const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::PHYSICAL_DEVICE_PIPELINE_CACHE_INCREMENTAL_MODE_FEATURES_SEC;
 }
+impl<'a> Default for PhysicalDevicePipelineCacheIncrementalModeFeaturesSEC<'a> {
+    fn default() -> Self {
+        Self {
+            s_type: <Self as crate::TaggedStructure>::STRUCTURE_TYPE,
+            p_next: Default::default(),
+            pipeline_cache_incremental_mode: Default::default(),
+            _marker: ::core::marker::PhantomData,
+        }
+    }
+}
 ///Provided by [`sec::pipeline_cache_incremental_mode`](crate::sec::pipeline_cache_incremental_mode)
 impl crate::vk::StructureType {
     pub const PHYSICAL_DEVICE_PIPELINE_CACHE_INCREMENTAL_MODE_FEATURES_SEC: Self = Self(

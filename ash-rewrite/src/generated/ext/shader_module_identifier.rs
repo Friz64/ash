@@ -64,6 +64,16 @@ pub(crate) mod reexport {
     for PhysicalDeviceShaderModuleIdentifierFeaturesEXT<'a> {
         const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::PHYSICAL_DEVICE_SHADER_MODULE_IDENTIFIER_FEATURES_EXT;
     }
+    impl<'a> Default for PhysicalDeviceShaderModuleIdentifierFeaturesEXT<'a> {
+        fn default() -> Self {
+            Self {
+                s_type: <Self as crate::TaggedStructure>::STRUCTURE_TYPE,
+                p_next: Default::default(),
+                shader_module_identifier: Default::default(),
+                _marker: ::core::marker::PhantomData,
+            }
+        }
+    }
     #[repr(C)]
     #[derive(Clone, Copy)]
     pub struct PhysicalDeviceShaderModuleIdentifierPropertiesEXT<'a> {
@@ -75,6 +85,16 @@ pub(crate) mod reexport {
     unsafe impl<'a> crate::TaggedStructure<'a>
     for PhysicalDeviceShaderModuleIdentifierPropertiesEXT<'a> {
         const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::PHYSICAL_DEVICE_SHADER_MODULE_IDENTIFIER_PROPERTIES_EXT;
+    }
+    impl<'a> Default for PhysicalDeviceShaderModuleIdentifierPropertiesEXT<'a> {
+        fn default() -> Self {
+            Self {
+                s_type: <Self as crate::TaggedStructure>::STRUCTURE_TYPE,
+                p_next: Default::default(),
+                shader_module_identifier_algorithm_uuid: unsafe { core::mem::zeroed() },
+                _marker: ::core::marker::PhantomData,
+            }
+        }
     }
     #[repr(C)]
     #[derive(Clone, Copy)]
@@ -89,6 +109,17 @@ pub(crate) mod reexport {
     for PipelineShaderStageModuleIdentifierCreateInfoEXT<'a> {
         const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::PIPELINE_SHADER_STAGE_MODULE_IDENTIFIER_CREATE_INFO_EXT;
     }
+    impl<'a> Default for PipelineShaderStageModuleIdentifierCreateInfoEXT<'a> {
+        fn default() -> Self {
+            Self {
+                s_type: <Self as crate::TaggedStructure>::STRUCTURE_TYPE,
+                p_next: Default::default(),
+                identifier_size: Default::default(),
+                p_identifier: Default::default(),
+                _marker: ::core::marker::PhantomData,
+            }
+        }
+    }
     #[repr(C)]
     #[derive(Clone, Copy)]
     pub struct ShaderModuleIdentifierEXT<'a> {
@@ -100,6 +131,17 @@ pub(crate) mod reexport {
     }
     unsafe impl<'a> crate::TaggedStructure<'a> for ShaderModuleIdentifierEXT<'a> {
         const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::SHADER_MODULE_IDENTIFIER_EXT;
+    }
+    impl<'a> Default for ShaderModuleIdentifierEXT<'a> {
+        fn default() -> Self {
+            Self {
+                s_type: <Self as crate::TaggedStructure>::STRUCTURE_TYPE,
+                p_next: Default::default(),
+                identifier_size: Default::default(),
+                identifier: unsafe { core::mem::zeroed() },
+                _marker: ::core::marker::PhantomData,
+            }
+        }
     }
     ///Provided by [`ext::shader_module_identifier`](crate::ext::shader_module_identifier)
     impl crate::vk::StructureType {

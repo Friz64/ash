@@ -13,15 +13,26 @@ pub struct PresentRegionsKHR<'a> {
 unsafe impl<'a> crate::TaggedStructure<'a> for PresentRegionsKHR<'a> {
     const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::PRESENT_REGIONS_KHR;
 }
+impl<'a> Default for PresentRegionsKHR<'a> {
+    fn default() -> Self {
+        Self {
+            s_type: <Self as crate::TaggedStructure>::STRUCTURE_TYPE,
+            p_next: Default::default(),
+            swapchain_count: Default::default(),
+            p_regions: Default::default(),
+            _marker: ::core::marker::PhantomData,
+        }
+    }
+}
 #[repr(C)]
-#[derive(Clone, Copy)]
+#[derive(Clone, Copy, Default)]
 pub struct PresentRegionKHR<'a> {
     pub rectangle_count: u32,
     pub p_rectangles: *const crate::vk::RectLayerKHR,
     pub _marker: ::core::marker::PhantomData<&'a ()>,
 }
 #[repr(C)]
-#[derive(Clone, Copy)]
+#[derive(Clone, Copy, Default)]
 pub struct RectLayerKHR {
     pub offset: crate::vk::Offset2D,
     pub extent: crate::vk::Extent2D,

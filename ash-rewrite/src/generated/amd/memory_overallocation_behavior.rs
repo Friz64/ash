@@ -13,6 +13,16 @@ unsafe impl<'a> crate::TaggedStructure<'a>
 for DeviceMemoryOverallocationCreateInfoAMD<'a> {
     const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::DEVICE_MEMORY_OVERALLOCATION_CREATE_INFO_AMD;
 }
+impl<'a> Default for DeviceMemoryOverallocationCreateInfoAMD<'a> {
+    fn default() -> Self {
+        Self {
+            s_type: <Self as crate::TaggedStructure>::STRUCTURE_TYPE,
+            p_next: Default::default(),
+            overallocation_behavior: Default::default(),
+            _marker: ::core::marker::PhantomData,
+        }
+    }
+}
 ///Provided by [`amd::memory_overallocation_behavior`](crate::amd::memory_overallocation_behavior)
 impl crate::vk::StructureType {
     pub const DEVICE_MEMORY_OVERALLOCATION_CREATE_INFO_AMD: Self = Self(1000189000);

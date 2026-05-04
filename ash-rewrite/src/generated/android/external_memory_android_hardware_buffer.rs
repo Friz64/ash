@@ -64,6 +64,16 @@ pub(crate) mod reexport {
     for ImportAndroidHardwareBufferInfoANDROID<'a> {
         const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::IMPORT_ANDROID_HARDWARE_BUFFER_INFO_ANDROID;
     }
+    impl<'a> Default for ImportAndroidHardwareBufferInfoANDROID<'a> {
+        fn default() -> Self {
+            Self {
+                s_type: <Self as crate::TaggedStructure>::STRUCTURE_TYPE,
+                p_next: Default::default(),
+                buffer: Default::default(),
+                _marker: ::core::marker::PhantomData,
+            }
+        }
+    }
     #[repr(C)]
     #[derive(Clone, Copy)]
     pub struct AndroidHardwareBufferUsageANDROID<'a> {
@@ -75,6 +85,16 @@ pub(crate) mod reexport {
     unsafe impl<'a> crate::TaggedStructure<'a>
     for AndroidHardwareBufferUsageANDROID<'a> {
         const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::ANDROID_HARDWARE_BUFFER_USAGE_ANDROID;
+    }
+    impl<'a> Default for AndroidHardwareBufferUsageANDROID<'a> {
+        fn default() -> Self {
+            Self {
+                s_type: <Self as crate::TaggedStructure>::STRUCTURE_TYPE,
+                p_next: Default::default(),
+                android_hardware_buffer_usage: Default::default(),
+                _marker: ::core::marker::PhantomData,
+            }
+        }
     }
     #[repr(C)]
     #[derive(Clone, Copy)]
@@ -89,6 +109,17 @@ pub(crate) mod reexport {
     for AndroidHardwareBufferPropertiesANDROID<'a> {
         const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::ANDROID_HARDWARE_BUFFER_PROPERTIES_ANDROID;
     }
+    impl<'a> Default for AndroidHardwareBufferPropertiesANDROID<'a> {
+        fn default() -> Self {
+            Self {
+                s_type: <Self as crate::TaggedStructure>::STRUCTURE_TYPE,
+                p_next: Default::default(),
+                allocation_size: Default::default(),
+                memory_type_bits: Default::default(),
+                _marker: ::core::marker::PhantomData,
+            }
+        }
+    }
     #[repr(C)]
     #[derive(Clone, Copy)]
     pub struct MemoryGetAndroidHardwareBufferInfoANDROID<'a> {
@@ -100,6 +131,16 @@ pub(crate) mod reexport {
     unsafe impl<'a> crate::TaggedStructure<'a>
     for MemoryGetAndroidHardwareBufferInfoANDROID<'a> {
         const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::MEMORY_GET_ANDROID_HARDWARE_BUFFER_INFO_ANDROID;
+    }
+    impl<'a> Default for MemoryGetAndroidHardwareBufferInfoANDROID<'a> {
+        fn default() -> Self {
+            Self {
+                s_type: <Self as crate::TaggedStructure>::STRUCTURE_TYPE,
+                p_next: Default::default(),
+                memory: Default::default(),
+                _marker: ::core::marker::PhantomData,
+            }
+        }
     }
     #[repr(C)]
     #[derive(Clone, Copy)]
@@ -120,6 +161,23 @@ pub(crate) mod reexport {
     for AndroidHardwareBufferFormatPropertiesANDROID<'a> {
         const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::ANDROID_HARDWARE_BUFFER_FORMAT_PROPERTIES_ANDROID;
     }
+    impl<'a> Default for AndroidHardwareBufferFormatPropertiesANDROID<'a> {
+        fn default() -> Self {
+            Self {
+                s_type: <Self as crate::TaggedStructure>::STRUCTURE_TYPE,
+                p_next: Default::default(),
+                format: Default::default(),
+                external_format: Default::default(),
+                format_features: Default::default(),
+                sampler_ycbcr_conversion_components: Default::default(),
+                suggested_ycbcr_model: Default::default(),
+                suggested_ycbcr_range: Default::default(),
+                suggested_x_chroma_offset: Default::default(),
+                suggested_y_chroma_offset: Default::default(),
+                _marker: ::core::marker::PhantomData,
+            }
+        }
+    }
     #[repr(C)]
     #[derive(Clone, Copy)]
     pub struct ExternalFormatANDROID<'a> {
@@ -130,6 +188,16 @@ pub(crate) mod reexport {
     }
     unsafe impl<'a> crate::TaggedStructure<'a> for ExternalFormatANDROID<'a> {
         const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::EXTERNAL_FORMAT_ANDROID;
+    }
+    impl<'a> Default for ExternalFormatANDROID<'a> {
+        fn default() -> Self {
+            Self {
+                s_type: <Self as crate::TaggedStructure>::STRUCTURE_TYPE,
+                p_next: Default::default(),
+                external_format: Default::default(),
+                _marker: ::core::marker::PhantomData,
+            }
+        }
     }
     #[repr(C)]
     #[derive(Clone, Copy)]
@@ -149,6 +217,23 @@ pub(crate) mod reexport {
     unsafe impl<'a> crate::TaggedStructure<'a>
     for AndroidHardwareBufferFormatProperties2ANDROID<'a> {
         const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::ANDROID_HARDWARE_BUFFER_FORMAT_PROPERTIES_2_ANDROID;
+    }
+    impl<'a> Default for AndroidHardwareBufferFormatProperties2ANDROID<'a> {
+        fn default() -> Self {
+            Self {
+                s_type: <Self as crate::TaggedStructure>::STRUCTURE_TYPE,
+                p_next: Default::default(),
+                format: Default::default(),
+                external_format: Default::default(),
+                format_features: Default::default(),
+                sampler_ycbcr_conversion_components: Default::default(),
+                suggested_ycbcr_model: Default::default(),
+                suggested_ycbcr_range: Default::default(),
+                suggested_x_chroma_offset: Default::default(),
+                suggested_y_chroma_offset: Default::default(),
+                _marker: ::core::marker::PhantomData,
+            }
+        }
     }
     ///Provided by [`android::external_memory_android_hardware_buffer`](crate::android::external_memory_android_hardware_buffer)
     impl crate::vk::StructureType {

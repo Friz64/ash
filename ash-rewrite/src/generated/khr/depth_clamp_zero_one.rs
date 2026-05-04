@@ -13,6 +13,16 @@ unsafe impl<'a> crate::TaggedStructure<'a>
 for PhysicalDeviceDepthClampZeroOneFeaturesKHR<'a> {
     const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::PHYSICAL_DEVICE_DEPTH_CLAMP_ZERO_ONE_FEATURES_KHR;
 }
+impl<'a> Default for PhysicalDeviceDepthClampZeroOneFeaturesKHR<'a> {
+    fn default() -> Self {
+        Self {
+            s_type: <Self as crate::TaggedStructure>::STRUCTURE_TYPE,
+            p_next: Default::default(),
+            depth_clamp_zero_one: Default::default(),
+            _marker: ::core::marker::PhantomData,
+        }
+    }
+}
 ///Provided by [`khr::depth_clamp_zero_one`](crate::khr::depth_clamp_zero_one)
 impl crate::vk::StructureType {
     pub const PHYSICAL_DEVICE_DEPTH_CLAMP_ZERO_ONE_FEATURES_KHR: Self = Self(1000421000);

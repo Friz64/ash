@@ -50,6 +50,16 @@ pub(crate) mod reexport {
     for PhysicalDeviceVertexInputDynamicStateFeaturesEXT<'a> {
         const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::PHYSICAL_DEVICE_VERTEX_INPUT_DYNAMIC_STATE_FEATURES_EXT;
     }
+    impl<'a> Default for PhysicalDeviceVertexInputDynamicStateFeaturesEXT<'a> {
+        fn default() -> Self {
+            Self {
+                s_type: <Self as crate::TaggedStructure>::STRUCTURE_TYPE,
+                p_next: Default::default(),
+                vertex_input_dynamic_state: Default::default(),
+                _marker: ::core::marker::PhantomData,
+            }
+        }
+    }
     #[repr(C)]
     #[derive(Clone, Copy)]
     pub struct VertexInputBindingDescription2EXT<'a> {
@@ -65,6 +75,19 @@ pub(crate) mod reexport {
     for VertexInputBindingDescription2EXT<'a> {
         const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::VERTEX_INPUT_BINDING_DESCRIPTION_2_EXT;
     }
+    impl<'a> Default for VertexInputBindingDescription2EXT<'a> {
+        fn default() -> Self {
+            Self {
+                s_type: <Self as crate::TaggedStructure>::STRUCTURE_TYPE,
+                p_next: Default::default(),
+                binding: Default::default(),
+                stride: Default::default(),
+                input_rate: Default::default(),
+                divisor: Default::default(),
+                _marker: ::core::marker::PhantomData,
+            }
+        }
+    }
     #[repr(C)]
     #[derive(Clone, Copy)]
     pub struct VertexInputAttributeDescription2EXT<'a> {
@@ -79,6 +102,19 @@ pub(crate) mod reexport {
     unsafe impl<'a> crate::TaggedStructure<'a>
     for VertexInputAttributeDescription2EXT<'a> {
         const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::VERTEX_INPUT_ATTRIBUTE_DESCRIPTION_2_EXT;
+    }
+    impl<'a> Default for VertexInputAttributeDescription2EXT<'a> {
+        fn default() -> Self {
+            Self {
+                s_type: <Self as crate::TaggedStructure>::STRUCTURE_TYPE,
+                p_next: Default::default(),
+                location: Default::default(),
+                binding: Default::default(),
+                format: Default::default(),
+                offset: Default::default(),
+                _marker: ::core::marker::PhantomData,
+            }
+        }
     }
     ///Provided by [`ext::vertex_input_dynamic_state`](crate::ext::vertex_input_dynamic_state)
     impl crate::vk::StructureType {

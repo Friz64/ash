@@ -13,6 +13,16 @@ unsafe impl<'a> crate::TaggedStructure<'a>
 for PhysicalDeviceImageAlignmentControlFeaturesMESA<'a> {
     const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::PHYSICAL_DEVICE_IMAGE_ALIGNMENT_CONTROL_FEATURES_MESA;
 }
+impl<'a> Default for PhysicalDeviceImageAlignmentControlFeaturesMESA<'a> {
+    fn default() -> Self {
+        Self {
+            s_type: <Self as crate::TaggedStructure>::STRUCTURE_TYPE,
+            p_next: Default::default(),
+            image_alignment_control: Default::default(),
+            _marker: ::core::marker::PhantomData,
+        }
+    }
+}
 #[repr(C)]
 #[derive(Clone, Copy)]
 pub struct PhysicalDeviceImageAlignmentControlPropertiesMESA<'a> {
@@ -25,6 +35,16 @@ unsafe impl<'a> crate::TaggedStructure<'a>
 for PhysicalDeviceImageAlignmentControlPropertiesMESA<'a> {
     const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::PHYSICAL_DEVICE_IMAGE_ALIGNMENT_CONTROL_PROPERTIES_MESA;
 }
+impl<'a> Default for PhysicalDeviceImageAlignmentControlPropertiesMESA<'a> {
+    fn default() -> Self {
+        Self {
+            s_type: <Self as crate::TaggedStructure>::STRUCTURE_TYPE,
+            p_next: Default::default(),
+            supported_image_alignment_mask: Default::default(),
+            _marker: ::core::marker::PhantomData,
+        }
+    }
+}
 #[repr(C)]
 #[derive(Clone, Copy)]
 pub struct ImageAlignmentControlCreateInfoMESA<'a> {
@@ -35,6 +55,16 @@ pub struct ImageAlignmentControlCreateInfoMESA<'a> {
 }
 unsafe impl<'a> crate::TaggedStructure<'a> for ImageAlignmentControlCreateInfoMESA<'a> {
     const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::IMAGE_ALIGNMENT_CONTROL_CREATE_INFO_MESA;
+}
+impl<'a> Default for ImageAlignmentControlCreateInfoMESA<'a> {
+    fn default() -> Self {
+        Self {
+            s_type: <Self as crate::TaggedStructure>::STRUCTURE_TYPE,
+            p_next: Default::default(),
+            maximum_requested_alignment: Default::default(),
+            _marker: ::core::marker::PhantomData,
+        }
+    }
 }
 ///Provided by [`mesa::image_alignment_control`](crate::mesa::image_alignment_control)
 impl crate::vk::StructureType {

@@ -49,6 +49,17 @@ pub(crate) mod reexport {
     unsafe impl<'a> crate::TaggedStructure<'a> for MetalSurfaceCreateInfoEXT<'a> {
         const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::METAL_SURFACE_CREATE_INFO_EXT;
     }
+    impl<'a> Default for MetalSurfaceCreateInfoEXT<'a> {
+        fn default() -> Self {
+            Self {
+                s_type: <Self as crate::TaggedStructure>::STRUCTURE_TYPE,
+                p_next: Default::default(),
+                flags: Default::default(),
+                p_layer: Default::default(),
+                _marker: ::core::marker::PhantomData,
+            }
+        }
+    }
     ///Provided by [`ext::metal_surface`](crate::ext::metal_surface)
     impl crate::vk::StructureType {
         pub const METAL_SURFACE_CREATE_INFO_EXT: Self = Self(1000217000);

@@ -12,8 +12,18 @@ pub struct RenderPassCreationControlEXT<'a> {
 unsafe impl<'a> crate::TaggedStructure<'a> for RenderPassCreationControlEXT<'a> {
     const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::RENDER_PASS_CREATION_CONTROL_EXT;
 }
+impl<'a> Default for RenderPassCreationControlEXT<'a> {
+    fn default() -> Self {
+        Self {
+            s_type: <Self as crate::TaggedStructure>::STRUCTURE_TYPE,
+            p_next: Default::default(),
+            disallow_merging: Default::default(),
+            _marker: ::core::marker::PhantomData,
+        }
+    }
+}
 #[repr(C)]
-#[derive(Clone, Copy)]
+#[derive(Clone, Copy, Default)]
 pub struct RenderPassCreationFeedbackInfoEXT {
     pub post_merge_subpass_count: u32,
 }
@@ -29,12 +39,31 @@ unsafe impl<'a> crate::TaggedStructure<'a>
 for RenderPassCreationFeedbackCreateInfoEXT<'a> {
     const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::RENDER_PASS_CREATION_FEEDBACK_CREATE_INFO_EXT;
 }
+impl<'a> Default for RenderPassCreationFeedbackCreateInfoEXT<'a> {
+    fn default() -> Self {
+        Self {
+            s_type: <Self as crate::TaggedStructure>::STRUCTURE_TYPE,
+            p_next: Default::default(),
+            p_render_pass_feedback: Default::default(),
+            _marker: ::core::marker::PhantomData,
+        }
+    }
+}
 #[repr(C)]
 #[derive(Clone, Copy)]
 pub struct RenderPassSubpassFeedbackInfoEXT {
     pub subpass_merge_status: crate::vk::SubpassMergeStatusEXT,
     pub description: [core::ffi::c_char; crate::vk::MAX_DESCRIPTION_SIZE as _],
     pub post_merge_index: u32,
+}
+impl Default for RenderPassSubpassFeedbackInfoEXT {
+    fn default() -> Self {
+        Self {
+            subpass_merge_status: Default::default(),
+            description: unsafe { core::mem::zeroed() },
+            post_merge_index: Default::default(),
+        }
+    }
 }
 #[repr(C)]
 #[derive(Clone, Copy)]
@@ -48,6 +77,16 @@ unsafe impl<'a> crate::TaggedStructure<'a>
 for RenderPassSubpassFeedbackCreateInfoEXT<'a> {
     const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::RENDER_PASS_SUBPASS_FEEDBACK_CREATE_INFO_EXT;
 }
+impl<'a> Default for RenderPassSubpassFeedbackCreateInfoEXT<'a> {
+    fn default() -> Self {
+        Self {
+            s_type: <Self as crate::TaggedStructure>::STRUCTURE_TYPE,
+            p_next: Default::default(),
+            p_subpass_feedback: Default::default(),
+            _marker: ::core::marker::PhantomData,
+        }
+    }
+}
 #[repr(C)]
 #[derive(Clone, Copy)]
 pub struct PhysicalDeviceSubpassMergeFeedbackFeaturesEXT<'a> {
@@ -59,6 +98,16 @@ pub struct PhysicalDeviceSubpassMergeFeedbackFeaturesEXT<'a> {
 unsafe impl<'a> crate::TaggedStructure<'a>
 for PhysicalDeviceSubpassMergeFeedbackFeaturesEXT<'a> {
     const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::PHYSICAL_DEVICE_SUBPASS_MERGE_FEEDBACK_FEATURES_EXT;
+}
+impl<'a> Default for PhysicalDeviceSubpassMergeFeedbackFeaturesEXT<'a> {
+    fn default() -> Self {
+        Self {
+            s_type: <Self as crate::TaggedStructure>::STRUCTURE_TYPE,
+            p_next: Default::default(),
+            subpass_merge_feedback: Default::default(),
+            _marker: ::core::marker::PhantomData,
+        }
+    }
 }
 ///Provided by [`ext::subpass_merge_feedback`](crate::ext::subpass_merge_feedback)
 impl crate::vk::StructureType {

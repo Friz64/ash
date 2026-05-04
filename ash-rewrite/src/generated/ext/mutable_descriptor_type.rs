@@ -13,8 +13,18 @@ unsafe impl<'a> crate::TaggedStructure<'a>
 for PhysicalDeviceMutableDescriptorTypeFeaturesEXT<'a> {
     const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::PHYSICAL_DEVICE_MUTABLE_DESCRIPTOR_TYPE_FEATURES_EXT;
 }
+impl<'a> Default for PhysicalDeviceMutableDescriptorTypeFeaturesEXT<'a> {
+    fn default() -> Self {
+        Self {
+            s_type: <Self as crate::TaggedStructure>::STRUCTURE_TYPE,
+            p_next: Default::default(),
+            mutable_descriptor_type: Default::default(),
+            _marker: ::core::marker::PhantomData,
+        }
+    }
+}
 #[repr(C)]
-#[derive(Clone, Copy)]
+#[derive(Clone, Copy, Default)]
 pub struct MutableDescriptorTypeListEXT<'a> {
     pub descriptor_type_count: u32,
     pub p_descriptor_types: *const crate::vk::DescriptorType,
@@ -33,6 +43,17 @@ pub struct MutableDescriptorTypeCreateInfoEXT<'a> {
 }
 unsafe impl<'a> crate::TaggedStructure<'a> for MutableDescriptorTypeCreateInfoEXT<'a> {
     const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::MUTABLE_DESCRIPTOR_TYPE_CREATE_INFO_EXT;
+}
+impl<'a> Default for MutableDescriptorTypeCreateInfoEXT<'a> {
+    fn default() -> Self {
+        Self {
+            s_type: <Self as crate::TaggedStructure>::STRUCTURE_TYPE,
+            p_next: Default::default(),
+            mutable_descriptor_type_list_count: Default::default(),
+            p_mutable_descriptor_type_lists: Default::default(),
+            _marker: ::core::marker::PhantomData,
+        }
+    }
 }
 ///Provided by [`ext::mutable_descriptor_type`](crate::ext::mutable_descriptor_type)
 impl crate::vk::DescriptorType {

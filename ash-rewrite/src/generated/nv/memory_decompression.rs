@@ -54,7 +54,7 @@ impl DeviceFn {
 }
 pub(crate) mod reexport {
     #[repr(C)]
-    #[derive(Clone, Copy)]
+    #[derive(Clone, Copy, Default)]
     pub struct DecompressMemoryRegionNV {
         pub src_address: crate::vk::DeviceAddress,
         pub dst_address: crate::vk::DeviceAddress,

@@ -12,6 +12,16 @@ pub struct DisplaySurfaceStereoCreateInfoNV<'a> {
 unsafe impl<'a> crate::TaggedStructure<'a> for DisplaySurfaceStereoCreateInfoNV<'a> {
     const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::DISPLAY_SURFACE_STEREO_CREATE_INFO_NV;
 }
+impl<'a> Default for DisplaySurfaceStereoCreateInfoNV<'a> {
+    fn default() -> Self {
+        Self {
+            s_type: <Self as crate::TaggedStructure>::STRUCTURE_TYPE,
+            p_next: Default::default(),
+            stereo_type: Default::default(),
+            _marker: ::core::marker::PhantomData,
+        }
+    }
+}
 #[repr(C)]
 #[derive(Clone, Copy)]
 pub struct DisplayModeStereoPropertiesNV<'a> {
@@ -22,6 +32,16 @@ pub struct DisplayModeStereoPropertiesNV<'a> {
 }
 unsafe impl<'a> crate::TaggedStructure<'a> for DisplayModeStereoPropertiesNV<'a> {
     const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::DISPLAY_MODE_STEREO_PROPERTIES_NV;
+}
+impl<'a> Default for DisplayModeStereoPropertiesNV<'a> {
+    fn default() -> Self {
+        Self {
+            s_type: <Self as crate::TaggedStructure>::STRUCTURE_TYPE,
+            p_next: Default::default(),
+            hdmi3_d_supported: Default::default(),
+            _marker: ::core::marker::PhantomData,
+        }
+    }
 }
 ///Provided by [`nv::display_stereo`](crate::nv::display_stereo)
 impl crate::vk::StructureType {

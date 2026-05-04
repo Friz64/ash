@@ -13,6 +13,16 @@ unsafe impl<'a> crate::TaggedStructure<'a>
 for PhysicalDeviceThrottleHintFeaturesSEC<'a> {
     const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::PHYSICAL_DEVICE_THROTTLE_HINT_FEATURES_SEC;
 }
+impl<'a> Default for PhysicalDeviceThrottleHintFeaturesSEC<'a> {
+    fn default() -> Self {
+        Self {
+            s_type: <Self as crate::TaggedStructure>::STRUCTURE_TYPE,
+            p_next: Default::default(),
+            throttle_hint: Default::default(),
+            _marker: ::core::marker::PhantomData,
+        }
+    }
+}
 #[repr(C)]
 #[derive(Clone, Copy)]
 pub struct ThrottleHintSubmitInfoSEC<'a> {
@@ -23,6 +33,16 @@ pub struct ThrottleHintSubmitInfoSEC<'a> {
 }
 unsafe impl<'a> crate::TaggedStructure<'a> for ThrottleHintSubmitInfoSEC<'a> {
     const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::THROTTLE_HINT_SUBMIT_INFO_SEC;
+}
+impl<'a> Default for ThrottleHintSubmitInfoSEC<'a> {
+    fn default() -> Self {
+        Self {
+            s_type: <Self as crate::TaggedStructure>::STRUCTURE_TYPE,
+            p_next: Default::default(),
+            throttle_hint: Default::default(),
+            _marker: ::core::marker::PhantomData,
+        }
+    }
 }
 ///Provided by [`sec::throttle_hint`](crate::sec::throttle_hint)
 impl crate::vk::StructureType {

@@ -12,6 +12,16 @@ pub struct ImageViewASTCDecodeModeEXT<'a> {
 unsafe impl<'a> crate::TaggedStructure<'a> for ImageViewASTCDecodeModeEXT<'a> {
     const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::IMAGE_VIEW_ASTC_DECODE_MODE_EXT;
 }
+impl<'a> Default for ImageViewASTCDecodeModeEXT<'a> {
+    fn default() -> Self {
+        Self {
+            s_type: <Self as crate::TaggedStructure>::STRUCTURE_TYPE,
+            p_next: Default::default(),
+            decode_mode: Default::default(),
+            _marker: ::core::marker::PhantomData,
+        }
+    }
+}
 #[repr(C)]
 #[derive(Clone, Copy)]
 pub struct PhysicalDeviceASTCDecodeFeaturesEXT<'a> {
@@ -22,6 +32,16 @@ pub struct PhysicalDeviceASTCDecodeFeaturesEXT<'a> {
 }
 unsafe impl<'a> crate::TaggedStructure<'a> for PhysicalDeviceASTCDecodeFeaturesEXT<'a> {
     const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::PHYSICAL_DEVICE_ASTC_DECODE_FEATURES_EXT;
+}
+impl<'a> Default for PhysicalDeviceASTCDecodeFeaturesEXT<'a> {
+    fn default() -> Self {
+        Self {
+            s_type: <Self as crate::TaggedStructure>::STRUCTURE_TYPE,
+            p_next: Default::default(),
+            decode_mode_shared_exponent: Default::default(),
+            _marker: ::core::marker::PhantomData,
+        }
+    }
 }
 ///Provided by [`ext::astc_decode_mode`](crate::ext::astc_decode_mode)
 impl crate::vk::StructureType {

@@ -49,6 +49,18 @@ pub(crate) mod reexport {
     for PhysicalDeviceMaintenance10PropertiesKHR<'a> {
         const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::PHYSICAL_DEVICE_MAINTENANCE_10_PROPERTIES_KHR;
     }
+    impl<'a> Default for PhysicalDeviceMaintenance10PropertiesKHR<'a> {
+        fn default() -> Self {
+            Self {
+                s_type: <Self as crate::TaggedStructure>::STRUCTURE_TYPE,
+                p_next: Default::default(),
+                rgba4_opaque_black_swizzled: Default::default(),
+                resolve_srgb_format_applies_transfer_function: Default::default(),
+                resolve_srgb_format_supports_transfer_function_control: Default::default(),
+                _marker: ::core::marker::PhantomData,
+            }
+        }
+    }
     #[repr(C)]
     #[derive(Clone, Copy)]
     pub struct PhysicalDeviceMaintenance10FeaturesKHR<'a> {
@@ -61,6 +73,16 @@ pub(crate) mod reexport {
     for PhysicalDeviceMaintenance10FeaturesKHR<'a> {
         const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::PHYSICAL_DEVICE_MAINTENANCE_10_FEATURES_KHR;
     }
+    impl<'a> Default for PhysicalDeviceMaintenance10FeaturesKHR<'a> {
+        fn default() -> Self {
+            Self {
+                s_type: <Self as crate::TaggedStructure>::STRUCTURE_TYPE,
+                p_next: Default::default(),
+                maintenance10: Default::default(),
+                _marker: ::core::marker::PhantomData,
+            }
+        }
+    }
     #[repr(C)]
     #[derive(Clone, Copy)]
     pub struct RenderingEndInfoKHR<'a> {
@@ -70,6 +92,15 @@ pub(crate) mod reexport {
     }
     unsafe impl<'a> crate::TaggedStructure<'a> for RenderingEndInfoKHR<'a> {
         const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::RENDERING_END_INFO_KHR;
+    }
+    impl<'a> Default for RenderingEndInfoKHR<'a> {
+        fn default() -> Self {
+            Self {
+                s_type: <Self as crate::TaggedStructure>::STRUCTURE_TYPE,
+                p_next: Default::default(),
+                _marker: ::core::marker::PhantomData,
+            }
+        }
     }
     #[repr(C)]
     #[derive(Clone, Copy)]
@@ -81,6 +112,16 @@ pub(crate) mod reexport {
     }
     unsafe impl<'a> crate::TaggedStructure<'a> for RenderingAttachmentFlagsInfoKHR<'a> {
         const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::RENDERING_ATTACHMENT_FLAGS_INFO_KHR;
+    }
+    impl<'a> Default for RenderingAttachmentFlagsInfoKHR<'a> {
+        fn default() -> Self {
+            Self {
+                s_type: <Self as crate::TaggedStructure>::STRUCTURE_TYPE,
+                p_next: Default::default(),
+                flags: Default::default(),
+                _marker: ::core::marker::PhantomData,
+            }
+        }
     }
     #[repr(C)]
     #[derive(Clone, Copy)]
@@ -94,6 +135,18 @@ pub(crate) mod reexport {
     }
     unsafe impl<'a> crate::TaggedStructure<'a> for ResolveImageModeInfoKHR<'a> {
         const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::RESOLVE_IMAGE_MODE_INFO_KHR;
+    }
+    impl<'a> Default for ResolveImageModeInfoKHR<'a> {
+        fn default() -> Self {
+            Self {
+                s_type: <Self as crate::TaggedStructure>::STRUCTURE_TYPE,
+                p_next: Default::default(),
+                flags: Default::default(),
+                resolve_mode: Default::default(),
+                stencil_resolve_mode: Default::default(),
+                _marker: ::core::marker::PhantomData,
+            }
+        }
     }
     ///Provided by [`khr::maintenance10`](crate::khr::maintenance10)
     impl crate::vk::StructureType {
@@ -196,7 +249,7 @@ pub(crate) mod reexport {
         }
     }
     #[repr(transparent)]
-    #[derive(Clone, Copy)]
+    #[derive(Clone, Copy, Default)]
     pub struct RenderingAttachmentFlagBitsKHR(pub(crate) u32);
     ///Provided by [`khr::maintenance10`](crate::khr::maintenance10)
     impl RenderingAttachmentFlagBitsKHR {
@@ -278,7 +331,7 @@ pub(crate) mod reexport {
         }
     }
     #[repr(transparent)]
-    #[derive(Clone, Copy)]
+    #[derive(Clone, Copy, Default)]
     pub struct ResolveImageFlagBitsKHR(pub(crate) u32);
     ///Provided by [`khr::maintenance10`](crate::khr::maintenance10)
     impl ResolveImageFlagBitsKHR {

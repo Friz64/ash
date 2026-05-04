@@ -99,6 +99,16 @@ pub(crate) mod reexport {
     unsafe impl<'a> crate::TaggedStructure<'a> for DisplayPowerInfoEXT<'a> {
         const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::DISPLAY_POWER_INFO_EXT;
     }
+    impl<'a> Default for DisplayPowerInfoEXT<'a> {
+        fn default() -> Self {
+            Self {
+                s_type: <Self as crate::TaggedStructure>::STRUCTURE_TYPE,
+                p_next: Default::default(),
+                power_state: Default::default(),
+                _marker: ::core::marker::PhantomData,
+            }
+        }
+    }
     #[repr(C)]
     #[derive(Clone, Copy)]
     pub struct DeviceEventInfoEXT<'a> {
@@ -109,6 +119,16 @@ pub(crate) mod reexport {
     }
     unsafe impl<'a> crate::TaggedStructure<'a> for DeviceEventInfoEXT<'a> {
         const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::DEVICE_EVENT_INFO_EXT;
+    }
+    impl<'a> Default for DeviceEventInfoEXT<'a> {
+        fn default() -> Self {
+            Self {
+                s_type: <Self as crate::TaggedStructure>::STRUCTURE_TYPE,
+                p_next: Default::default(),
+                device_event: Default::default(),
+                _marker: ::core::marker::PhantomData,
+            }
+        }
     }
     #[repr(C)]
     #[derive(Clone, Copy)]
@@ -121,6 +141,16 @@ pub(crate) mod reexport {
     unsafe impl<'a> crate::TaggedStructure<'a> for DisplayEventInfoEXT<'a> {
         const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::DISPLAY_EVENT_INFO_EXT;
     }
+    impl<'a> Default for DisplayEventInfoEXT<'a> {
+        fn default() -> Self {
+            Self {
+                s_type: <Self as crate::TaggedStructure>::STRUCTURE_TYPE,
+                p_next: Default::default(),
+                display_event: Default::default(),
+                _marker: ::core::marker::PhantomData,
+            }
+        }
+    }
     #[repr(C)]
     #[derive(Clone, Copy)]
     pub struct SwapchainCounterCreateInfoEXT<'a> {
@@ -131,6 +161,16 @@ pub(crate) mod reexport {
     }
     unsafe impl<'a> crate::TaggedStructure<'a> for SwapchainCounterCreateInfoEXT<'a> {
         const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::SWAPCHAIN_COUNTER_CREATE_INFO_EXT;
+    }
+    impl<'a> Default for SwapchainCounterCreateInfoEXT<'a> {
+        fn default() -> Self {
+            Self {
+                s_type: <Self as crate::TaggedStructure>::STRUCTURE_TYPE,
+                p_next: Default::default(),
+                surface_counters: Default::default(),
+                _marker: ::core::marker::PhantomData,
+            }
+        }
     }
     ///Provided by [`ext::display_control`](crate::ext::display_control)
     impl crate::vk::StructureType {

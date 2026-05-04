@@ -65,6 +65,16 @@ pub(crate) mod reexport {
     for PhysicalDeviceTilePropertiesFeaturesQCOM<'a> {
         const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::PHYSICAL_DEVICE_TILE_PROPERTIES_FEATURES_QCOM;
     }
+    impl<'a> Default for PhysicalDeviceTilePropertiesFeaturesQCOM<'a> {
+        fn default() -> Self {
+            Self {
+                s_type: <Self as crate::TaggedStructure>::STRUCTURE_TYPE,
+                p_next: Default::default(),
+                tile_properties: Default::default(),
+                _marker: ::core::marker::PhantomData,
+            }
+        }
+    }
     #[repr(C)]
     #[derive(Clone, Copy)]
     pub struct TilePropertiesQCOM<'a> {
@@ -77,6 +87,18 @@ pub(crate) mod reexport {
     }
     unsafe impl<'a> crate::TaggedStructure<'a> for TilePropertiesQCOM<'a> {
         const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::TILE_PROPERTIES_QCOM;
+    }
+    impl<'a> Default for TilePropertiesQCOM<'a> {
+        fn default() -> Self {
+            Self {
+                s_type: <Self as crate::TaggedStructure>::STRUCTURE_TYPE,
+                p_next: Default::default(),
+                tile_size: Default::default(),
+                apron_size: Default::default(),
+                origin: Default::default(),
+                _marker: ::core::marker::PhantomData,
+            }
+        }
     }
     ///Provided by [`qcom::tile_properties`](crate::qcom::tile_properties)
     impl crate::vk::StructureType {

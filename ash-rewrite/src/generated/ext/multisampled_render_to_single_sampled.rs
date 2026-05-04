@@ -13,6 +13,16 @@ unsafe impl<'a> crate::TaggedStructure<'a>
 for PhysicalDeviceMultisampledRenderToSingleSampledFeaturesEXT<'a> {
     const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::PHYSICAL_DEVICE_MULTISAMPLED_RENDER_TO_SINGLE_SAMPLED_FEATURES_EXT;
 }
+impl<'a> Default for PhysicalDeviceMultisampledRenderToSingleSampledFeaturesEXT<'a> {
+    fn default() -> Self {
+        Self {
+            s_type: <Self as crate::TaggedStructure>::STRUCTURE_TYPE,
+            p_next: Default::default(),
+            multisampled_render_to_single_sampled: Default::default(),
+            _marker: ::core::marker::PhantomData,
+        }
+    }
+}
 #[repr(C)]
 #[derive(Clone, Copy)]
 pub struct SubpassResolvePerformanceQueryEXT<'a> {
@@ -23,6 +33,16 @@ pub struct SubpassResolvePerformanceQueryEXT<'a> {
 }
 unsafe impl<'a> crate::TaggedStructure<'a> for SubpassResolvePerformanceQueryEXT<'a> {
     const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::SUBPASS_RESOLVE_PERFORMANCE_QUERY_EXT;
+}
+impl<'a> Default for SubpassResolvePerformanceQueryEXT<'a> {
+    fn default() -> Self {
+        Self {
+            s_type: <Self as crate::TaggedStructure>::STRUCTURE_TYPE,
+            p_next: Default::default(),
+            optimal: Default::default(),
+            _marker: ::core::marker::PhantomData,
+        }
+    }
 }
 #[repr(C)]
 #[derive(Clone, Copy)]
@@ -36,6 +56,17 @@ pub struct MultisampledRenderToSingleSampledInfoEXT<'a> {
 unsafe impl<'a> crate::TaggedStructure<'a>
 for MultisampledRenderToSingleSampledInfoEXT<'a> {
     const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::MULTISAMPLED_RENDER_TO_SINGLE_SAMPLED_INFO_EXT;
+}
+impl<'a> Default for MultisampledRenderToSingleSampledInfoEXT<'a> {
+    fn default() -> Self {
+        Self {
+            s_type: <Self as crate::TaggedStructure>::STRUCTURE_TYPE,
+            p_next: Default::default(),
+            multisampled_render_to_single_sampled_enable: Default::default(),
+            rasterization_samples: Default::default(),
+            _marker: ::core::marker::PhantomData,
+        }
+    }
 }
 ///Provided by [`ext::multisampled_render_to_single_sampled`](crate::ext::multisampled_render_to_single_sampled)
 impl crate::vk::StructureType {

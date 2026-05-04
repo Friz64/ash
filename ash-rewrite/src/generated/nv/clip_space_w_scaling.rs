@@ -38,7 +38,7 @@ impl DeviceFn {
 }
 pub(crate) mod reexport {
     #[repr(C)]
-    #[derive(Clone, Copy)]
+    #[derive(Clone, Copy, Default)]
     pub struct ViewportWScalingNV {
         pub xcoeff: core::ffi::c_float,
         pub ycoeff: core::ffi::c_float,
@@ -56,6 +56,18 @@ pub(crate) mod reexport {
     unsafe impl<'a> crate::TaggedStructure<'a>
     for PipelineViewportWScalingStateCreateInfoNV<'a> {
         const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::PIPELINE_VIEWPORT_W_SCALING_STATE_CREATE_INFO_NV;
+    }
+    impl<'a> Default for PipelineViewportWScalingStateCreateInfoNV<'a> {
+        fn default() -> Self {
+            Self {
+                s_type: <Self as crate::TaggedStructure>::STRUCTURE_TYPE,
+                p_next: Default::default(),
+                viewport_w_scaling_enable: Default::default(),
+                viewport_count: Default::default(),
+                p_viewport_w_scalings: Default::default(),
+                _marker: ::core::marker::PhantomData,
+            }
+        }
     }
     ///Provided by [`nv::clip_space_w_scaling`](crate::nv::clip_space_w_scaling)
     impl crate::vk::StructureType {

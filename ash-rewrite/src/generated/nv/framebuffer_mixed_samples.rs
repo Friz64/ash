@@ -17,6 +17,20 @@ unsafe impl<'a> crate::TaggedStructure<'a>
 for PipelineCoverageModulationStateCreateInfoNV<'a> {
     const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::PIPELINE_COVERAGE_MODULATION_STATE_CREATE_INFO_NV;
 }
+impl<'a> Default for PipelineCoverageModulationStateCreateInfoNV<'a> {
+    fn default() -> Self {
+        Self {
+            s_type: <Self as crate::TaggedStructure>::STRUCTURE_TYPE,
+            p_next: Default::default(),
+            flags: Default::default(),
+            coverage_modulation_mode: Default::default(),
+            coverage_modulation_table_enable: Default::default(),
+            coverage_modulation_table_count: Default::default(),
+            p_coverage_modulation_table: Default::default(),
+            _marker: ::core::marker::PhantomData,
+        }
+    }
+}
 pub type AttachmentSampleCountInfoNV<'a> = crate::vk::AttachmentSampleCountInfoAMD<'a>;
 ///Provided by [`nv::framebuffer_mixed_samples`](crate::nv::framebuffer_mixed_samples)
 impl crate::vk::StructureType {

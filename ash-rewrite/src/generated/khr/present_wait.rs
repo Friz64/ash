@@ -49,6 +49,16 @@ pub(crate) mod reexport {
     for PhysicalDevicePresentWaitFeaturesKHR<'a> {
         const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::PHYSICAL_DEVICE_PRESENT_WAIT_FEATURES_KHR;
     }
+    impl<'a> Default for PhysicalDevicePresentWaitFeaturesKHR<'a> {
+        fn default() -> Self {
+            Self {
+                s_type: <Self as crate::TaggedStructure>::STRUCTURE_TYPE,
+                p_next: Default::default(),
+                present_wait: Default::default(),
+                _marker: ::core::marker::PhantomData,
+            }
+        }
+    }
     ///Provided by [`khr::present_wait`](crate::khr::present_wait)
     impl crate::vk::StructureType {
         pub const PHYSICAL_DEVICE_PRESENT_WAIT_FEATURES_KHR: Self = Self(1000248000);

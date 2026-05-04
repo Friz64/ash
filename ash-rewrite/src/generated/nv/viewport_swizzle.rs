@@ -2,7 +2,7 @@
 #![cfg_attr(rustfmt, rustfmt_skip)]
 //![Vulkan Manual Page](https://docs.vulkan.org/refpages/latest/refpages/source/VK_NV_viewport_swizzle.html) · Extension `VK_NV_viewport_swizzle`
 #[repr(C)]
-#[derive(Clone, Copy)]
+#[derive(Clone, Copy, Default)]
 pub struct ViewportSwizzleNV {
     pub x: crate::vk::ViewportCoordinateSwizzleNV,
     pub y: crate::vk::ViewportCoordinateSwizzleNV,
@@ -22,6 +22,18 @@ pub struct PipelineViewportSwizzleStateCreateInfoNV<'a> {
 unsafe impl<'a> crate::TaggedStructure<'a>
 for PipelineViewportSwizzleStateCreateInfoNV<'a> {
     const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::PIPELINE_VIEWPORT_SWIZZLE_STATE_CREATE_INFO_NV;
+}
+impl<'a> Default for PipelineViewportSwizzleStateCreateInfoNV<'a> {
+    fn default() -> Self {
+        Self {
+            s_type: <Self as crate::TaggedStructure>::STRUCTURE_TYPE,
+            p_next: Default::default(),
+            flags: Default::default(),
+            viewport_count: Default::default(),
+            p_viewport_swizzles: Default::default(),
+            _marker: ::core::marker::PhantomData,
+        }
+    }
 }
 ///Provided by [`nv::viewport_swizzle`](crate::nv::viewport_swizzle)
 impl crate::vk::StructureType {

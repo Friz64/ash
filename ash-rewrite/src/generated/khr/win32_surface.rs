@@ -67,6 +67,18 @@ pub(crate) mod reexport {
     unsafe impl<'a> crate::TaggedStructure<'a> for Win32SurfaceCreateInfoKHR<'a> {
         const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::WIN32_SURFACE_CREATE_INFO_KHR;
     }
+    impl<'a> Default for Win32SurfaceCreateInfoKHR<'a> {
+        fn default() -> Self {
+            Self {
+                s_type: <Self as crate::TaggedStructure>::STRUCTURE_TYPE,
+                p_next: Default::default(),
+                flags: Default::default(),
+                hinstance: Default::default(),
+                hwnd: Default::default(),
+                _marker: ::core::marker::PhantomData,
+            }
+        }
+    }
     ///Provided by [`khr::win32_surface`](crate::khr::win32_surface)
     impl crate::vk::StructureType {
         pub const WIN32_SURFACE_CREATE_INFO_KHR: Self = Self(1000009000);

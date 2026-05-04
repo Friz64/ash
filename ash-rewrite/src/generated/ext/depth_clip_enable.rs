@@ -13,6 +13,16 @@ unsafe impl<'a> crate::TaggedStructure<'a>
 for PhysicalDeviceDepthClipEnableFeaturesEXT<'a> {
     const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::PHYSICAL_DEVICE_DEPTH_CLIP_ENABLE_FEATURES_EXT;
 }
+impl<'a> Default for PhysicalDeviceDepthClipEnableFeaturesEXT<'a> {
+    fn default() -> Self {
+        Self {
+            s_type: <Self as crate::TaggedStructure>::STRUCTURE_TYPE,
+            p_next: Default::default(),
+            depth_clip_enable: Default::default(),
+            _marker: ::core::marker::PhantomData,
+        }
+    }
+}
 #[repr(C)]
 #[derive(Clone, Copy)]
 pub struct PipelineRasterizationDepthClipStateCreateInfoEXT<'a> {
@@ -25,6 +35,17 @@ pub struct PipelineRasterizationDepthClipStateCreateInfoEXT<'a> {
 unsafe impl<'a> crate::TaggedStructure<'a>
 for PipelineRasterizationDepthClipStateCreateInfoEXT<'a> {
     const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::PIPELINE_RASTERIZATION_DEPTH_CLIP_STATE_CREATE_INFO_EXT;
+}
+impl<'a> Default for PipelineRasterizationDepthClipStateCreateInfoEXT<'a> {
+    fn default() -> Self {
+        Self {
+            s_type: <Self as crate::TaggedStructure>::STRUCTURE_TYPE,
+            p_next: Default::default(),
+            flags: Default::default(),
+            depth_clip_enable: Default::default(),
+            _marker: ::core::marker::PhantomData,
+        }
+    }
 }
 ///Provided by [`ext::depth_clip_enable`](crate::ext::depth_clip_enable)
 impl crate::vk::StructureType {

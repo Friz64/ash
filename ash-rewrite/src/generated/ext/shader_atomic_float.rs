@@ -24,6 +24,27 @@ unsafe impl<'a> crate::TaggedStructure<'a>
 for PhysicalDeviceShaderAtomicFloatFeaturesEXT<'a> {
     const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::PHYSICAL_DEVICE_SHADER_ATOMIC_FLOAT_FEATURES_EXT;
 }
+impl<'a> Default for PhysicalDeviceShaderAtomicFloatFeaturesEXT<'a> {
+    fn default() -> Self {
+        Self {
+            s_type: <Self as crate::TaggedStructure>::STRUCTURE_TYPE,
+            p_next: Default::default(),
+            shader_buffer_float32_atomics: Default::default(),
+            shader_buffer_float32_atomic_add: Default::default(),
+            shader_buffer_float64_atomics: Default::default(),
+            shader_buffer_float64_atomic_add: Default::default(),
+            shader_shared_float32_atomics: Default::default(),
+            shader_shared_float32_atomic_add: Default::default(),
+            shader_shared_float64_atomics: Default::default(),
+            shader_shared_float64_atomic_add: Default::default(),
+            shader_image_float32_atomics: Default::default(),
+            shader_image_float32_atomic_add: Default::default(),
+            sparse_image_float32_atomics: Default::default(),
+            sparse_image_float32_atomic_add: Default::default(),
+            _marker: ::core::marker::PhantomData,
+        }
+    }
+}
 ///Provided by [`ext::shader_atomic_float`](crate::ext::shader_atomic_float)
 impl crate::vk::StructureType {
     pub const PHYSICAL_DEVICE_SHADER_ATOMIC_FLOAT_FEATURES_EXT: Self = Self(1000260000);

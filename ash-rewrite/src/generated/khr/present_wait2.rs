@@ -48,6 +48,17 @@ pub(crate) mod reexport {
     unsafe impl<'a> crate::TaggedStructure<'a> for PresentWait2InfoKHR<'a> {
         const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::PRESENT_WAIT_2_INFO_KHR;
     }
+    impl<'a> Default for PresentWait2InfoKHR<'a> {
+        fn default() -> Self {
+            Self {
+                s_type: <Self as crate::TaggedStructure>::STRUCTURE_TYPE,
+                p_next: Default::default(),
+                present_id: Default::default(),
+                timeout: Default::default(),
+                _marker: ::core::marker::PhantomData,
+            }
+        }
+    }
     #[repr(C)]
     #[derive(Clone, Copy)]
     pub struct PhysicalDevicePresentWait2FeaturesKHR<'a> {
@@ -60,6 +71,16 @@ pub(crate) mod reexport {
     for PhysicalDevicePresentWait2FeaturesKHR<'a> {
         const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::PHYSICAL_DEVICE_PRESENT_WAIT_2_FEATURES_KHR;
     }
+    impl<'a> Default for PhysicalDevicePresentWait2FeaturesKHR<'a> {
+        fn default() -> Self {
+            Self {
+                s_type: <Self as crate::TaggedStructure>::STRUCTURE_TYPE,
+                p_next: Default::default(),
+                present_wait2: Default::default(),
+                _marker: ::core::marker::PhantomData,
+            }
+        }
+    }
     #[repr(C)]
     #[derive(Clone, Copy)]
     pub struct SurfaceCapabilitiesPresentWait2KHR<'a> {
@@ -71,6 +92,16 @@ pub(crate) mod reexport {
     unsafe impl<'a> crate::TaggedStructure<'a>
     for SurfaceCapabilitiesPresentWait2KHR<'a> {
         const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::SURFACE_CAPABILITIES_PRESENT_WAIT_2_KHR;
+    }
+    impl<'a> Default for SurfaceCapabilitiesPresentWait2KHR<'a> {
+        fn default() -> Self {
+            Self {
+                s_type: <Self as crate::TaggedStructure>::STRUCTURE_TYPE,
+                p_next: Default::default(),
+                present_wait2_supported: Default::default(),
+                _marker: ::core::marker::PhantomData,
+            }
+        }
     }
     ///Provided by [`khr::present_wait2`](crate::khr::present_wait2)
     impl crate::vk::StructureType {

@@ -15,6 +15,18 @@ unsafe impl<'a> crate::TaggedStructure<'a>
 for PhysicalDeviceFragmentShaderInterlockFeaturesEXT<'a> {
     const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::PHYSICAL_DEVICE_FRAGMENT_SHADER_INTERLOCK_FEATURES_EXT;
 }
+impl<'a> Default for PhysicalDeviceFragmentShaderInterlockFeaturesEXT<'a> {
+    fn default() -> Self {
+        Self {
+            s_type: <Self as crate::TaggedStructure>::STRUCTURE_TYPE,
+            p_next: Default::default(),
+            fragment_shader_sample_interlock: Default::default(),
+            fragment_shader_pixel_interlock: Default::default(),
+            fragment_shader_shading_rate_interlock: Default::default(),
+            _marker: ::core::marker::PhantomData,
+        }
+    }
+}
 ///Provided by [`ext::fragment_shader_interlock`](crate::ext::fragment_shader_interlock)
 impl crate::vk::StructureType {
     pub const PHYSICAL_DEVICE_FRAGMENT_SHADER_INTERLOCK_FEATURES_EXT: Self = Self(

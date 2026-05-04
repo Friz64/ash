@@ -27,6 +27,30 @@ unsafe impl<'a> crate::TaggedStructure<'a>
 for PhysicalDevicePortabilitySubsetFeaturesKHR<'a> {
     const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::PHYSICAL_DEVICE_PORTABILITY_SUBSET_FEATURES_KHR;
 }
+impl<'a> Default for PhysicalDevicePortabilitySubsetFeaturesKHR<'a> {
+    fn default() -> Self {
+        Self {
+            s_type: <Self as crate::TaggedStructure>::STRUCTURE_TYPE,
+            p_next: Default::default(),
+            constant_alpha_color_blend_factors: Default::default(),
+            events: Default::default(),
+            image_view_format_reinterpretation: Default::default(),
+            image_view_format_swizzle: Default::default(),
+            image_view2_d_on3_d_image: Default::default(),
+            multisample_array_image: Default::default(),
+            mutable_comparison_samplers: Default::default(),
+            point_polygons: Default::default(),
+            sampler_mip_lod_bias: Default::default(),
+            separate_stencil_mask_ref: Default::default(),
+            shader_sample_rate_interpolation_functions: Default::default(),
+            tessellation_isolines: Default::default(),
+            tessellation_point_mode: Default::default(),
+            triangle_fans: Default::default(),
+            vertex_attribute_access_beyond_stride: Default::default(),
+            _marker: ::core::marker::PhantomData,
+        }
+    }
+}
 #[repr(C)]
 #[derive(Clone, Copy)]
 pub struct PhysicalDevicePortabilitySubsetPropertiesKHR<'a> {
@@ -38,6 +62,16 @@ pub struct PhysicalDevicePortabilitySubsetPropertiesKHR<'a> {
 unsafe impl<'a> crate::TaggedStructure<'a>
 for PhysicalDevicePortabilitySubsetPropertiesKHR<'a> {
     const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::PHYSICAL_DEVICE_PORTABILITY_SUBSET_PROPERTIES_KHR;
+}
+impl<'a> Default for PhysicalDevicePortabilitySubsetPropertiesKHR<'a> {
+    fn default() -> Self {
+        Self {
+            s_type: <Self as crate::TaggedStructure>::STRUCTURE_TYPE,
+            p_next: Default::default(),
+            min_vertex_input_binding_stride_alignment: Default::default(),
+            _marker: ::core::marker::PhantomData,
+        }
+    }
 }
 ///Provided by [`khr::portability_subset`](crate::khr::portability_subset)
 impl crate::vk::StructureType {

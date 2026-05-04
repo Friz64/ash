@@ -13,6 +13,16 @@ unsafe impl<'a> crate::TaggedStructure<'a>
 for PhysicalDeviceMultiviewPerViewRenderAreasFeaturesQCOM<'a> {
     const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::PHYSICAL_DEVICE_MULTIVIEW_PER_VIEW_RENDER_AREAS_FEATURES_QCOM;
 }
+impl<'a> Default for PhysicalDeviceMultiviewPerViewRenderAreasFeaturesQCOM<'a> {
+    fn default() -> Self {
+        Self {
+            s_type: <Self as crate::TaggedStructure>::STRUCTURE_TYPE,
+            p_next: Default::default(),
+            multiview_per_view_render_areas: Default::default(),
+            _marker: ::core::marker::PhantomData,
+        }
+    }
+}
 #[repr(C)]
 #[derive(Clone, Copy)]
 pub struct MultiviewPerViewRenderAreasRenderPassBeginInfoQCOM<'a> {
@@ -25,6 +35,17 @@ pub struct MultiviewPerViewRenderAreasRenderPassBeginInfoQCOM<'a> {
 unsafe impl<'a> crate::TaggedStructure<'a>
 for MultiviewPerViewRenderAreasRenderPassBeginInfoQCOM<'a> {
     const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::MULTIVIEW_PER_VIEW_RENDER_AREAS_RENDER_PASS_BEGIN_INFO_QCOM;
+}
+impl<'a> Default for MultiviewPerViewRenderAreasRenderPassBeginInfoQCOM<'a> {
+    fn default() -> Self {
+        Self {
+            s_type: <Self as crate::TaggedStructure>::STRUCTURE_TYPE,
+            p_next: Default::default(),
+            per_view_render_area_count: Default::default(),
+            p_per_view_render_areas: Default::default(),
+            _marker: ::core::marker::PhantomData,
+        }
+    }
 }
 ///Provided by [`qcom::multiview_per_view_render_areas`](crate::qcom::multiview_per_view_render_areas)
 impl crate::vk::StructureType {

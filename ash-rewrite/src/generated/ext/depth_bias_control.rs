@@ -48,6 +48,18 @@ pub(crate) mod reexport {
     unsafe impl<'a> crate::TaggedStructure<'a> for DepthBiasInfoEXT<'a> {
         const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::DEPTH_BIAS_INFO_EXT;
     }
+    impl<'a> Default for DepthBiasInfoEXT<'a> {
+        fn default() -> Self {
+            Self {
+                s_type: <Self as crate::TaggedStructure>::STRUCTURE_TYPE,
+                p_next: Default::default(),
+                depth_bias_constant_factor: Default::default(),
+                depth_bias_clamp: Default::default(),
+                depth_bias_slope_factor: Default::default(),
+                _marker: ::core::marker::PhantomData,
+            }
+        }
+    }
     #[repr(C)]
     #[derive(Clone, Copy)]
     pub struct DepthBiasRepresentationInfoEXT<'a> {
@@ -59,6 +71,17 @@ pub(crate) mod reexport {
     }
     unsafe impl<'a> crate::TaggedStructure<'a> for DepthBiasRepresentationInfoEXT<'a> {
         const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::DEPTH_BIAS_REPRESENTATION_INFO_EXT;
+    }
+    impl<'a> Default for DepthBiasRepresentationInfoEXT<'a> {
+        fn default() -> Self {
+            Self {
+                s_type: <Self as crate::TaggedStructure>::STRUCTURE_TYPE,
+                p_next: Default::default(),
+                depth_bias_representation: Default::default(),
+                depth_bias_exact: Default::default(),
+                _marker: ::core::marker::PhantomData,
+            }
+        }
     }
     #[repr(C)]
     #[derive(Clone, Copy)]
@@ -74,6 +97,19 @@ pub(crate) mod reexport {
     unsafe impl<'a> crate::TaggedStructure<'a>
     for PhysicalDeviceDepthBiasControlFeaturesEXT<'a> {
         const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::PHYSICAL_DEVICE_DEPTH_BIAS_CONTROL_FEATURES_EXT;
+    }
+    impl<'a> Default for PhysicalDeviceDepthBiasControlFeaturesEXT<'a> {
+        fn default() -> Self {
+            Self {
+                s_type: <Self as crate::TaggedStructure>::STRUCTURE_TYPE,
+                p_next: Default::default(),
+                depth_bias_control: Default::default(),
+                least_representable_value_force_unorm_representation: Default::default(),
+                float_representation: Default::default(),
+                depth_bias_exact: Default::default(),
+                _marker: ::core::marker::PhantomData,
+            }
+        }
     }
     ///Provided by [`ext::depth_bias_control`](crate::ext::depth_bias_control)
     impl crate::vk::StructureType {

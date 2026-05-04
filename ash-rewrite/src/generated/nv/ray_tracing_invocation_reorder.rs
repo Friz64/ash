@@ -13,6 +13,16 @@ unsafe impl<'a> crate::TaggedStructure<'a>
 for PhysicalDeviceRayTracingInvocationReorderFeaturesNV<'a> {
     const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::PHYSICAL_DEVICE_RAY_TRACING_INVOCATION_REORDER_FEATURES_NV;
 }
+impl<'a> Default for PhysicalDeviceRayTracingInvocationReorderFeaturesNV<'a> {
+    fn default() -> Self {
+        Self {
+            s_type: <Self as crate::TaggedStructure>::STRUCTURE_TYPE,
+            p_next: Default::default(),
+            ray_tracing_invocation_reorder: Default::default(),
+            _marker: ::core::marker::PhantomData,
+        }
+    }
+}
 #[repr(C)]
 #[derive(Clone, Copy)]
 pub struct PhysicalDeviceRayTracingInvocationReorderPropertiesNV<'a> {
@@ -24,6 +34,16 @@ pub struct PhysicalDeviceRayTracingInvocationReorderPropertiesNV<'a> {
 unsafe impl<'a> crate::TaggedStructure<'a>
 for PhysicalDeviceRayTracingInvocationReorderPropertiesNV<'a> {
     const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::PHYSICAL_DEVICE_RAY_TRACING_INVOCATION_REORDER_PROPERTIES_NV;
+}
+impl<'a> Default for PhysicalDeviceRayTracingInvocationReorderPropertiesNV<'a> {
+    fn default() -> Self {
+        Self {
+            s_type: <Self as crate::TaggedStructure>::STRUCTURE_TYPE,
+            p_next: Default::default(),
+            ray_tracing_invocation_reorder_reordering_hint: Default::default(),
+            _marker: ::core::marker::PhantomData,
+        }
+    }
 }
 ///Provided by [`nv::ray_tracing_invocation_reorder`](crate::nv::ray_tracing_invocation_reorder)
 impl crate::vk::StructureType {

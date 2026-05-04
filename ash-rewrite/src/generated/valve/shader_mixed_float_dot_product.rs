@@ -16,6 +16,19 @@ unsafe impl<'a> crate::TaggedStructure<'a>
 for PhysicalDeviceShaderMixedFloatDotProductFeaturesVALVE<'a> {
     const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::PHYSICAL_DEVICE_SHADER_MIXED_FLOAT_DOT_PRODUCT_FEATURES_VALVE;
 }
+impl<'a> Default for PhysicalDeviceShaderMixedFloatDotProductFeaturesVALVE<'a> {
+    fn default() -> Self {
+        Self {
+            s_type: <Self as crate::TaggedStructure>::STRUCTURE_TYPE,
+            p_next: Default::default(),
+            shader_mixed_float_dot_product_float16_acc_float32: Default::default(),
+            shader_mixed_float_dot_product_float16_acc_float16: Default::default(),
+            shader_mixed_float_dot_product_b_float16_acc: Default::default(),
+            shader_mixed_float_dot_product_float8_acc_float32: Default::default(),
+            _marker: ::core::marker::PhantomData,
+        }
+    }
+}
 ///Provided by [`valve::shader_mixed_float_dot_product`](crate::valve::shader_mixed_float_dot_product)
 impl crate::vk::StructureType {
     pub const PHYSICAL_DEVICE_SHADER_MIXED_FLOAT_DOT_PRODUCT_FEATURES_VALVE: Self = Self(

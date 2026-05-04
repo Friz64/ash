@@ -13,6 +13,16 @@ unsafe impl<'a> crate::TaggedStructure<'a>
 for PhysicalDeviceDepthClampControlFeaturesEXT<'a> {
     const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::PHYSICAL_DEVICE_DEPTH_CLAMP_CONTROL_FEATURES_EXT;
 }
+impl<'a> Default for PhysicalDeviceDepthClampControlFeaturesEXT<'a> {
+    fn default() -> Self {
+        Self {
+            s_type: <Self as crate::TaggedStructure>::STRUCTURE_TYPE,
+            p_next: Default::default(),
+            depth_clamp_control: Default::default(),
+            _marker: ::core::marker::PhantomData,
+        }
+    }
+}
 #[repr(C)]
 #[derive(Clone, Copy)]
 pub struct PipelineViewportDepthClampControlCreateInfoEXT<'a> {
@@ -26,8 +36,19 @@ unsafe impl<'a> crate::TaggedStructure<'a>
 for PipelineViewportDepthClampControlCreateInfoEXT<'a> {
     const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::PIPELINE_VIEWPORT_DEPTH_CLAMP_CONTROL_CREATE_INFO_EXT;
 }
+impl<'a> Default for PipelineViewportDepthClampControlCreateInfoEXT<'a> {
+    fn default() -> Self {
+        Self {
+            s_type: <Self as crate::TaggedStructure>::STRUCTURE_TYPE,
+            p_next: Default::default(),
+            depth_clamp_mode: Default::default(),
+            p_depth_clamp_range: Default::default(),
+            _marker: ::core::marker::PhantomData,
+        }
+    }
+}
 #[repr(C)]
-#[derive(Clone, Copy)]
+#[derive(Clone, Copy, Default)]
 pub struct DepthClampRangeEXT {
     pub min_depth_clamp: core::ffi::c_float,
     pub max_depth_clamp: core::ffi::c_float,

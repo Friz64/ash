@@ -14,6 +14,17 @@ unsafe impl<'a> crate::TaggedStructure<'a>
 for SamplerBorderColorComponentMappingCreateInfoEXT<'a> {
     const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::SAMPLER_BORDER_COLOR_COMPONENT_MAPPING_CREATE_INFO_EXT;
 }
+impl<'a> Default for SamplerBorderColorComponentMappingCreateInfoEXT<'a> {
+    fn default() -> Self {
+        Self {
+            s_type: <Self as crate::TaggedStructure>::STRUCTURE_TYPE,
+            p_next: Default::default(),
+            components: Default::default(),
+            srgb: Default::default(),
+            _marker: ::core::marker::PhantomData,
+        }
+    }
+}
 #[repr(C)]
 #[derive(Clone, Copy)]
 pub struct PhysicalDeviceBorderColorSwizzleFeaturesEXT<'a> {
@@ -26,6 +37,17 @@ pub struct PhysicalDeviceBorderColorSwizzleFeaturesEXT<'a> {
 unsafe impl<'a> crate::TaggedStructure<'a>
 for PhysicalDeviceBorderColorSwizzleFeaturesEXT<'a> {
     const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::PHYSICAL_DEVICE_BORDER_COLOR_SWIZZLE_FEATURES_EXT;
+}
+impl<'a> Default for PhysicalDeviceBorderColorSwizzleFeaturesEXT<'a> {
+    fn default() -> Self {
+        Self {
+            s_type: <Self as crate::TaggedStructure>::STRUCTURE_TYPE,
+            p_next: Default::default(),
+            border_color_swizzle: Default::default(),
+            border_color_swizzle_from_image: Default::default(),
+            _marker: ::core::marker::PhantomData,
+        }
+    }
 }
 ///Provided by [`ext::border_color_swizzle`](crate::ext::border_color_swizzle)
 impl crate::vk::StructureType {

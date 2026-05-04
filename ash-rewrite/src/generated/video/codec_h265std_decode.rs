@@ -2,7 +2,7 @@
 #![cfg_attr(rustfmt, rustfmt_skip)]
 //!Items provided by `vulkan_video_codec_h265std_decode`
 #[repr(C)]
-#[derive(Clone, Copy)]
+#[derive(Clone, Copy, Default)]
 pub struct DecodeH265PictureInfoFlags {
     /**- `IrapPicFlag` @ `0..1`
 - `IdrPicFlag` @ `1..2`
@@ -28,15 +28,32 @@ pub struct DecodeH265PictureInfo {
     pub ref_pic_set_lt_curr: [u8; crate::vk::STD_VIDEO_DECODE_H265_REF_PIC_SET_LIST_SIZE
         as _],
 }
+impl Default for DecodeH265PictureInfo {
+    fn default() -> Self {
+        Self {
+            flags: Default::default(),
+            sps_video_parameter_set_id: Default::default(),
+            pps_seq_parameter_set_id: Default::default(),
+            pps_pic_parameter_set_id: Default::default(),
+            num_delta_pocs_of_ref_rps_idx: Default::default(),
+            pic_order_cnt_val: Default::default(),
+            num_bits_for_st_ref_pic_set_in_slice: Default::default(),
+            reserved: Default::default(),
+            ref_pic_set_st_curr_before: unsafe { core::mem::zeroed() },
+            ref_pic_set_st_curr_after: unsafe { core::mem::zeroed() },
+            ref_pic_set_lt_curr: unsafe { core::mem::zeroed() },
+        }
+    }
+}
 #[repr(C)]
-#[derive(Clone, Copy)]
+#[derive(Clone, Copy, Default)]
 pub struct DecodeH265ReferenceInfoFlags {
     /**- `used_for_long_term_reference` @ `0..1`
 - `unused_for_reference` @ `1..2`*/
     pub bitfield0: u32,
 }
 #[repr(C)]
-#[derive(Clone, Copy)]
+#[derive(Clone, Copy, Default)]
 pub struct DecodeH265ReferenceInfo {
     pub flags: crate::vk::DecodeH265ReferenceInfoFlags,
     pub pic_order_cnt_val: i32,

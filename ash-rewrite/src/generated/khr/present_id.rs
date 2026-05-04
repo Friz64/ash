@@ -12,6 +12,16 @@ pub struct PhysicalDevicePresentIdFeaturesKHR<'a> {
 unsafe impl<'a> crate::TaggedStructure<'a> for PhysicalDevicePresentIdFeaturesKHR<'a> {
     const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::PHYSICAL_DEVICE_PRESENT_ID_FEATURES_KHR;
 }
+impl<'a> Default for PhysicalDevicePresentIdFeaturesKHR<'a> {
+    fn default() -> Self {
+        Self {
+            s_type: <Self as crate::TaggedStructure>::STRUCTURE_TYPE,
+            p_next: Default::default(),
+            present_id: Default::default(),
+            _marker: ::core::marker::PhantomData,
+        }
+    }
+}
 #[repr(C)]
 #[derive(Clone, Copy)]
 pub struct PresentIdKHR<'a> {
@@ -23,6 +33,17 @@ pub struct PresentIdKHR<'a> {
 }
 unsafe impl<'a> crate::TaggedStructure<'a> for PresentIdKHR<'a> {
     const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::PRESENT_ID_KHR;
+}
+impl<'a> Default for PresentIdKHR<'a> {
+    fn default() -> Self {
+        Self {
+            s_type: <Self as crate::TaggedStructure>::STRUCTURE_TYPE,
+            p_next: Default::default(),
+            swapchain_count: Default::default(),
+            p_present_ids: Default::default(),
+            _marker: ::core::marker::PhantomData,
+        }
+    }
 }
 ///Provided by [`khr::present_id`](crate::khr::present_id)
 impl crate::vk::StructureType {

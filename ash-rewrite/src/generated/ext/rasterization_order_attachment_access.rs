@@ -15,6 +15,18 @@ unsafe impl<'a> crate::TaggedStructure<'a>
 for PhysicalDeviceRasterizationOrderAttachmentAccessFeaturesEXT<'a> {
     const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::PHYSICAL_DEVICE_RASTERIZATION_ORDER_ATTACHMENT_ACCESS_FEATURES_EXT;
 }
+impl<'a> Default for PhysicalDeviceRasterizationOrderAttachmentAccessFeaturesEXT<'a> {
+    fn default() -> Self {
+        Self {
+            s_type: <Self as crate::TaggedStructure>::STRUCTURE_TYPE,
+            p_next: Default::default(),
+            rasterization_order_color_attachment_access: Default::default(),
+            rasterization_order_depth_attachment_access: Default::default(),
+            rasterization_order_stencil_attachment_access: Default::default(),
+            _marker: ::core::marker::PhantomData,
+        }
+    }
+}
 ///Provided by [`ext::rasterization_order_attachment_access`](crate::ext::rasterization_order_attachment_access)
 impl crate::vk::StructureType {
     pub const PHYSICAL_DEVICE_RASTERIZATION_ORDER_ATTACHMENT_ACCESS_FEATURES_EXT: Self = Self(

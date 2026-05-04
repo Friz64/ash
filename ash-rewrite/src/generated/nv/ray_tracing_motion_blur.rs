@@ -14,6 +14,17 @@ unsafe impl<'a> crate::TaggedStructure<'a>
 for PhysicalDeviceRayTracingMotionBlurFeaturesNV<'a> {
     const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::PHYSICAL_DEVICE_RAY_TRACING_MOTION_BLUR_FEATURES_NV;
 }
+impl<'a> Default for PhysicalDeviceRayTracingMotionBlurFeaturesNV<'a> {
+    fn default() -> Self {
+        Self {
+            s_type: <Self as crate::TaggedStructure>::STRUCTURE_TYPE,
+            p_next: Default::default(),
+            ray_tracing_motion_blur: Default::default(),
+            ray_tracing_motion_blur_pipeline_trace_rays_indirect: Default::default(),
+            _marker: ::core::marker::PhantomData,
+        }
+    }
+}
 #[repr(C)]
 #[derive(Clone, Copy)]
 pub struct AccelerationStructureGeometryMotionTrianglesDataNV<'a> {
@@ -25,6 +36,16 @@ pub struct AccelerationStructureGeometryMotionTrianglesDataNV<'a> {
 unsafe impl<'a> crate::TaggedStructure<'a>
 for AccelerationStructureGeometryMotionTrianglesDataNV<'a> {
     const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::ACCELERATION_STRUCTURE_GEOMETRY_MOTION_TRIANGLES_DATA_NV;
+}
+impl<'a> Default for AccelerationStructureGeometryMotionTrianglesDataNV<'a> {
+    fn default() -> Self {
+        Self {
+            s_type: <Self as crate::TaggedStructure>::STRUCTURE_TYPE,
+            p_next: Default::default(),
+            vertex_data: Default::default(),
+            _marker: ::core::marker::PhantomData,
+        }
+    }
 }
 #[repr(C)]
 #[derive(Clone, Copy)]
@@ -38,8 +59,19 @@ pub struct AccelerationStructureMotionInfoNV<'a> {
 unsafe impl<'a> crate::TaggedStructure<'a> for AccelerationStructureMotionInfoNV<'a> {
     const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::ACCELERATION_STRUCTURE_MOTION_INFO_NV;
 }
+impl<'a> Default for AccelerationStructureMotionInfoNV<'a> {
+    fn default() -> Self {
+        Self {
+            s_type: <Self as crate::TaggedStructure>::STRUCTURE_TYPE,
+            p_next: Default::default(),
+            max_instances: Default::default(),
+            flags: Default::default(),
+            _marker: ::core::marker::PhantomData,
+        }
+    }
+}
 #[repr(C)]
-#[derive(Clone, Copy)]
+#[derive(Clone, Copy, Default)]
 pub struct SRTDataNV {
     pub sx: core::ffi::c_float,
     pub a: core::ffi::c_float,
@@ -59,7 +91,7 @@ pub struct SRTDataNV {
     pub tz: core::ffi::c_float,
 }
 #[repr(C)]
-#[derive(Clone, Copy)]
+#[derive(Clone, Copy, Default)]
 pub struct AccelerationStructureSRTMotionInstanceNV {
     pub transform_t0: crate::vk::SRTDataNV,
     pub transform_t1: crate::vk::SRTDataNV,
@@ -72,7 +104,7 @@ pub struct AccelerationStructureSRTMotionInstanceNV {
     pub acceleration_structure_reference: u64,
 }
 #[repr(C)]
-#[derive(Clone, Copy)]
+#[derive(Clone, Copy, Default)]
 pub struct AccelerationStructureMatrixMotionInstanceNV {
     pub transform_t0: crate::vk::TransformMatrixKHR,
     pub transform_t1: crate::vk::TransformMatrixKHR,
@@ -85,7 +117,7 @@ pub struct AccelerationStructureMatrixMotionInstanceNV {
     pub acceleration_structure_reference: u64,
 }
 #[repr(C)]
-#[derive(Clone, Copy)]
+#[derive(Clone, Copy, Default)]
 pub struct AccelerationStructureMotionInstanceNV {
     pub _type: crate::vk::AccelerationStructureMotionInstanceTypeNV,
     pub flags: crate::vk::AccelerationStructureMotionInstanceFlagsNV,
@@ -97,6 +129,11 @@ pub union AccelerationStructureMotionInstanceDataNV {
     pub static_instance: crate::vk::AccelerationStructureInstanceKHR,
     pub matrix_motion_instance: crate::vk::AccelerationStructureMatrixMotionInstanceNV,
     pub srt_motion_instance: crate::vk::AccelerationStructureSRTMotionInstanceNV,
+}
+impl Default for AccelerationStructureMotionInstanceDataNV {
+    fn default() -> Self {
+        unsafe { core::mem::zeroed() }
+    }
 }
 ///Provided by [`nv::ray_tracing_motion_blur`](crate::nv::ray_tracing_motion_blur)
 impl crate::vk::StructureType {

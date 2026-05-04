@@ -14,6 +14,18 @@ pub struct ImageCompressionControlEXT<'a> {
 unsafe impl<'a> crate::TaggedStructure<'a> for ImageCompressionControlEXT<'a> {
     const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::IMAGE_COMPRESSION_CONTROL_EXT;
 }
+impl<'a> Default for ImageCompressionControlEXT<'a> {
+    fn default() -> Self {
+        Self {
+            s_type: <Self as crate::TaggedStructure>::STRUCTURE_TYPE,
+            p_next: Default::default(),
+            flags: Default::default(),
+            compression_control_plane_count: Default::default(),
+            p_fixed_rate_flags: Default::default(),
+            _marker: ::core::marker::PhantomData,
+        }
+    }
+}
 #[repr(C)]
 #[derive(Clone, Copy)]
 pub struct PhysicalDeviceImageCompressionControlFeaturesEXT<'a> {
@@ -26,6 +38,16 @@ unsafe impl<'a> crate::TaggedStructure<'a>
 for PhysicalDeviceImageCompressionControlFeaturesEXT<'a> {
     const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::PHYSICAL_DEVICE_IMAGE_COMPRESSION_CONTROL_FEATURES_EXT;
 }
+impl<'a> Default for PhysicalDeviceImageCompressionControlFeaturesEXT<'a> {
+    fn default() -> Self {
+        Self {
+            s_type: <Self as crate::TaggedStructure>::STRUCTURE_TYPE,
+            p_next: Default::default(),
+            image_compression_control: Default::default(),
+            _marker: ::core::marker::PhantomData,
+        }
+    }
+}
 #[repr(C)]
 #[derive(Clone, Copy)]
 pub struct ImageCompressionPropertiesEXT<'a> {
@@ -37,6 +59,17 @@ pub struct ImageCompressionPropertiesEXT<'a> {
 }
 unsafe impl<'a> crate::TaggedStructure<'a> for ImageCompressionPropertiesEXT<'a> {
     const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::IMAGE_COMPRESSION_PROPERTIES_EXT;
+}
+impl<'a> Default for ImageCompressionPropertiesEXT<'a> {
+    fn default() -> Self {
+        Self {
+            s_type: <Self as crate::TaggedStructure>::STRUCTURE_TYPE,
+            p_next: Default::default(),
+            image_compression_flags: Default::default(),
+            image_compression_fixed_rate_flags: Default::default(),
+            _marker: ::core::marker::PhantomData,
+        }
+    }
 }
 ///Provided by [`ext::image_compression_control`](crate::ext::image_compression_control)
 impl crate::vk::StructureType {
@@ -128,7 +161,7 @@ impl core::ops::Not for ImageCompressionFlagsEXT {
     }
 }
 #[repr(transparent)]
-#[derive(Clone, Copy)]
+#[derive(Clone, Copy, Default)]
 pub struct ImageCompressionFlagBitsEXT(pub(crate) u32);
 ///Provided by [`ext::image_compression_control`](crate::ext::image_compression_control)
 impl ImageCompressionFlagBitsEXT {
@@ -260,7 +293,7 @@ impl core::ops::Not for ImageCompressionFixedRateFlagsEXT {
     }
 }
 #[repr(transparent)]
-#[derive(Clone, Copy)]
+#[derive(Clone, Copy, Default)]
 pub struct ImageCompressionFixedRateFlagBitsEXT(pub(crate) u32);
 ///Provided by [`ext::image_compression_control`](crate::ext::image_compression_control)
 impl ImageCompressionFixedRateFlagBitsEXT {

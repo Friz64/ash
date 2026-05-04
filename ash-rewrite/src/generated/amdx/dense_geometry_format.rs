@@ -13,6 +13,16 @@ unsafe impl<'a> crate::TaggedStructure<'a>
 for PhysicalDeviceDenseGeometryFormatFeaturesAMDX<'a> {
     const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::PHYSICAL_DEVICE_DENSE_GEOMETRY_FORMAT_FEATURES_AMDX;
 }
+impl<'a> Default for PhysicalDeviceDenseGeometryFormatFeaturesAMDX<'a> {
+    fn default() -> Self {
+        Self {
+            s_type: <Self as crate::TaggedStructure>::STRUCTURE_TYPE,
+            p_next: Default::default(),
+            dense_geometry_format: Default::default(),
+            _marker: ::core::marker::PhantomData,
+        }
+    }
+}
 #[repr(C)]
 #[derive(Clone, Copy)]
 pub struct AccelerationStructureDenseGeometryFormatTrianglesDataAMDX<'a> {
@@ -30,6 +40,22 @@ pub struct AccelerationStructureDenseGeometryFormatTrianglesDataAMDX<'a> {
 unsafe impl<'a> crate::TaggedStructure<'a>
 for AccelerationStructureDenseGeometryFormatTrianglesDataAMDX<'a> {
     const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::ACCELERATION_STRUCTURE_DENSE_GEOMETRY_FORMAT_TRIANGLES_DATA_AMDX;
+}
+impl<'a> Default for AccelerationStructureDenseGeometryFormatTrianglesDataAMDX<'a> {
+    fn default() -> Self {
+        Self {
+            s_type: <Self as crate::TaggedStructure>::STRUCTURE_TYPE,
+            p_next: Default::default(),
+            compressed_data: Default::default(),
+            data_size: Default::default(),
+            num_triangles: Default::default(),
+            num_vertices: Default::default(),
+            max_primitive_index: Default::default(),
+            max_geometry_index: Default::default(),
+            format: Default::default(),
+            _marker: ::core::marker::PhantomData,
+        }
+    }
 }
 ///Provided by [`amdx::dense_geometry_format`](crate::amdx::dense_geometry_format)
 impl crate::vk::StructureType {

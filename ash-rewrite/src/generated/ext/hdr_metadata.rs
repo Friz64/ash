@@ -38,7 +38,7 @@ impl DeviceFn {
 }
 pub(crate) mod reexport {
     #[repr(C)]
-    #[derive(Clone, Copy)]
+    #[derive(Clone, Copy, Default)]
     pub struct XYColorEXT {
         pub x: core::ffi::c_float,
         pub y: core::ffi::c_float,
@@ -60,6 +60,23 @@ pub(crate) mod reexport {
     }
     unsafe impl<'a> crate::TaggedStructure<'a> for HdrMetadataEXT<'a> {
         const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::HDR_METADATA_EXT;
+    }
+    impl<'a> Default for HdrMetadataEXT<'a> {
+        fn default() -> Self {
+            Self {
+                s_type: <Self as crate::TaggedStructure>::STRUCTURE_TYPE,
+                p_next: Default::default(),
+                display_primary_red: Default::default(),
+                display_primary_green: Default::default(),
+                display_primary_blue: Default::default(),
+                white_point: Default::default(),
+                max_luminance: Default::default(),
+                min_luminance: Default::default(),
+                max_content_light_level: Default::default(),
+                max_frame_average_light_level: Default::default(),
+                _marker: ::core::marker::PhantomData,
+            }
+        }
     }
     ///Provided by [`ext::hdr_metadata`](crate::ext::hdr_metadata)
     impl crate::vk::StructureType {

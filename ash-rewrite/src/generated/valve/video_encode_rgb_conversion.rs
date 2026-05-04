@@ -13,6 +13,16 @@ unsafe impl<'a> crate::TaggedStructure<'a>
 for PhysicalDeviceVideoEncodeRgbConversionFeaturesVALVE<'a> {
     const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::PHYSICAL_DEVICE_VIDEO_ENCODE_RGB_CONVERSION_FEATURES_VALVE;
 }
+impl<'a> Default for PhysicalDeviceVideoEncodeRgbConversionFeaturesVALVE<'a> {
+    fn default() -> Self {
+        Self {
+            s_type: <Self as crate::TaggedStructure>::STRUCTURE_TYPE,
+            p_next: Default::default(),
+            video_encode_rgb_conversion: Default::default(),
+            _marker: ::core::marker::PhantomData,
+        }
+    }
+}
 #[repr(C)]
 #[derive(Clone, Copy)]
 pub struct VideoEncodeRgbConversionCapabilitiesVALVE<'a> {
@@ -28,6 +38,19 @@ unsafe impl<'a> crate::TaggedStructure<'a>
 for VideoEncodeRgbConversionCapabilitiesVALVE<'a> {
     const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::VIDEO_ENCODE_RGB_CONVERSION_CAPABILITIES_VALVE;
 }
+impl<'a> Default for VideoEncodeRgbConversionCapabilitiesVALVE<'a> {
+    fn default() -> Self {
+        Self {
+            s_type: <Self as crate::TaggedStructure>::STRUCTURE_TYPE,
+            p_next: Default::default(),
+            rgb_models: Default::default(),
+            rgb_ranges: Default::default(),
+            x_chroma_offsets: Default::default(),
+            y_chroma_offsets: Default::default(),
+            _marker: ::core::marker::PhantomData,
+        }
+    }
+}
 #[repr(C)]
 #[derive(Clone, Copy)]
 pub struct VideoEncodeProfileRgbConversionInfoVALVE<'a> {
@@ -39,6 +62,16 @@ pub struct VideoEncodeProfileRgbConversionInfoVALVE<'a> {
 unsafe impl<'a> crate::TaggedStructure<'a>
 for VideoEncodeProfileRgbConversionInfoVALVE<'a> {
     const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::VIDEO_ENCODE_PROFILE_RGB_CONVERSION_INFO_VALVE;
+}
+impl<'a> Default for VideoEncodeProfileRgbConversionInfoVALVE<'a> {
+    fn default() -> Self {
+        Self {
+            s_type: <Self as crate::TaggedStructure>::STRUCTURE_TYPE,
+            p_next: Default::default(),
+            perform_encode_rgb_conversion: Default::default(),
+            _marker: ::core::marker::PhantomData,
+        }
+    }
 }
 #[repr(C)]
 #[derive(Clone, Copy)]
@@ -54,6 +87,19 @@ pub struct VideoEncodeSessionRgbConversionCreateInfoVALVE<'a> {
 unsafe impl<'a> crate::TaggedStructure<'a>
 for VideoEncodeSessionRgbConversionCreateInfoVALVE<'a> {
     const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::VIDEO_ENCODE_SESSION_RGB_CONVERSION_CREATE_INFO_VALVE;
+}
+impl<'a> Default for VideoEncodeSessionRgbConversionCreateInfoVALVE<'a> {
+    fn default() -> Self {
+        Self {
+            s_type: <Self as crate::TaggedStructure>::STRUCTURE_TYPE,
+            p_next: Default::default(),
+            rgb_model: Default::default(),
+            rgb_range: Default::default(),
+            x_chroma_offset: Default::default(),
+            y_chroma_offset: Default::default(),
+            _marker: ::core::marker::PhantomData,
+        }
+    }
 }
 ///Provided by [`valve::video_encode_rgb_conversion`](crate::valve::video_encode_rgb_conversion)
 impl crate::vk::StructureType {
@@ -149,7 +195,7 @@ impl core::ops::Not for VideoEncodeRgbModelConversionFlagsVALVE {
     }
 }
 #[repr(transparent)]
-#[derive(Clone, Copy)]
+#[derive(Clone, Copy, Default)]
 pub struct VideoEncodeRgbModelConversionFlagBitsVALVE(pub(crate) u32);
 ///Provided by [`valve::video_encode_rgb_conversion`](crate::valve::video_encode_rgb_conversion)
 impl VideoEncodeRgbModelConversionFlagBitsVALVE {
@@ -233,7 +279,7 @@ impl core::ops::Not for VideoEncodeRgbRangeCompressionFlagsVALVE {
     }
 }
 #[repr(transparent)]
-#[derive(Clone, Copy)]
+#[derive(Clone, Copy, Default)]
 pub struct VideoEncodeRgbRangeCompressionFlagBitsVALVE(pub(crate) u32);
 ///Provided by [`valve::video_encode_rgb_conversion`](crate::valve::video_encode_rgb_conversion)
 impl VideoEncodeRgbRangeCompressionFlagBitsVALVE {
@@ -314,7 +360,7 @@ impl core::ops::Not for VideoEncodeRgbChromaOffsetFlagsVALVE {
     }
 }
 #[repr(transparent)]
-#[derive(Clone, Copy)]
+#[derive(Clone, Copy, Default)]
 pub struct VideoEncodeRgbChromaOffsetFlagBitsVALVE(pub(crate) u32);
 ///Provided by [`valve::video_encode_rgb_conversion`](crate::valve::video_encode_rgb_conversion)
 impl VideoEncodeRgbChromaOffsetFlagBitsVALVE {

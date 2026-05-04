@@ -143,6 +143,17 @@ pub(crate) mod reexport {
     for PhysicalDeviceTransformFeedbackFeaturesEXT<'a> {
         const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::PHYSICAL_DEVICE_TRANSFORM_FEEDBACK_FEATURES_EXT;
     }
+    impl<'a> Default for PhysicalDeviceTransformFeedbackFeaturesEXT<'a> {
+        fn default() -> Self {
+            Self {
+                s_type: <Self as crate::TaggedStructure>::STRUCTURE_TYPE,
+                p_next: Default::default(),
+                transform_feedback: Default::default(),
+                geometry_streams: Default::default(),
+                _marker: ::core::marker::PhantomData,
+            }
+        }
+    }
     #[repr(C)]
     #[derive(Clone, Copy)]
     pub struct PhysicalDeviceTransformFeedbackPropertiesEXT<'a> {
@@ -164,6 +175,25 @@ pub(crate) mod reexport {
     for PhysicalDeviceTransformFeedbackPropertiesEXT<'a> {
         const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::PHYSICAL_DEVICE_TRANSFORM_FEEDBACK_PROPERTIES_EXT;
     }
+    impl<'a> Default for PhysicalDeviceTransformFeedbackPropertiesEXT<'a> {
+        fn default() -> Self {
+            Self {
+                s_type: <Self as crate::TaggedStructure>::STRUCTURE_TYPE,
+                p_next: Default::default(),
+                max_transform_feedback_streams: Default::default(),
+                max_transform_feedback_buffers: Default::default(),
+                max_transform_feedback_buffer_size: Default::default(),
+                max_transform_feedback_stream_data_size: Default::default(),
+                max_transform_feedback_buffer_data_size: Default::default(),
+                max_transform_feedback_buffer_data_stride: Default::default(),
+                transform_feedback_queries: Default::default(),
+                transform_feedback_streams_lines_triangles: Default::default(),
+                transform_feedback_rasterization_stream_select: Default::default(),
+                transform_feedback_draw: Default::default(),
+                _marker: ::core::marker::PhantomData,
+            }
+        }
+    }
     #[repr(C)]
     #[derive(Clone, Copy)]
     pub struct PipelineRasterizationStateStreamCreateInfoEXT<'a> {
@@ -176,6 +206,17 @@ pub(crate) mod reexport {
     unsafe impl<'a> crate::TaggedStructure<'a>
     for PipelineRasterizationStateStreamCreateInfoEXT<'a> {
         const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::PIPELINE_RASTERIZATION_STATE_STREAM_CREATE_INFO_EXT;
+    }
+    impl<'a> Default for PipelineRasterizationStateStreamCreateInfoEXT<'a> {
+        fn default() -> Self {
+            Self {
+                s_type: <Self as crate::TaggedStructure>::STRUCTURE_TYPE,
+                p_next: Default::default(),
+                flags: Default::default(),
+                rasterization_stream: Default::default(),
+                _marker: ::core::marker::PhantomData,
+            }
+        }
     }
     ///Provided by [`ext::transform_feedback`](crate::ext::transform_feedback)
     impl crate::vk::QueryType {

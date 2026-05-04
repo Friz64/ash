@@ -79,6 +79,16 @@ pub(crate) mod reexport {
     for QueueFamilyCheckpointPropertiesNV<'a> {
         const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::QUEUE_FAMILY_CHECKPOINT_PROPERTIES_NV;
     }
+    impl<'a> Default for QueueFamilyCheckpointPropertiesNV<'a> {
+        fn default() -> Self {
+            Self {
+                s_type: <Self as crate::TaggedStructure>::STRUCTURE_TYPE,
+                p_next: Default::default(),
+                checkpoint_execution_stage_mask: Default::default(),
+                _marker: ::core::marker::PhantomData,
+            }
+        }
+    }
     #[repr(C)]
     #[derive(Clone, Copy)]
     pub struct CheckpointDataNV<'a> {
@@ -90,6 +100,17 @@ pub(crate) mod reexport {
     }
     unsafe impl<'a> crate::TaggedStructure<'a> for CheckpointDataNV<'a> {
         const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::CHECKPOINT_DATA_NV;
+    }
+    impl<'a> Default for CheckpointDataNV<'a> {
+        fn default() -> Self {
+            Self {
+                s_type: <Self as crate::TaggedStructure>::STRUCTURE_TYPE,
+                p_next: Default::default(),
+                stage: Default::default(),
+                p_checkpoint_marker: Default::default(),
+                _marker: ::core::marker::PhantomData,
+            }
+        }
     }
     #[repr(C)]
     #[derive(Clone, Copy)]
@@ -103,6 +124,16 @@ pub(crate) mod reexport {
     for QueueFamilyCheckpointProperties2NV<'a> {
         const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::QUEUE_FAMILY_CHECKPOINT_PROPERTIES_2_NV;
     }
+    impl<'a> Default for QueueFamilyCheckpointProperties2NV<'a> {
+        fn default() -> Self {
+            Self {
+                s_type: <Self as crate::TaggedStructure>::STRUCTURE_TYPE,
+                p_next: Default::default(),
+                checkpoint_execution_stage_mask: Default::default(),
+                _marker: ::core::marker::PhantomData,
+            }
+        }
+    }
     #[repr(C)]
     #[derive(Clone, Copy)]
     pub struct CheckpointData2NV<'a> {
@@ -114,6 +145,17 @@ pub(crate) mod reexport {
     }
     unsafe impl<'a> crate::TaggedStructure<'a> for CheckpointData2NV<'a> {
         const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::CHECKPOINT_DATA_2_NV;
+    }
+    impl<'a> Default for CheckpointData2NV<'a> {
+        fn default() -> Self {
+            Self {
+                s_type: <Self as crate::TaggedStructure>::STRUCTURE_TYPE,
+                p_next: Default::default(),
+                stage: Default::default(),
+                p_checkpoint_marker: Default::default(),
+                _marker: ::core::marker::PhantomData,
+            }
+        }
     }
     ///Provided by [`nv::device_diagnostic_checkpoints`](crate::nv::device_diagnostic_checkpoints)
     impl crate::vk::StructureType {

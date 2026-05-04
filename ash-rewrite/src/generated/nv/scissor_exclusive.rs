@@ -66,6 +66,16 @@ pub(crate) mod reexport {
     for PhysicalDeviceExclusiveScissorFeaturesNV<'a> {
         const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::PHYSICAL_DEVICE_EXCLUSIVE_SCISSOR_FEATURES_NV;
     }
+    impl<'a> Default for PhysicalDeviceExclusiveScissorFeaturesNV<'a> {
+        fn default() -> Self {
+            Self {
+                s_type: <Self as crate::TaggedStructure>::STRUCTURE_TYPE,
+                p_next: Default::default(),
+                exclusive_scissor: Default::default(),
+                _marker: ::core::marker::PhantomData,
+            }
+        }
+    }
     #[repr(C)]
     #[derive(Clone, Copy)]
     pub struct PipelineViewportExclusiveScissorStateCreateInfoNV<'a> {
@@ -78,6 +88,17 @@ pub(crate) mod reexport {
     unsafe impl<'a> crate::TaggedStructure<'a>
     for PipelineViewportExclusiveScissorStateCreateInfoNV<'a> {
         const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::PIPELINE_VIEWPORT_EXCLUSIVE_SCISSOR_STATE_CREATE_INFO_NV;
+    }
+    impl<'a> Default for PipelineViewportExclusiveScissorStateCreateInfoNV<'a> {
+        fn default() -> Self {
+            Self {
+                s_type: <Self as crate::TaggedStructure>::STRUCTURE_TYPE,
+                p_next: Default::default(),
+                exclusive_scissor_count: Default::default(),
+                p_exclusive_scissors: Default::default(),
+                _marker: ::core::marker::PhantomData,
+            }
+        }
     }
     ///Provided by [`nv::scissor_exclusive`](crate::nv::scissor_exclusive)
     impl crate::vk::StructureType {

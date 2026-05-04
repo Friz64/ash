@@ -13,6 +13,16 @@ unsafe impl<'a> crate::TaggedStructure<'a>
 for PhysicalDeviceDeviceMemoryReportFeaturesEXT<'a> {
     const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::PHYSICAL_DEVICE_DEVICE_MEMORY_REPORT_FEATURES_EXT;
 }
+impl<'a> Default for PhysicalDeviceDeviceMemoryReportFeaturesEXT<'a> {
+    fn default() -> Self {
+        Self {
+            s_type: <Self as crate::TaggedStructure>::STRUCTURE_TYPE,
+            p_next: Default::default(),
+            device_memory_report: Default::default(),
+            _marker: ::core::marker::PhantomData,
+        }
+    }
+}
 #[repr(C)]
 #[derive(Clone, Copy)]
 pub struct DeviceDeviceMemoryReportCreateInfoEXT<'a> {
@@ -26,6 +36,18 @@ pub struct DeviceDeviceMemoryReportCreateInfoEXT<'a> {
 unsafe impl<'a> crate::TaggedStructure<'a>
 for DeviceDeviceMemoryReportCreateInfoEXT<'a> {
     const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::DEVICE_DEVICE_MEMORY_REPORT_CREATE_INFO_EXT;
+}
+impl<'a> Default for DeviceDeviceMemoryReportCreateInfoEXT<'a> {
+    fn default() -> Self {
+        Self {
+            s_type: <Self as crate::TaggedStructure>::STRUCTURE_TYPE,
+            p_next: Default::default(),
+            flags: Default::default(),
+            pfn_user_callback: Default::default(),
+            p_user_data: Default::default(),
+            _marker: ::core::marker::PhantomData,
+        }
+    }
 }
 #[repr(C)]
 #[derive(Clone, Copy)]
@@ -43,6 +65,22 @@ pub struct DeviceMemoryReportCallbackDataEXT<'a> {
 }
 unsafe impl<'a> crate::TaggedStructure<'a> for DeviceMemoryReportCallbackDataEXT<'a> {
     const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::DEVICE_MEMORY_REPORT_CALLBACK_DATA_EXT;
+}
+impl<'a> Default for DeviceMemoryReportCallbackDataEXT<'a> {
+    fn default() -> Self {
+        Self {
+            s_type: <Self as crate::TaggedStructure>::STRUCTURE_TYPE,
+            p_next: Default::default(),
+            flags: Default::default(),
+            _type: Default::default(),
+            memory_object_id: Default::default(),
+            size: Default::default(),
+            object_type: Default::default(),
+            object_handle: Default::default(),
+            heap_index: Default::default(),
+            _marker: ::core::marker::PhantomData,
+        }
+    }
 }
 ///Provided by [`ext::device_memory_report`](crate::ext::device_memory_report)
 impl crate::vk::StructureType {

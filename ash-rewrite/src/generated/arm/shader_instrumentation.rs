@@ -165,6 +165,16 @@ pub(crate) mod reexport {
     for PhysicalDeviceShaderInstrumentationFeaturesARM<'a> {
         const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::PHYSICAL_DEVICE_SHADER_INSTRUMENTATION_FEATURES_ARM;
     }
+    impl<'a> Default for PhysicalDeviceShaderInstrumentationFeaturesARM<'a> {
+        fn default() -> Self {
+            Self {
+                s_type: <Self as crate::TaggedStructure>::STRUCTURE_TYPE,
+                p_next: Default::default(),
+                shader_instrumentation: Default::default(),
+                _marker: ::core::marker::PhantomData,
+            }
+        }
+    }
     #[repr(C)]
     #[derive(Clone, Copy)]
     pub struct PhysicalDeviceShaderInstrumentationPropertiesARM<'a> {
@@ -178,6 +188,17 @@ pub(crate) mod reexport {
     for PhysicalDeviceShaderInstrumentationPropertiesARM<'a> {
         const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::PHYSICAL_DEVICE_SHADER_INSTRUMENTATION_PROPERTIES_ARM;
     }
+    impl<'a> Default for PhysicalDeviceShaderInstrumentationPropertiesARM<'a> {
+        fn default() -> Self {
+            Self {
+                s_type: <Self as crate::TaggedStructure>::STRUCTURE_TYPE,
+                p_next: Default::default(),
+                num_metrics: Default::default(),
+                per_basic_block_granularity: Default::default(),
+                _marker: ::core::marker::PhantomData,
+            }
+        }
+    }
     #[repr(C)]
     #[derive(Clone, Copy)]
     pub struct ShaderInstrumentationCreateInfoARM<'a> {
@@ -188,6 +209,15 @@ pub(crate) mod reexport {
     unsafe impl<'a> crate::TaggedStructure<'a>
     for ShaderInstrumentationCreateInfoARM<'a> {
         const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::SHADER_INSTRUMENTATION_CREATE_INFO_ARM;
+    }
+    impl<'a> Default for ShaderInstrumentationCreateInfoARM<'a> {
+        fn default() -> Self {
+            Self {
+                s_type: <Self as crate::TaggedStructure>::STRUCTURE_TYPE,
+                p_next: Default::default(),
+                _marker: ::core::marker::PhantomData,
+            }
+        }
     }
     #[repr(C)]
     #[derive(Clone, Copy)]
@@ -202,8 +232,19 @@ pub(crate) mod reexport {
     for ShaderInstrumentationMetricDescriptionARM<'a> {
         const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::SHADER_INSTRUMENTATION_METRIC_DESCRIPTION_ARM;
     }
+    impl<'a> Default for ShaderInstrumentationMetricDescriptionARM<'a> {
+        fn default() -> Self {
+            Self {
+                s_type: <Self as crate::TaggedStructure>::STRUCTURE_TYPE,
+                p_next: Default::default(),
+                name: unsafe { core::mem::zeroed() },
+                description: unsafe { core::mem::zeroed() },
+                _marker: ::core::marker::PhantomData,
+            }
+        }
+    }
     #[repr(C)]
-    #[derive(Clone, Copy)]
+    #[derive(Clone, Copy, Default)]
     pub struct ShaderInstrumentationMetricDataHeaderARM {
         pub result_index: u32,
         pub result_sub_index: u32,

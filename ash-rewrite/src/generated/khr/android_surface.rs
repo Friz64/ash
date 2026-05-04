@@ -49,6 +49,17 @@ pub(crate) mod reexport {
     unsafe impl<'a> crate::TaggedStructure<'a> for AndroidSurfaceCreateInfoKHR<'a> {
         const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::ANDROID_SURFACE_CREATE_INFO_KHR;
     }
+    impl<'a> Default for AndroidSurfaceCreateInfoKHR<'a> {
+        fn default() -> Self {
+            Self {
+                s_type: <Self as crate::TaggedStructure>::STRUCTURE_TYPE,
+                p_next: Default::default(),
+                flags: Default::default(),
+                window: Default::default(),
+                _marker: ::core::marker::PhantomData,
+            }
+        }
+    }
     ///Provided by [`khr::android_surface`](crate::khr::android_surface)
     impl crate::vk::StructureType {
         pub const ANDROID_SURFACE_CREATE_INFO_KHR: Self = Self(1000008000);

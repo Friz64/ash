@@ -13,6 +13,16 @@ unsafe impl<'a> crate::TaggedStructure<'a>
 for PhysicalDeviceImageProcessing2FeaturesQCOM<'a> {
     const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::PHYSICAL_DEVICE_IMAGE_PROCESSING_2_FEATURES_QCOM;
 }
+impl<'a> Default for PhysicalDeviceImageProcessing2FeaturesQCOM<'a> {
+    fn default() -> Self {
+        Self {
+            s_type: <Self as crate::TaggedStructure>::STRUCTURE_TYPE,
+            p_next: Default::default(),
+            texture_block_match2: Default::default(),
+            _marker: ::core::marker::PhantomData,
+        }
+    }
+}
 #[repr(C)]
 #[derive(Clone, Copy)]
 pub struct PhysicalDeviceImageProcessing2PropertiesQCOM<'a> {
@@ -24,6 +34,16 @@ pub struct PhysicalDeviceImageProcessing2PropertiesQCOM<'a> {
 unsafe impl<'a> crate::TaggedStructure<'a>
 for PhysicalDeviceImageProcessing2PropertiesQCOM<'a> {
     const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::PHYSICAL_DEVICE_IMAGE_PROCESSING_2_PROPERTIES_QCOM;
+}
+impl<'a> Default for PhysicalDeviceImageProcessing2PropertiesQCOM<'a> {
+    fn default() -> Self {
+        Self {
+            s_type: <Self as crate::TaggedStructure>::STRUCTURE_TYPE,
+            p_next: Default::default(),
+            max_block_match_window: Default::default(),
+            _marker: ::core::marker::PhantomData,
+        }
+    }
 }
 #[repr(C)]
 #[derive(Clone, Copy)]
@@ -37,6 +57,17 @@ pub struct SamplerBlockMatchWindowCreateInfoQCOM<'a> {
 unsafe impl<'a> crate::TaggedStructure<'a>
 for SamplerBlockMatchWindowCreateInfoQCOM<'a> {
     const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::SAMPLER_BLOCK_MATCH_WINDOW_CREATE_INFO_QCOM;
+}
+impl<'a> Default for SamplerBlockMatchWindowCreateInfoQCOM<'a> {
+    fn default() -> Self {
+        Self {
+            s_type: <Self as crate::TaggedStructure>::STRUCTURE_TYPE,
+            p_next: Default::default(),
+            window_extent: Default::default(),
+            window_compare_mode: Default::default(),
+            _marker: ::core::marker::PhantomData,
+        }
+    }
 }
 ///Provided by [`qcom::image_processing2`](crate::qcom::image_processing2)
 impl crate::vk::StructureType {

@@ -11,6 +11,17 @@ pub struct PipelineCacheHeaderVersionDataGraphQCOM {
     pub toolchain_version: [u32; crate::vk::DATA_GRAPH_MODEL_TOOLCHAIN_VERSION_LENGTH_QCOM
         as _],
 }
+impl Default for PipelineCacheHeaderVersionDataGraphQCOM {
+    fn default() -> Self {
+        Self {
+            header_size: Default::default(),
+            header_version: Default::default(),
+            cache_type: Default::default(),
+            cache_version: Default::default(),
+            toolchain_version: unsafe { core::mem::zeroed() },
+        }
+    }
+}
 #[repr(C)]
 #[derive(Clone, Copy)]
 pub struct DataGraphPipelineBuiltinModelCreateInfoQCOM<'a> {
@@ -23,6 +34,16 @@ unsafe impl<'a> crate::TaggedStructure<'a>
 for DataGraphPipelineBuiltinModelCreateInfoQCOM<'a> {
     const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::DATA_GRAPH_PIPELINE_BUILTIN_MODEL_CREATE_INFO_QCOM;
 }
+impl<'a> Default for DataGraphPipelineBuiltinModelCreateInfoQCOM<'a> {
+    fn default() -> Self {
+        Self {
+            s_type: <Self as crate::TaggedStructure>::STRUCTURE_TYPE,
+            p_next: Default::default(),
+            p_operation: Default::default(),
+            _marker: ::core::marker::PhantomData,
+        }
+    }
+}
 #[repr(C)]
 #[derive(Clone, Copy)]
 pub struct PhysicalDeviceDataGraphModelFeaturesQCOM<'a> {
@@ -34,6 +55,16 @@ pub struct PhysicalDeviceDataGraphModelFeaturesQCOM<'a> {
 unsafe impl<'a> crate::TaggedStructure<'a>
 for PhysicalDeviceDataGraphModelFeaturesQCOM<'a> {
     const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::PHYSICAL_DEVICE_DATA_GRAPH_MODEL_FEATURES_QCOM;
+}
+impl<'a> Default for PhysicalDeviceDataGraphModelFeaturesQCOM<'a> {
+    fn default() -> Self {
+        Self {
+            s_type: <Self as crate::TaggedStructure>::STRUCTURE_TYPE,
+            p_next: Default::default(),
+            data_graph_model: Default::default(),
+            _marker: ::core::marker::PhantomData,
+        }
+    }
 }
 ///Provided by [`qcom::data_graph_model`](crate::qcom::data_graph_model)
 impl crate::vk::PipelineCacheHeaderVersion {

@@ -13,6 +13,16 @@ unsafe impl<'a> crate::TaggedStructure<'a>
 for PhysicalDeviceMemoryPriorityFeaturesEXT<'a> {
     const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::PHYSICAL_DEVICE_MEMORY_PRIORITY_FEATURES_EXT;
 }
+impl<'a> Default for PhysicalDeviceMemoryPriorityFeaturesEXT<'a> {
+    fn default() -> Self {
+        Self {
+            s_type: <Self as crate::TaggedStructure>::STRUCTURE_TYPE,
+            p_next: Default::default(),
+            memory_priority: Default::default(),
+            _marker: ::core::marker::PhantomData,
+        }
+    }
+}
 #[repr(C)]
 #[derive(Clone, Copy)]
 pub struct MemoryPriorityAllocateInfoEXT<'a> {
@@ -23,6 +33,16 @@ pub struct MemoryPriorityAllocateInfoEXT<'a> {
 }
 unsafe impl<'a> crate::TaggedStructure<'a> for MemoryPriorityAllocateInfoEXT<'a> {
     const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::MEMORY_PRIORITY_ALLOCATE_INFO_EXT;
+}
+impl<'a> Default for MemoryPriorityAllocateInfoEXT<'a> {
+    fn default() -> Self {
+        Self {
+            s_type: <Self as crate::TaggedStructure>::STRUCTURE_TYPE,
+            p_next: Default::default(),
+            priority: Default::default(),
+            _marker: ::core::marker::PhantomData,
+        }
+    }
 }
 ///Provided by [`ext::memory_priority`](crate::ext::memory_priority)
 impl crate::vk::StructureType {

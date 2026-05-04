@@ -49,8 +49,19 @@ pub(crate) mod reexport {
     for DrmFormatModifierPropertiesListEXT<'a> {
         const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::DRM_FORMAT_MODIFIER_PROPERTIES_LIST_EXT;
     }
+    impl<'a> Default for DrmFormatModifierPropertiesListEXT<'a> {
+        fn default() -> Self {
+            Self {
+                s_type: <Self as crate::TaggedStructure>::STRUCTURE_TYPE,
+                p_next: Default::default(),
+                drm_format_modifier_count: Default::default(),
+                p_drm_format_modifier_properties: Default::default(),
+                _marker: ::core::marker::PhantomData,
+            }
+        }
+    }
     #[repr(C)]
-    #[derive(Clone, Copy)]
+    #[derive(Clone, Copy, Default)]
     pub struct DrmFormatModifierPropertiesEXT {
         pub drm_format_modifier: u64,
         pub drm_format_modifier_plane_count: u32,
@@ -71,6 +82,19 @@ pub(crate) mod reexport {
     for PhysicalDeviceImageDrmFormatModifierInfoEXT<'a> {
         const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::PHYSICAL_DEVICE_IMAGE_DRM_FORMAT_MODIFIER_INFO_EXT;
     }
+    impl<'a> Default for PhysicalDeviceImageDrmFormatModifierInfoEXT<'a> {
+        fn default() -> Self {
+            Self {
+                s_type: <Self as crate::TaggedStructure>::STRUCTURE_TYPE,
+                p_next: Default::default(),
+                drm_format_modifier: Default::default(),
+                sharing_mode: Default::default(),
+                queue_family_index_count: Default::default(),
+                p_queue_family_indices: Default::default(),
+                _marker: ::core::marker::PhantomData,
+            }
+        }
+    }
     #[repr(C)]
     #[derive(Clone, Copy)]
     pub struct ImageDrmFormatModifierListCreateInfoEXT<'a> {
@@ -83,6 +107,17 @@ pub(crate) mod reexport {
     unsafe impl<'a> crate::TaggedStructure<'a>
     for ImageDrmFormatModifierListCreateInfoEXT<'a> {
         const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::IMAGE_DRM_FORMAT_MODIFIER_LIST_CREATE_INFO_EXT;
+    }
+    impl<'a> Default for ImageDrmFormatModifierListCreateInfoEXT<'a> {
+        fn default() -> Self {
+            Self {
+                s_type: <Self as crate::TaggedStructure>::STRUCTURE_TYPE,
+                p_next: Default::default(),
+                drm_format_modifier_count: Default::default(),
+                p_drm_format_modifiers: Default::default(),
+                _marker: ::core::marker::PhantomData,
+            }
+        }
     }
     #[repr(C)]
     #[derive(Clone, Copy)]
@@ -98,6 +133,18 @@ pub(crate) mod reexport {
     for ImageDrmFormatModifierExplicitCreateInfoEXT<'a> {
         const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::IMAGE_DRM_FORMAT_MODIFIER_EXPLICIT_CREATE_INFO_EXT;
     }
+    impl<'a> Default for ImageDrmFormatModifierExplicitCreateInfoEXT<'a> {
+        fn default() -> Self {
+            Self {
+                s_type: <Self as crate::TaggedStructure>::STRUCTURE_TYPE,
+                p_next: Default::default(),
+                drm_format_modifier: Default::default(),
+                drm_format_modifier_plane_count: Default::default(),
+                p_plane_layouts: Default::default(),
+                _marker: ::core::marker::PhantomData,
+            }
+        }
+    }
     #[repr(C)]
     #[derive(Clone, Copy)]
     pub struct ImageDrmFormatModifierPropertiesEXT<'a> {
@@ -109,6 +156,16 @@ pub(crate) mod reexport {
     unsafe impl<'a> crate::TaggedStructure<'a>
     for ImageDrmFormatModifierPropertiesEXT<'a> {
         const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::IMAGE_DRM_FORMAT_MODIFIER_PROPERTIES_EXT;
+    }
+    impl<'a> Default for ImageDrmFormatModifierPropertiesEXT<'a> {
+        fn default() -> Self {
+            Self {
+                s_type: <Self as crate::TaggedStructure>::STRUCTURE_TYPE,
+                p_next: Default::default(),
+                drm_format_modifier: Default::default(),
+                _marker: ::core::marker::PhantomData,
+            }
+        }
     }
     #[repr(C)]
     #[derive(Clone, Copy)]
@@ -123,8 +180,19 @@ pub(crate) mod reexport {
     for DrmFormatModifierPropertiesList2EXT<'a> {
         const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::DRM_FORMAT_MODIFIER_PROPERTIES_LIST_2_EXT;
     }
+    impl<'a> Default for DrmFormatModifierPropertiesList2EXT<'a> {
+        fn default() -> Self {
+            Self {
+                s_type: <Self as crate::TaggedStructure>::STRUCTURE_TYPE,
+                p_next: Default::default(),
+                drm_format_modifier_count: Default::default(),
+                p_drm_format_modifier_properties: Default::default(),
+                _marker: ::core::marker::PhantomData,
+            }
+        }
+    }
     #[repr(C)]
-    #[derive(Clone, Copy)]
+    #[derive(Clone, Copy, Default)]
     pub struct DrmFormatModifierProperties2EXT {
         pub drm_format_modifier: u64,
         pub drm_format_modifier_plane_count: u32,

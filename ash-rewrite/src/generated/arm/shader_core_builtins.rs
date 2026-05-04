@@ -15,6 +15,18 @@ unsafe impl<'a> crate::TaggedStructure<'a>
 for PhysicalDeviceShaderCoreBuiltinsPropertiesARM<'a> {
     const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::PHYSICAL_DEVICE_SHADER_CORE_BUILTINS_PROPERTIES_ARM;
 }
+impl<'a> Default for PhysicalDeviceShaderCoreBuiltinsPropertiesARM<'a> {
+    fn default() -> Self {
+        Self {
+            s_type: <Self as crate::TaggedStructure>::STRUCTURE_TYPE,
+            p_next: Default::default(),
+            shader_core_mask: Default::default(),
+            shader_core_count: Default::default(),
+            shader_warps_per_core: Default::default(),
+            _marker: ::core::marker::PhantomData,
+        }
+    }
+}
 #[repr(C)]
 #[derive(Clone, Copy)]
 pub struct PhysicalDeviceShaderCoreBuiltinsFeaturesARM<'a> {
@@ -26,6 +38,16 @@ pub struct PhysicalDeviceShaderCoreBuiltinsFeaturesARM<'a> {
 unsafe impl<'a> crate::TaggedStructure<'a>
 for PhysicalDeviceShaderCoreBuiltinsFeaturesARM<'a> {
     const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::PHYSICAL_DEVICE_SHADER_CORE_BUILTINS_FEATURES_ARM;
+}
+impl<'a> Default for PhysicalDeviceShaderCoreBuiltinsFeaturesARM<'a> {
+    fn default() -> Self {
+        Self {
+            s_type: <Self as crate::TaggedStructure>::STRUCTURE_TYPE,
+            p_next: Default::default(),
+            shader_core_builtins: Default::default(),
+            _marker: ::core::marker::PhantomData,
+        }
+    }
 }
 ///Provided by [`arm::shader_core_builtins`](crate::arm::shader_core_builtins)
 impl crate::vk::StructureType {

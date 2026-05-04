@@ -15,6 +15,18 @@ unsafe impl<'a> crate::TaggedStructure<'a>
 for PhysicalDeviceShaderTileImageFeaturesEXT<'a> {
     const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::PHYSICAL_DEVICE_SHADER_TILE_IMAGE_FEATURES_EXT;
 }
+impl<'a> Default for PhysicalDeviceShaderTileImageFeaturesEXT<'a> {
+    fn default() -> Self {
+        Self {
+            s_type: <Self as crate::TaggedStructure>::STRUCTURE_TYPE,
+            p_next: Default::default(),
+            shader_tile_image_color_read_access: Default::default(),
+            shader_tile_image_depth_read_access: Default::default(),
+            shader_tile_image_stencil_read_access: Default::default(),
+            _marker: ::core::marker::PhantomData,
+        }
+    }
+}
 #[repr(C)]
 #[derive(Clone, Copy)]
 pub struct PhysicalDeviceShaderTileImagePropertiesEXT<'a> {
@@ -28,6 +40,18 @@ pub struct PhysicalDeviceShaderTileImagePropertiesEXT<'a> {
 unsafe impl<'a> crate::TaggedStructure<'a>
 for PhysicalDeviceShaderTileImagePropertiesEXT<'a> {
     const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::PHYSICAL_DEVICE_SHADER_TILE_IMAGE_PROPERTIES_EXT;
+}
+impl<'a> Default for PhysicalDeviceShaderTileImagePropertiesEXT<'a> {
+    fn default() -> Self {
+        Self {
+            s_type: <Self as crate::TaggedStructure>::STRUCTURE_TYPE,
+            p_next: Default::default(),
+            shader_tile_image_coherent_read_accelerated: Default::default(),
+            shader_tile_image_read_sample_from_pixel_rate_invocation: Default::default(),
+            shader_tile_image_read_from_helper_invocation: Default::default(),
+            _marker: ::core::marker::PhantomData,
+        }
+    }
 }
 ///Provided by [`ext::shader_tile_image`](crate::ext::shader_tile_image)
 impl crate::vk::StructureType {

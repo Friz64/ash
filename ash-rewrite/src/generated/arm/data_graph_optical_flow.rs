@@ -55,6 +55,16 @@ pub(crate) mod reexport {
     for DataGraphPipelineResourceInfoImageLayoutARM<'a> {
         const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::DATA_GRAPH_PIPELINE_RESOURCE_INFO_IMAGE_LAYOUT_ARM;
     }
+    impl<'a> Default for DataGraphPipelineResourceInfoImageLayoutARM<'a> {
+        fn default() -> Self {
+            Self {
+                s_type: <Self as crate::TaggedStructure>::STRUCTURE_TYPE,
+                p_next: Default::default(),
+                layout: Default::default(),
+                _marker: ::core::marker::PhantomData,
+            }
+        }
+    }
     #[repr(C)]
     #[derive(Clone, Copy)]
     pub struct DataGraphPipelineSingleNodeConnectionARM<'a> {
@@ -69,6 +79,18 @@ pub(crate) mod reexport {
     for DataGraphPipelineSingleNodeConnectionARM<'a> {
         const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::DATA_GRAPH_PIPELINE_SINGLE_NODE_CONNECTION_ARM;
     }
+    impl<'a> Default for DataGraphPipelineSingleNodeConnectionARM<'a> {
+        fn default() -> Self {
+            Self {
+                s_type: <Self as crate::TaggedStructure>::STRUCTURE_TYPE,
+                p_next: Default::default(),
+                set: Default::default(),
+                binding: Default::default(),
+                connection: Default::default(),
+                _marker: ::core::marker::PhantomData,
+            }
+        }
+    }
     #[repr(C)]
     #[derive(Clone, Copy)]
     pub struct PhysicalDeviceDataGraphOpticalFlowFeaturesARM<'a> {
@@ -80,6 +102,16 @@ pub(crate) mod reexport {
     unsafe impl<'a> crate::TaggedStructure<'a>
     for PhysicalDeviceDataGraphOpticalFlowFeaturesARM<'a> {
         const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::PHYSICAL_DEVICE_DATA_GRAPH_OPTICAL_FLOW_FEATURES_ARM;
+    }
+    impl<'a> Default for PhysicalDeviceDataGraphOpticalFlowFeaturesARM<'a> {
+        fn default() -> Self {
+            Self {
+                s_type: <Self as crate::TaggedStructure>::STRUCTURE_TYPE,
+                p_next: Default::default(),
+                data_graph_optical_flow: Default::default(),
+                _marker: ::core::marker::PhantomData,
+            }
+        }
     }
     #[repr(C)]
     #[derive(Clone, Copy)]
@@ -100,6 +132,23 @@ pub(crate) mod reexport {
     for QueueFamilyDataGraphOpticalFlowPropertiesARM<'a> {
         const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::QUEUE_FAMILY_DATA_GRAPH_OPTICAL_FLOW_PROPERTIES_ARM;
     }
+    impl<'a> Default for QueueFamilyDataGraphOpticalFlowPropertiesARM<'a> {
+        fn default() -> Self {
+            Self {
+                s_type: <Self as crate::TaggedStructure>::STRUCTURE_TYPE,
+                p_next: Default::default(),
+                supported_output_grid_sizes: Default::default(),
+                supported_hint_grid_sizes: Default::default(),
+                hint_supported: Default::default(),
+                cost_supported: Default::default(),
+                min_width: Default::default(),
+                min_height: Default::default(),
+                max_width: Default::default(),
+                max_height: Default::default(),
+                _marker: ::core::marker::PhantomData,
+            }
+        }
+    }
     #[repr(C)]
     #[derive(Clone, Copy)]
     pub struct DataGraphOpticalFlowImageFormatInfoARM<'a> {
@@ -112,6 +161,16 @@ pub(crate) mod reexport {
     for DataGraphOpticalFlowImageFormatInfoARM<'a> {
         const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::DATA_GRAPH_OPTICAL_FLOW_IMAGE_FORMAT_INFO_ARM;
     }
+    impl<'a> Default for DataGraphOpticalFlowImageFormatInfoARM<'a> {
+        fn default() -> Self {
+            Self {
+                s_type: <Self as crate::TaggedStructure>::STRUCTURE_TYPE,
+                p_next: Default::default(),
+                usage: Default::default(),
+                _marker: ::core::marker::PhantomData,
+            }
+        }
+    }
     #[repr(C)]
     #[derive(Clone, Copy)]
     pub struct DataGraphOpticalFlowImageFormatPropertiesARM<'a> {
@@ -123,6 +182,16 @@ pub(crate) mod reexport {
     unsafe impl<'a> crate::TaggedStructure<'a>
     for DataGraphOpticalFlowImageFormatPropertiesARM<'a> {
         const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::DATA_GRAPH_OPTICAL_FLOW_IMAGE_FORMAT_PROPERTIES_ARM;
+    }
+    impl<'a> Default for DataGraphOpticalFlowImageFormatPropertiesARM<'a> {
+        fn default() -> Self {
+            Self {
+                s_type: <Self as crate::TaggedStructure>::STRUCTURE_TYPE,
+                p_next: Default::default(),
+                format: Default::default(),
+                _marker: ::core::marker::PhantomData,
+            }
+        }
     }
     #[repr(C)]
     #[derive(Clone, Copy)]
@@ -139,6 +208,18 @@ pub(crate) mod reexport {
     unsafe impl<'a> crate::TaggedStructure<'a>
     for DataGraphPipelineSingleNodeCreateInfoARM<'a> {
         const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::DATA_GRAPH_PIPELINE_SINGLE_NODE_CREATE_INFO_ARM;
+    }
+    impl<'a> Default for DataGraphPipelineSingleNodeCreateInfoARM<'a> {
+        fn default() -> Self {
+            Self {
+                s_type: <Self as crate::TaggedStructure>::STRUCTURE_TYPE,
+                p_next: Default::default(),
+                node_type: Default::default(),
+                connection_count: Default::default(),
+                p_connections: Default::default(),
+                _marker: ::core::marker::PhantomData,
+            }
+        }
     }
     #[repr(C)]
     #[derive(Clone, Copy)]
@@ -160,6 +241,24 @@ pub(crate) mod reexport {
     for DataGraphPipelineOpticalFlowCreateInfoARM<'a> {
         const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::DATA_GRAPH_PIPELINE_OPTICAL_FLOW_CREATE_INFO_ARM;
     }
+    impl<'a> Default for DataGraphPipelineOpticalFlowCreateInfoARM<'a> {
+        fn default() -> Self {
+            Self {
+                s_type: <Self as crate::TaggedStructure>::STRUCTURE_TYPE,
+                p_next: Default::default(),
+                width: Default::default(),
+                height: Default::default(),
+                image_format: Default::default(),
+                flow_vector_format: Default::default(),
+                cost_format: Default::default(),
+                output_grid_size: Default::default(),
+                hint_grid_size: Default::default(),
+                performance_level: Default::default(),
+                flags: Default::default(),
+                _marker: ::core::marker::PhantomData,
+            }
+        }
+    }
     #[repr(C)]
     #[derive(Clone, Copy)]
     pub struct DataGraphPipelineOpticalFlowDispatchInfoARM<'a> {
@@ -172,6 +271,17 @@ pub(crate) mod reexport {
     unsafe impl<'a> crate::TaggedStructure<'a>
     for DataGraphPipelineOpticalFlowDispatchInfoARM<'a> {
         const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::DATA_GRAPH_PIPELINE_OPTICAL_FLOW_DISPATCH_INFO_ARM;
+    }
+    impl<'a> Default for DataGraphPipelineOpticalFlowDispatchInfoARM<'a> {
+        fn default() -> Self {
+            Self {
+                s_type: <Self as crate::TaggedStructure>::STRUCTURE_TYPE,
+                p_next: Default::default(),
+                flags: Default::default(),
+                mean_flow_l1_norm_hint: Default::default(),
+                _marker: ::core::marker::PhantomData,
+            }
+        }
     }
     ///Provided by [`arm::data_graph_optical_flow`](crate::arm::data_graph_optical_flow)
     impl crate::vk::StructureType {
@@ -357,7 +467,7 @@ pub(crate) mod reexport {
         }
     }
     #[repr(transparent)]
-    #[derive(Clone, Copy)]
+    #[derive(Clone, Copy, Default)]
     pub struct DataGraphOpticalFlowGridSizeFlagBitsARM(pub(crate) u32);
     ///Provided by [`arm::data_graph_optical_flow`](crate::arm::data_graph_optical_flow)
     impl DataGraphOpticalFlowGridSizeFlagBitsARM {
@@ -450,7 +560,7 @@ pub(crate) mod reexport {
         }
     }
     #[repr(transparent)]
-    #[derive(Clone, Copy)]
+    #[derive(Clone, Copy, Default)]
     pub struct DataGraphOpticalFlowImageUsageFlagBitsARM(pub(crate) u32);
     ///Provided by [`arm::data_graph_optical_flow`](crate::arm::data_graph_optical_flow)
     impl DataGraphOpticalFlowImageUsageFlagBitsARM {
@@ -537,7 +647,7 @@ pub(crate) mod reexport {
         }
     }
     #[repr(transparent)]
-    #[derive(Clone, Copy)]
+    #[derive(Clone, Copy, Default)]
     pub struct DataGraphOpticalFlowCreateFlagBitsARM(pub(crate) u32);
     ///Provided by [`arm::data_graph_optical_flow`](crate::arm::data_graph_optical_flow)
     impl DataGraphOpticalFlowCreateFlagBitsARM {
@@ -628,7 +738,7 @@ pub(crate) mod reexport {
         }
     }
     #[repr(transparent)]
-    #[derive(Clone, Copy)]
+    #[derive(Clone, Copy, Default)]
     pub struct DataGraphOpticalFlowExecuteFlagBitsARM(pub(crate) u32);
     ///Provided by [`arm::data_graph_optical_flow`](crate::arm::data_graph_optical_flow)
     impl DataGraphOpticalFlowExecuteFlagBitsARM {

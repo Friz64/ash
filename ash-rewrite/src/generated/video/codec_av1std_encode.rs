@@ -2,13 +2,13 @@
 #![cfg_attr(rustfmt, rustfmt_skip)]
 //!Items provided by `vulkan_video_codec_av1std_encode`
 #[repr(C)]
-#[derive(Clone, Copy)]
+#[derive(Clone, Copy, Default)]
 pub struct EncodeAV1ExtensionHeader {
     pub temporal_id: u8,
     pub spatial_id: u8,
 }
 #[repr(C)]
-#[derive(Clone, Copy)]
+#[derive(Clone, Copy, Default)]
 pub struct EncodeAV1DecoderModelInfo {
     pub buffer_delay_length_minus_1: u8,
     pub buffer_removal_time_length_minus_1: u8,
@@ -17,7 +17,7 @@ pub struct EncodeAV1DecoderModelInfo {
     pub num_units_in_decoding_tick: u32,
 }
 #[repr(C)]
-#[derive(Clone, Copy)]
+#[derive(Clone, Copy, Default)]
 pub struct EncodeAV1OperatingPointInfoFlags {
     /**- `decoder_model_present_for_this_op` @ `0..1`
 - `low_delay_mode_flag` @ `1..2`
@@ -25,7 +25,7 @@ pub struct EncodeAV1OperatingPointInfoFlags {
     pub bitfield0: u32,
 }
 #[repr(C)]
-#[derive(Clone, Copy)]
+#[derive(Clone, Copy, Default)]
 pub struct EncodeAV1OperatingPointInfo {
     pub flags: crate::vk::EncodeAV1OperatingPointInfoFlags,
     pub operating_point_idc: u16,
@@ -36,7 +36,7 @@ pub struct EncodeAV1OperatingPointInfo {
     pub initial_display_delay_minus_1: u8,
 }
 #[repr(C)]
-#[derive(Clone, Copy)]
+#[derive(Clone, Copy, Default)]
 pub struct EncodeAV1PictureInfoFlags {
     /**- `error_resilient_mode` @ `0..1`
 - `disable_cdf_update` @ `1..2`
@@ -101,8 +101,42 @@ pub struct EncodeAV1PictureInfo<'a> {
     pub p_buffer_removal_times: *const u32,
     pub _marker: ::core::marker::PhantomData<&'a ()>,
 }
+impl<'a> Default for EncodeAV1PictureInfo<'a> {
+    fn default() -> Self {
+        Self {
+            flags: Default::default(),
+            frame_type: Default::default(),
+            frame_presentation_time: Default::default(),
+            current_frame_id: Default::default(),
+            order_hint: Default::default(),
+            primary_ref_frame: Default::default(),
+            refresh_frame_flags: Default::default(),
+            coded_denom: Default::default(),
+            render_width_minus_1: Default::default(),
+            render_height_minus_1: Default::default(),
+            interpolation_filter: Default::default(),
+            tx_mode: Default::default(),
+            delta_q_res: Default::default(),
+            delta_lf_res: Default::default(),
+            ref_order_hint: unsafe { core::mem::zeroed() },
+            ref_frame_idx: unsafe { core::mem::zeroed() },
+            reserved1: unsafe { core::mem::zeroed() },
+            delta_frame_id_minus_1: unsafe { core::mem::zeroed() },
+            p_tile_info: Default::default(),
+            p_quantization: Default::default(),
+            p_segmentation: Default::default(),
+            p_loop_filter: Default::default(),
+            p_cdef: Default::default(),
+            p_loop_restoration: Default::default(),
+            p_global_motion: Default::default(),
+            p_extension_header: Default::default(),
+            p_buffer_removal_times: Default::default(),
+            _marker: ::core::marker::PhantomData,
+        }
+    }
+}
 #[repr(C)]
-#[derive(Clone, Copy)]
+#[derive(Clone, Copy, Default)]
 pub struct EncodeAV1ReferenceInfoFlags {
     /**- `disable_frame_end_update_cdf` @ `0..1`
 - `segmentation_enabled` @ `1..2`*/
@@ -118,6 +152,19 @@ pub struct EncodeAV1ReferenceInfo<'a> {
     pub reserved1: [u8; 3 as _],
     pub p_extension_header: *const crate::vk::EncodeAV1ExtensionHeader,
     pub _marker: ::core::marker::PhantomData<&'a ()>,
+}
+impl<'a> Default for EncodeAV1ReferenceInfo<'a> {
+    fn default() -> Self {
+        Self {
+            flags: Default::default(),
+            ref_frame_id: Default::default(),
+            frame_type: Default::default(),
+            order_hint: Default::default(),
+            reserved1: unsafe { core::mem::zeroed() },
+            p_extension_header: Default::default(),
+            _marker: ::core::marker::PhantomData,
+        }
+    }
 }
 pub const STD_VULKAN_VIDEO_CODEC_AV1_ENCODE_SPEC_VERSION: u32 = crate::vk::STD_VULKAN_VIDEO_CODEC_AV1_ENCODE_API_VERSION_1_0_0;
 pub const STD_VULKAN_VIDEO_CODEC_AV1_ENCODE_EXTENSION_NAME: &core::ffi::CStr = c"VK_STD_vulkan_video_codec_av1_encode";

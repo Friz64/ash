@@ -79,6 +79,16 @@ pub(crate) mod reexport {
     for PhysicalDeviceDiscardRectanglePropertiesEXT<'a> {
         const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::PHYSICAL_DEVICE_DISCARD_RECTANGLE_PROPERTIES_EXT;
     }
+    impl<'a> Default for PhysicalDeviceDiscardRectanglePropertiesEXT<'a> {
+        fn default() -> Self {
+            Self {
+                s_type: <Self as crate::TaggedStructure>::STRUCTURE_TYPE,
+                p_next: Default::default(),
+                max_discard_rectangles: Default::default(),
+                _marker: ::core::marker::PhantomData,
+            }
+        }
+    }
     #[repr(C)]
     #[derive(Clone, Copy)]
     pub struct PipelineDiscardRectangleStateCreateInfoEXT<'a> {
@@ -93,6 +103,19 @@ pub(crate) mod reexport {
     unsafe impl<'a> crate::TaggedStructure<'a>
     for PipelineDiscardRectangleStateCreateInfoEXT<'a> {
         const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::PIPELINE_DISCARD_RECTANGLE_STATE_CREATE_INFO_EXT;
+    }
+    impl<'a> Default for PipelineDiscardRectangleStateCreateInfoEXT<'a> {
+        fn default() -> Self {
+            Self {
+                s_type: <Self as crate::TaggedStructure>::STRUCTURE_TYPE,
+                p_next: Default::default(),
+                flags: Default::default(),
+                discard_rectangle_mode: Default::default(),
+                discard_rectangle_count: Default::default(),
+                p_discard_rectangles: Default::default(),
+                _marker: ::core::marker::PhantomData,
+            }
+        }
     }
     ///Provided by [`ext::discard_rectangles`](crate::ext::discard_rectangles)
     impl crate::vk::StructureType {

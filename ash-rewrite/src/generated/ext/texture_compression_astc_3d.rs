@@ -13,6 +13,16 @@ unsafe impl<'a> crate::TaggedStructure<'a>
 for PhysicalDeviceTextureCompressionASTC3DFeaturesEXT<'a> {
     const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::PHYSICAL_DEVICE_TEXTURE_COMPRESSION_ASTC_3D_FEATURES_EXT;
 }
+impl<'a> Default for PhysicalDeviceTextureCompressionASTC3DFeaturesEXT<'a> {
+    fn default() -> Self {
+        Self {
+            s_type: <Self as crate::TaggedStructure>::STRUCTURE_TYPE,
+            p_next: Default::default(),
+            texture_compression_astc_3d: Default::default(),
+            _marker: ::core::marker::PhantomData,
+        }
+    }
+}
 ///Provided by [`ext::texture_compression_astc_3d`](crate::ext::texture_compression_astc_3d)
 impl crate::vk::Format {
     pub const ASTC_3X3X3_UNORM_BLOCK_EXT: Self = Self(1000288000);

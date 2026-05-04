@@ -100,6 +100,18 @@ pub(crate) mod reexport {
     for PhysicalDevicePresentTimingFeaturesEXT<'a> {
         const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::PHYSICAL_DEVICE_PRESENT_TIMING_FEATURES_EXT;
     }
+    impl<'a> Default for PhysicalDevicePresentTimingFeaturesEXT<'a> {
+        fn default() -> Self {
+            Self {
+                s_type: <Self as crate::TaggedStructure>::STRUCTURE_TYPE,
+                p_next: Default::default(),
+                present_timing: Default::default(),
+                present_at_absolute_time: Default::default(),
+                present_at_relative_time: Default::default(),
+                _marker: ::core::marker::PhantomData,
+            }
+        }
+    }
     #[repr(C)]
     #[derive(Clone, Copy)]
     pub struct PresentTimingSurfaceCapabilitiesEXT<'a> {
@@ -115,6 +127,19 @@ pub(crate) mod reexport {
     for PresentTimingSurfaceCapabilitiesEXT<'a> {
         const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::PRESENT_TIMING_SURFACE_CAPABILITIES_EXT;
     }
+    impl<'a> Default for PresentTimingSurfaceCapabilitiesEXT<'a> {
+        fn default() -> Self {
+            Self {
+                s_type: <Self as crate::TaggedStructure>::STRUCTURE_TYPE,
+                p_next: Default::default(),
+                present_timing_supported: Default::default(),
+                present_at_absolute_time_supported: Default::default(),
+                present_at_relative_time_supported: Default::default(),
+                present_stage_queries: Default::default(),
+                _marker: ::core::marker::PhantomData,
+            }
+        }
+    }
     #[repr(C)]
     #[derive(Clone, Copy)]
     pub struct SwapchainTimingPropertiesEXT<'a> {
@@ -126,6 +151,17 @@ pub(crate) mod reexport {
     }
     unsafe impl<'a> crate::TaggedStructure<'a> for SwapchainTimingPropertiesEXT<'a> {
         const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::SWAPCHAIN_TIMING_PROPERTIES_EXT;
+    }
+    impl<'a> Default for SwapchainTimingPropertiesEXT<'a> {
+        fn default() -> Self {
+            Self {
+                s_type: <Self as crate::TaggedStructure>::STRUCTURE_TYPE,
+                p_next: Default::default(),
+                refresh_duration: Default::default(),
+                refresh_interval: Default::default(),
+                _marker: ::core::marker::PhantomData,
+            }
+        }
     }
     #[repr(C)]
     #[derive(Clone, Copy)]
@@ -140,8 +176,20 @@ pub(crate) mod reexport {
     unsafe impl<'a> crate::TaggedStructure<'a> for SwapchainTimeDomainPropertiesEXT<'a> {
         const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::SWAPCHAIN_TIME_DOMAIN_PROPERTIES_EXT;
     }
+    impl<'a> Default for SwapchainTimeDomainPropertiesEXT<'a> {
+        fn default() -> Self {
+            Self {
+                s_type: <Self as crate::TaggedStructure>::STRUCTURE_TYPE,
+                p_next: Default::default(),
+                time_domain_count: Default::default(),
+                p_time_domains: Default::default(),
+                p_time_domain_ids: Default::default(),
+                _marker: ::core::marker::PhantomData,
+            }
+        }
+    }
     #[repr(C)]
-    #[derive(Clone, Copy)]
+    #[derive(Clone, Copy, Default)]
     pub struct PresentStageTimeEXT {
         pub stage: crate::vk::PresentStageFlagsEXT,
         pub time: u64,
@@ -158,6 +206,17 @@ pub(crate) mod reexport {
     unsafe impl<'a> crate::TaggedStructure<'a> for PastPresentationTimingInfoEXT<'a> {
         const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::PAST_PRESENTATION_TIMING_INFO_EXT;
     }
+    impl<'a> Default for PastPresentationTimingInfoEXT<'a> {
+        fn default() -> Self {
+            Self {
+                s_type: <Self as crate::TaggedStructure>::STRUCTURE_TYPE,
+                p_next: Default::default(),
+                flags: Default::default(),
+                swapchain: Default::default(),
+                _marker: ::core::marker::PhantomData,
+            }
+        }
+    }
     #[repr(C)]
     #[derive(Clone, Copy)]
     pub struct PastPresentationTimingPropertiesEXT<'a> {
@@ -172,6 +231,19 @@ pub(crate) mod reexport {
     unsafe impl<'a> crate::TaggedStructure<'a>
     for PastPresentationTimingPropertiesEXT<'a> {
         const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::PAST_PRESENTATION_TIMING_PROPERTIES_EXT;
+    }
+    impl<'a> Default for PastPresentationTimingPropertiesEXT<'a> {
+        fn default() -> Self {
+            Self {
+                s_type: <Self as crate::TaggedStructure>::STRUCTURE_TYPE,
+                p_next: Default::default(),
+                timing_properties_counter: Default::default(),
+                time_domains_counter: Default::default(),
+                presentation_timing_count: Default::default(),
+                p_presentation_timings: Default::default(),
+                _marker: ::core::marker::PhantomData,
+            }
+        }
     }
     #[repr(C)]
     #[derive(Clone, Copy)]
@@ -190,6 +262,22 @@ pub(crate) mod reexport {
     unsafe impl<'a> crate::TaggedStructure<'a> for PastPresentationTimingEXT<'a> {
         const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::PAST_PRESENTATION_TIMING_EXT;
     }
+    impl<'a> Default for PastPresentationTimingEXT<'a> {
+        fn default() -> Self {
+            Self {
+                s_type: <Self as crate::TaggedStructure>::STRUCTURE_TYPE,
+                p_next: Default::default(),
+                present_id: Default::default(),
+                target_time: Default::default(),
+                present_stage_count: Default::default(),
+                p_present_stages: Default::default(),
+                time_domain: Default::default(),
+                time_domain_id: Default::default(),
+                report_complete: Default::default(),
+                _marker: ::core::marker::PhantomData,
+            }
+        }
+    }
     #[repr(C)]
     #[derive(Clone, Copy)]
     pub struct PresentTimingsInfoEXT<'a> {
@@ -201,6 +289,17 @@ pub(crate) mod reexport {
     }
     unsafe impl<'a> crate::TaggedStructure<'a> for PresentTimingsInfoEXT<'a> {
         const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::PRESENT_TIMINGS_INFO_EXT;
+    }
+    impl<'a> Default for PresentTimingsInfoEXT<'a> {
+        fn default() -> Self {
+            Self {
+                s_type: <Self as crate::TaggedStructure>::STRUCTURE_TYPE,
+                p_next: Default::default(),
+                swapchain_count: Default::default(),
+                p_timing_infos: Default::default(),
+                _marker: ::core::marker::PhantomData,
+            }
+        }
     }
     #[repr(C)]
     #[derive(Clone, Copy)]
@@ -217,6 +316,20 @@ pub(crate) mod reexport {
     unsafe impl<'a> crate::TaggedStructure<'a> for PresentTimingInfoEXT<'a> {
         const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::PRESENT_TIMING_INFO_EXT;
     }
+    impl<'a> Default for PresentTimingInfoEXT<'a> {
+        fn default() -> Self {
+            Self {
+                s_type: <Self as crate::TaggedStructure>::STRUCTURE_TYPE,
+                p_next: Default::default(),
+                flags: Default::default(),
+                target_time: Default::default(),
+                time_domain_id: Default::default(),
+                present_stage_queries: Default::default(),
+                target_time_domain_present_stage: Default::default(),
+                _marker: ::core::marker::PhantomData,
+            }
+        }
+    }
     #[repr(C)]
     #[derive(Clone, Copy)]
     pub struct SwapchainCalibratedTimestampInfoEXT<'a> {
@@ -230,6 +343,18 @@ pub(crate) mod reexport {
     unsafe impl<'a> crate::TaggedStructure<'a>
     for SwapchainCalibratedTimestampInfoEXT<'a> {
         const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::SWAPCHAIN_CALIBRATED_TIMESTAMP_INFO_EXT;
+    }
+    impl<'a> Default for SwapchainCalibratedTimestampInfoEXT<'a> {
+        fn default() -> Self {
+            Self {
+                s_type: <Self as crate::TaggedStructure>::STRUCTURE_TYPE,
+                p_next: Default::default(),
+                swapchain: Default::default(),
+                present_stage: Default::default(),
+                time_domain_id: Default::default(),
+                _marker: ::core::marker::PhantomData,
+            }
+        }
     }
     ///Provided by [`ext::present_timing`](crate::ext::present_timing)
     impl crate::vk::StructureType {
@@ -337,7 +462,7 @@ pub(crate) mod reexport {
         }
     }
     #[repr(transparent)]
-    #[derive(Clone, Copy)]
+    #[derive(Clone, Copy, Default)]
     pub struct PresentStageFlagBitsEXT(pub(crate) u32);
     ///Provided by [`ext::present_timing`](crate::ext::present_timing)
     impl PresentStageFlagBitsEXT {
@@ -420,7 +545,7 @@ pub(crate) mod reexport {
         }
     }
     #[repr(transparent)]
-    #[derive(Clone, Copy)]
+    #[derive(Clone, Copy, Default)]
     pub struct PastPresentationTimingFlagBitsEXT(pub(crate) u32);
     ///Provided by [`ext::present_timing`](crate::ext::present_timing)
     impl PastPresentationTimingFlagBitsEXT {
@@ -501,7 +626,7 @@ pub(crate) mod reexport {
         }
     }
     #[repr(transparent)]
-    #[derive(Clone, Copy)]
+    #[derive(Clone, Copy, Default)]
     pub struct PresentTimingInfoFlagBitsEXT(pub(crate) u32);
     ///Provided by [`ext::present_timing`](crate::ext::present_timing)
     impl PresentTimingInfoFlagBitsEXT {

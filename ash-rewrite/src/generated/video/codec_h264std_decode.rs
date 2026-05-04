@@ -2,7 +2,7 @@
 #![cfg_attr(rustfmt, rustfmt_skip)]
 //!Items provided by `vulkan_video_codec_h264std_decode`
 #[repr(C)]
-#[derive(Clone, Copy)]
+#[derive(Clone, Copy, Default)]
 pub struct DecodeH264PictureInfoFlags {
     /**- `field_pic_flag` @ `0..1`
 - `is_intra` @ `1..2`
@@ -25,8 +25,22 @@ pub struct DecodeH264PictureInfo {
     pub pic_order_cnt: [i32; crate::vk::STD_VIDEO_DECODE_H264_FIELD_ORDER_COUNT_LIST_SIZE
         as _],
 }
+impl Default for DecodeH264PictureInfo {
+    fn default() -> Self {
+        Self {
+            flags: Default::default(),
+            seq_parameter_set_id: Default::default(),
+            pic_parameter_set_id: Default::default(),
+            reserved1: Default::default(),
+            reserved2: Default::default(),
+            frame_num: Default::default(),
+            idr_pic_id: Default::default(),
+            pic_order_cnt: unsafe { core::mem::zeroed() },
+        }
+    }
+}
 #[repr(C)]
-#[derive(Clone, Copy)]
+#[derive(Clone, Copy, Default)]
 pub struct DecodeH264ReferenceInfoFlags {
     /**- `top_field_flag` @ `0..1`
 - `bottom_field_flag` @ `1..2`
@@ -42,6 +56,16 @@ pub struct DecodeH264ReferenceInfo {
     pub reserved: u16,
     pub pic_order_cnt: [i32; crate::vk::STD_VIDEO_DECODE_H264_FIELD_ORDER_COUNT_LIST_SIZE
         as _],
+}
+impl Default for DecodeH264ReferenceInfo {
+    fn default() -> Self {
+        Self {
+            flags: Default::default(),
+            frame_num: Default::default(),
+            reserved: Default::default(),
+            pic_order_cnt: unsafe { core::mem::zeroed() },
+        }
+    }
 }
 #[repr(transparent)]
 #[derive(Clone, Copy, PartialEq, Eq, PartialOrd, Ord, Hash, Default)]

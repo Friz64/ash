@@ -16,6 +16,19 @@ unsafe impl<'a> crate::TaggedStructure<'a>
 for PhysicalDeviceWorkgroupMemoryExplicitLayoutFeaturesKHR<'a> {
     const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::PHYSICAL_DEVICE_WORKGROUP_MEMORY_EXPLICIT_LAYOUT_FEATURES_KHR;
 }
+impl<'a> Default for PhysicalDeviceWorkgroupMemoryExplicitLayoutFeaturesKHR<'a> {
+    fn default() -> Self {
+        Self {
+            s_type: <Self as crate::TaggedStructure>::STRUCTURE_TYPE,
+            p_next: Default::default(),
+            workgroup_memory_explicit_layout: Default::default(),
+            workgroup_memory_explicit_layout_scalar_block_layout: Default::default(),
+            workgroup_memory_explicit_layout8_bit_access: Default::default(),
+            workgroup_memory_explicit_layout16_bit_access: Default::default(),
+            _marker: ::core::marker::PhantomData,
+        }
+    }
+}
 ///Provided by [`khr::workgroup_memory_explicit_layout`](crate::khr::workgroup_memory_explicit_layout)
 impl crate::vk::StructureType {
     pub const PHYSICAL_DEVICE_WORKGROUP_MEMORY_EXPLICIT_LAYOUT_FEATURES_KHR: Self = Self(

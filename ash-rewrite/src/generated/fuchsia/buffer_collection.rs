@@ -116,6 +116,17 @@ pub(crate) mod reexport {
     for ImportMemoryBufferCollectionFUCHSIA<'a> {
         const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::IMPORT_MEMORY_BUFFER_COLLECTION_FUCHSIA;
     }
+    impl<'a> Default for ImportMemoryBufferCollectionFUCHSIA<'a> {
+        fn default() -> Self {
+            Self {
+                s_type: <Self as crate::TaggedStructure>::STRUCTURE_TYPE,
+                p_next: Default::default(),
+                collection: Default::default(),
+                index: Default::default(),
+                _marker: ::core::marker::PhantomData,
+            }
+        }
+    }
     #[repr(C)]
     #[derive(Clone, Copy)]
     pub struct BufferCollectionImageCreateInfoFUCHSIA<'a> {
@@ -128,6 +139,17 @@ pub(crate) mod reexport {
     unsafe impl<'a> crate::TaggedStructure<'a>
     for BufferCollectionImageCreateInfoFUCHSIA<'a> {
         const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::BUFFER_COLLECTION_IMAGE_CREATE_INFO_FUCHSIA;
+    }
+    impl<'a> Default for BufferCollectionImageCreateInfoFUCHSIA<'a> {
+        fn default() -> Self {
+            Self {
+                s_type: <Self as crate::TaggedStructure>::STRUCTURE_TYPE,
+                p_next: Default::default(),
+                collection: Default::default(),
+                index: Default::default(),
+                _marker: ::core::marker::PhantomData,
+            }
+        }
     }
     #[repr(C)]
     #[derive(Clone, Copy)]
@@ -142,6 +164,17 @@ pub(crate) mod reexport {
     for BufferCollectionBufferCreateInfoFUCHSIA<'a> {
         const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::BUFFER_COLLECTION_BUFFER_CREATE_INFO_FUCHSIA;
     }
+    impl<'a> Default for BufferCollectionBufferCreateInfoFUCHSIA<'a> {
+        fn default() -> Self {
+            Self {
+                s_type: <Self as crate::TaggedStructure>::STRUCTURE_TYPE,
+                p_next: Default::default(),
+                collection: Default::default(),
+                index: Default::default(),
+                _marker: ::core::marker::PhantomData,
+            }
+        }
+    }
     #[repr(C)]
     #[derive(Clone, Copy)]
     pub struct BufferCollectionCreateInfoFUCHSIA<'a> {
@@ -153,6 +186,16 @@ pub(crate) mod reexport {
     unsafe impl<'a> crate::TaggedStructure<'a>
     for BufferCollectionCreateInfoFUCHSIA<'a> {
         const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::BUFFER_COLLECTION_CREATE_INFO_FUCHSIA;
+    }
+    impl<'a> Default for BufferCollectionCreateInfoFUCHSIA<'a> {
+        fn default() -> Self {
+            Self {
+                s_type: <Self as crate::TaggedStructure>::STRUCTURE_TYPE,
+                p_next: Default::default(),
+                collection_token: Default::default(),
+                _marker: ::core::marker::PhantomData,
+            }
+        }
     }
     #[repr(C)]
     #[derive(Clone, Copy)]
@@ -176,6 +219,26 @@ pub(crate) mod reexport {
     for BufferCollectionPropertiesFUCHSIA<'a> {
         const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::BUFFER_COLLECTION_PROPERTIES_FUCHSIA;
     }
+    impl<'a> Default for BufferCollectionPropertiesFUCHSIA<'a> {
+        fn default() -> Self {
+            Self {
+                s_type: <Self as crate::TaggedStructure>::STRUCTURE_TYPE,
+                p_next: Default::default(),
+                memory_type_bits: Default::default(),
+                buffer_count: Default::default(),
+                create_info_index: Default::default(),
+                sysmem_pixel_format: Default::default(),
+                format_features: Default::default(),
+                sysmem_color_space_index: Default::default(),
+                sampler_ycbcr_conversion_components: Default::default(),
+                suggested_ycbcr_model: Default::default(),
+                suggested_ycbcr_range: Default::default(),
+                suggested_x_chroma_offset: Default::default(),
+                suggested_y_chroma_offset: Default::default(),
+                _marker: ::core::marker::PhantomData,
+            }
+        }
+    }
     #[repr(C)]
     #[derive(Clone, Copy)]
     pub struct BufferConstraintsInfoFUCHSIA<'a> {
@@ -191,6 +254,18 @@ pub(crate) mod reexport {
     unsafe impl<'a> crate::TaggedStructure<'a> for BufferConstraintsInfoFUCHSIA<'a> {
         const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::BUFFER_CONSTRAINTS_INFO_FUCHSIA;
     }
+    impl<'a> Default for BufferConstraintsInfoFUCHSIA<'a> {
+        fn default() -> Self {
+            Self {
+                s_type: <Self as crate::TaggedStructure>::STRUCTURE_TYPE,
+                p_next: Default::default(),
+                create_info: Default::default(),
+                required_format_features: Default::default(),
+                buffer_collection_constraints: Default::default(),
+                _marker: ::core::marker::PhantomData,
+            }
+        }
+    }
     #[repr(C)]
     #[derive(Clone, Copy)]
     pub struct SysmemColorSpaceFUCHSIA<'a> {
@@ -201,6 +276,16 @@ pub(crate) mod reexport {
     }
     unsafe impl<'a> crate::TaggedStructure<'a> for SysmemColorSpaceFUCHSIA<'a> {
         const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::SYSMEM_COLOR_SPACE_FUCHSIA;
+    }
+    impl<'a> Default for SysmemColorSpaceFUCHSIA<'a> {
+        fn default() -> Self {
+            Self {
+                s_type: <Self as crate::TaggedStructure>::STRUCTURE_TYPE,
+                p_next: Default::default(),
+                color_space: Default::default(),
+                _marker: ::core::marker::PhantomData,
+            }
+        }
     }
     #[repr(C)]
     #[derive(Clone, Copy)]
@@ -218,6 +303,21 @@ pub(crate) mod reexport {
     unsafe impl<'a> crate::TaggedStructure<'a>
     for ImageFormatConstraintsInfoFUCHSIA<'a> {
         const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::IMAGE_FORMAT_CONSTRAINTS_INFO_FUCHSIA;
+    }
+    impl<'a> Default for ImageFormatConstraintsInfoFUCHSIA<'a> {
+        fn default() -> Self {
+            Self {
+                s_type: <Self as crate::TaggedStructure>::STRUCTURE_TYPE,
+                p_next: Default::default(),
+                image_create_info: Default::default(),
+                required_format_features: Default::default(),
+                flags: Default::default(),
+                sysmem_pixel_format: Default::default(),
+                color_space_count: Default::default(),
+                p_color_spaces: Default::default(),
+                _marker: ::core::marker::PhantomData,
+            }
+        }
     }
     #[repr(C)]
     #[derive(Clone, Copy)]
@@ -237,6 +337,19 @@ pub(crate) mod reexport {
     unsafe impl<'a> crate::TaggedStructure<'a> for ImageConstraintsInfoFUCHSIA<'a> {
         const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::IMAGE_CONSTRAINTS_INFO_FUCHSIA;
     }
+    impl<'a> Default for ImageConstraintsInfoFUCHSIA<'a> {
+        fn default() -> Self {
+            Self {
+                s_type: <Self as crate::TaggedStructure>::STRUCTURE_TYPE,
+                p_next: Default::default(),
+                format_constraints_count: Default::default(),
+                p_format_constraints: Default::default(),
+                buffer_collection_constraints: Default::default(),
+                flags: Default::default(),
+                _marker: ::core::marker::PhantomData,
+            }
+        }
+    }
     #[repr(C)]
     #[derive(Clone, Copy)]
     pub struct BufferCollectionConstraintsInfoFUCHSIA<'a> {
@@ -252,6 +365,20 @@ pub(crate) mod reexport {
     unsafe impl<'a> crate::TaggedStructure<'a>
     for BufferCollectionConstraintsInfoFUCHSIA<'a> {
         const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::BUFFER_COLLECTION_CONSTRAINTS_INFO_FUCHSIA;
+    }
+    impl<'a> Default for BufferCollectionConstraintsInfoFUCHSIA<'a> {
+        fn default() -> Self {
+            Self {
+                s_type: <Self as crate::TaggedStructure>::STRUCTURE_TYPE,
+                p_next: Default::default(),
+                min_buffer_count: Default::default(),
+                max_buffer_count: Default::default(),
+                min_buffer_count_for_camping: Default::default(),
+                min_buffer_count_for_dedicated_slack: Default::default(),
+                min_buffer_count_for_shared_slack: Default::default(),
+                _marker: ::core::marker::PhantomData,
+            }
+        }
     }
     ///Provided by [`fuchsia::buffer_collection`](crate::fuchsia::buffer_collection)
     impl crate::vk::StructureType {
@@ -424,7 +551,7 @@ pub(crate) mod reexport {
         }
     }
     #[repr(transparent)]
-    #[derive(Clone, Copy)]
+    #[derive(Clone, Copy, Default)]
     pub struct ImageConstraintsInfoFlagBitsFUCHSIA(pub(crate) u32);
     ///Provided by [`fuchsia::buffer_collection`](crate::fuchsia::buffer_collection)
     impl ImageConstraintsInfoFlagBitsFUCHSIA {

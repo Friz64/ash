@@ -47,6 +47,16 @@ pub(crate) mod reexport {
     unsafe impl<'a> crate::TaggedStructure<'a> for ImportScreenBufferInfoQNX<'a> {
         const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::IMPORT_SCREEN_BUFFER_INFO_QNX;
     }
+    impl<'a> Default for ImportScreenBufferInfoQNX<'a> {
+        fn default() -> Self {
+            Self {
+                s_type: <Self as crate::TaggedStructure>::STRUCTURE_TYPE,
+                p_next: Default::default(),
+                buffer: Default::default(),
+                _marker: ::core::marker::PhantomData,
+            }
+        }
+    }
     #[repr(C)]
     #[derive(Clone, Copy)]
     pub struct ScreenBufferPropertiesQNX<'a> {
@@ -58,6 +68,17 @@ pub(crate) mod reexport {
     }
     unsafe impl<'a> crate::TaggedStructure<'a> for ScreenBufferPropertiesQNX<'a> {
         const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::SCREEN_BUFFER_PROPERTIES_QNX;
+    }
+    impl<'a> Default for ScreenBufferPropertiesQNX<'a> {
+        fn default() -> Self {
+            Self {
+                s_type: <Self as crate::TaggedStructure>::STRUCTURE_TYPE,
+                p_next: Default::default(),
+                allocation_size: Default::default(),
+                memory_type_bits: Default::default(),
+                _marker: ::core::marker::PhantomData,
+            }
+        }
     }
     #[repr(C)]
     #[derive(Clone, Copy)]
@@ -78,6 +99,24 @@ pub(crate) mod reexport {
     unsafe impl<'a> crate::TaggedStructure<'a> for ScreenBufferFormatPropertiesQNX<'a> {
         const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::SCREEN_BUFFER_FORMAT_PROPERTIES_QNX;
     }
+    impl<'a> Default for ScreenBufferFormatPropertiesQNX<'a> {
+        fn default() -> Self {
+            Self {
+                s_type: <Self as crate::TaggedStructure>::STRUCTURE_TYPE,
+                p_next: Default::default(),
+                format: Default::default(),
+                external_format: Default::default(),
+                screen_usage: Default::default(),
+                format_features: Default::default(),
+                sampler_ycbcr_conversion_components: Default::default(),
+                suggested_ycbcr_model: Default::default(),
+                suggested_ycbcr_range: Default::default(),
+                suggested_x_chroma_offset: Default::default(),
+                suggested_y_chroma_offset: Default::default(),
+                _marker: ::core::marker::PhantomData,
+            }
+        }
+    }
     #[repr(C)]
     #[derive(Clone, Copy)]
     pub struct ExternalFormatQNX<'a> {
@@ -88,6 +127,16 @@ pub(crate) mod reexport {
     }
     unsafe impl<'a> crate::TaggedStructure<'a> for ExternalFormatQNX<'a> {
         const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::EXTERNAL_FORMAT_QNX;
+    }
+    impl<'a> Default for ExternalFormatQNX<'a> {
+        fn default() -> Self {
+            Self {
+                s_type: <Self as crate::TaggedStructure>::STRUCTURE_TYPE,
+                p_next: Default::default(),
+                external_format: Default::default(),
+                _marker: ::core::marker::PhantomData,
+            }
+        }
     }
     #[repr(C)]
     #[derive(Clone, Copy)]
@@ -100,6 +149,16 @@ pub(crate) mod reexport {
     unsafe impl<'a> crate::TaggedStructure<'a>
     for PhysicalDeviceExternalMemoryScreenBufferFeaturesQNX<'a> {
         const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::PHYSICAL_DEVICE_EXTERNAL_MEMORY_SCREEN_BUFFER_FEATURES_QNX;
+    }
+    impl<'a> Default for PhysicalDeviceExternalMemoryScreenBufferFeaturesQNX<'a> {
+        fn default() -> Self {
+            Self {
+                s_type: <Self as crate::TaggedStructure>::STRUCTURE_TYPE,
+                p_next: Default::default(),
+                screen_buffer_import: Default::default(),
+                _marker: ::core::marker::PhantomData,
+            }
+        }
     }
     ///Provided by [`qnx::external_memory_screen_buffer`](crate::qnx::external_memory_screen_buffer)
     impl crate::vk::StructureType {

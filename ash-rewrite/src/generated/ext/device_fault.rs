@@ -48,6 +48,17 @@ pub(crate) mod reexport {
     unsafe impl<'a> crate::TaggedStructure<'a> for PhysicalDeviceFaultFeaturesEXT<'a> {
         const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::PHYSICAL_DEVICE_FAULT_FEATURES_EXT;
     }
+    impl<'a> Default for PhysicalDeviceFaultFeaturesEXT<'a> {
+        fn default() -> Self {
+            Self {
+                s_type: <Self as crate::TaggedStructure>::STRUCTURE_TYPE,
+                p_next: Default::default(),
+                device_fault: Default::default(),
+                device_fault_vendor_binary: Default::default(),
+                _marker: ::core::marker::PhantomData,
+            }
+        }
+    }
     #[repr(C)]
     #[derive(Clone, Copy)]
     pub struct DeviceFaultCountsEXT<'a> {
@@ -60,6 +71,18 @@ pub(crate) mod reexport {
     }
     unsafe impl<'a> crate::TaggedStructure<'a> for DeviceFaultCountsEXT<'a> {
         const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::DEVICE_FAULT_COUNTS_EXT;
+    }
+    impl<'a> Default for DeviceFaultCountsEXT<'a> {
+        fn default() -> Self {
+            Self {
+                s_type: <Self as crate::TaggedStructure>::STRUCTURE_TYPE,
+                p_next: Default::default(),
+                address_info_count: Default::default(),
+                vendor_info_count: Default::default(),
+                vendor_binary_size: Default::default(),
+                _marker: ::core::marker::PhantomData,
+            }
+        }
     }
     #[repr(C)]
     #[derive(Clone, Copy)]
@@ -74,6 +97,19 @@ pub(crate) mod reexport {
     }
     unsafe impl<'a> crate::TaggedStructure<'a> for DeviceFaultInfoEXT<'a> {
         const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::DEVICE_FAULT_INFO_EXT;
+    }
+    impl<'a> Default for DeviceFaultInfoEXT<'a> {
+        fn default() -> Self {
+            Self {
+                s_type: <Self as crate::TaggedStructure>::STRUCTURE_TYPE,
+                p_next: Default::default(),
+                description: unsafe { core::mem::zeroed() },
+                p_address_infos: Default::default(),
+                p_vendor_infos: Default::default(),
+                p_vendor_binary_data: Default::default(),
+                _marker: ::core::marker::PhantomData,
+            }
+        }
     }
     pub type DeviceFaultAddressInfoEXT = crate::vk::DeviceFaultAddressInfoKHR;
     pub type DeviceFaultVendorInfoEXT = crate::vk::DeviceFaultVendorInfoKHR;

@@ -85,6 +85,16 @@ pub(crate) mod reexport {
     for PhysicalDevicePipelineExecutablePropertiesFeaturesKHR<'a> {
         const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::PHYSICAL_DEVICE_PIPELINE_EXECUTABLE_PROPERTIES_FEATURES_KHR;
     }
+    impl<'a> Default for PhysicalDevicePipelineExecutablePropertiesFeaturesKHR<'a> {
+        fn default() -> Self {
+            Self {
+                s_type: <Self as crate::TaggedStructure>::STRUCTURE_TYPE,
+                p_next: Default::default(),
+                pipeline_executable_info: Default::default(),
+                _marker: ::core::marker::PhantomData,
+            }
+        }
+    }
     #[repr(C)]
     #[derive(Clone, Copy)]
     pub struct PipelineInfoKHR<'a> {
@@ -95,6 +105,16 @@ pub(crate) mod reexport {
     }
     unsafe impl<'a> crate::TaggedStructure<'a> for PipelineInfoKHR<'a> {
         const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::PIPELINE_INFO_KHR;
+    }
+    impl<'a> Default for PipelineInfoKHR<'a> {
+        fn default() -> Self {
+            Self {
+                s_type: <Self as crate::TaggedStructure>::STRUCTURE_TYPE,
+                p_next: Default::default(),
+                pipeline: Default::default(),
+                _marker: ::core::marker::PhantomData,
+            }
+        }
     }
     #[repr(C)]
     #[derive(Clone, Copy)]
@@ -110,6 +130,19 @@ pub(crate) mod reexport {
     unsafe impl<'a> crate::TaggedStructure<'a> for PipelineExecutablePropertiesKHR<'a> {
         const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::PIPELINE_EXECUTABLE_PROPERTIES_KHR;
     }
+    impl<'a> Default for PipelineExecutablePropertiesKHR<'a> {
+        fn default() -> Self {
+            Self {
+                s_type: <Self as crate::TaggedStructure>::STRUCTURE_TYPE,
+                p_next: Default::default(),
+                stages: Default::default(),
+                name: unsafe { core::mem::zeroed() },
+                description: unsafe { core::mem::zeroed() },
+                subgroup_size: Default::default(),
+                _marker: ::core::marker::PhantomData,
+            }
+        }
+    }
     #[repr(C)]
     #[derive(Clone, Copy)]
     pub struct PipelineExecutableInfoKHR<'a> {
@@ -121,6 +154,17 @@ pub(crate) mod reexport {
     }
     unsafe impl<'a> crate::TaggedStructure<'a> for PipelineExecutableInfoKHR<'a> {
         const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::PIPELINE_EXECUTABLE_INFO_KHR;
+    }
+    impl<'a> Default for PipelineExecutableInfoKHR<'a> {
+        fn default() -> Self {
+            Self {
+                s_type: <Self as crate::TaggedStructure>::STRUCTURE_TYPE,
+                p_next: Default::default(),
+                pipeline: Default::default(),
+                executable_index: Default::default(),
+                _marker: ::core::marker::PhantomData,
+            }
+        }
     }
     #[repr(C)]
     #[derive(Clone, Copy)]
@@ -135,6 +179,19 @@ pub(crate) mod reexport {
     }
     unsafe impl<'a> crate::TaggedStructure<'a> for PipelineExecutableStatisticKHR<'a> {
         const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::PIPELINE_EXECUTABLE_STATISTIC_KHR;
+    }
+    impl<'a> Default for PipelineExecutableStatisticKHR<'a> {
+        fn default() -> Self {
+            Self {
+                s_type: <Self as crate::TaggedStructure>::STRUCTURE_TYPE,
+                p_next: Default::default(),
+                name: unsafe { core::mem::zeroed() },
+                description: unsafe { core::mem::zeroed() },
+                format: Default::default(),
+                value: Default::default(),
+                _marker: ::core::marker::PhantomData,
+            }
+        }
     }
     #[repr(C)]
     #[derive(Clone, Copy)]
@@ -152,6 +209,20 @@ pub(crate) mod reexport {
     for PipelineExecutableInternalRepresentationKHR<'a> {
         const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::PIPELINE_EXECUTABLE_INTERNAL_REPRESENTATION_KHR;
     }
+    impl<'a> Default for PipelineExecutableInternalRepresentationKHR<'a> {
+        fn default() -> Self {
+            Self {
+                s_type: <Self as crate::TaggedStructure>::STRUCTURE_TYPE,
+                p_next: Default::default(),
+                name: unsafe { core::mem::zeroed() },
+                description: unsafe { core::mem::zeroed() },
+                is_text: Default::default(),
+                data_size: Default::default(),
+                p_data: Default::default(),
+                _marker: ::core::marker::PhantomData,
+            }
+        }
+    }
     #[repr(C)]
     #[derive(Clone, Copy)]
     pub union PipelineExecutableStatisticValueKHR {
@@ -159,6 +230,11 @@ pub(crate) mod reexport {
         pub i64: i64,
         pub u64: u64,
         pub f64: core::ffi::c_double,
+    }
+    impl Default for PipelineExecutableStatisticValueKHR {
+        fn default() -> Self {
+            unsafe { core::mem::zeroed() }
+        }
     }
     ///Provided by [`khr::pipeline_executable_properties`](crate::khr::pipeline_executable_properties)
     impl crate::vk::StructureType {

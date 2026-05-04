@@ -13,6 +13,16 @@ unsafe impl<'a> crate::TaggedStructure<'a>
 for PhysicalDeviceMaintenance11FeaturesKHR<'a> {
     const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::PHYSICAL_DEVICE_MAINTENANCE_11_FEATURES_KHR;
 }
+impl<'a> Default for PhysicalDeviceMaintenance11FeaturesKHR<'a> {
+    fn default() -> Self {
+        Self {
+            s_type: <Self as crate::TaggedStructure>::STRUCTURE_TYPE,
+            p_next: Default::default(),
+            maintenance11: Default::default(),
+            _marker: ::core::marker::PhantomData,
+        }
+    }
+}
 #[repr(C)]
 #[derive(Clone, Copy)]
 pub struct QueueFamilyOptimalImageTransferGranularityPropertiesKHR<'a> {
@@ -24,6 +34,16 @@ pub struct QueueFamilyOptimalImageTransferGranularityPropertiesKHR<'a> {
 unsafe impl<'a> crate::TaggedStructure<'a>
 for QueueFamilyOptimalImageTransferGranularityPropertiesKHR<'a> {
     const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::QUEUE_FAMILY_OPTIMAL_IMAGE_TRANSFER_GRANULARITY_PROPERTIES_KHR;
+}
+impl<'a> Default for QueueFamilyOptimalImageTransferGranularityPropertiesKHR<'a> {
+    fn default() -> Self {
+        Self {
+            s_type: <Self as crate::TaggedStructure>::STRUCTURE_TYPE,
+            p_next: Default::default(),
+            optimal_image_transfer_granularity: Default::default(),
+            _marker: ::core::marker::PhantomData,
+        }
+    }
 }
 ///Provided by [`khr::maintenance11`](crate::khr::maintenance11)
 impl crate::vk::StructureType {

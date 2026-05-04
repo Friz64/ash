@@ -24,6 +24,27 @@ unsafe impl<'a> crate::TaggedStructure<'a>
 for PhysicalDeviceShaderAtomicFloat2FeaturesEXT<'a> {
     const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::PHYSICAL_DEVICE_SHADER_ATOMIC_FLOAT_2_FEATURES_EXT;
 }
+impl<'a> Default for PhysicalDeviceShaderAtomicFloat2FeaturesEXT<'a> {
+    fn default() -> Self {
+        Self {
+            s_type: <Self as crate::TaggedStructure>::STRUCTURE_TYPE,
+            p_next: Default::default(),
+            shader_buffer_float16_atomics: Default::default(),
+            shader_buffer_float16_atomic_add: Default::default(),
+            shader_buffer_float16_atomic_min_max: Default::default(),
+            shader_buffer_float32_atomic_min_max: Default::default(),
+            shader_buffer_float64_atomic_min_max: Default::default(),
+            shader_shared_float16_atomics: Default::default(),
+            shader_shared_float16_atomic_add: Default::default(),
+            shader_shared_float16_atomic_min_max: Default::default(),
+            shader_shared_float32_atomic_min_max: Default::default(),
+            shader_shared_float64_atomic_min_max: Default::default(),
+            shader_image_float32_atomic_min_max: Default::default(),
+            sparse_image_float32_atomic_min_max: Default::default(),
+            _marker: ::core::marker::PhantomData,
+        }
+    }
+}
 ///Provided by [`ext::shader_atomic_float2`](crate::ext::shader_atomic_float2)
 impl crate::vk::StructureType {
     pub const PHYSICAL_DEVICE_SHADER_ATOMIC_FLOAT_2_FEATURES_EXT: Self = Self(

@@ -40,7 +40,7 @@ impl DeviceFn {
 }
 pub(crate) mod reexport {
     #[repr(C)]
-    #[derive(Clone, Copy)]
+    #[derive(Clone, Copy, Default)]
     pub struct ShaderResourceUsageAMD {
         pub num_used_vgprs: u32,
         pub num_used_sgprs: u32,
@@ -58,6 +58,19 @@ pub(crate) mod reexport {
         pub num_available_vgprs: u32,
         pub num_available_sgprs: u32,
         pub compute_work_group_size: [u32; 3 as _],
+    }
+    impl Default for ShaderStatisticsInfoAMD {
+        fn default() -> Self {
+            Self {
+                shader_stage_mask: Default::default(),
+                resource_usage: Default::default(),
+                num_physical_vgprs: Default::default(),
+                num_physical_sgprs: Default::default(),
+                num_available_vgprs: Default::default(),
+                num_available_sgprs: Default::default(),
+                compute_work_group_size: unsafe { core::mem::zeroed() },
+            }
+        }
     }
     #[repr(transparent)]
     #[derive(Clone, Copy, PartialEq, Eq, PartialOrd, Ord, Hash, Default)]

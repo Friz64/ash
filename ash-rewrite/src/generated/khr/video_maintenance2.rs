@@ -13,6 +13,16 @@ unsafe impl<'a> crate::TaggedStructure<'a>
 for PhysicalDeviceVideoMaintenance2FeaturesKHR<'a> {
     const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::PHYSICAL_DEVICE_VIDEO_MAINTENANCE_2_FEATURES_KHR;
 }
+impl<'a> Default for PhysicalDeviceVideoMaintenance2FeaturesKHR<'a> {
+    fn default() -> Self {
+        Self {
+            s_type: <Self as crate::TaggedStructure>::STRUCTURE_TYPE,
+            p_next: Default::default(),
+            video_maintenance2: Default::default(),
+            _marker: ::core::marker::PhantomData,
+        }
+    }
+}
 #[repr(C)]
 #[derive(Clone, Copy)]
 pub struct VideoDecodeH264InlineSessionParametersInfoKHR<'a> {
@@ -25,6 +35,17 @@ pub struct VideoDecodeH264InlineSessionParametersInfoKHR<'a> {
 unsafe impl<'a> crate::TaggedStructure<'a>
 for VideoDecodeH264InlineSessionParametersInfoKHR<'a> {
     const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::VIDEO_DECODE_H264_INLINE_SESSION_PARAMETERS_INFO_KHR;
+}
+impl<'a> Default for VideoDecodeH264InlineSessionParametersInfoKHR<'a> {
+    fn default() -> Self {
+        Self {
+            s_type: <Self as crate::TaggedStructure>::STRUCTURE_TYPE,
+            p_next: Default::default(),
+            p_std_sps: Default::default(),
+            p_std_pps: Default::default(),
+            _marker: ::core::marker::PhantomData,
+        }
+    }
 }
 #[repr(C)]
 #[derive(Clone, Copy)]
@@ -40,6 +61,18 @@ unsafe impl<'a> crate::TaggedStructure<'a>
 for VideoDecodeH265InlineSessionParametersInfoKHR<'a> {
     const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::VIDEO_DECODE_H265_INLINE_SESSION_PARAMETERS_INFO_KHR;
 }
+impl<'a> Default for VideoDecodeH265InlineSessionParametersInfoKHR<'a> {
+    fn default() -> Self {
+        Self {
+            s_type: <Self as crate::TaggedStructure>::STRUCTURE_TYPE,
+            p_next: Default::default(),
+            p_std_vps: Default::default(),
+            p_std_sps: Default::default(),
+            p_std_pps: Default::default(),
+            _marker: ::core::marker::PhantomData,
+        }
+    }
+}
 #[repr(C)]
 #[derive(Clone, Copy)]
 pub struct VideoDecodeAV1InlineSessionParametersInfoKHR<'a> {
@@ -51,6 +84,16 @@ pub struct VideoDecodeAV1InlineSessionParametersInfoKHR<'a> {
 unsafe impl<'a> crate::TaggedStructure<'a>
 for VideoDecodeAV1InlineSessionParametersInfoKHR<'a> {
     const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::VIDEO_DECODE_AV1_INLINE_SESSION_PARAMETERS_INFO_KHR;
+}
+impl<'a> Default for VideoDecodeAV1InlineSessionParametersInfoKHR<'a> {
+    fn default() -> Self {
+        Self {
+            s_type: <Self as crate::TaggedStructure>::STRUCTURE_TYPE,
+            p_next: Default::default(),
+            p_std_sequence_header: Default::default(),
+            _marker: ::core::marker::PhantomData,
+        }
+    }
 }
 ///Provided by [`khr::video_maintenance2`](crate::khr::video_maintenance2)
 impl crate::vk::StructureType {

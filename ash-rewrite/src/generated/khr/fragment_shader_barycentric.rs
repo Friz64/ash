@@ -13,6 +13,16 @@ unsafe impl<'a> crate::TaggedStructure<'a>
 for PhysicalDeviceFragmentShaderBarycentricFeaturesKHR<'a> {
     const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::PHYSICAL_DEVICE_FRAGMENT_SHADER_BARYCENTRIC_FEATURES_KHR;
 }
+impl<'a> Default for PhysicalDeviceFragmentShaderBarycentricFeaturesKHR<'a> {
+    fn default() -> Self {
+        Self {
+            s_type: <Self as crate::TaggedStructure>::STRUCTURE_TYPE,
+            p_next: Default::default(),
+            fragment_shader_barycentric: Default::default(),
+            _marker: ::core::marker::PhantomData,
+        }
+    }
+}
 #[repr(C)]
 #[derive(Clone, Copy)]
 pub struct PhysicalDeviceFragmentShaderBarycentricPropertiesKHR<'a> {
@@ -24,6 +34,16 @@ pub struct PhysicalDeviceFragmentShaderBarycentricPropertiesKHR<'a> {
 unsafe impl<'a> crate::TaggedStructure<'a>
 for PhysicalDeviceFragmentShaderBarycentricPropertiesKHR<'a> {
     const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::PHYSICAL_DEVICE_FRAGMENT_SHADER_BARYCENTRIC_PROPERTIES_KHR;
+}
+impl<'a> Default for PhysicalDeviceFragmentShaderBarycentricPropertiesKHR<'a> {
+    fn default() -> Self {
+        Self {
+            s_type: <Self as crate::TaggedStructure>::STRUCTURE_TYPE,
+            p_next: Default::default(),
+            tri_strip_vertex_order_independent_of_provoking_vertex: Default::default(),
+            _marker: ::core::marker::PhantomData,
+        }
+    }
 }
 ///Provided by [`khr::fragment_shader_barycentric`](crate::khr::fragment_shader_barycentric)
 impl crate::vk::StructureType {

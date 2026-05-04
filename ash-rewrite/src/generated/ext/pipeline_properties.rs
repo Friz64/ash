@@ -47,6 +47,16 @@ pub(crate) mod reexport {
     unsafe impl<'a> crate::TaggedStructure<'a> for PipelinePropertiesIdentifierEXT<'a> {
         const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::PIPELINE_PROPERTIES_IDENTIFIER_EXT;
     }
+    impl<'a> Default for PipelinePropertiesIdentifierEXT<'a> {
+        fn default() -> Self {
+            Self {
+                s_type: <Self as crate::TaggedStructure>::STRUCTURE_TYPE,
+                p_next: Default::default(),
+                pipeline_identifier: unsafe { core::mem::zeroed() },
+                _marker: ::core::marker::PhantomData,
+            }
+        }
+    }
     #[repr(C)]
     #[derive(Clone, Copy)]
     pub struct PhysicalDevicePipelinePropertiesFeaturesEXT<'a> {
@@ -58,6 +68,16 @@ pub(crate) mod reexport {
     unsafe impl<'a> crate::TaggedStructure<'a>
     for PhysicalDevicePipelinePropertiesFeaturesEXT<'a> {
         const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::PHYSICAL_DEVICE_PIPELINE_PROPERTIES_FEATURES_EXT;
+    }
+    impl<'a> Default for PhysicalDevicePipelinePropertiesFeaturesEXT<'a> {
+        fn default() -> Self {
+            Self {
+                s_type: <Self as crate::TaggedStructure>::STRUCTURE_TYPE,
+                p_next: Default::default(),
+                pipeline_properties_identifier: Default::default(),
+                _marker: ::core::marker::PhantomData,
+            }
+        }
     }
     pub type PipelineInfoEXT<'a> = crate::vk::PipelineInfoKHR<'a>;
     ///Provided by [`ext::pipeline_properties`](crate::ext::pipeline_properties)

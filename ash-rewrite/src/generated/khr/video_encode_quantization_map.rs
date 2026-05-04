@@ -13,6 +13,16 @@ unsafe impl<'a> crate::TaggedStructure<'a>
 for VideoEncodeQuantizationMapCapabilitiesKHR<'a> {
     const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::VIDEO_ENCODE_QUANTIZATION_MAP_CAPABILITIES_KHR;
 }
+impl<'a> Default for VideoEncodeQuantizationMapCapabilitiesKHR<'a> {
+    fn default() -> Self {
+        Self {
+            s_type: <Self as crate::TaggedStructure>::STRUCTURE_TYPE,
+            p_next: Default::default(),
+            max_quantization_map_extent: Default::default(),
+            _marker: ::core::marker::PhantomData,
+        }
+    }
+}
 #[repr(C)]
 #[derive(Clone, Copy)]
 pub struct VideoEncodeH264QuantizationMapCapabilitiesKHR<'a> {
@@ -25,6 +35,17 @@ pub struct VideoEncodeH264QuantizationMapCapabilitiesKHR<'a> {
 unsafe impl<'a> crate::TaggedStructure<'a>
 for VideoEncodeH264QuantizationMapCapabilitiesKHR<'a> {
     const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::VIDEO_ENCODE_H264_QUANTIZATION_MAP_CAPABILITIES_KHR;
+}
+impl<'a> Default for VideoEncodeH264QuantizationMapCapabilitiesKHR<'a> {
+    fn default() -> Self {
+        Self {
+            s_type: <Self as crate::TaggedStructure>::STRUCTURE_TYPE,
+            p_next: Default::default(),
+            min_qp_delta: Default::default(),
+            max_qp_delta: Default::default(),
+            _marker: ::core::marker::PhantomData,
+        }
+    }
 }
 #[repr(C)]
 #[derive(Clone, Copy)]
@@ -39,6 +60,17 @@ unsafe impl<'a> crate::TaggedStructure<'a>
 for VideoEncodeH265QuantizationMapCapabilitiesKHR<'a> {
     const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::VIDEO_ENCODE_H265_QUANTIZATION_MAP_CAPABILITIES_KHR;
 }
+impl<'a> Default for VideoEncodeH265QuantizationMapCapabilitiesKHR<'a> {
+    fn default() -> Self {
+        Self {
+            s_type: <Self as crate::TaggedStructure>::STRUCTURE_TYPE,
+            p_next: Default::default(),
+            min_qp_delta: Default::default(),
+            max_qp_delta: Default::default(),
+            _marker: ::core::marker::PhantomData,
+        }
+    }
+}
 #[repr(C)]
 #[derive(Clone, Copy)]
 pub struct VideoEncodeAV1QuantizationMapCapabilitiesKHR<'a> {
@@ -52,6 +84,17 @@ unsafe impl<'a> crate::TaggedStructure<'a>
 for VideoEncodeAV1QuantizationMapCapabilitiesKHR<'a> {
     const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::VIDEO_ENCODE_AV1_QUANTIZATION_MAP_CAPABILITIES_KHR;
 }
+impl<'a> Default for VideoEncodeAV1QuantizationMapCapabilitiesKHR<'a> {
+    fn default() -> Self {
+        Self {
+            s_type: <Self as crate::TaggedStructure>::STRUCTURE_TYPE,
+            p_next: Default::default(),
+            min_q_index_delta: Default::default(),
+            max_q_index_delta: Default::default(),
+            _marker: ::core::marker::PhantomData,
+        }
+    }
+}
 #[repr(C)]
 #[derive(Clone, Copy)]
 pub struct VideoFormatQuantizationMapPropertiesKHR<'a> {
@@ -63,6 +106,16 @@ pub struct VideoFormatQuantizationMapPropertiesKHR<'a> {
 unsafe impl<'a> crate::TaggedStructure<'a>
 for VideoFormatQuantizationMapPropertiesKHR<'a> {
     const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::VIDEO_FORMAT_QUANTIZATION_MAP_PROPERTIES_KHR;
+}
+impl<'a> Default for VideoFormatQuantizationMapPropertiesKHR<'a> {
+    fn default() -> Self {
+        Self {
+            s_type: <Self as crate::TaggedStructure>::STRUCTURE_TYPE,
+            p_next: Default::default(),
+            quantization_map_texel_size: Default::default(),
+            _marker: ::core::marker::PhantomData,
+        }
+    }
 }
 #[repr(C)]
 #[derive(Clone, Copy)]
@@ -76,6 +129,16 @@ unsafe impl<'a> crate::TaggedStructure<'a>
 for VideoFormatH265QuantizationMapPropertiesKHR<'a> {
     const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::VIDEO_FORMAT_H265_QUANTIZATION_MAP_PROPERTIES_KHR;
 }
+impl<'a> Default for VideoFormatH265QuantizationMapPropertiesKHR<'a> {
+    fn default() -> Self {
+        Self {
+            s_type: <Self as crate::TaggedStructure>::STRUCTURE_TYPE,
+            p_next: Default::default(),
+            compatible_ctb_sizes: Default::default(),
+            _marker: ::core::marker::PhantomData,
+        }
+    }
+}
 #[repr(C)]
 #[derive(Clone, Copy)]
 pub struct VideoFormatAV1QuantizationMapPropertiesKHR<'a> {
@@ -87,6 +150,16 @@ pub struct VideoFormatAV1QuantizationMapPropertiesKHR<'a> {
 unsafe impl<'a> crate::TaggedStructure<'a>
 for VideoFormatAV1QuantizationMapPropertiesKHR<'a> {
     const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::VIDEO_FORMAT_AV1_QUANTIZATION_MAP_PROPERTIES_KHR;
+}
+impl<'a> Default for VideoFormatAV1QuantizationMapPropertiesKHR<'a> {
+    fn default() -> Self {
+        Self {
+            s_type: <Self as crate::TaggedStructure>::STRUCTURE_TYPE,
+            p_next: Default::default(),
+            compatible_superblock_sizes: Default::default(),
+            _marker: ::core::marker::PhantomData,
+        }
+    }
 }
 #[repr(C)]
 #[derive(Clone, Copy)]
@@ -100,6 +173,17 @@ pub struct VideoEncodeQuantizationMapInfoKHR<'a> {
 unsafe impl<'a> crate::TaggedStructure<'a> for VideoEncodeQuantizationMapInfoKHR<'a> {
     const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::VIDEO_ENCODE_QUANTIZATION_MAP_INFO_KHR;
 }
+impl<'a> Default for VideoEncodeQuantizationMapInfoKHR<'a> {
+    fn default() -> Self {
+        Self {
+            s_type: <Self as crate::TaggedStructure>::STRUCTURE_TYPE,
+            p_next: Default::default(),
+            quantization_map: Default::default(),
+            quantization_map_extent: Default::default(),
+            _marker: ::core::marker::PhantomData,
+        }
+    }
+}
 #[repr(C)]
 #[derive(Clone, Copy)]
 pub struct VideoEncodeQuantizationMapSessionParametersCreateInfoKHR<'a> {
@@ -112,6 +196,16 @@ unsafe impl<'a> crate::TaggedStructure<'a>
 for VideoEncodeQuantizationMapSessionParametersCreateInfoKHR<'a> {
     const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::VIDEO_ENCODE_QUANTIZATION_MAP_SESSION_PARAMETERS_CREATE_INFO_KHR;
 }
+impl<'a> Default for VideoEncodeQuantizationMapSessionParametersCreateInfoKHR<'a> {
+    fn default() -> Self {
+        Self {
+            s_type: <Self as crate::TaggedStructure>::STRUCTURE_TYPE,
+            p_next: Default::default(),
+            quantization_map_texel_size: Default::default(),
+            _marker: ::core::marker::PhantomData,
+        }
+    }
+}
 #[repr(C)]
 #[derive(Clone, Copy)]
 pub struct PhysicalDeviceVideoEncodeQuantizationMapFeaturesKHR<'a> {
@@ -123,6 +217,16 @@ pub struct PhysicalDeviceVideoEncodeQuantizationMapFeaturesKHR<'a> {
 unsafe impl<'a> crate::TaggedStructure<'a>
 for PhysicalDeviceVideoEncodeQuantizationMapFeaturesKHR<'a> {
     const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::PHYSICAL_DEVICE_VIDEO_ENCODE_QUANTIZATION_MAP_FEATURES_KHR;
+}
+impl<'a> Default for PhysicalDeviceVideoEncodeQuantizationMapFeaturesKHR<'a> {
+    fn default() -> Self {
+        Self {
+            s_type: <Self as crate::TaggedStructure>::STRUCTURE_TYPE,
+            p_next: Default::default(),
+            video_encode_quantization_map: Default::default(),
+            _marker: ::core::marker::PhantomData,
+        }
+    }
 }
 ///Provided by [`khr::video_encode_quantization_map`](crate::khr::video_encode_quantization_map)
 impl crate::vk::ImageLayout {

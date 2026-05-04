@@ -60,6 +60,22 @@ pub(crate) mod reexport {
     for PhysicalDeviceCooperativeMatrix2FeaturesNV<'a> {
         const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::PHYSICAL_DEVICE_COOPERATIVE_MATRIX_2_FEATURES_NV;
     }
+    impl<'a> Default for PhysicalDeviceCooperativeMatrix2FeaturesNV<'a> {
+        fn default() -> Self {
+            Self {
+                s_type: <Self as crate::TaggedStructure>::STRUCTURE_TYPE,
+                p_next: Default::default(),
+                cooperative_matrix_workgroup_scope: Default::default(),
+                cooperative_matrix_flexible_dimensions: Default::default(),
+                cooperative_matrix_reductions: Default::default(),
+                cooperative_matrix_conversions: Default::default(),
+                cooperative_matrix_per_element_operations: Default::default(),
+                cooperative_matrix_tensor_addressing: Default::default(),
+                cooperative_matrix_block_loads: Default::default(),
+                _marker: ::core::marker::PhantomData,
+            }
+        }
+    }
     #[repr(C)]
     #[derive(Clone, Copy)]
     pub struct PhysicalDeviceCooperativeMatrix2PropertiesNV<'a> {
@@ -73,6 +89,18 @@ pub(crate) mod reexport {
     unsafe impl<'a> crate::TaggedStructure<'a>
     for PhysicalDeviceCooperativeMatrix2PropertiesNV<'a> {
         const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::PHYSICAL_DEVICE_COOPERATIVE_MATRIX_2_PROPERTIES_NV;
+    }
+    impl<'a> Default for PhysicalDeviceCooperativeMatrix2PropertiesNV<'a> {
+        fn default() -> Self {
+            Self {
+                s_type: <Self as crate::TaggedStructure>::STRUCTURE_TYPE,
+                p_next: Default::default(),
+                cooperative_matrix_workgroup_scope_max_workgroup_size: Default::default(),
+                cooperative_matrix_flexible_dimensions_max_dimension: Default::default(),
+                cooperative_matrix_workgroup_scope_reserved_shared_memory: Default::default(),
+                _marker: ::core::marker::PhantomData,
+            }
+        }
     }
     #[repr(C)]
     #[derive(Clone, Copy)]
@@ -94,6 +122,25 @@ pub(crate) mod reexport {
     unsafe impl<'a> crate::TaggedStructure<'a>
     for CooperativeMatrixFlexibleDimensionsPropertiesNV<'a> {
         const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::COOPERATIVE_MATRIX_FLEXIBLE_DIMENSIONS_PROPERTIES_NV;
+    }
+    impl<'a> Default for CooperativeMatrixFlexibleDimensionsPropertiesNV<'a> {
+        fn default() -> Self {
+            Self {
+                s_type: <Self as crate::TaggedStructure>::STRUCTURE_TYPE,
+                p_next: Default::default(),
+                m_granularity: Default::default(),
+                n_granularity: Default::default(),
+                k_granularity: Default::default(),
+                a_type: Default::default(),
+                b_type: Default::default(),
+                c_type: Default::default(),
+                result_type: Default::default(),
+                saturating_accumulation: Default::default(),
+                scope: Default::default(),
+                workgroup_invocations: Default::default(),
+                _marker: ::core::marker::PhantomData,
+            }
+        }
     }
     ///Provided by [`nv::cooperative_matrix2`](crate::nv::cooperative_matrix2)
     impl crate::vk::StructureType {

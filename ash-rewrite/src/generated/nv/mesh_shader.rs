@@ -87,6 +87,17 @@ pub(crate) mod reexport {
     for PhysicalDeviceMeshShaderFeaturesNV<'a> {
         const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::PHYSICAL_DEVICE_MESH_SHADER_FEATURES_NV;
     }
+    impl<'a> Default for PhysicalDeviceMeshShaderFeaturesNV<'a> {
+        fn default() -> Self {
+            Self {
+                s_type: <Self as crate::TaggedStructure>::STRUCTURE_TYPE,
+                p_next: Default::default(),
+                task_shader: Default::default(),
+                mesh_shader: Default::default(),
+                _marker: ::core::marker::PhantomData,
+            }
+        }
+    }
     #[repr(C)]
     #[derive(Clone, Copy)]
     pub struct PhysicalDeviceMeshShaderPropertiesNV<'a> {
@@ -111,8 +122,30 @@ pub(crate) mod reexport {
     for PhysicalDeviceMeshShaderPropertiesNV<'a> {
         const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::PHYSICAL_DEVICE_MESH_SHADER_PROPERTIES_NV;
     }
+    impl<'a> Default for PhysicalDeviceMeshShaderPropertiesNV<'a> {
+        fn default() -> Self {
+            Self {
+                s_type: <Self as crate::TaggedStructure>::STRUCTURE_TYPE,
+                p_next: Default::default(),
+                max_draw_mesh_tasks_count: Default::default(),
+                max_task_work_group_invocations: Default::default(),
+                max_task_work_group_size: unsafe { core::mem::zeroed() },
+                max_task_total_memory_size: Default::default(),
+                max_task_output_count: Default::default(),
+                max_mesh_work_group_invocations: Default::default(),
+                max_mesh_work_group_size: unsafe { core::mem::zeroed() },
+                max_mesh_total_memory_size: Default::default(),
+                max_mesh_output_vertices: Default::default(),
+                max_mesh_output_primitives: Default::default(),
+                max_mesh_multiview_view_count: Default::default(),
+                mesh_output_per_vertex_granularity: Default::default(),
+                mesh_output_per_primitive_granularity: Default::default(),
+                _marker: ::core::marker::PhantomData,
+            }
+        }
+    }
     #[repr(C)]
-    #[derive(Clone, Copy)]
+    #[derive(Clone, Copy, Default)]
     pub struct DrawMeshTasksIndirectCommandNV {
         pub task_count: u32,
         pub first_task: u32,

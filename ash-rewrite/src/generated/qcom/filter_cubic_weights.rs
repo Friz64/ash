@@ -13,6 +13,16 @@ unsafe impl<'a> crate::TaggedStructure<'a>
 for PhysicalDeviceCubicWeightsFeaturesQCOM<'a> {
     const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::PHYSICAL_DEVICE_CUBIC_WEIGHTS_FEATURES_QCOM;
 }
+impl<'a> Default for PhysicalDeviceCubicWeightsFeaturesQCOM<'a> {
+    fn default() -> Self {
+        Self {
+            s_type: <Self as crate::TaggedStructure>::STRUCTURE_TYPE,
+            p_next: Default::default(),
+            selectable_cubic_weights: Default::default(),
+            _marker: ::core::marker::PhantomData,
+        }
+    }
+}
 #[repr(C)]
 #[derive(Clone, Copy)]
 pub struct SamplerCubicWeightsCreateInfoQCOM<'a> {
@@ -24,6 +34,16 @@ pub struct SamplerCubicWeightsCreateInfoQCOM<'a> {
 unsafe impl<'a> crate::TaggedStructure<'a> for SamplerCubicWeightsCreateInfoQCOM<'a> {
     const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::SAMPLER_CUBIC_WEIGHTS_CREATE_INFO_QCOM;
 }
+impl<'a> Default for SamplerCubicWeightsCreateInfoQCOM<'a> {
+    fn default() -> Self {
+        Self {
+            s_type: <Self as crate::TaggedStructure>::STRUCTURE_TYPE,
+            p_next: Default::default(),
+            cubic_weights: Default::default(),
+            _marker: ::core::marker::PhantomData,
+        }
+    }
+}
 #[repr(C)]
 #[derive(Clone, Copy)]
 pub struct BlitImageCubicWeightsInfoQCOM<'a> {
@@ -34,6 +54,16 @@ pub struct BlitImageCubicWeightsInfoQCOM<'a> {
 }
 unsafe impl<'a> crate::TaggedStructure<'a> for BlitImageCubicWeightsInfoQCOM<'a> {
     const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::BLIT_IMAGE_CUBIC_WEIGHTS_INFO_QCOM;
+}
+impl<'a> Default for BlitImageCubicWeightsInfoQCOM<'a> {
+    fn default() -> Self {
+        Self {
+            s_type: <Self as crate::TaggedStructure>::STRUCTURE_TYPE,
+            p_next: Default::default(),
+            cubic_weights: Default::default(),
+            _marker: ::core::marker::PhantomData,
+        }
+    }
 }
 ///Provided by [`qcom::filter_cubic_weights`](crate::qcom::filter_cubic_weights)
 impl crate::vk::StructureType {

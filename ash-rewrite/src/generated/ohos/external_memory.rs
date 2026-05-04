@@ -63,6 +63,16 @@ pub(crate) mod reexport {
     unsafe impl<'a> crate::TaggedStructure<'a> for NativeBufferUsageOHOS<'a> {
         const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::NATIVE_BUFFER_USAGE_OHOS;
     }
+    impl<'a> Default for NativeBufferUsageOHOS<'a> {
+        fn default() -> Self {
+            Self {
+                s_type: <Self as crate::TaggedStructure>::STRUCTURE_TYPE,
+                p_next: Default::default(),
+                ohos_native_buffer_usage: Default::default(),
+                _marker: ::core::marker::PhantomData,
+            }
+        }
+    }
     #[repr(C)]
     #[derive(Clone, Copy)]
     pub struct NativeBufferPropertiesOHOS<'a> {
@@ -74,6 +84,17 @@ pub(crate) mod reexport {
     }
     unsafe impl<'a> crate::TaggedStructure<'a> for NativeBufferPropertiesOHOS<'a> {
         const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::NATIVE_BUFFER_PROPERTIES_OHOS;
+    }
+    impl<'a> Default for NativeBufferPropertiesOHOS<'a> {
+        fn default() -> Self {
+            Self {
+                s_type: <Self as crate::TaggedStructure>::STRUCTURE_TYPE,
+                p_next: Default::default(),
+                allocation_size: Default::default(),
+                memory_type_bits: Default::default(),
+                _marker: ::core::marker::PhantomData,
+            }
+        }
     }
     #[repr(C)]
     #[derive(Clone, Copy)]
@@ -93,6 +114,23 @@ pub(crate) mod reexport {
     unsafe impl<'a> crate::TaggedStructure<'a> for NativeBufferFormatPropertiesOHOS<'a> {
         const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::NATIVE_BUFFER_FORMAT_PROPERTIES_OHOS;
     }
+    impl<'a> Default for NativeBufferFormatPropertiesOHOS<'a> {
+        fn default() -> Self {
+            Self {
+                s_type: <Self as crate::TaggedStructure>::STRUCTURE_TYPE,
+                p_next: Default::default(),
+                format: Default::default(),
+                external_format: Default::default(),
+                format_features: Default::default(),
+                sampler_ycbcr_conversion_components: Default::default(),
+                suggested_ycbcr_model: Default::default(),
+                suggested_ycbcr_range: Default::default(),
+                suggested_x_chroma_offset: Default::default(),
+                suggested_y_chroma_offset: Default::default(),
+                _marker: ::core::marker::PhantomData,
+            }
+        }
+    }
     #[repr(C)]
     #[derive(Clone, Copy)]
     pub struct ImportNativeBufferInfoOHOS<'a> {
@@ -103,6 +141,16 @@ pub(crate) mod reexport {
     }
     unsafe impl<'a> crate::TaggedStructure<'a> for ImportNativeBufferInfoOHOS<'a> {
         const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::IMPORT_NATIVE_BUFFER_INFO_OHOS;
+    }
+    impl<'a> Default for ImportNativeBufferInfoOHOS<'a> {
+        fn default() -> Self {
+            Self {
+                s_type: <Self as crate::TaggedStructure>::STRUCTURE_TYPE,
+                p_next: Default::default(),
+                buffer: Default::default(),
+                _marker: ::core::marker::PhantomData,
+            }
+        }
     }
     #[repr(C)]
     #[derive(Clone, Copy)]
@@ -115,6 +163,16 @@ pub(crate) mod reexport {
     unsafe impl<'a> crate::TaggedStructure<'a> for MemoryGetNativeBufferInfoOHOS<'a> {
         const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::MEMORY_GET_NATIVE_BUFFER_INFO_OHOS;
     }
+    impl<'a> Default for MemoryGetNativeBufferInfoOHOS<'a> {
+        fn default() -> Self {
+            Self {
+                s_type: <Self as crate::TaggedStructure>::STRUCTURE_TYPE,
+                p_next: Default::default(),
+                memory: Default::default(),
+                _marker: ::core::marker::PhantomData,
+            }
+        }
+    }
     #[repr(C)]
     #[derive(Clone, Copy)]
     pub struct ExternalFormatOHOS<'a> {
@@ -125,6 +183,16 @@ pub(crate) mod reexport {
     }
     unsafe impl<'a> crate::TaggedStructure<'a> for ExternalFormatOHOS<'a> {
         const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::EXTERNAL_FORMAT_OHOS;
+    }
+    impl<'a> Default for ExternalFormatOHOS<'a> {
+        fn default() -> Self {
+            Self {
+                s_type: <Self as crate::TaggedStructure>::STRUCTURE_TYPE,
+                p_next: Default::default(),
+                external_format: Default::default(),
+                _marker: ::core::marker::PhantomData,
+            }
+        }
     }
     ///Provided by [`ohos::external_memory`](crate::ohos::external_memory)
     impl crate::vk::StructureType {

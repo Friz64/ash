@@ -2,7 +2,7 @@
 #![cfg_attr(rustfmt, rustfmt_skip)]
 //!Items provided by `vulkan_video_codec_av1std_decode`
 #[repr(C)]
-#[derive(Clone, Copy)]
+#[derive(Clone, Copy, Default)]
 pub struct DecodeAV1PictureInfoFlags {
     /**- `error_resilient_mode` @ `0..1`
 - `disable_cdf_update` @ `1..2`
@@ -64,8 +64,39 @@ pub struct DecodeAV1PictureInfo<'a> {
     pub p_film_grain: *const crate::vk::AV1FilmGrain,
     pub _marker: ::core::marker::PhantomData<&'a ()>,
 }
+impl<'a> Default for DecodeAV1PictureInfo<'a> {
+    fn default() -> Self {
+        Self {
+            flags: Default::default(),
+            frame_type: Default::default(),
+            current_frame_id: Default::default(),
+            order_hint: Default::default(),
+            primary_ref_frame: Default::default(),
+            refresh_frame_flags: Default::default(),
+            reserved1: Default::default(),
+            interpolation_filter: Default::default(),
+            tx_mode: Default::default(),
+            delta_q_res: Default::default(),
+            delta_lf_res: Default::default(),
+            skip_mode_frame: unsafe { core::mem::zeroed() },
+            coded_denom: Default::default(),
+            reserved2: unsafe { core::mem::zeroed() },
+            order_hints: unsafe { core::mem::zeroed() },
+            expected_frame_id: unsafe { core::mem::zeroed() },
+            p_tile_info: Default::default(),
+            p_quantization: Default::default(),
+            p_segmentation: Default::default(),
+            p_loop_filter: Default::default(),
+            p_cdef: Default::default(),
+            p_loop_restoration: Default::default(),
+            p_global_motion: Default::default(),
+            p_film_grain: Default::default(),
+            _marker: ::core::marker::PhantomData,
+        }
+    }
+}
 #[repr(C)]
-#[derive(Clone, Copy)]
+#[derive(Clone, Copy, Default)]
 pub struct DecodeAV1ReferenceInfoFlags {
     /**- `disable_frame_end_update_cdf` @ `0..1`
 - `segmentation_enabled` @ `1..2`*/
@@ -79,6 +110,17 @@ pub struct DecodeAV1ReferenceInfo {
     pub ref_frame_sign_bias: u8,
     pub order_hint: u8,
     pub saved_order_hints: [u8; crate::vk::STD_VIDEO_AV1_NUM_REF_FRAMES as _],
+}
+impl Default for DecodeAV1ReferenceInfo {
+    fn default() -> Self {
+        Self {
+            flags: Default::default(),
+            frame_type: Default::default(),
+            ref_frame_sign_bias: Default::default(),
+            order_hint: Default::default(),
+            saved_order_hints: unsafe { core::mem::zeroed() },
+        }
+    }
 }
 pub const STD_VULKAN_VIDEO_CODEC_AV1_DECODE_SPEC_VERSION: u32 = crate::vk::STD_VULKAN_VIDEO_CODEC_AV1_DECODE_API_VERSION_1_0_0;
 pub const STD_VULKAN_VIDEO_CODEC_AV1_DECODE_EXTENSION_NAME: &core::ffi::CStr = c"VK_STD_vulkan_video_codec_av1_decode";

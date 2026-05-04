@@ -65,6 +65,17 @@ pub(crate) mod reexport {
     for SubpassShadingPipelineCreateInfoHUAWEI<'a> {
         const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::SUBPASS_SHADING_PIPELINE_CREATE_INFO_HUAWEI;
     }
+    impl<'a> Default for SubpassShadingPipelineCreateInfoHUAWEI<'a> {
+        fn default() -> Self {
+            Self {
+                s_type: <Self as crate::TaggedStructure>::STRUCTURE_TYPE,
+                p_next: Default::default(),
+                render_pass: Default::default(),
+                subpass: Default::default(),
+                _marker: ::core::marker::PhantomData,
+            }
+        }
+    }
     #[repr(C)]
     #[derive(Clone, Copy)]
     pub struct PhysicalDeviceSubpassShadingPropertiesHUAWEI<'a> {
@@ -77,6 +88,16 @@ pub(crate) mod reexport {
     for PhysicalDeviceSubpassShadingPropertiesHUAWEI<'a> {
         const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::PHYSICAL_DEVICE_SUBPASS_SHADING_PROPERTIES_HUAWEI;
     }
+    impl<'a> Default for PhysicalDeviceSubpassShadingPropertiesHUAWEI<'a> {
+        fn default() -> Self {
+            Self {
+                s_type: <Self as crate::TaggedStructure>::STRUCTURE_TYPE,
+                p_next: Default::default(),
+                max_subpass_shading_workgroup_size_aspect_ratio: Default::default(),
+                _marker: ::core::marker::PhantomData,
+            }
+        }
+    }
     #[repr(C)]
     #[derive(Clone, Copy)]
     pub struct PhysicalDeviceSubpassShadingFeaturesHUAWEI<'a> {
@@ -88,6 +109,16 @@ pub(crate) mod reexport {
     unsafe impl<'a> crate::TaggedStructure<'a>
     for PhysicalDeviceSubpassShadingFeaturesHUAWEI<'a> {
         const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::PHYSICAL_DEVICE_SUBPASS_SHADING_FEATURES_HUAWEI;
+    }
+    impl<'a> Default for PhysicalDeviceSubpassShadingFeaturesHUAWEI<'a> {
+        fn default() -> Self {
+            Self {
+                s_type: <Self as crate::TaggedStructure>::STRUCTURE_TYPE,
+                p_next: Default::default(),
+                subpass_shading: Default::default(),
+                _marker: ::core::marker::PhantomData,
+            }
+        }
     }
     ///Provided by [`huawei::subpass_shading`](crate::huawei::subpass_shading)
     impl crate::vk::PipelineBindPoint {

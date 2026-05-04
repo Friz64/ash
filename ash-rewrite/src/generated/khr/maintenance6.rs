@@ -129,6 +129,21 @@ pub(crate) mod reexport {
     for SetDescriptorBufferOffsetsInfoEXT<'a> {
         const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::SET_DESCRIPTOR_BUFFER_OFFSETS_INFO_EXT;
     }
+    impl<'a> Default for SetDescriptorBufferOffsetsInfoEXT<'a> {
+        fn default() -> Self {
+            Self {
+                s_type: <Self as crate::TaggedStructure>::STRUCTURE_TYPE,
+                p_next: Default::default(),
+                stage_flags: Default::default(),
+                layout: Default::default(),
+                first_set: Default::default(),
+                set_count: Default::default(),
+                p_buffer_indices: Default::default(),
+                p_offsets: Default::default(),
+                _marker: ::core::marker::PhantomData,
+            }
+        }
+    }
     #[repr(C)]
     #[derive(Clone, Copy)]
     pub struct BindDescriptorBufferEmbeddedSamplersInfoEXT<'a> {
@@ -142,6 +157,18 @@ pub(crate) mod reexport {
     unsafe impl<'a> crate::TaggedStructure<'a>
     for BindDescriptorBufferEmbeddedSamplersInfoEXT<'a> {
         const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::BIND_DESCRIPTOR_BUFFER_EMBEDDED_SAMPLERS_INFO_EXT;
+    }
+    impl<'a> Default for BindDescriptorBufferEmbeddedSamplersInfoEXT<'a> {
+        fn default() -> Self {
+            Self {
+                s_type: <Self as crate::TaggedStructure>::STRUCTURE_TYPE,
+                p_next: Default::default(),
+                stage_flags: Default::default(),
+                layout: Default::default(),
+                set: Default::default(),
+                _marker: ::core::marker::PhantomData,
+            }
+        }
     }
     pub type PhysicalDeviceMaintenance6FeaturesKHR<'a> = crate::vk::PhysicalDeviceMaintenance6Features<
         'a,

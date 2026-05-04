@@ -13,6 +13,17 @@ pub struct PhysicalDevice4444FormatsFeaturesEXT<'a> {
 unsafe impl<'a> crate::TaggedStructure<'a> for PhysicalDevice4444FormatsFeaturesEXT<'a> {
     const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::PHYSICAL_DEVICE_4444_FORMATS_FEATURES_EXT;
 }
+impl<'a> Default for PhysicalDevice4444FormatsFeaturesEXT<'a> {
+    fn default() -> Self {
+        Self {
+            s_type: <Self as crate::TaggedStructure>::STRUCTURE_TYPE,
+            p_next: Default::default(),
+            format_a4r4g4b4: Default::default(),
+            format_a4b4g4r4: Default::default(),
+            _marker: ::core::marker::PhantomData,
+        }
+    }
+}
 ///Provided by [`ext::_4444_formats`](crate::ext::_4444_formats)
 impl crate::vk::Format {
     pub const A4R4G4B4_UNORM_PACK16_EXT: Self = Self::A4R4G4B4_UNORM_PACK16;

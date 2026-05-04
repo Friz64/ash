@@ -13,6 +13,16 @@ unsafe impl<'a> crate::TaggedStructure<'a>
 for PhysicalDeviceFragmentDensityMapLayeredPropertiesVALVE<'a> {
     const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::PHYSICAL_DEVICE_FRAGMENT_DENSITY_MAP_LAYERED_PROPERTIES_VALVE;
 }
+impl<'a> Default for PhysicalDeviceFragmentDensityMapLayeredPropertiesVALVE<'a> {
+    fn default() -> Self {
+        Self {
+            s_type: <Self as crate::TaggedStructure>::STRUCTURE_TYPE,
+            p_next: Default::default(),
+            max_fragment_density_map_layers: Default::default(),
+            _marker: ::core::marker::PhantomData,
+        }
+    }
+}
 #[repr(C)]
 #[derive(Clone, Copy)]
 pub struct PhysicalDeviceFragmentDensityMapLayeredFeaturesVALVE<'a> {
@@ -25,6 +35,16 @@ unsafe impl<'a> crate::TaggedStructure<'a>
 for PhysicalDeviceFragmentDensityMapLayeredFeaturesVALVE<'a> {
     const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::PHYSICAL_DEVICE_FRAGMENT_DENSITY_MAP_LAYERED_FEATURES_VALVE;
 }
+impl<'a> Default for PhysicalDeviceFragmentDensityMapLayeredFeaturesVALVE<'a> {
+    fn default() -> Self {
+        Self {
+            s_type: <Self as crate::TaggedStructure>::STRUCTURE_TYPE,
+            p_next: Default::default(),
+            fragment_density_map_layered: Default::default(),
+            _marker: ::core::marker::PhantomData,
+        }
+    }
+}
 #[repr(C)]
 #[derive(Clone, Copy)]
 pub struct PipelineFragmentDensityMapLayeredCreateInfoVALVE<'a> {
@@ -36,6 +56,16 @@ pub struct PipelineFragmentDensityMapLayeredCreateInfoVALVE<'a> {
 unsafe impl<'a> crate::TaggedStructure<'a>
 for PipelineFragmentDensityMapLayeredCreateInfoVALVE<'a> {
     const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::PIPELINE_FRAGMENT_DENSITY_MAP_LAYERED_CREATE_INFO_VALVE;
+}
+impl<'a> Default for PipelineFragmentDensityMapLayeredCreateInfoVALVE<'a> {
+    fn default() -> Self {
+        Self {
+            s_type: <Self as crate::TaggedStructure>::STRUCTURE_TYPE,
+            p_next: Default::default(),
+            max_fragment_density_map_layers: Default::default(),
+            _marker: ::core::marker::PhantomData,
+        }
+    }
 }
 ///Provided by [`valve::fragment_density_map_layered`](crate::valve::fragment_density_map_layered)
 impl crate::vk::StructureType {

@@ -52,6 +52,16 @@ pub(crate) mod reexport {
     for PhysicalDeviceCoverageReductionModeFeaturesNV<'a> {
         const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::PHYSICAL_DEVICE_COVERAGE_REDUCTION_MODE_FEATURES_NV;
     }
+    impl<'a> Default for PhysicalDeviceCoverageReductionModeFeaturesNV<'a> {
+        fn default() -> Self {
+            Self {
+                s_type: <Self as crate::TaggedStructure>::STRUCTURE_TYPE,
+                p_next: Default::default(),
+                coverage_reduction_mode: Default::default(),
+                _marker: ::core::marker::PhantomData,
+            }
+        }
+    }
     #[repr(C)]
     #[derive(Clone, Copy)]
     pub struct PipelineCoverageReductionStateCreateInfoNV<'a> {
@@ -64,6 +74,17 @@ pub(crate) mod reexport {
     unsafe impl<'a> crate::TaggedStructure<'a>
     for PipelineCoverageReductionStateCreateInfoNV<'a> {
         const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::PIPELINE_COVERAGE_REDUCTION_STATE_CREATE_INFO_NV;
+    }
+    impl<'a> Default for PipelineCoverageReductionStateCreateInfoNV<'a> {
+        fn default() -> Self {
+            Self {
+                s_type: <Self as crate::TaggedStructure>::STRUCTURE_TYPE,
+                p_next: Default::default(),
+                flags: Default::default(),
+                coverage_reduction_mode: Default::default(),
+                _marker: ::core::marker::PhantomData,
+            }
+        }
     }
     #[repr(C)]
     #[derive(Clone, Copy)]
@@ -79,6 +100,19 @@ pub(crate) mod reexport {
     unsafe impl<'a> crate::TaggedStructure<'a>
     for FramebufferMixedSamplesCombinationNV<'a> {
         const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::FRAMEBUFFER_MIXED_SAMPLES_COMBINATION_NV;
+    }
+    impl<'a> Default for FramebufferMixedSamplesCombinationNV<'a> {
+        fn default() -> Self {
+            Self {
+                s_type: <Self as crate::TaggedStructure>::STRUCTURE_TYPE,
+                p_next: Default::default(),
+                coverage_reduction_mode: Default::default(),
+                rasterization_samples: Default::default(),
+                depth_stencil_samples: Default::default(),
+                color_samples: Default::default(),
+                _marker: ::core::marker::PhantomData,
+            }
+        }
     }
     ///Provided by [`nv::coverage_reduction_mode`](crate::nv::coverage_reduction_mode)
     impl crate::vk::StructureType {

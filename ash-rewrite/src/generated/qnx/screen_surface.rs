@@ -68,6 +68,18 @@ pub(crate) mod reexport {
     unsafe impl<'a> crate::TaggedStructure<'a> for ScreenSurfaceCreateInfoQNX<'a> {
         const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::SCREEN_SURFACE_CREATE_INFO_QNX;
     }
+    impl<'a> Default for ScreenSurfaceCreateInfoQNX<'a> {
+        fn default() -> Self {
+            Self {
+                s_type: <Self as crate::TaggedStructure>::STRUCTURE_TYPE,
+                p_next: Default::default(),
+                flags: Default::default(),
+                context: Default::default(),
+                window: Default::default(),
+                _marker: ::core::marker::PhantomData,
+            }
+        }
+    }
     ///Provided by [`qnx::screen_surface`](crate::qnx::screen_surface)
     impl crate::vk::StructureType {
         pub const SCREEN_SURFACE_CREATE_INFO_QNX: Self = Self(1000378000);

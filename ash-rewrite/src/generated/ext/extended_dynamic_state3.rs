@@ -539,6 +539,46 @@ pub(crate) mod reexport {
     for PhysicalDeviceExtendedDynamicState3FeaturesEXT<'a> {
         const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::PHYSICAL_DEVICE_EXTENDED_DYNAMIC_STATE_3_FEATURES_EXT;
     }
+    impl<'a> Default for PhysicalDeviceExtendedDynamicState3FeaturesEXT<'a> {
+        fn default() -> Self {
+            Self {
+                s_type: <Self as crate::TaggedStructure>::STRUCTURE_TYPE,
+                p_next: Default::default(),
+                extended_dynamic_state3_tessellation_domain_origin: Default::default(),
+                extended_dynamic_state3_depth_clamp_enable: Default::default(),
+                extended_dynamic_state3_polygon_mode: Default::default(),
+                extended_dynamic_state3_rasterization_samples: Default::default(),
+                extended_dynamic_state3_sample_mask: Default::default(),
+                extended_dynamic_state3_alpha_to_coverage_enable: Default::default(),
+                extended_dynamic_state3_alpha_to_one_enable: Default::default(),
+                extended_dynamic_state3_logic_op_enable: Default::default(),
+                extended_dynamic_state3_color_blend_enable: Default::default(),
+                extended_dynamic_state3_color_blend_equation: Default::default(),
+                extended_dynamic_state3_color_write_mask: Default::default(),
+                extended_dynamic_state3_rasterization_stream: Default::default(),
+                extended_dynamic_state3_conservative_rasterization_mode: Default::default(),
+                extended_dynamic_state3_extra_primitive_overestimation_size: Default::default(),
+                extended_dynamic_state3_depth_clip_enable: Default::default(),
+                extended_dynamic_state3_sample_locations_enable: Default::default(),
+                extended_dynamic_state3_color_blend_advanced: Default::default(),
+                extended_dynamic_state3_provoking_vertex_mode: Default::default(),
+                extended_dynamic_state3_line_rasterization_mode: Default::default(),
+                extended_dynamic_state3_line_stipple_enable: Default::default(),
+                extended_dynamic_state3_depth_clip_negative_one_to_one: Default::default(),
+                extended_dynamic_state3_viewport_w_scaling_enable: Default::default(),
+                extended_dynamic_state3_viewport_swizzle: Default::default(),
+                extended_dynamic_state3_coverage_to_color_enable: Default::default(),
+                extended_dynamic_state3_coverage_to_color_location: Default::default(),
+                extended_dynamic_state3_coverage_modulation_mode: Default::default(),
+                extended_dynamic_state3_coverage_modulation_table_enable: Default::default(),
+                extended_dynamic_state3_coverage_modulation_table: Default::default(),
+                extended_dynamic_state3_coverage_reduction_mode: Default::default(),
+                extended_dynamic_state3_representative_fragment_test_enable: Default::default(),
+                extended_dynamic_state3_shading_rate_image_enable: Default::default(),
+                _marker: ::core::marker::PhantomData,
+            }
+        }
+    }
     #[repr(C)]
     #[derive(Clone, Copy)]
     pub struct PhysicalDeviceExtendedDynamicState3PropertiesEXT<'a> {
@@ -551,8 +591,18 @@ pub(crate) mod reexport {
     for PhysicalDeviceExtendedDynamicState3PropertiesEXT<'a> {
         const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::PHYSICAL_DEVICE_EXTENDED_DYNAMIC_STATE_3_PROPERTIES_EXT;
     }
+    impl<'a> Default for PhysicalDeviceExtendedDynamicState3PropertiesEXT<'a> {
+        fn default() -> Self {
+            Self {
+                s_type: <Self as crate::TaggedStructure>::STRUCTURE_TYPE,
+                p_next: Default::default(),
+                dynamic_primitive_topology_unrestricted: Default::default(),
+                _marker: ::core::marker::PhantomData,
+            }
+        }
+    }
     #[repr(C)]
-    #[derive(Clone, Copy)]
+    #[derive(Clone, Copy, Default)]
     pub struct ColorBlendEquationEXT {
         pub src_color_blend_factor: crate::vk::BlendFactor,
         pub dst_color_blend_factor: crate::vk::BlendFactor,
@@ -562,7 +612,7 @@ pub(crate) mod reexport {
         pub alpha_blend_op: crate::vk::BlendOp,
     }
     #[repr(C)]
-    #[derive(Clone, Copy)]
+    #[derive(Clone, Copy, Default)]
     pub struct ColorBlendAdvancedEXT {
         pub advanced_blend_op: crate::vk::BlendOp,
         pub src_premultiplied: crate::vk::Bool32,

@@ -13,6 +13,16 @@ unsafe impl<'a> crate::TaggedStructure<'a>
 for PhysicalDeviceBlendOperationAdvancedFeaturesEXT<'a> {
     const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::PHYSICAL_DEVICE_BLEND_OPERATION_ADVANCED_FEATURES_EXT;
 }
+impl<'a> Default for PhysicalDeviceBlendOperationAdvancedFeaturesEXT<'a> {
+    fn default() -> Self {
+        Self {
+            s_type: <Self as crate::TaggedStructure>::STRUCTURE_TYPE,
+            p_next: Default::default(),
+            advanced_blend_coherent_operations: Default::default(),
+            _marker: ::core::marker::PhantomData,
+        }
+    }
+}
 #[repr(C)]
 #[derive(Clone, Copy)]
 pub struct PhysicalDeviceBlendOperationAdvancedPropertiesEXT<'a> {
@@ -30,6 +40,21 @@ unsafe impl<'a> crate::TaggedStructure<'a>
 for PhysicalDeviceBlendOperationAdvancedPropertiesEXT<'a> {
     const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::PHYSICAL_DEVICE_BLEND_OPERATION_ADVANCED_PROPERTIES_EXT;
 }
+impl<'a> Default for PhysicalDeviceBlendOperationAdvancedPropertiesEXT<'a> {
+    fn default() -> Self {
+        Self {
+            s_type: <Self as crate::TaggedStructure>::STRUCTURE_TYPE,
+            p_next: Default::default(),
+            advanced_blend_max_color_attachments: Default::default(),
+            advanced_blend_independent_blend: Default::default(),
+            advanced_blend_non_premultiplied_src_color: Default::default(),
+            advanced_blend_non_premultiplied_dst_color: Default::default(),
+            advanced_blend_correlated_overlap: Default::default(),
+            advanced_blend_all_operations: Default::default(),
+            _marker: ::core::marker::PhantomData,
+        }
+    }
+}
 #[repr(C)]
 #[derive(Clone, Copy)]
 pub struct PipelineColorBlendAdvancedStateCreateInfoEXT<'a> {
@@ -43,6 +68,18 @@ pub struct PipelineColorBlendAdvancedStateCreateInfoEXT<'a> {
 unsafe impl<'a> crate::TaggedStructure<'a>
 for PipelineColorBlendAdvancedStateCreateInfoEXT<'a> {
     const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::PIPELINE_COLOR_BLEND_ADVANCED_STATE_CREATE_INFO_EXT;
+}
+impl<'a> Default for PipelineColorBlendAdvancedStateCreateInfoEXT<'a> {
+    fn default() -> Self {
+        Self {
+            s_type: <Self as crate::TaggedStructure>::STRUCTURE_TYPE,
+            p_next: Default::default(),
+            src_premultiplied: Default::default(),
+            dst_premultiplied: Default::default(),
+            blend_overlap: Default::default(),
+            _marker: ::core::marker::PhantomData,
+        }
+    }
 }
 ///Provided by [`ext::blend_operation_advanced`](crate::ext::blend_operation_advanced)
 impl crate::vk::BlendOp {

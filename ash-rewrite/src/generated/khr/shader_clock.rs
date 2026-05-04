@@ -13,6 +13,17 @@ pub struct PhysicalDeviceShaderClockFeaturesKHR<'a> {
 unsafe impl<'a> crate::TaggedStructure<'a> for PhysicalDeviceShaderClockFeaturesKHR<'a> {
     const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::PHYSICAL_DEVICE_SHADER_CLOCK_FEATURES_KHR;
 }
+impl<'a> Default for PhysicalDeviceShaderClockFeaturesKHR<'a> {
+    fn default() -> Self {
+        Self {
+            s_type: <Self as crate::TaggedStructure>::STRUCTURE_TYPE,
+            p_next: Default::default(),
+            shader_subgroup_clock: Default::default(),
+            shader_device_clock: Default::default(),
+            _marker: ::core::marker::PhantomData,
+        }
+    }
+}
 ///Provided by [`khr::shader_clock`](crate::khr::shader_clock)
 impl crate::vk::StructureType {
     pub const PHYSICAL_DEVICE_SHADER_CLOCK_FEATURES_KHR: Self = Self(1000181000);

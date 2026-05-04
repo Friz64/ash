@@ -48,6 +48,16 @@ pub(crate) mod reexport {
     for DisplayNativeHdrSurfaceCapabilitiesAMD<'a> {
         const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::DISPLAY_NATIVE_HDR_SURFACE_CAPABILITIES_AMD;
     }
+    impl<'a> Default for DisplayNativeHdrSurfaceCapabilitiesAMD<'a> {
+        fn default() -> Self {
+            Self {
+                s_type: <Self as crate::TaggedStructure>::STRUCTURE_TYPE,
+                p_next: Default::default(),
+                local_dimming_support: Default::default(),
+                _marker: ::core::marker::PhantomData,
+            }
+        }
+    }
     #[repr(C)]
     #[derive(Clone, Copy)]
     pub struct SwapchainDisplayNativeHdrCreateInfoAMD<'a> {
@@ -59,6 +69,16 @@ pub(crate) mod reexport {
     unsafe impl<'a> crate::TaggedStructure<'a>
     for SwapchainDisplayNativeHdrCreateInfoAMD<'a> {
         const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::SWAPCHAIN_DISPLAY_NATIVE_HDR_CREATE_INFO_AMD;
+    }
+    impl<'a> Default for SwapchainDisplayNativeHdrCreateInfoAMD<'a> {
+        fn default() -> Self {
+            Self {
+                s_type: <Self as crate::TaggedStructure>::STRUCTURE_TYPE,
+                p_next: Default::default(),
+                local_dimming_enable: Default::default(),
+                _marker: ::core::marker::PhantomData,
+            }
+        }
     }
     ///Provided by [`amd::display_native_hdr`](crate::amd::display_native_hdr)
     impl crate::vk::StructureType {

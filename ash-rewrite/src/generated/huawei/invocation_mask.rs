@@ -48,6 +48,16 @@ pub(crate) mod reexport {
     for PhysicalDeviceInvocationMaskFeaturesHUAWEI<'a> {
         const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::PHYSICAL_DEVICE_INVOCATION_MASK_FEATURES_HUAWEI;
     }
+    impl<'a> Default for PhysicalDeviceInvocationMaskFeaturesHUAWEI<'a> {
+        fn default() -> Self {
+            Self {
+                s_type: <Self as crate::TaggedStructure>::STRUCTURE_TYPE,
+                p_next: Default::default(),
+                invocation_mask: Default::default(),
+                _marker: ::core::marker::PhantomData,
+            }
+        }
+    }
     ///Provided by [`huawei::invocation_mask`](crate::huawei::invocation_mask)
     impl crate::vk::StructureType {
         pub const PHYSICAL_DEVICE_INVOCATION_MASK_FEATURES_HUAWEI: Self = Self(

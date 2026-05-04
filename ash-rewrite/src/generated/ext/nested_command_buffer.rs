@@ -15,6 +15,18 @@ unsafe impl<'a> crate::TaggedStructure<'a>
 for PhysicalDeviceNestedCommandBufferFeaturesEXT<'a> {
     const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::PHYSICAL_DEVICE_NESTED_COMMAND_BUFFER_FEATURES_EXT;
 }
+impl<'a> Default for PhysicalDeviceNestedCommandBufferFeaturesEXT<'a> {
+    fn default() -> Self {
+        Self {
+            s_type: <Self as crate::TaggedStructure>::STRUCTURE_TYPE,
+            p_next: Default::default(),
+            nested_command_buffer: Default::default(),
+            nested_command_buffer_rendering: Default::default(),
+            nested_command_buffer_simultaneous_use: Default::default(),
+            _marker: ::core::marker::PhantomData,
+        }
+    }
+}
 #[repr(C)]
 #[derive(Clone, Copy)]
 pub struct PhysicalDeviceNestedCommandBufferPropertiesEXT<'a> {
@@ -26,6 +38,16 @@ pub struct PhysicalDeviceNestedCommandBufferPropertiesEXT<'a> {
 unsafe impl<'a> crate::TaggedStructure<'a>
 for PhysicalDeviceNestedCommandBufferPropertiesEXT<'a> {
     const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::PHYSICAL_DEVICE_NESTED_COMMAND_BUFFER_PROPERTIES_EXT;
+}
+impl<'a> Default for PhysicalDeviceNestedCommandBufferPropertiesEXT<'a> {
+    fn default() -> Self {
+        Self {
+            s_type: <Self as crate::TaggedStructure>::STRUCTURE_TYPE,
+            p_next: Default::default(),
+            max_command_buffer_nesting_level: Default::default(),
+            _marker: ::core::marker::PhantomData,
+        }
+    }
 }
 ///Provided by [`ext::nested_command_buffer`](crate::ext::nested_command_buffer)
 impl crate::vk::StructureType {

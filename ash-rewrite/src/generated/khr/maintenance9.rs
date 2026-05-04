@@ -13,6 +13,16 @@ unsafe impl<'a> crate::TaggedStructure<'a>
 for PhysicalDeviceMaintenance9FeaturesKHR<'a> {
     const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::PHYSICAL_DEVICE_MAINTENANCE_9_FEATURES_KHR;
 }
+impl<'a> Default for PhysicalDeviceMaintenance9FeaturesKHR<'a> {
+    fn default() -> Self {
+        Self {
+            s_type: <Self as crate::TaggedStructure>::STRUCTURE_TYPE,
+            p_next: Default::default(),
+            maintenance9: Default::default(),
+            _marker: ::core::marker::PhantomData,
+        }
+    }
+}
 #[repr(C)]
 #[derive(Clone, Copy)]
 pub struct PhysicalDeviceMaintenance9PropertiesKHR<'a> {
@@ -26,6 +36,17 @@ unsafe impl<'a> crate::TaggedStructure<'a>
 for PhysicalDeviceMaintenance9PropertiesKHR<'a> {
     const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::PHYSICAL_DEVICE_MAINTENANCE_9_PROPERTIES_KHR;
 }
+impl<'a> Default for PhysicalDeviceMaintenance9PropertiesKHR<'a> {
+    fn default() -> Self {
+        Self {
+            s_type: <Self as crate::TaggedStructure>::STRUCTURE_TYPE,
+            p_next: Default::default(),
+            image2_d_view_of3_d_sparse: Default::default(),
+            default_vertex_attribute_value: Default::default(),
+            _marker: ::core::marker::PhantomData,
+        }
+    }
+}
 #[repr(C)]
 #[derive(Clone, Copy)]
 pub struct QueueFamilyOwnershipTransferPropertiesKHR<'a> {
@@ -37,6 +58,16 @@ pub struct QueueFamilyOwnershipTransferPropertiesKHR<'a> {
 unsafe impl<'a> crate::TaggedStructure<'a>
 for QueueFamilyOwnershipTransferPropertiesKHR<'a> {
     const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::QUEUE_FAMILY_OWNERSHIP_TRANSFER_PROPERTIES_KHR;
+}
+impl<'a> Default for QueueFamilyOwnershipTransferPropertiesKHR<'a> {
+    fn default() -> Self {
+        Self {
+            s_type: <Self as crate::TaggedStructure>::STRUCTURE_TYPE,
+            p_next: Default::default(),
+            optimal_image_transfer_to_queue_families: Default::default(),
+            _marker: ::core::marker::PhantomData,
+        }
+    }
 }
 ///Provided by [`khr::maintenance9`](crate::khr::maintenance9)
 impl crate::vk::StructureType {

@@ -2,7 +2,7 @@
 #![cfg_attr(rustfmt, rustfmt_skip)]
 //!Items provided by `vulkan_video_codec_h264std`
 #[repr(C)]
-#[derive(Clone, Copy)]
+#[derive(Clone, Copy, Default)]
 pub struct H264SpsVuiFlags {
     /**- `aspect_ratio_info_present_flag` @ `0..1`
 - `overscan_info_present_flag` @ `1..2`
@@ -33,8 +33,25 @@ pub struct H264HrdParameters {
     pub dpb_output_delay_length_minus1: u32,
     pub time_offset_length: u32,
 }
+impl Default for H264HrdParameters {
+    fn default() -> Self {
+        Self {
+            cpb_cnt_minus1: Default::default(),
+            bit_rate_scale: Default::default(),
+            cpb_size_scale: Default::default(),
+            reserved1: Default::default(),
+            bit_rate_value_minus1: unsafe { core::mem::zeroed() },
+            cpb_size_value_minus1: unsafe { core::mem::zeroed() },
+            cbr_flag: unsafe { core::mem::zeroed() },
+            initial_cpb_removal_delay_length_minus1: Default::default(),
+            cpb_removal_delay_length_minus1: Default::default(),
+            dpb_output_delay_length_minus1: Default::default(),
+            time_offset_length: Default::default(),
+        }
+    }
+}
 #[repr(C)]
-#[derive(Clone, Copy)]
+#[derive(Clone, Copy, Default)]
 pub struct H264SequenceParameterSetVui<'a> {
     pub flags: crate::vk::H264SpsVuiFlags,
     pub aspect_ratio_idc: crate::vk::H264AspectRatioIdc,
@@ -55,7 +72,7 @@ pub struct H264SequenceParameterSetVui<'a> {
     pub _marker: ::core::marker::PhantomData<&'a ()>,
 }
 #[repr(C)]
-#[derive(Clone, Copy)]
+#[derive(Clone, Copy, Default)]
 pub struct H264SpsFlags {
     /**- `constraint_set0_flag` @ `0..1`
 - `constraint_set1_flag` @ `1..2`
@@ -85,8 +102,18 @@ pub struct H264ScalingLists {
     pub scaling_list8x8: [[u8; crate::vk::STD_VIDEO_H264_SCALING_LIST_8X8_NUM_ELEMENTS
         as _]; crate::vk::STD_VIDEO_H264_SCALING_LIST_8X8_NUM_LISTS as _],
 }
+impl Default for H264ScalingLists {
+    fn default() -> Self {
+        Self {
+            scaling_list_present_mask: Default::default(),
+            use_default_scaling_matrix_mask: Default::default(),
+            scaling_list4x4: unsafe { core::mem::zeroed() },
+            scaling_list8x8: unsafe { core::mem::zeroed() },
+        }
+    }
+}
 #[repr(C)]
-#[derive(Clone, Copy)]
+#[derive(Clone, Copy, Default)]
 pub struct H264SequenceParameterSet<'a> {
     pub flags: crate::vk::H264SpsFlags,
     pub profile_idc: crate::vk::H264ProfileIdc,
@@ -116,7 +143,7 @@ pub struct H264SequenceParameterSet<'a> {
     pub _marker: ::core::marker::PhantomData<&'a ()>,
 }
 #[repr(C)]
-#[derive(Clone, Copy)]
+#[derive(Clone, Copy, Default)]
 pub struct H264PpsFlags {
     /**- `transform_8x8_mode_flag` @ `0..1`
 - `redundant_pic_cnt_present_flag` @ `1..2`
@@ -129,7 +156,7 @@ pub struct H264PpsFlags {
     pub bitfield0: u32,
 }
 #[repr(C)]
-#[derive(Clone, Copy)]
+#[derive(Clone, Copy, Default)]
 pub struct H264PictureParameterSet<'a> {
     pub flags: crate::vk::H264PpsFlags,
     pub seq_parameter_set_id: u8,

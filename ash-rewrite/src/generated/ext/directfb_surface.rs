@@ -68,6 +68,18 @@ pub(crate) mod reexport {
     unsafe impl<'a> crate::TaggedStructure<'a> for DirectFBSurfaceCreateInfoEXT<'a> {
         const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::DIRECTFB_SURFACE_CREATE_INFO_EXT;
     }
+    impl<'a> Default for DirectFBSurfaceCreateInfoEXT<'a> {
+        fn default() -> Self {
+            Self {
+                s_type: <Self as crate::TaggedStructure>::STRUCTURE_TYPE,
+                p_next: Default::default(),
+                flags: Default::default(),
+                dfb: Default::default(),
+                surface: Default::default(),
+                _marker: ::core::marker::PhantomData,
+            }
+        }
+    }
     ///Provided by [`ext::directfb_surface`](crate::ext::directfb_surface)
     impl crate::vk::StructureType {
         pub const DIRECTFB_SURFACE_CREATE_INFO_EXT: Self = Self(1000346000);

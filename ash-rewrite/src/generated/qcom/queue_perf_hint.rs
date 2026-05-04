@@ -47,6 +47,17 @@ pub(crate) mod reexport {
     unsafe impl<'a> crate::TaggedStructure<'a> for PerfHintInfoQCOM<'a> {
         const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::PERF_HINT_INFO_QCOM;
     }
+    impl<'a> Default for PerfHintInfoQCOM<'a> {
+        fn default() -> Self {
+            Self {
+                s_type: <Self as crate::TaggedStructure>::STRUCTURE_TYPE,
+                p_next: Default::default(),
+                _type: Default::default(),
+                scale: Default::default(),
+                _marker: ::core::marker::PhantomData,
+            }
+        }
+    }
     #[repr(C)]
     #[derive(Clone, Copy)]
     pub struct PhysicalDeviceQueuePerfHintFeaturesQCOM<'a> {
@@ -59,6 +70,16 @@ pub(crate) mod reexport {
     for PhysicalDeviceQueuePerfHintFeaturesQCOM<'a> {
         const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::PHYSICAL_DEVICE_QUEUE_PERF_HINT_FEATURES_QCOM;
     }
+    impl<'a> Default for PhysicalDeviceQueuePerfHintFeaturesQCOM<'a> {
+        fn default() -> Self {
+            Self {
+                s_type: <Self as crate::TaggedStructure>::STRUCTURE_TYPE,
+                p_next: Default::default(),
+                queue_perf_hint: Default::default(),
+                _marker: ::core::marker::PhantomData,
+            }
+        }
+    }
     #[repr(C)]
     #[derive(Clone, Copy)]
     pub struct PhysicalDeviceQueuePerfHintPropertiesQCOM<'a> {
@@ -70,6 +91,16 @@ pub(crate) mod reexport {
     unsafe impl<'a> crate::TaggedStructure<'a>
     for PhysicalDeviceQueuePerfHintPropertiesQCOM<'a> {
         const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::PHYSICAL_DEVICE_QUEUE_PERF_HINT_PROPERTIES_QCOM;
+    }
+    impl<'a> Default for PhysicalDeviceQueuePerfHintPropertiesQCOM<'a> {
+        fn default() -> Self {
+            Self {
+                s_type: <Self as crate::TaggedStructure>::STRUCTURE_TYPE,
+                p_next: Default::default(),
+                supported_queues: Default::default(),
+                _marker: ::core::marker::PhantomData,
+            }
+        }
     }
     ///Provided by [`qcom::queue_perf_hint`](crate::qcom::queue_perf_hint)
     impl crate::vk::StructureType {

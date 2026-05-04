@@ -13,6 +13,16 @@ unsafe impl<'a> crate::TaggedStructure<'a>
 for PhysicalDeviceAmigoProfilingFeaturesSEC<'a> {
     const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::PHYSICAL_DEVICE_AMIGO_PROFILING_FEATURES_SEC;
 }
+impl<'a> Default for PhysicalDeviceAmigoProfilingFeaturesSEC<'a> {
+    fn default() -> Self {
+        Self {
+            s_type: <Self as crate::TaggedStructure>::STRUCTURE_TYPE,
+            p_next: Default::default(),
+            amigo_profiling: Default::default(),
+            _marker: ::core::marker::PhantomData,
+        }
+    }
+}
 #[repr(C)]
 #[derive(Clone, Copy)]
 pub struct AmigoProfilingSubmitInfoSEC<'a> {
@@ -24,6 +34,17 @@ pub struct AmigoProfilingSubmitInfoSEC<'a> {
 }
 unsafe impl<'a> crate::TaggedStructure<'a> for AmigoProfilingSubmitInfoSEC<'a> {
     const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::AMIGO_PROFILING_SUBMIT_INFO_SEC;
+}
+impl<'a> Default for AmigoProfilingSubmitInfoSEC<'a> {
+    fn default() -> Self {
+        Self {
+            s_type: <Self as crate::TaggedStructure>::STRUCTURE_TYPE,
+            p_next: Default::default(),
+            first_draw_timestamp: Default::default(),
+            swap_buffer_timestamp: Default::default(),
+            _marker: ::core::marker::PhantomData,
+        }
+    }
 }
 ///Provided by [`sec::amigo_profiling`](crate::sec::amigo_profiling)
 impl crate::vk::StructureType {
