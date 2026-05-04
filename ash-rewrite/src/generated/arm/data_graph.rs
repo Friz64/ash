@@ -259,6 +259,10 @@ pub(crate) mod reexport {
     for PhysicalDeviceDataGraphFeaturesARM<'a> {
         const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::PHYSICAL_DEVICE_DATA_GRAPH_FEATURES_ARM;
     }
+    unsafe impl<'a> crate::Extends<crate::vk::PhysicalDeviceFeatures2<'_>>
+    for PhysicalDeviceDataGraphFeaturesARM<'a> {}
+    unsafe impl<'a> crate::Extends<crate::vk::DeviceCreateInfo<'_>>
+    for PhysicalDeviceDataGraphFeaturesARM<'a> {}
     impl<'a> Default for PhysicalDeviceDataGraphFeaturesARM<'a> {
         fn default() -> Self {
             Self {
@@ -287,6 +291,8 @@ pub(crate) mod reexport {
     for DataGraphPipelineConstantTensorSemiStructuredSparsityInfoARM<'a> {
         const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::DATA_GRAPH_PIPELINE_CONSTANT_TENSOR_SEMI_STRUCTURED_SPARSITY_INFO_ARM;
     }
+    unsafe impl<'a> crate::Extends<crate::vk::DataGraphPipelineConstantARM<'_>>
+    for DataGraphPipelineConstantTensorSemiStructuredSparsityInfoARM<'a> {}
     impl<'a> Default
     for DataGraphPipelineConstantTensorSemiStructuredSparsityInfoARM<'a> {
         fn default() -> Self {
@@ -360,6 +366,8 @@ pub(crate) mod reexport {
     for DataGraphPipelineCompilerControlCreateInfoARM<'a> {
         const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::DATA_GRAPH_PIPELINE_COMPILER_CONTROL_CREATE_INFO_ARM;
     }
+    unsafe impl<'a> crate::Extends<crate::vk::DataGraphPipelineCreateInfoARM<'_>>
+    for DataGraphPipelineCompilerControlCreateInfoARM<'a> {}
     impl<'a> Default for DataGraphPipelineCompilerControlCreateInfoARM<'a> {
         fn default() -> Self {
             Self {
@@ -413,6 +421,8 @@ pub(crate) mod reexport {
     for DataGraphPipelineShaderModuleCreateInfoARM<'a> {
         const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::DATA_GRAPH_PIPELINE_SHADER_MODULE_CREATE_INFO_ARM;
     }
+    unsafe impl<'a> crate::Extends<crate::vk::DataGraphPipelineCreateInfoARM<'_>>
+    for DataGraphPipelineShaderModuleCreateInfoARM<'a> {}
     impl<'a> Default for DataGraphPipelineShaderModuleCreateInfoARM<'a> {
         fn default() -> Self {
             Self {
@@ -617,6 +627,8 @@ pub(crate) mod reexport {
     for DataGraphPipelineIdentifierCreateInfoARM<'a> {
         const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::DATA_GRAPH_PIPELINE_IDENTIFIER_CREATE_INFO_ARM;
     }
+    unsafe impl<'a> crate::Extends<crate::vk::DataGraphPipelineCreateInfoARM<'_>>
+    for DataGraphPipelineIdentifierCreateInfoARM<'a> {}
     impl<'a> Default for DataGraphPipelineIdentifierCreateInfoARM<'a> {
         fn default() -> Self {
             Self {
@@ -757,6 +769,12 @@ pub(crate) mod reexport {
     for DataGraphProcessingEngineCreateInfoARM<'a> {
         const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::DATA_GRAPH_PROCESSING_ENGINE_CREATE_INFO_ARM;
     }
+    unsafe impl<'a> crate::Extends<crate::vk::DataGraphPipelineCreateInfoARM<'_>>
+    for DataGraphProcessingEngineCreateInfoARM<'a> {}
+    unsafe impl<'a> crate::Extends<crate::vk::DescriptorPoolCreateInfo<'_>>
+    for DataGraphProcessingEngineCreateInfoARM<'a> {}
+    unsafe impl<'a> crate::Extends<crate::vk::CommandPoolCreateInfo<'_>>
+    for DataGraphProcessingEngineCreateInfoARM<'a> {}
     impl<'a> Default for DataGraphProcessingEngineCreateInfoARM<'a> {
         fn default() -> Self {
             Self {

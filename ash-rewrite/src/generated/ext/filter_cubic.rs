@@ -13,6 +13,8 @@ unsafe impl<'a> crate::TaggedStructure<'a>
 for PhysicalDeviceImageViewImageFormatInfoEXT<'a> {
     const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::PHYSICAL_DEVICE_IMAGE_VIEW_IMAGE_FORMAT_INFO_EXT;
 }
+unsafe impl<'a> crate::Extends<crate::vk::PhysicalDeviceImageFormatInfo2<'_>>
+for PhysicalDeviceImageViewImageFormatInfoEXT<'a> {}
 impl<'a> Default for PhysicalDeviceImageViewImageFormatInfoEXT<'a> {
     fn default() -> Self {
         Self {
@@ -36,6 +38,8 @@ unsafe impl<'a> crate::TaggedStructure<'a>
 for FilterCubicImageViewImageFormatPropertiesEXT<'a> {
     const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::FILTER_CUBIC_IMAGE_VIEW_IMAGE_FORMAT_PROPERTIES_EXT;
 }
+unsafe impl<'a> crate::Extends<crate::vk::ImageFormatProperties2<'_>>
+for FilterCubicImageViewImageFormatPropertiesEXT<'a> {}
 impl<'a> Default for FilterCubicImageViewImageFormatPropertiesEXT<'a> {
     fn default() -> Self {
         Self {

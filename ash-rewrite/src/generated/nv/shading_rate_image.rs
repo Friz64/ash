@@ -91,6 +91,8 @@ pub(crate) mod reexport {
     for PipelineViewportShadingRateImageStateCreateInfoNV<'a> {
         const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::PIPELINE_VIEWPORT_SHADING_RATE_IMAGE_STATE_CREATE_INFO_NV;
     }
+    unsafe impl<'a> crate::Extends<crate::vk::PipelineViewportStateCreateInfo<'_>>
+    for PipelineViewportShadingRateImageStateCreateInfoNV<'a> {}
     impl<'a> Default for PipelineViewportShadingRateImageStateCreateInfoNV<'a> {
         fn default() -> Self {
             Self {
@@ -116,6 +118,10 @@ pub(crate) mod reexport {
     for PhysicalDeviceShadingRateImageFeaturesNV<'a> {
         const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::PHYSICAL_DEVICE_SHADING_RATE_IMAGE_FEATURES_NV;
     }
+    unsafe impl<'a> crate::Extends<crate::vk::PhysicalDeviceFeatures2<'_>>
+    for PhysicalDeviceShadingRateImageFeaturesNV<'a> {}
+    unsafe impl<'a> crate::Extends<crate::vk::DeviceCreateInfo<'_>>
+    for PhysicalDeviceShadingRateImageFeaturesNV<'a> {}
     impl<'a> Default for PhysicalDeviceShadingRateImageFeaturesNV<'a> {
         fn default() -> Self {
             Self {
@@ -141,6 +147,8 @@ pub(crate) mod reexport {
     for PhysicalDeviceShadingRateImagePropertiesNV<'a> {
         const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::PHYSICAL_DEVICE_SHADING_RATE_IMAGE_PROPERTIES_NV;
     }
+    unsafe impl<'a> crate::Extends<crate::vk::PhysicalDeviceProperties2<'_>>
+    for PhysicalDeviceShadingRateImagePropertiesNV<'a> {}
     impl<'a> Default for PhysicalDeviceShadingRateImagePropertiesNV<'a> {
         fn default() -> Self {
             Self {
@@ -183,6 +191,8 @@ pub(crate) mod reexport {
     for PipelineViewportCoarseSampleOrderStateCreateInfoNV<'a> {
         const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::PIPELINE_VIEWPORT_COARSE_SAMPLE_ORDER_STATE_CREATE_INFO_NV;
     }
+    unsafe impl<'a> crate::Extends<crate::vk::PipelineViewportStateCreateInfo<'_>>
+    for PipelineViewportCoarseSampleOrderStateCreateInfoNV<'a> {}
     impl<'a> Default for PipelineViewportCoarseSampleOrderStateCreateInfoNV<'a> {
         fn default() -> Self {
             Self {

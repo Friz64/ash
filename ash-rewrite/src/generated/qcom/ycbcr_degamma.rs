@@ -13,6 +13,10 @@ unsafe impl<'a> crate::TaggedStructure<'a>
 for PhysicalDeviceYcbcrDegammaFeaturesQCOM<'a> {
     const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::PHYSICAL_DEVICE_YCBCR_DEGAMMA_FEATURES_QCOM;
 }
+unsafe impl<'a> crate::Extends<crate::vk::PhysicalDeviceFeatures2<'_>>
+for PhysicalDeviceYcbcrDegammaFeaturesQCOM<'a> {}
+unsafe impl<'a> crate::Extends<crate::vk::DeviceCreateInfo<'_>>
+for PhysicalDeviceYcbcrDegammaFeaturesQCOM<'a> {}
 impl<'a> Default for PhysicalDeviceYcbcrDegammaFeaturesQCOM<'a> {
     fn default() -> Self {
         Self {
@@ -36,6 +40,8 @@ unsafe impl<'a> crate::TaggedStructure<'a>
 for SamplerYcbcrConversionYcbcrDegammaCreateInfoQCOM<'a> {
     const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::SAMPLER_YCBCR_CONVERSION_YCBCR_DEGAMMA_CREATE_INFO_QCOM;
 }
+unsafe impl<'a> crate::Extends<crate::vk::SamplerYcbcrConversionCreateInfo<'_>>
+for SamplerYcbcrConversionYcbcrDegammaCreateInfoQCOM<'a> {}
 impl<'a> Default for SamplerYcbcrConversionYcbcrDegammaCreateInfoQCOM<'a> {
     fn default() -> Self {
         Self {

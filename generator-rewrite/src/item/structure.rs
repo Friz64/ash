@@ -58,10 +58,14 @@ impl Code for Struct {
         let tagged_structure = self.structure_type.as_ref().map(|ty| {
             let structure_ty = ctx.type_to_rust(TypeName::VK_STRUCTURE_TYPE, true, &lifetime);
             let ty = ctx.enumerator_to_rust(*ty, TypeName::VK_STRUCTURE_TYPE, true);
+            let anon = Lifetime::placeholder();
+            let extends = self.extends.iter().map(|ty| ctx.type_to_rust(*ty, true, &anon));
             quote! {
                 unsafe impl<#lifetime> crate::TaggedStructure<#lifetime> for #name {
                     const STRUCTURE_TYPE: #structure_ty = #ty;
                 }
+
+                #(unsafe impl<#lifetime_tok> crate::Extends<#extends> for #name {})*
             }
         });
 
@@ -132,8 +136,6 @@ impl Code for Struct {
             #code
             #default
         };
-
-        println!("{code}");
 
         CodeMap::new(Destination::new(self.required_by), code)
     }

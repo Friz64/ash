@@ -13,6 +13,10 @@ unsafe impl<'a> crate::TaggedStructure<'a>
 for PhysicalDeviceCoherentMemoryFeaturesAMD<'a> {
     const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::PHYSICAL_DEVICE_COHERENT_MEMORY_FEATURES_AMD;
 }
+unsafe impl<'a> crate::Extends<crate::vk::PhysicalDeviceFeatures2<'_>>
+for PhysicalDeviceCoherentMemoryFeaturesAMD<'a> {}
+unsafe impl<'a> crate::Extends<crate::vk::DeviceCreateInfo<'_>>
+for PhysicalDeviceCoherentMemoryFeaturesAMD<'a> {}
 impl<'a> Default for PhysicalDeviceCoherentMemoryFeaturesAMD<'a> {
     fn default() -> Self {
         Self {

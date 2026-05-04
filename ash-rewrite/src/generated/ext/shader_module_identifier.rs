@@ -64,6 +64,10 @@ pub(crate) mod reexport {
     for PhysicalDeviceShaderModuleIdentifierFeaturesEXT<'a> {
         const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::PHYSICAL_DEVICE_SHADER_MODULE_IDENTIFIER_FEATURES_EXT;
     }
+    unsafe impl<'a> crate::Extends<crate::vk::PhysicalDeviceFeatures2<'_>>
+    for PhysicalDeviceShaderModuleIdentifierFeaturesEXT<'a> {}
+    unsafe impl<'a> crate::Extends<crate::vk::DeviceCreateInfo<'_>>
+    for PhysicalDeviceShaderModuleIdentifierFeaturesEXT<'a> {}
     impl<'a> Default for PhysicalDeviceShaderModuleIdentifierFeaturesEXT<'a> {
         fn default() -> Self {
             Self {
@@ -86,6 +90,8 @@ pub(crate) mod reexport {
     for PhysicalDeviceShaderModuleIdentifierPropertiesEXT<'a> {
         const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::PHYSICAL_DEVICE_SHADER_MODULE_IDENTIFIER_PROPERTIES_EXT;
     }
+    unsafe impl<'a> crate::Extends<crate::vk::PhysicalDeviceProperties2<'_>>
+    for PhysicalDeviceShaderModuleIdentifierPropertiesEXT<'a> {}
     impl<'a> Default for PhysicalDeviceShaderModuleIdentifierPropertiesEXT<'a> {
         fn default() -> Self {
             Self {
@@ -109,6 +115,8 @@ pub(crate) mod reexport {
     for PipelineShaderStageModuleIdentifierCreateInfoEXT<'a> {
         const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::PIPELINE_SHADER_STAGE_MODULE_IDENTIFIER_CREATE_INFO_EXT;
     }
+    unsafe impl<'a> crate::Extends<crate::vk::PipelineShaderStageCreateInfo<'_>>
+    for PipelineShaderStageModuleIdentifierCreateInfoEXT<'a> {}
     impl<'a> Default for PipelineShaderStageModuleIdentifierCreateInfoEXT<'a> {
         fn default() -> Self {
             Self {

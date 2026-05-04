@@ -12,6 +12,10 @@ pub struct PhysicalDevicePresentId2FeaturesKHR<'a> {
 unsafe impl<'a> crate::TaggedStructure<'a> for PhysicalDevicePresentId2FeaturesKHR<'a> {
     const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::PHYSICAL_DEVICE_PRESENT_ID_2_FEATURES_KHR;
 }
+unsafe impl<'a> crate::Extends<crate::vk::PhysicalDeviceFeatures2<'_>>
+for PhysicalDevicePresentId2FeaturesKHR<'a> {}
+unsafe impl<'a> crate::Extends<crate::vk::DeviceCreateInfo<'_>>
+for PhysicalDevicePresentId2FeaturesKHR<'a> {}
 impl<'a> Default for PhysicalDevicePresentId2FeaturesKHR<'a> {
     fn default() -> Self {
         Self {
@@ -34,6 +38,7 @@ pub struct PresentId2KHR<'a> {
 unsafe impl<'a> crate::TaggedStructure<'a> for PresentId2KHR<'a> {
     const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::PRESENT_ID_2_KHR;
 }
+unsafe impl<'a> crate::Extends<crate::vk::PresentInfoKHR<'_>> for PresentId2KHR<'a> {}
 impl<'a> Default for PresentId2KHR<'a> {
     fn default() -> Self {
         Self {
@@ -56,6 +61,8 @@ pub struct SurfaceCapabilitiesPresentId2KHR<'a> {
 unsafe impl<'a> crate::TaggedStructure<'a> for SurfaceCapabilitiesPresentId2KHR<'a> {
     const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::SURFACE_CAPABILITIES_PRESENT_ID_2_KHR;
 }
+unsafe impl<'a> crate::Extends<crate::vk::SurfaceCapabilities2KHR<'_>>
+for SurfaceCapabilitiesPresentId2KHR<'a> {}
 impl<'a> Default for SurfaceCapabilitiesPresentId2KHR<'a> {
     fn default() -> Self {
         Self {

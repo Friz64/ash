@@ -13,6 +13,10 @@ unsafe impl<'a> crate::TaggedStructure<'a>
 for PhysicalDeviceCooperativeMatrixConversionFeaturesQCOM<'a> {
     const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::PHYSICAL_DEVICE_COOPERATIVE_MATRIX_CONVERSION_FEATURES_QCOM;
 }
+unsafe impl<'a> crate::Extends<crate::vk::PhysicalDeviceFeatures2<'_>>
+for PhysicalDeviceCooperativeMatrixConversionFeaturesQCOM<'a> {}
+unsafe impl<'a> crate::Extends<crate::vk::DeviceCreateInfo<'_>>
+for PhysicalDeviceCooperativeMatrixConversionFeaturesQCOM<'a> {}
 impl<'a> Default for PhysicalDeviceCooperativeMatrixConversionFeaturesQCOM<'a> {
     fn default() -> Self {
         Self {

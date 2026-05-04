@@ -13,6 +13,10 @@ unsafe impl<'a> crate::TaggedStructure<'a>
 for PhysicalDeviceDepthClipEnableFeaturesEXT<'a> {
     const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::PHYSICAL_DEVICE_DEPTH_CLIP_ENABLE_FEATURES_EXT;
 }
+unsafe impl<'a> crate::Extends<crate::vk::PhysicalDeviceFeatures2<'_>>
+for PhysicalDeviceDepthClipEnableFeaturesEXT<'a> {}
+unsafe impl<'a> crate::Extends<crate::vk::DeviceCreateInfo<'_>>
+for PhysicalDeviceDepthClipEnableFeaturesEXT<'a> {}
 impl<'a> Default for PhysicalDeviceDepthClipEnableFeaturesEXT<'a> {
     fn default() -> Self {
         Self {
@@ -36,6 +40,8 @@ unsafe impl<'a> crate::TaggedStructure<'a>
 for PipelineRasterizationDepthClipStateCreateInfoEXT<'a> {
     const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::PIPELINE_RASTERIZATION_DEPTH_CLIP_STATE_CREATE_INFO_EXT;
 }
+unsafe impl<'a> crate::Extends<crate::vk::PipelineRasterizationStateCreateInfo<'_>>
+for PipelineRasterizationDepthClipStateCreateInfoEXT<'a> {}
 impl<'a> Default for PipelineRasterizationDepthClipStateCreateInfoEXT<'a> {
     fn default() -> Self {
         Self {

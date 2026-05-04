@@ -14,6 +14,8 @@ unsafe impl<'a> crate::TaggedStructure<'a>
 for PhysicalDeviceShaderCoreProperties2AMD<'a> {
     const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::PHYSICAL_DEVICE_SHADER_CORE_PROPERTIES_2_AMD;
 }
+unsafe impl<'a> crate::Extends<crate::vk::PhysicalDeviceProperties2<'_>>
+for PhysicalDeviceShaderCoreProperties2AMD<'a> {}
 impl<'a> Default for PhysicalDeviceShaderCoreProperties2AMD<'a> {
     fn default() -> Self {
         Self {

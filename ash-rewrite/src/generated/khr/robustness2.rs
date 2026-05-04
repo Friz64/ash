@@ -14,6 +14,10 @@ pub struct PhysicalDeviceRobustness2FeaturesKHR<'a> {
 unsafe impl<'a> crate::TaggedStructure<'a> for PhysicalDeviceRobustness2FeaturesKHR<'a> {
     const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::PHYSICAL_DEVICE_ROBUSTNESS_2_FEATURES_KHR;
 }
+unsafe impl<'a> crate::Extends<crate::vk::PhysicalDeviceFeatures2<'_>>
+for PhysicalDeviceRobustness2FeaturesKHR<'a> {}
+unsafe impl<'a> crate::Extends<crate::vk::DeviceCreateInfo<'_>>
+for PhysicalDeviceRobustness2FeaturesKHR<'a> {}
 impl<'a> Default for PhysicalDeviceRobustness2FeaturesKHR<'a> {
     fn default() -> Self {
         Self {
@@ -39,6 +43,8 @@ unsafe impl<'a> crate::TaggedStructure<'a>
 for PhysicalDeviceRobustness2PropertiesKHR<'a> {
     const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::PHYSICAL_DEVICE_ROBUSTNESS_2_PROPERTIES_KHR;
 }
+unsafe impl<'a> crate::Extends<crate::vk::PhysicalDeviceProperties2<'_>>
+for PhysicalDeviceRobustness2PropertiesKHR<'a> {}
 impl<'a> Default for PhysicalDeviceRobustness2PropertiesKHR<'a> {
     fn default() -> Self {
         Self {

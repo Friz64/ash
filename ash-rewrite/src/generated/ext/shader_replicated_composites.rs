@@ -13,6 +13,10 @@ unsafe impl<'a> crate::TaggedStructure<'a>
 for PhysicalDeviceShaderReplicatedCompositesFeaturesEXT<'a> {
     const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::PHYSICAL_DEVICE_SHADER_REPLICATED_COMPOSITES_FEATURES_EXT;
 }
+unsafe impl<'a> crate::Extends<crate::vk::PhysicalDeviceFeatures2<'_>>
+for PhysicalDeviceShaderReplicatedCompositesFeaturesEXT<'a> {}
+unsafe impl<'a> crate::Extends<crate::vk::DeviceCreateInfo<'_>>
+for PhysicalDeviceShaderReplicatedCompositesFeaturesEXT<'a> {}
 impl<'a> Default for PhysicalDeviceShaderReplicatedCompositesFeaturesEXT<'a> {
     fn default() -> Self {
         Self {

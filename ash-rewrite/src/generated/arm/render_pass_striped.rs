@@ -13,6 +13,10 @@ unsafe impl<'a> crate::TaggedStructure<'a>
 for PhysicalDeviceRenderPassStripedFeaturesARM<'a> {
     const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::PHYSICAL_DEVICE_RENDER_PASS_STRIPED_FEATURES_ARM;
 }
+unsafe impl<'a> crate::Extends<crate::vk::PhysicalDeviceFeatures2<'_>>
+for PhysicalDeviceRenderPassStripedFeaturesARM<'a> {}
+unsafe impl<'a> crate::Extends<crate::vk::DeviceCreateInfo<'_>>
+for PhysicalDeviceRenderPassStripedFeaturesARM<'a> {}
 impl<'a> Default for PhysicalDeviceRenderPassStripedFeaturesARM<'a> {
     fn default() -> Self {
         Self {
@@ -36,6 +40,8 @@ unsafe impl<'a> crate::TaggedStructure<'a>
 for PhysicalDeviceRenderPassStripedPropertiesARM<'a> {
     const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::PHYSICAL_DEVICE_RENDER_PASS_STRIPED_PROPERTIES_ARM;
 }
+unsafe impl<'a> crate::Extends<crate::vk::PhysicalDeviceProperties2<'_>>
+for PhysicalDeviceRenderPassStripedPropertiesARM<'a> {}
 impl<'a> Default for PhysicalDeviceRenderPassStripedPropertiesARM<'a> {
     fn default() -> Self {
         Self {
@@ -80,6 +86,10 @@ pub struct RenderPassStripeBeginInfoARM<'a> {
 unsafe impl<'a> crate::TaggedStructure<'a> for RenderPassStripeBeginInfoARM<'a> {
     const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::RENDER_PASS_STRIPE_BEGIN_INFO_ARM;
 }
+unsafe impl<'a> crate::Extends<crate::vk::RenderingInfo<'_>>
+for RenderPassStripeBeginInfoARM<'a> {}
+unsafe impl<'a> crate::Extends<crate::vk::RenderPassBeginInfo<'_>>
+for RenderPassStripeBeginInfoARM<'a> {}
 impl<'a> Default for RenderPassStripeBeginInfoARM<'a> {
     fn default() -> Self {
         Self {
@@ -103,6 +113,8 @@ pub struct RenderPassStripeSubmitInfoARM<'a> {
 unsafe impl<'a> crate::TaggedStructure<'a> for RenderPassStripeSubmitInfoARM<'a> {
     const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::RENDER_PASS_STRIPE_SUBMIT_INFO_ARM;
 }
+unsafe impl<'a> crate::Extends<crate::vk::CommandBufferSubmitInfo<'_>>
+for RenderPassStripeSubmitInfoARM<'a> {}
 impl<'a> Default for RenderPassStripeSubmitInfoARM<'a> {
     fn default() -> Self {
         Self {

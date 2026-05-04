@@ -99,6 +99,8 @@ pub(crate) mod reexport {
     for ExternalComputeQueueDeviceCreateInfoNV<'a> {
         const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::EXTERNAL_COMPUTE_QUEUE_DEVICE_CREATE_INFO_NV;
     }
+    unsafe impl<'a> crate::Extends<crate::vk::DeviceCreateInfo<'_>>
+    for ExternalComputeQueueDeviceCreateInfoNV<'a> {}
     impl<'a> Default for ExternalComputeQueueDeviceCreateInfoNV<'a> {
         fn default() -> Self {
             Self {
@@ -164,6 +166,8 @@ pub(crate) mod reexport {
     for PhysicalDeviceExternalComputeQueuePropertiesNV<'a> {
         const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::PHYSICAL_DEVICE_EXTERNAL_COMPUTE_QUEUE_PROPERTIES_NV;
     }
+    unsafe impl<'a> crate::Extends<crate::vk::PhysicalDeviceProperties2<'_>>
+    for PhysicalDeviceExternalComputeQueuePropertiesNV<'a> {}
     impl<'a> Default for PhysicalDeviceExternalComputeQueuePropertiesNV<'a> {
         fn default() -> Self {
             Self {

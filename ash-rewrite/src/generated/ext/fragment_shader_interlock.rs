@@ -15,6 +15,10 @@ unsafe impl<'a> crate::TaggedStructure<'a>
 for PhysicalDeviceFragmentShaderInterlockFeaturesEXT<'a> {
     const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::PHYSICAL_DEVICE_FRAGMENT_SHADER_INTERLOCK_FEATURES_EXT;
 }
+unsafe impl<'a> crate::Extends<crate::vk::PhysicalDeviceFeatures2<'_>>
+for PhysicalDeviceFragmentShaderInterlockFeaturesEXT<'a> {}
+unsafe impl<'a> crate::Extends<crate::vk::DeviceCreateInfo<'_>>
+for PhysicalDeviceFragmentShaderInterlockFeaturesEXT<'a> {}
 impl<'a> Default for PhysicalDeviceFragmentShaderInterlockFeaturesEXT<'a> {
     fn default() -> Self {
         Self {

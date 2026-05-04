@@ -46,6 +46,10 @@ pub(crate) mod reexport {
     unsafe impl<'a> crate::TaggedStructure<'a> for PhysicalDeviceAntiLagFeaturesAMD<'a> {
         const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::PHYSICAL_DEVICE_ANTI_LAG_FEATURES_AMD;
     }
+    unsafe impl<'a> crate::Extends<crate::vk::PhysicalDeviceFeatures2<'_>>
+    for PhysicalDeviceAntiLagFeaturesAMD<'a> {}
+    unsafe impl<'a> crate::Extends<crate::vk::DeviceCreateInfo<'_>>
+    for PhysicalDeviceAntiLagFeaturesAMD<'a> {}
     impl<'a> Default for PhysicalDeviceAntiLagFeaturesAMD<'a> {
         fn default() -> Self {
             Self {

@@ -13,6 +13,10 @@ unsafe impl<'a> crate::TaggedStructure<'a>
 for PhysicalDeviceRepresentativeFragmentTestFeaturesNV<'a> {
     const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::PHYSICAL_DEVICE_REPRESENTATIVE_FRAGMENT_TEST_FEATURES_NV;
 }
+unsafe impl<'a> crate::Extends<crate::vk::PhysicalDeviceFeatures2<'_>>
+for PhysicalDeviceRepresentativeFragmentTestFeaturesNV<'a> {}
+unsafe impl<'a> crate::Extends<crate::vk::DeviceCreateInfo<'_>>
+for PhysicalDeviceRepresentativeFragmentTestFeaturesNV<'a> {}
 impl<'a> Default for PhysicalDeviceRepresentativeFragmentTestFeaturesNV<'a> {
     fn default() -> Self {
         Self {
@@ -35,6 +39,8 @@ unsafe impl<'a> crate::TaggedStructure<'a>
 for PipelineRepresentativeFragmentTestStateCreateInfoNV<'a> {
     const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::PIPELINE_REPRESENTATIVE_FRAGMENT_TEST_STATE_CREATE_INFO_NV;
 }
+unsafe impl<'a> crate::Extends<crate::vk::GraphicsPipelineCreateInfo<'_>>
+for PipelineRepresentativeFragmentTestStateCreateInfoNV<'a> {}
 impl<'a> Default for PipelineRepresentativeFragmentTestStateCreateInfoNV<'a> {
     fn default() -> Self {
         Self {

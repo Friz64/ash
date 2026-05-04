@@ -15,6 +15,10 @@ unsafe impl<'a> crate::TaggedStructure<'a>
 for PhysicalDeviceMapMemoryPlacedFeaturesEXT<'a> {
     const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::PHYSICAL_DEVICE_MAP_MEMORY_PLACED_FEATURES_EXT;
 }
+unsafe impl<'a> crate::Extends<crate::vk::PhysicalDeviceFeatures2<'_>>
+for PhysicalDeviceMapMemoryPlacedFeaturesEXT<'a> {}
+unsafe impl<'a> crate::Extends<crate::vk::DeviceCreateInfo<'_>>
+for PhysicalDeviceMapMemoryPlacedFeaturesEXT<'a> {}
 impl<'a> Default for PhysicalDeviceMapMemoryPlacedFeaturesEXT<'a> {
     fn default() -> Self {
         Self {
@@ -39,6 +43,8 @@ unsafe impl<'a> crate::TaggedStructure<'a>
 for PhysicalDeviceMapMemoryPlacedPropertiesEXT<'a> {
     const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::PHYSICAL_DEVICE_MAP_MEMORY_PLACED_PROPERTIES_EXT;
 }
+unsafe impl<'a> crate::Extends<crate::vk::PhysicalDeviceProperties2<'_>>
+for PhysicalDeviceMapMemoryPlacedPropertiesEXT<'a> {}
 impl<'a> Default for PhysicalDeviceMapMemoryPlacedPropertiesEXT<'a> {
     fn default() -> Self {
         Self {
@@ -60,6 +66,8 @@ pub struct MemoryMapPlacedInfoEXT<'a> {
 unsafe impl<'a> crate::TaggedStructure<'a> for MemoryMapPlacedInfoEXT<'a> {
     const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::MEMORY_MAP_PLACED_INFO_EXT;
 }
+unsafe impl<'a> crate::Extends<crate::vk::MemoryMapInfo<'_>>
+for MemoryMapPlacedInfoEXT<'a> {}
 impl<'a> Default for MemoryMapPlacedInfoEXT<'a> {
     fn default() -> Self {
         Self {

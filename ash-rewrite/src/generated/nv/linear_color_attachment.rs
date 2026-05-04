@@ -13,6 +13,10 @@ unsafe impl<'a> crate::TaggedStructure<'a>
 for PhysicalDeviceLinearColorAttachmentFeaturesNV<'a> {
     const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::PHYSICAL_DEVICE_LINEAR_COLOR_ATTACHMENT_FEATURES_NV;
 }
+unsafe impl<'a> crate::Extends<crate::vk::PhysicalDeviceFeatures2<'_>>
+for PhysicalDeviceLinearColorAttachmentFeaturesNV<'a> {}
+unsafe impl<'a> crate::Extends<crate::vk::DeviceCreateInfo<'_>>
+for PhysicalDeviceLinearColorAttachmentFeaturesNV<'a> {}
 impl<'a> Default for PhysicalDeviceLinearColorAttachmentFeaturesNV<'a> {
     fn default() -> Self {
         Self {

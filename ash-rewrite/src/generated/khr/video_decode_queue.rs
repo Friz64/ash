@@ -46,6 +46,8 @@ pub(crate) mod reexport {
     unsafe impl<'a> crate::TaggedStructure<'a> for VideoDecodeCapabilitiesKHR<'a> {
         const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::VIDEO_DECODE_CAPABILITIES_KHR;
     }
+    unsafe impl<'a> crate::Extends<crate::vk::VideoCapabilitiesKHR<'_>>
+    for VideoDecodeCapabilitiesKHR<'a> {}
     impl<'a> Default for VideoDecodeCapabilitiesKHR<'a> {
         fn default() -> Self {
             Self {
@@ -67,6 +69,10 @@ pub(crate) mod reexport {
     unsafe impl<'a> crate::TaggedStructure<'a> for VideoDecodeUsageInfoKHR<'a> {
         const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::VIDEO_DECODE_USAGE_INFO_KHR;
     }
+    unsafe impl<'a> crate::Extends<crate::vk::VideoProfileInfoKHR<'_>>
+    for VideoDecodeUsageInfoKHR<'a> {}
+    unsafe impl<'a> crate::Extends<crate::vk::QueryPoolCreateInfo<'_>>
+    for VideoDecodeUsageInfoKHR<'a> {}
     impl<'a> Default for VideoDecodeUsageInfoKHR<'a> {
         fn default() -> Self {
             Self {

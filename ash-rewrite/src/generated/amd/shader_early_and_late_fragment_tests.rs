@@ -13,6 +13,10 @@ unsafe impl<'a> crate::TaggedStructure<'a>
 for PhysicalDeviceShaderEarlyAndLateFragmentTestsFeaturesAMD<'a> {
     const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::PHYSICAL_DEVICE_SHADER_EARLY_AND_LATE_FRAGMENT_TESTS_FEATURES_AMD;
 }
+unsafe impl<'a> crate::Extends<crate::vk::PhysicalDeviceFeatures2<'_>>
+for PhysicalDeviceShaderEarlyAndLateFragmentTestsFeaturesAMD<'a> {}
+unsafe impl<'a> crate::Extends<crate::vk::DeviceCreateInfo<'_>>
+for PhysicalDeviceShaderEarlyAndLateFragmentTestsFeaturesAMD<'a> {}
 impl<'a> Default for PhysicalDeviceShaderEarlyAndLateFragmentTestsFeaturesAMD<'a> {
     fn default() -> Self {
         Self {

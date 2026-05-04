@@ -134,6 +134,10 @@ pub(crate) mod reexport {
     for PhysicalDeviceOpticalFlowFeaturesNV<'a> {
         const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::PHYSICAL_DEVICE_OPTICAL_FLOW_FEATURES_NV;
     }
+    unsafe impl<'a> crate::Extends<crate::vk::PhysicalDeviceFeatures2<'_>>
+    for PhysicalDeviceOpticalFlowFeaturesNV<'a> {}
+    unsafe impl<'a> crate::Extends<crate::vk::DeviceCreateInfo<'_>>
+    for PhysicalDeviceOpticalFlowFeaturesNV<'a> {}
     impl<'a> Default for PhysicalDeviceOpticalFlowFeaturesNV<'a> {
         fn default() -> Self {
             Self {
@@ -166,6 +170,8 @@ pub(crate) mod reexport {
     for PhysicalDeviceOpticalFlowPropertiesNV<'a> {
         const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::PHYSICAL_DEVICE_OPTICAL_FLOW_PROPERTIES_NV;
     }
+    unsafe impl<'a> crate::Extends<crate::vk::PhysicalDeviceProperties2<'_>>
+    for PhysicalDeviceOpticalFlowPropertiesNV<'a> {}
     impl<'a> Default for PhysicalDeviceOpticalFlowPropertiesNV<'a> {
         fn default() -> Self {
             Self {
@@ -197,6 +203,10 @@ pub(crate) mod reexport {
     unsafe impl<'a> crate::TaggedStructure<'a> for OpticalFlowImageFormatInfoNV<'a> {
         const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::OPTICAL_FLOW_IMAGE_FORMAT_INFO_NV;
     }
+    unsafe impl<'a> crate::Extends<crate::vk::PhysicalDeviceImageFormatInfo2<'_>>
+    for OpticalFlowImageFormatInfoNV<'a> {}
+    unsafe impl<'a> crate::Extends<crate::vk::ImageCreateInfo<'_>>
+    for OpticalFlowImageFormatInfoNV<'a> {}
     impl<'a> Default for OpticalFlowImageFormatInfoNV<'a> {
         fn default() -> Self {
             Self {
@@ -280,6 +290,8 @@ pub(crate) mod reexport {
     for OpticalFlowSessionCreatePrivateDataInfoNV<'a> {
         const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::OPTICAL_FLOW_SESSION_CREATE_PRIVATE_DATA_INFO_NV;
     }
+    unsafe impl<'a> crate::Extends<crate::vk::OpticalFlowSessionCreateInfoNV<'_>>
+    for OpticalFlowSessionCreatePrivateDataInfoNV<'a> {}
     impl<'a> Default for OpticalFlowSessionCreatePrivateDataInfoNV<'a> {
         fn default() -> Self {
             Self {

@@ -12,6 +12,14 @@ pub struct PushConstantBankInfoNV<'a> {
 unsafe impl<'a> crate::TaggedStructure<'a> for PushConstantBankInfoNV<'a> {
     const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::PUSH_CONSTANT_BANK_INFO_NV;
 }
+unsafe impl<'a> crate::Extends<crate::vk::DescriptorSetAndBindingMappingEXT<'_>>
+for PushConstantBankInfoNV<'a> {}
+unsafe impl<'a> crate::Extends<crate::vk::PushDataInfoEXT<'_>>
+for PushConstantBankInfoNV<'a> {}
+unsafe impl<'a> crate::Extends<crate::vk::PushConstantsInfo<'_>>
+for PushConstantBankInfoNV<'a> {}
+unsafe impl<'a> crate::Extends<crate::vk::IndirectCommandsLayoutTokenEXT<'_>>
+for PushConstantBankInfoNV<'a> {}
 impl<'a> Default for PushConstantBankInfoNV<'a> {
     fn default() -> Self {
         Self {
@@ -34,6 +42,10 @@ unsafe impl<'a> crate::TaggedStructure<'a>
 for PhysicalDevicePushConstantBankFeaturesNV<'a> {
     const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::PHYSICAL_DEVICE_PUSH_CONSTANT_BANK_FEATURES_NV;
 }
+unsafe impl<'a> crate::Extends<crate::vk::PhysicalDeviceFeatures2<'_>>
+for PhysicalDevicePushConstantBankFeaturesNV<'a> {}
+unsafe impl<'a> crate::Extends<crate::vk::DeviceCreateInfo<'_>>
+for PhysicalDevicePushConstantBankFeaturesNV<'a> {}
 impl<'a> Default for PhysicalDevicePushConstantBankFeaturesNV<'a> {
     fn default() -> Self {
         Self {
@@ -59,6 +71,8 @@ unsafe impl<'a> crate::TaggedStructure<'a>
 for PhysicalDevicePushConstantBankPropertiesNV<'a> {
     const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::PHYSICAL_DEVICE_PUSH_CONSTANT_BANK_PROPERTIES_NV;
 }
+unsafe impl<'a> crate::Extends<crate::vk::PhysicalDeviceProperties2<'_>>
+for PhysicalDevicePushConstantBankPropertiesNV<'a> {}
 impl<'a> Default for PhysicalDevicePushConstantBankPropertiesNV<'a> {
     fn default() -> Self {
         Self {

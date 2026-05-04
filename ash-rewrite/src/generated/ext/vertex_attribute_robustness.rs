@@ -13,6 +13,10 @@ unsafe impl<'a> crate::TaggedStructure<'a>
 for PhysicalDeviceVertexAttributeRobustnessFeaturesEXT<'a> {
     const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::PHYSICAL_DEVICE_VERTEX_ATTRIBUTE_ROBUSTNESS_FEATURES_EXT;
 }
+unsafe impl<'a> crate::Extends<crate::vk::PhysicalDeviceFeatures2<'_>>
+for PhysicalDeviceVertexAttributeRobustnessFeaturesEXT<'a> {}
+unsafe impl<'a> crate::Extends<crate::vk::DeviceCreateInfo<'_>>
+for PhysicalDeviceVertexAttributeRobustnessFeaturesEXT<'a> {}
 impl<'a> Default for PhysicalDeviceVertexAttributeRobustnessFeaturesEXT<'a> {
     fn default() -> Self {
         Self {

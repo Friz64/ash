@@ -13,6 +13,8 @@ pub struct ValidationFlagsEXT<'a> {
 unsafe impl<'a> crate::TaggedStructure<'a> for ValidationFlagsEXT<'a> {
     const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::VALIDATION_FLAGS_EXT;
 }
+unsafe impl<'a> crate::Extends<crate::vk::InstanceCreateInfo<'_>>
+for ValidationFlagsEXT<'a> {}
 impl<'a> Default for ValidationFlagsEXT<'a> {
     fn default() -> Self {
         Self {

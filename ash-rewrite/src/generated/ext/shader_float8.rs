@@ -14,6 +14,10 @@ unsafe impl<'a> crate::TaggedStructure<'a>
 for PhysicalDeviceShaderFloat8FeaturesEXT<'a> {
     const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::PHYSICAL_DEVICE_SHADER_FLOAT8_FEATURES_EXT;
 }
+unsafe impl<'a> crate::Extends<crate::vk::PhysicalDeviceFeatures2<'_>>
+for PhysicalDeviceShaderFloat8FeaturesEXT<'a> {}
+unsafe impl<'a> crate::Extends<crate::vk::DeviceCreateInfo<'_>>
+for PhysicalDeviceShaderFloat8FeaturesEXT<'a> {}
 impl<'a> Default for PhysicalDeviceShaderFloat8FeaturesEXT<'a> {
     fn default() -> Self {
         Self {

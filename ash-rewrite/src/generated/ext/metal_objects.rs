@@ -46,6 +46,20 @@ pub(crate) mod reexport {
     unsafe impl<'a> crate::TaggedStructure<'a> for ExportMetalObjectCreateInfoEXT<'a> {
         const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::EXPORT_METAL_OBJECT_CREATE_INFO_EXT;
     }
+    unsafe impl<'a> crate::Extends<crate::vk::InstanceCreateInfo<'_>>
+    for ExportMetalObjectCreateInfoEXT<'a> {}
+    unsafe impl<'a> crate::Extends<crate::vk::MemoryAllocateInfo<'_>>
+    for ExportMetalObjectCreateInfoEXT<'a> {}
+    unsafe impl<'a> crate::Extends<crate::vk::ImageCreateInfo<'_>>
+    for ExportMetalObjectCreateInfoEXT<'a> {}
+    unsafe impl<'a> crate::Extends<crate::vk::ImageViewCreateInfo<'_>>
+    for ExportMetalObjectCreateInfoEXT<'a> {}
+    unsafe impl<'a> crate::Extends<crate::vk::BufferViewCreateInfo<'_>>
+    for ExportMetalObjectCreateInfoEXT<'a> {}
+    unsafe impl<'a> crate::Extends<crate::vk::SemaphoreCreateInfo<'_>>
+    for ExportMetalObjectCreateInfoEXT<'a> {}
+    unsafe impl<'a> crate::Extends<crate::vk::EventCreateInfo<'_>>
+    for ExportMetalObjectCreateInfoEXT<'a> {}
     impl<'a> Default for ExportMetalObjectCreateInfoEXT<'a> {
         fn default() -> Self {
             Self {
@@ -86,6 +100,8 @@ pub(crate) mod reexport {
     unsafe impl<'a> crate::TaggedStructure<'a> for ExportMetalDeviceInfoEXT<'a> {
         const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::EXPORT_METAL_DEVICE_INFO_EXT;
     }
+    unsafe impl<'a> crate::Extends<crate::vk::ExportMetalObjectsInfoEXT<'_>>
+    for ExportMetalDeviceInfoEXT<'a> {}
     impl<'a> Default for ExportMetalDeviceInfoEXT<'a> {
         fn default() -> Self {
             Self {
@@ -108,6 +124,8 @@ pub(crate) mod reexport {
     unsafe impl<'a> crate::TaggedStructure<'a> for ExportMetalCommandQueueInfoEXT<'a> {
         const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::EXPORT_METAL_COMMAND_QUEUE_INFO_EXT;
     }
+    unsafe impl<'a> crate::Extends<crate::vk::ExportMetalObjectsInfoEXT<'_>>
+    for ExportMetalCommandQueueInfoEXT<'a> {}
     impl<'a> Default for ExportMetalCommandQueueInfoEXT<'a> {
         fn default() -> Self {
             Self {
@@ -131,6 +149,8 @@ pub(crate) mod reexport {
     unsafe impl<'a> crate::TaggedStructure<'a> for ExportMetalBufferInfoEXT<'a> {
         const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::EXPORT_METAL_BUFFER_INFO_EXT;
     }
+    unsafe impl<'a> crate::Extends<crate::vk::ExportMetalObjectsInfoEXT<'_>>
+    for ExportMetalBufferInfoEXT<'a> {}
     impl<'a> Default for ExportMetalBufferInfoEXT<'a> {
         fn default() -> Self {
             Self {
@@ -153,6 +173,8 @@ pub(crate) mod reexport {
     unsafe impl<'a> crate::TaggedStructure<'a> for ImportMetalBufferInfoEXT<'a> {
         const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::IMPORT_METAL_BUFFER_INFO_EXT;
     }
+    unsafe impl<'a> crate::Extends<crate::vk::MemoryAllocateInfo<'_>>
+    for ImportMetalBufferInfoEXT<'a> {}
     impl<'a> Default for ImportMetalBufferInfoEXT<'a> {
         fn default() -> Self {
             Self {
@@ -178,6 +200,8 @@ pub(crate) mod reexport {
     unsafe impl<'a> crate::TaggedStructure<'a> for ExportMetalTextureInfoEXT<'a> {
         const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::EXPORT_METAL_TEXTURE_INFO_EXT;
     }
+    unsafe impl<'a> crate::Extends<crate::vk::ExportMetalObjectsInfoEXT<'_>>
+    for ExportMetalTextureInfoEXT<'a> {}
     impl<'a> Default for ExportMetalTextureInfoEXT<'a> {
         fn default() -> Self {
             Self {
@@ -204,6 +228,8 @@ pub(crate) mod reexport {
     unsafe impl<'a> crate::TaggedStructure<'a> for ImportMetalTextureInfoEXT<'a> {
         const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::IMPORT_METAL_TEXTURE_INFO_EXT;
     }
+    unsafe impl<'a> crate::Extends<crate::vk::ImageCreateInfo<'_>>
+    for ImportMetalTextureInfoEXT<'a> {}
     impl<'a> Default for ImportMetalTextureInfoEXT<'a> {
         fn default() -> Self {
             Self {
@@ -227,6 +253,8 @@ pub(crate) mod reexport {
     unsafe impl<'a> crate::TaggedStructure<'a> for ExportMetalIOSurfaceInfoEXT<'a> {
         const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::EXPORT_METAL_IO_SURFACE_INFO_EXT;
     }
+    unsafe impl<'a> crate::Extends<crate::vk::ExportMetalObjectsInfoEXT<'_>>
+    for ExportMetalIOSurfaceInfoEXT<'a> {}
     impl<'a> Default for ExportMetalIOSurfaceInfoEXT<'a> {
         fn default() -> Self {
             Self {
@@ -249,6 +277,8 @@ pub(crate) mod reexport {
     unsafe impl<'a> crate::TaggedStructure<'a> for ImportMetalIOSurfaceInfoEXT<'a> {
         const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::IMPORT_METAL_IO_SURFACE_INFO_EXT;
     }
+    unsafe impl<'a> crate::Extends<crate::vk::ImageCreateInfo<'_>>
+    for ImportMetalIOSurfaceInfoEXT<'a> {}
     impl<'a> Default for ImportMetalIOSurfaceInfoEXT<'a> {
         fn default() -> Self {
             Self {
@@ -272,6 +302,8 @@ pub(crate) mod reexport {
     unsafe impl<'a> crate::TaggedStructure<'a> for ExportMetalSharedEventInfoEXT<'a> {
         const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::EXPORT_METAL_SHARED_EVENT_INFO_EXT;
     }
+    unsafe impl<'a> crate::Extends<crate::vk::ExportMetalObjectsInfoEXT<'_>>
+    for ExportMetalSharedEventInfoEXT<'a> {}
     impl<'a> Default for ExportMetalSharedEventInfoEXT<'a> {
         fn default() -> Self {
             Self {
@@ -295,6 +327,10 @@ pub(crate) mod reexport {
     unsafe impl<'a> crate::TaggedStructure<'a> for ImportMetalSharedEventInfoEXT<'a> {
         const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::IMPORT_METAL_SHARED_EVENT_INFO_EXT;
     }
+    unsafe impl<'a> crate::Extends<crate::vk::SemaphoreCreateInfo<'_>>
+    for ImportMetalSharedEventInfoEXT<'a> {}
+    unsafe impl<'a> crate::Extends<crate::vk::EventCreateInfo<'_>>
+    for ImportMetalSharedEventInfoEXT<'a> {}
     impl<'a> Default for ImportMetalSharedEventInfoEXT<'a> {
         fn default() -> Self {
             Self {

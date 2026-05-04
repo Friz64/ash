@@ -15,6 +15,8 @@ unsafe impl<'a> crate::TaggedStructure<'a>
 for PipelineCoverageToColorStateCreateInfoNV<'a> {
     const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::PIPELINE_COVERAGE_TO_COLOR_STATE_CREATE_INFO_NV;
 }
+unsafe impl<'a> crate::Extends<crate::vk::PipelineMultisampleStateCreateInfo<'_>>
+for PipelineCoverageToColorStateCreateInfoNV<'a> {}
 impl<'a> Default for PipelineCoverageToColorStateCreateInfoNV<'a> {
     fn default() -> Self {
         Self {

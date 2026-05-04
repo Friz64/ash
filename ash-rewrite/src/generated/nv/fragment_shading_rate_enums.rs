@@ -50,6 +50,10 @@ pub(crate) mod reexport {
     for PhysicalDeviceFragmentShadingRateEnumsFeaturesNV<'a> {
         const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::PHYSICAL_DEVICE_FRAGMENT_SHADING_RATE_ENUMS_FEATURES_NV;
     }
+    unsafe impl<'a> crate::Extends<crate::vk::PhysicalDeviceFeatures2<'_>>
+    for PhysicalDeviceFragmentShadingRateEnumsFeaturesNV<'a> {}
+    unsafe impl<'a> crate::Extends<crate::vk::DeviceCreateInfo<'_>>
+    for PhysicalDeviceFragmentShadingRateEnumsFeaturesNV<'a> {}
     impl<'a> Default for PhysicalDeviceFragmentShadingRateEnumsFeaturesNV<'a> {
         fn default() -> Self {
             Self {
@@ -74,6 +78,8 @@ pub(crate) mod reexport {
     for PhysicalDeviceFragmentShadingRateEnumsPropertiesNV<'a> {
         const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::PHYSICAL_DEVICE_FRAGMENT_SHADING_RATE_ENUMS_PROPERTIES_NV;
     }
+    unsafe impl<'a> crate::Extends<crate::vk::PhysicalDeviceProperties2<'_>>
+    for PhysicalDeviceFragmentShadingRateEnumsPropertiesNV<'a> {}
     impl<'a> Default for PhysicalDeviceFragmentShadingRateEnumsPropertiesNV<'a> {
         fn default() -> Self {
             Self {
@@ -98,6 +104,8 @@ pub(crate) mod reexport {
     for PipelineFragmentShadingRateEnumStateCreateInfoNV<'a> {
         const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::PIPELINE_FRAGMENT_SHADING_RATE_ENUM_STATE_CREATE_INFO_NV;
     }
+    unsafe impl<'a> crate::Extends<crate::vk::GraphicsPipelineCreateInfo<'_>>
+    for PipelineFragmentShadingRateEnumStateCreateInfoNV<'a> {}
     impl<'a> Default for PipelineFragmentShadingRateEnumStateCreateInfoNV<'a> {
         fn default() -> Self {
             Self {

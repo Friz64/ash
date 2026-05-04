@@ -100,6 +100,10 @@ pub(crate) mod reexport {
     for PhysicalDeviceCooperativeVectorFeaturesNV<'a> {
         const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::PHYSICAL_DEVICE_COOPERATIVE_VECTOR_FEATURES_NV;
     }
+    unsafe impl<'a> crate::Extends<crate::vk::PhysicalDeviceFeatures2<'_>>
+    for PhysicalDeviceCooperativeVectorFeaturesNV<'a> {}
+    unsafe impl<'a> crate::Extends<crate::vk::DeviceCreateInfo<'_>>
+    for PhysicalDeviceCooperativeVectorFeaturesNV<'a> {}
     impl<'a> Default for PhysicalDeviceCooperativeVectorFeaturesNV<'a> {
         fn default() -> Self {
             Self {
@@ -157,6 +161,8 @@ pub(crate) mod reexport {
     for PhysicalDeviceCooperativeVectorPropertiesNV<'a> {
         const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::PHYSICAL_DEVICE_COOPERATIVE_VECTOR_PROPERTIES_NV;
     }
+    unsafe impl<'a> crate::Extends<crate::vk::PhysicalDeviceProperties2<'_>>
+    for PhysicalDeviceCooperativeVectorPropertiesNV<'a> {}
     impl<'a> Default for PhysicalDeviceCooperativeVectorPropertiesNV<'a> {
         fn default() -> Self {
             Self {

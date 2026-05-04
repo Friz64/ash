@@ -13,6 +13,10 @@ unsafe impl<'a> crate::TaggedStructure<'a>
 for PhysicalDeviceMaintenance11FeaturesKHR<'a> {
     const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::PHYSICAL_DEVICE_MAINTENANCE_11_FEATURES_KHR;
 }
+unsafe impl<'a> crate::Extends<crate::vk::PhysicalDeviceFeatures2<'_>>
+for PhysicalDeviceMaintenance11FeaturesKHR<'a> {}
+unsafe impl<'a> crate::Extends<crate::vk::DeviceCreateInfo<'_>>
+for PhysicalDeviceMaintenance11FeaturesKHR<'a> {}
 impl<'a> Default for PhysicalDeviceMaintenance11FeaturesKHR<'a> {
     fn default() -> Self {
         Self {
@@ -35,6 +39,8 @@ unsafe impl<'a> crate::TaggedStructure<'a>
 for QueueFamilyOptimalImageTransferGranularityPropertiesKHR<'a> {
     const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::QUEUE_FAMILY_OPTIMAL_IMAGE_TRANSFER_GRANULARITY_PROPERTIES_KHR;
 }
+unsafe impl<'a> crate::Extends<crate::vk::QueueFamilyProperties2<'_>>
+for QueueFamilyOptimalImageTransferGranularityPropertiesKHR<'a> {}
 impl<'a> Default for QueueFamilyOptimalImageTransferGranularityPropertiesKHR<'a> {
     fn default() -> Self {
         Self {

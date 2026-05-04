@@ -235,6 +235,10 @@ pub(crate) mod reexport {
     unsafe impl<'a> crate::TaggedStructure<'a> for TensorDescriptionARM<'a> {
         const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::TENSOR_DESCRIPTION_ARM;
     }
+    unsafe impl<'a> crate::Extends<crate::vk::DataGraphPipelineResourceInfoARM<'_>>
+    for TensorDescriptionARM<'a> {}
+    unsafe impl<'a> crate::Extends<crate::vk::DataGraphPipelineConstantARM<'_>>
+    for TensorDescriptionARM<'a> {}
     impl<'a> Default for TensorDescriptionARM<'a> {
         fn default() -> Self {
             Self {
@@ -337,6 +341,8 @@ pub(crate) mod reexport {
     unsafe impl<'a> crate::TaggedStructure<'a> for WriteDescriptorSetTensorARM<'a> {
         const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::WRITE_DESCRIPTOR_SET_TENSOR_ARM;
     }
+    unsafe impl<'a> crate::Extends<crate::vk::WriteDescriptorSet<'_>>
+    for WriteDescriptorSetTensorARM<'a> {}
     impl<'a> Default for WriteDescriptorSetTensorARM<'a> {
         fn default() -> Self {
             Self {
@@ -360,6 +366,8 @@ pub(crate) mod reexport {
     unsafe impl<'a> crate::TaggedStructure<'a> for TensorFormatPropertiesARM<'a> {
         const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::TENSOR_FORMAT_PROPERTIES_ARM;
     }
+    unsafe impl<'a> crate::Extends<crate::vk::FormatProperties2<'_>>
+    for TensorFormatPropertiesARM<'a> {}
     impl<'a> Default for TensorFormatPropertiesARM<'a> {
         fn default() -> Self {
             Self {
@@ -395,6 +403,8 @@ pub(crate) mod reexport {
     for PhysicalDeviceTensorPropertiesARM<'a> {
         const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::PHYSICAL_DEVICE_TENSOR_PROPERTIES_ARM;
     }
+    unsafe impl<'a> crate::Extends<crate::vk::PhysicalDeviceProperties2<'_>>
+    for PhysicalDeviceTensorPropertiesARM<'a> {}
     impl<'a> Default for PhysicalDeviceTensorPropertiesARM<'a> {
         fn default() -> Self {
             Self {
@@ -434,6 +444,8 @@ pub(crate) mod reexport {
     unsafe impl<'a> crate::TaggedStructure<'a> for TensorMemoryBarrierARM<'a> {
         const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::TENSOR_MEMORY_BARRIER_ARM;
     }
+    unsafe impl<'a> crate::Extends<crate::vk::DependencyInfo<'_>>
+    for TensorMemoryBarrierARM<'a> {}
     impl<'a> Default for TensorMemoryBarrierARM<'a> {
         fn default() -> Self {
             Self {
@@ -462,6 +474,8 @@ pub(crate) mod reexport {
     unsafe impl<'a> crate::TaggedStructure<'a> for TensorDependencyInfoARM<'a> {
         const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::TENSOR_DEPENDENCY_INFO_ARM;
     }
+    unsafe impl<'a> crate::Extends<crate::vk::DependencyInfo<'_>>
+    for TensorDependencyInfoARM<'a> {}
     impl<'a> Default for TensorDependencyInfoARM<'a> {
         fn default() -> Self {
             Self {
@@ -489,6 +503,10 @@ pub(crate) mod reexport {
     unsafe impl<'a> crate::TaggedStructure<'a> for PhysicalDeviceTensorFeaturesARM<'a> {
         const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::PHYSICAL_DEVICE_TENSOR_FEATURES_ARM;
     }
+    unsafe impl<'a> crate::Extends<crate::vk::PhysicalDeviceFeatures2<'_>>
+    for PhysicalDeviceTensorFeaturesARM<'a> {}
+    unsafe impl<'a> crate::Extends<crate::vk::DeviceCreateInfo<'_>>
+    for PhysicalDeviceTensorFeaturesARM<'a> {}
     impl<'a> Default for PhysicalDeviceTensorFeaturesARM<'a> {
         fn default() -> Self {
             Self {
@@ -592,6 +610,8 @@ pub(crate) mod reexport {
     for MemoryDedicatedAllocateInfoTensorARM<'a> {
         const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::MEMORY_DEDICATED_ALLOCATE_INFO_TENSOR_ARM;
     }
+    unsafe impl<'a> crate::Extends<crate::vk::MemoryAllocateInfo<'_>>
+    for MemoryDedicatedAllocateInfoTensorARM<'a> {}
     impl<'a> Default for MemoryDedicatedAllocateInfoTensorARM<'a> {
         fn default() -> Self {
             Self {
@@ -616,6 +636,8 @@ pub(crate) mod reexport {
     for PhysicalDeviceDescriptorBufferTensorPropertiesARM<'a> {
         const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::PHYSICAL_DEVICE_DESCRIPTOR_BUFFER_TENSOR_PROPERTIES_ARM;
     }
+    unsafe impl<'a> crate::Extends<crate::vk::PhysicalDeviceProperties2<'_>>
+    for PhysicalDeviceDescriptorBufferTensorPropertiesARM<'a> {}
     impl<'a> Default for PhysicalDeviceDescriptorBufferTensorPropertiesARM<'a> {
         fn default() -> Self {
             Self {
@@ -640,6 +662,10 @@ pub(crate) mod reexport {
     for PhysicalDeviceDescriptorBufferTensorFeaturesARM<'a> {
         const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::PHYSICAL_DEVICE_DESCRIPTOR_BUFFER_TENSOR_FEATURES_ARM;
     }
+    unsafe impl<'a> crate::Extends<crate::vk::PhysicalDeviceFeatures2<'_>>
+    for PhysicalDeviceDescriptorBufferTensorFeaturesARM<'a> {}
+    unsafe impl<'a> crate::Extends<crate::vk::DeviceCreateInfo<'_>>
+    for PhysicalDeviceDescriptorBufferTensorFeaturesARM<'a> {}
     impl<'a> Default for PhysicalDeviceDescriptorBufferTensorFeaturesARM<'a> {
         fn default() -> Self {
             Self {
@@ -705,6 +731,8 @@ pub(crate) mod reexport {
     unsafe impl<'a> crate::TaggedStructure<'a> for DescriptorGetTensorInfoARM<'a> {
         const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::DESCRIPTOR_GET_TENSOR_INFO_ARM;
     }
+    unsafe impl<'a> crate::Extends<crate::vk::DescriptorGetInfoEXT<'_>>
+    for DescriptorGetTensorInfoARM<'a> {}
     impl<'a> Default for DescriptorGetTensorInfoARM<'a> {
         fn default() -> Self {
             Self {
@@ -727,6 +755,14 @@ pub(crate) mod reexport {
     unsafe impl<'a> crate::TaggedStructure<'a> for FrameBoundaryTensorsARM<'a> {
         const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::FRAME_BOUNDARY_TENSORS_ARM;
     }
+    unsafe impl<'a> crate::Extends<crate::vk::SubmitInfo<'_>>
+    for FrameBoundaryTensorsARM<'a> {}
+    unsafe impl<'a> crate::Extends<crate::vk::SubmitInfo2<'_>>
+    for FrameBoundaryTensorsARM<'a> {}
+    unsafe impl<'a> crate::Extends<crate::vk::PresentInfoKHR<'_>>
+    for FrameBoundaryTensorsARM<'a> {}
+    unsafe impl<'a> crate::Extends<crate::vk::BindSparseInfo<'_>>
+    for FrameBoundaryTensorsARM<'a> {}
     impl<'a> Default for FrameBoundaryTensorsARM<'a> {
         fn default() -> Self {
             Self {
@@ -797,6 +833,8 @@ pub(crate) mod reexport {
     for ExternalMemoryTensorCreateInfoARM<'a> {
         const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::EXTERNAL_MEMORY_TENSOR_CREATE_INFO_ARM;
     }
+    unsafe impl<'a> crate::Extends<crate::vk::TensorCreateInfoARM<'_>>
+    for ExternalMemoryTensorCreateInfoARM<'a> {}
     impl<'a> Default for ExternalMemoryTensorCreateInfoARM<'a> {
         fn default() -> Self {
             Self {

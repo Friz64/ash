@@ -120,6 +120,10 @@ pub(crate) mod reexport {
     for PhysicalDevicePerformanceQueryFeaturesKHR<'a> {
         const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::PHYSICAL_DEVICE_PERFORMANCE_QUERY_FEATURES_KHR;
     }
+    unsafe impl<'a> crate::Extends<crate::vk::PhysicalDeviceFeatures2<'_>>
+    for PhysicalDevicePerformanceQueryFeaturesKHR<'a> {}
+    unsafe impl<'a> crate::Extends<crate::vk::DeviceCreateInfo<'_>>
+    for PhysicalDevicePerformanceQueryFeaturesKHR<'a> {}
     impl<'a> Default for PhysicalDevicePerformanceQueryFeaturesKHR<'a> {
         fn default() -> Self {
             Self {
@@ -143,6 +147,8 @@ pub(crate) mod reexport {
     for PhysicalDevicePerformanceQueryPropertiesKHR<'a> {
         const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::PHYSICAL_DEVICE_PERFORMANCE_QUERY_PROPERTIES_KHR;
     }
+    unsafe impl<'a> crate::Extends<crate::vk::PhysicalDeviceProperties2<'_>>
+    for PhysicalDevicePerformanceQueryPropertiesKHR<'a> {}
     impl<'a> Default for PhysicalDevicePerformanceQueryPropertiesKHR<'a> {
         fn default() -> Self {
             Self {
@@ -221,6 +227,8 @@ pub(crate) mod reexport {
     for QueryPoolPerformanceCreateInfoKHR<'a> {
         const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::QUERY_POOL_PERFORMANCE_CREATE_INFO_KHR;
     }
+    unsafe impl<'a> crate::Extends<crate::vk::QueryPoolCreateInfo<'_>>
+    for QueryPoolPerformanceCreateInfoKHR<'a> {}
     impl<'a> Default for QueryPoolPerformanceCreateInfoKHR<'a> {
         fn default() -> Self {
             Self {
@@ -267,6 +275,10 @@ pub(crate) mod reexport {
     unsafe impl<'a> crate::TaggedStructure<'a> for PerformanceQuerySubmitInfoKHR<'a> {
         const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::PERFORMANCE_QUERY_SUBMIT_INFO_KHR;
     }
+    unsafe impl<'a> crate::Extends<crate::vk::SubmitInfo<'_>>
+    for PerformanceQuerySubmitInfoKHR<'a> {}
+    unsafe impl<'a> crate::Extends<crate::vk::SubmitInfo2<'_>>
+    for PerformanceQuerySubmitInfoKHR<'a> {}
     impl<'a> Default for PerformanceQuerySubmitInfoKHR<'a> {
         fn default() -> Self {
             Self {

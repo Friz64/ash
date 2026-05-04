@@ -90,6 +90,10 @@ pub(crate) mod reexport {
     for PhysicalDeviceTileShadingFeaturesQCOM<'a> {
         const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::PHYSICAL_DEVICE_TILE_SHADING_FEATURES_QCOM;
     }
+    unsafe impl<'a> crate::Extends<crate::vk::PhysicalDeviceFeatures2<'_>>
+    for PhysicalDeviceTileShadingFeaturesQCOM<'a> {}
+    unsafe impl<'a> crate::Extends<crate::vk::DeviceCreateInfo<'_>>
+    for PhysicalDeviceTileShadingFeaturesQCOM<'a> {}
     impl<'a> Default for PhysicalDeviceTileShadingFeaturesQCOM<'a> {
         fn default() -> Self {
             Self {
@@ -128,6 +132,8 @@ pub(crate) mod reexport {
     for PhysicalDeviceTileShadingPropertiesQCOM<'a> {
         const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::PHYSICAL_DEVICE_TILE_SHADING_PROPERTIES_QCOM;
     }
+    unsafe impl<'a> crate::Extends<crate::vk::PhysicalDeviceProperties2<'_>>
+    for PhysicalDeviceTileShadingPropertiesQCOM<'a> {}
     impl<'a> Default for PhysicalDeviceTileShadingPropertiesQCOM<'a> {
         fn default() -> Self {
             Self {
@@ -154,6 +160,14 @@ pub(crate) mod reexport {
     for RenderPassTileShadingCreateInfoQCOM<'a> {
         const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::RENDER_PASS_TILE_SHADING_CREATE_INFO_QCOM;
     }
+    unsafe impl<'a> crate::Extends<crate::vk::RenderPassCreateInfo<'_>>
+    for RenderPassTileShadingCreateInfoQCOM<'a> {}
+    unsafe impl<'a> crate::Extends<crate::vk::RenderPassCreateInfo2<'_>>
+    for RenderPassTileShadingCreateInfoQCOM<'a> {}
+    unsafe impl<'a> crate::Extends<crate::vk::RenderingInfo<'_>>
+    for RenderPassTileShadingCreateInfoQCOM<'a> {}
+    unsafe impl<'a> crate::Extends<crate::vk::CommandBufferInheritanceInfo<'_>>
+    for RenderPassTileShadingCreateInfoQCOM<'a> {}
     impl<'a> Default for RenderPassTileShadingCreateInfoQCOM<'a> {
         fn default() -> Self {
             Self {

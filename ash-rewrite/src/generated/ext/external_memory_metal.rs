@@ -65,6 +65,8 @@ pub(crate) mod reexport {
     unsafe impl<'a> crate::TaggedStructure<'a> for ImportMemoryMetalHandleInfoEXT<'a> {
         const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::IMPORT_MEMORY_METAL_HANDLE_INFO_EXT;
     }
+    unsafe impl<'a> crate::Extends<crate::vk::MemoryAllocateInfo<'_>>
+    for ImportMemoryMetalHandleInfoEXT<'a> {}
     impl<'a> Default for ImportMemoryMetalHandleInfoEXT<'a> {
         fn default() -> Self {
             Self {

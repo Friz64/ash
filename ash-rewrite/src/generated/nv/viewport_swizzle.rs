@@ -23,6 +23,8 @@ unsafe impl<'a> crate::TaggedStructure<'a>
 for PipelineViewportSwizzleStateCreateInfoNV<'a> {
     const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::PIPELINE_VIEWPORT_SWIZZLE_STATE_CREATE_INFO_NV;
 }
+unsafe impl<'a> crate::Extends<crate::vk::PipelineViewportStateCreateInfo<'_>>
+for PipelineViewportSwizzleStateCreateInfoNV<'a> {}
 impl<'a> Default for PipelineViewportSwizzleStateCreateInfoNV<'a> {
     fn default() -> Self {
         Self {

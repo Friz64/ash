@@ -71,6 +71,10 @@ pub(crate) mod reexport {
     for PhysicalDevicePresentWait2FeaturesKHR<'a> {
         const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::PHYSICAL_DEVICE_PRESENT_WAIT_2_FEATURES_KHR;
     }
+    unsafe impl<'a> crate::Extends<crate::vk::PhysicalDeviceFeatures2<'_>>
+    for PhysicalDevicePresentWait2FeaturesKHR<'a> {}
+    unsafe impl<'a> crate::Extends<crate::vk::DeviceCreateInfo<'_>>
+    for PhysicalDevicePresentWait2FeaturesKHR<'a> {}
     impl<'a> Default for PhysicalDevicePresentWait2FeaturesKHR<'a> {
         fn default() -> Self {
             Self {
@@ -93,6 +97,8 @@ pub(crate) mod reexport {
     for SurfaceCapabilitiesPresentWait2KHR<'a> {
         const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::SURFACE_CAPABILITIES_PRESENT_WAIT_2_KHR;
     }
+    unsafe impl<'a> crate::Extends<crate::vk::SurfaceCapabilities2KHR<'_>>
+    for SurfaceCapabilitiesPresentWait2KHR<'a> {}
     impl<'a> Default for SurfaceCapabilitiesPresentWait2KHR<'a> {
         fn default() -> Self {
             Self {

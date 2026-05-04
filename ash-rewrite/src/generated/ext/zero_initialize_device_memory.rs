@@ -13,6 +13,10 @@ unsafe impl<'a> crate::TaggedStructure<'a>
 for PhysicalDeviceZeroInitializeDeviceMemoryFeaturesEXT<'a> {
     const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::PHYSICAL_DEVICE_ZERO_INITIALIZE_DEVICE_MEMORY_FEATURES_EXT;
 }
+unsafe impl<'a> crate::Extends<crate::vk::PhysicalDeviceFeatures2<'_>>
+for PhysicalDeviceZeroInitializeDeviceMemoryFeaturesEXT<'a> {}
+unsafe impl<'a> crate::Extends<crate::vk::DeviceCreateInfo<'_>>
+for PhysicalDeviceZeroInitializeDeviceMemoryFeaturesEXT<'a> {}
 impl<'a> Default for PhysicalDeviceZeroInitializeDeviceMemoryFeaturesEXT<'a> {
     fn default() -> Self {
         Self {

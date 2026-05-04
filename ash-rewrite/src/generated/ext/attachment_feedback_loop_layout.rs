@@ -13,6 +13,10 @@ unsafe impl<'a> crate::TaggedStructure<'a>
 for PhysicalDeviceAttachmentFeedbackLoopLayoutFeaturesEXT<'a> {
     const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::PHYSICAL_DEVICE_ATTACHMENT_FEEDBACK_LOOP_LAYOUT_FEATURES_EXT;
 }
+unsafe impl<'a> crate::Extends<crate::vk::PhysicalDeviceFeatures2<'_>>
+for PhysicalDeviceAttachmentFeedbackLoopLayoutFeaturesEXT<'a> {}
+unsafe impl<'a> crate::Extends<crate::vk::DeviceCreateInfo<'_>>
+for PhysicalDeviceAttachmentFeedbackLoopLayoutFeaturesEXT<'a> {}
 impl<'a> Default for PhysicalDeviceAttachmentFeedbackLoopLayoutFeaturesEXT<'a> {
     fn default() -> Self {
         Self {

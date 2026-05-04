@@ -100,6 +100,10 @@ pub(crate) mod reexport {
     for PhysicalDevicePresentTimingFeaturesEXT<'a> {
         const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::PHYSICAL_DEVICE_PRESENT_TIMING_FEATURES_EXT;
     }
+    unsafe impl<'a> crate::Extends<crate::vk::PhysicalDeviceFeatures2<'_>>
+    for PhysicalDevicePresentTimingFeaturesEXT<'a> {}
+    unsafe impl<'a> crate::Extends<crate::vk::DeviceCreateInfo<'_>>
+    for PhysicalDevicePresentTimingFeaturesEXT<'a> {}
     impl<'a> Default for PhysicalDevicePresentTimingFeaturesEXT<'a> {
         fn default() -> Self {
             Self {
@@ -127,6 +131,8 @@ pub(crate) mod reexport {
     for PresentTimingSurfaceCapabilitiesEXT<'a> {
         const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::PRESENT_TIMING_SURFACE_CAPABILITIES_EXT;
     }
+    unsafe impl<'a> crate::Extends<crate::vk::SurfaceCapabilities2KHR<'_>>
+    for PresentTimingSurfaceCapabilitiesEXT<'a> {}
     impl<'a> Default for PresentTimingSurfaceCapabilitiesEXT<'a> {
         fn default() -> Self {
             Self {
@@ -290,6 +296,8 @@ pub(crate) mod reexport {
     unsafe impl<'a> crate::TaggedStructure<'a> for PresentTimingsInfoEXT<'a> {
         const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::PRESENT_TIMINGS_INFO_EXT;
     }
+    unsafe impl<'a> crate::Extends<crate::vk::PresentInfoKHR<'_>>
+    for PresentTimingsInfoEXT<'a> {}
     impl<'a> Default for PresentTimingsInfoEXT<'a> {
         fn default() -> Self {
             Self {
@@ -344,6 +352,8 @@ pub(crate) mod reexport {
     for SwapchainCalibratedTimestampInfoEXT<'a> {
         const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::SWAPCHAIN_CALIBRATED_TIMESTAMP_INFO_EXT;
     }
+    unsafe impl<'a> crate::Extends<crate::vk::CalibratedTimestampInfoKHR<'_>>
+    for SwapchainCalibratedTimestampInfoEXT<'a> {}
     impl<'a> Default for SwapchainCalibratedTimestampInfoEXT<'a> {
         fn default() -> Self {
             Self {

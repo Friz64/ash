@@ -483,6 +483,10 @@ pub(crate) mod reexport {
     for ShaderDescriptorSetAndBindingMappingInfoEXT<'a> {
         const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::SHADER_DESCRIPTOR_SET_AND_BINDING_MAPPING_INFO_EXT;
     }
+    unsafe impl<'a> crate::Extends<crate::vk::PipelineShaderStageCreateInfo<'_>>
+    for ShaderDescriptorSetAndBindingMappingInfoEXT<'a> {}
+    unsafe impl<'a> crate::Extends<crate::vk::ShaderCreateInfoEXT<'_>>
+    for ShaderDescriptorSetAndBindingMappingInfoEXT<'a> {}
     impl<'a> Default for ShaderDescriptorSetAndBindingMappingInfoEXT<'a> {
         fn default() -> Self {
             Self {
@@ -506,6 +510,8 @@ pub(crate) mod reexport {
     for SamplerCustomBorderColorIndexCreateInfoEXT<'a> {
         const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::SAMPLER_CUSTOM_BORDER_COLOR_INDEX_CREATE_INFO_EXT;
     }
+    unsafe impl<'a> crate::Extends<crate::vk::SamplerCreateInfo<'_>>
+    for SamplerCustomBorderColorIndexCreateInfoEXT<'a> {}
     impl<'a> Default for SamplerCustomBorderColorIndexCreateInfoEXT<'a> {
         fn default() -> Self {
             Self {
@@ -527,6 +533,10 @@ pub(crate) mod reexport {
     unsafe impl<'a> crate::TaggedStructure<'a> for OpaqueCaptureDataCreateInfoEXT<'a> {
         const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::OPAQUE_CAPTURE_DATA_CREATE_INFO_EXT;
     }
+    unsafe impl<'a> crate::Extends<crate::vk::ImageCreateInfo<'_>>
+    for OpaqueCaptureDataCreateInfoEXT<'a> {}
+    unsafe impl<'a> crate::Extends<crate::vk::TensorCreateInfoARM<'_>>
+    for OpaqueCaptureDataCreateInfoEXT<'a> {}
     impl<'a> Default for OpaqueCaptureDataCreateInfoEXT<'a> {
         fn default() -> Self {
             Self {
@@ -550,6 +560,8 @@ pub(crate) mod reexport {
     for IndirectCommandsLayoutPushDataTokenNV<'a> {
         const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::INDIRECT_COMMANDS_LAYOUT_PUSH_DATA_TOKEN_NV;
     }
+    unsafe impl<'a> crate::Extends<crate::vk::IndirectCommandsLayoutTokenNV<'_>>
+    for IndirectCommandsLayoutPushDataTokenNV<'a> {}
     impl<'a> Default for IndirectCommandsLayoutPushDataTokenNV<'a> {
         fn default() -> Self {
             Self {
@@ -573,6 +585,8 @@ pub(crate) mod reexport {
     for SubsampledImageFormatPropertiesEXT<'a> {
         const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::SUBSAMPLED_IMAGE_FORMAT_PROPERTIES_EXT;
     }
+    unsafe impl<'a> crate::Extends<crate::vk::ImageFormatProperties2<'_>>
+    for SubsampledImageFormatPropertiesEXT<'a> {}
     impl<'a> Default for SubsampledImageFormatPropertiesEXT<'a> {
         fn default() -> Self {
             Self {
@@ -596,6 +610,10 @@ pub(crate) mod reexport {
     for PhysicalDeviceDescriptorHeapFeaturesEXT<'a> {
         const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::PHYSICAL_DEVICE_DESCRIPTOR_HEAP_FEATURES_EXT;
     }
+    unsafe impl<'a> crate::Extends<crate::vk::PhysicalDeviceFeatures2<'_>>
+    for PhysicalDeviceDescriptorHeapFeaturesEXT<'a> {}
+    unsafe impl<'a> crate::Extends<crate::vk::DeviceCreateInfo<'_>>
+    for PhysicalDeviceDescriptorHeapFeaturesEXT<'a> {}
     impl<'a> Default for PhysicalDeviceDescriptorHeapFeaturesEXT<'a> {
         fn default() -> Self {
             Self {
@@ -637,6 +655,8 @@ pub(crate) mod reexport {
     for PhysicalDeviceDescriptorHeapPropertiesEXT<'a> {
         const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::PHYSICAL_DEVICE_DESCRIPTOR_HEAP_PROPERTIES_EXT;
     }
+    unsafe impl<'a> crate::Extends<crate::vk::PhysicalDeviceProperties2<'_>>
+    for PhysicalDeviceDescriptorHeapPropertiesEXT<'a> {}
     impl<'a> Default for PhysicalDeviceDescriptorHeapPropertiesEXT<'a> {
         fn default() -> Self {
             Self {
@@ -678,6 +698,8 @@ pub(crate) mod reexport {
     for CommandBufferInheritanceDescriptorHeapInfoEXT<'a> {
         const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::COMMAND_BUFFER_INHERITANCE_DESCRIPTOR_HEAP_INFO_EXT;
     }
+    unsafe impl<'a> crate::Extends<crate::vk::CommandBufferInheritanceInfo<'_>>
+    for CommandBufferInheritanceDescriptorHeapInfoEXT<'a> {}
     impl<'a> Default for CommandBufferInheritanceDescriptorHeapInfoEXT<'a> {
         fn default() -> Self {
             Self {
@@ -703,6 +725,8 @@ pub(crate) mod reexport {
     for PhysicalDeviceDescriptorHeapTensorPropertiesARM<'a> {
         const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::PHYSICAL_DEVICE_DESCRIPTOR_HEAP_TENSOR_PROPERTIES_ARM;
     }
+    unsafe impl<'a> crate::Extends<crate::vk::PhysicalDeviceProperties2<'_>>
+    for PhysicalDeviceDescriptorHeapTensorPropertiesARM<'a> {}
     impl<'a> Default for PhysicalDeviceDescriptorHeapTensorPropertiesARM<'a> {
         fn default() -> Self {
             Self {

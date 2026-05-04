@@ -64,6 +64,8 @@ pub(crate) mod reexport {
     for ImportAndroidHardwareBufferInfoANDROID<'a> {
         const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::IMPORT_ANDROID_HARDWARE_BUFFER_INFO_ANDROID;
     }
+    unsafe impl<'a> crate::Extends<crate::vk::MemoryAllocateInfo<'_>>
+    for ImportAndroidHardwareBufferInfoANDROID<'a> {}
     impl<'a> Default for ImportAndroidHardwareBufferInfoANDROID<'a> {
         fn default() -> Self {
             Self {
@@ -86,6 +88,8 @@ pub(crate) mod reexport {
     for AndroidHardwareBufferUsageANDROID<'a> {
         const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::ANDROID_HARDWARE_BUFFER_USAGE_ANDROID;
     }
+    unsafe impl<'a> crate::Extends<crate::vk::ImageFormatProperties2<'_>>
+    for AndroidHardwareBufferUsageANDROID<'a> {}
     impl<'a> Default for AndroidHardwareBufferUsageANDROID<'a> {
         fn default() -> Self {
             Self {
@@ -161,6 +165,8 @@ pub(crate) mod reexport {
     for AndroidHardwareBufferFormatPropertiesANDROID<'a> {
         const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::ANDROID_HARDWARE_BUFFER_FORMAT_PROPERTIES_ANDROID;
     }
+    unsafe impl<'a> crate::Extends<crate::vk::AndroidHardwareBufferPropertiesANDROID<'_>>
+    for AndroidHardwareBufferFormatPropertiesANDROID<'a> {}
     impl<'a> Default for AndroidHardwareBufferFormatPropertiesANDROID<'a> {
         fn default() -> Self {
             Self {
@@ -189,6 +195,16 @@ pub(crate) mod reexport {
     unsafe impl<'a> crate::TaggedStructure<'a> for ExternalFormatANDROID<'a> {
         const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::EXTERNAL_FORMAT_ANDROID;
     }
+    unsafe impl<'a> crate::Extends<crate::vk::ImageCreateInfo<'_>>
+    for ExternalFormatANDROID<'a> {}
+    unsafe impl<'a> crate::Extends<crate::vk::SamplerYcbcrConversionCreateInfo<'_>>
+    for ExternalFormatANDROID<'a> {}
+    unsafe impl<'a> crate::Extends<crate::vk::AttachmentDescription2<'_>>
+    for ExternalFormatANDROID<'a> {}
+    unsafe impl<'a> crate::Extends<crate::vk::GraphicsPipelineCreateInfo<'_>>
+    for ExternalFormatANDROID<'a> {}
+    unsafe impl<'a> crate::Extends<crate::vk::CommandBufferInheritanceInfo<'_>>
+    for ExternalFormatANDROID<'a> {}
     impl<'a> Default for ExternalFormatANDROID<'a> {
         fn default() -> Self {
             Self {
@@ -218,6 +234,8 @@ pub(crate) mod reexport {
     for AndroidHardwareBufferFormatProperties2ANDROID<'a> {
         const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::ANDROID_HARDWARE_BUFFER_FORMAT_PROPERTIES_2_ANDROID;
     }
+    unsafe impl<'a> crate::Extends<crate::vk::AndroidHardwareBufferPropertiesANDROID<'_>>
+    for AndroidHardwareBufferFormatProperties2ANDROID<'a> {}
     impl<'a> Default for AndroidHardwareBufferFormatProperties2ANDROID<'a> {
         fn default() -> Self {
             Self {

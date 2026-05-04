@@ -13,6 +13,10 @@ unsafe impl<'a> crate::TaggedStructure<'a>
 for PhysicalDeviceVideoMaintenance1FeaturesKHR<'a> {
     const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::PHYSICAL_DEVICE_VIDEO_MAINTENANCE_1_FEATURES_KHR;
 }
+unsafe impl<'a> crate::Extends<crate::vk::PhysicalDeviceFeatures2<'_>>
+for PhysicalDeviceVideoMaintenance1FeaturesKHR<'a> {}
+unsafe impl<'a> crate::Extends<crate::vk::DeviceCreateInfo<'_>>
+for PhysicalDeviceVideoMaintenance1FeaturesKHR<'a> {}
 impl<'a> Default for PhysicalDeviceVideoMaintenance1FeaturesKHR<'a> {
     fn default() -> Self {
         Self {
@@ -36,6 +40,10 @@ pub struct VideoInlineQueryInfoKHR<'a> {
 unsafe impl<'a> crate::TaggedStructure<'a> for VideoInlineQueryInfoKHR<'a> {
     const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::VIDEO_INLINE_QUERY_INFO_KHR;
 }
+unsafe impl<'a> crate::Extends<crate::vk::VideoDecodeInfoKHR<'_>>
+for VideoInlineQueryInfoKHR<'a> {}
+unsafe impl<'a> crate::Extends<crate::vk::VideoEncodeInfoKHR<'_>>
+for VideoInlineQueryInfoKHR<'a> {}
 impl<'a> Default for VideoInlineQueryInfoKHR<'a> {
     fn default() -> Self {
         Self {

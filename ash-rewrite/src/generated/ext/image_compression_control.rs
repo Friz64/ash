@@ -14,6 +14,12 @@ pub struct ImageCompressionControlEXT<'a> {
 unsafe impl<'a> crate::TaggedStructure<'a> for ImageCompressionControlEXT<'a> {
     const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::IMAGE_COMPRESSION_CONTROL_EXT;
 }
+unsafe impl<'a> crate::Extends<crate::vk::ImageCreateInfo<'_>>
+for ImageCompressionControlEXT<'a> {}
+unsafe impl<'a> crate::Extends<crate::vk::SwapchainCreateInfoKHR<'_>>
+for ImageCompressionControlEXT<'a> {}
+unsafe impl<'a> crate::Extends<crate::vk::PhysicalDeviceImageFormatInfo2<'_>>
+for ImageCompressionControlEXT<'a> {}
 impl<'a> Default for ImageCompressionControlEXT<'a> {
     fn default() -> Self {
         Self {
@@ -38,6 +44,10 @@ unsafe impl<'a> crate::TaggedStructure<'a>
 for PhysicalDeviceImageCompressionControlFeaturesEXT<'a> {
     const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::PHYSICAL_DEVICE_IMAGE_COMPRESSION_CONTROL_FEATURES_EXT;
 }
+unsafe impl<'a> crate::Extends<crate::vk::PhysicalDeviceFeatures2<'_>>
+for PhysicalDeviceImageCompressionControlFeaturesEXT<'a> {}
+unsafe impl<'a> crate::Extends<crate::vk::DeviceCreateInfo<'_>>
+for PhysicalDeviceImageCompressionControlFeaturesEXT<'a> {}
 impl<'a> Default for PhysicalDeviceImageCompressionControlFeaturesEXT<'a> {
     fn default() -> Self {
         Self {
@@ -60,6 +70,12 @@ pub struct ImageCompressionPropertiesEXT<'a> {
 unsafe impl<'a> crate::TaggedStructure<'a> for ImageCompressionPropertiesEXT<'a> {
     const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::IMAGE_COMPRESSION_PROPERTIES_EXT;
 }
+unsafe impl<'a> crate::Extends<crate::vk::ImageFormatProperties2<'_>>
+for ImageCompressionPropertiesEXT<'a> {}
+unsafe impl<'a> crate::Extends<crate::vk::SurfaceFormat2KHR<'_>>
+for ImageCompressionPropertiesEXT<'a> {}
+unsafe impl<'a> crate::Extends<crate::vk::SubresourceLayout2<'_>>
+for ImageCompressionPropertiesEXT<'a> {}
 impl<'a> Default for ImageCompressionPropertiesEXT<'a> {
     fn default() -> Self {
         Self {

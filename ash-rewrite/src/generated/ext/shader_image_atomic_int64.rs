@@ -14,6 +14,10 @@ unsafe impl<'a> crate::TaggedStructure<'a>
 for PhysicalDeviceShaderImageAtomicInt64FeaturesEXT<'a> {
     const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::PHYSICAL_DEVICE_SHADER_IMAGE_ATOMIC_INT64_FEATURES_EXT;
 }
+unsafe impl<'a> crate::Extends<crate::vk::PhysicalDeviceFeatures2<'_>>
+for PhysicalDeviceShaderImageAtomicInt64FeaturesEXT<'a> {}
+unsafe impl<'a> crate::Extends<crate::vk::DeviceCreateInfo<'_>>
+for PhysicalDeviceShaderImageAtomicInt64FeaturesEXT<'a> {}
 impl<'a> Default for PhysicalDeviceShaderImageAtomicInt64FeaturesEXT<'a> {
     fn default() -> Self {
         Self {

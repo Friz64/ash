@@ -50,6 +50,10 @@ pub(crate) mod reexport {
     for PhysicalDeviceVertexInputDynamicStateFeaturesEXT<'a> {
         const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::PHYSICAL_DEVICE_VERTEX_INPUT_DYNAMIC_STATE_FEATURES_EXT;
     }
+    unsafe impl<'a> crate::Extends<crate::vk::PhysicalDeviceFeatures2<'_>>
+    for PhysicalDeviceVertexInputDynamicStateFeaturesEXT<'a> {}
+    unsafe impl<'a> crate::Extends<crate::vk::DeviceCreateInfo<'_>>
+    for PhysicalDeviceVertexInputDynamicStateFeaturesEXT<'a> {}
     impl<'a> Default for PhysicalDeviceVertexInputDynamicStateFeaturesEXT<'a> {
         fn default() -> Self {
             Self {

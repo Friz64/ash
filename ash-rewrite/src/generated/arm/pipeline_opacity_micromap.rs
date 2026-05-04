@@ -13,6 +13,10 @@ unsafe impl<'a> crate::TaggedStructure<'a>
 for PhysicalDevicePipelineOpacityMicromapFeaturesARM<'a> {
     const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::PHYSICAL_DEVICE_PIPELINE_OPACITY_MICROMAP_FEATURES_ARM;
 }
+unsafe impl<'a> crate::Extends<crate::vk::PhysicalDeviceFeatures2<'_>>
+for PhysicalDevicePipelineOpacityMicromapFeaturesARM<'a> {}
+unsafe impl<'a> crate::Extends<crate::vk::DeviceCreateInfo<'_>>
+for PhysicalDevicePipelineOpacityMicromapFeaturesARM<'a> {}
 impl<'a> Default for PhysicalDevicePipelineOpacityMicromapFeaturesARM<'a> {
     fn default() -> Self {
         Self {

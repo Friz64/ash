@@ -69,6 +69,10 @@ pub(crate) mod reexport {
     for PhysicalDeviceCopyMemoryIndirectFeaturesNV<'a> {
         const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::PHYSICAL_DEVICE_COPY_MEMORY_INDIRECT_FEATURES_NV;
     }
+    unsafe impl<'a> crate::Extends<crate::vk::PhysicalDeviceFeatures2<'_>>
+    for PhysicalDeviceCopyMemoryIndirectFeaturesNV<'a> {}
+    unsafe impl<'a> crate::Extends<crate::vk::DeviceCreateInfo<'_>>
+    for PhysicalDeviceCopyMemoryIndirectFeaturesNV<'a> {}
     impl<'a> Default for PhysicalDeviceCopyMemoryIndirectFeaturesNV<'a> {
         fn default() -> Self {
             Self {

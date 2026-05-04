@@ -48,6 +48,10 @@ pub(crate) mod reexport {
     for PhysicalDevicePageableDeviceLocalMemoryFeaturesEXT<'a> {
         const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::PHYSICAL_DEVICE_PAGEABLE_DEVICE_LOCAL_MEMORY_FEATURES_EXT;
     }
+    unsafe impl<'a> crate::Extends<crate::vk::PhysicalDeviceFeatures2<'_>>
+    for PhysicalDevicePageableDeviceLocalMemoryFeaturesEXT<'a> {}
+    unsafe impl<'a> crate::Extends<crate::vk::DeviceCreateInfo<'_>>
+    for PhysicalDevicePageableDeviceLocalMemoryFeaturesEXT<'a> {}
     impl<'a> Default for PhysicalDevicePageableDeviceLocalMemoryFeaturesEXT<'a> {
         fn default() -> Self {
             Self {

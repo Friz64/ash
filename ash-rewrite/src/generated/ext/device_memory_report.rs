@@ -13,6 +13,10 @@ unsafe impl<'a> crate::TaggedStructure<'a>
 for PhysicalDeviceDeviceMemoryReportFeaturesEXT<'a> {
     const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::PHYSICAL_DEVICE_DEVICE_MEMORY_REPORT_FEATURES_EXT;
 }
+unsafe impl<'a> crate::Extends<crate::vk::PhysicalDeviceFeatures2<'_>>
+for PhysicalDeviceDeviceMemoryReportFeaturesEXT<'a> {}
+unsafe impl<'a> crate::Extends<crate::vk::DeviceCreateInfo<'_>>
+for PhysicalDeviceDeviceMemoryReportFeaturesEXT<'a> {}
 impl<'a> Default for PhysicalDeviceDeviceMemoryReportFeaturesEXT<'a> {
     fn default() -> Self {
         Self {
@@ -37,6 +41,8 @@ unsafe impl<'a> crate::TaggedStructure<'a>
 for DeviceDeviceMemoryReportCreateInfoEXT<'a> {
     const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::DEVICE_DEVICE_MEMORY_REPORT_CREATE_INFO_EXT;
 }
+unsafe impl<'a> crate::Extends<crate::vk::DeviceCreateInfo<'_>>
+for DeviceDeviceMemoryReportCreateInfoEXT<'a> {}
 impl<'a> Default for DeviceDeviceMemoryReportCreateInfoEXT<'a> {
     fn default() -> Self {
         Self {

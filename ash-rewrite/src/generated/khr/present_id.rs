@@ -12,6 +12,10 @@ pub struct PhysicalDevicePresentIdFeaturesKHR<'a> {
 unsafe impl<'a> crate::TaggedStructure<'a> for PhysicalDevicePresentIdFeaturesKHR<'a> {
     const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::PHYSICAL_DEVICE_PRESENT_ID_FEATURES_KHR;
 }
+unsafe impl<'a> crate::Extends<crate::vk::PhysicalDeviceFeatures2<'_>>
+for PhysicalDevicePresentIdFeaturesKHR<'a> {}
+unsafe impl<'a> crate::Extends<crate::vk::DeviceCreateInfo<'_>>
+for PhysicalDevicePresentIdFeaturesKHR<'a> {}
 impl<'a> Default for PhysicalDevicePresentIdFeaturesKHR<'a> {
     fn default() -> Self {
         Self {
@@ -34,6 +38,7 @@ pub struct PresentIdKHR<'a> {
 unsafe impl<'a> crate::TaggedStructure<'a> for PresentIdKHR<'a> {
     const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::PRESENT_ID_KHR;
 }
+unsafe impl<'a> crate::Extends<crate::vk::PresentInfoKHR<'_>> for PresentIdKHR<'a> {}
 impl<'a> Default for PresentIdKHR<'a> {
     fn default() -> Self {
         Self {

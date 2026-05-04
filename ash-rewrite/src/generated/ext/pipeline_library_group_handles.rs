@@ -13,6 +13,10 @@ unsafe impl<'a> crate::TaggedStructure<'a>
 for PhysicalDevicePipelineLibraryGroupHandlesFeaturesEXT<'a> {
     const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::PHYSICAL_DEVICE_PIPELINE_LIBRARY_GROUP_HANDLES_FEATURES_EXT;
 }
+unsafe impl<'a> crate::Extends<crate::vk::PhysicalDeviceFeatures2<'_>>
+for PhysicalDevicePipelineLibraryGroupHandlesFeaturesEXT<'a> {}
+unsafe impl<'a> crate::Extends<crate::vk::DeviceCreateInfo<'_>>
+for PhysicalDevicePipelineLibraryGroupHandlesFeaturesEXT<'a> {}
 impl<'a> Default for PhysicalDevicePipelineLibraryGroupHandlesFeaturesEXT<'a> {
     fn default() -> Self {
         Self {

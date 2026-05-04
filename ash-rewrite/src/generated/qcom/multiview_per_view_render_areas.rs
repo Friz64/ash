@@ -13,6 +13,10 @@ unsafe impl<'a> crate::TaggedStructure<'a>
 for PhysicalDeviceMultiviewPerViewRenderAreasFeaturesQCOM<'a> {
     const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::PHYSICAL_DEVICE_MULTIVIEW_PER_VIEW_RENDER_AREAS_FEATURES_QCOM;
 }
+unsafe impl<'a> crate::Extends<crate::vk::PhysicalDeviceFeatures2<'_>>
+for PhysicalDeviceMultiviewPerViewRenderAreasFeaturesQCOM<'a> {}
+unsafe impl<'a> crate::Extends<crate::vk::DeviceCreateInfo<'_>>
+for PhysicalDeviceMultiviewPerViewRenderAreasFeaturesQCOM<'a> {}
 impl<'a> Default for PhysicalDeviceMultiviewPerViewRenderAreasFeaturesQCOM<'a> {
     fn default() -> Self {
         Self {
@@ -36,6 +40,10 @@ unsafe impl<'a> crate::TaggedStructure<'a>
 for MultiviewPerViewRenderAreasRenderPassBeginInfoQCOM<'a> {
     const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::MULTIVIEW_PER_VIEW_RENDER_AREAS_RENDER_PASS_BEGIN_INFO_QCOM;
 }
+unsafe impl<'a> crate::Extends<crate::vk::RenderPassBeginInfo<'_>>
+for MultiviewPerViewRenderAreasRenderPassBeginInfoQCOM<'a> {}
+unsafe impl<'a> crate::Extends<crate::vk::RenderingInfo<'_>>
+for MultiviewPerViewRenderAreasRenderPassBeginInfoQCOM<'a> {}
 impl<'a> Default for MultiviewPerViewRenderAreasRenderPassBeginInfoQCOM<'a> {
     fn default() -> Self {
         Self {

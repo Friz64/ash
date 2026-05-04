@@ -12,6 +12,8 @@ pub struct ExternalMemoryImageCreateInfoNV<'a> {
 unsafe impl<'a> crate::TaggedStructure<'a> for ExternalMemoryImageCreateInfoNV<'a> {
     const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::EXTERNAL_MEMORY_IMAGE_CREATE_INFO_NV;
 }
+unsafe impl<'a> crate::Extends<crate::vk::ImageCreateInfo<'_>>
+for ExternalMemoryImageCreateInfoNV<'a> {}
 impl<'a> Default for ExternalMemoryImageCreateInfoNV<'a> {
     fn default() -> Self {
         Self {
@@ -33,6 +35,8 @@ pub struct ExportMemoryAllocateInfoNV<'a> {
 unsafe impl<'a> crate::TaggedStructure<'a> for ExportMemoryAllocateInfoNV<'a> {
     const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::EXPORT_MEMORY_ALLOCATE_INFO_NV;
 }
+unsafe impl<'a> crate::Extends<crate::vk::MemoryAllocateInfo<'_>>
+for ExportMemoryAllocateInfoNV<'a> {}
 impl<'a> Default for ExportMemoryAllocateInfoNV<'a> {
     fn default() -> Self {
         Self {

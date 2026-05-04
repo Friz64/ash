@@ -14,6 +14,10 @@ unsafe impl<'a> crate::TaggedStructure<'a>
 for PhysicalDeviceImage2DViewOf3DFeaturesEXT<'a> {
     const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::PHYSICAL_DEVICE_IMAGE_2D_VIEW_OF_3D_FEATURES_EXT;
 }
+unsafe impl<'a> crate::Extends<crate::vk::PhysicalDeviceFeatures2<'_>>
+for PhysicalDeviceImage2DViewOf3DFeaturesEXT<'a> {}
+unsafe impl<'a> crate::Extends<crate::vk::DeviceCreateInfo<'_>>
+for PhysicalDeviceImage2DViewOf3DFeaturesEXT<'a> {}
 impl<'a> Default for PhysicalDeviceImage2DViewOf3DFeaturesEXT<'a> {
     fn default() -> Self {
         Self {

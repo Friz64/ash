@@ -158,6 +158,8 @@ pub(crate) mod reexport {
     for PhysicalDeviceShaderEnqueuePropertiesAMDX<'a> {
         const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::PHYSICAL_DEVICE_SHADER_ENQUEUE_PROPERTIES_AMDX;
     }
+    unsafe impl<'a> crate::Extends<crate::vk::PhysicalDeviceProperties2<'_>>
+    for PhysicalDeviceShaderEnqueuePropertiesAMDX<'a> {}
     impl<'a> Default for PhysicalDeviceShaderEnqueuePropertiesAMDX<'a> {
         fn default() -> Self {
             Self {
@@ -187,6 +189,10 @@ pub(crate) mod reexport {
     for PhysicalDeviceShaderEnqueueFeaturesAMDX<'a> {
         const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::PHYSICAL_DEVICE_SHADER_ENQUEUE_FEATURES_AMDX;
     }
+    unsafe impl<'a> crate::Extends<crate::vk::PhysicalDeviceFeatures2<'_>>
+    for PhysicalDeviceShaderEnqueueFeaturesAMDX<'a> {}
+    unsafe impl<'a> crate::Extends<crate::vk::DeviceCreateInfo<'_>>
+    for PhysicalDeviceShaderEnqueueFeaturesAMDX<'a> {}
     impl<'a> Default for PhysicalDeviceShaderEnqueueFeaturesAMDX<'a> {
         fn default() -> Self {
             Self {
@@ -245,6 +251,8 @@ pub(crate) mod reexport {
     for PipelineShaderStageNodeCreateInfoAMDX<'a> {
         const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::PIPELINE_SHADER_STAGE_NODE_CREATE_INFO_AMDX;
     }
+    unsafe impl<'a> crate::Extends<crate::vk::PipelineShaderStageCreateInfo<'_>>
+    for PipelineShaderStageNodeCreateInfoAMDX<'a> {}
     impl<'a> Default for PipelineShaderStageNodeCreateInfoAMDX<'a> {
         fn default() -> Self {
             Self {

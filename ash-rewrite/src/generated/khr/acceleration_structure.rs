@@ -305,6 +305,8 @@ pub(crate) mod reexport {
     for WriteDescriptorSetAccelerationStructureKHR<'a> {
         const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::WRITE_DESCRIPTOR_SET_ACCELERATION_STRUCTURE_KHR;
     }
+    unsafe impl<'a> crate::Extends<crate::vk::WriteDescriptorSet<'_>>
+    for WriteDescriptorSetAccelerationStructureKHR<'a> {}
     impl<'a> Default for WriteDescriptorSetAccelerationStructureKHR<'a> {
         fn default() -> Self {
             Self {
@@ -332,6 +334,10 @@ pub(crate) mod reexport {
     for PhysicalDeviceAccelerationStructureFeaturesKHR<'a> {
         const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::PHYSICAL_DEVICE_ACCELERATION_STRUCTURE_FEATURES_KHR;
     }
+    unsafe impl<'a> crate::Extends<crate::vk::PhysicalDeviceFeatures2<'_>>
+    for PhysicalDeviceAccelerationStructureFeaturesKHR<'a> {}
+    unsafe impl<'a> crate::Extends<crate::vk::DeviceCreateInfo<'_>>
+    for PhysicalDeviceAccelerationStructureFeaturesKHR<'a> {}
     impl<'a> Default for PhysicalDeviceAccelerationStructureFeaturesKHR<'a> {
         fn default() -> Self {
             Self {
@@ -365,6 +371,8 @@ pub(crate) mod reexport {
     for PhysicalDeviceAccelerationStructurePropertiesKHR<'a> {
         const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::PHYSICAL_DEVICE_ACCELERATION_STRUCTURE_PROPERTIES_KHR;
     }
+    unsafe impl<'a> crate::Extends<crate::vk::PhysicalDeviceProperties2<'_>>
+    for PhysicalDeviceAccelerationStructurePropertiesKHR<'a> {}
     impl<'a> Default for PhysicalDeviceAccelerationStructurePropertiesKHR<'a> {
         fn default() -> Self {
             Self {

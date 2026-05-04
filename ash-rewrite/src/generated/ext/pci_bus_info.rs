@@ -16,6 +16,8 @@ unsafe impl<'a> crate::TaggedStructure<'a>
 for PhysicalDevicePCIBusInfoPropertiesEXT<'a> {
     const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::PHYSICAL_DEVICE_PCI_BUS_INFO_PROPERTIES_EXT;
 }
+unsafe impl<'a> crate::Extends<crate::vk::PhysicalDeviceProperties2<'_>>
+for PhysicalDevicePCIBusInfoPropertiesEXT<'a> {}
 impl<'a> Default for PhysicalDevicePCIBusInfoPropertiesEXT<'a> {
     fn default() -> Self {
         Self {

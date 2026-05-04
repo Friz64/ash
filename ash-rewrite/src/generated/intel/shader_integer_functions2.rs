@@ -13,6 +13,10 @@ unsafe impl<'a> crate::TaggedStructure<'a>
 for PhysicalDeviceShaderIntegerFunctions2FeaturesINTEL<'a> {
     const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::PHYSICAL_DEVICE_SHADER_INTEGER_FUNCTIONS_2_FEATURES_INTEL;
 }
+unsafe impl<'a> crate::Extends<crate::vk::PhysicalDeviceFeatures2<'_>>
+for PhysicalDeviceShaderIntegerFunctions2FeaturesINTEL<'a> {}
+unsafe impl<'a> crate::Extends<crate::vk::DeviceCreateInfo<'_>>
+for PhysicalDeviceShaderIntegerFunctions2FeaturesINTEL<'a> {}
 impl<'a> Default for PhysicalDeviceShaderIntegerFunctions2FeaturesINTEL<'a> {
     fn default() -> Self {
         Self {

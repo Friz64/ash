@@ -12,6 +12,8 @@ pub struct SurfacePresentModeKHR<'a> {
 unsafe impl<'a> crate::TaggedStructure<'a> for SurfacePresentModeKHR<'a> {
     const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::SURFACE_PRESENT_MODE_KHR;
 }
+unsafe impl<'a> crate::Extends<crate::vk::PhysicalDeviceSurfaceInfo2KHR<'_>>
+for SurfacePresentModeKHR<'a> {}
 impl<'a> Default for SurfacePresentModeKHR<'a> {
     fn default() -> Self {
         Self {
@@ -37,6 +39,8 @@ pub struct SurfacePresentScalingCapabilitiesKHR<'a> {
 unsafe impl<'a> crate::TaggedStructure<'a> for SurfacePresentScalingCapabilitiesKHR<'a> {
     const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::SURFACE_PRESENT_SCALING_CAPABILITIES_KHR;
 }
+unsafe impl<'a> crate::Extends<crate::vk::SurfaceCapabilities2KHR<'_>>
+for SurfacePresentScalingCapabilitiesKHR<'a> {}
 impl<'a> Default for SurfacePresentScalingCapabilitiesKHR<'a> {
     fn default() -> Self {
         Self {
@@ -63,6 +67,8 @@ pub struct SurfacePresentModeCompatibilityKHR<'a> {
 unsafe impl<'a> crate::TaggedStructure<'a> for SurfacePresentModeCompatibilityKHR<'a> {
     const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::SURFACE_PRESENT_MODE_COMPATIBILITY_KHR;
 }
+unsafe impl<'a> crate::Extends<crate::vk::SurfaceCapabilities2KHR<'_>>
+for SurfacePresentModeCompatibilityKHR<'a> {}
 impl<'a> Default for SurfacePresentModeCompatibilityKHR<'a> {
     fn default() -> Self {
         Self {

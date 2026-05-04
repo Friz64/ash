@@ -12,6 +12,10 @@ pub struct PhysicalDeviceRayQueryFeaturesKHR<'a> {
 unsafe impl<'a> crate::TaggedStructure<'a> for PhysicalDeviceRayQueryFeaturesKHR<'a> {
     const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::PHYSICAL_DEVICE_RAY_QUERY_FEATURES_KHR;
 }
+unsafe impl<'a> crate::Extends<crate::vk::PhysicalDeviceFeatures2<'_>>
+for PhysicalDeviceRayQueryFeaturesKHR<'a> {}
+unsafe impl<'a> crate::Extends<crate::vk::DeviceCreateInfo<'_>>
+for PhysicalDeviceRayQueryFeaturesKHR<'a> {}
 impl<'a> Default for PhysicalDeviceRayQueryFeaturesKHR<'a> {
     fn default() -> Self {
         Self {

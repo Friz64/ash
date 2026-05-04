@@ -13,6 +13,10 @@ unsafe impl<'a> crate::TaggedStructure<'a>
 for PhysicalDeviceLegacyVertexAttributesFeaturesEXT<'a> {
     const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::PHYSICAL_DEVICE_LEGACY_VERTEX_ATTRIBUTES_FEATURES_EXT;
 }
+unsafe impl<'a> crate::Extends<crate::vk::PhysicalDeviceFeatures2<'_>>
+for PhysicalDeviceLegacyVertexAttributesFeaturesEXT<'a> {}
+unsafe impl<'a> crate::Extends<crate::vk::DeviceCreateInfo<'_>>
+for PhysicalDeviceLegacyVertexAttributesFeaturesEXT<'a> {}
 impl<'a> Default for PhysicalDeviceLegacyVertexAttributesFeaturesEXT<'a> {
     fn default() -> Self {
         Self {
@@ -35,6 +39,8 @@ unsafe impl<'a> crate::TaggedStructure<'a>
 for PhysicalDeviceLegacyVertexAttributesPropertiesEXT<'a> {
     const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::PHYSICAL_DEVICE_LEGACY_VERTEX_ATTRIBUTES_PROPERTIES_EXT;
 }
+unsafe impl<'a> crate::Extends<crate::vk::PhysicalDeviceProperties2<'_>>
+for PhysicalDeviceLegacyVertexAttributesPropertiesEXT<'a> {}
 impl<'a> Default for PhysicalDeviceLegacyVertexAttributesPropertiesEXT<'a> {
     fn default() -> Self {
         Self {

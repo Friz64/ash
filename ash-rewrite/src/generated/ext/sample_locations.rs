@@ -89,6 +89,10 @@ pub(crate) mod reexport {
     unsafe impl<'a> crate::TaggedStructure<'a> for SampleLocationsInfoEXT<'a> {
         const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::SAMPLE_LOCATIONS_INFO_EXT;
     }
+    unsafe impl<'a> crate::Extends<crate::vk::ImageMemoryBarrier<'_>>
+    for SampleLocationsInfoEXT<'a> {}
+    unsafe impl<'a> crate::Extends<crate::vk::ImageMemoryBarrier2<'_>>
+    for SampleLocationsInfoEXT<'a> {}
     impl<'a> Default for SampleLocationsInfoEXT<'a> {
         fn default() -> Self {
             Self {
@@ -135,6 +139,8 @@ pub(crate) mod reexport {
     for RenderPassSampleLocationsBeginInfoEXT<'a> {
         const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::RENDER_PASS_SAMPLE_LOCATIONS_BEGIN_INFO_EXT;
     }
+    unsafe impl<'a> crate::Extends<crate::vk::RenderPassBeginInfo<'_>>
+    for RenderPassSampleLocationsBeginInfoEXT<'a> {}
     impl<'a> Default for RenderPassSampleLocationsBeginInfoEXT<'a> {
         fn default() -> Self {
             Self {
@@ -161,6 +167,8 @@ pub(crate) mod reexport {
     for PipelineSampleLocationsStateCreateInfoEXT<'a> {
         const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::PIPELINE_SAMPLE_LOCATIONS_STATE_CREATE_INFO_EXT;
     }
+    unsafe impl<'a> crate::Extends<crate::vk::PipelineMultisampleStateCreateInfo<'_>>
+    for PipelineSampleLocationsStateCreateInfoEXT<'a> {}
     impl<'a> Default for PipelineSampleLocationsStateCreateInfoEXT<'a> {
         fn default() -> Self {
             Self {
@@ -188,6 +196,8 @@ pub(crate) mod reexport {
     for PhysicalDeviceSampleLocationsPropertiesEXT<'a> {
         const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::PHYSICAL_DEVICE_SAMPLE_LOCATIONS_PROPERTIES_EXT;
     }
+    unsafe impl<'a> crate::Extends<crate::vk::PhysicalDeviceProperties2<'_>>
+    for PhysicalDeviceSampleLocationsPropertiesEXT<'a> {}
     impl<'a> Default for PhysicalDeviceSampleLocationsPropertiesEXT<'a> {
         fn default() -> Self {
             Self {

@@ -12,6 +12,10 @@ pub struct PhysicalDeviceCubicClampFeaturesQCOM<'a> {
 unsafe impl<'a> crate::TaggedStructure<'a> for PhysicalDeviceCubicClampFeaturesQCOM<'a> {
     const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::PHYSICAL_DEVICE_CUBIC_CLAMP_FEATURES_QCOM;
 }
+unsafe impl<'a> crate::Extends<crate::vk::PhysicalDeviceFeatures2<'_>>
+for PhysicalDeviceCubicClampFeaturesQCOM<'a> {}
+unsafe impl<'a> crate::Extends<crate::vk::DeviceCreateInfo<'_>>
+for PhysicalDeviceCubicClampFeaturesQCOM<'a> {}
 impl<'a> Default for PhysicalDeviceCubicClampFeaturesQCOM<'a> {
     fn default() -> Self {
         Self {

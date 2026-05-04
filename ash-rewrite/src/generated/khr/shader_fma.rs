@@ -14,6 +14,10 @@ pub struct PhysicalDeviceShaderFmaFeaturesKHR<'a> {
 unsafe impl<'a> crate::TaggedStructure<'a> for PhysicalDeviceShaderFmaFeaturesKHR<'a> {
     const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::PHYSICAL_DEVICE_SHADER_FMA_FEATURES_KHR;
 }
+unsafe impl<'a> crate::Extends<crate::vk::PhysicalDeviceFeatures2<'_>>
+for PhysicalDeviceShaderFmaFeaturesKHR<'a> {}
+unsafe impl<'a> crate::Extends<crate::vk::DeviceCreateInfo<'_>>
+for PhysicalDeviceShaderFmaFeaturesKHR<'a> {}
 impl<'a> Default for PhysicalDeviceShaderFmaFeaturesKHR<'a> {
     fn default() -> Self {
         Self {

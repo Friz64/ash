@@ -17,6 +17,8 @@ unsafe impl<'a> crate::TaggedStructure<'a>
 for VideoEncodeIntraRefreshCapabilitiesKHR<'a> {
     const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::VIDEO_ENCODE_INTRA_REFRESH_CAPABILITIES_KHR;
 }
+unsafe impl<'a> crate::Extends<crate::vk::VideoCapabilitiesKHR<'_>>
+for VideoEncodeIntraRefreshCapabilitiesKHR<'a> {}
 impl<'a> Default for VideoEncodeIntraRefreshCapabilitiesKHR<'a> {
     fn default() -> Self {
         Self {
@@ -43,6 +45,8 @@ unsafe impl<'a> crate::TaggedStructure<'a>
 for VideoEncodeSessionIntraRefreshCreateInfoKHR<'a> {
     const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::VIDEO_ENCODE_SESSION_INTRA_REFRESH_CREATE_INFO_KHR;
 }
+unsafe impl<'a> crate::Extends<crate::vk::VideoSessionCreateInfoKHR<'_>>
+for VideoEncodeSessionIntraRefreshCreateInfoKHR<'a> {}
 impl<'a> Default for VideoEncodeSessionIntraRefreshCreateInfoKHR<'a> {
     fn default() -> Self {
         Self {
@@ -65,6 +69,8 @@ pub struct VideoEncodeIntraRefreshInfoKHR<'a> {
 unsafe impl<'a> crate::TaggedStructure<'a> for VideoEncodeIntraRefreshInfoKHR<'a> {
     const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::VIDEO_ENCODE_INTRA_REFRESH_INFO_KHR;
 }
+unsafe impl<'a> crate::Extends<crate::vk::VideoEncodeInfoKHR<'_>>
+for VideoEncodeIntraRefreshInfoKHR<'a> {}
 impl<'a> Default for VideoEncodeIntraRefreshInfoKHR<'a> {
     fn default() -> Self {
         Self {
@@ -87,6 +93,8 @@ pub struct VideoReferenceIntraRefreshInfoKHR<'a> {
 unsafe impl<'a> crate::TaggedStructure<'a> for VideoReferenceIntraRefreshInfoKHR<'a> {
     const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::VIDEO_REFERENCE_INTRA_REFRESH_INFO_KHR;
 }
+unsafe impl<'a> crate::Extends<crate::vk::VideoReferenceSlotInfoKHR<'_>>
+for VideoReferenceIntraRefreshInfoKHR<'a> {}
 impl<'a> Default for VideoReferenceIntraRefreshInfoKHR<'a> {
     fn default() -> Self {
         Self {
@@ -109,6 +117,10 @@ unsafe impl<'a> crate::TaggedStructure<'a>
 for PhysicalDeviceVideoEncodeIntraRefreshFeaturesKHR<'a> {
     const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::PHYSICAL_DEVICE_VIDEO_ENCODE_INTRA_REFRESH_FEATURES_KHR;
 }
+unsafe impl<'a> crate::Extends<crate::vk::PhysicalDeviceFeatures2<'_>>
+for PhysicalDeviceVideoEncodeIntraRefreshFeaturesKHR<'a> {}
+unsafe impl<'a> crate::Extends<crate::vk::DeviceCreateInfo<'_>>
+for PhysicalDeviceVideoEncodeIntraRefreshFeaturesKHR<'a> {}
 impl<'a> Default for PhysicalDeviceVideoEncodeIntraRefreshFeaturesKHR<'a> {
     fn default() -> Self {
         Self {

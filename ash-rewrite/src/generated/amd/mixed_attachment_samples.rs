@@ -14,6 +14,10 @@ pub struct AttachmentSampleCountInfoAMD<'a> {
 unsafe impl<'a> crate::TaggedStructure<'a> for AttachmentSampleCountInfoAMD<'a> {
     const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::ATTACHMENT_SAMPLE_COUNT_INFO_AMD;
 }
+unsafe impl<'a> crate::Extends<crate::vk::CommandBufferInheritanceInfo<'_>>
+for AttachmentSampleCountInfoAMD<'a> {}
+unsafe impl<'a> crate::Extends<crate::vk::GraphicsPipelineCreateInfo<'_>>
+for AttachmentSampleCountInfoAMD<'a> {}
 impl<'a> Default for AttachmentSampleCountInfoAMD<'a> {
     fn default() -> Self {
         Self {

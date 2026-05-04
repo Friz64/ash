@@ -20,6 +20,10 @@ pub struct FrameBoundaryEXT<'a> {
 unsafe impl<'a> crate::TaggedStructure<'a> for FrameBoundaryEXT<'a> {
     const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::FRAME_BOUNDARY_EXT;
 }
+unsafe impl<'a> crate::Extends<crate::vk::SubmitInfo<'_>> for FrameBoundaryEXT<'a> {}
+unsafe impl<'a> crate::Extends<crate::vk::SubmitInfo2<'_>> for FrameBoundaryEXT<'a> {}
+unsafe impl<'a> crate::Extends<crate::vk::PresentInfoKHR<'_>> for FrameBoundaryEXT<'a> {}
+unsafe impl<'a> crate::Extends<crate::vk::BindSparseInfo<'_>> for FrameBoundaryEXT<'a> {}
 impl<'a> Default for FrameBoundaryEXT<'a> {
     fn default() -> Self {
         Self {
@@ -50,6 +54,10 @@ unsafe impl<'a> crate::TaggedStructure<'a>
 for PhysicalDeviceFrameBoundaryFeaturesEXT<'a> {
     const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::PHYSICAL_DEVICE_FRAME_BOUNDARY_FEATURES_EXT;
 }
+unsafe impl<'a> crate::Extends<crate::vk::PhysicalDeviceFeatures2<'_>>
+for PhysicalDeviceFrameBoundaryFeaturesEXT<'a> {}
+unsafe impl<'a> crate::Extends<crate::vk::DeviceCreateInfo<'_>>
+for PhysicalDeviceFrameBoundaryFeaturesEXT<'a> {}
 impl<'a> Default for PhysicalDeviceFrameBoundaryFeaturesEXT<'a> {
     fn default() -> Self {
         Self {

@@ -67,6 +67,10 @@ pub(crate) mod reexport {
     for PhysicalDeviceClusterAccelerationStructureFeaturesNV<'a> {
         const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::PHYSICAL_DEVICE_CLUSTER_ACCELERATION_STRUCTURE_FEATURES_NV;
     }
+    unsafe impl<'a> crate::Extends<crate::vk::PhysicalDeviceFeatures2<'_>>
+    for PhysicalDeviceClusterAccelerationStructureFeaturesNV<'a> {}
+    unsafe impl<'a> crate::Extends<crate::vk::DeviceCreateInfo<'_>>
+    for PhysicalDeviceClusterAccelerationStructureFeaturesNV<'a> {}
     impl<'a> Default for PhysicalDeviceClusterAccelerationStructureFeaturesNV<'a> {
         fn default() -> Self {
             Self {
@@ -96,6 +100,8 @@ pub(crate) mod reexport {
     for PhysicalDeviceClusterAccelerationStructurePropertiesNV<'a> {
         const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::PHYSICAL_DEVICE_CLUSTER_ACCELERATION_STRUCTURE_PROPERTIES_NV;
     }
+    unsafe impl<'a> crate::Extends<crate::vk::PhysicalDeviceProperties2<'_>>
+    for PhysicalDeviceClusterAccelerationStructurePropertiesNV<'a> {}
     impl<'a> Default for PhysicalDeviceClusterAccelerationStructurePropertiesNV<'a> {
         fn default() -> Self {
             Self {
@@ -131,6 +137,8 @@ pub(crate) mod reexport {
     for RayTracingPipelineClusterAccelerationStructureCreateInfoNV<'a> {
         const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::RAY_TRACING_PIPELINE_CLUSTER_ACCELERATION_STRUCTURE_CREATE_INFO_NV;
     }
+    unsafe impl<'a> crate::Extends<crate::vk::RayTracingPipelineCreateInfoKHR<'_>>
+    for RayTracingPipelineClusterAccelerationStructureCreateInfoNV<'a> {}
     impl<'a> Default for RayTracingPipelineClusterAccelerationStructureCreateInfoNV<'a> {
         fn default() -> Self {
             Self {

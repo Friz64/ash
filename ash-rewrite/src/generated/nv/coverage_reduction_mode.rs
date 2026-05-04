@@ -52,6 +52,10 @@ pub(crate) mod reexport {
     for PhysicalDeviceCoverageReductionModeFeaturesNV<'a> {
         const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::PHYSICAL_DEVICE_COVERAGE_REDUCTION_MODE_FEATURES_NV;
     }
+    unsafe impl<'a> crate::Extends<crate::vk::PhysicalDeviceFeatures2<'_>>
+    for PhysicalDeviceCoverageReductionModeFeaturesNV<'a> {}
+    unsafe impl<'a> crate::Extends<crate::vk::DeviceCreateInfo<'_>>
+    for PhysicalDeviceCoverageReductionModeFeaturesNV<'a> {}
     impl<'a> Default for PhysicalDeviceCoverageReductionModeFeaturesNV<'a> {
         fn default() -> Self {
             Self {
@@ -75,6 +79,8 @@ pub(crate) mod reexport {
     for PipelineCoverageReductionStateCreateInfoNV<'a> {
         const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::PIPELINE_COVERAGE_REDUCTION_STATE_CREATE_INFO_NV;
     }
+    unsafe impl<'a> crate::Extends<crate::vk::PipelineMultisampleStateCreateInfo<'_>>
+    for PipelineCoverageReductionStateCreateInfoNV<'a> {}
     impl<'a> Default for PipelineCoverageReductionStateCreateInfoNV<'a> {
         fn default() -> Self {
             Self {

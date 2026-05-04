@@ -13,6 +13,8 @@ pub struct PipelineLibraryCreateInfoKHR<'a> {
 unsafe impl<'a> crate::TaggedStructure<'a> for PipelineLibraryCreateInfoKHR<'a> {
     const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::PIPELINE_LIBRARY_CREATE_INFO_KHR;
 }
+unsafe impl<'a> crate::Extends<crate::vk::GraphicsPipelineCreateInfo<'_>>
+for PipelineLibraryCreateInfoKHR<'a> {}
 impl<'a> Default for PipelineLibraryCreateInfoKHR<'a> {
     fn default() -> Self {
         Self {

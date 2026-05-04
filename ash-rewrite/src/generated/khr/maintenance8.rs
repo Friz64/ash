@@ -13,6 +13,10 @@ unsafe impl<'a> crate::TaggedStructure<'a>
 for PhysicalDeviceMaintenance8FeaturesKHR<'a> {
     const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::PHYSICAL_DEVICE_MAINTENANCE_8_FEATURES_KHR;
 }
+unsafe impl<'a> crate::Extends<crate::vk::PhysicalDeviceFeatures2<'_>>
+for PhysicalDeviceMaintenance8FeaturesKHR<'a> {}
+unsafe impl<'a> crate::Extends<crate::vk::DeviceCreateInfo<'_>>
+for PhysicalDeviceMaintenance8FeaturesKHR<'a> {}
 impl<'a> Default for PhysicalDeviceMaintenance8FeaturesKHR<'a> {
     fn default() -> Self {
         Self {
@@ -35,6 +39,14 @@ pub struct MemoryBarrierAccessFlags3KHR<'a> {
 unsafe impl<'a> crate::TaggedStructure<'a> for MemoryBarrierAccessFlags3KHR<'a> {
     const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::MEMORY_BARRIER_ACCESS_FLAGS_3_KHR;
 }
+unsafe impl<'a> crate::Extends<crate::vk::SubpassDependency2<'_>>
+for MemoryBarrierAccessFlags3KHR<'a> {}
+unsafe impl<'a> crate::Extends<crate::vk::BufferMemoryBarrier2<'_>>
+for MemoryBarrierAccessFlags3KHR<'a> {}
+unsafe impl<'a> crate::Extends<crate::vk::ImageMemoryBarrier2<'_>>
+for MemoryBarrierAccessFlags3KHR<'a> {}
+unsafe impl<'a> crate::Extends<crate::vk::MemoryRangeBarriersInfoKHR<'_>>
+for MemoryBarrierAccessFlags3KHR<'a> {}
 impl<'a> Default for MemoryBarrierAccessFlags3KHR<'a> {
     fn default() -> Self {
         Self {

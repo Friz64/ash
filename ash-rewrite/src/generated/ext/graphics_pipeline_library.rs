@@ -13,6 +13,10 @@ unsafe impl<'a> crate::TaggedStructure<'a>
 for PhysicalDeviceGraphicsPipelineLibraryFeaturesEXT<'a> {
     const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::PHYSICAL_DEVICE_GRAPHICS_PIPELINE_LIBRARY_FEATURES_EXT;
 }
+unsafe impl<'a> crate::Extends<crate::vk::PhysicalDeviceFeatures2<'_>>
+for PhysicalDeviceGraphicsPipelineLibraryFeaturesEXT<'a> {}
+unsafe impl<'a> crate::Extends<crate::vk::DeviceCreateInfo<'_>>
+for PhysicalDeviceGraphicsPipelineLibraryFeaturesEXT<'a> {}
 impl<'a> Default for PhysicalDeviceGraphicsPipelineLibraryFeaturesEXT<'a> {
     fn default() -> Self {
         Self {
@@ -36,6 +40,8 @@ unsafe impl<'a> crate::TaggedStructure<'a>
 for PhysicalDeviceGraphicsPipelineLibraryPropertiesEXT<'a> {
     const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::PHYSICAL_DEVICE_GRAPHICS_PIPELINE_LIBRARY_PROPERTIES_EXT;
 }
+unsafe impl<'a> crate::Extends<crate::vk::PhysicalDeviceProperties2<'_>>
+for PhysicalDeviceGraphicsPipelineLibraryPropertiesEXT<'a> {}
 impl<'a> Default for PhysicalDeviceGraphicsPipelineLibraryPropertiesEXT<'a> {
     fn default() -> Self {
         Self {
@@ -58,6 +64,8 @@ pub struct GraphicsPipelineLibraryCreateInfoEXT<'a> {
 unsafe impl<'a> crate::TaggedStructure<'a> for GraphicsPipelineLibraryCreateInfoEXT<'a> {
     const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::GRAPHICS_PIPELINE_LIBRARY_CREATE_INFO_EXT;
 }
+unsafe impl<'a> crate::Extends<crate::vk::GraphicsPipelineCreateInfo<'_>>
+for GraphicsPipelineLibraryCreateInfoEXT<'a> {}
 impl<'a> Default for GraphicsPipelineLibraryCreateInfoEXT<'a> {
     fn default() -> Self {
         Self {

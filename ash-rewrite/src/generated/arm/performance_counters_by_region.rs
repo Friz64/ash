@@ -54,6 +54,10 @@ pub(crate) mod reexport {
     for PhysicalDevicePerformanceCountersByRegionFeaturesARM<'a> {
         const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::PHYSICAL_DEVICE_PERFORMANCE_COUNTERS_BY_REGION_FEATURES_ARM;
     }
+    unsafe impl<'a> crate::Extends<crate::vk::PhysicalDeviceFeatures2<'_>>
+    for PhysicalDevicePerformanceCountersByRegionFeaturesARM<'a> {}
+    unsafe impl<'a> crate::Extends<crate::vk::DeviceCreateInfo<'_>>
+    for PhysicalDevicePerformanceCountersByRegionFeaturesARM<'a> {}
     impl<'a> Default for PhysicalDevicePerformanceCountersByRegionFeaturesARM<'a> {
         fn default() -> Self {
             Self {
@@ -80,6 +84,8 @@ pub(crate) mod reexport {
     for PhysicalDevicePerformanceCountersByRegionPropertiesARM<'a> {
         const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::PHYSICAL_DEVICE_PERFORMANCE_COUNTERS_BY_REGION_PROPERTIES_ARM;
     }
+    unsafe impl<'a> crate::Extends<crate::vk::PhysicalDeviceProperties2<'_>>
+    for PhysicalDevicePerformanceCountersByRegionPropertiesARM<'a> {}
     impl<'a> Default for PhysicalDevicePerformanceCountersByRegionPropertiesARM<'a> {
         fn default() -> Self {
             Self {
@@ -154,6 +160,10 @@ pub(crate) mod reexport {
     for RenderPassPerformanceCountersByRegionBeginInfoARM<'a> {
         const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::RENDER_PASS_PERFORMANCE_COUNTERS_BY_REGION_BEGIN_INFO_ARM;
     }
+    unsafe impl<'a> crate::Extends<crate::vk::RenderPassBeginInfo<'_>>
+    for RenderPassPerformanceCountersByRegionBeginInfoARM<'a> {}
+    unsafe impl<'a> crate::Extends<crate::vk::RenderingInfo<'_>>
+    for RenderPassPerformanceCountersByRegionBeginInfoARM<'a> {}
     impl<'a> Default for RenderPassPerformanceCountersByRegionBeginInfoARM<'a> {
         fn default() -> Self {
             Self {

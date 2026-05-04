@@ -509,6 +509,8 @@ pub(crate) mod reexport {
     for WriteDescriptorSetAccelerationStructureNV<'a> {
         const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::WRITE_DESCRIPTOR_SET_ACCELERATION_STRUCTURE_NV;
     }
+    unsafe impl<'a> crate::Extends<crate::vk::WriteDescriptorSet<'_>>
+    for WriteDescriptorSetAccelerationStructureNV<'a> {}
     impl<'a> Default for WriteDescriptorSetAccelerationStructureNV<'a> {
         fn default() -> Self {
             Self {
@@ -563,6 +565,8 @@ pub(crate) mod reexport {
     for PhysicalDeviceRayTracingPropertiesNV<'a> {
         const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::PHYSICAL_DEVICE_RAY_TRACING_PROPERTIES_NV;
     }
+    unsafe impl<'a> crate::Extends<crate::vk::PhysicalDeviceProperties2<'_>>
+    for PhysicalDeviceRayTracingPropertiesNV<'a> {}
     impl<'a> Default for PhysicalDeviceRayTracingPropertiesNV<'a> {
         fn default() -> Self {
             Self {

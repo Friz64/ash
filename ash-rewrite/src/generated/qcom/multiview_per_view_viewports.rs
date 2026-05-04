@@ -13,6 +13,10 @@ unsafe impl<'a> crate::TaggedStructure<'a>
 for PhysicalDeviceMultiviewPerViewViewportsFeaturesQCOM<'a> {
     const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::PHYSICAL_DEVICE_MULTIVIEW_PER_VIEW_VIEWPORTS_FEATURES_QCOM;
 }
+unsafe impl<'a> crate::Extends<crate::vk::PhysicalDeviceFeatures2<'_>>
+for PhysicalDeviceMultiviewPerViewViewportsFeaturesQCOM<'a> {}
+unsafe impl<'a> crate::Extends<crate::vk::DeviceCreateInfo<'_>>
+for PhysicalDeviceMultiviewPerViewViewportsFeaturesQCOM<'a> {}
 impl<'a> Default for PhysicalDeviceMultiviewPerViewViewportsFeaturesQCOM<'a> {
     fn default() -> Self {
         Self {

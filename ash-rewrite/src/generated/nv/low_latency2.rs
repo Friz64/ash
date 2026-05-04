@@ -272,6 +272,10 @@ pub(crate) mod reexport {
     unsafe impl<'a> crate::TaggedStructure<'a> for LatencySubmissionPresentIdNV<'a> {
         const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::LATENCY_SUBMISSION_PRESENT_ID_NV;
     }
+    unsafe impl<'a> crate::Extends<crate::vk::SubmitInfo<'_>>
+    for LatencySubmissionPresentIdNV<'a> {}
+    unsafe impl<'a> crate::Extends<crate::vk::SubmitInfo2<'_>>
+    for LatencySubmissionPresentIdNV<'a> {}
     impl<'a> Default for LatencySubmissionPresentIdNV<'a> {
         fn default() -> Self {
             Self {
@@ -293,6 +297,8 @@ pub(crate) mod reexport {
     unsafe impl<'a> crate::TaggedStructure<'a> for SwapchainLatencyCreateInfoNV<'a> {
         const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::SWAPCHAIN_LATENCY_CREATE_INFO_NV;
     }
+    unsafe impl<'a> crate::Extends<crate::vk::SwapchainCreateInfoKHR<'_>>
+    for SwapchainLatencyCreateInfoNV<'a> {}
     impl<'a> Default for SwapchainLatencyCreateInfoNV<'a> {
         fn default() -> Self {
             Self {
@@ -315,6 +321,8 @@ pub(crate) mod reexport {
     unsafe impl<'a> crate::TaggedStructure<'a> for LatencySurfaceCapabilitiesNV<'a> {
         const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::LATENCY_SURFACE_CAPABILITIES_NV;
     }
+    unsafe impl<'a> crate::Extends<crate::vk::SurfaceCapabilities2KHR<'_>>
+    for LatencySurfaceCapabilitiesNV<'a> {}
     impl<'a> Default for LatencySurfaceCapabilitiesNV<'a> {
         fn default() -> Self {
             Self {

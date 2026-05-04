@@ -539,6 +539,10 @@ pub(crate) mod reexport {
     for PhysicalDeviceExtendedDynamicState3FeaturesEXT<'a> {
         const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::PHYSICAL_DEVICE_EXTENDED_DYNAMIC_STATE_3_FEATURES_EXT;
     }
+    unsafe impl<'a> crate::Extends<crate::vk::PhysicalDeviceFeatures2<'_>>
+    for PhysicalDeviceExtendedDynamicState3FeaturesEXT<'a> {}
+    unsafe impl<'a> crate::Extends<crate::vk::DeviceCreateInfo<'_>>
+    for PhysicalDeviceExtendedDynamicState3FeaturesEXT<'a> {}
     impl<'a> Default for PhysicalDeviceExtendedDynamicState3FeaturesEXT<'a> {
         fn default() -> Self {
             Self {
@@ -591,6 +595,8 @@ pub(crate) mod reexport {
     for PhysicalDeviceExtendedDynamicState3PropertiesEXT<'a> {
         const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::PHYSICAL_DEVICE_EXTENDED_DYNAMIC_STATE_3_PROPERTIES_EXT;
     }
+    unsafe impl<'a> crate::Extends<crate::vk::PhysicalDeviceProperties2<'_>>
+    for PhysicalDeviceExtendedDynamicState3PropertiesEXT<'a> {}
     impl<'a> Default for PhysicalDeviceExtendedDynamicState3PropertiesEXT<'a> {
         fn default() -> Self {
             Self {

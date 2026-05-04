@@ -68,6 +68,8 @@ pub(crate) mod reexport {
     for PhysicalDeviceClusterCullingShaderPropertiesHUAWEI<'a> {
         const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::PHYSICAL_DEVICE_CLUSTER_CULLING_SHADER_PROPERTIES_HUAWEI;
     }
+    unsafe impl<'a> crate::Extends<crate::vk::PhysicalDeviceProperties2<'_>>
+    for PhysicalDeviceClusterCullingShaderPropertiesHUAWEI<'a> {}
     impl<'a> Default for PhysicalDeviceClusterCullingShaderPropertiesHUAWEI<'a> {
         fn default() -> Self {
             Self {
@@ -94,6 +96,10 @@ pub(crate) mod reexport {
     for PhysicalDeviceClusterCullingShaderFeaturesHUAWEI<'a> {
         const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::PHYSICAL_DEVICE_CLUSTER_CULLING_SHADER_FEATURES_HUAWEI;
     }
+    unsafe impl<'a> crate::Extends<crate::vk::PhysicalDeviceFeatures2<'_>>
+    for PhysicalDeviceClusterCullingShaderFeaturesHUAWEI<'a> {}
+    unsafe impl<'a> crate::Extends<crate::vk::DeviceCreateInfo<'_>>
+    for PhysicalDeviceClusterCullingShaderFeaturesHUAWEI<'a> {}
     impl<'a> Default for PhysicalDeviceClusterCullingShaderFeaturesHUAWEI<'a> {
         fn default() -> Self {
             Self {
@@ -117,6 +123,10 @@ pub(crate) mod reexport {
     for PhysicalDeviceClusterCullingShaderVrsFeaturesHUAWEI<'a> {
         const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::PHYSICAL_DEVICE_CLUSTER_CULLING_SHADER_VRS_FEATURES_HUAWEI;
     }
+    unsafe impl<
+        'a,
+    > crate::Extends<crate::vk::PhysicalDeviceClusterCullingShaderFeaturesHUAWEI<'_>>
+    for PhysicalDeviceClusterCullingShaderVrsFeaturesHUAWEI<'a> {}
     impl<'a> Default for PhysicalDeviceClusterCullingShaderVrsFeaturesHUAWEI<'a> {
         fn default() -> Self {
             Self {

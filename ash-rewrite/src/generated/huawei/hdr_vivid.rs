@@ -13,6 +13,8 @@ pub struct HdrVividDynamicMetadataHUAWEI<'a> {
 unsafe impl<'a> crate::TaggedStructure<'a> for HdrVividDynamicMetadataHUAWEI<'a> {
     const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::HDR_VIVID_DYNAMIC_METADATA_HUAWEI;
 }
+unsafe impl<'a> crate::Extends<crate::vk::HdrMetadataEXT<'_>>
+for HdrVividDynamicMetadataHUAWEI<'a> {}
 impl<'a> Default for HdrVividDynamicMetadataHUAWEI<'a> {
     fn default() -> Self {
         Self {
@@ -35,6 +37,10 @@ pub struct PhysicalDeviceHdrVividFeaturesHUAWEI<'a> {
 unsafe impl<'a> crate::TaggedStructure<'a> for PhysicalDeviceHdrVividFeaturesHUAWEI<'a> {
     const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::PHYSICAL_DEVICE_HDR_VIVID_FEATURES_HUAWEI;
 }
+unsafe impl<'a> crate::Extends<crate::vk::PhysicalDeviceFeatures2<'_>>
+for PhysicalDeviceHdrVividFeaturesHUAWEI<'a> {}
+unsafe impl<'a> crate::Extends<crate::vk::DeviceCreateInfo<'_>>
+for PhysicalDeviceHdrVividFeaturesHUAWEI<'a> {}
 impl<'a> Default for PhysicalDeviceHdrVividFeaturesHUAWEI<'a> {
     fn default() -> Self {
         Self {

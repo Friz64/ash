@@ -12,6 +12,8 @@ pub struct PresentFrameTokenGGP<'a> {
 unsafe impl<'a> crate::TaggedStructure<'a> for PresentFrameTokenGGP<'a> {
     const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::PRESENT_FRAME_TOKEN_GGP;
 }
+unsafe impl<'a> crate::Extends<crate::vk::PresentInfoKHR<'_>>
+for PresentFrameTokenGGP<'a> {}
 impl<'a> Default for PresentFrameTokenGGP<'a> {
     fn default() -> Self {
         Self {

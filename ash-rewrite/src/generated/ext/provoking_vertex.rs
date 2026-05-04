@@ -14,6 +14,10 @@ unsafe impl<'a> crate::TaggedStructure<'a>
 for PhysicalDeviceProvokingVertexFeaturesEXT<'a> {
     const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::PHYSICAL_DEVICE_PROVOKING_VERTEX_FEATURES_EXT;
 }
+unsafe impl<'a> crate::Extends<crate::vk::PhysicalDeviceFeatures2<'_>>
+for PhysicalDeviceProvokingVertexFeaturesEXT<'a> {}
+unsafe impl<'a> crate::Extends<crate::vk::DeviceCreateInfo<'_>>
+for PhysicalDeviceProvokingVertexFeaturesEXT<'a> {}
 impl<'a> Default for PhysicalDeviceProvokingVertexFeaturesEXT<'a> {
     fn default() -> Self {
         Self {
@@ -38,6 +42,8 @@ unsafe impl<'a> crate::TaggedStructure<'a>
 for PhysicalDeviceProvokingVertexPropertiesEXT<'a> {
     const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::PHYSICAL_DEVICE_PROVOKING_VERTEX_PROPERTIES_EXT;
 }
+unsafe impl<'a> crate::Extends<crate::vk::PhysicalDeviceProperties2<'_>>
+for PhysicalDeviceProvokingVertexPropertiesEXT<'a> {}
 impl<'a> Default for PhysicalDeviceProvokingVertexPropertiesEXT<'a> {
     fn default() -> Self {
         Self {
@@ -61,6 +67,8 @@ unsafe impl<'a> crate::TaggedStructure<'a>
 for PipelineRasterizationProvokingVertexStateCreateInfoEXT<'a> {
     const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::PIPELINE_RASTERIZATION_PROVOKING_VERTEX_STATE_CREATE_INFO_EXT;
 }
+unsafe impl<'a> crate::Extends<crate::vk::PipelineRasterizationStateCreateInfo<'_>>
+for PipelineRasterizationProvokingVertexStateCreateInfoEXT<'a> {}
 impl<'a> Default for PipelineRasterizationProvokingVertexStateCreateInfoEXT<'a> {
     fn default() -> Self {
         Self {

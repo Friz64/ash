@@ -13,6 +13,10 @@ unsafe impl<'a> crate::TaggedStructure<'a>
 for PhysicalDeviceFragmentShaderBarycentricFeaturesKHR<'a> {
     const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::PHYSICAL_DEVICE_FRAGMENT_SHADER_BARYCENTRIC_FEATURES_KHR;
 }
+unsafe impl<'a> crate::Extends<crate::vk::PhysicalDeviceFeatures2<'_>>
+for PhysicalDeviceFragmentShaderBarycentricFeaturesKHR<'a> {}
+unsafe impl<'a> crate::Extends<crate::vk::DeviceCreateInfo<'_>>
+for PhysicalDeviceFragmentShaderBarycentricFeaturesKHR<'a> {}
 impl<'a> Default for PhysicalDeviceFragmentShaderBarycentricFeaturesKHR<'a> {
     fn default() -> Self {
         Self {
@@ -35,6 +39,8 @@ unsafe impl<'a> crate::TaggedStructure<'a>
 for PhysicalDeviceFragmentShaderBarycentricPropertiesKHR<'a> {
     const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::PHYSICAL_DEVICE_FRAGMENT_SHADER_BARYCENTRIC_PROPERTIES_KHR;
 }
+unsafe impl<'a> crate::Extends<crate::vk::PhysicalDeviceProperties2<'_>>
+for PhysicalDeviceFragmentShaderBarycentricPropertiesKHR<'a> {}
 impl<'a> Default for PhysicalDeviceFragmentShaderBarycentricPropertiesKHR<'a> {
     fn default() -> Self {
         Self {

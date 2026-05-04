@@ -13,6 +13,10 @@ unsafe impl<'a> crate::TaggedStructure<'a>
 for PhysicalDeviceVideoEncodeRgbConversionFeaturesVALVE<'a> {
     const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::PHYSICAL_DEVICE_VIDEO_ENCODE_RGB_CONVERSION_FEATURES_VALVE;
 }
+unsafe impl<'a> crate::Extends<crate::vk::PhysicalDeviceFeatures2<'_>>
+for PhysicalDeviceVideoEncodeRgbConversionFeaturesVALVE<'a> {}
+unsafe impl<'a> crate::Extends<crate::vk::DeviceCreateInfo<'_>>
+for PhysicalDeviceVideoEncodeRgbConversionFeaturesVALVE<'a> {}
 impl<'a> Default for PhysicalDeviceVideoEncodeRgbConversionFeaturesVALVE<'a> {
     fn default() -> Self {
         Self {
@@ -38,6 +42,8 @@ unsafe impl<'a> crate::TaggedStructure<'a>
 for VideoEncodeRgbConversionCapabilitiesVALVE<'a> {
     const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::VIDEO_ENCODE_RGB_CONVERSION_CAPABILITIES_VALVE;
 }
+unsafe impl<'a> crate::Extends<crate::vk::VideoCapabilitiesKHR<'_>>
+for VideoEncodeRgbConversionCapabilitiesVALVE<'a> {}
 impl<'a> Default for VideoEncodeRgbConversionCapabilitiesVALVE<'a> {
     fn default() -> Self {
         Self {
@@ -63,6 +69,8 @@ unsafe impl<'a> crate::TaggedStructure<'a>
 for VideoEncodeProfileRgbConversionInfoVALVE<'a> {
     const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::VIDEO_ENCODE_PROFILE_RGB_CONVERSION_INFO_VALVE;
 }
+unsafe impl<'a> crate::Extends<crate::vk::VideoProfileInfoKHR<'_>>
+for VideoEncodeProfileRgbConversionInfoVALVE<'a> {}
 impl<'a> Default for VideoEncodeProfileRgbConversionInfoVALVE<'a> {
     fn default() -> Self {
         Self {
@@ -88,6 +96,8 @@ unsafe impl<'a> crate::TaggedStructure<'a>
 for VideoEncodeSessionRgbConversionCreateInfoVALVE<'a> {
     const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::VIDEO_ENCODE_SESSION_RGB_CONVERSION_CREATE_INFO_VALVE;
 }
+unsafe impl<'a> crate::Extends<crate::vk::VideoSessionCreateInfoKHR<'_>>
+for VideoEncodeSessionRgbConversionCreateInfoVALVE<'a> {}
 impl<'a> Default for VideoEncodeSessionRgbConversionCreateInfoVALVE<'a> {
     fn default() -> Self {
         Self {

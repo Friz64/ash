@@ -509,6 +509,8 @@ pub(crate) mod reexport {
     unsafe impl<'a> crate::TaggedStructure<'a> for MemoryRangeBarriersInfoKHR<'a> {
         const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::MEMORY_RANGE_BARRIERS_INFO_KHR;
     }
+    unsafe impl<'a> crate::Extends<crate::vk::DependencyInfo<'_>>
+    for MemoryRangeBarriersInfoKHR<'a> {}
     impl<'a> Default for MemoryRangeBarriersInfoKHR<'a> {
         fn default() -> Self {
             Self {
@@ -567,6 +569,10 @@ pub(crate) mod reexport {
     for PhysicalDeviceDeviceAddressCommandsFeaturesKHR<'a> {
         const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::PHYSICAL_DEVICE_DEVICE_ADDRESS_COMMANDS_FEATURES_KHR;
     }
+    unsafe impl<'a> crate::Extends<crate::vk::PhysicalDeviceFeatures2<'_>>
+    for PhysicalDeviceDeviceAddressCommandsFeaturesKHR<'a> {}
+    unsafe impl<'a> crate::Extends<crate::vk::DeviceCreateInfo<'_>>
+    for PhysicalDeviceDeviceAddressCommandsFeaturesKHR<'a> {}
     impl<'a> Default for PhysicalDeviceDeviceAddressCommandsFeaturesKHR<'a> {
         fn default() -> Self {
             Self {

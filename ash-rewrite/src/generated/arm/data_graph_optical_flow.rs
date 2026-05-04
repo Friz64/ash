@@ -55,6 +55,8 @@ pub(crate) mod reexport {
     for DataGraphPipelineResourceInfoImageLayoutARM<'a> {
         const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::DATA_GRAPH_PIPELINE_RESOURCE_INFO_IMAGE_LAYOUT_ARM;
     }
+    unsafe impl<'a> crate::Extends<crate::vk::DataGraphPipelineResourceInfoARM<'_>>
+    for DataGraphPipelineResourceInfoImageLayoutARM<'a> {}
     impl<'a> Default for DataGraphPipelineResourceInfoImageLayoutARM<'a> {
         fn default() -> Self {
             Self {
@@ -103,6 +105,10 @@ pub(crate) mod reexport {
     for PhysicalDeviceDataGraphOpticalFlowFeaturesARM<'a> {
         const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::PHYSICAL_DEVICE_DATA_GRAPH_OPTICAL_FLOW_FEATURES_ARM;
     }
+    unsafe impl<'a> crate::Extends<crate::vk::PhysicalDeviceFeatures2<'_>>
+    for PhysicalDeviceDataGraphOpticalFlowFeaturesARM<'a> {}
+    unsafe impl<'a> crate::Extends<crate::vk::DeviceCreateInfo<'_>>
+    for PhysicalDeviceDataGraphOpticalFlowFeaturesARM<'a> {}
     impl<'a> Default for PhysicalDeviceDataGraphOpticalFlowFeaturesARM<'a> {
         fn default() -> Self {
             Self {
@@ -161,6 +167,10 @@ pub(crate) mod reexport {
     for DataGraphOpticalFlowImageFormatInfoARM<'a> {
         const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::DATA_GRAPH_OPTICAL_FLOW_IMAGE_FORMAT_INFO_ARM;
     }
+    unsafe impl<'a> crate::Extends<crate::vk::PhysicalDeviceImageFormatInfo2<'_>>
+    for DataGraphOpticalFlowImageFormatInfoARM<'a> {}
+    unsafe impl<'a> crate::Extends<crate::vk::ImageCreateInfo<'_>>
+    for DataGraphOpticalFlowImageFormatInfoARM<'a> {}
     impl<'a> Default for DataGraphOpticalFlowImageFormatInfoARM<'a> {
         fn default() -> Self {
             Self {
@@ -209,6 +219,8 @@ pub(crate) mod reexport {
     for DataGraphPipelineSingleNodeCreateInfoARM<'a> {
         const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::DATA_GRAPH_PIPELINE_SINGLE_NODE_CREATE_INFO_ARM;
     }
+    unsafe impl<'a> crate::Extends<crate::vk::DataGraphPipelineCreateInfoARM<'_>>
+    for DataGraphPipelineSingleNodeCreateInfoARM<'a> {}
     impl<'a> Default for DataGraphPipelineSingleNodeCreateInfoARM<'a> {
         fn default() -> Self {
             Self {
@@ -241,6 +253,8 @@ pub(crate) mod reexport {
     for DataGraphPipelineOpticalFlowCreateInfoARM<'a> {
         const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::DATA_GRAPH_PIPELINE_OPTICAL_FLOW_CREATE_INFO_ARM;
     }
+    unsafe impl<'a> crate::Extends<crate::vk::DataGraphPipelineCreateInfoARM<'_>>
+    for DataGraphPipelineOpticalFlowCreateInfoARM<'a> {}
     impl<'a> Default for DataGraphPipelineOpticalFlowCreateInfoARM<'a> {
         fn default() -> Self {
             Self {
@@ -272,6 +286,8 @@ pub(crate) mod reexport {
     for DataGraphPipelineOpticalFlowDispatchInfoARM<'a> {
         const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::DATA_GRAPH_PIPELINE_OPTICAL_FLOW_DISPATCH_INFO_ARM;
     }
+    unsafe impl<'a> crate::Extends<crate::vk::DataGraphPipelineDispatchInfoARM<'_>>
+    for DataGraphPipelineOpticalFlowDispatchInfoARM<'a> {}
     impl<'a> Default for DataGraphPipelineOpticalFlowDispatchInfoARM<'a> {
         fn default() -> Self {
             Self {

@@ -15,6 +15,10 @@ unsafe impl<'a> crate::TaggedStructure<'a>
 for PhysicalDeviceNestedCommandBufferFeaturesEXT<'a> {
     const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::PHYSICAL_DEVICE_NESTED_COMMAND_BUFFER_FEATURES_EXT;
 }
+unsafe impl<'a> crate::Extends<crate::vk::PhysicalDeviceFeatures2<'_>>
+for PhysicalDeviceNestedCommandBufferFeaturesEXT<'a> {}
+unsafe impl<'a> crate::Extends<crate::vk::DeviceCreateInfo<'_>>
+for PhysicalDeviceNestedCommandBufferFeaturesEXT<'a> {}
 impl<'a> Default for PhysicalDeviceNestedCommandBufferFeaturesEXT<'a> {
     fn default() -> Self {
         Self {
@@ -39,6 +43,8 @@ unsafe impl<'a> crate::TaggedStructure<'a>
 for PhysicalDeviceNestedCommandBufferPropertiesEXT<'a> {
     const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::PHYSICAL_DEVICE_NESTED_COMMAND_BUFFER_PROPERTIES_EXT;
 }
+unsafe impl<'a> crate::Extends<crate::vk::PhysicalDeviceProperties2<'_>>
+for PhysicalDeviceNestedCommandBufferPropertiesEXT<'a> {}
 impl<'a> Default for PhysicalDeviceNestedCommandBufferPropertiesEXT<'a> {
     fn default() -> Self {
         Self {

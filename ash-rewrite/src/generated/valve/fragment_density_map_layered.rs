@@ -13,6 +13,8 @@ unsafe impl<'a> crate::TaggedStructure<'a>
 for PhysicalDeviceFragmentDensityMapLayeredPropertiesVALVE<'a> {
     const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::PHYSICAL_DEVICE_FRAGMENT_DENSITY_MAP_LAYERED_PROPERTIES_VALVE;
 }
+unsafe impl<'a> crate::Extends<crate::vk::PhysicalDeviceProperties2<'_>>
+for PhysicalDeviceFragmentDensityMapLayeredPropertiesVALVE<'a> {}
 impl<'a> Default for PhysicalDeviceFragmentDensityMapLayeredPropertiesVALVE<'a> {
     fn default() -> Self {
         Self {
@@ -35,6 +37,10 @@ unsafe impl<'a> crate::TaggedStructure<'a>
 for PhysicalDeviceFragmentDensityMapLayeredFeaturesVALVE<'a> {
     const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::PHYSICAL_DEVICE_FRAGMENT_DENSITY_MAP_LAYERED_FEATURES_VALVE;
 }
+unsafe impl<'a> crate::Extends<crate::vk::PhysicalDeviceFeatures2<'_>>
+for PhysicalDeviceFragmentDensityMapLayeredFeaturesVALVE<'a> {}
+unsafe impl<'a> crate::Extends<crate::vk::DeviceCreateInfo<'_>>
+for PhysicalDeviceFragmentDensityMapLayeredFeaturesVALVE<'a> {}
 impl<'a> Default for PhysicalDeviceFragmentDensityMapLayeredFeaturesVALVE<'a> {
     fn default() -> Self {
         Self {
@@ -57,6 +63,8 @@ unsafe impl<'a> crate::TaggedStructure<'a>
 for PipelineFragmentDensityMapLayeredCreateInfoVALVE<'a> {
     const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::PIPELINE_FRAGMENT_DENSITY_MAP_LAYERED_CREATE_INFO_VALVE;
 }
+unsafe impl<'a> crate::Extends<crate::vk::GraphicsPipelineCreateInfo<'_>>
+for PipelineFragmentDensityMapLayeredCreateInfoVALVE<'a> {}
 impl<'a> Default for PipelineFragmentDensityMapLayeredCreateInfoVALVE<'a> {
     fn default() -> Self {
         Self {

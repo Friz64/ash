@@ -14,6 +14,10 @@ unsafe impl<'a> crate::TaggedStructure<'a>
 for PhysicalDeviceUnifiedImageLayoutsFeaturesKHR<'a> {
     const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::PHYSICAL_DEVICE_UNIFIED_IMAGE_LAYOUTS_FEATURES_KHR;
 }
+unsafe impl<'a> crate::Extends<crate::vk::PhysicalDeviceFeatures2<'_>>
+for PhysicalDeviceUnifiedImageLayoutsFeaturesKHR<'a> {}
+unsafe impl<'a> crate::Extends<crate::vk::DeviceCreateInfo<'_>>
+for PhysicalDeviceUnifiedImageLayoutsFeaturesKHR<'a> {}
 impl<'a> Default for PhysicalDeviceUnifiedImageLayoutsFeaturesKHR<'a> {
     fn default() -> Self {
         Self {
@@ -36,6 +40,8 @@ pub struct AttachmentFeedbackLoopInfoEXT<'a> {
 unsafe impl<'a> crate::TaggedStructure<'a> for AttachmentFeedbackLoopInfoEXT<'a> {
     const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::ATTACHMENT_FEEDBACK_LOOP_INFO_EXT;
 }
+unsafe impl<'a> crate::Extends<crate::vk::RenderingAttachmentInfo<'_>>
+for AttachmentFeedbackLoopInfoEXT<'a> {}
 impl<'a> Default for AttachmentFeedbackLoopInfoEXT<'a> {
     fn default() -> Self {
         Self {

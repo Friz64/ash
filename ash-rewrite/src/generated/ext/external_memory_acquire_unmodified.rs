@@ -12,6 +12,14 @@ pub struct ExternalMemoryAcquireUnmodifiedEXT<'a> {
 unsafe impl<'a> crate::TaggedStructure<'a> for ExternalMemoryAcquireUnmodifiedEXT<'a> {
     const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::EXTERNAL_MEMORY_ACQUIRE_UNMODIFIED_EXT;
 }
+unsafe impl<'a> crate::Extends<crate::vk::BufferMemoryBarrier<'_>>
+for ExternalMemoryAcquireUnmodifiedEXT<'a> {}
+unsafe impl<'a> crate::Extends<crate::vk::BufferMemoryBarrier2<'_>>
+for ExternalMemoryAcquireUnmodifiedEXT<'a> {}
+unsafe impl<'a> crate::Extends<crate::vk::ImageMemoryBarrier<'_>>
+for ExternalMemoryAcquireUnmodifiedEXT<'a> {}
+unsafe impl<'a> crate::Extends<crate::vk::ImageMemoryBarrier2<'_>>
+for ExternalMemoryAcquireUnmodifiedEXT<'a> {}
 impl<'a> Default for ExternalMemoryAcquireUnmodifiedEXT<'a> {
     fn default() -> Self {
         Self {

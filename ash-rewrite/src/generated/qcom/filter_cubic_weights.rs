@@ -13,6 +13,10 @@ unsafe impl<'a> crate::TaggedStructure<'a>
 for PhysicalDeviceCubicWeightsFeaturesQCOM<'a> {
     const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::PHYSICAL_DEVICE_CUBIC_WEIGHTS_FEATURES_QCOM;
 }
+unsafe impl<'a> crate::Extends<crate::vk::PhysicalDeviceFeatures2<'_>>
+for PhysicalDeviceCubicWeightsFeaturesQCOM<'a> {}
+unsafe impl<'a> crate::Extends<crate::vk::DeviceCreateInfo<'_>>
+for PhysicalDeviceCubicWeightsFeaturesQCOM<'a> {}
 impl<'a> Default for PhysicalDeviceCubicWeightsFeaturesQCOM<'a> {
     fn default() -> Self {
         Self {
@@ -34,6 +38,8 @@ pub struct SamplerCubicWeightsCreateInfoQCOM<'a> {
 unsafe impl<'a> crate::TaggedStructure<'a> for SamplerCubicWeightsCreateInfoQCOM<'a> {
     const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::SAMPLER_CUBIC_WEIGHTS_CREATE_INFO_QCOM;
 }
+unsafe impl<'a> crate::Extends<crate::vk::SamplerCreateInfo<'_>>
+for SamplerCubicWeightsCreateInfoQCOM<'a> {}
 impl<'a> Default for SamplerCubicWeightsCreateInfoQCOM<'a> {
     fn default() -> Self {
         Self {
@@ -55,6 +61,8 @@ pub struct BlitImageCubicWeightsInfoQCOM<'a> {
 unsafe impl<'a> crate::TaggedStructure<'a> for BlitImageCubicWeightsInfoQCOM<'a> {
     const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::BLIT_IMAGE_CUBIC_WEIGHTS_INFO_QCOM;
 }
+unsafe impl<'a> crate::Extends<crate::vk::BlitImageInfo2<'_>>
+for BlitImageCubicWeightsInfoQCOM<'a> {}
 impl<'a> Default for BlitImageCubicWeightsInfoQCOM<'a> {
     fn default() -> Self {
         Self {

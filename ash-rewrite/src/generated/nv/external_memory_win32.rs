@@ -49,6 +49,8 @@ pub(crate) mod reexport {
     unsafe impl<'a> crate::TaggedStructure<'a> for ImportMemoryWin32HandleInfoNV<'a> {
         const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::IMPORT_MEMORY_WIN32_HANDLE_INFO_NV;
     }
+    unsafe impl<'a> crate::Extends<crate::vk::MemoryAllocateInfo<'_>>
+    for ImportMemoryWin32HandleInfoNV<'a> {}
     impl<'a> Default for ImportMemoryWin32HandleInfoNV<'a> {
         fn default() -> Self {
             Self {
@@ -72,6 +74,8 @@ pub(crate) mod reexport {
     unsafe impl<'a> crate::TaggedStructure<'a> for ExportMemoryWin32HandleInfoNV<'a> {
         const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::EXPORT_MEMORY_WIN32_HANDLE_INFO_NV;
     }
+    unsafe impl<'a> crate::Extends<crate::vk::MemoryAllocateInfo<'_>>
+    for ExportMemoryWin32HandleInfoNV<'a> {}
     impl<'a> Default for ExportMemoryWin32HandleInfoNV<'a> {
         fn default() -> Self {
             Self {

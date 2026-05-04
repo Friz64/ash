@@ -70,6 +70,10 @@ pub(crate) mod reexport {
     for PhysicalDeviceQueuePerfHintFeaturesQCOM<'a> {
         const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::PHYSICAL_DEVICE_QUEUE_PERF_HINT_FEATURES_QCOM;
     }
+    unsafe impl<'a> crate::Extends<crate::vk::PhysicalDeviceFeatures2<'_>>
+    for PhysicalDeviceQueuePerfHintFeaturesQCOM<'a> {}
+    unsafe impl<'a> crate::Extends<crate::vk::DeviceCreateInfo<'_>>
+    for PhysicalDeviceQueuePerfHintFeaturesQCOM<'a> {}
     impl<'a> Default for PhysicalDeviceQueuePerfHintFeaturesQCOM<'a> {
         fn default() -> Self {
             Self {
@@ -92,6 +96,8 @@ pub(crate) mod reexport {
     for PhysicalDeviceQueuePerfHintPropertiesQCOM<'a> {
         const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::PHYSICAL_DEVICE_QUEUE_PERF_HINT_PROPERTIES_QCOM;
     }
+    unsafe impl<'a> crate::Extends<crate::vk::PhysicalDeviceProperties2<'_>>
+    for PhysicalDeviceQueuePerfHintPropertiesQCOM<'a> {}
     impl<'a> Default for PhysicalDeviceQueuePerfHintPropertiesQCOM<'a> {
         fn default() -> Self {
             Self {

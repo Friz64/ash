@@ -12,6 +12,8 @@ pub struct SurfaceProtectedCapabilitiesKHR<'a> {
 unsafe impl<'a> crate::TaggedStructure<'a> for SurfaceProtectedCapabilitiesKHR<'a> {
     const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::SURFACE_PROTECTED_CAPABILITIES_KHR;
 }
+unsafe impl<'a> crate::Extends<crate::vk::SurfaceCapabilities2KHR<'_>>
+for SurfaceProtectedCapabilitiesKHR<'a> {}
 impl<'a> Default for SurfaceProtectedCapabilitiesKHR<'a> {
     fn default() -> Self {
         Self {

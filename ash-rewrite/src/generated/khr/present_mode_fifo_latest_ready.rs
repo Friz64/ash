@@ -13,6 +13,10 @@ unsafe impl<'a> crate::TaggedStructure<'a>
 for PhysicalDevicePresentModeFifoLatestReadyFeaturesKHR<'a> {
     const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::PHYSICAL_DEVICE_PRESENT_MODE_FIFO_LATEST_READY_FEATURES_KHR;
 }
+unsafe impl<'a> crate::Extends<crate::vk::PhysicalDeviceFeatures2<'_>>
+for PhysicalDevicePresentModeFifoLatestReadyFeaturesKHR<'a> {}
+unsafe impl<'a> crate::Extends<crate::vk::DeviceCreateInfo<'_>>
+for PhysicalDevicePresentModeFifoLatestReadyFeaturesKHR<'a> {}
 impl<'a> Default for PhysicalDevicePresentModeFifoLatestReadyFeaturesKHR<'a> {
     fn default() -> Self {
         Self {

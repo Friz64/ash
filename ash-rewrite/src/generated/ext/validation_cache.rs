@@ -124,6 +124,10 @@ pub(crate) mod reexport {
     for ShaderModuleValidationCacheCreateInfoEXT<'a> {
         const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::SHADER_MODULE_VALIDATION_CACHE_CREATE_INFO_EXT;
     }
+    unsafe impl<'a> crate::Extends<crate::vk::ShaderModuleCreateInfo<'_>>
+    for ShaderModuleValidationCacheCreateInfoEXT<'a> {}
+    unsafe impl<'a> crate::Extends<crate::vk::PipelineShaderStageCreateInfo<'_>>
+    for ShaderModuleValidationCacheCreateInfoEXT<'a> {}
     impl<'a> Default for ShaderModuleValidationCacheCreateInfoEXT<'a> {
         fn default() -> Self {
             Self {

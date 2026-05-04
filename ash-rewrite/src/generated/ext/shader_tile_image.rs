@@ -15,6 +15,10 @@ unsafe impl<'a> crate::TaggedStructure<'a>
 for PhysicalDeviceShaderTileImageFeaturesEXT<'a> {
     const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::PHYSICAL_DEVICE_SHADER_TILE_IMAGE_FEATURES_EXT;
 }
+unsafe impl<'a> crate::Extends<crate::vk::PhysicalDeviceFeatures2<'_>>
+for PhysicalDeviceShaderTileImageFeaturesEXT<'a> {}
+unsafe impl<'a> crate::Extends<crate::vk::DeviceCreateInfo<'_>>
+for PhysicalDeviceShaderTileImageFeaturesEXT<'a> {}
 impl<'a> Default for PhysicalDeviceShaderTileImageFeaturesEXT<'a> {
     fn default() -> Self {
         Self {
@@ -41,6 +45,8 @@ unsafe impl<'a> crate::TaggedStructure<'a>
 for PhysicalDeviceShaderTileImagePropertiesEXT<'a> {
     const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::PHYSICAL_DEVICE_SHADER_TILE_IMAGE_PROPERTIES_EXT;
 }
+unsafe impl<'a> crate::Extends<crate::vk::PhysicalDeviceProperties2<'_>>
+for PhysicalDeviceShaderTileImagePropertiesEXT<'a> {}
 impl<'a> Default for PhysicalDeviceShaderTileImagePropertiesEXT<'a> {
     fn default() -> Self {
         Self {

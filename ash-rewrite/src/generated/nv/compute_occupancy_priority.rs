@@ -71,6 +71,10 @@ pub(crate) mod reexport {
     for PhysicalDeviceComputeOccupancyPriorityFeaturesNV<'a> {
         const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::PHYSICAL_DEVICE_COMPUTE_OCCUPANCY_PRIORITY_FEATURES_NV;
     }
+    unsafe impl<'a> crate::Extends<crate::vk::PhysicalDeviceFeatures2<'_>>
+    for PhysicalDeviceComputeOccupancyPriorityFeaturesNV<'a> {}
+    unsafe impl<'a> crate::Extends<crate::vk::DeviceCreateInfo<'_>>
+    for PhysicalDeviceComputeOccupancyPriorityFeaturesNV<'a> {}
     impl<'a> Default for PhysicalDeviceComputeOccupancyPriorityFeaturesNV<'a> {
         fn default() -> Self {
             Self {

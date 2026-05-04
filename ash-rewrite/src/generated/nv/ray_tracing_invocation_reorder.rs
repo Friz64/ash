@@ -13,6 +13,10 @@ unsafe impl<'a> crate::TaggedStructure<'a>
 for PhysicalDeviceRayTracingInvocationReorderFeaturesNV<'a> {
     const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::PHYSICAL_DEVICE_RAY_TRACING_INVOCATION_REORDER_FEATURES_NV;
 }
+unsafe impl<'a> crate::Extends<crate::vk::PhysicalDeviceFeatures2<'_>>
+for PhysicalDeviceRayTracingInvocationReorderFeaturesNV<'a> {}
+unsafe impl<'a> crate::Extends<crate::vk::DeviceCreateInfo<'_>>
+for PhysicalDeviceRayTracingInvocationReorderFeaturesNV<'a> {}
 impl<'a> Default for PhysicalDeviceRayTracingInvocationReorderFeaturesNV<'a> {
     fn default() -> Self {
         Self {
@@ -35,6 +39,8 @@ unsafe impl<'a> crate::TaggedStructure<'a>
 for PhysicalDeviceRayTracingInvocationReorderPropertiesNV<'a> {
     const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::PHYSICAL_DEVICE_RAY_TRACING_INVOCATION_REORDER_PROPERTIES_NV;
 }
+unsafe impl<'a> crate::Extends<crate::vk::PhysicalDeviceProperties2<'_>>
+for PhysicalDeviceRayTracingInvocationReorderPropertiesNV<'a> {}
 impl<'a> Default for PhysicalDeviceRayTracingInvocationReorderPropertiesNV<'a> {
     fn default() -> Self {
         Self {

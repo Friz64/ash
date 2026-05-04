@@ -245,6 +245,10 @@ pub(crate) mod reexport {
     for PhysicalDeviceRayTracingPipelineFeaturesKHR<'a> {
         const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::PHYSICAL_DEVICE_RAY_TRACING_PIPELINE_FEATURES_KHR;
     }
+    unsafe impl<'a> crate::Extends<crate::vk::PhysicalDeviceFeatures2<'_>>
+    for PhysicalDeviceRayTracingPipelineFeaturesKHR<'a> {}
+    unsafe impl<'a> crate::Extends<crate::vk::DeviceCreateInfo<'_>>
+    for PhysicalDeviceRayTracingPipelineFeaturesKHR<'a> {}
     impl<'a> Default for PhysicalDeviceRayTracingPipelineFeaturesKHR<'a> {
         fn default() -> Self {
             Self {
@@ -278,6 +282,8 @@ pub(crate) mod reexport {
     for PhysicalDeviceRayTracingPipelinePropertiesKHR<'a> {
         const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::PHYSICAL_DEVICE_RAY_TRACING_PIPELINE_PROPERTIES_KHR;
     }
+    unsafe impl<'a> crate::Extends<crate::vk::PhysicalDeviceProperties2<'_>>
+    for PhysicalDeviceRayTracingPipelinePropertiesKHR<'a> {}
     impl<'a> Default for PhysicalDeviceRayTracingPipelinePropertiesKHR<'a> {
         fn default() -> Self {
             Self {

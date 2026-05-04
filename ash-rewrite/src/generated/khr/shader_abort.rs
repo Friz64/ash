@@ -12,6 +12,10 @@ pub struct PhysicalDeviceShaderAbortFeaturesKHR<'a> {
 unsafe impl<'a> crate::TaggedStructure<'a> for PhysicalDeviceShaderAbortFeaturesKHR<'a> {
     const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::PHYSICAL_DEVICE_SHADER_ABORT_FEATURES_KHR;
 }
+unsafe impl<'a> crate::Extends<crate::vk::PhysicalDeviceFeatures2<'_>>
+for PhysicalDeviceShaderAbortFeaturesKHR<'a> {}
+unsafe impl<'a> crate::Extends<crate::vk::DeviceCreateInfo<'_>>
+for PhysicalDeviceShaderAbortFeaturesKHR<'a> {}
 impl<'a> Default for PhysicalDeviceShaderAbortFeaturesKHR<'a> {
     fn default() -> Self {
         Self {
@@ -34,6 +38,8 @@ unsafe impl<'a> crate::TaggedStructure<'a>
 for PhysicalDeviceShaderAbortPropertiesKHR<'a> {
     const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::PHYSICAL_DEVICE_SHADER_ABORT_PROPERTIES_KHR;
 }
+unsafe impl<'a> crate::Extends<crate::vk::PhysicalDeviceProperties2<'_>>
+for PhysicalDeviceShaderAbortPropertiesKHR<'a> {}
 impl<'a> Default for PhysicalDeviceShaderAbortPropertiesKHR<'a> {
     fn default() -> Self {
         Self {
@@ -56,6 +62,8 @@ pub struct DeviceFaultShaderAbortMessageInfoKHR<'a> {
 unsafe impl<'a> crate::TaggedStructure<'a> for DeviceFaultShaderAbortMessageInfoKHR<'a> {
     const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::DEVICE_FAULT_SHADER_ABORT_MESSAGE_INFO_KHR;
 }
+unsafe impl<'a> crate::Extends<crate::vk::DeviceFaultDebugInfoKHR<'_>>
+for DeviceFaultShaderAbortMessageInfoKHR<'a> {}
 impl<'a> Default for DeviceFaultShaderAbortMessageInfoKHR<'a> {
     fn default() -> Self {
         Self {

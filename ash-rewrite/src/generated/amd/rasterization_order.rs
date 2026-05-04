@@ -13,6 +13,8 @@ unsafe impl<'a> crate::TaggedStructure<'a>
 for PipelineRasterizationStateRasterizationOrderAMD<'a> {
     const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::PIPELINE_RASTERIZATION_STATE_RASTERIZATION_ORDER_AMD;
 }
+unsafe impl<'a> crate::Extends<crate::vk::PipelineRasterizationStateCreateInfo<'_>>
+for PipelineRasterizationStateRasterizationOrderAMD<'a> {}
 impl<'a> Default for PipelineRasterizationStateRasterizationOrderAMD<'a> {
     fn default() -> Self {
         Self {

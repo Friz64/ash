@@ -48,6 +48,10 @@ pub(crate) mod reexport {
     for PhysicalDeviceExternalMemoryRDMAFeaturesNV<'a> {
         const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::PHYSICAL_DEVICE_EXTERNAL_MEMORY_RDMA_FEATURES_NV;
     }
+    unsafe impl<'a> crate::Extends<crate::vk::PhysicalDeviceFeatures2<'_>>
+    for PhysicalDeviceExternalMemoryRDMAFeaturesNV<'a> {}
+    unsafe impl<'a> crate::Extends<crate::vk::DeviceCreateInfo<'_>>
+    for PhysicalDeviceExternalMemoryRDMAFeaturesNV<'a> {}
     impl<'a> Default for PhysicalDeviceExternalMemoryRDMAFeaturesNV<'a> {
         fn default() -> Self {
             Self {

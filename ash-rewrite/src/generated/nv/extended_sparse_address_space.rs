@@ -13,6 +13,10 @@ unsafe impl<'a> crate::TaggedStructure<'a>
 for PhysicalDeviceExtendedSparseAddressSpaceFeaturesNV<'a> {
     const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::PHYSICAL_DEVICE_EXTENDED_SPARSE_ADDRESS_SPACE_FEATURES_NV;
 }
+unsafe impl<'a> crate::Extends<crate::vk::PhysicalDeviceFeatures2<'_>>
+for PhysicalDeviceExtendedSparseAddressSpaceFeaturesNV<'a> {}
+unsafe impl<'a> crate::Extends<crate::vk::DeviceCreateInfo<'_>>
+for PhysicalDeviceExtendedSparseAddressSpaceFeaturesNV<'a> {}
 impl<'a> Default for PhysicalDeviceExtendedSparseAddressSpaceFeaturesNV<'a> {
     fn default() -> Self {
         Self {
@@ -37,6 +41,8 @@ unsafe impl<'a> crate::TaggedStructure<'a>
 for PhysicalDeviceExtendedSparseAddressSpacePropertiesNV<'a> {
     const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::PHYSICAL_DEVICE_EXTENDED_SPARSE_ADDRESS_SPACE_PROPERTIES_NV;
 }
+unsafe impl<'a> crate::Extends<crate::vk::PhysicalDeviceProperties2<'_>>
+for PhysicalDeviceExtendedSparseAddressSpacePropertiesNV<'a> {}
 impl<'a> Default for PhysicalDeviceExtendedSparseAddressSpacePropertiesNV<'a> {
     fn default() -> Self {
         Self {

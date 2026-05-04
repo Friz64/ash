@@ -224,6 +224,10 @@ pub(crate) mod reexport {
     for PhysicalDeviceDescriptorBufferFeaturesEXT<'a> {
         const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::PHYSICAL_DEVICE_DESCRIPTOR_BUFFER_FEATURES_EXT;
     }
+    unsafe impl<'a> crate::Extends<crate::vk::PhysicalDeviceFeatures2<'_>>
+    for PhysicalDeviceDescriptorBufferFeaturesEXT<'a> {}
+    unsafe impl<'a> crate::Extends<crate::vk::DeviceCreateInfo<'_>>
+    for PhysicalDeviceDescriptorBufferFeaturesEXT<'a> {}
     impl<'a> Default for PhysicalDeviceDescriptorBufferFeaturesEXT<'a> {
         fn default() -> Self {
             Self {
@@ -281,6 +285,8 @@ pub(crate) mod reexport {
     for PhysicalDeviceDescriptorBufferPropertiesEXT<'a> {
         const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::PHYSICAL_DEVICE_DESCRIPTOR_BUFFER_PROPERTIES_EXT;
     }
+    unsafe impl<'a> crate::Extends<crate::vk::PhysicalDeviceProperties2<'_>>
+    for PhysicalDeviceDescriptorBufferPropertiesEXT<'a> {}
     impl<'a> Default for PhysicalDeviceDescriptorBufferPropertiesEXT<'a> {
         fn default() -> Self {
             Self {
@@ -335,6 +341,8 @@ pub(crate) mod reexport {
     for PhysicalDeviceDescriptorBufferDensityMapPropertiesEXT<'a> {
         const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::PHYSICAL_DEVICE_DESCRIPTOR_BUFFER_DENSITY_MAP_PROPERTIES_EXT;
     }
+    unsafe impl<'a> crate::Extends<crate::vk::PhysicalDeviceProperties2<'_>>
+    for PhysicalDeviceDescriptorBufferDensityMapPropertiesEXT<'a> {}
     impl<'a> Default for PhysicalDeviceDescriptorBufferDensityMapPropertiesEXT<'a> {
         fn default() -> Self {
             Self {
@@ -405,6 +413,8 @@ pub(crate) mod reexport {
     for DescriptorBufferBindingPushDescriptorBufferHandleEXT<'a> {
         const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::DESCRIPTOR_BUFFER_BINDING_PUSH_DESCRIPTOR_BUFFER_HANDLE_EXT;
     }
+    unsafe impl<'a> crate::Extends<crate::vk::DescriptorBufferBindingInfoEXT<'_>>
+    for DescriptorBufferBindingPushDescriptorBufferHandleEXT<'a> {}
     impl<'a> Default for DescriptorBufferBindingPushDescriptorBufferHandleEXT<'a> {
         fn default() -> Self {
             Self {
@@ -562,6 +572,24 @@ pub(crate) mod reexport {
     for OpaqueCaptureDescriptorDataCreateInfoEXT<'a> {
         const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::OPAQUE_CAPTURE_DESCRIPTOR_DATA_CREATE_INFO_EXT;
     }
+    unsafe impl<'a> crate::Extends<crate::vk::BufferCreateInfo<'_>>
+    for OpaqueCaptureDescriptorDataCreateInfoEXT<'a> {}
+    unsafe impl<'a> crate::Extends<crate::vk::ImageCreateInfo<'_>>
+    for OpaqueCaptureDescriptorDataCreateInfoEXT<'a> {}
+    unsafe impl<'a> crate::Extends<crate::vk::ImageViewCreateInfo<'_>>
+    for OpaqueCaptureDescriptorDataCreateInfoEXT<'a> {}
+    unsafe impl<'a> crate::Extends<crate::vk::SamplerCreateInfo<'_>>
+    for OpaqueCaptureDescriptorDataCreateInfoEXT<'a> {}
+    unsafe impl<'a> crate::Extends<crate::vk::AccelerationStructureCreateInfoKHR<'_>>
+    for OpaqueCaptureDescriptorDataCreateInfoEXT<'a> {}
+    unsafe impl<'a> crate::Extends<crate::vk::AccelerationStructureCreateInfoNV<'_>>
+    for OpaqueCaptureDescriptorDataCreateInfoEXT<'a> {}
+    unsafe impl<'a> crate::Extends<crate::vk::TensorCreateInfoARM<'_>>
+    for OpaqueCaptureDescriptorDataCreateInfoEXT<'a> {}
+    unsafe impl<'a> crate::Extends<crate::vk::TensorViewCreateInfoARM<'_>>
+    for OpaqueCaptureDescriptorDataCreateInfoEXT<'a> {}
+    unsafe impl<'a> crate::Extends<crate::vk::AccelerationStructureCreateInfo2KHR<'_>>
+    for OpaqueCaptureDescriptorDataCreateInfoEXT<'a> {}
     impl<'a> Default for OpaqueCaptureDescriptorDataCreateInfoEXT<'a> {
         fn default() -> Self {
             Self {

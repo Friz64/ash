@@ -143,6 +143,10 @@ pub(crate) mod reexport {
     for PhysicalDeviceTransformFeedbackFeaturesEXT<'a> {
         const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::PHYSICAL_DEVICE_TRANSFORM_FEEDBACK_FEATURES_EXT;
     }
+    unsafe impl<'a> crate::Extends<crate::vk::PhysicalDeviceFeatures2<'_>>
+    for PhysicalDeviceTransformFeedbackFeaturesEXT<'a> {}
+    unsafe impl<'a> crate::Extends<crate::vk::DeviceCreateInfo<'_>>
+    for PhysicalDeviceTransformFeedbackFeaturesEXT<'a> {}
     impl<'a> Default for PhysicalDeviceTransformFeedbackFeaturesEXT<'a> {
         fn default() -> Self {
             Self {
@@ -175,6 +179,8 @@ pub(crate) mod reexport {
     for PhysicalDeviceTransformFeedbackPropertiesEXT<'a> {
         const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::PHYSICAL_DEVICE_TRANSFORM_FEEDBACK_PROPERTIES_EXT;
     }
+    unsafe impl<'a> crate::Extends<crate::vk::PhysicalDeviceProperties2<'_>>
+    for PhysicalDeviceTransformFeedbackPropertiesEXT<'a> {}
     impl<'a> Default for PhysicalDeviceTransformFeedbackPropertiesEXT<'a> {
         fn default() -> Self {
             Self {
@@ -207,6 +213,8 @@ pub(crate) mod reexport {
     for PipelineRasterizationStateStreamCreateInfoEXT<'a> {
         const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::PIPELINE_RASTERIZATION_STATE_STREAM_CREATE_INFO_EXT;
     }
+    unsafe impl<'a> crate::Extends<crate::vk::PipelineRasterizationStateCreateInfo<'_>>
+    for PipelineRasterizationStateStreamCreateInfoEXT<'a> {}
     impl<'a> Default for PipelineRasterizationStateStreamCreateInfoEXT<'a> {
         fn default() -> Self {
             Self {

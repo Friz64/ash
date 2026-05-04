@@ -12,6 +12,10 @@ pub struct RenderPassCreationControlEXT<'a> {
 unsafe impl<'a> crate::TaggedStructure<'a> for RenderPassCreationControlEXT<'a> {
     const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::RENDER_PASS_CREATION_CONTROL_EXT;
 }
+unsafe impl<'a> crate::Extends<crate::vk::RenderPassCreateInfo2<'_>>
+for RenderPassCreationControlEXT<'a> {}
+unsafe impl<'a> crate::Extends<crate::vk::SubpassDescription2<'_>>
+for RenderPassCreationControlEXT<'a> {}
 impl<'a> Default for RenderPassCreationControlEXT<'a> {
     fn default() -> Self {
         Self {
@@ -39,6 +43,8 @@ unsafe impl<'a> crate::TaggedStructure<'a>
 for RenderPassCreationFeedbackCreateInfoEXT<'a> {
     const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::RENDER_PASS_CREATION_FEEDBACK_CREATE_INFO_EXT;
 }
+unsafe impl<'a> crate::Extends<crate::vk::RenderPassCreateInfo2<'_>>
+for RenderPassCreationFeedbackCreateInfoEXT<'a> {}
 impl<'a> Default for RenderPassCreationFeedbackCreateInfoEXT<'a> {
     fn default() -> Self {
         Self {
@@ -77,6 +83,8 @@ unsafe impl<'a> crate::TaggedStructure<'a>
 for RenderPassSubpassFeedbackCreateInfoEXT<'a> {
     const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::RENDER_PASS_SUBPASS_FEEDBACK_CREATE_INFO_EXT;
 }
+unsafe impl<'a> crate::Extends<crate::vk::SubpassDescription2<'_>>
+for RenderPassSubpassFeedbackCreateInfoEXT<'a> {}
 impl<'a> Default for RenderPassSubpassFeedbackCreateInfoEXT<'a> {
     fn default() -> Self {
         Self {
@@ -99,6 +107,10 @@ unsafe impl<'a> crate::TaggedStructure<'a>
 for PhysicalDeviceSubpassMergeFeedbackFeaturesEXT<'a> {
     const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::PHYSICAL_DEVICE_SUBPASS_MERGE_FEEDBACK_FEATURES_EXT;
 }
+unsafe impl<'a> crate::Extends<crate::vk::PhysicalDeviceFeatures2<'_>>
+for PhysicalDeviceSubpassMergeFeedbackFeaturesEXT<'a> {}
+unsafe impl<'a> crate::Extends<crate::vk::DeviceCreateInfo<'_>>
+for PhysicalDeviceSubpassMergeFeedbackFeaturesEXT<'a> {}
 impl<'a> Default for PhysicalDeviceSubpassMergeFeedbackFeaturesEXT<'a> {
     fn default() -> Self {
         Self {

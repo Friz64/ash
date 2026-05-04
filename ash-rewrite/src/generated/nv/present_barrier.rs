@@ -13,6 +13,10 @@ unsafe impl<'a> crate::TaggedStructure<'a>
 for PhysicalDevicePresentBarrierFeaturesNV<'a> {
     const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::PHYSICAL_DEVICE_PRESENT_BARRIER_FEATURES_NV;
 }
+unsafe impl<'a> crate::Extends<crate::vk::PhysicalDeviceFeatures2<'_>>
+for PhysicalDevicePresentBarrierFeaturesNV<'a> {}
+unsafe impl<'a> crate::Extends<crate::vk::DeviceCreateInfo<'_>>
+for PhysicalDevicePresentBarrierFeaturesNV<'a> {}
 impl<'a> Default for PhysicalDevicePresentBarrierFeaturesNV<'a> {
     fn default() -> Self {
         Self {
@@ -34,6 +38,8 @@ pub struct SurfaceCapabilitiesPresentBarrierNV<'a> {
 unsafe impl<'a> crate::TaggedStructure<'a> for SurfaceCapabilitiesPresentBarrierNV<'a> {
     const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::SURFACE_CAPABILITIES_PRESENT_BARRIER_NV;
 }
+unsafe impl<'a> crate::Extends<crate::vk::SurfaceCapabilities2KHR<'_>>
+for SurfaceCapabilitiesPresentBarrierNV<'a> {}
 impl<'a> Default for SurfaceCapabilitiesPresentBarrierNV<'a> {
     fn default() -> Self {
         Self {
@@ -55,6 +61,8 @@ pub struct SwapchainPresentBarrierCreateInfoNV<'a> {
 unsafe impl<'a> crate::TaggedStructure<'a> for SwapchainPresentBarrierCreateInfoNV<'a> {
     const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::SWAPCHAIN_PRESENT_BARRIER_CREATE_INFO_NV;
 }
+unsafe impl<'a> crate::Extends<crate::vk::SwapchainCreateInfoKHR<'_>>
+for SwapchainPresentBarrierCreateInfoNV<'a> {}
 impl<'a> Default for SwapchainPresentBarrierCreateInfoNV<'a> {
     fn default() -> Self {
         Self {

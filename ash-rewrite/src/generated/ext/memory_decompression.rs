@@ -66,6 +66,10 @@ pub(crate) mod reexport {
     for PhysicalDeviceMemoryDecompressionFeaturesEXT<'a> {
         const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::PHYSICAL_DEVICE_MEMORY_DECOMPRESSION_FEATURES_EXT;
     }
+    unsafe impl<'a> crate::Extends<crate::vk::PhysicalDeviceFeatures2<'_>>
+    for PhysicalDeviceMemoryDecompressionFeaturesEXT<'a> {}
+    unsafe impl<'a> crate::Extends<crate::vk::DeviceCreateInfo<'_>>
+    for PhysicalDeviceMemoryDecompressionFeaturesEXT<'a> {}
     impl<'a> Default for PhysicalDeviceMemoryDecompressionFeaturesEXT<'a> {
         fn default() -> Self {
             Self {
@@ -89,6 +93,8 @@ pub(crate) mod reexport {
     for PhysicalDeviceMemoryDecompressionPropertiesEXT<'a> {
         const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::PHYSICAL_DEVICE_MEMORY_DECOMPRESSION_PROPERTIES_EXT;
     }
+    unsafe impl<'a> crate::Extends<crate::vk::PhysicalDeviceProperties2<'_>>
+    for PhysicalDeviceMemoryDecompressionPropertiesEXT<'a> {}
     impl<'a> Default for PhysicalDeviceMemoryDecompressionPropertiesEXT<'a> {
         fn default() -> Self {
             Self {

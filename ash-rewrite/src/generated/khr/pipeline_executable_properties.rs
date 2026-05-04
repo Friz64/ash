@@ -85,6 +85,10 @@ pub(crate) mod reexport {
     for PhysicalDevicePipelineExecutablePropertiesFeaturesKHR<'a> {
         const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::PHYSICAL_DEVICE_PIPELINE_EXECUTABLE_PROPERTIES_FEATURES_KHR;
     }
+    unsafe impl<'a> crate::Extends<crate::vk::PhysicalDeviceFeatures2<'_>>
+    for PhysicalDevicePipelineExecutablePropertiesFeaturesKHR<'a> {}
+    unsafe impl<'a> crate::Extends<crate::vk::DeviceCreateInfo<'_>>
+    for PhysicalDevicePipelineExecutablePropertiesFeaturesKHR<'a> {}
     impl<'a> Default for PhysicalDevicePipelineExecutablePropertiesFeaturesKHR<'a> {
         fn default() -> Self {
             Self {

@@ -14,6 +14,8 @@ unsafe impl<'a> crate::TaggedStructure<'a>
 for SamplerBorderColorComponentMappingCreateInfoEXT<'a> {
     const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::SAMPLER_BORDER_COLOR_COMPONENT_MAPPING_CREATE_INFO_EXT;
 }
+unsafe impl<'a> crate::Extends<crate::vk::SamplerCreateInfo<'_>>
+for SamplerBorderColorComponentMappingCreateInfoEXT<'a> {}
 impl<'a> Default for SamplerBorderColorComponentMappingCreateInfoEXT<'a> {
     fn default() -> Self {
         Self {
@@ -38,6 +40,10 @@ unsafe impl<'a> crate::TaggedStructure<'a>
 for PhysicalDeviceBorderColorSwizzleFeaturesEXT<'a> {
     const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::PHYSICAL_DEVICE_BORDER_COLOR_SWIZZLE_FEATURES_EXT;
 }
+unsafe impl<'a> crate::Extends<crate::vk::PhysicalDeviceFeatures2<'_>>
+for PhysicalDeviceBorderColorSwizzleFeaturesEXT<'a> {}
+unsafe impl<'a> crate::Extends<crate::vk::DeviceCreateInfo<'_>>
+for PhysicalDeviceBorderColorSwizzleFeaturesEXT<'a> {}
 impl<'a> Default for PhysicalDeviceBorderColorSwizzleFeaturesEXT<'a> {
     fn default() -> Self {
         Self {

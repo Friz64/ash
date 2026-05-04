@@ -79,6 +79,8 @@ pub(crate) mod reexport {
     for PhysicalDeviceDiscardRectanglePropertiesEXT<'a> {
         const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::PHYSICAL_DEVICE_DISCARD_RECTANGLE_PROPERTIES_EXT;
     }
+    unsafe impl<'a> crate::Extends<crate::vk::PhysicalDeviceProperties2<'_>>
+    for PhysicalDeviceDiscardRectanglePropertiesEXT<'a> {}
     impl<'a> Default for PhysicalDeviceDiscardRectanglePropertiesEXT<'a> {
         fn default() -> Self {
             Self {
@@ -104,6 +106,8 @@ pub(crate) mod reexport {
     for PipelineDiscardRectangleStateCreateInfoEXT<'a> {
         const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::PIPELINE_DISCARD_RECTANGLE_STATE_CREATE_INFO_EXT;
     }
+    unsafe impl<'a> crate::Extends<crate::vk::GraphicsPipelineCreateInfo<'_>>
+    for PipelineDiscardRectangleStateCreateInfoEXT<'a> {}
     impl<'a> Default for PipelineDiscardRectangleStateCreateInfoEXT<'a> {
         fn default() -> Self {
             Self {

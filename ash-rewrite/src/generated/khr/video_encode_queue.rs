@@ -148,6 +148,10 @@ pub(crate) mod reexport {
     unsafe impl<'a> crate::TaggedStructure<'a> for VideoEncodeUsageInfoKHR<'a> {
         const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::VIDEO_ENCODE_USAGE_INFO_KHR;
     }
+    unsafe impl<'a> crate::Extends<crate::vk::VideoProfileInfoKHR<'_>>
+    for VideoEncodeUsageInfoKHR<'a> {}
+    unsafe impl<'a> crate::Extends<crate::vk::QueryPoolCreateInfo<'_>>
+    for VideoEncodeUsageInfoKHR<'a> {}
     impl<'a> Default for VideoEncodeUsageInfoKHR<'a> {
         fn default() -> Self {
             Self {
@@ -209,6 +213,8 @@ pub(crate) mod reexport {
     for QueryPoolVideoEncodeFeedbackCreateInfoKHR<'a> {
         const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::QUERY_POOL_VIDEO_ENCODE_FEEDBACK_CREATE_INFO_KHR;
     }
+    unsafe impl<'a> crate::Extends<crate::vk::QueryPoolCreateInfo<'_>>
+    for QueryPoolVideoEncodeFeedbackCreateInfoKHR<'a> {}
     impl<'a> Default for QueryPoolVideoEncodeFeedbackCreateInfoKHR<'a> {
         fn default() -> Self {
             Self {
@@ -230,6 +236,10 @@ pub(crate) mod reexport {
     unsafe impl<'a> crate::TaggedStructure<'a> for VideoEncodeQualityLevelInfoKHR<'a> {
         const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::VIDEO_ENCODE_QUALITY_LEVEL_INFO_KHR;
     }
+    unsafe impl<'a> crate::Extends<crate::vk::VideoCodingControlInfoKHR<'_>>
+    for VideoEncodeQualityLevelInfoKHR<'a> {}
+    unsafe impl<'a> crate::Extends<crate::vk::VideoSessionParametersCreateInfoKHR<'_>>
+    for VideoEncodeQualityLevelInfoKHR<'a> {}
     impl<'a> Default for VideoEncodeQualityLevelInfoKHR<'a> {
         fn default() -> Self {
             Self {
@@ -304,6 +314,10 @@ pub(crate) mod reexport {
     unsafe impl<'a> crate::TaggedStructure<'a> for VideoEncodeRateControlInfoKHR<'a> {
         const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::VIDEO_ENCODE_RATE_CONTROL_INFO_KHR;
     }
+    unsafe impl<'a> crate::Extends<crate::vk::VideoCodingControlInfoKHR<'_>>
+    for VideoEncodeRateControlInfoKHR<'a> {}
+    unsafe impl<'a> crate::Extends<crate::vk::VideoBeginCodingInfoKHR<'_>>
+    for VideoEncodeRateControlInfoKHR<'a> {}
     impl<'a> Default for VideoEncodeRateControlInfoKHR<'a> {
         fn default() -> Self {
             Self {
@@ -364,6 +378,8 @@ pub(crate) mod reexport {
     unsafe impl<'a> crate::TaggedStructure<'a> for VideoEncodeCapabilitiesKHR<'a> {
         const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::VIDEO_ENCODE_CAPABILITIES_KHR;
     }
+    unsafe impl<'a> crate::Extends<crate::vk::VideoCapabilitiesKHR<'_>>
+    for VideoEncodeCapabilitiesKHR<'a> {}
     impl<'a> Default for VideoEncodeCapabilitiesKHR<'a> {
         fn default() -> Self {
             Self {

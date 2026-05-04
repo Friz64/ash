@@ -64,6 +64,10 @@ pub(crate) mod reexport {
     for PhysicalDeviceDescriptorSetHostMappingFeaturesVALVE<'a> {
         const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::PHYSICAL_DEVICE_DESCRIPTOR_SET_HOST_MAPPING_FEATURES_VALVE;
     }
+    unsafe impl<'a> crate::Extends<crate::vk::PhysicalDeviceFeatures2<'_>>
+    for PhysicalDeviceDescriptorSetHostMappingFeaturesVALVE<'a> {}
+    unsafe impl<'a> crate::Extends<crate::vk::DeviceCreateInfo<'_>>
+    for PhysicalDeviceDescriptorSetHostMappingFeaturesVALVE<'a> {}
     impl<'a> Default for PhysicalDeviceDescriptorSetHostMappingFeaturesVALVE<'a> {
         fn default() -> Self {
             Self {

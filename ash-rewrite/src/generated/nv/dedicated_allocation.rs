@@ -12,6 +12,8 @@ pub struct DedicatedAllocationImageCreateInfoNV<'a> {
 unsafe impl<'a> crate::TaggedStructure<'a> for DedicatedAllocationImageCreateInfoNV<'a> {
     const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::DEDICATED_ALLOCATION_IMAGE_CREATE_INFO_NV;
 }
+unsafe impl<'a> crate::Extends<crate::vk::ImageCreateInfo<'_>>
+for DedicatedAllocationImageCreateInfoNV<'a> {}
 impl<'a> Default for DedicatedAllocationImageCreateInfoNV<'a> {
     fn default() -> Self {
         Self {
@@ -34,6 +36,8 @@ unsafe impl<'a> crate::TaggedStructure<'a>
 for DedicatedAllocationBufferCreateInfoNV<'a> {
     const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::DEDICATED_ALLOCATION_BUFFER_CREATE_INFO_NV;
 }
+unsafe impl<'a> crate::Extends<crate::vk::BufferCreateInfo<'_>>
+for DedicatedAllocationBufferCreateInfoNV<'a> {}
 impl<'a> Default for DedicatedAllocationBufferCreateInfoNV<'a> {
     fn default() -> Self {
         Self {
@@ -57,6 +61,8 @@ unsafe impl<'a> crate::TaggedStructure<'a>
 for DedicatedAllocationMemoryAllocateInfoNV<'a> {
     const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::DEDICATED_ALLOCATION_MEMORY_ALLOCATE_INFO_NV;
 }
+unsafe impl<'a> crate::Extends<crate::vk::MemoryAllocateInfo<'_>>
+for DedicatedAllocationMemoryAllocateInfoNV<'a> {}
 impl<'a> Default for DedicatedAllocationMemoryAllocateInfoNV<'a> {
     fn default() -> Self {
         Self {

@@ -65,6 +65,10 @@ pub(crate) mod reexport {
     for PhysicalDeviceTilePropertiesFeaturesQCOM<'a> {
         const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::PHYSICAL_DEVICE_TILE_PROPERTIES_FEATURES_QCOM;
     }
+    unsafe impl<'a> crate::Extends<crate::vk::PhysicalDeviceFeatures2<'_>>
+    for PhysicalDeviceTilePropertiesFeaturesQCOM<'a> {}
+    unsafe impl<'a> crate::Extends<crate::vk::DeviceCreateInfo<'_>>
+    for PhysicalDeviceTilePropertiesFeaturesQCOM<'a> {}
     impl<'a> Default for PhysicalDeviceTilePropertiesFeaturesQCOM<'a> {
         fn default() -> Self {
             Self {
