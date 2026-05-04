@@ -232,7 +232,10 @@ impl CodeMap {
             );
         }
 
-        vfs.write("vk.rs", quote! { pub use crate::Handle; });
+        vfs.write("vk.rs", quote! { 
+            pub use crate::Handle; 
+            pub use crate::TaggedStructure;
+        });
         vfs.sync_to(output_path)
     }
 }
