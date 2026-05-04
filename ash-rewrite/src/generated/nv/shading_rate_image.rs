@@ -71,7 +71,7 @@ impl DeviceFn {
 }
 pub(crate) mod reexport {
     #[repr(C)]
-    #[derive(Clone, Copy)]
+    #[derive(Clone, Copy, Default)]
     pub struct ShadingRatePaletteNV<'a> {
         pub shading_rate_palette_entry_count: u32,
         pub p_shading_rate_palette_entries: *const crate::vk::ShadingRatePaletteEntryNV,
@@ -91,6 +91,18 @@ pub(crate) mod reexport {
     for PipelineViewportShadingRateImageStateCreateInfoNV<'a> {
         const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::PIPELINE_VIEWPORT_SHADING_RATE_IMAGE_STATE_CREATE_INFO_NV;
     }
+    impl<'a> Default for PipelineViewportShadingRateImageStateCreateInfoNV<'a> {
+        fn default() -> Self {
+            Self {
+                s_type: <Self as crate::TaggedStructure>::STRUCTURE_TYPE,
+                p_next: Default::default(),
+                shading_rate_image_enable: Default::default(),
+                viewport_count: Default::default(),
+                p_shading_rate_palettes: Default::default(),
+                _marker: ::core::marker::PhantomData,
+            }
+        }
+    }
     #[repr(C)]
     #[derive(Clone, Copy)]
     pub struct PhysicalDeviceShadingRateImageFeaturesNV<'a> {
@@ -103,6 +115,17 @@ pub(crate) mod reexport {
     unsafe impl<'a> crate::TaggedStructure<'a>
     for PhysicalDeviceShadingRateImageFeaturesNV<'a> {
         const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::PHYSICAL_DEVICE_SHADING_RATE_IMAGE_FEATURES_NV;
+    }
+    impl<'a> Default for PhysicalDeviceShadingRateImageFeaturesNV<'a> {
+        fn default() -> Self {
+            Self {
+                s_type: <Self as crate::TaggedStructure>::STRUCTURE_TYPE,
+                p_next: Default::default(),
+                shading_rate_image: Default::default(),
+                shading_rate_coarse_sample_order: Default::default(),
+                _marker: ::core::marker::PhantomData,
+            }
+        }
     }
     #[repr(C)]
     #[derive(Clone, Copy)]
@@ -118,15 +141,27 @@ pub(crate) mod reexport {
     for PhysicalDeviceShadingRateImagePropertiesNV<'a> {
         const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::PHYSICAL_DEVICE_SHADING_RATE_IMAGE_PROPERTIES_NV;
     }
+    impl<'a> Default for PhysicalDeviceShadingRateImagePropertiesNV<'a> {
+        fn default() -> Self {
+            Self {
+                s_type: <Self as crate::TaggedStructure>::STRUCTURE_TYPE,
+                p_next: Default::default(),
+                shading_rate_texel_size: Default::default(),
+                shading_rate_palette_size: Default::default(),
+                shading_rate_max_coarse_samples: Default::default(),
+                _marker: ::core::marker::PhantomData,
+            }
+        }
+    }
     #[repr(C)]
-    #[derive(Clone, Copy)]
+    #[derive(Clone, Copy, Default)]
     pub struct CoarseSampleLocationNV {
         pub pixel_x: u32,
         pub pixel_y: u32,
         pub sample: u32,
     }
     #[repr(C)]
-    #[derive(Clone, Copy)]
+    #[derive(Clone, Copy, Default)]
     pub struct CoarseSampleOrderCustomNV<'a> {
         pub shading_rate: crate::vk::ShadingRatePaletteEntryNV,
         pub sample_count: u32,
@@ -147,6 +182,18 @@ pub(crate) mod reexport {
     unsafe impl<'a> crate::TaggedStructure<'a>
     for PipelineViewportCoarseSampleOrderStateCreateInfoNV<'a> {
         const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::PIPELINE_VIEWPORT_COARSE_SAMPLE_ORDER_STATE_CREATE_INFO_NV;
+    }
+    impl<'a> Default for PipelineViewportCoarseSampleOrderStateCreateInfoNV<'a> {
+        fn default() -> Self {
+            Self {
+                s_type: <Self as crate::TaggedStructure>::STRUCTURE_TYPE,
+                p_next: Default::default(),
+                sample_order_type: Default::default(),
+                custom_sample_order_count: Default::default(),
+                p_custom_sample_orders: Default::default(),
+                _marker: ::core::marker::PhantomData,
+            }
+        }
     }
     ///Provided by [`nv::shading_rate_image`](crate::nv::shading_rate_image)
     impl crate::vk::ImageLayout {

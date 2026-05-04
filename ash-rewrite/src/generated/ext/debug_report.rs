@@ -87,6 +87,18 @@ pub(crate) mod reexport {
     unsafe impl<'a> crate::TaggedStructure<'a> for DebugReportCallbackCreateInfoEXT<'a> {
         const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::DEBUG_REPORT_CALLBACK_CREATE_INFO_EXT;
     }
+    impl<'a> Default for DebugReportCallbackCreateInfoEXT<'a> {
+        fn default() -> Self {
+            Self {
+                s_type: <Self as crate::TaggedStructure>::STRUCTURE_TYPE,
+                p_next: Default::default(),
+                flags: Default::default(),
+                pfn_callback: Default::default(),
+                p_user_data: Default::default(),
+                _marker: ::core::marker::PhantomData,
+            }
+        }
+    }
     ///Provided by [`ext::debug_report`](crate::ext::debug_report)
     impl crate::vk::StructureType {
         pub const DEBUG_REPORT_CALLBACK_CREATE_INFO_EXT: Self = Self(1000011000);
@@ -225,7 +237,7 @@ pub(crate) mod reexport {
         }
     }
     #[repr(transparent)]
-    #[derive(Clone, Copy)]
+    #[derive(Clone, Copy, Default)]
     pub struct DebugReportFlagBitsEXT(pub(crate) u32);
     ///Provided by [`ext::debug_report`](crate::ext::debug_report)
     impl DebugReportFlagBitsEXT {

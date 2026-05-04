@@ -91,6 +91,20 @@ pub(crate) mod reexport {
     for PhysicalDeviceMeshShaderFeaturesEXT<'a> {
         const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::PHYSICAL_DEVICE_MESH_SHADER_FEATURES_EXT;
     }
+    impl<'a> Default for PhysicalDeviceMeshShaderFeaturesEXT<'a> {
+        fn default() -> Self {
+            Self {
+                s_type: <Self as crate::TaggedStructure>::STRUCTURE_TYPE,
+                p_next: Default::default(),
+                task_shader: Default::default(),
+                mesh_shader: Default::default(),
+                multiview_mesh_shader: Default::default(),
+                primitive_fragment_shading_rate_mesh_shader: Default::default(),
+                mesh_shader_queries: Default::default(),
+                _marker: ::core::marker::PhantomData,
+            }
+        }
+    }
     #[repr(C)]
     #[derive(Clone, Copy)]
     pub struct PhysicalDeviceMeshShaderPropertiesEXT<'a> {
@@ -130,8 +144,45 @@ pub(crate) mod reexport {
     for PhysicalDeviceMeshShaderPropertiesEXT<'a> {
         const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::PHYSICAL_DEVICE_MESH_SHADER_PROPERTIES_EXT;
     }
+    impl<'a> Default for PhysicalDeviceMeshShaderPropertiesEXT<'a> {
+        fn default() -> Self {
+            Self {
+                s_type: <Self as crate::TaggedStructure>::STRUCTURE_TYPE,
+                p_next: Default::default(),
+                max_task_work_group_total_count: Default::default(),
+                max_task_work_group_count: unsafe { core::mem::zeroed() },
+                max_task_work_group_invocations: Default::default(),
+                max_task_work_group_size: unsafe { core::mem::zeroed() },
+                max_task_payload_size: Default::default(),
+                max_task_shared_memory_size: Default::default(),
+                max_task_payload_and_shared_memory_size: Default::default(),
+                max_mesh_work_group_total_count: Default::default(),
+                max_mesh_work_group_count: unsafe { core::mem::zeroed() },
+                max_mesh_work_group_invocations: Default::default(),
+                max_mesh_work_group_size: unsafe { core::mem::zeroed() },
+                max_mesh_shared_memory_size: Default::default(),
+                max_mesh_payload_and_shared_memory_size: Default::default(),
+                max_mesh_output_memory_size: Default::default(),
+                max_mesh_payload_and_output_memory_size: Default::default(),
+                max_mesh_output_components: Default::default(),
+                max_mesh_output_vertices: Default::default(),
+                max_mesh_output_primitives: Default::default(),
+                max_mesh_output_layers: Default::default(),
+                max_mesh_multiview_view_count: Default::default(),
+                mesh_output_per_vertex_granularity: Default::default(),
+                mesh_output_per_primitive_granularity: Default::default(),
+                max_preferred_task_work_group_invocations: Default::default(),
+                max_preferred_mesh_work_group_invocations: Default::default(),
+                prefers_local_invocation_vertex_output: Default::default(),
+                prefers_local_invocation_primitive_output: Default::default(),
+                prefers_compact_vertex_output: Default::default(),
+                prefers_compact_primitive_output: Default::default(),
+                _marker: ::core::marker::PhantomData,
+            }
+        }
+    }
     #[repr(C)]
-    #[derive(Clone, Copy)]
+    #[derive(Clone, Copy, Default)]
     pub struct DrawMeshTasksIndirectCommandEXT {
         pub group_count_x: u32,
         pub group_count_y: u32,

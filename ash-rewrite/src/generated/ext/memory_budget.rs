@@ -14,6 +14,17 @@ unsafe impl<'a> crate::TaggedStructure<'a>
 for PhysicalDeviceMemoryBudgetPropertiesEXT<'a> {
     const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::PHYSICAL_DEVICE_MEMORY_BUDGET_PROPERTIES_EXT;
 }
+impl<'a> Default for PhysicalDeviceMemoryBudgetPropertiesEXT<'a> {
+    fn default() -> Self {
+        Self {
+            s_type: <Self as crate::TaggedStructure>::STRUCTURE_TYPE,
+            p_next: Default::default(),
+            heap_budget: unsafe { core::mem::zeroed() },
+            heap_usage: unsafe { core::mem::zeroed() },
+            _marker: ::core::marker::PhantomData,
+        }
+    }
+}
 ///Provided by [`ext::memory_budget`](crate::ext::memory_budget)
 impl crate::vk::StructureType {
     pub const PHYSICAL_DEVICE_MEMORY_BUDGET_PROPERTIES_EXT: Self = Self(1000237000);

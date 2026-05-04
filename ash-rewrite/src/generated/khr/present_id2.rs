@@ -12,6 +12,16 @@ pub struct PhysicalDevicePresentId2FeaturesKHR<'a> {
 unsafe impl<'a> crate::TaggedStructure<'a> for PhysicalDevicePresentId2FeaturesKHR<'a> {
     const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::PHYSICAL_DEVICE_PRESENT_ID_2_FEATURES_KHR;
 }
+impl<'a> Default for PhysicalDevicePresentId2FeaturesKHR<'a> {
+    fn default() -> Self {
+        Self {
+            s_type: <Self as crate::TaggedStructure>::STRUCTURE_TYPE,
+            p_next: Default::default(),
+            present_id2: Default::default(),
+            _marker: ::core::marker::PhantomData,
+        }
+    }
+}
 #[repr(C)]
 #[derive(Clone, Copy)]
 pub struct PresentId2KHR<'a> {
@@ -24,6 +34,17 @@ pub struct PresentId2KHR<'a> {
 unsafe impl<'a> crate::TaggedStructure<'a> for PresentId2KHR<'a> {
     const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::PRESENT_ID_2_KHR;
 }
+impl<'a> Default for PresentId2KHR<'a> {
+    fn default() -> Self {
+        Self {
+            s_type: <Self as crate::TaggedStructure>::STRUCTURE_TYPE,
+            p_next: Default::default(),
+            swapchain_count: Default::default(),
+            p_present_ids: Default::default(),
+            _marker: ::core::marker::PhantomData,
+        }
+    }
+}
 #[repr(C)]
 #[derive(Clone, Copy)]
 pub struct SurfaceCapabilitiesPresentId2KHR<'a> {
@@ -34,6 +55,16 @@ pub struct SurfaceCapabilitiesPresentId2KHR<'a> {
 }
 unsafe impl<'a> crate::TaggedStructure<'a> for SurfaceCapabilitiesPresentId2KHR<'a> {
     const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::SURFACE_CAPABILITIES_PRESENT_ID_2_KHR;
+}
+impl<'a> Default for SurfaceCapabilitiesPresentId2KHR<'a> {
+    fn default() -> Self {
+        Self {
+            s_type: <Self as crate::TaggedStructure>::STRUCTURE_TYPE,
+            p_next: Default::default(),
+            present_id2_supported: Default::default(),
+            _marker: ::core::marker::PhantomData,
+        }
+    }
 }
 ///Provided by [`khr::present_id2`](crate::khr::present_id2)
 impl crate::vk::StructureType {

@@ -104,7 +104,7 @@ impl InstanceFn {
 }
 pub(crate) mod reexport {
     #[repr(C)]
-    #[derive(Clone, Copy)]
+    #[derive(Clone, Copy, Default)]
     pub struct SurfaceCapabilitiesKHR {
         pub min_image_count: u32,
         pub max_image_count: u32,
@@ -118,7 +118,7 @@ pub(crate) mod reexport {
         pub supported_usage_flags: crate::vk::ImageUsageFlags,
     }
     #[repr(C)]
-    #[derive(Clone, Copy)]
+    #[derive(Clone, Copy, Default)]
     pub struct SurfaceFormatKHR {
         pub format: crate::vk::Format,
         pub color_space: crate::vk::ColorSpaceKHR,
@@ -243,7 +243,7 @@ pub(crate) mod reexport {
         }
     }
     #[repr(transparent)]
-    #[derive(Clone, Copy)]
+    #[derive(Clone, Copy, Default)]
     pub struct CompositeAlphaFlagBitsKHR(pub(crate) u32);
     ///Provided by [`khr::surface`](crate::khr::surface)
     impl CompositeAlphaFlagBitsKHR {
@@ -343,7 +343,7 @@ pub(crate) mod reexport {
         }
     }
     #[repr(transparent)]
-    #[derive(Clone, Copy)]
+    #[derive(Clone, Copy, Default)]
     pub struct SurfaceTransformFlagBitsKHR(pub(crate) u32);
     ///Provided by [`khr::surface`](crate::khr::surface)
     impl SurfaceTransformFlagBitsKHR {

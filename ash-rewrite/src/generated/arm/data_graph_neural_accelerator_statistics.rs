@@ -13,6 +13,16 @@ unsafe impl<'a> crate::TaggedStructure<'a>
 for PhysicalDeviceDataGraphNeuralAcceleratorStatisticsFeaturesARM<'a> {
     const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::PHYSICAL_DEVICE_DATA_GRAPH_NEURAL_ACCELERATOR_STATISTICS_FEATURES_ARM;
 }
+impl<'a> Default for PhysicalDeviceDataGraphNeuralAcceleratorStatisticsFeaturesARM<'a> {
+    fn default() -> Self {
+        Self {
+            s_type: <Self as crate::TaggedStructure>::STRUCTURE_TYPE,
+            p_next: Default::default(),
+            data_graph_neural_accelerator_statistics: Default::default(),
+            _marker: ::core::marker::PhantomData,
+        }
+    }
+}
 #[repr(C)]
 #[derive(Clone, Copy)]
 pub struct DataGraphPipelineNeuralStatisticsCreateInfoARM<'a> {
@@ -25,6 +35,16 @@ unsafe impl<'a> crate::TaggedStructure<'a>
 for DataGraphPipelineNeuralStatisticsCreateInfoARM<'a> {
     const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::DATA_GRAPH_PIPELINE_NEURAL_STATISTICS_CREATE_INFO_ARM;
 }
+impl<'a> Default for DataGraphPipelineNeuralStatisticsCreateInfoARM<'a> {
+    fn default() -> Self {
+        Self {
+            s_type: <Self as crate::TaggedStructure>::STRUCTURE_TYPE,
+            p_next: Default::default(),
+            allow_neural_statistics: Default::default(),
+            _marker: ::core::marker::PhantomData,
+        }
+    }
+}
 #[repr(C)]
 #[derive(Clone, Copy)]
 pub struct DataGraphPipelineSessionNeuralStatisticsCreateInfoARM<'a> {
@@ -36,6 +56,16 @@ pub struct DataGraphPipelineSessionNeuralStatisticsCreateInfoARM<'a> {
 unsafe impl<'a> crate::TaggedStructure<'a>
 for DataGraphPipelineSessionNeuralStatisticsCreateInfoARM<'a> {
     const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::DATA_GRAPH_PIPELINE_SESSION_NEURAL_STATISTICS_CREATE_INFO_ARM;
+}
+impl<'a> Default for DataGraphPipelineSessionNeuralStatisticsCreateInfoARM<'a> {
+    fn default() -> Self {
+        Self {
+            s_type: <Self as crate::TaggedStructure>::STRUCTURE_TYPE,
+            p_next: Default::default(),
+            mode: Default::default(),
+            _marker: ::core::marker::PhantomData,
+        }
+    }
 }
 ///Provided by [`arm::data_graph_neural_accelerator_statistics`](crate::arm::data_graph_neural_accelerator_statistics)
 impl crate::vk::StructureType {

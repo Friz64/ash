@@ -13,6 +13,16 @@ unsafe impl<'a> crate::TaggedStructure<'a>
 for PhysicalDeviceDisplacementMicromapFeaturesNV<'a> {
     const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::PHYSICAL_DEVICE_DISPLACEMENT_MICROMAP_FEATURES_NV;
 }
+impl<'a> Default for PhysicalDeviceDisplacementMicromapFeaturesNV<'a> {
+    fn default() -> Self {
+        Self {
+            s_type: <Self as crate::TaggedStructure>::STRUCTURE_TYPE,
+            p_next: Default::default(),
+            displacement_micromap: Default::default(),
+            _marker: ::core::marker::PhantomData,
+        }
+    }
+}
 #[repr(C)]
 #[derive(Clone, Copy)]
 pub struct PhysicalDeviceDisplacementMicromapPropertiesNV<'a> {
@@ -24,6 +34,16 @@ pub struct PhysicalDeviceDisplacementMicromapPropertiesNV<'a> {
 unsafe impl<'a> crate::TaggedStructure<'a>
 for PhysicalDeviceDisplacementMicromapPropertiesNV<'a> {
     const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::PHYSICAL_DEVICE_DISPLACEMENT_MICROMAP_PROPERTIES_NV;
+}
+impl<'a> Default for PhysicalDeviceDisplacementMicromapPropertiesNV<'a> {
+    fn default() -> Self {
+        Self {
+            s_type: <Self as crate::TaggedStructure>::STRUCTURE_TYPE,
+            p_next: Default::default(),
+            max_displacement_micromap_subdivision_level: Default::default(),
+            _marker: ::core::marker::PhantomData,
+        }
+    }
 }
 #[repr(C)]
 #[derive(Clone, Copy)]
@@ -51,6 +71,31 @@ pub struct AccelerationStructureTrianglesDisplacementMicromapNV<'a> {
 unsafe impl<'a> crate::TaggedStructure<'a>
 for AccelerationStructureTrianglesDisplacementMicromapNV<'a> {
     const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::ACCELERATION_STRUCTURE_TRIANGLES_DISPLACEMENT_MICROMAP_NV;
+}
+impl<'a> Default for AccelerationStructureTrianglesDisplacementMicromapNV<'a> {
+    fn default() -> Self {
+        Self {
+            s_type: <Self as crate::TaggedStructure>::STRUCTURE_TYPE,
+            p_next: Default::default(),
+            displacement_bias_and_scale_format: Default::default(),
+            displacement_vector_format: Default::default(),
+            displacement_bias_and_scale_buffer: Default::default(),
+            displacement_bias_and_scale_stride: Default::default(),
+            displacement_vector_buffer: Default::default(),
+            displacement_vector_stride: Default::default(),
+            displaced_micromap_primitive_flags: Default::default(),
+            displaced_micromap_primitive_flags_stride: Default::default(),
+            index_type: Default::default(),
+            index_buffer: Default::default(),
+            index_stride: Default::default(),
+            base_triangle: Default::default(),
+            usage_counts_count: Default::default(),
+            p_usage_counts: Default::default(),
+            pp_usage_counts: Default::default(),
+            micromap: Default::default(),
+            _marker: ::core::marker::PhantomData,
+        }
+    }
 }
 ///Provided by [`nv::displacement_micromap`](crate::nv::displacement_micromap)
 impl crate::vk::StructureType {

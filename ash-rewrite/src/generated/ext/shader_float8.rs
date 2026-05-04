@@ -14,6 +14,17 @@ unsafe impl<'a> crate::TaggedStructure<'a>
 for PhysicalDeviceShaderFloat8FeaturesEXT<'a> {
     const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::PHYSICAL_DEVICE_SHADER_FLOAT8_FEATURES_EXT;
 }
+impl<'a> Default for PhysicalDeviceShaderFloat8FeaturesEXT<'a> {
+    fn default() -> Self {
+        Self {
+            s_type: <Self as crate::TaggedStructure>::STRUCTURE_TYPE,
+            p_next: Default::default(),
+            shader_float8: Default::default(),
+            shader_float8_cooperative_matrix: Default::default(),
+            _marker: ::core::marker::PhantomData,
+        }
+    }
+}
 ///Provided by [`ext::shader_float8`](crate::ext::shader_float8)
 impl crate::vk::StructureType {
     pub const PHYSICAL_DEVICE_SHADER_FLOAT8_FEATURES_EXT: Self = Self(1000567000);

@@ -47,6 +47,16 @@ pub(crate) mod reexport {
     for PhysicalDevicePrimitiveRestartIndexFeaturesEXT<'a> {
         const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::PHYSICAL_DEVICE_PRIMITIVE_RESTART_INDEX_FEATURES_EXT;
     }
+    impl<'a> Default for PhysicalDevicePrimitiveRestartIndexFeaturesEXT<'a> {
+        fn default() -> Self {
+            Self {
+                s_type: <Self as crate::TaggedStructure>::STRUCTURE_TYPE,
+                p_next: Default::default(),
+                primitive_restart_index: Default::default(),
+                _marker: ::core::marker::PhantomData,
+            }
+        }
+    }
     ///Provided by [`ext::primitive_restart_index`](crate::ext::primitive_restart_index)
     impl crate::vk::StructureType {
         pub const PHYSICAL_DEVICE_PRIMITIVE_RESTART_INDEX_FEATURES_EXT: Self = Self(

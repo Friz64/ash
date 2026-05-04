@@ -13,6 +13,17 @@ pub struct PipelineLibraryCreateInfoKHR<'a> {
 unsafe impl<'a> crate::TaggedStructure<'a> for PipelineLibraryCreateInfoKHR<'a> {
     const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::PIPELINE_LIBRARY_CREATE_INFO_KHR;
 }
+impl<'a> Default for PipelineLibraryCreateInfoKHR<'a> {
+    fn default() -> Self {
+        Self {
+            s_type: <Self as crate::TaggedStructure>::STRUCTURE_TYPE,
+            p_next: Default::default(),
+            library_count: Default::default(),
+            p_libraries: Default::default(),
+            _marker: ::core::marker::PhantomData,
+        }
+    }
+}
 ///Provided by [`khr::pipeline_library`](crate::khr::pipeline_library)
 impl crate::vk::StructureType {
     pub const PIPELINE_LIBRARY_CREATE_INFO_KHR: Self = Self(1000290000);

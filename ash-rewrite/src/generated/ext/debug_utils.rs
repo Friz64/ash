@@ -219,6 +219,18 @@ pub(crate) mod reexport {
     unsafe impl<'a> crate::TaggedStructure<'a> for DebugUtilsObjectNameInfoEXT<'a> {
         const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::DEBUG_UTILS_OBJECT_NAME_INFO_EXT;
     }
+    impl<'a> Default for DebugUtilsObjectNameInfoEXT<'a> {
+        fn default() -> Self {
+            Self {
+                s_type: <Self as crate::TaggedStructure>::STRUCTURE_TYPE,
+                p_next: Default::default(),
+                object_type: Default::default(),
+                object_handle: Default::default(),
+                p_object_name: Default::default(),
+                _marker: ::core::marker::PhantomData,
+            }
+        }
+    }
     #[repr(C)]
     #[derive(Clone, Copy)]
     pub struct DebugUtilsObjectTagInfoEXT<'a> {
@@ -234,6 +246,20 @@ pub(crate) mod reexport {
     unsafe impl<'a> crate::TaggedStructure<'a> for DebugUtilsObjectTagInfoEXT<'a> {
         const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::DEBUG_UTILS_OBJECT_TAG_INFO_EXT;
     }
+    impl<'a> Default for DebugUtilsObjectTagInfoEXT<'a> {
+        fn default() -> Self {
+            Self {
+                s_type: <Self as crate::TaggedStructure>::STRUCTURE_TYPE,
+                p_next: Default::default(),
+                object_type: Default::default(),
+                object_handle: Default::default(),
+                tag_name: Default::default(),
+                tag_size: Default::default(),
+                p_tag: Default::default(),
+                _marker: ::core::marker::PhantomData,
+            }
+        }
+    }
     #[repr(C)]
     #[derive(Clone, Copy)]
     pub struct DebugUtilsLabelEXT<'a> {
@@ -245,6 +271,17 @@ pub(crate) mod reexport {
     }
     unsafe impl<'a> crate::TaggedStructure<'a> for DebugUtilsLabelEXT<'a> {
         const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::DEBUG_UTILS_LABEL_EXT;
+    }
+    impl<'a> Default for DebugUtilsLabelEXT<'a> {
+        fn default() -> Self {
+            Self {
+                s_type: <Self as crate::TaggedStructure>::STRUCTURE_TYPE,
+                p_next: Default::default(),
+                p_label_name: Default::default(),
+                color: unsafe { core::mem::zeroed() },
+                _marker: ::core::marker::PhantomData,
+            }
+        }
     }
     #[repr(C)]
     #[derive(Clone, Copy)]
@@ -260,6 +297,20 @@ pub(crate) mod reexport {
     }
     unsafe impl<'a> crate::TaggedStructure<'a> for DebugUtilsMessengerCreateInfoEXT<'a> {
         const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::DEBUG_UTILS_MESSENGER_CREATE_INFO_EXT;
+    }
+    impl<'a> Default for DebugUtilsMessengerCreateInfoEXT<'a> {
+        fn default() -> Self {
+            Self {
+                s_type: <Self as crate::TaggedStructure>::STRUCTURE_TYPE,
+                p_next: Default::default(),
+                flags: Default::default(),
+                message_severity: Default::default(),
+                message_type: Default::default(),
+                pfn_user_callback: Default::default(),
+                p_user_data: Default::default(),
+                _marker: ::core::marker::PhantomData,
+            }
+        }
     }
     #[repr(C)]
     #[derive(Clone, Copy)]
@@ -281,6 +332,25 @@ pub(crate) mod reexport {
     unsafe impl<'a> crate::TaggedStructure<'a>
     for DebugUtilsMessengerCallbackDataEXT<'a> {
         const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::DEBUG_UTILS_MESSENGER_CALLBACK_DATA_EXT;
+    }
+    impl<'a> Default for DebugUtilsMessengerCallbackDataEXT<'a> {
+        fn default() -> Self {
+            Self {
+                s_type: <Self as crate::TaggedStructure>::STRUCTURE_TYPE,
+                p_next: Default::default(),
+                flags: Default::default(),
+                p_message_id_name: Default::default(),
+                message_id_number: Default::default(),
+                p_message: Default::default(),
+                queue_label_count: Default::default(),
+                p_queue_labels: Default::default(),
+                cmd_buf_label_count: Default::default(),
+                p_cmd_buf_labels: Default::default(),
+                object_count: Default::default(),
+                p_objects: Default::default(),
+                _marker: ::core::marker::PhantomData,
+            }
+        }
     }
     ///Provided by [`ext::debug_utils`](crate::ext::debug_utils)
     impl crate::vk::StructureType {
@@ -374,7 +444,7 @@ pub(crate) mod reexport {
         }
     }
     #[repr(transparent)]
-    #[derive(Clone, Copy)]
+    #[derive(Clone, Copy, Default)]
     pub struct DebugUtilsMessageSeverityFlagBitsEXT(pub(crate) u32);
     ///Provided by [`ext::debug_utils`](crate::ext::debug_utils)
     impl DebugUtilsMessageSeverityFlagBitsEXT {
@@ -463,7 +533,7 @@ pub(crate) mod reexport {
         }
     }
     #[repr(transparent)]
-    #[derive(Clone, Copy)]
+    #[derive(Clone, Copy, Default)]
     pub struct DebugUtilsMessageTypeFlagBitsEXT(pub(crate) u32);
     ///Provided by [`ext::debug_utils`](crate::ext::debug_utils)
     impl DebugUtilsMessageTypeFlagBitsEXT {

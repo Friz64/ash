@@ -135,7 +135,6 @@ where
     }
 }
 
-
 pub unsafe trait TaggedStructure<'a>: Sized {
     const STRUCTURE_TYPE: StructureType;
 }

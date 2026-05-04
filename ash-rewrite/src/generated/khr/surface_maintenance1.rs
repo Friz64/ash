@@ -12,6 +12,16 @@ pub struct SurfacePresentModeKHR<'a> {
 unsafe impl<'a> crate::TaggedStructure<'a> for SurfacePresentModeKHR<'a> {
     const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::SURFACE_PRESENT_MODE_KHR;
 }
+impl<'a> Default for SurfacePresentModeKHR<'a> {
+    fn default() -> Self {
+        Self {
+            s_type: <Self as crate::TaggedStructure>::STRUCTURE_TYPE,
+            p_next: Default::default(),
+            present_mode: Default::default(),
+            _marker: ::core::marker::PhantomData,
+        }
+    }
+}
 #[repr(C)]
 #[derive(Clone, Copy)]
 pub struct SurfacePresentScalingCapabilitiesKHR<'a> {
@@ -27,6 +37,20 @@ pub struct SurfacePresentScalingCapabilitiesKHR<'a> {
 unsafe impl<'a> crate::TaggedStructure<'a> for SurfacePresentScalingCapabilitiesKHR<'a> {
     const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::SURFACE_PRESENT_SCALING_CAPABILITIES_KHR;
 }
+impl<'a> Default for SurfacePresentScalingCapabilitiesKHR<'a> {
+    fn default() -> Self {
+        Self {
+            s_type: <Self as crate::TaggedStructure>::STRUCTURE_TYPE,
+            p_next: Default::default(),
+            supported_present_scaling: Default::default(),
+            supported_present_gravity_x: Default::default(),
+            supported_present_gravity_y: Default::default(),
+            min_scaled_image_extent: Default::default(),
+            max_scaled_image_extent: Default::default(),
+            _marker: ::core::marker::PhantomData,
+        }
+    }
+}
 #[repr(C)]
 #[derive(Clone, Copy)]
 pub struct SurfacePresentModeCompatibilityKHR<'a> {
@@ -38,6 +62,17 @@ pub struct SurfacePresentModeCompatibilityKHR<'a> {
 }
 unsafe impl<'a> crate::TaggedStructure<'a> for SurfacePresentModeCompatibilityKHR<'a> {
     const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::SURFACE_PRESENT_MODE_COMPATIBILITY_KHR;
+}
+impl<'a> Default for SurfacePresentModeCompatibilityKHR<'a> {
+    fn default() -> Self {
+        Self {
+            s_type: <Self as crate::TaggedStructure>::STRUCTURE_TYPE,
+            p_next: Default::default(),
+            present_mode_count: Default::default(),
+            p_present_modes: Default::default(),
+            _marker: ::core::marker::PhantomData,
+        }
+    }
 }
 ///Provided by [`khr::surface_maintenance1`](crate::khr::surface_maintenance1)
 impl crate::vk::StructureType {
@@ -123,7 +158,7 @@ impl core::ops::Not for PresentScalingFlagsKHR {
     }
 }
 #[repr(transparent)]
-#[derive(Clone, Copy)]
+#[derive(Clone, Copy, Default)]
 pub struct PresentScalingFlagBitsKHR(pub(crate) u32);
 ///Provided by [`khr::surface_maintenance1`](crate::khr::surface_maintenance1)
 impl PresentScalingFlagBitsKHR {
@@ -208,7 +243,7 @@ impl core::ops::Not for PresentGravityFlagsKHR {
     }
 }
 #[repr(transparent)]
-#[derive(Clone, Copy)]
+#[derive(Clone, Copy, Default)]
 pub struct PresentGravityFlagBitsKHR(pub(crate) u32);
 ///Provided by [`khr::surface_maintenance1`](crate::khr::surface_maintenance1)
 impl PresentGravityFlagBitsKHR {

@@ -13,6 +13,16 @@ unsafe impl<'a> crate::TaggedStructure<'a>
 for PhysicalDeviceImageViewMinLodFeaturesEXT<'a> {
     const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::PHYSICAL_DEVICE_IMAGE_VIEW_MIN_LOD_FEATURES_EXT;
 }
+impl<'a> Default for PhysicalDeviceImageViewMinLodFeaturesEXT<'a> {
+    fn default() -> Self {
+        Self {
+            s_type: <Self as crate::TaggedStructure>::STRUCTURE_TYPE,
+            p_next: Default::default(),
+            min_lod: Default::default(),
+            _marker: ::core::marker::PhantomData,
+        }
+    }
+}
 #[repr(C)]
 #[derive(Clone, Copy)]
 pub struct ImageViewMinLodCreateInfoEXT<'a> {
@@ -23,6 +33,16 @@ pub struct ImageViewMinLodCreateInfoEXT<'a> {
 }
 unsafe impl<'a> crate::TaggedStructure<'a> for ImageViewMinLodCreateInfoEXT<'a> {
     const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::IMAGE_VIEW_MIN_LOD_CREATE_INFO_EXT;
+}
+impl<'a> Default for ImageViewMinLodCreateInfoEXT<'a> {
+    fn default() -> Self {
+        Self {
+            s_type: <Self as crate::TaggedStructure>::STRUCTURE_TYPE,
+            p_next: Default::default(),
+            min_lod: Default::default(),
+            _marker: ::core::marker::PhantomData,
+        }
+    }
 }
 ///Provided by [`ext::image_view_min_lod`](crate::ext::image_view_min_lod)
 impl crate::vk::StructureType {

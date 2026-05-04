@@ -13,6 +13,16 @@ unsafe impl<'a> crate::TaggedStructure<'a>
 for PhysicalDeviceDiagnosticsConfigFeaturesNV<'a> {
     const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::PHYSICAL_DEVICE_DIAGNOSTICS_CONFIG_FEATURES_NV;
 }
+impl<'a> Default for PhysicalDeviceDiagnosticsConfigFeaturesNV<'a> {
+    fn default() -> Self {
+        Self {
+            s_type: <Self as crate::TaggedStructure>::STRUCTURE_TYPE,
+            p_next: Default::default(),
+            diagnostics_config: Default::default(),
+            _marker: ::core::marker::PhantomData,
+        }
+    }
+}
 #[repr(C)]
 #[derive(Clone, Copy)]
 pub struct DeviceDiagnosticsConfigCreateInfoNV<'a> {
@@ -23,6 +33,16 @@ pub struct DeviceDiagnosticsConfigCreateInfoNV<'a> {
 }
 unsafe impl<'a> crate::TaggedStructure<'a> for DeviceDiagnosticsConfigCreateInfoNV<'a> {
     const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::DEVICE_DIAGNOSTICS_CONFIG_CREATE_INFO_NV;
+}
+impl<'a> Default for DeviceDiagnosticsConfigCreateInfoNV<'a> {
+    fn default() -> Self {
+        Self {
+            s_type: <Self as crate::TaggedStructure>::STRUCTURE_TYPE,
+            p_next: Default::default(),
+            flags: Default::default(),
+            _marker: ::core::marker::PhantomData,
+        }
+    }
 }
 ///Provided by [`nv::device_diagnostics_config`](crate::nv::device_diagnostics_config)
 impl crate::vk::StructureType {
@@ -109,7 +129,7 @@ impl core::ops::Not for DeviceDiagnosticsConfigFlagsNV {
     }
 }
 #[repr(transparent)]
-#[derive(Clone, Copy)]
+#[derive(Clone, Copy, Default)]
 pub struct DeviceDiagnosticsConfigFlagBitsNV(pub(crate) u32);
 ///Provided by [`nv::device_diagnostics_config`](crate::nv::device_diagnostics_config)
 impl DeviceDiagnosticsConfigFlagBitsNV {

@@ -13,6 +13,16 @@ unsafe impl<'a> crate::TaggedStructure<'a>
 for PhysicalDeviceExternalFormatResolveFeaturesANDROID<'a> {
     const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::PHYSICAL_DEVICE_EXTERNAL_FORMAT_RESOLVE_FEATURES_ANDROID;
 }
+impl<'a> Default for PhysicalDeviceExternalFormatResolveFeaturesANDROID<'a> {
+    fn default() -> Self {
+        Self {
+            s_type: <Self as crate::TaggedStructure>::STRUCTURE_TYPE,
+            p_next: Default::default(),
+            external_format_resolve: Default::default(),
+            _marker: ::core::marker::PhantomData,
+        }
+    }
+}
 #[repr(C)]
 #[derive(Clone, Copy)]
 pub struct PhysicalDeviceExternalFormatResolvePropertiesANDROID<'a> {
@@ -27,6 +37,18 @@ unsafe impl<'a> crate::TaggedStructure<'a>
 for PhysicalDeviceExternalFormatResolvePropertiesANDROID<'a> {
     const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::PHYSICAL_DEVICE_EXTERNAL_FORMAT_RESOLVE_PROPERTIES_ANDROID;
 }
+impl<'a> Default for PhysicalDeviceExternalFormatResolvePropertiesANDROID<'a> {
+    fn default() -> Self {
+        Self {
+            s_type: <Self as crate::TaggedStructure>::STRUCTURE_TYPE,
+            p_next: Default::default(),
+            null_color_attachment_with_external_format_resolve: Default::default(),
+            external_format_resolve_chroma_offset_x: Default::default(),
+            external_format_resolve_chroma_offset_y: Default::default(),
+            _marker: ::core::marker::PhantomData,
+        }
+    }
+}
 #[repr(C)]
 #[derive(Clone, Copy)]
 pub struct AndroidHardwareBufferFormatResolvePropertiesANDROID<'a> {
@@ -38,6 +60,16 @@ pub struct AndroidHardwareBufferFormatResolvePropertiesANDROID<'a> {
 unsafe impl<'a> crate::TaggedStructure<'a>
 for AndroidHardwareBufferFormatResolvePropertiesANDROID<'a> {
     const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::ANDROID_HARDWARE_BUFFER_FORMAT_RESOLVE_PROPERTIES_ANDROID;
+}
+impl<'a> Default for AndroidHardwareBufferFormatResolvePropertiesANDROID<'a> {
+    fn default() -> Self {
+        Self {
+            s_type: <Self as crate::TaggedStructure>::STRUCTURE_TYPE,
+            p_next: Default::default(),
+            color_attachment_format: Default::default(),
+            _marker: ::core::marker::PhantomData,
+        }
+    }
 }
 ///Provided by [`android::external_format_resolve`](crate::android::external_format_resolve)
 impl crate::vk::StructureType {

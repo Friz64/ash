@@ -129,6 +129,16 @@ pub(crate) mod reexport {
     for PhysicalDeviceDeviceGeneratedCommandsFeaturesNV<'a> {
         const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::PHYSICAL_DEVICE_DEVICE_GENERATED_COMMANDS_FEATURES_NV;
     }
+    impl<'a> Default for PhysicalDeviceDeviceGeneratedCommandsFeaturesNV<'a> {
+        fn default() -> Self {
+            Self {
+                s_type: <Self as crate::TaggedStructure>::STRUCTURE_TYPE,
+                p_next: Default::default(),
+                device_generated_commands: Default::default(),
+                _marker: ::core::marker::PhantomData,
+            }
+        }
+    }
     #[repr(C)]
     #[derive(Clone, Copy)]
     pub struct PhysicalDeviceDeviceGeneratedCommandsPropertiesNV<'a> {
@@ -149,6 +159,24 @@ pub(crate) mod reexport {
     for PhysicalDeviceDeviceGeneratedCommandsPropertiesNV<'a> {
         const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::PHYSICAL_DEVICE_DEVICE_GENERATED_COMMANDS_PROPERTIES_NV;
     }
+    impl<'a> Default for PhysicalDeviceDeviceGeneratedCommandsPropertiesNV<'a> {
+        fn default() -> Self {
+            Self {
+                s_type: <Self as crate::TaggedStructure>::STRUCTURE_TYPE,
+                p_next: Default::default(),
+                max_graphics_shader_group_count: Default::default(),
+                max_indirect_sequence_count: Default::default(),
+                max_indirect_commands_token_count: Default::default(),
+                max_indirect_commands_stream_count: Default::default(),
+                max_indirect_commands_token_offset: Default::default(),
+                max_indirect_commands_stream_stride: Default::default(),
+                min_sequences_count_buffer_offset_alignment: Default::default(),
+                min_sequences_index_buffer_offset_alignment: Default::default(),
+                min_indirect_commands_buffer_offset_alignment: Default::default(),
+                _marker: ::core::marker::PhantomData,
+            }
+        }
+    }
     #[repr(C)]
     #[derive(Clone, Copy)]
     pub struct GraphicsShaderGroupCreateInfoNV<'a> {
@@ -167,6 +195,19 @@ pub(crate) mod reexport {
     unsafe impl<'a> crate::TaggedStructure<'a> for GraphicsShaderGroupCreateInfoNV<'a> {
         const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::GRAPHICS_SHADER_GROUP_CREATE_INFO_NV;
     }
+    impl<'a> Default for GraphicsShaderGroupCreateInfoNV<'a> {
+        fn default() -> Self {
+            Self {
+                s_type: <Self as crate::TaggedStructure>::STRUCTURE_TYPE,
+                p_next: Default::default(),
+                stage_count: Default::default(),
+                p_stages: Default::default(),
+                p_vertex_input_state: Default::default(),
+                p_tessellation_state: Default::default(),
+                _marker: ::core::marker::PhantomData,
+            }
+        }
+    }
     #[repr(C)]
     #[derive(Clone, Copy)]
     pub struct GraphicsPipelineShaderGroupsCreateInfoNV<'a> {
@@ -182,32 +223,45 @@ pub(crate) mod reexport {
     for GraphicsPipelineShaderGroupsCreateInfoNV<'a> {
         const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::GRAPHICS_PIPELINE_SHADER_GROUPS_CREATE_INFO_NV;
     }
+    impl<'a> Default for GraphicsPipelineShaderGroupsCreateInfoNV<'a> {
+        fn default() -> Self {
+            Self {
+                s_type: <Self as crate::TaggedStructure>::STRUCTURE_TYPE,
+                p_next: Default::default(),
+                group_count: Default::default(),
+                p_groups: Default::default(),
+                pipeline_count: Default::default(),
+                p_pipelines: Default::default(),
+                _marker: ::core::marker::PhantomData,
+            }
+        }
+    }
     #[repr(C)]
-    #[derive(Clone, Copy)]
+    #[derive(Clone, Copy, Default)]
     pub struct BindShaderGroupIndirectCommandNV {
         pub group_index: u32,
     }
     #[repr(C)]
-    #[derive(Clone, Copy)]
+    #[derive(Clone, Copy, Default)]
     pub struct BindIndexBufferIndirectCommandNV {
         pub buffer_address: crate::vk::DeviceAddress,
         pub size: u32,
         pub index_type: crate::vk::IndexType,
     }
     #[repr(C)]
-    #[derive(Clone, Copy)]
+    #[derive(Clone, Copy, Default)]
     pub struct BindVertexBufferIndirectCommandNV {
         pub buffer_address: crate::vk::DeviceAddress,
         pub size: u32,
         pub stride: u32,
     }
     #[repr(C)]
-    #[derive(Clone, Copy)]
+    #[derive(Clone, Copy, Default)]
     pub struct SetStateFlagsIndirectCommandNV {
         pub data: u32,
     }
     #[repr(C)]
-    #[derive(Clone, Copy)]
+    #[derive(Clone, Copy, Default)]
     pub struct IndirectCommandsStreamNV {
         pub buffer: crate::vk::Buffer,
         pub offset: crate::vk::DeviceSize,
@@ -235,6 +289,28 @@ pub(crate) mod reexport {
     unsafe impl<'a> crate::TaggedStructure<'a> for IndirectCommandsLayoutTokenNV<'a> {
         const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::INDIRECT_COMMANDS_LAYOUT_TOKEN_NV;
     }
+    impl<'a> Default for IndirectCommandsLayoutTokenNV<'a> {
+        fn default() -> Self {
+            Self {
+                s_type: <Self as crate::TaggedStructure>::STRUCTURE_TYPE,
+                p_next: Default::default(),
+                token_type: Default::default(),
+                stream: Default::default(),
+                offset: Default::default(),
+                vertex_binding_unit: Default::default(),
+                vertex_dynamic_stride: Default::default(),
+                pushconstant_pipeline_layout: Default::default(),
+                pushconstant_shader_stage_flags: Default::default(),
+                pushconstant_offset: Default::default(),
+                pushconstant_size: Default::default(),
+                indirect_state_flags: Default::default(),
+                index_type_count: Default::default(),
+                p_index_types: Default::default(),
+                p_index_type_values: Default::default(),
+                _marker: ::core::marker::PhantomData,
+            }
+        }
+    }
     #[repr(C)]
     #[derive(Clone, Copy)]
     pub struct IndirectCommandsLayoutCreateInfoNV<'a> {
@@ -251,6 +327,21 @@ pub(crate) mod reexport {
     unsafe impl<'a> crate::TaggedStructure<'a>
     for IndirectCommandsLayoutCreateInfoNV<'a> {
         const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::INDIRECT_COMMANDS_LAYOUT_CREATE_INFO_NV;
+    }
+    impl<'a> Default for IndirectCommandsLayoutCreateInfoNV<'a> {
+        fn default() -> Self {
+            Self {
+                s_type: <Self as crate::TaggedStructure>::STRUCTURE_TYPE,
+                p_next: Default::default(),
+                flags: Default::default(),
+                pipeline_bind_point: Default::default(),
+                token_count: Default::default(),
+                p_tokens: Default::default(),
+                stream_count: Default::default(),
+                p_stream_strides: Default::default(),
+                _marker: ::core::marker::PhantomData,
+            }
+        }
     }
     #[repr(C)]
     #[derive(Clone, Copy)]
@@ -275,6 +366,28 @@ pub(crate) mod reexport {
     unsafe impl<'a> crate::TaggedStructure<'a> for GeneratedCommandsInfoNV<'a> {
         const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::GENERATED_COMMANDS_INFO_NV;
     }
+    impl<'a> Default for GeneratedCommandsInfoNV<'a> {
+        fn default() -> Self {
+            Self {
+                s_type: <Self as crate::TaggedStructure>::STRUCTURE_TYPE,
+                p_next: Default::default(),
+                pipeline_bind_point: Default::default(),
+                pipeline: Default::default(),
+                indirect_commands_layout: Default::default(),
+                stream_count: Default::default(),
+                p_streams: Default::default(),
+                sequences_count: Default::default(),
+                preprocess_buffer: Default::default(),
+                preprocess_offset: Default::default(),
+                preprocess_size: Default::default(),
+                sequences_count_buffer: Default::default(),
+                sequences_count_offset: Default::default(),
+                sequences_index_buffer: Default::default(),
+                sequences_index_offset: Default::default(),
+                _marker: ::core::marker::PhantomData,
+            }
+        }
+    }
     #[repr(C)]
     #[derive(Clone, Copy)]
     pub struct GeneratedCommandsMemoryRequirementsInfoNV<'a> {
@@ -289,6 +402,19 @@ pub(crate) mod reexport {
     unsafe impl<'a> crate::TaggedStructure<'a>
     for GeneratedCommandsMemoryRequirementsInfoNV<'a> {
         const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::GENERATED_COMMANDS_MEMORY_REQUIREMENTS_INFO_NV;
+    }
+    impl<'a> Default for GeneratedCommandsMemoryRequirementsInfoNV<'a> {
+        fn default() -> Self {
+            Self {
+                s_type: <Self as crate::TaggedStructure>::STRUCTURE_TYPE,
+                p_next: Default::default(),
+                pipeline_bind_point: Default::default(),
+                pipeline: Default::default(),
+                indirect_commands_layout: Default::default(),
+                max_sequences_count: Default::default(),
+                _marker: ::core::marker::PhantomData,
+            }
+        }
     }
     ///Provided by [`nv::device_generated_commands`](crate::nv::device_generated_commands)
     impl crate::vk::StructureType {
@@ -426,7 +552,7 @@ pub(crate) mod reexport {
         }
     }
     #[repr(transparent)]
-    #[derive(Clone, Copy)]
+    #[derive(Clone, Copy, Default)]
     pub struct IndirectCommandsLayoutUsageFlagBitsNV(pub(crate) u32);
     ///Provided by [`nv::device_generated_commands`](crate::nv::device_generated_commands)
     impl IndirectCommandsLayoutUsageFlagBitsNV {
@@ -505,7 +631,7 @@ pub(crate) mod reexport {
         }
     }
     #[repr(transparent)]
-    #[derive(Clone, Copy)]
+    #[derive(Clone, Copy, Default)]
     pub struct IndirectStateFlagBitsNV(pub(crate) u32);
     ///Provided by [`nv::device_generated_commands`](crate::nv::device_generated_commands)
     impl IndirectStateFlagBitsNV {

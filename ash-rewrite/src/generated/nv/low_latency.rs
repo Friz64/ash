@@ -12,6 +12,16 @@ pub struct QueryLowLatencySupportNV<'a> {
 unsafe impl<'a> crate::TaggedStructure<'a> for QueryLowLatencySupportNV<'a> {
     const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::QUERY_LOW_LATENCY_SUPPORT_NV;
 }
+impl<'a> Default for QueryLowLatencySupportNV<'a> {
+    fn default() -> Self {
+        Self {
+            s_type: <Self as crate::TaggedStructure>::STRUCTURE_TYPE,
+            p_next: Default::default(),
+            p_queried_low_latency_data: Default::default(),
+            _marker: ::core::marker::PhantomData,
+        }
+    }
+}
 ///Provided by [`nv::low_latency`](crate::nv::low_latency)
 impl crate::vk::StructureType {
     pub const QUERY_LOW_LATENCY_SUPPORT_NV: Self = Self(1000310000);

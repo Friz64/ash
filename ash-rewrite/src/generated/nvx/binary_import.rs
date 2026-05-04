@@ -113,6 +113,17 @@ pub(crate) mod reexport {
     unsafe impl<'a> crate::TaggedStructure<'a> for CuModuleCreateInfoNVX<'a> {
         const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::CU_MODULE_CREATE_INFO_NVX;
     }
+    impl<'a> Default for CuModuleCreateInfoNVX<'a> {
+        fn default() -> Self {
+            Self {
+                s_type: <Self as crate::TaggedStructure>::STRUCTURE_TYPE,
+                p_next: Default::default(),
+                data_size: Default::default(),
+                p_data: Default::default(),
+                _marker: ::core::marker::PhantomData,
+            }
+        }
+    }
     #[repr(C)]
     #[derive(Clone, Copy)]
     pub struct CuModuleTexturingModeCreateInfoNVX<'a> {
@@ -125,6 +136,16 @@ pub(crate) mod reexport {
     for CuModuleTexturingModeCreateInfoNVX<'a> {
         const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::CU_MODULE_TEXTURING_MODE_CREATE_INFO_NVX;
     }
+    impl<'a> Default for CuModuleTexturingModeCreateInfoNVX<'a> {
+        fn default() -> Self {
+            Self {
+                s_type: <Self as crate::TaggedStructure>::STRUCTURE_TYPE,
+                p_next: Default::default(),
+                use64bit_texturing: Default::default(),
+                _marker: ::core::marker::PhantomData,
+            }
+        }
+    }
     #[repr(C)]
     #[derive(Clone, Copy)]
     pub struct CuFunctionCreateInfoNVX<'a> {
@@ -136,6 +157,17 @@ pub(crate) mod reexport {
     }
     unsafe impl<'a> crate::TaggedStructure<'a> for CuFunctionCreateInfoNVX<'a> {
         const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::CU_FUNCTION_CREATE_INFO_NVX;
+    }
+    impl<'a> Default for CuFunctionCreateInfoNVX<'a> {
+        fn default() -> Self {
+            Self {
+                s_type: <Self as crate::TaggedStructure>::STRUCTURE_TYPE,
+                p_next: Default::default(),
+                module: Default::default(),
+                p_name: Default::default(),
+                _marker: ::core::marker::PhantomData,
+            }
+        }
     }
     #[repr(C)]
     #[derive(Clone, Copy)]
@@ -158,6 +190,27 @@ pub(crate) mod reexport {
     }
     unsafe impl<'a> crate::TaggedStructure<'a> for CuLaunchInfoNVX<'a> {
         const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::CU_LAUNCH_INFO_NVX;
+    }
+    impl<'a> Default for CuLaunchInfoNVX<'a> {
+        fn default() -> Self {
+            Self {
+                s_type: <Self as crate::TaggedStructure>::STRUCTURE_TYPE,
+                p_next: Default::default(),
+                function: Default::default(),
+                grid_dim_x: Default::default(),
+                grid_dim_y: Default::default(),
+                grid_dim_z: Default::default(),
+                block_dim_x: Default::default(),
+                block_dim_y: Default::default(),
+                block_dim_z: Default::default(),
+                shared_mem_bytes: Default::default(),
+                param_count: Default::default(),
+                p_params: Default::default(),
+                extra_count: Default::default(),
+                p_extras: Default::default(),
+                _marker: ::core::marker::PhantomData,
+            }
+        }
     }
     ///Provided by [`nvx::binary_import`](crate::nvx::binary_import)
     impl crate::vk::StructureType {

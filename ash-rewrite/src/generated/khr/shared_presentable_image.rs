@@ -47,6 +47,16 @@ pub(crate) mod reexport {
     for SharedPresentSurfaceCapabilitiesKHR<'a> {
         const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::SHARED_PRESENT_SURFACE_CAPABILITIES_KHR;
     }
+    impl<'a> Default for SharedPresentSurfaceCapabilitiesKHR<'a> {
+        fn default() -> Self {
+            Self {
+                s_type: <Self as crate::TaggedStructure>::STRUCTURE_TYPE,
+                p_next: Default::default(),
+                shared_present_supported_usage_flags: Default::default(),
+                _marker: ::core::marker::PhantomData,
+            }
+        }
+    }
     ///Provided by [`khr::shared_presentable_image`](crate::khr::shared_presentable_image)
     impl crate::vk::ImageLayout {
         pub const SHARED_PRESENT_KHR: Self = Self(1000111000);

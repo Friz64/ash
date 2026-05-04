@@ -14,6 +14,18 @@ pub struct PhysicalDeviceShaderFmaFeaturesKHR<'a> {
 unsafe impl<'a> crate::TaggedStructure<'a> for PhysicalDeviceShaderFmaFeaturesKHR<'a> {
     const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::PHYSICAL_DEVICE_SHADER_FMA_FEATURES_KHR;
 }
+impl<'a> Default for PhysicalDeviceShaderFmaFeaturesKHR<'a> {
+    fn default() -> Self {
+        Self {
+            s_type: <Self as crate::TaggedStructure>::STRUCTURE_TYPE,
+            p_next: Default::default(),
+            shader_fma_float16: Default::default(),
+            shader_fma_float32: Default::default(),
+            shader_fma_float64: Default::default(),
+            _marker: ::core::marker::PhantomData,
+        }
+    }
+}
 ///Provided by [`khr::shader_fma`](crate::khr::shader_fma)
 impl crate::vk::StructureType {
     pub const PHYSICAL_DEVICE_SHADER_FMA_FEATURES_KHR: Self = Self(1000579000);

@@ -90,6 +90,29 @@ pub(crate) mod reexport {
     for PhysicalDeviceTileShadingFeaturesQCOM<'a> {
         const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::PHYSICAL_DEVICE_TILE_SHADING_FEATURES_QCOM;
     }
+    impl<'a> Default for PhysicalDeviceTileShadingFeaturesQCOM<'a> {
+        fn default() -> Self {
+            Self {
+                s_type: <Self as crate::TaggedStructure>::STRUCTURE_TYPE,
+                p_next: Default::default(),
+                tile_shading: Default::default(),
+                tile_shading_fragment_stage: Default::default(),
+                tile_shading_color_attachments: Default::default(),
+                tile_shading_depth_attachments: Default::default(),
+                tile_shading_stencil_attachments: Default::default(),
+                tile_shading_input_attachments: Default::default(),
+                tile_shading_sampled_attachments: Default::default(),
+                tile_shading_per_tile_draw: Default::default(),
+                tile_shading_per_tile_dispatch: Default::default(),
+                tile_shading_dispatch_tile: Default::default(),
+                tile_shading_apron: Default::default(),
+                tile_shading_anisotropic_apron: Default::default(),
+                tile_shading_atomic_ops: Default::default(),
+                tile_shading_image_processing: Default::default(),
+                _marker: ::core::marker::PhantomData,
+            }
+        }
+    }
     #[repr(C)]
     #[derive(Clone, Copy)]
     pub struct PhysicalDeviceTileShadingPropertiesQCOM<'a> {
@@ -105,6 +128,19 @@ pub(crate) mod reexport {
     for PhysicalDeviceTileShadingPropertiesQCOM<'a> {
         const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::PHYSICAL_DEVICE_TILE_SHADING_PROPERTIES_QCOM;
     }
+    impl<'a> Default for PhysicalDeviceTileShadingPropertiesQCOM<'a> {
+        fn default() -> Self {
+            Self {
+                s_type: <Self as crate::TaggedStructure>::STRUCTURE_TYPE,
+                p_next: Default::default(),
+                max_apron_size: Default::default(),
+                prefer_non_coherent: Default::default(),
+                tile_granularity: Default::default(),
+                max_tile_shading_rate: Default::default(),
+                _marker: ::core::marker::PhantomData,
+            }
+        }
+    }
     #[repr(C)]
     #[derive(Clone, Copy)]
     pub struct RenderPassTileShadingCreateInfoQCOM<'a> {
@@ -118,6 +154,17 @@ pub(crate) mod reexport {
     for RenderPassTileShadingCreateInfoQCOM<'a> {
         const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::RENDER_PASS_TILE_SHADING_CREATE_INFO_QCOM;
     }
+    impl<'a> Default for RenderPassTileShadingCreateInfoQCOM<'a> {
+        fn default() -> Self {
+            Self {
+                s_type: <Self as crate::TaggedStructure>::STRUCTURE_TYPE,
+                p_next: Default::default(),
+                flags: Default::default(),
+                tile_apron_size: Default::default(),
+                _marker: ::core::marker::PhantomData,
+            }
+        }
+    }
     #[repr(C)]
     #[derive(Clone, Copy)]
     pub struct PerTileBeginInfoQCOM<'a> {
@@ -127,6 +174,15 @@ pub(crate) mod reexport {
     }
     unsafe impl<'a> crate::TaggedStructure<'a> for PerTileBeginInfoQCOM<'a> {
         const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::PER_TILE_BEGIN_INFO_QCOM;
+    }
+    impl<'a> Default for PerTileBeginInfoQCOM<'a> {
+        fn default() -> Self {
+            Self {
+                s_type: <Self as crate::TaggedStructure>::STRUCTURE_TYPE,
+                p_next: Default::default(),
+                _marker: ::core::marker::PhantomData,
+            }
+        }
     }
     #[repr(C)]
     #[derive(Clone, Copy)]
@@ -138,6 +194,15 @@ pub(crate) mod reexport {
     unsafe impl<'a> crate::TaggedStructure<'a> for PerTileEndInfoQCOM<'a> {
         const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::PER_TILE_END_INFO_QCOM;
     }
+    impl<'a> Default for PerTileEndInfoQCOM<'a> {
+        fn default() -> Self {
+            Self {
+                s_type: <Self as crate::TaggedStructure>::STRUCTURE_TYPE,
+                p_next: Default::default(),
+                _marker: ::core::marker::PhantomData,
+            }
+        }
+    }
     #[repr(C)]
     #[derive(Clone, Copy)]
     pub struct DispatchTileInfoQCOM<'a> {
@@ -147,6 +212,15 @@ pub(crate) mod reexport {
     }
     unsafe impl<'a> crate::TaggedStructure<'a> for DispatchTileInfoQCOM<'a> {
         const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::DISPATCH_TILE_INFO_QCOM;
+    }
+    impl<'a> Default for DispatchTileInfoQCOM<'a> {
+        fn default() -> Self {
+            Self {
+                s_type: <Self as crate::TaggedStructure>::STRUCTURE_TYPE,
+                p_next: Default::default(),
+                _marker: ::core::marker::PhantomData,
+            }
+        }
     }
     ///Provided by [`qcom::tile_shading`](crate::qcom::tile_shading)
     impl crate::vk::StructureType {
@@ -240,7 +314,7 @@ pub(crate) mod reexport {
         }
     }
     #[repr(transparent)]
-    #[derive(Clone, Copy)]
+    #[derive(Clone, Copy, Default)]
     pub struct TileShadingRenderPassFlagBitsQCOM(pub(crate) u32);
     ///Provided by [`qcom::tile_shading`](crate::qcom::tile_shading)
     impl TileShadingRenderPassFlagBitsQCOM {

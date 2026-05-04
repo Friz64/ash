@@ -47,6 +47,16 @@ pub(crate) mod reexport {
     for DeviceQueueShaderCoreControlCreateInfoARM<'a> {
         const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::DEVICE_QUEUE_SHADER_CORE_CONTROL_CREATE_INFO_ARM;
     }
+    impl<'a> Default for DeviceQueueShaderCoreControlCreateInfoARM<'a> {
+        fn default() -> Self {
+            Self {
+                s_type: <Self as crate::TaggedStructure>::STRUCTURE_TYPE,
+                p_next: Default::default(),
+                shader_core_count: Default::default(),
+                _marker: ::core::marker::PhantomData,
+            }
+        }
+    }
     #[repr(C)]
     #[derive(Clone, Copy)]
     pub struct PhysicalDeviceSchedulingControlsFeaturesARM<'a> {
@@ -59,6 +69,16 @@ pub(crate) mod reexport {
     for PhysicalDeviceSchedulingControlsFeaturesARM<'a> {
         const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::PHYSICAL_DEVICE_SCHEDULING_CONTROLS_FEATURES_ARM;
     }
+    impl<'a> Default for PhysicalDeviceSchedulingControlsFeaturesARM<'a> {
+        fn default() -> Self {
+            Self {
+                s_type: <Self as crate::TaggedStructure>::STRUCTURE_TYPE,
+                p_next: Default::default(),
+                scheduling_controls: Default::default(),
+                _marker: ::core::marker::PhantomData,
+            }
+        }
+    }
     #[repr(C)]
     #[derive(Clone, Copy)]
     pub struct PhysicalDeviceSchedulingControlsPropertiesARM<'a> {
@@ -70,6 +90,16 @@ pub(crate) mod reexport {
     unsafe impl<'a> crate::TaggedStructure<'a>
     for PhysicalDeviceSchedulingControlsPropertiesARM<'a> {
         const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::PHYSICAL_DEVICE_SCHEDULING_CONTROLS_PROPERTIES_ARM;
+    }
+    impl<'a> Default for PhysicalDeviceSchedulingControlsPropertiesARM<'a> {
+        fn default() -> Self {
+            Self {
+                s_type: <Self as crate::TaggedStructure>::STRUCTURE_TYPE,
+                p_next: Default::default(),
+                scheduling_controls_flags: Default::default(),
+                _marker: ::core::marker::PhantomData,
+            }
+        }
     }
     #[repr(C)]
     #[derive(Clone, Copy)]
@@ -85,6 +115,19 @@ pub(crate) mod reexport {
     for PhysicalDeviceSchedulingControlsDispatchParametersPropertiesARM<'a> {
         const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::PHYSICAL_DEVICE_SCHEDULING_CONTROLS_DISPATCH_PARAMETERS_PROPERTIES_ARM;
     }
+    impl<'a> Default
+    for PhysicalDeviceSchedulingControlsDispatchParametersPropertiesARM<'a> {
+        fn default() -> Self {
+            Self {
+                s_type: <Self as crate::TaggedStructure>::STRUCTURE_TYPE,
+                p_next: Default::default(),
+                scheduling_controls_max_warps_count: Default::default(),
+                scheduling_controls_max_queued_batches_count: Default::default(),
+                scheduling_controls_max_work_group_batch_size: Default::default(),
+                _marker: ::core::marker::PhantomData,
+            }
+        }
+    }
     #[repr(C)]
     #[derive(Clone, Copy)]
     pub struct DispatchParametersARM<'a> {
@@ -97,6 +140,18 @@ pub(crate) mod reexport {
     }
     unsafe impl<'a> crate::TaggedStructure<'a> for DispatchParametersARM<'a> {
         const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::DISPATCH_PARAMETERS_ARM;
+    }
+    impl<'a> Default for DispatchParametersARM<'a> {
+        fn default() -> Self {
+            Self {
+                s_type: <Self as crate::TaggedStructure>::STRUCTURE_TYPE,
+                p_next: Default::default(),
+                work_group_batch_size: Default::default(),
+                max_queued_work_group_batches: Default::default(),
+                max_warps_per_shader_core: Default::default(),
+                _marker: ::core::marker::PhantomData,
+            }
+        }
     }
     ///Provided by [`arm::scheduling_controls`](crate::arm::scheduling_controls)
     impl crate::vk::StructureType {
@@ -188,7 +243,7 @@ pub(crate) mod reexport {
         }
     }
     #[repr(transparent)]
-    #[derive(Clone, Copy)]
+    #[derive(Clone, Copy, Default)]
     pub struct PhysicalDeviceSchedulingControlsFlagBitsARM(pub(crate) u64);
     ///Provided by [`arm::scheduling_controls`](crate::arm::scheduling_controls)
     impl PhysicalDeviceSchedulingControlsFlagBitsARM {

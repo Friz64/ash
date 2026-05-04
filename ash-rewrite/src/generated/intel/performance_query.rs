@@ -157,7 +157,7 @@ impl DeviceFn {
 }
 pub(crate) mod reexport {
     #[repr(C)]
-    #[derive(Clone, Copy)]
+    #[derive(Clone, Copy, Default)]
     pub struct PerformanceValueINTEL {
         pub _type: crate::vk::PerformanceValueTypeINTEL,
         pub data: crate::vk::PerformanceValueDataINTEL,
@@ -174,6 +174,16 @@ pub(crate) mod reexport {
     for InitializePerformanceApiInfoINTEL<'a> {
         const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::INITIALIZE_PERFORMANCE_API_INFO_INTEL;
     }
+    impl<'a> Default for InitializePerformanceApiInfoINTEL<'a> {
+        fn default() -> Self {
+            Self {
+                s_type: <Self as crate::TaggedStructure>::STRUCTURE_TYPE,
+                p_next: Default::default(),
+                p_user_data: Default::default(),
+                _marker: ::core::marker::PhantomData,
+            }
+        }
+    }
     #[repr(C)]
     #[derive(Clone, Copy)]
     pub struct QueryPoolPerformanceQueryCreateInfoINTEL<'a> {
@@ -186,6 +196,16 @@ pub(crate) mod reexport {
     for QueryPoolPerformanceQueryCreateInfoINTEL<'a> {
         const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::QUERY_POOL_PERFORMANCE_QUERY_CREATE_INFO_INTEL;
     }
+    impl<'a> Default for QueryPoolPerformanceQueryCreateInfoINTEL<'a> {
+        fn default() -> Self {
+            Self {
+                s_type: <Self as crate::TaggedStructure>::STRUCTURE_TYPE,
+                p_next: Default::default(),
+                performance_counters_sampling: Default::default(),
+                _marker: ::core::marker::PhantomData,
+            }
+        }
+    }
     #[repr(C)]
     #[derive(Clone, Copy)]
     pub struct PerformanceMarkerInfoINTEL<'a> {
@@ -197,6 +217,16 @@ pub(crate) mod reexport {
     unsafe impl<'a> crate::TaggedStructure<'a> for PerformanceMarkerInfoINTEL<'a> {
         const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::PERFORMANCE_MARKER_INFO_INTEL;
     }
+    impl<'a> Default for PerformanceMarkerInfoINTEL<'a> {
+        fn default() -> Self {
+            Self {
+                s_type: <Self as crate::TaggedStructure>::STRUCTURE_TYPE,
+                p_next: Default::default(),
+                marker: Default::default(),
+                _marker: ::core::marker::PhantomData,
+            }
+        }
+    }
     #[repr(C)]
     #[derive(Clone, Copy)]
     pub struct PerformanceStreamMarkerInfoINTEL<'a> {
@@ -207,6 +237,16 @@ pub(crate) mod reexport {
     }
     unsafe impl<'a> crate::TaggedStructure<'a> for PerformanceStreamMarkerInfoINTEL<'a> {
         const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::PERFORMANCE_STREAM_MARKER_INFO_INTEL;
+    }
+    impl<'a> Default for PerformanceStreamMarkerInfoINTEL<'a> {
+        fn default() -> Self {
+            Self {
+                s_type: <Self as crate::TaggedStructure>::STRUCTURE_TYPE,
+                p_next: Default::default(),
+                marker: Default::default(),
+                _marker: ::core::marker::PhantomData,
+            }
+        }
     }
     #[repr(C)]
     #[derive(Clone, Copy)]
@@ -221,6 +261,18 @@ pub(crate) mod reexport {
     unsafe impl<'a> crate::TaggedStructure<'a> for PerformanceOverrideInfoINTEL<'a> {
         const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::PERFORMANCE_OVERRIDE_INFO_INTEL;
     }
+    impl<'a> Default for PerformanceOverrideInfoINTEL<'a> {
+        fn default() -> Self {
+            Self {
+                s_type: <Self as crate::TaggedStructure>::STRUCTURE_TYPE,
+                p_next: Default::default(),
+                _type: Default::default(),
+                enable: Default::default(),
+                parameter: Default::default(),
+                _marker: ::core::marker::PhantomData,
+            }
+        }
+    }
     #[repr(C)]
     #[derive(Clone, Copy)]
     pub struct PerformanceConfigurationAcquireInfoINTEL<'a> {
@@ -233,6 +285,16 @@ pub(crate) mod reexport {
     for PerformanceConfigurationAcquireInfoINTEL<'a> {
         const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::PERFORMANCE_CONFIGURATION_ACQUIRE_INFO_INTEL;
     }
+    impl<'a> Default for PerformanceConfigurationAcquireInfoINTEL<'a> {
+        fn default() -> Self {
+            Self {
+                s_type: <Self as crate::TaggedStructure>::STRUCTURE_TYPE,
+                p_next: Default::default(),
+                _type: Default::default(),
+                _marker: ::core::marker::PhantomData,
+            }
+        }
+    }
     pub type QueryPoolCreateInfoINTEL<'a> = crate::vk::QueryPoolPerformanceQueryCreateInfoINTEL<
         'a,
     >;
@@ -244,6 +306,11 @@ pub(crate) mod reexport {
         pub value_float: core::ffi::c_float,
         pub value_bool: crate::vk::Bool32,
         pub value_string: *const core::ffi::c_char,
+    }
+    impl Default for PerformanceValueDataINTEL {
+        fn default() -> Self {
+            unsafe { core::mem::zeroed() }
+        }
     }
     ///Provided by [`intel::performance_query`](crate::intel::performance_query)
     impl crate::vk::QueryType {

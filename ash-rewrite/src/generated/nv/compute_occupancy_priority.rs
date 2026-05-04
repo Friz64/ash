@@ -48,6 +48,17 @@ pub(crate) mod reexport {
     for ComputeOccupancyPriorityParametersNV<'a> {
         const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::COMPUTE_OCCUPANCY_PRIORITY_PARAMETERS_NV;
     }
+    impl<'a> Default for ComputeOccupancyPriorityParametersNV<'a> {
+        fn default() -> Self {
+            Self {
+                s_type: <Self as crate::TaggedStructure>::STRUCTURE_TYPE,
+                p_next: Default::default(),
+                occupancy_priority: Default::default(),
+                occupancy_throttling: Default::default(),
+                _marker: ::core::marker::PhantomData,
+            }
+        }
+    }
     #[repr(C)]
     #[derive(Clone, Copy)]
     pub struct PhysicalDeviceComputeOccupancyPriorityFeaturesNV<'a> {
@@ -59,6 +70,16 @@ pub(crate) mod reexport {
     unsafe impl<'a> crate::TaggedStructure<'a>
     for PhysicalDeviceComputeOccupancyPriorityFeaturesNV<'a> {
         const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::PHYSICAL_DEVICE_COMPUTE_OCCUPANCY_PRIORITY_FEATURES_NV;
+    }
+    impl<'a> Default for PhysicalDeviceComputeOccupancyPriorityFeaturesNV<'a> {
+        fn default() -> Self {
+            Self {
+                s_type: <Self as crate::TaggedStructure>::STRUCTURE_TYPE,
+                p_next: Default::default(),
+                compute_occupancy_priority: Default::default(),
+                _marker: ::core::marker::PhantomData,
+            }
+        }
     }
     ///Provided by [`nv::compute_occupancy_priority`](crate::nv::compute_occupancy_priority)
     impl crate::vk::StructureType {

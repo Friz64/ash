@@ -67,6 +67,18 @@ pub(crate) mod reexport {
     unsafe impl<'a> crate::TaggedStructure<'a> for XcbSurfaceCreateInfoKHR<'a> {
         const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::XCB_SURFACE_CREATE_INFO_KHR;
     }
+    impl<'a> Default for XcbSurfaceCreateInfoKHR<'a> {
+        fn default() -> Self {
+            Self {
+                s_type: <Self as crate::TaggedStructure>::STRUCTURE_TYPE,
+                p_next: Default::default(),
+                flags: Default::default(),
+                connection: Default::default(),
+                window: Default::default(),
+                _marker: ::core::marker::PhantomData,
+            }
+        }
+    }
     ///Provided by [`khr::xcb_surface`](crate::khr::xcb_surface)
     impl crate::vk::StructureType {
         pub const XCB_SURFACE_CREATE_INFO_KHR: Self = Self(1000005000);

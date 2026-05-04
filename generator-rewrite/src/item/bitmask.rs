@@ -30,7 +30,7 @@ impl Code for BitMask {
 
             bits_code = quote! {
                 #[repr(transparent)]
-                #[derive(Clone, Copy)]
+                #[derive(Clone, Copy, Default)]
                 pub struct #bits_name_tokens(pub(crate) #base_ty);
             };
 

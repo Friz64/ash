@@ -13,6 +13,16 @@ unsafe impl<'a> crate::TaggedStructure<'a>
 for PhysicalDevicePresentBarrierFeaturesNV<'a> {
     const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::PHYSICAL_DEVICE_PRESENT_BARRIER_FEATURES_NV;
 }
+impl<'a> Default for PhysicalDevicePresentBarrierFeaturesNV<'a> {
+    fn default() -> Self {
+        Self {
+            s_type: <Self as crate::TaggedStructure>::STRUCTURE_TYPE,
+            p_next: Default::default(),
+            present_barrier: Default::default(),
+            _marker: ::core::marker::PhantomData,
+        }
+    }
+}
 #[repr(C)]
 #[derive(Clone, Copy)]
 pub struct SurfaceCapabilitiesPresentBarrierNV<'a> {
@@ -24,6 +34,16 @@ pub struct SurfaceCapabilitiesPresentBarrierNV<'a> {
 unsafe impl<'a> crate::TaggedStructure<'a> for SurfaceCapabilitiesPresentBarrierNV<'a> {
     const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::SURFACE_CAPABILITIES_PRESENT_BARRIER_NV;
 }
+impl<'a> Default for SurfaceCapabilitiesPresentBarrierNV<'a> {
+    fn default() -> Self {
+        Self {
+            s_type: <Self as crate::TaggedStructure>::STRUCTURE_TYPE,
+            p_next: Default::default(),
+            present_barrier_supported: Default::default(),
+            _marker: ::core::marker::PhantomData,
+        }
+    }
+}
 #[repr(C)]
 #[derive(Clone, Copy)]
 pub struct SwapchainPresentBarrierCreateInfoNV<'a> {
@@ -34,6 +54,16 @@ pub struct SwapchainPresentBarrierCreateInfoNV<'a> {
 }
 unsafe impl<'a> crate::TaggedStructure<'a> for SwapchainPresentBarrierCreateInfoNV<'a> {
     const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::SWAPCHAIN_PRESENT_BARRIER_CREATE_INFO_NV;
+}
+impl<'a> Default for SwapchainPresentBarrierCreateInfoNV<'a> {
+    fn default() -> Self {
+        Self {
+            s_type: <Self as crate::TaggedStructure>::STRUCTURE_TYPE,
+            p_next: Default::default(),
+            present_barrier_enable: Default::default(),
+            _marker: ::core::marker::PhantomData,
+        }
+    }
 }
 ///Provided by [`nv::present_barrier`](crate::nv::present_barrier)
 impl crate::vk::StructureType {

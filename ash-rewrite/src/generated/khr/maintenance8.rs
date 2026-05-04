@@ -13,6 +13,16 @@ unsafe impl<'a> crate::TaggedStructure<'a>
 for PhysicalDeviceMaintenance8FeaturesKHR<'a> {
     const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::PHYSICAL_DEVICE_MAINTENANCE_8_FEATURES_KHR;
 }
+impl<'a> Default for PhysicalDeviceMaintenance8FeaturesKHR<'a> {
+    fn default() -> Self {
+        Self {
+            s_type: <Self as crate::TaggedStructure>::STRUCTURE_TYPE,
+            p_next: Default::default(),
+            maintenance8: Default::default(),
+            _marker: ::core::marker::PhantomData,
+        }
+    }
+}
 #[repr(C)]
 #[derive(Clone, Copy)]
 pub struct MemoryBarrierAccessFlags3KHR<'a> {
@@ -24,6 +34,17 @@ pub struct MemoryBarrierAccessFlags3KHR<'a> {
 }
 unsafe impl<'a> crate::TaggedStructure<'a> for MemoryBarrierAccessFlags3KHR<'a> {
     const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::MEMORY_BARRIER_ACCESS_FLAGS_3_KHR;
+}
+impl<'a> Default for MemoryBarrierAccessFlags3KHR<'a> {
+    fn default() -> Self {
+        Self {
+            s_type: <Self as crate::TaggedStructure>::STRUCTURE_TYPE,
+            p_next: Default::default(),
+            src_access_mask3: Default::default(),
+            dst_access_mask3: Default::default(),
+            _marker: ::core::marker::PhantomData,
+        }
+    }
 }
 ///Provided by [`khr::maintenance8`](crate::khr::maintenance8)
 impl crate::vk::StructureType {
@@ -107,7 +128,7 @@ impl core::ops::Not for AccessFlags3KHR {
     }
 }
 #[repr(transparent)]
-#[derive(Clone, Copy)]
+#[derive(Clone, Copy, Default)]
 pub struct AccessFlagBits3KHR(pub(crate) u64);
 ///Provided by [`khr::maintenance8`](crate::khr::maintenance8)
 impl AccessFlagBits3KHR {

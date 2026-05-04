@@ -12,6 +12,16 @@ pub struct PhysicalDeviceShaderAbortFeaturesKHR<'a> {
 unsafe impl<'a> crate::TaggedStructure<'a> for PhysicalDeviceShaderAbortFeaturesKHR<'a> {
     const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::PHYSICAL_DEVICE_SHADER_ABORT_FEATURES_KHR;
 }
+impl<'a> Default for PhysicalDeviceShaderAbortFeaturesKHR<'a> {
+    fn default() -> Self {
+        Self {
+            s_type: <Self as crate::TaggedStructure>::STRUCTURE_TYPE,
+            p_next: Default::default(),
+            shader_abort: Default::default(),
+            _marker: ::core::marker::PhantomData,
+        }
+    }
+}
 #[repr(C)]
 #[derive(Clone, Copy)]
 pub struct PhysicalDeviceShaderAbortPropertiesKHR<'a> {
@@ -24,6 +34,16 @@ unsafe impl<'a> crate::TaggedStructure<'a>
 for PhysicalDeviceShaderAbortPropertiesKHR<'a> {
     const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::PHYSICAL_DEVICE_SHADER_ABORT_PROPERTIES_KHR;
 }
+impl<'a> Default for PhysicalDeviceShaderAbortPropertiesKHR<'a> {
+    fn default() -> Self {
+        Self {
+            s_type: <Self as crate::TaggedStructure>::STRUCTURE_TYPE,
+            p_next: Default::default(),
+            max_shader_abort_message_size: Default::default(),
+            _marker: ::core::marker::PhantomData,
+        }
+    }
+}
 #[repr(C)]
 #[derive(Clone, Copy)]
 pub struct DeviceFaultShaderAbortMessageInfoKHR<'a> {
@@ -35,6 +55,17 @@ pub struct DeviceFaultShaderAbortMessageInfoKHR<'a> {
 }
 unsafe impl<'a> crate::TaggedStructure<'a> for DeviceFaultShaderAbortMessageInfoKHR<'a> {
     const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::DEVICE_FAULT_SHADER_ABORT_MESSAGE_INFO_KHR;
+}
+impl<'a> Default for DeviceFaultShaderAbortMessageInfoKHR<'a> {
+    fn default() -> Self {
+        Self {
+            s_type: <Self as crate::TaggedStructure>::STRUCTURE_TYPE,
+            p_next: Default::default(),
+            message_data_size: Default::default(),
+            p_message_data: Default::default(),
+            _marker: ::core::marker::PhantomData,
+        }
+    }
 }
 ///Provided by [`khr::shader_abort`](crate::khr::shader_abort)
 impl crate::vk::StructureType {

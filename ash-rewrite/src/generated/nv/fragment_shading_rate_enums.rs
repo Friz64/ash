@@ -50,6 +50,18 @@ pub(crate) mod reexport {
     for PhysicalDeviceFragmentShadingRateEnumsFeaturesNV<'a> {
         const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::PHYSICAL_DEVICE_FRAGMENT_SHADING_RATE_ENUMS_FEATURES_NV;
     }
+    impl<'a> Default for PhysicalDeviceFragmentShadingRateEnumsFeaturesNV<'a> {
+        fn default() -> Self {
+            Self {
+                s_type: <Self as crate::TaggedStructure>::STRUCTURE_TYPE,
+                p_next: Default::default(),
+                fragment_shading_rate_enums: Default::default(),
+                supersample_fragment_shading_rates: Default::default(),
+                no_invocation_fragment_shading_rates: Default::default(),
+                _marker: ::core::marker::PhantomData,
+            }
+        }
+    }
     #[repr(C)]
     #[derive(Clone, Copy)]
     pub struct PhysicalDeviceFragmentShadingRateEnumsPropertiesNV<'a> {
@@ -61,6 +73,16 @@ pub(crate) mod reexport {
     unsafe impl<'a> crate::TaggedStructure<'a>
     for PhysicalDeviceFragmentShadingRateEnumsPropertiesNV<'a> {
         const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::PHYSICAL_DEVICE_FRAGMENT_SHADING_RATE_ENUMS_PROPERTIES_NV;
+    }
+    impl<'a> Default for PhysicalDeviceFragmentShadingRateEnumsPropertiesNV<'a> {
+        fn default() -> Self {
+            Self {
+                s_type: <Self as crate::TaggedStructure>::STRUCTURE_TYPE,
+                p_next: Default::default(),
+                max_fragment_shading_rate_invocation_count: Default::default(),
+                _marker: ::core::marker::PhantomData,
+            }
+        }
     }
     #[repr(C)]
     #[derive(Clone, Copy)]
@@ -75,6 +97,18 @@ pub(crate) mod reexport {
     unsafe impl<'a> crate::TaggedStructure<'a>
     for PipelineFragmentShadingRateEnumStateCreateInfoNV<'a> {
         const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::PIPELINE_FRAGMENT_SHADING_RATE_ENUM_STATE_CREATE_INFO_NV;
+    }
+    impl<'a> Default for PipelineFragmentShadingRateEnumStateCreateInfoNV<'a> {
+        fn default() -> Self {
+            Self {
+                s_type: <Self as crate::TaggedStructure>::STRUCTURE_TYPE,
+                p_next: Default::default(),
+                shading_rate_type: Default::default(),
+                shading_rate: Default::default(),
+                combiner_ops: unsafe { core::mem::zeroed() },
+                _marker: ::core::marker::PhantomData,
+            }
+        }
     }
     ///Provided by [`nv::fragment_shading_rate_enums`](crate::nv::fragment_shading_rate_enums)
     impl crate::vk::StructureType {

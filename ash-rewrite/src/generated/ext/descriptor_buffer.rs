@@ -224,6 +224,19 @@ pub(crate) mod reexport {
     for PhysicalDeviceDescriptorBufferFeaturesEXT<'a> {
         const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::PHYSICAL_DEVICE_DESCRIPTOR_BUFFER_FEATURES_EXT;
     }
+    impl<'a> Default for PhysicalDeviceDescriptorBufferFeaturesEXT<'a> {
+        fn default() -> Self {
+            Self {
+                s_type: <Self as crate::TaggedStructure>::STRUCTURE_TYPE,
+                p_next: Default::default(),
+                descriptor_buffer: Default::default(),
+                descriptor_buffer_capture_replay: Default::default(),
+                descriptor_buffer_image_layout_ignored: Default::default(),
+                descriptor_buffer_push_descriptors: Default::default(),
+                _marker: ::core::marker::PhantomData,
+            }
+        }
+    }
     #[repr(C)]
     #[derive(Clone, Copy)]
     pub struct PhysicalDeviceDescriptorBufferPropertiesEXT<'a> {
@@ -268,6 +281,48 @@ pub(crate) mod reexport {
     for PhysicalDeviceDescriptorBufferPropertiesEXT<'a> {
         const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::PHYSICAL_DEVICE_DESCRIPTOR_BUFFER_PROPERTIES_EXT;
     }
+    impl<'a> Default for PhysicalDeviceDescriptorBufferPropertiesEXT<'a> {
+        fn default() -> Self {
+            Self {
+                s_type: <Self as crate::TaggedStructure>::STRUCTURE_TYPE,
+                p_next: Default::default(),
+                combined_image_sampler_descriptor_single_array: Default::default(),
+                bufferless_push_descriptors: Default::default(),
+                allow_sampler_image_view_post_submit_creation: Default::default(),
+                descriptor_buffer_offset_alignment: Default::default(),
+                max_descriptor_buffer_bindings: Default::default(),
+                max_resource_descriptor_buffer_bindings: Default::default(),
+                max_sampler_descriptor_buffer_bindings: Default::default(),
+                max_embedded_immutable_sampler_bindings: Default::default(),
+                max_embedded_immutable_samplers: Default::default(),
+                buffer_capture_replay_descriptor_data_size: Default::default(),
+                image_capture_replay_descriptor_data_size: Default::default(),
+                image_view_capture_replay_descriptor_data_size: Default::default(),
+                sampler_capture_replay_descriptor_data_size: Default::default(),
+                acceleration_structure_capture_replay_descriptor_data_size: Default::default(),
+                sampler_descriptor_size: Default::default(),
+                combined_image_sampler_descriptor_size: Default::default(),
+                sampled_image_descriptor_size: Default::default(),
+                storage_image_descriptor_size: Default::default(),
+                uniform_texel_buffer_descriptor_size: Default::default(),
+                robust_uniform_texel_buffer_descriptor_size: Default::default(),
+                storage_texel_buffer_descriptor_size: Default::default(),
+                robust_storage_texel_buffer_descriptor_size: Default::default(),
+                uniform_buffer_descriptor_size: Default::default(),
+                robust_uniform_buffer_descriptor_size: Default::default(),
+                storage_buffer_descriptor_size: Default::default(),
+                robust_storage_buffer_descriptor_size: Default::default(),
+                input_attachment_descriptor_size: Default::default(),
+                acceleration_structure_descriptor_size: Default::default(),
+                max_sampler_descriptor_buffer_range: Default::default(),
+                max_resource_descriptor_buffer_range: Default::default(),
+                sampler_descriptor_buffer_address_space_size: Default::default(),
+                resource_descriptor_buffer_address_space_size: Default::default(),
+                descriptor_buffer_address_space_size: Default::default(),
+                _marker: ::core::marker::PhantomData,
+            }
+        }
+    }
     #[repr(C)]
     #[derive(Clone, Copy)]
     pub struct PhysicalDeviceDescriptorBufferDensityMapPropertiesEXT<'a> {
@@ -279,6 +334,16 @@ pub(crate) mod reexport {
     unsafe impl<'a> crate::TaggedStructure<'a>
     for PhysicalDeviceDescriptorBufferDensityMapPropertiesEXT<'a> {
         const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::PHYSICAL_DEVICE_DESCRIPTOR_BUFFER_DENSITY_MAP_PROPERTIES_EXT;
+    }
+    impl<'a> Default for PhysicalDeviceDescriptorBufferDensityMapPropertiesEXT<'a> {
+        fn default() -> Self {
+            Self {
+                s_type: <Self as crate::TaggedStructure>::STRUCTURE_TYPE,
+                p_next: Default::default(),
+                combined_image_sampler_density_map_descriptor_size: Default::default(),
+                _marker: ::core::marker::PhantomData,
+            }
+        }
     }
     #[repr(C)]
     #[derive(Clone, Copy)]
@@ -293,6 +358,18 @@ pub(crate) mod reexport {
     unsafe impl<'a> crate::TaggedStructure<'a> for DescriptorAddressInfoEXT<'a> {
         const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::DESCRIPTOR_ADDRESS_INFO_EXT;
     }
+    impl<'a> Default for DescriptorAddressInfoEXT<'a> {
+        fn default() -> Self {
+            Self {
+                s_type: <Self as crate::TaggedStructure>::STRUCTURE_TYPE,
+                p_next: Default::default(),
+                address: Default::default(),
+                range: Default::default(),
+                format: Default::default(),
+                _marker: ::core::marker::PhantomData,
+            }
+        }
+    }
     #[repr(C)]
     #[derive(Clone, Copy)]
     pub struct DescriptorBufferBindingInfoEXT<'a> {
@@ -304,6 +381,17 @@ pub(crate) mod reexport {
     }
     unsafe impl<'a> crate::TaggedStructure<'a> for DescriptorBufferBindingInfoEXT<'a> {
         const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::DESCRIPTOR_BUFFER_BINDING_INFO_EXT;
+    }
+    impl<'a> Default for DescriptorBufferBindingInfoEXT<'a> {
+        fn default() -> Self {
+            Self {
+                s_type: <Self as crate::TaggedStructure>::STRUCTURE_TYPE,
+                p_next: Default::default(),
+                address: Default::default(),
+                usage: Default::default(),
+                _marker: ::core::marker::PhantomData,
+            }
+        }
     }
     #[repr(C)]
     #[derive(Clone, Copy)]
@@ -317,6 +405,16 @@ pub(crate) mod reexport {
     for DescriptorBufferBindingPushDescriptorBufferHandleEXT<'a> {
         const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::DESCRIPTOR_BUFFER_BINDING_PUSH_DESCRIPTOR_BUFFER_HANDLE_EXT;
     }
+    impl<'a> Default for DescriptorBufferBindingPushDescriptorBufferHandleEXT<'a> {
+        fn default() -> Self {
+            Self {
+                s_type: <Self as crate::TaggedStructure>::STRUCTURE_TYPE,
+                p_next: Default::default(),
+                buffer: Default::default(),
+                _marker: ::core::marker::PhantomData,
+            }
+        }
+    }
     #[repr(C)]
     #[derive(Clone, Copy)]
     pub struct DescriptorGetInfoEXT<'a> {
@@ -328,6 +426,17 @@ pub(crate) mod reexport {
     }
     unsafe impl<'a> crate::TaggedStructure<'a> for DescriptorGetInfoEXT<'a> {
         const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::DESCRIPTOR_GET_INFO_EXT;
+    }
+    impl<'a> Default for DescriptorGetInfoEXT<'a> {
+        fn default() -> Self {
+            Self {
+                s_type: <Self as crate::TaggedStructure>::STRUCTURE_TYPE,
+                p_next: Default::default(),
+                _type: Default::default(),
+                data: Default::default(),
+                _marker: ::core::marker::PhantomData,
+            }
+        }
     }
     #[repr(C)]
     #[derive(Clone, Copy)]
@@ -341,6 +450,16 @@ pub(crate) mod reexport {
     for BufferCaptureDescriptorDataInfoEXT<'a> {
         const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::BUFFER_CAPTURE_DESCRIPTOR_DATA_INFO_EXT;
     }
+    impl<'a> Default for BufferCaptureDescriptorDataInfoEXT<'a> {
+        fn default() -> Self {
+            Self {
+                s_type: <Self as crate::TaggedStructure>::STRUCTURE_TYPE,
+                p_next: Default::default(),
+                buffer: Default::default(),
+                _marker: ::core::marker::PhantomData,
+            }
+        }
+    }
     #[repr(C)]
     #[derive(Clone, Copy)]
     pub struct ImageCaptureDescriptorDataInfoEXT<'a> {
@@ -352,6 +471,16 @@ pub(crate) mod reexport {
     unsafe impl<'a> crate::TaggedStructure<'a>
     for ImageCaptureDescriptorDataInfoEXT<'a> {
         const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::IMAGE_CAPTURE_DESCRIPTOR_DATA_INFO_EXT;
+    }
+    impl<'a> Default for ImageCaptureDescriptorDataInfoEXT<'a> {
+        fn default() -> Self {
+            Self {
+                s_type: <Self as crate::TaggedStructure>::STRUCTURE_TYPE,
+                p_next: Default::default(),
+                image: Default::default(),
+                _marker: ::core::marker::PhantomData,
+            }
+        }
     }
     #[repr(C)]
     #[derive(Clone, Copy)]
@@ -365,6 +494,16 @@ pub(crate) mod reexport {
     for ImageViewCaptureDescriptorDataInfoEXT<'a> {
         const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::IMAGE_VIEW_CAPTURE_DESCRIPTOR_DATA_INFO_EXT;
     }
+    impl<'a> Default for ImageViewCaptureDescriptorDataInfoEXT<'a> {
+        fn default() -> Self {
+            Self {
+                s_type: <Self as crate::TaggedStructure>::STRUCTURE_TYPE,
+                p_next: Default::default(),
+                image_view: Default::default(),
+                _marker: ::core::marker::PhantomData,
+            }
+        }
+    }
     #[repr(C)]
     #[derive(Clone, Copy)]
     pub struct SamplerCaptureDescriptorDataInfoEXT<'a> {
@@ -376,6 +515,16 @@ pub(crate) mod reexport {
     unsafe impl<'a> crate::TaggedStructure<'a>
     for SamplerCaptureDescriptorDataInfoEXT<'a> {
         const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::SAMPLER_CAPTURE_DESCRIPTOR_DATA_INFO_EXT;
+    }
+    impl<'a> Default for SamplerCaptureDescriptorDataInfoEXT<'a> {
+        fn default() -> Self {
+            Self {
+                s_type: <Self as crate::TaggedStructure>::STRUCTURE_TYPE,
+                p_next: Default::default(),
+                sampler: Default::default(),
+                _marker: ::core::marker::PhantomData,
+            }
+        }
     }
     #[repr(C)]
     #[derive(Clone, Copy)]
@@ -390,6 +539,17 @@ pub(crate) mod reexport {
     for AccelerationStructureCaptureDescriptorDataInfoEXT<'a> {
         const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::ACCELERATION_STRUCTURE_CAPTURE_DESCRIPTOR_DATA_INFO_EXT;
     }
+    impl<'a> Default for AccelerationStructureCaptureDescriptorDataInfoEXT<'a> {
+        fn default() -> Self {
+            Self {
+                s_type: <Self as crate::TaggedStructure>::STRUCTURE_TYPE,
+                p_next: Default::default(),
+                acceleration_structure: Default::default(),
+                acceleration_structure_nv: Default::default(),
+                _marker: ::core::marker::PhantomData,
+            }
+        }
+    }
     #[repr(C)]
     #[derive(Clone, Copy)]
     pub struct OpaqueCaptureDescriptorDataCreateInfoEXT<'a> {
@@ -401,6 +561,16 @@ pub(crate) mod reexport {
     unsafe impl<'a> crate::TaggedStructure<'a>
     for OpaqueCaptureDescriptorDataCreateInfoEXT<'a> {
         const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::OPAQUE_CAPTURE_DESCRIPTOR_DATA_CREATE_INFO_EXT;
+    }
+    impl<'a> Default for OpaqueCaptureDescriptorDataCreateInfoEXT<'a> {
+        fn default() -> Self {
+            Self {
+                s_type: <Self as crate::TaggedStructure>::STRUCTURE_TYPE,
+                p_next: Default::default(),
+                opaque_capture_descriptor_data: Default::default(),
+                _marker: ::core::marker::PhantomData,
+            }
+        }
     }
     #[repr(C)]
     #[derive(Clone, Copy)]
@@ -415,6 +585,11 @@ pub(crate) mod reexport {
         pub p_uniform_buffer: *const crate::vk::DescriptorAddressInfoEXT<'a>,
         pub p_storage_buffer: *const crate::vk::DescriptorAddressInfoEXT<'a>,
         pub acceleration_structure: crate::vk::DeviceAddress,
+    }
+    impl<'a> Default for DescriptorDataEXT<'a> {
+        fn default() -> Self {
+            unsafe { core::mem::zeroed() }
+        }
     }
     ///Provided by [`ext::descriptor_buffer`](crate::ext::descriptor_buffer)
     impl crate::vk::StructureType {

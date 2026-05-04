@@ -12,6 +12,16 @@ pub struct DedicatedAllocationImageCreateInfoNV<'a> {
 unsafe impl<'a> crate::TaggedStructure<'a> for DedicatedAllocationImageCreateInfoNV<'a> {
     const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::DEDICATED_ALLOCATION_IMAGE_CREATE_INFO_NV;
 }
+impl<'a> Default for DedicatedAllocationImageCreateInfoNV<'a> {
+    fn default() -> Self {
+        Self {
+            s_type: <Self as crate::TaggedStructure>::STRUCTURE_TYPE,
+            p_next: Default::default(),
+            dedicated_allocation: Default::default(),
+            _marker: ::core::marker::PhantomData,
+        }
+    }
+}
 #[repr(C)]
 #[derive(Clone, Copy)]
 pub struct DedicatedAllocationBufferCreateInfoNV<'a> {
@@ -23,6 +33,16 @@ pub struct DedicatedAllocationBufferCreateInfoNV<'a> {
 unsafe impl<'a> crate::TaggedStructure<'a>
 for DedicatedAllocationBufferCreateInfoNV<'a> {
     const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::DEDICATED_ALLOCATION_BUFFER_CREATE_INFO_NV;
+}
+impl<'a> Default for DedicatedAllocationBufferCreateInfoNV<'a> {
+    fn default() -> Self {
+        Self {
+            s_type: <Self as crate::TaggedStructure>::STRUCTURE_TYPE,
+            p_next: Default::default(),
+            dedicated_allocation: Default::default(),
+            _marker: ::core::marker::PhantomData,
+        }
+    }
 }
 #[repr(C)]
 #[derive(Clone, Copy)]
@@ -36,6 +56,17 @@ pub struct DedicatedAllocationMemoryAllocateInfoNV<'a> {
 unsafe impl<'a> crate::TaggedStructure<'a>
 for DedicatedAllocationMemoryAllocateInfoNV<'a> {
     const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::DEDICATED_ALLOCATION_MEMORY_ALLOCATE_INFO_NV;
+}
+impl<'a> Default for DedicatedAllocationMemoryAllocateInfoNV<'a> {
+    fn default() -> Self {
+        Self {
+            s_type: <Self as crate::TaggedStructure>::STRUCTURE_TYPE,
+            p_next: Default::default(),
+            image: Default::default(),
+            buffer: Default::default(),
+            _marker: ::core::marker::PhantomData,
+        }
+    }
 }
 ///Provided by [`nv::dedicated_allocation`](crate::nv::dedicated_allocation)
 impl crate::vk::StructureType {

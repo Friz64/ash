@@ -181,6 +181,17 @@ pub(crate) mod reexport {
     for PhysicalDeviceDeviceGeneratedCommandsFeaturesEXT<'a> {
         const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::PHYSICAL_DEVICE_DEVICE_GENERATED_COMMANDS_FEATURES_EXT;
     }
+    impl<'a> Default for PhysicalDeviceDeviceGeneratedCommandsFeaturesEXT<'a> {
+        fn default() -> Self {
+            Self {
+                s_type: <Self as crate::TaggedStructure>::STRUCTURE_TYPE,
+                p_next: Default::default(),
+                device_generated_commands: Default::default(),
+                dynamic_generated_pipeline_layout: Default::default(),
+                _marker: ::core::marker::PhantomData,
+            }
+        }
+    }
     #[repr(C)]
     #[derive(Clone, Copy)]
     pub struct PhysicalDeviceDeviceGeneratedCommandsPropertiesEXT<'a> {
@@ -204,6 +215,27 @@ pub(crate) mod reexport {
     for PhysicalDeviceDeviceGeneratedCommandsPropertiesEXT<'a> {
         const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::PHYSICAL_DEVICE_DEVICE_GENERATED_COMMANDS_PROPERTIES_EXT;
     }
+    impl<'a> Default for PhysicalDeviceDeviceGeneratedCommandsPropertiesEXT<'a> {
+        fn default() -> Self {
+            Self {
+                s_type: <Self as crate::TaggedStructure>::STRUCTURE_TYPE,
+                p_next: Default::default(),
+                max_indirect_pipeline_count: Default::default(),
+                max_indirect_shader_object_count: Default::default(),
+                max_indirect_sequence_count: Default::default(),
+                max_indirect_commands_token_count: Default::default(),
+                max_indirect_commands_token_offset: Default::default(),
+                max_indirect_commands_indirect_stride: Default::default(),
+                supported_indirect_commands_input_modes: Default::default(),
+                supported_indirect_commands_shader_stages: Default::default(),
+                supported_indirect_commands_shader_stages_pipeline_binding: Default::default(),
+                supported_indirect_commands_shader_stages_shader_binding: Default::default(),
+                device_generated_commands_transform_feedback: Default::default(),
+                device_generated_commands_multi_draw_indirect_count: Default::default(),
+                _marker: ::core::marker::PhantomData,
+            }
+        }
+    }
     #[repr(C)]
     #[derive(Clone, Copy)]
     pub struct GeneratedCommandsPipelineInfoEXT<'a> {
@@ -214,6 +246,16 @@ pub(crate) mod reexport {
     }
     unsafe impl<'a> crate::TaggedStructure<'a> for GeneratedCommandsPipelineInfoEXT<'a> {
         const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::GENERATED_COMMANDS_PIPELINE_INFO_EXT;
+    }
+    impl<'a> Default for GeneratedCommandsPipelineInfoEXT<'a> {
+        fn default() -> Self {
+            Self {
+                s_type: <Self as crate::TaggedStructure>::STRUCTURE_TYPE,
+                p_next: Default::default(),
+                pipeline: Default::default(),
+                _marker: ::core::marker::PhantomData,
+            }
+        }
     }
     #[repr(C)]
     #[derive(Clone, Copy)]
@@ -226,6 +268,17 @@ pub(crate) mod reexport {
     }
     unsafe impl<'a> crate::TaggedStructure<'a> for GeneratedCommandsShaderInfoEXT<'a> {
         const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::GENERATED_COMMANDS_SHADER_INFO_EXT;
+    }
+    impl<'a> Default for GeneratedCommandsShaderInfoEXT<'a> {
+        fn default() -> Self {
+            Self {
+                s_type: <Self as crate::TaggedStructure>::STRUCTURE_TYPE,
+                p_next: Default::default(),
+                shader_count: Default::default(),
+                p_shaders: Default::default(),
+                _marker: ::core::marker::PhantomData,
+            }
+        }
     }
     #[repr(C)]
     #[derive(Clone, Copy)]
@@ -242,6 +295,19 @@ pub(crate) mod reexport {
     for GeneratedCommandsMemoryRequirementsInfoEXT<'a> {
         const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::GENERATED_COMMANDS_MEMORY_REQUIREMENTS_INFO_EXT;
     }
+    impl<'a> Default for GeneratedCommandsMemoryRequirementsInfoEXT<'a> {
+        fn default() -> Self {
+            Self {
+                s_type: <Self as crate::TaggedStructure>::STRUCTURE_TYPE,
+                p_next: Default::default(),
+                indirect_execution_set: Default::default(),
+                indirect_commands_layout: Default::default(),
+                max_sequence_count: Default::default(),
+                max_draw_count: Default::default(),
+                _marker: ::core::marker::PhantomData,
+            }
+        }
+    }
     #[repr(C)]
     #[derive(Clone, Copy)]
     pub struct IndirectExecutionSetPipelineInfoEXT<'a> {
@@ -255,6 +321,17 @@ pub(crate) mod reexport {
     for IndirectExecutionSetPipelineInfoEXT<'a> {
         const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::INDIRECT_EXECUTION_SET_PIPELINE_INFO_EXT;
     }
+    impl<'a> Default for IndirectExecutionSetPipelineInfoEXT<'a> {
+        fn default() -> Self {
+            Self {
+                s_type: <Self as crate::TaggedStructure>::STRUCTURE_TYPE,
+                p_next: Default::default(),
+                initial_pipeline: Default::default(),
+                max_pipeline_count: Default::default(),
+                _marker: ::core::marker::PhantomData,
+            }
+        }
+    }
     #[repr(C)]
     #[derive(Clone, Copy)]
     pub struct IndirectExecutionSetShaderLayoutInfoEXT<'a> {
@@ -267,6 +344,17 @@ pub(crate) mod reexport {
     unsafe impl<'a> crate::TaggedStructure<'a>
     for IndirectExecutionSetShaderLayoutInfoEXT<'a> {
         const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::INDIRECT_EXECUTION_SET_SHADER_LAYOUT_INFO_EXT;
+    }
+    impl<'a> Default for IndirectExecutionSetShaderLayoutInfoEXT<'a> {
+        fn default() -> Self {
+            Self {
+                s_type: <Self as crate::TaggedStructure>::STRUCTURE_TYPE,
+                p_next: Default::default(),
+                set_layout_count: Default::default(),
+                p_set_layouts: Default::default(),
+                _marker: ::core::marker::PhantomData,
+            }
+        }
     }
     #[repr(C)]
     #[derive(Clone, Copy)]
@@ -287,6 +375,21 @@ pub(crate) mod reexport {
     for IndirectExecutionSetShaderInfoEXT<'a> {
         const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::INDIRECT_EXECUTION_SET_SHADER_INFO_EXT;
     }
+    impl<'a> Default for IndirectExecutionSetShaderInfoEXT<'a> {
+        fn default() -> Self {
+            Self {
+                s_type: <Self as crate::TaggedStructure>::STRUCTURE_TYPE,
+                p_next: Default::default(),
+                shader_count: Default::default(),
+                p_initial_shaders: Default::default(),
+                p_set_layout_infos: Default::default(),
+                max_shader_count: Default::default(),
+                push_constant_range_count: Default::default(),
+                p_push_constant_ranges: Default::default(),
+                _marker: ::core::marker::PhantomData,
+            }
+        }
+    }
     #[repr(C)]
     #[derive(Clone, Copy)]
     pub struct IndirectExecutionSetCreateInfoEXT<'a> {
@@ -299,6 +402,17 @@ pub(crate) mod reexport {
     unsafe impl<'a> crate::TaggedStructure<'a>
     for IndirectExecutionSetCreateInfoEXT<'a> {
         const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::INDIRECT_EXECUTION_SET_CREATE_INFO_EXT;
+    }
+    impl<'a> Default for IndirectExecutionSetCreateInfoEXT<'a> {
+        fn default() -> Self {
+            Self {
+                s_type: <Self as crate::TaggedStructure>::STRUCTURE_TYPE,
+                p_next: Default::default(),
+                _type: Default::default(),
+                info: Default::default(),
+                _marker: ::core::marker::PhantomData,
+            }
+        }
     }
     #[repr(C)]
     #[derive(Clone, Copy)]
@@ -320,6 +434,25 @@ pub(crate) mod reexport {
     unsafe impl<'a> crate::TaggedStructure<'a> for GeneratedCommandsInfoEXT<'a> {
         const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::GENERATED_COMMANDS_INFO_EXT;
     }
+    impl<'a> Default for GeneratedCommandsInfoEXT<'a> {
+        fn default() -> Self {
+            Self {
+                s_type: <Self as crate::TaggedStructure>::STRUCTURE_TYPE,
+                p_next: Default::default(),
+                shader_stages: Default::default(),
+                indirect_execution_set: Default::default(),
+                indirect_commands_layout: Default::default(),
+                indirect_address: Default::default(),
+                indirect_address_size: Default::default(),
+                preprocess_address: Default::default(),
+                preprocess_size: Default::default(),
+                max_sequence_count: Default::default(),
+                sequence_count_address: Default::default(),
+                max_draw_count: Default::default(),
+                _marker: ::core::marker::PhantomData,
+            }
+        }
+    }
     #[repr(C)]
     #[derive(Clone, Copy)]
     pub struct WriteIndirectExecutionSetPipelineEXT<'a> {
@@ -333,6 +466,17 @@ pub(crate) mod reexport {
     for WriteIndirectExecutionSetPipelineEXT<'a> {
         const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::WRITE_INDIRECT_EXECUTION_SET_PIPELINE_EXT;
     }
+    impl<'a> Default for WriteIndirectExecutionSetPipelineEXT<'a> {
+        fn default() -> Self {
+            Self {
+                s_type: <Self as crate::TaggedStructure>::STRUCTURE_TYPE,
+                p_next: Default::default(),
+                index: Default::default(),
+                pipeline: Default::default(),
+                _marker: ::core::marker::PhantomData,
+            }
+        }
+    }
     #[repr(C)]
     #[derive(Clone, Copy)]
     pub struct WriteIndirectExecutionSetShaderEXT<'a> {
@@ -345,6 +489,17 @@ pub(crate) mod reexport {
     unsafe impl<'a> crate::TaggedStructure<'a>
     for WriteIndirectExecutionSetShaderEXT<'a> {
         const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::WRITE_INDIRECT_EXECUTION_SET_SHADER_EXT;
+    }
+    impl<'a> Default for WriteIndirectExecutionSetShaderEXT<'a> {
+        fn default() -> Self {
+            Self {
+                s_type: <Self as crate::TaggedStructure>::STRUCTURE_TYPE,
+                p_next: Default::default(),
+                index: Default::default(),
+                shader: Default::default(),
+                _marker: ::core::marker::PhantomData,
+            }
+        }
     }
     #[repr(C)]
     #[derive(Clone, Copy)]
@@ -363,6 +518,21 @@ pub(crate) mod reexport {
     for IndirectCommandsLayoutCreateInfoEXT<'a> {
         const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::INDIRECT_COMMANDS_LAYOUT_CREATE_INFO_EXT;
     }
+    impl<'a> Default for IndirectCommandsLayoutCreateInfoEXT<'a> {
+        fn default() -> Self {
+            Self {
+                s_type: <Self as crate::TaggedStructure>::STRUCTURE_TYPE,
+                p_next: Default::default(),
+                flags: Default::default(),
+                shader_stages: Default::default(),
+                indirect_stride: Default::default(),
+                pipeline_layout: Default::default(),
+                token_count: Default::default(),
+                p_tokens: Default::default(),
+                _marker: ::core::marker::PhantomData,
+            }
+        }
+    }
     #[repr(C)]
     #[derive(Clone, Copy)]
     pub struct IndirectCommandsLayoutTokenEXT<'a> {
@@ -376,44 +546,56 @@ pub(crate) mod reexport {
     unsafe impl<'a> crate::TaggedStructure<'a> for IndirectCommandsLayoutTokenEXT<'a> {
         const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::INDIRECT_COMMANDS_LAYOUT_TOKEN_EXT;
     }
+    impl<'a> Default for IndirectCommandsLayoutTokenEXT<'a> {
+        fn default() -> Self {
+            Self {
+                s_type: <Self as crate::TaggedStructure>::STRUCTURE_TYPE,
+                p_next: Default::default(),
+                _type: Default::default(),
+                data: Default::default(),
+                offset: Default::default(),
+                _marker: ::core::marker::PhantomData,
+            }
+        }
+    }
     #[repr(C)]
-    #[derive(Clone, Copy)]
+    #[derive(Clone, Copy, Default)]
     pub struct DrawIndirectCountIndirectCommandEXT {
         pub buffer_address: crate::vk::DeviceAddress,
         pub stride: u32,
         pub command_count: u32,
     }
     #[repr(C)]
-    #[derive(Clone, Copy)]
+    #[derive(Clone, Copy, Default)]
     pub struct IndirectCommandsVertexBufferTokenEXT {
         pub vertex_binding_unit: u32,
     }
     #[repr(C)]
-    #[derive(Clone, Copy)]
+    #[derive(Clone, Copy, Default)]
     pub struct BindVertexBufferIndirectCommandEXT {
         pub buffer_address: crate::vk::DeviceAddress,
         pub size: u32,
         pub stride: u32,
     }
     #[repr(C)]
-    #[derive(Clone, Copy)]
+    #[derive(Clone, Copy, Default)]
     pub struct IndirectCommandsIndexBufferTokenEXT {
         pub mode: crate::vk::IndirectCommandsInputModeFlagBitsEXT,
     }
     #[repr(C)]
-    #[derive(Clone, Copy)]
+    #[derive(Clone, Copy, Default)]
     pub struct BindIndexBufferIndirectCommandEXT {
         pub buffer_address: crate::vk::DeviceAddress,
         pub size: u32,
         pub index_type: crate::vk::IndexType,
     }
     #[repr(C)]
-    #[derive(Clone, Copy)]
+    #[derive(Clone, Copy, Default)]
     pub struct IndirectCommandsPushConstantTokenEXT {
         pub update_range: crate::vk::PushConstantRange,
     }
     #[repr(C)]
-    #[derive(Clone, Copy)]
+    #[derive(Clone, Copy, Default)]
     pub struct IndirectCommandsExecutionSetTokenEXT {
         pub _type: crate::vk::IndirectExecutionSetInfoTypeEXT,
         pub shader_stages: crate::vk::ShaderStageFlags,
@@ -424,6 +606,11 @@ pub(crate) mod reexport {
         pub p_pipeline_info: *const crate::vk::IndirectExecutionSetPipelineInfoEXT<'a>,
         pub p_shader_info: *const crate::vk::IndirectExecutionSetShaderInfoEXT<'a>,
     }
+    impl<'a> Default for IndirectExecutionSetInfoEXT<'a> {
+        fn default() -> Self {
+            unsafe { core::mem::zeroed() }
+        }
+    }
     #[repr(C)]
     #[derive(Clone, Copy)]
     pub union IndirectCommandsTokenDataEXT {
@@ -431,6 +618,11 @@ pub(crate) mod reexport {
         pub p_vertex_buffer: *const crate::vk::IndirectCommandsVertexBufferTokenEXT,
         pub p_index_buffer: *const crate::vk::IndirectCommandsIndexBufferTokenEXT,
         pub p_execution_set: *const crate::vk::IndirectCommandsExecutionSetTokenEXT,
+    }
+    impl Default for IndirectCommandsTokenDataEXT {
+        fn default() -> Self {
+            unsafe { core::mem::zeroed() }
+        }
     }
     ///Provided by [`ext::device_generated_commands`](crate::ext::device_generated_commands)
     impl crate::vk::StructureType {
@@ -585,7 +777,7 @@ pub(crate) mod reexport {
         }
     }
     #[repr(transparent)]
-    #[derive(Clone, Copy)]
+    #[derive(Clone, Copy, Default)]
     pub struct IndirectCommandsLayoutUsageFlagBitsEXT(pub(crate) u32);
     ///Provided by [`ext::device_generated_commands`](crate::ext::device_generated_commands)
     impl IndirectCommandsLayoutUsageFlagBitsEXT {
@@ -666,7 +858,7 @@ pub(crate) mod reexport {
         }
     }
     #[repr(transparent)]
-    #[derive(Clone, Copy)]
+    #[derive(Clone, Copy, Default)]
     pub struct IndirectCommandsInputModeFlagBitsEXT(pub(crate) u32);
     ///Provided by [`ext::device_generated_commands`](crate::ext::device_generated_commands)
     impl IndirectCommandsInputModeFlagBitsEXT {

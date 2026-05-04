@@ -13,8 +13,19 @@ pub struct LayerSettingsCreateInfoEXT<'a> {
 unsafe impl<'a> crate::TaggedStructure<'a> for LayerSettingsCreateInfoEXT<'a> {
     const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::LAYER_SETTINGS_CREATE_INFO_EXT;
 }
+impl<'a> Default for LayerSettingsCreateInfoEXT<'a> {
+    fn default() -> Self {
+        Self {
+            s_type: <Self as crate::TaggedStructure>::STRUCTURE_TYPE,
+            p_next: Default::default(),
+            setting_count: Default::default(),
+            p_settings: Default::default(),
+            _marker: ::core::marker::PhantomData,
+        }
+    }
+}
 #[repr(C)]
-#[derive(Clone, Copy)]
+#[derive(Clone, Copy, Default)]
 pub struct LayerSettingEXT<'a> {
     pub p_layer_name: *const core::ffi::c_char,
     pub p_setting_name: *const core::ffi::c_char,

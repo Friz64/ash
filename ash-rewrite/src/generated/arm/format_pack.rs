@@ -12,6 +12,16 @@ pub struct PhysicalDeviceFormatPackFeaturesARM<'a> {
 unsafe impl<'a> crate::TaggedStructure<'a> for PhysicalDeviceFormatPackFeaturesARM<'a> {
     const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::PHYSICAL_DEVICE_FORMAT_PACK_FEATURES_ARM;
 }
+impl<'a> Default for PhysicalDeviceFormatPackFeaturesARM<'a> {
+    fn default() -> Self {
+        Self {
+            s_type: <Self as crate::TaggedStructure>::STRUCTURE_TYPE,
+            p_next: Default::default(),
+            format_pack: Default::default(),
+            _marker: ::core::marker::PhantomData,
+        }
+    }
+}
 ///Provided by [`arm::format_pack`](crate::arm::format_pack)
 impl crate::vk::Format {
     pub const R10X6_UINT_PACK16_ARM: Self = Self(1000609000);

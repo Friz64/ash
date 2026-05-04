@@ -67,6 +67,16 @@ pub(crate) mod reexport {
     for PhysicalDeviceClusterAccelerationStructureFeaturesNV<'a> {
         const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::PHYSICAL_DEVICE_CLUSTER_ACCELERATION_STRUCTURE_FEATURES_NV;
     }
+    impl<'a> Default for PhysicalDeviceClusterAccelerationStructureFeaturesNV<'a> {
+        fn default() -> Self {
+            Self {
+                s_type: <Self as crate::TaggedStructure>::STRUCTURE_TYPE,
+                p_next: Default::default(),
+                cluster_acceleration_structure: Default::default(),
+                _marker: ::core::marker::PhantomData,
+            }
+        }
+    }
     #[repr(C)]
     #[derive(Clone, Copy)]
     pub struct PhysicalDeviceClusterAccelerationStructurePropertiesNV<'a> {
@@ -86,8 +96,25 @@ pub(crate) mod reexport {
     for PhysicalDeviceClusterAccelerationStructurePropertiesNV<'a> {
         const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::PHYSICAL_DEVICE_CLUSTER_ACCELERATION_STRUCTURE_PROPERTIES_NV;
     }
+    impl<'a> Default for PhysicalDeviceClusterAccelerationStructurePropertiesNV<'a> {
+        fn default() -> Self {
+            Self {
+                s_type: <Self as crate::TaggedStructure>::STRUCTURE_TYPE,
+                p_next: Default::default(),
+                max_vertices_per_cluster: Default::default(),
+                max_triangles_per_cluster: Default::default(),
+                cluster_scratch_byte_alignment: Default::default(),
+                cluster_byte_alignment: Default::default(),
+                cluster_template_byte_alignment: Default::default(),
+                cluster_bottom_level_byte_alignment: Default::default(),
+                cluster_template_bounds_byte_alignment: Default::default(),
+                max_cluster_geometry_index: Default::default(),
+                _marker: ::core::marker::PhantomData,
+            }
+        }
+    }
     #[repr(C)]
-    #[derive(Clone, Copy)]
+    #[derive(Clone, Copy, Default)]
     pub struct StridedDeviceAddressNV {
         pub start_address: crate::vk::DeviceAddress,
         pub stride_in_bytes: crate::vk::DeviceSize,
@@ -104,32 +131,42 @@ pub(crate) mod reexport {
     for RayTracingPipelineClusterAccelerationStructureCreateInfoNV<'a> {
         const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::RAY_TRACING_PIPELINE_CLUSTER_ACCELERATION_STRUCTURE_CREATE_INFO_NV;
     }
+    impl<'a> Default for RayTracingPipelineClusterAccelerationStructureCreateInfoNV<'a> {
+        fn default() -> Self {
+            Self {
+                s_type: <Self as crate::TaggedStructure>::STRUCTURE_TYPE,
+                p_next: Default::default(),
+                allow_cluster_acceleration_structure: Default::default(),
+                _marker: ::core::marker::PhantomData,
+            }
+        }
+    }
     #[repr(C)]
-    #[derive(Clone, Copy)]
+    #[derive(Clone, Copy, Default)]
     pub struct ClusterAccelerationStructureGeometryIndexAndGeometryFlagsNV {
         /**- `geometryIndex` @ `0..24`
 - `geometryFlags` @ `29..32`*/
         pub bitfield0: u32,
     }
     #[repr(C)]
-    #[derive(Clone, Copy)]
+    #[derive(Clone, Copy, Default)]
     pub struct ClusterAccelerationStructureMoveObjectsInfoNV {
         pub src_acceleration_structure: crate::vk::DeviceAddress,
     }
     #[repr(C)]
-    #[derive(Clone, Copy)]
+    #[derive(Clone, Copy, Default)]
     pub struct ClusterAccelerationStructureBuildClustersBottomLevelInfoNV {
         pub cluster_references_count: u32,
         pub cluster_references_stride: u32,
         pub cluster_references: crate::vk::DeviceAddress,
     }
     #[repr(C)]
-    #[derive(Clone, Copy)]
+    #[derive(Clone, Copy, Default)]
     pub struct ClusterAccelerationStructureGetTemplateIndicesInfoNV {
         pub cluster_template_address: crate::vk::DeviceAddress,
     }
     #[repr(C)]
-    #[derive(Clone, Copy)]
+    #[derive(Clone, Copy, Default)]
     pub struct ClusterAccelerationStructureBuildTriangleClusterInfoNV {
         pub cluster_id: u32,
         pub cluster_flags: crate::vk::ClusterAccelerationStructureClusterFlagsNV,
@@ -151,7 +188,7 @@ pub(crate) mod reexport {
         pub opacity_micromap_index_buffer: crate::vk::DeviceAddress,
     }
     #[repr(C)]
-    #[derive(Clone, Copy)]
+    #[derive(Clone, Copy, Default)]
     pub struct ClusterAccelerationStructureBuildTriangleClusterTemplateInfoNV {
         pub cluster_id: u32,
         pub cluster_flags: crate::vk::ClusterAccelerationStructureClusterFlagsNV,
@@ -174,7 +211,7 @@ pub(crate) mod reexport {
         pub instantiation_bounding_box_limit: crate::vk::DeviceAddress,
     }
     #[repr(C)]
-    #[derive(Clone, Copy)]
+    #[derive(Clone, Copy, Default)]
     pub struct ClusterAccelerationStructureInstantiateClusterInfoNV {
         pub cluster_id_offset: u32,
         ///- `geometryIndexOffset` @ `0..24`
@@ -195,6 +232,17 @@ pub(crate) mod reexport {
     for ClusterAccelerationStructureClustersBottomLevelInputNV<'a> {
         const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::CLUSTER_ACCELERATION_STRUCTURE_CLUSTERS_BOTTOM_LEVEL_INPUT_NV;
     }
+    impl<'a> Default for ClusterAccelerationStructureClustersBottomLevelInputNV<'a> {
+        fn default() -> Self {
+            Self {
+                s_type: <Self as crate::TaggedStructure>::STRUCTURE_TYPE,
+                p_next: Default::default(),
+                max_total_cluster_count: Default::default(),
+                max_cluster_count_per_acceleration_structure: Default::default(),
+                _marker: ::core::marker::PhantomData,
+            }
+        }
+    }
     #[repr(C)]
     #[derive(Clone, Copy)]
     pub struct ClusterAccelerationStructureTriangleClusterInputNV<'a> {
@@ -214,6 +262,23 @@ pub(crate) mod reexport {
     for ClusterAccelerationStructureTriangleClusterInputNV<'a> {
         const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::CLUSTER_ACCELERATION_STRUCTURE_TRIANGLE_CLUSTER_INPUT_NV;
     }
+    impl<'a> Default for ClusterAccelerationStructureTriangleClusterInputNV<'a> {
+        fn default() -> Self {
+            Self {
+                s_type: <Self as crate::TaggedStructure>::STRUCTURE_TYPE,
+                p_next: Default::default(),
+                vertex_format: Default::default(),
+                max_geometry_index_value: Default::default(),
+                max_cluster_unique_geometry_count: Default::default(),
+                max_cluster_triangle_count: Default::default(),
+                max_cluster_vertex_count: Default::default(),
+                max_total_triangle_count: Default::default(),
+                max_total_vertex_count: Default::default(),
+                min_position_truncate_bit_count: Default::default(),
+                _marker: ::core::marker::PhantomData,
+            }
+        }
+    }
     #[repr(C)]
     #[derive(Clone, Copy)]
     pub struct ClusterAccelerationStructureMoveObjectsInputNV<'a> {
@@ -227,6 +292,18 @@ pub(crate) mod reexport {
     unsafe impl<'a> crate::TaggedStructure<'a>
     for ClusterAccelerationStructureMoveObjectsInputNV<'a> {
         const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::CLUSTER_ACCELERATION_STRUCTURE_MOVE_OBJECTS_INPUT_NV;
+    }
+    impl<'a> Default for ClusterAccelerationStructureMoveObjectsInputNV<'a> {
+        fn default() -> Self {
+            Self {
+                s_type: <Self as crate::TaggedStructure>::STRUCTURE_TYPE,
+                p_next: Default::default(),
+                _type: Default::default(),
+                no_move_overlap: Default::default(),
+                max_moved_bytes: Default::default(),
+                _marker: ::core::marker::PhantomData,
+            }
+        }
     }
     #[repr(C)]
     #[derive(Clone, Copy)]
@@ -243,6 +320,20 @@ pub(crate) mod reexport {
     unsafe impl<'a> crate::TaggedStructure<'a>
     for ClusterAccelerationStructureInputInfoNV<'a> {
         const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::CLUSTER_ACCELERATION_STRUCTURE_INPUT_INFO_NV;
+    }
+    impl<'a> Default for ClusterAccelerationStructureInputInfoNV<'a> {
+        fn default() -> Self {
+            Self {
+                s_type: <Self as crate::TaggedStructure>::STRUCTURE_TYPE,
+                p_next: Default::default(),
+                max_acceleration_structure_count: Default::default(),
+                flags: Default::default(),
+                op_type: Default::default(),
+                op_mode: Default::default(),
+                op_input: Default::default(),
+                _marker: ::core::marker::PhantomData,
+            }
+        }
     }
     #[repr(C)]
     #[derive(Clone, Copy)]
@@ -263,6 +354,23 @@ pub(crate) mod reexport {
     for ClusterAccelerationStructureCommandsInfoNV<'a> {
         const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::CLUSTER_ACCELERATION_STRUCTURE_COMMANDS_INFO_NV;
     }
+    impl<'a> Default for ClusterAccelerationStructureCommandsInfoNV<'a> {
+        fn default() -> Self {
+            Self {
+                s_type: <Self as crate::TaggedStructure>::STRUCTURE_TYPE,
+                p_next: Default::default(),
+                input: Default::default(),
+                dst_implicit_data: Default::default(),
+                scratch_data: Default::default(),
+                dst_addresses_array: Default::default(),
+                dst_sizes_array: Default::default(),
+                src_infos_array: Default::default(),
+                src_infos_count: Default::default(),
+                address_resolution_flags: Default::default(),
+                _marker: ::core::marker::PhantomData,
+            }
+        }
+    }
     #[repr(C)]
     #[derive(Clone, Copy)]
     pub union ClusterAccelerationStructureOpInputNV<'a> {
@@ -275,6 +383,11 @@ pub(crate) mod reexport {
         pub p_move_objects: *mut crate::vk::ClusterAccelerationStructureMoveObjectsInputNV<
             'a,
         >,
+    }
+    impl<'a> Default for ClusterAccelerationStructureOpInputNV<'a> {
+        fn default() -> Self {
+            unsafe { core::mem::zeroed() }
+        }
     }
     ///Provided by [`nv::cluster_acceleration_structure`](crate::nv::cluster_acceleration_structure)
     impl crate::vk::StructureType {
@@ -440,7 +553,7 @@ pub(crate) mod reexport {
         }
     }
     #[repr(transparent)]
-    #[derive(Clone, Copy)]
+    #[derive(Clone, Copy, Default)]
     pub struct ClusterAccelerationStructureGeometryFlagBitsNV(pub(crate) u32);
     ///Provided by [`nv::cluster_acceleration_structure`](crate::nv::cluster_acceleration_structure)
     impl ClusterAccelerationStructureGeometryFlagBitsNV {
@@ -520,7 +633,7 @@ pub(crate) mod reexport {
         }
     }
     #[repr(transparent)]
-    #[derive(Clone, Copy)]
+    #[derive(Clone, Copy, Default)]
     pub struct ClusterAccelerationStructureClusterFlagBitsNV(pub(crate) u32);
     ///Provided by [`nv::cluster_acceleration_structure`](crate::nv::cluster_acceleration_structure)
     impl ClusterAccelerationStructureClusterFlagBitsNV {
@@ -624,7 +737,7 @@ pub(crate) mod reexport {
         }
     }
     #[repr(transparent)]
-    #[derive(Clone, Copy)]
+    #[derive(Clone, Copy, Default)]
     pub struct ClusterAccelerationStructureAddressResolutionFlagBitsNV(pub(crate) u32);
     ///Provided by [`nv::cluster_acceleration_structure`](crate::nv::cluster_acceleration_structure)
     impl ClusterAccelerationStructureAddressResolutionFlagBitsNV {
@@ -717,7 +830,7 @@ pub(crate) mod reexport {
         }
     }
     #[repr(transparent)]
-    #[derive(Clone, Copy)]
+    #[derive(Clone, Copy, Default)]
     pub struct ClusterAccelerationStructureIndexFormatFlagBitsNV(pub(crate) u32);
     ///Provided by [`nv::cluster_acceleration_structure`](crate::nv::cluster_acceleration_structure)
     impl ClusterAccelerationStructureIndexFormatFlagBitsNV {

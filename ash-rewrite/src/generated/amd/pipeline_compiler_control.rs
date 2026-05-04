@@ -12,6 +12,16 @@ pub struct PipelineCompilerControlCreateInfoAMD<'a> {
 unsafe impl<'a> crate::TaggedStructure<'a> for PipelineCompilerControlCreateInfoAMD<'a> {
     const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::PIPELINE_COMPILER_CONTROL_CREATE_INFO_AMD;
 }
+impl<'a> Default for PipelineCompilerControlCreateInfoAMD<'a> {
+    fn default() -> Self {
+        Self {
+            s_type: <Self as crate::TaggedStructure>::STRUCTURE_TYPE,
+            p_next: Default::default(),
+            compiler_control_flags: Default::default(),
+            _marker: ::core::marker::PhantomData,
+        }
+    }
+}
 ///Provided by [`amd::pipeline_compiler_control`](crate::amd::pipeline_compiler_control)
 impl crate::vk::StructureType {
     pub const PIPELINE_COMPILER_CONTROL_CREATE_INFO_AMD: Self = Self(1000183000);
@@ -84,7 +94,7 @@ impl core::ops::Not for PipelineCompilerControlFlagsAMD {
     }
 }
 #[repr(transparent)]
-#[derive(Clone, Copy)]
+#[derive(Clone, Copy, Default)]
 pub struct PipelineCompilerControlFlagBitsAMD(pub(crate) u32);
 pub const AMD_PIPELINE_COMPILER_CONTROL_SPEC_VERSION: u32 = 1;
 pub const AMD_PIPELINE_COMPILER_CONTROL_EXTENSION_NAME: &core::ffi::CStr = c"VK_AMD_pipeline_compiler_control";

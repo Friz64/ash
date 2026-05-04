@@ -12,6 +12,16 @@ pub struct SurfaceProtectedCapabilitiesKHR<'a> {
 unsafe impl<'a> crate::TaggedStructure<'a> for SurfaceProtectedCapabilitiesKHR<'a> {
     const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::SURFACE_PROTECTED_CAPABILITIES_KHR;
 }
+impl<'a> Default for SurfaceProtectedCapabilitiesKHR<'a> {
+    fn default() -> Self {
+        Self {
+            s_type: <Self as crate::TaggedStructure>::STRUCTURE_TYPE,
+            p_next: Default::default(),
+            supports_protected: Default::default(),
+            _marker: ::core::marker::PhantomData,
+        }
+    }
+}
 ///Provided by [`khr::surface_protected_capabilities`](crate::khr::surface_protected_capabilities)
 impl crate::vk::StructureType {
     pub const SURFACE_PROTECTED_CAPABILITIES_KHR: Self = Self(1000239000);

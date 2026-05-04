@@ -44,7 +44,7 @@ impl InstanceFn {
 }
 pub(crate) mod reexport {
     #[repr(C)]
-    #[derive(Clone, Copy)]
+    #[derive(Clone, Copy, Default)]
     pub struct ExternalImageFormatPropertiesNV {
         pub image_format_properties: crate::vk::ImageFormatProperties,
         pub external_memory_features: crate::vk::ExternalMemoryFeatureFlagsNV,
@@ -131,7 +131,7 @@ pub(crate) mod reexport {
         }
     }
     #[repr(transparent)]
-    #[derive(Clone, Copy)]
+    #[derive(Clone, Copy, Default)]
     pub struct ExternalMemoryHandleTypeFlagBitsNV(pub(crate) u32);
     ///Provided by [`nv::external_memory_capabilities`](crate::nv::external_memory_capabilities)
     impl ExternalMemoryHandleTypeFlagBitsNV {
@@ -217,7 +217,7 @@ pub(crate) mod reexport {
         }
     }
     #[repr(transparent)]
-    #[derive(Clone, Copy)]
+    #[derive(Clone, Copy, Default)]
     pub struct ExternalMemoryFeatureFlagBitsNV(pub(crate) u32);
     ///Provided by [`nv::external_memory_capabilities`](crate::nv::external_memory_capabilities)
     impl ExternalMemoryFeatureFlagBitsNV {

@@ -13,6 +13,16 @@ unsafe impl<'a> crate::TaggedStructure<'a>
 for PhysicalDeviceMaintenance7FeaturesKHR<'a> {
     const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::PHYSICAL_DEVICE_MAINTENANCE_7_FEATURES_KHR;
 }
+impl<'a> Default for PhysicalDeviceMaintenance7FeaturesKHR<'a> {
+    fn default() -> Self {
+        Self {
+            s_type: <Self as crate::TaggedStructure>::STRUCTURE_TYPE,
+            p_next: Default::default(),
+            maintenance7: Default::default(),
+            _marker: ::core::marker::PhantomData,
+        }
+    }
+}
 #[repr(C)]
 #[derive(Clone, Copy)]
 pub struct PhysicalDeviceMaintenance7PropertiesKHR<'a> {
@@ -32,6 +42,23 @@ unsafe impl<'a> crate::TaggedStructure<'a>
 for PhysicalDeviceMaintenance7PropertiesKHR<'a> {
     const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::PHYSICAL_DEVICE_MAINTENANCE_7_PROPERTIES_KHR;
 }
+impl<'a> Default for PhysicalDeviceMaintenance7PropertiesKHR<'a> {
+    fn default() -> Self {
+        Self {
+            s_type: <Self as crate::TaggedStructure>::STRUCTURE_TYPE,
+            p_next: Default::default(),
+            robust_fragment_shading_rate_attachment_access: Default::default(),
+            separate_depth_stencil_attachment_access: Default::default(),
+            max_descriptor_set_total_uniform_buffers_dynamic: Default::default(),
+            max_descriptor_set_total_storage_buffers_dynamic: Default::default(),
+            max_descriptor_set_total_buffers_dynamic: Default::default(),
+            max_descriptor_set_update_after_bind_total_uniform_buffers_dynamic: Default::default(),
+            max_descriptor_set_update_after_bind_total_storage_buffers_dynamic: Default::default(),
+            max_descriptor_set_update_after_bind_total_buffers_dynamic: Default::default(),
+            _marker: ::core::marker::PhantomData,
+        }
+    }
+}
 #[repr(C)]
 #[derive(Clone, Copy)]
 pub struct PhysicalDeviceLayeredApiPropertiesListKHR<'a> {
@@ -44,6 +71,17 @@ pub struct PhysicalDeviceLayeredApiPropertiesListKHR<'a> {
 unsafe impl<'a> crate::TaggedStructure<'a>
 for PhysicalDeviceLayeredApiPropertiesListKHR<'a> {
     const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::PHYSICAL_DEVICE_LAYERED_API_PROPERTIES_LIST_KHR;
+}
+impl<'a> Default for PhysicalDeviceLayeredApiPropertiesListKHR<'a> {
+    fn default() -> Self {
+        Self {
+            s_type: <Self as crate::TaggedStructure>::STRUCTURE_TYPE,
+            p_next: Default::default(),
+            layered_api_count: Default::default(),
+            p_layered_apis: Default::default(),
+            _marker: ::core::marker::PhantomData,
+        }
+    }
 }
 #[repr(C)]
 #[derive(Clone, Copy)]
@@ -60,6 +98,19 @@ unsafe impl<'a> crate::TaggedStructure<'a>
 for PhysicalDeviceLayeredApiPropertiesKHR<'a> {
     const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::PHYSICAL_DEVICE_LAYERED_API_PROPERTIES_KHR;
 }
+impl<'a> Default for PhysicalDeviceLayeredApiPropertiesKHR<'a> {
+    fn default() -> Self {
+        Self {
+            s_type: <Self as crate::TaggedStructure>::STRUCTURE_TYPE,
+            p_next: Default::default(),
+            vendor_id: Default::default(),
+            device_id: Default::default(),
+            layered_api: Default::default(),
+            device_name: unsafe { core::mem::zeroed() },
+            _marker: ::core::marker::PhantomData,
+        }
+    }
+}
 #[repr(C)]
 #[derive(Clone, Copy)]
 pub struct PhysicalDeviceLayeredApiVulkanPropertiesKHR<'a> {
@@ -71,6 +122,16 @@ pub struct PhysicalDeviceLayeredApiVulkanPropertiesKHR<'a> {
 unsafe impl<'a> crate::TaggedStructure<'a>
 for PhysicalDeviceLayeredApiVulkanPropertiesKHR<'a> {
     const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::PHYSICAL_DEVICE_LAYERED_API_VULKAN_PROPERTIES_KHR;
+}
+impl<'a> Default for PhysicalDeviceLayeredApiVulkanPropertiesKHR<'a> {
+    fn default() -> Self {
+        Self {
+            s_type: <Self as crate::TaggedStructure>::STRUCTURE_TYPE,
+            p_next: Default::default(),
+            properties: Default::default(),
+            _marker: ::core::marker::PhantomData,
+        }
+    }
 }
 ///Provided by [`khr::maintenance7`](crate::khr::maintenance7)
 impl crate::vk::StructureType {

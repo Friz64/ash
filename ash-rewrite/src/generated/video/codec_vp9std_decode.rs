@@ -2,7 +2,7 @@
 #![cfg_attr(rustfmt, rustfmt_skip)]
 //!Items provided by `vulkan_video_codec_vp9std_decode`
 #[repr(C)]
-#[derive(Clone, Copy)]
+#[derive(Clone, Copy, Default)]
 pub struct DecodeVP9PictureInfoFlags {
     /**- `error_resilient_mode` @ `0..1`
 - `intra_only` @ `1..2`
@@ -36,6 +36,31 @@ pub struct DecodeVP9PictureInfo<'a> {
     pub p_loop_filter: *const crate::vk::VP9LoopFilter,
     pub p_segmentation: *const crate::vk::VP9Segmentation,
     pub _marker: ::core::marker::PhantomData<&'a ()>,
+}
+impl<'a> Default for DecodeVP9PictureInfo<'a> {
+    fn default() -> Self {
+        Self {
+            flags: Default::default(),
+            profile: Default::default(),
+            frame_type: Default::default(),
+            frame_context_idx: Default::default(),
+            reset_frame_context: Default::default(),
+            refresh_frame_flags: Default::default(),
+            ref_frame_sign_bias_mask: Default::default(),
+            interpolation_filter: Default::default(),
+            base_q_idx: Default::default(),
+            delta_q_y_dc: Default::default(),
+            delta_q_uv_dc: Default::default(),
+            delta_q_uv_ac: Default::default(),
+            tile_cols_log2: Default::default(),
+            tile_rows_log2: Default::default(),
+            reserved1: unsafe { core::mem::zeroed() },
+            p_color_config: Default::default(),
+            p_loop_filter: Default::default(),
+            p_segmentation: Default::default(),
+            _marker: ::core::marker::PhantomData,
+        }
+    }
 }
 pub const STD_VULKAN_VIDEO_CODEC_VP9_DECODE_SPEC_VERSION: u32 = crate::vk::STD_VULKAN_VIDEO_CODEC_VP9_DECODE_API_VERSION_1_0_0;
 pub const STD_VULKAN_VIDEO_CODEC_VP9_DECODE_EXTENSION_NAME: &core::ffi::CStr = c"VK_STD_vulkan_video_codec_vp9_decode";

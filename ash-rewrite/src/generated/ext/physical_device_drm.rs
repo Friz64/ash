@@ -17,6 +17,21 @@ pub struct PhysicalDeviceDrmPropertiesEXT<'a> {
 unsafe impl<'a> crate::TaggedStructure<'a> for PhysicalDeviceDrmPropertiesEXT<'a> {
     const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::PHYSICAL_DEVICE_DRM_PROPERTIES_EXT;
 }
+impl<'a> Default for PhysicalDeviceDrmPropertiesEXT<'a> {
+    fn default() -> Self {
+        Self {
+            s_type: <Self as crate::TaggedStructure>::STRUCTURE_TYPE,
+            p_next: Default::default(),
+            has_primary: Default::default(),
+            has_render: Default::default(),
+            primary_major: Default::default(),
+            primary_minor: Default::default(),
+            render_major: Default::default(),
+            render_minor: Default::default(),
+            _marker: ::core::marker::PhantomData,
+        }
+    }
+}
 ///Provided by [`ext::physical_device_drm`](crate::ext::physical_device_drm)
 impl crate::vk::StructureType {
     pub const PHYSICAL_DEVICE_DRM_PROPERTIES_EXT: Self = Self(1000353000);

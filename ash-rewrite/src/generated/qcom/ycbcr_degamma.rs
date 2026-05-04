@@ -13,6 +13,16 @@ unsafe impl<'a> crate::TaggedStructure<'a>
 for PhysicalDeviceYcbcrDegammaFeaturesQCOM<'a> {
     const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::PHYSICAL_DEVICE_YCBCR_DEGAMMA_FEATURES_QCOM;
 }
+impl<'a> Default for PhysicalDeviceYcbcrDegammaFeaturesQCOM<'a> {
+    fn default() -> Self {
+        Self {
+            s_type: <Self as crate::TaggedStructure>::STRUCTURE_TYPE,
+            p_next: Default::default(),
+            ycbcr_degamma: Default::default(),
+            _marker: ::core::marker::PhantomData,
+        }
+    }
+}
 #[repr(C)]
 #[derive(Clone, Copy)]
 pub struct SamplerYcbcrConversionYcbcrDegammaCreateInfoQCOM<'a> {
@@ -25,6 +35,17 @@ pub struct SamplerYcbcrConversionYcbcrDegammaCreateInfoQCOM<'a> {
 unsafe impl<'a> crate::TaggedStructure<'a>
 for SamplerYcbcrConversionYcbcrDegammaCreateInfoQCOM<'a> {
     const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::SAMPLER_YCBCR_CONVERSION_YCBCR_DEGAMMA_CREATE_INFO_QCOM;
+}
+impl<'a> Default for SamplerYcbcrConversionYcbcrDegammaCreateInfoQCOM<'a> {
+    fn default() -> Self {
+        Self {
+            s_type: <Self as crate::TaggedStructure>::STRUCTURE_TYPE,
+            p_next: Default::default(),
+            enable_y_degamma: Default::default(),
+            enable_cb_cr_degamma: Default::default(),
+            _marker: ::core::marker::PhantomData,
+        }
+    }
 }
 ///Provided by [`qcom::ycbcr_degamma`](crate::qcom::ycbcr_degamma)
 impl crate::vk::StructureType {

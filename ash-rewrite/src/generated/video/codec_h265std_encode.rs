@@ -2,7 +2,7 @@
 #![cfg_attr(rustfmt, rustfmt_skip)]
 //!Items provided by `vulkan_video_codec_h265std_encode`
 #[repr(C)]
-#[derive(Clone, Copy)]
+#[derive(Clone, Copy, Default)]
 pub struct EncodeH265WeightTableFlags {
     pub luma_weight_l0_flag: u16,
     pub chroma_weight_l0_flag: u16,
@@ -28,6 +28,23 @@ pub struct EncodeH265WeightTable {
     pub delta_chroma_offset_l1: [[i8; crate::vk::STD_VIDEO_H265_MAX_CHROMA_PLANES
         as _]; crate::vk::STD_VIDEO_H265_MAX_NUM_LIST_REF as _],
 }
+impl Default for EncodeH265WeightTable {
+    fn default() -> Self {
+        Self {
+            flags: Default::default(),
+            luma_log2_weight_denom: Default::default(),
+            delta_chroma_log2_weight_denom: Default::default(),
+            delta_luma_weight_l0: unsafe { core::mem::zeroed() },
+            luma_offset_l0: unsafe { core::mem::zeroed() },
+            delta_chroma_weight_l0: unsafe { core::mem::zeroed() },
+            delta_chroma_offset_l0: unsafe { core::mem::zeroed() },
+            delta_luma_weight_l1: unsafe { core::mem::zeroed() },
+            luma_offset_l1: unsafe { core::mem::zeroed() },
+            delta_chroma_weight_l1: unsafe { core::mem::zeroed() },
+            delta_chroma_offset_l1: unsafe { core::mem::zeroed() },
+        }
+    }
+}
 #[repr(C)]
 #[derive(Clone, Copy)]
 pub struct EncodeH265LongTermRefPics {
@@ -39,8 +56,21 @@ pub struct EncodeH265LongTermRefPics {
     pub delta_poc_msb_present_flag: [u8; crate::vk::STD_VIDEO_H265_MAX_DELTA_POC as _],
     pub delta_poc_msb_cycle_lt: [u8; crate::vk::STD_VIDEO_H265_MAX_DELTA_POC as _],
 }
+impl Default for EncodeH265LongTermRefPics {
+    fn default() -> Self {
+        Self {
+            num_long_term_sps: Default::default(),
+            num_long_term_pics: Default::default(),
+            lt_idx_sps: unsafe { core::mem::zeroed() },
+            poc_lsb_lt: unsafe { core::mem::zeroed() },
+            used_by_curr_pic_lt_flag: Default::default(),
+            delta_poc_msb_present_flag: unsafe { core::mem::zeroed() },
+            delta_poc_msb_cycle_lt: unsafe { core::mem::zeroed() },
+        }
+    }
+}
 #[repr(C)]
-#[derive(Clone, Copy)]
+#[derive(Clone, Copy, Default)]
 pub struct EncodeH265SliceSegmentHeaderFlags {
     /**- `first_slice_segment_in_pic_flag` @ `0..1`
 - `dependent_slice_segment_flag` @ `1..2`
@@ -57,7 +87,7 @@ pub struct EncodeH265SliceSegmentHeaderFlags {
     pub bitfield0: u32,
 }
 #[repr(C)]
-#[derive(Clone, Copy)]
+#[derive(Clone, Copy, Default)]
 pub struct EncodeH265SliceSegmentHeader<'a> {
     pub flags: crate::vk::EncodeH265SliceSegmentHeaderFlags,
     pub slice_type: crate::vk::H265SliceType,
@@ -77,7 +107,7 @@ pub struct EncodeH265SliceSegmentHeader<'a> {
     pub _marker: ::core::marker::PhantomData<&'a ()>,
 }
 #[repr(C)]
-#[derive(Clone, Copy)]
+#[derive(Clone, Copy, Default)]
 pub struct EncodeH265ReferenceListsInfoFlags {
     /**- `ref_pic_list_modification_flag_l0` @ `0..1`
 - `ref_pic_list_modification_flag_l1` @ `1..2`*/
@@ -94,8 +124,21 @@ pub struct EncodeH265ReferenceListsInfo {
     pub list_entry_l0: [u8; crate::vk::STD_VIDEO_H265_MAX_NUM_LIST_REF as _],
     pub list_entry_l1: [u8; crate::vk::STD_VIDEO_H265_MAX_NUM_LIST_REF as _],
 }
+impl Default for EncodeH265ReferenceListsInfo {
+    fn default() -> Self {
+        Self {
+            flags: Default::default(),
+            num_ref_idx_l0_active_minus1: Default::default(),
+            num_ref_idx_l1_active_minus1: Default::default(),
+            ref_pic_list0: unsafe { core::mem::zeroed() },
+            ref_pic_list1: unsafe { core::mem::zeroed() },
+            list_entry_l0: unsafe { core::mem::zeroed() },
+            list_entry_l1: unsafe { core::mem::zeroed() },
+        }
+    }
+}
 #[repr(C)]
-#[derive(Clone, Copy)]
+#[derive(Clone, Copy, Default)]
 pub struct EncodeH265PictureInfoFlags {
     /**- `is_reference` @ `0..1`
 - `IrapPicFlag` @ `1..2`
@@ -125,15 +168,34 @@ pub struct EncodeH265PictureInfo<'a> {
     pub p_long_term_ref_pics: *const crate::vk::EncodeH265LongTermRefPics,
     pub _marker: ::core::marker::PhantomData<&'a ()>,
 }
+impl<'a> Default for EncodeH265PictureInfo<'a> {
+    fn default() -> Self {
+        Self {
+            flags: Default::default(),
+            pic_type: Default::default(),
+            sps_video_parameter_set_id: Default::default(),
+            pps_seq_parameter_set_id: Default::default(),
+            pps_pic_parameter_set_id: Default::default(),
+            short_term_ref_pic_set_idx: Default::default(),
+            pic_order_cnt_val: Default::default(),
+            temporal_id: Default::default(),
+            reserved1: unsafe { core::mem::zeroed() },
+            p_ref_lists: Default::default(),
+            p_short_term_ref_pic_set: Default::default(),
+            p_long_term_ref_pics: Default::default(),
+            _marker: ::core::marker::PhantomData,
+        }
+    }
+}
 #[repr(C)]
-#[derive(Clone, Copy)]
+#[derive(Clone, Copy, Default)]
 pub struct EncodeH265ReferenceInfoFlags {
     /**- `used_for_long_term_reference` @ `0..1`
 - `unused_for_reference` @ `1..2`*/
     pub bitfield0: u32,
 }
 #[repr(C)]
-#[derive(Clone, Copy)]
+#[derive(Clone, Copy, Default)]
 pub struct EncodeH265ReferenceInfo {
     pub flags: crate::vk::EncodeH265ReferenceInfoFlags,
     pub pic_type: crate::vk::H265PictureType,

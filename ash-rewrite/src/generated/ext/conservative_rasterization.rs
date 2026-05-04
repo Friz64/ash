@@ -21,6 +21,24 @@ unsafe impl<'a> crate::TaggedStructure<'a>
 for PhysicalDeviceConservativeRasterizationPropertiesEXT<'a> {
     const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::PHYSICAL_DEVICE_CONSERVATIVE_RASTERIZATION_PROPERTIES_EXT;
 }
+impl<'a> Default for PhysicalDeviceConservativeRasterizationPropertiesEXT<'a> {
+    fn default() -> Self {
+        Self {
+            s_type: <Self as crate::TaggedStructure>::STRUCTURE_TYPE,
+            p_next: Default::default(),
+            primitive_overestimation_size: Default::default(),
+            max_extra_primitive_overestimation_size: Default::default(),
+            extra_primitive_overestimation_size_granularity: Default::default(),
+            primitive_underestimation: Default::default(),
+            conservative_point_and_line_rasterization: Default::default(),
+            degenerate_triangles_rasterized: Default::default(),
+            degenerate_lines_rasterized: Default::default(),
+            fully_covered_fragment_shader_input_variable: Default::default(),
+            conservative_rasterization_post_depth_coverage: Default::default(),
+            _marker: ::core::marker::PhantomData,
+        }
+    }
+}
 #[repr(C)]
 #[derive(Clone, Copy)]
 pub struct PipelineRasterizationConservativeStateCreateInfoEXT<'a> {
@@ -34,6 +52,18 @@ pub struct PipelineRasterizationConservativeStateCreateInfoEXT<'a> {
 unsafe impl<'a> crate::TaggedStructure<'a>
 for PipelineRasterizationConservativeStateCreateInfoEXT<'a> {
     const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::PIPELINE_RASTERIZATION_CONSERVATIVE_STATE_CREATE_INFO_EXT;
+}
+impl<'a> Default for PipelineRasterizationConservativeStateCreateInfoEXT<'a> {
+    fn default() -> Self {
+        Self {
+            s_type: <Self as crate::TaggedStructure>::STRUCTURE_TYPE,
+            p_next: Default::default(),
+            flags: Default::default(),
+            conservative_rasterization_mode: Default::default(),
+            extra_primitive_overestimation_size: Default::default(),
+            _marker: ::core::marker::PhantomData,
+        }
+    }
 }
 ///Provided by [`ext::conservative_rasterization`](crate::ext::conservative_rasterization)
 impl crate::vk::StructureType {

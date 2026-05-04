@@ -47,6 +47,17 @@ pub(crate) mod reexport {
     for PhysicalDeviceAttachmentFeedbackLoopDynamicStateFeaturesEXT<'a> {
         const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::PHYSICAL_DEVICE_ATTACHMENT_FEEDBACK_LOOP_DYNAMIC_STATE_FEATURES_EXT;
     }
+    impl<'a> Default
+    for PhysicalDeviceAttachmentFeedbackLoopDynamicStateFeaturesEXT<'a> {
+        fn default() -> Self {
+            Self {
+                s_type: <Self as crate::TaggedStructure>::STRUCTURE_TYPE,
+                p_next: Default::default(),
+                attachment_feedback_loop_dynamic_state: Default::default(),
+                _marker: ::core::marker::PhantomData,
+            }
+        }
+    }
     ///Provided by [`ext::attachment_feedback_loop_dynamic_state`](crate::ext::attachment_feedback_loop_dynamic_state)
     impl crate::vk::StructureType {
         pub const PHYSICAL_DEVICE_ATTACHMENT_FEEDBACK_LOOP_DYNAMIC_STATE_FEATURES_EXT: Self = Self(

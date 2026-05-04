@@ -46,6 +46,16 @@ pub(crate) mod reexport {
     unsafe impl<'a> crate::TaggedStructure<'a> for VideoDecodeCapabilitiesKHR<'a> {
         const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::VIDEO_DECODE_CAPABILITIES_KHR;
     }
+    impl<'a> Default for VideoDecodeCapabilitiesKHR<'a> {
+        fn default() -> Self {
+            Self {
+                s_type: <Self as crate::TaggedStructure>::STRUCTURE_TYPE,
+                p_next: Default::default(),
+                flags: Default::default(),
+                _marker: ::core::marker::PhantomData,
+            }
+        }
+    }
     #[repr(C)]
     #[derive(Clone, Copy)]
     pub struct VideoDecodeUsageInfoKHR<'a> {
@@ -56,6 +66,16 @@ pub(crate) mod reexport {
     }
     unsafe impl<'a> crate::TaggedStructure<'a> for VideoDecodeUsageInfoKHR<'a> {
         const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::VIDEO_DECODE_USAGE_INFO_KHR;
+    }
+    impl<'a> Default for VideoDecodeUsageInfoKHR<'a> {
+        fn default() -> Self {
+            Self {
+                s_type: <Self as crate::TaggedStructure>::STRUCTURE_TYPE,
+                p_next: Default::default(),
+                video_usage_hints: Default::default(),
+                _marker: ::core::marker::PhantomData,
+            }
+        }
     }
     #[repr(C)]
     #[derive(Clone, Copy)]
@@ -74,6 +94,23 @@ pub(crate) mod reexport {
     }
     unsafe impl<'a> crate::TaggedStructure<'a> for VideoDecodeInfoKHR<'a> {
         const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::VIDEO_DECODE_INFO_KHR;
+    }
+    impl<'a> Default for VideoDecodeInfoKHR<'a> {
+        fn default() -> Self {
+            Self {
+                s_type: <Self as crate::TaggedStructure>::STRUCTURE_TYPE,
+                p_next: Default::default(),
+                flags: Default::default(),
+                src_buffer: Default::default(),
+                src_buffer_offset: Default::default(),
+                src_buffer_range: Default::default(),
+                dst_picture_resource: Default::default(),
+                p_setup_reference_slot: Default::default(),
+                reference_slot_count: Default::default(),
+                p_reference_slots: Default::default(),
+                _marker: ::core::marker::PhantomData,
+            }
+        }
     }
     ///Provided by [`khr::video_decode_queue`](crate::khr::video_decode_queue)
     impl crate::vk::ImageLayout {
@@ -197,7 +234,7 @@ pub(crate) mod reexport {
         }
     }
     #[repr(transparent)]
-    #[derive(Clone, Copy)]
+    #[derive(Clone, Copy, Default)]
     pub struct VideoDecodeUsageFlagBitsKHR(pub(crate) u32);
     ///Provided by [`khr::video_decode_queue`](crate::khr::video_decode_queue)
     impl VideoDecodeUsageFlagBitsKHR {
@@ -280,7 +317,7 @@ pub(crate) mod reexport {
         }
     }
     #[repr(transparent)]
-    #[derive(Clone, Copy)]
+    #[derive(Clone, Copy, Default)]
     pub struct VideoDecodeCapabilityFlagBitsKHR(pub(crate) u32);
     ///Provided by [`khr::video_decode_queue`](crate::khr::video_decode_queue)
     impl VideoDecodeCapabilityFlagBitsKHR {

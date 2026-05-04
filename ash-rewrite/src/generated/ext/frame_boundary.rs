@@ -20,6 +20,24 @@ pub struct FrameBoundaryEXT<'a> {
 unsafe impl<'a> crate::TaggedStructure<'a> for FrameBoundaryEXT<'a> {
     const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::FRAME_BOUNDARY_EXT;
 }
+impl<'a> Default for FrameBoundaryEXT<'a> {
+    fn default() -> Self {
+        Self {
+            s_type: <Self as crate::TaggedStructure>::STRUCTURE_TYPE,
+            p_next: Default::default(),
+            flags: Default::default(),
+            frame_id: Default::default(),
+            image_count: Default::default(),
+            p_images: Default::default(),
+            buffer_count: Default::default(),
+            p_buffers: Default::default(),
+            tag_name: Default::default(),
+            tag_size: Default::default(),
+            p_tag: Default::default(),
+            _marker: ::core::marker::PhantomData,
+        }
+    }
+}
 #[repr(C)]
 #[derive(Clone, Copy)]
 pub struct PhysicalDeviceFrameBoundaryFeaturesEXT<'a> {
@@ -31,6 +49,16 @@ pub struct PhysicalDeviceFrameBoundaryFeaturesEXT<'a> {
 unsafe impl<'a> crate::TaggedStructure<'a>
 for PhysicalDeviceFrameBoundaryFeaturesEXT<'a> {
     const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::PHYSICAL_DEVICE_FRAME_BOUNDARY_FEATURES_EXT;
+}
+impl<'a> Default for PhysicalDeviceFrameBoundaryFeaturesEXT<'a> {
+    fn default() -> Self {
+        Self {
+            s_type: <Self as crate::TaggedStructure>::STRUCTURE_TYPE,
+            p_next: Default::default(),
+            frame_boundary: Default::default(),
+            _marker: ::core::marker::PhantomData,
+        }
+    }
 }
 ///Provided by [`ext::frame_boundary`](crate::ext::frame_boundary)
 impl crate::vk::StructureType {
@@ -106,7 +134,7 @@ impl core::ops::Not for FrameBoundaryFlagsEXT {
     }
 }
 #[repr(transparent)]
-#[derive(Clone, Copy)]
+#[derive(Clone, Copy, Default)]
 pub struct FrameBoundaryFlagBitsEXT(pub(crate) u32);
 ///Provided by [`ext::frame_boundary`](crate::ext::frame_boundary)
 impl FrameBoundaryFlagBitsEXT {

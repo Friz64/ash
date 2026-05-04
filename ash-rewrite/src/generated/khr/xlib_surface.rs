@@ -69,6 +69,18 @@ pub(crate) mod reexport {
     unsafe impl<'a> crate::TaggedStructure<'a> for XlibSurfaceCreateInfoKHR<'a> {
         const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::XLIB_SURFACE_CREATE_INFO_KHR;
     }
+    impl<'a> Default for XlibSurfaceCreateInfoKHR<'a> {
+        fn default() -> Self {
+            Self {
+                s_type: <Self as crate::TaggedStructure>::STRUCTURE_TYPE,
+                p_next: Default::default(),
+                flags: Default::default(),
+                dpy: Default::default(),
+                window: Default::default(),
+                _marker: ::core::marker::PhantomData,
+            }
+        }
+    }
     ///Provided by [`khr::xlib_surface`](crate::khr::xlib_surface)
     impl crate::vk::StructureType {
         pub const XLIB_SURFACE_CREATE_INFO_KHR: Self = Self(1000004000);

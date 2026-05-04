@@ -36,7 +36,7 @@ impl DeviceFn {
 }
 pub(crate) mod reexport {
     #[repr(C)]
-    #[derive(Clone, Copy)]
+    #[derive(Clone, Copy, Default)]
     pub struct TraceRaysIndirectCommand2KHR {
         pub raygen_shader_record_address: crate::vk::DeviceAddress,
         pub raygen_shader_record_size: crate::vk::DeviceSize,
@@ -65,6 +65,17 @@ pub(crate) mod reexport {
     unsafe impl<'a> crate::TaggedStructure<'a>
     for PhysicalDeviceRayTracingMaintenance1FeaturesKHR<'a> {
         const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::PHYSICAL_DEVICE_RAY_TRACING_MAINTENANCE_1_FEATURES_KHR;
+    }
+    impl<'a> Default for PhysicalDeviceRayTracingMaintenance1FeaturesKHR<'a> {
+        fn default() -> Self {
+            Self {
+                s_type: <Self as crate::TaggedStructure>::STRUCTURE_TYPE,
+                p_next: Default::default(),
+                ray_tracing_maintenance1: Default::default(),
+                ray_tracing_pipeline_trace_rays_indirect2: Default::default(),
+                _marker: ::core::marker::PhantomData,
+            }
+        }
     }
     ///Provided by [`khr::ray_tracing_maintenance1`](crate::khr::ray_tracing_maintenance1)
     impl crate::vk::QueryType {

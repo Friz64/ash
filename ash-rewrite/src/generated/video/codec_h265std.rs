@@ -2,7 +2,7 @@
 #![cfg_attr(rustfmt, rustfmt_skip)]
 //!Items provided by `vulkan_video_codec_h265std`
 #[repr(C)]
-#[derive(Clone, Copy)]
+#[derive(Clone, Copy, Default)]
 pub struct H265ProfileTierLevelFlags {
     /**- `general_tier_flag` @ `0..1`
 - `general_progressive_source_flag` @ `1..2`
@@ -12,7 +12,7 @@ pub struct H265ProfileTierLevelFlags {
     pub bitfield0: u32,
 }
 #[repr(C)]
-#[derive(Clone, Copy)]
+#[derive(Clone, Copy, Default)]
 pub struct H265ProfileTierLevel {
     pub flags: crate::vk::H265ProfileTierLevelFlags,
     pub general_profile_idc: crate::vk::H265ProfileIdc,
@@ -27,6 +27,15 @@ pub struct H265DecPicBufMgr {
         as _],
     pub max_num_reorder_pics: [u8; crate::vk::STD_VIDEO_H265_SUBLAYERS_LIST_SIZE as _],
 }
+impl Default for H265DecPicBufMgr {
+    fn default() -> Self {
+        Self {
+            max_latency_increase_plus1: unsafe { core::mem::zeroed() },
+            max_dec_pic_buffering_minus1: unsafe { core::mem::zeroed() },
+            max_num_reorder_pics: unsafe { core::mem::zeroed() },
+        }
+    }
+}
 #[repr(C)]
 #[derive(Clone, Copy)]
 pub struct H265SubLayerHrdParameters {
@@ -38,8 +47,19 @@ pub struct H265SubLayerHrdParameters {
         as _],
     pub cbr_flag: u32,
 }
+impl Default for H265SubLayerHrdParameters {
+    fn default() -> Self {
+        Self {
+            bit_rate_value_minus1: unsafe { core::mem::zeroed() },
+            cpb_size_value_minus1: unsafe { core::mem::zeroed() },
+            cpb_size_du_value_minus1: unsafe { core::mem::zeroed() },
+            bit_rate_du_value_minus1: unsafe { core::mem::zeroed() },
+            cbr_flag: Default::default(),
+        }
+    }
+}
 #[repr(C)]
-#[derive(Clone, Copy)]
+#[derive(Clone, Copy, Default)]
 pub struct H265HrdFlags {
     /**- `nal_hrd_parameters_present_flag` @ `0..1`
 - `vcl_hrd_parameters_present_flag` @ `1..2`
@@ -71,8 +91,30 @@ pub struct H265HrdParameters<'a> {
     pub p_sub_layer_hrd_parameters_vcl: *const crate::vk::H265SubLayerHrdParameters,
     pub _marker: ::core::marker::PhantomData<&'a ()>,
 }
+impl<'a> Default for H265HrdParameters<'a> {
+    fn default() -> Self {
+        Self {
+            flags: Default::default(),
+            tick_divisor_minus2: Default::default(),
+            du_cpb_removal_delay_increment_length_minus1: Default::default(),
+            dpb_output_delay_du_length_minus1: Default::default(),
+            bit_rate_scale: Default::default(),
+            cpb_size_scale: Default::default(),
+            cpb_size_du_scale: Default::default(),
+            initial_cpb_removal_delay_length_minus1: Default::default(),
+            au_cpb_removal_delay_length_minus1: Default::default(),
+            dpb_output_delay_length_minus1: Default::default(),
+            cpb_cnt_minus1: unsafe { core::mem::zeroed() },
+            elemental_duration_in_tc_minus1: unsafe { core::mem::zeroed() },
+            reserved: unsafe { core::mem::zeroed() },
+            p_sub_layer_hrd_parameters_nal: Default::default(),
+            p_sub_layer_hrd_parameters_vcl: Default::default(),
+            _marker: ::core::marker::PhantomData,
+        }
+    }
+}
 #[repr(C)]
-#[derive(Clone, Copy)]
+#[derive(Clone, Copy, Default)]
 pub struct H265VpsFlags {
     /**- `vps_temporal_id_nesting_flag` @ `0..1`
 - `vps_sub_layer_ordering_info_present_flag` @ `1..2`
@@ -81,7 +123,7 @@ pub struct H265VpsFlags {
     pub bitfield0: u32,
 }
 #[repr(C)]
-#[derive(Clone, Copy)]
+#[derive(Clone, Copy, Default)]
 pub struct H265VideoParameterSet<'a> {
     pub flags: crate::vk::H265VpsFlags,
     pub vps_video_parameter_set_id: u8,
@@ -113,8 +155,20 @@ pub struct H265ScalingLists {
     pub scaling_list_dc_coef32x32: [u8; crate::vk::STD_VIDEO_H265_SCALING_LIST_32X32_NUM_LISTS
         as _],
 }
+impl Default for H265ScalingLists {
+    fn default() -> Self {
+        Self {
+            scaling_list4x4: unsafe { core::mem::zeroed() },
+            scaling_list8x8: unsafe { core::mem::zeroed() },
+            scaling_list16x16: unsafe { core::mem::zeroed() },
+            scaling_list32x32: unsafe { core::mem::zeroed() },
+            scaling_list_dc_coef16x16: unsafe { core::mem::zeroed() },
+            scaling_list_dc_coef32x32: unsafe { core::mem::zeroed() },
+        }
+    }
+}
 #[repr(C)]
-#[derive(Clone, Copy)]
+#[derive(Clone, Copy, Default)]
 pub struct H265ShortTermRefPicSetFlags {
     /**- `inter_ref_pic_set_prediction_flag` @ `0..1`
 - `delta_rps_sign` @ `1..2`*/
@@ -138,6 +192,26 @@ pub struct H265ShortTermRefPicSet {
     pub delta_poc_s0_minus1: [u16; crate::vk::STD_VIDEO_H265_MAX_DPB_SIZE as _],
     pub delta_poc_s1_minus1: [u16; crate::vk::STD_VIDEO_H265_MAX_DPB_SIZE as _],
 }
+impl Default for H265ShortTermRefPicSet {
+    fn default() -> Self {
+        Self {
+            flags: Default::default(),
+            delta_idx_minus1: Default::default(),
+            use_delta_flag: Default::default(),
+            abs_delta_rps_minus1: Default::default(),
+            used_by_curr_pic_flag: Default::default(),
+            used_by_curr_pic_s0_flag: Default::default(),
+            used_by_curr_pic_s1_flag: Default::default(),
+            reserved1: Default::default(),
+            reserved2: Default::default(),
+            reserved3: Default::default(),
+            num_negative_pics: Default::default(),
+            num_positive_pics: Default::default(),
+            delta_poc_s0_minus1: unsafe { core::mem::zeroed() },
+            delta_poc_s1_minus1: unsafe { core::mem::zeroed() },
+        }
+    }
+}
 #[repr(C)]
 #[derive(Clone, Copy)]
 pub struct H265LongTermRefPicsSps {
@@ -145,8 +219,16 @@ pub struct H265LongTermRefPicsSps {
     pub lt_ref_pic_poc_lsb_sps: [u32; crate::vk::STD_VIDEO_H265_MAX_LONG_TERM_REF_PICS_SPS
         as _],
 }
+impl Default for H265LongTermRefPicsSps {
+    fn default() -> Self {
+        Self {
+            used_by_curr_pic_lt_sps_flag: Default::default(),
+            lt_ref_pic_poc_lsb_sps: unsafe { core::mem::zeroed() },
+        }
+    }
+}
 #[repr(C)]
-#[derive(Clone, Copy)]
+#[derive(Clone, Copy, Default)]
 pub struct H265SpsVuiFlags {
     /**- `aspect_ratio_info_present_flag` @ `0..1`
 - `overscan_info_present_flag` @ `1..2`
@@ -169,7 +251,7 @@ pub struct H265SpsVuiFlags {
     pub bitfield0: u32,
 }
 #[repr(C)]
-#[derive(Clone, Copy)]
+#[derive(Clone, Copy, Default)]
 pub struct H265SequenceParameterSetVui<'a> {
     pub flags: crate::vk::H265SpsVuiFlags,
     pub aspect_ratio_idc: crate::vk::H265AspectRatioIdc,
@@ -205,8 +287,15 @@ pub struct H265PredictorPaletteEntries {
     pub predictor_palette_entries: [[u16; crate::vk::STD_VIDEO_H265_PREDICTOR_PALETTE_COMP_ENTRIES_LIST_SIZE
         as _]; crate::vk::STD_VIDEO_H265_PREDICTOR_PALETTE_COMPONENTS_LIST_SIZE as _],
 }
+impl Default for H265PredictorPaletteEntries {
+    fn default() -> Self {
+        Self {
+            predictor_palette_entries: unsafe { core::mem::zeroed() },
+        }
+    }
+}
 #[repr(C)]
-#[derive(Clone, Copy)]
+#[derive(Clone, Copy, Default)]
 pub struct H265SpsFlags {
     /**- `sps_temporal_id_nesting_flag` @ `0..1`
 - `separate_colour_plane_flag` @ `1..2`
@@ -241,7 +330,7 @@ pub struct H265SpsFlags {
     pub bitfield0: u32,
 }
 #[repr(C)]
-#[derive(Clone, Copy)]
+#[derive(Clone, Copy, Default)]
 pub struct H265SequenceParameterSet<'a> {
     pub flags: crate::vk::H265SpsFlags,
     pub chroma_format_idc: crate::vk::H265ChromaFormatIdc,
@@ -285,7 +374,7 @@ pub struct H265SequenceParameterSet<'a> {
     pub _marker: ::core::marker::PhantomData<&'a ()>,
 }
 #[repr(C)]
-#[derive(Clone, Copy)]
+#[derive(Clone, Copy, Default)]
 pub struct H265PpsFlags {
     /**- `dependent_slice_segments_enabled_flag` @ `0..1`
 - `output_flag_present_flag` @ `1..2`
@@ -364,6 +453,49 @@ pub struct H265PictureParameterSet<'a> {
     pub p_scaling_lists: *const crate::vk::H265ScalingLists,
     pub p_predictor_palette_entries: *const crate::vk::H265PredictorPaletteEntries,
     pub _marker: ::core::marker::PhantomData<&'a ()>,
+}
+impl<'a> Default for H265PictureParameterSet<'a> {
+    fn default() -> Self {
+        Self {
+            flags: Default::default(),
+            pps_pic_parameter_set_id: Default::default(),
+            pps_seq_parameter_set_id: Default::default(),
+            sps_video_parameter_set_id: Default::default(),
+            num_extra_slice_header_bits: Default::default(),
+            num_ref_idx_l0_default_active_minus1: Default::default(),
+            num_ref_idx_l1_default_active_minus1: Default::default(),
+            init_qp_minus26: Default::default(),
+            diff_cu_qp_delta_depth: Default::default(),
+            pps_cb_qp_offset: Default::default(),
+            pps_cr_qp_offset: Default::default(),
+            pps_beta_offset_div2: Default::default(),
+            pps_tc_offset_div2: Default::default(),
+            log2_parallel_merge_level_minus2: Default::default(),
+            log2_max_transform_skip_block_size_minus2: Default::default(),
+            diff_cu_chroma_qp_offset_depth: Default::default(),
+            chroma_qp_offset_list_len_minus1: Default::default(),
+            cb_qp_offset_list: unsafe { core::mem::zeroed() },
+            cr_qp_offset_list: unsafe { core::mem::zeroed() },
+            log2_sao_offset_scale_luma: Default::default(),
+            log2_sao_offset_scale_chroma: Default::default(),
+            pps_act_y_qp_offset_plus5: Default::default(),
+            pps_act_cb_qp_offset_plus5: Default::default(),
+            pps_act_cr_qp_offset_plus3: Default::default(),
+            pps_num_palette_predictor_initializers: Default::default(),
+            luma_bit_depth_entry_minus8: Default::default(),
+            chroma_bit_depth_entry_minus8: Default::default(),
+            num_tile_columns_minus1: Default::default(),
+            num_tile_rows_minus1: Default::default(),
+            reserved1: Default::default(),
+            reserved2: Default::default(),
+            column_width_minus1: unsafe { core::mem::zeroed() },
+            row_height_minus1: unsafe { core::mem::zeroed() },
+            reserved3: Default::default(),
+            p_scaling_lists: Default::default(),
+            p_predictor_palette_entries: Default::default(),
+            _marker: ::core::marker::PhantomData,
+        }
+    }
 }
 #[repr(transparent)]
 #[derive(Clone, Copy, PartialEq, Eq, PartialOrd, Ord, Hash, Default)]

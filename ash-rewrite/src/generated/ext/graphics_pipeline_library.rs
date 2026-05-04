@@ -13,6 +13,16 @@ unsafe impl<'a> crate::TaggedStructure<'a>
 for PhysicalDeviceGraphicsPipelineLibraryFeaturesEXT<'a> {
     const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::PHYSICAL_DEVICE_GRAPHICS_PIPELINE_LIBRARY_FEATURES_EXT;
 }
+impl<'a> Default for PhysicalDeviceGraphicsPipelineLibraryFeaturesEXT<'a> {
+    fn default() -> Self {
+        Self {
+            s_type: <Self as crate::TaggedStructure>::STRUCTURE_TYPE,
+            p_next: Default::default(),
+            graphics_pipeline_library: Default::default(),
+            _marker: ::core::marker::PhantomData,
+        }
+    }
+}
 #[repr(C)]
 #[derive(Clone, Copy)]
 pub struct PhysicalDeviceGraphicsPipelineLibraryPropertiesEXT<'a> {
@@ -26,6 +36,17 @@ unsafe impl<'a> crate::TaggedStructure<'a>
 for PhysicalDeviceGraphicsPipelineLibraryPropertiesEXT<'a> {
     const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::PHYSICAL_DEVICE_GRAPHICS_PIPELINE_LIBRARY_PROPERTIES_EXT;
 }
+impl<'a> Default for PhysicalDeviceGraphicsPipelineLibraryPropertiesEXT<'a> {
+    fn default() -> Self {
+        Self {
+            s_type: <Self as crate::TaggedStructure>::STRUCTURE_TYPE,
+            p_next: Default::default(),
+            graphics_pipeline_library_fast_linking: Default::default(),
+            graphics_pipeline_library_independent_interpolation_decoration: Default::default(),
+            _marker: ::core::marker::PhantomData,
+        }
+    }
+}
 #[repr(C)]
 #[derive(Clone, Copy)]
 pub struct GraphicsPipelineLibraryCreateInfoEXT<'a> {
@@ -36,6 +57,16 @@ pub struct GraphicsPipelineLibraryCreateInfoEXT<'a> {
 }
 unsafe impl<'a> crate::TaggedStructure<'a> for GraphicsPipelineLibraryCreateInfoEXT<'a> {
     const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::GRAPHICS_PIPELINE_LIBRARY_CREATE_INFO_EXT;
+}
+impl<'a> Default for GraphicsPipelineLibraryCreateInfoEXT<'a> {
+    fn default() -> Self {
+        Self {
+            s_type: <Self as crate::TaggedStructure>::STRUCTURE_TYPE,
+            p_next: Default::default(),
+            flags: Default::default(),
+            _marker: ::core::marker::PhantomData,
+        }
+    }
 }
 ///Provided by [`ext::graphics_pipeline_library`](crate::ext::graphics_pipeline_library)
 impl crate::vk::StructureType {
@@ -136,7 +167,7 @@ impl core::ops::Not for GraphicsPipelineLibraryFlagsEXT {
     }
 }
 #[repr(transparent)]
-#[derive(Clone, Copy)]
+#[derive(Clone, Copy, Default)]
 pub struct GraphicsPipelineLibraryFlagBitsEXT(pub(crate) u32);
 ///Provided by [`ext::graphics_pipeline_library`](crate::ext::graphics_pipeline_library)
 impl GraphicsPipelineLibraryFlagBitsEXT {

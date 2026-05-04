@@ -51,6 +51,18 @@ pub(crate) mod reexport {
     unsafe impl<'a> crate::TaggedStructure<'a> for DisplayPresentInfoKHR<'a> {
         const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::DISPLAY_PRESENT_INFO_KHR;
     }
+    impl<'a> Default for DisplayPresentInfoKHR<'a> {
+        fn default() -> Self {
+            Self {
+                s_type: <Self as crate::TaggedStructure>::STRUCTURE_TYPE,
+                p_next: Default::default(),
+                src_rect: Default::default(),
+                dst_rect: Default::default(),
+                persistent: Default::default(),
+                _marker: ::core::marker::PhantomData,
+            }
+        }
+    }
     ///Provided by [`khr::display_swapchain`](crate::khr::display_swapchain)
     impl crate::vk::StructureType {
         pub const DISPLAY_PRESENT_INFO_KHR: Self = Self(1000003000);

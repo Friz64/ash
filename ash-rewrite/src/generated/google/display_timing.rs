@@ -54,12 +54,12 @@ impl DeviceFn {
 }
 pub(crate) mod reexport {
     #[repr(C)]
-    #[derive(Clone, Copy)]
+    #[derive(Clone, Copy, Default)]
     pub struct RefreshCycleDurationGOOGLE {
         pub refresh_duration: u64,
     }
     #[repr(C)]
-    #[derive(Clone, Copy)]
+    #[derive(Clone, Copy, Default)]
     pub struct PastPresentationTimingGOOGLE {
         pub present_id: u32,
         pub desired_present_time: u64,
@@ -79,8 +79,19 @@ pub(crate) mod reexport {
     unsafe impl<'a> crate::TaggedStructure<'a> for PresentTimesInfoGOOGLE<'a> {
         const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::PRESENT_TIMES_INFO_GOOGLE;
     }
+    impl<'a> Default for PresentTimesInfoGOOGLE<'a> {
+        fn default() -> Self {
+            Self {
+                s_type: <Self as crate::TaggedStructure>::STRUCTURE_TYPE,
+                p_next: Default::default(),
+                swapchain_count: Default::default(),
+                p_times: Default::default(),
+                _marker: ::core::marker::PhantomData,
+            }
+        }
+    }
     #[repr(C)]
-    #[derive(Clone, Copy)]
+    #[derive(Clone, Copy, Default)]
     pub struct PresentTimeGOOGLE {
         pub present_id: u32,
         pub desired_present_time: u64,

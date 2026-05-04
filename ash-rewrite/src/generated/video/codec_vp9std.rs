@@ -2,13 +2,13 @@
 #![cfg_attr(rustfmt, rustfmt_skip)]
 //!Items provided by `vulkan_video_codec_vp9std`
 #[repr(C)]
-#[derive(Clone, Copy)]
+#[derive(Clone, Copy, Default)]
 pub struct VP9ColorConfigFlags {
     ///- `color_range` @ `0..1`
     pub bitfield0: u32,
 }
 #[repr(C)]
-#[derive(Clone, Copy)]
+#[derive(Clone, Copy, Default)]
 pub struct VP9ColorConfig {
     pub flags: crate::vk::VP9ColorConfigFlags,
     pub bit_depth: u8,
@@ -18,7 +18,7 @@ pub struct VP9ColorConfig {
     pub color_space: crate::vk::VP9ColorSpace,
 }
 #[repr(C)]
-#[derive(Clone, Copy)]
+#[derive(Clone, Copy, Default)]
 pub struct VP9LoopFilterFlags {
     /**- `loop_filter_delta_enabled` @ `0..1`
 - `loop_filter_delta_update` @ `1..2`*/
@@ -36,8 +36,21 @@ pub struct VP9LoopFilter {
     pub loop_filter_mode_deltas: [i8; crate::vk::STD_VIDEO_VP9_LOOP_FILTER_ADJUSTMENTS
         as _],
 }
+impl Default for VP9LoopFilter {
+    fn default() -> Self {
+        Self {
+            flags: Default::default(),
+            loop_filter_level: Default::default(),
+            loop_filter_sharpness: Default::default(),
+            update_ref_delta: Default::default(),
+            loop_filter_ref_deltas: unsafe { core::mem::zeroed() },
+            update_mode_delta: Default::default(),
+            loop_filter_mode_deltas: unsafe { core::mem::zeroed() },
+        }
+    }
+}
 #[repr(C)]
-#[derive(Clone, Copy)]
+#[derive(Clone, Copy, Default)]
 pub struct VP9SegmentationFlags {
     /**- `segmentation_update_map` @ `0..1`
 - `segmentation_temporal_update` @ `1..2`
@@ -56,6 +69,17 @@ pub struct VP9Segmentation {
     pub feature_enabled: [u8; crate::vk::STD_VIDEO_VP9_MAX_SEGMENTS as _],
     pub feature_data: [[i16; crate::vk::STD_VIDEO_VP9_SEG_LVL_MAX
         as _]; crate::vk::STD_VIDEO_VP9_MAX_SEGMENTS as _],
+}
+impl Default for VP9Segmentation {
+    fn default() -> Self {
+        Self {
+            flags: Default::default(),
+            segmentation_tree_probs: unsafe { core::mem::zeroed() },
+            segmentation_pred_prob: unsafe { core::mem::zeroed() },
+            feature_enabled: unsafe { core::mem::zeroed() },
+            feature_data: unsafe { core::mem::zeroed() },
+        }
+    }
 }
 #[repr(transparent)]
 #[derive(Clone, Copy, PartialEq, Eq, PartialOrd, Ord, Hash, Default)]

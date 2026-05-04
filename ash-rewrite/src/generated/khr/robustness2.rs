@@ -14,6 +14,18 @@ pub struct PhysicalDeviceRobustness2FeaturesKHR<'a> {
 unsafe impl<'a> crate::TaggedStructure<'a> for PhysicalDeviceRobustness2FeaturesKHR<'a> {
     const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::PHYSICAL_DEVICE_ROBUSTNESS_2_FEATURES_KHR;
 }
+impl<'a> Default for PhysicalDeviceRobustness2FeaturesKHR<'a> {
+    fn default() -> Self {
+        Self {
+            s_type: <Self as crate::TaggedStructure>::STRUCTURE_TYPE,
+            p_next: Default::default(),
+            robust_buffer_access2: Default::default(),
+            robust_image_access2: Default::default(),
+            null_descriptor: Default::default(),
+            _marker: ::core::marker::PhantomData,
+        }
+    }
+}
 #[repr(C)]
 #[derive(Clone, Copy)]
 pub struct PhysicalDeviceRobustness2PropertiesKHR<'a> {
@@ -26,6 +38,17 @@ pub struct PhysicalDeviceRobustness2PropertiesKHR<'a> {
 unsafe impl<'a> crate::TaggedStructure<'a>
 for PhysicalDeviceRobustness2PropertiesKHR<'a> {
     const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::PHYSICAL_DEVICE_ROBUSTNESS_2_PROPERTIES_KHR;
+}
+impl<'a> Default for PhysicalDeviceRobustness2PropertiesKHR<'a> {
+    fn default() -> Self {
+        Self {
+            s_type: <Self as crate::TaggedStructure>::STRUCTURE_TYPE,
+            p_next: Default::default(),
+            robust_storage_buffer_access_size_alignment: Default::default(),
+            robust_uniform_buffer_access_size_alignment: Default::default(),
+            _marker: ::core::marker::PhantomData,
+        }
+    }
 }
 ///Provided by [`khr::robustness2`](crate::khr::robustness2)
 impl crate::vk::StructureType {

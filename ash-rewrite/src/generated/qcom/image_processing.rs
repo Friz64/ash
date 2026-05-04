@@ -14,6 +14,18 @@ pub struct ImageViewSampleWeightCreateInfoQCOM<'a> {
 unsafe impl<'a> crate::TaggedStructure<'a> for ImageViewSampleWeightCreateInfoQCOM<'a> {
     const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::IMAGE_VIEW_SAMPLE_WEIGHT_CREATE_INFO_QCOM;
 }
+impl<'a> Default for ImageViewSampleWeightCreateInfoQCOM<'a> {
+    fn default() -> Self {
+        Self {
+            s_type: <Self as crate::TaggedStructure>::STRUCTURE_TYPE,
+            p_next: Default::default(),
+            filter_center: Default::default(),
+            filter_size: Default::default(),
+            num_phases: Default::default(),
+            _marker: ::core::marker::PhantomData,
+        }
+    }
+}
 #[repr(C)]
 #[derive(Clone, Copy)]
 pub struct PhysicalDeviceImageProcessingFeaturesQCOM<'a> {
@@ -27,6 +39,18 @@ pub struct PhysicalDeviceImageProcessingFeaturesQCOM<'a> {
 unsafe impl<'a> crate::TaggedStructure<'a>
 for PhysicalDeviceImageProcessingFeaturesQCOM<'a> {
     const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::PHYSICAL_DEVICE_IMAGE_PROCESSING_FEATURES_QCOM;
+}
+impl<'a> Default for PhysicalDeviceImageProcessingFeaturesQCOM<'a> {
+    fn default() -> Self {
+        Self {
+            s_type: <Self as crate::TaggedStructure>::STRUCTURE_TYPE,
+            p_next: Default::default(),
+            texture_sample_weighted: Default::default(),
+            texture_box_filter: Default::default(),
+            texture_block_match: Default::default(),
+            _marker: ::core::marker::PhantomData,
+        }
+    }
 }
 #[repr(C)]
 #[derive(Clone, Copy)]
@@ -42,6 +66,19 @@ pub struct PhysicalDeviceImageProcessingPropertiesQCOM<'a> {
 unsafe impl<'a> crate::TaggedStructure<'a>
 for PhysicalDeviceImageProcessingPropertiesQCOM<'a> {
     const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::PHYSICAL_DEVICE_IMAGE_PROCESSING_PROPERTIES_QCOM;
+}
+impl<'a> Default for PhysicalDeviceImageProcessingPropertiesQCOM<'a> {
+    fn default() -> Self {
+        Self {
+            s_type: <Self as crate::TaggedStructure>::STRUCTURE_TYPE,
+            p_next: Default::default(),
+            max_weight_filter_phases: Default::default(),
+            max_weight_filter_dimension: Default::default(),
+            max_block_match_region: Default::default(),
+            max_box_filter_block_size: Default::default(),
+            _marker: ::core::marker::PhantomData,
+        }
+    }
 }
 ///Provided by [`qcom::image_processing`](crate::qcom::image_processing)
 impl crate::vk::DescriptorType {

@@ -13,6 +13,17 @@ pub struct DirectDriverLoadingInfoLUNARG<'a> {
 unsafe impl<'a> crate::TaggedStructure<'a> for DirectDriverLoadingInfoLUNARG<'a> {
     const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::DIRECT_DRIVER_LOADING_INFO_LUNARG;
 }
+impl<'a> Default for DirectDriverLoadingInfoLUNARG<'a> {
+    fn default() -> Self {
+        Self {
+            s_type: <Self as crate::TaggedStructure>::STRUCTURE_TYPE,
+            p_next: Default::default(),
+            flags: Default::default(),
+            pfn_get_instance_proc_addr: Default::default(),
+            _marker: ::core::marker::PhantomData,
+        }
+    }
+}
 #[repr(C)]
 #[derive(Clone, Copy)]
 pub struct DirectDriverLoadingListLUNARG<'a> {
@@ -25,6 +36,18 @@ pub struct DirectDriverLoadingListLUNARG<'a> {
 }
 unsafe impl<'a> crate::TaggedStructure<'a> for DirectDriverLoadingListLUNARG<'a> {
     const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::DIRECT_DRIVER_LOADING_LIST_LUNARG;
+}
+impl<'a> Default for DirectDriverLoadingListLUNARG<'a> {
+    fn default() -> Self {
+        Self {
+            s_type: <Self as crate::TaggedStructure>::STRUCTURE_TYPE,
+            p_next: Default::default(),
+            mode: Default::default(),
+            driver_count: Default::default(),
+            p_drivers: Default::default(),
+            _marker: ::core::marker::PhantomData,
+        }
+    }
 }
 ///Provided by [`lunarg::direct_driver_loading`](crate::lunarg::direct_driver_loading)
 impl crate::vk::StructureType {

@@ -13,6 +13,17 @@ pub struct ValidationFlagsEXT<'a> {
 unsafe impl<'a> crate::TaggedStructure<'a> for ValidationFlagsEXT<'a> {
     const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::VALIDATION_FLAGS_EXT;
 }
+impl<'a> Default for ValidationFlagsEXT<'a> {
+    fn default() -> Self {
+        Self {
+            s_type: <Self as crate::TaggedStructure>::STRUCTURE_TYPE,
+            p_next: Default::default(),
+            disabled_validation_check_count: Default::default(),
+            p_disabled_validation_checks: Default::default(),
+            _marker: ::core::marker::PhantomData,
+        }
+    }
+}
 ///Provided by [`ext::validation_flags`](crate::ext::validation_flags)
 impl crate::vk::StructureType {
     pub const VALIDATION_FLAGS_EXT: Self = Self(1000061000);

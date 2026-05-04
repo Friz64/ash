@@ -66,6 +66,19 @@ pub(crate) mod reexport {
     for ImportSemaphoreZirconHandleInfoFUCHSIA<'a> {
         const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::IMPORT_SEMAPHORE_ZIRCON_HANDLE_INFO_FUCHSIA;
     }
+    impl<'a> Default for ImportSemaphoreZirconHandleInfoFUCHSIA<'a> {
+        fn default() -> Self {
+            Self {
+                s_type: <Self as crate::TaggedStructure>::STRUCTURE_TYPE,
+                p_next: Default::default(),
+                semaphore: Default::default(),
+                flags: Default::default(),
+                handle_type: Default::default(),
+                zircon_handle: Default::default(),
+                _marker: ::core::marker::PhantomData,
+            }
+        }
+    }
     #[repr(C)]
     #[derive(Clone, Copy)]
     pub struct SemaphoreGetZirconHandleInfoFUCHSIA<'a> {
@@ -78,6 +91,17 @@ pub(crate) mod reexport {
     unsafe impl<'a> crate::TaggedStructure<'a>
     for SemaphoreGetZirconHandleInfoFUCHSIA<'a> {
         const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::SEMAPHORE_GET_ZIRCON_HANDLE_INFO_FUCHSIA;
+    }
+    impl<'a> Default for SemaphoreGetZirconHandleInfoFUCHSIA<'a> {
+        fn default() -> Self {
+            Self {
+                s_type: <Self as crate::TaggedStructure>::STRUCTURE_TYPE,
+                p_next: Default::default(),
+                semaphore: Default::default(),
+                handle_type: Default::default(),
+                _marker: ::core::marker::PhantomData,
+            }
+        }
     }
     ///Provided by [`fuchsia::external_semaphore`](crate::fuchsia::external_semaphore)
     impl crate::vk::StructureType {

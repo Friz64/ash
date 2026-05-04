@@ -13,6 +13,16 @@ unsafe impl<'a> crate::TaggedStructure<'a>
 for PhysicalDeviceAddressBindingReportFeaturesEXT<'a> {
     const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::PHYSICAL_DEVICE_ADDRESS_BINDING_REPORT_FEATURES_EXT;
 }
+impl<'a> Default for PhysicalDeviceAddressBindingReportFeaturesEXT<'a> {
+    fn default() -> Self {
+        Self {
+            s_type: <Self as crate::TaggedStructure>::STRUCTURE_TYPE,
+            p_next: Default::default(),
+            report_address_binding: Default::default(),
+            _marker: ::core::marker::PhantomData,
+        }
+    }
+}
 #[repr(C)]
 #[derive(Clone, Copy)]
 pub struct DeviceAddressBindingCallbackDataEXT<'a> {
@@ -26,6 +36,19 @@ pub struct DeviceAddressBindingCallbackDataEXT<'a> {
 }
 unsafe impl<'a> crate::TaggedStructure<'a> for DeviceAddressBindingCallbackDataEXT<'a> {
     const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::DEVICE_ADDRESS_BINDING_CALLBACK_DATA_EXT;
+}
+impl<'a> Default for DeviceAddressBindingCallbackDataEXT<'a> {
+    fn default() -> Self {
+        Self {
+            s_type: <Self as crate::TaggedStructure>::STRUCTURE_TYPE,
+            p_next: Default::default(),
+            flags: Default::default(),
+            base_address: Default::default(),
+            size: Default::default(),
+            binding_type: Default::default(),
+            _marker: ::core::marker::PhantomData,
+        }
+    }
 }
 ///Provided by [`ext::device_address_binding_report`](crate::ext::device_address_binding_report)
 impl crate::vk::StructureType {
@@ -126,7 +149,7 @@ impl core::ops::Not for DeviceAddressBindingFlagsEXT {
     }
 }
 #[repr(transparent)]
-#[derive(Clone, Copy)]
+#[derive(Clone, Copy, Default)]
 pub struct DeviceAddressBindingFlagBitsEXT(pub(crate) u32);
 ///Provided by [`ext::device_address_binding_report`](crate::ext::device_address_binding_report)
 impl DeviceAddressBindingFlagBitsEXT {

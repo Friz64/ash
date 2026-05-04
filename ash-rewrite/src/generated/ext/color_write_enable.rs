@@ -48,6 +48,16 @@ pub(crate) mod reexport {
     for PhysicalDeviceColorWriteEnableFeaturesEXT<'a> {
         const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::PHYSICAL_DEVICE_COLOR_WRITE_ENABLE_FEATURES_EXT;
     }
+    impl<'a> Default for PhysicalDeviceColorWriteEnableFeaturesEXT<'a> {
+        fn default() -> Self {
+            Self {
+                s_type: <Self as crate::TaggedStructure>::STRUCTURE_TYPE,
+                p_next: Default::default(),
+                color_write_enable: Default::default(),
+                _marker: ::core::marker::PhantomData,
+            }
+        }
+    }
     #[repr(C)]
     #[derive(Clone, Copy)]
     pub struct PipelineColorWriteCreateInfoEXT<'a> {
@@ -59,6 +69,17 @@ pub(crate) mod reexport {
     }
     unsafe impl<'a> crate::TaggedStructure<'a> for PipelineColorWriteCreateInfoEXT<'a> {
         const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::PIPELINE_COLOR_WRITE_CREATE_INFO_EXT;
+    }
+    impl<'a> Default for PipelineColorWriteCreateInfoEXT<'a> {
+        fn default() -> Self {
+            Self {
+                s_type: <Self as crate::TaggedStructure>::STRUCTURE_TYPE,
+                p_next: Default::default(),
+                attachment_count: Default::default(),
+                p_color_write_enables: Default::default(),
+                _marker: ::core::marker::PhantomData,
+            }
+        }
     }
     ///Provided by [`ext::color_write_enable`](crate::ext::color_write_enable)
     impl crate::vk::StructureType {

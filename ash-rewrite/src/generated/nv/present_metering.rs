@@ -13,6 +13,17 @@ pub struct SetPresentConfigNV<'a> {
 unsafe impl<'a> crate::TaggedStructure<'a> for SetPresentConfigNV<'a> {
     const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::SET_PRESENT_CONFIG_NV;
 }
+impl<'a> Default for SetPresentConfigNV<'a> {
+    fn default() -> Self {
+        Self {
+            s_type: <Self as crate::TaggedStructure>::STRUCTURE_TYPE,
+            p_next: Default::default(),
+            num_frames_per_batch: Default::default(),
+            present_config_feedback: Default::default(),
+            _marker: ::core::marker::PhantomData,
+        }
+    }
+}
 #[repr(C)]
 #[derive(Clone, Copy)]
 pub struct PhysicalDevicePresentMeteringFeaturesNV<'a> {
@@ -24,6 +35,16 @@ pub struct PhysicalDevicePresentMeteringFeaturesNV<'a> {
 unsafe impl<'a> crate::TaggedStructure<'a>
 for PhysicalDevicePresentMeteringFeaturesNV<'a> {
     const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::PHYSICAL_DEVICE_PRESENT_METERING_FEATURES_NV;
+}
+impl<'a> Default for PhysicalDevicePresentMeteringFeaturesNV<'a> {
+    fn default() -> Self {
+        Self {
+            s_type: <Self as crate::TaggedStructure>::STRUCTURE_TYPE,
+            p_next: Default::default(),
+            present_metering: Default::default(),
+            _marker: ::core::marker::PhantomData,
+        }
+    }
 }
 ///Provided by [`nv::present_metering`](crate::nv::present_metering)
 impl crate::vk::StructureType {

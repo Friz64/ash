@@ -2,7 +2,7 @@
 #![cfg_attr(rustfmt, rustfmt_skip)]
 //!Items provided by `vulkan_video_codec_av1std`
 #[repr(C)]
-#[derive(Clone, Copy)]
+#[derive(Clone, Copy, Default)]
 pub struct AV1ColorConfigFlags {
     /**- `mono_chrome` @ `0..1`
 - `color_range` @ `1..2`
@@ -11,7 +11,7 @@ pub struct AV1ColorConfigFlags {
     pub bitfield0: u32,
 }
 #[repr(C)]
-#[derive(Clone, Copy)]
+#[derive(Clone, Copy, Default)]
 pub struct AV1ColorConfig {
     pub flags: crate::vk::AV1ColorConfigFlags,
     pub bit_depth: u8,
@@ -24,13 +24,13 @@ pub struct AV1ColorConfig {
     pub chroma_sample_position: crate::vk::AV1ChromaSamplePosition,
 }
 #[repr(C)]
-#[derive(Clone, Copy)]
+#[derive(Clone, Copy, Default)]
 pub struct AV1TimingInfoFlags {
     ///- `equal_picture_interval` @ `0..1`
     pub bitfield0: u32,
 }
 #[repr(C)]
-#[derive(Clone, Copy)]
+#[derive(Clone, Copy, Default)]
 pub struct AV1TimingInfo {
     pub flags: crate::vk::AV1TimingInfoFlags,
     pub num_units_in_display_tick: u32,
@@ -38,7 +38,7 @@ pub struct AV1TimingInfo {
     pub num_ticks_per_picture_minus_1: u32,
 }
 #[repr(C)]
-#[derive(Clone, Copy)]
+#[derive(Clone, Copy, Default)]
 pub struct AV1SequenceHeaderFlags {
     /**- `still_picture` @ `0..1`
 - `reduced_still_picture_header` @ `1..2`
@@ -80,8 +80,29 @@ pub struct AV1SequenceHeader<'a> {
     pub p_timing_info: *const crate::vk::AV1TimingInfo,
     pub _marker: ::core::marker::PhantomData<&'a ()>,
 }
+impl<'a> Default for AV1SequenceHeader<'a> {
+    fn default() -> Self {
+        Self {
+            flags: Default::default(),
+            seq_profile: Default::default(),
+            frame_width_bits_minus_1: Default::default(),
+            frame_height_bits_minus_1: Default::default(),
+            max_frame_width_minus_1: Default::default(),
+            max_frame_height_minus_1: Default::default(),
+            delta_frame_id_length_minus_2: Default::default(),
+            additional_frame_id_length_minus_1: Default::default(),
+            order_hint_bits_minus_1: Default::default(),
+            seq_force_integer_mv: Default::default(),
+            seq_force_screen_content_tools: Default::default(),
+            reserved1: unsafe { core::mem::zeroed() },
+            p_color_config: Default::default(),
+            p_timing_info: Default::default(),
+            _marker: ::core::marker::PhantomData,
+        }
+    }
+}
 #[repr(C)]
-#[derive(Clone, Copy)]
+#[derive(Clone, Copy, Default)]
 pub struct AV1LoopFilterFlags {
     /**- `loop_filter_delta_enabled` @ `0..1`
 - `loop_filter_delta_update` @ `1..2`*/
@@ -99,15 +120,28 @@ pub struct AV1LoopFilter {
     pub loop_filter_mode_deltas: [i8; crate::vk::STD_VIDEO_AV1_LOOP_FILTER_ADJUSTMENTS
         as _],
 }
+impl Default for AV1LoopFilter {
+    fn default() -> Self {
+        Self {
+            flags: Default::default(),
+            loop_filter_level: unsafe { core::mem::zeroed() },
+            loop_filter_sharpness: Default::default(),
+            update_ref_delta: Default::default(),
+            loop_filter_ref_deltas: unsafe { core::mem::zeroed() },
+            update_mode_delta: Default::default(),
+            loop_filter_mode_deltas: unsafe { core::mem::zeroed() },
+        }
+    }
+}
 #[repr(C)]
-#[derive(Clone, Copy)]
+#[derive(Clone, Copy, Default)]
 pub struct AV1QuantizationFlags {
     /**- `using_qmatrix` @ `0..1`
 - `diff_uv_delta` @ `1..2`*/
     pub bitfield0: u32,
 }
 #[repr(C)]
-#[derive(Clone, Copy)]
+#[derive(Clone, Copy, Default)]
 pub struct AV1Quantization {
     pub flags: crate::vk::AV1QuantizationFlags,
     pub base_q_idx: u8,
@@ -127,8 +161,16 @@ pub struct AV1Segmentation {
     pub feature_data: [[i16; crate::vk::STD_VIDEO_AV1_SEG_LVL_MAX
         as _]; crate::vk::STD_VIDEO_AV1_MAX_SEGMENTS as _],
 }
+impl Default for AV1Segmentation {
+    fn default() -> Self {
+        Self {
+            feature_enabled: unsafe { core::mem::zeroed() },
+            feature_data: unsafe { core::mem::zeroed() },
+        }
+    }
+}
 #[repr(C)]
-#[derive(Clone, Copy)]
+#[derive(Clone, Copy, Default)]
 pub struct AV1TileInfoFlags {
     ///- `uniform_tile_spacing_flag` @ `0..1`
     pub bitfield0: u32,
@@ -148,6 +190,23 @@ pub struct AV1TileInfo<'a> {
     pub p_height_in_sbs_minus1: *const u16,
     pub _marker: ::core::marker::PhantomData<&'a ()>,
 }
+impl<'a> Default for AV1TileInfo<'a> {
+    fn default() -> Self {
+        Self {
+            flags: Default::default(),
+            tile_cols: Default::default(),
+            tile_rows: Default::default(),
+            context_update_tile_id: Default::default(),
+            tile_size_bytes_minus_1: Default::default(),
+            reserved1: unsafe { core::mem::zeroed() },
+            p_mi_col_starts: Default::default(),
+            p_mi_row_starts: Default::default(),
+            p_width_in_sbs_minus1: Default::default(),
+            p_height_in_sbs_minus1: Default::default(),
+            _marker: ::core::marker::PhantomData,
+        }
+    }
+}
 #[repr(C)]
 #[derive(Clone, Copy)]
 pub struct AV1CDEF {
@@ -162,12 +221,32 @@ pub struct AV1CDEF {
     pub cdef_uv_sec_strength: [u8; crate::vk::STD_VIDEO_AV1_MAX_CDEF_FILTER_STRENGTHS
         as _],
 }
+impl Default for AV1CDEF {
+    fn default() -> Self {
+        Self {
+            cdef_damping_minus_3: Default::default(),
+            cdef_bits: Default::default(),
+            cdef_y_pri_strength: unsafe { core::mem::zeroed() },
+            cdef_y_sec_strength: unsafe { core::mem::zeroed() },
+            cdef_uv_pri_strength: unsafe { core::mem::zeroed() },
+            cdef_uv_sec_strength: unsafe { core::mem::zeroed() },
+        }
+    }
+}
 #[repr(C)]
 #[derive(Clone, Copy)]
 pub struct AV1LoopRestoration {
     pub frame_restoration_type: [crate::vk::AV1FrameRestorationType; crate::vk::STD_VIDEO_AV1_MAX_NUM_PLANES
         as _],
     pub loop_restoration_size: [u16; crate::vk::STD_VIDEO_AV1_MAX_NUM_PLANES as _],
+}
+impl Default for AV1LoopRestoration {
+    fn default() -> Self {
+        Self {
+            frame_restoration_type: unsafe { core::mem::zeroed() },
+            loop_restoration_size: unsafe { core::mem::zeroed() },
+        }
+    }
 }
 #[repr(C)]
 #[derive(Clone, Copy)]
@@ -176,8 +255,16 @@ pub struct AV1GlobalMotion {
     pub gm_params: [[i32; crate::vk::STD_VIDEO_AV1_GLOBAL_MOTION_PARAMS
         as _]; crate::vk::STD_VIDEO_AV1_NUM_REF_FRAMES as _],
 }
+impl Default for AV1GlobalMotion {
+    fn default() -> Self {
+        Self {
+            gm_type: unsafe { core::mem::zeroed() },
+            gm_params: unsafe { core::mem::zeroed() },
+        }
+    }
+}
 #[repr(C)]
-#[derive(Clone, Copy)]
+#[derive(Clone, Copy, Default)]
 pub struct AV1FilmGrainFlags {
     /**- `chroma_scaling_from_luma` @ `0..1`
 - `overlap_flag` @ `1..2`
@@ -213,6 +300,37 @@ pub struct AV1FilmGrain {
     pub cr_mult: u8,
     pub cr_luma_mult: u8,
     pub cr_offset: u16,
+}
+impl Default for AV1FilmGrain {
+    fn default() -> Self {
+        Self {
+            flags: Default::default(),
+            grain_scaling_minus_8: Default::default(),
+            ar_coeff_lag: Default::default(),
+            ar_coeff_shift_minus_6: Default::default(),
+            grain_scale_shift: Default::default(),
+            grain_seed: Default::default(),
+            film_grain_params_ref_idx: Default::default(),
+            num_y_points: Default::default(),
+            point_y_value: unsafe { core::mem::zeroed() },
+            point_y_scaling: unsafe { core::mem::zeroed() },
+            num_cb_points: Default::default(),
+            point_cb_value: unsafe { core::mem::zeroed() },
+            point_cb_scaling: unsafe { core::mem::zeroed() },
+            num_cr_points: Default::default(),
+            point_cr_value: unsafe { core::mem::zeroed() },
+            point_cr_scaling: unsafe { core::mem::zeroed() },
+            ar_coeffs_y_plus_128: unsafe { core::mem::zeroed() },
+            ar_coeffs_cb_plus_128: unsafe { core::mem::zeroed() },
+            ar_coeffs_cr_plus_128: unsafe { core::mem::zeroed() },
+            cb_mult: Default::default(),
+            cb_luma_mult: Default::default(),
+            cb_offset: Default::default(),
+            cr_mult: Default::default(),
+            cr_luma_mult: Default::default(),
+            cr_offset: Default::default(),
+        }
+    }
 }
 #[repr(transparent)]
 #[derive(Clone, Copy, PartialEq, Eq, PartialOrd, Ord, Hash, Default)]

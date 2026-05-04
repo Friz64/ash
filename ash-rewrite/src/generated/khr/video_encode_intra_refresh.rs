@@ -17,6 +17,20 @@ unsafe impl<'a> crate::TaggedStructure<'a>
 for VideoEncodeIntraRefreshCapabilitiesKHR<'a> {
     const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::VIDEO_ENCODE_INTRA_REFRESH_CAPABILITIES_KHR;
 }
+impl<'a> Default for VideoEncodeIntraRefreshCapabilitiesKHR<'a> {
+    fn default() -> Self {
+        Self {
+            s_type: <Self as crate::TaggedStructure>::STRUCTURE_TYPE,
+            p_next: Default::default(),
+            intra_refresh_modes: Default::default(),
+            max_intra_refresh_cycle_duration: Default::default(),
+            max_intra_refresh_active_reference_pictures: Default::default(),
+            partition_independent_intra_refresh_regions: Default::default(),
+            non_rectangular_intra_refresh_regions: Default::default(),
+            _marker: ::core::marker::PhantomData,
+        }
+    }
+}
 #[repr(C)]
 #[derive(Clone, Copy)]
 pub struct VideoEncodeSessionIntraRefreshCreateInfoKHR<'a> {
@@ -28,6 +42,16 @@ pub struct VideoEncodeSessionIntraRefreshCreateInfoKHR<'a> {
 unsafe impl<'a> crate::TaggedStructure<'a>
 for VideoEncodeSessionIntraRefreshCreateInfoKHR<'a> {
     const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::VIDEO_ENCODE_SESSION_INTRA_REFRESH_CREATE_INFO_KHR;
+}
+impl<'a> Default for VideoEncodeSessionIntraRefreshCreateInfoKHR<'a> {
+    fn default() -> Self {
+        Self {
+            s_type: <Self as crate::TaggedStructure>::STRUCTURE_TYPE,
+            p_next: Default::default(),
+            intra_refresh_mode: Default::default(),
+            _marker: ::core::marker::PhantomData,
+        }
+    }
 }
 #[repr(C)]
 #[derive(Clone, Copy)]
@@ -41,6 +65,17 @@ pub struct VideoEncodeIntraRefreshInfoKHR<'a> {
 unsafe impl<'a> crate::TaggedStructure<'a> for VideoEncodeIntraRefreshInfoKHR<'a> {
     const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::VIDEO_ENCODE_INTRA_REFRESH_INFO_KHR;
 }
+impl<'a> Default for VideoEncodeIntraRefreshInfoKHR<'a> {
+    fn default() -> Self {
+        Self {
+            s_type: <Self as crate::TaggedStructure>::STRUCTURE_TYPE,
+            p_next: Default::default(),
+            intra_refresh_cycle_duration: Default::default(),
+            intra_refresh_index: Default::default(),
+            _marker: ::core::marker::PhantomData,
+        }
+    }
+}
 #[repr(C)]
 #[derive(Clone, Copy)]
 pub struct VideoReferenceIntraRefreshInfoKHR<'a> {
@@ -51,6 +86,16 @@ pub struct VideoReferenceIntraRefreshInfoKHR<'a> {
 }
 unsafe impl<'a> crate::TaggedStructure<'a> for VideoReferenceIntraRefreshInfoKHR<'a> {
     const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::VIDEO_REFERENCE_INTRA_REFRESH_INFO_KHR;
+}
+impl<'a> Default for VideoReferenceIntraRefreshInfoKHR<'a> {
+    fn default() -> Self {
+        Self {
+            s_type: <Self as crate::TaggedStructure>::STRUCTURE_TYPE,
+            p_next: Default::default(),
+            dirty_intra_refresh_regions: Default::default(),
+            _marker: ::core::marker::PhantomData,
+        }
+    }
 }
 #[repr(C)]
 #[derive(Clone, Copy)]
@@ -63,6 +108,16 @@ pub struct PhysicalDeviceVideoEncodeIntraRefreshFeaturesKHR<'a> {
 unsafe impl<'a> crate::TaggedStructure<'a>
 for PhysicalDeviceVideoEncodeIntraRefreshFeaturesKHR<'a> {
     const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::PHYSICAL_DEVICE_VIDEO_ENCODE_INTRA_REFRESH_FEATURES_KHR;
+}
+impl<'a> Default for PhysicalDeviceVideoEncodeIntraRefreshFeaturesKHR<'a> {
+    fn default() -> Self {
+        Self {
+            s_type: <Self as crate::TaggedStructure>::STRUCTURE_TYPE,
+            p_next: Default::default(),
+            video_encode_intra_refresh: Default::default(),
+            _marker: ::core::marker::PhantomData,
+        }
+    }
 }
 ///Provided by [`khr::video_encode_intra_refresh`](crate::khr::video_encode_intra_refresh)
 impl crate::vk::StructureType {
@@ -161,7 +216,7 @@ impl core::ops::Not for VideoEncodeIntraRefreshModeFlagsKHR {
     }
 }
 #[repr(transparent)]
-#[derive(Clone, Copy)]
+#[derive(Clone, Copy, Default)]
 pub struct VideoEncodeIntraRefreshModeFlagBitsKHR(pub(crate) u32);
 ///Provided by [`khr::video_encode_intra_refresh`](crate::khr::video_encode_intra_refresh)
 impl VideoEncodeIntraRefreshModeFlagBitsKHR {

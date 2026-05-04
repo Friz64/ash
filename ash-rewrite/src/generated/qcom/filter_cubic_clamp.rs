@@ -12,6 +12,16 @@ pub struct PhysicalDeviceCubicClampFeaturesQCOM<'a> {
 unsafe impl<'a> crate::TaggedStructure<'a> for PhysicalDeviceCubicClampFeaturesQCOM<'a> {
     const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::PHYSICAL_DEVICE_CUBIC_CLAMP_FEATURES_QCOM;
 }
+impl<'a> Default for PhysicalDeviceCubicClampFeaturesQCOM<'a> {
+    fn default() -> Self {
+        Self {
+            s_type: <Self as crate::TaggedStructure>::STRUCTURE_TYPE,
+            p_next: Default::default(),
+            cubic_range_clamp: Default::default(),
+            _marker: ::core::marker::PhantomData,
+        }
+    }
+}
 ///Provided by [`qcom::filter_cubic_clamp`](crate::qcom::filter_cubic_clamp)
 impl crate::vk::StructureType {
     pub const PHYSICAL_DEVICE_CUBIC_CLAMP_FEATURES_QCOM: Self = Self(1000521000);

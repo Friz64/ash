@@ -262,6 +262,20 @@ pub(crate) mod reexport {
     for RayTracingShaderGroupCreateInfoNV<'a> {
         const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::RAY_TRACING_SHADER_GROUP_CREATE_INFO_NV;
     }
+    impl<'a> Default for RayTracingShaderGroupCreateInfoNV<'a> {
+        fn default() -> Self {
+            Self {
+                s_type: <Self as crate::TaggedStructure>::STRUCTURE_TYPE,
+                p_next: Default::default(),
+                _type: Default::default(),
+                general_shader: Default::default(),
+                closest_hit_shader: Default::default(),
+                any_hit_shader: Default::default(),
+                intersection_shader: Default::default(),
+                _marker: ::core::marker::PhantomData,
+            }
+        }
+    }
     #[repr(C)]
     #[derive(Clone, Copy)]
     pub struct RayTracingPipelineCreateInfoNV<'a> {
@@ -280,6 +294,24 @@ pub(crate) mod reexport {
     }
     unsafe impl<'a> crate::TaggedStructure<'a> for RayTracingPipelineCreateInfoNV<'a> {
         const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::RAY_TRACING_PIPELINE_CREATE_INFO_NV;
+    }
+    impl<'a> Default for RayTracingPipelineCreateInfoNV<'a> {
+        fn default() -> Self {
+            Self {
+                s_type: <Self as crate::TaggedStructure>::STRUCTURE_TYPE,
+                p_next: Default::default(),
+                flags: Default::default(),
+                stage_count: Default::default(),
+                p_stages: Default::default(),
+                group_count: Default::default(),
+                p_groups: Default::default(),
+                max_recursion_depth: Default::default(),
+                layout: Default::default(),
+                base_pipeline_handle: Default::default(),
+                base_pipeline_index: Default::default(),
+                _marker: ::core::marker::PhantomData,
+            }
+        }
     }
     #[repr(C)]
     #[derive(Clone, Copy)]
@@ -302,6 +334,26 @@ pub(crate) mod reexport {
     unsafe impl<'a> crate::TaggedStructure<'a> for GeometryTrianglesNV<'a> {
         const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::GEOMETRY_TRIANGLES_NV;
     }
+    impl<'a> Default for GeometryTrianglesNV<'a> {
+        fn default() -> Self {
+            Self {
+                s_type: <Self as crate::TaggedStructure>::STRUCTURE_TYPE,
+                p_next: Default::default(),
+                vertex_data: Default::default(),
+                vertex_offset: Default::default(),
+                vertex_count: Default::default(),
+                vertex_stride: Default::default(),
+                vertex_format: Default::default(),
+                index_data: Default::default(),
+                index_offset: Default::default(),
+                index_count: Default::default(),
+                index_type: Default::default(),
+                transform_data: Default::default(),
+                transform_offset: Default::default(),
+                _marker: ::core::marker::PhantomData,
+            }
+        }
+    }
     #[repr(C)]
     #[derive(Clone, Copy)]
     pub struct GeometryAABBNV<'a> {
@@ -316,8 +368,21 @@ pub(crate) mod reexport {
     unsafe impl<'a> crate::TaggedStructure<'a> for GeometryAABBNV<'a> {
         const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::GEOMETRY_AABB_NV;
     }
+    impl<'a> Default for GeometryAABBNV<'a> {
+        fn default() -> Self {
+            Self {
+                s_type: <Self as crate::TaggedStructure>::STRUCTURE_TYPE,
+                p_next: Default::default(),
+                aabb_data: Default::default(),
+                num_aab_bs: Default::default(),
+                stride: Default::default(),
+                offset: Default::default(),
+                _marker: ::core::marker::PhantomData,
+            }
+        }
+    }
     #[repr(C)]
-    #[derive(Clone, Copy)]
+    #[derive(Clone, Copy, Default)]
     pub struct GeometryDataNV<'a> {
         pub triangles: crate::vk::GeometryTrianglesNV<'a>,
         pub aabbs: crate::vk::GeometryAABBNV<'a>,
@@ -336,6 +401,18 @@ pub(crate) mod reexport {
     unsafe impl<'a> crate::TaggedStructure<'a> for GeometryNV<'a> {
         const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::GEOMETRY_NV;
     }
+    impl<'a> Default for GeometryNV<'a> {
+        fn default() -> Self {
+            Self {
+                s_type: <Self as crate::TaggedStructure>::STRUCTURE_TYPE,
+                p_next: Default::default(),
+                geometry_type: Default::default(),
+                geometry: Default::default(),
+                flags: Default::default(),
+                _marker: ::core::marker::PhantomData,
+            }
+        }
+    }
     #[repr(C)]
     #[derive(Clone, Copy)]
     pub struct AccelerationStructureInfoNV<'a> {
@@ -351,6 +428,20 @@ pub(crate) mod reexport {
     unsafe impl<'a> crate::TaggedStructure<'a> for AccelerationStructureInfoNV<'a> {
         const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::ACCELERATION_STRUCTURE_INFO_NV;
     }
+    impl<'a> Default for AccelerationStructureInfoNV<'a> {
+        fn default() -> Self {
+            Self {
+                s_type: <Self as crate::TaggedStructure>::STRUCTURE_TYPE,
+                p_next: Default::default(),
+                _type: Default::default(),
+                flags: Default::default(),
+                instance_count: Default::default(),
+                geometry_count: Default::default(),
+                p_geometries: Default::default(),
+                _marker: ::core::marker::PhantomData,
+            }
+        }
+    }
     #[repr(C)]
     #[derive(Clone, Copy)]
     pub struct AccelerationStructureCreateInfoNV<'a> {
@@ -363,6 +454,17 @@ pub(crate) mod reexport {
     unsafe impl<'a> crate::TaggedStructure<'a>
     for AccelerationStructureCreateInfoNV<'a> {
         const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::ACCELERATION_STRUCTURE_CREATE_INFO_NV;
+    }
+    impl<'a> Default for AccelerationStructureCreateInfoNV<'a> {
+        fn default() -> Self {
+            Self {
+                s_type: <Self as crate::TaggedStructure>::STRUCTURE_TYPE,
+                p_next: Default::default(),
+                compacted_size: Default::default(),
+                info: Default::default(),
+                _marker: ::core::marker::PhantomData,
+            }
+        }
     }
     #[repr(C)]
     #[derive(Clone, Copy)]
@@ -380,6 +482,20 @@ pub(crate) mod reexport {
     for BindAccelerationStructureMemoryInfoNV<'a> {
         const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::BIND_ACCELERATION_STRUCTURE_MEMORY_INFO_NV;
     }
+    impl<'a> Default for BindAccelerationStructureMemoryInfoNV<'a> {
+        fn default() -> Self {
+            Self {
+                s_type: <Self as crate::TaggedStructure>::STRUCTURE_TYPE,
+                p_next: Default::default(),
+                acceleration_structure: Default::default(),
+                memory: Default::default(),
+                memory_offset: Default::default(),
+                device_index_count: Default::default(),
+                p_device_indices: Default::default(),
+                _marker: ::core::marker::PhantomData,
+            }
+        }
+    }
     #[repr(C)]
     #[derive(Clone, Copy)]
     pub struct WriteDescriptorSetAccelerationStructureNV<'a> {
@@ -393,6 +509,17 @@ pub(crate) mod reexport {
     for WriteDescriptorSetAccelerationStructureNV<'a> {
         const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::WRITE_DESCRIPTOR_SET_ACCELERATION_STRUCTURE_NV;
     }
+    impl<'a> Default for WriteDescriptorSetAccelerationStructureNV<'a> {
+        fn default() -> Self {
+            Self {
+                s_type: <Self as crate::TaggedStructure>::STRUCTURE_TYPE,
+                p_next: Default::default(),
+                acceleration_structure_count: Default::default(),
+                p_acceleration_structures: Default::default(),
+                _marker: ::core::marker::PhantomData,
+            }
+        }
+    }
     #[repr(C)]
     #[derive(Clone, Copy)]
     pub struct AccelerationStructureMemoryRequirementsInfoNV<'a> {
@@ -405,6 +532,17 @@ pub(crate) mod reexport {
     unsafe impl<'a> crate::TaggedStructure<'a>
     for AccelerationStructureMemoryRequirementsInfoNV<'a> {
         const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::ACCELERATION_STRUCTURE_MEMORY_REQUIREMENTS_INFO_NV;
+    }
+    impl<'a> Default for AccelerationStructureMemoryRequirementsInfoNV<'a> {
+        fn default() -> Self {
+            Self {
+                s_type: <Self as crate::TaggedStructure>::STRUCTURE_TYPE,
+                p_next: Default::default(),
+                _type: Default::default(),
+                acceleration_structure: Default::default(),
+                _marker: ::core::marker::PhantomData,
+            }
+        }
     }
     #[repr(C)]
     #[derive(Clone, Copy)]
@@ -424,6 +562,23 @@ pub(crate) mod reexport {
     unsafe impl<'a> crate::TaggedStructure<'a>
     for PhysicalDeviceRayTracingPropertiesNV<'a> {
         const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::PHYSICAL_DEVICE_RAY_TRACING_PROPERTIES_NV;
+    }
+    impl<'a> Default for PhysicalDeviceRayTracingPropertiesNV<'a> {
+        fn default() -> Self {
+            Self {
+                s_type: <Self as crate::TaggedStructure>::STRUCTURE_TYPE,
+                p_next: Default::default(),
+                shader_group_handle_size: Default::default(),
+                max_recursion_depth: Default::default(),
+                max_shader_group_stride: Default::default(),
+                shader_group_base_alignment: Default::default(),
+                max_geometry_count: Default::default(),
+                max_instance_count: Default::default(),
+                max_triangle_count: Default::default(),
+                max_descriptor_set_acceleration_structures: Default::default(),
+                _marker: ::core::marker::PhantomData,
+            }
+        }
     }
     pub type AabbPositionsNV = crate::vk::AabbPositionsKHR;
     pub type TransformMatrixNV = crate::vk::TransformMatrixKHR;

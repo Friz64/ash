@@ -12,6 +12,16 @@ pub struct PushConstantBankInfoNV<'a> {
 unsafe impl<'a> crate::TaggedStructure<'a> for PushConstantBankInfoNV<'a> {
     const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::PUSH_CONSTANT_BANK_INFO_NV;
 }
+impl<'a> Default for PushConstantBankInfoNV<'a> {
+    fn default() -> Self {
+        Self {
+            s_type: <Self as crate::TaggedStructure>::STRUCTURE_TYPE,
+            p_next: Default::default(),
+            bank: Default::default(),
+            _marker: ::core::marker::PhantomData,
+        }
+    }
+}
 #[repr(C)]
 #[derive(Clone, Copy)]
 pub struct PhysicalDevicePushConstantBankFeaturesNV<'a> {
@@ -23,6 +33,16 @@ pub struct PhysicalDevicePushConstantBankFeaturesNV<'a> {
 unsafe impl<'a> crate::TaggedStructure<'a>
 for PhysicalDevicePushConstantBankFeaturesNV<'a> {
     const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::PHYSICAL_DEVICE_PUSH_CONSTANT_BANK_FEATURES_NV;
+}
+impl<'a> Default for PhysicalDevicePushConstantBankFeaturesNV<'a> {
+    fn default() -> Self {
+        Self {
+            s_type: <Self as crate::TaggedStructure>::STRUCTURE_TYPE,
+            p_next: Default::default(),
+            push_constant_bank: Default::default(),
+            _marker: ::core::marker::PhantomData,
+        }
+    }
 }
 #[repr(C)]
 #[derive(Clone, Copy)]
@@ -38,6 +58,19 @@ pub struct PhysicalDevicePushConstantBankPropertiesNV<'a> {
 unsafe impl<'a> crate::TaggedStructure<'a>
 for PhysicalDevicePushConstantBankPropertiesNV<'a> {
     const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::PHYSICAL_DEVICE_PUSH_CONSTANT_BANK_PROPERTIES_NV;
+}
+impl<'a> Default for PhysicalDevicePushConstantBankPropertiesNV<'a> {
+    fn default() -> Self {
+        Self {
+            s_type: <Self as crate::TaggedStructure>::STRUCTURE_TYPE,
+            p_next: Default::default(),
+            max_graphics_push_constant_banks: Default::default(),
+            max_compute_push_constant_banks: Default::default(),
+            max_graphics_push_data_banks: Default::default(),
+            max_compute_push_data_banks: Default::default(),
+            _marker: ::core::marker::PhantomData,
+        }
+    }
 }
 ///Provided by [`nv::push_constant_bank`](crate::nv::push_constant_bank)
 impl crate::vk::StructureType {

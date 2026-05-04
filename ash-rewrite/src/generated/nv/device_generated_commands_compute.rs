@@ -81,6 +81,18 @@ pub(crate) mod reexport {
     for ComputePipelineIndirectBufferInfoNV<'a> {
         const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::COMPUTE_PIPELINE_INDIRECT_BUFFER_INFO_NV;
     }
+    impl<'a> Default for ComputePipelineIndirectBufferInfoNV<'a> {
+        fn default() -> Self {
+            Self {
+                s_type: <Self as crate::TaggedStructure>::STRUCTURE_TYPE,
+                p_next: Default::default(),
+                device_address: Default::default(),
+                size: Default::default(),
+                pipeline_device_address_capture_replay: Default::default(),
+                _marker: ::core::marker::PhantomData,
+            }
+        }
+    }
     #[repr(C)]
     #[derive(Clone, Copy)]
     pub struct PhysicalDeviceDeviceGeneratedCommandsComputeFeaturesNV<'a> {
@@ -95,6 +107,18 @@ pub(crate) mod reexport {
     for PhysicalDeviceDeviceGeneratedCommandsComputeFeaturesNV<'a> {
         const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::PHYSICAL_DEVICE_DEVICE_GENERATED_COMMANDS_COMPUTE_FEATURES_NV;
     }
+    impl<'a> Default for PhysicalDeviceDeviceGeneratedCommandsComputeFeaturesNV<'a> {
+        fn default() -> Self {
+            Self {
+                s_type: <Self as crate::TaggedStructure>::STRUCTURE_TYPE,
+                p_next: Default::default(),
+                device_generated_compute: Default::default(),
+                device_generated_compute_pipelines: Default::default(),
+                device_generated_compute_capture_replay: Default::default(),
+                _marker: ::core::marker::PhantomData,
+            }
+        }
+    }
     #[repr(C)]
     #[derive(Clone, Copy)]
     pub struct PipelineIndirectDeviceAddressInfoNV<'a> {
@@ -108,8 +132,19 @@ pub(crate) mod reexport {
     for PipelineIndirectDeviceAddressInfoNV<'a> {
         const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::PIPELINE_INDIRECT_DEVICE_ADDRESS_INFO_NV;
     }
+    impl<'a> Default for PipelineIndirectDeviceAddressInfoNV<'a> {
+        fn default() -> Self {
+            Self {
+                s_type: <Self as crate::TaggedStructure>::STRUCTURE_TYPE,
+                p_next: Default::default(),
+                pipeline_bind_point: Default::default(),
+                pipeline: Default::default(),
+                _marker: ::core::marker::PhantomData,
+            }
+        }
+    }
     #[repr(C)]
-    #[derive(Clone, Copy)]
+    #[derive(Clone, Copy, Default)]
     pub struct BindPipelineIndirectCommandNV {
         pub pipeline_address: crate::vk::DeviceAddress,
     }

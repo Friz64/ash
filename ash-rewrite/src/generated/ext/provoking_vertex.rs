@@ -14,6 +14,17 @@ unsafe impl<'a> crate::TaggedStructure<'a>
 for PhysicalDeviceProvokingVertexFeaturesEXT<'a> {
     const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::PHYSICAL_DEVICE_PROVOKING_VERTEX_FEATURES_EXT;
 }
+impl<'a> Default for PhysicalDeviceProvokingVertexFeaturesEXT<'a> {
+    fn default() -> Self {
+        Self {
+            s_type: <Self as crate::TaggedStructure>::STRUCTURE_TYPE,
+            p_next: Default::default(),
+            provoking_vertex_last: Default::default(),
+            transform_feedback_preserves_provoking_vertex: Default::default(),
+            _marker: ::core::marker::PhantomData,
+        }
+    }
+}
 #[repr(C)]
 #[derive(Clone, Copy)]
 pub struct PhysicalDeviceProvokingVertexPropertiesEXT<'a> {
@@ -27,6 +38,17 @@ unsafe impl<'a> crate::TaggedStructure<'a>
 for PhysicalDeviceProvokingVertexPropertiesEXT<'a> {
     const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::PHYSICAL_DEVICE_PROVOKING_VERTEX_PROPERTIES_EXT;
 }
+impl<'a> Default for PhysicalDeviceProvokingVertexPropertiesEXT<'a> {
+    fn default() -> Self {
+        Self {
+            s_type: <Self as crate::TaggedStructure>::STRUCTURE_TYPE,
+            p_next: Default::default(),
+            provoking_vertex_mode_per_pipeline: Default::default(),
+            transform_feedback_preserves_triangle_fan_provoking_vertex: Default::default(),
+            _marker: ::core::marker::PhantomData,
+        }
+    }
+}
 #[repr(C)]
 #[derive(Clone, Copy)]
 pub struct PipelineRasterizationProvokingVertexStateCreateInfoEXT<'a> {
@@ -38,6 +60,16 @@ pub struct PipelineRasterizationProvokingVertexStateCreateInfoEXT<'a> {
 unsafe impl<'a> crate::TaggedStructure<'a>
 for PipelineRasterizationProvokingVertexStateCreateInfoEXT<'a> {
     const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::PIPELINE_RASTERIZATION_PROVOKING_VERTEX_STATE_CREATE_INFO_EXT;
+}
+impl<'a> Default for PipelineRasterizationProvokingVertexStateCreateInfoEXT<'a> {
+    fn default() -> Self {
+        Self {
+            s_type: <Self as crate::TaggedStructure>::STRUCTURE_TYPE,
+            p_next: Default::default(),
+            provoking_vertex_mode: Default::default(),
+            _marker: ::core::marker::PhantomData,
+        }
+    }
 }
 ///Provided by [`ext::provoking_vertex`](crate::ext::provoking_vertex)
 impl crate::vk::StructureType {

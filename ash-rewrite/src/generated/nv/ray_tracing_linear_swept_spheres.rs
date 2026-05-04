@@ -23,6 +23,26 @@ unsafe impl<'a> crate::TaggedStructure<'a>
 for AccelerationStructureGeometryLinearSweptSpheresDataNV<'a> {
     const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::ACCELERATION_STRUCTURE_GEOMETRY_LINEAR_SWEPT_SPHERES_DATA_NV;
 }
+impl<'a> Default for AccelerationStructureGeometryLinearSweptSpheresDataNV<'a> {
+    fn default() -> Self {
+        Self {
+            s_type: <Self as crate::TaggedStructure>::STRUCTURE_TYPE,
+            p_next: Default::default(),
+            vertex_format: Default::default(),
+            vertex_data: Default::default(),
+            vertex_stride: Default::default(),
+            radius_format: Default::default(),
+            radius_data: Default::default(),
+            radius_stride: Default::default(),
+            index_type: Default::default(),
+            index_data: Default::default(),
+            index_stride: Default::default(),
+            indexing_mode: Default::default(),
+            end_caps_mode: Default::default(),
+            _marker: ::core::marker::PhantomData,
+        }
+    }
+}
 #[repr(C)]
 #[derive(Clone, Copy)]
 pub struct AccelerationStructureGeometrySpheresDataNV<'a> {
@@ -43,6 +63,24 @@ unsafe impl<'a> crate::TaggedStructure<'a>
 for AccelerationStructureGeometrySpheresDataNV<'a> {
     const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::ACCELERATION_STRUCTURE_GEOMETRY_SPHERES_DATA_NV;
 }
+impl<'a> Default for AccelerationStructureGeometrySpheresDataNV<'a> {
+    fn default() -> Self {
+        Self {
+            s_type: <Self as crate::TaggedStructure>::STRUCTURE_TYPE,
+            p_next: Default::default(),
+            vertex_format: Default::default(),
+            vertex_data: Default::default(),
+            vertex_stride: Default::default(),
+            radius_format: Default::default(),
+            radius_data: Default::default(),
+            radius_stride: Default::default(),
+            index_type: Default::default(),
+            index_data: Default::default(),
+            index_stride: Default::default(),
+            _marker: ::core::marker::PhantomData,
+        }
+    }
+}
 #[repr(C)]
 #[derive(Clone, Copy)]
 pub struct PhysicalDeviceRayTracingLinearSweptSpheresFeaturesNV<'a> {
@@ -55,6 +93,17 @@ pub struct PhysicalDeviceRayTracingLinearSweptSpheresFeaturesNV<'a> {
 unsafe impl<'a> crate::TaggedStructure<'a>
 for PhysicalDeviceRayTracingLinearSweptSpheresFeaturesNV<'a> {
     const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::PHYSICAL_DEVICE_RAY_TRACING_LINEAR_SWEPT_SPHERES_FEATURES_NV;
+}
+impl<'a> Default for PhysicalDeviceRayTracingLinearSweptSpheresFeaturesNV<'a> {
+    fn default() -> Self {
+        Self {
+            s_type: <Self as crate::TaggedStructure>::STRUCTURE_TYPE,
+            p_next: Default::default(),
+            spheres: Default::default(),
+            linear_swept_spheres: Default::default(),
+            _marker: ::core::marker::PhantomData,
+        }
+    }
 }
 ///Provided by [`nv::ray_tracing_linear_swept_spheres`](crate::nv::ray_tracing_linear_swept_spheres)
 impl crate::vk::StructureType {

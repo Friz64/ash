@@ -109,6 +109,18 @@ pub(crate) mod reexport {
     for PhysicalDeviceExtendedDynamicState2FeaturesEXT<'a> {
         const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::PHYSICAL_DEVICE_EXTENDED_DYNAMIC_STATE_2_FEATURES_EXT;
     }
+    impl<'a> Default for PhysicalDeviceExtendedDynamicState2FeaturesEXT<'a> {
+        fn default() -> Self {
+            Self {
+                s_type: <Self as crate::TaggedStructure>::STRUCTURE_TYPE,
+                p_next: Default::default(),
+                extended_dynamic_state2: Default::default(),
+                extended_dynamic_state2_logic_op: Default::default(),
+                extended_dynamic_state2_patch_control_points: Default::default(),
+                _marker: ::core::marker::PhantomData,
+            }
+        }
+    }
     ///Provided by [`ext::extended_dynamic_state2`](crate::ext::extended_dynamic_state2)
     impl crate::vk::StructureType {
         pub const PHYSICAL_DEVICE_EXTENDED_DYNAMIC_STATE_2_FEATURES_EXT: Self = Self(

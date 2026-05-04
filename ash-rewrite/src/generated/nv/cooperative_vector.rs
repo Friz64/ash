@@ -100,6 +100,17 @@ pub(crate) mod reexport {
     for PhysicalDeviceCooperativeVectorFeaturesNV<'a> {
         const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::PHYSICAL_DEVICE_COOPERATIVE_VECTOR_FEATURES_NV;
     }
+    impl<'a> Default for PhysicalDeviceCooperativeVectorFeaturesNV<'a> {
+        fn default() -> Self {
+            Self {
+                s_type: <Self as crate::TaggedStructure>::STRUCTURE_TYPE,
+                p_next: Default::default(),
+                cooperative_vector: Default::default(),
+                cooperative_vector_training: Default::default(),
+                _marker: ::core::marker::PhantomData,
+            }
+        }
+    }
     #[repr(C)]
     #[derive(Clone, Copy)]
     pub struct CooperativeVectorPropertiesNV<'a> {
@@ -116,6 +127,21 @@ pub(crate) mod reexport {
     unsafe impl<'a> crate::TaggedStructure<'a> for CooperativeVectorPropertiesNV<'a> {
         const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::COOPERATIVE_VECTOR_PROPERTIES_NV;
     }
+    impl<'a> Default for CooperativeVectorPropertiesNV<'a> {
+        fn default() -> Self {
+            Self {
+                s_type: <Self as crate::TaggedStructure>::STRUCTURE_TYPE,
+                p_next: Default::default(),
+                input_type: Default::default(),
+                input_interpretation: Default::default(),
+                matrix_interpretation: Default::default(),
+                bias_interpretation: Default::default(),
+                result_type: Default::default(),
+                transpose: Default::default(),
+                _marker: ::core::marker::PhantomData,
+            }
+        }
+    }
     #[repr(C)]
     #[derive(Clone, Copy)]
     pub struct PhysicalDeviceCooperativeVectorPropertiesNV<'a> {
@@ -130,6 +156,19 @@ pub(crate) mod reexport {
     unsafe impl<'a> crate::TaggedStructure<'a>
     for PhysicalDeviceCooperativeVectorPropertiesNV<'a> {
         const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::PHYSICAL_DEVICE_COOPERATIVE_VECTOR_PROPERTIES_NV;
+    }
+    impl<'a> Default for PhysicalDeviceCooperativeVectorPropertiesNV<'a> {
+        fn default() -> Self {
+            Self {
+                s_type: <Self as crate::TaggedStructure>::STRUCTURE_TYPE,
+                p_next: Default::default(),
+                cooperative_vector_supported_stages: Default::default(),
+                cooperative_vector_training_float16_accumulation: Default::default(),
+                cooperative_vector_training_float32_accumulation: Default::default(),
+                max_cooperative_vector_components: Default::default(),
+                _marker: ::core::marker::PhantomData,
+            }
+        }
     }
     #[repr(C)]
     #[derive(Clone, Copy)]
@@ -153,6 +192,27 @@ pub(crate) mod reexport {
     unsafe impl<'a> crate::TaggedStructure<'a>
     for ConvertCooperativeVectorMatrixInfoNV<'a> {
         const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::CONVERT_COOPERATIVE_VECTOR_MATRIX_INFO_NV;
+    }
+    impl<'a> Default for ConvertCooperativeVectorMatrixInfoNV<'a> {
+        fn default() -> Self {
+            Self {
+                s_type: <Self as crate::TaggedStructure>::STRUCTURE_TYPE,
+                p_next: Default::default(),
+                src_size: Default::default(),
+                src_data: Default::default(),
+                p_dst_size: Default::default(),
+                dst_data: Default::default(),
+                src_component_type: Default::default(),
+                dst_component_type: Default::default(),
+                num_rows: Default::default(),
+                num_columns: Default::default(),
+                src_layout: Default::default(),
+                src_stride: Default::default(),
+                dst_layout: Default::default(),
+                dst_stride: Default::default(),
+                _marker: ::core::marker::PhantomData,
+            }
+        }
     }
     ///Provided by [`nv::cooperative_vector`](crate::nv::cooperative_vector)
     impl crate::vk::StructureType {

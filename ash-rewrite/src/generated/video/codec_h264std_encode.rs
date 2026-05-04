@@ -2,7 +2,7 @@
 #![cfg_attr(rustfmt, rustfmt_skip)]
 //!Items provided by `vulkan_video_codec_h264std_encode`
 #[repr(C)]
-#[derive(Clone, Copy)]
+#[derive(Clone, Copy, Default)]
 pub struct EncodeH264WeightTableFlags {
     pub luma_weight_l0_flag: u32,
     pub chroma_weight_l0_flag: u32,
@@ -28,15 +28,32 @@ pub struct EncodeH264WeightTable {
     pub chroma_offset_l1: [[i8; crate::vk::STD_VIDEO_H264_MAX_CHROMA_PLANES
         as _]; crate::vk::STD_VIDEO_H264_MAX_NUM_LIST_REF as _],
 }
+impl Default for EncodeH264WeightTable {
+    fn default() -> Self {
+        Self {
+            flags: Default::default(),
+            luma_log2_weight_denom: Default::default(),
+            chroma_log2_weight_denom: Default::default(),
+            luma_weight_l0: unsafe { core::mem::zeroed() },
+            luma_offset_l0: unsafe { core::mem::zeroed() },
+            chroma_weight_l0: unsafe { core::mem::zeroed() },
+            chroma_offset_l0: unsafe { core::mem::zeroed() },
+            luma_weight_l1: unsafe { core::mem::zeroed() },
+            luma_offset_l1: unsafe { core::mem::zeroed() },
+            chroma_weight_l1: unsafe { core::mem::zeroed() },
+            chroma_offset_l1: unsafe { core::mem::zeroed() },
+        }
+    }
+}
 #[repr(C)]
-#[derive(Clone, Copy)]
+#[derive(Clone, Copy, Default)]
 pub struct EncodeH264SliceHeaderFlags {
     /**- `direct_spatial_mv_pred_flag` @ `0..1`
 - `num_ref_idx_active_override_flag` @ `1..2`*/
     pub bitfield0: u32,
 }
 #[repr(C)]
-#[derive(Clone, Copy)]
+#[derive(Clone, Copy, Default)]
 pub struct EncodeH264PictureInfoFlags {
     /**- `IdrPicFlag` @ `0..1`
 - `is_reference` @ `1..2`
@@ -46,27 +63,27 @@ pub struct EncodeH264PictureInfoFlags {
     pub bitfield0: u32,
 }
 #[repr(C)]
-#[derive(Clone, Copy)]
+#[derive(Clone, Copy, Default)]
 pub struct EncodeH264ReferenceInfoFlags {
     ///- `used_for_long_term_reference` @ `0..1`
     pub bitfield0: u32,
 }
 #[repr(C)]
-#[derive(Clone, Copy)]
+#[derive(Clone, Copy, Default)]
 pub struct EncodeH264ReferenceListsInfoFlags {
     /**- `ref_pic_list_modification_flag_l0` @ `0..1`
 - `ref_pic_list_modification_flag_l1` @ `1..2`*/
     pub bitfield0: u32,
 }
 #[repr(C)]
-#[derive(Clone, Copy)]
+#[derive(Clone, Copy, Default)]
 pub struct EncodeH264RefListModEntry {
     pub modification_of_pic_nums_idc: crate::vk::H264ModificationOfPicNumsIdc,
     pub abs_diff_pic_num_minus1: u16,
     pub long_term_pic_num: u16,
 }
 #[repr(C)]
-#[derive(Clone, Copy)]
+#[derive(Clone, Copy, Default)]
 pub struct EncodeH264RefPicMarkingEntry {
     pub memory_management_control_operation: crate::vk::H264MemMgmtControlOp,
     pub difference_of_pic_nums_minus1: u16,
@@ -91,6 +108,25 @@ pub struct EncodeH264ReferenceListsInfo<'a> {
     pub p_ref_pic_marking_operations: *const crate::vk::EncodeH264RefPicMarkingEntry,
     pub _marker: ::core::marker::PhantomData<&'a ()>,
 }
+impl<'a> Default for EncodeH264ReferenceListsInfo<'a> {
+    fn default() -> Self {
+        Self {
+            flags: Default::default(),
+            num_ref_idx_l0_active_minus1: Default::default(),
+            num_ref_idx_l1_active_minus1: Default::default(),
+            ref_pic_list0: unsafe { core::mem::zeroed() },
+            ref_pic_list1: unsafe { core::mem::zeroed() },
+            ref_list0_mod_op_count: Default::default(),
+            ref_list1_mod_op_count: Default::default(),
+            ref_pic_marking_op_count: Default::default(),
+            reserved1: unsafe { core::mem::zeroed() },
+            p_ref_list0_mod_operations: Default::default(),
+            p_ref_list1_mod_operations: Default::default(),
+            p_ref_pic_marking_operations: Default::default(),
+            _marker: ::core::marker::PhantomData,
+        }
+    }
+}
 #[repr(C)]
 #[derive(Clone, Copy)]
 pub struct EncodeH264PictureInfo<'a> {
@@ -106,8 +142,25 @@ pub struct EncodeH264PictureInfo<'a> {
     pub p_ref_lists: *const crate::vk::EncodeH264ReferenceListsInfo<'a>,
     pub _marker: ::core::marker::PhantomData<&'a ()>,
 }
+impl<'a> Default for EncodeH264PictureInfo<'a> {
+    fn default() -> Self {
+        Self {
+            flags: Default::default(),
+            seq_parameter_set_id: Default::default(),
+            pic_parameter_set_id: Default::default(),
+            idr_pic_id: Default::default(),
+            primary_pic_type: Default::default(),
+            frame_num: Default::default(),
+            pic_order_cnt: Default::default(),
+            temporal_id: Default::default(),
+            reserved1: unsafe { core::mem::zeroed() },
+            p_ref_lists: Default::default(),
+            _marker: ::core::marker::PhantomData,
+        }
+    }
+}
 #[repr(C)]
-#[derive(Clone, Copy)]
+#[derive(Clone, Copy, Default)]
 pub struct EncodeH264ReferenceInfo {
     pub flags: crate::vk::EncodeH264ReferenceInfoFlags,
     pub primary_pic_type: crate::vk::H264PictureType,
@@ -118,7 +171,7 @@ pub struct EncodeH264ReferenceInfo {
     pub temporal_id: u8,
 }
 #[repr(C)]
-#[derive(Clone, Copy)]
+#[derive(Clone, Copy, Default)]
 pub struct EncodeH264SliceHeader<'a> {
     pub flags: crate::vk::EncodeH264SliceHeaderFlags,
     pub first_mb_in_slice: u32,

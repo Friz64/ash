@@ -70,7 +70,7 @@ impl InstanceFn {
 }
 pub(crate) mod reexport {
     #[repr(C)]
-    #[derive(Clone, Copy)]
+    #[derive(Clone, Copy, Default)]
     pub struct SampleLocationEXT {
         pub x: core::ffi::c_float,
         pub y: core::ffi::c_float,
@@ -89,15 +89,28 @@ pub(crate) mod reexport {
     unsafe impl<'a> crate::TaggedStructure<'a> for SampleLocationsInfoEXT<'a> {
         const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::SAMPLE_LOCATIONS_INFO_EXT;
     }
+    impl<'a> Default for SampleLocationsInfoEXT<'a> {
+        fn default() -> Self {
+            Self {
+                s_type: <Self as crate::TaggedStructure>::STRUCTURE_TYPE,
+                p_next: Default::default(),
+                sample_locations_per_pixel: Default::default(),
+                sample_location_grid_size: Default::default(),
+                sample_locations_count: Default::default(),
+                p_sample_locations: Default::default(),
+                _marker: ::core::marker::PhantomData,
+            }
+        }
+    }
     #[repr(C)]
-    #[derive(Clone, Copy)]
+    #[derive(Clone, Copy, Default)]
     pub struct AttachmentSampleLocationsEXT<'a> {
         pub attachment_index: u32,
         pub sample_locations_info: crate::vk::SampleLocationsInfoEXT<'a>,
         pub _marker: ::core::marker::PhantomData<&'a ()>,
     }
     #[repr(C)]
-    #[derive(Clone, Copy)]
+    #[derive(Clone, Copy, Default)]
     pub struct SubpassSampleLocationsEXT<'a> {
         pub subpass_index: u32,
         pub sample_locations_info: crate::vk::SampleLocationsInfoEXT<'a>,
@@ -122,6 +135,19 @@ pub(crate) mod reexport {
     for RenderPassSampleLocationsBeginInfoEXT<'a> {
         const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::RENDER_PASS_SAMPLE_LOCATIONS_BEGIN_INFO_EXT;
     }
+    impl<'a> Default for RenderPassSampleLocationsBeginInfoEXT<'a> {
+        fn default() -> Self {
+            Self {
+                s_type: <Self as crate::TaggedStructure>::STRUCTURE_TYPE,
+                p_next: Default::default(),
+                attachment_initial_sample_locations_count: Default::default(),
+                p_attachment_initial_sample_locations: Default::default(),
+                post_subpass_sample_locations_count: Default::default(),
+                p_post_subpass_sample_locations: Default::default(),
+                _marker: ::core::marker::PhantomData,
+            }
+        }
+    }
     #[repr(C)]
     #[derive(Clone, Copy)]
     pub struct PipelineSampleLocationsStateCreateInfoEXT<'a> {
@@ -134,6 +160,17 @@ pub(crate) mod reexport {
     unsafe impl<'a> crate::TaggedStructure<'a>
     for PipelineSampleLocationsStateCreateInfoEXT<'a> {
         const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::PIPELINE_SAMPLE_LOCATIONS_STATE_CREATE_INFO_EXT;
+    }
+    impl<'a> Default for PipelineSampleLocationsStateCreateInfoEXT<'a> {
+        fn default() -> Self {
+            Self {
+                s_type: <Self as crate::TaggedStructure>::STRUCTURE_TYPE,
+                p_next: Default::default(),
+                sample_locations_enable: Default::default(),
+                sample_locations_info: Default::default(),
+                _marker: ::core::marker::PhantomData,
+            }
+        }
     }
     #[repr(C)]
     #[derive(Clone, Copy)]
@@ -151,6 +188,20 @@ pub(crate) mod reexport {
     for PhysicalDeviceSampleLocationsPropertiesEXT<'a> {
         const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::PHYSICAL_DEVICE_SAMPLE_LOCATIONS_PROPERTIES_EXT;
     }
+    impl<'a> Default for PhysicalDeviceSampleLocationsPropertiesEXT<'a> {
+        fn default() -> Self {
+            Self {
+                s_type: <Self as crate::TaggedStructure>::STRUCTURE_TYPE,
+                p_next: Default::default(),
+                sample_location_sample_counts: Default::default(),
+                max_sample_location_grid_size: Default::default(),
+                sample_location_coordinate_range: unsafe { core::mem::zeroed() },
+                sample_location_sub_pixel_bits: Default::default(),
+                variable_sample_locations: Default::default(),
+                _marker: ::core::marker::PhantomData,
+            }
+        }
+    }
     #[repr(C)]
     #[derive(Clone, Copy)]
     pub struct MultisamplePropertiesEXT<'a> {
@@ -161,6 +212,16 @@ pub(crate) mod reexport {
     }
     unsafe impl<'a> crate::TaggedStructure<'a> for MultisamplePropertiesEXT<'a> {
         const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::MULTISAMPLE_PROPERTIES_EXT;
+    }
+    impl<'a> Default for MultisamplePropertiesEXT<'a> {
+        fn default() -> Self {
+            Self {
+                s_type: <Self as crate::TaggedStructure>::STRUCTURE_TYPE,
+                p_next: Default::default(),
+                max_sample_location_grid_size: Default::default(),
+                _marker: ::core::marker::PhantomData,
+            }
+        }
     }
     ///Provided by [`ext::sample_locations`](crate::ext::sample_locations)
     impl crate::vk::StructureType {

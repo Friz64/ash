@@ -107,6 +107,18 @@ pub(crate) mod reexport {
     unsafe impl<'a> crate::TaggedStructure<'a> for DebugMarkerObjectNameInfoEXT<'a> {
         const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::DEBUG_MARKER_OBJECT_NAME_INFO_EXT;
     }
+    impl<'a> Default for DebugMarkerObjectNameInfoEXT<'a> {
+        fn default() -> Self {
+            Self {
+                s_type: <Self as crate::TaggedStructure>::STRUCTURE_TYPE,
+                p_next: Default::default(),
+                object_type: Default::default(),
+                object: Default::default(),
+                p_object_name: Default::default(),
+                _marker: ::core::marker::PhantomData,
+            }
+        }
+    }
     #[repr(C)]
     #[derive(Clone, Copy)]
     pub struct DebugMarkerObjectTagInfoEXT<'a> {
@@ -122,6 +134,20 @@ pub(crate) mod reexport {
     unsafe impl<'a> crate::TaggedStructure<'a> for DebugMarkerObjectTagInfoEXT<'a> {
         const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::DEBUG_MARKER_OBJECT_TAG_INFO_EXT;
     }
+    impl<'a> Default for DebugMarkerObjectTagInfoEXT<'a> {
+        fn default() -> Self {
+            Self {
+                s_type: <Self as crate::TaggedStructure>::STRUCTURE_TYPE,
+                p_next: Default::default(),
+                object_type: Default::default(),
+                object: Default::default(),
+                tag_name: Default::default(),
+                tag_size: Default::default(),
+                p_tag: Default::default(),
+                _marker: ::core::marker::PhantomData,
+            }
+        }
+    }
     #[repr(C)]
     #[derive(Clone, Copy)]
     pub struct DebugMarkerMarkerInfoEXT<'a> {
@@ -133,6 +159,17 @@ pub(crate) mod reexport {
     }
     unsafe impl<'a> crate::TaggedStructure<'a> for DebugMarkerMarkerInfoEXT<'a> {
         const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::DEBUG_MARKER_MARKER_INFO_EXT;
+    }
+    impl<'a> Default for DebugMarkerMarkerInfoEXT<'a> {
+        fn default() -> Self {
+            Self {
+                s_type: <Self as crate::TaggedStructure>::STRUCTURE_TYPE,
+                p_next: Default::default(),
+                p_marker_name: Default::default(),
+                color: unsafe { core::mem::zeroed() },
+                _marker: ::core::marker::PhantomData,
+            }
+        }
     }
     ///Provided by [`ext::debug_marker`](crate::ext::debug_marker)
     impl crate::vk::StructureType {

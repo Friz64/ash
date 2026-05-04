@@ -49,6 +49,17 @@ pub(crate) mod reexport {
     unsafe impl<'a> crate::TaggedStructure<'a> for MacOSSurfaceCreateInfoMVK<'a> {
         const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::MACOS_SURFACE_CREATE_INFO_MVK;
     }
+    impl<'a> Default for MacOSSurfaceCreateInfoMVK<'a> {
+        fn default() -> Self {
+            Self {
+                s_type: <Self as crate::TaggedStructure>::STRUCTURE_TYPE,
+                p_next: Default::default(),
+                flags: Default::default(),
+                p_view: Default::default(),
+                _marker: ::core::marker::PhantomData,
+            }
+        }
+    }
     ///Provided by [`mvk::macos_surface`](crate::mvk::macos_surface)
     impl crate::vk::StructureType {
         pub const MACOS_SURFACE_CREATE_INFO_MVK: Self = Self(1000123000);

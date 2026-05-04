@@ -26,6 +26,29 @@ unsafe impl<'a> crate::TaggedStructure<'a>
 for PhysicalDeviceShaderCorePropertiesAMD<'a> {
     const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::PHYSICAL_DEVICE_SHADER_CORE_PROPERTIES_AMD;
 }
+impl<'a> Default for PhysicalDeviceShaderCorePropertiesAMD<'a> {
+    fn default() -> Self {
+        Self {
+            s_type: <Self as crate::TaggedStructure>::STRUCTURE_TYPE,
+            p_next: Default::default(),
+            shader_engine_count: Default::default(),
+            shader_arrays_per_engine_count: Default::default(),
+            compute_units_per_shader_array: Default::default(),
+            simd_per_compute_unit: Default::default(),
+            wavefronts_per_simd: Default::default(),
+            wavefront_size: Default::default(),
+            sgprs_per_simd: Default::default(),
+            min_sgpr_allocation: Default::default(),
+            max_sgpr_allocation: Default::default(),
+            sgpr_allocation_granularity: Default::default(),
+            vgprs_per_simd: Default::default(),
+            min_vgpr_allocation: Default::default(),
+            max_vgpr_allocation: Default::default(),
+            vgpr_allocation_granularity: Default::default(),
+            _marker: ::core::marker::PhantomData,
+        }
+    }
+}
 ///Provided by [`amd::shader_core_properties`](crate::amd::shader_core_properties)
 impl crate::vk::StructureType {
     pub const PHYSICAL_DEVICE_SHADER_CORE_PROPERTIES_AMD: Self = Self(1000185000);

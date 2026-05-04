@@ -230,7 +230,7 @@ impl DeviceFnV1_2 {
 }
 pub(crate) mod reexport {
     #[repr(C)]
-    #[derive(Clone, Copy)]
+    #[derive(Clone, Copy, Default)]
     pub struct ConformanceVersion {
         pub major: u8,
         pub minor: u8,
@@ -251,6 +251,19 @@ pub(crate) mod reexport {
     unsafe impl<'a> crate::TaggedStructure<'a> for PhysicalDeviceDriverProperties<'a> {
         const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::PHYSICAL_DEVICE_DRIVER_PROPERTIES;
     }
+    impl<'a> Default for PhysicalDeviceDriverProperties<'a> {
+        fn default() -> Self {
+            Self {
+                s_type: <Self as crate::TaggedStructure>::STRUCTURE_TYPE,
+                p_next: Default::default(),
+                driver_id: Default::default(),
+                driver_name: unsafe { core::mem::zeroed() },
+                driver_info: unsafe { core::mem::zeroed() },
+                conformance_version: Default::default(),
+                _marker: ::core::marker::PhantomData,
+            }
+        }
+    }
     #[repr(C)]
     #[derive(Clone, Copy)]
     pub struct PhysicalDeviceShaderSubgroupExtendedTypesFeatures<'a> {
@@ -262,6 +275,16 @@ pub(crate) mod reexport {
     unsafe impl<'a> crate::TaggedStructure<'a>
     for PhysicalDeviceShaderSubgroupExtendedTypesFeatures<'a> {
         const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::PHYSICAL_DEVICE_SHADER_SUBGROUP_EXTENDED_TYPES_FEATURES;
+    }
+    impl<'a> Default for PhysicalDeviceShaderSubgroupExtendedTypesFeatures<'a> {
+        fn default() -> Self {
+            Self {
+                s_type: <Self as crate::TaggedStructure>::STRUCTURE_TYPE,
+                p_next: Default::default(),
+                shader_subgroup_extended_types: Default::default(),
+                _marker: ::core::marker::PhantomData,
+            }
+        }
     }
     #[repr(C)]
     #[derive(Clone, Copy)]
@@ -276,6 +299,17 @@ pub(crate) mod reexport {
     for PhysicalDeviceSamplerFilterMinmaxProperties<'a> {
         const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::PHYSICAL_DEVICE_SAMPLER_FILTER_MINMAX_PROPERTIES;
     }
+    impl<'a> Default for PhysicalDeviceSamplerFilterMinmaxProperties<'a> {
+        fn default() -> Self {
+            Self {
+                s_type: <Self as crate::TaggedStructure>::STRUCTURE_TYPE,
+                p_next: Default::default(),
+                filter_minmax_single_component_formats: Default::default(),
+                filter_minmax_image_component_mapping: Default::default(),
+                _marker: ::core::marker::PhantomData,
+            }
+        }
+    }
     #[repr(C)]
     #[derive(Clone, Copy)]
     pub struct SamplerReductionModeCreateInfo<'a> {
@@ -286,6 +320,16 @@ pub(crate) mod reexport {
     }
     unsafe impl<'a> crate::TaggedStructure<'a> for SamplerReductionModeCreateInfo<'a> {
         const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::SAMPLER_REDUCTION_MODE_CREATE_INFO;
+    }
+    impl<'a> Default for SamplerReductionModeCreateInfo<'a> {
+        fn default() -> Self {
+            Self {
+                s_type: <Self as crate::TaggedStructure>::STRUCTURE_TYPE,
+                p_next: Default::default(),
+                reduction_mode: Default::default(),
+                _marker: ::core::marker::PhantomData,
+            }
+        }
     }
     #[repr(C)]
     #[derive(Clone, Copy)]
@@ -299,6 +343,17 @@ pub(crate) mod reexport {
     unsafe impl<'a> crate::TaggedStructure<'a> for ImageFormatListCreateInfo<'a> {
         const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::IMAGE_FORMAT_LIST_CREATE_INFO;
     }
+    impl<'a> Default for ImageFormatListCreateInfo<'a> {
+        fn default() -> Self {
+            Self {
+                s_type: <Self as crate::TaggedStructure>::STRUCTURE_TYPE,
+                p_next: Default::default(),
+                view_format_count: Default::default(),
+                p_view_formats: Default::default(),
+                _marker: ::core::marker::PhantomData,
+            }
+        }
+    }
     #[repr(C)]
     #[derive(Clone, Copy)]
     pub struct PhysicalDeviceShaderFloat16Int8Features<'a> {
@@ -311,6 +366,17 @@ pub(crate) mod reexport {
     unsafe impl<'a> crate::TaggedStructure<'a>
     for PhysicalDeviceShaderFloat16Int8Features<'a> {
         const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::PHYSICAL_DEVICE_SHADER_FLOAT16_INT8_FEATURES;
+    }
+    impl<'a> Default for PhysicalDeviceShaderFloat16Int8Features<'a> {
+        fn default() -> Self {
+            Self {
+                s_type: <Self as crate::TaggedStructure>::STRUCTURE_TYPE,
+                p_next: Default::default(),
+                shader_float16: Default::default(),
+                shader_int8: Default::default(),
+                _marker: ::core::marker::PhantomData,
+            }
+        }
     }
     #[repr(C)]
     #[derive(Clone, Copy)]
@@ -340,6 +406,32 @@ pub(crate) mod reexport {
     for PhysicalDeviceFloatControlsProperties<'a> {
         const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::PHYSICAL_DEVICE_FLOAT_CONTROLS_PROPERTIES;
     }
+    impl<'a> Default for PhysicalDeviceFloatControlsProperties<'a> {
+        fn default() -> Self {
+            Self {
+                s_type: <Self as crate::TaggedStructure>::STRUCTURE_TYPE,
+                p_next: Default::default(),
+                denorm_behavior_independence: Default::default(),
+                rounding_mode_independence: Default::default(),
+                shader_signed_zero_inf_nan_preserve_float16: Default::default(),
+                shader_signed_zero_inf_nan_preserve_float32: Default::default(),
+                shader_signed_zero_inf_nan_preserve_float64: Default::default(),
+                shader_denorm_preserve_float16: Default::default(),
+                shader_denorm_preserve_float32: Default::default(),
+                shader_denorm_preserve_float64: Default::default(),
+                shader_denorm_flush_to_zero_float16: Default::default(),
+                shader_denorm_flush_to_zero_float32: Default::default(),
+                shader_denorm_flush_to_zero_float64: Default::default(),
+                shader_rounding_mode_rte_float16: Default::default(),
+                shader_rounding_mode_rte_float32: Default::default(),
+                shader_rounding_mode_rte_float64: Default::default(),
+                shader_rounding_mode_rtz_float16: Default::default(),
+                shader_rounding_mode_rtz_float32: Default::default(),
+                shader_rounding_mode_rtz_float64: Default::default(),
+                _marker: ::core::marker::PhantomData,
+            }
+        }
+    }
     #[repr(C)]
     #[derive(Clone, Copy)]
     pub struct PhysicalDeviceHostQueryResetFeatures<'a> {
@@ -351,6 +443,16 @@ pub(crate) mod reexport {
     unsafe impl<'a> crate::TaggedStructure<'a>
     for PhysicalDeviceHostQueryResetFeatures<'a> {
         const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::PHYSICAL_DEVICE_HOST_QUERY_RESET_FEATURES;
+    }
+    impl<'a> Default for PhysicalDeviceHostQueryResetFeatures<'a> {
+        fn default() -> Self {
+            Self {
+                s_type: <Self as crate::TaggedStructure>::STRUCTURE_TYPE,
+                p_next: Default::default(),
+                host_query_reset: Default::default(),
+                _marker: ::core::marker::PhantomData,
+            }
+        }
     }
     #[repr(C)]
     #[derive(Clone, Copy)]
@@ -382,6 +484,35 @@ pub(crate) mod reexport {
     unsafe impl<'a> crate::TaggedStructure<'a>
     for PhysicalDeviceDescriptorIndexingFeatures<'a> {
         const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::PHYSICAL_DEVICE_DESCRIPTOR_INDEXING_FEATURES;
+    }
+    impl<'a> Default for PhysicalDeviceDescriptorIndexingFeatures<'a> {
+        fn default() -> Self {
+            Self {
+                s_type: <Self as crate::TaggedStructure>::STRUCTURE_TYPE,
+                p_next: Default::default(),
+                shader_input_attachment_array_dynamic_indexing: Default::default(),
+                shader_uniform_texel_buffer_array_dynamic_indexing: Default::default(),
+                shader_storage_texel_buffer_array_dynamic_indexing: Default::default(),
+                shader_uniform_buffer_array_non_uniform_indexing: Default::default(),
+                shader_sampled_image_array_non_uniform_indexing: Default::default(),
+                shader_storage_buffer_array_non_uniform_indexing: Default::default(),
+                shader_storage_image_array_non_uniform_indexing: Default::default(),
+                shader_input_attachment_array_non_uniform_indexing: Default::default(),
+                shader_uniform_texel_buffer_array_non_uniform_indexing: Default::default(),
+                shader_storage_texel_buffer_array_non_uniform_indexing: Default::default(),
+                descriptor_binding_uniform_buffer_update_after_bind: Default::default(),
+                descriptor_binding_sampled_image_update_after_bind: Default::default(),
+                descriptor_binding_storage_image_update_after_bind: Default::default(),
+                descriptor_binding_storage_buffer_update_after_bind: Default::default(),
+                descriptor_binding_uniform_texel_buffer_update_after_bind: Default::default(),
+                descriptor_binding_storage_texel_buffer_update_after_bind: Default::default(),
+                descriptor_binding_update_unused_while_pending: Default::default(),
+                descriptor_binding_partially_bound: Default::default(),
+                descriptor_binding_variable_descriptor_count: Default::default(),
+                runtime_descriptor_array: Default::default(),
+                _marker: ::core::marker::PhantomData,
+            }
+        }
     }
     #[repr(C)]
     #[derive(Clone, Copy)]
@@ -417,6 +548,38 @@ pub(crate) mod reexport {
     for PhysicalDeviceDescriptorIndexingProperties<'a> {
         const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::PHYSICAL_DEVICE_DESCRIPTOR_INDEXING_PROPERTIES;
     }
+    impl<'a> Default for PhysicalDeviceDescriptorIndexingProperties<'a> {
+        fn default() -> Self {
+            Self {
+                s_type: <Self as crate::TaggedStructure>::STRUCTURE_TYPE,
+                p_next: Default::default(),
+                max_update_after_bind_descriptors_in_all_pools: Default::default(),
+                shader_uniform_buffer_array_non_uniform_indexing_native: Default::default(),
+                shader_sampled_image_array_non_uniform_indexing_native: Default::default(),
+                shader_storage_buffer_array_non_uniform_indexing_native: Default::default(),
+                shader_storage_image_array_non_uniform_indexing_native: Default::default(),
+                shader_input_attachment_array_non_uniform_indexing_native: Default::default(),
+                robust_buffer_access_update_after_bind: Default::default(),
+                quad_divergent_implicit_lod: Default::default(),
+                max_per_stage_descriptor_update_after_bind_samplers: Default::default(),
+                max_per_stage_descriptor_update_after_bind_uniform_buffers: Default::default(),
+                max_per_stage_descriptor_update_after_bind_storage_buffers: Default::default(),
+                max_per_stage_descriptor_update_after_bind_sampled_images: Default::default(),
+                max_per_stage_descriptor_update_after_bind_storage_images: Default::default(),
+                max_per_stage_descriptor_update_after_bind_input_attachments: Default::default(),
+                max_per_stage_update_after_bind_resources: Default::default(),
+                max_descriptor_set_update_after_bind_samplers: Default::default(),
+                max_descriptor_set_update_after_bind_uniform_buffers: Default::default(),
+                max_descriptor_set_update_after_bind_uniform_buffers_dynamic: Default::default(),
+                max_descriptor_set_update_after_bind_storage_buffers: Default::default(),
+                max_descriptor_set_update_after_bind_storage_buffers_dynamic: Default::default(),
+                max_descriptor_set_update_after_bind_sampled_images: Default::default(),
+                max_descriptor_set_update_after_bind_storage_images: Default::default(),
+                max_descriptor_set_update_after_bind_input_attachments: Default::default(),
+                _marker: ::core::marker::PhantomData,
+            }
+        }
+    }
     #[repr(C)]
     #[derive(Clone, Copy)]
     pub struct DescriptorSetLayoutBindingFlagsCreateInfo<'a> {
@@ -429,6 +592,17 @@ pub(crate) mod reexport {
     unsafe impl<'a> crate::TaggedStructure<'a>
     for DescriptorSetLayoutBindingFlagsCreateInfo<'a> {
         const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::DESCRIPTOR_SET_LAYOUT_BINDING_FLAGS_CREATE_INFO;
+    }
+    impl<'a> Default for DescriptorSetLayoutBindingFlagsCreateInfo<'a> {
+        fn default() -> Self {
+            Self {
+                s_type: <Self as crate::TaggedStructure>::STRUCTURE_TYPE,
+                p_next: Default::default(),
+                binding_count: Default::default(),
+                p_binding_flags: Default::default(),
+                _marker: ::core::marker::PhantomData,
+            }
+        }
     }
     #[repr(C)]
     #[derive(Clone, Copy)]
@@ -443,6 +617,17 @@ pub(crate) mod reexport {
     for DescriptorSetVariableDescriptorCountAllocateInfo<'a> {
         const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::DESCRIPTOR_SET_VARIABLE_DESCRIPTOR_COUNT_ALLOCATE_INFO;
     }
+    impl<'a> Default for DescriptorSetVariableDescriptorCountAllocateInfo<'a> {
+        fn default() -> Self {
+            Self {
+                s_type: <Self as crate::TaggedStructure>::STRUCTURE_TYPE,
+                p_next: Default::default(),
+                descriptor_set_count: Default::default(),
+                p_descriptor_counts: Default::default(),
+                _marker: ::core::marker::PhantomData,
+            }
+        }
+    }
     #[repr(C)]
     #[derive(Clone, Copy)]
     pub struct DescriptorSetVariableDescriptorCountLayoutSupport<'a> {
@@ -454,6 +639,16 @@ pub(crate) mod reexport {
     unsafe impl<'a> crate::TaggedStructure<'a>
     for DescriptorSetVariableDescriptorCountLayoutSupport<'a> {
         const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::DESCRIPTOR_SET_VARIABLE_DESCRIPTOR_COUNT_LAYOUT_SUPPORT;
+    }
+    impl<'a> Default for DescriptorSetVariableDescriptorCountLayoutSupport<'a> {
+        fn default() -> Self {
+            Self {
+                s_type: <Self as crate::TaggedStructure>::STRUCTURE_TYPE,
+                p_next: Default::default(),
+                max_variable_descriptor_count: Default::default(),
+                _marker: ::core::marker::PhantomData,
+            }
+        }
     }
     #[repr(C)]
     #[derive(Clone, Copy)]
@@ -474,6 +669,24 @@ pub(crate) mod reexport {
     unsafe impl<'a> crate::TaggedStructure<'a> for AttachmentDescription2<'a> {
         const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::ATTACHMENT_DESCRIPTION_2;
     }
+    impl<'a> Default for AttachmentDescription2<'a> {
+        fn default() -> Self {
+            Self {
+                s_type: <Self as crate::TaggedStructure>::STRUCTURE_TYPE,
+                p_next: Default::default(),
+                flags: Default::default(),
+                format: Default::default(),
+                samples: Default::default(),
+                load_op: Default::default(),
+                store_op: Default::default(),
+                stencil_load_op: Default::default(),
+                stencil_store_op: Default::default(),
+                initial_layout: Default::default(),
+                final_layout: Default::default(),
+                _marker: ::core::marker::PhantomData,
+            }
+        }
+    }
     #[repr(C)]
     #[derive(Clone, Copy)]
     pub struct AttachmentReference2<'a> {
@@ -486,6 +699,18 @@ pub(crate) mod reexport {
     }
     unsafe impl<'a> crate::TaggedStructure<'a> for AttachmentReference2<'a> {
         const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::ATTACHMENT_REFERENCE_2;
+    }
+    impl<'a> Default for AttachmentReference2<'a> {
+        fn default() -> Self {
+            Self {
+                s_type: <Self as crate::TaggedStructure>::STRUCTURE_TYPE,
+                p_next: Default::default(),
+                attachment: Default::default(),
+                layout: Default::default(),
+                aspect_mask: Default::default(),
+                _marker: ::core::marker::PhantomData,
+            }
+        }
     }
     #[repr(C)]
     #[derive(Clone, Copy)]
@@ -508,6 +733,26 @@ pub(crate) mod reexport {
     unsafe impl<'a> crate::TaggedStructure<'a> for SubpassDescription2<'a> {
         const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::SUBPASS_DESCRIPTION_2;
     }
+    impl<'a> Default for SubpassDescription2<'a> {
+        fn default() -> Self {
+            Self {
+                s_type: <Self as crate::TaggedStructure>::STRUCTURE_TYPE,
+                p_next: Default::default(),
+                flags: Default::default(),
+                pipeline_bind_point: Default::default(),
+                view_mask: Default::default(),
+                input_attachment_count: Default::default(),
+                p_input_attachments: Default::default(),
+                color_attachment_count: Default::default(),
+                p_color_attachments: Default::default(),
+                p_resolve_attachments: Default::default(),
+                p_depth_stencil_attachment: Default::default(),
+                preserve_attachment_count: Default::default(),
+                p_preserve_attachments: Default::default(),
+                _marker: ::core::marker::PhantomData,
+            }
+        }
+    }
     #[repr(C)]
     #[derive(Clone, Copy)]
     pub struct SubpassDependency2<'a> {
@@ -525,6 +770,23 @@ pub(crate) mod reexport {
     }
     unsafe impl<'a> crate::TaggedStructure<'a> for SubpassDependency2<'a> {
         const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::SUBPASS_DEPENDENCY_2;
+    }
+    impl<'a> Default for SubpassDependency2<'a> {
+        fn default() -> Self {
+            Self {
+                s_type: <Self as crate::TaggedStructure>::STRUCTURE_TYPE,
+                p_next: Default::default(),
+                src_subpass: Default::default(),
+                dst_subpass: Default::default(),
+                src_stage_mask: Default::default(),
+                dst_stage_mask: Default::default(),
+                src_access_mask: Default::default(),
+                dst_access_mask: Default::default(),
+                dependency_flags: Default::default(),
+                view_offset: Default::default(),
+                _marker: ::core::marker::PhantomData,
+            }
+        }
     }
     #[repr(C)]
     #[derive(Clone, Copy)]
@@ -545,6 +807,24 @@ pub(crate) mod reexport {
     unsafe impl<'a> crate::TaggedStructure<'a> for RenderPassCreateInfo2<'a> {
         const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::RENDER_PASS_CREATE_INFO_2;
     }
+    impl<'a> Default for RenderPassCreateInfo2<'a> {
+        fn default() -> Self {
+            Self {
+                s_type: <Self as crate::TaggedStructure>::STRUCTURE_TYPE,
+                p_next: Default::default(),
+                flags: Default::default(),
+                attachment_count: Default::default(),
+                p_attachments: Default::default(),
+                subpass_count: Default::default(),
+                p_subpasses: Default::default(),
+                dependency_count: Default::default(),
+                p_dependencies: Default::default(),
+                correlated_view_mask_count: Default::default(),
+                p_correlated_view_masks: Default::default(),
+                _marker: ::core::marker::PhantomData,
+            }
+        }
+    }
     #[repr(C)]
     #[derive(Clone, Copy)]
     pub struct SubpassBeginInfo<'a> {
@@ -556,6 +836,16 @@ pub(crate) mod reexport {
     unsafe impl<'a> crate::TaggedStructure<'a> for SubpassBeginInfo<'a> {
         const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::SUBPASS_BEGIN_INFO;
     }
+    impl<'a> Default for SubpassBeginInfo<'a> {
+        fn default() -> Self {
+            Self {
+                s_type: <Self as crate::TaggedStructure>::STRUCTURE_TYPE,
+                p_next: Default::default(),
+                contents: Default::default(),
+                _marker: ::core::marker::PhantomData,
+            }
+        }
+    }
     #[repr(C)]
     #[derive(Clone, Copy)]
     pub struct SubpassEndInfo<'a> {
@@ -565,6 +855,15 @@ pub(crate) mod reexport {
     }
     unsafe impl<'a> crate::TaggedStructure<'a> for SubpassEndInfo<'a> {
         const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::SUBPASS_END_INFO;
+    }
+    impl<'a> Default for SubpassEndInfo<'a> {
+        fn default() -> Self {
+            Self {
+                s_type: <Self as crate::TaggedStructure>::STRUCTURE_TYPE,
+                p_next: Default::default(),
+                _marker: ::core::marker::PhantomData,
+            }
+        }
     }
     #[repr(C)]
     #[derive(Clone, Copy)]
@@ -578,6 +877,16 @@ pub(crate) mod reexport {
     for PhysicalDeviceTimelineSemaphoreFeatures<'a> {
         const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::PHYSICAL_DEVICE_TIMELINE_SEMAPHORE_FEATURES;
     }
+    impl<'a> Default for PhysicalDeviceTimelineSemaphoreFeatures<'a> {
+        fn default() -> Self {
+            Self {
+                s_type: <Self as crate::TaggedStructure>::STRUCTURE_TYPE,
+                p_next: Default::default(),
+                timeline_semaphore: Default::default(),
+                _marker: ::core::marker::PhantomData,
+            }
+        }
+    }
     #[repr(C)]
     #[derive(Clone, Copy)]
     pub struct PhysicalDeviceTimelineSemaphoreProperties<'a> {
@@ -590,6 +899,16 @@ pub(crate) mod reexport {
     for PhysicalDeviceTimelineSemaphoreProperties<'a> {
         const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::PHYSICAL_DEVICE_TIMELINE_SEMAPHORE_PROPERTIES;
     }
+    impl<'a> Default for PhysicalDeviceTimelineSemaphoreProperties<'a> {
+        fn default() -> Self {
+            Self {
+                s_type: <Self as crate::TaggedStructure>::STRUCTURE_TYPE,
+                p_next: Default::default(),
+                max_timeline_semaphore_value_difference: Default::default(),
+                _marker: ::core::marker::PhantomData,
+            }
+        }
+    }
     #[repr(C)]
     #[derive(Clone, Copy)]
     pub struct SemaphoreTypeCreateInfo<'a> {
@@ -601,6 +920,17 @@ pub(crate) mod reexport {
     }
     unsafe impl<'a> crate::TaggedStructure<'a> for SemaphoreTypeCreateInfo<'a> {
         const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::SEMAPHORE_TYPE_CREATE_INFO;
+    }
+    impl<'a> Default for SemaphoreTypeCreateInfo<'a> {
+        fn default() -> Self {
+            Self {
+                s_type: <Self as crate::TaggedStructure>::STRUCTURE_TYPE,
+                p_next: Default::default(),
+                semaphore_type: Default::default(),
+                initial_value: Default::default(),
+                _marker: ::core::marker::PhantomData,
+            }
+        }
     }
     #[repr(C)]
     #[derive(Clone, Copy)]
@@ -616,6 +946,19 @@ pub(crate) mod reexport {
     unsafe impl<'a> crate::TaggedStructure<'a> for TimelineSemaphoreSubmitInfo<'a> {
         const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::TIMELINE_SEMAPHORE_SUBMIT_INFO;
     }
+    impl<'a> Default for TimelineSemaphoreSubmitInfo<'a> {
+        fn default() -> Self {
+            Self {
+                s_type: <Self as crate::TaggedStructure>::STRUCTURE_TYPE,
+                p_next: Default::default(),
+                wait_semaphore_value_count: Default::default(),
+                p_wait_semaphore_values: Default::default(),
+                signal_semaphore_value_count: Default::default(),
+                p_signal_semaphore_values: Default::default(),
+                _marker: ::core::marker::PhantomData,
+            }
+        }
+    }
     #[repr(C)]
     #[derive(Clone, Copy)]
     pub struct SemaphoreWaitInfo<'a> {
@@ -630,6 +973,19 @@ pub(crate) mod reexport {
     unsafe impl<'a> crate::TaggedStructure<'a> for SemaphoreWaitInfo<'a> {
         const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::SEMAPHORE_WAIT_INFO;
     }
+    impl<'a> Default for SemaphoreWaitInfo<'a> {
+        fn default() -> Self {
+            Self {
+                s_type: <Self as crate::TaggedStructure>::STRUCTURE_TYPE,
+                p_next: Default::default(),
+                flags: Default::default(),
+                semaphore_count: Default::default(),
+                p_semaphores: Default::default(),
+                p_values: Default::default(),
+                _marker: ::core::marker::PhantomData,
+            }
+        }
+    }
     #[repr(C)]
     #[derive(Clone, Copy)]
     pub struct SemaphoreSignalInfo<'a> {
@@ -641,6 +997,17 @@ pub(crate) mod reexport {
     }
     unsafe impl<'a> crate::TaggedStructure<'a> for SemaphoreSignalInfo<'a> {
         const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::SEMAPHORE_SIGNAL_INFO;
+    }
+    impl<'a> Default for SemaphoreSignalInfo<'a> {
+        fn default() -> Self {
+            Self {
+                s_type: <Self as crate::TaggedStructure>::STRUCTURE_TYPE,
+                p_next: Default::default(),
+                semaphore: Default::default(),
+                value: Default::default(),
+                _marker: ::core::marker::PhantomData,
+            }
+        }
     }
     #[repr(C)]
     #[derive(Clone, Copy)]
@@ -656,6 +1023,18 @@ pub(crate) mod reexport {
     for PhysicalDevice8BitStorageFeatures<'a> {
         const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::PHYSICAL_DEVICE_8BIT_STORAGE_FEATURES;
     }
+    impl<'a> Default for PhysicalDevice8BitStorageFeatures<'a> {
+        fn default() -> Self {
+            Self {
+                s_type: <Self as crate::TaggedStructure>::STRUCTURE_TYPE,
+                p_next: Default::default(),
+                storage_buffer8_bit_access: Default::default(),
+                uniform_and_storage_buffer8_bit_access: Default::default(),
+                storage_push_constant8: Default::default(),
+                _marker: ::core::marker::PhantomData,
+            }
+        }
+    }
     #[repr(C)]
     #[derive(Clone, Copy)]
     pub struct PhysicalDeviceVulkanMemoryModelFeatures<'a> {
@@ -670,6 +1049,18 @@ pub(crate) mod reexport {
     for PhysicalDeviceVulkanMemoryModelFeatures<'a> {
         const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::PHYSICAL_DEVICE_VULKAN_MEMORY_MODEL_FEATURES;
     }
+    impl<'a> Default for PhysicalDeviceVulkanMemoryModelFeatures<'a> {
+        fn default() -> Self {
+            Self {
+                s_type: <Self as crate::TaggedStructure>::STRUCTURE_TYPE,
+                p_next: Default::default(),
+                vulkan_memory_model: Default::default(),
+                vulkan_memory_model_device_scope: Default::default(),
+                vulkan_memory_model_availability_visibility_chains: Default::default(),
+                _marker: ::core::marker::PhantomData,
+            }
+        }
+    }
     #[repr(C)]
     #[derive(Clone, Copy)]
     pub struct PhysicalDeviceShaderAtomicInt64Features<'a> {
@@ -682,6 +1073,17 @@ pub(crate) mod reexport {
     unsafe impl<'a> crate::TaggedStructure<'a>
     for PhysicalDeviceShaderAtomicInt64Features<'a> {
         const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::PHYSICAL_DEVICE_SHADER_ATOMIC_INT64_FEATURES;
+    }
+    impl<'a> Default for PhysicalDeviceShaderAtomicInt64Features<'a> {
+        fn default() -> Self {
+            Self {
+                s_type: <Self as crate::TaggedStructure>::STRUCTURE_TYPE,
+                p_next: Default::default(),
+                shader_buffer_int64_atomics: Default::default(),
+                shader_shared_int64_atomics: Default::default(),
+                _marker: ::core::marker::PhantomData,
+            }
+        }
     }
     #[repr(C)]
     #[derive(Clone, Copy)]
@@ -697,6 +1099,19 @@ pub(crate) mod reexport {
     unsafe impl<'a> crate::TaggedStructure<'a>
     for PhysicalDeviceDepthStencilResolveProperties<'a> {
         const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::PHYSICAL_DEVICE_DEPTH_STENCIL_RESOLVE_PROPERTIES;
+    }
+    impl<'a> Default for PhysicalDeviceDepthStencilResolveProperties<'a> {
+        fn default() -> Self {
+            Self {
+                s_type: <Self as crate::TaggedStructure>::STRUCTURE_TYPE,
+                p_next: Default::default(),
+                supported_depth_resolve_modes: Default::default(),
+                supported_stencil_resolve_modes: Default::default(),
+                independent_resolve_none: Default::default(),
+                independent_resolve: Default::default(),
+                _marker: ::core::marker::PhantomData,
+            }
+        }
     }
     #[repr(C)]
     #[derive(Clone, Copy)]
@@ -714,6 +1129,18 @@ pub(crate) mod reexport {
     for SubpassDescriptionDepthStencilResolve<'a> {
         const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::SUBPASS_DESCRIPTION_DEPTH_STENCIL_RESOLVE;
     }
+    impl<'a> Default for SubpassDescriptionDepthStencilResolve<'a> {
+        fn default() -> Self {
+            Self {
+                s_type: <Self as crate::TaggedStructure>::STRUCTURE_TYPE,
+                p_next: Default::default(),
+                depth_resolve_mode: Default::default(),
+                stencil_resolve_mode: Default::default(),
+                p_depth_stencil_resolve_attachment: Default::default(),
+                _marker: ::core::marker::PhantomData,
+            }
+        }
+    }
     #[repr(C)]
     #[derive(Clone, Copy)]
     pub struct ImageStencilUsageCreateInfo<'a> {
@@ -724,6 +1151,16 @@ pub(crate) mod reexport {
     }
     unsafe impl<'a> crate::TaggedStructure<'a> for ImageStencilUsageCreateInfo<'a> {
         const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::IMAGE_STENCIL_USAGE_CREATE_INFO;
+    }
+    impl<'a> Default for ImageStencilUsageCreateInfo<'a> {
+        fn default() -> Self {
+            Self {
+                s_type: <Self as crate::TaggedStructure>::STRUCTURE_TYPE,
+                p_next: Default::default(),
+                stencil_usage: Default::default(),
+                _marker: ::core::marker::PhantomData,
+            }
+        }
     }
     #[repr(C)]
     #[derive(Clone, Copy)]
@@ -737,6 +1174,16 @@ pub(crate) mod reexport {
     for PhysicalDeviceScalarBlockLayoutFeatures<'a> {
         const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::PHYSICAL_DEVICE_SCALAR_BLOCK_LAYOUT_FEATURES;
     }
+    impl<'a> Default for PhysicalDeviceScalarBlockLayoutFeatures<'a> {
+        fn default() -> Self {
+            Self {
+                s_type: <Self as crate::TaggedStructure>::STRUCTURE_TYPE,
+                p_next: Default::default(),
+                scalar_block_layout: Default::default(),
+                _marker: ::core::marker::PhantomData,
+            }
+        }
+    }
     #[repr(C)]
     #[derive(Clone, Copy)]
     pub struct PhysicalDeviceUniformBufferStandardLayoutFeatures<'a> {
@@ -748,6 +1195,16 @@ pub(crate) mod reexport {
     unsafe impl<'a> crate::TaggedStructure<'a>
     for PhysicalDeviceUniformBufferStandardLayoutFeatures<'a> {
         const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::PHYSICAL_DEVICE_UNIFORM_BUFFER_STANDARD_LAYOUT_FEATURES;
+    }
+    impl<'a> Default for PhysicalDeviceUniformBufferStandardLayoutFeatures<'a> {
+        fn default() -> Self {
+            Self {
+                s_type: <Self as crate::TaggedStructure>::STRUCTURE_TYPE,
+                p_next: Default::default(),
+                uniform_buffer_standard_layout: Default::default(),
+                _marker: ::core::marker::PhantomData,
+            }
+        }
     }
     #[repr(C)]
     #[derive(Clone, Copy)]
@@ -763,6 +1220,18 @@ pub(crate) mod reexport {
     for PhysicalDeviceBufferDeviceAddressFeatures<'a> {
         const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::PHYSICAL_DEVICE_BUFFER_DEVICE_ADDRESS_FEATURES;
     }
+    impl<'a> Default for PhysicalDeviceBufferDeviceAddressFeatures<'a> {
+        fn default() -> Self {
+            Self {
+                s_type: <Self as crate::TaggedStructure>::STRUCTURE_TYPE,
+                p_next: Default::default(),
+                buffer_device_address: Default::default(),
+                buffer_device_address_capture_replay: Default::default(),
+                buffer_device_address_multi_device: Default::default(),
+                _marker: ::core::marker::PhantomData,
+            }
+        }
+    }
     #[repr(C)]
     #[derive(Clone, Copy)]
     pub struct BufferDeviceAddressInfo<'a> {
@@ -773,6 +1242,16 @@ pub(crate) mod reexport {
     }
     unsafe impl<'a> crate::TaggedStructure<'a> for BufferDeviceAddressInfo<'a> {
         const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::BUFFER_DEVICE_ADDRESS_INFO;
+    }
+    impl<'a> Default for BufferDeviceAddressInfo<'a> {
+        fn default() -> Self {
+            Self {
+                s_type: <Self as crate::TaggedStructure>::STRUCTURE_TYPE,
+                p_next: Default::default(),
+                buffer: Default::default(),
+                _marker: ::core::marker::PhantomData,
+            }
+        }
     }
     #[repr(C)]
     #[derive(Clone, Copy)]
@@ -786,6 +1265,16 @@ pub(crate) mod reexport {
     for BufferOpaqueCaptureAddressCreateInfo<'a> {
         const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::BUFFER_OPAQUE_CAPTURE_ADDRESS_CREATE_INFO;
     }
+    impl<'a> Default for BufferOpaqueCaptureAddressCreateInfo<'a> {
+        fn default() -> Self {
+            Self {
+                s_type: <Self as crate::TaggedStructure>::STRUCTURE_TYPE,
+                p_next: Default::default(),
+                opaque_capture_address: Default::default(),
+                _marker: ::core::marker::PhantomData,
+            }
+        }
+    }
     #[repr(C)]
     #[derive(Clone, Copy)]
     pub struct PhysicalDeviceImagelessFramebufferFeatures<'a> {
@@ -797,6 +1286,16 @@ pub(crate) mod reexport {
     unsafe impl<'a> crate::TaggedStructure<'a>
     for PhysicalDeviceImagelessFramebufferFeatures<'a> {
         const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::PHYSICAL_DEVICE_IMAGELESS_FRAMEBUFFER_FEATURES;
+    }
+    impl<'a> Default for PhysicalDeviceImagelessFramebufferFeatures<'a> {
+        fn default() -> Self {
+            Self {
+                s_type: <Self as crate::TaggedStructure>::STRUCTURE_TYPE,
+                p_next: Default::default(),
+                imageless_framebuffer: Default::default(),
+                _marker: ::core::marker::PhantomData,
+            }
+        }
     }
     #[repr(C)]
     #[derive(Clone, Copy)]
@@ -811,6 +1310,17 @@ pub(crate) mod reexport {
     }
     unsafe impl<'a> crate::TaggedStructure<'a> for FramebufferAttachmentsCreateInfo<'a> {
         const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::FRAMEBUFFER_ATTACHMENTS_CREATE_INFO;
+    }
+    impl<'a> Default for FramebufferAttachmentsCreateInfo<'a> {
+        fn default() -> Self {
+            Self {
+                s_type: <Self as crate::TaggedStructure>::STRUCTURE_TYPE,
+                p_next: Default::default(),
+                attachment_image_info_count: Default::default(),
+                p_attachment_image_infos: Default::default(),
+                _marker: ::core::marker::PhantomData,
+            }
+        }
     }
     #[repr(C)]
     #[derive(Clone, Copy)]
@@ -829,6 +1339,22 @@ pub(crate) mod reexport {
     unsafe impl<'a> crate::TaggedStructure<'a> for FramebufferAttachmentImageInfo<'a> {
         const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::FRAMEBUFFER_ATTACHMENT_IMAGE_INFO;
     }
+    impl<'a> Default for FramebufferAttachmentImageInfo<'a> {
+        fn default() -> Self {
+            Self {
+                s_type: <Self as crate::TaggedStructure>::STRUCTURE_TYPE,
+                p_next: Default::default(),
+                flags: Default::default(),
+                usage: Default::default(),
+                width: Default::default(),
+                height: Default::default(),
+                layer_count: Default::default(),
+                view_format_count: Default::default(),
+                p_view_formats: Default::default(),
+                _marker: ::core::marker::PhantomData,
+            }
+        }
+    }
     #[repr(C)]
     #[derive(Clone, Copy)]
     pub struct RenderPassAttachmentBeginInfo<'a> {
@@ -840,6 +1366,17 @@ pub(crate) mod reexport {
     }
     unsafe impl<'a> crate::TaggedStructure<'a> for RenderPassAttachmentBeginInfo<'a> {
         const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::RENDER_PASS_ATTACHMENT_BEGIN_INFO;
+    }
+    impl<'a> Default for RenderPassAttachmentBeginInfo<'a> {
+        fn default() -> Self {
+            Self {
+                s_type: <Self as crate::TaggedStructure>::STRUCTURE_TYPE,
+                p_next: Default::default(),
+                attachment_count: Default::default(),
+                p_attachments: Default::default(),
+                _marker: ::core::marker::PhantomData,
+            }
+        }
     }
     #[repr(C)]
     #[derive(Clone, Copy)]
@@ -853,6 +1390,16 @@ pub(crate) mod reexport {
     for PhysicalDeviceSeparateDepthStencilLayoutsFeatures<'a> {
         const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::PHYSICAL_DEVICE_SEPARATE_DEPTH_STENCIL_LAYOUTS_FEATURES;
     }
+    impl<'a> Default for PhysicalDeviceSeparateDepthStencilLayoutsFeatures<'a> {
+        fn default() -> Self {
+            Self {
+                s_type: <Self as crate::TaggedStructure>::STRUCTURE_TYPE,
+                p_next: Default::default(),
+                separate_depth_stencil_layouts: Default::default(),
+                _marker: ::core::marker::PhantomData,
+            }
+        }
+    }
     #[repr(C)]
     #[derive(Clone, Copy)]
     pub struct AttachmentReferenceStencilLayout<'a> {
@@ -863,6 +1410,16 @@ pub(crate) mod reexport {
     }
     unsafe impl<'a> crate::TaggedStructure<'a> for AttachmentReferenceStencilLayout<'a> {
         const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::ATTACHMENT_REFERENCE_STENCIL_LAYOUT;
+    }
+    impl<'a> Default for AttachmentReferenceStencilLayout<'a> {
+        fn default() -> Self {
+            Self {
+                s_type: <Self as crate::TaggedStructure>::STRUCTURE_TYPE,
+                p_next: Default::default(),
+                stencil_layout: Default::default(),
+                _marker: ::core::marker::PhantomData,
+            }
+        }
     }
     #[repr(C)]
     #[derive(Clone, Copy)]
@@ -877,6 +1434,17 @@ pub(crate) mod reexport {
     for AttachmentDescriptionStencilLayout<'a> {
         const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::ATTACHMENT_DESCRIPTION_STENCIL_LAYOUT;
     }
+    impl<'a> Default for AttachmentDescriptionStencilLayout<'a> {
+        fn default() -> Self {
+            Self {
+                s_type: <Self as crate::TaggedStructure>::STRUCTURE_TYPE,
+                p_next: Default::default(),
+                stencil_initial_layout: Default::default(),
+                stencil_final_layout: Default::default(),
+                _marker: ::core::marker::PhantomData,
+            }
+        }
+    }
     #[repr(C)]
     #[derive(Clone, Copy)]
     pub struct MemoryOpaqueCaptureAddressAllocateInfo<'a> {
@@ -889,6 +1457,16 @@ pub(crate) mod reexport {
     for MemoryOpaqueCaptureAddressAllocateInfo<'a> {
         const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::MEMORY_OPAQUE_CAPTURE_ADDRESS_ALLOCATE_INFO;
     }
+    impl<'a> Default for MemoryOpaqueCaptureAddressAllocateInfo<'a> {
+        fn default() -> Self {
+            Self {
+                s_type: <Self as crate::TaggedStructure>::STRUCTURE_TYPE,
+                p_next: Default::default(),
+                opaque_capture_address: Default::default(),
+                _marker: ::core::marker::PhantomData,
+            }
+        }
+    }
     #[repr(C)]
     #[derive(Clone, Copy)]
     pub struct DeviceMemoryOpaqueCaptureAddressInfo<'a> {
@@ -900,6 +1478,16 @@ pub(crate) mod reexport {
     unsafe impl<'a> crate::TaggedStructure<'a>
     for DeviceMemoryOpaqueCaptureAddressInfo<'a> {
         const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::DEVICE_MEMORY_OPAQUE_CAPTURE_ADDRESS_INFO;
+    }
+    impl<'a> Default for DeviceMemoryOpaqueCaptureAddressInfo<'a> {
+        fn default() -> Self {
+            Self {
+                s_type: <Self as crate::TaggedStructure>::STRUCTURE_TYPE,
+                p_next: Default::default(),
+                memory: Default::default(),
+                _marker: ::core::marker::PhantomData,
+            }
+        }
     }
     #[repr(C)]
     #[derive(Clone, Copy)]
@@ -922,6 +1510,27 @@ pub(crate) mod reexport {
     }
     unsafe impl<'a> crate::TaggedStructure<'a> for PhysicalDeviceVulkan11Features<'a> {
         const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::PHYSICAL_DEVICE_VULKAN_1_1_FEATURES;
+    }
+    impl<'a> Default for PhysicalDeviceVulkan11Features<'a> {
+        fn default() -> Self {
+            Self {
+                s_type: <Self as crate::TaggedStructure>::STRUCTURE_TYPE,
+                p_next: Default::default(),
+                storage_buffer16_bit_access: Default::default(),
+                uniform_and_storage_buffer16_bit_access: Default::default(),
+                storage_push_constant16: Default::default(),
+                storage_input_output16: Default::default(),
+                multiview: Default::default(),
+                multiview_geometry_shader: Default::default(),
+                multiview_tessellation_shader: Default::default(),
+                variable_pointers_storage_buffer: Default::default(),
+                variable_pointers: Default::default(),
+                protected_memory: Default::default(),
+                sampler_ycbcr_conversion: Default::default(),
+                shader_draw_parameters: Default::default(),
+                _marker: ::core::marker::PhantomData,
+            }
+        }
     }
     #[repr(C)]
     #[derive(Clone, Copy)]
@@ -947,6 +1556,30 @@ pub(crate) mod reexport {
     }
     unsafe impl<'a> crate::TaggedStructure<'a> for PhysicalDeviceVulkan11Properties<'a> {
         const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::PHYSICAL_DEVICE_VULKAN_1_1_PROPERTIES;
+    }
+    impl<'a> Default for PhysicalDeviceVulkan11Properties<'a> {
+        fn default() -> Self {
+            Self {
+                s_type: <Self as crate::TaggedStructure>::STRUCTURE_TYPE,
+                p_next: Default::default(),
+                device_uuid: unsafe { core::mem::zeroed() },
+                driver_uuid: unsafe { core::mem::zeroed() },
+                device_luid: unsafe { core::mem::zeroed() },
+                device_node_mask: Default::default(),
+                device_luid_valid: Default::default(),
+                subgroup_size: Default::default(),
+                subgroup_supported_stages: Default::default(),
+                subgroup_supported_operations: Default::default(),
+                subgroup_quad_operations_in_all_stages: Default::default(),
+                point_clipping_behavior: Default::default(),
+                max_multiview_view_count: Default::default(),
+                max_multiview_instance_index: Default::default(),
+                protected_no_fault: Default::default(),
+                max_per_set_descriptors: Default::default(),
+                max_memory_allocation_size: Default::default(),
+                _marker: ::core::marker::PhantomData,
+            }
+        }
     }
     #[repr(C)]
     #[derive(Clone, Copy)]
@@ -1004,6 +1637,62 @@ pub(crate) mod reexport {
     }
     unsafe impl<'a> crate::TaggedStructure<'a> for PhysicalDeviceVulkan12Features<'a> {
         const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::PHYSICAL_DEVICE_VULKAN_1_2_FEATURES;
+    }
+    impl<'a> Default for PhysicalDeviceVulkan12Features<'a> {
+        fn default() -> Self {
+            Self {
+                s_type: <Self as crate::TaggedStructure>::STRUCTURE_TYPE,
+                p_next: Default::default(),
+                sampler_mirror_clamp_to_edge: Default::default(),
+                draw_indirect_count: Default::default(),
+                storage_buffer8_bit_access: Default::default(),
+                uniform_and_storage_buffer8_bit_access: Default::default(),
+                storage_push_constant8: Default::default(),
+                shader_buffer_int64_atomics: Default::default(),
+                shader_shared_int64_atomics: Default::default(),
+                shader_float16: Default::default(),
+                shader_int8: Default::default(),
+                descriptor_indexing: Default::default(),
+                shader_input_attachment_array_dynamic_indexing: Default::default(),
+                shader_uniform_texel_buffer_array_dynamic_indexing: Default::default(),
+                shader_storage_texel_buffer_array_dynamic_indexing: Default::default(),
+                shader_uniform_buffer_array_non_uniform_indexing: Default::default(),
+                shader_sampled_image_array_non_uniform_indexing: Default::default(),
+                shader_storage_buffer_array_non_uniform_indexing: Default::default(),
+                shader_storage_image_array_non_uniform_indexing: Default::default(),
+                shader_input_attachment_array_non_uniform_indexing: Default::default(),
+                shader_uniform_texel_buffer_array_non_uniform_indexing: Default::default(),
+                shader_storage_texel_buffer_array_non_uniform_indexing: Default::default(),
+                descriptor_binding_uniform_buffer_update_after_bind: Default::default(),
+                descriptor_binding_sampled_image_update_after_bind: Default::default(),
+                descriptor_binding_storage_image_update_after_bind: Default::default(),
+                descriptor_binding_storage_buffer_update_after_bind: Default::default(),
+                descriptor_binding_uniform_texel_buffer_update_after_bind: Default::default(),
+                descriptor_binding_storage_texel_buffer_update_after_bind: Default::default(),
+                descriptor_binding_update_unused_while_pending: Default::default(),
+                descriptor_binding_partially_bound: Default::default(),
+                descriptor_binding_variable_descriptor_count: Default::default(),
+                runtime_descriptor_array: Default::default(),
+                sampler_filter_minmax: Default::default(),
+                scalar_block_layout: Default::default(),
+                imageless_framebuffer: Default::default(),
+                uniform_buffer_standard_layout: Default::default(),
+                shader_subgroup_extended_types: Default::default(),
+                separate_depth_stencil_layouts: Default::default(),
+                host_query_reset: Default::default(),
+                timeline_semaphore: Default::default(),
+                buffer_device_address: Default::default(),
+                buffer_device_address_capture_replay: Default::default(),
+                buffer_device_address_multi_device: Default::default(),
+                vulkan_memory_model: Default::default(),
+                vulkan_memory_model_device_scope: Default::default(),
+                vulkan_memory_model_availability_visibility_chains: Default::default(),
+                shader_output_viewport_index: Default::default(),
+                shader_output_layer: Default::default(),
+                subgroup_broadcast_dynamic_id: Default::default(),
+                _marker: ::core::marker::PhantomData,
+            }
+        }
     }
     #[repr(C)]
     #[derive(Clone, Copy)]
@@ -1066,6 +1755,67 @@ pub(crate) mod reexport {
     }
     unsafe impl<'a> crate::TaggedStructure<'a> for PhysicalDeviceVulkan12Properties<'a> {
         const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::PHYSICAL_DEVICE_VULKAN_1_2_PROPERTIES;
+    }
+    impl<'a> Default for PhysicalDeviceVulkan12Properties<'a> {
+        fn default() -> Self {
+            Self {
+                s_type: <Self as crate::TaggedStructure>::STRUCTURE_TYPE,
+                p_next: Default::default(),
+                driver_id: Default::default(),
+                driver_name: unsafe { core::mem::zeroed() },
+                driver_info: unsafe { core::mem::zeroed() },
+                conformance_version: Default::default(),
+                denorm_behavior_independence: Default::default(),
+                rounding_mode_independence: Default::default(),
+                shader_signed_zero_inf_nan_preserve_float16: Default::default(),
+                shader_signed_zero_inf_nan_preserve_float32: Default::default(),
+                shader_signed_zero_inf_nan_preserve_float64: Default::default(),
+                shader_denorm_preserve_float16: Default::default(),
+                shader_denorm_preserve_float32: Default::default(),
+                shader_denorm_preserve_float64: Default::default(),
+                shader_denorm_flush_to_zero_float16: Default::default(),
+                shader_denorm_flush_to_zero_float32: Default::default(),
+                shader_denorm_flush_to_zero_float64: Default::default(),
+                shader_rounding_mode_rte_float16: Default::default(),
+                shader_rounding_mode_rte_float32: Default::default(),
+                shader_rounding_mode_rte_float64: Default::default(),
+                shader_rounding_mode_rtz_float16: Default::default(),
+                shader_rounding_mode_rtz_float32: Default::default(),
+                shader_rounding_mode_rtz_float64: Default::default(),
+                max_update_after_bind_descriptors_in_all_pools: Default::default(),
+                shader_uniform_buffer_array_non_uniform_indexing_native: Default::default(),
+                shader_sampled_image_array_non_uniform_indexing_native: Default::default(),
+                shader_storage_buffer_array_non_uniform_indexing_native: Default::default(),
+                shader_storage_image_array_non_uniform_indexing_native: Default::default(),
+                shader_input_attachment_array_non_uniform_indexing_native: Default::default(),
+                robust_buffer_access_update_after_bind: Default::default(),
+                quad_divergent_implicit_lod: Default::default(),
+                max_per_stage_descriptor_update_after_bind_samplers: Default::default(),
+                max_per_stage_descriptor_update_after_bind_uniform_buffers: Default::default(),
+                max_per_stage_descriptor_update_after_bind_storage_buffers: Default::default(),
+                max_per_stage_descriptor_update_after_bind_sampled_images: Default::default(),
+                max_per_stage_descriptor_update_after_bind_storage_images: Default::default(),
+                max_per_stage_descriptor_update_after_bind_input_attachments: Default::default(),
+                max_per_stage_update_after_bind_resources: Default::default(),
+                max_descriptor_set_update_after_bind_samplers: Default::default(),
+                max_descriptor_set_update_after_bind_uniform_buffers: Default::default(),
+                max_descriptor_set_update_after_bind_uniform_buffers_dynamic: Default::default(),
+                max_descriptor_set_update_after_bind_storage_buffers: Default::default(),
+                max_descriptor_set_update_after_bind_storage_buffers_dynamic: Default::default(),
+                max_descriptor_set_update_after_bind_sampled_images: Default::default(),
+                max_descriptor_set_update_after_bind_storage_images: Default::default(),
+                max_descriptor_set_update_after_bind_input_attachments: Default::default(),
+                supported_depth_resolve_modes: Default::default(),
+                supported_stencil_resolve_modes: Default::default(),
+                independent_resolve_none: Default::default(),
+                independent_resolve: Default::default(),
+                filter_minmax_single_component_formats: Default::default(),
+                filter_minmax_image_component_mapping: Default::default(),
+                max_timeline_semaphore_value_difference: Default::default(),
+                framebuffer_integer_color_sample_counts: Default::default(),
+                _marker: ::core::marker::PhantomData,
+            }
+        }
     }
     ///Provided by [`vk1_2`](crate::vk1_2)
     impl crate::vk::ImageLayout {
@@ -1348,7 +2098,7 @@ pub(crate) mod reexport {
         }
     }
     #[repr(transparent)]
-    #[derive(Clone, Copy)]
+    #[derive(Clone, Copy, Default)]
     pub struct SemaphoreWaitFlagBits(pub(crate) u32);
     ///Provided by [`vk1_2`](crate::vk1_2)
     impl SemaphoreWaitFlagBits {
@@ -1451,7 +2201,7 @@ pub(crate) mod reexport {
         }
     }
     #[repr(transparent)]
-    #[derive(Clone, Copy)]
+    #[derive(Clone, Copy, Default)]
     pub struct DescriptorBindingFlagBits(pub(crate) u32);
     ///Provided by [`vk1_2`](crate::vk1_2)
     impl DescriptorBindingFlagBits {
@@ -1542,7 +2292,7 @@ pub(crate) mod reexport {
         }
     }
     #[repr(transparent)]
-    #[derive(Clone, Copy)]
+    #[derive(Clone, Copy, Default)]
     pub struct ResolveModeFlagBits(pub(crate) u32);
     ///Provided by [`vk1_2`](crate::vk1_2)
     impl ResolveModeFlagBits {

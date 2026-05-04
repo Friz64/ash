@@ -139,7 +139,7 @@ impl InstanceFn {
 }
 pub(crate) mod reexport {
     #[repr(C)]
-    #[derive(Clone, Copy)]
+    #[derive(Clone, Copy, Default)]
     pub struct DisplayPropertiesKHR<'a> {
         pub display: crate::vk::DisplayKHR,
         pub display_name: *const core::ffi::c_char,
@@ -151,19 +151,19 @@ pub(crate) mod reexport {
         pub _marker: ::core::marker::PhantomData<&'a ()>,
     }
     #[repr(C)]
-    #[derive(Clone, Copy)]
+    #[derive(Clone, Copy, Default)]
     pub struct DisplayPlanePropertiesKHR {
         pub current_display: crate::vk::DisplayKHR,
         pub current_stack_index: u32,
     }
     #[repr(C)]
-    #[derive(Clone, Copy)]
+    #[derive(Clone, Copy, Default)]
     pub struct DisplayModeParametersKHR {
         pub visible_region: crate::vk::Extent2D,
         pub refresh_rate: u32,
     }
     #[repr(C)]
-    #[derive(Clone, Copy)]
+    #[derive(Clone, Copy, Default)]
     pub struct DisplayModePropertiesKHR {
         pub display_mode: crate::vk::DisplayModeKHR,
         pub parameters: crate::vk::DisplayModeParametersKHR,
@@ -180,8 +180,19 @@ pub(crate) mod reexport {
     unsafe impl<'a> crate::TaggedStructure<'a> for DisplayModeCreateInfoKHR<'a> {
         const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::DISPLAY_MODE_CREATE_INFO_KHR;
     }
+    impl<'a> Default for DisplayModeCreateInfoKHR<'a> {
+        fn default() -> Self {
+            Self {
+                s_type: <Self as crate::TaggedStructure>::STRUCTURE_TYPE,
+                p_next: Default::default(),
+                flags: Default::default(),
+                parameters: Default::default(),
+                _marker: ::core::marker::PhantomData,
+            }
+        }
+    }
     #[repr(C)]
-    #[derive(Clone, Copy)]
+    #[derive(Clone, Copy, Default)]
     pub struct DisplayPlaneCapabilitiesKHR {
         pub supported_alpha: crate::vk::DisplayPlaneAlphaFlagsKHR,
         pub min_src_position: crate::vk::Offset2D,
@@ -210,6 +221,23 @@ pub(crate) mod reexport {
     }
     unsafe impl<'a> crate::TaggedStructure<'a> for DisplaySurfaceCreateInfoKHR<'a> {
         const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::DISPLAY_SURFACE_CREATE_INFO_KHR;
+    }
+    impl<'a> Default for DisplaySurfaceCreateInfoKHR<'a> {
+        fn default() -> Self {
+            Self {
+                s_type: <Self as crate::TaggedStructure>::STRUCTURE_TYPE,
+                p_next: Default::default(),
+                flags: Default::default(),
+                display_mode: Default::default(),
+                plane_index: Default::default(),
+                plane_stack_index: Default::default(),
+                transform: Default::default(),
+                global_alpha: Default::default(),
+                alpha_mode: Default::default(),
+                image_extent: Default::default(),
+                _marker: ::core::marker::PhantomData,
+            }
+        }
     }
     ///Provided by [`khr::display`](crate::khr::display)
     impl crate::vk::StructureType {
@@ -297,7 +325,7 @@ pub(crate) mod reexport {
         }
     }
     #[repr(transparent)]
-    #[derive(Clone, Copy)]
+    #[derive(Clone, Copy, Default)]
     pub struct DisplayPlaneAlphaFlagBitsKHR(pub(crate) u32);
     ///Provided by [`khr::display`](crate::khr::display)
     impl DisplayPlaneAlphaFlagBitsKHR {
