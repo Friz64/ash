@@ -4,9 +4,7 @@ use analysis::{
     item::{
         Named,
         structure::{Struct, StructMember, Union},
-    },
-    lifetime::Lifetime,
-    to_rust::RustTranslator,
+    }, lifetime::Lifetime, name::TypeName, to_rust::RustTranslator
 };
 use quote::{format_ident, quote};
 use tracing::{instrument, trace};
@@ -44,10 +42,10 @@ impl Code for Struct {
         });
 
         let impl_tagged_structure = self.structure_type.as_ref().map(|ty| {
-            let structure_ty = ctx.type_to_rust(ty.ty, true, &lifetime);
-            let ty = ctx.enumerator_to_rust(ty.enumerator, ty.ty, true);
+            let structure_ty = ctx.type_to_rust(TypeName::VK_STRUCTURE_TYPE, true, &lifetime);
+            let ty = ctx.enumerator_to_rust(*ty, TypeName::VK_STRUCTURE_TYPE, true);
             quote! {
-                unsafe impl<'a> crate::TaggedStructure<'a> for #name {
+                unsafe impl<#lifetime> crate::TaggedStructure<#lifetime> for #name {
                     const STRUCTURE_TYPE: #structure_ty = #ty;
                 }
             }

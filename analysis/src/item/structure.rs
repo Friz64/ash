@@ -23,14 +23,8 @@ pub enum StructMember {
 pub struct Struct {
     pub required_by: RequiredBy,
     pub name: TypeName,
-    pub structure_type: Option<StructureType>,
+    pub structure_type: Option<EnumeratorName>,
     pub members: Vec<StructMember>,
-}
-
-#[derive(Debug)]
-pub struct StructureType {
-    pub enumerator: EnumeratorName,
-    pub ty: TypeName,
 }
 
 impl Named<TypeName> for Struct {
@@ -85,13 +79,10 @@ impl Struct {
                 // should exist only once
                 if let Some(value) = member.values
                     && let Ty::SpecType(ty) = decl.ty
-                    && ty.original() == "VkStructureType"
+                    && ty == TypeName::VK_STRUCTURE_TYPE
                     && decl.name.original() == "sType"
                 {
-                    structure_type = Some(StructureType {
-                        enumerator: EnumeratorName::new(value),
-                        ty,
-                    });
+                    structure_type = Some(EnumeratorName::new(value));
                 }
                 members.push(StructMember::Normal(decl));
             }
