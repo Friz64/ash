@@ -139,6 +139,8 @@ pub unsafe trait TaggedStructure<'a>: Sized {
     const STRUCTURE_TYPE: StructureType;
 }
 
+pub unsafe trait Extends<B> {}
+
 pub use device::*;
 pub use entry::*;
 pub use instance::*;

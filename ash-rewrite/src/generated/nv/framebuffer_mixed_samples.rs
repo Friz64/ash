@@ -17,6 +17,8 @@ unsafe impl<'a> crate::TaggedStructure<'a>
 for PipelineCoverageModulationStateCreateInfoNV<'a> {
     const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::PIPELINE_COVERAGE_MODULATION_STATE_CREATE_INFO_NV;
 }
+unsafe impl<'a> crate::Extends<crate::vk::PipelineMultisampleStateCreateInfo<'_>>
+for PipelineCoverageModulationStateCreateInfoNV<'a> {}
 impl<'a> Default for PipelineCoverageModulationStateCreateInfoNV<'a> {
     fn default() -> Self {
         Self {

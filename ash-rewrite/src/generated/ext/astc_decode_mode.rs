@@ -12,6 +12,8 @@ pub struct ImageViewASTCDecodeModeEXT<'a> {
 unsafe impl<'a> crate::TaggedStructure<'a> for ImageViewASTCDecodeModeEXT<'a> {
     const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::IMAGE_VIEW_ASTC_DECODE_MODE_EXT;
 }
+unsafe impl<'a> crate::Extends<crate::vk::ImageViewCreateInfo<'_>>
+for ImageViewASTCDecodeModeEXT<'a> {}
 impl<'a> Default for ImageViewASTCDecodeModeEXT<'a> {
     fn default() -> Self {
         Self {
@@ -33,6 +35,10 @@ pub struct PhysicalDeviceASTCDecodeFeaturesEXT<'a> {
 unsafe impl<'a> crate::TaggedStructure<'a> for PhysicalDeviceASTCDecodeFeaturesEXT<'a> {
     const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::PHYSICAL_DEVICE_ASTC_DECODE_FEATURES_EXT;
 }
+unsafe impl<'a> crate::Extends<crate::vk::PhysicalDeviceFeatures2<'_>>
+for PhysicalDeviceASTCDecodeFeaturesEXT<'a> {}
+unsafe impl<'a> crate::Extends<crate::vk::DeviceCreateInfo<'_>>
+for PhysicalDeviceASTCDecodeFeaturesEXT<'a> {}
 impl<'a> Default for PhysicalDeviceASTCDecodeFeaturesEXT<'a> {
     fn default() -> Self {
         Self {

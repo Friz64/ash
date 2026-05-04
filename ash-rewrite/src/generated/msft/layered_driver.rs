@@ -13,6 +13,8 @@ unsafe impl<'a> crate::TaggedStructure<'a>
 for PhysicalDeviceLayeredDriverPropertiesMSFT<'a> {
     const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::PHYSICAL_DEVICE_LAYERED_DRIVER_PROPERTIES_MSFT;
 }
+unsafe impl<'a> crate::Extends<crate::vk::PhysicalDeviceProperties2<'_>>
+for PhysicalDeviceLayeredDriverPropertiesMSFT<'a> {}
 impl<'a> Default for PhysicalDeviceLayeredDriverPropertiesMSFT<'a> {
     fn default() -> Self {
         Self {

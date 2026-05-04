@@ -13,6 +13,10 @@ unsafe impl<'a> crate::TaggedStructure<'a>
 for PhysicalDeviceDataGraphNeuralAcceleratorStatisticsFeaturesARM<'a> {
     const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::PHYSICAL_DEVICE_DATA_GRAPH_NEURAL_ACCELERATOR_STATISTICS_FEATURES_ARM;
 }
+unsafe impl<'a> crate::Extends<crate::vk::PhysicalDeviceFeatures2<'_>>
+for PhysicalDeviceDataGraphNeuralAcceleratorStatisticsFeaturesARM<'a> {}
+unsafe impl<'a> crate::Extends<crate::vk::DeviceCreateInfo<'_>>
+for PhysicalDeviceDataGraphNeuralAcceleratorStatisticsFeaturesARM<'a> {}
 impl<'a> Default for PhysicalDeviceDataGraphNeuralAcceleratorStatisticsFeaturesARM<'a> {
     fn default() -> Self {
         Self {
@@ -35,6 +39,8 @@ unsafe impl<'a> crate::TaggedStructure<'a>
 for DataGraphPipelineNeuralStatisticsCreateInfoARM<'a> {
     const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::DATA_GRAPH_PIPELINE_NEURAL_STATISTICS_CREATE_INFO_ARM;
 }
+unsafe impl<'a> crate::Extends<crate::vk::DataGraphPipelineCreateInfoARM<'_>>
+for DataGraphPipelineNeuralStatisticsCreateInfoARM<'a> {}
 impl<'a> Default for DataGraphPipelineNeuralStatisticsCreateInfoARM<'a> {
     fn default() -> Self {
         Self {
@@ -57,6 +63,8 @@ unsafe impl<'a> crate::TaggedStructure<'a>
 for DataGraphPipelineSessionNeuralStatisticsCreateInfoARM<'a> {
     const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::DATA_GRAPH_PIPELINE_SESSION_NEURAL_STATISTICS_CREATE_INFO_ARM;
 }
+unsafe impl<'a> crate::Extends<crate::vk::DataGraphPipelineSessionCreateInfoARM<'_>>
+for DataGraphPipelineSessionNeuralStatisticsCreateInfoARM<'a> {}
 impl<'a> Default for DataGraphPipelineSessionNeuralStatisticsCreateInfoARM<'a> {
     fn default() -> Self {
         Self {

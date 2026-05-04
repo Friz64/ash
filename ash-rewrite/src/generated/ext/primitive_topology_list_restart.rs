@@ -14,6 +14,10 @@ unsafe impl<'a> crate::TaggedStructure<'a>
 for PhysicalDevicePrimitiveTopologyListRestartFeaturesEXT<'a> {
     const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::PHYSICAL_DEVICE_PRIMITIVE_TOPOLOGY_LIST_RESTART_FEATURES_EXT;
 }
+unsafe impl<'a> crate::Extends<crate::vk::PhysicalDeviceFeatures2<'_>>
+for PhysicalDevicePrimitiveTopologyListRestartFeaturesEXT<'a> {}
+unsafe impl<'a> crate::Extends<crate::vk::DeviceCreateInfo<'_>>
+for PhysicalDevicePrimitiveTopologyListRestartFeaturesEXT<'a> {}
 impl<'a> Default for PhysicalDevicePrimitiveTopologyListRestartFeaturesEXT<'a> {
     fn default() -> Self {
         Self {

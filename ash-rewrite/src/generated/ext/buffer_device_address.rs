@@ -49,6 +49,10 @@ pub(crate) mod reexport {
     for PhysicalDeviceBufferDeviceAddressFeaturesEXT<'a> {
         const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::PHYSICAL_DEVICE_BUFFER_DEVICE_ADDRESS_FEATURES_EXT;
     }
+    unsafe impl<'a> crate::Extends<crate::vk::PhysicalDeviceFeatures2<'_>>
+    for PhysicalDeviceBufferDeviceAddressFeaturesEXT<'a> {}
+    unsafe impl<'a> crate::Extends<crate::vk::DeviceCreateInfo<'_>>
+    for PhysicalDeviceBufferDeviceAddressFeaturesEXT<'a> {}
     impl<'a> Default for PhysicalDeviceBufferDeviceAddressFeaturesEXT<'a> {
         fn default() -> Self {
             Self {
@@ -72,6 +76,8 @@ pub(crate) mod reexport {
     unsafe impl<'a> crate::TaggedStructure<'a> for BufferDeviceAddressCreateInfoEXT<'a> {
         const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::BUFFER_DEVICE_ADDRESS_CREATE_INFO_EXT;
     }
+    unsafe impl<'a> crate::Extends<crate::vk::BufferCreateInfo<'_>>
+    for BufferDeviceAddressCreateInfoEXT<'a> {}
     impl<'a> Default for BufferDeviceAddressCreateInfoEXT<'a> {
         fn default() -> Self {
             Self {

@@ -66,6 +66,8 @@ pub(crate) mod reexport {
     for ImportMemoryZirconHandleInfoFUCHSIA<'a> {
         const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::IMPORT_MEMORY_ZIRCON_HANDLE_INFO_FUCHSIA;
     }
+    unsafe impl<'a> crate::Extends<crate::vk::MemoryAllocateInfo<'_>>
+    for ImportMemoryZirconHandleInfoFUCHSIA<'a> {}
     impl<'a> Default for ImportMemoryZirconHandleInfoFUCHSIA<'a> {
         fn default() -> Self {
             Self {

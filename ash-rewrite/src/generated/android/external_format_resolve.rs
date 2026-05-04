@@ -13,6 +13,10 @@ unsafe impl<'a> crate::TaggedStructure<'a>
 for PhysicalDeviceExternalFormatResolveFeaturesANDROID<'a> {
     const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::PHYSICAL_DEVICE_EXTERNAL_FORMAT_RESOLVE_FEATURES_ANDROID;
 }
+unsafe impl<'a> crate::Extends<crate::vk::PhysicalDeviceFeatures2<'_>>
+for PhysicalDeviceExternalFormatResolveFeaturesANDROID<'a> {}
+unsafe impl<'a> crate::Extends<crate::vk::DeviceCreateInfo<'_>>
+for PhysicalDeviceExternalFormatResolveFeaturesANDROID<'a> {}
 impl<'a> Default for PhysicalDeviceExternalFormatResolveFeaturesANDROID<'a> {
     fn default() -> Self {
         Self {
@@ -37,6 +41,8 @@ unsafe impl<'a> crate::TaggedStructure<'a>
 for PhysicalDeviceExternalFormatResolvePropertiesANDROID<'a> {
     const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::PHYSICAL_DEVICE_EXTERNAL_FORMAT_RESOLVE_PROPERTIES_ANDROID;
 }
+unsafe impl<'a> crate::Extends<crate::vk::PhysicalDeviceProperties2<'_>>
+for PhysicalDeviceExternalFormatResolvePropertiesANDROID<'a> {}
 impl<'a> Default for PhysicalDeviceExternalFormatResolvePropertiesANDROID<'a> {
     fn default() -> Self {
         Self {
@@ -61,6 +67,8 @@ unsafe impl<'a> crate::TaggedStructure<'a>
 for AndroidHardwareBufferFormatResolvePropertiesANDROID<'a> {
     const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::ANDROID_HARDWARE_BUFFER_FORMAT_RESOLVE_PROPERTIES_ANDROID;
 }
+unsafe impl<'a> crate::Extends<crate::vk::AndroidHardwareBufferPropertiesANDROID<'_>>
+for AndroidHardwareBufferFormatResolvePropertiesANDROID<'a> {}
 impl<'a> Default for AndroidHardwareBufferFormatResolvePropertiesANDROID<'a> {
     fn default() -> Self {
         Self {

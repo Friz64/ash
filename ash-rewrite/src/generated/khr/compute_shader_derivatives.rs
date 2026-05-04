@@ -14,6 +14,10 @@ unsafe impl<'a> crate::TaggedStructure<'a>
 for PhysicalDeviceComputeShaderDerivativesFeaturesKHR<'a> {
     const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::PHYSICAL_DEVICE_COMPUTE_SHADER_DERIVATIVES_FEATURES_KHR;
 }
+unsafe impl<'a> crate::Extends<crate::vk::PhysicalDeviceFeatures2<'_>>
+for PhysicalDeviceComputeShaderDerivativesFeaturesKHR<'a> {}
+unsafe impl<'a> crate::Extends<crate::vk::DeviceCreateInfo<'_>>
+for PhysicalDeviceComputeShaderDerivativesFeaturesKHR<'a> {}
 impl<'a> Default for PhysicalDeviceComputeShaderDerivativesFeaturesKHR<'a> {
     fn default() -> Self {
         Self {
@@ -37,6 +41,8 @@ unsafe impl<'a> crate::TaggedStructure<'a>
 for PhysicalDeviceComputeShaderDerivativesPropertiesKHR<'a> {
     const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::PHYSICAL_DEVICE_COMPUTE_SHADER_DERIVATIVES_PROPERTIES_KHR;
 }
+unsafe impl<'a> crate::Extends<crate::vk::PhysicalDeviceProperties2<'_>>
+for PhysicalDeviceComputeShaderDerivativesPropertiesKHR<'a> {}
 impl<'a> Default for PhysicalDeviceComputeShaderDerivativesPropertiesKHR<'a> {
     fn default() -> Self {
         Self {

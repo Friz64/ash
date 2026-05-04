@@ -201,6 +201,12 @@ pub(crate) mod reexport {
     unsafe impl<'a> crate::TaggedStructure<'a> for PipelineBinaryInfoKHR<'a> {
         const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::PIPELINE_BINARY_INFO_KHR;
     }
+    unsafe impl<'a> crate::Extends<crate::vk::GraphicsPipelineCreateInfo<'_>>
+    for PipelineBinaryInfoKHR<'a> {}
+    unsafe impl<'a> crate::Extends<crate::vk::ComputePipelineCreateInfo<'_>>
+    for PipelineBinaryInfoKHR<'a> {}
+    unsafe impl<'a> crate::Extends<crate::vk::RayTracingPipelineCreateInfoKHR<'_>>
+    for PipelineBinaryInfoKHR<'a> {}
     impl<'a> Default for PipelineBinaryInfoKHR<'a> {
         fn default() -> Self {
             Self {
@@ -286,6 +292,10 @@ pub(crate) mod reexport {
     for PhysicalDevicePipelineBinaryFeaturesKHR<'a> {
         const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::PHYSICAL_DEVICE_PIPELINE_BINARY_FEATURES_KHR;
     }
+    unsafe impl<'a> crate::Extends<crate::vk::PhysicalDeviceFeatures2<'_>>
+    for PhysicalDevicePipelineBinaryFeaturesKHR<'a> {}
+    unsafe impl<'a> crate::Extends<crate::vk::DeviceCreateInfo<'_>>
+    for PhysicalDevicePipelineBinaryFeaturesKHR<'a> {}
     impl<'a> Default for PhysicalDevicePipelineBinaryFeaturesKHR<'a> {
         fn default() -> Self {
             Self {
@@ -308,6 +318,8 @@ pub(crate) mod reexport {
     for DevicePipelineBinaryInternalCacheControlKHR<'a> {
         const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::DEVICE_PIPELINE_BINARY_INTERNAL_CACHE_CONTROL_KHR;
     }
+    unsafe impl<'a> crate::Extends<crate::vk::DeviceCreateInfo<'_>>
+    for DevicePipelineBinaryInternalCacheControlKHR<'a> {}
     impl<'a> Default for DevicePipelineBinaryInternalCacheControlKHR<'a> {
         fn default() -> Self {
             Self {
@@ -334,6 +346,8 @@ pub(crate) mod reexport {
     for PhysicalDevicePipelineBinaryPropertiesKHR<'a> {
         const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::PHYSICAL_DEVICE_PIPELINE_BINARY_PROPERTIES_KHR;
     }
+    unsafe impl<'a> crate::Extends<crate::vk::PhysicalDeviceProperties2<'_>>
+    for PhysicalDevicePipelineBinaryPropertiesKHR<'a> {}
     impl<'a> Default for PhysicalDevicePipelineBinaryPropertiesKHR<'a> {
         fn default() -> Self {
             Self {

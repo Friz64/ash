@@ -34,6 +34,8 @@ unsafe impl<'a> crate::TaggedStructure<'a>
 for DataGraphPipelineBuiltinModelCreateInfoQCOM<'a> {
     const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::DATA_GRAPH_PIPELINE_BUILTIN_MODEL_CREATE_INFO_QCOM;
 }
+unsafe impl<'a> crate::Extends<crate::vk::DataGraphPipelineCreateInfoARM<'_>>
+for DataGraphPipelineBuiltinModelCreateInfoQCOM<'a> {}
 impl<'a> Default for DataGraphPipelineBuiltinModelCreateInfoQCOM<'a> {
     fn default() -> Self {
         Self {
@@ -56,6 +58,10 @@ unsafe impl<'a> crate::TaggedStructure<'a>
 for PhysicalDeviceDataGraphModelFeaturesQCOM<'a> {
     const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::PHYSICAL_DEVICE_DATA_GRAPH_MODEL_FEATURES_QCOM;
 }
+unsafe impl<'a> crate::Extends<crate::vk::PhysicalDeviceFeatures2<'_>>
+for PhysicalDeviceDataGraphModelFeaturesQCOM<'a> {}
+unsafe impl<'a> crate::Extends<crate::vk::DeviceCreateInfo<'_>>
+for PhysicalDeviceDataGraphModelFeaturesQCOM<'a> {}
 impl<'a> Default for PhysicalDeviceDataGraphModelFeaturesQCOM<'a> {
     fn default() -> Self {
         Self {

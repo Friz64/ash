@@ -13,6 +13,10 @@ unsafe impl<'a> crate::TaggedStructure<'a>
 for PhysicalDeviceDiagnosticsConfigFeaturesNV<'a> {
     const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::PHYSICAL_DEVICE_DIAGNOSTICS_CONFIG_FEATURES_NV;
 }
+unsafe impl<'a> crate::Extends<crate::vk::PhysicalDeviceFeatures2<'_>>
+for PhysicalDeviceDiagnosticsConfigFeaturesNV<'a> {}
+unsafe impl<'a> crate::Extends<crate::vk::DeviceCreateInfo<'_>>
+for PhysicalDeviceDiagnosticsConfigFeaturesNV<'a> {}
 impl<'a> Default for PhysicalDeviceDiagnosticsConfigFeaturesNV<'a> {
     fn default() -> Self {
         Self {
@@ -34,6 +38,8 @@ pub struct DeviceDiagnosticsConfigCreateInfoNV<'a> {
 unsafe impl<'a> crate::TaggedStructure<'a> for DeviceDiagnosticsConfigCreateInfoNV<'a> {
     const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::DEVICE_DIAGNOSTICS_CONFIG_CREATE_INFO_NV;
 }
+unsafe impl<'a> crate::Extends<crate::vk::DeviceCreateInfo<'_>>
+for DeviceDiagnosticsConfigCreateInfoNV<'a> {}
 impl<'a> Default for DeviceDiagnosticsConfigCreateInfoNV<'a> {
     fn default() -> Self {
         Self {

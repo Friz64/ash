@@ -13,6 +13,8 @@ unsafe impl<'a> crate::TaggedStructure<'a>
 for PhysicalDeviceMultiviewPerViewAttributesPropertiesNVX<'a> {
     const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::PHYSICAL_DEVICE_MULTIVIEW_PER_VIEW_ATTRIBUTES_PROPERTIES_NVX;
 }
+unsafe impl<'a> crate::Extends<crate::vk::PhysicalDeviceProperties2<'_>>
+for PhysicalDeviceMultiviewPerViewAttributesPropertiesNVX<'a> {}
 impl<'a> Default for PhysicalDeviceMultiviewPerViewAttributesPropertiesNVX<'a> {
     fn default() -> Self {
         Self {
@@ -35,6 +37,12 @@ pub struct MultiviewPerViewAttributesInfoNVX<'a> {
 unsafe impl<'a> crate::TaggedStructure<'a> for MultiviewPerViewAttributesInfoNVX<'a> {
     const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::MULTIVIEW_PER_VIEW_ATTRIBUTES_INFO_NVX;
 }
+unsafe impl<'a> crate::Extends<crate::vk::CommandBufferInheritanceInfo<'_>>
+for MultiviewPerViewAttributesInfoNVX<'a> {}
+unsafe impl<'a> crate::Extends<crate::vk::GraphicsPipelineCreateInfo<'_>>
+for MultiviewPerViewAttributesInfoNVX<'a> {}
+unsafe impl<'a> crate::Extends<crate::vk::RenderingInfo<'_>>
+for MultiviewPerViewAttributesInfoNVX<'a> {}
 impl<'a> Default for MultiviewPerViewAttributesInfoNVX<'a> {
     fn default() -> Self {
         Self {

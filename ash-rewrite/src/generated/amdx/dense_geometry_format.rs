@@ -13,6 +13,10 @@ unsafe impl<'a> crate::TaggedStructure<'a>
 for PhysicalDeviceDenseGeometryFormatFeaturesAMDX<'a> {
     const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::PHYSICAL_DEVICE_DENSE_GEOMETRY_FORMAT_FEATURES_AMDX;
 }
+unsafe impl<'a> crate::Extends<crate::vk::PhysicalDeviceFeatures2<'_>>
+for PhysicalDeviceDenseGeometryFormatFeaturesAMDX<'a> {}
+unsafe impl<'a> crate::Extends<crate::vk::DeviceCreateInfo<'_>>
+for PhysicalDeviceDenseGeometryFormatFeaturesAMDX<'a> {}
 impl<'a> Default for PhysicalDeviceDenseGeometryFormatFeaturesAMDX<'a> {
     fn default() -> Self {
         Self {
@@ -41,6 +45,8 @@ unsafe impl<'a> crate::TaggedStructure<'a>
 for AccelerationStructureDenseGeometryFormatTrianglesDataAMDX<'a> {
     const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::ACCELERATION_STRUCTURE_DENSE_GEOMETRY_FORMAT_TRIANGLES_DATA_AMDX;
 }
+unsafe impl<'a> crate::Extends<crate::vk::AccelerationStructureGeometryKHR<'_>>
+for AccelerationStructureDenseGeometryFormatTrianglesDataAMDX<'a> {}
 impl<'a> Default for AccelerationStructureDenseGeometryFormatTrianglesDataAMDX<'a> {
     fn default() -> Self {
         Self {

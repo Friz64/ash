@@ -13,6 +13,7 @@ pub struct PresentRegionsKHR<'a> {
 unsafe impl<'a> crate::TaggedStructure<'a> for PresentRegionsKHR<'a> {
     const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::PRESENT_REGIONS_KHR;
 }
+unsafe impl<'a> crate::Extends<crate::vk::PresentInfoKHR<'_>> for PresentRegionsKHR<'a> {}
 impl<'a> Default for PresentRegionsKHR<'a> {
     fn default() -> Self {
         Self {

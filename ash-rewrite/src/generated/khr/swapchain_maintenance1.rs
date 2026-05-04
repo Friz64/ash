@@ -47,6 +47,10 @@ pub(crate) mod reexport {
     for PhysicalDeviceSwapchainMaintenance1FeaturesKHR<'a> {
         const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::PHYSICAL_DEVICE_SWAPCHAIN_MAINTENANCE_1_FEATURES_KHR;
     }
+    unsafe impl<'a> crate::Extends<crate::vk::PhysicalDeviceFeatures2<'_>>
+    for PhysicalDeviceSwapchainMaintenance1FeaturesKHR<'a> {}
+    unsafe impl<'a> crate::Extends<crate::vk::DeviceCreateInfo<'_>>
+    for PhysicalDeviceSwapchainMaintenance1FeaturesKHR<'a> {}
     impl<'a> Default for PhysicalDeviceSwapchainMaintenance1FeaturesKHR<'a> {
         fn default() -> Self {
             Self {
@@ -69,6 +73,8 @@ pub(crate) mod reexport {
     unsafe impl<'a> crate::TaggedStructure<'a> for SwapchainPresentFenceInfoKHR<'a> {
         const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::SWAPCHAIN_PRESENT_FENCE_INFO_KHR;
     }
+    unsafe impl<'a> crate::Extends<crate::vk::PresentInfoKHR<'_>>
+    for SwapchainPresentFenceInfoKHR<'a> {}
     impl<'a> Default for SwapchainPresentFenceInfoKHR<'a> {
         fn default() -> Self {
             Self {
@@ -93,6 +99,8 @@ pub(crate) mod reexport {
     for SwapchainPresentModesCreateInfoKHR<'a> {
         const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::SWAPCHAIN_PRESENT_MODES_CREATE_INFO_KHR;
     }
+    unsafe impl<'a> crate::Extends<crate::vk::SwapchainCreateInfoKHR<'_>>
+    for SwapchainPresentModesCreateInfoKHR<'a> {}
     impl<'a> Default for SwapchainPresentModesCreateInfoKHR<'a> {
         fn default() -> Self {
             Self {
@@ -116,6 +124,8 @@ pub(crate) mod reexport {
     unsafe impl<'a> crate::TaggedStructure<'a> for SwapchainPresentModeInfoKHR<'a> {
         const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::SWAPCHAIN_PRESENT_MODE_INFO_KHR;
     }
+    unsafe impl<'a> crate::Extends<crate::vk::PresentInfoKHR<'_>>
+    for SwapchainPresentModeInfoKHR<'a> {}
     impl<'a> Default for SwapchainPresentModeInfoKHR<'a> {
         fn default() -> Self {
             Self {
@@ -141,6 +151,8 @@ pub(crate) mod reexport {
     for SwapchainPresentScalingCreateInfoKHR<'a> {
         const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::SWAPCHAIN_PRESENT_SCALING_CREATE_INFO_KHR;
     }
+    unsafe impl<'a> crate::Extends<crate::vk::SwapchainCreateInfoKHR<'_>>
+    for SwapchainPresentScalingCreateInfoKHR<'a> {}
     impl<'a> Default for SwapchainPresentScalingCreateInfoKHR<'a> {
         fn default() -> Self {
             Self {

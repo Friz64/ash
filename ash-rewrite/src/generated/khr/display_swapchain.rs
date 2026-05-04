@@ -51,6 +51,8 @@ pub(crate) mod reexport {
     unsafe impl<'a> crate::TaggedStructure<'a> for DisplayPresentInfoKHR<'a> {
         const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::DISPLAY_PRESENT_INFO_KHR;
     }
+    unsafe impl<'a> crate::Extends<crate::vk::PresentInfoKHR<'_>>
+    for DisplayPresentInfoKHR<'a> {}
     impl<'a> Default for DisplayPresentInfoKHR<'a> {
         fn default() -> Self {
             Self {

@@ -16,6 +16,10 @@ unsafe impl<'a> crate::TaggedStructure<'a>
 for PhysicalDeviceWorkgroupMemoryExplicitLayoutFeaturesKHR<'a> {
     const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::PHYSICAL_DEVICE_WORKGROUP_MEMORY_EXPLICIT_LAYOUT_FEATURES_KHR;
 }
+unsafe impl<'a> crate::Extends<crate::vk::PhysicalDeviceFeatures2<'_>>
+for PhysicalDeviceWorkgroupMemoryExplicitLayoutFeaturesKHR<'a> {}
+unsafe impl<'a> crate::Extends<crate::vk::DeviceCreateInfo<'_>>
+for PhysicalDeviceWorkgroupMemoryExplicitLayoutFeaturesKHR<'a> {}
 impl<'a> Default for PhysicalDeviceWorkgroupMemoryExplicitLayoutFeaturesKHR<'a> {
     fn default() -> Self {
         Self {

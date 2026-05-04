@@ -116,6 +116,8 @@ pub(crate) mod reexport {
     for ImportMemoryBufferCollectionFUCHSIA<'a> {
         const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::IMPORT_MEMORY_BUFFER_COLLECTION_FUCHSIA;
     }
+    unsafe impl<'a> crate::Extends<crate::vk::MemoryAllocateInfo<'_>>
+    for ImportMemoryBufferCollectionFUCHSIA<'a> {}
     impl<'a> Default for ImportMemoryBufferCollectionFUCHSIA<'a> {
         fn default() -> Self {
             Self {
@@ -140,6 +142,8 @@ pub(crate) mod reexport {
     for BufferCollectionImageCreateInfoFUCHSIA<'a> {
         const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::BUFFER_COLLECTION_IMAGE_CREATE_INFO_FUCHSIA;
     }
+    unsafe impl<'a> crate::Extends<crate::vk::ImageCreateInfo<'_>>
+    for BufferCollectionImageCreateInfoFUCHSIA<'a> {}
     impl<'a> Default for BufferCollectionImageCreateInfoFUCHSIA<'a> {
         fn default() -> Self {
             Self {
@@ -164,6 +168,8 @@ pub(crate) mod reexport {
     for BufferCollectionBufferCreateInfoFUCHSIA<'a> {
         const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::BUFFER_COLLECTION_BUFFER_CREATE_INFO_FUCHSIA;
     }
+    unsafe impl<'a> crate::Extends<crate::vk::BufferCreateInfo<'_>>
+    for BufferCollectionBufferCreateInfoFUCHSIA<'a> {}
     impl<'a> Default for BufferCollectionBufferCreateInfoFUCHSIA<'a> {
         fn default() -> Self {
             Self {

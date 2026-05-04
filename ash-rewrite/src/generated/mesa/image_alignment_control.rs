@@ -13,6 +13,10 @@ unsafe impl<'a> crate::TaggedStructure<'a>
 for PhysicalDeviceImageAlignmentControlFeaturesMESA<'a> {
     const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::PHYSICAL_DEVICE_IMAGE_ALIGNMENT_CONTROL_FEATURES_MESA;
 }
+unsafe impl<'a> crate::Extends<crate::vk::PhysicalDeviceFeatures2<'_>>
+for PhysicalDeviceImageAlignmentControlFeaturesMESA<'a> {}
+unsafe impl<'a> crate::Extends<crate::vk::DeviceCreateInfo<'_>>
+for PhysicalDeviceImageAlignmentControlFeaturesMESA<'a> {}
 impl<'a> Default for PhysicalDeviceImageAlignmentControlFeaturesMESA<'a> {
     fn default() -> Self {
         Self {
@@ -35,6 +39,8 @@ unsafe impl<'a> crate::TaggedStructure<'a>
 for PhysicalDeviceImageAlignmentControlPropertiesMESA<'a> {
     const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::PHYSICAL_DEVICE_IMAGE_ALIGNMENT_CONTROL_PROPERTIES_MESA;
 }
+unsafe impl<'a> crate::Extends<crate::vk::PhysicalDeviceProperties2<'_>>
+for PhysicalDeviceImageAlignmentControlPropertiesMESA<'a> {}
 impl<'a> Default for PhysicalDeviceImageAlignmentControlPropertiesMESA<'a> {
     fn default() -> Self {
         Self {
@@ -56,6 +62,8 @@ pub struct ImageAlignmentControlCreateInfoMESA<'a> {
 unsafe impl<'a> crate::TaggedStructure<'a> for ImageAlignmentControlCreateInfoMESA<'a> {
     const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::IMAGE_ALIGNMENT_CONTROL_CREATE_INFO_MESA;
 }
+unsafe impl<'a> crate::Extends<crate::vk::ImageCreateInfo<'_>>
+for ImageAlignmentControlCreateInfoMESA<'a> {}
 impl<'a> Default for ImageAlignmentControlCreateInfoMESA<'a> {
     fn default() -> Self {
         Self {

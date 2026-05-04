@@ -27,6 +27,10 @@ unsafe impl<'a> crate::TaggedStructure<'a>
 for PhysicalDevicePortabilitySubsetFeaturesKHR<'a> {
     const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::PHYSICAL_DEVICE_PORTABILITY_SUBSET_FEATURES_KHR;
 }
+unsafe impl<'a> crate::Extends<crate::vk::PhysicalDeviceFeatures2<'_>>
+for PhysicalDevicePortabilitySubsetFeaturesKHR<'a> {}
+unsafe impl<'a> crate::Extends<crate::vk::DeviceCreateInfo<'_>>
+for PhysicalDevicePortabilitySubsetFeaturesKHR<'a> {}
 impl<'a> Default for PhysicalDevicePortabilitySubsetFeaturesKHR<'a> {
     fn default() -> Self {
         Self {
@@ -63,6 +67,8 @@ unsafe impl<'a> crate::TaggedStructure<'a>
 for PhysicalDevicePortabilitySubsetPropertiesKHR<'a> {
     const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::PHYSICAL_DEVICE_PORTABILITY_SUBSET_PROPERTIES_KHR;
 }
+unsafe impl<'a> crate::Extends<crate::vk::PhysicalDeviceProperties2<'_>>
+for PhysicalDevicePortabilitySubsetPropertiesKHR<'a> {}
 impl<'a> Default for PhysicalDevicePortabilitySubsetPropertiesKHR<'a> {
     fn default() -> Self {
         Self {

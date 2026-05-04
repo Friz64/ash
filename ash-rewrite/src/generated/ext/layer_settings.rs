@@ -13,6 +13,8 @@ pub struct LayerSettingsCreateInfoEXT<'a> {
 unsafe impl<'a> crate::TaggedStructure<'a> for LayerSettingsCreateInfoEXT<'a> {
     const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::LAYER_SETTINGS_CREATE_INFO_EXT;
 }
+unsafe impl<'a> crate::Extends<crate::vk::InstanceCreateInfo<'_>>
+for LayerSettingsCreateInfoEXT<'a> {}
 impl<'a> Default for LayerSettingsCreateInfoEXT<'a> {
     fn default() -> Self {
         Self {

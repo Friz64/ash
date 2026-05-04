@@ -13,6 +13,10 @@ unsafe impl<'a> crate::TaggedStructure<'a>
 for PhysicalDeviceMaintenance7FeaturesKHR<'a> {
     const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::PHYSICAL_DEVICE_MAINTENANCE_7_FEATURES_KHR;
 }
+unsafe impl<'a> crate::Extends<crate::vk::PhysicalDeviceFeatures2<'_>>
+for PhysicalDeviceMaintenance7FeaturesKHR<'a> {}
+unsafe impl<'a> crate::Extends<crate::vk::DeviceCreateInfo<'_>>
+for PhysicalDeviceMaintenance7FeaturesKHR<'a> {}
 impl<'a> Default for PhysicalDeviceMaintenance7FeaturesKHR<'a> {
     fn default() -> Self {
         Self {
@@ -42,6 +46,8 @@ unsafe impl<'a> crate::TaggedStructure<'a>
 for PhysicalDeviceMaintenance7PropertiesKHR<'a> {
     const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::PHYSICAL_DEVICE_MAINTENANCE_7_PROPERTIES_KHR;
 }
+unsafe impl<'a> crate::Extends<crate::vk::PhysicalDeviceProperties2<'_>>
+for PhysicalDeviceMaintenance7PropertiesKHR<'a> {}
 impl<'a> Default for PhysicalDeviceMaintenance7PropertiesKHR<'a> {
     fn default() -> Self {
         Self {
@@ -72,6 +78,8 @@ unsafe impl<'a> crate::TaggedStructure<'a>
 for PhysicalDeviceLayeredApiPropertiesListKHR<'a> {
     const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::PHYSICAL_DEVICE_LAYERED_API_PROPERTIES_LIST_KHR;
 }
+unsafe impl<'a> crate::Extends<crate::vk::PhysicalDeviceProperties2<'_>>
+for PhysicalDeviceLayeredApiPropertiesListKHR<'a> {}
 impl<'a> Default for PhysicalDeviceLayeredApiPropertiesListKHR<'a> {
     fn default() -> Self {
         Self {
@@ -123,6 +131,8 @@ unsafe impl<'a> crate::TaggedStructure<'a>
 for PhysicalDeviceLayeredApiVulkanPropertiesKHR<'a> {
     const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::PHYSICAL_DEVICE_LAYERED_API_VULKAN_PROPERTIES_KHR;
 }
+unsafe impl<'a> crate::Extends<crate::vk::PhysicalDeviceLayeredApiPropertiesKHR<'_>>
+for PhysicalDeviceLayeredApiVulkanPropertiesKHR<'a> {}
 impl<'a> Default for PhysicalDeviceLayeredApiVulkanPropertiesKHR<'a> {
     fn default() -> Self {
         Self {

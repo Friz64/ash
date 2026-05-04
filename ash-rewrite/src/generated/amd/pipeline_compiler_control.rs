@@ -12,6 +12,12 @@ pub struct PipelineCompilerControlCreateInfoAMD<'a> {
 unsafe impl<'a> crate::TaggedStructure<'a> for PipelineCompilerControlCreateInfoAMD<'a> {
     const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::PIPELINE_COMPILER_CONTROL_CREATE_INFO_AMD;
 }
+unsafe impl<'a> crate::Extends<crate::vk::GraphicsPipelineCreateInfo<'_>>
+for PipelineCompilerControlCreateInfoAMD<'a> {}
+unsafe impl<'a> crate::Extends<crate::vk::ComputePipelineCreateInfo<'_>>
+for PipelineCompilerControlCreateInfoAMD<'a> {}
+unsafe impl<'a> crate::Extends<crate::vk::ExecutionGraphPipelineCreateInfoAMDX<'_>>
+for PipelineCompilerControlCreateInfoAMD<'a> {}
 impl<'a> Default for PipelineCompilerControlCreateInfoAMD<'a> {
     fn default() -> Self {
         Self {

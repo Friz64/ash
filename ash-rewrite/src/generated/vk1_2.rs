@@ -251,6 +251,8 @@ pub(crate) mod reexport {
     unsafe impl<'a> crate::TaggedStructure<'a> for PhysicalDeviceDriverProperties<'a> {
         const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::PHYSICAL_DEVICE_DRIVER_PROPERTIES;
     }
+    unsafe impl<'a> crate::Extends<crate::vk::PhysicalDeviceProperties2<'_>>
+    for PhysicalDeviceDriverProperties<'a> {}
     impl<'a> Default for PhysicalDeviceDriverProperties<'a> {
         fn default() -> Self {
             Self {
@@ -276,6 +278,10 @@ pub(crate) mod reexport {
     for PhysicalDeviceShaderSubgroupExtendedTypesFeatures<'a> {
         const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::PHYSICAL_DEVICE_SHADER_SUBGROUP_EXTENDED_TYPES_FEATURES;
     }
+    unsafe impl<'a> crate::Extends<crate::vk::PhysicalDeviceFeatures2<'_>>
+    for PhysicalDeviceShaderSubgroupExtendedTypesFeatures<'a> {}
+    unsafe impl<'a> crate::Extends<crate::vk::DeviceCreateInfo<'_>>
+    for PhysicalDeviceShaderSubgroupExtendedTypesFeatures<'a> {}
     impl<'a> Default for PhysicalDeviceShaderSubgroupExtendedTypesFeatures<'a> {
         fn default() -> Self {
             Self {
@@ -299,6 +305,8 @@ pub(crate) mod reexport {
     for PhysicalDeviceSamplerFilterMinmaxProperties<'a> {
         const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::PHYSICAL_DEVICE_SAMPLER_FILTER_MINMAX_PROPERTIES;
     }
+    unsafe impl<'a> crate::Extends<crate::vk::PhysicalDeviceProperties2<'_>>
+    for PhysicalDeviceSamplerFilterMinmaxProperties<'a> {}
     impl<'a> Default for PhysicalDeviceSamplerFilterMinmaxProperties<'a> {
         fn default() -> Self {
             Self {
@@ -321,6 +329,8 @@ pub(crate) mod reexport {
     unsafe impl<'a> crate::TaggedStructure<'a> for SamplerReductionModeCreateInfo<'a> {
         const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::SAMPLER_REDUCTION_MODE_CREATE_INFO;
     }
+    unsafe impl<'a> crate::Extends<crate::vk::SamplerCreateInfo<'_>>
+    for SamplerReductionModeCreateInfo<'a> {}
     impl<'a> Default for SamplerReductionModeCreateInfo<'a> {
         fn default() -> Self {
             Self {
@@ -343,6 +353,12 @@ pub(crate) mod reexport {
     unsafe impl<'a> crate::TaggedStructure<'a> for ImageFormatListCreateInfo<'a> {
         const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::IMAGE_FORMAT_LIST_CREATE_INFO;
     }
+    unsafe impl<'a> crate::Extends<crate::vk::ImageCreateInfo<'_>>
+    for ImageFormatListCreateInfo<'a> {}
+    unsafe impl<'a> crate::Extends<crate::vk::SwapchainCreateInfoKHR<'_>>
+    for ImageFormatListCreateInfo<'a> {}
+    unsafe impl<'a> crate::Extends<crate::vk::PhysicalDeviceImageFormatInfo2<'_>>
+    for ImageFormatListCreateInfo<'a> {}
     impl<'a> Default for ImageFormatListCreateInfo<'a> {
         fn default() -> Self {
             Self {
@@ -367,6 +383,10 @@ pub(crate) mod reexport {
     for PhysicalDeviceShaderFloat16Int8Features<'a> {
         const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::PHYSICAL_DEVICE_SHADER_FLOAT16_INT8_FEATURES;
     }
+    unsafe impl<'a> crate::Extends<crate::vk::PhysicalDeviceFeatures2<'_>>
+    for PhysicalDeviceShaderFloat16Int8Features<'a> {}
+    unsafe impl<'a> crate::Extends<crate::vk::DeviceCreateInfo<'_>>
+    for PhysicalDeviceShaderFloat16Int8Features<'a> {}
     impl<'a> Default for PhysicalDeviceShaderFloat16Int8Features<'a> {
         fn default() -> Self {
             Self {
@@ -406,6 +426,8 @@ pub(crate) mod reexport {
     for PhysicalDeviceFloatControlsProperties<'a> {
         const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::PHYSICAL_DEVICE_FLOAT_CONTROLS_PROPERTIES;
     }
+    unsafe impl<'a> crate::Extends<crate::vk::PhysicalDeviceProperties2<'_>>
+    for PhysicalDeviceFloatControlsProperties<'a> {}
     impl<'a> Default for PhysicalDeviceFloatControlsProperties<'a> {
         fn default() -> Self {
             Self {
@@ -444,6 +466,10 @@ pub(crate) mod reexport {
     for PhysicalDeviceHostQueryResetFeatures<'a> {
         const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::PHYSICAL_DEVICE_HOST_QUERY_RESET_FEATURES;
     }
+    unsafe impl<'a> crate::Extends<crate::vk::PhysicalDeviceFeatures2<'_>>
+    for PhysicalDeviceHostQueryResetFeatures<'a> {}
+    unsafe impl<'a> crate::Extends<crate::vk::DeviceCreateInfo<'_>>
+    for PhysicalDeviceHostQueryResetFeatures<'a> {}
     impl<'a> Default for PhysicalDeviceHostQueryResetFeatures<'a> {
         fn default() -> Self {
             Self {
@@ -485,6 +511,10 @@ pub(crate) mod reexport {
     for PhysicalDeviceDescriptorIndexingFeatures<'a> {
         const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::PHYSICAL_DEVICE_DESCRIPTOR_INDEXING_FEATURES;
     }
+    unsafe impl<'a> crate::Extends<crate::vk::PhysicalDeviceFeatures2<'_>>
+    for PhysicalDeviceDescriptorIndexingFeatures<'a> {}
+    unsafe impl<'a> crate::Extends<crate::vk::DeviceCreateInfo<'_>>
+    for PhysicalDeviceDescriptorIndexingFeatures<'a> {}
     impl<'a> Default for PhysicalDeviceDescriptorIndexingFeatures<'a> {
         fn default() -> Self {
             Self {
@@ -548,6 +578,8 @@ pub(crate) mod reexport {
     for PhysicalDeviceDescriptorIndexingProperties<'a> {
         const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::PHYSICAL_DEVICE_DESCRIPTOR_INDEXING_PROPERTIES;
     }
+    unsafe impl<'a> crate::Extends<crate::vk::PhysicalDeviceProperties2<'_>>
+    for PhysicalDeviceDescriptorIndexingProperties<'a> {}
     impl<'a> Default for PhysicalDeviceDescriptorIndexingProperties<'a> {
         fn default() -> Self {
             Self {
@@ -593,6 +625,8 @@ pub(crate) mod reexport {
     for DescriptorSetLayoutBindingFlagsCreateInfo<'a> {
         const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::DESCRIPTOR_SET_LAYOUT_BINDING_FLAGS_CREATE_INFO;
     }
+    unsafe impl<'a> crate::Extends<crate::vk::DescriptorSetLayoutCreateInfo<'_>>
+    for DescriptorSetLayoutBindingFlagsCreateInfo<'a> {}
     impl<'a> Default for DescriptorSetLayoutBindingFlagsCreateInfo<'a> {
         fn default() -> Self {
             Self {
@@ -617,6 +651,8 @@ pub(crate) mod reexport {
     for DescriptorSetVariableDescriptorCountAllocateInfo<'a> {
         const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::DESCRIPTOR_SET_VARIABLE_DESCRIPTOR_COUNT_ALLOCATE_INFO;
     }
+    unsafe impl<'a> crate::Extends<crate::vk::DescriptorSetAllocateInfo<'_>>
+    for DescriptorSetVariableDescriptorCountAllocateInfo<'a> {}
     impl<'a> Default for DescriptorSetVariableDescriptorCountAllocateInfo<'a> {
         fn default() -> Self {
             Self {
@@ -640,6 +676,8 @@ pub(crate) mod reexport {
     for DescriptorSetVariableDescriptorCountLayoutSupport<'a> {
         const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::DESCRIPTOR_SET_VARIABLE_DESCRIPTOR_COUNT_LAYOUT_SUPPORT;
     }
+    unsafe impl<'a> crate::Extends<crate::vk::DescriptorSetLayoutSupport<'_>>
+    for DescriptorSetVariableDescriptorCountLayoutSupport<'a> {}
     impl<'a> Default for DescriptorSetVariableDescriptorCountLayoutSupport<'a> {
         fn default() -> Self {
             Self {
@@ -877,6 +915,10 @@ pub(crate) mod reexport {
     for PhysicalDeviceTimelineSemaphoreFeatures<'a> {
         const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::PHYSICAL_DEVICE_TIMELINE_SEMAPHORE_FEATURES;
     }
+    unsafe impl<'a> crate::Extends<crate::vk::PhysicalDeviceFeatures2<'_>>
+    for PhysicalDeviceTimelineSemaphoreFeatures<'a> {}
+    unsafe impl<'a> crate::Extends<crate::vk::DeviceCreateInfo<'_>>
+    for PhysicalDeviceTimelineSemaphoreFeatures<'a> {}
     impl<'a> Default for PhysicalDeviceTimelineSemaphoreFeatures<'a> {
         fn default() -> Self {
             Self {
@@ -899,6 +941,8 @@ pub(crate) mod reexport {
     for PhysicalDeviceTimelineSemaphoreProperties<'a> {
         const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::PHYSICAL_DEVICE_TIMELINE_SEMAPHORE_PROPERTIES;
     }
+    unsafe impl<'a> crate::Extends<crate::vk::PhysicalDeviceProperties2<'_>>
+    for PhysicalDeviceTimelineSemaphoreProperties<'a> {}
     impl<'a> Default for PhysicalDeviceTimelineSemaphoreProperties<'a> {
         fn default() -> Self {
             Self {
@@ -921,6 +965,10 @@ pub(crate) mod reexport {
     unsafe impl<'a> crate::TaggedStructure<'a> for SemaphoreTypeCreateInfo<'a> {
         const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::SEMAPHORE_TYPE_CREATE_INFO;
     }
+    unsafe impl<'a> crate::Extends<crate::vk::SemaphoreCreateInfo<'_>>
+    for SemaphoreTypeCreateInfo<'a> {}
+    unsafe impl<'a> crate::Extends<crate::vk::PhysicalDeviceExternalSemaphoreInfo<'_>>
+    for SemaphoreTypeCreateInfo<'a> {}
     impl<'a> Default for SemaphoreTypeCreateInfo<'a> {
         fn default() -> Self {
             Self {
@@ -946,6 +994,10 @@ pub(crate) mod reexport {
     unsafe impl<'a> crate::TaggedStructure<'a> for TimelineSemaphoreSubmitInfo<'a> {
         const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::TIMELINE_SEMAPHORE_SUBMIT_INFO;
     }
+    unsafe impl<'a> crate::Extends<crate::vk::SubmitInfo<'_>>
+    for TimelineSemaphoreSubmitInfo<'a> {}
+    unsafe impl<'a> crate::Extends<crate::vk::BindSparseInfo<'_>>
+    for TimelineSemaphoreSubmitInfo<'a> {}
     impl<'a> Default for TimelineSemaphoreSubmitInfo<'a> {
         fn default() -> Self {
             Self {
@@ -1023,6 +1075,10 @@ pub(crate) mod reexport {
     for PhysicalDevice8BitStorageFeatures<'a> {
         const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::PHYSICAL_DEVICE_8BIT_STORAGE_FEATURES;
     }
+    unsafe impl<'a> crate::Extends<crate::vk::PhysicalDeviceFeatures2<'_>>
+    for PhysicalDevice8BitStorageFeatures<'a> {}
+    unsafe impl<'a> crate::Extends<crate::vk::DeviceCreateInfo<'_>>
+    for PhysicalDevice8BitStorageFeatures<'a> {}
     impl<'a> Default for PhysicalDevice8BitStorageFeatures<'a> {
         fn default() -> Self {
             Self {
@@ -1049,6 +1105,10 @@ pub(crate) mod reexport {
     for PhysicalDeviceVulkanMemoryModelFeatures<'a> {
         const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::PHYSICAL_DEVICE_VULKAN_MEMORY_MODEL_FEATURES;
     }
+    unsafe impl<'a> crate::Extends<crate::vk::PhysicalDeviceFeatures2<'_>>
+    for PhysicalDeviceVulkanMemoryModelFeatures<'a> {}
+    unsafe impl<'a> crate::Extends<crate::vk::DeviceCreateInfo<'_>>
+    for PhysicalDeviceVulkanMemoryModelFeatures<'a> {}
     impl<'a> Default for PhysicalDeviceVulkanMemoryModelFeatures<'a> {
         fn default() -> Self {
             Self {
@@ -1074,6 +1134,10 @@ pub(crate) mod reexport {
     for PhysicalDeviceShaderAtomicInt64Features<'a> {
         const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::PHYSICAL_DEVICE_SHADER_ATOMIC_INT64_FEATURES;
     }
+    unsafe impl<'a> crate::Extends<crate::vk::PhysicalDeviceFeatures2<'_>>
+    for PhysicalDeviceShaderAtomicInt64Features<'a> {}
+    unsafe impl<'a> crate::Extends<crate::vk::DeviceCreateInfo<'_>>
+    for PhysicalDeviceShaderAtomicInt64Features<'a> {}
     impl<'a> Default for PhysicalDeviceShaderAtomicInt64Features<'a> {
         fn default() -> Self {
             Self {
@@ -1100,6 +1164,8 @@ pub(crate) mod reexport {
     for PhysicalDeviceDepthStencilResolveProperties<'a> {
         const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::PHYSICAL_DEVICE_DEPTH_STENCIL_RESOLVE_PROPERTIES;
     }
+    unsafe impl<'a> crate::Extends<crate::vk::PhysicalDeviceProperties2<'_>>
+    for PhysicalDeviceDepthStencilResolveProperties<'a> {}
     impl<'a> Default for PhysicalDeviceDepthStencilResolveProperties<'a> {
         fn default() -> Self {
             Self {
@@ -1129,6 +1195,8 @@ pub(crate) mod reexport {
     for SubpassDescriptionDepthStencilResolve<'a> {
         const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::SUBPASS_DESCRIPTION_DEPTH_STENCIL_RESOLVE;
     }
+    unsafe impl<'a> crate::Extends<crate::vk::SubpassDescription2<'_>>
+    for SubpassDescriptionDepthStencilResolve<'a> {}
     impl<'a> Default for SubpassDescriptionDepthStencilResolve<'a> {
         fn default() -> Self {
             Self {
@@ -1152,6 +1220,10 @@ pub(crate) mod reexport {
     unsafe impl<'a> crate::TaggedStructure<'a> for ImageStencilUsageCreateInfo<'a> {
         const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::IMAGE_STENCIL_USAGE_CREATE_INFO;
     }
+    unsafe impl<'a> crate::Extends<crate::vk::ImageCreateInfo<'_>>
+    for ImageStencilUsageCreateInfo<'a> {}
+    unsafe impl<'a> crate::Extends<crate::vk::PhysicalDeviceImageFormatInfo2<'_>>
+    for ImageStencilUsageCreateInfo<'a> {}
     impl<'a> Default for ImageStencilUsageCreateInfo<'a> {
         fn default() -> Self {
             Self {
@@ -1174,6 +1246,10 @@ pub(crate) mod reexport {
     for PhysicalDeviceScalarBlockLayoutFeatures<'a> {
         const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::PHYSICAL_DEVICE_SCALAR_BLOCK_LAYOUT_FEATURES;
     }
+    unsafe impl<'a> crate::Extends<crate::vk::PhysicalDeviceFeatures2<'_>>
+    for PhysicalDeviceScalarBlockLayoutFeatures<'a> {}
+    unsafe impl<'a> crate::Extends<crate::vk::DeviceCreateInfo<'_>>
+    for PhysicalDeviceScalarBlockLayoutFeatures<'a> {}
     impl<'a> Default for PhysicalDeviceScalarBlockLayoutFeatures<'a> {
         fn default() -> Self {
             Self {
@@ -1196,6 +1272,10 @@ pub(crate) mod reexport {
     for PhysicalDeviceUniformBufferStandardLayoutFeatures<'a> {
         const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::PHYSICAL_DEVICE_UNIFORM_BUFFER_STANDARD_LAYOUT_FEATURES;
     }
+    unsafe impl<'a> crate::Extends<crate::vk::PhysicalDeviceFeatures2<'_>>
+    for PhysicalDeviceUniformBufferStandardLayoutFeatures<'a> {}
+    unsafe impl<'a> crate::Extends<crate::vk::DeviceCreateInfo<'_>>
+    for PhysicalDeviceUniformBufferStandardLayoutFeatures<'a> {}
     impl<'a> Default for PhysicalDeviceUniformBufferStandardLayoutFeatures<'a> {
         fn default() -> Self {
             Self {
@@ -1220,6 +1300,10 @@ pub(crate) mod reexport {
     for PhysicalDeviceBufferDeviceAddressFeatures<'a> {
         const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::PHYSICAL_DEVICE_BUFFER_DEVICE_ADDRESS_FEATURES;
     }
+    unsafe impl<'a> crate::Extends<crate::vk::PhysicalDeviceFeatures2<'_>>
+    for PhysicalDeviceBufferDeviceAddressFeatures<'a> {}
+    unsafe impl<'a> crate::Extends<crate::vk::DeviceCreateInfo<'_>>
+    for PhysicalDeviceBufferDeviceAddressFeatures<'a> {}
     impl<'a> Default for PhysicalDeviceBufferDeviceAddressFeatures<'a> {
         fn default() -> Self {
             Self {
@@ -1265,6 +1349,8 @@ pub(crate) mod reexport {
     for BufferOpaqueCaptureAddressCreateInfo<'a> {
         const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::BUFFER_OPAQUE_CAPTURE_ADDRESS_CREATE_INFO;
     }
+    unsafe impl<'a> crate::Extends<crate::vk::BufferCreateInfo<'_>>
+    for BufferOpaqueCaptureAddressCreateInfo<'a> {}
     impl<'a> Default for BufferOpaqueCaptureAddressCreateInfo<'a> {
         fn default() -> Self {
             Self {
@@ -1287,6 +1373,10 @@ pub(crate) mod reexport {
     for PhysicalDeviceImagelessFramebufferFeatures<'a> {
         const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::PHYSICAL_DEVICE_IMAGELESS_FRAMEBUFFER_FEATURES;
     }
+    unsafe impl<'a> crate::Extends<crate::vk::PhysicalDeviceFeatures2<'_>>
+    for PhysicalDeviceImagelessFramebufferFeatures<'a> {}
+    unsafe impl<'a> crate::Extends<crate::vk::DeviceCreateInfo<'_>>
+    for PhysicalDeviceImagelessFramebufferFeatures<'a> {}
     impl<'a> Default for PhysicalDeviceImagelessFramebufferFeatures<'a> {
         fn default() -> Self {
             Self {
@@ -1311,6 +1401,8 @@ pub(crate) mod reexport {
     unsafe impl<'a> crate::TaggedStructure<'a> for FramebufferAttachmentsCreateInfo<'a> {
         const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::FRAMEBUFFER_ATTACHMENTS_CREATE_INFO;
     }
+    unsafe impl<'a> crate::Extends<crate::vk::FramebufferCreateInfo<'_>>
+    for FramebufferAttachmentsCreateInfo<'a> {}
     impl<'a> Default for FramebufferAttachmentsCreateInfo<'a> {
         fn default() -> Self {
             Self {
@@ -1367,6 +1459,8 @@ pub(crate) mod reexport {
     unsafe impl<'a> crate::TaggedStructure<'a> for RenderPassAttachmentBeginInfo<'a> {
         const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::RENDER_PASS_ATTACHMENT_BEGIN_INFO;
     }
+    unsafe impl<'a> crate::Extends<crate::vk::RenderPassBeginInfo<'_>>
+    for RenderPassAttachmentBeginInfo<'a> {}
     impl<'a> Default for RenderPassAttachmentBeginInfo<'a> {
         fn default() -> Self {
             Self {
@@ -1390,6 +1484,10 @@ pub(crate) mod reexport {
     for PhysicalDeviceSeparateDepthStencilLayoutsFeatures<'a> {
         const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::PHYSICAL_DEVICE_SEPARATE_DEPTH_STENCIL_LAYOUTS_FEATURES;
     }
+    unsafe impl<'a> crate::Extends<crate::vk::PhysicalDeviceFeatures2<'_>>
+    for PhysicalDeviceSeparateDepthStencilLayoutsFeatures<'a> {}
+    unsafe impl<'a> crate::Extends<crate::vk::DeviceCreateInfo<'_>>
+    for PhysicalDeviceSeparateDepthStencilLayoutsFeatures<'a> {}
     impl<'a> Default for PhysicalDeviceSeparateDepthStencilLayoutsFeatures<'a> {
         fn default() -> Self {
             Self {
@@ -1411,6 +1509,8 @@ pub(crate) mod reexport {
     unsafe impl<'a> crate::TaggedStructure<'a> for AttachmentReferenceStencilLayout<'a> {
         const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::ATTACHMENT_REFERENCE_STENCIL_LAYOUT;
     }
+    unsafe impl<'a> crate::Extends<crate::vk::AttachmentReference2<'_>>
+    for AttachmentReferenceStencilLayout<'a> {}
     impl<'a> Default for AttachmentReferenceStencilLayout<'a> {
         fn default() -> Self {
             Self {
@@ -1434,6 +1534,8 @@ pub(crate) mod reexport {
     for AttachmentDescriptionStencilLayout<'a> {
         const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::ATTACHMENT_DESCRIPTION_STENCIL_LAYOUT;
     }
+    unsafe impl<'a> crate::Extends<crate::vk::AttachmentDescription2<'_>>
+    for AttachmentDescriptionStencilLayout<'a> {}
     impl<'a> Default for AttachmentDescriptionStencilLayout<'a> {
         fn default() -> Self {
             Self {
@@ -1457,6 +1559,8 @@ pub(crate) mod reexport {
     for MemoryOpaqueCaptureAddressAllocateInfo<'a> {
         const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::MEMORY_OPAQUE_CAPTURE_ADDRESS_ALLOCATE_INFO;
     }
+    unsafe impl<'a> crate::Extends<crate::vk::MemoryAllocateInfo<'_>>
+    for MemoryOpaqueCaptureAddressAllocateInfo<'a> {}
     impl<'a> Default for MemoryOpaqueCaptureAddressAllocateInfo<'a> {
         fn default() -> Self {
             Self {
@@ -1511,6 +1615,10 @@ pub(crate) mod reexport {
     unsafe impl<'a> crate::TaggedStructure<'a> for PhysicalDeviceVulkan11Features<'a> {
         const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::PHYSICAL_DEVICE_VULKAN_1_1_FEATURES;
     }
+    unsafe impl<'a> crate::Extends<crate::vk::PhysicalDeviceFeatures2<'_>>
+    for PhysicalDeviceVulkan11Features<'a> {}
+    unsafe impl<'a> crate::Extends<crate::vk::DeviceCreateInfo<'_>>
+    for PhysicalDeviceVulkan11Features<'a> {}
     impl<'a> Default for PhysicalDeviceVulkan11Features<'a> {
         fn default() -> Self {
             Self {
@@ -1557,6 +1665,8 @@ pub(crate) mod reexport {
     unsafe impl<'a> crate::TaggedStructure<'a> for PhysicalDeviceVulkan11Properties<'a> {
         const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::PHYSICAL_DEVICE_VULKAN_1_1_PROPERTIES;
     }
+    unsafe impl<'a> crate::Extends<crate::vk::PhysicalDeviceProperties2<'_>>
+    for PhysicalDeviceVulkan11Properties<'a> {}
     impl<'a> Default for PhysicalDeviceVulkan11Properties<'a> {
         fn default() -> Self {
             Self {
@@ -1638,6 +1748,10 @@ pub(crate) mod reexport {
     unsafe impl<'a> crate::TaggedStructure<'a> for PhysicalDeviceVulkan12Features<'a> {
         const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::PHYSICAL_DEVICE_VULKAN_1_2_FEATURES;
     }
+    unsafe impl<'a> crate::Extends<crate::vk::PhysicalDeviceFeatures2<'_>>
+    for PhysicalDeviceVulkan12Features<'a> {}
+    unsafe impl<'a> crate::Extends<crate::vk::DeviceCreateInfo<'_>>
+    for PhysicalDeviceVulkan12Features<'a> {}
     impl<'a> Default for PhysicalDeviceVulkan12Features<'a> {
         fn default() -> Self {
             Self {
@@ -1756,6 +1870,8 @@ pub(crate) mod reexport {
     unsafe impl<'a> crate::TaggedStructure<'a> for PhysicalDeviceVulkan12Properties<'a> {
         const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::PHYSICAL_DEVICE_VULKAN_1_2_PROPERTIES;
     }
+    unsafe impl<'a> crate::Extends<crate::vk::PhysicalDeviceProperties2<'_>>
+    for PhysicalDeviceVulkan12Properties<'a> {}
     impl<'a> Default for PhysicalDeviceVulkan12Properties<'a> {
         fn default() -> Self {
             Self {

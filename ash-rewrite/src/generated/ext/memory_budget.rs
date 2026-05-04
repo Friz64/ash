@@ -14,6 +14,8 @@ unsafe impl<'a> crate::TaggedStructure<'a>
 for PhysicalDeviceMemoryBudgetPropertiesEXT<'a> {
     const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::PHYSICAL_DEVICE_MEMORY_BUDGET_PROPERTIES_EXT;
 }
+unsafe impl<'a> crate::Extends<crate::vk::PhysicalDeviceMemoryProperties2<'_>>
+for PhysicalDeviceMemoryBudgetPropertiesEXT<'a> {}
 impl<'a> Default for PhysicalDeviceMemoryBudgetPropertiesEXT<'a> {
     fn default() -> Self {
         Self {

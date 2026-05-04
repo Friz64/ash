@@ -49,6 +49,8 @@ pub(crate) mod reexport {
     for PhysicalDeviceMaintenance10PropertiesKHR<'a> {
         const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::PHYSICAL_DEVICE_MAINTENANCE_10_PROPERTIES_KHR;
     }
+    unsafe impl<'a> crate::Extends<crate::vk::PhysicalDeviceProperties2<'_>>
+    for PhysicalDeviceMaintenance10PropertiesKHR<'a> {}
     impl<'a> Default for PhysicalDeviceMaintenance10PropertiesKHR<'a> {
         fn default() -> Self {
             Self {
@@ -73,6 +75,10 @@ pub(crate) mod reexport {
     for PhysicalDeviceMaintenance10FeaturesKHR<'a> {
         const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::PHYSICAL_DEVICE_MAINTENANCE_10_FEATURES_KHR;
     }
+    unsafe impl<'a> crate::Extends<crate::vk::PhysicalDeviceFeatures2<'_>>
+    for PhysicalDeviceMaintenance10FeaturesKHR<'a> {}
+    unsafe impl<'a> crate::Extends<crate::vk::DeviceCreateInfo<'_>>
+    for PhysicalDeviceMaintenance10FeaturesKHR<'a> {}
     impl<'a> Default for PhysicalDeviceMaintenance10FeaturesKHR<'a> {
         fn default() -> Self {
             Self {
@@ -113,6 +119,8 @@ pub(crate) mod reexport {
     unsafe impl<'a> crate::TaggedStructure<'a> for RenderingAttachmentFlagsInfoKHR<'a> {
         const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::RENDERING_ATTACHMENT_FLAGS_INFO_KHR;
     }
+    unsafe impl<'a> crate::Extends<crate::vk::RenderingAttachmentInfo<'_>>
+    for RenderingAttachmentFlagsInfoKHR<'a> {}
     impl<'a> Default for RenderingAttachmentFlagsInfoKHR<'a> {
         fn default() -> Self {
             Self {
@@ -136,6 +144,8 @@ pub(crate) mod reexport {
     unsafe impl<'a> crate::TaggedStructure<'a> for ResolveImageModeInfoKHR<'a> {
         const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::RESOLVE_IMAGE_MODE_INFO_KHR;
     }
+    unsafe impl<'a> crate::Extends<crate::vk::ResolveImageInfo2<'_>>
+    for ResolveImageModeInfoKHR<'a> {}
     impl<'a> Default for ResolveImageModeInfoKHR<'a> {
         fn default() -> Self {
             Self {

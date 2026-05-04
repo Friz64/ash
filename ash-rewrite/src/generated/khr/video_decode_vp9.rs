@@ -13,6 +13,10 @@ unsafe impl<'a> crate::TaggedStructure<'a>
 for PhysicalDeviceVideoDecodeVP9FeaturesKHR<'a> {
     const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::PHYSICAL_DEVICE_VIDEO_DECODE_VP9_FEATURES_KHR;
 }
+unsafe impl<'a> crate::Extends<crate::vk::PhysicalDeviceFeatures2<'_>>
+for PhysicalDeviceVideoDecodeVP9FeaturesKHR<'a> {}
+unsafe impl<'a> crate::Extends<crate::vk::DeviceCreateInfo<'_>>
+for PhysicalDeviceVideoDecodeVP9FeaturesKHR<'a> {}
 impl<'a> Default for PhysicalDeviceVideoDecodeVP9FeaturesKHR<'a> {
     fn default() -> Self {
         Self {
@@ -34,6 +38,10 @@ pub struct VideoDecodeVP9ProfileInfoKHR<'a> {
 unsafe impl<'a> crate::TaggedStructure<'a> for VideoDecodeVP9ProfileInfoKHR<'a> {
     const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::VIDEO_DECODE_VP9_PROFILE_INFO_KHR;
 }
+unsafe impl<'a> crate::Extends<crate::vk::VideoProfileInfoKHR<'_>>
+for VideoDecodeVP9ProfileInfoKHR<'a> {}
+unsafe impl<'a> crate::Extends<crate::vk::QueryPoolCreateInfo<'_>>
+for VideoDecodeVP9ProfileInfoKHR<'a> {}
 impl<'a> Default for VideoDecodeVP9ProfileInfoKHR<'a> {
     fn default() -> Self {
         Self {
@@ -55,6 +63,8 @@ pub struct VideoDecodeVP9CapabilitiesKHR<'a> {
 unsafe impl<'a> crate::TaggedStructure<'a> for VideoDecodeVP9CapabilitiesKHR<'a> {
     const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::VIDEO_DECODE_VP9_CAPABILITIES_KHR;
 }
+unsafe impl<'a> crate::Extends<crate::vk::VideoCapabilitiesKHR<'_>>
+for VideoDecodeVP9CapabilitiesKHR<'a> {}
 impl<'a> Default for VideoDecodeVP9CapabilitiesKHR<'a> {
     fn default() -> Self {
         Self {
@@ -81,6 +91,8 @@ pub struct VideoDecodeVP9PictureInfoKHR<'a> {
 unsafe impl<'a> crate::TaggedStructure<'a> for VideoDecodeVP9PictureInfoKHR<'a> {
     const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::VIDEO_DECODE_VP9_PICTURE_INFO_KHR;
 }
+unsafe impl<'a> crate::Extends<crate::vk::VideoDecodeInfoKHR<'_>>
+for VideoDecodeVP9PictureInfoKHR<'a> {}
 impl<'a> Default for VideoDecodeVP9PictureInfoKHR<'a> {
     fn default() -> Self {
         Self {

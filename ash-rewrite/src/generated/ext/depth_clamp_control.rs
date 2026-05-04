@@ -13,6 +13,10 @@ unsafe impl<'a> crate::TaggedStructure<'a>
 for PhysicalDeviceDepthClampControlFeaturesEXT<'a> {
     const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::PHYSICAL_DEVICE_DEPTH_CLAMP_CONTROL_FEATURES_EXT;
 }
+unsafe impl<'a> crate::Extends<crate::vk::PhysicalDeviceFeatures2<'_>>
+for PhysicalDeviceDepthClampControlFeaturesEXT<'a> {}
+unsafe impl<'a> crate::Extends<crate::vk::DeviceCreateInfo<'_>>
+for PhysicalDeviceDepthClampControlFeaturesEXT<'a> {}
 impl<'a> Default for PhysicalDeviceDepthClampControlFeaturesEXT<'a> {
     fn default() -> Self {
         Self {
@@ -36,6 +40,8 @@ unsafe impl<'a> crate::TaggedStructure<'a>
 for PipelineViewportDepthClampControlCreateInfoEXT<'a> {
     const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::PIPELINE_VIEWPORT_DEPTH_CLAMP_CONTROL_CREATE_INFO_EXT;
 }
+unsafe impl<'a> crate::Extends<crate::vk::PipelineViewportStateCreateInfo<'_>>
+for PipelineViewportDepthClampControlCreateInfoEXT<'a> {}
 impl<'a> Default for PipelineViewportDepthClampControlCreateInfoEXT<'a> {
     fn default() -> Self {
         Self {

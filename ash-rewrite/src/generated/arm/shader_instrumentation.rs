@@ -165,6 +165,10 @@ pub(crate) mod reexport {
     for PhysicalDeviceShaderInstrumentationFeaturesARM<'a> {
         const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::PHYSICAL_DEVICE_SHADER_INSTRUMENTATION_FEATURES_ARM;
     }
+    unsafe impl<'a> crate::Extends<crate::vk::PhysicalDeviceFeatures2<'_>>
+    for PhysicalDeviceShaderInstrumentationFeaturesARM<'a> {}
+    unsafe impl<'a> crate::Extends<crate::vk::DeviceCreateInfo<'_>>
+    for PhysicalDeviceShaderInstrumentationFeaturesARM<'a> {}
     impl<'a> Default for PhysicalDeviceShaderInstrumentationFeaturesARM<'a> {
         fn default() -> Self {
             Self {
@@ -188,6 +192,8 @@ pub(crate) mod reexport {
     for PhysicalDeviceShaderInstrumentationPropertiesARM<'a> {
         const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::PHYSICAL_DEVICE_SHADER_INSTRUMENTATION_PROPERTIES_ARM;
     }
+    unsafe impl<'a> crate::Extends<crate::vk::PhysicalDeviceProperties2<'_>>
+    for PhysicalDeviceShaderInstrumentationPropertiesARM<'a> {}
     impl<'a> Default for PhysicalDeviceShaderInstrumentationPropertiesARM<'a> {
         fn default() -> Self {
             Self {

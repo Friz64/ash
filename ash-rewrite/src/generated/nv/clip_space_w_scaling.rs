@@ -57,6 +57,8 @@ pub(crate) mod reexport {
     for PipelineViewportWScalingStateCreateInfoNV<'a> {
         const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::PIPELINE_VIEWPORT_W_SCALING_STATE_CREATE_INFO_NV;
     }
+    unsafe impl<'a> crate::Extends<crate::vk::PipelineViewportStateCreateInfo<'_>>
+    for PipelineViewportWScalingStateCreateInfoNV<'a> {}
     impl<'a> Default for PipelineViewportWScalingStateCreateInfoNV<'a> {
         fn default() -> Self {
             Self {

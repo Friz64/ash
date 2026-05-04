@@ -95,6 +95,8 @@ pub(crate) mod reexport {
     for ExportSemaphoreWin32HandleInfoKHR<'a> {
         const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::EXPORT_SEMAPHORE_WIN32_HANDLE_INFO_KHR;
     }
+    unsafe impl<'a> crate::Extends<crate::vk::SemaphoreCreateInfo<'_>>
+    for ExportSemaphoreWin32HandleInfoKHR<'a> {}
     impl<'a> Default for ExportSemaphoreWin32HandleInfoKHR<'a> {
         fn default() -> Self {
             Self {
@@ -121,6 +123,8 @@ pub(crate) mod reexport {
     unsafe impl<'a> crate::TaggedStructure<'a> for D3D12FenceSubmitInfoKHR<'a> {
         const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::D3D12_FENCE_SUBMIT_INFO_KHR;
     }
+    unsafe impl<'a> crate::Extends<crate::vk::SubmitInfo<'_>>
+    for D3D12FenceSubmitInfoKHR<'a> {}
     impl<'a> Default for D3D12FenceSubmitInfoKHR<'a> {
         fn default() -> Self {
             Self {

@@ -47,6 +47,10 @@ pub(crate) mod reexport {
     for PhysicalDeviceFragmentDensityMapOffsetFeaturesEXT<'a> {
         const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::PHYSICAL_DEVICE_FRAGMENT_DENSITY_MAP_OFFSET_FEATURES_EXT;
     }
+    unsafe impl<'a> crate::Extends<crate::vk::PhysicalDeviceFeatures2<'_>>
+    for PhysicalDeviceFragmentDensityMapOffsetFeaturesEXT<'a> {}
+    unsafe impl<'a> crate::Extends<crate::vk::DeviceCreateInfo<'_>>
+    for PhysicalDeviceFragmentDensityMapOffsetFeaturesEXT<'a> {}
     impl<'a> Default for PhysicalDeviceFragmentDensityMapOffsetFeaturesEXT<'a> {
         fn default() -> Self {
             Self {
@@ -69,6 +73,8 @@ pub(crate) mod reexport {
     for PhysicalDeviceFragmentDensityMapOffsetPropertiesEXT<'a> {
         const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::PHYSICAL_DEVICE_FRAGMENT_DENSITY_MAP_OFFSET_PROPERTIES_EXT;
     }
+    unsafe impl<'a> crate::Extends<crate::vk::PhysicalDeviceProperties2<'_>>
+    for PhysicalDeviceFragmentDensityMapOffsetPropertiesEXT<'a> {}
     impl<'a> Default for PhysicalDeviceFragmentDensityMapOffsetPropertiesEXT<'a> {
         fn default() -> Self {
             Self {
@@ -92,6 +98,10 @@ pub(crate) mod reexport {
     for RenderPassFragmentDensityMapOffsetEndInfoEXT<'a> {
         const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::RENDER_PASS_FRAGMENT_DENSITY_MAP_OFFSET_END_INFO_EXT;
     }
+    unsafe impl<'a> crate::Extends<crate::vk::SubpassEndInfo<'_>>
+    for RenderPassFragmentDensityMapOffsetEndInfoEXT<'a> {}
+    unsafe impl<'a> crate::Extends<crate::vk::RenderingEndInfoKHR<'_>>
+    for RenderPassFragmentDensityMapOffsetEndInfoEXT<'a> {}
     impl<'a> Default for RenderPassFragmentDensityMapOffsetEndInfoEXT<'a> {
         fn default() -> Self {
             Self {

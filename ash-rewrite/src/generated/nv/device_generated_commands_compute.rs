@@ -81,6 +81,8 @@ pub(crate) mod reexport {
     for ComputePipelineIndirectBufferInfoNV<'a> {
         const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::COMPUTE_PIPELINE_INDIRECT_BUFFER_INFO_NV;
     }
+    unsafe impl<'a> crate::Extends<crate::vk::ComputePipelineCreateInfo<'_>>
+    for ComputePipelineIndirectBufferInfoNV<'a> {}
     impl<'a> Default for ComputePipelineIndirectBufferInfoNV<'a> {
         fn default() -> Self {
             Self {
@@ -107,6 +109,10 @@ pub(crate) mod reexport {
     for PhysicalDeviceDeviceGeneratedCommandsComputeFeaturesNV<'a> {
         const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::PHYSICAL_DEVICE_DEVICE_GENERATED_COMMANDS_COMPUTE_FEATURES_NV;
     }
+    unsafe impl<'a> crate::Extends<crate::vk::PhysicalDeviceFeatures2<'_>>
+    for PhysicalDeviceDeviceGeneratedCommandsComputeFeaturesNV<'a> {}
+    unsafe impl<'a> crate::Extends<crate::vk::DeviceCreateInfo<'_>>
+    for PhysicalDeviceDeviceGeneratedCommandsComputeFeaturesNV<'a> {}
     impl<'a> Default for PhysicalDeviceDeviceGeneratedCommandsComputeFeaturesNV<'a> {
         fn default() -> Self {
             Self {

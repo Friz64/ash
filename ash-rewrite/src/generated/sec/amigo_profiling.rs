@@ -13,6 +13,10 @@ unsafe impl<'a> crate::TaggedStructure<'a>
 for PhysicalDeviceAmigoProfilingFeaturesSEC<'a> {
     const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::PHYSICAL_DEVICE_AMIGO_PROFILING_FEATURES_SEC;
 }
+unsafe impl<'a> crate::Extends<crate::vk::PhysicalDeviceFeatures2<'_>>
+for PhysicalDeviceAmigoProfilingFeaturesSEC<'a> {}
+unsafe impl<'a> crate::Extends<crate::vk::DeviceCreateInfo<'_>>
+for PhysicalDeviceAmigoProfilingFeaturesSEC<'a> {}
 impl<'a> Default for PhysicalDeviceAmigoProfilingFeaturesSEC<'a> {
     fn default() -> Self {
         Self {
@@ -35,6 +39,8 @@ pub struct AmigoProfilingSubmitInfoSEC<'a> {
 unsafe impl<'a> crate::TaggedStructure<'a> for AmigoProfilingSubmitInfoSEC<'a> {
     const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::AMIGO_PROFILING_SUBMIT_INFO_SEC;
 }
+unsafe impl<'a> crate::Extends<crate::vk::SubmitInfo<'_>>
+for AmigoProfilingSubmitInfoSEC<'a> {}
 impl<'a> Default for AmigoProfilingSubmitInfoSEC<'a> {
     fn default() -> Self {
         Self {

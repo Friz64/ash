@@ -13,6 +13,10 @@ unsafe impl<'a> crate::TaggedStructure<'a>
 for PhysicalDeviceMaintenance9FeaturesKHR<'a> {
     const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::PHYSICAL_DEVICE_MAINTENANCE_9_FEATURES_KHR;
 }
+unsafe impl<'a> crate::Extends<crate::vk::PhysicalDeviceFeatures2<'_>>
+for PhysicalDeviceMaintenance9FeaturesKHR<'a> {}
+unsafe impl<'a> crate::Extends<crate::vk::DeviceCreateInfo<'_>>
+for PhysicalDeviceMaintenance9FeaturesKHR<'a> {}
 impl<'a> Default for PhysicalDeviceMaintenance9FeaturesKHR<'a> {
     fn default() -> Self {
         Self {
@@ -36,6 +40,8 @@ unsafe impl<'a> crate::TaggedStructure<'a>
 for PhysicalDeviceMaintenance9PropertiesKHR<'a> {
     const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::PHYSICAL_DEVICE_MAINTENANCE_9_PROPERTIES_KHR;
 }
+unsafe impl<'a> crate::Extends<crate::vk::PhysicalDeviceProperties2<'_>>
+for PhysicalDeviceMaintenance9PropertiesKHR<'a> {}
 impl<'a> Default for PhysicalDeviceMaintenance9PropertiesKHR<'a> {
     fn default() -> Self {
         Self {
@@ -59,6 +65,8 @@ unsafe impl<'a> crate::TaggedStructure<'a>
 for QueueFamilyOwnershipTransferPropertiesKHR<'a> {
     const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::QUEUE_FAMILY_OWNERSHIP_TRANSFER_PROPERTIES_KHR;
 }
+unsafe impl<'a> crate::Extends<crate::vk::QueueFamilyProperties2<'_>>
+for QueueFamilyOwnershipTransferPropertiesKHR<'a> {}
 impl<'a> Default for QueueFamilyOwnershipTransferPropertiesKHR<'a> {
     fn default() -> Self {
         Self {

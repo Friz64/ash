@@ -84,6 +84,8 @@ pub(crate) mod reexport {
     for PhysicalDeviceMultiDrawPropertiesEXT<'a> {
         const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::PHYSICAL_DEVICE_MULTI_DRAW_PROPERTIES_EXT;
     }
+    unsafe impl<'a> crate::Extends<crate::vk::PhysicalDeviceProperties2<'_>>
+    for PhysicalDeviceMultiDrawPropertiesEXT<'a> {}
     impl<'a> Default for PhysicalDeviceMultiDrawPropertiesEXT<'a> {
         fn default() -> Self {
             Self {
@@ -106,6 +108,10 @@ pub(crate) mod reexport {
     for PhysicalDeviceMultiDrawFeaturesEXT<'a> {
         const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::PHYSICAL_DEVICE_MULTI_DRAW_FEATURES_EXT;
     }
+    unsafe impl<'a> crate::Extends<crate::vk::PhysicalDeviceFeatures2<'_>>
+    for PhysicalDeviceMultiDrawFeaturesEXT<'a> {}
+    unsafe impl<'a> crate::Extends<crate::vk::DeviceCreateInfo<'_>>
+    for PhysicalDeviceMultiDrawFeaturesEXT<'a> {}
     impl<'a> Default for PhysicalDeviceMultiDrawFeaturesEXT<'a> {
         fn default() -> Self {
             Self {

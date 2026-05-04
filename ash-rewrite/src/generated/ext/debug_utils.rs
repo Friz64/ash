@@ -219,6 +219,12 @@ pub(crate) mod reexport {
     unsafe impl<'a> crate::TaggedStructure<'a> for DebugUtilsObjectNameInfoEXT<'a> {
         const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::DEBUG_UTILS_OBJECT_NAME_INFO_EXT;
     }
+    unsafe impl<'a> crate::Extends<crate::vk::PipelineShaderStageCreateInfo<'_>>
+    for DebugUtilsObjectNameInfoEXT<'a> {}
+    unsafe impl<'a> crate::Extends<crate::vk::ResourceDescriptorInfoEXT<'_>>
+    for DebugUtilsObjectNameInfoEXT<'a> {}
+    unsafe impl<'a> crate::Extends<crate::vk::SamplerCreateInfo<'_>>
+    for DebugUtilsObjectNameInfoEXT<'a> {}
     impl<'a> Default for DebugUtilsObjectNameInfoEXT<'a> {
         fn default() -> Self {
             Self {
@@ -298,6 +304,8 @@ pub(crate) mod reexport {
     unsafe impl<'a> crate::TaggedStructure<'a> for DebugUtilsMessengerCreateInfoEXT<'a> {
         const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::DEBUG_UTILS_MESSENGER_CREATE_INFO_EXT;
     }
+    unsafe impl<'a> crate::Extends<crate::vk::InstanceCreateInfo<'_>>
+    for DebugUtilsMessengerCreateInfoEXT<'a> {}
     impl<'a> Default for DebugUtilsMessengerCreateInfoEXT<'a> {
         fn default() -> Self {
             Self {

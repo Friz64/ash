@@ -66,6 +66,10 @@ pub(crate) mod reexport {
     for PhysicalDeviceRayTracingMaintenance1FeaturesKHR<'a> {
         const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::PHYSICAL_DEVICE_RAY_TRACING_MAINTENANCE_1_FEATURES_KHR;
     }
+    unsafe impl<'a> crate::Extends<crate::vk::PhysicalDeviceFeatures2<'_>>
+    for PhysicalDeviceRayTracingMaintenance1FeaturesKHR<'a> {}
+    unsafe impl<'a> crate::Extends<crate::vk::DeviceCreateInfo<'_>>
+    for PhysicalDeviceRayTracingMaintenance1FeaturesKHR<'a> {}
     impl<'a> Default for PhysicalDeviceRayTracingMaintenance1FeaturesKHR<'a> {
         fn default() -> Self {
             Self {

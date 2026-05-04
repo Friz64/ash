@@ -13,6 +13,8 @@ unsafe impl<'a> crate::TaggedStructure<'a>
 for VideoEncodeQuantizationMapCapabilitiesKHR<'a> {
     const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::VIDEO_ENCODE_QUANTIZATION_MAP_CAPABILITIES_KHR;
 }
+unsafe impl<'a> crate::Extends<crate::vk::VideoCapabilitiesKHR<'_>>
+for VideoEncodeQuantizationMapCapabilitiesKHR<'a> {}
 impl<'a> Default for VideoEncodeQuantizationMapCapabilitiesKHR<'a> {
     fn default() -> Self {
         Self {
@@ -36,6 +38,8 @@ unsafe impl<'a> crate::TaggedStructure<'a>
 for VideoEncodeH264QuantizationMapCapabilitiesKHR<'a> {
     const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::VIDEO_ENCODE_H264_QUANTIZATION_MAP_CAPABILITIES_KHR;
 }
+unsafe impl<'a> crate::Extends<crate::vk::VideoCapabilitiesKHR<'_>>
+for VideoEncodeH264QuantizationMapCapabilitiesKHR<'a> {}
 impl<'a> Default for VideoEncodeH264QuantizationMapCapabilitiesKHR<'a> {
     fn default() -> Self {
         Self {
@@ -60,6 +64,8 @@ unsafe impl<'a> crate::TaggedStructure<'a>
 for VideoEncodeH265QuantizationMapCapabilitiesKHR<'a> {
     const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::VIDEO_ENCODE_H265_QUANTIZATION_MAP_CAPABILITIES_KHR;
 }
+unsafe impl<'a> crate::Extends<crate::vk::VideoCapabilitiesKHR<'_>>
+for VideoEncodeH265QuantizationMapCapabilitiesKHR<'a> {}
 impl<'a> Default for VideoEncodeH265QuantizationMapCapabilitiesKHR<'a> {
     fn default() -> Self {
         Self {
@@ -84,6 +90,8 @@ unsafe impl<'a> crate::TaggedStructure<'a>
 for VideoEncodeAV1QuantizationMapCapabilitiesKHR<'a> {
     const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::VIDEO_ENCODE_AV1_QUANTIZATION_MAP_CAPABILITIES_KHR;
 }
+unsafe impl<'a> crate::Extends<crate::vk::VideoCapabilitiesKHR<'_>>
+for VideoEncodeAV1QuantizationMapCapabilitiesKHR<'a> {}
 impl<'a> Default for VideoEncodeAV1QuantizationMapCapabilitiesKHR<'a> {
     fn default() -> Self {
         Self {
@@ -107,6 +115,8 @@ unsafe impl<'a> crate::TaggedStructure<'a>
 for VideoFormatQuantizationMapPropertiesKHR<'a> {
     const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::VIDEO_FORMAT_QUANTIZATION_MAP_PROPERTIES_KHR;
 }
+unsafe impl<'a> crate::Extends<crate::vk::VideoFormatPropertiesKHR<'_>>
+for VideoFormatQuantizationMapPropertiesKHR<'a> {}
 impl<'a> Default for VideoFormatQuantizationMapPropertiesKHR<'a> {
     fn default() -> Self {
         Self {
@@ -129,6 +139,8 @@ unsafe impl<'a> crate::TaggedStructure<'a>
 for VideoFormatH265QuantizationMapPropertiesKHR<'a> {
     const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::VIDEO_FORMAT_H265_QUANTIZATION_MAP_PROPERTIES_KHR;
 }
+unsafe impl<'a> crate::Extends<crate::vk::VideoFormatPropertiesKHR<'_>>
+for VideoFormatH265QuantizationMapPropertiesKHR<'a> {}
 impl<'a> Default for VideoFormatH265QuantizationMapPropertiesKHR<'a> {
     fn default() -> Self {
         Self {
@@ -151,6 +163,8 @@ unsafe impl<'a> crate::TaggedStructure<'a>
 for VideoFormatAV1QuantizationMapPropertiesKHR<'a> {
     const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::VIDEO_FORMAT_AV1_QUANTIZATION_MAP_PROPERTIES_KHR;
 }
+unsafe impl<'a> crate::Extends<crate::vk::VideoFormatPropertiesKHR<'_>>
+for VideoFormatAV1QuantizationMapPropertiesKHR<'a> {}
 impl<'a> Default for VideoFormatAV1QuantizationMapPropertiesKHR<'a> {
     fn default() -> Self {
         Self {
@@ -173,6 +187,8 @@ pub struct VideoEncodeQuantizationMapInfoKHR<'a> {
 unsafe impl<'a> crate::TaggedStructure<'a> for VideoEncodeQuantizationMapInfoKHR<'a> {
     const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::VIDEO_ENCODE_QUANTIZATION_MAP_INFO_KHR;
 }
+unsafe impl<'a> crate::Extends<crate::vk::VideoEncodeInfoKHR<'_>>
+for VideoEncodeQuantizationMapInfoKHR<'a> {}
 impl<'a> Default for VideoEncodeQuantizationMapInfoKHR<'a> {
     fn default() -> Self {
         Self {
@@ -196,6 +212,8 @@ unsafe impl<'a> crate::TaggedStructure<'a>
 for VideoEncodeQuantizationMapSessionParametersCreateInfoKHR<'a> {
     const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::VIDEO_ENCODE_QUANTIZATION_MAP_SESSION_PARAMETERS_CREATE_INFO_KHR;
 }
+unsafe impl<'a> crate::Extends<crate::vk::VideoSessionParametersCreateInfoKHR<'_>>
+for VideoEncodeQuantizationMapSessionParametersCreateInfoKHR<'a> {}
 impl<'a> Default for VideoEncodeQuantizationMapSessionParametersCreateInfoKHR<'a> {
     fn default() -> Self {
         Self {
@@ -218,6 +236,10 @@ unsafe impl<'a> crate::TaggedStructure<'a>
 for PhysicalDeviceVideoEncodeQuantizationMapFeaturesKHR<'a> {
     const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::PHYSICAL_DEVICE_VIDEO_ENCODE_QUANTIZATION_MAP_FEATURES_KHR;
 }
+unsafe impl<'a> crate::Extends<crate::vk::PhysicalDeviceFeatures2<'_>>
+for PhysicalDeviceVideoEncodeQuantizationMapFeaturesKHR<'a> {}
+unsafe impl<'a> crate::Extends<crate::vk::DeviceCreateInfo<'_>>
+for PhysicalDeviceVideoEncodeQuantizationMapFeaturesKHR<'a> {}
 impl<'a> Default for PhysicalDeviceVideoEncodeQuantizationMapFeaturesKHR<'a> {
     fn default() -> Self {
         Self {

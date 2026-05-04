@@ -13,6 +13,10 @@ unsafe impl<'a> crate::TaggedStructure<'a>
 for PhysicalDeviceMemoryPriorityFeaturesEXT<'a> {
     const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::PHYSICAL_DEVICE_MEMORY_PRIORITY_FEATURES_EXT;
 }
+unsafe impl<'a> crate::Extends<crate::vk::PhysicalDeviceFeatures2<'_>>
+for PhysicalDeviceMemoryPriorityFeaturesEXT<'a> {}
+unsafe impl<'a> crate::Extends<crate::vk::DeviceCreateInfo<'_>>
+for PhysicalDeviceMemoryPriorityFeaturesEXT<'a> {}
 impl<'a> Default for PhysicalDeviceMemoryPriorityFeaturesEXT<'a> {
     fn default() -> Self {
         Self {
@@ -34,6 +38,8 @@ pub struct MemoryPriorityAllocateInfoEXT<'a> {
 unsafe impl<'a> crate::TaggedStructure<'a> for MemoryPriorityAllocateInfoEXT<'a> {
     const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::MEMORY_PRIORITY_ALLOCATE_INFO_EXT;
 }
+unsafe impl<'a> crate::Extends<crate::vk::MemoryAllocateInfo<'_>>
+for MemoryPriorityAllocateInfoEXT<'a> {}
 impl<'a> Default for MemoryPriorityAllocateInfoEXT<'a> {
     fn default() -> Self {
         Self {

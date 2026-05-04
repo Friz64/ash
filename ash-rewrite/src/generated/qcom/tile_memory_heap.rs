@@ -46,6 +46,8 @@ pub(crate) mod reexport {
     unsafe impl<'a> crate::TaggedStructure<'a> for TileMemoryBindInfoQCOM<'a> {
         const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::TILE_MEMORY_BIND_INFO_QCOM;
     }
+    unsafe impl<'a> crate::Extends<crate::vk::CommandBufferInheritanceInfo<'_>>
+    for TileMemoryBindInfoQCOM<'a> {}
     impl<'a> Default for TileMemoryBindInfoQCOM<'a> {
         fn default() -> Self {
             Self {
@@ -68,6 +70,10 @@ pub(crate) mod reexport {
     for PhysicalDeviceTileMemoryHeapFeaturesQCOM<'a> {
         const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::PHYSICAL_DEVICE_TILE_MEMORY_HEAP_FEATURES_QCOM;
     }
+    unsafe impl<'a> crate::Extends<crate::vk::PhysicalDeviceFeatures2<'_>>
+    for PhysicalDeviceTileMemoryHeapFeaturesQCOM<'a> {}
+    unsafe impl<'a> crate::Extends<crate::vk::DeviceCreateInfo<'_>>
+    for PhysicalDeviceTileMemoryHeapFeaturesQCOM<'a> {}
     impl<'a> Default for PhysicalDeviceTileMemoryHeapFeaturesQCOM<'a> {
         fn default() -> Self {
             Self {
@@ -91,6 +97,8 @@ pub(crate) mod reexport {
     for PhysicalDeviceTileMemoryHeapPropertiesQCOM<'a> {
         const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::PHYSICAL_DEVICE_TILE_MEMORY_HEAP_PROPERTIES_QCOM;
     }
+    unsafe impl<'a> crate::Extends<crate::vk::PhysicalDeviceProperties2<'_>>
+    for PhysicalDeviceTileMemoryHeapPropertiesQCOM<'a> {}
     impl<'a> Default for PhysicalDeviceTileMemoryHeapPropertiesQCOM<'a> {
         fn default() -> Self {
             Self {
@@ -113,6 +121,12 @@ pub(crate) mod reexport {
     unsafe impl<'a> crate::TaggedStructure<'a> for TileMemorySizeInfoQCOM<'a> {
         const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::TILE_MEMORY_SIZE_INFO_QCOM;
     }
+    unsafe impl<'a> crate::Extends<crate::vk::RenderPassCreateInfo<'_>>
+    for TileMemorySizeInfoQCOM<'a> {}
+    unsafe impl<'a> crate::Extends<crate::vk::RenderPassCreateInfo2<'_>>
+    for TileMemorySizeInfoQCOM<'a> {}
+    unsafe impl<'a> crate::Extends<crate::vk::RenderingInfo<'_>>
+    for TileMemorySizeInfoQCOM<'a> {}
     impl<'a> Default for TileMemorySizeInfoQCOM<'a> {
         fn default() -> Self {
             Self {
@@ -135,6 +149,8 @@ pub(crate) mod reexport {
     unsafe impl<'a> crate::TaggedStructure<'a> for TileMemoryRequirementsQCOM<'a> {
         const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::TILE_MEMORY_REQUIREMENTS_QCOM;
     }
+    unsafe impl<'a> crate::Extends<crate::vk::MemoryRequirements2<'_>>
+    for TileMemoryRequirementsQCOM<'a> {}
     impl<'a> Default for TileMemoryRequirementsQCOM<'a> {
         fn default() -> Self {
             Self {

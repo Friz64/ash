@@ -243,6 +243,8 @@ pub(crate) mod reexport {
     unsafe impl<'a> crate::TaggedStructure<'a> for QueueFamilyVideoPropertiesKHR<'a> {
         const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::QUEUE_FAMILY_VIDEO_PROPERTIES_KHR;
     }
+    unsafe impl<'a> crate::Extends<crate::vk::QueueFamilyProperties2<'_>>
+    for QueueFamilyVideoPropertiesKHR<'a> {}
     impl<'a> Default for QueueFamilyVideoPropertiesKHR<'a> {
         fn default() -> Self {
             Self {
@@ -265,6 +267,8 @@ pub(crate) mod reexport {
     for QueueFamilyQueryResultStatusPropertiesKHR<'a> {
         const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::QUEUE_FAMILY_QUERY_RESULT_STATUS_PROPERTIES_KHR;
     }
+    unsafe impl<'a> crate::Extends<crate::vk::QueueFamilyProperties2<'_>>
+    for QueueFamilyQueryResultStatusPropertiesKHR<'a> {}
     impl<'a> Default for QueueFamilyQueryResultStatusPropertiesKHR<'a> {
         fn default() -> Self {
             Self {
@@ -287,6 +291,14 @@ pub(crate) mod reexport {
     unsafe impl<'a> crate::TaggedStructure<'a> for VideoProfileListInfoKHR<'a> {
         const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::VIDEO_PROFILE_LIST_INFO_KHR;
     }
+    unsafe impl<'a> crate::Extends<crate::vk::PhysicalDeviceImageFormatInfo2<'_>>
+    for VideoProfileListInfoKHR<'a> {}
+    unsafe impl<'a> crate::Extends<crate::vk::PhysicalDeviceVideoFormatInfoKHR<'_>>
+    for VideoProfileListInfoKHR<'a> {}
+    unsafe impl<'a> crate::Extends<crate::vk::ImageCreateInfo<'_>>
+    for VideoProfileListInfoKHR<'a> {}
+    unsafe impl<'a> crate::Extends<crate::vk::BufferCreateInfo<'_>>
+    for VideoProfileListInfoKHR<'a> {}
     impl<'a> Default for VideoProfileListInfoKHR<'a> {
         fn default() -> Self {
             Self {
@@ -364,6 +376,8 @@ pub(crate) mod reexport {
     unsafe impl<'a> crate::TaggedStructure<'a> for VideoProfileInfoKHR<'a> {
         const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::VIDEO_PROFILE_INFO_KHR;
     }
+    unsafe impl<'a> crate::Extends<crate::vk::QueryPoolCreateInfo<'_>>
+    for VideoProfileInfoKHR<'a> {}
     impl<'a> Default for VideoProfileInfoKHR<'a> {
         fn default() -> Self {
             Self {

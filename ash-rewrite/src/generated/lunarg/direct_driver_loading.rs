@@ -37,6 +37,8 @@ pub struct DirectDriverLoadingListLUNARG<'a> {
 unsafe impl<'a> crate::TaggedStructure<'a> for DirectDriverLoadingListLUNARG<'a> {
     const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::DIRECT_DRIVER_LOADING_LIST_LUNARG;
 }
+unsafe impl<'a> crate::Extends<crate::vk::InstanceCreateInfo<'_>>
+for DirectDriverLoadingListLUNARG<'a> {}
 impl<'a> Default for DirectDriverLoadingListLUNARG<'a> {
     fn default() -> Self {
         Self {

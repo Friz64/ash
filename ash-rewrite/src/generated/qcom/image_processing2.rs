@@ -13,6 +13,10 @@ unsafe impl<'a> crate::TaggedStructure<'a>
 for PhysicalDeviceImageProcessing2FeaturesQCOM<'a> {
     const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::PHYSICAL_DEVICE_IMAGE_PROCESSING_2_FEATURES_QCOM;
 }
+unsafe impl<'a> crate::Extends<crate::vk::PhysicalDeviceFeatures2<'_>>
+for PhysicalDeviceImageProcessing2FeaturesQCOM<'a> {}
+unsafe impl<'a> crate::Extends<crate::vk::DeviceCreateInfo<'_>>
+for PhysicalDeviceImageProcessing2FeaturesQCOM<'a> {}
 impl<'a> Default for PhysicalDeviceImageProcessing2FeaturesQCOM<'a> {
     fn default() -> Self {
         Self {
@@ -35,6 +39,8 @@ unsafe impl<'a> crate::TaggedStructure<'a>
 for PhysicalDeviceImageProcessing2PropertiesQCOM<'a> {
     const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::PHYSICAL_DEVICE_IMAGE_PROCESSING_2_PROPERTIES_QCOM;
 }
+unsafe impl<'a> crate::Extends<crate::vk::PhysicalDeviceProperties2<'_>>
+for PhysicalDeviceImageProcessing2PropertiesQCOM<'a> {}
 impl<'a> Default for PhysicalDeviceImageProcessing2PropertiesQCOM<'a> {
     fn default() -> Self {
         Self {
@@ -58,6 +64,8 @@ unsafe impl<'a> crate::TaggedStructure<'a>
 for SamplerBlockMatchWindowCreateInfoQCOM<'a> {
     const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::SAMPLER_BLOCK_MATCH_WINDOW_CREATE_INFO_QCOM;
 }
+unsafe impl<'a> crate::Extends<crate::vk::SamplerCreateInfo<'_>>
+for SamplerBlockMatchWindowCreateInfoQCOM<'a> {}
 impl<'a> Default for SamplerBlockMatchWindowCreateInfoQCOM<'a> {
     fn default() -> Self {
         Self {

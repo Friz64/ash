@@ -49,6 +49,8 @@ pub(crate) mod reexport {
     unsafe impl<'a> crate::TaggedStructure<'a> for ImportMemoryHostPointerInfoEXT<'a> {
         const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::IMPORT_MEMORY_HOST_POINTER_INFO_EXT;
     }
+    unsafe impl<'a> crate::Extends<crate::vk::MemoryAllocateInfo<'_>>
+    for ImportMemoryHostPointerInfoEXT<'a> {}
     impl<'a> Default for ImportMemoryHostPointerInfoEXT<'a> {
         fn default() -> Self {
             Self {
@@ -93,6 +95,8 @@ pub(crate) mod reexport {
     for PhysicalDeviceExternalMemoryHostPropertiesEXT<'a> {
         const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::PHYSICAL_DEVICE_EXTERNAL_MEMORY_HOST_PROPERTIES_EXT;
     }
+    unsafe impl<'a> crate::Extends<crate::vk::PhysicalDeviceProperties2<'_>>
+    for PhysicalDeviceExternalMemoryHostPropertiesEXT<'a> {}
     impl<'a> Default for PhysicalDeviceExternalMemoryHostPropertiesEXT<'a> {
         fn default() -> Self {
             Self {

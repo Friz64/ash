@@ -472,6 +472,10 @@ pub(crate) mod reexport {
     for PhysicalDeviceOpacityMicromapFeaturesEXT<'a> {
         const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::PHYSICAL_DEVICE_OPACITY_MICROMAP_FEATURES_EXT;
     }
+    unsafe impl<'a> crate::Extends<crate::vk::PhysicalDeviceFeatures2<'_>>
+    for PhysicalDeviceOpacityMicromapFeaturesEXT<'a> {}
+    unsafe impl<'a> crate::Extends<crate::vk::DeviceCreateInfo<'_>>
+    for PhysicalDeviceOpacityMicromapFeaturesEXT<'a> {}
     impl<'a> Default for PhysicalDeviceOpacityMicromapFeaturesEXT<'a> {
         fn default() -> Self {
             Self {
@@ -497,6 +501,8 @@ pub(crate) mod reexport {
     for PhysicalDeviceOpacityMicromapPropertiesEXT<'a> {
         const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::PHYSICAL_DEVICE_OPACITY_MICROMAP_PROPERTIES_EXT;
     }
+    unsafe impl<'a> crate::Extends<crate::vk::PhysicalDeviceProperties2<'_>>
+    for PhysicalDeviceOpacityMicromapPropertiesEXT<'a> {}
     impl<'a> Default for PhysicalDeviceOpacityMicromapPropertiesEXT<'a> {
         fn default() -> Self {
             Self {
@@ -527,6 +533,15 @@ pub(crate) mod reexport {
     for AccelerationStructureTrianglesOpacityMicromapEXT<'a> {
         const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::ACCELERATION_STRUCTURE_TRIANGLES_OPACITY_MICROMAP_EXT;
     }
+    unsafe impl<
+        'a,
+    > crate::Extends<crate::vk::AccelerationStructureGeometryTrianglesDataKHR<'_>>
+    for AccelerationStructureTrianglesOpacityMicromapEXT<'a> {}
+    unsafe impl<
+        'a,
+    > crate::Extends<
+        crate::vk::AccelerationStructureDenseGeometryFormatTrianglesDataAMDX<'_>,
+    > for AccelerationStructureTrianglesOpacityMicromapEXT<'a> {}
     impl<'a> Default for AccelerationStructureTrianglesOpacityMicromapEXT<'a> {
         fn default() -> Self {
             Self {

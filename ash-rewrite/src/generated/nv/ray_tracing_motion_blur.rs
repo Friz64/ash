@@ -14,6 +14,10 @@ unsafe impl<'a> crate::TaggedStructure<'a>
 for PhysicalDeviceRayTracingMotionBlurFeaturesNV<'a> {
     const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::PHYSICAL_DEVICE_RAY_TRACING_MOTION_BLUR_FEATURES_NV;
 }
+unsafe impl<'a> crate::Extends<crate::vk::PhysicalDeviceFeatures2<'_>>
+for PhysicalDeviceRayTracingMotionBlurFeaturesNV<'a> {}
+unsafe impl<'a> crate::Extends<crate::vk::DeviceCreateInfo<'_>>
+for PhysicalDeviceRayTracingMotionBlurFeaturesNV<'a> {}
 impl<'a> Default for PhysicalDeviceRayTracingMotionBlurFeaturesNV<'a> {
     fn default() -> Self {
         Self {
@@ -37,6 +41,10 @@ unsafe impl<'a> crate::TaggedStructure<'a>
 for AccelerationStructureGeometryMotionTrianglesDataNV<'a> {
     const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::ACCELERATION_STRUCTURE_GEOMETRY_MOTION_TRIANGLES_DATA_NV;
 }
+unsafe impl<
+    'a,
+> crate::Extends<crate::vk::AccelerationStructureGeometryTrianglesDataKHR<'_>>
+for AccelerationStructureGeometryMotionTrianglesDataNV<'a> {}
 impl<'a> Default for AccelerationStructureGeometryMotionTrianglesDataNV<'a> {
     fn default() -> Self {
         Self {
@@ -59,6 +67,8 @@ pub struct AccelerationStructureMotionInfoNV<'a> {
 unsafe impl<'a> crate::TaggedStructure<'a> for AccelerationStructureMotionInfoNV<'a> {
     const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::ACCELERATION_STRUCTURE_MOTION_INFO_NV;
 }
+unsafe impl<'a> crate::Extends<crate::vk::AccelerationStructureCreateInfoKHR<'_>>
+for AccelerationStructureMotionInfoNV<'a> {}
 impl<'a> Default for AccelerationStructureMotionInfoNV<'a> {
     fn default() -> Self {
         Self {

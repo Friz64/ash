@@ -14,6 +14,8 @@ pub struct ImageViewSampleWeightCreateInfoQCOM<'a> {
 unsafe impl<'a> crate::TaggedStructure<'a> for ImageViewSampleWeightCreateInfoQCOM<'a> {
     const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::IMAGE_VIEW_SAMPLE_WEIGHT_CREATE_INFO_QCOM;
 }
+unsafe impl<'a> crate::Extends<crate::vk::ImageViewCreateInfo<'_>>
+for ImageViewSampleWeightCreateInfoQCOM<'a> {}
 impl<'a> Default for ImageViewSampleWeightCreateInfoQCOM<'a> {
     fn default() -> Self {
         Self {
@@ -40,6 +42,10 @@ unsafe impl<'a> crate::TaggedStructure<'a>
 for PhysicalDeviceImageProcessingFeaturesQCOM<'a> {
     const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::PHYSICAL_DEVICE_IMAGE_PROCESSING_FEATURES_QCOM;
 }
+unsafe impl<'a> crate::Extends<crate::vk::PhysicalDeviceFeatures2<'_>>
+for PhysicalDeviceImageProcessingFeaturesQCOM<'a> {}
+unsafe impl<'a> crate::Extends<crate::vk::DeviceCreateInfo<'_>>
+for PhysicalDeviceImageProcessingFeaturesQCOM<'a> {}
 impl<'a> Default for PhysicalDeviceImageProcessingFeaturesQCOM<'a> {
     fn default() -> Self {
         Self {
@@ -67,6 +73,8 @@ unsafe impl<'a> crate::TaggedStructure<'a>
 for PhysicalDeviceImageProcessingPropertiesQCOM<'a> {
     const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::PHYSICAL_DEVICE_IMAGE_PROCESSING_PROPERTIES_QCOM;
 }
+unsafe impl<'a> crate::Extends<crate::vk::PhysicalDeviceProperties2<'_>>
+for PhysicalDeviceImageProcessingPropertiesQCOM<'a> {}
 impl<'a> Default for PhysicalDeviceImageProcessingPropertiesQCOM<'a> {
     fn default() -> Self {
         Self {

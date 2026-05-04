@@ -181,6 +181,10 @@ pub(crate) mod reexport {
     for PhysicalDeviceDeviceGeneratedCommandsFeaturesEXT<'a> {
         const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::PHYSICAL_DEVICE_DEVICE_GENERATED_COMMANDS_FEATURES_EXT;
     }
+    unsafe impl<'a> crate::Extends<crate::vk::PhysicalDeviceFeatures2<'_>>
+    for PhysicalDeviceDeviceGeneratedCommandsFeaturesEXT<'a> {}
+    unsafe impl<'a> crate::Extends<crate::vk::DeviceCreateInfo<'_>>
+    for PhysicalDeviceDeviceGeneratedCommandsFeaturesEXT<'a> {}
     impl<'a> Default for PhysicalDeviceDeviceGeneratedCommandsFeaturesEXT<'a> {
         fn default() -> Self {
             Self {
@@ -215,6 +219,8 @@ pub(crate) mod reexport {
     for PhysicalDeviceDeviceGeneratedCommandsPropertiesEXT<'a> {
         const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::PHYSICAL_DEVICE_DEVICE_GENERATED_COMMANDS_PROPERTIES_EXT;
     }
+    unsafe impl<'a> crate::Extends<crate::vk::PhysicalDeviceProperties2<'_>>
+    for PhysicalDeviceDeviceGeneratedCommandsPropertiesEXT<'a> {}
     impl<'a> Default for PhysicalDeviceDeviceGeneratedCommandsPropertiesEXT<'a> {
         fn default() -> Self {
             Self {
@@ -247,6 +253,12 @@ pub(crate) mod reexport {
     unsafe impl<'a> crate::TaggedStructure<'a> for GeneratedCommandsPipelineInfoEXT<'a> {
         const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::GENERATED_COMMANDS_PIPELINE_INFO_EXT;
     }
+    unsafe impl<'a> crate::Extends<crate::vk::GeneratedCommandsInfoEXT<'_>>
+    for GeneratedCommandsPipelineInfoEXT<'a> {}
+    unsafe impl<
+        'a,
+    > crate::Extends<crate::vk::GeneratedCommandsMemoryRequirementsInfoEXT<'_>>
+    for GeneratedCommandsPipelineInfoEXT<'a> {}
     impl<'a> Default for GeneratedCommandsPipelineInfoEXT<'a> {
         fn default() -> Self {
             Self {
@@ -269,6 +281,12 @@ pub(crate) mod reexport {
     unsafe impl<'a> crate::TaggedStructure<'a> for GeneratedCommandsShaderInfoEXT<'a> {
         const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::GENERATED_COMMANDS_SHADER_INFO_EXT;
     }
+    unsafe impl<'a> crate::Extends<crate::vk::GeneratedCommandsInfoEXT<'_>>
+    for GeneratedCommandsShaderInfoEXT<'a> {}
+    unsafe impl<
+        'a,
+    > crate::Extends<crate::vk::GeneratedCommandsMemoryRequirementsInfoEXT<'_>>
+    for GeneratedCommandsShaderInfoEXT<'a> {}
     impl<'a> Default for GeneratedCommandsShaderInfoEXT<'a> {
         fn default() -> Self {
             Self {

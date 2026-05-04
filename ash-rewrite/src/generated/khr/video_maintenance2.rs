@@ -13,6 +13,10 @@ unsafe impl<'a> crate::TaggedStructure<'a>
 for PhysicalDeviceVideoMaintenance2FeaturesKHR<'a> {
     const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::PHYSICAL_DEVICE_VIDEO_MAINTENANCE_2_FEATURES_KHR;
 }
+unsafe impl<'a> crate::Extends<crate::vk::PhysicalDeviceFeatures2<'_>>
+for PhysicalDeviceVideoMaintenance2FeaturesKHR<'a> {}
+unsafe impl<'a> crate::Extends<crate::vk::DeviceCreateInfo<'_>>
+for PhysicalDeviceVideoMaintenance2FeaturesKHR<'a> {}
 impl<'a> Default for PhysicalDeviceVideoMaintenance2FeaturesKHR<'a> {
     fn default() -> Self {
         Self {
@@ -36,6 +40,8 @@ unsafe impl<'a> crate::TaggedStructure<'a>
 for VideoDecodeH264InlineSessionParametersInfoKHR<'a> {
     const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::VIDEO_DECODE_H264_INLINE_SESSION_PARAMETERS_INFO_KHR;
 }
+unsafe impl<'a> crate::Extends<crate::vk::VideoDecodeInfoKHR<'_>>
+for VideoDecodeH264InlineSessionParametersInfoKHR<'a> {}
 impl<'a> Default for VideoDecodeH264InlineSessionParametersInfoKHR<'a> {
     fn default() -> Self {
         Self {
@@ -61,6 +67,8 @@ unsafe impl<'a> crate::TaggedStructure<'a>
 for VideoDecodeH265InlineSessionParametersInfoKHR<'a> {
     const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::VIDEO_DECODE_H265_INLINE_SESSION_PARAMETERS_INFO_KHR;
 }
+unsafe impl<'a> crate::Extends<crate::vk::VideoDecodeInfoKHR<'_>>
+for VideoDecodeH265InlineSessionParametersInfoKHR<'a> {}
 impl<'a> Default for VideoDecodeH265InlineSessionParametersInfoKHR<'a> {
     fn default() -> Self {
         Self {
@@ -85,6 +93,8 @@ unsafe impl<'a> crate::TaggedStructure<'a>
 for VideoDecodeAV1InlineSessionParametersInfoKHR<'a> {
     const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::VIDEO_DECODE_AV1_INLINE_SESSION_PARAMETERS_INFO_KHR;
 }
+unsafe impl<'a> crate::Extends<crate::vk::VideoDecodeInfoKHR<'_>>
+for VideoDecodeAV1InlineSessionParametersInfoKHR<'a> {}
 impl<'a> Default for VideoDecodeAV1InlineSessionParametersInfoKHR<'a> {
     fn default() -> Self {
         Self {

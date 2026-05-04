@@ -13,6 +13,10 @@ unsafe impl<'a> crate::TaggedStructure<'a>
 for PhysicalDeviceAddressBindingReportFeaturesEXT<'a> {
     const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::PHYSICAL_DEVICE_ADDRESS_BINDING_REPORT_FEATURES_EXT;
 }
+unsafe impl<'a> crate::Extends<crate::vk::PhysicalDeviceFeatures2<'_>>
+for PhysicalDeviceAddressBindingReportFeaturesEXT<'a> {}
+unsafe impl<'a> crate::Extends<crate::vk::DeviceCreateInfo<'_>>
+for PhysicalDeviceAddressBindingReportFeaturesEXT<'a> {}
 impl<'a> Default for PhysicalDeviceAddressBindingReportFeaturesEXT<'a> {
     fn default() -> Self {
         Self {
@@ -37,6 +41,8 @@ pub struct DeviceAddressBindingCallbackDataEXT<'a> {
 unsafe impl<'a> crate::TaggedStructure<'a> for DeviceAddressBindingCallbackDataEXT<'a> {
     const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::DEVICE_ADDRESS_BINDING_CALLBACK_DATA_EXT;
 }
+unsafe impl<'a> crate::Extends<crate::vk::DebugUtilsMessengerCallbackDataEXT<'_>>
+for DeviceAddressBindingCallbackDataEXT<'a> {}
 impl<'a> Default for DeviceAddressBindingCallbackDataEXT<'a> {
     fn default() -> Self {
         Self {

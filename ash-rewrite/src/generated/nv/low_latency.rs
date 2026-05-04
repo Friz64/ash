@@ -12,6 +12,8 @@ pub struct QueryLowLatencySupportNV<'a> {
 unsafe impl<'a> crate::TaggedStructure<'a> for QueryLowLatencySupportNV<'a> {
     const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::QUERY_LOW_LATENCY_SUPPORT_NV;
 }
+unsafe impl<'a> crate::Extends<crate::vk::SemaphoreCreateInfo<'_>>
+for QueryLowLatencySupportNV<'a> {}
 impl<'a> Default for QueryLowLatencySupportNV<'a> {
     fn default() -> Self {
         Self {

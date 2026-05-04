@@ -15,6 +15,10 @@ unsafe impl<'a> crate::TaggedStructure<'a>
 for PhysicalDeviceFragmentDensityMapFeaturesEXT<'a> {
     const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::PHYSICAL_DEVICE_FRAGMENT_DENSITY_MAP_FEATURES_EXT;
 }
+unsafe impl<'a> crate::Extends<crate::vk::PhysicalDeviceFeatures2<'_>>
+for PhysicalDeviceFragmentDensityMapFeaturesEXT<'a> {}
+unsafe impl<'a> crate::Extends<crate::vk::DeviceCreateInfo<'_>>
+for PhysicalDeviceFragmentDensityMapFeaturesEXT<'a> {}
 impl<'a> Default for PhysicalDeviceFragmentDensityMapFeaturesEXT<'a> {
     fn default() -> Self {
         Self {
@@ -41,6 +45,8 @@ unsafe impl<'a> crate::TaggedStructure<'a>
 for PhysicalDeviceFragmentDensityMapPropertiesEXT<'a> {
     const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::PHYSICAL_DEVICE_FRAGMENT_DENSITY_MAP_PROPERTIES_EXT;
 }
+unsafe impl<'a> crate::Extends<crate::vk::PhysicalDeviceProperties2<'_>>
+for PhysicalDeviceFragmentDensityMapPropertiesEXT<'a> {}
 impl<'a> Default for PhysicalDeviceFragmentDensityMapPropertiesEXT<'a> {
     fn default() -> Self {
         Self {
@@ -65,6 +71,10 @@ unsafe impl<'a> crate::TaggedStructure<'a>
 for RenderPassFragmentDensityMapCreateInfoEXT<'a> {
     const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::RENDER_PASS_FRAGMENT_DENSITY_MAP_CREATE_INFO_EXT;
 }
+unsafe impl<'a> crate::Extends<crate::vk::RenderPassCreateInfo<'_>>
+for RenderPassFragmentDensityMapCreateInfoEXT<'a> {}
+unsafe impl<'a> crate::Extends<crate::vk::RenderPassCreateInfo2<'_>>
+for RenderPassFragmentDensityMapCreateInfoEXT<'a> {}
 impl<'a> Default for RenderPassFragmentDensityMapCreateInfoEXT<'a> {
     fn default() -> Self {
         Self {
@@ -88,6 +98,8 @@ unsafe impl<'a> crate::TaggedStructure<'a>
 for RenderingFragmentDensityMapAttachmentInfoEXT<'a> {
     const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::RENDERING_FRAGMENT_DENSITY_MAP_ATTACHMENT_INFO_EXT;
 }
+unsafe impl<'a> crate::Extends<crate::vk::RenderingInfo<'_>>
+for RenderingFragmentDensityMapAttachmentInfoEXT<'a> {}
 impl<'a> Default for RenderingFragmentDensityMapAttachmentInfoEXT<'a> {
     fn default() -> Self {
         Self {

@@ -13,6 +13,8 @@ pub struct ImageViewSlicedCreateInfoEXT<'a> {
 unsafe impl<'a> crate::TaggedStructure<'a> for ImageViewSlicedCreateInfoEXT<'a> {
     const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::IMAGE_VIEW_SLICED_CREATE_INFO_EXT;
 }
+unsafe impl<'a> crate::Extends<crate::vk::ImageViewCreateInfo<'_>>
+for ImageViewSlicedCreateInfoEXT<'a> {}
 impl<'a> Default for ImageViewSlicedCreateInfoEXT<'a> {
     fn default() -> Self {
         Self {
@@ -36,6 +38,10 @@ unsafe impl<'a> crate::TaggedStructure<'a>
 for PhysicalDeviceImageSlicedViewOf3DFeaturesEXT<'a> {
     const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::PHYSICAL_DEVICE_IMAGE_SLICED_VIEW_OF_3D_FEATURES_EXT;
 }
+unsafe impl<'a> crate::Extends<crate::vk::PhysicalDeviceFeatures2<'_>>
+for PhysicalDeviceImageSlicedViewOf3DFeaturesEXT<'a> {}
+unsafe impl<'a> crate::Extends<crate::vk::DeviceCreateInfo<'_>>
+for PhysicalDeviceImageSlicedViewOf3DFeaturesEXT<'a> {}
 impl<'a> Default for PhysicalDeviceImageSlicedViewOf3DFeaturesEXT<'a> {
     fn default() -> Self {
         Self {

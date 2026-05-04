@@ -13,6 +13,10 @@ unsafe impl<'a> crate::TaggedStructure<'a>
 for PhysicalDeviceInheritedViewportScissorFeaturesNV<'a> {
     const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::PHYSICAL_DEVICE_INHERITED_VIEWPORT_SCISSOR_FEATURES_NV;
 }
+unsafe impl<'a> crate::Extends<crate::vk::PhysicalDeviceFeatures2<'_>>
+for PhysicalDeviceInheritedViewportScissorFeaturesNV<'a> {}
+unsafe impl<'a> crate::Extends<crate::vk::DeviceCreateInfo<'_>>
+for PhysicalDeviceInheritedViewportScissorFeaturesNV<'a> {}
 impl<'a> Default for PhysicalDeviceInheritedViewportScissorFeaturesNV<'a> {
     fn default() -> Self {
         Self {
@@ -37,6 +41,8 @@ unsafe impl<'a> crate::TaggedStructure<'a>
 for CommandBufferInheritanceViewportScissorInfoNV<'a> {
     const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::COMMAND_BUFFER_INHERITANCE_VIEWPORT_SCISSOR_INFO_NV;
 }
+unsafe impl<'a> crate::Extends<crate::vk::CommandBufferInheritanceInfo<'_>>
+for CommandBufferInheritanceViewportScissorInfoNV<'a> {}
 impl<'a> Default for CommandBufferInheritanceViewportScissorInfoNV<'a> {
     fn default() -> Self {
         Self {

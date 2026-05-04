@@ -69,6 +69,10 @@ pub(crate) mod reexport {
     for PhysicalDevicePartitionedAccelerationStructureFeaturesNV<'a> {
         const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::PHYSICAL_DEVICE_PARTITIONED_ACCELERATION_STRUCTURE_FEATURES_NV;
     }
+    unsafe impl<'a> crate::Extends<crate::vk::PhysicalDeviceFeatures2<'_>>
+    for PhysicalDevicePartitionedAccelerationStructureFeaturesNV<'a> {}
+    unsafe impl<'a> crate::Extends<crate::vk::DeviceCreateInfo<'_>>
+    for PhysicalDevicePartitionedAccelerationStructureFeaturesNV<'a> {}
     impl<'a> Default for PhysicalDevicePartitionedAccelerationStructureFeaturesNV<'a> {
         fn default() -> Self {
             Self {
@@ -91,6 +95,8 @@ pub(crate) mod reexport {
     for PhysicalDevicePartitionedAccelerationStructurePropertiesNV<'a> {
         const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::PHYSICAL_DEVICE_PARTITIONED_ACCELERATION_STRUCTURE_PROPERTIES_NV;
     }
+    unsafe impl<'a> crate::Extends<crate::vk::PhysicalDeviceProperties2<'_>>
+    for PhysicalDevicePartitionedAccelerationStructurePropertiesNV<'a> {}
     impl<'a> Default for PhysicalDevicePartitionedAccelerationStructurePropertiesNV<'a> {
         fn default() -> Self {
             Self {
@@ -120,6 +126,10 @@ pub(crate) mod reexport {
     for PartitionedAccelerationStructureFlagsNV<'a> {
         const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::PARTITIONED_ACCELERATION_STRUCTURE_FLAGS_NV;
     }
+    unsafe impl<
+        'a,
+    > crate::Extends<crate::vk::PartitionedAccelerationStructureInstancesInputNV<'_>>
+    for PartitionedAccelerationStructureFlagsNV<'a> {}
     impl<'a> Default for PartitionedAccelerationStructureFlagsNV<'a> {
         fn default() -> Self {
             Self {
@@ -192,6 +202,8 @@ pub(crate) mod reexport {
     for WriteDescriptorSetPartitionedAccelerationStructureNV<'a> {
         const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::WRITE_DESCRIPTOR_SET_PARTITIONED_ACCELERATION_STRUCTURE_NV;
     }
+    unsafe impl<'a> crate::Extends<crate::vk::WriteDescriptorSet<'_>>
+    for WriteDescriptorSetPartitionedAccelerationStructureNV<'a> {}
     impl<'a> Default for WriteDescriptorSetPartitionedAccelerationStructureNV<'a> {
         fn default() -> Self {
             Self {

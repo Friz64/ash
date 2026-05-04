@@ -162,6 +162,8 @@ pub(crate) mod reexport {
     unsafe impl<'a> crate::TaggedStructure<'a> for SwapchainCounterCreateInfoEXT<'a> {
         const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::SWAPCHAIN_COUNTER_CREATE_INFO_EXT;
     }
+    unsafe impl<'a> crate::Extends<crate::vk::SwapchainCreateInfoKHR<'_>>
+    for SwapchainCounterCreateInfoEXT<'a> {}
     impl<'a> Default for SwapchainCounterCreateInfoEXT<'a> {
         fn default() -> Self {
             Self {

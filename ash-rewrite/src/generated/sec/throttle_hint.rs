@@ -13,6 +13,10 @@ unsafe impl<'a> crate::TaggedStructure<'a>
 for PhysicalDeviceThrottleHintFeaturesSEC<'a> {
     const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::PHYSICAL_DEVICE_THROTTLE_HINT_FEATURES_SEC;
 }
+unsafe impl<'a> crate::Extends<crate::vk::PhysicalDeviceFeatures2<'_>>
+for PhysicalDeviceThrottleHintFeaturesSEC<'a> {}
+unsafe impl<'a> crate::Extends<crate::vk::DeviceCreateInfo<'_>>
+for PhysicalDeviceThrottleHintFeaturesSEC<'a> {}
 impl<'a> Default for PhysicalDeviceThrottleHintFeaturesSEC<'a> {
     fn default() -> Self {
         Self {
@@ -34,6 +38,8 @@ pub struct ThrottleHintSubmitInfoSEC<'a> {
 unsafe impl<'a> crate::TaggedStructure<'a> for ThrottleHintSubmitInfoSEC<'a> {
     const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::THROTTLE_HINT_SUBMIT_INFO_SEC;
 }
+unsafe impl<'a> crate::Extends<crate::vk::SubmitInfo<'_>>
+for ThrottleHintSubmitInfoSEC<'a> {}
 impl<'a> Default for ThrottleHintSubmitInfoSEC<'a> {
     fn default() -> Self {
         Self {

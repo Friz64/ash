@@ -85,6 +85,8 @@ pub(crate) mod reexport {
     for FragmentShadingRateAttachmentInfoKHR<'a> {
         const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::FRAGMENT_SHADING_RATE_ATTACHMENT_INFO_KHR;
     }
+    unsafe impl<'a> crate::Extends<crate::vk::SubpassDescription2<'_>>
+    for FragmentShadingRateAttachmentInfoKHR<'a> {}
     impl<'a> Default for FragmentShadingRateAttachmentInfoKHR<'a> {
         fn default() -> Self {
             Self {
@@ -109,6 +111,8 @@ pub(crate) mod reexport {
     for PipelineFragmentShadingRateStateCreateInfoKHR<'a> {
         const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::PIPELINE_FRAGMENT_SHADING_RATE_STATE_CREATE_INFO_KHR;
     }
+    unsafe impl<'a> crate::Extends<crate::vk::GraphicsPipelineCreateInfo<'_>>
+    for PipelineFragmentShadingRateStateCreateInfoKHR<'a> {}
     impl<'a> Default for PipelineFragmentShadingRateStateCreateInfoKHR<'a> {
         fn default() -> Self {
             Self {
@@ -134,6 +138,10 @@ pub(crate) mod reexport {
     for PhysicalDeviceFragmentShadingRateFeaturesKHR<'a> {
         const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::PHYSICAL_DEVICE_FRAGMENT_SHADING_RATE_FEATURES_KHR;
     }
+    unsafe impl<'a> crate::Extends<crate::vk::PhysicalDeviceFeatures2<'_>>
+    for PhysicalDeviceFragmentShadingRateFeaturesKHR<'a> {}
+    unsafe impl<'a> crate::Extends<crate::vk::DeviceCreateInfo<'_>>
+    for PhysicalDeviceFragmentShadingRateFeaturesKHR<'a> {}
     impl<'a> Default for PhysicalDeviceFragmentShadingRateFeaturesKHR<'a> {
         fn default() -> Self {
             Self {
@@ -174,6 +182,8 @@ pub(crate) mod reexport {
     for PhysicalDeviceFragmentShadingRatePropertiesKHR<'a> {
         const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::PHYSICAL_DEVICE_FRAGMENT_SHADING_RATE_PROPERTIES_KHR;
     }
+    unsafe impl<'a> crate::Extends<crate::vk::PhysicalDeviceProperties2<'_>>
+    for PhysicalDeviceFragmentShadingRatePropertiesKHR<'a> {}
     impl<'a> Default for PhysicalDeviceFragmentShadingRatePropertiesKHR<'a> {
         fn default() -> Self {
             Self {
@@ -238,6 +248,8 @@ pub(crate) mod reexport {
     for RenderingFragmentShadingRateAttachmentInfoKHR<'a> {
         const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::RENDERING_FRAGMENT_SHADING_RATE_ATTACHMENT_INFO_KHR;
     }
+    unsafe impl<'a> crate::Extends<crate::vk::RenderingInfo<'_>>
+    for RenderingFragmentShadingRateAttachmentInfoKHR<'a> {}
     impl<'a> Default for RenderingFragmentShadingRateAttachmentInfoKHR<'a> {
         fn default() -> Self {
             Self {

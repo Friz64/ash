@@ -13,6 +13,10 @@ unsafe impl<'a> crate::TaggedStructure<'a>
 for PhysicalDeviceFragmentDensityMap2FeaturesEXT<'a> {
     const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::PHYSICAL_DEVICE_FRAGMENT_DENSITY_MAP_2_FEATURES_EXT;
 }
+unsafe impl<'a> crate::Extends<crate::vk::PhysicalDeviceFeatures2<'_>>
+for PhysicalDeviceFragmentDensityMap2FeaturesEXT<'a> {}
+unsafe impl<'a> crate::Extends<crate::vk::DeviceCreateInfo<'_>>
+for PhysicalDeviceFragmentDensityMap2FeaturesEXT<'a> {}
 impl<'a> Default for PhysicalDeviceFragmentDensityMap2FeaturesEXT<'a> {
     fn default() -> Self {
         Self {
@@ -38,6 +42,8 @@ unsafe impl<'a> crate::TaggedStructure<'a>
 for PhysicalDeviceFragmentDensityMap2PropertiesEXT<'a> {
     const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::PHYSICAL_DEVICE_FRAGMENT_DENSITY_MAP_2_PROPERTIES_EXT;
 }
+unsafe impl<'a> crate::Extends<crate::vk::PhysicalDeviceProperties2<'_>>
+for PhysicalDeviceFragmentDensityMap2PropertiesEXT<'a> {}
 impl<'a> Default for PhysicalDeviceFragmentDensityMap2PropertiesEXT<'a> {
     fn default() -> Self {
         Self {

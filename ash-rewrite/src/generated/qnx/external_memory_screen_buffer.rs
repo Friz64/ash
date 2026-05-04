@@ -47,6 +47,8 @@ pub(crate) mod reexport {
     unsafe impl<'a> crate::TaggedStructure<'a> for ImportScreenBufferInfoQNX<'a> {
         const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::IMPORT_SCREEN_BUFFER_INFO_QNX;
     }
+    unsafe impl<'a> crate::Extends<crate::vk::MemoryAllocateInfo<'_>>
+    for ImportScreenBufferInfoQNX<'a> {}
     impl<'a> Default for ImportScreenBufferInfoQNX<'a> {
         fn default() -> Self {
             Self {
@@ -99,6 +101,8 @@ pub(crate) mod reexport {
     unsafe impl<'a> crate::TaggedStructure<'a> for ScreenBufferFormatPropertiesQNX<'a> {
         const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::SCREEN_BUFFER_FORMAT_PROPERTIES_QNX;
     }
+    unsafe impl<'a> crate::Extends<crate::vk::ScreenBufferPropertiesQNX<'_>>
+    for ScreenBufferFormatPropertiesQNX<'a> {}
     impl<'a> Default for ScreenBufferFormatPropertiesQNX<'a> {
         fn default() -> Self {
             Self {
@@ -128,6 +132,10 @@ pub(crate) mod reexport {
     unsafe impl<'a> crate::TaggedStructure<'a> for ExternalFormatQNX<'a> {
         const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::EXTERNAL_FORMAT_QNX;
     }
+    unsafe impl<'a> crate::Extends<crate::vk::ImageCreateInfo<'_>>
+    for ExternalFormatQNX<'a> {}
+    unsafe impl<'a> crate::Extends<crate::vk::SamplerYcbcrConversionCreateInfo<'_>>
+    for ExternalFormatQNX<'a> {}
     impl<'a> Default for ExternalFormatQNX<'a> {
         fn default() -> Self {
             Self {
@@ -150,6 +158,10 @@ pub(crate) mod reexport {
     for PhysicalDeviceExternalMemoryScreenBufferFeaturesQNX<'a> {
         const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::PHYSICAL_DEVICE_EXTERNAL_MEMORY_SCREEN_BUFFER_FEATURES_QNX;
     }
+    unsafe impl<'a> crate::Extends<crate::vk::PhysicalDeviceFeatures2<'_>>
+    for PhysicalDeviceExternalMemoryScreenBufferFeaturesQNX<'a> {}
+    unsafe impl<'a> crate::Extends<crate::vk::DeviceCreateInfo<'_>>
+    for PhysicalDeviceExternalMemoryScreenBufferFeaturesQNX<'a> {}
     impl<'a> Default for PhysicalDeviceExternalMemoryScreenBufferFeaturesQNX<'a> {
         fn default() -> Self {
             Self {

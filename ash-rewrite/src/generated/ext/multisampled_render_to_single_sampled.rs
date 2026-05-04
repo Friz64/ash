@@ -13,6 +13,10 @@ unsafe impl<'a> crate::TaggedStructure<'a>
 for PhysicalDeviceMultisampledRenderToSingleSampledFeaturesEXT<'a> {
     const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::PHYSICAL_DEVICE_MULTISAMPLED_RENDER_TO_SINGLE_SAMPLED_FEATURES_EXT;
 }
+unsafe impl<'a> crate::Extends<crate::vk::PhysicalDeviceFeatures2<'_>>
+for PhysicalDeviceMultisampledRenderToSingleSampledFeaturesEXT<'a> {}
+unsafe impl<'a> crate::Extends<crate::vk::DeviceCreateInfo<'_>>
+for PhysicalDeviceMultisampledRenderToSingleSampledFeaturesEXT<'a> {}
 impl<'a> Default for PhysicalDeviceMultisampledRenderToSingleSampledFeaturesEXT<'a> {
     fn default() -> Self {
         Self {
@@ -34,6 +38,8 @@ pub struct SubpassResolvePerformanceQueryEXT<'a> {
 unsafe impl<'a> crate::TaggedStructure<'a> for SubpassResolvePerformanceQueryEXT<'a> {
     const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::SUBPASS_RESOLVE_PERFORMANCE_QUERY_EXT;
 }
+unsafe impl<'a> crate::Extends<crate::vk::FormatProperties2<'_>>
+for SubpassResolvePerformanceQueryEXT<'a> {}
 impl<'a> Default for SubpassResolvePerformanceQueryEXT<'a> {
     fn default() -> Self {
         Self {
@@ -57,6 +63,10 @@ unsafe impl<'a> crate::TaggedStructure<'a>
 for MultisampledRenderToSingleSampledInfoEXT<'a> {
     const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::MULTISAMPLED_RENDER_TO_SINGLE_SAMPLED_INFO_EXT;
 }
+unsafe impl<'a> crate::Extends<crate::vk::SubpassDescription2<'_>>
+for MultisampledRenderToSingleSampledInfoEXT<'a> {}
+unsafe impl<'a> crate::Extends<crate::vk::RenderingInfo<'_>>
+for MultisampledRenderToSingleSampledInfoEXT<'a> {}
 impl<'a> Default for MultisampledRenderToSingleSampledInfoEXT<'a> {
     fn default() -> Self {
         Self {

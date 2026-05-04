@@ -113,6 +113,10 @@ pub(crate) mod reexport {
     for SurfaceFullScreenExclusiveInfoEXT<'a> {
         const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::SURFACE_FULL_SCREEN_EXCLUSIVE_INFO_EXT;
     }
+    unsafe impl<'a> crate::Extends<crate::vk::PhysicalDeviceSurfaceInfo2KHR<'_>>
+    for SurfaceFullScreenExclusiveInfoEXT<'a> {}
+    unsafe impl<'a> crate::Extends<crate::vk::SwapchainCreateInfoKHR<'_>>
+    for SurfaceFullScreenExclusiveInfoEXT<'a> {}
     impl<'a> Default for SurfaceFullScreenExclusiveInfoEXT<'a> {
         fn default() -> Self {
             Self {
@@ -135,6 +139,10 @@ pub(crate) mod reexport {
     for SurfaceFullScreenExclusiveWin32InfoEXT<'a> {
         const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::SURFACE_FULL_SCREEN_EXCLUSIVE_WIN32_INFO_EXT;
     }
+    unsafe impl<'a> crate::Extends<crate::vk::PhysicalDeviceSurfaceInfo2KHR<'_>>
+    for SurfaceFullScreenExclusiveWin32InfoEXT<'a> {}
+    unsafe impl<'a> crate::Extends<crate::vk::SwapchainCreateInfoKHR<'_>>
+    for SurfaceFullScreenExclusiveWin32InfoEXT<'a> {}
     impl<'a> Default for SurfaceFullScreenExclusiveWin32InfoEXT<'a> {
         fn default() -> Self {
             Self {
@@ -157,6 +165,8 @@ pub(crate) mod reexport {
     for SurfaceCapabilitiesFullScreenExclusiveEXT<'a> {
         const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::SURFACE_CAPABILITIES_FULL_SCREEN_EXCLUSIVE_EXT;
     }
+    unsafe impl<'a> crate::Extends<crate::vk::SurfaceCapabilities2KHR<'_>>
+    for SurfaceCapabilitiesFullScreenExclusiveEXT<'a> {}
     impl<'a> Default for SurfaceCapabilitiesFullScreenExclusiveEXT<'a> {
         fn default() -> Self {
             Self {

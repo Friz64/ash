@@ -13,6 +13,8 @@ pub struct SetPresentConfigNV<'a> {
 unsafe impl<'a> crate::TaggedStructure<'a> for SetPresentConfigNV<'a> {
     const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::SET_PRESENT_CONFIG_NV;
 }
+unsafe impl<'a> crate::Extends<crate::vk::PresentInfoKHR<'_>>
+for SetPresentConfigNV<'a> {}
 impl<'a> Default for SetPresentConfigNV<'a> {
     fn default() -> Self {
         Self {
@@ -36,6 +38,10 @@ unsafe impl<'a> crate::TaggedStructure<'a>
 for PhysicalDevicePresentMeteringFeaturesNV<'a> {
     const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::PHYSICAL_DEVICE_PRESENT_METERING_FEATURES_NV;
 }
+unsafe impl<'a> crate::Extends<crate::vk::PhysicalDeviceFeatures2<'_>>
+for PhysicalDevicePresentMeteringFeaturesNV<'a> {}
+unsafe impl<'a> crate::Extends<crate::vk::DeviceCreateInfo<'_>>
+for PhysicalDevicePresentMeteringFeaturesNV<'a> {}
 impl<'a> Default for PhysicalDevicePresentMeteringFeaturesNV<'a> {
     fn default() -> Self {
         Self {

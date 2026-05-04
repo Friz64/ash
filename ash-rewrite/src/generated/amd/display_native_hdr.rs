@@ -48,6 +48,8 @@ pub(crate) mod reexport {
     for DisplayNativeHdrSurfaceCapabilitiesAMD<'a> {
         const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::DISPLAY_NATIVE_HDR_SURFACE_CAPABILITIES_AMD;
     }
+    unsafe impl<'a> crate::Extends<crate::vk::SurfaceCapabilities2KHR<'_>>
+    for DisplayNativeHdrSurfaceCapabilitiesAMD<'a> {}
     impl<'a> Default for DisplayNativeHdrSurfaceCapabilitiesAMD<'a> {
         fn default() -> Self {
             Self {
@@ -70,6 +72,8 @@ pub(crate) mod reexport {
     for SwapchainDisplayNativeHdrCreateInfoAMD<'a> {
         const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::SWAPCHAIN_DISPLAY_NATIVE_HDR_CREATE_INFO_AMD;
     }
+    unsafe impl<'a> crate::Extends<crate::vk::SwapchainCreateInfoKHR<'_>>
+    for SwapchainDisplayNativeHdrCreateInfoAMD<'a> {}
     impl<'a> Default for SwapchainDisplayNativeHdrCreateInfoAMD<'a> {
         fn default() -> Self {
             Self {

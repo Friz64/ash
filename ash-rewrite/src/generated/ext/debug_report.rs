@@ -87,6 +87,8 @@ pub(crate) mod reexport {
     unsafe impl<'a> crate::TaggedStructure<'a> for DebugReportCallbackCreateInfoEXT<'a> {
         const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::DEBUG_REPORT_CALLBACK_CREATE_INFO_EXT;
     }
+    unsafe impl<'a> crate::Extends<crate::vk::InstanceCreateInfo<'_>>
+    for DebugReportCallbackCreateInfoEXT<'a> {}
     impl<'a> Default for DebugReportCallbackCreateInfoEXT<'a> {
         fn default() -> Self {
             Self {

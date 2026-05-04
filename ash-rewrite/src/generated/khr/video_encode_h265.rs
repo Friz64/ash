@@ -27,6 +27,8 @@ pub struct VideoEncodeH265CapabilitiesKHR<'a> {
 unsafe impl<'a> crate::TaggedStructure<'a> for VideoEncodeH265CapabilitiesKHR<'a> {
     const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::VIDEO_ENCODE_H265_CAPABILITIES_KHR;
 }
+unsafe impl<'a> crate::Extends<crate::vk::VideoCapabilitiesKHR<'_>>
+for VideoEncodeH265CapabilitiesKHR<'a> {}
 impl<'a> Default for VideoEncodeH265CapabilitiesKHR<'a> {
     fn default() -> Self {
         Self {
@@ -71,6 +73,8 @@ unsafe impl<'a> crate::TaggedStructure<'a>
 for VideoEncodeH265QualityLevelPropertiesKHR<'a> {
     const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::VIDEO_ENCODE_H265_QUALITY_LEVEL_PROPERTIES_KHR;
 }
+unsafe impl<'a> crate::Extends<crate::vk::VideoEncodeQualityLevelPropertiesKHR<'_>>
+for VideoEncodeH265QualityLevelPropertiesKHR<'a> {}
 impl<'a> Default for VideoEncodeH265QualityLevelPropertiesKHR<'a> {
     fn default() -> Self {
         Self {
@@ -100,6 +104,8 @@ pub struct VideoEncodeH265SessionCreateInfoKHR<'a> {
 unsafe impl<'a> crate::TaggedStructure<'a> for VideoEncodeH265SessionCreateInfoKHR<'a> {
     const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::VIDEO_ENCODE_H265_SESSION_CREATE_INFO_KHR;
 }
+unsafe impl<'a> crate::Extends<crate::vk::VideoSessionCreateInfoKHR<'_>>
+for VideoEncodeH265SessionCreateInfoKHR<'a> {}
 impl<'a> Default for VideoEncodeH265SessionCreateInfoKHR<'a> {
     fn default() -> Self {
         Self {
@@ -128,6 +134,8 @@ unsafe impl<'a> crate::TaggedStructure<'a>
 for VideoEncodeH265SessionParametersAddInfoKHR<'a> {
     const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::VIDEO_ENCODE_H265_SESSION_PARAMETERS_ADD_INFO_KHR;
 }
+unsafe impl<'a> crate::Extends<crate::vk::VideoSessionParametersUpdateInfoKHR<'_>>
+for VideoEncodeH265SessionParametersAddInfoKHR<'a> {}
 impl<'a> Default for VideoEncodeH265SessionParametersAddInfoKHR<'a> {
     fn default() -> Self {
         Self {
@@ -160,6 +168,8 @@ unsafe impl<'a> crate::TaggedStructure<'a>
 for VideoEncodeH265SessionParametersCreateInfoKHR<'a> {
     const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::VIDEO_ENCODE_H265_SESSION_PARAMETERS_CREATE_INFO_KHR;
 }
+unsafe impl<'a> crate::Extends<crate::vk::VideoSessionParametersCreateInfoKHR<'_>>
+for VideoEncodeH265SessionParametersCreateInfoKHR<'a> {}
 impl<'a> Default for VideoEncodeH265SessionParametersCreateInfoKHR<'a> {
     fn default() -> Self {
         Self {
@@ -190,6 +200,8 @@ unsafe impl<'a> crate::TaggedStructure<'a>
 for VideoEncodeH265SessionParametersGetInfoKHR<'a> {
     const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::VIDEO_ENCODE_H265_SESSION_PARAMETERS_GET_INFO_KHR;
 }
+unsafe impl<'a> crate::Extends<crate::vk::VideoEncodeSessionParametersGetInfoKHR<'_>>
+for VideoEncodeH265SessionParametersGetInfoKHR<'a> {}
 impl<'a> Default for VideoEncodeH265SessionParametersGetInfoKHR<'a> {
     fn default() -> Self {
         Self {
@@ -219,6 +231,10 @@ unsafe impl<'a> crate::TaggedStructure<'a>
 for VideoEncodeH265SessionParametersFeedbackInfoKHR<'a> {
     const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::VIDEO_ENCODE_H265_SESSION_PARAMETERS_FEEDBACK_INFO_KHR;
 }
+unsafe impl<
+    'a,
+> crate::Extends<crate::vk::VideoEncodeSessionParametersFeedbackInfoKHR<'_>>
+for VideoEncodeH265SessionParametersFeedbackInfoKHR<'a> {}
 impl<'a> Default for VideoEncodeH265SessionParametersFeedbackInfoKHR<'a> {
     fn default() -> Self {
         Self {
@@ -246,6 +262,8 @@ pub struct VideoEncodeH265PictureInfoKHR<'a> {
 unsafe impl<'a> crate::TaggedStructure<'a> for VideoEncodeH265PictureInfoKHR<'a> {
     const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::VIDEO_ENCODE_H265_PICTURE_INFO_KHR;
 }
+unsafe impl<'a> crate::Extends<crate::vk::VideoEncodeInfoKHR<'_>>
+for VideoEncodeH265PictureInfoKHR<'a> {}
 impl<'a> Default for VideoEncodeH265PictureInfoKHR<'a> {
     fn default() -> Self {
         Self {
@@ -297,6 +315,10 @@ pub struct VideoEncodeH265RateControlInfoKHR<'a> {
 unsafe impl<'a> crate::TaggedStructure<'a> for VideoEncodeH265RateControlInfoKHR<'a> {
     const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::VIDEO_ENCODE_H265_RATE_CONTROL_INFO_KHR;
 }
+unsafe impl<'a> crate::Extends<crate::vk::VideoCodingControlInfoKHR<'_>>
+for VideoEncodeH265RateControlInfoKHR<'a> {}
+unsafe impl<'a> crate::Extends<crate::vk::VideoBeginCodingInfoKHR<'_>>
+for VideoEncodeH265RateControlInfoKHR<'a> {}
 impl<'a> Default for VideoEncodeH265RateControlInfoKHR<'a> {
     fn default() -> Self {
         Self {
@@ -340,6 +362,8 @@ unsafe impl<'a> crate::TaggedStructure<'a>
 for VideoEncodeH265GopRemainingFrameInfoKHR<'a> {
     const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::VIDEO_ENCODE_H265_GOP_REMAINING_FRAME_INFO_KHR;
 }
+unsafe impl<'a> crate::Extends<crate::vk::VideoBeginCodingInfoKHR<'_>>
+for VideoEncodeH265GopRemainingFrameInfoKHR<'a> {}
 impl<'a> Default for VideoEncodeH265GopRemainingFrameInfoKHR<'a> {
     fn default() -> Self {
         Self {
@@ -370,6 +394,8 @@ unsafe impl<'a> crate::TaggedStructure<'a>
 for VideoEncodeH265RateControlLayerInfoKHR<'a> {
     const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::VIDEO_ENCODE_H265_RATE_CONTROL_LAYER_INFO_KHR;
 }
+unsafe impl<'a> crate::Extends<crate::vk::VideoEncodeRateControlLayerInfoKHR<'_>>
+for VideoEncodeH265RateControlLayerInfoKHR<'a> {}
 impl<'a> Default for VideoEncodeH265RateControlLayerInfoKHR<'a> {
     fn default() -> Self {
         Self {
@@ -396,6 +422,10 @@ pub struct VideoEncodeH265ProfileInfoKHR<'a> {
 unsafe impl<'a> crate::TaggedStructure<'a> for VideoEncodeH265ProfileInfoKHR<'a> {
     const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::VIDEO_ENCODE_H265_PROFILE_INFO_KHR;
 }
+unsafe impl<'a> crate::Extends<crate::vk::VideoProfileInfoKHR<'_>>
+for VideoEncodeH265ProfileInfoKHR<'a> {}
+unsafe impl<'a> crate::Extends<crate::vk::QueryPoolCreateInfo<'_>>
+for VideoEncodeH265ProfileInfoKHR<'a> {}
 impl<'a> Default for VideoEncodeH265ProfileInfoKHR<'a> {
     fn default() -> Self {
         Self {
@@ -417,6 +447,8 @@ pub struct VideoEncodeH265DpbSlotInfoKHR<'a> {
 unsafe impl<'a> crate::TaggedStructure<'a> for VideoEncodeH265DpbSlotInfoKHR<'a> {
     const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::VIDEO_ENCODE_H265_DPB_SLOT_INFO_KHR;
 }
+unsafe impl<'a> crate::Extends<crate::vk::VideoReferenceSlotInfoKHR<'_>>
+for VideoEncodeH265DpbSlotInfoKHR<'a> {}
 impl<'a> Default for VideoEncodeH265DpbSlotInfoKHR<'a> {
     fn default() -> Self {
         Self {

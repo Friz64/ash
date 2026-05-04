@@ -12,6 +12,8 @@ pub struct DisplaySurfaceStereoCreateInfoNV<'a> {
 unsafe impl<'a> crate::TaggedStructure<'a> for DisplaySurfaceStereoCreateInfoNV<'a> {
     const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::DISPLAY_SURFACE_STEREO_CREATE_INFO_NV;
 }
+unsafe impl<'a> crate::Extends<crate::vk::DisplaySurfaceCreateInfoKHR<'_>>
+for DisplaySurfaceStereoCreateInfoNV<'a> {}
 impl<'a> Default for DisplaySurfaceStereoCreateInfoNV<'a> {
     fn default() -> Self {
         Self {
@@ -33,6 +35,8 @@ pub struct DisplayModeStereoPropertiesNV<'a> {
 unsafe impl<'a> crate::TaggedStructure<'a> for DisplayModeStereoPropertiesNV<'a> {
     const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::DISPLAY_MODE_STEREO_PROPERTIES_NV;
 }
+unsafe impl<'a> crate::Extends<crate::vk::DisplayModeProperties2KHR<'_>>
+for DisplayModeStereoPropertiesNV<'a> {}
 impl<'a> Default for DisplayModeStereoPropertiesNV<'a> {
     fn default() -> Self {
         Self {

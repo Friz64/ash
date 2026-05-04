@@ -3120,6 +3120,10 @@ pub(crate) mod reexport {
     unsafe impl<'a> crate::TaggedStructure<'a> for ShaderModuleCreateInfo<'a> {
         const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::SHADER_MODULE_CREATE_INFO;
     }
+    unsafe impl<'a> crate::Extends<crate::vk::PipelineShaderStageCreateInfo<'_>>
+    for ShaderModuleCreateInfo<'a> {}
+    unsafe impl<'a> crate::Extends<crate::vk::DataGraphPipelineCreateInfoARM<'_>>
+    for ShaderModuleCreateInfo<'a> {}
     impl<'a> Default for ShaderModuleCreateInfo<'a> {
         fn default() -> Self {
             Self {
@@ -3751,6 +3755,22 @@ pub(crate) mod reexport {
     unsafe impl<'a> crate::TaggedStructure<'a> for PipelineLayoutCreateInfo<'a> {
         const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::PIPELINE_LAYOUT_CREATE_INFO;
     }
+    unsafe impl<'a> crate::Extends<crate::vk::BindDescriptorSetsInfo<'_>>
+    for PipelineLayoutCreateInfo<'a> {}
+    unsafe impl<'a> crate::Extends<crate::vk::PushConstantsInfo<'_>>
+    for PipelineLayoutCreateInfo<'a> {}
+    unsafe impl<'a> crate::Extends<crate::vk::PushDescriptorSetInfo<'_>>
+    for PipelineLayoutCreateInfo<'a> {}
+    unsafe impl<'a> crate::Extends<crate::vk::PushDescriptorSetWithTemplateInfo<'_>>
+    for PipelineLayoutCreateInfo<'a> {}
+    unsafe impl<'a> crate::Extends<crate::vk::SetDescriptorBufferOffsetsInfoEXT<'_>>
+    for PipelineLayoutCreateInfo<'a> {}
+    unsafe impl<
+        'a,
+    > crate::Extends<crate::vk::BindDescriptorBufferEmbeddedSamplersInfoEXT<'_>>
+    for PipelineLayoutCreateInfo<'a> {}
+    unsafe impl<'a> crate::Extends<crate::vk::IndirectCommandsLayoutCreateInfoEXT<'_>>
+    for PipelineLayoutCreateInfo<'a> {}
     impl<'a> Default for PipelineLayoutCreateInfo<'a> {
         fn default() -> Self {
             Self {

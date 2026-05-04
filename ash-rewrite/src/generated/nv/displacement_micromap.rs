@@ -13,6 +13,10 @@ unsafe impl<'a> crate::TaggedStructure<'a>
 for PhysicalDeviceDisplacementMicromapFeaturesNV<'a> {
     const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::PHYSICAL_DEVICE_DISPLACEMENT_MICROMAP_FEATURES_NV;
 }
+unsafe impl<'a> crate::Extends<crate::vk::PhysicalDeviceFeatures2<'_>>
+for PhysicalDeviceDisplacementMicromapFeaturesNV<'a> {}
+unsafe impl<'a> crate::Extends<crate::vk::DeviceCreateInfo<'_>>
+for PhysicalDeviceDisplacementMicromapFeaturesNV<'a> {}
 impl<'a> Default for PhysicalDeviceDisplacementMicromapFeaturesNV<'a> {
     fn default() -> Self {
         Self {
@@ -35,6 +39,8 @@ unsafe impl<'a> crate::TaggedStructure<'a>
 for PhysicalDeviceDisplacementMicromapPropertiesNV<'a> {
     const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::PHYSICAL_DEVICE_DISPLACEMENT_MICROMAP_PROPERTIES_NV;
 }
+unsafe impl<'a> crate::Extends<crate::vk::PhysicalDeviceProperties2<'_>>
+for PhysicalDeviceDisplacementMicromapPropertiesNV<'a> {}
 impl<'a> Default for PhysicalDeviceDisplacementMicromapPropertiesNV<'a> {
     fn default() -> Self {
         Self {
@@ -72,6 +78,10 @@ unsafe impl<'a> crate::TaggedStructure<'a>
 for AccelerationStructureTrianglesDisplacementMicromapNV<'a> {
     const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::ACCELERATION_STRUCTURE_TRIANGLES_DISPLACEMENT_MICROMAP_NV;
 }
+unsafe impl<
+    'a,
+> crate::Extends<crate::vk::AccelerationStructureGeometryTrianglesDataKHR<'_>>
+for AccelerationStructureTrianglesDisplacementMicromapNV<'a> {}
 impl<'a> Default for AccelerationStructureTrianglesDisplacementMicromapNV<'a> {
     fn default() -> Self {
         Self {

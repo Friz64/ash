@@ -136,6 +136,8 @@ pub(crate) mod reexport {
     for CuModuleTexturingModeCreateInfoNVX<'a> {
         const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::CU_MODULE_TEXTURING_MODE_CREATE_INFO_NVX;
     }
+    unsafe impl<'a> crate::Extends<crate::vk::CuModuleCreateInfoNVX<'_>>
+    for CuModuleTexturingModeCreateInfoNVX<'a> {}
     impl<'a> Default for CuModuleTexturingModeCreateInfoNVX<'a> {
         fn default() -> Self {
             Self {

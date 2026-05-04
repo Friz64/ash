@@ -66,6 +66,10 @@ pub(crate) mod reexport {
     for PhysicalDeviceExclusiveScissorFeaturesNV<'a> {
         const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::PHYSICAL_DEVICE_EXCLUSIVE_SCISSOR_FEATURES_NV;
     }
+    unsafe impl<'a> crate::Extends<crate::vk::PhysicalDeviceFeatures2<'_>>
+    for PhysicalDeviceExclusiveScissorFeaturesNV<'a> {}
+    unsafe impl<'a> crate::Extends<crate::vk::DeviceCreateInfo<'_>>
+    for PhysicalDeviceExclusiveScissorFeaturesNV<'a> {}
     impl<'a> Default for PhysicalDeviceExclusiveScissorFeaturesNV<'a> {
         fn default() -> Self {
             Self {
@@ -89,6 +93,8 @@ pub(crate) mod reexport {
     for PipelineViewportExclusiveScissorStateCreateInfoNV<'a> {
         const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::PIPELINE_VIEWPORT_EXCLUSIVE_SCISSOR_STATE_CREATE_INFO_NV;
     }
+    unsafe impl<'a> crate::Extends<crate::vk::PipelineViewportStateCreateInfo<'_>>
+    for PipelineViewportExclusiveScissorStateCreateInfoNV<'a> {}
     impl<'a> Default for PipelineViewportExclusiveScissorStateCreateInfoNV<'a> {
         fn default() -> Self {
             Self {

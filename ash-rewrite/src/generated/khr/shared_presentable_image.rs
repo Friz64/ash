@@ -47,6 +47,8 @@ pub(crate) mod reexport {
     for SharedPresentSurfaceCapabilitiesKHR<'a> {
         const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::SHARED_PRESENT_SURFACE_CAPABILITIES_KHR;
     }
+    unsafe impl<'a> crate::Extends<crate::vk::SurfaceCapabilities2KHR<'_>>
+    for SharedPresentSurfaceCapabilitiesKHR<'a> {}
     impl<'a> Default for SharedPresentSurfaceCapabilitiesKHR<'a> {
         fn default() -> Self {
             Self {

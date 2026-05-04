@@ -13,6 +13,10 @@ unsafe impl<'a> crate::TaggedStructure<'a>
 for PhysicalDeviceBlendOperationAdvancedFeaturesEXT<'a> {
     const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::PHYSICAL_DEVICE_BLEND_OPERATION_ADVANCED_FEATURES_EXT;
 }
+unsafe impl<'a> crate::Extends<crate::vk::PhysicalDeviceFeatures2<'_>>
+for PhysicalDeviceBlendOperationAdvancedFeaturesEXT<'a> {}
+unsafe impl<'a> crate::Extends<crate::vk::DeviceCreateInfo<'_>>
+for PhysicalDeviceBlendOperationAdvancedFeaturesEXT<'a> {}
 impl<'a> Default for PhysicalDeviceBlendOperationAdvancedFeaturesEXT<'a> {
     fn default() -> Self {
         Self {
@@ -40,6 +44,8 @@ unsafe impl<'a> crate::TaggedStructure<'a>
 for PhysicalDeviceBlendOperationAdvancedPropertiesEXT<'a> {
     const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::PHYSICAL_DEVICE_BLEND_OPERATION_ADVANCED_PROPERTIES_EXT;
 }
+unsafe impl<'a> crate::Extends<crate::vk::PhysicalDeviceProperties2<'_>>
+for PhysicalDeviceBlendOperationAdvancedPropertiesEXT<'a> {}
 impl<'a> Default for PhysicalDeviceBlendOperationAdvancedPropertiesEXT<'a> {
     fn default() -> Self {
         Self {
@@ -69,6 +75,8 @@ unsafe impl<'a> crate::TaggedStructure<'a>
 for PipelineColorBlendAdvancedStateCreateInfoEXT<'a> {
     const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::PIPELINE_COLOR_BLEND_ADVANCED_STATE_CREATE_INFO_EXT;
 }
+unsafe impl<'a> crate::Extends<crate::vk::PipelineColorBlendStateCreateInfo<'_>>
+for PipelineColorBlendAdvancedStateCreateInfoEXT<'a> {}
 impl<'a> Default for PipelineColorBlendAdvancedStateCreateInfoEXT<'a> {
     fn default() -> Self {
         Self {

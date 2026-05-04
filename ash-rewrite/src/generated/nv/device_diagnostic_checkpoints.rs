@@ -79,6 +79,8 @@ pub(crate) mod reexport {
     for QueueFamilyCheckpointPropertiesNV<'a> {
         const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::QUEUE_FAMILY_CHECKPOINT_PROPERTIES_NV;
     }
+    unsafe impl<'a> crate::Extends<crate::vk::QueueFamilyProperties2<'_>>
+    for QueueFamilyCheckpointPropertiesNV<'a> {}
     impl<'a> Default for QueueFamilyCheckpointPropertiesNV<'a> {
         fn default() -> Self {
             Self {
@@ -124,6 +126,8 @@ pub(crate) mod reexport {
     for QueueFamilyCheckpointProperties2NV<'a> {
         const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::QUEUE_FAMILY_CHECKPOINT_PROPERTIES_2_NV;
     }
+    unsafe impl<'a> crate::Extends<crate::vk::QueueFamilyProperties2<'_>>
+    for QueueFamilyCheckpointProperties2NV<'a> {}
     impl<'a> Default for QueueFamilyCheckpointProperties2NV<'a> {
         fn default() -> Self {
             Self {

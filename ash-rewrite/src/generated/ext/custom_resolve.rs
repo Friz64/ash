@@ -66,6 +66,10 @@ pub(crate) mod reexport {
     for PhysicalDeviceCustomResolveFeaturesEXT<'a> {
         const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::PHYSICAL_DEVICE_CUSTOM_RESOLVE_FEATURES_EXT;
     }
+    unsafe impl<'a> crate::Extends<crate::vk::PhysicalDeviceFeatures2<'_>>
+    for PhysicalDeviceCustomResolveFeaturesEXT<'a> {}
+    unsafe impl<'a> crate::Extends<crate::vk::DeviceCreateInfo<'_>>
+    for PhysicalDeviceCustomResolveFeaturesEXT<'a> {}
     impl<'a> Default for PhysicalDeviceCustomResolveFeaturesEXT<'a> {
         fn default() -> Self {
             Self {
@@ -91,6 +95,12 @@ pub(crate) mod reexport {
     unsafe impl<'a> crate::TaggedStructure<'a> for CustomResolveCreateInfoEXT<'a> {
         const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::CUSTOM_RESOLVE_CREATE_INFO_EXT;
     }
+    unsafe impl<'a> crate::Extends<crate::vk::GraphicsPipelineCreateInfo<'_>>
+    for CustomResolveCreateInfoEXT<'a> {}
+    unsafe impl<'a> crate::Extends<crate::vk::CommandBufferInheritanceInfo<'_>>
+    for CustomResolveCreateInfoEXT<'a> {}
+    unsafe impl<'a> crate::Extends<crate::vk::ShaderCreateInfoEXT<'_>>
+    for CustomResolveCreateInfoEXT<'a> {}
     impl<'a> Default for CustomResolveCreateInfoEXT<'a> {
         fn default() -> Self {
             Self {

@@ -49,6 +49,8 @@ pub(crate) mod reexport {
     for DrmFormatModifierPropertiesListEXT<'a> {
         const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::DRM_FORMAT_MODIFIER_PROPERTIES_LIST_EXT;
     }
+    unsafe impl<'a> crate::Extends<crate::vk::FormatProperties2<'_>>
+    for DrmFormatModifierPropertiesListEXT<'a> {}
     impl<'a> Default for DrmFormatModifierPropertiesListEXT<'a> {
         fn default() -> Self {
             Self {
@@ -82,6 +84,8 @@ pub(crate) mod reexport {
     for PhysicalDeviceImageDrmFormatModifierInfoEXT<'a> {
         const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::PHYSICAL_DEVICE_IMAGE_DRM_FORMAT_MODIFIER_INFO_EXT;
     }
+    unsafe impl<'a> crate::Extends<crate::vk::PhysicalDeviceImageFormatInfo2<'_>>
+    for PhysicalDeviceImageDrmFormatModifierInfoEXT<'a> {}
     impl<'a> Default for PhysicalDeviceImageDrmFormatModifierInfoEXT<'a> {
         fn default() -> Self {
             Self {
@@ -108,6 +112,8 @@ pub(crate) mod reexport {
     for ImageDrmFormatModifierListCreateInfoEXT<'a> {
         const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::IMAGE_DRM_FORMAT_MODIFIER_LIST_CREATE_INFO_EXT;
     }
+    unsafe impl<'a> crate::Extends<crate::vk::ImageCreateInfo<'_>>
+    for ImageDrmFormatModifierListCreateInfoEXT<'a> {}
     impl<'a> Default for ImageDrmFormatModifierListCreateInfoEXT<'a> {
         fn default() -> Self {
             Self {
@@ -133,6 +139,8 @@ pub(crate) mod reexport {
     for ImageDrmFormatModifierExplicitCreateInfoEXT<'a> {
         const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::IMAGE_DRM_FORMAT_MODIFIER_EXPLICIT_CREATE_INFO_EXT;
     }
+    unsafe impl<'a> crate::Extends<crate::vk::ImageCreateInfo<'_>>
+    for ImageDrmFormatModifierExplicitCreateInfoEXT<'a> {}
     impl<'a> Default for ImageDrmFormatModifierExplicitCreateInfoEXT<'a> {
         fn default() -> Self {
             Self {
@@ -180,6 +188,8 @@ pub(crate) mod reexport {
     for DrmFormatModifierPropertiesList2EXT<'a> {
         const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::DRM_FORMAT_MODIFIER_PROPERTIES_LIST_2_EXT;
     }
+    unsafe impl<'a> crate::Extends<crate::vk::FormatProperties2<'_>>
+    for DrmFormatModifierPropertiesList2EXT<'a> {}
     impl<'a> Default for DrmFormatModifierPropertiesList2EXT<'a> {
         fn default() -> Self {
             Self {

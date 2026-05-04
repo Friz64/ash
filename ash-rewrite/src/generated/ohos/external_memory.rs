@@ -63,6 +63,8 @@ pub(crate) mod reexport {
     unsafe impl<'a> crate::TaggedStructure<'a> for NativeBufferUsageOHOS<'a> {
         const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::NATIVE_BUFFER_USAGE_OHOS;
     }
+    unsafe impl<'a> crate::Extends<crate::vk::ImageFormatProperties2<'_>>
+    for NativeBufferUsageOHOS<'a> {}
     impl<'a> Default for NativeBufferUsageOHOS<'a> {
         fn default() -> Self {
             Self {
@@ -114,6 +116,8 @@ pub(crate) mod reexport {
     unsafe impl<'a> crate::TaggedStructure<'a> for NativeBufferFormatPropertiesOHOS<'a> {
         const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::NATIVE_BUFFER_FORMAT_PROPERTIES_OHOS;
     }
+    unsafe impl<'a> crate::Extends<crate::vk::NativeBufferPropertiesOHOS<'_>>
+    for NativeBufferFormatPropertiesOHOS<'a> {}
     impl<'a> Default for NativeBufferFormatPropertiesOHOS<'a> {
         fn default() -> Self {
             Self {
@@ -142,6 +146,8 @@ pub(crate) mod reexport {
     unsafe impl<'a> crate::TaggedStructure<'a> for ImportNativeBufferInfoOHOS<'a> {
         const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::IMPORT_NATIVE_BUFFER_INFO_OHOS;
     }
+    unsafe impl<'a> crate::Extends<crate::vk::MemoryAllocateInfo<'_>>
+    for ImportNativeBufferInfoOHOS<'a> {}
     impl<'a> Default for ImportNativeBufferInfoOHOS<'a> {
         fn default() -> Self {
             Self {
@@ -184,6 +190,16 @@ pub(crate) mod reexport {
     unsafe impl<'a> crate::TaggedStructure<'a> for ExternalFormatOHOS<'a> {
         const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::EXTERNAL_FORMAT_OHOS;
     }
+    unsafe impl<'a> crate::Extends<crate::vk::ImageCreateInfo<'_>>
+    for ExternalFormatOHOS<'a> {}
+    unsafe impl<'a> crate::Extends<crate::vk::SamplerYcbcrConversionCreateInfo<'_>>
+    for ExternalFormatOHOS<'a> {}
+    unsafe impl<'a> crate::Extends<crate::vk::AttachmentDescription2<'_>>
+    for ExternalFormatOHOS<'a> {}
+    unsafe impl<'a> crate::Extends<crate::vk::GraphicsPipelineCreateInfo<'_>>
+    for ExternalFormatOHOS<'a> {}
+    unsafe impl<'a> crate::Extends<crate::vk::CommandBufferInheritanceInfo<'_>>
+    for ExternalFormatOHOS<'a> {}
     impl<'a> Default for ExternalFormatOHOS<'a> {
         fn default() -> Self {
             Self {

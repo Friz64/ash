@@ -23,6 +23,7 @@ pub enum StructMember {
 pub struct Struct {
     pub required_by: RequiredBy,
     pub name: TypeName,
+    pub extends: Vec<TypeName>,
     pub structure_type: Option<EnumeratorName>,
     pub members: Vec<StructMember>,
 }
@@ -41,6 +42,8 @@ impl Struct {
 
         let mut members = Vec::new();
         let mut used_bitwidth = None;
+
+        let extends = xml.structextends.iter().map(|&extending| TypeName::new(extending)).collect();
 
         let mut structure_type = None;
 
@@ -91,6 +94,7 @@ impl Struct {
         Some(Struct {
             required_by,
             name: xml.name,
+            extends,
             structure_type,
             members,
         })

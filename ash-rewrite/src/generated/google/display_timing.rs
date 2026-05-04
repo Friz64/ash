@@ -79,6 +79,8 @@ pub(crate) mod reexport {
     unsafe impl<'a> crate::TaggedStructure<'a> for PresentTimesInfoGOOGLE<'a> {
         const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::PRESENT_TIMES_INFO_GOOGLE;
     }
+    unsafe impl<'a> crate::Extends<crate::vk::PresentInfoKHR<'_>>
+    for PresentTimesInfoGOOGLE<'a> {}
     impl<'a> Default for PresentTimesInfoGOOGLE<'a> {
         fn default() -> Self {
             Self {

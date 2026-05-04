@@ -23,6 +23,8 @@ unsafe impl<'a> crate::TaggedStructure<'a>
 for AccelerationStructureGeometryLinearSweptSpheresDataNV<'a> {
     const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::ACCELERATION_STRUCTURE_GEOMETRY_LINEAR_SWEPT_SPHERES_DATA_NV;
 }
+unsafe impl<'a> crate::Extends<crate::vk::AccelerationStructureGeometryKHR<'_>>
+for AccelerationStructureGeometryLinearSweptSpheresDataNV<'a> {}
 impl<'a> Default for AccelerationStructureGeometryLinearSweptSpheresDataNV<'a> {
     fn default() -> Self {
         Self {
@@ -63,6 +65,8 @@ unsafe impl<'a> crate::TaggedStructure<'a>
 for AccelerationStructureGeometrySpheresDataNV<'a> {
     const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::ACCELERATION_STRUCTURE_GEOMETRY_SPHERES_DATA_NV;
 }
+unsafe impl<'a> crate::Extends<crate::vk::AccelerationStructureGeometryKHR<'_>>
+for AccelerationStructureGeometrySpheresDataNV<'a> {}
 impl<'a> Default for AccelerationStructureGeometrySpheresDataNV<'a> {
     fn default() -> Self {
         Self {
@@ -94,6 +98,10 @@ unsafe impl<'a> crate::TaggedStructure<'a>
 for PhysicalDeviceRayTracingLinearSweptSpheresFeaturesNV<'a> {
     const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::PHYSICAL_DEVICE_RAY_TRACING_LINEAR_SWEPT_SPHERES_FEATURES_NV;
 }
+unsafe impl<'a> crate::Extends<crate::vk::PhysicalDeviceFeatures2<'_>>
+for PhysicalDeviceRayTracingLinearSweptSpheresFeaturesNV<'a> {}
+unsafe impl<'a> crate::Extends<crate::vk::DeviceCreateInfo<'_>>
+for PhysicalDeviceRayTracingLinearSweptSpheresFeaturesNV<'a> {}
 impl<'a> Default for PhysicalDeviceRayTracingLinearSweptSpheresFeaturesNV<'a> {
     fn default() -> Self {
         Self {

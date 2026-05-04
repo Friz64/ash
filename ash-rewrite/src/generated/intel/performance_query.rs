@@ -196,6 +196,8 @@ pub(crate) mod reexport {
     for QueryPoolPerformanceQueryCreateInfoINTEL<'a> {
         const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::QUERY_POOL_PERFORMANCE_QUERY_CREATE_INFO_INTEL;
     }
+    unsafe impl<'a> crate::Extends<crate::vk::QueryPoolCreateInfo<'_>>
+    for QueryPoolPerformanceQueryCreateInfoINTEL<'a> {}
     impl<'a> Default for QueryPoolPerformanceQueryCreateInfoINTEL<'a> {
         fn default() -> Self {
             Self {

@@ -15,6 +15,12 @@ pub struct ValidationFeaturesEXT<'a> {
 unsafe impl<'a> crate::TaggedStructure<'a> for ValidationFeaturesEXT<'a> {
     const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::VALIDATION_FEATURES_EXT;
 }
+unsafe impl<'a> crate::Extends<crate::vk::InstanceCreateInfo<'_>>
+for ValidationFeaturesEXT<'a> {}
+unsafe impl<'a> crate::Extends<crate::vk::ShaderModuleCreateInfo<'_>>
+for ValidationFeaturesEXT<'a> {}
+unsafe impl<'a> crate::Extends<crate::vk::ShaderCreateInfoEXT<'_>>
+for ValidationFeaturesEXT<'a> {}
 impl<'a> Default for ValidationFeaturesEXT<'a> {
     fn default() -> Self {
         Self {

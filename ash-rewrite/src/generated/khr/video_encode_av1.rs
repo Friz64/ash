@@ -35,6 +35,8 @@ pub struct VideoEncodeAV1CapabilitiesKHR<'a> {
 unsafe impl<'a> crate::TaggedStructure<'a> for VideoEncodeAV1CapabilitiesKHR<'a> {
     const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::VIDEO_ENCODE_AV1_CAPABILITIES_KHR;
 }
+unsafe impl<'a> crate::Extends<crate::vk::VideoCapabilitiesKHR<'_>>
+for VideoEncodeAV1CapabilitiesKHR<'a> {}
 impl<'a> Default for VideoEncodeAV1CapabilitiesKHR<'a> {
     fn default() -> Self {
         Self {
@@ -94,6 +96,8 @@ unsafe impl<'a> crate::TaggedStructure<'a>
 for VideoEncodeAV1QualityLevelPropertiesKHR<'a> {
     const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::VIDEO_ENCODE_AV1_QUALITY_LEVEL_PROPERTIES_KHR;
 }
+unsafe impl<'a> crate::Extends<crate::vk::VideoEncodeQualityLevelPropertiesKHR<'_>>
+for VideoEncodeAV1QualityLevelPropertiesKHR<'a> {}
 impl<'a> Default for VideoEncodeAV1QualityLevelPropertiesKHR<'a> {
     fn default() -> Self {
         Self {
@@ -130,6 +134,10 @@ unsafe impl<'a> crate::TaggedStructure<'a>
 for PhysicalDeviceVideoEncodeAV1FeaturesKHR<'a> {
     const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::PHYSICAL_DEVICE_VIDEO_ENCODE_AV1_FEATURES_KHR;
 }
+unsafe impl<'a> crate::Extends<crate::vk::PhysicalDeviceFeatures2<'_>>
+for PhysicalDeviceVideoEncodeAV1FeaturesKHR<'a> {}
+unsafe impl<'a> crate::Extends<crate::vk::DeviceCreateInfo<'_>>
+for PhysicalDeviceVideoEncodeAV1FeaturesKHR<'a> {}
 impl<'a> Default for PhysicalDeviceVideoEncodeAV1FeaturesKHR<'a> {
     fn default() -> Self {
         Self {
@@ -152,6 +160,8 @@ pub struct VideoEncodeAV1SessionCreateInfoKHR<'a> {
 unsafe impl<'a> crate::TaggedStructure<'a> for VideoEncodeAV1SessionCreateInfoKHR<'a> {
     const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::VIDEO_ENCODE_AV1_SESSION_CREATE_INFO_KHR;
 }
+unsafe impl<'a> crate::Extends<crate::vk::VideoSessionCreateInfoKHR<'_>>
+for VideoEncodeAV1SessionCreateInfoKHR<'a> {}
 impl<'a> Default for VideoEncodeAV1SessionCreateInfoKHR<'a> {
     fn default() -> Self {
         Self {
@@ -178,6 +188,8 @@ unsafe impl<'a> crate::TaggedStructure<'a>
 for VideoEncodeAV1SessionParametersCreateInfoKHR<'a> {
     const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::VIDEO_ENCODE_AV1_SESSION_PARAMETERS_CREATE_INFO_KHR;
 }
+unsafe impl<'a> crate::Extends<crate::vk::VideoSessionParametersCreateInfoKHR<'_>>
+for VideoEncodeAV1SessionParametersCreateInfoKHR<'a> {}
 impl<'a> Default for VideoEncodeAV1SessionParametersCreateInfoKHR<'a> {
     fn default() -> Self {
         Self {
@@ -202,6 +214,8 @@ pub struct VideoEncodeAV1DpbSlotInfoKHR<'a> {
 unsafe impl<'a> crate::TaggedStructure<'a> for VideoEncodeAV1DpbSlotInfoKHR<'a> {
     const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::VIDEO_ENCODE_AV1_DPB_SLOT_INFO_KHR;
 }
+unsafe impl<'a> crate::Extends<crate::vk::VideoReferenceSlotInfoKHR<'_>>
+for VideoEncodeAV1DpbSlotInfoKHR<'a> {}
 impl<'a> Default for VideoEncodeAV1DpbSlotInfoKHR<'a> {
     fn default() -> Self {
         Self {
@@ -230,6 +244,8 @@ pub struct VideoEncodeAV1PictureInfoKHR<'a> {
 unsafe impl<'a> crate::TaggedStructure<'a> for VideoEncodeAV1PictureInfoKHR<'a> {
     const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::VIDEO_ENCODE_AV1_PICTURE_INFO_KHR;
 }
+unsafe impl<'a> crate::Extends<crate::vk::VideoEncodeInfoKHR<'_>>
+for VideoEncodeAV1PictureInfoKHR<'a> {}
 impl<'a> Default for VideoEncodeAV1PictureInfoKHR<'a> {
     fn default() -> Self {
         Self {
@@ -257,6 +273,10 @@ pub struct VideoEncodeAV1ProfileInfoKHR<'a> {
 unsafe impl<'a> crate::TaggedStructure<'a> for VideoEncodeAV1ProfileInfoKHR<'a> {
     const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::VIDEO_ENCODE_AV1_PROFILE_INFO_KHR;
 }
+unsafe impl<'a> crate::Extends<crate::vk::VideoProfileInfoKHR<'_>>
+for VideoEncodeAV1ProfileInfoKHR<'a> {}
+unsafe impl<'a> crate::Extends<crate::vk::QueryPoolCreateInfo<'_>>
+for VideoEncodeAV1ProfileInfoKHR<'a> {}
 impl<'a> Default for VideoEncodeAV1ProfileInfoKHR<'a> {
     fn default() -> Self {
         Self {
@@ -282,6 +302,10 @@ pub struct VideoEncodeAV1RateControlInfoKHR<'a> {
 unsafe impl<'a> crate::TaggedStructure<'a> for VideoEncodeAV1RateControlInfoKHR<'a> {
     const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::VIDEO_ENCODE_AV1_RATE_CONTROL_INFO_KHR;
 }
+unsafe impl<'a> crate::Extends<crate::vk::VideoCodingControlInfoKHR<'_>>
+for VideoEncodeAV1RateControlInfoKHR<'a> {}
+unsafe impl<'a> crate::Extends<crate::vk::VideoBeginCodingInfoKHR<'_>>
+for VideoEncodeAV1RateControlInfoKHR<'a> {}
 impl<'a> Default for VideoEncodeAV1RateControlInfoKHR<'a> {
     fn default() -> Self {
         Self {
@@ -325,6 +349,8 @@ unsafe impl<'a> crate::TaggedStructure<'a>
 for VideoEncodeAV1GopRemainingFrameInfoKHR<'a> {
     const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::VIDEO_ENCODE_AV1_GOP_REMAINING_FRAME_INFO_KHR;
 }
+unsafe impl<'a> crate::Extends<crate::vk::VideoBeginCodingInfoKHR<'_>>
+for VideoEncodeAV1GopRemainingFrameInfoKHR<'a> {}
 impl<'a> Default for VideoEncodeAV1GopRemainingFrameInfoKHR<'a> {
     fn default() -> Self {
         Self {
@@ -355,6 +381,8 @@ unsafe impl<'a> crate::TaggedStructure<'a>
 for VideoEncodeAV1RateControlLayerInfoKHR<'a> {
     const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::VIDEO_ENCODE_AV1_RATE_CONTROL_LAYER_INFO_KHR;
 }
+unsafe impl<'a> crate::Extends<crate::vk::VideoEncodeRateControlLayerInfoKHR<'_>>
+for VideoEncodeAV1RateControlLayerInfoKHR<'a> {}
 impl<'a> Default for VideoEncodeAV1RateControlLayerInfoKHR<'a> {
     fn default() -> Self {
         Self {

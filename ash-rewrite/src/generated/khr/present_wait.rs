@@ -49,6 +49,10 @@ pub(crate) mod reexport {
     for PhysicalDevicePresentWaitFeaturesKHR<'a> {
         const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::PHYSICAL_DEVICE_PRESENT_WAIT_FEATURES_KHR;
     }
+    unsafe impl<'a> crate::Extends<crate::vk::PhysicalDeviceFeatures2<'_>>
+    for PhysicalDevicePresentWaitFeaturesKHR<'a> {}
+    unsafe impl<'a> crate::Extends<crate::vk::DeviceCreateInfo<'_>>
+    for PhysicalDevicePresentWaitFeaturesKHR<'a> {}
     impl<'a> Default for PhysicalDevicePresentWaitFeaturesKHR<'a> {
         fn default() -> Self {
             Self {

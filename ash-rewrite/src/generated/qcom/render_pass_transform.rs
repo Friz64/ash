@@ -12,6 +12,8 @@ pub struct RenderPassTransformBeginInfoQCOM<'a> {
 unsafe impl<'a> crate::TaggedStructure<'a> for RenderPassTransformBeginInfoQCOM<'a> {
     const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::RENDER_PASS_TRANSFORM_BEGIN_INFO_QCOM;
 }
+unsafe impl<'a> crate::Extends<crate::vk::RenderPassBeginInfo<'_>>
+for RenderPassTransformBeginInfoQCOM<'a> {}
 impl<'a> Default for RenderPassTransformBeginInfoQCOM<'a> {
     fn default() -> Self {
         Self {
@@ -35,6 +37,8 @@ unsafe impl<'a> crate::TaggedStructure<'a>
 for CommandBufferInheritanceRenderPassTransformInfoQCOM<'a> {
     const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::COMMAND_BUFFER_INHERITANCE_RENDER_PASS_TRANSFORM_INFO_QCOM;
 }
+unsafe impl<'a> crate::Extends<crate::vk::CommandBufferInheritanceInfo<'_>>
+for CommandBufferInheritanceRenderPassTransformInfoQCOM<'a> {}
 impl<'a> Default for CommandBufferInheritanceRenderPassTransformInfoQCOM<'a> {
     fn default() -> Self {
         Self {

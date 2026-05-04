@@ -129,6 +129,10 @@ pub(crate) mod reexport {
     for PhysicalDeviceDeviceGeneratedCommandsFeaturesNV<'a> {
         const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::PHYSICAL_DEVICE_DEVICE_GENERATED_COMMANDS_FEATURES_NV;
     }
+    unsafe impl<'a> crate::Extends<crate::vk::PhysicalDeviceFeatures2<'_>>
+    for PhysicalDeviceDeviceGeneratedCommandsFeaturesNV<'a> {}
+    unsafe impl<'a> crate::Extends<crate::vk::DeviceCreateInfo<'_>>
+    for PhysicalDeviceDeviceGeneratedCommandsFeaturesNV<'a> {}
     impl<'a> Default for PhysicalDeviceDeviceGeneratedCommandsFeaturesNV<'a> {
         fn default() -> Self {
             Self {
@@ -159,6 +163,8 @@ pub(crate) mod reexport {
     for PhysicalDeviceDeviceGeneratedCommandsPropertiesNV<'a> {
         const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::PHYSICAL_DEVICE_DEVICE_GENERATED_COMMANDS_PROPERTIES_NV;
     }
+    unsafe impl<'a> crate::Extends<crate::vk::PhysicalDeviceProperties2<'_>>
+    for PhysicalDeviceDeviceGeneratedCommandsPropertiesNV<'a> {}
     impl<'a> Default for PhysicalDeviceDeviceGeneratedCommandsPropertiesNV<'a> {
         fn default() -> Self {
             Self {
@@ -223,6 +229,8 @@ pub(crate) mod reexport {
     for GraphicsPipelineShaderGroupsCreateInfoNV<'a> {
         const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::GRAPHICS_PIPELINE_SHADER_GROUPS_CREATE_INFO_NV;
     }
+    unsafe impl<'a> crate::Extends<crate::vk::GraphicsPipelineCreateInfo<'_>>
+    for GraphicsPipelineShaderGroupsCreateInfoNV<'a> {}
     impl<'a> Default for GraphicsPipelineShaderGroupsCreateInfoNV<'a> {
         fn default() -> Self {
             Self {

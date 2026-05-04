@@ -47,6 +47,10 @@ pub(crate) mod reexport {
     for PhysicalDeviceAttachmentFeedbackLoopDynamicStateFeaturesEXT<'a> {
         const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::PHYSICAL_DEVICE_ATTACHMENT_FEEDBACK_LOOP_DYNAMIC_STATE_FEATURES_EXT;
     }
+    unsafe impl<'a> crate::Extends<crate::vk::PhysicalDeviceFeatures2<'_>>
+    for PhysicalDeviceAttachmentFeedbackLoopDynamicStateFeaturesEXT<'a> {}
+    unsafe impl<'a> crate::Extends<crate::vk::DeviceCreateInfo<'_>>
+    for PhysicalDeviceAttachmentFeedbackLoopDynamicStateFeaturesEXT<'a> {}
     impl<'a> Default
     for PhysicalDeviceAttachmentFeedbackLoopDynamicStateFeaturesEXT<'a> {
         fn default() -> Self {

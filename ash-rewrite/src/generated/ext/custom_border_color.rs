@@ -14,6 +14,8 @@ unsafe impl<'a> crate::TaggedStructure<'a>
 for SamplerCustomBorderColorCreateInfoEXT<'a> {
     const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::SAMPLER_CUSTOM_BORDER_COLOR_CREATE_INFO_EXT;
 }
+unsafe impl<'a> crate::Extends<crate::vk::SamplerCreateInfo<'_>>
+for SamplerCustomBorderColorCreateInfoEXT<'a> {}
 impl<'a> Default for SamplerCustomBorderColorCreateInfoEXT<'a> {
     fn default() -> Self {
         Self {
@@ -37,6 +39,8 @@ unsafe impl<'a> crate::TaggedStructure<'a>
 for PhysicalDeviceCustomBorderColorPropertiesEXT<'a> {
     const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::PHYSICAL_DEVICE_CUSTOM_BORDER_COLOR_PROPERTIES_EXT;
 }
+unsafe impl<'a> crate::Extends<crate::vk::PhysicalDeviceProperties2<'_>>
+for PhysicalDeviceCustomBorderColorPropertiesEXT<'a> {}
 impl<'a> Default for PhysicalDeviceCustomBorderColorPropertiesEXT<'a> {
     fn default() -> Self {
         Self {
@@ -60,6 +64,10 @@ unsafe impl<'a> crate::TaggedStructure<'a>
 for PhysicalDeviceCustomBorderColorFeaturesEXT<'a> {
     const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::PHYSICAL_DEVICE_CUSTOM_BORDER_COLOR_FEATURES_EXT;
 }
+unsafe impl<'a> crate::Extends<crate::vk::PhysicalDeviceFeatures2<'_>>
+for PhysicalDeviceCustomBorderColorFeaturesEXT<'a> {}
+unsafe impl<'a> crate::Extends<crate::vk::DeviceCreateInfo<'_>>
+for PhysicalDeviceCustomBorderColorFeaturesEXT<'a> {}
 impl<'a> Default for PhysicalDeviceCustomBorderColorFeaturesEXT<'a> {
     fn default() -> Self {
         Self {

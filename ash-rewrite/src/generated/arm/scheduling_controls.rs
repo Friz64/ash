@@ -47,6 +47,10 @@ pub(crate) mod reexport {
     for DeviceQueueShaderCoreControlCreateInfoARM<'a> {
         const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::DEVICE_QUEUE_SHADER_CORE_CONTROL_CREATE_INFO_ARM;
     }
+    unsafe impl<'a> crate::Extends<crate::vk::DeviceQueueCreateInfo<'_>>
+    for DeviceQueueShaderCoreControlCreateInfoARM<'a> {}
+    unsafe impl<'a> crate::Extends<crate::vk::DeviceCreateInfo<'_>>
+    for DeviceQueueShaderCoreControlCreateInfoARM<'a> {}
     impl<'a> Default for DeviceQueueShaderCoreControlCreateInfoARM<'a> {
         fn default() -> Self {
             Self {
@@ -69,6 +73,10 @@ pub(crate) mod reexport {
     for PhysicalDeviceSchedulingControlsFeaturesARM<'a> {
         const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::PHYSICAL_DEVICE_SCHEDULING_CONTROLS_FEATURES_ARM;
     }
+    unsafe impl<'a> crate::Extends<crate::vk::PhysicalDeviceFeatures2<'_>>
+    for PhysicalDeviceSchedulingControlsFeaturesARM<'a> {}
+    unsafe impl<'a> crate::Extends<crate::vk::DeviceCreateInfo<'_>>
+    for PhysicalDeviceSchedulingControlsFeaturesARM<'a> {}
     impl<'a> Default for PhysicalDeviceSchedulingControlsFeaturesARM<'a> {
         fn default() -> Self {
             Self {
@@ -91,6 +99,8 @@ pub(crate) mod reexport {
     for PhysicalDeviceSchedulingControlsPropertiesARM<'a> {
         const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::PHYSICAL_DEVICE_SCHEDULING_CONTROLS_PROPERTIES_ARM;
     }
+    unsafe impl<'a> crate::Extends<crate::vk::PhysicalDeviceProperties2<'_>>
+    for PhysicalDeviceSchedulingControlsPropertiesARM<'a> {}
     impl<'a> Default for PhysicalDeviceSchedulingControlsPropertiesARM<'a> {
         fn default() -> Self {
             Self {
@@ -115,6 +125,8 @@ pub(crate) mod reexport {
     for PhysicalDeviceSchedulingControlsDispatchParametersPropertiesARM<'a> {
         const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::PHYSICAL_DEVICE_SCHEDULING_CONTROLS_DISPATCH_PARAMETERS_PROPERTIES_ARM;
     }
+    unsafe impl<'a> crate::Extends<crate::vk::PhysicalDeviceProperties2<'_>>
+    for PhysicalDeviceSchedulingControlsDispatchParametersPropertiesARM<'a> {}
     impl<'a> Default
     for PhysicalDeviceSchedulingControlsDispatchParametersPropertiesARM<'a> {
         fn default() -> Self {

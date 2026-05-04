@@ -93,6 +93,8 @@ pub(crate) mod reexport {
     unsafe impl<'a> crate::TaggedStructure<'a> for ExportFenceWin32HandleInfoKHR<'a> {
         const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::EXPORT_FENCE_WIN32_HANDLE_INFO_KHR;
     }
+    unsafe impl<'a> crate::Extends<crate::vk::FenceCreateInfo<'_>>
+    for ExportFenceWin32HandleInfoKHR<'a> {}
     impl<'a> Default for ExportFenceWin32HandleInfoKHR<'a> {
         fn default() -> Self {
             Self {

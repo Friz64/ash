@@ -48,6 +48,10 @@ pub(crate) mod reexport {
     for PhysicalDeviceInvocationMaskFeaturesHUAWEI<'a> {
         const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::PHYSICAL_DEVICE_INVOCATION_MASK_FEATURES_HUAWEI;
     }
+    unsafe impl<'a> crate::Extends<crate::vk::PhysicalDeviceFeatures2<'_>>
+    for PhysicalDeviceInvocationMaskFeaturesHUAWEI<'a> {}
+    unsafe impl<'a> crate::Extends<crate::vk::DeviceCreateInfo<'_>>
+    for PhysicalDeviceInvocationMaskFeaturesHUAWEI<'a> {}
     impl<'a> Default for PhysicalDeviceInvocationMaskFeaturesHUAWEI<'a> {
         fn default() -> Self {
             Self {

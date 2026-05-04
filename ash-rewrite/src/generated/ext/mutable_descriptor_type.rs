@@ -13,6 +13,10 @@ unsafe impl<'a> crate::TaggedStructure<'a>
 for PhysicalDeviceMutableDescriptorTypeFeaturesEXT<'a> {
     const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::PHYSICAL_DEVICE_MUTABLE_DESCRIPTOR_TYPE_FEATURES_EXT;
 }
+unsafe impl<'a> crate::Extends<crate::vk::PhysicalDeviceFeatures2<'_>>
+for PhysicalDeviceMutableDescriptorTypeFeaturesEXT<'a> {}
+unsafe impl<'a> crate::Extends<crate::vk::DeviceCreateInfo<'_>>
+for PhysicalDeviceMutableDescriptorTypeFeaturesEXT<'a> {}
 impl<'a> Default for PhysicalDeviceMutableDescriptorTypeFeaturesEXT<'a> {
     fn default() -> Self {
         Self {
@@ -44,6 +48,10 @@ pub struct MutableDescriptorTypeCreateInfoEXT<'a> {
 unsafe impl<'a> crate::TaggedStructure<'a> for MutableDescriptorTypeCreateInfoEXT<'a> {
     const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::MUTABLE_DESCRIPTOR_TYPE_CREATE_INFO_EXT;
 }
+unsafe impl<'a> crate::Extends<crate::vk::DescriptorSetLayoutCreateInfo<'_>>
+for MutableDescriptorTypeCreateInfoEXT<'a> {}
+unsafe impl<'a> crate::Extends<crate::vk::DescriptorPoolCreateInfo<'_>>
+for MutableDescriptorTypeCreateInfoEXT<'a> {}
 impl<'a> Default for MutableDescriptorTypeCreateInfoEXT<'a> {
     fn default() -> Self {
         Self {

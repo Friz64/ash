@@ -48,6 +48,10 @@ pub(crate) mod reexport {
     for PhysicalDeviceColorWriteEnableFeaturesEXT<'a> {
         const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::PHYSICAL_DEVICE_COLOR_WRITE_ENABLE_FEATURES_EXT;
     }
+    unsafe impl<'a> crate::Extends<crate::vk::PhysicalDeviceFeatures2<'_>>
+    for PhysicalDeviceColorWriteEnableFeaturesEXT<'a> {}
+    unsafe impl<'a> crate::Extends<crate::vk::DeviceCreateInfo<'_>>
+    for PhysicalDeviceColorWriteEnableFeaturesEXT<'a> {}
     impl<'a> Default for PhysicalDeviceColorWriteEnableFeaturesEXT<'a> {
         fn default() -> Self {
             Self {
@@ -70,6 +74,8 @@ pub(crate) mod reexport {
     unsafe impl<'a> crate::TaggedStructure<'a> for PipelineColorWriteCreateInfoEXT<'a> {
         const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::PIPELINE_COLOR_WRITE_CREATE_INFO_EXT;
     }
+    unsafe impl<'a> crate::Extends<crate::vk::PipelineColorBlendStateCreateInfo<'_>>
+    for PipelineColorWriteCreateInfoEXT<'a> {}
     impl<'a> Default for PipelineColorWriteCreateInfoEXT<'a> {
         fn default() -> Self {
             Self {

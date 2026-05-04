@@ -12,6 +12,8 @@ pub struct TextureLODGatherFormatPropertiesAMD<'a> {
 unsafe impl<'a> crate::TaggedStructure<'a> for TextureLODGatherFormatPropertiesAMD<'a> {
     const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::TEXTURE_LOD_GATHER_FORMAT_PROPERTIES_AMD;
 }
+unsafe impl<'a> crate::Extends<crate::vk::ImageFormatProperties2<'_>>
+for TextureLODGatherFormatPropertiesAMD<'a> {}
 impl<'a> Default for TextureLODGatherFormatPropertiesAMD<'a> {
     fn default() -> Self {
         Self {

@@ -219,6 +219,10 @@ pub(crate) mod reexport {
     for PhysicalDeviceCudaKernelLaunchFeaturesNV<'a> {
         const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::PHYSICAL_DEVICE_CUDA_KERNEL_LAUNCH_FEATURES_NV;
     }
+    unsafe impl<'a> crate::Extends<crate::vk::PhysicalDeviceFeatures2<'_>>
+    for PhysicalDeviceCudaKernelLaunchFeaturesNV<'a> {}
+    unsafe impl<'a> crate::Extends<crate::vk::DeviceCreateInfo<'_>>
+    for PhysicalDeviceCudaKernelLaunchFeaturesNV<'a> {}
     impl<'a> Default for PhysicalDeviceCudaKernelLaunchFeaturesNV<'a> {
         fn default() -> Self {
             Self {
@@ -242,6 +246,8 @@ pub(crate) mod reexport {
     for PhysicalDeviceCudaKernelLaunchPropertiesNV<'a> {
         const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::PHYSICAL_DEVICE_CUDA_KERNEL_LAUNCH_PROPERTIES_NV;
     }
+    unsafe impl<'a> crate::Extends<crate::vk::PhysicalDeviceProperties2<'_>>
+    for PhysicalDeviceCudaKernelLaunchPropertiesNV<'a> {}
     impl<'a> Default for PhysicalDeviceCudaKernelLaunchPropertiesNV<'a> {
         fn default() -> Self {
             Self {

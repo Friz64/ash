@@ -303,6 +303,8 @@ pub(crate) mod reexport {
     unsafe impl<'a> crate::TaggedStructure<'a> for ImageSwapchainCreateInfoKHR<'a> {
         const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::IMAGE_SWAPCHAIN_CREATE_INFO_KHR;
     }
+    unsafe impl<'a> crate::Extends<crate::vk::ImageCreateInfo<'_>>
+    for ImageSwapchainCreateInfoKHR<'a> {}
     impl<'a> Default for ImageSwapchainCreateInfoKHR<'a> {
         fn default() -> Self {
             Self {
@@ -325,6 +327,8 @@ pub(crate) mod reexport {
     unsafe impl<'a> crate::TaggedStructure<'a> for BindImageMemorySwapchainInfoKHR<'a> {
         const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::BIND_IMAGE_MEMORY_SWAPCHAIN_INFO_KHR;
     }
+    unsafe impl<'a> crate::Extends<crate::vk::BindImageMemoryInfo<'_>>
+    for BindImageMemorySwapchainInfoKHR<'a> {}
     impl<'a> Default for BindImageMemorySwapchainInfoKHR<'a> {
         fn default() -> Self {
             Self {
@@ -378,6 +382,8 @@ pub(crate) mod reexport {
     unsafe impl<'a> crate::TaggedStructure<'a> for DeviceGroupPresentInfoKHR<'a> {
         const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::DEVICE_GROUP_PRESENT_INFO_KHR;
     }
+    unsafe impl<'a> crate::Extends<crate::vk::PresentInfoKHR<'_>>
+    for DeviceGroupPresentInfoKHR<'a> {}
     impl<'a> Default for DeviceGroupPresentInfoKHR<'a> {
         fn default() -> Self {
             Self {
@@ -402,6 +408,8 @@ pub(crate) mod reexport {
     for DeviceGroupSwapchainCreateInfoKHR<'a> {
         const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::DEVICE_GROUP_SWAPCHAIN_CREATE_INFO_KHR;
     }
+    unsafe impl<'a> crate::Extends<crate::vk::SwapchainCreateInfoKHR<'_>>
+    for DeviceGroupSwapchainCreateInfoKHR<'a> {}
     impl<'a> Default for DeviceGroupSwapchainCreateInfoKHR<'a> {
         fn default() -> Self {
             Self {

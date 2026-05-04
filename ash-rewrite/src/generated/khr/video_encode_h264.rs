@@ -24,6 +24,8 @@ pub struct VideoEncodeH264CapabilitiesKHR<'a> {
 unsafe impl<'a> crate::TaggedStructure<'a> for VideoEncodeH264CapabilitiesKHR<'a> {
     const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::VIDEO_ENCODE_H264_CAPABILITIES_KHR;
 }
+unsafe impl<'a> crate::Extends<crate::vk::VideoCapabilitiesKHR<'_>>
+for VideoEncodeH264CapabilitiesKHR<'a> {}
 impl<'a> Default for VideoEncodeH264CapabilitiesKHR<'a> {
     fn default() -> Self {
         Self {
@@ -66,6 +68,8 @@ unsafe impl<'a> crate::TaggedStructure<'a>
 for VideoEncodeH264QualityLevelPropertiesKHR<'a> {
     const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::VIDEO_ENCODE_H264_QUALITY_LEVEL_PROPERTIES_KHR;
 }
+unsafe impl<'a> crate::Extends<crate::vk::VideoEncodeQualityLevelPropertiesKHR<'_>>
+for VideoEncodeH264QualityLevelPropertiesKHR<'a> {}
 impl<'a> Default for VideoEncodeH264QualityLevelPropertiesKHR<'a> {
     fn default() -> Self {
         Self {
@@ -96,6 +100,8 @@ pub struct VideoEncodeH264SessionCreateInfoKHR<'a> {
 unsafe impl<'a> crate::TaggedStructure<'a> for VideoEncodeH264SessionCreateInfoKHR<'a> {
     const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::VIDEO_ENCODE_H264_SESSION_CREATE_INFO_KHR;
 }
+unsafe impl<'a> crate::Extends<crate::vk::VideoSessionCreateInfoKHR<'_>>
+for VideoEncodeH264SessionCreateInfoKHR<'a> {}
 impl<'a> Default for VideoEncodeH264SessionCreateInfoKHR<'a> {
     fn default() -> Self {
         Self {
@@ -122,6 +128,8 @@ unsafe impl<'a> crate::TaggedStructure<'a>
 for VideoEncodeH264SessionParametersAddInfoKHR<'a> {
     const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::VIDEO_ENCODE_H264_SESSION_PARAMETERS_ADD_INFO_KHR;
 }
+unsafe impl<'a> crate::Extends<crate::vk::VideoSessionParametersUpdateInfoKHR<'_>>
+for VideoEncodeH264SessionParametersAddInfoKHR<'a> {}
 impl<'a> Default for VideoEncodeH264SessionParametersAddInfoKHR<'a> {
     fn default() -> Self {
         Self {
@@ -151,6 +159,8 @@ unsafe impl<'a> crate::TaggedStructure<'a>
 for VideoEncodeH264SessionParametersCreateInfoKHR<'a> {
     const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::VIDEO_ENCODE_H264_SESSION_PARAMETERS_CREATE_INFO_KHR;
 }
+unsafe impl<'a> crate::Extends<crate::vk::VideoSessionParametersCreateInfoKHR<'_>>
+for VideoEncodeH264SessionParametersCreateInfoKHR<'a> {}
 impl<'a> Default for VideoEncodeH264SessionParametersCreateInfoKHR<'a> {
     fn default() -> Self {
         Self {
@@ -178,6 +188,8 @@ unsafe impl<'a> crate::TaggedStructure<'a>
 for VideoEncodeH264SessionParametersGetInfoKHR<'a> {
     const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::VIDEO_ENCODE_H264_SESSION_PARAMETERS_GET_INFO_KHR;
 }
+unsafe impl<'a> crate::Extends<crate::vk::VideoEncodeSessionParametersGetInfoKHR<'_>>
+for VideoEncodeH264SessionParametersGetInfoKHR<'a> {}
 impl<'a> Default for VideoEncodeH264SessionParametersGetInfoKHR<'a> {
     fn default() -> Self {
         Self {
@@ -204,6 +216,10 @@ unsafe impl<'a> crate::TaggedStructure<'a>
 for VideoEncodeH264SessionParametersFeedbackInfoKHR<'a> {
     const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::VIDEO_ENCODE_H264_SESSION_PARAMETERS_FEEDBACK_INFO_KHR;
 }
+unsafe impl<
+    'a,
+> crate::Extends<crate::vk::VideoEncodeSessionParametersFeedbackInfoKHR<'_>>
+for VideoEncodeH264SessionParametersFeedbackInfoKHR<'a> {}
 impl<'a> Default for VideoEncodeH264SessionParametersFeedbackInfoKHR<'a> {
     fn default() -> Self {
         Self {
@@ -226,6 +242,8 @@ pub struct VideoEncodeH264DpbSlotInfoKHR<'a> {
 unsafe impl<'a> crate::TaggedStructure<'a> for VideoEncodeH264DpbSlotInfoKHR<'a> {
     const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::VIDEO_ENCODE_H264_DPB_SLOT_INFO_KHR;
 }
+unsafe impl<'a> crate::Extends<crate::vk::VideoReferenceSlotInfoKHR<'_>>
+for VideoEncodeH264DpbSlotInfoKHR<'a> {}
 impl<'a> Default for VideoEncodeH264DpbSlotInfoKHR<'a> {
     fn default() -> Self {
         Self {
@@ -250,6 +268,8 @@ pub struct VideoEncodeH264PictureInfoKHR<'a> {
 unsafe impl<'a> crate::TaggedStructure<'a> for VideoEncodeH264PictureInfoKHR<'a> {
     const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::VIDEO_ENCODE_H264_PICTURE_INFO_KHR;
 }
+unsafe impl<'a> crate::Extends<crate::vk::VideoEncodeInfoKHR<'_>>
+for VideoEncodeH264PictureInfoKHR<'a> {}
 impl<'a> Default for VideoEncodeH264PictureInfoKHR<'a> {
     fn default() -> Self {
         Self {
@@ -274,6 +294,10 @@ pub struct VideoEncodeH264ProfileInfoKHR<'a> {
 unsafe impl<'a> crate::TaggedStructure<'a> for VideoEncodeH264ProfileInfoKHR<'a> {
     const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::VIDEO_ENCODE_H264_PROFILE_INFO_KHR;
 }
+unsafe impl<'a> crate::Extends<crate::vk::VideoProfileInfoKHR<'_>>
+for VideoEncodeH264ProfileInfoKHR<'a> {}
+unsafe impl<'a> crate::Extends<crate::vk::QueryPoolCreateInfo<'_>>
+for VideoEncodeH264ProfileInfoKHR<'a> {}
 impl<'a> Default for VideoEncodeH264ProfileInfoKHR<'a> {
     fn default() -> Self {
         Self {
@@ -322,6 +346,10 @@ pub struct VideoEncodeH264RateControlInfoKHR<'a> {
 unsafe impl<'a> crate::TaggedStructure<'a> for VideoEncodeH264RateControlInfoKHR<'a> {
     const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::VIDEO_ENCODE_H264_RATE_CONTROL_INFO_KHR;
 }
+unsafe impl<'a> crate::Extends<crate::vk::VideoCodingControlInfoKHR<'_>>
+for VideoEncodeH264RateControlInfoKHR<'a> {}
+unsafe impl<'a> crate::Extends<crate::vk::VideoBeginCodingInfoKHR<'_>>
+for VideoEncodeH264RateControlInfoKHR<'a> {}
 impl<'a> Default for VideoEncodeH264RateControlInfoKHR<'a> {
     fn default() -> Self {
         Self {
@@ -365,6 +393,8 @@ unsafe impl<'a> crate::TaggedStructure<'a>
 for VideoEncodeH264GopRemainingFrameInfoKHR<'a> {
     const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::VIDEO_ENCODE_H264_GOP_REMAINING_FRAME_INFO_KHR;
 }
+unsafe impl<'a> crate::Extends<crate::vk::VideoBeginCodingInfoKHR<'_>>
+for VideoEncodeH264GopRemainingFrameInfoKHR<'a> {}
 impl<'a> Default for VideoEncodeH264GopRemainingFrameInfoKHR<'a> {
     fn default() -> Self {
         Self {
@@ -395,6 +425,8 @@ unsafe impl<'a> crate::TaggedStructure<'a>
 for VideoEncodeH264RateControlLayerInfoKHR<'a> {
     const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::VIDEO_ENCODE_H264_RATE_CONTROL_LAYER_INFO_KHR;
 }
+unsafe impl<'a> crate::Extends<crate::vk::VideoEncodeRateControlLayerInfoKHR<'_>>
+for VideoEncodeH264RateControlLayerInfoKHR<'a> {}
 impl<'a> Default for VideoEncodeH264RateControlLayerInfoKHR<'a> {
     fn default() -> Self {
         Self {

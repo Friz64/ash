@@ -138,6 +138,10 @@ pub(crate) mod reexport {
     for PhysicalDeviceCopyMemoryIndirectFeaturesKHR<'a> {
         const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::PHYSICAL_DEVICE_COPY_MEMORY_INDIRECT_FEATURES_KHR;
     }
+    unsafe impl<'a> crate::Extends<crate::vk::PhysicalDeviceFeatures2<'_>>
+    for PhysicalDeviceCopyMemoryIndirectFeaturesKHR<'a> {}
+    unsafe impl<'a> crate::Extends<crate::vk::DeviceCreateInfo<'_>>
+    for PhysicalDeviceCopyMemoryIndirectFeaturesKHR<'a> {}
     impl<'a> Default for PhysicalDeviceCopyMemoryIndirectFeaturesKHR<'a> {
         fn default() -> Self {
             Self {
@@ -161,6 +165,8 @@ pub(crate) mod reexport {
     for PhysicalDeviceCopyMemoryIndirectPropertiesKHR<'a> {
         const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::PHYSICAL_DEVICE_COPY_MEMORY_INDIRECT_PROPERTIES_KHR;
     }
+    unsafe impl<'a> crate::Extends<crate::vk::PhysicalDeviceProperties2<'_>>
+    for PhysicalDeviceCopyMemoryIndirectPropertiesKHR<'a> {}
     impl<'a> Default for PhysicalDeviceCopyMemoryIndirectPropertiesKHR<'a> {
         fn default() -> Self {
             Self {

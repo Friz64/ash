@@ -65,6 +65,8 @@ pub(crate) mod reexport {
     for SubpassShadingPipelineCreateInfoHUAWEI<'a> {
         const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::SUBPASS_SHADING_PIPELINE_CREATE_INFO_HUAWEI;
     }
+    unsafe impl<'a> crate::Extends<crate::vk::ComputePipelineCreateInfo<'_>>
+    for SubpassShadingPipelineCreateInfoHUAWEI<'a> {}
     impl<'a> Default for SubpassShadingPipelineCreateInfoHUAWEI<'a> {
         fn default() -> Self {
             Self {
@@ -88,6 +90,8 @@ pub(crate) mod reexport {
     for PhysicalDeviceSubpassShadingPropertiesHUAWEI<'a> {
         const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::PHYSICAL_DEVICE_SUBPASS_SHADING_PROPERTIES_HUAWEI;
     }
+    unsafe impl<'a> crate::Extends<crate::vk::PhysicalDeviceProperties2<'_>>
+    for PhysicalDeviceSubpassShadingPropertiesHUAWEI<'a> {}
     impl<'a> Default for PhysicalDeviceSubpassShadingPropertiesHUAWEI<'a> {
         fn default() -> Self {
             Self {
@@ -110,6 +114,10 @@ pub(crate) mod reexport {
     for PhysicalDeviceSubpassShadingFeaturesHUAWEI<'a> {
         const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::PHYSICAL_DEVICE_SUBPASS_SHADING_FEATURES_HUAWEI;
     }
+    unsafe impl<'a> crate::Extends<crate::vk::PhysicalDeviceFeatures2<'_>>
+    for PhysicalDeviceSubpassShadingFeaturesHUAWEI<'a> {}
+    unsafe impl<'a> crate::Extends<crate::vk::DeviceCreateInfo<'_>>
+    for PhysicalDeviceSubpassShadingFeaturesHUAWEI<'a> {}
     impl<'a> Default for PhysicalDeviceSubpassShadingFeaturesHUAWEI<'a> {
         fn default() -> Self {
             Self {
