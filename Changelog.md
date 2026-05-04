@@ -34,6 +34,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - Moved `push()` and `extend()` methods from individual Vulkan structs (builders) into the `TaggedStructure` trait. (#994)
   This trait must be imported in scope (`use ash::vk::TaggedStructure as _;`) to use the `push()` and `extend()` methods.
 - Renamed all extension `::new()` constructors to `::load()`, signifying they're only loading function pointers. (#1021)
+- Replace `specs/1.3-extensions` registry links with new `refpages/latest` documentation links
 
 ### Removed
 

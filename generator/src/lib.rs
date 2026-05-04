@@ -289,7 +289,7 @@ fn parse_c_parameter(i: &str) -> IResult<&str, CParameter<'_>> {
 
 fn khronos_link<S: Display + ?Sized>(name: &S) -> Literal {
     Literal::string(&format!(
-        "<https://registry.khronos.org/vulkan/specs/1.3-extensions/man/html/{name}.html>"
+        "<https://docs.vulkan.org/refpages/latest/refpages/source/{name}.html>"
     ))
 }
 
@@ -347,7 +347,9 @@ trait ConstantExt {
         self.notation().map(|n| {
             DOC_LINK.replace(
                 n,
-                "<https://registry.khronos.org/vulkan/specs/1.3-extensions/html/vkspec.html#${1}>",
+                // There is no trivial docs.vulkan.org link, but the only existing <#devsandqueues-lost-device>
+                // seems to require a link to https://docs.vulkan.org/spec/latest/chapters/devsandqueues.html#devsandqueues-lost-device.
+                "<https://registry.khronos.org/vulkan/specs/latest/html/vkspec.html#${1}>",
             )
         })
     }
@@ -2115,7 +2117,7 @@ fn derive_getters_and_setters(
                     .unwrap();
                 // Extensions using this type are deprecated exactly because of the existence of VkObjectType, hence
                 // there won't be an additional ash trait to support VkDebugReportObjectTypeEXT.
-                // See also https://registry.khronos.org/vulkan/specs/1.3-extensions/man/html/VK_EXT_debug_utils.html#_description
+                // See also https://docs.vulkan.org/refpages/latest/refpages/source/VK_EXT_debug_utils.html#_description
                 if objecttype_field.vkxml_field.basetype != "VkDebugReportObjectTypeEXT" {
                     return Some(objecttype);
                 }
@@ -2172,7 +2174,7 @@ fn derive_getters_and_setters(
                 /// Sets `p_sample_mask` to `null` if the slice is empty. The mask will
                 /// be treated as if it has all bits set to `1`.
                 ///
-                /// See <https://registry.khronos.org/vulkan/specs/1.3-extensions/man/html/VkPipelineMultisampleStateCreateInfo.html#_description>
+                /// See <https://docs.vulkan.org/refpages/latest/refpages/source/VkPipelineMultisampleStateCreateInfo.html#_description>
                 /// for more details.
                 #[inline]
                 pub fn sample_mask(mut self, sample_mask: &'a [SampleMask]) -> Self {

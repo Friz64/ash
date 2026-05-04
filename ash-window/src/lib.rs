@@ -99,7 +99,7 @@ impl SurfaceFactory {
     /// `window_handle` and `display_handle` must be associated with a valid window and display
     /// connection, which must not be destroyed for the lifetime of the returned [`vk::SurfaceKHR`].
     ///
-    /// [parent/child relation]: https://registry.khronos.org/vulkan/specs/1.3-extensions/html/vkspec.html#fundamentals-objectmodel-lifetime
+    /// [parent/child relation]: https://docs.vulkan.org/spec/latest/chapters/fundamentals.html#fundamentals-objectmodel-lifetime
     pub unsafe fn create_surface(
         &self,
         window_handle: RawWindowHandle,

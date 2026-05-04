@@ -1,9 +1,9 @@
-//! <https://registry.khronos.org/vulkan/specs/1.3-extensions/man/html/VK_AMD_buffer_marker.html>
+//! <https://docs.vulkan.org/refpages/latest/refpages/source/VK_AMD_buffer_marker.html>
 
 use crate::vk;
 
 impl crate::amd::buffer_marker::Device {
-    /// <https://registry.khronos.org/vulkan/specs/1.3-extensions/man/html/vkCmdWriteBufferMarkerAMD.html>
+    /// <https://docs.vulkan.org/refpages/latest/refpages/source/vkCmdWriteBufferMarkerAMD.html>
     #[inline]
     pub unsafe fn cmd_write_buffer_marker(
         &self,
@@ -22,7 +22,7 @@ impl crate::amd::buffer_marker::Device {
         )
     }
 
-    /// <https://registry.khronos.org/vulkan/specs/1.3-extensions/man/html/vkCmdWriteBufferMarker2AMD.html>
+    /// <https://docs.vulkan.org/refpages/latest/refpages/source/vkCmdWriteBufferMarker2AMD.html>
     #[deprecated = "<https://docs.vulkan.org/spec/latest/appendices/legacy.html#legacy-buffer-commands>"]
     #[inline]
     pub unsafe fn cmd_write_buffer_marker2(

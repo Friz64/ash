@@ -1,10 +1,10 @@
-//! <https://registry.khronos.org/vulkan/specs/1.3-extensions/man/html/VK_KHR_push_descriptor.html>
+//! <https://docs.vulkan.org/refpages/latest/refpages/source/VK_KHR_push_descriptor.html>
 
 use crate::vk;
 use core::ffi;
 
 impl crate::khr::push_descriptor::Device {
-    /// <https://registry.khronos.org/vulkan/specs/1.3-extensions/man/html/vkCmdPushDescriptorSetKHR.html>
+    /// <https://docs.vulkan.org/refpages/latest/refpages/source/vkCmdPushDescriptorSetKHR.html>
     #[inline]
     pub unsafe fn cmd_push_descriptor_set(
         &self,
@@ -24,7 +24,7 @@ impl crate::khr::push_descriptor::Device {
         )
     }
 
-    /// <https://registry.khronos.org/vulkan/specs/1.3-extensions/man/html/vkCmdPushDescriptorSetWithTemplateKHR.html>
+    /// <https://docs.vulkan.org/refpages/latest/refpages/source/vkCmdPushDescriptorSetWithTemplateKHR.html>
     #[inline]
     pub unsafe fn cmd_push_descriptor_set_with_template(
         &self,

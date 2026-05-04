@@ -1,5 +1,5 @@
 #![cfg(feature = "provisional")]
-//! <https://registry.khronos.org/vulkan/specs/1.3-extensions/man/html/VK_AMDX_shader_enqueue.html>
+//! <https://docs.vulkan.org/refpages/latest/refpages/source/VK_AMDX_shader_enqueue.html>
 
 use crate::vk;
 use crate::RawPtr;
@@ -8,11 +8,11 @@ use alloc::vec::Vec;
 use core::mem;
 
 impl crate::amdx::shader_enqueue::Device {
-    /// <https://registry.khronos.org/vulkan/specs/1.3-extensions/man/html/vkCreateExecutionGraphPipelinesAMDX.html>
+    /// <https://docs.vulkan.org/refpages/latest/refpages/source/vkCreateExecutionGraphPipelinesAMDX.html>
     ///
     /// Pipelines are created and returned as described for [Multiple Pipeline Creation].
     ///
-    /// [Multiple Pipeline Creation]: https://registry.khronos.org/vulkan/specs/1.3-extensions/html/vkspec.html#pipelines-multiple
+    /// [Multiple Pipeline Creation]: https://docs.vulkan.org/spec/latest/chapters/pipelines.html#pipelines-multiple
     #[inline]
     pub unsafe fn create_execution_graph_pipelines(
         &self,
@@ -36,7 +36,7 @@ impl crate::amdx::shader_enqueue::Device {
         }
     }
 
-    /// <https://registry.khronos.org/vulkan/specs/1.3-extensions/man/html/vkGetExecutionGraphPipelineScratchSizeAMDX.html>
+    /// <https://docs.vulkan.org/refpages/latest/refpages/source/vkGetExecutionGraphPipelineScratchSizeAMDX.html>
     #[inline]
     pub unsafe fn get_execution_graph_pipeline_scratch_size(
         &self,
@@ -51,7 +51,7 @@ impl crate::amdx::shader_enqueue::Device {
         .result()
     }
 
-    /// <https://registry.khronos.org/vulkan/specs/1.3-extensions/man/html/vkGetExecutionGraphPipelineNodeIndexAMDX.html>
+    /// <https://docs.vulkan.org/refpages/latest/refpages/source/vkGetExecutionGraphPipelineNodeIndexAMDX.html>
     #[inline]
     pub unsafe fn get_execution_graph_pipeline_node_index(
         &self,
@@ -68,7 +68,7 @@ impl crate::amdx::shader_enqueue::Device {
         .assume_init_on_success(node_index)
     }
 
-    /// <https://registry.khronos.org/vulkan/specs/1.3-extensions/man/html/vkCmdInitializeGraphScratchMemoryAMDX.html>
+    /// <https://docs.vulkan.org/refpages/latest/refpages/source/vkCmdInitializeGraphScratchMemoryAMDX.html>
     #[inline]
     pub unsafe fn cmd_initialize_graph_scratch_memory(
         &self,
@@ -85,7 +85,7 @@ impl crate::amdx::shader_enqueue::Device {
         )
     }
 
-    /// <https://registry.khronos.org/vulkan/specs/1.3-extensions/man/html/vkCmdDispatchGraphAMDX.html>
+    /// <https://docs.vulkan.org/refpages/latest/refpages/source/vkCmdDispatchGraphAMDX.html>
     #[inline]
     pub unsafe fn cmd_dispatch_graph(
         &self,
@@ -97,7 +97,7 @@ impl crate::amdx::shader_enqueue::Device {
         (self.fp.cmd_dispatch_graph_amdx)(command_buffer, scratch, scratch_size, count_info)
     }
 
-    /// <https://registry.khronos.org/vulkan/specs/1.3-extensions/man/html/vkCmdDispatchGraphIndirectAMDX.html>
+    /// <https://docs.vulkan.org/refpages/latest/refpages/source/vkCmdDispatchGraphIndirectAMDX.html>
     #[inline]
     pub unsafe fn cmd_dispatch_graph_indirect(
         &self,
@@ -114,7 +114,7 @@ impl crate::amdx::shader_enqueue::Device {
         )
     }
 
-    /// <https://registry.khronos.org/vulkan/specs/1.3-extensions/man/html/vkCmdDispatchGraphIndirectCountAMDX.html>
+    /// <https://docs.vulkan.org/refpages/latest/refpages/source/vkCmdDispatchGraphIndirectCountAMDX.html>
     #[inline]
     pub unsafe fn cmd_dispatch_graph_indirect_count(
         &self,

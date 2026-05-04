@@ -148,7 +148,7 @@ pub unsafe trait Extends<B> {}
 /// [`AccelerationStructureSRTMotionInstanceNV`] and
 /// [`AccelerationStructureMatrixMotionInstanceNV`].
 ///
-/// [acceleration structure instances]: https://registry.khronos.org/vulkan/specs/1.3-extensions/man/html/VkAccelerationStructureInstanceKHR.html#_description
+/// [acceleration structure instances]: https://docs.vulkan.org/refpages/latest/refpages/source/VkAccelerationStructureInstanceKHR.html#_description
 #[derive(Clone, Copy, PartialEq, Eq, PartialOrd, Ord, Debug)]
 #[repr(transparent)]
 pub struct Packed24_8(u32);

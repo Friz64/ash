@@ -1,4 +1,4 @@
-//! <https://registry.khronos.org/vulkan/specs/1.3-extensions/man/html/VK_KHR_create_renderpass2.html>
+//! <https://docs.vulkan.org/refpages/latest/refpages/source/VK_KHR_create_renderpass2.html>
 #![deprecated = "<https://docs.vulkan.org/spec/latest/appendices/legacy.html#legacy-dynamicrendering>"]
 
 use crate::vk;
@@ -7,7 +7,7 @@ use crate::VkResult;
 use core::mem;
 
 impl crate::khr::create_renderpass2::Device {
-    /// <https://registry.khronos.org/vulkan/specs/1.3-extensions/man/html/vkCreateRenderPass2.html>
+    /// <https://docs.vulkan.org/refpages/latest/refpages/source/vkCreateRenderPass2.html>
     #[inline]
     pub unsafe fn create_render_pass2(
         &self,
@@ -25,7 +25,7 @@ impl crate::khr::create_renderpass2::Device {
         .assume_init_on_success(renderpass)
     }
 
-    /// <https://registry.khronos.org/vulkan/specs/1.3-extensions/man/html/vkCmdBeginRenderPass2.html>
+    /// <https://docs.vulkan.org/refpages/latest/refpages/source/vkCmdBeginRenderPass2.html>
     #[inline]
     pub unsafe fn cmd_begin_render_pass2(
         &self,
@@ -41,7 +41,7 @@ impl crate::khr::create_renderpass2::Device {
         )
     }
 
-    /// <https://registry.khronos.org/vulkan/specs/1.3-extensions/man/html/vkCmdNextSubpass2.html>
+    /// <https://docs.vulkan.org/refpages/latest/refpages/source/vkCmdNextSubpass2.html>
     #[inline]
     pub unsafe fn cmd_next_subpass2(
         &self,
@@ -53,7 +53,7 @@ impl crate::khr::create_renderpass2::Device {
         (self.fp.cmd_next_subpass2_khr)(command_buffer, subpass_begin_info, subpass_end_info)
     }
 
-    /// <https://registry.khronos.org/vulkan/specs/1.3-extensions/man/html/vkCmdEndRenderPass2.html>
+    /// <https://docs.vulkan.org/refpages/latest/refpages/source/vkCmdEndRenderPass2.html>
     #[inline]
     pub unsafe fn cmd_end_render_pass2(
         &self,

@@ -1,4 +1,4 @@
-//! <https://registry.khronos.org/vulkan/specs/1.3-extensions/man/html/VK_KHR_maintenance5.html>
+//! <https://docs.vulkan.org/refpages/latest/refpages/source/VK_KHR_maintenance5.html>
 
 #[cfg(doc)]
 use crate::ext;
@@ -6,7 +6,7 @@ use crate::vk;
 use core::mem;
 
 impl crate::khr::maintenance5::Device {
-    /// <https://registry.khronos.org/vulkan/specs/1.3-extensions/man/html/vkCmdBindIndexBuffer2KHR.html>
+    /// <https://docs.vulkan.org/refpages/latest/refpages/source/vkCmdBindIndexBuffer2KHR.html>
     #[deprecated = "<https://docs.vulkan.org/spec/latest/appendices/legacy.html#legacy-buffer-commands>"]
     #[inline]
     pub unsafe fn cmd_bind_index_buffer2(
@@ -21,7 +21,7 @@ impl crate::khr::maintenance5::Device {
         (self.fp.cmd_bind_index_buffer2_khr)(command_buffer, buffer, offset, size, index_type)
     }
 
-    /// <https://registry.khronos.org/vulkan/specs/1.3-extensions/man/html/vkGetRenderingAreaGranularityKHR.html>
+    /// <https://docs.vulkan.org/refpages/latest/refpages/source/vkGetRenderingAreaGranularityKHR.html>
     #[inline]
     pub unsafe fn get_rendering_area_granularity(
         &self,
@@ -36,7 +36,7 @@ impl crate::khr::maintenance5::Device {
         granularity.assume_init()
     }
 
-    /// <https://registry.khronos.org/vulkan/specs/1.3-extensions/man/html/vkGetDeviceImageSubresourceLayoutKHR.html>
+    /// <https://docs.vulkan.org/refpages/latest/refpages/source/vkGetDeviceImageSubresourceLayoutKHR.html>
     #[inline]
     pub unsafe fn get_device_image_subresource_layout(
         &self,
@@ -46,7 +46,7 @@ impl crate::khr::maintenance5::Device {
         (self.fp.get_device_image_subresource_layout_khr)(self.handle, info, layout)
     }
 
-    /// <https://registry.khronos.org/vulkan/specs/1.3-extensions/man/html/vkGetImageSubresourceLayout2KHR.html>
+    /// <https://docs.vulkan.org/refpages/latest/refpages/source/vkGetImageSubresourceLayout2KHR.html>
     ///
     /// Also available as [`ext::host_image_copy::Device::get_image_subresource_layout2()`]
     /// when [`VK_EXT_host_image_copy`] is enabled.
@@ -54,8 +54,8 @@ impl crate::khr::maintenance5::Device {
     /// Also available as [`ext::image_compression_control::Device::get_image_subresource_layout2()`]
     /// when [`VK_EXT_image_compression_control`] is enabled.
     ///
-    /// [`VK_EXT_host_image_copy`]: https://registry.khronos.org/vulkan/specs/1.3-extensions/man/html/VK_EXT_host_image_copy.html
-    /// [`VK_EXT_image_compression_control`]: https://registry.khronos.org/vulkan/specs/1.3-extensions/man/html/VK_EXT_image_compression_control.html
+    /// [`VK_EXT_host_image_copy`]: https://docs.vulkan.org/refpages/latest/refpages/source/VK_EXT_host_image_copy.html
+    /// [`VK_EXT_image_compression_control`]: https://docs.vulkan.org/refpages/latest/refpages/source/VK_EXT_image_compression_control.html
     #[inline]
     pub unsafe fn get_image_subresource_layout2(
         &self,
