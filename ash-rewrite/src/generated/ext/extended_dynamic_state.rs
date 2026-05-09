@@ -237,6 +237,15 @@ pub(crate) mod reexport {
             }
         }
     }
+    impl<'a> PhysicalDeviceExtendedDynamicStateFeaturesEXT<'a> {
+        pub fn extended_dynamic_state(
+            mut self,
+            extended_dynamic_state: crate::vk::Bool32,
+        ) -> Self {
+            self.extended_dynamic_state = extended_dynamic_state;
+            self
+        }
+    }
     ///Provided by [`ext::extended_dynamic_state`](crate::ext::extended_dynamic_state)
     impl crate::vk::StructureType {
         pub const PHYSICAL_DEVICE_EXTENDED_DYNAMIC_STATE_FEATURES_EXT: Self = Self(

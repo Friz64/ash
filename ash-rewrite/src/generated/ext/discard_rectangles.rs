@@ -91,6 +91,12 @@ pub(crate) mod reexport {
             }
         }
     }
+    impl<'a> PhysicalDeviceDiscardRectanglePropertiesEXT<'a> {
+        pub fn max_discard_rectangles(mut self, max_discard_rectangles: u32) -> Self {
+            self.max_discard_rectangles = max_discard_rectangles;
+            self
+        }
+    }
     #[repr(C)]
     #[derive(Clone, Copy)]
     pub struct PipelineDiscardRectangleStateCreateInfoEXT<'a> {
@@ -119,6 +125,33 @@ pub(crate) mod reexport {
                 p_discard_rectangles: Default::default(),
                 _marker: ::core::marker::PhantomData,
             }
+        }
+    }
+    impl<'a> PipelineDiscardRectangleStateCreateInfoEXT<'a> {
+        pub fn flags(
+            mut self,
+            flags: crate::vk::PipelineDiscardRectangleStateCreateFlagsEXT,
+        ) -> Self {
+            self.flags = flags;
+            self
+        }
+        pub fn discard_rectangle_mode(
+            mut self,
+            discard_rectangle_mode: crate::vk::DiscardRectangleModeEXT,
+        ) -> Self {
+            self.discard_rectangle_mode = discard_rectangle_mode;
+            self
+        }
+        pub fn discard_rectangle_count(mut self, discard_rectangle_count: u32) -> Self {
+            self.discard_rectangle_count = discard_rectangle_count;
+            self
+        }
+        pub fn p_discard_rectangles(
+            mut self,
+            p_discard_rectangles: *const crate::vk::Rect2D,
+        ) -> Self {
+            self.p_discard_rectangles = p_discard_rectangles;
+            self
         }
     }
     ///Provided by [`ext::discard_rectangles`](crate::ext::discard_rectangles)

@@ -60,6 +60,19 @@ pub(crate) mod reexport {
             }
         }
     }
+    impl<'a> SurfaceCreateInfoOHOS<'a> {
+        pub fn flags(mut self, flags: crate::vk::SurfaceCreateFlagsOHOS) -> Self {
+            self.flags = flags;
+            self
+        }
+        pub fn window(
+            mut self,
+            window: *mut crate::platform_types::OHNativeWindow,
+        ) -> Self {
+            self.window = window;
+            self
+        }
+    }
     ///Provided by [`ohos::surface`](crate::ohos::surface)
     impl crate::vk::StructureType {
         pub const SURFACE_CREATE_INFO_OHOS: Self = Self(1000685000);

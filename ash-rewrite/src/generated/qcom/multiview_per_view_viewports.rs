@@ -27,6 +27,15 @@ impl<'a> Default for PhysicalDeviceMultiviewPerViewViewportsFeaturesQCOM<'a> {
         }
     }
 }
+impl<'a> PhysicalDeviceMultiviewPerViewViewportsFeaturesQCOM<'a> {
+    pub fn multiview_per_view_viewports(
+        mut self,
+        multiview_per_view_viewports: crate::vk::Bool32,
+    ) -> Self {
+        self.multiview_per_view_viewports = multiview_per_view_viewports;
+        self
+    }
+}
 ///Provided by [`qcom::multiview_per_view_viewports`](crate::qcom::multiview_per_view_viewports)
 impl crate::vk::StructureType {
     pub const PHYSICAL_DEVICE_MULTIVIEW_PER_VIEW_VIEWPORTS_FEATURES_QCOM: Self = Self(

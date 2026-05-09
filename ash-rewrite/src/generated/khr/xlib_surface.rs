@@ -81,6 +81,20 @@ pub(crate) mod reexport {
             }
         }
     }
+    impl<'a> XlibSurfaceCreateInfoKHR<'a> {
+        pub fn flags(mut self, flags: crate::vk::XlibSurfaceCreateFlagsKHR) -> Self {
+            self.flags = flags;
+            self
+        }
+        pub fn dpy(mut self, dpy: *mut crate::platform_types::Display) -> Self {
+            self.dpy = dpy;
+            self
+        }
+        pub fn window(mut self, window: crate::platform_types::Window) -> Self {
+            self.window = window;
+            self
+        }
+    }
     ///Provided by [`khr::xlib_surface`](crate::khr::xlib_surface)
     impl crate::vk::StructureType {
         pub const XLIB_SURFACE_CREATE_INFO_KHR: Self = Self(1000004000);

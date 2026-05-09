@@ -80,6 +80,26 @@ pub(crate) mod reexport {
             }
         }
     }
+    impl<'a> WaylandSurfaceCreateInfoKHR<'a> {
+        pub fn flags(mut self, flags: crate::vk::WaylandSurfaceCreateFlagsKHR) -> Self {
+            self.flags = flags;
+            self
+        }
+        pub fn display(
+            mut self,
+            display: *mut crate::platform_types::wl_display,
+        ) -> Self {
+            self.display = display;
+            self
+        }
+        pub fn surface(
+            mut self,
+            surface: *mut crate::platform_types::wl_surface,
+        ) -> Self {
+            self.surface = surface;
+            self
+        }
+    }
     ///Provided by [`khr::wayland_surface`](crate::khr::wayland_surface)
     impl crate::vk::StructureType {
         pub const WAYLAND_SURFACE_CREATE_INFO_KHR: Self = Self(1000006000);

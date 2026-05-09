@@ -60,6 +60,16 @@ pub(crate) mod reexport {
             }
         }
     }
+    impl<'a> ViSurfaceCreateInfoNN<'a> {
+        pub fn flags(mut self, flags: crate::vk::ViSurfaceCreateFlagsNN) -> Self {
+            self.flags = flags;
+            self
+        }
+        pub fn window(mut self, window: *mut core::ffi::c_void) -> Self {
+            self.window = window;
+            self
+        }
+    }
     ///Provided by [`nn::vi_surface`](crate::nn::vi_surface)
     impl crate::vk::StructureType {
         pub const VI_SURFACE_CREATE_INFO_NN: Self = Self(1000062000);

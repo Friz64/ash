@@ -27,6 +27,12 @@ impl<'a> Default for PhysicalDeviceMaintenance9FeaturesKHR<'a> {
         }
     }
 }
+impl<'a> PhysicalDeviceMaintenance9FeaturesKHR<'a> {
+    pub fn maintenance9(mut self, maintenance9: crate::vk::Bool32) -> Self {
+        self.maintenance9 = maintenance9;
+        self
+    }
+}
 #[repr(C)]
 #[derive(Clone, Copy)]
 pub struct PhysicalDeviceMaintenance9PropertiesKHR<'a> {
@@ -53,6 +59,22 @@ impl<'a> Default for PhysicalDeviceMaintenance9PropertiesKHR<'a> {
         }
     }
 }
+impl<'a> PhysicalDeviceMaintenance9PropertiesKHR<'a> {
+    pub fn image2_d_view_of3_d_sparse(
+        mut self,
+        image2_d_view_of3_d_sparse: crate::vk::Bool32,
+    ) -> Self {
+        self.image2_d_view_of3_d_sparse = image2_d_view_of3_d_sparse;
+        self
+    }
+    pub fn default_vertex_attribute_value(
+        mut self,
+        default_vertex_attribute_value: crate::vk::DefaultVertexAttributeValueKHR,
+    ) -> Self {
+        self.default_vertex_attribute_value = default_vertex_attribute_value;
+        self
+    }
+}
 #[repr(C)]
 #[derive(Clone, Copy)]
 pub struct QueueFamilyOwnershipTransferPropertiesKHR<'a> {
@@ -75,6 +97,15 @@ impl<'a> Default for QueueFamilyOwnershipTransferPropertiesKHR<'a> {
             optimal_image_transfer_to_queue_families: Default::default(),
             _marker: ::core::marker::PhantomData,
         }
+    }
+}
+impl<'a> QueueFamilyOwnershipTransferPropertiesKHR<'a> {
+    pub fn optimal_image_transfer_to_queue_families(
+        mut self,
+        optimal_image_transfer_to_queue_families: u32,
+    ) -> Self {
+        self.optimal_image_transfer_to_queue_families = optimal_image_transfer_to_queue_families;
+        self
     }
 }
 ///Provided by [`khr::maintenance9`](crate::khr::maintenance9)

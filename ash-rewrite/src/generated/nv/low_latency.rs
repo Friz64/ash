@@ -24,6 +24,15 @@ impl<'a> Default for QueryLowLatencySupportNV<'a> {
         }
     }
 }
+impl<'a> QueryLowLatencySupportNV<'a> {
+    pub fn p_queried_low_latency_data(
+        mut self,
+        p_queried_low_latency_data: *mut core::ffi::c_void,
+    ) -> Self {
+        self.p_queried_low_latency_data = p_queried_low_latency_data;
+        self
+    }
+}
 ///Provided by [`nv::low_latency`](crate::nv::low_latency)
 impl crate::vk::StructureType {
     pub const QUERY_LOW_LATENCY_SUPPORT_NV: Self = Self(1000310000);

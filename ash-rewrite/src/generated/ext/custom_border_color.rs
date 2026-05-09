@@ -27,6 +27,19 @@ impl<'a> Default for SamplerCustomBorderColorCreateInfoEXT<'a> {
         }
     }
 }
+impl<'a> SamplerCustomBorderColorCreateInfoEXT<'a> {
+    pub fn custom_border_color(
+        mut self,
+        custom_border_color: crate::vk::ClearColorValue,
+    ) -> Self {
+        self.custom_border_color = custom_border_color;
+        self
+    }
+    pub fn format(mut self, format: crate::vk::Format) -> Self {
+        self.format = format;
+        self
+    }
+}
 #[repr(C)]
 #[derive(Clone, Copy)]
 pub struct PhysicalDeviceCustomBorderColorPropertiesEXT<'a> {
@@ -49,6 +62,15 @@ impl<'a> Default for PhysicalDeviceCustomBorderColorPropertiesEXT<'a> {
             max_custom_border_color_samplers: Default::default(),
             _marker: ::core::marker::PhantomData,
         }
+    }
+}
+impl<'a> PhysicalDeviceCustomBorderColorPropertiesEXT<'a> {
+    pub fn max_custom_border_color_samplers(
+        mut self,
+        max_custom_border_color_samplers: u32,
+    ) -> Self {
+        self.max_custom_border_color_samplers = max_custom_border_color_samplers;
+        self
     }
 }
 #[repr(C)]
@@ -77,6 +99,22 @@ impl<'a> Default for PhysicalDeviceCustomBorderColorFeaturesEXT<'a> {
             custom_border_color_without_format: Default::default(),
             _marker: ::core::marker::PhantomData,
         }
+    }
+}
+impl<'a> PhysicalDeviceCustomBorderColorFeaturesEXT<'a> {
+    pub fn custom_border_colors(
+        mut self,
+        custom_border_colors: crate::vk::Bool32,
+    ) -> Self {
+        self.custom_border_colors = custom_border_colors;
+        self
+    }
+    pub fn custom_border_color_without_format(
+        mut self,
+        custom_border_color_without_format: crate::vk::Bool32,
+    ) -> Self {
+        self.custom_border_color_without_format = custom_border_color_without_format;
+        self
     }
 }
 ///Provided by [`ext::custom_border_color`](crate::ext::custom_border_color)

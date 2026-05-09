@@ -26,6 +26,12 @@ impl<'a> Default for PhysicalDeviceShaderAbortFeaturesKHR<'a> {
         }
     }
 }
+impl<'a> PhysicalDeviceShaderAbortFeaturesKHR<'a> {
+    pub fn shader_abort(mut self, shader_abort: crate::vk::Bool32) -> Self {
+        self.shader_abort = shader_abort;
+        self
+    }
+}
 #[repr(C)]
 #[derive(Clone, Copy)]
 pub struct PhysicalDeviceShaderAbortPropertiesKHR<'a> {
@@ -48,6 +54,15 @@ impl<'a> Default for PhysicalDeviceShaderAbortPropertiesKHR<'a> {
             max_shader_abort_message_size: Default::default(),
             _marker: ::core::marker::PhantomData,
         }
+    }
+}
+impl<'a> PhysicalDeviceShaderAbortPropertiesKHR<'a> {
+    pub fn max_shader_abort_message_size(
+        mut self,
+        max_shader_abort_message_size: u64,
+    ) -> Self {
+        self.max_shader_abort_message_size = max_shader_abort_message_size;
+        self
     }
 }
 #[repr(C)]
@@ -73,6 +88,16 @@ impl<'a> Default for DeviceFaultShaderAbortMessageInfoKHR<'a> {
             p_message_data: Default::default(),
             _marker: ::core::marker::PhantomData,
         }
+    }
+}
+impl<'a> DeviceFaultShaderAbortMessageInfoKHR<'a> {
+    pub fn message_data_size(mut self, message_data_size: u64) -> Self {
+        self.message_data_size = message_data_size;
+        self
+    }
+    pub fn p_message_data(mut self, p_message_data: *mut core::ffi::c_void) -> Self {
+        self.p_message_data = p_message_data;
+        self
     }
 }
 ///Provided by [`khr::shader_abort`](crate::khr::shader_abort)

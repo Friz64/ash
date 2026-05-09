@@ -30,6 +30,15 @@ impl<'a> Default for ExternalMemoryAcquireUnmodifiedEXT<'a> {
         }
     }
 }
+impl<'a> ExternalMemoryAcquireUnmodifiedEXT<'a> {
+    pub fn acquire_unmodified_memory(
+        mut self,
+        acquire_unmodified_memory: crate::vk::Bool32,
+    ) -> Self {
+        self.acquire_unmodified_memory = acquire_unmodified_memory;
+        self
+    }
+}
 ///Provided by [`ext::external_memory_acquire_unmodified`](crate::ext::external_memory_acquire_unmodified)
 impl crate::vk::StructureType {
     pub const EXTERNAL_MEMORY_ACQUIRE_UNMODIFIED_EXT: Self = Self(1000453000);

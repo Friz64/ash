@@ -27,6 +27,15 @@ impl<'a> Default for PhysicalDeviceDescriptorPoolOverallocationFeaturesNV<'a> {
         }
     }
 }
+impl<'a> PhysicalDeviceDescriptorPoolOverallocationFeaturesNV<'a> {
+    pub fn descriptor_pool_overallocation(
+        mut self,
+        descriptor_pool_overallocation: crate::vk::Bool32,
+    ) -> Self {
+        self.descriptor_pool_overallocation = descriptor_pool_overallocation;
+        self
+    }
+}
 ///Provided by [`nv::descriptor_pool_overallocation`](crate::nv::descriptor_pool_overallocation)
 impl crate::vk::StructureType {
     pub const PHYSICAL_DEVICE_DESCRIPTOR_POOL_OVERALLOCATION_FEATURES_NV: Self = Self(

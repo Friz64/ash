@@ -29,6 +29,20 @@ impl<'a> Default for PhysicalDeviceShaderCorePropertiesARM<'a> {
         }
     }
 }
+impl<'a> PhysicalDeviceShaderCorePropertiesARM<'a> {
+    pub fn pixel_rate(mut self, pixel_rate: u32) -> Self {
+        self.pixel_rate = pixel_rate;
+        self
+    }
+    pub fn texel_rate(mut self, texel_rate: u32) -> Self {
+        self.texel_rate = texel_rate;
+        self
+    }
+    pub fn fma_rate(mut self, fma_rate: u32) -> Self {
+        self.fma_rate = fma_rate;
+        self
+    }
+}
 ///Provided by [`arm::shader_core_properties`](crate::arm::shader_core_properties)
 impl crate::vk::StructureType {
     pub const PHYSICAL_DEVICE_SHADER_CORE_PROPERTIES_ARM: Self = Self(1000415000);

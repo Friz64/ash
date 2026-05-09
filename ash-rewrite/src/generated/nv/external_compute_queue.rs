@@ -111,6 +111,15 @@ pub(crate) mod reexport {
             }
         }
     }
+    impl<'a> ExternalComputeQueueDeviceCreateInfoNV<'a> {
+        pub fn reserved_external_queues(
+            mut self,
+            reserved_external_queues: u32,
+        ) -> Self {
+            self.reserved_external_queues = reserved_external_queues;
+            self
+        }
+    }
     #[repr(C)]
     #[derive(Clone, Copy)]
     pub struct ExternalComputeQueueCreateInfoNV<'a> {
@@ -132,6 +141,12 @@ pub(crate) mod reexport {
             }
         }
     }
+    impl<'a> ExternalComputeQueueCreateInfoNV<'a> {
+        pub fn preferred_queue(mut self, preferred_queue: crate::vk::Queue) -> Self {
+            self.preferred_queue = preferred_queue;
+            self
+        }
+    }
     #[repr(C)]
     #[derive(Clone, Copy)]
     pub struct ExternalComputeQueueDataParamsNV<'a> {
@@ -151,6 +166,12 @@ pub(crate) mod reexport {
                 device_index: Default::default(),
                 _marker: ::core::marker::PhantomData,
             }
+        }
+    }
+    impl<'a> ExternalComputeQueueDataParamsNV<'a> {
+        pub fn device_index(mut self, device_index: u32) -> Self {
+            self.device_index = device_index;
+            self
         }
     }
     #[repr(C)]
@@ -177,6 +198,16 @@ pub(crate) mod reexport {
                 max_external_queues: Default::default(),
                 _marker: ::core::marker::PhantomData,
             }
+        }
+    }
+    impl<'a> PhysicalDeviceExternalComputeQueuePropertiesNV<'a> {
+        pub fn external_data_size(mut self, external_data_size: u32) -> Self {
+            self.external_data_size = external_data_size;
+            self
+        }
+        pub fn max_external_queues(mut self, max_external_queues: u32) -> Self {
+            self.max_external_queues = max_external_queues;
+            self
         }
     }
     ///Provided by [`nv::external_compute_queue`](crate::nv::external_compute_queue)

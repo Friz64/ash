@@ -26,6 +26,22 @@ impl<'a> Default for ValidationFlagsEXT<'a> {
         }
     }
 }
+impl<'a> ValidationFlagsEXT<'a> {
+    pub fn disabled_validation_check_count(
+        mut self,
+        disabled_validation_check_count: u32,
+    ) -> Self {
+        self.disabled_validation_check_count = disabled_validation_check_count;
+        self
+    }
+    pub fn p_disabled_validation_checks(
+        mut self,
+        p_disabled_validation_checks: *const crate::vk::ValidationCheckEXT,
+    ) -> Self {
+        self.p_disabled_validation_checks = p_disabled_validation_checks;
+        self
+    }
+}
 ///Provided by [`ext::validation_flags`](crate::ext::validation_flags)
 impl crate::vk::StructureType {
     pub const VALIDATION_FLAGS_EXT: Self = Self(1000061000);

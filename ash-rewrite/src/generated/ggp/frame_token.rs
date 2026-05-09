@@ -24,6 +24,15 @@ impl<'a> Default for PresentFrameTokenGGP<'a> {
         }
     }
 }
+impl<'a> PresentFrameTokenGGP<'a> {
+    pub fn frame_token(
+        mut self,
+        frame_token: crate::platform_types::GgpFrameToken,
+    ) -> Self {
+        self.frame_token = frame_token;
+        self
+    }
+}
 ///Provided by [`ggp::frame_token`](crate::ggp::frame_token)
 impl crate::vk::StructureType {
     pub const PRESENT_FRAME_TOKEN_GGP: Self = Self(1000191000);

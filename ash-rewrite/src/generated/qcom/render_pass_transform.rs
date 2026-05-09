@@ -24,6 +24,15 @@ impl<'a> Default for RenderPassTransformBeginInfoQCOM<'a> {
         }
     }
 }
+impl<'a> RenderPassTransformBeginInfoQCOM<'a> {
+    pub fn transform(
+        mut self,
+        transform: crate::vk::SurfaceTransformFlagBitsKHR,
+    ) -> Self {
+        self.transform = transform;
+        self
+    }
+}
 #[repr(C)]
 #[derive(Clone, Copy)]
 pub struct CommandBufferInheritanceRenderPassTransformInfoQCOM<'a> {
@@ -48,6 +57,19 @@ impl<'a> Default for CommandBufferInheritanceRenderPassTransformInfoQCOM<'a> {
             render_area: Default::default(),
             _marker: ::core::marker::PhantomData,
         }
+    }
+}
+impl<'a> CommandBufferInheritanceRenderPassTransformInfoQCOM<'a> {
+    pub fn transform(
+        mut self,
+        transform: crate::vk::SurfaceTransformFlagBitsKHR,
+    ) -> Self {
+        self.transform = transform;
+        self
+    }
+    pub fn render_area(mut self, render_area: crate::vk::Rect2D) -> Self {
+        self.render_area = render_area;
+        self
     }
 }
 ///Provided by [`qcom::render_pass_transform`](crate::qcom::render_pass_transform)

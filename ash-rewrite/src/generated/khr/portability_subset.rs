@@ -55,6 +55,104 @@ impl<'a> Default for PhysicalDevicePortabilitySubsetFeaturesKHR<'a> {
         }
     }
 }
+impl<'a> PhysicalDevicePortabilitySubsetFeaturesKHR<'a> {
+    pub fn constant_alpha_color_blend_factors(
+        mut self,
+        constant_alpha_color_blend_factors: crate::vk::Bool32,
+    ) -> Self {
+        self.constant_alpha_color_blend_factors = constant_alpha_color_blend_factors;
+        self
+    }
+    pub fn events(mut self, events: crate::vk::Bool32) -> Self {
+        self.events = events;
+        self
+    }
+    pub fn image_view_format_reinterpretation(
+        mut self,
+        image_view_format_reinterpretation: crate::vk::Bool32,
+    ) -> Self {
+        self.image_view_format_reinterpretation = image_view_format_reinterpretation;
+        self
+    }
+    pub fn image_view_format_swizzle(
+        mut self,
+        image_view_format_swizzle: crate::vk::Bool32,
+    ) -> Self {
+        self.image_view_format_swizzle = image_view_format_swizzle;
+        self
+    }
+    pub fn image_view2_d_on3_d_image(
+        mut self,
+        image_view2_d_on3_d_image: crate::vk::Bool32,
+    ) -> Self {
+        self.image_view2_d_on3_d_image = image_view2_d_on3_d_image;
+        self
+    }
+    pub fn multisample_array_image(
+        mut self,
+        multisample_array_image: crate::vk::Bool32,
+    ) -> Self {
+        self.multisample_array_image = multisample_array_image;
+        self
+    }
+    pub fn mutable_comparison_samplers(
+        mut self,
+        mutable_comparison_samplers: crate::vk::Bool32,
+    ) -> Self {
+        self.mutable_comparison_samplers = mutable_comparison_samplers;
+        self
+    }
+    pub fn point_polygons(mut self, point_polygons: crate::vk::Bool32) -> Self {
+        self.point_polygons = point_polygons;
+        self
+    }
+    pub fn sampler_mip_lod_bias(
+        mut self,
+        sampler_mip_lod_bias: crate::vk::Bool32,
+    ) -> Self {
+        self.sampler_mip_lod_bias = sampler_mip_lod_bias;
+        self
+    }
+    pub fn separate_stencil_mask_ref(
+        mut self,
+        separate_stencil_mask_ref: crate::vk::Bool32,
+    ) -> Self {
+        self.separate_stencil_mask_ref = separate_stencil_mask_ref;
+        self
+    }
+    pub fn shader_sample_rate_interpolation_functions(
+        mut self,
+        shader_sample_rate_interpolation_functions: crate::vk::Bool32,
+    ) -> Self {
+        self.shader_sample_rate_interpolation_functions = shader_sample_rate_interpolation_functions;
+        self
+    }
+    pub fn tessellation_isolines(
+        mut self,
+        tessellation_isolines: crate::vk::Bool32,
+    ) -> Self {
+        self.tessellation_isolines = tessellation_isolines;
+        self
+    }
+    pub fn tessellation_point_mode(
+        mut self,
+        tessellation_point_mode: crate::vk::Bool32,
+    ) -> Self {
+        self.tessellation_point_mode = tessellation_point_mode;
+        self
+    }
+    pub fn triangle_fans(mut self, triangle_fans: crate::vk::Bool32) -> Self {
+        self.triangle_fans = triangle_fans;
+        self
+    }
+    pub fn vertex_attribute_access_beyond_stride(
+        mut self,
+        vertex_attribute_access_beyond_stride: crate::vk::Bool32,
+    ) -> Self {
+        self.vertex_attribute_access_beyond_stride = vertex_attribute_access_beyond_stride;
+        self
+    }
+}
 #[repr(C)]
 #[derive(Clone, Copy)]
 pub struct PhysicalDevicePortabilitySubsetPropertiesKHR<'a> {
@@ -77,6 +175,15 @@ impl<'a> Default for PhysicalDevicePortabilitySubsetPropertiesKHR<'a> {
             min_vertex_input_binding_stride_alignment: Default::default(),
             _marker: ::core::marker::PhantomData,
         }
+    }
+}
+impl<'a> PhysicalDevicePortabilitySubsetPropertiesKHR<'a> {
+    pub fn min_vertex_input_binding_stride_alignment(
+        mut self,
+        min_vertex_input_binding_stride_alignment: u32,
+    ) -> Self {
+        self.min_vertex_input_binding_stride_alignment = min_vertex_input_binding_stride_alignment;
+        self
     }
 }
 ///Provided by [`khr::portability_subset`](crate::khr::portability_subset)

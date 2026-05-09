@@ -128,6 +128,26 @@ pub(crate) mod reexport {
             }
         }
     }
+    impl<'a> PipelineBinaryCreateInfoKHR<'a> {
+        pub fn p_keys_and_data_info(
+            mut self,
+            p_keys_and_data_info: *const crate::vk::PipelineBinaryKeysAndDataKHR<'a>,
+        ) -> Self {
+            self.p_keys_and_data_info = p_keys_and_data_info;
+            self
+        }
+        pub fn pipeline(mut self, pipeline: crate::vk::Pipeline) -> Self {
+            self.pipeline = pipeline;
+            self
+        }
+        pub fn p_pipeline_create_info(
+            mut self,
+            p_pipeline_create_info: *const crate::vk::PipelineCreateInfoKHR<'a>,
+        ) -> Self {
+            self.p_pipeline_create_info = p_pipeline_create_info;
+            self
+        }
+    }
     #[repr(C)]
     #[derive(Clone, Copy)]
     pub struct PipelineBinaryHandlesInfoKHR<'a> {
@@ -151,12 +171,35 @@ pub(crate) mod reexport {
             }
         }
     }
+    impl<'a> PipelineBinaryHandlesInfoKHR<'a> {
+        pub fn pipeline_binary_count(mut self, pipeline_binary_count: u32) -> Self {
+            self.pipeline_binary_count = pipeline_binary_count;
+            self
+        }
+        pub fn p_pipeline_binaries(
+            mut self,
+            p_pipeline_binaries: *mut crate::vk::PipelineBinaryKHR,
+        ) -> Self {
+            self.p_pipeline_binaries = p_pipeline_binaries;
+            self
+        }
+    }
     #[repr(C)]
     #[derive(Clone, Copy, Default)]
     pub struct PipelineBinaryDataKHR<'a> {
         pub data_size: usize,
         pub p_data: *mut core::ffi::c_void,
         pub _marker: ::core::marker::PhantomData<&'a ()>,
+    }
+    impl<'a> PipelineBinaryDataKHR<'a> {
+        pub fn data_size(mut self, data_size: usize) -> Self {
+            self.data_size = data_size;
+            self
+        }
+        pub fn p_data(mut self, p_data: *mut core::ffi::c_void) -> Self {
+            self.p_data = p_data;
+            self
+        }
     }
     #[repr(C)]
     #[derive(Clone, Copy, Default)]
@@ -165,6 +208,26 @@ pub(crate) mod reexport {
         pub p_pipeline_binary_keys: *const crate::vk::PipelineBinaryKeyKHR<'a>,
         pub p_pipeline_binary_data: *const crate::vk::PipelineBinaryDataKHR<'a>,
         pub _marker: ::core::marker::PhantomData<&'a ()>,
+    }
+    impl<'a> PipelineBinaryKeysAndDataKHR<'a> {
+        pub fn binary_count(mut self, binary_count: u32) -> Self {
+            self.binary_count = binary_count;
+            self
+        }
+        pub fn p_pipeline_binary_keys(
+            mut self,
+            p_pipeline_binary_keys: *const crate::vk::PipelineBinaryKeyKHR<'a>,
+        ) -> Self {
+            self.p_pipeline_binary_keys = p_pipeline_binary_keys;
+            self
+        }
+        pub fn p_pipeline_binary_data(
+            mut self,
+            p_pipeline_binary_data: *const crate::vk::PipelineBinaryDataKHR<'a>,
+        ) -> Self {
+            self.p_pipeline_binary_data = p_pipeline_binary_data;
+            self
+        }
     }
     #[repr(C)]
     #[derive(Clone, Copy)]
@@ -187,6 +250,19 @@ pub(crate) mod reexport {
                 key: unsafe { core::mem::zeroed() },
                 _marker: ::core::marker::PhantomData,
             }
+        }
+    }
+    impl<'a> PipelineBinaryKeyKHR<'a> {
+        pub fn key_size(mut self, key_size: u32) -> Self {
+            self.key_size = key_size;
+            self
+        }
+        pub fn key(
+            mut self,
+            key: [u8; crate::vk::MAX_PIPELINE_BINARY_KEY_SIZE_KHR as _],
+        ) -> Self {
+            self.key = key;
+            self
         }
     }
     #[repr(C)]
@@ -218,6 +294,19 @@ pub(crate) mod reexport {
             }
         }
     }
+    impl<'a> PipelineBinaryInfoKHR<'a> {
+        pub fn binary_count(mut self, binary_count: u32) -> Self {
+            self.binary_count = binary_count;
+            self
+        }
+        pub fn p_pipeline_binaries(
+            mut self,
+            p_pipeline_binaries: *const crate::vk::PipelineBinaryKHR,
+        ) -> Self {
+            self.p_pipeline_binaries = p_pipeline_binaries;
+            self
+        }
+    }
     #[repr(C)]
     #[derive(Clone, Copy)]
     pub struct ReleaseCapturedPipelineDataInfoKHR<'a> {
@@ -238,6 +327,12 @@ pub(crate) mod reexport {
                 pipeline: Default::default(),
                 _marker: ::core::marker::PhantomData,
             }
+        }
+    }
+    impl<'a> ReleaseCapturedPipelineDataInfoKHR<'a> {
+        pub fn pipeline(mut self, pipeline: crate::vk::Pipeline) -> Self {
+            self.pipeline = pipeline;
+            self
         }
     }
     #[repr(C)]
@@ -261,6 +356,15 @@ pub(crate) mod reexport {
             }
         }
     }
+    impl<'a> PipelineBinaryDataInfoKHR<'a> {
+        pub fn pipeline_binary(
+            mut self,
+            pipeline_binary: crate::vk::PipelineBinaryKHR,
+        ) -> Self {
+            self.pipeline_binary = pipeline_binary;
+            self
+        }
+    }
     #[repr(C)]
     #[derive(Clone, Copy)]
     pub struct PipelineCreateInfoKHR<'a> {
@@ -280,6 +384,7 @@ pub(crate) mod reexport {
             }
         }
     }
+    impl<'a> PipelineCreateInfoKHR<'a> {}
     #[repr(C)]
     #[derive(Clone, Copy)]
     pub struct PhysicalDevicePipelineBinaryFeaturesKHR<'a> {
@@ -306,6 +411,15 @@ pub(crate) mod reexport {
             }
         }
     }
+    impl<'a> PhysicalDevicePipelineBinaryFeaturesKHR<'a> {
+        pub fn pipeline_binaries(
+            mut self,
+            pipeline_binaries: crate::vk::Bool32,
+        ) -> Self {
+            self.pipeline_binaries = pipeline_binaries;
+            self
+        }
+    }
     #[repr(C)]
     #[derive(Clone, Copy)]
     pub struct DevicePipelineBinaryInternalCacheControlKHR<'a> {
@@ -328,6 +442,15 @@ pub(crate) mod reexport {
                 disable_internal_cache: Default::default(),
                 _marker: ::core::marker::PhantomData,
             }
+        }
+    }
+    impl<'a> DevicePipelineBinaryInternalCacheControlKHR<'a> {
+        pub fn disable_internal_cache(
+            mut self,
+            disable_internal_cache: crate::vk::Bool32,
+        ) -> Self {
+            self.disable_internal_cache = disable_internal_cache;
+            self
         }
     }
     #[repr(C)]
@@ -360,6 +483,43 @@ pub(crate) mod reexport {
                 pipeline_binary_compressed_data: Default::default(),
                 _marker: ::core::marker::PhantomData,
             }
+        }
+    }
+    impl<'a> PhysicalDevicePipelineBinaryPropertiesKHR<'a> {
+        pub fn pipeline_binary_internal_cache(
+            mut self,
+            pipeline_binary_internal_cache: crate::vk::Bool32,
+        ) -> Self {
+            self.pipeline_binary_internal_cache = pipeline_binary_internal_cache;
+            self
+        }
+        pub fn pipeline_binary_internal_cache_control(
+            mut self,
+            pipeline_binary_internal_cache_control: crate::vk::Bool32,
+        ) -> Self {
+            self.pipeline_binary_internal_cache_control = pipeline_binary_internal_cache_control;
+            self
+        }
+        pub fn pipeline_binary_prefers_internal_cache(
+            mut self,
+            pipeline_binary_prefers_internal_cache: crate::vk::Bool32,
+        ) -> Self {
+            self.pipeline_binary_prefers_internal_cache = pipeline_binary_prefers_internal_cache;
+            self
+        }
+        pub fn pipeline_binary_precompiled_internal_cache(
+            mut self,
+            pipeline_binary_precompiled_internal_cache: crate::vk::Bool32,
+        ) -> Self {
+            self.pipeline_binary_precompiled_internal_cache = pipeline_binary_precompiled_internal_cache;
+            self
+        }
+        pub fn pipeline_binary_compressed_data(
+            mut self,
+            pipeline_binary_compressed_data: crate::vk::Bool32,
+        ) -> Self {
+            self.pipeline_binary_compressed_data = pipeline_binary_compressed_data;
+            self
         }
     }
     ///Provided by [`khr::pipeline_binary`](crate::khr::pipeline_binary)

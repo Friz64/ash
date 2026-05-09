@@ -27,6 +27,15 @@ impl<'a> Default for PhysicalDeviceShaderMaximalReconvergenceFeaturesKHR<'a> {
         }
     }
 }
+impl<'a> PhysicalDeviceShaderMaximalReconvergenceFeaturesKHR<'a> {
+    pub fn shader_maximal_reconvergence(
+        mut self,
+        shader_maximal_reconvergence: crate::vk::Bool32,
+    ) -> Self {
+        self.shader_maximal_reconvergence = shader_maximal_reconvergence;
+        self
+    }
+}
 ///Provided by [`khr::shader_maximal_reconvergence`](crate::khr::shader_maximal_reconvergence)
 impl crate::vk::StructureType {
     pub const PHYSICAL_DEVICE_SHADER_MAXIMAL_RECONVERGENCE_FEATURES_KHR: Self = Self(

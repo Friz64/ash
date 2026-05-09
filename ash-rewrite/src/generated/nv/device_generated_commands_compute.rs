@@ -95,6 +95,26 @@ pub(crate) mod reexport {
             }
         }
     }
+    impl<'a> ComputePipelineIndirectBufferInfoNV<'a> {
+        pub fn device_address(
+            mut self,
+            device_address: crate::vk::DeviceAddress,
+        ) -> Self {
+            self.device_address = device_address;
+            self
+        }
+        pub fn size(mut self, size: crate::vk::DeviceSize) -> Self {
+            self.size = size;
+            self
+        }
+        pub fn pipeline_device_address_capture_replay(
+            mut self,
+            pipeline_device_address_capture_replay: crate::vk::DeviceAddress,
+        ) -> Self {
+            self.pipeline_device_address_capture_replay = pipeline_device_address_capture_replay;
+            self
+        }
+    }
     #[repr(C)]
     #[derive(Clone, Copy)]
     pub struct PhysicalDeviceDeviceGeneratedCommandsComputeFeaturesNV<'a> {
@@ -125,6 +145,29 @@ pub(crate) mod reexport {
             }
         }
     }
+    impl<'a> PhysicalDeviceDeviceGeneratedCommandsComputeFeaturesNV<'a> {
+        pub fn device_generated_compute(
+            mut self,
+            device_generated_compute: crate::vk::Bool32,
+        ) -> Self {
+            self.device_generated_compute = device_generated_compute;
+            self
+        }
+        pub fn device_generated_compute_pipelines(
+            mut self,
+            device_generated_compute_pipelines: crate::vk::Bool32,
+        ) -> Self {
+            self.device_generated_compute_pipelines = device_generated_compute_pipelines;
+            self
+        }
+        pub fn device_generated_compute_capture_replay(
+            mut self,
+            device_generated_compute_capture_replay: crate::vk::Bool32,
+        ) -> Self {
+            self.device_generated_compute_capture_replay = device_generated_compute_capture_replay;
+            self
+        }
+    }
     #[repr(C)]
     #[derive(Clone, Copy)]
     pub struct PipelineIndirectDeviceAddressInfoNV<'a> {
@@ -149,10 +192,32 @@ pub(crate) mod reexport {
             }
         }
     }
+    impl<'a> PipelineIndirectDeviceAddressInfoNV<'a> {
+        pub fn pipeline_bind_point(
+            mut self,
+            pipeline_bind_point: crate::vk::PipelineBindPoint,
+        ) -> Self {
+            self.pipeline_bind_point = pipeline_bind_point;
+            self
+        }
+        pub fn pipeline(mut self, pipeline: crate::vk::Pipeline) -> Self {
+            self.pipeline = pipeline;
+            self
+        }
+    }
     #[repr(C)]
     #[derive(Clone, Copy, Default)]
     pub struct BindPipelineIndirectCommandNV {
         pub pipeline_address: crate::vk::DeviceAddress,
+    }
+    impl BindPipelineIndirectCommandNV {
+        pub fn pipeline_address(
+            mut self,
+            pipeline_address: crate::vk::DeviceAddress,
+        ) -> Self {
+            self.pipeline_address = pipeline_address;
+            self
+        }
     }
     ///Provided by [`nv::device_generated_commands_compute`](crate::nv::device_generated_commands_compute)
     impl crate::vk::StructureType {

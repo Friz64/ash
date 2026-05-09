@@ -26,6 +26,12 @@ impl<'a> Default for PhysicalDevicePresentIdFeaturesKHR<'a> {
         }
     }
 }
+impl<'a> PhysicalDevicePresentIdFeaturesKHR<'a> {
+    pub fn present_id(mut self, present_id: crate::vk::Bool32) -> Self {
+        self.present_id = present_id;
+        self
+    }
+}
 #[repr(C)]
 #[derive(Clone, Copy)]
 pub struct PresentIdKHR<'a> {
@@ -48,6 +54,16 @@ impl<'a> Default for PresentIdKHR<'a> {
             p_present_ids: Default::default(),
             _marker: ::core::marker::PhantomData,
         }
+    }
+}
+impl<'a> PresentIdKHR<'a> {
+    pub fn swapchain_count(mut self, swapchain_count: u32) -> Self {
+        self.swapchain_count = swapchain_count;
+        self
+    }
+    pub fn p_present_ids(mut self, p_present_ids: *const u64) -> Self {
+        self.p_present_ids = p_present_ids;
+        self
     }
 }
 ///Provided by [`khr::present_id`](crate::khr::present_id)

@@ -61,6 +61,15 @@ pub(crate) mod reexport {
             }
         }
     }
+    impl<'a> PhysicalDevicePrimitiveRestartIndexFeaturesEXT<'a> {
+        pub fn primitive_restart_index(
+            mut self,
+            primitive_restart_index: crate::vk::Bool32,
+        ) -> Self {
+            self.primitive_restart_index = primitive_restart_index;
+            self
+        }
+    }
     ///Provided by [`ext::primitive_restart_index`](crate::ext::primitive_restart_index)
     impl crate::vk::StructureType {
         pub const PHYSICAL_DEVICE_PRIMITIVE_RESTART_INDEX_FEATURES_EXT: Self = Self(

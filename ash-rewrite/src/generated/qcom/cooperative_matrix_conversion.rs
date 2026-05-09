@@ -27,6 +27,15 @@ impl<'a> Default for PhysicalDeviceCooperativeMatrixConversionFeaturesQCOM<'a> {
         }
     }
 }
+impl<'a> PhysicalDeviceCooperativeMatrixConversionFeaturesQCOM<'a> {
+    pub fn cooperative_matrix_conversion(
+        mut self,
+        cooperative_matrix_conversion: crate::vk::Bool32,
+    ) -> Self {
+        self.cooperative_matrix_conversion = cooperative_matrix_conversion;
+        self
+    }
+}
 ///Provided by [`qcom::cooperative_matrix_conversion`](crate::qcom::cooperative_matrix_conversion)
 impl crate::vk::StructureType {
     pub const PHYSICAL_DEVICE_COOPERATIVE_MATRIX_CONVERSION_FEATURES_QCOM: Self = Self(

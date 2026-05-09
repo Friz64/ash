@@ -27,6 +27,15 @@ impl<'a> Default for PhysicalDeviceShaderSubgroupUniformControlFlowFeaturesKHR<'
         }
     }
 }
+impl<'a> PhysicalDeviceShaderSubgroupUniformControlFlowFeaturesKHR<'a> {
+    pub fn shader_subgroup_uniform_control_flow(
+        mut self,
+        shader_subgroup_uniform_control_flow: crate::vk::Bool32,
+    ) -> Self {
+        self.shader_subgroup_uniform_control_flow = shader_subgroup_uniform_control_flow;
+        self
+    }
+}
 ///Provided by [`khr::shader_subgroup_uniform_control_flow`](crate::khr::shader_subgroup_uniform_control_flow)
 impl crate::vk::StructureType {
     pub const PHYSICAL_DEVICE_SHADER_SUBGROUP_UNIFORM_CONTROL_FLOW_FEATURES_KHR: Self = Self(

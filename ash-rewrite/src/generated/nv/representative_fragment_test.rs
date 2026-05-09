@@ -27,6 +27,15 @@ impl<'a> Default for PhysicalDeviceRepresentativeFragmentTestFeaturesNV<'a> {
         }
     }
 }
+impl<'a> PhysicalDeviceRepresentativeFragmentTestFeaturesNV<'a> {
+    pub fn representative_fragment_test(
+        mut self,
+        representative_fragment_test: crate::vk::Bool32,
+    ) -> Self {
+        self.representative_fragment_test = representative_fragment_test;
+        self
+    }
+}
 #[repr(C)]
 #[derive(Clone, Copy)]
 pub struct PipelineRepresentativeFragmentTestStateCreateInfoNV<'a> {
@@ -49,6 +58,15 @@ impl<'a> Default for PipelineRepresentativeFragmentTestStateCreateInfoNV<'a> {
             representative_fragment_test_enable: Default::default(),
             _marker: ::core::marker::PhantomData,
         }
+    }
+}
+impl<'a> PipelineRepresentativeFragmentTestStateCreateInfoNV<'a> {
+    pub fn representative_fragment_test_enable(
+        mut self,
+        representative_fragment_test_enable: crate::vk::Bool32,
+    ) -> Self {
+        self.representative_fragment_test_enable = representative_fragment_test_enable;
+        self
     }
 }
 ///Provided by [`nv::representative_fragment_test`](crate::nv::representative_fragment_test)

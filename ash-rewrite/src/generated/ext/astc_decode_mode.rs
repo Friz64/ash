@@ -24,6 +24,12 @@ impl<'a> Default for ImageViewASTCDecodeModeEXT<'a> {
         }
     }
 }
+impl<'a> ImageViewASTCDecodeModeEXT<'a> {
+    pub fn decode_mode(mut self, decode_mode: crate::vk::Format) -> Self {
+        self.decode_mode = decode_mode;
+        self
+    }
+}
 #[repr(C)]
 #[derive(Clone, Copy)]
 pub struct PhysicalDeviceASTCDecodeFeaturesEXT<'a> {
@@ -47,6 +53,15 @@ impl<'a> Default for PhysicalDeviceASTCDecodeFeaturesEXT<'a> {
             decode_mode_shared_exponent: Default::default(),
             _marker: ::core::marker::PhantomData,
         }
+    }
+}
+impl<'a> PhysicalDeviceASTCDecodeFeaturesEXT<'a> {
+    pub fn decode_mode_shared_exponent(
+        mut self,
+        decode_mode_shared_exponent: crate::vk::Bool32,
+    ) -> Self {
+        self.decode_mode_shared_exponent = decode_mode_shared_exponent;
+        self
     }
 }
 ///Provided by [`ext::astc_decode_mode`](crate::ext::astc_decode_mode)

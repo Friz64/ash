@@ -63,6 +63,12 @@ pub(crate) mod reexport {
             }
         }
     }
+    impl<'a> PhysicalDevicePresentWaitFeaturesKHR<'a> {
+        pub fn present_wait(mut self, present_wait: crate::vk::Bool32) -> Self {
+            self.present_wait = present_wait;
+            self
+        }
+    }
     ///Provided by [`khr::present_wait`](crate::khr::present_wait)
     impl crate::vk::StructureType {
         pub const PHYSICAL_DEVICE_PRESENT_WAIT_FEATURES_KHR: Self = Self(1000248000);

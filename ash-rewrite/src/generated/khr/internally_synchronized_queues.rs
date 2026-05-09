@@ -27,6 +27,15 @@ impl<'a> Default for PhysicalDeviceInternallySynchronizedQueuesFeaturesKHR<'a> {
         }
     }
 }
+impl<'a> PhysicalDeviceInternallySynchronizedQueuesFeaturesKHR<'a> {
+    pub fn internally_synchronized_queues(
+        mut self,
+        internally_synchronized_queues: crate::vk::Bool32,
+    ) -> Self {
+        self.internally_synchronized_queues = internally_synchronized_queues;
+        self
+    }
+}
 ///Provided by [`khr::internally_synchronized_queues`](crate::khr::internally_synchronized_queues)
 impl crate::vk::StructureType {
     pub const PHYSICAL_DEVICE_INTERNALLY_SYNCHRONIZED_QUEUES_FEATURES_KHR: Self = Self(

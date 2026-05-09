@@ -26,6 +26,16 @@ impl<'a> Default for SetPresentConfigNV<'a> {
         }
     }
 }
+impl<'a> SetPresentConfigNV<'a> {
+    pub fn num_frames_per_batch(mut self, num_frames_per_batch: u32) -> Self {
+        self.num_frames_per_batch = num_frames_per_batch;
+        self
+    }
+    pub fn present_config_feedback(mut self, present_config_feedback: u32) -> Self {
+        self.present_config_feedback = present_config_feedback;
+        self
+    }
+}
 #[repr(C)]
 #[derive(Clone, Copy)]
 pub struct PhysicalDevicePresentMeteringFeaturesNV<'a> {
@@ -50,6 +60,12 @@ impl<'a> Default for PhysicalDevicePresentMeteringFeaturesNV<'a> {
             present_metering: Default::default(),
             _marker: ::core::marker::PhantomData,
         }
+    }
+}
+impl<'a> PhysicalDevicePresentMeteringFeaturesNV<'a> {
+    pub fn present_metering(mut self, present_metering: crate::vk::Bool32) -> Self {
+        self.present_metering = present_metering;
+        self
     }
 }
 ///Provided by [`nv::present_metering`](crate::nv::present_metering)

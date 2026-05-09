@@ -27,6 +27,15 @@ impl<'a> Default for PhysicalDeviceRayTracingInvocationReorderFeaturesNV<'a> {
         }
     }
 }
+impl<'a> PhysicalDeviceRayTracingInvocationReorderFeaturesNV<'a> {
+    pub fn ray_tracing_invocation_reorder(
+        mut self,
+        ray_tracing_invocation_reorder: crate::vk::Bool32,
+    ) -> Self {
+        self.ray_tracing_invocation_reorder = ray_tracing_invocation_reorder;
+        self
+    }
+}
 #[repr(C)]
 #[derive(Clone, Copy)]
 pub struct PhysicalDeviceRayTracingInvocationReorderPropertiesNV<'a> {
@@ -49,6 +58,15 @@ impl<'a> Default for PhysicalDeviceRayTracingInvocationReorderPropertiesNV<'a> {
             ray_tracing_invocation_reorder_reordering_hint: Default::default(),
             _marker: ::core::marker::PhantomData,
         }
+    }
+}
+impl<'a> PhysicalDeviceRayTracingInvocationReorderPropertiesNV<'a> {
+    pub fn ray_tracing_invocation_reorder_reordering_hint(
+        mut self,
+        ray_tracing_invocation_reorder_reordering_hint: crate::vk::RayTracingInvocationReorderModeEXT,
+    ) -> Self {
+        self.ray_tracing_invocation_reorder_reordering_hint = ray_tracing_invocation_reorder_reordering_hint;
+        self
     }
 }
 ///Provided by [`nv::ray_tracing_invocation_reorder`](crate::nv::ray_tracing_invocation_reorder)

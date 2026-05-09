@@ -116,6 +116,26 @@ pub(crate) mod reexport {
             }
         }
     }
+    impl<'a> PhysicalDevicePresentTimingFeaturesEXT<'a> {
+        pub fn present_timing(mut self, present_timing: crate::vk::Bool32) -> Self {
+            self.present_timing = present_timing;
+            self
+        }
+        pub fn present_at_absolute_time(
+            mut self,
+            present_at_absolute_time: crate::vk::Bool32,
+        ) -> Self {
+            self.present_at_absolute_time = present_at_absolute_time;
+            self
+        }
+        pub fn present_at_relative_time(
+            mut self,
+            present_at_relative_time: crate::vk::Bool32,
+        ) -> Self {
+            self.present_at_relative_time = present_at_relative_time;
+            self
+        }
+    }
     #[repr(C)]
     #[derive(Clone, Copy)]
     pub struct PresentTimingSurfaceCapabilitiesEXT<'a> {
@@ -146,6 +166,36 @@ pub(crate) mod reexport {
             }
         }
     }
+    impl<'a> PresentTimingSurfaceCapabilitiesEXT<'a> {
+        pub fn present_timing_supported(
+            mut self,
+            present_timing_supported: crate::vk::Bool32,
+        ) -> Self {
+            self.present_timing_supported = present_timing_supported;
+            self
+        }
+        pub fn present_at_absolute_time_supported(
+            mut self,
+            present_at_absolute_time_supported: crate::vk::Bool32,
+        ) -> Self {
+            self.present_at_absolute_time_supported = present_at_absolute_time_supported;
+            self
+        }
+        pub fn present_at_relative_time_supported(
+            mut self,
+            present_at_relative_time_supported: crate::vk::Bool32,
+        ) -> Self {
+            self.present_at_relative_time_supported = present_at_relative_time_supported;
+            self
+        }
+        pub fn present_stage_queries(
+            mut self,
+            present_stage_queries: crate::vk::PresentStageFlagsEXT,
+        ) -> Self {
+            self.present_stage_queries = present_stage_queries;
+            self
+        }
+    }
     #[repr(C)]
     #[derive(Clone, Copy)]
     pub struct SwapchainTimingPropertiesEXT<'a> {
@@ -167,6 +217,16 @@ pub(crate) mod reexport {
                 refresh_interval: Default::default(),
                 _marker: ::core::marker::PhantomData,
             }
+        }
+    }
+    impl<'a> SwapchainTimingPropertiesEXT<'a> {
+        pub fn refresh_duration(mut self, refresh_duration: u64) -> Self {
+            self.refresh_duration = refresh_duration;
+            self
+        }
+        pub fn refresh_interval(mut self, refresh_interval: u64) -> Self {
+            self.refresh_interval = refresh_interval;
+            self
         }
     }
     #[repr(C)]
@@ -194,11 +254,38 @@ pub(crate) mod reexport {
             }
         }
     }
+    impl<'a> SwapchainTimeDomainPropertiesEXT<'a> {
+        pub fn time_domain_count(mut self, time_domain_count: u32) -> Self {
+            self.time_domain_count = time_domain_count;
+            self
+        }
+        pub fn p_time_domains(
+            mut self,
+            p_time_domains: *mut crate::vk::TimeDomainKHR,
+        ) -> Self {
+            self.p_time_domains = p_time_domains;
+            self
+        }
+        pub fn p_time_domain_ids(mut self, p_time_domain_ids: *mut u64) -> Self {
+            self.p_time_domain_ids = p_time_domain_ids;
+            self
+        }
+    }
     #[repr(C)]
     #[derive(Clone, Copy, Default)]
     pub struct PresentStageTimeEXT {
         pub stage: crate::vk::PresentStageFlagsEXT,
         pub time: u64,
+    }
+    impl PresentStageTimeEXT {
+        pub fn stage(mut self, stage: crate::vk::PresentStageFlagsEXT) -> Self {
+            self.stage = stage;
+            self
+        }
+        pub fn time(mut self, time: u64) -> Self {
+            self.time = time;
+            self
+        }
     }
     #[repr(C)]
     #[derive(Clone, Copy)]
@@ -221,6 +308,19 @@ pub(crate) mod reexport {
                 swapchain: Default::default(),
                 _marker: ::core::marker::PhantomData,
             }
+        }
+    }
+    impl<'a> PastPresentationTimingInfoEXT<'a> {
+        pub fn flags(
+            mut self,
+            flags: crate::vk::PastPresentationTimingFlagsEXT,
+        ) -> Self {
+            self.flags = flags;
+            self
+        }
+        pub fn swapchain(mut self, swapchain: crate::vk::SwapchainKHR) -> Self {
+            self.swapchain = swapchain;
+            self
         }
     }
     #[repr(C)]
@@ -249,6 +349,33 @@ pub(crate) mod reexport {
                 p_presentation_timings: Default::default(),
                 _marker: ::core::marker::PhantomData,
             }
+        }
+    }
+    impl<'a> PastPresentationTimingPropertiesEXT<'a> {
+        pub fn timing_properties_counter(
+            mut self,
+            timing_properties_counter: u64,
+        ) -> Self {
+            self.timing_properties_counter = timing_properties_counter;
+            self
+        }
+        pub fn time_domains_counter(mut self, time_domains_counter: u64) -> Self {
+            self.time_domains_counter = time_domains_counter;
+            self
+        }
+        pub fn presentation_timing_count(
+            mut self,
+            presentation_timing_count: u32,
+        ) -> Self {
+            self.presentation_timing_count = presentation_timing_count;
+            self
+        }
+        pub fn p_presentation_timings(
+            mut self,
+            p_presentation_timings: *mut crate::vk::PastPresentationTimingEXT<'a>,
+        ) -> Self {
+            self.p_presentation_timings = p_presentation_timings;
+            self
         }
     }
     #[repr(C)]
@@ -284,6 +411,39 @@ pub(crate) mod reexport {
             }
         }
     }
+    impl<'a> PastPresentationTimingEXT<'a> {
+        pub fn present_id(mut self, present_id: u64) -> Self {
+            self.present_id = present_id;
+            self
+        }
+        pub fn target_time(mut self, target_time: u64) -> Self {
+            self.target_time = target_time;
+            self
+        }
+        pub fn present_stage_count(mut self, present_stage_count: u32) -> Self {
+            self.present_stage_count = present_stage_count;
+            self
+        }
+        pub fn p_present_stages(
+            mut self,
+            p_present_stages: *mut crate::vk::PresentStageTimeEXT,
+        ) -> Self {
+            self.p_present_stages = p_present_stages;
+            self
+        }
+        pub fn time_domain(mut self, time_domain: crate::vk::TimeDomainKHR) -> Self {
+            self.time_domain = time_domain;
+            self
+        }
+        pub fn time_domain_id(mut self, time_domain_id: u64) -> Self {
+            self.time_domain_id = time_domain_id;
+            self
+        }
+        pub fn report_complete(mut self, report_complete: crate::vk::Bool32) -> Self {
+            self.report_complete = report_complete;
+            self
+        }
+    }
     #[repr(C)]
     #[derive(Clone, Copy)]
     pub struct PresentTimingsInfoEXT<'a> {
@@ -307,6 +467,19 @@ pub(crate) mod reexport {
                 p_timing_infos: Default::default(),
                 _marker: ::core::marker::PhantomData,
             }
+        }
+    }
+    impl<'a> PresentTimingsInfoEXT<'a> {
+        pub fn swapchain_count(mut self, swapchain_count: u32) -> Self {
+            self.swapchain_count = swapchain_count;
+            self
+        }
+        pub fn p_timing_infos(
+            mut self,
+            p_timing_infos: *const crate::vk::PresentTimingInfoEXT<'a>,
+        ) -> Self {
+            self.p_timing_infos = p_timing_infos;
+            self
         }
     }
     #[repr(C)]
@@ -338,6 +511,34 @@ pub(crate) mod reexport {
             }
         }
     }
+    impl<'a> PresentTimingInfoEXT<'a> {
+        pub fn flags(mut self, flags: crate::vk::PresentTimingInfoFlagsEXT) -> Self {
+            self.flags = flags;
+            self
+        }
+        pub fn target_time(mut self, target_time: u64) -> Self {
+            self.target_time = target_time;
+            self
+        }
+        pub fn time_domain_id(mut self, time_domain_id: u64) -> Self {
+            self.time_domain_id = time_domain_id;
+            self
+        }
+        pub fn present_stage_queries(
+            mut self,
+            present_stage_queries: crate::vk::PresentStageFlagsEXT,
+        ) -> Self {
+            self.present_stage_queries = present_stage_queries;
+            self
+        }
+        pub fn target_time_domain_present_stage(
+            mut self,
+            target_time_domain_present_stage: crate::vk::PresentStageFlagsEXT,
+        ) -> Self {
+            self.target_time_domain_present_stage = target_time_domain_present_stage;
+            self
+        }
+    }
     #[repr(C)]
     #[derive(Clone, Copy)]
     pub struct SwapchainCalibratedTimestampInfoEXT<'a> {
@@ -364,6 +565,23 @@ pub(crate) mod reexport {
                 time_domain_id: Default::default(),
                 _marker: ::core::marker::PhantomData,
             }
+        }
+    }
+    impl<'a> SwapchainCalibratedTimestampInfoEXT<'a> {
+        pub fn swapchain(mut self, swapchain: crate::vk::SwapchainKHR) -> Self {
+            self.swapchain = swapchain;
+            self
+        }
+        pub fn present_stage(
+            mut self,
+            present_stage: crate::vk::PresentStageFlagsEXT,
+        ) -> Self {
+            self.present_stage = present_stage;
+            self
+        }
+        pub fn time_domain_id(mut self, time_domain_id: u64) -> Self {
+            self.time_domain_id = time_domain_id;
+            self
         }
     }
     ///Provided by [`ext::present_timing`](crate::ext::present_timing)

@@ -24,6 +24,15 @@ impl<'a> Default for DisplaySurfaceStereoCreateInfoNV<'a> {
         }
     }
 }
+impl<'a> DisplaySurfaceStereoCreateInfoNV<'a> {
+    pub fn stereo_type(
+        mut self,
+        stereo_type: crate::vk::DisplaySurfaceStereoTypeNV,
+    ) -> Self {
+        self.stereo_type = stereo_type;
+        self
+    }
+}
 #[repr(C)]
 #[derive(Clone, Copy)]
 pub struct DisplayModeStereoPropertiesNV<'a> {
@@ -45,6 +54,12 @@ impl<'a> Default for DisplayModeStereoPropertiesNV<'a> {
             hdmi3_d_supported: Default::default(),
             _marker: ::core::marker::PhantomData,
         }
+    }
+}
+impl<'a> DisplayModeStereoPropertiesNV<'a> {
+    pub fn hdmi3_d_supported(mut self, hdmi3_d_supported: crate::vk::Bool32) -> Self {
+        self.hdmi3_d_supported = hdmi3_d_supported;
+        self
     }
 }
 ///Provided by [`nv::display_stereo`](crate::nv::display_stereo)

@@ -102,6 +102,16 @@ pub(crate) mod reexport {
             }
         }
     }
+    impl<'a> PhysicalDeviceMeshShaderFeaturesNV<'a> {
+        pub fn task_shader(mut self, task_shader: crate::vk::Bool32) -> Self {
+            self.task_shader = task_shader;
+            self
+        }
+        pub fn mesh_shader(mut self, mesh_shader: crate::vk::Bool32) -> Self {
+            self.mesh_shader = mesh_shader;
+            self
+        }
+    }
     #[repr(C)]
     #[derive(Clone, Copy)]
     pub struct PhysicalDeviceMeshShaderPropertiesNV<'a> {
@@ -150,11 +160,111 @@ pub(crate) mod reexport {
             }
         }
     }
+    impl<'a> PhysicalDeviceMeshShaderPropertiesNV<'a> {
+        pub fn max_draw_mesh_tasks_count(
+            mut self,
+            max_draw_mesh_tasks_count: u32,
+        ) -> Self {
+            self.max_draw_mesh_tasks_count = max_draw_mesh_tasks_count;
+            self
+        }
+        pub fn max_task_work_group_invocations(
+            mut self,
+            max_task_work_group_invocations: u32,
+        ) -> Self {
+            self.max_task_work_group_invocations = max_task_work_group_invocations;
+            self
+        }
+        pub fn max_task_work_group_size(
+            mut self,
+            max_task_work_group_size: [u32; 3 as _],
+        ) -> Self {
+            self.max_task_work_group_size = max_task_work_group_size;
+            self
+        }
+        pub fn max_task_total_memory_size(
+            mut self,
+            max_task_total_memory_size: u32,
+        ) -> Self {
+            self.max_task_total_memory_size = max_task_total_memory_size;
+            self
+        }
+        pub fn max_task_output_count(mut self, max_task_output_count: u32) -> Self {
+            self.max_task_output_count = max_task_output_count;
+            self
+        }
+        pub fn max_mesh_work_group_invocations(
+            mut self,
+            max_mesh_work_group_invocations: u32,
+        ) -> Self {
+            self.max_mesh_work_group_invocations = max_mesh_work_group_invocations;
+            self
+        }
+        pub fn max_mesh_work_group_size(
+            mut self,
+            max_mesh_work_group_size: [u32; 3 as _],
+        ) -> Self {
+            self.max_mesh_work_group_size = max_mesh_work_group_size;
+            self
+        }
+        pub fn max_mesh_total_memory_size(
+            mut self,
+            max_mesh_total_memory_size: u32,
+        ) -> Self {
+            self.max_mesh_total_memory_size = max_mesh_total_memory_size;
+            self
+        }
+        pub fn max_mesh_output_vertices(
+            mut self,
+            max_mesh_output_vertices: u32,
+        ) -> Self {
+            self.max_mesh_output_vertices = max_mesh_output_vertices;
+            self
+        }
+        pub fn max_mesh_output_primitives(
+            mut self,
+            max_mesh_output_primitives: u32,
+        ) -> Self {
+            self.max_mesh_output_primitives = max_mesh_output_primitives;
+            self
+        }
+        pub fn max_mesh_multiview_view_count(
+            mut self,
+            max_mesh_multiview_view_count: u32,
+        ) -> Self {
+            self.max_mesh_multiview_view_count = max_mesh_multiview_view_count;
+            self
+        }
+        pub fn mesh_output_per_vertex_granularity(
+            mut self,
+            mesh_output_per_vertex_granularity: u32,
+        ) -> Self {
+            self.mesh_output_per_vertex_granularity = mesh_output_per_vertex_granularity;
+            self
+        }
+        pub fn mesh_output_per_primitive_granularity(
+            mut self,
+            mesh_output_per_primitive_granularity: u32,
+        ) -> Self {
+            self.mesh_output_per_primitive_granularity = mesh_output_per_primitive_granularity;
+            self
+        }
+    }
     #[repr(C)]
     #[derive(Clone, Copy, Default)]
     pub struct DrawMeshTasksIndirectCommandNV {
         pub task_count: u32,
         pub first_task: u32,
+    }
+    impl DrawMeshTasksIndirectCommandNV {
+        pub fn task_count(mut self, task_count: u32) -> Self {
+            self.task_count = task_count;
+            self
+        }
+        pub fn first_task(mut self, first_task: u32) -> Self {
+            self.first_task = first_task;
+            self
+        }
     }
     ///Provided by [`nv::mesh_shader`](crate::nv::mesh_shader)
     impl crate::vk::StructureType {

@@ -27,6 +27,12 @@ impl<'a> Default for PhysicalDeviceMaintenance8FeaturesKHR<'a> {
         }
     }
 }
+impl<'a> PhysicalDeviceMaintenance8FeaturesKHR<'a> {
+    pub fn maintenance8(mut self, maintenance8: crate::vk::Bool32) -> Self {
+        self.maintenance8 = maintenance8;
+        self
+    }
+}
 #[repr(C)]
 #[derive(Clone, Copy)]
 pub struct MemoryBarrierAccessFlags3KHR<'a> {
@@ -56,6 +62,22 @@ impl<'a> Default for MemoryBarrierAccessFlags3KHR<'a> {
             dst_access_mask3: Default::default(),
             _marker: ::core::marker::PhantomData,
         }
+    }
+}
+impl<'a> MemoryBarrierAccessFlags3KHR<'a> {
+    pub fn src_access_mask3(
+        mut self,
+        src_access_mask3: crate::vk::AccessFlags3KHR,
+    ) -> Self {
+        self.src_access_mask3 = src_access_mask3;
+        self
+    }
+    pub fn dst_access_mask3(
+        mut self,
+        dst_access_mask3: crate::vk::AccessFlags3KHR,
+    ) -> Self {
+        self.dst_access_mask3 = dst_access_mask3;
+        self
     }
 }
 ///Provided by [`khr::maintenance8`](crate::khr::maintenance8)

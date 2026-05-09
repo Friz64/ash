@@ -31,6 +31,29 @@ impl<'a> Default for PhysicalDeviceFragmentShaderInterlockFeaturesEXT<'a> {
         }
     }
 }
+impl<'a> PhysicalDeviceFragmentShaderInterlockFeaturesEXT<'a> {
+    pub fn fragment_shader_sample_interlock(
+        mut self,
+        fragment_shader_sample_interlock: crate::vk::Bool32,
+    ) -> Self {
+        self.fragment_shader_sample_interlock = fragment_shader_sample_interlock;
+        self
+    }
+    pub fn fragment_shader_pixel_interlock(
+        mut self,
+        fragment_shader_pixel_interlock: crate::vk::Bool32,
+    ) -> Self {
+        self.fragment_shader_pixel_interlock = fragment_shader_pixel_interlock;
+        self
+    }
+    pub fn fragment_shader_shading_rate_interlock(
+        mut self,
+        fragment_shader_shading_rate_interlock: crate::vk::Bool32,
+    ) -> Self {
+        self.fragment_shader_shading_rate_interlock = fragment_shader_shading_rate_interlock;
+        self
+    }
+}
 ///Provided by [`ext::fragment_shader_interlock`](crate::ext::fragment_shader_interlock)
 impl crate::vk::StructureType {
     pub const PHYSICAL_DEVICE_FRAGMENT_SHADER_INTERLOCK_FEATURES_EXT: Self = Self(

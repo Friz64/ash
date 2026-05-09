@@ -58,6 +58,12 @@ pub(crate) mod reexport {
             }
         }
     }
+    impl<'a> HeadlessSurfaceCreateInfoEXT<'a> {
+        pub fn flags(mut self, flags: crate::vk::HeadlessSurfaceCreateFlagsEXT) -> Self {
+            self.flags = flags;
+            self
+        }
+    }
     ///Provided by [`ext::headless_surface`](crate::ext::headless_surface)
     impl crate::vk::StructureType {
         pub const HEADLESS_SURFACE_CREATE_INFO_EXT: Self = Self(1000256000);

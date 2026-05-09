@@ -27,6 +27,12 @@ impl<'a> Default for PhysicalDeviceDiagnosticsConfigFeaturesNV<'a> {
         }
     }
 }
+impl<'a> PhysicalDeviceDiagnosticsConfigFeaturesNV<'a> {
+    pub fn diagnostics_config(mut self, diagnostics_config: crate::vk::Bool32) -> Self {
+        self.diagnostics_config = diagnostics_config;
+        self
+    }
+}
 #[repr(C)]
 #[derive(Clone, Copy)]
 pub struct DeviceDiagnosticsConfigCreateInfoNV<'a> {
@@ -48,6 +54,12 @@ impl<'a> Default for DeviceDiagnosticsConfigCreateInfoNV<'a> {
             flags: Default::default(),
             _marker: ::core::marker::PhantomData,
         }
+    }
+}
+impl<'a> DeviceDiagnosticsConfigCreateInfoNV<'a> {
+    pub fn flags(mut self, flags: crate::vk::DeviceDiagnosticsConfigFlagsNV) -> Self {
+        self.flags = flags;
+        self
     }
 }
 ///Provided by [`nv::device_diagnostics_config`](crate::nv::device_diagnostics_config)

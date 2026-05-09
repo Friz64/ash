@@ -26,6 +26,16 @@ impl<'a> Default for PipelineLibraryCreateInfoKHR<'a> {
         }
     }
 }
+impl<'a> PipelineLibraryCreateInfoKHR<'a> {
+    pub fn library_count(mut self, library_count: u32) -> Self {
+        self.library_count = library_count;
+        self
+    }
+    pub fn p_libraries(mut self, p_libraries: *const crate::vk::Pipeline) -> Self {
+        self.p_libraries = p_libraries;
+        self
+    }
+}
 ///Provided by [`khr::pipeline_library`](crate::khr::pipeline_library)
 impl crate::vk::StructureType {
     pub const PIPELINE_LIBRARY_CREATE_INFO_KHR: Self = Self(1000290000);

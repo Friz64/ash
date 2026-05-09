@@ -60,6 +60,15 @@ pub(crate) mod reexport {
             }
         }
     }
+    impl<'a> DisplayNativeHdrSurfaceCapabilitiesAMD<'a> {
+        pub fn local_dimming_support(
+            mut self,
+            local_dimming_support: crate::vk::Bool32,
+        ) -> Self {
+            self.local_dimming_support = local_dimming_support;
+            self
+        }
+    }
     #[repr(C)]
     #[derive(Clone, Copy)]
     pub struct SwapchainDisplayNativeHdrCreateInfoAMD<'a> {
@@ -82,6 +91,15 @@ pub(crate) mod reexport {
                 local_dimming_enable: Default::default(),
                 _marker: ::core::marker::PhantomData,
             }
+        }
+    }
+    impl<'a> SwapchainDisplayNativeHdrCreateInfoAMD<'a> {
+        pub fn local_dimming_enable(
+            mut self,
+            local_dimming_enable: crate::vk::Bool32,
+        ) -> Self {
+            self.local_dimming_enable = local_dimming_enable;
+            self
         }
     }
     ///Provided by [`amd::display_native_hdr`](crate::amd::display_native_hdr)

@@ -41,6 +41,71 @@ impl<'a> Default for PhysicalDeviceConservativeRasterizationPropertiesEXT<'a> {
         }
     }
 }
+impl<'a> PhysicalDeviceConservativeRasterizationPropertiesEXT<'a> {
+    pub fn primitive_overestimation_size(
+        mut self,
+        primitive_overestimation_size: core::ffi::c_float,
+    ) -> Self {
+        self.primitive_overestimation_size = primitive_overestimation_size;
+        self
+    }
+    pub fn max_extra_primitive_overestimation_size(
+        mut self,
+        max_extra_primitive_overestimation_size: core::ffi::c_float,
+    ) -> Self {
+        self.max_extra_primitive_overestimation_size = max_extra_primitive_overestimation_size;
+        self
+    }
+    pub fn extra_primitive_overestimation_size_granularity(
+        mut self,
+        extra_primitive_overestimation_size_granularity: core::ffi::c_float,
+    ) -> Self {
+        self.extra_primitive_overestimation_size_granularity = extra_primitive_overestimation_size_granularity;
+        self
+    }
+    pub fn primitive_underestimation(
+        mut self,
+        primitive_underestimation: crate::vk::Bool32,
+    ) -> Self {
+        self.primitive_underestimation = primitive_underestimation;
+        self
+    }
+    pub fn conservative_point_and_line_rasterization(
+        mut self,
+        conservative_point_and_line_rasterization: crate::vk::Bool32,
+    ) -> Self {
+        self.conservative_point_and_line_rasterization = conservative_point_and_line_rasterization;
+        self
+    }
+    pub fn degenerate_triangles_rasterized(
+        mut self,
+        degenerate_triangles_rasterized: crate::vk::Bool32,
+    ) -> Self {
+        self.degenerate_triangles_rasterized = degenerate_triangles_rasterized;
+        self
+    }
+    pub fn degenerate_lines_rasterized(
+        mut self,
+        degenerate_lines_rasterized: crate::vk::Bool32,
+    ) -> Self {
+        self.degenerate_lines_rasterized = degenerate_lines_rasterized;
+        self
+    }
+    pub fn fully_covered_fragment_shader_input_variable(
+        mut self,
+        fully_covered_fragment_shader_input_variable: crate::vk::Bool32,
+    ) -> Self {
+        self.fully_covered_fragment_shader_input_variable = fully_covered_fragment_shader_input_variable;
+        self
+    }
+    pub fn conservative_rasterization_post_depth_coverage(
+        mut self,
+        conservative_rasterization_post_depth_coverage: crate::vk::Bool32,
+    ) -> Self {
+        self.conservative_rasterization_post_depth_coverage = conservative_rasterization_post_depth_coverage;
+        self
+    }
+}
 #[repr(C)]
 #[derive(Clone, Copy)]
 pub struct PipelineRasterizationConservativeStateCreateInfoEXT<'a> {
@@ -67,6 +132,29 @@ impl<'a> Default for PipelineRasterizationConservativeStateCreateInfoEXT<'a> {
             extra_primitive_overestimation_size: Default::default(),
             _marker: ::core::marker::PhantomData,
         }
+    }
+}
+impl<'a> PipelineRasterizationConservativeStateCreateInfoEXT<'a> {
+    pub fn flags(
+        mut self,
+        flags: crate::vk::PipelineRasterizationConservativeStateCreateFlagsEXT,
+    ) -> Self {
+        self.flags = flags;
+        self
+    }
+    pub fn conservative_rasterization_mode(
+        mut self,
+        conservative_rasterization_mode: crate::vk::ConservativeRasterizationModeEXT,
+    ) -> Self {
+        self.conservative_rasterization_mode = conservative_rasterization_mode;
+        self
+    }
+    pub fn extra_primitive_overestimation_size(
+        mut self,
+        extra_primitive_overestimation_size: core::ffi::c_float,
+    ) -> Self {
+        self.extra_primitive_overestimation_size = extra_primitive_overestimation_size;
+        self
     }
 }
 ///Provided by [`ext::conservative_rasterization`](crate::ext::conservative_rasterization)

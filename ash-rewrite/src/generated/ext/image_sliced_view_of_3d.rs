@@ -26,6 +26,16 @@ impl<'a> Default for ImageViewSlicedCreateInfoEXT<'a> {
         }
     }
 }
+impl<'a> ImageViewSlicedCreateInfoEXT<'a> {
+    pub fn slice_offset(mut self, slice_offset: u32) -> Self {
+        self.slice_offset = slice_offset;
+        self
+    }
+    pub fn slice_count(mut self, slice_count: u32) -> Self {
+        self.slice_count = slice_count;
+        self
+    }
+}
 #[repr(C)]
 #[derive(Clone, Copy)]
 pub struct PhysicalDeviceImageSlicedViewOf3DFeaturesEXT<'a> {
@@ -50,6 +60,15 @@ impl<'a> Default for PhysicalDeviceImageSlicedViewOf3DFeaturesEXT<'a> {
             image_sliced_view_of3_d: Default::default(),
             _marker: ::core::marker::PhantomData,
         }
+    }
+}
+impl<'a> PhysicalDeviceImageSlicedViewOf3DFeaturesEXT<'a> {
+    pub fn image_sliced_view_of3_d(
+        mut self,
+        image_sliced_view_of3_d: crate::vk::Bool32,
+    ) -> Self {
+        self.image_sliced_view_of3_d = image_sliced_view_of3_d;
+        self
     }
 }
 ///Provided by [`ext::image_sliced_view_of_3d`](crate::ext::image_sliced_view_of_3d)

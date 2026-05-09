@@ -27,6 +27,15 @@ impl<'a> Default for PhysicalDeviceShaderUniformBufferUnsizedArrayFeaturesEXT<'a
         }
     }
 }
+impl<'a> PhysicalDeviceShaderUniformBufferUnsizedArrayFeaturesEXT<'a> {
+    pub fn shader_uniform_buffer_unsized_array(
+        mut self,
+        shader_uniform_buffer_unsized_array: crate::vk::Bool32,
+    ) -> Self {
+        self.shader_uniform_buffer_unsized_array = shader_uniform_buffer_unsized_array;
+        self
+    }
+}
 ///Provided by [`ext::shader_uniform_buffer_unsized_array`](crate::ext::shader_uniform_buffer_unsized_array)
 impl crate::vk::StructureType {
     pub const PHYSICAL_DEVICE_SHADER_UNIFORM_BUFFER_UNSIZED_ARRAY_FEATURES_EXT: Self = Self(

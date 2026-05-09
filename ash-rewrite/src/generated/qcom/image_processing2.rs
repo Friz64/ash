@@ -27,6 +27,15 @@ impl<'a> Default for PhysicalDeviceImageProcessing2FeaturesQCOM<'a> {
         }
     }
 }
+impl<'a> PhysicalDeviceImageProcessing2FeaturesQCOM<'a> {
+    pub fn texture_block_match2(
+        mut self,
+        texture_block_match2: crate::vk::Bool32,
+    ) -> Self {
+        self.texture_block_match2 = texture_block_match2;
+        self
+    }
+}
 #[repr(C)]
 #[derive(Clone, Copy)]
 pub struct PhysicalDeviceImageProcessing2PropertiesQCOM<'a> {
@@ -49,6 +58,15 @@ impl<'a> Default for PhysicalDeviceImageProcessing2PropertiesQCOM<'a> {
             max_block_match_window: Default::default(),
             _marker: ::core::marker::PhantomData,
         }
+    }
+}
+impl<'a> PhysicalDeviceImageProcessing2PropertiesQCOM<'a> {
+    pub fn max_block_match_window(
+        mut self,
+        max_block_match_window: crate::vk::Extent2D,
+    ) -> Self {
+        self.max_block_match_window = max_block_match_window;
+        self
     }
 }
 #[repr(C)]
@@ -75,6 +93,19 @@ impl<'a> Default for SamplerBlockMatchWindowCreateInfoQCOM<'a> {
             window_compare_mode: Default::default(),
             _marker: ::core::marker::PhantomData,
         }
+    }
+}
+impl<'a> SamplerBlockMatchWindowCreateInfoQCOM<'a> {
+    pub fn window_extent(mut self, window_extent: crate::vk::Extent2D) -> Self {
+        self.window_extent = window_extent;
+        self
+    }
+    pub fn window_compare_mode(
+        mut self,
+        window_compare_mode: crate::vk::BlockMatchWindowCompareModeQCOM,
+    ) -> Self {
+        self.window_compare_mode = window_compare_mode;
+        self
     }
 }
 ///Provided by [`qcom::image_processing2`](crate::qcom::image_processing2)

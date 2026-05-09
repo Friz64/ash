@@ -80,6 +80,23 @@ pub(crate) mod reexport {
             }
         }
     }
+    impl<'a> ImportMemoryWin32HandleInfoKHR<'a> {
+        pub fn handle_type(
+            mut self,
+            handle_type: crate::vk::ExternalMemoryHandleTypeFlagBits,
+        ) -> Self {
+            self.handle_type = handle_type;
+            self
+        }
+        pub fn handle(mut self, handle: crate::platform_types::HANDLE) -> Self {
+            self.handle = handle;
+            self
+        }
+        pub fn name(mut self, name: crate::platform_types::LPCWSTR) -> Self {
+            self.name = name;
+            self
+        }
+    }
     #[repr(C)]
     #[derive(Clone, Copy)]
     pub struct ExportMemoryWin32HandleInfoKHR<'a> {
@@ -107,6 +124,23 @@ pub(crate) mod reexport {
             }
         }
     }
+    impl<'a> ExportMemoryWin32HandleInfoKHR<'a> {
+        pub fn p_attributes(
+            mut self,
+            p_attributes: *const crate::platform_types::SECURITY_ATTRIBUTES,
+        ) -> Self {
+            self.p_attributes = p_attributes;
+            self
+        }
+        pub fn dw_access(mut self, dw_access: crate::platform_types::DWORD) -> Self {
+            self.dw_access = dw_access;
+            self
+        }
+        pub fn name(mut self, name: crate::platform_types::LPCWSTR) -> Self {
+            self.name = name;
+            self
+        }
+    }
     #[repr(C)]
     #[derive(Clone, Copy)]
     pub struct MemoryWin32HandlePropertiesKHR<'a> {
@@ -126,6 +160,12 @@ pub(crate) mod reexport {
                 memory_type_bits: Default::default(),
                 _marker: ::core::marker::PhantomData,
             }
+        }
+    }
+    impl<'a> MemoryWin32HandlePropertiesKHR<'a> {
+        pub fn memory_type_bits(mut self, memory_type_bits: u32) -> Self {
+            self.memory_type_bits = memory_type_bits;
+            self
         }
     }
     #[repr(C)]
@@ -149,6 +189,19 @@ pub(crate) mod reexport {
                 handle_type: Default::default(),
                 _marker: ::core::marker::PhantomData,
             }
+        }
+    }
+    impl<'a> MemoryGetWin32HandleInfoKHR<'a> {
+        pub fn memory(mut self, memory: crate::vk::DeviceMemory) -> Self {
+            self.memory = memory;
+            self
+        }
+        pub fn handle_type(
+            mut self,
+            handle_type: crate::vk::ExternalMemoryHandleTypeFlagBits,
+        ) -> Self {
+            self.handle_type = handle_type;
+            self
         }
     }
     ///Provided by [`khr::external_memory_win32`](crate::khr::external_memory_win32)

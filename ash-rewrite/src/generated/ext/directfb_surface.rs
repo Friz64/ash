@@ -80,6 +80,23 @@ pub(crate) mod reexport {
             }
         }
     }
+    impl<'a> DirectFBSurfaceCreateInfoEXT<'a> {
+        pub fn flags(mut self, flags: crate::vk::DirectFBSurfaceCreateFlagsEXT) -> Self {
+            self.flags = flags;
+            self
+        }
+        pub fn dfb(mut self, dfb: *mut crate::platform_types::IDirectFB) -> Self {
+            self.dfb = dfb;
+            self
+        }
+        pub fn surface(
+            mut self,
+            surface: *mut crate::platform_types::IDirectFBSurface,
+        ) -> Self {
+            self.surface = surface;
+            self
+        }
+    }
     ///Provided by [`ext::directfb_surface`](crate::ext::directfb_surface)
     impl crate::vk::StructureType {
         pub const DIRECTFB_SURFACE_CREATE_INFO_EXT: Self = Self(1000346000);

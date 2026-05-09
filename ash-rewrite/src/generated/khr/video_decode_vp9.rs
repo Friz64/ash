@@ -27,6 +27,12 @@ impl<'a> Default for PhysicalDeviceVideoDecodeVP9FeaturesKHR<'a> {
         }
     }
 }
+impl<'a> PhysicalDeviceVideoDecodeVP9FeaturesKHR<'a> {
+    pub fn video_decode_vp9(mut self, video_decode_vp9: crate::vk::Bool32) -> Self {
+        self.video_decode_vp9 = video_decode_vp9;
+        self
+    }
+}
 #[repr(C)]
 #[derive(Clone, Copy)]
 pub struct VideoDecodeVP9ProfileInfoKHR<'a> {
@@ -52,6 +58,12 @@ impl<'a> Default for VideoDecodeVP9ProfileInfoKHR<'a> {
         }
     }
 }
+impl<'a> VideoDecodeVP9ProfileInfoKHR<'a> {
+    pub fn std_profile(mut self, std_profile: crate::vk::VP9Profile) -> Self {
+        self.std_profile = std_profile;
+        self
+    }
+}
 #[repr(C)]
 #[derive(Clone, Copy)]
 pub struct VideoDecodeVP9CapabilitiesKHR<'a> {
@@ -73,6 +85,12 @@ impl<'a> Default for VideoDecodeVP9CapabilitiesKHR<'a> {
             max_level: Default::default(),
             _marker: ::core::marker::PhantomData,
         }
+    }
+}
+impl<'a> VideoDecodeVP9CapabilitiesKHR<'a> {
+    pub fn max_level(mut self, max_level: crate::vk::VP9Level) -> Self {
+        self.max_level = max_level;
+        self
     }
 }
 #[repr(C)]
@@ -105,6 +123,38 @@ impl<'a> Default for VideoDecodeVP9PictureInfoKHR<'a> {
             tiles_offset: Default::default(),
             _marker: ::core::marker::PhantomData,
         }
+    }
+}
+impl<'a> VideoDecodeVP9PictureInfoKHR<'a> {
+    pub fn p_std_picture_info(
+        mut self,
+        p_std_picture_info: *const crate::vk::DecodeVP9PictureInfo<'a>,
+    ) -> Self {
+        self.p_std_picture_info = p_std_picture_info;
+        self
+    }
+    pub fn reference_name_slot_indices(
+        mut self,
+        reference_name_slot_indices: [i32; crate::vk::MAX_VIDEO_VP9_REFERENCES_PER_FRAME_KHR
+            as _],
+    ) -> Self {
+        self.reference_name_slot_indices = reference_name_slot_indices;
+        self
+    }
+    pub fn uncompressed_header_offset(
+        mut self,
+        uncompressed_header_offset: u32,
+    ) -> Self {
+        self.uncompressed_header_offset = uncompressed_header_offset;
+        self
+    }
+    pub fn compressed_header_offset(mut self, compressed_header_offset: u32) -> Self {
+        self.compressed_header_offset = compressed_header_offset;
+        self
+    }
+    pub fn tiles_offset(mut self, tiles_offset: u32) -> Self {
+        self.tiles_offset = tiles_offset;
+        self
     }
 }
 ///Provided by [`khr::video_decode_vp9`](crate::khr::video_decode_vp9)

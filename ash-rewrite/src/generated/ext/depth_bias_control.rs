@@ -60,6 +60,26 @@ pub(crate) mod reexport {
             }
         }
     }
+    impl<'a> DepthBiasInfoEXT<'a> {
+        pub fn depth_bias_constant_factor(
+            mut self,
+            depth_bias_constant_factor: core::ffi::c_float,
+        ) -> Self {
+            self.depth_bias_constant_factor = depth_bias_constant_factor;
+            self
+        }
+        pub fn depth_bias_clamp(mut self, depth_bias_clamp: core::ffi::c_float) -> Self {
+            self.depth_bias_clamp = depth_bias_clamp;
+            self
+        }
+        pub fn depth_bias_slope_factor(
+            mut self,
+            depth_bias_slope_factor: core::ffi::c_float,
+        ) -> Self {
+            self.depth_bias_slope_factor = depth_bias_slope_factor;
+            self
+        }
+    }
     #[repr(C)]
     #[derive(Clone, Copy)]
     pub struct DepthBiasRepresentationInfoEXT<'a> {
@@ -85,6 +105,19 @@ pub(crate) mod reexport {
                 depth_bias_exact: Default::default(),
                 _marker: ::core::marker::PhantomData,
             }
+        }
+    }
+    impl<'a> DepthBiasRepresentationInfoEXT<'a> {
+        pub fn depth_bias_representation(
+            mut self,
+            depth_bias_representation: crate::vk::DepthBiasRepresentationEXT,
+        ) -> Self {
+            self.depth_bias_representation = depth_bias_representation;
+            self
+        }
+        pub fn depth_bias_exact(mut self, depth_bias_exact: crate::vk::Bool32) -> Self {
+            self.depth_bias_exact = depth_bias_exact;
+            self
         }
     }
     #[repr(C)]
@@ -117,6 +150,33 @@ pub(crate) mod reexport {
                 depth_bias_exact: Default::default(),
                 _marker: ::core::marker::PhantomData,
             }
+        }
+    }
+    impl<'a> PhysicalDeviceDepthBiasControlFeaturesEXT<'a> {
+        pub fn depth_bias_control(
+            mut self,
+            depth_bias_control: crate::vk::Bool32,
+        ) -> Self {
+            self.depth_bias_control = depth_bias_control;
+            self
+        }
+        pub fn least_representable_value_force_unorm_representation(
+            mut self,
+            least_representable_value_force_unorm_representation: crate::vk::Bool32,
+        ) -> Self {
+            self.least_representable_value_force_unorm_representation = least_representable_value_force_unorm_representation;
+            self
+        }
+        pub fn float_representation(
+            mut self,
+            float_representation: crate::vk::Bool32,
+        ) -> Self {
+            self.float_representation = float_representation;
+            self
+        }
+        pub fn depth_bias_exact(mut self, depth_bias_exact: crate::vk::Bool32) -> Self {
+            self.depth_bias_exact = depth_bias_exact;
+            self
         }
     }
     ///Provided by [`ext::depth_bias_control`](crate::ext::depth_bias_control)

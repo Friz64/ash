@@ -632,6 +632,15 @@ pub(crate) mod reexport {
             }
         }
     }
+    impl<'a> DevicePrivateDataCreateInfo<'a> {
+        pub fn private_data_slot_request_count(
+            mut self,
+            private_data_slot_request_count: u32,
+        ) -> Self {
+            self.private_data_slot_request_count = private_data_slot_request_count;
+            self
+        }
+    }
     #[repr(C)]
     #[derive(Clone, Copy)]
     pub struct PrivateDataSlotCreateInfo<'a> {
@@ -651,6 +660,12 @@ pub(crate) mod reexport {
                 flags: Default::default(),
                 _marker: ::core::marker::PhantomData,
             }
+        }
+    }
+    impl<'a> PrivateDataSlotCreateInfo<'a> {
+        pub fn flags(mut self, flags: crate::vk::PrivateDataSlotCreateFlags) -> Self {
+            self.flags = flags;
+            self
         }
     }
     #[repr(C)]
@@ -679,6 +694,12 @@ pub(crate) mod reexport {
             }
         }
     }
+    impl<'a> PhysicalDevicePrivateDataFeatures<'a> {
+        pub fn private_data(mut self, private_data: crate::vk::Bool32) -> Self {
+            self.private_data = private_data;
+            self
+        }
+    }
     #[repr(C)]
     #[derive(Clone, Copy)]
     pub struct DeviceBufferMemoryRequirements<'a> {
@@ -698,6 +719,15 @@ pub(crate) mod reexport {
                 p_create_info: Default::default(),
                 _marker: ::core::marker::PhantomData,
             }
+        }
+    }
+    impl<'a> DeviceBufferMemoryRequirements<'a> {
+        pub fn p_create_info(
+            mut self,
+            p_create_info: *const crate::vk::BufferCreateInfo<'a>,
+        ) -> Self {
+            self.p_create_info = p_create_info;
+            self
         }
     }
     #[repr(C)]
@@ -721,6 +751,22 @@ pub(crate) mod reexport {
                 plane_aspect: Default::default(),
                 _marker: ::core::marker::PhantomData,
             }
+        }
+    }
+    impl<'a> DeviceImageMemoryRequirements<'a> {
+        pub fn p_create_info(
+            mut self,
+            p_create_info: *const crate::vk::ImageCreateInfo<'a>,
+        ) -> Self {
+            self.p_create_info = p_create_info;
+            self
+        }
+        pub fn plane_aspect(
+            mut self,
+            plane_aspect: crate::vk::ImageAspectFlagBits,
+        ) -> Self {
+            self.plane_aspect = plane_aspect;
+            self
         }
     }
     #[repr(C)]
@@ -749,6 +795,22 @@ pub(crate) mod reexport {
                 descriptor_binding_inline_uniform_block_update_after_bind: Default::default(),
                 _marker: ::core::marker::PhantomData,
             }
+        }
+    }
+    impl<'a> PhysicalDeviceInlineUniformBlockFeatures<'a> {
+        pub fn inline_uniform_block(
+            mut self,
+            inline_uniform_block: crate::vk::Bool32,
+        ) -> Self {
+            self.inline_uniform_block = inline_uniform_block;
+            self
+        }
+        pub fn descriptor_binding_inline_uniform_block_update_after_bind(
+            mut self,
+            descriptor_binding_inline_uniform_block_update_after_bind: crate::vk::Bool32,
+        ) -> Self {
+            self.descriptor_binding_inline_uniform_block_update_after_bind = descriptor_binding_inline_uniform_block_update_after_bind;
+            self
         }
     }
     #[repr(C)]
@@ -783,6 +845,43 @@ pub(crate) mod reexport {
             }
         }
     }
+    impl<'a> PhysicalDeviceInlineUniformBlockProperties<'a> {
+        pub fn max_inline_uniform_block_size(
+            mut self,
+            max_inline_uniform_block_size: u32,
+        ) -> Self {
+            self.max_inline_uniform_block_size = max_inline_uniform_block_size;
+            self
+        }
+        pub fn max_per_stage_descriptor_inline_uniform_blocks(
+            mut self,
+            max_per_stage_descriptor_inline_uniform_blocks: u32,
+        ) -> Self {
+            self.max_per_stage_descriptor_inline_uniform_blocks = max_per_stage_descriptor_inline_uniform_blocks;
+            self
+        }
+        pub fn max_per_stage_descriptor_update_after_bind_inline_uniform_blocks(
+            mut self,
+            max_per_stage_descriptor_update_after_bind_inline_uniform_blocks: u32,
+        ) -> Self {
+            self.max_per_stage_descriptor_update_after_bind_inline_uniform_blocks = max_per_stage_descriptor_update_after_bind_inline_uniform_blocks;
+            self
+        }
+        pub fn max_descriptor_set_inline_uniform_blocks(
+            mut self,
+            max_descriptor_set_inline_uniform_blocks: u32,
+        ) -> Self {
+            self.max_descriptor_set_inline_uniform_blocks = max_descriptor_set_inline_uniform_blocks;
+            self
+        }
+        pub fn max_descriptor_set_update_after_bind_inline_uniform_blocks(
+            mut self,
+            max_descriptor_set_update_after_bind_inline_uniform_blocks: u32,
+        ) -> Self {
+            self.max_descriptor_set_update_after_bind_inline_uniform_blocks = max_descriptor_set_update_after_bind_inline_uniform_blocks;
+            self
+        }
+    }
     #[repr(C)]
     #[derive(Clone, Copy)]
     pub struct WriteDescriptorSetInlineUniformBlock<'a> {
@@ -809,6 +908,16 @@ pub(crate) mod reexport {
             }
         }
     }
+    impl<'a> WriteDescriptorSetInlineUniformBlock<'a> {
+        pub fn data_size(mut self, data_size: u32) -> Self {
+            self.data_size = data_size;
+            self
+        }
+        pub fn p_data(mut self, p_data: *const core::ffi::c_void) -> Self {
+            self.p_data = p_data;
+            self
+        }
+    }
     #[repr(C)]
     #[derive(Clone, Copy)]
     pub struct DescriptorPoolInlineUniformBlockCreateInfo<'a> {
@@ -831,6 +940,15 @@ pub(crate) mod reexport {
                 max_inline_uniform_block_bindings: Default::default(),
                 _marker: ::core::marker::PhantomData,
             }
+        }
+    }
+    impl<'a> DescriptorPoolInlineUniformBlockCreateInfo<'a> {
+        pub fn max_inline_uniform_block_bindings(
+            mut self,
+            max_inline_uniform_block_bindings: u32,
+        ) -> Self {
+            self.max_inline_uniform_block_bindings = max_inline_uniform_block_bindings;
+            self
         }
     }
     #[repr(C)]
@@ -859,6 +977,12 @@ pub(crate) mod reexport {
             }
         }
     }
+    impl<'a> PhysicalDeviceMaintenance4Features<'a> {
+        pub fn maintenance4(mut self, maintenance4: crate::vk::Bool32) -> Self {
+            self.maintenance4 = maintenance4;
+            self
+        }
+    }
     #[repr(C)]
     #[derive(Clone, Copy)]
     pub struct PhysicalDeviceMaintenance4Properties<'a> {
@@ -881,6 +1005,15 @@ pub(crate) mod reexport {
                 max_buffer_size: Default::default(),
                 _marker: ::core::marker::PhantomData,
             }
+        }
+    }
+    impl<'a> PhysicalDeviceMaintenance4Properties<'a> {
+        pub fn max_buffer_size(
+            mut self,
+            max_buffer_size: crate::vk::DeviceSize,
+        ) -> Self {
+            self.max_buffer_size = max_buffer_size;
+            self
         }
     }
     #[repr(C)]
@@ -909,11 +1042,30 @@ pub(crate) mod reexport {
             }
         }
     }
+    impl<'a> PhysicalDeviceTextureCompressionASTCHDRFeatures<'a> {
+        pub fn texture_compression_astc_hdr(
+            mut self,
+            texture_compression_astc_hdr: crate::vk::Bool32,
+        ) -> Self {
+            self.texture_compression_astc_hdr = texture_compression_astc_hdr;
+            self
+        }
+    }
     #[repr(C)]
     #[derive(Clone, Copy, Default)]
     pub struct PipelineCreationFeedback {
         pub flags: crate::vk::PipelineCreationFeedbackFlags,
         pub duration: u64,
+    }
+    impl PipelineCreationFeedback {
+        pub fn flags(mut self, flags: crate::vk::PipelineCreationFeedbackFlags) -> Self {
+            self.flags = flags;
+            self
+        }
+        pub fn duration(mut self, duration: u64) -> Self {
+            self.duration = duration;
+            self
+        }
     }
     #[repr(C)]
     #[derive(Clone, Copy)]
@@ -953,6 +1105,29 @@ pub(crate) mod reexport {
             }
         }
     }
+    impl<'a> PipelineCreationFeedbackCreateInfo<'a> {
+        pub fn p_pipeline_creation_feedback(
+            mut self,
+            p_pipeline_creation_feedback: *mut crate::vk::PipelineCreationFeedback,
+        ) -> Self {
+            self.p_pipeline_creation_feedback = p_pipeline_creation_feedback;
+            self
+        }
+        pub fn pipeline_stage_creation_feedback_count(
+            mut self,
+            pipeline_stage_creation_feedback_count: u32,
+        ) -> Self {
+            self.pipeline_stage_creation_feedback_count = pipeline_stage_creation_feedback_count;
+            self
+        }
+        pub fn p_pipeline_stage_creation_feedbacks(
+            mut self,
+            p_pipeline_stage_creation_feedbacks: *mut crate::vk::PipelineCreationFeedback,
+        ) -> Self {
+            self.p_pipeline_stage_creation_feedbacks = p_pipeline_stage_creation_feedbacks;
+            self
+        }
+    }
     #[repr(C)]
     #[derive(Clone, Copy)]
     pub struct PhysicalDeviceShaderDemoteToHelperInvocationFeatures<'a> {
@@ -977,6 +1152,15 @@ pub(crate) mod reexport {
                 shader_demote_to_helper_invocation: Default::default(),
                 _marker: ::core::marker::PhantomData,
             }
+        }
+    }
+    impl<'a> PhysicalDeviceShaderDemoteToHelperInvocationFeatures<'a> {
+        pub fn shader_demote_to_helper_invocation(
+            mut self,
+            shader_demote_to_helper_invocation: crate::vk::Bool32,
+        ) -> Self {
+            self.shader_demote_to_helper_invocation = shader_demote_to_helper_invocation;
+            self
         }
     }
     #[repr(C)]
@@ -1009,6 +1193,36 @@ pub(crate) mod reexport {
             }
         }
     }
+    impl<'a> PhysicalDeviceTexelBufferAlignmentProperties<'a> {
+        pub fn storage_texel_buffer_offset_alignment_bytes(
+            mut self,
+            storage_texel_buffer_offset_alignment_bytes: crate::vk::DeviceSize,
+        ) -> Self {
+            self.storage_texel_buffer_offset_alignment_bytes = storage_texel_buffer_offset_alignment_bytes;
+            self
+        }
+        pub fn storage_texel_buffer_offset_single_texel_alignment(
+            mut self,
+            storage_texel_buffer_offset_single_texel_alignment: crate::vk::Bool32,
+        ) -> Self {
+            self.storage_texel_buffer_offset_single_texel_alignment = storage_texel_buffer_offset_single_texel_alignment;
+            self
+        }
+        pub fn uniform_texel_buffer_offset_alignment_bytes(
+            mut self,
+            uniform_texel_buffer_offset_alignment_bytes: crate::vk::DeviceSize,
+        ) -> Self {
+            self.uniform_texel_buffer_offset_alignment_bytes = uniform_texel_buffer_offset_alignment_bytes;
+            self
+        }
+        pub fn uniform_texel_buffer_offset_single_texel_alignment(
+            mut self,
+            uniform_texel_buffer_offset_single_texel_alignment: crate::vk::Bool32,
+        ) -> Self {
+            self.uniform_texel_buffer_offset_single_texel_alignment = uniform_texel_buffer_offset_single_texel_alignment;
+            self
+        }
+    }
     #[repr(C)]
     #[derive(Clone, Copy)]
     pub struct PhysicalDeviceSubgroupSizeControlFeatures<'a> {
@@ -1035,6 +1249,22 @@ pub(crate) mod reexport {
                 compute_full_subgroups: Default::default(),
                 _marker: ::core::marker::PhantomData,
             }
+        }
+    }
+    impl<'a> PhysicalDeviceSubgroupSizeControlFeatures<'a> {
+        pub fn subgroup_size_control(
+            mut self,
+            subgroup_size_control: crate::vk::Bool32,
+        ) -> Self {
+            self.subgroup_size_control = subgroup_size_control;
+            self
+        }
+        pub fn compute_full_subgroups(
+            mut self,
+            compute_full_subgroups: crate::vk::Bool32,
+        ) -> Self {
+            self.compute_full_subgroups = compute_full_subgroups;
+            self
         }
     }
     #[repr(C)]
@@ -1067,6 +1297,30 @@ pub(crate) mod reexport {
             }
         }
     }
+    impl<'a> PhysicalDeviceSubgroupSizeControlProperties<'a> {
+        pub fn min_subgroup_size(mut self, min_subgroup_size: u32) -> Self {
+            self.min_subgroup_size = min_subgroup_size;
+            self
+        }
+        pub fn max_subgroup_size(mut self, max_subgroup_size: u32) -> Self {
+            self.max_subgroup_size = max_subgroup_size;
+            self
+        }
+        pub fn max_compute_workgroup_subgroups(
+            mut self,
+            max_compute_workgroup_subgroups: u32,
+        ) -> Self {
+            self.max_compute_workgroup_subgroups = max_compute_workgroup_subgroups;
+            self
+        }
+        pub fn required_subgroup_size_stages(
+            mut self,
+            required_subgroup_size_stages: crate::vk::ShaderStageFlags,
+        ) -> Self {
+            self.required_subgroup_size_stages = required_subgroup_size_stages;
+            self
+        }
+    }
     #[repr(C)]
     #[derive(Clone, Copy)]
     pub struct PipelineShaderStageRequiredSubgroupSizeCreateInfo<'a> {
@@ -1093,6 +1347,12 @@ pub(crate) mod reexport {
             }
         }
     }
+    impl<'a> PipelineShaderStageRequiredSubgroupSizeCreateInfo<'a> {
+        pub fn required_subgroup_size(mut self, required_subgroup_size: u32) -> Self {
+            self.required_subgroup_size = required_subgroup_size;
+            self
+        }
+    }
     #[repr(C)]
     #[derive(Clone, Copy)]
     pub struct PhysicalDevicePipelineCreationCacheControlFeatures<'a> {
@@ -1117,6 +1377,15 @@ pub(crate) mod reexport {
                 pipeline_creation_cache_control: Default::default(),
                 _marker: ::core::marker::PhantomData,
             }
+        }
+    }
+    impl<'a> PhysicalDevicePipelineCreationCacheControlFeatures<'a> {
+        pub fn pipeline_creation_cache_control(
+            mut self,
+            pipeline_creation_cache_control: crate::vk::Bool32,
+        ) -> Self {
+            self.pipeline_creation_cache_control = pipeline_creation_cache_control;
+            self
         }
     }
     #[repr(C)]
@@ -1170,6 +1439,104 @@ pub(crate) mod reexport {
                 maintenance4: Default::default(),
                 _marker: ::core::marker::PhantomData,
             }
+        }
+    }
+    impl<'a> PhysicalDeviceVulkan13Features<'a> {
+        pub fn robust_image_access(
+            mut self,
+            robust_image_access: crate::vk::Bool32,
+        ) -> Self {
+            self.robust_image_access = robust_image_access;
+            self
+        }
+        pub fn inline_uniform_block(
+            mut self,
+            inline_uniform_block: crate::vk::Bool32,
+        ) -> Self {
+            self.inline_uniform_block = inline_uniform_block;
+            self
+        }
+        pub fn descriptor_binding_inline_uniform_block_update_after_bind(
+            mut self,
+            descriptor_binding_inline_uniform_block_update_after_bind: crate::vk::Bool32,
+        ) -> Self {
+            self.descriptor_binding_inline_uniform_block_update_after_bind = descriptor_binding_inline_uniform_block_update_after_bind;
+            self
+        }
+        pub fn pipeline_creation_cache_control(
+            mut self,
+            pipeline_creation_cache_control: crate::vk::Bool32,
+        ) -> Self {
+            self.pipeline_creation_cache_control = pipeline_creation_cache_control;
+            self
+        }
+        pub fn private_data(mut self, private_data: crate::vk::Bool32) -> Self {
+            self.private_data = private_data;
+            self
+        }
+        pub fn shader_demote_to_helper_invocation(
+            mut self,
+            shader_demote_to_helper_invocation: crate::vk::Bool32,
+        ) -> Self {
+            self.shader_demote_to_helper_invocation = shader_demote_to_helper_invocation;
+            self
+        }
+        pub fn shader_terminate_invocation(
+            mut self,
+            shader_terminate_invocation: crate::vk::Bool32,
+        ) -> Self {
+            self.shader_terminate_invocation = shader_terminate_invocation;
+            self
+        }
+        pub fn subgroup_size_control(
+            mut self,
+            subgroup_size_control: crate::vk::Bool32,
+        ) -> Self {
+            self.subgroup_size_control = subgroup_size_control;
+            self
+        }
+        pub fn compute_full_subgroups(
+            mut self,
+            compute_full_subgroups: crate::vk::Bool32,
+        ) -> Self {
+            self.compute_full_subgroups = compute_full_subgroups;
+            self
+        }
+        pub fn synchronization2(mut self, synchronization2: crate::vk::Bool32) -> Self {
+            self.synchronization2 = synchronization2;
+            self
+        }
+        pub fn texture_compression_astc_hdr(
+            mut self,
+            texture_compression_astc_hdr: crate::vk::Bool32,
+        ) -> Self {
+            self.texture_compression_astc_hdr = texture_compression_astc_hdr;
+            self
+        }
+        pub fn shader_zero_initialize_workgroup_memory(
+            mut self,
+            shader_zero_initialize_workgroup_memory: crate::vk::Bool32,
+        ) -> Self {
+            self.shader_zero_initialize_workgroup_memory = shader_zero_initialize_workgroup_memory;
+            self
+        }
+        pub fn dynamic_rendering(
+            mut self,
+            dynamic_rendering: crate::vk::Bool32,
+        ) -> Self {
+            self.dynamic_rendering = dynamic_rendering;
+            self
+        }
+        pub fn shader_integer_dot_product(
+            mut self,
+            shader_integer_dot_product: crate::vk::Bool32,
+        ) -> Self {
+            self.shader_integer_dot_product = shader_integer_dot_product;
+            self
+        }
+        pub fn maintenance4(mut self, maintenance4: crate::vk::Bool32) -> Self {
+            self.maintenance4 = maintenance4;
+            self
         }
     }
     #[repr(C)]
@@ -1283,6 +1650,327 @@ pub(crate) mod reexport {
             }
         }
     }
+    impl<'a> PhysicalDeviceVulkan13Properties<'a> {
+        pub fn min_subgroup_size(mut self, min_subgroup_size: u32) -> Self {
+            self.min_subgroup_size = min_subgroup_size;
+            self
+        }
+        pub fn max_subgroup_size(mut self, max_subgroup_size: u32) -> Self {
+            self.max_subgroup_size = max_subgroup_size;
+            self
+        }
+        pub fn max_compute_workgroup_subgroups(
+            mut self,
+            max_compute_workgroup_subgroups: u32,
+        ) -> Self {
+            self.max_compute_workgroup_subgroups = max_compute_workgroup_subgroups;
+            self
+        }
+        pub fn required_subgroup_size_stages(
+            mut self,
+            required_subgroup_size_stages: crate::vk::ShaderStageFlags,
+        ) -> Self {
+            self.required_subgroup_size_stages = required_subgroup_size_stages;
+            self
+        }
+        pub fn max_inline_uniform_block_size(
+            mut self,
+            max_inline_uniform_block_size: u32,
+        ) -> Self {
+            self.max_inline_uniform_block_size = max_inline_uniform_block_size;
+            self
+        }
+        pub fn max_per_stage_descriptor_inline_uniform_blocks(
+            mut self,
+            max_per_stage_descriptor_inline_uniform_blocks: u32,
+        ) -> Self {
+            self.max_per_stage_descriptor_inline_uniform_blocks = max_per_stage_descriptor_inline_uniform_blocks;
+            self
+        }
+        pub fn max_per_stage_descriptor_update_after_bind_inline_uniform_blocks(
+            mut self,
+            max_per_stage_descriptor_update_after_bind_inline_uniform_blocks: u32,
+        ) -> Self {
+            self.max_per_stage_descriptor_update_after_bind_inline_uniform_blocks = max_per_stage_descriptor_update_after_bind_inline_uniform_blocks;
+            self
+        }
+        pub fn max_descriptor_set_inline_uniform_blocks(
+            mut self,
+            max_descriptor_set_inline_uniform_blocks: u32,
+        ) -> Self {
+            self.max_descriptor_set_inline_uniform_blocks = max_descriptor_set_inline_uniform_blocks;
+            self
+        }
+        pub fn max_descriptor_set_update_after_bind_inline_uniform_blocks(
+            mut self,
+            max_descriptor_set_update_after_bind_inline_uniform_blocks: u32,
+        ) -> Self {
+            self.max_descriptor_set_update_after_bind_inline_uniform_blocks = max_descriptor_set_update_after_bind_inline_uniform_blocks;
+            self
+        }
+        pub fn max_inline_uniform_total_size(
+            mut self,
+            max_inline_uniform_total_size: u32,
+        ) -> Self {
+            self.max_inline_uniform_total_size = max_inline_uniform_total_size;
+            self
+        }
+        pub fn integer_dot_product8_bit_unsigned_accelerated(
+            mut self,
+            integer_dot_product8_bit_unsigned_accelerated: crate::vk::Bool32,
+        ) -> Self {
+            self.integer_dot_product8_bit_unsigned_accelerated = integer_dot_product8_bit_unsigned_accelerated;
+            self
+        }
+        pub fn integer_dot_product8_bit_signed_accelerated(
+            mut self,
+            integer_dot_product8_bit_signed_accelerated: crate::vk::Bool32,
+        ) -> Self {
+            self.integer_dot_product8_bit_signed_accelerated = integer_dot_product8_bit_signed_accelerated;
+            self
+        }
+        pub fn integer_dot_product8_bit_mixed_signedness_accelerated(
+            mut self,
+            integer_dot_product8_bit_mixed_signedness_accelerated: crate::vk::Bool32,
+        ) -> Self {
+            self.integer_dot_product8_bit_mixed_signedness_accelerated = integer_dot_product8_bit_mixed_signedness_accelerated;
+            self
+        }
+        pub fn integer_dot_product4x8_bit_packed_unsigned_accelerated(
+            mut self,
+            integer_dot_product4x8_bit_packed_unsigned_accelerated: crate::vk::Bool32,
+        ) -> Self {
+            self.integer_dot_product4x8_bit_packed_unsigned_accelerated = integer_dot_product4x8_bit_packed_unsigned_accelerated;
+            self
+        }
+        pub fn integer_dot_product4x8_bit_packed_signed_accelerated(
+            mut self,
+            integer_dot_product4x8_bit_packed_signed_accelerated: crate::vk::Bool32,
+        ) -> Self {
+            self.integer_dot_product4x8_bit_packed_signed_accelerated = integer_dot_product4x8_bit_packed_signed_accelerated;
+            self
+        }
+        pub fn integer_dot_product4x8_bit_packed_mixed_signedness_accelerated(
+            mut self,
+            integer_dot_product4x8_bit_packed_mixed_signedness_accelerated: crate::vk::Bool32,
+        ) -> Self {
+            self.integer_dot_product4x8_bit_packed_mixed_signedness_accelerated = integer_dot_product4x8_bit_packed_mixed_signedness_accelerated;
+            self
+        }
+        pub fn integer_dot_product16_bit_unsigned_accelerated(
+            mut self,
+            integer_dot_product16_bit_unsigned_accelerated: crate::vk::Bool32,
+        ) -> Self {
+            self.integer_dot_product16_bit_unsigned_accelerated = integer_dot_product16_bit_unsigned_accelerated;
+            self
+        }
+        pub fn integer_dot_product16_bit_signed_accelerated(
+            mut self,
+            integer_dot_product16_bit_signed_accelerated: crate::vk::Bool32,
+        ) -> Self {
+            self.integer_dot_product16_bit_signed_accelerated = integer_dot_product16_bit_signed_accelerated;
+            self
+        }
+        pub fn integer_dot_product16_bit_mixed_signedness_accelerated(
+            mut self,
+            integer_dot_product16_bit_mixed_signedness_accelerated: crate::vk::Bool32,
+        ) -> Self {
+            self.integer_dot_product16_bit_mixed_signedness_accelerated = integer_dot_product16_bit_mixed_signedness_accelerated;
+            self
+        }
+        pub fn integer_dot_product32_bit_unsigned_accelerated(
+            mut self,
+            integer_dot_product32_bit_unsigned_accelerated: crate::vk::Bool32,
+        ) -> Self {
+            self.integer_dot_product32_bit_unsigned_accelerated = integer_dot_product32_bit_unsigned_accelerated;
+            self
+        }
+        pub fn integer_dot_product32_bit_signed_accelerated(
+            mut self,
+            integer_dot_product32_bit_signed_accelerated: crate::vk::Bool32,
+        ) -> Self {
+            self.integer_dot_product32_bit_signed_accelerated = integer_dot_product32_bit_signed_accelerated;
+            self
+        }
+        pub fn integer_dot_product32_bit_mixed_signedness_accelerated(
+            mut self,
+            integer_dot_product32_bit_mixed_signedness_accelerated: crate::vk::Bool32,
+        ) -> Self {
+            self.integer_dot_product32_bit_mixed_signedness_accelerated = integer_dot_product32_bit_mixed_signedness_accelerated;
+            self
+        }
+        pub fn integer_dot_product64_bit_unsigned_accelerated(
+            mut self,
+            integer_dot_product64_bit_unsigned_accelerated: crate::vk::Bool32,
+        ) -> Self {
+            self.integer_dot_product64_bit_unsigned_accelerated = integer_dot_product64_bit_unsigned_accelerated;
+            self
+        }
+        pub fn integer_dot_product64_bit_signed_accelerated(
+            mut self,
+            integer_dot_product64_bit_signed_accelerated: crate::vk::Bool32,
+        ) -> Self {
+            self.integer_dot_product64_bit_signed_accelerated = integer_dot_product64_bit_signed_accelerated;
+            self
+        }
+        pub fn integer_dot_product64_bit_mixed_signedness_accelerated(
+            mut self,
+            integer_dot_product64_bit_mixed_signedness_accelerated: crate::vk::Bool32,
+        ) -> Self {
+            self.integer_dot_product64_bit_mixed_signedness_accelerated = integer_dot_product64_bit_mixed_signedness_accelerated;
+            self
+        }
+        pub fn integer_dot_product_accumulating_saturating8_bit_unsigned_accelerated(
+            mut self,
+            integer_dot_product_accumulating_saturating8_bit_unsigned_accelerated: crate::vk::Bool32,
+        ) -> Self {
+            self.integer_dot_product_accumulating_saturating8_bit_unsigned_accelerated = integer_dot_product_accumulating_saturating8_bit_unsigned_accelerated;
+            self
+        }
+        pub fn integer_dot_product_accumulating_saturating8_bit_signed_accelerated(
+            mut self,
+            integer_dot_product_accumulating_saturating8_bit_signed_accelerated: crate::vk::Bool32,
+        ) -> Self {
+            self.integer_dot_product_accumulating_saturating8_bit_signed_accelerated = integer_dot_product_accumulating_saturating8_bit_signed_accelerated;
+            self
+        }
+        pub fn integer_dot_product_accumulating_saturating8_bit_mixed_signedness_accelerated(
+            mut self,
+            integer_dot_product_accumulating_saturating8_bit_mixed_signedness_accelerated: crate::vk::Bool32,
+        ) -> Self {
+            self
+                .integer_dot_product_accumulating_saturating8_bit_mixed_signedness_accelerated = integer_dot_product_accumulating_saturating8_bit_mixed_signedness_accelerated;
+            self
+        }
+        pub fn integer_dot_product_accumulating_saturating4x8_bit_packed_unsigned_accelerated(
+            mut self,
+            integer_dot_product_accumulating_saturating4x8_bit_packed_unsigned_accelerated: crate::vk::Bool32,
+        ) -> Self {
+            self
+                .integer_dot_product_accumulating_saturating4x8_bit_packed_unsigned_accelerated = integer_dot_product_accumulating_saturating4x8_bit_packed_unsigned_accelerated;
+            self
+        }
+        pub fn integer_dot_product_accumulating_saturating4x8_bit_packed_signed_accelerated(
+            mut self,
+            integer_dot_product_accumulating_saturating4x8_bit_packed_signed_accelerated: crate::vk::Bool32,
+        ) -> Self {
+            self
+                .integer_dot_product_accumulating_saturating4x8_bit_packed_signed_accelerated = integer_dot_product_accumulating_saturating4x8_bit_packed_signed_accelerated;
+            self
+        }
+        pub fn integer_dot_product_accumulating_saturating4x8_bit_packed_mixed_signedness_accelerated(
+            mut self,
+            integer_dot_product_accumulating_saturating4x8_bit_packed_mixed_signedness_accelerated: crate::vk::Bool32,
+        ) -> Self {
+            self
+                .integer_dot_product_accumulating_saturating4x8_bit_packed_mixed_signedness_accelerated = integer_dot_product_accumulating_saturating4x8_bit_packed_mixed_signedness_accelerated;
+            self
+        }
+        pub fn integer_dot_product_accumulating_saturating16_bit_unsigned_accelerated(
+            mut self,
+            integer_dot_product_accumulating_saturating16_bit_unsigned_accelerated: crate::vk::Bool32,
+        ) -> Self {
+            self
+                .integer_dot_product_accumulating_saturating16_bit_unsigned_accelerated = integer_dot_product_accumulating_saturating16_bit_unsigned_accelerated;
+            self
+        }
+        pub fn integer_dot_product_accumulating_saturating16_bit_signed_accelerated(
+            mut self,
+            integer_dot_product_accumulating_saturating16_bit_signed_accelerated: crate::vk::Bool32,
+        ) -> Self {
+            self.integer_dot_product_accumulating_saturating16_bit_signed_accelerated = integer_dot_product_accumulating_saturating16_bit_signed_accelerated;
+            self
+        }
+        pub fn integer_dot_product_accumulating_saturating16_bit_mixed_signedness_accelerated(
+            mut self,
+            integer_dot_product_accumulating_saturating16_bit_mixed_signedness_accelerated: crate::vk::Bool32,
+        ) -> Self {
+            self
+                .integer_dot_product_accumulating_saturating16_bit_mixed_signedness_accelerated = integer_dot_product_accumulating_saturating16_bit_mixed_signedness_accelerated;
+            self
+        }
+        pub fn integer_dot_product_accumulating_saturating32_bit_unsigned_accelerated(
+            mut self,
+            integer_dot_product_accumulating_saturating32_bit_unsigned_accelerated: crate::vk::Bool32,
+        ) -> Self {
+            self
+                .integer_dot_product_accumulating_saturating32_bit_unsigned_accelerated = integer_dot_product_accumulating_saturating32_bit_unsigned_accelerated;
+            self
+        }
+        pub fn integer_dot_product_accumulating_saturating32_bit_signed_accelerated(
+            mut self,
+            integer_dot_product_accumulating_saturating32_bit_signed_accelerated: crate::vk::Bool32,
+        ) -> Self {
+            self.integer_dot_product_accumulating_saturating32_bit_signed_accelerated = integer_dot_product_accumulating_saturating32_bit_signed_accelerated;
+            self
+        }
+        pub fn integer_dot_product_accumulating_saturating32_bit_mixed_signedness_accelerated(
+            mut self,
+            integer_dot_product_accumulating_saturating32_bit_mixed_signedness_accelerated: crate::vk::Bool32,
+        ) -> Self {
+            self
+                .integer_dot_product_accumulating_saturating32_bit_mixed_signedness_accelerated = integer_dot_product_accumulating_saturating32_bit_mixed_signedness_accelerated;
+            self
+        }
+        pub fn integer_dot_product_accumulating_saturating64_bit_unsigned_accelerated(
+            mut self,
+            integer_dot_product_accumulating_saturating64_bit_unsigned_accelerated: crate::vk::Bool32,
+        ) -> Self {
+            self
+                .integer_dot_product_accumulating_saturating64_bit_unsigned_accelerated = integer_dot_product_accumulating_saturating64_bit_unsigned_accelerated;
+            self
+        }
+        pub fn integer_dot_product_accumulating_saturating64_bit_signed_accelerated(
+            mut self,
+            integer_dot_product_accumulating_saturating64_bit_signed_accelerated: crate::vk::Bool32,
+        ) -> Self {
+            self.integer_dot_product_accumulating_saturating64_bit_signed_accelerated = integer_dot_product_accumulating_saturating64_bit_signed_accelerated;
+            self
+        }
+        pub fn integer_dot_product_accumulating_saturating64_bit_mixed_signedness_accelerated(
+            mut self,
+            integer_dot_product_accumulating_saturating64_bit_mixed_signedness_accelerated: crate::vk::Bool32,
+        ) -> Self {
+            self
+                .integer_dot_product_accumulating_saturating64_bit_mixed_signedness_accelerated = integer_dot_product_accumulating_saturating64_bit_mixed_signedness_accelerated;
+            self
+        }
+        pub fn storage_texel_buffer_offset_alignment_bytes(
+            mut self,
+            storage_texel_buffer_offset_alignment_bytes: crate::vk::DeviceSize,
+        ) -> Self {
+            self.storage_texel_buffer_offset_alignment_bytes = storage_texel_buffer_offset_alignment_bytes;
+            self
+        }
+        pub fn storage_texel_buffer_offset_single_texel_alignment(
+            mut self,
+            storage_texel_buffer_offset_single_texel_alignment: crate::vk::Bool32,
+        ) -> Self {
+            self.storage_texel_buffer_offset_single_texel_alignment = storage_texel_buffer_offset_single_texel_alignment;
+            self
+        }
+        pub fn uniform_texel_buffer_offset_alignment_bytes(
+            mut self,
+            uniform_texel_buffer_offset_alignment_bytes: crate::vk::DeviceSize,
+        ) -> Self {
+            self.uniform_texel_buffer_offset_alignment_bytes = uniform_texel_buffer_offset_alignment_bytes;
+            self
+        }
+        pub fn uniform_texel_buffer_offset_single_texel_alignment(
+            mut self,
+            uniform_texel_buffer_offset_single_texel_alignment: crate::vk::Bool32,
+        ) -> Self {
+            self.uniform_texel_buffer_offset_single_texel_alignment = uniform_texel_buffer_offset_single_texel_alignment;
+            self
+        }
+        pub fn max_buffer_size(
+            mut self,
+            max_buffer_size: crate::vk::DeviceSize,
+        ) -> Self {
+            self.max_buffer_size = max_buffer_size;
+            self
+        }
+    }
     #[repr(C)]
     #[derive(Clone, Copy)]
     pub struct PhysicalDeviceToolProperties<'a> {
@@ -1312,6 +2000,40 @@ pub(crate) mod reexport {
             }
         }
     }
+    impl<'a> PhysicalDeviceToolProperties<'a> {
+        pub fn name(
+            mut self,
+            name: [core::ffi::c_char; crate::vk::MAX_EXTENSION_NAME_SIZE as _],
+        ) -> Self {
+            self.name = name;
+            self
+        }
+        pub fn version(
+            mut self,
+            version: [core::ffi::c_char; crate::vk::MAX_EXTENSION_NAME_SIZE as _],
+        ) -> Self {
+            self.version = version;
+            self
+        }
+        pub fn purposes(mut self, purposes: crate::vk::ToolPurposeFlags) -> Self {
+            self.purposes = purposes;
+            self
+        }
+        pub fn description(
+            mut self,
+            description: [core::ffi::c_char; crate::vk::MAX_DESCRIPTION_SIZE as _],
+        ) -> Self {
+            self.description = description;
+            self
+        }
+        pub fn layer(
+            mut self,
+            layer: [core::ffi::c_char; crate::vk::MAX_EXTENSION_NAME_SIZE as _],
+        ) -> Self {
+            self.layer = layer;
+            self
+        }
+    }
     #[repr(C)]
     #[derive(Clone, Copy)]
     pub struct PhysicalDeviceZeroInitializeWorkgroupMemoryFeatures<'a> {
@@ -1336,6 +2058,15 @@ pub(crate) mod reexport {
                 shader_zero_initialize_workgroup_memory: Default::default(),
                 _marker: ::core::marker::PhantomData,
             }
+        }
+    }
+    impl<'a> PhysicalDeviceZeroInitializeWorkgroupMemoryFeatures<'a> {
+        pub fn shader_zero_initialize_workgroup_memory(
+            mut self,
+            shader_zero_initialize_workgroup_memory: crate::vk::Bool32,
+        ) -> Self {
+            self.shader_zero_initialize_workgroup_memory = shader_zero_initialize_workgroup_memory;
+            self
         }
     }
     #[repr(C)]
@@ -1364,6 +2095,15 @@ pub(crate) mod reexport {
             }
         }
     }
+    impl<'a> PhysicalDeviceImageRobustnessFeatures<'a> {
+        pub fn robust_image_access(
+            mut self,
+            robust_image_access: crate::vk::Bool32,
+        ) -> Self {
+            self.robust_image_access = robust_image_access;
+            self
+        }
+    }
     #[repr(C)]
     #[derive(Clone, Copy)]
     pub struct BufferCopy2<'a> {
@@ -1387,6 +2127,20 @@ pub(crate) mod reexport {
                 size: Default::default(),
                 _marker: ::core::marker::PhantomData,
             }
+        }
+    }
+    impl<'a> BufferCopy2<'a> {
+        pub fn src_offset(mut self, src_offset: crate::vk::DeviceSize) -> Self {
+            self.src_offset = src_offset;
+            self
+        }
+        pub fn dst_offset(mut self, dst_offset: crate::vk::DeviceSize) -> Self {
+            self.dst_offset = dst_offset;
+            self
+        }
+        pub fn size(mut self, size: crate::vk::DeviceSize) -> Self {
+            self.size = size;
+            self
         }
     }
     #[repr(C)]
@@ -1418,6 +2172,34 @@ pub(crate) mod reexport {
             }
         }
     }
+    impl<'a> ImageCopy2<'a> {
+        pub fn src_subresource(
+            mut self,
+            src_subresource: crate::vk::ImageSubresourceLayers,
+        ) -> Self {
+            self.src_subresource = src_subresource;
+            self
+        }
+        pub fn src_offset(mut self, src_offset: crate::vk::Offset3D) -> Self {
+            self.src_offset = src_offset;
+            self
+        }
+        pub fn dst_subresource(
+            mut self,
+            dst_subresource: crate::vk::ImageSubresourceLayers,
+        ) -> Self {
+            self.dst_subresource = dst_subresource;
+            self
+        }
+        pub fn dst_offset(mut self, dst_offset: crate::vk::Offset3D) -> Self {
+            self.dst_offset = dst_offset;
+            self
+        }
+        pub fn extent(mut self, extent: crate::vk::Extent3D) -> Self {
+            self.extent = extent;
+            self
+        }
+    }
     #[repr(C)]
     #[derive(Clone, Copy)]
     pub struct ImageBlit2<'a> {
@@ -1443,6 +2225,36 @@ pub(crate) mod reexport {
                 dst_offsets: unsafe { core::mem::zeroed() },
                 _marker: ::core::marker::PhantomData,
             }
+        }
+    }
+    impl<'a> ImageBlit2<'a> {
+        pub fn src_subresource(
+            mut self,
+            src_subresource: crate::vk::ImageSubresourceLayers,
+        ) -> Self {
+            self.src_subresource = src_subresource;
+            self
+        }
+        pub fn src_offsets(
+            mut self,
+            src_offsets: [crate::vk::Offset3D; 2 as _],
+        ) -> Self {
+            self.src_offsets = src_offsets;
+            self
+        }
+        pub fn dst_subresource(
+            mut self,
+            dst_subresource: crate::vk::ImageSubresourceLayers,
+        ) -> Self {
+            self.dst_subresource = dst_subresource;
+            self
+        }
+        pub fn dst_offsets(
+            mut self,
+            dst_offsets: [crate::vk::Offset3D; 2 as _],
+        ) -> Self {
+            self.dst_offsets = dst_offsets;
+            self
         }
     }
     #[repr(C)]
@@ -1476,6 +2288,35 @@ pub(crate) mod reexport {
             }
         }
     }
+    impl<'a> BufferImageCopy2<'a> {
+        pub fn buffer_offset(mut self, buffer_offset: crate::vk::DeviceSize) -> Self {
+            self.buffer_offset = buffer_offset;
+            self
+        }
+        pub fn buffer_row_length(mut self, buffer_row_length: u32) -> Self {
+            self.buffer_row_length = buffer_row_length;
+            self
+        }
+        pub fn buffer_image_height(mut self, buffer_image_height: u32) -> Self {
+            self.buffer_image_height = buffer_image_height;
+            self
+        }
+        pub fn image_subresource(
+            mut self,
+            image_subresource: crate::vk::ImageSubresourceLayers,
+        ) -> Self {
+            self.image_subresource = image_subresource;
+            self
+        }
+        pub fn image_offset(mut self, image_offset: crate::vk::Offset3D) -> Self {
+            self.image_offset = image_offset;
+            self
+        }
+        pub fn image_extent(mut self, image_extent: crate::vk::Extent3D) -> Self {
+            self.image_extent = image_extent;
+            self
+        }
+    }
     #[repr(C)]
     #[derive(Clone, Copy)]
     pub struct ImageResolve2<'a> {
@@ -1505,6 +2346,34 @@ pub(crate) mod reexport {
             }
         }
     }
+    impl<'a> ImageResolve2<'a> {
+        pub fn src_subresource(
+            mut self,
+            src_subresource: crate::vk::ImageSubresourceLayers,
+        ) -> Self {
+            self.src_subresource = src_subresource;
+            self
+        }
+        pub fn src_offset(mut self, src_offset: crate::vk::Offset3D) -> Self {
+            self.src_offset = src_offset;
+            self
+        }
+        pub fn dst_subresource(
+            mut self,
+            dst_subresource: crate::vk::ImageSubresourceLayers,
+        ) -> Self {
+            self.dst_subresource = dst_subresource;
+            self
+        }
+        pub fn dst_offset(mut self, dst_offset: crate::vk::Offset3D) -> Self {
+            self.dst_offset = dst_offset;
+            self
+        }
+        pub fn extent(mut self, extent: crate::vk::Extent3D) -> Self {
+            self.extent = extent;
+            self
+        }
+    }
     #[repr(C)]
     #[derive(Clone, Copy)]
     pub struct CopyBufferInfo2<'a> {
@@ -1530,6 +2399,27 @@ pub(crate) mod reexport {
                 p_regions: Default::default(),
                 _marker: ::core::marker::PhantomData,
             }
+        }
+    }
+    impl<'a> CopyBufferInfo2<'a> {
+        pub fn src_buffer(mut self, src_buffer: crate::vk::Buffer) -> Self {
+            self.src_buffer = src_buffer;
+            self
+        }
+        pub fn dst_buffer(mut self, dst_buffer: crate::vk::Buffer) -> Self {
+            self.dst_buffer = dst_buffer;
+            self
+        }
+        pub fn region_count(mut self, region_count: u32) -> Self {
+            self.region_count = region_count;
+            self
+        }
+        pub fn p_regions(
+            mut self,
+            p_regions: *const crate::vk::BufferCopy2<'a>,
+        ) -> Self {
+            self.p_regions = p_regions;
+            self
         }
     }
     #[repr(C)]
@@ -1561,6 +2451,38 @@ pub(crate) mod reexport {
                 p_regions: Default::default(),
                 _marker: ::core::marker::PhantomData,
             }
+        }
+    }
+    impl<'a> CopyImageInfo2<'a> {
+        pub fn src_image(mut self, src_image: crate::vk::Image) -> Self {
+            self.src_image = src_image;
+            self
+        }
+        pub fn src_image_layout(
+            mut self,
+            src_image_layout: crate::vk::ImageLayout,
+        ) -> Self {
+            self.src_image_layout = src_image_layout;
+            self
+        }
+        pub fn dst_image(mut self, dst_image: crate::vk::Image) -> Self {
+            self.dst_image = dst_image;
+            self
+        }
+        pub fn dst_image_layout(
+            mut self,
+            dst_image_layout: crate::vk::ImageLayout,
+        ) -> Self {
+            self.dst_image_layout = dst_image_layout;
+            self
+        }
+        pub fn region_count(mut self, region_count: u32) -> Self {
+            self.region_count = region_count;
+            self
+        }
+        pub fn p_regions(mut self, p_regions: *const crate::vk::ImageCopy2<'a>) -> Self {
+            self.p_regions = p_regions;
+            self
         }
     }
     #[repr(C)]
@@ -1596,6 +2518,42 @@ pub(crate) mod reexport {
             }
         }
     }
+    impl<'a> BlitImageInfo2<'a> {
+        pub fn src_image(mut self, src_image: crate::vk::Image) -> Self {
+            self.src_image = src_image;
+            self
+        }
+        pub fn src_image_layout(
+            mut self,
+            src_image_layout: crate::vk::ImageLayout,
+        ) -> Self {
+            self.src_image_layout = src_image_layout;
+            self
+        }
+        pub fn dst_image(mut self, dst_image: crate::vk::Image) -> Self {
+            self.dst_image = dst_image;
+            self
+        }
+        pub fn dst_image_layout(
+            mut self,
+            dst_image_layout: crate::vk::ImageLayout,
+        ) -> Self {
+            self.dst_image_layout = dst_image_layout;
+            self
+        }
+        pub fn region_count(mut self, region_count: u32) -> Self {
+            self.region_count = region_count;
+            self
+        }
+        pub fn p_regions(mut self, p_regions: *const crate::vk::ImageBlit2<'a>) -> Self {
+            self.p_regions = p_regions;
+            self
+        }
+        pub fn filter(mut self, filter: crate::vk::Filter) -> Self {
+            self.filter = filter;
+            self
+        }
+    }
     #[repr(C)]
     #[derive(Clone, Copy)]
     pub struct CopyBufferToImageInfo2<'a> {
@@ -1625,6 +2583,34 @@ pub(crate) mod reexport {
             }
         }
     }
+    impl<'a> CopyBufferToImageInfo2<'a> {
+        pub fn src_buffer(mut self, src_buffer: crate::vk::Buffer) -> Self {
+            self.src_buffer = src_buffer;
+            self
+        }
+        pub fn dst_image(mut self, dst_image: crate::vk::Image) -> Self {
+            self.dst_image = dst_image;
+            self
+        }
+        pub fn dst_image_layout(
+            mut self,
+            dst_image_layout: crate::vk::ImageLayout,
+        ) -> Self {
+            self.dst_image_layout = dst_image_layout;
+            self
+        }
+        pub fn region_count(mut self, region_count: u32) -> Self {
+            self.region_count = region_count;
+            self
+        }
+        pub fn p_regions(
+            mut self,
+            p_regions: *const crate::vk::BufferImageCopy2<'a>,
+        ) -> Self {
+            self.p_regions = p_regions;
+            self
+        }
+    }
     #[repr(C)]
     #[derive(Clone, Copy)]
     pub struct CopyImageToBufferInfo2<'a> {
@@ -1652,6 +2638,34 @@ pub(crate) mod reexport {
                 p_regions: Default::default(),
                 _marker: ::core::marker::PhantomData,
             }
+        }
+    }
+    impl<'a> CopyImageToBufferInfo2<'a> {
+        pub fn src_image(mut self, src_image: crate::vk::Image) -> Self {
+            self.src_image = src_image;
+            self
+        }
+        pub fn src_image_layout(
+            mut self,
+            src_image_layout: crate::vk::ImageLayout,
+        ) -> Self {
+            self.src_image_layout = src_image_layout;
+            self
+        }
+        pub fn dst_buffer(mut self, dst_buffer: crate::vk::Buffer) -> Self {
+            self.dst_buffer = dst_buffer;
+            self
+        }
+        pub fn region_count(mut self, region_count: u32) -> Self {
+            self.region_count = region_count;
+            self
+        }
+        pub fn p_regions(
+            mut self,
+            p_regions: *const crate::vk::BufferImageCopy2<'a>,
+        ) -> Self {
+            self.p_regions = p_regions;
+            self
         }
     }
     #[repr(C)]
@@ -1685,6 +2699,41 @@ pub(crate) mod reexport {
             }
         }
     }
+    impl<'a> ResolveImageInfo2<'a> {
+        pub fn src_image(mut self, src_image: crate::vk::Image) -> Self {
+            self.src_image = src_image;
+            self
+        }
+        pub fn src_image_layout(
+            mut self,
+            src_image_layout: crate::vk::ImageLayout,
+        ) -> Self {
+            self.src_image_layout = src_image_layout;
+            self
+        }
+        pub fn dst_image(mut self, dst_image: crate::vk::Image) -> Self {
+            self.dst_image = dst_image;
+            self
+        }
+        pub fn dst_image_layout(
+            mut self,
+            dst_image_layout: crate::vk::ImageLayout,
+        ) -> Self {
+            self.dst_image_layout = dst_image_layout;
+            self
+        }
+        pub fn region_count(mut self, region_count: u32) -> Self {
+            self.region_count = region_count;
+            self
+        }
+        pub fn p_regions(
+            mut self,
+            p_regions: *const crate::vk::ImageResolve2<'a>,
+        ) -> Self {
+            self.p_regions = p_regions;
+            self
+        }
+    }
     #[repr(C)]
     #[derive(Clone, Copy)]
     pub struct PhysicalDeviceShaderTerminateInvocationFeatures<'a> {
@@ -1709,6 +2758,15 @@ pub(crate) mod reexport {
                 shader_terminate_invocation: Default::default(),
                 _marker: ::core::marker::PhantomData,
             }
+        }
+    }
+    impl<'a> PhysicalDeviceShaderTerminateInvocationFeatures<'a> {
+        pub fn shader_terminate_invocation(
+            mut self,
+            shader_terminate_invocation: crate::vk::Bool32,
+        ) -> Self {
+            self.shader_terminate_invocation = shader_terminate_invocation;
+            self
         }
     }
     #[repr(C)]
@@ -1738,6 +2796,36 @@ pub(crate) mod reexport {
                 dst_access_mask: Default::default(),
                 _marker: ::core::marker::PhantomData,
             }
+        }
+    }
+    impl<'a> MemoryBarrier2<'a> {
+        pub fn src_stage_mask(
+            mut self,
+            src_stage_mask: crate::vk::PipelineStageFlags2,
+        ) -> Self {
+            self.src_stage_mask = src_stage_mask;
+            self
+        }
+        pub fn src_access_mask(
+            mut self,
+            src_access_mask: crate::vk::AccessFlags2,
+        ) -> Self {
+            self.src_access_mask = src_access_mask;
+            self
+        }
+        pub fn dst_stage_mask(
+            mut self,
+            dst_stage_mask: crate::vk::PipelineStageFlags2,
+        ) -> Self {
+            self.dst_stage_mask = dst_stage_mask;
+            self
+        }
+        pub fn dst_access_mask(
+            mut self,
+            dst_access_mask: crate::vk::AccessFlags2,
+        ) -> Self {
+            self.dst_access_mask = dst_access_mask;
+            self
         }
     }
     #[repr(C)]
@@ -1779,6 +2867,63 @@ pub(crate) mod reexport {
             }
         }
     }
+    impl<'a> ImageMemoryBarrier2<'a> {
+        pub fn src_stage_mask(
+            mut self,
+            src_stage_mask: crate::vk::PipelineStageFlags2,
+        ) -> Self {
+            self.src_stage_mask = src_stage_mask;
+            self
+        }
+        pub fn src_access_mask(
+            mut self,
+            src_access_mask: crate::vk::AccessFlags2,
+        ) -> Self {
+            self.src_access_mask = src_access_mask;
+            self
+        }
+        pub fn dst_stage_mask(
+            mut self,
+            dst_stage_mask: crate::vk::PipelineStageFlags2,
+        ) -> Self {
+            self.dst_stage_mask = dst_stage_mask;
+            self
+        }
+        pub fn dst_access_mask(
+            mut self,
+            dst_access_mask: crate::vk::AccessFlags2,
+        ) -> Self {
+            self.dst_access_mask = dst_access_mask;
+            self
+        }
+        pub fn old_layout(mut self, old_layout: crate::vk::ImageLayout) -> Self {
+            self.old_layout = old_layout;
+            self
+        }
+        pub fn new_layout(mut self, new_layout: crate::vk::ImageLayout) -> Self {
+            self.new_layout = new_layout;
+            self
+        }
+        pub fn src_queue_family_index(mut self, src_queue_family_index: u32) -> Self {
+            self.src_queue_family_index = src_queue_family_index;
+            self
+        }
+        pub fn dst_queue_family_index(mut self, dst_queue_family_index: u32) -> Self {
+            self.dst_queue_family_index = dst_queue_family_index;
+            self
+        }
+        pub fn image(mut self, image: crate::vk::Image) -> Self {
+            self.image = image;
+            self
+        }
+        pub fn subresource_range(
+            mut self,
+            subresource_range: crate::vk::ImageSubresourceRange,
+        ) -> Self {
+            self.subresource_range = subresource_range;
+            self
+        }
+    }
     #[repr(C)]
     #[derive(Clone, Copy)]
     pub struct BufferMemoryBarrier2<'a> {
@@ -1816,6 +2961,56 @@ pub(crate) mod reexport {
             }
         }
     }
+    impl<'a> BufferMemoryBarrier2<'a> {
+        pub fn src_stage_mask(
+            mut self,
+            src_stage_mask: crate::vk::PipelineStageFlags2,
+        ) -> Self {
+            self.src_stage_mask = src_stage_mask;
+            self
+        }
+        pub fn src_access_mask(
+            mut self,
+            src_access_mask: crate::vk::AccessFlags2,
+        ) -> Self {
+            self.src_access_mask = src_access_mask;
+            self
+        }
+        pub fn dst_stage_mask(
+            mut self,
+            dst_stage_mask: crate::vk::PipelineStageFlags2,
+        ) -> Self {
+            self.dst_stage_mask = dst_stage_mask;
+            self
+        }
+        pub fn dst_access_mask(
+            mut self,
+            dst_access_mask: crate::vk::AccessFlags2,
+        ) -> Self {
+            self.dst_access_mask = dst_access_mask;
+            self
+        }
+        pub fn src_queue_family_index(mut self, src_queue_family_index: u32) -> Self {
+            self.src_queue_family_index = src_queue_family_index;
+            self
+        }
+        pub fn dst_queue_family_index(mut self, dst_queue_family_index: u32) -> Self {
+            self.dst_queue_family_index = dst_queue_family_index;
+            self
+        }
+        pub fn buffer(mut self, buffer: crate::vk::Buffer) -> Self {
+            self.buffer = buffer;
+            self
+        }
+        pub fn offset(mut self, offset: crate::vk::DeviceSize) -> Self {
+            self.offset = offset;
+            self
+        }
+        pub fn size(mut self, size: crate::vk::DeviceSize) -> Self {
+            self.size = size;
+            self
+        }
+    }
     #[repr(C)]
     #[derive(Clone, Copy)]
     pub struct DependencyInfo<'a> {
@@ -1849,6 +3044,54 @@ pub(crate) mod reexport {
             }
         }
     }
+    impl<'a> DependencyInfo<'a> {
+        pub fn dependency_flags(
+            mut self,
+            dependency_flags: crate::vk::DependencyFlags,
+        ) -> Self {
+            self.dependency_flags = dependency_flags;
+            self
+        }
+        pub fn memory_barrier_count(mut self, memory_barrier_count: u32) -> Self {
+            self.memory_barrier_count = memory_barrier_count;
+            self
+        }
+        pub fn p_memory_barriers(
+            mut self,
+            p_memory_barriers: *const crate::vk::MemoryBarrier2<'a>,
+        ) -> Self {
+            self.p_memory_barriers = p_memory_barriers;
+            self
+        }
+        pub fn buffer_memory_barrier_count(
+            mut self,
+            buffer_memory_barrier_count: u32,
+        ) -> Self {
+            self.buffer_memory_barrier_count = buffer_memory_barrier_count;
+            self
+        }
+        pub fn p_buffer_memory_barriers(
+            mut self,
+            p_buffer_memory_barriers: *const crate::vk::BufferMemoryBarrier2<'a>,
+        ) -> Self {
+            self.p_buffer_memory_barriers = p_buffer_memory_barriers;
+            self
+        }
+        pub fn image_memory_barrier_count(
+            mut self,
+            image_memory_barrier_count: u32,
+        ) -> Self {
+            self.image_memory_barrier_count = image_memory_barrier_count;
+            self
+        }
+        pub fn p_image_memory_barriers(
+            mut self,
+            p_image_memory_barriers: *const crate::vk::ImageMemoryBarrier2<'a>,
+        ) -> Self {
+            self.p_image_memory_barriers = p_image_memory_barriers;
+            self
+        }
+    }
     #[repr(C)]
     #[derive(Clone, Copy)]
     pub struct SemaphoreSubmitInfo<'a> {
@@ -1876,6 +3119,24 @@ pub(crate) mod reexport {
             }
         }
     }
+    impl<'a> SemaphoreSubmitInfo<'a> {
+        pub fn semaphore(mut self, semaphore: crate::vk::Semaphore) -> Self {
+            self.semaphore = semaphore;
+            self
+        }
+        pub fn value(mut self, value: u64) -> Self {
+            self.value = value;
+            self
+        }
+        pub fn stage_mask(mut self, stage_mask: crate::vk::PipelineStageFlags2) -> Self {
+            self.stage_mask = stage_mask;
+            self
+        }
+        pub fn device_index(mut self, device_index: u32) -> Self {
+            self.device_index = device_index;
+            self
+        }
+    }
     #[repr(C)]
     #[derive(Clone, Copy)]
     pub struct CommandBufferSubmitInfo<'a> {
@@ -1897,6 +3158,19 @@ pub(crate) mod reexport {
                 device_mask: Default::default(),
                 _marker: ::core::marker::PhantomData,
             }
+        }
+    }
+    impl<'a> CommandBufferSubmitInfo<'a> {
+        pub fn command_buffer(
+            mut self,
+            command_buffer: crate::vk::CommandBuffer,
+        ) -> Self {
+            self.command_buffer = command_buffer;
+            self
+        }
+        pub fn device_mask(mut self, device_mask: u32) -> Self {
+            self.device_mask = device_mask;
+            self
         }
     }
     #[repr(C)]
@@ -1932,6 +3206,54 @@ pub(crate) mod reexport {
             }
         }
     }
+    impl<'a> SubmitInfo2<'a> {
+        pub fn flags(mut self, flags: crate::vk::SubmitFlags) -> Self {
+            self.flags = flags;
+            self
+        }
+        pub fn wait_semaphore_info_count(
+            mut self,
+            wait_semaphore_info_count: u32,
+        ) -> Self {
+            self.wait_semaphore_info_count = wait_semaphore_info_count;
+            self
+        }
+        pub fn p_wait_semaphore_infos(
+            mut self,
+            p_wait_semaphore_infos: *const crate::vk::SemaphoreSubmitInfo<'a>,
+        ) -> Self {
+            self.p_wait_semaphore_infos = p_wait_semaphore_infos;
+            self
+        }
+        pub fn command_buffer_info_count(
+            mut self,
+            command_buffer_info_count: u32,
+        ) -> Self {
+            self.command_buffer_info_count = command_buffer_info_count;
+            self
+        }
+        pub fn p_command_buffer_infos(
+            mut self,
+            p_command_buffer_infos: *const crate::vk::CommandBufferSubmitInfo<'a>,
+        ) -> Self {
+            self.p_command_buffer_infos = p_command_buffer_infos;
+            self
+        }
+        pub fn signal_semaphore_info_count(
+            mut self,
+            signal_semaphore_info_count: u32,
+        ) -> Self {
+            self.signal_semaphore_info_count = signal_semaphore_info_count;
+            self
+        }
+        pub fn p_signal_semaphore_infos(
+            mut self,
+            p_signal_semaphore_infos: *const crate::vk::SemaphoreSubmitInfo<'a>,
+        ) -> Self {
+            self.p_signal_semaphore_infos = p_signal_semaphore_infos;
+            self
+        }
+    }
     #[repr(C)]
     #[derive(Clone, Copy)]
     pub struct PhysicalDeviceSynchronization2Features<'a> {
@@ -1958,6 +3280,12 @@ pub(crate) mod reexport {
             }
         }
     }
+    impl<'a> PhysicalDeviceSynchronization2Features<'a> {
+        pub fn synchronization2(mut self, synchronization2: crate::vk::Bool32) -> Self {
+            self.synchronization2 = synchronization2;
+            self
+        }
+    }
     #[repr(C)]
     #[derive(Clone, Copy)]
     pub struct PhysicalDeviceShaderIntegerDotProductFeatures<'a> {
@@ -1982,6 +3310,15 @@ pub(crate) mod reexport {
                 shader_integer_dot_product: Default::default(),
                 _marker: ::core::marker::PhantomData,
             }
+        }
+    }
+    impl<'a> PhysicalDeviceShaderIntegerDotProductFeatures<'a> {
+        pub fn shader_integer_dot_product(
+            mut self,
+            shader_integer_dot_product: crate::vk::Bool32,
+        ) -> Self {
+            self.shader_integer_dot_product = shader_integer_dot_product;
+            self
         }
     }
     #[repr(C)]
@@ -2066,6 +3403,228 @@ pub(crate) mod reexport {
             }
         }
     }
+    impl<'a> PhysicalDeviceShaderIntegerDotProductProperties<'a> {
+        pub fn integer_dot_product8_bit_unsigned_accelerated(
+            mut self,
+            integer_dot_product8_bit_unsigned_accelerated: crate::vk::Bool32,
+        ) -> Self {
+            self.integer_dot_product8_bit_unsigned_accelerated = integer_dot_product8_bit_unsigned_accelerated;
+            self
+        }
+        pub fn integer_dot_product8_bit_signed_accelerated(
+            mut self,
+            integer_dot_product8_bit_signed_accelerated: crate::vk::Bool32,
+        ) -> Self {
+            self.integer_dot_product8_bit_signed_accelerated = integer_dot_product8_bit_signed_accelerated;
+            self
+        }
+        pub fn integer_dot_product8_bit_mixed_signedness_accelerated(
+            mut self,
+            integer_dot_product8_bit_mixed_signedness_accelerated: crate::vk::Bool32,
+        ) -> Self {
+            self.integer_dot_product8_bit_mixed_signedness_accelerated = integer_dot_product8_bit_mixed_signedness_accelerated;
+            self
+        }
+        pub fn integer_dot_product4x8_bit_packed_unsigned_accelerated(
+            mut self,
+            integer_dot_product4x8_bit_packed_unsigned_accelerated: crate::vk::Bool32,
+        ) -> Self {
+            self.integer_dot_product4x8_bit_packed_unsigned_accelerated = integer_dot_product4x8_bit_packed_unsigned_accelerated;
+            self
+        }
+        pub fn integer_dot_product4x8_bit_packed_signed_accelerated(
+            mut self,
+            integer_dot_product4x8_bit_packed_signed_accelerated: crate::vk::Bool32,
+        ) -> Self {
+            self.integer_dot_product4x8_bit_packed_signed_accelerated = integer_dot_product4x8_bit_packed_signed_accelerated;
+            self
+        }
+        pub fn integer_dot_product4x8_bit_packed_mixed_signedness_accelerated(
+            mut self,
+            integer_dot_product4x8_bit_packed_mixed_signedness_accelerated: crate::vk::Bool32,
+        ) -> Self {
+            self.integer_dot_product4x8_bit_packed_mixed_signedness_accelerated = integer_dot_product4x8_bit_packed_mixed_signedness_accelerated;
+            self
+        }
+        pub fn integer_dot_product16_bit_unsigned_accelerated(
+            mut self,
+            integer_dot_product16_bit_unsigned_accelerated: crate::vk::Bool32,
+        ) -> Self {
+            self.integer_dot_product16_bit_unsigned_accelerated = integer_dot_product16_bit_unsigned_accelerated;
+            self
+        }
+        pub fn integer_dot_product16_bit_signed_accelerated(
+            mut self,
+            integer_dot_product16_bit_signed_accelerated: crate::vk::Bool32,
+        ) -> Self {
+            self.integer_dot_product16_bit_signed_accelerated = integer_dot_product16_bit_signed_accelerated;
+            self
+        }
+        pub fn integer_dot_product16_bit_mixed_signedness_accelerated(
+            mut self,
+            integer_dot_product16_bit_mixed_signedness_accelerated: crate::vk::Bool32,
+        ) -> Self {
+            self.integer_dot_product16_bit_mixed_signedness_accelerated = integer_dot_product16_bit_mixed_signedness_accelerated;
+            self
+        }
+        pub fn integer_dot_product32_bit_unsigned_accelerated(
+            mut self,
+            integer_dot_product32_bit_unsigned_accelerated: crate::vk::Bool32,
+        ) -> Self {
+            self.integer_dot_product32_bit_unsigned_accelerated = integer_dot_product32_bit_unsigned_accelerated;
+            self
+        }
+        pub fn integer_dot_product32_bit_signed_accelerated(
+            mut self,
+            integer_dot_product32_bit_signed_accelerated: crate::vk::Bool32,
+        ) -> Self {
+            self.integer_dot_product32_bit_signed_accelerated = integer_dot_product32_bit_signed_accelerated;
+            self
+        }
+        pub fn integer_dot_product32_bit_mixed_signedness_accelerated(
+            mut self,
+            integer_dot_product32_bit_mixed_signedness_accelerated: crate::vk::Bool32,
+        ) -> Self {
+            self.integer_dot_product32_bit_mixed_signedness_accelerated = integer_dot_product32_bit_mixed_signedness_accelerated;
+            self
+        }
+        pub fn integer_dot_product64_bit_unsigned_accelerated(
+            mut self,
+            integer_dot_product64_bit_unsigned_accelerated: crate::vk::Bool32,
+        ) -> Self {
+            self.integer_dot_product64_bit_unsigned_accelerated = integer_dot_product64_bit_unsigned_accelerated;
+            self
+        }
+        pub fn integer_dot_product64_bit_signed_accelerated(
+            mut self,
+            integer_dot_product64_bit_signed_accelerated: crate::vk::Bool32,
+        ) -> Self {
+            self.integer_dot_product64_bit_signed_accelerated = integer_dot_product64_bit_signed_accelerated;
+            self
+        }
+        pub fn integer_dot_product64_bit_mixed_signedness_accelerated(
+            mut self,
+            integer_dot_product64_bit_mixed_signedness_accelerated: crate::vk::Bool32,
+        ) -> Self {
+            self.integer_dot_product64_bit_mixed_signedness_accelerated = integer_dot_product64_bit_mixed_signedness_accelerated;
+            self
+        }
+        pub fn integer_dot_product_accumulating_saturating8_bit_unsigned_accelerated(
+            mut self,
+            integer_dot_product_accumulating_saturating8_bit_unsigned_accelerated: crate::vk::Bool32,
+        ) -> Self {
+            self.integer_dot_product_accumulating_saturating8_bit_unsigned_accelerated = integer_dot_product_accumulating_saturating8_bit_unsigned_accelerated;
+            self
+        }
+        pub fn integer_dot_product_accumulating_saturating8_bit_signed_accelerated(
+            mut self,
+            integer_dot_product_accumulating_saturating8_bit_signed_accelerated: crate::vk::Bool32,
+        ) -> Self {
+            self.integer_dot_product_accumulating_saturating8_bit_signed_accelerated = integer_dot_product_accumulating_saturating8_bit_signed_accelerated;
+            self
+        }
+        pub fn integer_dot_product_accumulating_saturating8_bit_mixed_signedness_accelerated(
+            mut self,
+            integer_dot_product_accumulating_saturating8_bit_mixed_signedness_accelerated: crate::vk::Bool32,
+        ) -> Self {
+            self
+                .integer_dot_product_accumulating_saturating8_bit_mixed_signedness_accelerated = integer_dot_product_accumulating_saturating8_bit_mixed_signedness_accelerated;
+            self
+        }
+        pub fn integer_dot_product_accumulating_saturating4x8_bit_packed_unsigned_accelerated(
+            mut self,
+            integer_dot_product_accumulating_saturating4x8_bit_packed_unsigned_accelerated: crate::vk::Bool32,
+        ) -> Self {
+            self
+                .integer_dot_product_accumulating_saturating4x8_bit_packed_unsigned_accelerated = integer_dot_product_accumulating_saturating4x8_bit_packed_unsigned_accelerated;
+            self
+        }
+        pub fn integer_dot_product_accumulating_saturating4x8_bit_packed_signed_accelerated(
+            mut self,
+            integer_dot_product_accumulating_saturating4x8_bit_packed_signed_accelerated: crate::vk::Bool32,
+        ) -> Self {
+            self
+                .integer_dot_product_accumulating_saturating4x8_bit_packed_signed_accelerated = integer_dot_product_accumulating_saturating4x8_bit_packed_signed_accelerated;
+            self
+        }
+        pub fn integer_dot_product_accumulating_saturating4x8_bit_packed_mixed_signedness_accelerated(
+            mut self,
+            integer_dot_product_accumulating_saturating4x8_bit_packed_mixed_signedness_accelerated: crate::vk::Bool32,
+        ) -> Self {
+            self
+                .integer_dot_product_accumulating_saturating4x8_bit_packed_mixed_signedness_accelerated = integer_dot_product_accumulating_saturating4x8_bit_packed_mixed_signedness_accelerated;
+            self
+        }
+        pub fn integer_dot_product_accumulating_saturating16_bit_unsigned_accelerated(
+            mut self,
+            integer_dot_product_accumulating_saturating16_bit_unsigned_accelerated: crate::vk::Bool32,
+        ) -> Self {
+            self
+                .integer_dot_product_accumulating_saturating16_bit_unsigned_accelerated = integer_dot_product_accumulating_saturating16_bit_unsigned_accelerated;
+            self
+        }
+        pub fn integer_dot_product_accumulating_saturating16_bit_signed_accelerated(
+            mut self,
+            integer_dot_product_accumulating_saturating16_bit_signed_accelerated: crate::vk::Bool32,
+        ) -> Self {
+            self.integer_dot_product_accumulating_saturating16_bit_signed_accelerated = integer_dot_product_accumulating_saturating16_bit_signed_accelerated;
+            self
+        }
+        pub fn integer_dot_product_accumulating_saturating16_bit_mixed_signedness_accelerated(
+            mut self,
+            integer_dot_product_accumulating_saturating16_bit_mixed_signedness_accelerated: crate::vk::Bool32,
+        ) -> Self {
+            self
+                .integer_dot_product_accumulating_saturating16_bit_mixed_signedness_accelerated = integer_dot_product_accumulating_saturating16_bit_mixed_signedness_accelerated;
+            self
+        }
+        pub fn integer_dot_product_accumulating_saturating32_bit_unsigned_accelerated(
+            mut self,
+            integer_dot_product_accumulating_saturating32_bit_unsigned_accelerated: crate::vk::Bool32,
+        ) -> Self {
+            self
+                .integer_dot_product_accumulating_saturating32_bit_unsigned_accelerated = integer_dot_product_accumulating_saturating32_bit_unsigned_accelerated;
+            self
+        }
+        pub fn integer_dot_product_accumulating_saturating32_bit_signed_accelerated(
+            mut self,
+            integer_dot_product_accumulating_saturating32_bit_signed_accelerated: crate::vk::Bool32,
+        ) -> Self {
+            self.integer_dot_product_accumulating_saturating32_bit_signed_accelerated = integer_dot_product_accumulating_saturating32_bit_signed_accelerated;
+            self
+        }
+        pub fn integer_dot_product_accumulating_saturating32_bit_mixed_signedness_accelerated(
+            mut self,
+            integer_dot_product_accumulating_saturating32_bit_mixed_signedness_accelerated: crate::vk::Bool32,
+        ) -> Self {
+            self
+                .integer_dot_product_accumulating_saturating32_bit_mixed_signedness_accelerated = integer_dot_product_accumulating_saturating32_bit_mixed_signedness_accelerated;
+            self
+        }
+        pub fn integer_dot_product_accumulating_saturating64_bit_unsigned_accelerated(
+            mut self,
+            integer_dot_product_accumulating_saturating64_bit_unsigned_accelerated: crate::vk::Bool32,
+        ) -> Self {
+            self
+                .integer_dot_product_accumulating_saturating64_bit_unsigned_accelerated = integer_dot_product_accumulating_saturating64_bit_unsigned_accelerated;
+            self
+        }
+        pub fn integer_dot_product_accumulating_saturating64_bit_signed_accelerated(
+            mut self,
+            integer_dot_product_accumulating_saturating64_bit_signed_accelerated: crate::vk::Bool32,
+        ) -> Self {
+            self.integer_dot_product_accumulating_saturating64_bit_signed_accelerated = integer_dot_product_accumulating_saturating64_bit_signed_accelerated;
+            self
+        }
+        pub fn integer_dot_product_accumulating_saturating64_bit_mixed_signedness_accelerated(
+            mut self,
+            integer_dot_product_accumulating_saturating64_bit_mixed_signedness_accelerated: crate::vk::Bool32,
+        ) -> Self {
+            self
+                .integer_dot_product_accumulating_saturating64_bit_mixed_signedness_accelerated = integer_dot_product_accumulating_saturating64_bit_mixed_signedness_accelerated;
+            self
+        }
+    }
     #[repr(C)]
     #[derive(Clone, Copy)]
     pub struct FormatProperties3<'a> {
@@ -2091,6 +3650,29 @@ pub(crate) mod reexport {
                 buffer_features: Default::default(),
                 _marker: ::core::marker::PhantomData,
             }
+        }
+    }
+    impl<'a> FormatProperties3<'a> {
+        pub fn linear_tiling_features(
+            mut self,
+            linear_tiling_features: crate::vk::FormatFeatureFlags2,
+        ) -> Self {
+            self.linear_tiling_features = linear_tiling_features;
+            self
+        }
+        pub fn optimal_tiling_features(
+            mut self,
+            optimal_tiling_features: crate::vk::FormatFeatureFlags2,
+        ) -> Self {
+            self.optimal_tiling_features = optimal_tiling_features;
+            self
+        }
+        pub fn buffer_features(
+            mut self,
+            buffer_features: crate::vk::FormatFeatureFlags2,
+        ) -> Self {
+            self.buffer_features = buffer_features;
+            self
         }
     }
     #[repr(C)]
@@ -2122,6 +3704,37 @@ pub(crate) mod reexport {
                 stencil_attachment_format: Default::default(),
                 _marker: ::core::marker::PhantomData,
             }
+        }
+    }
+    impl<'a> PipelineRenderingCreateInfo<'a> {
+        pub fn view_mask(mut self, view_mask: u32) -> Self {
+            self.view_mask = view_mask;
+            self
+        }
+        pub fn color_attachment_count(mut self, color_attachment_count: u32) -> Self {
+            self.color_attachment_count = color_attachment_count;
+            self
+        }
+        pub fn p_color_attachment_formats(
+            mut self,
+            p_color_attachment_formats: *const crate::vk::Format,
+        ) -> Self {
+            self.p_color_attachment_formats = p_color_attachment_formats;
+            self
+        }
+        pub fn depth_attachment_format(
+            mut self,
+            depth_attachment_format: crate::vk::Format,
+        ) -> Self {
+            self.depth_attachment_format = depth_attachment_format;
+            self
+        }
+        pub fn stencil_attachment_format(
+            mut self,
+            stencil_attachment_format: crate::vk::Format,
+        ) -> Self {
+            self.stencil_attachment_format = stencil_attachment_format;
+            self
         }
     }
     #[repr(C)]
@@ -2159,6 +3772,49 @@ pub(crate) mod reexport {
             }
         }
     }
+    impl<'a> RenderingInfo<'a> {
+        pub fn flags(mut self, flags: crate::vk::RenderingFlags) -> Self {
+            self.flags = flags;
+            self
+        }
+        pub fn render_area(mut self, render_area: crate::vk::Rect2D) -> Self {
+            self.render_area = render_area;
+            self
+        }
+        pub fn layer_count(mut self, layer_count: u32) -> Self {
+            self.layer_count = layer_count;
+            self
+        }
+        pub fn view_mask(mut self, view_mask: u32) -> Self {
+            self.view_mask = view_mask;
+            self
+        }
+        pub fn color_attachment_count(mut self, color_attachment_count: u32) -> Self {
+            self.color_attachment_count = color_attachment_count;
+            self
+        }
+        pub fn p_color_attachments(
+            mut self,
+            p_color_attachments: *const crate::vk::RenderingAttachmentInfo<'a>,
+        ) -> Self {
+            self.p_color_attachments = p_color_attachments;
+            self
+        }
+        pub fn p_depth_attachment(
+            mut self,
+            p_depth_attachment: *const crate::vk::RenderingAttachmentInfo<'a>,
+        ) -> Self {
+            self.p_depth_attachment = p_depth_attachment;
+            self
+        }
+        pub fn p_stencil_attachment(
+            mut self,
+            p_stencil_attachment: *const crate::vk::RenderingAttachmentInfo<'a>,
+        ) -> Self {
+            self.p_stencil_attachment = p_stencil_attachment;
+            self
+        }
+    }
     #[repr(C)]
     #[derive(Clone, Copy)]
     pub struct RenderingAttachmentInfo<'a> {
@@ -2194,6 +3850,49 @@ pub(crate) mod reexport {
             }
         }
     }
+    impl<'a> RenderingAttachmentInfo<'a> {
+        pub fn image_view(mut self, image_view: crate::vk::ImageView) -> Self {
+            self.image_view = image_view;
+            self
+        }
+        pub fn image_layout(mut self, image_layout: crate::vk::ImageLayout) -> Self {
+            self.image_layout = image_layout;
+            self
+        }
+        pub fn resolve_mode(
+            mut self,
+            resolve_mode: crate::vk::ResolveModeFlagBits,
+        ) -> Self {
+            self.resolve_mode = resolve_mode;
+            self
+        }
+        pub fn resolve_image_view(
+            mut self,
+            resolve_image_view: crate::vk::ImageView,
+        ) -> Self {
+            self.resolve_image_view = resolve_image_view;
+            self
+        }
+        pub fn resolve_image_layout(
+            mut self,
+            resolve_image_layout: crate::vk::ImageLayout,
+        ) -> Self {
+            self.resolve_image_layout = resolve_image_layout;
+            self
+        }
+        pub fn load_op(mut self, load_op: crate::vk::AttachmentLoadOp) -> Self {
+            self.load_op = load_op;
+            self
+        }
+        pub fn store_op(mut self, store_op: crate::vk::AttachmentStoreOp) -> Self {
+            self.store_op = store_op;
+            self
+        }
+        pub fn clear_value(mut self, clear_value: crate::vk::ClearValue) -> Self {
+            self.clear_value = clear_value;
+            self
+        }
+    }
     #[repr(C)]
     #[derive(Clone, Copy)]
     pub struct PhysicalDeviceDynamicRenderingFeatures<'a> {
@@ -2218,6 +3917,15 @@ pub(crate) mod reexport {
                 dynamic_rendering: Default::default(),
                 _marker: ::core::marker::PhantomData,
             }
+        }
+    }
+    impl<'a> PhysicalDeviceDynamicRenderingFeatures<'a> {
+        pub fn dynamic_rendering(
+            mut self,
+            dynamic_rendering: crate::vk::Bool32,
+        ) -> Self {
+            self.dynamic_rendering = dynamic_rendering;
+            self
         }
     }
     #[repr(C)]
@@ -2254,6 +3962,48 @@ pub(crate) mod reexport {
                 rasterization_samples: Default::default(),
                 _marker: ::core::marker::PhantomData,
             }
+        }
+    }
+    impl<'a> CommandBufferInheritanceRenderingInfo<'a> {
+        pub fn flags(mut self, flags: crate::vk::RenderingFlags) -> Self {
+            self.flags = flags;
+            self
+        }
+        pub fn view_mask(mut self, view_mask: u32) -> Self {
+            self.view_mask = view_mask;
+            self
+        }
+        pub fn color_attachment_count(mut self, color_attachment_count: u32) -> Self {
+            self.color_attachment_count = color_attachment_count;
+            self
+        }
+        pub fn p_color_attachment_formats(
+            mut self,
+            p_color_attachment_formats: *const crate::vk::Format,
+        ) -> Self {
+            self.p_color_attachment_formats = p_color_attachment_formats;
+            self
+        }
+        pub fn depth_attachment_format(
+            mut self,
+            depth_attachment_format: crate::vk::Format,
+        ) -> Self {
+            self.depth_attachment_format = depth_attachment_format;
+            self
+        }
+        pub fn stencil_attachment_format(
+            mut self,
+            stencil_attachment_format: crate::vk::Format,
+        ) -> Self {
+            self.stencil_attachment_format = stencil_attachment_format;
+            self
+        }
+        pub fn rasterization_samples(
+            mut self,
+            rasterization_samples: crate::vk::SampleCountFlagBits,
+        ) -> Self {
+            self.rasterization_samples = rasterization_samples;
+            self
         }
     }
     ///Provided by [`vk1_3`](crate::vk1_3)

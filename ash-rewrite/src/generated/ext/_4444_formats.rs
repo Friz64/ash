@@ -28,6 +28,16 @@ impl<'a> Default for PhysicalDevice4444FormatsFeaturesEXT<'a> {
         }
     }
 }
+impl<'a> PhysicalDevice4444FormatsFeaturesEXT<'a> {
+    pub fn format_a4r4g4b4(mut self, format_a4r4g4b4: crate::vk::Bool32) -> Self {
+        self.format_a4r4g4b4 = format_a4r4g4b4;
+        self
+    }
+    pub fn format_a4b4g4r4(mut self, format_a4b4g4r4: crate::vk::Bool32) -> Self {
+        self.format_a4b4g4r4 = format_a4b4g4r4;
+        self
+    }
+}
 ///Provided by [`ext::_4444_formats`](crate::ext::_4444_formats)
 impl crate::vk::Format {
     pub const A4R4G4B4_UNORM_PACK16_EXT: Self = Self::A4R4G4B4_UNORM_PACK16;

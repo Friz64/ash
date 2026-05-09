@@ -79,6 +79,20 @@ pub(crate) mod reexport {
             }
         }
     }
+    impl<'a> Win32SurfaceCreateInfoKHR<'a> {
+        pub fn flags(mut self, flags: crate::vk::Win32SurfaceCreateFlagsKHR) -> Self {
+            self.flags = flags;
+            self
+        }
+        pub fn hinstance(mut self, hinstance: crate::platform_types::HINSTANCE) -> Self {
+            self.hinstance = hinstance;
+            self
+        }
+        pub fn hwnd(mut self, hwnd: crate::platform_types::HWND) -> Self {
+            self.hwnd = hwnd;
+            self
+        }
+    }
     ///Provided by [`khr::win32_surface`](crate::khr::win32_surface)
     impl crate::vk::StructureType {
         pub const WIN32_SURFACE_CREATE_INFO_KHR: Self = Self(1000009000);

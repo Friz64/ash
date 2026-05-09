@@ -64,6 +64,15 @@ pub(crate) mod reexport {
             }
         }
     }
+    impl<'a> PhysicalDeviceVertexInputDynamicStateFeaturesEXT<'a> {
+        pub fn vertex_input_dynamic_state(
+            mut self,
+            vertex_input_dynamic_state: crate::vk::Bool32,
+        ) -> Self {
+            self.vertex_input_dynamic_state = vertex_input_dynamic_state;
+            self
+        }
+    }
     #[repr(C)]
     #[derive(Clone, Copy)]
     pub struct VertexInputBindingDescription2EXT<'a> {
@@ -92,6 +101,24 @@ pub(crate) mod reexport {
             }
         }
     }
+    impl<'a> VertexInputBindingDescription2EXT<'a> {
+        pub fn binding(mut self, binding: u32) -> Self {
+            self.binding = binding;
+            self
+        }
+        pub fn stride(mut self, stride: u32) -> Self {
+            self.stride = stride;
+            self
+        }
+        pub fn input_rate(mut self, input_rate: crate::vk::VertexInputRate) -> Self {
+            self.input_rate = input_rate;
+            self
+        }
+        pub fn divisor(mut self, divisor: u32) -> Self {
+            self.divisor = divisor;
+            self
+        }
+    }
     #[repr(C)]
     #[derive(Clone, Copy)]
     pub struct VertexInputAttributeDescription2EXT<'a> {
@@ -118,6 +145,24 @@ pub(crate) mod reexport {
                 offset: Default::default(),
                 _marker: ::core::marker::PhantomData,
             }
+        }
+    }
+    impl<'a> VertexInputAttributeDescription2EXT<'a> {
+        pub fn location(mut self, location: u32) -> Self {
+            self.location = location;
+            self
+        }
+        pub fn binding(mut self, binding: u32) -> Self {
+            self.binding = binding;
+            self
+        }
+        pub fn format(mut self, format: crate::vk::Format) -> Self {
+            self.format = format;
+            self
+        }
+        pub fn offset(mut self, offset: u32) -> Self {
+            self.offset = offset;
+            self
         }
     }
     ///Provided by [`ext::vertex_input_dynamic_state`](crate::ext::vertex_input_dynamic_state)

@@ -27,6 +27,15 @@ impl<'a> Default for PhysicalDeviceShaderIntegerFunctions2FeaturesINTEL<'a> {
         }
     }
 }
+impl<'a> PhysicalDeviceShaderIntegerFunctions2FeaturesINTEL<'a> {
+    pub fn shader_integer_functions2(
+        mut self,
+        shader_integer_functions2: crate::vk::Bool32,
+    ) -> Self {
+        self.shader_integer_functions2 = shader_integer_functions2;
+        self
+    }
+}
 ///Provided by [`intel::shader_integer_functions2`](crate::intel::shader_integer_functions2)
 impl crate::vk::StructureType {
     pub const PHYSICAL_DEVICE_SHADER_INTEGER_FUNCTIONS_2_FEATURES_INTEL: Self = Self(

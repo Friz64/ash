@@ -58,6 +58,12 @@ pub(crate) mod reexport {
             }
         }
     }
+    impl<'a> TileMemoryBindInfoQCOM<'a> {
+        pub fn memory(mut self, memory: crate::vk::DeviceMemory) -> Self {
+            self.memory = memory;
+            self
+        }
+    }
     #[repr(C)]
     #[derive(Clone, Copy)]
     pub struct PhysicalDeviceTileMemoryHeapFeaturesQCOM<'a> {
@@ -84,6 +90,12 @@ pub(crate) mod reexport {
             }
         }
     }
+    impl<'a> PhysicalDeviceTileMemoryHeapFeaturesQCOM<'a> {
+        pub fn tile_memory_heap(mut self, tile_memory_heap: crate::vk::Bool32) -> Self {
+            self.tile_memory_heap = tile_memory_heap;
+            self
+        }
+    }
     #[repr(C)]
     #[derive(Clone, Copy)]
     pub struct PhysicalDeviceTileMemoryHeapPropertiesQCOM<'a> {
@@ -108,6 +120,22 @@ pub(crate) mod reexport {
                 tile_buffer_transfers: Default::default(),
                 _marker: ::core::marker::PhantomData,
             }
+        }
+    }
+    impl<'a> PhysicalDeviceTileMemoryHeapPropertiesQCOM<'a> {
+        pub fn queue_submit_boundary(
+            mut self,
+            queue_submit_boundary: crate::vk::Bool32,
+        ) -> Self {
+            self.queue_submit_boundary = queue_submit_boundary;
+            self
+        }
+        pub fn tile_buffer_transfers(
+            mut self,
+            tile_buffer_transfers: crate::vk::Bool32,
+        ) -> Self {
+            self.tile_buffer_transfers = tile_buffer_transfers;
+            self
         }
     }
     #[repr(C)]
@@ -137,6 +165,12 @@ pub(crate) mod reexport {
             }
         }
     }
+    impl<'a> TileMemorySizeInfoQCOM<'a> {
+        pub fn size(mut self, size: crate::vk::DeviceSize) -> Self {
+            self.size = size;
+            self
+        }
+    }
     #[repr(C)]
     #[derive(Clone, Copy)]
     pub struct TileMemoryRequirementsQCOM<'a> {
@@ -160,6 +194,16 @@ pub(crate) mod reexport {
                 alignment: Default::default(),
                 _marker: ::core::marker::PhantomData,
             }
+        }
+    }
+    impl<'a> TileMemoryRequirementsQCOM<'a> {
+        pub fn size(mut self, size: crate::vk::DeviceSize) -> Self {
+            self.size = size;
+            self
+        }
+        pub fn alignment(mut self, alignment: crate::vk::DeviceSize) -> Self {
+            self.alignment = alignment;
+            self
         }
     }
     ///Provided by [`qcom::tile_memory_heap`](crate::qcom::tile_memory_heap)

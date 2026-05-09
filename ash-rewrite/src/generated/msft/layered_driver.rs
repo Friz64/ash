@@ -25,6 +25,15 @@ impl<'a> Default for PhysicalDeviceLayeredDriverPropertiesMSFT<'a> {
         }
     }
 }
+impl<'a> PhysicalDeviceLayeredDriverPropertiesMSFT<'a> {
+    pub fn underlying_api(
+        mut self,
+        underlying_api: crate::vk::LayeredDriverUnderlyingApiMSFT,
+    ) -> Self {
+        self.underlying_api = underlying_api;
+        self
+    }
+}
 ///Provided by [`msft::layered_driver`](crate::msft::layered_driver)
 impl crate::vk::StructureType {
     pub const PHYSICAL_DEVICE_LAYERED_DRIVER_PROPERTIES_MSFT: Self = Self(1000530000);

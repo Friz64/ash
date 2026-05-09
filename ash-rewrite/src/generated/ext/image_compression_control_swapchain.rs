@@ -27,6 +27,15 @@ impl<'a> Default for PhysicalDeviceImageCompressionControlSwapchainFeaturesEXT<'
         }
     }
 }
+impl<'a> PhysicalDeviceImageCompressionControlSwapchainFeaturesEXT<'a> {
+    pub fn image_compression_control_swapchain(
+        mut self,
+        image_compression_control_swapchain: crate::vk::Bool32,
+    ) -> Self {
+        self.image_compression_control_swapchain = image_compression_control_swapchain;
+        self
+    }
+}
 ///Provided by [`ext::image_compression_control_swapchain`](crate::ext::image_compression_control_swapchain)
 impl crate::vk::StructureType {
     pub const PHYSICAL_DEVICE_IMAGE_COMPRESSION_CONTROL_SWAPCHAIN_FEATURES_EXT: Self = Self(

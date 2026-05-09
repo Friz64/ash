@@ -43,6 +43,16 @@ pub(crate) mod reexport {
         pub xcoeff: core::ffi::c_float,
         pub ycoeff: core::ffi::c_float,
     }
+    impl ViewportWScalingNV {
+        pub fn xcoeff(mut self, xcoeff: core::ffi::c_float) -> Self {
+            self.xcoeff = xcoeff;
+            self
+        }
+        pub fn ycoeff(mut self, ycoeff: core::ffi::c_float) -> Self {
+            self.ycoeff = ycoeff;
+            self
+        }
+    }
     #[repr(C)]
     #[derive(Clone, Copy)]
     pub struct PipelineViewportWScalingStateCreateInfoNV<'a> {
@@ -69,6 +79,26 @@ pub(crate) mod reexport {
                 p_viewport_w_scalings: Default::default(),
                 _marker: ::core::marker::PhantomData,
             }
+        }
+    }
+    impl<'a> PipelineViewportWScalingStateCreateInfoNV<'a> {
+        pub fn viewport_w_scaling_enable(
+            mut self,
+            viewport_w_scaling_enable: crate::vk::Bool32,
+        ) -> Self {
+            self.viewport_w_scaling_enable = viewport_w_scaling_enable;
+            self
+        }
+        pub fn viewport_count(mut self, viewport_count: u32) -> Self {
+            self.viewport_count = viewport_count;
+            self
+        }
+        pub fn p_viewport_w_scalings(
+            mut self,
+            p_viewport_w_scalings: *const crate::vk::ViewportWScalingNV,
+        ) -> Self {
+            self.p_viewport_w_scalings = p_viewport_w_scalings;
+            self
         }
     }
     ///Provided by [`nv::clip_space_w_scaling`](crate::nv::clip_space_w_scaling)

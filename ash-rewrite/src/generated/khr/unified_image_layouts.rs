@@ -29,6 +29,22 @@ impl<'a> Default for PhysicalDeviceUnifiedImageLayoutsFeaturesKHR<'a> {
         }
     }
 }
+impl<'a> PhysicalDeviceUnifiedImageLayoutsFeaturesKHR<'a> {
+    pub fn unified_image_layouts(
+        mut self,
+        unified_image_layouts: crate::vk::Bool32,
+    ) -> Self {
+        self.unified_image_layouts = unified_image_layouts;
+        self
+    }
+    pub fn unified_image_layouts_video(
+        mut self,
+        unified_image_layouts_video: crate::vk::Bool32,
+    ) -> Self {
+        self.unified_image_layouts_video = unified_image_layouts_video;
+        self
+    }
+}
 #[repr(C)]
 #[derive(Clone, Copy)]
 pub struct AttachmentFeedbackLoopInfoEXT<'a> {
@@ -50,6 +66,15 @@ impl<'a> Default for AttachmentFeedbackLoopInfoEXT<'a> {
             feedback_loop_enable: Default::default(),
             _marker: ::core::marker::PhantomData,
         }
+    }
+}
+impl<'a> AttachmentFeedbackLoopInfoEXT<'a> {
+    pub fn feedback_loop_enable(
+        mut self,
+        feedback_loop_enable: crate::vk::Bool32,
+    ) -> Self {
+        self.feedback_loop_enable = feedback_loop_enable;
+        self
     }
 }
 ///Provided by [`khr::unified_image_layouts`](crate::khr::unified_image_layouts)

@@ -80,6 +80,15 @@ pub(crate) mod reexport {
             }
         }
     }
+    impl<'a> PhysicalDeviceExclusiveScissorFeaturesNV<'a> {
+        pub fn exclusive_scissor(
+            mut self,
+            exclusive_scissor: crate::vk::Bool32,
+        ) -> Self {
+            self.exclusive_scissor = exclusive_scissor;
+            self
+        }
+    }
     #[repr(C)]
     #[derive(Clone, Copy)]
     pub struct PipelineViewportExclusiveScissorStateCreateInfoNV<'a> {
@@ -104,6 +113,19 @@ pub(crate) mod reexport {
                 p_exclusive_scissors: Default::default(),
                 _marker: ::core::marker::PhantomData,
             }
+        }
+    }
+    impl<'a> PipelineViewportExclusiveScissorStateCreateInfoNV<'a> {
+        pub fn exclusive_scissor_count(mut self, exclusive_scissor_count: u32) -> Self {
+            self.exclusive_scissor_count = exclusive_scissor_count;
+            self
+        }
+        pub fn p_exclusive_scissors(
+            mut self,
+            p_exclusive_scissors: *const crate::vk::Rect2D,
+        ) -> Self {
+            self.p_exclusive_scissors = p_exclusive_scissors;
+            self
         }
     }
     ///Provided by [`nv::scissor_exclusive`](crate::nv::scissor_exclusive)

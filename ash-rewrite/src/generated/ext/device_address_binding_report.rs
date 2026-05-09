@@ -27,6 +27,15 @@ impl<'a> Default for PhysicalDeviceAddressBindingReportFeaturesEXT<'a> {
         }
     }
 }
+impl<'a> PhysicalDeviceAddressBindingReportFeaturesEXT<'a> {
+    pub fn report_address_binding(
+        mut self,
+        report_address_binding: crate::vk::Bool32,
+    ) -> Self {
+        self.report_address_binding = report_address_binding;
+        self
+    }
+}
 #[repr(C)]
 #[derive(Clone, Copy)]
 pub struct DeviceAddressBindingCallbackDataEXT<'a> {
@@ -54,6 +63,27 @@ impl<'a> Default for DeviceAddressBindingCallbackDataEXT<'a> {
             binding_type: Default::default(),
             _marker: ::core::marker::PhantomData,
         }
+    }
+}
+impl<'a> DeviceAddressBindingCallbackDataEXT<'a> {
+    pub fn flags(mut self, flags: crate::vk::DeviceAddressBindingFlagsEXT) -> Self {
+        self.flags = flags;
+        self
+    }
+    pub fn base_address(mut self, base_address: crate::vk::DeviceAddress) -> Self {
+        self.base_address = base_address;
+        self
+    }
+    pub fn size(mut self, size: crate::vk::DeviceSize) -> Self {
+        self.size = size;
+        self
+    }
+    pub fn binding_type(
+        mut self,
+        binding_type: crate::vk::DeviceAddressBindingTypeEXT,
+    ) -> Self {
+        self.binding_type = binding_type;
+        self
     }
 }
 ///Provided by [`ext::device_address_binding_report`](crate::ext::device_address_binding_report)

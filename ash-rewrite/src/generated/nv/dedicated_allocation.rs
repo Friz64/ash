@@ -24,6 +24,15 @@ impl<'a> Default for DedicatedAllocationImageCreateInfoNV<'a> {
         }
     }
 }
+impl<'a> DedicatedAllocationImageCreateInfoNV<'a> {
+    pub fn dedicated_allocation(
+        mut self,
+        dedicated_allocation: crate::vk::Bool32,
+    ) -> Self {
+        self.dedicated_allocation = dedicated_allocation;
+        self
+    }
+}
 #[repr(C)]
 #[derive(Clone, Copy)]
 pub struct DedicatedAllocationBufferCreateInfoNV<'a> {
@@ -46,6 +55,15 @@ impl<'a> Default for DedicatedAllocationBufferCreateInfoNV<'a> {
             dedicated_allocation: Default::default(),
             _marker: ::core::marker::PhantomData,
         }
+    }
+}
+impl<'a> DedicatedAllocationBufferCreateInfoNV<'a> {
+    pub fn dedicated_allocation(
+        mut self,
+        dedicated_allocation: crate::vk::Bool32,
+    ) -> Self {
+        self.dedicated_allocation = dedicated_allocation;
+        self
     }
 }
 #[repr(C)]
@@ -72,6 +90,16 @@ impl<'a> Default for DedicatedAllocationMemoryAllocateInfoNV<'a> {
             buffer: Default::default(),
             _marker: ::core::marker::PhantomData,
         }
+    }
+}
+impl<'a> DedicatedAllocationMemoryAllocateInfoNV<'a> {
+    pub fn image(mut self, image: crate::vk::Image) -> Self {
+        self.image = image;
+        self
+    }
+    pub fn buffer(mut self, buffer: crate::vk::Buffer) -> Self {
+        self.buffer = buffer;
+        self
     }
 }
 ///Provided by [`nv::dedicated_allocation`](crate::nv::dedicated_allocation)

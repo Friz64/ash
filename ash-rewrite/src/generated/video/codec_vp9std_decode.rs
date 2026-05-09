@@ -14,6 +14,51 @@ pub struct DecodeVP9PictureInfoFlags {
 - `UsePrevFrameMvs` @ `7..8`*/
     pub bitfield0: u32,
 }
+impl DecodeVP9PictureInfoFlags {
+    pub fn error_resilient_mode(mut self, error_resilient_mode: u32) -> Self {
+        let rest = self.bitfield0 & 0xFFFFFFFE;
+        self.bitfield0 = (error_resilient_mode & 0x00000001) | rest;
+        self
+    }
+    pub fn intra_only(mut self, intra_only: u32) -> Self {
+        let rest = self.bitfield0 & 0xFFFFFFFD;
+        self.bitfield0 = ((intra_only << 1u32) & 0x00000002) | rest;
+        self
+    }
+    pub fn allow_high_precision_mv(mut self, allow_high_precision_mv: u32) -> Self {
+        let rest = self.bitfield0 & 0xFFFFFFFB;
+        self.bitfield0 = ((allow_high_precision_mv << 2u32) & 0x00000004) | rest;
+        self
+    }
+    pub fn refresh_frame_context(mut self, refresh_frame_context: u32) -> Self {
+        let rest = self.bitfield0 & 0xFFFFFFF7;
+        self.bitfield0 = ((refresh_frame_context << 3u32) & 0x00000008) | rest;
+        self
+    }
+    pub fn frame_parallel_decoding_mode(
+        mut self,
+        frame_parallel_decoding_mode: u32,
+    ) -> Self {
+        let rest = self.bitfield0 & 0xFFFFFFEF;
+        self.bitfield0 = ((frame_parallel_decoding_mode << 4u32) & 0x00000010) | rest;
+        self
+    }
+    pub fn segmentation_enabled(mut self, segmentation_enabled: u32) -> Self {
+        let rest = self.bitfield0 & 0xFFFFFFDF;
+        self.bitfield0 = ((segmentation_enabled << 5u32) & 0x00000020) | rest;
+        self
+    }
+    pub fn show_frame(mut self, show_frame: u32) -> Self {
+        let rest = self.bitfield0 & 0xFFFFFFBF;
+        self.bitfield0 = ((show_frame << 6u32) & 0x00000040) | rest;
+        self
+    }
+    pub fn use_prev_frame_mvs(mut self, use_prev_frame_mvs: u32) -> Self {
+        let rest = self.bitfield0 & 0xFFFFFF7F;
+        self.bitfield0 = ((use_prev_frame_mvs << 7u32) & 0x00000080) | rest;
+        self
+    }
+}
 #[repr(C)]
 #[derive(Clone, Copy)]
 pub struct DecodeVP9PictureInfo<'a> {
@@ -60,6 +105,92 @@ impl<'a> Default for DecodeVP9PictureInfo<'a> {
             p_segmentation: Default::default(),
             _marker: ::core::marker::PhantomData,
         }
+    }
+}
+impl<'a> DecodeVP9PictureInfo<'a> {
+    pub fn flags(mut self, flags: crate::vk::DecodeVP9PictureInfoFlags) -> Self {
+        self.flags = flags;
+        self
+    }
+    pub fn profile(mut self, profile: crate::vk::VP9Profile) -> Self {
+        self.profile = profile;
+        self
+    }
+    pub fn frame_type(mut self, frame_type: crate::vk::VP9FrameType) -> Self {
+        self.frame_type = frame_type;
+        self
+    }
+    pub fn frame_context_idx(mut self, frame_context_idx: u8) -> Self {
+        self.frame_context_idx = frame_context_idx;
+        self
+    }
+    pub fn reset_frame_context(mut self, reset_frame_context: u8) -> Self {
+        self.reset_frame_context = reset_frame_context;
+        self
+    }
+    pub fn refresh_frame_flags(mut self, refresh_frame_flags: u8) -> Self {
+        self.refresh_frame_flags = refresh_frame_flags;
+        self
+    }
+    pub fn ref_frame_sign_bias_mask(mut self, ref_frame_sign_bias_mask: u8) -> Self {
+        self.ref_frame_sign_bias_mask = ref_frame_sign_bias_mask;
+        self
+    }
+    pub fn interpolation_filter(
+        mut self,
+        interpolation_filter: crate::vk::VP9InterpolationFilter,
+    ) -> Self {
+        self.interpolation_filter = interpolation_filter;
+        self
+    }
+    pub fn base_q_idx(mut self, base_q_idx: u8) -> Self {
+        self.base_q_idx = base_q_idx;
+        self
+    }
+    pub fn delta_q_y_dc(mut self, delta_q_y_dc: i8) -> Self {
+        self.delta_q_y_dc = delta_q_y_dc;
+        self
+    }
+    pub fn delta_q_uv_dc(mut self, delta_q_uv_dc: i8) -> Self {
+        self.delta_q_uv_dc = delta_q_uv_dc;
+        self
+    }
+    pub fn delta_q_uv_ac(mut self, delta_q_uv_ac: i8) -> Self {
+        self.delta_q_uv_ac = delta_q_uv_ac;
+        self
+    }
+    pub fn tile_cols_log2(mut self, tile_cols_log2: u8) -> Self {
+        self.tile_cols_log2 = tile_cols_log2;
+        self
+    }
+    pub fn tile_rows_log2(mut self, tile_rows_log2: u8) -> Self {
+        self.tile_rows_log2 = tile_rows_log2;
+        self
+    }
+    pub fn reserved1(mut self, reserved1: [u16; 3 as _]) -> Self {
+        self.reserved1 = reserved1;
+        self
+    }
+    pub fn p_color_config(
+        mut self,
+        p_color_config: *const crate::vk::VP9ColorConfig,
+    ) -> Self {
+        self.p_color_config = p_color_config;
+        self
+    }
+    pub fn p_loop_filter(
+        mut self,
+        p_loop_filter: *const crate::vk::VP9LoopFilter,
+    ) -> Self {
+        self.p_loop_filter = p_loop_filter;
+        self
+    }
+    pub fn p_segmentation(
+        mut self,
+        p_segmentation: *const crate::vk::VP9Segmentation,
+    ) -> Self {
+        self.p_segmentation = p_segmentation;
+        self
     }
 }
 pub const STD_VULKAN_VIDEO_CODEC_VP9_DECODE_SPEC_VERSION: u32 = crate::vk::STD_VULKAN_VIDEO_CODEC_VP9_DECODE_API_VERSION_1_0_0;

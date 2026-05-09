@@ -57,6 +57,15 @@ pub(crate) mod reexport {
             }
         }
     }
+    impl<'a> PipelinePropertiesIdentifierEXT<'a> {
+        pub fn pipeline_identifier(
+            mut self,
+            pipeline_identifier: [u8; crate::vk::UUID_SIZE as _],
+        ) -> Self {
+            self.pipeline_identifier = pipeline_identifier;
+            self
+        }
+    }
     #[repr(C)]
     #[derive(Clone, Copy)]
     pub struct PhysicalDevicePipelinePropertiesFeaturesEXT<'a> {
@@ -81,6 +90,15 @@ pub(crate) mod reexport {
                 pipeline_properties_identifier: Default::default(),
                 _marker: ::core::marker::PhantomData,
             }
+        }
+    }
+    impl<'a> PhysicalDevicePipelinePropertiesFeaturesEXT<'a> {
+        pub fn pipeline_properties_identifier(
+            mut self,
+            pipeline_properties_identifier: crate::vk::Bool32,
+        ) -> Self {
+            self.pipeline_properties_identifier = pipeline_properties_identifier;
+            self
         }
     }
     pub type PipelineInfoEXT<'a> = crate::vk::PipelineInfoKHR<'a>;

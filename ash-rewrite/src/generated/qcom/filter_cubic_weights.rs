@@ -27,6 +27,15 @@ impl<'a> Default for PhysicalDeviceCubicWeightsFeaturesQCOM<'a> {
         }
     }
 }
+impl<'a> PhysicalDeviceCubicWeightsFeaturesQCOM<'a> {
+    pub fn selectable_cubic_weights(
+        mut self,
+        selectable_cubic_weights: crate::vk::Bool32,
+    ) -> Self {
+        self.selectable_cubic_weights = selectable_cubic_weights;
+        self
+    }
+}
 #[repr(C)]
 #[derive(Clone, Copy)]
 pub struct SamplerCubicWeightsCreateInfoQCOM<'a> {
@@ -50,6 +59,15 @@ impl<'a> Default for SamplerCubicWeightsCreateInfoQCOM<'a> {
         }
     }
 }
+impl<'a> SamplerCubicWeightsCreateInfoQCOM<'a> {
+    pub fn cubic_weights(
+        mut self,
+        cubic_weights: crate::vk::CubicFilterWeightsQCOM,
+    ) -> Self {
+        self.cubic_weights = cubic_weights;
+        self
+    }
+}
 #[repr(C)]
 #[derive(Clone, Copy)]
 pub struct BlitImageCubicWeightsInfoQCOM<'a> {
@@ -71,6 +89,15 @@ impl<'a> Default for BlitImageCubicWeightsInfoQCOM<'a> {
             cubic_weights: Default::default(),
             _marker: ::core::marker::PhantomData,
         }
+    }
+}
+impl<'a> BlitImageCubicWeightsInfoQCOM<'a> {
+    pub fn cubic_weights(
+        mut self,
+        cubic_weights: crate::vk::CubicFilterWeightsQCOM,
+    ) -> Self {
+        self.cubic_weights = cubic_weights;
+        self
     }
 }
 ///Provided by [`qcom::filter_cubic_weights`](crate::qcom::filter_cubic_weights)

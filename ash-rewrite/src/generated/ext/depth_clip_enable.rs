@@ -27,6 +27,12 @@ impl<'a> Default for PhysicalDeviceDepthClipEnableFeaturesEXT<'a> {
         }
     }
 }
+impl<'a> PhysicalDeviceDepthClipEnableFeaturesEXT<'a> {
+    pub fn depth_clip_enable(mut self, depth_clip_enable: crate::vk::Bool32) -> Self {
+        self.depth_clip_enable = depth_clip_enable;
+        self
+    }
+}
 #[repr(C)]
 #[derive(Clone, Copy)]
 pub struct PipelineRasterizationDepthClipStateCreateInfoEXT<'a> {
@@ -51,6 +57,19 @@ impl<'a> Default for PipelineRasterizationDepthClipStateCreateInfoEXT<'a> {
             depth_clip_enable: Default::default(),
             _marker: ::core::marker::PhantomData,
         }
+    }
+}
+impl<'a> PipelineRasterizationDepthClipStateCreateInfoEXT<'a> {
+    pub fn flags(
+        mut self,
+        flags: crate::vk::PipelineRasterizationDepthClipStateCreateFlagsEXT,
+    ) -> Self {
+        self.flags = flags;
+        self
+    }
+    pub fn depth_clip_enable(mut self, depth_clip_enable: crate::vk::Bool32) -> Self {
+        self.depth_clip_enable = depth_clip_enable;
+        self
     }
 }
 ///Provided by [`ext::depth_clip_enable`](crate::ext::depth_clip_enable)

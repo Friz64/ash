@@ -33,6 +33,43 @@ impl<'a> Default for PipelineCoverageModulationStateCreateInfoNV<'a> {
         }
     }
 }
+impl<'a> PipelineCoverageModulationStateCreateInfoNV<'a> {
+    pub fn flags(
+        mut self,
+        flags: crate::vk::PipelineCoverageModulationStateCreateFlagsNV,
+    ) -> Self {
+        self.flags = flags;
+        self
+    }
+    pub fn coverage_modulation_mode(
+        mut self,
+        coverage_modulation_mode: crate::vk::CoverageModulationModeNV,
+    ) -> Self {
+        self.coverage_modulation_mode = coverage_modulation_mode;
+        self
+    }
+    pub fn coverage_modulation_table_enable(
+        mut self,
+        coverage_modulation_table_enable: crate::vk::Bool32,
+    ) -> Self {
+        self.coverage_modulation_table_enable = coverage_modulation_table_enable;
+        self
+    }
+    pub fn coverage_modulation_table_count(
+        mut self,
+        coverage_modulation_table_count: u32,
+    ) -> Self {
+        self.coverage_modulation_table_count = coverage_modulation_table_count;
+        self
+    }
+    pub fn p_coverage_modulation_table(
+        mut self,
+        p_coverage_modulation_table: *const core::ffi::c_float,
+    ) -> Self {
+        self.p_coverage_modulation_table = p_coverage_modulation_table;
+        self
+    }
+}
 pub type AttachmentSampleCountInfoNV<'a> = crate::vk::AttachmentSampleCountInfoAMD<'a>;
 ///Provided by [`nv::framebuffer_mixed_samples`](crate::nv::framebuffer_mixed_samples)
 impl crate::vk::StructureType {

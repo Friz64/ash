@@ -27,6 +27,15 @@ impl<'a> Default for PhysicalDeviceRenderPassStripedFeaturesARM<'a> {
         }
     }
 }
+impl<'a> PhysicalDeviceRenderPassStripedFeaturesARM<'a> {
+    pub fn render_pass_striped(
+        mut self,
+        render_pass_striped: crate::vk::Bool32,
+    ) -> Self {
+        self.render_pass_striped = render_pass_striped;
+        self
+    }
+}
 #[repr(C)]
 #[derive(Clone, Copy)]
 pub struct PhysicalDeviceRenderPassStripedPropertiesARM<'a> {
@@ -53,6 +62,19 @@ impl<'a> Default for PhysicalDeviceRenderPassStripedPropertiesARM<'a> {
         }
     }
 }
+impl<'a> PhysicalDeviceRenderPassStripedPropertiesARM<'a> {
+    pub fn render_pass_stripe_granularity(
+        mut self,
+        render_pass_stripe_granularity: crate::vk::Extent2D,
+    ) -> Self {
+        self.render_pass_stripe_granularity = render_pass_stripe_granularity;
+        self
+    }
+    pub fn max_render_pass_stripes(mut self, max_render_pass_stripes: u32) -> Self {
+        self.max_render_pass_stripes = max_render_pass_stripes;
+        self
+    }
+}
 #[repr(C)]
 #[derive(Clone, Copy)]
 pub struct RenderPassStripeInfoARM<'a> {
@@ -72,6 +94,12 @@ impl<'a> Default for RenderPassStripeInfoARM<'a> {
             stripe_area: Default::default(),
             _marker: ::core::marker::PhantomData,
         }
+    }
+}
+impl<'a> RenderPassStripeInfoARM<'a> {
+    pub fn stripe_area(mut self, stripe_area: crate::vk::Rect2D) -> Self {
+        self.stripe_area = stripe_area;
+        self
     }
 }
 #[repr(C)]
@@ -101,6 +129,19 @@ impl<'a> Default for RenderPassStripeBeginInfoARM<'a> {
         }
     }
 }
+impl<'a> RenderPassStripeBeginInfoARM<'a> {
+    pub fn stripe_info_count(mut self, stripe_info_count: u32) -> Self {
+        self.stripe_info_count = stripe_info_count;
+        self
+    }
+    pub fn p_stripe_infos(
+        mut self,
+        p_stripe_infos: *const crate::vk::RenderPassStripeInfoARM<'a>,
+    ) -> Self {
+        self.p_stripe_infos = p_stripe_infos;
+        self
+    }
+}
 #[repr(C)]
 #[derive(Clone, Copy)]
 pub struct RenderPassStripeSubmitInfoARM<'a> {
@@ -124,6 +165,22 @@ impl<'a> Default for RenderPassStripeSubmitInfoARM<'a> {
             p_stripe_semaphore_infos: Default::default(),
             _marker: ::core::marker::PhantomData,
         }
+    }
+}
+impl<'a> RenderPassStripeSubmitInfoARM<'a> {
+    pub fn stripe_semaphore_info_count(
+        mut self,
+        stripe_semaphore_info_count: u32,
+    ) -> Self {
+        self.stripe_semaphore_info_count = stripe_semaphore_info_count;
+        self
+    }
+    pub fn p_stripe_semaphore_infos(
+        mut self,
+        p_stripe_semaphore_infos: *const crate::vk::SemaphoreSubmitInfo<'a>,
+    ) -> Self {
+        self.p_stripe_semaphore_infos = p_stripe_semaphore_infos;
+        self
     }
 }
 ///Provided by [`arm::render_pass_striped`](crate::arm::render_pass_striped)

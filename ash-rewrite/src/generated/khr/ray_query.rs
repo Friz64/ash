@@ -26,6 +26,12 @@ impl<'a> Default for PhysicalDeviceRayQueryFeaturesKHR<'a> {
         }
     }
 }
+impl<'a> PhysicalDeviceRayQueryFeaturesKHR<'a> {
+    pub fn ray_query(mut self, ray_query: crate::vk::Bool32) -> Self {
+        self.ray_query = ray_query;
+        self
+    }
+}
 ///Provided by [`khr::ray_query`](crate::khr::ray_query)
 impl crate::vk::StructureType {
     pub const PHYSICAL_DEVICE_RAY_QUERY_FEATURES_KHR: Self = Self(1000348013);

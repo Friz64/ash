@@ -27,6 +27,15 @@ impl<'a> Default for PhysicalDeviceYcbcr2Plane444FormatsFeaturesEXT<'a> {
         }
     }
 }
+impl<'a> PhysicalDeviceYcbcr2Plane444FormatsFeaturesEXT<'a> {
+    pub fn ycbcr2plane444_formats(
+        mut self,
+        ycbcr2plane444_formats: crate::vk::Bool32,
+    ) -> Self {
+        self.ycbcr2plane444_formats = ycbcr2plane444_formats;
+        self
+    }
+}
 ///Provided by [`ext::ycbcr_2plane_444_formats`](crate::ext::ycbcr_2plane_444_formats)
 impl crate::vk::Format {
     pub const G8_B8R8_2PLANE_444_UNORM_EXT: Self = Self::G8_B8R8_2PLANE_444_UNORM;

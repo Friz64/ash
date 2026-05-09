@@ -58,6 +58,12 @@ pub(crate) mod reexport {
     pub struct RefreshCycleDurationGOOGLE {
         pub refresh_duration: u64,
     }
+    impl RefreshCycleDurationGOOGLE {
+        pub fn refresh_duration(mut self, refresh_duration: u64) -> Self {
+            self.refresh_duration = refresh_duration;
+            self
+        }
+    }
     #[repr(C)]
     #[derive(Clone, Copy, Default)]
     pub struct PastPresentationTimingGOOGLE {
@@ -66,6 +72,28 @@ pub(crate) mod reexport {
         pub actual_present_time: u64,
         pub earliest_present_time: u64,
         pub present_margin: u64,
+    }
+    impl PastPresentationTimingGOOGLE {
+        pub fn present_id(mut self, present_id: u32) -> Self {
+            self.present_id = present_id;
+            self
+        }
+        pub fn desired_present_time(mut self, desired_present_time: u64) -> Self {
+            self.desired_present_time = desired_present_time;
+            self
+        }
+        pub fn actual_present_time(mut self, actual_present_time: u64) -> Self {
+            self.actual_present_time = actual_present_time;
+            self
+        }
+        pub fn earliest_present_time(mut self, earliest_present_time: u64) -> Self {
+            self.earliest_present_time = earliest_present_time;
+            self
+        }
+        pub fn present_margin(mut self, present_margin: u64) -> Self {
+            self.present_margin = present_margin;
+            self
+        }
     }
     #[repr(C)]
     #[derive(Clone, Copy)]
@@ -92,11 +120,31 @@ pub(crate) mod reexport {
             }
         }
     }
+    impl<'a> PresentTimesInfoGOOGLE<'a> {
+        pub fn swapchain_count(mut self, swapchain_count: u32) -> Self {
+            self.swapchain_count = swapchain_count;
+            self
+        }
+        pub fn p_times(mut self, p_times: *const crate::vk::PresentTimeGOOGLE) -> Self {
+            self.p_times = p_times;
+            self
+        }
+    }
     #[repr(C)]
     #[derive(Clone, Copy, Default)]
     pub struct PresentTimeGOOGLE {
         pub present_id: u32,
         pub desired_present_time: u64,
+    }
+    impl PresentTimeGOOGLE {
+        pub fn present_id(mut self, present_id: u32) -> Self {
+            self.present_id = present_id;
+            self
+        }
+        pub fn desired_present_time(mut self, desired_present_time: u64) -> Self {
+            self.desired_present_time = desired_present_time;
+            self
+        }
     }
     ///Provided by [`google::display_timing`](crate::google::display_timing)
     impl crate::vk::StructureType {

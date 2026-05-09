@@ -117,6 +117,103 @@ pub(crate) mod reexport {
             }
         }
     }
+    impl<'a> PhysicalDeviceTileShadingFeaturesQCOM<'a> {
+        pub fn tile_shading(mut self, tile_shading: crate::vk::Bool32) -> Self {
+            self.tile_shading = tile_shading;
+            self
+        }
+        pub fn tile_shading_fragment_stage(
+            mut self,
+            tile_shading_fragment_stage: crate::vk::Bool32,
+        ) -> Self {
+            self.tile_shading_fragment_stage = tile_shading_fragment_stage;
+            self
+        }
+        pub fn tile_shading_color_attachments(
+            mut self,
+            tile_shading_color_attachments: crate::vk::Bool32,
+        ) -> Self {
+            self.tile_shading_color_attachments = tile_shading_color_attachments;
+            self
+        }
+        pub fn tile_shading_depth_attachments(
+            mut self,
+            tile_shading_depth_attachments: crate::vk::Bool32,
+        ) -> Self {
+            self.tile_shading_depth_attachments = tile_shading_depth_attachments;
+            self
+        }
+        pub fn tile_shading_stencil_attachments(
+            mut self,
+            tile_shading_stencil_attachments: crate::vk::Bool32,
+        ) -> Self {
+            self.tile_shading_stencil_attachments = tile_shading_stencil_attachments;
+            self
+        }
+        pub fn tile_shading_input_attachments(
+            mut self,
+            tile_shading_input_attachments: crate::vk::Bool32,
+        ) -> Self {
+            self.tile_shading_input_attachments = tile_shading_input_attachments;
+            self
+        }
+        pub fn tile_shading_sampled_attachments(
+            mut self,
+            tile_shading_sampled_attachments: crate::vk::Bool32,
+        ) -> Self {
+            self.tile_shading_sampled_attachments = tile_shading_sampled_attachments;
+            self
+        }
+        pub fn tile_shading_per_tile_draw(
+            mut self,
+            tile_shading_per_tile_draw: crate::vk::Bool32,
+        ) -> Self {
+            self.tile_shading_per_tile_draw = tile_shading_per_tile_draw;
+            self
+        }
+        pub fn tile_shading_per_tile_dispatch(
+            mut self,
+            tile_shading_per_tile_dispatch: crate::vk::Bool32,
+        ) -> Self {
+            self.tile_shading_per_tile_dispatch = tile_shading_per_tile_dispatch;
+            self
+        }
+        pub fn tile_shading_dispatch_tile(
+            mut self,
+            tile_shading_dispatch_tile: crate::vk::Bool32,
+        ) -> Self {
+            self.tile_shading_dispatch_tile = tile_shading_dispatch_tile;
+            self
+        }
+        pub fn tile_shading_apron(
+            mut self,
+            tile_shading_apron: crate::vk::Bool32,
+        ) -> Self {
+            self.tile_shading_apron = tile_shading_apron;
+            self
+        }
+        pub fn tile_shading_anisotropic_apron(
+            mut self,
+            tile_shading_anisotropic_apron: crate::vk::Bool32,
+        ) -> Self {
+            self.tile_shading_anisotropic_apron = tile_shading_anisotropic_apron;
+            self
+        }
+        pub fn tile_shading_atomic_ops(
+            mut self,
+            tile_shading_atomic_ops: crate::vk::Bool32,
+        ) -> Self {
+            self.tile_shading_atomic_ops = tile_shading_atomic_ops;
+            self
+        }
+        pub fn tile_shading_image_processing(
+            mut self,
+            tile_shading_image_processing: crate::vk::Bool32,
+        ) -> Self {
+            self.tile_shading_image_processing = tile_shading_image_processing;
+            self
+        }
+    }
     #[repr(C)]
     #[derive(Clone, Copy)]
     pub struct PhysicalDeviceTileShadingPropertiesQCOM<'a> {
@@ -145,6 +242,33 @@ pub(crate) mod reexport {
                 max_tile_shading_rate: Default::default(),
                 _marker: ::core::marker::PhantomData,
             }
+        }
+    }
+    impl<'a> PhysicalDeviceTileShadingPropertiesQCOM<'a> {
+        pub fn max_apron_size(mut self, max_apron_size: u32) -> Self {
+            self.max_apron_size = max_apron_size;
+            self
+        }
+        pub fn prefer_non_coherent(
+            mut self,
+            prefer_non_coherent: crate::vk::Bool32,
+        ) -> Self {
+            self.prefer_non_coherent = prefer_non_coherent;
+            self
+        }
+        pub fn tile_granularity(
+            mut self,
+            tile_granularity: crate::vk::Extent2D,
+        ) -> Self {
+            self.tile_granularity = tile_granularity;
+            self
+        }
+        pub fn max_tile_shading_rate(
+            mut self,
+            max_tile_shading_rate: crate::vk::Extent2D,
+        ) -> Self {
+            self.max_tile_shading_rate = max_tile_shading_rate;
+            self
         }
     }
     #[repr(C)]
@@ -179,6 +303,19 @@ pub(crate) mod reexport {
             }
         }
     }
+    impl<'a> RenderPassTileShadingCreateInfoQCOM<'a> {
+        pub fn flags(
+            mut self,
+            flags: crate::vk::TileShadingRenderPassFlagsQCOM,
+        ) -> Self {
+            self.flags = flags;
+            self
+        }
+        pub fn tile_apron_size(mut self, tile_apron_size: crate::vk::Extent2D) -> Self {
+            self.tile_apron_size = tile_apron_size;
+            self
+        }
+    }
     #[repr(C)]
     #[derive(Clone, Copy)]
     pub struct PerTileBeginInfoQCOM<'a> {
@@ -198,6 +335,7 @@ pub(crate) mod reexport {
             }
         }
     }
+    impl<'a> PerTileBeginInfoQCOM<'a> {}
     #[repr(C)]
     #[derive(Clone, Copy)]
     pub struct PerTileEndInfoQCOM<'a> {
@@ -217,6 +355,7 @@ pub(crate) mod reexport {
             }
         }
     }
+    impl<'a> PerTileEndInfoQCOM<'a> {}
     #[repr(C)]
     #[derive(Clone, Copy)]
     pub struct DispatchTileInfoQCOM<'a> {
@@ -236,6 +375,7 @@ pub(crate) mod reexport {
             }
         }
     }
+    impl<'a> DispatchTileInfoQCOM<'a> {}
     ///Provided by [`qcom::tile_shading`](crate::qcom::tile_shading)
     impl crate::vk::StructureType {
         pub const PHYSICAL_DEVICE_TILE_SHADING_FEATURES_QCOM: Self = Self(1000309000);

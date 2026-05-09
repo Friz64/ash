@@ -381,11 +381,35 @@ pub(crate) mod reexport {
         pub size: crate::vk::DeviceSize,
         pub stride: crate::vk::DeviceSize,
     }
+    impl StridedDeviceAddressRangeKHR {
+        pub fn address(mut self, address: crate::vk::DeviceAddress) -> Self {
+            self.address = address;
+            self
+        }
+        pub fn size(mut self, size: crate::vk::DeviceSize) -> Self {
+            self.size = size;
+            self
+        }
+        pub fn stride(mut self, stride: crate::vk::DeviceSize) -> Self {
+            self.stride = stride;
+            self
+        }
+    }
     #[repr(C)]
     #[derive(Clone, Copy, Default)]
     pub struct DeviceAddressRangeKHR {
         pub address: crate::vk::DeviceAddress,
         pub size: crate::vk::DeviceSize,
+    }
+    impl DeviceAddressRangeKHR {
+        pub fn address(mut self, address: crate::vk::DeviceAddress) -> Self {
+            self.address = address;
+            self
+        }
+        pub fn size(mut self, size: crate::vk::DeviceSize) -> Self {
+            self.size = size;
+            self
+        }
     }
     #[repr(C)]
     #[derive(Clone, Copy)]
@@ -414,6 +438,30 @@ pub(crate) mod reexport {
             }
         }
     }
+    impl<'a> DeviceMemoryCopyKHR<'a> {
+        pub fn src_range(mut self, src_range: crate::vk::DeviceAddressRangeKHR) -> Self {
+            self.src_range = src_range;
+            self
+        }
+        pub fn src_flags(
+            mut self,
+            src_flags: crate::vk::AddressCommandFlagsKHR,
+        ) -> Self {
+            self.src_flags = src_flags;
+            self
+        }
+        pub fn dst_range(mut self, dst_range: crate::vk::DeviceAddressRangeKHR) -> Self {
+            self.dst_range = dst_range;
+            self
+        }
+        pub fn dst_flags(
+            mut self,
+            dst_flags: crate::vk::AddressCommandFlagsKHR,
+        ) -> Self {
+            self.dst_flags = dst_flags;
+            self
+        }
+    }
     #[repr(C)]
     #[derive(Clone, Copy)]
     pub struct CopyDeviceMemoryInfoKHR<'a> {
@@ -435,6 +483,19 @@ pub(crate) mod reexport {
                 p_regions: Default::default(),
                 _marker: ::core::marker::PhantomData,
             }
+        }
+    }
+    impl<'a> CopyDeviceMemoryInfoKHR<'a> {
+        pub fn region_count(mut self, region_count: u32) -> Self {
+            self.region_count = region_count;
+            self
+        }
+        pub fn p_regions(
+            mut self,
+            p_regions: *const crate::vk::DeviceMemoryCopyKHR<'a>,
+        ) -> Self {
+            self.p_regions = p_regions;
+            self
         }
     }
     #[repr(C)]
@@ -472,6 +533,49 @@ pub(crate) mod reexport {
             }
         }
     }
+    impl<'a> DeviceMemoryImageCopyKHR<'a> {
+        pub fn address_range(
+            mut self,
+            address_range: crate::vk::DeviceAddressRangeKHR,
+        ) -> Self {
+            self.address_range = address_range;
+            self
+        }
+        pub fn address_flags(
+            mut self,
+            address_flags: crate::vk::AddressCommandFlagsKHR,
+        ) -> Self {
+            self.address_flags = address_flags;
+            self
+        }
+        pub fn address_row_length(mut self, address_row_length: u32) -> Self {
+            self.address_row_length = address_row_length;
+            self
+        }
+        pub fn address_image_height(mut self, address_image_height: u32) -> Self {
+            self.address_image_height = address_image_height;
+            self
+        }
+        pub fn image_subresource(
+            mut self,
+            image_subresource: crate::vk::ImageSubresourceLayers,
+        ) -> Self {
+            self.image_subresource = image_subresource;
+            self
+        }
+        pub fn image_layout(mut self, image_layout: crate::vk::ImageLayout) -> Self {
+            self.image_layout = image_layout;
+            self
+        }
+        pub fn image_offset(mut self, image_offset: crate::vk::Offset3D) -> Self {
+            self.image_offset = image_offset;
+            self
+        }
+        pub fn image_extent(mut self, image_extent: crate::vk::Extent3D) -> Self {
+            self.image_extent = image_extent;
+            self
+        }
+    }
     #[repr(C)]
     #[derive(Clone, Copy)]
     pub struct CopyDeviceMemoryImageInfoKHR<'a> {
@@ -497,6 +601,23 @@ pub(crate) mod reexport {
             }
         }
     }
+    impl<'a> CopyDeviceMemoryImageInfoKHR<'a> {
+        pub fn image(mut self, image: crate::vk::Image) -> Self {
+            self.image = image;
+            self
+        }
+        pub fn region_count(mut self, region_count: u32) -> Self {
+            self.region_count = region_count;
+            self
+        }
+        pub fn p_regions(
+            mut self,
+            p_regions: *const crate::vk::DeviceMemoryImageCopyKHR<'a>,
+        ) -> Self {
+            self.p_regions = p_regions;
+            self
+        }
+    }
     #[repr(C)]
     #[derive(Clone, Copy)]
     pub struct MemoryRangeBarriersInfoKHR<'a> {
@@ -520,6 +641,22 @@ pub(crate) mod reexport {
                 p_memory_range_barriers: Default::default(),
                 _marker: ::core::marker::PhantomData,
             }
+        }
+    }
+    impl<'a> MemoryRangeBarriersInfoKHR<'a> {
+        pub fn memory_range_barrier_count(
+            mut self,
+            memory_range_barrier_count: u32,
+        ) -> Self {
+            self.memory_range_barrier_count = memory_range_barrier_count;
+            self
+        }
+        pub fn p_memory_range_barriers(
+            mut self,
+            p_memory_range_barriers: *const crate::vk::MemoryRangeBarrierKHR<'a>,
+        ) -> Self {
+            self.p_memory_range_barriers = p_memory_range_barriers;
+            self
         }
     }
     #[repr(C)]
@@ -557,6 +694,58 @@ pub(crate) mod reexport {
             }
         }
     }
+    impl<'a> MemoryRangeBarrierKHR<'a> {
+        pub fn src_stage_mask(
+            mut self,
+            src_stage_mask: crate::vk::PipelineStageFlags2,
+        ) -> Self {
+            self.src_stage_mask = src_stage_mask;
+            self
+        }
+        pub fn src_access_mask(
+            mut self,
+            src_access_mask: crate::vk::AccessFlags2,
+        ) -> Self {
+            self.src_access_mask = src_access_mask;
+            self
+        }
+        pub fn dst_stage_mask(
+            mut self,
+            dst_stage_mask: crate::vk::PipelineStageFlags2,
+        ) -> Self {
+            self.dst_stage_mask = dst_stage_mask;
+            self
+        }
+        pub fn dst_access_mask(
+            mut self,
+            dst_access_mask: crate::vk::AccessFlags2,
+        ) -> Self {
+            self.dst_access_mask = dst_access_mask;
+            self
+        }
+        pub fn src_queue_family_index(mut self, src_queue_family_index: u32) -> Self {
+            self.src_queue_family_index = src_queue_family_index;
+            self
+        }
+        pub fn dst_queue_family_index(mut self, dst_queue_family_index: u32) -> Self {
+            self.dst_queue_family_index = dst_queue_family_index;
+            self
+        }
+        pub fn address_range(
+            mut self,
+            address_range: crate::vk::DeviceAddressRangeKHR,
+        ) -> Self {
+            self.address_range = address_range;
+            self
+        }
+        pub fn address_flags(
+            mut self,
+            address_flags: crate::vk::AddressCommandFlagsKHR,
+        ) -> Self {
+            self.address_flags = address_flags;
+            self
+        }
+    }
     #[repr(C)]
     #[derive(Clone, Copy)]
     pub struct PhysicalDeviceDeviceAddressCommandsFeaturesKHR<'a> {
@@ -583,6 +772,15 @@ pub(crate) mod reexport {
             }
         }
     }
+    impl<'a> PhysicalDeviceDeviceAddressCommandsFeaturesKHR<'a> {
+        pub fn device_address_commands(
+            mut self,
+            device_address_commands: crate::vk::Bool32,
+        ) -> Self {
+            self.device_address_commands = device_address_commands;
+            self
+        }
+    }
     #[repr(C)]
     #[derive(Clone, Copy)]
     pub struct ConditionalRenderingBeginInfo2EXT<'a> {
@@ -607,6 +805,26 @@ pub(crate) mod reexport {
                 flags: Default::default(),
                 _marker: ::core::marker::PhantomData,
             }
+        }
+    }
+    impl<'a> ConditionalRenderingBeginInfo2EXT<'a> {
+        pub fn address_range(
+            mut self,
+            address_range: crate::vk::DeviceAddressRangeKHR,
+        ) -> Self {
+            self.address_range = address_range;
+            self
+        }
+        pub fn address_flags(
+            mut self,
+            address_flags: crate::vk::AddressCommandFlagsKHR,
+        ) -> Self {
+            self.address_flags = address_flags;
+            self
+        }
+        pub fn flags(mut self, flags: crate::vk::ConditionalRenderingFlagsEXT) -> Self {
+            self.flags = flags;
+            self
         }
     }
     #[repr(C)]
@@ -637,6 +855,33 @@ pub(crate) mod reexport {
             }
         }
     }
+    impl<'a> AccelerationStructureCreateInfo2KHR<'a> {
+        pub fn create_flags(
+            mut self,
+            create_flags: crate::vk::AccelerationStructureCreateFlagsKHR,
+        ) -> Self {
+            self.create_flags = create_flags;
+            self
+        }
+        pub fn address_range(
+            mut self,
+            address_range: crate::vk::DeviceAddressRangeKHR,
+        ) -> Self {
+            self.address_range = address_range;
+            self
+        }
+        pub fn address_flags(
+            mut self,
+            address_flags: crate::vk::AddressCommandFlagsKHR,
+        ) -> Self {
+            self.address_flags = address_flags;
+            self
+        }
+        pub fn _type(mut self, _type: crate::vk::AccelerationStructureTypeKHR) -> Self {
+            self._type = _type;
+            self
+        }
+    }
     #[repr(C)]
     #[derive(Clone, Copy)]
     pub struct BindIndexBuffer3InfoKHR<'a> {
@@ -660,6 +905,26 @@ pub(crate) mod reexport {
                 index_type: Default::default(),
                 _marker: ::core::marker::PhantomData,
             }
+        }
+    }
+    impl<'a> BindIndexBuffer3InfoKHR<'a> {
+        pub fn address_range(
+            mut self,
+            address_range: crate::vk::DeviceAddressRangeKHR,
+        ) -> Self {
+            self.address_range = address_range;
+            self
+        }
+        pub fn address_flags(
+            mut self,
+            address_flags: crate::vk::AddressCommandFlagsKHR,
+        ) -> Self {
+            self.address_flags = address_flags;
+            self
+        }
+        pub fn index_type(mut self, index_type: crate::vk::IndexType) -> Self {
+            self.index_type = index_type;
+            self
         }
     }
     #[repr(C)]
@@ -687,6 +952,26 @@ pub(crate) mod reexport {
             }
         }
     }
+    impl<'a> BindVertexBuffer3InfoKHR<'a> {
+        pub fn set_stride(mut self, set_stride: crate::vk::Bool32) -> Self {
+            self.set_stride = set_stride;
+            self
+        }
+        pub fn address_range(
+            mut self,
+            address_range: crate::vk::StridedDeviceAddressRangeKHR,
+        ) -> Self {
+            self.address_range = address_range;
+            self
+        }
+        pub fn address_flags(
+            mut self,
+            address_flags: crate::vk::AddressCommandFlagsKHR,
+        ) -> Self {
+            self.address_flags = address_flags;
+            self
+        }
+    }
     #[repr(C)]
     #[derive(Clone, Copy)]
     pub struct DrawIndirect2InfoKHR<'a> {
@@ -710,6 +995,26 @@ pub(crate) mod reexport {
                 draw_count: Default::default(),
                 _marker: ::core::marker::PhantomData,
             }
+        }
+    }
+    impl<'a> DrawIndirect2InfoKHR<'a> {
+        pub fn address_range(
+            mut self,
+            address_range: crate::vk::StridedDeviceAddressRangeKHR,
+        ) -> Self {
+            self.address_range = address_range;
+            self
+        }
+        pub fn address_flags(
+            mut self,
+            address_flags: crate::vk::AddressCommandFlagsKHR,
+        ) -> Self {
+            self.address_flags = address_flags;
+            self
+        }
+        pub fn draw_count(mut self, draw_count: u32) -> Self {
+            self.draw_count = draw_count;
+            self
         }
     }
     #[repr(C)]
@@ -741,6 +1046,40 @@ pub(crate) mod reexport {
             }
         }
     }
+    impl<'a> DrawIndirectCount2InfoKHR<'a> {
+        pub fn address_range(
+            mut self,
+            address_range: crate::vk::StridedDeviceAddressRangeKHR,
+        ) -> Self {
+            self.address_range = address_range;
+            self
+        }
+        pub fn address_flags(
+            mut self,
+            address_flags: crate::vk::AddressCommandFlagsKHR,
+        ) -> Self {
+            self.address_flags = address_flags;
+            self
+        }
+        pub fn count_address_range(
+            mut self,
+            count_address_range: crate::vk::DeviceAddressRangeKHR,
+        ) -> Self {
+            self.count_address_range = count_address_range;
+            self
+        }
+        pub fn count_address_flags(
+            mut self,
+            count_address_flags: crate::vk::AddressCommandFlagsKHR,
+        ) -> Self {
+            self.count_address_flags = count_address_flags;
+            self
+        }
+        pub fn max_draw_count(mut self, max_draw_count: u32) -> Self {
+            self.max_draw_count = max_draw_count;
+            self
+        }
+    }
     #[repr(C)]
     #[derive(Clone, Copy)]
     pub struct DispatchIndirect2InfoKHR<'a> {
@@ -762,6 +1101,22 @@ pub(crate) mod reexport {
                 address_flags: Default::default(),
                 _marker: ::core::marker::PhantomData,
             }
+        }
+    }
+    impl<'a> DispatchIndirect2InfoKHR<'a> {
+        pub fn address_range(
+            mut self,
+            address_range: crate::vk::DeviceAddressRangeKHR,
+        ) -> Self {
+            self.address_range = address_range;
+            self
+        }
+        pub fn address_flags(
+            mut self,
+            address_flags: crate::vk::AddressCommandFlagsKHR,
+        ) -> Self {
+            self.address_flags = address_flags;
+            self
         }
     }
     #[repr(C)]
@@ -786,6 +1141,22 @@ pub(crate) mod reexport {
                 address_flags: Default::default(),
                 _marker: ::core::marker::PhantomData,
             }
+        }
+    }
+    impl<'a> BindTransformFeedbackBuffer2InfoEXT<'a> {
+        pub fn address_range(
+            mut self,
+            address_range: crate::vk::DeviceAddressRangeKHR,
+        ) -> Self {
+            self.address_range = address_range;
+            self
+        }
+        pub fn address_flags(
+            mut self,
+            address_flags: crate::vk::AddressCommandFlagsKHR,
+        ) -> Self {
+            self.address_flags = address_flags;
+            self
         }
     }
     #[repr(C)]
@@ -813,6 +1184,27 @@ pub(crate) mod reexport {
                 marker: Default::default(),
                 _marker: ::core::marker::PhantomData,
             }
+        }
+    }
+    impl<'a> MemoryMarkerInfoAMD<'a> {
+        pub fn stage(mut self, stage: crate::vk::PipelineStageFlags2KHR) -> Self {
+            self.stage = stage;
+            self
+        }
+        pub fn dst_range(mut self, dst_range: crate::vk::DeviceAddressRangeKHR) -> Self {
+            self.dst_range = dst_range;
+            self
+        }
+        pub fn dst_flags(
+            mut self,
+            dst_flags: crate::vk::AddressCommandFlagsKHR,
+        ) -> Self {
+            self.dst_flags = dst_flags;
+            self
+        }
+        pub fn marker(mut self, marker: u32) -> Self {
+            self.marker = marker;
+            self
         }
     }
     ///Provided by [`khr::device_address_commands`](crate::khr::device_address_commands)

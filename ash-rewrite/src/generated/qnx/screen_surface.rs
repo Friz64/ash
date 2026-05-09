@@ -80,6 +80,26 @@ pub(crate) mod reexport {
             }
         }
     }
+    impl<'a> ScreenSurfaceCreateInfoQNX<'a> {
+        pub fn flags(mut self, flags: crate::vk::ScreenSurfaceCreateFlagsQNX) -> Self {
+            self.flags = flags;
+            self
+        }
+        pub fn context(
+            mut self,
+            context: *mut crate::platform_types::_screen_context,
+        ) -> Self {
+            self.context = context;
+            self
+        }
+        pub fn window(
+            mut self,
+            window: *mut crate::platform_types::_screen_window,
+        ) -> Self {
+            self.window = window;
+            self
+        }
+    }
     ///Provided by [`qnx::screen_surface`](crate::qnx::screen_surface)
     impl crate::vk::StructureType {
         pub const SCREEN_SURFACE_CREATE_INFO_QNX: Self = Self(1000378000);

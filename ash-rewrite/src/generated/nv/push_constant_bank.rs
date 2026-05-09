@@ -30,6 +30,12 @@ impl<'a> Default for PushConstantBankInfoNV<'a> {
         }
     }
 }
+impl<'a> PushConstantBankInfoNV<'a> {
+    pub fn bank(mut self, bank: u32) -> Self {
+        self.bank = bank;
+        self
+    }
+}
 #[repr(C)]
 #[derive(Clone, Copy)]
 pub struct PhysicalDevicePushConstantBankFeaturesNV<'a> {
@@ -54,6 +60,12 @@ impl<'a> Default for PhysicalDevicePushConstantBankFeaturesNV<'a> {
             push_constant_bank: Default::default(),
             _marker: ::core::marker::PhantomData,
         }
+    }
+}
+impl<'a> PhysicalDevicePushConstantBankFeaturesNV<'a> {
+    pub fn push_constant_bank(mut self, push_constant_bank: crate::vk::Bool32) -> Self {
+        self.push_constant_bank = push_constant_bank;
+        self
     }
 }
 #[repr(C)]
@@ -84,6 +96,36 @@ impl<'a> Default for PhysicalDevicePushConstantBankPropertiesNV<'a> {
             max_compute_push_data_banks: Default::default(),
             _marker: ::core::marker::PhantomData,
         }
+    }
+}
+impl<'a> PhysicalDevicePushConstantBankPropertiesNV<'a> {
+    pub fn max_graphics_push_constant_banks(
+        mut self,
+        max_graphics_push_constant_banks: u32,
+    ) -> Self {
+        self.max_graphics_push_constant_banks = max_graphics_push_constant_banks;
+        self
+    }
+    pub fn max_compute_push_constant_banks(
+        mut self,
+        max_compute_push_constant_banks: u32,
+    ) -> Self {
+        self.max_compute_push_constant_banks = max_compute_push_constant_banks;
+        self
+    }
+    pub fn max_graphics_push_data_banks(
+        mut self,
+        max_graphics_push_data_banks: u32,
+    ) -> Self {
+        self.max_graphics_push_data_banks = max_graphics_push_data_banks;
+        self
+    }
+    pub fn max_compute_push_data_banks(
+        mut self,
+        max_compute_push_data_banks: u32,
+    ) -> Self {
+        self.max_compute_push_data_banks = max_compute_push_data_banks;
+        self
     }
 }
 ///Provided by [`nv::push_constant_bank`](crate::nv::push_constant_bank)

@@ -26,6 +26,12 @@ impl<'a> Default for PhysicalDevicePresentId2FeaturesKHR<'a> {
         }
     }
 }
+impl<'a> PhysicalDevicePresentId2FeaturesKHR<'a> {
+    pub fn present_id2(mut self, present_id2: crate::vk::Bool32) -> Self {
+        self.present_id2 = present_id2;
+        self
+    }
+}
 #[repr(C)]
 #[derive(Clone, Copy)]
 pub struct PresentId2KHR<'a> {
@@ -50,6 +56,16 @@ impl<'a> Default for PresentId2KHR<'a> {
         }
     }
 }
+impl<'a> PresentId2KHR<'a> {
+    pub fn swapchain_count(mut self, swapchain_count: u32) -> Self {
+        self.swapchain_count = swapchain_count;
+        self
+    }
+    pub fn p_present_ids(mut self, p_present_ids: *const u64) -> Self {
+        self.p_present_ids = p_present_ids;
+        self
+    }
+}
 #[repr(C)]
 #[derive(Clone, Copy)]
 pub struct SurfaceCapabilitiesPresentId2KHR<'a> {
@@ -71,6 +87,15 @@ impl<'a> Default for SurfaceCapabilitiesPresentId2KHR<'a> {
             present_id2_supported: Default::default(),
             _marker: ::core::marker::PhantomData,
         }
+    }
+}
+impl<'a> SurfaceCapabilitiesPresentId2KHR<'a> {
+    pub fn present_id2_supported(
+        mut self,
+        present_id2_supported: crate::vk::Bool32,
+    ) -> Self {
+        self.present_id2_supported = present_id2_supported;
+        self
     }
 }
 ///Provided by [`khr::present_id2`](crate::khr::present_id2)

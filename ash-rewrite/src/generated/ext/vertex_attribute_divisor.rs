@@ -25,6 +25,12 @@ impl<'a> Default for PhysicalDeviceVertexAttributeDivisorPropertiesEXT<'a> {
         }
     }
 }
+impl<'a> PhysicalDeviceVertexAttributeDivisorPropertiesEXT<'a> {
+    pub fn max_vertex_attrib_divisor(mut self, max_vertex_attrib_divisor: u32) -> Self {
+        self.max_vertex_attrib_divisor = max_vertex_attrib_divisor;
+        self
+    }
+}
 pub type VertexInputBindingDivisorDescriptionEXT = crate::vk::VertexInputBindingDivisorDescription;
 pub type PipelineVertexInputDivisorStateCreateInfoEXT<'a> = crate::vk::PipelineVertexInputDivisorStateCreateInfo<
     'a,

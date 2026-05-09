@@ -27,6 +27,15 @@ impl<'a> Default for PhysicalDeviceRayTracingInvocationReorderFeaturesEXT<'a> {
         }
     }
 }
+impl<'a> PhysicalDeviceRayTracingInvocationReorderFeaturesEXT<'a> {
+    pub fn ray_tracing_invocation_reorder(
+        mut self,
+        ray_tracing_invocation_reorder: crate::vk::Bool32,
+    ) -> Self {
+        self.ray_tracing_invocation_reorder = ray_tracing_invocation_reorder;
+        self
+    }
+}
 #[repr(C)]
 #[derive(Clone, Copy)]
 pub struct PhysicalDeviceRayTracingInvocationReorderPropertiesEXT<'a> {
@@ -51,6 +60,22 @@ impl<'a> Default for PhysicalDeviceRayTracingInvocationReorderPropertiesEXT<'a> 
             max_shader_binding_table_record_index: Default::default(),
             _marker: ::core::marker::PhantomData,
         }
+    }
+}
+impl<'a> PhysicalDeviceRayTracingInvocationReorderPropertiesEXT<'a> {
+    pub fn ray_tracing_invocation_reorder_reordering_hint(
+        mut self,
+        ray_tracing_invocation_reorder_reordering_hint: crate::vk::RayTracingInvocationReorderModeEXT,
+    ) -> Self {
+        self.ray_tracing_invocation_reorder_reordering_hint = ray_tracing_invocation_reorder_reordering_hint;
+        self
+    }
+    pub fn max_shader_binding_table_record_index(
+        mut self,
+        max_shader_binding_table_record_index: u32,
+    ) -> Self {
+        self.max_shader_binding_table_record_index = max_shader_binding_table_record_index;
+        self
     }
 }
 ///Provided by [`ext::ray_tracing_invocation_reorder`](crate::ext::ray_tracing_invocation_reorder)

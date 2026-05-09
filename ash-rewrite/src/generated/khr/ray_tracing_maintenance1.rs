@@ -53,6 +53,97 @@ pub(crate) mod reexport {
         pub height: u32,
         pub depth: u32,
     }
+    impl TraceRaysIndirectCommand2KHR {
+        pub fn raygen_shader_record_address(
+            mut self,
+            raygen_shader_record_address: crate::vk::DeviceAddress,
+        ) -> Self {
+            self.raygen_shader_record_address = raygen_shader_record_address;
+            self
+        }
+        pub fn raygen_shader_record_size(
+            mut self,
+            raygen_shader_record_size: crate::vk::DeviceSize,
+        ) -> Self {
+            self.raygen_shader_record_size = raygen_shader_record_size;
+            self
+        }
+        pub fn miss_shader_binding_table_address(
+            mut self,
+            miss_shader_binding_table_address: crate::vk::DeviceAddress,
+        ) -> Self {
+            self.miss_shader_binding_table_address = miss_shader_binding_table_address;
+            self
+        }
+        pub fn miss_shader_binding_table_size(
+            mut self,
+            miss_shader_binding_table_size: crate::vk::DeviceSize,
+        ) -> Self {
+            self.miss_shader_binding_table_size = miss_shader_binding_table_size;
+            self
+        }
+        pub fn miss_shader_binding_table_stride(
+            mut self,
+            miss_shader_binding_table_stride: crate::vk::DeviceSize,
+        ) -> Self {
+            self.miss_shader_binding_table_stride = miss_shader_binding_table_stride;
+            self
+        }
+        pub fn hit_shader_binding_table_address(
+            mut self,
+            hit_shader_binding_table_address: crate::vk::DeviceAddress,
+        ) -> Self {
+            self.hit_shader_binding_table_address = hit_shader_binding_table_address;
+            self
+        }
+        pub fn hit_shader_binding_table_size(
+            mut self,
+            hit_shader_binding_table_size: crate::vk::DeviceSize,
+        ) -> Self {
+            self.hit_shader_binding_table_size = hit_shader_binding_table_size;
+            self
+        }
+        pub fn hit_shader_binding_table_stride(
+            mut self,
+            hit_shader_binding_table_stride: crate::vk::DeviceSize,
+        ) -> Self {
+            self.hit_shader_binding_table_stride = hit_shader_binding_table_stride;
+            self
+        }
+        pub fn callable_shader_binding_table_address(
+            mut self,
+            callable_shader_binding_table_address: crate::vk::DeviceAddress,
+        ) -> Self {
+            self.callable_shader_binding_table_address = callable_shader_binding_table_address;
+            self
+        }
+        pub fn callable_shader_binding_table_size(
+            mut self,
+            callable_shader_binding_table_size: crate::vk::DeviceSize,
+        ) -> Self {
+            self.callable_shader_binding_table_size = callable_shader_binding_table_size;
+            self
+        }
+        pub fn callable_shader_binding_table_stride(
+            mut self,
+            callable_shader_binding_table_stride: crate::vk::DeviceSize,
+        ) -> Self {
+            self.callable_shader_binding_table_stride = callable_shader_binding_table_stride;
+            self
+        }
+        pub fn width(mut self, width: u32) -> Self {
+            self.width = width;
+            self
+        }
+        pub fn height(mut self, height: u32) -> Self {
+            self.height = height;
+            self
+        }
+        pub fn depth(mut self, depth: u32) -> Self {
+            self.depth = depth;
+            self
+        }
+    }
     #[repr(C)]
     #[derive(Clone, Copy)]
     pub struct PhysicalDeviceRayTracingMaintenance1FeaturesKHR<'a> {
@@ -79,6 +170,22 @@ pub(crate) mod reexport {
                 ray_tracing_pipeline_trace_rays_indirect2: Default::default(),
                 _marker: ::core::marker::PhantomData,
             }
+        }
+    }
+    impl<'a> PhysicalDeviceRayTracingMaintenance1FeaturesKHR<'a> {
+        pub fn ray_tracing_maintenance1(
+            mut self,
+            ray_tracing_maintenance1: crate::vk::Bool32,
+        ) -> Self {
+            self.ray_tracing_maintenance1 = ray_tracing_maintenance1;
+            self
+        }
+        pub fn ray_tracing_pipeline_trace_rays_indirect2(
+            mut self,
+            ray_tracing_pipeline_trace_rays_indirect2: crate::vk::Bool32,
+        ) -> Self {
+            self.ray_tracing_pipeline_trace_rays_indirect2 = ray_tracing_pipeline_trace_rays_indirect2;
+            self
         }
     }
     ///Provided by [`khr::ray_tracing_maintenance1`](crate::khr::ray_tracing_maintenance1)

@@ -29,6 +29,20 @@ impl<'a> Default for PhysicalDeviceShaderCoreBuiltinsPropertiesARM<'a> {
         }
     }
 }
+impl<'a> PhysicalDeviceShaderCoreBuiltinsPropertiesARM<'a> {
+    pub fn shader_core_mask(mut self, shader_core_mask: u64) -> Self {
+        self.shader_core_mask = shader_core_mask;
+        self
+    }
+    pub fn shader_core_count(mut self, shader_core_count: u32) -> Self {
+        self.shader_core_count = shader_core_count;
+        self
+    }
+    pub fn shader_warps_per_core(mut self, shader_warps_per_core: u32) -> Self {
+        self.shader_warps_per_core = shader_warps_per_core;
+        self
+    }
+}
 #[repr(C)]
 #[derive(Clone, Copy)]
 pub struct PhysicalDeviceShaderCoreBuiltinsFeaturesARM<'a> {
@@ -53,6 +67,15 @@ impl<'a> Default for PhysicalDeviceShaderCoreBuiltinsFeaturesARM<'a> {
             shader_core_builtins: Default::default(),
             _marker: ::core::marker::PhantomData,
         }
+    }
+}
+impl<'a> PhysicalDeviceShaderCoreBuiltinsFeaturesARM<'a> {
+    pub fn shader_core_builtins(
+        mut self,
+        shader_core_builtins: crate::vk::Bool32,
+    ) -> Self {
+        self.shader_core_builtins = shader_core_builtins;
+        self
     }
 }
 ///Provided by [`arm::shader_core_builtins`](crate::arm::shader_core_builtins)

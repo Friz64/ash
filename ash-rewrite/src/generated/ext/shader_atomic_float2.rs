@@ -49,6 +49,92 @@ impl<'a> Default for PhysicalDeviceShaderAtomicFloat2FeaturesEXT<'a> {
         }
     }
 }
+impl<'a> PhysicalDeviceShaderAtomicFloat2FeaturesEXT<'a> {
+    pub fn shader_buffer_float16_atomics(
+        mut self,
+        shader_buffer_float16_atomics: crate::vk::Bool32,
+    ) -> Self {
+        self.shader_buffer_float16_atomics = shader_buffer_float16_atomics;
+        self
+    }
+    pub fn shader_buffer_float16_atomic_add(
+        mut self,
+        shader_buffer_float16_atomic_add: crate::vk::Bool32,
+    ) -> Self {
+        self.shader_buffer_float16_atomic_add = shader_buffer_float16_atomic_add;
+        self
+    }
+    pub fn shader_buffer_float16_atomic_min_max(
+        mut self,
+        shader_buffer_float16_atomic_min_max: crate::vk::Bool32,
+    ) -> Self {
+        self.shader_buffer_float16_atomic_min_max = shader_buffer_float16_atomic_min_max;
+        self
+    }
+    pub fn shader_buffer_float32_atomic_min_max(
+        mut self,
+        shader_buffer_float32_atomic_min_max: crate::vk::Bool32,
+    ) -> Self {
+        self.shader_buffer_float32_atomic_min_max = shader_buffer_float32_atomic_min_max;
+        self
+    }
+    pub fn shader_buffer_float64_atomic_min_max(
+        mut self,
+        shader_buffer_float64_atomic_min_max: crate::vk::Bool32,
+    ) -> Self {
+        self.shader_buffer_float64_atomic_min_max = shader_buffer_float64_atomic_min_max;
+        self
+    }
+    pub fn shader_shared_float16_atomics(
+        mut self,
+        shader_shared_float16_atomics: crate::vk::Bool32,
+    ) -> Self {
+        self.shader_shared_float16_atomics = shader_shared_float16_atomics;
+        self
+    }
+    pub fn shader_shared_float16_atomic_add(
+        mut self,
+        shader_shared_float16_atomic_add: crate::vk::Bool32,
+    ) -> Self {
+        self.shader_shared_float16_atomic_add = shader_shared_float16_atomic_add;
+        self
+    }
+    pub fn shader_shared_float16_atomic_min_max(
+        mut self,
+        shader_shared_float16_atomic_min_max: crate::vk::Bool32,
+    ) -> Self {
+        self.shader_shared_float16_atomic_min_max = shader_shared_float16_atomic_min_max;
+        self
+    }
+    pub fn shader_shared_float32_atomic_min_max(
+        mut self,
+        shader_shared_float32_atomic_min_max: crate::vk::Bool32,
+    ) -> Self {
+        self.shader_shared_float32_atomic_min_max = shader_shared_float32_atomic_min_max;
+        self
+    }
+    pub fn shader_shared_float64_atomic_min_max(
+        mut self,
+        shader_shared_float64_atomic_min_max: crate::vk::Bool32,
+    ) -> Self {
+        self.shader_shared_float64_atomic_min_max = shader_shared_float64_atomic_min_max;
+        self
+    }
+    pub fn shader_image_float32_atomic_min_max(
+        mut self,
+        shader_image_float32_atomic_min_max: crate::vk::Bool32,
+    ) -> Self {
+        self.shader_image_float32_atomic_min_max = shader_image_float32_atomic_min_max;
+        self
+    }
+    pub fn sparse_image_float32_atomic_min_max(
+        mut self,
+        sparse_image_float32_atomic_min_max: crate::vk::Bool32,
+    ) -> Self {
+        self.sparse_image_float32_atomic_min_max = sparse_image_float32_atomic_min_max;
+        self
+    }
+}
 ///Provided by [`ext::shader_atomic_float2`](crate::ext::shader_atomic_float2)
 impl crate::vk::StructureType {
     pub const PHYSICAL_DEVICE_SHADER_ATOMIC_FLOAT_2_FEATURES_EXT: Self = Self(

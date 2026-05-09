@@ -25,6 +25,15 @@ impl<'a> Default for PipelineRasterizationStateRasterizationOrderAMD<'a> {
         }
     }
 }
+impl<'a> PipelineRasterizationStateRasterizationOrderAMD<'a> {
+    pub fn rasterization_order(
+        mut self,
+        rasterization_order: crate::vk::RasterizationOrderAMD,
+    ) -> Self {
+        self.rasterization_order = rasterization_order;
+        self
+    }
+}
 ///Provided by [`amd::rasterization_order`](crate::amd::rasterization_order)
 impl crate::vk::StructureType {
     pub const PIPELINE_RASTERIZATION_STATE_RASTERIZATION_ORDER_AMD: Self = Self(

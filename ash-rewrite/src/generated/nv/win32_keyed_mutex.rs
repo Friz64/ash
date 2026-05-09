@@ -38,6 +38,45 @@ impl<'a> Default for Win32KeyedMutexAcquireReleaseInfoNV<'a> {
         }
     }
 }
+impl<'a> Win32KeyedMutexAcquireReleaseInfoNV<'a> {
+    pub fn acquire_count(mut self, acquire_count: u32) -> Self {
+        self.acquire_count = acquire_count;
+        self
+    }
+    pub fn p_acquire_syncs(
+        mut self,
+        p_acquire_syncs: *const crate::vk::DeviceMemory,
+    ) -> Self {
+        self.p_acquire_syncs = p_acquire_syncs;
+        self
+    }
+    pub fn p_acquire_keys(mut self, p_acquire_keys: *const u64) -> Self {
+        self.p_acquire_keys = p_acquire_keys;
+        self
+    }
+    pub fn p_acquire_timeout_milliseconds(
+        mut self,
+        p_acquire_timeout_milliseconds: *const u32,
+    ) -> Self {
+        self.p_acquire_timeout_milliseconds = p_acquire_timeout_milliseconds;
+        self
+    }
+    pub fn release_count(mut self, release_count: u32) -> Self {
+        self.release_count = release_count;
+        self
+    }
+    pub fn p_release_syncs(
+        mut self,
+        p_release_syncs: *const crate::vk::DeviceMemory,
+    ) -> Self {
+        self.p_release_syncs = p_release_syncs;
+        self
+    }
+    pub fn p_release_keys(mut self, p_release_keys: *const u64) -> Self {
+        self.p_release_keys = p_release_keys;
+        self
+    }
+}
 ///Provided by [`nv::win32_keyed_mutex`](crate::nv::win32_keyed_mutex)
 impl crate::vk::StructureType {
     pub const WIN32_KEYED_MUTEX_ACQUIRE_RELEASE_INFO_NV: Self = Self(1000058000);

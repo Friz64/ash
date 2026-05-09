@@ -27,6 +27,15 @@ impl<'a> Default for PhysicalDeviceFragmentDensityMap2FeaturesEXT<'a> {
         }
     }
 }
+impl<'a> PhysicalDeviceFragmentDensityMap2FeaturesEXT<'a> {
+    pub fn fragment_density_map_deferred(
+        mut self,
+        fragment_density_map_deferred: crate::vk::Bool32,
+    ) -> Self {
+        self.fragment_density_map_deferred = fragment_density_map_deferred;
+        self
+    }
+}
 #[repr(C)]
 #[derive(Clone, Copy)]
 pub struct PhysicalDeviceFragmentDensityMap2PropertiesEXT<'a> {
@@ -55,6 +64,33 @@ impl<'a> Default for PhysicalDeviceFragmentDensityMap2PropertiesEXT<'a> {
             max_descriptor_set_subsampled_samplers: Default::default(),
             _marker: ::core::marker::PhantomData,
         }
+    }
+}
+impl<'a> PhysicalDeviceFragmentDensityMap2PropertiesEXT<'a> {
+    pub fn subsampled_loads(mut self, subsampled_loads: crate::vk::Bool32) -> Self {
+        self.subsampled_loads = subsampled_loads;
+        self
+    }
+    pub fn subsampled_coarse_reconstruction_early_access(
+        mut self,
+        subsampled_coarse_reconstruction_early_access: crate::vk::Bool32,
+    ) -> Self {
+        self.subsampled_coarse_reconstruction_early_access = subsampled_coarse_reconstruction_early_access;
+        self
+    }
+    pub fn max_subsampled_array_layers(
+        mut self,
+        max_subsampled_array_layers: u32,
+    ) -> Self {
+        self.max_subsampled_array_layers = max_subsampled_array_layers;
+        self
+    }
+    pub fn max_descriptor_set_subsampled_samplers(
+        mut self,
+        max_descriptor_set_subsampled_samplers: u32,
+    ) -> Self {
+        self.max_descriptor_set_subsampled_samplers = max_descriptor_set_subsampled_samplers;
+        self
     }
 }
 ///Provided by [`ext::fragment_density_map2`](crate::ext::fragment_density_map2)

@@ -26,6 +26,12 @@ impl<'a> Default for PhysicalDeviceFormatPackFeaturesARM<'a> {
         }
     }
 }
+impl<'a> PhysicalDeviceFormatPackFeaturesARM<'a> {
+    pub fn format_pack(mut self, format_pack: crate::vk::Bool32) -> Self {
+        self.format_pack = format_pack;
+        self
+    }
+}
 ///Provided by [`arm::format_pack`](crate::arm::format_pack)
 impl crate::vk::Format {
     pub const R10X6_UINT_PACK16_ARM: Self = Self(1000609000);

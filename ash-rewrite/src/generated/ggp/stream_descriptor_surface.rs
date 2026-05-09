@@ -61,6 +61,22 @@ pub(crate) mod reexport {
             }
         }
     }
+    impl<'a> StreamDescriptorSurfaceCreateInfoGGP<'a> {
+        pub fn flags(
+            mut self,
+            flags: crate::vk::StreamDescriptorSurfaceCreateFlagsGGP,
+        ) -> Self {
+            self.flags = flags;
+            self
+        }
+        pub fn stream_descriptor(
+            mut self,
+            stream_descriptor: crate::platform_types::GgpStreamDescriptor,
+        ) -> Self {
+            self.stream_descriptor = stream_descriptor;
+            self
+        }
+    }
     ///Provided by [`ggp::stream_descriptor_surface`](crate::ggp::stream_descriptor_surface)
     impl crate::vk::StructureType {
         pub const STREAM_DESCRIPTOR_SURFACE_CREATE_INFO_GGP: Self = Self(1000049000);

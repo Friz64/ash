@@ -107,6 +107,23 @@ pub(crate) mod reexport {
             }
         }
     }
+    impl<'a> ImageViewHandleInfoNVX<'a> {
+        pub fn image_view(mut self, image_view: crate::vk::ImageView) -> Self {
+            self.image_view = image_view;
+            self
+        }
+        pub fn descriptor_type(
+            mut self,
+            descriptor_type: crate::vk::DescriptorType,
+        ) -> Self {
+            self.descriptor_type = descriptor_type;
+            self
+        }
+        pub fn sampler(mut self, sampler: crate::vk::Sampler) -> Self {
+            self.sampler = sampler;
+            self
+        }
+    }
     #[repr(C)]
     #[derive(Clone, Copy)]
     pub struct ImageViewAddressPropertiesNVX<'a> {
@@ -128,6 +145,19 @@ pub(crate) mod reexport {
                 size: Default::default(),
                 _marker: ::core::marker::PhantomData,
             }
+        }
+    }
+    impl<'a> ImageViewAddressPropertiesNVX<'a> {
+        pub fn device_address(
+            mut self,
+            device_address: crate::vk::DeviceAddress,
+        ) -> Self {
+            self.device_address = device_address;
+            self
+        }
+        pub fn size(mut self, size: crate::vk::DeviceSize) -> Self {
+            self.size = size;
+            self
         }
     }
     ///Provided by [`nvx::image_view_handle`](crate::nvx::image_view_handle)

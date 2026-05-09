@@ -25,6 +25,15 @@ impl<'a> Default for PhysicalDeviceFragmentDensityMapLayeredPropertiesVALVE<'a> 
         }
     }
 }
+impl<'a> PhysicalDeviceFragmentDensityMapLayeredPropertiesVALVE<'a> {
+    pub fn max_fragment_density_map_layers(
+        mut self,
+        max_fragment_density_map_layers: u32,
+    ) -> Self {
+        self.max_fragment_density_map_layers = max_fragment_density_map_layers;
+        self
+    }
+}
 #[repr(C)]
 #[derive(Clone, Copy)]
 pub struct PhysicalDeviceFragmentDensityMapLayeredFeaturesVALVE<'a> {
@@ -51,6 +60,15 @@ impl<'a> Default for PhysicalDeviceFragmentDensityMapLayeredFeaturesVALVE<'a> {
         }
     }
 }
+impl<'a> PhysicalDeviceFragmentDensityMapLayeredFeaturesVALVE<'a> {
+    pub fn fragment_density_map_layered(
+        mut self,
+        fragment_density_map_layered: crate::vk::Bool32,
+    ) -> Self {
+        self.fragment_density_map_layered = fragment_density_map_layered;
+        self
+    }
+}
 #[repr(C)]
 #[derive(Clone, Copy)]
 pub struct PipelineFragmentDensityMapLayeredCreateInfoVALVE<'a> {
@@ -73,6 +91,15 @@ impl<'a> Default for PipelineFragmentDensityMapLayeredCreateInfoVALVE<'a> {
             max_fragment_density_map_layers: Default::default(),
             _marker: ::core::marker::PhantomData,
         }
+    }
+}
+impl<'a> PipelineFragmentDensityMapLayeredCreateInfoVALVE<'a> {
+    pub fn max_fragment_density_map_layers(
+        mut self,
+        max_fragment_density_map_layers: u32,
+    ) -> Self {
+        self.max_fragment_density_map_layers = max_fragment_density_map_layers;
+        self
     }
 }
 ///Provided by [`valve::fragment_density_map_layered`](crate::valve::fragment_density_map_layered)

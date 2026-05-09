@@ -277,6 +277,40 @@ pub(crate) mod reexport {
             }
         }
     }
+    impl<'a> PhysicalDeviceDataGraphFeaturesARM<'a> {
+        pub fn data_graph(mut self, data_graph: crate::vk::Bool32) -> Self {
+            self.data_graph = data_graph;
+            self
+        }
+        pub fn data_graph_update_after_bind(
+            mut self,
+            data_graph_update_after_bind: crate::vk::Bool32,
+        ) -> Self {
+            self.data_graph_update_after_bind = data_graph_update_after_bind;
+            self
+        }
+        pub fn data_graph_specialization_constants(
+            mut self,
+            data_graph_specialization_constants: crate::vk::Bool32,
+        ) -> Self {
+            self.data_graph_specialization_constants = data_graph_specialization_constants;
+            self
+        }
+        pub fn data_graph_descriptor_buffer(
+            mut self,
+            data_graph_descriptor_buffer: crate::vk::Bool32,
+        ) -> Self {
+            self.data_graph_descriptor_buffer = data_graph_descriptor_buffer;
+            self
+        }
+        pub fn data_graph_shader_module(
+            mut self,
+            data_graph_shader_module: crate::vk::Bool32,
+        ) -> Self {
+            self.data_graph_shader_module = data_graph_shader_module;
+            self
+        }
+    }
     #[repr(C)]
     #[derive(Clone, Copy)]
     pub struct DataGraphPipelineConstantTensorSemiStructuredSparsityInfoARM<'a> {
@@ -306,6 +340,20 @@ pub(crate) mod reexport {
             }
         }
     }
+    impl<'a> DataGraphPipelineConstantTensorSemiStructuredSparsityInfoARM<'a> {
+        pub fn dimension(mut self, dimension: u32) -> Self {
+            self.dimension = dimension;
+            self
+        }
+        pub fn zero_count(mut self, zero_count: u32) -> Self {
+            self.zero_count = zero_count;
+            self
+        }
+        pub fn group_size(mut self, group_size: u32) -> Self {
+            self.group_size = group_size;
+            self
+        }
+    }
     #[repr(C)]
     #[derive(Clone, Copy)]
     pub struct DataGraphPipelineConstantARM<'a> {
@@ -327,6 +375,19 @@ pub(crate) mod reexport {
                 p_constant_data: Default::default(),
                 _marker: ::core::marker::PhantomData,
             }
+        }
+    }
+    impl<'a> DataGraphPipelineConstantARM<'a> {
+        pub fn id(mut self, id: u32) -> Self {
+            self.id = id;
+            self
+        }
+        pub fn p_constant_data(
+            mut self,
+            p_constant_data: *const core::ffi::c_void,
+        ) -> Self {
+            self.p_constant_data = p_constant_data;
+            self
         }
     }
     #[repr(C)]
@@ -354,6 +415,20 @@ pub(crate) mod reexport {
             }
         }
     }
+    impl<'a> DataGraphPipelineResourceInfoARM<'a> {
+        pub fn descriptor_set(mut self, descriptor_set: u32) -> Self {
+            self.descriptor_set = descriptor_set;
+            self
+        }
+        pub fn binding(mut self, binding: u32) -> Self {
+            self.binding = binding;
+            self
+        }
+        pub fn array_element(mut self, array_element: u32) -> Self {
+            self.array_element = array_element;
+            self
+        }
+    }
     #[repr(C)]
     #[derive(Clone, Copy)]
     pub struct DataGraphPipelineCompilerControlCreateInfoARM<'a> {
@@ -376,6 +451,15 @@ pub(crate) mod reexport {
                 p_vendor_options: Default::default(),
                 _marker: ::core::marker::PhantomData,
             }
+        }
+    }
+    impl<'a> DataGraphPipelineCompilerControlCreateInfoARM<'a> {
+        pub fn p_vendor_options(
+            mut self,
+            p_vendor_options: *const core::ffi::c_char,
+        ) -> Self {
+            self.p_vendor_options = p_vendor_options;
+            self
         }
     }
     #[repr(C)]
@@ -403,6 +487,27 @@ pub(crate) mod reexport {
                 p_resource_infos: Default::default(),
                 _marker: ::core::marker::PhantomData,
             }
+        }
+    }
+    impl<'a> DataGraphPipelineCreateInfoARM<'a> {
+        pub fn flags(mut self, flags: crate::vk::PipelineCreateFlags2) -> Self {
+            self.flags = flags;
+            self
+        }
+        pub fn layout(mut self, layout: crate::vk::PipelineLayout) -> Self {
+            self.layout = layout;
+            self
+        }
+        pub fn resource_info_count(mut self, resource_info_count: u32) -> Self {
+            self.resource_info_count = resource_info_count;
+            self
+        }
+        pub fn p_resource_infos(
+            mut self,
+            p_resource_infos: *const crate::vk::DataGraphPipelineResourceInfoARM<'a>,
+        ) -> Self {
+            self.p_resource_infos = p_resource_infos;
+            self
         }
     }
     #[repr(C)]
@@ -437,6 +542,34 @@ pub(crate) mod reexport {
             }
         }
     }
+    impl<'a> DataGraphPipelineShaderModuleCreateInfoARM<'a> {
+        pub fn module(mut self, module: crate::vk::ShaderModule) -> Self {
+            self.module = module;
+            self
+        }
+        pub fn p_name(mut self, p_name: *const core::ffi::c_char) -> Self {
+            self.p_name = p_name;
+            self
+        }
+        pub fn p_specialization_info(
+            mut self,
+            p_specialization_info: *const crate::vk::SpecializationInfo<'a>,
+        ) -> Self {
+            self.p_specialization_info = p_specialization_info;
+            self
+        }
+        pub fn constant_count(mut self, constant_count: u32) -> Self {
+            self.constant_count = constant_count;
+            self
+        }
+        pub fn p_constants(
+            mut self,
+            p_constants: *const crate::vk::DataGraphPipelineConstantARM<'a>,
+        ) -> Self {
+            self.p_constants = p_constants;
+            self
+        }
+    }
     #[repr(C)]
     #[derive(Clone, Copy)]
     pub struct DataGraphPipelineSessionCreateInfoARM<'a> {
@@ -461,6 +594,22 @@ pub(crate) mod reexport {
             }
         }
     }
+    impl<'a> DataGraphPipelineSessionCreateInfoARM<'a> {
+        pub fn flags(
+            mut self,
+            flags: crate::vk::DataGraphPipelineSessionCreateFlagsARM,
+        ) -> Self {
+            self.flags = flags;
+            self
+        }
+        pub fn data_graph_pipeline(
+            mut self,
+            data_graph_pipeline: crate::vk::Pipeline,
+        ) -> Self {
+            self.data_graph_pipeline = data_graph_pipeline;
+            self
+        }
+    }
     #[repr(C)]
     #[derive(Clone, Copy)]
     pub struct DataGraphPipelineSessionBindPointRequirementsInfoARM<'a> {
@@ -481,6 +630,15 @@ pub(crate) mod reexport {
                 session: Default::default(),
                 _marker: ::core::marker::PhantomData,
             }
+        }
+    }
+    impl<'a> DataGraphPipelineSessionBindPointRequirementsInfoARM<'a> {
+        pub fn session(
+            mut self,
+            session: crate::vk::DataGraphPipelineSessionARM,
+        ) -> Self {
+            self.session = session;
+            self
         }
     }
     #[repr(C)]
@@ -509,6 +667,26 @@ pub(crate) mod reexport {
             }
         }
     }
+    impl<'a> DataGraphPipelineSessionBindPointRequirementARM<'a> {
+        pub fn bind_point(
+            mut self,
+            bind_point: crate::vk::DataGraphPipelineSessionBindPointARM,
+        ) -> Self {
+            self.bind_point = bind_point;
+            self
+        }
+        pub fn bind_point_type(
+            mut self,
+            bind_point_type: crate::vk::DataGraphPipelineSessionBindPointTypeARM,
+        ) -> Self {
+            self.bind_point_type = bind_point_type;
+            self
+        }
+        pub fn num_objects(mut self, num_objects: u32) -> Self {
+            self.num_objects = num_objects;
+            self
+        }
+    }
     #[repr(C)]
     #[derive(Clone, Copy)]
     pub struct DataGraphPipelineSessionMemoryRequirementsInfoARM<'a> {
@@ -533,6 +711,26 @@ pub(crate) mod reexport {
                 object_index: Default::default(),
                 _marker: ::core::marker::PhantomData,
             }
+        }
+    }
+    impl<'a> DataGraphPipelineSessionMemoryRequirementsInfoARM<'a> {
+        pub fn session(
+            mut self,
+            session: crate::vk::DataGraphPipelineSessionARM,
+        ) -> Self {
+            self.session = session;
+            self
+        }
+        pub fn bind_point(
+            mut self,
+            bind_point: crate::vk::DataGraphPipelineSessionBindPointARM,
+        ) -> Self {
+            self.bind_point = bind_point;
+            self
+        }
+        pub fn object_index(mut self, object_index: u32) -> Self {
+            self.object_index = object_index;
+            self
         }
     }
     #[repr(C)]
@@ -565,6 +763,34 @@ pub(crate) mod reexport {
             }
         }
     }
+    impl<'a> BindDataGraphPipelineSessionMemoryInfoARM<'a> {
+        pub fn session(
+            mut self,
+            session: crate::vk::DataGraphPipelineSessionARM,
+        ) -> Self {
+            self.session = session;
+            self
+        }
+        pub fn bind_point(
+            mut self,
+            bind_point: crate::vk::DataGraphPipelineSessionBindPointARM,
+        ) -> Self {
+            self.bind_point = bind_point;
+            self
+        }
+        pub fn object_index(mut self, object_index: u32) -> Self {
+            self.object_index = object_index;
+            self
+        }
+        pub fn memory(mut self, memory: crate::vk::DeviceMemory) -> Self {
+            self.memory = memory;
+            self
+        }
+        pub fn memory_offset(mut self, memory_offset: crate::vk::DeviceSize) -> Self {
+            self.memory_offset = memory_offset;
+            self
+        }
+    }
     #[repr(C)]
     #[derive(Clone, Copy)]
     pub struct DataGraphPipelineInfoARM<'a> {
@@ -584,6 +810,15 @@ pub(crate) mod reexport {
                 data_graph_pipeline: Default::default(),
                 _marker: ::core::marker::PhantomData,
             }
+        }
+    }
+    impl<'a> DataGraphPipelineInfoARM<'a> {
+        pub fn data_graph_pipeline(
+            mut self,
+            data_graph_pipeline: crate::vk::Pipeline,
+        ) -> Self {
+            self.data_graph_pipeline = data_graph_pipeline;
+            self
         }
     }
     #[repr(C)]
@@ -614,6 +849,27 @@ pub(crate) mod reexport {
             }
         }
     }
+    impl<'a> DataGraphPipelinePropertyQueryResultARM<'a> {
+        pub fn property(
+            mut self,
+            property: crate::vk::DataGraphPipelinePropertyARM,
+        ) -> Self {
+            self.property = property;
+            self
+        }
+        pub fn is_text(mut self, is_text: crate::vk::Bool32) -> Self {
+            self.is_text = is_text;
+            self
+        }
+        pub fn data_size(mut self, data_size: usize) -> Self {
+            self.data_size = data_size;
+            self
+        }
+        pub fn p_data(mut self, p_data: *mut core::ffi::c_void) -> Self {
+            self.p_data = p_data;
+            self
+        }
+    }
     #[repr(C)]
     #[derive(Clone, Copy)]
     pub struct DataGraphPipelineIdentifierCreateInfoARM<'a> {
@@ -640,6 +896,16 @@ pub(crate) mod reexport {
             }
         }
     }
+    impl<'a> DataGraphPipelineIdentifierCreateInfoARM<'a> {
+        pub fn identifier_size(mut self, identifier_size: u32) -> Self {
+            self.identifier_size = identifier_size;
+            self
+        }
+        pub fn p_identifier(mut self, p_identifier: *const u8) -> Self {
+            self.p_identifier = p_identifier;
+            self
+        }
+    }
     #[repr(C)]
     #[derive(Clone, Copy)]
     pub struct DataGraphPipelineDispatchInfoARM<'a> {
@@ -661,11 +927,33 @@ pub(crate) mod reexport {
             }
         }
     }
+    impl<'a> DataGraphPipelineDispatchInfoARM<'a> {
+        pub fn flags(
+            mut self,
+            flags: crate::vk::DataGraphPipelineDispatchFlagsARM,
+        ) -> Self {
+            self.flags = flags;
+            self
+        }
+    }
     #[repr(C)]
     #[derive(Clone, Copy, Default)]
     pub struct PhysicalDeviceDataGraphProcessingEngineARM {
         pub _type: crate::vk::PhysicalDeviceDataGraphProcessingEngineTypeARM,
         pub is_foreign: crate::vk::Bool32,
+    }
+    impl PhysicalDeviceDataGraphProcessingEngineARM {
+        pub fn _type(
+            mut self,
+            _type: crate::vk::PhysicalDeviceDataGraphProcessingEngineTypeARM,
+        ) -> Self {
+            self._type = _type;
+            self
+        }
+        pub fn is_foreign(mut self, is_foreign: crate::vk::Bool32) -> Self {
+            self.is_foreign = is_foreign;
+            self
+        }
     }
     #[repr(C)]
     #[derive(Clone, Copy)]
@@ -682,6 +970,27 @@ pub(crate) mod reexport {
                 name: unsafe { core::mem::zeroed() },
                 version: Default::default(),
             }
+        }
+    }
+    impl PhysicalDeviceDataGraphOperationSupportARM {
+        pub fn operation_type(
+            mut self,
+            operation_type: crate::vk::PhysicalDeviceDataGraphOperationTypeARM,
+        ) -> Self {
+            self.operation_type = operation_type;
+            self
+        }
+        pub fn name(
+            mut self,
+            name: [core::ffi::c_char; crate::vk::MAX_PHYSICAL_DEVICE_DATA_GRAPH_OPERATION_SET_NAME_SIZE_ARM
+                as _],
+        ) -> Self {
+            self.name = name;
+            self
+        }
+        pub fn version(mut self, version: u32) -> Self {
+            self.version = version;
+            self
         }
     }
     #[repr(C)]
@@ -708,6 +1017,22 @@ pub(crate) mod reexport {
             }
         }
     }
+    impl<'a> QueueFamilyDataGraphPropertiesARM<'a> {
+        pub fn engine(
+            mut self,
+            engine: crate::vk::PhysicalDeviceDataGraphProcessingEngineARM,
+        ) -> Self {
+            self.engine = engine;
+            self
+        }
+        pub fn operation(
+            mut self,
+            operation: crate::vk::PhysicalDeviceDataGraphOperationSupportARM,
+        ) -> Self {
+            self.operation = operation;
+            self
+        }
+    }
     #[repr(C)]
     #[derive(Clone, Copy)]
     pub struct PhysicalDeviceQueueFamilyDataGraphProcessingEngineInfoARM<'a> {
@@ -732,6 +1057,19 @@ pub(crate) mod reexport {
             }
         }
     }
+    impl<'a> PhysicalDeviceQueueFamilyDataGraphProcessingEngineInfoARM<'a> {
+        pub fn queue_family_index(mut self, queue_family_index: u32) -> Self {
+            self.queue_family_index = queue_family_index;
+            self
+        }
+        pub fn engine_type(
+            mut self,
+            engine_type: crate::vk::PhysicalDeviceDataGraphProcessingEngineTypeARM,
+        ) -> Self {
+            self.engine_type = engine_type;
+            self
+        }
+    }
     #[repr(C)]
     #[derive(Clone, Copy)]
     pub struct QueueFamilyDataGraphProcessingEnginePropertiesARM<'a> {
@@ -754,6 +1092,22 @@ pub(crate) mod reexport {
                 foreign_memory_handle_types: Default::default(),
                 _marker: ::core::marker::PhantomData,
             }
+        }
+    }
+    impl<'a> QueueFamilyDataGraphProcessingEnginePropertiesARM<'a> {
+        pub fn foreign_semaphore_handle_types(
+            mut self,
+            foreign_semaphore_handle_types: crate::vk::ExternalSemaphoreHandleTypeFlags,
+        ) -> Self {
+            self.foreign_semaphore_handle_types = foreign_semaphore_handle_types;
+            self
+        }
+        pub fn foreign_memory_handle_types(
+            mut self,
+            foreign_memory_handle_types: crate::vk::ExternalMemoryHandleTypeFlags,
+        ) -> Self {
+            self.foreign_memory_handle_types = foreign_memory_handle_types;
+            self
         }
     }
     #[repr(C)]
@@ -784,6 +1138,19 @@ pub(crate) mod reexport {
                 p_processing_engines: Default::default(),
                 _marker: ::core::marker::PhantomData,
             }
+        }
+    }
+    impl<'a> DataGraphProcessingEngineCreateInfoARM<'a> {
+        pub fn processing_engine_count(mut self, processing_engine_count: u32) -> Self {
+            self.processing_engine_count = processing_engine_count;
+            self
+        }
+        pub fn p_processing_engines(
+            mut self,
+            p_processing_engines: *mut crate::vk::PhysicalDeviceDataGraphProcessingEngineARM,
+        ) -> Self {
+            self.p_processing_engines = p_processing_engines;
+            self
         }
     }
     ///Provided by [`arm::data_graph`](crate::arm::data_graph)

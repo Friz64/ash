@@ -65,6 +65,20 @@ pub(crate) mod reexport {
             }
         }
     }
+    impl<'a> DisplayPresentInfoKHR<'a> {
+        pub fn src_rect(mut self, src_rect: crate::vk::Rect2D) -> Self {
+            self.src_rect = src_rect;
+            self
+        }
+        pub fn dst_rect(mut self, dst_rect: crate::vk::Rect2D) -> Self {
+            self.dst_rect = dst_rect;
+            self
+        }
+        pub fn persistent(mut self, persistent: crate::vk::Bool32) -> Self {
+            self.persistent = persistent;
+            self
+        }
+    }
     ///Provided by [`khr::display_swapchain`](crate::khr::display_swapchain)
     impl crate::vk::StructureType {
         pub const DISPLAY_PRESENT_INFO_KHR: Self = Self(1000003000);

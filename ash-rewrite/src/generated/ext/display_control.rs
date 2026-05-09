@@ -109,6 +109,15 @@ pub(crate) mod reexport {
             }
         }
     }
+    impl<'a> DisplayPowerInfoEXT<'a> {
+        pub fn power_state(
+            mut self,
+            power_state: crate::vk::DisplayPowerStateEXT,
+        ) -> Self {
+            self.power_state = power_state;
+            self
+        }
+    }
     #[repr(C)]
     #[derive(Clone, Copy)]
     pub struct DeviceEventInfoEXT<'a> {
@@ -128,6 +137,15 @@ pub(crate) mod reexport {
                 device_event: Default::default(),
                 _marker: ::core::marker::PhantomData,
             }
+        }
+    }
+    impl<'a> DeviceEventInfoEXT<'a> {
+        pub fn device_event(
+            mut self,
+            device_event: crate::vk::DeviceEventTypeEXT,
+        ) -> Self {
+            self.device_event = device_event;
+            self
         }
     }
     #[repr(C)]
@@ -151,6 +169,15 @@ pub(crate) mod reexport {
             }
         }
     }
+    impl<'a> DisplayEventInfoEXT<'a> {
+        pub fn display_event(
+            mut self,
+            display_event: crate::vk::DisplayEventTypeEXT,
+        ) -> Self {
+            self.display_event = display_event;
+            self
+        }
+    }
     #[repr(C)]
     #[derive(Clone, Copy)]
     pub struct SwapchainCounterCreateInfoEXT<'a> {
@@ -172,6 +199,15 @@ pub(crate) mod reexport {
                 surface_counters: Default::default(),
                 _marker: ::core::marker::PhantomData,
             }
+        }
+    }
+    impl<'a> SwapchainCounterCreateInfoEXT<'a> {
+        pub fn surface_counters(
+            mut self,
+            surface_counters: crate::vk::SurfaceCounterFlagsEXT,
+        ) -> Self {
+            self.surface_counters = surface_counters;
+            self
         }
     }
     ///Provided by [`ext::display_control`](crate::ext::display_control)

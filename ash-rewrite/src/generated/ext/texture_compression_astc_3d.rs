@@ -27,6 +27,15 @@ impl<'a> Default for PhysicalDeviceTextureCompressionASTC3DFeaturesEXT<'a> {
         }
     }
 }
+impl<'a> PhysicalDeviceTextureCompressionASTC3DFeaturesEXT<'a> {
+    pub fn texture_compression_astc_3d(
+        mut self,
+        texture_compression_astc_3d: crate::vk::Bool32,
+    ) -> Self {
+        self.texture_compression_astc_3d = texture_compression_astc_3d;
+        self
+    }
+}
 ///Provided by [`ext::texture_compression_astc_3d`](crate::ext::texture_compression_astc_3d)
 impl crate::vk::Format {
     pub const ASTC_3X3X3_UNORM_BLOCK_EXT: Self = Self(1000288000);

@@ -62,6 +62,15 @@ pub(crate) mod reexport {
             }
         }
     }
+    impl<'a> PhysicalDeviceColorWriteEnableFeaturesEXT<'a> {
+        pub fn color_write_enable(
+            mut self,
+            color_write_enable: crate::vk::Bool32,
+        ) -> Self {
+            self.color_write_enable = color_write_enable;
+            self
+        }
+    }
     #[repr(C)]
     #[derive(Clone, Copy)]
     pub struct PipelineColorWriteCreateInfoEXT<'a> {
@@ -85,6 +94,19 @@ pub(crate) mod reexport {
                 p_color_write_enables: Default::default(),
                 _marker: ::core::marker::PhantomData,
             }
+        }
+    }
+    impl<'a> PipelineColorWriteCreateInfoEXT<'a> {
+        pub fn attachment_count(mut self, attachment_count: u32) -> Self {
+            self.attachment_count = attachment_count;
+            self
+        }
+        pub fn p_color_write_enables(
+            mut self,
+            p_color_write_enables: *const crate::vk::Bool32,
+        ) -> Self {
+            self.p_color_write_enables = p_color_write_enables;
+            self
         }
     }
     ///Provided by [`ext::color_write_enable`](crate::ext::color_write_enable)

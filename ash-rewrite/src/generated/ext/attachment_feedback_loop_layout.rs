@@ -27,6 +27,15 @@ impl<'a> Default for PhysicalDeviceAttachmentFeedbackLoopLayoutFeaturesEXT<'a> {
         }
     }
 }
+impl<'a> PhysicalDeviceAttachmentFeedbackLoopLayoutFeaturesEXT<'a> {
+    pub fn attachment_feedback_loop_layout(
+        mut self,
+        attachment_feedback_loop_layout: crate::vk::Bool32,
+    ) -> Self {
+        self.attachment_feedback_loop_layout = attachment_feedback_loop_layout;
+        self
+    }
+}
 ///Provided by [`ext::attachment_feedback_loop_layout`](crate::ext::attachment_feedback_loop_layout)
 impl crate::vk::ImageLayout {
     pub const ATTACHMENT_FEEDBACK_LOOP_OPTIMAL_EXT: Self = Self(1000339000);

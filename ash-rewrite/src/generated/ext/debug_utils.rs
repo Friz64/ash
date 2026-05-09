@@ -237,6 +237,20 @@ pub(crate) mod reexport {
             }
         }
     }
+    impl<'a> DebugUtilsObjectNameInfoEXT<'a> {
+        pub fn object_type(mut self, object_type: crate::vk::ObjectType) -> Self {
+            self.object_type = object_type;
+            self
+        }
+        pub fn object_handle(mut self, object_handle: u64) -> Self {
+            self.object_handle = object_handle;
+            self
+        }
+        pub fn p_object_name(mut self, p_object_name: *const core::ffi::c_char) -> Self {
+            self.p_object_name = p_object_name;
+            self
+        }
+    }
     #[repr(C)]
     #[derive(Clone, Copy)]
     pub struct DebugUtilsObjectTagInfoEXT<'a> {
@@ -266,6 +280,28 @@ pub(crate) mod reexport {
             }
         }
     }
+    impl<'a> DebugUtilsObjectTagInfoEXT<'a> {
+        pub fn object_type(mut self, object_type: crate::vk::ObjectType) -> Self {
+            self.object_type = object_type;
+            self
+        }
+        pub fn object_handle(mut self, object_handle: u64) -> Self {
+            self.object_handle = object_handle;
+            self
+        }
+        pub fn tag_name(mut self, tag_name: u64) -> Self {
+            self.tag_name = tag_name;
+            self
+        }
+        pub fn tag_size(mut self, tag_size: usize) -> Self {
+            self.tag_size = tag_size;
+            self
+        }
+        pub fn p_tag(mut self, p_tag: *const core::ffi::c_void) -> Self {
+            self.p_tag = p_tag;
+            self
+        }
+    }
     #[repr(C)]
     #[derive(Clone, Copy)]
     pub struct DebugUtilsLabelEXT<'a> {
@@ -287,6 +323,16 @@ pub(crate) mod reexport {
                 color: unsafe { core::mem::zeroed() },
                 _marker: ::core::marker::PhantomData,
             }
+        }
+    }
+    impl<'a> DebugUtilsLabelEXT<'a> {
+        pub fn p_label_name(mut self, p_label_name: *const core::ffi::c_char) -> Self {
+            self.p_label_name = p_label_name;
+            self
+        }
+        pub fn color(mut self, color: [core::ffi::c_float; 4 as _]) -> Self {
+            self.color = color;
+            self
         }
     }
     #[repr(C)]
@@ -318,6 +364,40 @@ pub(crate) mod reexport {
                 p_user_data: Default::default(),
                 _marker: ::core::marker::PhantomData,
             }
+        }
+    }
+    impl<'a> DebugUtilsMessengerCreateInfoEXT<'a> {
+        pub fn flags(
+            mut self,
+            flags: crate::vk::DebugUtilsMessengerCreateFlagsEXT,
+        ) -> Self {
+            self.flags = flags;
+            self
+        }
+        pub fn message_severity(
+            mut self,
+            message_severity: crate::vk::DebugUtilsMessageSeverityFlagsEXT,
+        ) -> Self {
+            self.message_severity = message_severity;
+            self
+        }
+        pub fn message_type(
+            mut self,
+            message_type: crate::vk::DebugUtilsMessageTypeFlagsEXT,
+        ) -> Self {
+            self.message_type = message_type;
+            self
+        }
+        pub fn pfn_user_callback(
+            mut self,
+            pfn_user_callback: crate::vk::PFN_vkDebugUtilsMessengerCallbackEXT,
+        ) -> Self {
+            self.pfn_user_callback = pfn_user_callback;
+            self
+        }
+        pub fn p_user_data(mut self, p_user_data: *mut core::ffi::c_void) -> Self {
+            self.p_user_data = p_user_data;
+            self
         }
     }
     #[repr(C)]
@@ -358,6 +438,63 @@ pub(crate) mod reexport {
                 p_objects: Default::default(),
                 _marker: ::core::marker::PhantomData,
             }
+        }
+    }
+    impl<'a> DebugUtilsMessengerCallbackDataEXT<'a> {
+        pub fn flags(
+            mut self,
+            flags: crate::vk::DebugUtilsMessengerCallbackDataFlagsEXT,
+        ) -> Self {
+            self.flags = flags;
+            self
+        }
+        pub fn p_message_id_name(
+            mut self,
+            p_message_id_name: *const core::ffi::c_char,
+        ) -> Self {
+            self.p_message_id_name = p_message_id_name;
+            self
+        }
+        pub fn message_id_number(mut self, message_id_number: i32) -> Self {
+            self.message_id_number = message_id_number;
+            self
+        }
+        pub fn p_message(mut self, p_message: *const core::ffi::c_char) -> Self {
+            self.p_message = p_message;
+            self
+        }
+        pub fn queue_label_count(mut self, queue_label_count: u32) -> Self {
+            self.queue_label_count = queue_label_count;
+            self
+        }
+        pub fn p_queue_labels(
+            mut self,
+            p_queue_labels: *const crate::vk::DebugUtilsLabelEXT<'a>,
+        ) -> Self {
+            self.p_queue_labels = p_queue_labels;
+            self
+        }
+        pub fn cmd_buf_label_count(mut self, cmd_buf_label_count: u32) -> Self {
+            self.cmd_buf_label_count = cmd_buf_label_count;
+            self
+        }
+        pub fn p_cmd_buf_labels(
+            mut self,
+            p_cmd_buf_labels: *const crate::vk::DebugUtilsLabelEXT<'a>,
+        ) -> Self {
+            self.p_cmd_buf_labels = p_cmd_buf_labels;
+            self
+        }
+        pub fn object_count(mut self, object_count: u32) -> Self {
+            self.object_count = object_count;
+            self
+        }
+        pub fn p_objects(
+            mut self,
+            p_objects: *const crate::vk::DebugUtilsObjectNameInfoEXT<'a>,
+        ) -> Self {
+            self.p_objects = p_objects;
+            self
         }
     }
     ///Provided by [`ext::debug_utils`](crate::ext::debug_utils)

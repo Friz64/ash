@@ -63,6 +63,19 @@ pub(crate) mod reexport {
             }
         }
     }
+    impl<'a> PhysicalDeviceFaultFeaturesEXT<'a> {
+        pub fn device_fault(mut self, device_fault: crate::vk::Bool32) -> Self {
+            self.device_fault = device_fault;
+            self
+        }
+        pub fn device_fault_vendor_binary(
+            mut self,
+            device_fault_vendor_binary: crate::vk::Bool32,
+        ) -> Self {
+            self.device_fault_vendor_binary = device_fault_vendor_binary;
+            self
+        }
+    }
     #[repr(C)]
     #[derive(Clone, Copy)]
     pub struct DeviceFaultCountsEXT<'a> {
@@ -86,6 +99,23 @@ pub(crate) mod reexport {
                 vendor_binary_size: Default::default(),
                 _marker: ::core::marker::PhantomData,
             }
+        }
+    }
+    impl<'a> DeviceFaultCountsEXT<'a> {
+        pub fn address_info_count(mut self, address_info_count: u32) -> Self {
+            self.address_info_count = address_info_count;
+            self
+        }
+        pub fn vendor_info_count(mut self, vendor_info_count: u32) -> Self {
+            self.vendor_info_count = vendor_info_count;
+            self
+        }
+        pub fn vendor_binary_size(
+            mut self,
+            vendor_binary_size: crate::vk::DeviceSize,
+        ) -> Self {
+            self.vendor_binary_size = vendor_binary_size;
+            self
         }
     }
     #[repr(C)]
@@ -113,6 +143,36 @@ pub(crate) mod reexport {
                 p_vendor_binary_data: Default::default(),
                 _marker: ::core::marker::PhantomData,
             }
+        }
+    }
+    impl<'a> DeviceFaultInfoEXT<'a> {
+        pub fn description(
+            mut self,
+            description: [core::ffi::c_char; crate::vk::MAX_DESCRIPTION_SIZE as _],
+        ) -> Self {
+            self.description = description;
+            self
+        }
+        pub fn p_address_infos(
+            mut self,
+            p_address_infos: *mut crate::vk::DeviceFaultAddressInfoKHR,
+        ) -> Self {
+            self.p_address_infos = p_address_infos;
+            self
+        }
+        pub fn p_vendor_infos(
+            mut self,
+            p_vendor_infos: *mut crate::vk::DeviceFaultVendorInfoKHR,
+        ) -> Self {
+            self.p_vendor_infos = p_vendor_infos;
+            self
+        }
+        pub fn p_vendor_binary_data(
+            mut self,
+            p_vendor_binary_data: *mut core::ffi::c_void,
+        ) -> Self {
+            self.p_vendor_binary_data = p_vendor_binary_data;
+            self
         }
     }
     pub type DeviceFaultAddressInfoEXT = crate::vk::DeviceFaultAddressInfoKHR;

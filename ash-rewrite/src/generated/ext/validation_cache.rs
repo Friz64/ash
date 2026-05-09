@@ -112,6 +112,23 @@ pub(crate) mod reexport {
             }
         }
     }
+    impl<'a> ValidationCacheCreateInfoEXT<'a> {
+        pub fn flags(mut self, flags: crate::vk::ValidationCacheCreateFlagsEXT) -> Self {
+            self.flags = flags;
+            self
+        }
+        pub fn initial_data_size(mut self, initial_data_size: usize) -> Self {
+            self.initial_data_size = initial_data_size;
+            self
+        }
+        pub fn p_initial_data(
+            mut self,
+            p_initial_data: *const core::ffi::c_void,
+        ) -> Self {
+            self.p_initial_data = p_initial_data;
+            self
+        }
+    }
     #[repr(C)]
     #[derive(Clone, Copy)]
     pub struct ShaderModuleValidationCacheCreateInfoEXT<'a> {
@@ -136,6 +153,15 @@ pub(crate) mod reexport {
                 validation_cache: Default::default(),
                 _marker: ::core::marker::PhantomData,
             }
+        }
+    }
+    impl<'a> ShaderModuleValidationCacheCreateInfoEXT<'a> {
+        pub fn validation_cache(
+            mut self,
+            validation_cache: crate::vk::ValidationCacheEXT,
+        ) -> Self {
+            self.validation_cache = validation_cache;
+            self
         }
     }
     ///Provided by [`ext::validation_cache`](crate::ext::validation_cache)

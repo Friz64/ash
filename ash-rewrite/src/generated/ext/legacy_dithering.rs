@@ -27,6 +27,12 @@ impl<'a> Default for PhysicalDeviceLegacyDitheringFeaturesEXT<'a> {
         }
     }
 }
+impl<'a> PhysicalDeviceLegacyDitheringFeaturesEXT<'a> {
+    pub fn legacy_dithering(mut self, legacy_dithering: crate::vk::Bool32) -> Self {
+        self.legacy_dithering = legacy_dithering;
+        self
+    }
+}
 ///Provided by [`ext::legacy_dithering`](crate::ext::legacy_dithering)
 impl crate::vk::StructureType {
     pub const PHYSICAL_DEVICE_LEGACY_DITHERING_FEATURES_EXT: Self = Self(1000465000);

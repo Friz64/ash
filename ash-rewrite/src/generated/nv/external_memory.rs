@@ -24,6 +24,15 @@ impl<'a> Default for ExternalMemoryImageCreateInfoNV<'a> {
         }
     }
 }
+impl<'a> ExternalMemoryImageCreateInfoNV<'a> {
+    pub fn handle_types(
+        mut self,
+        handle_types: crate::vk::ExternalMemoryHandleTypeFlagsNV,
+    ) -> Self {
+        self.handle_types = handle_types;
+        self
+    }
+}
 #[repr(C)]
 #[derive(Clone, Copy)]
 pub struct ExportMemoryAllocateInfoNV<'a> {
@@ -45,6 +54,15 @@ impl<'a> Default for ExportMemoryAllocateInfoNV<'a> {
             handle_types: Default::default(),
             _marker: ::core::marker::PhantomData,
         }
+    }
+}
+impl<'a> ExportMemoryAllocateInfoNV<'a> {
+    pub fn handle_types(
+        mut self,
+        handle_types: crate::vk::ExternalMemoryHandleTypeFlagsNV,
+    ) -> Self {
+        self.handle_types = handle_types;
+        self
     }
 }
 ///Provided by [`nv::external_memory`](crate::nv::external_memory)

@@ -27,6 +27,12 @@ impl<'a> Default for PhysicalDeviceAmigoProfilingFeaturesSEC<'a> {
         }
     }
 }
+impl<'a> PhysicalDeviceAmigoProfilingFeaturesSEC<'a> {
+    pub fn amigo_profiling(mut self, amigo_profiling: crate::vk::Bool32) -> Self {
+        self.amigo_profiling = amigo_profiling;
+        self
+    }
+}
 #[repr(C)]
 #[derive(Clone, Copy)]
 pub struct AmigoProfilingSubmitInfoSEC<'a> {
@@ -50,6 +56,16 @@ impl<'a> Default for AmigoProfilingSubmitInfoSEC<'a> {
             swap_buffer_timestamp: Default::default(),
             _marker: ::core::marker::PhantomData,
         }
+    }
+}
+impl<'a> AmigoProfilingSubmitInfoSEC<'a> {
+    pub fn first_draw_timestamp(mut self, first_draw_timestamp: u64) -> Self {
+        self.first_draw_timestamp = first_draw_timestamp;
+        self
+    }
+    pub fn swap_buffer_timestamp(mut self, swap_buffer_timestamp: u64) -> Self {
+        self.swap_buffer_timestamp = swap_buffer_timestamp;
+        self
     }
 }
 ///Provided by [`sec::amigo_profiling`](crate::sec::amigo_profiling)

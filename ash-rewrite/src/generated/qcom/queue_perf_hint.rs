@@ -58,6 +58,16 @@ pub(crate) mod reexport {
             }
         }
     }
+    impl<'a> PerfHintInfoQCOM<'a> {
+        pub fn _type(mut self, _type: crate::vk::PerfHintTypeQCOM) -> Self {
+            self._type = _type;
+            self
+        }
+        pub fn scale(mut self, scale: u32) -> Self {
+            self.scale = scale;
+            self
+        }
+    }
     #[repr(C)]
     #[derive(Clone, Copy)]
     pub struct PhysicalDeviceQueuePerfHintFeaturesQCOM<'a> {
@@ -84,6 +94,12 @@ pub(crate) mod reexport {
             }
         }
     }
+    impl<'a> PhysicalDeviceQueuePerfHintFeaturesQCOM<'a> {
+        pub fn queue_perf_hint(mut self, queue_perf_hint: crate::vk::Bool32) -> Self {
+            self.queue_perf_hint = queue_perf_hint;
+            self
+        }
+    }
     #[repr(C)]
     #[derive(Clone, Copy)]
     pub struct PhysicalDeviceQueuePerfHintPropertiesQCOM<'a> {
@@ -106,6 +122,15 @@ pub(crate) mod reexport {
                 supported_queues: Default::default(),
                 _marker: ::core::marker::PhantomData,
             }
+        }
+    }
+    impl<'a> PhysicalDeviceQueuePerfHintPropertiesQCOM<'a> {
+        pub fn supported_queues(
+            mut self,
+            supported_queues: crate::vk::QueueFlags,
+        ) -> Self {
+            self.supported_queues = supported_queues;
+            self
         }
     }
     ///Provided by [`qcom::queue_perf_hint`](crate::qcom::queue_perf_hint)

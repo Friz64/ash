@@ -29,6 +29,22 @@ impl<'a> Default for PhysicalDeviceComputeShaderDerivativesFeaturesKHR<'a> {
         }
     }
 }
+impl<'a> PhysicalDeviceComputeShaderDerivativesFeaturesKHR<'a> {
+    pub fn compute_derivative_group_quads(
+        mut self,
+        compute_derivative_group_quads: crate::vk::Bool32,
+    ) -> Self {
+        self.compute_derivative_group_quads = compute_derivative_group_quads;
+        self
+    }
+    pub fn compute_derivative_group_linear(
+        mut self,
+        compute_derivative_group_linear: crate::vk::Bool32,
+    ) -> Self {
+        self.compute_derivative_group_linear = compute_derivative_group_linear;
+        self
+    }
+}
 #[repr(C)]
 #[derive(Clone, Copy)]
 pub struct PhysicalDeviceComputeShaderDerivativesPropertiesKHR<'a> {
@@ -51,6 +67,15 @@ impl<'a> Default for PhysicalDeviceComputeShaderDerivativesPropertiesKHR<'a> {
             mesh_and_task_shader_derivatives: Default::default(),
             _marker: ::core::marker::PhantomData,
         }
+    }
+}
+impl<'a> PhysicalDeviceComputeShaderDerivativesPropertiesKHR<'a> {
+    pub fn mesh_and_task_shader_derivatives(
+        mut self,
+        mesh_and_task_shader_derivatives: crate::vk::Bool32,
+    ) -> Self {
+        self.mesh_and_task_shader_derivatives = mesh_and_task_shader_derivatives;
+        self
     }
 }
 ///Provided by [`khr::compute_shader_derivatives`](crate::khr::compute_shader_derivatives)

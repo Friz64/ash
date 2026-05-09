@@ -27,6 +27,15 @@ impl<'a> Default for PhysicalDeviceRGBA10X6FormatsFeaturesEXT<'a> {
         }
     }
 }
+impl<'a> PhysicalDeviceRGBA10X6FormatsFeaturesEXT<'a> {
+    pub fn format_rgba10x6_without_y_cb_cr_sampler(
+        mut self,
+        format_rgba10x6_without_y_cb_cr_sampler: crate::vk::Bool32,
+    ) -> Self {
+        self.format_rgba10x6_without_y_cb_cr_sampler = format_rgba10x6_without_y_cb_cr_sampler;
+        self
+    }
+}
 ///Provided by [`ext::rgba10x6_formats`](crate::ext::rgba10x6_formats)
 impl crate::vk::StructureType {
     pub const PHYSICAL_DEVICE_RGBA10X6_FORMATS_FEATURES_EXT: Self = Self(1000344000);

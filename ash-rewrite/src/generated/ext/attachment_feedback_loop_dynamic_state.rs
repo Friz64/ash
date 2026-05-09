@@ -62,6 +62,15 @@ pub(crate) mod reexport {
             }
         }
     }
+    impl<'a> PhysicalDeviceAttachmentFeedbackLoopDynamicStateFeaturesEXT<'a> {
+        pub fn attachment_feedback_loop_dynamic_state(
+            mut self,
+            attachment_feedback_loop_dynamic_state: crate::vk::Bool32,
+        ) -> Self {
+            self.attachment_feedback_loop_dynamic_state = attachment_feedback_loop_dynamic_state;
+            self
+        }
+    }
     ///Provided by [`ext::attachment_feedback_loop_dynamic_state`](crate::ext::attachment_feedback_loop_dynamic_state)
     impl crate::vk::StructureType {
         pub const PHYSICAL_DEVICE_ATTACHMENT_FEEDBACK_LOOP_DYNAMIC_STATE_FEATURES_EXT: Self = Self(

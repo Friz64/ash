@@ -26,6 +26,15 @@ impl<'a> Default for VideoDecodeH265ProfileInfoKHR<'a> {
         }
     }
 }
+impl<'a> VideoDecodeH265ProfileInfoKHR<'a> {
+    pub fn std_profile_idc(
+        mut self,
+        std_profile_idc: crate::vk::H265ProfileIdc,
+    ) -> Self {
+        self.std_profile_idc = std_profile_idc;
+        self
+    }
+}
 #[repr(C)]
 #[derive(Clone, Copy)]
 pub struct VideoDecodeH265CapabilitiesKHR<'a> {
@@ -47,6 +56,12 @@ impl<'a> Default for VideoDecodeH265CapabilitiesKHR<'a> {
             max_level_idc: Default::default(),
             _marker: ::core::marker::PhantomData,
         }
+    }
+}
+impl<'a> VideoDecodeH265CapabilitiesKHR<'a> {
+    pub fn max_level_idc(mut self, max_level_idc: crate::vk::H265LevelIdc) -> Self {
+        self.max_level_idc = max_level_idc;
+        self
     }
 }
 #[repr(C)]
@@ -83,6 +98,41 @@ impl<'a> Default for VideoDecodeH265SessionParametersAddInfoKHR<'a> {
         }
     }
 }
+impl<'a> VideoDecodeH265SessionParametersAddInfoKHR<'a> {
+    pub fn std_vps_count(mut self, std_vps_count: u32) -> Self {
+        self.std_vps_count = std_vps_count;
+        self
+    }
+    pub fn p_std_vp_ss(
+        mut self,
+        p_std_vp_ss: *const crate::vk::H265VideoParameterSet<'a>,
+    ) -> Self {
+        self.p_std_vp_ss = p_std_vp_ss;
+        self
+    }
+    pub fn std_sps_count(mut self, std_sps_count: u32) -> Self {
+        self.std_sps_count = std_sps_count;
+        self
+    }
+    pub fn p_std_sp_ss(
+        mut self,
+        p_std_sp_ss: *const crate::vk::H265SequenceParameterSet<'a>,
+    ) -> Self {
+        self.p_std_sp_ss = p_std_sp_ss;
+        self
+    }
+    pub fn std_pps_count(mut self, std_pps_count: u32) -> Self {
+        self.std_pps_count = std_pps_count;
+        self
+    }
+    pub fn p_std_pp_ss(
+        mut self,
+        p_std_pp_ss: *const crate::vk::H265PictureParameterSet<'a>,
+    ) -> Self {
+        self.p_std_pp_ss = p_std_pp_ss;
+        self
+    }
+}
 #[repr(C)]
 #[derive(Clone, Copy)]
 pub struct VideoDecodeH265SessionParametersCreateInfoKHR<'a> {
@@ -115,6 +165,29 @@ impl<'a> Default for VideoDecodeH265SessionParametersCreateInfoKHR<'a> {
         }
     }
 }
+impl<'a> VideoDecodeH265SessionParametersCreateInfoKHR<'a> {
+    pub fn max_std_vps_count(mut self, max_std_vps_count: u32) -> Self {
+        self.max_std_vps_count = max_std_vps_count;
+        self
+    }
+    pub fn max_std_sps_count(mut self, max_std_sps_count: u32) -> Self {
+        self.max_std_sps_count = max_std_sps_count;
+        self
+    }
+    pub fn max_std_pps_count(mut self, max_std_pps_count: u32) -> Self {
+        self.max_std_pps_count = max_std_pps_count;
+        self
+    }
+    pub fn p_parameters_add_info(
+        mut self,
+        p_parameters_add_info: *const crate::vk::VideoDecodeH265SessionParametersAddInfoKHR<
+            'a,
+        >,
+    ) -> Self {
+        self.p_parameters_add_info = p_parameters_add_info;
+        self
+    }
+}
 #[repr(C)]
 #[derive(Clone, Copy)]
 pub struct VideoDecodeH265PictureInfoKHR<'a> {
@@ -142,6 +215,26 @@ impl<'a> Default for VideoDecodeH265PictureInfoKHR<'a> {
         }
     }
 }
+impl<'a> VideoDecodeH265PictureInfoKHR<'a> {
+    pub fn p_std_picture_info(
+        mut self,
+        p_std_picture_info: *const crate::vk::DecodeH265PictureInfo,
+    ) -> Self {
+        self.p_std_picture_info = p_std_picture_info;
+        self
+    }
+    pub fn slice_segment_count(mut self, slice_segment_count: u32) -> Self {
+        self.slice_segment_count = slice_segment_count;
+        self
+    }
+    pub fn p_slice_segment_offsets(
+        mut self,
+        p_slice_segment_offsets: *const u32,
+    ) -> Self {
+        self.p_slice_segment_offsets = p_slice_segment_offsets;
+        self
+    }
+}
 #[repr(C)]
 #[derive(Clone, Copy)]
 pub struct VideoDecodeH265DpbSlotInfoKHR<'a> {
@@ -163,6 +256,15 @@ impl<'a> Default for VideoDecodeH265DpbSlotInfoKHR<'a> {
             p_std_reference_info: Default::default(),
             _marker: ::core::marker::PhantomData,
         }
+    }
+}
+impl<'a> VideoDecodeH265DpbSlotInfoKHR<'a> {
+    pub fn p_std_reference_info(
+        mut self,
+        p_std_reference_info: *const crate::vk::DecodeH265ReferenceInfo,
+    ) -> Self {
+        self.p_std_reference_info = p_std_reference_info;
+        self
     }
 }
 ///Provided by [`khr::video_decode_h265`](crate::khr::video_decode_h265)

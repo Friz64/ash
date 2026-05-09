@@ -27,6 +27,12 @@ impl<'a> Default for PhysicalDeviceYcbcrImageArraysFeaturesEXT<'a> {
         }
     }
 }
+impl<'a> PhysicalDeviceYcbcrImageArraysFeaturesEXT<'a> {
+    pub fn ycbcr_image_arrays(mut self, ycbcr_image_arrays: crate::vk::Bool32) -> Self {
+        self.ycbcr_image_arrays = ycbcr_image_arrays;
+        self
+    }
+}
 ///Provided by [`ext::ycbcr_image_arrays`](crate::ext::ycbcr_image_arrays)
 impl crate::vk::StructureType {
     pub const PHYSICAL_DEVICE_YCBCR_IMAGE_ARRAYS_FEATURES_EXT: Self = Self(1000252000);

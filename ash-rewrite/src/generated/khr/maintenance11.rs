@@ -27,6 +27,12 @@ impl<'a> Default for PhysicalDeviceMaintenance11FeaturesKHR<'a> {
         }
     }
 }
+impl<'a> PhysicalDeviceMaintenance11FeaturesKHR<'a> {
+    pub fn maintenance11(mut self, maintenance11: crate::vk::Bool32) -> Self {
+        self.maintenance11 = maintenance11;
+        self
+    }
+}
 #[repr(C)]
 #[derive(Clone, Copy)]
 pub struct QueueFamilyOptimalImageTransferGranularityPropertiesKHR<'a> {
@@ -49,6 +55,15 @@ impl<'a> Default for QueueFamilyOptimalImageTransferGranularityPropertiesKHR<'a>
             optimal_image_transfer_granularity: Default::default(),
             _marker: ::core::marker::PhantomData,
         }
+    }
+}
+impl<'a> QueueFamilyOptimalImageTransferGranularityPropertiesKHR<'a> {
+    pub fn optimal_image_transfer_granularity(
+        mut self,
+        optimal_image_transfer_granularity: crate::vk::Extent3D,
+    ) -> Self {
+        self.optimal_image_transfer_granularity = optimal_image_transfer_granularity;
+        self
     }
 }
 ///Provided by [`khr::maintenance11`](crate::khr::maintenance11)

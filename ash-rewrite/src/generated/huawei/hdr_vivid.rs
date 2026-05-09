@@ -26,6 +26,19 @@ impl<'a> Default for HdrVividDynamicMetadataHUAWEI<'a> {
         }
     }
 }
+impl<'a> HdrVividDynamicMetadataHUAWEI<'a> {
+    pub fn dynamic_metadata_size(mut self, dynamic_metadata_size: usize) -> Self {
+        self.dynamic_metadata_size = dynamic_metadata_size;
+        self
+    }
+    pub fn p_dynamic_metadata(
+        mut self,
+        p_dynamic_metadata: *const core::ffi::c_void,
+    ) -> Self {
+        self.p_dynamic_metadata = p_dynamic_metadata;
+        self
+    }
+}
 #[repr(C)]
 #[derive(Clone, Copy)]
 pub struct PhysicalDeviceHdrVividFeaturesHUAWEI<'a> {
@@ -49,6 +62,12 @@ impl<'a> Default for PhysicalDeviceHdrVividFeaturesHUAWEI<'a> {
             hdr_vivid: Default::default(),
             _marker: ::core::marker::PhantomData,
         }
+    }
+}
+impl<'a> PhysicalDeviceHdrVividFeaturesHUAWEI<'a> {
+    pub fn hdr_vivid(mut self, hdr_vivid: crate::vk::Bool32) -> Self {
+        self.hdr_vivid = hdr_vivid;
+        self
     }
 }
 ///Provided by [`huawei::hdr_vivid`](crate::huawei::hdr_vivid)

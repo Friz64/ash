@@ -27,6 +27,12 @@ impl<'a> Default for PhysicalDeviceShaderLongVectorFeaturesEXT<'a> {
         }
     }
 }
+impl<'a> PhysicalDeviceShaderLongVectorFeaturesEXT<'a> {
+    pub fn long_vector(mut self, long_vector: crate::vk::Bool32) -> Self {
+        self.long_vector = long_vector;
+        self
+    }
+}
 #[repr(C)]
 #[derive(Clone, Copy)]
 pub struct PhysicalDeviceShaderLongVectorPropertiesEXT<'a> {
@@ -49,6 +55,12 @@ impl<'a> Default for PhysicalDeviceShaderLongVectorPropertiesEXT<'a> {
             max_vector_components: Default::default(),
             _marker: ::core::marker::PhantomData,
         }
+    }
+}
+impl<'a> PhysicalDeviceShaderLongVectorPropertiesEXT<'a> {
+    pub fn max_vector_components(mut self, max_vector_components: u32) -> Self {
+        self.max_vector_components = max_vector_components;
+        self
     }
 }
 ///Provided by [`ext::shader_long_vector`](crate::ext::shader_long_vector)

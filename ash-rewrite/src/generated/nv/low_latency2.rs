@@ -124,6 +124,23 @@ pub(crate) mod reexport {
             }
         }
     }
+    impl<'a> LatencySleepModeInfoNV<'a> {
+        pub fn low_latency_mode(mut self, low_latency_mode: crate::vk::Bool32) -> Self {
+            self.low_latency_mode = low_latency_mode;
+            self
+        }
+        pub fn low_latency_boost(
+            mut self,
+            low_latency_boost: crate::vk::Bool32,
+        ) -> Self {
+            self.low_latency_boost = low_latency_boost;
+            self
+        }
+        pub fn minimum_interval_us(mut self, minimum_interval_us: u32) -> Self {
+            self.minimum_interval_us = minimum_interval_us;
+            self
+        }
+    }
     #[repr(C)]
     #[derive(Clone, Copy)]
     pub struct LatencySleepInfoNV<'a> {
@@ -145,6 +162,19 @@ pub(crate) mod reexport {
                 value: Default::default(),
                 _marker: ::core::marker::PhantomData,
             }
+        }
+    }
+    impl<'a> LatencySleepInfoNV<'a> {
+        pub fn signal_semaphore(
+            mut self,
+            signal_semaphore: crate::vk::Semaphore,
+        ) -> Self {
+            self.signal_semaphore = signal_semaphore;
+            self
+        }
+        pub fn value(mut self, value: u64) -> Self {
+            self.value = value;
+            self
         }
     }
     #[repr(C)]
@@ -170,6 +200,16 @@ pub(crate) mod reexport {
             }
         }
     }
+    impl<'a> SetLatencyMarkerInfoNV<'a> {
+        pub fn present_id(mut self, present_id: u64) -> Self {
+            self.present_id = present_id;
+            self
+        }
+        pub fn marker(mut self, marker: crate::vk::LatencyMarkerNV) -> Self {
+            self.marker = marker;
+            self
+        }
+    }
     #[repr(C)]
     #[derive(Clone, Copy)]
     pub struct GetLatencyMarkerInfoNV<'a> {
@@ -191,6 +231,19 @@ pub(crate) mod reexport {
                 p_timings: Default::default(),
                 _marker: ::core::marker::PhantomData,
             }
+        }
+    }
+    impl<'a> GetLatencyMarkerInfoNV<'a> {
+        pub fn timing_count(mut self, timing_count: u32) -> Self {
+            self.timing_count = timing_count;
+            self
+        }
+        pub fn p_timings(
+            mut self,
+            p_timings: *mut crate::vk::LatencyTimingsFrameReportNV<'a>,
+        ) -> Self {
+            self.p_timings = p_timings;
+            self
         }
     }
     #[repr(C)]
@@ -240,6 +293,79 @@ pub(crate) mod reexport {
             }
         }
     }
+    impl<'a> LatencyTimingsFrameReportNV<'a> {
+        pub fn present_id(mut self, present_id: u64) -> Self {
+            self.present_id = present_id;
+            self
+        }
+        pub fn input_sample_time_us(mut self, input_sample_time_us: u64) -> Self {
+            self.input_sample_time_us = input_sample_time_us;
+            self
+        }
+        pub fn sim_start_time_us(mut self, sim_start_time_us: u64) -> Self {
+            self.sim_start_time_us = sim_start_time_us;
+            self
+        }
+        pub fn sim_end_time_us(mut self, sim_end_time_us: u64) -> Self {
+            self.sim_end_time_us = sim_end_time_us;
+            self
+        }
+        pub fn render_submit_start_time_us(
+            mut self,
+            render_submit_start_time_us: u64,
+        ) -> Self {
+            self.render_submit_start_time_us = render_submit_start_time_us;
+            self
+        }
+        pub fn render_submit_end_time_us(
+            mut self,
+            render_submit_end_time_us: u64,
+        ) -> Self {
+            self.render_submit_end_time_us = render_submit_end_time_us;
+            self
+        }
+        pub fn present_start_time_us(mut self, present_start_time_us: u64) -> Self {
+            self.present_start_time_us = present_start_time_us;
+            self
+        }
+        pub fn present_end_time_us(mut self, present_end_time_us: u64) -> Self {
+            self.present_end_time_us = present_end_time_us;
+            self
+        }
+        pub fn driver_start_time_us(mut self, driver_start_time_us: u64) -> Self {
+            self.driver_start_time_us = driver_start_time_us;
+            self
+        }
+        pub fn driver_end_time_us(mut self, driver_end_time_us: u64) -> Self {
+            self.driver_end_time_us = driver_end_time_us;
+            self
+        }
+        pub fn os_render_queue_start_time_us(
+            mut self,
+            os_render_queue_start_time_us: u64,
+        ) -> Self {
+            self.os_render_queue_start_time_us = os_render_queue_start_time_us;
+            self
+        }
+        pub fn os_render_queue_end_time_us(
+            mut self,
+            os_render_queue_end_time_us: u64,
+        ) -> Self {
+            self.os_render_queue_end_time_us = os_render_queue_end_time_us;
+            self
+        }
+        pub fn gpu_render_start_time_us(
+            mut self,
+            gpu_render_start_time_us: u64,
+        ) -> Self {
+            self.gpu_render_start_time_us = gpu_render_start_time_us;
+            self
+        }
+        pub fn gpu_render_end_time_us(mut self, gpu_render_end_time_us: u64) -> Self {
+            self.gpu_render_end_time_us = gpu_render_end_time_us;
+            self
+        }
+    }
     #[repr(C)]
     #[derive(Clone, Copy)]
     pub struct OutOfBandQueueTypeInfoNV<'a> {
@@ -259,6 +385,15 @@ pub(crate) mod reexport {
                 queue_type: Default::default(),
                 _marker: ::core::marker::PhantomData,
             }
+        }
+    }
+    impl<'a> OutOfBandQueueTypeInfoNV<'a> {
+        pub fn queue_type(
+            mut self,
+            queue_type: crate::vk::OutOfBandQueueTypeNV,
+        ) -> Self {
+            self.queue_type = queue_type;
+            self
         }
     }
     #[repr(C)]
@@ -286,6 +421,12 @@ pub(crate) mod reexport {
             }
         }
     }
+    impl<'a> LatencySubmissionPresentIdNV<'a> {
+        pub fn present_id(mut self, present_id: u64) -> Self {
+            self.present_id = present_id;
+            self
+        }
+    }
     #[repr(C)]
     #[derive(Clone, Copy)]
     pub struct SwapchainLatencyCreateInfoNV<'a> {
@@ -307,6 +448,15 @@ pub(crate) mod reexport {
                 latency_mode_enable: Default::default(),
                 _marker: ::core::marker::PhantomData,
             }
+        }
+    }
+    impl<'a> SwapchainLatencyCreateInfoNV<'a> {
+        pub fn latency_mode_enable(
+            mut self,
+            latency_mode_enable: crate::vk::Bool32,
+        ) -> Self {
+            self.latency_mode_enable = latency_mode_enable;
+            self
         }
     }
     #[repr(C)]
@@ -332,6 +482,19 @@ pub(crate) mod reexport {
                 p_present_modes: Default::default(),
                 _marker: ::core::marker::PhantomData,
             }
+        }
+    }
+    impl<'a> LatencySurfaceCapabilitiesNV<'a> {
+        pub fn present_mode_count(mut self, present_mode_count: u32) -> Self {
+            self.present_mode_count = present_mode_count;
+            self
+        }
+        pub fn p_present_modes(
+            mut self,
+            p_present_modes: *mut crate::vk::PresentModeKHR,
+        ) -> Self {
+            self.p_present_modes = p_present_modes;
+            self
         }
     }
     ///Provided by [`nv::low_latency2`](crate::nv::low_latency2)

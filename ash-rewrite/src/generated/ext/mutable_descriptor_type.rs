@@ -27,12 +27,34 @@ impl<'a> Default for PhysicalDeviceMutableDescriptorTypeFeaturesEXT<'a> {
         }
     }
 }
+impl<'a> PhysicalDeviceMutableDescriptorTypeFeaturesEXT<'a> {
+    pub fn mutable_descriptor_type(
+        mut self,
+        mutable_descriptor_type: crate::vk::Bool32,
+    ) -> Self {
+        self.mutable_descriptor_type = mutable_descriptor_type;
+        self
+    }
+}
 #[repr(C)]
 #[derive(Clone, Copy, Default)]
 pub struct MutableDescriptorTypeListEXT<'a> {
     pub descriptor_type_count: u32,
     pub p_descriptor_types: *const crate::vk::DescriptorType,
     pub _marker: ::core::marker::PhantomData<&'a ()>,
+}
+impl<'a> MutableDescriptorTypeListEXT<'a> {
+    pub fn descriptor_type_count(mut self, descriptor_type_count: u32) -> Self {
+        self.descriptor_type_count = descriptor_type_count;
+        self
+    }
+    pub fn p_descriptor_types(
+        mut self,
+        p_descriptor_types: *const crate::vk::DescriptorType,
+    ) -> Self {
+        self.p_descriptor_types = p_descriptor_types;
+        self
+    }
 }
 #[repr(C)]
 #[derive(Clone, Copy)]
@@ -61,6 +83,24 @@ impl<'a> Default for MutableDescriptorTypeCreateInfoEXT<'a> {
             p_mutable_descriptor_type_lists: Default::default(),
             _marker: ::core::marker::PhantomData,
         }
+    }
+}
+impl<'a> MutableDescriptorTypeCreateInfoEXT<'a> {
+    pub fn mutable_descriptor_type_list_count(
+        mut self,
+        mutable_descriptor_type_list_count: u32,
+    ) -> Self {
+        self.mutable_descriptor_type_list_count = mutable_descriptor_type_list_count;
+        self
+    }
+    pub fn p_mutable_descriptor_type_lists(
+        mut self,
+        p_mutable_descriptor_type_lists: *const crate::vk::MutableDescriptorTypeListEXT<
+            'a,
+        >,
+    ) -> Self {
+        self.p_mutable_descriptor_type_lists = p_mutable_descriptor_type_lists;
+        self
     }
 }
 ///Provided by [`ext::mutable_descriptor_type`](crate::ext::mutable_descriptor_type)

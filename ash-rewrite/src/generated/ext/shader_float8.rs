@@ -29,6 +29,19 @@ impl<'a> Default for PhysicalDeviceShaderFloat8FeaturesEXT<'a> {
         }
     }
 }
+impl<'a> PhysicalDeviceShaderFloat8FeaturesEXT<'a> {
+    pub fn shader_float8(mut self, shader_float8: crate::vk::Bool32) -> Self {
+        self.shader_float8 = shader_float8;
+        self
+    }
+    pub fn shader_float8_cooperative_matrix(
+        mut self,
+        shader_float8_cooperative_matrix: crate::vk::Bool32,
+    ) -> Self {
+        self.shader_float8_cooperative_matrix = shader_float8_cooperative_matrix;
+        self
+    }
+}
 ///Provided by [`ext::shader_float8`](crate::ext::shader_float8)
 impl crate::vk::StructureType {
     pub const PHYSICAL_DEVICE_SHADER_FLOAT8_FEATURES_EXT: Self = Self(1000567000);

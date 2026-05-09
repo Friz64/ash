@@ -27,6 +27,15 @@ impl<'a> Default for PhysicalDeviceDataGraphNeuralAcceleratorStatisticsFeaturesA
         }
     }
 }
+impl<'a> PhysicalDeviceDataGraphNeuralAcceleratorStatisticsFeaturesARM<'a> {
+    pub fn data_graph_neural_accelerator_statistics(
+        mut self,
+        data_graph_neural_accelerator_statistics: crate::vk::Bool32,
+    ) -> Self {
+        self.data_graph_neural_accelerator_statistics = data_graph_neural_accelerator_statistics;
+        self
+    }
+}
 #[repr(C)]
 #[derive(Clone, Copy)]
 pub struct DataGraphPipelineNeuralStatisticsCreateInfoARM<'a> {
@@ -51,6 +60,15 @@ impl<'a> Default for DataGraphPipelineNeuralStatisticsCreateInfoARM<'a> {
         }
     }
 }
+impl<'a> DataGraphPipelineNeuralStatisticsCreateInfoARM<'a> {
+    pub fn allow_neural_statistics(
+        mut self,
+        allow_neural_statistics: crate::vk::Bool32,
+    ) -> Self {
+        self.allow_neural_statistics = allow_neural_statistics;
+        self
+    }
+}
 #[repr(C)]
 #[derive(Clone, Copy)]
 pub struct DataGraphPipelineSessionNeuralStatisticsCreateInfoARM<'a> {
@@ -73,6 +91,12 @@ impl<'a> Default for DataGraphPipelineSessionNeuralStatisticsCreateInfoARM<'a> {
             mode: Default::default(),
             _marker: ::core::marker::PhantomData,
         }
+    }
+}
+impl<'a> DataGraphPipelineSessionNeuralStatisticsCreateInfoARM<'a> {
+    pub fn mode(mut self, mode: crate::vk::NeuralAcceleratorStatisticsModeARM) -> Self {
+        self.mode = mode;
+        self
     }
 }
 ///Provided by [`arm::data_graph_neural_accelerator_statistics`](crate::arm::data_graph_neural_accelerator_statistics)

@@ -135,6 +135,22 @@ pub(crate) mod reexport {
             }
         }
     }
+    impl<'a> PhysicalDevicePerformanceQueryFeaturesKHR<'a> {
+        pub fn performance_counter_query_pools(
+            mut self,
+            performance_counter_query_pools: crate::vk::Bool32,
+        ) -> Self {
+            self.performance_counter_query_pools = performance_counter_query_pools;
+            self
+        }
+        pub fn performance_counter_multiple_query_pools(
+            mut self,
+            performance_counter_multiple_query_pools: crate::vk::Bool32,
+        ) -> Self {
+            self.performance_counter_multiple_query_pools = performance_counter_multiple_query_pools;
+            self
+        }
+    }
     #[repr(C)]
     #[derive(Clone, Copy)]
     pub struct PhysicalDevicePerformanceQueryPropertiesKHR<'a> {
@@ -157,6 +173,15 @@ pub(crate) mod reexport {
                 allow_command_buffer_query_copies: Default::default(),
                 _marker: ::core::marker::PhantomData,
             }
+        }
+    }
+    impl<'a> PhysicalDevicePerformanceQueryPropertiesKHR<'a> {
+        pub fn allow_command_buffer_query_copies(
+            mut self,
+            allow_command_buffer_query_copies: crate::vk::Bool32,
+        ) -> Self {
+            self.allow_command_buffer_query_copies = allow_command_buffer_query_copies;
+            self
         }
     }
     #[repr(C)]
@@ -186,6 +211,27 @@ pub(crate) mod reexport {
             }
         }
     }
+    impl<'a> PerformanceCounterKHR<'a> {
+        pub fn unit(mut self, unit: crate::vk::PerformanceCounterUnitKHR) -> Self {
+            self.unit = unit;
+            self
+        }
+        pub fn scope(mut self, scope: crate::vk::PerformanceCounterScopeKHR) -> Self {
+            self.scope = scope;
+            self
+        }
+        pub fn storage(
+            mut self,
+            storage: crate::vk::PerformanceCounterStorageKHR,
+        ) -> Self {
+            self.storage = storage;
+            self
+        }
+        pub fn uuid(mut self, uuid: [u8; crate::vk::UUID_SIZE as _]) -> Self {
+            self.uuid = uuid;
+            self
+        }
+    }
     #[repr(C)]
     #[derive(Clone, Copy)]
     pub struct PerformanceCounterDescriptionKHR<'a> {
@@ -211,6 +257,36 @@ pub(crate) mod reexport {
                 description: unsafe { core::mem::zeroed() },
                 _marker: ::core::marker::PhantomData,
             }
+        }
+    }
+    impl<'a> PerformanceCounterDescriptionKHR<'a> {
+        pub fn flags(
+            mut self,
+            flags: crate::vk::PerformanceCounterDescriptionFlagsKHR,
+        ) -> Self {
+            self.flags = flags;
+            self
+        }
+        pub fn name(
+            mut self,
+            name: [core::ffi::c_char; crate::vk::MAX_DESCRIPTION_SIZE as _],
+        ) -> Self {
+            self.name = name;
+            self
+        }
+        pub fn category(
+            mut self,
+            category: [core::ffi::c_char; crate::vk::MAX_DESCRIPTION_SIZE as _],
+        ) -> Self {
+            self.category = category;
+            self
+        }
+        pub fn description(
+            mut self,
+            description: [core::ffi::c_char; crate::vk::MAX_DESCRIPTION_SIZE as _],
+        ) -> Self {
+            self.description = description;
+            self
         }
     }
     #[repr(C)]
@@ -241,6 +317,20 @@ pub(crate) mod reexport {
             }
         }
     }
+    impl<'a> QueryPoolPerformanceCreateInfoKHR<'a> {
+        pub fn queue_family_index(mut self, queue_family_index: u32) -> Self {
+            self.queue_family_index = queue_family_index;
+            self
+        }
+        pub fn counter_index_count(mut self, counter_index_count: u32) -> Self {
+            self.counter_index_count = counter_index_count;
+            self
+        }
+        pub fn p_counter_indices(mut self, p_counter_indices: *const u32) -> Self {
+            self.p_counter_indices = p_counter_indices;
+            self
+        }
+    }
     #[repr(C)]
     #[derive(Clone, Copy)]
     pub struct AcquireProfilingLockInfoKHR<'a> {
@@ -262,6 +352,16 @@ pub(crate) mod reexport {
                 timeout: Default::default(),
                 _marker: ::core::marker::PhantomData,
             }
+        }
+    }
+    impl<'a> AcquireProfilingLockInfoKHR<'a> {
+        pub fn flags(mut self, flags: crate::vk::AcquireProfilingLockFlagsKHR) -> Self {
+            self.flags = flags;
+            self
+        }
+        pub fn timeout(mut self, timeout: u64) -> Self {
+            self.timeout = timeout;
+            self
         }
     }
     #[repr(C)]
@@ -287,6 +387,12 @@ pub(crate) mod reexport {
                 counter_pass_index: Default::default(),
                 _marker: ::core::marker::PhantomData,
             }
+        }
+    }
+    impl<'a> PerformanceQuerySubmitInfoKHR<'a> {
+        pub fn counter_pass_index(mut self, counter_pass_index: u32) -> Self {
+            self.counter_pass_index = counter_pass_index;
+            self
         }
     }
     #[repr(C)]

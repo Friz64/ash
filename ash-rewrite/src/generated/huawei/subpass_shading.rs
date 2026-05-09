@@ -78,6 +78,16 @@ pub(crate) mod reexport {
             }
         }
     }
+    impl<'a> SubpassShadingPipelineCreateInfoHUAWEI<'a> {
+        pub fn render_pass(mut self, render_pass: crate::vk::RenderPass) -> Self {
+            self.render_pass = render_pass;
+            self
+        }
+        pub fn subpass(mut self, subpass: u32) -> Self {
+            self.subpass = subpass;
+            self
+        }
+    }
     #[repr(C)]
     #[derive(Clone, Copy)]
     pub struct PhysicalDeviceSubpassShadingPropertiesHUAWEI<'a> {
@@ -100,6 +110,15 @@ pub(crate) mod reexport {
                 max_subpass_shading_workgroup_size_aspect_ratio: Default::default(),
                 _marker: ::core::marker::PhantomData,
             }
+        }
+    }
+    impl<'a> PhysicalDeviceSubpassShadingPropertiesHUAWEI<'a> {
+        pub fn max_subpass_shading_workgroup_size_aspect_ratio(
+            mut self,
+            max_subpass_shading_workgroup_size_aspect_ratio: u32,
+        ) -> Self {
+            self.max_subpass_shading_workgroup_size_aspect_ratio = max_subpass_shading_workgroup_size_aspect_ratio;
+            self
         }
     }
     #[repr(C)]
@@ -126,6 +145,12 @@ pub(crate) mod reexport {
                 subpass_shading: Default::default(),
                 _marker: ::core::marker::PhantomData,
             }
+        }
+    }
+    impl<'a> PhysicalDeviceSubpassShadingFeaturesHUAWEI<'a> {
+        pub fn subpass_shading(mut self, subpass_shading: crate::vk::Bool32) -> Self {
+            self.subpass_shading = subpass_shading;
+            self
         }
     }
     ///Provided by [`huawei::subpass_shading`](crate::huawei::subpass_shading)

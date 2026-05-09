@@ -26,6 +26,19 @@ impl<'a> Default for LayerSettingsCreateInfoEXT<'a> {
         }
     }
 }
+impl<'a> LayerSettingsCreateInfoEXT<'a> {
+    pub fn setting_count(mut self, setting_count: u32) -> Self {
+        self.setting_count = setting_count;
+        self
+    }
+    pub fn p_settings(
+        mut self,
+        p_settings: *const crate::vk::LayerSettingEXT<'a>,
+    ) -> Self {
+        self.p_settings = p_settings;
+        self
+    }
+}
 #[repr(C)]
 #[derive(Clone, Copy, Default)]
 pub struct LayerSettingEXT<'a> {
@@ -35,6 +48,28 @@ pub struct LayerSettingEXT<'a> {
     pub value_count: u32,
     pub p_values: *const core::ffi::c_void,
     pub _marker: ::core::marker::PhantomData<&'a ()>,
+}
+impl<'a> LayerSettingEXT<'a> {
+    pub fn p_layer_name(mut self, p_layer_name: *const core::ffi::c_char) -> Self {
+        self.p_layer_name = p_layer_name;
+        self
+    }
+    pub fn p_setting_name(mut self, p_setting_name: *const core::ffi::c_char) -> Self {
+        self.p_setting_name = p_setting_name;
+        self
+    }
+    pub fn _type(mut self, _type: crate::vk::LayerSettingTypeEXT) -> Self {
+        self._type = _type;
+        self
+    }
+    pub fn value_count(mut self, value_count: u32) -> Self {
+        self.value_count = value_count;
+        self
+    }
+    pub fn p_values(mut self, p_values: *const core::ffi::c_void) -> Self {
+        self.p_values = p_values;
+        self
+    }
 }
 ///Provided by [`ext::layer_settings`](crate::ext::layer_settings)
 impl crate::vk::StructureType {

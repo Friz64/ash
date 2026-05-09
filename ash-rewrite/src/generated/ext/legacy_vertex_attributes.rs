@@ -27,6 +27,15 @@ impl<'a> Default for PhysicalDeviceLegacyVertexAttributesFeaturesEXT<'a> {
         }
     }
 }
+impl<'a> PhysicalDeviceLegacyVertexAttributesFeaturesEXT<'a> {
+    pub fn legacy_vertex_attributes(
+        mut self,
+        legacy_vertex_attributes: crate::vk::Bool32,
+    ) -> Self {
+        self.legacy_vertex_attributes = legacy_vertex_attributes;
+        self
+    }
+}
 #[repr(C)]
 #[derive(Clone, Copy)]
 pub struct PhysicalDeviceLegacyVertexAttributesPropertiesEXT<'a> {
@@ -49,6 +58,15 @@ impl<'a> Default for PhysicalDeviceLegacyVertexAttributesPropertiesEXT<'a> {
             native_unaligned_performance: Default::default(),
             _marker: ::core::marker::PhantomData,
         }
+    }
+}
+impl<'a> PhysicalDeviceLegacyVertexAttributesPropertiesEXT<'a> {
+    pub fn native_unaligned_performance(
+        mut self,
+        native_unaligned_performance: crate::vk::Bool32,
+    ) -> Self {
+        self.native_unaligned_performance = native_unaligned_performance;
+        self
     }
 }
 ///Provided by [`ext::legacy_vertex_attributes`](crate::ext::legacy_vertex_attributes)

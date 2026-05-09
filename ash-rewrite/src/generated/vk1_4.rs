@@ -343,6 +343,12 @@ pub(crate) mod reexport {
             }
         }
     }
+    impl<'a> BufferUsageFlags2CreateInfo<'a> {
+        pub fn usage(mut self, usage: crate::vk::BufferUsageFlags2) -> Self {
+            self.usage = usage;
+            self
+        }
+    }
     #[repr(C)]
     #[derive(Clone, Copy)]
     pub struct PipelineCreateFlags2CreateInfo<'a> {
@@ -372,6 +378,12 @@ pub(crate) mod reexport {
             }
         }
     }
+    impl<'a> PipelineCreateFlags2CreateInfo<'a> {
+        pub fn flags(mut self, flags: crate::vk::PipelineCreateFlags2) -> Self {
+            self.flags = flags;
+            self
+        }
+    }
     #[repr(C)]
     #[derive(Clone, Copy)]
     pub struct PhysicalDevicePushDescriptorProperties<'a> {
@@ -394,6 +406,12 @@ pub(crate) mod reexport {
                 max_push_descriptors: Default::default(),
                 _marker: ::core::marker::PhantomData,
             }
+        }
+    }
+    impl<'a> PhysicalDevicePushDescriptorProperties<'a> {
+        pub fn max_push_descriptors(mut self, max_push_descriptors: u32) -> Self {
+            self.max_push_descriptors = max_push_descriptors;
+            self
         }
     }
     #[repr(C)]
@@ -420,6 +438,12 @@ pub(crate) mod reexport {
                 maintenance5: Default::default(),
                 _marker: ::core::marker::PhantomData,
             }
+        }
+    }
+    impl<'a> PhysicalDeviceMaintenance5Features<'a> {
+        pub fn maintenance5(mut self, maintenance5: crate::vk::Bool32) -> Self {
+            self.maintenance5 = maintenance5;
+            self
         }
     }
     #[repr(C)]
@@ -456,6 +480,50 @@ pub(crate) mod reexport {
             }
         }
     }
+    impl<'a> PhysicalDeviceMaintenance5Properties<'a> {
+        pub fn early_fragment_multisample_coverage_after_sample_counting(
+            mut self,
+            early_fragment_multisample_coverage_after_sample_counting: crate::vk::Bool32,
+        ) -> Self {
+            self.early_fragment_multisample_coverage_after_sample_counting = early_fragment_multisample_coverage_after_sample_counting;
+            self
+        }
+        pub fn early_fragment_sample_mask_test_before_sample_counting(
+            mut self,
+            early_fragment_sample_mask_test_before_sample_counting: crate::vk::Bool32,
+        ) -> Self {
+            self.early_fragment_sample_mask_test_before_sample_counting = early_fragment_sample_mask_test_before_sample_counting;
+            self
+        }
+        pub fn depth_stencil_swizzle_one_support(
+            mut self,
+            depth_stencil_swizzle_one_support: crate::vk::Bool32,
+        ) -> Self {
+            self.depth_stencil_swizzle_one_support = depth_stencil_swizzle_one_support;
+            self
+        }
+        pub fn polygon_mode_point_size(
+            mut self,
+            polygon_mode_point_size: crate::vk::Bool32,
+        ) -> Self {
+            self.polygon_mode_point_size = polygon_mode_point_size;
+            self
+        }
+        pub fn non_strict_single_pixel_wide_lines_use_parallelogram(
+            mut self,
+            non_strict_single_pixel_wide_lines_use_parallelogram: crate::vk::Bool32,
+        ) -> Self {
+            self.non_strict_single_pixel_wide_lines_use_parallelogram = non_strict_single_pixel_wide_lines_use_parallelogram;
+            self
+        }
+        pub fn non_strict_wide_lines_use_parallelogram(
+            mut self,
+            non_strict_wide_lines_use_parallelogram: crate::vk::Bool32,
+        ) -> Self {
+            self.non_strict_wide_lines_use_parallelogram = non_strict_wide_lines_use_parallelogram;
+            self
+        }
+    }
     #[repr(C)]
     #[derive(Clone, Copy)]
     pub struct PhysicalDeviceMaintenance6Features<'a> {
@@ -480,6 +548,12 @@ pub(crate) mod reexport {
                 maintenance6: Default::default(),
                 _marker: ::core::marker::PhantomData,
             }
+        }
+    }
+    impl<'a> PhysicalDeviceMaintenance6Features<'a> {
+        pub fn maintenance6(mut self, maintenance6: crate::vk::Bool32) -> Self {
+            self.maintenance6 = maintenance6;
+            self
         }
     }
     #[repr(C)]
@@ -508,6 +582,29 @@ pub(crate) mod reexport {
                 fragment_shading_rate_clamp_combiner_inputs: Default::default(),
                 _marker: ::core::marker::PhantomData,
             }
+        }
+    }
+    impl<'a> PhysicalDeviceMaintenance6Properties<'a> {
+        pub fn block_texel_view_compatible_multiple_layers(
+            mut self,
+            block_texel_view_compatible_multiple_layers: crate::vk::Bool32,
+        ) -> Self {
+            self.block_texel_view_compatible_multiple_layers = block_texel_view_compatible_multiple_layers;
+            self
+        }
+        pub fn max_combined_image_sampler_descriptor_count(
+            mut self,
+            max_combined_image_sampler_descriptor_count: u32,
+        ) -> Self {
+            self.max_combined_image_sampler_descriptor_count = max_combined_image_sampler_descriptor_count;
+            self
+        }
+        pub fn fragment_shading_rate_clamp_combiner_inputs(
+            mut self,
+            fragment_shading_rate_clamp_combiner_inputs: crate::vk::Bool32,
+        ) -> Self {
+            self.fragment_shading_rate_clamp_combiner_inputs = fragment_shading_rate_clamp_combiner_inputs;
+            self
         }
     }
     #[repr(C)]
@@ -539,6 +636,37 @@ pub(crate) mod reexport {
             }
         }
     }
+    impl<'a> RenderingAreaInfo<'a> {
+        pub fn view_mask(mut self, view_mask: u32) -> Self {
+            self.view_mask = view_mask;
+            self
+        }
+        pub fn color_attachment_count(mut self, color_attachment_count: u32) -> Self {
+            self.color_attachment_count = color_attachment_count;
+            self
+        }
+        pub fn p_color_attachment_formats(
+            mut self,
+            p_color_attachment_formats: *const crate::vk::Format,
+        ) -> Self {
+            self.p_color_attachment_formats = p_color_attachment_formats;
+            self
+        }
+        pub fn depth_attachment_format(
+            mut self,
+            depth_attachment_format: crate::vk::Format,
+        ) -> Self {
+            self.depth_attachment_format = depth_attachment_format;
+            self
+        }
+        pub fn stencil_attachment_format(
+            mut self,
+            stencil_attachment_format: crate::vk::Format,
+        ) -> Self {
+            self.stencil_attachment_format = stencil_attachment_format;
+            self
+        }
+    }
     #[repr(C)]
     #[derive(Clone, Copy)]
     pub struct DeviceQueueGlobalPriorityCreateInfo<'a> {
@@ -561,6 +689,15 @@ pub(crate) mod reexport {
                 global_priority: Default::default(),
                 _marker: ::core::marker::PhantomData,
             }
+        }
+    }
+    impl<'a> DeviceQueueGlobalPriorityCreateInfo<'a> {
+        pub fn global_priority(
+            mut self,
+            global_priority: crate::vk::QueueGlobalPriority,
+        ) -> Self {
+            self.global_priority = global_priority;
+            self
         }
     }
     #[repr(C)]
@@ -587,6 +724,15 @@ pub(crate) mod reexport {
                 global_priority_query: Default::default(),
                 _marker: ::core::marker::PhantomData,
             }
+        }
+    }
+    impl<'a> PhysicalDeviceGlobalPriorityQueryFeatures<'a> {
+        pub fn global_priority_query(
+            mut self,
+            global_priority_query: crate::vk::Bool32,
+        ) -> Self {
+            self.global_priority_query = global_priority_query;
+            self
         }
     }
     #[repr(C)]
@@ -616,11 +762,35 @@ pub(crate) mod reexport {
             }
         }
     }
+    impl<'a> QueueFamilyGlobalPriorityProperties<'a> {
+        pub fn priority_count(mut self, priority_count: u32) -> Self {
+            self.priority_count = priority_count;
+            self
+        }
+        pub fn priorities(
+            mut self,
+            priorities: [crate::vk::QueueGlobalPriority; crate::vk::MAX_GLOBAL_PRIORITY_SIZE
+                as _],
+        ) -> Self {
+            self.priorities = priorities;
+            self
+        }
+    }
     #[repr(C)]
     #[derive(Clone, Copy, Default)]
     pub struct VertexInputBindingDivisorDescription {
         pub binding: u32,
         pub divisor: u32,
+    }
+    impl VertexInputBindingDivisorDescription {
+        pub fn binding(mut self, binding: u32) -> Self {
+            self.binding = binding;
+            self
+        }
+        pub fn divisor(mut self, divisor: u32) -> Self {
+            self.divisor = divisor;
+            self
+        }
     }
     #[repr(C)]
     #[derive(Clone, Copy)]
@@ -648,6 +818,22 @@ pub(crate) mod reexport {
             }
         }
     }
+    impl<'a> PipelineVertexInputDivisorStateCreateInfo<'a> {
+        pub fn vertex_binding_divisor_count(
+            mut self,
+            vertex_binding_divisor_count: u32,
+        ) -> Self {
+            self.vertex_binding_divisor_count = vertex_binding_divisor_count;
+            self
+        }
+        pub fn p_vertex_binding_divisors(
+            mut self,
+            p_vertex_binding_divisors: *const crate::vk::VertexInputBindingDivisorDescription,
+        ) -> Self {
+            self.p_vertex_binding_divisors = p_vertex_binding_divisors;
+            self
+        }
+    }
     #[repr(C)]
     #[derive(Clone, Copy)]
     pub struct PhysicalDeviceVertexAttributeDivisorProperties<'a> {
@@ -672,6 +858,22 @@ pub(crate) mod reexport {
                 supports_non_zero_first_instance: Default::default(),
                 _marker: ::core::marker::PhantomData,
             }
+        }
+    }
+    impl<'a> PhysicalDeviceVertexAttributeDivisorProperties<'a> {
+        pub fn max_vertex_attrib_divisor(
+            mut self,
+            max_vertex_attrib_divisor: u32,
+        ) -> Self {
+            self.max_vertex_attrib_divisor = max_vertex_attrib_divisor;
+            self
+        }
+        pub fn supports_non_zero_first_instance(
+            mut self,
+            supports_non_zero_first_instance: crate::vk::Bool32,
+        ) -> Self {
+            self.supports_non_zero_first_instance = supports_non_zero_first_instance;
+            self
         }
     }
     #[repr(C)]
@@ -702,6 +904,22 @@ pub(crate) mod reexport {
             }
         }
     }
+    impl<'a> PhysicalDeviceVertexAttributeDivisorFeatures<'a> {
+        pub fn vertex_attribute_instance_rate_divisor(
+            mut self,
+            vertex_attribute_instance_rate_divisor: crate::vk::Bool32,
+        ) -> Self {
+            self.vertex_attribute_instance_rate_divisor = vertex_attribute_instance_rate_divisor;
+            self
+        }
+        pub fn vertex_attribute_instance_rate_zero_divisor(
+            mut self,
+            vertex_attribute_instance_rate_zero_divisor: crate::vk::Bool32,
+        ) -> Self {
+            self.vertex_attribute_instance_rate_zero_divisor = vertex_attribute_instance_rate_zero_divisor;
+            self
+        }
+    }
     #[repr(C)]
     #[derive(Clone, Copy)]
     pub struct PhysicalDeviceIndexTypeUint8Features<'a> {
@@ -726,6 +944,12 @@ pub(crate) mod reexport {
                 index_type_uint8: Default::default(),
                 _marker: ::core::marker::PhantomData,
             }
+        }
+    }
+    impl<'a> PhysicalDeviceIndexTypeUint8Features<'a> {
+        pub fn index_type_uint8(mut self, index_type_uint8: crate::vk::Bool32) -> Self {
+            self.index_type_uint8 = index_type_uint8;
+            self
         }
     }
     #[repr(C)]
@@ -764,6 +988,44 @@ pub(crate) mod reexport {
             }
         }
     }
+    impl<'a> PhysicalDeviceLineRasterizationFeatures<'a> {
+        pub fn rectangular_lines(
+            mut self,
+            rectangular_lines: crate::vk::Bool32,
+        ) -> Self {
+            self.rectangular_lines = rectangular_lines;
+            self
+        }
+        pub fn bresenham_lines(mut self, bresenham_lines: crate::vk::Bool32) -> Self {
+            self.bresenham_lines = bresenham_lines;
+            self
+        }
+        pub fn smooth_lines(mut self, smooth_lines: crate::vk::Bool32) -> Self {
+            self.smooth_lines = smooth_lines;
+            self
+        }
+        pub fn stippled_rectangular_lines(
+            mut self,
+            stippled_rectangular_lines: crate::vk::Bool32,
+        ) -> Self {
+            self.stippled_rectangular_lines = stippled_rectangular_lines;
+            self
+        }
+        pub fn stippled_bresenham_lines(
+            mut self,
+            stippled_bresenham_lines: crate::vk::Bool32,
+        ) -> Self {
+            self.stippled_bresenham_lines = stippled_bresenham_lines;
+            self
+        }
+        pub fn stippled_smooth_lines(
+            mut self,
+            stippled_smooth_lines: crate::vk::Bool32,
+        ) -> Self {
+            self.stippled_smooth_lines = stippled_smooth_lines;
+            self
+        }
+    }
     #[repr(C)]
     #[derive(Clone, Copy)]
     pub struct PhysicalDeviceLineRasterizationProperties<'a> {
@@ -786,6 +1048,15 @@ pub(crate) mod reexport {
                 line_sub_pixel_precision_bits: Default::default(),
                 _marker: ::core::marker::PhantomData,
             }
+        }
+    }
+    impl<'a> PhysicalDeviceLineRasterizationProperties<'a> {
+        pub fn line_sub_pixel_precision_bits(
+            mut self,
+            line_sub_pixel_precision_bits: u32,
+        ) -> Self {
+            self.line_sub_pixel_precision_bits = line_sub_pixel_precision_bits;
+            self
         }
     }
     #[repr(C)]
@@ -816,6 +1087,30 @@ pub(crate) mod reexport {
                 line_stipple_pattern: Default::default(),
                 _marker: ::core::marker::PhantomData,
             }
+        }
+    }
+    impl<'a> PipelineRasterizationLineStateCreateInfo<'a> {
+        pub fn line_rasterization_mode(
+            mut self,
+            line_rasterization_mode: crate::vk::LineRasterizationMode,
+        ) -> Self {
+            self.line_rasterization_mode = line_rasterization_mode;
+            self
+        }
+        pub fn stippled_line_enable(
+            mut self,
+            stippled_line_enable: crate::vk::Bool32,
+        ) -> Self {
+            self.stippled_line_enable = stippled_line_enable;
+            self
+        }
+        pub fn line_stipple_factor(mut self, line_stipple_factor: u32) -> Self {
+            self.line_stipple_factor = line_stipple_factor;
+            self
+        }
+        pub fn line_stipple_pattern(mut self, line_stipple_pattern: u16) -> Self {
+            self.line_stipple_pattern = line_stipple_pattern;
+            self
         }
     }
     #[repr(C)]
@@ -881,6 +1176,134 @@ pub(crate) mod reexport {
                 push_descriptor: Default::default(),
                 _marker: ::core::marker::PhantomData,
             }
+        }
+    }
+    impl<'a> PhysicalDeviceVulkan14Features<'a> {
+        pub fn global_priority_query(
+            mut self,
+            global_priority_query: crate::vk::Bool32,
+        ) -> Self {
+            self.global_priority_query = global_priority_query;
+            self
+        }
+        pub fn shader_subgroup_rotate(
+            mut self,
+            shader_subgroup_rotate: crate::vk::Bool32,
+        ) -> Self {
+            self.shader_subgroup_rotate = shader_subgroup_rotate;
+            self
+        }
+        pub fn shader_subgroup_rotate_clustered(
+            mut self,
+            shader_subgroup_rotate_clustered: crate::vk::Bool32,
+        ) -> Self {
+            self.shader_subgroup_rotate_clustered = shader_subgroup_rotate_clustered;
+            self
+        }
+        pub fn shader_float_controls2(
+            mut self,
+            shader_float_controls2: crate::vk::Bool32,
+        ) -> Self {
+            self.shader_float_controls2 = shader_float_controls2;
+            self
+        }
+        pub fn shader_expect_assume(
+            mut self,
+            shader_expect_assume: crate::vk::Bool32,
+        ) -> Self {
+            self.shader_expect_assume = shader_expect_assume;
+            self
+        }
+        pub fn rectangular_lines(
+            mut self,
+            rectangular_lines: crate::vk::Bool32,
+        ) -> Self {
+            self.rectangular_lines = rectangular_lines;
+            self
+        }
+        pub fn bresenham_lines(mut self, bresenham_lines: crate::vk::Bool32) -> Self {
+            self.bresenham_lines = bresenham_lines;
+            self
+        }
+        pub fn smooth_lines(mut self, smooth_lines: crate::vk::Bool32) -> Self {
+            self.smooth_lines = smooth_lines;
+            self
+        }
+        pub fn stippled_rectangular_lines(
+            mut self,
+            stippled_rectangular_lines: crate::vk::Bool32,
+        ) -> Self {
+            self.stippled_rectangular_lines = stippled_rectangular_lines;
+            self
+        }
+        pub fn stippled_bresenham_lines(
+            mut self,
+            stippled_bresenham_lines: crate::vk::Bool32,
+        ) -> Self {
+            self.stippled_bresenham_lines = stippled_bresenham_lines;
+            self
+        }
+        pub fn stippled_smooth_lines(
+            mut self,
+            stippled_smooth_lines: crate::vk::Bool32,
+        ) -> Self {
+            self.stippled_smooth_lines = stippled_smooth_lines;
+            self
+        }
+        pub fn vertex_attribute_instance_rate_divisor(
+            mut self,
+            vertex_attribute_instance_rate_divisor: crate::vk::Bool32,
+        ) -> Self {
+            self.vertex_attribute_instance_rate_divisor = vertex_attribute_instance_rate_divisor;
+            self
+        }
+        pub fn vertex_attribute_instance_rate_zero_divisor(
+            mut self,
+            vertex_attribute_instance_rate_zero_divisor: crate::vk::Bool32,
+        ) -> Self {
+            self.vertex_attribute_instance_rate_zero_divisor = vertex_attribute_instance_rate_zero_divisor;
+            self
+        }
+        pub fn index_type_uint8(mut self, index_type_uint8: crate::vk::Bool32) -> Self {
+            self.index_type_uint8 = index_type_uint8;
+            self
+        }
+        pub fn dynamic_rendering_local_read(
+            mut self,
+            dynamic_rendering_local_read: crate::vk::Bool32,
+        ) -> Self {
+            self.dynamic_rendering_local_read = dynamic_rendering_local_read;
+            self
+        }
+        pub fn maintenance5(mut self, maintenance5: crate::vk::Bool32) -> Self {
+            self.maintenance5 = maintenance5;
+            self
+        }
+        pub fn maintenance6(mut self, maintenance6: crate::vk::Bool32) -> Self {
+            self.maintenance6 = maintenance6;
+            self
+        }
+        pub fn pipeline_protected_access(
+            mut self,
+            pipeline_protected_access: crate::vk::Bool32,
+        ) -> Self {
+            self.pipeline_protected_access = pipeline_protected_access;
+            self
+        }
+        pub fn pipeline_robustness(
+            mut self,
+            pipeline_robustness: crate::vk::Bool32,
+        ) -> Self {
+            self.pipeline_robustness = pipeline_robustness;
+            self
+        }
+        pub fn host_image_copy(mut self, host_image_copy: crate::vk::Bool32) -> Self {
+            self.host_image_copy = host_image_copy;
+            self
+        }
+        pub fn push_descriptor(mut self, push_descriptor: crate::vk::Bool32) -> Self {
+            self.push_descriptor = push_descriptor;
+            self
         }
     }
     #[repr(C)]
@@ -954,6 +1377,174 @@ pub(crate) mod reexport {
             }
         }
     }
+    impl<'a> PhysicalDeviceVulkan14Properties<'a> {
+        pub fn line_sub_pixel_precision_bits(
+            mut self,
+            line_sub_pixel_precision_bits: u32,
+        ) -> Self {
+            self.line_sub_pixel_precision_bits = line_sub_pixel_precision_bits;
+            self
+        }
+        pub fn max_vertex_attrib_divisor(
+            mut self,
+            max_vertex_attrib_divisor: u32,
+        ) -> Self {
+            self.max_vertex_attrib_divisor = max_vertex_attrib_divisor;
+            self
+        }
+        pub fn supports_non_zero_first_instance(
+            mut self,
+            supports_non_zero_first_instance: crate::vk::Bool32,
+        ) -> Self {
+            self.supports_non_zero_first_instance = supports_non_zero_first_instance;
+            self
+        }
+        pub fn max_push_descriptors(mut self, max_push_descriptors: u32) -> Self {
+            self.max_push_descriptors = max_push_descriptors;
+            self
+        }
+        pub fn dynamic_rendering_local_read_depth_stencil_attachments(
+            mut self,
+            dynamic_rendering_local_read_depth_stencil_attachments: crate::vk::Bool32,
+        ) -> Self {
+            self.dynamic_rendering_local_read_depth_stencil_attachments = dynamic_rendering_local_read_depth_stencil_attachments;
+            self
+        }
+        pub fn dynamic_rendering_local_read_multisampled_attachments(
+            mut self,
+            dynamic_rendering_local_read_multisampled_attachments: crate::vk::Bool32,
+        ) -> Self {
+            self.dynamic_rendering_local_read_multisampled_attachments = dynamic_rendering_local_read_multisampled_attachments;
+            self
+        }
+        pub fn early_fragment_multisample_coverage_after_sample_counting(
+            mut self,
+            early_fragment_multisample_coverage_after_sample_counting: crate::vk::Bool32,
+        ) -> Self {
+            self.early_fragment_multisample_coverage_after_sample_counting = early_fragment_multisample_coverage_after_sample_counting;
+            self
+        }
+        pub fn early_fragment_sample_mask_test_before_sample_counting(
+            mut self,
+            early_fragment_sample_mask_test_before_sample_counting: crate::vk::Bool32,
+        ) -> Self {
+            self.early_fragment_sample_mask_test_before_sample_counting = early_fragment_sample_mask_test_before_sample_counting;
+            self
+        }
+        pub fn depth_stencil_swizzle_one_support(
+            mut self,
+            depth_stencil_swizzle_one_support: crate::vk::Bool32,
+        ) -> Self {
+            self.depth_stencil_swizzle_one_support = depth_stencil_swizzle_one_support;
+            self
+        }
+        pub fn polygon_mode_point_size(
+            mut self,
+            polygon_mode_point_size: crate::vk::Bool32,
+        ) -> Self {
+            self.polygon_mode_point_size = polygon_mode_point_size;
+            self
+        }
+        pub fn non_strict_single_pixel_wide_lines_use_parallelogram(
+            mut self,
+            non_strict_single_pixel_wide_lines_use_parallelogram: crate::vk::Bool32,
+        ) -> Self {
+            self.non_strict_single_pixel_wide_lines_use_parallelogram = non_strict_single_pixel_wide_lines_use_parallelogram;
+            self
+        }
+        pub fn non_strict_wide_lines_use_parallelogram(
+            mut self,
+            non_strict_wide_lines_use_parallelogram: crate::vk::Bool32,
+        ) -> Self {
+            self.non_strict_wide_lines_use_parallelogram = non_strict_wide_lines_use_parallelogram;
+            self
+        }
+        pub fn block_texel_view_compatible_multiple_layers(
+            mut self,
+            block_texel_view_compatible_multiple_layers: crate::vk::Bool32,
+        ) -> Self {
+            self.block_texel_view_compatible_multiple_layers = block_texel_view_compatible_multiple_layers;
+            self
+        }
+        pub fn max_combined_image_sampler_descriptor_count(
+            mut self,
+            max_combined_image_sampler_descriptor_count: u32,
+        ) -> Self {
+            self.max_combined_image_sampler_descriptor_count = max_combined_image_sampler_descriptor_count;
+            self
+        }
+        pub fn fragment_shading_rate_clamp_combiner_inputs(
+            mut self,
+            fragment_shading_rate_clamp_combiner_inputs: crate::vk::Bool32,
+        ) -> Self {
+            self.fragment_shading_rate_clamp_combiner_inputs = fragment_shading_rate_clamp_combiner_inputs;
+            self
+        }
+        pub fn default_robustness_storage_buffers(
+            mut self,
+            default_robustness_storage_buffers: crate::vk::PipelineRobustnessBufferBehavior,
+        ) -> Self {
+            self.default_robustness_storage_buffers = default_robustness_storage_buffers;
+            self
+        }
+        pub fn default_robustness_uniform_buffers(
+            mut self,
+            default_robustness_uniform_buffers: crate::vk::PipelineRobustnessBufferBehavior,
+        ) -> Self {
+            self.default_robustness_uniform_buffers = default_robustness_uniform_buffers;
+            self
+        }
+        pub fn default_robustness_vertex_inputs(
+            mut self,
+            default_robustness_vertex_inputs: crate::vk::PipelineRobustnessBufferBehavior,
+        ) -> Self {
+            self.default_robustness_vertex_inputs = default_robustness_vertex_inputs;
+            self
+        }
+        pub fn default_robustness_images(
+            mut self,
+            default_robustness_images: crate::vk::PipelineRobustnessImageBehavior,
+        ) -> Self {
+            self.default_robustness_images = default_robustness_images;
+            self
+        }
+        pub fn copy_src_layout_count(mut self, copy_src_layout_count: u32) -> Self {
+            self.copy_src_layout_count = copy_src_layout_count;
+            self
+        }
+        pub fn p_copy_src_layouts(
+            mut self,
+            p_copy_src_layouts: *mut crate::vk::ImageLayout,
+        ) -> Self {
+            self.p_copy_src_layouts = p_copy_src_layouts;
+            self
+        }
+        pub fn copy_dst_layout_count(mut self, copy_dst_layout_count: u32) -> Self {
+            self.copy_dst_layout_count = copy_dst_layout_count;
+            self
+        }
+        pub fn p_copy_dst_layouts(
+            mut self,
+            p_copy_dst_layouts: *mut crate::vk::ImageLayout,
+        ) -> Self {
+            self.p_copy_dst_layouts = p_copy_dst_layouts;
+            self
+        }
+        pub fn optimal_tiling_layout_uuid(
+            mut self,
+            optimal_tiling_layout_uuid: [u8; crate::vk::UUID_SIZE as _],
+        ) -> Self {
+            self.optimal_tiling_layout_uuid = optimal_tiling_layout_uuid;
+            self
+        }
+        pub fn identical_memory_type_requirements(
+            mut self,
+            identical_memory_type_requirements: crate::vk::Bool32,
+        ) -> Self {
+            self.identical_memory_type_requirements = identical_memory_type_requirements;
+            self
+        }
+    }
     #[repr(C)]
     #[derive(Clone, Copy)]
     pub struct PhysicalDeviceHostImageCopyFeatures<'a> {
@@ -978,6 +1569,12 @@ pub(crate) mod reexport {
                 host_image_copy: Default::default(),
                 _marker: ::core::marker::PhantomData,
             }
+        }
+    }
+    impl<'a> PhysicalDeviceHostImageCopyFeatures<'a> {
+        pub fn host_image_copy(mut self, host_image_copy: crate::vk::Bool32) -> Self {
+            self.host_image_copy = host_image_copy;
+            self
         }
     }
     #[repr(C)]
@@ -1014,6 +1611,44 @@ pub(crate) mod reexport {
             }
         }
     }
+    impl<'a> PhysicalDeviceHostImageCopyProperties<'a> {
+        pub fn copy_src_layout_count(mut self, copy_src_layout_count: u32) -> Self {
+            self.copy_src_layout_count = copy_src_layout_count;
+            self
+        }
+        pub fn p_copy_src_layouts(
+            mut self,
+            p_copy_src_layouts: *mut crate::vk::ImageLayout,
+        ) -> Self {
+            self.p_copy_src_layouts = p_copy_src_layouts;
+            self
+        }
+        pub fn copy_dst_layout_count(mut self, copy_dst_layout_count: u32) -> Self {
+            self.copy_dst_layout_count = copy_dst_layout_count;
+            self
+        }
+        pub fn p_copy_dst_layouts(
+            mut self,
+            p_copy_dst_layouts: *mut crate::vk::ImageLayout,
+        ) -> Self {
+            self.p_copy_dst_layouts = p_copy_dst_layouts;
+            self
+        }
+        pub fn optimal_tiling_layout_uuid(
+            mut self,
+            optimal_tiling_layout_uuid: [u8; crate::vk::UUID_SIZE as _],
+        ) -> Self {
+            self.optimal_tiling_layout_uuid = optimal_tiling_layout_uuid;
+            self
+        }
+        pub fn identical_memory_type_requirements(
+            mut self,
+            identical_memory_type_requirements: crate::vk::Bool32,
+        ) -> Self {
+            self.identical_memory_type_requirements = identical_memory_type_requirements;
+            self
+        }
+    }
     #[repr(C)]
     #[derive(Clone, Copy)]
     pub struct MemoryToImageCopy<'a> {
@@ -1043,6 +1678,38 @@ pub(crate) mod reexport {
                 image_extent: Default::default(),
                 _marker: ::core::marker::PhantomData,
             }
+        }
+    }
+    impl<'a> MemoryToImageCopy<'a> {
+        pub fn p_host_pointer(
+            mut self,
+            p_host_pointer: *const core::ffi::c_void,
+        ) -> Self {
+            self.p_host_pointer = p_host_pointer;
+            self
+        }
+        pub fn memory_row_length(mut self, memory_row_length: u32) -> Self {
+            self.memory_row_length = memory_row_length;
+            self
+        }
+        pub fn memory_image_height(mut self, memory_image_height: u32) -> Self {
+            self.memory_image_height = memory_image_height;
+            self
+        }
+        pub fn image_subresource(
+            mut self,
+            image_subresource: crate::vk::ImageSubresourceLayers,
+        ) -> Self {
+            self.image_subresource = image_subresource;
+            self
+        }
+        pub fn image_offset(mut self, image_offset: crate::vk::Offset3D) -> Self {
+            self.image_offset = image_offset;
+            self
+        }
+        pub fn image_extent(mut self, image_extent: crate::vk::Extent3D) -> Self {
+            self.image_extent = image_extent;
+            self
         }
     }
     #[repr(C)]
@@ -1076,6 +1743,35 @@ pub(crate) mod reexport {
             }
         }
     }
+    impl<'a> ImageToMemoryCopy<'a> {
+        pub fn p_host_pointer(mut self, p_host_pointer: *mut core::ffi::c_void) -> Self {
+            self.p_host_pointer = p_host_pointer;
+            self
+        }
+        pub fn memory_row_length(mut self, memory_row_length: u32) -> Self {
+            self.memory_row_length = memory_row_length;
+            self
+        }
+        pub fn memory_image_height(mut self, memory_image_height: u32) -> Self {
+            self.memory_image_height = memory_image_height;
+            self
+        }
+        pub fn image_subresource(
+            mut self,
+            image_subresource: crate::vk::ImageSubresourceLayers,
+        ) -> Self {
+            self.image_subresource = image_subresource;
+            self
+        }
+        pub fn image_offset(mut self, image_offset: crate::vk::Offset3D) -> Self {
+            self.image_offset = image_offset;
+            self
+        }
+        pub fn image_extent(mut self, image_extent: crate::vk::Extent3D) -> Self {
+            self.image_extent = image_extent;
+            self
+        }
+    }
     #[repr(C)]
     #[derive(Clone, Copy)]
     pub struct CopyMemoryToImageInfo<'a> {
@@ -1105,6 +1801,34 @@ pub(crate) mod reexport {
             }
         }
     }
+    impl<'a> CopyMemoryToImageInfo<'a> {
+        pub fn flags(mut self, flags: crate::vk::HostImageCopyFlags) -> Self {
+            self.flags = flags;
+            self
+        }
+        pub fn dst_image(mut self, dst_image: crate::vk::Image) -> Self {
+            self.dst_image = dst_image;
+            self
+        }
+        pub fn dst_image_layout(
+            mut self,
+            dst_image_layout: crate::vk::ImageLayout,
+        ) -> Self {
+            self.dst_image_layout = dst_image_layout;
+            self
+        }
+        pub fn region_count(mut self, region_count: u32) -> Self {
+            self.region_count = region_count;
+            self
+        }
+        pub fn p_regions(
+            mut self,
+            p_regions: *const crate::vk::MemoryToImageCopy<'a>,
+        ) -> Self {
+            self.p_regions = p_regions;
+            self
+        }
+    }
     #[repr(C)]
     #[derive(Clone, Copy)]
     pub struct CopyImageToMemoryInfo<'a> {
@@ -1132,6 +1856,34 @@ pub(crate) mod reexport {
                 p_regions: Default::default(),
                 _marker: ::core::marker::PhantomData,
             }
+        }
+    }
+    impl<'a> CopyImageToMemoryInfo<'a> {
+        pub fn flags(mut self, flags: crate::vk::HostImageCopyFlags) -> Self {
+            self.flags = flags;
+            self
+        }
+        pub fn src_image(mut self, src_image: crate::vk::Image) -> Self {
+            self.src_image = src_image;
+            self
+        }
+        pub fn src_image_layout(
+            mut self,
+            src_image_layout: crate::vk::ImageLayout,
+        ) -> Self {
+            self.src_image_layout = src_image_layout;
+            self
+        }
+        pub fn region_count(mut self, region_count: u32) -> Self {
+            self.region_count = region_count;
+            self
+        }
+        pub fn p_regions(
+            mut self,
+            p_regions: *const crate::vk::ImageToMemoryCopy<'a>,
+        ) -> Self {
+            self.p_regions = p_regions;
+            self
         }
     }
     #[repr(C)]
@@ -1167,6 +1919,42 @@ pub(crate) mod reexport {
             }
         }
     }
+    impl<'a> CopyImageToImageInfo<'a> {
+        pub fn flags(mut self, flags: crate::vk::HostImageCopyFlags) -> Self {
+            self.flags = flags;
+            self
+        }
+        pub fn src_image(mut self, src_image: crate::vk::Image) -> Self {
+            self.src_image = src_image;
+            self
+        }
+        pub fn src_image_layout(
+            mut self,
+            src_image_layout: crate::vk::ImageLayout,
+        ) -> Self {
+            self.src_image_layout = src_image_layout;
+            self
+        }
+        pub fn dst_image(mut self, dst_image: crate::vk::Image) -> Self {
+            self.dst_image = dst_image;
+            self
+        }
+        pub fn dst_image_layout(
+            mut self,
+            dst_image_layout: crate::vk::ImageLayout,
+        ) -> Self {
+            self.dst_image_layout = dst_image_layout;
+            self
+        }
+        pub fn region_count(mut self, region_count: u32) -> Self {
+            self.region_count = region_count;
+            self
+        }
+        pub fn p_regions(mut self, p_regions: *const crate::vk::ImageCopy2<'a>) -> Self {
+            self.p_regions = p_regions;
+            self
+        }
+    }
     #[repr(C)]
     #[derive(Clone, Copy)]
     pub struct HostImageLayoutTransitionInfo<'a> {
@@ -1194,6 +1982,27 @@ pub(crate) mod reexport {
             }
         }
     }
+    impl<'a> HostImageLayoutTransitionInfo<'a> {
+        pub fn image(mut self, image: crate::vk::Image) -> Self {
+            self.image = image;
+            self
+        }
+        pub fn old_layout(mut self, old_layout: crate::vk::ImageLayout) -> Self {
+            self.old_layout = old_layout;
+            self
+        }
+        pub fn new_layout(mut self, new_layout: crate::vk::ImageLayout) -> Self {
+            self.new_layout = new_layout;
+            self
+        }
+        pub fn subresource_range(
+            mut self,
+            subresource_range: crate::vk::ImageSubresourceRange,
+        ) -> Self {
+            self.subresource_range = subresource_range;
+            self
+        }
+    }
     #[repr(C)]
     #[derive(Clone, Copy)]
     pub struct SubresourceHostMemcpySize<'a> {
@@ -1215,6 +2024,12 @@ pub(crate) mod reexport {
                 size: Default::default(),
                 _marker: ::core::marker::PhantomData,
             }
+        }
+    }
+    impl<'a> SubresourceHostMemcpySize<'a> {
+        pub fn size(mut self, size: crate::vk::DeviceSize) -> Self {
+            self.size = size;
+            self
         }
     }
     #[repr(C)]
@@ -1243,6 +2058,22 @@ pub(crate) mod reexport {
             }
         }
     }
+    impl<'a> HostImageCopyDevicePerformanceQuery<'a> {
+        pub fn optimal_device_access(
+            mut self,
+            optimal_device_access: crate::vk::Bool32,
+        ) -> Self {
+            self.optimal_device_access = optimal_device_access;
+            self
+        }
+        pub fn identical_memory_layout(
+            mut self,
+            identical_memory_layout: crate::vk::Bool32,
+        ) -> Self {
+            self.identical_memory_layout = identical_memory_layout;
+            self
+        }
+    }
     #[repr(C)]
     #[derive(Clone, Copy)]
     pub struct PhysicalDevicePipelineProtectedAccessFeatures<'a> {
@@ -1269,6 +2100,15 @@ pub(crate) mod reexport {
             }
         }
     }
+    impl<'a> PhysicalDevicePipelineProtectedAccessFeatures<'a> {
+        pub fn pipeline_protected_access(
+            mut self,
+            pipeline_protected_access: crate::vk::Bool32,
+        ) -> Self {
+            self.pipeline_protected_access = pipeline_protected_access;
+            self
+        }
+    }
     #[repr(C)]
     #[derive(Clone, Copy)]
     pub struct ImageSubresource2<'a> {
@@ -1290,6 +2130,15 @@ pub(crate) mod reexport {
             }
         }
     }
+    impl<'a> ImageSubresource2<'a> {
+        pub fn image_subresource(
+            mut self,
+            image_subresource: crate::vk::ImageSubresource,
+        ) -> Self {
+            self.image_subresource = image_subresource;
+            self
+        }
+    }
     #[repr(C)]
     #[derive(Clone, Copy)]
     pub struct SubresourceLayout2<'a> {
@@ -1309,6 +2158,15 @@ pub(crate) mod reexport {
                 subresource_layout: Default::default(),
                 _marker: ::core::marker::PhantomData,
             }
+        }
+    }
+    impl<'a> SubresourceLayout2<'a> {
+        pub fn subresource_layout(
+            mut self,
+            subresource_layout: crate::vk::SubresourceLayout,
+        ) -> Self {
+            self.subresource_layout = subresource_layout;
+            self
         }
     }
     #[repr(C)]
@@ -1335,6 +2193,15 @@ pub(crate) mod reexport {
                 pipeline_robustness: Default::default(),
                 _marker: ::core::marker::PhantomData,
             }
+        }
+    }
+    impl<'a> PhysicalDevicePipelineRobustnessFeatures<'a> {
+        pub fn pipeline_robustness(
+            mut self,
+            pipeline_robustness: crate::vk::Bool32,
+        ) -> Self {
+            self.pipeline_robustness = pipeline_robustness;
+            self
         }
     }
     #[repr(C)]
@@ -1372,6 +2239,36 @@ pub(crate) mod reexport {
             }
         }
     }
+    impl<'a> PipelineRobustnessCreateInfo<'a> {
+        pub fn storage_buffers(
+            mut self,
+            storage_buffers: crate::vk::PipelineRobustnessBufferBehavior,
+        ) -> Self {
+            self.storage_buffers = storage_buffers;
+            self
+        }
+        pub fn uniform_buffers(
+            mut self,
+            uniform_buffers: crate::vk::PipelineRobustnessBufferBehavior,
+        ) -> Self {
+            self.uniform_buffers = uniform_buffers;
+            self
+        }
+        pub fn vertex_inputs(
+            mut self,
+            vertex_inputs: crate::vk::PipelineRobustnessBufferBehavior,
+        ) -> Self {
+            self.vertex_inputs = vertex_inputs;
+            self
+        }
+        pub fn images(
+            mut self,
+            images: crate::vk::PipelineRobustnessImageBehavior,
+        ) -> Self {
+            self.images = images;
+            self
+        }
+    }
     #[repr(C)]
     #[derive(Clone, Copy)]
     pub struct PhysicalDevicePipelineRobustnessProperties<'a> {
@@ -1402,6 +2299,36 @@ pub(crate) mod reexport {
             }
         }
     }
+    impl<'a> PhysicalDevicePipelineRobustnessProperties<'a> {
+        pub fn default_robustness_storage_buffers(
+            mut self,
+            default_robustness_storage_buffers: crate::vk::PipelineRobustnessBufferBehavior,
+        ) -> Self {
+            self.default_robustness_storage_buffers = default_robustness_storage_buffers;
+            self
+        }
+        pub fn default_robustness_uniform_buffers(
+            mut self,
+            default_robustness_uniform_buffers: crate::vk::PipelineRobustnessBufferBehavior,
+        ) -> Self {
+            self.default_robustness_uniform_buffers = default_robustness_uniform_buffers;
+            self
+        }
+        pub fn default_robustness_vertex_inputs(
+            mut self,
+            default_robustness_vertex_inputs: crate::vk::PipelineRobustnessBufferBehavior,
+        ) -> Self {
+            self.default_robustness_vertex_inputs = default_robustness_vertex_inputs;
+            self
+        }
+        pub fn default_robustness_images(
+            mut self,
+            default_robustness_images: crate::vk::PipelineRobustnessImageBehavior,
+        ) -> Self {
+            self.default_robustness_images = default_robustness_images;
+            self
+        }
+    }
     #[repr(C)]
     #[derive(Clone, Copy)]
     pub struct DeviceImageSubresourceInfo<'a> {
@@ -1423,6 +2350,22 @@ pub(crate) mod reexport {
                 p_subresource: Default::default(),
                 _marker: ::core::marker::PhantomData,
             }
+        }
+    }
+    impl<'a> DeviceImageSubresourceInfo<'a> {
+        pub fn p_create_info(
+            mut self,
+            p_create_info: *const crate::vk::ImageCreateInfo<'a>,
+        ) -> Self {
+            self.p_create_info = p_create_info;
+            self
+        }
+        pub fn p_subresource(
+            mut self,
+            p_subresource: *const crate::vk::ImageSubresource2<'a>,
+        ) -> Self {
+            self.p_subresource = p_subresource;
+            self
         }
     }
     #[repr(C)]
@@ -1452,6 +2395,24 @@ pub(crate) mod reexport {
             }
         }
     }
+    impl<'a> MemoryMapInfo<'a> {
+        pub fn flags(mut self, flags: crate::vk::MemoryMapFlags) -> Self {
+            self.flags = flags;
+            self
+        }
+        pub fn memory(mut self, memory: crate::vk::DeviceMemory) -> Self {
+            self.memory = memory;
+            self
+        }
+        pub fn offset(mut self, offset: crate::vk::DeviceSize) -> Self {
+            self.offset = offset;
+            self
+        }
+        pub fn size(mut self, size: crate::vk::DeviceSize) -> Self {
+            self.size = size;
+            self
+        }
+    }
     #[repr(C)]
     #[derive(Clone, Copy)]
     pub struct MemoryUnmapInfo<'a> {
@@ -1473,6 +2434,16 @@ pub(crate) mod reexport {
                 memory: Default::default(),
                 _marker: ::core::marker::PhantomData,
             }
+        }
+    }
+    impl<'a> MemoryUnmapInfo<'a> {
+        pub fn flags(mut self, flags: crate::vk::MemoryUnmapFlags) -> Self {
+            self.flags = flags;
+            self
+        }
+        pub fn memory(mut self, memory: crate::vk::DeviceMemory) -> Self {
+            self.memory = memory;
+            self
         }
     }
     #[repr(C)]
@@ -1498,6 +2469,12 @@ pub(crate) mod reexport {
                 p_result: Default::default(),
                 _marker: ::core::marker::PhantomData,
             }
+        }
+    }
+    impl<'a> BindMemoryStatus<'a> {
+        pub fn p_result(mut self, p_result: *mut crate::vk::Result) -> Self {
+            self.p_result = p_result;
+            self
         }
     }
     #[repr(C)]
@@ -1533,6 +2510,39 @@ pub(crate) mod reexport {
             }
         }
     }
+    impl<'a> BindDescriptorSetsInfo<'a> {
+        pub fn stage_flags(mut self, stage_flags: crate::vk::ShaderStageFlags) -> Self {
+            self.stage_flags = stage_flags;
+            self
+        }
+        pub fn layout(mut self, layout: crate::vk::PipelineLayout) -> Self {
+            self.layout = layout;
+            self
+        }
+        pub fn first_set(mut self, first_set: u32) -> Self {
+            self.first_set = first_set;
+            self
+        }
+        pub fn descriptor_set_count(mut self, descriptor_set_count: u32) -> Self {
+            self.descriptor_set_count = descriptor_set_count;
+            self
+        }
+        pub fn p_descriptor_sets(
+            mut self,
+            p_descriptor_sets: *const crate::vk::DescriptorSet,
+        ) -> Self {
+            self.p_descriptor_sets = p_descriptor_sets;
+            self
+        }
+        pub fn dynamic_offset_count(mut self, dynamic_offset_count: u32) -> Self {
+            self.dynamic_offset_count = dynamic_offset_count;
+            self
+        }
+        pub fn p_dynamic_offsets(mut self, p_dynamic_offsets: *const u32) -> Self {
+            self.p_dynamic_offsets = p_dynamic_offsets;
+            self
+        }
+    }
     #[repr(C)]
     #[derive(Clone, Copy)]
     pub struct PushConstantsInfo<'a> {
@@ -1560,6 +2570,28 @@ pub(crate) mod reexport {
                 p_values: Default::default(),
                 _marker: ::core::marker::PhantomData,
             }
+        }
+    }
+    impl<'a> PushConstantsInfo<'a> {
+        pub fn layout(mut self, layout: crate::vk::PipelineLayout) -> Self {
+            self.layout = layout;
+            self
+        }
+        pub fn stage_flags(mut self, stage_flags: crate::vk::ShaderStageFlags) -> Self {
+            self.stage_flags = stage_flags;
+            self
+        }
+        pub fn offset(mut self, offset: u32) -> Self {
+            self.offset = offset;
+            self
+        }
+        pub fn size(mut self, size: u32) -> Self {
+            self.size = size;
+            self
+        }
+        pub fn p_values(mut self, p_values: *const core::ffi::c_void) -> Self {
+            self.p_values = p_values;
+            self
         }
     }
     #[repr(C)]
@@ -1591,6 +2623,31 @@ pub(crate) mod reexport {
             }
         }
     }
+    impl<'a> PushDescriptorSetInfo<'a> {
+        pub fn stage_flags(mut self, stage_flags: crate::vk::ShaderStageFlags) -> Self {
+            self.stage_flags = stage_flags;
+            self
+        }
+        pub fn layout(mut self, layout: crate::vk::PipelineLayout) -> Self {
+            self.layout = layout;
+            self
+        }
+        pub fn set(mut self, set: u32) -> Self {
+            self.set = set;
+            self
+        }
+        pub fn descriptor_write_count(mut self, descriptor_write_count: u32) -> Self {
+            self.descriptor_write_count = descriptor_write_count;
+            self
+        }
+        pub fn p_descriptor_writes(
+            mut self,
+            p_descriptor_writes: *const crate::vk::WriteDescriptorSet<'a>,
+        ) -> Self {
+            self.p_descriptor_writes = p_descriptor_writes;
+            self
+        }
+    }
     #[repr(C)]
     #[derive(Clone, Copy)]
     pub struct PushDescriptorSetWithTemplateInfo<'a> {
@@ -1617,6 +2674,27 @@ pub(crate) mod reexport {
                 p_data: Default::default(),
                 _marker: ::core::marker::PhantomData,
             }
+        }
+    }
+    impl<'a> PushDescriptorSetWithTemplateInfo<'a> {
+        pub fn descriptor_update_template(
+            mut self,
+            descriptor_update_template: crate::vk::DescriptorUpdateTemplate,
+        ) -> Self {
+            self.descriptor_update_template = descriptor_update_template;
+            self
+        }
+        pub fn layout(mut self, layout: crate::vk::PipelineLayout) -> Self {
+            self.layout = layout;
+            self
+        }
+        pub fn set(mut self, set: u32) -> Self {
+            self.set = set;
+            self
+        }
+        pub fn p_data(mut self, p_data: *const core::ffi::c_void) -> Self {
+            self.p_data = p_data;
+            self
         }
     }
     #[repr(C)]
@@ -1647,6 +2725,22 @@ pub(crate) mod reexport {
             }
         }
     }
+    impl<'a> PhysicalDeviceShaderSubgroupRotateFeatures<'a> {
+        pub fn shader_subgroup_rotate(
+            mut self,
+            shader_subgroup_rotate: crate::vk::Bool32,
+        ) -> Self {
+            self.shader_subgroup_rotate = shader_subgroup_rotate;
+            self
+        }
+        pub fn shader_subgroup_rotate_clustered(
+            mut self,
+            shader_subgroup_rotate_clustered: crate::vk::Bool32,
+        ) -> Self {
+            self.shader_subgroup_rotate_clustered = shader_subgroup_rotate_clustered;
+            self
+        }
+    }
     #[repr(C)]
     #[derive(Clone, Copy)]
     pub struct PhysicalDeviceShaderExpectAssumeFeatures<'a> {
@@ -1671,6 +2765,15 @@ pub(crate) mod reexport {
                 shader_expect_assume: Default::default(),
                 _marker: ::core::marker::PhantomData,
             }
+        }
+    }
+    impl<'a> PhysicalDeviceShaderExpectAssumeFeatures<'a> {
+        pub fn shader_expect_assume(
+            mut self,
+            shader_expect_assume: crate::vk::Bool32,
+        ) -> Self {
+            self.shader_expect_assume = shader_expect_assume;
+            self
         }
     }
     #[repr(C)]
@@ -1699,6 +2802,15 @@ pub(crate) mod reexport {
             }
         }
     }
+    impl<'a> PhysicalDeviceShaderFloatControls2Features<'a> {
+        pub fn shader_float_controls2(
+            mut self,
+            shader_float_controls2: crate::vk::Bool32,
+        ) -> Self {
+            self.shader_float_controls2 = shader_float_controls2;
+            self
+        }
+    }
     #[repr(C)]
     #[derive(Clone, Copy)]
     pub struct PhysicalDeviceDynamicRenderingLocalReadFeatures<'a> {
@@ -1723,6 +2835,15 @@ pub(crate) mod reexport {
                 dynamic_rendering_local_read: Default::default(),
                 _marker: ::core::marker::PhantomData,
             }
+        }
+    }
+    impl<'a> PhysicalDeviceDynamicRenderingLocalReadFeatures<'a> {
+        pub fn dynamic_rendering_local_read(
+            mut self,
+            dynamic_rendering_local_read: crate::vk::Bool32,
+        ) -> Self {
+            self.dynamic_rendering_local_read = dynamic_rendering_local_read;
+            self
         }
     }
     #[repr(C)]
@@ -1750,6 +2871,19 @@ pub(crate) mod reexport {
                 p_color_attachment_locations: Default::default(),
                 _marker: ::core::marker::PhantomData,
             }
+        }
+    }
+    impl<'a> RenderingAttachmentLocationInfo<'a> {
+        pub fn color_attachment_count(mut self, color_attachment_count: u32) -> Self {
+            self.color_attachment_count = color_attachment_count;
+            self
+        }
+        pub fn p_color_attachment_locations(
+            mut self,
+            p_color_attachment_locations: *const u32,
+        ) -> Self {
+            self.p_color_attachment_locations = p_color_attachment_locations;
+            self
         }
     }
     #[repr(C)]
@@ -1782,6 +2916,33 @@ pub(crate) mod reexport {
                 p_stencil_input_attachment_index: Default::default(),
                 _marker: ::core::marker::PhantomData,
             }
+        }
+    }
+    impl<'a> RenderingInputAttachmentIndexInfo<'a> {
+        pub fn color_attachment_count(mut self, color_attachment_count: u32) -> Self {
+            self.color_attachment_count = color_attachment_count;
+            self
+        }
+        pub fn p_color_attachment_input_indices(
+            mut self,
+            p_color_attachment_input_indices: *const u32,
+        ) -> Self {
+            self.p_color_attachment_input_indices = p_color_attachment_input_indices;
+            self
+        }
+        pub fn p_depth_input_attachment_index(
+            mut self,
+            p_depth_input_attachment_index: *const u32,
+        ) -> Self {
+            self.p_depth_input_attachment_index = p_depth_input_attachment_index;
+            self
+        }
+        pub fn p_stencil_input_attachment_index(
+            mut self,
+            p_stencil_input_attachment_index: *const u32,
+        ) -> Self {
+            self.p_stencil_input_attachment_index = p_stencil_input_attachment_index;
+            self
         }
     }
     ///Provided by [`vk1_4`](crate::vk1_4)

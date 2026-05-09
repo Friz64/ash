@@ -27,6 +27,15 @@ impl<'a> Default for PhysicalDeviceDepthClampControlFeaturesEXT<'a> {
         }
     }
 }
+impl<'a> PhysicalDeviceDepthClampControlFeaturesEXT<'a> {
+    pub fn depth_clamp_control(
+        mut self,
+        depth_clamp_control: crate::vk::Bool32,
+    ) -> Self {
+        self.depth_clamp_control = depth_clamp_control;
+        self
+    }
+}
 #[repr(C)]
 #[derive(Clone, Copy)]
 pub struct PipelineViewportDepthClampControlCreateInfoEXT<'a> {
@@ -53,11 +62,37 @@ impl<'a> Default for PipelineViewportDepthClampControlCreateInfoEXT<'a> {
         }
     }
 }
+impl<'a> PipelineViewportDepthClampControlCreateInfoEXT<'a> {
+    pub fn depth_clamp_mode(
+        mut self,
+        depth_clamp_mode: crate::vk::DepthClampModeEXT,
+    ) -> Self {
+        self.depth_clamp_mode = depth_clamp_mode;
+        self
+    }
+    pub fn p_depth_clamp_range(
+        mut self,
+        p_depth_clamp_range: *const crate::vk::DepthClampRangeEXT,
+    ) -> Self {
+        self.p_depth_clamp_range = p_depth_clamp_range;
+        self
+    }
+}
 #[repr(C)]
 #[derive(Clone, Copy, Default)]
 pub struct DepthClampRangeEXT {
     pub min_depth_clamp: core::ffi::c_float,
     pub max_depth_clamp: core::ffi::c_float,
+}
+impl DepthClampRangeEXT {
+    pub fn min_depth_clamp(mut self, min_depth_clamp: core::ffi::c_float) -> Self {
+        self.min_depth_clamp = min_depth_clamp;
+        self
+    }
+    pub fn max_depth_clamp(mut self, max_depth_clamp: core::ffi::c_float) -> Self {
+        self.max_depth_clamp = max_depth_clamp;
+        self
+    }
 }
 ///Provided by [`ext::depth_clamp_control`](crate::ext::depth_clamp_control)
 impl crate::vk::StructureType {

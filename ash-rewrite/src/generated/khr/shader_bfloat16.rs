@@ -31,6 +31,29 @@ impl<'a> Default for PhysicalDeviceShaderBfloat16FeaturesKHR<'a> {
         }
     }
 }
+impl<'a> PhysicalDeviceShaderBfloat16FeaturesKHR<'a> {
+    pub fn shader_b_float16_type(
+        mut self,
+        shader_b_float16_type: crate::vk::Bool32,
+    ) -> Self {
+        self.shader_b_float16_type = shader_b_float16_type;
+        self
+    }
+    pub fn shader_b_float16_dot_product(
+        mut self,
+        shader_b_float16_dot_product: crate::vk::Bool32,
+    ) -> Self {
+        self.shader_b_float16_dot_product = shader_b_float16_dot_product;
+        self
+    }
+    pub fn shader_b_float16_cooperative_matrix(
+        mut self,
+        shader_b_float16_cooperative_matrix: crate::vk::Bool32,
+    ) -> Self {
+        self.shader_b_float16_cooperative_matrix = shader_b_float16_cooperative_matrix;
+        self
+    }
+}
 ///Provided by [`khr::shader_bfloat16`](crate::khr::shader_bfloat16)
 impl crate::vk::StructureType {
     pub const PHYSICAL_DEVICE_SHADER_BFLOAT16_FEATURES_KHR: Self = Self(1000141000);

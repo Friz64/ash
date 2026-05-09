@@ -29,6 +29,22 @@ impl<'a> Default for PhysicalDevicePerStageDescriptorSetFeaturesNV<'a> {
         }
     }
 }
+impl<'a> PhysicalDevicePerStageDescriptorSetFeaturesNV<'a> {
+    pub fn per_stage_descriptor_set(
+        mut self,
+        per_stage_descriptor_set: crate::vk::Bool32,
+    ) -> Self {
+        self.per_stage_descriptor_set = per_stage_descriptor_set;
+        self
+    }
+    pub fn dynamic_pipeline_layout(
+        mut self,
+        dynamic_pipeline_layout: crate::vk::Bool32,
+    ) -> Self {
+        self.dynamic_pipeline_layout = dynamic_pipeline_layout;
+        self
+    }
+}
 ///Provided by [`nv::per_stage_descriptor_set`](crate::nv::per_stage_descriptor_set)
 impl crate::vk::StructureType {
     pub const PHYSICAL_DEVICE_PER_STAGE_DESCRIPTOR_SET_FEATURES_NV: Self = Self(

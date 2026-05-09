@@ -66,6 +66,29 @@ pub(crate) mod reexport {
             }
         }
     }
+    impl<'a> PhysicalDeviceFragmentShadingRateEnumsFeaturesNV<'a> {
+        pub fn fragment_shading_rate_enums(
+            mut self,
+            fragment_shading_rate_enums: crate::vk::Bool32,
+        ) -> Self {
+            self.fragment_shading_rate_enums = fragment_shading_rate_enums;
+            self
+        }
+        pub fn supersample_fragment_shading_rates(
+            mut self,
+            supersample_fragment_shading_rates: crate::vk::Bool32,
+        ) -> Self {
+            self.supersample_fragment_shading_rates = supersample_fragment_shading_rates;
+            self
+        }
+        pub fn no_invocation_fragment_shading_rates(
+            mut self,
+            no_invocation_fragment_shading_rates: crate::vk::Bool32,
+        ) -> Self {
+            self.no_invocation_fragment_shading_rates = no_invocation_fragment_shading_rates;
+            self
+        }
+    }
     #[repr(C)]
     #[derive(Clone, Copy)]
     pub struct PhysicalDeviceFragmentShadingRateEnumsPropertiesNV<'a> {
@@ -88,6 +111,15 @@ pub(crate) mod reexport {
                 max_fragment_shading_rate_invocation_count: Default::default(),
                 _marker: ::core::marker::PhantomData,
             }
+        }
+    }
+    impl<'a> PhysicalDeviceFragmentShadingRateEnumsPropertiesNV<'a> {
+        pub fn max_fragment_shading_rate_invocation_count(
+            mut self,
+            max_fragment_shading_rate_invocation_count: crate::vk::SampleCountFlagBits,
+        ) -> Self {
+            self.max_fragment_shading_rate_invocation_count = max_fragment_shading_rate_invocation_count;
+            self
         }
     }
     #[repr(C)]
@@ -116,6 +148,29 @@ pub(crate) mod reexport {
                 combiner_ops: unsafe { core::mem::zeroed() },
                 _marker: ::core::marker::PhantomData,
             }
+        }
+    }
+    impl<'a> PipelineFragmentShadingRateEnumStateCreateInfoNV<'a> {
+        pub fn shading_rate_type(
+            mut self,
+            shading_rate_type: crate::vk::FragmentShadingRateTypeNV,
+        ) -> Self {
+            self.shading_rate_type = shading_rate_type;
+            self
+        }
+        pub fn shading_rate(
+            mut self,
+            shading_rate: crate::vk::FragmentShadingRateNV,
+        ) -> Self {
+            self.shading_rate = shading_rate;
+            self
+        }
+        pub fn combiner_ops(
+            mut self,
+            combiner_ops: [crate::vk::FragmentShadingRateCombinerOpKHR; 2 as _],
+        ) -> Self {
+            self.combiner_ops = combiner_ops;
+            self
         }
     }
     ///Provided by [`nv::fragment_shading_rate_enums`](crate::nv::fragment_shading_rate_enums)

@@ -51,6 +51,36 @@ pub(crate) mod reexport {
         pub export_from_imported_handle_types: crate::vk::ExternalMemoryHandleTypeFlagsNV,
         pub compatible_handle_types: crate::vk::ExternalMemoryHandleTypeFlagsNV,
     }
+    impl ExternalImageFormatPropertiesNV {
+        pub fn image_format_properties(
+            mut self,
+            image_format_properties: crate::vk::ImageFormatProperties,
+        ) -> Self {
+            self.image_format_properties = image_format_properties;
+            self
+        }
+        pub fn external_memory_features(
+            mut self,
+            external_memory_features: crate::vk::ExternalMemoryFeatureFlagsNV,
+        ) -> Self {
+            self.external_memory_features = external_memory_features;
+            self
+        }
+        pub fn export_from_imported_handle_types(
+            mut self,
+            export_from_imported_handle_types: crate::vk::ExternalMemoryHandleTypeFlagsNV,
+        ) -> Self {
+            self.export_from_imported_handle_types = export_from_imported_handle_types;
+            self
+        }
+        pub fn compatible_handle_types(
+            mut self,
+            compatible_handle_types: crate::vk::ExternalMemoryHandleTypeFlagsNV,
+        ) -> Self {
+            self.compatible_handle_types = compatible_handle_types;
+            self
+        }
+    }
     #[repr(transparent)]
     #[derive(Clone, Copy)]
     pub struct ExternalMemoryHandleTypeFlagsNV(u32);
