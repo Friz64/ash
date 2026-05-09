@@ -77,6 +77,22 @@ pub(crate) mod reexport {
         pub p_shading_rate_palette_entries: *const crate::vk::ShadingRatePaletteEntryNV,
         pub _marker: ::core::marker::PhantomData<&'a ()>,
     }
+    impl<'a> ShadingRatePaletteNV<'a> {
+        pub fn shading_rate_palette_entry_count(
+            mut self,
+            shading_rate_palette_entry_count: u32,
+        ) -> Self {
+            self.shading_rate_palette_entry_count = shading_rate_palette_entry_count;
+            self
+        }
+        pub fn p_shading_rate_palette_entries(
+            mut self,
+            p_shading_rate_palette_entries: *const crate::vk::ShadingRatePaletteEntryNV,
+        ) -> Self {
+            self.p_shading_rate_palette_entries = p_shading_rate_palette_entries;
+            self
+        }
+    }
     #[repr(C)]
     #[derive(Clone, Copy)]
     pub struct PipelineViewportShadingRateImageStateCreateInfoNV<'a> {
@@ -103,6 +119,26 @@ pub(crate) mod reexport {
                 p_shading_rate_palettes: Default::default(),
                 _marker: ::core::marker::PhantomData,
             }
+        }
+    }
+    impl<'a> PipelineViewportShadingRateImageStateCreateInfoNV<'a> {
+        pub fn shading_rate_image_enable(
+            mut self,
+            shading_rate_image_enable: crate::vk::Bool32,
+        ) -> Self {
+            self.shading_rate_image_enable = shading_rate_image_enable;
+            self
+        }
+        pub fn viewport_count(mut self, viewport_count: u32) -> Self {
+            self.viewport_count = viewport_count;
+            self
+        }
+        pub fn p_shading_rate_palettes(
+            mut self,
+            p_shading_rate_palettes: *const crate::vk::ShadingRatePaletteNV<'a>,
+        ) -> Self {
+            self.p_shading_rate_palettes = p_shading_rate_palettes;
+            self
         }
     }
     #[repr(C)]
@@ -133,6 +169,22 @@ pub(crate) mod reexport {
             }
         }
     }
+    impl<'a> PhysicalDeviceShadingRateImageFeaturesNV<'a> {
+        pub fn shading_rate_image(
+            mut self,
+            shading_rate_image: crate::vk::Bool32,
+        ) -> Self {
+            self.shading_rate_image = shading_rate_image;
+            self
+        }
+        pub fn shading_rate_coarse_sample_order(
+            mut self,
+            shading_rate_coarse_sample_order: crate::vk::Bool32,
+        ) -> Self {
+            self.shading_rate_coarse_sample_order = shading_rate_coarse_sample_order;
+            self
+        }
+    }
     #[repr(C)]
     #[derive(Clone, Copy)]
     pub struct PhysicalDeviceShadingRateImagePropertiesNV<'a> {
@@ -161,12 +213,49 @@ pub(crate) mod reexport {
             }
         }
     }
+    impl<'a> PhysicalDeviceShadingRateImagePropertiesNV<'a> {
+        pub fn shading_rate_texel_size(
+            mut self,
+            shading_rate_texel_size: crate::vk::Extent2D,
+        ) -> Self {
+            self.shading_rate_texel_size = shading_rate_texel_size;
+            self
+        }
+        pub fn shading_rate_palette_size(
+            mut self,
+            shading_rate_palette_size: u32,
+        ) -> Self {
+            self.shading_rate_palette_size = shading_rate_palette_size;
+            self
+        }
+        pub fn shading_rate_max_coarse_samples(
+            mut self,
+            shading_rate_max_coarse_samples: u32,
+        ) -> Self {
+            self.shading_rate_max_coarse_samples = shading_rate_max_coarse_samples;
+            self
+        }
+    }
     #[repr(C)]
     #[derive(Clone, Copy, Default)]
     pub struct CoarseSampleLocationNV {
         pub pixel_x: u32,
         pub pixel_y: u32,
         pub sample: u32,
+    }
+    impl CoarseSampleLocationNV {
+        pub fn pixel_x(mut self, pixel_x: u32) -> Self {
+            self.pixel_x = pixel_x;
+            self
+        }
+        pub fn pixel_y(mut self, pixel_y: u32) -> Self {
+            self.pixel_y = pixel_y;
+            self
+        }
+        pub fn sample(mut self, sample: u32) -> Self {
+            self.sample = sample;
+            self
+        }
     }
     #[repr(C)]
     #[derive(Clone, Copy, Default)]
@@ -176,6 +265,30 @@ pub(crate) mod reexport {
         pub sample_location_count: u32,
         pub p_sample_locations: *const crate::vk::CoarseSampleLocationNV,
         pub _marker: ::core::marker::PhantomData<&'a ()>,
+    }
+    impl<'a> CoarseSampleOrderCustomNV<'a> {
+        pub fn shading_rate(
+            mut self,
+            shading_rate: crate::vk::ShadingRatePaletteEntryNV,
+        ) -> Self {
+            self.shading_rate = shading_rate;
+            self
+        }
+        pub fn sample_count(mut self, sample_count: u32) -> Self {
+            self.sample_count = sample_count;
+            self
+        }
+        pub fn sample_location_count(mut self, sample_location_count: u32) -> Self {
+            self.sample_location_count = sample_location_count;
+            self
+        }
+        pub fn p_sample_locations(
+            mut self,
+            p_sample_locations: *const crate::vk::CoarseSampleLocationNV,
+        ) -> Self {
+            self.p_sample_locations = p_sample_locations;
+            self
+        }
     }
     #[repr(C)]
     #[derive(Clone, Copy)]
@@ -203,6 +316,29 @@ pub(crate) mod reexport {
                 p_custom_sample_orders: Default::default(),
                 _marker: ::core::marker::PhantomData,
             }
+        }
+    }
+    impl<'a> PipelineViewportCoarseSampleOrderStateCreateInfoNV<'a> {
+        pub fn sample_order_type(
+            mut self,
+            sample_order_type: crate::vk::CoarseSampleOrderTypeNV,
+        ) -> Self {
+            self.sample_order_type = sample_order_type;
+            self
+        }
+        pub fn custom_sample_order_count(
+            mut self,
+            custom_sample_order_count: u32,
+        ) -> Self {
+            self.custom_sample_order_count = custom_sample_order_count;
+            self
+        }
+        pub fn p_custom_sample_orders(
+            mut self,
+            p_custom_sample_orders: *const crate::vk::CoarseSampleOrderCustomNV<'a>,
+        ) -> Self {
+            self.p_custom_sample_orders = p_custom_sample_orders;
+            self
         }
     }
     ///Provided by [`nv::shading_rate_image`](crate::nv::shading_rate_image)

@@ -60,6 +60,16 @@ pub(crate) mod reexport {
             }
         }
     }
+    impl<'a> MacOSSurfaceCreateInfoMVK<'a> {
+        pub fn flags(mut self, flags: crate::vk::MacOSSurfaceCreateFlagsMVK) -> Self {
+            self.flags = flags;
+            self
+        }
+        pub fn p_view(mut self, p_view: *const core::ffi::c_void) -> Self {
+            self.p_view = p_view;
+            self
+        }
+    }
     ///Provided by [`mvk::macos_surface`](crate::mvk::macos_surface)
     impl crate::vk::StructureType {
         pub const MACOS_SURFACE_CREATE_INFO_MVK: Self = Self(1000123000);

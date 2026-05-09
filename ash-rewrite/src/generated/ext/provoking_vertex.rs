@@ -29,6 +29,22 @@ impl<'a> Default for PhysicalDeviceProvokingVertexFeaturesEXT<'a> {
         }
     }
 }
+impl<'a> PhysicalDeviceProvokingVertexFeaturesEXT<'a> {
+    pub fn provoking_vertex_last(
+        mut self,
+        provoking_vertex_last: crate::vk::Bool32,
+    ) -> Self {
+        self.provoking_vertex_last = provoking_vertex_last;
+        self
+    }
+    pub fn transform_feedback_preserves_provoking_vertex(
+        mut self,
+        transform_feedback_preserves_provoking_vertex: crate::vk::Bool32,
+    ) -> Self {
+        self.transform_feedback_preserves_provoking_vertex = transform_feedback_preserves_provoking_vertex;
+        self
+    }
+}
 #[repr(C)]
 #[derive(Clone, Copy)]
 pub struct PhysicalDeviceProvokingVertexPropertiesEXT<'a> {
@@ -55,6 +71,22 @@ impl<'a> Default for PhysicalDeviceProvokingVertexPropertiesEXT<'a> {
         }
     }
 }
+impl<'a> PhysicalDeviceProvokingVertexPropertiesEXT<'a> {
+    pub fn provoking_vertex_mode_per_pipeline(
+        mut self,
+        provoking_vertex_mode_per_pipeline: crate::vk::Bool32,
+    ) -> Self {
+        self.provoking_vertex_mode_per_pipeline = provoking_vertex_mode_per_pipeline;
+        self
+    }
+    pub fn transform_feedback_preserves_triangle_fan_provoking_vertex(
+        mut self,
+        transform_feedback_preserves_triangle_fan_provoking_vertex: crate::vk::Bool32,
+    ) -> Self {
+        self.transform_feedback_preserves_triangle_fan_provoking_vertex = transform_feedback_preserves_triangle_fan_provoking_vertex;
+        self
+    }
+}
 #[repr(C)]
 #[derive(Clone, Copy)]
 pub struct PipelineRasterizationProvokingVertexStateCreateInfoEXT<'a> {
@@ -77,6 +109,15 @@ impl<'a> Default for PipelineRasterizationProvokingVertexStateCreateInfoEXT<'a> 
             provoking_vertex_mode: Default::default(),
             _marker: ::core::marker::PhantomData,
         }
+    }
+}
+impl<'a> PipelineRasterizationProvokingVertexStateCreateInfoEXT<'a> {
+    pub fn provoking_vertex_mode(
+        mut self,
+        provoking_vertex_mode: crate::vk::ProvokingVertexModeEXT,
+    ) -> Self {
+        self.provoking_vertex_mode = provoking_vertex_mode;
+        self
     }
 }
 ///Provided by [`ext::provoking_vertex`](crate::ext::provoking_vertex)

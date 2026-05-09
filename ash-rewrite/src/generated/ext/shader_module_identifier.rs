@@ -78,6 +78,15 @@ pub(crate) mod reexport {
             }
         }
     }
+    impl<'a> PhysicalDeviceShaderModuleIdentifierFeaturesEXT<'a> {
+        pub fn shader_module_identifier(
+            mut self,
+            shader_module_identifier: crate::vk::Bool32,
+        ) -> Self {
+            self.shader_module_identifier = shader_module_identifier;
+            self
+        }
+    }
     #[repr(C)]
     #[derive(Clone, Copy)]
     pub struct PhysicalDeviceShaderModuleIdentifierPropertiesEXT<'a> {
@@ -100,6 +109,15 @@ pub(crate) mod reexport {
                 shader_module_identifier_algorithm_uuid: unsafe { core::mem::zeroed() },
                 _marker: ::core::marker::PhantomData,
             }
+        }
+    }
+    impl<'a> PhysicalDeviceShaderModuleIdentifierPropertiesEXT<'a> {
+        pub fn shader_module_identifier_algorithm_uuid(
+            mut self,
+            shader_module_identifier_algorithm_uuid: [u8; crate::vk::UUID_SIZE as _],
+        ) -> Self {
+            self.shader_module_identifier_algorithm_uuid = shader_module_identifier_algorithm_uuid;
+            self
         }
     }
     #[repr(C)]
@@ -128,6 +146,16 @@ pub(crate) mod reexport {
             }
         }
     }
+    impl<'a> PipelineShaderStageModuleIdentifierCreateInfoEXT<'a> {
+        pub fn identifier_size(mut self, identifier_size: u32) -> Self {
+            self.identifier_size = identifier_size;
+            self
+        }
+        pub fn p_identifier(mut self, p_identifier: *const u8) -> Self {
+            self.p_identifier = p_identifier;
+            self
+        }
+    }
     #[repr(C)]
     #[derive(Clone, Copy)]
     pub struct ShaderModuleIdentifierEXT<'a> {
@@ -149,6 +177,19 @@ pub(crate) mod reexport {
                 identifier: unsafe { core::mem::zeroed() },
                 _marker: ::core::marker::PhantomData,
             }
+        }
+    }
+    impl<'a> ShaderModuleIdentifierEXT<'a> {
+        pub fn identifier_size(mut self, identifier_size: u32) -> Self {
+            self.identifier_size = identifier_size;
+            self
+        }
+        pub fn identifier(
+            mut self,
+            identifier: [u8; crate::vk::MAX_SHADER_MODULE_IDENTIFIER_SIZE_EXT as _],
+        ) -> Self {
+            self.identifier = identifier;
+            self
         }
     }
     ///Provided by [`ext::shader_module_identifier`](crate::ext::shader_module_identifier)

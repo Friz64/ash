@@ -80,6 +80,15 @@ pub(crate) mod reexport {
             }
         }
     }
+    impl<'a> PhysicalDeviceMemoryDecompressionFeaturesEXT<'a> {
+        pub fn memory_decompression(
+            mut self,
+            memory_decompression: crate::vk::Bool32,
+        ) -> Self {
+            self.memory_decompression = memory_decompression;
+            self
+        }
+    }
     #[repr(C)]
     #[derive(Clone, Copy)]
     pub struct PhysicalDeviceMemoryDecompressionPropertiesEXT<'a> {
@@ -106,6 +115,22 @@ pub(crate) mod reexport {
             }
         }
     }
+    impl<'a> PhysicalDeviceMemoryDecompressionPropertiesEXT<'a> {
+        pub fn decompression_methods(
+            mut self,
+            decompression_methods: crate::vk::MemoryDecompressionMethodFlagsEXT,
+        ) -> Self {
+            self.decompression_methods = decompression_methods;
+            self
+        }
+        pub fn max_decompression_indirect_count(
+            mut self,
+            max_decompression_indirect_count: u64,
+        ) -> Self {
+            self.max_decompression_indirect_count = max_decompression_indirect_count;
+            self
+        }
+    }
     #[repr(C)]
     #[derive(Clone, Copy, Default)]
     pub struct DecompressMemoryRegionEXT {
@@ -113,6 +138,30 @@ pub(crate) mod reexport {
         pub dst_address: crate::vk::DeviceAddress,
         pub compressed_size: crate::vk::DeviceSize,
         pub decompressed_size: crate::vk::DeviceSize,
+    }
+    impl DecompressMemoryRegionEXT {
+        pub fn src_address(mut self, src_address: crate::vk::DeviceAddress) -> Self {
+            self.src_address = src_address;
+            self
+        }
+        pub fn dst_address(mut self, dst_address: crate::vk::DeviceAddress) -> Self {
+            self.dst_address = dst_address;
+            self
+        }
+        pub fn compressed_size(
+            mut self,
+            compressed_size: crate::vk::DeviceSize,
+        ) -> Self {
+            self.compressed_size = compressed_size;
+            self
+        }
+        pub fn decompressed_size(
+            mut self,
+            decompressed_size: crate::vk::DeviceSize,
+        ) -> Self {
+            self.decompressed_size = decompressed_size;
+            self
+        }
     }
     #[repr(C)]
     #[derive(Clone, Copy)]
@@ -137,6 +186,26 @@ pub(crate) mod reexport {
                 p_regions: Default::default(),
                 _marker: ::core::marker::PhantomData,
             }
+        }
+    }
+    impl<'a> DecompressMemoryInfoEXT<'a> {
+        pub fn decompression_method(
+            mut self,
+            decompression_method: crate::vk::MemoryDecompressionMethodFlagsEXT,
+        ) -> Self {
+            self.decompression_method = decompression_method;
+            self
+        }
+        pub fn region_count(mut self, region_count: u32) -> Self {
+            self.region_count = region_count;
+            self
+        }
+        pub fn p_regions(
+            mut self,
+            p_regions: *const crate::vk::DecompressMemoryRegionEXT,
+        ) -> Self {
+            self.p_regions = p_regions;
+            self
         }
     }
     ///Provided by [`ext::memory_decompression`](crate::ext::memory_decompression)

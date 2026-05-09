@@ -33,6 +33,36 @@ impl<'a> Default for PhysicalDeviceWorkgroupMemoryExplicitLayoutFeaturesKHR<'a> 
         }
     }
 }
+impl<'a> PhysicalDeviceWorkgroupMemoryExplicitLayoutFeaturesKHR<'a> {
+    pub fn workgroup_memory_explicit_layout(
+        mut self,
+        workgroup_memory_explicit_layout: crate::vk::Bool32,
+    ) -> Self {
+        self.workgroup_memory_explicit_layout = workgroup_memory_explicit_layout;
+        self
+    }
+    pub fn workgroup_memory_explicit_layout_scalar_block_layout(
+        mut self,
+        workgroup_memory_explicit_layout_scalar_block_layout: crate::vk::Bool32,
+    ) -> Self {
+        self.workgroup_memory_explicit_layout_scalar_block_layout = workgroup_memory_explicit_layout_scalar_block_layout;
+        self
+    }
+    pub fn workgroup_memory_explicit_layout8_bit_access(
+        mut self,
+        workgroup_memory_explicit_layout8_bit_access: crate::vk::Bool32,
+    ) -> Self {
+        self.workgroup_memory_explicit_layout8_bit_access = workgroup_memory_explicit_layout8_bit_access;
+        self
+    }
+    pub fn workgroup_memory_explicit_layout16_bit_access(
+        mut self,
+        workgroup_memory_explicit_layout16_bit_access: crate::vk::Bool32,
+    ) -> Self {
+        self.workgroup_memory_explicit_layout16_bit_access = workgroup_memory_explicit_layout16_bit_access;
+        self
+    }
+}
 ///Provided by [`khr::workgroup_memory_explicit_layout`](crate::khr::workgroup_memory_explicit_layout)
 impl crate::vk::StructureType {
     pub const PHYSICAL_DEVICE_WORKGROUP_MEMORY_EXPLICIT_LAYOUT_FEATURES_KHR: Self = Self(

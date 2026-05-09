@@ -27,6 +27,15 @@ impl<'a> Default for PhysicalDeviceShaderRelaxedExtendedInstructionFeaturesKHR<'
         }
     }
 }
+impl<'a> PhysicalDeviceShaderRelaxedExtendedInstructionFeaturesKHR<'a> {
+    pub fn shader_relaxed_extended_instruction(
+        mut self,
+        shader_relaxed_extended_instruction: crate::vk::Bool32,
+    ) -> Self {
+        self.shader_relaxed_extended_instruction = shader_relaxed_extended_instruction;
+        self
+    }
+}
 ///Provided by [`khr::shader_relaxed_extended_instruction`](crate::khr::shader_relaxed_extended_instruction)
 impl crate::vk::StructureType {
     pub const PHYSICAL_DEVICE_SHADER_RELAXED_EXTENDED_INSTRUCTION_FEATURES_KHR: Self = Self(

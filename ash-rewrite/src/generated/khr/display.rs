@@ -150,11 +150,69 @@ pub(crate) mod reexport {
         pub persistent_content: crate::vk::Bool32,
         pub _marker: ::core::marker::PhantomData<&'a ()>,
     }
+    impl<'a> DisplayPropertiesKHR<'a> {
+        pub fn display(mut self, display: crate::vk::DisplayKHR) -> Self {
+            self.display = display;
+            self
+        }
+        pub fn display_name(mut self, display_name: *const core::ffi::c_char) -> Self {
+            self.display_name = display_name;
+            self
+        }
+        pub fn physical_dimensions(
+            mut self,
+            physical_dimensions: crate::vk::Extent2D,
+        ) -> Self {
+            self.physical_dimensions = physical_dimensions;
+            self
+        }
+        pub fn physical_resolution(
+            mut self,
+            physical_resolution: crate::vk::Extent2D,
+        ) -> Self {
+            self.physical_resolution = physical_resolution;
+            self
+        }
+        pub fn supported_transforms(
+            mut self,
+            supported_transforms: crate::vk::SurfaceTransformFlagsKHR,
+        ) -> Self {
+            self.supported_transforms = supported_transforms;
+            self
+        }
+        pub fn plane_reorder_possible(
+            mut self,
+            plane_reorder_possible: crate::vk::Bool32,
+        ) -> Self {
+            self.plane_reorder_possible = plane_reorder_possible;
+            self
+        }
+        pub fn persistent_content(
+            mut self,
+            persistent_content: crate::vk::Bool32,
+        ) -> Self {
+            self.persistent_content = persistent_content;
+            self
+        }
+    }
     #[repr(C)]
     #[derive(Clone, Copy, Default)]
     pub struct DisplayPlanePropertiesKHR {
         pub current_display: crate::vk::DisplayKHR,
         pub current_stack_index: u32,
+    }
+    impl DisplayPlanePropertiesKHR {
+        pub fn current_display(
+            mut self,
+            current_display: crate::vk::DisplayKHR,
+        ) -> Self {
+            self.current_display = current_display;
+            self
+        }
+        pub fn current_stack_index(mut self, current_stack_index: u32) -> Self {
+            self.current_stack_index = current_stack_index;
+            self
+        }
     }
     #[repr(C)]
     #[derive(Clone, Copy, Default)]
@@ -162,11 +220,34 @@ pub(crate) mod reexport {
         pub visible_region: crate::vk::Extent2D,
         pub refresh_rate: u32,
     }
+    impl DisplayModeParametersKHR {
+        pub fn visible_region(mut self, visible_region: crate::vk::Extent2D) -> Self {
+            self.visible_region = visible_region;
+            self
+        }
+        pub fn refresh_rate(mut self, refresh_rate: u32) -> Self {
+            self.refresh_rate = refresh_rate;
+            self
+        }
+    }
     #[repr(C)]
     #[derive(Clone, Copy, Default)]
     pub struct DisplayModePropertiesKHR {
         pub display_mode: crate::vk::DisplayModeKHR,
         pub parameters: crate::vk::DisplayModeParametersKHR,
+    }
+    impl DisplayModePropertiesKHR {
+        pub fn display_mode(mut self, display_mode: crate::vk::DisplayModeKHR) -> Self {
+            self.display_mode = display_mode;
+            self
+        }
+        pub fn parameters(
+            mut self,
+            parameters: crate::vk::DisplayModeParametersKHR,
+        ) -> Self {
+            self.parameters = parameters;
+            self
+        }
     }
     #[repr(C)]
     #[derive(Clone, Copy)]
@@ -191,6 +272,19 @@ pub(crate) mod reexport {
             }
         }
     }
+    impl<'a> DisplayModeCreateInfoKHR<'a> {
+        pub fn flags(mut self, flags: crate::vk::DisplayModeCreateFlagsKHR) -> Self {
+            self.flags = flags;
+            self
+        }
+        pub fn parameters(
+            mut self,
+            parameters: crate::vk::DisplayModeParametersKHR,
+        ) -> Self {
+            self.parameters = parameters;
+            self
+        }
+    }
     #[repr(C)]
     #[derive(Clone, Copy, Default)]
     pub struct DisplayPlaneCapabilitiesKHR {
@@ -203,6 +297,59 @@ pub(crate) mod reexport {
         pub max_dst_position: crate::vk::Offset2D,
         pub min_dst_extent: crate::vk::Extent2D,
         pub max_dst_extent: crate::vk::Extent2D,
+    }
+    impl DisplayPlaneCapabilitiesKHR {
+        pub fn supported_alpha(
+            mut self,
+            supported_alpha: crate::vk::DisplayPlaneAlphaFlagsKHR,
+        ) -> Self {
+            self.supported_alpha = supported_alpha;
+            self
+        }
+        pub fn min_src_position(
+            mut self,
+            min_src_position: crate::vk::Offset2D,
+        ) -> Self {
+            self.min_src_position = min_src_position;
+            self
+        }
+        pub fn max_src_position(
+            mut self,
+            max_src_position: crate::vk::Offset2D,
+        ) -> Self {
+            self.max_src_position = max_src_position;
+            self
+        }
+        pub fn min_src_extent(mut self, min_src_extent: crate::vk::Extent2D) -> Self {
+            self.min_src_extent = min_src_extent;
+            self
+        }
+        pub fn max_src_extent(mut self, max_src_extent: crate::vk::Extent2D) -> Self {
+            self.max_src_extent = max_src_extent;
+            self
+        }
+        pub fn min_dst_position(
+            mut self,
+            min_dst_position: crate::vk::Offset2D,
+        ) -> Self {
+            self.min_dst_position = min_dst_position;
+            self
+        }
+        pub fn max_dst_position(
+            mut self,
+            max_dst_position: crate::vk::Offset2D,
+        ) -> Self {
+            self.max_dst_position = max_dst_position;
+            self
+        }
+        pub fn min_dst_extent(mut self, min_dst_extent: crate::vk::Extent2D) -> Self {
+            self.min_dst_extent = min_dst_extent;
+            self
+        }
+        pub fn max_dst_extent(mut self, max_dst_extent: crate::vk::Extent2D) -> Self {
+            self.max_dst_extent = max_dst_extent;
+            self
+        }
     }
     #[repr(C)]
     #[derive(Clone, Copy)]
@@ -237,6 +384,46 @@ pub(crate) mod reexport {
                 image_extent: Default::default(),
                 _marker: ::core::marker::PhantomData,
             }
+        }
+    }
+    impl<'a> DisplaySurfaceCreateInfoKHR<'a> {
+        pub fn flags(mut self, flags: crate::vk::DisplaySurfaceCreateFlagsKHR) -> Self {
+            self.flags = flags;
+            self
+        }
+        pub fn display_mode(mut self, display_mode: crate::vk::DisplayModeKHR) -> Self {
+            self.display_mode = display_mode;
+            self
+        }
+        pub fn plane_index(mut self, plane_index: u32) -> Self {
+            self.plane_index = plane_index;
+            self
+        }
+        pub fn plane_stack_index(mut self, plane_stack_index: u32) -> Self {
+            self.plane_stack_index = plane_stack_index;
+            self
+        }
+        pub fn transform(
+            mut self,
+            transform: crate::vk::SurfaceTransformFlagBitsKHR,
+        ) -> Self {
+            self.transform = transform;
+            self
+        }
+        pub fn global_alpha(mut self, global_alpha: core::ffi::c_float) -> Self {
+            self.global_alpha = global_alpha;
+            self
+        }
+        pub fn alpha_mode(
+            mut self,
+            alpha_mode: crate::vk::DisplayPlaneAlphaFlagBitsKHR,
+        ) -> Self {
+            self.alpha_mode = alpha_mode;
+            self
+        }
+        pub fn image_extent(mut self, image_extent: crate::vk::Extent2D) -> Self {
+            self.image_extent = image_extent;
+            self
         }
     }
     ///Provided by [`khr::display`](crate::khr::display)

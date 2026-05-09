@@ -79,6 +79,12 @@ pub(crate) mod reexport {
             }
         }
     }
+    impl<'a> PhysicalDeviceTilePropertiesFeaturesQCOM<'a> {
+        pub fn tile_properties(mut self, tile_properties: crate::vk::Bool32) -> Self {
+            self.tile_properties = tile_properties;
+            self
+        }
+    }
     #[repr(C)]
     #[derive(Clone, Copy)]
     pub struct TilePropertiesQCOM<'a> {
@@ -102,6 +108,20 @@ pub(crate) mod reexport {
                 origin: Default::default(),
                 _marker: ::core::marker::PhantomData,
             }
+        }
+    }
+    impl<'a> TilePropertiesQCOM<'a> {
+        pub fn tile_size(mut self, tile_size: crate::vk::Extent3D) -> Self {
+            self.tile_size = tile_size;
+            self
+        }
+        pub fn apron_size(mut self, apron_size: crate::vk::Extent2D) -> Self {
+            self.apron_size = apron_size;
+            self
+        }
+        pub fn origin(mut self, origin: crate::vk::Offset2D) -> Self {
+            self.origin = origin;
+            self
         }
     }
     ///Provided by [`qcom::tile_properties`](crate::qcom::tile_properties)

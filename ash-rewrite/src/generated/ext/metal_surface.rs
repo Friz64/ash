@@ -60,6 +60,19 @@ pub(crate) mod reexport {
             }
         }
     }
+    impl<'a> MetalSurfaceCreateInfoEXT<'a> {
+        pub fn flags(mut self, flags: crate::vk::MetalSurfaceCreateFlagsEXT) -> Self {
+            self.flags = flags;
+            self
+        }
+        pub fn p_layer(
+            mut self,
+            p_layer: *const crate::platform_types::CAMetalLayer,
+        ) -> Self {
+            self.p_layer = p_layer;
+            self
+        }
+    }
     ///Provided by [`ext::metal_surface`](crate::ext::metal_surface)
     impl crate::vk::StructureType {
         pub const METAL_SURFACE_CREATE_INFO_EXT: Self = Self(1000217000);

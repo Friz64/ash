@@ -31,6 +31,29 @@ impl<'a> Default for PhysicalDeviceNestedCommandBufferFeaturesEXT<'a> {
         }
     }
 }
+impl<'a> PhysicalDeviceNestedCommandBufferFeaturesEXT<'a> {
+    pub fn nested_command_buffer(
+        mut self,
+        nested_command_buffer: crate::vk::Bool32,
+    ) -> Self {
+        self.nested_command_buffer = nested_command_buffer;
+        self
+    }
+    pub fn nested_command_buffer_rendering(
+        mut self,
+        nested_command_buffer_rendering: crate::vk::Bool32,
+    ) -> Self {
+        self.nested_command_buffer_rendering = nested_command_buffer_rendering;
+        self
+    }
+    pub fn nested_command_buffer_simultaneous_use(
+        mut self,
+        nested_command_buffer_simultaneous_use: crate::vk::Bool32,
+    ) -> Self {
+        self.nested_command_buffer_simultaneous_use = nested_command_buffer_simultaneous_use;
+        self
+    }
+}
 #[repr(C)]
 #[derive(Clone, Copy)]
 pub struct PhysicalDeviceNestedCommandBufferPropertiesEXT<'a> {
@@ -53,6 +76,15 @@ impl<'a> Default for PhysicalDeviceNestedCommandBufferPropertiesEXT<'a> {
             max_command_buffer_nesting_level: Default::default(),
             _marker: ::core::marker::PhantomData,
         }
+    }
+}
+impl<'a> PhysicalDeviceNestedCommandBufferPropertiesEXT<'a> {
+    pub fn max_command_buffer_nesting_level(
+        mut self,
+        max_command_buffer_nesting_level: u32,
+    ) -> Self {
+        self.max_command_buffer_nesting_level = max_command_buffer_nesting_level;
+        self
     }
 }
 ///Provided by [`ext::nested_command_buffer`](crate::ext::nested_command_buffer)

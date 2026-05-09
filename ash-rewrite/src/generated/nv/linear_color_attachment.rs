@@ -27,6 +27,15 @@ impl<'a> Default for PhysicalDeviceLinearColorAttachmentFeaturesNV<'a> {
         }
     }
 }
+impl<'a> PhysicalDeviceLinearColorAttachmentFeaturesNV<'a> {
+    pub fn linear_color_attachment(
+        mut self,
+        linear_color_attachment: crate::vk::Bool32,
+    ) -> Self {
+        self.linear_color_attachment = linear_color_attachment;
+        self
+    }
+}
 ///Provided by [`nv::linear_color_attachment`](crate::nv::linear_color_attachment)
 impl crate::vk::StructureType {
     pub const PHYSICAL_DEVICE_LINEAR_COLOR_ATTACHMENT_FEATURES_NV: Self = Self(

@@ -57,6 +57,20 @@ pub(crate) mod reexport {
         pub dst_address: crate::vk::DeviceAddress,
         pub size: crate::vk::DeviceSize,
     }
+    impl CopyMemoryIndirectCommandKHR {
+        pub fn src_address(mut self, src_address: crate::vk::DeviceAddress) -> Self {
+            self.src_address = src_address;
+            self
+        }
+        pub fn dst_address(mut self, dst_address: crate::vk::DeviceAddress) -> Self {
+            self.dst_address = dst_address;
+            self
+        }
+        pub fn size(mut self, size: crate::vk::DeviceSize) -> Self {
+            self.size = size;
+            self
+        }
+    }
     #[repr(C)]
     #[derive(Clone, Copy)]
     pub struct CopyMemoryIndirectInfoKHR<'a> {
@@ -84,6 +98,33 @@ pub(crate) mod reexport {
             }
         }
     }
+    impl<'a> CopyMemoryIndirectInfoKHR<'a> {
+        pub fn src_copy_flags(
+            mut self,
+            src_copy_flags: crate::vk::AddressCopyFlagsKHR,
+        ) -> Self {
+            self.src_copy_flags = src_copy_flags;
+            self
+        }
+        pub fn dst_copy_flags(
+            mut self,
+            dst_copy_flags: crate::vk::AddressCopyFlagsKHR,
+        ) -> Self {
+            self.dst_copy_flags = dst_copy_flags;
+            self
+        }
+        pub fn copy_count(mut self, copy_count: u32) -> Self {
+            self.copy_count = copy_count;
+            self
+        }
+        pub fn copy_address_range(
+            mut self,
+            copy_address_range: crate::vk::StridedDeviceAddressRangeKHR,
+        ) -> Self {
+            self.copy_address_range = copy_address_range;
+            self
+        }
+    }
     #[repr(C)]
     #[derive(Clone, Copy, Default)]
     pub struct CopyMemoryToImageIndirectCommandKHR {
@@ -93,6 +134,35 @@ pub(crate) mod reexport {
         pub image_subresource: crate::vk::ImageSubresourceLayers,
         pub image_offset: crate::vk::Offset3D,
         pub image_extent: crate::vk::Extent3D,
+    }
+    impl CopyMemoryToImageIndirectCommandKHR {
+        pub fn src_address(mut self, src_address: crate::vk::DeviceAddress) -> Self {
+            self.src_address = src_address;
+            self
+        }
+        pub fn buffer_row_length(mut self, buffer_row_length: u32) -> Self {
+            self.buffer_row_length = buffer_row_length;
+            self
+        }
+        pub fn buffer_image_height(mut self, buffer_image_height: u32) -> Self {
+            self.buffer_image_height = buffer_image_height;
+            self
+        }
+        pub fn image_subresource(
+            mut self,
+            image_subresource: crate::vk::ImageSubresourceLayers,
+        ) -> Self {
+            self.image_subresource = image_subresource;
+            self
+        }
+        pub fn image_offset(mut self, image_offset: crate::vk::Offset3D) -> Self {
+            self.image_offset = image_offset;
+            self
+        }
+        pub fn image_extent(mut self, image_extent: crate::vk::Extent3D) -> Self {
+            self.image_extent = image_extent;
+            self
+        }
     }
     #[repr(C)]
     #[derive(Clone, Copy)]
@@ -125,6 +195,44 @@ pub(crate) mod reexport {
             }
         }
     }
+    impl<'a> CopyMemoryToImageIndirectInfoKHR<'a> {
+        pub fn src_copy_flags(
+            mut self,
+            src_copy_flags: crate::vk::AddressCopyFlagsKHR,
+        ) -> Self {
+            self.src_copy_flags = src_copy_flags;
+            self
+        }
+        pub fn copy_count(mut self, copy_count: u32) -> Self {
+            self.copy_count = copy_count;
+            self
+        }
+        pub fn copy_address_range(
+            mut self,
+            copy_address_range: crate::vk::StridedDeviceAddressRangeKHR,
+        ) -> Self {
+            self.copy_address_range = copy_address_range;
+            self
+        }
+        pub fn dst_image(mut self, dst_image: crate::vk::Image) -> Self {
+            self.dst_image = dst_image;
+            self
+        }
+        pub fn dst_image_layout(
+            mut self,
+            dst_image_layout: crate::vk::ImageLayout,
+        ) -> Self {
+            self.dst_image_layout = dst_image_layout;
+            self
+        }
+        pub fn p_image_subresources(
+            mut self,
+            p_image_subresources: *const crate::vk::ImageSubresourceLayers,
+        ) -> Self {
+            self.p_image_subresources = p_image_subresources;
+            self
+        }
+    }
     #[repr(C)]
     #[derive(Clone, Copy)]
     pub struct PhysicalDeviceCopyMemoryIndirectFeaturesKHR<'a> {
@@ -153,6 +261,22 @@ pub(crate) mod reexport {
             }
         }
     }
+    impl<'a> PhysicalDeviceCopyMemoryIndirectFeaturesKHR<'a> {
+        pub fn indirect_memory_copy(
+            mut self,
+            indirect_memory_copy: crate::vk::Bool32,
+        ) -> Self {
+            self.indirect_memory_copy = indirect_memory_copy;
+            self
+        }
+        pub fn indirect_memory_to_image_copy(
+            mut self,
+            indirect_memory_to_image_copy: crate::vk::Bool32,
+        ) -> Self {
+            self.indirect_memory_to_image_copy = indirect_memory_to_image_copy;
+            self
+        }
+    }
     #[repr(C)]
     #[derive(Clone, Copy)]
     pub struct PhysicalDeviceCopyMemoryIndirectPropertiesKHR<'a> {
@@ -175,6 +299,15 @@ pub(crate) mod reexport {
                 supported_queues: Default::default(),
                 _marker: ::core::marker::PhantomData,
             }
+        }
+    }
+    impl<'a> PhysicalDeviceCopyMemoryIndirectPropertiesKHR<'a> {
+        pub fn supported_queues(
+            mut self,
+            supported_queues: crate::vk::QueueFlags,
+        ) -> Self {
+            self.supported_queues = supported_queues;
+            self
         }
     }
     ///Provided by [`khr::copy_memory_indirect`](crate::khr::copy_memory_indirect)

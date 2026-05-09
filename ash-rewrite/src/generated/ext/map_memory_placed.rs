@@ -31,6 +31,26 @@ impl<'a> Default for PhysicalDeviceMapMemoryPlacedFeaturesEXT<'a> {
         }
     }
 }
+impl<'a> PhysicalDeviceMapMemoryPlacedFeaturesEXT<'a> {
+    pub fn memory_map_placed(mut self, memory_map_placed: crate::vk::Bool32) -> Self {
+        self.memory_map_placed = memory_map_placed;
+        self
+    }
+    pub fn memory_map_range_placed(
+        mut self,
+        memory_map_range_placed: crate::vk::Bool32,
+    ) -> Self {
+        self.memory_map_range_placed = memory_map_range_placed;
+        self
+    }
+    pub fn memory_unmap_reserve(
+        mut self,
+        memory_unmap_reserve: crate::vk::Bool32,
+    ) -> Self {
+        self.memory_unmap_reserve = memory_unmap_reserve;
+        self
+    }
+}
 #[repr(C)]
 #[derive(Clone, Copy)]
 pub struct PhysicalDeviceMapMemoryPlacedPropertiesEXT<'a> {
@@ -55,6 +75,15 @@ impl<'a> Default for PhysicalDeviceMapMemoryPlacedPropertiesEXT<'a> {
         }
     }
 }
+impl<'a> PhysicalDeviceMapMemoryPlacedPropertiesEXT<'a> {
+    pub fn min_placed_memory_map_alignment(
+        mut self,
+        min_placed_memory_map_alignment: crate::vk::DeviceSize,
+    ) -> Self {
+        self.min_placed_memory_map_alignment = min_placed_memory_map_alignment;
+        self
+    }
+}
 #[repr(C)]
 #[derive(Clone, Copy)]
 pub struct MemoryMapPlacedInfoEXT<'a> {
@@ -76,6 +105,12 @@ impl<'a> Default for MemoryMapPlacedInfoEXT<'a> {
             p_placed_address: Default::default(),
             _marker: ::core::marker::PhantomData,
         }
+    }
+}
+impl<'a> MemoryMapPlacedInfoEXT<'a> {
+    pub fn p_placed_address(mut self, p_placed_address: *mut core::ffi::c_void) -> Self {
+        self.p_placed_address = p_placed_address;
+        self
     }
 }
 ///Provided by [`ext::map_memory_placed`](crate::ext::map_memory_placed)

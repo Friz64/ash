@@ -27,6 +27,15 @@ impl<'a> Default for PhysicalDeviceZeroInitializeDeviceMemoryFeaturesEXT<'a> {
         }
     }
 }
+impl<'a> PhysicalDeviceZeroInitializeDeviceMemoryFeaturesEXT<'a> {
+    pub fn zero_initialize_device_memory(
+        mut self,
+        zero_initialize_device_memory: crate::vk::Bool32,
+    ) -> Self {
+        self.zero_initialize_device_memory = zero_initialize_device_memory;
+        self
+    }
+}
 ///Provided by [`ext::zero_initialize_device_memory`](crate::ext::zero_initialize_device_memory)
 impl crate::vk::ImageLayout {
     pub const ZERO_INITIALIZED_EXT: Self = Self(1000620000);

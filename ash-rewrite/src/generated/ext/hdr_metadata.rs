@@ -43,6 +43,16 @@ pub(crate) mod reexport {
         pub x: core::ffi::c_float,
         pub y: core::ffi::c_float,
     }
+    impl XYColorEXT {
+        pub fn x(mut self, x: core::ffi::c_float) -> Self {
+            self.x = x;
+            self
+        }
+        pub fn y(mut self, y: core::ffi::c_float) -> Self {
+            self.y = y;
+            self
+        }
+    }
     #[repr(C)]
     #[derive(Clone, Copy)]
     pub struct HdrMetadataEXT<'a> {
@@ -76,6 +86,55 @@ pub(crate) mod reexport {
                 max_frame_average_light_level: Default::default(),
                 _marker: ::core::marker::PhantomData,
             }
+        }
+    }
+    impl<'a> HdrMetadataEXT<'a> {
+        pub fn display_primary_red(
+            mut self,
+            display_primary_red: crate::vk::XYColorEXT,
+        ) -> Self {
+            self.display_primary_red = display_primary_red;
+            self
+        }
+        pub fn display_primary_green(
+            mut self,
+            display_primary_green: crate::vk::XYColorEXT,
+        ) -> Self {
+            self.display_primary_green = display_primary_green;
+            self
+        }
+        pub fn display_primary_blue(
+            mut self,
+            display_primary_blue: crate::vk::XYColorEXT,
+        ) -> Self {
+            self.display_primary_blue = display_primary_blue;
+            self
+        }
+        pub fn white_point(mut self, white_point: crate::vk::XYColorEXT) -> Self {
+            self.white_point = white_point;
+            self
+        }
+        pub fn max_luminance(mut self, max_luminance: core::ffi::c_float) -> Self {
+            self.max_luminance = max_luminance;
+            self
+        }
+        pub fn min_luminance(mut self, min_luminance: core::ffi::c_float) -> Self {
+            self.min_luminance = min_luminance;
+            self
+        }
+        pub fn max_content_light_level(
+            mut self,
+            max_content_light_level: core::ffi::c_float,
+        ) -> Self {
+            self.max_content_light_level = max_content_light_level;
+            self
+        }
+        pub fn max_frame_average_light_level(
+            mut self,
+            max_frame_average_light_level: core::ffi::c_float,
+        ) -> Self {
+            self.max_frame_average_light_level = max_frame_average_light_level;
+            self
         }
     }
     ///Provided by [`ext::hdr_metadata`](crate::ext::hdr_metadata)

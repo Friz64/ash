@@ -60,6 +60,12 @@ pub(crate) mod reexport {
             }
         }
     }
+    impl<'a> PhysicalDeviceAntiLagFeaturesAMD<'a> {
+        pub fn anti_lag(mut self, anti_lag: crate::vk::Bool32) -> Self {
+            self.anti_lag = anti_lag;
+            self
+        }
+    }
     #[repr(C)]
     #[derive(Clone, Copy)]
     pub struct AntiLagDataAMD<'a> {
@@ -85,6 +91,23 @@ pub(crate) mod reexport {
             }
         }
     }
+    impl<'a> AntiLagDataAMD<'a> {
+        pub fn mode(mut self, mode: crate::vk::AntiLagModeAMD) -> Self {
+            self.mode = mode;
+            self
+        }
+        pub fn max_fps(mut self, max_fps: u32) -> Self {
+            self.max_fps = max_fps;
+            self
+        }
+        pub fn p_presentation_info(
+            mut self,
+            p_presentation_info: *const crate::vk::AntiLagPresentationInfoAMD<'a>,
+        ) -> Self {
+            self.p_presentation_info = p_presentation_info;
+            self
+        }
+    }
     #[repr(C)]
     #[derive(Clone, Copy)]
     pub struct AntiLagPresentationInfoAMD<'a> {
@@ -106,6 +129,16 @@ pub(crate) mod reexport {
                 frame_index: Default::default(),
                 _marker: ::core::marker::PhantomData,
             }
+        }
+    }
+    impl<'a> AntiLagPresentationInfoAMD<'a> {
+        pub fn stage(mut self, stage: crate::vk::AntiLagStageAMD) -> Self {
+            self.stage = stage;
+            self
+        }
+        pub fn frame_index(mut self, frame_index: u64) -> Self {
+            self.frame_index = frame_index;
+            self
         }
     }
     ///Provided by [`amd::anti_lag`](crate::amd::anti_lag)

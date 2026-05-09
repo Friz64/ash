@@ -27,6 +27,15 @@ impl<'a> Default for PhysicalDeviceExtendedSparseAddressSpaceFeaturesNV<'a> {
         }
     }
 }
+impl<'a> PhysicalDeviceExtendedSparseAddressSpaceFeaturesNV<'a> {
+    pub fn extended_sparse_address_space(
+        mut self,
+        extended_sparse_address_space: crate::vk::Bool32,
+    ) -> Self {
+        self.extended_sparse_address_space = extended_sparse_address_space;
+        self
+    }
+}
 #[repr(C)]
 #[derive(Clone, Copy)]
 pub struct PhysicalDeviceExtendedSparseAddressSpacePropertiesNV<'a> {
@@ -53,6 +62,29 @@ impl<'a> Default for PhysicalDeviceExtendedSparseAddressSpacePropertiesNV<'a> {
             extended_sparse_buffer_usage_flags: Default::default(),
             _marker: ::core::marker::PhantomData,
         }
+    }
+}
+impl<'a> PhysicalDeviceExtendedSparseAddressSpacePropertiesNV<'a> {
+    pub fn extended_sparse_address_space_size(
+        mut self,
+        extended_sparse_address_space_size: crate::vk::DeviceSize,
+    ) -> Self {
+        self.extended_sparse_address_space_size = extended_sparse_address_space_size;
+        self
+    }
+    pub fn extended_sparse_image_usage_flags(
+        mut self,
+        extended_sparse_image_usage_flags: crate::vk::ImageUsageFlags,
+    ) -> Self {
+        self.extended_sparse_image_usage_flags = extended_sparse_image_usage_flags;
+        self
+    }
+    pub fn extended_sparse_buffer_usage_flags(
+        mut self,
+        extended_sparse_buffer_usage_flags: crate::vk::BufferUsageFlags,
+    ) -> Self {
+        self.extended_sparse_buffer_usage_flags = extended_sparse_buffer_usage_flags;
+        self
     }
 }
 ///Provided by [`nv::extended_sparse_address_space`](crate::nv::extended_sparse_address_space)

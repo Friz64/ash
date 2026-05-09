@@ -27,6 +27,15 @@ impl<'a> Default for PhysicalDeviceShader64BitIndexingFeaturesEXT<'a> {
         }
     }
 }
+impl<'a> PhysicalDeviceShader64BitIndexingFeaturesEXT<'a> {
+    pub fn shader64_bit_indexing(
+        mut self,
+        shader64_bit_indexing: crate::vk::Bool32,
+    ) -> Self {
+        self.shader64_bit_indexing = shader64_bit_indexing;
+        self
+    }
+}
 ///Provided by [`ext::shader_64bit_indexing`](crate::ext::shader_64bit_indexing)
 impl crate::vk::StructureType {
     pub const PHYSICAL_DEVICE_SHADER_64_INDEXING_FEATURES_EXT: Self = Self(1000627000);

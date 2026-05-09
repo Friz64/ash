@@ -78,6 +78,27 @@ pub(crate) mod reexport {
             }
         }
     }
+    impl<'a> ImportSemaphoreFdInfoKHR<'a> {
+        pub fn semaphore(mut self, semaphore: crate::vk::Semaphore) -> Self {
+            self.semaphore = semaphore;
+            self
+        }
+        pub fn flags(mut self, flags: crate::vk::SemaphoreImportFlags) -> Self {
+            self.flags = flags;
+            self
+        }
+        pub fn handle_type(
+            mut self,
+            handle_type: crate::vk::ExternalSemaphoreHandleTypeFlagBits,
+        ) -> Self {
+            self.handle_type = handle_type;
+            self
+        }
+        pub fn fd(mut self, fd: core::ffi::c_int) -> Self {
+            self.fd = fd;
+            self
+        }
+    }
     #[repr(C)]
     #[derive(Clone, Copy)]
     pub struct SemaphoreGetFdInfoKHR<'a> {
@@ -99,6 +120,19 @@ pub(crate) mod reexport {
                 handle_type: Default::default(),
                 _marker: ::core::marker::PhantomData,
             }
+        }
+    }
+    impl<'a> SemaphoreGetFdInfoKHR<'a> {
+        pub fn semaphore(mut self, semaphore: crate::vk::Semaphore) -> Self {
+            self.semaphore = semaphore;
+            self
+        }
+        pub fn handle_type(
+            mut self,
+            handle_type: crate::vk::ExternalSemaphoreHandleTypeFlagBits,
+        ) -> Self {
+            self.handle_type = handle_type;
+            self
         }
     }
     ///Provided by [`khr::external_semaphore_fd`](crate::khr::external_semaphore_fd)

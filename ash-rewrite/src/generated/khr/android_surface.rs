@@ -60,6 +60,19 @@ pub(crate) mod reexport {
             }
         }
     }
+    impl<'a> AndroidSurfaceCreateInfoKHR<'a> {
+        pub fn flags(mut self, flags: crate::vk::AndroidSurfaceCreateFlagsKHR) -> Self {
+            self.flags = flags;
+            self
+        }
+        pub fn window(
+            mut self,
+            window: *mut crate::platform_types::ANativeWindow,
+        ) -> Self {
+            self.window = window;
+            self
+        }
+    }
     ///Provided by [`khr::android_surface`](crate::khr::android_surface)
     impl crate::vk::StructureType {
         pub const ANDROID_SURFACE_CREATE_INFO_KHR: Self = Self(1000008000);

@@ -24,6 +24,12 @@ impl<'a> Default for SurfaceProtectedCapabilitiesKHR<'a> {
         }
     }
 }
+impl<'a> SurfaceProtectedCapabilitiesKHR<'a> {
+    pub fn supports_protected(mut self, supports_protected: crate::vk::Bool32) -> Self {
+        self.supports_protected = supports_protected;
+        self
+    }
+}
 ///Provided by [`khr::surface_protected_capabilities`](crate::khr::surface_protected_capabilities)
 impl crate::vk::StructureType {
     pub const SURFACE_PROTECTED_CAPABILITIES_KHR: Self = Self(1000239000);

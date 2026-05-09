@@ -27,6 +27,12 @@ impl<'a> Default for PhysicalDeviceVideoMaintenance1FeaturesKHR<'a> {
         }
     }
 }
+impl<'a> PhysicalDeviceVideoMaintenance1FeaturesKHR<'a> {
+    pub fn video_maintenance1(mut self, video_maintenance1: crate::vk::Bool32) -> Self {
+        self.video_maintenance1 = video_maintenance1;
+        self
+    }
+}
 #[repr(C)]
 #[derive(Clone, Copy)]
 pub struct VideoInlineQueryInfoKHR<'a> {
@@ -54,6 +60,20 @@ impl<'a> Default for VideoInlineQueryInfoKHR<'a> {
             query_count: Default::default(),
             _marker: ::core::marker::PhantomData,
         }
+    }
+}
+impl<'a> VideoInlineQueryInfoKHR<'a> {
+    pub fn query_pool(mut self, query_pool: crate::vk::QueryPool) -> Self {
+        self.query_pool = query_pool;
+        self
+    }
+    pub fn first_query(mut self, first_query: u32) -> Self {
+        self.first_query = first_query;
+        self
+    }
+    pub fn query_count(mut self, query_count: u32) -> Self {
+        self.query_count = query_count;
+        self
     }
 }
 ///Provided by [`khr::video_maintenance1`](crate::khr::video_maintenance1)

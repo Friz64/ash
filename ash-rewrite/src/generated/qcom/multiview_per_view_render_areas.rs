@@ -27,6 +27,15 @@ impl<'a> Default for PhysicalDeviceMultiviewPerViewRenderAreasFeaturesQCOM<'a> {
         }
     }
 }
+impl<'a> PhysicalDeviceMultiviewPerViewRenderAreasFeaturesQCOM<'a> {
+    pub fn multiview_per_view_render_areas(
+        mut self,
+        multiview_per_view_render_areas: crate::vk::Bool32,
+    ) -> Self {
+        self.multiview_per_view_render_areas = multiview_per_view_render_areas;
+        self
+    }
+}
 #[repr(C)]
 #[derive(Clone, Copy)]
 pub struct MultiviewPerViewRenderAreasRenderPassBeginInfoQCOM<'a> {
@@ -53,6 +62,22 @@ impl<'a> Default for MultiviewPerViewRenderAreasRenderPassBeginInfoQCOM<'a> {
             p_per_view_render_areas: Default::default(),
             _marker: ::core::marker::PhantomData,
         }
+    }
+}
+impl<'a> MultiviewPerViewRenderAreasRenderPassBeginInfoQCOM<'a> {
+    pub fn per_view_render_area_count(
+        mut self,
+        per_view_render_area_count: u32,
+    ) -> Self {
+        self.per_view_render_area_count = per_view_render_area_count;
+        self
+    }
+    pub fn p_per_view_render_areas(
+        mut self,
+        p_per_view_render_areas: *const crate::vk::Rect2D,
+    ) -> Self {
+        self.p_per_view_render_areas = p_per_view_render_areas;
+        self
     }
 }
 ///Provided by [`qcom::multiview_per_view_render_areas`](crate::qcom::multiview_per_view_render_areas)

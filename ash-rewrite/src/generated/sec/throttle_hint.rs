@@ -27,6 +27,12 @@ impl<'a> Default for PhysicalDeviceThrottleHintFeaturesSEC<'a> {
         }
     }
 }
+impl<'a> PhysicalDeviceThrottleHintFeaturesSEC<'a> {
+    pub fn throttle_hint(mut self, throttle_hint: crate::vk::Bool32) -> Self {
+        self.throttle_hint = throttle_hint;
+        self
+    }
+}
 #[repr(C)]
 #[derive(Clone, Copy)]
 pub struct ThrottleHintSubmitInfoSEC<'a> {
@@ -48,6 +54,15 @@ impl<'a> Default for ThrottleHintSubmitInfoSEC<'a> {
             throttle_hint: Default::default(),
             _marker: ::core::marker::PhantomData,
         }
+    }
+}
+impl<'a> ThrottleHintSubmitInfoSEC<'a> {
+    pub fn throttle_hint(
+        mut self,
+        throttle_hint: crate::vk::ThrottleHintTypeSEC,
+    ) -> Self {
+        self.throttle_hint = throttle_hint;
+        self
     }
 }
 ///Provided by [`sec::throttle_hint`](crate::sec::throttle_hint)

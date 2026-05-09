@@ -27,6 +27,15 @@ impl<'a> Default for PhysicalDeviceMultisampledRenderToSingleSampledFeaturesEXT<
         }
     }
 }
+impl<'a> PhysicalDeviceMultisampledRenderToSingleSampledFeaturesEXT<'a> {
+    pub fn multisampled_render_to_single_sampled(
+        mut self,
+        multisampled_render_to_single_sampled: crate::vk::Bool32,
+    ) -> Self {
+        self.multisampled_render_to_single_sampled = multisampled_render_to_single_sampled;
+        self
+    }
+}
 #[repr(C)]
 #[derive(Clone, Copy)]
 pub struct SubpassResolvePerformanceQueryEXT<'a> {
@@ -48,6 +57,12 @@ impl<'a> Default for SubpassResolvePerformanceQueryEXT<'a> {
             optimal: Default::default(),
             _marker: ::core::marker::PhantomData,
         }
+    }
+}
+impl<'a> SubpassResolvePerformanceQueryEXT<'a> {
+    pub fn optimal(mut self, optimal: crate::vk::Bool32) -> Self {
+        self.optimal = optimal;
+        self
     }
 }
 #[repr(C)]
@@ -76,6 +91,22 @@ impl<'a> Default for MultisampledRenderToSingleSampledInfoEXT<'a> {
             rasterization_samples: Default::default(),
             _marker: ::core::marker::PhantomData,
         }
+    }
+}
+impl<'a> MultisampledRenderToSingleSampledInfoEXT<'a> {
+    pub fn multisampled_render_to_single_sampled_enable(
+        mut self,
+        multisampled_render_to_single_sampled_enable: crate::vk::Bool32,
+    ) -> Self {
+        self.multisampled_render_to_single_sampled_enable = multisampled_render_to_single_sampled_enable;
+        self
+    }
+    pub fn rasterization_samples(
+        mut self,
+        rasterization_samples: crate::vk::SampleCountFlagBits,
+    ) -> Self {
+        self.rasterization_samples = rasterization_samples;
+        self
     }
 }
 ///Provided by [`ext::multisampled_render_to_single_sampled`](crate::ext::multisampled_render_to_single_sampled)

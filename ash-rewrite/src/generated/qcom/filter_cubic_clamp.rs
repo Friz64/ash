@@ -26,6 +26,12 @@ impl<'a> Default for PhysicalDeviceCubicClampFeaturesQCOM<'a> {
         }
     }
 }
+impl<'a> PhysicalDeviceCubicClampFeaturesQCOM<'a> {
+    pub fn cubic_range_clamp(mut self, cubic_range_clamp: crate::vk::Bool32) -> Self {
+        self.cubic_range_clamp = cubic_range_clamp;
+        self
+    }
+}
 ///Provided by [`qcom::filter_cubic_clamp`](crate::qcom::filter_cubic_clamp)
 impl crate::vk::StructureType {
     pub const PHYSICAL_DEVICE_CUBIC_CLAMP_FEATURES_QCOM: Self = Self(1000521000);

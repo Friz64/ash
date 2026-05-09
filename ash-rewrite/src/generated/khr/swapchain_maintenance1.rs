@@ -61,6 +61,15 @@ pub(crate) mod reexport {
             }
         }
     }
+    impl<'a> PhysicalDeviceSwapchainMaintenance1FeaturesKHR<'a> {
+        pub fn swapchain_maintenance1(
+            mut self,
+            swapchain_maintenance1: crate::vk::Bool32,
+        ) -> Self {
+            self.swapchain_maintenance1 = swapchain_maintenance1;
+            self
+        }
+    }
     #[repr(C)]
     #[derive(Clone, Copy)]
     pub struct SwapchainPresentFenceInfoKHR<'a> {
@@ -84,6 +93,16 @@ pub(crate) mod reexport {
                 p_fences: Default::default(),
                 _marker: ::core::marker::PhantomData,
             }
+        }
+    }
+    impl<'a> SwapchainPresentFenceInfoKHR<'a> {
+        pub fn swapchain_count(mut self, swapchain_count: u32) -> Self {
+            self.swapchain_count = swapchain_count;
+            self
+        }
+        pub fn p_fences(mut self, p_fences: *const crate::vk::Fence) -> Self {
+            self.p_fences = p_fences;
+            self
         }
     }
     #[repr(C)]
@@ -112,6 +131,19 @@ pub(crate) mod reexport {
             }
         }
     }
+    impl<'a> SwapchainPresentModesCreateInfoKHR<'a> {
+        pub fn present_mode_count(mut self, present_mode_count: u32) -> Self {
+            self.present_mode_count = present_mode_count;
+            self
+        }
+        pub fn p_present_modes(
+            mut self,
+            p_present_modes: *const crate::vk::PresentModeKHR,
+        ) -> Self {
+            self.p_present_modes = p_present_modes;
+            self
+        }
+    }
     #[repr(C)]
     #[derive(Clone, Copy)]
     pub struct SwapchainPresentModeInfoKHR<'a> {
@@ -135,6 +167,19 @@ pub(crate) mod reexport {
                 p_present_modes: Default::default(),
                 _marker: ::core::marker::PhantomData,
             }
+        }
+    }
+    impl<'a> SwapchainPresentModeInfoKHR<'a> {
+        pub fn swapchain_count(mut self, swapchain_count: u32) -> Self {
+            self.swapchain_count = swapchain_count;
+            self
+        }
+        pub fn p_present_modes(
+            mut self,
+            p_present_modes: *const crate::vk::PresentModeKHR,
+        ) -> Self {
+            self.p_present_modes = p_present_modes;
+            self
         }
     }
     #[repr(C)]
@@ -165,6 +210,29 @@ pub(crate) mod reexport {
             }
         }
     }
+    impl<'a> SwapchainPresentScalingCreateInfoKHR<'a> {
+        pub fn scaling_behavior(
+            mut self,
+            scaling_behavior: crate::vk::PresentScalingFlagsKHR,
+        ) -> Self {
+            self.scaling_behavior = scaling_behavior;
+            self
+        }
+        pub fn present_gravity_x(
+            mut self,
+            present_gravity_x: crate::vk::PresentGravityFlagsKHR,
+        ) -> Self {
+            self.present_gravity_x = present_gravity_x;
+            self
+        }
+        pub fn present_gravity_y(
+            mut self,
+            present_gravity_y: crate::vk::PresentGravityFlagsKHR,
+        ) -> Self {
+            self.present_gravity_y = present_gravity_y;
+            self
+        }
+    }
     #[repr(C)]
     #[derive(Clone, Copy)]
     pub struct ReleaseSwapchainImagesInfoKHR<'a> {
@@ -188,6 +256,20 @@ pub(crate) mod reexport {
                 p_image_indices: Default::default(),
                 _marker: ::core::marker::PhantomData,
             }
+        }
+    }
+    impl<'a> ReleaseSwapchainImagesInfoKHR<'a> {
+        pub fn swapchain(mut self, swapchain: crate::vk::SwapchainKHR) -> Self {
+            self.swapchain = swapchain;
+            self
+        }
+        pub fn image_index_count(mut self, image_index_count: u32) -> Self {
+            self.image_index_count = image_index_count;
+            self
+        }
+        pub fn p_image_indices(mut self, p_image_indices: *const u32) -> Self {
+            self.p_image_indices = p_image_indices;
+            self
         }
     }
     ///Provided by [`khr::swapchain_maintenance1`](crate::khr::swapchain_maintenance1)

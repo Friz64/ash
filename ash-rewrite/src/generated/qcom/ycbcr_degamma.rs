@@ -27,6 +27,12 @@ impl<'a> Default for PhysicalDeviceYcbcrDegammaFeaturesQCOM<'a> {
         }
     }
 }
+impl<'a> PhysicalDeviceYcbcrDegammaFeaturesQCOM<'a> {
+    pub fn ycbcr_degamma(mut self, ycbcr_degamma: crate::vk::Bool32) -> Self {
+        self.ycbcr_degamma = ycbcr_degamma;
+        self
+    }
+}
 #[repr(C)]
 #[derive(Clone, Copy)]
 pub struct SamplerYcbcrConversionYcbcrDegammaCreateInfoQCOM<'a> {
@@ -51,6 +57,19 @@ impl<'a> Default for SamplerYcbcrConversionYcbcrDegammaCreateInfoQCOM<'a> {
             enable_cb_cr_degamma: Default::default(),
             _marker: ::core::marker::PhantomData,
         }
+    }
+}
+impl<'a> SamplerYcbcrConversionYcbcrDegammaCreateInfoQCOM<'a> {
+    pub fn enable_y_degamma(mut self, enable_y_degamma: crate::vk::Bool32) -> Self {
+        self.enable_y_degamma = enable_y_degamma;
+        self
+    }
+    pub fn enable_cb_cr_degamma(
+        mut self,
+        enable_cb_cr_degamma: crate::vk::Bool32,
+    ) -> Self {
+        self.enable_cb_cr_degamma = enable_cb_cr_degamma;
+        self
     }
 }
 ///Provided by [`qcom::ycbcr_degamma`](crate::qcom::ycbcr_degamma)

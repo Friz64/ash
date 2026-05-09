@@ -80,6 +80,57 @@ pub(crate) mod reexport {
             }
         }
     }
+    impl<'a> PhysicalDeviceCooperativeMatrix2FeaturesNV<'a> {
+        pub fn cooperative_matrix_workgroup_scope(
+            mut self,
+            cooperative_matrix_workgroup_scope: crate::vk::Bool32,
+        ) -> Self {
+            self.cooperative_matrix_workgroup_scope = cooperative_matrix_workgroup_scope;
+            self
+        }
+        pub fn cooperative_matrix_flexible_dimensions(
+            mut self,
+            cooperative_matrix_flexible_dimensions: crate::vk::Bool32,
+        ) -> Self {
+            self.cooperative_matrix_flexible_dimensions = cooperative_matrix_flexible_dimensions;
+            self
+        }
+        pub fn cooperative_matrix_reductions(
+            mut self,
+            cooperative_matrix_reductions: crate::vk::Bool32,
+        ) -> Self {
+            self.cooperative_matrix_reductions = cooperative_matrix_reductions;
+            self
+        }
+        pub fn cooperative_matrix_conversions(
+            mut self,
+            cooperative_matrix_conversions: crate::vk::Bool32,
+        ) -> Self {
+            self.cooperative_matrix_conversions = cooperative_matrix_conversions;
+            self
+        }
+        pub fn cooperative_matrix_per_element_operations(
+            mut self,
+            cooperative_matrix_per_element_operations: crate::vk::Bool32,
+        ) -> Self {
+            self.cooperative_matrix_per_element_operations = cooperative_matrix_per_element_operations;
+            self
+        }
+        pub fn cooperative_matrix_tensor_addressing(
+            mut self,
+            cooperative_matrix_tensor_addressing: crate::vk::Bool32,
+        ) -> Self {
+            self.cooperative_matrix_tensor_addressing = cooperative_matrix_tensor_addressing;
+            self
+        }
+        pub fn cooperative_matrix_block_loads(
+            mut self,
+            cooperative_matrix_block_loads: crate::vk::Bool32,
+        ) -> Self {
+            self.cooperative_matrix_block_loads = cooperative_matrix_block_loads;
+            self
+        }
+    }
     #[repr(C)]
     #[derive(Clone, Copy)]
     pub struct PhysicalDeviceCooperativeMatrix2PropertiesNV<'a> {
@@ -106,6 +157,29 @@ pub(crate) mod reexport {
                 cooperative_matrix_workgroup_scope_reserved_shared_memory: Default::default(),
                 _marker: ::core::marker::PhantomData,
             }
+        }
+    }
+    impl<'a> PhysicalDeviceCooperativeMatrix2PropertiesNV<'a> {
+        pub fn cooperative_matrix_workgroup_scope_max_workgroup_size(
+            mut self,
+            cooperative_matrix_workgroup_scope_max_workgroup_size: u32,
+        ) -> Self {
+            self.cooperative_matrix_workgroup_scope_max_workgroup_size = cooperative_matrix_workgroup_scope_max_workgroup_size;
+            self
+        }
+        pub fn cooperative_matrix_flexible_dimensions_max_dimension(
+            mut self,
+            cooperative_matrix_flexible_dimensions_max_dimension: u32,
+        ) -> Self {
+            self.cooperative_matrix_flexible_dimensions_max_dimension = cooperative_matrix_flexible_dimensions_max_dimension;
+            self
+        }
+        pub fn cooperative_matrix_workgroup_scope_reserved_shared_memory(
+            mut self,
+            cooperative_matrix_workgroup_scope_reserved_shared_memory: u32,
+        ) -> Self {
+            self.cooperative_matrix_workgroup_scope_reserved_shared_memory = cooperative_matrix_workgroup_scope_reserved_shared_memory;
+            self
         }
     }
     #[repr(C)]
@@ -146,6 +220,51 @@ pub(crate) mod reexport {
                 workgroup_invocations: Default::default(),
                 _marker: ::core::marker::PhantomData,
             }
+        }
+    }
+    impl<'a> CooperativeMatrixFlexibleDimensionsPropertiesNV<'a> {
+        pub fn m_granularity(mut self, m_granularity: u32) -> Self {
+            self.m_granularity = m_granularity;
+            self
+        }
+        pub fn n_granularity(mut self, n_granularity: u32) -> Self {
+            self.n_granularity = n_granularity;
+            self
+        }
+        pub fn k_granularity(mut self, k_granularity: u32) -> Self {
+            self.k_granularity = k_granularity;
+            self
+        }
+        pub fn a_type(mut self, a_type: crate::vk::ComponentTypeKHR) -> Self {
+            self.a_type = a_type;
+            self
+        }
+        pub fn b_type(mut self, b_type: crate::vk::ComponentTypeKHR) -> Self {
+            self.b_type = b_type;
+            self
+        }
+        pub fn c_type(mut self, c_type: crate::vk::ComponentTypeKHR) -> Self {
+            self.c_type = c_type;
+            self
+        }
+        pub fn result_type(mut self, result_type: crate::vk::ComponentTypeKHR) -> Self {
+            self.result_type = result_type;
+            self
+        }
+        pub fn saturating_accumulation(
+            mut self,
+            saturating_accumulation: crate::vk::Bool32,
+        ) -> Self {
+            self.saturating_accumulation = saturating_accumulation;
+            self
+        }
+        pub fn scope(mut self, scope: crate::vk::ScopeKHR) -> Self {
+            self.scope = scope;
+            self
+        }
+        pub fn workgroup_invocations(mut self, workgroup_invocations: u32) -> Self {
+            self.workgroup_invocations = workgroup_invocations;
+            self
         }
     }
     ///Provided by [`nv::cooperative_matrix2`](crate::nv::cooperative_matrix2)

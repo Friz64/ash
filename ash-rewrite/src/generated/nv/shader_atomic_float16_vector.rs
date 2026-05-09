@@ -27,6 +27,15 @@ impl<'a> Default for PhysicalDeviceShaderAtomicFloat16VectorFeaturesNV<'a> {
         }
     }
 }
+impl<'a> PhysicalDeviceShaderAtomicFloat16VectorFeaturesNV<'a> {
+    pub fn shader_float16_vector_atomics(
+        mut self,
+        shader_float16_vector_atomics: crate::vk::Bool32,
+    ) -> Self {
+        self.shader_float16_vector_atomics = shader_float16_vector_atomics;
+        self
+    }
+}
 ///Provided by [`nv::shader_atomic_float16_vector`](crate::nv::shader_atomic_float16_vector)
 impl crate::vk::StructureType {
     pub const PHYSICAL_DEVICE_SHADER_ATOMIC_FLOAT16_VECTOR_FEATURES_NV: Self = Self(

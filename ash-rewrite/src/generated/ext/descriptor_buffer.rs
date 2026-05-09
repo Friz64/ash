@@ -241,6 +241,36 @@ pub(crate) mod reexport {
             }
         }
     }
+    impl<'a> PhysicalDeviceDescriptorBufferFeaturesEXT<'a> {
+        pub fn descriptor_buffer(
+            mut self,
+            descriptor_buffer: crate::vk::Bool32,
+        ) -> Self {
+            self.descriptor_buffer = descriptor_buffer;
+            self
+        }
+        pub fn descriptor_buffer_capture_replay(
+            mut self,
+            descriptor_buffer_capture_replay: crate::vk::Bool32,
+        ) -> Self {
+            self.descriptor_buffer_capture_replay = descriptor_buffer_capture_replay;
+            self
+        }
+        pub fn descriptor_buffer_image_layout_ignored(
+            mut self,
+            descriptor_buffer_image_layout_ignored: crate::vk::Bool32,
+        ) -> Self {
+            self.descriptor_buffer_image_layout_ignored = descriptor_buffer_image_layout_ignored;
+            self
+        }
+        pub fn descriptor_buffer_push_descriptors(
+            mut self,
+            descriptor_buffer_push_descriptors: crate::vk::Bool32,
+        ) -> Self {
+            self.descriptor_buffer_push_descriptors = descriptor_buffer_push_descriptors;
+            self
+        }
+    }
     #[repr(C)]
     #[derive(Clone, Copy)]
     pub struct PhysicalDeviceDescriptorBufferPropertiesEXT<'a> {
@@ -329,6 +359,239 @@ pub(crate) mod reexport {
             }
         }
     }
+    impl<'a> PhysicalDeviceDescriptorBufferPropertiesEXT<'a> {
+        pub fn combined_image_sampler_descriptor_single_array(
+            mut self,
+            combined_image_sampler_descriptor_single_array: crate::vk::Bool32,
+        ) -> Self {
+            self.combined_image_sampler_descriptor_single_array = combined_image_sampler_descriptor_single_array;
+            self
+        }
+        pub fn bufferless_push_descriptors(
+            mut self,
+            bufferless_push_descriptors: crate::vk::Bool32,
+        ) -> Self {
+            self.bufferless_push_descriptors = bufferless_push_descriptors;
+            self
+        }
+        pub fn allow_sampler_image_view_post_submit_creation(
+            mut self,
+            allow_sampler_image_view_post_submit_creation: crate::vk::Bool32,
+        ) -> Self {
+            self.allow_sampler_image_view_post_submit_creation = allow_sampler_image_view_post_submit_creation;
+            self
+        }
+        pub fn descriptor_buffer_offset_alignment(
+            mut self,
+            descriptor_buffer_offset_alignment: crate::vk::DeviceSize,
+        ) -> Self {
+            self.descriptor_buffer_offset_alignment = descriptor_buffer_offset_alignment;
+            self
+        }
+        pub fn max_descriptor_buffer_bindings(
+            mut self,
+            max_descriptor_buffer_bindings: u32,
+        ) -> Self {
+            self.max_descriptor_buffer_bindings = max_descriptor_buffer_bindings;
+            self
+        }
+        pub fn max_resource_descriptor_buffer_bindings(
+            mut self,
+            max_resource_descriptor_buffer_bindings: u32,
+        ) -> Self {
+            self.max_resource_descriptor_buffer_bindings = max_resource_descriptor_buffer_bindings;
+            self
+        }
+        pub fn max_sampler_descriptor_buffer_bindings(
+            mut self,
+            max_sampler_descriptor_buffer_bindings: u32,
+        ) -> Self {
+            self.max_sampler_descriptor_buffer_bindings = max_sampler_descriptor_buffer_bindings;
+            self
+        }
+        pub fn max_embedded_immutable_sampler_bindings(
+            mut self,
+            max_embedded_immutable_sampler_bindings: u32,
+        ) -> Self {
+            self.max_embedded_immutable_sampler_bindings = max_embedded_immutable_sampler_bindings;
+            self
+        }
+        pub fn max_embedded_immutable_samplers(
+            mut self,
+            max_embedded_immutable_samplers: u32,
+        ) -> Self {
+            self.max_embedded_immutable_samplers = max_embedded_immutable_samplers;
+            self
+        }
+        pub fn buffer_capture_replay_descriptor_data_size(
+            mut self,
+            buffer_capture_replay_descriptor_data_size: usize,
+        ) -> Self {
+            self.buffer_capture_replay_descriptor_data_size = buffer_capture_replay_descriptor_data_size;
+            self
+        }
+        pub fn image_capture_replay_descriptor_data_size(
+            mut self,
+            image_capture_replay_descriptor_data_size: usize,
+        ) -> Self {
+            self.image_capture_replay_descriptor_data_size = image_capture_replay_descriptor_data_size;
+            self
+        }
+        pub fn image_view_capture_replay_descriptor_data_size(
+            mut self,
+            image_view_capture_replay_descriptor_data_size: usize,
+        ) -> Self {
+            self.image_view_capture_replay_descriptor_data_size = image_view_capture_replay_descriptor_data_size;
+            self
+        }
+        pub fn sampler_capture_replay_descriptor_data_size(
+            mut self,
+            sampler_capture_replay_descriptor_data_size: usize,
+        ) -> Self {
+            self.sampler_capture_replay_descriptor_data_size = sampler_capture_replay_descriptor_data_size;
+            self
+        }
+        pub fn acceleration_structure_capture_replay_descriptor_data_size(
+            mut self,
+            acceleration_structure_capture_replay_descriptor_data_size: usize,
+        ) -> Self {
+            self.acceleration_structure_capture_replay_descriptor_data_size = acceleration_structure_capture_replay_descriptor_data_size;
+            self
+        }
+        pub fn sampler_descriptor_size(
+            mut self,
+            sampler_descriptor_size: usize,
+        ) -> Self {
+            self.sampler_descriptor_size = sampler_descriptor_size;
+            self
+        }
+        pub fn combined_image_sampler_descriptor_size(
+            mut self,
+            combined_image_sampler_descriptor_size: usize,
+        ) -> Self {
+            self.combined_image_sampler_descriptor_size = combined_image_sampler_descriptor_size;
+            self
+        }
+        pub fn sampled_image_descriptor_size(
+            mut self,
+            sampled_image_descriptor_size: usize,
+        ) -> Self {
+            self.sampled_image_descriptor_size = sampled_image_descriptor_size;
+            self
+        }
+        pub fn storage_image_descriptor_size(
+            mut self,
+            storage_image_descriptor_size: usize,
+        ) -> Self {
+            self.storage_image_descriptor_size = storage_image_descriptor_size;
+            self
+        }
+        pub fn uniform_texel_buffer_descriptor_size(
+            mut self,
+            uniform_texel_buffer_descriptor_size: usize,
+        ) -> Self {
+            self.uniform_texel_buffer_descriptor_size = uniform_texel_buffer_descriptor_size;
+            self
+        }
+        pub fn robust_uniform_texel_buffer_descriptor_size(
+            mut self,
+            robust_uniform_texel_buffer_descriptor_size: usize,
+        ) -> Self {
+            self.robust_uniform_texel_buffer_descriptor_size = robust_uniform_texel_buffer_descriptor_size;
+            self
+        }
+        pub fn storage_texel_buffer_descriptor_size(
+            mut self,
+            storage_texel_buffer_descriptor_size: usize,
+        ) -> Self {
+            self.storage_texel_buffer_descriptor_size = storage_texel_buffer_descriptor_size;
+            self
+        }
+        pub fn robust_storage_texel_buffer_descriptor_size(
+            mut self,
+            robust_storage_texel_buffer_descriptor_size: usize,
+        ) -> Self {
+            self.robust_storage_texel_buffer_descriptor_size = robust_storage_texel_buffer_descriptor_size;
+            self
+        }
+        pub fn uniform_buffer_descriptor_size(
+            mut self,
+            uniform_buffer_descriptor_size: usize,
+        ) -> Self {
+            self.uniform_buffer_descriptor_size = uniform_buffer_descriptor_size;
+            self
+        }
+        pub fn robust_uniform_buffer_descriptor_size(
+            mut self,
+            robust_uniform_buffer_descriptor_size: usize,
+        ) -> Self {
+            self.robust_uniform_buffer_descriptor_size = robust_uniform_buffer_descriptor_size;
+            self
+        }
+        pub fn storage_buffer_descriptor_size(
+            mut self,
+            storage_buffer_descriptor_size: usize,
+        ) -> Self {
+            self.storage_buffer_descriptor_size = storage_buffer_descriptor_size;
+            self
+        }
+        pub fn robust_storage_buffer_descriptor_size(
+            mut self,
+            robust_storage_buffer_descriptor_size: usize,
+        ) -> Self {
+            self.robust_storage_buffer_descriptor_size = robust_storage_buffer_descriptor_size;
+            self
+        }
+        pub fn input_attachment_descriptor_size(
+            mut self,
+            input_attachment_descriptor_size: usize,
+        ) -> Self {
+            self.input_attachment_descriptor_size = input_attachment_descriptor_size;
+            self
+        }
+        pub fn acceleration_structure_descriptor_size(
+            mut self,
+            acceleration_structure_descriptor_size: usize,
+        ) -> Self {
+            self.acceleration_structure_descriptor_size = acceleration_structure_descriptor_size;
+            self
+        }
+        pub fn max_sampler_descriptor_buffer_range(
+            mut self,
+            max_sampler_descriptor_buffer_range: crate::vk::DeviceSize,
+        ) -> Self {
+            self.max_sampler_descriptor_buffer_range = max_sampler_descriptor_buffer_range;
+            self
+        }
+        pub fn max_resource_descriptor_buffer_range(
+            mut self,
+            max_resource_descriptor_buffer_range: crate::vk::DeviceSize,
+        ) -> Self {
+            self.max_resource_descriptor_buffer_range = max_resource_descriptor_buffer_range;
+            self
+        }
+        pub fn sampler_descriptor_buffer_address_space_size(
+            mut self,
+            sampler_descriptor_buffer_address_space_size: crate::vk::DeviceSize,
+        ) -> Self {
+            self.sampler_descriptor_buffer_address_space_size = sampler_descriptor_buffer_address_space_size;
+            self
+        }
+        pub fn resource_descriptor_buffer_address_space_size(
+            mut self,
+            resource_descriptor_buffer_address_space_size: crate::vk::DeviceSize,
+        ) -> Self {
+            self.resource_descriptor_buffer_address_space_size = resource_descriptor_buffer_address_space_size;
+            self
+        }
+        pub fn descriptor_buffer_address_space_size(
+            mut self,
+            descriptor_buffer_address_space_size: crate::vk::DeviceSize,
+        ) -> Self {
+            self.descriptor_buffer_address_space_size = descriptor_buffer_address_space_size;
+            self
+        }
+    }
     #[repr(C)]
     #[derive(Clone, Copy)]
     pub struct PhysicalDeviceDescriptorBufferDensityMapPropertiesEXT<'a> {
@@ -351,6 +614,15 @@ pub(crate) mod reexport {
                 combined_image_sampler_density_map_descriptor_size: Default::default(),
                 _marker: ::core::marker::PhantomData,
             }
+        }
+    }
+    impl<'a> PhysicalDeviceDescriptorBufferDensityMapPropertiesEXT<'a> {
+        pub fn combined_image_sampler_density_map_descriptor_size(
+            mut self,
+            combined_image_sampler_density_map_descriptor_size: usize,
+        ) -> Self {
+            self.combined_image_sampler_density_map_descriptor_size = combined_image_sampler_density_map_descriptor_size;
+            self
         }
     }
     #[repr(C)]
@@ -378,6 +650,20 @@ pub(crate) mod reexport {
             }
         }
     }
+    impl<'a> DescriptorAddressInfoEXT<'a> {
+        pub fn address(mut self, address: crate::vk::DeviceAddress) -> Self {
+            self.address = address;
+            self
+        }
+        pub fn range(mut self, range: crate::vk::DeviceSize) -> Self {
+            self.range = range;
+            self
+        }
+        pub fn format(mut self, format: crate::vk::Format) -> Self {
+            self.format = format;
+            self
+        }
+    }
     #[repr(C)]
     #[derive(Clone, Copy)]
     pub struct DescriptorBufferBindingInfoEXT<'a> {
@@ -399,6 +685,16 @@ pub(crate) mod reexport {
                 usage: Default::default(),
                 _marker: ::core::marker::PhantomData,
             }
+        }
+    }
+    impl<'a> DescriptorBufferBindingInfoEXT<'a> {
+        pub fn address(mut self, address: crate::vk::DeviceAddress) -> Self {
+            self.address = address;
+            self
+        }
+        pub fn usage(mut self, usage: crate::vk::BufferUsageFlags) -> Self {
+            self.usage = usage;
+            self
         }
     }
     #[repr(C)]
@@ -425,6 +721,12 @@ pub(crate) mod reexport {
             }
         }
     }
+    impl<'a> DescriptorBufferBindingPushDescriptorBufferHandleEXT<'a> {
+        pub fn buffer(mut self, buffer: crate::vk::Buffer) -> Self {
+            self.buffer = buffer;
+            self
+        }
+    }
     #[repr(C)]
     #[derive(Clone, Copy)]
     pub struct DescriptorGetInfoEXT<'a> {
@@ -446,6 +748,16 @@ pub(crate) mod reexport {
                 data: Default::default(),
                 _marker: ::core::marker::PhantomData,
             }
+        }
+    }
+    impl<'a> DescriptorGetInfoEXT<'a> {
+        pub fn _type(mut self, _type: crate::vk::DescriptorType) -> Self {
+            self._type = _type;
+            self
+        }
+        pub fn data(mut self, data: crate::vk::DescriptorDataEXT<'a>) -> Self {
+            self.data = data;
+            self
         }
     }
     #[repr(C)]
@@ -470,6 +782,12 @@ pub(crate) mod reexport {
             }
         }
     }
+    impl<'a> BufferCaptureDescriptorDataInfoEXT<'a> {
+        pub fn buffer(mut self, buffer: crate::vk::Buffer) -> Self {
+            self.buffer = buffer;
+            self
+        }
+    }
     #[repr(C)]
     #[derive(Clone, Copy)]
     pub struct ImageCaptureDescriptorDataInfoEXT<'a> {
@@ -490,6 +808,12 @@ pub(crate) mod reexport {
                 image: Default::default(),
                 _marker: ::core::marker::PhantomData,
             }
+        }
+    }
+    impl<'a> ImageCaptureDescriptorDataInfoEXT<'a> {
+        pub fn image(mut self, image: crate::vk::Image) -> Self {
+            self.image = image;
+            self
         }
     }
     #[repr(C)]
@@ -514,6 +838,12 @@ pub(crate) mod reexport {
             }
         }
     }
+    impl<'a> ImageViewCaptureDescriptorDataInfoEXT<'a> {
+        pub fn image_view(mut self, image_view: crate::vk::ImageView) -> Self {
+            self.image_view = image_view;
+            self
+        }
+    }
     #[repr(C)]
     #[derive(Clone, Copy)]
     pub struct SamplerCaptureDescriptorDataInfoEXT<'a> {
@@ -534,6 +864,12 @@ pub(crate) mod reexport {
                 sampler: Default::default(),
                 _marker: ::core::marker::PhantomData,
             }
+        }
+    }
+    impl<'a> SamplerCaptureDescriptorDataInfoEXT<'a> {
+        pub fn sampler(mut self, sampler: crate::vk::Sampler) -> Self {
+            self.sampler = sampler;
+            self
         }
     }
     #[repr(C)]
@@ -558,6 +894,22 @@ pub(crate) mod reexport {
                 acceleration_structure_nv: Default::default(),
                 _marker: ::core::marker::PhantomData,
             }
+        }
+    }
+    impl<'a> AccelerationStructureCaptureDescriptorDataInfoEXT<'a> {
+        pub fn acceleration_structure(
+            mut self,
+            acceleration_structure: crate::vk::AccelerationStructureKHR,
+        ) -> Self {
+            self.acceleration_structure = acceleration_structure;
+            self
+        }
+        pub fn acceleration_structure_nv(
+            mut self,
+            acceleration_structure_nv: crate::vk::AccelerationStructureNV,
+        ) -> Self {
+            self.acceleration_structure_nv = acceleration_structure_nv;
+            self
         }
     }
     #[repr(C)]
@@ -598,6 +950,15 @@ pub(crate) mod reexport {
                 opaque_capture_descriptor_data: Default::default(),
                 _marker: ::core::marker::PhantomData,
             }
+        }
+    }
+    impl<'a> OpaqueCaptureDescriptorDataCreateInfoEXT<'a> {
+        pub fn opaque_capture_descriptor_data(
+            mut self,
+            opaque_capture_descriptor_data: *const core::ffi::c_void,
+        ) -> Self {
+            self.opaque_capture_descriptor_data = opaque_capture_descriptor_data;
+            self
         }
     }
     #[repr(C)]

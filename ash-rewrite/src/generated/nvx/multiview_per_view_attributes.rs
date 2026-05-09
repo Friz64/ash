@@ -25,6 +25,15 @@ impl<'a> Default for PhysicalDeviceMultiviewPerViewAttributesPropertiesNVX<'a> {
         }
     }
 }
+impl<'a> PhysicalDeviceMultiviewPerViewAttributesPropertiesNVX<'a> {
+    pub fn per_view_position_all_components(
+        mut self,
+        per_view_position_all_components: crate::vk::Bool32,
+    ) -> Self {
+        self.per_view_position_all_components = per_view_position_all_components;
+        self
+    }
+}
 #[repr(C)]
 #[derive(Clone, Copy)]
 pub struct MultiviewPerViewAttributesInfoNVX<'a> {
@@ -52,6 +61,22 @@ impl<'a> Default for MultiviewPerViewAttributesInfoNVX<'a> {
             per_view_attributes_position_x_only: Default::default(),
             _marker: ::core::marker::PhantomData,
         }
+    }
+}
+impl<'a> MultiviewPerViewAttributesInfoNVX<'a> {
+    pub fn per_view_attributes(
+        mut self,
+        per_view_attributes: crate::vk::Bool32,
+    ) -> Self {
+        self.per_view_attributes = per_view_attributes;
+        self
+    }
+    pub fn per_view_attributes_position_x_only(
+        mut self,
+        per_view_attributes_position_x_only: crate::vk::Bool32,
+    ) -> Self {
+        self.per_view_attributes_position_x_only = per_view_attributes_position_x_only;
+        self
     }
 }
 ///Provided by [`nvx::multiview_per_view_attributes`](crate::nvx::multiview_per_view_attributes)

@@ -45,6 +45,67 @@ impl<'a> Default for AccelerationStructureGeometryLinearSweptSpheresDataNV<'a> {
         }
     }
 }
+impl<'a> AccelerationStructureGeometryLinearSweptSpheresDataNV<'a> {
+    pub fn vertex_format(mut self, vertex_format: crate::vk::Format) -> Self {
+        self.vertex_format = vertex_format;
+        self
+    }
+    pub fn vertex_data(
+        mut self,
+        vertex_data: crate::vk::DeviceOrHostAddressConstKHR,
+    ) -> Self {
+        self.vertex_data = vertex_data;
+        self
+    }
+    pub fn vertex_stride(mut self, vertex_stride: crate::vk::DeviceSize) -> Self {
+        self.vertex_stride = vertex_stride;
+        self
+    }
+    pub fn radius_format(mut self, radius_format: crate::vk::Format) -> Self {
+        self.radius_format = radius_format;
+        self
+    }
+    pub fn radius_data(
+        mut self,
+        radius_data: crate::vk::DeviceOrHostAddressConstKHR,
+    ) -> Self {
+        self.radius_data = radius_data;
+        self
+    }
+    pub fn radius_stride(mut self, radius_stride: crate::vk::DeviceSize) -> Self {
+        self.radius_stride = radius_stride;
+        self
+    }
+    pub fn index_type(mut self, index_type: crate::vk::IndexType) -> Self {
+        self.index_type = index_type;
+        self
+    }
+    pub fn index_data(
+        mut self,
+        index_data: crate::vk::DeviceOrHostAddressConstKHR,
+    ) -> Self {
+        self.index_data = index_data;
+        self
+    }
+    pub fn index_stride(mut self, index_stride: crate::vk::DeviceSize) -> Self {
+        self.index_stride = index_stride;
+        self
+    }
+    pub fn indexing_mode(
+        mut self,
+        indexing_mode: crate::vk::RayTracingLssIndexingModeNV,
+    ) -> Self {
+        self.indexing_mode = indexing_mode;
+        self
+    }
+    pub fn end_caps_mode(
+        mut self,
+        end_caps_mode: crate::vk::RayTracingLssPrimitiveEndCapsModeNV,
+    ) -> Self {
+        self.end_caps_mode = end_caps_mode;
+        self
+    }
+}
 #[repr(C)]
 #[derive(Clone, Copy)]
 pub struct AccelerationStructureGeometrySpheresDataNV<'a> {
@@ -85,6 +146,53 @@ impl<'a> Default for AccelerationStructureGeometrySpheresDataNV<'a> {
         }
     }
 }
+impl<'a> AccelerationStructureGeometrySpheresDataNV<'a> {
+    pub fn vertex_format(mut self, vertex_format: crate::vk::Format) -> Self {
+        self.vertex_format = vertex_format;
+        self
+    }
+    pub fn vertex_data(
+        mut self,
+        vertex_data: crate::vk::DeviceOrHostAddressConstKHR,
+    ) -> Self {
+        self.vertex_data = vertex_data;
+        self
+    }
+    pub fn vertex_stride(mut self, vertex_stride: crate::vk::DeviceSize) -> Self {
+        self.vertex_stride = vertex_stride;
+        self
+    }
+    pub fn radius_format(mut self, radius_format: crate::vk::Format) -> Self {
+        self.radius_format = radius_format;
+        self
+    }
+    pub fn radius_data(
+        mut self,
+        radius_data: crate::vk::DeviceOrHostAddressConstKHR,
+    ) -> Self {
+        self.radius_data = radius_data;
+        self
+    }
+    pub fn radius_stride(mut self, radius_stride: crate::vk::DeviceSize) -> Self {
+        self.radius_stride = radius_stride;
+        self
+    }
+    pub fn index_type(mut self, index_type: crate::vk::IndexType) -> Self {
+        self.index_type = index_type;
+        self
+    }
+    pub fn index_data(
+        mut self,
+        index_data: crate::vk::DeviceOrHostAddressConstKHR,
+    ) -> Self {
+        self.index_data = index_data;
+        self
+    }
+    pub fn index_stride(mut self, index_stride: crate::vk::DeviceSize) -> Self {
+        self.index_stride = index_stride;
+        self
+    }
+}
 #[repr(C)]
 #[derive(Clone, Copy)]
 pub struct PhysicalDeviceRayTracingLinearSweptSpheresFeaturesNV<'a> {
@@ -111,6 +219,19 @@ impl<'a> Default for PhysicalDeviceRayTracingLinearSweptSpheresFeaturesNV<'a> {
             linear_swept_spheres: Default::default(),
             _marker: ::core::marker::PhantomData,
         }
+    }
+}
+impl<'a> PhysicalDeviceRayTracingLinearSweptSpheresFeaturesNV<'a> {
+    pub fn spheres(mut self, spheres: crate::vk::Bool32) -> Self {
+        self.spheres = spheres;
+        self
+    }
+    pub fn linear_swept_spheres(
+        mut self,
+        linear_swept_spheres: crate::vk::Bool32,
+    ) -> Self {
+        self.linear_swept_spheres = linear_swept_spheres;
+        self
     }
 }
 ///Provided by [`nv::ray_tracing_linear_swept_spheres`](crate::nv::ray_tracing_linear_swept_spheres)

@@ -59,6 +59,22 @@ pub(crate) mod reexport {
             }
         }
     }
+    impl<'a> ComputeOccupancyPriorityParametersNV<'a> {
+        pub fn occupancy_priority(
+            mut self,
+            occupancy_priority: core::ffi::c_float,
+        ) -> Self {
+            self.occupancy_priority = occupancy_priority;
+            self
+        }
+        pub fn occupancy_throttling(
+            mut self,
+            occupancy_throttling: core::ffi::c_float,
+        ) -> Self {
+            self.occupancy_throttling = occupancy_throttling;
+            self
+        }
+    }
     #[repr(C)]
     #[derive(Clone, Copy)]
     pub struct PhysicalDeviceComputeOccupancyPriorityFeaturesNV<'a> {
@@ -83,6 +99,15 @@ pub(crate) mod reexport {
                 compute_occupancy_priority: Default::default(),
                 _marker: ::core::marker::PhantomData,
             }
+        }
+    }
+    impl<'a> PhysicalDeviceComputeOccupancyPriorityFeaturesNV<'a> {
+        pub fn compute_occupancy_priority(
+            mut self,
+            compute_occupancy_priority: crate::vk::Bool32,
+        ) -> Self {
+            self.compute_occupancy_priority = compute_occupancy_priority;
+            self
         }
     }
     ///Provided by [`nv::compute_occupancy_priority`](crate::nv::compute_occupancy_priority)

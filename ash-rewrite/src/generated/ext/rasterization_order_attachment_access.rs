@@ -31,6 +31,29 @@ impl<'a> Default for PhysicalDeviceRasterizationOrderAttachmentAccessFeaturesEXT
         }
     }
 }
+impl<'a> PhysicalDeviceRasterizationOrderAttachmentAccessFeaturesEXT<'a> {
+    pub fn rasterization_order_color_attachment_access(
+        mut self,
+        rasterization_order_color_attachment_access: crate::vk::Bool32,
+    ) -> Self {
+        self.rasterization_order_color_attachment_access = rasterization_order_color_attachment_access;
+        self
+    }
+    pub fn rasterization_order_depth_attachment_access(
+        mut self,
+        rasterization_order_depth_attachment_access: crate::vk::Bool32,
+    ) -> Self {
+        self.rasterization_order_depth_attachment_access = rasterization_order_depth_attachment_access;
+        self
+    }
+    pub fn rasterization_order_stencil_attachment_access(
+        mut self,
+        rasterization_order_stencil_attachment_access: crate::vk::Bool32,
+    ) -> Self {
+        self.rasterization_order_stencil_attachment_access = rasterization_order_stencil_attachment_access;
+        self
+    }
+}
 ///Provided by [`ext::rasterization_order_attachment_access`](crate::ext::rasterization_order_attachment_access)
 impl crate::vk::StructureType {
     pub const PHYSICAL_DEVICE_RASTERIZATION_ORDER_ATTACHMENT_ACCESS_FEATURES_EXT: Self = Self(

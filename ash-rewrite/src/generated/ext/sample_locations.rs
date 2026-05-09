@@ -75,6 +75,16 @@ pub(crate) mod reexport {
         pub x: core::ffi::c_float,
         pub y: core::ffi::c_float,
     }
+    impl SampleLocationEXT {
+        pub fn x(mut self, x: core::ffi::c_float) -> Self {
+            self.x = x;
+            self
+        }
+        pub fn y(mut self, y: core::ffi::c_float) -> Self {
+            self.y = y;
+            self
+        }
+    }
     #[repr(C)]
     #[derive(Clone, Copy)]
     pub struct SampleLocationsInfoEXT<'a> {
@@ -106,6 +116,33 @@ pub(crate) mod reexport {
             }
         }
     }
+    impl<'a> SampleLocationsInfoEXT<'a> {
+        pub fn sample_locations_per_pixel(
+            mut self,
+            sample_locations_per_pixel: crate::vk::SampleCountFlagBits,
+        ) -> Self {
+            self.sample_locations_per_pixel = sample_locations_per_pixel;
+            self
+        }
+        pub fn sample_location_grid_size(
+            mut self,
+            sample_location_grid_size: crate::vk::Extent2D,
+        ) -> Self {
+            self.sample_location_grid_size = sample_location_grid_size;
+            self
+        }
+        pub fn sample_locations_count(mut self, sample_locations_count: u32) -> Self {
+            self.sample_locations_count = sample_locations_count;
+            self
+        }
+        pub fn p_sample_locations(
+            mut self,
+            p_sample_locations: *const crate::vk::SampleLocationEXT,
+        ) -> Self {
+            self.p_sample_locations = p_sample_locations;
+            self
+        }
+    }
     #[repr(C)]
     #[derive(Clone, Copy, Default)]
     pub struct AttachmentSampleLocationsEXT<'a> {
@@ -113,12 +150,38 @@ pub(crate) mod reexport {
         pub sample_locations_info: crate::vk::SampleLocationsInfoEXT<'a>,
         pub _marker: ::core::marker::PhantomData<&'a ()>,
     }
+    impl<'a> AttachmentSampleLocationsEXT<'a> {
+        pub fn attachment_index(mut self, attachment_index: u32) -> Self {
+            self.attachment_index = attachment_index;
+            self
+        }
+        pub fn sample_locations_info(
+            mut self,
+            sample_locations_info: crate::vk::SampleLocationsInfoEXT<'a>,
+        ) -> Self {
+            self.sample_locations_info = sample_locations_info;
+            self
+        }
+    }
     #[repr(C)]
     #[derive(Clone, Copy, Default)]
     pub struct SubpassSampleLocationsEXT<'a> {
         pub subpass_index: u32,
         pub sample_locations_info: crate::vk::SampleLocationsInfoEXT<'a>,
         pub _marker: ::core::marker::PhantomData<&'a ()>,
+    }
+    impl<'a> SubpassSampleLocationsEXT<'a> {
+        pub fn subpass_index(mut self, subpass_index: u32) -> Self {
+            self.subpass_index = subpass_index;
+            self
+        }
+        pub fn sample_locations_info(
+            mut self,
+            sample_locations_info: crate::vk::SampleLocationsInfoEXT<'a>,
+        ) -> Self {
+            self.sample_locations_info = sample_locations_info;
+            self
+        }
     }
     #[repr(C)]
     #[derive(Clone, Copy)]
@@ -154,6 +217,40 @@ pub(crate) mod reexport {
             }
         }
     }
+    impl<'a> RenderPassSampleLocationsBeginInfoEXT<'a> {
+        pub fn attachment_initial_sample_locations_count(
+            mut self,
+            attachment_initial_sample_locations_count: u32,
+        ) -> Self {
+            self.attachment_initial_sample_locations_count = attachment_initial_sample_locations_count;
+            self
+        }
+        pub fn p_attachment_initial_sample_locations(
+            mut self,
+            p_attachment_initial_sample_locations: *const crate::vk::AttachmentSampleLocationsEXT<
+                'a,
+            >,
+        ) -> Self {
+            self.p_attachment_initial_sample_locations = p_attachment_initial_sample_locations;
+            self
+        }
+        pub fn post_subpass_sample_locations_count(
+            mut self,
+            post_subpass_sample_locations_count: u32,
+        ) -> Self {
+            self.post_subpass_sample_locations_count = post_subpass_sample_locations_count;
+            self
+        }
+        pub fn p_post_subpass_sample_locations(
+            mut self,
+            p_post_subpass_sample_locations: *const crate::vk::SubpassSampleLocationsEXT<
+                'a,
+            >,
+        ) -> Self {
+            self.p_post_subpass_sample_locations = p_post_subpass_sample_locations;
+            self
+        }
+    }
     #[repr(C)]
     #[derive(Clone, Copy)]
     pub struct PipelineSampleLocationsStateCreateInfoEXT<'a> {
@@ -178,6 +275,22 @@ pub(crate) mod reexport {
                 sample_locations_info: Default::default(),
                 _marker: ::core::marker::PhantomData,
             }
+        }
+    }
+    impl<'a> PipelineSampleLocationsStateCreateInfoEXT<'a> {
+        pub fn sample_locations_enable(
+            mut self,
+            sample_locations_enable: crate::vk::Bool32,
+        ) -> Self {
+            self.sample_locations_enable = sample_locations_enable;
+            self
+        }
+        pub fn sample_locations_info(
+            mut self,
+            sample_locations_info: crate::vk::SampleLocationsInfoEXT<'a>,
+        ) -> Self {
+            self.sample_locations_info = sample_locations_info;
+            self
         }
     }
     #[repr(C)]
@@ -212,6 +325,43 @@ pub(crate) mod reexport {
             }
         }
     }
+    impl<'a> PhysicalDeviceSampleLocationsPropertiesEXT<'a> {
+        pub fn sample_location_sample_counts(
+            mut self,
+            sample_location_sample_counts: crate::vk::SampleCountFlags,
+        ) -> Self {
+            self.sample_location_sample_counts = sample_location_sample_counts;
+            self
+        }
+        pub fn max_sample_location_grid_size(
+            mut self,
+            max_sample_location_grid_size: crate::vk::Extent2D,
+        ) -> Self {
+            self.max_sample_location_grid_size = max_sample_location_grid_size;
+            self
+        }
+        pub fn sample_location_coordinate_range(
+            mut self,
+            sample_location_coordinate_range: [core::ffi::c_float; 2 as _],
+        ) -> Self {
+            self.sample_location_coordinate_range = sample_location_coordinate_range;
+            self
+        }
+        pub fn sample_location_sub_pixel_bits(
+            mut self,
+            sample_location_sub_pixel_bits: u32,
+        ) -> Self {
+            self.sample_location_sub_pixel_bits = sample_location_sub_pixel_bits;
+            self
+        }
+        pub fn variable_sample_locations(
+            mut self,
+            variable_sample_locations: crate::vk::Bool32,
+        ) -> Self {
+            self.variable_sample_locations = variable_sample_locations;
+            self
+        }
+    }
     #[repr(C)]
     #[derive(Clone, Copy)]
     pub struct MultisamplePropertiesEXT<'a> {
@@ -231,6 +381,15 @@ pub(crate) mod reexport {
                 max_sample_location_grid_size: Default::default(),
                 _marker: ::core::marker::PhantomData,
             }
+        }
+    }
+    impl<'a> MultisamplePropertiesEXT<'a> {
+        pub fn max_sample_location_grid_size(
+            mut self,
+            max_sample_location_grid_size: crate::vk::Extent2D,
+        ) -> Self {
+            self.max_sample_location_grid_size = max_sample_location_grid_size;
+            self
         }
     }
     ///Provided by [`ext::sample_locations`](crate::ext::sample_locations)

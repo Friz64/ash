@@ -34,6 +34,32 @@ impl<'a> Default for PhysicalDeviceDrmPropertiesEXT<'a> {
         }
     }
 }
+impl<'a> PhysicalDeviceDrmPropertiesEXT<'a> {
+    pub fn has_primary(mut self, has_primary: crate::vk::Bool32) -> Self {
+        self.has_primary = has_primary;
+        self
+    }
+    pub fn has_render(mut self, has_render: crate::vk::Bool32) -> Self {
+        self.has_render = has_render;
+        self
+    }
+    pub fn primary_major(mut self, primary_major: i64) -> Self {
+        self.primary_major = primary_major;
+        self
+    }
+    pub fn primary_minor(mut self, primary_minor: i64) -> Self {
+        self.primary_minor = primary_minor;
+        self
+    }
+    pub fn render_major(mut self, render_major: i64) -> Self {
+        self.render_major = render_major;
+        self
+    }
+    pub fn render_minor(mut self, render_minor: i64) -> Self {
+        self.render_minor = render_minor;
+        self
+    }
+}
 ///Provided by [`ext::physical_device_drm`](crate::ext::physical_device_drm)
 impl crate::vk::StructureType {
     pub const PHYSICAL_DEVICE_DRM_PROPERTIES_EXT: Self = Self(1000353000);

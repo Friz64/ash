@@ -27,6 +27,15 @@ impl<'a> Default for PhysicalDeviceRayTracingValidationFeaturesNV<'a> {
         }
     }
 }
+impl<'a> PhysicalDeviceRayTracingValidationFeaturesNV<'a> {
+    pub fn ray_tracing_validation(
+        mut self,
+        ray_tracing_validation: crate::vk::Bool32,
+    ) -> Self {
+        self.ray_tracing_validation = ray_tracing_validation;
+        self
+    }
+}
 ///Provided by [`nv::ray_tracing_validation`](crate::nv::ray_tracing_validation)
 impl crate::vk::StructureType {
     pub const PHYSICAL_DEVICE_RAY_TRACING_VALIDATION_FEATURES_NV: Self = Self(

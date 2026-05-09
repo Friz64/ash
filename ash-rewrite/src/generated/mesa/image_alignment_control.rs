@@ -27,6 +27,15 @@ impl<'a> Default for PhysicalDeviceImageAlignmentControlFeaturesMESA<'a> {
         }
     }
 }
+impl<'a> PhysicalDeviceImageAlignmentControlFeaturesMESA<'a> {
+    pub fn image_alignment_control(
+        mut self,
+        image_alignment_control: crate::vk::Bool32,
+    ) -> Self {
+        self.image_alignment_control = image_alignment_control;
+        self
+    }
+}
 #[repr(C)]
 #[derive(Clone, Copy)]
 pub struct PhysicalDeviceImageAlignmentControlPropertiesMESA<'a> {
@@ -51,6 +60,15 @@ impl<'a> Default for PhysicalDeviceImageAlignmentControlPropertiesMESA<'a> {
         }
     }
 }
+impl<'a> PhysicalDeviceImageAlignmentControlPropertiesMESA<'a> {
+    pub fn supported_image_alignment_mask(
+        mut self,
+        supported_image_alignment_mask: u32,
+    ) -> Self {
+        self.supported_image_alignment_mask = supported_image_alignment_mask;
+        self
+    }
+}
 #[repr(C)]
 #[derive(Clone, Copy)]
 pub struct ImageAlignmentControlCreateInfoMESA<'a> {
@@ -72,6 +90,15 @@ impl<'a> Default for ImageAlignmentControlCreateInfoMESA<'a> {
             maximum_requested_alignment: Default::default(),
             _marker: ::core::marker::PhantomData,
         }
+    }
+}
+impl<'a> ImageAlignmentControlCreateInfoMESA<'a> {
+    pub fn maximum_requested_alignment(
+        mut self,
+        maximum_requested_alignment: u32,
+    ) -> Self {
+        self.maximum_requested_alignment = maximum_requested_alignment;
+        self
     }
 }
 ///Provided by [`mesa::image_alignment_control`](crate::mesa::image_alignment_control)

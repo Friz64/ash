@@ -35,6 +35,172 @@ pub struct DecodeAV1PictureInfoFlags {
 - `apply_grain` @ `28..29`*/
     pub bitfield0: u32,
 }
+impl DecodeAV1PictureInfoFlags {
+    pub fn error_resilient_mode(mut self, error_resilient_mode: u32) -> Self {
+        let rest = self.bitfield0 & 0xFFFFFFFE;
+        self.bitfield0 = (error_resilient_mode & 0x00000001) | rest;
+        self
+    }
+    pub fn disable_cdf_update(mut self, disable_cdf_update: u32) -> Self {
+        let rest = self.bitfield0 & 0xFFFFFFFD;
+        self.bitfield0 = ((disable_cdf_update << 1u32) & 0x00000002) | rest;
+        self
+    }
+    pub fn use_superres(mut self, use_superres: u32) -> Self {
+        let rest = self.bitfield0 & 0xFFFFFFFB;
+        self.bitfield0 = ((use_superres << 2u32) & 0x00000004) | rest;
+        self
+    }
+    pub fn render_and_frame_size_different(
+        mut self,
+        render_and_frame_size_different: u32,
+    ) -> Self {
+        let rest = self.bitfield0 & 0xFFFFFFF7;
+        self.bitfield0 = ((render_and_frame_size_different << 3u32) & 0x00000008) | rest;
+        self
+    }
+    pub fn allow_screen_content_tools(
+        mut self,
+        allow_screen_content_tools: u32,
+    ) -> Self {
+        let rest = self.bitfield0 & 0xFFFFFFEF;
+        self.bitfield0 = ((allow_screen_content_tools << 4u32) & 0x00000010) | rest;
+        self
+    }
+    pub fn is_filter_switchable(mut self, is_filter_switchable: u32) -> Self {
+        let rest = self.bitfield0 & 0xFFFFFFDF;
+        self.bitfield0 = ((is_filter_switchable << 5u32) & 0x00000020) | rest;
+        self
+    }
+    pub fn force_integer_mv(mut self, force_integer_mv: u32) -> Self {
+        let rest = self.bitfield0 & 0xFFFFFFBF;
+        self.bitfield0 = ((force_integer_mv << 6u32) & 0x00000040) | rest;
+        self
+    }
+    pub fn frame_size_override_flag(mut self, frame_size_override_flag: u32) -> Self {
+        let rest = self.bitfield0 & 0xFFFFFF7F;
+        self.bitfield0 = ((frame_size_override_flag << 7u32) & 0x00000080) | rest;
+        self
+    }
+    pub fn buffer_removal_time_present_flag(
+        mut self,
+        buffer_removal_time_present_flag: u32,
+    ) -> Self {
+        let rest = self.bitfield0 & 0xFFFFFEFF;
+        self.bitfield0 = ((buffer_removal_time_present_flag << 8u32) & 0x00000100)
+            | rest;
+        self
+    }
+    pub fn allow_intrabc(mut self, allow_intrabc: u32) -> Self {
+        let rest = self.bitfield0 & 0xFFFFFDFF;
+        self.bitfield0 = ((allow_intrabc << 9u32) & 0x00000200) | rest;
+        self
+    }
+    pub fn frame_refs_short_signaling(
+        mut self,
+        frame_refs_short_signaling: u32,
+    ) -> Self {
+        let rest = self.bitfield0 & 0xFFFFFBFF;
+        self.bitfield0 = ((frame_refs_short_signaling << 10u32) & 0x00000400) | rest;
+        self
+    }
+    pub fn allow_high_precision_mv(mut self, allow_high_precision_mv: u32) -> Self {
+        let rest = self.bitfield0 & 0xFFFFF7FF;
+        self.bitfield0 = ((allow_high_precision_mv << 11u32) & 0x00000800) | rest;
+        self
+    }
+    pub fn is_motion_mode_switchable(mut self, is_motion_mode_switchable: u32) -> Self {
+        let rest = self.bitfield0 & 0xFFFFEFFF;
+        self.bitfield0 = ((is_motion_mode_switchable << 12u32) & 0x00001000) | rest;
+        self
+    }
+    pub fn use_ref_frame_mvs(mut self, use_ref_frame_mvs: u32) -> Self {
+        let rest = self.bitfield0 & 0xFFFFDFFF;
+        self.bitfield0 = ((use_ref_frame_mvs << 13u32) & 0x00002000) | rest;
+        self
+    }
+    pub fn disable_frame_end_update_cdf(
+        mut self,
+        disable_frame_end_update_cdf: u32,
+    ) -> Self {
+        let rest = self.bitfield0 & 0xFFFFBFFF;
+        self.bitfield0 = ((disable_frame_end_update_cdf << 14u32) & 0x00004000) | rest;
+        self
+    }
+    pub fn allow_warped_motion(mut self, allow_warped_motion: u32) -> Self {
+        let rest = self.bitfield0 & 0xFFFF7FFF;
+        self.bitfield0 = ((allow_warped_motion << 15u32) & 0x00008000) | rest;
+        self
+    }
+    pub fn reduced_tx_set(mut self, reduced_tx_set: u32) -> Self {
+        let rest = self.bitfield0 & 0xFFFEFFFF;
+        self.bitfield0 = ((reduced_tx_set << 16u32) & 0x00010000) | rest;
+        self
+    }
+    pub fn reference_select(mut self, reference_select: u32) -> Self {
+        let rest = self.bitfield0 & 0xFFFDFFFF;
+        self.bitfield0 = ((reference_select << 17u32) & 0x00020000) | rest;
+        self
+    }
+    pub fn skip_mode_present(mut self, skip_mode_present: u32) -> Self {
+        let rest = self.bitfield0 & 0xFFFBFFFF;
+        self.bitfield0 = ((skip_mode_present << 18u32) & 0x00040000) | rest;
+        self
+    }
+    pub fn delta_q_present(mut self, delta_q_present: u32) -> Self {
+        let rest = self.bitfield0 & 0xFFF7FFFF;
+        self.bitfield0 = ((delta_q_present << 19u32) & 0x00080000) | rest;
+        self
+    }
+    pub fn delta_lf_present(mut self, delta_lf_present: u32) -> Self {
+        let rest = self.bitfield0 & 0xFFEFFFFF;
+        self.bitfield0 = ((delta_lf_present << 20u32) & 0x00100000) | rest;
+        self
+    }
+    pub fn delta_lf_multi(mut self, delta_lf_multi: u32) -> Self {
+        let rest = self.bitfield0 & 0xFFDFFFFF;
+        self.bitfield0 = ((delta_lf_multi << 21u32) & 0x00200000) | rest;
+        self
+    }
+    pub fn segmentation_enabled(mut self, segmentation_enabled: u32) -> Self {
+        let rest = self.bitfield0 & 0xFFBFFFFF;
+        self.bitfield0 = ((segmentation_enabled << 22u32) & 0x00400000) | rest;
+        self
+    }
+    pub fn segmentation_update_map(mut self, segmentation_update_map: u32) -> Self {
+        let rest = self.bitfield0 & 0xFF7FFFFF;
+        self.bitfield0 = ((segmentation_update_map << 23u32) & 0x00800000) | rest;
+        self
+    }
+    pub fn segmentation_temporal_update(
+        mut self,
+        segmentation_temporal_update: u32,
+    ) -> Self {
+        let rest = self.bitfield0 & 0xFEFFFFFF;
+        self.bitfield0 = ((segmentation_temporal_update << 24u32) & 0x01000000) | rest;
+        self
+    }
+    pub fn segmentation_update_data(mut self, segmentation_update_data: u32) -> Self {
+        let rest = self.bitfield0 & 0xFDFFFFFF;
+        self.bitfield0 = ((segmentation_update_data << 25u32) & 0x02000000) | rest;
+        self
+    }
+    pub fn uses_lr(mut self, uses_lr: u32) -> Self {
+        let rest = self.bitfield0 & 0xFBFFFFFF;
+        self.bitfield0 = ((uses_lr << 26u32) & 0x04000000) | rest;
+        self
+    }
+    pub fn uses_chroma_lr(mut self, uses_chroma_lr: u32) -> Self {
+        let rest = self.bitfield0 & 0xF7FFFFFF;
+        self.bitfield0 = ((uses_chroma_lr << 27u32) & 0x08000000) | rest;
+        self
+    }
+    pub fn apply_grain(mut self, apply_grain: u32) -> Self {
+        let rest = self.bitfield0 & 0xEFFFFFFF;
+        self.bitfield0 = ((apply_grain << 28u32) & 0x10000000) | rest;
+        self
+    }
+}
 #[repr(C)]
 #[derive(Clone, Copy)]
 pub struct DecodeAV1PictureInfo<'a> {
@@ -95,12 +261,155 @@ impl<'a> Default for DecodeAV1PictureInfo<'a> {
         }
     }
 }
+impl<'a> DecodeAV1PictureInfo<'a> {
+    pub fn flags(mut self, flags: crate::vk::DecodeAV1PictureInfoFlags) -> Self {
+        self.flags = flags;
+        self
+    }
+    pub fn frame_type(mut self, frame_type: crate::vk::AV1FrameType) -> Self {
+        self.frame_type = frame_type;
+        self
+    }
+    pub fn current_frame_id(mut self, current_frame_id: u32) -> Self {
+        self.current_frame_id = current_frame_id;
+        self
+    }
+    pub fn order_hint(mut self, order_hint: u8) -> Self {
+        self.order_hint = order_hint;
+        self
+    }
+    pub fn primary_ref_frame(mut self, primary_ref_frame: u8) -> Self {
+        self.primary_ref_frame = primary_ref_frame;
+        self
+    }
+    pub fn refresh_frame_flags(mut self, refresh_frame_flags: u8) -> Self {
+        self.refresh_frame_flags = refresh_frame_flags;
+        self
+    }
+    pub fn reserved1(mut self, reserved1: u8) -> Self {
+        self.reserved1 = reserved1;
+        self
+    }
+    pub fn interpolation_filter(
+        mut self,
+        interpolation_filter: crate::vk::AV1InterpolationFilter,
+    ) -> Self {
+        self.interpolation_filter = interpolation_filter;
+        self
+    }
+    pub fn tx_mode(mut self, tx_mode: crate::vk::AV1TxMode) -> Self {
+        self.tx_mode = tx_mode;
+        self
+    }
+    pub fn delta_q_res(mut self, delta_q_res: u8) -> Self {
+        self.delta_q_res = delta_q_res;
+        self
+    }
+    pub fn delta_lf_res(mut self, delta_lf_res: u8) -> Self {
+        self.delta_lf_res = delta_lf_res;
+        self
+    }
+    pub fn skip_mode_frame(
+        mut self,
+        skip_mode_frame: [u8; crate::vk::STD_VIDEO_AV1_SKIP_MODE_FRAMES as _],
+    ) -> Self {
+        self.skip_mode_frame = skip_mode_frame;
+        self
+    }
+    pub fn coded_denom(mut self, coded_denom: u8) -> Self {
+        self.coded_denom = coded_denom;
+        self
+    }
+    pub fn reserved2(mut self, reserved2: [u8; 3 as _]) -> Self {
+        self.reserved2 = reserved2;
+        self
+    }
+    pub fn order_hints(
+        mut self,
+        order_hints: [u8; crate::vk::STD_VIDEO_AV1_NUM_REF_FRAMES as _],
+    ) -> Self {
+        self.order_hints = order_hints;
+        self
+    }
+    pub fn expected_frame_id(
+        mut self,
+        expected_frame_id: [u32; crate::vk::STD_VIDEO_AV1_NUM_REF_FRAMES as _],
+    ) -> Self {
+        self.expected_frame_id = expected_frame_id;
+        self
+    }
+    pub fn p_tile_info(
+        mut self,
+        p_tile_info: *const crate::vk::AV1TileInfo<'a>,
+    ) -> Self {
+        self.p_tile_info = p_tile_info;
+        self
+    }
+    pub fn p_quantization(
+        mut self,
+        p_quantization: *const crate::vk::AV1Quantization,
+    ) -> Self {
+        self.p_quantization = p_quantization;
+        self
+    }
+    pub fn p_segmentation(
+        mut self,
+        p_segmentation: *const crate::vk::AV1Segmentation,
+    ) -> Self {
+        self.p_segmentation = p_segmentation;
+        self
+    }
+    pub fn p_loop_filter(
+        mut self,
+        p_loop_filter: *const crate::vk::AV1LoopFilter,
+    ) -> Self {
+        self.p_loop_filter = p_loop_filter;
+        self
+    }
+    pub fn p_cdef(mut self, p_cdef: *const crate::vk::AV1CDEF) -> Self {
+        self.p_cdef = p_cdef;
+        self
+    }
+    pub fn p_loop_restoration(
+        mut self,
+        p_loop_restoration: *const crate::vk::AV1LoopRestoration,
+    ) -> Self {
+        self.p_loop_restoration = p_loop_restoration;
+        self
+    }
+    pub fn p_global_motion(
+        mut self,
+        p_global_motion: *const crate::vk::AV1GlobalMotion,
+    ) -> Self {
+        self.p_global_motion = p_global_motion;
+        self
+    }
+    pub fn p_film_grain(mut self, p_film_grain: *const crate::vk::AV1FilmGrain) -> Self {
+        self.p_film_grain = p_film_grain;
+        self
+    }
+}
 #[repr(C)]
 #[derive(Clone, Copy, Default)]
 pub struct DecodeAV1ReferenceInfoFlags {
     /**- `disable_frame_end_update_cdf` @ `0..1`
 - `segmentation_enabled` @ `1..2`*/
     pub bitfield0: u32,
+}
+impl DecodeAV1ReferenceInfoFlags {
+    pub fn disable_frame_end_update_cdf(
+        mut self,
+        disable_frame_end_update_cdf: u32,
+    ) -> Self {
+        let rest = self.bitfield0 & 0xFFFFFFFE;
+        self.bitfield0 = (disable_frame_end_update_cdf & 0x00000001) | rest;
+        self
+    }
+    pub fn segmentation_enabled(mut self, segmentation_enabled: u32) -> Self {
+        let rest = self.bitfield0 & 0xFFFFFFFD;
+        self.bitfield0 = ((segmentation_enabled << 1u32) & 0x00000002) | rest;
+        self
+    }
 }
 #[repr(C)]
 #[derive(Clone, Copy)]
@@ -120,6 +429,31 @@ impl Default for DecodeAV1ReferenceInfo {
             order_hint: Default::default(),
             saved_order_hints: unsafe { core::mem::zeroed() },
         }
+    }
+}
+impl DecodeAV1ReferenceInfo {
+    pub fn flags(mut self, flags: crate::vk::DecodeAV1ReferenceInfoFlags) -> Self {
+        self.flags = flags;
+        self
+    }
+    pub fn frame_type(mut self, frame_type: u8) -> Self {
+        self.frame_type = frame_type;
+        self
+    }
+    pub fn ref_frame_sign_bias(mut self, ref_frame_sign_bias: u8) -> Self {
+        self.ref_frame_sign_bias = ref_frame_sign_bias;
+        self
+    }
+    pub fn order_hint(mut self, order_hint: u8) -> Self {
+        self.order_hint = order_hint;
+        self
+    }
+    pub fn saved_order_hints(
+        mut self,
+        saved_order_hints: [u8; crate::vk::STD_VIDEO_AV1_NUM_REF_FRAMES as _],
+    ) -> Self {
+        self.saved_order_hints = saved_order_hints;
+        self
     }
 }
 pub const STD_VULKAN_VIDEO_CODEC_AV1_DECODE_SPEC_VERSION: u32 = crate::vk::STD_VULKAN_VIDEO_CODEC_AV1_DECODE_API_VERSION_1_0_0;

@@ -469,7 +469,7 @@ pub struct StructureMember {
     pub c_decl: CDecl<'static>,
     pub values: Option<&'static str>,
     pub len: Vec<&'static str>,
-    pub altlen: Option<&'static str>,
+    pub altlen: Vec<&'static str>,
     pub optional: Vec<&'static str>,
 }
 
@@ -479,7 +479,7 @@ impl StructureMember {
             c_decl: CDecl::from_xml(CDeclMode::StructMember, node.children()),
             values: attribute(node, "values"),
             len: attribute_comma_separated(node, "len"),
-            altlen: attribute(node, "altlen"),
+            altlen: attribute_comma_separated(node, "altlen"),
             optional: attribute_comma_separated(node, "optional"),
         }
     }

@@ -27,6 +27,15 @@ impl<'a> Default for PhysicalDeviceBlendOperationAdvancedFeaturesEXT<'a> {
         }
     }
 }
+impl<'a> PhysicalDeviceBlendOperationAdvancedFeaturesEXT<'a> {
+    pub fn advanced_blend_coherent_operations(
+        mut self,
+        advanced_blend_coherent_operations: crate::vk::Bool32,
+    ) -> Self {
+        self.advanced_blend_coherent_operations = advanced_blend_coherent_operations;
+        self
+    }
+}
 #[repr(C)]
 #[derive(Clone, Copy)]
 pub struct PhysicalDeviceBlendOperationAdvancedPropertiesEXT<'a> {
@@ -61,6 +70,50 @@ impl<'a> Default for PhysicalDeviceBlendOperationAdvancedPropertiesEXT<'a> {
         }
     }
 }
+impl<'a> PhysicalDeviceBlendOperationAdvancedPropertiesEXT<'a> {
+    pub fn advanced_blend_max_color_attachments(
+        mut self,
+        advanced_blend_max_color_attachments: u32,
+    ) -> Self {
+        self.advanced_blend_max_color_attachments = advanced_blend_max_color_attachments;
+        self
+    }
+    pub fn advanced_blend_independent_blend(
+        mut self,
+        advanced_blend_independent_blend: crate::vk::Bool32,
+    ) -> Self {
+        self.advanced_blend_independent_blend = advanced_blend_independent_blend;
+        self
+    }
+    pub fn advanced_blend_non_premultiplied_src_color(
+        mut self,
+        advanced_blend_non_premultiplied_src_color: crate::vk::Bool32,
+    ) -> Self {
+        self.advanced_blend_non_premultiplied_src_color = advanced_blend_non_premultiplied_src_color;
+        self
+    }
+    pub fn advanced_blend_non_premultiplied_dst_color(
+        mut self,
+        advanced_blend_non_premultiplied_dst_color: crate::vk::Bool32,
+    ) -> Self {
+        self.advanced_blend_non_premultiplied_dst_color = advanced_blend_non_premultiplied_dst_color;
+        self
+    }
+    pub fn advanced_blend_correlated_overlap(
+        mut self,
+        advanced_blend_correlated_overlap: crate::vk::Bool32,
+    ) -> Self {
+        self.advanced_blend_correlated_overlap = advanced_blend_correlated_overlap;
+        self
+    }
+    pub fn advanced_blend_all_operations(
+        mut self,
+        advanced_blend_all_operations: crate::vk::Bool32,
+    ) -> Self {
+        self.advanced_blend_all_operations = advanced_blend_all_operations;
+        self
+    }
+}
 #[repr(C)]
 #[derive(Clone, Copy)]
 pub struct PipelineColorBlendAdvancedStateCreateInfoEXT<'a> {
@@ -87,6 +140,20 @@ impl<'a> Default for PipelineColorBlendAdvancedStateCreateInfoEXT<'a> {
             blend_overlap: Default::default(),
             _marker: ::core::marker::PhantomData,
         }
+    }
+}
+impl<'a> PipelineColorBlendAdvancedStateCreateInfoEXT<'a> {
+    pub fn src_premultiplied(mut self, src_premultiplied: crate::vk::Bool32) -> Self {
+        self.src_premultiplied = src_premultiplied;
+        self
+    }
+    pub fn dst_premultiplied(mut self, dst_premultiplied: crate::vk::Bool32) -> Self {
+        self.dst_premultiplied = dst_premultiplied;
+        self
+    }
+    pub fn blend_overlap(mut self, blend_overlap: crate::vk::BlendOverlapEXT) -> Self {
+        self.blend_overlap = blend_overlap;
+        self
     }
 }
 ///Provided by [`ext::blend_operation_advanced`](crate::ext::blend_operation_advanced)

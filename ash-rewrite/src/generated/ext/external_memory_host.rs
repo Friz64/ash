@@ -62,6 +62,19 @@ pub(crate) mod reexport {
             }
         }
     }
+    impl<'a> ImportMemoryHostPointerInfoEXT<'a> {
+        pub fn handle_type(
+            mut self,
+            handle_type: crate::vk::ExternalMemoryHandleTypeFlagBits,
+        ) -> Self {
+            self.handle_type = handle_type;
+            self
+        }
+        pub fn p_host_pointer(mut self, p_host_pointer: *mut core::ffi::c_void) -> Self {
+            self.p_host_pointer = p_host_pointer;
+            self
+        }
+    }
     #[repr(C)]
     #[derive(Clone, Copy)]
     pub struct MemoryHostPointerPropertiesEXT<'a> {
@@ -81,6 +94,12 @@ pub(crate) mod reexport {
                 memory_type_bits: Default::default(),
                 _marker: ::core::marker::PhantomData,
             }
+        }
+    }
+    impl<'a> MemoryHostPointerPropertiesEXT<'a> {
+        pub fn memory_type_bits(mut self, memory_type_bits: u32) -> Self {
+            self.memory_type_bits = memory_type_bits;
+            self
         }
     }
     #[repr(C)]
@@ -105,6 +124,15 @@ pub(crate) mod reexport {
                 min_imported_host_pointer_alignment: Default::default(),
                 _marker: ::core::marker::PhantomData,
             }
+        }
+    }
+    impl<'a> PhysicalDeviceExternalMemoryHostPropertiesEXT<'a> {
+        pub fn min_imported_host_pointer_alignment(
+            mut self,
+            min_imported_host_pointer_alignment: crate::vk::DeviceSize,
+        ) -> Self {
+            self.min_imported_host_pointer_alignment = min_imported_host_pointer_alignment;
+            self
         }
     }
     ///Provided by [`ext::external_memory_host`](crate::ext::external_memory_host)

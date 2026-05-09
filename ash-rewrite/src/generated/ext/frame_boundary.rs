@@ -42,6 +42,44 @@ impl<'a> Default for FrameBoundaryEXT<'a> {
         }
     }
 }
+impl<'a> FrameBoundaryEXT<'a> {
+    pub fn flags(mut self, flags: crate::vk::FrameBoundaryFlagsEXT) -> Self {
+        self.flags = flags;
+        self
+    }
+    pub fn frame_id(mut self, frame_id: u64) -> Self {
+        self.frame_id = frame_id;
+        self
+    }
+    pub fn image_count(mut self, image_count: u32) -> Self {
+        self.image_count = image_count;
+        self
+    }
+    pub fn p_images(mut self, p_images: *const crate::vk::Image) -> Self {
+        self.p_images = p_images;
+        self
+    }
+    pub fn buffer_count(mut self, buffer_count: u32) -> Self {
+        self.buffer_count = buffer_count;
+        self
+    }
+    pub fn p_buffers(mut self, p_buffers: *const crate::vk::Buffer) -> Self {
+        self.p_buffers = p_buffers;
+        self
+    }
+    pub fn tag_name(mut self, tag_name: u64) -> Self {
+        self.tag_name = tag_name;
+        self
+    }
+    pub fn tag_size(mut self, tag_size: usize) -> Self {
+        self.tag_size = tag_size;
+        self
+    }
+    pub fn p_tag(mut self, p_tag: *const core::ffi::c_void) -> Self {
+        self.p_tag = p_tag;
+        self
+    }
+}
 #[repr(C)]
 #[derive(Clone, Copy)]
 pub struct PhysicalDeviceFrameBoundaryFeaturesEXT<'a> {
@@ -66,6 +104,12 @@ impl<'a> Default for PhysicalDeviceFrameBoundaryFeaturesEXT<'a> {
             frame_boundary: Default::default(),
             _marker: ::core::marker::PhantomData,
         }
+    }
+}
+impl<'a> PhysicalDeviceFrameBoundaryFeaturesEXT<'a> {
+    pub fn frame_boundary(mut self, frame_boundary: crate::vk::Bool32) -> Self {
+        self.frame_boundary = frame_boundary;
+        self
     }
 }
 ///Provided by [`ext::frame_boundary`](crate::ext::frame_boundary)

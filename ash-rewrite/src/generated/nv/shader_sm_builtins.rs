@@ -27,6 +27,16 @@ impl<'a> Default for PhysicalDeviceShaderSMBuiltinsPropertiesNV<'a> {
         }
     }
 }
+impl<'a> PhysicalDeviceShaderSMBuiltinsPropertiesNV<'a> {
+    pub fn shader_sm_count(mut self, shader_sm_count: u32) -> Self {
+        self.shader_sm_count = shader_sm_count;
+        self
+    }
+    pub fn shader_warps_per_sm(mut self, shader_warps_per_sm: u32) -> Self {
+        self.shader_warps_per_sm = shader_warps_per_sm;
+        self
+    }
+}
 #[repr(C)]
 #[derive(Clone, Copy)]
 pub struct PhysicalDeviceShaderSMBuiltinsFeaturesNV<'a> {
@@ -51,6 +61,12 @@ impl<'a> Default for PhysicalDeviceShaderSMBuiltinsFeaturesNV<'a> {
             shader_sm_builtins: Default::default(),
             _marker: ::core::marker::PhantomData,
         }
+    }
+}
+impl<'a> PhysicalDeviceShaderSMBuiltinsFeaturesNV<'a> {
+    pub fn shader_sm_builtins(mut self, shader_sm_builtins: crate::vk::Bool32) -> Self {
+        self.shader_sm_builtins = shader_sm_builtins;
+        self
     }
 }
 ///Provided by [`nv::shader_sm_builtins`](crate::nv::shader_sm_builtins)

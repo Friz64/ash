@@ -27,6 +27,12 @@ impl<'a> Default for PhysicalDeviceImageViewMinLodFeaturesEXT<'a> {
         }
     }
 }
+impl<'a> PhysicalDeviceImageViewMinLodFeaturesEXT<'a> {
+    pub fn min_lod(mut self, min_lod: crate::vk::Bool32) -> Self {
+        self.min_lod = min_lod;
+        self
+    }
+}
 #[repr(C)]
 #[derive(Clone, Copy)]
 pub struct ImageViewMinLodCreateInfoEXT<'a> {
@@ -48,6 +54,12 @@ impl<'a> Default for ImageViewMinLodCreateInfoEXT<'a> {
             min_lod: Default::default(),
             _marker: ::core::marker::PhantomData,
         }
+    }
+}
+impl<'a> ImageViewMinLodCreateInfoEXT<'a> {
+    pub fn min_lod(mut self, min_lod: core::ffi::c_float) -> Self {
+        self.min_lod = min_lod;
+        self
     }
 }
 ///Provided by [`ext::image_view_min_lod`](crate::ext::image_view_min_lod)

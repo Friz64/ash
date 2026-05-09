@@ -27,6 +27,15 @@ impl<'a> Default for PhysicalDeviceDepthClampZeroOneFeaturesKHR<'a> {
         }
     }
 }
+impl<'a> PhysicalDeviceDepthClampZeroOneFeaturesKHR<'a> {
+    pub fn depth_clamp_zero_one(
+        mut self,
+        depth_clamp_zero_one: crate::vk::Bool32,
+    ) -> Self {
+        self.depth_clamp_zero_one = depth_clamp_zero_one;
+        self
+    }
+}
 ///Provided by [`khr::depth_clamp_zero_one`](crate::khr::depth_clamp_zero_one)
 impl crate::vk::StructureType {
     pub const PHYSICAL_DEVICE_DEPTH_CLAMP_ZERO_ONE_FEATURES_KHR: Self = Self(1000421000);

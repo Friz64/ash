@@ -24,6 +24,12 @@ impl<'a> Default for SurfacePresentModeKHR<'a> {
         }
     }
 }
+impl<'a> SurfacePresentModeKHR<'a> {
+    pub fn present_mode(mut self, present_mode: crate::vk::PresentModeKHR) -> Self {
+        self.present_mode = present_mode;
+        self
+    }
+}
 #[repr(C)]
 #[derive(Clone, Copy)]
 pub struct SurfacePresentScalingCapabilitiesKHR<'a> {
@@ -55,6 +61,43 @@ impl<'a> Default for SurfacePresentScalingCapabilitiesKHR<'a> {
         }
     }
 }
+impl<'a> SurfacePresentScalingCapabilitiesKHR<'a> {
+    pub fn supported_present_scaling(
+        mut self,
+        supported_present_scaling: crate::vk::PresentScalingFlagsKHR,
+    ) -> Self {
+        self.supported_present_scaling = supported_present_scaling;
+        self
+    }
+    pub fn supported_present_gravity_x(
+        mut self,
+        supported_present_gravity_x: crate::vk::PresentGravityFlagsKHR,
+    ) -> Self {
+        self.supported_present_gravity_x = supported_present_gravity_x;
+        self
+    }
+    pub fn supported_present_gravity_y(
+        mut self,
+        supported_present_gravity_y: crate::vk::PresentGravityFlagsKHR,
+    ) -> Self {
+        self.supported_present_gravity_y = supported_present_gravity_y;
+        self
+    }
+    pub fn min_scaled_image_extent(
+        mut self,
+        min_scaled_image_extent: crate::vk::Extent2D,
+    ) -> Self {
+        self.min_scaled_image_extent = min_scaled_image_extent;
+        self
+    }
+    pub fn max_scaled_image_extent(
+        mut self,
+        max_scaled_image_extent: crate::vk::Extent2D,
+    ) -> Self {
+        self.max_scaled_image_extent = max_scaled_image_extent;
+        self
+    }
+}
 #[repr(C)]
 #[derive(Clone, Copy)]
 pub struct SurfacePresentModeCompatibilityKHR<'a> {
@@ -78,6 +121,19 @@ impl<'a> Default for SurfacePresentModeCompatibilityKHR<'a> {
             p_present_modes: Default::default(),
             _marker: ::core::marker::PhantomData,
         }
+    }
+}
+impl<'a> SurfacePresentModeCompatibilityKHR<'a> {
+    pub fn present_mode_count(mut self, present_mode_count: u32) -> Self {
+        self.present_mode_count = present_mode_count;
+        self
+    }
+    pub fn p_present_modes(
+        mut self,
+        p_present_modes: *mut crate::vk::PresentModeKHR,
+    ) -> Self {
+        self.p_present_modes = p_present_modes;
+        self
     }
 }
 ///Provided by [`khr::surface_maintenance1`](crate::khr::surface_maintenance1)

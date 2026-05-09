@@ -108,6 +108,15 @@ pub(crate) mod reexport {
             }
         }
     }
+    impl<'a> DisplayProperties2KHR<'a> {
+        pub fn display_properties(
+            mut self,
+            display_properties: crate::vk::DisplayPropertiesKHR<'a>,
+        ) -> Self {
+            self.display_properties = display_properties;
+            self
+        }
+    }
     #[repr(C)]
     #[derive(Clone, Copy)]
     pub struct DisplayPlaneProperties2KHR<'a> {
@@ -129,6 +138,15 @@ pub(crate) mod reexport {
             }
         }
     }
+    impl<'a> DisplayPlaneProperties2KHR<'a> {
+        pub fn display_plane_properties(
+            mut self,
+            display_plane_properties: crate::vk::DisplayPlanePropertiesKHR,
+        ) -> Self {
+            self.display_plane_properties = display_plane_properties;
+            self
+        }
+    }
     #[repr(C)]
     #[derive(Clone, Copy)]
     pub struct DisplayModeProperties2KHR<'a> {
@@ -148,6 +166,15 @@ pub(crate) mod reexport {
                 display_mode_properties: Default::default(),
                 _marker: ::core::marker::PhantomData,
             }
+        }
+    }
+    impl<'a> DisplayModeProperties2KHR<'a> {
+        pub fn display_mode_properties(
+            mut self,
+            display_mode_properties: crate::vk::DisplayModePropertiesKHR,
+        ) -> Self {
+            self.display_mode_properties = display_mode_properties;
+            self
         }
     }
     #[repr(C)]
@@ -173,6 +200,16 @@ pub(crate) mod reexport {
             }
         }
     }
+    impl<'a> DisplayPlaneInfo2KHR<'a> {
+        pub fn mode(mut self, mode: crate::vk::DisplayModeKHR) -> Self {
+            self.mode = mode;
+            self
+        }
+        pub fn plane_index(mut self, plane_index: u32) -> Self {
+            self.plane_index = plane_index;
+            self
+        }
+    }
     #[repr(C)]
     #[derive(Clone, Copy)]
     pub struct DisplayPlaneCapabilities2KHR<'a> {
@@ -192,6 +229,15 @@ pub(crate) mod reexport {
                 capabilities: Default::default(),
                 _marker: ::core::marker::PhantomData,
             }
+        }
+    }
+    impl<'a> DisplayPlaneCapabilities2KHR<'a> {
+        pub fn capabilities(
+            mut self,
+            capabilities: crate::vk::DisplayPlaneCapabilitiesKHR,
+        ) -> Self {
+            self.capabilities = capabilities;
+            self
         }
     }
     ///Provided by [`khr::get_display_properties2`](crate::khr::get_display_properties2)

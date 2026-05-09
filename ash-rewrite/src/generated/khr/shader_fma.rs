@@ -30,6 +30,20 @@ impl<'a> Default for PhysicalDeviceShaderFmaFeaturesKHR<'a> {
         }
     }
 }
+impl<'a> PhysicalDeviceShaderFmaFeaturesKHR<'a> {
+    pub fn shader_fma_float16(mut self, shader_fma_float16: crate::vk::Bool32) -> Self {
+        self.shader_fma_float16 = shader_fma_float16;
+        self
+    }
+    pub fn shader_fma_float32(mut self, shader_fma_float32: crate::vk::Bool32) -> Self {
+        self.shader_fma_float32 = shader_fma_float32;
+        self
+    }
+    pub fn shader_fma_float64(mut self, shader_fma_float64: crate::vk::Bool32) -> Self {
+        self.shader_fma_float64 = shader_fma_float64;
+        self
+    }
+}
 ///Provided by [`khr::shader_fma`](crate::khr::shader_fma)
 impl crate::vk::StructureType {
     pub const PHYSICAL_DEVICE_SHADER_FMA_FEATURES_KHR: Self = Self(1000579000);

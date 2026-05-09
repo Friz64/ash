@@ -27,6 +27,15 @@ impl<'a> Default for PhysicalDeviceCoherentMemoryFeaturesAMD<'a> {
         }
     }
 }
+impl<'a> PhysicalDeviceCoherentMemoryFeaturesAMD<'a> {
+    pub fn device_coherent_memory(
+        mut self,
+        device_coherent_memory: crate::vk::Bool32,
+    ) -> Self {
+        self.device_coherent_memory = device_coherent_memory;
+        self
+    }
+}
 ///Provided by [`amd::device_coherent_memory`](crate::amd::device_coherent_memory)
 impl crate::vk::StructureType {
     pub const PHYSICAL_DEVICE_COHERENT_MEMORY_FEATURES_AMD: Self = Self(1000229000);

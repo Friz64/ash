@@ -127,6 +127,15 @@ pub(crate) mod reexport {
             }
         }
     }
+    impl<'a> SurfaceFullScreenExclusiveInfoEXT<'a> {
+        pub fn full_screen_exclusive(
+            mut self,
+            full_screen_exclusive: crate::vk::FullScreenExclusiveEXT,
+        ) -> Self {
+            self.full_screen_exclusive = full_screen_exclusive;
+            self
+        }
+    }
     #[repr(C)]
     #[derive(Clone, Copy)]
     pub struct SurfaceFullScreenExclusiveWin32InfoEXT<'a> {
@@ -153,6 +162,12 @@ pub(crate) mod reexport {
             }
         }
     }
+    impl<'a> SurfaceFullScreenExclusiveWin32InfoEXT<'a> {
+        pub fn hmonitor(mut self, hmonitor: crate::platform_types::HMONITOR) -> Self {
+            self.hmonitor = hmonitor;
+            self
+        }
+    }
     #[repr(C)]
     #[derive(Clone, Copy)]
     pub struct SurfaceCapabilitiesFullScreenExclusiveEXT<'a> {
@@ -175,6 +190,15 @@ pub(crate) mod reexport {
                 full_screen_exclusive_supported: Default::default(),
                 _marker: ::core::marker::PhantomData,
             }
+        }
+    }
+    impl<'a> SurfaceCapabilitiesFullScreenExclusiveEXT<'a> {
+        pub fn full_screen_exclusive_supported(
+            mut self,
+            full_screen_exclusive_supported: crate::vk::Bool32,
+        ) -> Self {
+            self.full_screen_exclusive_supported = full_screen_exclusive_supported;
+            self
         }
     }
     ///Provided by [`ext::full_screen_exclusive`](crate::ext::full_screen_exclusive)

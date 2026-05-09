@@ -27,6 +27,15 @@ impl<'a> Default for PhysicalDeviceExternalFormatResolveFeaturesANDROID<'a> {
         }
     }
 }
+impl<'a> PhysicalDeviceExternalFormatResolveFeaturesANDROID<'a> {
+    pub fn external_format_resolve(
+        mut self,
+        external_format_resolve: crate::vk::Bool32,
+    ) -> Self {
+        self.external_format_resolve = external_format_resolve;
+        self
+    }
+}
 #[repr(C)]
 #[derive(Clone, Copy)]
 pub struct PhysicalDeviceExternalFormatResolvePropertiesANDROID<'a> {
@@ -55,6 +64,29 @@ impl<'a> Default for PhysicalDeviceExternalFormatResolvePropertiesANDROID<'a> {
         }
     }
 }
+impl<'a> PhysicalDeviceExternalFormatResolvePropertiesANDROID<'a> {
+    pub fn null_color_attachment_with_external_format_resolve(
+        mut self,
+        null_color_attachment_with_external_format_resolve: crate::vk::Bool32,
+    ) -> Self {
+        self.null_color_attachment_with_external_format_resolve = null_color_attachment_with_external_format_resolve;
+        self
+    }
+    pub fn external_format_resolve_chroma_offset_x(
+        mut self,
+        external_format_resolve_chroma_offset_x: crate::vk::ChromaLocation,
+    ) -> Self {
+        self.external_format_resolve_chroma_offset_x = external_format_resolve_chroma_offset_x;
+        self
+    }
+    pub fn external_format_resolve_chroma_offset_y(
+        mut self,
+        external_format_resolve_chroma_offset_y: crate::vk::ChromaLocation,
+    ) -> Self {
+        self.external_format_resolve_chroma_offset_y = external_format_resolve_chroma_offset_y;
+        self
+    }
+}
 #[repr(C)]
 #[derive(Clone, Copy)]
 pub struct AndroidHardwareBufferFormatResolvePropertiesANDROID<'a> {
@@ -77,6 +109,15 @@ impl<'a> Default for AndroidHardwareBufferFormatResolvePropertiesANDROID<'a> {
             color_attachment_format: Default::default(),
             _marker: ::core::marker::PhantomData,
         }
+    }
+}
+impl<'a> AndroidHardwareBufferFormatResolvePropertiesANDROID<'a> {
+    pub fn color_attachment_format(
+        mut self,
+        color_attachment_format: crate::vk::Format,
+    ) -> Self {
+        self.color_attachment_format = color_attachment_format;
+        self
     }
 }
 ///Provided by [`android::external_format_resolve`](crate::android::external_format_resolve)

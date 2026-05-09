@@ -66,6 +66,15 @@ pub(crate) mod reexport {
             }
         }
     }
+    impl<'a> PhysicalDeviceCoverageReductionModeFeaturesNV<'a> {
+        pub fn coverage_reduction_mode(
+            mut self,
+            coverage_reduction_mode: crate::vk::Bool32,
+        ) -> Self {
+            self.coverage_reduction_mode = coverage_reduction_mode;
+            self
+        }
+    }
     #[repr(C)]
     #[derive(Clone, Copy)]
     pub struct PipelineCoverageReductionStateCreateInfoNV<'a> {
@@ -90,6 +99,22 @@ pub(crate) mod reexport {
                 coverage_reduction_mode: Default::default(),
                 _marker: ::core::marker::PhantomData,
             }
+        }
+    }
+    impl<'a> PipelineCoverageReductionStateCreateInfoNV<'a> {
+        pub fn flags(
+            mut self,
+            flags: crate::vk::PipelineCoverageReductionStateCreateFlagsNV,
+        ) -> Self {
+            self.flags = flags;
+            self
+        }
+        pub fn coverage_reduction_mode(
+            mut self,
+            coverage_reduction_mode: crate::vk::CoverageReductionModeNV,
+        ) -> Self {
+            self.coverage_reduction_mode = coverage_reduction_mode;
+            self
         }
     }
     #[repr(C)]
@@ -118,6 +143,36 @@ pub(crate) mod reexport {
                 color_samples: Default::default(),
                 _marker: ::core::marker::PhantomData,
             }
+        }
+    }
+    impl<'a> FramebufferMixedSamplesCombinationNV<'a> {
+        pub fn coverage_reduction_mode(
+            mut self,
+            coverage_reduction_mode: crate::vk::CoverageReductionModeNV,
+        ) -> Self {
+            self.coverage_reduction_mode = coverage_reduction_mode;
+            self
+        }
+        pub fn rasterization_samples(
+            mut self,
+            rasterization_samples: crate::vk::SampleCountFlagBits,
+        ) -> Self {
+            self.rasterization_samples = rasterization_samples;
+            self
+        }
+        pub fn depth_stencil_samples(
+            mut self,
+            depth_stencil_samples: crate::vk::SampleCountFlags,
+        ) -> Self {
+            self.depth_stencil_samples = depth_stencil_samples;
+            self
+        }
+        pub fn color_samples(
+            mut self,
+            color_samples: crate::vk::SampleCountFlags,
+        ) -> Self {
+            self.color_samples = color_samples;
+            self
         }
     }
     ///Provided by [`nv::coverage_reduction_mode`](crate::nv::coverage_reduction_mode)

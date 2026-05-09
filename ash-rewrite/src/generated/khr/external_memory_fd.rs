@@ -78,6 +78,19 @@ pub(crate) mod reexport {
             }
         }
     }
+    impl<'a> ImportMemoryFdInfoKHR<'a> {
+        pub fn handle_type(
+            mut self,
+            handle_type: crate::vk::ExternalMemoryHandleTypeFlagBits,
+        ) -> Self {
+            self.handle_type = handle_type;
+            self
+        }
+        pub fn fd(mut self, fd: core::ffi::c_int) -> Self {
+            self.fd = fd;
+            self
+        }
+    }
     #[repr(C)]
     #[derive(Clone, Copy)]
     pub struct MemoryFdPropertiesKHR<'a> {
@@ -97,6 +110,12 @@ pub(crate) mod reexport {
                 memory_type_bits: Default::default(),
                 _marker: ::core::marker::PhantomData,
             }
+        }
+    }
+    impl<'a> MemoryFdPropertiesKHR<'a> {
+        pub fn memory_type_bits(mut self, memory_type_bits: u32) -> Self {
+            self.memory_type_bits = memory_type_bits;
+            self
         }
     }
     #[repr(C)]
@@ -120,6 +139,19 @@ pub(crate) mod reexport {
                 handle_type: Default::default(),
                 _marker: ::core::marker::PhantomData,
             }
+        }
+    }
+    impl<'a> MemoryGetFdInfoKHR<'a> {
+        pub fn memory(mut self, memory: crate::vk::DeviceMemory) -> Self {
+            self.memory = memory;
+            self
+        }
+        pub fn handle_type(
+            mut self,
+            handle_type: crate::vk::ExternalMemoryHandleTypeFlagBits,
+        ) -> Self {
+            self.handle_type = handle_type;
+            self
         }
     }
     ///Provided by [`khr::external_memory_fd`](crate::khr::external_memory_fd)

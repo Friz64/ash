@@ -62,6 +62,37 @@ pub(crate) mod reexport {
         pub decompressed_size: crate::vk::DeviceSize,
         pub decompression_method: crate::vk::MemoryDecompressionMethodFlagsEXT,
     }
+    impl DecompressMemoryRegionNV {
+        pub fn src_address(mut self, src_address: crate::vk::DeviceAddress) -> Self {
+            self.src_address = src_address;
+            self
+        }
+        pub fn dst_address(mut self, dst_address: crate::vk::DeviceAddress) -> Self {
+            self.dst_address = dst_address;
+            self
+        }
+        pub fn compressed_size(
+            mut self,
+            compressed_size: crate::vk::DeviceSize,
+        ) -> Self {
+            self.compressed_size = compressed_size;
+            self
+        }
+        pub fn decompressed_size(
+            mut self,
+            decompressed_size: crate::vk::DeviceSize,
+        ) -> Self {
+            self.decompressed_size = decompressed_size;
+            self
+        }
+        pub fn decompression_method(
+            mut self,
+            decompression_method: crate::vk::MemoryDecompressionMethodFlagsEXT,
+        ) -> Self {
+            self.decompression_method = decompression_method;
+            self
+        }
+    }
     pub type PhysicalDeviceMemoryDecompressionFeaturesNV<'a> = crate::vk::PhysicalDeviceMemoryDecompressionFeaturesEXT<
         'a,
     >;

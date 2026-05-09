@@ -27,6 +27,12 @@ impl<'a> Default for PhysicalDeviceShaderImageFootprintFeaturesNV<'a> {
         }
     }
 }
+impl<'a> PhysicalDeviceShaderImageFootprintFeaturesNV<'a> {
+    pub fn image_footprint(mut self, image_footprint: crate::vk::Bool32) -> Self {
+        self.image_footprint = image_footprint;
+        self
+    }
+}
 ///Provided by [`nv::shader_image_footprint`](crate::nv::shader_image_footprint)
 impl crate::vk::StructureType {
     pub const PHYSICAL_DEVICE_SHADER_IMAGE_FOOTPRINT_FEATURES_NV: Self = Self(

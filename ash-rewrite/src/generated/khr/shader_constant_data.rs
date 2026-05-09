@@ -27,6 +27,15 @@ impl<'a> Default for PhysicalDeviceShaderConstantDataFeaturesKHR<'a> {
         }
     }
 }
+impl<'a> PhysicalDeviceShaderConstantDataFeaturesKHR<'a> {
+    pub fn shader_constant_data(
+        mut self,
+        shader_constant_data: crate::vk::Bool32,
+    ) -> Self {
+        self.shader_constant_data = shader_constant_data;
+        self
+    }
+}
 ///Provided by [`khr::shader_constant_data`](crate::khr::shader_constant_data)
 impl crate::vk::StructureType {
     pub const PHYSICAL_DEVICE_SHADER_CONSTANT_DATA_FEATURES_KHR: Self = Self(1000231000);

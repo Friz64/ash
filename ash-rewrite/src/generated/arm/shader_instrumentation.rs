@@ -179,6 +179,15 @@ pub(crate) mod reexport {
             }
         }
     }
+    impl<'a> PhysicalDeviceShaderInstrumentationFeaturesARM<'a> {
+        pub fn shader_instrumentation(
+            mut self,
+            shader_instrumentation: crate::vk::Bool32,
+        ) -> Self {
+            self.shader_instrumentation = shader_instrumentation;
+            self
+        }
+    }
     #[repr(C)]
     #[derive(Clone, Copy)]
     pub struct PhysicalDeviceShaderInstrumentationPropertiesARM<'a> {
@@ -205,6 +214,19 @@ pub(crate) mod reexport {
             }
         }
     }
+    impl<'a> PhysicalDeviceShaderInstrumentationPropertiesARM<'a> {
+        pub fn num_metrics(mut self, num_metrics: u32) -> Self {
+            self.num_metrics = num_metrics;
+            self
+        }
+        pub fn per_basic_block_granularity(
+            mut self,
+            per_basic_block_granularity: crate::vk::Bool32,
+        ) -> Self {
+            self.per_basic_block_granularity = per_basic_block_granularity;
+            self
+        }
+    }
     #[repr(C)]
     #[derive(Clone, Copy)]
     pub struct ShaderInstrumentationCreateInfoARM<'a> {
@@ -225,6 +247,7 @@ pub(crate) mod reexport {
             }
         }
     }
+    impl<'a> ShaderInstrumentationCreateInfoARM<'a> {}
     #[repr(C)]
     #[derive(Clone, Copy)]
     pub struct ShaderInstrumentationMetricDescriptionARM<'a> {
@@ -249,6 +272,22 @@ pub(crate) mod reexport {
             }
         }
     }
+    impl<'a> ShaderInstrumentationMetricDescriptionARM<'a> {
+        pub fn name(
+            mut self,
+            name: [core::ffi::c_char; crate::vk::MAX_DESCRIPTION_SIZE as _],
+        ) -> Self {
+            self.name = name;
+            self
+        }
+        pub fn description(
+            mut self,
+            description: [core::ffi::c_char; crate::vk::MAX_DESCRIPTION_SIZE as _],
+        ) -> Self {
+            self.description = description;
+            self
+        }
+    }
     #[repr(C)]
     #[derive(Clone, Copy, Default)]
     pub struct ShaderInstrumentationMetricDataHeaderARM {
@@ -256,6 +295,24 @@ pub(crate) mod reexport {
         pub result_sub_index: u32,
         pub stages: crate::vk::ShaderStageFlags,
         pub basic_block_index: u32,
+    }
+    impl ShaderInstrumentationMetricDataHeaderARM {
+        pub fn result_index(mut self, result_index: u32) -> Self {
+            self.result_index = result_index;
+            self
+        }
+        pub fn result_sub_index(mut self, result_sub_index: u32) -> Self {
+            self.result_sub_index = result_sub_index;
+            self
+        }
+        pub fn stages(mut self, stages: crate::vk::ShaderStageFlags) -> Self {
+            self.stages = stages;
+            self
+        }
+        pub fn basic_block_index(mut self, basic_block_index: u32) -> Self {
+            self.basic_block_index = basic_block_index;
+            self
+        }
     }
     ///Provided by [`arm::shader_instrumentation`](crate::arm::shader_instrumentation)
     impl crate::vk::StructureType {

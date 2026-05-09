@@ -27,6 +27,22 @@ impl<'a> Default for PhysicalDeviceMemoryBudgetPropertiesEXT<'a> {
         }
     }
 }
+impl<'a> PhysicalDeviceMemoryBudgetPropertiesEXT<'a> {
+    pub fn heap_budget(
+        mut self,
+        heap_budget: [crate::vk::DeviceSize; crate::vk::MAX_MEMORY_HEAPS as _],
+    ) -> Self {
+        self.heap_budget = heap_budget;
+        self
+    }
+    pub fn heap_usage(
+        mut self,
+        heap_usage: [crate::vk::DeviceSize; crate::vk::MAX_MEMORY_HEAPS as _],
+    ) -> Self {
+        self.heap_usage = heap_usage;
+        self
+    }
+}
 ///Provided by [`ext::memory_budget`](crate::ext::memory_budget)
 impl crate::vk::StructureType {
     pub const PHYSICAL_DEVICE_MEMORY_BUDGET_PROPERTIES_EXT: Self = Self(1000237000);

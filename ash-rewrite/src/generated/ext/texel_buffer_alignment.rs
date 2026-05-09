@@ -27,6 +27,15 @@ impl<'a> Default for PhysicalDeviceTexelBufferAlignmentFeaturesEXT<'a> {
         }
     }
 }
+impl<'a> PhysicalDeviceTexelBufferAlignmentFeaturesEXT<'a> {
+    pub fn texel_buffer_alignment(
+        mut self,
+        texel_buffer_alignment: crate::vk::Bool32,
+    ) -> Self {
+        self.texel_buffer_alignment = texel_buffer_alignment;
+        self
+    }
+}
 pub type PhysicalDeviceTexelBufferAlignmentPropertiesEXT<'a> = crate::vk::PhysicalDeviceTexelBufferAlignmentProperties<
     'a,
 >;

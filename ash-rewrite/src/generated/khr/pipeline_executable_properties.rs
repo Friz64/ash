@@ -99,6 +99,15 @@ pub(crate) mod reexport {
             }
         }
     }
+    impl<'a> PhysicalDevicePipelineExecutablePropertiesFeaturesKHR<'a> {
+        pub fn pipeline_executable_info(
+            mut self,
+            pipeline_executable_info: crate::vk::Bool32,
+        ) -> Self {
+            self.pipeline_executable_info = pipeline_executable_info;
+            self
+        }
+    }
     #[repr(C)]
     #[derive(Clone, Copy)]
     pub struct PipelineInfoKHR<'a> {
@@ -118,6 +127,12 @@ pub(crate) mod reexport {
                 pipeline: Default::default(),
                 _marker: ::core::marker::PhantomData,
             }
+        }
+    }
+    impl<'a> PipelineInfoKHR<'a> {
+        pub fn pipeline(mut self, pipeline: crate::vk::Pipeline) -> Self {
+            self.pipeline = pipeline;
+            self
         }
     }
     #[repr(C)]
@@ -147,6 +162,30 @@ pub(crate) mod reexport {
             }
         }
     }
+    impl<'a> PipelineExecutablePropertiesKHR<'a> {
+        pub fn stages(mut self, stages: crate::vk::ShaderStageFlags) -> Self {
+            self.stages = stages;
+            self
+        }
+        pub fn name(
+            mut self,
+            name: [core::ffi::c_char; crate::vk::MAX_DESCRIPTION_SIZE as _],
+        ) -> Self {
+            self.name = name;
+            self
+        }
+        pub fn description(
+            mut self,
+            description: [core::ffi::c_char; crate::vk::MAX_DESCRIPTION_SIZE as _],
+        ) -> Self {
+            self.description = description;
+            self
+        }
+        pub fn subgroup_size(mut self, subgroup_size: u32) -> Self {
+            self.subgroup_size = subgroup_size;
+            self
+        }
+    }
     #[repr(C)]
     #[derive(Clone, Copy)]
     pub struct PipelineExecutableInfoKHR<'a> {
@@ -168,6 +207,16 @@ pub(crate) mod reexport {
                 executable_index: Default::default(),
                 _marker: ::core::marker::PhantomData,
             }
+        }
+    }
+    impl<'a> PipelineExecutableInfoKHR<'a> {
+        pub fn pipeline(mut self, pipeline: crate::vk::Pipeline) -> Self {
+            self.pipeline = pipeline;
+            self
+        }
+        pub fn executable_index(mut self, executable_index: u32) -> Self {
+            self.executable_index = executable_index;
+            self
         }
     }
     #[repr(C)]
@@ -195,6 +244,36 @@ pub(crate) mod reexport {
                 value: Default::default(),
                 _marker: ::core::marker::PhantomData,
             }
+        }
+    }
+    impl<'a> PipelineExecutableStatisticKHR<'a> {
+        pub fn name(
+            mut self,
+            name: [core::ffi::c_char; crate::vk::MAX_DESCRIPTION_SIZE as _],
+        ) -> Self {
+            self.name = name;
+            self
+        }
+        pub fn description(
+            mut self,
+            description: [core::ffi::c_char; crate::vk::MAX_DESCRIPTION_SIZE as _],
+        ) -> Self {
+            self.description = description;
+            self
+        }
+        pub fn format(
+            mut self,
+            format: crate::vk::PipelineExecutableStatisticFormatKHR,
+        ) -> Self {
+            self.format = format;
+            self
+        }
+        pub fn value(
+            mut self,
+            value: crate::vk::PipelineExecutableStatisticValueKHR,
+        ) -> Self {
+            self.value = value;
+            self
         }
     }
     #[repr(C)]
@@ -225,6 +304,34 @@ pub(crate) mod reexport {
                 p_data: Default::default(),
                 _marker: ::core::marker::PhantomData,
             }
+        }
+    }
+    impl<'a> PipelineExecutableInternalRepresentationKHR<'a> {
+        pub fn name(
+            mut self,
+            name: [core::ffi::c_char; crate::vk::MAX_DESCRIPTION_SIZE as _],
+        ) -> Self {
+            self.name = name;
+            self
+        }
+        pub fn description(
+            mut self,
+            description: [core::ffi::c_char; crate::vk::MAX_DESCRIPTION_SIZE as _],
+        ) -> Self {
+            self.description = description;
+            self
+        }
+        pub fn is_text(mut self, is_text: crate::vk::Bool32) -> Self {
+            self.is_text = is_text;
+            self
+        }
+        pub fn data_size(mut self, data_size: usize) -> Self {
+            self.data_size = data_size;
+            self
+        }
+        pub fn p_data(mut self, p_data: *mut core::ffi::c_void) -> Self {
+            self.p_data = p_data;
+            self
         }
     }
     #[repr(C)]

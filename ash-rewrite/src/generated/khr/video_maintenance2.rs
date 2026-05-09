@@ -27,6 +27,12 @@ impl<'a> Default for PhysicalDeviceVideoMaintenance2FeaturesKHR<'a> {
         }
     }
 }
+impl<'a> PhysicalDeviceVideoMaintenance2FeaturesKHR<'a> {
+    pub fn video_maintenance2(mut self, video_maintenance2: crate::vk::Bool32) -> Self {
+        self.video_maintenance2 = video_maintenance2;
+        self
+    }
+}
 #[repr(C)]
 #[derive(Clone, Copy)]
 pub struct VideoDecodeH264InlineSessionParametersInfoKHR<'a> {
@@ -51,6 +57,22 @@ impl<'a> Default for VideoDecodeH264InlineSessionParametersInfoKHR<'a> {
             p_std_pps: Default::default(),
             _marker: ::core::marker::PhantomData,
         }
+    }
+}
+impl<'a> VideoDecodeH264InlineSessionParametersInfoKHR<'a> {
+    pub fn p_std_sps(
+        mut self,
+        p_std_sps: *const crate::vk::H264SequenceParameterSet<'a>,
+    ) -> Self {
+        self.p_std_sps = p_std_sps;
+        self
+    }
+    pub fn p_std_pps(
+        mut self,
+        p_std_pps: *const crate::vk::H264PictureParameterSet<'a>,
+    ) -> Self {
+        self.p_std_pps = p_std_pps;
+        self
     }
 }
 #[repr(C)]
@@ -81,6 +103,29 @@ impl<'a> Default for VideoDecodeH265InlineSessionParametersInfoKHR<'a> {
         }
     }
 }
+impl<'a> VideoDecodeH265InlineSessionParametersInfoKHR<'a> {
+    pub fn p_std_vps(
+        mut self,
+        p_std_vps: *const crate::vk::H265VideoParameterSet<'a>,
+    ) -> Self {
+        self.p_std_vps = p_std_vps;
+        self
+    }
+    pub fn p_std_sps(
+        mut self,
+        p_std_sps: *const crate::vk::H265SequenceParameterSet<'a>,
+    ) -> Self {
+        self.p_std_sps = p_std_sps;
+        self
+    }
+    pub fn p_std_pps(
+        mut self,
+        p_std_pps: *const crate::vk::H265PictureParameterSet<'a>,
+    ) -> Self {
+        self.p_std_pps = p_std_pps;
+        self
+    }
+}
 #[repr(C)]
 #[derive(Clone, Copy)]
 pub struct VideoDecodeAV1InlineSessionParametersInfoKHR<'a> {
@@ -103,6 +148,15 @@ impl<'a> Default for VideoDecodeAV1InlineSessionParametersInfoKHR<'a> {
             p_std_sequence_header: Default::default(),
             _marker: ::core::marker::PhantomData,
         }
+    }
+}
+impl<'a> VideoDecodeAV1InlineSessionParametersInfoKHR<'a> {
+    pub fn p_std_sequence_header(
+        mut self,
+        p_std_sequence_header: *const crate::vk::AV1SequenceHeader<'a>,
+    ) -> Self {
+        self.p_std_sequence_header = p_std_sequence_header;
+        self
     }
 }
 ///Provided by [`khr::video_maintenance2`](crate::khr::video_maintenance2)

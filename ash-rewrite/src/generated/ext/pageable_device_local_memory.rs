@@ -62,6 +62,15 @@ pub(crate) mod reexport {
             }
         }
     }
+    impl<'a> PhysicalDevicePageableDeviceLocalMemoryFeaturesEXT<'a> {
+        pub fn pageable_device_local_memory(
+            mut self,
+            pageable_device_local_memory: crate::vk::Bool32,
+        ) -> Self {
+            self.pageable_device_local_memory = pageable_device_local_memory;
+            self
+        }
+    }
     ///Provided by [`ext::pageable_device_local_memory`](crate::ext::pageable_device_local_memory)
     impl crate::vk::StructureType {
         pub const PHYSICAL_DEVICE_PAGEABLE_DEVICE_LOCAL_MEMORY_FEATURES_EXT: Self = Self(

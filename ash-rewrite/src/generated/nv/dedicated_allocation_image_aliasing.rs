@@ -27,6 +27,15 @@ impl<'a> Default for PhysicalDeviceDedicatedAllocationImageAliasingFeaturesNV<'a
         }
     }
 }
+impl<'a> PhysicalDeviceDedicatedAllocationImageAliasingFeaturesNV<'a> {
+    pub fn dedicated_allocation_image_aliasing(
+        mut self,
+        dedicated_allocation_image_aliasing: crate::vk::Bool32,
+    ) -> Self {
+        self.dedicated_allocation_image_aliasing = dedicated_allocation_image_aliasing;
+        self
+    }
+}
 ///Provided by [`nv::dedicated_allocation_image_aliasing`](crate::nv::dedicated_allocation_image_aliasing)
 impl crate::vk::StructureType {
     pub const PHYSICAL_DEVICE_DEDICATED_ALLOCATION_IMAGE_ALIASING_FEATURES_NV: Self = Self(

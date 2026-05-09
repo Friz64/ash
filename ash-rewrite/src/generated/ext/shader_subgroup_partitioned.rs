@@ -27,6 +27,15 @@ impl<'a> Default for PhysicalDeviceShaderSubgroupPartitionedFeaturesEXT<'a> {
         }
     }
 }
+impl<'a> PhysicalDeviceShaderSubgroupPartitionedFeaturesEXT<'a> {
+    pub fn shader_subgroup_partitioned(
+        mut self,
+        shader_subgroup_partitioned: crate::vk::Bool32,
+    ) -> Self {
+        self.shader_subgroup_partitioned = shader_subgroup_partitioned;
+        self
+    }
+}
 ///Provided by [`ext::shader_subgroup_partitioned`](crate::ext::shader_subgroup_partitioned)
 impl crate::vk::StructureType {
     pub const PHYSICAL_DEVICE_SHADER_SUBGROUP_PARTITIONED_FEATURES_EXT: Self = Self(

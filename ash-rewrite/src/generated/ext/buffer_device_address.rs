@@ -65,6 +65,29 @@ pub(crate) mod reexport {
             }
         }
     }
+    impl<'a> PhysicalDeviceBufferDeviceAddressFeaturesEXT<'a> {
+        pub fn buffer_device_address(
+            mut self,
+            buffer_device_address: crate::vk::Bool32,
+        ) -> Self {
+            self.buffer_device_address = buffer_device_address;
+            self
+        }
+        pub fn buffer_device_address_capture_replay(
+            mut self,
+            buffer_device_address_capture_replay: crate::vk::Bool32,
+        ) -> Self {
+            self.buffer_device_address_capture_replay = buffer_device_address_capture_replay;
+            self
+        }
+        pub fn buffer_device_address_multi_device(
+            mut self,
+            buffer_device_address_multi_device: crate::vk::Bool32,
+        ) -> Self {
+            self.buffer_device_address_multi_device = buffer_device_address_multi_device;
+            self
+        }
+    }
     #[repr(C)]
     #[derive(Clone, Copy)]
     pub struct BufferDeviceAddressCreateInfoEXT<'a> {
@@ -86,6 +109,15 @@ pub(crate) mod reexport {
                 device_address: Default::default(),
                 _marker: ::core::marker::PhantomData,
             }
+        }
+    }
+    impl<'a> BufferDeviceAddressCreateInfoEXT<'a> {
+        pub fn device_address(
+            mut self,
+            device_address: crate::vk::DeviceAddress,
+        ) -> Self {
+            self.device_address = device_address;
+            self
         }
     }
     pub type PhysicalDeviceBufferAddressFeaturesEXT<'a> = crate::vk::PhysicalDeviceBufferDeviceAddressFeaturesEXT<

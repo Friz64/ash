@@ -27,6 +27,15 @@ impl<'a> Default for PhysicalDeviceShaderUntypedPointersFeaturesKHR<'a> {
         }
     }
 }
+impl<'a> PhysicalDeviceShaderUntypedPointersFeaturesKHR<'a> {
+    pub fn shader_untyped_pointers(
+        mut self,
+        shader_untyped_pointers: crate::vk::Bool32,
+    ) -> Self {
+        self.shader_untyped_pointers = shader_untyped_pointers;
+        self
+    }
+}
 ///Provided by [`khr::shader_untyped_pointers`](crate::khr::shader_untyped_pointers)
 impl crate::vk::StructureType {
     pub const PHYSICAL_DEVICE_SHADER_UNTYPED_POINTERS_FEATURES_KHR: Self = Self(

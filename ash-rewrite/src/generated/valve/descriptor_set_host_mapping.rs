@@ -78,6 +78,15 @@ pub(crate) mod reexport {
             }
         }
     }
+    impl<'a> PhysicalDeviceDescriptorSetHostMappingFeaturesVALVE<'a> {
+        pub fn descriptor_set_host_mapping(
+            mut self,
+            descriptor_set_host_mapping: crate::vk::Bool32,
+        ) -> Self {
+            self.descriptor_set_host_mapping = descriptor_set_host_mapping;
+            self
+        }
+    }
     #[repr(C)]
     #[derive(Clone, Copy)]
     pub struct DescriptorSetBindingReferenceVALVE<'a> {
@@ -102,6 +111,19 @@ pub(crate) mod reexport {
             }
         }
     }
+    impl<'a> DescriptorSetBindingReferenceVALVE<'a> {
+        pub fn descriptor_set_layout(
+            mut self,
+            descriptor_set_layout: crate::vk::DescriptorSetLayout,
+        ) -> Self {
+            self.descriptor_set_layout = descriptor_set_layout;
+            self
+        }
+        pub fn binding(mut self, binding: u32) -> Self {
+            self.binding = binding;
+            self
+        }
+    }
     #[repr(C)]
     #[derive(Clone, Copy)]
     pub struct DescriptorSetLayoutHostMappingInfoVALVE<'a> {
@@ -124,6 +146,16 @@ pub(crate) mod reexport {
                 descriptor_size: Default::default(),
                 _marker: ::core::marker::PhantomData,
             }
+        }
+    }
+    impl<'a> DescriptorSetLayoutHostMappingInfoVALVE<'a> {
+        pub fn descriptor_offset(mut self, descriptor_offset: usize) -> Self {
+            self.descriptor_offset = descriptor_offset;
+            self
+        }
+        pub fn descriptor_size(mut self, descriptor_size: u32) -> Self {
+            self.descriptor_size = descriptor_size;
+            self
         }
     }
     ///Provided by [`valve::descriptor_set_host_mapping`](crate::valve::descriptor_set_host_mapping)

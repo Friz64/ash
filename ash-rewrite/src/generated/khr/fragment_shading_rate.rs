@@ -98,6 +98,24 @@ pub(crate) mod reexport {
             }
         }
     }
+    impl<'a> FragmentShadingRateAttachmentInfoKHR<'a> {
+        pub fn p_fragment_shading_rate_attachment(
+            mut self,
+            p_fragment_shading_rate_attachment: *const crate::vk::AttachmentReference2<
+                'a,
+            >,
+        ) -> Self {
+            self.p_fragment_shading_rate_attachment = p_fragment_shading_rate_attachment;
+            self
+        }
+        pub fn shading_rate_attachment_texel_size(
+            mut self,
+            shading_rate_attachment_texel_size: crate::vk::Extent2D,
+        ) -> Self {
+            self.shading_rate_attachment_texel_size = shading_rate_attachment_texel_size;
+            self
+        }
+    }
     #[repr(C)]
     #[derive(Clone, Copy)]
     pub struct PipelineFragmentShadingRateStateCreateInfoKHR<'a> {
@@ -122,6 +140,19 @@ pub(crate) mod reexport {
                 combiner_ops: unsafe { core::mem::zeroed() },
                 _marker: ::core::marker::PhantomData,
             }
+        }
+    }
+    impl<'a> PipelineFragmentShadingRateStateCreateInfoKHR<'a> {
+        pub fn fragment_size(mut self, fragment_size: crate::vk::Extent2D) -> Self {
+            self.fragment_size = fragment_size;
+            self
+        }
+        pub fn combiner_ops(
+            mut self,
+            combiner_ops: [crate::vk::FragmentShadingRateCombinerOpKHR; 2 as _],
+        ) -> Self {
+            self.combiner_ops = combiner_ops;
+            self
         }
     }
     #[repr(C)]
@@ -152,6 +183,29 @@ pub(crate) mod reexport {
                 attachment_fragment_shading_rate: Default::default(),
                 _marker: ::core::marker::PhantomData,
             }
+        }
+    }
+    impl<'a> PhysicalDeviceFragmentShadingRateFeaturesKHR<'a> {
+        pub fn pipeline_fragment_shading_rate(
+            mut self,
+            pipeline_fragment_shading_rate: crate::vk::Bool32,
+        ) -> Self {
+            self.pipeline_fragment_shading_rate = pipeline_fragment_shading_rate;
+            self
+        }
+        pub fn primitive_fragment_shading_rate(
+            mut self,
+            primitive_fragment_shading_rate: crate::vk::Bool32,
+        ) -> Self {
+            self.primitive_fragment_shading_rate = primitive_fragment_shading_rate;
+            self
+        }
+        pub fn attachment_fragment_shading_rate(
+            mut self,
+            attachment_fragment_shading_rate: crate::vk::Bool32,
+        ) -> Self {
+            self.attachment_fragment_shading_rate = attachment_fragment_shading_rate;
+            self
         }
     }
     #[repr(C)]
@@ -210,6 +264,127 @@ pub(crate) mod reexport {
             }
         }
     }
+    impl<'a> PhysicalDeviceFragmentShadingRatePropertiesKHR<'a> {
+        pub fn min_fragment_shading_rate_attachment_texel_size(
+            mut self,
+            min_fragment_shading_rate_attachment_texel_size: crate::vk::Extent2D,
+        ) -> Self {
+            self.min_fragment_shading_rate_attachment_texel_size = min_fragment_shading_rate_attachment_texel_size;
+            self
+        }
+        pub fn max_fragment_shading_rate_attachment_texel_size(
+            mut self,
+            max_fragment_shading_rate_attachment_texel_size: crate::vk::Extent2D,
+        ) -> Self {
+            self.max_fragment_shading_rate_attachment_texel_size = max_fragment_shading_rate_attachment_texel_size;
+            self
+        }
+        pub fn max_fragment_shading_rate_attachment_texel_size_aspect_ratio(
+            mut self,
+            max_fragment_shading_rate_attachment_texel_size_aspect_ratio: u32,
+        ) -> Self {
+            self.max_fragment_shading_rate_attachment_texel_size_aspect_ratio = max_fragment_shading_rate_attachment_texel_size_aspect_ratio;
+            self
+        }
+        pub fn primitive_fragment_shading_rate_with_multiple_viewports(
+            mut self,
+            primitive_fragment_shading_rate_with_multiple_viewports: crate::vk::Bool32,
+        ) -> Self {
+            self.primitive_fragment_shading_rate_with_multiple_viewports = primitive_fragment_shading_rate_with_multiple_viewports;
+            self
+        }
+        pub fn layered_shading_rate_attachments(
+            mut self,
+            layered_shading_rate_attachments: crate::vk::Bool32,
+        ) -> Self {
+            self.layered_shading_rate_attachments = layered_shading_rate_attachments;
+            self
+        }
+        pub fn fragment_shading_rate_non_trivial_combiner_ops(
+            mut self,
+            fragment_shading_rate_non_trivial_combiner_ops: crate::vk::Bool32,
+        ) -> Self {
+            self.fragment_shading_rate_non_trivial_combiner_ops = fragment_shading_rate_non_trivial_combiner_ops;
+            self
+        }
+        pub fn max_fragment_size(
+            mut self,
+            max_fragment_size: crate::vk::Extent2D,
+        ) -> Self {
+            self.max_fragment_size = max_fragment_size;
+            self
+        }
+        pub fn max_fragment_size_aspect_ratio(
+            mut self,
+            max_fragment_size_aspect_ratio: u32,
+        ) -> Self {
+            self.max_fragment_size_aspect_ratio = max_fragment_size_aspect_ratio;
+            self
+        }
+        pub fn max_fragment_shading_rate_coverage_samples(
+            mut self,
+            max_fragment_shading_rate_coverage_samples: u32,
+        ) -> Self {
+            self.max_fragment_shading_rate_coverage_samples = max_fragment_shading_rate_coverage_samples;
+            self
+        }
+        pub fn max_fragment_shading_rate_rasterization_samples(
+            mut self,
+            max_fragment_shading_rate_rasterization_samples: crate::vk::SampleCountFlagBits,
+        ) -> Self {
+            self.max_fragment_shading_rate_rasterization_samples = max_fragment_shading_rate_rasterization_samples;
+            self
+        }
+        pub fn fragment_shading_rate_with_shader_depth_stencil_writes(
+            mut self,
+            fragment_shading_rate_with_shader_depth_stencil_writes: crate::vk::Bool32,
+        ) -> Self {
+            self.fragment_shading_rate_with_shader_depth_stencil_writes = fragment_shading_rate_with_shader_depth_stencil_writes;
+            self
+        }
+        pub fn fragment_shading_rate_with_sample_mask(
+            mut self,
+            fragment_shading_rate_with_sample_mask: crate::vk::Bool32,
+        ) -> Self {
+            self.fragment_shading_rate_with_sample_mask = fragment_shading_rate_with_sample_mask;
+            self
+        }
+        pub fn fragment_shading_rate_with_shader_sample_mask(
+            mut self,
+            fragment_shading_rate_with_shader_sample_mask: crate::vk::Bool32,
+        ) -> Self {
+            self.fragment_shading_rate_with_shader_sample_mask = fragment_shading_rate_with_shader_sample_mask;
+            self
+        }
+        pub fn fragment_shading_rate_with_conservative_rasterization(
+            mut self,
+            fragment_shading_rate_with_conservative_rasterization: crate::vk::Bool32,
+        ) -> Self {
+            self.fragment_shading_rate_with_conservative_rasterization = fragment_shading_rate_with_conservative_rasterization;
+            self
+        }
+        pub fn fragment_shading_rate_with_fragment_shader_interlock(
+            mut self,
+            fragment_shading_rate_with_fragment_shader_interlock: crate::vk::Bool32,
+        ) -> Self {
+            self.fragment_shading_rate_with_fragment_shader_interlock = fragment_shading_rate_with_fragment_shader_interlock;
+            self
+        }
+        pub fn fragment_shading_rate_with_custom_sample_locations(
+            mut self,
+            fragment_shading_rate_with_custom_sample_locations: crate::vk::Bool32,
+        ) -> Self {
+            self.fragment_shading_rate_with_custom_sample_locations = fragment_shading_rate_with_custom_sample_locations;
+            self
+        }
+        pub fn fragment_shading_rate_strict_multiply_combiner(
+            mut self,
+            fragment_shading_rate_strict_multiply_combiner: crate::vk::Bool32,
+        ) -> Self {
+            self.fragment_shading_rate_strict_multiply_combiner = fragment_shading_rate_strict_multiply_combiner;
+            self
+        }
+    }
     #[repr(C)]
     #[derive(Clone, Copy)]
     pub struct PhysicalDeviceFragmentShadingRateKHR<'a> {
@@ -232,6 +407,19 @@ pub(crate) mod reexport {
                 fragment_size: Default::default(),
                 _marker: ::core::marker::PhantomData,
             }
+        }
+    }
+    impl<'a> PhysicalDeviceFragmentShadingRateKHR<'a> {
+        pub fn sample_counts(
+            mut self,
+            sample_counts: crate::vk::SampleCountFlags,
+        ) -> Self {
+            self.sample_counts = sample_counts;
+            self
+        }
+        pub fn fragment_size(mut self, fragment_size: crate::vk::Extent2D) -> Self {
+            self.fragment_size = fragment_size;
+            self
         }
     }
     #[repr(C)]
@@ -260,6 +448,23 @@ pub(crate) mod reexport {
                 shading_rate_attachment_texel_size: Default::default(),
                 _marker: ::core::marker::PhantomData,
             }
+        }
+    }
+    impl<'a> RenderingFragmentShadingRateAttachmentInfoKHR<'a> {
+        pub fn image_view(mut self, image_view: crate::vk::ImageView) -> Self {
+            self.image_view = image_view;
+            self
+        }
+        pub fn image_layout(mut self, image_layout: crate::vk::ImageLayout) -> Self {
+            self.image_layout = image_layout;
+            self
+        }
+        pub fn shading_rate_attachment_texel_size(
+            mut self,
+            shading_rate_attachment_texel_size: crate::vk::Extent2D,
+        ) -> Self {
+            self.shading_rate_attachment_texel_size = shading_rate_attachment_texel_size;
+            self
         }
     }
     ///Provided by [`khr::fragment_shading_rate`](crate::khr::fragment_shading_rate)

@@ -124,6 +124,16 @@ pub(crate) mod reexport {
             }
         }
     }
+    impl<'a> CuModuleCreateInfoNVX<'a> {
+        pub fn data_size(mut self, data_size: usize) -> Self {
+            self.data_size = data_size;
+            self
+        }
+        pub fn p_data(mut self, p_data: *const core::ffi::c_void) -> Self {
+            self.p_data = p_data;
+            self
+        }
+    }
     #[repr(C)]
     #[derive(Clone, Copy)]
     pub struct CuModuleTexturingModeCreateInfoNVX<'a> {
@@ -148,6 +158,15 @@ pub(crate) mod reexport {
             }
         }
     }
+    impl<'a> CuModuleTexturingModeCreateInfoNVX<'a> {
+        pub fn use64bit_texturing(
+            mut self,
+            use64bit_texturing: crate::vk::Bool32,
+        ) -> Self {
+            self.use64bit_texturing = use64bit_texturing;
+            self
+        }
+    }
     #[repr(C)]
     #[derive(Clone, Copy)]
     pub struct CuFunctionCreateInfoNVX<'a> {
@@ -169,6 +188,16 @@ pub(crate) mod reexport {
                 p_name: Default::default(),
                 _marker: ::core::marker::PhantomData,
             }
+        }
+    }
+    impl<'a> CuFunctionCreateInfoNVX<'a> {
+        pub fn module(mut self, module: crate::vk::CuModuleNVX) -> Self {
+            self.module = module;
+            self
+        }
+        pub fn p_name(mut self, p_name: *const core::ffi::c_char) -> Self {
+            self.p_name = p_name;
+            self
         }
     }
     #[repr(C)]
@@ -212,6 +241,56 @@ pub(crate) mod reexport {
                 p_extras: Default::default(),
                 _marker: ::core::marker::PhantomData,
             }
+        }
+    }
+    impl<'a> CuLaunchInfoNVX<'a> {
+        pub fn function(mut self, function: crate::vk::CuFunctionNVX) -> Self {
+            self.function = function;
+            self
+        }
+        pub fn grid_dim_x(mut self, grid_dim_x: u32) -> Self {
+            self.grid_dim_x = grid_dim_x;
+            self
+        }
+        pub fn grid_dim_y(mut self, grid_dim_y: u32) -> Self {
+            self.grid_dim_y = grid_dim_y;
+            self
+        }
+        pub fn grid_dim_z(mut self, grid_dim_z: u32) -> Self {
+            self.grid_dim_z = grid_dim_z;
+            self
+        }
+        pub fn block_dim_x(mut self, block_dim_x: u32) -> Self {
+            self.block_dim_x = block_dim_x;
+            self
+        }
+        pub fn block_dim_y(mut self, block_dim_y: u32) -> Self {
+            self.block_dim_y = block_dim_y;
+            self
+        }
+        pub fn block_dim_z(mut self, block_dim_z: u32) -> Self {
+            self.block_dim_z = block_dim_z;
+            self
+        }
+        pub fn shared_mem_bytes(mut self, shared_mem_bytes: u32) -> Self {
+            self.shared_mem_bytes = shared_mem_bytes;
+            self
+        }
+        pub fn param_count(mut self, param_count: usize) -> Self {
+            self.param_count = param_count;
+            self
+        }
+        pub fn p_params(mut self, p_params: *const *const core::ffi::c_void) -> Self {
+            self.p_params = p_params;
+            self
+        }
+        pub fn extra_count(mut self, extra_count: usize) -> Self {
+            self.extra_count = extra_count;
+            self
+        }
+        pub fn p_extras(mut self, p_extras: *const *const core::ffi::c_void) -> Self {
+            self.p_extras = p_extras;
+            self
         }
     }
     ///Provided by [`nvx::binary_import`](crate::nvx::binary_import)

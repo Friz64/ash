@@ -79,6 +79,30 @@ pub(crate) mod reexport {
             }
         }
     }
+    impl<'a> ImportSemaphoreZirconHandleInfoFUCHSIA<'a> {
+        pub fn semaphore(mut self, semaphore: crate::vk::Semaphore) -> Self {
+            self.semaphore = semaphore;
+            self
+        }
+        pub fn flags(mut self, flags: crate::vk::SemaphoreImportFlags) -> Self {
+            self.flags = flags;
+            self
+        }
+        pub fn handle_type(
+            mut self,
+            handle_type: crate::vk::ExternalSemaphoreHandleTypeFlagBits,
+        ) -> Self {
+            self.handle_type = handle_type;
+            self
+        }
+        pub fn zircon_handle(
+            mut self,
+            zircon_handle: crate::platform_types::zx_handle_t,
+        ) -> Self {
+            self.zircon_handle = zircon_handle;
+            self
+        }
+    }
     #[repr(C)]
     #[derive(Clone, Copy)]
     pub struct SemaphoreGetZirconHandleInfoFUCHSIA<'a> {
@@ -101,6 +125,19 @@ pub(crate) mod reexport {
                 handle_type: Default::default(),
                 _marker: ::core::marker::PhantomData,
             }
+        }
+    }
+    impl<'a> SemaphoreGetZirconHandleInfoFUCHSIA<'a> {
+        pub fn semaphore(mut self, semaphore: crate::vk::Semaphore) -> Self {
+            self.semaphore = semaphore;
+            self
+        }
+        pub fn handle_type(
+            mut self,
+            handle_type: crate::vk::ExternalSemaphoreHandleTypeFlagBits,
+        ) -> Self {
+            self.handle_type = handle_type;
+            self
         }
     }
     ///Provided by [`fuchsia::external_semaphore`](crate::fuchsia::external_semaphore)

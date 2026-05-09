@@ -75,6 +75,15 @@ pub(crate) mod reexport {
             }
         }
     }
+    impl<'a> NativeBufferUsageOHOS<'a> {
+        pub fn ohos_native_buffer_usage(
+            mut self,
+            ohos_native_buffer_usage: u64,
+        ) -> Self {
+            self.ohos_native_buffer_usage = ohos_native_buffer_usage;
+            self
+        }
+    }
     #[repr(C)]
     #[derive(Clone, Copy)]
     pub struct NativeBufferPropertiesOHOS<'a> {
@@ -96,6 +105,19 @@ pub(crate) mod reexport {
                 memory_type_bits: Default::default(),
                 _marker: ::core::marker::PhantomData,
             }
+        }
+    }
+    impl<'a> NativeBufferPropertiesOHOS<'a> {
+        pub fn allocation_size(
+            mut self,
+            allocation_size: crate::vk::DeviceSize,
+        ) -> Self {
+            self.allocation_size = allocation_size;
+            self
+        }
+        pub fn memory_type_bits(mut self, memory_type_bits: u32) -> Self {
+            self.memory_type_bits = memory_type_bits;
+            self
         }
     }
     #[repr(C)]
@@ -135,6 +157,58 @@ pub(crate) mod reexport {
             }
         }
     }
+    impl<'a> NativeBufferFormatPropertiesOHOS<'a> {
+        pub fn format(mut self, format: crate::vk::Format) -> Self {
+            self.format = format;
+            self
+        }
+        pub fn external_format(mut self, external_format: u64) -> Self {
+            self.external_format = external_format;
+            self
+        }
+        pub fn format_features(
+            mut self,
+            format_features: crate::vk::FormatFeatureFlags,
+        ) -> Self {
+            self.format_features = format_features;
+            self
+        }
+        pub fn sampler_ycbcr_conversion_components(
+            mut self,
+            sampler_ycbcr_conversion_components: crate::vk::ComponentMapping,
+        ) -> Self {
+            self.sampler_ycbcr_conversion_components = sampler_ycbcr_conversion_components;
+            self
+        }
+        pub fn suggested_ycbcr_model(
+            mut self,
+            suggested_ycbcr_model: crate::vk::SamplerYcbcrModelConversion,
+        ) -> Self {
+            self.suggested_ycbcr_model = suggested_ycbcr_model;
+            self
+        }
+        pub fn suggested_ycbcr_range(
+            mut self,
+            suggested_ycbcr_range: crate::vk::SamplerYcbcrRange,
+        ) -> Self {
+            self.suggested_ycbcr_range = suggested_ycbcr_range;
+            self
+        }
+        pub fn suggested_x_chroma_offset(
+            mut self,
+            suggested_x_chroma_offset: crate::vk::ChromaLocation,
+        ) -> Self {
+            self.suggested_x_chroma_offset = suggested_x_chroma_offset;
+            self
+        }
+        pub fn suggested_y_chroma_offset(
+            mut self,
+            suggested_y_chroma_offset: crate::vk::ChromaLocation,
+        ) -> Self {
+            self.suggested_y_chroma_offset = suggested_y_chroma_offset;
+            self
+        }
+    }
     #[repr(C)]
     #[derive(Clone, Copy)]
     pub struct ImportNativeBufferInfoOHOS<'a> {
@@ -158,6 +232,15 @@ pub(crate) mod reexport {
             }
         }
     }
+    impl<'a> ImportNativeBufferInfoOHOS<'a> {
+        pub fn buffer(
+            mut self,
+            buffer: *mut crate::platform_types::OH_NativeBuffer,
+        ) -> Self {
+            self.buffer = buffer;
+            self
+        }
+    }
     #[repr(C)]
     #[derive(Clone, Copy)]
     pub struct MemoryGetNativeBufferInfoOHOS<'a> {
@@ -177,6 +260,12 @@ pub(crate) mod reexport {
                 memory: Default::default(),
                 _marker: ::core::marker::PhantomData,
             }
+        }
+    }
+    impl<'a> MemoryGetNativeBufferInfoOHOS<'a> {
+        pub fn memory(mut self, memory: crate::vk::DeviceMemory) -> Self {
+            self.memory = memory;
+            self
         }
     }
     #[repr(C)]
@@ -208,6 +297,12 @@ pub(crate) mod reexport {
                 external_format: Default::default(),
                 _marker: ::core::marker::PhantomData,
             }
+        }
+    }
+    impl<'a> ExternalFormatOHOS<'a> {
+        pub fn external_format(mut self, external_format: u64) -> Self {
+            self.external_format = external_format;
+            self
         }
     }
     ///Provided by [`ohos::external_memory`](crate::ohos::external_memory)

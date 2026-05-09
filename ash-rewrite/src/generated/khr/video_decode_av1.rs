@@ -28,6 +28,16 @@ impl<'a> Default for VideoDecodeAV1ProfileInfoKHR<'a> {
         }
     }
 }
+impl<'a> VideoDecodeAV1ProfileInfoKHR<'a> {
+    pub fn std_profile(mut self, std_profile: crate::vk::AV1Profile) -> Self {
+        self.std_profile = std_profile;
+        self
+    }
+    pub fn film_grain_support(mut self, film_grain_support: crate::vk::Bool32) -> Self {
+        self.film_grain_support = film_grain_support;
+        self
+    }
+}
 #[repr(C)]
 #[derive(Clone, Copy)]
 pub struct VideoDecodeAV1CapabilitiesKHR<'a> {
@@ -49,6 +59,12 @@ impl<'a> Default for VideoDecodeAV1CapabilitiesKHR<'a> {
             max_level: Default::default(),
             _marker: ::core::marker::PhantomData,
         }
+    }
+}
+impl<'a> VideoDecodeAV1CapabilitiesKHR<'a> {
+    pub fn max_level(mut self, max_level: crate::vk::AV1Level) -> Self {
+        self.max_level = max_level;
+        self
     }
 }
 #[repr(C)]
@@ -73,6 +89,15 @@ impl<'a> Default for VideoDecodeAV1SessionParametersCreateInfoKHR<'a> {
             p_std_sequence_header: Default::default(),
             _marker: ::core::marker::PhantomData,
         }
+    }
+}
+impl<'a> VideoDecodeAV1SessionParametersCreateInfoKHR<'a> {
+    pub fn p_std_sequence_header(
+        mut self,
+        p_std_sequence_header: *const crate::vk::AV1SequenceHeader<'a>,
+    ) -> Self {
+        self.p_std_sequence_header = p_std_sequence_header;
+        self
     }
 }
 #[repr(C)]
@@ -109,6 +134,39 @@ impl<'a> Default for VideoDecodeAV1PictureInfoKHR<'a> {
         }
     }
 }
+impl<'a> VideoDecodeAV1PictureInfoKHR<'a> {
+    pub fn p_std_picture_info(
+        mut self,
+        p_std_picture_info: *const crate::vk::DecodeAV1PictureInfo<'a>,
+    ) -> Self {
+        self.p_std_picture_info = p_std_picture_info;
+        self
+    }
+    pub fn reference_name_slot_indices(
+        mut self,
+        reference_name_slot_indices: [i32; crate::vk::MAX_VIDEO_AV1_REFERENCES_PER_FRAME_KHR
+            as _],
+    ) -> Self {
+        self.reference_name_slot_indices = reference_name_slot_indices;
+        self
+    }
+    pub fn frame_header_offset(mut self, frame_header_offset: u32) -> Self {
+        self.frame_header_offset = frame_header_offset;
+        self
+    }
+    pub fn tile_count(mut self, tile_count: u32) -> Self {
+        self.tile_count = tile_count;
+        self
+    }
+    pub fn p_tile_offsets(mut self, p_tile_offsets: *const u32) -> Self {
+        self.p_tile_offsets = p_tile_offsets;
+        self
+    }
+    pub fn p_tile_sizes(mut self, p_tile_sizes: *const u32) -> Self {
+        self.p_tile_sizes = p_tile_sizes;
+        self
+    }
+}
 #[repr(C)]
 #[derive(Clone, Copy)]
 pub struct VideoDecodeAV1DpbSlotInfoKHR<'a> {
@@ -130,6 +188,15 @@ impl<'a> Default for VideoDecodeAV1DpbSlotInfoKHR<'a> {
             p_std_reference_info: Default::default(),
             _marker: ::core::marker::PhantomData,
         }
+    }
+}
+impl<'a> VideoDecodeAV1DpbSlotInfoKHR<'a> {
+    pub fn p_std_reference_info(
+        mut self,
+        p_std_reference_info: *const crate::vk::DecodeAV1ReferenceInfo,
+    ) -> Self {
+        self.p_std_reference_info = p_std_reference_info;
+        self
     }
 }
 ///Provided by [`khr::video_decode_av1`](crate::khr::video_decode_av1)

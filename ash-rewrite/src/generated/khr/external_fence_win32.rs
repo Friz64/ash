@@ -80,6 +80,31 @@ pub(crate) mod reexport {
             }
         }
     }
+    impl<'a> ImportFenceWin32HandleInfoKHR<'a> {
+        pub fn fence(mut self, fence: crate::vk::Fence) -> Self {
+            self.fence = fence;
+            self
+        }
+        pub fn flags(mut self, flags: crate::vk::FenceImportFlags) -> Self {
+            self.flags = flags;
+            self
+        }
+        pub fn handle_type(
+            mut self,
+            handle_type: crate::vk::ExternalFenceHandleTypeFlagBits,
+        ) -> Self {
+            self.handle_type = handle_type;
+            self
+        }
+        pub fn handle(mut self, handle: crate::platform_types::HANDLE) -> Self {
+            self.handle = handle;
+            self
+        }
+        pub fn name(mut self, name: crate::platform_types::LPCWSTR) -> Self {
+            self.name = name;
+            self
+        }
+    }
     #[repr(C)]
     #[derive(Clone, Copy)]
     pub struct ExportFenceWin32HandleInfoKHR<'a> {
@@ -107,6 +132,23 @@ pub(crate) mod reexport {
             }
         }
     }
+    impl<'a> ExportFenceWin32HandleInfoKHR<'a> {
+        pub fn p_attributes(
+            mut self,
+            p_attributes: *const crate::platform_types::SECURITY_ATTRIBUTES,
+        ) -> Self {
+            self.p_attributes = p_attributes;
+            self
+        }
+        pub fn dw_access(mut self, dw_access: crate::platform_types::DWORD) -> Self {
+            self.dw_access = dw_access;
+            self
+        }
+        pub fn name(mut self, name: crate::platform_types::LPCWSTR) -> Self {
+            self.name = name;
+            self
+        }
+    }
     #[repr(C)]
     #[derive(Clone, Copy)]
     pub struct FenceGetWin32HandleInfoKHR<'a> {
@@ -128,6 +170,19 @@ pub(crate) mod reexport {
                 handle_type: Default::default(),
                 _marker: ::core::marker::PhantomData,
             }
+        }
+    }
+    impl<'a> FenceGetWin32HandleInfoKHR<'a> {
+        pub fn fence(mut self, fence: crate::vk::Fence) -> Self {
+            self.fence = fence;
+            self
+        }
+        pub fn handle_type(
+            mut self,
+            handle_type: crate::vk::ExternalFenceHandleTypeFlagBits,
+        ) -> Self {
+            self.handle_type = handle_type;
+            self
         }
     }
     ///Provided by [`khr::external_fence_win32`](crate::khr::external_fence_win32)

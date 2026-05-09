@@ -83,6 +83,12 @@ pub(crate) mod reexport {
             }
         }
     }
+    impl<'a> PhysicalDeviceCopyMemoryIndirectFeaturesNV<'a> {
+        pub fn indirect_copy(mut self, indirect_copy: crate::vk::Bool32) -> Self {
+            self.indirect_copy = indirect_copy;
+            self
+        }
+    }
     pub type CopyMemoryIndirectCommandNV = crate::vk::CopyMemoryIndirectCommandKHR;
     pub type CopyMemoryToImageIndirectCommandNV = crate::vk::CopyMemoryToImageIndirectCommandKHR;
     pub type PhysicalDeviceCopyMemoryIndirectPropertiesNV<'a> = crate::vk::PhysicalDeviceCopyMemoryIndirectPropertiesKHR<

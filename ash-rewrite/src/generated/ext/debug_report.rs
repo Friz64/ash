@@ -101,6 +101,23 @@ pub(crate) mod reexport {
             }
         }
     }
+    impl<'a> DebugReportCallbackCreateInfoEXT<'a> {
+        pub fn flags(mut self, flags: crate::vk::DebugReportFlagsEXT) -> Self {
+            self.flags = flags;
+            self
+        }
+        pub fn pfn_callback(
+            mut self,
+            pfn_callback: crate::vk::PFN_vkDebugReportCallbackEXT,
+        ) -> Self {
+            self.pfn_callback = pfn_callback;
+            self
+        }
+        pub fn p_user_data(mut self, p_user_data: *mut core::ffi::c_void) -> Self {
+            self.p_user_data = p_user_data;
+            self
+        }
+    }
     ///Provided by [`ext::debug_report`](crate::ext::debug_report)
     impl crate::vk::StructureType {
         pub const DEBUG_REPORT_CALLBACK_CREATE_INFO_EXT: Self = Self(1000011000);

@@ -24,6 +24,15 @@ impl<'a> Default for TextureLODGatherFormatPropertiesAMD<'a> {
         }
     }
 }
+impl<'a> TextureLODGatherFormatPropertiesAMD<'a> {
+    pub fn supports_texture_gather_lod_bias_amd(
+        mut self,
+        supports_texture_gather_lod_bias_amd: crate::vk::Bool32,
+    ) -> Self {
+        self.supports_texture_gather_lod_bias_amd = supports_texture_gather_lod_bias_amd;
+        self
+    }
+}
 ///Provided by [`amd::texture_gather_bias_lod`](crate::amd::texture_gather_bias_lod)
 impl crate::vk::StructureType {
     pub const TEXTURE_LOD_GATHER_FORMAT_PROPERTIES_AMD: Self = Self(1000041000);

@@ -144,6 +144,32 @@ pub(crate) mod reexport {
             }
         }
     }
+    impl<'a> SetDescriptorBufferOffsetsInfoEXT<'a> {
+        pub fn stage_flags(mut self, stage_flags: crate::vk::ShaderStageFlags) -> Self {
+            self.stage_flags = stage_flags;
+            self
+        }
+        pub fn layout(mut self, layout: crate::vk::PipelineLayout) -> Self {
+            self.layout = layout;
+            self
+        }
+        pub fn first_set(mut self, first_set: u32) -> Self {
+            self.first_set = first_set;
+            self
+        }
+        pub fn set_count(mut self, set_count: u32) -> Self {
+            self.set_count = set_count;
+            self
+        }
+        pub fn p_buffer_indices(mut self, p_buffer_indices: *const u32) -> Self {
+            self.p_buffer_indices = p_buffer_indices;
+            self
+        }
+        pub fn p_offsets(mut self, p_offsets: *const crate::vk::DeviceSize) -> Self {
+            self.p_offsets = p_offsets;
+            self
+        }
+    }
     #[repr(C)]
     #[derive(Clone, Copy)]
     pub struct BindDescriptorBufferEmbeddedSamplersInfoEXT<'a> {
@@ -168,6 +194,20 @@ pub(crate) mod reexport {
                 set: Default::default(),
                 _marker: ::core::marker::PhantomData,
             }
+        }
+    }
+    impl<'a> BindDescriptorBufferEmbeddedSamplersInfoEXT<'a> {
+        pub fn stage_flags(mut self, stage_flags: crate::vk::ShaderStageFlags) -> Self {
+            self.stage_flags = stage_flags;
+            self
+        }
+        pub fn layout(mut self, layout: crate::vk::PipelineLayout) -> Self {
+            self.layout = layout;
+            self
+        }
+        pub fn set(mut self, set: u32) -> Self {
+            self.set = set;
+            self
         }
     }
     pub type PhysicalDeviceMaintenance6FeaturesKHR<'a> = crate::vk::PhysicalDeviceMaintenance6Features<

@@ -27,6 +27,15 @@ impl<'a> Default for PhysicalDevicePipelineOpacityMicromapFeaturesARM<'a> {
         }
     }
 }
+impl<'a> PhysicalDevicePipelineOpacityMicromapFeaturesARM<'a> {
+    pub fn pipeline_opacity_micromap(
+        mut self,
+        pipeline_opacity_micromap: crate::vk::Bool32,
+    ) -> Self {
+        self.pipeline_opacity_micromap = pipeline_opacity_micromap;
+        self
+    }
+}
 ///Provided by [`arm::pipeline_opacity_micromap`](crate::arm::pipeline_opacity_micromap)
 impl crate::vk::StructureType {
     pub const PHYSICAL_DEVICE_PIPELINE_OPACITY_MICROMAP_FEATURES_ARM: Self = Self(

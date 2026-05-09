@@ -30,6 +30,26 @@ impl<'a> Default for AttachmentSampleCountInfoAMD<'a> {
         }
     }
 }
+impl<'a> AttachmentSampleCountInfoAMD<'a> {
+    pub fn color_attachment_count(mut self, color_attachment_count: u32) -> Self {
+        self.color_attachment_count = color_attachment_count;
+        self
+    }
+    pub fn p_color_attachment_samples(
+        mut self,
+        p_color_attachment_samples: *const crate::vk::SampleCountFlagBits,
+    ) -> Self {
+        self.p_color_attachment_samples = p_color_attachment_samples;
+        self
+    }
+    pub fn depth_stencil_attachment_samples(
+        mut self,
+        depth_stencil_attachment_samples: crate::vk::SampleCountFlagBits,
+    ) -> Self {
+        self.depth_stencil_attachment_samples = depth_stencil_attachment_samples;
+        self
+    }
+}
 ///Provided by [`amd::mixed_attachment_samples`](crate::amd::mixed_attachment_samples)
 impl crate::vk::StructureType {
     pub const ATTACHMENT_SAMPLE_COUNT_INFO_AMD: Self = Self(1000044008);

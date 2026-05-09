@@ -78,6 +78,27 @@ pub(crate) mod reexport {
             }
         }
     }
+    impl<'a> ImportFenceFdInfoKHR<'a> {
+        pub fn fence(mut self, fence: crate::vk::Fence) -> Self {
+            self.fence = fence;
+            self
+        }
+        pub fn flags(mut self, flags: crate::vk::FenceImportFlags) -> Self {
+            self.flags = flags;
+            self
+        }
+        pub fn handle_type(
+            mut self,
+            handle_type: crate::vk::ExternalFenceHandleTypeFlagBits,
+        ) -> Self {
+            self.handle_type = handle_type;
+            self
+        }
+        pub fn fd(mut self, fd: core::ffi::c_int) -> Self {
+            self.fd = fd;
+            self
+        }
+    }
     #[repr(C)]
     #[derive(Clone, Copy)]
     pub struct FenceGetFdInfoKHR<'a> {
@@ -99,6 +120,19 @@ pub(crate) mod reexport {
                 handle_type: Default::default(),
                 _marker: ::core::marker::PhantomData,
             }
+        }
+    }
+    impl<'a> FenceGetFdInfoKHR<'a> {
+        pub fn fence(mut self, fence: crate::vk::Fence) -> Self {
+            self.fence = fence;
+            self
+        }
+        pub fn handle_type(
+            mut self,
+            handle_type: crate::vk::ExternalFenceHandleTypeFlagBits,
+        ) -> Self {
+            self.handle_type = handle_type;
+            self
         }
     }
     ///Provided by [`khr::external_fence_fd`](crate::khr::external_fence_fd)

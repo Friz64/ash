@@ -25,6 +25,12 @@ impl<'a> Default for PhysicalDeviceImageViewImageFormatInfoEXT<'a> {
         }
     }
 }
+impl<'a> PhysicalDeviceImageViewImageFormatInfoEXT<'a> {
+    pub fn image_view_type(mut self, image_view_type: crate::vk::ImageViewType) -> Self {
+        self.image_view_type = image_view_type;
+        self
+    }
+}
 #[repr(C)]
 #[derive(Clone, Copy)]
 pub struct FilterCubicImageViewImageFormatPropertiesEXT<'a> {
@@ -49,6 +55,19 @@ impl<'a> Default for FilterCubicImageViewImageFormatPropertiesEXT<'a> {
             filter_cubic_minmax: Default::default(),
             _marker: ::core::marker::PhantomData,
         }
+    }
+}
+impl<'a> FilterCubicImageViewImageFormatPropertiesEXT<'a> {
+    pub fn filter_cubic(mut self, filter_cubic: crate::vk::Bool32) -> Self {
+        self.filter_cubic = filter_cubic;
+        self
+    }
+    pub fn filter_cubic_minmax(
+        mut self,
+        filter_cubic_minmax: crate::vk::Bool32,
+    ) -> Self {
+        self.filter_cubic_minmax = filter_cubic_minmax;
+        self
     }
 }
 ///Provided by [`ext::filter_cubic`](crate::ext::filter_cubic)

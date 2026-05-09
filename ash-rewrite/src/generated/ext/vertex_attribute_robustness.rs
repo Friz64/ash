@@ -27,6 +27,15 @@ impl<'a> Default for PhysicalDeviceVertexAttributeRobustnessFeaturesEXT<'a> {
         }
     }
 }
+impl<'a> PhysicalDeviceVertexAttributeRobustnessFeaturesEXT<'a> {
+    pub fn vertex_attribute_robustness(
+        mut self,
+        vertex_attribute_robustness: crate::vk::Bool32,
+    ) -> Self {
+        self.vertex_attribute_robustness = vertex_attribute_robustness;
+        self
+    }
+}
 ///Provided by [`ext::vertex_attribute_robustness`](crate::ext::vertex_attribute_robustness)
 impl crate::vk::StructureType {
     pub const PHYSICAL_DEVICE_VERTEX_ATTRIBUTE_ROBUSTNESS_FEATURES_EXT: Self = Self(

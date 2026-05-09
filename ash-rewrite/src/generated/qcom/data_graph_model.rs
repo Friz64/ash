@@ -22,6 +22,38 @@ impl Default for PipelineCacheHeaderVersionDataGraphQCOM {
         }
     }
 }
+impl PipelineCacheHeaderVersionDataGraphQCOM {
+    pub fn header_size(mut self, header_size: u32) -> Self {
+        self.header_size = header_size;
+        self
+    }
+    pub fn header_version(
+        mut self,
+        header_version: crate::vk::PipelineCacheHeaderVersion,
+    ) -> Self {
+        self.header_version = header_version;
+        self
+    }
+    pub fn cache_type(
+        mut self,
+        cache_type: crate::vk::DataGraphModelCacheTypeQCOM,
+    ) -> Self {
+        self.cache_type = cache_type;
+        self
+    }
+    pub fn cache_version(mut self, cache_version: u32) -> Self {
+        self.cache_version = cache_version;
+        self
+    }
+    pub fn toolchain_version(
+        mut self,
+        toolchain_version: [u32; crate::vk::DATA_GRAPH_MODEL_TOOLCHAIN_VERSION_LENGTH_QCOM
+            as _],
+    ) -> Self {
+        self.toolchain_version = toolchain_version;
+        self
+    }
+}
 #[repr(C)]
 #[derive(Clone, Copy)]
 pub struct DataGraphPipelineBuiltinModelCreateInfoQCOM<'a> {
@@ -44,6 +76,15 @@ impl<'a> Default for DataGraphPipelineBuiltinModelCreateInfoQCOM<'a> {
             p_operation: Default::default(),
             _marker: ::core::marker::PhantomData,
         }
+    }
+}
+impl<'a> DataGraphPipelineBuiltinModelCreateInfoQCOM<'a> {
+    pub fn p_operation(
+        mut self,
+        p_operation: *const crate::vk::PhysicalDeviceDataGraphOperationSupportARM,
+    ) -> Self {
+        self.p_operation = p_operation;
+        self
     }
 }
 #[repr(C)]
@@ -70,6 +111,12 @@ impl<'a> Default for PhysicalDeviceDataGraphModelFeaturesQCOM<'a> {
             data_graph_model: Default::default(),
             _marker: ::core::marker::PhantomData,
         }
+    }
+}
+impl<'a> PhysicalDeviceDataGraphModelFeaturesQCOM<'a> {
+    pub fn data_graph_model(mut self, data_graph_model: crate::vk::Bool32) -> Self {
+        self.data_graph_model = data_graph_model;
+        self
     }
 }
 ///Provided by [`qcom::data_graph_model`](crate::qcom::data_graph_model)

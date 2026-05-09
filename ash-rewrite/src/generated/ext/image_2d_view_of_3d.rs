@@ -29,6 +29,22 @@ impl<'a> Default for PhysicalDeviceImage2DViewOf3DFeaturesEXT<'a> {
         }
     }
 }
+impl<'a> PhysicalDeviceImage2DViewOf3DFeaturesEXT<'a> {
+    pub fn image2_d_view_of3_d(
+        mut self,
+        image2_d_view_of3_d: crate::vk::Bool32,
+    ) -> Self {
+        self.image2_d_view_of3_d = image2_d_view_of3_d;
+        self
+    }
+    pub fn sampler2_d_view_of3_d(
+        mut self,
+        sampler2_d_view_of3_d: crate::vk::Bool32,
+    ) -> Self {
+        self.sampler2_d_view_of3_d = sampler2_d_view_of3_d;
+        self
+    }
+}
 ///Provided by [`ext::image_2d_view_of_3d`](crate::ext::image_2d_view_of_3d)
 impl crate::vk::StructureType {
     pub const PHYSICAL_DEVICE_IMAGE_2D_VIEW_OF_3D_FEATURES_EXT: Self = Self(1000393000);

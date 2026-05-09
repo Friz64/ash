@@ -162,6 +162,16 @@ pub(crate) mod reexport {
         pub _type: crate::vk::PerformanceValueTypeINTEL,
         pub data: crate::vk::PerformanceValueDataINTEL,
     }
+    impl PerformanceValueINTEL {
+        pub fn _type(mut self, _type: crate::vk::PerformanceValueTypeINTEL) -> Self {
+            self._type = _type;
+            self
+        }
+        pub fn data(mut self, data: crate::vk::PerformanceValueDataINTEL) -> Self {
+            self.data = data;
+            self
+        }
+    }
     #[repr(C)]
     #[derive(Clone, Copy)]
     pub struct InitializePerformanceApiInfoINTEL<'a> {
@@ -182,6 +192,12 @@ pub(crate) mod reexport {
                 p_user_data: Default::default(),
                 _marker: ::core::marker::PhantomData,
             }
+        }
+    }
+    impl<'a> InitializePerformanceApiInfoINTEL<'a> {
+        pub fn p_user_data(mut self, p_user_data: *mut core::ffi::c_void) -> Self {
+            self.p_user_data = p_user_data;
+            self
         }
     }
     #[repr(C)]
@@ -208,6 +224,15 @@ pub(crate) mod reexport {
             }
         }
     }
+    impl<'a> QueryPoolPerformanceQueryCreateInfoINTEL<'a> {
+        pub fn performance_counters_sampling(
+            mut self,
+            performance_counters_sampling: crate::vk::QueryPoolSamplingModeINTEL,
+        ) -> Self {
+            self.performance_counters_sampling = performance_counters_sampling;
+            self
+        }
+    }
     #[repr(C)]
     #[derive(Clone, Copy)]
     pub struct PerformanceMarkerInfoINTEL<'a> {
@@ -229,6 +254,12 @@ pub(crate) mod reexport {
             }
         }
     }
+    impl<'a> PerformanceMarkerInfoINTEL<'a> {
+        pub fn marker(mut self, marker: u64) -> Self {
+            self.marker = marker;
+            self
+        }
+    }
     #[repr(C)]
     #[derive(Clone, Copy)]
     pub struct PerformanceStreamMarkerInfoINTEL<'a> {
@@ -248,6 +279,12 @@ pub(crate) mod reexport {
                 marker: Default::default(),
                 _marker: ::core::marker::PhantomData,
             }
+        }
+    }
+    impl<'a> PerformanceStreamMarkerInfoINTEL<'a> {
+        pub fn marker(mut self, marker: u32) -> Self {
+            self.marker = marker;
+            self
         }
     }
     #[repr(C)]
@@ -275,6 +312,20 @@ pub(crate) mod reexport {
             }
         }
     }
+    impl<'a> PerformanceOverrideInfoINTEL<'a> {
+        pub fn _type(mut self, _type: crate::vk::PerformanceOverrideTypeINTEL) -> Self {
+            self._type = _type;
+            self
+        }
+        pub fn enable(mut self, enable: crate::vk::Bool32) -> Self {
+            self.enable = enable;
+            self
+        }
+        pub fn parameter(mut self, parameter: u64) -> Self {
+            self.parameter = parameter;
+            self
+        }
+    }
     #[repr(C)]
     #[derive(Clone, Copy)]
     pub struct PerformanceConfigurationAcquireInfoINTEL<'a> {
@@ -295,6 +346,15 @@ pub(crate) mod reexport {
                 _type: Default::default(),
                 _marker: ::core::marker::PhantomData,
             }
+        }
+    }
+    impl<'a> PerformanceConfigurationAcquireInfoINTEL<'a> {
+        pub fn _type(
+            mut self,
+            _type: crate::vk::PerformanceConfigurationTypeINTEL,
+        ) -> Self {
+            self._type = _type;
+            self
         }
     }
     pub type QueryPoolCreateInfoINTEL<'a> = crate::vk::QueryPoolPerformanceQueryCreateInfoINTEL<

@@ -30,6 +30,26 @@ impl<'a> Default for PhysicalDeviceRobustness2FeaturesKHR<'a> {
         }
     }
 }
+impl<'a> PhysicalDeviceRobustness2FeaturesKHR<'a> {
+    pub fn robust_buffer_access2(
+        mut self,
+        robust_buffer_access2: crate::vk::Bool32,
+    ) -> Self {
+        self.robust_buffer_access2 = robust_buffer_access2;
+        self
+    }
+    pub fn robust_image_access2(
+        mut self,
+        robust_image_access2: crate::vk::Bool32,
+    ) -> Self {
+        self.robust_image_access2 = robust_image_access2;
+        self
+    }
+    pub fn null_descriptor(mut self, null_descriptor: crate::vk::Bool32) -> Self {
+        self.null_descriptor = null_descriptor;
+        self
+    }
+}
 #[repr(C)]
 #[derive(Clone, Copy)]
 pub struct PhysicalDeviceRobustness2PropertiesKHR<'a> {
@@ -54,6 +74,22 @@ impl<'a> Default for PhysicalDeviceRobustness2PropertiesKHR<'a> {
             robust_uniform_buffer_access_size_alignment: Default::default(),
             _marker: ::core::marker::PhantomData,
         }
+    }
+}
+impl<'a> PhysicalDeviceRobustness2PropertiesKHR<'a> {
+    pub fn robust_storage_buffer_access_size_alignment(
+        mut self,
+        robust_storage_buffer_access_size_alignment: crate::vk::DeviceSize,
+    ) -> Self {
+        self.robust_storage_buffer_access_size_alignment = robust_storage_buffer_access_size_alignment;
+        self
+    }
+    pub fn robust_uniform_buffer_access_size_alignment(
+        mut self,
+        robust_uniform_buffer_access_size_alignment: crate::vk::DeviceSize,
+    ) -> Self {
+        self.robust_uniform_buffer_access_size_alignment = robust_uniform_buffer_access_size_alignment;
+        self
     }
 }
 ///Provided by [`khr::robustness2`](crate::khr::robustness2)

@@ -119,6 +119,23 @@ pub(crate) mod reexport {
             }
         }
     }
+    impl<'a> DebugMarkerObjectNameInfoEXT<'a> {
+        pub fn object_type(
+            mut self,
+            object_type: crate::vk::DebugReportObjectTypeEXT,
+        ) -> Self {
+            self.object_type = object_type;
+            self
+        }
+        pub fn object(mut self, object: u64) -> Self {
+            self.object = object;
+            self
+        }
+        pub fn p_object_name(mut self, p_object_name: *const core::ffi::c_char) -> Self {
+            self.p_object_name = p_object_name;
+            self
+        }
+    }
     #[repr(C)]
     #[derive(Clone, Copy)]
     pub struct DebugMarkerObjectTagInfoEXT<'a> {
@@ -148,6 +165,31 @@ pub(crate) mod reexport {
             }
         }
     }
+    impl<'a> DebugMarkerObjectTagInfoEXT<'a> {
+        pub fn object_type(
+            mut self,
+            object_type: crate::vk::DebugReportObjectTypeEXT,
+        ) -> Self {
+            self.object_type = object_type;
+            self
+        }
+        pub fn object(mut self, object: u64) -> Self {
+            self.object = object;
+            self
+        }
+        pub fn tag_name(mut self, tag_name: u64) -> Self {
+            self.tag_name = tag_name;
+            self
+        }
+        pub fn tag_size(mut self, tag_size: usize) -> Self {
+            self.tag_size = tag_size;
+            self
+        }
+        pub fn p_tag(mut self, p_tag: *const core::ffi::c_void) -> Self {
+            self.p_tag = p_tag;
+            self
+        }
+    }
     #[repr(C)]
     #[derive(Clone, Copy)]
     pub struct DebugMarkerMarkerInfoEXT<'a> {
@@ -169,6 +211,16 @@ pub(crate) mod reexport {
                 color: unsafe { core::mem::zeroed() },
                 _marker: ::core::marker::PhantomData,
             }
+        }
+    }
+    impl<'a> DebugMarkerMarkerInfoEXT<'a> {
+        pub fn p_marker_name(mut self, p_marker_name: *const core::ffi::c_char) -> Self {
+            self.p_marker_name = p_marker_name;
+            self
+        }
+        pub fn color(mut self, color: [core::ffi::c_float; 4 as _]) -> Self {
+            self.color = color;
+            self
         }
     }
     ///Provided by [`ext::debug_marker`](crate::ext::debug_marker)

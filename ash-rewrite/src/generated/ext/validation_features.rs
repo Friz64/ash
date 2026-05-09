@@ -34,6 +34,36 @@ impl<'a> Default for ValidationFeaturesEXT<'a> {
         }
     }
 }
+impl<'a> ValidationFeaturesEXT<'a> {
+    pub fn enabled_validation_feature_count(
+        mut self,
+        enabled_validation_feature_count: u32,
+    ) -> Self {
+        self.enabled_validation_feature_count = enabled_validation_feature_count;
+        self
+    }
+    pub fn p_enabled_validation_features(
+        mut self,
+        p_enabled_validation_features: *const crate::vk::ValidationFeatureEnableEXT,
+    ) -> Self {
+        self.p_enabled_validation_features = p_enabled_validation_features;
+        self
+    }
+    pub fn disabled_validation_feature_count(
+        mut self,
+        disabled_validation_feature_count: u32,
+    ) -> Self {
+        self.disabled_validation_feature_count = disabled_validation_feature_count;
+        self
+    }
+    pub fn p_disabled_validation_features(
+        mut self,
+        p_disabled_validation_features: *const crate::vk::ValidationFeatureDisableEXT,
+    ) -> Self {
+        self.p_disabled_validation_features = p_disabled_validation_features;
+        self
+    }
+}
 ///Provided by [`ext::validation_features`](crate::ext::validation_features)
 impl crate::vk::StructureType {
     pub const VALIDATION_FEATURES_EXT: Self = Self(1000247000);

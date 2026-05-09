@@ -61,6 +61,22 @@ pub(crate) mod reexport {
             }
         }
     }
+    impl<'a> ImagePipeSurfaceCreateInfoFUCHSIA<'a> {
+        pub fn flags(
+            mut self,
+            flags: crate::vk::ImagePipeSurfaceCreateFlagsFUCHSIA,
+        ) -> Self {
+            self.flags = flags;
+            self
+        }
+        pub fn image_pipe_handle(
+            mut self,
+            image_pipe_handle: crate::platform_types::zx_handle_t,
+        ) -> Self {
+            self.image_pipe_handle = image_pipe_handle;
+            self
+        }
+    }
     ///Provided by [`fuchsia::imagepipe_surface`](crate::fuchsia::imagepipe_surface)
     impl crate::vk::StructureType {
         pub const IMAGEPIPE_SURFACE_CREATE_INFO_FUCHSIA: Self = Self(1000214000);

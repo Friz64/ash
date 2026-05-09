@@ -31,6 +31,29 @@ impl<'a> Default for PhysicalDevicePrimitivesGeneratedQueryFeaturesEXT<'a> {
         }
     }
 }
+impl<'a> PhysicalDevicePrimitivesGeneratedQueryFeaturesEXT<'a> {
+    pub fn primitives_generated_query(
+        mut self,
+        primitives_generated_query: crate::vk::Bool32,
+    ) -> Self {
+        self.primitives_generated_query = primitives_generated_query;
+        self
+    }
+    pub fn primitives_generated_query_with_rasterizer_discard(
+        mut self,
+        primitives_generated_query_with_rasterizer_discard: crate::vk::Bool32,
+    ) -> Self {
+        self.primitives_generated_query_with_rasterizer_discard = primitives_generated_query_with_rasterizer_discard;
+        self
+    }
+    pub fn primitives_generated_query_with_non_zero_streams(
+        mut self,
+        primitives_generated_query_with_non_zero_streams: crate::vk::Bool32,
+    ) -> Self {
+        self.primitives_generated_query_with_non_zero_streams = primitives_generated_query_with_non_zero_streams;
+        self
+    }
+}
 ///Provided by [`ext::primitives_generated_query`](crate::ext::primitives_generated_query)
 impl crate::vk::QueryType {
     pub const PRIMITIVES_GENERATED_EXT: Self = Self(1000382000);

@@ -27,6 +27,15 @@ impl<'a> Default for PhysicalDevicePresentModeFifoLatestReadyFeaturesKHR<'a> {
         }
     }
 }
+impl<'a> PhysicalDevicePresentModeFifoLatestReadyFeaturesKHR<'a> {
+    pub fn present_mode_fifo_latest_ready(
+        mut self,
+        present_mode_fifo_latest_ready: crate::vk::Bool32,
+    ) -> Self {
+        self.present_mode_fifo_latest_ready = present_mode_fifo_latest_ready;
+        self
+    }
+}
 ///Provided by [`khr::present_mode_fifo_latest_ready`](crate::khr::present_mode_fifo_latest_ready)
 impl crate::vk::StructureType {
     pub const PHYSICAL_DEVICE_PRESENT_MODE_FIFO_LATEST_READY_FEATURES_KHR: Self = Self(

@@ -292,6 +292,67 @@ pub(crate) mod reexport {
             }
         }
     }
+    impl<'a> MicromapBuildInfoEXT<'a> {
+        pub fn _type(mut self, _type: crate::vk::MicromapTypeEXT) -> Self {
+            self._type = _type;
+            self
+        }
+        pub fn flags(mut self, flags: crate::vk::BuildMicromapFlagsEXT) -> Self {
+            self.flags = flags;
+            self
+        }
+        pub fn mode(mut self, mode: crate::vk::BuildMicromapModeEXT) -> Self {
+            self.mode = mode;
+            self
+        }
+        pub fn dst_micromap(mut self, dst_micromap: crate::vk::MicromapEXT) -> Self {
+            self.dst_micromap = dst_micromap;
+            self
+        }
+        pub fn usage_counts_count(mut self, usage_counts_count: u32) -> Self {
+            self.usage_counts_count = usage_counts_count;
+            self
+        }
+        pub fn p_usage_counts(
+            mut self,
+            p_usage_counts: *const crate::vk::MicromapUsageEXT,
+        ) -> Self {
+            self.p_usage_counts = p_usage_counts;
+            self
+        }
+        pub fn pp_usage_counts(
+            mut self,
+            pp_usage_counts: *const *const crate::vk::MicromapUsageEXT,
+        ) -> Self {
+            self.pp_usage_counts = pp_usage_counts;
+            self
+        }
+        pub fn data(mut self, data: crate::vk::DeviceOrHostAddressConstKHR) -> Self {
+            self.data = data;
+            self
+        }
+        pub fn scratch_data(
+            mut self,
+            scratch_data: crate::vk::DeviceOrHostAddressKHR,
+        ) -> Self {
+            self.scratch_data = scratch_data;
+            self
+        }
+        pub fn triangle_array(
+            mut self,
+            triangle_array: crate::vk::DeviceOrHostAddressConstKHR,
+        ) -> Self {
+            self.triangle_array = triangle_array;
+            self
+        }
+        pub fn triangle_array_stride(
+            mut self,
+            triangle_array_stride: crate::vk::DeviceSize,
+        ) -> Self {
+            self.triangle_array_stride = triangle_array_stride;
+            self
+        }
+    }
     #[repr(C)]
     #[derive(Clone, Copy)]
     pub struct MicromapCreateInfoEXT<'a> {
@@ -323,6 +384,38 @@ pub(crate) mod reexport {
             }
         }
     }
+    impl<'a> MicromapCreateInfoEXT<'a> {
+        pub fn create_flags(
+            mut self,
+            create_flags: crate::vk::MicromapCreateFlagsEXT,
+        ) -> Self {
+            self.create_flags = create_flags;
+            self
+        }
+        pub fn buffer(mut self, buffer: crate::vk::Buffer) -> Self {
+            self.buffer = buffer;
+            self
+        }
+        pub fn offset(mut self, offset: crate::vk::DeviceSize) -> Self {
+            self.offset = offset;
+            self
+        }
+        pub fn size(mut self, size: crate::vk::DeviceSize) -> Self {
+            self.size = size;
+            self
+        }
+        pub fn _type(mut self, _type: crate::vk::MicromapTypeEXT) -> Self {
+            self._type = _type;
+            self
+        }
+        pub fn device_address(
+            mut self,
+            device_address: crate::vk::DeviceAddress,
+        ) -> Self {
+            self.device_address = device_address;
+            self
+        }
+    }
     #[repr(C)]
     #[derive(Clone, Copy)]
     pub struct MicromapVersionInfoEXT<'a> {
@@ -342,6 +435,12 @@ pub(crate) mod reexport {
                 p_version_data: Default::default(),
                 _marker: ::core::marker::PhantomData,
             }
+        }
+    }
+    impl<'a> MicromapVersionInfoEXT<'a> {
+        pub fn p_version_data(mut self, p_version_data: *const u8) -> Self {
+            self.p_version_data = p_version_data;
+            self
         }
     }
     #[repr(C)]
@@ -369,6 +468,20 @@ pub(crate) mod reexport {
             }
         }
     }
+    impl<'a> CopyMicromapInfoEXT<'a> {
+        pub fn src(mut self, src: crate::vk::MicromapEXT) -> Self {
+            self.src = src;
+            self
+        }
+        pub fn dst(mut self, dst: crate::vk::MicromapEXT) -> Self {
+            self.dst = dst;
+            self
+        }
+        pub fn mode(mut self, mode: crate::vk::CopyMicromapModeEXT) -> Self {
+            self.mode = mode;
+            self
+        }
+    }
     #[repr(C)]
     #[derive(Clone, Copy)]
     pub struct CopyMicromapToMemoryInfoEXT<'a> {
@@ -392,6 +505,20 @@ pub(crate) mod reexport {
                 mode: Default::default(),
                 _marker: ::core::marker::PhantomData,
             }
+        }
+    }
+    impl<'a> CopyMicromapToMemoryInfoEXT<'a> {
+        pub fn src(mut self, src: crate::vk::MicromapEXT) -> Self {
+            self.src = src;
+            self
+        }
+        pub fn dst(mut self, dst: crate::vk::DeviceOrHostAddressKHR) -> Self {
+            self.dst = dst;
+            self
+        }
+        pub fn mode(mut self, mode: crate::vk::CopyMicromapModeEXT) -> Self {
+            self.mode = mode;
+            self
         }
     }
     #[repr(C)]
@@ -419,6 +546,20 @@ pub(crate) mod reexport {
             }
         }
     }
+    impl<'a> CopyMemoryToMicromapInfoEXT<'a> {
+        pub fn src(mut self, src: crate::vk::DeviceOrHostAddressConstKHR) -> Self {
+            self.src = src;
+            self
+        }
+        pub fn dst(mut self, dst: crate::vk::MicromapEXT) -> Self {
+            self.dst = dst;
+            self
+        }
+        pub fn mode(mut self, mode: crate::vk::CopyMicromapModeEXT) -> Self {
+            self.mode = mode;
+            self
+        }
+    }
     #[repr(C)]
     #[derive(Clone, Copy)]
     pub struct MicromapBuildSizesInfoEXT<'a> {
@@ -444,6 +585,23 @@ pub(crate) mod reexport {
             }
         }
     }
+    impl<'a> MicromapBuildSizesInfoEXT<'a> {
+        pub fn micromap_size(mut self, micromap_size: crate::vk::DeviceSize) -> Self {
+            self.micromap_size = micromap_size;
+            self
+        }
+        pub fn build_scratch_size(
+            mut self,
+            build_scratch_size: crate::vk::DeviceSize,
+        ) -> Self {
+            self.build_scratch_size = build_scratch_size;
+            self
+        }
+        pub fn discardable(mut self, discardable: crate::vk::Bool32) -> Self {
+            self.discardable = discardable;
+            self
+        }
+    }
     #[repr(C)]
     #[derive(Clone, Copy, Default)]
     pub struct MicromapUsageEXT {
@@ -451,12 +609,40 @@ pub(crate) mod reexport {
         pub subdivision_level: u32,
         pub format: u32,
     }
+    impl MicromapUsageEXT {
+        pub fn count(mut self, count: u32) -> Self {
+            self.count = count;
+            self
+        }
+        pub fn subdivision_level(mut self, subdivision_level: u32) -> Self {
+            self.subdivision_level = subdivision_level;
+            self
+        }
+        pub fn format(mut self, format: u32) -> Self {
+            self.format = format;
+            self
+        }
+    }
     #[repr(C)]
     #[derive(Clone, Copy, Default)]
     pub struct MicromapTriangleEXT {
         pub data_offset: u32,
         pub subdivision_level: u16,
         pub format: u16,
+    }
+    impl MicromapTriangleEXT {
+        pub fn data_offset(mut self, data_offset: u32) -> Self {
+            self.data_offset = data_offset;
+            self
+        }
+        pub fn subdivision_level(mut self, subdivision_level: u16) -> Self {
+            self.subdivision_level = subdivision_level;
+            self
+        }
+        pub fn format(mut self, format: u16) -> Self {
+            self.format = format;
+            self
+        }
     }
     #[repr(C)]
     #[derive(Clone, Copy)]
@@ -488,6 +674,26 @@ pub(crate) mod reexport {
             }
         }
     }
+    impl<'a> PhysicalDeviceOpacityMicromapFeaturesEXT<'a> {
+        pub fn micromap(mut self, micromap: crate::vk::Bool32) -> Self {
+            self.micromap = micromap;
+            self
+        }
+        pub fn micromap_capture_replay(
+            mut self,
+            micromap_capture_replay: crate::vk::Bool32,
+        ) -> Self {
+            self.micromap_capture_replay = micromap_capture_replay;
+            self
+        }
+        pub fn micromap_host_commands(
+            mut self,
+            micromap_host_commands: crate::vk::Bool32,
+        ) -> Self {
+            self.micromap_host_commands = micromap_host_commands;
+            self
+        }
+    }
     #[repr(C)]
     #[derive(Clone, Copy)]
     pub struct PhysicalDeviceOpacityMicromapPropertiesEXT<'a> {
@@ -512,6 +718,22 @@ pub(crate) mod reexport {
                 max_opacity4_state_subdivision_level: Default::default(),
                 _marker: ::core::marker::PhantomData,
             }
+        }
+    }
+    impl<'a> PhysicalDeviceOpacityMicromapPropertiesEXT<'a> {
+        pub fn max_opacity2_state_subdivision_level(
+            mut self,
+            max_opacity2_state_subdivision_level: u32,
+        ) -> Self {
+            self.max_opacity2_state_subdivision_level = max_opacity2_state_subdivision_level;
+            self
+        }
+        pub fn max_opacity4_state_subdivision_level(
+            mut self,
+            max_opacity4_state_subdivision_level: u32,
+        ) -> Self {
+            self.max_opacity4_state_subdivision_level = max_opacity4_state_subdivision_level;
+            self
         }
     }
     #[repr(C)]
@@ -557,6 +779,49 @@ pub(crate) mod reexport {
                 micromap: Default::default(),
                 _marker: ::core::marker::PhantomData,
             }
+        }
+    }
+    impl<'a> AccelerationStructureTrianglesOpacityMicromapEXT<'a> {
+        pub fn index_type(mut self, index_type: crate::vk::IndexType) -> Self {
+            self.index_type = index_type;
+            self
+        }
+        pub fn index_buffer(
+            mut self,
+            index_buffer: crate::vk::DeviceOrHostAddressConstKHR,
+        ) -> Self {
+            self.index_buffer = index_buffer;
+            self
+        }
+        pub fn index_stride(mut self, index_stride: crate::vk::DeviceSize) -> Self {
+            self.index_stride = index_stride;
+            self
+        }
+        pub fn base_triangle(mut self, base_triangle: u32) -> Self {
+            self.base_triangle = base_triangle;
+            self
+        }
+        pub fn usage_counts_count(mut self, usage_counts_count: u32) -> Self {
+            self.usage_counts_count = usage_counts_count;
+            self
+        }
+        pub fn p_usage_counts(
+            mut self,
+            p_usage_counts: *const crate::vk::MicromapUsageEXT,
+        ) -> Self {
+            self.p_usage_counts = p_usage_counts;
+            self
+        }
+        pub fn pp_usage_counts(
+            mut self,
+            pp_usage_counts: *const *const crate::vk::MicromapUsageEXT,
+        ) -> Self {
+            self.pp_usage_counts = pp_usage_counts;
+            self
+        }
+        pub fn micromap(mut self, micromap: crate::vk::MicromapEXT) -> Self {
+            self.micromap = micromap;
+            self
         }
     }
     ///Provided by [`ext::opacity_micromap`](crate::ext::opacity_micromap)

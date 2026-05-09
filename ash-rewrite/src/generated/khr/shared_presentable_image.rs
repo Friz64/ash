@@ -59,6 +59,15 @@ pub(crate) mod reexport {
             }
         }
     }
+    impl<'a> SharedPresentSurfaceCapabilitiesKHR<'a> {
+        pub fn shared_present_supported_usage_flags(
+            mut self,
+            shared_present_supported_usage_flags: crate::vk::ImageUsageFlags,
+        ) -> Self {
+            self.shared_present_supported_usage_flags = shared_present_supported_usage_flags;
+            self
+        }
+    }
     ///Provided by [`khr::shared_presentable_image`](crate::khr::shared_presentable_image)
     impl crate::vk::ImageLayout {
         pub const SHARED_PRESENT_KHR: Self = Self(1000111000);

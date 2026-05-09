@@ -27,6 +27,12 @@ impl<'a> Default for PhysicalDeviceMaintenance7FeaturesKHR<'a> {
         }
     }
 }
+impl<'a> PhysicalDeviceMaintenance7FeaturesKHR<'a> {
+    pub fn maintenance7(mut self, maintenance7: crate::vk::Bool32) -> Self {
+        self.maintenance7 = maintenance7;
+        self
+    }
+}
 #[repr(C)]
 #[derive(Clone, Copy)]
 pub struct PhysicalDeviceMaintenance7PropertiesKHR<'a> {
@@ -65,6 +71,64 @@ impl<'a> Default for PhysicalDeviceMaintenance7PropertiesKHR<'a> {
         }
     }
 }
+impl<'a> PhysicalDeviceMaintenance7PropertiesKHR<'a> {
+    pub fn robust_fragment_shading_rate_attachment_access(
+        mut self,
+        robust_fragment_shading_rate_attachment_access: crate::vk::Bool32,
+    ) -> Self {
+        self.robust_fragment_shading_rate_attachment_access = robust_fragment_shading_rate_attachment_access;
+        self
+    }
+    pub fn separate_depth_stencil_attachment_access(
+        mut self,
+        separate_depth_stencil_attachment_access: crate::vk::Bool32,
+    ) -> Self {
+        self.separate_depth_stencil_attachment_access = separate_depth_stencil_attachment_access;
+        self
+    }
+    pub fn max_descriptor_set_total_uniform_buffers_dynamic(
+        mut self,
+        max_descriptor_set_total_uniform_buffers_dynamic: u32,
+    ) -> Self {
+        self.max_descriptor_set_total_uniform_buffers_dynamic = max_descriptor_set_total_uniform_buffers_dynamic;
+        self
+    }
+    pub fn max_descriptor_set_total_storage_buffers_dynamic(
+        mut self,
+        max_descriptor_set_total_storage_buffers_dynamic: u32,
+    ) -> Self {
+        self.max_descriptor_set_total_storage_buffers_dynamic = max_descriptor_set_total_storage_buffers_dynamic;
+        self
+    }
+    pub fn max_descriptor_set_total_buffers_dynamic(
+        mut self,
+        max_descriptor_set_total_buffers_dynamic: u32,
+    ) -> Self {
+        self.max_descriptor_set_total_buffers_dynamic = max_descriptor_set_total_buffers_dynamic;
+        self
+    }
+    pub fn max_descriptor_set_update_after_bind_total_uniform_buffers_dynamic(
+        mut self,
+        max_descriptor_set_update_after_bind_total_uniform_buffers_dynamic: u32,
+    ) -> Self {
+        self.max_descriptor_set_update_after_bind_total_uniform_buffers_dynamic = max_descriptor_set_update_after_bind_total_uniform_buffers_dynamic;
+        self
+    }
+    pub fn max_descriptor_set_update_after_bind_total_storage_buffers_dynamic(
+        mut self,
+        max_descriptor_set_update_after_bind_total_storage_buffers_dynamic: u32,
+    ) -> Self {
+        self.max_descriptor_set_update_after_bind_total_storage_buffers_dynamic = max_descriptor_set_update_after_bind_total_storage_buffers_dynamic;
+        self
+    }
+    pub fn max_descriptor_set_update_after_bind_total_buffers_dynamic(
+        mut self,
+        max_descriptor_set_update_after_bind_total_buffers_dynamic: u32,
+    ) -> Self {
+        self.max_descriptor_set_update_after_bind_total_buffers_dynamic = max_descriptor_set_update_after_bind_total_buffers_dynamic;
+        self
+    }
+}
 #[repr(C)]
 #[derive(Clone, Copy)]
 pub struct PhysicalDeviceLayeredApiPropertiesListKHR<'a> {
@@ -89,6 +153,19 @@ impl<'a> Default for PhysicalDeviceLayeredApiPropertiesListKHR<'a> {
             p_layered_apis: Default::default(),
             _marker: ::core::marker::PhantomData,
         }
+    }
+}
+impl<'a> PhysicalDeviceLayeredApiPropertiesListKHR<'a> {
+    pub fn layered_api_count(mut self, layered_api_count: u32) -> Self {
+        self.layered_api_count = layered_api_count;
+        self
+    }
+    pub fn p_layered_apis(
+        mut self,
+        p_layered_apis: *mut crate::vk::PhysicalDeviceLayeredApiPropertiesKHR<'a>,
+    ) -> Self {
+        self.p_layered_apis = p_layered_apis;
+        self
     }
 }
 #[repr(C)]
@@ -119,6 +196,30 @@ impl<'a> Default for PhysicalDeviceLayeredApiPropertiesKHR<'a> {
         }
     }
 }
+impl<'a> PhysicalDeviceLayeredApiPropertiesKHR<'a> {
+    pub fn vendor_id(mut self, vendor_id: u32) -> Self {
+        self.vendor_id = vendor_id;
+        self
+    }
+    pub fn device_id(mut self, device_id: u32) -> Self {
+        self.device_id = device_id;
+        self
+    }
+    pub fn layered_api(
+        mut self,
+        layered_api: crate::vk::PhysicalDeviceLayeredApiKHR,
+    ) -> Self {
+        self.layered_api = layered_api;
+        self
+    }
+    pub fn device_name(
+        mut self,
+        device_name: [core::ffi::c_char; crate::vk::MAX_PHYSICAL_DEVICE_NAME_SIZE as _],
+    ) -> Self {
+        self.device_name = device_name;
+        self
+    }
+}
 #[repr(C)]
 #[derive(Clone, Copy)]
 pub struct PhysicalDeviceLayeredApiVulkanPropertiesKHR<'a> {
@@ -141,6 +242,15 @@ impl<'a> Default for PhysicalDeviceLayeredApiVulkanPropertiesKHR<'a> {
             properties: Default::default(),
             _marker: ::core::marker::PhantomData,
         }
+    }
+}
+impl<'a> PhysicalDeviceLayeredApiVulkanPropertiesKHR<'a> {
+    pub fn properties(
+        mut self,
+        properties: crate::vk::PhysicalDeviceProperties2<'a>,
+    ) -> Self {
+        self.properties = properties;
+        self
     }
 }
 ///Provided by [`khr::maintenance7`](crate::khr::maintenance7)

@@ -27,6 +27,15 @@ impl<'a> Default for PhysicalDeviceDisplacementMicromapFeaturesNV<'a> {
         }
     }
 }
+impl<'a> PhysicalDeviceDisplacementMicromapFeaturesNV<'a> {
+    pub fn displacement_micromap(
+        mut self,
+        displacement_micromap: crate::vk::Bool32,
+    ) -> Self {
+        self.displacement_micromap = displacement_micromap;
+        self
+    }
+}
 #[repr(C)]
 #[derive(Clone, Copy)]
 pub struct PhysicalDeviceDisplacementMicromapPropertiesNV<'a> {
@@ -49,6 +58,15 @@ impl<'a> Default for PhysicalDeviceDisplacementMicromapPropertiesNV<'a> {
             max_displacement_micromap_subdivision_level: Default::default(),
             _marker: ::core::marker::PhantomData,
         }
+    }
+}
+impl<'a> PhysicalDeviceDisplacementMicromapPropertiesNV<'a> {
+    pub fn max_displacement_micromap_subdivision_level(
+        mut self,
+        max_displacement_micromap_subdivision_level: u32,
+    ) -> Self {
+        self.max_displacement_micromap_subdivision_level = max_displacement_micromap_subdivision_level;
+        self
     }
 }
 #[repr(C)]
@@ -105,6 +123,105 @@ impl<'a> Default for AccelerationStructureTrianglesDisplacementMicromapNV<'a> {
             micromap: Default::default(),
             _marker: ::core::marker::PhantomData,
         }
+    }
+}
+impl<'a> AccelerationStructureTrianglesDisplacementMicromapNV<'a> {
+    pub fn displacement_bias_and_scale_format(
+        mut self,
+        displacement_bias_and_scale_format: crate::vk::Format,
+    ) -> Self {
+        self.displacement_bias_and_scale_format = displacement_bias_and_scale_format;
+        self
+    }
+    pub fn displacement_vector_format(
+        mut self,
+        displacement_vector_format: crate::vk::Format,
+    ) -> Self {
+        self.displacement_vector_format = displacement_vector_format;
+        self
+    }
+    pub fn displacement_bias_and_scale_buffer(
+        mut self,
+        displacement_bias_and_scale_buffer: crate::vk::DeviceOrHostAddressConstKHR,
+    ) -> Self {
+        self.displacement_bias_and_scale_buffer = displacement_bias_and_scale_buffer;
+        self
+    }
+    pub fn displacement_bias_and_scale_stride(
+        mut self,
+        displacement_bias_and_scale_stride: crate::vk::DeviceSize,
+    ) -> Self {
+        self.displacement_bias_and_scale_stride = displacement_bias_and_scale_stride;
+        self
+    }
+    pub fn displacement_vector_buffer(
+        mut self,
+        displacement_vector_buffer: crate::vk::DeviceOrHostAddressConstKHR,
+    ) -> Self {
+        self.displacement_vector_buffer = displacement_vector_buffer;
+        self
+    }
+    pub fn displacement_vector_stride(
+        mut self,
+        displacement_vector_stride: crate::vk::DeviceSize,
+    ) -> Self {
+        self.displacement_vector_stride = displacement_vector_stride;
+        self
+    }
+    pub fn displaced_micromap_primitive_flags(
+        mut self,
+        displaced_micromap_primitive_flags: crate::vk::DeviceOrHostAddressConstKHR,
+    ) -> Self {
+        self.displaced_micromap_primitive_flags = displaced_micromap_primitive_flags;
+        self
+    }
+    pub fn displaced_micromap_primitive_flags_stride(
+        mut self,
+        displaced_micromap_primitive_flags_stride: crate::vk::DeviceSize,
+    ) -> Self {
+        self.displaced_micromap_primitive_flags_stride = displaced_micromap_primitive_flags_stride;
+        self
+    }
+    pub fn index_type(mut self, index_type: crate::vk::IndexType) -> Self {
+        self.index_type = index_type;
+        self
+    }
+    pub fn index_buffer(
+        mut self,
+        index_buffer: crate::vk::DeviceOrHostAddressConstKHR,
+    ) -> Self {
+        self.index_buffer = index_buffer;
+        self
+    }
+    pub fn index_stride(mut self, index_stride: crate::vk::DeviceSize) -> Self {
+        self.index_stride = index_stride;
+        self
+    }
+    pub fn base_triangle(mut self, base_triangle: u32) -> Self {
+        self.base_triangle = base_triangle;
+        self
+    }
+    pub fn usage_counts_count(mut self, usage_counts_count: u32) -> Self {
+        self.usage_counts_count = usage_counts_count;
+        self
+    }
+    pub fn p_usage_counts(
+        mut self,
+        p_usage_counts: *const crate::vk::MicromapUsageEXT,
+    ) -> Self {
+        self.p_usage_counts = p_usage_counts;
+        self
+    }
+    pub fn pp_usage_counts(
+        mut self,
+        pp_usage_counts: *const *const crate::vk::MicromapUsageEXT,
+    ) -> Self {
+        self.pp_usage_counts = pp_usage_counts;
+        self
+    }
+    pub fn micromap(mut self, micromap: crate::vk::MicromapEXT) -> Self {
+        self.micromap = micromap;
+        self
     }
 }
 ///Provided by [`nv::displacement_micromap`](crate::nv::displacement_micromap)

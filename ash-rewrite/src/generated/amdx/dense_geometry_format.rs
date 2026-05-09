@@ -27,6 +27,15 @@ impl<'a> Default for PhysicalDeviceDenseGeometryFormatFeaturesAMDX<'a> {
         }
     }
 }
+impl<'a> PhysicalDeviceDenseGeometryFormatFeaturesAMDX<'a> {
+    pub fn dense_geometry_format(
+        mut self,
+        dense_geometry_format: crate::vk::Bool32,
+    ) -> Self {
+        self.dense_geometry_format = dense_geometry_format;
+        self
+    }
+}
 #[repr(C)]
 #[derive(Clone, Copy)]
 pub struct AccelerationStructureDenseGeometryFormatTrianglesDataAMDX<'a> {
@@ -61,6 +70,39 @@ impl<'a> Default for AccelerationStructureDenseGeometryFormatTrianglesDataAMDX<'
             format: Default::default(),
             _marker: ::core::marker::PhantomData,
         }
+    }
+}
+impl<'a> AccelerationStructureDenseGeometryFormatTrianglesDataAMDX<'a> {
+    pub fn compressed_data(
+        mut self,
+        compressed_data: crate::vk::DeviceOrHostAddressConstKHR,
+    ) -> Self {
+        self.compressed_data = compressed_data;
+        self
+    }
+    pub fn data_size(mut self, data_size: crate::vk::DeviceSize) -> Self {
+        self.data_size = data_size;
+        self
+    }
+    pub fn num_triangles(mut self, num_triangles: u32) -> Self {
+        self.num_triangles = num_triangles;
+        self
+    }
+    pub fn num_vertices(mut self, num_vertices: u32) -> Self {
+        self.num_vertices = num_vertices;
+        self
+    }
+    pub fn max_primitive_index(mut self, max_primitive_index: u32) -> Self {
+        self.max_primitive_index = max_primitive_index;
+        self
+    }
+    pub fn max_geometry_index(mut self, max_geometry_index: u32) -> Self {
+        self.max_geometry_index = max_geometry_index;
+        self
+    }
+    pub fn format(mut self, format: crate::vk::CompressedTriangleFormatAMDX) -> Self {
+        self.format = format;
+        self
     }
 }
 ///Provided by [`amdx::dense_geometry_format`](crate::amdx::dense_geometry_format)

@@ -27,6 +27,15 @@ impl<'a> Default for PhysicalDeviceNonSeamlessCubeMapFeaturesEXT<'a> {
         }
     }
 }
+impl<'a> PhysicalDeviceNonSeamlessCubeMapFeaturesEXT<'a> {
+    pub fn non_seamless_cube_map(
+        mut self,
+        non_seamless_cube_map: crate::vk::Bool32,
+    ) -> Self {
+        self.non_seamless_cube_map = non_seamless_cube_map;
+        self
+    }
+}
 ///Provided by [`ext::non_seamless_cube_map`](crate::ext::non_seamless_cube_map)
 impl crate::vk::StructureType {
     pub const PHYSICAL_DEVICE_NON_SEAMLESS_CUBE_MAP_FEATURES_EXT: Self = Self(

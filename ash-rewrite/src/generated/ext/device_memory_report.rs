@@ -27,6 +27,15 @@ impl<'a> Default for PhysicalDeviceDeviceMemoryReportFeaturesEXT<'a> {
         }
     }
 }
+impl<'a> PhysicalDeviceDeviceMemoryReportFeaturesEXT<'a> {
+    pub fn device_memory_report(
+        mut self,
+        device_memory_report: crate::vk::Bool32,
+    ) -> Self {
+        self.device_memory_report = device_memory_report;
+        self
+    }
+}
 #[repr(C)]
 #[derive(Clone, Copy)]
 pub struct DeviceDeviceMemoryReportCreateInfoEXT<'a> {
@@ -53,6 +62,23 @@ impl<'a> Default for DeviceDeviceMemoryReportCreateInfoEXT<'a> {
             p_user_data: Default::default(),
             _marker: ::core::marker::PhantomData,
         }
+    }
+}
+impl<'a> DeviceDeviceMemoryReportCreateInfoEXT<'a> {
+    pub fn flags(mut self, flags: crate::vk::DeviceMemoryReportFlagsEXT) -> Self {
+        self.flags = flags;
+        self
+    }
+    pub fn pfn_user_callback(
+        mut self,
+        pfn_user_callback: crate::vk::PFN_vkDeviceMemoryReportCallbackEXT,
+    ) -> Self {
+        self.pfn_user_callback = pfn_user_callback;
+        self
+    }
+    pub fn p_user_data(mut self, p_user_data: *mut core::ffi::c_void) -> Self {
+        self.p_user_data = p_user_data;
+        self
     }
 }
 #[repr(C)]
@@ -86,6 +112,36 @@ impl<'a> Default for DeviceMemoryReportCallbackDataEXT<'a> {
             heap_index: Default::default(),
             _marker: ::core::marker::PhantomData,
         }
+    }
+}
+impl<'a> DeviceMemoryReportCallbackDataEXT<'a> {
+    pub fn flags(mut self, flags: crate::vk::DeviceMemoryReportFlagsEXT) -> Self {
+        self.flags = flags;
+        self
+    }
+    pub fn _type(mut self, _type: crate::vk::DeviceMemoryReportEventTypeEXT) -> Self {
+        self._type = _type;
+        self
+    }
+    pub fn memory_object_id(mut self, memory_object_id: u64) -> Self {
+        self.memory_object_id = memory_object_id;
+        self
+    }
+    pub fn size(mut self, size: crate::vk::DeviceSize) -> Self {
+        self.size = size;
+        self
+    }
+    pub fn object_type(mut self, object_type: crate::vk::ObjectType) -> Self {
+        self.object_type = object_type;
+        self
+    }
+    pub fn object_handle(mut self, object_handle: u64) -> Self {
+        self.object_handle = object_handle;
+        self
+    }
+    pub fn heap_index(mut self, heap_index: u32) -> Self {
+        self.heap_index = heap_index;
+        self
     }
 }
 ///Provided by [`ext::device_memory_report`](crate::ext::device_memory_report)

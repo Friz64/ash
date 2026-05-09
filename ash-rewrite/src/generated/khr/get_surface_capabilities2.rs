@@ -74,6 +74,12 @@ pub(crate) mod reexport {
             }
         }
     }
+    impl<'a> PhysicalDeviceSurfaceInfo2KHR<'a> {
+        pub fn surface(mut self, surface: crate::vk::SurfaceKHR) -> Self {
+            self.surface = surface;
+            self
+        }
+    }
     #[repr(C)]
     #[derive(Clone, Copy)]
     pub struct SurfaceCapabilities2KHR<'a> {
@@ -95,6 +101,15 @@ pub(crate) mod reexport {
             }
         }
     }
+    impl<'a> SurfaceCapabilities2KHR<'a> {
+        pub fn surface_capabilities(
+            mut self,
+            surface_capabilities: crate::vk::SurfaceCapabilitiesKHR,
+        ) -> Self {
+            self.surface_capabilities = surface_capabilities;
+            self
+        }
+    }
     #[repr(C)]
     #[derive(Clone, Copy)]
     pub struct SurfaceFormat2KHR<'a> {
@@ -114,6 +129,15 @@ pub(crate) mod reexport {
                 surface_format: Default::default(),
                 _marker: ::core::marker::PhantomData,
             }
+        }
+    }
+    impl<'a> SurfaceFormat2KHR<'a> {
+        pub fn surface_format(
+            mut self,
+            surface_format: crate::vk::SurfaceFormatKHR,
+        ) -> Self {
+            self.surface_format = surface_format;
+            self
         }
     }
     ///Provided by [`khr::get_surface_capabilities2`](crate::khr::get_surface_capabilities2)

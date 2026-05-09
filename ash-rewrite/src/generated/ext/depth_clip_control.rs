@@ -27,6 +27,12 @@ impl<'a> Default for PhysicalDeviceDepthClipControlFeaturesEXT<'a> {
         }
     }
 }
+impl<'a> PhysicalDeviceDepthClipControlFeaturesEXT<'a> {
+    pub fn depth_clip_control(mut self, depth_clip_control: crate::vk::Bool32) -> Self {
+        self.depth_clip_control = depth_clip_control;
+        self
+    }
+}
 #[repr(C)]
 #[derive(Clone, Copy)]
 pub struct PipelineViewportDepthClipControlCreateInfoEXT<'a> {
@@ -49,6 +55,15 @@ impl<'a> Default for PipelineViewportDepthClipControlCreateInfoEXT<'a> {
             negative_one_to_one: Default::default(),
             _marker: ::core::marker::PhantomData,
         }
+    }
+}
+impl<'a> PipelineViewportDepthClipControlCreateInfoEXT<'a> {
+    pub fn negative_one_to_one(
+        mut self,
+        negative_one_to_one: crate::vk::Bool32,
+    ) -> Self {
+        self.negative_one_to_one = negative_one_to_one;
+        self
     }
 }
 ///Provided by [`ext::depth_clip_control`](crate::ext::depth_clip_control)

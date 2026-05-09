@@ -28,6 +28,15 @@ impl<'a> Default for CopyCommandTransformInfoQCOM<'a> {
         }
     }
 }
+impl<'a> CopyCommandTransformInfoQCOM<'a> {
+    pub fn transform(
+        mut self,
+        transform: crate::vk::SurfaceTransformFlagBitsKHR,
+    ) -> Self {
+        self.transform = transform;
+        self
+    }
+}
 ///Provided by [`qcom::rotated_copy_commands`](crate::qcom::rotated_copy_commands)
 impl crate::vk::StructureType {
     pub const COPY_COMMAND_TRANSFORM_INFO_QCOM: Self = Self(1000333000);

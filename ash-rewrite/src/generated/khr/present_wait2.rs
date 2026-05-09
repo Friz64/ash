@@ -59,6 +59,16 @@ pub(crate) mod reexport {
             }
         }
     }
+    impl<'a> PresentWait2InfoKHR<'a> {
+        pub fn present_id(mut self, present_id: u64) -> Self {
+            self.present_id = present_id;
+            self
+        }
+        pub fn timeout(mut self, timeout: u64) -> Self {
+            self.timeout = timeout;
+            self
+        }
+    }
     #[repr(C)]
     #[derive(Clone, Copy)]
     pub struct PhysicalDevicePresentWait2FeaturesKHR<'a> {
@@ -85,6 +95,12 @@ pub(crate) mod reexport {
             }
         }
     }
+    impl<'a> PhysicalDevicePresentWait2FeaturesKHR<'a> {
+        pub fn present_wait2(mut self, present_wait2: crate::vk::Bool32) -> Self {
+            self.present_wait2 = present_wait2;
+            self
+        }
+    }
     #[repr(C)]
     #[derive(Clone, Copy)]
     pub struct SurfaceCapabilitiesPresentWait2KHR<'a> {
@@ -107,6 +123,15 @@ pub(crate) mod reexport {
                 present_wait2_supported: Default::default(),
                 _marker: ::core::marker::PhantomData,
             }
+        }
+    }
+    impl<'a> SurfaceCapabilitiesPresentWait2KHR<'a> {
+        pub fn present_wait2_supported(
+            mut self,
+            present_wait2_supported: crate::vk::Bool32,
+        ) -> Self {
+            self.present_wait2_supported = present_wait2_supported;
+            self
         }
     }
     ///Provided by [`khr::present_wait2`](crate::khr::present_wait2)

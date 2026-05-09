@@ -1,15 +1,18 @@
+use core::str::FromStr;
+
 use super::{Code, Context};
 use crate::output::{CodeMap, Destination};
 use analysis::{
     decl::Ty,
     item::{
         Named,
-        structure::{Struct, StructMember, Union},
+        structure::{BitfieldRange, Struct, StructDecl, StructMember, Union},
     },
     lifetime::Lifetime,
     name::TypeName,
     to_rust::RustTranslator,
 };
+use proc_macro2::Literal;
 use quote::{format_ident, quote};
 use tracing::{instrument, trace};
 
@@ -20,13 +23,17 @@ impl Code for Struct {
         let lifetime = Lifetime(format_ident!("a"));
         let name = ctx.type_to_rust(self.name(), false, &lifetime);
 
-        let lifetime_tok = ctx.type_has_lifetime(self.name()).then(|| quote! { #lifetime });
+        let lifetime_tok = ctx
+            .type_has_lifetime(self.name())
+            .then(|| quote! { #lifetime });
         let mut bitfield_i = 0;
 
         let mut contains_static_array = false;
         let members = (self.members.iter()).map(|member| match member {
-            StructMember::Normal(decl) => {
-                if let Ty::Array(_, _) = &decl.ty { contains_static_array = true }
+            StructMember::Normal(StructDecl { decl, .. }) => {
+                if let Ty::Array(_, _) = &decl.ty {
+                    contains_static_array = true
+                }
 
                 let decl = decl.to_rust(ctx, &lifetime);
                 quote! { pub #decl }
@@ -59,7 +66,10 @@ impl Code for Struct {
             let structure_ty = ctx.type_to_rust(TypeName::VK_STRUCTURE_TYPE, true, &lifetime);
             let ty = ctx.enumerator_to_rust(*ty, TypeName::VK_STRUCTURE_TYPE, true);
             let anon = Lifetime::placeholder();
-            let extends = self.extends.iter().map(|ty| ctx.type_to_rust(*ty, true, &anon));
+            let extends = self
+                .extends
+                .iter()
+                .map(|ty| ctx.type_to_rust(*ty, true, &anon));
             quote! {
                 unsafe impl<#lifetime> crate::TaggedStructure<#lifetime> for #name {
                     const STRUCTURE_TYPE: #structure_ty = #ty;
@@ -85,7 +95,7 @@ impl Code for Struct {
         bitfield_i = 0;
         let default = if contains_static_array || tagged_structure.is_some() {
             let defaults = self.members.iter().map(|member| match member {
-                StructMember::Normal(decl) => {
+                StructMember::Normal(StructDecl { decl, .. }) => {
                     let field_name = ctx.var_name_to_rust(decl.name);
                     if tagged_structure.is_some()
                         && decl.name.original() == "sType"
@@ -120,21 +130,74 @@ impl Code for Struct {
             None
         };
 
-        let derive_default = if default.is_none() { 
+        let derive_default = if default.is_none() {
             Some(quote! {Default})
-        } else { 
-            None 
+        } else {
+            None
         };
 
         let derives = quote! {
             #[derive(Clone, Copy, #derive_default)]
         };
 
+        let mut bitfield_i = 0;
+        let builders = self
+            .members
+            .iter()
+            .filter(|member| match member {
+                StructMember::Normal(StructDecl { decl, .. }) => {
+                    !matches!(decl.name.original(), "sType" | "pNext")
+                }
+                _ => true,
+            })
+            .flat_map(|member| match member {
+                StructMember::Normal(StructDecl { decl, len }) => {
+                    let field_name = ctx.var_name_to_rust(decl.name);
+                    let field_type = decl.ty.to_rust(ctx, &lifetime);
+                    itertools::Either::Left(core::iter::once(quote! {
+                        pub fn #field_name(mut self, #field_name: #field_type) -> Self {
+                            self.#field_name = #field_name;
+                            self
+                        }
+                    }))
+                }
+                StructMember::BitField(bitfield_ranges) => {
+                    let name = format_ident!("bitfield{bitfield_i}");
+                    bitfield_i += 1;
+                    itertools::Either::Right(bitfield_ranges.iter().map(move |range| {
+                        let field_name = ctx.var_name_to_rust(range.decl.name);
+                        let mask = {
+                            let top = u32::MAX >> (u32::BITS - range.range.end as u32);
+                            let bottom = u32::MAX << (range.range.start);
+                            top & bottom
+                        };
+                        let mask_tok = Literal::from_str(&format!("0x{mask:08X}")).unwrap();
+                        let mask_inv_tok = Literal::from_str(&format!("0x{:08X}", !mask)).unwrap();
+                        let offset = range.range.start as u32;
+                        let field_shift = if offset != 0 {
+                            quote! { (#field_name << #offset)  }
+                        } else {
+                            quote! { #field_name }
+                        };
+                        quote! {
+                            pub fn #field_name(mut self, #field_name: u32) -> Self {
+                                let rest = self.#name & #mask_inv_tok;
+                                self.#name = (#field_shift & #mask_tok) | rest;
+                                self
+                            }
+                        }
+                    }))
+                }
+            });
         let code = quote! {
-            #repr 
+            #repr
             #derives
             #code
             #default
+
+            impl<#lifetime_tok> #name {
+                #(#builders)*
+            }
         };
 
         CodeMap::new(Destination::new(self.required_by), code)
@@ -146,7 +209,9 @@ impl Code for Union {
     fn code(&self, ctx: &Context) -> CodeMap {
         trace!("generating");
         let lifetime = Lifetime(format_ident!("a"));
-        let lifetime_tok = ctx.type_has_lifetime(self.name()).then(|| quote! { #lifetime });
+        let lifetime_tok = ctx
+            .type_has_lifetime(self.name())
+            .then(|| quote! { #lifetime });
         let name = ctx.type_to_rust(self.name(), false, &lifetime);
         let members = (self.members.iter()).map(|decl| decl.to_rust(ctx, &lifetime));
 

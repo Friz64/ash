@@ -9,6 +9,24 @@ pub struct ViewportSwizzleNV {
     pub z: crate::vk::ViewportCoordinateSwizzleNV,
     pub w: crate::vk::ViewportCoordinateSwizzleNV,
 }
+impl ViewportSwizzleNV {
+    pub fn x(mut self, x: crate::vk::ViewportCoordinateSwizzleNV) -> Self {
+        self.x = x;
+        self
+    }
+    pub fn y(mut self, y: crate::vk::ViewportCoordinateSwizzleNV) -> Self {
+        self.y = y;
+        self
+    }
+    pub fn z(mut self, z: crate::vk::ViewportCoordinateSwizzleNV) -> Self {
+        self.z = z;
+        self
+    }
+    pub fn w(mut self, w: crate::vk::ViewportCoordinateSwizzleNV) -> Self {
+        self.w = w;
+        self
+    }
+}
 #[repr(C)]
 #[derive(Clone, Copy)]
 pub struct PipelineViewportSwizzleStateCreateInfoNV<'a> {
@@ -35,6 +53,26 @@ impl<'a> Default for PipelineViewportSwizzleStateCreateInfoNV<'a> {
             p_viewport_swizzles: Default::default(),
             _marker: ::core::marker::PhantomData,
         }
+    }
+}
+impl<'a> PipelineViewportSwizzleStateCreateInfoNV<'a> {
+    pub fn flags(
+        mut self,
+        flags: crate::vk::PipelineViewportSwizzleStateCreateFlagsNV,
+    ) -> Self {
+        self.flags = flags;
+        self
+    }
+    pub fn viewport_count(mut self, viewport_count: u32) -> Self {
+        self.viewport_count = viewport_count;
+        self
+    }
+    pub fn p_viewport_swizzles(
+        mut self,
+        p_viewport_swizzles: *const crate::vk::ViewportSwizzleNV,
+    ) -> Self {
+        self.p_viewport_swizzles = p_viewport_swizzles;
+        self
     }
 }
 ///Provided by [`nv::viewport_swizzle`](crate::nv::viewport_swizzle)

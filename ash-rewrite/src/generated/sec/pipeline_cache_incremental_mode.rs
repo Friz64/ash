@@ -27,6 +27,15 @@ impl<'a> Default for PhysicalDevicePipelineCacheIncrementalModeFeaturesSEC<'a> {
         }
     }
 }
+impl<'a> PhysicalDevicePipelineCacheIncrementalModeFeaturesSEC<'a> {
+    pub fn pipeline_cache_incremental_mode(
+        mut self,
+        pipeline_cache_incremental_mode: crate::vk::Bool32,
+    ) -> Self {
+        self.pipeline_cache_incremental_mode = pipeline_cache_incremental_mode;
+        self
+    }
+}
 ///Provided by [`sec::pipeline_cache_incremental_mode`](crate::sec::pipeline_cache_incremental_mode)
 impl crate::vk::StructureType {
     pub const PHYSICAL_DEVICE_PIPELINE_CACHE_INCREMENTAL_MODE_FEATURES_SEC: Self = Self(

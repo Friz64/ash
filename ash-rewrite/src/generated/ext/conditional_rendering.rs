@@ -74,6 +74,20 @@ pub(crate) mod reexport {
             }
         }
     }
+    impl<'a> ConditionalRenderingBeginInfoEXT<'a> {
+        pub fn buffer(mut self, buffer: crate::vk::Buffer) -> Self {
+            self.buffer = buffer;
+            self
+        }
+        pub fn offset(mut self, offset: crate::vk::DeviceSize) -> Self {
+            self.offset = offset;
+            self
+        }
+        pub fn flags(mut self, flags: crate::vk::ConditionalRenderingFlagsEXT) -> Self {
+            self.flags = flags;
+            self
+        }
+    }
     #[repr(C)]
     #[derive(Clone, Copy)]
     pub struct CommandBufferInheritanceConditionalRenderingInfoEXT<'a> {
@@ -96,6 +110,15 @@ pub(crate) mod reexport {
                 conditional_rendering_enable: Default::default(),
                 _marker: ::core::marker::PhantomData,
             }
+        }
+    }
+    impl<'a> CommandBufferInheritanceConditionalRenderingInfoEXT<'a> {
+        pub fn conditional_rendering_enable(
+            mut self,
+            conditional_rendering_enable: crate::vk::Bool32,
+        ) -> Self {
+            self.conditional_rendering_enable = conditional_rendering_enable;
+            self
         }
     }
     #[repr(C)]
@@ -124,6 +147,22 @@ pub(crate) mod reexport {
                 inherited_conditional_rendering: Default::default(),
                 _marker: ::core::marker::PhantomData,
             }
+        }
+    }
+    impl<'a> PhysicalDeviceConditionalRenderingFeaturesEXT<'a> {
+        pub fn conditional_rendering(
+            mut self,
+            conditional_rendering: crate::vk::Bool32,
+        ) -> Self {
+            self.conditional_rendering = conditional_rendering;
+            self
+        }
+        pub fn inherited_conditional_rendering(
+            mut self,
+            inherited_conditional_rendering: crate::vk::Bool32,
+        ) -> Self {
+            self.inherited_conditional_rendering = inherited_conditional_rendering;
+            self
         }
     }
     ///Provided by [`ext::conditional_rendering`](crate::ext::conditional_rendering)

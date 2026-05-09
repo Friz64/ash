@@ -58,6 +58,12 @@ pub(crate) mod reexport {
             }
         }
     }
+    impl<'a> VideoDecodeCapabilitiesKHR<'a> {
+        pub fn flags(mut self, flags: crate::vk::VideoDecodeCapabilityFlagsKHR) -> Self {
+            self.flags = flags;
+            self
+        }
+    }
     #[repr(C)]
     #[derive(Clone, Copy)]
     pub struct VideoDecodeUsageInfoKHR<'a> {
@@ -81,6 +87,15 @@ pub(crate) mod reexport {
                 video_usage_hints: Default::default(),
                 _marker: ::core::marker::PhantomData,
             }
+        }
+    }
+    impl<'a> VideoDecodeUsageInfoKHR<'a> {
+        pub fn video_usage_hints(
+            mut self,
+            video_usage_hints: crate::vk::VideoDecodeUsageFlagsKHR,
+        ) -> Self {
+            self.video_usage_hints = video_usage_hints;
+            self
         }
     }
     #[repr(C)]
@@ -116,6 +131,55 @@ pub(crate) mod reexport {
                 p_reference_slots: Default::default(),
                 _marker: ::core::marker::PhantomData,
             }
+        }
+    }
+    impl<'a> VideoDecodeInfoKHR<'a> {
+        pub fn flags(mut self, flags: crate::vk::VideoDecodeFlagsKHR) -> Self {
+            self.flags = flags;
+            self
+        }
+        pub fn src_buffer(mut self, src_buffer: crate::vk::Buffer) -> Self {
+            self.src_buffer = src_buffer;
+            self
+        }
+        pub fn src_buffer_offset(
+            mut self,
+            src_buffer_offset: crate::vk::DeviceSize,
+        ) -> Self {
+            self.src_buffer_offset = src_buffer_offset;
+            self
+        }
+        pub fn src_buffer_range(
+            mut self,
+            src_buffer_range: crate::vk::DeviceSize,
+        ) -> Self {
+            self.src_buffer_range = src_buffer_range;
+            self
+        }
+        pub fn dst_picture_resource(
+            mut self,
+            dst_picture_resource: crate::vk::VideoPictureResourceInfoKHR<'a>,
+        ) -> Self {
+            self.dst_picture_resource = dst_picture_resource;
+            self
+        }
+        pub fn p_setup_reference_slot(
+            mut self,
+            p_setup_reference_slot: *const crate::vk::VideoReferenceSlotInfoKHR<'a>,
+        ) -> Self {
+            self.p_setup_reference_slot = p_setup_reference_slot;
+            self
+        }
+        pub fn reference_slot_count(mut self, reference_slot_count: u32) -> Self {
+            self.reference_slot_count = reference_slot_count;
+            self
+        }
+        pub fn p_reference_slots(
+            mut self,
+            p_reference_slots: *const crate::vk::VideoReferenceSlotInfoKHR<'a>,
+        ) -> Self {
+            self.p_reference_slots = p_reference_slots;
+            self
         }
     }
     ///Provided by [`khr::video_decode_queue`](crate::khr::video_decode_queue)

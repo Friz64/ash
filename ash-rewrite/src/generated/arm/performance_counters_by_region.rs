@@ -68,6 +68,15 @@ pub(crate) mod reexport {
             }
         }
     }
+    impl<'a> PhysicalDevicePerformanceCountersByRegionFeaturesARM<'a> {
+        pub fn performance_counters_by_region(
+            mut self,
+            performance_counters_by_region: crate::vk::Bool32,
+        ) -> Self {
+            self.performance_counters_by_region = performance_counters_by_region;
+            self
+        }
+    }
     #[repr(C)]
     #[derive(Clone, Copy)]
     pub struct PhysicalDevicePerformanceCountersByRegionPropertiesARM<'a> {
@@ -100,6 +109,37 @@ pub(crate) mod reexport {
             }
         }
     }
+    impl<'a> PhysicalDevicePerformanceCountersByRegionPropertiesARM<'a> {
+        pub fn max_per_region_performance_counters(
+            mut self,
+            max_per_region_performance_counters: u32,
+        ) -> Self {
+            self.max_per_region_performance_counters = max_per_region_performance_counters;
+            self
+        }
+        pub fn performance_counter_region_size(
+            mut self,
+            performance_counter_region_size: crate::vk::Extent2D,
+        ) -> Self {
+            self.performance_counter_region_size = performance_counter_region_size;
+            self
+        }
+        pub fn row_stride_alignment(mut self, row_stride_alignment: u32) -> Self {
+            self.row_stride_alignment = row_stride_alignment;
+            self
+        }
+        pub fn region_alignment(mut self, region_alignment: u32) -> Self {
+            self.region_alignment = region_alignment;
+            self
+        }
+        pub fn identity_transform_order(
+            mut self,
+            identity_transform_order: crate::vk::Bool32,
+        ) -> Self {
+            self.identity_transform_order = identity_transform_order;
+            self
+        }
+    }
     #[repr(C)]
     #[derive(Clone, Copy)]
     pub struct PerformanceCounterARM<'a> {
@@ -119,6 +159,12 @@ pub(crate) mod reexport {
                 counter_id: Default::default(),
                 _marker: ::core::marker::PhantomData,
             }
+        }
+    }
+    impl<'a> PerformanceCounterARM<'a> {
+        pub fn counter_id(mut self, counter_id: u32) -> Self {
+            self.counter_id = counter_id;
+            self
         }
     }
     #[repr(C)]
@@ -142,6 +188,22 @@ pub(crate) mod reexport {
                 name: unsafe { core::mem::zeroed() },
                 _marker: ::core::marker::PhantomData,
             }
+        }
+    }
+    impl<'a> PerformanceCounterDescriptionARM<'a> {
+        pub fn flags(
+            mut self,
+            flags: crate::vk::PerformanceCounterDescriptionFlagsARM,
+        ) -> Self {
+            self.flags = flags;
+            self
+        }
+        pub fn name(
+            mut self,
+            name: [core::ffi::c_char; crate::vk::MAX_DESCRIPTION_SIZE as _],
+        ) -> Self {
+            self.name = name;
+            self
         }
     }
     #[repr(C)]
@@ -176,6 +238,34 @@ pub(crate) mod reexport {
                 p_counter_indices: Default::default(),
                 _marker: ::core::marker::PhantomData,
             }
+        }
+    }
+    impl<'a> RenderPassPerformanceCountersByRegionBeginInfoARM<'a> {
+        pub fn counter_address_count(mut self, counter_address_count: u32) -> Self {
+            self.counter_address_count = counter_address_count;
+            self
+        }
+        pub fn p_counter_addresses(
+            mut self,
+            p_counter_addresses: *const crate::vk::DeviceAddress,
+        ) -> Self {
+            self.p_counter_addresses = p_counter_addresses;
+            self
+        }
+        pub fn serialize_regions(
+            mut self,
+            serialize_regions: crate::vk::Bool32,
+        ) -> Self {
+            self.serialize_regions = serialize_regions;
+            self
+        }
+        pub fn counter_index_count(mut self, counter_index_count: u32) -> Self {
+            self.counter_index_count = counter_index_count;
+            self
+        }
+        pub fn p_counter_indices(mut self, p_counter_indices: *mut u32) -> Self {
+            self.p_counter_indices = p_counter_indices;
+            self
         }
     }
     ///Provided by [`arm::performance_counters_by_region`](crate::arm::performance_counters_by_region)

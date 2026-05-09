@@ -27,6 +27,15 @@ impl<'a> Default for PhysicalDeviceRelaxedLineRasterizationFeaturesIMG<'a> {
         }
     }
 }
+impl<'a> PhysicalDeviceRelaxedLineRasterizationFeaturesIMG<'a> {
+    pub fn relaxed_line_rasterization(
+        mut self,
+        relaxed_line_rasterization: crate::vk::Bool32,
+    ) -> Self {
+        self.relaxed_line_rasterization = relaxed_line_rasterization;
+        self
+    }
+}
 ///Provided by [`img::relaxed_line_rasterization`](crate::img::relaxed_line_rasterization)
 impl crate::vk::StructureType {
     pub const PHYSICAL_DEVICE_RELAXED_LINE_RASTERIZATION_FEATURES_IMG: Self = Self(

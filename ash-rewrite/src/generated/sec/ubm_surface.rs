@@ -78,6 +78,23 @@ pub(crate) mod reexport {
             }
         }
     }
+    impl<'a> UbmSurfaceCreateInfoSEC<'a> {
+        pub fn flags(mut self, flags: crate::vk::UbmSurfaceCreateFlagsSEC) -> Self {
+            self.flags = flags;
+            self
+        }
+        pub fn device(mut self, device: *mut crate::platform_types::ubm_device) -> Self {
+            self.device = device;
+            self
+        }
+        pub fn surface(
+            mut self,
+            surface: *mut crate::platform_types::ubm_surface,
+        ) -> Self {
+            self.surface = surface;
+            self
+        }
+    }
     ///Provided by [`sec::ubm_surface`](crate::sec::ubm_surface)
     impl crate::vk::StructureType {
         pub const UBM_SURFACE_CREATE_INFO_SEC: Self = Self(1000664000);

@@ -27,6 +27,15 @@ impl<'a> Default for PhysicalDeviceRawAccessChainsFeaturesNV<'a> {
         }
     }
 }
+impl<'a> PhysicalDeviceRawAccessChainsFeaturesNV<'a> {
+    pub fn shader_raw_access_chains(
+        mut self,
+        shader_raw_access_chains: crate::vk::Bool32,
+    ) -> Self {
+        self.shader_raw_access_chains = shader_raw_access_chains;
+        self
+    }
+}
 ///Provided by [`nv::raw_access_chains`](crate::nv::raw_access_chains)
 impl crate::vk::StructureType {
     pub const PHYSICAL_DEVICE_RAW_ACCESS_CHAINS_FEATURES_NV: Self = Self(1000555000);

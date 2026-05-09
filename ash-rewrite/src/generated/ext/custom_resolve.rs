@@ -54,6 +54,7 @@ pub(crate) mod reexport {
             }
         }
     }
+    impl<'a> BeginCustomResolveInfoEXT<'a> {}
     #[repr(C)]
     #[derive(Clone, Copy)]
     pub struct PhysicalDeviceCustomResolveFeaturesEXT<'a> {
@@ -78,6 +79,12 @@ pub(crate) mod reexport {
                 custom_resolve: Default::default(),
                 _marker: ::core::marker::PhantomData,
             }
+        }
+    }
+    impl<'a> PhysicalDeviceCustomResolveFeaturesEXT<'a> {
+        pub fn custom_resolve(mut self, custom_resolve: crate::vk::Bool32) -> Self {
+            self.custom_resolve = custom_resolve;
+            self
         }
     }
     #[repr(C)]
@@ -113,6 +120,37 @@ pub(crate) mod reexport {
                 stencil_attachment_format: Default::default(),
                 _marker: ::core::marker::PhantomData,
             }
+        }
+    }
+    impl<'a> CustomResolveCreateInfoEXT<'a> {
+        pub fn custom_resolve(mut self, custom_resolve: crate::vk::Bool32) -> Self {
+            self.custom_resolve = custom_resolve;
+            self
+        }
+        pub fn color_attachment_count(mut self, color_attachment_count: u32) -> Self {
+            self.color_attachment_count = color_attachment_count;
+            self
+        }
+        pub fn p_color_attachment_formats(
+            mut self,
+            p_color_attachment_formats: *const crate::vk::Format,
+        ) -> Self {
+            self.p_color_attachment_formats = p_color_attachment_formats;
+            self
+        }
+        pub fn depth_attachment_format(
+            mut self,
+            depth_attachment_format: crate::vk::Format,
+        ) -> Self {
+            self.depth_attachment_format = depth_attachment_format;
+            self
+        }
+        pub fn stencil_attachment_format(
+            mut self,
+            stencil_attachment_format: crate::vk::Format,
+        ) -> Self {
+            self.stencil_attachment_format = stencil_attachment_format;
+            self
         }
     }
     ///Provided by [`ext::custom_resolve`](crate::ext::custom_resolve)

@@ -32,6 +32,26 @@ impl<'a> Default for ImageCompressionControlEXT<'a> {
         }
     }
 }
+impl<'a> ImageCompressionControlEXT<'a> {
+    pub fn flags(mut self, flags: crate::vk::ImageCompressionFlagsEXT) -> Self {
+        self.flags = flags;
+        self
+    }
+    pub fn compression_control_plane_count(
+        mut self,
+        compression_control_plane_count: u32,
+    ) -> Self {
+        self.compression_control_plane_count = compression_control_plane_count;
+        self
+    }
+    pub fn p_fixed_rate_flags(
+        mut self,
+        p_fixed_rate_flags: *mut crate::vk::ImageCompressionFixedRateFlagsEXT,
+    ) -> Self {
+        self.p_fixed_rate_flags = p_fixed_rate_flags;
+        self
+    }
+}
 #[repr(C)]
 #[derive(Clone, Copy)]
 pub struct PhysicalDeviceImageCompressionControlFeaturesEXT<'a> {
@@ -56,6 +76,15 @@ impl<'a> Default for PhysicalDeviceImageCompressionControlFeaturesEXT<'a> {
             image_compression_control: Default::default(),
             _marker: ::core::marker::PhantomData,
         }
+    }
+}
+impl<'a> PhysicalDeviceImageCompressionControlFeaturesEXT<'a> {
+    pub fn image_compression_control(
+        mut self,
+        image_compression_control: crate::vk::Bool32,
+    ) -> Self {
+        self.image_compression_control = image_compression_control;
+        self
     }
 }
 #[repr(C)]
@@ -85,6 +114,22 @@ impl<'a> Default for ImageCompressionPropertiesEXT<'a> {
             image_compression_fixed_rate_flags: Default::default(),
             _marker: ::core::marker::PhantomData,
         }
+    }
+}
+impl<'a> ImageCompressionPropertiesEXT<'a> {
+    pub fn image_compression_flags(
+        mut self,
+        image_compression_flags: crate::vk::ImageCompressionFlagsEXT,
+    ) -> Self {
+        self.image_compression_flags = image_compression_flags;
+        self
+    }
+    pub fn image_compression_fixed_rate_flags(
+        mut self,
+        image_compression_fixed_rate_flags: crate::vk::ImageCompressionFixedRateFlagsEXT,
+    ) -> Self {
+        self.image_compression_fixed_rate_flags = image_compression_fixed_rate_flags;
+        self
     }
 }
 ///Provided by [`ext::image_compression_control`](crate::ext::image_compression_control)

@@ -28,6 +28,15 @@ impl<'a> Default for PipelineCompilerControlCreateInfoAMD<'a> {
         }
     }
 }
+impl<'a> PipelineCompilerControlCreateInfoAMD<'a> {
+    pub fn compiler_control_flags(
+        mut self,
+        compiler_control_flags: crate::vk::PipelineCompilerControlFlagsAMD,
+    ) -> Self {
+        self.compiler_control_flags = compiler_control_flags;
+        self
+    }
+}
 ///Provided by [`amd::pipeline_compiler_control`](crate::amd::pipeline_compiler_control)
 impl crate::vk::StructureType {
     pub const PIPELINE_COMPILER_CONTROL_CREATE_INFO_AMD: Self = Self(1000183000);

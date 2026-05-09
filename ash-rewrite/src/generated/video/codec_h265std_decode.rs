@@ -10,6 +10,31 @@ pub struct DecodeH265PictureInfoFlags {
 - `short_term_ref_pic_set_sps_flag` @ `3..4`*/
     pub bitfield0: u32,
 }
+impl DecodeH265PictureInfoFlags {
+    pub fn irap_pic_flag(mut self, irap_pic_flag: u32) -> Self {
+        let rest = self.bitfield0 & 0xFFFFFFFE;
+        self.bitfield0 = (irap_pic_flag & 0x00000001) | rest;
+        self
+    }
+    pub fn idr_pic_flag(mut self, idr_pic_flag: u32) -> Self {
+        let rest = self.bitfield0 & 0xFFFFFFFD;
+        self.bitfield0 = ((idr_pic_flag << 1u32) & 0x00000002) | rest;
+        self
+    }
+    pub fn is_reference(mut self, is_reference: u32) -> Self {
+        let rest = self.bitfield0 & 0xFFFFFFFB;
+        self.bitfield0 = ((is_reference << 2u32) & 0x00000004) | rest;
+        self
+    }
+    pub fn short_term_ref_pic_set_sps_flag(
+        mut self,
+        short_term_ref_pic_set_sps_flag: u32,
+    ) -> Self {
+        let rest = self.bitfield0 & 0xFFFFFFF7;
+        self.bitfield0 = ((short_term_ref_pic_set_sps_flag << 3u32) & 0x00000008) | rest;
+        self
+    }
+}
 #[repr(C)]
 #[derive(Clone, Copy)]
 pub struct DecodeH265PictureInfo {
@@ -45,6 +70,70 @@ impl Default for DecodeH265PictureInfo {
         }
     }
 }
+impl DecodeH265PictureInfo {
+    pub fn flags(mut self, flags: crate::vk::DecodeH265PictureInfoFlags) -> Self {
+        self.flags = flags;
+        self
+    }
+    pub fn sps_video_parameter_set_id(mut self, sps_video_parameter_set_id: u8) -> Self {
+        self.sps_video_parameter_set_id = sps_video_parameter_set_id;
+        self
+    }
+    pub fn pps_seq_parameter_set_id(mut self, pps_seq_parameter_set_id: u8) -> Self {
+        self.pps_seq_parameter_set_id = pps_seq_parameter_set_id;
+        self
+    }
+    pub fn pps_pic_parameter_set_id(mut self, pps_pic_parameter_set_id: u8) -> Self {
+        self.pps_pic_parameter_set_id = pps_pic_parameter_set_id;
+        self
+    }
+    pub fn num_delta_pocs_of_ref_rps_idx(
+        mut self,
+        num_delta_pocs_of_ref_rps_idx: u8,
+    ) -> Self {
+        self.num_delta_pocs_of_ref_rps_idx = num_delta_pocs_of_ref_rps_idx;
+        self
+    }
+    pub fn pic_order_cnt_val(mut self, pic_order_cnt_val: i32) -> Self {
+        self.pic_order_cnt_val = pic_order_cnt_val;
+        self
+    }
+    pub fn num_bits_for_st_ref_pic_set_in_slice(
+        mut self,
+        num_bits_for_st_ref_pic_set_in_slice: u16,
+    ) -> Self {
+        self.num_bits_for_st_ref_pic_set_in_slice = num_bits_for_st_ref_pic_set_in_slice;
+        self
+    }
+    pub fn reserved(mut self, reserved: u16) -> Self {
+        self.reserved = reserved;
+        self
+    }
+    pub fn ref_pic_set_st_curr_before(
+        mut self,
+        ref_pic_set_st_curr_before: [u8; crate::vk::STD_VIDEO_DECODE_H265_REF_PIC_SET_LIST_SIZE
+            as _],
+    ) -> Self {
+        self.ref_pic_set_st_curr_before = ref_pic_set_st_curr_before;
+        self
+    }
+    pub fn ref_pic_set_st_curr_after(
+        mut self,
+        ref_pic_set_st_curr_after: [u8; crate::vk::STD_VIDEO_DECODE_H265_REF_PIC_SET_LIST_SIZE
+            as _],
+    ) -> Self {
+        self.ref_pic_set_st_curr_after = ref_pic_set_st_curr_after;
+        self
+    }
+    pub fn ref_pic_set_lt_curr(
+        mut self,
+        ref_pic_set_lt_curr: [u8; crate::vk::STD_VIDEO_DECODE_H265_REF_PIC_SET_LIST_SIZE
+            as _],
+    ) -> Self {
+        self.ref_pic_set_lt_curr = ref_pic_set_lt_curr;
+        self
+    }
+}
 #[repr(C)]
 #[derive(Clone, Copy, Default)]
 pub struct DecodeH265ReferenceInfoFlags {
@@ -52,11 +141,36 @@ pub struct DecodeH265ReferenceInfoFlags {
 - `unused_for_reference` @ `1..2`*/
     pub bitfield0: u32,
 }
+impl DecodeH265ReferenceInfoFlags {
+    pub fn used_for_long_term_reference(
+        mut self,
+        used_for_long_term_reference: u32,
+    ) -> Self {
+        let rest = self.bitfield0 & 0xFFFFFFFE;
+        self.bitfield0 = (used_for_long_term_reference & 0x00000001) | rest;
+        self
+    }
+    pub fn unused_for_reference(mut self, unused_for_reference: u32) -> Self {
+        let rest = self.bitfield0 & 0xFFFFFFFD;
+        self.bitfield0 = ((unused_for_reference << 1u32) & 0x00000002) | rest;
+        self
+    }
+}
 #[repr(C)]
 #[derive(Clone, Copy, Default)]
 pub struct DecodeH265ReferenceInfo {
     pub flags: crate::vk::DecodeH265ReferenceInfoFlags,
     pub pic_order_cnt_val: i32,
+}
+impl DecodeH265ReferenceInfo {
+    pub fn flags(mut self, flags: crate::vk::DecodeH265ReferenceInfoFlags) -> Self {
+        self.flags = flags;
+        self
+    }
+    pub fn pic_order_cnt_val(mut self, pic_order_cnt_val: i32) -> Self {
+        self.pic_order_cnt_val = pic_order_cnt_val;
+        self
+    }
 }
 pub const STD_VULKAN_VIDEO_CODEC_H265_DECODE_SPEC_VERSION: u32 = crate::vk::STD_VULKAN_VIDEO_CODEC_H265_DECODE_API_VERSION_1_0_0;
 pub const STD_VULKAN_VIDEO_CODEC_H265_DECODE_EXTENSION_NAME: &core::ffi::CStr = c"VK_STD_vulkan_video_codec_h265_decode";

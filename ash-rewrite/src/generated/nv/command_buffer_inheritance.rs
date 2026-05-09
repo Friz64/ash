@@ -27,6 +27,15 @@ impl<'a> Default for PhysicalDeviceCommandBufferInheritanceFeaturesNV<'a> {
         }
     }
 }
+impl<'a> PhysicalDeviceCommandBufferInheritanceFeaturesNV<'a> {
+    pub fn command_buffer_inheritance(
+        mut self,
+        command_buffer_inheritance: crate::vk::Bool32,
+    ) -> Self {
+        self.command_buffer_inheritance = command_buffer_inheritance;
+        self
+    }
+}
 ///Provided by [`nv::command_buffer_inheritance`](crate::nv::command_buffer_inheritance)
 impl crate::vk::StructureType {
     pub const PHYSICAL_DEVICE_COMMAND_BUFFER_INHERITANCE_FEATURES_NV: Self = Self(

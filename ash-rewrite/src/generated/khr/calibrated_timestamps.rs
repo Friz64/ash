@@ -95,6 +95,12 @@ pub(crate) mod reexport {
             }
         }
     }
+    impl<'a> CalibratedTimestampInfoKHR<'a> {
+        pub fn time_domain(mut self, time_domain: crate::vk::TimeDomainKHR) -> Self {
+            self.time_domain = time_domain;
+            self
+        }
+    }
     ///Provided by [`khr::calibrated_timestamps`](crate::khr::calibrated_timestamps)
     impl crate::vk::StructureType {
         pub const CALIBRATED_TIMESTAMP_INFO_KHR: Self = Self(1000184000);

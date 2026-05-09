@@ -33,6 +33,43 @@ impl<'a> Default for VideoEncodeIntraRefreshCapabilitiesKHR<'a> {
         }
     }
 }
+impl<'a> VideoEncodeIntraRefreshCapabilitiesKHR<'a> {
+    pub fn intra_refresh_modes(
+        mut self,
+        intra_refresh_modes: crate::vk::VideoEncodeIntraRefreshModeFlagsKHR,
+    ) -> Self {
+        self.intra_refresh_modes = intra_refresh_modes;
+        self
+    }
+    pub fn max_intra_refresh_cycle_duration(
+        mut self,
+        max_intra_refresh_cycle_duration: u32,
+    ) -> Self {
+        self.max_intra_refresh_cycle_duration = max_intra_refresh_cycle_duration;
+        self
+    }
+    pub fn max_intra_refresh_active_reference_pictures(
+        mut self,
+        max_intra_refresh_active_reference_pictures: u32,
+    ) -> Self {
+        self.max_intra_refresh_active_reference_pictures = max_intra_refresh_active_reference_pictures;
+        self
+    }
+    pub fn partition_independent_intra_refresh_regions(
+        mut self,
+        partition_independent_intra_refresh_regions: crate::vk::Bool32,
+    ) -> Self {
+        self.partition_independent_intra_refresh_regions = partition_independent_intra_refresh_regions;
+        self
+    }
+    pub fn non_rectangular_intra_refresh_regions(
+        mut self,
+        non_rectangular_intra_refresh_regions: crate::vk::Bool32,
+    ) -> Self {
+        self.non_rectangular_intra_refresh_regions = non_rectangular_intra_refresh_regions;
+        self
+    }
+}
 #[repr(C)]
 #[derive(Clone, Copy)]
 pub struct VideoEncodeSessionIntraRefreshCreateInfoKHR<'a> {
@@ -55,6 +92,15 @@ impl<'a> Default for VideoEncodeSessionIntraRefreshCreateInfoKHR<'a> {
             intra_refresh_mode: Default::default(),
             _marker: ::core::marker::PhantomData,
         }
+    }
+}
+impl<'a> VideoEncodeSessionIntraRefreshCreateInfoKHR<'a> {
+    pub fn intra_refresh_mode(
+        mut self,
+        intra_refresh_mode: crate::vk::VideoEncodeIntraRefreshModeFlagBitsKHR,
+    ) -> Self {
+        self.intra_refresh_mode = intra_refresh_mode;
+        self
     }
 }
 #[repr(C)]
@@ -82,6 +128,19 @@ impl<'a> Default for VideoEncodeIntraRefreshInfoKHR<'a> {
         }
     }
 }
+impl<'a> VideoEncodeIntraRefreshInfoKHR<'a> {
+    pub fn intra_refresh_cycle_duration(
+        mut self,
+        intra_refresh_cycle_duration: u32,
+    ) -> Self {
+        self.intra_refresh_cycle_duration = intra_refresh_cycle_duration;
+        self
+    }
+    pub fn intra_refresh_index(mut self, intra_refresh_index: u32) -> Self {
+        self.intra_refresh_index = intra_refresh_index;
+        self
+    }
+}
 #[repr(C)]
 #[derive(Clone, Copy)]
 pub struct VideoReferenceIntraRefreshInfoKHR<'a> {
@@ -103,6 +162,15 @@ impl<'a> Default for VideoReferenceIntraRefreshInfoKHR<'a> {
             dirty_intra_refresh_regions: Default::default(),
             _marker: ::core::marker::PhantomData,
         }
+    }
+}
+impl<'a> VideoReferenceIntraRefreshInfoKHR<'a> {
+    pub fn dirty_intra_refresh_regions(
+        mut self,
+        dirty_intra_refresh_regions: u32,
+    ) -> Self {
+        self.dirty_intra_refresh_regions = dirty_intra_refresh_regions;
+        self
     }
 }
 #[repr(C)]
@@ -129,6 +197,15 @@ impl<'a> Default for PhysicalDeviceVideoEncodeIntraRefreshFeaturesKHR<'a> {
             video_encode_intra_refresh: Default::default(),
             _marker: ::core::marker::PhantomData,
         }
+    }
+}
+impl<'a> PhysicalDeviceVideoEncodeIntraRefreshFeaturesKHR<'a> {
+    pub fn video_encode_intra_refresh(
+        mut self,
+        video_encode_intra_refresh: crate::vk::Bool32,
+    ) -> Self {
+        self.video_encode_intra_refresh = video_encode_intra_refresh;
+        self
     }
 }
 ///Provided by [`khr::video_encode_intra_refresh`](crate::khr::video_encode_intra_refresh)

@@ -27,6 +27,12 @@ impl<'a> Default for PhysicalDeviceMemoryPriorityFeaturesEXT<'a> {
         }
     }
 }
+impl<'a> PhysicalDeviceMemoryPriorityFeaturesEXT<'a> {
+    pub fn memory_priority(mut self, memory_priority: crate::vk::Bool32) -> Self {
+        self.memory_priority = memory_priority;
+        self
+    }
+}
 #[repr(C)]
 #[derive(Clone, Copy)]
 pub struct MemoryPriorityAllocateInfoEXT<'a> {
@@ -48,6 +54,12 @@ impl<'a> Default for MemoryPriorityAllocateInfoEXT<'a> {
             priority: Default::default(),
             _marker: ::core::marker::PhantomData,
         }
+    }
+}
+impl<'a> MemoryPriorityAllocateInfoEXT<'a> {
+    pub fn priority(mut self, priority: core::ffi::c_float) -> Self {
+        self.priority = priority;
+        self
     }
 }
 ///Provided by [`ext::memory_priority`](crate::ext::memory_priority)

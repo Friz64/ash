@@ -62,12 +62,48 @@ pub(crate) mod reexport {
             }
         }
     }
+    impl<'a> DrmFormatModifierPropertiesListEXT<'a> {
+        pub fn drm_format_modifier_count(
+            mut self,
+            drm_format_modifier_count: u32,
+        ) -> Self {
+            self.drm_format_modifier_count = drm_format_modifier_count;
+            self
+        }
+        pub fn p_drm_format_modifier_properties(
+            mut self,
+            p_drm_format_modifier_properties: *mut crate::vk::DrmFormatModifierPropertiesEXT,
+        ) -> Self {
+            self.p_drm_format_modifier_properties = p_drm_format_modifier_properties;
+            self
+        }
+    }
     #[repr(C)]
     #[derive(Clone, Copy, Default)]
     pub struct DrmFormatModifierPropertiesEXT {
         pub drm_format_modifier: u64,
         pub drm_format_modifier_plane_count: u32,
         pub drm_format_modifier_tiling_features: crate::vk::FormatFeatureFlags,
+    }
+    impl DrmFormatModifierPropertiesEXT {
+        pub fn drm_format_modifier(mut self, drm_format_modifier: u64) -> Self {
+            self.drm_format_modifier = drm_format_modifier;
+            self
+        }
+        pub fn drm_format_modifier_plane_count(
+            mut self,
+            drm_format_modifier_plane_count: u32,
+        ) -> Self {
+            self.drm_format_modifier_plane_count = drm_format_modifier_plane_count;
+            self
+        }
+        pub fn drm_format_modifier_tiling_features(
+            mut self,
+            drm_format_modifier_tiling_features: crate::vk::FormatFeatureFlags,
+        ) -> Self {
+            self.drm_format_modifier_tiling_features = drm_format_modifier_tiling_features;
+            self
+        }
     }
     #[repr(C)]
     #[derive(Clone, Copy)]
@@ -99,6 +135,30 @@ pub(crate) mod reexport {
             }
         }
     }
+    impl<'a> PhysicalDeviceImageDrmFormatModifierInfoEXT<'a> {
+        pub fn drm_format_modifier(mut self, drm_format_modifier: u64) -> Self {
+            self.drm_format_modifier = drm_format_modifier;
+            self
+        }
+        pub fn sharing_mode(mut self, sharing_mode: crate::vk::SharingMode) -> Self {
+            self.sharing_mode = sharing_mode;
+            self
+        }
+        pub fn queue_family_index_count(
+            mut self,
+            queue_family_index_count: u32,
+        ) -> Self {
+            self.queue_family_index_count = queue_family_index_count;
+            self
+        }
+        pub fn p_queue_family_indices(
+            mut self,
+            p_queue_family_indices: *const u32,
+        ) -> Self {
+            self.p_queue_family_indices = p_queue_family_indices;
+            self
+        }
+    }
     #[repr(C)]
     #[derive(Clone, Copy)]
     pub struct ImageDrmFormatModifierListCreateInfoEXT<'a> {
@@ -123,6 +183,22 @@ pub(crate) mod reexport {
                 p_drm_format_modifiers: Default::default(),
                 _marker: ::core::marker::PhantomData,
             }
+        }
+    }
+    impl<'a> ImageDrmFormatModifierListCreateInfoEXT<'a> {
+        pub fn drm_format_modifier_count(
+            mut self,
+            drm_format_modifier_count: u32,
+        ) -> Self {
+            self.drm_format_modifier_count = drm_format_modifier_count;
+            self
+        }
+        pub fn p_drm_format_modifiers(
+            mut self,
+            p_drm_format_modifiers: *const u64,
+        ) -> Self {
+            self.p_drm_format_modifiers = p_drm_format_modifiers;
+            self
         }
     }
     #[repr(C)]
@@ -153,6 +229,26 @@ pub(crate) mod reexport {
             }
         }
     }
+    impl<'a> ImageDrmFormatModifierExplicitCreateInfoEXT<'a> {
+        pub fn drm_format_modifier(mut self, drm_format_modifier: u64) -> Self {
+            self.drm_format_modifier = drm_format_modifier;
+            self
+        }
+        pub fn drm_format_modifier_plane_count(
+            mut self,
+            drm_format_modifier_plane_count: u32,
+        ) -> Self {
+            self.drm_format_modifier_plane_count = drm_format_modifier_plane_count;
+            self
+        }
+        pub fn p_plane_layouts(
+            mut self,
+            p_plane_layouts: *const crate::vk::SubresourceLayout,
+        ) -> Self {
+            self.p_plane_layouts = p_plane_layouts;
+            self
+        }
+    }
     #[repr(C)]
     #[derive(Clone, Copy)]
     pub struct ImageDrmFormatModifierPropertiesEXT<'a> {
@@ -173,6 +269,12 @@ pub(crate) mod reexport {
                 drm_format_modifier: Default::default(),
                 _marker: ::core::marker::PhantomData,
             }
+        }
+    }
+    impl<'a> ImageDrmFormatModifierPropertiesEXT<'a> {
+        pub fn drm_format_modifier(mut self, drm_format_modifier: u64) -> Self {
+            self.drm_format_modifier = drm_format_modifier;
+            self
         }
     }
     #[repr(C)]
@@ -201,12 +303,48 @@ pub(crate) mod reexport {
             }
         }
     }
+    impl<'a> DrmFormatModifierPropertiesList2EXT<'a> {
+        pub fn drm_format_modifier_count(
+            mut self,
+            drm_format_modifier_count: u32,
+        ) -> Self {
+            self.drm_format_modifier_count = drm_format_modifier_count;
+            self
+        }
+        pub fn p_drm_format_modifier_properties(
+            mut self,
+            p_drm_format_modifier_properties: *mut crate::vk::DrmFormatModifierProperties2EXT,
+        ) -> Self {
+            self.p_drm_format_modifier_properties = p_drm_format_modifier_properties;
+            self
+        }
+    }
     #[repr(C)]
     #[derive(Clone, Copy, Default)]
     pub struct DrmFormatModifierProperties2EXT {
         pub drm_format_modifier: u64,
         pub drm_format_modifier_plane_count: u32,
         pub drm_format_modifier_tiling_features: crate::vk::FormatFeatureFlags2,
+    }
+    impl DrmFormatModifierProperties2EXT {
+        pub fn drm_format_modifier(mut self, drm_format_modifier: u64) -> Self {
+            self.drm_format_modifier = drm_format_modifier;
+            self
+        }
+        pub fn drm_format_modifier_plane_count(
+            mut self,
+            drm_format_modifier_plane_count: u32,
+        ) -> Self {
+            self.drm_format_modifier_plane_count = drm_format_modifier_plane_count;
+            self
+        }
+        pub fn drm_format_modifier_tiling_features(
+            mut self,
+            drm_format_modifier_tiling_features: crate::vk::FormatFeatureFlags2,
+        ) -> Self {
+            self.drm_format_modifier_tiling_features = drm_format_modifier_tiling_features;
+            self
+        }
     }
     ///Provided by [`ext::image_drm_format_modifier`](crate::ext::image_drm_format_modifier)
     impl crate::vk::ImageTiling {

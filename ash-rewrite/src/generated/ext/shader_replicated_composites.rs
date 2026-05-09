@@ -27,6 +27,15 @@ impl<'a> Default for PhysicalDeviceShaderReplicatedCompositesFeaturesEXT<'a> {
         }
     }
 }
+impl<'a> PhysicalDeviceShaderReplicatedCompositesFeaturesEXT<'a> {
+    pub fn shader_replicated_composites(
+        mut self,
+        shader_replicated_composites: crate::vk::Bool32,
+    ) -> Self {
+        self.shader_replicated_composites = shader_replicated_composites;
+        self
+    }
+}
 ///Provided by [`ext::shader_replicated_composites`](crate::ext::shader_replicated_composites)
 impl crate::vk::StructureType {
     pub const PHYSICAL_DEVICE_SHADER_REPLICATED_COMPOSITES_FEATURES_EXT: Self = Self(

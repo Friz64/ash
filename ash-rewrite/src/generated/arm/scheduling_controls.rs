@@ -61,6 +61,12 @@ pub(crate) mod reexport {
             }
         }
     }
+    impl<'a> DeviceQueueShaderCoreControlCreateInfoARM<'a> {
+        pub fn shader_core_count(mut self, shader_core_count: u32) -> Self {
+            self.shader_core_count = shader_core_count;
+            self
+        }
+    }
     #[repr(C)]
     #[derive(Clone, Copy)]
     pub struct PhysicalDeviceSchedulingControlsFeaturesARM<'a> {
@@ -87,6 +93,15 @@ pub(crate) mod reexport {
             }
         }
     }
+    impl<'a> PhysicalDeviceSchedulingControlsFeaturesARM<'a> {
+        pub fn scheduling_controls(
+            mut self,
+            scheduling_controls: crate::vk::Bool32,
+        ) -> Self {
+            self.scheduling_controls = scheduling_controls;
+            self
+        }
+    }
     #[repr(C)]
     #[derive(Clone, Copy)]
     pub struct PhysicalDeviceSchedulingControlsPropertiesARM<'a> {
@@ -109,6 +124,15 @@ pub(crate) mod reexport {
                 scheduling_controls_flags: Default::default(),
                 _marker: ::core::marker::PhantomData,
             }
+        }
+    }
+    impl<'a> PhysicalDeviceSchedulingControlsPropertiesARM<'a> {
+        pub fn scheduling_controls_flags(
+            mut self,
+            scheduling_controls_flags: crate::vk::PhysicalDeviceSchedulingControlsFlagsARM,
+        ) -> Self {
+            self.scheduling_controls_flags = scheduling_controls_flags;
+            self
         }
     }
     #[repr(C)]
@@ -140,6 +164,29 @@ pub(crate) mod reexport {
             }
         }
     }
+    impl<'a> PhysicalDeviceSchedulingControlsDispatchParametersPropertiesARM<'a> {
+        pub fn scheduling_controls_max_warps_count(
+            mut self,
+            scheduling_controls_max_warps_count: u32,
+        ) -> Self {
+            self.scheduling_controls_max_warps_count = scheduling_controls_max_warps_count;
+            self
+        }
+        pub fn scheduling_controls_max_queued_batches_count(
+            mut self,
+            scheduling_controls_max_queued_batches_count: u32,
+        ) -> Self {
+            self.scheduling_controls_max_queued_batches_count = scheduling_controls_max_queued_batches_count;
+            self
+        }
+        pub fn scheduling_controls_max_work_group_batch_size(
+            mut self,
+            scheduling_controls_max_work_group_batch_size: u32,
+        ) -> Self {
+            self.scheduling_controls_max_work_group_batch_size = scheduling_controls_max_work_group_batch_size;
+            self
+        }
+    }
     #[repr(C)]
     #[derive(Clone, Copy)]
     pub struct DispatchParametersARM<'a> {
@@ -163,6 +210,26 @@ pub(crate) mod reexport {
                 max_warps_per_shader_core: Default::default(),
                 _marker: ::core::marker::PhantomData,
             }
+        }
+    }
+    impl<'a> DispatchParametersARM<'a> {
+        pub fn work_group_batch_size(mut self, work_group_batch_size: u32) -> Self {
+            self.work_group_batch_size = work_group_batch_size;
+            self
+        }
+        pub fn max_queued_work_group_batches(
+            mut self,
+            max_queued_work_group_batches: u32,
+        ) -> Self {
+            self.max_queued_work_group_batches = max_queued_work_group_batches;
+            self
+        }
+        pub fn max_warps_per_shader_core(
+            mut self,
+            max_warps_per_shader_core: u32,
+        ) -> Self {
+            self.max_warps_per_shader_core = max_warps_per_shader_core;
+            self
         }
     }
     ///Provided by [`arm::scheduling_controls`](crate::arm::scheduling_controls)

@@ -29,6 +29,29 @@ impl<'a> Default for PipelineCoverageToColorStateCreateInfoNV<'a> {
         }
     }
 }
+impl<'a> PipelineCoverageToColorStateCreateInfoNV<'a> {
+    pub fn flags(
+        mut self,
+        flags: crate::vk::PipelineCoverageToColorStateCreateFlagsNV,
+    ) -> Self {
+        self.flags = flags;
+        self
+    }
+    pub fn coverage_to_color_enable(
+        mut self,
+        coverage_to_color_enable: crate::vk::Bool32,
+    ) -> Self {
+        self.coverage_to_color_enable = coverage_to_color_enable;
+        self
+    }
+    pub fn coverage_to_color_location(
+        mut self,
+        coverage_to_color_location: u32,
+    ) -> Self {
+        self.coverage_to_color_location = coverage_to_color_location;
+        self
+    }
+}
 ///Provided by [`nv::fragment_coverage_to_color`](crate::nv::fragment_coverage_to_color)
 impl crate::vk::StructureType {
     pub const PIPELINE_COVERAGE_TO_COLOR_STATE_CREATE_INFO_NV: Self = Self(1000149000);

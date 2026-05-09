@@ -29,6 +29,22 @@ impl<'a> Default for PhysicalDevicePrimitiveTopologyListRestartFeaturesEXT<'a> {
         }
     }
 }
+impl<'a> PhysicalDevicePrimitiveTopologyListRestartFeaturesEXT<'a> {
+    pub fn primitive_topology_list_restart(
+        mut self,
+        primitive_topology_list_restart: crate::vk::Bool32,
+    ) -> Self {
+        self.primitive_topology_list_restart = primitive_topology_list_restart;
+        self
+    }
+    pub fn primitive_topology_patch_list_restart(
+        mut self,
+        primitive_topology_patch_list_restart: crate::vk::Bool32,
+    ) -> Self {
+        self.primitive_topology_patch_list_restart = primitive_topology_patch_list_restart;
+        self
+    }
+}
 ///Provided by [`ext::primitive_topology_list_restart`](crate::ext::primitive_topology_list_restart)
 impl crate::vk::StructureType {
     pub const PHYSICAL_DEVICE_PRIMITIVE_TOPOLOGY_LIST_RESTART_FEATURES_EXT: Self = Self(

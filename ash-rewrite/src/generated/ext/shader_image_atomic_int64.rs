@@ -29,6 +29,22 @@ impl<'a> Default for PhysicalDeviceShaderImageAtomicInt64FeaturesEXT<'a> {
         }
     }
 }
+impl<'a> PhysicalDeviceShaderImageAtomicInt64FeaturesEXT<'a> {
+    pub fn shader_image_int64_atomics(
+        mut self,
+        shader_image_int64_atomics: crate::vk::Bool32,
+    ) -> Self {
+        self.shader_image_int64_atomics = shader_image_int64_atomics;
+        self
+    }
+    pub fn sparse_image_int64_atomics(
+        mut self,
+        sparse_image_int64_atomics: crate::vk::Bool32,
+    ) -> Self {
+        self.sparse_image_int64_atomics = sparse_image_int64_atomics;
+        self
+    }
+}
 ///Provided by [`ext::shader_image_atomic_int64`](crate::ext::shader_image_atomic_int64)
 impl crate::vk::StructureType {
     pub const PHYSICAL_DEVICE_SHADER_IMAGE_ATOMIC_INT64_FEATURES_EXT: Self = Self(
