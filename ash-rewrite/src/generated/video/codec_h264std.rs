@@ -27,6 +27,9 @@ impl H264SpsVuiFlags {
         self.bitfield0 = (aspect_ratio_info_present_flag & 0x00000001) | rest;
         self
     }
+    pub fn get_aspect_ratio_info_present_flag(&self) -> u32 {
+        self.bitfield0 & 0x00000001
+    }
     pub fn overscan_info_present_flag(
         mut self,
         overscan_info_present_flag: u32,
@@ -35,10 +38,16 @@ impl H264SpsVuiFlags {
         self.bitfield0 = ((overscan_info_present_flag << 1u32) & 0x00000002) | rest;
         self
     }
+    pub fn get_overscan_info_present_flag(&self) -> u32 {
+        (self.bitfield0 & 0x00000002) >> 1u32
+    }
     pub fn overscan_appropriate_flag(mut self, overscan_appropriate_flag: u32) -> Self {
         let rest = self.bitfield0 & 0xFFFFFFFB;
         self.bitfield0 = ((overscan_appropriate_flag << 2u32) & 0x00000004) | rest;
         self
+    }
+    pub fn get_overscan_appropriate_flag(&self) -> u32 {
+        (self.bitfield0 & 0x00000004) >> 2u32
     }
     pub fn video_signal_type_present_flag(
         mut self,
@@ -48,10 +57,16 @@ impl H264SpsVuiFlags {
         self.bitfield0 = ((video_signal_type_present_flag << 3u32) & 0x00000008) | rest;
         self
     }
+    pub fn get_video_signal_type_present_flag(&self) -> u32 {
+        (self.bitfield0 & 0x00000008) >> 3u32
+    }
     pub fn video_full_range_flag(mut self, video_full_range_flag: u32) -> Self {
         let rest = self.bitfield0 & 0xFFFFFFEF;
         self.bitfield0 = ((video_full_range_flag << 4u32) & 0x00000010) | rest;
         self
+    }
+    pub fn get_video_full_range_flag(&self) -> u32 {
+        (self.bitfield0 & 0x00000010) >> 4u32
     }
     pub fn color_description_present_flag(
         mut self,
@@ -61,6 +76,9 @@ impl H264SpsVuiFlags {
         self.bitfield0 = ((color_description_present_flag << 5u32) & 0x00000020) | rest;
         self
     }
+    pub fn get_color_description_present_flag(&self) -> u32 {
+        (self.bitfield0 & 0x00000020) >> 5u32
+    }
     pub fn chroma_loc_info_present_flag(
         mut self,
         chroma_loc_info_present_flag: u32,
@@ -69,15 +87,24 @@ impl H264SpsVuiFlags {
         self.bitfield0 = ((chroma_loc_info_present_flag << 6u32) & 0x00000040) | rest;
         self
     }
+    pub fn get_chroma_loc_info_present_flag(&self) -> u32 {
+        (self.bitfield0 & 0x00000040) >> 6u32
+    }
     pub fn timing_info_present_flag(mut self, timing_info_present_flag: u32) -> Self {
         let rest = self.bitfield0 & 0xFFFFFF7F;
         self.bitfield0 = ((timing_info_present_flag << 7u32) & 0x00000080) | rest;
         self
     }
+    pub fn get_timing_info_present_flag(&self) -> u32 {
+        (self.bitfield0 & 0x00000080) >> 7u32
+    }
     pub fn fixed_frame_rate_flag(mut self, fixed_frame_rate_flag: u32) -> Self {
         let rest = self.bitfield0 & 0xFFFFFEFF;
         self.bitfield0 = ((fixed_frame_rate_flag << 8u32) & 0x00000100) | rest;
         self
+    }
+    pub fn get_fixed_frame_rate_flag(&self) -> u32 {
+        (self.bitfield0 & 0x00000100) >> 8u32
     }
     pub fn bitstream_restriction_flag(
         mut self,
@@ -86,6 +113,9 @@ impl H264SpsVuiFlags {
         let rest = self.bitfield0 & 0xFFFFFDFF;
         self.bitfield0 = ((bitstream_restriction_flag << 9u32) & 0x00000200) | rest;
         self
+    }
+    pub fn get_bitstream_restriction_flag(&self) -> u32 {
+        (self.bitfield0 & 0x00000200) >> 9u32
     }
     pub fn nal_hrd_parameters_present_flag(
         mut self,
@@ -96,6 +126,9 @@ impl H264SpsVuiFlags {
             | rest;
         self
     }
+    pub fn get_nal_hrd_parameters_present_flag(&self) -> u32 {
+        (self.bitfield0 & 0x00000400) >> 10u32
+    }
     pub fn vcl_hrd_parameters_present_flag(
         mut self,
         vcl_hrd_parameters_present_flag: u32,
@@ -104,6 +137,9 @@ impl H264SpsVuiFlags {
         self.bitfield0 = ((vcl_hrd_parameters_present_flag << 11u32) & 0x00000800)
             | rest;
         self
+    }
+    pub fn get_vcl_hrd_parameters_present_flag(&self) -> u32 {
+        (self.bitfield0 & 0x00000800) >> 11u32
     }
 }
 #[repr(C)]
@@ -328,35 +364,56 @@ impl H264SpsFlags {
         self.bitfield0 = (constraint_set0_flag & 0x00000001) | rest;
         self
     }
+    pub fn get_constraint_set0_flag(&self) -> u32 {
+        self.bitfield0 & 0x00000001
+    }
     pub fn constraint_set1_flag(mut self, constraint_set1_flag: u32) -> Self {
         let rest = self.bitfield0 & 0xFFFFFFFD;
         self.bitfield0 = ((constraint_set1_flag << 1u32) & 0x00000002) | rest;
         self
+    }
+    pub fn get_constraint_set1_flag(&self) -> u32 {
+        (self.bitfield0 & 0x00000002) >> 1u32
     }
     pub fn constraint_set2_flag(mut self, constraint_set2_flag: u32) -> Self {
         let rest = self.bitfield0 & 0xFFFFFFFB;
         self.bitfield0 = ((constraint_set2_flag << 2u32) & 0x00000004) | rest;
         self
     }
+    pub fn get_constraint_set2_flag(&self) -> u32 {
+        (self.bitfield0 & 0x00000004) >> 2u32
+    }
     pub fn constraint_set3_flag(mut self, constraint_set3_flag: u32) -> Self {
         let rest = self.bitfield0 & 0xFFFFFFF7;
         self.bitfield0 = ((constraint_set3_flag << 3u32) & 0x00000008) | rest;
         self
+    }
+    pub fn get_constraint_set3_flag(&self) -> u32 {
+        (self.bitfield0 & 0x00000008) >> 3u32
     }
     pub fn constraint_set4_flag(mut self, constraint_set4_flag: u32) -> Self {
         let rest = self.bitfield0 & 0xFFFFFFEF;
         self.bitfield0 = ((constraint_set4_flag << 4u32) & 0x00000010) | rest;
         self
     }
+    pub fn get_constraint_set4_flag(&self) -> u32 {
+        (self.bitfield0 & 0x00000010) >> 4u32
+    }
     pub fn constraint_set5_flag(mut self, constraint_set5_flag: u32) -> Self {
         let rest = self.bitfield0 & 0xFFFFFFDF;
         self.bitfield0 = ((constraint_set5_flag << 5u32) & 0x00000020) | rest;
         self
     }
+    pub fn get_constraint_set5_flag(&self) -> u32 {
+        (self.bitfield0 & 0x00000020) >> 5u32
+    }
     pub fn direct_8x8_inference_flag(mut self, direct_8x8_inference_flag: u32) -> Self {
         let rest = self.bitfield0 & 0xFFFFFFBF;
         self.bitfield0 = ((direct_8x8_inference_flag << 6u32) & 0x00000040) | rest;
         self
+    }
+    pub fn get_direct_8x8_inference_flag(&self) -> u32 {
+        (self.bitfield0 & 0x00000040) >> 6u32
     }
     pub fn mb_adaptive_frame_field_flag(
         mut self,
@@ -366,10 +423,16 @@ impl H264SpsFlags {
         self.bitfield0 = ((mb_adaptive_frame_field_flag << 7u32) & 0x00000080) | rest;
         self
     }
+    pub fn get_mb_adaptive_frame_field_flag(&self) -> u32 {
+        (self.bitfield0 & 0x00000080) >> 7u32
+    }
     pub fn frame_mbs_only_flag(mut self, frame_mbs_only_flag: u32) -> Self {
         let rest = self.bitfield0 & 0xFFFFFEFF;
         self.bitfield0 = ((frame_mbs_only_flag << 8u32) & 0x00000100) | rest;
         self
+    }
+    pub fn get_frame_mbs_only_flag(&self) -> u32 {
+        (self.bitfield0 & 0x00000100) >> 8u32
     }
     pub fn delta_pic_order_always_zero_flag(
         mut self,
@@ -380,6 +443,9 @@ impl H264SpsFlags {
             | rest;
         self
     }
+    pub fn get_delta_pic_order_always_zero_flag(&self) -> u32 {
+        (self.bitfield0 & 0x00000200) >> 9u32
+    }
     pub fn separate_colour_plane_flag(
         mut self,
         separate_colour_plane_flag: u32,
@@ -387,6 +453,9 @@ impl H264SpsFlags {
         let rest = self.bitfield0 & 0xFFFFFBFF;
         self.bitfield0 = ((separate_colour_plane_flag << 10u32) & 0x00000400) | rest;
         self
+    }
+    pub fn get_separate_colour_plane_flag(&self) -> u32 {
+        (self.bitfield0 & 0x00000400) >> 10u32
     }
     pub fn gaps_in_frame_num_value_allowed_flag(
         mut self,
@@ -397,6 +466,9 @@ impl H264SpsFlags {
             | rest;
         self
     }
+    pub fn get_gaps_in_frame_num_value_allowed_flag(&self) -> u32 {
+        (self.bitfield0 & 0x00000800) >> 11u32
+    }
     pub fn qpprime_y_zero_transform_bypass_flag(
         mut self,
         qpprime_y_zero_transform_bypass_flag: u32,
@@ -406,10 +478,16 @@ impl H264SpsFlags {
             | rest;
         self
     }
+    pub fn get_qpprime_y_zero_transform_bypass_flag(&self) -> u32 {
+        (self.bitfield0 & 0x00001000) >> 12u32
+    }
     pub fn frame_cropping_flag(mut self, frame_cropping_flag: u32) -> Self {
         let rest = self.bitfield0 & 0xFFFFDFFF;
         self.bitfield0 = ((frame_cropping_flag << 13u32) & 0x00002000) | rest;
         self
+    }
+    pub fn get_frame_cropping_flag(&self) -> u32 {
+        (self.bitfield0 & 0x00002000) >> 13u32
     }
     pub fn seq_scaling_matrix_present_flag(
         mut self,
@@ -420,6 +498,9 @@ impl H264SpsFlags {
             | rest;
         self
     }
+    pub fn get_seq_scaling_matrix_present_flag(&self) -> u32 {
+        (self.bitfield0 & 0x00004000) >> 14u32
+    }
     pub fn vui_parameters_present_flag(
         mut self,
         vui_parameters_present_flag: u32,
@@ -427,6 +508,9 @@ impl H264SpsFlags {
         let rest = self.bitfield0 & 0xFFFF7FFF;
         self.bitfield0 = ((vui_parameters_present_flag << 15u32) & 0x00008000) | rest;
         self
+    }
+    pub fn get_vui_parameters_present_flag(&self) -> u32 {
+        (self.bitfield0 & 0x00008000) >> 15u32
     }
 }
 #[repr(C)]
@@ -654,6 +738,9 @@ impl H264PpsFlags {
         self.bitfield0 = (transform_8x8_mode_flag & 0x00000001) | rest;
         self
     }
+    pub fn get_transform_8x8_mode_flag(&self) -> u32 {
+        self.bitfield0 & 0x00000001
+    }
     pub fn redundant_pic_cnt_present_flag(
         mut self,
         redundant_pic_cnt_present_flag: u32,
@@ -662,6 +749,9 @@ impl H264PpsFlags {
         self.bitfield0 = ((redundant_pic_cnt_present_flag << 1u32) & 0x00000002) | rest;
         self
     }
+    pub fn get_redundant_pic_cnt_present_flag(&self) -> u32 {
+        (self.bitfield0 & 0x00000002) >> 1u32
+    }
     pub fn constrained_intra_pred_flag(
         mut self,
         constrained_intra_pred_flag: u32,
@@ -669,6 +759,9 @@ impl H264PpsFlags {
         let rest = self.bitfield0 & 0xFFFFFFFB;
         self.bitfield0 = ((constrained_intra_pred_flag << 2u32) & 0x00000004) | rest;
         self
+    }
+    pub fn get_constrained_intra_pred_flag(&self) -> u32 {
+        (self.bitfield0 & 0x00000004) >> 2u32
     }
     pub fn deblocking_filter_control_present_flag(
         mut self,
@@ -679,10 +772,16 @@ impl H264PpsFlags {
             | rest;
         self
     }
+    pub fn get_deblocking_filter_control_present_flag(&self) -> u32 {
+        (self.bitfield0 & 0x00000008) >> 3u32
+    }
     pub fn weighted_pred_flag(mut self, weighted_pred_flag: u32) -> Self {
         let rest = self.bitfield0 & 0xFFFFFFEF;
         self.bitfield0 = ((weighted_pred_flag << 4u32) & 0x00000010) | rest;
         self
+    }
+    pub fn get_weighted_pred_flag(&self) -> u32 {
+        (self.bitfield0 & 0x00000010) >> 4u32
     }
     pub fn bottom_field_pic_order_in_frame_present_flag(
         mut self,
@@ -693,10 +792,16 @@ impl H264PpsFlags {
             & 0x00000020) | rest;
         self
     }
+    pub fn get_bottom_field_pic_order_in_frame_present_flag(&self) -> u32 {
+        (self.bitfield0 & 0x00000020) >> 5u32
+    }
     pub fn entropy_coding_mode_flag(mut self, entropy_coding_mode_flag: u32) -> Self {
         let rest = self.bitfield0 & 0xFFFFFFBF;
         self.bitfield0 = ((entropy_coding_mode_flag << 6u32) & 0x00000040) | rest;
         self
+    }
+    pub fn get_entropy_coding_mode_flag(&self) -> u32 {
+        (self.bitfield0 & 0x00000040) >> 6u32
     }
     pub fn pic_scaling_matrix_present_flag(
         mut self,
@@ -705,6 +810,9 @@ impl H264PpsFlags {
         let rest = self.bitfield0 & 0xFFFFFF7F;
         self.bitfield0 = ((pic_scaling_matrix_present_flag << 7u32) & 0x00000080) | rest;
         self
+    }
+    pub fn get_pic_scaling_matrix_present_flag(&self) -> u32 {
+        (self.bitfield0 & 0x00000080) >> 7u32
     }
 }
 #[repr(C)]

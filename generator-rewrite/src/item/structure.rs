@@ -172,11 +172,21 @@ impl Code for Struct {
                         } else {
                             quote! { #field_name }
                         };
+
+                        let extract = if offset != 0 {
+                            quote! { (self.#name & #mask_tok ) >> #offset }
+                        } else {
+                            quote! { self.#name & #mask_tok  }
+                        };
+                        let get_field_name = format_ident!("get_{field_name}");
                         quote! {
                             pub fn #field_name(mut self, #field_name: u32) -> Self {
                                 let rest = self.#name & #mask_inv_tok;
                                 self.#name = (#field_shift & #mask_tok) | rest;
                                 self
+                            }
+                            pub fn #get_field_name(&self) -> u32 {
+                                #extract
                             }
                         }
                     }))

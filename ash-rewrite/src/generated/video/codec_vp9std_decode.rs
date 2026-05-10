@@ -20,20 +20,32 @@ impl DecodeVP9PictureInfoFlags {
         self.bitfield0 = (error_resilient_mode & 0x00000001) | rest;
         self
     }
+    pub fn get_error_resilient_mode(&self) -> u32 {
+        self.bitfield0 & 0x00000001
+    }
     pub fn intra_only(mut self, intra_only: u32) -> Self {
         let rest = self.bitfield0 & 0xFFFFFFFD;
         self.bitfield0 = ((intra_only << 1u32) & 0x00000002) | rest;
         self
+    }
+    pub fn get_intra_only(&self) -> u32 {
+        (self.bitfield0 & 0x00000002) >> 1u32
     }
     pub fn allow_high_precision_mv(mut self, allow_high_precision_mv: u32) -> Self {
         let rest = self.bitfield0 & 0xFFFFFFFB;
         self.bitfield0 = ((allow_high_precision_mv << 2u32) & 0x00000004) | rest;
         self
     }
+    pub fn get_allow_high_precision_mv(&self) -> u32 {
+        (self.bitfield0 & 0x00000004) >> 2u32
+    }
     pub fn refresh_frame_context(mut self, refresh_frame_context: u32) -> Self {
         let rest = self.bitfield0 & 0xFFFFFFF7;
         self.bitfield0 = ((refresh_frame_context << 3u32) & 0x00000008) | rest;
         self
+    }
+    pub fn get_refresh_frame_context(&self) -> u32 {
+        (self.bitfield0 & 0x00000008) >> 3u32
     }
     pub fn frame_parallel_decoding_mode(
         mut self,
@@ -43,20 +55,32 @@ impl DecodeVP9PictureInfoFlags {
         self.bitfield0 = ((frame_parallel_decoding_mode << 4u32) & 0x00000010) | rest;
         self
     }
+    pub fn get_frame_parallel_decoding_mode(&self) -> u32 {
+        (self.bitfield0 & 0x00000010) >> 4u32
+    }
     pub fn segmentation_enabled(mut self, segmentation_enabled: u32) -> Self {
         let rest = self.bitfield0 & 0xFFFFFFDF;
         self.bitfield0 = ((segmentation_enabled << 5u32) & 0x00000020) | rest;
         self
+    }
+    pub fn get_segmentation_enabled(&self) -> u32 {
+        (self.bitfield0 & 0x00000020) >> 5u32
     }
     pub fn show_frame(mut self, show_frame: u32) -> Self {
         let rest = self.bitfield0 & 0xFFFFFFBF;
         self.bitfield0 = ((show_frame << 6u32) & 0x00000040) | rest;
         self
     }
+    pub fn get_show_frame(&self) -> u32 {
+        (self.bitfield0 & 0x00000040) >> 6u32
+    }
     pub fn use_prev_frame_mvs(mut self, use_prev_frame_mvs: u32) -> Self {
         let rest = self.bitfield0 & 0xFFFFFF7F;
         self.bitfield0 = ((use_prev_frame_mvs << 7u32) & 0x00000080) | rest;
         self
+    }
+    pub fn get_use_prev_frame_mvs(&self) -> u32 {
+        (self.bitfield0 & 0x00000080) >> 7u32
     }
 }
 #[repr(C)]

@@ -77,10 +77,16 @@ impl EncodeAV1OperatingPointInfoFlags {
         self.bitfield0 = (decoder_model_present_for_this_op & 0x00000001) | rest;
         self
     }
+    pub fn get_decoder_model_present_for_this_op(&self) -> u32 {
+        self.bitfield0 & 0x00000001
+    }
     pub fn low_delay_mode_flag(mut self, low_delay_mode_flag: u32) -> Self {
         let rest = self.bitfield0 & 0xFFFFFFFD;
         self.bitfield0 = ((low_delay_mode_flag << 1u32) & 0x00000002) | rest;
         self
+    }
+    pub fn get_low_delay_mode_flag(&self) -> u32 {
+        (self.bitfield0 & 0x00000002) >> 1u32
     }
     pub fn initial_display_delay_present_for_this_op(
         mut self,
@@ -90,6 +96,9 @@ impl EncodeAV1OperatingPointInfoFlags {
         self.bitfield0 = ((initial_display_delay_present_for_this_op << 2u32)
             & 0x00000004) | rest;
         self
+    }
+    pub fn get_initial_display_delay_present_for_this_op(&self) -> u32 {
+        (self.bitfield0 & 0x00000004) >> 2u32
     }
 }
 #[repr(C)]
@@ -176,15 +185,24 @@ impl EncodeAV1PictureInfoFlags {
         self.bitfield0 = (error_resilient_mode & 0x00000001) | rest;
         self
     }
+    pub fn get_error_resilient_mode(&self) -> u32 {
+        self.bitfield0 & 0x00000001
+    }
     pub fn disable_cdf_update(mut self, disable_cdf_update: u32) -> Self {
         let rest = self.bitfield0 & 0xFFFFFFFD;
         self.bitfield0 = ((disable_cdf_update << 1u32) & 0x00000002) | rest;
         self
     }
+    pub fn get_disable_cdf_update(&self) -> u32 {
+        (self.bitfield0 & 0x00000002) >> 1u32
+    }
     pub fn use_superres(mut self, use_superres: u32) -> Self {
         let rest = self.bitfield0 & 0xFFFFFFFB;
         self.bitfield0 = ((use_superres << 2u32) & 0x00000004) | rest;
         self
+    }
+    pub fn get_use_superres(&self) -> u32 {
+        (self.bitfield0 & 0x00000004) >> 2u32
     }
     pub fn render_and_frame_size_different(
         mut self,
@@ -194,6 +212,9 @@ impl EncodeAV1PictureInfoFlags {
         self.bitfield0 = ((render_and_frame_size_different << 3u32) & 0x00000008) | rest;
         self
     }
+    pub fn get_render_and_frame_size_different(&self) -> u32 {
+        (self.bitfield0 & 0x00000008) >> 3u32
+    }
     pub fn allow_screen_content_tools(
         mut self,
         allow_screen_content_tools: u32,
@@ -202,20 +223,32 @@ impl EncodeAV1PictureInfoFlags {
         self.bitfield0 = ((allow_screen_content_tools << 4u32) & 0x00000010) | rest;
         self
     }
+    pub fn get_allow_screen_content_tools(&self) -> u32 {
+        (self.bitfield0 & 0x00000010) >> 4u32
+    }
     pub fn is_filter_switchable(mut self, is_filter_switchable: u32) -> Self {
         let rest = self.bitfield0 & 0xFFFFFFDF;
         self.bitfield0 = ((is_filter_switchable << 5u32) & 0x00000020) | rest;
         self
+    }
+    pub fn get_is_filter_switchable(&self) -> u32 {
+        (self.bitfield0 & 0x00000020) >> 5u32
     }
     pub fn force_integer_mv(mut self, force_integer_mv: u32) -> Self {
         let rest = self.bitfield0 & 0xFFFFFFBF;
         self.bitfield0 = ((force_integer_mv << 6u32) & 0x00000040) | rest;
         self
     }
+    pub fn get_force_integer_mv(&self) -> u32 {
+        (self.bitfield0 & 0x00000040) >> 6u32
+    }
     pub fn frame_size_override_flag(mut self, frame_size_override_flag: u32) -> Self {
         let rest = self.bitfield0 & 0xFFFFFF7F;
         self.bitfield0 = ((frame_size_override_flag << 7u32) & 0x00000080) | rest;
         self
+    }
+    pub fn get_frame_size_override_flag(&self) -> u32 {
+        (self.bitfield0 & 0x00000080) >> 7u32
     }
     pub fn buffer_removal_time_present_flag(
         mut self,
@@ -226,10 +259,16 @@ impl EncodeAV1PictureInfoFlags {
             | rest;
         self
     }
+    pub fn get_buffer_removal_time_present_flag(&self) -> u32 {
+        (self.bitfield0 & 0x00000100) >> 8u32
+    }
     pub fn allow_intrabc(mut self, allow_intrabc: u32) -> Self {
         let rest = self.bitfield0 & 0xFFFFFDFF;
         self.bitfield0 = ((allow_intrabc << 9u32) & 0x00000200) | rest;
         self
+    }
+    pub fn get_allow_intrabc(&self) -> u32 {
+        (self.bitfield0 & 0x00000200) >> 9u32
     }
     pub fn frame_refs_short_signaling(
         mut self,
@@ -239,20 +278,32 @@ impl EncodeAV1PictureInfoFlags {
         self.bitfield0 = ((frame_refs_short_signaling << 10u32) & 0x00000400) | rest;
         self
     }
+    pub fn get_frame_refs_short_signaling(&self) -> u32 {
+        (self.bitfield0 & 0x00000400) >> 10u32
+    }
     pub fn allow_high_precision_mv(mut self, allow_high_precision_mv: u32) -> Self {
         let rest = self.bitfield0 & 0xFFFFF7FF;
         self.bitfield0 = ((allow_high_precision_mv << 11u32) & 0x00000800) | rest;
         self
+    }
+    pub fn get_allow_high_precision_mv(&self) -> u32 {
+        (self.bitfield0 & 0x00000800) >> 11u32
     }
     pub fn is_motion_mode_switchable(mut self, is_motion_mode_switchable: u32) -> Self {
         let rest = self.bitfield0 & 0xFFFFEFFF;
         self.bitfield0 = ((is_motion_mode_switchable << 12u32) & 0x00001000) | rest;
         self
     }
+    pub fn get_is_motion_mode_switchable(&self) -> u32 {
+        (self.bitfield0 & 0x00001000) >> 12u32
+    }
     pub fn use_ref_frame_mvs(mut self, use_ref_frame_mvs: u32) -> Self {
         let rest = self.bitfield0 & 0xFFFFDFFF;
         self.bitfield0 = ((use_ref_frame_mvs << 13u32) & 0x00002000) | rest;
         self
+    }
+    pub fn get_use_ref_frame_mvs(&self) -> u32 {
+        (self.bitfield0 & 0x00002000) >> 13u32
     }
     pub fn disable_frame_end_update_cdf(
         mut self,
@@ -262,45 +313,72 @@ impl EncodeAV1PictureInfoFlags {
         self.bitfield0 = ((disable_frame_end_update_cdf << 14u32) & 0x00004000) | rest;
         self
     }
+    pub fn get_disable_frame_end_update_cdf(&self) -> u32 {
+        (self.bitfield0 & 0x00004000) >> 14u32
+    }
     pub fn allow_warped_motion(mut self, allow_warped_motion: u32) -> Self {
         let rest = self.bitfield0 & 0xFFFF7FFF;
         self.bitfield0 = ((allow_warped_motion << 15u32) & 0x00008000) | rest;
         self
+    }
+    pub fn get_allow_warped_motion(&self) -> u32 {
+        (self.bitfield0 & 0x00008000) >> 15u32
     }
     pub fn reduced_tx_set(mut self, reduced_tx_set: u32) -> Self {
         let rest = self.bitfield0 & 0xFFFEFFFF;
         self.bitfield0 = ((reduced_tx_set << 16u32) & 0x00010000) | rest;
         self
     }
+    pub fn get_reduced_tx_set(&self) -> u32 {
+        (self.bitfield0 & 0x00010000) >> 16u32
+    }
     pub fn skip_mode_present(mut self, skip_mode_present: u32) -> Self {
         let rest = self.bitfield0 & 0xFFFDFFFF;
         self.bitfield0 = ((skip_mode_present << 17u32) & 0x00020000) | rest;
         self
+    }
+    pub fn get_skip_mode_present(&self) -> u32 {
+        (self.bitfield0 & 0x00020000) >> 17u32
     }
     pub fn delta_q_present(mut self, delta_q_present: u32) -> Self {
         let rest = self.bitfield0 & 0xFFFBFFFF;
         self.bitfield0 = ((delta_q_present << 18u32) & 0x00040000) | rest;
         self
     }
+    pub fn get_delta_q_present(&self) -> u32 {
+        (self.bitfield0 & 0x00040000) >> 18u32
+    }
     pub fn delta_lf_present(mut self, delta_lf_present: u32) -> Self {
         let rest = self.bitfield0 & 0xFFF7FFFF;
         self.bitfield0 = ((delta_lf_present << 19u32) & 0x00080000) | rest;
         self
+    }
+    pub fn get_delta_lf_present(&self) -> u32 {
+        (self.bitfield0 & 0x00080000) >> 19u32
     }
     pub fn delta_lf_multi(mut self, delta_lf_multi: u32) -> Self {
         let rest = self.bitfield0 & 0xFFEFFFFF;
         self.bitfield0 = ((delta_lf_multi << 20u32) & 0x00100000) | rest;
         self
     }
+    pub fn get_delta_lf_multi(&self) -> u32 {
+        (self.bitfield0 & 0x00100000) >> 20u32
+    }
     pub fn segmentation_enabled(mut self, segmentation_enabled: u32) -> Self {
         let rest = self.bitfield0 & 0xFFDFFFFF;
         self.bitfield0 = ((segmentation_enabled << 21u32) & 0x00200000) | rest;
         self
     }
+    pub fn get_segmentation_enabled(&self) -> u32 {
+        (self.bitfield0 & 0x00200000) >> 21u32
+    }
     pub fn segmentation_update_map(mut self, segmentation_update_map: u32) -> Self {
         let rest = self.bitfield0 & 0xFFBFFFFF;
         self.bitfield0 = ((segmentation_update_map << 22u32) & 0x00400000) | rest;
         self
+    }
+    pub fn get_segmentation_update_map(&self) -> u32 {
+        (self.bitfield0 & 0x00400000) >> 22u32
     }
     pub fn segmentation_temporal_update(
         mut self,
@@ -310,30 +388,48 @@ impl EncodeAV1PictureInfoFlags {
         self.bitfield0 = ((segmentation_temporal_update << 23u32) & 0x00800000) | rest;
         self
     }
+    pub fn get_segmentation_temporal_update(&self) -> u32 {
+        (self.bitfield0 & 0x00800000) >> 23u32
+    }
     pub fn segmentation_update_data(mut self, segmentation_update_data: u32) -> Self {
         let rest = self.bitfield0 & 0xFEFFFFFF;
         self.bitfield0 = ((segmentation_update_data << 24u32) & 0x01000000) | rest;
         self
+    }
+    pub fn get_segmentation_update_data(&self) -> u32 {
+        (self.bitfield0 & 0x01000000) >> 24u32
     }
     pub fn uses_lr(mut self, uses_lr: u32) -> Self {
         let rest = self.bitfield0 & 0xFDFFFFFF;
         self.bitfield0 = ((uses_lr << 25u32) & 0x02000000) | rest;
         self
     }
+    pub fn get_uses_lr(&self) -> u32 {
+        (self.bitfield0 & 0x02000000) >> 25u32
+    }
     pub fn uses_chroma_lr(mut self, uses_chroma_lr: u32) -> Self {
         let rest = self.bitfield0 & 0xFBFFFFFF;
         self.bitfield0 = ((uses_chroma_lr << 26u32) & 0x04000000) | rest;
         self
+    }
+    pub fn get_uses_chroma_lr(&self) -> u32 {
+        (self.bitfield0 & 0x04000000) >> 26u32
     }
     pub fn show_frame(mut self, show_frame: u32) -> Self {
         let rest = self.bitfield0 & 0xF7FFFFFF;
         self.bitfield0 = ((show_frame << 27u32) & 0x08000000) | rest;
         self
     }
+    pub fn get_show_frame(&self) -> u32 {
+        (self.bitfield0 & 0x08000000) >> 27u32
+    }
     pub fn showable_frame(mut self, showable_frame: u32) -> Self {
         let rest = self.bitfield0 & 0xEFFFFFFF;
         self.bitfield0 = ((showable_frame << 28u32) & 0x10000000) | rest;
         self
+    }
+    pub fn get_showable_frame(&self) -> u32 {
+        (self.bitfield0 & 0x10000000) >> 28u32
     }
 }
 #[repr(C)]
@@ -555,10 +651,16 @@ impl EncodeAV1ReferenceInfoFlags {
         self.bitfield0 = (disable_frame_end_update_cdf & 0x00000001) | rest;
         self
     }
+    pub fn get_disable_frame_end_update_cdf(&self) -> u32 {
+        self.bitfield0 & 0x00000001
+    }
     pub fn segmentation_enabled(mut self, segmentation_enabled: u32) -> Self {
         let rest = self.bitfield0 & 0xFFFFFFFD;
         self.bitfield0 = ((segmentation_enabled << 1u32) & 0x00000002) | rest;
         self
+    }
+    pub fn get_segmentation_enabled(&self) -> u32 {
+        (self.bitfield0 & 0x00000002) >> 1u32
     }
 }
 #[repr(C)]

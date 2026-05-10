@@ -16,15 +16,24 @@ impl DecodeH265PictureInfoFlags {
         self.bitfield0 = (irap_pic_flag & 0x00000001) | rest;
         self
     }
+    pub fn get_irap_pic_flag(&self) -> u32 {
+        self.bitfield0 & 0x00000001
+    }
     pub fn idr_pic_flag(mut self, idr_pic_flag: u32) -> Self {
         let rest = self.bitfield0 & 0xFFFFFFFD;
         self.bitfield0 = ((idr_pic_flag << 1u32) & 0x00000002) | rest;
         self
     }
+    pub fn get_idr_pic_flag(&self) -> u32 {
+        (self.bitfield0 & 0x00000002) >> 1u32
+    }
     pub fn is_reference(mut self, is_reference: u32) -> Self {
         let rest = self.bitfield0 & 0xFFFFFFFB;
         self.bitfield0 = ((is_reference << 2u32) & 0x00000004) | rest;
         self
+    }
+    pub fn get_is_reference(&self) -> u32 {
+        (self.bitfield0 & 0x00000004) >> 2u32
     }
     pub fn short_term_ref_pic_set_sps_flag(
         mut self,
@@ -33,6 +42,9 @@ impl DecodeH265PictureInfoFlags {
         let rest = self.bitfield0 & 0xFFFFFFF7;
         self.bitfield0 = ((short_term_ref_pic_set_sps_flag << 3u32) & 0x00000008) | rest;
         self
+    }
+    pub fn get_short_term_ref_pic_set_sps_flag(&self) -> u32 {
+        (self.bitfield0 & 0x00000008) >> 3u32
     }
 }
 #[repr(C)]
@@ -150,10 +162,16 @@ impl DecodeH265ReferenceInfoFlags {
         self.bitfield0 = (used_for_long_term_reference & 0x00000001) | rest;
         self
     }
+    pub fn get_used_for_long_term_reference(&self) -> u32 {
+        self.bitfield0 & 0x00000001
+    }
     pub fn unused_for_reference(mut self, unused_for_reference: u32) -> Self {
         let rest = self.bitfield0 & 0xFFFFFFFD;
         self.bitfield0 = ((unused_for_reference << 1u32) & 0x00000002) | rest;
         self
+    }
+    pub fn get_unused_for_reference(&self) -> u32 {
+        (self.bitfield0 & 0x00000002) >> 1u32
     }
 }
 #[repr(C)]
