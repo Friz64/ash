@@ -229,10 +229,16 @@ impl AccelerationStructureSRTMotionInstanceNV {
         self.bitfield0 = (instance_custom_index & 0x00FFFFFF) | rest;
         self
     }
+    pub fn get_instance_custom_index(&self) -> u32 {
+        self.bitfield0 & 0x00FFFFFF
+    }
     pub fn mask(mut self, mask: u32) -> Self {
         let rest = self.bitfield0 & 0x00FFFFFF;
         self.bitfield0 = ((mask << 24u32) & 0xFF000000) | rest;
         self
+    }
+    pub fn get_mask(&self) -> u32 {
+        (self.bitfield0 & 0xFF000000) >> 24u32
     }
     pub fn instance_shader_binding_table_record_offset(
         mut self,
@@ -243,10 +249,16 @@ impl AccelerationStructureSRTMotionInstanceNV {
             | rest;
         self
     }
+    pub fn get_instance_shader_binding_table_record_offset(&self) -> u32 {
+        self.bitfield1 & 0x00FFFFFF
+    }
     pub fn flags(mut self, flags: u32) -> Self {
         let rest = self.bitfield1 & 0x00FFFFFF;
         self.bitfield1 = ((flags << 24u32) & 0xFF000000) | rest;
         self
+    }
+    pub fn get_flags(&self) -> u32 {
+        (self.bitfield1 & 0xFF000000) >> 24u32
     }
     pub fn acceleration_structure_reference(
         mut self,
@@ -283,10 +295,16 @@ impl AccelerationStructureMatrixMotionInstanceNV {
         self.bitfield0 = (instance_custom_index & 0x00FFFFFF) | rest;
         self
     }
+    pub fn get_instance_custom_index(&self) -> u32 {
+        self.bitfield0 & 0x00FFFFFF
+    }
     pub fn mask(mut self, mask: u32) -> Self {
         let rest = self.bitfield0 & 0x00FFFFFF;
         self.bitfield0 = ((mask << 24u32) & 0xFF000000) | rest;
         self
+    }
+    pub fn get_mask(&self) -> u32 {
+        (self.bitfield0 & 0xFF000000) >> 24u32
     }
     pub fn instance_shader_binding_table_record_offset(
         mut self,
@@ -297,10 +315,16 @@ impl AccelerationStructureMatrixMotionInstanceNV {
             | rest;
         self
     }
+    pub fn get_instance_shader_binding_table_record_offset(&self) -> u32 {
+        self.bitfield1 & 0x00FFFFFF
+    }
     pub fn flags(mut self, flags: u32) -> Self {
         let rest = self.bitfield1 & 0x00FFFFFF;
         self.bitfield1 = ((flags << 24u32) & 0xFF000000) | rest;
         self
+    }
+    pub fn get_flags(&self) -> u32 {
+        (self.bitfield1 & 0xFF000000) >> 24u32
     }
     pub fn acceleration_structure_reference(
         mut self,

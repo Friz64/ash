@@ -232,6 +232,9 @@ impl EncodeH265SliceSegmentHeaderFlags {
         self.bitfield0 = (first_slice_segment_in_pic_flag & 0x00000001) | rest;
         self
     }
+    pub fn get_first_slice_segment_in_pic_flag(&self) -> u32 {
+        self.bitfield0 & 0x00000001
+    }
     pub fn dependent_slice_segment_flag(
         mut self,
         dependent_slice_segment_flag: u32,
@@ -240,15 +243,24 @@ impl EncodeH265SliceSegmentHeaderFlags {
         self.bitfield0 = ((dependent_slice_segment_flag << 1u32) & 0x00000002) | rest;
         self
     }
+    pub fn get_dependent_slice_segment_flag(&self) -> u32 {
+        (self.bitfield0 & 0x00000002) >> 1u32
+    }
     pub fn slice_sao_luma_flag(mut self, slice_sao_luma_flag: u32) -> Self {
         let rest = self.bitfield0 & 0xFFFFFFFB;
         self.bitfield0 = ((slice_sao_luma_flag << 2u32) & 0x00000004) | rest;
         self
     }
+    pub fn get_slice_sao_luma_flag(&self) -> u32 {
+        (self.bitfield0 & 0x00000004) >> 2u32
+    }
     pub fn slice_sao_chroma_flag(mut self, slice_sao_chroma_flag: u32) -> Self {
         let rest = self.bitfield0 & 0xFFFFFFF7;
         self.bitfield0 = ((slice_sao_chroma_flag << 3u32) & 0x00000008) | rest;
         self
+    }
+    pub fn get_slice_sao_chroma_flag(&self) -> u32 {
+        (self.bitfield0 & 0x00000008) >> 3u32
     }
     pub fn num_ref_idx_active_override_flag(
         mut self,
@@ -259,15 +271,24 @@ impl EncodeH265SliceSegmentHeaderFlags {
             | rest;
         self
     }
+    pub fn get_num_ref_idx_active_override_flag(&self) -> u32 {
+        (self.bitfield0 & 0x00000010) >> 4u32
+    }
     pub fn mvd_l1_zero_flag(mut self, mvd_l1_zero_flag: u32) -> Self {
         let rest = self.bitfield0 & 0xFFFFFFDF;
         self.bitfield0 = ((mvd_l1_zero_flag << 5u32) & 0x00000020) | rest;
         self
     }
+    pub fn get_mvd_l1_zero_flag(&self) -> u32 {
+        (self.bitfield0 & 0x00000020) >> 5u32
+    }
     pub fn cabac_init_flag(mut self, cabac_init_flag: u32) -> Self {
         let rest = self.bitfield0 & 0xFFFFFFBF;
         self.bitfield0 = ((cabac_init_flag << 6u32) & 0x00000040) | rest;
         self
+    }
+    pub fn get_cabac_init_flag(&self) -> u32 {
+        (self.bitfield0 & 0x00000040) >> 6u32
     }
     pub fn cu_chroma_qp_offset_enabled_flag(
         mut self,
@@ -278,6 +299,9 @@ impl EncodeH265SliceSegmentHeaderFlags {
             | rest;
         self
     }
+    pub fn get_cu_chroma_qp_offset_enabled_flag(&self) -> u32 {
+        (self.bitfield0 & 0x00000080) >> 7u32
+    }
     pub fn deblocking_filter_override_flag(
         mut self,
         deblocking_filter_override_flag: u32,
@@ -285,6 +309,9 @@ impl EncodeH265SliceSegmentHeaderFlags {
         let rest = self.bitfield0 & 0xFFFFFEFF;
         self.bitfield0 = ((deblocking_filter_override_flag << 8u32) & 0x00000100) | rest;
         self
+    }
+    pub fn get_deblocking_filter_override_flag(&self) -> u32 {
+        (self.bitfield0 & 0x00000100) >> 8u32
     }
     pub fn slice_deblocking_filter_disabled_flag(
         mut self,
@@ -295,10 +322,16 @@ impl EncodeH265SliceSegmentHeaderFlags {
             | rest;
         self
     }
+    pub fn get_slice_deblocking_filter_disabled_flag(&self) -> u32 {
+        (self.bitfield0 & 0x00000200) >> 9u32
+    }
     pub fn collocated_from_l0_flag(mut self, collocated_from_l0_flag: u32) -> Self {
         let rest = self.bitfield0 & 0xFFFFFBFF;
         self.bitfield0 = ((collocated_from_l0_flag << 10u32) & 0x00000400) | rest;
         self
+    }
+    pub fn get_collocated_from_l0_flag(&self) -> u32 {
+        (self.bitfield0 & 0x00000400) >> 10u32
     }
     pub fn slice_loop_filter_across_slices_enabled_flag(
         mut self,
@@ -308,6 +341,9 @@ impl EncodeH265SliceSegmentHeaderFlags {
         self.bitfield0 = ((slice_loop_filter_across_slices_enabled_flag << 11u32)
             & 0x00000800) | rest;
         self
+    }
+    pub fn get_slice_loop_filter_across_slices_enabled_flag(&self) -> u32 {
+        (self.bitfield0 & 0x00000800) >> 11u32
     }
 }
 #[repr(C)]
@@ -411,6 +447,9 @@ impl EncodeH265ReferenceListsInfoFlags {
         self.bitfield0 = (ref_pic_list_modification_flag_l0 & 0x00000001) | rest;
         self
     }
+    pub fn get_ref_pic_list_modification_flag_l0(&self) -> u32 {
+        self.bitfield0 & 0x00000001
+    }
     pub fn ref_pic_list_modification_flag_l1(
         mut self,
         ref_pic_list_modification_flag_l1: u32,
@@ -419,6 +458,9 @@ impl EncodeH265ReferenceListsInfoFlags {
         self.bitfield0 = ((ref_pic_list_modification_flag_l1 << 1u32) & 0x00000002)
             | rest;
         self
+    }
+    pub fn get_ref_pic_list_modification_flag_l1(&self) -> u32 {
+        (self.bitfield0 & 0x00000002) >> 1u32
     }
 }
 #[repr(C)]
@@ -513,10 +555,16 @@ impl EncodeH265PictureInfoFlags {
         self.bitfield0 = (is_reference & 0x00000001) | rest;
         self
     }
+    pub fn get_is_reference(&self) -> u32 {
+        self.bitfield0 & 0x00000001
+    }
     pub fn irap_pic_flag(mut self, irap_pic_flag: u32) -> Self {
         let rest = self.bitfield0 & 0xFFFFFFFD;
         self.bitfield0 = ((irap_pic_flag << 1u32) & 0x00000002) | rest;
         self
+    }
+    pub fn get_irap_pic_flag(&self) -> u32 {
+        (self.bitfield0 & 0x00000002) >> 1u32
     }
     pub fn used_for_long_term_reference(
         mut self,
@@ -526,20 +574,32 @@ impl EncodeH265PictureInfoFlags {
         self.bitfield0 = ((used_for_long_term_reference << 2u32) & 0x00000004) | rest;
         self
     }
+    pub fn get_used_for_long_term_reference(&self) -> u32 {
+        (self.bitfield0 & 0x00000004) >> 2u32
+    }
     pub fn discardable_flag(mut self, discardable_flag: u32) -> Self {
         let rest = self.bitfield0 & 0xFFFFFFF7;
         self.bitfield0 = ((discardable_flag << 3u32) & 0x00000008) | rest;
         self
+    }
+    pub fn get_discardable_flag(&self) -> u32 {
+        (self.bitfield0 & 0x00000008) >> 3u32
     }
     pub fn cross_layer_bla_flag(mut self, cross_layer_bla_flag: u32) -> Self {
         let rest = self.bitfield0 & 0xFFFFFFEF;
         self.bitfield0 = ((cross_layer_bla_flag << 4u32) & 0x00000010) | rest;
         self
     }
+    pub fn get_cross_layer_bla_flag(&self) -> u32 {
+        (self.bitfield0 & 0x00000010) >> 4u32
+    }
     pub fn pic_output_flag(mut self, pic_output_flag: u32) -> Self {
         let rest = self.bitfield0 & 0xFFFFFFDF;
         self.bitfield0 = ((pic_output_flag << 5u32) & 0x00000020) | rest;
         self
+    }
+    pub fn get_pic_output_flag(&self) -> u32 {
+        (self.bitfield0 & 0x00000020) >> 5u32
     }
     pub fn no_output_of_prior_pics_flag(
         mut self,
@@ -549,6 +609,9 @@ impl EncodeH265PictureInfoFlags {
         self.bitfield0 = ((no_output_of_prior_pics_flag << 6u32) & 0x00000040) | rest;
         self
     }
+    pub fn get_no_output_of_prior_pics_flag(&self) -> u32 {
+        (self.bitfield0 & 0x00000040) >> 6u32
+    }
     pub fn short_term_ref_pic_set_sps_flag(
         mut self,
         short_term_ref_pic_set_sps_flag: u32,
@@ -557,6 +620,9 @@ impl EncodeH265PictureInfoFlags {
         self.bitfield0 = ((short_term_ref_pic_set_sps_flag << 7u32) & 0x00000080) | rest;
         self
     }
+    pub fn get_short_term_ref_pic_set_sps_flag(&self) -> u32 {
+        (self.bitfield0 & 0x00000080) >> 7u32
+    }
     pub fn slice_temporal_mvp_enabled_flag(
         mut self,
         slice_temporal_mvp_enabled_flag: u32,
@@ -564,6 +630,9 @@ impl EncodeH265PictureInfoFlags {
         let rest = self.bitfield0 & 0xFFFFFEFF;
         self.bitfield0 = ((slice_temporal_mvp_enabled_flag << 8u32) & 0x00000100) | rest;
         self
+    }
+    pub fn get_slice_temporal_mvp_enabled_flag(&self) -> u32 {
+        (self.bitfield0 & 0x00000100) >> 8u32
     }
 }
 #[repr(C)]
@@ -677,10 +746,16 @@ impl EncodeH265ReferenceInfoFlags {
         self.bitfield0 = (used_for_long_term_reference & 0x00000001) | rest;
         self
     }
+    pub fn get_used_for_long_term_reference(&self) -> u32 {
+        self.bitfield0 & 0x00000001
+    }
     pub fn unused_for_reference(mut self, unused_for_reference: u32) -> Self {
         let rest = self.bitfield0 & 0xFFFFFFFD;
         self.bitfield0 = ((unused_for_reference << 1u32) & 0x00000002) | rest;
         self
+    }
+    pub fn get_unused_for_reference(&self) -> u32 {
+        (self.bitfield0 & 0x00000002) >> 1u32
     }
 }
 #[repr(C)]

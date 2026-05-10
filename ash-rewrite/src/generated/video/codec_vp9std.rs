@@ -13,6 +13,9 @@ impl VP9ColorConfigFlags {
         self.bitfield0 = (color_range & 0x00000001) | rest;
         self
     }
+    pub fn get_color_range(&self) -> u32 {
+        self.bitfield0 & 0x00000001
+    }
 }
 #[repr(C)]
 #[derive(Clone, Copy, Default)]
@@ -63,10 +66,16 @@ impl VP9LoopFilterFlags {
         self.bitfield0 = (loop_filter_delta_enabled & 0x00000001) | rest;
         self
     }
+    pub fn get_loop_filter_delta_enabled(&self) -> u32 {
+        self.bitfield0 & 0x00000001
+    }
     pub fn loop_filter_delta_update(mut self, loop_filter_delta_update: u32) -> Self {
         let rest = self.bitfield0 & 0xFFFFFFFD;
         self.bitfield0 = ((loop_filter_delta_update << 1u32) & 0x00000002) | rest;
         self
+    }
+    pub fn get_loop_filter_delta_update(&self) -> u32 {
+        (self.bitfield0 & 0x00000002) >> 1u32
     }
 }
 #[repr(C)]
@@ -146,6 +155,9 @@ impl VP9SegmentationFlags {
         self.bitfield0 = (segmentation_update_map & 0x00000001) | rest;
         self
     }
+    pub fn get_segmentation_update_map(&self) -> u32 {
+        self.bitfield0 & 0x00000001
+    }
     pub fn segmentation_temporal_update(
         mut self,
         segmentation_temporal_update: u32,
@@ -154,10 +166,16 @@ impl VP9SegmentationFlags {
         self.bitfield0 = ((segmentation_temporal_update << 1u32) & 0x00000002) | rest;
         self
     }
+    pub fn get_segmentation_temporal_update(&self) -> u32 {
+        (self.bitfield0 & 0x00000002) >> 1u32
+    }
     pub fn segmentation_update_data(mut self, segmentation_update_data: u32) -> Self {
         let rest = self.bitfield0 & 0xFFFFFFFB;
         self.bitfield0 = ((segmentation_update_data << 2u32) & 0x00000004) | rest;
         self
+    }
+    pub fn get_segmentation_update_data(&self) -> u32 {
+        (self.bitfield0 & 0x00000004) >> 2u32
     }
     pub fn segmentation_abs_or_delta_update(
         mut self,
@@ -167,6 +185,9 @@ impl VP9SegmentationFlags {
         self.bitfield0 = ((segmentation_abs_or_delta_update << 3u32) & 0x00000008)
             | rest;
         self
+    }
+    pub fn get_segmentation_abs_or_delta_update(&self) -> u32 {
+        (self.bitfield0 & 0x00000008) >> 3u32
     }
 }
 #[repr(C)]

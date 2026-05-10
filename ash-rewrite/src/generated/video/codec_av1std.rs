@@ -16,15 +16,24 @@ impl AV1ColorConfigFlags {
         self.bitfield0 = (mono_chrome & 0x00000001) | rest;
         self
     }
+    pub fn get_mono_chrome(&self) -> u32 {
+        self.bitfield0 & 0x00000001
+    }
     pub fn color_range(mut self, color_range: u32) -> Self {
         let rest = self.bitfield0 & 0xFFFFFFFD;
         self.bitfield0 = ((color_range << 1u32) & 0x00000002) | rest;
         self
     }
+    pub fn get_color_range(&self) -> u32 {
+        (self.bitfield0 & 0x00000002) >> 1u32
+    }
     pub fn separate_uv_delta_q(mut self, separate_uv_delta_q: u32) -> Self {
         let rest = self.bitfield0 & 0xFFFFFFFB;
         self.bitfield0 = ((separate_uv_delta_q << 2u32) & 0x00000004) | rest;
         self
+    }
+    pub fn get_separate_uv_delta_q(&self) -> u32 {
+        (self.bitfield0 & 0x00000004) >> 2u32
     }
     pub fn color_description_present_flag(
         mut self,
@@ -33,6 +42,9 @@ impl AV1ColorConfigFlags {
         let rest = self.bitfield0 & 0xFFFFFFF7;
         self.bitfield0 = ((color_description_present_flag << 3u32) & 0x00000008) | rest;
         self
+    }
+    pub fn get_color_description_present_flag(&self) -> u32 {
+        (self.bitfield0 & 0x00000008) >> 3u32
     }
 }
 #[repr(C)]
@@ -110,6 +122,9 @@ impl AV1TimingInfoFlags {
         self.bitfield0 = (equal_picture_interval & 0x00000001) | rest;
         self
     }
+    pub fn get_equal_picture_interval(&self) -> u32 {
+        self.bitfield0 & 0x00000001
+    }
 }
 #[repr(C)]
 #[derive(Clone, Copy, Default)]
@@ -170,6 +185,9 @@ impl AV1SequenceHeaderFlags {
         self.bitfield0 = (still_picture & 0x00000001) | rest;
         self
     }
+    pub fn get_still_picture(&self) -> u32 {
+        self.bitfield0 & 0x00000001
+    }
     pub fn reduced_still_picture_header(
         mut self,
         reduced_still_picture_header: u32,
@@ -178,20 +196,32 @@ impl AV1SequenceHeaderFlags {
         self.bitfield0 = ((reduced_still_picture_header << 1u32) & 0x00000002) | rest;
         self
     }
+    pub fn get_reduced_still_picture_header(&self) -> u32 {
+        (self.bitfield0 & 0x00000002) >> 1u32
+    }
     pub fn use_128x128_superblock(mut self, use_128x128_superblock: u32) -> Self {
         let rest = self.bitfield0 & 0xFFFFFFFB;
         self.bitfield0 = ((use_128x128_superblock << 2u32) & 0x00000004) | rest;
         self
+    }
+    pub fn get_use_128x128_superblock(&self) -> u32 {
+        (self.bitfield0 & 0x00000004) >> 2u32
     }
     pub fn enable_filter_intra(mut self, enable_filter_intra: u32) -> Self {
         let rest = self.bitfield0 & 0xFFFFFFF7;
         self.bitfield0 = ((enable_filter_intra << 3u32) & 0x00000008) | rest;
         self
     }
+    pub fn get_enable_filter_intra(&self) -> u32 {
+        (self.bitfield0 & 0x00000008) >> 3u32
+    }
     pub fn enable_intra_edge_filter(mut self, enable_intra_edge_filter: u32) -> Self {
         let rest = self.bitfield0 & 0xFFFFFFEF;
         self.bitfield0 = ((enable_intra_edge_filter << 4u32) & 0x00000010) | rest;
         self
+    }
+    pub fn get_enable_intra_edge_filter(&self) -> u32 {
+        (self.bitfield0 & 0x00000010) >> 4u32
     }
     pub fn enable_interintra_compound(
         mut self,
@@ -201,35 +231,56 @@ impl AV1SequenceHeaderFlags {
         self.bitfield0 = ((enable_interintra_compound << 5u32) & 0x00000020) | rest;
         self
     }
+    pub fn get_enable_interintra_compound(&self) -> u32 {
+        (self.bitfield0 & 0x00000020) >> 5u32
+    }
     pub fn enable_masked_compound(mut self, enable_masked_compound: u32) -> Self {
         let rest = self.bitfield0 & 0xFFFFFFBF;
         self.bitfield0 = ((enable_masked_compound << 6u32) & 0x00000040) | rest;
         self
+    }
+    pub fn get_enable_masked_compound(&self) -> u32 {
+        (self.bitfield0 & 0x00000040) >> 6u32
     }
     pub fn enable_warped_motion(mut self, enable_warped_motion: u32) -> Self {
         let rest = self.bitfield0 & 0xFFFFFF7F;
         self.bitfield0 = ((enable_warped_motion << 7u32) & 0x00000080) | rest;
         self
     }
+    pub fn get_enable_warped_motion(&self) -> u32 {
+        (self.bitfield0 & 0x00000080) >> 7u32
+    }
     pub fn enable_dual_filter(mut self, enable_dual_filter: u32) -> Self {
         let rest = self.bitfield0 & 0xFFFFFEFF;
         self.bitfield0 = ((enable_dual_filter << 8u32) & 0x00000100) | rest;
         self
+    }
+    pub fn get_enable_dual_filter(&self) -> u32 {
+        (self.bitfield0 & 0x00000100) >> 8u32
     }
     pub fn enable_order_hint(mut self, enable_order_hint: u32) -> Self {
         let rest = self.bitfield0 & 0xFFFFFDFF;
         self.bitfield0 = ((enable_order_hint << 9u32) & 0x00000200) | rest;
         self
     }
+    pub fn get_enable_order_hint(&self) -> u32 {
+        (self.bitfield0 & 0x00000200) >> 9u32
+    }
     pub fn enable_jnt_comp(mut self, enable_jnt_comp: u32) -> Self {
         let rest = self.bitfield0 & 0xFFFFFBFF;
         self.bitfield0 = ((enable_jnt_comp << 10u32) & 0x00000400) | rest;
         self
     }
+    pub fn get_enable_jnt_comp(&self) -> u32 {
+        (self.bitfield0 & 0x00000400) >> 10u32
+    }
     pub fn enable_ref_frame_mvs(mut self, enable_ref_frame_mvs: u32) -> Self {
         let rest = self.bitfield0 & 0xFFFFF7FF;
         self.bitfield0 = ((enable_ref_frame_mvs << 11u32) & 0x00000800) | rest;
         self
+    }
+    pub fn get_enable_ref_frame_mvs(&self) -> u32 {
+        (self.bitfield0 & 0x00000800) >> 11u32
     }
     pub fn frame_id_numbers_present_flag(
         mut self,
@@ -239,30 +290,48 @@ impl AV1SequenceHeaderFlags {
         self.bitfield0 = ((frame_id_numbers_present_flag << 12u32) & 0x00001000) | rest;
         self
     }
+    pub fn get_frame_id_numbers_present_flag(&self) -> u32 {
+        (self.bitfield0 & 0x00001000) >> 12u32
+    }
     pub fn enable_superres(mut self, enable_superres: u32) -> Self {
         let rest = self.bitfield0 & 0xFFFFDFFF;
         self.bitfield0 = ((enable_superres << 13u32) & 0x00002000) | rest;
         self
+    }
+    pub fn get_enable_superres(&self) -> u32 {
+        (self.bitfield0 & 0x00002000) >> 13u32
     }
     pub fn enable_cdef(mut self, enable_cdef: u32) -> Self {
         let rest = self.bitfield0 & 0xFFFFBFFF;
         self.bitfield0 = ((enable_cdef << 14u32) & 0x00004000) | rest;
         self
     }
+    pub fn get_enable_cdef(&self) -> u32 {
+        (self.bitfield0 & 0x00004000) >> 14u32
+    }
     pub fn enable_restoration(mut self, enable_restoration: u32) -> Self {
         let rest = self.bitfield0 & 0xFFFF7FFF;
         self.bitfield0 = ((enable_restoration << 15u32) & 0x00008000) | rest;
         self
+    }
+    pub fn get_enable_restoration(&self) -> u32 {
+        (self.bitfield0 & 0x00008000) >> 15u32
     }
     pub fn film_grain_params_present(mut self, film_grain_params_present: u32) -> Self {
         let rest = self.bitfield0 & 0xFFFEFFFF;
         self.bitfield0 = ((film_grain_params_present << 16u32) & 0x00010000) | rest;
         self
     }
+    pub fn get_film_grain_params_present(&self) -> u32 {
+        (self.bitfield0 & 0x00010000) >> 16u32
+    }
     pub fn timing_info_present_flag(mut self, timing_info_present_flag: u32) -> Self {
         let rest = self.bitfield0 & 0xFFFDFFFF;
         self.bitfield0 = ((timing_info_present_flag << 17u32) & 0x00020000) | rest;
         self
+    }
+    pub fn get_timing_info_present_flag(&self) -> u32 {
+        (self.bitfield0 & 0x00020000) >> 17u32
     }
     pub fn initial_display_delay_present_flag(
         mut self,
@@ -272,6 +341,9 @@ impl AV1SequenceHeaderFlags {
         self.bitfield0 = ((initial_display_delay_present_flag << 18u32) & 0x00040000)
             | rest;
         self
+    }
+    pub fn get_initial_display_delay_present_flag(&self) -> u32 {
+        (self.bitfield0 & 0x00040000) >> 18u32
     }
 }
 #[repr(C)]
@@ -397,10 +469,16 @@ impl AV1LoopFilterFlags {
         self.bitfield0 = (loop_filter_delta_enabled & 0x00000001) | rest;
         self
     }
+    pub fn get_loop_filter_delta_enabled(&self) -> u32 {
+        self.bitfield0 & 0x00000001
+    }
     pub fn loop_filter_delta_update(mut self, loop_filter_delta_update: u32) -> Self {
         let rest = self.bitfield0 & 0xFFFFFFFD;
         self.bitfield0 = ((loop_filter_delta_update << 1u32) & 0x00000002) | rest;
         self
+    }
+    pub fn get_loop_filter_delta_update(&self) -> u32 {
+        (self.bitfield0 & 0x00000002) >> 1u32
     }
 }
 #[repr(C)]
@@ -481,10 +559,16 @@ impl AV1QuantizationFlags {
         self.bitfield0 = (using_qmatrix & 0x00000001) | rest;
         self
     }
+    pub fn get_using_qmatrix(&self) -> u32 {
+        self.bitfield0 & 0x00000001
+    }
     pub fn diff_uv_delta(mut self, diff_uv_delta: u32) -> Self {
         let rest = self.bitfield0 & 0xFFFFFFFD;
         self.bitfield0 = ((diff_uv_delta << 1u32) & 0x00000002) | rest;
         self
+    }
+    pub fn get_diff_uv_delta(&self) -> u32 {
+        (self.bitfield0 & 0x00000002) >> 1u32
     }
 }
 #[repr(C)]
@@ -586,6 +670,9 @@ impl AV1TileInfoFlags {
         let rest = self.bitfield0 & 0xFFFFFFFE;
         self.bitfield0 = (uniform_tile_spacing_flag & 0x00000001) | rest;
         self
+    }
+    pub fn get_uniform_tile_spacing_flag(&self) -> u32 {
+        self.bitfield0 & 0x00000001
     }
 }
 #[repr(C)]
@@ -813,20 +900,32 @@ impl AV1FilmGrainFlags {
         self.bitfield0 = (chroma_scaling_from_luma & 0x00000001) | rest;
         self
     }
+    pub fn get_chroma_scaling_from_luma(&self) -> u32 {
+        self.bitfield0 & 0x00000001
+    }
     pub fn overlap_flag(mut self, overlap_flag: u32) -> Self {
         let rest = self.bitfield0 & 0xFFFFFFFD;
         self.bitfield0 = ((overlap_flag << 1u32) & 0x00000002) | rest;
         self
+    }
+    pub fn get_overlap_flag(&self) -> u32 {
+        (self.bitfield0 & 0x00000002) >> 1u32
     }
     pub fn clip_to_restricted_range(mut self, clip_to_restricted_range: u32) -> Self {
         let rest = self.bitfield0 & 0xFFFFFFFB;
         self.bitfield0 = ((clip_to_restricted_range << 2u32) & 0x00000004) | rest;
         self
     }
+    pub fn get_clip_to_restricted_range(&self) -> u32 {
+        (self.bitfield0 & 0x00000004) >> 2u32
+    }
     pub fn update_grain(mut self, update_grain: u32) -> Self {
         let rest = self.bitfield0 & 0xFFFFFFF7;
         self.bitfield0 = ((update_grain << 3u32) & 0x00000008) | rest;
         self
+    }
+    pub fn get_update_grain(&self) -> u32 {
+        (self.bitfield0 & 0x00000008) >> 3u32
     }
 }
 #[repr(C)]

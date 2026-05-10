@@ -18,30 +18,48 @@ impl DecodeH264PictureInfoFlags {
         self.bitfield0 = (field_pic_flag & 0x00000001) | rest;
         self
     }
+    pub fn get_field_pic_flag(&self) -> u32 {
+        self.bitfield0 & 0x00000001
+    }
     pub fn is_intra(mut self, is_intra: u32) -> Self {
         let rest = self.bitfield0 & 0xFFFFFFFD;
         self.bitfield0 = ((is_intra << 1u32) & 0x00000002) | rest;
         self
+    }
+    pub fn get_is_intra(&self) -> u32 {
+        (self.bitfield0 & 0x00000002) >> 1u32
     }
     pub fn idr_pic_flag(mut self, idr_pic_flag: u32) -> Self {
         let rest = self.bitfield0 & 0xFFFFFFFB;
         self.bitfield0 = ((idr_pic_flag << 2u32) & 0x00000004) | rest;
         self
     }
+    pub fn get_idr_pic_flag(&self) -> u32 {
+        (self.bitfield0 & 0x00000004) >> 2u32
+    }
     pub fn bottom_field_flag(mut self, bottom_field_flag: u32) -> Self {
         let rest = self.bitfield0 & 0xFFFFFFF7;
         self.bitfield0 = ((bottom_field_flag << 3u32) & 0x00000008) | rest;
         self
+    }
+    pub fn get_bottom_field_flag(&self) -> u32 {
+        (self.bitfield0 & 0x00000008) >> 3u32
     }
     pub fn is_reference(mut self, is_reference: u32) -> Self {
         let rest = self.bitfield0 & 0xFFFFFFEF;
         self.bitfield0 = ((is_reference << 4u32) & 0x00000010) | rest;
         self
     }
+    pub fn get_is_reference(&self) -> u32 {
+        (self.bitfield0 & 0x00000010) >> 4u32
+    }
     pub fn complementary_field_pair(mut self, complementary_field_pair: u32) -> Self {
         let rest = self.bitfield0 & 0xFFFFFFDF;
         self.bitfield0 = ((complementary_field_pair << 5u32) & 0x00000020) | rest;
         self
+    }
+    pub fn get_complementary_field_pair(&self) -> u32 {
+        (self.bitfield0 & 0x00000020) >> 5u32
     }
 }
 #[repr(C)]
@@ -124,10 +142,16 @@ impl DecodeH264ReferenceInfoFlags {
         self.bitfield0 = (top_field_flag & 0x00000001) | rest;
         self
     }
+    pub fn get_top_field_flag(&self) -> u32 {
+        self.bitfield0 & 0x00000001
+    }
     pub fn bottom_field_flag(mut self, bottom_field_flag: u32) -> Self {
         let rest = self.bitfield0 & 0xFFFFFFFD;
         self.bitfield0 = ((bottom_field_flag << 1u32) & 0x00000002) | rest;
         self
+    }
+    pub fn get_bottom_field_flag(&self) -> u32 {
+        (self.bitfield0 & 0x00000002) >> 1u32
     }
     pub fn used_for_long_term_reference(
         mut self,
@@ -137,10 +161,16 @@ impl DecodeH264ReferenceInfoFlags {
         self.bitfield0 = ((used_for_long_term_reference << 2u32) & 0x00000004) | rest;
         self
     }
+    pub fn get_used_for_long_term_reference(&self) -> u32 {
+        (self.bitfield0 & 0x00000004) >> 2u32
+    }
     pub fn is_non_existing(mut self, is_non_existing: u32) -> Self {
         let rest = self.bitfield0 & 0xFFFFFFF7;
         self.bitfield0 = ((is_non_existing << 3u32) & 0x00000008) | rest;
         self
+    }
+    pub fn get_is_non_existing(&self) -> u32 {
+        (self.bitfield0 & 0x00000008) >> 3u32
     }
 }
 #[repr(C)]

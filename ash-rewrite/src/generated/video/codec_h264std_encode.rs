@@ -153,6 +153,9 @@ impl EncodeH264SliceHeaderFlags {
         self.bitfield0 = (direct_spatial_mv_pred_flag & 0x00000001) | rest;
         self
     }
+    pub fn get_direct_spatial_mv_pred_flag(&self) -> u32 {
+        self.bitfield0 & 0x00000001
+    }
     pub fn num_ref_idx_active_override_flag(
         mut self,
         num_ref_idx_active_override_flag: u32,
@@ -161,6 +164,9 @@ impl EncodeH264SliceHeaderFlags {
         self.bitfield0 = ((num_ref_idx_active_override_flag << 1u32) & 0x00000002)
             | rest;
         self
+    }
+    pub fn get_num_ref_idx_active_override_flag(&self) -> u32 {
+        (self.bitfield0 & 0x00000002) >> 1u32
     }
 }
 #[repr(C)]
@@ -179,10 +185,16 @@ impl EncodeH264PictureInfoFlags {
         self.bitfield0 = (idr_pic_flag & 0x00000001) | rest;
         self
     }
+    pub fn get_idr_pic_flag(&self) -> u32 {
+        self.bitfield0 & 0x00000001
+    }
     pub fn is_reference(mut self, is_reference: u32) -> Self {
         let rest = self.bitfield0 & 0xFFFFFFFD;
         self.bitfield0 = ((is_reference << 1u32) & 0x00000002) | rest;
         self
+    }
+    pub fn get_is_reference(&self) -> u32 {
+        (self.bitfield0 & 0x00000002) >> 1u32
     }
     pub fn no_output_of_prior_pics_flag(
         mut self,
@@ -192,10 +204,16 @@ impl EncodeH264PictureInfoFlags {
         self.bitfield0 = ((no_output_of_prior_pics_flag << 2u32) & 0x00000004) | rest;
         self
     }
+    pub fn get_no_output_of_prior_pics_flag(&self) -> u32 {
+        (self.bitfield0 & 0x00000004) >> 2u32
+    }
     pub fn long_term_reference_flag(mut self, long_term_reference_flag: u32) -> Self {
         let rest = self.bitfield0 & 0xFFFFFFF7;
         self.bitfield0 = ((long_term_reference_flag << 3u32) & 0x00000008) | rest;
         self
+    }
+    pub fn get_long_term_reference_flag(&self) -> u32 {
+        (self.bitfield0 & 0x00000008) >> 3u32
     }
     pub fn adaptive_ref_pic_marking_mode_flag(
         mut self,
@@ -205,6 +223,9 @@ impl EncodeH264PictureInfoFlags {
         self.bitfield0 = ((adaptive_ref_pic_marking_mode_flag << 4u32) & 0x00000010)
             | rest;
         self
+    }
+    pub fn get_adaptive_ref_pic_marking_mode_flag(&self) -> u32 {
+        (self.bitfield0 & 0x00000010) >> 4u32
     }
 }
 #[repr(C)]
@@ -221,6 +242,9 @@ impl EncodeH264ReferenceInfoFlags {
         let rest = self.bitfield0 & 0xFFFFFFFE;
         self.bitfield0 = (used_for_long_term_reference & 0x00000001) | rest;
         self
+    }
+    pub fn get_used_for_long_term_reference(&self) -> u32 {
+        self.bitfield0 & 0x00000001
     }
 }
 #[repr(C)]
@@ -239,6 +263,9 @@ impl EncodeH264ReferenceListsInfoFlags {
         self.bitfield0 = (ref_pic_list_modification_flag_l0 & 0x00000001) | rest;
         self
     }
+    pub fn get_ref_pic_list_modification_flag_l0(&self) -> u32 {
+        self.bitfield0 & 0x00000001
+    }
     pub fn ref_pic_list_modification_flag_l1(
         mut self,
         ref_pic_list_modification_flag_l1: u32,
@@ -247,6 +274,9 @@ impl EncodeH264ReferenceListsInfoFlags {
         self.bitfield0 = ((ref_pic_list_modification_flag_l1 << 1u32) & 0x00000002)
             | rest;
         self
+    }
+    pub fn get_ref_pic_list_modification_flag_l1(&self) -> u32 {
+        (self.bitfield0 & 0x00000002) >> 1u32
     }
 }
 #[repr(C)]

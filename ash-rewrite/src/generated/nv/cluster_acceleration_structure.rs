@@ -249,10 +249,16 @@ pub(crate) mod reexport {
             self.bitfield0 = (geometry_index & 0x00FFFFFF) | rest;
             self
         }
+        pub fn get_geometry_index(&self) -> u32 {
+            self.bitfield0 & 0x00FFFFFF
+        }
         pub fn geometry_flags(mut self, geometry_flags: u32) -> Self {
             let rest = self.bitfield0 & 0x1FFFFFFF;
             self.bitfield0 = ((geometry_flags << 29u32) & 0xE0000000) | rest;
             self
+        }
+        pub fn get_geometry_flags(&self) -> u32 {
+            (self.bitfield0 & 0xE0000000) >> 29u32
         }
     }
     #[repr(C)]
@@ -352,10 +358,16 @@ pub(crate) mod reexport {
             self.bitfield0 = (triangle_count & 0x000001FF) | rest;
             self
         }
+        pub fn get_triangle_count(&self) -> u32 {
+            self.bitfield0 & 0x000001FF
+        }
         pub fn vertex_count(mut self, vertex_count: u32) -> Self {
             let rest = self.bitfield0 & 0xFFFC01FF;
             self.bitfield0 = ((vertex_count << 9u32) & 0x0003FE00) | rest;
             self
+        }
+        pub fn get_vertex_count(&self) -> u32 {
+            (self.bitfield0 & 0x0003FE00) >> 9u32
         }
         pub fn position_truncate_bit_count(
             mut self,
@@ -366,10 +378,16 @@ pub(crate) mod reexport {
                 | rest;
             self
         }
+        pub fn get_position_truncate_bit_count(&self) -> u32 {
+            (self.bitfield0 & 0x00FC0000) >> 18u32
+        }
         pub fn index_type(mut self, index_type: u32) -> Self {
             let rest = self.bitfield0 & 0xF0FFFFFF;
             self.bitfield0 = ((index_type << 24u32) & 0x0F000000) | rest;
             self
+        }
+        pub fn get_index_type(&self) -> u32 {
+            (self.bitfield0 & 0x0F000000) >> 24u32
         }
         pub fn opacity_micromap_index_type(
             mut self,
@@ -379,6 +397,9 @@ pub(crate) mod reexport {
             self.bitfield0 = ((opacity_micromap_index_type << 28u32) & 0xF0000000)
                 | rest;
             self
+        }
+        pub fn get_opacity_micromap_index_type(&self) -> u32 {
+            (self.bitfield0 & 0xF0000000) >> 28u32
         }
         pub fn base_geometry_index_and_geometry_flags(
             mut self,
@@ -479,10 +500,16 @@ pub(crate) mod reexport {
             self.bitfield0 = (triangle_count & 0x000001FF) | rest;
             self
         }
+        pub fn get_triangle_count(&self) -> u32 {
+            self.bitfield0 & 0x000001FF
+        }
         pub fn vertex_count(mut self, vertex_count: u32) -> Self {
             let rest = self.bitfield0 & 0xFFFC01FF;
             self.bitfield0 = ((vertex_count << 9u32) & 0x0003FE00) | rest;
             self
+        }
+        pub fn get_vertex_count(&self) -> u32 {
+            (self.bitfield0 & 0x0003FE00) >> 9u32
         }
         pub fn position_truncate_bit_count(
             mut self,
@@ -493,10 +520,16 @@ pub(crate) mod reexport {
                 | rest;
             self
         }
+        pub fn get_position_truncate_bit_count(&self) -> u32 {
+            (self.bitfield0 & 0x00FC0000) >> 18u32
+        }
         pub fn index_type(mut self, index_type: u32) -> Self {
             let rest = self.bitfield0 & 0xF0FFFFFF;
             self.bitfield0 = ((index_type << 24u32) & 0x0F000000) | rest;
             self
+        }
+        pub fn get_index_type(&self) -> u32 {
+            (self.bitfield0 & 0x0F000000) >> 24u32
         }
         pub fn opacity_micromap_index_type(
             mut self,
@@ -506,6 +539,9 @@ pub(crate) mod reexport {
             self.bitfield0 = ((opacity_micromap_index_type << 28u32) & 0xF0000000)
                 | rest;
             self
+        }
+        pub fn get_opacity_micromap_index_type(&self) -> u32 {
+            (self.bitfield0 & 0xF0000000) >> 28u32
         }
         pub fn base_geometry_index_and_geometry_flags(
             mut self,
@@ -591,6 +627,9 @@ pub(crate) mod reexport {
             let rest = self.bitfield0 & 0xFF000000;
             self.bitfield0 = (geometry_index_offset & 0x00FFFFFF) | rest;
             self
+        }
+        pub fn get_geometry_index_offset(&self) -> u32 {
+            self.bitfield0 & 0x00FFFFFF
         }
         pub fn cluster_template_address(
             mut self,
