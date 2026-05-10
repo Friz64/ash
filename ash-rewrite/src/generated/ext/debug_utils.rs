@@ -246,9 +246,16 @@ pub(crate) mod reexport {
             self.object_handle = object_handle;
             self
         }
-        pub fn p_object_name(mut self, p_object_name: *const core::ffi::c_char) -> Self {
-            self.p_object_name = p_object_name;
+        pub fn p_object_name(mut self, p_object_name: &'a core::ffi::CStr) -> Self {
+            self.p_object_name = p_object_name.as_ptr();
             self
+        }
+        pub unsafe fn p_object_name_as_c_str(&self) -> Option<&core::ffi::CStr> {
+            if self.p_object_name.is_null() {
+                None
+            } else {
+                Some(unsafe { core::ffi::CStr::from_ptr(self.p_object_name) })
+            }
         }
     }
     #[repr(C)]
@@ -297,8 +304,9 @@ pub(crate) mod reexport {
             self.tag_size = tag_size;
             self
         }
-        pub fn p_tag(mut self, p_tag: *const core::ffi::c_void) -> Self {
-            self.p_tag = p_tag;
+        pub fn p_tag(mut self, p_tag: &'a [u8]) -> Self {
+            self.tag_size = p_tag.len() as _;
+            self.p_tag = p_tag.as_ptr().cast();
             self
         }
     }
@@ -326,9 +334,16 @@ pub(crate) mod reexport {
         }
     }
     impl<'a> DebugUtilsLabelEXT<'a> {
-        pub fn p_label_name(mut self, p_label_name: *const core::ffi::c_char) -> Self {
-            self.p_label_name = p_label_name;
+        pub fn p_label_name(mut self, p_label_name: &'a core::ffi::CStr) -> Self {
+            self.p_label_name = p_label_name.as_ptr();
             self
+        }
+        pub unsafe fn p_label_name_as_c_str(&self) -> Option<&core::ffi::CStr> {
+            if self.p_label_name.is_null() {
+                None
+            } else {
+                Some(unsafe { core::ffi::CStr::from_ptr(self.p_label_name) })
+            }
         }
         pub fn color(mut self, color: [core::ffi::c_float; 4 as _]) -> Self {
             self.color = color;
@@ -395,7 +410,7 @@ pub(crate) mod reexport {
             self.pfn_user_callback = pfn_user_callback;
             self
         }
-        pub fn p_user_data(mut self, p_user_data: *mut core::ffi::c_void) -> Self {
+        pub fn p_user_data(mut self, p_user_data: &'a mut core::ffi::c_void) -> Self {
             self.p_user_data = p_user_data;
             self
         }
@@ -450,18 +465,32 @@ pub(crate) mod reexport {
         }
         pub fn p_message_id_name(
             mut self,
-            p_message_id_name: *const core::ffi::c_char,
+            p_message_id_name: &'a core::ffi::CStr,
         ) -> Self {
-            self.p_message_id_name = p_message_id_name;
+            self.p_message_id_name = p_message_id_name.as_ptr();
             self
+        }
+        pub unsafe fn p_message_id_name_as_c_str(&self) -> Option<&core::ffi::CStr> {
+            if self.p_message_id_name.is_null() {
+                None
+            } else {
+                Some(unsafe { core::ffi::CStr::from_ptr(self.p_message_id_name) })
+            }
         }
         pub fn message_id_number(mut self, message_id_number: i32) -> Self {
             self.message_id_number = message_id_number;
             self
         }
-        pub fn p_message(mut self, p_message: *const core::ffi::c_char) -> Self {
-            self.p_message = p_message;
+        pub fn p_message(mut self, p_message: &'a core::ffi::CStr) -> Self {
+            self.p_message = p_message.as_ptr();
             self
+        }
+        pub unsafe fn p_message_as_c_str(&self) -> Option<&core::ffi::CStr> {
+            if self.p_message.is_null() {
+                None
+            } else {
+                Some(unsafe { core::ffi::CStr::from_ptr(self.p_message) })
+            }
         }
         pub fn queue_label_count(mut self, queue_label_count: u32) -> Self {
             self.queue_label_count = queue_label_count;
@@ -469,9 +498,10 @@ pub(crate) mod reexport {
         }
         pub fn p_queue_labels(
             mut self,
-            p_queue_labels: *const crate::vk::DebugUtilsLabelEXT<'a>,
+            p_queue_labels: &'a [crate::vk::DebugUtilsLabelEXT<'a>],
         ) -> Self {
-            self.p_queue_labels = p_queue_labels;
+            self.queue_label_count = p_queue_labels.len() as _;
+            self.p_queue_labels = p_queue_labels.as_ptr();
             self
         }
         pub fn cmd_buf_label_count(mut self, cmd_buf_label_count: u32) -> Self {
@@ -480,9 +510,10 @@ pub(crate) mod reexport {
         }
         pub fn p_cmd_buf_labels(
             mut self,
-            p_cmd_buf_labels: *const crate::vk::DebugUtilsLabelEXT<'a>,
+            p_cmd_buf_labels: &'a [crate::vk::DebugUtilsLabelEXT<'a>],
         ) -> Self {
-            self.p_cmd_buf_labels = p_cmd_buf_labels;
+            self.cmd_buf_label_count = p_cmd_buf_labels.len() as _;
+            self.p_cmd_buf_labels = p_cmd_buf_labels.as_ptr();
             self
         }
         pub fn object_count(mut self, object_count: u32) -> Self {
@@ -491,9 +522,10 @@ pub(crate) mod reexport {
         }
         pub fn p_objects(
             mut self,
-            p_objects: *const crate::vk::DebugUtilsObjectNameInfoEXT<'a>,
+            p_objects: &'a [crate::vk::DebugUtilsObjectNameInfoEXT<'a>],
         ) -> Self {
-            self.p_objects = p_objects;
+            self.object_count = p_objects.len() as _;
+            self.p_objects = p_objects.as_ptr();
             self
         }
     }

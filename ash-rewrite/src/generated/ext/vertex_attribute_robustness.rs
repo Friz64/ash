@@ -30,9 +30,9 @@ impl<'a> Default for PhysicalDeviceVertexAttributeRobustnessFeaturesEXT<'a> {
 impl<'a> PhysicalDeviceVertexAttributeRobustnessFeaturesEXT<'a> {
     pub fn vertex_attribute_robustness(
         mut self,
-        vertex_attribute_robustness: crate::vk::Bool32,
+        vertex_attribute_robustness: bool,
     ) -> Self {
-        self.vertex_attribute_robustness = vertex_attribute_robustness;
+        self.vertex_attribute_robustness = vertex_attribute_robustness.into();
         self
     }
 }

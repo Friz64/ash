@@ -86,9 +86,10 @@ pub(crate) mod reexport {
     impl<'a> PhysicalDevicePartitionedAccelerationStructureFeaturesNV<'a> {
         pub fn partitioned_acceleration_structure(
             mut self,
-            partitioned_acceleration_structure: crate::vk::Bool32,
+            partitioned_acceleration_structure: bool,
         ) -> Self {
-            self.partitioned_acceleration_structure = partitioned_acceleration_structure;
+            self.partitioned_acceleration_structure = partitioned_acceleration_structure
+                .into();
             self
         }
     }
@@ -175,9 +176,9 @@ pub(crate) mod reexport {
     impl<'a> PartitionedAccelerationStructureFlagsNV<'a> {
         pub fn enable_partition_translation(
             mut self,
-            enable_partition_translation: crate::vk::Bool32,
+            enable_partition_translation: bool,
         ) -> Self {
-            self.enable_partition_translation = enable_partition_translation;
+            self.enable_partition_translation = enable_partition_translation.into();
             self
         }
     }
@@ -349,9 +350,10 @@ pub(crate) mod reexport {
         }
         pub fn p_acceleration_structures(
             mut self,
-            p_acceleration_structures: *const crate::vk::DeviceAddress,
+            p_acceleration_structures: &'a [crate::vk::DeviceAddress],
         ) -> Self {
-            self.p_acceleration_structures = p_acceleration_structures;
+            self.acceleration_structure_count = p_acceleration_structures.len() as _;
+            self.p_acceleration_structures = p_acceleration_structures.as_ptr();
             self
         }
     }

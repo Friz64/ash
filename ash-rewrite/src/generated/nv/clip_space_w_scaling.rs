@@ -84,9 +84,9 @@ pub(crate) mod reexport {
     impl<'a> PipelineViewportWScalingStateCreateInfoNV<'a> {
         pub fn viewport_w_scaling_enable(
             mut self,
-            viewport_w_scaling_enable: crate::vk::Bool32,
+            viewport_w_scaling_enable: bool,
         ) -> Self {
-            self.viewport_w_scaling_enable = viewport_w_scaling_enable;
+            self.viewport_w_scaling_enable = viewport_w_scaling_enable.into();
             self
         }
         pub fn viewport_count(mut self, viewport_count: u32) -> Self {
@@ -95,9 +95,10 @@ pub(crate) mod reexport {
         }
         pub fn p_viewport_w_scalings(
             mut self,
-            p_viewport_w_scalings: *const crate::vk::ViewportWScalingNV,
+            p_viewport_w_scalings: &'a [crate::vk::ViewportWScalingNV],
         ) -> Self {
-            self.p_viewport_w_scalings = p_viewport_w_scalings;
+            self.viewport_count = p_viewport_w_scalings.len() as _;
+            self.p_viewport_w_scalings = p_viewport_w_scalings.as_ptr();
             self
         }
     }

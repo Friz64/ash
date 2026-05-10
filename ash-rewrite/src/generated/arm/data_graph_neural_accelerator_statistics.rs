@@ -30,9 +30,10 @@ impl<'a> Default for PhysicalDeviceDataGraphNeuralAcceleratorStatisticsFeaturesA
 impl<'a> PhysicalDeviceDataGraphNeuralAcceleratorStatisticsFeaturesARM<'a> {
     pub fn data_graph_neural_accelerator_statistics(
         mut self,
-        data_graph_neural_accelerator_statistics: crate::vk::Bool32,
+        data_graph_neural_accelerator_statistics: bool,
     ) -> Self {
-        self.data_graph_neural_accelerator_statistics = data_graph_neural_accelerator_statistics;
+        self.data_graph_neural_accelerator_statistics = data_graph_neural_accelerator_statistics
+            .into();
         self
     }
 }
@@ -61,11 +62,8 @@ impl<'a> Default for DataGraphPipelineNeuralStatisticsCreateInfoARM<'a> {
     }
 }
 impl<'a> DataGraphPipelineNeuralStatisticsCreateInfoARM<'a> {
-    pub fn allow_neural_statistics(
-        mut self,
-        allow_neural_statistics: crate::vk::Bool32,
-    ) -> Self {
-        self.allow_neural_statistics = allow_neural_statistics;
+    pub fn allow_neural_statistics(mut self, allow_neural_statistics: bool) -> Self {
+        self.allow_neural_statistics = allow_neural_statistics.into();
         self
     }
 }

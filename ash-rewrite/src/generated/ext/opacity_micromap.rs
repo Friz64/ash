@@ -315,16 +315,18 @@ pub(crate) mod reexport {
         }
         pub fn p_usage_counts(
             mut self,
-            p_usage_counts: *const crate::vk::MicromapUsageEXT,
+            p_usage_counts: &'a [crate::vk::MicromapUsageEXT],
         ) -> Self {
-            self.p_usage_counts = p_usage_counts;
+            self.usage_counts_count = p_usage_counts.len() as _;
+            self.p_usage_counts = p_usage_counts.as_ptr();
             self
         }
         pub fn pp_usage_counts(
             mut self,
-            pp_usage_counts: *const *const crate::vk::MicromapUsageEXT,
+            pp_usage_counts: &'a [&'a crate::vk::MicromapUsageEXT],
         ) -> Self {
-            self.pp_usage_counts = pp_usage_counts;
+            self.usage_counts_count = pp_usage_counts.len() as _;
+            self.pp_usage_counts = pp_usage_counts.as_ptr().cast();
             self
         }
         pub fn data(mut self, data: crate::vk::DeviceOrHostAddressConstKHR) -> Self {
@@ -597,8 +599,8 @@ pub(crate) mod reexport {
             self.build_scratch_size = build_scratch_size;
             self
         }
-        pub fn discardable(mut self, discardable: crate::vk::Bool32) -> Self {
-            self.discardable = discardable;
+        pub fn discardable(mut self, discardable: bool) -> Self {
+            self.discardable = discardable.into();
             self
         }
     }
@@ -675,22 +677,16 @@ pub(crate) mod reexport {
         }
     }
     impl<'a> PhysicalDeviceOpacityMicromapFeaturesEXT<'a> {
-        pub fn micromap(mut self, micromap: crate::vk::Bool32) -> Self {
-            self.micromap = micromap;
+        pub fn micromap(mut self, micromap: bool) -> Self {
+            self.micromap = micromap.into();
             self
         }
-        pub fn micromap_capture_replay(
-            mut self,
-            micromap_capture_replay: crate::vk::Bool32,
-        ) -> Self {
-            self.micromap_capture_replay = micromap_capture_replay;
+        pub fn micromap_capture_replay(mut self, micromap_capture_replay: bool) -> Self {
+            self.micromap_capture_replay = micromap_capture_replay.into();
             self
         }
-        pub fn micromap_host_commands(
-            mut self,
-            micromap_host_commands: crate::vk::Bool32,
-        ) -> Self {
-            self.micromap_host_commands = micromap_host_commands;
+        pub fn micromap_host_commands(mut self, micromap_host_commands: bool) -> Self {
+            self.micromap_host_commands = micromap_host_commands.into();
             self
         }
     }
@@ -807,16 +803,18 @@ pub(crate) mod reexport {
         }
         pub fn p_usage_counts(
             mut self,
-            p_usage_counts: *const crate::vk::MicromapUsageEXT,
+            p_usage_counts: &'a [crate::vk::MicromapUsageEXT],
         ) -> Self {
-            self.p_usage_counts = p_usage_counts;
+            self.usage_counts_count = p_usage_counts.len() as _;
+            self.p_usage_counts = p_usage_counts.as_ptr();
             self
         }
         pub fn pp_usage_counts(
             mut self,
-            pp_usage_counts: *const *const crate::vk::MicromapUsageEXT,
+            pp_usage_counts: &'a [&'a crate::vk::MicromapUsageEXT],
         ) -> Self {
-            self.pp_usage_counts = pp_usage_counts;
+            self.usage_counts_count = pp_usage_counts.len() as _;
+            self.pp_usage_counts = pp_usage_counts.as_ptr().cast();
             self
         }
         pub fn micromap(mut self, micromap: crate::vk::MicromapEXT) -> Self {

@@ -115,9 +115,9 @@ pub(crate) mod reexport {
     impl<'a> CommandBufferInheritanceConditionalRenderingInfoEXT<'a> {
         pub fn conditional_rendering_enable(
             mut self,
-            conditional_rendering_enable: crate::vk::Bool32,
+            conditional_rendering_enable: bool,
         ) -> Self {
-            self.conditional_rendering_enable = conditional_rendering_enable;
+            self.conditional_rendering_enable = conditional_rendering_enable.into();
             self
         }
     }
@@ -150,18 +150,16 @@ pub(crate) mod reexport {
         }
     }
     impl<'a> PhysicalDeviceConditionalRenderingFeaturesEXT<'a> {
-        pub fn conditional_rendering(
-            mut self,
-            conditional_rendering: crate::vk::Bool32,
-        ) -> Self {
-            self.conditional_rendering = conditional_rendering;
+        pub fn conditional_rendering(mut self, conditional_rendering: bool) -> Self {
+            self.conditional_rendering = conditional_rendering.into();
             self
         }
         pub fn inherited_conditional_rendering(
             mut self,
-            inherited_conditional_rendering: crate::vk::Bool32,
+            inherited_conditional_rendering: bool,
         ) -> Self {
-            self.inherited_conditional_rendering = inherited_conditional_rendering;
+            self.inherited_conditional_rendering = inherited_conditional_rendering
+                .into();
             self
         }
     }

@@ -235,7 +235,7 @@ pub(crate) mod reexport {
     impl<'a> ImportNativeBufferInfoOHOS<'a> {
         pub fn buffer(
             mut self,
-            buffer: *mut crate::platform_types::OH_NativeBuffer,
+            buffer: &'a mut crate::platform_types::OH_NativeBuffer,
         ) -> Self {
             self.buffer = buffer;
             self

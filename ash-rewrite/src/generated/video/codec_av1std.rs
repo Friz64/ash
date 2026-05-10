@@ -374,15 +374,12 @@ impl<'a> AV1SequenceHeader<'a> {
     }
     pub fn p_color_config(
         mut self,
-        p_color_config: *const crate::vk::AV1ColorConfig,
+        p_color_config: &'a crate::vk::AV1ColorConfig,
     ) -> Self {
         self.p_color_config = p_color_config;
         self
     }
-    pub fn p_timing_info(
-        mut self,
-        p_timing_info: *const crate::vk::AV1TimingInfo,
-    ) -> Self {
+    pub fn p_timing_info(mut self, p_timing_info: &'a crate::vk::AV1TimingInfo) -> Self {
         self.p_timing_info = p_timing_info;
         self
     }
@@ -648,20 +645,24 @@ impl<'a> AV1TileInfo<'a> {
         self.reserved1 = reserved1;
         self
     }
-    pub fn p_mi_col_starts(mut self, p_mi_col_starts: *const u16) -> Self {
-        self.p_mi_col_starts = p_mi_col_starts;
+    pub fn p_mi_col_starts(mut self, p_mi_col_starts: &'a [u16]) -> Self {
+        self.tile_cols = p_mi_col_starts.len() as _;
+        self.p_mi_col_starts = p_mi_col_starts.as_ptr();
         self
     }
-    pub fn p_mi_row_starts(mut self, p_mi_row_starts: *const u16) -> Self {
-        self.p_mi_row_starts = p_mi_row_starts;
+    pub fn p_mi_row_starts(mut self, p_mi_row_starts: &'a [u16]) -> Self {
+        self.tile_rows = p_mi_row_starts.len() as _;
+        self.p_mi_row_starts = p_mi_row_starts.as_ptr();
         self
     }
-    pub fn p_width_in_sbs_minus1(mut self, p_width_in_sbs_minus1: *const u16) -> Self {
-        self.p_width_in_sbs_minus1 = p_width_in_sbs_minus1;
+    pub fn p_width_in_sbs_minus1(mut self, p_width_in_sbs_minus1: &'a [u16]) -> Self {
+        self.tile_cols = p_width_in_sbs_minus1.len() as _;
+        self.p_width_in_sbs_minus1 = p_width_in_sbs_minus1.as_ptr();
         self
     }
-    pub fn p_height_in_sbs_minus1(mut self, p_height_in_sbs_minus1: *const u16) -> Self {
-        self.p_height_in_sbs_minus1 = p_height_in_sbs_minus1;
+    pub fn p_height_in_sbs_minus1(mut self, p_height_in_sbs_minus1: &'a [u16]) -> Self {
+        self.tile_rows = p_height_in_sbs_minus1.len() as _;
+        self.p_height_in_sbs_minus1 = p_height_in_sbs_minus1.as_ptr();
         self
     }
 }

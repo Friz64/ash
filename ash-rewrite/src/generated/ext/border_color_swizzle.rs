@@ -32,8 +32,8 @@ impl<'a> SamplerBorderColorComponentMappingCreateInfoEXT<'a> {
         self.components = components;
         self
     }
-    pub fn srgb(mut self, srgb: crate::vk::Bool32) -> Self {
-        self.srgb = srgb;
+    pub fn srgb(mut self, srgb: bool) -> Self {
+        self.srgb = srgb.into();
         self
     }
 }
@@ -66,18 +66,15 @@ impl<'a> Default for PhysicalDeviceBorderColorSwizzleFeaturesEXT<'a> {
     }
 }
 impl<'a> PhysicalDeviceBorderColorSwizzleFeaturesEXT<'a> {
-    pub fn border_color_swizzle(
-        mut self,
-        border_color_swizzle: crate::vk::Bool32,
-    ) -> Self {
-        self.border_color_swizzle = border_color_swizzle;
+    pub fn border_color_swizzle(mut self, border_color_swizzle: bool) -> Self {
+        self.border_color_swizzle = border_color_swizzle.into();
         self
     }
     pub fn border_color_swizzle_from_image(
         mut self,
-        border_color_swizzle_from_image: crate::vk::Bool32,
+        border_color_swizzle_from_image: bool,
     ) -> Self {
-        self.border_color_swizzle_from_image = border_color_swizzle_from_image;
+        self.border_color_swizzle_from_image = border_color_swizzle_from_image.into();
         self
     }
 }

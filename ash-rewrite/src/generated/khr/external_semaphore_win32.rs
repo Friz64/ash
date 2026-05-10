@@ -137,7 +137,7 @@ pub(crate) mod reexport {
     impl<'a> ExportSemaphoreWin32HandleInfoKHR<'a> {
         pub fn p_attributes(
             mut self,
-            p_attributes: *const crate::platform_types::SECURITY_ATTRIBUTES,
+            p_attributes: &'a crate::platform_types::SECURITY_ATTRIBUTES,
         ) -> Self {
             self.p_attributes = p_attributes;
             self
@@ -190,9 +190,10 @@ pub(crate) mod reexport {
         }
         pub fn p_wait_semaphore_values(
             mut self,
-            p_wait_semaphore_values: *const u64,
+            p_wait_semaphore_values: &'a [u64],
         ) -> Self {
-            self.p_wait_semaphore_values = p_wait_semaphore_values;
+            self.wait_semaphore_values_count = p_wait_semaphore_values.len() as _;
+            self.p_wait_semaphore_values = p_wait_semaphore_values.as_ptr();
             self
         }
         pub fn signal_semaphore_values_count(
@@ -204,9 +205,10 @@ pub(crate) mod reexport {
         }
         pub fn p_signal_semaphore_values(
             mut self,
-            p_signal_semaphore_values: *const u64,
+            p_signal_semaphore_values: &'a [u64],
         ) -> Self {
-            self.p_signal_semaphore_values = p_signal_semaphore_values;
+            self.signal_semaphore_values_count = p_signal_semaphore_values.len() as _;
+            self.p_signal_semaphore_values = p_signal_semaphore_values.as_ptr();
             self
         }
     }

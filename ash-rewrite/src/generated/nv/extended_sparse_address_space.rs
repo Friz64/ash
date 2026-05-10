@@ -30,9 +30,9 @@ impl<'a> Default for PhysicalDeviceExtendedSparseAddressSpaceFeaturesNV<'a> {
 impl<'a> PhysicalDeviceExtendedSparseAddressSpaceFeaturesNV<'a> {
     pub fn extended_sparse_address_space(
         mut self,
-        extended_sparse_address_space: crate::vk::Bool32,
+        extended_sparse_address_space: bool,
     ) -> Self {
-        self.extended_sparse_address_space = extended_sparse_address_space;
+        self.extended_sparse_address_space = extended_sparse_address_space.into();
         self
     }
 }

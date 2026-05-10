@@ -67,9 +67,9 @@ pub(crate) mod reexport {
     impl<'a> PhysicalDeviceVertexInputDynamicStateFeaturesEXT<'a> {
         pub fn vertex_input_dynamic_state(
             mut self,
-            vertex_input_dynamic_state: crate::vk::Bool32,
+            vertex_input_dynamic_state: bool,
         ) -> Self {
-            self.vertex_input_dynamic_state = vertex_input_dynamic_state;
+            self.vertex_input_dynamic_state = vertex_input_dynamic_state.into();
             self
         }
     }

@@ -116,18 +116,15 @@ pub(crate) mod reexport {
         }
     }
     impl<'a> PhysicalDeviceCooperativeVectorFeaturesNV<'a> {
-        pub fn cooperative_vector(
-            mut self,
-            cooperative_vector: crate::vk::Bool32,
-        ) -> Self {
-            self.cooperative_vector = cooperative_vector;
+        pub fn cooperative_vector(mut self, cooperative_vector: bool) -> Self {
+            self.cooperative_vector = cooperative_vector.into();
             self
         }
         pub fn cooperative_vector_training(
             mut self,
-            cooperative_vector_training: crate::vk::Bool32,
+            cooperative_vector_training: bool,
         ) -> Self {
-            self.cooperative_vector_training = cooperative_vector_training;
+            self.cooperative_vector_training = cooperative_vector_training.into();
             self
         }
     }
@@ -192,8 +189,8 @@ pub(crate) mod reexport {
             self.result_type = result_type;
             self
         }
-        pub fn transpose(mut self, transpose: crate::vk::Bool32) -> Self {
-            self.transpose = transpose;
+        pub fn transpose(mut self, transpose: bool) -> Self {
+            self.transpose = transpose.into();
             self
         }
     }
@@ -237,16 +234,18 @@ pub(crate) mod reexport {
         }
         pub fn cooperative_vector_training_float16_accumulation(
             mut self,
-            cooperative_vector_training_float16_accumulation: crate::vk::Bool32,
+            cooperative_vector_training_float16_accumulation: bool,
         ) -> Self {
-            self.cooperative_vector_training_float16_accumulation = cooperative_vector_training_float16_accumulation;
+            self.cooperative_vector_training_float16_accumulation = cooperative_vector_training_float16_accumulation
+                .into();
             self
         }
         pub fn cooperative_vector_training_float32_accumulation(
             mut self,
-            cooperative_vector_training_float32_accumulation: crate::vk::Bool32,
+            cooperative_vector_training_float32_accumulation: bool,
         ) -> Self {
-            self.cooperative_vector_training_float32_accumulation = cooperative_vector_training_float32_accumulation;
+            self.cooperative_vector_training_float32_accumulation = cooperative_vector_training_float32_accumulation
+                .into();
             self
         }
         pub fn max_cooperative_vector_components(
@@ -313,7 +312,7 @@ pub(crate) mod reexport {
             self.src_data = src_data;
             self
         }
-        pub fn p_dst_size(mut self, p_dst_size: *mut usize) -> Self {
+        pub fn p_dst_size(mut self, p_dst_size: &'a mut usize) -> Self {
             self.p_dst_size = p_dst_size;
             self
         }

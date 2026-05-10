@@ -87,14 +87,14 @@ pub(crate) mod reexport {
         }
         pub fn display(
             mut self,
-            display: *mut crate::platform_types::wl_display,
+            display: &'a mut crate::platform_types::wl_display,
         ) -> Self {
             self.display = display;
             self
         }
         pub fn surface(
             mut self,
-            surface: *mut crate::platform_types::wl_surface,
+            surface: &'a mut crate::platform_types::wl_surface,
         ) -> Self {
             self.surface = surface;
             self

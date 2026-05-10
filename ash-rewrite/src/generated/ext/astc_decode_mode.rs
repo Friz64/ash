@@ -58,9 +58,9 @@ impl<'a> Default for PhysicalDeviceASTCDecodeFeaturesEXT<'a> {
 impl<'a> PhysicalDeviceASTCDecodeFeaturesEXT<'a> {
     pub fn decode_mode_shared_exponent(
         mut self,
-        decode_mode_shared_exponent: crate::vk::Bool32,
+        decode_mode_shared_exponent: bool,
     ) -> Self {
-        self.decode_mode_shared_exponent = decode_mode_shared_exponent;
+        self.decode_mode_shared_exponent = decode_mode_shared_exponent.into();
         self
     }
 }

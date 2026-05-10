@@ -28,11 +28,8 @@ impl<'a> Default for PhysicalDeviceCoherentMemoryFeaturesAMD<'a> {
     }
 }
 impl<'a> PhysicalDeviceCoherentMemoryFeaturesAMD<'a> {
-    pub fn device_coherent_memory(
-        mut self,
-        device_coherent_memory: crate::vk::Bool32,
-    ) -> Self {
-        self.device_coherent_memory = device_coherent_memory;
+    pub fn device_coherent_memory(mut self, device_coherent_memory: bool) -> Self {
+        self.device_coherent_memory = device_coherent_memory.into();
         self
     }
 }

@@ -32,16 +32,16 @@ impl<'a> Default for PhysicalDeviceShaderImageAtomicInt64FeaturesEXT<'a> {
 impl<'a> PhysicalDeviceShaderImageAtomicInt64FeaturesEXT<'a> {
     pub fn shader_image_int64_atomics(
         mut self,
-        shader_image_int64_atomics: crate::vk::Bool32,
+        shader_image_int64_atomics: bool,
     ) -> Self {
-        self.shader_image_int64_atomics = shader_image_int64_atomics;
+        self.shader_image_int64_atomics = shader_image_int64_atomics.into();
         self
     }
     pub fn sparse_image_int64_atomics(
         mut self,
-        sparse_image_int64_atomics: crate::vk::Bool32,
+        sparse_image_int64_atomics: bool,
     ) -> Self {
-        self.sparse_image_int64_atomics = sparse_image_int64_atomics;
+        self.sparse_image_int64_atomics = sparse_image_int64_atomics.into();
         self
     }
 }

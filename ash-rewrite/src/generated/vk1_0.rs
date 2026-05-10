@@ -2484,11 +2484,15 @@ pub(crate) mod reexport {
         }
         pub fn device_name(
             mut self,
-            device_name: [core::ffi::c_char; crate::vk::MAX_PHYSICAL_DEVICE_NAME_SIZE
-                as _],
-        ) -> Self {
-            self.device_name = device_name;
-            self
+            device_name: &core::ffi::CStr,
+        ) -> core::result::Result<Self, crate::CStrTooLargeForStaticArray> {
+            crate::write_c_str_slice_with_nul(&mut self.device_name, device_name)
+                .map(|_| self)
+        }
+        pub fn device_name_as_c_str(
+            &self,
+        ) -> core::result::Result<&core::ffi::CStr, core::ffi::FromBytesUntilNulError> {
+            crate::wrap_c_str_slice_until_nul(&self.device_name)
         }
         pub fn pipeline_cache_uuid(
             mut self,
@@ -2526,10 +2530,15 @@ pub(crate) mod reexport {
     impl ExtensionProperties {
         pub fn extension_name(
             mut self,
-            extension_name: [core::ffi::c_char; crate::vk::MAX_EXTENSION_NAME_SIZE as _],
-        ) -> Self {
-            self.extension_name = extension_name;
-            self
+            extension_name: &core::ffi::CStr,
+        ) -> core::result::Result<Self, crate::CStrTooLargeForStaticArray> {
+            crate::write_c_str_slice_with_nul(&mut self.extension_name, extension_name)
+                .map(|_| self)
+        }
+        pub fn extension_name_as_c_str(
+            &self,
+        ) -> core::result::Result<&core::ffi::CStr, core::ffi::FromBytesUntilNulError> {
+            crate::wrap_c_str_slice_until_nul(&self.extension_name)
         }
         pub fn spec_version(mut self, spec_version: u32) -> Self {
             self.spec_version = spec_version;
@@ -2557,10 +2566,15 @@ pub(crate) mod reexport {
     impl LayerProperties {
         pub fn layer_name(
             mut self,
-            layer_name: [core::ffi::c_char; crate::vk::MAX_EXTENSION_NAME_SIZE as _],
-        ) -> Self {
-            self.layer_name = layer_name;
-            self
+            layer_name: &core::ffi::CStr,
+        ) -> core::result::Result<Self, crate::CStrTooLargeForStaticArray> {
+            crate::write_c_str_slice_with_nul(&mut self.layer_name, layer_name)
+                .map(|_| self)
+        }
+        pub fn layer_name_as_c_str(
+            &self,
+        ) -> core::result::Result<&core::ffi::CStr, core::ffi::FromBytesUntilNulError> {
+            crate::wrap_c_str_slice_until_nul(&self.layer_name)
         }
         pub fn spec_version(mut self, spec_version: u32) -> Self {
             self.spec_version = spec_version;
@@ -2572,10 +2586,15 @@ pub(crate) mod reexport {
         }
         pub fn description(
             mut self,
-            description: [core::ffi::c_char; crate::vk::MAX_DESCRIPTION_SIZE as _],
-        ) -> Self {
-            self.description = description;
-            self
+            description: &core::ffi::CStr,
+        ) -> core::result::Result<Self, crate::CStrTooLargeForStaticArray> {
+            crate::write_c_str_slice_with_nul(&mut self.description, description)
+                .map(|_| self)
+        }
+        pub fn description_as_c_str(
+            &self,
+        ) -> core::result::Result<&core::ffi::CStr, core::ffi::FromBytesUntilNulError> {
+            crate::wrap_c_str_slice_until_nul(&self.description)
         }
     }
     #[repr(C)]
@@ -2610,18 +2629,32 @@ pub(crate) mod reexport {
     impl<'a> ApplicationInfo<'a> {
         pub fn p_application_name(
             mut self,
-            p_application_name: *const core::ffi::c_char,
+            p_application_name: &'a core::ffi::CStr,
         ) -> Self {
-            self.p_application_name = p_application_name;
+            self.p_application_name = p_application_name.as_ptr();
             self
+        }
+        pub unsafe fn p_application_name_as_c_str(&self) -> Option<&core::ffi::CStr> {
+            if self.p_application_name.is_null() {
+                None
+            } else {
+                Some(unsafe { core::ffi::CStr::from_ptr(self.p_application_name) })
+            }
         }
         pub fn application_version(mut self, application_version: u32) -> Self {
             self.application_version = application_version;
             self
         }
-        pub fn p_engine_name(mut self, p_engine_name: *const core::ffi::c_char) -> Self {
-            self.p_engine_name = p_engine_name;
+        pub fn p_engine_name(mut self, p_engine_name: &'a core::ffi::CStr) -> Self {
+            self.p_engine_name = p_engine_name.as_ptr();
             self
+        }
+        pub unsafe fn p_engine_name_as_c_str(&self) -> Option<&core::ffi::CStr> {
+            if self.p_engine_name.is_null() {
+                None
+            } else {
+                Some(unsafe { core::ffi::CStr::from_ptr(self.p_engine_name) })
+            }
         }
         pub fn engine_version(mut self, engine_version: u32) -> Self {
             self.engine_version = engine_version;
@@ -2644,7 +2677,7 @@ pub(crate) mod reexport {
         pub _marker: ::core::marker::PhantomData<&'a ()>,
     }
     impl<'a> AllocationCallbacks<'a> {
-        pub fn p_user_data(mut self, p_user_data: *mut core::ffi::c_void) -> Self {
+        pub fn p_user_data(mut self, p_user_data: &'a mut core::ffi::c_void) -> Self {
             self.p_user_data = p_user_data;
             self
         }
@@ -2723,9 +2756,10 @@ pub(crate) mod reexport {
         }
         pub fn p_queue_priorities(
             mut self,
-            p_queue_priorities: *const core::ffi::c_float,
+            p_queue_priorities: &'a [core::ffi::c_float],
         ) -> Self {
-            self.p_queue_priorities = p_queue_priorities;
+            self.queue_count = p_queue_priorities.len() as _;
+            self.p_queue_priorities = p_queue_priorities.as_ptr();
             self
         }
     }
@@ -2775,9 +2809,10 @@ pub(crate) mod reexport {
         }
         pub fn p_queue_create_infos(
             mut self,
-            p_queue_create_infos: *const crate::vk::DeviceQueueCreateInfo<'a>,
+            p_queue_create_infos: &'a [crate::vk::DeviceQueueCreateInfo<'a>],
         ) -> Self {
-            self.p_queue_create_infos = p_queue_create_infos;
+            self.queue_create_info_count = p_queue_create_infos.len() as _;
+            self.p_queue_create_infos = p_queue_create_infos.as_ptr();
             self
         }
         pub fn enabled_layer_count(mut self, enabled_layer_count: u32) -> Self {
@@ -2786,9 +2821,10 @@ pub(crate) mod reexport {
         }
         pub fn pp_enabled_layer_names(
             mut self,
-            pp_enabled_layer_names: *const *const core::ffi::c_char,
+            pp_enabled_layer_names: &'a [*const core::ffi::c_char],
         ) -> Self {
-            self.pp_enabled_layer_names = pp_enabled_layer_names;
+            self.enabled_layer_count = pp_enabled_layer_names.len() as _;
+            self.pp_enabled_layer_names = pp_enabled_layer_names.as_ptr();
             self
         }
         pub fn enabled_extension_count(mut self, enabled_extension_count: u32) -> Self {
@@ -2797,14 +2833,15 @@ pub(crate) mod reexport {
         }
         pub fn pp_enabled_extension_names(
             mut self,
-            pp_enabled_extension_names: *const *const core::ffi::c_char,
+            pp_enabled_extension_names: &'a [*const core::ffi::c_char],
         ) -> Self {
-            self.pp_enabled_extension_names = pp_enabled_extension_names;
+            self.enabled_extension_count = pp_enabled_extension_names.len() as _;
+            self.pp_enabled_extension_names = pp_enabled_extension_names.as_ptr();
             self
         }
         pub fn p_enabled_features(
             mut self,
-            p_enabled_features: *const crate::vk::PhysicalDeviceFeatures,
+            p_enabled_features: &'a crate::vk::PhysicalDeviceFeatures,
         ) -> Self {
             self.p_enabled_features = p_enabled_features;
             self
@@ -2848,7 +2885,7 @@ pub(crate) mod reexport {
         }
         pub fn p_application_info(
             mut self,
-            p_application_info: *const crate::vk::ApplicationInfo<'a>,
+            p_application_info: &'a crate::vk::ApplicationInfo<'a>,
         ) -> Self {
             self.p_application_info = p_application_info;
             self
@@ -2859,9 +2896,10 @@ pub(crate) mod reexport {
         }
         pub fn pp_enabled_layer_names(
             mut self,
-            pp_enabled_layer_names: *const *const core::ffi::c_char,
+            pp_enabled_layer_names: &'a [*const core::ffi::c_char],
         ) -> Self {
-            self.pp_enabled_layer_names = pp_enabled_layer_names;
+            self.enabled_layer_count = pp_enabled_layer_names.len() as _;
+            self.pp_enabled_layer_names = pp_enabled_layer_names.as_ptr();
             self
         }
         pub fn enabled_extension_count(mut self, enabled_extension_count: u32) -> Self {
@@ -2870,9 +2908,10 @@ pub(crate) mod reexport {
         }
         pub fn pp_enabled_extension_names(
             mut self,
-            pp_enabled_extension_names: *const *const core::ffi::c_char,
+            pp_enabled_extension_names: &'a [*const core::ffi::c_char],
         ) -> Self {
-            self.pp_enabled_extension_names = pp_enabled_extension_names;
+            self.enabled_extension_count = pp_enabled_extension_names.len() as _;
+            self.pp_enabled_extension_names = pp_enabled_extension_names.as_ptr();
             self
         }
     }
@@ -2928,23 +2967,25 @@ pub(crate) mod reexport {
             self.memory_type_count = memory_type_count;
             self
         }
-        pub fn memory_types(
-            mut self,
-            memory_types: [crate::vk::MemoryType; crate::vk::MAX_MEMORY_TYPES as _],
-        ) -> Self {
-            self.memory_types = memory_types;
+        pub fn memory_types(mut self, memory_types: &[crate::vk::MemoryType]) -> Self {
+            self.memory_type_count = memory_types.len() as _;
+            self.memory_types[..memory_types.len()].copy_from_slice(memory_types);
             self
+        }
+        pub fn memory_types_as_slice(&self) -> &[crate::vk::MemoryType] {
+            &self.memory_types[..self.memory_type_count as _]
         }
         pub fn memory_heap_count(mut self, memory_heap_count: u32) -> Self {
             self.memory_heap_count = memory_heap_count;
             self
         }
-        pub fn memory_heaps(
-            mut self,
-            memory_heaps: [crate::vk::MemoryHeap; crate::vk::MAX_MEMORY_HEAPS as _],
-        ) -> Self {
-            self.memory_heaps = memory_heaps;
+        pub fn memory_heaps(mut self, memory_heaps: &[crate::vk::MemoryHeap]) -> Self {
+            self.memory_heap_count = memory_heaps.len() as _;
+            self.memory_heaps[..memory_heaps.len()].copy_from_slice(memory_heaps);
             self
+        }
+        pub fn memory_heaps_as_slice(&self) -> &[crate::vk::MemoryHeap] {
+            &self.memory_heaps[..self.memory_heap_count as _]
         }
     }
     #[repr(C)]
@@ -3318,23 +3359,26 @@ pub(crate) mod reexport {
         }
         pub fn p_image_info(
             mut self,
-            p_image_info: *const crate::vk::DescriptorImageInfo,
+            p_image_info: &'a [crate::vk::DescriptorImageInfo],
         ) -> Self {
-            self.p_image_info = p_image_info;
+            self.descriptor_count = p_image_info.len() as _;
+            self.p_image_info = p_image_info.as_ptr();
             self
         }
         pub fn p_buffer_info(
             mut self,
-            p_buffer_info: *const crate::vk::DescriptorBufferInfo,
+            p_buffer_info: &'a [crate::vk::DescriptorBufferInfo],
         ) -> Self {
-            self.p_buffer_info = p_buffer_info;
+            self.descriptor_count = p_buffer_info.len() as _;
+            self.p_buffer_info = p_buffer_info.as_ptr();
             self
         }
         pub fn p_texel_buffer_view(
             mut self,
-            p_texel_buffer_view: *const crate::vk::BufferView,
+            p_texel_buffer_view: &'a [crate::vk::BufferView],
         ) -> Self {
-            self.p_texel_buffer_view = p_texel_buffer_view;
+            self.descriptor_count = p_texel_buffer_view.len() as _;
+            self.p_texel_buffer_view = p_texel_buffer_view.as_ptr();
             self
         }
     }
@@ -3458,9 +3502,10 @@ pub(crate) mod reexport {
         }
         pub fn p_queue_family_indices(
             mut self,
-            p_queue_family_indices: *const u32,
+            p_queue_family_indices: &'a [u32],
         ) -> Self {
-            self.p_queue_family_indices = p_queue_family_indices;
+            self.queue_family_index_count = p_queue_family_indices.len() as _;
+            self.p_queue_family_indices = p_queue_family_indices.as_ptr();
             self
         }
     }
@@ -3874,9 +3919,10 @@ pub(crate) mod reexport {
         }
         pub fn p_queue_family_indices(
             mut self,
-            p_queue_family_indices: *const u32,
+            p_queue_family_indices: &'a [u32],
         ) -> Self {
-            self.p_queue_family_indices = p_queue_family_indices;
+            self.queue_family_index_count = p_queue_family_indices.len() as _;
+            self.p_queue_family_indices = p_queue_family_indices.as_ptr();
             self
         }
         pub fn initial_layout(mut self, initial_layout: crate::vk::ImageLayout) -> Self {
@@ -4083,8 +4129,9 @@ pub(crate) mod reexport {
             self.bind_count = bind_count;
             self
         }
-        pub fn p_binds(mut self, p_binds: *const crate::vk::SparseMemoryBind) -> Self {
-            self.p_binds = p_binds;
+        pub fn p_binds(mut self, p_binds: &'a [crate::vk::SparseMemoryBind]) -> Self {
+            self.bind_count = p_binds.len() as _;
+            self.p_binds = p_binds.as_ptr();
             self
         }
     }
@@ -4105,8 +4152,9 @@ pub(crate) mod reexport {
             self.bind_count = bind_count;
             self
         }
-        pub fn p_binds(mut self, p_binds: *const crate::vk::SparseMemoryBind) -> Self {
-            self.p_binds = p_binds;
+        pub fn p_binds(mut self, p_binds: &'a [crate::vk::SparseMemoryBind]) -> Self {
+            self.bind_count = p_binds.len() as _;
+            self.p_binds = p_binds.as_ptr();
             self
         }
     }
@@ -4129,9 +4177,10 @@ pub(crate) mod reexport {
         }
         pub fn p_binds(
             mut self,
-            p_binds: *const crate::vk::SparseImageMemoryBind,
+            p_binds: &'a [crate::vk::SparseImageMemoryBind],
         ) -> Self {
-            self.p_binds = p_binds;
+            self.bind_count = p_binds.len() as _;
+            self.p_binds = p_binds.as_ptr();
             self
         }
     }
@@ -4181,9 +4230,10 @@ pub(crate) mod reexport {
         }
         pub fn p_wait_semaphores(
             mut self,
-            p_wait_semaphores: *const crate::vk::Semaphore,
+            p_wait_semaphores: &'a [crate::vk::Semaphore],
         ) -> Self {
-            self.p_wait_semaphores = p_wait_semaphores;
+            self.wait_semaphore_count = p_wait_semaphores.len() as _;
+            self.p_wait_semaphores = p_wait_semaphores.as_ptr();
             self
         }
         pub fn buffer_bind_count(mut self, buffer_bind_count: u32) -> Self {
@@ -4192,9 +4242,10 @@ pub(crate) mod reexport {
         }
         pub fn p_buffer_binds(
             mut self,
-            p_buffer_binds: *const crate::vk::SparseBufferMemoryBindInfo<'a>,
+            p_buffer_binds: &'a [crate::vk::SparseBufferMemoryBindInfo<'a>],
         ) -> Self {
-            self.p_buffer_binds = p_buffer_binds;
+            self.buffer_bind_count = p_buffer_binds.len() as _;
+            self.p_buffer_binds = p_buffer_binds.as_ptr();
             self
         }
         pub fn image_opaque_bind_count(mut self, image_opaque_bind_count: u32) -> Self {
@@ -4203,9 +4254,10 @@ pub(crate) mod reexport {
         }
         pub fn p_image_opaque_binds(
             mut self,
-            p_image_opaque_binds: *const crate::vk::SparseImageOpaqueMemoryBindInfo<'a>,
+            p_image_opaque_binds: &'a [crate::vk::SparseImageOpaqueMemoryBindInfo<'a>],
         ) -> Self {
-            self.p_image_opaque_binds = p_image_opaque_binds;
+            self.image_opaque_bind_count = p_image_opaque_binds.len() as _;
+            self.p_image_opaque_binds = p_image_opaque_binds.as_ptr();
             self
         }
         pub fn image_bind_count(mut self, image_bind_count: u32) -> Self {
@@ -4214,9 +4266,10 @@ pub(crate) mod reexport {
         }
         pub fn p_image_binds(
             mut self,
-            p_image_binds: *const crate::vk::SparseImageMemoryBindInfo<'a>,
+            p_image_binds: &'a [crate::vk::SparseImageMemoryBindInfo<'a>],
         ) -> Self {
-            self.p_image_binds = p_image_binds;
+            self.image_bind_count = p_image_binds.len() as _;
+            self.p_image_binds = p_image_binds.as_ptr();
             self
         }
         pub fn signal_semaphore_count(mut self, signal_semaphore_count: u32) -> Self {
@@ -4225,9 +4278,10 @@ pub(crate) mod reexport {
         }
         pub fn p_signal_semaphores(
             mut self,
-            p_signal_semaphores: *const crate::vk::Semaphore,
+            p_signal_semaphores: &'a [crate::vk::Semaphore],
         ) -> Self {
-            self.p_signal_semaphores = p_signal_semaphores;
+            self.signal_semaphore_count = p_signal_semaphores.len() as _;
+            self.p_signal_semaphores = p_signal_semaphores.as_ptr();
             self
         }
     }
@@ -4467,9 +4521,10 @@ pub(crate) mod reexport {
         }
         pub fn p_immutable_samplers(
             mut self,
-            p_immutable_samplers: *const crate::vk::Sampler,
+            p_immutable_samplers: &'a [crate::vk::Sampler],
         ) -> Self {
-            self.p_immutable_samplers = p_immutable_samplers;
+            self.descriptor_count = p_immutable_samplers.len() as _;
+            self.p_immutable_samplers = p_immutable_samplers.as_ptr();
             self
         }
     }
@@ -4512,9 +4567,10 @@ pub(crate) mod reexport {
         }
         pub fn p_bindings(
             mut self,
-            p_bindings: *const crate::vk::DescriptorSetLayoutBinding<'a>,
+            p_bindings: &'a [crate::vk::DescriptorSetLayoutBinding<'a>],
         ) -> Self {
-            self.p_bindings = p_bindings;
+            self.binding_count = p_bindings.len() as _;
+            self.p_bindings = p_bindings.as_ptr();
             self
         }
     }
@@ -4576,9 +4632,10 @@ pub(crate) mod reexport {
         }
         pub fn p_pool_sizes(
             mut self,
-            p_pool_sizes: *const crate::vk::DescriptorPoolSize,
+            p_pool_sizes: &'a [crate::vk::DescriptorPoolSize],
         ) -> Self {
-            self.p_pool_sizes = p_pool_sizes;
+            self.pool_size_count = p_pool_sizes.len() as _;
+            self.p_pool_sizes = p_pool_sizes.as_ptr();
             self
         }
     }
@@ -4621,9 +4678,10 @@ pub(crate) mod reexport {
         }
         pub fn p_set_layouts(
             mut self,
-            p_set_layouts: *const crate::vk::DescriptorSetLayout,
+            p_set_layouts: &'a [crate::vk::DescriptorSetLayout],
         ) -> Self {
-            self.p_set_layouts = p_set_layouts;
+            self.descriptor_set_count = p_set_layouts.len() as _;
+            self.p_set_layouts = p_set_layouts.as_ptr();
             self
         }
     }
@@ -4664,17 +4722,19 @@ pub(crate) mod reexport {
         }
         pub fn p_map_entries(
             mut self,
-            p_map_entries: *const crate::vk::SpecializationMapEntry,
+            p_map_entries: &'a [crate::vk::SpecializationMapEntry],
         ) -> Self {
-            self.p_map_entries = p_map_entries;
+            self.map_entry_count = p_map_entries.len() as _;
+            self.p_map_entries = p_map_entries.as_ptr();
             self
         }
         pub fn data_size(mut self, data_size: usize) -> Self {
             self.data_size = data_size;
             self
         }
-        pub fn p_data(mut self, p_data: *const core::ffi::c_void) -> Self {
-            self.p_data = p_data;
+        pub fn p_data(mut self, p_data: &'a [u8]) -> Self {
+            self.data_size = p_data.len() as _;
+            self.p_data = p_data.as_ptr().cast();
             self
         }
     }
@@ -4723,13 +4783,20 @@ pub(crate) mod reexport {
             self.module = module;
             self
         }
-        pub fn p_name(mut self, p_name: *const core::ffi::c_char) -> Self {
-            self.p_name = p_name;
+        pub fn p_name(mut self, p_name: &'a core::ffi::CStr) -> Self {
+            self.p_name = p_name.as_ptr();
             self
+        }
+        pub unsafe fn p_name_as_c_str(&self) -> Option<&core::ffi::CStr> {
+            if self.p_name.is_null() {
+                None
+            } else {
+                Some(unsafe { core::ffi::CStr::from_ptr(self.p_name) })
+            }
         }
         pub fn p_specialization_info(
             mut self,
-            p_specialization_info: *const crate::vk::SpecializationInfo<'a>,
+            p_specialization_info: &'a crate::vk::SpecializationInfo<'a>,
         ) -> Self {
             self.p_specialization_info = p_specialization_info;
             self
@@ -4886,9 +4953,11 @@ pub(crate) mod reexport {
         }
         pub fn p_vertex_binding_descriptions(
             mut self,
-            p_vertex_binding_descriptions: *const crate::vk::VertexInputBindingDescription,
+            p_vertex_binding_descriptions: &'a [crate::vk::VertexInputBindingDescription],
         ) -> Self {
-            self.p_vertex_binding_descriptions = p_vertex_binding_descriptions;
+            self.vertex_binding_description_count = p_vertex_binding_descriptions.len()
+                as _;
+            self.p_vertex_binding_descriptions = p_vertex_binding_descriptions.as_ptr();
             self
         }
         pub fn vertex_attribute_description_count(
@@ -4900,9 +4969,12 @@ pub(crate) mod reexport {
         }
         pub fn p_vertex_attribute_descriptions(
             mut self,
-            p_vertex_attribute_descriptions: *const crate::vk::VertexInputAttributeDescription,
+            p_vertex_attribute_descriptions: &'a [crate::vk::VertexInputAttributeDescription],
         ) -> Self {
-            self.p_vertex_attribute_descriptions = p_vertex_attribute_descriptions;
+            self.vertex_attribute_description_count = p_vertex_attribute_descriptions
+                .len() as _;
+            self.p_vertex_attribute_descriptions = p_vertex_attribute_descriptions
+                .as_ptr();
             self
         }
     }
@@ -4946,9 +5018,9 @@ pub(crate) mod reexport {
         }
         pub fn primitive_restart_enable(
             mut self,
-            primitive_restart_enable: crate::vk::Bool32,
+            primitive_restart_enable: bool,
         ) -> Self {
-            self.primitive_restart_enable = primitive_restart_enable;
+            self.primitive_restart_enable = primitive_restart_enable.into();
             self
         }
     }
@@ -5030,16 +5102,18 @@ pub(crate) mod reexport {
             self.viewport_count = viewport_count;
             self
         }
-        pub fn p_viewports(mut self, p_viewports: *const crate::vk::Viewport) -> Self {
-            self.p_viewports = p_viewports;
+        pub fn p_viewports(mut self, p_viewports: &'a [crate::vk::Viewport]) -> Self {
+            self.viewport_count = p_viewports.len() as _;
+            self.p_viewports = p_viewports.as_ptr();
             self
         }
         pub fn scissor_count(mut self, scissor_count: u32) -> Self {
             self.scissor_count = scissor_count;
             self
         }
-        pub fn p_scissors(mut self, p_scissors: *const crate::vk::Rect2D) -> Self {
-            self.p_scissors = p_scissors;
+        pub fn p_scissors(mut self, p_scissors: &'a [crate::vk::Rect2D]) -> Self {
+            self.scissor_count = p_scissors.len() as _;
+            self.p_scissors = p_scissors.as_ptr();
             self
         }
     }
@@ -5093,18 +5167,15 @@ pub(crate) mod reexport {
             self.flags = flags;
             self
         }
-        pub fn depth_clamp_enable(
-            mut self,
-            depth_clamp_enable: crate::vk::Bool32,
-        ) -> Self {
-            self.depth_clamp_enable = depth_clamp_enable;
+        pub fn depth_clamp_enable(mut self, depth_clamp_enable: bool) -> Self {
+            self.depth_clamp_enable = depth_clamp_enable.into();
             self
         }
         pub fn rasterizer_discard_enable(
             mut self,
-            rasterizer_discard_enable: crate::vk::Bool32,
+            rasterizer_discard_enable: bool,
         ) -> Self {
-            self.rasterizer_discard_enable = rasterizer_discard_enable;
+            self.rasterizer_discard_enable = rasterizer_discard_enable.into();
             self
         }
         pub fn polygon_mode(mut self, polygon_mode: crate::vk::PolygonMode) -> Self {
@@ -5119,11 +5190,8 @@ pub(crate) mod reexport {
             self.front_face = front_face;
             self
         }
-        pub fn depth_bias_enable(
-            mut self,
-            depth_bias_enable: crate::vk::Bool32,
-        ) -> Self {
-            self.depth_bias_enable = depth_bias_enable;
+        pub fn depth_bias_enable(mut self, depth_bias_enable: bool) -> Self {
+            self.depth_bias_enable = depth_bias_enable.into();
             self
         }
         pub fn depth_bias_constant_factor(
@@ -5198,11 +5266,8 @@ pub(crate) mod reexport {
             self.rasterization_samples = rasterization_samples;
             self
         }
-        pub fn sample_shading_enable(
-            mut self,
-            sample_shading_enable: crate::vk::Bool32,
-        ) -> Self {
-            self.sample_shading_enable = sample_shading_enable;
+        pub fn sample_shading_enable(mut self, sample_shading_enable: bool) -> Self {
+            self.sample_shading_enable = sample_shading_enable.into();
             self
         }
         pub fn min_sample_shading(
@@ -5221,16 +5286,13 @@ pub(crate) mod reexport {
         }
         pub fn alpha_to_coverage_enable(
             mut self,
-            alpha_to_coverage_enable: crate::vk::Bool32,
+            alpha_to_coverage_enable: bool,
         ) -> Self {
-            self.alpha_to_coverage_enable = alpha_to_coverage_enable;
+            self.alpha_to_coverage_enable = alpha_to_coverage_enable.into();
             self
         }
-        pub fn alpha_to_one_enable(
-            mut self,
-            alpha_to_one_enable: crate::vk::Bool32,
-        ) -> Self {
-            self.alpha_to_one_enable = alpha_to_one_enable;
+        pub fn alpha_to_one_enable(mut self, alpha_to_one_enable: bool) -> Self {
+            self.alpha_to_one_enable = alpha_to_one_enable.into();
             self
         }
     }
@@ -5247,8 +5309,8 @@ pub(crate) mod reexport {
         pub color_write_mask: crate::vk::ColorComponentFlags,
     }
     impl PipelineColorBlendAttachmentState {
-        pub fn blend_enable(mut self, blend_enable: crate::vk::Bool32) -> Self {
-            self.blend_enable = blend_enable;
+        pub fn blend_enable(mut self, blend_enable: bool) -> Self {
+            self.blend_enable = blend_enable.into();
             self
         }
         pub fn src_color_blend_factor(
@@ -5335,8 +5397,8 @@ pub(crate) mod reexport {
             self.flags = flags;
             self
         }
-        pub fn logic_op_enable(mut self, logic_op_enable: crate::vk::Bool32) -> Self {
-            self.logic_op_enable = logic_op_enable;
+        pub fn logic_op_enable(mut self, logic_op_enable: bool) -> Self {
+            self.logic_op_enable = logic_op_enable.into();
             self
         }
         pub fn logic_op(mut self, logic_op: crate::vk::LogicOp) -> Self {
@@ -5349,9 +5411,10 @@ pub(crate) mod reexport {
         }
         pub fn p_attachments(
             mut self,
-            p_attachments: *const crate::vk::PipelineColorBlendAttachmentState,
+            p_attachments: &'a [crate::vk::PipelineColorBlendAttachmentState],
         ) -> Self {
-            self.p_attachments = p_attachments;
+            self.attachment_count = p_attachments.len() as _;
+            self.p_attachments = p_attachments.as_ptr();
             self
         }
         pub fn blend_constants(
@@ -5401,9 +5464,10 @@ pub(crate) mod reexport {
         }
         pub fn p_dynamic_states(
             mut self,
-            p_dynamic_states: *const crate::vk::DynamicState,
+            p_dynamic_states: &'a [crate::vk::DynamicState],
         ) -> Self {
-            self.p_dynamic_states = p_dynamic_states;
+            self.dynamic_state_count = p_dynamic_states.len() as _;
+            self.p_dynamic_states = p_dynamic_states.as_ptr();
             self
         }
     }
@@ -5496,18 +5560,12 @@ pub(crate) mod reexport {
             self.flags = flags;
             self
         }
-        pub fn depth_test_enable(
-            mut self,
-            depth_test_enable: crate::vk::Bool32,
-        ) -> Self {
-            self.depth_test_enable = depth_test_enable;
+        pub fn depth_test_enable(mut self, depth_test_enable: bool) -> Self {
+            self.depth_test_enable = depth_test_enable.into();
             self
         }
-        pub fn depth_write_enable(
-            mut self,
-            depth_write_enable: crate::vk::Bool32,
-        ) -> Self {
-            self.depth_write_enable = depth_write_enable;
+        pub fn depth_write_enable(mut self, depth_write_enable: bool) -> Self {
+            self.depth_write_enable = depth_write_enable.into();
             self
         }
         pub fn depth_compare_op(
@@ -5519,16 +5577,13 @@ pub(crate) mod reexport {
         }
         pub fn depth_bounds_test_enable(
             mut self,
-            depth_bounds_test_enable: crate::vk::Bool32,
+            depth_bounds_test_enable: bool,
         ) -> Self {
-            self.depth_bounds_test_enable = depth_bounds_test_enable;
+            self.depth_bounds_test_enable = depth_bounds_test_enable.into();
             self
         }
-        pub fn stencil_test_enable(
-            mut self,
-            stencil_test_enable: crate::vk::Bool32,
-        ) -> Self {
-            self.stencil_test_enable = stencil_test_enable;
+        pub fn stencil_test_enable(mut self, stencil_test_enable: bool) -> Self {
+            self.stencil_test_enable = stencil_test_enable.into();
             self
         }
         pub fn front(mut self, front: crate::vk::StencilOpState) -> Self {
@@ -5624,23 +5679,22 @@ pub(crate) mod reexport {
         }
         pub fn p_stages(
             mut self,
-            p_stages: *const crate::vk::PipelineShaderStageCreateInfo<'a>,
+            p_stages: &'a [crate::vk::PipelineShaderStageCreateInfo<'a>],
         ) -> Self {
-            self.p_stages = p_stages;
+            self.stage_count = p_stages.len() as _;
+            self.p_stages = p_stages.as_ptr();
             self
         }
         pub fn p_vertex_input_state(
             mut self,
-            p_vertex_input_state: *const crate::vk::PipelineVertexInputStateCreateInfo<
-                'a,
-            >,
+            p_vertex_input_state: &'a crate::vk::PipelineVertexInputStateCreateInfo<'a>,
         ) -> Self {
             self.p_vertex_input_state = p_vertex_input_state;
             self
         }
         pub fn p_input_assembly_state(
             mut self,
-            p_input_assembly_state: *const crate::vk::PipelineInputAssemblyStateCreateInfo<
+            p_input_assembly_state: &'a crate::vk::PipelineInputAssemblyStateCreateInfo<
                 'a,
             >,
         ) -> Self {
@@ -5649,23 +5703,21 @@ pub(crate) mod reexport {
         }
         pub fn p_tessellation_state(
             mut self,
-            p_tessellation_state: *const crate::vk::PipelineTessellationStateCreateInfo<
-                'a,
-            >,
+            p_tessellation_state: &'a crate::vk::PipelineTessellationStateCreateInfo<'a>,
         ) -> Self {
             self.p_tessellation_state = p_tessellation_state;
             self
         }
         pub fn p_viewport_state(
             mut self,
-            p_viewport_state: *const crate::vk::PipelineViewportStateCreateInfo<'a>,
+            p_viewport_state: &'a crate::vk::PipelineViewportStateCreateInfo<'a>,
         ) -> Self {
             self.p_viewport_state = p_viewport_state;
             self
         }
         pub fn p_rasterization_state(
             mut self,
-            p_rasterization_state: *const crate::vk::PipelineRasterizationStateCreateInfo<
+            p_rasterization_state: &'a crate::vk::PipelineRasterizationStateCreateInfo<
                 'a,
             >,
         ) -> Self {
@@ -5674,30 +5726,28 @@ pub(crate) mod reexport {
         }
         pub fn p_multisample_state(
             mut self,
-            p_multisample_state: *const crate::vk::PipelineMultisampleStateCreateInfo<'a>,
+            p_multisample_state: &'a crate::vk::PipelineMultisampleStateCreateInfo<'a>,
         ) -> Self {
             self.p_multisample_state = p_multisample_state;
             self
         }
         pub fn p_depth_stencil_state(
             mut self,
-            p_depth_stencil_state: *const crate::vk::PipelineDepthStencilStateCreateInfo<
-                'a,
-            >,
+            p_depth_stencil_state: &'a crate::vk::PipelineDepthStencilStateCreateInfo<'a>,
         ) -> Self {
             self.p_depth_stencil_state = p_depth_stencil_state;
             self
         }
         pub fn p_color_blend_state(
             mut self,
-            p_color_blend_state: *const crate::vk::PipelineColorBlendStateCreateInfo<'a>,
+            p_color_blend_state: &'a crate::vk::PipelineColorBlendStateCreateInfo<'a>,
         ) -> Self {
             self.p_color_blend_state = p_color_blend_state;
             self
         }
         pub fn p_dynamic_state(
             mut self,
-            p_dynamic_state: *const crate::vk::PipelineDynamicStateCreateInfo<'a>,
+            p_dynamic_state: &'a crate::vk::PipelineDynamicStateCreateInfo<'a>,
         ) -> Self {
             self.p_dynamic_state = p_dynamic_state;
             self
@@ -5760,11 +5810,9 @@ pub(crate) mod reexport {
             self.initial_data_size = initial_data_size;
             self
         }
-        pub fn p_initial_data(
-            mut self,
-            p_initial_data: *const core::ffi::c_void,
-        ) -> Self {
-            self.p_initial_data = p_initial_data;
+        pub fn p_initial_data(mut self, p_initial_data: &'a [u8]) -> Self {
+            self.initial_data_size = p_initial_data.len() as _;
+            self.p_initial_data = p_initial_data.as_ptr().cast();
             self
         }
     }
@@ -5893,9 +5941,10 @@ pub(crate) mod reexport {
         }
         pub fn p_set_layouts(
             mut self,
-            p_set_layouts: *const crate::vk::DescriptorSetLayout,
+            p_set_layouts: &'a [crate::vk::DescriptorSetLayout],
         ) -> Self {
-            self.p_set_layouts = p_set_layouts;
+            self.set_layout_count = p_set_layouts.len() as _;
+            self.p_set_layouts = p_set_layouts.as_ptr();
             self
         }
         pub fn push_constant_range_count(
@@ -5907,9 +5956,10 @@ pub(crate) mod reexport {
         }
         pub fn p_push_constant_ranges(
             mut self,
-            p_push_constant_ranges: *const crate::vk::PushConstantRange,
+            p_push_constant_ranges: &'a [crate::vk::PushConstantRange],
         ) -> Self {
-            self.p_push_constant_ranges = p_push_constant_ranges;
+            self.push_constant_range_count = p_push_constant_ranges.len() as _;
+            self.p_push_constant_ranges = p_push_constant_ranges.as_ptr();
             self
         }
     }
@@ -6006,19 +6056,16 @@ pub(crate) mod reexport {
             self.mip_lod_bias = mip_lod_bias;
             self
         }
-        pub fn anisotropy_enable(
-            mut self,
-            anisotropy_enable: crate::vk::Bool32,
-        ) -> Self {
-            self.anisotropy_enable = anisotropy_enable;
+        pub fn anisotropy_enable(mut self, anisotropy_enable: bool) -> Self {
+            self.anisotropy_enable = anisotropy_enable.into();
             self
         }
         pub fn max_anisotropy(mut self, max_anisotropy: core::ffi::c_float) -> Self {
             self.max_anisotropy = max_anisotropy;
             self
         }
-        pub fn compare_enable(mut self, compare_enable: crate::vk::Bool32) -> Self {
-            self.compare_enable = compare_enable;
+        pub fn compare_enable(mut self, compare_enable: bool) -> Self {
+            self.compare_enable = compare_enable.into();
             self
         }
         pub fn compare_op(mut self, compare_op: crate::vk::CompareOp) -> Self {
@@ -6039,9 +6086,9 @@ pub(crate) mod reexport {
         }
         pub fn unnormalized_coordinates(
             mut self,
-            unnormalized_coordinates: crate::vk::Bool32,
+            unnormalized_coordinates: bool,
         ) -> Self {
-            self.unnormalized_coordinates = unnormalized_coordinates;
+            self.unnormalized_coordinates = unnormalized_coordinates.into();
             self
         }
     }
@@ -6161,11 +6208,8 @@ pub(crate) mod reexport {
             self.framebuffer = framebuffer;
             self
         }
-        pub fn occlusion_query_enable(
-            mut self,
-            occlusion_query_enable: crate::vk::Bool32,
-        ) -> Self {
-            self.occlusion_query_enable = occlusion_query_enable;
+        pub fn occlusion_query_enable(mut self, occlusion_query_enable: bool) -> Self {
+            self.occlusion_query_enable = occlusion_query_enable.into();
             self
         }
         pub fn query_flags(mut self, query_flags: crate::vk::QueryControlFlags) -> Self {
@@ -6210,7 +6254,7 @@ pub(crate) mod reexport {
         }
         pub fn p_inheritance_info(
             mut self,
-            p_inheritance_info: *const crate::vk::CommandBufferInheritanceInfo<'a>,
+            p_inheritance_info: &'a crate::vk::CommandBufferInheritanceInfo<'a>,
         ) -> Self {
             self.p_inheritance_info = p_inheritance_info;
             self
@@ -6264,9 +6308,10 @@ pub(crate) mod reexport {
         }
         pub fn p_clear_values(
             mut self,
-            p_clear_values: *const crate::vk::ClearValue,
+            p_clear_values: &'a [crate::vk::ClearValue],
         ) -> Self {
-            self.p_clear_values = p_clear_values;
+            self.clear_value_count = p_clear_values.len() as _;
+            self.p_clear_values = p_clear_values.as_ptr();
             self
         }
     }
@@ -6413,9 +6458,10 @@ pub(crate) mod reexport {
         }
         pub fn p_input_attachments(
             mut self,
-            p_input_attachments: *const crate::vk::AttachmentReference,
+            p_input_attachments: &'a [crate::vk::AttachmentReference],
         ) -> Self {
-            self.p_input_attachments = p_input_attachments;
+            self.input_attachment_count = p_input_attachments.len() as _;
+            self.p_input_attachments = p_input_attachments.as_ptr();
             self
         }
         pub fn color_attachment_count(mut self, color_attachment_count: u32) -> Self {
@@ -6424,21 +6470,23 @@ pub(crate) mod reexport {
         }
         pub fn p_color_attachments(
             mut self,
-            p_color_attachments: *const crate::vk::AttachmentReference,
+            p_color_attachments: &'a [crate::vk::AttachmentReference],
         ) -> Self {
-            self.p_color_attachments = p_color_attachments;
+            self.color_attachment_count = p_color_attachments.len() as _;
+            self.p_color_attachments = p_color_attachments.as_ptr();
             self
         }
         pub fn p_resolve_attachments(
             mut self,
-            p_resolve_attachments: *const crate::vk::AttachmentReference,
+            p_resolve_attachments: &'a [crate::vk::AttachmentReference],
         ) -> Self {
-            self.p_resolve_attachments = p_resolve_attachments;
+            self.color_attachment_count = p_resolve_attachments.len() as _;
+            self.p_resolve_attachments = p_resolve_attachments.as_ptr();
             self
         }
         pub fn p_depth_stencil_attachment(
             mut self,
-            p_depth_stencil_attachment: *const crate::vk::AttachmentReference,
+            p_depth_stencil_attachment: &'a crate::vk::AttachmentReference,
         ) -> Self {
             self.p_depth_stencil_attachment = p_depth_stencil_attachment;
             self
@@ -6452,9 +6500,10 @@ pub(crate) mod reexport {
         }
         pub fn p_preserve_attachments(
             mut self,
-            p_preserve_attachments: *const u32,
+            p_preserve_attachments: &'a [u32],
         ) -> Self {
-            self.p_preserve_attachments = p_preserve_attachments;
+            self.preserve_attachment_count = p_preserve_attachments.len() as _;
+            self.p_preserve_attachments = p_preserve_attachments.as_ptr();
             self
         }
     }
@@ -6558,9 +6607,10 @@ pub(crate) mod reexport {
         }
         pub fn p_attachments(
             mut self,
-            p_attachments: *const crate::vk::AttachmentDescription,
+            p_attachments: &'a [crate::vk::AttachmentDescription],
         ) -> Self {
-            self.p_attachments = p_attachments;
+            self.attachment_count = p_attachments.len() as _;
+            self.p_attachments = p_attachments.as_ptr();
             self
         }
         pub fn subpass_count(mut self, subpass_count: u32) -> Self {
@@ -6569,9 +6619,10 @@ pub(crate) mod reexport {
         }
         pub fn p_subpasses(
             mut self,
-            p_subpasses: *const crate::vk::SubpassDescription<'a>,
+            p_subpasses: &'a [crate::vk::SubpassDescription<'a>],
         ) -> Self {
-            self.p_subpasses = p_subpasses;
+            self.subpass_count = p_subpasses.len() as _;
+            self.p_subpasses = p_subpasses.as_ptr();
             self
         }
         pub fn dependency_count(mut self, dependency_count: u32) -> Self {
@@ -6580,9 +6631,10 @@ pub(crate) mod reexport {
         }
         pub fn p_dependencies(
             mut self,
-            p_dependencies: *const crate::vk::SubpassDependency,
+            p_dependencies: &'a [crate::vk::SubpassDependency],
         ) -> Self {
-            self.p_dependencies = p_dependencies;
+            self.dependency_count = p_dependencies.len() as _;
+            self.p_dependencies = p_dependencies.as_ptr();
             self
         }
     }
@@ -6700,344 +6752,309 @@ pub(crate) mod reexport {
         pub inherited_queries: crate::vk::Bool32,
     }
     impl PhysicalDeviceFeatures {
-        pub fn robust_buffer_access(
-            mut self,
-            robust_buffer_access: crate::vk::Bool32,
-        ) -> Self {
-            self.robust_buffer_access = robust_buffer_access;
+        pub fn robust_buffer_access(mut self, robust_buffer_access: bool) -> Self {
+            self.robust_buffer_access = robust_buffer_access.into();
             self
         }
-        pub fn full_draw_index_uint32(
-            mut self,
-            full_draw_index_uint32: crate::vk::Bool32,
-        ) -> Self {
-            self.full_draw_index_uint32 = full_draw_index_uint32;
+        pub fn full_draw_index_uint32(mut self, full_draw_index_uint32: bool) -> Self {
+            self.full_draw_index_uint32 = full_draw_index_uint32.into();
             self
         }
-        pub fn image_cube_array(mut self, image_cube_array: crate::vk::Bool32) -> Self {
-            self.image_cube_array = image_cube_array;
+        pub fn image_cube_array(mut self, image_cube_array: bool) -> Self {
+            self.image_cube_array = image_cube_array.into();
             self
         }
-        pub fn independent_blend(
-            mut self,
-            independent_blend: crate::vk::Bool32,
-        ) -> Self {
-            self.independent_blend = independent_blend;
+        pub fn independent_blend(mut self, independent_blend: bool) -> Self {
+            self.independent_blend = independent_blend.into();
             self
         }
-        pub fn geometry_shader(mut self, geometry_shader: crate::vk::Bool32) -> Self {
-            self.geometry_shader = geometry_shader;
+        pub fn geometry_shader(mut self, geometry_shader: bool) -> Self {
+            self.geometry_shader = geometry_shader.into();
             self
         }
-        pub fn tessellation_shader(
-            mut self,
-            tessellation_shader: crate::vk::Bool32,
-        ) -> Self {
-            self.tessellation_shader = tessellation_shader;
+        pub fn tessellation_shader(mut self, tessellation_shader: bool) -> Self {
+            self.tessellation_shader = tessellation_shader.into();
             self
         }
-        pub fn sample_rate_shading(
-            mut self,
-            sample_rate_shading: crate::vk::Bool32,
-        ) -> Self {
-            self.sample_rate_shading = sample_rate_shading;
+        pub fn sample_rate_shading(mut self, sample_rate_shading: bool) -> Self {
+            self.sample_rate_shading = sample_rate_shading.into();
             self
         }
-        pub fn dual_src_blend(mut self, dual_src_blend: crate::vk::Bool32) -> Self {
-            self.dual_src_blend = dual_src_blend;
+        pub fn dual_src_blend(mut self, dual_src_blend: bool) -> Self {
+            self.dual_src_blend = dual_src_blend.into();
             self
         }
-        pub fn logic_op(mut self, logic_op: crate::vk::Bool32) -> Self {
-            self.logic_op = logic_op;
+        pub fn logic_op(mut self, logic_op: bool) -> Self {
+            self.logic_op = logic_op.into();
             self
         }
-        pub fn multi_draw_indirect(
-            mut self,
-            multi_draw_indirect: crate::vk::Bool32,
-        ) -> Self {
-            self.multi_draw_indirect = multi_draw_indirect;
+        pub fn multi_draw_indirect(mut self, multi_draw_indirect: bool) -> Self {
+            self.multi_draw_indirect = multi_draw_indirect.into();
             self
         }
         pub fn draw_indirect_first_instance(
             mut self,
-            draw_indirect_first_instance: crate::vk::Bool32,
+            draw_indirect_first_instance: bool,
         ) -> Self {
-            self.draw_indirect_first_instance = draw_indirect_first_instance;
+            self.draw_indirect_first_instance = draw_indirect_first_instance.into();
             self
         }
-        pub fn depth_clamp(mut self, depth_clamp: crate::vk::Bool32) -> Self {
-            self.depth_clamp = depth_clamp;
+        pub fn depth_clamp(mut self, depth_clamp: bool) -> Self {
+            self.depth_clamp = depth_clamp.into();
             self
         }
-        pub fn depth_bias_clamp(mut self, depth_bias_clamp: crate::vk::Bool32) -> Self {
-            self.depth_bias_clamp = depth_bias_clamp;
+        pub fn depth_bias_clamp(mut self, depth_bias_clamp: bool) -> Self {
+            self.depth_bias_clamp = depth_bias_clamp.into();
             self
         }
-        pub fn fill_mode_non_solid(
-            mut self,
-            fill_mode_non_solid: crate::vk::Bool32,
-        ) -> Self {
-            self.fill_mode_non_solid = fill_mode_non_solid;
+        pub fn fill_mode_non_solid(mut self, fill_mode_non_solid: bool) -> Self {
+            self.fill_mode_non_solid = fill_mode_non_solid.into();
             self
         }
-        pub fn depth_bounds(mut self, depth_bounds: crate::vk::Bool32) -> Self {
-            self.depth_bounds = depth_bounds;
+        pub fn depth_bounds(mut self, depth_bounds: bool) -> Self {
+            self.depth_bounds = depth_bounds.into();
             self
         }
-        pub fn wide_lines(mut self, wide_lines: crate::vk::Bool32) -> Self {
-            self.wide_lines = wide_lines;
+        pub fn wide_lines(mut self, wide_lines: bool) -> Self {
+            self.wide_lines = wide_lines.into();
             self
         }
-        pub fn large_points(mut self, large_points: crate::vk::Bool32) -> Self {
-            self.large_points = large_points;
+        pub fn large_points(mut self, large_points: bool) -> Self {
+            self.large_points = large_points.into();
             self
         }
-        pub fn alpha_to_one(mut self, alpha_to_one: crate::vk::Bool32) -> Self {
-            self.alpha_to_one = alpha_to_one;
+        pub fn alpha_to_one(mut self, alpha_to_one: bool) -> Self {
+            self.alpha_to_one = alpha_to_one.into();
             self
         }
-        pub fn multi_viewport(mut self, multi_viewport: crate::vk::Bool32) -> Self {
-            self.multi_viewport = multi_viewport;
+        pub fn multi_viewport(mut self, multi_viewport: bool) -> Self {
+            self.multi_viewport = multi_viewport.into();
             self
         }
-        pub fn sampler_anisotropy(
-            mut self,
-            sampler_anisotropy: crate::vk::Bool32,
-        ) -> Self {
-            self.sampler_anisotropy = sampler_anisotropy;
+        pub fn sampler_anisotropy(mut self, sampler_anisotropy: bool) -> Self {
+            self.sampler_anisotropy = sampler_anisotropy.into();
             self
         }
         pub fn texture_compression_etc2(
             mut self,
-            texture_compression_etc2: crate::vk::Bool32,
+            texture_compression_etc2: bool,
         ) -> Self {
-            self.texture_compression_etc2 = texture_compression_etc2;
+            self.texture_compression_etc2 = texture_compression_etc2.into();
             self
         }
         pub fn texture_compression_astc_ldr(
             mut self,
-            texture_compression_astc_ldr: crate::vk::Bool32,
+            texture_compression_astc_ldr: bool,
         ) -> Self {
-            self.texture_compression_astc_ldr = texture_compression_astc_ldr;
+            self.texture_compression_astc_ldr = texture_compression_astc_ldr.into();
             self
         }
-        pub fn texture_compression_bc(
-            mut self,
-            texture_compression_bc: crate::vk::Bool32,
-        ) -> Self {
-            self.texture_compression_bc = texture_compression_bc;
+        pub fn texture_compression_bc(mut self, texture_compression_bc: bool) -> Self {
+            self.texture_compression_bc = texture_compression_bc.into();
             self
         }
-        pub fn occlusion_query_precise(
-            mut self,
-            occlusion_query_precise: crate::vk::Bool32,
-        ) -> Self {
-            self.occlusion_query_precise = occlusion_query_precise;
+        pub fn occlusion_query_precise(mut self, occlusion_query_precise: bool) -> Self {
+            self.occlusion_query_precise = occlusion_query_precise.into();
             self
         }
         pub fn pipeline_statistics_query(
             mut self,
-            pipeline_statistics_query: crate::vk::Bool32,
+            pipeline_statistics_query: bool,
         ) -> Self {
-            self.pipeline_statistics_query = pipeline_statistics_query;
+            self.pipeline_statistics_query = pipeline_statistics_query.into();
             self
         }
         pub fn vertex_pipeline_stores_and_atomics(
             mut self,
-            vertex_pipeline_stores_and_atomics: crate::vk::Bool32,
+            vertex_pipeline_stores_and_atomics: bool,
         ) -> Self {
-            self.vertex_pipeline_stores_and_atomics = vertex_pipeline_stores_and_atomics;
+            self.vertex_pipeline_stores_and_atomics = vertex_pipeline_stores_and_atomics
+                .into();
             self
         }
         pub fn fragment_stores_and_atomics(
             mut self,
-            fragment_stores_and_atomics: crate::vk::Bool32,
+            fragment_stores_and_atomics: bool,
         ) -> Self {
-            self.fragment_stores_and_atomics = fragment_stores_and_atomics;
+            self.fragment_stores_and_atomics = fragment_stores_and_atomics.into();
             self
         }
         pub fn shader_tessellation_and_geometry_point_size(
             mut self,
-            shader_tessellation_and_geometry_point_size: crate::vk::Bool32,
+            shader_tessellation_and_geometry_point_size: bool,
         ) -> Self {
-            self.shader_tessellation_and_geometry_point_size = shader_tessellation_and_geometry_point_size;
+            self.shader_tessellation_and_geometry_point_size = shader_tessellation_and_geometry_point_size
+                .into();
             self
         }
         pub fn shader_image_gather_extended(
             mut self,
-            shader_image_gather_extended: crate::vk::Bool32,
+            shader_image_gather_extended: bool,
         ) -> Self {
-            self.shader_image_gather_extended = shader_image_gather_extended;
+            self.shader_image_gather_extended = shader_image_gather_extended.into();
             self
         }
         pub fn shader_storage_image_extended_formats(
             mut self,
-            shader_storage_image_extended_formats: crate::vk::Bool32,
+            shader_storage_image_extended_formats: bool,
         ) -> Self {
-            self.shader_storage_image_extended_formats = shader_storage_image_extended_formats;
+            self.shader_storage_image_extended_formats = shader_storage_image_extended_formats
+                .into();
             self
         }
         pub fn shader_storage_image_multisample(
             mut self,
-            shader_storage_image_multisample: crate::vk::Bool32,
+            shader_storage_image_multisample: bool,
         ) -> Self {
-            self.shader_storage_image_multisample = shader_storage_image_multisample;
+            self.shader_storage_image_multisample = shader_storage_image_multisample
+                .into();
             self
         }
         pub fn shader_storage_image_read_without_format(
             mut self,
-            shader_storage_image_read_without_format: crate::vk::Bool32,
+            shader_storage_image_read_without_format: bool,
         ) -> Self {
-            self.shader_storage_image_read_without_format = shader_storage_image_read_without_format;
+            self.shader_storage_image_read_without_format = shader_storage_image_read_without_format
+                .into();
             self
         }
         pub fn shader_storage_image_write_without_format(
             mut self,
-            shader_storage_image_write_without_format: crate::vk::Bool32,
+            shader_storage_image_write_without_format: bool,
         ) -> Self {
-            self.shader_storage_image_write_without_format = shader_storage_image_write_without_format;
+            self.shader_storage_image_write_without_format = shader_storage_image_write_without_format
+                .into();
             self
         }
         pub fn shader_uniform_buffer_array_dynamic_indexing(
             mut self,
-            shader_uniform_buffer_array_dynamic_indexing: crate::vk::Bool32,
+            shader_uniform_buffer_array_dynamic_indexing: bool,
         ) -> Self {
-            self.shader_uniform_buffer_array_dynamic_indexing = shader_uniform_buffer_array_dynamic_indexing;
+            self.shader_uniform_buffer_array_dynamic_indexing = shader_uniform_buffer_array_dynamic_indexing
+                .into();
             self
         }
         pub fn shader_sampled_image_array_dynamic_indexing(
             mut self,
-            shader_sampled_image_array_dynamic_indexing: crate::vk::Bool32,
+            shader_sampled_image_array_dynamic_indexing: bool,
         ) -> Self {
-            self.shader_sampled_image_array_dynamic_indexing = shader_sampled_image_array_dynamic_indexing;
+            self.shader_sampled_image_array_dynamic_indexing = shader_sampled_image_array_dynamic_indexing
+                .into();
             self
         }
         pub fn shader_storage_buffer_array_dynamic_indexing(
             mut self,
-            shader_storage_buffer_array_dynamic_indexing: crate::vk::Bool32,
+            shader_storage_buffer_array_dynamic_indexing: bool,
         ) -> Self {
-            self.shader_storage_buffer_array_dynamic_indexing = shader_storage_buffer_array_dynamic_indexing;
+            self.shader_storage_buffer_array_dynamic_indexing = shader_storage_buffer_array_dynamic_indexing
+                .into();
             self
         }
         pub fn shader_storage_image_array_dynamic_indexing(
             mut self,
-            shader_storage_image_array_dynamic_indexing: crate::vk::Bool32,
+            shader_storage_image_array_dynamic_indexing: bool,
         ) -> Self {
-            self.shader_storage_image_array_dynamic_indexing = shader_storage_image_array_dynamic_indexing;
+            self.shader_storage_image_array_dynamic_indexing = shader_storage_image_array_dynamic_indexing
+                .into();
             self
         }
-        pub fn shader_clip_distance(
-            mut self,
-            shader_clip_distance: crate::vk::Bool32,
-        ) -> Self {
-            self.shader_clip_distance = shader_clip_distance;
+        pub fn shader_clip_distance(mut self, shader_clip_distance: bool) -> Self {
+            self.shader_clip_distance = shader_clip_distance.into();
             self
         }
-        pub fn shader_cull_distance(
-            mut self,
-            shader_cull_distance: crate::vk::Bool32,
-        ) -> Self {
-            self.shader_cull_distance = shader_cull_distance;
+        pub fn shader_cull_distance(mut self, shader_cull_distance: bool) -> Self {
+            self.shader_cull_distance = shader_cull_distance.into();
             self
         }
-        pub fn shader_float64(mut self, shader_float64: crate::vk::Bool32) -> Self {
-            self.shader_float64 = shader_float64;
+        pub fn shader_float64(mut self, shader_float64: bool) -> Self {
+            self.shader_float64 = shader_float64.into();
             self
         }
-        pub fn shader_int64(mut self, shader_int64: crate::vk::Bool32) -> Self {
-            self.shader_int64 = shader_int64;
+        pub fn shader_int64(mut self, shader_int64: bool) -> Self {
+            self.shader_int64 = shader_int64.into();
             self
         }
-        pub fn shader_int16(mut self, shader_int16: crate::vk::Bool32) -> Self {
-            self.shader_int16 = shader_int16;
+        pub fn shader_int16(mut self, shader_int16: bool) -> Self {
+            self.shader_int16 = shader_int16.into();
             self
         }
         pub fn shader_resource_residency(
             mut self,
-            shader_resource_residency: crate::vk::Bool32,
+            shader_resource_residency: bool,
         ) -> Self {
-            self.shader_resource_residency = shader_resource_residency;
+            self.shader_resource_residency = shader_resource_residency.into();
             self
         }
-        pub fn shader_resource_min_lod(
-            mut self,
-            shader_resource_min_lod: crate::vk::Bool32,
-        ) -> Self {
-            self.shader_resource_min_lod = shader_resource_min_lod;
+        pub fn shader_resource_min_lod(mut self, shader_resource_min_lod: bool) -> Self {
+            self.shader_resource_min_lod = shader_resource_min_lod.into();
             self
         }
-        pub fn sparse_binding(mut self, sparse_binding: crate::vk::Bool32) -> Self {
-            self.sparse_binding = sparse_binding;
+        pub fn sparse_binding(mut self, sparse_binding: bool) -> Self {
+            self.sparse_binding = sparse_binding.into();
             self
         }
-        pub fn sparse_residency_buffer(
-            mut self,
-            sparse_residency_buffer: crate::vk::Bool32,
-        ) -> Self {
-            self.sparse_residency_buffer = sparse_residency_buffer;
+        pub fn sparse_residency_buffer(mut self, sparse_residency_buffer: bool) -> Self {
+            self.sparse_residency_buffer = sparse_residency_buffer.into();
             self
         }
         pub fn sparse_residency_image2_d(
             mut self,
-            sparse_residency_image2_d: crate::vk::Bool32,
+            sparse_residency_image2_d: bool,
         ) -> Self {
-            self.sparse_residency_image2_d = sparse_residency_image2_d;
+            self.sparse_residency_image2_d = sparse_residency_image2_d.into();
             self
         }
         pub fn sparse_residency_image3_d(
             mut self,
-            sparse_residency_image3_d: crate::vk::Bool32,
+            sparse_residency_image3_d: bool,
         ) -> Self {
-            self.sparse_residency_image3_d = sparse_residency_image3_d;
+            self.sparse_residency_image3_d = sparse_residency_image3_d.into();
             self
         }
         pub fn sparse_residency2_samples(
             mut self,
-            sparse_residency2_samples: crate::vk::Bool32,
+            sparse_residency2_samples: bool,
         ) -> Self {
-            self.sparse_residency2_samples = sparse_residency2_samples;
+            self.sparse_residency2_samples = sparse_residency2_samples.into();
             self
         }
         pub fn sparse_residency4_samples(
             mut self,
-            sparse_residency4_samples: crate::vk::Bool32,
+            sparse_residency4_samples: bool,
         ) -> Self {
-            self.sparse_residency4_samples = sparse_residency4_samples;
+            self.sparse_residency4_samples = sparse_residency4_samples.into();
             self
         }
         pub fn sparse_residency8_samples(
             mut self,
-            sparse_residency8_samples: crate::vk::Bool32,
+            sparse_residency8_samples: bool,
         ) -> Self {
-            self.sparse_residency8_samples = sparse_residency8_samples;
+            self.sparse_residency8_samples = sparse_residency8_samples.into();
             self
         }
         pub fn sparse_residency16_samples(
             mut self,
-            sparse_residency16_samples: crate::vk::Bool32,
+            sparse_residency16_samples: bool,
         ) -> Self {
-            self.sparse_residency16_samples = sparse_residency16_samples;
+            self.sparse_residency16_samples = sparse_residency16_samples.into();
             self
         }
         pub fn sparse_residency_aliased(
             mut self,
-            sparse_residency_aliased: crate::vk::Bool32,
+            sparse_residency_aliased: bool,
         ) -> Self {
-            self.sparse_residency_aliased = sparse_residency_aliased;
+            self.sparse_residency_aliased = sparse_residency_aliased.into();
             self
         }
         pub fn variable_multisample_rate(
             mut self,
-            variable_multisample_rate: crate::vk::Bool32,
+            variable_multisample_rate: bool,
         ) -> Self {
-            self.variable_multisample_rate = variable_multisample_rate;
+            self.variable_multisample_rate = variable_multisample_rate.into();
             self
         }
-        pub fn inherited_queries(
-            mut self,
-            inherited_queries: crate::vk::Bool32,
-        ) -> Self {
-            self.inherited_queries = inherited_queries;
+        pub fn inherited_queries(mut self, inherited_queries: bool) -> Self {
+            self.inherited_queries = inherited_queries.into();
             self
         }
     }
@@ -7053,37 +7070,40 @@ pub(crate) mod reexport {
     impl PhysicalDeviceSparseProperties {
         pub fn residency_standard2_d_block_shape(
             mut self,
-            residency_standard2_d_block_shape: crate::vk::Bool32,
+            residency_standard2_d_block_shape: bool,
         ) -> Self {
-            self.residency_standard2_d_block_shape = residency_standard2_d_block_shape;
+            self.residency_standard2_d_block_shape = residency_standard2_d_block_shape
+                .into();
             self
         }
         pub fn residency_standard2_d_multisample_block_shape(
             mut self,
-            residency_standard2_d_multisample_block_shape: crate::vk::Bool32,
+            residency_standard2_d_multisample_block_shape: bool,
         ) -> Self {
-            self.residency_standard2_d_multisample_block_shape = residency_standard2_d_multisample_block_shape;
+            self.residency_standard2_d_multisample_block_shape = residency_standard2_d_multisample_block_shape
+                .into();
             self
         }
         pub fn residency_standard3_d_block_shape(
             mut self,
-            residency_standard3_d_block_shape: crate::vk::Bool32,
+            residency_standard3_d_block_shape: bool,
         ) -> Self {
-            self.residency_standard3_d_block_shape = residency_standard3_d_block_shape;
+            self.residency_standard3_d_block_shape = residency_standard3_d_block_shape
+                .into();
             self
         }
         pub fn residency_aligned_mip_size(
             mut self,
-            residency_aligned_mip_size: crate::vk::Bool32,
+            residency_aligned_mip_size: bool,
         ) -> Self {
-            self.residency_aligned_mip_size = residency_aligned_mip_size;
+            self.residency_aligned_mip_size = residency_aligned_mip_size.into();
             self
         }
         pub fn residency_non_resident_strict(
             mut self,
-            residency_non_resident_strict: crate::vk::Bool32,
+            residency_non_resident_strict: bool,
         ) -> Self {
-            self.residency_non_resident_strict = residency_non_resident_strict;
+            self.residency_non_resident_strict = residency_non_resident_strict.into();
             self
         }
     }
@@ -7892,9 +7912,9 @@ pub(crate) mod reexport {
         }
         pub fn timestamp_compute_and_graphics(
             mut self,
-            timestamp_compute_and_graphics: crate::vk::Bool32,
+            timestamp_compute_and_graphics: bool,
         ) -> Self {
-            self.timestamp_compute_and_graphics = timestamp_compute_and_graphics;
+            self.timestamp_compute_and_graphics = timestamp_compute_and_graphics.into();
             self
         }
         pub fn timestamp_period(mut self, timestamp_period: core::ffi::c_float) -> Self {
@@ -7951,15 +7971,15 @@ pub(crate) mod reexport {
             self.line_width_granularity = line_width_granularity;
             self
         }
-        pub fn strict_lines(mut self, strict_lines: crate::vk::Bool32) -> Self {
-            self.strict_lines = strict_lines;
+        pub fn strict_lines(mut self, strict_lines: bool) -> Self {
+            self.strict_lines = strict_lines.into();
             self
         }
         pub fn standard_sample_locations(
             mut self,
-            standard_sample_locations: crate::vk::Bool32,
+            standard_sample_locations: bool,
         ) -> Self {
-            self.standard_sample_locations = standard_sample_locations;
+            self.standard_sample_locations = standard_sample_locations.into();
             self
         }
         pub fn optimal_buffer_copy_offset_alignment(
@@ -8107,9 +8127,10 @@ pub(crate) mod reexport {
         }
         pub fn p_attachments(
             mut self,
-            p_attachments: *const crate::vk::ImageView,
+            p_attachments: &'a [crate::vk::ImageView],
         ) -> Self {
-            self.p_attachments = p_attachments;
+            self.attachment_count = p_attachments.len() as _;
+            self.p_attachments = p_attachments.as_ptr();
             self
         }
         pub fn width(mut self, width: u32) -> Self {
@@ -8243,16 +8264,18 @@ pub(crate) mod reexport {
         }
         pub fn p_wait_semaphores(
             mut self,
-            p_wait_semaphores: *const crate::vk::Semaphore,
+            p_wait_semaphores: &'a [crate::vk::Semaphore],
         ) -> Self {
-            self.p_wait_semaphores = p_wait_semaphores;
+            self.wait_semaphore_count = p_wait_semaphores.len() as _;
+            self.p_wait_semaphores = p_wait_semaphores.as_ptr();
             self
         }
         pub fn p_wait_dst_stage_mask(
             mut self,
-            p_wait_dst_stage_mask: *const crate::vk::PipelineStageFlags,
+            p_wait_dst_stage_mask: &'a [crate::vk::PipelineStageFlags],
         ) -> Self {
-            self.p_wait_dst_stage_mask = p_wait_dst_stage_mask;
+            self.wait_semaphore_count = p_wait_dst_stage_mask.len() as _;
+            self.p_wait_dst_stage_mask = p_wait_dst_stage_mask.as_ptr();
             self
         }
         pub fn command_buffer_count(mut self, command_buffer_count: u32) -> Self {
@@ -8261,9 +8284,10 @@ pub(crate) mod reexport {
         }
         pub fn p_command_buffers(
             mut self,
-            p_command_buffers: *const crate::vk::CommandBuffer,
+            p_command_buffers: &'a [crate::vk::CommandBuffer],
         ) -> Self {
-            self.p_command_buffers = p_command_buffers;
+            self.command_buffer_count = p_command_buffers.len() as _;
+            self.p_command_buffers = p_command_buffers.as_ptr();
             self
         }
         pub fn signal_semaphore_count(mut self, signal_semaphore_count: u32) -> Self {
@@ -8272,9 +8296,10 @@ pub(crate) mod reexport {
         }
         pub fn p_signal_semaphores(
             mut self,
-            p_signal_semaphores: *const crate::vk::Semaphore,
+            p_signal_semaphores: &'a [crate::vk::Semaphore],
         ) -> Self {
-            self.p_signal_semaphores = p_signal_semaphores;
+            self.signal_semaphore_count = p_signal_semaphores.len() as _;
+            self.p_signal_semaphores = p_signal_semaphores.as_ptr();
             self
         }
     }

@@ -155,9 +155,16 @@ pub(crate) mod reexport {
             self.display = display;
             self
         }
-        pub fn display_name(mut self, display_name: *const core::ffi::c_char) -> Self {
-            self.display_name = display_name;
+        pub fn display_name(mut self, display_name: &'a core::ffi::CStr) -> Self {
+            self.display_name = display_name.as_ptr();
             self
+        }
+        pub unsafe fn display_name_as_c_str(&self) -> Option<&core::ffi::CStr> {
+            if self.display_name.is_null() {
+                None
+            } else {
+                Some(unsafe { core::ffi::CStr::from_ptr(self.display_name) })
+            }
         }
         pub fn physical_dimensions(
             mut self,
@@ -180,18 +187,12 @@ pub(crate) mod reexport {
             self.supported_transforms = supported_transforms;
             self
         }
-        pub fn plane_reorder_possible(
-            mut self,
-            plane_reorder_possible: crate::vk::Bool32,
-        ) -> Self {
-            self.plane_reorder_possible = plane_reorder_possible;
+        pub fn plane_reorder_possible(mut self, plane_reorder_possible: bool) -> Self {
+            self.plane_reorder_possible = plane_reorder_possible.into();
             self
         }
-        pub fn persistent_content(
-            mut self,
-            persistent_content: crate::vk::Bool32,
-        ) -> Self {
-            self.persistent_content = persistent_content;
+        pub fn persistent_content(mut self, persistent_content: bool) -> Self {
+            self.persistent_content = persistent_content.into();
             self
         }
     }

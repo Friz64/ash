@@ -30,9 +30,9 @@ impl<'a> Default for PhysicalDeviceShaderSubgroupPartitionedFeaturesEXT<'a> {
 impl<'a> PhysicalDeviceShaderSubgroupPartitionedFeaturesEXT<'a> {
     pub fn shader_subgroup_partitioned(
         mut self,
-        shader_subgroup_partitioned: crate::vk::Bool32,
+        shader_subgroup_partitioned: bool,
     ) -> Self {
-        self.shader_subgroup_partitioned = shader_subgroup_partitioned;
+        self.shader_subgroup_partitioned = shader_subgroup_partitioned.into();
         self
     }
 }

@@ -30,9 +30,9 @@ impl<'a> Default for PhysicalDeviceMultiviewPerViewViewportsFeaturesQCOM<'a> {
 impl<'a> PhysicalDeviceMultiviewPerViewViewportsFeaturesQCOM<'a> {
     pub fn multiview_per_view_viewports(
         mut self,
-        multiview_per_view_viewports: crate::vk::Bool32,
+        multiview_per_view_viewports: bool,
     ) -> Self {
-        self.multiview_per_view_viewports = multiview_per_view_viewports;
+        self.multiview_per_view_viewports = multiview_per_view_viewports.into();
         self
     }
 }

@@ -121,11 +121,9 @@ pub(crate) mod reexport {
             self.initial_data_size = initial_data_size;
             self
         }
-        pub fn p_initial_data(
-            mut self,
-            p_initial_data: *const core::ffi::c_void,
-        ) -> Self {
-            self.p_initial_data = p_initial_data;
+        pub fn p_initial_data(mut self, p_initial_data: &'a [u8]) -> Self {
+            self.initial_data_size = p_initial_data.len() as _;
+            self.p_initial_data = p_initial_data.as_ptr().cast();
             self
         }
     }

@@ -86,7 +86,7 @@ pub(crate) mod reexport {
             self.flags = flags;
             self
         }
-        pub fn dpy(mut self, dpy: *mut crate::platform_types::Display) -> Self {
+        pub fn dpy(mut self, dpy: &'a mut crate::platform_types::Display) -> Self {
             self.dpy = dpy;
             self
         }

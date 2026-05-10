@@ -1,5 +1,5 @@
 use crate::{
-    decl::{ArrayLen, CPrimaryType, Decl, Mutability, Ty},
+    decl::{CPrimaryType, Decl, Mutability, RustType, Ty},
     lifetime::Lifetime,
     name::{
         CMacroName, CommandName, ConstantName, EnumeratorName, FuncPointerName, TypeName,
@@ -7,7 +7,7 @@ use crate::{
     },
     xml::cexpr::CExprItem,
 };
-use proc_macro2::{Literal, TokenStream};
+use proc_macro2::{TokenStream};
 use quote::quote;
 use std::{borrow::Borrow, mem};
 use syn::Ident;
@@ -32,7 +32,9 @@ pub trait RustTranslator {
 
     fn cmacro_to_rust(&self, name: CMacroName, qualified: bool) -> TokenStream;
 
-    fn platform_type_to_rust(&self, raw: &'static str, qualified: bool) -> TokenStream;
+    fn platform_type_to_rust(&self, raw: &str, qualified: bool) -> TokenStream;
+
+    fn rust_type_to_rust(&self, ty: &RustType) -> TokenStream;
 
     fn primary_type_to_rust(&self, primary_ty: CPrimaryType) -> TokenStream {
         match primary_ty {
@@ -88,17 +90,26 @@ impl Ty {
                 let ty = ty.to_rust(translator, lifetime);
                 quote! { & #lifetime #mutability #ty }
             }
+            Ty::Slice(ty, mutability, len) => {
+                let mutability = match mutability {
+                    Mutability::Not => quote! {},
+                    Mutability::Mut => quote! { mut },
+                };
+                let len = len.as_ref().map(|len| {
+                    let len = len.to_rust(translator);
+                    quote! { ; #len}
+                });
+                let ty = ty.to_rust(translator, lifetime);
+                quote! { & #lifetime #mutability [#ty #len] }
+            }
             Ty::Array(ty, array_len) => {
                 let ty = ty.to_rust(translator, lifetime);
-                let array_len = match array_len {
-                    ArrayLen::Constant(constant) => translator.constant_to_rust(*constant, true),
-                    ArrayLen::Literal(value) => {
-                        let literal = Literal::u128_unsuffixed(*value);
-                        quote! { #literal }
-                    }
-                };
-
+                let array_len = array_len.to_rust(translator);
                 quote! { [#ty; #array_len as _] }
+            }
+            Ty::RustType(ty) => {
+                let ty = translator.rust_type_to_rust(ty);
+                quote! { #ty }
             }
         }
     }

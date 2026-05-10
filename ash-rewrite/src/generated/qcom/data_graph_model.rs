@@ -81,7 +81,7 @@ impl<'a> Default for DataGraphPipelineBuiltinModelCreateInfoQCOM<'a> {
 impl<'a> DataGraphPipelineBuiltinModelCreateInfoQCOM<'a> {
     pub fn p_operation(
         mut self,
-        p_operation: *const crate::vk::PhysicalDeviceDataGraphOperationSupportARM,
+        p_operation: &'a crate::vk::PhysicalDeviceDataGraphOperationSupportARM,
     ) -> Self {
         self.p_operation = p_operation;
         self
@@ -114,8 +114,8 @@ impl<'a> Default for PhysicalDeviceDataGraphModelFeaturesQCOM<'a> {
     }
 }
 impl<'a> PhysicalDeviceDataGraphModelFeaturesQCOM<'a> {
-    pub fn data_graph_model(mut self, data_graph_model: crate::vk::Bool32) -> Self {
-        self.data_graph_model = data_graph_model;
+    pub fn data_graph_model(mut self, data_graph_model: bool) -> Self {
+        self.data_graph_model = data_graph_model.into();
         self
     }
 }

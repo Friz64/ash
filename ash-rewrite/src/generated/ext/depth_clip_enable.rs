@@ -28,8 +28,8 @@ impl<'a> Default for PhysicalDeviceDepthClipEnableFeaturesEXT<'a> {
     }
 }
 impl<'a> PhysicalDeviceDepthClipEnableFeaturesEXT<'a> {
-    pub fn depth_clip_enable(mut self, depth_clip_enable: crate::vk::Bool32) -> Self {
-        self.depth_clip_enable = depth_clip_enable;
+    pub fn depth_clip_enable(mut self, depth_clip_enable: bool) -> Self {
+        self.depth_clip_enable = depth_clip_enable.into();
         self
     }
 }
@@ -67,8 +67,8 @@ impl<'a> PipelineRasterizationDepthClipStateCreateInfoEXT<'a> {
         self.flags = flags;
         self
     }
-    pub fn depth_clip_enable(mut self, depth_clip_enable: crate::vk::Bool32) -> Self {
-        self.depth_clip_enable = depth_clip_enable;
+    pub fn depth_clip_enable(mut self, depth_clip_enable: bool) -> Self {
+        self.depth_clip_enable = depth_clip_enable.into();
         self
     }
 }

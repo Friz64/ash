@@ -30,9 +30,9 @@ impl<'a> Default for PhysicalDeviceRayTracingPositionFetchFeaturesKHR<'a> {
 impl<'a> PhysicalDeviceRayTracingPositionFetchFeaturesKHR<'a> {
     pub fn ray_tracing_position_fetch(
         mut self,
-        ray_tracing_position_fetch: crate::vk::Bool32,
+        ray_tracing_position_fetch: bool,
     ) -> Self {
-        self.ray_tracing_position_fetch = ray_tracing_position_fetch;
+        self.ray_tracing_position_fetch = ray_tracing_position_fetch.into();
         self
     }
 }

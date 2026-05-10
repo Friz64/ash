@@ -148,9 +148,10 @@ pub(crate) mod reexport {
         }
         pub fn p_discard_rectangles(
             mut self,
-            p_discard_rectangles: *const crate::vk::Rect2D,
+            p_discard_rectangles: &'a [crate::vk::Rect2D],
         ) -> Self {
-            self.p_discard_rectangles = p_discard_rectangles;
+            self.discard_rectangle_count = p_discard_rectangles.len() as _;
+            self.p_discard_rectangles = p_discard_rectangles.as_ptr();
             self
         }
     }

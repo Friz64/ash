@@ -30,9 +30,9 @@ impl<'a> Default for PhysicalDeviceRelaxedLineRasterizationFeaturesIMG<'a> {
 impl<'a> PhysicalDeviceRelaxedLineRasterizationFeaturesIMG<'a> {
     pub fn relaxed_line_rasterization(
         mut self,
-        relaxed_line_rasterization: crate::vk::Bool32,
+        relaxed_line_rasterization: bool,
     ) -> Self {
-        self.relaxed_line_rasterization = relaxed_line_rasterization;
+        self.relaxed_line_rasterization = relaxed_line_rasterization.into();
         self
     }
 }

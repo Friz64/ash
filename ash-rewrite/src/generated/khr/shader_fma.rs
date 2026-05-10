@@ -31,16 +31,16 @@ impl<'a> Default for PhysicalDeviceShaderFmaFeaturesKHR<'a> {
     }
 }
 impl<'a> PhysicalDeviceShaderFmaFeaturesKHR<'a> {
-    pub fn shader_fma_float16(mut self, shader_fma_float16: crate::vk::Bool32) -> Self {
-        self.shader_fma_float16 = shader_fma_float16;
+    pub fn shader_fma_float16(mut self, shader_fma_float16: bool) -> Self {
+        self.shader_fma_float16 = shader_fma_float16.into();
         self
     }
-    pub fn shader_fma_float32(mut self, shader_fma_float32: crate::vk::Bool32) -> Self {
-        self.shader_fma_float32 = shader_fma_float32;
+    pub fn shader_fma_float32(mut self, shader_fma_float32: bool) -> Self {
+        self.shader_fma_float32 = shader_fma_float32.into();
         self
     }
-    pub fn shader_fma_float64(mut self, shader_fma_float64: crate::vk::Bool32) -> Self {
-        self.shader_fma_float64 = shader_fma_float64;
+    pub fn shader_fma_float64(mut self, shader_fma_float64: bool) -> Self {
+        self.shader_fma_float64 = shader_fma_float64.into();
         self
     }
 }

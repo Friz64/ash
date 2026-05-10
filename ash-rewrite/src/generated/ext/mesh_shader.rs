@@ -110,33 +110,28 @@ pub(crate) mod reexport {
         }
     }
     impl<'a> PhysicalDeviceMeshShaderFeaturesEXT<'a> {
-        pub fn task_shader(mut self, task_shader: crate::vk::Bool32) -> Self {
-            self.task_shader = task_shader;
+        pub fn task_shader(mut self, task_shader: bool) -> Self {
+            self.task_shader = task_shader.into();
             self
         }
-        pub fn mesh_shader(mut self, mesh_shader: crate::vk::Bool32) -> Self {
-            self.mesh_shader = mesh_shader;
+        pub fn mesh_shader(mut self, mesh_shader: bool) -> Self {
+            self.mesh_shader = mesh_shader.into();
             self
         }
-        pub fn multiview_mesh_shader(
-            mut self,
-            multiview_mesh_shader: crate::vk::Bool32,
-        ) -> Self {
-            self.multiview_mesh_shader = multiview_mesh_shader;
+        pub fn multiview_mesh_shader(mut self, multiview_mesh_shader: bool) -> Self {
+            self.multiview_mesh_shader = multiview_mesh_shader.into();
             self
         }
         pub fn primitive_fragment_shading_rate_mesh_shader(
             mut self,
-            primitive_fragment_shading_rate_mesh_shader: crate::vk::Bool32,
+            primitive_fragment_shading_rate_mesh_shader: bool,
         ) -> Self {
-            self.primitive_fragment_shading_rate_mesh_shader = primitive_fragment_shading_rate_mesh_shader;
+            self.primitive_fragment_shading_rate_mesh_shader = primitive_fragment_shading_rate_mesh_shader
+                .into();
             self
         }
-        pub fn mesh_shader_queries(
-            mut self,
-            mesh_shader_queries: crate::vk::Bool32,
-        ) -> Self {
-            self.mesh_shader_queries = mesh_shader_queries;
+        pub fn mesh_shader_queries(mut self, mesh_shader_queries: bool) -> Self {
+            self.mesh_shader_queries = mesh_shader_queries.into();
             self
         }
     }
@@ -383,30 +378,33 @@ pub(crate) mod reexport {
         }
         pub fn prefers_local_invocation_vertex_output(
             mut self,
-            prefers_local_invocation_vertex_output: crate::vk::Bool32,
+            prefers_local_invocation_vertex_output: bool,
         ) -> Self {
-            self.prefers_local_invocation_vertex_output = prefers_local_invocation_vertex_output;
+            self.prefers_local_invocation_vertex_output = prefers_local_invocation_vertex_output
+                .into();
             self
         }
         pub fn prefers_local_invocation_primitive_output(
             mut self,
-            prefers_local_invocation_primitive_output: crate::vk::Bool32,
+            prefers_local_invocation_primitive_output: bool,
         ) -> Self {
-            self.prefers_local_invocation_primitive_output = prefers_local_invocation_primitive_output;
+            self.prefers_local_invocation_primitive_output = prefers_local_invocation_primitive_output
+                .into();
             self
         }
         pub fn prefers_compact_vertex_output(
             mut self,
-            prefers_compact_vertex_output: crate::vk::Bool32,
+            prefers_compact_vertex_output: bool,
         ) -> Self {
-            self.prefers_compact_vertex_output = prefers_compact_vertex_output;
+            self.prefers_compact_vertex_output = prefers_compact_vertex_output.into();
             self
         }
         pub fn prefers_compact_primitive_output(
             mut self,
-            prefers_compact_primitive_output: crate::vk::Bool32,
+            prefers_compact_primitive_output: bool,
         ) -> Self {
-            self.prefers_compact_primitive_output = prefers_compact_primitive_output;
+            self.prefers_compact_primitive_output = prefers_compact_primitive_output
+                .into();
             self
         }
     }

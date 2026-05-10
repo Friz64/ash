@@ -30,9 +30,10 @@ impl<'a> Default for PhysicalDeviceMultisampledRenderToSingleSampledFeaturesEXT<
 impl<'a> PhysicalDeviceMultisampledRenderToSingleSampledFeaturesEXT<'a> {
     pub fn multisampled_render_to_single_sampled(
         mut self,
-        multisampled_render_to_single_sampled: crate::vk::Bool32,
+        multisampled_render_to_single_sampled: bool,
     ) -> Self {
-        self.multisampled_render_to_single_sampled = multisampled_render_to_single_sampled;
+        self.multisampled_render_to_single_sampled = multisampled_render_to_single_sampled
+            .into();
         self
     }
 }
@@ -60,8 +61,8 @@ impl<'a> Default for SubpassResolvePerformanceQueryEXT<'a> {
     }
 }
 impl<'a> SubpassResolvePerformanceQueryEXT<'a> {
-    pub fn optimal(mut self, optimal: crate::vk::Bool32) -> Self {
-        self.optimal = optimal;
+    pub fn optimal(mut self, optimal: bool) -> Self {
+        self.optimal = optimal.into();
         self
     }
 }
@@ -96,9 +97,10 @@ impl<'a> Default for MultisampledRenderToSingleSampledInfoEXT<'a> {
 impl<'a> MultisampledRenderToSingleSampledInfoEXT<'a> {
     pub fn multisampled_render_to_single_sampled_enable(
         mut self,
-        multisampled_render_to_single_sampled_enable: crate::vk::Bool32,
+        multisampled_render_to_single_sampled_enable: bool,
     ) -> Self {
-        self.multisampled_render_to_single_sampled_enable = multisampled_render_to_single_sampled_enable;
+        self.multisampled_render_to_single_sampled_enable = multisampled_render_to_single_sampled_enable
+            .into();
         self
     }
     pub fn rasterization_samples(

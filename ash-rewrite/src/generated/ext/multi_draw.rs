@@ -153,8 +153,8 @@ pub(crate) mod reexport {
         }
     }
     impl<'a> PhysicalDeviceMultiDrawFeaturesEXT<'a> {
-        pub fn multi_draw(mut self, multi_draw: crate::vk::Bool32) -> Self {
-            self.multi_draw = multi_draw;
+        pub fn multi_draw(mut self, multi_draw: bool) -> Self {
+            self.multi_draw = multi_draw.into();
             self
         }
     }

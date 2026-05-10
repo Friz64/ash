@@ -30,18 +30,16 @@ impl<'a> Default for PhysicalDeviceRayTracingMotionBlurFeaturesNV<'a> {
     }
 }
 impl<'a> PhysicalDeviceRayTracingMotionBlurFeaturesNV<'a> {
-    pub fn ray_tracing_motion_blur(
-        mut self,
-        ray_tracing_motion_blur: crate::vk::Bool32,
-    ) -> Self {
-        self.ray_tracing_motion_blur = ray_tracing_motion_blur;
+    pub fn ray_tracing_motion_blur(mut self, ray_tracing_motion_blur: bool) -> Self {
+        self.ray_tracing_motion_blur = ray_tracing_motion_blur.into();
         self
     }
     pub fn ray_tracing_motion_blur_pipeline_trace_rays_indirect(
         mut self,
-        ray_tracing_motion_blur_pipeline_trace_rays_indirect: crate::vk::Bool32,
+        ray_tracing_motion_blur_pipeline_trace_rays_indirect: bool,
     ) -> Self {
-        self.ray_tracing_motion_blur_pipeline_trace_rays_indirect = ray_tracing_motion_blur_pipeline_trace_rays_indirect;
+        self.ray_tracing_motion_blur_pipeline_trace_rays_indirect = ray_tracing_motion_blur_pipeline_trace_rays_indirect
+            .into();
         self
     }
 }

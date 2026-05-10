@@ -32,7 +32,8 @@ impl FuncPointer {
             params: (xml.params.iter())
                 .map(|c_decl| Decl::from_c(require_map, c_decl))
                 .collect(),
-            return_type: (xml.return_type.as_ref()).map(|c_type| Ty::from_c(require_map, c_type)),
+            return_type: (xml.return_type.as_ref())
+                .map(|c_type| Ty::from_c(require_map, c_type)),
         })
     }
 }
@@ -70,7 +71,8 @@ impl Command {
                     decl: Decl::from_c(require_map, &param.c_decl),
                 })
                 .collect(),
-            return_type: (xml.return_type.as_ref()).map(|c_type| Ty::from_c(require_map, c_type)),
+            return_type: (xml.return_type.as_ref())
+                .map(|c_type| Ty::from_c(require_map, c_type)),
         })
     }
 }

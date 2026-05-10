@@ -28,8 +28,8 @@ impl<'a> Default for PhysicalDeviceVideoDecodeVP9FeaturesKHR<'a> {
     }
 }
 impl<'a> PhysicalDeviceVideoDecodeVP9FeaturesKHR<'a> {
-    pub fn video_decode_vp9(mut self, video_decode_vp9: crate::vk::Bool32) -> Self {
-        self.video_decode_vp9 = video_decode_vp9;
+    pub fn video_decode_vp9(mut self, video_decode_vp9: bool) -> Self {
+        self.video_decode_vp9 = video_decode_vp9.into();
         self
     }
 }
@@ -128,7 +128,7 @@ impl<'a> Default for VideoDecodeVP9PictureInfoKHR<'a> {
 impl<'a> VideoDecodeVP9PictureInfoKHR<'a> {
     pub fn p_std_picture_info(
         mut self,
-        p_std_picture_info: *const crate::vk::DecodeVP9PictureInfo<'a>,
+        p_std_picture_info: &'a crate::vk::DecodeVP9PictureInfo<'a>,
     ) -> Self {
         self.p_std_picture_info = p_std_picture_info;
         self

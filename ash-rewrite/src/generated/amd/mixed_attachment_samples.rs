@@ -37,9 +37,10 @@ impl<'a> AttachmentSampleCountInfoAMD<'a> {
     }
     pub fn p_color_attachment_samples(
         mut self,
-        p_color_attachment_samples: *const crate::vk::SampleCountFlagBits,
+        p_color_attachment_samples: &'a [crate::vk::SampleCountFlagBits],
     ) -> Self {
-        self.p_color_attachment_samples = p_color_attachment_samples;
+        self.color_attachment_count = p_color_attachment_samples.len() as _;
+        self.p_color_attachment_samples = p_color_attachment_samples.as_ptr();
         self
     }
     pub fn depth_stencil_attachment_samples(

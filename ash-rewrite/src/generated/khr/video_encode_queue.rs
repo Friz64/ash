@@ -145,8 +145,8 @@ pub(crate) mod reexport {
         }
     }
     impl<'a> VideoEncodeSessionParametersFeedbackInfoKHR<'a> {
-        pub fn has_overrides(mut self, has_overrides: crate::vk::Bool32) -> Self {
-            self.has_overrides = has_overrides;
+        pub fn has_overrides(mut self, has_overrides: bool) -> Self {
+            self.has_overrides = has_overrides.into();
             self
         }
     }
@@ -271,7 +271,7 @@ pub(crate) mod reexport {
         }
         pub fn p_setup_reference_slot(
             mut self,
-            p_setup_reference_slot: *const crate::vk::VideoReferenceSlotInfoKHR<'a>,
+            p_setup_reference_slot: &'a crate::vk::VideoReferenceSlotInfoKHR<'a>,
         ) -> Self {
             self.p_setup_reference_slot = p_setup_reference_slot;
             self
@@ -282,9 +282,10 @@ pub(crate) mod reexport {
         }
         pub fn p_reference_slots(
             mut self,
-            p_reference_slots: *const crate::vk::VideoReferenceSlotInfoKHR<'a>,
+            p_reference_slots: &'a [crate::vk::VideoReferenceSlotInfoKHR<'a>],
         ) -> Self {
-            self.p_reference_slots = p_reference_slots;
+            self.reference_slot_count = p_reference_slots.len() as _;
+            self.p_reference_slots = p_reference_slots.as_ptr();
             self
         }
         pub fn preceding_externally_encoded_bytes(
@@ -386,7 +387,7 @@ pub(crate) mod reexport {
     impl<'a> PhysicalDeviceVideoEncodeQualityLevelInfoKHR<'a> {
         pub fn p_video_profile(
             mut self,
-            p_video_profile: *const crate::vk::VideoProfileInfoKHR<'a>,
+            p_video_profile: &'a crate::vk::VideoProfileInfoKHR<'a>,
         ) -> Self {
             self.p_video_profile = p_video_profile;
             self
@@ -492,9 +493,10 @@ pub(crate) mod reexport {
         }
         pub fn p_layers(
             mut self,
-            p_layers: *const crate::vk::VideoEncodeRateControlLayerInfoKHR<'a>,
+            p_layers: &'a [crate::vk::VideoEncodeRateControlLayerInfoKHR<'a>],
         ) -> Self {
-            self.p_layers = p_layers;
+            self.layer_count = p_layers.len() as _;
+            self.p_layers = p_layers.as_ptr();
             self
         }
         pub fn virtual_buffer_size_in_ms(

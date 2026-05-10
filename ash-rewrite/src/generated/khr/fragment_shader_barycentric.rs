@@ -30,9 +30,9 @@ impl<'a> Default for PhysicalDeviceFragmentShaderBarycentricFeaturesKHR<'a> {
 impl<'a> PhysicalDeviceFragmentShaderBarycentricFeaturesKHR<'a> {
     pub fn fragment_shader_barycentric(
         mut self,
-        fragment_shader_barycentric: crate::vk::Bool32,
+        fragment_shader_barycentric: bool,
     ) -> Self {
-        self.fragment_shader_barycentric = fragment_shader_barycentric;
+        self.fragment_shader_barycentric = fragment_shader_barycentric.into();
         self
     }
 }
@@ -63,9 +63,10 @@ impl<'a> Default for PhysicalDeviceFragmentShaderBarycentricPropertiesKHR<'a> {
 impl<'a> PhysicalDeviceFragmentShaderBarycentricPropertiesKHR<'a> {
     pub fn tri_strip_vertex_order_independent_of_provoking_vertex(
         mut self,
-        tri_strip_vertex_order_independent_of_provoking_vertex: crate::vk::Bool32,
+        tri_strip_vertex_order_independent_of_provoking_vertex: bool,
     ) -> Self {
-        self.tri_strip_vertex_order_independent_of_provoking_vertex = tri_strip_vertex_order_independent_of_provoking_vertex;
+        self.tri_strip_vertex_order_independent_of_provoking_vertex = tri_strip_vertex_order_independent_of_provoking_vertex
+            .into();
         self
     }
 }

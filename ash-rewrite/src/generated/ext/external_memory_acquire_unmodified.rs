@@ -31,11 +31,8 @@ impl<'a> Default for ExternalMemoryAcquireUnmodifiedEXT<'a> {
     }
 }
 impl<'a> ExternalMemoryAcquireUnmodifiedEXT<'a> {
-    pub fn acquire_unmodified_memory(
-        mut self,
-        acquire_unmodified_memory: crate::vk::Bool32,
-    ) -> Self {
-        self.acquire_unmodified_memory = acquire_unmodified_memory;
+    pub fn acquire_unmodified_memory(mut self, acquire_unmodified_memory: bool) -> Self {
+        self.acquire_unmodified_memory = acquire_unmodified_memory.into();
         self
     }
 }

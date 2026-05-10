@@ -1,7 +1,13 @@
+use proc_macro2::{Literal, TokenStream};
+
 use crate::{
-    item::RequireMap,
+    item::{RequireMap, structure::Length},
     name::{ConstantName, FuncPointerName, TypeName, VariableName},
-    xml::cdecl::{CArrayLen, CDecl, CType},
+    to_rust::RustTranslator,
+    xml::{
+        cdecl::{CArrayLen, CDecl, CType},
+        cexpr::{self, CExprItem, CExprItems},
+    },
 };
 
 #[derive(Debug)]
@@ -11,7 +17,10 @@ pub struct Decl {
 }
 
 impl Decl {
-    pub(crate) fn from_c(require_map: &RequireMap, c_decl: &CDecl<'static>) -> Decl {
+    pub(crate) fn from_c(
+        require_map: &RequireMap,
+        c_decl: &CDecl<'static>,
+    ) -> Decl {
         Decl {
             name: VariableName::new(c_decl.name),
             ty: Ty::from_c(require_map, &c_decl.ty),
@@ -19,7 +28,7 @@ impl Decl {
     }
 }
 
-#[derive(Debug)]
+#[derive(Debug, Clone, Copy, PartialEq, Eq)]
 pub enum Mutability {
     Not,
     Mut,
@@ -65,25 +74,47 @@ impl CPrimaryType {
     }
 }
 
-#[derive(Debug)]
+#[derive(Debug, Clone)]
 pub enum ArrayLen {
     Constant(ConstantName),
     Literal(u128),
 }
 
-#[derive(Debug)]
+impl ArrayLen {
+    pub fn to_rust(&self, translator: &impl RustTranslator) -> TokenStream {
+        match self {
+            ArrayLen::Constant(constant_name) => translator.constant_to_rust(*constant_name, true),
+            ArrayLen::Literal(value) => {
+                let literal = Literal::u128_unsuffixed(*value);
+                quote::quote! { #literal }
+            }
+        }
+    }
+}
+
+#[derive(Debug, Clone)]
 pub enum Ty {
     SpecType(TypeName),
     SpecFuncPointer(FuncPointerName),
     CPrimary(CPrimaryType),
+    RustType(RustType),
     Platform(&'static str),
     Ptr(&'static Ty, Mutability),
     Ref(&'static Ty, Mutability),
+    Slice(&'static Ty, Mutability, Option<ArrayLen>),
     Array(&'static Ty, ArrayLen),
 }
 
+#[derive(Debug, Clone, Copy)]
+pub enum RustType {
+    CStr,
+}
+
 impl Ty {
-    pub(crate) fn from_c(require_map: &RequireMap, c_type: &CType<'static>) -> Ty {
+    pub(crate) fn from_c(
+        require_map: &RequireMap,
+        c_type: &CType<'static>,
+    ) -> Ty {
         match c_type {
             CType::Base(cbase_type) => {
                 let name = cbase_type.name;

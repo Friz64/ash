@@ -30,9 +30,9 @@ impl<'a> Default for PhysicalDeviceShaderAtomicFloat16VectorFeaturesNV<'a> {
 impl<'a> PhysicalDeviceShaderAtomicFloat16VectorFeaturesNV<'a> {
     pub fn shader_float16_vector_atomics(
         mut self,
-        shader_float16_vector_atomics: crate::vk::Bool32,
+        shader_float16_vector_atomics: bool,
     ) -> Self {
-        self.shader_float16_vector_atomics = shader_float16_vector_atomics;
+        self.shader_float16_vector_atomics = shader_float16_vector_atomics.into();
         self
     }
 }

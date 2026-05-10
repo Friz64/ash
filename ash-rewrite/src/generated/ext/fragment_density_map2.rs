@@ -30,9 +30,9 @@ impl<'a> Default for PhysicalDeviceFragmentDensityMap2FeaturesEXT<'a> {
 impl<'a> PhysicalDeviceFragmentDensityMap2FeaturesEXT<'a> {
     pub fn fragment_density_map_deferred(
         mut self,
-        fragment_density_map_deferred: crate::vk::Bool32,
+        fragment_density_map_deferred: bool,
     ) -> Self {
-        self.fragment_density_map_deferred = fragment_density_map_deferred;
+        self.fragment_density_map_deferred = fragment_density_map_deferred.into();
         self
     }
 }
@@ -67,15 +67,16 @@ impl<'a> Default for PhysicalDeviceFragmentDensityMap2PropertiesEXT<'a> {
     }
 }
 impl<'a> PhysicalDeviceFragmentDensityMap2PropertiesEXT<'a> {
-    pub fn subsampled_loads(mut self, subsampled_loads: crate::vk::Bool32) -> Self {
-        self.subsampled_loads = subsampled_loads;
+    pub fn subsampled_loads(mut self, subsampled_loads: bool) -> Self {
+        self.subsampled_loads = subsampled_loads.into();
         self
     }
     pub fn subsampled_coarse_reconstruction_early_access(
         mut self,
-        subsampled_coarse_reconstruction_early_access: crate::vk::Bool32,
+        subsampled_coarse_reconstruction_early_access: bool,
     ) -> Self {
-        self.subsampled_coarse_reconstruction_early_access = subsampled_coarse_reconstruction_early_access;
+        self.subsampled_coarse_reconstruction_early_access = subsampled_coarse_reconstruction_early_access
+            .into();
         self
     }
     pub fn max_subsampled_array_layers(

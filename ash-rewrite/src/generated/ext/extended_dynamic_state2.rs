@@ -126,25 +126,24 @@ pub(crate) mod reexport {
         }
     }
     impl<'a> PhysicalDeviceExtendedDynamicState2FeaturesEXT<'a> {
-        pub fn extended_dynamic_state2(
-            mut self,
-            extended_dynamic_state2: crate::vk::Bool32,
-        ) -> Self {
-            self.extended_dynamic_state2 = extended_dynamic_state2;
+        pub fn extended_dynamic_state2(mut self, extended_dynamic_state2: bool) -> Self {
+            self.extended_dynamic_state2 = extended_dynamic_state2.into();
             self
         }
         pub fn extended_dynamic_state2_logic_op(
             mut self,
-            extended_dynamic_state2_logic_op: crate::vk::Bool32,
+            extended_dynamic_state2_logic_op: bool,
         ) -> Self {
-            self.extended_dynamic_state2_logic_op = extended_dynamic_state2_logic_op;
+            self.extended_dynamic_state2_logic_op = extended_dynamic_state2_logic_op
+                .into();
             self
         }
         pub fn extended_dynamic_state2_patch_control_points(
             mut self,
-            extended_dynamic_state2_patch_control_points: crate::vk::Bool32,
+            extended_dynamic_state2_patch_control_points: bool,
         ) -> Self {
-            self.extended_dynamic_state2_patch_control_points = extended_dynamic_state2_patch_control_points;
+            self.extended_dynamic_state2_patch_control_points = extended_dynamic_state2_patch_control_points
+                .into();
             self
         }
     }

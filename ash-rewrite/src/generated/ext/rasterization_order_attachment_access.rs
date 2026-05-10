@@ -34,23 +34,26 @@ impl<'a> Default for PhysicalDeviceRasterizationOrderAttachmentAccessFeaturesEXT
 impl<'a> PhysicalDeviceRasterizationOrderAttachmentAccessFeaturesEXT<'a> {
     pub fn rasterization_order_color_attachment_access(
         mut self,
-        rasterization_order_color_attachment_access: crate::vk::Bool32,
+        rasterization_order_color_attachment_access: bool,
     ) -> Self {
-        self.rasterization_order_color_attachment_access = rasterization_order_color_attachment_access;
+        self.rasterization_order_color_attachment_access = rasterization_order_color_attachment_access
+            .into();
         self
     }
     pub fn rasterization_order_depth_attachment_access(
         mut self,
-        rasterization_order_depth_attachment_access: crate::vk::Bool32,
+        rasterization_order_depth_attachment_access: bool,
     ) -> Self {
-        self.rasterization_order_depth_attachment_access = rasterization_order_depth_attachment_access;
+        self.rasterization_order_depth_attachment_access = rasterization_order_depth_attachment_access
+            .into();
         self
     }
     pub fn rasterization_order_stencil_attachment_access(
         mut self,
-        rasterization_order_stencil_attachment_access: crate::vk::Bool32,
+        rasterization_order_stencil_attachment_access: bool,
     ) -> Self {
-        self.rasterization_order_stencil_attachment_access = rasterization_order_stencil_attachment_access;
+        self.rasterization_order_stencil_attachment_access = rasterization_order_stencil_attachment_access
+            .into();
         self
     }
 }

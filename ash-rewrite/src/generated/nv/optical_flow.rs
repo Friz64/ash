@@ -149,8 +149,8 @@ pub(crate) mod reexport {
         }
     }
     impl<'a> PhysicalDeviceOpticalFlowFeaturesNV<'a> {
-        pub fn optical_flow(mut self, optical_flow: crate::vk::Bool32) -> Self {
-            self.optical_flow = optical_flow;
+        pub fn optical_flow(mut self, optical_flow: bool) -> Self {
+            self.optical_flow = optical_flow.into();
             self
         }
     }
@@ -213,26 +213,23 @@ pub(crate) mod reexport {
             self.supported_hint_grid_sizes = supported_hint_grid_sizes;
             self
         }
-        pub fn hint_supported(mut self, hint_supported: crate::vk::Bool32) -> Self {
-            self.hint_supported = hint_supported;
+        pub fn hint_supported(mut self, hint_supported: bool) -> Self {
+            self.hint_supported = hint_supported.into();
             self
         }
-        pub fn cost_supported(mut self, cost_supported: crate::vk::Bool32) -> Self {
-            self.cost_supported = cost_supported;
+        pub fn cost_supported(mut self, cost_supported: bool) -> Self {
+            self.cost_supported = cost_supported.into();
             self
         }
         pub fn bidirectional_flow_supported(
             mut self,
-            bidirectional_flow_supported: crate::vk::Bool32,
+            bidirectional_flow_supported: bool,
         ) -> Self {
-            self.bidirectional_flow_supported = bidirectional_flow_supported;
+            self.bidirectional_flow_supported = bidirectional_flow_supported.into();
             self
         }
-        pub fn global_flow_supported(
-            mut self,
-            global_flow_supported: crate::vk::Bool32,
-        ) -> Self {
-            self.global_flow_supported = global_flow_supported;
+        pub fn global_flow_supported(mut self, global_flow_supported: bool) -> Self {
+            self.global_flow_supported = global_flow_supported.into();
             self
         }
         pub fn min_width(mut self, min_width: u32) -> Self {
@@ -445,10 +442,7 @@ pub(crate) mod reexport {
             self.size = size;
             self
         }
-        pub fn p_private_data(
-            mut self,
-            p_private_data: *const core::ffi::c_void,
-        ) -> Self {
+        pub fn p_private_data(mut self, p_private_data: &'a core::ffi::c_void) -> Self {
             self.p_private_data = p_private_data;
             self
         }
@@ -487,8 +481,9 @@ pub(crate) mod reexport {
             self.region_count = region_count;
             self
         }
-        pub fn p_regions(mut self, p_regions: *const crate::vk::Rect2D) -> Self {
-            self.p_regions = p_regions;
+        pub fn p_regions(mut self, p_regions: &'a [crate::vk::Rect2D]) -> Self {
+            self.region_count = p_regions.len() as _;
+            self.p_regions = p_regions.as_ptr();
             self
         }
     }

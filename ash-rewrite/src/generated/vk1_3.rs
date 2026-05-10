@@ -695,8 +695,8 @@ pub(crate) mod reexport {
         }
     }
     impl<'a> PhysicalDevicePrivateDataFeatures<'a> {
-        pub fn private_data(mut self, private_data: crate::vk::Bool32) -> Self {
-            self.private_data = private_data;
+        pub fn private_data(mut self, private_data: bool) -> Self {
+            self.private_data = private_data.into();
             self
         }
     }
@@ -724,7 +724,7 @@ pub(crate) mod reexport {
     impl<'a> DeviceBufferMemoryRequirements<'a> {
         pub fn p_create_info(
             mut self,
-            p_create_info: *const crate::vk::BufferCreateInfo<'a>,
+            p_create_info: &'a crate::vk::BufferCreateInfo<'a>,
         ) -> Self {
             self.p_create_info = p_create_info;
             self
@@ -756,7 +756,7 @@ pub(crate) mod reexport {
     impl<'a> DeviceImageMemoryRequirements<'a> {
         pub fn p_create_info(
             mut self,
-            p_create_info: *const crate::vk::ImageCreateInfo<'a>,
+            p_create_info: &'a crate::vk::ImageCreateInfo<'a>,
         ) -> Self {
             self.p_create_info = p_create_info;
             self
@@ -798,18 +798,16 @@ pub(crate) mod reexport {
         }
     }
     impl<'a> PhysicalDeviceInlineUniformBlockFeatures<'a> {
-        pub fn inline_uniform_block(
-            mut self,
-            inline_uniform_block: crate::vk::Bool32,
-        ) -> Self {
-            self.inline_uniform_block = inline_uniform_block;
+        pub fn inline_uniform_block(mut self, inline_uniform_block: bool) -> Self {
+            self.inline_uniform_block = inline_uniform_block.into();
             self
         }
         pub fn descriptor_binding_inline_uniform_block_update_after_bind(
             mut self,
-            descriptor_binding_inline_uniform_block_update_after_bind: crate::vk::Bool32,
+            descriptor_binding_inline_uniform_block_update_after_bind: bool,
         ) -> Self {
-            self.descriptor_binding_inline_uniform_block_update_after_bind = descriptor_binding_inline_uniform_block_update_after_bind;
+            self.descriptor_binding_inline_uniform_block_update_after_bind = descriptor_binding_inline_uniform_block_update_after_bind
+                .into();
             self
         }
     }
@@ -913,8 +911,9 @@ pub(crate) mod reexport {
             self.data_size = data_size;
             self
         }
-        pub fn p_data(mut self, p_data: *const core::ffi::c_void) -> Self {
-            self.p_data = p_data;
+        pub fn p_data(mut self, p_data: &'a [u8]) -> Self {
+            self.data_size = p_data.len() as _;
+            self.p_data = p_data.as_ptr().cast();
             self
         }
     }
@@ -978,8 +977,8 @@ pub(crate) mod reexport {
         }
     }
     impl<'a> PhysicalDeviceMaintenance4Features<'a> {
-        pub fn maintenance4(mut self, maintenance4: crate::vk::Bool32) -> Self {
-            self.maintenance4 = maintenance4;
+        pub fn maintenance4(mut self, maintenance4: bool) -> Self {
+            self.maintenance4 = maintenance4.into();
             self
         }
     }
@@ -1045,9 +1044,9 @@ pub(crate) mod reexport {
     impl<'a> PhysicalDeviceTextureCompressionASTCHDRFeatures<'a> {
         pub fn texture_compression_astc_hdr(
             mut self,
-            texture_compression_astc_hdr: crate::vk::Bool32,
+            texture_compression_astc_hdr: bool,
         ) -> Self {
-            self.texture_compression_astc_hdr = texture_compression_astc_hdr;
+            self.texture_compression_astc_hdr = texture_compression_astc_hdr.into();
             self
         }
     }
@@ -1108,7 +1107,7 @@ pub(crate) mod reexport {
     impl<'a> PipelineCreationFeedbackCreateInfo<'a> {
         pub fn p_pipeline_creation_feedback(
             mut self,
-            p_pipeline_creation_feedback: *mut crate::vk::PipelineCreationFeedback,
+            p_pipeline_creation_feedback: &'a mut crate::vk::PipelineCreationFeedback,
         ) -> Self {
             self.p_pipeline_creation_feedback = p_pipeline_creation_feedback;
             self
@@ -1122,9 +1121,12 @@ pub(crate) mod reexport {
         }
         pub fn p_pipeline_stage_creation_feedbacks(
             mut self,
-            p_pipeline_stage_creation_feedbacks: *mut crate::vk::PipelineCreationFeedback,
+            p_pipeline_stage_creation_feedbacks: &'a mut [crate::vk::PipelineCreationFeedback],
         ) -> Self {
-            self.p_pipeline_stage_creation_feedbacks = p_pipeline_stage_creation_feedbacks;
+            self.pipeline_stage_creation_feedback_count = p_pipeline_stage_creation_feedbacks
+                .len() as _;
+            self.p_pipeline_stage_creation_feedbacks = p_pipeline_stage_creation_feedbacks
+                .as_mut_ptr();
             self
         }
     }
@@ -1157,9 +1159,10 @@ pub(crate) mod reexport {
     impl<'a> PhysicalDeviceShaderDemoteToHelperInvocationFeatures<'a> {
         pub fn shader_demote_to_helper_invocation(
             mut self,
-            shader_demote_to_helper_invocation: crate::vk::Bool32,
+            shader_demote_to_helper_invocation: bool,
         ) -> Self {
-            self.shader_demote_to_helper_invocation = shader_demote_to_helper_invocation;
+            self.shader_demote_to_helper_invocation = shader_demote_to_helper_invocation
+                .into();
             self
         }
     }
@@ -1203,9 +1206,10 @@ pub(crate) mod reexport {
         }
         pub fn storage_texel_buffer_offset_single_texel_alignment(
             mut self,
-            storage_texel_buffer_offset_single_texel_alignment: crate::vk::Bool32,
+            storage_texel_buffer_offset_single_texel_alignment: bool,
         ) -> Self {
-            self.storage_texel_buffer_offset_single_texel_alignment = storage_texel_buffer_offset_single_texel_alignment;
+            self.storage_texel_buffer_offset_single_texel_alignment = storage_texel_buffer_offset_single_texel_alignment
+                .into();
             self
         }
         pub fn uniform_texel_buffer_offset_alignment_bytes(
@@ -1217,9 +1221,10 @@ pub(crate) mod reexport {
         }
         pub fn uniform_texel_buffer_offset_single_texel_alignment(
             mut self,
-            uniform_texel_buffer_offset_single_texel_alignment: crate::vk::Bool32,
+            uniform_texel_buffer_offset_single_texel_alignment: bool,
         ) -> Self {
-            self.uniform_texel_buffer_offset_single_texel_alignment = uniform_texel_buffer_offset_single_texel_alignment;
+            self.uniform_texel_buffer_offset_single_texel_alignment = uniform_texel_buffer_offset_single_texel_alignment
+                .into();
             self
         }
     }
@@ -1252,18 +1257,12 @@ pub(crate) mod reexport {
         }
     }
     impl<'a> PhysicalDeviceSubgroupSizeControlFeatures<'a> {
-        pub fn subgroup_size_control(
-            mut self,
-            subgroup_size_control: crate::vk::Bool32,
-        ) -> Self {
-            self.subgroup_size_control = subgroup_size_control;
+        pub fn subgroup_size_control(mut self, subgroup_size_control: bool) -> Self {
+            self.subgroup_size_control = subgroup_size_control.into();
             self
         }
-        pub fn compute_full_subgroups(
-            mut self,
-            compute_full_subgroups: crate::vk::Bool32,
-        ) -> Self {
-            self.compute_full_subgroups = compute_full_subgroups;
+        pub fn compute_full_subgroups(mut self, compute_full_subgroups: bool) -> Self {
+            self.compute_full_subgroups = compute_full_subgroups.into();
             self
         }
     }
@@ -1382,9 +1381,10 @@ pub(crate) mod reexport {
     impl<'a> PhysicalDevicePipelineCreationCacheControlFeatures<'a> {
         pub fn pipeline_creation_cache_control(
             mut self,
-            pipeline_creation_cache_control: crate::vk::Bool32,
+            pipeline_creation_cache_control: bool,
         ) -> Self {
-            self.pipeline_creation_cache_control = pipeline_creation_cache_control;
+            self.pipeline_creation_cache_control = pipeline_creation_cache_control
+                .into();
             self
         }
     }
@@ -1442,100 +1442,89 @@ pub(crate) mod reexport {
         }
     }
     impl<'a> PhysicalDeviceVulkan13Features<'a> {
-        pub fn robust_image_access(
-            mut self,
-            robust_image_access: crate::vk::Bool32,
-        ) -> Self {
-            self.robust_image_access = robust_image_access;
+        pub fn robust_image_access(mut self, robust_image_access: bool) -> Self {
+            self.robust_image_access = robust_image_access.into();
             self
         }
-        pub fn inline_uniform_block(
-            mut self,
-            inline_uniform_block: crate::vk::Bool32,
-        ) -> Self {
-            self.inline_uniform_block = inline_uniform_block;
+        pub fn inline_uniform_block(mut self, inline_uniform_block: bool) -> Self {
+            self.inline_uniform_block = inline_uniform_block.into();
             self
         }
         pub fn descriptor_binding_inline_uniform_block_update_after_bind(
             mut self,
-            descriptor_binding_inline_uniform_block_update_after_bind: crate::vk::Bool32,
+            descriptor_binding_inline_uniform_block_update_after_bind: bool,
         ) -> Self {
-            self.descriptor_binding_inline_uniform_block_update_after_bind = descriptor_binding_inline_uniform_block_update_after_bind;
+            self.descriptor_binding_inline_uniform_block_update_after_bind = descriptor_binding_inline_uniform_block_update_after_bind
+                .into();
             self
         }
         pub fn pipeline_creation_cache_control(
             mut self,
-            pipeline_creation_cache_control: crate::vk::Bool32,
+            pipeline_creation_cache_control: bool,
         ) -> Self {
-            self.pipeline_creation_cache_control = pipeline_creation_cache_control;
+            self.pipeline_creation_cache_control = pipeline_creation_cache_control
+                .into();
             self
         }
-        pub fn private_data(mut self, private_data: crate::vk::Bool32) -> Self {
-            self.private_data = private_data;
+        pub fn private_data(mut self, private_data: bool) -> Self {
+            self.private_data = private_data.into();
             self
         }
         pub fn shader_demote_to_helper_invocation(
             mut self,
-            shader_demote_to_helper_invocation: crate::vk::Bool32,
+            shader_demote_to_helper_invocation: bool,
         ) -> Self {
-            self.shader_demote_to_helper_invocation = shader_demote_to_helper_invocation;
+            self.shader_demote_to_helper_invocation = shader_demote_to_helper_invocation
+                .into();
             self
         }
         pub fn shader_terminate_invocation(
             mut self,
-            shader_terminate_invocation: crate::vk::Bool32,
+            shader_terminate_invocation: bool,
         ) -> Self {
-            self.shader_terminate_invocation = shader_terminate_invocation;
+            self.shader_terminate_invocation = shader_terminate_invocation.into();
             self
         }
-        pub fn subgroup_size_control(
-            mut self,
-            subgroup_size_control: crate::vk::Bool32,
-        ) -> Self {
-            self.subgroup_size_control = subgroup_size_control;
+        pub fn subgroup_size_control(mut self, subgroup_size_control: bool) -> Self {
+            self.subgroup_size_control = subgroup_size_control.into();
             self
         }
-        pub fn compute_full_subgroups(
-            mut self,
-            compute_full_subgroups: crate::vk::Bool32,
-        ) -> Self {
-            self.compute_full_subgroups = compute_full_subgroups;
+        pub fn compute_full_subgroups(mut self, compute_full_subgroups: bool) -> Self {
+            self.compute_full_subgroups = compute_full_subgroups.into();
             self
         }
-        pub fn synchronization2(mut self, synchronization2: crate::vk::Bool32) -> Self {
-            self.synchronization2 = synchronization2;
+        pub fn synchronization2(mut self, synchronization2: bool) -> Self {
+            self.synchronization2 = synchronization2.into();
             self
         }
         pub fn texture_compression_astc_hdr(
             mut self,
-            texture_compression_astc_hdr: crate::vk::Bool32,
+            texture_compression_astc_hdr: bool,
         ) -> Self {
-            self.texture_compression_astc_hdr = texture_compression_astc_hdr;
+            self.texture_compression_astc_hdr = texture_compression_astc_hdr.into();
             self
         }
         pub fn shader_zero_initialize_workgroup_memory(
             mut self,
-            shader_zero_initialize_workgroup_memory: crate::vk::Bool32,
+            shader_zero_initialize_workgroup_memory: bool,
         ) -> Self {
-            self.shader_zero_initialize_workgroup_memory = shader_zero_initialize_workgroup_memory;
+            self.shader_zero_initialize_workgroup_memory = shader_zero_initialize_workgroup_memory
+                .into();
             self
         }
-        pub fn dynamic_rendering(
-            mut self,
-            dynamic_rendering: crate::vk::Bool32,
-        ) -> Self {
-            self.dynamic_rendering = dynamic_rendering;
+        pub fn dynamic_rendering(mut self, dynamic_rendering: bool) -> Self {
+            self.dynamic_rendering = dynamic_rendering.into();
             self
         }
         pub fn shader_integer_dot_product(
             mut self,
-            shader_integer_dot_product: crate::vk::Bool32,
+            shader_integer_dot_product: bool,
         ) -> Self {
-            self.shader_integer_dot_product = shader_integer_dot_product;
+            self.shader_integer_dot_product = shader_integer_dot_product.into();
             self
         }
-        pub fn maintenance4(mut self, maintenance4: crate::vk::Bool32) -> Self {
-            self.maintenance4 = maintenance4;
+        pub fn maintenance4(mut self, maintenance4: bool) -> Self {
+            self.maintenance4 = maintenance4.into();
             self
         }
     }
@@ -1717,222 +1706,252 @@ pub(crate) mod reexport {
         }
         pub fn integer_dot_product8_bit_unsigned_accelerated(
             mut self,
-            integer_dot_product8_bit_unsigned_accelerated: crate::vk::Bool32,
+            integer_dot_product8_bit_unsigned_accelerated: bool,
         ) -> Self {
-            self.integer_dot_product8_bit_unsigned_accelerated = integer_dot_product8_bit_unsigned_accelerated;
+            self.integer_dot_product8_bit_unsigned_accelerated = integer_dot_product8_bit_unsigned_accelerated
+                .into();
             self
         }
         pub fn integer_dot_product8_bit_signed_accelerated(
             mut self,
-            integer_dot_product8_bit_signed_accelerated: crate::vk::Bool32,
+            integer_dot_product8_bit_signed_accelerated: bool,
         ) -> Self {
-            self.integer_dot_product8_bit_signed_accelerated = integer_dot_product8_bit_signed_accelerated;
+            self.integer_dot_product8_bit_signed_accelerated = integer_dot_product8_bit_signed_accelerated
+                .into();
             self
         }
         pub fn integer_dot_product8_bit_mixed_signedness_accelerated(
             mut self,
-            integer_dot_product8_bit_mixed_signedness_accelerated: crate::vk::Bool32,
+            integer_dot_product8_bit_mixed_signedness_accelerated: bool,
         ) -> Self {
-            self.integer_dot_product8_bit_mixed_signedness_accelerated = integer_dot_product8_bit_mixed_signedness_accelerated;
+            self.integer_dot_product8_bit_mixed_signedness_accelerated = integer_dot_product8_bit_mixed_signedness_accelerated
+                .into();
             self
         }
         pub fn integer_dot_product4x8_bit_packed_unsigned_accelerated(
             mut self,
-            integer_dot_product4x8_bit_packed_unsigned_accelerated: crate::vk::Bool32,
+            integer_dot_product4x8_bit_packed_unsigned_accelerated: bool,
         ) -> Self {
-            self.integer_dot_product4x8_bit_packed_unsigned_accelerated = integer_dot_product4x8_bit_packed_unsigned_accelerated;
+            self.integer_dot_product4x8_bit_packed_unsigned_accelerated = integer_dot_product4x8_bit_packed_unsigned_accelerated
+                .into();
             self
         }
         pub fn integer_dot_product4x8_bit_packed_signed_accelerated(
             mut self,
-            integer_dot_product4x8_bit_packed_signed_accelerated: crate::vk::Bool32,
+            integer_dot_product4x8_bit_packed_signed_accelerated: bool,
         ) -> Self {
-            self.integer_dot_product4x8_bit_packed_signed_accelerated = integer_dot_product4x8_bit_packed_signed_accelerated;
+            self.integer_dot_product4x8_bit_packed_signed_accelerated = integer_dot_product4x8_bit_packed_signed_accelerated
+                .into();
             self
         }
         pub fn integer_dot_product4x8_bit_packed_mixed_signedness_accelerated(
             mut self,
-            integer_dot_product4x8_bit_packed_mixed_signedness_accelerated: crate::vk::Bool32,
+            integer_dot_product4x8_bit_packed_mixed_signedness_accelerated: bool,
         ) -> Self {
-            self.integer_dot_product4x8_bit_packed_mixed_signedness_accelerated = integer_dot_product4x8_bit_packed_mixed_signedness_accelerated;
+            self.integer_dot_product4x8_bit_packed_mixed_signedness_accelerated = integer_dot_product4x8_bit_packed_mixed_signedness_accelerated
+                .into();
             self
         }
         pub fn integer_dot_product16_bit_unsigned_accelerated(
             mut self,
-            integer_dot_product16_bit_unsigned_accelerated: crate::vk::Bool32,
+            integer_dot_product16_bit_unsigned_accelerated: bool,
         ) -> Self {
-            self.integer_dot_product16_bit_unsigned_accelerated = integer_dot_product16_bit_unsigned_accelerated;
+            self.integer_dot_product16_bit_unsigned_accelerated = integer_dot_product16_bit_unsigned_accelerated
+                .into();
             self
         }
         pub fn integer_dot_product16_bit_signed_accelerated(
             mut self,
-            integer_dot_product16_bit_signed_accelerated: crate::vk::Bool32,
+            integer_dot_product16_bit_signed_accelerated: bool,
         ) -> Self {
-            self.integer_dot_product16_bit_signed_accelerated = integer_dot_product16_bit_signed_accelerated;
+            self.integer_dot_product16_bit_signed_accelerated = integer_dot_product16_bit_signed_accelerated
+                .into();
             self
         }
         pub fn integer_dot_product16_bit_mixed_signedness_accelerated(
             mut self,
-            integer_dot_product16_bit_mixed_signedness_accelerated: crate::vk::Bool32,
+            integer_dot_product16_bit_mixed_signedness_accelerated: bool,
         ) -> Self {
-            self.integer_dot_product16_bit_mixed_signedness_accelerated = integer_dot_product16_bit_mixed_signedness_accelerated;
+            self.integer_dot_product16_bit_mixed_signedness_accelerated = integer_dot_product16_bit_mixed_signedness_accelerated
+                .into();
             self
         }
         pub fn integer_dot_product32_bit_unsigned_accelerated(
             mut self,
-            integer_dot_product32_bit_unsigned_accelerated: crate::vk::Bool32,
+            integer_dot_product32_bit_unsigned_accelerated: bool,
         ) -> Self {
-            self.integer_dot_product32_bit_unsigned_accelerated = integer_dot_product32_bit_unsigned_accelerated;
+            self.integer_dot_product32_bit_unsigned_accelerated = integer_dot_product32_bit_unsigned_accelerated
+                .into();
             self
         }
         pub fn integer_dot_product32_bit_signed_accelerated(
             mut self,
-            integer_dot_product32_bit_signed_accelerated: crate::vk::Bool32,
+            integer_dot_product32_bit_signed_accelerated: bool,
         ) -> Self {
-            self.integer_dot_product32_bit_signed_accelerated = integer_dot_product32_bit_signed_accelerated;
+            self.integer_dot_product32_bit_signed_accelerated = integer_dot_product32_bit_signed_accelerated
+                .into();
             self
         }
         pub fn integer_dot_product32_bit_mixed_signedness_accelerated(
             mut self,
-            integer_dot_product32_bit_mixed_signedness_accelerated: crate::vk::Bool32,
+            integer_dot_product32_bit_mixed_signedness_accelerated: bool,
         ) -> Self {
-            self.integer_dot_product32_bit_mixed_signedness_accelerated = integer_dot_product32_bit_mixed_signedness_accelerated;
+            self.integer_dot_product32_bit_mixed_signedness_accelerated = integer_dot_product32_bit_mixed_signedness_accelerated
+                .into();
             self
         }
         pub fn integer_dot_product64_bit_unsigned_accelerated(
             mut self,
-            integer_dot_product64_bit_unsigned_accelerated: crate::vk::Bool32,
+            integer_dot_product64_bit_unsigned_accelerated: bool,
         ) -> Self {
-            self.integer_dot_product64_bit_unsigned_accelerated = integer_dot_product64_bit_unsigned_accelerated;
+            self.integer_dot_product64_bit_unsigned_accelerated = integer_dot_product64_bit_unsigned_accelerated
+                .into();
             self
         }
         pub fn integer_dot_product64_bit_signed_accelerated(
             mut self,
-            integer_dot_product64_bit_signed_accelerated: crate::vk::Bool32,
+            integer_dot_product64_bit_signed_accelerated: bool,
         ) -> Self {
-            self.integer_dot_product64_bit_signed_accelerated = integer_dot_product64_bit_signed_accelerated;
+            self.integer_dot_product64_bit_signed_accelerated = integer_dot_product64_bit_signed_accelerated
+                .into();
             self
         }
         pub fn integer_dot_product64_bit_mixed_signedness_accelerated(
             mut self,
-            integer_dot_product64_bit_mixed_signedness_accelerated: crate::vk::Bool32,
+            integer_dot_product64_bit_mixed_signedness_accelerated: bool,
         ) -> Self {
-            self.integer_dot_product64_bit_mixed_signedness_accelerated = integer_dot_product64_bit_mixed_signedness_accelerated;
+            self.integer_dot_product64_bit_mixed_signedness_accelerated = integer_dot_product64_bit_mixed_signedness_accelerated
+                .into();
             self
         }
         pub fn integer_dot_product_accumulating_saturating8_bit_unsigned_accelerated(
             mut self,
-            integer_dot_product_accumulating_saturating8_bit_unsigned_accelerated: crate::vk::Bool32,
+            integer_dot_product_accumulating_saturating8_bit_unsigned_accelerated: bool,
         ) -> Self {
-            self.integer_dot_product_accumulating_saturating8_bit_unsigned_accelerated = integer_dot_product_accumulating_saturating8_bit_unsigned_accelerated;
+            self.integer_dot_product_accumulating_saturating8_bit_unsigned_accelerated = integer_dot_product_accumulating_saturating8_bit_unsigned_accelerated
+                .into();
             self
         }
         pub fn integer_dot_product_accumulating_saturating8_bit_signed_accelerated(
             mut self,
-            integer_dot_product_accumulating_saturating8_bit_signed_accelerated: crate::vk::Bool32,
+            integer_dot_product_accumulating_saturating8_bit_signed_accelerated: bool,
         ) -> Self {
-            self.integer_dot_product_accumulating_saturating8_bit_signed_accelerated = integer_dot_product_accumulating_saturating8_bit_signed_accelerated;
+            self.integer_dot_product_accumulating_saturating8_bit_signed_accelerated = integer_dot_product_accumulating_saturating8_bit_signed_accelerated
+                .into();
             self
         }
         pub fn integer_dot_product_accumulating_saturating8_bit_mixed_signedness_accelerated(
             mut self,
-            integer_dot_product_accumulating_saturating8_bit_mixed_signedness_accelerated: crate::vk::Bool32,
+            integer_dot_product_accumulating_saturating8_bit_mixed_signedness_accelerated: bool,
         ) -> Self {
             self
-                .integer_dot_product_accumulating_saturating8_bit_mixed_signedness_accelerated = integer_dot_product_accumulating_saturating8_bit_mixed_signedness_accelerated;
+                .integer_dot_product_accumulating_saturating8_bit_mixed_signedness_accelerated = integer_dot_product_accumulating_saturating8_bit_mixed_signedness_accelerated
+                .into();
             self
         }
         pub fn integer_dot_product_accumulating_saturating4x8_bit_packed_unsigned_accelerated(
             mut self,
-            integer_dot_product_accumulating_saturating4x8_bit_packed_unsigned_accelerated: crate::vk::Bool32,
+            integer_dot_product_accumulating_saturating4x8_bit_packed_unsigned_accelerated: bool,
         ) -> Self {
             self
-                .integer_dot_product_accumulating_saturating4x8_bit_packed_unsigned_accelerated = integer_dot_product_accumulating_saturating4x8_bit_packed_unsigned_accelerated;
+                .integer_dot_product_accumulating_saturating4x8_bit_packed_unsigned_accelerated = integer_dot_product_accumulating_saturating4x8_bit_packed_unsigned_accelerated
+                .into();
             self
         }
         pub fn integer_dot_product_accumulating_saturating4x8_bit_packed_signed_accelerated(
             mut self,
-            integer_dot_product_accumulating_saturating4x8_bit_packed_signed_accelerated: crate::vk::Bool32,
+            integer_dot_product_accumulating_saturating4x8_bit_packed_signed_accelerated: bool,
         ) -> Self {
             self
-                .integer_dot_product_accumulating_saturating4x8_bit_packed_signed_accelerated = integer_dot_product_accumulating_saturating4x8_bit_packed_signed_accelerated;
+                .integer_dot_product_accumulating_saturating4x8_bit_packed_signed_accelerated = integer_dot_product_accumulating_saturating4x8_bit_packed_signed_accelerated
+                .into();
             self
         }
         pub fn integer_dot_product_accumulating_saturating4x8_bit_packed_mixed_signedness_accelerated(
             mut self,
-            integer_dot_product_accumulating_saturating4x8_bit_packed_mixed_signedness_accelerated: crate::vk::Bool32,
+            integer_dot_product_accumulating_saturating4x8_bit_packed_mixed_signedness_accelerated: bool,
         ) -> Self {
             self
-                .integer_dot_product_accumulating_saturating4x8_bit_packed_mixed_signedness_accelerated = integer_dot_product_accumulating_saturating4x8_bit_packed_mixed_signedness_accelerated;
+                .integer_dot_product_accumulating_saturating4x8_bit_packed_mixed_signedness_accelerated = integer_dot_product_accumulating_saturating4x8_bit_packed_mixed_signedness_accelerated
+                .into();
             self
         }
         pub fn integer_dot_product_accumulating_saturating16_bit_unsigned_accelerated(
             mut self,
-            integer_dot_product_accumulating_saturating16_bit_unsigned_accelerated: crate::vk::Bool32,
+            integer_dot_product_accumulating_saturating16_bit_unsigned_accelerated: bool,
         ) -> Self {
             self
-                .integer_dot_product_accumulating_saturating16_bit_unsigned_accelerated = integer_dot_product_accumulating_saturating16_bit_unsigned_accelerated;
+                .integer_dot_product_accumulating_saturating16_bit_unsigned_accelerated = integer_dot_product_accumulating_saturating16_bit_unsigned_accelerated
+                .into();
             self
         }
         pub fn integer_dot_product_accumulating_saturating16_bit_signed_accelerated(
             mut self,
-            integer_dot_product_accumulating_saturating16_bit_signed_accelerated: crate::vk::Bool32,
+            integer_dot_product_accumulating_saturating16_bit_signed_accelerated: bool,
         ) -> Self {
-            self.integer_dot_product_accumulating_saturating16_bit_signed_accelerated = integer_dot_product_accumulating_saturating16_bit_signed_accelerated;
+            self.integer_dot_product_accumulating_saturating16_bit_signed_accelerated = integer_dot_product_accumulating_saturating16_bit_signed_accelerated
+                .into();
             self
         }
         pub fn integer_dot_product_accumulating_saturating16_bit_mixed_signedness_accelerated(
             mut self,
-            integer_dot_product_accumulating_saturating16_bit_mixed_signedness_accelerated: crate::vk::Bool32,
+            integer_dot_product_accumulating_saturating16_bit_mixed_signedness_accelerated: bool,
         ) -> Self {
             self
-                .integer_dot_product_accumulating_saturating16_bit_mixed_signedness_accelerated = integer_dot_product_accumulating_saturating16_bit_mixed_signedness_accelerated;
+                .integer_dot_product_accumulating_saturating16_bit_mixed_signedness_accelerated = integer_dot_product_accumulating_saturating16_bit_mixed_signedness_accelerated
+                .into();
             self
         }
         pub fn integer_dot_product_accumulating_saturating32_bit_unsigned_accelerated(
             mut self,
-            integer_dot_product_accumulating_saturating32_bit_unsigned_accelerated: crate::vk::Bool32,
+            integer_dot_product_accumulating_saturating32_bit_unsigned_accelerated: bool,
         ) -> Self {
             self
-                .integer_dot_product_accumulating_saturating32_bit_unsigned_accelerated = integer_dot_product_accumulating_saturating32_bit_unsigned_accelerated;
+                .integer_dot_product_accumulating_saturating32_bit_unsigned_accelerated = integer_dot_product_accumulating_saturating32_bit_unsigned_accelerated
+                .into();
             self
         }
         pub fn integer_dot_product_accumulating_saturating32_bit_signed_accelerated(
             mut self,
-            integer_dot_product_accumulating_saturating32_bit_signed_accelerated: crate::vk::Bool32,
+            integer_dot_product_accumulating_saturating32_bit_signed_accelerated: bool,
         ) -> Self {
-            self.integer_dot_product_accumulating_saturating32_bit_signed_accelerated = integer_dot_product_accumulating_saturating32_bit_signed_accelerated;
+            self.integer_dot_product_accumulating_saturating32_bit_signed_accelerated = integer_dot_product_accumulating_saturating32_bit_signed_accelerated
+                .into();
             self
         }
         pub fn integer_dot_product_accumulating_saturating32_bit_mixed_signedness_accelerated(
             mut self,
-            integer_dot_product_accumulating_saturating32_bit_mixed_signedness_accelerated: crate::vk::Bool32,
+            integer_dot_product_accumulating_saturating32_bit_mixed_signedness_accelerated: bool,
         ) -> Self {
             self
-                .integer_dot_product_accumulating_saturating32_bit_mixed_signedness_accelerated = integer_dot_product_accumulating_saturating32_bit_mixed_signedness_accelerated;
+                .integer_dot_product_accumulating_saturating32_bit_mixed_signedness_accelerated = integer_dot_product_accumulating_saturating32_bit_mixed_signedness_accelerated
+                .into();
             self
         }
         pub fn integer_dot_product_accumulating_saturating64_bit_unsigned_accelerated(
             mut self,
-            integer_dot_product_accumulating_saturating64_bit_unsigned_accelerated: crate::vk::Bool32,
+            integer_dot_product_accumulating_saturating64_bit_unsigned_accelerated: bool,
         ) -> Self {
             self
-                .integer_dot_product_accumulating_saturating64_bit_unsigned_accelerated = integer_dot_product_accumulating_saturating64_bit_unsigned_accelerated;
+                .integer_dot_product_accumulating_saturating64_bit_unsigned_accelerated = integer_dot_product_accumulating_saturating64_bit_unsigned_accelerated
+                .into();
             self
         }
         pub fn integer_dot_product_accumulating_saturating64_bit_signed_accelerated(
             mut self,
-            integer_dot_product_accumulating_saturating64_bit_signed_accelerated: crate::vk::Bool32,
+            integer_dot_product_accumulating_saturating64_bit_signed_accelerated: bool,
         ) -> Self {
-            self.integer_dot_product_accumulating_saturating64_bit_signed_accelerated = integer_dot_product_accumulating_saturating64_bit_signed_accelerated;
+            self.integer_dot_product_accumulating_saturating64_bit_signed_accelerated = integer_dot_product_accumulating_saturating64_bit_signed_accelerated
+                .into();
             self
         }
         pub fn integer_dot_product_accumulating_saturating64_bit_mixed_signedness_accelerated(
             mut self,
-            integer_dot_product_accumulating_saturating64_bit_mixed_signedness_accelerated: crate::vk::Bool32,
+            integer_dot_product_accumulating_saturating64_bit_mixed_signedness_accelerated: bool,
         ) -> Self {
             self
-                .integer_dot_product_accumulating_saturating64_bit_mixed_signedness_accelerated = integer_dot_product_accumulating_saturating64_bit_mixed_signedness_accelerated;
+                .integer_dot_product_accumulating_saturating64_bit_mixed_signedness_accelerated = integer_dot_product_accumulating_saturating64_bit_mixed_signedness_accelerated
+                .into();
             self
         }
         pub fn storage_texel_buffer_offset_alignment_bytes(
@@ -1944,9 +1963,10 @@ pub(crate) mod reexport {
         }
         pub fn storage_texel_buffer_offset_single_texel_alignment(
             mut self,
-            storage_texel_buffer_offset_single_texel_alignment: crate::vk::Bool32,
+            storage_texel_buffer_offset_single_texel_alignment: bool,
         ) -> Self {
-            self.storage_texel_buffer_offset_single_texel_alignment = storage_texel_buffer_offset_single_texel_alignment;
+            self.storage_texel_buffer_offset_single_texel_alignment = storage_texel_buffer_offset_single_texel_alignment
+                .into();
             self
         }
         pub fn uniform_texel_buffer_offset_alignment_bytes(
@@ -1958,9 +1978,10 @@ pub(crate) mod reexport {
         }
         pub fn uniform_texel_buffer_offset_single_texel_alignment(
             mut self,
-            uniform_texel_buffer_offset_single_texel_alignment: crate::vk::Bool32,
+            uniform_texel_buffer_offset_single_texel_alignment: bool,
         ) -> Self {
-            self.uniform_texel_buffer_offset_single_texel_alignment = uniform_texel_buffer_offset_single_texel_alignment;
+            self.uniform_texel_buffer_offset_single_texel_alignment = uniform_texel_buffer_offset_single_texel_alignment
+                .into();
             self
         }
         pub fn max_buffer_size(
@@ -2003,17 +2024,25 @@ pub(crate) mod reexport {
     impl<'a> PhysicalDeviceToolProperties<'a> {
         pub fn name(
             mut self,
-            name: [core::ffi::c_char; crate::vk::MAX_EXTENSION_NAME_SIZE as _],
-        ) -> Self {
-            self.name = name;
-            self
+            name: &core::ffi::CStr,
+        ) -> core::result::Result<Self, crate::CStrTooLargeForStaticArray> {
+            crate::write_c_str_slice_with_nul(&mut self.name, name).map(|_| self)
+        }
+        pub fn name_as_c_str(
+            &self,
+        ) -> core::result::Result<&core::ffi::CStr, core::ffi::FromBytesUntilNulError> {
+            crate::wrap_c_str_slice_until_nul(&self.name)
         }
         pub fn version(
             mut self,
-            version: [core::ffi::c_char; crate::vk::MAX_EXTENSION_NAME_SIZE as _],
-        ) -> Self {
-            self.version = version;
-            self
+            version: &core::ffi::CStr,
+        ) -> core::result::Result<Self, crate::CStrTooLargeForStaticArray> {
+            crate::write_c_str_slice_with_nul(&mut self.version, version).map(|_| self)
+        }
+        pub fn version_as_c_str(
+            &self,
+        ) -> core::result::Result<&core::ffi::CStr, core::ffi::FromBytesUntilNulError> {
+            crate::wrap_c_str_slice_until_nul(&self.version)
         }
         pub fn purposes(mut self, purposes: crate::vk::ToolPurposeFlags) -> Self {
             self.purposes = purposes;
@@ -2021,17 +2050,26 @@ pub(crate) mod reexport {
         }
         pub fn description(
             mut self,
-            description: [core::ffi::c_char; crate::vk::MAX_DESCRIPTION_SIZE as _],
-        ) -> Self {
-            self.description = description;
-            self
+            description: &core::ffi::CStr,
+        ) -> core::result::Result<Self, crate::CStrTooLargeForStaticArray> {
+            crate::write_c_str_slice_with_nul(&mut self.description, description)
+                .map(|_| self)
+        }
+        pub fn description_as_c_str(
+            &self,
+        ) -> core::result::Result<&core::ffi::CStr, core::ffi::FromBytesUntilNulError> {
+            crate::wrap_c_str_slice_until_nul(&self.description)
         }
         pub fn layer(
             mut self,
-            layer: [core::ffi::c_char; crate::vk::MAX_EXTENSION_NAME_SIZE as _],
-        ) -> Self {
-            self.layer = layer;
-            self
+            layer: &core::ffi::CStr,
+        ) -> core::result::Result<Self, crate::CStrTooLargeForStaticArray> {
+            crate::write_c_str_slice_with_nul(&mut self.layer, layer).map(|_| self)
+        }
+        pub fn layer_as_c_str(
+            &self,
+        ) -> core::result::Result<&core::ffi::CStr, core::ffi::FromBytesUntilNulError> {
+            crate::wrap_c_str_slice_until_nul(&self.layer)
         }
     }
     #[repr(C)]
@@ -2063,9 +2101,10 @@ pub(crate) mod reexport {
     impl<'a> PhysicalDeviceZeroInitializeWorkgroupMemoryFeatures<'a> {
         pub fn shader_zero_initialize_workgroup_memory(
             mut self,
-            shader_zero_initialize_workgroup_memory: crate::vk::Bool32,
+            shader_zero_initialize_workgroup_memory: bool,
         ) -> Self {
-            self.shader_zero_initialize_workgroup_memory = shader_zero_initialize_workgroup_memory;
+            self.shader_zero_initialize_workgroup_memory = shader_zero_initialize_workgroup_memory
+                .into();
             self
         }
     }
@@ -2096,11 +2135,8 @@ pub(crate) mod reexport {
         }
     }
     impl<'a> PhysicalDeviceImageRobustnessFeatures<'a> {
-        pub fn robust_image_access(
-            mut self,
-            robust_image_access: crate::vk::Bool32,
-        ) -> Self {
-            self.robust_image_access = robust_image_access;
+        pub fn robust_image_access(mut self, robust_image_access: bool) -> Self {
+            self.robust_image_access = robust_image_access.into();
             self
         }
     }
@@ -2414,11 +2450,9 @@ pub(crate) mod reexport {
             self.region_count = region_count;
             self
         }
-        pub fn p_regions(
-            mut self,
-            p_regions: *const crate::vk::BufferCopy2<'a>,
-        ) -> Self {
-            self.p_regions = p_regions;
+        pub fn p_regions(mut self, p_regions: &'a [crate::vk::BufferCopy2<'a>]) -> Self {
+            self.region_count = p_regions.len() as _;
+            self.p_regions = p_regions.as_ptr();
             self
         }
     }
@@ -2480,8 +2514,9 @@ pub(crate) mod reexport {
             self.region_count = region_count;
             self
         }
-        pub fn p_regions(mut self, p_regions: *const crate::vk::ImageCopy2<'a>) -> Self {
-            self.p_regions = p_regions;
+        pub fn p_regions(mut self, p_regions: &'a [crate::vk::ImageCopy2<'a>]) -> Self {
+            self.region_count = p_regions.len() as _;
+            self.p_regions = p_regions.as_ptr();
             self
         }
     }
@@ -2545,8 +2580,9 @@ pub(crate) mod reexport {
             self.region_count = region_count;
             self
         }
-        pub fn p_regions(mut self, p_regions: *const crate::vk::ImageBlit2<'a>) -> Self {
-            self.p_regions = p_regions;
+        pub fn p_regions(mut self, p_regions: &'a [crate::vk::ImageBlit2<'a>]) -> Self {
+            self.region_count = p_regions.len() as _;
+            self.p_regions = p_regions.as_ptr();
             self
         }
         pub fn filter(mut self, filter: crate::vk::Filter) -> Self {
@@ -2605,9 +2641,10 @@ pub(crate) mod reexport {
         }
         pub fn p_regions(
             mut self,
-            p_regions: *const crate::vk::BufferImageCopy2<'a>,
+            p_regions: &'a [crate::vk::BufferImageCopy2<'a>],
         ) -> Self {
-            self.p_regions = p_regions;
+            self.region_count = p_regions.len() as _;
+            self.p_regions = p_regions.as_ptr();
             self
         }
     }
@@ -2662,9 +2699,10 @@ pub(crate) mod reexport {
         }
         pub fn p_regions(
             mut self,
-            p_regions: *const crate::vk::BufferImageCopy2<'a>,
+            p_regions: &'a [crate::vk::BufferImageCopy2<'a>],
         ) -> Self {
-            self.p_regions = p_regions;
+            self.region_count = p_regions.len() as _;
+            self.p_regions = p_regions.as_ptr();
             self
         }
     }
@@ -2728,9 +2766,10 @@ pub(crate) mod reexport {
         }
         pub fn p_regions(
             mut self,
-            p_regions: *const crate::vk::ImageResolve2<'a>,
+            p_regions: &'a [crate::vk::ImageResolve2<'a>],
         ) -> Self {
-            self.p_regions = p_regions;
+            self.region_count = p_regions.len() as _;
+            self.p_regions = p_regions.as_ptr();
             self
         }
     }
@@ -2763,9 +2802,9 @@ pub(crate) mod reexport {
     impl<'a> PhysicalDeviceShaderTerminateInvocationFeatures<'a> {
         pub fn shader_terminate_invocation(
             mut self,
-            shader_terminate_invocation: crate::vk::Bool32,
+            shader_terminate_invocation: bool,
         ) -> Self {
-            self.shader_terminate_invocation = shader_terminate_invocation;
+            self.shader_terminate_invocation = shader_terminate_invocation.into();
             self
         }
     }
@@ -3058,9 +3097,10 @@ pub(crate) mod reexport {
         }
         pub fn p_memory_barriers(
             mut self,
-            p_memory_barriers: *const crate::vk::MemoryBarrier2<'a>,
+            p_memory_barriers: &'a [crate::vk::MemoryBarrier2<'a>],
         ) -> Self {
-            self.p_memory_barriers = p_memory_barriers;
+            self.memory_barrier_count = p_memory_barriers.len() as _;
+            self.p_memory_barriers = p_memory_barriers.as_ptr();
             self
         }
         pub fn buffer_memory_barrier_count(
@@ -3072,9 +3112,10 @@ pub(crate) mod reexport {
         }
         pub fn p_buffer_memory_barriers(
             mut self,
-            p_buffer_memory_barriers: *const crate::vk::BufferMemoryBarrier2<'a>,
+            p_buffer_memory_barriers: &'a [crate::vk::BufferMemoryBarrier2<'a>],
         ) -> Self {
-            self.p_buffer_memory_barriers = p_buffer_memory_barriers;
+            self.buffer_memory_barrier_count = p_buffer_memory_barriers.len() as _;
+            self.p_buffer_memory_barriers = p_buffer_memory_barriers.as_ptr();
             self
         }
         pub fn image_memory_barrier_count(
@@ -3086,9 +3127,10 @@ pub(crate) mod reexport {
         }
         pub fn p_image_memory_barriers(
             mut self,
-            p_image_memory_barriers: *const crate::vk::ImageMemoryBarrier2<'a>,
+            p_image_memory_barriers: &'a [crate::vk::ImageMemoryBarrier2<'a>],
         ) -> Self {
-            self.p_image_memory_barriers = p_image_memory_barriers;
+            self.image_memory_barrier_count = p_image_memory_barriers.len() as _;
+            self.p_image_memory_barriers = p_image_memory_barriers.as_ptr();
             self
         }
     }
@@ -3220,9 +3262,10 @@ pub(crate) mod reexport {
         }
         pub fn p_wait_semaphore_infos(
             mut self,
-            p_wait_semaphore_infos: *const crate::vk::SemaphoreSubmitInfo<'a>,
+            p_wait_semaphore_infos: &'a [crate::vk::SemaphoreSubmitInfo<'a>],
         ) -> Self {
-            self.p_wait_semaphore_infos = p_wait_semaphore_infos;
+            self.wait_semaphore_info_count = p_wait_semaphore_infos.len() as _;
+            self.p_wait_semaphore_infos = p_wait_semaphore_infos.as_ptr();
             self
         }
         pub fn command_buffer_info_count(
@@ -3234,9 +3277,10 @@ pub(crate) mod reexport {
         }
         pub fn p_command_buffer_infos(
             mut self,
-            p_command_buffer_infos: *const crate::vk::CommandBufferSubmitInfo<'a>,
+            p_command_buffer_infos: &'a [crate::vk::CommandBufferSubmitInfo<'a>],
         ) -> Self {
-            self.p_command_buffer_infos = p_command_buffer_infos;
+            self.command_buffer_info_count = p_command_buffer_infos.len() as _;
+            self.p_command_buffer_infos = p_command_buffer_infos.as_ptr();
             self
         }
         pub fn signal_semaphore_info_count(
@@ -3248,9 +3292,10 @@ pub(crate) mod reexport {
         }
         pub fn p_signal_semaphore_infos(
             mut self,
-            p_signal_semaphore_infos: *const crate::vk::SemaphoreSubmitInfo<'a>,
+            p_signal_semaphore_infos: &'a [crate::vk::SemaphoreSubmitInfo<'a>],
         ) -> Self {
-            self.p_signal_semaphore_infos = p_signal_semaphore_infos;
+            self.signal_semaphore_info_count = p_signal_semaphore_infos.len() as _;
+            self.p_signal_semaphore_infos = p_signal_semaphore_infos.as_ptr();
             self
         }
     }
@@ -3281,8 +3326,8 @@ pub(crate) mod reexport {
         }
     }
     impl<'a> PhysicalDeviceSynchronization2Features<'a> {
-        pub fn synchronization2(mut self, synchronization2: crate::vk::Bool32) -> Self {
-            self.synchronization2 = synchronization2;
+        pub fn synchronization2(mut self, synchronization2: bool) -> Self {
+            self.synchronization2 = synchronization2.into();
             self
         }
     }
@@ -3315,9 +3360,9 @@ pub(crate) mod reexport {
     impl<'a> PhysicalDeviceShaderIntegerDotProductFeatures<'a> {
         pub fn shader_integer_dot_product(
             mut self,
-            shader_integer_dot_product: crate::vk::Bool32,
+            shader_integer_dot_product: bool,
         ) -> Self {
-            self.shader_integer_dot_product = shader_integer_dot_product;
+            self.shader_integer_dot_product = shader_integer_dot_product.into();
             self
         }
     }
@@ -3406,222 +3451,252 @@ pub(crate) mod reexport {
     impl<'a> PhysicalDeviceShaderIntegerDotProductProperties<'a> {
         pub fn integer_dot_product8_bit_unsigned_accelerated(
             mut self,
-            integer_dot_product8_bit_unsigned_accelerated: crate::vk::Bool32,
+            integer_dot_product8_bit_unsigned_accelerated: bool,
         ) -> Self {
-            self.integer_dot_product8_bit_unsigned_accelerated = integer_dot_product8_bit_unsigned_accelerated;
+            self.integer_dot_product8_bit_unsigned_accelerated = integer_dot_product8_bit_unsigned_accelerated
+                .into();
             self
         }
         pub fn integer_dot_product8_bit_signed_accelerated(
             mut self,
-            integer_dot_product8_bit_signed_accelerated: crate::vk::Bool32,
+            integer_dot_product8_bit_signed_accelerated: bool,
         ) -> Self {
-            self.integer_dot_product8_bit_signed_accelerated = integer_dot_product8_bit_signed_accelerated;
+            self.integer_dot_product8_bit_signed_accelerated = integer_dot_product8_bit_signed_accelerated
+                .into();
             self
         }
         pub fn integer_dot_product8_bit_mixed_signedness_accelerated(
             mut self,
-            integer_dot_product8_bit_mixed_signedness_accelerated: crate::vk::Bool32,
+            integer_dot_product8_bit_mixed_signedness_accelerated: bool,
         ) -> Self {
-            self.integer_dot_product8_bit_mixed_signedness_accelerated = integer_dot_product8_bit_mixed_signedness_accelerated;
+            self.integer_dot_product8_bit_mixed_signedness_accelerated = integer_dot_product8_bit_mixed_signedness_accelerated
+                .into();
             self
         }
         pub fn integer_dot_product4x8_bit_packed_unsigned_accelerated(
             mut self,
-            integer_dot_product4x8_bit_packed_unsigned_accelerated: crate::vk::Bool32,
+            integer_dot_product4x8_bit_packed_unsigned_accelerated: bool,
         ) -> Self {
-            self.integer_dot_product4x8_bit_packed_unsigned_accelerated = integer_dot_product4x8_bit_packed_unsigned_accelerated;
+            self.integer_dot_product4x8_bit_packed_unsigned_accelerated = integer_dot_product4x8_bit_packed_unsigned_accelerated
+                .into();
             self
         }
         pub fn integer_dot_product4x8_bit_packed_signed_accelerated(
             mut self,
-            integer_dot_product4x8_bit_packed_signed_accelerated: crate::vk::Bool32,
+            integer_dot_product4x8_bit_packed_signed_accelerated: bool,
         ) -> Self {
-            self.integer_dot_product4x8_bit_packed_signed_accelerated = integer_dot_product4x8_bit_packed_signed_accelerated;
+            self.integer_dot_product4x8_bit_packed_signed_accelerated = integer_dot_product4x8_bit_packed_signed_accelerated
+                .into();
             self
         }
         pub fn integer_dot_product4x8_bit_packed_mixed_signedness_accelerated(
             mut self,
-            integer_dot_product4x8_bit_packed_mixed_signedness_accelerated: crate::vk::Bool32,
+            integer_dot_product4x8_bit_packed_mixed_signedness_accelerated: bool,
         ) -> Self {
-            self.integer_dot_product4x8_bit_packed_mixed_signedness_accelerated = integer_dot_product4x8_bit_packed_mixed_signedness_accelerated;
+            self.integer_dot_product4x8_bit_packed_mixed_signedness_accelerated = integer_dot_product4x8_bit_packed_mixed_signedness_accelerated
+                .into();
             self
         }
         pub fn integer_dot_product16_bit_unsigned_accelerated(
             mut self,
-            integer_dot_product16_bit_unsigned_accelerated: crate::vk::Bool32,
+            integer_dot_product16_bit_unsigned_accelerated: bool,
         ) -> Self {
-            self.integer_dot_product16_bit_unsigned_accelerated = integer_dot_product16_bit_unsigned_accelerated;
+            self.integer_dot_product16_bit_unsigned_accelerated = integer_dot_product16_bit_unsigned_accelerated
+                .into();
             self
         }
         pub fn integer_dot_product16_bit_signed_accelerated(
             mut self,
-            integer_dot_product16_bit_signed_accelerated: crate::vk::Bool32,
+            integer_dot_product16_bit_signed_accelerated: bool,
         ) -> Self {
-            self.integer_dot_product16_bit_signed_accelerated = integer_dot_product16_bit_signed_accelerated;
+            self.integer_dot_product16_bit_signed_accelerated = integer_dot_product16_bit_signed_accelerated
+                .into();
             self
         }
         pub fn integer_dot_product16_bit_mixed_signedness_accelerated(
             mut self,
-            integer_dot_product16_bit_mixed_signedness_accelerated: crate::vk::Bool32,
+            integer_dot_product16_bit_mixed_signedness_accelerated: bool,
         ) -> Self {
-            self.integer_dot_product16_bit_mixed_signedness_accelerated = integer_dot_product16_bit_mixed_signedness_accelerated;
+            self.integer_dot_product16_bit_mixed_signedness_accelerated = integer_dot_product16_bit_mixed_signedness_accelerated
+                .into();
             self
         }
         pub fn integer_dot_product32_bit_unsigned_accelerated(
             mut self,
-            integer_dot_product32_bit_unsigned_accelerated: crate::vk::Bool32,
+            integer_dot_product32_bit_unsigned_accelerated: bool,
         ) -> Self {
-            self.integer_dot_product32_bit_unsigned_accelerated = integer_dot_product32_bit_unsigned_accelerated;
+            self.integer_dot_product32_bit_unsigned_accelerated = integer_dot_product32_bit_unsigned_accelerated
+                .into();
             self
         }
         pub fn integer_dot_product32_bit_signed_accelerated(
             mut self,
-            integer_dot_product32_bit_signed_accelerated: crate::vk::Bool32,
+            integer_dot_product32_bit_signed_accelerated: bool,
         ) -> Self {
-            self.integer_dot_product32_bit_signed_accelerated = integer_dot_product32_bit_signed_accelerated;
+            self.integer_dot_product32_bit_signed_accelerated = integer_dot_product32_bit_signed_accelerated
+                .into();
             self
         }
         pub fn integer_dot_product32_bit_mixed_signedness_accelerated(
             mut self,
-            integer_dot_product32_bit_mixed_signedness_accelerated: crate::vk::Bool32,
+            integer_dot_product32_bit_mixed_signedness_accelerated: bool,
         ) -> Self {
-            self.integer_dot_product32_bit_mixed_signedness_accelerated = integer_dot_product32_bit_mixed_signedness_accelerated;
+            self.integer_dot_product32_bit_mixed_signedness_accelerated = integer_dot_product32_bit_mixed_signedness_accelerated
+                .into();
             self
         }
         pub fn integer_dot_product64_bit_unsigned_accelerated(
             mut self,
-            integer_dot_product64_bit_unsigned_accelerated: crate::vk::Bool32,
+            integer_dot_product64_bit_unsigned_accelerated: bool,
         ) -> Self {
-            self.integer_dot_product64_bit_unsigned_accelerated = integer_dot_product64_bit_unsigned_accelerated;
+            self.integer_dot_product64_bit_unsigned_accelerated = integer_dot_product64_bit_unsigned_accelerated
+                .into();
             self
         }
         pub fn integer_dot_product64_bit_signed_accelerated(
             mut self,
-            integer_dot_product64_bit_signed_accelerated: crate::vk::Bool32,
+            integer_dot_product64_bit_signed_accelerated: bool,
         ) -> Self {
-            self.integer_dot_product64_bit_signed_accelerated = integer_dot_product64_bit_signed_accelerated;
+            self.integer_dot_product64_bit_signed_accelerated = integer_dot_product64_bit_signed_accelerated
+                .into();
             self
         }
         pub fn integer_dot_product64_bit_mixed_signedness_accelerated(
             mut self,
-            integer_dot_product64_bit_mixed_signedness_accelerated: crate::vk::Bool32,
+            integer_dot_product64_bit_mixed_signedness_accelerated: bool,
         ) -> Self {
-            self.integer_dot_product64_bit_mixed_signedness_accelerated = integer_dot_product64_bit_mixed_signedness_accelerated;
+            self.integer_dot_product64_bit_mixed_signedness_accelerated = integer_dot_product64_bit_mixed_signedness_accelerated
+                .into();
             self
         }
         pub fn integer_dot_product_accumulating_saturating8_bit_unsigned_accelerated(
             mut self,
-            integer_dot_product_accumulating_saturating8_bit_unsigned_accelerated: crate::vk::Bool32,
+            integer_dot_product_accumulating_saturating8_bit_unsigned_accelerated: bool,
         ) -> Self {
-            self.integer_dot_product_accumulating_saturating8_bit_unsigned_accelerated = integer_dot_product_accumulating_saturating8_bit_unsigned_accelerated;
+            self.integer_dot_product_accumulating_saturating8_bit_unsigned_accelerated = integer_dot_product_accumulating_saturating8_bit_unsigned_accelerated
+                .into();
             self
         }
         pub fn integer_dot_product_accumulating_saturating8_bit_signed_accelerated(
             mut self,
-            integer_dot_product_accumulating_saturating8_bit_signed_accelerated: crate::vk::Bool32,
+            integer_dot_product_accumulating_saturating8_bit_signed_accelerated: bool,
         ) -> Self {
-            self.integer_dot_product_accumulating_saturating8_bit_signed_accelerated = integer_dot_product_accumulating_saturating8_bit_signed_accelerated;
+            self.integer_dot_product_accumulating_saturating8_bit_signed_accelerated = integer_dot_product_accumulating_saturating8_bit_signed_accelerated
+                .into();
             self
         }
         pub fn integer_dot_product_accumulating_saturating8_bit_mixed_signedness_accelerated(
             mut self,
-            integer_dot_product_accumulating_saturating8_bit_mixed_signedness_accelerated: crate::vk::Bool32,
+            integer_dot_product_accumulating_saturating8_bit_mixed_signedness_accelerated: bool,
         ) -> Self {
             self
-                .integer_dot_product_accumulating_saturating8_bit_mixed_signedness_accelerated = integer_dot_product_accumulating_saturating8_bit_mixed_signedness_accelerated;
+                .integer_dot_product_accumulating_saturating8_bit_mixed_signedness_accelerated = integer_dot_product_accumulating_saturating8_bit_mixed_signedness_accelerated
+                .into();
             self
         }
         pub fn integer_dot_product_accumulating_saturating4x8_bit_packed_unsigned_accelerated(
             mut self,
-            integer_dot_product_accumulating_saturating4x8_bit_packed_unsigned_accelerated: crate::vk::Bool32,
+            integer_dot_product_accumulating_saturating4x8_bit_packed_unsigned_accelerated: bool,
         ) -> Self {
             self
-                .integer_dot_product_accumulating_saturating4x8_bit_packed_unsigned_accelerated = integer_dot_product_accumulating_saturating4x8_bit_packed_unsigned_accelerated;
+                .integer_dot_product_accumulating_saturating4x8_bit_packed_unsigned_accelerated = integer_dot_product_accumulating_saturating4x8_bit_packed_unsigned_accelerated
+                .into();
             self
         }
         pub fn integer_dot_product_accumulating_saturating4x8_bit_packed_signed_accelerated(
             mut self,
-            integer_dot_product_accumulating_saturating4x8_bit_packed_signed_accelerated: crate::vk::Bool32,
+            integer_dot_product_accumulating_saturating4x8_bit_packed_signed_accelerated: bool,
         ) -> Self {
             self
-                .integer_dot_product_accumulating_saturating4x8_bit_packed_signed_accelerated = integer_dot_product_accumulating_saturating4x8_bit_packed_signed_accelerated;
+                .integer_dot_product_accumulating_saturating4x8_bit_packed_signed_accelerated = integer_dot_product_accumulating_saturating4x8_bit_packed_signed_accelerated
+                .into();
             self
         }
         pub fn integer_dot_product_accumulating_saturating4x8_bit_packed_mixed_signedness_accelerated(
             mut self,
-            integer_dot_product_accumulating_saturating4x8_bit_packed_mixed_signedness_accelerated: crate::vk::Bool32,
+            integer_dot_product_accumulating_saturating4x8_bit_packed_mixed_signedness_accelerated: bool,
         ) -> Self {
             self
-                .integer_dot_product_accumulating_saturating4x8_bit_packed_mixed_signedness_accelerated = integer_dot_product_accumulating_saturating4x8_bit_packed_mixed_signedness_accelerated;
+                .integer_dot_product_accumulating_saturating4x8_bit_packed_mixed_signedness_accelerated = integer_dot_product_accumulating_saturating4x8_bit_packed_mixed_signedness_accelerated
+                .into();
             self
         }
         pub fn integer_dot_product_accumulating_saturating16_bit_unsigned_accelerated(
             mut self,
-            integer_dot_product_accumulating_saturating16_bit_unsigned_accelerated: crate::vk::Bool32,
+            integer_dot_product_accumulating_saturating16_bit_unsigned_accelerated: bool,
         ) -> Self {
             self
-                .integer_dot_product_accumulating_saturating16_bit_unsigned_accelerated = integer_dot_product_accumulating_saturating16_bit_unsigned_accelerated;
+                .integer_dot_product_accumulating_saturating16_bit_unsigned_accelerated = integer_dot_product_accumulating_saturating16_bit_unsigned_accelerated
+                .into();
             self
         }
         pub fn integer_dot_product_accumulating_saturating16_bit_signed_accelerated(
             mut self,
-            integer_dot_product_accumulating_saturating16_bit_signed_accelerated: crate::vk::Bool32,
+            integer_dot_product_accumulating_saturating16_bit_signed_accelerated: bool,
         ) -> Self {
-            self.integer_dot_product_accumulating_saturating16_bit_signed_accelerated = integer_dot_product_accumulating_saturating16_bit_signed_accelerated;
+            self.integer_dot_product_accumulating_saturating16_bit_signed_accelerated = integer_dot_product_accumulating_saturating16_bit_signed_accelerated
+                .into();
             self
         }
         pub fn integer_dot_product_accumulating_saturating16_bit_mixed_signedness_accelerated(
             mut self,
-            integer_dot_product_accumulating_saturating16_bit_mixed_signedness_accelerated: crate::vk::Bool32,
+            integer_dot_product_accumulating_saturating16_bit_mixed_signedness_accelerated: bool,
         ) -> Self {
             self
-                .integer_dot_product_accumulating_saturating16_bit_mixed_signedness_accelerated = integer_dot_product_accumulating_saturating16_bit_mixed_signedness_accelerated;
+                .integer_dot_product_accumulating_saturating16_bit_mixed_signedness_accelerated = integer_dot_product_accumulating_saturating16_bit_mixed_signedness_accelerated
+                .into();
             self
         }
         pub fn integer_dot_product_accumulating_saturating32_bit_unsigned_accelerated(
             mut self,
-            integer_dot_product_accumulating_saturating32_bit_unsigned_accelerated: crate::vk::Bool32,
+            integer_dot_product_accumulating_saturating32_bit_unsigned_accelerated: bool,
         ) -> Self {
             self
-                .integer_dot_product_accumulating_saturating32_bit_unsigned_accelerated = integer_dot_product_accumulating_saturating32_bit_unsigned_accelerated;
+                .integer_dot_product_accumulating_saturating32_bit_unsigned_accelerated = integer_dot_product_accumulating_saturating32_bit_unsigned_accelerated
+                .into();
             self
         }
         pub fn integer_dot_product_accumulating_saturating32_bit_signed_accelerated(
             mut self,
-            integer_dot_product_accumulating_saturating32_bit_signed_accelerated: crate::vk::Bool32,
+            integer_dot_product_accumulating_saturating32_bit_signed_accelerated: bool,
         ) -> Self {
-            self.integer_dot_product_accumulating_saturating32_bit_signed_accelerated = integer_dot_product_accumulating_saturating32_bit_signed_accelerated;
+            self.integer_dot_product_accumulating_saturating32_bit_signed_accelerated = integer_dot_product_accumulating_saturating32_bit_signed_accelerated
+                .into();
             self
         }
         pub fn integer_dot_product_accumulating_saturating32_bit_mixed_signedness_accelerated(
             mut self,
-            integer_dot_product_accumulating_saturating32_bit_mixed_signedness_accelerated: crate::vk::Bool32,
+            integer_dot_product_accumulating_saturating32_bit_mixed_signedness_accelerated: bool,
         ) -> Self {
             self
-                .integer_dot_product_accumulating_saturating32_bit_mixed_signedness_accelerated = integer_dot_product_accumulating_saturating32_bit_mixed_signedness_accelerated;
+                .integer_dot_product_accumulating_saturating32_bit_mixed_signedness_accelerated = integer_dot_product_accumulating_saturating32_bit_mixed_signedness_accelerated
+                .into();
             self
         }
         pub fn integer_dot_product_accumulating_saturating64_bit_unsigned_accelerated(
             mut self,
-            integer_dot_product_accumulating_saturating64_bit_unsigned_accelerated: crate::vk::Bool32,
+            integer_dot_product_accumulating_saturating64_bit_unsigned_accelerated: bool,
         ) -> Self {
             self
-                .integer_dot_product_accumulating_saturating64_bit_unsigned_accelerated = integer_dot_product_accumulating_saturating64_bit_unsigned_accelerated;
+                .integer_dot_product_accumulating_saturating64_bit_unsigned_accelerated = integer_dot_product_accumulating_saturating64_bit_unsigned_accelerated
+                .into();
             self
         }
         pub fn integer_dot_product_accumulating_saturating64_bit_signed_accelerated(
             mut self,
-            integer_dot_product_accumulating_saturating64_bit_signed_accelerated: crate::vk::Bool32,
+            integer_dot_product_accumulating_saturating64_bit_signed_accelerated: bool,
         ) -> Self {
-            self.integer_dot_product_accumulating_saturating64_bit_signed_accelerated = integer_dot_product_accumulating_saturating64_bit_signed_accelerated;
+            self.integer_dot_product_accumulating_saturating64_bit_signed_accelerated = integer_dot_product_accumulating_saturating64_bit_signed_accelerated
+                .into();
             self
         }
         pub fn integer_dot_product_accumulating_saturating64_bit_mixed_signedness_accelerated(
             mut self,
-            integer_dot_product_accumulating_saturating64_bit_mixed_signedness_accelerated: crate::vk::Bool32,
+            integer_dot_product_accumulating_saturating64_bit_mixed_signedness_accelerated: bool,
         ) -> Self {
             self
-                .integer_dot_product_accumulating_saturating64_bit_mixed_signedness_accelerated = integer_dot_product_accumulating_saturating64_bit_mixed_signedness_accelerated;
+                .integer_dot_product_accumulating_saturating64_bit_mixed_signedness_accelerated = integer_dot_product_accumulating_saturating64_bit_mixed_signedness_accelerated
+                .into();
             self
         }
     }
@@ -3717,9 +3792,10 @@ pub(crate) mod reexport {
         }
         pub fn p_color_attachment_formats(
             mut self,
-            p_color_attachment_formats: *const crate::vk::Format,
+            p_color_attachment_formats: &'a [crate::vk::Format],
         ) -> Self {
-            self.p_color_attachment_formats = p_color_attachment_formats;
+            self.color_attachment_count = p_color_attachment_formats.len() as _;
+            self.p_color_attachment_formats = p_color_attachment_formats.as_ptr();
             self
         }
         pub fn depth_attachment_format(
@@ -3795,21 +3871,22 @@ pub(crate) mod reexport {
         }
         pub fn p_color_attachments(
             mut self,
-            p_color_attachments: *const crate::vk::RenderingAttachmentInfo<'a>,
+            p_color_attachments: &'a [crate::vk::RenderingAttachmentInfo<'a>],
         ) -> Self {
-            self.p_color_attachments = p_color_attachments;
+            self.color_attachment_count = p_color_attachments.len() as _;
+            self.p_color_attachments = p_color_attachments.as_ptr();
             self
         }
         pub fn p_depth_attachment(
             mut self,
-            p_depth_attachment: *const crate::vk::RenderingAttachmentInfo<'a>,
+            p_depth_attachment: &'a crate::vk::RenderingAttachmentInfo<'a>,
         ) -> Self {
             self.p_depth_attachment = p_depth_attachment;
             self
         }
         pub fn p_stencil_attachment(
             mut self,
-            p_stencil_attachment: *const crate::vk::RenderingAttachmentInfo<'a>,
+            p_stencil_attachment: &'a crate::vk::RenderingAttachmentInfo<'a>,
         ) -> Self {
             self.p_stencil_attachment = p_stencil_attachment;
             self
@@ -3920,11 +3997,8 @@ pub(crate) mod reexport {
         }
     }
     impl<'a> PhysicalDeviceDynamicRenderingFeatures<'a> {
-        pub fn dynamic_rendering(
-            mut self,
-            dynamic_rendering: crate::vk::Bool32,
-        ) -> Self {
-            self.dynamic_rendering = dynamic_rendering;
+        pub fn dynamic_rendering(mut self, dynamic_rendering: bool) -> Self {
+            self.dynamic_rendering = dynamic_rendering.into();
             self
         }
     }
@@ -3979,9 +4053,10 @@ pub(crate) mod reexport {
         }
         pub fn p_color_attachment_formats(
             mut self,
-            p_color_attachment_formats: *const crate::vk::Format,
+            p_color_attachment_formats: &'a [crate::vk::Format],
         ) -> Self {
-            self.p_color_attachment_formats = p_color_attachment_formats;
+            self.color_attachment_count = p_color_attachment_formats.len() as _;
+            self.p_color_attachment_formats = p_color_attachment_formats.as_ptr();
             self
         }
         pub fn depth_attachment_format(

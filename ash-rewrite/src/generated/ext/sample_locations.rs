@@ -137,9 +137,10 @@ pub(crate) mod reexport {
         }
         pub fn p_sample_locations(
             mut self,
-            p_sample_locations: *const crate::vk::SampleLocationEXT,
+            p_sample_locations: &'a [crate::vk::SampleLocationEXT],
         ) -> Self {
-            self.p_sample_locations = p_sample_locations;
+            self.sample_locations_count = p_sample_locations.len() as _;
+            self.p_sample_locations = p_sample_locations.as_ptr();
             self
         }
     }
@@ -227,11 +228,14 @@ pub(crate) mod reexport {
         }
         pub fn p_attachment_initial_sample_locations(
             mut self,
-            p_attachment_initial_sample_locations: *const crate::vk::AttachmentSampleLocationsEXT<
+            p_attachment_initial_sample_locations: &'a [crate::vk::AttachmentSampleLocationsEXT<
                 'a,
-            >,
+            >],
         ) -> Self {
-            self.p_attachment_initial_sample_locations = p_attachment_initial_sample_locations;
+            self.attachment_initial_sample_locations_count = p_attachment_initial_sample_locations
+                .len() as _;
+            self.p_attachment_initial_sample_locations = p_attachment_initial_sample_locations
+                .as_ptr();
             self
         }
         pub fn post_subpass_sample_locations_count(
@@ -243,11 +247,14 @@ pub(crate) mod reexport {
         }
         pub fn p_post_subpass_sample_locations(
             mut self,
-            p_post_subpass_sample_locations: *const crate::vk::SubpassSampleLocationsEXT<
+            p_post_subpass_sample_locations: &'a [crate::vk::SubpassSampleLocationsEXT<
                 'a,
-            >,
+            >],
         ) -> Self {
-            self.p_post_subpass_sample_locations = p_post_subpass_sample_locations;
+            self.post_subpass_sample_locations_count = p_post_subpass_sample_locations
+                .len() as _;
+            self.p_post_subpass_sample_locations = p_post_subpass_sample_locations
+                .as_ptr();
             self
         }
     }
@@ -278,11 +285,8 @@ pub(crate) mod reexport {
         }
     }
     impl<'a> PipelineSampleLocationsStateCreateInfoEXT<'a> {
-        pub fn sample_locations_enable(
-            mut self,
-            sample_locations_enable: crate::vk::Bool32,
-        ) -> Self {
-            self.sample_locations_enable = sample_locations_enable;
+        pub fn sample_locations_enable(mut self, sample_locations_enable: bool) -> Self {
+            self.sample_locations_enable = sample_locations_enable.into();
             self
         }
         pub fn sample_locations_info(
@@ -356,9 +360,9 @@ pub(crate) mod reexport {
         }
         pub fn variable_sample_locations(
             mut self,
-            variable_sample_locations: crate::vk::Bool32,
+            variable_sample_locations: bool,
         ) -> Self {
-            self.variable_sample_locations = variable_sample_locations;
+            self.variable_sample_locations = variable_sample_locations.into();
             self
         }
     }

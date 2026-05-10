@@ -115,8 +115,8 @@ pub(crate) mod reexport {
             self.depth_bias_representation = depth_bias_representation;
             self
         }
-        pub fn depth_bias_exact(mut self, depth_bias_exact: crate::vk::Bool32) -> Self {
-            self.depth_bias_exact = depth_bias_exact;
+        pub fn depth_bias_exact(mut self, depth_bias_exact: bool) -> Self {
+            self.depth_bias_exact = depth_bias_exact.into();
             self
         }
     }
@@ -153,29 +153,24 @@ pub(crate) mod reexport {
         }
     }
     impl<'a> PhysicalDeviceDepthBiasControlFeaturesEXT<'a> {
-        pub fn depth_bias_control(
-            mut self,
-            depth_bias_control: crate::vk::Bool32,
-        ) -> Self {
-            self.depth_bias_control = depth_bias_control;
+        pub fn depth_bias_control(mut self, depth_bias_control: bool) -> Self {
+            self.depth_bias_control = depth_bias_control.into();
             self
         }
         pub fn least_representable_value_force_unorm_representation(
             mut self,
-            least_representable_value_force_unorm_representation: crate::vk::Bool32,
+            least_representable_value_force_unorm_representation: bool,
         ) -> Self {
-            self.least_representable_value_force_unorm_representation = least_representable_value_force_unorm_representation;
+            self.least_representable_value_force_unorm_representation = least_representable_value_force_unorm_representation
+                .into();
             self
         }
-        pub fn float_representation(
-            mut self,
-            float_representation: crate::vk::Bool32,
-        ) -> Self {
-            self.float_representation = float_representation;
+        pub fn float_representation(mut self, float_representation: bool) -> Self {
+            self.float_representation = float_representation.into();
             self
         }
-        pub fn depth_bias_exact(mut self, depth_bias_exact: crate::vk::Bool32) -> Self {
-            self.depth_bias_exact = depth_bias_exact;
+        pub fn depth_bias_exact(mut self, depth_bias_exact: bool) -> Self {
+            self.depth_bias_exact = depth_bias_exact.into();
             self
         }
     }

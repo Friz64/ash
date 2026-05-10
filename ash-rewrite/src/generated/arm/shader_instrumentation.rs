@@ -180,11 +180,8 @@ pub(crate) mod reexport {
         }
     }
     impl<'a> PhysicalDeviceShaderInstrumentationFeaturesARM<'a> {
-        pub fn shader_instrumentation(
-            mut self,
-            shader_instrumentation: crate::vk::Bool32,
-        ) -> Self {
-            self.shader_instrumentation = shader_instrumentation;
+        pub fn shader_instrumentation(mut self, shader_instrumentation: bool) -> Self {
+            self.shader_instrumentation = shader_instrumentation.into();
             self
         }
     }
@@ -221,9 +218,9 @@ pub(crate) mod reexport {
         }
         pub fn per_basic_block_granularity(
             mut self,
-            per_basic_block_granularity: crate::vk::Bool32,
+            per_basic_block_granularity: bool,
         ) -> Self {
-            self.per_basic_block_granularity = per_basic_block_granularity;
+            self.per_basic_block_granularity = per_basic_block_granularity.into();
             self
         }
     }
@@ -275,17 +272,26 @@ pub(crate) mod reexport {
     impl<'a> ShaderInstrumentationMetricDescriptionARM<'a> {
         pub fn name(
             mut self,
-            name: [core::ffi::c_char; crate::vk::MAX_DESCRIPTION_SIZE as _],
-        ) -> Self {
-            self.name = name;
-            self
+            name: &core::ffi::CStr,
+        ) -> core::result::Result<Self, crate::CStrTooLargeForStaticArray> {
+            crate::write_c_str_slice_with_nul(&mut self.name, name).map(|_| self)
+        }
+        pub fn name_as_c_str(
+            &self,
+        ) -> core::result::Result<&core::ffi::CStr, core::ffi::FromBytesUntilNulError> {
+            crate::wrap_c_str_slice_until_nul(&self.name)
         }
         pub fn description(
             mut self,
-            description: [core::ffi::c_char; crate::vk::MAX_DESCRIPTION_SIZE as _],
-        ) -> Self {
-            self.description = description;
-            self
+            description: &core::ffi::CStr,
+        ) -> core::result::Result<Self, crate::CStrTooLargeForStaticArray> {
+            crate::write_c_str_slice_with_nul(&mut self.description, description)
+                .map(|_| self)
+        }
+        pub fn description_as_c_str(
+            &self,
+        ) -> core::result::Result<&core::ffi::CStr, core::ffi::FromBytesUntilNulError> {
+            crate::wrap_c_str_slice_until_nul(&self.description)
         }
     }
     #[repr(C)]

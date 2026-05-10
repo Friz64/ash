@@ -28,8 +28,8 @@ impl<'a> Default for PhysicalDeviceAmigoProfilingFeaturesSEC<'a> {
     }
 }
 impl<'a> PhysicalDeviceAmigoProfilingFeaturesSEC<'a> {
-    pub fn amigo_profiling(mut self, amigo_profiling: crate::vk::Bool32) -> Self {
-        self.amigo_profiling = amigo_profiling;
+    pub fn amigo_profiling(mut self, amigo_profiling: bool) -> Self {
+        self.amigo_profiling = amigo_profiling.into();
         self
     }
 }

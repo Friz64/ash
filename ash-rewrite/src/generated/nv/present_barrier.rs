@@ -28,8 +28,8 @@ impl<'a> Default for PhysicalDevicePresentBarrierFeaturesNV<'a> {
     }
 }
 impl<'a> PhysicalDevicePresentBarrierFeaturesNV<'a> {
-    pub fn present_barrier(mut self, present_barrier: crate::vk::Bool32) -> Self {
-        self.present_barrier = present_barrier;
+    pub fn present_barrier(mut self, present_barrier: bool) -> Self {
+        self.present_barrier = present_barrier.into();
         self
     }
 }
@@ -57,11 +57,8 @@ impl<'a> Default for SurfaceCapabilitiesPresentBarrierNV<'a> {
     }
 }
 impl<'a> SurfaceCapabilitiesPresentBarrierNV<'a> {
-    pub fn present_barrier_supported(
-        mut self,
-        present_barrier_supported: crate::vk::Bool32,
-    ) -> Self {
-        self.present_barrier_supported = present_barrier_supported;
+    pub fn present_barrier_supported(mut self, present_barrier_supported: bool) -> Self {
+        self.present_barrier_supported = present_barrier_supported.into();
         self
     }
 }
@@ -89,11 +86,8 @@ impl<'a> Default for SwapchainPresentBarrierCreateInfoNV<'a> {
     }
 }
 impl<'a> SwapchainPresentBarrierCreateInfoNV<'a> {
-    pub fn present_barrier_enable(
-        mut self,
-        present_barrier_enable: crate::vk::Bool32,
-    ) -> Self {
-        self.present_barrier_enable = present_barrier_enable;
+    pub fn present_barrier_enable(mut self, present_barrier_enable: bool) -> Self {
+        self.present_barrier_enable = present_barrier_enable.into();
         self
     }
 }

@@ -67,18 +67,16 @@ pub(crate) mod reexport {
         }
     }
     impl<'a> PhysicalDeviceCooperativeMatrixFeaturesNV<'a> {
-        pub fn cooperative_matrix(
-            mut self,
-            cooperative_matrix: crate::vk::Bool32,
-        ) -> Self {
-            self.cooperative_matrix = cooperative_matrix;
+        pub fn cooperative_matrix(mut self, cooperative_matrix: bool) -> Self {
+            self.cooperative_matrix = cooperative_matrix.into();
             self
         }
         pub fn cooperative_matrix_robust_buffer_access(
             mut self,
-            cooperative_matrix_robust_buffer_access: crate::vk::Bool32,
+            cooperative_matrix_robust_buffer_access: bool,
         ) -> Self {
-            self.cooperative_matrix_robust_buffer_access = cooperative_matrix_robust_buffer_access;
+            self.cooperative_matrix_robust_buffer_access = cooperative_matrix_robust_buffer_access
+                .into();
             self
         }
     }

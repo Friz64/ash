@@ -328,9 +328,10 @@ pub(crate) mod reexport {
         }
         pub fn p_acceleration_structures(
             mut self,
-            p_acceleration_structures: *const crate::vk::AccelerationStructureKHR,
+            p_acceleration_structures: &'a [crate::vk::AccelerationStructureKHR],
         ) -> Self {
-            self.p_acceleration_structures = p_acceleration_structures;
+            self.acceleration_structure_count = p_acceleration_structures.len() as _;
+            self.p_acceleration_structures = p_acceleration_structures.as_ptr();
             self
         }
     }
@@ -369,39 +370,40 @@ pub(crate) mod reexport {
         }
     }
     impl<'a> PhysicalDeviceAccelerationStructureFeaturesKHR<'a> {
-        pub fn acceleration_structure(
-            mut self,
-            acceleration_structure: crate::vk::Bool32,
-        ) -> Self {
-            self.acceleration_structure = acceleration_structure;
+        pub fn acceleration_structure(mut self, acceleration_structure: bool) -> Self {
+            self.acceleration_structure = acceleration_structure.into();
             self
         }
         pub fn acceleration_structure_capture_replay(
             mut self,
-            acceleration_structure_capture_replay: crate::vk::Bool32,
+            acceleration_structure_capture_replay: bool,
         ) -> Self {
-            self.acceleration_structure_capture_replay = acceleration_structure_capture_replay;
+            self.acceleration_structure_capture_replay = acceleration_structure_capture_replay
+                .into();
             self
         }
         pub fn acceleration_structure_indirect_build(
             mut self,
-            acceleration_structure_indirect_build: crate::vk::Bool32,
+            acceleration_structure_indirect_build: bool,
         ) -> Self {
-            self.acceleration_structure_indirect_build = acceleration_structure_indirect_build;
+            self.acceleration_structure_indirect_build = acceleration_structure_indirect_build
+                .into();
             self
         }
         pub fn acceleration_structure_host_commands(
             mut self,
-            acceleration_structure_host_commands: crate::vk::Bool32,
+            acceleration_structure_host_commands: bool,
         ) -> Self {
-            self.acceleration_structure_host_commands = acceleration_structure_host_commands;
+            self.acceleration_structure_host_commands = acceleration_structure_host_commands
+                .into();
             self
         }
         pub fn descriptor_binding_acceleration_structure_update_after_bind(
             mut self,
-            descriptor_binding_acceleration_structure_update_after_bind: crate::vk::Bool32,
+            descriptor_binding_acceleration_structure_update_after_bind: bool,
         ) -> Self {
-            self.descriptor_binding_acceleration_structure_update_after_bind = descriptor_binding_acceleration_structure_update_after_bind;
+            self.descriptor_binding_acceleration_structure_update_after_bind = descriptor_binding_acceleration_structure_update_after_bind
+                .into();
             self
         }
     }
@@ -624,11 +626,8 @@ pub(crate) mod reexport {
         }
     }
     impl<'a> AccelerationStructureGeometryInstancesDataKHR<'a> {
-        pub fn array_of_pointers(
-            mut self,
-            array_of_pointers: crate::vk::Bool32,
-        ) -> Self {
-            self.array_of_pointers = array_of_pointers;
+        pub fn array_of_pointers(mut self, array_of_pointers: bool) -> Self {
+            self.array_of_pointers = array_of_pointers.into();
             self
         }
         pub fn data(mut self, data: crate::vk::DeviceOrHostAddressConstKHR) -> Self {
@@ -758,16 +757,18 @@ pub(crate) mod reexport {
         }
         pub fn p_geometries(
             mut self,
-            p_geometries: *const crate::vk::AccelerationStructureGeometryKHR<'a>,
+            p_geometries: &'a [crate::vk::AccelerationStructureGeometryKHR<'a>],
         ) -> Self {
-            self.p_geometries = p_geometries;
+            self.geometry_count = p_geometries.len() as _;
+            self.p_geometries = p_geometries.as_ptr();
             self
         }
         pub fn pp_geometries(
             mut self,
-            pp_geometries: *const *const crate::vk::AccelerationStructureGeometryKHR<'a>,
+            pp_geometries: &'a [&'a crate::vk::AccelerationStructureGeometryKHR<'a>],
         ) -> Self {
-            self.pp_geometries = pp_geometries;
+            self.geometry_count = pp_geometries.len() as _;
+            self.pp_geometries = pp_geometries.as_ptr().cast();
             self
         }
         pub fn scratch_data(

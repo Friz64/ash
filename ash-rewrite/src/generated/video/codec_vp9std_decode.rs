@@ -173,21 +173,18 @@ impl<'a> DecodeVP9PictureInfo<'a> {
     }
     pub fn p_color_config(
         mut self,
-        p_color_config: *const crate::vk::VP9ColorConfig,
+        p_color_config: &'a crate::vk::VP9ColorConfig,
     ) -> Self {
         self.p_color_config = p_color_config;
         self
     }
-    pub fn p_loop_filter(
-        mut self,
-        p_loop_filter: *const crate::vk::VP9LoopFilter,
-    ) -> Self {
+    pub fn p_loop_filter(mut self, p_loop_filter: &'a crate::vk::VP9LoopFilter) -> Self {
         self.p_loop_filter = p_loop_filter;
         self
     }
     pub fn p_segmentation(
         mut self,
-        p_segmentation: *const crate::vk::VP9Segmentation,
+        p_segmentation: &'a crate::vk::VP9Segmentation,
     ) -> Self {
         self.p_segmentation = p_segmentation;
         self

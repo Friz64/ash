@@ -84,7 +84,7 @@ impl vk::Result {
     }
 
     /// # Safety
-///
+    ///
     /// [`mem::MaybeUninit::assume_init`]'s safety rules apply
     /// if `self` is exactly equal to [`vk::Result::SUCCESS`], i.e. 0.
     #[inline]
@@ -135,6 +135,45 @@ where
     }
 }
 
+#[derive(Debug)]
+pub struct CStrTooLargeForStaticArray {
+    pub static_array_size: usize,
+    pub c_str_size: usize,
+}
+
+impl core::error::Error for CStrTooLargeForStaticArray {}
+impl core::fmt::Display for CStrTooLargeForStaticArray {
+    fn fmt(&self, f: &mut std::fmt::Formatter<'_>) -> std::fmt::Result {
+        write!(f, "static `c_char` target array of length `{}` is too small to write a `CStr` (with `NUL`-terminator) of length `{}`", self.static_array_size, self.c_str_size)
+    }
+}
+
+pub(crate) fn write_c_str_slice_with_nul(
+    target: &mut [core::ffi::c_char],
+    str: &core::ffi::CStr,
+) -> Result<(), CStrTooLargeForStaticArray> {
+    let bytes = str.to_bytes_with_nul();
+    // SAFETY: cast from c_char to u8 is ok because c_char is always one byte
+    let bytes = unsafe { core::slice::from_raw_parts(bytes.as_ptr().cast(), bytes.len()) };
+    let static_array_size = target.len();
+    target
+        .get_mut(..bytes.len())
+        .ok_or(CStrTooLargeForStaticArray {
+            static_array_size,
+            c_str_size: bytes.len(),
+        })?
+        .copy_from_slice(bytes);
+    Ok(())
+}
+
+pub(crate) fn wrap_c_str_slice_until_nul(
+    str: &[core::ffi::c_char],
+) -> Result<&core::ffi::CStr, core::ffi::FromBytesUntilNulError> {
+    // SAFETY: The cast from c_char to u8 is ok because a c_char is always one byte.
+    let bytes = unsafe { core::slice::from_raw_parts(str.as_ptr().cast(), str.len()) };
+    core::ffi::CStr::from_bytes_until_nul(bytes)
+}
+
 pub unsafe trait TaggedStructure<'a>: Sized {
     const STRUCTURE_TYPE: StructureType;
 }
@@ -156,4 +195,3 @@ pub use vk1_3::DeviceFnV1_3;
 pub use vk1_3::InstanceFnV1_3;
 
 use self::generated::vk::StructureType;
-

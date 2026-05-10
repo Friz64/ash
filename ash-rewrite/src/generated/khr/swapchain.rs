@@ -289,9 +289,10 @@ pub(crate) mod reexport {
         }
         pub fn p_queue_family_indices(
             mut self,
-            p_queue_family_indices: *const u32,
+            p_queue_family_indices: &'a [u32],
         ) -> Self {
-            self.p_queue_family_indices = p_queue_family_indices;
+            self.queue_family_index_count = p_queue_family_indices.len() as _;
+            self.p_queue_family_indices = p_queue_family_indices.as_ptr();
             self
         }
         pub fn pre_transform(
@@ -312,8 +313,8 @@ pub(crate) mod reexport {
             self.present_mode = present_mode;
             self
         }
-        pub fn clipped(mut self, clipped: crate::vk::Bool32) -> Self {
-            self.clipped = clipped;
+        pub fn clipped(mut self, clipped: bool) -> Self {
+            self.clipped = clipped.into();
             self
         }
         pub fn old_swapchain(mut self, old_swapchain: crate::vk::SwapchainKHR) -> Self {
@@ -359,9 +360,10 @@ pub(crate) mod reexport {
         }
         pub fn p_wait_semaphores(
             mut self,
-            p_wait_semaphores: *const crate::vk::Semaphore,
+            p_wait_semaphores: &'a [crate::vk::Semaphore],
         ) -> Self {
-            self.p_wait_semaphores = p_wait_semaphores;
+            self.wait_semaphore_count = p_wait_semaphores.len() as _;
+            self.p_wait_semaphores = p_wait_semaphores.as_ptr();
             self
         }
         pub fn swapchain_count(mut self, swapchain_count: u32) -> Self {
@@ -370,17 +372,20 @@ pub(crate) mod reexport {
         }
         pub fn p_swapchains(
             mut self,
-            p_swapchains: *const crate::vk::SwapchainKHR,
+            p_swapchains: &'a [crate::vk::SwapchainKHR],
         ) -> Self {
-            self.p_swapchains = p_swapchains;
+            self.swapchain_count = p_swapchains.len() as _;
+            self.p_swapchains = p_swapchains.as_ptr();
             self
         }
-        pub fn p_image_indices(mut self, p_image_indices: *const u32) -> Self {
-            self.p_image_indices = p_image_indices;
+        pub fn p_image_indices(mut self, p_image_indices: &'a [u32]) -> Self {
+            self.swapchain_count = p_image_indices.len() as _;
+            self.p_image_indices = p_image_indices.as_ptr();
             self
         }
-        pub fn p_results(mut self, p_results: *mut crate::vk::Result) -> Self {
-            self.p_results = p_results;
+        pub fn p_results(mut self, p_results: &'a mut [crate::vk::Result]) -> Self {
+            self.swapchain_count = p_results.len() as _;
+            self.p_results = p_results.as_mut_ptr();
             self
         }
     }
@@ -571,8 +576,9 @@ pub(crate) mod reexport {
             self.swapchain_count = swapchain_count;
             self
         }
-        pub fn p_device_masks(mut self, p_device_masks: *const u32) -> Self {
-            self.p_device_masks = p_device_masks;
+        pub fn p_device_masks(mut self, p_device_masks: &'a [u32]) -> Self {
+            self.swapchain_count = p_device_masks.len() as _;
+            self.p_device_masks = p_device_masks.as_ptr();
             self
         }
         pub fn mode(

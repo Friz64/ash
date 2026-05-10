@@ -28,11 +28,8 @@ impl<'a> Default for PhysicalDeviceDenseGeometryFormatFeaturesAMDX<'a> {
     }
 }
 impl<'a> PhysicalDeviceDenseGeometryFormatFeaturesAMDX<'a> {
-    pub fn dense_geometry_format(
-        mut self,
-        dense_geometry_format: crate::vk::Bool32,
-    ) -> Self {
-        self.dense_geometry_format = dense_geometry_format;
+    pub fn dense_geometry_format(mut self, dense_geometry_format: bool) -> Self {
+        self.dense_geometry_format = dense_geometry_format.into();
         self
     }
 }

@@ -32,25 +32,23 @@ impl<'a> Default for PhysicalDeviceNestedCommandBufferFeaturesEXT<'a> {
     }
 }
 impl<'a> PhysicalDeviceNestedCommandBufferFeaturesEXT<'a> {
-    pub fn nested_command_buffer(
-        mut self,
-        nested_command_buffer: crate::vk::Bool32,
-    ) -> Self {
-        self.nested_command_buffer = nested_command_buffer;
+    pub fn nested_command_buffer(mut self, nested_command_buffer: bool) -> Self {
+        self.nested_command_buffer = nested_command_buffer.into();
         self
     }
     pub fn nested_command_buffer_rendering(
         mut self,
-        nested_command_buffer_rendering: crate::vk::Bool32,
+        nested_command_buffer_rendering: bool,
     ) -> Self {
-        self.nested_command_buffer_rendering = nested_command_buffer_rendering;
+        self.nested_command_buffer_rendering = nested_command_buffer_rendering.into();
         self
     }
     pub fn nested_command_buffer_simultaneous_use(
         mut self,
-        nested_command_buffer_simultaneous_use: crate::vk::Bool32,
+        nested_command_buffer_simultaneous_use: bool,
     ) -> Self {
-        self.nested_command_buffer_simultaneous_use = nested_command_buffer_simultaneous_use;
+        self.nested_command_buffer_simultaneous_use = nested_command_buffer_simultaneous_use
+            .into();
         self
     }
 }

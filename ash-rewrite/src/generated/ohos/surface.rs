@@ -67,7 +67,7 @@ pub(crate) mod reexport {
         }
         pub fn window(
             mut self,
-            window: *mut crate::platform_types::OHNativeWindow,
+            window: &'a mut crate::platform_types::OHNativeWindow,
         ) -> Self {
             self.window = window;
             self

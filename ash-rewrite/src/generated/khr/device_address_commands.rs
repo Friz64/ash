@@ -492,9 +492,10 @@ pub(crate) mod reexport {
         }
         pub fn p_regions(
             mut self,
-            p_regions: *const crate::vk::DeviceMemoryCopyKHR<'a>,
+            p_regions: &'a [crate::vk::DeviceMemoryCopyKHR<'a>],
         ) -> Self {
-            self.p_regions = p_regions;
+            self.region_count = p_regions.len() as _;
+            self.p_regions = p_regions.as_ptr();
             self
         }
     }
@@ -612,9 +613,10 @@ pub(crate) mod reexport {
         }
         pub fn p_regions(
             mut self,
-            p_regions: *const crate::vk::DeviceMemoryImageCopyKHR<'a>,
+            p_regions: &'a [crate::vk::DeviceMemoryImageCopyKHR<'a>],
         ) -> Self {
-            self.p_regions = p_regions;
+            self.region_count = p_regions.len() as _;
+            self.p_regions = p_regions.as_ptr();
             self
         }
     }
@@ -653,9 +655,10 @@ pub(crate) mod reexport {
         }
         pub fn p_memory_range_barriers(
             mut self,
-            p_memory_range_barriers: *const crate::vk::MemoryRangeBarrierKHR<'a>,
+            p_memory_range_barriers: &'a [crate::vk::MemoryRangeBarrierKHR<'a>],
         ) -> Self {
-            self.p_memory_range_barriers = p_memory_range_barriers;
+            self.memory_range_barrier_count = p_memory_range_barriers.len() as _;
+            self.p_memory_range_barriers = p_memory_range_barriers.as_ptr();
             self
         }
     }
@@ -773,11 +776,8 @@ pub(crate) mod reexport {
         }
     }
     impl<'a> PhysicalDeviceDeviceAddressCommandsFeaturesKHR<'a> {
-        pub fn device_address_commands(
-            mut self,
-            device_address_commands: crate::vk::Bool32,
-        ) -> Self {
-            self.device_address_commands = device_address_commands;
+        pub fn device_address_commands(mut self, device_address_commands: bool) -> Self {
+            self.device_address_commands = device_address_commands.into();
             self
         }
     }
@@ -953,8 +953,8 @@ pub(crate) mod reexport {
         }
     }
     impl<'a> BindVertexBuffer3InfoKHR<'a> {
-        pub fn set_stride(mut self, set_stride: crate::vk::Bool32) -> Self {
-            self.set_stride = set_stride;
+        pub fn set_stride(mut self, set_stride: bool) -> Self {
+            self.set_stride = set_stride.into();
             self
         }
         pub fn address_range(

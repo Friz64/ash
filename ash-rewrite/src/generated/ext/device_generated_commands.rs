@@ -199,16 +199,17 @@ pub(crate) mod reexport {
     impl<'a> PhysicalDeviceDeviceGeneratedCommandsFeaturesEXT<'a> {
         pub fn device_generated_commands(
             mut self,
-            device_generated_commands: crate::vk::Bool32,
+            device_generated_commands: bool,
         ) -> Self {
-            self.device_generated_commands = device_generated_commands;
+            self.device_generated_commands = device_generated_commands.into();
             self
         }
         pub fn dynamic_generated_pipeline_layout(
             mut self,
-            dynamic_generated_pipeline_layout: crate::vk::Bool32,
+            dynamic_generated_pipeline_layout: bool,
         ) -> Self {
-            self.dynamic_generated_pipeline_layout = dynamic_generated_pipeline_layout;
+            self.dynamic_generated_pipeline_layout = dynamic_generated_pipeline_layout
+                .into();
             self
         }
     }
@@ -331,16 +332,18 @@ pub(crate) mod reexport {
         }
         pub fn device_generated_commands_transform_feedback(
             mut self,
-            device_generated_commands_transform_feedback: crate::vk::Bool32,
+            device_generated_commands_transform_feedback: bool,
         ) -> Self {
-            self.device_generated_commands_transform_feedback = device_generated_commands_transform_feedback;
+            self.device_generated_commands_transform_feedback = device_generated_commands_transform_feedback
+                .into();
             self
         }
         pub fn device_generated_commands_multi_draw_indirect_count(
             mut self,
-            device_generated_commands_multi_draw_indirect_count: crate::vk::Bool32,
+            device_generated_commands_multi_draw_indirect_count: bool,
         ) -> Self {
-            self.device_generated_commands_multi_draw_indirect_count = device_generated_commands_multi_draw_indirect_count;
+            self.device_generated_commands_multi_draw_indirect_count = device_generated_commands_multi_draw_indirect_count
+                .into();
             self
         }
     }
@@ -411,8 +414,9 @@ pub(crate) mod reexport {
             self.shader_count = shader_count;
             self
         }
-        pub fn p_shaders(mut self, p_shaders: *const crate::vk::ShaderEXT) -> Self {
-            self.p_shaders = p_shaders;
+        pub fn p_shaders(mut self, p_shaders: &'a [crate::vk::ShaderEXT]) -> Self {
+            self.shader_count = p_shaders.len() as _;
+            self.p_shaders = p_shaders.as_ptr();
             self
         }
     }
@@ -536,9 +540,10 @@ pub(crate) mod reexport {
         }
         pub fn p_set_layouts(
             mut self,
-            p_set_layouts: *const crate::vk::DescriptorSetLayout,
+            p_set_layouts: &'a [crate::vk::DescriptorSetLayout],
         ) -> Self {
-            self.p_set_layouts = p_set_layouts;
+            self.set_layout_count = p_set_layouts.len() as _;
+            self.p_set_layouts = p_set_layouts.as_ptr();
             self
         }
     }
@@ -583,18 +588,20 @@ pub(crate) mod reexport {
         }
         pub fn p_initial_shaders(
             mut self,
-            p_initial_shaders: *const crate::vk::ShaderEXT,
+            p_initial_shaders: &'a [crate::vk::ShaderEXT],
         ) -> Self {
-            self.p_initial_shaders = p_initial_shaders;
+            self.shader_count = p_initial_shaders.len() as _;
+            self.p_initial_shaders = p_initial_shaders.as_ptr();
             self
         }
         pub fn p_set_layout_infos(
             mut self,
-            p_set_layout_infos: *const crate::vk::IndirectExecutionSetShaderLayoutInfoEXT<
+            p_set_layout_infos: &'a [crate::vk::IndirectExecutionSetShaderLayoutInfoEXT<
                 'a,
-            >,
+            >],
         ) -> Self {
-            self.p_set_layout_infos = p_set_layout_infos;
+            self.shader_count = p_set_layout_infos.len() as _;
+            self.p_set_layout_infos = p_set_layout_infos.as_ptr();
             self
         }
         pub fn max_shader_count(mut self, max_shader_count: u32) -> Self {
@@ -610,9 +617,10 @@ pub(crate) mod reexport {
         }
         pub fn p_push_constant_ranges(
             mut self,
-            p_push_constant_ranges: *const crate::vk::PushConstantRange,
+            p_push_constant_ranges: &'a [crate::vk::PushConstantRange],
         ) -> Self {
-            self.p_push_constant_ranges = p_push_constant_ranges;
+            self.push_constant_range_count = p_push_constant_ranges.len() as _;
+            self.p_push_constant_ranges = p_push_constant_ranges.as_ptr();
             self
         }
     }
@@ -890,9 +898,10 @@ pub(crate) mod reexport {
         }
         pub fn p_tokens(
             mut self,
-            p_tokens: *const crate::vk::IndirectCommandsLayoutTokenEXT<'a>,
+            p_tokens: &'a [crate::vk::IndirectCommandsLayoutTokenEXT<'a>],
         ) -> Self {
-            self.p_tokens = p_tokens;
+            self.token_count = p_tokens.len() as _;
+            self.p_tokens = p_tokens.as_ptr();
             self
         }
     }

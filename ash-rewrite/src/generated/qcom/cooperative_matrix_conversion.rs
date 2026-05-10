@@ -30,9 +30,9 @@ impl<'a> Default for PhysicalDeviceCooperativeMatrixConversionFeaturesQCOM<'a> {
 impl<'a> PhysicalDeviceCooperativeMatrixConversionFeaturesQCOM<'a> {
     pub fn cooperative_matrix_conversion(
         mut self,
-        cooperative_matrix_conversion: crate::vk::Bool32,
+        cooperative_matrix_conversion: bool,
     ) -> Self {
-        self.cooperative_matrix_conversion = cooperative_matrix_conversion;
+        self.cooperative_matrix_conversion = cooperative_matrix_conversion.into();
         self
     }
 }

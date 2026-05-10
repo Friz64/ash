@@ -82,8 +82,8 @@ pub(crate) mod reexport {
         }
     }
     impl<'a> PhysicalDeviceCustomResolveFeaturesEXT<'a> {
-        pub fn custom_resolve(mut self, custom_resolve: crate::vk::Bool32) -> Self {
-            self.custom_resolve = custom_resolve;
+        pub fn custom_resolve(mut self, custom_resolve: bool) -> Self {
+            self.custom_resolve = custom_resolve.into();
             self
         }
     }
@@ -123,8 +123,8 @@ pub(crate) mod reexport {
         }
     }
     impl<'a> CustomResolveCreateInfoEXT<'a> {
-        pub fn custom_resolve(mut self, custom_resolve: crate::vk::Bool32) -> Self {
-            self.custom_resolve = custom_resolve;
+        pub fn custom_resolve(mut self, custom_resolve: bool) -> Self {
+            self.custom_resolve = custom_resolve.into();
             self
         }
         pub fn color_attachment_count(mut self, color_attachment_count: u32) -> Self {
@@ -133,9 +133,10 @@ pub(crate) mod reexport {
         }
         pub fn p_color_attachment_formats(
             mut self,
-            p_color_attachment_formats: *const crate::vk::Format,
+            p_color_attachment_formats: &'a [crate::vk::Format],
         ) -> Self {
-            self.p_color_attachment_formats = p_color_attachment_formats;
+            self.color_attachment_count = p_color_attachment_formats.len() as _;
+            self.p_color_attachment_formats = p_color_attachment_formats.as_ptr();
             self
         }
         pub fn depth_attachment_format(

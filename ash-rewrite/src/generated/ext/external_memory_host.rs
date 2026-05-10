@@ -70,7 +70,10 @@ pub(crate) mod reexport {
             self.handle_type = handle_type;
             self
         }
-        pub fn p_host_pointer(mut self, p_host_pointer: *mut core::ffi::c_void) -> Self {
+        pub fn p_host_pointer(
+            mut self,
+            p_host_pointer: &'a mut core::ffi::c_void,
+        ) -> Self {
             self.p_host_pointer = p_host_pointer;
             self
         }

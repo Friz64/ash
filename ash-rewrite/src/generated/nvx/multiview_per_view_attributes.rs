@@ -28,9 +28,9 @@ impl<'a> Default for PhysicalDeviceMultiviewPerViewAttributesPropertiesNVX<'a> {
 impl<'a> PhysicalDeviceMultiviewPerViewAttributesPropertiesNVX<'a> {
     pub fn per_view_position_all_components(
         mut self,
-        per_view_position_all_components: crate::vk::Bool32,
+        per_view_position_all_components: bool,
     ) -> Self {
-        self.per_view_position_all_components = per_view_position_all_components;
+        self.per_view_position_all_components = per_view_position_all_components.into();
         self
     }
 }
@@ -64,18 +64,16 @@ impl<'a> Default for MultiviewPerViewAttributesInfoNVX<'a> {
     }
 }
 impl<'a> MultiviewPerViewAttributesInfoNVX<'a> {
-    pub fn per_view_attributes(
-        mut self,
-        per_view_attributes: crate::vk::Bool32,
-    ) -> Self {
-        self.per_view_attributes = per_view_attributes;
+    pub fn per_view_attributes(mut self, per_view_attributes: bool) -> Self {
+        self.per_view_attributes = per_view_attributes.into();
         self
     }
     pub fn per_view_attributes_position_x_only(
         mut self,
-        per_view_attributes_position_x_only: crate::vk::Bool32,
+        per_view_attributes_position_x_only: bool,
     ) -> Self {
-        self.per_view_attributes_position_x_only = per_view_attributes_position_x_only;
+        self.per_view_attributes_position_x_only = per_view_attributes_position_x_only
+            .into();
         self
     }
 }

@@ -34,7 +34,7 @@ pub struct StructDecl {
     pub len: Vec<Length>,
 }
 
-#[derive(Debug)]
+#[derive(Debug, PartialEq, Eq)]
 pub enum Length {
     Member(VariableName),
     NullTerminated,
@@ -66,7 +66,6 @@ impl Struct {
         let mut structure_type = None;
 
         for member in &xml.members {
-            let decl = Decl::from_c(require_map, &member.c_decl);
             let lens = if member.len.iter().any(|&s| s.starts_with("latexmath:")) {
                 &member.altlen
             } else {
@@ -83,8 +82,8 @@ impl Struct {
                     }
                     custom => Length::Custom(custom),
                 })
-                .collect();
-
+                .collect::<Vec<_>>();
+            let decl = Decl::from_c(require_map, &member.c_decl);
             if let Some(width) = member.c_decl.bitfield_width {
                 // this is currently the case everywhere,
                 // and if this assumption is broken, the code below will panic

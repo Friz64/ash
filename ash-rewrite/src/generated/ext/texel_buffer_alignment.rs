@@ -28,11 +28,8 @@ impl<'a> Default for PhysicalDeviceTexelBufferAlignmentFeaturesEXT<'a> {
     }
 }
 impl<'a> PhysicalDeviceTexelBufferAlignmentFeaturesEXT<'a> {
-    pub fn texel_buffer_alignment(
-        mut self,
-        texel_buffer_alignment: crate::vk::Bool32,
-    ) -> Self {
-        self.texel_buffer_alignment = texel_buffer_alignment;
+    pub fn texel_buffer_alignment(mut self, texel_buffer_alignment: bool) -> Self {
+        self.texel_buffer_alignment = texel_buffer_alignment.into();
         self
     }
 }

@@ -31,11 +31,9 @@ impl<'a> HdrVividDynamicMetadataHUAWEI<'a> {
         self.dynamic_metadata_size = dynamic_metadata_size;
         self
     }
-    pub fn p_dynamic_metadata(
-        mut self,
-        p_dynamic_metadata: *const core::ffi::c_void,
-    ) -> Self {
-        self.p_dynamic_metadata = p_dynamic_metadata;
+    pub fn p_dynamic_metadata(mut self, p_dynamic_metadata: &'a [u8]) -> Self {
+        self.dynamic_metadata_size = p_dynamic_metadata.len() as _;
+        self.p_dynamic_metadata = p_dynamic_metadata.as_ptr().cast();
         self
     }
 }
@@ -65,8 +63,8 @@ impl<'a> Default for PhysicalDeviceHdrVividFeaturesHUAWEI<'a> {
     }
 }
 impl<'a> PhysicalDeviceHdrVividFeaturesHUAWEI<'a> {
-    pub fn hdr_vivid(mut self, hdr_vivid: crate::vk::Bool32) -> Self {
-        self.hdr_vivid = hdr_vivid;
+    pub fn hdr_vivid(mut self, hdr_vivid: bool) -> Self {
+        self.hdr_vivid = hdr_vivid.into();
         self
     }
 }

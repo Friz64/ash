@@ -30,9 +30,9 @@ impl<'a> Default for PhysicalDeviceRepresentativeFragmentTestFeaturesNV<'a> {
 impl<'a> PhysicalDeviceRepresentativeFragmentTestFeaturesNV<'a> {
     pub fn representative_fragment_test(
         mut self,
-        representative_fragment_test: crate::vk::Bool32,
+        representative_fragment_test: bool,
     ) -> Self {
-        self.representative_fragment_test = representative_fragment_test;
+        self.representative_fragment_test = representative_fragment_test.into();
         self
     }
 }
@@ -63,9 +63,10 @@ impl<'a> Default for PipelineRepresentativeFragmentTestStateCreateInfoNV<'a> {
 impl<'a> PipelineRepresentativeFragmentTestStateCreateInfoNV<'a> {
     pub fn representative_fragment_test_enable(
         mut self,
-        representative_fragment_test_enable: crate::vk::Bool32,
+        representative_fragment_test_enable: bool,
     ) -> Self {
-        self.representative_fragment_test_enable = representative_fragment_test_enable;
+        self.representative_fragment_test_enable = representative_fragment_test_enable
+            .into();
         self
     }
 }

@@ -103,7 +103,7 @@ pub(crate) mod reexport {
     impl<'a> ExportMemoryWin32HandleInfoNV<'a> {
         pub fn p_attributes(
             mut self,
-            p_attributes: *const crate::platform_types::SECURITY_ATTRIBUTES,
+            p_attributes: &'a crate::platform_types::SECURITY_ATTRIBUTES,
         ) -> Self {
             self.p_attributes = p_attributes;
             self

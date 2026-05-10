@@ -142,18 +142,16 @@ pub(crate) mod reexport {
         }
     }
     impl<'a> PhysicalDeviceClusterCullingShaderFeaturesHUAWEI<'a> {
-        pub fn clusterculling_shader(
-            mut self,
-            clusterculling_shader: crate::vk::Bool32,
-        ) -> Self {
-            self.clusterculling_shader = clusterculling_shader;
+        pub fn clusterculling_shader(mut self, clusterculling_shader: bool) -> Self {
+            self.clusterculling_shader = clusterculling_shader.into();
             self
         }
         pub fn multiview_cluster_culling_shader(
             mut self,
-            multiview_cluster_culling_shader: crate::vk::Bool32,
+            multiview_cluster_culling_shader: bool,
         ) -> Self {
-            self.multiview_cluster_culling_shader = multiview_cluster_culling_shader;
+            self.multiview_cluster_culling_shader = multiview_cluster_culling_shader
+                .into();
             self
         }
     }
@@ -184,11 +182,8 @@ pub(crate) mod reexport {
         }
     }
     impl<'a> PhysicalDeviceClusterCullingShaderVrsFeaturesHUAWEI<'a> {
-        pub fn cluster_shading_rate(
-            mut self,
-            cluster_shading_rate: crate::vk::Bool32,
-        ) -> Self {
-            self.cluster_shading_rate = cluster_shading_rate;
+        pub fn cluster_shading_rate(mut self, cluster_shading_rate: bool) -> Self {
+            self.cluster_shading_rate = cluster_shading_rate.into();
             self
         }
     }

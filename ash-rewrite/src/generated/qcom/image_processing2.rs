@@ -28,11 +28,8 @@ impl<'a> Default for PhysicalDeviceImageProcessing2FeaturesQCOM<'a> {
     }
 }
 impl<'a> PhysicalDeviceImageProcessing2FeaturesQCOM<'a> {
-    pub fn texture_block_match2(
-        mut self,
-        texture_block_match2: crate::vk::Bool32,
-    ) -> Self {
-        self.texture_block_match2 = texture_block_match2;
+    pub fn texture_block_match2(mut self, texture_block_match2: bool) -> Self {
+        self.texture_block_match2 = texture_block_match2.into();
         self
     }
 }

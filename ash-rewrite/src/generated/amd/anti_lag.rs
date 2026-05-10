@@ -61,8 +61,8 @@ pub(crate) mod reexport {
         }
     }
     impl<'a> PhysicalDeviceAntiLagFeaturesAMD<'a> {
-        pub fn anti_lag(mut self, anti_lag: crate::vk::Bool32) -> Self {
-            self.anti_lag = anti_lag;
+        pub fn anti_lag(mut self, anti_lag: bool) -> Self {
+            self.anti_lag = anti_lag.into();
             self
         }
     }
@@ -102,7 +102,7 @@ pub(crate) mod reexport {
         }
         pub fn p_presentation_info(
             mut self,
-            p_presentation_info: *const crate::vk::AntiLagPresentationInfoAMD<'a>,
+            p_presentation_info: &'a crate::vk::AntiLagPresentationInfoAMD<'a>,
         ) -> Self {
             self.p_presentation_info = p_presentation_info;
             self

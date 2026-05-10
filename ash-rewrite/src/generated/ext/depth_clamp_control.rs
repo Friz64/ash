@@ -28,11 +28,8 @@ impl<'a> Default for PhysicalDeviceDepthClampControlFeaturesEXT<'a> {
     }
 }
 impl<'a> PhysicalDeviceDepthClampControlFeaturesEXT<'a> {
-    pub fn depth_clamp_control(
-        mut self,
-        depth_clamp_control: crate::vk::Bool32,
-    ) -> Self {
-        self.depth_clamp_control = depth_clamp_control;
+    pub fn depth_clamp_control(mut self, depth_clamp_control: bool) -> Self {
+        self.depth_clamp_control = depth_clamp_control.into();
         self
     }
 }
@@ -72,7 +69,7 @@ impl<'a> PipelineViewportDepthClampControlCreateInfoEXT<'a> {
     }
     pub fn p_depth_clamp_range(
         mut self,
-        p_depth_clamp_range: *const crate::vk::DepthClampRangeEXT,
+        p_depth_clamp_range: &'a crate::vk::DepthClampRangeEXT,
     ) -> Self {
         self.p_depth_clamp_range = p_depth_clamp_range;
         self

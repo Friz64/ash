@@ -28,11 +28,8 @@ impl<'a> Default for PhysicalDeviceDepthClampZeroOneFeaturesKHR<'a> {
     }
 }
 impl<'a> PhysicalDeviceDepthClampZeroOneFeaturesKHR<'a> {
-    pub fn depth_clamp_zero_one(
-        mut self,
-        depth_clamp_zero_one: crate::vk::Bool32,
-    ) -> Self {
-        self.depth_clamp_zero_one = depth_clamp_zero_one;
+    pub fn depth_clamp_zero_one(mut self, depth_clamp_zero_one: bool) -> Self {
+        self.depth_clamp_zero_one = depth_clamp_zero_one.into();
         self
     }
 }

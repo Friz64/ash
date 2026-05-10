@@ -81,9 +81,9 @@ pub(crate) mod reexport {
     impl<'a> PhysicalDeviceShaderModuleIdentifierFeaturesEXT<'a> {
         pub fn shader_module_identifier(
             mut self,
-            shader_module_identifier: crate::vk::Bool32,
+            shader_module_identifier: bool,
         ) -> Self {
-            self.shader_module_identifier = shader_module_identifier;
+            self.shader_module_identifier = shader_module_identifier.into();
             self
         }
     }
@@ -151,8 +151,9 @@ pub(crate) mod reexport {
             self.identifier_size = identifier_size;
             self
         }
-        pub fn p_identifier(mut self, p_identifier: *const u8) -> Self {
-            self.p_identifier = p_identifier;
+        pub fn p_identifier(mut self, p_identifier: &'a [u8]) -> Self {
+            self.identifier_size = p_identifier.len() as _;
+            self.p_identifier = p_identifier.as_ptr();
             self
         }
     }
@@ -184,12 +185,13 @@ pub(crate) mod reexport {
             self.identifier_size = identifier_size;
             self
         }
-        pub fn identifier(
-            mut self,
-            identifier: [u8; crate::vk::MAX_SHADER_MODULE_IDENTIFIER_SIZE_EXT as _],
-        ) -> Self {
-            self.identifier = identifier;
+        pub fn identifier(mut self, identifier: &[u8]) -> Self {
+            self.identifier_size = identifier.len() as _;
+            self.identifier[..identifier.len()].copy_from_slice(identifier);
             self
+        }
+        pub fn identifier_as_slice(&self) -> &[u8] {
+            &self.identifier[..self.identifier_size as _]
         }
     }
     ///Provided by [`ext::shader_module_identifier`](crate::ext::shader_module_identifier)

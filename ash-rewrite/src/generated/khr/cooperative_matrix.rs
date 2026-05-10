@@ -67,18 +67,16 @@ pub(crate) mod reexport {
         }
     }
     impl<'a> PhysicalDeviceCooperativeMatrixFeaturesKHR<'a> {
-        pub fn cooperative_matrix(
-            mut self,
-            cooperative_matrix: crate::vk::Bool32,
-        ) -> Self {
-            self.cooperative_matrix = cooperative_matrix;
+        pub fn cooperative_matrix(mut self, cooperative_matrix: bool) -> Self {
+            self.cooperative_matrix = cooperative_matrix.into();
             self
         }
         pub fn cooperative_matrix_robust_buffer_access(
             mut self,
-            cooperative_matrix_robust_buffer_access: crate::vk::Bool32,
+            cooperative_matrix_robust_buffer_access: bool,
         ) -> Self {
-            self.cooperative_matrix_robust_buffer_access = cooperative_matrix_robust_buffer_access;
+            self.cooperative_matrix_robust_buffer_access = cooperative_matrix_robust_buffer_access
+                .into();
             self
         }
     }
@@ -148,11 +146,8 @@ pub(crate) mod reexport {
             self.result_type = result_type;
             self
         }
-        pub fn saturating_accumulation(
-            mut self,
-            saturating_accumulation: crate::vk::Bool32,
-        ) -> Self {
-            self.saturating_accumulation = saturating_accumulation;
+        pub fn saturating_accumulation(mut self, saturating_accumulation: bool) -> Self {
+            self.saturating_accumulation = saturating_accumulation.into();
             self
         }
         pub fn scope(mut self, scope: crate::vk::ScopeKHR) -> Self {

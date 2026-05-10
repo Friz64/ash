@@ -143,11 +143,8 @@ pub(crate) mod reexport {
         }
     }
     impl<'a> PhysicalDeviceDataGraphOpticalFlowFeaturesARM<'a> {
-        pub fn data_graph_optical_flow(
-            mut self,
-            data_graph_optical_flow: crate::vk::Bool32,
-        ) -> Self {
-            self.data_graph_optical_flow = data_graph_optical_flow;
+        pub fn data_graph_optical_flow(mut self, data_graph_optical_flow: bool) -> Self {
+            self.data_graph_optical_flow = data_graph_optical_flow.into();
             self
         }
     }
@@ -202,12 +199,12 @@ pub(crate) mod reexport {
             self.supported_hint_grid_sizes = supported_hint_grid_sizes;
             self
         }
-        pub fn hint_supported(mut self, hint_supported: crate::vk::Bool32) -> Self {
-            self.hint_supported = hint_supported;
+        pub fn hint_supported(mut self, hint_supported: bool) -> Self {
+            self.hint_supported = hint_supported.into();
             self
         }
-        pub fn cost_supported(mut self, cost_supported: crate::vk::Bool32) -> Self {
-            self.cost_supported = cost_supported;
+        pub fn cost_supported(mut self, cost_supported: bool) -> Self {
+            self.cost_supported = cost_supported.into();
             self
         }
         pub fn min_width(mut self, min_width: u32) -> Self {
@@ -334,9 +331,10 @@ pub(crate) mod reexport {
         }
         pub fn p_connections(
             mut self,
-            p_connections: *const crate::vk::DataGraphPipelineSingleNodeConnectionARM<'a>,
+            p_connections: &'a [crate::vk::DataGraphPipelineSingleNodeConnectionARM<'a>],
         ) -> Self {
-            self.p_connections = p_connections;
+            self.connection_count = p_connections.len() as _;
+            self.p_connections = p_connections.as_ptr();
             self
         }
     }

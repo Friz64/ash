@@ -30,9 +30,9 @@ impl<'a> Default for PhysicalDevicePipelineCacheIncrementalModeFeaturesSEC<'a> {
 impl<'a> PhysicalDevicePipelineCacheIncrementalModeFeaturesSEC<'a> {
     pub fn pipeline_cache_incremental_mode(
         mut self,
-        pipeline_cache_incremental_mode: crate::vk::Bool32,
+        pipeline_cache_incremental_mode: bool,
     ) -> Self {
-        self.pipeline_cache_incremental_mode = pipeline_cache_incremental_mode;
+        self.pipeline_cache_incremental_mode = pipeline_cache_incremental_mode.into();
         self
     }
 }

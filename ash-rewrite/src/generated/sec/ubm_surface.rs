@@ -83,13 +83,16 @@ pub(crate) mod reexport {
             self.flags = flags;
             self
         }
-        pub fn device(mut self, device: *mut crate::platform_types::ubm_device) -> Self {
+        pub fn device(
+            mut self,
+            device: &'a mut crate::platform_types::ubm_device,
+        ) -> Self {
             self.device = device;
             self
         }
         pub fn surface(
             mut self,
-            surface: *mut crate::platform_types::ubm_surface,
+            surface: &'a mut crate::platform_types::ubm_surface,
         ) -> Self {
             self.surface = surface;
             self

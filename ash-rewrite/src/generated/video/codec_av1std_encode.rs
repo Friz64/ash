@@ -487,60 +487,54 @@ impl<'a> EncodeAV1PictureInfo<'a> {
         self.delta_frame_id_minus_1 = delta_frame_id_minus_1;
         self
     }
-    pub fn p_tile_info(
-        mut self,
-        p_tile_info: *const crate::vk::AV1TileInfo<'a>,
-    ) -> Self {
+    pub fn p_tile_info(mut self, p_tile_info: &'a crate::vk::AV1TileInfo<'a>) -> Self {
         self.p_tile_info = p_tile_info;
         self
     }
     pub fn p_quantization(
         mut self,
-        p_quantization: *const crate::vk::AV1Quantization,
+        p_quantization: &'a crate::vk::AV1Quantization,
     ) -> Self {
         self.p_quantization = p_quantization;
         self
     }
     pub fn p_segmentation(
         mut self,
-        p_segmentation: *const crate::vk::AV1Segmentation,
+        p_segmentation: &'a crate::vk::AV1Segmentation,
     ) -> Self {
         self.p_segmentation = p_segmentation;
         self
     }
-    pub fn p_loop_filter(
-        mut self,
-        p_loop_filter: *const crate::vk::AV1LoopFilter,
-    ) -> Self {
+    pub fn p_loop_filter(mut self, p_loop_filter: &'a crate::vk::AV1LoopFilter) -> Self {
         self.p_loop_filter = p_loop_filter;
         self
     }
-    pub fn p_cdef(mut self, p_cdef: *const crate::vk::AV1CDEF) -> Self {
+    pub fn p_cdef(mut self, p_cdef: &'a crate::vk::AV1CDEF) -> Self {
         self.p_cdef = p_cdef;
         self
     }
     pub fn p_loop_restoration(
         mut self,
-        p_loop_restoration: *const crate::vk::AV1LoopRestoration,
+        p_loop_restoration: &'a crate::vk::AV1LoopRestoration,
     ) -> Self {
         self.p_loop_restoration = p_loop_restoration;
         self
     }
     pub fn p_global_motion(
         mut self,
-        p_global_motion: *const crate::vk::AV1GlobalMotion,
+        p_global_motion: &'a crate::vk::AV1GlobalMotion,
     ) -> Self {
         self.p_global_motion = p_global_motion;
         self
     }
     pub fn p_extension_header(
         mut self,
-        p_extension_header: *const crate::vk::EncodeAV1ExtensionHeader,
+        p_extension_header: &'a crate::vk::EncodeAV1ExtensionHeader,
     ) -> Self {
         self.p_extension_header = p_extension_header;
         self
     }
-    pub fn p_buffer_removal_times(mut self, p_buffer_removal_times: *const u32) -> Self {
+    pub fn p_buffer_removal_times(mut self, p_buffer_removal_times: &'a u32) -> Self {
         self.p_buffer_removal_times = p_buffer_removal_times;
         self
     }
@@ -614,7 +608,7 @@ impl<'a> EncodeAV1ReferenceInfo<'a> {
     }
     pub fn p_extension_header(
         mut self,
-        p_extension_header: *const crate::vk::EncodeAV1ExtensionHeader,
+        p_extension_header: &'a crate::vk::EncodeAV1ExtensionHeader,
     ) -> Self {
         self.p_extension_header = p_extension_header;
         self

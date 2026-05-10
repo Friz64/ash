@@ -102,18 +102,16 @@ impl<'a> Default for PhysicalDeviceCustomBorderColorFeaturesEXT<'a> {
     }
 }
 impl<'a> PhysicalDeviceCustomBorderColorFeaturesEXT<'a> {
-    pub fn custom_border_colors(
-        mut self,
-        custom_border_colors: crate::vk::Bool32,
-    ) -> Self {
-        self.custom_border_colors = custom_border_colors;
+    pub fn custom_border_colors(mut self, custom_border_colors: bool) -> Self {
+        self.custom_border_colors = custom_border_colors.into();
         self
     }
     pub fn custom_border_color_without_format(
         mut self,
-        custom_border_color_without_format: crate::vk::Bool32,
+        custom_border_color_without_format: bool,
     ) -> Self {
-        self.custom_border_color_without_format = custom_border_color_without_format;
+        self.custom_border_color_without_format = custom_border_color_without_format
+            .into();
         self
     }
 }

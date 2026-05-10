@@ -86,7 +86,7 @@ pub(crate) mod reexport {
         }
         pub fn connection(
             mut self,
-            connection: *mut crate::platform_types::xcb_connection_t,
+            connection: &'a mut crate::platform_types::xcb_connection_t,
         ) -> Self {
             self.connection = connection;
             self

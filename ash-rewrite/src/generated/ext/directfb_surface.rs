@@ -85,13 +85,13 @@ pub(crate) mod reexport {
             self.flags = flags;
             self
         }
-        pub fn dfb(mut self, dfb: *mut crate::platform_types::IDirectFB) -> Self {
+        pub fn dfb(mut self, dfb: &'a mut crate::platform_types::IDirectFB) -> Self {
             self.dfb = dfb;
             self
         }
         pub fn surface(
             mut self,
-            surface: *mut crate::platform_types::IDirectFBSurface,
+            surface: &'a mut crate::platform_types::IDirectFBSurface,
         ) -> Self {
             self.surface = surface;
             self

@@ -71,9 +71,9 @@ pub(crate) mod reexport {
     impl<'a> PhysicalDevicePerformanceCountersByRegionFeaturesARM<'a> {
         pub fn performance_counters_by_region(
             mut self,
-            performance_counters_by_region: crate::vk::Bool32,
+            performance_counters_by_region: bool,
         ) -> Self {
-            self.performance_counters_by_region = performance_counters_by_region;
+            self.performance_counters_by_region = performance_counters_by_region.into();
             self
         }
     }
@@ -134,9 +134,9 @@ pub(crate) mod reexport {
         }
         pub fn identity_transform_order(
             mut self,
-            identity_transform_order: crate::vk::Bool32,
+            identity_transform_order: bool,
         ) -> Self {
-            self.identity_transform_order = identity_transform_order;
+            self.identity_transform_order = identity_transform_order.into();
             self
         }
     }
@@ -200,10 +200,14 @@ pub(crate) mod reexport {
         }
         pub fn name(
             mut self,
-            name: [core::ffi::c_char; crate::vk::MAX_DESCRIPTION_SIZE as _],
-        ) -> Self {
-            self.name = name;
-            self
+            name: &core::ffi::CStr,
+        ) -> core::result::Result<Self, crate::CStrTooLargeForStaticArray> {
+            crate::write_c_str_slice_with_nul(&mut self.name, name).map(|_| self)
+        }
+        pub fn name_as_c_str(
+            &self,
+        ) -> core::result::Result<&core::ffi::CStr, core::ffi::FromBytesUntilNulError> {
+            crate::wrap_c_str_slice_until_nul(&self.name)
         }
     }
     #[repr(C)]
@@ -247,24 +251,23 @@ pub(crate) mod reexport {
         }
         pub fn p_counter_addresses(
             mut self,
-            p_counter_addresses: *const crate::vk::DeviceAddress,
+            p_counter_addresses: &'a [crate::vk::DeviceAddress],
         ) -> Self {
-            self.p_counter_addresses = p_counter_addresses;
+            self.counter_address_count = p_counter_addresses.len() as _;
+            self.p_counter_addresses = p_counter_addresses.as_ptr();
             self
         }
-        pub fn serialize_regions(
-            mut self,
-            serialize_regions: crate::vk::Bool32,
-        ) -> Self {
-            self.serialize_regions = serialize_regions;
+        pub fn serialize_regions(mut self, serialize_regions: bool) -> Self {
+            self.serialize_regions = serialize_regions.into();
             self
         }
         pub fn counter_index_count(mut self, counter_index_count: u32) -> Self {
             self.counter_index_count = counter_index_count;
             self
         }
-        pub fn p_counter_indices(mut self, p_counter_indices: *mut u32) -> Self {
-            self.p_counter_indices = p_counter_indices;
+        pub fn p_counter_indices(mut self, p_counter_indices: &'a mut [u32]) -> Self {
+            self.counter_index_count = p_counter_indices.len() as _;
+            self.p_counter_indices = p_counter_indices.as_mut_ptr();
             self
         }
     }

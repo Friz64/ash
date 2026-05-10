@@ -102,9 +102,9 @@ pub(crate) mod reexport {
     impl<'a> PhysicalDevicePipelineExecutablePropertiesFeaturesKHR<'a> {
         pub fn pipeline_executable_info(
             mut self,
-            pipeline_executable_info: crate::vk::Bool32,
+            pipeline_executable_info: bool,
         ) -> Self {
-            self.pipeline_executable_info = pipeline_executable_info;
+            self.pipeline_executable_info = pipeline_executable_info.into();
             self
         }
     }
@@ -169,17 +169,26 @@ pub(crate) mod reexport {
         }
         pub fn name(
             mut self,
-            name: [core::ffi::c_char; crate::vk::MAX_DESCRIPTION_SIZE as _],
-        ) -> Self {
-            self.name = name;
-            self
+            name: &core::ffi::CStr,
+        ) -> core::result::Result<Self, crate::CStrTooLargeForStaticArray> {
+            crate::write_c_str_slice_with_nul(&mut self.name, name).map(|_| self)
+        }
+        pub fn name_as_c_str(
+            &self,
+        ) -> core::result::Result<&core::ffi::CStr, core::ffi::FromBytesUntilNulError> {
+            crate::wrap_c_str_slice_until_nul(&self.name)
         }
         pub fn description(
             mut self,
-            description: [core::ffi::c_char; crate::vk::MAX_DESCRIPTION_SIZE as _],
-        ) -> Self {
-            self.description = description;
-            self
+            description: &core::ffi::CStr,
+        ) -> core::result::Result<Self, crate::CStrTooLargeForStaticArray> {
+            crate::write_c_str_slice_with_nul(&mut self.description, description)
+                .map(|_| self)
+        }
+        pub fn description_as_c_str(
+            &self,
+        ) -> core::result::Result<&core::ffi::CStr, core::ffi::FromBytesUntilNulError> {
+            crate::wrap_c_str_slice_until_nul(&self.description)
         }
         pub fn subgroup_size(mut self, subgroup_size: u32) -> Self {
             self.subgroup_size = subgroup_size;
@@ -249,17 +258,26 @@ pub(crate) mod reexport {
     impl<'a> PipelineExecutableStatisticKHR<'a> {
         pub fn name(
             mut self,
-            name: [core::ffi::c_char; crate::vk::MAX_DESCRIPTION_SIZE as _],
-        ) -> Self {
-            self.name = name;
-            self
+            name: &core::ffi::CStr,
+        ) -> core::result::Result<Self, crate::CStrTooLargeForStaticArray> {
+            crate::write_c_str_slice_with_nul(&mut self.name, name).map(|_| self)
+        }
+        pub fn name_as_c_str(
+            &self,
+        ) -> core::result::Result<&core::ffi::CStr, core::ffi::FromBytesUntilNulError> {
+            crate::wrap_c_str_slice_until_nul(&self.name)
         }
         pub fn description(
             mut self,
-            description: [core::ffi::c_char; crate::vk::MAX_DESCRIPTION_SIZE as _],
-        ) -> Self {
-            self.description = description;
-            self
+            description: &core::ffi::CStr,
+        ) -> core::result::Result<Self, crate::CStrTooLargeForStaticArray> {
+            crate::write_c_str_slice_with_nul(&mut self.description, description)
+                .map(|_| self)
+        }
+        pub fn description_as_c_str(
+            &self,
+        ) -> core::result::Result<&core::ffi::CStr, core::ffi::FromBytesUntilNulError> {
+            crate::wrap_c_str_slice_until_nul(&self.description)
         }
         pub fn format(
             mut self,
@@ -309,28 +327,38 @@ pub(crate) mod reexport {
     impl<'a> PipelineExecutableInternalRepresentationKHR<'a> {
         pub fn name(
             mut self,
-            name: [core::ffi::c_char; crate::vk::MAX_DESCRIPTION_SIZE as _],
-        ) -> Self {
-            self.name = name;
-            self
+            name: &core::ffi::CStr,
+        ) -> core::result::Result<Self, crate::CStrTooLargeForStaticArray> {
+            crate::write_c_str_slice_with_nul(&mut self.name, name).map(|_| self)
+        }
+        pub fn name_as_c_str(
+            &self,
+        ) -> core::result::Result<&core::ffi::CStr, core::ffi::FromBytesUntilNulError> {
+            crate::wrap_c_str_slice_until_nul(&self.name)
         }
         pub fn description(
             mut self,
-            description: [core::ffi::c_char; crate::vk::MAX_DESCRIPTION_SIZE as _],
-        ) -> Self {
-            self.description = description;
-            self
+            description: &core::ffi::CStr,
+        ) -> core::result::Result<Self, crate::CStrTooLargeForStaticArray> {
+            crate::write_c_str_slice_with_nul(&mut self.description, description)
+                .map(|_| self)
         }
-        pub fn is_text(mut self, is_text: crate::vk::Bool32) -> Self {
-            self.is_text = is_text;
+        pub fn description_as_c_str(
+            &self,
+        ) -> core::result::Result<&core::ffi::CStr, core::ffi::FromBytesUntilNulError> {
+            crate::wrap_c_str_slice_until_nul(&self.description)
+        }
+        pub fn is_text(mut self, is_text: bool) -> Self {
+            self.is_text = is_text.into();
             self
         }
         pub fn data_size(mut self, data_size: usize) -> Self {
             self.data_size = data_size;
             self
         }
-        pub fn p_data(mut self, p_data: *mut core::ffi::c_void) -> Self {
-            self.p_data = p_data;
+        pub fn p_data(mut self, p_data: &'a mut [u8]) -> Self {
+            self.data_size = p_data.len() as _;
+            self.p_data = p_data.as_mut_ptr().cast();
             self
         }
     }

@@ -130,7 +130,7 @@ pub(crate) mod reexport {
         }
         pub fn p_checkpoint_marker(
             mut self,
-            p_checkpoint_marker: *mut core::ffi::c_void,
+            p_checkpoint_marker: &'a mut core::ffi::c_void,
         ) -> Self {
             self.p_checkpoint_marker = p_checkpoint_marker;
             self
@@ -199,7 +199,7 @@ pub(crate) mod reexport {
         }
         pub fn p_checkpoint_marker(
             mut self,
-            p_checkpoint_marker: *mut core::ffi::c_void,
+            p_checkpoint_marker: &'a mut core::ffi::c_void,
         ) -> Self {
             self.p_checkpoint_marker = p_checkpoint_marker;
             self

@@ -81,11 +81,8 @@ pub(crate) mod reexport {
         }
     }
     impl<'a> PhysicalDeviceMemoryDecompressionFeaturesEXT<'a> {
-        pub fn memory_decompression(
-            mut self,
-            memory_decompression: crate::vk::Bool32,
-        ) -> Self {
-            self.memory_decompression = memory_decompression;
+        pub fn memory_decompression(mut self, memory_decompression: bool) -> Self {
+            self.memory_decompression = memory_decompression.into();
             self
         }
     }
@@ -202,9 +199,10 @@ pub(crate) mod reexport {
         }
         pub fn p_regions(
             mut self,
-            p_regions: *const crate::vk::DecompressMemoryRegionEXT,
+            p_regions: &'a [crate::vk::DecompressMemoryRegionEXT],
         ) -> Self {
-            self.p_regions = p_regions;
+            self.region_count = p_regions.len() as _;
+            self.p_regions = p_regions.as_ptr();
             self
         }
     }

@@ -104,9 +104,9 @@ pub(crate) mod reexport {
     impl<'a> PhysicalDeviceComputeOccupancyPriorityFeaturesNV<'a> {
         pub fn compute_occupancy_priority(
             mut self,
-            compute_occupancy_priority: crate::vk::Bool32,
+            compute_occupancy_priority: bool,
         ) -> Self {
-            self.compute_occupancy_priority = compute_occupancy_priority;
+            self.compute_occupancy_priority = compute_occupancy_priority.into();
             self
         }
     }

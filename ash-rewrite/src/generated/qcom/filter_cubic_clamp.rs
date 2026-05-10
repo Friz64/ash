@@ -27,8 +27,8 @@ impl<'a> Default for PhysicalDeviceCubicClampFeaturesQCOM<'a> {
     }
 }
 impl<'a> PhysicalDeviceCubicClampFeaturesQCOM<'a> {
-    pub fn cubic_range_clamp(mut self, cubic_range_clamp: crate::vk::Bool32) -> Self {
-        self.cubic_range_clamp = cubic_range_clamp;
+    pub fn cubic_range_clamp(mut self, cubic_range_clamp: bool) -> Self {
+        self.cubic_range_clamp = cubic_range_clamp.into();
         self
     }
 }

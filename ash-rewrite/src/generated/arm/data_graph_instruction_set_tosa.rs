@@ -58,10 +58,14 @@ pub(crate) mod reexport {
     impl DataGraphTOSANameQualityARM {
         pub fn name(
             mut self,
-            name: [core::ffi::c_char; crate::vk::MAX_DATA_GRAPH_TOSA_NAME_SIZE_ARM as _],
-        ) -> Self {
-            self.name = name;
-            self
+            name: &core::ffi::CStr,
+        ) -> core::result::Result<Self, crate::CStrTooLargeForStaticArray> {
+            crate::write_c_str_slice_with_nul(&mut self.name, name).map(|_| self)
+        }
+        pub fn name_as_c_str(
+            &self,
+        ) -> core::result::Result<&core::ffi::CStr, core::ffi::FromBytesUntilNulError> {
+            crate::wrap_c_str_slice_until_nul(&self.name)
         }
         pub fn quality_flags(
             mut self,
@@ -108,9 +112,10 @@ pub(crate) mod reexport {
         }
         pub fn p_profiles(
             mut self,
-            p_profiles: *const crate::vk::DataGraphTOSANameQualityARM,
+            p_profiles: &'a [crate::vk::DataGraphTOSANameQualityARM],
         ) -> Self {
-            self.p_profiles = p_profiles;
+            self.profile_count = p_profiles.len() as _;
+            self.p_profiles = p_profiles.as_ptr();
             self
         }
         pub fn extension_count(mut self, extension_count: u32) -> Self {
@@ -119,9 +124,10 @@ pub(crate) mod reexport {
         }
         pub fn p_extensions(
             mut self,
-            p_extensions: *const crate::vk::DataGraphTOSANameQualityARM,
+            p_extensions: &'a [crate::vk::DataGraphTOSANameQualityARM],
         ) -> Self {
-            self.p_extensions = p_extensions;
+            self.extension_count = p_extensions.len() as _;
+            self.p_extensions = p_extensions.as_ptr();
             self
         }
         pub fn level(mut self, level: crate::vk::DataGraphTOSALevelARM) -> Self {

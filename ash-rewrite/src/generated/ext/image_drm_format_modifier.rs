@@ -72,9 +72,11 @@ pub(crate) mod reexport {
         }
         pub fn p_drm_format_modifier_properties(
             mut self,
-            p_drm_format_modifier_properties: *mut crate::vk::DrmFormatModifierPropertiesEXT,
+            p_drm_format_modifier_properties: &'a mut [crate::vk::DrmFormatModifierPropertiesEXT],
         ) -> Self {
-            self.p_drm_format_modifier_properties = p_drm_format_modifier_properties;
+            self.drm_format_modifier_count = p_drm_format_modifier_properties.len() as _;
+            self.p_drm_format_modifier_properties = p_drm_format_modifier_properties
+                .as_mut_ptr();
             self
         }
     }
@@ -153,9 +155,10 @@ pub(crate) mod reexport {
         }
         pub fn p_queue_family_indices(
             mut self,
-            p_queue_family_indices: *const u32,
+            p_queue_family_indices: &'a [u32],
         ) -> Self {
-            self.p_queue_family_indices = p_queue_family_indices;
+            self.queue_family_index_count = p_queue_family_indices.len() as _;
+            self.p_queue_family_indices = p_queue_family_indices.as_ptr();
             self
         }
     }
@@ -195,9 +198,10 @@ pub(crate) mod reexport {
         }
         pub fn p_drm_format_modifiers(
             mut self,
-            p_drm_format_modifiers: *const u64,
+            p_drm_format_modifiers: &'a [u64],
         ) -> Self {
-            self.p_drm_format_modifiers = p_drm_format_modifiers;
+            self.drm_format_modifier_count = p_drm_format_modifiers.len() as _;
+            self.p_drm_format_modifiers = p_drm_format_modifiers.as_ptr();
             self
         }
     }
@@ -243,9 +247,10 @@ pub(crate) mod reexport {
         }
         pub fn p_plane_layouts(
             mut self,
-            p_plane_layouts: *const crate::vk::SubresourceLayout,
+            p_plane_layouts: &'a [crate::vk::SubresourceLayout],
         ) -> Self {
-            self.p_plane_layouts = p_plane_layouts;
+            self.drm_format_modifier_plane_count = p_plane_layouts.len() as _;
+            self.p_plane_layouts = p_plane_layouts.as_ptr();
             self
         }
     }
@@ -313,9 +318,11 @@ pub(crate) mod reexport {
         }
         pub fn p_drm_format_modifier_properties(
             mut self,
-            p_drm_format_modifier_properties: *mut crate::vk::DrmFormatModifierProperties2EXT,
+            p_drm_format_modifier_properties: &'a mut [crate::vk::DrmFormatModifierProperties2EXT],
         ) -> Self {
-            self.p_drm_format_modifier_properties = p_drm_format_modifier_properties;
+            self.drm_format_modifier_count = p_drm_format_modifier_properties.len() as _;
+            self.p_drm_format_modifier_properties = p_drm_format_modifier_properties
+                .as_mut_ptr();
             self
         }
     }

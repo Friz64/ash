@@ -131,8 +131,8 @@ pub(crate) mod reexport {
         }
     }
     impl<'a> PhysicalDeviceShaderObjectFeaturesEXT<'a> {
-        pub fn shader_object(mut self, shader_object: crate::vk::Bool32) -> Self {
-            self.shader_object = shader_object;
+        pub fn shader_object(mut self, shader_object: bool) -> Self {
+            self.shader_object = shader_object.into();
             self
         }
     }
@@ -239,13 +239,21 @@ pub(crate) mod reexport {
             self.code_size = code_size;
             self
         }
-        pub fn p_code(mut self, p_code: *const core::ffi::c_void) -> Self {
-            self.p_code = p_code;
+        pub fn p_code(mut self, p_code: &'a [u8]) -> Self {
+            self.code_size = p_code.len() as _;
+            self.p_code = p_code.as_ptr().cast();
             self
         }
-        pub fn p_name(mut self, p_name: *const core::ffi::c_char) -> Self {
-            self.p_name = p_name;
+        pub fn p_name(mut self, p_name: &'a core::ffi::CStr) -> Self {
+            self.p_name = p_name.as_ptr();
             self
+        }
+        pub unsafe fn p_name_as_c_str(&self) -> Option<&core::ffi::CStr> {
+            if self.p_name.is_null() {
+                None
+            } else {
+                Some(unsafe { core::ffi::CStr::from_ptr(self.p_name) })
+            }
         }
         pub fn set_layout_count(mut self, set_layout_count: u32) -> Self {
             self.set_layout_count = set_layout_count;
@@ -253,9 +261,10 @@ pub(crate) mod reexport {
         }
         pub fn p_set_layouts(
             mut self,
-            p_set_layouts: *const crate::vk::DescriptorSetLayout,
+            p_set_layouts: &'a [crate::vk::DescriptorSetLayout],
         ) -> Self {
-            self.p_set_layouts = p_set_layouts;
+            self.set_layout_count = p_set_layouts.len() as _;
+            self.p_set_layouts = p_set_layouts.as_ptr();
             self
         }
         pub fn push_constant_range_count(
@@ -267,14 +276,15 @@ pub(crate) mod reexport {
         }
         pub fn p_push_constant_ranges(
             mut self,
-            p_push_constant_ranges: *const crate::vk::PushConstantRange,
+            p_push_constant_ranges: &'a [crate::vk::PushConstantRange],
         ) -> Self {
-            self.p_push_constant_ranges = p_push_constant_ranges;
+            self.push_constant_range_count = p_push_constant_ranges.len() as _;
+            self.p_push_constant_ranges = p_push_constant_ranges.as_ptr();
             self
         }
         pub fn p_specialization_info(
             mut self,
-            p_specialization_info: *const crate::vk::SpecializationInfo<'a>,
+            p_specialization_info: &'a crate::vk::SpecializationInfo<'a>,
         ) -> Self {
             self.p_specialization_info = p_specialization_info;
             self

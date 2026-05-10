@@ -28,11 +28,8 @@ impl<'a> Default for PhysicalDeviceDeviceMemoryReportFeaturesEXT<'a> {
     }
 }
 impl<'a> PhysicalDeviceDeviceMemoryReportFeaturesEXT<'a> {
-    pub fn device_memory_report(
-        mut self,
-        device_memory_report: crate::vk::Bool32,
-    ) -> Self {
-        self.device_memory_report = device_memory_report;
+    pub fn device_memory_report(mut self, device_memory_report: bool) -> Self {
+        self.device_memory_report = device_memory_report.into();
         self
     }
 }
@@ -76,7 +73,7 @@ impl<'a> DeviceDeviceMemoryReportCreateInfoEXT<'a> {
         self.pfn_user_callback = pfn_user_callback;
         self
     }
-    pub fn p_user_data(mut self, p_user_data: *mut core::ffi::c_void) -> Self {
+    pub fn p_user_data(mut self, p_user_data: &'a mut core::ffi::c_void) -> Self {
         self.p_user_data = p_user_data;
         self
     }

@@ -483,21 +483,21 @@ impl<'a> H265VideoParameterSet<'a> {
     }
     pub fn p_dec_pic_buf_mgr(
         mut self,
-        p_dec_pic_buf_mgr: *const crate::vk::H265DecPicBufMgr,
+        p_dec_pic_buf_mgr: &'a crate::vk::H265DecPicBufMgr,
     ) -> Self {
         self.p_dec_pic_buf_mgr = p_dec_pic_buf_mgr;
         self
     }
     pub fn p_hrd_parameters(
         mut self,
-        p_hrd_parameters: *const crate::vk::H265HrdParameters<'a>,
+        p_hrd_parameters: &'a crate::vk::H265HrdParameters<'a>,
     ) -> Self {
         self.p_hrd_parameters = p_hrd_parameters;
         self
     }
     pub fn p_profile_tier_level(
         mut self,
-        p_profile_tier_level: *const crate::vk::H265ProfileTierLevel,
+        p_profile_tier_level: &'a crate::vk::H265ProfileTierLevel,
     ) -> Self {
         self.p_profile_tier_level = p_profile_tier_level;
         self
@@ -1058,7 +1058,7 @@ impl<'a> H265SequenceParameterSetVui<'a> {
     }
     pub fn p_hrd_parameters(
         mut self,
-        p_hrd_parameters: *const crate::vk::H265HrdParameters<'a>,
+        p_hrd_parameters: &'a crate::vk::H265HrdParameters<'a>,
     ) -> Self {
         self.p_hrd_parameters = p_hrd_parameters;
         self
@@ -1582,49 +1582,50 @@ impl<'a> H265SequenceParameterSet<'a> {
     }
     pub fn p_profile_tier_level(
         mut self,
-        p_profile_tier_level: *const crate::vk::H265ProfileTierLevel,
+        p_profile_tier_level: &'a crate::vk::H265ProfileTierLevel,
     ) -> Self {
         self.p_profile_tier_level = p_profile_tier_level;
         self
     }
     pub fn p_dec_pic_buf_mgr(
         mut self,
-        p_dec_pic_buf_mgr: *const crate::vk::H265DecPicBufMgr,
+        p_dec_pic_buf_mgr: &'a crate::vk::H265DecPicBufMgr,
     ) -> Self {
         self.p_dec_pic_buf_mgr = p_dec_pic_buf_mgr;
         self
     }
     pub fn p_scaling_lists(
         mut self,
-        p_scaling_lists: *const crate::vk::H265ScalingLists,
+        p_scaling_lists: &'a crate::vk::H265ScalingLists,
     ) -> Self {
         self.p_scaling_lists = p_scaling_lists;
         self
     }
     pub fn p_short_term_ref_pic_set(
         mut self,
-        p_short_term_ref_pic_set: *const crate::vk::H265ShortTermRefPicSet,
+        p_short_term_ref_pic_set: &'a [crate::vk::H265ShortTermRefPicSet],
     ) -> Self {
-        self.p_short_term_ref_pic_set = p_short_term_ref_pic_set;
+        self.num_short_term_ref_pic_sets = p_short_term_ref_pic_set.len() as _;
+        self.p_short_term_ref_pic_set = p_short_term_ref_pic_set.as_ptr();
         self
     }
     pub fn p_long_term_ref_pics_sps(
         mut self,
-        p_long_term_ref_pics_sps: *const crate::vk::H265LongTermRefPicsSps,
+        p_long_term_ref_pics_sps: &'a crate::vk::H265LongTermRefPicsSps,
     ) -> Self {
         self.p_long_term_ref_pics_sps = p_long_term_ref_pics_sps;
         self
     }
     pub fn p_sequence_parameter_set_vui(
         mut self,
-        p_sequence_parameter_set_vui: *const crate::vk::H265SequenceParameterSetVui<'a>,
+        p_sequence_parameter_set_vui: &'a crate::vk::H265SequenceParameterSetVui<'a>,
     ) -> Self {
         self.p_sequence_parameter_set_vui = p_sequence_parameter_set_vui;
         self
     }
     pub fn p_predictor_palette_entries(
         mut self,
-        p_predictor_palette_entries: *const crate::vk::H265PredictorPaletteEntries,
+        p_predictor_palette_entries: &'a crate::vk::H265PredictorPaletteEntries,
     ) -> Self {
         self.p_predictor_palette_entries = p_predictor_palette_entries;
         self
@@ -2180,14 +2181,14 @@ impl<'a> H265PictureParameterSet<'a> {
     }
     pub fn p_scaling_lists(
         mut self,
-        p_scaling_lists: *const crate::vk::H265ScalingLists,
+        p_scaling_lists: &'a crate::vk::H265ScalingLists,
     ) -> Self {
         self.p_scaling_lists = p_scaling_lists;
         self
     }
     pub fn p_predictor_palette_entries(
         mut self,
-        p_predictor_palette_entries: *const crate::vk::H265PredictorPaletteEntries,
+        p_predictor_palette_entries: &'a crate::vk::H265PredictorPaletteEntries,
     ) -> Self {
         self.p_predictor_palette_entries = p_predictor_palette_entries;
         self

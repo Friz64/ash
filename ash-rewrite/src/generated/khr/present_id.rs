@@ -27,8 +27,8 @@ impl<'a> Default for PhysicalDevicePresentIdFeaturesKHR<'a> {
     }
 }
 impl<'a> PhysicalDevicePresentIdFeaturesKHR<'a> {
-    pub fn present_id(mut self, present_id: crate::vk::Bool32) -> Self {
-        self.present_id = present_id;
+    pub fn present_id(mut self, present_id: bool) -> Self {
+        self.present_id = present_id.into();
         self
     }
 }
@@ -61,8 +61,9 @@ impl<'a> PresentIdKHR<'a> {
         self.swapchain_count = swapchain_count;
         self
     }
-    pub fn p_present_ids(mut self, p_present_ids: *const u64) -> Self {
-        self.p_present_ids = p_present_ids;
+    pub fn p_present_ids(mut self, p_present_ids: &'a [u64]) -> Self {
+        self.swapchain_count = p_present_ids.len() as _;
+        self.p_present_ids = p_present_ids.as_ptr();
         self
     }
 }

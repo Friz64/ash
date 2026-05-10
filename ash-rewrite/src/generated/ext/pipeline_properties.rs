@@ -95,9 +95,9 @@ pub(crate) mod reexport {
     impl<'a> PhysicalDevicePipelinePropertiesFeaturesEXT<'a> {
         pub fn pipeline_properties_identifier(
             mut self,
-            pipeline_properties_identifier: crate::vk::Bool32,
+            pipeline_properties_identifier: bool,
         ) -> Self {
-            self.pipeline_properties_identifier = pipeline_properties_identifier;
+            self.pipeline_properties_identifier = pipeline_properties_identifier.into();
             self
         }
     }

@@ -61,11 +61,8 @@ pub(crate) mod reexport {
         }
     }
     impl<'a> DisplayNativeHdrSurfaceCapabilitiesAMD<'a> {
-        pub fn local_dimming_support(
-            mut self,
-            local_dimming_support: crate::vk::Bool32,
-        ) -> Self {
-            self.local_dimming_support = local_dimming_support;
+        pub fn local_dimming_support(mut self, local_dimming_support: bool) -> Self {
+            self.local_dimming_support = local_dimming_support.into();
             self
         }
     }
@@ -94,11 +91,8 @@ pub(crate) mod reexport {
         }
     }
     impl<'a> SwapchainDisplayNativeHdrCreateInfoAMD<'a> {
-        pub fn local_dimming_enable(
-            mut self,
-            local_dimming_enable: crate::vk::Bool32,
-        ) -> Self {
-            self.local_dimming_enable = local_dimming_enable;
+        pub fn local_dimming_enable(mut self, local_dimming_enable: bool) -> Self {
+            self.local_dimming_enable = local_dimming_enable.into();
             self
         }
     }

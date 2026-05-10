@@ -227,9 +227,10 @@ pub(crate) mod reexport {
         }
         pub fn p_image_subresources(
             mut self,
-            p_image_subresources: *const crate::vk::ImageSubresourceLayers,
+            p_image_subresources: &'a [crate::vk::ImageSubresourceLayers],
         ) -> Self {
-            self.p_image_subresources = p_image_subresources;
+            self.copy_count = p_image_subresources.len() as _;
+            self.p_image_subresources = p_image_subresources.as_ptr();
             self
         }
     }
@@ -262,18 +263,15 @@ pub(crate) mod reexport {
         }
     }
     impl<'a> PhysicalDeviceCopyMemoryIndirectFeaturesKHR<'a> {
-        pub fn indirect_memory_copy(
-            mut self,
-            indirect_memory_copy: crate::vk::Bool32,
-        ) -> Self {
-            self.indirect_memory_copy = indirect_memory_copy;
+        pub fn indirect_memory_copy(mut self, indirect_memory_copy: bool) -> Self {
+            self.indirect_memory_copy = indirect_memory_copy.into();
             self
         }
         pub fn indirect_memory_to_image_copy(
             mut self,
-            indirect_memory_to_image_copy: crate::vk::Bool32,
+            indirect_memory_to_image_copy: bool,
         ) -> Self {
-            self.indirect_memory_to_image_copy = indirect_memory_to_image_copy;
+            self.indirect_memory_to_image_copy = indirect_memory_to_image_copy.into();
             self
         }
     }

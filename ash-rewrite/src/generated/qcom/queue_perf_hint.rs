@@ -95,8 +95,8 @@ pub(crate) mod reexport {
         }
     }
     impl<'a> PhysicalDeviceQueuePerfHintFeaturesQCOM<'a> {
-        pub fn queue_perf_hint(mut self, queue_perf_hint: crate::vk::Bool32) -> Self {
-            self.queue_perf_hint = queue_perf_hint;
+        pub fn queue_perf_hint(mut self, queue_perf_hint: bool) -> Self {
+            self.queue_perf_hint = queue_perf_hint.into();
             self
         }
     }

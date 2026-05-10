@@ -129,8 +129,9 @@ pub(crate) mod reexport {
             self.data_size = data_size;
             self
         }
-        pub fn p_data(mut self, p_data: *const core::ffi::c_void) -> Self {
-            self.p_data = p_data;
+        pub fn p_data(mut self, p_data: &'a [u8]) -> Self {
+            self.data_size = p_data.len() as _;
+            self.p_data = p_data.as_ptr().cast();
             self
         }
     }
@@ -159,11 +160,8 @@ pub(crate) mod reexport {
         }
     }
     impl<'a> CuModuleTexturingModeCreateInfoNVX<'a> {
-        pub fn use64bit_texturing(
-            mut self,
-            use64bit_texturing: crate::vk::Bool32,
-        ) -> Self {
-            self.use64bit_texturing = use64bit_texturing;
+        pub fn use64bit_texturing(mut self, use64bit_texturing: bool) -> Self {
+            self.use64bit_texturing = use64bit_texturing.into();
             self
         }
     }
@@ -195,9 +193,16 @@ pub(crate) mod reexport {
             self.module = module;
             self
         }
-        pub fn p_name(mut self, p_name: *const core::ffi::c_char) -> Self {
-            self.p_name = p_name;
+        pub fn p_name(mut self, p_name: &'a core::ffi::CStr) -> Self {
+            self.p_name = p_name.as_ptr();
             self
+        }
+        pub unsafe fn p_name_as_c_str(&self) -> Option<&core::ffi::CStr> {
+            if self.p_name.is_null() {
+                None
+            } else {
+                Some(unsafe { core::ffi::CStr::from_ptr(self.p_name) })
+            }
         }
     }
     #[repr(C)]
@@ -280,16 +285,18 @@ pub(crate) mod reexport {
             self.param_count = param_count;
             self
         }
-        pub fn p_params(mut self, p_params: *const *const core::ffi::c_void) -> Self {
-            self.p_params = p_params;
+        pub fn p_params(mut self, p_params: &'a [*const core::ffi::c_void]) -> Self {
+            self.param_count = p_params.len() as _;
+            self.p_params = p_params.as_ptr();
             self
         }
         pub fn extra_count(mut self, extra_count: usize) -> Self {
             self.extra_count = extra_count;
             self
         }
-        pub fn p_extras(mut self, p_extras: *const *const core::ffi::c_void) -> Self {
-            self.p_extras = p_extras;
+        pub fn p_extras(mut self, p_extras: &'a [*const core::ffi::c_void]) -> Self {
+            self.extra_count = p_extras.len() as _;
+            self.p_extras = p_extras.as_ptr();
             self
         }
     }

@@ -28,11 +28,8 @@ impl<'a> Default for PhysicalDeviceShaderQuadControlFeaturesKHR<'a> {
     }
 }
 impl<'a> PhysicalDeviceShaderQuadControlFeaturesKHR<'a> {
-    pub fn shader_quad_control(
-        mut self,
-        shader_quad_control: crate::vk::Bool32,
-    ) -> Self {
-        self.shader_quad_control = shader_quad_control;
+    pub fn shader_quad_control(mut self, shader_quad_control: bool) -> Self {
+        self.shader_quad_control = shader_quad_control.into();
         self
     }
 }

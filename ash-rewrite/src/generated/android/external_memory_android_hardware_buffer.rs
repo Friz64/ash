@@ -79,7 +79,7 @@ pub(crate) mod reexport {
     impl<'a> ImportAndroidHardwareBufferInfoANDROID<'a> {
         pub fn buffer(
             mut self,
-            buffer: *mut crate::platform_types::AHardwareBuffer,
+            buffer: &'a mut crate::platform_types::AHardwareBuffer,
         ) -> Self {
             self.buffer = buffer;
             self

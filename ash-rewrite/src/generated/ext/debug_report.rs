@@ -113,7 +113,7 @@ pub(crate) mod reexport {
             self.pfn_callback = pfn_callback;
             self
         }
-        pub fn p_user_data(mut self, p_user_data: *mut core::ffi::c_void) -> Self {
+        pub fn p_user_data(mut self, p_user_data: &'a mut core::ffi::c_void) -> Self {
             self.p_user_data = p_user_data;
             self
         }

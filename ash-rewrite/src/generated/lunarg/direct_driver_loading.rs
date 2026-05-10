@@ -75,9 +75,10 @@ impl<'a> DirectDriverLoadingListLUNARG<'a> {
     }
     pub fn p_drivers(
         mut self,
-        p_drivers: *const crate::vk::DirectDriverLoadingInfoLUNARG<'a>,
+        p_drivers: &'a [crate::vk::DirectDriverLoadingInfoLUNARG<'a>],
     ) -> Self {
-        self.p_drivers = p_drivers;
+        self.driver_count = p_drivers.len() as _;
+        self.p_drivers = p_drivers.as_ptr();
         self
     }
 }

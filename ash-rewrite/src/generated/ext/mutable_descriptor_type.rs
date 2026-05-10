@@ -28,11 +28,8 @@ impl<'a> Default for PhysicalDeviceMutableDescriptorTypeFeaturesEXT<'a> {
     }
 }
 impl<'a> PhysicalDeviceMutableDescriptorTypeFeaturesEXT<'a> {
-    pub fn mutable_descriptor_type(
-        mut self,
-        mutable_descriptor_type: crate::vk::Bool32,
-    ) -> Self {
-        self.mutable_descriptor_type = mutable_descriptor_type;
+    pub fn mutable_descriptor_type(mut self, mutable_descriptor_type: bool) -> Self {
+        self.mutable_descriptor_type = mutable_descriptor_type.into();
         self
     }
 }
@@ -50,9 +47,10 @@ impl<'a> MutableDescriptorTypeListEXT<'a> {
     }
     pub fn p_descriptor_types(
         mut self,
-        p_descriptor_types: *const crate::vk::DescriptorType,
+        p_descriptor_types: &'a [crate::vk::DescriptorType],
     ) -> Self {
-        self.p_descriptor_types = p_descriptor_types;
+        self.descriptor_type_count = p_descriptor_types.len() as _;
+        self.p_descriptor_types = p_descriptor_types.as_ptr();
         self
     }
 }
@@ -95,11 +93,13 @@ impl<'a> MutableDescriptorTypeCreateInfoEXT<'a> {
     }
     pub fn p_mutable_descriptor_type_lists(
         mut self,
-        p_mutable_descriptor_type_lists: *const crate::vk::MutableDescriptorTypeListEXT<
+        p_mutable_descriptor_type_lists: &'a [crate::vk::MutableDescriptorTypeListEXT<
             'a,
-        >,
+        >],
     ) -> Self {
-        self.p_mutable_descriptor_type_lists = p_mutable_descriptor_type_lists;
+        self.mutable_descriptor_type_list_count = p_mutable_descriptor_type_lists.len()
+            as _;
+        self.p_mutable_descriptor_type_lists = p_mutable_descriptor_type_lists.as_ptr();
         self
     }
 }

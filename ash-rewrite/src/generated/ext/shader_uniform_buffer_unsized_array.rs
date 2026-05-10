@@ -30,9 +30,10 @@ impl<'a> Default for PhysicalDeviceShaderUniformBufferUnsizedArrayFeaturesEXT<'a
 impl<'a> PhysicalDeviceShaderUniformBufferUnsizedArrayFeaturesEXT<'a> {
     pub fn shader_uniform_buffer_unsized_array(
         mut self,
-        shader_uniform_buffer_unsized_array: crate::vk::Bool32,
+        shader_uniform_buffer_unsized_array: bool,
     ) -> Self {
-        self.shader_uniform_buffer_unsized_array = shader_uniform_buffer_unsized_array;
+        self.shader_uniform_buffer_unsized_array = shader_uniform_buffer_unsized_array
+            .into();
         self
     }
 }
