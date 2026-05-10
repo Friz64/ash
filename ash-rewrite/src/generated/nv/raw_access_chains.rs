@@ -28,11 +28,8 @@ impl<'a> Default for PhysicalDeviceRawAccessChainsFeaturesNV<'a> {
     }
 }
 impl<'a> PhysicalDeviceRawAccessChainsFeaturesNV<'a> {
-    pub fn shader_raw_access_chains(
-        mut self,
-        shader_raw_access_chains: crate::vk::Bool32,
-    ) -> Self {
-        self.shader_raw_access_chains = shader_raw_access_chains;
+    pub fn shader_raw_access_chains(mut self, shader_raw_access_chains: bool) -> Self {
+        self.shader_raw_access_chains = shader_raw_access_chains.into();
         self
     }
 }

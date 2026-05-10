@@ -27,8 +27,8 @@ impl<'a> Default for PhysicalDevicePresentId2FeaturesKHR<'a> {
     }
 }
 impl<'a> PhysicalDevicePresentId2FeaturesKHR<'a> {
-    pub fn present_id2(mut self, present_id2: crate::vk::Bool32) -> Self {
-        self.present_id2 = present_id2;
+    pub fn present_id2(mut self, present_id2: bool) -> Self {
+        self.present_id2 = present_id2.into();
         self
     }
 }
@@ -61,8 +61,9 @@ impl<'a> PresentId2KHR<'a> {
         self.swapchain_count = swapchain_count;
         self
     }
-    pub fn p_present_ids(mut self, p_present_ids: *const u64) -> Self {
-        self.p_present_ids = p_present_ids;
+    pub fn p_present_ids(mut self, p_present_ids: &'a [u64]) -> Self {
+        self.swapchain_count = p_present_ids.len() as _;
+        self.p_present_ids = p_present_ids.as_ptr();
         self
     }
 }
@@ -90,11 +91,8 @@ impl<'a> Default for SurfaceCapabilitiesPresentId2KHR<'a> {
     }
 }
 impl<'a> SurfaceCapabilitiesPresentId2KHR<'a> {
-    pub fn present_id2_supported(
-        mut self,
-        present_id2_supported: crate::vk::Bool32,
-    ) -> Self {
-        self.present_id2_supported = present_id2_supported;
+    pub fn present_id2_supported(mut self, present_id2_supported: bool) -> Self {
+        self.present_id2_supported = present_id2_supported.into();
         self
     }
 }

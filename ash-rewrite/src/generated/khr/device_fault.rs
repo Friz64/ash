@@ -101,10 +101,15 @@ pub(crate) mod reexport {
     impl DeviceFaultVendorInfoKHR {
         pub fn description(
             mut self,
-            description: [core::ffi::c_char; crate::vk::MAX_DESCRIPTION_SIZE as _],
-        ) -> Self {
-            self.description = description;
-            self
+            description: &core::ffi::CStr,
+        ) -> core::result::Result<Self, crate::CStrTooLargeForStaticArray> {
+            crate::write_c_str_slice_with_nul(&mut self.description, description)
+                .map(|_| self)
+        }
+        pub fn description_as_c_str(
+            &self,
+        ) -> core::result::Result<&core::ffi::CStr, core::ffi::FromBytesUntilNulError> {
+            crate::wrap_c_str_slice_until_nul(&self.description)
         }
         pub fn vendor_fault_code(mut self, vendor_fault_code: u64) -> Self {
             self.vendor_fault_code = vendor_fault_code;
@@ -157,10 +162,15 @@ pub(crate) mod reexport {
         }
         pub fn description(
             mut self,
-            description: [core::ffi::c_char; crate::vk::MAX_DESCRIPTION_SIZE as _],
-        ) -> Self {
-            self.description = description;
-            self
+            description: &core::ffi::CStr,
+        ) -> core::result::Result<Self, crate::CStrTooLargeForStaticArray> {
+            crate::write_c_str_slice_with_nul(&mut self.description, description)
+                .map(|_| self)
+        }
+        pub fn description_as_c_str(
+            &self,
+        ) -> core::result::Result<&core::ffi::CStr, core::ffi::FromBytesUntilNulError> {
+            crate::wrap_c_str_slice_until_nul(&self.description)
         }
         pub fn fault_address_info(
             mut self,
@@ -214,9 +224,10 @@ pub(crate) mod reexport {
         }
         pub fn p_vendor_binary_data(
             mut self,
-            p_vendor_binary_data: *mut core::ffi::c_void,
+            p_vendor_binary_data: &'a mut [u8],
         ) -> Self {
-            self.p_vendor_binary_data = p_vendor_binary_data;
+            self.vendor_binary_size = p_vendor_binary_data.len() as _;
+            self.p_vendor_binary_data = p_vendor_binary_data.as_mut_ptr().cast();
             self
         }
     }
@@ -336,29 +347,30 @@ pub(crate) mod reexport {
         }
     }
     impl<'a> PhysicalDeviceFaultFeaturesKHR<'a> {
-        pub fn device_fault(mut self, device_fault: crate::vk::Bool32) -> Self {
-            self.device_fault = device_fault;
+        pub fn device_fault(mut self, device_fault: bool) -> Self {
+            self.device_fault = device_fault.into();
             self
         }
         pub fn device_fault_vendor_binary(
             mut self,
-            device_fault_vendor_binary: crate::vk::Bool32,
+            device_fault_vendor_binary: bool,
         ) -> Self {
-            self.device_fault_vendor_binary = device_fault_vendor_binary;
+            self.device_fault_vendor_binary = device_fault_vendor_binary.into();
             self
         }
         pub fn device_fault_report_masked(
             mut self,
-            device_fault_report_masked: crate::vk::Bool32,
+            device_fault_report_masked: bool,
         ) -> Self {
-            self.device_fault_report_masked = device_fault_report_masked;
+            self.device_fault_report_masked = device_fault_report_masked.into();
             self
         }
         pub fn device_fault_device_lost_on_masked(
             mut self,
-            device_fault_device_lost_on_masked: crate::vk::Bool32,
+            device_fault_device_lost_on_masked: bool,
         ) -> Self {
-            self.device_fault_device_lost_on_masked = device_fault_device_lost_on_masked;
+            self.device_fault_device_lost_on_masked = device_fault_device_lost_on_masked
+                .into();
             self
         }
     }

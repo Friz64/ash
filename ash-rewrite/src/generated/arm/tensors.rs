@@ -267,12 +267,14 @@ pub(crate) mod reexport {
             self.dimension_count = dimension_count;
             self
         }
-        pub fn p_dimensions(mut self, p_dimensions: *const i64) -> Self {
-            self.p_dimensions = p_dimensions;
+        pub fn p_dimensions(mut self, p_dimensions: &'a [i64]) -> Self {
+            self.dimension_count = p_dimensions.len() as _;
+            self.p_dimensions = p_dimensions.as_ptr();
             self
         }
-        pub fn p_strides(mut self, p_strides: *const i64) -> Self {
-            self.p_strides = p_strides;
+        pub fn p_strides(mut self, p_strides: &'a [i64]) -> Self {
+            self.dimension_count = p_strides.len() as _;
+            self.p_strides = p_strides.as_ptr();
             self
         }
         pub fn usage(mut self, usage: crate::vk::TensorUsageFlagsARM) -> Self {
@@ -316,7 +318,7 @@ pub(crate) mod reexport {
         }
         pub fn p_description(
             mut self,
-            p_description: *const crate::vk::TensorDescriptionARM<'a>,
+            p_description: &'a crate::vk::TensorDescriptionARM<'a>,
         ) -> Self {
             self.p_description = p_description;
             self
@@ -334,9 +336,10 @@ pub(crate) mod reexport {
         }
         pub fn p_queue_family_indices(
             mut self,
-            p_queue_family_indices: *const u32,
+            p_queue_family_indices: &'a [u32],
         ) -> Self {
-            self.p_queue_family_indices = p_queue_family_indices;
+            self.queue_family_index_count = p_queue_family_indices.len() as _;
+            self.p_queue_family_indices = p_queue_family_indices.as_ptr();
             self
         }
     }
@@ -438,9 +441,10 @@ pub(crate) mod reexport {
         }
         pub fn p_tensor_views(
             mut self,
-            p_tensor_views: *const crate::vk::TensorViewARM,
+            p_tensor_views: &'a [crate::vk::TensorViewARM],
         ) -> Self {
-            self.p_tensor_views = p_tensor_views;
+            self.tensor_view_count = p_tensor_views.len() as _;
+            self.p_tensor_views = p_tensor_views.as_ptr();
             self
         }
     }
@@ -604,9 +608,10 @@ pub(crate) mod reexport {
         }
         pub fn shader_storage_tensor_array_non_uniform_indexing_native(
             mut self,
-            shader_storage_tensor_array_non_uniform_indexing_native: crate::vk::Bool32,
+            shader_storage_tensor_array_non_uniform_indexing_native: bool,
         ) -> Self {
-            self.shader_storage_tensor_array_non_uniform_indexing_native = shader_storage_tensor_array_non_uniform_indexing_native;
+            self.shader_storage_tensor_array_non_uniform_indexing_native = shader_storage_tensor_array_non_uniform_indexing_native
+                .into();
             self
         }
         pub fn shader_tensor_supported_stages(
@@ -729,9 +734,10 @@ pub(crate) mod reexport {
         }
         pub fn p_tensor_memory_barriers(
             mut self,
-            p_tensor_memory_barriers: *const crate::vk::TensorMemoryBarrierARM<'a>,
+            p_tensor_memory_barriers: &'a [crate::vk::TensorMemoryBarrierARM<'a>],
         ) -> Self {
-            self.p_tensor_memory_barriers = p_tensor_memory_barriers;
+            self.tensor_memory_barrier_count = p_tensor_memory_barriers.len() as _;
+            self.p_tensor_memory_barriers = p_tensor_memory_barriers.as_ptr();
             self
         }
     }
@@ -771,43 +777,40 @@ pub(crate) mod reexport {
         }
     }
     impl<'a> PhysicalDeviceTensorFeaturesARM<'a> {
-        pub fn tensor_non_packed(
-            mut self,
-            tensor_non_packed: crate::vk::Bool32,
-        ) -> Self {
-            self.tensor_non_packed = tensor_non_packed;
+        pub fn tensor_non_packed(mut self, tensor_non_packed: bool) -> Self {
+            self.tensor_non_packed = tensor_non_packed.into();
             self
         }
-        pub fn shader_tensor_access(
-            mut self,
-            shader_tensor_access: crate::vk::Bool32,
-        ) -> Self {
-            self.shader_tensor_access = shader_tensor_access;
+        pub fn shader_tensor_access(mut self, shader_tensor_access: bool) -> Self {
+            self.shader_tensor_access = shader_tensor_access.into();
             self
         }
         pub fn shader_storage_tensor_array_dynamic_indexing(
             mut self,
-            shader_storage_tensor_array_dynamic_indexing: crate::vk::Bool32,
+            shader_storage_tensor_array_dynamic_indexing: bool,
         ) -> Self {
-            self.shader_storage_tensor_array_dynamic_indexing = shader_storage_tensor_array_dynamic_indexing;
+            self.shader_storage_tensor_array_dynamic_indexing = shader_storage_tensor_array_dynamic_indexing
+                .into();
             self
         }
         pub fn shader_storage_tensor_array_non_uniform_indexing(
             mut self,
-            shader_storage_tensor_array_non_uniform_indexing: crate::vk::Bool32,
+            shader_storage_tensor_array_non_uniform_indexing: bool,
         ) -> Self {
-            self.shader_storage_tensor_array_non_uniform_indexing = shader_storage_tensor_array_non_uniform_indexing;
+            self.shader_storage_tensor_array_non_uniform_indexing = shader_storage_tensor_array_non_uniform_indexing
+                .into();
             self
         }
         pub fn descriptor_binding_storage_tensor_update_after_bind(
             mut self,
-            descriptor_binding_storage_tensor_update_after_bind: crate::vk::Bool32,
+            descriptor_binding_storage_tensor_update_after_bind: bool,
         ) -> Self {
-            self.descriptor_binding_storage_tensor_update_after_bind = descriptor_binding_storage_tensor_update_after_bind;
+            self.descriptor_binding_storage_tensor_update_after_bind = descriptor_binding_storage_tensor_update_after_bind
+                .into();
             self
         }
-        pub fn tensors(mut self, tensors: crate::vk::Bool32) -> Self {
-            self.tensors = tensors;
+        pub fn tensors(mut self, tensors: bool) -> Self {
+            self.tensors = tensors.into();
             self
         }
     }
@@ -836,7 +839,7 @@ pub(crate) mod reexport {
     impl<'a> DeviceTensorMemoryRequirementsARM<'a> {
         pub fn p_create_info(
             mut self,
-            p_create_info: *const crate::vk::TensorCreateInfoARM<'a>,
+            p_create_info: &'a crate::vk::TensorCreateInfoARM<'a>,
         ) -> Self {
             self.p_create_info = p_create_info;
             self
@@ -884,9 +887,10 @@ pub(crate) mod reexport {
         }
         pub fn p_regions(
             mut self,
-            p_regions: *const crate::vk::TensorCopyARM<'a>,
+            p_regions: &'a [crate::vk::TensorCopyARM<'a>],
         ) -> Self {
-            self.p_regions = p_regions;
+            self.region_count = p_regions.len() as _;
+            self.p_regions = p_regions.as_ptr();
             self
         }
     }
@@ -922,16 +926,19 @@ pub(crate) mod reexport {
             self.dimension_count = dimension_count;
             self
         }
-        pub fn p_src_offset(mut self, p_src_offset: *const u64) -> Self {
-            self.p_src_offset = p_src_offset;
+        pub fn p_src_offset(mut self, p_src_offset: &'a [u64]) -> Self {
+            self.dimension_count = p_src_offset.len() as _;
+            self.p_src_offset = p_src_offset.as_ptr();
             self
         }
-        pub fn p_dst_offset(mut self, p_dst_offset: *const u64) -> Self {
-            self.p_dst_offset = p_dst_offset;
+        pub fn p_dst_offset(mut self, p_dst_offset: &'a [u64]) -> Self {
+            self.dimension_count = p_dst_offset.len() as _;
+            self.p_dst_offset = p_dst_offset.as_ptr();
             self
         }
-        pub fn p_extent(mut self, p_extent: *const u64) -> Self {
-            self.p_extent = p_extent;
+        pub fn p_extent(mut self, p_extent: &'a [u64]) -> Self {
+            self.dimension_count = p_extent.len() as _;
+            self.p_extent = p_extent.as_ptr();
             self
         }
     }
@@ -1042,9 +1049,10 @@ pub(crate) mod reexport {
     impl<'a> PhysicalDeviceDescriptorBufferTensorFeaturesARM<'a> {
         pub fn descriptor_buffer_tensor_descriptors(
             mut self,
-            descriptor_buffer_tensor_descriptors: crate::vk::Bool32,
+            descriptor_buffer_tensor_descriptors: bool,
         ) -> Self {
-            self.descriptor_buffer_tensor_descriptors = descriptor_buffer_tensor_descriptors;
+            self.descriptor_buffer_tensor_descriptors = descriptor_buffer_tensor_descriptors
+                .into();
             self
         }
     }
@@ -1169,8 +1177,9 @@ pub(crate) mod reexport {
             self.tensor_count = tensor_count;
             self
         }
-        pub fn p_tensors(mut self, p_tensors: *const crate::vk::TensorARM) -> Self {
-            self.p_tensors = p_tensors;
+        pub fn p_tensors(mut self, p_tensors: &'a [crate::vk::TensorARM]) -> Self {
+            self.tensor_count = p_tensors.len() as _;
+            self.p_tensors = p_tensors.as_ptr();
             self
         }
     }
@@ -1207,7 +1216,7 @@ pub(crate) mod reexport {
         }
         pub fn p_description(
             mut self,
-            p_description: *const crate::vk::TensorDescriptionARM<'a>,
+            p_description: &'a crate::vk::TensorDescriptionARM<'a>,
         ) -> Self {
             self.p_description = p_description;
             self

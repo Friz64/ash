@@ -64,15 +64,15 @@ pub(crate) mod reexport {
         }
     }
     impl<'a> PhysicalDeviceFaultFeaturesEXT<'a> {
-        pub fn device_fault(mut self, device_fault: crate::vk::Bool32) -> Self {
-            self.device_fault = device_fault;
+        pub fn device_fault(mut self, device_fault: bool) -> Self {
+            self.device_fault = device_fault.into();
             self
         }
         pub fn device_fault_vendor_binary(
             mut self,
-            device_fault_vendor_binary: crate::vk::Bool32,
+            device_fault_vendor_binary: bool,
         ) -> Self {
-            self.device_fault_vendor_binary = device_fault_vendor_binary;
+            self.device_fault_vendor_binary = device_fault_vendor_binary.into();
             self
         }
     }
@@ -148,28 +148,33 @@ pub(crate) mod reexport {
     impl<'a> DeviceFaultInfoEXT<'a> {
         pub fn description(
             mut self,
-            description: [core::ffi::c_char; crate::vk::MAX_DESCRIPTION_SIZE as _],
-        ) -> Self {
-            self.description = description;
-            self
+            description: &core::ffi::CStr,
+        ) -> core::result::Result<Self, crate::CStrTooLargeForStaticArray> {
+            crate::write_c_str_slice_with_nul(&mut self.description, description)
+                .map(|_| self)
+        }
+        pub fn description_as_c_str(
+            &self,
+        ) -> core::result::Result<&core::ffi::CStr, core::ffi::FromBytesUntilNulError> {
+            crate::wrap_c_str_slice_until_nul(&self.description)
         }
         pub fn p_address_infos(
             mut self,
-            p_address_infos: *mut crate::vk::DeviceFaultAddressInfoKHR,
+            p_address_infos: &'a mut crate::vk::DeviceFaultAddressInfoKHR,
         ) -> Self {
             self.p_address_infos = p_address_infos;
             self
         }
         pub fn p_vendor_infos(
             mut self,
-            p_vendor_infos: *mut crate::vk::DeviceFaultVendorInfoKHR,
+            p_vendor_infos: &'a mut crate::vk::DeviceFaultVendorInfoKHR,
         ) -> Self {
             self.p_vendor_infos = p_vendor_infos;
             self
         }
         pub fn p_vendor_binary_data(
             mut self,
-            p_vendor_binary_data: *mut core::ffi::c_void,
+            p_vendor_binary_data: &'a mut core::ffi::c_void,
         ) -> Self {
             self.p_vendor_binary_data = p_vendor_binary_data;
             self

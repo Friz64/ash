@@ -30,9 +30,9 @@ impl<'a> Default for PhysicalDeviceZeroInitializeDeviceMemoryFeaturesEXT<'a> {
 impl<'a> PhysicalDeviceZeroInitializeDeviceMemoryFeaturesEXT<'a> {
     pub fn zero_initialize_device_memory(
         mut self,
-        zero_initialize_device_memory: crate::vk::Bool32,
+        zero_initialize_device_memory: bool,
     ) -> Self {
-        self.zero_initialize_device_memory = zero_initialize_device_memory;
+        self.zero_initialize_device_memory = zero_initialize_device_memory.into();
         self
     }
 }

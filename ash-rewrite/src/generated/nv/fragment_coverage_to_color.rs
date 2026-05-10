@@ -37,11 +37,8 @@ impl<'a> PipelineCoverageToColorStateCreateInfoNV<'a> {
         self.flags = flags;
         self
     }
-    pub fn coverage_to_color_enable(
-        mut self,
-        coverage_to_color_enable: crate::vk::Bool32,
-    ) -> Self {
-        self.coverage_to_color_enable = coverage_to_color_enable;
+    pub fn coverage_to_color_enable(mut self, coverage_to_color_enable: bool) -> Self {
+        self.coverage_to_color_enable = coverage_to_color_enable.into();
         self
     }
     pub fn coverage_to_color_location(

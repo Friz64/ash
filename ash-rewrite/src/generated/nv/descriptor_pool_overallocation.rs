@@ -30,9 +30,9 @@ impl<'a> Default for PhysicalDeviceDescriptorPoolOverallocationFeaturesNV<'a> {
 impl<'a> PhysicalDeviceDescriptorPoolOverallocationFeaturesNV<'a> {
     pub fn descriptor_pool_overallocation(
         mut self,
-        descriptor_pool_overallocation: crate::vk::Bool32,
+        descriptor_pool_overallocation: bool,
     ) -> Self {
-        self.descriptor_pool_overallocation = descriptor_pool_overallocation;
+        self.descriptor_pool_overallocation = descriptor_pool_overallocation.into();
         self
     }
 }

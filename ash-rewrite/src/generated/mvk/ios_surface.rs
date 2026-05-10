@@ -65,7 +65,7 @@ pub(crate) mod reexport {
             self.flags = flags;
             self
         }
-        pub fn p_view(mut self, p_view: *const core::ffi::c_void) -> Self {
+        pub fn p_view(mut self, p_view: &'a core::ffi::c_void) -> Self {
             self.p_view = p_view;
             self
         }

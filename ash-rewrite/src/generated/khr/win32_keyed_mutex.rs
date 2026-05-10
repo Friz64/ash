@@ -45,17 +45,20 @@ impl<'a> Win32KeyedMutexAcquireReleaseInfoKHR<'a> {
     }
     pub fn p_acquire_syncs(
         mut self,
-        p_acquire_syncs: *const crate::vk::DeviceMemory,
+        p_acquire_syncs: &'a [crate::vk::DeviceMemory],
     ) -> Self {
-        self.p_acquire_syncs = p_acquire_syncs;
+        self.acquire_count = p_acquire_syncs.len() as _;
+        self.p_acquire_syncs = p_acquire_syncs.as_ptr();
         self
     }
-    pub fn p_acquire_keys(mut self, p_acquire_keys: *const u64) -> Self {
-        self.p_acquire_keys = p_acquire_keys;
+    pub fn p_acquire_keys(mut self, p_acquire_keys: &'a [u64]) -> Self {
+        self.acquire_count = p_acquire_keys.len() as _;
+        self.p_acquire_keys = p_acquire_keys.as_ptr();
         self
     }
-    pub fn p_acquire_timeouts(mut self, p_acquire_timeouts: *const u32) -> Self {
-        self.p_acquire_timeouts = p_acquire_timeouts;
+    pub fn p_acquire_timeouts(mut self, p_acquire_timeouts: &'a [u32]) -> Self {
+        self.acquire_count = p_acquire_timeouts.len() as _;
+        self.p_acquire_timeouts = p_acquire_timeouts.as_ptr();
         self
     }
     pub fn release_count(mut self, release_count: u32) -> Self {
@@ -64,13 +67,15 @@ impl<'a> Win32KeyedMutexAcquireReleaseInfoKHR<'a> {
     }
     pub fn p_release_syncs(
         mut self,
-        p_release_syncs: *const crate::vk::DeviceMemory,
+        p_release_syncs: &'a [crate::vk::DeviceMemory],
     ) -> Self {
-        self.p_release_syncs = p_release_syncs;
+        self.release_count = p_release_syncs.len() as _;
+        self.p_release_syncs = p_release_syncs.as_ptr();
         self
     }
-    pub fn p_release_keys(mut self, p_release_keys: *const u64) -> Self {
-        self.p_release_keys = p_release_keys;
+    pub fn p_release_keys(mut self, p_release_keys: &'a [u64]) -> Self {
+        self.release_count = p_release_keys.len() as _;
+        self.p_release_keys = p_release_keys.as_ptr();
         self
     }
 }

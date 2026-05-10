@@ -63,8 +63,8 @@ impl<'a> Default for PhysicalDevicePushConstantBankFeaturesNV<'a> {
     }
 }
 impl<'a> PhysicalDevicePushConstantBankFeaturesNV<'a> {
-    pub fn push_constant_bank(mut self, push_constant_bank: crate::vk::Bool32) -> Self {
-        self.push_constant_bank = push_constant_bank;
+    pub fn push_constant_bank(mut self, push_constant_bank: bool) -> Self {
+        self.push_constant_bank = push_constant_bank.into();
         self
     }
 }

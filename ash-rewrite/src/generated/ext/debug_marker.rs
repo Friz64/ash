@@ -131,9 +131,16 @@ pub(crate) mod reexport {
             self.object = object;
             self
         }
-        pub fn p_object_name(mut self, p_object_name: *const core::ffi::c_char) -> Self {
-            self.p_object_name = p_object_name;
+        pub fn p_object_name(mut self, p_object_name: &'a core::ffi::CStr) -> Self {
+            self.p_object_name = p_object_name.as_ptr();
             self
+        }
+        pub unsafe fn p_object_name_as_c_str(&self) -> Option<&core::ffi::CStr> {
+            if self.p_object_name.is_null() {
+                None
+            } else {
+                Some(unsafe { core::ffi::CStr::from_ptr(self.p_object_name) })
+            }
         }
     }
     #[repr(C)]
@@ -185,8 +192,9 @@ pub(crate) mod reexport {
             self.tag_size = tag_size;
             self
         }
-        pub fn p_tag(mut self, p_tag: *const core::ffi::c_void) -> Self {
-            self.p_tag = p_tag;
+        pub fn p_tag(mut self, p_tag: &'a [u8]) -> Self {
+            self.tag_size = p_tag.len() as _;
+            self.p_tag = p_tag.as_ptr().cast();
             self
         }
     }
@@ -214,9 +222,16 @@ pub(crate) mod reexport {
         }
     }
     impl<'a> DebugMarkerMarkerInfoEXT<'a> {
-        pub fn p_marker_name(mut self, p_marker_name: *const core::ffi::c_char) -> Self {
-            self.p_marker_name = p_marker_name;
+        pub fn p_marker_name(mut self, p_marker_name: &'a core::ffi::CStr) -> Self {
+            self.p_marker_name = p_marker_name.as_ptr();
             self
+        }
+        pub unsafe fn p_marker_name_as_c_str(&self) -> Option<&core::ffi::CStr> {
+            if self.p_marker_name.is_null() {
+                None
+            } else {
+                Some(unsafe { core::ffi::CStr::from_ptr(self.p_marker_name) })
+            }
         }
         pub fn color(mut self, color: [core::ffi::c_float; 4 as _]) -> Self {
             self.color = color;

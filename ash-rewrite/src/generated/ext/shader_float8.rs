@@ -30,15 +30,15 @@ impl<'a> Default for PhysicalDeviceShaderFloat8FeaturesEXT<'a> {
     }
 }
 impl<'a> PhysicalDeviceShaderFloat8FeaturesEXT<'a> {
-    pub fn shader_float8(mut self, shader_float8: crate::vk::Bool32) -> Self {
-        self.shader_float8 = shader_float8;
+    pub fn shader_float8(mut self, shader_float8: bool) -> Self {
+        self.shader_float8 = shader_float8.into();
         self
     }
     pub fn shader_float8_cooperative_matrix(
         mut self,
-        shader_float8_cooperative_matrix: crate::vk::Bool32,
+        shader_float8_cooperative_matrix: bool,
     ) -> Self {
-        self.shader_float8_cooperative_matrix = shader_float8_cooperative_matrix;
+        self.shader_float8_cooperative_matrix = shader_float8_cooperative_matrix.into();
         self
     }
 }

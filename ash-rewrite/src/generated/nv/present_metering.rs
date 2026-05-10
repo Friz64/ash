@@ -63,8 +63,8 @@ impl<'a> Default for PhysicalDevicePresentMeteringFeaturesNV<'a> {
     }
 }
 impl<'a> PhysicalDevicePresentMeteringFeaturesNV<'a> {
-    pub fn present_metering(mut self, present_metering: crate::vk::Bool32) -> Self {
-        self.present_metering = present_metering;
+    pub fn present_metering(mut self, present_metering: bool) -> Self {
+        self.present_metering = present_metering.into();
         self
     }
 }

@@ -28,11 +28,8 @@ impl<'a> Default for PhysicalDeviceGraphicsPipelineLibraryFeaturesEXT<'a> {
     }
 }
 impl<'a> PhysicalDeviceGraphicsPipelineLibraryFeaturesEXT<'a> {
-    pub fn graphics_pipeline_library(
-        mut self,
-        graphics_pipeline_library: crate::vk::Bool32,
-    ) -> Self {
-        self.graphics_pipeline_library = graphics_pipeline_library;
+    pub fn graphics_pipeline_library(mut self, graphics_pipeline_library: bool) -> Self {
+        self.graphics_pipeline_library = graphics_pipeline_library.into();
         self
     }
 }
@@ -65,16 +62,18 @@ impl<'a> Default for PhysicalDeviceGraphicsPipelineLibraryPropertiesEXT<'a> {
 impl<'a> PhysicalDeviceGraphicsPipelineLibraryPropertiesEXT<'a> {
     pub fn graphics_pipeline_library_fast_linking(
         mut self,
-        graphics_pipeline_library_fast_linking: crate::vk::Bool32,
+        graphics_pipeline_library_fast_linking: bool,
     ) -> Self {
-        self.graphics_pipeline_library_fast_linking = graphics_pipeline_library_fast_linking;
+        self.graphics_pipeline_library_fast_linking = graphics_pipeline_library_fast_linking
+            .into();
         self
     }
     pub fn graphics_pipeline_library_independent_interpolation_decoration(
         mut self,
-        graphics_pipeline_library_independent_interpolation_decoration: crate::vk::Bool32,
+        graphics_pipeline_library_independent_interpolation_decoration: bool,
     ) -> Self {
-        self.graphics_pipeline_library_independent_interpolation_decoration = graphics_pipeline_library_independent_interpolation_decoration;
+        self.graphics_pipeline_library_independent_interpolation_decoration = graphics_pipeline_library_independent_interpolation_decoration
+            .into();
         self
     }
 }

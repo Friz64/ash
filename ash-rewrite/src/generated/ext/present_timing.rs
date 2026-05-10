@@ -117,22 +117,22 @@ pub(crate) mod reexport {
         }
     }
     impl<'a> PhysicalDevicePresentTimingFeaturesEXT<'a> {
-        pub fn present_timing(mut self, present_timing: crate::vk::Bool32) -> Self {
-            self.present_timing = present_timing;
+        pub fn present_timing(mut self, present_timing: bool) -> Self {
+            self.present_timing = present_timing.into();
             self
         }
         pub fn present_at_absolute_time(
             mut self,
-            present_at_absolute_time: crate::vk::Bool32,
+            present_at_absolute_time: bool,
         ) -> Self {
-            self.present_at_absolute_time = present_at_absolute_time;
+            self.present_at_absolute_time = present_at_absolute_time.into();
             self
         }
         pub fn present_at_relative_time(
             mut self,
-            present_at_relative_time: crate::vk::Bool32,
+            present_at_relative_time: bool,
         ) -> Self {
-            self.present_at_relative_time = present_at_relative_time;
+            self.present_at_relative_time = present_at_relative_time.into();
             self
         }
     }
@@ -169,23 +169,25 @@ pub(crate) mod reexport {
     impl<'a> PresentTimingSurfaceCapabilitiesEXT<'a> {
         pub fn present_timing_supported(
             mut self,
-            present_timing_supported: crate::vk::Bool32,
+            present_timing_supported: bool,
         ) -> Self {
-            self.present_timing_supported = present_timing_supported;
+            self.present_timing_supported = present_timing_supported.into();
             self
         }
         pub fn present_at_absolute_time_supported(
             mut self,
-            present_at_absolute_time_supported: crate::vk::Bool32,
+            present_at_absolute_time_supported: bool,
         ) -> Self {
-            self.present_at_absolute_time_supported = present_at_absolute_time_supported;
+            self.present_at_absolute_time_supported = present_at_absolute_time_supported
+                .into();
             self
         }
         pub fn present_at_relative_time_supported(
             mut self,
-            present_at_relative_time_supported: crate::vk::Bool32,
+            present_at_relative_time_supported: bool,
         ) -> Self {
-            self.present_at_relative_time_supported = present_at_relative_time_supported;
+            self.present_at_relative_time_supported = present_at_relative_time_supported
+                .into();
             self
         }
         pub fn present_stage_queries(
@@ -261,13 +263,15 @@ pub(crate) mod reexport {
         }
         pub fn p_time_domains(
             mut self,
-            p_time_domains: *mut crate::vk::TimeDomainKHR,
+            p_time_domains: &'a mut [crate::vk::TimeDomainKHR],
         ) -> Self {
-            self.p_time_domains = p_time_domains;
+            self.time_domain_count = p_time_domains.len() as _;
+            self.p_time_domains = p_time_domains.as_mut_ptr();
             self
         }
-        pub fn p_time_domain_ids(mut self, p_time_domain_ids: *mut u64) -> Self {
-            self.p_time_domain_ids = p_time_domain_ids;
+        pub fn p_time_domain_ids(mut self, p_time_domain_ids: &'a mut [u64]) -> Self {
+            self.time_domain_count = p_time_domain_ids.len() as _;
+            self.p_time_domain_ids = p_time_domain_ids.as_mut_ptr();
             self
         }
     }
@@ -372,9 +376,10 @@ pub(crate) mod reexport {
         }
         pub fn p_presentation_timings(
             mut self,
-            p_presentation_timings: *mut crate::vk::PastPresentationTimingEXT<'a>,
+            p_presentation_timings: &'a mut [crate::vk::PastPresentationTimingEXT<'a>],
         ) -> Self {
-            self.p_presentation_timings = p_presentation_timings;
+            self.presentation_timing_count = p_presentation_timings.len() as _;
+            self.p_presentation_timings = p_presentation_timings.as_mut_ptr();
             self
         }
     }
@@ -426,9 +431,10 @@ pub(crate) mod reexport {
         }
         pub fn p_present_stages(
             mut self,
-            p_present_stages: *mut crate::vk::PresentStageTimeEXT,
+            p_present_stages: &'a mut [crate::vk::PresentStageTimeEXT],
         ) -> Self {
-            self.p_present_stages = p_present_stages;
+            self.present_stage_count = p_present_stages.len() as _;
+            self.p_present_stages = p_present_stages.as_mut_ptr();
             self
         }
         pub fn time_domain(mut self, time_domain: crate::vk::TimeDomainKHR) -> Self {
@@ -439,8 +445,8 @@ pub(crate) mod reexport {
             self.time_domain_id = time_domain_id;
             self
         }
-        pub fn report_complete(mut self, report_complete: crate::vk::Bool32) -> Self {
-            self.report_complete = report_complete;
+        pub fn report_complete(mut self, report_complete: bool) -> Self {
+            self.report_complete = report_complete.into();
             self
         }
     }
@@ -476,9 +482,10 @@ pub(crate) mod reexport {
         }
         pub fn p_timing_infos(
             mut self,
-            p_timing_infos: *const crate::vk::PresentTimingInfoEXT<'a>,
+            p_timing_infos: &'a [crate::vk::PresentTimingInfoEXT<'a>],
         ) -> Self {
-            self.p_timing_infos = p_timing_infos;
+            self.swapchain_count = p_timing_infos.len() as _;
+            self.p_timing_infos = p_timing_infos.as_ptr();
             self
         }
     }

@@ -58,98 +58,81 @@ impl<'a> Default for PhysicalDevicePortabilitySubsetFeaturesKHR<'a> {
 impl<'a> PhysicalDevicePortabilitySubsetFeaturesKHR<'a> {
     pub fn constant_alpha_color_blend_factors(
         mut self,
-        constant_alpha_color_blend_factors: crate::vk::Bool32,
+        constant_alpha_color_blend_factors: bool,
     ) -> Self {
-        self.constant_alpha_color_blend_factors = constant_alpha_color_blend_factors;
+        self.constant_alpha_color_blend_factors = constant_alpha_color_blend_factors
+            .into();
         self
     }
-    pub fn events(mut self, events: crate::vk::Bool32) -> Self {
-        self.events = events;
+    pub fn events(mut self, events: bool) -> Self {
+        self.events = events.into();
         self
     }
     pub fn image_view_format_reinterpretation(
         mut self,
-        image_view_format_reinterpretation: crate::vk::Bool32,
+        image_view_format_reinterpretation: bool,
     ) -> Self {
-        self.image_view_format_reinterpretation = image_view_format_reinterpretation;
+        self.image_view_format_reinterpretation = image_view_format_reinterpretation
+            .into();
         self
     }
-    pub fn image_view_format_swizzle(
-        mut self,
-        image_view_format_swizzle: crate::vk::Bool32,
-    ) -> Self {
-        self.image_view_format_swizzle = image_view_format_swizzle;
+    pub fn image_view_format_swizzle(mut self, image_view_format_swizzle: bool) -> Self {
+        self.image_view_format_swizzle = image_view_format_swizzle.into();
         self
     }
-    pub fn image_view2_d_on3_d_image(
-        mut self,
-        image_view2_d_on3_d_image: crate::vk::Bool32,
-    ) -> Self {
-        self.image_view2_d_on3_d_image = image_view2_d_on3_d_image;
+    pub fn image_view2_d_on3_d_image(mut self, image_view2_d_on3_d_image: bool) -> Self {
+        self.image_view2_d_on3_d_image = image_view2_d_on3_d_image.into();
         self
     }
-    pub fn multisample_array_image(
-        mut self,
-        multisample_array_image: crate::vk::Bool32,
-    ) -> Self {
-        self.multisample_array_image = multisample_array_image;
+    pub fn multisample_array_image(mut self, multisample_array_image: bool) -> Self {
+        self.multisample_array_image = multisample_array_image.into();
         self
     }
     pub fn mutable_comparison_samplers(
         mut self,
-        mutable_comparison_samplers: crate::vk::Bool32,
+        mutable_comparison_samplers: bool,
     ) -> Self {
-        self.mutable_comparison_samplers = mutable_comparison_samplers;
+        self.mutable_comparison_samplers = mutable_comparison_samplers.into();
         self
     }
-    pub fn point_polygons(mut self, point_polygons: crate::vk::Bool32) -> Self {
-        self.point_polygons = point_polygons;
+    pub fn point_polygons(mut self, point_polygons: bool) -> Self {
+        self.point_polygons = point_polygons.into();
         self
     }
-    pub fn sampler_mip_lod_bias(
-        mut self,
-        sampler_mip_lod_bias: crate::vk::Bool32,
-    ) -> Self {
-        self.sampler_mip_lod_bias = sampler_mip_lod_bias;
+    pub fn sampler_mip_lod_bias(mut self, sampler_mip_lod_bias: bool) -> Self {
+        self.sampler_mip_lod_bias = sampler_mip_lod_bias.into();
         self
     }
-    pub fn separate_stencil_mask_ref(
-        mut self,
-        separate_stencil_mask_ref: crate::vk::Bool32,
-    ) -> Self {
-        self.separate_stencil_mask_ref = separate_stencil_mask_ref;
+    pub fn separate_stencil_mask_ref(mut self, separate_stencil_mask_ref: bool) -> Self {
+        self.separate_stencil_mask_ref = separate_stencil_mask_ref.into();
         self
     }
     pub fn shader_sample_rate_interpolation_functions(
         mut self,
-        shader_sample_rate_interpolation_functions: crate::vk::Bool32,
+        shader_sample_rate_interpolation_functions: bool,
     ) -> Self {
-        self.shader_sample_rate_interpolation_functions = shader_sample_rate_interpolation_functions;
+        self.shader_sample_rate_interpolation_functions = shader_sample_rate_interpolation_functions
+            .into();
         self
     }
-    pub fn tessellation_isolines(
-        mut self,
-        tessellation_isolines: crate::vk::Bool32,
-    ) -> Self {
-        self.tessellation_isolines = tessellation_isolines;
+    pub fn tessellation_isolines(mut self, tessellation_isolines: bool) -> Self {
+        self.tessellation_isolines = tessellation_isolines.into();
         self
     }
-    pub fn tessellation_point_mode(
-        mut self,
-        tessellation_point_mode: crate::vk::Bool32,
-    ) -> Self {
-        self.tessellation_point_mode = tessellation_point_mode;
+    pub fn tessellation_point_mode(mut self, tessellation_point_mode: bool) -> Self {
+        self.tessellation_point_mode = tessellation_point_mode.into();
         self
     }
-    pub fn triangle_fans(mut self, triangle_fans: crate::vk::Bool32) -> Self {
-        self.triangle_fans = triangle_fans;
+    pub fn triangle_fans(mut self, triangle_fans: bool) -> Self {
+        self.triangle_fans = triangle_fans.into();
         self
     }
     pub fn vertex_attribute_access_beyond_stride(
         mut self,
-        vertex_attribute_access_beyond_stride: crate::vk::Bool32,
+        vertex_attribute_access_beyond_stride: bool,
     ) -> Self {
-        self.vertex_attribute_access_beyond_stride = vertex_attribute_access_beyond_stride;
+        self.vertex_attribute_access_beyond_stride = vertex_attribute_access_beyond_stride
+            .into();
         self
     }
 }

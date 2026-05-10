@@ -36,30 +36,33 @@ impl<'a> Default for PhysicalDeviceWorkgroupMemoryExplicitLayoutFeaturesKHR<'a> 
 impl<'a> PhysicalDeviceWorkgroupMemoryExplicitLayoutFeaturesKHR<'a> {
     pub fn workgroup_memory_explicit_layout(
         mut self,
-        workgroup_memory_explicit_layout: crate::vk::Bool32,
+        workgroup_memory_explicit_layout: bool,
     ) -> Self {
-        self.workgroup_memory_explicit_layout = workgroup_memory_explicit_layout;
+        self.workgroup_memory_explicit_layout = workgroup_memory_explicit_layout.into();
         self
     }
     pub fn workgroup_memory_explicit_layout_scalar_block_layout(
         mut self,
-        workgroup_memory_explicit_layout_scalar_block_layout: crate::vk::Bool32,
+        workgroup_memory_explicit_layout_scalar_block_layout: bool,
     ) -> Self {
-        self.workgroup_memory_explicit_layout_scalar_block_layout = workgroup_memory_explicit_layout_scalar_block_layout;
+        self.workgroup_memory_explicit_layout_scalar_block_layout = workgroup_memory_explicit_layout_scalar_block_layout
+            .into();
         self
     }
     pub fn workgroup_memory_explicit_layout8_bit_access(
         mut self,
-        workgroup_memory_explicit_layout8_bit_access: crate::vk::Bool32,
+        workgroup_memory_explicit_layout8_bit_access: bool,
     ) -> Self {
-        self.workgroup_memory_explicit_layout8_bit_access = workgroup_memory_explicit_layout8_bit_access;
+        self.workgroup_memory_explicit_layout8_bit_access = workgroup_memory_explicit_layout8_bit_access
+            .into();
         self
     }
     pub fn workgroup_memory_explicit_layout16_bit_access(
         mut self,
-        workgroup_memory_explicit_layout16_bit_access: crate::vk::Bool32,
+        workgroup_memory_explicit_layout16_bit_access: bool,
     ) -> Self {
-        self.workgroup_memory_explicit_layout16_bit_access = workgroup_memory_explicit_layout16_bit_access;
+        self.workgroup_memory_explicit_layout16_bit_access = workgroup_memory_explicit_layout16_bit_access
+            .into();
         self
     }
 }

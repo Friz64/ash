@@ -62,7 +62,7 @@ pub(crate) mod reexport {
     impl<'a> ImportScreenBufferInfoQNX<'a> {
         pub fn buffer(
             mut self,
-            buffer: *mut crate::platform_types::_screen_buffer,
+            buffer: &'a mut crate::platform_types::_screen_buffer,
         ) -> Self {
             self.buffer = buffer;
             self
@@ -257,11 +257,8 @@ pub(crate) mod reexport {
         }
     }
     impl<'a> PhysicalDeviceExternalMemoryScreenBufferFeaturesQNX<'a> {
-        pub fn screen_buffer_import(
-            mut self,
-            screen_buffer_import: crate::vk::Bool32,
-        ) -> Self {
-            self.screen_buffer_import = screen_buffer_import;
+        pub fn screen_buffer_import(mut self, screen_buffer_import: bool) -> Self {
+            self.screen_buffer_import = screen_buffer_import.into();
             self
         }
     }

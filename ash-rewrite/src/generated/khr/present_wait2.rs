@@ -96,8 +96,8 @@ pub(crate) mod reexport {
         }
     }
     impl<'a> PhysicalDevicePresentWait2FeaturesKHR<'a> {
-        pub fn present_wait2(mut self, present_wait2: crate::vk::Bool32) -> Self {
-            self.present_wait2 = present_wait2;
+        pub fn present_wait2(mut self, present_wait2: bool) -> Self {
+            self.present_wait2 = present_wait2.into();
             self
         }
     }
@@ -126,11 +126,8 @@ pub(crate) mod reexport {
         }
     }
     impl<'a> SurfaceCapabilitiesPresentWait2KHR<'a> {
-        pub fn present_wait2_supported(
-            mut self,
-            present_wait2_supported: crate::vk::Bool32,
-        ) -> Self {
-            self.present_wait2_supported = present_wait2_supported;
+        pub fn present_wait2_supported(mut self, present_wait2_supported: bool) -> Self {
+            self.present_wait2_supported = present_wait2_supported.into();
             self
         }
     }

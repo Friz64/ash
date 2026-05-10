@@ -73,22 +73,16 @@ impl<'a> Default for PhysicalDeviceImageProcessingFeaturesQCOM<'a> {
     }
 }
 impl<'a> PhysicalDeviceImageProcessingFeaturesQCOM<'a> {
-    pub fn texture_sample_weighted(
-        mut self,
-        texture_sample_weighted: crate::vk::Bool32,
-    ) -> Self {
-        self.texture_sample_weighted = texture_sample_weighted;
+    pub fn texture_sample_weighted(mut self, texture_sample_weighted: bool) -> Self {
+        self.texture_sample_weighted = texture_sample_weighted.into();
         self
     }
-    pub fn texture_box_filter(mut self, texture_box_filter: crate::vk::Bool32) -> Self {
-        self.texture_box_filter = texture_box_filter;
+    pub fn texture_box_filter(mut self, texture_box_filter: bool) -> Self {
+        self.texture_box_filter = texture_box_filter.into();
         self
     }
-    pub fn texture_block_match(
-        mut self,
-        texture_block_match: crate::vk::Bool32,
-    ) -> Self {
-        self.texture_block_match = texture_block_match;
+    pub fn texture_block_match(mut self, texture_block_match: bool) -> Self {
+        self.texture_block_match = texture_block_match.into();
         self
     }
 }

@@ -44,9 +44,10 @@ impl<'a> ValidationFeaturesEXT<'a> {
     }
     pub fn p_enabled_validation_features(
         mut self,
-        p_enabled_validation_features: *const crate::vk::ValidationFeatureEnableEXT,
+        p_enabled_validation_features: &'a [crate::vk::ValidationFeatureEnableEXT],
     ) -> Self {
-        self.p_enabled_validation_features = p_enabled_validation_features;
+        self.enabled_validation_feature_count = p_enabled_validation_features.len() as _;
+        self.p_enabled_validation_features = p_enabled_validation_features.as_ptr();
         self
     }
     pub fn disabled_validation_feature_count(
@@ -58,9 +59,11 @@ impl<'a> ValidationFeaturesEXT<'a> {
     }
     pub fn p_disabled_validation_features(
         mut self,
-        p_disabled_validation_features: *const crate::vk::ValidationFeatureDisableEXT,
+        p_disabled_validation_features: &'a [crate::vk::ValidationFeatureDisableEXT],
     ) -> Self {
-        self.p_disabled_validation_features = p_disabled_validation_features;
+        self.disabled_validation_feature_count = p_disabled_validation_features.len()
+            as _;
+        self.p_disabled_validation_features = p_disabled_validation_features.as_ptr();
         self
     }
 }

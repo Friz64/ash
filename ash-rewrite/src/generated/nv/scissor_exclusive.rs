@@ -81,11 +81,8 @@ pub(crate) mod reexport {
         }
     }
     impl<'a> PhysicalDeviceExclusiveScissorFeaturesNV<'a> {
-        pub fn exclusive_scissor(
-            mut self,
-            exclusive_scissor: crate::vk::Bool32,
-        ) -> Self {
-            self.exclusive_scissor = exclusive_scissor;
+        pub fn exclusive_scissor(mut self, exclusive_scissor: bool) -> Self {
+            self.exclusive_scissor = exclusive_scissor.into();
             self
         }
     }
@@ -122,9 +119,10 @@ pub(crate) mod reexport {
         }
         pub fn p_exclusive_scissors(
             mut self,
-            p_exclusive_scissors: *const crate::vk::Rect2D,
+            p_exclusive_scissors: &'a [crate::vk::Rect2D],
         ) -> Self {
-            self.p_exclusive_scissors = p_exclusive_scissors;
+            self.exclusive_scissor_count = p_exclusive_scissors.len() as _;
+            self.p_exclusive_scissors = p_exclusive_scissors.as_ptr();
             self
         }
     }

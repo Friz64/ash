@@ -28,8 +28,8 @@ impl<'a> Default for PhysicalDeviceVideoMaintenance1FeaturesKHR<'a> {
     }
 }
 impl<'a> PhysicalDeviceVideoMaintenance1FeaturesKHR<'a> {
-    pub fn video_maintenance1(mut self, video_maintenance1: crate::vk::Bool32) -> Self {
-        self.video_maintenance1 = video_maintenance1;
+    pub fn video_maintenance1(mut self, video_maintenance1: bool) -> Self {
+        self.video_maintenance1 = video_maintenance1.into();
         self
     }
 }

@@ -27,8 +27,8 @@ impl<'a> Default for PhysicalDeviceRayQueryFeaturesKHR<'a> {
     }
 }
 impl<'a> PhysicalDeviceRayQueryFeaturesKHR<'a> {
-    pub fn ray_query(mut self, ray_query: crate::vk::Bool32) -> Self {
-        self.ray_query = ray_query;
+    pub fn ray_query(mut self, ray_query: bool) -> Self {
+        self.ray_query = ray_query.into();
         self
     }
 }

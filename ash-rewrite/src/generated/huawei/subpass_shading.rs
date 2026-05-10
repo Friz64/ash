@@ -148,8 +148,8 @@ pub(crate) mod reexport {
         }
     }
     impl<'a> PhysicalDeviceSubpassShadingFeaturesHUAWEI<'a> {
-        pub fn subpass_shading(mut self, subpass_shading: crate::vk::Bool32) -> Self {
-            self.subpass_shading = subpass_shading;
+        pub fn subpass_shading(mut self, subpass_shading: bool) -> Self {
+            self.subpass_shading = subpass_shading.into();
             self
         }
     }

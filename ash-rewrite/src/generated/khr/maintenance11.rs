@@ -28,8 +28,8 @@ impl<'a> Default for PhysicalDeviceMaintenance11FeaturesKHR<'a> {
     }
 }
 impl<'a> PhysicalDeviceMaintenance11FeaturesKHR<'a> {
-    pub fn maintenance11(mut self, maintenance11: crate::vk::Bool32) -> Self {
-        self.maintenance11 = maintenance11;
+    pub fn maintenance11(mut self, maintenance11: bool) -> Self {
+        self.maintenance11 = maintenance11.into();
         self
     }
 }

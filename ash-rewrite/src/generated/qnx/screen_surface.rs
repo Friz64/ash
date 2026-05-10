@@ -87,14 +87,14 @@ pub(crate) mod reexport {
         }
         pub fn context(
             mut self,
-            context: *mut crate::platform_types::_screen_context,
+            context: &'a mut crate::platform_types::_screen_context,
         ) -> Self {
             self.context = context;
             self
         }
         pub fn window(
             mut self,
-            window: *mut crate::platform_types::_screen_window,
+            window: &'a mut crate::platform_types::_screen_window,
         ) -> Self {
             self.window = window;
             self

@@ -119,9 +119,10 @@ impl<'a> VideoDecodeH264SessionParametersAddInfoKHR<'a> {
     }
     pub fn p_std_sp_ss(
         mut self,
-        p_std_sp_ss: *const crate::vk::H264SequenceParameterSet<'a>,
+        p_std_sp_ss: &'a [crate::vk::H264SequenceParameterSet<'a>],
     ) -> Self {
-        self.p_std_sp_ss = p_std_sp_ss;
+        self.std_sps_count = p_std_sp_ss.len() as _;
+        self.p_std_sp_ss = p_std_sp_ss.as_ptr();
         self
     }
     pub fn std_pps_count(mut self, std_pps_count: u32) -> Self {
@@ -130,9 +131,10 @@ impl<'a> VideoDecodeH264SessionParametersAddInfoKHR<'a> {
     }
     pub fn p_std_pp_ss(
         mut self,
-        p_std_pp_ss: *const crate::vk::H264PictureParameterSet<'a>,
+        p_std_pp_ss: &'a [crate::vk::H264PictureParameterSet<'a>],
     ) -> Self {
-        self.p_std_pp_ss = p_std_pp_ss;
+        self.std_pps_count = p_std_pp_ss.len() as _;
+        self.p_std_pp_ss = p_std_pp_ss.as_ptr();
         self
     }
 }
@@ -177,7 +179,7 @@ impl<'a> VideoDecodeH264SessionParametersCreateInfoKHR<'a> {
     }
     pub fn p_parameters_add_info(
         mut self,
-        p_parameters_add_info: *const crate::vk::VideoDecodeH264SessionParametersAddInfoKHR<
+        p_parameters_add_info: &'a crate::vk::VideoDecodeH264SessionParametersAddInfoKHR<
             'a,
         >,
     ) -> Self {
@@ -215,7 +217,7 @@ impl<'a> Default for VideoDecodeH264PictureInfoKHR<'a> {
 impl<'a> VideoDecodeH264PictureInfoKHR<'a> {
     pub fn p_std_picture_info(
         mut self,
-        p_std_picture_info: *const crate::vk::DecodeH264PictureInfo,
+        p_std_picture_info: &'a crate::vk::DecodeH264PictureInfo,
     ) -> Self {
         self.p_std_picture_info = p_std_picture_info;
         self
@@ -224,8 +226,9 @@ impl<'a> VideoDecodeH264PictureInfoKHR<'a> {
         self.slice_count = slice_count;
         self
     }
-    pub fn p_slice_offsets(mut self, p_slice_offsets: *const u32) -> Self {
-        self.p_slice_offsets = p_slice_offsets;
+    pub fn p_slice_offsets(mut self, p_slice_offsets: &'a [u32]) -> Self {
+        self.slice_count = p_slice_offsets.len() as _;
+        self.p_slice_offsets = p_slice_offsets.as_ptr();
         self
     }
 }
@@ -255,7 +258,7 @@ impl<'a> Default for VideoDecodeH264DpbSlotInfoKHR<'a> {
 impl<'a> VideoDecodeH264DpbSlotInfoKHR<'a> {
     pub fn p_std_reference_info(
         mut self,
-        p_std_reference_info: *const crate::vk::DecodeH264ReferenceInfo,
+        p_std_reference_info: &'a crate::vk::DecodeH264ReferenceInfo,
     ) -> Self {
         self.p_std_reference_info = p_std_reference_info;
         self

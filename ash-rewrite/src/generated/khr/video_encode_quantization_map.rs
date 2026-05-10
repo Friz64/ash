@@ -341,9 +341,9 @@ impl<'a> Default for PhysicalDeviceVideoEncodeQuantizationMapFeaturesKHR<'a> {
 impl<'a> PhysicalDeviceVideoEncodeQuantizationMapFeaturesKHR<'a> {
     pub fn video_encode_quantization_map(
         mut self,
-        video_encode_quantization_map: crate::vk::Bool32,
+        video_encode_quantization_map: bool,
     ) -> Self {
-        self.video_encode_quantization_map = video_encode_quantization_map;
+        self.video_encode_quantization_map = video_encode_quantization_map.into();
         self
     }
 }

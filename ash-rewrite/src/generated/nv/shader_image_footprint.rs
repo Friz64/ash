@@ -28,8 +28,8 @@ impl<'a> Default for PhysicalDeviceShaderImageFootprintFeaturesNV<'a> {
     }
 }
 impl<'a> PhysicalDeviceShaderImageFootprintFeaturesNV<'a> {
-    pub fn image_footprint(mut self, image_footprint: crate::vk::Bool32) -> Self {
-        self.image_footprint = image_footprint;
+    pub fn image_footprint(mut self, image_footprint: bool) -> Self {
+        self.image_footprint = image_footprint.into();
         self
     }
 }

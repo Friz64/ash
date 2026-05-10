@@ -81,9 +81,9 @@ pub(crate) mod reexport {
     impl<'a> PhysicalDeviceDescriptorSetHostMappingFeaturesVALVE<'a> {
         pub fn descriptor_set_host_mapping(
             mut self,
-            descriptor_set_host_mapping: crate::vk::Bool32,
+            descriptor_set_host_mapping: bool,
         ) -> Self {
-            self.descriptor_set_host_mapping = descriptor_set_host_mapping;
+            self.descriptor_set_host_mapping = descriptor_set_host_mapping.into();
             self
         }
     }

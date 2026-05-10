@@ -25,11 +25,8 @@ impl<'a> Default for DedicatedAllocationImageCreateInfoNV<'a> {
     }
 }
 impl<'a> DedicatedAllocationImageCreateInfoNV<'a> {
-    pub fn dedicated_allocation(
-        mut self,
-        dedicated_allocation: crate::vk::Bool32,
-    ) -> Self {
-        self.dedicated_allocation = dedicated_allocation;
+    pub fn dedicated_allocation(mut self, dedicated_allocation: bool) -> Self {
+        self.dedicated_allocation = dedicated_allocation.into();
         self
     }
 }
@@ -58,11 +55,8 @@ impl<'a> Default for DedicatedAllocationBufferCreateInfoNV<'a> {
     }
 }
 impl<'a> DedicatedAllocationBufferCreateInfoNV<'a> {
-    pub fn dedicated_allocation(
-        mut self,
-        dedicated_allocation: crate::vk::Bool32,
-    ) -> Self {
-        self.dedicated_allocation = dedicated_allocation;
+    pub fn dedicated_allocation(mut self, dedicated_allocation: bool) -> Self {
+        self.dedicated_allocation = dedicated_allocation.into();
         self
     }
 }

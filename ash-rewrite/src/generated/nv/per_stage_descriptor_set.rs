@@ -30,18 +30,12 @@ impl<'a> Default for PhysicalDevicePerStageDescriptorSetFeaturesNV<'a> {
     }
 }
 impl<'a> PhysicalDevicePerStageDescriptorSetFeaturesNV<'a> {
-    pub fn per_stage_descriptor_set(
-        mut self,
-        per_stage_descriptor_set: crate::vk::Bool32,
-    ) -> Self {
-        self.per_stage_descriptor_set = per_stage_descriptor_set;
+    pub fn per_stage_descriptor_set(mut self, per_stage_descriptor_set: bool) -> Self {
+        self.per_stage_descriptor_set = per_stage_descriptor_set.into();
         self
     }
-    pub fn dynamic_pipeline_layout(
-        mut self,
-        dynamic_pipeline_layout: crate::vk::Bool32,
-    ) -> Self {
-        self.dynamic_pipeline_layout = dynamic_pipeline_layout;
+    pub fn dynamic_pipeline_layout(mut self, dynamic_pipeline_layout: bool) -> Self {
+        self.dynamic_pipeline_layout = dynamic_pipeline_layout.into();
         self
     }
 }

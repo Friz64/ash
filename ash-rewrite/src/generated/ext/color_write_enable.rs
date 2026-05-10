@@ -63,11 +63,8 @@ pub(crate) mod reexport {
         }
     }
     impl<'a> PhysicalDeviceColorWriteEnableFeaturesEXT<'a> {
-        pub fn color_write_enable(
-            mut self,
-            color_write_enable: crate::vk::Bool32,
-        ) -> Self {
-            self.color_write_enable = color_write_enable;
+        pub fn color_write_enable(mut self, color_write_enable: bool) -> Self {
+            self.color_write_enable = color_write_enable.into();
             self
         }
     }
@@ -103,9 +100,10 @@ pub(crate) mod reexport {
         }
         pub fn p_color_write_enables(
             mut self,
-            p_color_write_enables: *const crate::vk::Bool32,
+            p_color_write_enables: &'a [crate::vk::Bool32],
         ) -> Self {
-            self.p_color_write_enables = p_color_write_enables;
+            self.attachment_count = p_color_write_enables.len() as _;
+            self.p_color_write_enables = p_color_write_enables.as_ptr();
             self
         }
     }

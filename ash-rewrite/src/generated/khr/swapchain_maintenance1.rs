@@ -62,11 +62,8 @@ pub(crate) mod reexport {
         }
     }
     impl<'a> PhysicalDeviceSwapchainMaintenance1FeaturesKHR<'a> {
-        pub fn swapchain_maintenance1(
-            mut self,
-            swapchain_maintenance1: crate::vk::Bool32,
-        ) -> Self {
-            self.swapchain_maintenance1 = swapchain_maintenance1;
+        pub fn swapchain_maintenance1(mut self, swapchain_maintenance1: bool) -> Self {
+            self.swapchain_maintenance1 = swapchain_maintenance1.into();
             self
         }
     }
@@ -100,8 +97,9 @@ pub(crate) mod reexport {
             self.swapchain_count = swapchain_count;
             self
         }
-        pub fn p_fences(mut self, p_fences: *const crate::vk::Fence) -> Self {
-            self.p_fences = p_fences;
+        pub fn p_fences(mut self, p_fences: &'a [crate::vk::Fence]) -> Self {
+            self.swapchain_count = p_fences.len() as _;
+            self.p_fences = p_fences.as_ptr();
             self
         }
     }
@@ -138,9 +136,10 @@ pub(crate) mod reexport {
         }
         pub fn p_present_modes(
             mut self,
-            p_present_modes: *const crate::vk::PresentModeKHR,
+            p_present_modes: &'a [crate::vk::PresentModeKHR],
         ) -> Self {
-            self.p_present_modes = p_present_modes;
+            self.present_mode_count = p_present_modes.len() as _;
+            self.p_present_modes = p_present_modes.as_ptr();
             self
         }
     }
@@ -176,9 +175,10 @@ pub(crate) mod reexport {
         }
         pub fn p_present_modes(
             mut self,
-            p_present_modes: *const crate::vk::PresentModeKHR,
+            p_present_modes: &'a [crate::vk::PresentModeKHR],
         ) -> Self {
-            self.p_present_modes = p_present_modes;
+            self.swapchain_count = p_present_modes.len() as _;
+            self.p_present_modes = p_present_modes.as_ptr();
             self
         }
     }
@@ -267,8 +267,9 @@ pub(crate) mod reexport {
             self.image_index_count = image_index_count;
             self
         }
-        pub fn p_image_indices(mut self, p_image_indices: *const u32) -> Self {
-            self.p_image_indices = p_image_indices;
+        pub fn p_image_indices(mut self, p_image_indices: &'a [u32]) -> Self {
+            self.image_index_count = p_image_indices.len() as _;
+            self.p_image_indices = p_image_indices.as_ptr();
             self
         }
     }

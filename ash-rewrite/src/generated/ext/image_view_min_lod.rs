@@ -28,8 +28,8 @@ impl<'a> Default for PhysicalDeviceImageViewMinLodFeaturesEXT<'a> {
     }
 }
 impl<'a> PhysicalDeviceImageViewMinLodFeaturesEXT<'a> {
-    pub fn min_lod(mut self, min_lod: crate::vk::Bool32) -> Self {
-        self.min_lod = min_lod;
+    pub fn min_lod(mut self, min_lod: bool) -> Self {
+        self.min_lod = min_lod.into();
         self
     }
 }

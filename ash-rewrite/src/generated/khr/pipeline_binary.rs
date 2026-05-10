@@ -131,7 +131,7 @@ pub(crate) mod reexport {
     impl<'a> PipelineBinaryCreateInfoKHR<'a> {
         pub fn p_keys_and_data_info(
             mut self,
-            p_keys_and_data_info: *const crate::vk::PipelineBinaryKeysAndDataKHR<'a>,
+            p_keys_and_data_info: &'a crate::vk::PipelineBinaryKeysAndDataKHR<'a>,
         ) -> Self {
             self.p_keys_and_data_info = p_keys_and_data_info;
             self
@@ -142,7 +142,7 @@ pub(crate) mod reexport {
         }
         pub fn p_pipeline_create_info(
             mut self,
-            p_pipeline_create_info: *const crate::vk::PipelineCreateInfoKHR<'a>,
+            p_pipeline_create_info: &'a crate::vk::PipelineCreateInfoKHR<'a>,
         ) -> Self {
             self.p_pipeline_create_info = p_pipeline_create_info;
             self
@@ -178,9 +178,10 @@ pub(crate) mod reexport {
         }
         pub fn p_pipeline_binaries(
             mut self,
-            p_pipeline_binaries: *mut crate::vk::PipelineBinaryKHR,
+            p_pipeline_binaries: &'a mut [crate::vk::PipelineBinaryKHR],
         ) -> Self {
-            self.p_pipeline_binaries = p_pipeline_binaries;
+            self.pipeline_binary_count = p_pipeline_binaries.len() as _;
+            self.p_pipeline_binaries = p_pipeline_binaries.as_mut_ptr();
             self
         }
     }
@@ -196,8 +197,9 @@ pub(crate) mod reexport {
             self.data_size = data_size;
             self
         }
-        pub fn p_data(mut self, p_data: *mut core::ffi::c_void) -> Self {
-            self.p_data = p_data;
+        pub fn p_data(mut self, p_data: &'a mut [u8]) -> Self {
+            self.data_size = p_data.len() as _;
+            self.p_data = p_data.as_mut_ptr().cast();
             self
         }
     }
@@ -216,16 +218,18 @@ pub(crate) mod reexport {
         }
         pub fn p_pipeline_binary_keys(
             mut self,
-            p_pipeline_binary_keys: *const crate::vk::PipelineBinaryKeyKHR<'a>,
+            p_pipeline_binary_keys: &'a [crate::vk::PipelineBinaryKeyKHR<'a>],
         ) -> Self {
-            self.p_pipeline_binary_keys = p_pipeline_binary_keys;
+            self.binary_count = p_pipeline_binary_keys.len() as _;
+            self.p_pipeline_binary_keys = p_pipeline_binary_keys.as_ptr();
             self
         }
         pub fn p_pipeline_binary_data(
             mut self,
-            p_pipeline_binary_data: *const crate::vk::PipelineBinaryDataKHR<'a>,
+            p_pipeline_binary_data: &'a [crate::vk::PipelineBinaryDataKHR<'a>],
         ) -> Self {
-            self.p_pipeline_binary_data = p_pipeline_binary_data;
+            self.binary_count = p_pipeline_binary_data.len() as _;
+            self.p_pipeline_binary_data = p_pipeline_binary_data.as_ptr();
             self
         }
     }
@@ -301,9 +305,10 @@ pub(crate) mod reexport {
         }
         pub fn p_pipeline_binaries(
             mut self,
-            p_pipeline_binaries: *const crate::vk::PipelineBinaryKHR,
+            p_pipeline_binaries: &'a [crate::vk::PipelineBinaryKHR],
         ) -> Self {
-            self.p_pipeline_binaries = p_pipeline_binaries;
+            self.binary_count = p_pipeline_binaries.len() as _;
+            self.p_pipeline_binaries = p_pipeline_binaries.as_ptr();
             self
         }
     }
@@ -412,11 +417,8 @@ pub(crate) mod reexport {
         }
     }
     impl<'a> PhysicalDevicePipelineBinaryFeaturesKHR<'a> {
-        pub fn pipeline_binaries(
-            mut self,
-            pipeline_binaries: crate::vk::Bool32,
-        ) -> Self {
-            self.pipeline_binaries = pipeline_binaries;
+        pub fn pipeline_binaries(mut self, pipeline_binaries: bool) -> Self {
+            self.pipeline_binaries = pipeline_binaries.into();
             self
         }
     }
@@ -445,11 +447,8 @@ pub(crate) mod reexport {
         }
     }
     impl<'a> DevicePipelineBinaryInternalCacheControlKHR<'a> {
-        pub fn disable_internal_cache(
-            mut self,
-            disable_internal_cache: crate::vk::Bool32,
-        ) -> Self {
-            self.disable_internal_cache = disable_internal_cache;
+        pub fn disable_internal_cache(mut self, disable_internal_cache: bool) -> Self {
+            self.disable_internal_cache = disable_internal_cache.into();
             self
         }
     }
@@ -488,37 +487,41 @@ pub(crate) mod reexport {
     impl<'a> PhysicalDevicePipelineBinaryPropertiesKHR<'a> {
         pub fn pipeline_binary_internal_cache(
             mut self,
-            pipeline_binary_internal_cache: crate::vk::Bool32,
+            pipeline_binary_internal_cache: bool,
         ) -> Self {
-            self.pipeline_binary_internal_cache = pipeline_binary_internal_cache;
+            self.pipeline_binary_internal_cache = pipeline_binary_internal_cache.into();
             self
         }
         pub fn pipeline_binary_internal_cache_control(
             mut self,
-            pipeline_binary_internal_cache_control: crate::vk::Bool32,
+            pipeline_binary_internal_cache_control: bool,
         ) -> Self {
-            self.pipeline_binary_internal_cache_control = pipeline_binary_internal_cache_control;
+            self.pipeline_binary_internal_cache_control = pipeline_binary_internal_cache_control
+                .into();
             self
         }
         pub fn pipeline_binary_prefers_internal_cache(
             mut self,
-            pipeline_binary_prefers_internal_cache: crate::vk::Bool32,
+            pipeline_binary_prefers_internal_cache: bool,
         ) -> Self {
-            self.pipeline_binary_prefers_internal_cache = pipeline_binary_prefers_internal_cache;
+            self.pipeline_binary_prefers_internal_cache = pipeline_binary_prefers_internal_cache
+                .into();
             self
         }
         pub fn pipeline_binary_precompiled_internal_cache(
             mut self,
-            pipeline_binary_precompiled_internal_cache: crate::vk::Bool32,
+            pipeline_binary_precompiled_internal_cache: bool,
         ) -> Self {
-            self.pipeline_binary_precompiled_internal_cache = pipeline_binary_precompiled_internal_cache;
+            self.pipeline_binary_precompiled_internal_cache = pipeline_binary_precompiled_internal_cache
+                .into();
             self
         }
         pub fn pipeline_binary_compressed_data(
             mut self,
-            pipeline_binary_compressed_data: crate::vk::Bool32,
+            pipeline_binary_compressed_data: bool,
         ) -> Self {
-            self.pipeline_binary_compressed_data = pipeline_binary_compressed_data;
+            self.pipeline_binary_compressed_data = pipeline_binary_compressed_data
+                .into();
             self
         }
     }

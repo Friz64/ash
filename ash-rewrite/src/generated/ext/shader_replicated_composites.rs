@@ -30,9 +30,9 @@ impl<'a> Default for PhysicalDeviceShaderReplicatedCompositesFeaturesEXT<'a> {
 impl<'a> PhysicalDeviceShaderReplicatedCompositesFeaturesEXT<'a> {
     pub fn shader_replicated_composites(
         mut self,
-        shader_replicated_composites: crate::vk::Bool32,
+        shader_replicated_composites: bool,
     ) -> Self {
-        self.shader_replicated_composites = shader_replicated_composites;
+        self.shader_replicated_composites = shader_replicated_composites.into();
         self
     }
 }

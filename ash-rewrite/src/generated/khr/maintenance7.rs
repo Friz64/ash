@@ -28,8 +28,8 @@ impl<'a> Default for PhysicalDeviceMaintenance7FeaturesKHR<'a> {
     }
 }
 impl<'a> PhysicalDeviceMaintenance7FeaturesKHR<'a> {
-    pub fn maintenance7(mut self, maintenance7: crate::vk::Bool32) -> Self {
-        self.maintenance7 = maintenance7;
+    pub fn maintenance7(mut self, maintenance7: bool) -> Self {
+        self.maintenance7 = maintenance7.into();
         self
     }
 }
@@ -74,16 +74,18 @@ impl<'a> Default for PhysicalDeviceMaintenance7PropertiesKHR<'a> {
 impl<'a> PhysicalDeviceMaintenance7PropertiesKHR<'a> {
     pub fn robust_fragment_shading_rate_attachment_access(
         mut self,
-        robust_fragment_shading_rate_attachment_access: crate::vk::Bool32,
+        robust_fragment_shading_rate_attachment_access: bool,
     ) -> Self {
-        self.robust_fragment_shading_rate_attachment_access = robust_fragment_shading_rate_attachment_access;
+        self.robust_fragment_shading_rate_attachment_access = robust_fragment_shading_rate_attachment_access
+            .into();
         self
     }
     pub fn separate_depth_stencil_attachment_access(
         mut self,
-        separate_depth_stencil_attachment_access: crate::vk::Bool32,
+        separate_depth_stencil_attachment_access: bool,
     ) -> Self {
-        self.separate_depth_stencil_attachment_access = separate_depth_stencil_attachment_access;
+        self.separate_depth_stencil_attachment_access = separate_depth_stencil_attachment_access
+            .into();
         self
     }
     pub fn max_descriptor_set_total_uniform_buffers_dynamic(
@@ -162,9 +164,10 @@ impl<'a> PhysicalDeviceLayeredApiPropertiesListKHR<'a> {
     }
     pub fn p_layered_apis(
         mut self,
-        p_layered_apis: *mut crate::vk::PhysicalDeviceLayeredApiPropertiesKHR<'a>,
+        p_layered_apis: &'a mut [crate::vk::PhysicalDeviceLayeredApiPropertiesKHR<'a>],
     ) -> Self {
-        self.p_layered_apis = p_layered_apis;
+        self.layered_api_count = p_layered_apis.len() as _;
+        self.p_layered_apis = p_layered_apis.as_mut_ptr();
         self
     }
 }

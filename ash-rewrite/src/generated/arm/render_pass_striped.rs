@@ -28,11 +28,8 @@ impl<'a> Default for PhysicalDeviceRenderPassStripedFeaturesARM<'a> {
     }
 }
 impl<'a> PhysicalDeviceRenderPassStripedFeaturesARM<'a> {
-    pub fn render_pass_striped(
-        mut self,
-        render_pass_striped: crate::vk::Bool32,
-    ) -> Self {
-        self.render_pass_striped = render_pass_striped;
+    pub fn render_pass_striped(mut self, render_pass_striped: bool) -> Self {
+        self.render_pass_striped = render_pass_striped.into();
         self
     }
 }
@@ -136,9 +133,10 @@ impl<'a> RenderPassStripeBeginInfoARM<'a> {
     }
     pub fn p_stripe_infos(
         mut self,
-        p_stripe_infos: *const crate::vk::RenderPassStripeInfoARM<'a>,
+        p_stripe_infos: &'a [crate::vk::RenderPassStripeInfoARM<'a>],
     ) -> Self {
-        self.p_stripe_infos = p_stripe_infos;
+        self.stripe_info_count = p_stripe_infos.len() as _;
+        self.p_stripe_infos = p_stripe_infos.as_ptr();
         self
     }
 }
@@ -177,9 +175,10 @@ impl<'a> RenderPassStripeSubmitInfoARM<'a> {
     }
     pub fn p_stripe_semaphore_infos(
         mut self,
-        p_stripe_semaphore_infos: *const crate::vk::SemaphoreSubmitInfo<'a>,
+        p_stripe_semaphore_infos: &'a [crate::vk::SemaphoreSubmitInfo<'a>],
     ) -> Self {
-        self.p_stripe_semaphore_infos = p_stripe_semaphore_infos;
+        self.stripe_semaphore_info_count = p_stripe_semaphore_infos.len() as _;
+        self.p_stripe_semaphore_infos = p_stripe_semaphore_infos.as_ptr();
         self
     }
 }

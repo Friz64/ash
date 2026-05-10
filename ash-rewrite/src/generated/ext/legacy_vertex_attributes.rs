@@ -28,11 +28,8 @@ impl<'a> Default for PhysicalDeviceLegacyVertexAttributesFeaturesEXT<'a> {
     }
 }
 impl<'a> PhysicalDeviceLegacyVertexAttributesFeaturesEXT<'a> {
-    pub fn legacy_vertex_attributes(
-        mut self,
-        legacy_vertex_attributes: crate::vk::Bool32,
-    ) -> Self {
-        self.legacy_vertex_attributes = legacy_vertex_attributes;
+    pub fn legacy_vertex_attributes(mut self, legacy_vertex_attributes: bool) -> Self {
+        self.legacy_vertex_attributes = legacy_vertex_attributes.into();
         self
     }
 }
@@ -63,9 +60,9 @@ impl<'a> Default for PhysicalDeviceLegacyVertexAttributesPropertiesEXT<'a> {
 impl<'a> PhysicalDeviceLegacyVertexAttributesPropertiesEXT<'a> {
     pub fn native_unaligned_performance(
         mut self,
-        native_unaligned_performance: crate::vk::Bool32,
+        native_unaligned_performance: bool,
     ) -> Self {
-        self.native_unaligned_performance = native_unaligned_performance;
+        self.native_unaligned_performance = native_unaligned_performance.into();
         self
     }
 }

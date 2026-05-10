@@ -30,9 +30,9 @@ impl<'a> Default for PhysicalDeviceCommandBufferInheritanceFeaturesNV<'a> {
 impl<'a> PhysicalDeviceCommandBufferInheritanceFeaturesNV<'a> {
     pub fn command_buffer_inheritance(
         mut self,
-        command_buffer_inheritance: crate::vk::Bool32,
+        command_buffer_inheritance: bool,
     ) -> Self {
-        self.command_buffer_inheritance = command_buffer_inheritance;
+        self.command_buffer_inheritance = command_buffer_inheritance.into();
         self
     }
 }

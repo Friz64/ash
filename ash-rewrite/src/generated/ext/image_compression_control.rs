@@ -46,9 +46,10 @@ impl<'a> ImageCompressionControlEXT<'a> {
     }
     pub fn p_fixed_rate_flags(
         mut self,
-        p_fixed_rate_flags: *mut crate::vk::ImageCompressionFixedRateFlagsEXT,
+        p_fixed_rate_flags: &'a mut [crate::vk::ImageCompressionFixedRateFlagsEXT],
     ) -> Self {
-        self.p_fixed_rate_flags = p_fixed_rate_flags;
+        self.compression_control_plane_count = p_fixed_rate_flags.len() as _;
+        self.p_fixed_rate_flags = p_fixed_rate_flags.as_mut_ptr();
         self
     }
 }
@@ -79,11 +80,8 @@ impl<'a> Default for PhysicalDeviceImageCompressionControlFeaturesEXT<'a> {
     }
 }
 impl<'a> PhysicalDeviceImageCompressionControlFeaturesEXT<'a> {
-    pub fn image_compression_control(
-        mut self,
-        image_compression_control: crate::vk::Bool32,
-    ) -> Self {
-        self.image_compression_control = image_compression_control;
+    pub fn image_compression_control(mut self, image_compression_control: bool) -> Self {
+        self.image_compression_control = image_compression_control.into();
         self
     }
 }

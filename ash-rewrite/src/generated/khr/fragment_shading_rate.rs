@@ -101,9 +101,7 @@ pub(crate) mod reexport {
     impl<'a> FragmentShadingRateAttachmentInfoKHR<'a> {
         pub fn p_fragment_shading_rate_attachment(
             mut self,
-            p_fragment_shading_rate_attachment: *const crate::vk::AttachmentReference2<
-                'a,
-            >,
+            p_fragment_shading_rate_attachment: &'a crate::vk::AttachmentReference2<'a>,
         ) -> Self {
             self.p_fragment_shading_rate_attachment = p_fragment_shading_rate_attachment;
             self
@@ -188,23 +186,25 @@ pub(crate) mod reexport {
     impl<'a> PhysicalDeviceFragmentShadingRateFeaturesKHR<'a> {
         pub fn pipeline_fragment_shading_rate(
             mut self,
-            pipeline_fragment_shading_rate: crate::vk::Bool32,
+            pipeline_fragment_shading_rate: bool,
         ) -> Self {
-            self.pipeline_fragment_shading_rate = pipeline_fragment_shading_rate;
+            self.pipeline_fragment_shading_rate = pipeline_fragment_shading_rate.into();
             self
         }
         pub fn primitive_fragment_shading_rate(
             mut self,
-            primitive_fragment_shading_rate: crate::vk::Bool32,
+            primitive_fragment_shading_rate: bool,
         ) -> Self {
-            self.primitive_fragment_shading_rate = primitive_fragment_shading_rate;
+            self.primitive_fragment_shading_rate = primitive_fragment_shading_rate
+                .into();
             self
         }
         pub fn attachment_fragment_shading_rate(
             mut self,
-            attachment_fragment_shading_rate: crate::vk::Bool32,
+            attachment_fragment_shading_rate: bool,
         ) -> Self {
-            self.attachment_fragment_shading_rate = attachment_fragment_shading_rate;
+            self.attachment_fragment_shading_rate = attachment_fragment_shading_rate
+                .into();
             self
         }
     }
@@ -288,23 +288,26 @@ pub(crate) mod reexport {
         }
         pub fn primitive_fragment_shading_rate_with_multiple_viewports(
             mut self,
-            primitive_fragment_shading_rate_with_multiple_viewports: crate::vk::Bool32,
+            primitive_fragment_shading_rate_with_multiple_viewports: bool,
         ) -> Self {
-            self.primitive_fragment_shading_rate_with_multiple_viewports = primitive_fragment_shading_rate_with_multiple_viewports;
+            self.primitive_fragment_shading_rate_with_multiple_viewports = primitive_fragment_shading_rate_with_multiple_viewports
+                .into();
             self
         }
         pub fn layered_shading_rate_attachments(
             mut self,
-            layered_shading_rate_attachments: crate::vk::Bool32,
+            layered_shading_rate_attachments: bool,
         ) -> Self {
-            self.layered_shading_rate_attachments = layered_shading_rate_attachments;
+            self.layered_shading_rate_attachments = layered_shading_rate_attachments
+                .into();
             self
         }
         pub fn fragment_shading_rate_non_trivial_combiner_ops(
             mut self,
-            fragment_shading_rate_non_trivial_combiner_ops: crate::vk::Bool32,
+            fragment_shading_rate_non_trivial_combiner_ops: bool,
         ) -> Self {
-            self.fragment_shading_rate_non_trivial_combiner_ops = fragment_shading_rate_non_trivial_combiner_ops;
+            self.fragment_shading_rate_non_trivial_combiner_ops = fragment_shading_rate_non_trivial_combiner_ops
+                .into();
             self
         }
         pub fn max_fragment_size(
@@ -337,51 +340,58 @@ pub(crate) mod reexport {
         }
         pub fn fragment_shading_rate_with_shader_depth_stencil_writes(
             mut self,
-            fragment_shading_rate_with_shader_depth_stencil_writes: crate::vk::Bool32,
+            fragment_shading_rate_with_shader_depth_stencil_writes: bool,
         ) -> Self {
-            self.fragment_shading_rate_with_shader_depth_stencil_writes = fragment_shading_rate_with_shader_depth_stencil_writes;
+            self.fragment_shading_rate_with_shader_depth_stencil_writes = fragment_shading_rate_with_shader_depth_stencil_writes
+                .into();
             self
         }
         pub fn fragment_shading_rate_with_sample_mask(
             mut self,
-            fragment_shading_rate_with_sample_mask: crate::vk::Bool32,
+            fragment_shading_rate_with_sample_mask: bool,
         ) -> Self {
-            self.fragment_shading_rate_with_sample_mask = fragment_shading_rate_with_sample_mask;
+            self.fragment_shading_rate_with_sample_mask = fragment_shading_rate_with_sample_mask
+                .into();
             self
         }
         pub fn fragment_shading_rate_with_shader_sample_mask(
             mut self,
-            fragment_shading_rate_with_shader_sample_mask: crate::vk::Bool32,
+            fragment_shading_rate_with_shader_sample_mask: bool,
         ) -> Self {
-            self.fragment_shading_rate_with_shader_sample_mask = fragment_shading_rate_with_shader_sample_mask;
+            self.fragment_shading_rate_with_shader_sample_mask = fragment_shading_rate_with_shader_sample_mask
+                .into();
             self
         }
         pub fn fragment_shading_rate_with_conservative_rasterization(
             mut self,
-            fragment_shading_rate_with_conservative_rasterization: crate::vk::Bool32,
+            fragment_shading_rate_with_conservative_rasterization: bool,
         ) -> Self {
-            self.fragment_shading_rate_with_conservative_rasterization = fragment_shading_rate_with_conservative_rasterization;
+            self.fragment_shading_rate_with_conservative_rasterization = fragment_shading_rate_with_conservative_rasterization
+                .into();
             self
         }
         pub fn fragment_shading_rate_with_fragment_shader_interlock(
             mut self,
-            fragment_shading_rate_with_fragment_shader_interlock: crate::vk::Bool32,
+            fragment_shading_rate_with_fragment_shader_interlock: bool,
         ) -> Self {
-            self.fragment_shading_rate_with_fragment_shader_interlock = fragment_shading_rate_with_fragment_shader_interlock;
+            self.fragment_shading_rate_with_fragment_shader_interlock = fragment_shading_rate_with_fragment_shader_interlock
+                .into();
             self
         }
         pub fn fragment_shading_rate_with_custom_sample_locations(
             mut self,
-            fragment_shading_rate_with_custom_sample_locations: crate::vk::Bool32,
+            fragment_shading_rate_with_custom_sample_locations: bool,
         ) -> Self {
-            self.fragment_shading_rate_with_custom_sample_locations = fragment_shading_rate_with_custom_sample_locations;
+            self.fragment_shading_rate_with_custom_sample_locations = fragment_shading_rate_with_custom_sample_locations
+                .into();
             self
         }
         pub fn fragment_shading_rate_strict_multiply_combiner(
             mut self,
-            fragment_shading_rate_strict_multiply_combiner: crate::vk::Bool32,
+            fragment_shading_rate_strict_multiply_combiner: bool,
         ) -> Self {
-            self.fragment_shading_rate_strict_multiply_combiner = fragment_shading_rate_strict_multiply_combiner;
+            self.fragment_shading_rate_strict_multiply_combiner = fragment_shading_rate_strict_multiply_combiner
+                .into();
             self
         }
     }

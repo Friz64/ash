@@ -30,9 +30,9 @@ impl<'a> Default for PhysicalDeviceAttachmentFeedbackLoopLayoutFeaturesEXT<'a> {
 impl<'a> PhysicalDeviceAttachmentFeedbackLoopLayoutFeaturesEXT<'a> {
     pub fn attachment_feedback_loop_layout(
         mut self,
-        attachment_feedback_loop_layout: crate::vk::Bool32,
+        attachment_feedback_loop_layout: bool,
     ) -> Self {
-        self.attachment_feedback_loop_layout = attachment_feedback_loop_layout;
+        self.attachment_feedback_loop_layout = attachment_feedback_loop_layout.into();
         self
     }
 }

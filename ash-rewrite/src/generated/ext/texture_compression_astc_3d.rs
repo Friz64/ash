@@ -30,9 +30,9 @@ impl<'a> Default for PhysicalDeviceTextureCompressionASTC3DFeaturesEXT<'a> {
 impl<'a> PhysicalDeviceTextureCompressionASTC3DFeaturesEXT<'a> {
     pub fn texture_compression_astc_3d(
         mut self,
-        texture_compression_astc_3d: crate::vk::Bool32,
+        texture_compression_astc_3d: bool,
     ) -> Self {
-        self.texture_compression_astc_3d = texture_compression_astc_3d;
+        self.texture_compression_astc_3d = texture_compression_astc_3d.into();
         self
     }
 }

@@ -3,16 +3,16 @@ use core::str::FromStr;
 use super::{Code, Context};
 use crate::output::{CodeMap, Destination};
 use analysis::{
-    decl::Ty,
+    decl::{CPrimaryType, Decl, Mutability, RustType, Ty},
     item::{
         Named,
-        structure::{BitfieldRange, Struct, StructDecl, StructMember, Union},
+        structure::{Length, Struct, StructDecl, StructMember, Union},
     },
     lifetime::Lifetime,
     name::TypeName,
     to_rust::RustTranslator,
 };
-use proc_macro2::Literal;
+use proc_macro2::{Literal, TokenStream};
 use quote::{format_ident, quote};
 use tracing::{instrument, trace};
 
@@ -151,16 +151,9 @@ impl Code for Struct {
                 _ => true,
             })
             .flat_map(|member| match member {
-                StructMember::Normal(StructDecl { decl, len }) => {
-                    let field_name = ctx.var_name_to_rust(decl.name);
-                    let field_type = decl.ty.to_rust(ctx, &lifetime);
-                    itertools::Either::Left(core::iter::once(quote! {
-                        pub fn #field_name(mut self, #field_name: #field_type) -> Self {
-                            self.#field_name = #field_name;
-                            self
-                        }
-                    }))
-                }
+                StructMember::Normal(StructDecl { decl, len }) => itertools::Either::Left(
+                    core::iter::once(decl_setter_and_getter(decl, len, ctx, &lifetime)),
+                ),
                 StructMember::BitField(bitfield_ranges) => {
                     let name = format_ident!("bitfield{bitfield_i}");
                     bitfield_i += 1;
@@ -201,6 +194,155 @@ impl Code for Struct {
         };
 
         CodeMap::new(Destination::new(self.required_by), code)
+    }
+}
+
+fn decl_setter_and_getter(
+    decl: &Decl,
+    len: &[Length],
+    ctx: &Context<'_>,
+    lifetime: &Lifetime,
+) -> TokenStream {
+    let field_name = ctx.var_name_to_rust(decl.name);
+
+    match decl.ty {
+        Ty::SpecType(TypeName::VK_BOOL32) => {
+            quote! {
+                pub fn #field_name(mut self, #field_name: bool) -> Self {
+                    self.#field_name = #field_name.into();
+                    self
+                }
+            }
+        }
+        Ty::Ptr(Ty::CPrimary(CPrimaryType::Char), mutability)
+            if len.first().is_some_and(|l| l == &Length::NullTerminated) =>
+        {
+            let ty = Ty::Ref(&Ty::RustType(RustType::CStr), mutability).to_rust(ctx, lifetime);
+            let field_name_as_cstr = format_ident!("{field_name}_as_c_str");
+            quote! {
+                pub fn #field_name(mut self, #field_name: #ty) -> Self {
+                    self.#field_name = #field_name.as_ptr();
+                    self
+                }
+
+                pub unsafe fn #field_name_as_cstr(&self) -> Option<&core::ffi::CStr> {
+                    if self.#field_name.is_null() {
+                        None
+                    } else {
+                        Some(unsafe { core::ffi::CStr::from_ptr(self.#field_name) })
+                    }
+                }
+            }
+        }
+        Ty::Array(Ty::CPrimary(CPrimaryType::Char), _)
+            if len.first().is_some_and(|l| l == &Length::NullTerminated) =>
+        {
+            let field_name_as_cstr = format_ident!("{field_name}_as_c_str");
+            quote! {
+                pub fn #field_name(mut self, #field_name: &core::ffi::CStr) -> core::result::Result<Self, crate::CStrTooLargeForStaticArray> {
+                    crate::write_c_str_slice_with_nul(&mut self.#field_name, #field_name).map(|_| self)
+                }
+
+                pub fn #field_name_as_cstr(&self) -> core::result::Result<&core::ffi::CStr, core::ffi::FromBytesUntilNulError> {
+                    crate::wrap_c_str_slice_until_nul(&self.#field_name)
+                }
+            }
+        }
+        Ty::Array(base, _) if let Some(Length::Member(len_var)) = len.first() => {
+            let len_var = ctx.var_name_to_rust(*len_var);
+            let field_name_as_slice = format_ident!("{field_name}_as_slice");
+            let base_ty = array_base_ty(base, ctx, lifetime, len);
+            quote! {
+                pub fn #field_name(mut self, #field_name: &[#base_ty]) -> Self {
+                    self.#len_var = #field_name.len() as _;
+                    self.#field_name[..#field_name.len()].copy_from_slice(#field_name);
+                    self
+                }
+
+                pub fn #field_name_as_slice(&self) -> &[#base_ty] {
+                    &self.#field_name[..self.#len_var as _]
+                }
+            }
+        }
+        Ty::Ptr(base, mutability) if let Some(Length::Member(len_var)) = len.first() => {
+            let mut ptr = match mutability {
+                Mutability::Not => quote! { .as_ptr() },
+                Mutability::Mut => quote! { .as_mut_ptr() },
+            };
+            let base_ty = match base {
+                Ty::CPrimary(CPrimaryType::Void) => {
+                    ptr = quote! { #ptr.cast() };
+                    quote! { [u8] }
+                }
+                _ => {
+                    let ty = array_base_ty(base, ctx, lifetime, len);
+                    if len.get(1) == Some(&Length::Pointer) {
+                        ptr = quote! { #ptr.cast() }
+                    }
+                    quote! { [#ty] }
+                }
+            };
+
+            let len_var = ctx.var_name_to_rust(*len_var);
+            let mutability = match mutability {
+                Mutability::Not => quote! {},
+                Mutability::Mut => quote! {mut},
+            };
+            quote! {
+                pub fn #field_name(mut self, #field_name: &#lifetime #mutability #base_ty) -> Self {
+                    self.#len_var = #field_name.len() as _;
+                    self.#field_name = #field_name #ptr;
+                    self
+                }
+            }
+        }
+        Ty::Ptr(base, mutability) if len.first().is_none_or(|l| l == &Length::Pointer) => {
+            let ty = Ty::Ref(base, mutability).to_rust(ctx, lifetime);
+            quote! {
+                pub fn #field_name(mut self, #field_name: #ty) -> Self {
+                    self.#field_name = #field_name;
+                    self
+                }
+            }
+        }
+        Ty::Ptr(base, mutability) if let Some(Length::Custom(custom)) = len.first() => {
+            match *custom {
+                _ => {
+                    tracing::warn!(?custom, "unhandled custom length");
+                    let ty = decl.ty.to_rust(ctx, lifetime);
+                    quote! {
+                        pub fn #field_name(mut self, #field_name: #ty) -> Self {
+                            self.#field_name = #field_name;
+                            self
+                        }
+                    }
+                }
+            }
+        }
+        _ => {
+            let ty = decl.ty.to_rust(ctx, lifetime);
+            quote! {
+                pub fn #field_name(mut self, #field_name: #ty) -> Self {
+                    self.#field_name = #field_name;
+                    self
+                }
+            }
+        }
+    }
+}
+
+fn array_base_ty(base: &Ty, ctx: &Context<'_>, lifetime: &Lifetime, len: &[Length]) -> TokenStream {
+    match base {
+        Ty::Ptr(ty, mutability) if len.get(1).is_some_and(|l| l == &Length::Pointer) => {
+            Ty::Ref(ty, *mutability).to_rust(ctx, lifetime)
+        }
+        ty @ (Ty::SpecType(_)
+        | Ty::SpecFuncPointer(_)
+        | Ty::CPrimary(_)
+        | Ty::Array(_, _)
+        | Ty::Ptr(_, _)
+        | Ty::Platform(_)) => ty.to_rust(ctx, lifetime),
+        _ => unreachable!("Ty::RustType, Ty::Ref, and Ty::Slice cannot be emitted from a registry"),
     }
 }
 

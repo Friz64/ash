@@ -28,11 +28,8 @@ impl<'a> Default for PhysicalDeviceCubicWeightsFeaturesQCOM<'a> {
     }
 }
 impl<'a> PhysicalDeviceCubicWeightsFeaturesQCOM<'a> {
-    pub fn selectable_cubic_weights(
-        mut self,
-        selectable_cubic_weights: crate::vk::Bool32,
-    ) -> Self {
-        self.selectable_cubic_weights = selectable_cubic_weights;
+    pub fn selectable_cubic_weights(mut self, selectable_cubic_weights: bool) -> Self {
+        self.selectable_cubic_weights = selectable_cubic_weights.into();
         self
     }
 }

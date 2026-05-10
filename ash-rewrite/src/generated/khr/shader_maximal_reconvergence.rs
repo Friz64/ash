@@ -30,9 +30,9 @@ impl<'a> Default for PhysicalDeviceShaderMaximalReconvergenceFeaturesKHR<'a> {
 impl<'a> PhysicalDeviceShaderMaximalReconvergenceFeaturesKHR<'a> {
     pub fn shader_maximal_reconvergence(
         mut self,
-        shader_maximal_reconvergence: crate::vk::Bool32,
+        shader_maximal_reconvergence: bool,
     ) -> Self {
-        self.shader_maximal_reconvergence = shader_maximal_reconvergence;
+        self.shader_maximal_reconvergence = shader_maximal_reconvergence.into();
         self
     }
 }

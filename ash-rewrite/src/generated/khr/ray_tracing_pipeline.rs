@@ -207,7 +207,7 @@ pub(crate) mod reexport {
         }
         pub fn p_shader_group_capture_replay_handle(
             mut self,
-            p_shader_group_capture_replay_handle: *const core::ffi::c_void,
+            p_shader_group_capture_replay_handle: &'a core::ffi::c_void,
         ) -> Self {
             self.p_shader_group_capture_replay_handle = p_shader_group_capture_replay_handle;
             self
@@ -269,9 +269,10 @@ pub(crate) mod reexport {
         }
         pub fn p_stages(
             mut self,
-            p_stages: *const crate::vk::PipelineShaderStageCreateInfo<'a>,
+            p_stages: &'a [crate::vk::PipelineShaderStageCreateInfo<'a>],
         ) -> Self {
-            self.p_stages = p_stages;
+            self.stage_count = p_stages.len() as _;
+            self.p_stages = p_stages.as_ptr();
             self
         }
         pub fn group_count(mut self, group_count: u32) -> Self {
@@ -280,9 +281,10 @@ pub(crate) mod reexport {
         }
         pub fn p_groups(
             mut self,
-            p_groups: *const crate::vk::RayTracingShaderGroupCreateInfoKHR<'a>,
+            p_groups: &'a [crate::vk::RayTracingShaderGroupCreateInfoKHR<'a>],
         ) -> Self {
-            self.p_groups = p_groups;
+            self.group_count = p_groups.len() as _;
+            self.p_groups = p_groups.as_ptr();
             self
         }
         pub fn max_pipeline_ray_recursion_depth(
@@ -294,14 +296,14 @@ pub(crate) mod reexport {
         }
         pub fn p_library_info(
             mut self,
-            p_library_info: *const crate::vk::PipelineLibraryCreateInfoKHR<'a>,
+            p_library_info: &'a crate::vk::PipelineLibraryCreateInfoKHR<'a>,
         ) -> Self {
             self.p_library_info = p_library_info;
             self
         }
         pub fn p_library_interface(
             mut self,
-            p_library_interface: *const crate::vk::RayTracingPipelineInterfaceCreateInfoKHR<
+            p_library_interface: &'a crate::vk::RayTracingPipelineInterfaceCreateInfoKHR<
                 'a,
             >,
         ) -> Self {
@@ -310,7 +312,7 @@ pub(crate) mod reexport {
         }
         pub fn p_dynamic_state(
             mut self,
-            p_dynamic_state: *const crate::vk::PipelineDynamicStateCreateInfo<'a>,
+            p_dynamic_state: &'a crate::vk::PipelineDynamicStateCreateInfo<'a>,
         ) -> Self {
             self.p_dynamic_state = p_dynamic_state;
             self
@@ -366,39 +368,40 @@ pub(crate) mod reexport {
         }
     }
     impl<'a> PhysicalDeviceRayTracingPipelineFeaturesKHR<'a> {
-        pub fn ray_tracing_pipeline(
-            mut self,
-            ray_tracing_pipeline: crate::vk::Bool32,
-        ) -> Self {
-            self.ray_tracing_pipeline = ray_tracing_pipeline;
+        pub fn ray_tracing_pipeline(mut self, ray_tracing_pipeline: bool) -> Self {
+            self.ray_tracing_pipeline = ray_tracing_pipeline.into();
             self
         }
         pub fn ray_tracing_pipeline_shader_group_handle_capture_replay(
             mut self,
-            ray_tracing_pipeline_shader_group_handle_capture_replay: crate::vk::Bool32,
+            ray_tracing_pipeline_shader_group_handle_capture_replay: bool,
         ) -> Self {
-            self.ray_tracing_pipeline_shader_group_handle_capture_replay = ray_tracing_pipeline_shader_group_handle_capture_replay;
+            self.ray_tracing_pipeline_shader_group_handle_capture_replay = ray_tracing_pipeline_shader_group_handle_capture_replay
+                .into();
             self
         }
         pub fn ray_tracing_pipeline_shader_group_handle_capture_replay_mixed(
             mut self,
-            ray_tracing_pipeline_shader_group_handle_capture_replay_mixed: crate::vk::Bool32,
+            ray_tracing_pipeline_shader_group_handle_capture_replay_mixed: bool,
         ) -> Self {
-            self.ray_tracing_pipeline_shader_group_handle_capture_replay_mixed = ray_tracing_pipeline_shader_group_handle_capture_replay_mixed;
+            self.ray_tracing_pipeline_shader_group_handle_capture_replay_mixed = ray_tracing_pipeline_shader_group_handle_capture_replay_mixed
+                .into();
             self
         }
         pub fn ray_tracing_pipeline_trace_rays_indirect(
             mut self,
-            ray_tracing_pipeline_trace_rays_indirect: crate::vk::Bool32,
+            ray_tracing_pipeline_trace_rays_indirect: bool,
         ) -> Self {
-            self.ray_tracing_pipeline_trace_rays_indirect = ray_tracing_pipeline_trace_rays_indirect;
+            self.ray_tracing_pipeline_trace_rays_indirect = ray_tracing_pipeline_trace_rays_indirect
+                .into();
             self
         }
         pub fn ray_traversal_primitive_culling(
             mut self,
-            ray_traversal_primitive_culling: crate::vk::Bool32,
+            ray_traversal_primitive_culling: bool,
         ) -> Self {
-            self.ray_traversal_primitive_culling = ray_traversal_primitive_culling;
+            self.ray_traversal_primitive_culling = ray_traversal_primitive_culling
+                .into();
             self
         }
     }

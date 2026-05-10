@@ -138,16 +138,18 @@ pub(crate) mod reexport {
     impl<'a> PhysicalDevicePerformanceQueryFeaturesKHR<'a> {
         pub fn performance_counter_query_pools(
             mut self,
-            performance_counter_query_pools: crate::vk::Bool32,
+            performance_counter_query_pools: bool,
         ) -> Self {
-            self.performance_counter_query_pools = performance_counter_query_pools;
+            self.performance_counter_query_pools = performance_counter_query_pools
+                .into();
             self
         }
         pub fn performance_counter_multiple_query_pools(
             mut self,
-            performance_counter_multiple_query_pools: crate::vk::Bool32,
+            performance_counter_multiple_query_pools: bool,
         ) -> Self {
-            self.performance_counter_multiple_query_pools = performance_counter_multiple_query_pools;
+            self.performance_counter_multiple_query_pools = performance_counter_multiple_query_pools
+                .into();
             self
         }
     }
@@ -178,9 +180,10 @@ pub(crate) mod reexport {
     impl<'a> PhysicalDevicePerformanceQueryPropertiesKHR<'a> {
         pub fn allow_command_buffer_query_copies(
             mut self,
-            allow_command_buffer_query_copies: crate::vk::Bool32,
+            allow_command_buffer_query_copies: bool,
         ) -> Self {
-            self.allow_command_buffer_query_copies = allow_command_buffer_query_copies;
+            self.allow_command_buffer_query_copies = allow_command_buffer_query_copies
+                .into();
             self
         }
     }
@@ -269,24 +272,37 @@ pub(crate) mod reexport {
         }
         pub fn name(
             mut self,
-            name: [core::ffi::c_char; crate::vk::MAX_DESCRIPTION_SIZE as _],
-        ) -> Self {
-            self.name = name;
-            self
+            name: &core::ffi::CStr,
+        ) -> core::result::Result<Self, crate::CStrTooLargeForStaticArray> {
+            crate::write_c_str_slice_with_nul(&mut self.name, name).map(|_| self)
+        }
+        pub fn name_as_c_str(
+            &self,
+        ) -> core::result::Result<&core::ffi::CStr, core::ffi::FromBytesUntilNulError> {
+            crate::wrap_c_str_slice_until_nul(&self.name)
         }
         pub fn category(
             mut self,
-            category: [core::ffi::c_char; crate::vk::MAX_DESCRIPTION_SIZE as _],
-        ) -> Self {
-            self.category = category;
-            self
+            category: &core::ffi::CStr,
+        ) -> core::result::Result<Self, crate::CStrTooLargeForStaticArray> {
+            crate::write_c_str_slice_with_nul(&mut self.category, category).map(|_| self)
+        }
+        pub fn category_as_c_str(
+            &self,
+        ) -> core::result::Result<&core::ffi::CStr, core::ffi::FromBytesUntilNulError> {
+            crate::wrap_c_str_slice_until_nul(&self.category)
         }
         pub fn description(
             mut self,
-            description: [core::ffi::c_char; crate::vk::MAX_DESCRIPTION_SIZE as _],
-        ) -> Self {
-            self.description = description;
-            self
+            description: &core::ffi::CStr,
+        ) -> core::result::Result<Self, crate::CStrTooLargeForStaticArray> {
+            crate::write_c_str_slice_with_nul(&mut self.description, description)
+                .map(|_| self)
+        }
+        pub fn description_as_c_str(
+            &self,
+        ) -> core::result::Result<&core::ffi::CStr, core::ffi::FromBytesUntilNulError> {
+            crate::wrap_c_str_slice_until_nul(&self.description)
         }
     }
     #[repr(C)]
@@ -326,8 +342,9 @@ pub(crate) mod reexport {
             self.counter_index_count = counter_index_count;
             self
         }
-        pub fn p_counter_indices(mut self, p_counter_indices: *const u32) -> Self {
-            self.p_counter_indices = p_counter_indices;
+        pub fn p_counter_indices(mut self, p_counter_indices: &'a [u32]) -> Self {
+            self.counter_index_count = p_counter_indices.len() as _;
+            self.p_counter_indices = p_counter_indices.as_ptr();
             self
         }
     }

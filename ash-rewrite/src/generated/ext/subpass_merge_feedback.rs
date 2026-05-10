@@ -27,8 +27,8 @@ impl<'a> Default for RenderPassCreationControlEXT<'a> {
     }
 }
 impl<'a> RenderPassCreationControlEXT<'a> {
-    pub fn disallow_merging(mut self, disallow_merging: crate::vk::Bool32) -> Self {
-        self.disallow_merging = disallow_merging;
+    pub fn disallow_merging(mut self, disallow_merging: bool) -> Self {
+        self.disallow_merging = disallow_merging.into();
         self
     }
 }
@@ -70,7 +70,7 @@ impl<'a> Default for RenderPassCreationFeedbackCreateInfoEXT<'a> {
 impl<'a> RenderPassCreationFeedbackCreateInfoEXT<'a> {
     pub fn p_render_pass_feedback(
         mut self,
-        p_render_pass_feedback: *mut crate::vk::RenderPassCreationFeedbackInfoEXT,
+        p_render_pass_feedback: &'a mut crate::vk::RenderPassCreationFeedbackInfoEXT,
     ) -> Self {
         self.p_render_pass_feedback = p_render_pass_feedback;
         self
@@ -102,10 +102,15 @@ impl RenderPassSubpassFeedbackInfoEXT {
     }
     pub fn description(
         mut self,
-        description: [core::ffi::c_char; crate::vk::MAX_DESCRIPTION_SIZE as _],
-    ) -> Self {
-        self.description = description;
-        self
+        description: &core::ffi::CStr,
+    ) -> core::result::Result<Self, crate::CStrTooLargeForStaticArray> {
+        crate::write_c_str_slice_with_nul(&mut self.description, description)
+            .map(|_| self)
+    }
+    pub fn description_as_c_str(
+        &self,
+    ) -> core::result::Result<&core::ffi::CStr, core::ffi::FromBytesUntilNulError> {
+        crate::wrap_c_str_slice_until_nul(&self.description)
     }
     pub fn post_merge_index(mut self, post_merge_index: u32) -> Self {
         self.post_merge_index = post_merge_index;
@@ -139,7 +144,7 @@ impl<'a> Default for RenderPassSubpassFeedbackCreateInfoEXT<'a> {
 impl<'a> RenderPassSubpassFeedbackCreateInfoEXT<'a> {
     pub fn p_subpass_feedback(
         mut self,
-        p_subpass_feedback: *mut crate::vk::RenderPassSubpassFeedbackInfoEXT,
+        p_subpass_feedback: &'a mut crate::vk::RenderPassSubpassFeedbackInfoEXT,
     ) -> Self {
         self.p_subpass_feedback = p_subpass_feedback;
         self
@@ -172,11 +177,8 @@ impl<'a> Default for PhysicalDeviceSubpassMergeFeedbackFeaturesEXT<'a> {
     }
 }
 impl<'a> PhysicalDeviceSubpassMergeFeedbackFeaturesEXT<'a> {
-    pub fn subpass_merge_feedback(
-        mut self,
-        subpass_merge_feedback: crate::vk::Bool32,
-    ) -> Self {
-        self.subpass_merge_feedback = subpass_merge_feedback;
+    pub fn subpass_merge_feedback(mut self, subpass_merge_feedback: bool) -> Self {
+        self.subpass_merge_feedback = subpass_merge_feedback.into();
         self
     }
 }

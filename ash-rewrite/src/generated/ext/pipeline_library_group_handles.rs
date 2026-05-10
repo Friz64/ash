@@ -30,9 +30,9 @@ impl<'a> Default for PhysicalDevicePipelineLibraryGroupHandlesFeaturesEXT<'a> {
 impl<'a> PhysicalDevicePipelineLibraryGroupHandlesFeaturesEXT<'a> {
     pub fn pipeline_library_group_handles(
         mut self,
-        pipeline_library_group_handles: crate::vk::Bool32,
+        pipeline_library_group_handles: bool,
     ) -> Self {
-        self.pipeline_library_group_handles = pipeline_library_group_handles;
+        self.pipeline_library_group_handles = pipeline_library_group_handles.into();
         self
     }
 }

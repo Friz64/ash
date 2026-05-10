@@ -63,8 +63,8 @@ pub(crate) mod reexport {
         }
     }
     impl<'a> PhysicalDeviceInvocationMaskFeaturesHUAWEI<'a> {
-        pub fn invocation_mask(mut self, invocation_mask: crate::vk::Bool32) -> Self {
-            self.invocation_mask = invocation_mask;
+        pub fn invocation_mask(mut self, invocation_mask: bool) -> Self {
+            self.invocation_mask = invocation_mask.into();
             self
         }
     }

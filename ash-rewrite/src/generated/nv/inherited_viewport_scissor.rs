@@ -30,9 +30,9 @@ impl<'a> Default for PhysicalDeviceInheritedViewportScissorFeaturesNV<'a> {
 impl<'a> PhysicalDeviceInheritedViewportScissorFeaturesNV<'a> {
     pub fn inherited_viewport_scissor2_d(
         mut self,
-        inherited_viewport_scissor2_d: crate::vk::Bool32,
+        inherited_viewport_scissor2_d: bool,
     ) -> Self {
-        self.inherited_viewport_scissor2_d = inherited_viewport_scissor2_d;
+        self.inherited_viewport_scissor2_d = inherited_viewport_scissor2_d.into();
         self
     }
 }
@@ -65,11 +65,8 @@ impl<'a> Default for CommandBufferInheritanceViewportScissorInfoNV<'a> {
     }
 }
 impl<'a> CommandBufferInheritanceViewportScissorInfoNV<'a> {
-    pub fn viewport_scissor2_d(
-        mut self,
-        viewport_scissor2_d: crate::vk::Bool32,
-    ) -> Self {
-        self.viewport_scissor2_d = viewport_scissor2_d;
+    pub fn viewport_scissor2_d(mut self, viewport_scissor2_d: bool) -> Self {
+        self.viewport_scissor2_d = viewport_scissor2_d.into();
         self
     }
     pub fn viewport_depth_count(mut self, viewport_depth_count: u32) -> Self {
@@ -78,7 +75,7 @@ impl<'a> CommandBufferInheritanceViewportScissorInfoNV<'a> {
     }
     pub fn p_viewport_depths(
         mut self,
-        p_viewport_depths: *const crate::vk::Viewport,
+        p_viewport_depths: &'a crate::vk::Viewport,
     ) -> Self {
         self.p_viewport_depths = p_viewport_depths;
         self

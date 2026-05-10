@@ -338,53 +338,47 @@ impl<'a> DecodeAV1PictureInfo<'a> {
         self.expected_frame_id = expected_frame_id;
         self
     }
-    pub fn p_tile_info(
-        mut self,
-        p_tile_info: *const crate::vk::AV1TileInfo<'a>,
-    ) -> Self {
+    pub fn p_tile_info(mut self, p_tile_info: &'a crate::vk::AV1TileInfo<'a>) -> Self {
         self.p_tile_info = p_tile_info;
         self
     }
     pub fn p_quantization(
         mut self,
-        p_quantization: *const crate::vk::AV1Quantization,
+        p_quantization: &'a crate::vk::AV1Quantization,
     ) -> Self {
         self.p_quantization = p_quantization;
         self
     }
     pub fn p_segmentation(
         mut self,
-        p_segmentation: *const crate::vk::AV1Segmentation,
+        p_segmentation: &'a crate::vk::AV1Segmentation,
     ) -> Self {
         self.p_segmentation = p_segmentation;
         self
     }
-    pub fn p_loop_filter(
-        mut self,
-        p_loop_filter: *const crate::vk::AV1LoopFilter,
-    ) -> Self {
+    pub fn p_loop_filter(mut self, p_loop_filter: &'a crate::vk::AV1LoopFilter) -> Self {
         self.p_loop_filter = p_loop_filter;
         self
     }
-    pub fn p_cdef(mut self, p_cdef: *const crate::vk::AV1CDEF) -> Self {
+    pub fn p_cdef(mut self, p_cdef: &'a crate::vk::AV1CDEF) -> Self {
         self.p_cdef = p_cdef;
         self
     }
     pub fn p_loop_restoration(
         mut self,
-        p_loop_restoration: *const crate::vk::AV1LoopRestoration,
+        p_loop_restoration: &'a crate::vk::AV1LoopRestoration,
     ) -> Self {
         self.p_loop_restoration = p_loop_restoration;
         self
     }
     pub fn p_global_motion(
         mut self,
-        p_global_motion: *const crate::vk::AV1GlobalMotion,
+        p_global_motion: &'a crate::vk::AV1GlobalMotion,
     ) -> Self {
         self.p_global_motion = p_global_motion;
         self
     }
-    pub fn p_film_grain(mut self, p_film_grain: *const crate::vk::AV1FilmGrain) -> Self {
+    pub fn p_film_grain(mut self, p_film_grain: &'a crate::vk::AV1FilmGrain) -> Self {
         self.p_film_grain = p_film_grain;
         self
     }

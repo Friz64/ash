@@ -84,9 +84,9 @@ pub(crate) mod reexport {
     impl<'a> PhysicalDeviceClusterAccelerationStructureFeaturesNV<'a> {
         pub fn cluster_acceleration_structure(
             mut self,
-            cluster_acceleration_structure: crate::vk::Bool32,
+            cluster_acceleration_structure: bool,
         ) -> Self {
-            self.cluster_acceleration_structure = cluster_acceleration_structure;
+            self.cluster_acceleration_structure = cluster_acceleration_structure.into();
             self
         }
     }
@@ -229,9 +229,10 @@ pub(crate) mod reexport {
     impl<'a> RayTracingPipelineClusterAccelerationStructureCreateInfoNV<'a> {
         pub fn allow_cluster_acceleration_structure(
             mut self,
-            allow_cluster_acceleration_structure: crate::vk::Bool32,
+            allow_cluster_acceleration_structure: bool,
         ) -> Self {
-            self.allow_cluster_acceleration_structure = allow_cluster_acceleration_structure;
+            self.allow_cluster_acceleration_structure = allow_cluster_acceleration_structure
+                .into();
             self
         }
     }
@@ -765,8 +766,8 @@ pub(crate) mod reexport {
             self._type = _type;
             self
         }
-        pub fn no_move_overlap(mut self, no_move_overlap: crate::vk::Bool32) -> Self {
-            self.no_move_overlap = no_move_overlap;
+        pub fn no_move_overlap(mut self, no_move_overlap: bool) -> Self {
+            self.no_move_overlap = no_move_overlap.into();
             self
         }
         pub fn max_moved_bytes(

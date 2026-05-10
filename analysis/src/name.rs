@@ -13,6 +13,7 @@ impl TypeName {
     pub const VK_INSTANCE: Self = Self::new("VkInstance");
     pub const VK_PHYSICAL_DEVICE: Self = Self::new("VkPhysicalDevice");
     pub const VK_STRUCTURE_TYPE: Self = Self::new("VkStructureType");
+    pub const VK_BOOL32: Self = Self::new("VkBool32");
 
     pub const fn new(original: &'static str) -> Self {
         Self(original)

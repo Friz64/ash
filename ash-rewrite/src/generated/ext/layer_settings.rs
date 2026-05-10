@@ -33,9 +33,10 @@ impl<'a> LayerSettingsCreateInfoEXT<'a> {
     }
     pub fn p_settings(
         mut self,
-        p_settings: *const crate::vk::LayerSettingEXT<'a>,
+        p_settings: &'a [crate::vk::LayerSettingEXT<'a>],
     ) -> Self {
-        self.p_settings = p_settings;
+        self.setting_count = p_settings.len() as _;
+        self.p_settings = p_settings.as_ptr();
         self
     }
 }
@@ -50,13 +51,27 @@ pub struct LayerSettingEXT<'a> {
     pub _marker: ::core::marker::PhantomData<&'a ()>,
 }
 impl<'a> LayerSettingEXT<'a> {
-    pub fn p_layer_name(mut self, p_layer_name: *const core::ffi::c_char) -> Self {
-        self.p_layer_name = p_layer_name;
+    pub fn p_layer_name(mut self, p_layer_name: &'a core::ffi::CStr) -> Self {
+        self.p_layer_name = p_layer_name.as_ptr();
         self
     }
-    pub fn p_setting_name(mut self, p_setting_name: *const core::ffi::c_char) -> Self {
-        self.p_setting_name = p_setting_name;
+    pub unsafe fn p_layer_name_as_c_str(&self) -> Option<&core::ffi::CStr> {
+        if self.p_layer_name.is_null() {
+            None
+        } else {
+            Some(unsafe { core::ffi::CStr::from_ptr(self.p_layer_name) })
+        }
+    }
+    pub fn p_setting_name(mut self, p_setting_name: &'a core::ffi::CStr) -> Self {
+        self.p_setting_name = p_setting_name.as_ptr();
         self
+    }
+    pub unsafe fn p_setting_name_as_c_str(&self) -> Option<&core::ffi::CStr> {
+        if self.p_setting_name.is_null() {
+            None
+        } else {
+            Some(unsafe { core::ffi::CStr::from_ptr(self.p_setting_name) })
+        }
     }
     pub fn _type(mut self, _type: crate::vk::LayerSettingTypeEXT) -> Self {
         self._type = _type;
@@ -66,8 +81,9 @@ impl<'a> LayerSettingEXT<'a> {
         self.value_count = value_count;
         self
     }
-    pub fn p_values(mut self, p_values: *const core::ffi::c_void) -> Self {
-        self.p_values = p_values;
+    pub fn p_values(mut self, p_values: &'a [u8]) -> Self {
+        self.value_count = p_values.len() as _;
+        self.p_values = p_values.as_ptr().cast();
         self
     }
 }

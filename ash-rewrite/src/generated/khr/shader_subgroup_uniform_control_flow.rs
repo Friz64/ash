@@ -30,9 +30,10 @@ impl<'a> Default for PhysicalDeviceShaderSubgroupUniformControlFlowFeaturesKHR<'
 impl<'a> PhysicalDeviceShaderSubgroupUniformControlFlowFeaturesKHR<'a> {
     pub fn shader_subgroup_uniform_control_flow(
         mut self,
-        shader_subgroup_uniform_control_flow: crate::vk::Bool32,
+        shader_subgroup_uniform_control_flow: bool,
     ) -> Self {
-        self.shader_subgroup_uniform_control_flow = shader_subgroup_uniform_control_flow;
+        self.shader_subgroup_uniform_control_flow = shader_subgroup_uniform_control_flow
+            .into();
         self
     }
 }

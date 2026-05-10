@@ -32,22 +32,16 @@ impl<'a> Default for PhysicalDeviceMapMemoryPlacedFeaturesEXT<'a> {
     }
 }
 impl<'a> PhysicalDeviceMapMemoryPlacedFeaturesEXT<'a> {
-    pub fn memory_map_placed(mut self, memory_map_placed: crate::vk::Bool32) -> Self {
-        self.memory_map_placed = memory_map_placed;
+    pub fn memory_map_placed(mut self, memory_map_placed: bool) -> Self {
+        self.memory_map_placed = memory_map_placed.into();
         self
     }
-    pub fn memory_map_range_placed(
-        mut self,
-        memory_map_range_placed: crate::vk::Bool32,
-    ) -> Self {
-        self.memory_map_range_placed = memory_map_range_placed;
+    pub fn memory_map_range_placed(mut self, memory_map_range_placed: bool) -> Self {
+        self.memory_map_range_placed = memory_map_range_placed.into();
         self
     }
-    pub fn memory_unmap_reserve(
-        mut self,
-        memory_unmap_reserve: crate::vk::Bool32,
-    ) -> Self {
-        self.memory_unmap_reserve = memory_unmap_reserve;
+    pub fn memory_unmap_reserve(mut self, memory_unmap_reserve: bool) -> Self {
+        self.memory_unmap_reserve = memory_unmap_reserve.into();
         self
     }
 }
@@ -108,7 +102,10 @@ impl<'a> Default for MemoryMapPlacedInfoEXT<'a> {
     }
 }
 impl<'a> MemoryMapPlacedInfoEXT<'a> {
-    pub fn p_placed_address(mut self, p_placed_address: *mut core::ffi::c_void) -> Self {
+    pub fn p_placed_address(
+        mut self,
+        p_placed_address: &'a mut core::ffi::c_void,
+    ) -> Self {
         self.p_placed_address = p_placed_address;
         self
     }

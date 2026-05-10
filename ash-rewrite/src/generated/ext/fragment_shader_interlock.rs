@@ -34,23 +34,24 @@ impl<'a> Default for PhysicalDeviceFragmentShaderInterlockFeaturesEXT<'a> {
 impl<'a> PhysicalDeviceFragmentShaderInterlockFeaturesEXT<'a> {
     pub fn fragment_shader_sample_interlock(
         mut self,
-        fragment_shader_sample_interlock: crate::vk::Bool32,
+        fragment_shader_sample_interlock: bool,
     ) -> Self {
-        self.fragment_shader_sample_interlock = fragment_shader_sample_interlock;
+        self.fragment_shader_sample_interlock = fragment_shader_sample_interlock.into();
         self
     }
     pub fn fragment_shader_pixel_interlock(
         mut self,
-        fragment_shader_pixel_interlock: crate::vk::Bool32,
+        fragment_shader_pixel_interlock: bool,
     ) -> Self {
-        self.fragment_shader_pixel_interlock = fragment_shader_pixel_interlock;
+        self.fragment_shader_pixel_interlock = fragment_shader_pixel_interlock.into();
         self
     }
     pub fn fragment_shader_shading_rate_interlock(
         mut self,
-        fragment_shader_shading_rate_interlock: crate::vk::Bool32,
+        fragment_shader_shading_rate_interlock: bool,
     ) -> Self {
-        self.fragment_shader_shading_rate_interlock = fragment_shader_shading_rate_interlock;
+        self.fragment_shader_shading_rate_interlock = fragment_shader_shading_rate_interlock
+            .into();
         self
     }
 }

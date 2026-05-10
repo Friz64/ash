@@ -190,16 +190,16 @@ impl<'a> VideoEncodeAV1CapabilitiesKHR<'a> {
     }
     pub fn prefers_gop_remaining_frames(
         mut self,
-        prefers_gop_remaining_frames: crate::vk::Bool32,
+        prefers_gop_remaining_frames: bool,
     ) -> Self {
-        self.prefers_gop_remaining_frames = prefers_gop_remaining_frames;
+        self.prefers_gop_remaining_frames = prefers_gop_remaining_frames.into();
         self
     }
     pub fn requires_gop_remaining_frames(
         mut self,
-        requires_gop_remaining_frames: crate::vk::Bool32,
+        requires_gop_remaining_frames: bool,
     ) -> Self {
-        self.requires_gop_remaining_frames = requires_gop_remaining_frames;
+        self.requires_gop_remaining_frames = requires_gop_remaining_frames.into();
         self
     }
     pub fn std_syntax_flags(
@@ -393,8 +393,8 @@ impl<'a> Default for PhysicalDeviceVideoEncodeAV1FeaturesKHR<'a> {
     }
 }
 impl<'a> PhysicalDeviceVideoEncodeAV1FeaturesKHR<'a> {
-    pub fn video_encode_av1(mut self, video_encode_av1: crate::vk::Bool32) -> Self {
-        self.video_encode_av1 = video_encode_av1;
+    pub fn video_encode_av1(mut self, video_encode_av1: bool) -> Self {
+        self.video_encode_av1 = video_encode_av1.into();
         self
     }
 }
@@ -424,8 +424,8 @@ impl<'a> Default for VideoEncodeAV1SessionCreateInfoKHR<'a> {
     }
 }
 impl<'a> VideoEncodeAV1SessionCreateInfoKHR<'a> {
-    pub fn use_max_level(mut self, use_max_level: crate::vk::Bool32) -> Self {
-        self.use_max_level = use_max_level;
+    pub fn use_max_level(mut self, use_max_level: bool) -> Self {
+        self.use_max_level = use_max_level.into();
         self
     }
     pub fn max_level(mut self, max_level: crate::vk::AV1Level) -> Self {
@@ -466,14 +466,14 @@ impl<'a> Default for VideoEncodeAV1SessionParametersCreateInfoKHR<'a> {
 impl<'a> VideoEncodeAV1SessionParametersCreateInfoKHR<'a> {
     pub fn p_std_sequence_header(
         mut self,
-        p_std_sequence_header: *const crate::vk::AV1SequenceHeader<'a>,
+        p_std_sequence_header: &'a crate::vk::AV1SequenceHeader<'a>,
     ) -> Self {
         self.p_std_sequence_header = p_std_sequence_header;
         self
     }
     pub fn p_std_decoder_model_info(
         mut self,
-        p_std_decoder_model_info: *const crate::vk::EncodeAV1DecoderModelInfo,
+        p_std_decoder_model_info: &'a crate::vk::EncodeAV1DecoderModelInfo,
     ) -> Self {
         self.p_std_decoder_model_info = p_std_decoder_model_info;
         self
@@ -484,9 +484,10 @@ impl<'a> VideoEncodeAV1SessionParametersCreateInfoKHR<'a> {
     }
     pub fn p_std_operating_points(
         mut self,
-        p_std_operating_points: *const crate::vk::EncodeAV1OperatingPointInfo,
+        p_std_operating_points: &'a [crate::vk::EncodeAV1OperatingPointInfo],
     ) -> Self {
-        self.p_std_operating_points = p_std_operating_points;
+        self.std_operating_point_count = p_std_operating_points.len() as _;
+        self.p_std_operating_points = p_std_operating_points.as_ptr();
         self
     }
 }
@@ -516,7 +517,7 @@ impl<'a> Default for VideoEncodeAV1DpbSlotInfoKHR<'a> {
 impl<'a> VideoEncodeAV1DpbSlotInfoKHR<'a> {
     pub fn p_std_reference_info(
         mut self,
-        p_std_reference_info: *const crate::vk::EncodeAV1ReferenceInfo<'a>,
+        p_std_reference_info: &'a crate::vk::EncodeAV1ReferenceInfo<'a>,
     ) -> Self {
         self.p_std_reference_info = p_std_reference_info;
         self
@@ -579,7 +580,7 @@ impl<'a> VideoEncodeAV1PictureInfoKHR<'a> {
     }
     pub fn p_std_picture_info(
         mut self,
-        p_std_picture_info: *const crate::vk::EncodeAV1PictureInfo<'a>,
+        p_std_picture_info: &'a crate::vk::EncodeAV1PictureInfo<'a>,
     ) -> Self {
         self.p_std_picture_info = p_std_picture_info;
         self
@@ -594,16 +595,16 @@ impl<'a> VideoEncodeAV1PictureInfoKHR<'a> {
     }
     pub fn primary_reference_cdf_only(
         mut self,
-        primary_reference_cdf_only: crate::vk::Bool32,
+        primary_reference_cdf_only: bool,
     ) -> Self {
-        self.primary_reference_cdf_only = primary_reference_cdf_only;
+        self.primary_reference_cdf_only = primary_reference_cdf_only.into();
         self
     }
     pub fn generate_obu_extension_header(
         mut self,
-        generate_obu_extension_header: crate::vk::Bool32,
+        generate_obu_extension_header: bool,
     ) -> Self {
-        self.generate_obu_extension_header = generate_obu_extension_header;
+        self.generate_obu_extension_header = generate_obu_extension_header.into();
         self
     }
 }
@@ -769,11 +770,8 @@ impl<'a> Default for VideoEncodeAV1GopRemainingFrameInfoKHR<'a> {
     }
 }
 impl<'a> VideoEncodeAV1GopRemainingFrameInfoKHR<'a> {
-    pub fn use_gop_remaining_frames(
-        mut self,
-        use_gop_remaining_frames: crate::vk::Bool32,
-    ) -> Self {
-        self.use_gop_remaining_frames = use_gop_remaining_frames;
+    pub fn use_gop_remaining_frames(mut self, use_gop_remaining_frames: bool) -> Self {
+        self.use_gop_remaining_frames = use_gop_remaining_frames.into();
         self
     }
     pub fn gop_remaining_intra(mut self, gop_remaining_intra: u32) -> Self {
@@ -827,8 +825,8 @@ impl<'a> Default for VideoEncodeAV1RateControlLayerInfoKHR<'a> {
     }
 }
 impl<'a> VideoEncodeAV1RateControlLayerInfoKHR<'a> {
-    pub fn use_min_q_index(mut self, use_min_q_index: crate::vk::Bool32) -> Self {
-        self.use_min_q_index = use_min_q_index;
+    pub fn use_min_q_index(mut self, use_min_q_index: bool) -> Self {
+        self.use_min_q_index = use_min_q_index.into();
         self
     }
     pub fn min_q_index(
@@ -838,8 +836,8 @@ impl<'a> VideoEncodeAV1RateControlLayerInfoKHR<'a> {
         self.min_q_index = min_q_index;
         self
     }
-    pub fn use_max_q_index(mut self, use_max_q_index: crate::vk::Bool32) -> Self {
-        self.use_max_q_index = use_max_q_index;
+    pub fn use_max_q_index(mut self, use_max_q_index: bool) -> Self {
+        self.use_max_q_index = use_max_q_index.into();
         self
     }
     pub fn max_q_index(
@@ -849,8 +847,8 @@ impl<'a> VideoEncodeAV1RateControlLayerInfoKHR<'a> {
         self.max_q_index = max_q_index;
         self
     }
-    pub fn use_max_frame_size(mut self, use_max_frame_size: crate::vk::Bool32) -> Self {
-        self.use_max_frame_size = use_max_frame_size;
+    pub fn use_max_frame_size(mut self, use_max_frame_size: bool) -> Self {
+        self.use_max_frame_size = use_max_frame_size.into();
         self
     }
     pub fn max_frame_size(

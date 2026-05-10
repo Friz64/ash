@@ -278,36 +278,37 @@ pub(crate) mod reexport {
         }
     }
     impl<'a> PhysicalDeviceDataGraphFeaturesARM<'a> {
-        pub fn data_graph(mut self, data_graph: crate::vk::Bool32) -> Self {
-            self.data_graph = data_graph;
+        pub fn data_graph(mut self, data_graph: bool) -> Self {
+            self.data_graph = data_graph.into();
             self
         }
         pub fn data_graph_update_after_bind(
             mut self,
-            data_graph_update_after_bind: crate::vk::Bool32,
+            data_graph_update_after_bind: bool,
         ) -> Self {
-            self.data_graph_update_after_bind = data_graph_update_after_bind;
+            self.data_graph_update_after_bind = data_graph_update_after_bind.into();
             self
         }
         pub fn data_graph_specialization_constants(
             mut self,
-            data_graph_specialization_constants: crate::vk::Bool32,
+            data_graph_specialization_constants: bool,
         ) -> Self {
-            self.data_graph_specialization_constants = data_graph_specialization_constants;
+            self.data_graph_specialization_constants = data_graph_specialization_constants
+                .into();
             self
         }
         pub fn data_graph_descriptor_buffer(
             mut self,
-            data_graph_descriptor_buffer: crate::vk::Bool32,
+            data_graph_descriptor_buffer: bool,
         ) -> Self {
-            self.data_graph_descriptor_buffer = data_graph_descriptor_buffer;
+            self.data_graph_descriptor_buffer = data_graph_descriptor_buffer.into();
             self
         }
         pub fn data_graph_shader_module(
             mut self,
-            data_graph_shader_module: crate::vk::Bool32,
+            data_graph_shader_module: bool,
         ) -> Self {
-            self.data_graph_shader_module = data_graph_shader_module;
+            self.data_graph_shader_module = data_graph_shader_module.into();
             self
         }
     }
@@ -384,7 +385,7 @@ pub(crate) mod reexport {
         }
         pub fn p_constant_data(
             mut self,
-            p_constant_data: *const core::ffi::c_void,
+            p_constant_data: &'a core::ffi::c_void,
         ) -> Self {
             self.p_constant_data = p_constant_data;
             self
@@ -456,10 +457,17 @@ pub(crate) mod reexport {
     impl<'a> DataGraphPipelineCompilerControlCreateInfoARM<'a> {
         pub fn p_vendor_options(
             mut self,
-            p_vendor_options: *const core::ffi::c_char,
+            p_vendor_options: &'a core::ffi::CStr,
         ) -> Self {
-            self.p_vendor_options = p_vendor_options;
+            self.p_vendor_options = p_vendor_options.as_ptr();
             self
+        }
+        pub unsafe fn p_vendor_options_as_c_str(&self) -> Option<&core::ffi::CStr> {
+            if self.p_vendor_options.is_null() {
+                None
+            } else {
+                Some(unsafe { core::ffi::CStr::from_ptr(self.p_vendor_options) })
+            }
         }
     }
     #[repr(C)]
@@ -504,9 +512,10 @@ pub(crate) mod reexport {
         }
         pub fn p_resource_infos(
             mut self,
-            p_resource_infos: *const crate::vk::DataGraphPipelineResourceInfoARM<'a>,
+            p_resource_infos: &'a [crate::vk::DataGraphPipelineResourceInfoARM<'a>],
         ) -> Self {
-            self.p_resource_infos = p_resource_infos;
+            self.resource_info_count = p_resource_infos.len() as _;
+            self.p_resource_infos = p_resource_infos.as_ptr();
             self
         }
     }
@@ -547,13 +556,20 @@ pub(crate) mod reexport {
             self.module = module;
             self
         }
-        pub fn p_name(mut self, p_name: *const core::ffi::c_char) -> Self {
-            self.p_name = p_name;
+        pub fn p_name(mut self, p_name: &'a core::ffi::CStr) -> Self {
+            self.p_name = p_name.as_ptr();
             self
+        }
+        pub unsafe fn p_name_as_c_str(&self) -> Option<&core::ffi::CStr> {
+            if self.p_name.is_null() {
+                None
+            } else {
+                Some(unsafe { core::ffi::CStr::from_ptr(self.p_name) })
+            }
         }
         pub fn p_specialization_info(
             mut self,
-            p_specialization_info: *const crate::vk::SpecializationInfo<'a>,
+            p_specialization_info: &'a crate::vk::SpecializationInfo<'a>,
         ) -> Self {
             self.p_specialization_info = p_specialization_info;
             self
@@ -564,9 +580,10 @@ pub(crate) mod reexport {
         }
         pub fn p_constants(
             mut self,
-            p_constants: *const crate::vk::DataGraphPipelineConstantARM<'a>,
+            p_constants: &'a [crate::vk::DataGraphPipelineConstantARM<'a>],
         ) -> Self {
-            self.p_constants = p_constants;
+            self.constant_count = p_constants.len() as _;
+            self.p_constants = p_constants.as_ptr();
             self
         }
     }
@@ -857,16 +874,17 @@ pub(crate) mod reexport {
             self.property = property;
             self
         }
-        pub fn is_text(mut self, is_text: crate::vk::Bool32) -> Self {
-            self.is_text = is_text;
+        pub fn is_text(mut self, is_text: bool) -> Self {
+            self.is_text = is_text.into();
             self
         }
         pub fn data_size(mut self, data_size: usize) -> Self {
             self.data_size = data_size;
             self
         }
-        pub fn p_data(mut self, p_data: *mut core::ffi::c_void) -> Self {
-            self.p_data = p_data;
+        pub fn p_data(mut self, p_data: &'a mut [u8]) -> Self {
+            self.data_size = p_data.len() as _;
+            self.p_data = p_data.as_mut_ptr().cast();
             self
         }
     }
@@ -901,8 +919,9 @@ pub(crate) mod reexport {
             self.identifier_size = identifier_size;
             self
         }
-        pub fn p_identifier(mut self, p_identifier: *const u8) -> Self {
-            self.p_identifier = p_identifier;
+        pub fn p_identifier(mut self, p_identifier: &'a [u8]) -> Self {
+            self.identifier_size = p_identifier.len() as _;
+            self.p_identifier = p_identifier.as_ptr();
             self
         }
     }
@@ -950,8 +969,8 @@ pub(crate) mod reexport {
             self._type = _type;
             self
         }
-        pub fn is_foreign(mut self, is_foreign: crate::vk::Bool32) -> Self {
-            self.is_foreign = is_foreign;
+        pub fn is_foreign(mut self, is_foreign: bool) -> Self {
+            self.is_foreign = is_foreign.into();
             self
         }
     }
@@ -982,11 +1001,14 @@ pub(crate) mod reexport {
         }
         pub fn name(
             mut self,
-            name: [core::ffi::c_char; crate::vk::MAX_PHYSICAL_DEVICE_DATA_GRAPH_OPERATION_SET_NAME_SIZE_ARM
-                as _],
-        ) -> Self {
-            self.name = name;
-            self
+            name: &core::ffi::CStr,
+        ) -> core::result::Result<Self, crate::CStrTooLargeForStaticArray> {
+            crate::write_c_str_slice_with_nul(&mut self.name, name).map(|_| self)
+        }
+        pub fn name_as_c_str(
+            &self,
+        ) -> core::result::Result<&core::ffi::CStr, core::ffi::FromBytesUntilNulError> {
+            crate::wrap_c_str_slice_until_nul(&self.name)
         }
         pub fn version(mut self, version: u32) -> Self {
             self.version = version;
@@ -1147,9 +1169,10 @@ pub(crate) mod reexport {
         }
         pub fn p_processing_engines(
             mut self,
-            p_processing_engines: *mut crate::vk::PhysicalDeviceDataGraphProcessingEngineARM,
+            p_processing_engines: &'a mut [crate::vk::PhysicalDeviceDataGraphProcessingEngineARM],
         ) -> Self {
-            self.p_processing_engines = p_processing_engines;
+            self.processing_engine_count = p_processing_engines.len() as _;
+            self.p_processing_engines = p_processing_engines.as_mut_ptr();
             self
         }
     }

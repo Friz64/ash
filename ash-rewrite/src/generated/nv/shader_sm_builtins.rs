@@ -64,8 +64,8 @@ impl<'a> Default for PhysicalDeviceShaderSMBuiltinsFeaturesNV<'a> {
     }
 }
 impl<'a> PhysicalDeviceShaderSMBuiltinsFeaturesNV<'a> {
-    pub fn shader_sm_builtins(mut self, shader_sm_builtins: crate::vk::Bool32) -> Self {
-        self.shader_sm_builtins = shader_sm_builtins;
+    pub fn shader_sm_builtins(mut self, shader_sm_builtins: bool) -> Self {
+        self.shader_sm_builtins = shader_sm_builtins.into();
         self
     }
 }

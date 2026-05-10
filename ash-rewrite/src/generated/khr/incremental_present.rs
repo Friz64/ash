@@ -32,9 +32,10 @@ impl<'a> PresentRegionsKHR<'a> {
     }
     pub fn p_regions(
         mut self,
-        p_regions: *const crate::vk::PresentRegionKHR<'a>,
+        p_regions: &'a [crate::vk::PresentRegionKHR<'a>],
     ) -> Self {
-        self.p_regions = p_regions;
+        self.swapchain_count = p_regions.len() as _;
+        self.p_regions = p_regions.as_ptr();
         self
     }
 }
@@ -50,8 +51,9 @@ impl<'a> PresentRegionKHR<'a> {
         self.rectangle_count = rectangle_count;
         self
     }
-    pub fn p_rectangles(mut self, p_rectangles: *const crate::vk::RectLayerKHR) -> Self {
-        self.p_rectangles = p_rectangles;
+    pub fn p_rectangles(mut self, p_rectangles: &'a [crate::vk::RectLayerKHR]) -> Self {
+        self.rectangle_count = p_rectangles.len() as _;
+        self.p_rectangles = p_rectangles.as_ptr();
         self
     }
 }

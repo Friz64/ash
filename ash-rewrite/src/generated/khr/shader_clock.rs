@@ -29,18 +29,12 @@ impl<'a> Default for PhysicalDeviceShaderClockFeaturesKHR<'a> {
     }
 }
 impl<'a> PhysicalDeviceShaderClockFeaturesKHR<'a> {
-    pub fn shader_subgroup_clock(
-        mut self,
-        shader_subgroup_clock: crate::vk::Bool32,
-    ) -> Self {
-        self.shader_subgroup_clock = shader_subgroup_clock;
+    pub fn shader_subgroup_clock(mut self, shader_subgroup_clock: bool) -> Self {
+        self.shader_subgroup_clock = shader_subgroup_clock.into();
         self
     }
-    pub fn shader_device_clock(
-        mut self,
-        shader_device_clock: crate::vk::Bool32,
-    ) -> Self {
-        self.shader_device_clock = shader_device_clock;
+    pub fn shader_device_clock(mut self, shader_device_clock: bool) -> Self {
+        self.shader_device_clock = shader_device_clock.into();
         self
     }
 }

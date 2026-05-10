@@ -94,11 +94,8 @@ pub(crate) mod reexport {
         }
     }
     impl<'a> PhysicalDeviceSchedulingControlsFeaturesARM<'a> {
-        pub fn scheduling_controls(
-            mut self,
-            scheduling_controls: crate::vk::Bool32,
-        ) -> Self {
-            self.scheduling_controls = scheduling_controls;
+        pub fn scheduling_controls(mut self, scheduling_controls: bool) -> Self {
+            self.scheduling_controls = scheduling_controls.into();
             self
         }
     }

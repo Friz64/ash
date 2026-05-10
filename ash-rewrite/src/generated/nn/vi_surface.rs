@@ -65,7 +65,7 @@ pub(crate) mod reexport {
             self.flags = flags;
             self
         }
-        pub fn window(mut self, window: *mut core::ffi::c_void) -> Self {
+        pub fn window(mut self, window: &'a mut core::ffi::c_void) -> Self {
             self.window = window;
             self
         }

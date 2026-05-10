@@ -64,9 +64,9 @@ pub(crate) mod reexport {
     impl<'a> PhysicalDeviceFragmentDensityMapOffsetFeaturesEXT<'a> {
         pub fn fragment_density_map_offset(
             mut self,
-            fragment_density_map_offset: crate::vk::Bool32,
+            fragment_density_map_offset: bool,
         ) -> Self {
-            self.fragment_density_map_offset = fragment_density_map_offset;
+            self.fragment_density_map_offset = fragment_density_map_offset.into();
             self
         }
     }
@@ -141,9 +141,10 @@ pub(crate) mod reexport {
         }
         pub fn p_fragment_density_offsets(
             mut self,
-            p_fragment_density_offsets: *const crate::vk::Offset2D,
+            p_fragment_density_offsets: &'a [crate::vk::Offset2D],
         ) -> Self {
-            self.p_fragment_density_offsets = p_fragment_density_offsets;
+            self.fragment_density_offset_count = p_fragment_density_offsets.len() as _;
+            self.p_fragment_density_offsets = p_fragment_density_offsets.as_ptr();
             self
         }
     }

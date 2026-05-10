@@ -30,18 +30,12 @@ impl<'a> Default for PhysicalDeviceImage2DViewOf3DFeaturesEXT<'a> {
     }
 }
 impl<'a> PhysicalDeviceImage2DViewOf3DFeaturesEXT<'a> {
-    pub fn image2_d_view_of3_d(
-        mut self,
-        image2_d_view_of3_d: crate::vk::Bool32,
-    ) -> Self {
-        self.image2_d_view_of3_d = image2_d_view_of3_d;
+    pub fn image2_d_view_of3_d(mut self, image2_d_view_of3_d: bool) -> Self {
+        self.image2_d_view_of3_d = image2_d_view_of3_d.into();
         self
     }
-    pub fn sampler2_d_view_of3_d(
-        mut self,
-        sampler2_d_view_of3_d: crate::vk::Bool32,
-    ) -> Self {
-        self.sampler2_d_view_of3_d = sampler2_d_view_of3_d;
+    pub fn sampler2_d_view_of3_d(mut self, sampler2_d_view_of3_d: bool) -> Self {
+        self.sampler2_d_view_of3_d = sampler2_d_view_of3_d.into();
         self
     }
 }

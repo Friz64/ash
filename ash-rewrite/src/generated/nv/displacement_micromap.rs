@@ -28,11 +28,8 @@ impl<'a> Default for PhysicalDeviceDisplacementMicromapFeaturesNV<'a> {
     }
 }
 impl<'a> PhysicalDeviceDisplacementMicromapFeaturesNV<'a> {
-    pub fn displacement_micromap(
-        mut self,
-        displacement_micromap: crate::vk::Bool32,
-    ) -> Self {
-        self.displacement_micromap = displacement_micromap;
+    pub fn displacement_micromap(mut self, displacement_micromap: bool) -> Self {
+        self.displacement_micromap = displacement_micromap.into();
         self
     }
 }
@@ -207,16 +204,18 @@ impl<'a> AccelerationStructureTrianglesDisplacementMicromapNV<'a> {
     }
     pub fn p_usage_counts(
         mut self,
-        p_usage_counts: *const crate::vk::MicromapUsageEXT,
+        p_usage_counts: &'a [crate::vk::MicromapUsageEXT],
     ) -> Self {
-        self.p_usage_counts = p_usage_counts;
+        self.usage_counts_count = p_usage_counts.len() as _;
+        self.p_usage_counts = p_usage_counts.as_ptr();
         self
     }
     pub fn pp_usage_counts(
         mut self,
-        pp_usage_counts: *const *const crate::vk::MicromapUsageEXT,
+        pp_usage_counts: &'a [&'a crate::vk::MicromapUsageEXT],
     ) -> Self {
-        self.pp_usage_counts = pp_usage_counts;
+        self.usage_counts_count = pp_usage_counts.len() as _;
+        self.pp_usage_counts = pp_usage_counts.as_ptr().cast();
         self
     }
     pub fn micromap(mut self, micromap: crate::vk::MicromapEXT) -> Self {

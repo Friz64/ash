@@ -30,9 +30,10 @@ impl<'a> Default for PhysicalDeviceRGBA10X6FormatsFeaturesEXT<'a> {
 impl<'a> PhysicalDeviceRGBA10X6FormatsFeaturesEXT<'a> {
     pub fn format_rgba10x6_without_y_cb_cr_sampler(
         mut self,
-        format_rgba10x6_without_y_cb_cr_sampler: crate::vk::Bool32,
+        format_rgba10x6_without_y_cb_cr_sampler: bool,
     ) -> Self {
-        self.format_rgba10x6_without_y_cb_cr_sampler = format_rgba10x6_without_y_cb_cr_sampler;
+        self.format_rgba10x6_without_y_cb_cr_sampler = format_rgba10x6_without_y_cb_cr_sampler
+            .into();
         self
     }
 }

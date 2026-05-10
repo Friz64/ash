@@ -70,11 +70,8 @@ impl<'a> Default for PhysicalDeviceShaderCoreBuiltinsFeaturesARM<'a> {
     }
 }
 impl<'a> PhysicalDeviceShaderCoreBuiltinsFeaturesARM<'a> {
-    pub fn shader_core_builtins(
-        mut self,
-        shader_core_builtins: crate::vk::Bool32,
-    ) -> Self {
-        self.shader_core_builtins = shader_core_builtins;
+    pub fn shader_core_builtins(mut self, shader_core_builtins: bool) -> Self {
+        self.shader_core_builtins = shader_core_builtins.into();
         self
     }
 }

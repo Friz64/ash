@@ -67,11 +67,8 @@ pub(crate) mod reexport {
         }
     }
     impl<'a> PhysicalDeviceCoverageReductionModeFeaturesNV<'a> {
-        pub fn coverage_reduction_mode(
-            mut self,
-            coverage_reduction_mode: crate::vk::Bool32,
-        ) -> Self {
-            self.coverage_reduction_mode = coverage_reduction_mode;
+        pub fn coverage_reduction_mode(mut self, coverage_reduction_mode: bool) -> Self {
+            self.coverage_reduction_mode = coverage_reduction_mode.into();
             self
         }
     }

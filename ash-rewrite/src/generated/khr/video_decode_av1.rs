@@ -33,8 +33,8 @@ impl<'a> VideoDecodeAV1ProfileInfoKHR<'a> {
         self.std_profile = std_profile;
         self
     }
-    pub fn film_grain_support(mut self, film_grain_support: crate::vk::Bool32) -> Self {
-        self.film_grain_support = film_grain_support;
+    pub fn film_grain_support(mut self, film_grain_support: bool) -> Self {
+        self.film_grain_support = film_grain_support.into();
         self
     }
 }
@@ -94,7 +94,7 @@ impl<'a> Default for VideoDecodeAV1SessionParametersCreateInfoKHR<'a> {
 impl<'a> VideoDecodeAV1SessionParametersCreateInfoKHR<'a> {
     pub fn p_std_sequence_header(
         mut self,
-        p_std_sequence_header: *const crate::vk::AV1SequenceHeader<'a>,
+        p_std_sequence_header: &'a crate::vk::AV1SequenceHeader<'a>,
     ) -> Self {
         self.p_std_sequence_header = p_std_sequence_header;
         self
@@ -137,7 +137,7 @@ impl<'a> Default for VideoDecodeAV1PictureInfoKHR<'a> {
 impl<'a> VideoDecodeAV1PictureInfoKHR<'a> {
     pub fn p_std_picture_info(
         mut self,
-        p_std_picture_info: *const crate::vk::DecodeAV1PictureInfo<'a>,
+        p_std_picture_info: &'a crate::vk::DecodeAV1PictureInfo<'a>,
     ) -> Self {
         self.p_std_picture_info = p_std_picture_info;
         self
@@ -158,12 +158,14 @@ impl<'a> VideoDecodeAV1PictureInfoKHR<'a> {
         self.tile_count = tile_count;
         self
     }
-    pub fn p_tile_offsets(mut self, p_tile_offsets: *const u32) -> Self {
-        self.p_tile_offsets = p_tile_offsets;
+    pub fn p_tile_offsets(mut self, p_tile_offsets: &'a [u32]) -> Self {
+        self.tile_count = p_tile_offsets.len() as _;
+        self.p_tile_offsets = p_tile_offsets.as_ptr();
         self
     }
-    pub fn p_tile_sizes(mut self, p_tile_sizes: *const u32) -> Self {
-        self.p_tile_sizes = p_tile_sizes;
+    pub fn p_tile_sizes(mut self, p_tile_sizes: &'a [u32]) -> Self {
+        self.tile_count = p_tile_sizes.len() as _;
+        self.p_tile_sizes = p_tile_sizes.as_ptr();
         self
     }
 }
@@ -193,7 +195,7 @@ impl<'a> Default for VideoDecodeAV1DpbSlotInfoKHR<'a> {
 impl<'a> VideoDecodeAV1DpbSlotInfoKHR<'a> {
     pub fn p_std_reference_info(
         mut self,
-        p_std_reference_info: *const crate::vk::DecodeAV1ReferenceInfo,
+        p_std_reference_info: &'a crate::vk::DecodeAV1ReferenceInfo,
     ) -> Self {
         self.p_std_reference_info = p_std_reference_info;
         self

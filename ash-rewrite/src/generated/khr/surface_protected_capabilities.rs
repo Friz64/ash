@@ -25,8 +25,8 @@ impl<'a> Default for SurfaceProtectedCapabilitiesKHR<'a> {
     }
 }
 impl<'a> SurfaceProtectedCapabilitiesKHR<'a> {
-    pub fn supports_protected(mut self, supports_protected: crate::vk::Bool32) -> Self {
-        self.supports_protected = supports_protected;
+    pub fn supports_protected(mut self, supports_protected: bool) -> Self {
+        self.supports_protected = supports_protected.into();
         self
     }
 }

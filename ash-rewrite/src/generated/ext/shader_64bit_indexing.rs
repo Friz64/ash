@@ -28,11 +28,8 @@ impl<'a> Default for PhysicalDeviceShader64BitIndexingFeaturesEXT<'a> {
     }
 }
 impl<'a> PhysicalDeviceShader64BitIndexingFeaturesEXT<'a> {
-    pub fn shader64_bit_indexing(
-        mut self,
-        shader64_bit_indexing: crate::vk::Bool32,
-    ) -> Self {
-        self.shader64_bit_indexing = shader64_bit_indexing;
+    pub fn shader64_bit_indexing(mut self, shader64_bit_indexing: bool) -> Self {
+        self.shader64_bit_indexing = shader64_bit_indexing.into();
         self
     }
 }

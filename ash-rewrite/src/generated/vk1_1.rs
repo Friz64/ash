@@ -856,16 +856,14 @@ pub(crate) mod reexport {
     impl<'a> PhysicalDeviceVariablePointersFeatures<'a> {
         pub fn variable_pointers_storage_buffer(
             mut self,
-            variable_pointers_storage_buffer: crate::vk::Bool32,
+            variable_pointers_storage_buffer: bool,
         ) -> Self {
-            self.variable_pointers_storage_buffer = variable_pointers_storage_buffer;
+            self.variable_pointers_storage_buffer = variable_pointers_storage_buffer
+                .into();
             self
         }
-        pub fn variable_pointers(
-            mut self,
-            variable_pointers: crate::vk::Bool32,
-        ) -> Self {
-            self.variable_pointers = variable_pointers;
+        pub fn variable_pointers(mut self, variable_pointers: bool) -> Self {
+            self.variable_pointers = variable_pointers.into();
             self
         }
     }
@@ -1093,11 +1091,8 @@ pub(crate) mod reexport {
             self.device_node_mask = device_node_mask;
             self
         }
-        pub fn device_luid_valid(
-            mut self,
-            device_luid_valid: crate::vk::Bool32,
-        ) -> Self {
-            self.device_luid_valid = device_luid_valid;
+        pub fn device_luid_valid(mut self, device_luid_valid: bool) -> Self {
+            self.device_luid_valid = device_luid_valid.into();
             self
         }
     }
@@ -1448,22 +1443,22 @@ pub(crate) mod reexport {
         }
     }
     impl<'a> PhysicalDeviceMultiviewFeatures<'a> {
-        pub fn multiview(mut self, multiview: crate::vk::Bool32) -> Self {
-            self.multiview = multiview;
+        pub fn multiview(mut self, multiview: bool) -> Self {
+            self.multiview = multiview.into();
             self
         }
         pub fn multiview_geometry_shader(
             mut self,
-            multiview_geometry_shader: crate::vk::Bool32,
+            multiview_geometry_shader: bool,
         ) -> Self {
-            self.multiview_geometry_shader = multiview_geometry_shader;
+            self.multiview_geometry_shader = multiview_geometry_shader.into();
             self
         }
         pub fn multiview_tessellation_shader(
             mut self,
-            multiview_tessellation_shader: crate::vk::Bool32,
+            multiview_tessellation_shader: bool,
         ) -> Self {
-            self.multiview_tessellation_shader = multiview_tessellation_shader;
+            self.multiview_tessellation_shader = multiview_tessellation_shader.into();
             self
         }
     }
@@ -1547,24 +1542,27 @@ pub(crate) mod reexport {
             self.subpass_count = subpass_count;
             self
         }
-        pub fn p_view_masks(mut self, p_view_masks: *const u32) -> Self {
-            self.p_view_masks = p_view_masks;
+        pub fn p_view_masks(mut self, p_view_masks: &'a [u32]) -> Self {
+            self.subpass_count = p_view_masks.len() as _;
+            self.p_view_masks = p_view_masks.as_ptr();
             self
         }
         pub fn dependency_count(mut self, dependency_count: u32) -> Self {
             self.dependency_count = dependency_count;
             self
         }
-        pub fn p_view_offsets(mut self, p_view_offsets: *const i32) -> Self {
-            self.p_view_offsets = p_view_offsets;
+        pub fn p_view_offsets(mut self, p_view_offsets: &'a [i32]) -> Self {
+            self.dependency_count = p_view_offsets.len() as _;
+            self.p_view_offsets = p_view_offsets.as_ptr();
             self
         }
         pub fn correlation_mask_count(mut self, correlation_mask_count: u32) -> Self {
             self.correlation_mask_count = correlation_mask_count;
             self
         }
-        pub fn p_correlation_masks(mut self, p_correlation_masks: *const u32) -> Self {
-            self.p_correlation_masks = p_correlation_masks;
+        pub fn p_correlation_masks(mut self, p_correlation_masks: &'a [u32]) -> Self {
+            self.correlation_mask_count = p_correlation_masks.len() as _;
+            self.p_correlation_masks = p_correlation_masks.as_ptr();
             self
         }
     }
@@ -1601,17 +1599,18 @@ pub(crate) mod reexport {
         }
         pub fn physical_devices(
             mut self,
-            physical_devices: [crate::vk::PhysicalDevice; crate::vk::MAX_DEVICE_GROUP_SIZE
-                as _],
+            physical_devices: &[crate::vk::PhysicalDevice],
         ) -> Self {
-            self.physical_devices = physical_devices;
+            self.physical_device_count = physical_devices.len() as _;
+            self.physical_devices[..physical_devices.len()]
+                .copy_from_slice(physical_devices);
             self
         }
-        pub fn subset_allocation(
-            mut self,
-            subset_allocation: crate::vk::Bool32,
-        ) -> Self {
-            self.subset_allocation = subset_allocation;
+        pub fn physical_devices_as_slice(&self) -> &[crate::vk::PhysicalDevice] {
+            &self.physical_devices[..self.physical_device_count as _]
+        }
+        pub fn subset_allocation(mut self, subset_allocation: bool) -> Self {
+            self.subset_allocation = subset_allocation.into();
             self
         }
     }
@@ -1719,8 +1718,9 @@ pub(crate) mod reexport {
             self.device_index_count = device_index_count;
             self
         }
-        pub fn p_device_indices(mut self, p_device_indices: *const u32) -> Self {
-            self.p_device_indices = p_device_indices;
+        pub fn p_device_indices(mut self, p_device_indices: &'a [u32]) -> Self {
+            self.device_index_count = p_device_indices.len() as _;
+            self.p_device_indices = p_device_indices.as_ptr();
             self
         }
     }
@@ -1797,8 +1797,9 @@ pub(crate) mod reexport {
             self.device_index_count = device_index_count;
             self
         }
-        pub fn p_device_indices(mut self, p_device_indices: *const u32) -> Self {
-            self.p_device_indices = p_device_indices;
+        pub fn p_device_indices(mut self, p_device_indices: &'a [u32]) -> Self {
+            self.device_index_count = p_device_indices.len() as _;
+            self.p_device_indices = p_device_indices.as_ptr();
             self
         }
         pub fn split_instance_bind_region_count(
@@ -1810,9 +1811,11 @@ pub(crate) mod reexport {
         }
         pub fn p_split_instance_bind_regions(
             mut self,
-            p_split_instance_bind_regions: *const crate::vk::Rect2D,
+            p_split_instance_bind_regions: &'a [crate::vk::Rect2D],
         ) -> Self {
-            self.p_split_instance_bind_regions = p_split_instance_bind_regions;
+            self.split_instance_bind_region_count = p_split_instance_bind_regions.len()
+                as _;
+            self.p_split_instance_bind_regions = p_split_instance_bind_regions.as_ptr();
             self
         }
     }
@@ -1859,9 +1862,10 @@ pub(crate) mod reexport {
         }
         pub fn p_device_render_areas(
             mut self,
-            p_device_render_areas: *const crate::vk::Rect2D,
+            p_device_render_areas: &'a [crate::vk::Rect2D],
         ) -> Self {
-            self.p_device_render_areas = p_device_render_areas;
+            self.device_render_area_count = p_device_render_areas.len() as _;
+            self.p_device_render_areas = p_device_render_areas.as_ptr();
             self
         }
     }
@@ -1935,9 +1939,11 @@ pub(crate) mod reexport {
         }
         pub fn p_wait_semaphore_device_indices(
             mut self,
-            p_wait_semaphore_device_indices: *const u32,
+            p_wait_semaphore_device_indices: &'a [u32],
         ) -> Self {
-            self.p_wait_semaphore_device_indices = p_wait_semaphore_device_indices;
+            self.wait_semaphore_count = p_wait_semaphore_device_indices.len() as _;
+            self.p_wait_semaphore_device_indices = p_wait_semaphore_device_indices
+                .as_ptr();
             self
         }
         pub fn command_buffer_count(mut self, command_buffer_count: u32) -> Self {
@@ -1946,9 +1952,10 @@ pub(crate) mod reexport {
         }
         pub fn p_command_buffer_device_masks(
             mut self,
-            p_command_buffer_device_masks: *const u32,
+            p_command_buffer_device_masks: &'a [u32],
         ) -> Self {
-            self.p_command_buffer_device_masks = p_command_buffer_device_masks;
+            self.command_buffer_count = p_command_buffer_device_masks.len() as _;
+            self.p_command_buffer_device_masks = p_command_buffer_device_masks.as_ptr();
             self
         }
         pub fn signal_semaphore_count(mut self, signal_semaphore_count: u32) -> Self {
@@ -1957,9 +1964,11 @@ pub(crate) mod reexport {
         }
         pub fn p_signal_semaphore_device_indices(
             mut self,
-            p_signal_semaphore_device_indices: *const u32,
+            p_signal_semaphore_device_indices: &'a [u32],
         ) -> Self {
-            self.p_signal_semaphore_device_indices = p_signal_semaphore_device_indices;
+            self.signal_semaphore_count = p_signal_semaphore_device_indices.len() as _;
+            self.p_signal_semaphore_device_indices = p_signal_semaphore_device_indices
+                .as_ptr();
             self
         }
     }
@@ -2030,9 +2039,10 @@ pub(crate) mod reexport {
         }
         pub fn p_physical_devices(
             mut self,
-            p_physical_devices: *const crate::vk::PhysicalDevice,
+            p_physical_devices: &'a [crate::vk::PhysicalDevice],
         ) -> Self {
-            self.p_physical_devices = p_physical_devices;
+            self.physical_device_count = p_physical_devices.len() as _;
+            self.p_physical_devices = p_physical_devices.as_ptr();
             self
         }
     }
@@ -2128,9 +2138,10 @@ pub(crate) mod reexport {
         }
         pub fn p_descriptor_update_entries(
             mut self,
-            p_descriptor_update_entries: *const crate::vk::DescriptorUpdateTemplateEntry,
+            p_descriptor_update_entries: &'a [crate::vk::DescriptorUpdateTemplateEntry],
         ) -> Self {
-            self.p_descriptor_update_entries = p_descriptor_update_entries;
+            self.descriptor_update_entry_count = p_descriptor_update_entries.len() as _;
+            self.p_descriptor_update_entries = p_descriptor_update_entries.as_ptr();
             self
         }
         pub fn template_type(
@@ -2220,9 +2231,10 @@ pub(crate) mod reexport {
         }
         pub fn p_aspect_references(
             mut self,
-            p_aspect_references: *const crate::vk::InputAttachmentAspectReference,
+            p_aspect_references: &'a [crate::vk::InputAttachmentAspectReference],
         ) -> Self {
-            self.p_aspect_references = p_aspect_references;
+            self.aspect_reference_count = p_aspect_references.len() as _;
+            self.p_aspect_references = p_aspect_references.as_ptr();
             self
         }
     }
@@ -2261,30 +2273,25 @@ pub(crate) mod reexport {
     impl<'a> PhysicalDevice16BitStorageFeatures<'a> {
         pub fn storage_buffer16_bit_access(
             mut self,
-            storage_buffer16_bit_access: crate::vk::Bool32,
+            storage_buffer16_bit_access: bool,
         ) -> Self {
-            self.storage_buffer16_bit_access = storage_buffer16_bit_access;
+            self.storage_buffer16_bit_access = storage_buffer16_bit_access.into();
             self
         }
         pub fn uniform_and_storage_buffer16_bit_access(
             mut self,
-            uniform_and_storage_buffer16_bit_access: crate::vk::Bool32,
+            uniform_and_storage_buffer16_bit_access: bool,
         ) -> Self {
-            self.uniform_and_storage_buffer16_bit_access = uniform_and_storage_buffer16_bit_access;
+            self.uniform_and_storage_buffer16_bit_access = uniform_and_storage_buffer16_bit_access
+                .into();
             self
         }
-        pub fn storage_push_constant16(
-            mut self,
-            storage_push_constant16: crate::vk::Bool32,
-        ) -> Self {
-            self.storage_push_constant16 = storage_push_constant16;
+        pub fn storage_push_constant16(mut self, storage_push_constant16: bool) -> Self {
+            self.storage_push_constant16 = storage_push_constant16.into();
             self
         }
-        pub fn storage_input_output16(
-            mut self,
-            storage_input_output16: crate::vk::Bool32,
-        ) -> Self {
-            self.storage_input_output16 = storage_input_output16;
+        pub fn storage_input_output16(mut self, storage_input_output16: bool) -> Self {
+            self.storage_input_output16 = storage_input_output16.into();
             self
         }
     }
@@ -2338,9 +2345,9 @@ pub(crate) mod reexport {
         }
         pub fn quad_operations_in_all_stages(
             mut self,
-            quad_operations_in_all_stages: crate::vk::Bool32,
+            quad_operations_in_all_stages: bool,
         ) -> Self {
-            self.quad_operations_in_all_stages = quad_operations_in_all_stages;
+            self.quad_operations_in_all_stages = quad_operations_in_all_stages.into();
             self
         }
     }
@@ -2547,16 +2554,16 @@ pub(crate) mod reexport {
     impl<'a> MemoryDedicatedRequirements<'a> {
         pub fn prefers_dedicated_allocation(
             mut self,
-            prefers_dedicated_allocation: crate::vk::Bool32,
+            prefers_dedicated_allocation: bool,
         ) -> Self {
-            self.prefers_dedicated_allocation = prefers_dedicated_allocation;
+            self.prefers_dedicated_allocation = prefers_dedicated_allocation.into();
             self
         }
         pub fn requires_dedicated_allocation(
             mut self,
-            requires_dedicated_allocation: crate::vk::Bool32,
+            requires_dedicated_allocation: bool,
         ) -> Self {
-            self.requires_dedicated_allocation = requires_dedicated_allocation;
+            self.requires_dedicated_allocation = requires_dedicated_allocation.into();
             self
         }
     }
@@ -2766,9 +2773,9 @@ pub(crate) mod reexport {
         }
         pub fn force_explicit_reconstruction(
             mut self,
-            force_explicit_reconstruction: crate::vk::Bool32,
+            force_explicit_reconstruction: bool,
         ) -> Self {
-            self.force_explicit_reconstruction = force_explicit_reconstruction;
+            self.force_explicit_reconstruction = force_explicit_reconstruction.into();
             self
         }
     }
@@ -2865,9 +2872,9 @@ pub(crate) mod reexport {
     impl<'a> PhysicalDeviceSamplerYcbcrConversionFeatures<'a> {
         pub fn sampler_ycbcr_conversion(
             mut self,
-            sampler_ycbcr_conversion: crate::vk::Bool32,
+            sampler_ycbcr_conversion: bool,
         ) -> Self {
-            self.sampler_ycbcr_conversion = sampler_ycbcr_conversion;
+            self.sampler_ycbcr_conversion = sampler_ycbcr_conversion.into();
             self
         }
     }
@@ -2928,8 +2935,8 @@ pub(crate) mod reexport {
         }
     }
     impl<'a> ProtectedSubmitInfo<'a> {
-        pub fn protected_submit(mut self, protected_submit: crate::vk::Bool32) -> Self {
-            self.protected_submit = protected_submit;
+        pub fn protected_submit(mut self, protected_submit: bool) -> Self {
+            self.protected_submit = protected_submit.into();
             self
         }
     }
@@ -2960,8 +2967,8 @@ pub(crate) mod reexport {
         }
     }
     impl<'a> PhysicalDeviceProtectedMemoryFeatures<'a> {
-        pub fn protected_memory(mut self, protected_memory: crate::vk::Bool32) -> Self {
-            self.protected_memory = protected_memory;
+        pub fn protected_memory(mut self, protected_memory: bool) -> Self {
+            self.protected_memory = protected_memory.into();
             self
         }
     }
@@ -2990,11 +2997,8 @@ pub(crate) mod reexport {
         }
     }
     impl<'a> PhysicalDeviceProtectedMemoryProperties<'a> {
-        pub fn protected_no_fault(
-            mut self,
-            protected_no_fault: crate::vk::Bool32,
-        ) -> Self {
-            self.protected_no_fault = protected_no_fault;
+        pub fn protected_no_fault(mut self, protected_no_fault: bool) -> Self {
+            self.protected_no_fault = protected_no_fault.into();
             self
         }
     }
@@ -3098,8 +3102,8 @@ pub(crate) mod reexport {
         }
     }
     impl<'a> DescriptorSetLayoutSupport<'a> {
-        pub fn supported(mut self, supported: crate::vk::Bool32) -> Self {
-            self.supported = supported;
+        pub fn supported(mut self, supported: bool) -> Self {
+            self.supported = supported.into();
             self
         }
     }
@@ -3130,11 +3134,8 @@ pub(crate) mod reexport {
         }
     }
     impl<'a> PhysicalDeviceShaderDrawParametersFeatures<'a> {
-        pub fn shader_draw_parameters(
-            mut self,
-            shader_draw_parameters: crate::vk::Bool32,
-        ) -> Self {
-            self.shader_draw_parameters = shader_draw_parameters;
+        pub fn shader_draw_parameters(mut self, shader_draw_parameters: bool) -> Self {
+            self.shader_draw_parameters = shader_draw_parameters.into();
             self
         }
     }

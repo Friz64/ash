@@ -125,15 +125,12 @@ pub(crate) mod reexport {
         }
     }
     impl<'a> LatencySleepModeInfoNV<'a> {
-        pub fn low_latency_mode(mut self, low_latency_mode: crate::vk::Bool32) -> Self {
-            self.low_latency_mode = low_latency_mode;
+        pub fn low_latency_mode(mut self, low_latency_mode: bool) -> Self {
+            self.low_latency_mode = low_latency_mode.into();
             self
         }
-        pub fn low_latency_boost(
-            mut self,
-            low_latency_boost: crate::vk::Bool32,
-        ) -> Self {
-            self.low_latency_boost = low_latency_boost;
+        pub fn low_latency_boost(mut self, low_latency_boost: bool) -> Self {
+            self.low_latency_boost = low_latency_boost.into();
             self
         }
         pub fn minimum_interval_us(mut self, minimum_interval_us: u32) -> Self {
@@ -240,9 +237,10 @@ pub(crate) mod reexport {
         }
         pub fn p_timings(
             mut self,
-            p_timings: *mut crate::vk::LatencyTimingsFrameReportNV<'a>,
+            p_timings: &'a mut [crate::vk::LatencyTimingsFrameReportNV<'a>],
         ) -> Self {
-            self.p_timings = p_timings;
+            self.timing_count = p_timings.len() as _;
+            self.p_timings = p_timings.as_mut_ptr();
             self
         }
     }
@@ -451,11 +449,8 @@ pub(crate) mod reexport {
         }
     }
     impl<'a> SwapchainLatencyCreateInfoNV<'a> {
-        pub fn latency_mode_enable(
-            mut self,
-            latency_mode_enable: crate::vk::Bool32,
-        ) -> Self {
-            self.latency_mode_enable = latency_mode_enable;
+        pub fn latency_mode_enable(mut self, latency_mode_enable: bool) -> Self {
+            self.latency_mode_enable = latency_mode_enable.into();
             self
         }
     }
@@ -491,9 +486,10 @@ pub(crate) mod reexport {
         }
         pub fn p_present_modes(
             mut self,
-            p_present_modes: *mut crate::vk::PresentModeKHR,
+            p_present_modes: &'a mut [crate::vk::PresentModeKHR],
         ) -> Self {
-            self.p_present_modes = p_present_modes;
+            self.present_mode_count = p_present_modes.len() as _;
+            self.p_present_modes = p_present_modes.as_mut_ptr();
             self
         }
     }

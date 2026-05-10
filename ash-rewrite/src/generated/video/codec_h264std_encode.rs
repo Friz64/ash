@@ -400,23 +400,26 @@ impl<'a> EncodeH264ReferenceListsInfo<'a> {
     }
     pub fn p_ref_list0_mod_operations(
         mut self,
-        p_ref_list0_mod_operations: *const crate::vk::EncodeH264RefListModEntry,
+        p_ref_list0_mod_operations: &'a [crate::vk::EncodeH264RefListModEntry],
     ) -> Self {
-        self.p_ref_list0_mod_operations = p_ref_list0_mod_operations;
+        self.ref_list0_mod_op_count = p_ref_list0_mod_operations.len() as _;
+        self.p_ref_list0_mod_operations = p_ref_list0_mod_operations.as_ptr();
         self
     }
     pub fn p_ref_list1_mod_operations(
         mut self,
-        p_ref_list1_mod_operations: *const crate::vk::EncodeH264RefListModEntry,
+        p_ref_list1_mod_operations: &'a [crate::vk::EncodeH264RefListModEntry],
     ) -> Self {
-        self.p_ref_list1_mod_operations = p_ref_list1_mod_operations;
+        self.ref_list1_mod_op_count = p_ref_list1_mod_operations.len() as _;
+        self.p_ref_list1_mod_operations = p_ref_list1_mod_operations.as_ptr();
         self
     }
     pub fn p_ref_pic_marking_operations(
         mut self,
-        p_ref_pic_marking_operations: *const crate::vk::EncodeH264RefPicMarkingEntry,
+        p_ref_pic_marking_operations: &'a [crate::vk::EncodeH264RefPicMarkingEntry],
     ) -> Self {
-        self.p_ref_pic_marking_operations = p_ref_pic_marking_operations;
+        self.ref_pic_marking_op_count = p_ref_pic_marking_operations.len() as _;
+        self.p_ref_pic_marking_operations = p_ref_pic_marking_operations.as_ptr();
         self
     }
 }
@@ -494,7 +497,7 @@ impl<'a> EncodeH264PictureInfo<'a> {
     }
     pub fn p_ref_lists(
         mut self,
-        p_ref_lists: *const crate::vk::EncodeH264ReferenceListsInfo<'a>,
+        p_ref_lists: &'a crate::vk::EncodeH264ReferenceListsInfo<'a>,
     ) -> Self {
         self.p_ref_lists = p_ref_lists;
         self
@@ -604,7 +607,7 @@ impl<'a> EncodeH264SliceHeader<'a> {
     }
     pub fn p_weight_table(
         mut self,
-        p_weight_table: *const crate::vk::EncodeH264WeightTable,
+        p_weight_table: &'a crate::vk::EncodeH264WeightTable,
     ) -> Self {
         self.p_weight_table = p_weight_table;
         self

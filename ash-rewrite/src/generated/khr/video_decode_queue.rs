@@ -165,7 +165,7 @@ pub(crate) mod reexport {
         }
         pub fn p_setup_reference_slot(
             mut self,
-            p_setup_reference_slot: *const crate::vk::VideoReferenceSlotInfoKHR<'a>,
+            p_setup_reference_slot: &'a crate::vk::VideoReferenceSlotInfoKHR<'a>,
         ) -> Self {
             self.p_setup_reference_slot = p_setup_reference_slot;
             self
@@ -176,9 +176,10 @@ pub(crate) mod reexport {
         }
         pub fn p_reference_slots(
             mut self,
-            p_reference_slots: *const crate::vk::VideoReferenceSlotInfoKHR<'a>,
+            p_reference_slots: &'a [crate::vk::VideoReferenceSlotInfoKHR<'a>],
         ) -> Self {
-            self.p_reference_slots = p_reference_slots;
+            self.reference_slot_count = p_reference_slots.len() as _;
+            self.p_reference_slots = p_reference_slots.as_ptr();
             self
         }
     }

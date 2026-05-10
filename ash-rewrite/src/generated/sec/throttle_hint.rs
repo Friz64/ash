@@ -28,8 +28,8 @@ impl<'a> Default for PhysicalDeviceThrottleHintFeaturesSEC<'a> {
     }
 }
 impl<'a> PhysicalDeviceThrottleHintFeaturesSEC<'a> {
-    pub fn throttle_hint(mut self, throttle_hint: crate::vk::Bool32) -> Self {
-        self.throttle_hint = throttle_hint;
+    pub fn throttle_hint(mut self, throttle_hint: bool) -> Self {
+        self.throttle_hint = throttle_hint.into();
         self
     }
 }

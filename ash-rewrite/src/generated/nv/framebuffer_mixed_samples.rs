@@ -50,9 +50,9 @@ impl<'a> PipelineCoverageModulationStateCreateInfoNV<'a> {
     }
     pub fn coverage_modulation_table_enable(
         mut self,
-        coverage_modulation_table_enable: crate::vk::Bool32,
+        coverage_modulation_table_enable: bool,
     ) -> Self {
-        self.coverage_modulation_table_enable = coverage_modulation_table_enable;
+        self.coverage_modulation_table_enable = coverage_modulation_table_enable.into();
         self
     }
     pub fn coverage_modulation_table_count(
@@ -64,9 +64,10 @@ impl<'a> PipelineCoverageModulationStateCreateInfoNV<'a> {
     }
     pub fn p_coverage_modulation_table(
         mut self,
-        p_coverage_modulation_table: *const core::ffi::c_float,
+        p_coverage_modulation_table: &'a [core::ffi::c_float],
     ) -> Self {
-        self.p_coverage_modulation_table = p_coverage_modulation_table;
+        self.coverage_modulation_table_count = p_coverage_modulation_table.len() as _;
+        self.p_coverage_modulation_table = p_coverage_modulation_table.as_ptr();
         self
     }
 }

@@ -27,8 +27,8 @@ impl<'a> Default for PhysicalDeviceShaderAbortFeaturesKHR<'a> {
     }
 }
 impl<'a> PhysicalDeviceShaderAbortFeaturesKHR<'a> {
-    pub fn shader_abort(mut self, shader_abort: crate::vk::Bool32) -> Self {
-        self.shader_abort = shader_abort;
+    pub fn shader_abort(mut self, shader_abort: bool) -> Self {
+        self.shader_abort = shader_abort.into();
         self
     }
 }
@@ -95,8 +95,9 @@ impl<'a> DeviceFaultShaderAbortMessageInfoKHR<'a> {
         self.message_data_size = message_data_size;
         self
     }
-    pub fn p_message_data(mut self, p_message_data: *mut core::ffi::c_void) -> Self {
-        self.p_message_data = p_message_data;
+    pub fn p_message_data(mut self, p_message_data: &'a mut [u8]) -> Self {
+        self.message_data_size = p_message_data.len() as _;
+        self.p_message_data = p_message_data.as_mut_ptr().cast();
         self
     }
 }

@@ -32,25 +32,23 @@ impl<'a> Default for PhysicalDeviceFragmentDensityMapFeaturesEXT<'a> {
     }
 }
 impl<'a> PhysicalDeviceFragmentDensityMapFeaturesEXT<'a> {
-    pub fn fragment_density_map(
-        mut self,
-        fragment_density_map: crate::vk::Bool32,
-    ) -> Self {
-        self.fragment_density_map = fragment_density_map;
+    pub fn fragment_density_map(mut self, fragment_density_map: bool) -> Self {
+        self.fragment_density_map = fragment_density_map.into();
         self
     }
     pub fn fragment_density_map_dynamic(
         mut self,
-        fragment_density_map_dynamic: crate::vk::Bool32,
+        fragment_density_map_dynamic: bool,
     ) -> Self {
-        self.fragment_density_map_dynamic = fragment_density_map_dynamic;
+        self.fragment_density_map_dynamic = fragment_density_map_dynamic.into();
         self
     }
     pub fn fragment_density_map_non_subsampled_images(
         mut self,
-        fragment_density_map_non_subsampled_images: crate::vk::Bool32,
+        fragment_density_map_non_subsampled_images: bool,
     ) -> Self {
-        self.fragment_density_map_non_subsampled_images = fragment_density_map_non_subsampled_images;
+        self.fragment_density_map_non_subsampled_images = fragment_density_map_non_subsampled_images
+            .into();
         self
     }
 }
@@ -99,9 +97,9 @@ impl<'a> PhysicalDeviceFragmentDensityMapPropertiesEXT<'a> {
     }
     pub fn fragment_density_invocations(
         mut self,
-        fragment_density_invocations: crate::vk::Bool32,
+        fragment_density_invocations: bool,
     ) -> Self {
-        self.fragment_density_invocations = fragment_density_invocations;
+        self.fragment_density_invocations = fragment_density_invocations.into();
         self
     }
 }

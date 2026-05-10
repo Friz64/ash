@@ -195,9 +195,10 @@ pub(crate) mod reexport {
     impl<'a> SurfaceCapabilitiesFullScreenExclusiveEXT<'a> {
         pub fn full_screen_exclusive_supported(
             mut self,
-            full_screen_exclusive_supported: crate::vk::Bool32,
+            full_screen_exclusive_supported: bool,
         ) -> Self {
-            self.full_screen_exclusive_supported = full_screen_exclusive_supported;
+            self.full_screen_exclusive_supported = full_screen_exclusive_supported
+                .into();
             self
         }
     }

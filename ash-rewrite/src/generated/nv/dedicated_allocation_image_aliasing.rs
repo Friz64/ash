@@ -30,9 +30,10 @@ impl<'a> Default for PhysicalDeviceDedicatedAllocationImageAliasingFeaturesNV<'a
 impl<'a> PhysicalDeviceDedicatedAllocationImageAliasingFeaturesNV<'a> {
     pub fn dedicated_allocation_image_aliasing(
         mut self,
-        dedicated_allocation_image_aliasing: crate::vk::Bool32,
+        dedicated_allocation_image_aliasing: bool,
     ) -> Self {
-        self.dedicated_allocation_image_aliasing = dedicated_allocation_image_aliasing;
+        self.dedicated_allocation_image_aliasing = dedicated_allocation_image_aliasing
+            .into();
         self
     }
 }

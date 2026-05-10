@@ -63,9 +63,9 @@ impl<'a> Default for PhysicalDeviceFragmentDensityMapLayeredFeaturesVALVE<'a> {
 impl<'a> PhysicalDeviceFragmentDensityMapLayeredFeaturesVALVE<'a> {
     pub fn fragment_density_map_layered(
         mut self,
-        fragment_density_map_layered: crate::vk::Bool32,
+        fragment_density_map_layered: bool,
     ) -> Self {
-        self.fragment_density_map_layered = fragment_density_map_layered;
+        self.fragment_density_map_layered = fragment_density_map_layered.into();
         self
     }
 }

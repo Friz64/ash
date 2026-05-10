@@ -28,11 +28,8 @@ impl<'a> Default for PhysicalDeviceShaderConstantDataFeaturesKHR<'a> {
     }
 }
 impl<'a> PhysicalDeviceShaderConstantDataFeaturesKHR<'a> {
-    pub fn shader_constant_data(
-        mut self,
-        shader_constant_data: crate::vk::Bool32,
-    ) -> Self {
-        self.shader_constant_data = shader_constant_data;
+    pub fn shader_constant_data(mut self, shader_constant_data: bool) -> Self {
+        self.shader_constant_data = shader_constant_data.into();
         self
     }
 }
