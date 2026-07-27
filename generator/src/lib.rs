@@ -3303,7 +3303,7 @@ pub fn write_source_code<P: AsRef<Path>>(vk_headers_dir: &Path, src_dir: P) {
                                 spec: vk_parse::EnumSpec::None,
                                 ..
                             }) => required_enums.entry(name.as_str()),
-                            vk_parse::InterfaceItem::Enum(vk_parse::Enum { name: _, .. }) => {
+                            vk_parse::InterfaceItem::Enum(vk_parse::Enum { .. }) => {
                                 // TODO: Filter thes spec'd enum constants, don't just generate them all
                                 continue;
                             }
@@ -3312,8 +3312,7 @@ pub fn write_source_code<P: AsRef<Path>>(vk_headers_dir: &Path, src_dir: P) {
                                 continue;
                             }
                             vk_parse::InterfaceItem::Comment { .. } => continue,
-                            x => todo!("{x:?}"), // _ => {}
-                                                 // _ => continue,
+                            x => todo!("{x:?}"),
                         };
                         match provided_by {
                             Entry::Occupied(mut e) => {
