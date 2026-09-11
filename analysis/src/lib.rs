@@ -2,7 +2,7 @@ pub mod decl;
 pub mod item;
 pub mod lifetime;
 pub mod name;
-pub mod to_rust;
+pub mod rust;
 pub mod xml;
 
 use crate::name::TypeName;

@@ -31,7 +31,7 @@ impl ToTokens for Lifetime {
 pub fn lifetime_propagation(types: &IndexMap<TypeName, TypeItem>) -> HashMap<TypeName, bool> {
     let mut store = HashMap::new();
     for &type_name in types.keys() {
-        determine_for_type(&mut store, types, &Ty::SpecType(type_name), false);
+        determine_for_type(&mut store, types, &Ty::ApiType(type_name), false);
     }
 
     store
@@ -44,14 +44,14 @@ fn determine_for_type(
     apply_for_pointers: bool,
 ) -> bool {
     match ty {
-        Ty::SpecType(type_name) => {
+        Ty::ApiType(type_name) => {
             if let Some(existing_result) = store.get(type_name) {
                 return *existing_result;
             }
 
             let result = match &types[type_name] {
                 TypeItem::Alias(item) => {
-                    determine_for_type(store, types, &Ty::SpecType(item.alias), false)
+                    determine_for_type(store, types, &Ty::ApiType(item.alias), false)
                 }
                 TypeItem::Struct(item) => item.members.iter().any(|member| {
                     matches!(
@@ -79,7 +79,6 @@ fn determine_for_type(
         }
         Ty::Ptr(..) if apply_for_pointers => true,
         Ty::Ptr(to, ..) => determine_for_type(store, types, to, false),
-        Ty::Ref(..) => true,
         _ => false,
     }
 }

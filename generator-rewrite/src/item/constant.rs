@@ -5,7 +5,7 @@ use analysis::{
         Named,
         constant::{Constant, ConstantType},
     },
-    to_rust::RustTranslator,
+    rust::RustTokens,
     xml::cexpr::CExprItem,
 };
 use quote::quote;
@@ -15,10 +15,10 @@ impl Code for Constant {
     #[instrument(skip(ctx))]
     fn code(&self, ctx: &Context) -> CodeMap {
         trace!("generating");
-        let name = ctx.constant_to_rust(self.name(), false);
+        let name = ctx.constant_tokens(self.name(), false);
 
         let ty = match self.ty {
-            ConstantType::Integer(primary_ty) => ctx.primary_type_to_rust(primary_ty),
+            ConstantType::Integer(primary_ty) => ctx.primary_type_tokens(primary_ty),
             ConstantType::String => quote! { &core::ffi::CStr },
         };
 

@@ -6,7 +6,7 @@ use analysis::{
         bitmask::{BitMask, BitWidth, Item, Value},
     },
     lifetime::Lifetime,
-    to_rust::RustTranslator,
+    rust::RustTokens,
     xml::cexpr::CExprItem,
 };
 use proc_macro2::{Literal, TokenStream};
@@ -17,7 +17,7 @@ impl Code for BitMask {
     #[instrument(skip(ctx))]
     fn code(&self, ctx: &Context) -> CodeMap {
         trace!("generating");
-        let name = ctx.type_to_rust(self.name(), false, &Lifetime::placeholder());
+        let name = ctx.type_tokens(self.name(), false, &Lifetime::placeholder());
         let base_ty = match self.bitwidth {
             BitWidth::Bits32 => quote! { u32 },
             BitWidth::Bits64 => quote! { u64 },
@@ -26,7 +26,7 @@ impl Code for BitMask {
         let mut bits_code = TokenStream::default();
         let mut values = TokenStream::default();
         if let Some(bits_name) = self.bits_name {
-            let bits_name_tokens = ctx.type_to_rust(bits_name, false, &Lifetime::placeholder());
+            let bits_name_tokens = ctx.type_tokens(bits_name, false, &Lifetime::placeholder());
 
             bits_code = quote! {
                 #[repr(transparent)]
@@ -36,7 +36,7 @@ impl Code for BitMask {
 
             values = (self.items.iter())
                 .map(|(&name, _item)| {
-                    let name = ctx.enumerator_to_rust(name, bits_name, false);
+                    let name = ctx.enumerator_tokens(name, bits_name, false);
                     quote! { pub const #name: Self = Self(#bits_name_tokens::#name.0); }
                 })
                 .collect::<TokenStream>();
@@ -140,7 +140,7 @@ impl Code for BitMask {
             let mut impl_map = CodeMap::default();
 
             for (&name, Item { required_by, value }) in &self.items {
-                let name = ctx.enumerator_to_rust(name, bits_name, false);
+                let name = ctx.enumerator_tokens(name, bits_name, false);
                 let value = match &value {
                     Value::BitPos(bitpos) => {
                         let literal = Literal::u8_unsuffixed(*bitpos);
@@ -151,7 +151,7 @@ impl Code for BitMask {
                         quote! { Self(#expr) }
                     }
                     Value::Alias(enumerator_name) => {
-                        let en = ctx.enumerator_to_rust(*enumerator_name, bits_name, false);
+                        let en = ctx.enumerator_tokens(*enumerator_name, bits_name, false);
                         quote! { Self::#en }
                     }
                 };
@@ -163,7 +163,7 @@ impl Code for BitMask {
             }
 
             for (&dest, impl_tokens) in impl_map.iter() {
-                let name = ctx.type_to_rust(
+                let name = ctx.type_tokens(
                     bits_name,
                     dest != Destination::new(self.required_by),
                     &Lifetime::placeholder(),

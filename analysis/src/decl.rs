@@ -1,13 +1,7 @@
-use proc_macro2::{Literal, TokenStream};
-
 use crate::{
-    item::{RequireMap, structure::Length},
+    item::RequireMap,
     name::{ConstantName, FuncPointerName, TypeName, VariableName},
-    to_rust::RustTranslator,
-    xml::{
-        cdecl::{CArrayLen, CDecl, CType},
-        cexpr::{self, CExprItem, CExprItems},
-    },
+    xml::cdecl::{CArrayLen, CDecl, CType},
 };
 
 #[derive(Debug)]
@@ -17,10 +11,7 @@ pub struct Decl {
 }
 
 impl Decl {
-    pub(crate) fn from_c(
-        require_map: &RequireMap,
-        c_decl: &CDecl<'static>,
-    ) -> Decl {
+    pub(crate) fn from_c(require_map: &RequireMap, c_decl: &CDecl<'static>) -> Decl {
         Decl {
             name: VariableName::new(c_decl.name),
             ty: Ty::from_c(require_map, &c_decl.ty),
@@ -80,53 +71,30 @@ pub enum ArrayLen {
     Literal(u128),
 }
 
-impl ArrayLen {
-    pub fn to_rust(&self, translator: &impl RustTranslator) -> TokenStream {
-        match self {
-            ArrayLen::Constant(constant_name) => translator.constant_to_rust(*constant_name, true),
-            ArrayLen::Literal(value) => {
-                let literal = Literal::u128_unsuffixed(*value);
-                quote::quote! { #literal }
-            }
-        }
-    }
-}
-
 #[derive(Debug, Clone)]
 pub enum Ty {
-    SpecType(TypeName),
-    SpecFuncPointer(FuncPointerName),
+    ApiType(TypeName),
+    ApiFuncPointer(FuncPointerName),
     CPrimary(CPrimaryType),
-    RustType(RustType),
     Platform(&'static str),
     Ptr(&'static Ty, Mutability),
-    Ref(&'static Ty, Mutability),
-    Slice(&'static Ty, Mutability, Option<ArrayLen>),
     Array(&'static Ty, ArrayLen),
 }
 
-#[derive(Debug, Clone, Copy)]
-pub enum RustType {
-    CStr,
-}
-
 impl Ty {
-    pub(crate) fn from_c(
-        require_map: &RequireMap,
-        c_type: &CType<'static>,
-    ) -> Ty {
+    pub(crate) fn from_c(require_map: &RequireMap, c_type: &CType<'static>) -> Ty {
         match c_type {
             CType::Base(cbase_type) => {
                 let name = cbase_type.name;
                 if let Some(primary) = CPrimaryType::from_str(name) {
                     Ty::CPrimary(primary)
                 } else if require_map.ty.contains_key(&TypeName::new(name)) {
-                    Ty::SpecType(TypeName::new(name))
+                    Ty::ApiType(TypeName::new(name))
                 } else if require_map
                     .func_pointer
                     .contains_key(&FuncPointerName::new(name))
                 {
-                    Ty::SpecFuncPointer(FuncPointerName::new(name))
+                    Ty::ApiFuncPointer(FuncPointerName::new(name))
                 } else {
                     Ty::Platform(name)
                 }

@@ -4,10 +4,13 @@ mod output;
 
 use crate::output::CodeMap;
 use analysis::{
-    Analysis, AnalysisResult, decl::RustType, lifetime::Lifetime, name::{
+    Analysis, AnalysisResult,
+    lifetime::Lifetime,
+    name::{
         CMacroName, CommandName, ConstantName, EnumeratorName, FuncPointerName, TypeName,
         VariableName,
-    }, to_rust::RustTranslator
+    },
+    rust::RustTokens,
 };
 use heck::{ToShoutySnekCase, ToSnekCase};
 use proc_macro2::TokenStream;
@@ -62,12 +65,12 @@ impl<'a> Deref for Context<'a> {
     }
 }
 
-impl<'a> RustTranslator for Context<'a> {
-    fn var_name_to_rust(&self, name: VariableName) -> Ident {
+impl<'a> RustTokens for Context<'a> {
+    fn var_name_token(&self, name: VariableName) -> Ident {
         crate::escape_ident(&name.original().to_snek_case())
     }
 
-    fn type_to_rust(&self, name: TypeName, qualified: bool, lifetime: &Lifetime) -> TokenStream {
+    fn type_tokens(&self, name: TypeName, qualified: bool, lifetime: &Lifetime) -> TokenStream {
         let type_item = &self.items.types[&name];
         let required_by = type_item.required_by(&self.items);
         let ident: Ident = syn::parse_str(name.prefix_trimmed(required_by.library)).unwrap();
@@ -76,25 +79,25 @@ impl<'a> RustTranslator for Context<'a> {
         quote! { #path #ident #lifetime }
     }
 
-    fn func_pointer_to_rust(&self, name: FuncPointerName, qualified: bool) -> TokenStream {
+    fn func_pointer_tokens(&self, name: FuncPointerName, qualified: bool) -> TokenStream {
         let ident: Ident = syn::parse_str(name.original()).unwrap();
         let path = qualified.then(|| quote! { crate::vk:: });
         quote! { #path #ident }
     }
 
-    fn command_to_rust(&self, name: CommandName, qualified: bool) -> TokenStream {
+    fn command_tokens(&self, name: CommandName, qualified: bool) -> TokenStream {
         let ident: Ident = syn::parse_str(&format!("PFN_{}", name.original())).unwrap();
         let path = qualified.then(|| quote! { crate::vk:: });
         quote! { #path #ident }
     }
 
-    fn constant_to_rust(&self, name: ConstantName, qualified: bool) -> TokenStream {
+    fn constant_tokens(&self, name: ConstantName, qualified: bool) -> TokenStream {
         let ident: Ident = syn::parse_str(name.prefix_trimmed()).unwrap();
         let path = qualified.then(|| quote! { crate::vk:: });
         quote! { #path #ident }
     }
 
-    fn enumerator_to_rust(
+    fn enumerator_tokens(
         &self,
         name: EnumeratorName,
         type_name: TypeName,
@@ -102,14 +105,14 @@ impl<'a> RustTranslator for Context<'a> {
     ) -> TokenStream {
         let ident = crate::escape_ident(&name.stripped(type_name).TO_SHOUTY_SNEK_CASE());
         let path = qualified.then(|| {
-            let bits_name = self.type_to_rust(type_name, true, &Lifetime::placeholder());
+            let bits_name = self.type_tokens(type_name, true, &Lifetime::placeholder());
             quote! { #bits_name:: }
         });
 
         quote! { #path #ident }
     }
 
-    fn cmacro_to_rust(&self, name: CMacroName, qualified: bool) -> TokenStream {
+    fn cmacro_tokens(&self, name: CMacroName, qualified: bool) -> TokenStream {
         let ident: Ident = if self.items.cmacros[&name].has_args() {
             syn::parse_str(name.prefix_trimmed()).unwrap()
         } else {
@@ -120,13 +123,7 @@ impl<'a> RustTranslator for Context<'a> {
         quote! { #path #ident }
     }
 
-    fn rust_type_to_rust(&self, ty: &RustType) -> TokenStream {
-        match ty {
-            RustType::CStr => quote! { core::ffi::CStr },
-        }
-    }
-
-    fn platform_type_to_rust(&self, raw: &str, qualified: bool) -> TokenStream {
+    fn platform_type_tokens(&self, raw: &str, qualified: bool) -> TokenStream {
         let ident: Ident = syn::parse_str(raw).unwrap();
         let path = qualified.then(|| quote! { crate::platform_types:: });
         quote! { #path #ident }

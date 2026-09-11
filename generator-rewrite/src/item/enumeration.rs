@@ -6,7 +6,7 @@ use analysis::{
         enumeration::{Enum, Item, Value},
     },
     lifetime::Lifetime,
-    to_rust::RustTranslator,
+    rust::RustTokens,
     xml::cexpr::CExprItem,
 };
 use proc_macro2::Literal;
@@ -17,7 +17,7 @@ impl Code for Enum {
     #[instrument(skip(ctx))]
     fn code(&self, ctx: &Context) -> CodeMap {
         trace!("generating");
-        let name = ctx.type_to_rust(self.name(), false, &Lifetime::placeholder());
+        let name = ctx.type_tokens(self.name(), false, &Lifetime::placeholder());
         let code = quote! {
             #[repr(transparent)]
             #[derive(Clone, Copy, PartialEq, Eq, PartialOrd, Ord, Hash, Default)]
@@ -42,7 +42,7 @@ impl Code for Enum {
         );
 
         for (&name, Item { required_by, value }) in &self.items {
-            let name = ctx.enumerator_to_rust(name, self.name, false);
+            let name = ctx.enumerator_tokens(name, self.name, false);
             let value = match &value {
                 Value::Variant(variant) => {
                     let literal = Literal::i32_unsuffixed(*variant);
@@ -53,7 +53,7 @@ impl Code for Enum {
                     quote! { Self(#expr) }
                 }
                 Value::Alias(enumerator_name) => {
-                    let alias = ctx.enumerator_to_rust(*enumerator_name, self.name, false);
+                    let alias = ctx.enumerator_tokens(*enumerator_name, self.name, false);
                     quote! { Self::#alias }
                 }
             };
@@ -65,7 +65,7 @@ impl Code for Enum {
         }
 
         for (&dest, impl_tokens) in impl_map.iter() {
-            let name = ctx.type_to_rust(
+            let name = ctx.type_tokens(
                 self.name,
                 dest != Destination::new(self.required_by),
                 &Lifetime::placeholder(),

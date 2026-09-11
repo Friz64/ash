@@ -4,7 +4,7 @@ use analysis::{
     item::{Named, handle::Handle},
     lifetime::Lifetime,
     name::TypeName,
-    to_rust::RustTranslator,
+    rust::RustTokens,
 };
 use quote::quote;
 use tracing::{instrument, trace};
@@ -13,8 +13,8 @@ impl Code for Handle {
     #[instrument(skip(ctx))]
     fn code(&self, ctx: &Context) -> CodeMap {
         trace!("generating");
-        let name = ctx.type_to_rust(self.name(), false, &Lifetime::placeholder());
-        let ty = ctx.enumerator_to_rust(self.object_type, TypeName::VK_OBJECT_TYPE, true);
+        let name = ctx.type_tokens(self.name(), false, &Lifetime::placeholder());
+        let ty = ctx.enumerator_tokens(self.object_type, TypeName::VK_OBJECT_TYPE, true);
 
         let code = if self.dispatchable {
             quote! {
