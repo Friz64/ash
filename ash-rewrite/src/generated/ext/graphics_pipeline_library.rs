@@ -9,6 +9,30 @@ pub struct PhysicalDeviceGraphicsPipelineLibraryFeaturesEXT<'a> {
     pub graphics_pipeline_library: crate::vk::Bool32,
     pub _marker: ::core::marker::PhantomData<&'a ()>,
 }
+unsafe impl<'a> crate::TaggedStructure<'a>
+for PhysicalDeviceGraphicsPipelineLibraryFeaturesEXT<'a> {
+    const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::PHYSICAL_DEVICE_GRAPHICS_PIPELINE_LIBRARY_FEATURES_EXT;
+}
+unsafe impl<'a> crate::Extends<crate::vk::PhysicalDeviceFeatures2<'_>>
+for PhysicalDeviceGraphicsPipelineLibraryFeaturesEXT<'a> {}
+unsafe impl<'a> crate::Extends<crate::vk::DeviceCreateInfo<'_>>
+for PhysicalDeviceGraphicsPipelineLibraryFeaturesEXT<'a> {}
+impl<'a> Default for PhysicalDeviceGraphicsPipelineLibraryFeaturesEXT<'a> {
+    fn default() -> Self {
+        Self {
+            s_type: <Self as crate::TaggedStructure>::STRUCTURE_TYPE,
+            p_next: Default::default(),
+            graphics_pipeline_library: Default::default(),
+            _marker: ::core::marker::PhantomData,
+        }
+    }
+}
+impl<'a> PhysicalDeviceGraphicsPipelineLibraryFeaturesEXT<'a> {
+    pub fn graphics_pipeline_library(mut self, graphics_pipeline_library: bool) -> Self {
+        self.graphics_pipeline_library = graphics_pipeline_library.into();
+        self
+    }
+}
 #[repr(C)]
 #[derive(Clone, Copy)]
 pub struct PhysicalDeviceGraphicsPipelineLibraryPropertiesEXT<'a> {
@@ -18,6 +42,41 @@ pub struct PhysicalDeviceGraphicsPipelineLibraryPropertiesEXT<'a> {
     pub graphics_pipeline_library_independent_interpolation_decoration: crate::vk::Bool32,
     pub _marker: ::core::marker::PhantomData<&'a ()>,
 }
+unsafe impl<'a> crate::TaggedStructure<'a>
+for PhysicalDeviceGraphicsPipelineLibraryPropertiesEXT<'a> {
+    const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::PHYSICAL_DEVICE_GRAPHICS_PIPELINE_LIBRARY_PROPERTIES_EXT;
+}
+unsafe impl<'a> crate::Extends<crate::vk::PhysicalDeviceProperties2<'_>>
+for PhysicalDeviceGraphicsPipelineLibraryPropertiesEXT<'a> {}
+impl<'a> Default for PhysicalDeviceGraphicsPipelineLibraryPropertiesEXT<'a> {
+    fn default() -> Self {
+        Self {
+            s_type: <Self as crate::TaggedStructure>::STRUCTURE_TYPE,
+            p_next: Default::default(),
+            graphics_pipeline_library_fast_linking: Default::default(),
+            graphics_pipeline_library_independent_interpolation_decoration: Default::default(),
+            _marker: ::core::marker::PhantomData,
+        }
+    }
+}
+impl<'a> PhysicalDeviceGraphicsPipelineLibraryPropertiesEXT<'a> {
+    pub fn graphics_pipeline_library_fast_linking(
+        mut self,
+        graphics_pipeline_library_fast_linking: bool,
+    ) -> Self {
+        self.graphics_pipeline_library_fast_linking = graphics_pipeline_library_fast_linking
+            .into();
+        self
+    }
+    pub fn graphics_pipeline_library_independent_interpolation_decoration(
+        mut self,
+        graphics_pipeline_library_independent_interpolation_decoration: bool,
+    ) -> Self {
+        self.graphics_pipeline_library_independent_interpolation_decoration = graphics_pipeline_library_independent_interpolation_decoration
+            .into();
+        self
+    }
+}
 #[repr(C)]
 #[derive(Clone, Copy)]
 pub struct GraphicsPipelineLibraryCreateInfoEXT<'a> {
@@ -25,6 +84,27 @@ pub struct GraphicsPipelineLibraryCreateInfoEXT<'a> {
     pub p_next: *const core::ffi::c_void,
     pub flags: crate::vk::GraphicsPipelineLibraryFlagsEXT,
     pub _marker: ::core::marker::PhantomData<&'a ()>,
+}
+unsafe impl<'a> crate::TaggedStructure<'a> for GraphicsPipelineLibraryCreateInfoEXT<'a> {
+    const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::GRAPHICS_PIPELINE_LIBRARY_CREATE_INFO_EXT;
+}
+unsafe impl<'a> crate::Extends<crate::vk::GraphicsPipelineCreateInfo<'_>>
+for GraphicsPipelineLibraryCreateInfoEXT<'a> {}
+impl<'a> Default for GraphicsPipelineLibraryCreateInfoEXT<'a> {
+    fn default() -> Self {
+        Self {
+            s_type: <Self as crate::TaggedStructure>::STRUCTURE_TYPE,
+            p_next: Default::default(),
+            flags: Default::default(),
+            _marker: ::core::marker::PhantomData,
+        }
+    }
+}
+impl<'a> GraphicsPipelineLibraryCreateInfoEXT<'a> {
+    pub fn flags(mut self, flags: crate::vk::GraphicsPipelineLibraryFlagsEXT) -> Self {
+        self.flags = flags;
+        self
+    }
 }
 ///Provided by [`ext::graphics_pipeline_library`](crate::ext::graphics_pipeline_library)
 impl crate::vk::StructureType {
@@ -125,7 +205,7 @@ impl core::ops::Not for GraphicsPipelineLibraryFlagsEXT {
     }
 }
 #[repr(transparent)]
-#[derive(Clone, Copy)]
+#[derive(Clone, Copy, Default)]
 pub struct GraphicsPipelineLibraryFlagBitsEXT(pub(crate) u32);
 ///Provided by [`ext::graphics_pipeline_library`](crate::ext::graphics_pipeline_library)
 impl GraphicsPipelineLibraryFlagBitsEXT {

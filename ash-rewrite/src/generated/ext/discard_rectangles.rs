@@ -75,6 +75,28 @@ pub(crate) mod reexport {
         pub max_discard_rectangles: u32,
         pub _marker: ::core::marker::PhantomData<&'a ()>,
     }
+    unsafe impl<'a> crate::TaggedStructure<'a>
+    for PhysicalDeviceDiscardRectanglePropertiesEXT<'a> {
+        const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::PHYSICAL_DEVICE_DISCARD_RECTANGLE_PROPERTIES_EXT;
+    }
+    unsafe impl<'a> crate::Extends<crate::vk::PhysicalDeviceProperties2<'_>>
+    for PhysicalDeviceDiscardRectanglePropertiesEXT<'a> {}
+    impl<'a> Default for PhysicalDeviceDiscardRectanglePropertiesEXT<'a> {
+        fn default() -> Self {
+            Self {
+                s_type: <Self as crate::TaggedStructure>::STRUCTURE_TYPE,
+                p_next: Default::default(),
+                max_discard_rectangles: Default::default(),
+                _marker: ::core::marker::PhantomData,
+            }
+        }
+    }
+    impl<'a> PhysicalDeviceDiscardRectanglePropertiesEXT<'a> {
+        pub fn max_discard_rectangles(mut self, max_discard_rectangles: u32) -> Self {
+            self.max_discard_rectangles = max_discard_rectangles;
+            self
+        }
+    }
     #[repr(C)]
     #[derive(Clone, Copy)]
     pub struct PipelineDiscardRectangleStateCreateInfoEXT<'a> {
@@ -85,6 +107,53 @@ pub(crate) mod reexport {
         pub discard_rectangle_count: u32,
         pub p_discard_rectangles: *const crate::vk::Rect2D,
         pub _marker: ::core::marker::PhantomData<&'a ()>,
+    }
+    unsafe impl<'a> crate::TaggedStructure<'a>
+    for PipelineDiscardRectangleStateCreateInfoEXT<'a> {
+        const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::PIPELINE_DISCARD_RECTANGLE_STATE_CREATE_INFO_EXT;
+    }
+    unsafe impl<'a> crate::Extends<crate::vk::GraphicsPipelineCreateInfo<'_>>
+    for PipelineDiscardRectangleStateCreateInfoEXT<'a> {}
+    impl<'a> Default for PipelineDiscardRectangleStateCreateInfoEXT<'a> {
+        fn default() -> Self {
+            Self {
+                s_type: <Self as crate::TaggedStructure>::STRUCTURE_TYPE,
+                p_next: Default::default(),
+                flags: Default::default(),
+                discard_rectangle_mode: Default::default(),
+                discard_rectangle_count: Default::default(),
+                p_discard_rectangles: Default::default(),
+                _marker: ::core::marker::PhantomData,
+            }
+        }
+    }
+    impl<'a> PipelineDiscardRectangleStateCreateInfoEXT<'a> {
+        pub fn flags(
+            mut self,
+            flags: crate::vk::PipelineDiscardRectangleStateCreateFlagsEXT,
+        ) -> Self {
+            self.flags = flags;
+            self
+        }
+        pub fn discard_rectangle_mode(
+            mut self,
+            discard_rectangle_mode: crate::vk::DiscardRectangleModeEXT,
+        ) -> Self {
+            self.discard_rectangle_mode = discard_rectangle_mode;
+            self
+        }
+        pub fn discard_rectangle_count(mut self, discard_rectangle_count: u32) -> Self {
+            self.discard_rectangle_count = discard_rectangle_count;
+            self
+        }
+        pub fn p_discard_rectangles(
+            mut self,
+            p_discard_rectangles: &'a [crate::vk::Rect2D],
+        ) -> Self {
+            self.discard_rectangle_count = p_discard_rectangles.len() as _;
+            self.p_discard_rectangles = p_discard_rectangles.as_ptr();
+            self
+        }
     }
     ///Provided by [`ext::discard_rectangles`](crate::ext::discard_rectangles)
     impl crate::vk::StructureType {

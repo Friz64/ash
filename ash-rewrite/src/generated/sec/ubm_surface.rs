@@ -63,6 +63,41 @@ pub(crate) mod reexport {
         pub surface: *mut crate::platform_types::ubm_surface,
         pub _marker: ::core::marker::PhantomData<&'a ()>,
     }
+    unsafe impl<'a> crate::TaggedStructure<'a> for UbmSurfaceCreateInfoSEC<'a> {
+        const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::UBM_SURFACE_CREATE_INFO_SEC;
+    }
+    impl<'a> Default for UbmSurfaceCreateInfoSEC<'a> {
+        fn default() -> Self {
+            Self {
+                s_type: <Self as crate::TaggedStructure>::STRUCTURE_TYPE,
+                p_next: Default::default(),
+                flags: Default::default(),
+                device: Default::default(),
+                surface: Default::default(),
+                _marker: ::core::marker::PhantomData,
+            }
+        }
+    }
+    impl<'a> UbmSurfaceCreateInfoSEC<'a> {
+        pub fn flags(mut self, flags: crate::vk::UbmSurfaceCreateFlagsSEC) -> Self {
+            self.flags = flags;
+            self
+        }
+        pub fn device(
+            mut self,
+            device: &'a mut crate::platform_types::ubm_device,
+        ) -> Self {
+            self.device = device;
+            self
+        }
+        pub fn surface(
+            mut self,
+            surface: &'a mut crate::platform_types::ubm_surface,
+        ) -> Self {
+            self.surface = surface;
+            self
+        }
+    }
     ///Provided by [`sec::ubm_surface`](crate::sec::ubm_surface)
     impl crate::vk::StructureType {
         pub const UBM_SURFACE_CREATE_INFO_SEC: Self = Self(1000664000);

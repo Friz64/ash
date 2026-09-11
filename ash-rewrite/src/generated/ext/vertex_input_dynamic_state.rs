@@ -46,6 +46,33 @@ pub(crate) mod reexport {
         pub vertex_input_dynamic_state: crate::vk::Bool32,
         pub _marker: ::core::marker::PhantomData<&'a ()>,
     }
+    unsafe impl<'a> crate::TaggedStructure<'a>
+    for PhysicalDeviceVertexInputDynamicStateFeaturesEXT<'a> {
+        const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::PHYSICAL_DEVICE_VERTEX_INPUT_DYNAMIC_STATE_FEATURES_EXT;
+    }
+    unsafe impl<'a> crate::Extends<crate::vk::PhysicalDeviceFeatures2<'_>>
+    for PhysicalDeviceVertexInputDynamicStateFeaturesEXT<'a> {}
+    unsafe impl<'a> crate::Extends<crate::vk::DeviceCreateInfo<'_>>
+    for PhysicalDeviceVertexInputDynamicStateFeaturesEXT<'a> {}
+    impl<'a> Default for PhysicalDeviceVertexInputDynamicStateFeaturesEXT<'a> {
+        fn default() -> Self {
+            Self {
+                s_type: <Self as crate::TaggedStructure>::STRUCTURE_TYPE,
+                p_next: Default::default(),
+                vertex_input_dynamic_state: Default::default(),
+                _marker: ::core::marker::PhantomData,
+            }
+        }
+    }
+    impl<'a> PhysicalDeviceVertexInputDynamicStateFeaturesEXT<'a> {
+        pub fn vertex_input_dynamic_state(
+            mut self,
+            vertex_input_dynamic_state: bool,
+        ) -> Self {
+            self.vertex_input_dynamic_state = vertex_input_dynamic_state.into();
+            self
+        }
+    }
     #[repr(C)]
     #[derive(Clone, Copy)]
     pub struct VertexInputBindingDescription2EXT<'a> {
@@ -57,6 +84,41 @@ pub(crate) mod reexport {
         pub divisor: u32,
         pub _marker: ::core::marker::PhantomData<&'a ()>,
     }
+    unsafe impl<'a> crate::TaggedStructure<'a>
+    for VertexInputBindingDescription2EXT<'a> {
+        const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::VERTEX_INPUT_BINDING_DESCRIPTION_2_EXT;
+    }
+    impl<'a> Default for VertexInputBindingDescription2EXT<'a> {
+        fn default() -> Self {
+            Self {
+                s_type: <Self as crate::TaggedStructure>::STRUCTURE_TYPE,
+                p_next: Default::default(),
+                binding: Default::default(),
+                stride: Default::default(),
+                input_rate: Default::default(),
+                divisor: Default::default(),
+                _marker: ::core::marker::PhantomData,
+            }
+        }
+    }
+    impl<'a> VertexInputBindingDescription2EXT<'a> {
+        pub fn binding(mut self, binding: u32) -> Self {
+            self.binding = binding;
+            self
+        }
+        pub fn stride(mut self, stride: u32) -> Self {
+            self.stride = stride;
+            self
+        }
+        pub fn input_rate(mut self, input_rate: crate::vk::VertexInputRate) -> Self {
+            self.input_rate = input_rate;
+            self
+        }
+        pub fn divisor(mut self, divisor: u32) -> Self {
+            self.divisor = divisor;
+            self
+        }
+    }
     #[repr(C)]
     #[derive(Clone, Copy)]
     pub struct VertexInputAttributeDescription2EXT<'a> {
@@ -67,6 +129,41 @@ pub(crate) mod reexport {
         pub format: crate::vk::Format,
         pub offset: u32,
         pub _marker: ::core::marker::PhantomData<&'a ()>,
+    }
+    unsafe impl<'a> crate::TaggedStructure<'a>
+    for VertexInputAttributeDescription2EXT<'a> {
+        const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::VERTEX_INPUT_ATTRIBUTE_DESCRIPTION_2_EXT;
+    }
+    impl<'a> Default for VertexInputAttributeDescription2EXT<'a> {
+        fn default() -> Self {
+            Self {
+                s_type: <Self as crate::TaggedStructure>::STRUCTURE_TYPE,
+                p_next: Default::default(),
+                location: Default::default(),
+                binding: Default::default(),
+                format: Default::default(),
+                offset: Default::default(),
+                _marker: ::core::marker::PhantomData,
+            }
+        }
+    }
+    impl<'a> VertexInputAttributeDescription2EXT<'a> {
+        pub fn location(mut self, location: u32) -> Self {
+            self.location = location;
+            self
+        }
+        pub fn binding(mut self, binding: u32) -> Self {
+            self.binding = binding;
+            self
+        }
+        pub fn format(mut self, format: crate::vk::Format) -> Self {
+            self.format = format;
+            self
+        }
+        pub fn offset(mut self, offset: u32) -> Self {
+            self.offset = offset;
+            self
+        }
     }
     ///Provided by [`ext::vertex_input_dynamic_state`](crate::ext::vertex_input_dynamic_state)
     impl crate::vk::StructureType {

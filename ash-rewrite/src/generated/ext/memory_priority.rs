@@ -9,6 +9,30 @@ pub struct PhysicalDeviceMemoryPriorityFeaturesEXT<'a> {
     pub memory_priority: crate::vk::Bool32,
     pub _marker: ::core::marker::PhantomData<&'a ()>,
 }
+unsafe impl<'a> crate::TaggedStructure<'a>
+for PhysicalDeviceMemoryPriorityFeaturesEXT<'a> {
+    const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::PHYSICAL_DEVICE_MEMORY_PRIORITY_FEATURES_EXT;
+}
+unsafe impl<'a> crate::Extends<crate::vk::PhysicalDeviceFeatures2<'_>>
+for PhysicalDeviceMemoryPriorityFeaturesEXT<'a> {}
+unsafe impl<'a> crate::Extends<crate::vk::DeviceCreateInfo<'_>>
+for PhysicalDeviceMemoryPriorityFeaturesEXT<'a> {}
+impl<'a> Default for PhysicalDeviceMemoryPriorityFeaturesEXT<'a> {
+    fn default() -> Self {
+        Self {
+            s_type: <Self as crate::TaggedStructure>::STRUCTURE_TYPE,
+            p_next: Default::default(),
+            memory_priority: Default::default(),
+            _marker: ::core::marker::PhantomData,
+        }
+    }
+}
+impl<'a> PhysicalDeviceMemoryPriorityFeaturesEXT<'a> {
+    pub fn memory_priority(mut self, memory_priority: bool) -> Self {
+        self.memory_priority = memory_priority.into();
+        self
+    }
+}
 #[repr(C)]
 #[derive(Clone, Copy)]
 pub struct MemoryPriorityAllocateInfoEXT<'a> {
@@ -16,6 +40,27 @@ pub struct MemoryPriorityAllocateInfoEXT<'a> {
     pub p_next: *const core::ffi::c_void,
     pub priority: core::ffi::c_float,
     pub _marker: ::core::marker::PhantomData<&'a ()>,
+}
+unsafe impl<'a> crate::TaggedStructure<'a> for MemoryPriorityAllocateInfoEXT<'a> {
+    const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::MEMORY_PRIORITY_ALLOCATE_INFO_EXT;
+}
+unsafe impl<'a> crate::Extends<crate::vk::MemoryAllocateInfo<'_>>
+for MemoryPriorityAllocateInfoEXT<'a> {}
+impl<'a> Default for MemoryPriorityAllocateInfoEXT<'a> {
+    fn default() -> Self {
+        Self {
+            s_type: <Self as crate::TaggedStructure>::STRUCTURE_TYPE,
+            p_next: Default::default(),
+            priority: Default::default(),
+            _marker: ::core::marker::PhantomData,
+        }
+    }
+}
+impl<'a> MemoryPriorityAllocateInfoEXT<'a> {
+    pub fn priority(mut self, priority: core::ffi::c_float) -> Self {
+        self.priority = priority;
+        self
+    }
 }
 ///Provided by [`ext::memory_priority`](crate::ext::memory_priority)
 impl crate::vk::StructureType {

@@ -45,6 +45,30 @@ pub(crate) mod reexport {
         pub present_wait: crate::vk::Bool32,
         pub _marker: ::core::marker::PhantomData<&'a ()>,
     }
+    unsafe impl<'a> crate::TaggedStructure<'a>
+    for PhysicalDevicePresentWaitFeaturesKHR<'a> {
+        const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::PHYSICAL_DEVICE_PRESENT_WAIT_FEATURES_KHR;
+    }
+    unsafe impl<'a> crate::Extends<crate::vk::PhysicalDeviceFeatures2<'_>>
+    for PhysicalDevicePresentWaitFeaturesKHR<'a> {}
+    unsafe impl<'a> crate::Extends<crate::vk::DeviceCreateInfo<'_>>
+    for PhysicalDevicePresentWaitFeaturesKHR<'a> {}
+    impl<'a> Default for PhysicalDevicePresentWaitFeaturesKHR<'a> {
+        fn default() -> Self {
+            Self {
+                s_type: <Self as crate::TaggedStructure>::STRUCTURE_TYPE,
+                p_next: Default::default(),
+                present_wait: Default::default(),
+                _marker: ::core::marker::PhantomData,
+            }
+        }
+    }
+    impl<'a> PhysicalDevicePresentWaitFeaturesKHR<'a> {
+        pub fn present_wait(mut self, present_wait: bool) -> Self {
+            self.present_wait = present_wait.into();
+            self
+        }
+    }
     ///Provided by [`khr::present_wait`](crate::khr::present_wait)
     impl crate::vk::StructureType {
         pub const PHYSICAL_DEVICE_PRESENT_WAIT_FEATURES_KHR: Self = Self(1000248000);

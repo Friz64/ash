@@ -9,6 +9,30 @@ pub struct ExternalMemoryImageCreateInfoNV<'a> {
     pub handle_types: crate::vk::ExternalMemoryHandleTypeFlagsNV,
     pub _marker: ::core::marker::PhantomData<&'a ()>,
 }
+unsafe impl<'a> crate::TaggedStructure<'a> for ExternalMemoryImageCreateInfoNV<'a> {
+    const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::EXTERNAL_MEMORY_IMAGE_CREATE_INFO_NV;
+}
+unsafe impl<'a> crate::Extends<crate::vk::ImageCreateInfo<'_>>
+for ExternalMemoryImageCreateInfoNV<'a> {}
+impl<'a> Default for ExternalMemoryImageCreateInfoNV<'a> {
+    fn default() -> Self {
+        Self {
+            s_type: <Self as crate::TaggedStructure>::STRUCTURE_TYPE,
+            p_next: Default::default(),
+            handle_types: Default::default(),
+            _marker: ::core::marker::PhantomData,
+        }
+    }
+}
+impl<'a> ExternalMemoryImageCreateInfoNV<'a> {
+    pub fn handle_types(
+        mut self,
+        handle_types: crate::vk::ExternalMemoryHandleTypeFlagsNV,
+    ) -> Self {
+        self.handle_types = handle_types;
+        self
+    }
+}
 #[repr(C)]
 #[derive(Clone, Copy)]
 pub struct ExportMemoryAllocateInfoNV<'a> {
@@ -16,6 +40,30 @@ pub struct ExportMemoryAllocateInfoNV<'a> {
     pub p_next: *const core::ffi::c_void,
     pub handle_types: crate::vk::ExternalMemoryHandleTypeFlagsNV,
     pub _marker: ::core::marker::PhantomData<&'a ()>,
+}
+unsafe impl<'a> crate::TaggedStructure<'a> for ExportMemoryAllocateInfoNV<'a> {
+    const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::EXPORT_MEMORY_ALLOCATE_INFO_NV;
+}
+unsafe impl<'a> crate::Extends<crate::vk::MemoryAllocateInfo<'_>>
+for ExportMemoryAllocateInfoNV<'a> {}
+impl<'a> Default for ExportMemoryAllocateInfoNV<'a> {
+    fn default() -> Self {
+        Self {
+            s_type: <Self as crate::TaggedStructure>::STRUCTURE_TYPE,
+            p_next: Default::default(),
+            handle_types: Default::default(),
+            _marker: ::core::marker::PhantomData,
+        }
+    }
+}
+impl<'a> ExportMemoryAllocateInfoNV<'a> {
+    pub fn handle_types(
+        mut self,
+        handle_types: crate::vk::ExternalMemoryHandleTypeFlagsNV,
+    ) -> Self {
+        self.handle_types = handle_types;
+        self
+    }
 }
 ///Provided by [`nv::external_memory`](crate::nv::external_memory)
 impl crate::vk::StructureType {

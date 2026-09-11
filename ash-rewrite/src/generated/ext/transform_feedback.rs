@@ -139,6 +139,35 @@ pub(crate) mod reexport {
         pub geometry_streams: crate::vk::Bool32,
         pub _marker: ::core::marker::PhantomData<&'a ()>,
     }
+    unsafe impl<'a> crate::TaggedStructure<'a>
+    for PhysicalDeviceTransformFeedbackFeaturesEXT<'a> {
+        const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::PHYSICAL_DEVICE_TRANSFORM_FEEDBACK_FEATURES_EXT;
+    }
+    unsafe impl<'a> crate::Extends<crate::vk::PhysicalDeviceFeatures2<'_>>
+    for PhysicalDeviceTransformFeedbackFeaturesEXT<'a> {}
+    unsafe impl<'a> crate::Extends<crate::vk::DeviceCreateInfo<'_>>
+    for PhysicalDeviceTransformFeedbackFeaturesEXT<'a> {}
+    impl<'a> Default for PhysicalDeviceTransformFeedbackFeaturesEXT<'a> {
+        fn default() -> Self {
+            Self {
+                s_type: <Self as crate::TaggedStructure>::STRUCTURE_TYPE,
+                p_next: Default::default(),
+                transform_feedback: Default::default(),
+                geometry_streams: Default::default(),
+                _marker: ::core::marker::PhantomData,
+            }
+        }
+    }
+    impl<'a> PhysicalDeviceTransformFeedbackFeaturesEXT<'a> {
+        pub fn transform_feedback(mut self, transform_feedback: bool) -> Self {
+            self.transform_feedback = transform_feedback.into();
+            self
+        }
+        pub fn geometry_streams(mut self, geometry_streams: bool) -> Self {
+            self.geometry_streams = geometry_streams.into();
+            self
+        }
+    }
     #[repr(C)]
     #[derive(Clone, Copy)]
     pub struct PhysicalDeviceTransformFeedbackPropertiesEXT<'a> {
@@ -156,6 +185,102 @@ pub(crate) mod reexport {
         pub transform_feedback_draw: crate::vk::Bool32,
         pub _marker: ::core::marker::PhantomData<&'a ()>,
     }
+    unsafe impl<'a> crate::TaggedStructure<'a>
+    for PhysicalDeviceTransformFeedbackPropertiesEXT<'a> {
+        const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::PHYSICAL_DEVICE_TRANSFORM_FEEDBACK_PROPERTIES_EXT;
+    }
+    unsafe impl<'a> crate::Extends<crate::vk::PhysicalDeviceProperties2<'_>>
+    for PhysicalDeviceTransformFeedbackPropertiesEXT<'a> {}
+    impl<'a> Default for PhysicalDeviceTransformFeedbackPropertiesEXT<'a> {
+        fn default() -> Self {
+            Self {
+                s_type: <Self as crate::TaggedStructure>::STRUCTURE_TYPE,
+                p_next: Default::default(),
+                max_transform_feedback_streams: Default::default(),
+                max_transform_feedback_buffers: Default::default(),
+                max_transform_feedback_buffer_size: Default::default(),
+                max_transform_feedback_stream_data_size: Default::default(),
+                max_transform_feedback_buffer_data_size: Default::default(),
+                max_transform_feedback_buffer_data_stride: Default::default(),
+                transform_feedback_queries: Default::default(),
+                transform_feedback_streams_lines_triangles: Default::default(),
+                transform_feedback_rasterization_stream_select: Default::default(),
+                transform_feedback_draw: Default::default(),
+                _marker: ::core::marker::PhantomData,
+            }
+        }
+    }
+    impl<'a> PhysicalDeviceTransformFeedbackPropertiesEXT<'a> {
+        pub fn max_transform_feedback_streams(
+            mut self,
+            max_transform_feedback_streams: u32,
+        ) -> Self {
+            self.max_transform_feedback_streams = max_transform_feedback_streams;
+            self
+        }
+        pub fn max_transform_feedback_buffers(
+            mut self,
+            max_transform_feedback_buffers: u32,
+        ) -> Self {
+            self.max_transform_feedback_buffers = max_transform_feedback_buffers;
+            self
+        }
+        pub fn max_transform_feedback_buffer_size(
+            mut self,
+            max_transform_feedback_buffer_size: crate::vk::DeviceSize,
+        ) -> Self {
+            self.max_transform_feedback_buffer_size = max_transform_feedback_buffer_size;
+            self
+        }
+        pub fn max_transform_feedback_stream_data_size(
+            mut self,
+            max_transform_feedback_stream_data_size: u32,
+        ) -> Self {
+            self.max_transform_feedback_stream_data_size = max_transform_feedback_stream_data_size;
+            self
+        }
+        pub fn max_transform_feedback_buffer_data_size(
+            mut self,
+            max_transform_feedback_buffer_data_size: u32,
+        ) -> Self {
+            self.max_transform_feedback_buffer_data_size = max_transform_feedback_buffer_data_size;
+            self
+        }
+        pub fn max_transform_feedback_buffer_data_stride(
+            mut self,
+            max_transform_feedback_buffer_data_stride: u32,
+        ) -> Self {
+            self.max_transform_feedback_buffer_data_stride = max_transform_feedback_buffer_data_stride;
+            self
+        }
+        pub fn transform_feedback_queries(
+            mut self,
+            transform_feedback_queries: bool,
+        ) -> Self {
+            self.transform_feedback_queries = transform_feedback_queries.into();
+            self
+        }
+        pub fn transform_feedback_streams_lines_triangles(
+            mut self,
+            transform_feedback_streams_lines_triangles: bool,
+        ) -> Self {
+            self.transform_feedback_streams_lines_triangles = transform_feedback_streams_lines_triangles
+                .into();
+            self
+        }
+        pub fn transform_feedback_rasterization_stream_select(
+            mut self,
+            transform_feedback_rasterization_stream_select: bool,
+        ) -> Self {
+            self.transform_feedback_rasterization_stream_select = transform_feedback_rasterization_stream_select
+                .into();
+            self
+        }
+        pub fn transform_feedback_draw(mut self, transform_feedback_draw: bool) -> Self {
+            self.transform_feedback_draw = transform_feedback_draw.into();
+            self
+        }
+    }
     #[repr(C)]
     #[derive(Clone, Copy)]
     pub struct PipelineRasterizationStateStreamCreateInfoEXT<'a> {
@@ -164,6 +289,36 @@ pub(crate) mod reexport {
         pub flags: crate::vk::PipelineRasterizationStateStreamCreateFlagsEXT,
         pub rasterization_stream: u32,
         pub _marker: ::core::marker::PhantomData<&'a ()>,
+    }
+    unsafe impl<'a> crate::TaggedStructure<'a>
+    for PipelineRasterizationStateStreamCreateInfoEXT<'a> {
+        const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::PIPELINE_RASTERIZATION_STATE_STREAM_CREATE_INFO_EXT;
+    }
+    unsafe impl<'a> crate::Extends<crate::vk::PipelineRasterizationStateCreateInfo<'_>>
+    for PipelineRasterizationStateStreamCreateInfoEXT<'a> {}
+    impl<'a> Default for PipelineRasterizationStateStreamCreateInfoEXT<'a> {
+        fn default() -> Self {
+            Self {
+                s_type: <Self as crate::TaggedStructure>::STRUCTURE_TYPE,
+                p_next: Default::default(),
+                flags: Default::default(),
+                rasterization_stream: Default::default(),
+                _marker: ::core::marker::PhantomData,
+            }
+        }
+    }
+    impl<'a> PipelineRasterizationStateStreamCreateInfoEXT<'a> {
+        pub fn flags(
+            mut self,
+            flags: crate::vk::PipelineRasterizationStateStreamCreateFlagsEXT,
+        ) -> Self {
+            self.flags = flags;
+            self
+        }
+        pub fn rasterization_stream(mut self, rasterization_stream: u32) -> Self {
+            self.rasterization_stream = rasterization_stream;
+            self
+        }
     }
     ///Provided by [`ext::transform_feedback`](crate::ext::transform_feedback)
     impl crate::vk::QueryType {

@@ -12,6 +12,43 @@ pub struct PhysicalDevicePCIBusInfoPropertiesEXT<'a> {
     pub pci_function: u32,
     pub _marker: ::core::marker::PhantomData<&'a ()>,
 }
+unsafe impl<'a> crate::TaggedStructure<'a>
+for PhysicalDevicePCIBusInfoPropertiesEXT<'a> {
+    const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::PHYSICAL_DEVICE_PCI_BUS_INFO_PROPERTIES_EXT;
+}
+unsafe impl<'a> crate::Extends<crate::vk::PhysicalDeviceProperties2<'_>>
+for PhysicalDevicePCIBusInfoPropertiesEXT<'a> {}
+impl<'a> Default for PhysicalDevicePCIBusInfoPropertiesEXT<'a> {
+    fn default() -> Self {
+        Self {
+            s_type: <Self as crate::TaggedStructure>::STRUCTURE_TYPE,
+            p_next: Default::default(),
+            pci_domain: Default::default(),
+            pci_bus: Default::default(),
+            pci_device: Default::default(),
+            pci_function: Default::default(),
+            _marker: ::core::marker::PhantomData,
+        }
+    }
+}
+impl<'a> PhysicalDevicePCIBusInfoPropertiesEXT<'a> {
+    pub fn pci_domain(mut self, pci_domain: u32) -> Self {
+        self.pci_domain = pci_domain;
+        self
+    }
+    pub fn pci_bus(mut self, pci_bus: u32) -> Self {
+        self.pci_bus = pci_bus;
+        self
+    }
+    pub fn pci_device(mut self, pci_device: u32) -> Self {
+        self.pci_device = pci_device;
+        self
+    }
+    pub fn pci_function(mut self, pci_function: u32) -> Self {
+        self.pci_function = pci_function;
+        self
+    }
+}
 ///Provided by [`ext::pci_bus_info`](crate::ext::pci_bus_info)
 impl crate::vk::StructureType {
     pub const PHYSICAL_DEVICE_PCI_BUS_INFO_PROPERTIES_EXT: Self = Self(1000212000);

@@ -9,6 +9,30 @@ pub struct PhysicalDeviceAmigoProfilingFeaturesSEC<'a> {
     pub amigo_profiling: crate::vk::Bool32,
     pub _marker: ::core::marker::PhantomData<&'a ()>,
 }
+unsafe impl<'a> crate::TaggedStructure<'a>
+for PhysicalDeviceAmigoProfilingFeaturesSEC<'a> {
+    const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::PHYSICAL_DEVICE_AMIGO_PROFILING_FEATURES_SEC;
+}
+unsafe impl<'a> crate::Extends<crate::vk::PhysicalDeviceFeatures2<'_>>
+for PhysicalDeviceAmigoProfilingFeaturesSEC<'a> {}
+unsafe impl<'a> crate::Extends<crate::vk::DeviceCreateInfo<'_>>
+for PhysicalDeviceAmigoProfilingFeaturesSEC<'a> {}
+impl<'a> Default for PhysicalDeviceAmigoProfilingFeaturesSEC<'a> {
+    fn default() -> Self {
+        Self {
+            s_type: <Self as crate::TaggedStructure>::STRUCTURE_TYPE,
+            p_next: Default::default(),
+            amigo_profiling: Default::default(),
+            _marker: ::core::marker::PhantomData,
+        }
+    }
+}
+impl<'a> PhysicalDeviceAmigoProfilingFeaturesSEC<'a> {
+    pub fn amigo_profiling(mut self, amigo_profiling: bool) -> Self {
+        self.amigo_profiling = amigo_profiling.into();
+        self
+    }
+}
 #[repr(C)]
 #[derive(Clone, Copy)]
 pub struct AmigoProfilingSubmitInfoSEC<'a> {
@@ -17,6 +41,32 @@ pub struct AmigoProfilingSubmitInfoSEC<'a> {
     pub first_draw_timestamp: u64,
     pub swap_buffer_timestamp: u64,
     pub _marker: ::core::marker::PhantomData<&'a ()>,
+}
+unsafe impl<'a> crate::TaggedStructure<'a> for AmigoProfilingSubmitInfoSEC<'a> {
+    const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::AMIGO_PROFILING_SUBMIT_INFO_SEC;
+}
+unsafe impl<'a> crate::Extends<crate::vk::SubmitInfo<'_>>
+for AmigoProfilingSubmitInfoSEC<'a> {}
+impl<'a> Default for AmigoProfilingSubmitInfoSEC<'a> {
+    fn default() -> Self {
+        Self {
+            s_type: <Self as crate::TaggedStructure>::STRUCTURE_TYPE,
+            p_next: Default::default(),
+            first_draw_timestamp: Default::default(),
+            swap_buffer_timestamp: Default::default(),
+            _marker: ::core::marker::PhantomData,
+        }
+    }
+}
+impl<'a> AmigoProfilingSubmitInfoSEC<'a> {
+    pub fn first_draw_timestamp(mut self, first_draw_timestamp: u64) -> Self {
+        self.first_draw_timestamp = first_draw_timestamp;
+        self
+    }
+    pub fn swap_buffer_timestamp(mut self, swap_buffer_timestamp: u64) -> Self {
+        self.swap_buffer_timestamp = swap_buffer_timestamp;
+        self
+    }
 }
 ///Provided by [`sec::amigo_profiling`](crate::sec::amigo_profiling)
 impl crate::vk::StructureType {

@@ -9,6 +9,33 @@ pub struct PhysicalDevicePipelineCacheIncrementalModeFeaturesSEC<'a> {
     pub pipeline_cache_incremental_mode: crate::vk::Bool32,
     pub _marker: ::core::marker::PhantomData<&'a ()>,
 }
+unsafe impl<'a> crate::TaggedStructure<'a>
+for PhysicalDevicePipelineCacheIncrementalModeFeaturesSEC<'a> {
+    const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::PHYSICAL_DEVICE_PIPELINE_CACHE_INCREMENTAL_MODE_FEATURES_SEC;
+}
+unsafe impl<'a> crate::Extends<crate::vk::PhysicalDeviceFeatures2<'_>>
+for PhysicalDevicePipelineCacheIncrementalModeFeaturesSEC<'a> {}
+unsafe impl<'a> crate::Extends<crate::vk::DeviceCreateInfo<'_>>
+for PhysicalDevicePipelineCacheIncrementalModeFeaturesSEC<'a> {}
+impl<'a> Default for PhysicalDevicePipelineCacheIncrementalModeFeaturesSEC<'a> {
+    fn default() -> Self {
+        Self {
+            s_type: <Self as crate::TaggedStructure>::STRUCTURE_TYPE,
+            p_next: Default::default(),
+            pipeline_cache_incremental_mode: Default::default(),
+            _marker: ::core::marker::PhantomData,
+        }
+    }
+}
+impl<'a> PhysicalDevicePipelineCacheIncrementalModeFeaturesSEC<'a> {
+    pub fn pipeline_cache_incremental_mode(
+        mut self,
+        pipeline_cache_incremental_mode: bool,
+    ) -> Self {
+        self.pipeline_cache_incremental_mode = pipeline_cache_incremental_mode.into();
+        self
+    }
+}
 ///Provided by [`sec::pipeline_cache_incremental_mode`](crate::sec::pipeline_cache_incremental_mode)
 impl crate::vk::StructureType {
     pub const PHYSICAL_DEVICE_PIPELINE_CACHE_INCREMENTAL_MODE_FEATURES_SEC: Self = Self(

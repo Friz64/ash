@@ -62,6 +62,35 @@ pub(crate) mod reexport {
         pub fd: core::ffi::c_int,
         pub _marker: ::core::marker::PhantomData<&'a ()>,
     }
+    unsafe impl<'a> crate::TaggedStructure<'a> for ImportMemoryFdInfoKHR<'a> {
+        const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::IMPORT_MEMORY_FD_INFO_KHR;
+    }
+    unsafe impl<'a> crate::Extends<crate::vk::MemoryAllocateInfo<'_>>
+    for ImportMemoryFdInfoKHR<'a> {}
+    impl<'a> Default for ImportMemoryFdInfoKHR<'a> {
+        fn default() -> Self {
+            Self {
+                s_type: <Self as crate::TaggedStructure>::STRUCTURE_TYPE,
+                p_next: Default::default(),
+                handle_type: Default::default(),
+                fd: Default::default(),
+                _marker: ::core::marker::PhantomData,
+            }
+        }
+    }
+    impl<'a> ImportMemoryFdInfoKHR<'a> {
+        pub fn handle_type(
+            mut self,
+            handle_type: crate::vk::ExternalMemoryHandleTypeFlagBits,
+        ) -> Self {
+            self.handle_type = handle_type;
+            self
+        }
+        pub fn fd(mut self, fd: core::ffi::c_int) -> Self {
+            self.fd = fd;
+            self
+        }
+    }
     #[repr(C)]
     #[derive(Clone, Copy)]
     pub struct MemoryFdPropertiesKHR<'a> {
@@ -69,6 +98,25 @@ pub(crate) mod reexport {
         pub p_next: *mut core::ffi::c_void,
         pub memory_type_bits: u32,
         pub _marker: ::core::marker::PhantomData<&'a ()>,
+    }
+    unsafe impl<'a> crate::TaggedStructure<'a> for MemoryFdPropertiesKHR<'a> {
+        const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::MEMORY_FD_PROPERTIES_KHR;
+    }
+    impl<'a> Default for MemoryFdPropertiesKHR<'a> {
+        fn default() -> Self {
+            Self {
+                s_type: <Self as crate::TaggedStructure>::STRUCTURE_TYPE,
+                p_next: Default::default(),
+                memory_type_bits: Default::default(),
+                _marker: ::core::marker::PhantomData,
+            }
+        }
+    }
+    impl<'a> MemoryFdPropertiesKHR<'a> {
+        pub fn memory_type_bits(mut self, memory_type_bits: u32) -> Self {
+            self.memory_type_bits = memory_type_bits;
+            self
+        }
     }
     #[repr(C)]
     #[derive(Clone, Copy)]
@@ -78,6 +126,33 @@ pub(crate) mod reexport {
         pub memory: crate::vk::DeviceMemory,
         pub handle_type: crate::vk::ExternalMemoryHandleTypeFlagBits,
         pub _marker: ::core::marker::PhantomData<&'a ()>,
+    }
+    unsafe impl<'a> crate::TaggedStructure<'a> for MemoryGetFdInfoKHR<'a> {
+        const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::MEMORY_GET_FD_INFO_KHR;
+    }
+    impl<'a> Default for MemoryGetFdInfoKHR<'a> {
+        fn default() -> Self {
+            Self {
+                s_type: <Self as crate::TaggedStructure>::STRUCTURE_TYPE,
+                p_next: Default::default(),
+                memory: Default::default(),
+                handle_type: Default::default(),
+                _marker: ::core::marker::PhantomData,
+            }
+        }
+    }
+    impl<'a> MemoryGetFdInfoKHR<'a> {
+        pub fn memory(mut self, memory: crate::vk::DeviceMemory) -> Self {
+            self.memory = memory;
+            self
+        }
+        pub fn handle_type(
+            mut self,
+            handle_type: crate::vk::ExternalMemoryHandleTypeFlagBits,
+        ) -> Self {
+            self.handle_type = handle_type;
+            self
+        }
     }
     ///Provided by [`khr::external_memory_fd`](crate::khr::external_memory_fd)
     impl crate::vk::StructureType {

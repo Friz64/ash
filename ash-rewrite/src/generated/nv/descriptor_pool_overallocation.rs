@@ -9,6 +9,33 @@ pub struct PhysicalDeviceDescriptorPoolOverallocationFeaturesNV<'a> {
     pub descriptor_pool_overallocation: crate::vk::Bool32,
     pub _marker: ::core::marker::PhantomData<&'a ()>,
 }
+unsafe impl<'a> crate::TaggedStructure<'a>
+for PhysicalDeviceDescriptorPoolOverallocationFeaturesNV<'a> {
+    const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::PHYSICAL_DEVICE_DESCRIPTOR_POOL_OVERALLOCATION_FEATURES_NV;
+}
+unsafe impl<'a> crate::Extends<crate::vk::PhysicalDeviceFeatures2<'_>>
+for PhysicalDeviceDescriptorPoolOverallocationFeaturesNV<'a> {}
+unsafe impl<'a> crate::Extends<crate::vk::DeviceCreateInfo<'_>>
+for PhysicalDeviceDescriptorPoolOverallocationFeaturesNV<'a> {}
+impl<'a> Default for PhysicalDeviceDescriptorPoolOverallocationFeaturesNV<'a> {
+    fn default() -> Self {
+        Self {
+            s_type: <Self as crate::TaggedStructure>::STRUCTURE_TYPE,
+            p_next: Default::default(),
+            descriptor_pool_overallocation: Default::default(),
+            _marker: ::core::marker::PhantomData,
+        }
+    }
+}
+impl<'a> PhysicalDeviceDescriptorPoolOverallocationFeaturesNV<'a> {
+    pub fn descriptor_pool_overallocation(
+        mut self,
+        descriptor_pool_overallocation: bool,
+    ) -> Self {
+        self.descriptor_pool_overallocation = descriptor_pool_overallocation.into();
+        self
+    }
+}
 ///Provided by [`nv::descriptor_pool_overallocation`](crate::nv::descriptor_pool_overallocation)
 impl crate::vk::StructureType {
     pub const PHYSICAL_DEVICE_DESCRIPTOR_POOL_OVERALLOCATION_FEATURES_NV: Self = Self(

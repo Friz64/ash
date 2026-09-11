@@ -62,6 +62,43 @@ pub(crate) mod reexport {
         pub fd: core::ffi::c_int,
         pub _marker: ::core::marker::PhantomData<&'a ()>,
     }
+    unsafe impl<'a> crate::TaggedStructure<'a> for ImportFenceFdInfoKHR<'a> {
+        const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::IMPORT_FENCE_FD_INFO_KHR;
+    }
+    impl<'a> Default for ImportFenceFdInfoKHR<'a> {
+        fn default() -> Self {
+            Self {
+                s_type: <Self as crate::TaggedStructure>::STRUCTURE_TYPE,
+                p_next: Default::default(),
+                fence: Default::default(),
+                flags: Default::default(),
+                handle_type: Default::default(),
+                fd: Default::default(),
+                _marker: ::core::marker::PhantomData,
+            }
+        }
+    }
+    impl<'a> ImportFenceFdInfoKHR<'a> {
+        pub fn fence(mut self, fence: crate::vk::Fence) -> Self {
+            self.fence = fence;
+            self
+        }
+        pub fn flags(mut self, flags: crate::vk::FenceImportFlags) -> Self {
+            self.flags = flags;
+            self
+        }
+        pub fn handle_type(
+            mut self,
+            handle_type: crate::vk::ExternalFenceHandleTypeFlagBits,
+        ) -> Self {
+            self.handle_type = handle_type;
+            self
+        }
+        pub fn fd(mut self, fd: core::ffi::c_int) -> Self {
+            self.fd = fd;
+            self
+        }
+    }
     #[repr(C)]
     #[derive(Clone, Copy)]
     pub struct FenceGetFdInfoKHR<'a> {
@@ -70,6 +107,33 @@ pub(crate) mod reexport {
         pub fence: crate::vk::Fence,
         pub handle_type: crate::vk::ExternalFenceHandleTypeFlagBits,
         pub _marker: ::core::marker::PhantomData<&'a ()>,
+    }
+    unsafe impl<'a> crate::TaggedStructure<'a> for FenceGetFdInfoKHR<'a> {
+        const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::FENCE_GET_FD_INFO_KHR;
+    }
+    impl<'a> Default for FenceGetFdInfoKHR<'a> {
+        fn default() -> Self {
+            Self {
+                s_type: <Self as crate::TaggedStructure>::STRUCTURE_TYPE,
+                p_next: Default::default(),
+                fence: Default::default(),
+                handle_type: Default::default(),
+                _marker: ::core::marker::PhantomData,
+            }
+        }
+    }
+    impl<'a> FenceGetFdInfoKHR<'a> {
+        pub fn fence(mut self, fence: crate::vk::Fence) -> Self {
+            self.fence = fence;
+            self
+        }
+        pub fn handle_type(
+            mut self,
+            handle_type: crate::vk::ExternalFenceHandleTypeFlagBits,
+        ) -> Self {
+            self.handle_type = handle_type;
+            self
+        }
     }
     ///Provided by [`khr::external_fence_fd`](crate::khr::external_fence_fd)
     impl crate::vk::StructureType {

@@ -45,6 +45,37 @@ pub(crate) mod reexport {
         pub device_fault_vendor_binary: crate::vk::Bool32,
         pub _marker: ::core::marker::PhantomData<&'a ()>,
     }
+    unsafe impl<'a> crate::TaggedStructure<'a> for PhysicalDeviceFaultFeaturesEXT<'a> {
+        const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::PHYSICAL_DEVICE_FAULT_FEATURES_EXT;
+    }
+    unsafe impl<'a> crate::Extends<crate::vk::PhysicalDeviceFeatures2<'_>>
+    for PhysicalDeviceFaultFeaturesEXT<'a> {}
+    unsafe impl<'a> crate::Extends<crate::vk::DeviceCreateInfo<'_>>
+    for PhysicalDeviceFaultFeaturesEXT<'a> {}
+    impl<'a> Default for PhysicalDeviceFaultFeaturesEXT<'a> {
+        fn default() -> Self {
+            Self {
+                s_type: <Self as crate::TaggedStructure>::STRUCTURE_TYPE,
+                p_next: Default::default(),
+                device_fault: Default::default(),
+                device_fault_vendor_binary: Default::default(),
+                _marker: ::core::marker::PhantomData,
+            }
+        }
+    }
+    impl<'a> PhysicalDeviceFaultFeaturesEXT<'a> {
+        pub fn device_fault(mut self, device_fault: bool) -> Self {
+            self.device_fault = device_fault.into();
+            self
+        }
+        pub fn device_fault_vendor_binary(
+            mut self,
+            device_fault_vendor_binary: bool,
+        ) -> Self {
+            self.device_fault_vendor_binary = device_fault_vendor_binary.into();
+            self
+        }
+    }
     #[repr(C)]
     #[derive(Clone, Copy)]
     pub struct DeviceFaultCountsEXT<'a> {
@@ -54,6 +85,38 @@ pub(crate) mod reexport {
         pub vendor_info_count: u32,
         pub vendor_binary_size: crate::vk::DeviceSize,
         pub _marker: ::core::marker::PhantomData<&'a ()>,
+    }
+    unsafe impl<'a> crate::TaggedStructure<'a> for DeviceFaultCountsEXT<'a> {
+        const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::DEVICE_FAULT_COUNTS_EXT;
+    }
+    impl<'a> Default for DeviceFaultCountsEXT<'a> {
+        fn default() -> Self {
+            Self {
+                s_type: <Self as crate::TaggedStructure>::STRUCTURE_TYPE,
+                p_next: Default::default(),
+                address_info_count: Default::default(),
+                vendor_info_count: Default::default(),
+                vendor_binary_size: Default::default(),
+                _marker: ::core::marker::PhantomData,
+            }
+        }
+    }
+    impl<'a> DeviceFaultCountsEXT<'a> {
+        pub fn address_info_count(mut self, address_info_count: u32) -> Self {
+            self.address_info_count = address_info_count;
+            self
+        }
+        pub fn vendor_info_count(mut self, vendor_info_count: u32) -> Self {
+            self.vendor_info_count = vendor_info_count;
+            self
+        }
+        pub fn vendor_binary_size(
+            mut self,
+            vendor_binary_size: crate::vk::DeviceSize,
+        ) -> Self {
+            self.vendor_binary_size = vendor_binary_size;
+            self
+        }
     }
     #[repr(C)]
     #[derive(Clone, Copy)]
@@ -65,6 +128,57 @@ pub(crate) mod reexport {
         pub p_vendor_infos: *mut crate::vk::DeviceFaultVendorInfoKHR,
         pub p_vendor_binary_data: *mut core::ffi::c_void,
         pub _marker: ::core::marker::PhantomData<&'a ()>,
+    }
+    unsafe impl<'a> crate::TaggedStructure<'a> for DeviceFaultInfoEXT<'a> {
+        const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::DEVICE_FAULT_INFO_EXT;
+    }
+    impl<'a> Default for DeviceFaultInfoEXT<'a> {
+        fn default() -> Self {
+            Self {
+                s_type: <Self as crate::TaggedStructure>::STRUCTURE_TYPE,
+                p_next: Default::default(),
+                description: unsafe { core::mem::zeroed() },
+                p_address_infos: Default::default(),
+                p_vendor_infos: Default::default(),
+                p_vendor_binary_data: Default::default(),
+                _marker: ::core::marker::PhantomData,
+            }
+        }
+    }
+    impl<'a> DeviceFaultInfoEXT<'a> {
+        pub fn description(
+            mut self,
+            description: &core::ffi::CStr,
+        ) -> core::result::Result<Self, crate::CStrTooLargeForStaticArray> {
+            crate::write_c_str_slice_with_nul(&mut self.description, description)
+                .map(|_| self)
+        }
+        pub fn description_as_c_str(
+            &self,
+        ) -> core::result::Result<&core::ffi::CStr, core::ffi::FromBytesUntilNulError> {
+            crate::wrap_c_str_slice_until_nul(&self.description)
+        }
+        pub fn p_address_infos(
+            mut self,
+            p_address_infos: &'a mut crate::vk::DeviceFaultAddressInfoKHR,
+        ) -> Self {
+            self.p_address_infos = p_address_infos;
+            self
+        }
+        pub fn p_vendor_infos(
+            mut self,
+            p_vendor_infos: &'a mut crate::vk::DeviceFaultVendorInfoKHR,
+        ) -> Self {
+            self.p_vendor_infos = p_vendor_infos;
+            self
+        }
+        pub fn p_vendor_binary_data(
+            mut self,
+            p_vendor_binary_data: &'a mut core::ffi::c_void,
+        ) -> Self {
+            self.p_vendor_binary_data = p_vendor_binary_data;
+            self
+        }
     }
     pub type DeviceFaultAddressInfoEXT = crate::vk::DeviceFaultAddressInfoKHR;
     pub type DeviceFaultVendorInfoEXT = crate::vk::DeviceFaultVendorInfoKHR;

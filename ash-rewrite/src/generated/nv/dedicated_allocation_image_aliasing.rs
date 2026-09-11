@@ -9,6 +9,34 @@ pub struct PhysicalDeviceDedicatedAllocationImageAliasingFeaturesNV<'a> {
     pub dedicated_allocation_image_aliasing: crate::vk::Bool32,
     pub _marker: ::core::marker::PhantomData<&'a ()>,
 }
+unsafe impl<'a> crate::TaggedStructure<'a>
+for PhysicalDeviceDedicatedAllocationImageAliasingFeaturesNV<'a> {
+    const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::PHYSICAL_DEVICE_DEDICATED_ALLOCATION_IMAGE_ALIASING_FEATURES_NV;
+}
+unsafe impl<'a> crate::Extends<crate::vk::PhysicalDeviceFeatures2<'_>>
+for PhysicalDeviceDedicatedAllocationImageAliasingFeaturesNV<'a> {}
+unsafe impl<'a> crate::Extends<crate::vk::DeviceCreateInfo<'_>>
+for PhysicalDeviceDedicatedAllocationImageAliasingFeaturesNV<'a> {}
+impl<'a> Default for PhysicalDeviceDedicatedAllocationImageAliasingFeaturesNV<'a> {
+    fn default() -> Self {
+        Self {
+            s_type: <Self as crate::TaggedStructure>::STRUCTURE_TYPE,
+            p_next: Default::default(),
+            dedicated_allocation_image_aliasing: Default::default(),
+            _marker: ::core::marker::PhantomData,
+        }
+    }
+}
+impl<'a> PhysicalDeviceDedicatedAllocationImageAliasingFeaturesNV<'a> {
+    pub fn dedicated_allocation_image_aliasing(
+        mut self,
+        dedicated_allocation_image_aliasing: bool,
+    ) -> Self {
+        self.dedicated_allocation_image_aliasing = dedicated_allocation_image_aliasing
+            .into();
+        self
+    }
+}
 ///Provided by [`nv::dedicated_allocation_image_aliasing`](crate::nv::dedicated_allocation_image_aliasing)
 impl crate::vk::StructureType {
     pub const PHYSICAL_DEVICE_DEDICATED_ALLOCATION_IMAGE_ALIASING_FEATURES_NV: Self = Self(

@@ -105,6 +105,48 @@ pub(crate) mod reexport {
         pub extended_dynamic_state2_patch_control_points: crate::vk::Bool32,
         pub _marker: ::core::marker::PhantomData<&'a ()>,
     }
+    unsafe impl<'a> crate::TaggedStructure<'a>
+    for PhysicalDeviceExtendedDynamicState2FeaturesEXT<'a> {
+        const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::PHYSICAL_DEVICE_EXTENDED_DYNAMIC_STATE_2_FEATURES_EXT;
+    }
+    unsafe impl<'a> crate::Extends<crate::vk::PhysicalDeviceFeatures2<'_>>
+    for PhysicalDeviceExtendedDynamicState2FeaturesEXT<'a> {}
+    unsafe impl<'a> crate::Extends<crate::vk::DeviceCreateInfo<'_>>
+    for PhysicalDeviceExtendedDynamicState2FeaturesEXT<'a> {}
+    impl<'a> Default for PhysicalDeviceExtendedDynamicState2FeaturesEXT<'a> {
+        fn default() -> Self {
+            Self {
+                s_type: <Self as crate::TaggedStructure>::STRUCTURE_TYPE,
+                p_next: Default::default(),
+                extended_dynamic_state2: Default::default(),
+                extended_dynamic_state2_logic_op: Default::default(),
+                extended_dynamic_state2_patch_control_points: Default::default(),
+                _marker: ::core::marker::PhantomData,
+            }
+        }
+    }
+    impl<'a> PhysicalDeviceExtendedDynamicState2FeaturesEXT<'a> {
+        pub fn extended_dynamic_state2(mut self, extended_dynamic_state2: bool) -> Self {
+            self.extended_dynamic_state2 = extended_dynamic_state2.into();
+            self
+        }
+        pub fn extended_dynamic_state2_logic_op(
+            mut self,
+            extended_dynamic_state2_logic_op: bool,
+        ) -> Self {
+            self.extended_dynamic_state2_logic_op = extended_dynamic_state2_logic_op
+                .into();
+            self
+        }
+        pub fn extended_dynamic_state2_patch_control_points(
+            mut self,
+            extended_dynamic_state2_patch_control_points: bool,
+        ) -> Self {
+            self.extended_dynamic_state2_patch_control_points = extended_dynamic_state2_patch_control_points
+                .into();
+            self
+        }
+    }
     ///Provided by [`ext::extended_dynamic_state2`](crate::ext::extended_dynamic_state2)
     impl crate::vk::StructureType {
         pub const PHYSICAL_DEVICE_EXTENDED_DYNAMIC_STATE_2_FEATURES_EXT: Self = Self(

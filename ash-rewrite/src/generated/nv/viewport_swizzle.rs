@@ -2,12 +2,30 @@
 #![cfg_attr(rustfmt, rustfmt_skip)]
 //![Vulkan Manual Page](https://docs.vulkan.org/refpages/latest/refpages/source/VK_NV_viewport_swizzle.html) · Extension `VK_NV_viewport_swizzle`
 #[repr(C)]
-#[derive(Clone, Copy)]
+#[derive(Clone, Copy, Default)]
 pub struct ViewportSwizzleNV {
     pub x: crate::vk::ViewportCoordinateSwizzleNV,
     pub y: crate::vk::ViewportCoordinateSwizzleNV,
     pub z: crate::vk::ViewportCoordinateSwizzleNV,
     pub w: crate::vk::ViewportCoordinateSwizzleNV,
+}
+impl ViewportSwizzleNV {
+    pub fn x(mut self, x: crate::vk::ViewportCoordinateSwizzleNV) -> Self {
+        self.x = x;
+        self
+    }
+    pub fn y(mut self, y: crate::vk::ViewportCoordinateSwizzleNV) -> Self {
+        self.y = y;
+        self
+    }
+    pub fn z(mut self, z: crate::vk::ViewportCoordinateSwizzleNV) -> Self {
+        self.z = z;
+        self
+    }
+    pub fn w(mut self, w: crate::vk::ViewportCoordinateSwizzleNV) -> Self {
+        self.w = w;
+        self
+    }
 }
 #[repr(C)]
 #[derive(Clone, Copy)]
@@ -18,6 +36,45 @@ pub struct PipelineViewportSwizzleStateCreateInfoNV<'a> {
     pub viewport_count: u32,
     pub p_viewport_swizzles: *const crate::vk::ViewportSwizzleNV,
     pub _marker: ::core::marker::PhantomData<&'a ()>,
+}
+unsafe impl<'a> crate::TaggedStructure<'a>
+for PipelineViewportSwizzleStateCreateInfoNV<'a> {
+    const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::PIPELINE_VIEWPORT_SWIZZLE_STATE_CREATE_INFO_NV;
+}
+unsafe impl<'a> crate::Extends<crate::vk::PipelineViewportStateCreateInfo<'_>>
+for PipelineViewportSwizzleStateCreateInfoNV<'a> {}
+impl<'a> Default for PipelineViewportSwizzleStateCreateInfoNV<'a> {
+    fn default() -> Self {
+        Self {
+            s_type: <Self as crate::TaggedStructure>::STRUCTURE_TYPE,
+            p_next: Default::default(),
+            flags: Default::default(),
+            viewport_count: Default::default(),
+            p_viewport_swizzles: Default::default(),
+            _marker: ::core::marker::PhantomData,
+        }
+    }
+}
+impl<'a> PipelineViewportSwizzleStateCreateInfoNV<'a> {
+    pub fn flags(
+        mut self,
+        flags: crate::vk::PipelineViewportSwizzleStateCreateFlagsNV,
+    ) -> Self {
+        self.flags = flags;
+        self
+    }
+    pub fn viewport_count(mut self, viewport_count: u32) -> Self {
+        self.viewport_count = viewport_count;
+        self
+    }
+    pub fn p_viewport_swizzles(
+        mut self,
+        p_viewport_swizzles: &'a [crate::vk::ViewportSwizzleNV],
+    ) -> Self {
+        self.viewport_count = p_viewport_swizzles.len() as _;
+        self.p_viewport_swizzles = p_viewport_swizzles.as_ptr();
+        self
+    }
 }
 ///Provided by [`nv::viewport_swizzle`](crate::nv::viewport_swizzle)
 impl crate::vk::StructureType {

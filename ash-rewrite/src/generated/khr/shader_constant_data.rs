@@ -9,6 +9,30 @@ pub struct PhysicalDeviceShaderConstantDataFeaturesKHR<'a> {
     pub shader_constant_data: crate::vk::Bool32,
     pub _marker: ::core::marker::PhantomData<&'a ()>,
 }
+unsafe impl<'a> crate::TaggedStructure<'a>
+for PhysicalDeviceShaderConstantDataFeaturesKHR<'a> {
+    const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::PHYSICAL_DEVICE_SHADER_CONSTANT_DATA_FEATURES_KHR;
+}
+unsafe impl<'a> crate::Extends<crate::vk::PhysicalDeviceFeatures2<'_>>
+for PhysicalDeviceShaderConstantDataFeaturesKHR<'a> {}
+unsafe impl<'a> crate::Extends<crate::vk::DeviceCreateInfo<'_>>
+for PhysicalDeviceShaderConstantDataFeaturesKHR<'a> {}
+impl<'a> Default for PhysicalDeviceShaderConstantDataFeaturesKHR<'a> {
+    fn default() -> Self {
+        Self {
+            s_type: <Self as crate::TaggedStructure>::STRUCTURE_TYPE,
+            p_next: Default::default(),
+            shader_constant_data: Default::default(),
+            _marker: ::core::marker::PhantomData,
+        }
+    }
+}
+impl<'a> PhysicalDeviceShaderConstantDataFeaturesKHR<'a> {
+    pub fn shader_constant_data(mut self, shader_constant_data: bool) -> Self {
+        self.shader_constant_data = shader_constant_data.into();
+        self
+    }
+}
 ///Provided by [`khr::shader_constant_data`](crate::khr::shader_constant_data)
 impl crate::vk::StructureType {
     pub const PHYSICAL_DEVICE_SHADER_CONSTANT_DATA_FEATURES_KHR: Self = Self(1000231000);

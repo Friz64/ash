@@ -96,6 +96,28 @@ pub(crate) mod reexport {
         pub power_state: crate::vk::DisplayPowerStateEXT,
         pub _marker: ::core::marker::PhantomData<&'a ()>,
     }
+    unsafe impl<'a> crate::TaggedStructure<'a> for DisplayPowerInfoEXT<'a> {
+        const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::DISPLAY_POWER_INFO_EXT;
+    }
+    impl<'a> Default for DisplayPowerInfoEXT<'a> {
+        fn default() -> Self {
+            Self {
+                s_type: <Self as crate::TaggedStructure>::STRUCTURE_TYPE,
+                p_next: Default::default(),
+                power_state: Default::default(),
+                _marker: ::core::marker::PhantomData,
+            }
+        }
+    }
+    impl<'a> DisplayPowerInfoEXT<'a> {
+        pub fn power_state(
+            mut self,
+            power_state: crate::vk::DisplayPowerStateEXT,
+        ) -> Self {
+            self.power_state = power_state;
+            self
+        }
+    }
     #[repr(C)]
     #[derive(Clone, Copy)]
     pub struct DeviceEventInfoEXT<'a> {
@@ -103,6 +125,28 @@ pub(crate) mod reexport {
         pub p_next: *const core::ffi::c_void,
         pub device_event: crate::vk::DeviceEventTypeEXT,
         pub _marker: ::core::marker::PhantomData<&'a ()>,
+    }
+    unsafe impl<'a> crate::TaggedStructure<'a> for DeviceEventInfoEXT<'a> {
+        const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::DEVICE_EVENT_INFO_EXT;
+    }
+    impl<'a> Default for DeviceEventInfoEXT<'a> {
+        fn default() -> Self {
+            Self {
+                s_type: <Self as crate::TaggedStructure>::STRUCTURE_TYPE,
+                p_next: Default::default(),
+                device_event: Default::default(),
+                _marker: ::core::marker::PhantomData,
+            }
+        }
+    }
+    impl<'a> DeviceEventInfoEXT<'a> {
+        pub fn device_event(
+            mut self,
+            device_event: crate::vk::DeviceEventTypeEXT,
+        ) -> Self {
+            self.device_event = device_event;
+            self
+        }
     }
     #[repr(C)]
     #[derive(Clone, Copy)]
@@ -112,6 +156,28 @@ pub(crate) mod reexport {
         pub display_event: crate::vk::DisplayEventTypeEXT,
         pub _marker: ::core::marker::PhantomData<&'a ()>,
     }
+    unsafe impl<'a> crate::TaggedStructure<'a> for DisplayEventInfoEXT<'a> {
+        const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::DISPLAY_EVENT_INFO_EXT;
+    }
+    impl<'a> Default for DisplayEventInfoEXT<'a> {
+        fn default() -> Self {
+            Self {
+                s_type: <Self as crate::TaggedStructure>::STRUCTURE_TYPE,
+                p_next: Default::default(),
+                display_event: Default::default(),
+                _marker: ::core::marker::PhantomData,
+            }
+        }
+    }
+    impl<'a> DisplayEventInfoEXT<'a> {
+        pub fn display_event(
+            mut self,
+            display_event: crate::vk::DisplayEventTypeEXT,
+        ) -> Self {
+            self.display_event = display_event;
+            self
+        }
+    }
     #[repr(C)]
     #[derive(Clone, Copy)]
     pub struct SwapchainCounterCreateInfoEXT<'a> {
@@ -119,6 +185,30 @@ pub(crate) mod reexport {
         pub p_next: *const core::ffi::c_void,
         pub surface_counters: crate::vk::SurfaceCounterFlagsEXT,
         pub _marker: ::core::marker::PhantomData<&'a ()>,
+    }
+    unsafe impl<'a> crate::TaggedStructure<'a> for SwapchainCounterCreateInfoEXT<'a> {
+        const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::SWAPCHAIN_COUNTER_CREATE_INFO_EXT;
+    }
+    unsafe impl<'a> crate::Extends<crate::vk::SwapchainCreateInfoKHR<'_>>
+    for SwapchainCounterCreateInfoEXT<'a> {}
+    impl<'a> Default for SwapchainCounterCreateInfoEXT<'a> {
+        fn default() -> Self {
+            Self {
+                s_type: <Self as crate::TaggedStructure>::STRUCTURE_TYPE,
+                p_next: Default::default(),
+                surface_counters: Default::default(),
+                _marker: ::core::marker::PhantomData,
+            }
+        }
+    }
+    impl<'a> SwapchainCounterCreateInfoEXT<'a> {
+        pub fn surface_counters(
+            mut self,
+            surface_counters: crate::vk::SurfaceCounterFlagsEXT,
+        ) -> Self {
+            self.surface_counters = surface_counters;
+            self
+        }
     }
     ///Provided by [`ext::display_control`](crate::ext::display_control)
     impl crate::vk::StructureType {

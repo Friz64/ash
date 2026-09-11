@@ -9,6 +9,31 @@ pub struct DeviceMemoryOverallocationCreateInfoAMD<'a> {
     pub overallocation_behavior: crate::vk::MemoryOverallocationBehaviorAMD,
     pub _marker: ::core::marker::PhantomData<&'a ()>,
 }
+unsafe impl<'a> crate::TaggedStructure<'a>
+for DeviceMemoryOverallocationCreateInfoAMD<'a> {
+    const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::DEVICE_MEMORY_OVERALLOCATION_CREATE_INFO_AMD;
+}
+unsafe impl<'a> crate::Extends<crate::vk::DeviceCreateInfo<'_>>
+for DeviceMemoryOverallocationCreateInfoAMD<'a> {}
+impl<'a> Default for DeviceMemoryOverallocationCreateInfoAMD<'a> {
+    fn default() -> Self {
+        Self {
+            s_type: <Self as crate::TaggedStructure>::STRUCTURE_TYPE,
+            p_next: Default::default(),
+            overallocation_behavior: Default::default(),
+            _marker: ::core::marker::PhantomData,
+        }
+    }
+}
+impl<'a> DeviceMemoryOverallocationCreateInfoAMD<'a> {
+    pub fn overallocation_behavior(
+        mut self,
+        overallocation_behavior: crate::vk::MemoryOverallocationBehaviorAMD,
+    ) -> Self {
+        self.overallocation_behavior = overallocation_behavior;
+        self
+    }
+}
 ///Provided by [`amd::memory_overallocation_behavior`](crate::amd::memory_overallocation_behavior)
 impl crate::vk::StructureType {
     pub const DEVICE_MEMORY_OVERALLOCATION_CREATE_INFO_AMD: Self = Self(1000189000);

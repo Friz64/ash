@@ -219,6 +219,30 @@ pub(crate) mod reexport {
         pub extended_dynamic_state: crate::vk::Bool32,
         pub _marker: ::core::marker::PhantomData<&'a ()>,
     }
+    unsafe impl<'a> crate::TaggedStructure<'a>
+    for PhysicalDeviceExtendedDynamicStateFeaturesEXT<'a> {
+        const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::PHYSICAL_DEVICE_EXTENDED_DYNAMIC_STATE_FEATURES_EXT;
+    }
+    unsafe impl<'a> crate::Extends<crate::vk::PhysicalDeviceFeatures2<'_>>
+    for PhysicalDeviceExtendedDynamicStateFeaturesEXT<'a> {}
+    unsafe impl<'a> crate::Extends<crate::vk::DeviceCreateInfo<'_>>
+    for PhysicalDeviceExtendedDynamicStateFeaturesEXT<'a> {}
+    impl<'a> Default for PhysicalDeviceExtendedDynamicStateFeaturesEXT<'a> {
+        fn default() -> Self {
+            Self {
+                s_type: <Self as crate::TaggedStructure>::STRUCTURE_TYPE,
+                p_next: Default::default(),
+                extended_dynamic_state: Default::default(),
+                _marker: ::core::marker::PhantomData,
+            }
+        }
+    }
+    impl<'a> PhysicalDeviceExtendedDynamicStateFeaturesEXT<'a> {
+        pub fn extended_dynamic_state(mut self, extended_dynamic_state: bool) -> Self {
+            self.extended_dynamic_state = extended_dynamic_state.into();
+            self
+        }
+    }
     ///Provided by [`ext::extended_dynamic_state`](crate::ext::extended_dynamic_state)
     impl crate::vk::StructureType {
         pub const PHYSICAL_DEVICE_EXTENDED_DYNAMIC_STATE_FEATURES_EXT: Self = Self(

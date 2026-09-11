@@ -10,6 +10,32 @@ pub struct ImageViewSlicedCreateInfoEXT<'a> {
     pub slice_count: u32,
     pub _marker: ::core::marker::PhantomData<&'a ()>,
 }
+unsafe impl<'a> crate::TaggedStructure<'a> for ImageViewSlicedCreateInfoEXT<'a> {
+    const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::IMAGE_VIEW_SLICED_CREATE_INFO_EXT;
+}
+unsafe impl<'a> crate::Extends<crate::vk::ImageViewCreateInfo<'_>>
+for ImageViewSlicedCreateInfoEXT<'a> {}
+impl<'a> Default for ImageViewSlicedCreateInfoEXT<'a> {
+    fn default() -> Self {
+        Self {
+            s_type: <Self as crate::TaggedStructure>::STRUCTURE_TYPE,
+            p_next: Default::default(),
+            slice_offset: Default::default(),
+            slice_count: Default::default(),
+            _marker: ::core::marker::PhantomData,
+        }
+    }
+}
+impl<'a> ImageViewSlicedCreateInfoEXT<'a> {
+    pub fn slice_offset(mut self, slice_offset: u32) -> Self {
+        self.slice_offset = slice_offset;
+        self
+    }
+    pub fn slice_count(mut self, slice_count: u32) -> Self {
+        self.slice_count = slice_count;
+        self
+    }
+}
 #[repr(C)]
 #[derive(Clone, Copy)]
 pub struct PhysicalDeviceImageSlicedViewOf3DFeaturesEXT<'a> {
@@ -17,6 +43,30 @@ pub struct PhysicalDeviceImageSlicedViewOf3DFeaturesEXT<'a> {
     pub p_next: *mut core::ffi::c_void,
     pub image_sliced_view_of3_d: crate::vk::Bool32,
     pub _marker: ::core::marker::PhantomData<&'a ()>,
+}
+unsafe impl<'a> crate::TaggedStructure<'a>
+for PhysicalDeviceImageSlicedViewOf3DFeaturesEXT<'a> {
+    const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::PHYSICAL_DEVICE_IMAGE_SLICED_VIEW_OF_3D_FEATURES_EXT;
+}
+unsafe impl<'a> crate::Extends<crate::vk::PhysicalDeviceFeatures2<'_>>
+for PhysicalDeviceImageSlicedViewOf3DFeaturesEXT<'a> {}
+unsafe impl<'a> crate::Extends<crate::vk::DeviceCreateInfo<'_>>
+for PhysicalDeviceImageSlicedViewOf3DFeaturesEXT<'a> {}
+impl<'a> Default for PhysicalDeviceImageSlicedViewOf3DFeaturesEXT<'a> {
+    fn default() -> Self {
+        Self {
+            s_type: <Self as crate::TaggedStructure>::STRUCTURE_TYPE,
+            p_next: Default::default(),
+            image_sliced_view_of3_d: Default::default(),
+            _marker: ::core::marker::PhantomData,
+        }
+    }
+}
+impl<'a> PhysicalDeviceImageSlicedViewOf3DFeaturesEXT<'a> {
+    pub fn image_sliced_view_of3_d(mut self, image_sliced_view_of3_d: bool) -> Self {
+        self.image_sliced_view_of3_d = image_sliced_view_of3_d.into();
+        self
+    }
 }
 ///Provided by [`ext::image_sliced_view_of_3d`](crate::ext::image_sliced_view_of_3d)
 impl crate::vk::StructureType {

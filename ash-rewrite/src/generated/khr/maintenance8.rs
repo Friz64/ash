@@ -9,6 +9,30 @@ pub struct PhysicalDeviceMaintenance8FeaturesKHR<'a> {
     pub maintenance8: crate::vk::Bool32,
     pub _marker: ::core::marker::PhantomData<&'a ()>,
 }
+unsafe impl<'a> crate::TaggedStructure<'a>
+for PhysicalDeviceMaintenance8FeaturesKHR<'a> {
+    const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::PHYSICAL_DEVICE_MAINTENANCE_8_FEATURES_KHR;
+}
+unsafe impl<'a> crate::Extends<crate::vk::PhysicalDeviceFeatures2<'_>>
+for PhysicalDeviceMaintenance8FeaturesKHR<'a> {}
+unsafe impl<'a> crate::Extends<crate::vk::DeviceCreateInfo<'_>>
+for PhysicalDeviceMaintenance8FeaturesKHR<'a> {}
+impl<'a> Default for PhysicalDeviceMaintenance8FeaturesKHR<'a> {
+    fn default() -> Self {
+        Self {
+            s_type: <Self as crate::TaggedStructure>::STRUCTURE_TYPE,
+            p_next: Default::default(),
+            maintenance8: Default::default(),
+            _marker: ::core::marker::PhantomData,
+        }
+    }
+}
+impl<'a> PhysicalDeviceMaintenance8FeaturesKHR<'a> {
+    pub fn maintenance8(mut self, maintenance8: bool) -> Self {
+        self.maintenance8 = maintenance8.into();
+        self
+    }
+}
 #[repr(C)]
 #[derive(Clone, Copy)]
 pub struct MemoryBarrierAccessFlags3KHR<'a> {
@@ -17,6 +41,44 @@ pub struct MemoryBarrierAccessFlags3KHR<'a> {
     pub src_access_mask3: crate::vk::AccessFlags3KHR,
     pub dst_access_mask3: crate::vk::AccessFlags3KHR,
     pub _marker: ::core::marker::PhantomData<&'a ()>,
+}
+unsafe impl<'a> crate::TaggedStructure<'a> for MemoryBarrierAccessFlags3KHR<'a> {
+    const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::MEMORY_BARRIER_ACCESS_FLAGS_3_KHR;
+}
+unsafe impl<'a> crate::Extends<crate::vk::SubpassDependency2<'_>>
+for MemoryBarrierAccessFlags3KHR<'a> {}
+unsafe impl<'a> crate::Extends<crate::vk::BufferMemoryBarrier2<'_>>
+for MemoryBarrierAccessFlags3KHR<'a> {}
+unsafe impl<'a> crate::Extends<crate::vk::ImageMemoryBarrier2<'_>>
+for MemoryBarrierAccessFlags3KHR<'a> {}
+unsafe impl<'a> crate::Extends<crate::vk::MemoryRangeBarriersInfoKHR<'_>>
+for MemoryBarrierAccessFlags3KHR<'a> {}
+impl<'a> Default for MemoryBarrierAccessFlags3KHR<'a> {
+    fn default() -> Self {
+        Self {
+            s_type: <Self as crate::TaggedStructure>::STRUCTURE_TYPE,
+            p_next: Default::default(),
+            src_access_mask3: Default::default(),
+            dst_access_mask3: Default::default(),
+            _marker: ::core::marker::PhantomData,
+        }
+    }
+}
+impl<'a> MemoryBarrierAccessFlags3KHR<'a> {
+    pub fn src_access_mask3(
+        mut self,
+        src_access_mask3: crate::vk::AccessFlags3KHR,
+    ) -> Self {
+        self.src_access_mask3 = src_access_mask3;
+        self
+    }
+    pub fn dst_access_mask3(
+        mut self,
+        dst_access_mask3: crate::vk::AccessFlags3KHR,
+    ) -> Self {
+        self.dst_access_mask3 = dst_access_mask3;
+        self
+    }
 }
 ///Provided by [`khr::maintenance8`](crate::khr::maintenance8)
 impl crate::vk::StructureType {
@@ -100,7 +162,7 @@ impl core::ops::Not for AccessFlags3KHR {
     }
 }
 #[repr(transparent)]
-#[derive(Clone, Copy)]
+#[derive(Clone, Copy, Default)]
 pub struct AccessFlagBits3KHR(pub(crate) u64);
 ///Provided by [`khr::maintenance8`](crate::khr::maintenance8)
 impl AccessFlagBits3KHR {

@@ -50,6 +50,33 @@ pub(crate) mod reexport {
         pub performance_counters_by_region: crate::vk::Bool32,
         pub _marker: ::core::marker::PhantomData<&'a ()>,
     }
+    unsafe impl<'a> crate::TaggedStructure<'a>
+    for PhysicalDevicePerformanceCountersByRegionFeaturesARM<'a> {
+        const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::PHYSICAL_DEVICE_PERFORMANCE_COUNTERS_BY_REGION_FEATURES_ARM;
+    }
+    unsafe impl<'a> crate::Extends<crate::vk::PhysicalDeviceFeatures2<'_>>
+    for PhysicalDevicePerformanceCountersByRegionFeaturesARM<'a> {}
+    unsafe impl<'a> crate::Extends<crate::vk::DeviceCreateInfo<'_>>
+    for PhysicalDevicePerformanceCountersByRegionFeaturesARM<'a> {}
+    impl<'a> Default for PhysicalDevicePerformanceCountersByRegionFeaturesARM<'a> {
+        fn default() -> Self {
+            Self {
+                s_type: <Self as crate::TaggedStructure>::STRUCTURE_TYPE,
+                p_next: Default::default(),
+                performance_counters_by_region: Default::default(),
+                _marker: ::core::marker::PhantomData,
+            }
+        }
+    }
+    impl<'a> PhysicalDevicePerformanceCountersByRegionFeaturesARM<'a> {
+        pub fn performance_counters_by_region(
+            mut self,
+            performance_counters_by_region: bool,
+        ) -> Self {
+            self.performance_counters_by_region = performance_counters_by_region.into();
+            self
+        }
+    }
     #[repr(C)]
     #[derive(Clone, Copy)]
     pub struct PhysicalDevicePerformanceCountersByRegionPropertiesARM<'a> {
@@ -62,6 +89,57 @@ pub(crate) mod reexport {
         pub identity_transform_order: crate::vk::Bool32,
         pub _marker: ::core::marker::PhantomData<&'a ()>,
     }
+    unsafe impl<'a> crate::TaggedStructure<'a>
+    for PhysicalDevicePerformanceCountersByRegionPropertiesARM<'a> {
+        const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::PHYSICAL_DEVICE_PERFORMANCE_COUNTERS_BY_REGION_PROPERTIES_ARM;
+    }
+    unsafe impl<'a> crate::Extends<crate::vk::PhysicalDeviceProperties2<'_>>
+    for PhysicalDevicePerformanceCountersByRegionPropertiesARM<'a> {}
+    impl<'a> Default for PhysicalDevicePerformanceCountersByRegionPropertiesARM<'a> {
+        fn default() -> Self {
+            Self {
+                s_type: <Self as crate::TaggedStructure>::STRUCTURE_TYPE,
+                p_next: Default::default(),
+                max_per_region_performance_counters: Default::default(),
+                performance_counter_region_size: Default::default(),
+                row_stride_alignment: Default::default(),
+                region_alignment: Default::default(),
+                identity_transform_order: Default::default(),
+                _marker: ::core::marker::PhantomData,
+            }
+        }
+    }
+    impl<'a> PhysicalDevicePerformanceCountersByRegionPropertiesARM<'a> {
+        pub fn max_per_region_performance_counters(
+            mut self,
+            max_per_region_performance_counters: u32,
+        ) -> Self {
+            self.max_per_region_performance_counters = max_per_region_performance_counters;
+            self
+        }
+        pub fn performance_counter_region_size(
+            mut self,
+            performance_counter_region_size: crate::vk::Extent2D,
+        ) -> Self {
+            self.performance_counter_region_size = performance_counter_region_size;
+            self
+        }
+        pub fn row_stride_alignment(mut self, row_stride_alignment: u32) -> Self {
+            self.row_stride_alignment = row_stride_alignment;
+            self
+        }
+        pub fn region_alignment(mut self, region_alignment: u32) -> Self {
+            self.region_alignment = region_alignment;
+            self
+        }
+        pub fn identity_transform_order(
+            mut self,
+            identity_transform_order: bool,
+        ) -> Self {
+            self.identity_transform_order = identity_transform_order.into();
+            self
+        }
+    }
     #[repr(C)]
     #[derive(Clone, Copy)]
     pub struct PerformanceCounterARM<'a> {
@@ -69,6 +147,25 @@ pub(crate) mod reexport {
         pub p_next: *mut core::ffi::c_void,
         pub counter_id: u32,
         pub _marker: ::core::marker::PhantomData<&'a ()>,
+    }
+    unsafe impl<'a> crate::TaggedStructure<'a> for PerformanceCounterARM<'a> {
+        const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::PERFORMANCE_COUNTER_ARM;
+    }
+    impl<'a> Default for PerformanceCounterARM<'a> {
+        fn default() -> Self {
+            Self {
+                s_type: <Self as crate::TaggedStructure>::STRUCTURE_TYPE,
+                p_next: Default::default(),
+                counter_id: Default::default(),
+                _marker: ::core::marker::PhantomData,
+            }
+        }
+    }
+    impl<'a> PerformanceCounterARM<'a> {
+        pub fn counter_id(mut self, counter_id: u32) -> Self {
+            self.counter_id = counter_id;
+            self
+        }
     }
     #[repr(C)]
     #[derive(Clone, Copy)]
@@ -78,6 +175,40 @@ pub(crate) mod reexport {
         pub flags: crate::vk::PerformanceCounterDescriptionFlagsARM,
         pub name: [core::ffi::c_char; crate::vk::MAX_DESCRIPTION_SIZE as _],
         pub _marker: ::core::marker::PhantomData<&'a ()>,
+    }
+    unsafe impl<'a> crate::TaggedStructure<'a> for PerformanceCounterDescriptionARM<'a> {
+        const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::PERFORMANCE_COUNTER_DESCRIPTION_ARM;
+    }
+    impl<'a> Default for PerformanceCounterDescriptionARM<'a> {
+        fn default() -> Self {
+            Self {
+                s_type: <Self as crate::TaggedStructure>::STRUCTURE_TYPE,
+                p_next: Default::default(),
+                flags: Default::default(),
+                name: unsafe { core::mem::zeroed() },
+                _marker: ::core::marker::PhantomData,
+            }
+        }
+    }
+    impl<'a> PerformanceCounterDescriptionARM<'a> {
+        pub fn flags(
+            mut self,
+            flags: crate::vk::PerformanceCounterDescriptionFlagsARM,
+        ) -> Self {
+            self.flags = flags;
+            self
+        }
+        pub fn name(
+            mut self,
+            name: &core::ffi::CStr,
+        ) -> core::result::Result<Self, crate::CStrTooLargeForStaticArray> {
+            crate::write_c_str_slice_with_nul(&mut self.name, name).map(|_| self)
+        }
+        pub fn name_as_c_str(
+            &self,
+        ) -> core::result::Result<&core::ffi::CStr, core::ffi::FromBytesUntilNulError> {
+            crate::wrap_c_str_slice_until_nul(&self.name)
+        }
     }
     #[repr(C)]
     #[derive(Clone, Copy)]
@@ -90,6 +221,55 @@ pub(crate) mod reexport {
         pub counter_index_count: u32,
         pub p_counter_indices: *mut u32,
         pub _marker: ::core::marker::PhantomData<&'a ()>,
+    }
+    unsafe impl<'a> crate::TaggedStructure<'a>
+    for RenderPassPerformanceCountersByRegionBeginInfoARM<'a> {
+        const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::RENDER_PASS_PERFORMANCE_COUNTERS_BY_REGION_BEGIN_INFO_ARM;
+    }
+    unsafe impl<'a> crate::Extends<crate::vk::RenderPassBeginInfo<'_>>
+    for RenderPassPerformanceCountersByRegionBeginInfoARM<'a> {}
+    unsafe impl<'a> crate::Extends<crate::vk::RenderingInfo<'_>>
+    for RenderPassPerformanceCountersByRegionBeginInfoARM<'a> {}
+    impl<'a> Default for RenderPassPerformanceCountersByRegionBeginInfoARM<'a> {
+        fn default() -> Self {
+            Self {
+                s_type: <Self as crate::TaggedStructure>::STRUCTURE_TYPE,
+                p_next: Default::default(),
+                counter_address_count: Default::default(),
+                p_counter_addresses: Default::default(),
+                serialize_regions: Default::default(),
+                counter_index_count: Default::default(),
+                p_counter_indices: Default::default(),
+                _marker: ::core::marker::PhantomData,
+            }
+        }
+    }
+    impl<'a> RenderPassPerformanceCountersByRegionBeginInfoARM<'a> {
+        pub fn counter_address_count(mut self, counter_address_count: u32) -> Self {
+            self.counter_address_count = counter_address_count;
+            self
+        }
+        pub fn p_counter_addresses(
+            mut self,
+            p_counter_addresses: &'a [crate::vk::DeviceAddress],
+        ) -> Self {
+            self.counter_address_count = p_counter_addresses.len() as _;
+            self.p_counter_addresses = p_counter_addresses.as_ptr();
+            self
+        }
+        pub fn serialize_regions(mut self, serialize_regions: bool) -> Self {
+            self.serialize_regions = serialize_regions.into();
+            self
+        }
+        pub fn counter_index_count(mut self, counter_index_count: u32) -> Self {
+            self.counter_index_count = counter_index_count;
+            self
+        }
+        pub fn p_counter_indices(mut self, p_counter_indices: &'a mut [u32]) -> Self {
+            self.counter_index_count = p_counter_indices.len() as _;
+            self.p_counter_indices = p_counter_indices.as_mut_ptr();
+            self
+        }
     }
     ///Provided by [`arm::performance_counters_by_region`](crate::arm::performance_counters_by_region)
     impl crate::vk::StructureType {

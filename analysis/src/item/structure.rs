@@ -1,7 +1,7 @@
 use crate::{
     decl::{Decl, Ty},
     item::{Named, RequireMap, RequiredBy},
-    name::TypeName,
+    name::{EnumeratorName, TypeName, VariableName},
     xml,
 };
 use std::{cmp::Ordering, ops::Range};
@@ -15,7 +15,7 @@ pub struct BitfieldRange {
 
 #[derive(Debug)]
 pub enum StructMember {
-    Normal(Decl),
+    Normal(StructDecl),
     BitField(Vec<BitfieldRange>),
 }
 
@@ -23,7 +23,23 @@ pub enum StructMember {
 pub struct Struct {
     pub required_by: RequiredBy,
     pub name: TypeName,
+    pub extends: Vec<TypeName>,
+    pub structure_type: Option<EnumeratorName>,
     pub members: Vec<StructMember>,
+}
+
+#[derive(Debug)]
+pub struct StructDecl {
+    pub decl: Decl,
+    pub len: Vec<Length>,
+}
+
+#[derive(Debug, PartialEq, Eq)]
+pub enum Length {
+    Member(VariableName),
+    NullTerminated,
+    Pointer,
+    Custom(&'static str),
 }
 
 impl Named<TypeName> for Struct {
@@ -40,7 +56,33 @@ impl Struct {
 
         let mut members = Vec::new();
         let mut used_bitwidth = None;
+
+        let extends = xml
+            .structextends
+            .iter()
+            .map(|&extending| TypeName::new(extending))
+            .collect();
+
+        let mut structure_type = None;
+
         for member in &xml.members {
+            let lens = if member.len.iter().any(|&s| s.starts_with("latexmath:")) {
+                &member.altlen
+            } else {
+                &member.len
+            };
+
+            let len = lens
+                .iter()
+                .map(|&s| match s {
+                    "null-terminated" => Length::NullTerminated,
+                    "1" => Length::Pointer,
+                    name if xml.members.iter().any(|mem| mem.c_decl.name == name) => {
+                        Length::Member(VariableName::new(name))
+                    }
+                    custom => Length::Custom(custom),
+                })
+                .collect::<Vec<_>>();
             let decl = Decl::from_c(require_map, &member.c_decl);
             if let Some(width) = member.c_decl.bitfield_width {
                 // this is currently the case everywhere,
@@ -72,13 +114,23 @@ impl Struct {
                 }
             } else {
                 assert_eq!(used_bitwidth, None, "bitfield not fully used");
-                members.push(StructMember::Normal(decl));
+                // should exist only once
+                if let Some(value) = member.values
+                    && let Ty::SpecType(ty) = decl.ty
+                    && ty == TypeName::VK_STRUCTURE_TYPE
+                    && decl.name.original() == "sType"
+                {
+                    structure_type = Some(EnumeratorName::new(value));
+                }
+                members.push(StructMember::Normal(StructDecl { decl, len }));
             }
         }
 
         Some(Struct {
             required_by,
             name: xml.name,
+            extends,
+            structure_type,
             members,
         })
     }

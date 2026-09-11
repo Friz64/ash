@@ -9,6 +9,33 @@ pub struct PhysicalDeviceInheritedViewportScissorFeaturesNV<'a> {
     pub inherited_viewport_scissor2_d: crate::vk::Bool32,
     pub _marker: ::core::marker::PhantomData<&'a ()>,
 }
+unsafe impl<'a> crate::TaggedStructure<'a>
+for PhysicalDeviceInheritedViewportScissorFeaturesNV<'a> {
+    const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::PHYSICAL_DEVICE_INHERITED_VIEWPORT_SCISSOR_FEATURES_NV;
+}
+unsafe impl<'a> crate::Extends<crate::vk::PhysicalDeviceFeatures2<'_>>
+for PhysicalDeviceInheritedViewportScissorFeaturesNV<'a> {}
+unsafe impl<'a> crate::Extends<crate::vk::DeviceCreateInfo<'_>>
+for PhysicalDeviceInheritedViewportScissorFeaturesNV<'a> {}
+impl<'a> Default for PhysicalDeviceInheritedViewportScissorFeaturesNV<'a> {
+    fn default() -> Self {
+        Self {
+            s_type: <Self as crate::TaggedStructure>::STRUCTURE_TYPE,
+            p_next: Default::default(),
+            inherited_viewport_scissor2_d: Default::default(),
+            _marker: ::core::marker::PhantomData,
+        }
+    }
+}
+impl<'a> PhysicalDeviceInheritedViewportScissorFeaturesNV<'a> {
+    pub fn inherited_viewport_scissor2_d(
+        mut self,
+        inherited_viewport_scissor2_d: bool,
+    ) -> Self {
+        self.inherited_viewport_scissor2_d = inherited_viewport_scissor2_d.into();
+        self
+    }
+}
 #[repr(C)]
 #[derive(Clone, Copy)]
 pub struct CommandBufferInheritanceViewportScissorInfoNV<'a> {
@@ -18,6 +45,41 @@ pub struct CommandBufferInheritanceViewportScissorInfoNV<'a> {
     pub viewport_depth_count: u32,
     pub p_viewport_depths: *const crate::vk::Viewport,
     pub _marker: ::core::marker::PhantomData<&'a ()>,
+}
+unsafe impl<'a> crate::TaggedStructure<'a>
+for CommandBufferInheritanceViewportScissorInfoNV<'a> {
+    const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::COMMAND_BUFFER_INHERITANCE_VIEWPORT_SCISSOR_INFO_NV;
+}
+unsafe impl<'a> crate::Extends<crate::vk::CommandBufferInheritanceInfo<'_>>
+for CommandBufferInheritanceViewportScissorInfoNV<'a> {}
+impl<'a> Default for CommandBufferInheritanceViewportScissorInfoNV<'a> {
+    fn default() -> Self {
+        Self {
+            s_type: <Self as crate::TaggedStructure>::STRUCTURE_TYPE,
+            p_next: Default::default(),
+            viewport_scissor2_d: Default::default(),
+            viewport_depth_count: Default::default(),
+            p_viewport_depths: Default::default(),
+            _marker: ::core::marker::PhantomData,
+        }
+    }
+}
+impl<'a> CommandBufferInheritanceViewportScissorInfoNV<'a> {
+    pub fn viewport_scissor2_d(mut self, viewport_scissor2_d: bool) -> Self {
+        self.viewport_scissor2_d = viewport_scissor2_d.into();
+        self
+    }
+    pub fn viewport_depth_count(mut self, viewport_depth_count: u32) -> Self {
+        self.viewport_depth_count = viewport_depth_count;
+        self
+    }
+    pub fn p_viewport_depths(
+        mut self,
+        p_viewport_depths: &'a crate::vk::Viewport,
+    ) -> Self {
+        self.p_viewport_depths = p_viewport_depths;
+        self
+    }
 }
 ///Provided by [`nv::inherited_viewport_scissor`](crate::nv::inherited_viewport_scissor)
 impl crate::vk::StructureType {

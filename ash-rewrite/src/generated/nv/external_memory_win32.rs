@@ -46,6 +46,35 @@ pub(crate) mod reexport {
         pub handle: crate::platform_types::HANDLE,
         pub _marker: ::core::marker::PhantomData<&'a ()>,
     }
+    unsafe impl<'a> crate::TaggedStructure<'a> for ImportMemoryWin32HandleInfoNV<'a> {
+        const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::IMPORT_MEMORY_WIN32_HANDLE_INFO_NV;
+    }
+    unsafe impl<'a> crate::Extends<crate::vk::MemoryAllocateInfo<'_>>
+    for ImportMemoryWin32HandleInfoNV<'a> {}
+    impl<'a> Default for ImportMemoryWin32HandleInfoNV<'a> {
+        fn default() -> Self {
+            Self {
+                s_type: <Self as crate::TaggedStructure>::STRUCTURE_TYPE,
+                p_next: Default::default(),
+                handle_type: Default::default(),
+                handle: Default::default(),
+                _marker: ::core::marker::PhantomData,
+            }
+        }
+    }
+    impl<'a> ImportMemoryWin32HandleInfoNV<'a> {
+        pub fn handle_type(
+            mut self,
+            handle_type: crate::vk::ExternalMemoryHandleTypeFlagsNV,
+        ) -> Self {
+            self.handle_type = handle_type;
+            self
+        }
+        pub fn handle(mut self, handle: crate::platform_types::HANDLE) -> Self {
+            self.handle = handle;
+            self
+        }
+    }
     #[repr(C)]
     #[derive(Clone, Copy)]
     pub struct ExportMemoryWin32HandleInfoNV<'a> {
@@ -54,6 +83,35 @@ pub(crate) mod reexport {
         pub p_attributes: *const crate::platform_types::SECURITY_ATTRIBUTES,
         pub dw_access: crate::platform_types::DWORD,
         pub _marker: ::core::marker::PhantomData<&'a ()>,
+    }
+    unsafe impl<'a> crate::TaggedStructure<'a> for ExportMemoryWin32HandleInfoNV<'a> {
+        const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::EXPORT_MEMORY_WIN32_HANDLE_INFO_NV;
+    }
+    unsafe impl<'a> crate::Extends<crate::vk::MemoryAllocateInfo<'_>>
+    for ExportMemoryWin32HandleInfoNV<'a> {}
+    impl<'a> Default for ExportMemoryWin32HandleInfoNV<'a> {
+        fn default() -> Self {
+            Self {
+                s_type: <Self as crate::TaggedStructure>::STRUCTURE_TYPE,
+                p_next: Default::default(),
+                p_attributes: Default::default(),
+                dw_access: Default::default(),
+                _marker: ::core::marker::PhantomData,
+            }
+        }
+    }
+    impl<'a> ExportMemoryWin32HandleInfoNV<'a> {
+        pub fn p_attributes(
+            mut self,
+            p_attributes: &'a crate::platform_types::SECURITY_ATTRIBUTES,
+        ) -> Self {
+            self.p_attributes = p_attributes;
+            self
+        }
+        pub fn dw_access(mut self, dw_access: crate::platform_types::DWORD) -> Self {
+            self.dw_access = dw_access;
+            self
+        }
     }
     ///Provided by [`nv::external_memory_win32`](crate::nv::external_memory_win32)
     impl crate::vk::StructureType {

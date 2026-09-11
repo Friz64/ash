@@ -43,6 +43,30 @@ pub(crate) mod reexport {
         pub primitive_restart_index: crate::vk::Bool32,
         pub _marker: ::core::marker::PhantomData<&'a ()>,
     }
+    unsafe impl<'a> crate::TaggedStructure<'a>
+    for PhysicalDevicePrimitiveRestartIndexFeaturesEXT<'a> {
+        const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::PHYSICAL_DEVICE_PRIMITIVE_RESTART_INDEX_FEATURES_EXT;
+    }
+    unsafe impl<'a> crate::Extends<crate::vk::PhysicalDeviceFeatures2<'_>>
+    for PhysicalDevicePrimitiveRestartIndexFeaturesEXT<'a> {}
+    unsafe impl<'a> crate::Extends<crate::vk::DeviceCreateInfo<'_>>
+    for PhysicalDevicePrimitiveRestartIndexFeaturesEXT<'a> {}
+    impl<'a> Default for PhysicalDevicePrimitiveRestartIndexFeaturesEXT<'a> {
+        fn default() -> Self {
+            Self {
+                s_type: <Self as crate::TaggedStructure>::STRUCTURE_TYPE,
+                p_next: Default::default(),
+                primitive_restart_index: Default::default(),
+                _marker: ::core::marker::PhantomData,
+            }
+        }
+    }
+    impl<'a> PhysicalDevicePrimitiveRestartIndexFeaturesEXT<'a> {
+        pub fn primitive_restart_index(mut self, primitive_restart_index: bool) -> Self {
+            self.primitive_restart_index = primitive_restart_index.into();
+            self
+        }
+    }
     ///Provided by [`ext::primitive_restart_index`](crate::ext::primitive_restart_index)
     impl crate::vk::StructureType {
         pub const PHYSICAL_DEVICE_PRIMITIVE_RESTART_INDEX_FEATURES_EXT: Self = Self(

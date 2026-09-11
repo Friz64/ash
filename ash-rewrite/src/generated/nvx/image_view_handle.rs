@@ -92,6 +92,38 @@ pub(crate) mod reexport {
         pub sampler: crate::vk::Sampler,
         pub _marker: ::core::marker::PhantomData<&'a ()>,
     }
+    unsafe impl<'a> crate::TaggedStructure<'a> for ImageViewHandleInfoNVX<'a> {
+        const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::IMAGE_VIEW_HANDLE_INFO_NVX;
+    }
+    impl<'a> Default for ImageViewHandleInfoNVX<'a> {
+        fn default() -> Self {
+            Self {
+                s_type: <Self as crate::TaggedStructure>::STRUCTURE_TYPE,
+                p_next: Default::default(),
+                image_view: Default::default(),
+                descriptor_type: Default::default(),
+                sampler: Default::default(),
+                _marker: ::core::marker::PhantomData,
+            }
+        }
+    }
+    impl<'a> ImageViewHandleInfoNVX<'a> {
+        pub fn image_view(mut self, image_view: crate::vk::ImageView) -> Self {
+            self.image_view = image_view;
+            self
+        }
+        pub fn descriptor_type(
+            mut self,
+            descriptor_type: crate::vk::DescriptorType,
+        ) -> Self {
+            self.descriptor_type = descriptor_type;
+            self
+        }
+        pub fn sampler(mut self, sampler: crate::vk::Sampler) -> Self {
+            self.sampler = sampler;
+            self
+        }
+    }
     #[repr(C)]
     #[derive(Clone, Copy)]
     pub struct ImageViewAddressPropertiesNVX<'a> {
@@ -100,6 +132,33 @@ pub(crate) mod reexport {
         pub device_address: crate::vk::DeviceAddress,
         pub size: crate::vk::DeviceSize,
         pub _marker: ::core::marker::PhantomData<&'a ()>,
+    }
+    unsafe impl<'a> crate::TaggedStructure<'a> for ImageViewAddressPropertiesNVX<'a> {
+        const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::IMAGE_VIEW_ADDRESS_PROPERTIES_NVX;
+    }
+    impl<'a> Default for ImageViewAddressPropertiesNVX<'a> {
+        fn default() -> Self {
+            Self {
+                s_type: <Self as crate::TaggedStructure>::STRUCTURE_TYPE,
+                p_next: Default::default(),
+                device_address: Default::default(),
+                size: Default::default(),
+                _marker: ::core::marker::PhantomData,
+            }
+        }
+    }
+    impl<'a> ImageViewAddressPropertiesNVX<'a> {
+        pub fn device_address(
+            mut self,
+            device_address: crate::vk::DeviceAddress,
+        ) -> Self {
+            self.device_address = device_address;
+            self
+        }
+        pub fn size(mut self, size: crate::vk::DeviceSize) -> Self {
+            self.size = size;
+            self
+        }
     }
     ///Provided by [`nvx::image_view_handle`](crate::nvx::image_view_handle)
     impl crate::vk::StructureType {

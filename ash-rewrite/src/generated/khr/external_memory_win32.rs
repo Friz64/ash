@@ -63,6 +63,40 @@ pub(crate) mod reexport {
         pub name: crate::platform_types::LPCWSTR,
         pub _marker: ::core::marker::PhantomData<&'a ()>,
     }
+    unsafe impl<'a> crate::TaggedStructure<'a> for ImportMemoryWin32HandleInfoKHR<'a> {
+        const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::IMPORT_MEMORY_WIN32_HANDLE_INFO_KHR;
+    }
+    unsafe impl<'a> crate::Extends<crate::vk::MemoryAllocateInfo<'_>>
+    for ImportMemoryWin32HandleInfoKHR<'a> {}
+    impl<'a> Default for ImportMemoryWin32HandleInfoKHR<'a> {
+        fn default() -> Self {
+            Self {
+                s_type: <Self as crate::TaggedStructure>::STRUCTURE_TYPE,
+                p_next: Default::default(),
+                handle_type: Default::default(),
+                handle: Default::default(),
+                name: Default::default(),
+                _marker: ::core::marker::PhantomData,
+            }
+        }
+    }
+    impl<'a> ImportMemoryWin32HandleInfoKHR<'a> {
+        pub fn handle_type(
+            mut self,
+            handle_type: crate::vk::ExternalMemoryHandleTypeFlagBits,
+        ) -> Self {
+            self.handle_type = handle_type;
+            self
+        }
+        pub fn handle(mut self, handle: crate::platform_types::HANDLE) -> Self {
+            self.handle = handle;
+            self
+        }
+        pub fn name(mut self, name: crate::platform_types::LPCWSTR) -> Self {
+            self.name = name;
+            self
+        }
+    }
     #[repr(C)]
     #[derive(Clone, Copy)]
     pub struct ExportMemoryWin32HandleInfoKHR<'a> {
@@ -73,6 +107,40 @@ pub(crate) mod reexport {
         pub name: crate::platform_types::LPCWSTR,
         pub _marker: ::core::marker::PhantomData<&'a ()>,
     }
+    unsafe impl<'a> crate::TaggedStructure<'a> for ExportMemoryWin32HandleInfoKHR<'a> {
+        const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::EXPORT_MEMORY_WIN32_HANDLE_INFO_KHR;
+    }
+    unsafe impl<'a> crate::Extends<crate::vk::MemoryAllocateInfo<'_>>
+    for ExportMemoryWin32HandleInfoKHR<'a> {}
+    impl<'a> Default for ExportMemoryWin32HandleInfoKHR<'a> {
+        fn default() -> Self {
+            Self {
+                s_type: <Self as crate::TaggedStructure>::STRUCTURE_TYPE,
+                p_next: Default::default(),
+                p_attributes: Default::default(),
+                dw_access: Default::default(),
+                name: Default::default(),
+                _marker: ::core::marker::PhantomData,
+            }
+        }
+    }
+    impl<'a> ExportMemoryWin32HandleInfoKHR<'a> {
+        pub fn p_attributes(
+            mut self,
+            p_attributes: &'a crate::platform_types::SECURITY_ATTRIBUTES,
+        ) -> Self {
+            self.p_attributes = p_attributes;
+            self
+        }
+        pub fn dw_access(mut self, dw_access: crate::platform_types::DWORD) -> Self {
+            self.dw_access = dw_access;
+            self
+        }
+        pub fn name(mut self, name: crate::platform_types::LPCWSTR) -> Self {
+            self.name = name;
+            self
+        }
+    }
     #[repr(C)]
     #[derive(Clone, Copy)]
     pub struct MemoryWin32HandlePropertiesKHR<'a> {
@@ -80,6 +148,25 @@ pub(crate) mod reexport {
         pub p_next: *mut core::ffi::c_void,
         pub memory_type_bits: u32,
         pub _marker: ::core::marker::PhantomData<&'a ()>,
+    }
+    unsafe impl<'a> crate::TaggedStructure<'a> for MemoryWin32HandlePropertiesKHR<'a> {
+        const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::MEMORY_WIN32_HANDLE_PROPERTIES_KHR;
+    }
+    impl<'a> Default for MemoryWin32HandlePropertiesKHR<'a> {
+        fn default() -> Self {
+            Self {
+                s_type: <Self as crate::TaggedStructure>::STRUCTURE_TYPE,
+                p_next: Default::default(),
+                memory_type_bits: Default::default(),
+                _marker: ::core::marker::PhantomData,
+            }
+        }
+    }
+    impl<'a> MemoryWin32HandlePropertiesKHR<'a> {
+        pub fn memory_type_bits(mut self, memory_type_bits: u32) -> Self {
+            self.memory_type_bits = memory_type_bits;
+            self
+        }
     }
     #[repr(C)]
     #[derive(Clone, Copy)]
@@ -89,6 +176,33 @@ pub(crate) mod reexport {
         pub memory: crate::vk::DeviceMemory,
         pub handle_type: crate::vk::ExternalMemoryHandleTypeFlagBits,
         pub _marker: ::core::marker::PhantomData<&'a ()>,
+    }
+    unsafe impl<'a> crate::TaggedStructure<'a> for MemoryGetWin32HandleInfoKHR<'a> {
+        const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::MEMORY_GET_WIN32_HANDLE_INFO_KHR;
+    }
+    impl<'a> Default for MemoryGetWin32HandleInfoKHR<'a> {
+        fn default() -> Self {
+            Self {
+                s_type: <Self as crate::TaggedStructure>::STRUCTURE_TYPE,
+                p_next: Default::default(),
+                memory: Default::default(),
+                handle_type: Default::default(),
+                _marker: ::core::marker::PhantomData,
+            }
+        }
+    }
+    impl<'a> MemoryGetWin32HandleInfoKHR<'a> {
+        pub fn memory(mut self, memory: crate::vk::DeviceMemory) -> Self {
+            self.memory = memory;
+            self
+        }
+        pub fn handle_type(
+            mut self,
+            handle_type: crate::vk::ExternalMemoryHandleTypeFlagBits,
+        ) -> Self {
+            self.handle_type = handle_type;
+            self
+        }
     }
     ///Provided by [`khr::external_memory_win32`](crate::khr::external_memory_win32)
     impl crate::vk::StructureType {

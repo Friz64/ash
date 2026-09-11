@@ -9,6 +9,33 @@ pub struct PhysicalDeviceRayTracingInvocationReorderFeaturesNV<'a> {
     pub ray_tracing_invocation_reorder: crate::vk::Bool32,
     pub _marker: ::core::marker::PhantomData<&'a ()>,
 }
+unsafe impl<'a> crate::TaggedStructure<'a>
+for PhysicalDeviceRayTracingInvocationReorderFeaturesNV<'a> {
+    const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::PHYSICAL_DEVICE_RAY_TRACING_INVOCATION_REORDER_FEATURES_NV;
+}
+unsafe impl<'a> crate::Extends<crate::vk::PhysicalDeviceFeatures2<'_>>
+for PhysicalDeviceRayTracingInvocationReorderFeaturesNV<'a> {}
+unsafe impl<'a> crate::Extends<crate::vk::DeviceCreateInfo<'_>>
+for PhysicalDeviceRayTracingInvocationReorderFeaturesNV<'a> {}
+impl<'a> Default for PhysicalDeviceRayTracingInvocationReorderFeaturesNV<'a> {
+    fn default() -> Self {
+        Self {
+            s_type: <Self as crate::TaggedStructure>::STRUCTURE_TYPE,
+            p_next: Default::default(),
+            ray_tracing_invocation_reorder: Default::default(),
+            _marker: ::core::marker::PhantomData,
+        }
+    }
+}
+impl<'a> PhysicalDeviceRayTracingInvocationReorderFeaturesNV<'a> {
+    pub fn ray_tracing_invocation_reorder(
+        mut self,
+        ray_tracing_invocation_reorder: bool,
+    ) -> Self {
+        self.ray_tracing_invocation_reorder = ray_tracing_invocation_reorder.into();
+        self
+    }
+}
 #[repr(C)]
 #[derive(Clone, Copy)]
 pub struct PhysicalDeviceRayTracingInvocationReorderPropertiesNV<'a> {
@@ -16,6 +43,31 @@ pub struct PhysicalDeviceRayTracingInvocationReorderPropertiesNV<'a> {
     pub p_next: *mut core::ffi::c_void,
     pub ray_tracing_invocation_reorder_reordering_hint: crate::vk::RayTracingInvocationReorderModeEXT,
     pub _marker: ::core::marker::PhantomData<&'a ()>,
+}
+unsafe impl<'a> crate::TaggedStructure<'a>
+for PhysicalDeviceRayTracingInvocationReorderPropertiesNV<'a> {
+    const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::PHYSICAL_DEVICE_RAY_TRACING_INVOCATION_REORDER_PROPERTIES_NV;
+}
+unsafe impl<'a> crate::Extends<crate::vk::PhysicalDeviceProperties2<'_>>
+for PhysicalDeviceRayTracingInvocationReorderPropertiesNV<'a> {}
+impl<'a> Default for PhysicalDeviceRayTracingInvocationReorderPropertiesNV<'a> {
+    fn default() -> Self {
+        Self {
+            s_type: <Self as crate::TaggedStructure>::STRUCTURE_TYPE,
+            p_next: Default::default(),
+            ray_tracing_invocation_reorder_reordering_hint: Default::default(),
+            _marker: ::core::marker::PhantomData,
+        }
+    }
+}
+impl<'a> PhysicalDeviceRayTracingInvocationReorderPropertiesNV<'a> {
+    pub fn ray_tracing_invocation_reorder_reordering_hint(
+        mut self,
+        ray_tracing_invocation_reorder_reordering_hint: crate::vk::RayTracingInvocationReorderModeEXT,
+    ) -> Self {
+        self.ray_tracing_invocation_reorder_reordering_hint = ray_tracing_invocation_reorder_reordering_hint;
+        self
+    }
 }
 ///Provided by [`nv::ray_tracing_invocation_reorder`](crate::nv::ray_tracing_invocation_reorder)
 impl crate::vk::StructureType {

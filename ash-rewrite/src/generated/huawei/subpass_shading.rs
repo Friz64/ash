@@ -61,6 +61,33 @@ pub(crate) mod reexport {
         pub subpass: u32,
         pub _marker: ::core::marker::PhantomData<&'a ()>,
     }
+    unsafe impl<'a> crate::TaggedStructure<'a>
+    for SubpassShadingPipelineCreateInfoHUAWEI<'a> {
+        const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::SUBPASS_SHADING_PIPELINE_CREATE_INFO_HUAWEI;
+    }
+    unsafe impl<'a> crate::Extends<crate::vk::ComputePipelineCreateInfo<'_>>
+    for SubpassShadingPipelineCreateInfoHUAWEI<'a> {}
+    impl<'a> Default for SubpassShadingPipelineCreateInfoHUAWEI<'a> {
+        fn default() -> Self {
+            Self {
+                s_type: <Self as crate::TaggedStructure>::STRUCTURE_TYPE,
+                p_next: Default::default(),
+                render_pass: Default::default(),
+                subpass: Default::default(),
+                _marker: ::core::marker::PhantomData,
+            }
+        }
+    }
+    impl<'a> SubpassShadingPipelineCreateInfoHUAWEI<'a> {
+        pub fn render_pass(mut self, render_pass: crate::vk::RenderPass) -> Self {
+            self.render_pass = render_pass;
+            self
+        }
+        pub fn subpass(mut self, subpass: u32) -> Self {
+            self.subpass = subpass;
+            self
+        }
+    }
     #[repr(C)]
     #[derive(Clone, Copy)]
     pub struct PhysicalDeviceSubpassShadingPropertiesHUAWEI<'a> {
@@ -69,6 +96,31 @@ pub(crate) mod reexport {
         pub max_subpass_shading_workgroup_size_aspect_ratio: u32,
         pub _marker: ::core::marker::PhantomData<&'a ()>,
     }
+    unsafe impl<'a> crate::TaggedStructure<'a>
+    for PhysicalDeviceSubpassShadingPropertiesHUAWEI<'a> {
+        const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::PHYSICAL_DEVICE_SUBPASS_SHADING_PROPERTIES_HUAWEI;
+    }
+    unsafe impl<'a> crate::Extends<crate::vk::PhysicalDeviceProperties2<'_>>
+    for PhysicalDeviceSubpassShadingPropertiesHUAWEI<'a> {}
+    impl<'a> Default for PhysicalDeviceSubpassShadingPropertiesHUAWEI<'a> {
+        fn default() -> Self {
+            Self {
+                s_type: <Self as crate::TaggedStructure>::STRUCTURE_TYPE,
+                p_next: Default::default(),
+                max_subpass_shading_workgroup_size_aspect_ratio: Default::default(),
+                _marker: ::core::marker::PhantomData,
+            }
+        }
+    }
+    impl<'a> PhysicalDeviceSubpassShadingPropertiesHUAWEI<'a> {
+        pub fn max_subpass_shading_workgroup_size_aspect_ratio(
+            mut self,
+            max_subpass_shading_workgroup_size_aspect_ratio: u32,
+        ) -> Self {
+            self.max_subpass_shading_workgroup_size_aspect_ratio = max_subpass_shading_workgroup_size_aspect_ratio;
+            self
+        }
+    }
     #[repr(C)]
     #[derive(Clone, Copy)]
     pub struct PhysicalDeviceSubpassShadingFeaturesHUAWEI<'a> {
@@ -76,6 +128,30 @@ pub(crate) mod reexport {
         pub p_next: *mut core::ffi::c_void,
         pub subpass_shading: crate::vk::Bool32,
         pub _marker: ::core::marker::PhantomData<&'a ()>,
+    }
+    unsafe impl<'a> crate::TaggedStructure<'a>
+    for PhysicalDeviceSubpassShadingFeaturesHUAWEI<'a> {
+        const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::PHYSICAL_DEVICE_SUBPASS_SHADING_FEATURES_HUAWEI;
+    }
+    unsafe impl<'a> crate::Extends<crate::vk::PhysicalDeviceFeatures2<'_>>
+    for PhysicalDeviceSubpassShadingFeaturesHUAWEI<'a> {}
+    unsafe impl<'a> crate::Extends<crate::vk::DeviceCreateInfo<'_>>
+    for PhysicalDeviceSubpassShadingFeaturesHUAWEI<'a> {}
+    impl<'a> Default for PhysicalDeviceSubpassShadingFeaturesHUAWEI<'a> {
+        fn default() -> Self {
+            Self {
+                s_type: <Self as crate::TaggedStructure>::STRUCTURE_TYPE,
+                p_next: Default::default(),
+                subpass_shading: Default::default(),
+                _marker: ::core::marker::PhantomData,
+            }
+        }
+    }
+    impl<'a> PhysicalDeviceSubpassShadingFeaturesHUAWEI<'a> {
+        pub fn subpass_shading(mut self, subpass_shading: bool) -> Self {
+            self.subpass_shading = subpass_shading.into();
+            self
+        }
     }
     ///Provided by [`huawei::subpass_shading`](crate::huawei::subpass_shading)
     impl crate::vk::PipelineBindPoint {

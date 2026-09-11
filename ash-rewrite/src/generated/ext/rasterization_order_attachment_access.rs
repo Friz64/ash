@@ -11,6 +11,52 @@ pub struct PhysicalDeviceRasterizationOrderAttachmentAccessFeaturesEXT<'a> {
     pub rasterization_order_stencil_attachment_access: crate::vk::Bool32,
     pub _marker: ::core::marker::PhantomData<&'a ()>,
 }
+unsafe impl<'a> crate::TaggedStructure<'a>
+for PhysicalDeviceRasterizationOrderAttachmentAccessFeaturesEXT<'a> {
+    const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::PHYSICAL_DEVICE_RASTERIZATION_ORDER_ATTACHMENT_ACCESS_FEATURES_EXT;
+}
+unsafe impl<'a> crate::Extends<crate::vk::PhysicalDeviceFeatures2<'_>>
+for PhysicalDeviceRasterizationOrderAttachmentAccessFeaturesEXT<'a> {}
+unsafe impl<'a> crate::Extends<crate::vk::DeviceCreateInfo<'_>>
+for PhysicalDeviceRasterizationOrderAttachmentAccessFeaturesEXT<'a> {}
+impl<'a> Default for PhysicalDeviceRasterizationOrderAttachmentAccessFeaturesEXT<'a> {
+    fn default() -> Self {
+        Self {
+            s_type: <Self as crate::TaggedStructure>::STRUCTURE_TYPE,
+            p_next: Default::default(),
+            rasterization_order_color_attachment_access: Default::default(),
+            rasterization_order_depth_attachment_access: Default::default(),
+            rasterization_order_stencil_attachment_access: Default::default(),
+            _marker: ::core::marker::PhantomData,
+        }
+    }
+}
+impl<'a> PhysicalDeviceRasterizationOrderAttachmentAccessFeaturesEXT<'a> {
+    pub fn rasterization_order_color_attachment_access(
+        mut self,
+        rasterization_order_color_attachment_access: bool,
+    ) -> Self {
+        self.rasterization_order_color_attachment_access = rasterization_order_color_attachment_access
+            .into();
+        self
+    }
+    pub fn rasterization_order_depth_attachment_access(
+        mut self,
+        rasterization_order_depth_attachment_access: bool,
+    ) -> Self {
+        self.rasterization_order_depth_attachment_access = rasterization_order_depth_attachment_access
+            .into();
+        self
+    }
+    pub fn rasterization_order_stencil_attachment_access(
+        mut self,
+        rasterization_order_stencil_attachment_access: bool,
+    ) -> Self {
+        self.rasterization_order_stencil_attachment_access = rasterization_order_stencil_attachment_access
+            .into();
+        self
+    }
+}
 ///Provided by [`ext::rasterization_order_attachment_access`](crate::ext::rasterization_order_attachment_access)
 impl crate::vk::StructureType {
     pub const PHYSICAL_DEVICE_RASTERIZATION_ORDER_ATTACHMENT_ACCESS_FEATURES_EXT: Self = Self(

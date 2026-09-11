@@ -9,6 +9,33 @@ pub struct PhysicalDeviceRepresentativeFragmentTestFeaturesNV<'a> {
     pub representative_fragment_test: crate::vk::Bool32,
     pub _marker: ::core::marker::PhantomData<&'a ()>,
 }
+unsafe impl<'a> crate::TaggedStructure<'a>
+for PhysicalDeviceRepresentativeFragmentTestFeaturesNV<'a> {
+    const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::PHYSICAL_DEVICE_REPRESENTATIVE_FRAGMENT_TEST_FEATURES_NV;
+}
+unsafe impl<'a> crate::Extends<crate::vk::PhysicalDeviceFeatures2<'_>>
+for PhysicalDeviceRepresentativeFragmentTestFeaturesNV<'a> {}
+unsafe impl<'a> crate::Extends<crate::vk::DeviceCreateInfo<'_>>
+for PhysicalDeviceRepresentativeFragmentTestFeaturesNV<'a> {}
+impl<'a> Default for PhysicalDeviceRepresentativeFragmentTestFeaturesNV<'a> {
+    fn default() -> Self {
+        Self {
+            s_type: <Self as crate::TaggedStructure>::STRUCTURE_TYPE,
+            p_next: Default::default(),
+            representative_fragment_test: Default::default(),
+            _marker: ::core::marker::PhantomData,
+        }
+    }
+}
+impl<'a> PhysicalDeviceRepresentativeFragmentTestFeaturesNV<'a> {
+    pub fn representative_fragment_test(
+        mut self,
+        representative_fragment_test: bool,
+    ) -> Self {
+        self.representative_fragment_test = representative_fragment_test.into();
+        self
+    }
+}
 #[repr(C)]
 #[derive(Clone, Copy)]
 pub struct PipelineRepresentativeFragmentTestStateCreateInfoNV<'a> {
@@ -16,6 +43,32 @@ pub struct PipelineRepresentativeFragmentTestStateCreateInfoNV<'a> {
     pub p_next: *const core::ffi::c_void,
     pub representative_fragment_test_enable: crate::vk::Bool32,
     pub _marker: ::core::marker::PhantomData<&'a ()>,
+}
+unsafe impl<'a> crate::TaggedStructure<'a>
+for PipelineRepresentativeFragmentTestStateCreateInfoNV<'a> {
+    const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::PIPELINE_REPRESENTATIVE_FRAGMENT_TEST_STATE_CREATE_INFO_NV;
+}
+unsafe impl<'a> crate::Extends<crate::vk::GraphicsPipelineCreateInfo<'_>>
+for PipelineRepresentativeFragmentTestStateCreateInfoNV<'a> {}
+impl<'a> Default for PipelineRepresentativeFragmentTestStateCreateInfoNV<'a> {
+    fn default() -> Self {
+        Self {
+            s_type: <Self as crate::TaggedStructure>::STRUCTURE_TYPE,
+            p_next: Default::default(),
+            representative_fragment_test_enable: Default::default(),
+            _marker: ::core::marker::PhantomData,
+        }
+    }
+}
+impl<'a> PipelineRepresentativeFragmentTestStateCreateInfoNV<'a> {
+    pub fn representative_fragment_test_enable(
+        mut self,
+        representative_fragment_test_enable: bool,
+    ) -> Self {
+        self.representative_fragment_test_enable = representative_fragment_test_enable
+            .into();
+        self
+    }
 }
 ///Provided by [`nv::representative_fragment_test`](crate::nv::representative_fragment_test)
 impl crate::vk::StructureType {

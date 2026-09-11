@@ -11,6 +11,50 @@ pub struct PhysicalDeviceFragmentShaderInterlockFeaturesEXT<'a> {
     pub fragment_shader_shading_rate_interlock: crate::vk::Bool32,
     pub _marker: ::core::marker::PhantomData<&'a ()>,
 }
+unsafe impl<'a> crate::TaggedStructure<'a>
+for PhysicalDeviceFragmentShaderInterlockFeaturesEXT<'a> {
+    const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::PHYSICAL_DEVICE_FRAGMENT_SHADER_INTERLOCK_FEATURES_EXT;
+}
+unsafe impl<'a> crate::Extends<crate::vk::PhysicalDeviceFeatures2<'_>>
+for PhysicalDeviceFragmentShaderInterlockFeaturesEXT<'a> {}
+unsafe impl<'a> crate::Extends<crate::vk::DeviceCreateInfo<'_>>
+for PhysicalDeviceFragmentShaderInterlockFeaturesEXT<'a> {}
+impl<'a> Default for PhysicalDeviceFragmentShaderInterlockFeaturesEXT<'a> {
+    fn default() -> Self {
+        Self {
+            s_type: <Self as crate::TaggedStructure>::STRUCTURE_TYPE,
+            p_next: Default::default(),
+            fragment_shader_sample_interlock: Default::default(),
+            fragment_shader_pixel_interlock: Default::default(),
+            fragment_shader_shading_rate_interlock: Default::default(),
+            _marker: ::core::marker::PhantomData,
+        }
+    }
+}
+impl<'a> PhysicalDeviceFragmentShaderInterlockFeaturesEXT<'a> {
+    pub fn fragment_shader_sample_interlock(
+        mut self,
+        fragment_shader_sample_interlock: bool,
+    ) -> Self {
+        self.fragment_shader_sample_interlock = fragment_shader_sample_interlock.into();
+        self
+    }
+    pub fn fragment_shader_pixel_interlock(
+        mut self,
+        fragment_shader_pixel_interlock: bool,
+    ) -> Self {
+        self.fragment_shader_pixel_interlock = fragment_shader_pixel_interlock.into();
+        self
+    }
+    pub fn fragment_shader_shading_rate_interlock(
+        mut self,
+        fragment_shader_shading_rate_interlock: bool,
+    ) -> Self {
+        self.fragment_shader_shading_rate_interlock = fragment_shader_shading_rate_interlock
+            .into();
+        self
+    }
+}
 ///Provided by [`ext::fragment_shader_interlock`](crate::ext::fragment_shader_interlock)
 impl crate::vk::StructureType {
     pub const PHYSICAL_DEVICE_FRAGMENT_SHADER_INTERLOCK_FEATURES_EXT: Self = Self(

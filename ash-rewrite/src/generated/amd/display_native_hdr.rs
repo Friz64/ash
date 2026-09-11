@@ -44,6 +44,28 @@ pub(crate) mod reexport {
         pub local_dimming_support: crate::vk::Bool32,
         pub _marker: ::core::marker::PhantomData<&'a ()>,
     }
+    unsafe impl<'a> crate::TaggedStructure<'a>
+    for DisplayNativeHdrSurfaceCapabilitiesAMD<'a> {
+        const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::DISPLAY_NATIVE_HDR_SURFACE_CAPABILITIES_AMD;
+    }
+    unsafe impl<'a> crate::Extends<crate::vk::SurfaceCapabilities2KHR<'_>>
+    for DisplayNativeHdrSurfaceCapabilitiesAMD<'a> {}
+    impl<'a> Default for DisplayNativeHdrSurfaceCapabilitiesAMD<'a> {
+        fn default() -> Self {
+            Self {
+                s_type: <Self as crate::TaggedStructure>::STRUCTURE_TYPE,
+                p_next: Default::default(),
+                local_dimming_support: Default::default(),
+                _marker: ::core::marker::PhantomData,
+            }
+        }
+    }
+    impl<'a> DisplayNativeHdrSurfaceCapabilitiesAMD<'a> {
+        pub fn local_dimming_support(mut self, local_dimming_support: bool) -> Self {
+            self.local_dimming_support = local_dimming_support.into();
+            self
+        }
+    }
     #[repr(C)]
     #[derive(Clone, Copy)]
     pub struct SwapchainDisplayNativeHdrCreateInfoAMD<'a> {
@@ -51,6 +73,28 @@ pub(crate) mod reexport {
         pub p_next: *const core::ffi::c_void,
         pub local_dimming_enable: crate::vk::Bool32,
         pub _marker: ::core::marker::PhantomData<&'a ()>,
+    }
+    unsafe impl<'a> crate::TaggedStructure<'a>
+    for SwapchainDisplayNativeHdrCreateInfoAMD<'a> {
+        const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::SWAPCHAIN_DISPLAY_NATIVE_HDR_CREATE_INFO_AMD;
+    }
+    unsafe impl<'a> crate::Extends<crate::vk::SwapchainCreateInfoKHR<'_>>
+    for SwapchainDisplayNativeHdrCreateInfoAMD<'a> {}
+    impl<'a> Default for SwapchainDisplayNativeHdrCreateInfoAMD<'a> {
+        fn default() -> Self {
+            Self {
+                s_type: <Self as crate::TaggedStructure>::STRUCTURE_TYPE,
+                p_next: Default::default(),
+                local_dimming_enable: Default::default(),
+                _marker: ::core::marker::PhantomData,
+            }
+        }
+    }
+    impl<'a> SwapchainDisplayNativeHdrCreateInfoAMD<'a> {
+        pub fn local_dimming_enable(mut self, local_dimming_enable: bool) -> Self {
+            self.local_dimming_enable = local_dimming_enable.into();
+            self
+        }
     }
     ///Provided by [`amd::display_native_hdr`](crate::amd::display_native_hdr)
     impl crate::vk::StructureType {

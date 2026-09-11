@@ -10,6 +10,34 @@ pub struct PhysicalDeviceShaderClockFeaturesKHR<'a> {
     pub shader_device_clock: crate::vk::Bool32,
     pub _marker: ::core::marker::PhantomData<&'a ()>,
 }
+unsafe impl<'a> crate::TaggedStructure<'a> for PhysicalDeviceShaderClockFeaturesKHR<'a> {
+    const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::PHYSICAL_DEVICE_SHADER_CLOCK_FEATURES_KHR;
+}
+unsafe impl<'a> crate::Extends<crate::vk::PhysicalDeviceFeatures2<'_>>
+for PhysicalDeviceShaderClockFeaturesKHR<'a> {}
+unsafe impl<'a> crate::Extends<crate::vk::DeviceCreateInfo<'_>>
+for PhysicalDeviceShaderClockFeaturesKHR<'a> {}
+impl<'a> Default for PhysicalDeviceShaderClockFeaturesKHR<'a> {
+    fn default() -> Self {
+        Self {
+            s_type: <Self as crate::TaggedStructure>::STRUCTURE_TYPE,
+            p_next: Default::default(),
+            shader_subgroup_clock: Default::default(),
+            shader_device_clock: Default::default(),
+            _marker: ::core::marker::PhantomData,
+        }
+    }
+}
+impl<'a> PhysicalDeviceShaderClockFeaturesKHR<'a> {
+    pub fn shader_subgroup_clock(mut self, shader_subgroup_clock: bool) -> Self {
+        self.shader_subgroup_clock = shader_subgroup_clock.into();
+        self
+    }
+    pub fn shader_device_clock(mut self, shader_device_clock: bool) -> Self {
+        self.shader_device_clock = shader_device_clock.into();
+        self
+    }
+}
 ///Provided by [`khr::shader_clock`](crate::khr::shader_clock)
 impl crate::vk::StructureType {
     pub const PHYSICAL_DEVICE_SHADER_CLOCK_FEATURES_KHR: Self = Self(1000181000);

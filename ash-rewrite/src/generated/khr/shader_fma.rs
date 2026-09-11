@@ -11,6 +11,39 @@ pub struct PhysicalDeviceShaderFmaFeaturesKHR<'a> {
     pub shader_fma_float64: crate::vk::Bool32,
     pub _marker: ::core::marker::PhantomData<&'a ()>,
 }
+unsafe impl<'a> crate::TaggedStructure<'a> for PhysicalDeviceShaderFmaFeaturesKHR<'a> {
+    const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::PHYSICAL_DEVICE_SHADER_FMA_FEATURES_KHR;
+}
+unsafe impl<'a> crate::Extends<crate::vk::PhysicalDeviceFeatures2<'_>>
+for PhysicalDeviceShaderFmaFeaturesKHR<'a> {}
+unsafe impl<'a> crate::Extends<crate::vk::DeviceCreateInfo<'_>>
+for PhysicalDeviceShaderFmaFeaturesKHR<'a> {}
+impl<'a> Default for PhysicalDeviceShaderFmaFeaturesKHR<'a> {
+    fn default() -> Self {
+        Self {
+            s_type: <Self as crate::TaggedStructure>::STRUCTURE_TYPE,
+            p_next: Default::default(),
+            shader_fma_float16: Default::default(),
+            shader_fma_float32: Default::default(),
+            shader_fma_float64: Default::default(),
+            _marker: ::core::marker::PhantomData,
+        }
+    }
+}
+impl<'a> PhysicalDeviceShaderFmaFeaturesKHR<'a> {
+    pub fn shader_fma_float16(mut self, shader_fma_float16: bool) -> Self {
+        self.shader_fma_float16 = shader_fma_float16.into();
+        self
+    }
+    pub fn shader_fma_float32(mut self, shader_fma_float32: bool) -> Self {
+        self.shader_fma_float32 = shader_fma_float32.into();
+        self
+    }
+    pub fn shader_fma_float64(mut self, shader_fma_float64: bool) -> Self {
+        self.shader_fma_float64 = shader_fma_float64.into();
+        self
+    }
+}
 ///Provided by [`khr::shader_fma`](crate::khr::shader_fma)
 impl crate::vk::StructureType {
     pub const PHYSICAL_DEVICE_SHADER_FMA_FEATURES_KHR: Self = Self(1000579000);

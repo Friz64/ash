@@ -9,6 +9,30 @@ pub struct PhysicalDeviceShaderIntegerFunctions2FeaturesINTEL<'a> {
     pub shader_integer_functions2: crate::vk::Bool32,
     pub _marker: ::core::marker::PhantomData<&'a ()>,
 }
+unsafe impl<'a> crate::TaggedStructure<'a>
+for PhysicalDeviceShaderIntegerFunctions2FeaturesINTEL<'a> {
+    const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::PHYSICAL_DEVICE_SHADER_INTEGER_FUNCTIONS_2_FEATURES_INTEL;
+}
+unsafe impl<'a> crate::Extends<crate::vk::PhysicalDeviceFeatures2<'_>>
+for PhysicalDeviceShaderIntegerFunctions2FeaturesINTEL<'a> {}
+unsafe impl<'a> crate::Extends<crate::vk::DeviceCreateInfo<'_>>
+for PhysicalDeviceShaderIntegerFunctions2FeaturesINTEL<'a> {}
+impl<'a> Default for PhysicalDeviceShaderIntegerFunctions2FeaturesINTEL<'a> {
+    fn default() -> Self {
+        Self {
+            s_type: <Self as crate::TaggedStructure>::STRUCTURE_TYPE,
+            p_next: Default::default(),
+            shader_integer_functions2: Default::default(),
+            _marker: ::core::marker::PhantomData,
+        }
+    }
+}
+impl<'a> PhysicalDeviceShaderIntegerFunctions2FeaturesINTEL<'a> {
+    pub fn shader_integer_functions2(mut self, shader_integer_functions2: bool) -> Self {
+        self.shader_integer_functions2 = shader_integer_functions2.into();
+        self
+    }
+}
 ///Provided by [`intel::shader_integer_functions2`](crate::intel::shader_integer_functions2)
 impl crate::vk::StructureType {
     pub const PHYSICAL_DEVICE_SHADER_INTEGER_FUNCTIONS_2_FEATURES_INTEL: Self = Self(

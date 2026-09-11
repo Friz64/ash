@@ -476,3 +476,5 @@ pub use super::khr::shader_non_semantic_info::*;
 pub use super::google::surfaceless_query::*;
 pub use super::video::codecs_common::*;
 pub use crate::Handle;
+pub use crate::TaggedStructure;
+pub use crate::Extends;

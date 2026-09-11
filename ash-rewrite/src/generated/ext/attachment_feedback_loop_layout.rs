@@ -9,6 +9,33 @@ pub struct PhysicalDeviceAttachmentFeedbackLoopLayoutFeaturesEXT<'a> {
     pub attachment_feedback_loop_layout: crate::vk::Bool32,
     pub _marker: ::core::marker::PhantomData<&'a ()>,
 }
+unsafe impl<'a> crate::TaggedStructure<'a>
+for PhysicalDeviceAttachmentFeedbackLoopLayoutFeaturesEXT<'a> {
+    const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::PHYSICAL_DEVICE_ATTACHMENT_FEEDBACK_LOOP_LAYOUT_FEATURES_EXT;
+}
+unsafe impl<'a> crate::Extends<crate::vk::PhysicalDeviceFeatures2<'_>>
+for PhysicalDeviceAttachmentFeedbackLoopLayoutFeaturesEXT<'a> {}
+unsafe impl<'a> crate::Extends<crate::vk::DeviceCreateInfo<'_>>
+for PhysicalDeviceAttachmentFeedbackLoopLayoutFeaturesEXT<'a> {}
+impl<'a> Default for PhysicalDeviceAttachmentFeedbackLoopLayoutFeaturesEXT<'a> {
+    fn default() -> Self {
+        Self {
+            s_type: <Self as crate::TaggedStructure>::STRUCTURE_TYPE,
+            p_next: Default::default(),
+            attachment_feedback_loop_layout: Default::default(),
+            _marker: ::core::marker::PhantomData,
+        }
+    }
+}
+impl<'a> PhysicalDeviceAttachmentFeedbackLoopLayoutFeaturesEXT<'a> {
+    pub fn attachment_feedback_loop_layout(
+        mut self,
+        attachment_feedback_loop_layout: bool,
+    ) -> Self {
+        self.attachment_feedback_loop_layout = attachment_feedback_loop_layout.into();
+        self
+    }
+}
 ///Provided by [`ext::attachment_feedback_loop_layout`](crate::ext::attachment_feedback_loop_layout)
 impl crate::vk::ImageLayout {
     pub const ATTACHMENT_FEEDBACK_LOOP_OPTIMAL_EXT: Self = Self(1000339000);

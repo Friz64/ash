@@ -47,6 +47,34 @@ pub(crate) mod reexport {
         pub name: [core::ffi::c_char; crate::vk::MAX_DATA_GRAPH_TOSA_NAME_SIZE_ARM as _],
         pub quality_flags: crate::vk::DataGraphTOSAQualityFlagsARM,
     }
+    impl Default for DataGraphTOSANameQualityARM {
+        fn default() -> Self {
+            Self {
+                name: unsafe { core::mem::zeroed() },
+                quality_flags: Default::default(),
+            }
+        }
+    }
+    impl DataGraphTOSANameQualityARM {
+        pub fn name(
+            mut self,
+            name: &core::ffi::CStr,
+        ) -> core::result::Result<Self, crate::CStrTooLargeForStaticArray> {
+            crate::write_c_str_slice_with_nul(&mut self.name, name).map(|_| self)
+        }
+        pub fn name_as_c_str(
+            &self,
+        ) -> core::result::Result<&core::ffi::CStr, core::ffi::FromBytesUntilNulError> {
+            crate::wrap_c_str_slice_until_nul(&self.name)
+        }
+        pub fn quality_flags(
+            mut self,
+            quality_flags: crate::vk::DataGraphTOSAQualityFlagsARM,
+        ) -> Self {
+            self.quality_flags = quality_flags;
+            self
+        }
+    }
     #[repr(C)]
     #[derive(Clone, Copy)]
     pub struct QueueFamilyDataGraphTOSAPropertiesARM<'a> {
@@ -58,6 +86,54 @@ pub(crate) mod reexport {
         pub p_extensions: *const crate::vk::DataGraphTOSANameQualityARM,
         pub level: crate::vk::DataGraphTOSALevelARM,
         pub _marker: ::core::marker::PhantomData<&'a ()>,
+    }
+    unsafe impl<'a> crate::TaggedStructure<'a>
+    for QueueFamilyDataGraphTOSAPropertiesARM<'a> {
+        const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::QUEUE_FAMILY_DATA_GRAPH_TOSA_PROPERTIES_ARM;
+    }
+    impl<'a> Default for QueueFamilyDataGraphTOSAPropertiesARM<'a> {
+        fn default() -> Self {
+            Self {
+                s_type: <Self as crate::TaggedStructure>::STRUCTURE_TYPE,
+                p_next: Default::default(),
+                profile_count: Default::default(),
+                p_profiles: Default::default(),
+                extension_count: Default::default(),
+                p_extensions: Default::default(),
+                level: Default::default(),
+                _marker: ::core::marker::PhantomData,
+            }
+        }
+    }
+    impl<'a> QueueFamilyDataGraphTOSAPropertiesARM<'a> {
+        pub fn profile_count(mut self, profile_count: u32) -> Self {
+            self.profile_count = profile_count;
+            self
+        }
+        pub fn p_profiles(
+            mut self,
+            p_profiles: &'a [crate::vk::DataGraphTOSANameQualityARM],
+        ) -> Self {
+            self.profile_count = p_profiles.len() as _;
+            self.p_profiles = p_profiles.as_ptr();
+            self
+        }
+        pub fn extension_count(mut self, extension_count: u32) -> Self {
+            self.extension_count = extension_count;
+            self
+        }
+        pub fn p_extensions(
+            mut self,
+            p_extensions: &'a [crate::vk::DataGraphTOSANameQualityARM],
+        ) -> Self {
+            self.extension_count = p_extensions.len() as _;
+            self.p_extensions = p_extensions.as_ptr();
+            self
+        }
+        pub fn level(mut self, level: crate::vk::DataGraphTOSALevelARM) -> Self {
+            self.level = level;
+            self
+        }
     }
     ///Provided by [`arm::data_graph_instruction_set_tosa`](crate::arm::data_graph_instruction_set_tosa)
     impl crate::vk::StructureType {
@@ -160,7 +236,7 @@ pub(crate) mod reexport {
         }
     }
     #[repr(transparent)]
-    #[derive(Clone, Copy)]
+    #[derive(Clone, Copy, Default)]
     pub struct DataGraphTOSAQualityFlagBitsARM(pub(crate) u32);
     ///Provided by [`arm::data_graph_instruction_set_tosa`](crate::arm::data_graph_instruction_set_tosa)
     impl DataGraphTOSAQualityFlagBitsARM {

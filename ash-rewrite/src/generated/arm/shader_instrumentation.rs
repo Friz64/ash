@@ -161,6 +161,30 @@ pub(crate) mod reexport {
         pub shader_instrumentation: crate::vk::Bool32,
         pub _marker: ::core::marker::PhantomData<&'a ()>,
     }
+    unsafe impl<'a> crate::TaggedStructure<'a>
+    for PhysicalDeviceShaderInstrumentationFeaturesARM<'a> {
+        const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::PHYSICAL_DEVICE_SHADER_INSTRUMENTATION_FEATURES_ARM;
+    }
+    unsafe impl<'a> crate::Extends<crate::vk::PhysicalDeviceFeatures2<'_>>
+    for PhysicalDeviceShaderInstrumentationFeaturesARM<'a> {}
+    unsafe impl<'a> crate::Extends<crate::vk::DeviceCreateInfo<'_>>
+    for PhysicalDeviceShaderInstrumentationFeaturesARM<'a> {}
+    impl<'a> Default for PhysicalDeviceShaderInstrumentationFeaturesARM<'a> {
+        fn default() -> Self {
+            Self {
+                s_type: <Self as crate::TaggedStructure>::STRUCTURE_TYPE,
+                p_next: Default::default(),
+                shader_instrumentation: Default::default(),
+                _marker: ::core::marker::PhantomData,
+            }
+        }
+    }
+    impl<'a> PhysicalDeviceShaderInstrumentationFeaturesARM<'a> {
+        pub fn shader_instrumentation(mut self, shader_instrumentation: bool) -> Self {
+            self.shader_instrumentation = shader_instrumentation.into();
+            self
+        }
+    }
     #[repr(C)]
     #[derive(Clone, Copy)]
     pub struct PhysicalDeviceShaderInstrumentationPropertiesARM<'a> {
@@ -170,6 +194,36 @@ pub(crate) mod reexport {
         pub per_basic_block_granularity: crate::vk::Bool32,
         pub _marker: ::core::marker::PhantomData<&'a ()>,
     }
+    unsafe impl<'a> crate::TaggedStructure<'a>
+    for PhysicalDeviceShaderInstrumentationPropertiesARM<'a> {
+        const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::PHYSICAL_DEVICE_SHADER_INSTRUMENTATION_PROPERTIES_ARM;
+    }
+    unsafe impl<'a> crate::Extends<crate::vk::PhysicalDeviceProperties2<'_>>
+    for PhysicalDeviceShaderInstrumentationPropertiesARM<'a> {}
+    impl<'a> Default for PhysicalDeviceShaderInstrumentationPropertiesARM<'a> {
+        fn default() -> Self {
+            Self {
+                s_type: <Self as crate::TaggedStructure>::STRUCTURE_TYPE,
+                p_next: Default::default(),
+                num_metrics: Default::default(),
+                per_basic_block_granularity: Default::default(),
+                _marker: ::core::marker::PhantomData,
+            }
+        }
+    }
+    impl<'a> PhysicalDeviceShaderInstrumentationPropertiesARM<'a> {
+        pub fn num_metrics(mut self, num_metrics: u32) -> Self {
+            self.num_metrics = num_metrics;
+            self
+        }
+        pub fn per_basic_block_granularity(
+            mut self,
+            per_basic_block_granularity: bool,
+        ) -> Self {
+            self.per_basic_block_granularity = per_basic_block_granularity.into();
+            self
+        }
+    }
     #[repr(C)]
     #[derive(Clone, Copy)]
     pub struct ShaderInstrumentationCreateInfoARM<'a> {
@@ -177,6 +231,20 @@ pub(crate) mod reexport {
         pub p_next: *mut core::ffi::c_void,
         pub _marker: ::core::marker::PhantomData<&'a ()>,
     }
+    unsafe impl<'a> crate::TaggedStructure<'a>
+    for ShaderInstrumentationCreateInfoARM<'a> {
+        const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::SHADER_INSTRUMENTATION_CREATE_INFO_ARM;
+    }
+    impl<'a> Default for ShaderInstrumentationCreateInfoARM<'a> {
+        fn default() -> Self {
+            Self {
+                s_type: <Self as crate::TaggedStructure>::STRUCTURE_TYPE,
+                p_next: Default::default(),
+                _marker: ::core::marker::PhantomData,
+            }
+        }
+    }
+    impl<'a> ShaderInstrumentationCreateInfoARM<'a> {}
     #[repr(C)]
     #[derive(Clone, Copy)]
     pub struct ShaderInstrumentationMetricDescriptionARM<'a> {
@@ -186,13 +254,71 @@ pub(crate) mod reexport {
         pub description: [core::ffi::c_char; crate::vk::MAX_DESCRIPTION_SIZE as _],
         pub _marker: ::core::marker::PhantomData<&'a ()>,
     }
+    unsafe impl<'a> crate::TaggedStructure<'a>
+    for ShaderInstrumentationMetricDescriptionARM<'a> {
+        const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::SHADER_INSTRUMENTATION_METRIC_DESCRIPTION_ARM;
+    }
+    impl<'a> Default for ShaderInstrumentationMetricDescriptionARM<'a> {
+        fn default() -> Self {
+            Self {
+                s_type: <Self as crate::TaggedStructure>::STRUCTURE_TYPE,
+                p_next: Default::default(),
+                name: unsafe { core::mem::zeroed() },
+                description: unsafe { core::mem::zeroed() },
+                _marker: ::core::marker::PhantomData,
+            }
+        }
+    }
+    impl<'a> ShaderInstrumentationMetricDescriptionARM<'a> {
+        pub fn name(
+            mut self,
+            name: &core::ffi::CStr,
+        ) -> core::result::Result<Self, crate::CStrTooLargeForStaticArray> {
+            crate::write_c_str_slice_with_nul(&mut self.name, name).map(|_| self)
+        }
+        pub fn name_as_c_str(
+            &self,
+        ) -> core::result::Result<&core::ffi::CStr, core::ffi::FromBytesUntilNulError> {
+            crate::wrap_c_str_slice_until_nul(&self.name)
+        }
+        pub fn description(
+            mut self,
+            description: &core::ffi::CStr,
+        ) -> core::result::Result<Self, crate::CStrTooLargeForStaticArray> {
+            crate::write_c_str_slice_with_nul(&mut self.description, description)
+                .map(|_| self)
+        }
+        pub fn description_as_c_str(
+            &self,
+        ) -> core::result::Result<&core::ffi::CStr, core::ffi::FromBytesUntilNulError> {
+            crate::wrap_c_str_slice_until_nul(&self.description)
+        }
+    }
     #[repr(C)]
-    #[derive(Clone, Copy)]
+    #[derive(Clone, Copy, Default)]
     pub struct ShaderInstrumentationMetricDataHeaderARM {
         pub result_index: u32,
         pub result_sub_index: u32,
         pub stages: crate::vk::ShaderStageFlags,
         pub basic_block_index: u32,
+    }
+    impl ShaderInstrumentationMetricDataHeaderARM {
+        pub fn result_index(mut self, result_index: u32) -> Self {
+            self.result_index = result_index;
+            self
+        }
+        pub fn result_sub_index(mut self, result_sub_index: u32) -> Self {
+            self.result_sub_index = result_sub_index;
+            self
+        }
+        pub fn stages(mut self, stages: crate::vk::ShaderStageFlags) -> Self {
+            self.stages = stages;
+            self
+        }
+        pub fn basic_block_index(mut self, basic_block_index: u32) -> Self {
+            self.basic_block_index = basic_block_index;
+            self
+        }
     }
     ///Provided by [`arm::shader_instrumentation`](crate::arm::shader_instrumentation)
     impl crate::vk::StructureType {

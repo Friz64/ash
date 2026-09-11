@@ -208,19 +208,70 @@ pub(crate) mod reexport {
         pub format: crate::vk::Format,
         pub _marker: ::core::marker::PhantomData<&'a ()>,
     }
+    unsafe impl<'a> crate::TaggedStructure<'a> for TensorViewCreateInfoARM<'a> {
+        const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::TENSOR_VIEW_CREATE_INFO_ARM;
+    }
+    impl<'a> Default for TensorViewCreateInfoARM<'a> {
+        fn default() -> Self {
+            Self {
+                s_type: <Self as crate::TaggedStructure>::STRUCTURE_TYPE,
+                p_next: Default::default(),
+                flags: Default::default(),
+                tensor: Default::default(),
+                format: Default::default(),
+                _marker: ::core::marker::PhantomData,
+            }
+        }
+    }
+    impl<'a> TensorViewCreateInfoARM<'a> {
+        pub fn flags(mut self, flags: crate::vk::TensorViewCreateFlagsARM) -> Self {
+            self.flags = flags;
+            self
+        }
+        pub fn tensor(mut self, tensor: crate::vk::TensorARM) -> Self {
+            self.tensor = tensor;
+            self
+        }
+        pub fn format(mut self, format: crate::vk::Format) -> Self {
+            self.format = format;
+            self
+        }
+    }
     #[repr(C)]
-    #[derive(Clone, Copy)]
+    #[derive(Clone, Copy, Default)]
     pub struct HostAddressRangeEXT<'a> {
         pub address: *mut core::ffi::c_void,
         pub size: usize,
         pub _marker: ::core::marker::PhantomData<&'a ()>,
     }
+    impl<'a> HostAddressRangeEXT<'a> {
+        pub fn address(mut self, address: &'a mut [u8]) -> Self {
+            self.size = address.len() as _;
+            self.address = address.as_mut_ptr().cast();
+            self
+        }
+        pub fn size(mut self, size: usize) -> Self {
+            self.size = size;
+            self
+        }
+    }
     #[repr(C)]
-    #[derive(Clone, Copy)]
+    #[derive(Clone, Copy, Default)]
     pub struct HostAddressRangeConstEXT<'a> {
         pub address: *const core::ffi::c_void,
         pub size: usize,
         pub _marker: ::core::marker::PhantomData<&'a ()>,
+    }
+    impl<'a> HostAddressRangeConstEXT<'a> {
+        pub fn address(mut self, address: &'a [u8]) -> Self {
+            self.size = address.len() as _;
+            self.address = address.as_ptr().cast();
+            self
+        }
+        pub fn size(mut self, size: usize) -> Self {
+            self.size = size;
+            self
+        }
     }
     #[repr(C)]
     #[derive(Clone, Copy)]
@@ -231,6 +282,33 @@ pub(crate) mod reexport {
         pub address_range: crate::vk::DeviceAddressRangeEXT,
         pub _marker: ::core::marker::PhantomData<&'a ()>,
     }
+    unsafe impl<'a> crate::TaggedStructure<'a> for TexelBufferDescriptorInfoEXT<'a> {
+        const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::TEXEL_BUFFER_DESCRIPTOR_INFO_EXT;
+    }
+    impl<'a> Default for TexelBufferDescriptorInfoEXT<'a> {
+        fn default() -> Self {
+            Self {
+                s_type: <Self as crate::TaggedStructure>::STRUCTURE_TYPE,
+                p_next: Default::default(),
+                format: Default::default(),
+                address_range: Default::default(),
+                _marker: ::core::marker::PhantomData,
+            }
+        }
+    }
+    impl<'a> TexelBufferDescriptorInfoEXT<'a> {
+        pub fn format(mut self, format: crate::vk::Format) -> Self {
+            self.format = format;
+            self
+        }
+        pub fn address_range(
+            mut self,
+            address_range: crate::vk::DeviceAddressRangeEXT,
+        ) -> Self {
+            self.address_range = address_range;
+            self
+        }
+    }
     #[repr(C)]
     #[derive(Clone, Copy)]
     pub struct ImageDescriptorInfoEXT<'a> {
@@ -240,6 +318,30 @@ pub(crate) mod reexport {
         pub layout: crate::vk::ImageLayout,
         pub _marker: ::core::marker::PhantomData<&'a ()>,
     }
+    unsafe impl<'a> crate::TaggedStructure<'a> for ImageDescriptorInfoEXT<'a> {
+        const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::IMAGE_DESCRIPTOR_INFO_EXT;
+    }
+    impl<'a> Default for ImageDescriptorInfoEXT<'a> {
+        fn default() -> Self {
+            Self {
+                s_type: <Self as crate::TaggedStructure>::STRUCTURE_TYPE,
+                p_next: Default::default(),
+                p_view: Default::default(),
+                layout: Default::default(),
+                _marker: ::core::marker::PhantomData,
+            }
+        }
+    }
+    impl<'a> ImageDescriptorInfoEXT<'a> {
+        pub fn p_view(mut self, p_view: &'a crate::vk::ImageViewCreateInfo<'a>) -> Self {
+            self.p_view = p_view;
+            self
+        }
+        pub fn layout(mut self, layout: crate::vk::ImageLayout) -> Self {
+            self.layout = layout;
+            self
+        }
+    }
     #[repr(C)]
     #[derive(Clone, Copy)]
     pub struct ResourceDescriptorInfoEXT<'a> {
@@ -248,6 +350,30 @@ pub(crate) mod reexport {
         pub _type: crate::vk::DescriptorType,
         pub data: crate::vk::ResourceDescriptorDataEXT<'a>,
         pub _marker: ::core::marker::PhantomData<&'a ()>,
+    }
+    unsafe impl<'a> crate::TaggedStructure<'a> for ResourceDescriptorInfoEXT<'a> {
+        const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::RESOURCE_DESCRIPTOR_INFO_EXT;
+    }
+    impl<'a> Default for ResourceDescriptorInfoEXT<'a> {
+        fn default() -> Self {
+            Self {
+                s_type: <Self as crate::TaggedStructure>::STRUCTURE_TYPE,
+                p_next: Default::default(),
+                _type: Default::default(),
+                data: Default::default(),
+                _marker: ::core::marker::PhantomData,
+            }
+        }
+    }
+    impl<'a> ResourceDescriptorInfoEXT<'a> {
+        pub fn _type(mut self, _type: crate::vk::DescriptorType) -> Self {
+            self._type = _type;
+            self
+        }
+        pub fn data(mut self, data: crate::vk::ResourceDescriptorDataEXT<'a>) -> Self {
+            self.data = data;
+            self
+        }
     }
     #[repr(C)]
     #[derive(Clone, Copy)]
@@ -259,6 +385,44 @@ pub(crate) mod reexport {
         pub reserved_range_size: crate::vk::DeviceSize,
         pub _marker: ::core::marker::PhantomData<&'a ()>,
     }
+    unsafe impl<'a> crate::TaggedStructure<'a> for BindHeapInfoEXT<'a> {
+        const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::BIND_HEAP_INFO_EXT;
+    }
+    impl<'a> Default for BindHeapInfoEXT<'a> {
+        fn default() -> Self {
+            Self {
+                s_type: <Self as crate::TaggedStructure>::STRUCTURE_TYPE,
+                p_next: Default::default(),
+                heap_range: Default::default(),
+                reserved_range_offset: Default::default(),
+                reserved_range_size: Default::default(),
+                _marker: ::core::marker::PhantomData,
+            }
+        }
+    }
+    impl<'a> BindHeapInfoEXT<'a> {
+        pub fn heap_range(
+            mut self,
+            heap_range: crate::vk::DeviceAddressRangeEXT,
+        ) -> Self {
+            self.heap_range = heap_range;
+            self
+        }
+        pub fn reserved_range_offset(
+            mut self,
+            reserved_range_offset: crate::vk::DeviceSize,
+        ) -> Self {
+            self.reserved_range_offset = reserved_range_offset;
+            self
+        }
+        pub fn reserved_range_size(
+            mut self,
+            reserved_range_size: crate::vk::DeviceSize,
+        ) -> Self {
+            self.reserved_range_size = reserved_range_size;
+            self
+        }
+    }
     #[repr(C)]
     #[derive(Clone, Copy)]
     pub struct PushDataInfoEXT<'a> {
@@ -268,8 +432,32 @@ pub(crate) mod reexport {
         pub data: crate::vk::HostAddressRangeConstEXT<'a>,
         pub _marker: ::core::marker::PhantomData<&'a ()>,
     }
+    unsafe impl<'a> crate::TaggedStructure<'a> for PushDataInfoEXT<'a> {
+        const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::PUSH_DATA_INFO_EXT;
+    }
+    impl<'a> Default for PushDataInfoEXT<'a> {
+        fn default() -> Self {
+            Self {
+                s_type: <Self as crate::TaggedStructure>::STRUCTURE_TYPE,
+                p_next: Default::default(),
+                offset: Default::default(),
+                data: Default::default(),
+                _marker: ::core::marker::PhantomData,
+            }
+        }
+    }
+    impl<'a> PushDataInfoEXT<'a> {
+        pub fn offset(mut self, offset: u32) -> Self {
+            self.offset = offset;
+            self
+        }
+        pub fn data(mut self, data: crate::vk::HostAddressRangeConstEXT<'a>) -> Self {
+            self.data = data;
+            self
+        }
+    }
     #[repr(C)]
-    #[derive(Clone, Copy)]
+    #[derive(Clone, Copy, Default)]
     pub struct DescriptorMappingSourceConstantOffsetEXT<'a> {
         pub heap_offset: u32,
         pub heap_array_stride: u32,
@@ -278,8 +466,36 @@ pub(crate) mod reexport {
         pub sampler_heap_array_stride: u32,
         pub _marker: ::core::marker::PhantomData<&'a ()>,
     }
+    impl<'a> DescriptorMappingSourceConstantOffsetEXT<'a> {
+        pub fn heap_offset(mut self, heap_offset: u32) -> Self {
+            self.heap_offset = heap_offset;
+            self
+        }
+        pub fn heap_array_stride(mut self, heap_array_stride: u32) -> Self {
+            self.heap_array_stride = heap_array_stride;
+            self
+        }
+        pub fn p_embedded_sampler(
+            mut self,
+            p_embedded_sampler: &'a crate::vk::SamplerCreateInfo<'a>,
+        ) -> Self {
+            self.p_embedded_sampler = p_embedded_sampler;
+            self
+        }
+        pub fn sampler_heap_offset(mut self, sampler_heap_offset: u32) -> Self {
+            self.sampler_heap_offset = sampler_heap_offset;
+            self
+        }
+        pub fn sampler_heap_array_stride(
+            mut self,
+            sampler_heap_array_stride: u32,
+        ) -> Self {
+            self.sampler_heap_array_stride = sampler_heap_array_stride;
+            self
+        }
+    }
     #[repr(C)]
-    #[derive(Clone, Copy)]
+    #[derive(Clone, Copy, Default)]
     pub struct DescriptorMappingSourcePushIndexEXT<'a> {
         pub heap_offset: u32,
         pub push_offset: u32,
@@ -293,8 +509,63 @@ pub(crate) mod reexport {
         pub sampler_heap_array_stride: u32,
         pub _marker: ::core::marker::PhantomData<&'a ()>,
     }
+    impl<'a> DescriptorMappingSourcePushIndexEXT<'a> {
+        pub fn heap_offset(mut self, heap_offset: u32) -> Self {
+            self.heap_offset = heap_offset;
+            self
+        }
+        pub fn push_offset(mut self, push_offset: u32) -> Self {
+            self.push_offset = push_offset;
+            self
+        }
+        pub fn heap_index_stride(mut self, heap_index_stride: u32) -> Self {
+            self.heap_index_stride = heap_index_stride;
+            self
+        }
+        pub fn heap_array_stride(mut self, heap_array_stride: u32) -> Self {
+            self.heap_array_stride = heap_array_stride;
+            self
+        }
+        pub fn p_embedded_sampler(
+            mut self,
+            p_embedded_sampler: &'a crate::vk::SamplerCreateInfo<'a>,
+        ) -> Self {
+            self.p_embedded_sampler = p_embedded_sampler;
+            self
+        }
+        pub fn use_combined_image_sampler_index(
+            mut self,
+            use_combined_image_sampler_index: bool,
+        ) -> Self {
+            self.use_combined_image_sampler_index = use_combined_image_sampler_index
+                .into();
+            self
+        }
+        pub fn sampler_heap_offset(mut self, sampler_heap_offset: u32) -> Self {
+            self.sampler_heap_offset = sampler_heap_offset;
+            self
+        }
+        pub fn sampler_push_offset(mut self, sampler_push_offset: u32) -> Self {
+            self.sampler_push_offset = sampler_push_offset;
+            self
+        }
+        pub fn sampler_heap_index_stride(
+            mut self,
+            sampler_heap_index_stride: u32,
+        ) -> Self {
+            self.sampler_heap_index_stride = sampler_heap_index_stride;
+            self
+        }
+        pub fn sampler_heap_array_stride(
+            mut self,
+            sampler_heap_array_stride: u32,
+        ) -> Self {
+            self.sampler_heap_array_stride = sampler_heap_array_stride;
+            self
+        }
+    }
     #[repr(C)]
-    #[derive(Clone, Copy)]
+    #[derive(Clone, Copy, Default)]
     pub struct DescriptorMappingSourceIndirectIndexEXT<'a> {
         pub heap_offset: u32,
         pub push_offset: u32,
@@ -310,8 +581,71 @@ pub(crate) mod reexport {
         pub sampler_heap_array_stride: u32,
         pub _marker: ::core::marker::PhantomData<&'a ()>,
     }
+    impl<'a> DescriptorMappingSourceIndirectIndexEXT<'a> {
+        pub fn heap_offset(mut self, heap_offset: u32) -> Self {
+            self.heap_offset = heap_offset;
+            self
+        }
+        pub fn push_offset(mut self, push_offset: u32) -> Self {
+            self.push_offset = push_offset;
+            self
+        }
+        pub fn address_offset(mut self, address_offset: u32) -> Self {
+            self.address_offset = address_offset;
+            self
+        }
+        pub fn heap_index_stride(mut self, heap_index_stride: u32) -> Self {
+            self.heap_index_stride = heap_index_stride;
+            self
+        }
+        pub fn heap_array_stride(mut self, heap_array_stride: u32) -> Self {
+            self.heap_array_stride = heap_array_stride;
+            self
+        }
+        pub fn p_embedded_sampler(
+            mut self,
+            p_embedded_sampler: &'a crate::vk::SamplerCreateInfo<'a>,
+        ) -> Self {
+            self.p_embedded_sampler = p_embedded_sampler;
+            self
+        }
+        pub fn use_combined_image_sampler_index(
+            mut self,
+            use_combined_image_sampler_index: bool,
+        ) -> Self {
+            self.use_combined_image_sampler_index = use_combined_image_sampler_index
+                .into();
+            self
+        }
+        pub fn sampler_heap_offset(mut self, sampler_heap_offset: u32) -> Self {
+            self.sampler_heap_offset = sampler_heap_offset;
+            self
+        }
+        pub fn sampler_push_offset(mut self, sampler_push_offset: u32) -> Self {
+            self.sampler_push_offset = sampler_push_offset;
+            self
+        }
+        pub fn sampler_address_offset(mut self, sampler_address_offset: u32) -> Self {
+            self.sampler_address_offset = sampler_address_offset;
+            self
+        }
+        pub fn sampler_heap_index_stride(
+            mut self,
+            sampler_heap_index_stride: u32,
+        ) -> Self {
+            self.sampler_heap_index_stride = sampler_heap_index_stride;
+            self
+        }
+        pub fn sampler_heap_array_stride(
+            mut self,
+            sampler_heap_array_stride: u32,
+        ) -> Self {
+            self.sampler_heap_array_stride = sampler_heap_array_stride;
+            self
+        }
+    }
     #[repr(C)]
-    #[derive(Clone, Copy)]
+    #[derive(Clone, Copy, Default)]
     pub struct DescriptorMappingSourceIndirectIndexArrayEXT<'a> {
         pub heap_offset: u32,
         pub push_offset: u32,
@@ -325,14 +659,76 @@ pub(crate) mod reexport {
         pub sampler_heap_index_stride: u32,
         pub _marker: ::core::marker::PhantomData<&'a ()>,
     }
+    impl<'a> DescriptorMappingSourceIndirectIndexArrayEXT<'a> {
+        pub fn heap_offset(mut self, heap_offset: u32) -> Self {
+            self.heap_offset = heap_offset;
+            self
+        }
+        pub fn push_offset(mut self, push_offset: u32) -> Self {
+            self.push_offset = push_offset;
+            self
+        }
+        pub fn address_offset(mut self, address_offset: u32) -> Self {
+            self.address_offset = address_offset;
+            self
+        }
+        pub fn heap_index_stride(mut self, heap_index_stride: u32) -> Self {
+            self.heap_index_stride = heap_index_stride;
+            self
+        }
+        pub fn p_embedded_sampler(
+            mut self,
+            p_embedded_sampler: &'a crate::vk::SamplerCreateInfo<'a>,
+        ) -> Self {
+            self.p_embedded_sampler = p_embedded_sampler;
+            self
+        }
+        pub fn use_combined_image_sampler_index(
+            mut self,
+            use_combined_image_sampler_index: bool,
+        ) -> Self {
+            self.use_combined_image_sampler_index = use_combined_image_sampler_index
+                .into();
+            self
+        }
+        pub fn sampler_heap_offset(mut self, sampler_heap_offset: u32) -> Self {
+            self.sampler_heap_offset = sampler_heap_offset;
+            self
+        }
+        pub fn sampler_push_offset(mut self, sampler_push_offset: u32) -> Self {
+            self.sampler_push_offset = sampler_push_offset;
+            self
+        }
+        pub fn sampler_address_offset(mut self, sampler_address_offset: u32) -> Self {
+            self.sampler_address_offset = sampler_address_offset;
+            self
+        }
+        pub fn sampler_heap_index_stride(
+            mut self,
+            sampler_heap_index_stride: u32,
+        ) -> Self {
+            self.sampler_heap_index_stride = sampler_heap_index_stride;
+            self
+        }
+    }
     #[repr(C)]
-    #[derive(Clone, Copy)]
+    #[derive(Clone, Copy, Default)]
     pub struct DescriptorMappingSourceHeapDataEXT {
         pub heap_offset: u32,
         pub push_offset: u32,
     }
+    impl DescriptorMappingSourceHeapDataEXT {
+        pub fn heap_offset(mut self, heap_offset: u32) -> Self {
+            self.heap_offset = heap_offset;
+            self
+        }
+        pub fn push_offset(mut self, push_offset: u32) -> Self {
+            self.push_offset = push_offset;
+            self
+        }
+    }
     #[repr(C)]
-    #[derive(Clone, Copy)]
+    #[derive(Clone, Copy, Default)]
     pub struct DescriptorMappingSourceShaderRecordIndexEXT<'a> {
         pub heap_offset: u32,
         pub shader_record_offset: u32,
@@ -346,11 +742,79 @@ pub(crate) mod reexport {
         pub sampler_heap_array_stride: u32,
         pub _marker: ::core::marker::PhantomData<&'a ()>,
     }
+    impl<'a> DescriptorMappingSourceShaderRecordIndexEXT<'a> {
+        pub fn heap_offset(mut self, heap_offset: u32) -> Self {
+            self.heap_offset = heap_offset;
+            self
+        }
+        pub fn shader_record_offset(mut self, shader_record_offset: u32) -> Self {
+            self.shader_record_offset = shader_record_offset;
+            self
+        }
+        pub fn heap_index_stride(mut self, heap_index_stride: u32) -> Self {
+            self.heap_index_stride = heap_index_stride;
+            self
+        }
+        pub fn heap_array_stride(mut self, heap_array_stride: u32) -> Self {
+            self.heap_array_stride = heap_array_stride;
+            self
+        }
+        pub fn p_embedded_sampler(
+            mut self,
+            p_embedded_sampler: &'a crate::vk::SamplerCreateInfo<'a>,
+        ) -> Self {
+            self.p_embedded_sampler = p_embedded_sampler;
+            self
+        }
+        pub fn use_combined_image_sampler_index(
+            mut self,
+            use_combined_image_sampler_index: bool,
+        ) -> Self {
+            self.use_combined_image_sampler_index = use_combined_image_sampler_index
+                .into();
+            self
+        }
+        pub fn sampler_heap_offset(mut self, sampler_heap_offset: u32) -> Self {
+            self.sampler_heap_offset = sampler_heap_offset;
+            self
+        }
+        pub fn sampler_shader_record_offset(
+            mut self,
+            sampler_shader_record_offset: u32,
+        ) -> Self {
+            self.sampler_shader_record_offset = sampler_shader_record_offset;
+            self
+        }
+        pub fn sampler_heap_index_stride(
+            mut self,
+            sampler_heap_index_stride: u32,
+        ) -> Self {
+            self.sampler_heap_index_stride = sampler_heap_index_stride;
+            self
+        }
+        pub fn sampler_heap_array_stride(
+            mut self,
+            sampler_heap_array_stride: u32,
+        ) -> Self {
+            self.sampler_heap_array_stride = sampler_heap_array_stride;
+            self
+        }
+    }
     #[repr(C)]
-    #[derive(Clone, Copy)]
+    #[derive(Clone, Copy, Default)]
     pub struct DescriptorMappingSourceIndirectAddressEXT {
         pub push_offset: u32,
         pub address_offset: u32,
+    }
+    impl DescriptorMappingSourceIndirectAddressEXT {
+        pub fn push_offset(mut self, push_offset: u32) -> Self {
+            self.push_offset = push_offset;
+            self
+        }
+        pub fn address_offset(mut self, address_offset: u32) -> Self {
+            self.address_offset = address_offset;
+            self
+        }
     }
     #[repr(C)]
     #[derive(Clone, Copy)]
@@ -365,6 +829,57 @@ pub(crate) mod reexport {
         pub source_data: crate::vk::DescriptorMappingSourceDataEXT<'a>,
         pub _marker: ::core::marker::PhantomData<&'a ()>,
     }
+    unsafe impl<'a> crate::TaggedStructure<'a>
+    for DescriptorSetAndBindingMappingEXT<'a> {
+        const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::DESCRIPTOR_SET_AND_BINDING_MAPPING_EXT;
+    }
+    impl<'a> Default for DescriptorSetAndBindingMappingEXT<'a> {
+        fn default() -> Self {
+            Self {
+                s_type: <Self as crate::TaggedStructure>::STRUCTURE_TYPE,
+                p_next: Default::default(),
+                descriptor_set: Default::default(),
+                first_binding: Default::default(),
+                binding_count: Default::default(),
+                resource_mask: Default::default(),
+                source: Default::default(),
+                source_data: Default::default(),
+                _marker: ::core::marker::PhantomData,
+            }
+        }
+    }
+    impl<'a> DescriptorSetAndBindingMappingEXT<'a> {
+        pub fn descriptor_set(mut self, descriptor_set: u32) -> Self {
+            self.descriptor_set = descriptor_set;
+            self
+        }
+        pub fn first_binding(mut self, first_binding: u32) -> Self {
+            self.first_binding = first_binding;
+            self
+        }
+        pub fn binding_count(mut self, binding_count: u32) -> Self {
+            self.binding_count = binding_count;
+            self
+        }
+        pub fn resource_mask(
+            mut self,
+            resource_mask: crate::vk::SpirvResourceTypeFlagsEXT,
+        ) -> Self {
+            self.resource_mask = resource_mask;
+            self
+        }
+        pub fn source(mut self, source: crate::vk::DescriptorMappingSourceEXT) -> Self {
+            self.source = source;
+            self
+        }
+        pub fn source_data(
+            mut self,
+            source_data: crate::vk::DescriptorMappingSourceDataEXT<'a>,
+        ) -> Self {
+            self.source_data = source_data;
+            self
+        }
+    }
     #[repr(C)]
     #[derive(Clone, Copy)]
     pub struct ShaderDescriptorSetAndBindingMappingInfoEXT<'a> {
@@ -374,6 +889,39 @@ pub(crate) mod reexport {
         pub p_mappings: *const crate::vk::DescriptorSetAndBindingMappingEXT<'a>,
         pub _marker: ::core::marker::PhantomData<&'a ()>,
     }
+    unsafe impl<'a> crate::TaggedStructure<'a>
+    for ShaderDescriptorSetAndBindingMappingInfoEXT<'a> {
+        const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::SHADER_DESCRIPTOR_SET_AND_BINDING_MAPPING_INFO_EXT;
+    }
+    unsafe impl<'a> crate::Extends<crate::vk::PipelineShaderStageCreateInfo<'_>>
+    for ShaderDescriptorSetAndBindingMappingInfoEXT<'a> {}
+    unsafe impl<'a> crate::Extends<crate::vk::ShaderCreateInfoEXT<'_>>
+    for ShaderDescriptorSetAndBindingMappingInfoEXT<'a> {}
+    impl<'a> Default for ShaderDescriptorSetAndBindingMappingInfoEXT<'a> {
+        fn default() -> Self {
+            Self {
+                s_type: <Self as crate::TaggedStructure>::STRUCTURE_TYPE,
+                p_next: Default::default(),
+                mapping_count: Default::default(),
+                p_mappings: Default::default(),
+                _marker: ::core::marker::PhantomData,
+            }
+        }
+    }
+    impl<'a> ShaderDescriptorSetAndBindingMappingInfoEXT<'a> {
+        pub fn mapping_count(mut self, mapping_count: u32) -> Self {
+            self.mapping_count = mapping_count;
+            self
+        }
+        pub fn p_mappings(
+            mut self,
+            p_mappings: &'a [crate::vk::DescriptorSetAndBindingMappingEXT<'a>],
+        ) -> Self {
+            self.mapping_count = p_mappings.len() as _;
+            self.p_mappings = p_mappings.as_ptr();
+            self
+        }
+    }
     #[repr(C)]
     #[derive(Clone, Copy)]
     pub struct SamplerCustomBorderColorIndexCreateInfoEXT<'a> {
@@ -382,6 +930,28 @@ pub(crate) mod reexport {
         pub index: u32,
         pub _marker: ::core::marker::PhantomData<&'a ()>,
     }
+    unsafe impl<'a> crate::TaggedStructure<'a>
+    for SamplerCustomBorderColorIndexCreateInfoEXT<'a> {
+        const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::SAMPLER_CUSTOM_BORDER_COLOR_INDEX_CREATE_INFO_EXT;
+    }
+    unsafe impl<'a> crate::Extends<crate::vk::SamplerCreateInfo<'_>>
+    for SamplerCustomBorderColorIndexCreateInfoEXT<'a> {}
+    impl<'a> Default for SamplerCustomBorderColorIndexCreateInfoEXT<'a> {
+        fn default() -> Self {
+            Self {
+                s_type: <Self as crate::TaggedStructure>::STRUCTURE_TYPE,
+                p_next: Default::default(),
+                index: Default::default(),
+                _marker: ::core::marker::PhantomData,
+            }
+        }
+    }
+    impl<'a> SamplerCustomBorderColorIndexCreateInfoEXT<'a> {
+        pub fn index(mut self, index: u32) -> Self {
+            self.index = index;
+            self
+        }
+    }
     #[repr(C)]
     #[derive(Clone, Copy)]
     pub struct OpaqueCaptureDataCreateInfoEXT<'a> {
@@ -389,6 +959,32 @@ pub(crate) mod reexport {
         pub p_next: *const core::ffi::c_void,
         pub p_data: *const crate::vk::HostAddressRangeConstEXT<'a>,
         pub _marker: ::core::marker::PhantomData<&'a ()>,
+    }
+    unsafe impl<'a> crate::TaggedStructure<'a> for OpaqueCaptureDataCreateInfoEXT<'a> {
+        const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::OPAQUE_CAPTURE_DATA_CREATE_INFO_EXT;
+    }
+    unsafe impl<'a> crate::Extends<crate::vk::ImageCreateInfo<'_>>
+    for OpaqueCaptureDataCreateInfoEXT<'a> {}
+    unsafe impl<'a> crate::Extends<crate::vk::TensorCreateInfoARM<'_>>
+    for OpaqueCaptureDataCreateInfoEXT<'a> {}
+    impl<'a> Default for OpaqueCaptureDataCreateInfoEXT<'a> {
+        fn default() -> Self {
+            Self {
+                s_type: <Self as crate::TaggedStructure>::STRUCTURE_TYPE,
+                p_next: Default::default(),
+                p_data: Default::default(),
+                _marker: ::core::marker::PhantomData,
+            }
+        }
+    }
+    impl<'a> OpaqueCaptureDataCreateInfoEXT<'a> {
+        pub fn p_data(
+            mut self,
+            p_data: &'a crate::vk::HostAddressRangeConstEXT<'a>,
+        ) -> Self {
+            self.p_data = p_data;
+            self
+        }
     }
     #[repr(C)]
     #[derive(Clone, Copy)]
@@ -399,6 +995,33 @@ pub(crate) mod reexport {
         pub push_data_size: u32,
         pub _marker: ::core::marker::PhantomData<&'a ()>,
     }
+    unsafe impl<'a> crate::TaggedStructure<'a>
+    for IndirectCommandsLayoutPushDataTokenNV<'a> {
+        const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::INDIRECT_COMMANDS_LAYOUT_PUSH_DATA_TOKEN_NV;
+    }
+    unsafe impl<'a> crate::Extends<crate::vk::IndirectCommandsLayoutTokenNV<'_>>
+    for IndirectCommandsLayoutPushDataTokenNV<'a> {}
+    impl<'a> Default for IndirectCommandsLayoutPushDataTokenNV<'a> {
+        fn default() -> Self {
+            Self {
+                s_type: <Self as crate::TaggedStructure>::STRUCTURE_TYPE,
+                p_next: Default::default(),
+                push_data_offset: Default::default(),
+                push_data_size: Default::default(),
+                _marker: ::core::marker::PhantomData,
+            }
+        }
+    }
+    impl<'a> IndirectCommandsLayoutPushDataTokenNV<'a> {
+        pub fn push_data_offset(mut self, push_data_offset: u32) -> Self {
+            self.push_data_offset = push_data_offset;
+            self
+        }
+        pub fn push_data_size(mut self, push_data_size: u32) -> Self {
+            self.push_data_size = push_data_size;
+            self
+        }
+    }
     #[repr(C)]
     #[derive(Clone, Copy)]
     pub struct SubsampledImageFormatPropertiesEXT<'a> {
@@ -406,6 +1029,31 @@ pub(crate) mod reexport {
         pub p_next: *const core::ffi::c_void,
         pub subsampled_image_descriptor_count: u32,
         pub _marker: ::core::marker::PhantomData<&'a ()>,
+    }
+    unsafe impl<'a> crate::TaggedStructure<'a>
+    for SubsampledImageFormatPropertiesEXT<'a> {
+        const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::SUBSAMPLED_IMAGE_FORMAT_PROPERTIES_EXT;
+    }
+    unsafe impl<'a> crate::Extends<crate::vk::ImageFormatProperties2<'_>>
+    for SubsampledImageFormatPropertiesEXT<'a> {}
+    impl<'a> Default for SubsampledImageFormatPropertiesEXT<'a> {
+        fn default() -> Self {
+            Self {
+                s_type: <Self as crate::TaggedStructure>::STRUCTURE_TYPE,
+                p_next: Default::default(),
+                subsampled_image_descriptor_count: Default::default(),
+                _marker: ::core::marker::PhantomData,
+            }
+        }
+    }
+    impl<'a> SubsampledImageFormatPropertiesEXT<'a> {
+        pub fn subsampled_image_descriptor_count(
+            mut self,
+            subsampled_image_descriptor_count: u32,
+        ) -> Self {
+            self.subsampled_image_descriptor_count = subsampled_image_descriptor_count;
+            self
+        }
     }
     #[repr(C)]
     #[derive(Clone, Copy)]
@@ -415,6 +1063,38 @@ pub(crate) mod reexport {
         pub descriptor_heap: crate::vk::Bool32,
         pub descriptor_heap_capture_replay: crate::vk::Bool32,
         pub _marker: ::core::marker::PhantomData<&'a ()>,
+    }
+    unsafe impl<'a> crate::TaggedStructure<'a>
+    for PhysicalDeviceDescriptorHeapFeaturesEXT<'a> {
+        const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::PHYSICAL_DEVICE_DESCRIPTOR_HEAP_FEATURES_EXT;
+    }
+    unsafe impl<'a> crate::Extends<crate::vk::PhysicalDeviceFeatures2<'_>>
+    for PhysicalDeviceDescriptorHeapFeaturesEXT<'a> {}
+    unsafe impl<'a> crate::Extends<crate::vk::DeviceCreateInfo<'_>>
+    for PhysicalDeviceDescriptorHeapFeaturesEXT<'a> {}
+    impl<'a> Default for PhysicalDeviceDescriptorHeapFeaturesEXT<'a> {
+        fn default() -> Self {
+            Self {
+                s_type: <Self as crate::TaggedStructure>::STRUCTURE_TYPE,
+                p_next: Default::default(),
+                descriptor_heap: Default::default(),
+                descriptor_heap_capture_replay: Default::default(),
+                _marker: ::core::marker::PhantomData,
+            }
+        }
+    }
+    impl<'a> PhysicalDeviceDescriptorHeapFeaturesEXT<'a> {
+        pub fn descriptor_heap(mut self, descriptor_heap: bool) -> Self {
+            self.descriptor_heap = descriptor_heap.into();
+            self
+        }
+        pub fn descriptor_heap_capture_replay(
+            mut self,
+            descriptor_heap_capture_replay: bool,
+        ) -> Self {
+            self.descriptor_heap_capture_replay = descriptor_heap_capture_replay.into();
+            self
+        }
     }
     #[repr(C)]
     #[derive(Clone, Copy)]
@@ -442,6 +1122,172 @@ pub(crate) mod reexport {
         pub protected_descriptor_heaps: crate::vk::Bool32,
         pub _marker: ::core::marker::PhantomData<&'a ()>,
     }
+    unsafe impl<'a> crate::TaggedStructure<'a>
+    for PhysicalDeviceDescriptorHeapPropertiesEXT<'a> {
+        const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::PHYSICAL_DEVICE_DESCRIPTOR_HEAP_PROPERTIES_EXT;
+    }
+    unsafe impl<'a> crate::Extends<crate::vk::PhysicalDeviceProperties2<'_>>
+    for PhysicalDeviceDescriptorHeapPropertiesEXT<'a> {}
+    impl<'a> Default for PhysicalDeviceDescriptorHeapPropertiesEXT<'a> {
+        fn default() -> Self {
+            Self {
+                s_type: <Self as crate::TaggedStructure>::STRUCTURE_TYPE,
+                p_next: Default::default(),
+                sampler_heap_alignment: Default::default(),
+                resource_heap_alignment: Default::default(),
+                max_sampler_heap_size: Default::default(),
+                max_resource_heap_size: Default::default(),
+                min_sampler_heap_reserved_range: Default::default(),
+                min_sampler_heap_reserved_range_with_embedded: Default::default(),
+                min_resource_heap_reserved_range: Default::default(),
+                sampler_descriptor_size: Default::default(),
+                image_descriptor_size: Default::default(),
+                buffer_descriptor_size: Default::default(),
+                sampler_descriptor_alignment: Default::default(),
+                image_descriptor_alignment: Default::default(),
+                buffer_descriptor_alignment: Default::default(),
+                max_push_data_size: Default::default(),
+                image_capture_replay_opaque_data_size: Default::default(),
+                max_descriptor_heap_embedded_samplers: Default::default(),
+                sampler_ycbcr_conversion_count: Default::default(),
+                sparse_descriptor_heaps: Default::default(),
+                protected_descriptor_heaps: Default::default(),
+                _marker: ::core::marker::PhantomData,
+            }
+        }
+    }
+    impl<'a> PhysicalDeviceDescriptorHeapPropertiesEXT<'a> {
+        pub fn sampler_heap_alignment(
+            mut self,
+            sampler_heap_alignment: crate::vk::DeviceSize,
+        ) -> Self {
+            self.sampler_heap_alignment = sampler_heap_alignment;
+            self
+        }
+        pub fn resource_heap_alignment(
+            mut self,
+            resource_heap_alignment: crate::vk::DeviceSize,
+        ) -> Self {
+            self.resource_heap_alignment = resource_heap_alignment;
+            self
+        }
+        pub fn max_sampler_heap_size(
+            mut self,
+            max_sampler_heap_size: crate::vk::DeviceSize,
+        ) -> Self {
+            self.max_sampler_heap_size = max_sampler_heap_size;
+            self
+        }
+        pub fn max_resource_heap_size(
+            mut self,
+            max_resource_heap_size: crate::vk::DeviceSize,
+        ) -> Self {
+            self.max_resource_heap_size = max_resource_heap_size;
+            self
+        }
+        pub fn min_sampler_heap_reserved_range(
+            mut self,
+            min_sampler_heap_reserved_range: crate::vk::DeviceSize,
+        ) -> Self {
+            self.min_sampler_heap_reserved_range = min_sampler_heap_reserved_range;
+            self
+        }
+        pub fn min_sampler_heap_reserved_range_with_embedded(
+            mut self,
+            min_sampler_heap_reserved_range_with_embedded: crate::vk::DeviceSize,
+        ) -> Self {
+            self.min_sampler_heap_reserved_range_with_embedded = min_sampler_heap_reserved_range_with_embedded;
+            self
+        }
+        pub fn min_resource_heap_reserved_range(
+            mut self,
+            min_resource_heap_reserved_range: crate::vk::DeviceSize,
+        ) -> Self {
+            self.min_resource_heap_reserved_range = min_resource_heap_reserved_range;
+            self
+        }
+        pub fn sampler_descriptor_size(
+            mut self,
+            sampler_descriptor_size: crate::vk::DeviceSize,
+        ) -> Self {
+            self.sampler_descriptor_size = sampler_descriptor_size;
+            self
+        }
+        pub fn image_descriptor_size(
+            mut self,
+            image_descriptor_size: crate::vk::DeviceSize,
+        ) -> Self {
+            self.image_descriptor_size = image_descriptor_size;
+            self
+        }
+        pub fn buffer_descriptor_size(
+            mut self,
+            buffer_descriptor_size: crate::vk::DeviceSize,
+        ) -> Self {
+            self.buffer_descriptor_size = buffer_descriptor_size;
+            self
+        }
+        pub fn sampler_descriptor_alignment(
+            mut self,
+            sampler_descriptor_alignment: crate::vk::DeviceSize,
+        ) -> Self {
+            self.sampler_descriptor_alignment = sampler_descriptor_alignment;
+            self
+        }
+        pub fn image_descriptor_alignment(
+            mut self,
+            image_descriptor_alignment: crate::vk::DeviceSize,
+        ) -> Self {
+            self.image_descriptor_alignment = image_descriptor_alignment;
+            self
+        }
+        pub fn buffer_descriptor_alignment(
+            mut self,
+            buffer_descriptor_alignment: crate::vk::DeviceSize,
+        ) -> Self {
+            self.buffer_descriptor_alignment = buffer_descriptor_alignment;
+            self
+        }
+        pub fn max_push_data_size(
+            mut self,
+            max_push_data_size: crate::vk::DeviceSize,
+        ) -> Self {
+            self.max_push_data_size = max_push_data_size;
+            self
+        }
+        pub fn image_capture_replay_opaque_data_size(
+            mut self,
+            image_capture_replay_opaque_data_size: usize,
+        ) -> Self {
+            self.image_capture_replay_opaque_data_size = image_capture_replay_opaque_data_size;
+            self
+        }
+        pub fn max_descriptor_heap_embedded_samplers(
+            mut self,
+            max_descriptor_heap_embedded_samplers: u32,
+        ) -> Self {
+            self.max_descriptor_heap_embedded_samplers = max_descriptor_heap_embedded_samplers;
+            self
+        }
+        pub fn sampler_ycbcr_conversion_count(
+            mut self,
+            sampler_ycbcr_conversion_count: u32,
+        ) -> Self {
+            self.sampler_ycbcr_conversion_count = sampler_ycbcr_conversion_count;
+            self
+        }
+        pub fn sparse_descriptor_heaps(mut self, sparse_descriptor_heaps: bool) -> Self {
+            self.sparse_descriptor_heaps = sparse_descriptor_heaps.into();
+            self
+        }
+        pub fn protected_descriptor_heaps(
+            mut self,
+            protected_descriptor_heaps: bool,
+        ) -> Self {
+            self.protected_descriptor_heaps = protected_descriptor_heaps.into();
+            self
+        }
+    }
     #[repr(C)]
     #[derive(Clone, Copy)]
     pub struct CommandBufferInheritanceDescriptorHeapInfoEXT<'a> {
@@ -450,6 +1296,39 @@ pub(crate) mod reexport {
         pub p_sampler_heap_bind_info: *const crate::vk::BindHeapInfoEXT<'a>,
         pub p_resource_heap_bind_info: *const crate::vk::BindHeapInfoEXT<'a>,
         pub _marker: ::core::marker::PhantomData<&'a ()>,
+    }
+    unsafe impl<'a> crate::TaggedStructure<'a>
+    for CommandBufferInheritanceDescriptorHeapInfoEXT<'a> {
+        const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::COMMAND_BUFFER_INHERITANCE_DESCRIPTOR_HEAP_INFO_EXT;
+    }
+    unsafe impl<'a> crate::Extends<crate::vk::CommandBufferInheritanceInfo<'_>>
+    for CommandBufferInheritanceDescriptorHeapInfoEXT<'a> {}
+    impl<'a> Default for CommandBufferInheritanceDescriptorHeapInfoEXT<'a> {
+        fn default() -> Self {
+            Self {
+                s_type: <Self as crate::TaggedStructure>::STRUCTURE_TYPE,
+                p_next: Default::default(),
+                p_sampler_heap_bind_info: Default::default(),
+                p_resource_heap_bind_info: Default::default(),
+                _marker: ::core::marker::PhantomData,
+            }
+        }
+    }
+    impl<'a> CommandBufferInheritanceDescriptorHeapInfoEXT<'a> {
+        pub fn p_sampler_heap_bind_info(
+            mut self,
+            p_sampler_heap_bind_info: &'a crate::vk::BindHeapInfoEXT<'a>,
+        ) -> Self {
+            self.p_sampler_heap_bind_info = p_sampler_heap_bind_info;
+            self
+        }
+        pub fn p_resource_heap_bind_info(
+            mut self,
+            p_resource_heap_bind_info: &'a crate::vk::BindHeapInfoEXT<'a>,
+        ) -> Self {
+            self.p_resource_heap_bind_info = p_resource_heap_bind_info;
+            self
+        }
     }
     #[repr(C)]
     #[derive(Clone, Copy)]
@@ -461,6 +1340,47 @@ pub(crate) mod reexport {
         pub tensor_capture_replay_opaque_data_size: usize,
         pub _marker: ::core::marker::PhantomData<&'a ()>,
     }
+    unsafe impl<'a> crate::TaggedStructure<'a>
+    for PhysicalDeviceDescriptorHeapTensorPropertiesARM<'a> {
+        const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::PHYSICAL_DEVICE_DESCRIPTOR_HEAP_TENSOR_PROPERTIES_ARM;
+    }
+    unsafe impl<'a> crate::Extends<crate::vk::PhysicalDeviceProperties2<'_>>
+    for PhysicalDeviceDescriptorHeapTensorPropertiesARM<'a> {}
+    impl<'a> Default for PhysicalDeviceDescriptorHeapTensorPropertiesARM<'a> {
+        fn default() -> Self {
+            Self {
+                s_type: <Self as crate::TaggedStructure>::STRUCTURE_TYPE,
+                p_next: Default::default(),
+                tensor_descriptor_size: Default::default(),
+                tensor_descriptor_alignment: Default::default(),
+                tensor_capture_replay_opaque_data_size: Default::default(),
+                _marker: ::core::marker::PhantomData,
+            }
+        }
+    }
+    impl<'a> PhysicalDeviceDescriptorHeapTensorPropertiesARM<'a> {
+        pub fn tensor_descriptor_size(
+            mut self,
+            tensor_descriptor_size: crate::vk::DeviceSize,
+        ) -> Self {
+            self.tensor_descriptor_size = tensor_descriptor_size;
+            self
+        }
+        pub fn tensor_descriptor_alignment(
+            mut self,
+            tensor_descriptor_alignment: crate::vk::DeviceSize,
+        ) -> Self {
+            self.tensor_descriptor_alignment = tensor_descriptor_alignment;
+            self
+        }
+        pub fn tensor_capture_replay_opaque_data_size(
+            mut self,
+            tensor_capture_replay_opaque_data_size: usize,
+        ) -> Self {
+            self.tensor_capture_replay_opaque_data_size = tensor_capture_replay_opaque_data_size;
+            self
+        }
+    }
     pub type DeviceAddressRangeEXT = crate::vk::DeviceAddressRangeKHR;
     #[repr(C)]
     #[derive(Clone, Copy)]
@@ -469,6 +1389,11 @@ pub(crate) mod reexport {
         pub p_texel_buffer: *const crate::vk::TexelBufferDescriptorInfoEXT<'a>,
         pub p_address_range: *const crate::vk::DeviceAddressRangeEXT,
         pub p_tensor_arm: *const crate::vk::TensorViewCreateInfoARM<'a>,
+    }
+    impl<'a> Default for ResourceDescriptorDataEXT<'a> {
+        fn default() -> Self {
+            unsafe { core::mem::zeroed() }
+        }
     }
     #[repr(C)]
     #[derive(Clone, Copy)]
@@ -488,6 +1413,11 @@ pub(crate) mod reexport {
         >,
         pub shader_record_data_offset: u32,
         pub shader_record_address_offset: u32,
+    }
+    impl<'a> Default for DescriptorMappingSourceDataEXT<'a> {
+        fn default() -> Self {
+            unsafe { core::mem::zeroed() }
+        }
     }
     ///Provided by [`ext::descriptor_heap`](crate::ext::descriptor_heap)
     impl crate::vk::StructureType {
@@ -648,7 +1578,7 @@ pub(crate) mod reexport {
         }
     }
     #[repr(transparent)]
-    #[derive(Clone, Copy)]
+    #[derive(Clone, Copy, Default)]
     pub struct TensorViewCreateFlagBitsARM(pub(crate) u64);
     #[repr(transparent)]
     #[derive(Clone, Copy)]
@@ -745,7 +1675,7 @@ pub(crate) mod reexport {
         }
     }
     #[repr(transparent)]
-    #[derive(Clone, Copy)]
+    #[derive(Clone, Copy, Default)]
     pub struct SpirvResourceTypeFlagBitsEXT(pub(crate) u32);
     ///Provided by [`ext::descriptor_heap`](crate::ext::descriptor_heap)
     impl SpirvResourceTypeFlagBitsEXT {

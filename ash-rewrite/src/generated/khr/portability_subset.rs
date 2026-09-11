@@ -23,6 +23,119 @@ pub struct PhysicalDevicePortabilitySubsetFeaturesKHR<'a> {
     pub vertex_attribute_access_beyond_stride: crate::vk::Bool32,
     pub _marker: ::core::marker::PhantomData<&'a ()>,
 }
+unsafe impl<'a> crate::TaggedStructure<'a>
+for PhysicalDevicePortabilitySubsetFeaturesKHR<'a> {
+    const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::PHYSICAL_DEVICE_PORTABILITY_SUBSET_FEATURES_KHR;
+}
+unsafe impl<'a> crate::Extends<crate::vk::PhysicalDeviceFeatures2<'_>>
+for PhysicalDevicePortabilitySubsetFeaturesKHR<'a> {}
+unsafe impl<'a> crate::Extends<crate::vk::DeviceCreateInfo<'_>>
+for PhysicalDevicePortabilitySubsetFeaturesKHR<'a> {}
+impl<'a> Default for PhysicalDevicePortabilitySubsetFeaturesKHR<'a> {
+    fn default() -> Self {
+        Self {
+            s_type: <Self as crate::TaggedStructure>::STRUCTURE_TYPE,
+            p_next: Default::default(),
+            constant_alpha_color_blend_factors: Default::default(),
+            events: Default::default(),
+            image_view_format_reinterpretation: Default::default(),
+            image_view_format_swizzle: Default::default(),
+            image_view2_d_on3_d_image: Default::default(),
+            multisample_array_image: Default::default(),
+            mutable_comparison_samplers: Default::default(),
+            point_polygons: Default::default(),
+            sampler_mip_lod_bias: Default::default(),
+            separate_stencil_mask_ref: Default::default(),
+            shader_sample_rate_interpolation_functions: Default::default(),
+            tessellation_isolines: Default::default(),
+            tessellation_point_mode: Default::default(),
+            triangle_fans: Default::default(),
+            vertex_attribute_access_beyond_stride: Default::default(),
+            _marker: ::core::marker::PhantomData,
+        }
+    }
+}
+impl<'a> PhysicalDevicePortabilitySubsetFeaturesKHR<'a> {
+    pub fn constant_alpha_color_blend_factors(
+        mut self,
+        constant_alpha_color_blend_factors: bool,
+    ) -> Self {
+        self.constant_alpha_color_blend_factors = constant_alpha_color_blend_factors
+            .into();
+        self
+    }
+    pub fn events(mut self, events: bool) -> Self {
+        self.events = events.into();
+        self
+    }
+    pub fn image_view_format_reinterpretation(
+        mut self,
+        image_view_format_reinterpretation: bool,
+    ) -> Self {
+        self.image_view_format_reinterpretation = image_view_format_reinterpretation
+            .into();
+        self
+    }
+    pub fn image_view_format_swizzle(mut self, image_view_format_swizzle: bool) -> Self {
+        self.image_view_format_swizzle = image_view_format_swizzle.into();
+        self
+    }
+    pub fn image_view2_d_on3_d_image(mut self, image_view2_d_on3_d_image: bool) -> Self {
+        self.image_view2_d_on3_d_image = image_view2_d_on3_d_image.into();
+        self
+    }
+    pub fn multisample_array_image(mut self, multisample_array_image: bool) -> Self {
+        self.multisample_array_image = multisample_array_image.into();
+        self
+    }
+    pub fn mutable_comparison_samplers(
+        mut self,
+        mutable_comparison_samplers: bool,
+    ) -> Self {
+        self.mutable_comparison_samplers = mutable_comparison_samplers.into();
+        self
+    }
+    pub fn point_polygons(mut self, point_polygons: bool) -> Self {
+        self.point_polygons = point_polygons.into();
+        self
+    }
+    pub fn sampler_mip_lod_bias(mut self, sampler_mip_lod_bias: bool) -> Self {
+        self.sampler_mip_lod_bias = sampler_mip_lod_bias.into();
+        self
+    }
+    pub fn separate_stencil_mask_ref(mut self, separate_stencil_mask_ref: bool) -> Self {
+        self.separate_stencil_mask_ref = separate_stencil_mask_ref.into();
+        self
+    }
+    pub fn shader_sample_rate_interpolation_functions(
+        mut self,
+        shader_sample_rate_interpolation_functions: bool,
+    ) -> Self {
+        self.shader_sample_rate_interpolation_functions = shader_sample_rate_interpolation_functions
+            .into();
+        self
+    }
+    pub fn tessellation_isolines(mut self, tessellation_isolines: bool) -> Self {
+        self.tessellation_isolines = tessellation_isolines.into();
+        self
+    }
+    pub fn tessellation_point_mode(mut self, tessellation_point_mode: bool) -> Self {
+        self.tessellation_point_mode = tessellation_point_mode.into();
+        self
+    }
+    pub fn triangle_fans(mut self, triangle_fans: bool) -> Self {
+        self.triangle_fans = triangle_fans.into();
+        self
+    }
+    pub fn vertex_attribute_access_beyond_stride(
+        mut self,
+        vertex_attribute_access_beyond_stride: bool,
+    ) -> Self {
+        self.vertex_attribute_access_beyond_stride = vertex_attribute_access_beyond_stride
+            .into();
+        self
+    }
+}
 #[repr(C)]
 #[derive(Clone, Copy)]
 pub struct PhysicalDevicePortabilitySubsetPropertiesKHR<'a> {
@@ -30,6 +143,31 @@ pub struct PhysicalDevicePortabilitySubsetPropertiesKHR<'a> {
     pub p_next: *mut core::ffi::c_void,
     pub min_vertex_input_binding_stride_alignment: u32,
     pub _marker: ::core::marker::PhantomData<&'a ()>,
+}
+unsafe impl<'a> crate::TaggedStructure<'a>
+for PhysicalDevicePortabilitySubsetPropertiesKHR<'a> {
+    const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::PHYSICAL_DEVICE_PORTABILITY_SUBSET_PROPERTIES_KHR;
+}
+unsafe impl<'a> crate::Extends<crate::vk::PhysicalDeviceProperties2<'_>>
+for PhysicalDevicePortabilitySubsetPropertiesKHR<'a> {}
+impl<'a> Default for PhysicalDevicePortabilitySubsetPropertiesKHR<'a> {
+    fn default() -> Self {
+        Self {
+            s_type: <Self as crate::TaggedStructure>::STRUCTURE_TYPE,
+            p_next: Default::default(),
+            min_vertex_input_binding_stride_alignment: Default::default(),
+            _marker: ::core::marker::PhantomData,
+        }
+    }
+}
+impl<'a> PhysicalDevicePortabilitySubsetPropertiesKHR<'a> {
+    pub fn min_vertex_input_binding_stride_alignment(
+        mut self,
+        min_vertex_input_binding_stride_alignment: u32,
+    ) -> Self {
+        self.min_vertex_input_binding_stride_alignment = min_vertex_input_binding_stride_alignment;
+        self
+    }
 }
 ///Provided by [`khr::portability_subset`](crate::khr::portability_subset)
 impl crate::vk::StructureType {

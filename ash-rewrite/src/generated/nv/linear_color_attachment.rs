@@ -9,6 +9,30 @@ pub struct PhysicalDeviceLinearColorAttachmentFeaturesNV<'a> {
     pub linear_color_attachment: crate::vk::Bool32,
     pub _marker: ::core::marker::PhantomData<&'a ()>,
 }
+unsafe impl<'a> crate::TaggedStructure<'a>
+for PhysicalDeviceLinearColorAttachmentFeaturesNV<'a> {
+    const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::PHYSICAL_DEVICE_LINEAR_COLOR_ATTACHMENT_FEATURES_NV;
+}
+unsafe impl<'a> crate::Extends<crate::vk::PhysicalDeviceFeatures2<'_>>
+for PhysicalDeviceLinearColorAttachmentFeaturesNV<'a> {}
+unsafe impl<'a> crate::Extends<crate::vk::DeviceCreateInfo<'_>>
+for PhysicalDeviceLinearColorAttachmentFeaturesNV<'a> {}
+impl<'a> Default for PhysicalDeviceLinearColorAttachmentFeaturesNV<'a> {
+    fn default() -> Self {
+        Self {
+            s_type: <Self as crate::TaggedStructure>::STRUCTURE_TYPE,
+            p_next: Default::default(),
+            linear_color_attachment: Default::default(),
+            _marker: ::core::marker::PhantomData,
+        }
+    }
+}
+impl<'a> PhysicalDeviceLinearColorAttachmentFeaturesNV<'a> {
+    pub fn linear_color_attachment(mut self, linear_color_attachment: bool) -> Self {
+        self.linear_color_attachment = linear_color_attachment.into();
+        self
+    }
+}
 ///Provided by [`nv::linear_color_attachment`](crate::nv::linear_color_attachment)
 impl crate::vk::StructureType {
     pub const PHYSICAL_DEVICE_LINEAR_COLOR_ATTACHMENT_FEATURES_NV: Self = Self(

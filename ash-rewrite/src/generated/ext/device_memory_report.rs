@@ -9,6 +9,30 @@ pub struct PhysicalDeviceDeviceMemoryReportFeaturesEXT<'a> {
     pub device_memory_report: crate::vk::Bool32,
     pub _marker: ::core::marker::PhantomData<&'a ()>,
 }
+unsafe impl<'a> crate::TaggedStructure<'a>
+for PhysicalDeviceDeviceMemoryReportFeaturesEXT<'a> {
+    const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::PHYSICAL_DEVICE_DEVICE_MEMORY_REPORT_FEATURES_EXT;
+}
+unsafe impl<'a> crate::Extends<crate::vk::PhysicalDeviceFeatures2<'_>>
+for PhysicalDeviceDeviceMemoryReportFeaturesEXT<'a> {}
+unsafe impl<'a> crate::Extends<crate::vk::DeviceCreateInfo<'_>>
+for PhysicalDeviceDeviceMemoryReportFeaturesEXT<'a> {}
+impl<'a> Default for PhysicalDeviceDeviceMemoryReportFeaturesEXT<'a> {
+    fn default() -> Self {
+        Self {
+            s_type: <Self as crate::TaggedStructure>::STRUCTURE_TYPE,
+            p_next: Default::default(),
+            device_memory_report: Default::default(),
+            _marker: ::core::marker::PhantomData,
+        }
+    }
+}
+impl<'a> PhysicalDeviceDeviceMemoryReportFeaturesEXT<'a> {
+    pub fn device_memory_report(mut self, device_memory_report: bool) -> Self {
+        self.device_memory_report = device_memory_report.into();
+        self
+    }
+}
 #[repr(C)]
 #[derive(Clone, Copy)]
 pub struct DeviceDeviceMemoryReportCreateInfoEXT<'a> {
@@ -18,6 +42,41 @@ pub struct DeviceDeviceMemoryReportCreateInfoEXT<'a> {
     pub pfn_user_callback: crate::vk::PFN_vkDeviceMemoryReportCallbackEXT,
     pub p_user_data: *mut core::ffi::c_void,
     pub _marker: ::core::marker::PhantomData<&'a ()>,
+}
+unsafe impl<'a> crate::TaggedStructure<'a>
+for DeviceDeviceMemoryReportCreateInfoEXT<'a> {
+    const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::DEVICE_DEVICE_MEMORY_REPORT_CREATE_INFO_EXT;
+}
+unsafe impl<'a> crate::Extends<crate::vk::DeviceCreateInfo<'_>>
+for DeviceDeviceMemoryReportCreateInfoEXT<'a> {}
+impl<'a> Default for DeviceDeviceMemoryReportCreateInfoEXT<'a> {
+    fn default() -> Self {
+        Self {
+            s_type: <Self as crate::TaggedStructure>::STRUCTURE_TYPE,
+            p_next: Default::default(),
+            flags: Default::default(),
+            pfn_user_callback: Default::default(),
+            p_user_data: Default::default(),
+            _marker: ::core::marker::PhantomData,
+        }
+    }
+}
+impl<'a> DeviceDeviceMemoryReportCreateInfoEXT<'a> {
+    pub fn flags(mut self, flags: crate::vk::DeviceMemoryReportFlagsEXT) -> Self {
+        self.flags = flags;
+        self
+    }
+    pub fn pfn_user_callback(
+        mut self,
+        pfn_user_callback: crate::vk::PFN_vkDeviceMemoryReportCallbackEXT,
+    ) -> Self {
+        self.pfn_user_callback = pfn_user_callback;
+        self
+    }
+    pub fn p_user_data(mut self, p_user_data: &'a mut core::ffi::c_void) -> Self {
+        self.p_user_data = p_user_data;
+        self
+    }
 }
 #[repr(C)]
 #[derive(Clone, Copy)]
@@ -32,6 +91,55 @@ pub struct DeviceMemoryReportCallbackDataEXT<'a> {
     pub object_handle: u64,
     pub heap_index: u32,
     pub _marker: ::core::marker::PhantomData<&'a ()>,
+}
+unsafe impl<'a> crate::TaggedStructure<'a> for DeviceMemoryReportCallbackDataEXT<'a> {
+    const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::DEVICE_MEMORY_REPORT_CALLBACK_DATA_EXT;
+}
+impl<'a> Default for DeviceMemoryReportCallbackDataEXT<'a> {
+    fn default() -> Self {
+        Self {
+            s_type: <Self as crate::TaggedStructure>::STRUCTURE_TYPE,
+            p_next: Default::default(),
+            flags: Default::default(),
+            _type: Default::default(),
+            memory_object_id: Default::default(),
+            size: Default::default(),
+            object_type: Default::default(),
+            object_handle: Default::default(),
+            heap_index: Default::default(),
+            _marker: ::core::marker::PhantomData,
+        }
+    }
+}
+impl<'a> DeviceMemoryReportCallbackDataEXT<'a> {
+    pub fn flags(mut self, flags: crate::vk::DeviceMemoryReportFlagsEXT) -> Self {
+        self.flags = flags;
+        self
+    }
+    pub fn _type(mut self, _type: crate::vk::DeviceMemoryReportEventTypeEXT) -> Self {
+        self._type = _type;
+        self
+    }
+    pub fn memory_object_id(mut self, memory_object_id: u64) -> Self {
+        self.memory_object_id = memory_object_id;
+        self
+    }
+    pub fn size(mut self, size: crate::vk::DeviceSize) -> Self {
+        self.size = size;
+        self
+    }
+    pub fn object_type(mut self, object_type: crate::vk::ObjectType) -> Self {
+        self.object_type = object_type;
+        self
+    }
+    pub fn object_handle(mut self, object_handle: u64) -> Self {
+        self.object_handle = object_handle;
+        self
+    }
+    pub fn heap_index(mut self, heap_index: u32) -> Self {
+        self.heap_index = heap_index;
+        self
+    }
 }
 ///Provided by [`ext::device_memory_report`](crate::ext::device_memory_report)
 impl crate::vk::StructureType {

@@ -9,6 +9,33 @@ pub struct PhysicalDeviceShaderReplicatedCompositesFeaturesEXT<'a> {
     pub shader_replicated_composites: crate::vk::Bool32,
     pub _marker: ::core::marker::PhantomData<&'a ()>,
 }
+unsafe impl<'a> crate::TaggedStructure<'a>
+for PhysicalDeviceShaderReplicatedCompositesFeaturesEXT<'a> {
+    const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::PHYSICAL_DEVICE_SHADER_REPLICATED_COMPOSITES_FEATURES_EXT;
+}
+unsafe impl<'a> crate::Extends<crate::vk::PhysicalDeviceFeatures2<'_>>
+for PhysicalDeviceShaderReplicatedCompositesFeaturesEXT<'a> {}
+unsafe impl<'a> crate::Extends<crate::vk::DeviceCreateInfo<'_>>
+for PhysicalDeviceShaderReplicatedCompositesFeaturesEXT<'a> {}
+impl<'a> Default for PhysicalDeviceShaderReplicatedCompositesFeaturesEXT<'a> {
+    fn default() -> Self {
+        Self {
+            s_type: <Self as crate::TaggedStructure>::STRUCTURE_TYPE,
+            p_next: Default::default(),
+            shader_replicated_composites: Default::default(),
+            _marker: ::core::marker::PhantomData,
+        }
+    }
+}
+impl<'a> PhysicalDeviceShaderReplicatedCompositesFeaturesEXT<'a> {
+    pub fn shader_replicated_composites(
+        mut self,
+        shader_replicated_composites: bool,
+    ) -> Self {
+        self.shader_replicated_composites = shader_replicated_composites.into();
+        self
+    }
+}
 ///Provided by [`ext::shader_replicated_composites`](crate::ext::shader_replicated_composites)
 impl crate::vk::StructureType {
     pub const PHYSICAL_DEVICE_SHADER_REPLICATED_COMPOSITES_FEATURES_EXT: Self = Self(

@@ -54,18 +54,46 @@ impl DeviceFn {
 }
 pub(crate) mod reexport {
     #[repr(C)]
-    #[derive(Clone, Copy)]
+    #[derive(Clone, Copy, Default)]
     pub struct RefreshCycleDurationGOOGLE {
         pub refresh_duration: u64,
     }
+    impl RefreshCycleDurationGOOGLE {
+        pub fn refresh_duration(mut self, refresh_duration: u64) -> Self {
+            self.refresh_duration = refresh_duration;
+            self
+        }
+    }
     #[repr(C)]
-    #[derive(Clone, Copy)]
+    #[derive(Clone, Copy, Default)]
     pub struct PastPresentationTimingGOOGLE {
         pub present_id: u32,
         pub desired_present_time: u64,
         pub actual_present_time: u64,
         pub earliest_present_time: u64,
         pub present_margin: u64,
+    }
+    impl PastPresentationTimingGOOGLE {
+        pub fn present_id(mut self, present_id: u32) -> Self {
+            self.present_id = present_id;
+            self
+        }
+        pub fn desired_present_time(mut self, desired_present_time: u64) -> Self {
+            self.desired_present_time = desired_present_time;
+            self
+        }
+        pub fn actual_present_time(mut self, actual_present_time: u64) -> Self {
+            self.actual_present_time = actual_present_time;
+            self
+        }
+        pub fn earliest_present_time(mut self, earliest_present_time: u64) -> Self {
+            self.earliest_present_time = earliest_present_time;
+            self
+        }
+        pub fn present_margin(mut self, present_margin: u64) -> Self {
+            self.present_margin = present_margin;
+            self
+        }
     }
     #[repr(C)]
     #[derive(Clone, Copy)]
@@ -76,11 +104,48 @@ pub(crate) mod reexport {
         pub p_times: *const crate::vk::PresentTimeGOOGLE,
         pub _marker: ::core::marker::PhantomData<&'a ()>,
     }
+    unsafe impl<'a> crate::TaggedStructure<'a> for PresentTimesInfoGOOGLE<'a> {
+        const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::PRESENT_TIMES_INFO_GOOGLE;
+    }
+    unsafe impl<'a> crate::Extends<crate::vk::PresentInfoKHR<'_>>
+    for PresentTimesInfoGOOGLE<'a> {}
+    impl<'a> Default for PresentTimesInfoGOOGLE<'a> {
+        fn default() -> Self {
+            Self {
+                s_type: <Self as crate::TaggedStructure>::STRUCTURE_TYPE,
+                p_next: Default::default(),
+                swapchain_count: Default::default(),
+                p_times: Default::default(),
+                _marker: ::core::marker::PhantomData,
+            }
+        }
+    }
+    impl<'a> PresentTimesInfoGOOGLE<'a> {
+        pub fn swapchain_count(mut self, swapchain_count: u32) -> Self {
+            self.swapchain_count = swapchain_count;
+            self
+        }
+        pub fn p_times(mut self, p_times: &'a [crate::vk::PresentTimeGOOGLE]) -> Self {
+            self.swapchain_count = p_times.len() as _;
+            self.p_times = p_times.as_ptr();
+            self
+        }
+    }
     #[repr(C)]
-    #[derive(Clone, Copy)]
+    #[derive(Clone, Copy, Default)]
     pub struct PresentTimeGOOGLE {
         pub present_id: u32,
         pub desired_present_time: u64,
+    }
+    impl PresentTimeGOOGLE {
+        pub fn present_id(mut self, present_id: u32) -> Self {
+            self.present_id = present_id;
+            self
+        }
+        pub fn desired_present_time(mut self, desired_present_time: u64) -> Self {
+            self.desired_present_time = desired_present_time;
+            self
+        }
     }
     ///Provided by [`google::display_timing`](crate::google::display_timing)
     impl crate::vk::StructureType {

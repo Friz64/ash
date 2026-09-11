@@ -9,12 +9,50 @@ pub struct PhysicalDeviceMutableDescriptorTypeFeaturesEXT<'a> {
     pub mutable_descriptor_type: crate::vk::Bool32,
     pub _marker: ::core::marker::PhantomData<&'a ()>,
 }
+unsafe impl<'a> crate::TaggedStructure<'a>
+for PhysicalDeviceMutableDescriptorTypeFeaturesEXT<'a> {
+    const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::PHYSICAL_DEVICE_MUTABLE_DESCRIPTOR_TYPE_FEATURES_EXT;
+}
+unsafe impl<'a> crate::Extends<crate::vk::PhysicalDeviceFeatures2<'_>>
+for PhysicalDeviceMutableDescriptorTypeFeaturesEXT<'a> {}
+unsafe impl<'a> crate::Extends<crate::vk::DeviceCreateInfo<'_>>
+for PhysicalDeviceMutableDescriptorTypeFeaturesEXT<'a> {}
+impl<'a> Default for PhysicalDeviceMutableDescriptorTypeFeaturesEXT<'a> {
+    fn default() -> Self {
+        Self {
+            s_type: <Self as crate::TaggedStructure>::STRUCTURE_TYPE,
+            p_next: Default::default(),
+            mutable_descriptor_type: Default::default(),
+            _marker: ::core::marker::PhantomData,
+        }
+    }
+}
+impl<'a> PhysicalDeviceMutableDescriptorTypeFeaturesEXT<'a> {
+    pub fn mutable_descriptor_type(mut self, mutable_descriptor_type: bool) -> Self {
+        self.mutable_descriptor_type = mutable_descriptor_type.into();
+        self
+    }
+}
 #[repr(C)]
-#[derive(Clone, Copy)]
+#[derive(Clone, Copy, Default)]
 pub struct MutableDescriptorTypeListEXT<'a> {
     pub descriptor_type_count: u32,
     pub p_descriptor_types: *const crate::vk::DescriptorType,
     pub _marker: ::core::marker::PhantomData<&'a ()>,
+}
+impl<'a> MutableDescriptorTypeListEXT<'a> {
+    pub fn descriptor_type_count(mut self, descriptor_type_count: u32) -> Self {
+        self.descriptor_type_count = descriptor_type_count;
+        self
+    }
+    pub fn p_descriptor_types(
+        mut self,
+        p_descriptor_types: &'a [crate::vk::DescriptorType],
+    ) -> Self {
+        self.descriptor_type_count = p_descriptor_types.len() as _;
+        self.p_descriptor_types = p_descriptor_types.as_ptr();
+        self
+    }
 }
 #[repr(C)]
 #[derive(Clone, Copy)]
@@ -26,6 +64,44 @@ pub struct MutableDescriptorTypeCreateInfoEXT<'a> {
         'a,
     >,
     pub _marker: ::core::marker::PhantomData<&'a ()>,
+}
+unsafe impl<'a> crate::TaggedStructure<'a> for MutableDescriptorTypeCreateInfoEXT<'a> {
+    const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::MUTABLE_DESCRIPTOR_TYPE_CREATE_INFO_EXT;
+}
+unsafe impl<'a> crate::Extends<crate::vk::DescriptorSetLayoutCreateInfo<'_>>
+for MutableDescriptorTypeCreateInfoEXT<'a> {}
+unsafe impl<'a> crate::Extends<crate::vk::DescriptorPoolCreateInfo<'_>>
+for MutableDescriptorTypeCreateInfoEXT<'a> {}
+impl<'a> Default for MutableDescriptorTypeCreateInfoEXT<'a> {
+    fn default() -> Self {
+        Self {
+            s_type: <Self as crate::TaggedStructure>::STRUCTURE_TYPE,
+            p_next: Default::default(),
+            mutable_descriptor_type_list_count: Default::default(),
+            p_mutable_descriptor_type_lists: Default::default(),
+            _marker: ::core::marker::PhantomData,
+        }
+    }
+}
+impl<'a> MutableDescriptorTypeCreateInfoEXT<'a> {
+    pub fn mutable_descriptor_type_list_count(
+        mut self,
+        mutable_descriptor_type_list_count: u32,
+    ) -> Self {
+        self.mutable_descriptor_type_list_count = mutable_descriptor_type_list_count;
+        self
+    }
+    pub fn p_mutable_descriptor_type_lists(
+        mut self,
+        p_mutable_descriptor_type_lists: &'a [crate::vk::MutableDescriptorTypeListEXT<
+            'a,
+        >],
+    ) -> Self {
+        self.mutable_descriptor_type_list_count = p_mutable_descriptor_type_lists.len()
+            as _;
+        self.p_mutable_descriptor_type_lists = p_mutable_descriptor_type_lists.as_ptr();
+        self
+    }
 }
 ///Provided by [`ext::mutable_descriptor_type`](crate::ext::mutable_descriptor_type)
 impl crate::vk::DescriptorType {

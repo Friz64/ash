@@ -2,12 +2,30 @@
 #![cfg_attr(rustfmt, rustfmt_skip)]
 //!Items provided by `vulkan_video_codec_h264std_encode`
 #[repr(C)]
-#[derive(Clone, Copy)]
+#[derive(Clone, Copy, Default)]
 pub struct EncodeH264WeightTableFlags {
     pub luma_weight_l0_flag: u32,
     pub chroma_weight_l0_flag: u32,
     pub luma_weight_l1_flag: u32,
     pub chroma_weight_l1_flag: u32,
+}
+impl EncodeH264WeightTableFlags {
+    pub fn luma_weight_l0_flag(mut self, luma_weight_l0_flag: u32) -> Self {
+        self.luma_weight_l0_flag = luma_weight_l0_flag;
+        self
+    }
+    pub fn chroma_weight_l0_flag(mut self, chroma_weight_l0_flag: u32) -> Self {
+        self.chroma_weight_l0_flag = chroma_weight_l0_flag;
+        self
+    }
+    pub fn luma_weight_l1_flag(mut self, luma_weight_l1_flag: u32) -> Self {
+        self.luma_weight_l1_flag = luma_weight_l1_flag;
+        self
+    }
+    pub fn chroma_weight_l1_flag(mut self, chroma_weight_l1_flag: u32) -> Self {
+        self.chroma_weight_l1_flag = chroma_weight_l1_flag;
+        self
+    }
 }
 #[repr(C)]
 #[derive(Clone, Copy)]
@@ -28,15 +46,131 @@ pub struct EncodeH264WeightTable {
     pub chroma_offset_l1: [[i8; crate::vk::STD_VIDEO_H264_MAX_CHROMA_PLANES
         as _]; crate::vk::STD_VIDEO_H264_MAX_NUM_LIST_REF as _],
 }
+impl Default for EncodeH264WeightTable {
+    fn default() -> Self {
+        Self {
+            flags: Default::default(),
+            luma_log2_weight_denom: Default::default(),
+            chroma_log2_weight_denom: Default::default(),
+            luma_weight_l0: unsafe { core::mem::zeroed() },
+            luma_offset_l0: unsafe { core::mem::zeroed() },
+            chroma_weight_l0: unsafe { core::mem::zeroed() },
+            chroma_offset_l0: unsafe { core::mem::zeroed() },
+            luma_weight_l1: unsafe { core::mem::zeroed() },
+            luma_offset_l1: unsafe { core::mem::zeroed() },
+            chroma_weight_l1: unsafe { core::mem::zeroed() },
+            chroma_offset_l1: unsafe { core::mem::zeroed() },
+        }
+    }
+}
+impl EncodeH264WeightTable {
+    pub fn flags(mut self, flags: crate::vk::EncodeH264WeightTableFlags) -> Self {
+        self.flags = flags;
+        self
+    }
+    pub fn luma_log2_weight_denom(mut self, luma_log2_weight_denom: u8) -> Self {
+        self.luma_log2_weight_denom = luma_log2_weight_denom;
+        self
+    }
+    pub fn chroma_log2_weight_denom(mut self, chroma_log2_weight_denom: u8) -> Self {
+        self.chroma_log2_weight_denom = chroma_log2_weight_denom;
+        self
+    }
+    pub fn luma_weight_l0(
+        mut self,
+        luma_weight_l0: [i8; crate::vk::STD_VIDEO_H264_MAX_NUM_LIST_REF as _],
+    ) -> Self {
+        self.luma_weight_l0 = luma_weight_l0;
+        self
+    }
+    pub fn luma_offset_l0(
+        mut self,
+        luma_offset_l0: [i8; crate::vk::STD_VIDEO_H264_MAX_NUM_LIST_REF as _],
+    ) -> Self {
+        self.luma_offset_l0 = luma_offset_l0;
+        self
+    }
+    pub fn chroma_weight_l0(
+        mut self,
+        chroma_weight_l0: [[i8; crate::vk::STD_VIDEO_H264_MAX_CHROMA_PLANES
+            as _]; crate::vk::STD_VIDEO_H264_MAX_NUM_LIST_REF as _],
+    ) -> Self {
+        self.chroma_weight_l0 = chroma_weight_l0;
+        self
+    }
+    pub fn chroma_offset_l0(
+        mut self,
+        chroma_offset_l0: [[i8; crate::vk::STD_VIDEO_H264_MAX_CHROMA_PLANES
+            as _]; crate::vk::STD_VIDEO_H264_MAX_NUM_LIST_REF as _],
+    ) -> Self {
+        self.chroma_offset_l0 = chroma_offset_l0;
+        self
+    }
+    pub fn luma_weight_l1(
+        mut self,
+        luma_weight_l1: [i8; crate::vk::STD_VIDEO_H264_MAX_NUM_LIST_REF as _],
+    ) -> Self {
+        self.luma_weight_l1 = luma_weight_l1;
+        self
+    }
+    pub fn luma_offset_l1(
+        mut self,
+        luma_offset_l1: [i8; crate::vk::STD_VIDEO_H264_MAX_NUM_LIST_REF as _],
+    ) -> Self {
+        self.luma_offset_l1 = luma_offset_l1;
+        self
+    }
+    pub fn chroma_weight_l1(
+        mut self,
+        chroma_weight_l1: [[i8; crate::vk::STD_VIDEO_H264_MAX_CHROMA_PLANES
+            as _]; crate::vk::STD_VIDEO_H264_MAX_NUM_LIST_REF as _],
+    ) -> Self {
+        self.chroma_weight_l1 = chroma_weight_l1;
+        self
+    }
+    pub fn chroma_offset_l1(
+        mut self,
+        chroma_offset_l1: [[i8; crate::vk::STD_VIDEO_H264_MAX_CHROMA_PLANES
+            as _]; crate::vk::STD_VIDEO_H264_MAX_NUM_LIST_REF as _],
+    ) -> Self {
+        self.chroma_offset_l1 = chroma_offset_l1;
+        self
+    }
+}
 #[repr(C)]
-#[derive(Clone, Copy)]
+#[derive(Clone, Copy, Default)]
 pub struct EncodeH264SliceHeaderFlags {
     /**- `direct_spatial_mv_pred_flag` @ `0..1`
 - `num_ref_idx_active_override_flag` @ `1..2`*/
     pub bitfield0: u32,
 }
+impl EncodeH264SliceHeaderFlags {
+    pub fn direct_spatial_mv_pred_flag(
+        mut self,
+        direct_spatial_mv_pred_flag: u32,
+    ) -> Self {
+        let rest = self.bitfield0 & 0xFFFFFFFE;
+        self.bitfield0 = (direct_spatial_mv_pred_flag & 0x00000001) | rest;
+        self
+    }
+    pub fn get_direct_spatial_mv_pred_flag(&self) -> u32 {
+        self.bitfield0 & 0x00000001
+    }
+    pub fn num_ref_idx_active_override_flag(
+        mut self,
+        num_ref_idx_active_override_flag: u32,
+    ) -> Self {
+        let rest = self.bitfield0 & 0xFFFFFFFD;
+        self.bitfield0 = ((num_ref_idx_active_override_flag << 1u32) & 0x00000002)
+            | rest;
+        self
+    }
+    pub fn get_num_ref_idx_active_override_flag(&self) -> u32 {
+        (self.bitfield0 & 0x00000002) >> 1u32
+    }
+}
 #[repr(C)]
-#[derive(Clone, Copy)]
+#[derive(Clone, Copy, Default)]
 pub struct EncodeH264PictureInfoFlags {
     /**- `IdrPicFlag` @ `0..1`
 - `is_reference` @ `1..2`
@@ -45,34 +179,169 @@ pub struct EncodeH264PictureInfoFlags {
 - `adaptive_ref_pic_marking_mode_flag` @ `4..5`*/
     pub bitfield0: u32,
 }
+impl EncodeH264PictureInfoFlags {
+    pub fn idr_pic_flag(mut self, idr_pic_flag: u32) -> Self {
+        let rest = self.bitfield0 & 0xFFFFFFFE;
+        self.bitfield0 = (idr_pic_flag & 0x00000001) | rest;
+        self
+    }
+    pub fn get_idr_pic_flag(&self) -> u32 {
+        self.bitfield0 & 0x00000001
+    }
+    pub fn is_reference(mut self, is_reference: u32) -> Self {
+        let rest = self.bitfield0 & 0xFFFFFFFD;
+        self.bitfield0 = ((is_reference << 1u32) & 0x00000002) | rest;
+        self
+    }
+    pub fn get_is_reference(&self) -> u32 {
+        (self.bitfield0 & 0x00000002) >> 1u32
+    }
+    pub fn no_output_of_prior_pics_flag(
+        mut self,
+        no_output_of_prior_pics_flag: u32,
+    ) -> Self {
+        let rest = self.bitfield0 & 0xFFFFFFFB;
+        self.bitfield0 = ((no_output_of_prior_pics_flag << 2u32) & 0x00000004) | rest;
+        self
+    }
+    pub fn get_no_output_of_prior_pics_flag(&self) -> u32 {
+        (self.bitfield0 & 0x00000004) >> 2u32
+    }
+    pub fn long_term_reference_flag(mut self, long_term_reference_flag: u32) -> Self {
+        let rest = self.bitfield0 & 0xFFFFFFF7;
+        self.bitfield0 = ((long_term_reference_flag << 3u32) & 0x00000008) | rest;
+        self
+    }
+    pub fn get_long_term_reference_flag(&self) -> u32 {
+        (self.bitfield0 & 0x00000008) >> 3u32
+    }
+    pub fn adaptive_ref_pic_marking_mode_flag(
+        mut self,
+        adaptive_ref_pic_marking_mode_flag: u32,
+    ) -> Self {
+        let rest = self.bitfield0 & 0xFFFFFFEF;
+        self.bitfield0 = ((adaptive_ref_pic_marking_mode_flag << 4u32) & 0x00000010)
+            | rest;
+        self
+    }
+    pub fn get_adaptive_ref_pic_marking_mode_flag(&self) -> u32 {
+        (self.bitfield0 & 0x00000010) >> 4u32
+    }
+}
 #[repr(C)]
-#[derive(Clone, Copy)]
+#[derive(Clone, Copy, Default)]
 pub struct EncodeH264ReferenceInfoFlags {
     ///- `used_for_long_term_reference` @ `0..1`
     pub bitfield0: u32,
 }
+impl EncodeH264ReferenceInfoFlags {
+    pub fn used_for_long_term_reference(
+        mut self,
+        used_for_long_term_reference: u32,
+    ) -> Self {
+        let rest = self.bitfield0 & 0xFFFFFFFE;
+        self.bitfield0 = (used_for_long_term_reference & 0x00000001) | rest;
+        self
+    }
+    pub fn get_used_for_long_term_reference(&self) -> u32 {
+        self.bitfield0 & 0x00000001
+    }
+}
 #[repr(C)]
-#[derive(Clone, Copy)]
+#[derive(Clone, Copy, Default)]
 pub struct EncodeH264ReferenceListsInfoFlags {
     /**- `ref_pic_list_modification_flag_l0` @ `0..1`
 - `ref_pic_list_modification_flag_l1` @ `1..2`*/
     pub bitfield0: u32,
 }
+impl EncodeH264ReferenceListsInfoFlags {
+    pub fn ref_pic_list_modification_flag_l0(
+        mut self,
+        ref_pic_list_modification_flag_l0: u32,
+    ) -> Self {
+        let rest = self.bitfield0 & 0xFFFFFFFE;
+        self.bitfield0 = (ref_pic_list_modification_flag_l0 & 0x00000001) | rest;
+        self
+    }
+    pub fn get_ref_pic_list_modification_flag_l0(&self) -> u32 {
+        self.bitfield0 & 0x00000001
+    }
+    pub fn ref_pic_list_modification_flag_l1(
+        mut self,
+        ref_pic_list_modification_flag_l1: u32,
+    ) -> Self {
+        let rest = self.bitfield0 & 0xFFFFFFFD;
+        self.bitfield0 = ((ref_pic_list_modification_flag_l1 << 1u32) & 0x00000002)
+            | rest;
+        self
+    }
+    pub fn get_ref_pic_list_modification_flag_l1(&self) -> u32 {
+        (self.bitfield0 & 0x00000002) >> 1u32
+    }
+}
 #[repr(C)]
-#[derive(Clone, Copy)]
+#[derive(Clone, Copy, Default)]
 pub struct EncodeH264RefListModEntry {
     pub modification_of_pic_nums_idc: crate::vk::H264ModificationOfPicNumsIdc,
     pub abs_diff_pic_num_minus1: u16,
     pub long_term_pic_num: u16,
 }
+impl EncodeH264RefListModEntry {
+    pub fn modification_of_pic_nums_idc(
+        mut self,
+        modification_of_pic_nums_idc: crate::vk::H264ModificationOfPicNumsIdc,
+    ) -> Self {
+        self.modification_of_pic_nums_idc = modification_of_pic_nums_idc;
+        self
+    }
+    pub fn abs_diff_pic_num_minus1(mut self, abs_diff_pic_num_minus1: u16) -> Self {
+        self.abs_diff_pic_num_minus1 = abs_diff_pic_num_minus1;
+        self
+    }
+    pub fn long_term_pic_num(mut self, long_term_pic_num: u16) -> Self {
+        self.long_term_pic_num = long_term_pic_num;
+        self
+    }
+}
 #[repr(C)]
-#[derive(Clone, Copy)]
+#[derive(Clone, Copy, Default)]
 pub struct EncodeH264RefPicMarkingEntry {
     pub memory_management_control_operation: crate::vk::H264MemMgmtControlOp,
     pub difference_of_pic_nums_minus1: u16,
     pub long_term_pic_num: u16,
     pub long_term_frame_idx: u16,
     pub max_long_term_frame_idx_plus1: u16,
+}
+impl EncodeH264RefPicMarkingEntry {
+    pub fn memory_management_control_operation(
+        mut self,
+        memory_management_control_operation: crate::vk::H264MemMgmtControlOp,
+    ) -> Self {
+        self.memory_management_control_operation = memory_management_control_operation;
+        self
+    }
+    pub fn difference_of_pic_nums_minus1(
+        mut self,
+        difference_of_pic_nums_minus1: u16,
+    ) -> Self {
+        self.difference_of_pic_nums_minus1 = difference_of_pic_nums_minus1;
+        self
+    }
+    pub fn long_term_pic_num(mut self, long_term_pic_num: u16) -> Self {
+        self.long_term_pic_num = long_term_pic_num;
+        self
+    }
+    pub fn long_term_frame_idx(mut self, long_term_frame_idx: u16) -> Self {
+        self.long_term_frame_idx = long_term_frame_idx;
+        self
+    }
+    pub fn max_long_term_frame_idx_plus1(
+        mut self,
+        max_long_term_frame_idx_plus1: u16,
+    ) -> Self {
+        self.max_long_term_frame_idx_plus1 = max_long_term_frame_idx_plus1;
+        self
+    }
 }
 #[repr(C)]
 #[derive(Clone, Copy)]
@@ -91,6 +360,99 @@ pub struct EncodeH264ReferenceListsInfo<'a> {
     pub p_ref_pic_marking_operations: *const crate::vk::EncodeH264RefPicMarkingEntry,
     pub _marker: ::core::marker::PhantomData<&'a ()>,
 }
+impl<'a> Default for EncodeH264ReferenceListsInfo<'a> {
+    fn default() -> Self {
+        Self {
+            flags: Default::default(),
+            num_ref_idx_l0_active_minus1: Default::default(),
+            num_ref_idx_l1_active_minus1: Default::default(),
+            ref_pic_list0: unsafe { core::mem::zeroed() },
+            ref_pic_list1: unsafe { core::mem::zeroed() },
+            ref_list0_mod_op_count: Default::default(),
+            ref_list1_mod_op_count: Default::default(),
+            ref_pic_marking_op_count: Default::default(),
+            reserved1: unsafe { core::mem::zeroed() },
+            p_ref_list0_mod_operations: Default::default(),
+            p_ref_list1_mod_operations: Default::default(),
+            p_ref_pic_marking_operations: Default::default(),
+            _marker: ::core::marker::PhantomData,
+        }
+    }
+}
+impl<'a> EncodeH264ReferenceListsInfo<'a> {
+    pub fn flags(mut self, flags: crate::vk::EncodeH264ReferenceListsInfoFlags) -> Self {
+        self.flags = flags;
+        self
+    }
+    pub fn num_ref_idx_l0_active_minus1(
+        mut self,
+        num_ref_idx_l0_active_minus1: u8,
+    ) -> Self {
+        self.num_ref_idx_l0_active_minus1 = num_ref_idx_l0_active_minus1;
+        self
+    }
+    pub fn num_ref_idx_l1_active_minus1(
+        mut self,
+        num_ref_idx_l1_active_minus1: u8,
+    ) -> Self {
+        self.num_ref_idx_l1_active_minus1 = num_ref_idx_l1_active_minus1;
+        self
+    }
+    pub fn ref_pic_list0(
+        mut self,
+        ref_pic_list0: [u8; crate::vk::STD_VIDEO_H264_MAX_NUM_LIST_REF as _],
+    ) -> Self {
+        self.ref_pic_list0 = ref_pic_list0;
+        self
+    }
+    pub fn ref_pic_list1(
+        mut self,
+        ref_pic_list1: [u8; crate::vk::STD_VIDEO_H264_MAX_NUM_LIST_REF as _],
+    ) -> Self {
+        self.ref_pic_list1 = ref_pic_list1;
+        self
+    }
+    pub fn ref_list0_mod_op_count(mut self, ref_list0_mod_op_count: u8) -> Self {
+        self.ref_list0_mod_op_count = ref_list0_mod_op_count;
+        self
+    }
+    pub fn ref_list1_mod_op_count(mut self, ref_list1_mod_op_count: u8) -> Self {
+        self.ref_list1_mod_op_count = ref_list1_mod_op_count;
+        self
+    }
+    pub fn ref_pic_marking_op_count(mut self, ref_pic_marking_op_count: u8) -> Self {
+        self.ref_pic_marking_op_count = ref_pic_marking_op_count;
+        self
+    }
+    pub fn reserved1(mut self, reserved1: [u8; 7 as _]) -> Self {
+        self.reserved1 = reserved1;
+        self
+    }
+    pub fn p_ref_list0_mod_operations(
+        mut self,
+        p_ref_list0_mod_operations: &'a [crate::vk::EncodeH264RefListModEntry],
+    ) -> Self {
+        self.ref_list0_mod_op_count = p_ref_list0_mod_operations.len() as _;
+        self.p_ref_list0_mod_operations = p_ref_list0_mod_operations.as_ptr();
+        self
+    }
+    pub fn p_ref_list1_mod_operations(
+        mut self,
+        p_ref_list1_mod_operations: &'a [crate::vk::EncodeH264RefListModEntry],
+    ) -> Self {
+        self.ref_list1_mod_op_count = p_ref_list1_mod_operations.len() as _;
+        self.p_ref_list1_mod_operations = p_ref_list1_mod_operations.as_ptr();
+        self
+    }
+    pub fn p_ref_pic_marking_operations(
+        mut self,
+        p_ref_pic_marking_operations: &'a [crate::vk::EncodeH264RefPicMarkingEntry],
+    ) -> Self {
+        self.ref_pic_marking_op_count = p_ref_pic_marking_operations.len() as _;
+        self.p_ref_pic_marking_operations = p_ref_pic_marking_operations.as_ptr();
+        self
+    }
+}
 #[repr(C)]
 #[derive(Clone, Copy)]
 pub struct EncodeH264PictureInfo<'a> {
@@ -106,8 +468,73 @@ pub struct EncodeH264PictureInfo<'a> {
     pub p_ref_lists: *const crate::vk::EncodeH264ReferenceListsInfo<'a>,
     pub _marker: ::core::marker::PhantomData<&'a ()>,
 }
+impl<'a> Default for EncodeH264PictureInfo<'a> {
+    fn default() -> Self {
+        Self {
+            flags: Default::default(),
+            seq_parameter_set_id: Default::default(),
+            pic_parameter_set_id: Default::default(),
+            idr_pic_id: Default::default(),
+            primary_pic_type: Default::default(),
+            frame_num: Default::default(),
+            pic_order_cnt: Default::default(),
+            temporal_id: Default::default(),
+            reserved1: unsafe { core::mem::zeroed() },
+            p_ref_lists: Default::default(),
+            _marker: ::core::marker::PhantomData,
+        }
+    }
+}
+impl<'a> EncodeH264PictureInfo<'a> {
+    pub fn flags(mut self, flags: crate::vk::EncodeH264PictureInfoFlags) -> Self {
+        self.flags = flags;
+        self
+    }
+    pub fn seq_parameter_set_id(mut self, seq_parameter_set_id: u8) -> Self {
+        self.seq_parameter_set_id = seq_parameter_set_id;
+        self
+    }
+    pub fn pic_parameter_set_id(mut self, pic_parameter_set_id: u8) -> Self {
+        self.pic_parameter_set_id = pic_parameter_set_id;
+        self
+    }
+    pub fn idr_pic_id(mut self, idr_pic_id: u16) -> Self {
+        self.idr_pic_id = idr_pic_id;
+        self
+    }
+    pub fn primary_pic_type(
+        mut self,
+        primary_pic_type: crate::vk::H264PictureType,
+    ) -> Self {
+        self.primary_pic_type = primary_pic_type;
+        self
+    }
+    pub fn frame_num(mut self, frame_num: u32) -> Self {
+        self.frame_num = frame_num;
+        self
+    }
+    pub fn pic_order_cnt(mut self, pic_order_cnt: i32) -> Self {
+        self.pic_order_cnt = pic_order_cnt;
+        self
+    }
+    pub fn temporal_id(mut self, temporal_id: u8) -> Self {
+        self.temporal_id = temporal_id;
+        self
+    }
+    pub fn reserved1(mut self, reserved1: [u8; 3 as _]) -> Self {
+        self.reserved1 = reserved1;
+        self
+    }
+    pub fn p_ref_lists(
+        mut self,
+        p_ref_lists: &'a crate::vk::EncodeH264ReferenceListsInfo<'a>,
+    ) -> Self {
+        self.p_ref_lists = p_ref_lists;
+        self
+    }
+}
 #[repr(C)]
-#[derive(Clone, Copy)]
+#[derive(Clone, Copy, Default)]
 pub struct EncodeH264ReferenceInfo {
     pub flags: crate::vk::EncodeH264ReferenceInfoFlags,
     pub primary_pic_type: crate::vk::H264PictureType,
@@ -117,8 +544,41 @@ pub struct EncodeH264ReferenceInfo {
     pub long_term_frame_idx: u16,
     pub temporal_id: u8,
 }
+impl EncodeH264ReferenceInfo {
+    pub fn flags(mut self, flags: crate::vk::EncodeH264ReferenceInfoFlags) -> Self {
+        self.flags = flags;
+        self
+    }
+    pub fn primary_pic_type(
+        mut self,
+        primary_pic_type: crate::vk::H264PictureType,
+    ) -> Self {
+        self.primary_pic_type = primary_pic_type;
+        self
+    }
+    pub fn frame_num(mut self, frame_num: u32) -> Self {
+        self.frame_num = frame_num;
+        self
+    }
+    pub fn pic_order_cnt(mut self, pic_order_cnt: i32) -> Self {
+        self.pic_order_cnt = pic_order_cnt;
+        self
+    }
+    pub fn long_term_pic_num(mut self, long_term_pic_num: u16) -> Self {
+        self.long_term_pic_num = long_term_pic_num;
+        self
+    }
+    pub fn long_term_frame_idx(mut self, long_term_frame_idx: u16) -> Self {
+        self.long_term_frame_idx = long_term_frame_idx;
+        self
+    }
+    pub fn temporal_id(mut self, temporal_id: u8) -> Self {
+        self.temporal_id = temporal_id;
+        self
+    }
+}
 #[repr(C)]
-#[derive(Clone, Copy)]
+#[derive(Clone, Copy, Default)]
 pub struct EncodeH264SliceHeader<'a> {
     pub flags: crate::vk::EncodeH264SliceHeaderFlags,
     pub first_mb_in_slice: u32,
@@ -131,6 +591,57 @@ pub struct EncodeH264SliceHeader<'a> {
     pub disable_deblocking_filter_idc: crate::vk::H264DisableDeblockingFilterIdc,
     pub p_weight_table: *const crate::vk::EncodeH264WeightTable,
     pub _marker: ::core::marker::PhantomData<&'a ()>,
+}
+impl<'a> EncodeH264SliceHeader<'a> {
+    pub fn flags(mut self, flags: crate::vk::EncodeH264SliceHeaderFlags) -> Self {
+        self.flags = flags;
+        self
+    }
+    pub fn first_mb_in_slice(mut self, first_mb_in_slice: u32) -> Self {
+        self.first_mb_in_slice = first_mb_in_slice;
+        self
+    }
+    pub fn slice_type(mut self, slice_type: crate::vk::H264SliceType) -> Self {
+        self.slice_type = slice_type;
+        self
+    }
+    pub fn slice_alpha_c0_offset_div2(mut self, slice_alpha_c0_offset_div2: i8) -> Self {
+        self.slice_alpha_c0_offset_div2 = slice_alpha_c0_offset_div2;
+        self
+    }
+    pub fn slice_beta_offset_div2(mut self, slice_beta_offset_div2: i8) -> Self {
+        self.slice_beta_offset_div2 = slice_beta_offset_div2;
+        self
+    }
+    pub fn slice_qp_delta(mut self, slice_qp_delta: i8) -> Self {
+        self.slice_qp_delta = slice_qp_delta;
+        self
+    }
+    pub fn reserved1(mut self, reserved1: u8) -> Self {
+        self.reserved1 = reserved1;
+        self
+    }
+    pub fn cabac_init_idc(
+        mut self,
+        cabac_init_idc: crate::vk::H264CabacInitIdc,
+    ) -> Self {
+        self.cabac_init_idc = cabac_init_idc;
+        self
+    }
+    pub fn disable_deblocking_filter_idc(
+        mut self,
+        disable_deblocking_filter_idc: crate::vk::H264DisableDeblockingFilterIdc,
+    ) -> Self {
+        self.disable_deblocking_filter_idc = disable_deblocking_filter_idc;
+        self
+    }
+    pub fn p_weight_table(
+        mut self,
+        p_weight_table: &'a crate::vk::EncodeH264WeightTable,
+    ) -> Self {
+        self.p_weight_table = p_weight_table;
+        self
+    }
 }
 pub const STD_VULKAN_VIDEO_CODEC_H264_ENCODE_SPEC_VERSION: u32 = crate::vk::STD_VULKAN_VIDEO_CODEC_H264_ENCODE_API_VERSION_1_0_0;
 pub const STD_VULKAN_VIDEO_CODEC_H264_ENCODE_EXTENSION_NAME: &core::ffi::CStr = c"VK_STD_vulkan_video_codec_h264_encode";

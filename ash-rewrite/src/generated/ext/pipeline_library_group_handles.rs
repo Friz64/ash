@@ -9,6 +9,33 @@ pub struct PhysicalDevicePipelineLibraryGroupHandlesFeaturesEXT<'a> {
     pub pipeline_library_group_handles: crate::vk::Bool32,
     pub _marker: ::core::marker::PhantomData<&'a ()>,
 }
+unsafe impl<'a> crate::TaggedStructure<'a>
+for PhysicalDevicePipelineLibraryGroupHandlesFeaturesEXT<'a> {
+    const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::PHYSICAL_DEVICE_PIPELINE_LIBRARY_GROUP_HANDLES_FEATURES_EXT;
+}
+unsafe impl<'a> crate::Extends<crate::vk::PhysicalDeviceFeatures2<'_>>
+for PhysicalDevicePipelineLibraryGroupHandlesFeaturesEXT<'a> {}
+unsafe impl<'a> crate::Extends<crate::vk::DeviceCreateInfo<'_>>
+for PhysicalDevicePipelineLibraryGroupHandlesFeaturesEXT<'a> {}
+impl<'a> Default for PhysicalDevicePipelineLibraryGroupHandlesFeaturesEXT<'a> {
+    fn default() -> Self {
+        Self {
+            s_type: <Self as crate::TaggedStructure>::STRUCTURE_TYPE,
+            p_next: Default::default(),
+            pipeline_library_group_handles: Default::default(),
+            _marker: ::core::marker::PhantomData,
+        }
+    }
+}
+impl<'a> PhysicalDevicePipelineLibraryGroupHandlesFeaturesEXT<'a> {
+    pub fn pipeline_library_group_handles(
+        mut self,
+        pipeline_library_group_handles: bool,
+    ) -> Self {
+        self.pipeline_library_group_handles = pipeline_library_group_handles.into();
+        self
+    }
+}
 ///Provided by [`ext::pipeline_library_group_handles`](crate::ext::pipeline_library_group_handles)
 impl crate::vk::StructureType {
     pub const PHYSICAL_DEVICE_PIPELINE_LIBRARY_GROUP_HANDLES_FEATURES_EXT: Self = Self(

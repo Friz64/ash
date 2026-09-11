@@ -10,6 +10,42 @@ pub struct PhysicalDevicePrimitiveTopologyListRestartFeaturesEXT<'a> {
     pub primitive_topology_patch_list_restart: crate::vk::Bool32,
     pub _marker: ::core::marker::PhantomData<&'a ()>,
 }
+unsafe impl<'a> crate::TaggedStructure<'a>
+for PhysicalDevicePrimitiveTopologyListRestartFeaturesEXT<'a> {
+    const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::PHYSICAL_DEVICE_PRIMITIVE_TOPOLOGY_LIST_RESTART_FEATURES_EXT;
+}
+unsafe impl<'a> crate::Extends<crate::vk::PhysicalDeviceFeatures2<'_>>
+for PhysicalDevicePrimitiveTopologyListRestartFeaturesEXT<'a> {}
+unsafe impl<'a> crate::Extends<crate::vk::DeviceCreateInfo<'_>>
+for PhysicalDevicePrimitiveTopologyListRestartFeaturesEXT<'a> {}
+impl<'a> Default for PhysicalDevicePrimitiveTopologyListRestartFeaturesEXT<'a> {
+    fn default() -> Self {
+        Self {
+            s_type: <Self as crate::TaggedStructure>::STRUCTURE_TYPE,
+            p_next: Default::default(),
+            primitive_topology_list_restart: Default::default(),
+            primitive_topology_patch_list_restart: Default::default(),
+            _marker: ::core::marker::PhantomData,
+        }
+    }
+}
+impl<'a> PhysicalDevicePrimitiveTopologyListRestartFeaturesEXT<'a> {
+    pub fn primitive_topology_list_restart(
+        mut self,
+        primitive_topology_list_restart: bool,
+    ) -> Self {
+        self.primitive_topology_list_restart = primitive_topology_list_restart.into();
+        self
+    }
+    pub fn primitive_topology_patch_list_restart(
+        mut self,
+        primitive_topology_patch_list_restart: bool,
+    ) -> Self {
+        self.primitive_topology_patch_list_restart = primitive_topology_patch_list_restart
+            .into();
+        self
+    }
+}
 ///Provided by [`ext::primitive_topology_list_restart`](crate::ext::primitive_topology_list_restart)
 impl crate::vk::StructureType {
     pub const PHYSICAL_DEVICE_PRIMITIVE_TOPOLOGY_LIST_RESTART_FEATURES_EXT: Self = Self(

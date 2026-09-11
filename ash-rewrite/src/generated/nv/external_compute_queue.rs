@@ -95,6 +95,31 @@ pub(crate) mod reexport {
         pub reserved_external_queues: u32,
         pub _marker: ::core::marker::PhantomData<&'a ()>,
     }
+    unsafe impl<'a> crate::TaggedStructure<'a>
+    for ExternalComputeQueueDeviceCreateInfoNV<'a> {
+        const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::EXTERNAL_COMPUTE_QUEUE_DEVICE_CREATE_INFO_NV;
+    }
+    unsafe impl<'a> crate::Extends<crate::vk::DeviceCreateInfo<'_>>
+    for ExternalComputeQueueDeviceCreateInfoNV<'a> {}
+    impl<'a> Default for ExternalComputeQueueDeviceCreateInfoNV<'a> {
+        fn default() -> Self {
+            Self {
+                s_type: <Self as crate::TaggedStructure>::STRUCTURE_TYPE,
+                p_next: Default::default(),
+                reserved_external_queues: Default::default(),
+                _marker: ::core::marker::PhantomData,
+            }
+        }
+    }
+    impl<'a> ExternalComputeQueueDeviceCreateInfoNV<'a> {
+        pub fn reserved_external_queues(
+            mut self,
+            reserved_external_queues: u32,
+        ) -> Self {
+            self.reserved_external_queues = reserved_external_queues;
+            self
+        }
+    }
     #[repr(C)]
     #[derive(Clone, Copy)]
     pub struct ExternalComputeQueueCreateInfoNV<'a> {
@@ -102,6 +127,25 @@ pub(crate) mod reexport {
         pub p_next: *const core::ffi::c_void,
         pub preferred_queue: crate::vk::Queue,
         pub _marker: ::core::marker::PhantomData<&'a ()>,
+    }
+    unsafe impl<'a> crate::TaggedStructure<'a> for ExternalComputeQueueCreateInfoNV<'a> {
+        const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::EXTERNAL_COMPUTE_QUEUE_CREATE_INFO_NV;
+    }
+    impl<'a> Default for ExternalComputeQueueCreateInfoNV<'a> {
+        fn default() -> Self {
+            Self {
+                s_type: <Self as crate::TaggedStructure>::STRUCTURE_TYPE,
+                p_next: Default::default(),
+                preferred_queue: Default::default(),
+                _marker: ::core::marker::PhantomData,
+            }
+        }
+    }
+    impl<'a> ExternalComputeQueueCreateInfoNV<'a> {
+        pub fn preferred_queue(mut self, preferred_queue: crate::vk::Queue) -> Self {
+            self.preferred_queue = preferred_queue;
+            self
+        }
     }
     #[repr(C)]
     #[derive(Clone, Copy)]
@@ -111,6 +155,25 @@ pub(crate) mod reexport {
         pub device_index: u32,
         pub _marker: ::core::marker::PhantomData<&'a ()>,
     }
+    unsafe impl<'a> crate::TaggedStructure<'a> for ExternalComputeQueueDataParamsNV<'a> {
+        const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::EXTERNAL_COMPUTE_QUEUE_DATA_PARAMS_NV;
+    }
+    impl<'a> Default for ExternalComputeQueueDataParamsNV<'a> {
+        fn default() -> Self {
+            Self {
+                s_type: <Self as crate::TaggedStructure>::STRUCTURE_TYPE,
+                p_next: Default::default(),
+                device_index: Default::default(),
+                _marker: ::core::marker::PhantomData,
+            }
+        }
+    }
+    impl<'a> ExternalComputeQueueDataParamsNV<'a> {
+        pub fn device_index(mut self, device_index: u32) -> Self {
+            self.device_index = device_index;
+            self
+        }
+    }
     #[repr(C)]
     #[derive(Clone, Copy)]
     pub struct PhysicalDeviceExternalComputeQueuePropertiesNV<'a> {
@@ -119,6 +182,33 @@ pub(crate) mod reexport {
         pub external_data_size: u32,
         pub max_external_queues: u32,
         pub _marker: ::core::marker::PhantomData<&'a ()>,
+    }
+    unsafe impl<'a> crate::TaggedStructure<'a>
+    for PhysicalDeviceExternalComputeQueuePropertiesNV<'a> {
+        const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::PHYSICAL_DEVICE_EXTERNAL_COMPUTE_QUEUE_PROPERTIES_NV;
+    }
+    unsafe impl<'a> crate::Extends<crate::vk::PhysicalDeviceProperties2<'_>>
+    for PhysicalDeviceExternalComputeQueuePropertiesNV<'a> {}
+    impl<'a> Default for PhysicalDeviceExternalComputeQueuePropertiesNV<'a> {
+        fn default() -> Self {
+            Self {
+                s_type: <Self as crate::TaggedStructure>::STRUCTURE_TYPE,
+                p_next: Default::default(),
+                external_data_size: Default::default(),
+                max_external_queues: Default::default(),
+                _marker: ::core::marker::PhantomData,
+            }
+        }
+    }
+    impl<'a> PhysicalDeviceExternalComputeQueuePropertiesNV<'a> {
+        pub fn external_data_size(mut self, external_data_size: u32) -> Self {
+            self.external_data_size = external_data_size;
+            self
+        }
+        pub fn max_external_queues(mut self, max_external_queues: u32) -> Self {
+            self.max_external_queues = max_external_queues;
+            self
+        }
     }
     ///Provided by [`nv::external_compute_queue`](crate::nv::external_compute_queue)
     impl crate::vk::StructureType {

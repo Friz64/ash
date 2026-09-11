@@ -4,13 +4,10 @@ mod output;
 
 use crate::output::CodeMap;
 use analysis::{
-    Analysis, AnalysisResult,
-    lifetime::Lifetime,
-    name::{
+    Analysis, AnalysisResult, decl::RustType, lifetime::Lifetime, name::{
         CMacroName, CommandName, ConstantName, EnumeratorName, FuncPointerName, TypeName,
         VariableName,
-    },
-    to_rust::RustTranslator,
+    }, to_rust::RustTranslator
 };
 use heck::{ToShoutySnekCase, ToSnekCase};
 use proc_macro2::TokenStream;
@@ -123,7 +120,13 @@ impl<'a> RustTranslator for Context<'a> {
         quote! { #path #ident }
     }
 
-    fn platform_type_to_rust(&self, raw: &'static str, qualified: bool) -> TokenStream {
+    fn rust_type_to_rust(&self, ty: &RustType) -> TokenStream {
+        match ty {
+            RustType::CStr => quote! { core::ffi::CStr },
+        }
+    }
+
+    fn platform_type_to_rust(&self, raw: &str, qualified: bool) -> TokenStream {
         let ident: Ident = syn::parse_str(raw).unwrap();
         let path = qualified.then(|| quote! { crate::platform_types:: });
         quote! { #path #ident }

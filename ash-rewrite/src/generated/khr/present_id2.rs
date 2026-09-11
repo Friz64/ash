@@ -9,6 +9,29 @@ pub struct PhysicalDevicePresentId2FeaturesKHR<'a> {
     pub present_id2: crate::vk::Bool32,
     pub _marker: ::core::marker::PhantomData<&'a ()>,
 }
+unsafe impl<'a> crate::TaggedStructure<'a> for PhysicalDevicePresentId2FeaturesKHR<'a> {
+    const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::PHYSICAL_DEVICE_PRESENT_ID_2_FEATURES_KHR;
+}
+unsafe impl<'a> crate::Extends<crate::vk::PhysicalDeviceFeatures2<'_>>
+for PhysicalDevicePresentId2FeaturesKHR<'a> {}
+unsafe impl<'a> crate::Extends<crate::vk::DeviceCreateInfo<'_>>
+for PhysicalDevicePresentId2FeaturesKHR<'a> {}
+impl<'a> Default for PhysicalDevicePresentId2FeaturesKHR<'a> {
+    fn default() -> Self {
+        Self {
+            s_type: <Self as crate::TaggedStructure>::STRUCTURE_TYPE,
+            p_next: Default::default(),
+            present_id2: Default::default(),
+            _marker: ::core::marker::PhantomData,
+        }
+    }
+}
+impl<'a> PhysicalDevicePresentId2FeaturesKHR<'a> {
+    pub fn present_id2(mut self, present_id2: bool) -> Self {
+        self.present_id2 = present_id2.into();
+        self
+    }
+}
 #[repr(C)]
 #[derive(Clone, Copy)]
 pub struct PresentId2KHR<'a> {
@@ -18,6 +41,32 @@ pub struct PresentId2KHR<'a> {
     pub p_present_ids: *const u64,
     pub _marker: ::core::marker::PhantomData<&'a ()>,
 }
+unsafe impl<'a> crate::TaggedStructure<'a> for PresentId2KHR<'a> {
+    const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::PRESENT_ID_2_KHR;
+}
+unsafe impl<'a> crate::Extends<crate::vk::PresentInfoKHR<'_>> for PresentId2KHR<'a> {}
+impl<'a> Default for PresentId2KHR<'a> {
+    fn default() -> Self {
+        Self {
+            s_type: <Self as crate::TaggedStructure>::STRUCTURE_TYPE,
+            p_next: Default::default(),
+            swapchain_count: Default::default(),
+            p_present_ids: Default::default(),
+            _marker: ::core::marker::PhantomData,
+        }
+    }
+}
+impl<'a> PresentId2KHR<'a> {
+    pub fn swapchain_count(mut self, swapchain_count: u32) -> Self {
+        self.swapchain_count = swapchain_count;
+        self
+    }
+    pub fn p_present_ids(mut self, p_present_ids: &'a [u64]) -> Self {
+        self.swapchain_count = p_present_ids.len() as _;
+        self.p_present_ids = p_present_ids.as_ptr();
+        self
+    }
+}
 #[repr(C)]
 #[derive(Clone, Copy)]
 pub struct SurfaceCapabilitiesPresentId2KHR<'a> {
@@ -25,6 +74,27 @@ pub struct SurfaceCapabilitiesPresentId2KHR<'a> {
     pub p_next: *mut core::ffi::c_void,
     pub present_id2_supported: crate::vk::Bool32,
     pub _marker: ::core::marker::PhantomData<&'a ()>,
+}
+unsafe impl<'a> crate::TaggedStructure<'a> for SurfaceCapabilitiesPresentId2KHR<'a> {
+    const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::SURFACE_CAPABILITIES_PRESENT_ID_2_KHR;
+}
+unsafe impl<'a> crate::Extends<crate::vk::SurfaceCapabilities2KHR<'_>>
+for SurfaceCapabilitiesPresentId2KHR<'a> {}
+impl<'a> Default for SurfaceCapabilitiesPresentId2KHR<'a> {
+    fn default() -> Self {
+        Self {
+            s_type: <Self as crate::TaggedStructure>::STRUCTURE_TYPE,
+            p_next: Default::default(),
+            present_id2_supported: Default::default(),
+            _marker: ::core::marker::PhantomData,
+        }
+    }
+}
+impl<'a> SurfaceCapabilitiesPresentId2KHR<'a> {
+    pub fn present_id2_supported(mut self, present_id2_supported: bool) -> Self {
+        self.present_id2_supported = present_id2_supported.into();
+        self
+    }
 }
 ///Provided by [`khr::present_id2`](crate::khr::present_id2)
 impl crate::vk::StructureType {

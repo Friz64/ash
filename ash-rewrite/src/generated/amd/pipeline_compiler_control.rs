@@ -9,6 +9,34 @@ pub struct PipelineCompilerControlCreateInfoAMD<'a> {
     pub compiler_control_flags: crate::vk::PipelineCompilerControlFlagsAMD,
     pub _marker: ::core::marker::PhantomData<&'a ()>,
 }
+unsafe impl<'a> crate::TaggedStructure<'a> for PipelineCompilerControlCreateInfoAMD<'a> {
+    const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::PIPELINE_COMPILER_CONTROL_CREATE_INFO_AMD;
+}
+unsafe impl<'a> crate::Extends<crate::vk::GraphicsPipelineCreateInfo<'_>>
+for PipelineCompilerControlCreateInfoAMD<'a> {}
+unsafe impl<'a> crate::Extends<crate::vk::ComputePipelineCreateInfo<'_>>
+for PipelineCompilerControlCreateInfoAMD<'a> {}
+unsafe impl<'a> crate::Extends<crate::vk::ExecutionGraphPipelineCreateInfoAMDX<'_>>
+for PipelineCompilerControlCreateInfoAMD<'a> {}
+impl<'a> Default for PipelineCompilerControlCreateInfoAMD<'a> {
+    fn default() -> Self {
+        Self {
+            s_type: <Self as crate::TaggedStructure>::STRUCTURE_TYPE,
+            p_next: Default::default(),
+            compiler_control_flags: Default::default(),
+            _marker: ::core::marker::PhantomData,
+        }
+    }
+}
+impl<'a> PipelineCompilerControlCreateInfoAMD<'a> {
+    pub fn compiler_control_flags(
+        mut self,
+        compiler_control_flags: crate::vk::PipelineCompilerControlFlagsAMD,
+    ) -> Self {
+        self.compiler_control_flags = compiler_control_flags;
+        self
+    }
+}
 ///Provided by [`amd::pipeline_compiler_control`](crate::amd::pipeline_compiler_control)
 impl crate::vk::StructureType {
     pub const PIPELINE_COMPILER_CONTROL_CREATE_INFO_AMD: Self = Self(1000183000);
@@ -81,7 +109,7 @@ impl core::ops::Not for PipelineCompilerControlFlagsAMD {
     }
 }
 #[repr(transparent)]
-#[derive(Clone, Copy)]
+#[derive(Clone, Copy, Default)]
 pub struct PipelineCompilerControlFlagBitsAMD(pub(crate) u32);
 pub const AMD_PIPELINE_COMPILER_CONTROL_SPEC_VERSION: u32 = 1;
 pub const AMD_PIPELINE_COMPILER_CONTROL_EXTENSION_NAME: &core::ffi::CStr = c"VK_AMD_pipeline_compiler_control";

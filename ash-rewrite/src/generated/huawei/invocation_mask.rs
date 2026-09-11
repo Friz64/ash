@@ -44,6 +44,30 @@ pub(crate) mod reexport {
         pub invocation_mask: crate::vk::Bool32,
         pub _marker: ::core::marker::PhantomData<&'a ()>,
     }
+    unsafe impl<'a> crate::TaggedStructure<'a>
+    for PhysicalDeviceInvocationMaskFeaturesHUAWEI<'a> {
+        const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::PHYSICAL_DEVICE_INVOCATION_MASK_FEATURES_HUAWEI;
+    }
+    unsafe impl<'a> crate::Extends<crate::vk::PhysicalDeviceFeatures2<'_>>
+    for PhysicalDeviceInvocationMaskFeaturesHUAWEI<'a> {}
+    unsafe impl<'a> crate::Extends<crate::vk::DeviceCreateInfo<'_>>
+    for PhysicalDeviceInvocationMaskFeaturesHUAWEI<'a> {}
+    impl<'a> Default for PhysicalDeviceInvocationMaskFeaturesHUAWEI<'a> {
+        fn default() -> Self {
+            Self {
+                s_type: <Self as crate::TaggedStructure>::STRUCTURE_TYPE,
+                p_next: Default::default(),
+                invocation_mask: Default::default(),
+                _marker: ::core::marker::PhantomData,
+            }
+        }
+    }
+    impl<'a> PhysicalDeviceInvocationMaskFeaturesHUAWEI<'a> {
+        pub fn invocation_mask(mut self, invocation_mask: bool) -> Self {
+            self.invocation_mask = invocation_mask.into();
+            self
+        }
+    }
     ///Provided by [`huawei::invocation_mask`](crate::huawei::invocation_mask)
     impl crate::vk::StructureType {
         pub const PHYSICAL_DEVICE_INVOCATION_MASK_FEATURES_HUAWEI: Self = Self(

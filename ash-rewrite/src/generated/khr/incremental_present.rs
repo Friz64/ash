@@ -10,19 +10,73 @@ pub struct PresentRegionsKHR<'a> {
     pub p_regions: *const crate::vk::PresentRegionKHR<'a>,
     pub _marker: ::core::marker::PhantomData<&'a ()>,
 }
+unsafe impl<'a> crate::TaggedStructure<'a> for PresentRegionsKHR<'a> {
+    const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::PRESENT_REGIONS_KHR;
+}
+unsafe impl<'a> crate::Extends<crate::vk::PresentInfoKHR<'_>> for PresentRegionsKHR<'a> {}
+impl<'a> Default for PresentRegionsKHR<'a> {
+    fn default() -> Self {
+        Self {
+            s_type: <Self as crate::TaggedStructure>::STRUCTURE_TYPE,
+            p_next: Default::default(),
+            swapchain_count: Default::default(),
+            p_regions: Default::default(),
+            _marker: ::core::marker::PhantomData,
+        }
+    }
+}
+impl<'a> PresentRegionsKHR<'a> {
+    pub fn swapchain_count(mut self, swapchain_count: u32) -> Self {
+        self.swapchain_count = swapchain_count;
+        self
+    }
+    pub fn p_regions(
+        mut self,
+        p_regions: &'a [crate::vk::PresentRegionKHR<'a>],
+    ) -> Self {
+        self.swapchain_count = p_regions.len() as _;
+        self.p_regions = p_regions.as_ptr();
+        self
+    }
+}
 #[repr(C)]
-#[derive(Clone, Copy)]
+#[derive(Clone, Copy, Default)]
 pub struct PresentRegionKHR<'a> {
     pub rectangle_count: u32,
     pub p_rectangles: *const crate::vk::RectLayerKHR,
     pub _marker: ::core::marker::PhantomData<&'a ()>,
 }
+impl<'a> PresentRegionKHR<'a> {
+    pub fn rectangle_count(mut self, rectangle_count: u32) -> Self {
+        self.rectangle_count = rectangle_count;
+        self
+    }
+    pub fn p_rectangles(mut self, p_rectangles: &'a [crate::vk::RectLayerKHR]) -> Self {
+        self.rectangle_count = p_rectangles.len() as _;
+        self.p_rectangles = p_rectangles.as_ptr();
+        self
+    }
+}
 #[repr(C)]
-#[derive(Clone, Copy)]
+#[derive(Clone, Copy, Default)]
 pub struct RectLayerKHR {
     pub offset: crate::vk::Offset2D,
     pub extent: crate::vk::Extent2D,
     pub layer: u32,
+}
+impl RectLayerKHR {
+    pub fn offset(mut self, offset: crate::vk::Offset2D) -> Self {
+        self.offset = offset;
+        self
+    }
+    pub fn extent(mut self, extent: crate::vk::Extent2D) -> Self {
+        self.extent = extent;
+        self
+    }
+    pub fn layer(mut self, layer: u32) -> Self {
+        self.layer = layer;
+        self
+    }
 }
 ///Provided by [`khr::incremental_present`](crate::khr::incremental_present)
 impl crate::vk::StructureType {

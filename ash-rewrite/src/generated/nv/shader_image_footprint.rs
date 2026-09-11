@@ -9,6 +9,30 @@ pub struct PhysicalDeviceShaderImageFootprintFeaturesNV<'a> {
     pub image_footprint: crate::vk::Bool32,
     pub _marker: ::core::marker::PhantomData<&'a ()>,
 }
+unsafe impl<'a> crate::TaggedStructure<'a>
+for PhysicalDeviceShaderImageFootprintFeaturesNV<'a> {
+    const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::PHYSICAL_DEVICE_SHADER_IMAGE_FOOTPRINT_FEATURES_NV;
+}
+unsafe impl<'a> crate::Extends<crate::vk::PhysicalDeviceFeatures2<'_>>
+for PhysicalDeviceShaderImageFootprintFeaturesNV<'a> {}
+unsafe impl<'a> crate::Extends<crate::vk::DeviceCreateInfo<'_>>
+for PhysicalDeviceShaderImageFootprintFeaturesNV<'a> {}
+impl<'a> Default for PhysicalDeviceShaderImageFootprintFeaturesNV<'a> {
+    fn default() -> Self {
+        Self {
+            s_type: <Self as crate::TaggedStructure>::STRUCTURE_TYPE,
+            p_next: Default::default(),
+            image_footprint: Default::default(),
+            _marker: ::core::marker::PhantomData,
+        }
+    }
+}
+impl<'a> PhysicalDeviceShaderImageFootprintFeaturesNV<'a> {
+    pub fn image_footprint(mut self, image_footprint: bool) -> Self {
+        self.image_footprint = image_footprint.into();
+        self
+    }
+}
 ///Provided by [`nv::shader_image_footprint`](crate::nv::shader_image_footprint)
 impl crate::vk::StructureType {
     pub const PHYSICAL_DEVICE_SHADER_IMAGE_FOOTPRINT_FEATURES_NV: Self = Self(

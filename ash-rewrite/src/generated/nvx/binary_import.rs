@@ -110,6 +110,31 @@ pub(crate) mod reexport {
         pub p_data: *const core::ffi::c_void,
         pub _marker: ::core::marker::PhantomData<&'a ()>,
     }
+    unsafe impl<'a> crate::TaggedStructure<'a> for CuModuleCreateInfoNVX<'a> {
+        const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::CU_MODULE_CREATE_INFO_NVX;
+    }
+    impl<'a> Default for CuModuleCreateInfoNVX<'a> {
+        fn default() -> Self {
+            Self {
+                s_type: <Self as crate::TaggedStructure>::STRUCTURE_TYPE,
+                p_next: Default::default(),
+                data_size: Default::default(),
+                p_data: Default::default(),
+                _marker: ::core::marker::PhantomData,
+            }
+        }
+    }
+    impl<'a> CuModuleCreateInfoNVX<'a> {
+        pub fn data_size(mut self, data_size: usize) -> Self {
+            self.data_size = data_size;
+            self
+        }
+        pub fn p_data(mut self, p_data: &'a [u8]) -> Self {
+            self.data_size = p_data.len() as _;
+            self.p_data = p_data.as_ptr().cast();
+            self
+        }
+    }
     #[repr(C)]
     #[derive(Clone, Copy)]
     pub struct CuModuleTexturingModeCreateInfoNVX<'a> {
@@ -117,6 +142,28 @@ pub(crate) mod reexport {
         pub p_next: *const core::ffi::c_void,
         pub use64bit_texturing: crate::vk::Bool32,
         pub _marker: ::core::marker::PhantomData<&'a ()>,
+    }
+    unsafe impl<'a> crate::TaggedStructure<'a>
+    for CuModuleTexturingModeCreateInfoNVX<'a> {
+        const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::CU_MODULE_TEXTURING_MODE_CREATE_INFO_NVX;
+    }
+    unsafe impl<'a> crate::Extends<crate::vk::CuModuleCreateInfoNVX<'_>>
+    for CuModuleTexturingModeCreateInfoNVX<'a> {}
+    impl<'a> Default for CuModuleTexturingModeCreateInfoNVX<'a> {
+        fn default() -> Self {
+            Self {
+                s_type: <Self as crate::TaggedStructure>::STRUCTURE_TYPE,
+                p_next: Default::default(),
+                use64bit_texturing: Default::default(),
+                _marker: ::core::marker::PhantomData,
+            }
+        }
+    }
+    impl<'a> CuModuleTexturingModeCreateInfoNVX<'a> {
+        pub fn use64bit_texturing(mut self, use64bit_texturing: bool) -> Self {
+            self.use64bit_texturing = use64bit_texturing.into();
+            self
+        }
     }
     #[repr(C)]
     #[derive(Clone, Copy)]
@@ -126,6 +173,37 @@ pub(crate) mod reexport {
         pub module: crate::vk::CuModuleNVX,
         pub p_name: *const core::ffi::c_char,
         pub _marker: ::core::marker::PhantomData<&'a ()>,
+    }
+    unsafe impl<'a> crate::TaggedStructure<'a> for CuFunctionCreateInfoNVX<'a> {
+        const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::CU_FUNCTION_CREATE_INFO_NVX;
+    }
+    impl<'a> Default for CuFunctionCreateInfoNVX<'a> {
+        fn default() -> Self {
+            Self {
+                s_type: <Self as crate::TaggedStructure>::STRUCTURE_TYPE,
+                p_next: Default::default(),
+                module: Default::default(),
+                p_name: Default::default(),
+                _marker: ::core::marker::PhantomData,
+            }
+        }
+    }
+    impl<'a> CuFunctionCreateInfoNVX<'a> {
+        pub fn module(mut self, module: crate::vk::CuModuleNVX) -> Self {
+            self.module = module;
+            self
+        }
+        pub fn p_name(mut self, p_name: &'a core::ffi::CStr) -> Self {
+            self.p_name = p_name.as_ptr();
+            self
+        }
+        pub unsafe fn p_name_as_c_str(&self) -> Option<&core::ffi::CStr> {
+            if self.p_name.is_null() {
+                None
+            } else {
+                Some(unsafe { core::ffi::CStr::from_ptr(self.p_name) })
+            }
+        }
     }
     #[repr(C)]
     #[derive(Clone, Copy)]
@@ -145,6 +223,82 @@ pub(crate) mod reexport {
         pub extra_count: usize,
         pub p_extras: *const *const core::ffi::c_void,
         pub _marker: ::core::marker::PhantomData<&'a ()>,
+    }
+    unsafe impl<'a> crate::TaggedStructure<'a> for CuLaunchInfoNVX<'a> {
+        const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::CU_LAUNCH_INFO_NVX;
+    }
+    impl<'a> Default for CuLaunchInfoNVX<'a> {
+        fn default() -> Self {
+            Self {
+                s_type: <Self as crate::TaggedStructure>::STRUCTURE_TYPE,
+                p_next: Default::default(),
+                function: Default::default(),
+                grid_dim_x: Default::default(),
+                grid_dim_y: Default::default(),
+                grid_dim_z: Default::default(),
+                block_dim_x: Default::default(),
+                block_dim_y: Default::default(),
+                block_dim_z: Default::default(),
+                shared_mem_bytes: Default::default(),
+                param_count: Default::default(),
+                p_params: Default::default(),
+                extra_count: Default::default(),
+                p_extras: Default::default(),
+                _marker: ::core::marker::PhantomData,
+            }
+        }
+    }
+    impl<'a> CuLaunchInfoNVX<'a> {
+        pub fn function(mut self, function: crate::vk::CuFunctionNVX) -> Self {
+            self.function = function;
+            self
+        }
+        pub fn grid_dim_x(mut self, grid_dim_x: u32) -> Self {
+            self.grid_dim_x = grid_dim_x;
+            self
+        }
+        pub fn grid_dim_y(mut self, grid_dim_y: u32) -> Self {
+            self.grid_dim_y = grid_dim_y;
+            self
+        }
+        pub fn grid_dim_z(mut self, grid_dim_z: u32) -> Self {
+            self.grid_dim_z = grid_dim_z;
+            self
+        }
+        pub fn block_dim_x(mut self, block_dim_x: u32) -> Self {
+            self.block_dim_x = block_dim_x;
+            self
+        }
+        pub fn block_dim_y(mut self, block_dim_y: u32) -> Self {
+            self.block_dim_y = block_dim_y;
+            self
+        }
+        pub fn block_dim_z(mut self, block_dim_z: u32) -> Self {
+            self.block_dim_z = block_dim_z;
+            self
+        }
+        pub fn shared_mem_bytes(mut self, shared_mem_bytes: u32) -> Self {
+            self.shared_mem_bytes = shared_mem_bytes;
+            self
+        }
+        pub fn param_count(mut self, param_count: usize) -> Self {
+            self.param_count = param_count;
+            self
+        }
+        pub fn p_params(mut self, p_params: &'a [*const core::ffi::c_void]) -> Self {
+            self.param_count = p_params.len() as _;
+            self.p_params = p_params.as_ptr();
+            self
+        }
+        pub fn extra_count(mut self, extra_count: usize) -> Self {
+            self.extra_count = extra_count;
+            self
+        }
+        pub fn p_extras(mut self, p_extras: &'a [*const core::ffi::c_void]) -> Self {
+            self.extra_count = p_extras.len() as _;
+            self.p_extras = p_extras.as_ptr();
+            self
+        }
     }
     ///Provided by [`nvx::binary_import`](crate::nvx::binary_import)
     impl crate::vk::StructureType {

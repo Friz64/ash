@@ -9,6 +9,30 @@ pub struct PhysicalDeviceTexelBufferAlignmentFeaturesEXT<'a> {
     pub texel_buffer_alignment: crate::vk::Bool32,
     pub _marker: ::core::marker::PhantomData<&'a ()>,
 }
+unsafe impl<'a> crate::TaggedStructure<'a>
+for PhysicalDeviceTexelBufferAlignmentFeaturesEXT<'a> {
+    const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::PHYSICAL_DEVICE_TEXEL_BUFFER_ALIGNMENT_FEATURES_EXT;
+}
+unsafe impl<'a> crate::Extends<crate::vk::PhysicalDeviceFeatures2<'_>>
+for PhysicalDeviceTexelBufferAlignmentFeaturesEXT<'a> {}
+unsafe impl<'a> crate::Extends<crate::vk::DeviceCreateInfo<'_>>
+for PhysicalDeviceTexelBufferAlignmentFeaturesEXT<'a> {}
+impl<'a> Default for PhysicalDeviceTexelBufferAlignmentFeaturesEXT<'a> {
+    fn default() -> Self {
+        Self {
+            s_type: <Self as crate::TaggedStructure>::STRUCTURE_TYPE,
+            p_next: Default::default(),
+            texel_buffer_alignment: Default::default(),
+            _marker: ::core::marker::PhantomData,
+        }
+    }
+}
+impl<'a> PhysicalDeviceTexelBufferAlignmentFeaturesEXT<'a> {
+    pub fn texel_buffer_alignment(mut self, texel_buffer_alignment: bool) -> Self {
+        self.texel_buffer_alignment = texel_buffer_alignment.into();
+        self
+    }
+}
 pub type PhysicalDeviceTexelBufferAlignmentPropertiesEXT<'a> = crate::vk::PhysicalDeviceTexelBufferAlignmentProperties<
     'a,
 >;

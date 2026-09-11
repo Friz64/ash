@@ -10,6 +10,35 @@ pub struct PhysicalDevicePerStageDescriptorSetFeaturesNV<'a> {
     pub dynamic_pipeline_layout: crate::vk::Bool32,
     pub _marker: ::core::marker::PhantomData<&'a ()>,
 }
+unsafe impl<'a> crate::TaggedStructure<'a>
+for PhysicalDevicePerStageDescriptorSetFeaturesNV<'a> {
+    const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::PHYSICAL_DEVICE_PER_STAGE_DESCRIPTOR_SET_FEATURES_NV;
+}
+unsafe impl<'a> crate::Extends<crate::vk::PhysicalDeviceFeatures2<'_>>
+for PhysicalDevicePerStageDescriptorSetFeaturesNV<'a> {}
+unsafe impl<'a> crate::Extends<crate::vk::DeviceCreateInfo<'_>>
+for PhysicalDevicePerStageDescriptorSetFeaturesNV<'a> {}
+impl<'a> Default for PhysicalDevicePerStageDescriptorSetFeaturesNV<'a> {
+    fn default() -> Self {
+        Self {
+            s_type: <Self as crate::TaggedStructure>::STRUCTURE_TYPE,
+            p_next: Default::default(),
+            per_stage_descriptor_set: Default::default(),
+            dynamic_pipeline_layout: Default::default(),
+            _marker: ::core::marker::PhantomData,
+        }
+    }
+}
+impl<'a> PhysicalDevicePerStageDescriptorSetFeaturesNV<'a> {
+    pub fn per_stage_descriptor_set(mut self, per_stage_descriptor_set: bool) -> Self {
+        self.per_stage_descriptor_set = per_stage_descriptor_set.into();
+        self
+    }
+    pub fn dynamic_pipeline_layout(mut self, dynamic_pipeline_layout: bool) -> Self {
+        self.dynamic_pipeline_layout = dynamic_pipeline_layout.into();
+        self
+    }
+}
 ///Provided by [`nv::per_stage_descriptor_set`](crate::nv::per_stage_descriptor_set)
 impl crate::vk::StructureType {
     pub const PHYSICAL_DEVICE_PER_STAGE_DESCRIPTOR_SET_FEATURES_NV: Self = Self(

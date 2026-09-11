@@ -9,6 +9,33 @@ pub struct ExternalMemoryAcquireUnmodifiedEXT<'a> {
     pub acquire_unmodified_memory: crate::vk::Bool32,
     pub _marker: ::core::marker::PhantomData<&'a ()>,
 }
+unsafe impl<'a> crate::TaggedStructure<'a> for ExternalMemoryAcquireUnmodifiedEXT<'a> {
+    const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::EXTERNAL_MEMORY_ACQUIRE_UNMODIFIED_EXT;
+}
+unsafe impl<'a> crate::Extends<crate::vk::BufferMemoryBarrier<'_>>
+for ExternalMemoryAcquireUnmodifiedEXT<'a> {}
+unsafe impl<'a> crate::Extends<crate::vk::BufferMemoryBarrier2<'_>>
+for ExternalMemoryAcquireUnmodifiedEXT<'a> {}
+unsafe impl<'a> crate::Extends<crate::vk::ImageMemoryBarrier<'_>>
+for ExternalMemoryAcquireUnmodifiedEXT<'a> {}
+unsafe impl<'a> crate::Extends<crate::vk::ImageMemoryBarrier2<'_>>
+for ExternalMemoryAcquireUnmodifiedEXT<'a> {}
+impl<'a> Default for ExternalMemoryAcquireUnmodifiedEXT<'a> {
+    fn default() -> Self {
+        Self {
+            s_type: <Self as crate::TaggedStructure>::STRUCTURE_TYPE,
+            p_next: Default::default(),
+            acquire_unmodified_memory: Default::default(),
+            _marker: ::core::marker::PhantomData,
+        }
+    }
+}
+impl<'a> ExternalMemoryAcquireUnmodifiedEXT<'a> {
+    pub fn acquire_unmodified_memory(mut self, acquire_unmodified_memory: bool) -> Self {
+        self.acquire_unmodified_memory = acquire_unmodified_memory.into();
+        self
+    }
+}
 ///Provided by [`ext::external_memory_acquire_unmodified`](crate::ext::external_memory_acquire_unmodified)
 impl crate::vk::StructureType {
     pub const EXTERNAL_MEMORY_ACQUIRE_UNMODIFIED_EXT: Self = Self(1000453000);

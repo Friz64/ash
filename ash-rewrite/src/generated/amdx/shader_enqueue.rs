@@ -154,6 +154,79 @@ pub(crate) mod reexport {
         pub max_execution_graph_workgroups: u32,
         pub _marker: ::core::marker::PhantomData<&'a ()>,
     }
+    unsafe impl<'a> crate::TaggedStructure<'a>
+    for PhysicalDeviceShaderEnqueuePropertiesAMDX<'a> {
+        const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::PHYSICAL_DEVICE_SHADER_ENQUEUE_PROPERTIES_AMDX;
+    }
+    unsafe impl<'a> crate::Extends<crate::vk::PhysicalDeviceProperties2<'_>>
+    for PhysicalDeviceShaderEnqueuePropertiesAMDX<'a> {}
+    impl<'a> Default for PhysicalDeviceShaderEnqueuePropertiesAMDX<'a> {
+        fn default() -> Self {
+            Self {
+                s_type: <Self as crate::TaggedStructure>::STRUCTURE_TYPE,
+                p_next: Default::default(),
+                max_execution_graph_depth: Default::default(),
+                max_execution_graph_shader_output_nodes: Default::default(),
+                max_execution_graph_shader_payload_size: Default::default(),
+                max_execution_graph_shader_payload_count: Default::default(),
+                execution_graph_dispatch_address_alignment: Default::default(),
+                max_execution_graph_workgroup_count: unsafe { core::mem::zeroed() },
+                max_execution_graph_workgroups: Default::default(),
+                _marker: ::core::marker::PhantomData,
+            }
+        }
+    }
+    impl<'a> PhysicalDeviceShaderEnqueuePropertiesAMDX<'a> {
+        pub fn max_execution_graph_depth(
+            mut self,
+            max_execution_graph_depth: u32,
+        ) -> Self {
+            self.max_execution_graph_depth = max_execution_graph_depth;
+            self
+        }
+        pub fn max_execution_graph_shader_output_nodes(
+            mut self,
+            max_execution_graph_shader_output_nodes: u32,
+        ) -> Self {
+            self.max_execution_graph_shader_output_nodes = max_execution_graph_shader_output_nodes;
+            self
+        }
+        pub fn max_execution_graph_shader_payload_size(
+            mut self,
+            max_execution_graph_shader_payload_size: u32,
+        ) -> Self {
+            self.max_execution_graph_shader_payload_size = max_execution_graph_shader_payload_size;
+            self
+        }
+        pub fn max_execution_graph_shader_payload_count(
+            mut self,
+            max_execution_graph_shader_payload_count: u32,
+        ) -> Self {
+            self.max_execution_graph_shader_payload_count = max_execution_graph_shader_payload_count;
+            self
+        }
+        pub fn execution_graph_dispatch_address_alignment(
+            mut self,
+            execution_graph_dispatch_address_alignment: u32,
+        ) -> Self {
+            self.execution_graph_dispatch_address_alignment = execution_graph_dispatch_address_alignment;
+            self
+        }
+        pub fn max_execution_graph_workgroup_count(
+            mut self,
+            max_execution_graph_workgroup_count: [u32; 3 as _],
+        ) -> Self {
+            self.max_execution_graph_workgroup_count = max_execution_graph_workgroup_count;
+            self
+        }
+        pub fn max_execution_graph_workgroups(
+            mut self,
+            max_execution_graph_workgroups: u32,
+        ) -> Self {
+            self.max_execution_graph_workgroups = max_execution_graph_workgroups;
+            self
+        }
+    }
     #[repr(C)]
     #[derive(Clone, Copy)]
     pub struct PhysicalDeviceShaderEnqueueFeaturesAMDX<'a> {
@@ -162,6 +235,35 @@ pub(crate) mod reexport {
         pub shader_enqueue: crate::vk::Bool32,
         pub shader_mesh_enqueue: crate::vk::Bool32,
         pub _marker: ::core::marker::PhantomData<&'a ()>,
+    }
+    unsafe impl<'a> crate::TaggedStructure<'a>
+    for PhysicalDeviceShaderEnqueueFeaturesAMDX<'a> {
+        const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::PHYSICAL_DEVICE_SHADER_ENQUEUE_FEATURES_AMDX;
+    }
+    unsafe impl<'a> crate::Extends<crate::vk::PhysicalDeviceFeatures2<'_>>
+    for PhysicalDeviceShaderEnqueueFeaturesAMDX<'a> {}
+    unsafe impl<'a> crate::Extends<crate::vk::DeviceCreateInfo<'_>>
+    for PhysicalDeviceShaderEnqueueFeaturesAMDX<'a> {}
+    impl<'a> Default for PhysicalDeviceShaderEnqueueFeaturesAMDX<'a> {
+        fn default() -> Self {
+            Self {
+                s_type: <Self as crate::TaggedStructure>::STRUCTURE_TYPE,
+                p_next: Default::default(),
+                shader_enqueue: Default::default(),
+                shader_mesh_enqueue: Default::default(),
+                _marker: ::core::marker::PhantomData,
+            }
+        }
+    }
+    impl<'a> PhysicalDeviceShaderEnqueueFeaturesAMDX<'a> {
+        pub fn shader_enqueue(mut self, shader_enqueue: bool) -> Self {
+            self.shader_enqueue = shader_enqueue.into();
+            self
+        }
+        pub fn shader_mesh_enqueue(mut self, shader_mesh_enqueue: bool) -> Self {
+            self.shader_mesh_enqueue = shader_mesh_enqueue.into();
+            self
+        }
     }
     #[repr(C)]
     #[derive(Clone, Copy)]
@@ -177,6 +279,66 @@ pub(crate) mod reexport {
         pub base_pipeline_index: i32,
         pub _marker: ::core::marker::PhantomData<&'a ()>,
     }
+    unsafe impl<'a> crate::TaggedStructure<'a>
+    for ExecutionGraphPipelineCreateInfoAMDX<'a> {
+        const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::EXECUTION_GRAPH_PIPELINE_CREATE_INFO_AMDX;
+    }
+    impl<'a> Default for ExecutionGraphPipelineCreateInfoAMDX<'a> {
+        fn default() -> Self {
+            Self {
+                s_type: <Self as crate::TaggedStructure>::STRUCTURE_TYPE,
+                p_next: Default::default(),
+                flags: Default::default(),
+                stage_count: Default::default(),
+                p_stages: Default::default(),
+                p_library_info: Default::default(),
+                layout: Default::default(),
+                base_pipeline_handle: Default::default(),
+                base_pipeline_index: Default::default(),
+                _marker: ::core::marker::PhantomData,
+            }
+        }
+    }
+    impl<'a> ExecutionGraphPipelineCreateInfoAMDX<'a> {
+        pub fn flags(mut self, flags: crate::vk::PipelineCreateFlags) -> Self {
+            self.flags = flags;
+            self
+        }
+        pub fn stage_count(mut self, stage_count: u32) -> Self {
+            self.stage_count = stage_count;
+            self
+        }
+        pub fn p_stages(
+            mut self,
+            p_stages: &'a [crate::vk::PipelineShaderStageCreateInfo<'a>],
+        ) -> Self {
+            self.stage_count = p_stages.len() as _;
+            self.p_stages = p_stages.as_ptr();
+            self
+        }
+        pub fn p_library_info(
+            mut self,
+            p_library_info: &'a crate::vk::PipelineLibraryCreateInfoKHR<'a>,
+        ) -> Self {
+            self.p_library_info = p_library_info;
+            self
+        }
+        pub fn layout(mut self, layout: crate::vk::PipelineLayout) -> Self {
+            self.layout = layout;
+            self
+        }
+        pub fn base_pipeline_handle(
+            mut self,
+            base_pipeline_handle: crate::vk::Pipeline,
+        ) -> Self {
+            self.base_pipeline_handle = base_pipeline_handle;
+            self
+        }
+        pub fn base_pipeline_index(mut self, base_pipeline_index: i32) -> Self {
+            self.base_pipeline_index = base_pipeline_index;
+            self
+        }
+    }
     #[repr(C)]
     #[derive(Clone, Copy)]
     pub struct PipelineShaderStageNodeCreateInfoAMDX<'a> {
@@ -185,6 +347,40 @@ pub(crate) mod reexport {
         pub p_name: *const core::ffi::c_char,
         pub index: u32,
         pub _marker: ::core::marker::PhantomData<&'a ()>,
+    }
+    unsafe impl<'a> crate::TaggedStructure<'a>
+    for PipelineShaderStageNodeCreateInfoAMDX<'a> {
+        const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::PIPELINE_SHADER_STAGE_NODE_CREATE_INFO_AMDX;
+    }
+    unsafe impl<'a> crate::Extends<crate::vk::PipelineShaderStageCreateInfo<'_>>
+    for PipelineShaderStageNodeCreateInfoAMDX<'a> {}
+    impl<'a> Default for PipelineShaderStageNodeCreateInfoAMDX<'a> {
+        fn default() -> Self {
+            Self {
+                s_type: <Self as crate::TaggedStructure>::STRUCTURE_TYPE,
+                p_next: Default::default(),
+                p_name: Default::default(),
+                index: Default::default(),
+                _marker: ::core::marker::PhantomData,
+            }
+        }
+    }
+    impl<'a> PipelineShaderStageNodeCreateInfoAMDX<'a> {
+        pub fn p_name(mut self, p_name: &'a core::ffi::CStr) -> Self {
+            self.p_name = p_name.as_ptr();
+            self
+        }
+        pub unsafe fn p_name_as_c_str(&self) -> Option<&core::ffi::CStr> {
+            if self.p_name.is_null() {
+                None
+            } else {
+                Some(unsafe { core::ffi::CStr::from_ptr(self.p_name) })
+            }
+        }
+        pub fn index(mut self, index: u32) -> Self {
+            self.index = index;
+            self
+        }
     }
     #[repr(C)]
     #[derive(Clone, Copy)]
@@ -196,26 +392,99 @@ pub(crate) mod reexport {
         pub size_granularity: crate::vk::DeviceSize,
         pub _marker: ::core::marker::PhantomData<&'a ()>,
     }
+    unsafe impl<'a> crate::TaggedStructure<'a>
+    for ExecutionGraphPipelineScratchSizeAMDX<'a> {
+        const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::EXECUTION_GRAPH_PIPELINE_SCRATCH_SIZE_AMDX;
+    }
+    impl<'a> Default for ExecutionGraphPipelineScratchSizeAMDX<'a> {
+        fn default() -> Self {
+            Self {
+                s_type: <Self as crate::TaggedStructure>::STRUCTURE_TYPE,
+                p_next: Default::default(),
+                min_size: Default::default(),
+                max_size: Default::default(),
+                size_granularity: Default::default(),
+                _marker: ::core::marker::PhantomData,
+            }
+        }
+    }
+    impl<'a> ExecutionGraphPipelineScratchSizeAMDX<'a> {
+        pub fn min_size(mut self, min_size: crate::vk::DeviceSize) -> Self {
+            self.min_size = min_size;
+            self
+        }
+        pub fn max_size(mut self, max_size: crate::vk::DeviceSize) -> Self {
+            self.max_size = max_size;
+            self
+        }
+        pub fn size_granularity(
+            mut self,
+            size_granularity: crate::vk::DeviceSize,
+        ) -> Self {
+            self.size_granularity = size_granularity;
+            self
+        }
+    }
     #[repr(C)]
-    #[derive(Clone, Copy)]
+    #[derive(Clone, Copy, Default)]
     pub struct DispatchGraphInfoAMDX {
         pub node_index: u32,
         pub payload_count: u32,
         pub payloads: crate::vk::DeviceOrHostAddressConstAMDX,
         pub payload_stride: u64,
     }
+    impl DispatchGraphInfoAMDX {
+        pub fn node_index(mut self, node_index: u32) -> Self {
+            self.node_index = node_index;
+            self
+        }
+        pub fn payload_count(mut self, payload_count: u32) -> Self {
+            self.payload_count = payload_count;
+            self
+        }
+        pub fn payloads(
+            mut self,
+            payloads: crate::vk::DeviceOrHostAddressConstAMDX,
+        ) -> Self {
+            self.payloads = payloads;
+            self
+        }
+        pub fn payload_stride(mut self, payload_stride: u64) -> Self {
+            self.payload_stride = payload_stride;
+            self
+        }
+    }
     #[repr(C)]
-    #[derive(Clone, Copy)]
+    #[derive(Clone, Copy, Default)]
     pub struct DispatchGraphCountInfoAMDX {
         pub count: u32,
         pub infos: crate::vk::DeviceOrHostAddressConstAMDX,
         pub stride: u64,
+    }
+    impl DispatchGraphCountInfoAMDX {
+        pub fn count(mut self, count: u32) -> Self {
+            self.count = count;
+            self
+        }
+        pub fn infos(mut self, infos: crate::vk::DeviceOrHostAddressConstAMDX) -> Self {
+            self.infos = infos;
+            self
+        }
+        pub fn stride(mut self, stride: u64) -> Self {
+            self.stride = stride;
+            self
+        }
     }
     #[repr(C)]
     #[derive(Clone, Copy)]
     pub union DeviceOrHostAddressConstAMDX {
         pub device_address: crate::vk::DeviceAddress,
         pub host_address: *const core::ffi::c_void,
+    }
+    impl Default for DeviceOrHostAddressConstAMDX {
+        fn default() -> Self {
+            unsafe { core::mem::zeroed() }
+        }
     }
     ///Provided by [`amdx::shader_enqueue`](crate::amdx::shader_enqueue)
     impl crate::vk::PipelineBindPoint {

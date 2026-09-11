@@ -9,6 +9,29 @@ pub struct PhysicalDeviceFormatPackFeaturesARM<'a> {
     pub format_pack: crate::vk::Bool32,
     pub _marker: ::core::marker::PhantomData<&'a ()>,
 }
+unsafe impl<'a> crate::TaggedStructure<'a> for PhysicalDeviceFormatPackFeaturesARM<'a> {
+    const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::PHYSICAL_DEVICE_FORMAT_PACK_FEATURES_ARM;
+}
+unsafe impl<'a> crate::Extends<crate::vk::PhysicalDeviceFeatures2<'_>>
+for PhysicalDeviceFormatPackFeaturesARM<'a> {}
+unsafe impl<'a> crate::Extends<crate::vk::DeviceCreateInfo<'_>>
+for PhysicalDeviceFormatPackFeaturesARM<'a> {}
+impl<'a> Default for PhysicalDeviceFormatPackFeaturesARM<'a> {
+    fn default() -> Self {
+        Self {
+            s_type: <Self as crate::TaggedStructure>::STRUCTURE_TYPE,
+            p_next: Default::default(),
+            format_pack: Default::default(),
+            _marker: ::core::marker::PhantomData,
+        }
+    }
+}
+impl<'a> PhysicalDeviceFormatPackFeaturesARM<'a> {
+    pub fn format_pack(mut self, format_pack: bool) -> Self {
+        self.format_pack = format_pack.into();
+        self
+    }
+}
 ///Provided by [`arm::format_pack`](crate::arm::format_pack)
 impl crate::vk::Format {
     pub const R10X6_UINT_PACK16_ARM: Self = Self(1000609000);

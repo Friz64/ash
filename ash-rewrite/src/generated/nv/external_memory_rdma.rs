@@ -44,6 +44,30 @@ pub(crate) mod reexport {
         pub external_memory_rdma: crate::vk::Bool32,
         pub _marker: ::core::marker::PhantomData<&'a ()>,
     }
+    unsafe impl<'a> crate::TaggedStructure<'a>
+    for PhysicalDeviceExternalMemoryRDMAFeaturesNV<'a> {
+        const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::PHYSICAL_DEVICE_EXTERNAL_MEMORY_RDMA_FEATURES_NV;
+    }
+    unsafe impl<'a> crate::Extends<crate::vk::PhysicalDeviceFeatures2<'_>>
+    for PhysicalDeviceExternalMemoryRDMAFeaturesNV<'a> {}
+    unsafe impl<'a> crate::Extends<crate::vk::DeviceCreateInfo<'_>>
+    for PhysicalDeviceExternalMemoryRDMAFeaturesNV<'a> {}
+    impl<'a> Default for PhysicalDeviceExternalMemoryRDMAFeaturesNV<'a> {
+        fn default() -> Self {
+            Self {
+                s_type: <Self as crate::TaggedStructure>::STRUCTURE_TYPE,
+                p_next: Default::default(),
+                external_memory_rdma: Default::default(),
+                _marker: ::core::marker::PhantomData,
+            }
+        }
+    }
+    impl<'a> PhysicalDeviceExternalMemoryRDMAFeaturesNV<'a> {
+        pub fn external_memory_rdma(mut self, external_memory_rdma: bool) -> Self {
+            self.external_memory_rdma = external_memory_rdma.into();
+            self
+        }
+    }
     #[repr(C)]
     #[derive(Clone, Copy)]
     pub struct MemoryGetRemoteAddressInfoNV<'a> {
@@ -52,6 +76,33 @@ pub(crate) mod reexport {
         pub memory: crate::vk::DeviceMemory,
         pub handle_type: crate::vk::ExternalMemoryHandleTypeFlagBits,
         pub _marker: ::core::marker::PhantomData<&'a ()>,
+    }
+    unsafe impl<'a> crate::TaggedStructure<'a> for MemoryGetRemoteAddressInfoNV<'a> {
+        const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::MEMORY_GET_REMOTE_ADDRESS_INFO_NV;
+    }
+    impl<'a> Default for MemoryGetRemoteAddressInfoNV<'a> {
+        fn default() -> Self {
+            Self {
+                s_type: <Self as crate::TaggedStructure>::STRUCTURE_TYPE,
+                p_next: Default::default(),
+                memory: Default::default(),
+                handle_type: Default::default(),
+                _marker: ::core::marker::PhantomData,
+            }
+        }
+    }
+    impl<'a> MemoryGetRemoteAddressInfoNV<'a> {
+        pub fn memory(mut self, memory: crate::vk::DeviceMemory) -> Self {
+            self.memory = memory;
+            self
+        }
+        pub fn handle_type(
+            mut self,
+            handle_type: crate::vk::ExternalMemoryHandleTypeFlagBits,
+        ) -> Self {
+            self.handle_type = handle_type;
+            self
+        }
     }
     ///Provided by [`nv::external_memory_rdma`](crate::nv::external_memory_rdma)
     impl crate::vk::StructureType {

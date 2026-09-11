@@ -51,11 +51,25 @@ impl DeviceFn {
 }
 pub(crate) mod reexport {
     #[repr(C)]
-    #[derive(Clone, Copy)]
+    #[derive(Clone, Copy, Default)]
     pub struct CopyMemoryIndirectCommandKHR {
         pub src_address: crate::vk::DeviceAddress,
         pub dst_address: crate::vk::DeviceAddress,
         pub size: crate::vk::DeviceSize,
+    }
+    impl CopyMemoryIndirectCommandKHR {
+        pub fn src_address(mut self, src_address: crate::vk::DeviceAddress) -> Self {
+            self.src_address = src_address;
+            self
+        }
+        pub fn dst_address(mut self, dst_address: crate::vk::DeviceAddress) -> Self {
+            self.dst_address = dst_address;
+            self
+        }
+        pub fn size(mut self, size: crate::vk::DeviceSize) -> Self {
+            self.size = size;
+            self
+        }
     }
     #[repr(C)]
     #[derive(Clone, Copy)]
@@ -68,8 +82,51 @@ pub(crate) mod reexport {
         pub copy_address_range: crate::vk::StridedDeviceAddressRangeKHR,
         pub _marker: ::core::marker::PhantomData<&'a ()>,
     }
+    unsafe impl<'a> crate::TaggedStructure<'a> for CopyMemoryIndirectInfoKHR<'a> {
+        const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::COPY_MEMORY_INDIRECT_INFO_KHR;
+    }
+    impl<'a> Default for CopyMemoryIndirectInfoKHR<'a> {
+        fn default() -> Self {
+            Self {
+                s_type: <Self as crate::TaggedStructure>::STRUCTURE_TYPE,
+                p_next: Default::default(),
+                src_copy_flags: Default::default(),
+                dst_copy_flags: Default::default(),
+                copy_count: Default::default(),
+                copy_address_range: Default::default(),
+                _marker: ::core::marker::PhantomData,
+            }
+        }
+    }
+    impl<'a> CopyMemoryIndirectInfoKHR<'a> {
+        pub fn src_copy_flags(
+            mut self,
+            src_copy_flags: crate::vk::AddressCopyFlagsKHR,
+        ) -> Self {
+            self.src_copy_flags = src_copy_flags;
+            self
+        }
+        pub fn dst_copy_flags(
+            mut self,
+            dst_copy_flags: crate::vk::AddressCopyFlagsKHR,
+        ) -> Self {
+            self.dst_copy_flags = dst_copy_flags;
+            self
+        }
+        pub fn copy_count(mut self, copy_count: u32) -> Self {
+            self.copy_count = copy_count;
+            self
+        }
+        pub fn copy_address_range(
+            mut self,
+            copy_address_range: crate::vk::StridedDeviceAddressRangeKHR,
+        ) -> Self {
+            self.copy_address_range = copy_address_range;
+            self
+        }
+    }
     #[repr(C)]
-    #[derive(Clone, Copy)]
+    #[derive(Clone, Copy, Default)]
     pub struct CopyMemoryToImageIndirectCommandKHR {
         pub src_address: crate::vk::DeviceAddress,
         pub buffer_row_length: u32,
@@ -77,6 +134,35 @@ pub(crate) mod reexport {
         pub image_subresource: crate::vk::ImageSubresourceLayers,
         pub image_offset: crate::vk::Offset3D,
         pub image_extent: crate::vk::Extent3D,
+    }
+    impl CopyMemoryToImageIndirectCommandKHR {
+        pub fn src_address(mut self, src_address: crate::vk::DeviceAddress) -> Self {
+            self.src_address = src_address;
+            self
+        }
+        pub fn buffer_row_length(mut self, buffer_row_length: u32) -> Self {
+            self.buffer_row_length = buffer_row_length;
+            self
+        }
+        pub fn buffer_image_height(mut self, buffer_image_height: u32) -> Self {
+            self.buffer_image_height = buffer_image_height;
+            self
+        }
+        pub fn image_subresource(
+            mut self,
+            image_subresource: crate::vk::ImageSubresourceLayers,
+        ) -> Self {
+            self.image_subresource = image_subresource;
+            self
+        }
+        pub fn image_offset(mut self, image_offset: crate::vk::Offset3D) -> Self {
+            self.image_offset = image_offset;
+            self
+        }
+        pub fn image_extent(mut self, image_extent: crate::vk::Extent3D) -> Self {
+            self.image_extent = image_extent;
+            self
+        }
     }
     #[repr(C)]
     #[derive(Clone, Copy)]
@@ -91,6 +177,63 @@ pub(crate) mod reexport {
         pub p_image_subresources: *const crate::vk::ImageSubresourceLayers,
         pub _marker: ::core::marker::PhantomData<&'a ()>,
     }
+    unsafe impl<'a> crate::TaggedStructure<'a> for CopyMemoryToImageIndirectInfoKHR<'a> {
+        const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::COPY_MEMORY_TO_IMAGE_INDIRECT_INFO_KHR;
+    }
+    impl<'a> Default for CopyMemoryToImageIndirectInfoKHR<'a> {
+        fn default() -> Self {
+            Self {
+                s_type: <Self as crate::TaggedStructure>::STRUCTURE_TYPE,
+                p_next: Default::default(),
+                src_copy_flags: Default::default(),
+                copy_count: Default::default(),
+                copy_address_range: Default::default(),
+                dst_image: Default::default(),
+                dst_image_layout: Default::default(),
+                p_image_subresources: Default::default(),
+                _marker: ::core::marker::PhantomData,
+            }
+        }
+    }
+    impl<'a> CopyMemoryToImageIndirectInfoKHR<'a> {
+        pub fn src_copy_flags(
+            mut self,
+            src_copy_flags: crate::vk::AddressCopyFlagsKHR,
+        ) -> Self {
+            self.src_copy_flags = src_copy_flags;
+            self
+        }
+        pub fn copy_count(mut self, copy_count: u32) -> Self {
+            self.copy_count = copy_count;
+            self
+        }
+        pub fn copy_address_range(
+            mut self,
+            copy_address_range: crate::vk::StridedDeviceAddressRangeKHR,
+        ) -> Self {
+            self.copy_address_range = copy_address_range;
+            self
+        }
+        pub fn dst_image(mut self, dst_image: crate::vk::Image) -> Self {
+            self.dst_image = dst_image;
+            self
+        }
+        pub fn dst_image_layout(
+            mut self,
+            dst_image_layout: crate::vk::ImageLayout,
+        ) -> Self {
+            self.dst_image_layout = dst_image_layout;
+            self
+        }
+        pub fn p_image_subresources(
+            mut self,
+            p_image_subresources: &'a [crate::vk::ImageSubresourceLayers],
+        ) -> Self {
+            self.copy_count = p_image_subresources.len() as _;
+            self.p_image_subresources = p_image_subresources.as_ptr();
+            self
+        }
+    }
     #[repr(C)]
     #[derive(Clone, Copy)]
     pub struct PhysicalDeviceCopyMemoryIndirectFeaturesKHR<'a> {
@@ -100,6 +243,38 @@ pub(crate) mod reexport {
         pub indirect_memory_to_image_copy: crate::vk::Bool32,
         pub _marker: ::core::marker::PhantomData<&'a ()>,
     }
+    unsafe impl<'a> crate::TaggedStructure<'a>
+    for PhysicalDeviceCopyMemoryIndirectFeaturesKHR<'a> {
+        const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::PHYSICAL_DEVICE_COPY_MEMORY_INDIRECT_FEATURES_KHR;
+    }
+    unsafe impl<'a> crate::Extends<crate::vk::PhysicalDeviceFeatures2<'_>>
+    for PhysicalDeviceCopyMemoryIndirectFeaturesKHR<'a> {}
+    unsafe impl<'a> crate::Extends<crate::vk::DeviceCreateInfo<'_>>
+    for PhysicalDeviceCopyMemoryIndirectFeaturesKHR<'a> {}
+    impl<'a> Default for PhysicalDeviceCopyMemoryIndirectFeaturesKHR<'a> {
+        fn default() -> Self {
+            Self {
+                s_type: <Self as crate::TaggedStructure>::STRUCTURE_TYPE,
+                p_next: Default::default(),
+                indirect_memory_copy: Default::default(),
+                indirect_memory_to_image_copy: Default::default(),
+                _marker: ::core::marker::PhantomData,
+            }
+        }
+    }
+    impl<'a> PhysicalDeviceCopyMemoryIndirectFeaturesKHR<'a> {
+        pub fn indirect_memory_copy(mut self, indirect_memory_copy: bool) -> Self {
+            self.indirect_memory_copy = indirect_memory_copy.into();
+            self
+        }
+        pub fn indirect_memory_to_image_copy(
+            mut self,
+            indirect_memory_to_image_copy: bool,
+        ) -> Self {
+            self.indirect_memory_to_image_copy = indirect_memory_to_image_copy.into();
+            self
+        }
+    }
     #[repr(C)]
     #[derive(Clone, Copy)]
     pub struct PhysicalDeviceCopyMemoryIndirectPropertiesKHR<'a> {
@@ -107,6 +282,31 @@ pub(crate) mod reexport {
         pub p_next: *mut core::ffi::c_void,
         pub supported_queues: crate::vk::QueueFlags,
         pub _marker: ::core::marker::PhantomData<&'a ()>,
+    }
+    unsafe impl<'a> crate::TaggedStructure<'a>
+    for PhysicalDeviceCopyMemoryIndirectPropertiesKHR<'a> {
+        const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::PHYSICAL_DEVICE_COPY_MEMORY_INDIRECT_PROPERTIES_KHR;
+    }
+    unsafe impl<'a> crate::Extends<crate::vk::PhysicalDeviceProperties2<'_>>
+    for PhysicalDeviceCopyMemoryIndirectPropertiesKHR<'a> {}
+    impl<'a> Default for PhysicalDeviceCopyMemoryIndirectPropertiesKHR<'a> {
+        fn default() -> Self {
+            Self {
+                s_type: <Self as crate::TaggedStructure>::STRUCTURE_TYPE,
+                p_next: Default::default(),
+                supported_queues: Default::default(),
+                _marker: ::core::marker::PhantomData,
+            }
+        }
+    }
+    impl<'a> PhysicalDeviceCopyMemoryIndirectPropertiesKHR<'a> {
+        pub fn supported_queues(
+            mut self,
+            supported_queues: crate::vk::QueueFlags,
+        ) -> Self {
+            self.supported_queues = supported_queues;
+            self
+        }
     }
     ///Provided by [`khr::copy_memory_indirect`](crate::khr::copy_memory_indirect)
     impl crate::vk::StructureType {
@@ -200,7 +400,7 @@ pub(crate) mod reexport {
         }
     }
     #[repr(transparent)]
-    #[derive(Clone, Copy)]
+    #[derive(Clone, Copy, Default)]
     pub struct AddressCopyFlagBitsKHR(pub(crate) u32);
     ///Provided by [`khr::copy_memory_indirect`](crate::khr::copy_memory_indirect)
     impl AddressCopyFlagBitsKHR {

@@ -9,6 +9,30 @@ pub struct PhysicalDeviceLegacyDitheringFeaturesEXT<'a> {
     pub legacy_dithering: crate::vk::Bool32,
     pub _marker: ::core::marker::PhantomData<&'a ()>,
 }
+unsafe impl<'a> crate::TaggedStructure<'a>
+for PhysicalDeviceLegacyDitheringFeaturesEXT<'a> {
+    const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::PHYSICAL_DEVICE_LEGACY_DITHERING_FEATURES_EXT;
+}
+unsafe impl<'a> crate::Extends<crate::vk::PhysicalDeviceFeatures2<'_>>
+for PhysicalDeviceLegacyDitheringFeaturesEXT<'a> {}
+unsafe impl<'a> crate::Extends<crate::vk::DeviceCreateInfo<'_>>
+for PhysicalDeviceLegacyDitheringFeaturesEXT<'a> {}
+impl<'a> Default for PhysicalDeviceLegacyDitheringFeaturesEXT<'a> {
+    fn default() -> Self {
+        Self {
+            s_type: <Self as crate::TaggedStructure>::STRUCTURE_TYPE,
+            p_next: Default::default(),
+            legacy_dithering: Default::default(),
+            _marker: ::core::marker::PhantomData,
+        }
+    }
+}
+impl<'a> PhysicalDeviceLegacyDitheringFeaturesEXT<'a> {
+    pub fn legacy_dithering(mut self, legacy_dithering: bool) -> Self {
+        self.legacy_dithering = legacy_dithering.into();
+        self
+    }
+}
 ///Provided by [`ext::legacy_dithering`](crate::ext::legacy_dithering)
 impl crate::vk::StructureType {
     pub const PHYSICAL_DEVICE_LEGACY_DITHERING_FEATURES_EXT: Self = Self(1000465000);

@@ -9,6 +9,33 @@ pub struct PhysicalDeviceInternallySynchronizedQueuesFeaturesKHR<'a> {
     pub internally_synchronized_queues: crate::vk::Bool32,
     pub _marker: ::core::marker::PhantomData<&'a ()>,
 }
+unsafe impl<'a> crate::TaggedStructure<'a>
+for PhysicalDeviceInternallySynchronizedQueuesFeaturesKHR<'a> {
+    const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::PHYSICAL_DEVICE_INTERNALLY_SYNCHRONIZED_QUEUES_FEATURES_KHR;
+}
+unsafe impl<'a> crate::Extends<crate::vk::PhysicalDeviceFeatures2<'_>>
+for PhysicalDeviceInternallySynchronizedQueuesFeaturesKHR<'a> {}
+unsafe impl<'a> crate::Extends<crate::vk::DeviceCreateInfo<'_>>
+for PhysicalDeviceInternallySynchronizedQueuesFeaturesKHR<'a> {}
+impl<'a> Default for PhysicalDeviceInternallySynchronizedQueuesFeaturesKHR<'a> {
+    fn default() -> Self {
+        Self {
+            s_type: <Self as crate::TaggedStructure>::STRUCTURE_TYPE,
+            p_next: Default::default(),
+            internally_synchronized_queues: Default::default(),
+            _marker: ::core::marker::PhantomData,
+        }
+    }
+}
+impl<'a> PhysicalDeviceInternallySynchronizedQueuesFeaturesKHR<'a> {
+    pub fn internally_synchronized_queues(
+        mut self,
+        internally_synchronized_queues: bool,
+    ) -> Self {
+        self.internally_synchronized_queues = internally_synchronized_queues.into();
+        self
+    }
+}
 ///Provided by [`khr::internally_synchronized_queues`](crate::khr::internally_synchronized_queues)
 impl crate::vk::StructureType {
     pub const PHYSICAL_DEVICE_INTERNALLY_SYNCHRONIZED_QUEUES_FEATURES_KHR: Self = Self(

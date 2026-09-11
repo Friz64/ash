@@ -9,6 +9,30 @@ pub struct PhysicalDeviceRawAccessChainsFeaturesNV<'a> {
     pub shader_raw_access_chains: crate::vk::Bool32,
     pub _marker: ::core::marker::PhantomData<&'a ()>,
 }
+unsafe impl<'a> crate::TaggedStructure<'a>
+for PhysicalDeviceRawAccessChainsFeaturesNV<'a> {
+    const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::PHYSICAL_DEVICE_RAW_ACCESS_CHAINS_FEATURES_NV;
+}
+unsafe impl<'a> crate::Extends<crate::vk::PhysicalDeviceFeatures2<'_>>
+for PhysicalDeviceRawAccessChainsFeaturesNV<'a> {}
+unsafe impl<'a> crate::Extends<crate::vk::DeviceCreateInfo<'_>>
+for PhysicalDeviceRawAccessChainsFeaturesNV<'a> {}
+impl<'a> Default for PhysicalDeviceRawAccessChainsFeaturesNV<'a> {
+    fn default() -> Self {
+        Self {
+            s_type: <Self as crate::TaggedStructure>::STRUCTURE_TYPE,
+            p_next: Default::default(),
+            shader_raw_access_chains: Default::default(),
+            _marker: ::core::marker::PhantomData,
+        }
+    }
+}
+impl<'a> PhysicalDeviceRawAccessChainsFeaturesNV<'a> {
+    pub fn shader_raw_access_chains(mut self, shader_raw_access_chains: bool) -> Self {
+        self.shader_raw_access_chains = shader_raw_access_chains.into();
+        self
+    }
+}
 ///Provided by [`nv::raw_access_chains`](crate::nv::raw_access_chains)
 impl crate::vk::StructureType {
     pub const PHYSICAL_DEVICE_RAW_ACCESS_CHAINS_FEATURES_NV: Self = Self(1000555000);

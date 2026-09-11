@@ -10,6 +10,35 @@ pub struct PhysicalDeviceImage2DViewOf3DFeaturesEXT<'a> {
     pub sampler2_d_view_of3_d: crate::vk::Bool32,
     pub _marker: ::core::marker::PhantomData<&'a ()>,
 }
+unsafe impl<'a> crate::TaggedStructure<'a>
+for PhysicalDeviceImage2DViewOf3DFeaturesEXT<'a> {
+    const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::PHYSICAL_DEVICE_IMAGE_2D_VIEW_OF_3D_FEATURES_EXT;
+}
+unsafe impl<'a> crate::Extends<crate::vk::PhysicalDeviceFeatures2<'_>>
+for PhysicalDeviceImage2DViewOf3DFeaturesEXT<'a> {}
+unsafe impl<'a> crate::Extends<crate::vk::DeviceCreateInfo<'_>>
+for PhysicalDeviceImage2DViewOf3DFeaturesEXT<'a> {}
+impl<'a> Default for PhysicalDeviceImage2DViewOf3DFeaturesEXT<'a> {
+    fn default() -> Self {
+        Self {
+            s_type: <Self as crate::TaggedStructure>::STRUCTURE_TYPE,
+            p_next: Default::default(),
+            image2_d_view_of3_d: Default::default(),
+            sampler2_d_view_of3_d: Default::default(),
+            _marker: ::core::marker::PhantomData,
+        }
+    }
+}
+impl<'a> PhysicalDeviceImage2DViewOf3DFeaturesEXT<'a> {
+    pub fn image2_d_view_of3_d(mut self, image2_d_view_of3_d: bool) -> Self {
+        self.image2_d_view_of3_d = image2_d_view_of3_d.into();
+        self
+    }
+    pub fn sampler2_d_view_of3_d(mut self, sampler2_d_view_of3_d: bool) -> Self {
+        self.sampler2_d_view_of3_d = sampler2_d_view_of3_d.into();
+        self
+    }
+}
 ///Provided by [`ext::image_2d_view_of_3d`](crate::ext::image_2d_view_of_3d)
 impl crate::vk::StructureType {
     pub const PHYSICAL_DEVICE_IMAGE_2D_VIEW_OF_3D_FEATURES_EXT: Self = Self(1000393000);

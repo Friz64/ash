@@ -9,6 +9,28 @@ pub struct PhysicalDeviceVertexAttributeDivisorPropertiesEXT<'a> {
     pub max_vertex_attrib_divisor: u32,
     pub _marker: ::core::marker::PhantomData<&'a ()>,
 }
+unsafe impl<'a> crate::TaggedStructure<'a>
+for PhysicalDeviceVertexAttributeDivisorPropertiesEXT<'a> {
+    const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::PHYSICAL_DEVICE_VERTEX_ATTRIBUTE_DIVISOR_PROPERTIES_EXT;
+}
+unsafe impl<'a> crate::Extends<crate::vk::PhysicalDeviceProperties2<'_>>
+for PhysicalDeviceVertexAttributeDivisorPropertiesEXT<'a> {}
+impl<'a> Default for PhysicalDeviceVertexAttributeDivisorPropertiesEXT<'a> {
+    fn default() -> Self {
+        Self {
+            s_type: <Self as crate::TaggedStructure>::STRUCTURE_TYPE,
+            p_next: Default::default(),
+            max_vertex_attrib_divisor: Default::default(),
+            _marker: ::core::marker::PhantomData,
+        }
+    }
+}
+impl<'a> PhysicalDeviceVertexAttributeDivisorPropertiesEXT<'a> {
+    pub fn max_vertex_attrib_divisor(mut self, max_vertex_attrib_divisor: u32) -> Self {
+        self.max_vertex_attrib_divisor = max_vertex_attrib_divisor;
+        self
+    }
+}
 pub type VertexInputBindingDivisorDescriptionEXT = crate::vk::VertexInputBindingDivisorDescription;
 pub type PipelineVertexInputDivisorStateCreateInfoEXT<'a> = crate::vk::PipelineVertexInputDivisorStateCreateInfo<
     'a,

@@ -12,6 +12,61 @@ pub struct PhysicalDeviceShaderMixedFloatDotProductFeaturesVALVE<'a> {
     pub shader_mixed_float_dot_product_float8_acc_float32: crate::vk::Bool32,
     pub _marker: ::core::marker::PhantomData<&'a ()>,
 }
+unsafe impl<'a> crate::TaggedStructure<'a>
+for PhysicalDeviceShaderMixedFloatDotProductFeaturesVALVE<'a> {
+    const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::PHYSICAL_DEVICE_SHADER_MIXED_FLOAT_DOT_PRODUCT_FEATURES_VALVE;
+}
+unsafe impl<'a> crate::Extends<crate::vk::PhysicalDeviceFeatures2<'_>>
+for PhysicalDeviceShaderMixedFloatDotProductFeaturesVALVE<'a> {}
+unsafe impl<'a> crate::Extends<crate::vk::DeviceCreateInfo<'_>>
+for PhysicalDeviceShaderMixedFloatDotProductFeaturesVALVE<'a> {}
+impl<'a> Default for PhysicalDeviceShaderMixedFloatDotProductFeaturesVALVE<'a> {
+    fn default() -> Self {
+        Self {
+            s_type: <Self as crate::TaggedStructure>::STRUCTURE_TYPE,
+            p_next: Default::default(),
+            shader_mixed_float_dot_product_float16_acc_float32: Default::default(),
+            shader_mixed_float_dot_product_float16_acc_float16: Default::default(),
+            shader_mixed_float_dot_product_b_float16_acc: Default::default(),
+            shader_mixed_float_dot_product_float8_acc_float32: Default::default(),
+            _marker: ::core::marker::PhantomData,
+        }
+    }
+}
+impl<'a> PhysicalDeviceShaderMixedFloatDotProductFeaturesVALVE<'a> {
+    pub fn shader_mixed_float_dot_product_float16_acc_float32(
+        mut self,
+        shader_mixed_float_dot_product_float16_acc_float32: bool,
+    ) -> Self {
+        self.shader_mixed_float_dot_product_float16_acc_float32 = shader_mixed_float_dot_product_float16_acc_float32
+            .into();
+        self
+    }
+    pub fn shader_mixed_float_dot_product_float16_acc_float16(
+        mut self,
+        shader_mixed_float_dot_product_float16_acc_float16: bool,
+    ) -> Self {
+        self.shader_mixed_float_dot_product_float16_acc_float16 = shader_mixed_float_dot_product_float16_acc_float16
+            .into();
+        self
+    }
+    pub fn shader_mixed_float_dot_product_b_float16_acc(
+        mut self,
+        shader_mixed_float_dot_product_b_float16_acc: bool,
+    ) -> Self {
+        self.shader_mixed_float_dot_product_b_float16_acc = shader_mixed_float_dot_product_b_float16_acc
+            .into();
+        self
+    }
+    pub fn shader_mixed_float_dot_product_float8_acc_float32(
+        mut self,
+        shader_mixed_float_dot_product_float8_acc_float32: bool,
+    ) -> Self {
+        self.shader_mixed_float_dot_product_float8_acc_float32 = shader_mixed_float_dot_product_float8_acc_float32
+            .into();
+        self
+    }
+}
 ///Provided by [`valve::shader_mixed_float_dot_product`](crate::valve::shader_mixed_float_dot_product)
 impl crate::vk::StructureType {
     pub const PHYSICAL_DEVICE_SHADER_MIXED_FLOAT_DOT_PRODUCT_FEATURES_VALVE: Self = Self(

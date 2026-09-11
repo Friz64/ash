@@ -81,6 +81,33 @@ pub(crate) mod reexport {
         pub pipeline_executable_info: crate::vk::Bool32,
         pub _marker: ::core::marker::PhantomData<&'a ()>,
     }
+    unsafe impl<'a> crate::TaggedStructure<'a>
+    for PhysicalDevicePipelineExecutablePropertiesFeaturesKHR<'a> {
+        const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::PHYSICAL_DEVICE_PIPELINE_EXECUTABLE_PROPERTIES_FEATURES_KHR;
+    }
+    unsafe impl<'a> crate::Extends<crate::vk::PhysicalDeviceFeatures2<'_>>
+    for PhysicalDevicePipelineExecutablePropertiesFeaturesKHR<'a> {}
+    unsafe impl<'a> crate::Extends<crate::vk::DeviceCreateInfo<'_>>
+    for PhysicalDevicePipelineExecutablePropertiesFeaturesKHR<'a> {}
+    impl<'a> Default for PhysicalDevicePipelineExecutablePropertiesFeaturesKHR<'a> {
+        fn default() -> Self {
+            Self {
+                s_type: <Self as crate::TaggedStructure>::STRUCTURE_TYPE,
+                p_next: Default::default(),
+                pipeline_executable_info: Default::default(),
+                _marker: ::core::marker::PhantomData,
+            }
+        }
+    }
+    impl<'a> PhysicalDevicePipelineExecutablePropertiesFeaturesKHR<'a> {
+        pub fn pipeline_executable_info(
+            mut self,
+            pipeline_executable_info: bool,
+        ) -> Self {
+            self.pipeline_executable_info = pipeline_executable_info.into();
+            self
+        }
+    }
     #[repr(C)]
     #[derive(Clone, Copy)]
     pub struct PipelineInfoKHR<'a> {
@@ -88,6 +115,25 @@ pub(crate) mod reexport {
         pub p_next: *const core::ffi::c_void,
         pub pipeline: crate::vk::Pipeline,
         pub _marker: ::core::marker::PhantomData<&'a ()>,
+    }
+    unsafe impl<'a> crate::TaggedStructure<'a> for PipelineInfoKHR<'a> {
+        const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::PIPELINE_INFO_KHR;
+    }
+    impl<'a> Default for PipelineInfoKHR<'a> {
+        fn default() -> Self {
+            Self {
+                s_type: <Self as crate::TaggedStructure>::STRUCTURE_TYPE,
+                p_next: Default::default(),
+                pipeline: Default::default(),
+                _marker: ::core::marker::PhantomData,
+            }
+        }
+    }
+    impl<'a> PipelineInfoKHR<'a> {
+        pub fn pipeline(mut self, pipeline: crate::vk::Pipeline) -> Self {
+            self.pipeline = pipeline;
+            self
+        }
     }
     #[repr(C)]
     #[derive(Clone, Copy)]
@@ -100,6 +146,55 @@ pub(crate) mod reexport {
         pub subgroup_size: u32,
         pub _marker: ::core::marker::PhantomData<&'a ()>,
     }
+    unsafe impl<'a> crate::TaggedStructure<'a> for PipelineExecutablePropertiesKHR<'a> {
+        const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::PIPELINE_EXECUTABLE_PROPERTIES_KHR;
+    }
+    impl<'a> Default for PipelineExecutablePropertiesKHR<'a> {
+        fn default() -> Self {
+            Self {
+                s_type: <Self as crate::TaggedStructure>::STRUCTURE_TYPE,
+                p_next: Default::default(),
+                stages: Default::default(),
+                name: unsafe { core::mem::zeroed() },
+                description: unsafe { core::mem::zeroed() },
+                subgroup_size: Default::default(),
+                _marker: ::core::marker::PhantomData,
+            }
+        }
+    }
+    impl<'a> PipelineExecutablePropertiesKHR<'a> {
+        pub fn stages(mut self, stages: crate::vk::ShaderStageFlags) -> Self {
+            self.stages = stages;
+            self
+        }
+        pub fn name(
+            mut self,
+            name: &core::ffi::CStr,
+        ) -> core::result::Result<Self, crate::CStrTooLargeForStaticArray> {
+            crate::write_c_str_slice_with_nul(&mut self.name, name).map(|_| self)
+        }
+        pub fn name_as_c_str(
+            &self,
+        ) -> core::result::Result<&core::ffi::CStr, core::ffi::FromBytesUntilNulError> {
+            crate::wrap_c_str_slice_until_nul(&self.name)
+        }
+        pub fn description(
+            mut self,
+            description: &core::ffi::CStr,
+        ) -> core::result::Result<Self, crate::CStrTooLargeForStaticArray> {
+            crate::write_c_str_slice_with_nul(&mut self.description, description)
+                .map(|_| self)
+        }
+        pub fn description_as_c_str(
+            &self,
+        ) -> core::result::Result<&core::ffi::CStr, core::ffi::FromBytesUntilNulError> {
+            crate::wrap_c_str_slice_until_nul(&self.description)
+        }
+        pub fn subgroup_size(mut self, subgroup_size: u32) -> Self {
+            self.subgroup_size = subgroup_size;
+            self
+        }
+    }
     #[repr(C)]
     #[derive(Clone, Copy)]
     pub struct PipelineExecutableInfoKHR<'a> {
@@ -108,6 +203,30 @@ pub(crate) mod reexport {
         pub pipeline: crate::vk::Pipeline,
         pub executable_index: u32,
         pub _marker: ::core::marker::PhantomData<&'a ()>,
+    }
+    unsafe impl<'a> crate::TaggedStructure<'a> for PipelineExecutableInfoKHR<'a> {
+        const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::PIPELINE_EXECUTABLE_INFO_KHR;
+    }
+    impl<'a> Default for PipelineExecutableInfoKHR<'a> {
+        fn default() -> Self {
+            Self {
+                s_type: <Self as crate::TaggedStructure>::STRUCTURE_TYPE,
+                p_next: Default::default(),
+                pipeline: Default::default(),
+                executable_index: Default::default(),
+                _marker: ::core::marker::PhantomData,
+            }
+        }
+    }
+    impl<'a> PipelineExecutableInfoKHR<'a> {
+        pub fn pipeline(mut self, pipeline: crate::vk::Pipeline) -> Self {
+            self.pipeline = pipeline;
+            self
+        }
+        pub fn executable_index(mut self, executable_index: u32) -> Self {
+            self.executable_index = executable_index;
+            self
+        }
     }
     #[repr(C)]
     #[derive(Clone, Copy)]
@@ -119,6 +238,61 @@ pub(crate) mod reexport {
         pub format: crate::vk::PipelineExecutableStatisticFormatKHR,
         pub value: crate::vk::PipelineExecutableStatisticValueKHR,
         pub _marker: ::core::marker::PhantomData<&'a ()>,
+    }
+    unsafe impl<'a> crate::TaggedStructure<'a> for PipelineExecutableStatisticKHR<'a> {
+        const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::PIPELINE_EXECUTABLE_STATISTIC_KHR;
+    }
+    impl<'a> Default for PipelineExecutableStatisticKHR<'a> {
+        fn default() -> Self {
+            Self {
+                s_type: <Self as crate::TaggedStructure>::STRUCTURE_TYPE,
+                p_next: Default::default(),
+                name: unsafe { core::mem::zeroed() },
+                description: unsafe { core::mem::zeroed() },
+                format: Default::default(),
+                value: Default::default(),
+                _marker: ::core::marker::PhantomData,
+            }
+        }
+    }
+    impl<'a> PipelineExecutableStatisticKHR<'a> {
+        pub fn name(
+            mut self,
+            name: &core::ffi::CStr,
+        ) -> core::result::Result<Self, crate::CStrTooLargeForStaticArray> {
+            crate::write_c_str_slice_with_nul(&mut self.name, name).map(|_| self)
+        }
+        pub fn name_as_c_str(
+            &self,
+        ) -> core::result::Result<&core::ffi::CStr, core::ffi::FromBytesUntilNulError> {
+            crate::wrap_c_str_slice_until_nul(&self.name)
+        }
+        pub fn description(
+            mut self,
+            description: &core::ffi::CStr,
+        ) -> core::result::Result<Self, crate::CStrTooLargeForStaticArray> {
+            crate::write_c_str_slice_with_nul(&mut self.description, description)
+                .map(|_| self)
+        }
+        pub fn description_as_c_str(
+            &self,
+        ) -> core::result::Result<&core::ffi::CStr, core::ffi::FromBytesUntilNulError> {
+            crate::wrap_c_str_slice_until_nul(&self.description)
+        }
+        pub fn format(
+            mut self,
+            format: crate::vk::PipelineExecutableStatisticFormatKHR,
+        ) -> Self {
+            self.format = format;
+            self
+        }
+        pub fn value(
+            mut self,
+            value: crate::vk::PipelineExecutableStatisticValueKHR,
+        ) -> Self {
+            self.value = value;
+            self
+        }
     }
     #[repr(C)]
     #[derive(Clone, Copy)]
@@ -132,6 +306,62 @@ pub(crate) mod reexport {
         pub p_data: *mut core::ffi::c_void,
         pub _marker: ::core::marker::PhantomData<&'a ()>,
     }
+    unsafe impl<'a> crate::TaggedStructure<'a>
+    for PipelineExecutableInternalRepresentationKHR<'a> {
+        const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::PIPELINE_EXECUTABLE_INTERNAL_REPRESENTATION_KHR;
+    }
+    impl<'a> Default for PipelineExecutableInternalRepresentationKHR<'a> {
+        fn default() -> Self {
+            Self {
+                s_type: <Self as crate::TaggedStructure>::STRUCTURE_TYPE,
+                p_next: Default::default(),
+                name: unsafe { core::mem::zeroed() },
+                description: unsafe { core::mem::zeroed() },
+                is_text: Default::default(),
+                data_size: Default::default(),
+                p_data: Default::default(),
+                _marker: ::core::marker::PhantomData,
+            }
+        }
+    }
+    impl<'a> PipelineExecutableInternalRepresentationKHR<'a> {
+        pub fn name(
+            mut self,
+            name: &core::ffi::CStr,
+        ) -> core::result::Result<Self, crate::CStrTooLargeForStaticArray> {
+            crate::write_c_str_slice_with_nul(&mut self.name, name).map(|_| self)
+        }
+        pub fn name_as_c_str(
+            &self,
+        ) -> core::result::Result<&core::ffi::CStr, core::ffi::FromBytesUntilNulError> {
+            crate::wrap_c_str_slice_until_nul(&self.name)
+        }
+        pub fn description(
+            mut self,
+            description: &core::ffi::CStr,
+        ) -> core::result::Result<Self, crate::CStrTooLargeForStaticArray> {
+            crate::write_c_str_slice_with_nul(&mut self.description, description)
+                .map(|_| self)
+        }
+        pub fn description_as_c_str(
+            &self,
+        ) -> core::result::Result<&core::ffi::CStr, core::ffi::FromBytesUntilNulError> {
+            crate::wrap_c_str_slice_until_nul(&self.description)
+        }
+        pub fn is_text(mut self, is_text: bool) -> Self {
+            self.is_text = is_text.into();
+            self
+        }
+        pub fn data_size(mut self, data_size: usize) -> Self {
+            self.data_size = data_size;
+            self
+        }
+        pub fn p_data(mut self, p_data: &'a mut [u8]) -> Self {
+            self.data_size = p_data.len() as _;
+            self.p_data = p_data.as_mut_ptr().cast();
+            self
+        }
+    }
     #[repr(C)]
     #[derive(Clone, Copy)]
     pub union PipelineExecutableStatisticValueKHR {
@@ -139,6 +369,11 @@ pub(crate) mod reexport {
         pub i64: i64,
         pub u64: u64,
         pub f64: core::ffi::c_double,
+    }
+    impl Default for PipelineExecutableStatisticValueKHR {
+        fn default() -> Self {
+            unsafe { core::mem::zeroed() }
+        }
     }
     ///Provided by [`khr::pipeline_executable_properties`](crate::khr::pipeline_executable_properties)
     impl crate::vk::StructureType {

@@ -9,6 +9,30 @@ pub struct PhysicalDeviceShaderLongVectorFeaturesEXT<'a> {
     pub long_vector: crate::vk::Bool32,
     pub _marker: ::core::marker::PhantomData<&'a ()>,
 }
+unsafe impl<'a> crate::TaggedStructure<'a>
+for PhysicalDeviceShaderLongVectorFeaturesEXT<'a> {
+    const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::PHYSICAL_DEVICE_SHADER_LONG_VECTOR_FEATURES_EXT;
+}
+unsafe impl<'a> crate::Extends<crate::vk::PhysicalDeviceFeatures2<'_>>
+for PhysicalDeviceShaderLongVectorFeaturesEXT<'a> {}
+unsafe impl<'a> crate::Extends<crate::vk::DeviceCreateInfo<'_>>
+for PhysicalDeviceShaderLongVectorFeaturesEXT<'a> {}
+impl<'a> Default for PhysicalDeviceShaderLongVectorFeaturesEXT<'a> {
+    fn default() -> Self {
+        Self {
+            s_type: <Self as crate::TaggedStructure>::STRUCTURE_TYPE,
+            p_next: Default::default(),
+            long_vector: Default::default(),
+            _marker: ::core::marker::PhantomData,
+        }
+    }
+}
+impl<'a> PhysicalDeviceShaderLongVectorFeaturesEXT<'a> {
+    pub fn long_vector(mut self, long_vector: bool) -> Self {
+        self.long_vector = long_vector.into();
+        self
+    }
+}
 #[repr(C)]
 #[derive(Clone, Copy)]
 pub struct PhysicalDeviceShaderLongVectorPropertiesEXT<'a> {
@@ -16,6 +40,28 @@ pub struct PhysicalDeviceShaderLongVectorPropertiesEXT<'a> {
     pub p_next: *mut core::ffi::c_void,
     pub max_vector_components: u32,
     pub _marker: ::core::marker::PhantomData<&'a ()>,
+}
+unsafe impl<'a> crate::TaggedStructure<'a>
+for PhysicalDeviceShaderLongVectorPropertiesEXT<'a> {
+    const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::PHYSICAL_DEVICE_SHADER_LONG_VECTOR_PROPERTIES_EXT;
+}
+unsafe impl<'a> crate::Extends<crate::vk::PhysicalDeviceProperties2<'_>>
+for PhysicalDeviceShaderLongVectorPropertiesEXT<'a> {}
+impl<'a> Default for PhysicalDeviceShaderLongVectorPropertiesEXT<'a> {
+    fn default() -> Self {
+        Self {
+            s_type: <Self as crate::TaggedStructure>::STRUCTURE_TYPE,
+            p_next: Default::default(),
+            max_vector_components: Default::default(),
+            _marker: ::core::marker::PhantomData,
+        }
+    }
+}
+impl<'a> PhysicalDeviceShaderLongVectorPropertiesEXT<'a> {
+    pub fn max_vector_components(mut self, max_vector_components: u32) -> Self {
+        self.max_vector_components = max_vector_components;
+        self
+    }
 }
 ///Provided by [`ext::shader_long_vector`](crate::ext::shader_long_vector)
 impl crate::vk::StructureType {

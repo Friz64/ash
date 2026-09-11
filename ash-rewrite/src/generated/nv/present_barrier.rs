@@ -9,6 +9,30 @@ pub struct PhysicalDevicePresentBarrierFeaturesNV<'a> {
     pub present_barrier: crate::vk::Bool32,
     pub _marker: ::core::marker::PhantomData<&'a ()>,
 }
+unsafe impl<'a> crate::TaggedStructure<'a>
+for PhysicalDevicePresentBarrierFeaturesNV<'a> {
+    const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::PHYSICAL_DEVICE_PRESENT_BARRIER_FEATURES_NV;
+}
+unsafe impl<'a> crate::Extends<crate::vk::PhysicalDeviceFeatures2<'_>>
+for PhysicalDevicePresentBarrierFeaturesNV<'a> {}
+unsafe impl<'a> crate::Extends<crate::vk::DeviceCreateInfo<'_>>
+for PhysicalDevicePresentBarrierFeaturesNV<'a> {}
+impl<'a> Default for PhysicalDevicePresentBarrierFeaturesNV<'a> {
+    fn default() -> Self {
+        Self {
+            s_type: <Self as crate::TaggedStructure>::STRUCTURE_TYPE,
+            p_next: Default::default(),
+            present_barrier: Default::default(),
+            _marker: ::core::marker::PhantomData,
+        }
+    }
+}
+impl<'a> PhysicalDevicePresentBarrierFeaturesNV<'a> {
+    pub fn present_barrier(mut self, present_barrier: bool) -> Self {
+        self.present_barrier = present_barrier.into();
+        self
+    }
+}
 #[repr(C)]
 #[derive(Clone, Copy)]
 pub struct SurfaceCapabilitiesPresentBarrierNV<'a> {
@@ -17,6 +41,27 @@ pub struct SurfaceCapabilitiesPresentBarrierNV<'a> {
     pub present_barrier_supported: crate::vk::Bool32,
     pub _marker: ::core::marker::PhantomData<&'a ()>,
 }
+unsafe impl<'a> crate::TaggedStructure<'a> for SurfaceCapabilitiesPresentBarrierNV<'a> {
+    const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::SURFACE_CAPABILITIES_PRESENT_BARRIER_NV;
+}
+unsafe impl<'a> crate::Extends<crate::vk::SurfaceCapabilities2KHR<'_>>
+for SurfaceCapabilitiesPresentBarrierNV<'a> {}
+impl<'a> Default for SurfaceCapabilitiesPresentBarrierNV<'a> {
+    fn default() -> Self {
+        Self {
+            s_type: <Self as crate::TaggedStructure>::STRUCTURE_TYPE,
+            p_next: Default::default(),
+            present_barrier_supported: Default::default(),
+            _marker: ::core::marker::PhantomData,
+        }
+    }
+}
+impl<'a> SurfaceCapabilitiesPresentBarrierNV<'a> {
+    pub fn present_barrier_supported(mut self, present_barrier_supported: bool) -> Self {
+        self.present_barrier_supported = present_barrier_supported.into();
+        self
+    }
+}
 #[repr(C)]
 #[derive(Clone, Copy)]
 pub struct SwapchainPresentBarrierCreateInfoNV<'a> {
@@ -24,6 +69,27 @@ pub struct SwapchainPresentBarrierCreateInfoNV<'a> {
     pub p_next: *mut core::ffi::c_void,
     pub present_barrier_enable: crate::vk::Bool32,
     pub _marker: ::core::marker::PhantomData<&'a ()>,
+}
+unsafe impl<'a> crate::TaggedStructure<'a> for SwapchainPresentBarrierCreateInfoNV<'a> {
+    const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::SWAPCHAIN_PRESENT_BARRIER_CREATE_INFO_NV;
+}
+unsafe impl<'a> crate::Extends<crate::vk::SwapchainCreateInfoKHR<'_>>
+for SwapchainPresentBarrierCreateInfoNV<'a> {}
+impl<'a> Default for SwapchainPresentBarrierCreateInfoNV<'a> {
+    fn default() -> Self {
+        Self {
+            s_type: <Self as crate::TaggedStructure>::STRUCTURE_TYPE,
+            p_next: Default::default(),
+            present_barrier_enable: Default::default(),
+            _marker: ::core::marker::PhantomData,
+        }
+    }
+}
+impl<'a> SwapchainPresentBarrierCreateInfoNV<'a> {
+    pub fn present_barrier_enable(mut self, present_barrier_enable: bool) -> Self {
+        self.present_barrier_enable = present_barrier_enable.into();
+        self
+    }
 }
 ///Provided by [`nv::present_barrier`](crate::nv::present_barrier)
 impl crate::vk::StructureType {

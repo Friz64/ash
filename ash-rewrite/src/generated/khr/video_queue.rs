@@ -240,6 +240,30 @@ pub(crate) mod reexport {
         pub video_codec_operations: crate::vk::VideoCodecOperationFlagsKHR,
         pub _marker: ::core::marker::PhantomData<&'a ()>,
     }
+    unsafe impl<'a> crate::TaggedStructure<'a> for QueueFamilyVideoPropertiesKHR<'a> {
+        const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::QUEUE_FAMILY_VIDEO_PROPERTIES_KHR;
+    }
+    unsafe impl<'a> crate::Extends<crate::vk::QueueFamilyProperties2<'_>>
+    for QueueFamilyVideoPropertiesKHR<'a> {}
+    impl<'a> Default for QueueFamilyVideoPropertiesKHR<'a> {
+        fn default() -> Self {
+            Self {
+                s_type: <Self as crate::TaggedStructure>::STRUCTURE_TYPE,
+                p_next: Default::default(),
+                video_codec_operations: Default::default(),
+                _marker: ::core::marker::PhantomData,
+            }
+        }
+    }
+    impl<'a> QueueFamilyVideoPropertiesKHR<'a> {
+        pub fn video_codec_operations(
+            mut self,
+            video_codec_operations: crate::vk::VideoCodecOperationFlagsKHR,
+        ) -> Self {
+            self.video_codec_operations = video_codec_operations;
+            self
+        }
+    }
     #[repr(C)]
     #[derive(Clone, Copy)]
     pub struct QueueFamilyQueryResultStatusPropertiesKHR<'a> {
@@ -247,6 +271,31 @@ pub(crate) mod reexport {
         pub p_next: *mut core::ffi::c_void,
         pub query_result_status_support: crate::vk::Bool32,
         pub _marker: ::core::marker::PhantomData<&'a ()>,
+    }
+    unsafe impl<'a> crate::TaggedStructure<'a>
+    for QueueFamilyQueryResultStatusPropertiesKHR<'a> {
+        const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::QUEUE_FAMILY_QUERY_RESULT_STATUS_PROPERTIES_KHR;
+    }
+    unsafe impl<'a> crate::Extends<crate::vk::QueueFamilyProperties2<'_>>
+    for QueueFamilyQueryResultStatusPropertiesKHR<'a> {}
+    impl<'a> Default for QueueFamilyQueryResultStatusPropertiesKHR<'a> {
+        fn default() -> Self {
+            Self {
+                s_type: <Self as crate::TaggedStructure>::STRUCTURE_TYPE,
+                p_next: Default::default(),
+                query_result_status_support: Default::default(),
+                _marker: ::core::marker::PhantomData,
+            }
+        }
+    }
+    impl<'a> QueueFamilyQueryResultStatusPropertiesKHR<'a> {
+        pub fn query_result_status_support(
+            mut self,
+            query_result_status_support: bool,
+        ) -> Self {
+            self.query_result_status_support = query_result_status_support.into();
+            self
+        }
     }
     #[repr(C)]
     #[derive(Clone, Copy)]
@@ -257,6 +306,42 @@ pub(crate) mod reexport {
         pub p_profiles: *const crate::vk::VideoProfileInfoKHR<'a>,
         pub _marker: ::core::marker::PhantomData<&'a ()>,
     }
+    unsafe impl<'a> crate::TaggedStructure<'a> for VideoProfileListInfoKHR<'a> {
+        const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::VIDEO_PROFILE_LIST_INFO_KHR;
+    }
+    unsafe impl<'a> crate::Extends<crate::vk::PhysicalDeviceImageFormatInfo2<'_>>
+    for VideoProfileListInfoKHR<'a> {}
+    unsafe impl<'a> crate::Extends<crate::vk::PhysicalDeviceVideoFormatInfoKHR<'_>>
+    for VideoProfileListInfoKHR<'a> {}
+    unsafe impl<'a> crate::Extends<crate::vk::ImageCreateInfo<'_>>
+    for VideoProfileListInfoKHR<'a> {}
+    unsafe impl<'a> crate::Extends<crate::vk::BufferCreateInfo<'_>>
+    for VideoProfileListInfoKHR<'a> {}
+    impl<'a> Default for VideoProfileListInfoKHR<'a> {
+        fn default() -> Self {
+            Self {
+                s_type: <Self as crate::TaggedStructure>::STRUCTURE_TYPE,
+                p_next: Default::default(),
+                profile_count: Default::default(),
+                p_profiles: Default::default(),
+                _marker: ::core::marker::PhantomData,
+            }
+        }
+    }
+    impl<'a> VideoProfileListInfoKHR<'a> {
+        pub fn profile_count(mut self, profile_count: u32) -> Self {
+            self.profile_count = profile_count;
+            self
+        }
+        pub fn p_profiles(
+            mut self,
+            p_profiles: &'a [crate::vk::VideoProfileInfoKHR<'a>],
+        ) -> Self {
+            self.profile_count = p_profiles.len() as _;
+            self.p_profiles = p_profiles.as_ptr();
+            self
+        }
+    }
     #[repr(C)]
     #[derive(Clone, Copy)]
     pub struct PhysicalDeviceVideoFormatInfoKHR<'a> {
@@ -264,6 +349,25 @@ pub(crate) mod reexport {
         pub p_next: *const core::ffi::c_void,
         pub image_usage: crate::vk::ImageUsageFlags,
         pub _marker: ::core::marker::PhantomData<&'a ()>,
+    }
+    unsafe impl<'a> crate::TaggedStructure<'a> for PhysicalDeviceVideoFormatInfoKHR<'a> {
+        const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::PHYSICAL_DEVICE_VIDEO_FORMAT_INFO_KHR;
+    }
+    impl<'a> Default for PhysicalDeviceVideoFormatInfoKHR<'a> {
+        fn default() -> Self {
+            Self {
+                s_type: <Self as crate::TaggedStructure>::STRUCTURE_TYPE,
+                p_next: Default::default(),
+                image_usage: Default::default(),
+                _marker: ::core::marker::PhantomData,
+            }
+        }
+    }
+    impl<'a> PhysicalDeviceVideoFormatInfoKHR<'a> {
+        pub fn image_usage(mut self, image_usage: crate::vk::ImageUsageFlags) -> Self {
+            self.image_usage = image_usage;
+            self
+        }
     }
     #[repr(C)]
     #[derive(Clone, Copy)]
@@ -278,6 +382,59 @@ pub(crate) mod reexport {
         pub image_usage_flags: crate::vk::ImageUsageFlags,
         pub _marker: ::core::marker::PhantomData<&'a ()>,
     }
+    unsafe impl<'a> crate::TaggedStructure<'a> for VideoFormatPropertiesKHR<'a> {
+        const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::VIDEO_FORMAT_PROPERTIES_KHR;
+    }
+    impl<'a> Default for VideoFormatPropertiesKHR<'a> {
+        fn default() -> Self {
+            Self {
+                s_type: <Self as crate::TaggedStructure>::STRUCTURE_TYPE,
+                p_next: Default::default(),
+                format: Default::default(),
+                component_mapping: Default::default(),
+                image_create_flags: Default::default(),
+                image_type: Default::default(),
+                image_tiling: Default::default(),
+                image_usage_flags: Default::default(),
+                _marker: ::core::marker::PhantomData,
+            }
+        }
+    }
+    impl<'a> VideoFormatPropertiesKHR<'a> {
+        pub fn format(mut self, format: crate::vk::Format) -> Self {
+            self.format = format;
+            self
+        }
+        pub fn component_mapping(
+            mut self,
+            component_mapping: crate::vk::ComponentMapping,
+        ) -> Self {
+            self.component_mapping = component_mapping;
+            self
+        }
+        pub fn image_create_flags(
+            mut self,
+            image_create_flags: crate::vk::ImageCreateFlags,
+        ) -> Self {
+            self.image_create_flags = image_create_flags;
+            self
+        }
+        pub fn image_type(mut self, image_type: crate::vk::ImageType) -> Self {
+            self.image_type = image_type;
+            self
+        }
+        pub fn image_tiling(mut self, image_tiling: crate::vk::ImageTiling) -> Self {
+            self.image_tiling = image_tiling;
+            self
+        }
+        pub fn image_usage_flags(
+            mut self,
+            image_usage_flags: crate::vk::ImageUsageFlags,
+        ) -> Self {
+            self.image_usage_flags = image_usage_flags;
+            self
+        }
+    }
     #[repr(C)]
     #[derive(Clone, Copy)]
     pub struct VideoProfileInfoKHR<'a> {
@@ -288,6 +445,54 @@ pub(crate) mod reexport {
         pub luma_bit_depth: crate::vk::VideoComponentBitDepthFlagsKHR,
         pub chroma_bit_depth: crate::vk::VideoComponentBitDepthFlagsKHR,
         pub _marker: ::core::marker::PhantomData<&'a ()>,
+    }
+    unsafe impl<'a> crate::TaggedStructure<'a> for VideoProfileInfoKHR<'a> {
+        const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::VIDEO_PROFILE_INFO_KHR;
+    }
+    unsafe impl<'a> crate::Extends<crate::vk::QueryPoolCreateInfo<'_>>
+    for VideoProfileInfoKHR<'a> {}
+    impl<'a> Default for VideoProfileInfoKHR<'a> {
+        fn default() -> Self {
+            Self {
+                s_type: <Self as crate::TaggedStructure>::STRUCTURE_TYPE,
+                p_next: Default::default(),
+                video_codec_operation: Default::default(),
+                chroma_subsampling: Default::default(),
+                luma_bit_depth: Default::default(),
+                chroma_bit_depth: Default::default(),
+                _marker: ::core::marker::PhantomData,
+            }
+        }
+    }
+    impl<'a> VideoProfileInfoKHR<'a> {
+        pub fn video_codec_operation(
+            mut self,
+            video_codec_operation: crate::vk::VideoCodecOperationFlagBitsKHR,
+        ) -> Self {
+            self.video_codec_operation = video_codec_operation;
+            self
+        }
+        pub fn chroma_subsampling(
+            mut self,
+            chroma_subsampling: crate::vk::VideoChromaSubsamplingFlagsKHR,
+        ) -> Self {
+            self.chroma_subsampling = chroma_subsampling;
+            self
+        }
+        pub fn luma_bit_depth(
+            mut self,
+            luma_bit_depth: crate::vk::VideoComponentBitDepthFlagsKHR,
+        ) -> Self {
+            self.luma_bit_depth = luma_bit_depth;
+            self
+        }
+        pub fn chroma_bit_depth(
+            mut self,
+            chroma_bit_depth: crate::vk::VideoComponentBitDepthFlagsKHR,
+        ) -> Self {
+            self.chroma_bit_depth = chroma_bit_depth;
+            self
+        }
     }
     #[repr(C)]
     #[derive(Clone, Copy)]
@@ -305,6 +510,86 @@ pub(crate) mod reexport {
         pub std_header_version: crate::vk::ExtensionProperties,
         pub _marker: ::core::marker::PhantomData<&'a ()>,
     }
+    unsafe impl<'a> crate::TaggedStructure<'a> for VideoCapabilitiesKHR<'a> {
+        const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::VIDEO_CAPABILITIES_KHR;
+    }
+    impl<'a> Default for VideoCapabilitiesKHR<'a> {
+        fn default() -> Self {
+            Self {
+                s_type: <Self as crate::TaggedStructure>::STRUCTURE_TYPE,
+                p_next: Default::default(),
+                flags: Default::default(),
+                min_bitstream_buffer_offset_alignment: Default::default(),
+                min_bitstream_buffer_size_alignment: Default::default(),
+                picture_access_granularity: Default::default(),
+                min_coded_extent: Default::default(),
+                max_coded_extent: Default::default(),
+                max_dpb_slots: Default::default(),
+                max_active_reference_pictures: Default::default(),
+                std_header_version: Default::default(),
+                _marker: ::core::marker::PhantomData,
+            }
+        }
+    }
+    impl<'a> VideoCapabilitiesKHR<'a> {
+        pub fn flags(mut self, flags: crate::vk::VideoCapabilityFlagsKHR) -> Self {
+            self.flags = flags;
+            self
+        }
+        pub fn min_bitstream_buffer_offset_alignment(
+            mut self,
+            min_bitstream_buffer_offset_alignment: crate::vk::DeviceSize,
+        ) -> Self {
+            self.min_bitstream_buffer_offset_alignment = min_bitstream_buffer_offset_alignment;
+            self
+        }
+        pub fn min_bitstream_buffer_size_alignment(
+            mut self,
+            min_bitstream_buffer_size_alignment: crate::vk::DeviceSize,
+        ) -> Self {
+            self.min_bitstream_buffer_size_alignment = min_bitstream_buffer_size_alignment;
+            self
+        }
+        pub fn picture_access_granularity(
+            mut self,
+            picture_access_granularity: crate::vk::Extent2D,
+        ) -> Self {
+            self.picture_access_granularity = picture_access_granularity;
+            self
+        }
+        pub fn min_coded_extent(
+            mut self,
+            min_coded_extent: crate::vk::Extent2D,
+        ) -> Self {
+            self.min_coded_extent = min_coded_extent;
+            self
+        }
+        pub fn max_coded_extent(
+            mut self,
+            max_coded_extent: crate::vk::Extent2D,
+        ) -> Self {
+            self.max_coded_extent = max_coded_extent;
+            self
+        }
+        pub fn max_dpb_slots(mut self, max_dpb_slots: u32) -> Self {
+            self.max_dpb_slots = max_dpb_slots;
+            self
+        }
+        pub fn max_active_reference_pictures(
+            mut self,
+            max_active_reference_pictures: u32,
+        ) -> Self {
+            self.max_active_reference_pictures = max_active_reference_pictures;
+            self
+        }
+        pub fn std_header_version(
+            mut self,
+            std_header_version: crate::vk::ExtensionProperties,
+        ) -> Self {
+            self.std_header_version = std_header_version;
+            self
+        }
+    }
     #[repr(C)]
     #[derive(Clone, Copy)]
     pub struct VideoSessionMemoryRequirementsKHR<'a> {
@@ -313,6 +598,34 @@ pub(crate) mod reexport {
         pub memory_bind_index: u32,
         pub memory_requirements: crate::vk::MemoryRequirements,
         pub _marker: ::core::marker::PhantomData<&'a ()>,
+    }
+    unsafe impl<'a> crate::TaggedStructure<'a>
+    for VideoSessionMemoryRequirementsKHR<'a> {
+        const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::VIDEO_SESSION_MEMORY_REQUIREMENTS_KHR;
+    }
+    impl<'a> Default for VideoSessionMemoryRequirementsKHR<'a> {
+        fn default() -> Self {
+            Self {
+                s_type: <Self as crate::TaggedStructure>::STRUCTURE_TYPE,
+                p_next: Default::default(),
+                memory_bind_index: Default::default(),
+                memory_requirements: Default::default(),
+                _marker: ::core::marker::PhantomData,
+            }
+        }
+    }
+    impl<'a> VideoSessionMemoryRequirementsKHR<'a> {
+        pub fn memory_bind_index(mut self, memory_bind_index: u32) -> Self {
+            self.memory_bind_index = memory_bind_index;
+            self
+        }
+        pub fn memory_requirements(
+            mut self,
+            memory_requirements: crate::vk::MemoryRequirements,
+        ) -> Self {
+            self.memory_requirements = memory_requirements;
+            self
+        }
     }
     #[repr(C)]
     #[derive(Clone, Copy)]
@@ -325,6 +638,40 @@ pub(crate) mod reexport {
         pub memory_size: crate::vk::DeviceSize,
         pub _marker: ::core::marker::PhantomData<&'a ()>,
     }
+    unsafe impl<'a> crate::TaggedStructure<'a> for BindVideoSessionMemoryInfoKHR<'a> {
+        const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::BIND_VIDEO_SESSION_MEMORY_INFO_KHR;
+    }
+    impl<'a> Default for BindVideoSessionMemoryInfoKHR<'a> {
+        fn default() -> Self {
+            Self {
+                s_type: <Self as crate::TaggedStructure>::STRUCTURE_TYPE,
+                p_next: Default::default(),
+                memory_bind_index: Default::default(),
+                memory: Default::default(),
+                memory_offset: Default::default(),
+                memory_size: Default::default(),
+                _marker: ::core::marker::PhantomData,
+            }
+        }
+    }
+    impl<'a> BindVideoSessionMemoryInfoKHR<'a> {
+        pub fn memory_bind_index(mut self, memory_bind_index: u32) -> Self {
+            self.memory_bind_index = memory_bind_index;
+            self
+        }
+        pub fn memory(mut self, memory: crate::vk::DeviceMemory) -> Self {
+            self.memory = memory;
+            self
+        }
+        pub fn memory_offset(mut self, memory_offset: crate::vk::DeviceSize) -> Self {
+            self.memory_offset = memory_offset;
+            self
+        }
+        pub fn memory_size(mut self, memory_size: crate::vk::DeviceSize) -> Self {
+            self.memory_size = memory_size;
+            self
+        }
+    }
     #[repr(C)]
     #[derive(Clone, Copy)]
     pub struct VideoPictureResourceInfoKHR<'a> {
@@ -336,6 +683,43 @@ pub(crate) mod reexport {
         pub image_view_binding: crate::vk::ImageView,
         pub _marker: ::core::marker::PhantomData<&'a ()>,
     }
+    unsafe impl<'a> crate::TaggedStructure<'a> for VideoPictureResourceInfoKHR<'a> {
+        const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::VIDEO_PICTURE_RESOURCE_INFO_KHR;
+    }
+    impl<'a> Default for VideoPictureResourceInfoKHR<'a> {
+        fn default() -> Self {
+            Self {
+                s_type: <Self as crate::TaggedStructure>::STRUCTURE_TYPE,
+                p_next: Default::default(),
+                coded_offset: Default::default(),
+                coded_extent: Default::default(),
+                base_array_layer: Default::default(),
+                image_view_binding: Default::default(),
+                _marker: ::core::marker::PhantomData,
+            }
+        }
+    }
+    impl<'a> VideoPictureResourceInfoKHR<'a> {
+        pub fn coded_offset(mut self, coded_offset: crate::vk::Offset2D) -> Self {
+            self.coded_offset = coded_offset;
+            self
+        }
+        pub fn coded_extent(mut self, coded_extent: crate::vk::Extent2D) -> Self {
+            self.coded_extent = coded_extent;
+            self
+        }
+        pub fn base_array_layer(mut self, base_array_layer: u32) -> Self {
+            self.base_array_layer = base_array_layer;
+            self
+        }
+        pub fn image_view_binding(
+            mut self,
+            image_view_binding: crate::vk::ImageView,
+        ) -> Self {
+            self.image_view_binding = image_view_binding;
+            self
+        }
+    }
     #[repr(C)]
     #[derive(Clone, Copy)]
     pub struct VideoReferenceSlotInfoKHR<'a> {
@@ -344,6 +728,33 @@ pub(crate) mod reexport {
         pub slot_index: i32,
         pub p_picture_resource: *const crate::vk::VideoPictureResourceInfoKHR<'a>,
         pub _marker: ::core::marker::PhantomData<&'a ()>,
+    }
+    unsafe impl<'a> crate::TaggedStructure<'a> for VideoReferenceSlotInfoKHR<'a> {
+        const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::VIDEO_REFERENCE_SLOT_INFO_KHR;
+    }
+    impl<'a> Default for VideoReferenceSlotInfoKHR<'a> {
+        fn default() -> Self {
+            Self {
+                s_type: <Self as crate::TaggedStructure>::STRUCTURE_TYPE,
+                p_next: Default::default(),
+                slot_index: Default::default(),
+                p_picture_resource: Default::default(),
+                _marker: ::core::marker::PhantomData,
+            }
+        }
+    }
+    impl<'a> VideoReferenceSlotInfoKHR<'a> {
+        pub fn slot_index(mut self, slot_index: i32) -> Self {
+            self.slot_index = slot_index;
+            self
+        }
+        pub fn p_picture_resource(
+            mut self,
+            p_picture_resource: &'a crate::vk::VideoPictureResourceInfoKHR<'a>,
+        ) -> Self {
+            self.p_picture_resource = p_picture_resource;
+            self
+        }
     }
     #[repr(C)]
     #[derive(Clone, Copy)]
@@ -361,6 +772,80 @@ pub(crate) mod reexport {
         pub p_std_header_version: *const crate::vk::ExtensionProperties,
         pub _marker: ::core::marker::PhantomData<&'a ()>,
     }
+    unsafe impl<'a> crate::TaggedStructure<'a> for VideoSessionCreateInfoKHR<'a> {
+        const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::VIDEO_SESSION_CREATE_INFO_KHR;
+    }
+    impl<'a> Default for VideoSessionCreateInfoKHR<'a> {
+        fn default() -> Self {
+            Self {
+                s_type: <Self as crate::TaggedStructure>::STRUCTURE_TYPE,
+                p_next: Default::default(),
+                queue_family_index: Default::default(),
+                flags: Default::default(),
+                p_video_profile: Default::default(),
+                picture_format: Default::default(),
+                max_coded_extent: Default::default(),
+                reference_picture_format: Default::default(),
+                max_dpb_slots: Default::default(),
+                max_active_reference_pictures: Default::default(),
+                p_std_header_version: Default::default(),
+                _marker: ::core::marker::PhantomData,
+            }
+        }
+    }
+    impl<'a> VideoSessionCreateInfoKHR<'a> {
+        pub fn queue_family_index(mut self, queue_family_index: u32) -> Self {
+            self.queue_family_index = queue_family_index;
+            self
+        }
+        pub fn flags(mut self, flags: crate::vk::VideoSessionCreateFlagsKHR) -> Self {
+            self.flags = flags;
+            self
+        }
+        pub fn p_video_profile(
+            mut self,
+            p_video_profile: &'a crate::vk::VideoProfileInfoKHR<'a>,
+        ) -> Self {
+            self.p_video_profile = p_video_profile;
+            self
+        }
+        pub fn picture_format(mut self, picture_format: crate::vk::Format) -> Self {
+            self.picture_format = picture_format;
+            self
+        }
+        pub fn max_coded_extent(
+            mut self,
+            max_coded_extent: crate::vk::Extent2D,
+        ) -> Self {
+            self.max_coded_extent = max_coded_extent;
+            self
+        }
+        pub fn reference_picture_format(
+            mut self,
+            reference_picture_format: crate::vk::Format,
+        ) -> Self {
+            self.reference_picture_format = reference_picture_format;
+            self
+        }
+        pub fn max_dpb_slots(mut self, max_dpb_slots: u32) -> Self {
+            self.max_dpb_slots = max_dpb_slots;
+            self
+        }
+        pub fn max_active_reference_pictures(
+            mut self,
+            max_active_reference_pictures: u32,
+        ) -> Self {
+            self.max_active_reference_pictures = max_active_reference_pictures;
+            self
+        }
+        pub fn p_std_header_version(
+            mut self,
+            p_std_header_version: &'a crate::vk::ExtensionProperties,
+        ) -> Self {
+            self.p_std_header_version = p_std_header_version;
+            self
+        }
+    }
     #[repr(C)]
     #[derive(Clone, Copy)]
     pub struct VideoSessionParametersCreateInfoKHR<'a> {
@@ -371,6 +856,45 @@ pub(crate) mod reexport {
         pub video_session: crate::vk::VideoSessionKHR,
         pub _marker: ::core::marker::PhantomData<&'a ()>,
     }
+    unsafe impl<'a> crate::TaggedStructure<'a>
+    for VideoSessionParametersCreateInfoKHR<'a> {
+        const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::VIDEO_SESSION_PARAMETERS_CREATE_INFO_KHR;
+    }
+    impl<'a> Default for VideoSessionParametersCreateInfoKHR<'a> {
+        fn default() -> Self {
+            Self {
+                s_type: <Self as crate::TaggedStructure>::STRUCTURE_TYPE,
+                p_next: Default::default(),
+                flags: Default::default(),
+                video_session_parameters_template: Default::default(),
+                video_session: Default::default(),
+                _marker: ::core::marker::PhantomData,
+            }
+        }
+    }
+    impl<'a> VideoSessionParametersCreateInfoKHR<'a> {
+        pub fn flags(
+            mut self,
+            flags: crate::vk::VideoSessionParametersCreateFlagsKHR,
+        ) -> Self {
+            self.flags = flags;
+            self
+        }
+        pub fn video_session_parameters_template(
+            mut self,
+            video_session_parameters_template: crate::vk::VideoSessionParametersKHR,
+        ) -> Self {
+            self.video_session_parameters_template = video_session_parameters_template;
+            self
+        }
+        pub fn video_session(
+            mut self,
+            video_session: crate::vk::VideoSessionKHR,
+        ) -> Self {
+            self.video_session = video_session;
+            self
+        }
+    }
     #[repr(C)]
     #[derive(Clone, Copy)]
     pub struct VideoSessionParametersUpdateInfoKHR<'a> {
@@ -378,6 +902,26 @@ pub(crate) mod reexport {
         pub p_next: *const core::ffi::c_void,
         pub update_sequence_count: u32,
         pub _marker: ::core::marker::PhantomData<&'a ()>,
+    }
+    unsafe impl<'a> crate::TaggedStructure<'a>
+    for VideoSessionParametersUpdateInfoKHR<'a> {
+        const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::VIDEO_SESSION_PARAMETERS_UPDATE_INFO_KHR;
+    }
+    impl<'a> Default for VideoSessionParametersUpdateInfoKHR<'a> {
+        fn default() -> Self {
+            Self {
+                s_type: <Self as crate::TaggedStructure>::STRUCTURE_TYPE,
+                p_next: Default::default(),
+                update_sequence_count: Default::default(),
+                _marker: ::core::marker::PhantomData,
+            }
+        }
+    }
+    impl<'a> VideoSessionParametersUpdateInfoKHR<'a> {
+        pub fn update_sequence_count(mut self, update_sequence_count: u32) -> Self {
+            self.update_sequence_count = update_sequence_count;
+            self
+        }
     }
     #[repr(C)]
     #[derive(Clone, Copy)]
@@ -391,6 +935,55 @@ pub(crate) mod reexport {
         pub p_reference_slots: *const crate::vk::VideoReferenceSlotInfoKHR<'a>,
         pub _marker: ::core::marker::PhantomData<&'a ()>,
     }
+    unsafe impl<'a> crate::TaggedStructure<'a> for VideoBeginCodingInfoKHR<'a> {
+        const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::VIDEO_BEGIN_CODING_INFO_KHR;
+    }
+    impl<'a> Default for VideoBeginCodingInfoKHR<'a> {
+        fn default() -> Self {
+            Self {
+                s_type: <Self as crate::TaggedStructure>::STRUCTURE_TYPE,
+                p_next: Default::default(),
+                flags: Default::default(),
+                video_session: Default::default(),
+                video_session_parameters: Default::default(),
+                reference_slot_count: Default::default(),
+                p_reference_slots: Default::default(),
+                _marker: ::core::marker::PhantomData,
+            }
+        }
+    }
+    impl<'a> VideoBeginCodingInfoKHR<'a> {
+        pub fn flags(mut self, flags: crate::vk::VideoBeginCodingFlagsKHR) -> Self {
+            self.flags = flags;
+            self
+        }
+        pub fn video_session(
+            mut self,
+            video_session: crate::vk::VideoSessionKHR,
+        ) -> Self {
+            self.video_session = video_session;
+            self
+        }
+        pub fn video_session_parameters(
+            mut self,
+            video_session_parameters: crate::vk::VideoSessionParametersKHR,
+        ) -> Self {
+            self.video_session_parameters = video_session_parameters;
+            self
+        }
+        pub fn reference_slot_count(mut self, reference_slot_count: u32) -> Self {
+            self.reference_slot_count = reference_slot_count;
+            self
+        }
+        pub fn p_reference_slots(
+            mut self,
+            p_reference_slots: &'a [crate::vk::VideoReferenceSlotInfoKHR<'a>],
+        ) -> Self {
+            self.reference_slot_count = p_reference_slots.len() as _;
+            self.p_reference_slots = p_reference_slots.as_ptr();
+            self
+        }
+    }
     #[repr(C)]
     #[derive(Clone, Copy)]
     pub struct VideoEndCodingInfoKHR<'a> {
@@ -399,6 +992,25 @@ pub(crate) mod reexport {
         pub flags: crate::vk::VideoEndCodingFlagsKHR,
         pub _marker: ::core::marker::PhantomData<&'a ()>,
     }
+    unsafe impl<'a> crate::TaggedStructure<'a> for VideoEndCodingInfoKHR<'a> {
+        const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::VIDEO_END_CODING_INFO_KHR;
+    }
+    impl<'a> Default for VideoEndCodingInfoKHR<'a> {
+        fn default() -> Self {
+            Self {
+                s_type: <Self as crate::TaggedStructure>::STRUCTURE_TYPE,
+                p_next: Default::default(),
+                flags: Default::default(),
+                _marker: ::core::marker::PhantomData,
+            }
+        }
+    }
+    impl<'a> VideoEndCodingInfoKHR<'a> {
+        pub fn flags(mut self, flags: crate::vk::VideoEndCodingFlagsKHR) -> Self {
+            self.flags = flags;
+            self
+        }
+    }
     #[repr(C)]
     #[derive(Clone, Copy)]
     pub struct VideoCodingControlInfoKHR<'a> {
@@ -406,6 +1018,25 @@ pub(crate) mod reexport {
         pub p_next: *const core::ffi::c_void,
         pub flags: crate::vk::VideoCodingControlFlagsKHR,
         pub _marker: ::core::marker::PhantomData<&'a ()>,
+    }
+    unsafe impl<'a> crate::TaggedStructure<'a> for VideoCodingControlInfoKHR<'a> {
+        const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::VIDEO_CODING_CONTROL_INFO_KHR;
+    }
+    impl<'a> Default for VideoCodingControlInfoKHR<'a> {
+        fn default() -> Self {
+            Self {
+                s_type: <Self as crate::TaggedStructure>::STRUCTURE_TYPE,
+                p_next: Default::default(),
+                flags: Default::default(),
+                _marker: ::core::marker::PhantomData,
+            }
+        }
+    }
+    impl<'a> VideoCodingControlInfoKHR<'a> {
+        pub fn flags(mut self, flags: crate::vk::VideoCodingControlFlagsKHR) -> Self {
+            self.flags = flags;
+            self
+        }
     }
     ///Provided by [`khr::video_queue`](crate::khr::video_queue)
     impl crate::vk::QueryType {
@@ -561,7 +1192,7 @@ pub(crate) mod reexport {
         }
     }
     #[repr(transparent)]
-    #[derive(Clone, Copy)]
+    #[derive(Clone, Copy, Default)]
     pub struct VideoCodecOperationFlagBitsKHR(pub(crate) u32);
     ///Provided by [`khr::video_queue`](crate::khr::video_queue)
     impl VideoCodecOperationFlagBitsKHR {
@@ -641,7 +1272,7 @@ pub(crate) mod reexport {
         }
     }
     #[repr(transparent)]
-    #[derive(Clone, Copy)]
+    #[derive(Clone, Copy, Default)]
     pub struct VideoCapabilityFlagBitsKHR(pub(crate) u32);
     ///Provided by [`khr::video_queue`](crate::khr::video_queue)
     impl VideoCapabilityFlagBitsKHR {
@@ -734,7 +1365,7 @@ pub(crate) mod reexport {
         }
     }
     #[repr(transparent)]
-    #[derive(Clone, Copy)]
+    #[derive(Clone, Copy, Default)]
     pub struct VideoSessionCreateFlagBitsKHR(pub(crate) u32);
     ///Provided by [`khr::video_queue`](crate::khr::video_queue)
     impl VideoSessionCreateFlagBitsKHR {
@@ -811,7 +1442,7 @@ pub(crate) mod reexport {
         }
     }
     #[repr(transparent)]
-    #[derive(Clone, Copy)]
+    #[derive(Clone, Copy, Default)]
     pub struct VideoSessionParametersCreateFlagBitsKHR(pub(crate) u32);
     #[repr(transparent)]
     #[derive(Clone, Copy)]
@@ -1022,7 +1653,7 @@ pub(crate) mod reexport {
         }
     }
     #[repr(transparent)]
-    #[derive(Clone, Copy)]
+    #[derive(Clone, Copy, Default)]
     pub struct VideoCodingControlFlagBitsKHR(pub(crate) u32);
     ///Provided by [`khr::video_queue`](crate::khr::video_queue)
     impl VideoCodingControlFlagBitsKHR {
@@ -1105,7 +1736,7 @@ pub(crate) mod reexport {
         }
     }
     #[repr(transparent)]
-    #[derive(Clone, Copy)]
+    #[derive(Clone, Copy, Default)]
     pub struct VideoChromaSubsamplingFlagBitsKHR(pub(crate) u32);
     ///Provided by [`khr::video_queue`](crate::khr::video_queue)
     impl VideoChromaSubsamplingFlagBitsKHR {
@@ -1189,7 +1820,7 @@ pub(crate) mod reexport {
         }
     }
     #[repr(transparent)]
-    #[derive(Clone, Copy)]
+    #[derive(Clone, Copy, Default)]
     pub struct VideoComponentBitDepthFlagBitsKHR(pub(crate) u32);
     ///Provided by [`khr::video_queue`](crate::khr::video_queue)
     impl VideoComponentBitDepthFlagBitsKHR {

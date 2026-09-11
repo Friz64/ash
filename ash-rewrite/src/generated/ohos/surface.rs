@@ -46,6 +46,33 @@ pub(crate) mod reexport {
         pub window: *mut crate::platform_types::OHNativeWindow,
         pub _marker: ::core::marker::PhantomData<&'a ()>,
     }
+    unsafe impl<'a> crate::TaggedStructure<'a> for SurfaceCreateInfoOHOS<'a> {
+        const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::SURFACE_CREATE_INFO_OHOS;
+    }
+    impl<'a> Default for SurfaceCreateInfoOHOS<'a> {
+        fn default() -> Self {
+            Self {
+                s_type: <Self as crate::TaggedStructure>::STRUCTURE_TYPE,
+                p_next: Default::default(),
+                flags: Default::default(),
+                window: Default::default(),
+                _marker: ::core::marker::PhantomData,
+            }
+        }
+    }
+    impl<'a> SurfaceCreateInfoOHOS<'a> {
+        pub fn flags(mut self, flags: crate::vk::SurfaceCreateFlagsOHOS) -> Self {
+            self.flags = flags;
+            self
+        }
+        pub fn window(
+            mut self,
+            window: &'a mut crate::platform_types::OHNativeWindow,
+        ) -> Self {
+            self.window = window;
+            self
+        }
+    }
     ///Provided by [`ohos::surface`](crate::ohos::surface)
     impl crate::vk::StructureType {
         pub const SURFACE_CREATE_INFO_OHOS: Self = Self(1000685000);

@@ -10,6 +10,39 @@ pub struct ValidationFlagsEXT<'a> {
     pub p_disabled_validation_checks: *const crate::vk::ValidationCheckEXT,
     pub _marker: ::core::marker::PhantomData<&'a ()>,
 }
+unsafe impl<'a> crate::TaggedStructure<'a> for ValidationFlagsEXT<'a> {
+    const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::VALIDATION_FLAGS_EXT;
+}
+unsafe impl<'a> crate::Extends<crate::vk::InstanceCreateInfo<'_>>
+for ValidationFlagsEXT<'a> {}
+impl<'a> Default for ValidationFlagsEXT<'a> {
+    fn default() -> Self {
+        Self {
+            s_type: <Self as crate::TaggedStructure>::STRUCTURE_TYPE,
+            p_next: Default::default(),
+            disabled_validation_check_count: Default::default(),
+            p_disabled_validation_checks: Default::default(),
+            _marker: ::core::marker::PhantomData,
+        }
+    }
+}
+impl<'a> ValidationFlagsEXT<'a> {
+    pub fn disabled_validation_check_count(
+        mut self,
+        disabled_validation_check_count: u32,
+    ) -> Self {
+        self.disabled_validation_check_count = disabled_validation_check_count;
+        self
+    }
+    pub fn p_disabled_validation_checks(
+        mut self,
+        p_disabled_validation_checks: &'a [crate::vk::ValidationCheckEXT],
+    ) -> Self {
+        self.disabled_validation_check_count = p_disabled_validation_checks.len() as _;
+        self.p_disabled_validation_checks = p_disabled_validation_checks.as_ptr();
+        self
+    }
+}
 ///Provided by [`ext::validation_flags`](crate::ext::validation_flags)
 impl crate::vk::StructureType {
     pub const VALIDATION_FLAGS_EXT: Self = Self(1000061000);

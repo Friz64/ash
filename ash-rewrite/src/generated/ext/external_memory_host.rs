@@ -46,6 +46,38 @@ pub(crate) mod reexport {
         pub p_host_pointer: *mut core::ffi::c_void,
         pub _marker: ::core::marker::PhantomData<&'a ()>,
     }
+    unsafe impl<'a> crate::TaggedStructure<'a> for ImportMemoryHostPointerInfoEXT<'a> {
+        const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::IMPORT_MEMORY_HOST_POINTER_INFO_EXT;
+    }
+    unsafe impl<'a> crate::Extends<crate::vk::MemoryAllocateInfo<'_>>
+    for ImportMemoryHostPointerInfoEXT<'a> {}
+    impl<'a> Default for ImportMemoryHostPointerInfoEXT<'a> {
+        fn default() -> Self {
+            Self {
+                s_type: <Self as crate::TaggedStructure>::STRUCTURE_TYPE,
+                p_next: Default::default(),
+                handle_type: Default::default(),
+                p_host_pointer: Default::default(),
+                _marker: ::core::marker::PhantomData,
+            }
+        }
+    }
+    impl<'a> ImportMemoryHostPointerInfoEXT<'a> {
+        pub fn handle_type(
+            mut self,
+            handle_type: crate::vk::ExternalMemoryHandleTypeFlagBits,
+        ) -> Self {
+            self.handle_type = handle_type;
+            self
+        }
+        pub fn p_host_pointer(
+            mut self,
+            p_host_pointer: &'a mut core::ffi::c_void,
+        ) -> Self {
+            self.p_host_pointer = p_host_pointer;
+            self
+        }
+    }
     #[repr(C)]
     #[derive(Clone, Copy)]
     pub struct MemoryHostPointerPropertiesEXT<'a> {
@@ -54,6 +86,25 @@ pub(crate) mod reexport {
         pub memory_type_bits: u32,
         pub _marker: ::core::marker::PhantomData<&'a ()>,
     }
+    unsafe impl<'a> crate::TaggedStructure<'a> for MemoryHostPointerPropertiesEXT<'a> {
+        const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::MEMORY_HOST_POINTER_PROPERTIES_EXT;
+    }
+    impl<'a> Default for MemoryHostPointerPropertiesEXT<'a> {
+        fn default() -> Self {
+            Self {
+                s_type: <Self as crate::TaggedStructure>::STRUCTURE_TYPE,
+                p_next: Default::default(),
+                memory_type_bits: Default::default(),
+                _marker: ::core::marker::PhantomData,
+            }
+        }
+    }
+    impl<'a> MemoryHostPointerPropertiesEXT<'a> {
+        pub fn memory_type_bits(mut self, memory_type_bits: u32) -> Self {
+            self.memory_type_bits = memory_type_bits;
+            self
+        }
+    }
     #[repr(C)]
     #[derive(Clone, Copy)]
     pub struct PhysicalDeviceExternalMemoryHostPropertiesEXT<'a> {
@@ -61,6 +112,31 @@ pub(crate) mod reexport {
         pub p_next: *mut core::ffi::c_void,
         pub min_imported_host_pointer_alignment: crate::vk::DeviceSize,
         pub _marker: ::core::marker::PhantomData<&'a ()>,
+    }
+    unsafe impl<'a> crate::TaggedStructure<'a>
+    for PhysicalDeviceExternalMemoryHostPropertiesEXT<'a> {
+        const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::PHYSICAL_DEVICE_EXTERNAL_MEMORY_HOST_PROPERTIES_EXT;
+    }
+    unsafe impl<'a> crate::Extends<crate::vk::PhysicalDeviceProperties2<'_>>
+    for PhysicalDeviceExternalMemoryHostPropertiesEXT<'a> {}
+    impl<'a> Default for PhysicalDeviceExternalMemoryHostPropertiesEXT<'a> {
+        fn default() -> Self {
+            Self {
+                s_type: <Self as crate::TaggedStructure>::STRUCTURE_TYPE,
+                p_next: Default::default(),
+                min_imported_host_pointer_alignment: Default::default(),
+                _marker: ::core::marker::PhantomData,
+            }
+        }
+    }
+    impl<'a> PhysicalDeviceExternalMemoryHostPropertiesEXT<'a> {
+        pub fn min_imported_host_pointer_alignment(
+            mut self,
+            min_imported_host_pointer_alignment: crate::vk::DeviceSize,
+        ) -> Self {
+            self.min_imported_host_pointer_alignment = min_imported_host_pointer_alignment;
+            self
+        }
     }
     ///Provided by [`ext::external_memory_host`](crate::ext::external_memory_host)
     impl crate::vk::StructureType {

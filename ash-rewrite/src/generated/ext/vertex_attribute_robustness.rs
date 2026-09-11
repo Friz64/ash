@@ -9,6 +9,33 @@ pub struct PhysicalDeviceVertexAttributeRobustnessFeaturesEXT<'a> {
     pub vertex_attribute_robustness: crate::vk::Bool32,
     pub _marker: ::core::marker::PhantomData<&'a ()>,
 }
+unsafe impl<'a> crate::TaggedStructure<'a>
+for PhysicalDeviceVertexAttributeRobustnessFeaturesEXT<'a> {
+    const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::PHYSICAL_DEVICE_VERTEX_ATTRIBUTE_ROBUSTNESS_FEATURES_EXT;
+}
+unsafe impl<'a> crate::Extends<crate::vk::PhysicalDeviceFeatures2<'_>>
+for PhysicalDeviceVertexAttributeRobustnessFeaturesEXT<'a> {}
+unsafe impl<'a> crate::Extends<crate::vk::DeviceCreateInfo<'_>>
+for PhysicalDeviceVertexAttributeRobustnessFeaturesEXT<'a> {}
+impl<'a> Default for PhysicalDeviceVertexAttributeRobustnessFeaturesEXT<'a> {
+    fn default() -> Self {
+        Self {
+            s_type: <Self as crate::TaggedStructure>::STRUCTURE_TYPE,
+            p_next: Default::default(),
+            vertex_attribute_robustness: Default::default(),
+            _marker: ::core::marker::PhantomData,
+        }
+    }
+}
+impl<'a> PhysicalDeviceVertexAttributeRobustnessFeaturesEXT<'a> {
+    pub fn vertex_attribute_robustness(
+        mut self,
+        vertex_attribute_robustness: bool,
+    ) -> Self {
+        self.vertex_attribute_robustness = vertex_attribute_robustness.into();
+        self
+    }
+}
 ///Provided by [`ext::vertex_attribute_robustness`](crate::ext::vertex_attribute_robustness)
 impl crate::vk::StructureType {
     pub const PHYSICAL_DEVICE_VERTEX_ATTRIBUTE_ROBUSTNESS_FEATURES_EXT: Self = Self(

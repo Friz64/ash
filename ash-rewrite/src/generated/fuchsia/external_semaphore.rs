@@ -62,6 +62,47 @@ pub(crate) mod reexport {
         pub zircon_handle: crate::platform_types::zx_handle_t,
         pub _marker: ::core::marker::PhantomData<&'a ()>,
     }
+    unsafe impl<'a> crate::TaggedStructure<'a>
+    for ImportSemaphoreZirconHandleInfoFUCHSIA<'a> {
+        const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::IMPORT_SEMAPHORE_ZIRCON_HANDLE_INFO_FUCHSIA;
+    }
+    impl<'a> Default for ImportSemaphoreZirconHandleInfoFUCHSIA<'a> {
+        fn default() -> Self {
+            Self {
+                s_type: <Self as crate::TaggedStructure>::STRUCTURE_TYPE,
+                p_next: Default::default(),
+                semaphore: Default::default(),
+                flags: Default::default(),
+                handle_type: Default::default(),
+                zircon_handle: Default::default(),
+                _marker: ::core::marker::PhantomData,
+            }
+        }
+    }
+    impl<'a> ImportSemaphoreZirconHandleInfoFUCHSIA<'a> {
+        pub fn semaphore(mut self, semaphore: crate::vk::Semaphore) -> Self {
+            self.semaphore = semaphore;
+            self
+        }
+        pub fn flags(mut self, flags: crate::vk::SemaphoreImportFlags) -> Self {
+            self.flags = flags;
+            self
+        }
+        pub fn handle_type(
+            mut self,
+            handle_type: crate::vk::ExternalSemaphoreHandleTypeFlagBits,
+        ) -> Self {
+            self.handle_type = handle_type;
+            self
+        }
+        pub fn zircon_handle(
+            mut self,
+            zircon_handle: crate::platform_types::zx_handle_t,
+        ) -> Self {
+            self.zircon_handle = zircon_handle;
+            self
+        }
+    }
     #[repr(C)]
     #[derive(Clone, Copy)]
     pub struct SemaphoreGetZirconHandleInfoFUCHSIA<'a> {
@@ -70,6 +111,34 @@ pub(crate) mod reexport {
         pub semaphore: crate::vk::Semaphore,
         pub handle_type: crate::vk::ExternalSemaphoreHandleTypeFlagBits,
         pub _marker: ::core::marker::PhantomData<&'a ()>,
+    }
+    unsafe impl<'a> crate::TaggedStructure<'a>
+    for SemaphoreGetZirconHandleInfoFUCHSIA<'a> {
+        const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::SEMAPHORE_GET_ZIRCON_HANDLE_INFO_FUCHSIA;
+    }
+    impl<'a> Default for SemaphoreGetZirconHandleInfoFUCHSIA<'a> {
+        fn default() -> Self {
+            Self {
+                s_type: <Self as crate::TaggedStructure>::STRUCTURE_TYPE,
+                p_next: Default::default(),
+                semaphore: Default::default(),
+                handle_type: Default::default(),
+                _marker: ::core::marker::PhantomData,
+            }
+        }
+    }
+    impl<'a> SemaphoreGetZirconHandleInfoFUCHSIA<'a> {
+        pub fn semaphore(mut self, semaphore: crate::vk::Semaphore) -> Self {
+            self.semaphore = semaphore;
+            self
+        }
+        pub fn handle_type(
+            mut self,
+            handle_type: crate::vk::ExternalSemaphoreHandleTypeFlagBits,
+        ) -> Self {
+            self.handle_type = handle_type;
+            self
+        }
     }
     ///Provided by [`fuchsia::external_semaphore`](crate::fuchsia::external_semaphore)
     impl crate::vk::StructureType {

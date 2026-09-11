@@ -47,6 +47,39 @@ pub(crate) mod reexport {
         pub cooperative_matrix_robust_buffer_access: crate::vk::Bool32,
         pub _marker: ::core::marker::PhantomData<&'a ()>,
     }
+    unsafe impl<'a> crate::TaggedStructure<'a>
+    for PhysicalDeviceCooperativeMatrixFeaturesKHR<'a> {
+        const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::PHYSICAL_DEVICE_COOPERATIVE_MATRIX_FEATURES_KHR;
+    }
+    unsafe impl<'a> crate::Extends<crate::vk::PhysicalDeviceFeatures2<'_>>
+    for PhysicalDeviceCooperativeMatrixFeaturesKHR<'a> {}
+    unsafe impl<'a> crate::Extends<crate::vk::DeviceCreateInfo<'_>>
+    for PhysicalDeviceCooperativeMatrixFeaturesKHR<'a> {}
+    impl<'a> Default for PhysicalDeviceCooperativeMatrixFeaturesKHR<'a> {
+        fn default() -> Self {
+            Self {
+                s_type: <Self as crate::TaggedStructure>::STRUCTURE_TYPE,
+                p_next: Default::default(),
+                cooperative_matrix: Default::default(),
+                cooperative_matrix_robust_buffer_access: Default::default(),
+                _marker: ::core::marker::PhantomData,
+            }
+        }
+    }
+    impl<'a> PhysicalDeviceCooperativeMatrixFeaturesKHR<'a> {
+        pub fn cooperative_matrix(mut self, cooperative_matrix: bool) -> Self {
+            self.cooperative_matrix = cooperative_matrix.into();
+            self
+        }
+        pub fn cooperative_matrix_robust_buffer_access(
+            mut self,
+            cooperative_matrix_robust_buffer_access: bool,
+        ) -> Self {
+            self.cooperative_matrix_robust_buffer_access = cooperative_matrix_robust_buffer_access
+                .into();
+            self
+        }
+    }
     #[repr(C)]
     #[derive(Clone, Copy)]
     pub struct CooperativeMatrixPropertiesKHR<'a> {
@@ -63,6 +96,65 @@ pub(crate) mod reexport {
         pub scope: crate::vk::ScopeKHR,
         pub _marker: ::core::marker::PhantomData<&'a ()>,
     }
+    unsafe impl<'a> crate::TaggedStructure<'a> for CooperativeMatrixPropertiesKHR<'a> {
+        const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::COOPERATIVE_MATRIX_PROPERTIES_KHR;
+    }
+    impl<'a> Default for CooperativeMatrixPropertiesKHR<'a> {
+        fn default() -> Self {
+            Self {
+                s_type: <Self as crate::TaggedStructure>::STRUCTURE_TYPE,
+                p_next: Default::default(),
+                m_size: Default::default(),
+                n_size: Default::default(),
+                k_size: Default::default(),
+                a_type: Default::default(),
+                b_type: Default::default(),
+                c_type: Default::default(),
+                result_type: Default::default(),
+                saturating_accumulation: Default::default(),
+                scope: Default::default(),
+                _marker: ::core::marker::PhantomData,
+            }
+        }
+    }
+    impl<'a> CooperativeMatrixPropertiesKHR<'a> {
+        pub fn m_size(mut self, m_size: u32) -> Self {
+            self.m_size = m_size;
+            self
+        }
+        pub fn n_size(mut self, n_size: u32) -> Self {
+            self.n_size = n_size;
+            self
+        }
+        pub fn k_size(mut self, k_size: u32) -> Self {
+            self.k_size = k_size;
+            self
+        }
+        pub fn a_type(mut self, a_type: crate::vk::ComponentTypeKHR) -> Self {
+            self.a_type = a_type;
+            self
+        }
+        pub fn b_type(mut self, b_type: crate::vk::ComponentTypeKHR) -> Self {
+            self.b_type = b_type;
+            self
+        }
+        pub fn c_type(mut self, c_type: crate::vk::ComponentTypeKHR) -> Self {
+            self.c_type = c_type;
+            self
+        }
+        pub fn result_type(mut self, result_type: crate::vk::ComponentTypeKHR) -> Self {
+            self.result_type = result_type;
+            self
+        }
+        pub fn saturating_accumulation(mut self, saturating_accumulation: bool) -> Self {
+            self.saturating_accumulation = saturating_accumulation.into();
+            self
+        }
+        pub fn scope(mut self, scope: crate::vk::ScopeKHR) -> Self {
+            self.scope = scope;
+            self
+        }
+    }
     #[repr(C)]
     #[derive(Clone, Copy)]
     pub struct PhysicalDeviceCooperativeMatrixPropertiesKHR<'a> {
@@ -70,6 +162,31 @@ pub(crate) mod reexport {
         pub p_next: *mut core::ffi::c_void,
         pub cooperative_matrix_supported_stages: crate::vk::ShaderStageFlags,
         pub _marker: ::core::marker::PhantomData<&'a ()>,
+    }
+    unsafe impl<'a> crate::TaggedStructure<'a>
+    for PhysicalDeviceCooperativeMatrixPropertiesKHR<'a> {
+        const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::PHYSICAL_DEVICE_COOPERATIVE_MATRIX_PROPERTIES_KHR;
+    }
+    unsafe impl<'a> crate::Extends<crate::vk::PhysicalDeviceProperties2<'_>>
+    for PhysicalDeviceCooperativeMatrixPropertiesKHR<'a> {}
+    impl<'a> Default for PhysicalDeviceCooperativeMatrixPropertiesKHR<'a> {
+        fn default() -> Self {
+            Self {
+                s_type: <Self as crate::TaggedStructure>::STRUCTURE_TYPE,
+                p_next: Default::default(),
+                cooperative_matrix_supported_stages: Default::default(),
+                _marker: ::core::marker::PhantomData,
+            }
+        }
+    }
+    impl<'a> PhysicalDeviceCooperativeMatrixPropertiesKHR<'a> {
+        pub fn cooperative_matrix_supported_stages(
+            mut self,
+            cooperative_matrix_supported_stages: crate::vk::ShaderStageFlags,
+        ) -> Self {
+            self.cooperative_matrix_supported_stages = cooperative_matrix_supported_stages;
+            self
+        }
     }
     ///Provided by [`khr::cooperative_matrix`](crate::khr::cooperative_matrix)
     impl crate::vk::StructureType {

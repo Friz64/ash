@@ -9,6 +9,27 @@ pub struct DedicatedAllocationImageCreateInfoNV<'a> {
     pub dedicated_allocation: crate::vk::Bool32,
     pub _marker: ::core::marker::PhantomData<&'a ()>,
 }
+unsafe impl<'a> crate::TaggedStructure<'a> for DedicatedAllocationImageCreateInfoNV<'a> {
+    const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::DEDICATED_ALLOCATION_IMAGE_CREATE_INFO_NV;
+}
+unsafe impl<'a> crate::Extends<crate::vk::ImageCreateInfo<'_>>
+for DedicatedAllocationImageCreateInfoNV<'a> {}
+impl<'a> Default for DedicatedAllocationImageCreateInfoNV<'a> {
+    fn default() -> Self {
+        Self {
+            s_type: <Self as crate::TaggedStructure>::STRUCTURE_TYPE,
+            p_next: Default::default(),
+            dedicated_allocation: Default::default(),
+            _marker: ::core::marker::PhantomData,
+        }
+    }
+}
+impl<'a> DedicatedAllocationImageCreateInfoNV<'a> {
+    pub fn dedicated_allocation(mut self, dedicated_allocation: bool) -> Self {
+        self.dedicated_allocation = dedicated_allocation.into();
+        self
+    }
+}
 #[repr(C)]
 #[derive(Clone, Copy)]
 pub struct DedicatedAllocationBufferCreateInfoNV<'a> {
@@ -16,6 +37,28 @@ pub struct DedicatedAllocationBufferCreateInfoNV<'a> {
     pub p_next: *const core::ffi::c_void,
     pub dedicated_allocation: crate::vk::Bool32,
     pub _marker: ::core::marker::PhantomData<&'a ()>,
+}
+unsafe impl<'a> crate::TaggedStructure<'a>
+for DedicatedAllocationBufferCreateInfoNV<'a> {
+    const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::DEDICATED_ALLOCATION_BUFFER_CREATE_INFO_NV;
+}
+unsafe impl<'a> crate::Extends<crate::vk::BufferCreateInfo<'_>>
+for DedicatedAllocationBufferCreateInfoNV<'a> {}
+impl<'a> Default for DedicatedAllocationBufferCreateInfoNV<'a> {
+    fn default() -> Self {
+        Self {
+            s_type: <Self as crate::TaggedStructure>::STRUCTURE_TYPE,
+            p_next: Default::default(),
+            dedicated_allocation: Default::default(),
+            _marker: ::core::marker::PhantomData,
+        }
+    }
+}
+impl<'a> DedicatedAllocationBufferCreateInfoNV<'a> {
+    pub fn dedicated_allocation(mut self, dedicated_allocation: bool) -> Self {
+        self.dedicated_allocation = dedicated_allocation.into();
+        self
+    }
 }
 #[repr(C)]
 #[derive(Clone, Copy)]
@@ -25,6 +68,33 @@ pub struct DedicatedAllocationMemoryAllocateInfoNV<'a> {
     pub image: crate::vk::Image,
     pub buffer: crate::vk::Buffer,
     pub _marker: ::core::marker::PhantomData<&'a ()>,
+}
+unsafe impl<'a> crate::TaggedStructure<'a>
+for DedicatedAllocationMemoryAllocateInfoNV<'a> {
+    const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::DEDICATED_ALLOCATION_MEMORY_ALLOCATE_INFO_NV;
+}
+unsafe impl<'a> crate::Extends<crate::vk::MemoryAllocateInfo<'_>>
+for DedicatedAllocationMemoryAllocateInfoNV<'a> {}
+impl<'a> Default for DedicatedAllocationMemoryAllocateInfoNV<'a> {
+    fn default() -> Self {
+        Self {
+            s_type: <Self as crate::TaggedStructure>::STRUCTURE_TYPE,
+            p_next: Default::default(),
+            image: Default::default(),
+            buffer: Default::default(),
+            _marker: ::core::marker::PhantomData,
+        }
+    }
+}
+impl<'a> DedicatedAllocationMemoryAllocateInfoNV<'a> {
+    pub fn image(mut self, image: crate::vk::Image) -> Self {
+        self.image = image;
+        self
+    }
+    pub fn buffer(mut self, buffer: crate::vk::Buffer) -> Self {
+        self.buffer = buffer;
+        self
+    }
 }
 ///Provided by [`nv::dedicated_allocation`](crate::nv::dedicated_allocation)
 impl crate::vk::StructureType {

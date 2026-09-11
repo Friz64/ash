@@ -10,6 +10,39 @@ pub struct PhysicalDeviceRayTracingMotionBlurFeaturesNV<'a> {
     pub ray_tracing_motion_blur_pipeline_trace_rays_indirect: crate::vk::Bool32,
     pub _marker: ::core::marker::PhantomData<&'a ()>,
 }
+unsafe impl<'a> crate::TaggedStructure<'a>
+for PhysicalDeviceRayTracingMotionBlurFeaturesNV<'a> {
+    const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::PHYSICAL_DEVICE_RAY_TRACING_MOTION_BLUR_FEATURES_NV;
+}
+unsafe impl<'a> crate::Extends<crate::vk::PhysicalDeviceFeatures2<'_>>
+for PhysicalDeviceRayTracingMotionBlurFeaturesNV<'a> {}
+unsafe impl<'a> crate::Extends<crate::vk::DeviceCreateInfo<'_>>
+for PhysicalDeviceRayTracingMotionBlurFeaturesNV<'a> {}
+impl<'a> Default for PhysicalDeviceRayTracingMotionBlurFeaturesNV<'a> {
+    fn default() -> Self {
+        Self {
+            s_type: <Self as crate::TaggedStructure>::STRUCTURE_TYPE,
+            p_next: Default::default(),
+            ray_tracing_motion_blur: Default::default(),
+            ray_tracing_motion_blur_pipeline_trace_rays_indirect: Default::default(),
+            _marker: ::core::marker::PhantomData,
+        }
+    }
+}
+impl<'a> PhysicalDeviceRayTracingMotionBlurFeaturesNV<'a> {
+    pub fn ray_tracing_motion_blur(mut self, ray_tracing_motion_blur: bool) -> Self {
+        self.ray_tracing_motion_blur = ray_tracing_motion_blur.into();
+        self
+    }
+    pub fn ray_tracing_motion_blur_pipeline_trace_rays_indirect(
+        mut self,
+        ray_tracing_motion_blur_pipeline_trace_rays_indirect: bool,
+    ) -> Self {
+        self.ray_tracing_motion_blur_pipeline_trace_rays_indirect = ray_tracing_motion_blur_pipeline_trace_rays_indirect
+            .into();
+        self
+    }
+}
 #[repr(C)]
 #[derive(Clone, Copy)]
 pub struct AccelerationStructureGeometryMotionTrianglesDataNV<'a> {
@@ -17,6 +50,33 @@ pub struct AccelerationStructureGeometryMotionTrianglesDataNV<'a> {
     pub p_next: *const core::ffi::c_void,
     pub vertex_data: crate::vk::DeviceOrHostAddressConstKHR,
     pub _marker: ::core::marker::PhantomData<&'a ()>,
+}
+unsafe impl<'a> crate::TaggedStructure<'a>
+for AccelerationStructureGeometryMotionTrianglesDataNV<'a> {
+    const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::ACCELERATION_STRUCTURE_GEOMETRY_MOTION_TRIANGLES_DATA_NV;
+}
+unsafe impl<
+    'a,
+> crate::Extends<crate::vk::AccelerationStructureGeometryTrianglesDataKHR<'_>>
+for AccelerationStructureGeometryMotionTrianglesDataNV<'a> {}
+impl<'a> Default for AccelerationStructureGeometryMotionTrianglesDataNV<'a> {
+    fn default() -> Self {
+        Self {
+            s_type: <Self as crate::TaggedStructure>::STRUCTURE_TYPE,
+            p_next: Default::default(),
+            vertex_data: Default::default(),
+            _marker: ::core::marker::PhantomData,
+        }
+    }
+}
+impl<'a> AccelerationStructureGeometryMotionTrianglesDataNV<'a> {
+    pub fn vertex_data(
+        mut self,
+        vertex_data: crate::vk::DeviceOrHostAddressConstKHR,
+    ) -> Self {
+        self.vertex_data = vertex_data;
+        self
+    }
 }
 #[repr(C)]
 #[derive(Clone, Copy)]
@@ -27,8 +87,37 @@ pub struct AccelerationStructureMotionInfoNV<'a> {
     pub flags: crate::vk::AccelerationStructureMotionInfoFlagsNV,
     pub _marker: ::core::marker::PhantomData<&'a ()>,
 }
+unsafe impl<'a> crate::TaggedStructure<'a> for AccelerationStructureMotionInfoNV<'a> {
+    const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::ACCELERATION_STRUCTURE_MOTION_INFO_NV;
+}
+unsafe impl<'a> crate::Extends<crate::vk::AccelerationStructureCreateInfoKHR<'_>>
+for AccelerationStructureMotionInfoNV<'a> {}
+impl<'a> Default for AccelerationStructureMotionInfoNV<'a> {
+    fn default() -> Self {
+        Self {
+            s_type: <Self as crate::TaggedStructure>::STRUCTURE_TYPE,
+            p_next: Default::default(),
+            max_instances: Default::default(),
+            flags: Default::default(),
+            _marker: ::core::marker::PhantomData,
+        }
+    }
+}
+impl<'a> AccelerationStructureMotionInfoNV<'a> {
+    pub fn max_instances(mut self, max_instances: u32) -> Self {
+        self.max_instances = max_instances;
+        self
+    }
+    pub fn flags(
+        mut self,
+        flags: crate::vk::AccelerationStructureMotionInfoFlagsNV,
+    ) -> Self {
+        self.flags = flags;
+        self
+    }
+}
 #[repr(C)]
-#[derive(Clone, Copy)]
+#[derive(Clone, Copy, Default)]
 pub struct SRTDataNV {
     pub sx: core::ffi::c_float,
     pub a: core::ffi::c_float,
@@ -47,8 +136,74 @@ pub struct SRTDataNV {
     pub ty: core::ffi::c_float,
     pub tz: core::ffi::c_float,
 }
+impl SRTDataNV {
+    pub fn sx(mut self, sx: core::ffi::c_float) -> Self {
+        self.sx = sx;
+        self
+    }
+    pub fn a(mut self, a: core::ffi::c_float) -> Self {
+        self.a = a;
+        self
+    }
+    pub fn b(mut self, b: core::ffi::c_float) -> Self {
+        self.b = b;
+        self
+    }
+    pub fn pvx(mut self, pvx: core::ffi::c_float) -> Self {
+        self.pvx = pvx;
+        self
+    }
+    pub fn sy(mut self, sy: core::ffi::c_float) -> Self {
+        self.sy = sy;
+        self
+    }
+    pub fn c(mut self, c: core::ffi::c_float) -> Self {
+        self.c = c;
+        self
+    }
+    pub fn pvy(mut self, pvy: core::ffi::c_float) -> Self {
+        self.pvy = pvy;
+        self
+    }
+    pub fn sz(mut self, sz: core::ffi::c_float) -> Self {
+        self.sz = sz;
+        self
+    }
+    pub fn pvz(mut self, pvz: core::ffi::c_float) -> Self {
+        self.pvz = pvz;
+        self
+    }
+    pub fn qx(mut self, qx: core::ffi::c_float) -> Self {
+        self.qx = qx;
+        self
+    }
+    pub fn qy(mut self, qy: core::ffi::c_float) -> Self {
+        self.qy = qy;
+        self
+    }
+    pub fn qz(mut self, qz: core::ffi::c_float) -> Self {
+        self.qz = qz;
+        self
+    }
+    pub fn qw(mut self, qw: core::ffi::c_float) -> Self {
+        self.qw = qw;
+        self
+    }
+    pub fn tx(mut self, tx: core::ffi::c_float) -> Self {
+        self.tx = tx;
+        self
+    }
+    pub fn ty(mut self, ty: core::ffi::c_float) -> Self {
+        self.ty = ty;
+        self
+    }
+    pub fn tz(mut self, tz: core::ffi::c_float) -> Self {
+        self.tz = tz;
+        self
+    }
+}
 #[repr(C)]
-#[derive(Clone, Copy)]
+#[derive(Clone, Copy, Default)]
 pub struct AccelerationStructureSRTMotionInstanceNV {
     pub transform_t0: crate::vk::SRTDataNV,
     pub transform_t1: crate::vk::SRTDataNV,
@@ -60,8 +215,61 @@ pub struct AccelerationStructureSRTMotionInstanceNV {
     pub bitfield1: u32,
     pub acceleration_structure_reference: u64,
 }
+impl AccelerationStructureSRTMotionInstanceNV {
+    pub fn transform_t0(mut self, transform_t0: crate::vk::SRTDataNV) -> Self {
+        self.transform_t0 = transform_t0;
+        self
+    }
+    pub fn transform_t1(mut self, transform_t1: crate::vk::SRTDataNV) -> Self {
+        self.transform_t1 = transform_t1;
+        self
+    }
+    pub fn instance_custom_index(mut self, instance_custom_index: u32) -> Self {
+        let rest = self.bitfield0 & 0xFF000000;
+        self.bitfield0 = (instance_custom_index & 0x00FFFFFF) | rest;
+        self
+    }
+    pub fn get_instance_custom_index(&self) -> u32 {
+        self.bitfield0 & 0x00FFFFFF
+    }
+    pub fn mask(mut self, mask: u32) -> Self {
+        let rest = self.bitfield0 & 0x00FFFFFF;
+        self.bitfield0 = ((mask << 24u32) & 0xFF000000) | rest;
+        self
+    }
+    pub fn get_mask(&self) -> u32 {
+        (self.bitfield0 & 0xFF000000) >> 24u32
+    }
+    pub fn instance_shader_binding_table_record_offset(
+        mut self,
+        instance_shader_binding_table_record_offset: u32,
+    ) -> Self {
+        let rest = self.bitfield1 & 0xFF000000;
+        self.bitfield1 = (instance_shader_binding_table_record_offset & 0x00FFFFFF)
+            | rest;
+        self
+    }
+    pub fn get_instance_shader_binding_table_record_offset(&self) -> u32 {
+        self.bitfield1 & 0x00FFFFFF
+    }
+    pub fn flags(mut self, flags: u32) -> Self {
+        let rest = self.bitfield1 & 0x00FFFFFF;
+        self.bitfield1 = ((flags << 24u32) & 0xFF000000) | rest;
+        self
+    }
+    pub fn get_flags(&self) -> u32 {
+        (self.bitfield1 & 0xFF000000) >> 24u32
+    }
+    pub fn acceleration_structure_reference(
+        mut self,
+        acceleration_structure_reference: u64,
+    ) -> Self {
+        self.acceleration_structure_reference = acceleration_structure_reference;
+        self
+    }
+}
 #[repr(C)]
-#[derive(Clone, Copy)]
+#[derive(Clone, Copy, Default)]
 pub struct AccelerationStructureMatrixMotionInstanceNV {
     pub transform_t0: crate::vk::TransformMatrixKHR,
     pub transform_t1: crate::vk::TransformMatrixKHR,
@@ -73,12 +281,88 @@ pub struct AccelerationStructureMatrixMotionInstanceNV {
     pub bitfield1: u32,
     pub acceleration_structure_reference: u64,
 }
+impl AccelerationStructureMatrixMotionInstanceNV {
+    pub fn transform_t0(mut self, transform_t0: crate::vk::TransformMatrixKHR) -> Self {
+        self.transform_t0 = transform_t0;
+        self
+    }
+    pub fn transform_t1(mut self, transform_t1: crate::vk::TransformMatrixKHR) -> Self {
+        self.transform_t1 = transform_t1;
+        self
+    }
+    pub fn instance_custom_index(mut self, instance_custom_index: u32) -> Self {
+        let rest = self.bitfield0 & 0xFF000000;
+        self.bitfield0 = (instance_custom_index & 0x00FFFFFF) | rest;
+        self
+    }
+    pub fn get_instance_custom_index(&self) -> u32 {
+        self.bitfield0 & 0x00FFFFFF
+    }
+    pub fn mask(mut self, mask: u32) -> Self {
+        let rest = self.bitfield0 & 0x00FFFFFF;
+        self.bitfield0 = ((mask << 24u32) & 0xFF000000) | rest;
+        self
+    }
+    pub fn get_mask(&self) -> u32 {
+        (self.bitfield0 & 0xFF000000) >> 24u32
+    }
+    pub fn instance_shader_binding_table_record_offset(
+        mut self,
+        instance_shader_binding_table_record_offset: u32,
+    ) -> Self {
+        let rest = self.bitfield1 & 0xFF000000;
+        self.bitfield1 = (instance_shader_binding_table_record_offset & 0x00FFFFFF)
+            | rest;
+        self
+    }
+    pub fn get_instance_shader_binding_table_record_offset(&self) -> u32 {
+        self.bitfield1 & 0x00FFFFFF
+    }
+    pub fn flags(mut self, flags: u32) -> Self {
+        let rest = self.bitfield1 & 0x00FFFFFF;
+        self.bitfield1 = ((flags << 24u32) & 0xFF000000) | rest;
+        self
+    }
+    pub fn get_flags(&self) -> u32 {
+        (self.bitfield1 & 0xFF000000) >> 24u32
+    }
+    pub fn acceleration_structure_reference(
+        mut self,
+        acceleration_structure_reference: u64,
+    ) -> Self {
+        self.acceleration_structure_reference = acceleration_structure_reference;
+        self
+    }
+}
 #[repr(C)]
-#[derive(Clone, Copy)]
+#[derive(Clone, Copy, Default)]
 pub struct AccelerationStructureMotionInstanceNV {
     pub _type: crate::vk::AccelerationStructureMotionInstanceTypeNV,
     pub flags: crate::vk::AccelerationStructureMotionInstanceFlagsNV,
     pub data: crate::vk::AccelerationStructureMotionInstanceDataNV,
+}
+impl AccelerationStructureMotionInstanceNV {
+    pub fn _type(
+        mut self,
+        _type: crate::vk::AccelerationStructureMotionInstanceTypeNV,
+    ) -> Self {
+        self._type = _type;
+        self
+    }
+    pub fn flags(
+        mut self,
+        flags: crate::vk::AccelerationStructureMotionInstanceFlagsNV,
+    ) -> Self {
+        self.flags = flags;
+        self
+    }
+    pub fn data(
+        mut self,
+        data: crate::vk::AccelerationStructureMotionInstanceDataNV,
+    ) -> Self {
+        self.data = data;
+        self
+    }
 }
 #[repr(C)]
 #[derive(Clone, Copy)]
@@ -86,6 +370,11 @@ pub union AccelerationStructureMotionInstanceDataNV {
     pub static_instance: crate::vk::AccelerationStructureInstanceKHR,
     pub matrix_motion_instance: crate::vk::AccelerationStructureMatrixMotionInstanceNV,
     pub srt_motion_instance: crate::vk::AccelerationStructureSRTMotionInstanceNV,
+}
+impl Default for AccelerationStructureMotionInstanceDataNV {
+    fn default() -> Self {
+        unsafe { core::mem::zeroed() }
+    }
 }
 ///Provided by [`nv::ray_tracing_motion_blur`](crate::nv::ray_tracing_motion_blur)
 impl crate::vk::StructureType {

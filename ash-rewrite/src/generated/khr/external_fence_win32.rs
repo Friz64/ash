@@ -63,6 +63,48 @@ pub(crate) mod reexport {
         pub name: crate::platform_types::LPCWSTR,
         pub _marker: ::core::marker::PhantomData<&'a ()>,
     }
+    unsafe impl<'a> crate::TaggedStructure<'a> for ImportFenceWin32HandleInfoKHR<'a> {
+        const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::IMPORT_FENCE_WIN32_HANDLE_INFO_KHR;
+    }
+    impl<'a> Default for ImportFenceWin32HandleInfoKHR<'a> {
+        fn default() -> Self {
+            Self {
+                s_type: <Self as crate::TaggedStructure>::STRUCTURE_TYPE,
+                p_next: Default::default(),
+                fence: Default::default(),
+                flags: Default::default(),
+                handle_type: Default::default(),
+                handle: Default::default(),
+                name: Default::default(),
+                _marker: ::core::marker::PhantomData,
+            }
+        }
+    }
+    impl<'a> ImportFenceWin32HandleInfoKHR<'a> {
+        pub fn fence(mut self, fence: crate::vk::Fence) -> Self {
+            self.fence = fence;
+            self
+        }
+        pub fn flags(mut self, flags: crate::vk::FenceImportFlags) -> Self {
+            self.flags = flags;
+            self
+        }
+        pub fn handle_type(
+            mut self,
+            handle_type: crate::vk::ExternalFenceHandleTypeFlagBits,
+        ) -> Self {
+            self.handle_type = handle_type;
+            self
+        }
+        pub fn handle(mut self, handle: crate::platform_types::HANDLE) -> Self {
+            self.handle = handle;
+            self
+        }
+        pub fn name(mut self, name: crate::platform_types::LPCWSTR) -> Self {
+            self.name = name;
+            self
+        }
+    }
     #[repr(C)]
     #[derive(Clone, Copy)]
     pub struct ExportFenceWin32HandleInfoKHR<'a> {
@@ -73,6 +115,40 @@ pub(crate) mod reexport {
         pub name: crate::platform_types::LPCWSTR,
         pub _marker: ::core::marker::PhantomData<&'a ()>,
     }
+    unsafe impl<'a> crate::TaggedStructure<'a> for ExportFenceWin32HandleInfoKHR<'a> {
+        const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::EXPORT_FENCE_WIN32_HANDLE_INFO_KHR;
+    }
+    unsafe impl<'a> crate::Extends<crate::vk::FenceCreateInfo<'_>>
+    for ExportFenceWin32HandleInfoKHR<'a> {}
+    impl<'a> Default for ExportFenceWin32HandleInfoKHR<'a> {
+        fn default() -> Self {
+            Self {
+                s_type: <Self as crate::TaggedStructure>::STRUCTURE_TYPE,
+                p_next: Default::default(),
+                p_attributes: Default::default(),
+                dw_access: Default::default(),
+                name: Default::default(),
+                _marker: ::core::marker::PhantomData,
+            }
+        }
+    }
+    impl<'a> ExportFenceWin32HandleInfoKHR<'a> {
+        pub fn p_attributes(
+            mut self,
+            p_attributes: &'a crate::platform_types::SECURITY_ATTRIBUTES,
+        ) -> Self {
+            self.p_attributes = p_attributes;
+            self
+        }
+        pub fn dw_access(mut self, dw_access: crate::platform_types::DWORD) -> Self {
+            self.dw_access = dw_access;
+            self
+        }
+        pub fn name(mut self, name: crate::platform_types::LPCWSTR) -> Self {
+            self.name = name;
+            self
+        }
+    }
     #[repr(C)]
     #[derive(Clone, Copy)]
     pub struct FenceGetWin32HandleInfoKHR<'a> {
@@ -81,6 +157,33 @@ pub(crate) mod reexport {
         pub fence: crate::vk::Fence,
         pub handle_type: crate::vk::ExternalFenceHandleTypeFlagBits,
         pub _marker: ::core::marker::PhantomData<&'a ()>,
+    }
+    unsafe impl<'a> crate::TaggedStructure<'a> for FenceGetWin32HandleInfoKHR<'a> {
+        const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::FENCE_GET_WIN32_HANDLE_INFO_KHR;
+    }
+    impl<'a> Default for FenceGetWin32HandleInfoKHR<'a> {
+        fn default() -> Self {
+            Self {
+                s_type: <Self as crate::TaggedStructure>::STRUCTURE_TYPE,
+                p_next: Default::default(),
+                fence: Default::default(),
+                handle_type: Default::default(),
+                _marker: ::core::marker::PhantomData,
+            }
+        }
+    }
+    impl<'a> FenceGetWin32HandleInfoKHR<'a> {
+        pub fn fence(mut self, fence: crate::vk::Fence) -> Self {
+            self.fence = fence;
+            self
+        }
+        pub fn handle_type(
+            mut self,
+            handle_type: crate::vk::ExternalFenceHandleTypeFlagBits,
+        ) -> Self {
+            self.handle_type = handle_type;
+            self
+        }
     }
     ///Provided by [`khr::external_fence_win32`](crate::khr::external_fence_win32)
     impl crate::vk::StructureType {

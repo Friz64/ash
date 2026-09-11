@@ -86,6 +86,130 @@ pub(crate) mod reexport {
         pub tile_shading_image_processing: crate::vk::Bool32,
         pub _marker: ::core::marker::PhantomData<&'a ()>,
     }
+    unsafe impl<'a> crate::TaggedStructure<'a>
+    for PhysicalDeviceTileShadingFeaturesQCOM<'a> {
+        const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::PHYSICAL_DEVICE_TILE_SHADING_FEATURES_QCOM;
+    }
+    unsafe impl<'a> crate::Extends<crate::vk::PhysicalDeviceFeatures2<'_>>
+    for PhysicalDeviceTileShadingFeaturesQCOM<'a> {}
+    unsafe impl<'a> crate::Extends<crate::vk::DeviceCreateInfo<'_>>
+    for PhysicalDeviceTileShadingFeaturesQCOM<'a> {}
+    impl<'a> Default for PhysicalDeviceTileShadingFeaturesQCOM<'a> {
+        fn default() -> Self {
+            Self {
+                s_type: <Self as crate::TaggedStructure>::STRUCTURE_TYPE,
+                p_next: Default::default(),
+                tile_shading: Default::default(),
+                tile_shading_fragment_stage: Default::default(),
+                tile_shading_color_attachments: Default::default(),
+                tile_shading_depth_attachments: Default::default(),
+                tile_shading_stencil_attachments: Default::default(),
+                tile_shading_input_attachments: Default::default(),
+                tile_shading_sampled_attachments: Default::default(),
+                tile_shading_per_tile_draw: Default::default(),
+                tile_shading_per_tile_dispatch: Default::default(),
+                tile_shading_dispatch_tile: Default::default(),
+                tile_shading_apron: Default::default(),
+                tile_shading_anisotropic_apron: Default::default(),
+                tile_shading_atomic_ops: Default::default(),
+                tile_shading_image_processing: Default::default(),
+                _marker: ::core::marker::PhantomData,
+            }
+        }
+    }
+    impl<'a> PhysicalDeviceTileShadingFeaturesQCOM<'a> {
+        pub fn tile_shading(mut self, tile_shading: bool) -> Self {
+            self.tile_shading = tile_shading.into();
+            self
+        }
+        pub fn tile_shading_fragment_stage(
+            mut self,
+            tile_shading_fragment_stage: bool,
+        ) -> Self {
+            self.tile_shading_fragment_stage = tile_shading_fragment_stage.into();
+            self
+        }
+        pub fn tile_shading_color_attachments(
+            mut self,
+            tile_shading_color_attachments: bool,
+        ) -> Self {
+            self.tile_shading_color_attachments = tile_shading_color_attachments.into();
+            self
+        }
+        pub fn tile_shading_depth_attachments(
+            mut self,
+            tile_shading_depth_attachments: bool,
+        ) -> Self {
+            self.tile_shading_depth_attachments = tile_shading_depth_attachments.into();
+            self
+        }
+        pub fn tile_shading_stencil_attachments(
+            mut self,
+            tile_shading_stencil_attachments: bool,
+        ) -> Self {
+            self.tile_shading_stencil_attachments = tile_shading_stencil_attachments
+                .into();
+            self
+        }
+        pub fn tile_shading_input_attachments(
+            mut self,
+            tile_shading_input_attachments: bool,
+        ) -> Self {
+            self.tile_shading_input_attachments = tile_shading_input_attachments.into();
+            self
+        }
+        pub fn tile_shading_sampled_attachments(
+            mut self,
+            tile_shading_sampled_attachments: bool,
+        ) -> Self {
+            self.tile_shading_sampled_attachments = tile_shading_sampled_attachments
+                .into();
+            self
+        }
+        pub fn tile_shading_per_tile_draw(
+            mut self,
+            tile_shading_per_tile_draw: bool,
+        ) -> Self {
+            self.tile_shading_per_tile_draw = tile_shading_per_tile_draw.into();
+            self
+        }
+        pub fn tile_shading_per_tile_dispatch(
+            mut self,
+            tile_shading_per_tile_dispatch: bool,
+        ) -> Self {
+            self.tile_shading_per_tile_dispatch = tile_shading_per_tile_dispatch.into();
+            self
+        }
+        pub fn tile_shading_dispatch_tile(
+            mut self,
+            tile_shading_dispatch_tile: bool,
+        ) -> Self {
+            self.tile_shading_dispatch_tile = tile_shading_dispatch_tile.into();
+            self
+        }
+        pub fn tile_shading_apron(mut self, tile_shading_apron: bool) -> Self {
+            self.tile_shading_apron = tile_shading_apron.into();
+            self
+        }
+        pub fn tile_shading_anisotropic_apron(
+            mut self,
+            tile_shading_anisotropic_apron: bool,
+        ) -> Self {
+            self.tile_shading_anisotropic_apron = tile_shading_anisotropic_apron.into();
+            self
+        }
+        pub fn tile_shading_atomic_ops(mut self, tile_shading_atomic_ops: bool) -> Self {
+            self.tile_shading_atomic_ops = tile_shading_atomic_ops.into();
+            self
+        }
+        pub fn tile_shading_image_processing(
+            mut self,
+            tile_shading_image_processing: bool,
+        ) -> Self {
+            self.tile_shading_image_processing = tile_shading_image_processing.into();
+            self
+        }
+    }
     #[repr(C)]
     #[derive(Clone, Copy)]
     pub struct PhysicalDeviceTileShadingPropertiesQCOM<'a> {
@@ -97,6 +221,49 @@ pub(crate) mod reexport {
         pub max_tile_shading_rate: crate::vk::Extent2D,
         pub _marker: ::core::marker::PhantomData<&'a ()>,
     }
+    unsafe impl<'a> crate::TaggedStructure<'a>
+    for PhysicalDeviceTileShadingPropertiesQCOM<'a> {
+        const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::PHYSICAL_DEVICE_TILE_SHADING_PROPERTIES_QCOM;
+    }
+    unsafe impl<'a> crate::Extends<crate::vk::PhysicalDeviceProperties2<'_>>
+    for PhysicalDeviceTileShadingPropertiesQCOM<'a> {}
+    impl<'a> Default for PhysicalDeviceTileShadingPropertiesQCOM<'a> {
+        fn default() -> Self {
+            Self {
+                s_type: <Self as crate::TaggedStructure>::STRUCTURE_TYPE,
+                p_next: Default::default(),
+                max_apron_size: Default::default(),
+                prefer_non_coherent: Default::default(),
+                tile_granularity: Default::default(),
+                max_tile_shading_rate: Default::default(),
+                _marker: ::core::marker::PhantomData,
+            }
+        }
+    }
+    impl<'a> PhysicalDeviceTileShadingPropertiesQCOM<'a> {
+        pub fn max_apron_size(mut self, max_apron_size: u32) -> Self {
+            self.max_apron_size = max_apron_size;
+            self
+        }
+        pub fn prefer_non_coherent(mut self, prefer_non_coherent: bool) -> Self {
+            self.prefer_non_coherent = prefer_non_coherent.into();
+            self
+        }
+        pub fn tile_granularity(
+            mut self,
+            tile_granularity: crate::vk::Extent2D,
+        ) -> Self {
+            self.tile_granularity = tile_granularity;
+            self
+        }
+        pub fn max_tile_shading_rate(
+            mut self,
+            max_tile_shading_rate: crate::vk::Extent2D,
+        ) -> Self {
+            self.max_tile_shading_rate = max_tile_shading_rate;
+            self
+        }
+    }
     #[repr(C)]
     #[derive(Clone, Copy)]
     pub struct RenderPassTileShadingCreateInfoQCOM<'a> {
@@ -106,6 +273,42 @@ pub(crate) mod reexport {
         pub tile_apron_size: crate::vk::Extent2D,
         pub _marker: ::core::marker::PhantomData<&'a ()>,
     }
+    unsafe impl<'a> crate::TaggedStructure<'a>
+    for RenderPassTileShadingCreateInfoQCOM<'a> {
+        const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::RENDER_PASS_TILE_SHADING_CREATE_INFO_QCOM;
+    }
+    unsafe impl<'a> crate::Extends<crate::vk::RenderPassCreateInfo<'_>>
+    for RenderPassTileShadingCreateInfoQCOM<'a> {}
+    unsafe impl<'a> crate::Extends<crate::vk::RenderPassCreateInfo2<'_>>
+    for RenderPassTileShadingCreateInfoQCOM<'a> {}
+    unsafe impl<'a> crate::Extends<crate::vk::RenderingInfo<'_>>
+    for RenderPassTileShadingCreateInfoQCOM<'a> {}
+    unsafe impl<'a> crate::Extends<crate::vk::CommandBufferInheritanceInfo<'_>>
+    for RenderPassTileShadingCreateInfoQCOM<'a> {}
+    impl<'a> Default for RenderPassTileShadingCreateInfoQCOM<'a> {
+        fn default() -> Self {
+            Self {
+                s_type: <Self as crate::TaggedStructure>::STRUCTURE_TYPE,
+                p_next: Default::default(),
+                flags: Default::default(),
+                tile_apron_size: Default::default(),
+                _marker: ::core::marker::PhantomData,
+            }
+        }
+    }
+    impl<'a> RenderPassTileShadingCreateInfoQCOM<'a> {
+        pub fn flags(
+            mut self,
+            flags: crate::vk::TileShadingRenderPassFlagsQCOM,
+        ) -> Self {
+            self.flags = flags;
+            self
+        }
+        pub fn tile_apron_size(mut self, tile_apron_size: crate::vk::Extent2D) -> Self {
+            self.tile_apron_size = tile_apron_size;
+            self
+        }
+    }
     #[repr(C)]
     #[derive(Clone, Copy)]
     pub struct PerTileBeginInfoQCOM<'a> {
@@ -113,6 +316,19 @@ pub(crate) mod reexport {
         pub p_next: *const core::ffi::c_void,
         pub _marker: ::core::marker::PhantomData<&'a ()>,
     }
+    unsafe impl<'a> crate::TaggedStructure<'a> for PerTileBeginInfoQCOM<'a> {
+        const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::PER_TILE_BEGIN_INFO_QCOM;
+    }
+    impl<'a> Default for PerTileBeginInfoQCOM<'a> {
+        fn default() -> Self {
+            Self {
+                s_type: <Self as crate::TaggedStructure>::STRUCTURE_TYPE,
+                p_next: Default::default(),
+                _marker: ::core::marker::PhantomData,
+            }
+        }
+    }
+    impl<'a> PerTileBeginInfoQCOM<'a> {}
     #[repr(C)]
     #[derive(Clone, Copy)]
     pub struct PerTileEndInfoQCOM<'a> {
@@ -120,6 +336,19 @@ pub(crate) mod reexport {
         pub p_next: *const core::ffi::c_void,
         pub _marker: ::core::marker::PhantomData<&'a ()>,
     }
+    unsafe impl<'a> crate::TaggedStructure<'a> for PerTileEndInfoQCOM<'a> {
+        const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::PER_TILE_END_INFO_QCOM;
+    }
+    impl<'a> Default for PerTileEndInfoQCOM<'a> {
+        fn default() -> Self {
+            Self {
+                s_type: <Self as crate::TaggedStructure>::STRUCTURE_TYPE,
+                p_next: Default::default(),
+                _marker: ::core::marker::PhantomData,
+            }
+        }
+    }
+    impl<'a> PerTileEndInfoQCOM<'a> {}
     #[repr(C)]
     #[derive(Clone, Copy)]
     pub struct DispatchTileInfoQCOM<'a> {
@@ -127,6 +356,19 @@ pub(crate) mod reexport {
         pub p_next: *const core::ffi::c_void,
         pub _marker: ::core::marker::PhantomData<&'a ()>,
     }
+    unsafe impl<'a> crate::TaggedStructure<'a> for DispatchTileInfoQCOM<'a> {
+        const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::DISPATCH_TILE_INFO_QCOM;
+    }
+    impl<'a> Default for DispatchTileInfoQCOM<'a> {
+        fn default() -> Self {
+            Self {
+                s_type: <Self as crate::TaggedStructure>::STRUCTURE_TYPE,
+                p_next: Default::default(),
+                _marker: ::core::marker::PhantomData,
+            }
+        }
+    }
+    impl<'a> DispatchTileInfoQCOM<'a> {}
     ///Provided by [`qcom::tile_shading`](crate::qcom::tile_shading)
     impl crate::vk::StructureType {
         pub const PHYSICAL_DEVICE_TILE_SHADING_FEATURES_QCOM: Self = Self(1000309000);
@@ -219,7 +461,7 @@ pub(crate) mod reexport {
         }
     }
     #[repr(transparent)]
-    #[derive(Clone, Copy)]
+    #[derive(Clone, Copy, Default)]
     pub struct TileShadingRenderPassFlagBitsQCOM(pub(crate) u32);
     ///Provided by [`qcom::tile_shading`](crate::qcom::tile_shading)
     impl TileShadingRenderPassFlagBitsQCOM {

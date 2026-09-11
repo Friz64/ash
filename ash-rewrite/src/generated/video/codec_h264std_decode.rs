@@ -2,7 +2,7 @@
 #![cfg_attr(rustfmt, rustfmt_skip)]
 //!Items provided by `vulkan_video_codec_h264std_decode`
 #[repr(C)]
-#[derive(Clone, Copy)]
+#[derive(Clone, Copy, Default)]
 pub struct DecodeH264PictureInfoFlags {
     /**- `field_pic_flag` @ `0..1`
 - `is_intra` @ `1..2`
@@ -11,6 +11,56 @@ pub struct DecodeH264PictureInfoFlags {
 - `is_reference` @ `4..5`
 - `complementary_field_pair` @ `5..6`*/
     pub bitfield0: u32,
+}
+impl DecodeH264PictureInfoFlags {
+    pub fn field_pic_flag(mut self, field_pic_flag: u32) -> Self {
+        let rest = self.bitfield0 & 0xFFFFFFFE;
+        self.bitfield0 = (field_pic_flag & 0x00000001) | rest;
+        self
+    }
+    pub fn get_field_pic_flag(&self) -> u32 {
+        self.bitfield0 & 0x00000001
+    }
+    pub fn is_intra(mut self, is_intra: u32) -> Self {
+        let rest = self.bitfield0 & 0xFFFFFFFD;
+        self.bitfield0 = ((is_intra << 1u32) & 0x00000002) | rest;
+        self
+    }
+    pub fn get_is_intra(&self) -> u32 {
+        (self.bitfield0 & 0x00000002) >> 1u32
+    }
+    pub fn idr_pic_flag(mut self, idr_pic_flag: u32) -> Self {
+        let rest = self.bitfield0 & 0xFFFFFFFB;
+        self.bitfield0 = ((idr_pic_flag << 2u32) & 0x00000004) | rest;
+        self
+    }
+    pub fn get_idr_pic_flag(&self) -> u32 {
+        (self.bitfield0 & 0x00000004) >> 2u32
+    }
+    pub fn bottom_field_flag(mut self, bottom_field_flag: u32) -> Self {
+        let rest = self.bitfield0 & 0xFFFFFFF7;
+        self.bitfield0 = ((bottom_field_flag << 3u32) & 0x00000008) | rest;
+        self
+    }
+    pub fn get_bottom_field_flag(&self) -> u32 {
+        (self.bitfield0 & 0x00000008) >> 3u32
+    }
+    pub fn is_reference(mut self, is_reference: u32) -> Self {
+        let rest = self.bitfield0 & 0xFFFFFFEF;
+        self.bitfield0 = ((is_reference << 4u32) & 0x00000010) | rest;
+        self
+    }
+    pub fn get_is_reference(&self) -> u32 {
+        (self.bitfield0 & 0x00000010) >> 4u32
+    }
+    pub fn complementary_field_pair(mut self, complementary_field_pair: u32) -> Self {
+        let rest = self.bitfield0 & 0xFFFFFFDF;
+        self.bitfield0 = ((complementary_field_pair << 5u32) & 0x00000020) | rest;
+        self
+    }
+    pub fn get_complementary_field_pair(&self) -> u32 {
+        (self.bitfield0 & 0x00000020) >> 5u32
+    }
 }
 #[repr(C)]
 #[derive(Clone, Copy)]
@@ -25,14 +75,103 @@ pub struct DecodeH264PictureInfo {
     pub pic_order_cnt: [i32; crate::vk::STD_VIDEO_DECODE_H264_FIELD_ORDER_COUNT_LIST_SIZE
         as _],
 }
+impl Default for DecodeH264PictureInfo {
+    fn default() -> Self {
+        Self {
+            flags: Default::default(),
+            seq_parameter_set_id: Default::default(),
+            pic_parameter_set_id: Default::default(),
+            reserved1: Default::default(),
+            reserved2: Default::default(),
+            frame_num: Default::default(),
+            idr_pic_id: Default::default(),
+            pic_order_cnt: unsafe { core::mem::zeroed() },
+        }
+    }
+}
+impl DecodeH264PictureInfo {
+    pub fn flags(mut self, flags: crate::vk::DecodeH264PictureInfoFlags) -> Self {
+        self.flags = flags;
+        self
+    }
+    pub fn seq_parameter_set_id(mut self, seq_parameter_set_id: u8) -> Self {
+        self.seq_parameter_set_id = seq_parameter_set_id;
+        self
+    }
+    pub fn pic_parameter_set_id(mut self, pic_parameter_set_id: u8) -> Self {
+        self.pic_parameter_set_id = pic_parameter_set_id;
+        self
+    }
+    pub fn reserved1(mut self, reserved1: u8) -> Self {
+        self.reserved1 = reserved1;
+        self
+    }
+    pub fn reserved2(mut self, reserved2: u8) -> Self {
+        self.reserved2 = reserved2;
+        self
+    }
+    pub fn frame_num(mut self, frame_num: u16) -> Self {
+        self.frame_num = frame_num;
+        self
+    }
+    pub fn idr_pic_id(mut self, idr_pic_id: u16) -> Self {
+        self.idr_pic_id = idr_pic_id;
+        self
+    }
+    pub fn pic_order_cnt(
+        mut self,
+        pic_order_cnt: [i32; crate::vk::STD_VIDEO_DECODE_H264_FIELD_ORDER_COUNT_LIST_SIZE
+            as _],
+    ) -> Self {
+        self.pic_order_cnt = pic_order_cnt;
+        self
+    }
+}
 #[repr(C)]
-#[derive(Clone, Copy)]
+#[derive(Clone, Copy, Default)]
 pub struct DecodeH264ReferenceInfoFlags {
     /**- `top_field_flag` @ `0..1`
 - `bottom_field_flag` @ `1..2`
 - `used_for_long_term_reference` @ `2..3`
 - `is_non_existing` @ `3..4`*/
     pub bitfield0: u32,
+}
+impl DecodeH264ReferenceInfoFlags {
+    pub fn top_field_flag(mut self, top_field_flag: u32) -> Self {
+        let rest = self.bitfield0 & 0xFFFFFFFE;
+        self.bitfield0 = (top_field_flag & 0x00000001) | rest;
+        self
+    }
+    pub fn get_top_field_flag(&self) -> u32 {
+        self.bitfield0 & 0x00000001
+    }
+    pub fn bottom_field_flag(mut self, bottom_field_flag: u32) -> Self {
+        let rest = self.bitfield0 & 0xFFFFFFFD;
+        self.bitfield0 = ((bottom_field_flag << 1u32) & 0x00000002) | rest;
+        self
+    }
+    pub fn get_bottom_field_flag(&self) -> u32 {
+        (self.bitfield0 & 0x00000002) >> 1u32
+    }
+    pub fn used_for_long_term_reference(
+        mut self,
+        used_for_long_term_reference: u32,
+    ) -> Self {
+        let rest = self.bitfield0 & 0xFFFFFFFB;
+        self.bitfield0 = ((used_for_long_term_reference << 2u32) & 0x00000004) | rest;
+        self
+    }
+    pub fn get_used_for_long_term_reference(&self) -> u32 {
+        (self.bitfield0 & 0x00000004) >> 2u32
+    }
+    pub fn is_non_existing(mut self, is_non_existing: u32) -> Self {
+        let rest = self.bitfield0 & 0xFFFFFFF7;
+        self.bitfield0 = ((is_non_existing << 3u32) & 0x00000008) | rest;
+        self
+    }
+    pub fn get_is_non_existing(&self) -> u32 {
+        (self.bitfield0 & 0x00000008) >> 3u32
+    }
 }
 #[repr(C)]
 #[derive(Clone, Copy)]
@@ -42,6 +181,38 @@ pub struct DecodeH264ReferenceInfo {
     pub reserved: u16,
     pub pic_order_cnt: [i32; crate::vk::STD_VIDEO_DECODE_H264_FIELD_ORDER_COUNT_LIST_SIZE
         as _],
+}
+impl Default for DecodeH264ReferenceInfo {
+    fn default() -> Self {
+        Self {
+            flags: Default::default(),
+            frame_num: Default::default(),
+            reserved: Default::default(),
+            pic_order_cnt: unsafe { core::mem::zeroed() },
+        }
+    }
+}
+impl DecodeH264ReferenceInfo {
+    pub fn flags(mut self, flags: crate::vk::DecodeH264ReferenceInfoFlags) -> Self {
+        self.flags = flags;
+        self
+    }
+    pub fn frame_num(mut self, frame_num: u16) -> Self {
+        self.frame_num = frame_num;
+        self
+    }
+    pub fn reserved(mut self, reserved: u16) -> Self {
+        self.reserved = reserved;
+        self
+    }
+    pub fn pic_order_cnt(
+        mut self,
+        pic_order_cnt: [i32; crate::vk::STD_VIDEO_DECODE_H264_FIELD_ORDER_COUNT_LIST_SIZE
+            as _],
+    ) -> Self {
+        self.pic_order_cnt = pic_order_cnt;
+        self
+    }
 }
 #[repr(transparent)]
 #[derive(Clone, Copy, PartialEq, Eq, PartialOrd, Ord, Hash, Default)]

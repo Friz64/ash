@@ -9,6 +9,30 @@ pub struct PhysicalDeviceLegacyVertexAttributesFeaturesEXT<'a> {
     pub legacy_vertex_attributes: crate::vk::Bool32,
     pub _marker: ::core::marker::PhantomData<&'a ()>,
 }
+unsafe impl<'a> crate::TaggedStructure<'a>
+for PhysicalDeviceLegacyVertexAttributesFeaturesEXT<'a> {
+    const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::PHYSICAL_DEVICE_LEGACY_VERTEX_ATTRIBUTES_FEATURES_EXT;
+}
+unsafe impl<'a> crate::Extends<crate::vk::PhysicalDeviceFeatures2<'_>>
+for PhysicalDeviceLegacyVertexAttributesFeaturesEXT<'a> {}
+unsafe impl<'a> crate::Extends<crate::vk::DeviceCreateInfo<'_>>
+for PhysicalDeviceLegacyVertexAttributesFeaturesEXT<'a> {}
+impl<'a> Default for PhysicalDeviceLegacyVertexAttributesFeaturesEXT<'a> {
+    fn default() -> Self {
+        Self {
+            s_type: <Self as crate::TaggedStructure>::STRUCTURE_TYPE,
+            p_next: Default::default(),
+            legacy_vertex_attributes: Default::default(),
+            _marker: ::core::marker::PhantomData,
+        }
+    }
+}
+impl<'a> PhysicalDeviceLegacyVertexAttributesFeaturesEXT<'a> {
+    pub fn legacy_vertex_attributes(mut self, legacy_vertex_attributes: bool) -> Self {
+        self.legacy_vertex_attributes = legacy_vertex_attributes.into();
+        self
+    }
+}
 #[repr(C)]
 #[derive(Clone, Copy)]
 pub struct PhysicalDeviceLegacyVertexAttributesPropertiesEXT<'a> {
@@ -16,6 +40,31 @@ pub struct PhysicalDeviceLegacyVertexAttributesPropertiesEXT<'a> {
     pub p_next: *mut core::ffi::c_void,
     pub native_unaligned_performance: crate::vk::Bool32,
     pub _marker: ::core::marker::PhantomData<&'a ()>,
+}
+unsafe impl<'a> crate::TaggedStructure<'a>
+for PhysicalDeviceLegacyVertexAttributesPropertiesEXT<'a> {
+    const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::PHYSICAL_DEVICE_LEGACY_VERTEX_ATTRIBUTES_PROPERTIES_EXT;
+}
+unsafe impl<'a> crate::Extends<crate::vk::PhysicalDeviceProperties2<'_>>
+for PhysicalDeviceLegacyVertexAttributesPropertiesEXT<'a> {}
+impl<'a> Default for PhysicalDeviceLegacyVertexAttributesPropertiesEXT<'a> {
+    fn default() -> Self {
+        Self {
+            s_type: <Self as crate::TaggedStructure>::STRUCTURE_TYPE,
+            p_next: Default::default(),
+            native_unaligned_performance: Default::default(),
+            _marker: ::core::marker::PhantomData,
+        }
+    }
+}
+impl<'a> PhysicalDeviceLegacyVertexAttributesPropertiesEXT<'a> {
+    pub fn native_unaligned_performance(
+        mut self,
+        native_unaligned_performance: bool,
+    ) -> Self {
+        self.native_unaligned_performance = native_unaligned_performance.into();
+        self
+    }
 }
 ///Provided by [`ext::legacy_vertex_attributes`](crate::ext::legacy_vertex_attributes)
 impl crate::vk::StructureType {

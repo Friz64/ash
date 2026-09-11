@@ -9,6 +9,33 @@ pub struct PhysicalDeviceShaderAtomicFloat16VectorFeaturesNV<'a> {
     pub shader_float16_vector_atomics: crate::vk::Bool32,
     pub _marker: ::core::marker::PhantomData<&'a ()>,
 }
+unsafe impl<'a> crate::TaggedStructure<'a>
+for PhysicalDeviceShaderAtomicFloat16VectorFeaturesNV<'a> {
+    const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::PHYSICAL_DEVICE_SHADER_ATOMIC_FLOAT16_VECTOR_FEATURES_NV;
+}
+unsafe impl<'a> crate::Extends<crate::vk::PhysicalDeviceFeatures2<'_>>
+for PhysicalDeviceShaderAtomicFloat16VectorFeaturesNV<'a> {}
+unsafe impl<'a> crate::Extends<crate::vk::DeviceCreateInfo<'_>>
+for PhysicalDeviceShaderAtomicFloat16VectorFeaturesNV<'a> {}
+impl<'a> Default for PhysicalDeviceShaderAtomicFloat16VectorFeaturesNV<'a> {
+    fn default() -> Self {
+        Self {
+            s_type: <Self as crate::TaggedStructure>::STRUCTURE_TYPE,
+            p_next: Default::default(),
+            shader_float16_vector_atomics: Default::default(),
+            _marker: ::core::marker::PhantomData,
+        }
+    }
+}
+impl<'a> PhysicalDeviceShaderAtomicFloat16VectorFeaturesNV<'a> {
+    pub fn shader_float16_vector_atomics(
+        mut self,
+        shader_float16_vector_atomics: bool,
+    ) -> Self {
+        self.shader_float16_vector_atomics = shader_float16_vector_atomics.into();
+        self
+    }
+}
 ///Provided by [`nv::shader_atomic_float16_vector`](crate::nv::shader_atomic_float16_vector)
 impl crate::vk::StructureType {
     pub const PHYSICAL_DEVICE_SHADER_ATOMIC_FLOAT16_VECTOR_FEATURES_NV: Self = Self(

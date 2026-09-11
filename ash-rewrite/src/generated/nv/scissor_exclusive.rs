@@ -62,6 +62,30 @@ pub(crate) mod reexport {
         pub exclusive_scissor: crate::vk::Bool32,
         pub _marker: ::core::marker::PhantomData<&'a ()>,
     }
+    unsafe impl<'a> crate::TaggedStructure<'a>
+    for PhysicalDeviceExclusiveScissorFeaturesNV<'a> {
+        const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::PHYSICAL_DEVICE_EXCLUSIVE_SCISSOR_FEATURES_NV;
+    }
+    unsafe impl<'a> crate::Extends<crate::vk::PhysicalDeviceFeatures2<'_>>
+    for PhysicalDeviceExclusiveScissorFeaturesNV<'a> {}
+    unsafe impl<'a> crate::Extends<crate::vk::DeviceCreateInfo<'_>>
+    for PhysicalDeviceExclusiveScissorFeaturesNV<'a> {}
+    impl<'a> Default for PhysicalDeviceExclusiveScissorFeaturesNV<'a> {
+        fn default() -> Self {
+            Self {
+                s_type: <Self as crate::TaggedStructure>::STRUCTURE_TYPE,
+                p_next: Default::default(),
+                exclusive_scissor: Default::default(),
+                _marker: ::core::marker::PhantomData,
+            }
+        }
+    }
+    impl<'a> PhysicalDeviceExclusiveScissorFeaturesNV<'a> {
+        pub fn exclusive_scissor(mut self, exclusive_scissor: bool) -> Self {
+            self.exclusive_scissor = exclusive_scissor.into();
+            self
+        }
+    }
     #[repr(C)]
     #[derive(Clone, Copy)]
     pub struct PipelineViewportExclusiveScissorStateCreateInfoNV<'a> {
@@ -70,6 +94,37 @@ pub(crate) mod reexport {
         pub exclusive_scissor_count: u32,
         pub p_exclusive_scissors: *const crate::vk::Rect2D,
         pub _marker: ::core::marker::PhantomData<&'a ()>,
+    }
+    unsafe impl<'a> crate::TaggedStructure<'a>
+    for PipelineViewportExclusiveScissorStateCreateInfoNV<'a> {
+        const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::PIPELINE_VIEWPORT_EXCLUSIVE_SCISSOR_STATE_CREATE_INFO_NV;
+    }
+    unsafe impl<'a> crate::Extends<crate::vk::PipelineViewportStateCreateInfo<'_>>
+    for PipelineViewportExclusiveScissorStateCreateInfoNV<'a> {}
+    impl<'a> Default for PipelineViewportExclusiveScissorStateCreateInfoNV<'a> {
+        fn default() -> Self {
+            Self {
+                s_type: <Self as crate::TaggedStructure>::STRUCTURE_TYPE,
+                p_next: Default::default(),
+                exclusive_scissor_count: Default::default(),
+                p_exclusive_scissors: Default::default(),
+                _marker: ::core::marker::PhantomData,
+            }
+        }
+    }
+    impl<'a> PipelineViewportExclusiveScissorStateCreateInfoNV<'a> {
+        pub fn exclusive_scissor_count(mut self, exclusive_scissor_count: u32) -> Self {
+            self.exclusive_scissor_count = exclusive_scissor_count;
+            self
+        }
+        pub fn p_exclusive_scissors(
+            mut self,
+            p_exclusive_scissors: &'a [crate::vk::Rect2D],
+        ) -> Self {
+            self.exclusive_scissor_count = p_exclusive_scissors.len() as _;
+            self.p_exclusive_scissors = p_exclusive_scissors.as_ptr();
+            self
+        }
     }
     ///Provided by [`nv::scissor_exclusive`](crate::nv::scissor_exclusive)
     impl crate::vk::StructureType {

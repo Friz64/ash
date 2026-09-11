@@ -9,6 +9,29 @@ pub struct PhysicalDeviceRayQueryFeaturesKHR<'a> {
     pub ray_query: crate::vk::Bool32,
     pub _marker: ::core::marker::PhantomData<&'a ()>,
 }
+unsafe impl<'a> crate::TaggedStructure<'a> for PhysicalDeviceRayQueryFeaturesKHR<'a> {
+    const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::PHYSICAL_DEVICE_RAY_QUERY_FEATURES_KHR;
+}
+unsafe impl<'a> crate::Extends<crate::vk::PhysicalDeviceFeatures2<'_>>
+for PhysicalDeviceRayQueryFeaturesKHR<'a> {}
+unsafe impl<'a> crate::Extends<crate::vk::DeviceCreateInfo<'_>>
+for PhysicalDeviceRayQueryFeaturesKHR<'a> {}
+impl<'a> Default for PhysicalDeviceRayQueryFeaturesKHR<'a> {
+    fn default() -> Self {
+        Self {
+            s_type: <Self as crate::TaggedStructure>::STRUCTURE_TYPE,
+            p_next: Default::default(),
+            ray_query: Default::default(),
+            _marker: ::core::marker::PhantomData,
+        }
+    }
+}
+impl<'a> PhysicalDeviceRayQueryFeaturesKHR<'a> {
+    pub fn ray_query(mut self, ray_query: bool) -> Self {
+        self.ray_query = ray_query.into();
+        self
+    }
+}
 ///Provided by [`khr::ray_query`](crate::khr::ray_query)
 impl crate::vk::StructureType {
     pub const PHYSICAL_DEVICE_RAY_QUERY_FEATURES_KHR: Self = Self(1000348013);

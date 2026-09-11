@@ -44,6 +44,30 @@ pub(crate) mod reexport {
         pub buffer: *mut crate::platform_types::_screen_buffer,
         pub _marker: ::core::marker::PhantomData<&'a ()>,
     }
+    unsafe impl<'a> crate::TaggedStructure<'a> for ImportScreenBufferInfoQNX<'a> {
+        const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::IMPORT_SCREEN_BUFFER_INFO_QNX;
+    }
+    unsafe impl<'a> crate::Extends<crate::vk::MemoryAllocateInfo<'_>>
+    for ImportScreenBufferInfoQNX<'a> {}
+    impl<'a> Default for ImportScreenBufferInfoQNX<'a> {
+        fn default() -> Self {
+            Self {
+                s_type: <Self as crate::TaggedStructure>::STRUCTURE_TYPE,
+                p_next: Default::default(),
+                buffer: Default::default(),
+                _marker: ::core::marker::PhantomData,
+            }
+        }
+    }
+    impl<'a> ImportScreenBufferInfoQNX<'a> {
+        pub fn buffer(
+            mut self,
+            buffer: &'a mut crate::platform_types::_screen_buffer,
+        ) -> Self {
+            self.buffer = buffer;
+            self
+        }
+    }
     #[repr(C)]
     #[derive(Clone, Copy)]
     pub struct ScreenBufferPropertiesQNX<'a> {
@@ -52,6 +76,33 @@ pub(crate) mod reexport {
         pub allocation_size: crate::vk::DeviceSize,
         pub memory_type_bits: u32,
         pub _marker: ::core::marker::PhantomData<&'a ()>,
+    }
+    unsafe impl<'a> crate::TaggedStructure<'a> for ScreenBufferPropertiesQNX<'a> {
+        const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::SCREEN_BUFFER_PROPERTIES_QNX;
+    }
+    impl<'a> Default for ScreenBufferPropertiesQNX<'a> {
+        fn default() -> Self {
+            Self {
+                s_type: <Self as crate::TaggedStructure>::STRUCTURE_TYPE,
+                p_next: Default::default(),
+                allocation_size: Default::default(),
+                memory_type_bits: Default::default(),
+                _marker: ::core::marker::PhantomData,
+            }
+        }
+    }
+    impl<'a> ScreenBufferPropertiesQNX<'a> {
+        pub fn allocation_size(
+            mut self,
+            allocation_size: crate::vk::DeviceSize,
+        ) -> Self {
+            self.allocation_size = allocation_size;
+            self
+        }
+        pub fn memory_type_bits(mut self, memory_type_bits: u32) -> Self {
+            self.memory_type_bits = memory_type_bits;
+            self
+        }
     }
     #[repr(C)]
     #[derive(Clone, Copy)]
@@ -69,6 +120,85 @@ pub(crate) mod reexport {
         pub suggested_y_chroma_offset: crate::vk::ChromaLocation,
         pub _marker: ::core::marker::PhantomData<&'a ()>,
     }
+    unsafe impl<'a> crate::TaggedStructure<'a> for ScreenBufferFormatPropertiesQNX<'a> {
+        const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::SCREEN_BUFFER_FORMAT_PROPERTIES_QNX;
+    }
+    unsafe impl<'a> crate::Extends<crate::vk::ScreenBufferPropertiesQNX<'_>>
+    for ScreenBufferFormatPropertiesQNX<'a> {}
+    impl<'a> Default for ScreenBufferFormatPropertiesQNX<'a> {
+        fn default() -> Self {
+            Self {
+                s_type: <Self as crate::TaggedStructure>::STRUCTURE_TYPE,
+                p_next: Default::default(),
+                format: Default::default(),
+                external_format: Default::default(),
+                screen_usage: Default::default(),
+                format_features: Default::default(),
+                sampler_ycbcr_conversion_components: Default::default(),
+                suggested_ycbcr_model: Default::default(),
+                suggested_ycbcr_range: Default::default(),
+                suggested_x_chroma_offset: Default::default(),
+                suggested_y_chroma_offset: Default::default(),
+                _marker: ::core::marker::PhantomData,
+            }
+        }
+    }
+    impl<'a> ScreenBufferFormatPropertiesQNX<'a> {
+        pub fn format(mut self, format: crate::vk::Format) -> Self {
+            self.format = format;
+            self
+        }
+        pub fn external_format(mut self, external_format: u64) -> Self {
+            self.external_format = external_format;
+            self
+        }
+        pub fn screen_usage(mut self, screen_usage: u64) -> Self {
+            self.screen_usage = screen_usage;
+            self
+        }
+        pub fn format_features(
+            mut self,
+            format_features: crate::vk::FormatFeatureFlags,
+        ) -> Self {
+            self.format_features = format_features;
+            self
+        }
+        pub fn sampler_ycbcr_conversion_components(
+            mut self,
+            sampler_ycbcr_conversion_components: crate::vk::ComponentMapping,
+        ) -> Self {
+            self.sampler_ycbcr_conversion_components = sampler_ycbcr_conversion_components;
+            self
+        }
+        pub fn suggested_ycbcr_model(
+            mut self,
+            suggested_ycbcr_model: crate::vk::SamplerYcbcrModelConversion,
+        ) -> Self {
+            self.suggested_ycbcr_model = suggested_ycbcr_model;
+            self
+        }
+        pub fn suggested_ycbcr_range(
+            mut self,
+            suggested_ycbcr_range: crate::vk::SamplerYcbcrRange,
+        ) -> Self {
+            self.suggested_ycbcr_range = suggested_ycbcr_range;
+            self
+        }
+        pub fn suggested_x_chroma_offset(
+            mut self,
+            suggested_x_chroma_offset: crate::vk::ChromaLocation,
+        ) -> Self {
+            self.suggested_x_chroma_offset = suggested_x_chroma_offset;
+            self
+        }
+        pub fn suggested_y_chroma_offset(
+            mut self,
+            suggested_y_chroma_offset: crate::vk::ChromaLocation,
+        ) -> Self {
+            self.suggested_y_chroma_offset = suggested_y_chroma_offset;
+            self
+        }
+    }
     #[repr(C)]
     #[derive(Clone, Copy)]
     pub struct ExternalFormatQNX<'a> {
@@ -77,6 +207,29 @@ pub(crate) mod reexport {
         pub external_format: u64,
         pub _marker: ::core::marker::PhantomData<&'a ()>,
     }
+    unsafe impl<'a> crate::TaggedStructure<'a> for ExternalFormatQNX<'a> {
+        const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::EXTERNAL_FORMAT_QNX;
+    }
+    unsafe impl<'a> crate::Extends<crate::vk::ImageCreateInfo<'_>>
+    for ExternalFormatQNX<'a> {}
+    unsafe impl<'a> crate::Extends<crate::vk::SamplerYcbcrConversionCreateInfo<'_>>
+    for ExternalFormatQNX<'a> {}
+    impl<'a> Default for ExternalFormatQNX<'a> {
+        fn default() -> Self {
+            Self {
+                s_type: <Self as crate::TaggedStructure>::STRUCTURE_TYPE,
+                p_next: Default::default(),
+                external_format: Default::default(),
+                _marker: ::core::marker::PhantomData,
+            }
+        }
+    }
+    impl<'a> ExternalFormatQNX<'a> {
+        pub fn external_format(mut self, external_format: u64) -> Self {
+            self.external_format = external_format;
+            self
+        }
+    }
     #[repr(C)]
     #[derive(Clone, Copy)]
     pub struct PhysicalDeviceExternalMemoryScreenBufferFeaturesQNX<'a> {
@@ -84,6 +237,30 @@ pub(crate) mod reexport {
         pub p_next: *mut core::ffi::c_void,
         pub screen_buffer_import: crate::vk::Bool32,
         pub _marker: ::core::marker::PhantomData<&'a ()>,
+    }
+    unsafe impl<'a> crate::TaggedStructure<'a>
+    for PhysicalDeviceExternalMemoryScreenBufferFeaturesQNX<'a> {
+        const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::PHYSICAL_DEVICE_EXTERNAL_MEMORY_SCREEN_BUFFER_FEATURES_QNX;
+    }
+    unsafe impl<'a> crate::Extends<crate::vk::PhysicalDeviceFeatures2<'_>>
+    for PhysicalDeviceExternalMemoryScreenBufferFeaturesQNX<'a> {}
+    unsafe impl<'a> crate::Extends<crate::vk::DeviceCreateInfo<'_>>
+    for PhysicalDeviceExternalMemoryScreenBufferFeaturesQNX<'a> {}
+    impl<'a> Default for PhysicalDeviceExternalMemoryScreenBufferFeaturesQNX<'a> {
+        fn default() -> Self {
+            Self {
+                s_type: <Self as crate::TaggedStructure>::STRUCTURE_TYPE,
+                p_next: Default::default(),
+                screen_buffer_import: Default::default(),
+                _marker: ::core::marker::PhantomData,
+            }
+        }
+    }
+    impl<'a> PhysicalDeviceExternalMemoryScreenBufferFeaturesQNX<'a> {
+        pub fn screen_buffer_import(mut self, screen_buffer_import: bool) -> Self {
+            self.screen_buffer_import = screen_buffer_import.into();
+            self
+        }
     }
     ///Provided by [`qnx::external_memory_screen_buffer`](crate::qnx::external_memory_screen_buffer)
     impl crate::vk::StructureType {

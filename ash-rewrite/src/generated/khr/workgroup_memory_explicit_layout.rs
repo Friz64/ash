@@ -12,6 +12,60 @@ pub struct PhysicalDeviceWorkgroupMemoryExplicitLayoutFeaturesKHR<'a> {
     pub workgroup_memory_explicit_layout16_bit_access: crate::vk::Bool32,
     pub _marker: ::core::marker::PhantomData<&'a ()>,
 }
+unsafe impl<'a> crate::TaggedStructure<'a>
+for PhysicalDeviceWorkgroupMemoryExplicitLayoutFeaturesKHR<'a> {
+    const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::PHYSICAL_DEVICE_WORKGROUP_MEMORY_EXPLICIT_LAYOUT_FEATURES_KHR;
+}
+unsafe impl<'a> crate::Extends<crate::vk::PhysicalDeviceFeatures2<'_>>
+for PhysicalDeviceWorkgroupMemoryExplicitLayoutFeaturesKHR<'a> {}
+unsafe impl<'a> crate::Extends<crate::vk::DeviceCreateInfo<'_>>
+for PhysicalDeviceWorkgroupMemoryExplicitLayoutFeaturesKHR<'a> {}
+impl<'a> Default for PhysicalDeviceWorkgroupMemoryExplicitLayoutFeaturesKHR<'a> {
+    fn default() -> Self {
+        Self {
+            s_type: <Self as crate::TaggedStructure>::STRUCTURE_TYPE,
+            p_next: Default::default(),
+            workgroup_memory_explicit_layout: Default::default(),
+            workgroup_memory_explicit_layout_scalar_block_layout: Default::default(),
+            workgroup_memory_explicit_layout8_bit_access: Default::default(),
+            workgroup_memory_explicit_layout16_bit_access: Default::default(),
+            _marker: ::core::marker::PhantomData,
+        }
+    }
+}
+impl<'a> PhysicalDeviceWorkgroupMemoryExplicitLayoutFeaturesKHR<'a> {
+    pub fn workgroup_memory_explicit_layout(
+        mut self,
+        workgroup_memory_explicit_layout: bool,
+    ) -> Self {
+        self.workgroup_memory_explicit_layout = workgroup_memory_explicit_layout.into();
+        self
+    }
+    pub fn workgroup_memory_explicit_layout_scalar_block_layout(
+        mut self,
+        workgroup_memory_explicit_layout_scalar_block_layout: bool,
+    ) -> Self {
+        self.workgroup_memory_explicit_layout_scalar_block_layout = workgroup_memory_explicit_layout_scalar_block_layout
+            .into();
+        self
+    }
+    pub fn workgroup_memory_explicit_layout8_bit_access(
+        mut self,
+        workgroup_memory_explicit_layout8_bit_access: bool,
+    ) -> Self {
+        self.workgroup_memory_explicit_layout8_bit_access = workgroup_memory_explicit_layout8_bit_access
+            .into();
+        self
+    }
+    pub fn workgroup_memory_explicit_layout16_bit_access(
+        mut self,
+        workgroup_memory_explicit_layout16_bit_access: bool,
+    ) -> Self {
+        self.workgroup_memory_explicit_layout16_bit_access = workgroup_memory_explicit_layout16_bit_access
+            .into();
+        self
+    }
+}
 ///Provided by [`khr::workgroup_memory_explicit_layout`](crate::khr::workgroup_memory_explicit_layout)
 impl crate::vk::StructureType {
     pub const PHYSICAL_DEVICE_WORKGROUP_MEMORY_EXPLICIT_LAYOUT_FEATURES_KHR: Self = Self(

@@ -46,6 +46,37 @@ pub(crate) mod reexport {
         pub image_pipe_handle: crate::platform_types::zx_handle_t,
         pub _marker: ::core::marker::PhantomData<&'a ()>,
     }
+    unsafe impl<'a> crate::TaggedStructure<'a>
+    for ImagePipeSurfaceCreateInfoFUCHSIA<'a> {
+        const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::IMAGEPIPE_SURFACE_CREATE_INFO_FUCHSIA;
+    }
+    impl<'a> Default for ImagePipeSurfaceCreateInfoFUCHSIA<'a> {
+        fn default() -> Self {
+            Self {
+                s_type: <Self as crate::TaggedStructure>::STRUCTURE_TYPE,
+                p_next: Default::default(),
+                flags: Default::default(),
+                image_pipe_handle: Default::default(),
+                _marker: ::core::marker::PhantomData,
+            }
+        }
+    }
+    impl<'a> ImagePipeSurfaceCreateInfoFUCHSIA<'a> {
+        pub fn flags(
+            mut self,
+            flags: crate::vk::ImagePipeSurfaceCreateFlagsFUCHSIA,
+        ) -> Self {
+            self.flags = flags;
+            self
+        }
+        pub fn image_pipe_handle(
+            mut self,
+            image_pipe_handle: crate::platform_types::zx_handle_t,
+        ) -> Self {
+            self.image_pipe_handle = image_pipe_handle;
+            self
+        }
+    }
     ///Provided by [`fuchsia::imagepipe_surface`](crate::fuchsia::imagepipe_surface)
     impl crate::vk::StructureType {
         pub const IMAGEPIPE_SURFACE_CREATE_INFO_FUCHSIA: Self = Self(1000214000);

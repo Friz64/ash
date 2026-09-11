@@ -11,6 +11,44 @@ pub struct PipelineCoverageToColorStateCreateInfoNV<'a> {
     pub coverage_to_color_location: u32,
     pub _marker: ::core::marker::PhantomData<&'a ()>,
 }
+unsafe impl<'a> crate::TaggedStructure<'a>
+for PipelineCoverageToColorStateCreateInfoNV<'a> {
+    const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::PIPELINE_COVERAGE_TO_COLOR_STATE_CREATE_INFO_NV;
+}
+unsafe impl<'a> crate::Extends<crate::vk::PipelineMultisampleStateCreateInfo<'_>>
+for PipelineCoverageToColorStateCreateInfoNV<'a> {}
+impl<'a> Default for PipelineCoverageToColorStateCreateInfoNV<'a> {
+    fn default() -> Self {
+        Self {
+            s_type: <Self as crate::TaggedStructure>::STRUCTURE_TYPE,
+            p_next: Default::default(),
+            flags: Default::default(),
+            coverage_to_color_enable: Default::default(),
+            coverage_to_color_location: Default::default(),
+            _marker: ::core::marker::PhantomData,
+        }
+    }
+}
+impl<'a> PipelineCoverageToColorStateCreateInfoNV<'a> {
+    pub fn flags(
+        mut self,
+        flags: crate::vk::PipelineCoverageToColorStateCreateFlagsNV,
+    ) -> Self {
+        self.flags = flags;
+        self
+    }
+    pub fn coverage_to_color_enable(mut self, coverage_to_color_enable: bool) -> Self {
+        self.coverage_to_color_enable = coverage_to_color_enable.into();
+        self
+    }
+    pub fn coverage_to_color_location(
+        mut self,
+        coverage_to_color_location: u32,
+    ) -> Self {
+        self.coverage_to_color_location = coverage_to_color_location;
+        self
+    }
+}
 ///Provided by [`nv::fragment_coverage_to_color`](crate::nv::fragment_coverage_to_color)
 impl crate::vk::StructureType {
     pub const PIPELINE_COVERAGE_TO_COLOR_STATE_CREATE_INFO_NV: Self = Self(1000149000);

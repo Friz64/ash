@@ -44,6 +44,30 @@ pub(crate) mod reexport {
         pub color_write_enable: crate::vk::Bool32,
         pub _marker: ::core::marker::PhantomData<&'a ()>,
     }
+    unsafe impl<'a> crate::TaggedStructure<'a>
+    for PhysicalDeviceColorWriteEnableFeaturesEXT<'a> {
+        const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::PHYSICAL_DEVICE_COLOR_WRITE_ENABLE_FEATURES_EXT;
+    }
+    unsafe impl<'a> crate::Extends<crate::vk::PhysicalDeviceFeatures2<'_>>
+    for PhysicalDeviceColorWriteEnableFeaturesEXT<'a> {}
+    unsafe impl<'a> crate::Extends<crate::vk::DeviceCreateInfo<'_>>
+    for PhysicalDeviceColorWriteEnableFeaturesEXT<'a> {}
+    impl<'a> Default for PhysicalDeviceColorWriteEnableFeaturesEXT<'a> {
+        fn default() -> Self {
+            Self {
+                s_type: <Self as crate::TaggedStructure>::STRUCTURE_TYPE,
+                p_next: Default::default(),
+                color_write_enable: Default::default(),
+                _marker: ::core::marker::PhantomData,
+            }
+        }
+    }
+    impl<'a> PhysicalDeviceColorWriteEnableFeaturesEXT<'a> {
+        pub fn color_write_enable(mut self, color_write_enable: bool) -> Self {
+            self.color_write_enable = color_write_enable.into();
+            self
+        }
+    }
     #[repr(C)]
     #[derive(Clone, Copy)]
     pub struct PipelineColorWriteCreateInfoEXT<'a> {
@@ -52,6 +76,36 @@ pub(crate) mod reexport {
         pub attachment_count: u32,
         pub p_color_write_enables: *const crate::vk::Bool32,
         pub _marker: ::core::marker::PhantomData<&'a ()>,
+    }
+    unsafe impl<'a> crate::TaggedStructure<'a> for PipelineColorWriteCreateInfoEXT<'a> {
+        const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::PIPELINE_COLOR_WRITE_CREATE_INFO_EXT;
+    }
+    unsafe impl<'a> crate::Extends<crate::vk::PipelineColorBlendStateCreateInfo<'_>>
+    for PipelineColorWriteCreateInfoEXT<'a> {}
+    impl<'a> Default for PipelineColorWriteCreateInfoEXT<'a> {
+        fn default() -> Self {
+            Self {
+                s_type: <Self as crate::TaggedStructure>::STRUCTURE_TYPE,
+                p_next: Default::default(),
+                attachment_count: Default::default(),
+                p_color_write_enables: Default::default(),
+                _marker: ::core::marker::PhantomData,
+            }
+        }
+    }
+    impl<'a> PipelineColorWriteCreateInfoEXT<'a> {
+        pub fn attachment_count(mut self, attachment_count: u32) -> Self {
+            self.attachment_count = attachment_count;
+            self
+        }
+        pub fn p_color_write_enables(
+            mut self,
+            p_color_write_enables: &'a [crate::vk::Bool32],
+        ) -> Self {
+            self.attachment_count = p_color_write_enables.len() as _;
+            self.p_color_write_enables = p_color_write_enables.as_ptr();
+            self
+        }
     }
     ///Provided by [`ext::color_write_enable`](crate::ext::color_write_enable)
     impl crate::vk::StructureType {

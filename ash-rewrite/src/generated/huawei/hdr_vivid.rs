@@ -10,6 +10,33 @@ pub struct HdrVividDynamicMetadataHUAWEI<'a> {
     pub p_dynamic_metadata: *const core::ffi::c_void,
     pub _marker: ::core::marker::PhantomData<&'a ()>,
 }
+unsafe impl<'a> crate::TaggedStructure<'a> for HdrVividDynamicMetadataHUAWEI<'a> {
+    const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::HDR_VIVID_DYNAMIC_METADATA_HUAWEI;
+}
+unsafe impl<'a> crate::Extends<crate::vk::HdrMetadataEXT<'_>>
+for HdrVividDynamicMetadataHUAWEI<'a> {}
+impl<'a> Default for HdrVividDynamicMetadataHUAWEI<'a> {
+    fn default() -> Self {
+        Self {
+            s_type: <Self as crate::TaggedStructure>::STRUCTURE_TYPE,
+            p_next: Default::default(),
+            dynamic_metadata_size: Default::default(),
+            p_dynamic_metadata: Default::default(),
+            _marker: ::core::marker::PhantomData,
+        }
+    }
+}
+impl<'a> HdrVividDynamicMetadataHUAWEI<'a> {
+    pub fn dynamic_metadata_size(mut self, dynamic_metadata_size: usize) -> Self {
+        self.dynamic_metadata_size = dynamic_metadata_size;
+        self
+    }
+    pub fn p_dynamic_metadata(mut self, p_dynamic_metadata: &'a [u8]) -> Self {
+        self.dynamic_metadata_size = p_dynamic_metadata.len() as _;
+        self.p_dynamic_metadata = p_dynamic_metadata.as_ptr().cast();
+        self
+    }
+}
 #[repr(C)]
 #[derive(Clone, Copy)]
 pub struct PhysicalDeviceHdrVividFeaturesHUAWEI<'a> {
@@ -17,6 +44,29 @@ pub struct PhysicalDeviceHdrVividFeaturesHUAWEI<'a> {
     pub p_next: *mut core::ffi::c_void,
     pub hdr_vivid: crate::vk::Bool32,
     pub _marker: ::core::marker::PhantomData<&'a ()>,
+}
+unsafe impl<'a> crate::TaggedStructure<'a> for PhysicalDeviceHdrVividFeaturesHUAWEI<'a> {
+    const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::PHYSICAL_DEVICE_HDR_VIVID_FEATURES_HUAWEI;
+}
+unsafe impl<'a> crate::Extends<crate::vk::PhysicalDeviceFeatures2<'_>>
+for PhysicalDeviceHdrVividFeaturesHUAWEI<'a> {}
+unsafe impl<'a> crate::Extends<crate::vk::DeviceCreateInfo<'_>>
+for PhysicalDeviceHdrVividFeaturesHUAWEI<'a> {}
+impl<'a> Default for PhysicalDeviceHdrVividFeaturesHUAWEI<'a> {
+    fn default() -> Self {
+        Self {
+            s_type: <Self as crate::TaggedStructure>::STRUCTURE_TYPE,
+            p_next: Default::default(),
+            hdr_vivid: Default::default(),
+            _marker: ::core::marker::PhantomData,
+        }
+    }
+}
+impl<'a> PhysicalDeviceHdrVividFeaturesHUAWEI<'a> {
+    pub fn hdr_vivid(mut self, hdr_vivid: bool) -> Self {
+        self.hdr_vivid = hdr_vivid.into();
+        self
+    }
 }
 ///Provided by [`huawei::hdr_vivid`](crate::huawei::hdr_vivid)
 impl crate::vk::StructureType {

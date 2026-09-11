@@ -64,6 +64,55 @@ pub(crate) mod reexport {
         pub indirect_buffer_offset_alignment: crate::vk::DeviceSize,
         pub _marker: ::core::marker::PhantomData<&'a ()>,
     }
+    unsafe impl<'a> crate::TaggedStructure<'a>
+    for PhysicalDeviceClusterCullingShaderPropertiesHUAWEI<'a> {
+        const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::PHYSICAL_DEVICE_CLUSTER_CULLING_SHADER_PROPERTIES_HUAWEI;
+    }
+    unsafe impl<'a> crate::Extends<crate::vk::PhysicalDeviceProperties2<'_>>
+    for PhysicalDeviceClusterCullingShaderPropertiesHUAWEI<'a> {}
+    impl<'a> Default for PhysicalDeviceClusterCullingShaderPropertiesHUAWEI<'a> {
+        fn default() -> Self {
+            Self {
+                s_type: <Self as crate::TaggedStructure>::STRUCTURE_TYPE,
+                p_next: Default::default(),
+                max_work_group_count: unsafe { core::mem::zeroed() },
+                max_work_group_size: unsafe { core::mem::zeroed() },
+                max_output_cluster_count: Default::default(),
+                indirect_buffer_offset_alignment: Default::default(),
+                _marker: ::core::marker::PhantomData,
+            }
+        }
+    }
+    impl<'a> PhysicalDeviceClusterCullingShaderPropertiesHUAWEI<'a> {
+        pub fn max_work_group_count(
+            mut self,
+            max_work_group_count: [u32; 3 as _],
+        ) -> Self {
+            self.max_work_group_count = max_work_group_count;
+            self
+        }
+        pub fn max_work_group_size(
+            mut self,
+            max_work_group_size: [u32; 3 as _],
+        ) -> Self {
+            self.max_work_group_size = max_work_group_size;
+            self
+        }
+        pub fn max_output_cluster_count(
+            mut self,
+            max_output_cluster_count: u32,
+        ) -> Self {
+            self.max_output_cluster_count = max_output_cluster_count;
+            self
+        }
+        pub fn indirect_buffer_offset_alignment(
+            mut self,
+            indirect_buffer_offset_alignment: crate::vk::DeviceSize,
+        ) -> Self {
+            self.indirect_buffer_offset_alignment = indirect_buffer_offset_alignment;
+            self
+        }
+    }
     #[repr(C)]
     #[derive(Clone, Copy)]
     pub struct PhysicalDeviceClusterCullingShaderFeaturesHUAWEI<'a> {
@@ -73,6 +122,39 @@ pub(crate) mod reexport {
         pub multiview_cluster_culling_shader: crate::vk::Bool32,
         pub _marker: ::core::marker::PhantomData<&'a ()>,
     }
+    unsafe impl<'a> crate::TaggedStructure<'a>
+    for PhysicalDeviceClusterCullingShaderFeaturesHUAWEI<'a> {
+        const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::PHYSICAL_DEVICE_CLUSTER_CULLING_SHADER_FEATURES_HUAWEI;
+    }
+    unsafe impl<'a> crate::Extends<crate::vk::PhysicalDeviceFeatures2<'_>>
+    for PhysicalDeviceClusterCullingShaderFeaturesHUAWEI<'a> {}
+    unsafe impl<'a> crate::Extends<crate::vk::DeviceCreateInfo<'_>>
+    for PhysicalDeviceClusterCullingShaderFeaturesHUAWEI<'a> {}
+    impl<'a> Default for PhysicalDeviceClusterCullingShaderFeaturesHUAWEI<'a> {
+        fn default() -> Self {
+            Self {
+                s_type: <Self as crate::TaggedStructure>::STRUCTURE_TYPE,
+                p_next: Default::default(),
+                clusterculling_shader: Default::default(),
+                multiview_cluster_culling_shader: Default::default(),
+                _marker: ::core::marker::PhantomData,
+            }
+        }
+    }
+    impl<'a> PhysicalDeviceClusterCullingShaderFeaturesHUAWEI<'a> {
+        pub fn clusterculling_shader(mut self, clusterculling_shader: bool) -> Self {
+            self.clusterculling_shader = clusterculling_shader.into();
+            self
+        }
+        pub fn multiview_cluster_culling_shader(
+            mut self,
+            multiview_cluster_culling_shader: bool,
+        ) -> Self {
+            self.multiview_cluster_culling_shader = multiview_cluster_culling_shader
+                .into();
+            self
+        }
+    }
     #[repr(C)]
     #[derive(Clone, Copy)]
     pub struct PhysicalDeviceClusterCullingShaderVrsFeaturesHUAWEI<'a> {
@@ -80,6 +162,30 @@ pub(crate) mod reexport {
         pub p_next: *mut core::ffi::c_void,
         pub cluster_shading_rate: crate::vk::Bool32,
         pub _marker: ::core::marker::PhantomData<&'a ()>,
+    }
+    unsafe impl<'a> crate::TaggedStructure<'a>
+    for PhysicalDeviceClusterCullingShaderVrsFeaturesHUAWEI<'a> {
+        const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::PHYSICAL_DEVICE_CLUSTER_CULLING_SHADER_VRS_FEATURES_HUAWEI;
+    }
+    unsafe impl<
+        'a,
+    > crate::Extends<crate::vk::PhysicalDeviceClusterCullingShaderFeaturesHUAWEI<'_>>
+    for PhysicalDeviceClusterCullingShaderVrsFeaturesHUAWEI<'a> {}
+    impl<'a> Default for PhysicalDeviceClusterCullingShaderVrsFeaturesHUAWEI<'a> {
+        fn default() -> Self {
+            Self {
+                s_type: <Self as crate::TaggedStructure>::STRUCTURE_TYPE,
+                p_next: Default::default(),
+                cluster_shading_rate: Default::default(),
+                _marker: ::core::marker::PhantomData,
+            }
+        }
+    }
+    impl<'a> PhysicalDeviceClusterCullingShaderVrsFeaturesHUAWEI<'a> {
+        pub fn cluster_shading_rate(mut self, cluster_shading_rate: bool) -> Self {
+            self.cluster_shading_rate = cluster_shading_rate.into();
+            self
+        }
     }
     ///Provided by [`huawei::cluster_culling_shader`](crate::huawei::cluster_culling_shader)
     impl crate::vk::StructureType {

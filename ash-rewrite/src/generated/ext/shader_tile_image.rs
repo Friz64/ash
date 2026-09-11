@@ -11,6 +11,52 @@ pub struct PhysicalDeviceShaderTileImageFeaturesEXT<'a> {
     pub shader_tile_image_stencil_read_access: crate::vk::Bool32,
     pub _marker: ::core::marker::PhantomData<&'a ()>,
 }
+unsafe impl<'a> crate::TaggedStructure<'a>
+for PhysicalDeviceShaderTileImageFeaturesEXT<'a> {
+    const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::PHYSICAL_DEVICE_SHADER_TILE_IMAGE_FEATURES_EXT;
+}
+unsafe impl<'a> crate::Extends<crate::vk::PhysicalDeviceFeatures2<'_>>
+for PhysicalDeviceShaderTileImageFeaturesEXT<'a> {}
+unsafe impl<'a> crate::Extends<crate::vk::DeviceCreateInfo<'_>>
+for PhysicalDeviceShaderTileImageFeaturesEXT<'a> {}
+impl<'a> Default for PhysicalDeviceShaderTileImageFeaturesEXT<'a> {
+    fn default() -> Self {
+        Self {
+            s_type: <Self as crate::TaggedStructure>::STRUCTURE_TYPE,
+            p_next: Default::default(),
+            shader_tile_image_color_read_access: Default::default(),
+            shader_tile_image_depth_read_access: Default::default(),
+            shader_tile_image_stencil_read_access: Default::default(),
+            _marker: ::core::marker::PhantomData,
+        }
+    }
+}
+impl<'a> PhysicalDeviceShaderTileImageFeaturesEXT<'a> {
+    pub fn shader_tile_image_color_read_access(
+        mut self,
+        shader_tile_image_color_read_access: bool,
+    ) -> Self {
+        self.shader_tile_image_color_read_access = shader_tile_image_color_read_access
+            .into();
+        self
+    }
+    pub fn shader_tile_image_depth_read_access(
+        mut self,
+        shader_tile_image_depth_read_access: bool,
+    ) -> Self {
+        self.shader_tile_image_depth_read_access = shader_tile_image_depth_read_access
+            .into();
+        self
+    }
+    pub fn shader_tile_image_stencil_read_access(
+        mut self,
+        shader_tile_image_stencil_read_access: bool,
+    ) -> Self {
+        self.shader_tile_image_stencil_read_access = shader_tile_image_stencil_read_access
+            .into();
+        self
+    }
+}
 #[repr(C)]
 #[derive(Clone, Copy)]
 pub struct PhysicalDeviceShaderTileImagePropertiesEXT<'a> {
@@ -20,6 +66,50 @@ pub struct PhysicalDeviceShaderTileImagePropertiesEXT<'a> {
     pub shader_tile_image_read_sample_from_pixel_rate_invocation: crate::vk::Bool32,
     pub shader_tile_image_read_from_helper_invocation: crate::vk::Bool32,
     pub _marker: ::core::marker::PhantomData<&'a ()>,
+}
+unsafe impl<'a> crate::TaggedStructure<'a>
+for PhysicalDeviceShaderTileImagePropertiesEXT<'a> {
+    const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::PHYSICAL_DEVICE_SHADER_TILE_IMAGE_PROPERTIES_EXT;
+}
+unsafe impl<'a> crate::Extends<crate::vk::PhysicalDeviceProperties2<'_>>
+for PhysicalDeviceShaderTileImagePropertiesEXT<'a> {}
+impl<'a> Default for PhysicalDeviceShaderTileImagePropertiesEXT<'a> {
+    fn default() -> Self {
+        Self {
+            s_type: <Self as crate::TaggedStructure>::STRUCTURE_TYPE,
+            p_next: Default::default(),
+            shader_tile_image_coherent_read_accelerated: Default::default(),
+            shader_tile_image_read_sample_from_pixel_rate_invocation: Default::default(),
+            shader_tile_image_read_from_helper_invocation: Default::default(),
+            _marker: ::core::marker::PhantomData,
+        }
+    }
+}
+impl<'a> PhysicalDeviceShaderTileImagePropertiesEXT<'a> {
+    pub fn shader_tile_image_coherent_read_accelerated(
+        mut self,
+        shader_tile_image_coherent_read_accelerated: bool,
+    ) -> Self {
+        self.shader_tile_image_coherent_read_accelerated = shader_tile_image_coherent_read_accelerated
+            .into();
+        self
+    }
+    pub fn shader_tile_image_read_sample_from_pixel_rate_invocation(
+        mut self,
+        shader_tile_image_read_sample_from_pixel_rate_invocation: bool,
+    ) -> Self {
+        self.shader_tile_image_read_sample_from_pixel_rate_invocation = shader_tile_image_read_sample_from_pixel_rate_invocation
+            .into();
+        self
+    }
+    pub fn shader_tile_image_read_from_helper_invocation(
+        mut self,
+        shader_tile_image_read_from_helper_invocation: bool,
+    ) -> Self {
+        self.shader_tile_image_read_from_helper_invocation = shader_tile_image_read_from_helper_invocation
+            .into();
+        self
+    }
 }
 ///Provided by [`ext::shader_tile_image`](crate::ext::shader_tile_image)
 impl crate::vk::StructureType {

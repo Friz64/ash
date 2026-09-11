@@ -9,6 +9,30 @@ pub struct PhysicalDeviceDepthClipEnableFeaturesEXT<'a> {
     pub depth_clip_enable: crate::vk::Bool32,
     pub _marker: ::core::marker::PhantomData<&'a ()>,
 }
+unsafe impl<'a> crate::TaggedStructure<'a>
+for PhysicalDeviceDepthClipEnableFeaturesEXT<'a> {
+    const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::PHYSICAL_DEVICE_DEPTH_CLIP_ENABLE_FEATURES_EXT;
+}
+unsafe impl<'a> crate::Extends<crate::vk::PhysicalDeviceFeatures2<'_>>
+for PhysicalDeviceDepthClipEnableFeaturesEXT<'a> {}
+unsafe impl<'a> crate::Extends<crate::vk::DeviceCreateInfo<'_>>
+for PhysicalDeviceDepthClipEnableFeaturesEXT<'a> {}
+impl<'a> Default for PhysicalDeviceDepthClipEnableFeaturesEXT<'a> {
+    fn default() -> Self {
+        Self {
+            s_type: <Self as crate::TaggedStructure>::STRUCTURE_TYPE,
+            p_next: Default::default(),
+            depth_clip_enable: Default::default(),
+            _marker: ::core::marker::PhantomData,
+        }
+    }
+}
+impl<'a> PhysicalDeviceDepthClipEnableFeaturesEXT<'a> {
+    pub fn depth_clip_enable(mut self, depth_clip_enable: bool) -> Self {
+        self.depth_clip_enable = depth_clip_enable.into();
+        self
+    }
+}
 #[repr(C)]
 #[derive(Clone, Copy)]
 pub struct PipelineRasterizationDepthClipStateCreateInfoEXT<'a> {
@@ -17,6 +41,36 @@ pub struct PipelineRasterizationDepthClipStateCreateInfoEXT<'a> {
     pub flags: crate::vk::PipelineRasterizationDepthClipStateCreateFlagsEXT,
     pub depth_clip_enable: crate::vk::Bool32,
     pub _marker: ::core::marker::PhantomData<&'a ()>,
+}
+unsafe impl<'a> crate::TaggedStructure<'a>
+for PipelineRasterizationDepthClipStateCreateInfoEXT<'a> {
+    const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::PIPELINE_RASTERIZATION_DEPTH_CLIP_STATE_CREATE_INFO_EXT;
+}
+unsafe impl<'a> crate::Extends<crate::vk::PipelineRasterizationStateCreateInfo<'_>>
+for PipelineRasterizationDepthClipStateCreateInfoEXT<'a> {}
+impl<'a> Default for PipelineRasterizationDepthClipStateCreateInfoEXT<'a> {
+    fn default() -> Self {
+        Self {
+            s_type: <Self as crate::TaggedStructure>::STRUCTURE_TYPE,
+            p_next: Default::default(),
+            flags: Default::default(),
+            depth_clip_enable: Default::default(),
+            _marker: ::core::marker::PhantomData,
+        }
+    }
+}
+impl<'a> PipelineRasterizationDepthClipStateCreateInfoEXT<'a> {
+    pub fn flags(
+        mut self,
+        flags: crate::vk::PipelineRasterizationDepthClipStateCreateFlagsEXT,
+    ) -> Self {
+        self.flags = flags;
+        self
+    }
+    pub fn depth_clip_enable(mut self, depth_clip_enable: bool) -> Self {
+        self.depth_clip_enable = depth_clip_enable.into();
+        self
+    }
 }
 ///Provided by [`ext::depth_clip_enable`](crate::ext::depth_clip_enable)
 impl crate::vk::StructureType {

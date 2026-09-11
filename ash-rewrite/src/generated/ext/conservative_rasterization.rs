@@ -17,6 +17,95 @@ pub struct PhysicalDeviceConservativeRasterizationPropertiesEXT<'a> {
     pub conservative_rasterization_post_depth_coverage: crate::vk::Bool32,
     pub _marker: ::core::marker::PhantomData<&'a ()>,
 }
+unsafe impl<'a> crate::TaggedStructure<'a>
+for PhysicalDeviceConservativeRasterizationPropertiesEXT<'a> {
+    const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::PHYSICAL_DEVICE_CONSERVATIVE_RASTERIZATION_PROPERTIES_EXT;
+}
+unsafe impl<'a> crate::Extends<crate::vk::PhysicalDeviceProperties2<'_>>
+for PhysicalDeviceConservativeRasterizationPropertiesEXT<'a> {}
+impl<'a> Default for PhysicalDeviceConservativeRasterizationPropertiesEXT<'a> {
+    fn default() -> Self {
+        Self {
+            s_type: <Self as crate::TaggedStructure>::STRUCTURE_TYPE,
+            p_next: Default::default(),
+            primitive_overestimation_size: Default::default(),
+            max_extra_primitive_overestimation_size: Default::default(),
+            extra_primitive_overestimation_size_granularity: Default::default(),
+            primitive_underestimation: Default::default(),
+            conservative_point_and_line_rasterization: Default::default(),
+            degenerate_triangles_rasterized: Default::default(),
+            degenerate_lines_rasterized: Default::default(),
+            fully_covered_fragment_shader_input_variable: Default::default(),
+            conservative_rasterization_post_depth_coverage: Default::default(),
+            _marker: ::core::marker::PhantomData,
+        }
+    }
+}
+impl<'a> PhysicalDeviceConservativeRasterizationPropertiesEXT<'a> {
+    pub fn primitive_overestimation_size(
+        mut self,
+        primitive_overestimation_size: core::ffi::c_float,
+    ) -> Self {
+        self.primitive_overestimation_size = primitive_overestimation_size;
+        self
+    }
+    pub fn max_extra_primitive_overestimation_size(
+        mut self,
+        max_extra_primitive_overestimation_size: core::ffi::c_float,
+    ) -> Self {
+        self.max_extra_primitive_overestimation_size = max_extra_primitive_overestimation_size;
+        self
+    }
+    pub fn extra_primitive_overestimation_size_granularity(
+        mut self,
+        extra_primitive_overestimation_size_granularity: core::ffi::c_float,
+    ) -> Self {
+        self.extra_primitive_overestimation_size_granularity = extra_primitive_overestimation_size_granularity;
+        self
+    }
+    pub fn primitive_underestimation(mut self, primitive_underestimation: bool) -> Self {
+        self.primitive_underestimation = primitive_underestimation.into();
+        self
+    }
+    pub fn conservative_point_and_line_rasterization(
+        mut self,
+        conservative_point_and_line_rasterization: bool,
+    ) -> Self {
+        self.conservative_point_and_line_rasterization = conservative_point_and_line_rasterization
+            .into();
+        self
+    }
+    pub fn degenerate_triangles_rasterized(
+        mut self,
+        degenerate_triangles_rasterized: bool,
+    ) -> Self {
+        self.degenerate_triangles_rasterized = degenerate_triangles_rasterized.into();
+        self
+    }
+    pub fn degenerate_lines_rasterized(
+        mut self,
+        degenerate_lines_rasterized: bool,
+    ) -> Self {
+        self.degenerate_lines_rasterized = degenerate_lines_rasterized.into();
+        self
+    }
+    pub fn fully_covered_fragment_shader_input_variable(
+        mut self,
+        fully_covered_fragment_shader_input_variable: bool,
+    ) -> Self {
+        self.fully_covered_fragment_shader_input_variable = fully_covered_fragment_shader_input_variable
+            .into();
+        self
+    }
+    pub fn conservative_rasterization_post_depth_coverage(
+        mut self,
+        conservative_rasterization_post_depth_coverage: bool,
+    ) -> Self {
+        self.conservative_rasterization_post_depth_coverage = conservative_rasterization_post_depth_coverage
+            .into();
+        self
+    }
+}
 #[repr(C)]
 #[derive(Clone, Copy)]
 pub struct PipelineRasterizationConservativeStateCreateInfoEXT<'a> {
@@ -26,6 +115,47 @@ pub struct PipelineRasterizationConservativeStateCreateInfoEXT<'a> {
     pub conservative_rasterization_mode: crate::vk::ConservativeRasterizationModeEXT,
     pub extra_primitive_overestimation_size: core::ffi::c_float,
     pub _marker: ::core::marker::PhantomData<&'a ()>,
+}
+unsafe impl<'a> crate::TaggedStructure<'a>
+for PipelineRasterizationConservativeStateCreateInfoEXT<'a> {
+    const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::PIPELINE_RASTERIZATION_CONSERVATIVE_STATE_CREATE_INFO_EXT;
+}
+unsafe impl<'a> crate::Extends<crate::vk::PipelineRasterizationStateCreateInfo<'_>>
+for PipelineRasterizationConservativeStateCreateInfoEXT<'a> {}
+impl<'a> Default for PipelineRasterizationConservativeStateCreateInfoEXT<'a> {
+    fn default() -> Self {
+        Self {
+            s_type: <Self as crate::TaggedStructure>::STRUCTURE_TYPE,
+            p_next: Default::default(),
+            flags: Default::default(),
+            conservative_rasterization_mode: Default::default(),
+            extra_primitive_overestimation_size: Default::default(),
+            _marker: ::core::marker::PhantomData,
+        }
+    }
+}
+impl<'a> PipelineRasterizationConservativeStateCreateInfoEXT<'a> {
+    pub fn flags(
+        mut self,
+        flags: crate::vk::PipelineRasterizationConservativeStateCreateFlagsEXT,
+    ) -> Self {
+        self.flags = flags;
+        self
+    }
+    pub fn conservative_rasterization_mode(
+        mut self,
+        conservative_rasterization_mode: crate::vk::ConservativeRasterizationModeEXT,
+    ) -> Self {
+        self.conservative_rasterization_mode = conservative_rasterization_mode;
+        self
+    }
+    pub fn extra_primitive_overestimation_size(
+        mut self,
+        extra_primitive_overestimation_size: core::ffi::c_float,
+    ) -> Self {
+        self.extra_primitive_overestimation_size = extra_primitive_overestimation_size;
+        self
+    }
 }
 ///Provided by [`ext::conservative_rasterization`](crate::ext::conservative_rasterization)
 impl crate::vk::StructureType {

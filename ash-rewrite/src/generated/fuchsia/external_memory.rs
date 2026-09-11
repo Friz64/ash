@@ -62,6 +62,36 @@ pub(crate) mod reexport {
         pub handle: crate::platform_types::zx_handle_t,
         pub _marker: ::core::marker::PhantomData<&'a ()>,
     }
+    unsafe impl<'a> crate::TaggedStructure<'a>
+    for ImportMemoryZirconHandleInfoFUCHSIA<'a> {
+        const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::IMPORT_MEMORY_ZIRCON_HANDLE_INFO_FUCHSIA;
+    }
+    unsafe impl<'a> crate::Extends<crate::vk::MemoryAllocateInfo<'_>>
+    for ImportMemoryZirconHandleInfoFUCHSIA<'a> {}
+    impl<'a> Default for ImportMemoryZirconHandleInfoFUCHSIA<'a> {
+        fn default() -> Self {
+            Self {
+                s_type: <Self as crate::TaggedStructure>::STRUCTURE_TYPE,
+                p_next: Default::default(),
+                handle_type: Default::default(),
+                handle: Default::default(),
+                _marker: ::core::marker::PhantomData,
+            }
+        }
+    }
+    impl<'a> ImportMemoryZirconHandleInfoFUCHSIA<'a> {
+        pub fn handle_type(
+            mut self,
+            handle_type: crate::vk::ExternalMemoryHandleTypeFlagBits,
+        ) -> Self {
+            self.handle_type = handle_type;
+            self
+        }
+        pub fn handle(mut self, handle: crate::platform_types::zx_handle_t) -> Self {
+            self.handle = handle;
+            self
+        }
+    }
     #[repr(C)]
     #[derive(Clone, Copy)]
     pub struct MemoryZirconHandlePropertiesFUCHSIA<'a> {
@@ -69,6 +99,26 @@ pub(crate) mod reexport {
         pub p_next: *mut core::ffi::c_void,
         pub memory_type_bits: u32,
         pub _marker: ::core::marker::PhantomData<&'a ()>,
+    }
+    unsafe impl<'a> crate::TaggedStructure<'a>
+    for MemoryZirconHandlePropertiesFUCHSIA<'a> {
+        const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::MEMORY_ZIRCON_HANDLE_PROPERTIES_FUCHSIA;
+    }
+    impl<'a> Default for MemoryZirconHandlePropertiesFUCHSIA<'a> {
+        fn default() -> Self {
+            Self {
+                s_type: <Self as crate::TaggedStructure>::STRUCTURE_TYPE,
+                p_next: Default::default(),
+                memory_type_bits: Default::default(),
+                _marker: ::core::marker::PhantomData,
+            }
+        }
+    }
+    impl<'a> MemoryZirconHandlePropertiesFUCHSIA<'a> {
+        pub fn memory_type_bits(mut self, memory_type_bits: u32) -> Self {
+            self.memory_type_bits = memory_type_bits;
+            self
+        }
     }
     #[repr(C)]
     #[derive(Clone, Copy)]
@@ -78,6 +128,33 @@ pub(crate) mod reexport {
         pub memory: crate::vk::DeviceMemory,
         pub handle_type: crate::vk::ExternalMemoryHandleTypeFlagBits,
         pub _marker: ::core::marker::PhantomData<&'a ()>,
+    }
+    unsafe impl<'a> crate::TaggedStructure<'a> for MemoryGetZirconHandleInfoFUCHSIA<'a> {
+        const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::MEMORY_GET_ZIRCON_HANDLE_INFO_FUCHSIA;
+    }
+    impl<'a> Default for MemoryGetZirconHandleInfoFUCHSIA<'a> {
+        fn default() -> Self {
+            Self {
+                s_type: <Self as crate::TaggedStructure>::STRUCTURE_TYPE,
+                p_next: Default::default(),
+                memory: Default::default(),
+                handle_type: Default::default(),
+                _marker: ::core::marker::PhantomData,
+            }
+        }
+    }
+    impl<'a> MemoryGetZirconHandleInfoFUCHSIA<'a> {
+        pub fn memory(mut self, memory: crate::vk::DeviceMemory) -> Self {
+            self.memory = memory;
+            self
+        }
+        pub fn handle_type(
+            mut self,
+            handle_type: crate::vk::ExternalMemoryHandleTypeFlagBits,
+        ) -> Self {
+            self.handle_type = handle_type;
+            self
+        }
     }
     ///Provided by [`fuchsia::external_memory`](crate::fuchsia::external_memory)
     impl crate::vk::StructureType {

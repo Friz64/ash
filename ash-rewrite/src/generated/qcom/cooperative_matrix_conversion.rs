@@ -9,6 +9,33 @@ pub struct PhysicalDeviceCooperativeMatrixConversionFeaturesQCOM<'a> {
     pub cooperative_matrix_conversion: crate::vk::Bool32,
     pub _marker: ::core::marker::PhantomData<&'a ()>,
 }
+unsafe impl<'a> crate::TaggedStructure<'a>
+for PhysicalDeviceCooperativeMatrixConversionFeaturesQCOM<'a> {
+    const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::PHYSICAL_DEVICE_COOPERATIVE_MATRIX_CONVERSION_FEATURES_QCOM;
+}
+unsafe impl<'a> crate::Extends<crate::vk::PhysicalDeviceFeatures2<'_>>
+for PhysicalDeviceCooperativeMatrixConversionFeaturesQCOM<'a> {}
+unsafe impl<'a> crate::Extends<crate::vk::DeviceCreateInfo<'_>>
+for PhysicalDeviceCooperativeMatrixConversionFeaturesQCOM<'a> {}
+impl<'a> Default for PhysicalDeviceCooperativeMatrixConversionFeaturesQCOM<'a> {
+    fn default() -> Self {
+        Self {
+            s_type: <Self as crate::TaggedStructure>::STRUCTURE_TYPE,
+            p_next: Default::default(),
+            cooperative_matrix_conversion: Default::default(),
+            _marker: ::core::marker::PhantomData,
+        }
+    }
+}
+impl<'a> PhysicalDeviceCooperativeMatrixConversionFeaturesQCOM<'a> {
+    pub fn cooperative_matrix_conversion(
+        mut self,
+        cooperative_matrix_conversion: bool,
+    ) -> Self {
+        self.cooperative_matrix_conversion = cooperative_matrix_conversion.into();
+        self
+    }
+}
 ///Provided by [`qcom::cooperative_matrix_conversion`](crate::qcom::cooperative_matrix_conversion)
 impl crate::vk::StructureType {
     pub const PHYSICAL_DEVICE_COOPERATIVE_MATRIX_CONVERSION_FEATURES_QCOM: Self = Self(

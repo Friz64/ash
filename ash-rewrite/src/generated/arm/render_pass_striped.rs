@@ -9,6 +9,30 @@ pub struct PhysicalDeviceRenderPassStripedFeaturesARM<'a> {
     pub render_pass_striped: crate::vk::Bool32,
     pub _marker: ::core::marker::PhantomData<&'a ()>,
 }
+unsafe impl<'a> crate::TaggedStructure<'a>
+for PhysicalDeviceRenderPassStripedFeaturesARM<'a> {
+    const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::PHYSICAL_DEVICE_RENDER_PASS_STRIPED_FEATURES_ARM;
+}
+unsafe impl<'a> crate::Extends<crate::vk::PhysicalDeviceFeatures2<'_>>
+for PhysicalDeviceRenderPassStripedFeaturesARM<'a> {}
+unsafe impl<'a> crate::Extends<crate::vk::DeviceCreateInfo<'_>>
+for PhysicalDeviceRenderPassStripedFeaturesARM<'a> {}
+impl<'a> Default for PhysicalDeviceRenderPassStripedFeaturesARM<'a> {
+    fn default() -> Self {
+        Self {
+            s_type: <Self as crate::TaggedStructure>::STRUCTURE_TYPE,
+            p_next: Default::default(),
+            render_pass_striped: Default::default(),
+            _marker: ::core::marker::PhantomData,
+        }
+    }
+}
+impl<'a> PhysicalDeviceRenderPassStripedFeaturesARM<'a> {
+    pub fn render_pass_striped(mut self, render_pass_striped: bool) -> Self {
+        self.render_pass_striped = render_pass_striped.into();
+        self
+    }
+}
 #[repr(C)]
 #[derive(Clone, Copy)]
 pub struct PhysicalDeviceRenderPassStripedPropertiesARM<'a> {
@@ -18,6 +42,36 @@ pub struct PhysicalDeviceRenderPassStripedPropertiesARM<'a> {
     pub max_render_pass_stripes: u32,
     pub _marker: ::core::marker::PhantomData<&'a ()>,
 }
+unsafe impl<'a> crate::TaggedStructure<'a>
+for PhysicalDeviceRenderPassStripedPropertiesARM<'a> {
+    const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::PHYSICAL_DEVICE_RENDER_PASS_STRIPED_PROPERTIES_ARM;
+}
+unsafe impl<'a> crate::Extends<crate::vk::PhysicalDeviceProperties2<'_>>
+for PhysicalDeviceRenderPassStripedPropertiesARM<'a> {}
+impl<'a> Default for PhysicalDeviceRenderPassStripedPropertiesARM<'a> {
+    fn default() -> Self {
+        Self {
+            s_type: <Self as crate::TaggedStructure>::STRUCTURE_TYPE,
+            p_next: Default::default(),
+            render_pass_stripe_granularity: Default::default(),
+            max_render_pass_stripes: Default::default(),
+            _marker: ::core::marker::PhantomData,
+        }
+    }
+}
+impl<'a> PhysicalDeviceRenderPassStripedPropertiesARM<'a> {
+    pub fn render_pass_stripe_granularity(
+        mut self,
+        render_pass_stripe_granularity: crate::vk::Extent2D,
+    ) -> Self {
+        self.render_pass_stripe_granularity = render_pass_stripe_granularity;
+        self
+    }
+    pub fn max_render_pass_stripes(mut self, max_render_pass_stripes: u32) -> Self {
+        self.max_render_pass_stripes = max_render_pass_stripes;
+        self
+    }
+}
 #[repr(C)]
 #[derive(Clone, Copy)]
 pub struct RenderPassStripeInfoARM<'a> {
@@ -25,6 +79,25 @@ pub struct RenderPassStripeInfoARM<'a> {
     pub p_next: *const core::ffi::c_void,
     pub stripe_area: crate::vk::Rect2D,
     pub _marker: ::core::marker::PhantomData<&'a ()>,
+}
+unsafe impl<'a> crate::TaggedStructure<'a> for RenderPassStripeInfoARM<'a> {
+    const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::RENDER_PASS_STRIPE_INFO_ARM;
+}
+impl<'a> Default for RenderPassStripeInfoARM<'a> {
+    fn default() -> Self {
+        Self {
+            s_type: <Self as crate::TaggedStructure>::STRUCTURE_TYPE,
+            p_next: Default::default(),
+            stripe_area: Default::default(),
+            _marker: ::core::marker::PhantomData,
+        }
+    }
+}
+impl<'a> RenderPassStripeInfoARM<'a> {
+    pub fn stripe_area(mut self, stripe_area: crate::vk::Rect2D) -> Self {
+        self.stripe_area = stripe_area;
+        self
+    }
 }
 #[repr(C)]
 #[derive(Clone, Copy)]
@@ -35,6 +108,38 @@ pub struct RenderPassStripeBeginInfoARM<'a> {
     pub p_stripe_infos: *const crate::vk::RenderPassStripeInfoARM<'a>,
     pub _marker: ::core::marker::PhantomData<&'a ()>,
 }
+unsafe impl<'a> crate::TaggedStructure<'a> for RenderPassStripeBeginInfoARM<'a> {
+    const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::RENDER_PASS_STRIPE_BEGIN_INFO_ARM;
+}
+unsafe impl<'a> crate::Extends<crate::vk::RenderingInfo<'_>>
+for RenderPassStripeBeginInfoARM<'a> {}
+unsafe impl<'a> crate::Extends<crate::vk::RenderPassBeginInfo<'_>>
+for RenderPassStripeBeginInfoARM<'a> {}
+impl<'a> Default for RenderPassStripeBeginInfoARM<'a> {
+    fn default() -> Self {
+        Self {
+            s_type: <Self as crate::TaggedStructure>::STRUCTURE_TYPE,
+            p_next: Default::default(),
+            stripe_info_count: Default::default(),
+            p_stripe_infos: Default::default(),
+            _marker: ::core::marker::PhantomData,
+        }
+    }
+}
+impl<'a> RenderPassStripeBeginInfoARM<'a> {
+    pub fn stripe_info_count(mut self, stripe_info_count: u32) -> Self {
+        self.stripe_info_count = stripe_info_count;
+        self
+    }
+    pub fn p_stripe_infos(
+        mut self,
+        p_stripe_infos: &'a [crate::vk::RenderPassStripeInfoARM<'a>],
+    ) -> Self {
+        self.stripe_info_count = p_stripe_infos.len() as _;
+        self.p_stripe_infos = p_stripe_infos.as_ptr();
+        self
+    }
+}
 #[repr(C)]
 #[derive(Clone, Copy)]
 pub struct RenderPassStripeSubmitInfoARM<'a> {
@@ -43,6 +148,39 @@ pub struct RenderPassStripeSubmitInfoARM<'a> {
     pub stripe_semaphore_info_count: u32,
     pub p_stripe_semaphore_infos: *const crate::vk::SemaphoreSubmitInfo<'a>,
     pub _marker: ::core::marker::PhantomData<&'a ()>,
+}
+unsafe impl<'a> crate::TaggedStructure<'a> for RenderPassStripeSubmitInfoARM<'a> {
+    const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::RENDER_PASS_STRIPE_SUBMIT_INFO_ARM;
+}
+unsafe impl<'a> crate::Extends<crate::vk::CommandBufferSubmitInfo<'_>>
+for RenderPassStripeSubmitInfoARM<'a> {}
+impl<'a> Default for RenderPassStripeSubmitInfoARM<'a> {
+    fn default() -> Self {
+        Self {
+            s_type: <Self as crate::TaggedStructure>::STRUCTURE_TYPE,
+            p_next: Default::default(),
+            stripe_semaphore_info_count: Default::default(),
+            p_stripe_semaphore_infos: Default::default(),
+            _marker: ::core::marker::PhantomData,
+        }
+    }
+}
+impl<'a> RenderPassStripeSubmitInfoARM<'a> {
+    pub fn stripe_semaphore_info_count(
+        mut self,
+        stripe_semaphore_info_count: u32,
+    ) -> Self {
+        self.stripe_semaphore_info_count = stripe_semaphore_info_count;
+        self
+    }
+    pub fn p_stripe_semaphore_infos(
+        mut self,
+        p_stripe_semaphore_infos: &'a [crate::vk::SemaphoreSubmitInfo<'a>],
+    ) -> Self {
+        self.stripe_semaphore_info_count = p_stripe_semaphore_infos.len() as _;
+        self.p_stripe_semaphore_infos = p_stripe_semaphore_infos.as_ptr();
+        self
+    }
 }
 ///Provided by [`arm::render_pass_striped`](crate::arm::render_pass_striped)
 impl crate::vk::StructureType {

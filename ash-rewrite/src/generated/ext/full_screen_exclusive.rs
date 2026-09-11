@@ -109,6 +109,33 @@ pub(crate) mod reexport {
         pub full_screen_exclusive: crate::vk::FullScreenExclusiveEXT,
         pub _marker: ::core::marker::PhantomData<&'a ()>,
     }
+    unsafe impl<'a> crate::TaggedStructure<'a>
+    for SurfaceFullScreenExclusiveInfoEXT<'a> {
+        const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::SURFACE_FULL_SCREEN_EXCLUSIVE_INFO_EXT;
+    }
+    unsafe impl<'a> crate::Extends<crate::vk::PhysicalDeviceSurfaceInfo2KHR<'_>>
+    for SurfaceFullScreenExclusiveInfoEXT<'a> {}
+    unsafe impl<'a> crate::Extends<crate::vk::SwapchainCreateInfoKHR<'_>>
+    for SurfaceFullScreenExclusiveInfoEXT<'a> {}
+    impl<'a> Default for SurfaceFullScreenExclusiveInfoEXT<'a> {
+        fn default() -> Self {
+            Self {
+                s_type: <Self as crate::TaggedStructure>::STRUCTURE_TYPE,
+                p_next: Default::default(),
+                full_screen_exclusive: Default::default(),
+                _marker: ::core::marker::PhantomData,
+            }
+        }
+    }
+    impl<'a> SurfaceFullScreenExclusiveInfoEXT<'a> {
+        pub fn full_screen_exclusive(
+            mut self,
+            full_screen_exclusive: crate::vk::FullScreenExclusiveEXT,
+        ) -> Self {
+            self.full_screen_exclusive = full_screen_exclusive;
+            self
+        }
+    }
     #[repr(C)]
     #[derive(Clone, Copy)]
     pub struct SurfaceFullScreenExclusiveWin32InfoEXT<'a> {
@@ -117,6 +144,30 @@ pub(crate) mod reexport {
         pub hmonitor: crate::platform_types::HMONITOR,
         pub _marker: ::core::marker::PhantomData<&'a ()>,
     }
+    unsafe impl<'a> crate::TaggedStructure<'a>
+    for SurfaceFullScreenExclusiveWin32InfoEXT<'a> {
+        const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::SURFACE_FULL_SCREEN_EXCLUSIVE_WIN32_INFO_EXT;
+    }
+    unsafe impl<'a> crate::Extends<crate::vk::PhysicalDeviceSurfaceInfo2KHR<'_>>
+    for SurfaceFullScreenExclusiveWin32InfoEXT<'a> {}
+    unsafe impl<'a> crate::Extends<crate::vk::SwapchainCreateInfoKHR<'_>>
+    for SurfaceFullScreenExclusiveWin32InfoEXT<'a> {}
+    impl<'a> Default for SurfaceFullScreenExclusiveWin32InfoEXT<'a> {
+        fn default() -> Self {
+            Self {
+                s_type: <Self as crate::TaggedStructure>::STRUCTURE_TYPE,
+                p_next: Default::default(),
+                hmonitor: Default::default(),
+                _marker: ::core::marker::PhantomData,
+            }
+        }
+    }
+    impl<'a> SurfaceFullScreenExclusiveWin32InfoEXT<'a> {
+        pub fn hmonitor(mut self, hmonitor: crate::platform_types::HMONITOR) -> Self {
+            self.hmonitor = hmonitor;
+            self
+        }
+    }
     #[repr(C)]
     #[derive(Clone, Copy)]
     pub struct SurfaceCapabilitiesFullScreenExclusiveEXT<'a> {
@@ -124,6 +175,32 @@ pub(crate) mod reexport {
         pub p_next: *mut core::ffi::c_void,
         pub full_screen_exclusive_supported: crate::vk::Bool32,
         pub _marker: ::core::marker::PhantomData<&'a ()>,
+    }
+    unsafe impl<'a> crate::TaggedStructure<'a>
+    for SurfaceCapabilitiesFullScreenExclusiveEXT<'a> {
+        const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::SURFACE_CAPABILITIES_FULL_SCREEN_EXCLUSIVE_EXT;
+    }
+    unsafe impl<'a> crate::Extends<crate::vk::SurfaceCapabilities2KHR<'_>>
+    for SurfaceCapabilitiesFullScreenExclusiveEXT<'a> {}
+    impl<'a> Default for SurfaceCapabilitiesFullScreenExclusiveEXT<'a> {
+        fn default() -> Self {
+            Self {
+                s_type: <Self as crate::TaggedStructure>::STRUCTURE_TYPE,
+                p_next: Default::default(),
+                full_screen_exclusive_supported: Default::default(),
+                _marker: ::core::marker::PhantomData,
+            }
+        }
+    }
+    impl<'a> SurfaceCapabilitiesFullScreenExclusiveEXT<'a> {
+        pub fn full_screen_exclusive_supported(
+            mut self,
+            full_screen_exclusive_supported: bool,
+        ) -> Self {
+            self.full_screen_exclusive_supported = full_screen_exclusive_supported
+                .into();
+            self
+        }
     }
     ///Provided by [`ext::full_screen_exclusive`](crate::ext::full_screen_exclusive)
     impl crate::vk::StructureType {

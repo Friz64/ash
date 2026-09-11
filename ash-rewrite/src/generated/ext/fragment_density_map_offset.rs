@@ -43,6 +43,33 @@ pub(crate) mod reexport {
         pub fragment_density_map_offset: crate::vk::Bool32,
         pub _marker: ::core::marker::PhantomData<&'a ()>,
     }
+    unsafe impl<'a> crate::TaggedStructure<'a>
+    for PhysicalDeviceFragmentDensityMapOffsetFeaturesEXT<'a> {
+        const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::PHYSICAL_DEVICE_FRAGMENT_DENSITY_MAP_OFFSET_FEATURES_EXT;
+    }
+    unsafe impl<'a> crate::Extends<crate::vk::PhysicalDeviceFeatures2<'_>>
+    for PhysicalDeviceFragmentDensityMapOffsetFeaturesEXT<'a> {}
+    unsafe impl<'a> crate::Extends<crate::vk::DeviceCreateInfo<'_>>
+    for PhysicalDeviceFragmentDensityMapOffsetFeaturesEXT<'a> {}
+    impl<'a> Default for PhysicalDeviceFragmentDensityMapOffsetFeaturesEXT<'a> {
+        fn default() -> Self {
+            Self {
+                s_type: <Self as crate::TaggedStructure>::STRUCTURE_TYPE,
+                p_next: Default::default(),
+                fragment_density_map_offset: Default::default(),
+                _marker: ::core::marker::PhantomData,
+            }
+        }
+    }
+    impl<'a> PhysicalDeviceFragmentDensityMapOffsetFeaturesEXT<'a> {
+        pub fn fragment_density_map_offset(
+            mut self,
+            fragment_density_map_offset: bool,
+        ) -> Self {
+            self.fragment_density_map_offset = fragment_density_map_offset.into();
+            self
+        }
+    }
     #[repr(C)]
     #[derive(Clone, Copy)]
     pub struct PhysicalDeviceFragmentDensityMapOffsetPropertiesEXT<'a> {
@@ -50,6 +77,31 @@ pub(crate) mod reexport {
         pub p_next: *mut core::ffi::c_void,
         pub fragment_density_offset_granularity: crate::vk::Extent2D,
         pub _marker: ::core::marker::PhantomData<&'a ()>,
+    }
+    unsafe impl<'a> crate::TaggedStructure<'a>
+    for PhysicalDeviceFragmentDensityMapOffsetPropertiesEXT<'a> {
+        const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::PHYSICAL_DEVICE_FRAGMENT_DENSITY_MAP_OFFSET_PROPERTIES_EXT;
+    }
+    unsafe impl<'a> crate::Extends<crate::vk::PhysicalDeviceProperties2<'_>>
+    for PhysicalDeviceFragmentDensityMapOffsetPropertiesEXT<'a> {}
+    impl<'a> Default for PhysicalDeviceFragmentDensityMapOffsetPropertiesEXT<'a> {
+        fn default() -> Self {
+            Self {
+                s_type: <Self as crate::TaggedStructure>::STRUCTURE_TYPE,
+                p_next: Default::default(),
+                fragment_density_offset_granularity: Default::default(),
+                _marker: ::core::marker::PhantomData,
+            }
+        }
+    }
+    impl<'a> PhysicalDeviceFragmentDensityMapOffsetPropertiesEXT<'a> {
+        pub fn fragment_density_offset_granularity(
+            mut self,
+            fragment_density_offset_granularity: crate::vk::Extent2D,
+        ) -> Self {
+            self.fragment_density_offset_granularity = fragment_density_offset_granularity;
+            self
+        }
     }
     #[repr(C)]
     #[derive(Clone, Copy)]
@@ -59,6 +111,42 @@ pub(crate) mod reexport {
         pub fragment_density_offset_count: u32,
         pub p_fragment_density_offsets: *const crate::vk::Offset2D,
         pub _marker: ::core::marker::PhantomData<&'a ()>,
+    }
+    unsafe impl<'a> crate::TaggedStructure<'a>
+    for RenderPassFragmentDensityMapOffsetEndInfoEXT<'a> {
+        const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::RENDER_PASS_FRAGMENT_DENSITY_MAP_OFFSET_END_INFO_EXT;
+    }
+    unsafe impl<'a> crate::Extends<crate::vk::SubpassEndInfo<'_>>
+    for RenderPassFragmentDensityMapOffsetEndInfoEXT<'a> {}
+    unsafe impl<'a> crate::Extends<crate::vk::RenderingEndInfoKHR<'_>>
+    for RenderPassFragmentDensityMapOffsetEndInfoEXT<'a> {}
+    impl<'a> Default for RenderPassFragmentDensityMapOffsetEndInfoEXT<'a> {
+        fn default() -> Self {
+            Self {
+                s_type: <Self as crate::TaggedStructure>::STRUCTURE_TYPE,
+                p_next: Default::default(),
+                fragment_density_offset_count: Default::default(),
+                p_fragment_density_offsets: Default::default(),
+                _marker: ::core::marker::PhantomData,
+            }
+        }
+    }
+    impl<'a> RenderPassFragmentDensityMapOffsetEndInfoEXT<'a> {
+        pub fn fragment_density_offset_count(
+            mut self,
+            fragment_density_offset_count: u32,
+        ) -> Self {
+            self.fragment_density_offset_count = fragment_density_offset_count;
+            self
+        }
+        pub fn p_fragment_density_offsets(
+            mut self,
+            p_fragment_density_offsets: &'a [crate::vk::Offset2D],
+        ) -> Self {
+            self.fragment_density_offset_count = p_fragment_density_offsets.len() as _;
+            self.p_fragment_density_offsets = p_fragment_density_offsets.as_ptr();
+            self
+        }
     }
     pub type RenderingEndInfoEXT<'a> = crate::vk::RenderingEndInfoKHR<'a>;
     ///Provided by [`ext::fragment_density_map_offset`](crate::ext::fragment_density_map_offset)

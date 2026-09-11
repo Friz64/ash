@@ -9,6 +9,30 @@ pub struct PhysicalDeviceVideoDecodeVP9FeaturesKHR<'a> {
     pub video_decode_vp9: crate::vk::Bool32,
     pub _marker: ::core::marker::PhantomData<&'a ()>,
 }
+unsafe impl<'a> crate::TaggedStructure<'a>
+for PhysicalDeviceVideoDecodeVP9FeaturesKHR<'a> {
+    const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::PHYSICAL_DEVICE_VIDEO_DECODE_VP9_FEATURES_KHR;
+}
+unsafe impl<'a> crate::Extends<crate::vk::PhysicalDeviceFeatures2<'_>>
+for PhysicalDeviceVideoDecodeVP9FeaturesKHR<'a> {}
+unsafe impl<'a> crate::Extends<crate::vk::DeviceCreateInfo<'_>>
+for PhysicalDeviceVideoDecodeVP9FeaturesKHR<'a> {}
+impl<'a> Default for PhysicalDeviceVideoDecodeVP9FeaturesKHR<'a> {
+    fn default() -> Self {
+        Self {
+            s_type: <Self as crate::TaggedStructure>::STRUCTURE_TYPE,
+            p_next: Default::default(),
+            video_decode_vp9: Default::default(),
+            _marker: ::core::marker::PhantomData,
+        }
+    }
+}
+impl<'a> PhysicalDeviceVideoDecodeVP9FeaturesKHR<'a> {
+    pub fn video_decode_vp9(mut self, video_decode_vp9: bool) -> Self {
+        self.video_decode_vp9 = video_decode_vp9.into();
+        self
+    }
+}
 #[repr(C)]
 #[derive(Clone, Copy)]
 pub struct VideoDecodeVP9ProfileInfoKHR<'a> {
@@ -17,6 +41,29 @@ pub struct VideoDecodeVP9ProfileInfoKHR<'a> {
     pub std_profile: crate::vk::VP9Profile,
     pub _marker: ::core::marker::PhantomData<&'a ()>,
 }
+unsafe impl<'a> crate::TaggedStructure<'a> for VideoDecodeVP9ProfileInfoKHR<'a> {
+    const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::VIDEO_DECODE_VP9_PROFILE_INFO_KHR;
+}
+unsafe impl<'a> crate::Extends<crate::vk::VideoProfileInfoKHR<'_>>
+for VideoDecodeVP9ProfileInfoKHR<'a> {}
+unsafe impl<'a> crate::Extends<crate::vk::QueryPoolCreateInfo<'_>>
+for VideoDecodeVP9ProfileInfoKHR<'a> {}
+impl<'a> Default for VideoDecodeVP9ProfileInfoKHR<'a> {
+    fn default() -> Self {
+        Self {
+            s_type: <Self as crate::TaggedStructure>::STRUCTURE_TYPE,
+            p_next: Default::default(),
+            std_profile: Default::default(),
+            _marker: ::core::marker::PhantomData,
+        }
+    }
+}
+impl<'a> VideoDecodeVP9ProfileInfoKHR<'a> {
+    pub fn std_profile(mut self, std_profile: crate::vk::VP9Profile) -> Self {
+        self.std_profile = std_profile;
+        self
+    }
+}
 #[repr(C)]
 #[derive(Clone, Copy)]
 pub struct VideoDecodeVP9CapabilitiesKHR<'a> {
@@ -24,6 +71,27 @@ pub struct VideoDecodeVP9CapabilitiesKHR<'a> {
     pub p_next: *mut core::ffi::c_void,
     pub max_level: crate::vk::VP9Level,
     pub _marker: ::core::marker::PhantomData<&'a ()>,
+}
+unsafe impl<'a> crate::TaggedStructure<'a> for VideoDecodeVP9CapabilitiesKHR<'a> {
+    const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::VIDEO_DECODE_VP9_CAPABILITIES_KHR;
+}
+unsafe impl<'a> crate::Extends<crate::vk::VideoCapabilitiesKHR<'_>>
+for VideoDecodeVP9CapabilitiesKHR<'a> {}
+impl<'a> Default for VideoDecodeVP9CapabilitiesKHR<'a> {
+    fn default() -> Self {
+        Self {
+            s_type: <Self as crate::TaggedStructure>::STRUCTURE_TYPE,
+            p_next: Default::default(),
+            max_level: Default::default(),
+            _marker: ::core::marker::PhantomData,
+        }
+    }
+}
+impl<'a> VideoDecodeVP9CapabilitiesKHR<'a> {
+    pub fn max_level(mut self, max_level: crate::vk::VP9Level) -> Self {
+        self.max_level = max_level;
+        self
+    }
 }
 #[repr(C)]
 #[derive(Clone, Copy)]
@@ -37,6 +105,57 @@ pub struct VideoDecodeVP9PictureInfoKHR<'a> {
     pub compressed_header_offset: u32,
     pub tiles_offset: u32,
     pub _marker: ::core::marker::PhantomData<&'a ()>,
+}
+unsafe impl<'a> crate::TaggedStructure<'a> for VideoDecodeVP9PictureInfoKHR<'a> {
+    const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::VIDEO_DECODE_VP9_PICTURE_INFO_KHR;
+}
+unsafe impl<'a> crate::Extends<crate::vk::VideoDecodeInfoKHR<'_>>
+for VideoDecodeVP9PictureInfoKHR<'a> {}
+impl<'a> Default for VideoDecodeVP9PictureInfoKHR<'a> {
+    fn default() -> Self {
+        Self {
+            s_type: <Self as crate::TaggedStructure>::STRUCTURE_TYPE,
+            p_next: Default::default(),
+            p_std_picture_info: Default::default(),
+            reference_name_slot_indices: unsafe { core::mem::zeroed() },
+            uncompressed_header_offset: Default::default(),
+            compressed_header_offset: Default::default(),
+            tiles_offset: Default::default(),
+            _marker: ::core::marker::PhantomData,
+        }
+    }
+}
+impl<'a> VideoDecodeVP9PictureInfoKHR<'a> {
+    pub fn p_std_picture_info(
+        mut self,
+        p_std_picture_info: &'a crate::vk::DecodeVP9PictureInfo<'a>,
+    ) -> Self {
+        self.p_std_picture_info = p_std_picture_info;
+        self
+    }
+    pub fn reference_name_slot_indices(
+        mut self,
+        reference_name_slot_indices: [i32; crate::vk::MAX_VIDEO_VP9_REFERENCES_PER_FRAME_KHR
+            as _],
+    ) -> Self {
+        self.reference_name_slot_indices = reference_name_slot_indices;
+        self
+    }
+    pub fn uncompressed_header_offset(
+        mut self,
+        uncompressed_header_offset: u32,
+    ) -> Self {
+        self.uncompressed_header_offset = uncompressed_header_offset;
+        self
+    }
+    pub fn compressed_header_offset(mut self, compressed_header_offset: u32) -> Self {
+        self.compressed_header_offset = compressed_header_offset;
+        self
+    }
+    pub fn tiles_offset(mut self, tiles_offset: u32) -> Self {
+        self.tiles_offset = tiles_offset;
+        self
+    }
 }
 ///Provided by [`khr::video_decode_vp9`](crate::khr::video_decode_vp9)
 impl crate::vk::StructureType {

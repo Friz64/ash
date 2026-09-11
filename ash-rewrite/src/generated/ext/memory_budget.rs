@@ -10,6 +10,39 @@ pub struct PhysicalDeviceMemoryBudgetPropertiesEXT<'a> {
     pub heap_usage: [crate::vk::DeviceSize; crate::vk::MAX_MEMORY_HEAPS as _],
     pub _marker: ::core::marker::PhantomData<&'a ()>,
 }
+unsafe impl<'a> crate::TaggedStructure<'a>
+for PhysicalDeviceMemoryBudgetPropertiesEXT<'a> {
+    const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::PHYSICAL_DEVICE_MEMORY_BUDGET_PROPERTIES_EXT;
+}
+unsafe impl<'a> crate::Extends<crate::vk::PhysicalDeviceMemoryProperties2<'_>>
+for PhysicalDeviceMemoryBudgetPropertiesEXT<'a> {}
+impl<'a> Default for PhysicalDeviceMemoryBudgetPropertiesEXT<'a> {
+    fn default() -> Self {
+        Self {
+            s_type: <Self as crate::TaggedStructure>::STRUCTURE_TYPE,
+            p_next: Default::default(),
+            heap_budget: unsafe { core::mem::zeroed() },
+            heap_usage: unsafe { core::mem::zeroed() },
+            _marker: ::core::marker::PhantomData,
+        }
+    }
+}
+impl<'a> PhysicalDeviceMemoryBudgetPropertiesEXT<'a> {
+    pub fn heap_budget(
+        mut self,
+        heap_budget: [crate::vk::DeviceSize; crate::vk::MAX_MEMORY_HEAPS as _],
+    ) -> Self {
+        self.heap_budget = heap_budget;
+        self
+    }
+    pub fn heap_usage(
+        mut self,
+        heap_usage: [crate::vk::DeviceSize; crate::vk::MAX_MEMORY_HEAPS as _],
+    ) -> Self {
+        self.heap_usage = heap_usage;
+        self
+    }
+}
 ///Provided by [`ext::memory_budget`](crate::ext::memory_budget)
 impl crate::vk::StructureType {
     pub const PHYSICAL_DEVICE_MEMORY_BUDGET_PROPERTIES_EXT: Self = Self(1000237000);

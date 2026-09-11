@@ -66,6 +66,35 @@ pub(crate) mod reexport {
         pub window: crate::platform_types::Window,
         pub _marker: ::core::marker::PhantomData<&'a ()>,
     }
+    unsafe impl<'a> crate::TaggedStructure<'a> for XlibSurfaceCreateInfoKHR<'a> {
+        const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::XLIB_SURFACE_CREATE_INFO_KHR;
+    }
+    impl<'a> Default for XlibSurfaceCreateInfoKHR<'a> {
+        fn default() -> Self {
+            Self {
+                s_type: <Self as crate::TaggedStructure>::STRUCTURE_TYPE,
+                p_next: Default::default(),
+                flags: Default::default(),
+                dpy: Default::default(),
+                window: Default::default(),
+                _marker: ::core::marker::PhantomData,
+            }
+        }
+    }
+    impl<'a> XlibSurfaceCreateInfoKHR<'a> {
+        pub fn flags(mut self, flags: crate::vk::XlibSurfaceCreateFlagsKHR) -> Self {
+            self.flags = flags;
+            self
+        }
+        pub fn dpy(mut self, dpy: &'a mut crate::platform_types::Display) -> Self {
+            self.dpy = dpy;
+            self
+        }
+        pub fn window(mut self, window: crate::platform_types::Window) -> Self {
+            self.window = window;
+            self
+        }
+    }
     ///Provided by [`khr::xlib_surface`](crate::khr::xlib_surface)
     impl crate::vk::StructureType {
         pub const XLIB_SURFACE_CREATE_INFO_KHR: Self = Self(1000004000);

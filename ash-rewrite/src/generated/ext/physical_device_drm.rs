@@ -14,6 +14,52 @@ pub struct PhysicalDeviceDrmPropertiesEXT<'a> {
     pub render_minor: i64,
     pub _marker: ::core::marker::PhantomData<&'a ()>,
 }
+unsafe impl<'a> crate::TaggedStructure<'a> for PhysicalDeviceDrmPropertiesEXT<'a> {
+    const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::PHYSICAL_DEVICE_DRM_PROPERTIES_EXT;
+}
+unsafe impl<'a> crate::Extends<crate::vk::PhysicalDeviceProperties2<'_>>
+for PhysicalDeviceDrmPropertiesEXT<'a> {}
+impl<'a> Default for PhysicalDeviceDrmPropertiesEXT<'a> {
+    fn default() -> Self {
+        Self {
+            s_type: <Self as crate::TaggedStructure>::STRUCTURE_TYPE,
+            p_next: Default::default(),
+            has_primary: Default::default(),
+            has_render: Default::default(),
+            primary_major: Default::default(),
+            primary_minor: Default::default(),
+            render_major: Default::default(),
+            render_minor: Default::default(),
+            _marker: ::core::marker::PhantomData,
+        }
+    }
+}
+impl<'a> PhysicalDeviceDrmPropertiesEXT<'a> {
+    pub fn has_primary(mut self, has_primary: bool) -> Self {
+        self.has_primary = has_primary.into();
+        self
+    }
+    pub fn has_render(mut self, has_render: bool) -> Self {
+        self.has_render = has_render.into();
+        self
+    }
+    pub fn primary_major(mut self, primary_major: i64) -> Self {
+        self.primary_major = primary_major;
+        self
+    }
+    pub fn primary_minor(mut self, primary_minor: i64) -> Self {
+        self.primary_minor = primary_minor;
+        self
+    }
+    pub fn render_major(mut self, render_major: i64) -> Self {
+        self.render_major = render_major;
+        self
+    }
+    pub fn render_minor(mut self, render_minor: i64) -> Self {
+        self.render_minor = render_minor;
+        self
+    }
+}
 ///Provided by [`ext::physical_device_drm`](crate::ext::physical_device_drm)
 impl crate::vk::StructureType {
     pub const PHYSICAL_DEVICE_DRM_PROPERTIES_EXT: Self = Self(1000353000);

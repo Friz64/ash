@@ -9,6 +9,33 @@ pub struct PhysicalDevicePresentModeFifoLatestReadyFeaturesKHR<'a> {
     pub present_mode_fifo_latest_ready: crate::vk::Bool32,
     pub _marker: ::core::marker::PhantomData<&'a ()>,
 }
+unsafe impl<'a> crate::TaggedStructure<'a>
+for PhysicalDevicePresentModeFifoLatestReadyFeaturesKHR<'a> {
+    const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::PHYSICAL_DEVICE_PRESENT_MODE_FIFO_LATEST_READY_FEATURES_KHR;
+}
+unsafe impl<'a> crate::Extends<crate::vk::PhysicalDeviceFeatures2<'_>>
+for PhysicalDevicePresentModeFifoLatestReadyFeaturesKHR<'a> {}
+unsafe impl<'a> crate::Extends<crate::vk::DeviceCreateInfo<'_>>
+for PhysicalDevicePresentModeFifoLatestReadyFeaturesKHR<'a> {}
+impl<'a> Default for PhysicalDevicePresentModeFifoLatestReadyFeaturesKHR<'a> {
+    fn default() -> Self {
+        Self {
+            s_type: <Self as crate::TaggedStructure>::STRUCTURE_TYPE,
+            p_next: Default::default(),
+            present_mode_fifo_latest_ready: Default::default(),
+            _marker: ::core::marker::PhantomData,
+        }
+    }
+}
+impl<'a> PhysicalDevicePresentModeFifoLatestReadyFeaturesKHR<'a> {
+    pub fn present_mode_fifo_latest_ready(
+        mut self,
+        present_mode_fifo_latest_ready: bool,
+    ) -> Self {
+        self.present_mode_fifo_latest_ready = present_mode_fifo_latest_ready.into();
+        self
+    }
+}
 ///Provided by [`khr::present_mode_fifo_latest_ready`](crate::khr::present_mode_fifo_latest_ready)
 impl crate::vk::StructureType {
     pub const PHYSICAL_DEVICE_PRESENT_MODE_FIFO_LATEST_READY_FEATURES_KHR: Self = Self(

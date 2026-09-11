@@ -44,6 +44,37 @@ pub(crate) mod reexport {
         pub occupancy_throttling: core::ffi::c_float,
         pub _marker: ::core::marker::PhantomData<&'a ()>,
     }
+    unsafe impl<'a> crate::TaggedStructure<'a>
+    for ComputeOccupancyPriorityParametersNV<'a> {
+        const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::COMPUTE_OCCUPANCY_PRIORITY_PARAMETERS_NV;
+    }
+    impl<'a> Default for ComputeOccupancyPriorityParametersNV<'a> {
+        fn default() -> Self {
+            Self {
+                s_type: <Self as crate::TaggedStructure>::STRUCTURE_TYPE,
+                p_next: Default::default(),
+                occupancy_priority: Default::default(),
+                occupancy_throttling: Default::default(),
+                _marker: ::core::marker::PhantomData,
+            }
+        }
+    }
+    impl<'a> ComputeOccupancyPriorityParametersNV<'a> {
+        pub fn occupancy_priority(
+            mut self,
+            occupancy_priority: core::ffi::c_float,
+        ) -> Self {
+            self.occupancy_priority = occupancy_priority;
+            self
+        }
+        pub fn occupancy_throttling(
+            mut self,
+            occupancy_throttling: core::ffi::c_float,
+        ) -> Self {
+            self.occupancy_throttling = occupancy_throttling;
+            self
+        }
+    }
     #[repr(C)]
     #[derive(Clone, Copy)]
     pub struct PhysicalDeviceComputeOccupancyPriorityFeaturesNV<'a> {
@@ -51,6 +82,33 @@ pub(crate) mod reexport {
         pub p_next: *mut core::ffi::c_void,
         pub compute_occupancy_priority: crate::vk::Bool32,
         pub _marker: ::core::marker::PhantomData<&'a ()>,
+    }
+    unsafe impl<'a> crate::TaggedStructure<'a>
+    for PhysicalDeviceComputeOccupancyPriorityFeaturesNV<'a> {
+        const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::PHYSICAL_DEVICE_COMPUTE_OCCUPANCY_PRIORITY_FEATURES_NV;
+    }
+    unsafe impl<'a> crate::Extends<crate::vk::PhysicalDeviceFeatures2<'_>>
+    for PhysicalDeviceComputeOccupancyPriorityFeaturesNV<'a> {}
+    unsafe impl<'a> crate::Extends<crate::vk::DeviceCreateInfo<'_>>
+    for PhysicalDeviceComputeOccupancyPriorityFeaturesNV<'a> {}
+    impl<'a> Default for PhysicalDeviceComputeOccupancyPriorityFeaturesNV<'a> {
+        fn default() -> Self {
+            Self {
+                s_type: <Self as crate::TaggedStructure>::STRUCTURE_TYPE,
+                p_next: Default::default(),
+                compute_occupancy_priority: Default::default(),
+                _marker: ::core::marker::PhantomData,
+            }
+        }
+    }
+    impl<'a> PhysicalDeviceComputeOccupancyPriorityFeaturesNV<'a> {
+        pub fn compute_occupancy_priority(
+            mut self,
+            compute_occupancy_priority: bool,
+        ) -> Self {
+            self.compute_occupancy_priority = compute_occupancy_priority.into();
+            self
+        }
     }
     ///Provided by [`nv::compute_occupancy_priority`](crate::nv::compute_occupancy_priority)
     impl crate::vk::StructureType {

@@ -11,6 +11,40 @@ pub struct PhysicalDeviceMapMemoryPlacedFeaturesEXT<'a> {
     pub memory_unmap_reserve: crate::vk::Bool32,
     pub _marker: ::core::marker::PhantomData<&'a ()>,
 }
+unsafe impl<'a> crate::TaggedStructure<'a>
+for PhysicalDeviceMapMemoryPlacedFeaturesEXT<'a> {
+    const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::PHYSICAL_DEVICE_MAP_MEMORY_PLACED_FEATURES_EXT;
+}
+unsafe impl<'a> crate::Extends<crate::vk::PhysicalDeviceFeatures2<'_>>
+for PhysicalDeviceMapMemoryPlacedFeaturesEXT<'a> {}
+unsafe impl<'a> crate::Extends<crate::vk::DeviceCreateInfo<'_>>
+for PhysicalDeviceMapMemoryPlacedFeaturesEXT<'a> {}
+impl<'a> Default for PhysicalDeviceMapMemoryPlacedFeaturesEXT<'a> {
+    fn default() -> Self {
+        Self {
+            s_type: <Self as crate::TaggedStructure>::STRUCTURE_TYPE,
+            p_next: Default::default(),
+            memory_map_placed: Default::default(),
+            memory_map_range_placed: Default::default(),
+            memory_unmap_reserve: Default::default(),
+            _marker: ::core::marker::PhantomData,
+        }
+    }
+}
+impl<'a> PhysicalDeviceMapMemoryPlacedFeaturesEXT<'a> {
+    pub fn memory_map_placed(mut self, memory_map_placed: bool) -> Self {
+        self.memory_map_placed = memory_map_placed.into();
+        self
+    }
+    pub fn memory_map_range_placed(mut self, memory_map_range_placed: bool) -> Self {
+        self.memory_map_range_placed = memory_map_range_placed.into();
+        self
+    }
+    pub fn memory_unmap_reserve(mut self, memory_unmap_reserve: bool) -> Self {
+        self.memory_unmap_reserve = memory_unmap_reserve.into();
+        self
+    }
+}
 #[repr(C)]
 #[derive(Clone, Copy)]
 pub struct PhysicalDeviceMapMemoryPlacedPropertiesEXT<'a> {
@@ -19,6 +53,31 @@ pub struct PhysicalDeviceMapMemoryPlacedPropertiesEXT<'a> {
     pub min_placed_memory_map_alignment: crate::vk::DeviceSize,
     pub _marker: ::core::marker::PhantomData<&'a ()>,
 }
+unsafe impl<'a> crate::TaggedStructure<'a>
+for PhysicalDeviceMapMemoryPlacedPropertiesEXT<'a> {
+    const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::PHYSICAL_DEVICE_MAP_MEMORY_PLACED_PROPERTIES_EXT;
+}
+unsafe impl<'a> crate::Extends<crate::vk::PhysicalDeviceProperties2<'_>>
+for PhysicalDeviceMapMemoryPlacedPropertiesEXT<'a> {}
+impl<'a> Default for PhysicalDeviceMapMemoryPlacedPropertiesEXT<'a> {
+    fn default() -> Self {
+        Self {
+            s_type: <Self as crate::TaggedStructure>::STRUCTURE_TYPE,
+            p_next: Default::default(),
+            min_placed_memory_map_alignment: Default::default(),
+            _marker: ::core::marker::PhantomData,
+        }
+    }
+}
+impl<'a> PhysicalDeviceMapMemoryPlacedPropertiesEXT<'a> {
+    pub fn min_placed_memory_map_alignment(
+        mut self,
+        min_placed_memory_map_alignment: crate::vk::DeviceSize,
+    ) -> Self {
+        self.min_placed_memory_map_alignment = min_placed_memory_map_alignment;
+        self
+    }
+}
 #[repr(C)]
 #[derive(Clone, Copy)]
 pub struct MemoryMapPlacedInfoEXT<'a> {
@@ -26,6 +85,30 @@ pub struct MemoryMapPlacedInfoEXT<'a> {
     pub p_next: *const core::ffi::c_void,
     pub p_placed_address: *mut core::ffi::c_void,
     pub _marker: ::core::marker::PhantomData<&'a ()>,
+}
+unsafe impl<'a> crate::TaggedStructure<'a> for MemoryMapPlacedInfoEXT<'a> {
+    const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::MEMORY_MAP_PLACED_INFO_EXT;
+}
+unsafe impl<'a> crate::Extends<crate::vk::MemoryMapInfo<'_>>
+for MemoryMapPlacedInfoEXT<'a> {}
+impl<'a> Default for MemoryMapPlacedInfoEXT<'a> {
+    fn default() -> Self {
+        Self {
+            s_type: <Self as crate::TaggedStructure>::STRUCTURE_TYPE,
+            p_next: Default::default(),
+            p_placed_address: Default::default(),
+            _marker: ::core::marker::PhantomData,
+        }
+    }
+}
+impl<'a> MemoryMapPlacedInfoEXT<'a> {
+    pub fn p_placed_address(
+        mut self,
+        p_placed_address: &'a mut core::ffi::c_void,
+    ) -> Self {
+        self.p_placed_address = p_placed_address;
+        self
+    }
 }
 ///Provided by [`ext::map_memory_placed`](crate::ext::map_memory_placed)
 impl crate::vk::StructureType {

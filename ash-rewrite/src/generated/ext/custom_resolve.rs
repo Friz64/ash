@@ -42,6 +42,19 @@ pub(crate) mod reexport {
         pub p_next: *mut core::ffi::c_void,
         pub _marker: ::core::marker::PhantomData<&'a ()>,
     }
+    unsafe impl<'a> crate::TaggedStructure<'a> for BeginCustomResolveInfoEXT<'a> {
+        const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::BEGIN_CUSTOM_RESOLVE_INFO_EXT;
+    }
+    impl<'a> Default for BeginCustomResolveInfoEXT<'a> {
+        fn default() -> Self {
+            Self {
+                s_type: <Self as crate::TaggedStructure>::STRUCTURE_TYPE,
+                p_next: Default::default(),
+                _marker: ::core::marker::PhantomData,
+            }
+        }
+    }
+    impl<'a> BeginCustomResolveInfoEXT<'a> {}
     #[repr(C)]
     #[derive(Clone, Copy)]
     pub struct PhysicalDeviceCustomResolveFeaturesEXT<'a> {
@@ -49,6 +62,30 @@ pub(crate) mod reexport {
         pub p_next: *mut core::ffi::c_void,
         pub custom_resolve: crate::vk::Bool32,
         pub _marker: ::core::marker::PhantomData<&'a ()>,
+    }
+    unsafe impl<'a> crate::TaggedStructure<'a>
+    for PhysicalDeviceCustomResolveFeaturesEXT<'a> {
+        const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::PHYSICAL_DEVICE_CUSTOM_RESOLVE_FEATURES_EXT;
+    }
+    unsafe impl<'a> crate::Extends<crate::vk::PhysicalDeviceFeatures2<'_>>
+    for PhysicalDeviceCustomResolveFeaturesEXT<'a> {}
+    unsafe impl<'a> crate::Extends<crate::vk::DeviceCreateInfo<'_>>
+    for PhysicalDeviceCustomResolveFeaturesEXT<'a> {}
+    impl<'a> Default for PhysicalDeviceCustomResolveFeaturesEXT<'a> {
+        fn default() -> Self {
+            Self {
+                s_type: <Self as crate::TaggedStructure>::STRUCTURE_TYPE,
+                p_next: Default::default(),
+                custom_resolve: Default::default(),
+                _marker: ::core::marker::PhantomData,
+            }
+        }
+    }
+    impl<'a> PhysicalDeviceCustomResolveFeaturesEXT<'a> {
+        pub fn custom_resolve(mut self, custom_resolve: bool) -> Self {
+            self.custom_resolve = custom_resolve.into();
+            self
+        }
     }
     #[repr(C)]
     #[derive(Clone, Copy)]
@@ -61,6 +98,61 @@ pub(crate) mod reexport {
         pub depth_attachment_format: crate::vk::Format,
         pub stencil_attachment_format: crate::vk::Format,
         pub _marker: ::core::marker::PhantomData<&'a ()>,
+    }
+    unsafe impl<'a> crate::TaggedStructure<'a> for CustomResolveCreateInfoEXT<'a> {
+        const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::CUSTOM_RESOLVE_CREATE_INFO_EXT;
+    }
+    unsafe impl<'a> crate::Extends<crate::vk::GraphicsPipelineCreateInfo<'_>>
+    for CustomResolveCreateInfoEXT<'a> {}
+    unsafe impl<'a> crate::Extends<crate::vk::CommandBufferInheritanceInfo<'_>>
+    for CustomResolveCreateInfoEXT<'a> {}
+    unsafe impl<'a> crate::Extends<crate::vk::ShaderCreateInfoEXT<'_>>
+    for CustomResolveCreateInfoEXT<'a> {}
+    impl<'a> Default for CustomResolveCreateInfoEXT<'a> {
+        fn default() -> Self {
+            Self {
+                s_type: <Self as crate::TaggedStructure>::STRUCTURE_TYPE,
+                p_next: Default::default(),
+                custom_resolve: Default::default(),
+                color_attachment_count: Default::default(),
+                p_color_attachment_formats: Default::default(),
+                depth_attachment_format: Default::default(),
+                stencil_attachment_format: Default::default(),
+                _marker: ::core::marker::PhantomData,
+            }
+        }
+    }
+    impl<'a> CustomResolveCreateInfoEXT<'a> {
+        pub fn custom_resolve(mut self, custom_resolve: bool) -> Self {
+            self.custom_resolve = custom_resolve.into();
+            self
+        }
+        pub fn color_attachment_count(mut self, color_attachment_count: u32) -> Self {
+            self.color_attachment_count = color_attachment_count;
+            self
+        }
+        pub fn p_color_attachment_formats(
+            mut self,
+            p_color_attachment_formats: &'a [crate::vk::Format],
+        ) -> Self {
+            self.color_attachment_count = p_color_attachment_formats.len() as _;
+            self.p_color_attachment_formats = p_color_attachment_formats.as_ptr();
+            self
+        }
+        pub fn depth_attachment_format(
+            mut self,
+            depth_attachment_format: crate::vk::Format,
+        ) -> Self {
+            self.depth_attachment_format = depth_attachment_format;
+            self
+        }
+        pub fn stencil_attachment_format(
+            mut self,
+            stencil_attachment_format: crate::vk::Format,
+        ) -> Self {
+            self.stencil_attachment_format = stencil_attachment_format;
+            self
+        }
     }
     ///Provided by [`ext::custom_resolve`](crate::ext::custom_resolve)
     impl crate::vk::StructureType {

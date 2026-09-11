@@ -127,6 +127,31 @@ pub(crate) mod reexport {
         pub p_data: *const core::ffi::c_void,
         pub _marker: ::core::marker::PhantomData<&'a ()>,
     }
+    unsafe impl<'a> crate::TaggedStructure<'a> for CudaModuleCreateInfoNV<'a> {
+        const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::CUDA_MODULE_CREATE_INFO_NV;
+    }
+    impl<'a> Default for CudaModuleCreateInfoNV<'a> {
+        fn default() -> Self {
+            Self {
+                s_type: <Self as crate::TaggedStructure>::STRUCTURE_TYPE,
+                p_next: Default::default(),
+                data_size: Default::default(),
+                p_data: Default::default(),
+                _marker: ::core::marker::PhantomData,
+            }
+        }
+    }
+    impl<'a> CudaModuleCreateInfoNV<'a> {
+        pub fn data_size(mut self, data_size: usize) -> Self {
+            self.data_size = data_size;
+            self
+        }
+        pub fn p_data(mut self, p_data: &'a [u8]) -> Self {
+            self.data_size = p_data.len() as _;
+            self.p_data = p_data.as_ptr().cast();
+            self
+        }
+    }
     #[repr(C)]
     #[derive(Clone, Copy)]
     pub struct CudaFunctionCreateInfoNV<'a> {
@@ -135,6 +160,37 @@ pub(crate) mod reexport {
         pub module: crate::vk::CudaModuleNV,
         pub p_name: *const core::ffi::c_char,
         pub _marker: ::core::marker::PhantomData<&'a ()>,
+    }
+    unsafe impl<'a> crate::TaggedStructure<'a> for CudaFunctionCreateInfoNV<'a> {
+        const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::CUDA_FUNCTION_CREATE_INFO_NV;
+    }
+    impl<'a> Default for CudaFunctionCreateInfoNV<'a> {
+        fn default() -> Self {
+            Self {
+                s_type: <Self as crate::TaggedStructure>::STRUCTURE_TYPE,
+                p_next: Default::default(),
+                module: Default::default(),
+                p_name: Default::default(),
+                _marker: ::core::marker::PhantomData,
+            }
+        }
+    }
+    impl<'a> CudaFunctionCreateInfoNV<'a> {
+        pub fn module(mut self, module: crate::vk::CudaModuleNV) -> Self {
+            self.module = module;
+            self
+        }
+        pub fn p_name(mut self, p_name: &'a core::ffi::CStr) -> Self {
+            self.p_name = p_name.as_ptr();
+            self
+        }
+        pub unsafe fn p_name_as_c_str(&self) -> Option<&core::ffi::CStr> {
+            if self.p_name.is_null() {
+                None
+            } else {
+                Some(unsafe { core::ffi::CStr::from_ptr(self.p_name) })
+            }
+        }
     }
     #[repr(C)]
     #[derive(Clone, Copy)]
@@ -155,6 +211,82 @@ pub(crate) mod reexport {
         pub p_extras: *const *const core::ffi::c_void,
         pub _marker: ::core::marker::PhantomData<&'a ()>,
     }
+    unsafe impl<'a> crate::TaggedStructure<'a> for CudaLaunchInfoNV<'a> {
+        const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::CUDA_LAUNCH_INFO_NV;
+    }
+    impl<'a> Default for CudaLaunchInfoNV<'a> {
+        fn default() -> Self {
+            Self {
+                s_type: <Self as crate::TaggedStructure>::STRUCTURE_TYPE,
+                p_next: Default::default(),
+                function: Default::default(),
+                grid_dim_x: Default::default(),
+                grid_dim_y: Default::default(),
+                grid_dim_z: Default::default(),
+                block_dim_x: Default::default(),
+                block_dim_y: Default::default(),
+                block_dim_z: Default::default(),
+                shared_mem_bytes: Default::default(),
+                param_count: Default::default(),
+                p_params: Default::default(),
+                extra_count: Default::default(),
+                p_extras: Default::default(),
+                _marker: ::core::marker::PhantomData,
+            }
+        }
+    }
+    impl<'a> CudaLaunchInfoNV<'a> {
+        pub fn function(mut self, function: crate::vk::CudaFunctionNV) -> Self {
+            self.function = function;
+            self
+        }
+        pub fn grid_dim_x(mut self, grid_dim_x: u32) -> Self {
+            self.grid_dim_x = grid_dim_x;
+            self
+        }
+        pub fn grid_dim_y(mut self, grid_dim_y: u32) -> Self {
+            self.grid_dim_y = grid_dim_y;
+            self
+        }
+        pub fn grid_dim_z(mut self, grid_dim_z: u32) -> Self {
+            self.grid_dim_z = grid_dim_z;
+            self
+        }
+        pub fn block_dim_x(mut self, block_dim_x: u32) -> Self {
+            self.block_dim_x = block_dim_x;
+            self
+        }
+        pub fn block_dim_y(mut self, block_dim_y: u32) -> Self {
+            self.block_dim_y = block_dim_y;
+            self
+        }
+        pub fn block_dim_z(mut self, block_dim_z: u32) -> Self {
+            self.block_dim_z = block_dim_z;
+            self
+        }
+        pub fn shared_mem_bytes(mut self, shared_mem_bytes: u32) -> Self {
+            self.shared_mem_bytes = shared_mem_bytes;
+            self
+        }
+        pub fn param_count(mut self, param_count: usize) -> Self {
+            self.param_count = param_count;
+            self
+        }
+        pub fn p_params(mut self, p_params: &'a [*const core::ffi::c_void]) -> Self {
+            self.param_count = p_params.len() as _;
+            self.p_params = p_params.as_ptr();
+            self
+        }
+        pub fn extra_count(mut self, extra_count: usize) -> Self {
+            self.extra_count = extra_count;
+            self
+        }
+        pub fn p_extras(mut self, p_extras: &'a [*const core::ffi::c_void]) -> Self {
+            self.extra_count = p_extras.len() as _;
+            self.p_extras = p_extras.as_ptr();
+            self
+        }
+    }
     #[repr(C)]
     #[derive(Clone, Copy)]
     pub struct PhysicalDeviceCudaKernelLaunchFeaturesNV<'a> {
@@ -162,6 +294,33 @@ pub(crate) mod reexport {
         pub p_next: *mut core::ffi::c_void,
         pub cuda_kernel_launch_features: crate::vk::Bool32,
         pub _marker: ::core::marker::PhantomData<&'a ()>,
+    }
+    unsafe impl<'a> crate::TaggedStructure<'a>
+    for PhysicalDeviceCudaKernelLaunchFeaturesNV<'a> {
+        const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::PHYSICAL_DEVICE_CUDA_KERNEL_LAUNCH_FEATURES_NV;
+    }
+    unsafe impl<'a> crate::Extends<crate::vk::PhysicalDeviceFeatures2<'_>>
+    for PhysicalDeviceCudaKernelLaunchFeaturesNV<'a> {}
+    unsafe impl<'a> crate::Extends<crate::vk::DeviceCreateInfo<'_>>
+    for PhysicalDeviceCudaKernelLaunchFeaturesNV<'a> {}
+    impl<'a> Default for PhysicalDeviceCudaKernelLaunchFeaturesNV<'a> {
+        fn default() -> Self {
+            Self {
+                s_type: <Self as crate::TaggedStructure>::STRUCTURE_TYPE,
+                p_next: Default::default(),
+                cuda_kernel_launch_features: Default::default(),
+                _marker: ::core::marker::PhantomData,
+            }
+        }
+    }
+    impl<'a> PhysicalDeviceCudaKernelLaunchFeaturesNV<'a> {
+        pub fn cuda_kernel_launch_features(
+            mut self,
+            cuda_kernel_launch_features: bool,
+        ) -> Self {
+            self.cuda_kernel_launch_features = cuda_kernel_launch_features.into();
+            self
+        }
     }
     #[repr(C)]
     #[derive(Clone, Copy)]
@@ -171,6 +330,39 @@ pub(crate) mod reexport {
         pub compute_capability_minor: u32,
         pub compute_capability_major: u32,
         pub _marker: ::core::marker::PhantomData<&'a ()>,
+    }
+    unsafe impl<'a> crate::TaggedStructure<'a>
+    for PhysicalDeviceCudaKernelLaunchPropertiesNV<'a> {
+        const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::PHYSICAL_DEVICE_CUDA_KERNEL_LAUNCH_PROPERTIES_NV;
+    }
+    unsafe impl<'a> crate::Extends<crate::vk::PhysicalDeviceProperties2<'_>>
+    for PhysicalDeviceCudaKernelLaunchPropertiesNV<'a> {}
+    impl<'a> Default for PhysicalDeviceCudaKernelLaunchPropertiesNV<'a> {
+        fn default() -> Self {
+            Self {
+                s_type: <Self as crate::TaggedStructure>::STRUCTURE_TYPE,
+                p_next: Default::default(),
+                compute_capability_minor: Default::default(),
+                compute_capability_major: Default::default(),
+                _marker: ::core::marker::PhantomData,
+            }
+        }
+    }
+    impl<'a> PhysicalDeviceCudaKernelLaunchPropertiesNV<'a> {
+        pub fn compute_capability_minor(
+            mut self,
+            compute_capability_minor: u32,
+        ) -> Self {
+            self.compute_capability_minor = compute_capability_minor;
+            self
+        }
+        pub fn compute_capability_major(
+            mut self,
+            compute_capability_major: u32,
+        ) -> Self {
+            self.compute_capability_major = compute_capability_major;
+            self
+        }
     }
     ///Provided by [`nv::cuda_kernel_launch`](crate::nv::cuda_kernel_launch)
     impl crate::vk::StructureType {

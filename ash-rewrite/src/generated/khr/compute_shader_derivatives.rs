@@ -10,6 +10,41 @@ pub struct PhysicalDeviceComputeShaderDerivativesFeaturesKHR<'a> {
     pub compute_derivative_group_linear: crate::vk::Bool32,
     pub _marker: ::core::marker::PhantomData<&'a ()>,
 }
+unsafe impl<'a> crate::TaggedStructure<'a>
+for PhysicalDeviceComputeShaderDerivativesFeaturesKHR<'a> {
+    const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::PHYSICAL_DEVICE_COMPUTE_SHADER_DERIVATIVES_FEATURES_KHR;
+}
+unsafe impl<'a> crate::Extends<crate::vk::PhysicalDeviceFeatures2<'_>>
+for PhysicalDeviceComputeShaderDerivativesFeaturesKHR<'a> {}
+unsafe impl<'a> crate::Extends<crate::vk::DeviceCreateInfo<'_>>
+for PhysicalDeviceComputeShaderDerivativesFeaturesKHR<'a> {}
+impl<'a> Default for PhysicalDeviceComputeShaderDerivativesFeaturesKHR<'a> {
+    fn default() -> Self {
+        Self {
+            s_type: <Self as crate::TaggedStructure>::STRUCTURE_TYPE,
+            p_next: Default::default(),
+            compute_derivative_group_quads: Default::default(),
+            compute_derivative_group_linear: Default::default(),
+            _marker: ::core::marker::PhantomData,
+        }
+    }
+}
+impl<'a> PhysicalDeviceComputeShaderDerivativesFeaturesKHR<'a> {
+    pub fn compute_derivative_group_quads(
+        mut self,
+        compute_derivative_group_quads: bool,
+    ) -> Self {
+        self.compute_derivative_group_quads = compute_derivative_group_quads.into();
+        self
+    }
+    pub fn compute_derivative_group_linear(
+        mut self,
+        compute_derivative_group_linear: bool,
+    ) -> Self {
+        self.compute_derivative_group_linear = compute_derivative_group_linear.into();
+        self
+    }
+}
 #[repr(C)]
 #[derive(Clone, Copy)]
 pub struct PhysicalDeviceComputeShaderDerivativesPropertiesKHR<'a> {
@@ -17,6 +52,31 @@ pub struct PhysicalDeviceComputeShaderDerivativesPropertiesKHR<'a> {
     pub p_next: *mut core::ffi::c_void,
     pub mesh_and_task_shader_derivatives: crate::vk::Bool32,
     pub _marker: ::core::marker::PhantomData<&'a ()>,
+}
+unsafe impl<'a> crate::TaggedStructure<'a>
+for PhysicalDeviceComputeShaderDerivativesPropertiesKHR<'a> {
+    const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::PHYSICAL_DEVICE_COMPUTE_SHADER_DERIVATIVES_PROPERTIES_KHR;
+}
+unsafe impl<'a> crate::Extends<crate::vk::PhysicalDeviceProperties2<'_>>
+for PhysicalDeviceComputeShaderDerivativesPropertiesKHR<'a> {}
+impl<'a> Default for PhysicalDeviceComputeShaderDerivativesPropertiesKHR<'a> {
+    fn default() -> Self {
+        Self {
+            s_type: <Self as crate::TaggedStructure>::STRUCTURE_TYPE,
+            p_next: Default::default(),
+            mesh_and_task_shader_derivatives: Default::default(),
+            _marker: ::core::marker::PhantomData,
+        }
+    }
+}
+impl<'a> PhysicalDeviceComputeShaderDerivativesPropertiesKHR<'a> {
+    pub fn mesh_and_task_shader_derivatives(
+        mut self,
+        mesh_and_task_shader_derivatives: bool,
+    ) -> Self {
+        self.mesh_and_task_shader_derivatives = mesh_and_task_shader_derivatives.into();
+        self
+    }
 }
 ///Provided by [`khr::compute_shader_derivatives`](crate::khr::compute_shader_derivatives)
 impl crate::vk::StructureType {

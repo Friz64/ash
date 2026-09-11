@@ -9,6 +9,30 @@ pub struct PhysicalDeviceThrottleHintFeaturesSEC<'a> {
     pub throttle_hint: crate::vk::Bool32,
     pub _marker: ::core::marker::PhantomData<&'a ()>,
 }
+unsafe impl<'a> crate::TaggedStructure<'a>
+for PhysicalDeviceThrottleHintFeaturesSEC<'a> {
+    const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::PHYSICAL_DEVICE_THROTTLE_HINT_FEATURES_SEC;
+}
+unsafe impl<'a> crate::Extends<crate::vk::PhysicalDeviceFeatures2<'_>>
+for PhysicalDeviceThrottleHintFeaturesSEC<'a> {}
+unsafe impl<'a> crate::Extends<crate::vk::DeviceCreateInfo<'_>>
+for PhysicalDeviceThrottleHintFeaturesSEC<'a> {}
+impl<'a> Default for PhysicalDeviceThrottleHintFeaturesSEC<'a> {
+    fn default() -> Self {
+        Self {
+            s_type: <Self as crate::TaggedStructure>::STRUCTURE_TYPE,
+            p_next: Default::default(),
+            throttle_hint: Default::default(),
+            _marker: ::core::marker::PhantomData,
+        }
+    }
+}
+impl<'a> PhysicalDeviceThrottleHintFeaturesSEC<'a> {
+    pub fn throttle_hint(mut self, throttle_hint: bool) -> Self {
+        self.throttle_hint = throttle_hint.into();
+        self
+    }
+}
 #[repr(C)]
 #[derive(Clone, Copy)]
 pub struct ThrottleHintSubmitInfoSEC<'a> {
@@ -16,6 +40,30 @@ pub struct ThrottleHintSubmitInfoSEC<'a> {
     pub p_next: *const core::ffi::c_void,
     pub throttle_hint: crate::vk::ThrottleHintTypeSEC,
     pub _marker: ::core::marker::PhantomData<&'a ()>,
+}
+unsafe impl<'a> crate::TaggedStructure<'a> for ThrottleHintSubmitInfoSEC<'a> {
+    const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::THROTTLE_HINT_SUBMIT_INFO_SEC;
+}
+unsafe impl<'a> crate::Extends<crate::vk::SubmitInfo<'_>>
+for ThrottleHintSubmitInfoSEC<'a> {}
+impl<'a> Default for ThrottleHintSubmitInfoSEC<'a> {
+    fn default() -> Self {
+        Self {
+            s_type: <Self as crate::TaggedStructure>::STRUCTURE_TYPE,
+            p_next: Default::default(),
+            throttle_hint: Default::default(),
+            _marker: ::core::marker::PhantomData,
+        }
+    }
+}
+impl<'a> ThrottleHintSubmitInfoSEC<'a> {
+    pub fn throttle_hint(
+        mut self,
+        throttle_hint: crate::vk::ThrottleHintTypeSEC,
+    ) -> Self {
+        self.throttle_hint = throttle_hint;
+        self
+    }
 }
 ///Provided by [`sec::throttle_hint`](crate::sec::throttle_hint)
 impl crate::vk::StructureType {

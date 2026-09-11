@@ -9,6 +9,30 @@ pub struct PhysicalDeviceDiagnosticsConfigFeaturesNV<'a> {
     pub diagnostics_config: crate::vk::Bool32,
     pub _marker: ::core::marker::PhantomData<&'a ()>,
 }
+unsafe impl<'a> crate::TaggedStructure<'a>
+for PhysicalDeviceDiagnosticsConfigFeaturesNV<'a> {
+    const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::PHYSICAL_DEVICE_DIAGNOSTICS_CONFIG_FEATURES_NV;
+}
+unsafe impl<'a> crate::Extends<crate::vk::PhysicalDeviceFeatures2<'_>>
+for PhysicalDeviceDiagnosticsConfigFeaturesNV<'a> {}
+unsafe impl<'a> crate::Extends<crate::vk::DeviceCreateInfo<'_>>
+for PhysicalDeviceDiagnosticsConfigFeaturesNV<'a> {}
+impl<'a> Default for PhysicalDeviceDiagnosticsConfigFeaturesNV<'a> {
+    fn default() -> Self {
+        Self {
+            s_type: <Self as crate::TaggedStructure>::STRUCTURE_TYPE,
+            p_next: Default::default(),
+            diagnostics_config: Default::default(),
+            _marker: ::core::marker::PhantomData,
+        }
+    }
+}
+impl<'a> PhysicalDeviceDiagnosticsConfigFeaturesNV<'a> {
+    pub fn diagnostics_config(mut self, diagnostics_config: bool) -> Self {
+        self.diagnostics_config = diagnostics_config.into();
+        self
+    }
+}
 #[repr(C)]
 #[derive(Clone, Copy)]
 pub struct DeviceDiagnosticsConfigCreateInfoNV<'a> {
@@ -16,6 +40,27 @@ pub struct DeviceDiagnosticsConfigCreateInfoNV<'a> {
     pub p_next: *const core::ffi::c_void,
     pub flags: crate::vk::DeviceDiagnosticsConfigFlagsNV,
     pub _marker: ::core::marker::PhantomData<&'a ()>,
+}
+unsafe impl<'a> crate::TaggedStructure<'a> for DeviceDiagnosticsConfigCreateInfoNV<'a> {
+    const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::DEVICE_DIAGNOSTICS_CONFIG_CREATE_INFO_NV;
+}
+unsafe impl<'a> crate::Extends<crate::vk::DeviceCreateInfo<'_>>
+for DeviceDiagnosticsConfigCreateInfoNV<'a> {}
+impl<'a> Default for DeviceDiagnosticsConfigCreateInfoNV<'a> {
+    fn default() -> Self {
+        Self {
+            s_type: <Self as crate::TaggedStructure>::STRUCTURE_TYPE,
+            p_next: Default::default(),
+            flags: Default::default(),
+            _marker: ::core::marker::PhantomData,
+        }
+    }
+}
+impl<'a> DeviceDiagnosticsConfigCreateInfoNV<'a> {
+    pub fn flags(mut self, flags: crate::vk::DeviceDiagnosticsConfigFlagsNV) -> Self {
+        self.flags = flags;
+        self
+    }
 }
 ///Provided by [`nv::device_diagnostics_config`](crate::nv::device_diagnostics_config)
 impl crate::vk::StructureType {
@@ -102,7 +147,7 @@ impl core::ops::Not for DeviceDiagnosticsConfigFlagsNV {
     }
 }
 #[repr(transparent)]
-#[derive(Clone, Copy)]
+#[derive(Clone, Copy, Default)]
 pub struct DeviceDiagnosticsConfigFlagBitsNV(pub(crate) u32);
 ///Provided by [`nv::device_diagnostics_config`](crate::nv::device_diagnostics_config)
 impl DeviceDiagnosticsConfigFlagBitsNV {

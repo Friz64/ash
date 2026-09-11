@@ -60,17 +60,41 @@ impl DeviceFn {
 }
 pub(crate) mod reexport {
     #[repr(C)]
-    #[derive(Clone, Copy)]
+    #[derive(Clone, Copy, Default)]
     pub struct MultiDrawInfoEXT {
         pub first_vertex: u32,
         pub vertex_count: u32,
     }
+    impl MultiDrawInfoEXT {
+        pub fn first_vertex(mut self, first_vertex: u32) -> Self {
+            self.first_vertex = first_vertex;
+            self
+        }
+        pub fn vertex_count(mut self, vertex_count: u32) -> Self {
+            self.vertex_count = vertex_count;
+            self
+        }
+    }
     #[repr(C)]
-    #[derive(Clone, Copy)]
+    #[derive(Clone, Copy, Default)]
     pub struct MultiDrawIndexedInfoEXT {
         pub first_index: u32,
         pub index_count: u32,
         pub vertex_offset: i32,
+    }
+    impl MultiDrawIndexedInfoEXT {
+        pub fn first_index(mut self, first_index: u32) -> Self {
+            self.first_index = first_index;
+            self
+        }
+        pub fn index_count(mut self, index_count: u32) -> Self {
+            self.index_count = index_count;
+            self
+        }
+        pub fn vertex_offset(mut self, vertex_offset: i32) -> Self {
+            self.vertex_offset = vertex_offset;
+            self
+        }
     }
     #[repr(C)]
     #[derive(Clone, Copy)]
@@ -80,6 +104,28 @@ pub(crate) mod reexport {
         pub max_multi_draw_count: u32,
         pub _marker: ::core::marker::PhantomData<&'a ()>,
     }
+    unsafe impl<'a> crate::TaggedStructure<'a>
+    for PhysicalDeviceMultiDrawPropertiesEXT<'a> {
+        const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::PHYSICAL_DEVICE_MULTI_DRAW_PROPERTIES_EXT;
+    }
+    unsafe impl<'a> crate::Extends<crate::vk::PhysicalDeviceProperties2<'_>>
+    for PhysicalDeviceMultiDrawPropertiesEXT<'a> {}
+    impl<'a> Default for PhysicalDeviceMultiDrawPropertiesEXT<'a> {
+        fn default() -> Self {
+            Self {
+                s_type: <Self as crate::TaggedStructure>::STRUCTURE_TYPE,
+                p_next: Default::default(),
+                max_multi_draw_count: Default::default(),
+                _marker: ::core::marker::PhantomData,
+            }
+        }
+    }
+    impl<'a> PhysicalDeviceMultiDrawPropertiesEXT<'a> {
+        pub fn max_multi_draw_count(mut self, max_multi_draw_count: u32) -> Self {
+            self.max_multi_draw_count = max_multi_draw_count;
+            self
+        }
+    }
     #[repr(C)]
     #[derive(Clone, Copy)]
     pub struct PhysicalDeviceMultiDrawFeaturesEXT<'a> {
@@ -87,6 +133,30 @@ pub(crate) mod reexport {
         pub p_next: *mut core::ffi::c_void,
         pub multi_draw: crate::vk::Bool32,
         pub _marker: ::core::marker::PhantomData<&'a ()>,
+    }
+    unsafe impl<'a> crate::TaggedStructure<'a>
+    for PhysicalDeviceMultiDrawFeaturesEXT<'a> {
+        const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::PHYSICAL_DEVICE_MULTI_DRAW_FEATURES_EXT;
+    }
+    unsafe impl<'a> crate::Extends<crate::vk::PhysicalDeviceFeatures2<'_>>
+    for PhysicalDeviceMultiDrawFeaturesEXT<'a> {}
+    unsafe impl<'a> crate::Extends<crate::vk::DeviceCreateInfo<'_>>
+    for PhysicalDeviceMultiDrawFeaturesEXT<'a> {}
+    impl<'a> Default for PhysicalDeviceMultiDrawFeaturesEXT<'a> {
+        fn default() -> Self {
+            Self {
+                s_type: <Self as crate::TaggedStructure>::STRUCTURE_TYPE,
+                p_next: Default::default(),
+                multi_draw: Default::default(),
+                _marker: ::core::marker::PhantomData,
+            }
+        }
+    }
+    impl<'a> PhysicalDeviceMultiDrawFeaturesEXT<'a> {
+        pub fn multi_draw(mut self, multi_draw: bool) -> Self {
+            self.multi_draw = multi_draw.into();
+            self
+        }
     }
     ///Provided by [`ext::multi_draw`](crate::ext::multi_draw)
     impl crate::vk::StructureType {

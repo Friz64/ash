@@ -9,6 +9,33 @@ pub struct PhysicalDeviceCommandBufferInheritanceFeaturesNV<'a> {
     pub command_buffer_inheritance: crate::vk::Bool32,
     pub _marker: ::core::marker::PhantomData<&'a ()>,
 }
+unsafe impl<'a> crate::TaggedStructure<'a>
+for PhysicalDeviceCommandBufferInheritanceFeaturesNV<'a> {
+    const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::PHYSICAL_DEVICE_COMMAND_BUFFER_INHERITANCE_FEATURES_NV;
+}
+unsafe impl<'a> crate::Extends<crate::vk::PhysicalDeviceFeatures2<'_>>
+for PhysicalDeviceCommandBufferInheritanceFeaturesNV<'a> {}
+unsafe impl<'a> crate::Extends<crate::vk::DeviceCreateInfo<'_>>
+for PhysicalDeviceCommandBufferInheritanceFeaturesNV<'a> {}
+impl<'a> Default for PhysicalDeviceCommandBufferInheritanceFeaturesNV<'a> {
+    fn default() -> Self {
+        Self {
+            s_type: <Self as crate::TaggedStructure>::STRUCTURE_TYPE,
+            p_next: Default::default(),
+            command_buffer_inheritance: Default::default(),
+            _marker: ::core::marker::PhantomData,
+        }
+    }
+}
+impl<'a> PhysicalDeviceCommandBufferInheritanceFeaturesNV<'a> {
+    pub fn command_buffer_inheritance(
+        mut self,
+        command_buffer_inheritance: bool,
+    ) -> Self {
+        self.command_buffer_inheritance = command_buffer_inheritance.into();
+        self
+    }
+}
 ///Provided by [`nv::command_buffer_inheritance`](crate::nv::command_buffer_inheritance)
 impl crate::vk::StructureType {
     pub const PHYSICAL_DEVICE_COMMAND_BUFFER_INHERITANCE_FEATURES_NV: Self = Self(

@@ -71,11 +71,30 @@ impl DeviceFn {
 }
 pub(crate) mod reexport {
     #[repr(C)]
-    #[derive(Clone, Copy)]
+    #[derive(Clone, Copy, Default)]
     pub struct ShadingRatePaletteNV<'a> {
         pub shading_rate_palette_entry_count: u32,
         pub p_shading_rate_palette_entries: *const crate::vk::ShadingRatePaletteEntryNV,
         pub _marker: ::core::marker::PhantomData<&'a ()>,
+    }
+    impl<'a> ShadingRatePaletteNV<'a> {
+        pub fn shading_rate_palette_entry_count(
+            mut self,
+            shading_rate_palette_entry_count: u32,
+        ) -> Self {
+            self.shading_rate_palette_entry_count = shading_rate_palette_entry_count;
+            self
+        }
+        pub fn p_shading_rate_palette_entries(
+            mut self,
+            p_shading_rate_palette_entries: &'a [crate::vk::ShadingRatePaletteEntryNV],
+        ) -> Self {
+            self.shading_rate_palette_entry_count = p_shading_rate_palette_entries.len()
+                as _;
+            self.p_shading_rate_palette_entries = p_shading_rate_palette_entries
+                .as_ptr();
+            self
+        }
     }
     #[repr(C)]
     #[derive(Clone, Copy)]
@@ -87,6 +106,45 @@ pub(crate) mod reexport {
         pub p_shading_rate_palettes: *const crate::vk::ShadingRatePaletteNV<'a>,
         pub _marker: ::core::marker::PhantomData<&'a ()>,
     }
+    unsafe impl<'a> crate::TaggedStructure<'a>
+    for PipelineViewportShadingRateImageStateCreateInfoNV<'a> {
+        const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::PIPELINE_VIEWPORT_SHADING_RATE_IMAGE_STATE_CREATE_INFO_NV;
+    }
+    unsafe impl<'a> crate::Extends<crate::vk::PipelineViewportStateCreateInfo<'_>>
+    for PipelineViewportShadingRateImageStateCreateInfoNV<'a> {}
+    impl<'a> Default for PipelineViewportShadingRateImageStateCreateInfoNV<'a> {
+        fn default() -> Self {
+            Self {
+                s_type: <Self as crate::TaggedStructure>::STRUCTURE_TYPE,
+                p_next: Default::default(),
+                shading_rate_image_enable: Default::default(),
+                viewport_count: Default::default(),
+                p_shading_rate_palettes: Default::default(),
+                _marker: ::core::marker::PhantomData,
+            }
+        }
+    }
+    impl<'a> PipelineViewportShadingRateImageStateCreateInfoNV<'a> {
+        pub fn shading_rate_image_enable(
+            mut self,
+            shading_rate_image_enable: bool,
+        ) -> Self {
+            self.shading_rate_image_enable = shading_rate_image_enable.into();
+            self
+        }
+        pub fn viewport_count(mut self, viewport_count: u32) -> Self {
+            self.viewport_count = viewport_count;
+            self
+        }
+        pub fn p_shading_rate_palettes(
+            mut self,
+            p_shading_rate_palettes: &'a [crate::vk::ShadingRatePaletteNV<'a>],
+        ) -> Self {
+            self.viewport_count = p_shading_rate_palettes.len() as _;
+            self.p_shading_rate_palettes = p_shading_rate_palettes.as_ptr();
+            self
+        }
+    }
     #[repr(C)]
     #[derive(Clone, Copy)]
     pub struct PhysicalDeviceShadingRateImageFeaturesNV<'a> {
@@ -95,6 +153,39 @@ pub(crate) mod reexport {
         pub shading_rate_image: crate::vk::Bool32,
         pub shading_rate_coarse_sample_order: crate::vk::Bool32,
         pub _marker: ::core::marker::PhantomData<&'a ()>,
+    }
+    unsafe impl<'a> crate::TaggedStructure<'a>
+    for PhysicalDeviceShadingRateImageFeaturesNV<'a> {
+        const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::PHYSICAL_DEVICE_SHADING_RATE_IMAGE_FEATURES_NV;
+    }
+    unsafe impl<'a> crate::Extends<crate::vk::PhysicalDeviceFeatures2<'_>>
+    for PhysicalDeviceShadingRateImageFeaturesNV<'a> {}
+    unsafe impl<'a> crate::Extends<crate::vk::DeviceCreateInfo<'_>>
+    for PhysicalDeviceShadingRateImageFeaturesNV<'a> {}
+    impl<'a> Default for PhysicalDeviceShadingRateImageFeaturesNV<'a> {
+        fn default() -> Self {
+            Self {
+                s_type: <Self as crate::TaggedStructure>::STRUCTURE_TYPE,
+                p_next: Default::default(),
+                shading_rate_image: Default::default(),
+                shading_rate_coarse_sample_order: Default::default(),
+                _marker: ::core::marker::PhantomData,
+            }
+        }
+    }
+    impl<'a> PhysicalDeviceShadingRateImageFeaturesNV<'a> {
+        pub fn shading_rate_image(mut self, shading_rate_image: bool) -> Self {
+            self.shading_rate_image = shading_rate_image.into();
+            self
+        }
+        pub fn shading_rate_coarse_sample_order(
+            mut self,
+            shading_rate_coarse_sample_order: bool,
+        ) -> Self {
+            self.shading_rate_coarse_sample_order = shading_rate_coarse_sample_order
+                .into();
+            self
+        }
     }
     #[repr(C)]
     #[derive(Clone, Copy)]
@@ -106,21 +197,101 @@ pub(crate) mod reexport {
         pub shading_rate_max_coarse_samples: u32,
         pub _marker: ::core::marker::PhantomData<&'a ()>,
     }
+    unsafe impl<'a> crate::TaggedStructure<'a>
+    for PhysicalDeviceShadingRateImagePropertiesNV<'a> {
+        const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::PHYSICAL_DEVICE_SHADING_RATE_IMAGE_PROPERTIES_NV;
+    }
+    unsafe impl<'a> crate::Extends<crate::vk::PhysicalDeviceProperties2<'_>>
+    for PhysicalDeviceShadingRateImagePropertiesNV<'a> {}
+    impl<'a> Default for PhysicalDeviceShadingRateImagePropertiesNV<'a> {
+        fn default() -> Self {
+            Self {
+                s_type: <Self as crate::TaggedStructure>::STRUCTURE_TYPE,
+                p_next: Default::default(),
+                shading_rate_texel_size: Default::default(),
+                shading_rate_palette_size: Default::default(),
+                shading_rate_max_coarse_samples: Default::default(),
+                _marker: ::core::marker::PhantomData,
+            }
+        }
+    }
+    impl<'a> PhysicalDeviceShadingRateImagePropertiesNV<'a> {
+        pub fn shading_rate_texel_size(
+            mut self,
+            shading_rate_texel_size: crate::vk::Extent2D,
+        ) -> Self {
+            self.shading_rate_texel_size = shading_rate_texel_size;
+            self
+        }
+        pub fn shading_rate_palette_size(
+            mut self,
+            shading_rate_palette_size: u32,
+        ) -> Self {
+            self.shading_rate_palette_size = shading_rate_palette_size;
+            self
+        }
+        pub fn shading_rate_max_coarse_samples(
+            mut self,
+            shading_rate_max_coarse_samples: u32,
+        ) -> Self {
+            self.shading_rate_max_coarse_samples = shading_rate_max_coarse_samples;
+            self
+        }
+    }
     #[repr(C)]
-    #[derive(Clone, Copy)]
+    #[derive(Clone, Copy, Default)]
     pub struct CoarseSampleLocationNV {
         pub pixel_x: u32,
         pub pixel_y: u32,
         pub sample: u32,
     }
+    impl CoarseSampleLocationNV {
+        pub fn pixel_x(mut self, pixel_x: u32) -> Self {
+            self.pixel_x = pixel_x;
+            self
+        }
+        pub fn pixel_y(mut self, pixel_y: u32) -> Self {
+            self.pixel_y = pixel_y;
+            self
+        }
+        pub fn sample(mut self, sample: u32) -> Self {
+            self.sample = sample;
+            self
+        }
+    }
     #[repr(C)]
-    #[derive(Clone, Copy)]
+    #[derive(Clone, Copy, Default)]
     pub struct CoarseSampleOrderCustomNV<'a> {
         pub shading_rate: crate::vk::ShadingRatePaletteEntryNV,
         pub sample_count: u32,
         pub sample_location_count: u32,
         pub p_sample_locations: *const crate::vk::CoarseSampleLocationNV,
         pub _marker: ::core::marker::PhantomData<&'a ()>,
+    }
+    impl<'a> CoarseSampleOrderCustomNV<'a> {
+        pub fn shading_rate(
+            mut self,
+            shading_rate: crate::vk::ShadingRatePaletteEntryNV,
+        ) -> Self {
+            self.shading_rate = shading_rate;
+            self
+        }
+        pub fn sample_count(mut self, sample_count: u32) -> Self {
+            self.sample_count = sample_count;
+            self
+        }
+        pub fn sample_location_count(mut self, sample_location_count: u32) -> Self {
+            self.sample_location_count = sample_location_count;
+            self
+        }
+        pub fn p_sample_locations(
+            mut self,
+            p_sample_locations: &'a [crate::vk::CoarseSampleLocationNV],
+        ) -> Self {
+            self.sample_location_count = p_sample_locations.len() as _;
+            self.p_sample_locations = p_sample_locations.as_ptr();
+            self
+        }
     }
     #[repr(C)]
     #[derive(Clone, Copy)]
@@ -131,6 +302,48 @@ pub(crate) mod reexport {
         pub custom_sample_order_count: u32,
         pub p_custom_sample_orders: *const crate::vk::CoarseSampleOrderCustomNV<'a>,
         pub _marker: ::core::marker::PhantomData<&'a ()>,
+    }
+    unsafe impl<'a> crate::TaggedStructure<'a>
+    for PipelineViewportCoarseSampleOrderStateCreateInfoNV<'a> {
+        const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::PIPELINE_VIEWPORT_COARSE_SAMPLE_ORDER_STATE_CREATE_INFO_NV;
+    }
+    unsafe impl<'a> crate::Extends<crate::vk::PipelineViewportStateCreateInfo<'_>>
+    for PipelineViewportCoarseSampleOrderStateCreateInfoNV<'a> {}
+    impl<'a> Default for PipelineViewportCoarseSampleOrderStateCreateInfoNV<'a> {
+        fn default() -> Self {
+            Self {
+                s_type: <Self as crate::TaggedStructure>::STRUCTURE_TYPE,
+                p_next: Default::default(),
+                sample_order_type: Default::default(),
+                custom_sample_order_count: Default::default(),
+                p_custom_sample_orders: Default::default(),
+                _marker: ::core::marker::PhantomData,
+            }
+        }
+    }
+    impl<'a> PipelineViewportCoarseSampleOrderStateCreateInfoNV<'a> {
+        pub fn sample_order_type(
+            mut self,
+            sample_order_type: crate::vk::CoarseSampleOrderTypeNV,
+        ) -> Self {
+            self.sample_order_type = sample_order_type;
+            self
+        }
+        pub fn custom_sample_order_count(
+            mut self,
+            custom_sample_order_count: u32,
+        ) -> Self {
+            self.custom_sample_order_count = custom_sample_order_count;
+            self
+        }
+        pub fn p_custom_sample_orders(
+            mut self,
+            p_custom_sample_orders: &'a [crate::vk::CoarseSampleOrderCustomNV<'a>],
+        ) -> Self {
+            self.custom_sample_order_count = p_custom_sample_orders.len() as _;
+            self.p_custom_sample_orders = p_custom_sample_orders.as_ptr();
+            self
+        }
     }
     ///Provided by [`nv::shading_rate_image`](crate::nv::shading_rate_image)
     impl crate::vk::ImageLayout {

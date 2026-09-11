@@ -43,6 +43,27 @@ pub(crate) mod reexport {
         pub memory: crate::vk::DeviceMemory,
         pub _marker: ::core::marker::PhantomData<&'a ()>,
     }
+    unsafe impl<'a> crate::TaggedStructure<'a> for TileMemoryBindInfoQCOM<'a> {
+        const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::TILE_MEMORY_BIND_INFO_QCOM;
+    }
+    unsafe impl<'a> crate::Extends<crate::vk::CommandBufferInheritanceInfo<'_>>
+    for TileMemoryBindInfoQCOM<'a> {}
+    impl<'a> Default for TileMemoryBindInfoQCOM<'a> {
+        fn default() -> Self {
+            Self {
+                s_type: <Self as crate::TaggedStructure>::STRUCTURE_TYPE,
+                p_next: Default::default(),
+                memory: Default::default(),
+                _marker: ::core::marker::PhantomData,
+            }
+        }
+    }
+    impl<'a> TileMemoryBindInfoQCOM<'a> {
+        pub fn memory(mut self, memory: crate::vk::DeviceMemory) -> Self {
+            self.memory = memory;
+            self
+        }
+    }
     #[repr(C)]
     #[derive(Clone, Copy)]
     pub struct PhysicalDeviceTileMemoryHeapFeaturesQCOM<'a> {
@@ -50,6 +71,30 @@ pub(crate) mod reexport {
         pub p_next: *mut core::ffi::c_void,
         pub tile_memory_heap: crate::vk::Bool32,
         pub _marker: ::core::marker::PhantomData<&'a ()>,
+    }
+    unsafe impl<'a> crate::TaggedStructure<'a>
+    for PhysicalDeviceTileMemoryHeapFeaturesQCOM<'a> {
+        const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::PHYSICAL_DEVICE_TILE_MEMORY_HEAP_FEATURES_QCOM;
+    }
+    unsafe impl<'a> crate::Extends<crate::vk::PhysicalDeviceFeatures2<'_>>
+    for PhysicalDeviceTileMemoryHeapFeaturesQCOM<'a> {}
+    unsafe impl<'a> crate::Extends<crate::vk::DeviceCreateInfo<'_>>
+    for PhysicalDeviceTileMemoryHeapFeaturesQCOM<'a> {}
+    impl<'a> Default for PhysicalDeviceTileMemoryHeapFeaturesQCOM<'a> {
+        fn default() -> Self {
+            Self {
+                s_type: <Self as crate::TaggedStructure>::STRUCTURE_TYPE,
+                p_next: Default::default(),
+                tile_memory_heap: Default::default(),
+                _marker: ::core::marker::PhantomData,
+            }
+        }
+    }
+    impl<'a> PhysicalDeviceTileMemoryHeapFeaturesQCOM<'a> {
+        pub fn tile_memory_heap(mut self, tile_memory_heap: bool) -> Self {
+            self.tile_memory_heap = tile_memory_heap.into();
+            self
+        }
     }
     #[repr(C)]
     #[derive(Clone, Copy)]
@@ -60,6 +105,33 @@ pub(crate) mod reexport {
         pub tile_buffer_transfers: crate::vk::Bool32,
         pub _marker: ::core::marker::PhantomData<&'a ()>,
     }
+    unsafe impl<'a> crate::TaggedStructure<'a>
+    for PhysicalDeviceTileMemoryHeapPropertiesQCOM<'a> {
+        const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::PHYSICAL_DEVICE_TILE_MEMORY_HEAP_PROPERTIES_QCOM;
+    }
+    unsafe impl<'a> crate::Extends<crate::vk::PhysicalDeviceProperties2<'_>>
+    for PhysicalDeviceTileMemoryHeapPropertiesQCOM<'a> {}
+    impl<'a> Default for PhysicalDeviceTileMemoryHeapPropertiesQCOM<'a> {
+        fn default() -> Self {
+            Self {
+                s_type: <Self as crate::TaggedStructure>::STRUCTURE_TYPE,
+                p_next: Default::default(),
+                queue_submit_boundary: Default::default(),
+                tile_buffer_transfers: Default::default(),
+                _marker: ::core::marker::PhantomData,
+            }
+        }
+    }
+    impl<'a> PhysicalDeviceTileMemoryHeapPropertiesQCOM<'a> {
+        pub fn queue_submit_boundary(mut self, queue_submit_boundary: bool) -> Self {
+            self.queue_submit_boundary = queue_submit_boundary.into();
+            self
+        }
+        pub fn tile_buffer_transfers(mut self, tile_buffer_transfers: bool) -> Self {
+            self.tile_buffer_transfers = tile_buffer_transfers.into();
+            self
+        }
+    }
     #[repr(C)]
     #[derive(Clone, Copy)]
     pub struct TileMemorySizeInfoQCOM<'a> {
@@ -67,6 +139,31 @@ pub(crate) mod reexport {
         pub p_next: *const core::ffi::c_void,
         pub size: crate::vk::DeviceSize,
         pub _marker: ::core::marker::PhantomData<&'a ()>,
+    }
+    unsafe impl<'a> crate::TaggedStructure<'a> for TileMemorySizeInfoQCOM<'a> {
+        const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::TILE_MEMORY_SIZE_INFO_QCOM;
+    }
+    unsafe impl<'a> crate::Extends<crate::vk::RenderPassCreateInfo<'_>>
+    for TileMemorySizeInfoQCOM<'a> {}
+    unsafe impl<'a> crate::Extends<crate::vk::RenderPassCreateInfo2<'_>>
+    for TileMemorySizeInfoQCOM<'a> {}
+    unsafe impl<'a> crate::Extends<crate::vk::RenderingInfo<'_>>
+    for TileMemorySizeInfoQCOM<'a> {}
+    impl<'a> Default for TileMemorySizeInfoQCOM<'a> {
+        fn default() -> Self {
+            Self {
+                s_type: <Self as crate::TaggedStructure>::STRUCTURE_TYPE,
+                p_next: Default::default(),
+                size: Default::default(),
+                _marker: ::core::marker::PhantomData,
+            }
+        }
+    }
+    impl<'a> TileMemorySizeInfoQCOM<'a> {
+        pub fn size(mut self, size: crate::vk::DeviceSize) -> Self {
+            self.size = size;
+            self
+        }
     }
     #[repr(C)]
     #[derive(Clone, Copy)]
@@ -76,6 +173,32 @@ pub(crate) mod reexport {
         pub size: crate::vk::DeviceSize,
         pub alignment: crate::vk::DeviceSize,
         pub _marker: ::core::marker::PhantomData<&'a ()>,
+    }
+    unsafe impl<'a> crate::TaggedStructure<'a> for TileMemoryRequirementsQCOM<'a> {
+        const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::TILE_MEMORY_REQUIREMENTS_QCOM;
+    }
+    unsafe impl<'a> crate::Extends<crate::vk::MemoryRequirements2<'_>>
+    for TileMemoryRequirementsQCOM<'a> {}
+    impl<'a> Default for TileMemoryRequirementsQCOM<'a> {
+        fn default() -> Self {
+            Self {
+                s_type: <Self as crate::TaggedStructure>::STRUCTURE_TYPE,
+                p_next: Default::default(),
+                size: Default::default(),
+                alignment: Default::default(),
+                _marker: ::core::marker::PhantomData,
+            }
+        }
+    }
+    impl<'a> TileMemoryRequirementsQCOM<'a> {
+        pub fn size(mut self, size: crate::vk::DeviceSize) -> Self {
+            self.size = size;
+            self
+        }
+        pub fn alignment(mut self, alignment: crate::vk::DeviceSize) -> Self {
+            self.alignment = alignment;
+            self
+        }
     }
     ///Provided by [`qcom::tile_memory_heap`](crate::qcom::tile_memory_heap)
     impl crate::vk::StructureType {

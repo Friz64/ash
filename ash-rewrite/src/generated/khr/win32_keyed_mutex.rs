@@ -15,6 +15,70 @@ pub struct Win32KeyedMutexAcquireReleaseInfoKHR<'a> {
     pub p_release_keys: *const u64,
     pub _marker: ::core::marker::PhantomData<&'a ()>,
 }
+unsafe impl<'a> crate::TaggedStructure<'a> for Win32KeyedMutexAcquireReleaseInfoKHR<'a> {
+    const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::WIN32_KEYED_MUTEX_ACQUIRE_RELEASE_INFO_KHR;
+}
+unsafe impl<'a> crate::Extends<crate::vk::SubmitInfo<'_>>
+for Win32KeyedMutexAcquireReleaseInfoKHR<'a> {}
+unsafe impl<'a> crate::Extends<crate::vk::SubmitInfo2<'_>>
+for Win32KeyedMutexAcquireReleaseInfoKHR<'a> {}
+impl<'a> Default for Win32KeyedMutexAcquireReleaseInfoKHR<'a> {
+    fn default() -> Self {
+        Self {
+            s_type: <Self as crate::TaggedStructure>::STRUCTURE_TYPE,
+            p_next: Default::default(),
+            acquire_count: Default::default(),
+            p_acquire_syncs: Default::default(),
+            p_acquire_keys: Default::default(),
+            p_acquire_timeouts: Default::default(),
+            release_count: Default::default(),
+            p_release_syncs: Default::default(),
+            p_release_keys: Default::default(),
+            _marker: ::core::marker::PhantomData,
+        }
+    }
+}
+impl<'a> Win32KeyedMutexAcquireReleaseInfoKHR<'a> {
+    pub fn acquire_count(mut self, acquire_count: u32) -> Self {
+        self.acquire_count = acquire_count;
+        self
+    }
+    pub fn p_acquire_syncs(
+        mut self,
+        p_acquire_syncs: &'a [crate::vk::DeviceMemory],
+    ) -> Self {
+        self.acquire_count = p_acquire_syncs.len() as _;
+        self.p_acquire_syncs = p_acquire_syncs.as_ptr();
+        self
+    }
+    pub fn p_acquire_keys(mut self, p_acquire_keys: &'a [u64]) -> Self {
+        self.acquire_count = p_acquire_keys.len() as _;
+        self.p_acquire_keys = p_acquire_keys.as_ptr();
+        self
+    }
+    pub fn p_acquire_timeouts(mut self, p_acquire_timeouts: &'a [u32]) -> Self {
+        self.acquire_count = p_acquire_timeouts.len() as _;
+        self.p_acquire_timeouts = p_acquire_timeouts.as_ptr();
+        self
+    }
+    pub fn release_count(mut self, release_count: u32) -> Self {
+        self.release_count = release_count;
+        self
+    }
+    pub fn p_release_syncs(
+        mut self,
+        p_release_syncs: &'a [crate::vk::DeviceMemory],
+    ) -> Self {
+        self.release_count = p_release_syncs.len() as _;
+        self.p_release_syncs = p_release_syncs.as_ptr();
+        self
+    }
+    pub fn p_release_keys(mut self, p_release_keys: &'a [u64]) -> Self {
+        self.release_count = p_release_keys.len() as _;
+        self.p_release_keys = p_release_keys.as_ptr();
+        self
+    }
+}
 ///Provided by [`khr::win32_keyed_mutex`](crate::khr::win32_keyed_mutex)
 impl crate::vk::StructureType {
     pub const WIN32_KEYED_MUTEX_ACQUIRE_RELEASE_INFO_KHR: Self = Self(1000075000);

@@ -9,6 +9,31 @@ pub struct PhysicalDeviceLayeredDriverPropertiesMSFT<'a> {
     pub underlying_api: crate::vk::LayeredDriverUnderlyingApiMSFT,
     pub _marker: ::core::marker::PhantomData<&'a ()>,
 }
+unsafe impl<'a> crate::TaggedStructure<'a>
+for PhysicalDeviceLayeredDriverPropertiesMSFT<'a> {
+    const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::PHYSICAL_DEVICE_LAYERED_DRIVER_PROPERTIES_MSFT;
+}
+unsafe impl<'a> crate::Extends<crate::vk::PhysicalDeviceProperties2<'_>>
+for PhysicalDeviceLayeredDriverPropertiesMSFT<'a> {}
+impl<'a> Default for PhysicalDeviceLayeredDriverPropertiesMSFT<'a> {
+    fn default() -> Self {
+        Self {
+            s_type: <Self as crate::TaggedStructure>::STRUCTURE_TYPE,
+            p_next: Default::default(),
+            underlying_api: Default::default(),
+            _marker: ::core::marker::PhantomData,
+        }
+    }
+}
+impl<'a> PhysicalDeviceLayeredDriverPropertiesMSFT<'a> {
+    pub fn underlying_api(
+        mut self,
+        underlying_api: crate::vk::LayeredDriverUnderlyingApiMSFT,
+    ) -> Self {
+        self.underlying_api = underlying_api;
+        self
+    }
+}
 ///Provided by [`msft::layered_driver`](crate::msft::layered_driver)
 impl crate::vk::StructureType {
     pub const PHYSICAL_DEVICE_LAYERED_DRIVER_PROPERTIES_MSFT: Self = Self(1000530000);

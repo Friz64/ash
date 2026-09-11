@@ -95,6 +95,28 @@ pub(crate) mod reexport {
         pub display_properties: crate::vk::DisplayPropertiesKHR<'a>,
         pub _marker: ::core::marker::PhantomData<&'a ()>,
     }
+    unsafe impl<'a> crate::TaggedStructure<'a> for DisplayProperties2KHR<'a> {
+        const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::DISPLAY_PROPERTIES_2_KHR;
+    }
+    impl<'a> Default for DisplayProperties2KHR<'a> {
+        fn default() -> Self {
+            Self {
+                s_type: <Self as crate::TaggedStructure>::STRUCTURE_TYPE,
+                p_next: Default::default(),
+                display_properties: Default::default(),
+                _marker: ::core::marker::PhantomData,
+            }
+        }
+    }
+    impl<'a> DisplayProperties2KHR<'a> {
+        pub fn display_properties(
+            mut self,
+            display_properties: crate::vk::DisplayPropertiesKHR<'a>,
+        ) -> Self {
+            self.display_properties = display_properties;
+            self
+        }
+    }
     #[repr(C)]
     #[derive(Clone, Copy)]
     pub struct DisplayPlaneProperties2KHR<'a> {
@@ -103,6 +125,28 @@ pub(crate) mod reexport {
         pub display_plane_properties: crate::vk::DisplayPlanePropertiesKHR,
         pub _marker: ::core::marker::PhantomData<&'a ()>,
     }
+    unsafe impl<'a> crate::TaggedStructure<'a> for DisplayPlaneProperties2KHR<'a> {
+        const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::DISPLAY_PLANE_PROPERTIES_2_KHR;
+    }
+    impl<'a> Default for DisplayPlaneProperties2KHR<'a> {
+        fn default() -> Self {
+            Self {
+                s_type: <Self as crate::TaggedStructure>::STRUCTURE_TYPE,
+                p_next: Default::default(),
+                display_plane_properties: Default::default(),
+                _marker: ::core::marker::PhantomData,
+            }
+        }
+    }
+    impl<'a> DisplayPlaneProperties2KHR<'a> {
+        pub fn display_plane_properties(
+            mut self,
+            display_plane_properties: crate::vk::DisplayPlanePropertiesKHR,
+        ) -> Self {
+            self.display_plane_properties = display_plane_properties;
+            self
+        }
+    }
     #[repr(C)]
     #[derive(Clone, Copy)]
     pub struct DisplayModeProperties2KHR<'a> {
@@ -110,6 +154,28 @@ pub(crate) mod reexport {
         pub p_next: *mut core::ffi::c_void,
         pub display_mode_properties: crate::vk::DisplayModePropertiesKHR,
         pub _marker: ::core::marker::PhantomData<&'a ()>,
+    }
+    unsafe impl<'a> crate::TaggedStructure<'a> for DisplayModeProperties2KHR<'a> {
+        const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::DISPLAY_MODE_PROPERTIES_2_KHR;
+    }
+    impl<'a> Default for DisplayModeProperties2KHR<'a> {
+        fn default() -> Self {
+            Self {
+                s_type: <Self as crate::TaggedStructure>::STRUCTURE_TYPE,
+                p_next: Default::default(),
+                display_mode_properties: Default::default(),
+                _marker: ::core::marker::PhantomData,
+            }
+        }
+    }
+    impl<'a> DisplayModeProperties2KHR<'a> {
+        pub fn display_mode_properties(
+            mut self,
+            display_mode_properties: crate::vk::DisplayModePropertiesKHR,
+        ) -> Self {
+            self.display_mode_properties = display_mode_properties;
+            self
+        }
     }
     #[repr(C)]
     #[derive(Clone, Copy)]
@@ -120,6 +186,30 @@ pub(crate) mod reexport {
         pub plane_index: u32,
         pub _marker: ::core::marker::PhantomData<&'a ()>,
     }
+    unsafe impl<'a> crate::TaggedStructure<'a> for DisplayPlaneInfo2KHR<'a> {
+        const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::DISPLAY_PLANE_INFO_2_KHR;
+    }
+    impl<'a> Default for DisplayPlaneInfo2KHR<'a> {
+        fn default() -> Self {
+            Self {
+                s_type: <Self as crate::TaggedStructure>::STRUCTURE_TYPE,
+                p_next: Default::default(),
+                mode: Default::default(),
+                plane_index: Default::default(),
+                _marker: ::core::marker::PhantomData,
+            }
+        }
+    }
+    impl<'a> DisplayPlaneInfo2KHR<'a> {
+        pub fn mode(mut self, mode: crate::vk::DisplayModeKHR) -> Self {
+            self.mode = mode;
+            self
+        }
+        pub fn plane_index(mut self, plane_index: u32) -> Self {
+            self.plane_index = plane_index;
+            self
+        }
+    }
     #[repr(C)]
     #[derive(Clone, Copy)]
     pub struct DisplayPlaneCapabilities2KHR<'a> {
@@ -127,6 +217,28 @@ pub(crate) mod reexport {
         pub p_next: *mut core::ffi::c_void,
         pub capabilities: crate::vk::DisplayPlaneCapabilitiesKHR,
         pub _marker: ::core::marker::PhantomData<&'a ()>,
+    }
+    unsafe impl<'a> crate::TaggedStructure<'a> for DisplayPlaneCapabilities2KHR<'a> {
+        const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::DISPLAY_PLANE_CAPABILITIES_2_KHR;
+    }
+    impl<'a> Default for DisplayPlaneCapabilities2KHR<'a> {
+        fn default() -> Self {
+            Self {
+                s_type: <Self as crate::TaggedStructure>::STRUCTURE_TYPE,
+                p_next: Default::default(),
+                capabilities: Default::default(),
+                _marker: ::core::marker::PhantomData,
+            }
+        }
+    }
+    impl<'a> DisplayPlaneCapabilities2KHR<'a> {
+        pub fn capabilities(
+            mut self,
+            capabilities: crate::vk::DisplayPlaneCapabilitiesKHR,
+        ) -> Self {
+            self.capabilities = capabilities;
+            self
+        }
     }
     ///Provided by [`khr::get_display_properties2`](crate::khr::get_display_properties2)
     impl crate::vk::StructureType {

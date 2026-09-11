@@ -60,6 +60,33 @@ pub(crate) mod reexport {
         pub shader_module_identifier: crate::vk::Bool32,
         pub _marker: ::core::marker::PhantomData<&'a ()>,
     }
+    unsafe impl<'a> crate::TaggedStructure<'a>
+    for PhysicalDeviceShaderModuleIdentifierFeaturesEXT<'a> {
+        const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::PHYSICAL_DEVICE_SHADER_MODULE_IDENTIFIER_FEATURES_EXT;
+    }
+    unsafe impl<'a> crate::Extends<crate::vk::PhysicalDeviceFeatures2<'_>>
+    for PhysicalDeviceShaderModuleIdentifierFeaturesEXT<'a> {}
+    unsafe impl<'a> crate::Extends<crate::vk::DeviceCreateInfo<'_>>
+    for PhysicalDeviceShaderModuleIdentifierFeaturesEXT<'a> {}
+    impl<'a> Default for PhysicalDeviceShaderModuleIdentifierFeaturesEXT<'a> {
+        fn default() -> Self {
+            Self {
+                s_type: <Self as crate::TaggedStructure>::STRUCTURE_TYPE,
+                p_next: Default::default(),
+                shader_module_identifier: Default::default(),
+                _marker: ::core::marker::PhantomData,
+            }
+        }
+    }
+    impl<'a> PhysicalDeviceShaderModuleIdentifierFeaturesEXT<'a> {
+        pub fn shader_module_identifier(
+            mut self,
+            shader_module_identifier: bool,
+        ) -> Self {
+            self.shader_module_identifier = shader_module_identifier.into();
+            self
+        }
+    }
     #[repr(C)]
     #[derive(Clone, Copy)]
     pub struct PhysicalDeviceShaderModuleIdentifierPropertiesEXT<'a> {
@@ -67,6 +94,31 @@ pub(crate) mod reexport {
         pub p_next: *mut core::ffi::c_void,
         pub shader_module_identifier_algorithm_uuid: [u8; crate::vk::UUID_SIZE as _],
         pub _marker: ::core::marker::PhantomData<&'a ()>,
+    }
+    unsafe impl<'a> crate::TaggedStructure<'a>
+    for PhysicalDeviceShaderModuleIdentifierPropertiesEXT<'a> {
+        const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::PHYSICAL_DEVICE_SHADER_MODULE_IDENTIFIER_PROPERTIES_EXT;
+    }
+    unsafe impl<'a> crate::Extends<crate::vk::PhysicalDeviceProperties2<'_>>
+    for PhysicalDeviceShaderModuleIdentifierPropertiesEXT<'a> {}
+    impl<'a> Default for PhysicalDeviceShaderModuleIdentifierPropertiesEXT<'a> {
+        fn default() -> Self {
+            Self {
+                s_type: <Self as crate::TaggedStructure>::STRUCTURE_TYPE,
+                p_next: Default::default(),
+                shader_module_identifier_algorithm_uuid: unsafe { core::mem::zeroed() },
+                _marker: ::core::marker::PhantomData,
+            }
+        }
+    }
+    impl<'a> PhysicalDeviceShaderModuleIdentifierPropertiesEXT<'a> {
+        pub fn shader_module_identifier_algorithm_uuid(
+            mut self,
+            shader_module_identifier_algorithm_uuid: [u8; crate::vk::UUID_SIZE as _],
+        ) -> Self {
+            self.shader_module_identifier_algorithm_uuid = shader_module_identifier_algorithm_uuid;
+            self
+        }
     }
     #[repr(C)]
     #[derive(Clone, Copy)]
@@ -77,6 +129,34 @@ pub(crate) mod reexport {
         pub p_identifier: *const u8,
         pub _marker: ::core::marker::PhantomData<&'a ()>,
     }
+    unsafe impl<'a> crate::TaggedStructure<'a>
+    for PipelineShaderStageModuleIdentifierCreateInfoEXT<'a> {
+        const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::PIPELINE_SHADER_STAGE_MODULE_IDENTIFIER_CREATE_INFO_EXT;
+    }
+    unsafe impl<'a> crate::Extends<crate::vk::PipelineShaderStageCreateInfo<'_>>
+    for PipelineShaderStageModuleIdentifierCreateInfoEXT<'a> {}
+    impl<'a> Default for PipelineShaderStageModuleIdentifierCreateInfoEXT<'a> {
+        fn default() -> Self {
+            Self {
+                s_type: <Self as crate::TaggedStructure>::STRUCTURE_TYPE,
+                p_next: Default::default(),
+                identifier_size: Default::default(),
+                p_identifier: Default::default(),
+                _marker: ::core::marker::PhantomData,
+            }
+        }
+    }
+    impl<'a> PipelineShaderStageModuleIdentifierCreateInfoEXT<'a> {
+        pub fn identifier_size(mut self, identifier_size: u32) -> Self {
+            self.identifier_size = identifier_size;
+            self
+        }
+        pub fn p_identifier(mut self, p_identifier: &'a [u8]) -> Self {
+            self.identifier_size = p_identifier.len() as _;
+            self.p_identifier = p_identifier.as_ptr();
+            self
+        }
+    }
     #[repr(C)]
     #[derive(Clone, Copy)]
     pub struct ShaderModuleIdentifierEXT<'a> {
@@ -85,6 +165,34 @@ pub(crate) mod reexport {
         pub identifier_size: u32,
         pub identifier: [u8; crate::vk::MAX_SHADER_MODULE_IDENTIFIER_SIZE_EXT as _],
         pub _marker: ::core::marker::PhantomData<&'a ()>,
+    }
+    unsafe impl<'a> crate::TaggedStructure<'a> for ShaderModuleIdentifierEXT<'a> {
+        const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::SHADER_MODULE_IDENTIFIER_EXT;
+    }
+    impl<'a> Default for ShaderModuleIdentifierEXT<'a> {
+        fn default() -> Self {
+            Self {
+                s_type: <Self as crate::TaggedStructure>::STRUCTURE_TYPE,
+                p_next: Default::default(),
+                identifier_size: Default::default(),
+                identifier: unsafe { core::mem::zeroed() },
+                _marker: ::core::marker::PhantomData,
+            }
+        }
+    }
+    impl<'a> ShaderModuleIdentifierEXT<'a> {
+        pub fn identifier_size(mut self, identifier_size: u32) -> Self {
+            self.identifier_size = identifier_size;
+            self
+        }
+        pub fn identifier(mut self, identifier: &[u8]) -> Self {
+            self.identifier_size = identifier.len() as _;
+            self.identifier[..identifier.len()].copy_from_slice(identifier);
+            self
+        }
+        pub fn identifier_as_slice(&self) -> &[u8] {
+            &self.identifier[..self.identifier_size as _]
+        }
     }
     ///Provided by [`ext::shader_module_identifier`](crate::ext::shader_module_identifier)
     impl crate::vk::StructureType {

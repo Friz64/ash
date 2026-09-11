@@ -9,6 +9,30 @@ pub struct PhysicalDeviceShader64BitIndexingFeaturesEXT<'a> {
     pub shader64_bit_indexing: crate::vk::Bool32,
     pub _marker: ::core::marker::PhantomData<&'a ()>,
 }
+unsafe impl<'a> crate::TaggedStructure<'a>
+for PhysicalDeviceShader64BitIndexingFeaturesEXT<'a> {
+    const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::PHYSICAL_DEVICE_SHADER_64_INDEXING_FEATURES_EXT;
+}
+unsafe impl<'a> crate::Extends<crate::vk::PhysicalDeviceFeatures2<'_>>
+for PhysicalDeviceShader64BitIndexingFeaturesEXT<'a> {}
+unsafe impl<'a> crate::Extends<crate::vk::DeviceCreateInfo<'_>>
+for PhysicalDeviceShader64BitIndexingFeaturesEXT<'a> {}
+impl<'a> Default for PhysicalDeviceShader64BitIndexingFeaturesEXT<'a> {
+    fn default() -> Self {
+        Self {
+            s_type: <Self as crate::TaggedStructure>::STRUCTURE_TYPE,
+            p_next: Default::default(),
+            shader64_bit_indexing: Default::default(),
+            _marker: ::core::marker::PhantomData,
+        }
+    }
+}
+impl<'a> PhysicalDeviceShader64BitIndexingFeaturesEXT<'a> {
+    pub fn shader64_bit_indexing(mut self, shader64_bit_indexing: bool) -> Self {
+        self.shader64_bit_indexing = shader64_bit_indexing.into();
+        self
+    }
+}
 ///Provided by [`ext::shader_64bit_indexing`](crate::ext::shader_64bit_indexing)
 impl crate::vk::StructureType {
     pub const PHYSICAL_DEVICE_SHADER_64_INDEXING_FEATURES_EXT: Self = Self(1000627000);

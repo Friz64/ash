@@ -44,6 +44,33 @@ pub(crate) mod reexport {
         pub pageable_device_local_memory: crate::vk::Bool32,
         pub _marker: ::core::marker::PhantomData<&'a ()>,
     }
+    unsafe impl<'a> crate::TaggedStructure<'a>
+    for PhysicalDevicePageableDeviceLocalMemoryFeaturesEXT<'a> {
+        const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::PHYSICAL_DEVICE_PAGEABLE_DEVICE_LOCAL_MEMORY_FEATURES_EXT;
+    }
+    unsafe impl<'a> crate::Extends<crate::vk::PhysicalDeviceFeatures2<'_>>
+    for PhysicalDevicePageableDeviceLocalMemoryFeaturesEXT<'a> {}
+    unsafe impl<'a> crate::Extends<crate::vk::DeviceCreateInfo<'_>>
+    for PhysicalDevicePageableDeviceLocalMemoryFeaturesEXT<'a> {}
+    impl<'a> Default for PhysicalDevicePageableDeviceLocalMemoryFeaturesEXT<'a> {
+        fn default() -> Self {
+            Self {
+                s_type: <Self as crate::TaggedStructure>::STRUCTURE_TYPE,
+                p_next: Default::default(),
+                pageable_device_local_memory: Default::default(),
+                _marker: ::core::marker::PhantomData,
+            }
+        }
+    }
+    impl<'a> PhysicalDevicePageableDeviceLocalMemoryFeaturesEXT<'a> {
+        pub fn pageable_device_local_memory(
+            mut self,
+            pageable_device_local_memory: bool,
+        ) -> Self {
+            self.pageable_device_local_memory = pageable_device_local_memory.into();
+            self
+        }
+    }
     ///Provided by [`ext::pageable_device_local_memory`](crate::ext::pageable_device_local_memory)
     impl crate::vk::StructureType {
         pub const PHYSICAL_DEVICE_PAGEABLE_DEVICE_LOCAL_MEMORY_FEATURES_EXT: Self = Self(

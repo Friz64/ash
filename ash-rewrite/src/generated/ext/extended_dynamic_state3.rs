@@ -535,6 +535,304 @@ pub(crate) mod reexport {
         pub extended_dynamic_state3_shading_rate_image_enable: crate::vk::Bool32,
         pub _marker: ::core::marker::PhantomData<&'a ()>,
     }
+    unsafe impl<'a> crate::TaggedStructure<'a>
+    for PhysicalDeviceExtendedDynamicState3FeaturesEXT<'a> {
+        const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::PHYSICAL_DEVICE_EXTENDED_DYNAMIC_STATE_3_FEATURES_EXT;
+    }
+    unsafe impl<'a> crate::Extends<crate::vk::PhysicalDeviceFeatures2<'_>>
+    for PhysicalDeviceExtendedDynamicState3FeaturesEXT<'a> {}
+    unsafe impl<'a> crate::Extends<crate::vk::DeviceCreateInfo<'_>>
+    for PhysicalDeviceExtendedDynamicState3FeaturesEXT<'a> {}
+    impl<'a> Default for PhysicalDeviceExtendedDynamicState3FeaturesEXT<'a> {
+        fn default() -> Self {
+            Self {
+                s_type: <Self as crate::TaggedStructure>::STRUCTURE_TYPE,
+                p_next: Default::default(),
+                extended_dynamic_state3_tessellation_domain_origin: Default::default(),
+                extended_dynamic_state3_depth_clamp_enable: Default::default(),
+                extended_dynamic_state3_polygon_mode: Default::default(),
+                extended_dynamic_state3_rasterization_samples: Default::default(),
+                extended_dynamic_state3_sample_mask: Default::default(),
+                extended_dynamic_state3_alpha_to_coverage_enable: Default::default(),
+                extended_dynamic_state3_alpha_to_one_enable: Default::default(),
+                extended_dynamic_state3_logic_op_enable: Default::default(),
+                extended_dynamic_state3_color_blend_enable: Default::default(),
+                extended_dynamic_state3_color_blend_equation: Default::default(),
+                extended_dynamic_state3_color_write_mask: Default::default(),
+                extended_dynamic_state3_rasterization_stream: Default::default(),
+                extended_dynamic_state3_conservative_rasterization_mode: Default::default(),
+                extended_dynamic_state3_extra_primitive_overestimation_size: Default::default(),
+                extended_dynamic_state3_depth_clip_enable: Default::default(),
+                extended_dynamic_state3_sample_locations_enable: Default::default(),
+                extended_dynamic_state3_color_blend_advanced: Default::default(),
+                extended_dynamic_state3_provoking_vertex_mode: Default::default(),
+                extended_dynamic_state3_line_rasterization_mode: Default::default(),
+                extended_dynamic_state3_line_stipple_enable: Default::default(),
+                extended_dynamic_state3_depth_clip_negative_one_to_one: Default::default(),
+                extended_dynamic_state3_viewport_w_scaling_enable: Default::default(),
+                extended_dynamic_state3_viewport_swizzle: Default::default(),
+                extended_dynamic_state3_coverage_to_color_enable: Default::default(),
+                extended_dynamic_state3_coverage_to_color_location: Default::default(),
+                extended_dynamic_state3_coverage_modulation_mode: Default::default(),
+                extended_dynamic_state3_coverage_modulation_table_enable: Default::default(),
+                extended_dynamic_state3_coverage_modulation_table: Default::default(),
+                extended_dynamic_state3_coverage_reduction_mode: Default::default(),
+                extended_dynamic_state3_representative_fragment_test_enable: Default::default(),
+                extended_dynamic_state3_shading_rate_image_enable: Default::default(),
+                _marker: ::core::marker::PhantomData,
+            }
+        }
+    }
+    impl<'a> PhysicalDeviceExtendedDynamicState3FeaturesEXT<'a> {
+        pub fn extended_dynamic_state3_tessellation_domain_origin(
+            mut self,
+            extended_dynamic_state3_tessellation_domain_origin: bool,
+        ) -> Self {
+            self.extended_dynamic_state3_tessellation_domain_origin = extended_dynamic_state3_tessellation_domain_origin
+                .into();
+            self
+        }
+        pub fn extended_dynamic_state3_depth_clamp_enable(
+            mut self,
+            extended_dynamic_state3_depth_clamp_enable: bool,
+        ) -> Self {
+            self.extended_dynamic_state3_depth_clamp_enable = extended_dynamic_state3_depth_clamp_enable
+                .into();
+            self
+        }
+        pub fn extended_dynamic_state3_polygon_mode(
+            mut self,
+            extended_dynamic_state3_polygon_mode: bool,
+        ) -> Self {
+            self.extended_dynamic_state3_polygon_mode = extended_dynamic_state3_polygon_mode
+                .into();
+            self
+        }
+        pub fn extended_dynamic_state3_rasterization_samples(
+            mut self,
+            extended_dynamic_state3_rasterization_samples: bool,
+        ) -> Self {
+            self.extended_dynamic_state3_rasterization_samples = extended_dynamic_state3_rasterization_samples
+                .into();
+            self
+        }
+        pub fn extended_dynamic_state3_sample_mask(
+            mut self,
+            extended_dynamic_state3_sample_mask: bool,
+        ) -> Self {
+            self.extended_dynamic_state3_sample_mask = extended_dynamic_state3_sample_mask
+                .into();
+            self
+        }
+        pub fn extended_dynamic_state3_alpha_to_coverage_enable(
+            mut self,
+            extended_dynamic_state3_alpha_to_coverage_enable: bool,
+        ) -> Self {
+            self.extended_dynamic_state3_alpha_to_coverage_enable = extended_dynamic_state3_alpha_to_coverage_enable
+                .into();
+            self
+        }
+        pub fn extended_dynamic_state3_alpha_to_one_enable(
+            mut self,
+            extended_dynamic_state3_alpha_to_one_enable: bool,
+        ) -> Self {
+            self.extended_dynamic_state3_alpha_to_one_enable = extended_dynamic_state3_alpha_to_one_enable
+                .into();
+            self
+        }
+        pub fn extended_dynamic_state3_logic_op_enable(
+            mut self,
+            extended_dynamic_state3_logic_op_enable: bool,
+        ) -> Self {
+            self.extended_dynamic_state3_logic_op_enable = extended_dynamic_state3_logic_op_enable
+                .into();
+            self
+        }
+        pub fn extended_dynamic_state3_color_blend_enable(
+            mut self,
+            extended_dynamic_state3_color_blend_enable: bool,
+        ) -> Self {
+            self.extended_dynamic_state3_color_blend_enable = extended_dynamic_state3_color_blend_enable
+                .into();
+            self
+        }
+        pub fn extended_dynamic_state3_color_blend_equation(
+            mut self,
+            extended_dynamic_state3_color_blend_equation: bool,
+        ) -> Self {
+            self.extended_dynamic_state3_color_blend_equation = extended_dynamic_state3_color_blend_equation
+                .into();
+            self
+        }
+        pub fn extended_dynamic_state3_color_write_mask(
+            mut self,
+            extended_dynamic_state3_color_write_mask: bool,
+        ) -> Self {
+            self.extended_dynamic_state3_color_write_mask = extended_dynamic_state3_color_write_mask
+                .into();
+            self
+        }
+        pub fn extended_dynamic_state3_rasterization_stream(
+            mut self,
+            extended_dynamic_state3_rasterization_stream: bool,
+        ) -> Self {
+            self.extended_dynamic_state3_rasterization_stream = extended_dynamic_state3_rasterization_stream
+                .into();
+            self
+        }
+        pub fn extended_dynamic_state3_conservative_rasterization_mode(
+            mut self,
+            extended_dynamic_state3_conservative_rasterization_mode: bool,
+        ) -> Self {
+            self.extended_dynamic_state3_conservative_rasterization_mode = extended_dynamic_state3_conservative_rasterization_mode
+                .into();
+            self
+        }
+        pub fn extended_dynamic_state3_extra_primitive_overestimation_size(
+            mut self,
+            extended_dynamic_state3_extra_primitive_overestimation_size: bool,
+        ) -> Self {
+            self.extended_dynamic_state3_extra_primitive_overestimation_size = extended_dynamic_state3_extra_primitive_overestimation_size
+                .into();
+            self
+        }
+        pub fn extended_dynamic_state3_depth_clip_enable(
+            mut self,
+            extended_dynamic_state3_depth_clip_enable: bool,
+        ) -> Self {
+            self.extended_dynamic_state3_depth_clip_enable = extended_dynamic_state3_depth_clip_enable
+                .into();
+            self
+        }
+        pub fn extended_dynamic_state3_sample_locations_enable(
+            mut self,
+            extended_dynamic_state3_sample_locations_enable: bool,
+        ) -> Self {
+            self.extended_dynamic_state3_sample_locations_enable = extended_dynamic_state3_sample_locations_enable
+                .into();
+            self
+        }
+        pub fn extended_dynamic_state3_color_blend_advanced(
+            mut self,
+            extended_dynamic_state3_color_blend_advanced: bool,
+        ) -> Self {
+            self.extended_dynamic_state3_color_blend_advanced = extended_dynamic_state3_color_blend_advanced
+                .into();
+            self
+        }
+        pub fn extended_dynamic_state3_provoking_vertex_mode(
+            mut self,
+            extended_dynamic_state3_provoking_vertex_mode: bool,
+        ) -> Self {
+            self.extended_dynamic_state3_provoking_vertex_mode = extended_dynamic_state3_provoking_vertex_mode
+                .into();
+            self
+        }
+        pub fn extended_dynamic_state3_line_rasterization_mode(
+            mut self,
+            extended_dynamic_state3_line_rasterization_mode: bool,
+        ) -> Self {
+            self.extended_dynamic_state3_line_rasterization_mode = extended_dynamic_state3_line_rasterization_mode
+                .into();
+            self
+        }
+        pub fn extended_dynamic_state3_line_stipple_enable(
+            mut self,
+            extended_dynamic_state3_line_stipple_enable: bool,
+        ) -> Self {
+            self.extended_dynamic_state3_line_stipple_enable = extended_dynamic_state3_line_stipple_enable
+                .into();
+            self
+        }
+        pub fn extended_dynamic_state3_depth_clip_negative_one_to_one(
+            mut self,
+            extended_dynamic_state3_depth_clip_negative_one_to_one: bool,
+        ) -> Self {
+            self.extended_dynamic_state3_depth_clip_negative_one_to_one = extended_dynamic_state3_depth_clip_negative_one_to_one
+                .into();
+            self
+        }
+        pub fn extended_dynamic_state3_viewport_w_scaling_enable(
+            mut self,
+            extended_dynamic_state3_viewport_w_scaling_enable: bool,
+        ) -> Self {
+            self.extended_dynamic_state3_viewport_w_scaling_enable = extended_dynamic_state3_viewport_w_scaling_enable
+                .into();
+            self
+        }
+        pub fn extended_dynamic_state3_viewport_swizzle(
+            mut self,
+            extended_dynamic_state3_viewport_swizzle: bool,
+        ) -> Self {
+            self.extended_dynamic_state3_viewport_swizzle = extended_dynamic_state3_viewport_swizzle
+                .into();
+            self
+        }
+        pub fn extended_dynamic_state3_coverage_to_color_enable(
+            mut self,
+            extended_dynamic_state3_coverage_to_color_enable: bool,
+        ) -> Self {
+            self.extended_dynamic_state3_coverage_to_color_enable = extended_dynamic_state3_coverage_to_color_enable
+                .into();
+            self
+        }
+        pub fn extended_dynamic_state3_coverage_to_color_location(
+            mut self,
+            extended_dynamic_state3_coverage_to_color_location: bool,
+        ) -> Self {
+            self.extended_dynamic_state3_coverage_to_color_location = extended_dynamic_state3_coverage_to_color_location
+                .into();
+            self
+        }
+        pub fn extended_dynamic_state3_coverage_modulation_mode(
+            mut self,
+            extended_dynamic_state3_coverage_modulation_mode: bool,
+        ) -> Self {
+            self.extended_dynamic_state3_coverage_modulation_mode = extended_dynamic_state3_coverage_modulation_mode
+                .into();
+            self
+        }
+        pub fn extended_dynamic_state3_coverage_modulation_table_enable(
+            mut self,
+            extended_dynamic_state3_coverage_modulation_table_enable: bool,
+        ) -> Self {
+            self.extended_dynamic_state3_coverage_modulation_table_enable = extended_dynamic_state3_coverage_modulation_table_enable
+                .into();
+            self
+        }
+        pub fn extended_dynamic_state3_coverage_modulation_table(
+            mut self,
+            extended_dynamic_state3_coverage_modulation_table: bool,
+        ) -> Self {
+            self.extended_dynamic_state3_coverage_modulation_table = extended_dynamic_state3_coverage_modulation_table
+                .into();
+            self
+        }
+        pub fn extended_dynamic_state3_coverage_reduction_mode(
+            mut self,
+            extended_dynamic_state3_coverage_reduction_mode: bool,
+        ) -> Self {
+            self.extended_dynamic_state3_coverage_reduction_mode = extended_dynamic_state3_coverage_reduction_mode
+                .into();
+            self
+        }
+        pub fn extended_dynamic_state3_representative_fragment_test_enable(
+            mut self,
+            extended_dynamic_state3_representative_fragment_test_enable: bool,
+        ) -> Self {
+            self.extended_dynamic_state3_representative_fragment_test_enable = extended_dynamic_state3_representative_fragment_test_enable
+                .into();
+            self
+        }
+        pub fn extended_dynamic_state3_shading_rate_image_enable(
+            mut self,
+            extended_dynamic_state3_shading_rate_image_enable: bool,
+        ) -> Self {
+            self.extended_dynamic_state3_shading_rate_image_enable = extended_dynamic_state3_shading_rate_image_enable
+                .into();
+            self
+        }
+    }
     #[repr(C)]
     #[derive(Clone, Copy)]
     pub struct PhysicalDeviceExtendedDynamicState3PropertiesEXT<'a> {
@@ -543,8 +841,34 @@ pub(crate) mod reexport {
         pub dynamic_primitive_topology_unrestricted: crate::vk::Bool32,
         pub _marker: ::core::marker::PhantomData<&'a ()>,
     }
+    unsafe impl<'a> crate::TaggedStructure<'a>
+    for PhysicalDeviceExtendedDynamicState3PropertiesEXT<'a> {
+        const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::PHYSICAL_DEVICE_EXTENDED_DYNAMIC_STATE_3_PROPERTIES_EXT;
+    }
+    unsafe impl<'a> crate::Extends<crate::vk::PhysicalDeviceProperties2<'_>>
+    for PhysicalDeviceExtendedDynamicState3PropertiesEXT<'a> {}
+    impl<'a> Default for PhysicalDeviceExtendedDynamicState3PropertiesEXT<'a> {
+        fn default() -> Self {
+            Self {
+                s_type: <Self as crate::TaggedStructure>::STRUCTURE_TYPE,
+                p_next: Default::default(),
+                dynamic_primitive_topology_unrestricted: Default::default(),
+                _marker: ::core::marker::PhantomData,
+            }
+        }
+    }
+    impl<'a> PhysicalDeviceExtendedDynamicState3PropertiesEXT<'a> {
+        pub fn dynamic_primitive_topology_unrestricted(
+            mut self,
+            dynamic_primitive_topology_unrestricted: bool,
+        ) -> Self {
+            self.dynamic_primitive_topology_unrestricted = dynamic_primitive_topology_unrestricted
+                .into();
+            self
+        }
+    }
     #[repr(C)]
-    #[derive(Clone, Copy)]
+    #[derive(Clone, Copy, Default)]
     pub struct ColorBlendEquationEXT {
         pub src_color_blend_factor: crate::vk::BlendFactor,
         pub dst_color_blend_factor: crate::vk::BlendFactor,
@@ -553,14 +877,80 @@ pub(crate) mod reexport {
         pub dst_alpha_blend_factor: crate::vk::BlendFactor,
         pub alpha_blend_op: crate::vk::BlendOp,
     }
+    impl ColorBlendEquationEXT {
+        pub fn src_color_blend_factor(
+            mut self,
+            src_color_blend_factor: crate::vk::BlendFactor,
+        ) -> Self {
+            self.src_color_blend_factor = src_color_blend_factor;
+            self
+        }
+        pub fn dst_color_blend_factor(
+            mut self,
+            dst_color_blend_factor: crate::vk::BlendFactor,
+        ) -> Self {
+            self.dst_color_blend_factor = dst_color_blend_factor;
+            self
+        }
+        pub fn color_blend_op(mut self, color_blend_op: crate::vk::BlendOp) -> Self {
+            self.color_blend_op = color_blend_op;
+            self
+        }
+        pub fn src_alpha_blend_factor(
+            mut self,
+            src_alpha_blend_factor: crate::vk::BlendFactor,
+        ) -> Self {
+            self.src_alpha_blend_factor = src_alpha_blend_factor;
+            self
+        }
+        pub fn dst_alpha_blend_factor(
+            mut self,
+            dst_alpha_blend_factor: crate::vk::BlendFactor,
+        ) -> Self {
+            self.dst_alpha_blend_factor = dst_alpha_blend_factor;
+            self
+        }
+        pub fn alpha_blend_op(mut self, alpha_blend_op: crate::vk::BlendOp) -> Self {
+            self.alpha_blend_op = alpha_blend_op;
+            self
+        }
+    }
     #[repr(C)]
-    #[derive(Clone, Copy)]
+    #[derive(Clone, Copy, Default)]
     pub struct ColorBlendAdvancedEXT {
         pub advanced_blend_op: crate::vk::BlendOp,
         pub src_premultiplied: crate::vk::Bool32,
         pub dst_premultiplied: crate::vk::Bool32,
         pub blend_overlap: crate::vk::BlendOverlapEXT,
         pub clamp_results: crate::vk::Bool32,
+    }
+    impl ColorBlendAdvancedEXT {
+        pub fn advanced_blend_op(
+            mut self,
+            advanced_blend_op: crate::vk::BlendOp,
+        ) -> Self {
+            self.advanced_blend_op = advanced_blend_op;
+            self
+        }
+        pub fn src_premultiplied(mut self, src_premultiplied: bool) -> Self {
+            self.src_premultiplied = src_premultiplied.into();
+            self
+        }
+        pub fn dst_premultiplied(mut self, dst_premultiplied: bool) -> Self {
+            self.dst_premultiplied = dst_premultiplied.into();
+            self
+        }
+        pub fn blend_overlap(
+            mut self,
+            blend_overlap: crate::vk::BlendOverlapEXT,
+        ) -> Self {
+            self.blend_overlap = blend_overlap;
+            self
+        }
+        pub fn clamp_results(mut self, clamp_results: bool) -> Self {
+            self.clamp_results = clamp_results.into();
+            self
+        }
     }
     ///Provided by [`ext::extended_dynamic_state3`](crate::ext::extended_dynamic_state3)
     impl crate::vk::StructureType {

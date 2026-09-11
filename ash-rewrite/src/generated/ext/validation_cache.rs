@@ -97,6 +97,36 @@ pub(crate) mod reexport {
         pub p_initial_data: *const core::ffi::c_void,
         pub _marker: ::core::marker::PhantomData<&'a ()>,
     }
+    unsafe impl<'a> crate::TaggedStructure<'a> for ValidationCacheCreateInfoEXT<'a> {
+        const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::VALIDATION_CACHE_CREATE_INFO_EXT;
+    }
+    impl<'a> Default for ValidationCacheCreateInfoEXT<'a> {
+        fn default() -> Self {
+            Self {
+                s_type: <Self as crate::TaggedStructure>::STRUCTURE_TYPE,
+                p_next: Default::default(),
+                flags: Default::default(),
+                initial_data_size: Default::default(),
+                p_initial_data: Default::default(),
+                _marker: ::core::marker::PhantomData,
+            }
+        }
+    }
+    impl<'a> ValidationCacheCreateInfoEXT<'a> {
+        pub fn flags(mut self, flags: crate::vk::ValidationCacheCreateFlagsEXT) -> Self {
+            self.flags = flags;
+            self
+        }
+        pub fn initial_data_size(mut self, initial_data_size: usize) -> Self {
+            self.initial_data_size = initial_data_size;
+            self
+        }
+        pub fn p_initial_data(mut self, p_initial_data: &'a [u8]) -> Self {
+            self.initial_data_size = p_initial_data.len() as _;
+            self.p_initial_data = p_initial_data.as_ptr().cast();
+            self
+        }
+    }
     #[repr(C)]
     #[derive(Clone, Copy)]
     pub struct ShaderModuleValidationCacheCreateInfoEXT<'a> {
@@ -104,6 +134,33 @@ pub(crate) mod reexport {
         pub p_next: *const core::ffi::c_void,
         pub validation_cache: crate::vk::ValidationCacheEXT,
         pub _marker: ::core::marker::PhantomData<&'a ()>,
+    }
+    unsafe impl<'a> crate::TaggedStructure<'a>
+    for ShaderModuleValidationCacheCreateInfoEXT<'a> {
+        const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::SHADER_MODULE_VALIDATION_CACHE_CREATE_INFO_EXT;
+    }
+    unsafe impl<'a> crate::Extends<crate::vk::ShaderModuleCreateInfo<'_>>
+    for ShaderModuleValidationCacheCreateInfoEXT<'a> {}
+    unsafe impl<'a> crate::Extends<crate::vk::PipelineShaderStageCreateInfo<'_>>
+    for ShaderModuleValidationCacheCreateInfoEXT<'a> {}
+    impl<'a> Default for ShaderModuleValidationCacheCreateInfoEXT<'a> {
+        fn default() -> Self {
+            Self {
+                s_type: <Self as crate::TaggedStructure>::STRUCTURE_TYPE,
+                p_next: Default::default(),
+                validation_cache: Default::default(),
+                _marker: ::core::marker::PhantomData,
+            }
+        }
+    }
+    impl<'a> ShaderModuleValidationCacheCreateInfoEXT<'a> {
+        pub fn validation_cache(
+            mut self,
+            validation_cache: crate::vk::ValidationCacheEXT,
+        ) -> Self {
+            self.validation_cache = validation_cache;
+            self
+        }
     }
     ///Provided by [`ext::validation_cache`](crate::ext::validation_cache)
     impl crate::vk::StructureType {

@@ -10,6 +10,36 @@ pub struct SamplerCustomBorderColorCreateInfoEXT<'a> {
     pub format: crate::vk::Format,
     pub _marker: ::core::marker::PhantomData<&'a ()>,
 }
+unsafe impl<'a> crate::TaggedStructure<'a>
+for SamplerCustomBorderColorCreateInfoEXT<'a> {
+    const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::SAMPLER_CUSTOM_BORDER_COLOR_CREATE_INFO_EXT;
+}
+unsafe impl<'a> crate::Extends<crate::vk::SamplerCreateInfo<'_>>
+for SamplerCustomBorderColorCreateInfoEXT<'a> {}
+impl<'a> Default for SamplerCustomBorderColorCreateInfoEXT<'a> {
+    fn default() -> Self {
+        Self {
+            s_type: <Self as crate::TaggedStructure>::STRUCTURE_TYPE,
+            p_next: Default::default(),
+            custom_border_color: Default::default(),
+            format: Default::default(),
+            _marker: ::core::marker::PhantomData,
+        }
+    }
+}
+impl<'a> SamplerCustomBorderColorCreateInfoEXT<'a> {
+    pub fn custom_border_color(
+        mut self,
+        custom_border_color: crate::vk::ClearColorValue,
+    ) -> Self {
+        self.custom_border_color = custom_border_color;
+        self
+    }
+    pub fn format(mut self, format: crate::vk::Format) -> Self {
+        self.format = format;
+        self
+    }
+}
 #[repr(C)]
 #[derive(Clone, Copy)]
 pub struct PhysicalDeviceCustomBorderColorPropertiesEXT<'a> {
@@ -17,6 +47,31 @@ pub struct PhysicalDeviceCustomBorderColorPropertiesEXT<'a> {
     pub p_next: *mut core::ffi::c_void,
     pub max_custom_border_color_samplers: u32,
     pub _marker: ::core::marker::PhantomData<&'a ()>,
+}
+unsafe impl<'a> crate::TaggedStructure<'a>
+for PhysicalDeviceCustomBorderColorPropertiesEXT<'a> {
+    const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::PHYSICAL_DEVICE_CUSTOM_BORDER_COLOR_PROPERTIES_EXT;
+}
+unsafe impl<'a> crate::Extends<crate::vk::PhysicalDeviceProperties2<'_>>
+for PhysicalDeviceCustomBorderColorPropertiesEXT<'a> {}
+impl<'a> Default for PhysicalDeviceCustomBorderColorPropertiesEXT<'a> {
+    fn default() -> Self {
+        Self {
+            s_type: <Self as crate::TaggedStructure>::STRUCTURE_TYPE,
+            p_next: Default::default(),
+            max_custom_border_color_samplers: Default::default(),
+            _marker: ::core::marker::PhantomData,
+        }
+    }
+}
+impl<'a> PhysicalDeviceCustomBorderColorPropertiesEXT<'a> {
+    pub fn max_custom_border_color_samplers(
+        mut self,
+        max_custom_border_color_samplers: u32,
+    ) -> Self {
+        self.max_custom_border_color_samplers = max_custom_border_color_samplers;
+        self
+    }
 }
 #[repr(C)]
 #[derive(Clone, Copy)]
@@ -26,6 +81,39 @@ pub struct PhysicalDeviceCustomBorderColorFeaturesEXT<'a> {
     pub custom_border_colors: crate::vk::Bool32,
     pub custom_border_color_without_format: crate::vk::Bool32,
     pub _marker: ::core::marker::PhantomData<&'a ()>,
+}
+unsafe impl<'a> crate::TaggedStructure<'a>
+for PhysicalDeviceCustomBorderColorFeaturesEXT<'a> {
+    const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::PHYSICAL_DEVICE_CUSTOM_BORDER_COLOR_FEATURES_EXT;
+}
+unsafe impl<'a> crate::Extends<crate::vk::PhysicalDeviceFeatures2<'_>>
+for PhysicalDeviceCustomBorderColorFeaturesEXT<'a> {}
+unsafe impl<'a> crate::Extends<crate::vk::DeviceCreateInfo<'_>>
+for PhysicalDeviceCustomBorderColorFeaturesEXT<'a> {}
+impl<'a> Default for PhysicalDeviceCustomBorderColorFeaturesEXT<'a> {
+    fn default() -> Self {
+        Self {
+            s_type: <Self as crate::TaggedStructure>::STRUCTURE_TYPE,
+            p_next: Default::default(),
+            custom_border_colors: Default::default(),
+            custom_border_color_without_format: Default::default(),
+            _marker: ::core::marker::PhantomData,
+        }
+    }
+}
+impl<'a> PhysicalDeviceCustomBorderColorFeaturesEXT<'a> {
+    pub fn custom_border_colors(mut self, custom_border_colors: bool) -> Self {
+        self.custom_border_colors = custom_border_colors.into();
+        self
+    }
+    pub fn custom_border_color_without_format(
+        mut self,
+        custom_border_color_without_format: bool,
+    ) -> Self {
+        self.custom_border_color_without_format = custom_border_color_without_format
+            .into();
+        self
+    }
 }
 ///Provided by [`ext::custom_border_color`](crate::ext::custom_border_color)
 impl crate::vk::BorderColor {

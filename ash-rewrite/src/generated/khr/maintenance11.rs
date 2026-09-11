@@ -9,6 +9,30 @@ pub struct PhysicalDeviceMaintenance11FeaturesKHR<'a> {
     pub maintenance11: crate::vk::Bool32,
     pub _marker: ::core::marker::PhantomData<&'a ()>,
 }
+unsafe impl<'a> crate::TaggedStructure<'a>
+for PhysicalDeviceMaintenance11FeaturesKHR<'a> {
+    const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::PHYSICAL_DEVICE_MAINTENANCE_11_FEATURES_KHR;
+}
+unsafe impl<'a> crate::Extends<crate::vk::PhysicalDeviceFeatures2<'_>>
+for PhysicalDeviceMaintenance11FeaturesKHR<'a> {}
+unsafe impl<'a> crate::Extends<crate::vk::DeviceCreateInfo<'_>>
+for PhysicalDeviceMaintenance11FeaturesKHR<'a> {}
+impl<'a> Default for PhysicalDeviceMaintenance11FeaturesKHR<'a> {
+    fn default() -> Self {
+        Self {
+            s_type: <Self as crate::TaggedStructure>::STRUCTURE_TYPE,
+            p_next: Default::default(),
+            maintenance11: Default::default(),
+            _marker: ::core::marker::PhantomData,
+        }
+    }
+}
+impl<'a> PhysicalDeviceMaintenance11FeaturesKHR<'a> {
+    pub fn maintenance11(mut self, maintenance11: bool) -> Self {
+        self.maintenance11 = maintenance11.into();
+        self
+    }
+}
 #[repr(C)]
 #[derive(Clone, Copy)]
 pub struct QueueFamilyOptimalImageTransferGranularityPropertiesKHR<'a> {
@@ -16,6 +40,31 @@ pub struct QueueFamilyOptimalImageTransferGranularityPropertiesKHR<'a> {
     pub p_next: *mut core::ffi::c_void,
     pub optimal_image_transfer_granularity: crate::vk::Extent3D,
     pub _marker: ::core::marker::PhantomData<&'a ()>,
+}
+unsafe impl<'a> crate::TaggedStructure<'a>
+for QueueFamilyOptimalImageTransferGranularityPropertiesKHR<'a> {
+    const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::QUEUE_FAMILY_OPTIMAL_IMAGE_TRANSFER_GRANULARITY_PROPERTIES_KHR;
+}
+unsafe impl<'a> crate::Extends<crate::vk::QueueFamilyProperties2<'_>>
+for QueueFamilyOptimalImageTransferGranularityPropertiesKHR<'a> {}
+impl<'a> Default for QueueFamilyOptimalImageTransferGranularityPropertiesKHR<'a> {
+    fn default() -> Self {
+        Self {
+            s_type: <Self as crate::TaggedStructure>::STRUCTURE_TYPE,
+            p_next: Default::default(),
+            optimal_image_transfer_granularity: Default::default(),
+            _marker: ::core::marker::PhantomData,
+        }
+    }
+}
+impl<'a> QueueFamilyOptimalImageTransferGranularityPropertiesKHR<'a> {
+    pub fn optimal_image_transfer_granularity(
+        mut self,
+        optimal_image_transfer_granularity: crate::vk::Extent3D,
+    ) -> Self {
+        self.optimal_image_transfer_granularity = optimal_image_transfer_granularity;
+        self
+    }
 }
 ///Provided by [`khr::maintenance11`](crate::khr::maintenance11)
 impl crate::vk::StructureType {

@@ -9,6 +9,30 @@ pub struct DisplaySurfaceStereoCreateInfoNV<'a> {
     pub stereo_type: crate::vk::DisplaySurfaceStereoTypeNV,
     pub _marker: ::core::marker::PhantomData<&'a ()>,
 }
+unsafe impl<'a> crate::TaggedStructure<'a> for DisplaySurfaceStereoCreateInfoNV<'a> {
+    const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::DISPLAY_SURFACE_STEREO_CREATE_INFO_NV;
+}
+unsafe impl<'a> crate::Extends<crate::vk::DisplaySurfaceCreateInfoKHR<'_>>
+for DisplaySurfaceStereoCreateInfoNV<'a> {}
+impl<'a> Default for DisplaySurfaceStereoCreateInfoNV<'a> {
+    fn default() -> Self {
+        Self {
+            s_type: <Self as crate::TaggedStructure>::STRUCTURE_TYPE,
+            p_next: Default::default(),
+            stereo_type: Default::default(),
+            _marker: ::core::marker::PhantomData,
+        }
+    }
+}
+impl<'a> DisplaySurfaceStereoCreateInfoNV<'a> {
+    pub fn stereo_type(
+        mut self,
+        stereo_type: crate::vk::DisplaySurfaceStereoTypeNV,
+    ) -> Self {
+        self.stereo_type = stereo_type;
+        self
+    }
+}
 #[repr(C)]
 #[derive(Clone, Copy)]
 pub struct DisplayModeStereoPropertiesNV<'a> {
@@ -16,6 +40,27 @@ pub struct DisplayModeStereoPropertiesNV<'a> {
     pub p_next: *mut core::ffi::c_void,
     pub hdmi3_d_supported: crate::vk::Bool32,
     pub _marker: ::core::marker::PhantomData<&'a ()>,
+}
+unsafe impl<'a> crate::TaggedStructure<'a> for DisplayModeStereoPropertiesNV<'a> {
+    const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::DISPLAY_MODE_STEREO_PROPERTIES_NV;
+}
+unsafe impl<'a> crate::Extends<crate::vk::DisplayModeProperties2KHR<'_>>
+for DisplayModeStereoPropertiesNV<'a> {}
+impl<'a> Default for DisplayModeStereoPropertiesNV<'a> {
+    fn default() -> Self {
+        Self {
+            s_type: <Self as crate::TaggedStructure>::STRUCTURE_TYPE,
+            p_next: Default::default(),
+            hdmi3_d_supported: Default::default(),
+            _marker: ::core::marker::PhantomData,
+        }
+    }
+}
+impl<'a> DisplayModeStereoPropertiesNV<'a> {
+    pub fn hdmi3_d_supported(mut self, hdmi3_d_supported: bool) -> Self {
+        self.hdmi3_d_supported = hdmi3_d_supported.into();
+        self
+    }
 }
 ///Provided by [`nv::display_stereo`](crate::nv::display_stereo)
 impl crate::vk::StructureType {

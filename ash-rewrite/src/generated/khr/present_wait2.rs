@@ -45,6 +45,30 @@ pub(crate) mod reexport {
         pub timeout: u64,
         pub _marker: ::core::marker::PhantomData<&'a ()>,
     }
+    unsafe impl<'a> crate::TaggedStructure<'a> for PresentWait2InfoKHR<'a> {
+        const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::PRESENT_WAIT_2_INFO_KHR;
+    }
+    impl<'a> Default for PresentWait2InfoKHR<'a> {
+        fn default() -> Self {
+            Self {
+                s_type: <Self as crate::TaggedStructure>::STRUCTURE_TYPE,
+                p_next: Default::default(),
+                present_id: Default::default(),
+                timeout: Default::default(),
+                _marker: ::core::marker::PhantomData,
+            }
+        }
+    }
+    impl<'a> PresentWait2InfoKHR<'a> {
+        pub fn present_id(mut self, present_id: u64) -> Self {
+            self.present_id = present_id;
+            self
+        }
+        pub fn timeout(mut self, timeout: u64) -> Self {
+            self.timeout = timeout;
+            self
+        }
+    }
     #[repr(C)]
     #[derive(Clone, Copy)]
     pub struct PhysicalDevicePresentWait2FeaturesKHR<'a> {
@@ -53,6 +77,30 @@ pub(crate) mod reexport {
         pub present_wait2: crate::vk::Bool32,
         pub _marker: ::core::marker::PhantomData<&'a ()>,
     }
+    unsafe impl<'a> crate::TaggedStructure<'a>
+    for PhysicalDevicePresentWait2FeaturesKHR<'a> {
+        const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::PHYSICAL_DEVICE_PRESENT_WAIT_2_FEATURES_KHR;
+    }
+    unsafe impl<'a> crate::Extends<crate::vk::PhysicalDeviceFeatures2<'_>>
+    for PhysicalDevicePresentWait2FeaturesKHR<'a> {}
+    unsafe impl<'a> crate::Extends<crate::vk::DeviceCreateInfo<'_>>
+    for PhysicalDevicePresentWait2FeaturesKHR<'a> {}
+    impl<'a> Default for PhysicalDevicePresentWait2FeaturesKHR<'a> {
+        fn default() -> Self {
+            Self {
+                s_type: <Self as crate::TaggedStructure>::STRUCTURE_TYPE,
+                p_next: Default::default(),
+                present_wait2: Default::default(),
+                _marker: ::core::marker::PhantomData,
+            }
+        }
+    }
+    impl<'a> PhysicalDevicePresentWait2FeaturesKHR<'a> {
+        pub fn present_wait2(mut self, present_wait2: bool) -> Self {
+            self.present_wait2 = present_wait2.into();
+            self
+        }
+    }
     #[repr(C)]
     #[derive(Clone, Copy)]
     pub struct SurfaceCapabilitiesPresentWait2KHR<'a> {
@@ -60,6 +108,28 @@ pub(crate) mod reexport {
         pub p_next: *mut core::ffi::c_void,
         pub present_wait2_supported: crate::vk::Bool32,
         pub _marker: ::core::marker::PhantomData<&'a ()>,
+    }
+    unsafe impl<'a> crate::TaggedStructure<'a>
+    for SurfaceCapabilitiesPresentWait2KHR<'a> {
+        const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::SURFACE_CAPABILITIES_PRESENT_WAIT_2_KHR;
+    }
+    unsafe impl<'a> crate::Extends<crate::vk::SurfaceCapabilities2KHR<'_>>
+    for SurfaceCapabilitiesPresentWait2KHR<'a> {}
+    impl<'a> Default for SurfaceCapabilitiesPresentWait2KHR<'a> {
+        fn default() -> Self {
+            Self {
+                s_type: <Self as crate::TaggedStructure>::STRUCTURE_TYPE,
+                p_next: Default::default(),
+                present_wait2_supported: Default::default(),
+                _marker: ::core::marker::PhantomData,
+            }
+        }
+    }
+    impl<'a> SurfaceCapabilitiesPresentWait2KHR<'a> {
+        pub fn present_wait2_supported(mut self, present_wait2_supported: bool) -> Self {
+            self.present_wait2_supported = present_wait2_supported.into();
+            self
+        }
     }
     ///Provided by [`khr::present_wait2`](crate::khr::present_wait2)
     impl crate::vk::StructureType {

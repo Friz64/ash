@@ -10,6 +10,40 @@ pub struct VideoDecodeH264ProfileInfoKHR<'a> {
     pub picture_layout: crate::vk::VideoDecodeH264PictureLayoutFlagBitsKHR,
     pub _marker: ::core::marker::PhantomData<&'a ()>,
 }
+unsafe impl<'a> crate::TaggedStructure<'a> for VideoDecodeH264ProfileInfoKHR<'a> {
+    const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::VIDEO_DECODE_H264_PROFILE_INFO_KHR;
+}
+unsafe impl<'a> crate::Extends<crate::vk::VideoProfileInfoKHR<'_>>
+for VideoDecodeH264ProfileInfoKHR<'a> {}
+unsafe impl<'a> crate::Extends<crate::vk::QueryPoolCreateInfo<'_>>
+for VideoDecodeH264ProfileInfoKHR<'a> {}
+impl<'a> Default for VideoDecodeH264ProfileInfoKHR<'a> {
+    fn default() -> Self {
+        Self {
+            s_type: <Self as crate::TaggedStructure>::STRUCTURE_TYPE,
+            p_next: Default::default(),
+            std_profile_idc: Default::default(),
+            picture_layout: Default::default(),
+            _marker: ::core::marker::PhantomData,
+        }
+    }
+}
+impl<'a> VideoDecodeH264ProfileInfoKHR<'a> {
+    pub fn std_profile_idc(
+        mut self,
+        std_profile_idc: crate::vk::H264ProfileIdc,
+    ) -> Self {
+        self.std_profile_idc = std_profile_idc;
+        self
+    }
+    pub fn picture_layout(
+        mut self,
+        picture_layout: crate::vk::VideoDecodeH264PictureLayoutFlagBitsKHR,
+    ) -> Self {
+        self.picture_layout = picture_layout;
+        self
+    }
+}
 #[repr(C)]
 #[derive(Clone, Copy)]
 pub struct VideoDecodeH264CapabilitiesKHR<'a> {
@@ -18,6 +52,35 @@ pub struct VideoDecodeH264CapabilitiesKHR<'a> {
     pub max_level_idc: crate::vk::H264LevelIdc,
     pub field_offset_granularity: crate::vk::Offset2D,
     pub _marker: ::core::marker::PhantomData<&'a ()>,
+}
+unsafe impl<'a> crate::TaggedStructure<'a> for VideoDecodeH264CapabilitiesKHR<'a> {
+    const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::VIDEO_DECODE_H264_CAPABILITIES_KHR;
+}
+unsafe impl<'a> crate::Extends<crate::vk::VideoCapabilitiesKHR<'_>>
+for VideoDecodeH264CapabilitiesKHR<'a> {}
+impl<'a> Default for VideoDecodeH264CapabilitiesKHR<'a> {
+    fn default() -> Self {
+        Self {
+            s_type: <Self as crate::TaggedStructure>::STRUCTURE_TYPE,
+            p_next: Default::default(),
+            max_level_idc: Default::default(),
+            field_offset_granularity: Default::default(),
+            _marker: ::core::marker::PhantomData,
+        }
+    }
+}
+impl<'a> VideoDecodeH264CapabilitiesKHR<'a> {
+    pub fn max_level_idc(mut self, max_level_idc: crate::vk::H264LevelIdc) -> Self {
+        self.max_level_idc = max_level_idc;
+        self
+    }
+    pub fn field_offset_granularity(
+        mut self,
+        field_offset_granularity: crate::vk::Offset2D,
+    ) -> Self {
+        self.field_offset_granularity = field_offset_granularity;
+        self
+    }
 }
 #[repr(C)]
 #[derive(Clone, Copy)]
@@ -29,6 +92,51 @@ pub struct VideoDecodeH264SessionParametersAddInfoKHR<'a> {
     pub std_pps_count: u32,
     pub p_std_pp_ss: *const crate::vk::H264PictureParameterSet<'a>,
     pub _marker: ::core::marker::PhantomData<&'a ()>,
+}
+unsafe impl<'a> crate::TaggedStructure<'a>
+for VideoDecodeH264SessionParametersAddInfoKHR<'a> {
+    const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::VIDEO_DECODE_H264_SESSION_PARAMETERS_ADD_INFO_KHR;
+}
+unsafe impl<'a> crate::Extends<crate::vk::VideoSessionParametersUpdateInfoKHR<'_>>
+for VideoDecodeH264SessionParametersAddInfoKHR<'a> {}
+impl<'a> Default for VideoDecodeH264SessionParametersAddInfoKHR<'a> {
+    fn default() -> Self {
+        Self {
+            s_type: <Self as crate::TaggedStructure>::STRUCTURE_TYPE,
+            p_next: Default::default(),
+            std_sps_count: Default::default(),
+            p_std_sp_ss: Default::default(),
+            std_pps_count: Default::default(),
+            p_std_pp_ss: Default::default(),
+            _marker: ::core::marker::PhantomData,
+        }
+    }
+}
+impl<'a> VideoDecodeH264SessionParametersAddInfoKHR<'a> {
+    pub fn std_sps_count(mut self, std_sps_count: u32) -> Self {
+        self.std_sps_count = std_sps_count;
+        self
+    }
+    pub fn p_std_sp_ss(
+        mut self,
+        p_std_sp_ss: &'a [crate::vk::H264SequenceParameterSet<'a>],
+    ) -> Self {
+        self.std_sps_count = p_std_sp_ss.len() as _;
+        self.p_std_sp_ss = p_std_sp_ss.as_ptr();
+        self
+    }
+    pub fn std_pps_count(mut self, std_pps_count: u32) -> Self {
+        self.std_pps_count = std_pps_count;
+        self
+    }
+    pub fn p_std_pp_ss(
+        mut self,
+        p_std_pp_ss: &'a [crate::vk::H264PictureParameterSet<'a>],
+    ) -> Self {
+        self.std_pps_count = p_std_pp_ss.len() as _;
+        self.p_std_pp_ss = p_std_pp_ss.as_ptr();
+        self
+    }
 }
 #[repr(C)]
 #[derive(Clone, Copy)]
@@ -42,6 +150,43 @@ pub struct VideoDecodeH264SessionParametersCreateInfoKHR<'a> {
     >,
     pub _marker: ::core::marker::PhantomData<&'a ()>,
 }
+unsafe impl<'a> crate::TaggedStructure<'a>
+for VideoDecodeH264SessionParametersCreateInfoKHR<'a> {
+    const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::VIDEO_DECODE_H264_SESSION_PARAMETERS_CREATE_INFO_KHR;
+}
+unsafe impl<'a> crate::Extends<crate::vk::VideoSessionParametersCreateInfoKHR<'_>>
+for VideoDecodeH264SessionParametersCreateInfoKHR<'a> {}
+impl<'a> Default for VideoDecodeH264SessionParametersCreateInfoKHR<'a> {
+    fn default() -> Self {
+        Self {
+            s_type: <Self as crate::TaggedStructure>::STRUCTURE_TYPE,
+            p_next: Default::default(),
+            max_std_sps_count: Default::default(),
+            max_std_pps_count: Default::default(),
+            p_parameters_add_info: Default::default(),
+            _marker: ::core::marker::PhantomData,
+        }
+    }
+}
+impl<'a> VideoDecodeH264SessionParametersCreateInfoKHR<'a> {
+    pub fn max_std_sps_count(mut self, max_std_sps_count: u32) -> Self {
+        self.max_std_sps_count = max_std_sps_count;
+        self
+    }
+    pub fn max_std_pps_count(mut self, max_std_pps_count: u32) -> Self {
+        self.max_std_pps_count = max_std_pps_count;
+        self
+    }
+    pub fn p_parameters_add_info(
+        mut self,
+        p_parameters_add_info: &'a crate::vk::VideoDecodeH264SessionParametersAddInfoKHR<
+            'a,
+        >,
+    ) -> Self {
+        self.p_parameters_add_info = p_parameters_add_info;
+        self
+    }
+}
 #[repr(C)]
 #[derive(Clone, Copy)]
 pub struct VideoDecodeH264PictureInfoKHR<'a> {
@@ -52,6 +197,41 @@ pub struct VideoDecodeH264PictureInfoKHR<'a> {
     pub p_slice_offsets: *const u32,
     pub _marker: ::core::marker::PhantomData<&'a ()>,
 }
+unsafe impl<'a> crate::TaggedStructure<'a> for VideoDecodeH264PictureInfoKHR<'a> {
+    const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::VIDEO_DECODE_H264_PICTURE_INFO_KHR;
+}
+unsafe impl<'a> crate::Extends<crate::vk::VideoDecodeInfoKHR<'_>>
+for VideoDecodeH264PictureInfoKHR<'a> {}
+impl<'a> Default for VideoDecodeH264PictureInfoKHR<'a> {
+    fn default() -> Self {
+        Self {
+            s_type: <Self as crate::TaggedStructure>::STRUCTURE_TYPE,
+            p_next: Default::default(),
+            p_std_picture_info: Default::default(),
+            slice_count: Default::default(),
+            p_slice_offsets: Default::default(),
+            _marker: ::core::marker::PhantomData,
+        }
+    }
+}
+impl<'a> VideoDecodeH264PictureInfoKHR<'a> {
+    pub fn p_std_picture_info(
+        mut self,
+        p_std_picture_info: &'a crate::vk::DecodeH264PictureInfo,
+    ) -> Self {
+        self.p_std_picture_info = p_std_picture_info;
+        self
+    }
+    pub fn slice_count(mut self, slice_count: u32) -> Self {
+        self.slice_count = slice_count;
+        self
+    }
+    pub fn p_slice_offsets(mut self, p_slice_offsets: &'a [u32]) -> Self {
+        self.slice_count = p_slice_offsets.len() as _;
+        self.p_slice_offsets = p_slice_offsets.as_ptr();
+        self
+    }
+}
 #[repr(C)]
 #[derive(Clone, Copy)]
 pub struct VideoDecodeH264DpbSlotInfoKHR<'a> {
@@ -59,6 +239,30 @@ pub struct VideoDecodeH264DpbSlotInfoKHR<'a> {
     pub p_next: *const core::ffi::c_void,
     pub p_std_reference_info: *const crate::vk::DecodeH264ReferenceInfo,
     pub _marker: ::core::marker::PhantomData<&'a ()>,
+}
+unsafe impl<'a> crate::TaggedStructure<'a> for VideoDecodeH264DpbSlotInfoKHR<'a> {
+    const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::VIDEO_DECODE_H264_DPB_SLOT_INFO_KHR;
+}
+unsafe impl<'a> crate::Extends<crate::vk::VideoReferenceSlotInfoKHR<'_>>
+for VideoDecodeH264DpbSlotInfoKHR<'a> {}
+impl<'a> Default for VideoDecodeH264DpbSlotInfoKHR<'a> {
+    fn default() -> Self {
+        Self {
+            s_type: <Self as crate::TaggedStructure>::STRUCTURE_TYPE,
+            p_next: Default::default(),
+            p_std_reference_info: Default::default(),
+            _marker: ::core::marker::PhantomData,
+        }
+    }
+}
+impl<'a> VideoDecodeH264DpbSlotInfoKHR<'a> {
+    pub fn p_std_reference_info(
+        mut self,
+        p_std_reference_info: &'a crate::vk::DecodeH264ReferenceInfo,
+    ) -> Self {
+        self.p_std_reference_info = p_std_reference_info;
+        self
+    }
 }
 ///Provided by [`khr::video_decode_h264`](crate::khr::video_decode_h264)
 impl crate::vk::StructureType {
@@ -152,7 +356,7 @@ impl core::ops::Not for VideoDecodeH264PictureLayoutFlagsKHR {
     }
 }
 #[repr(transparent)]
-#[derive(Clone, Copy)]
+#[derive(Clone, Copy, Default)]
 pub struct VideoDecodeH264PictureLayoutFlagBitsKHR(pub(crate) u32);
 ///Provided by [`khr::video_decode_h264`](crate::khr::video_decode_h264)
 impl VideoDecodeH264PictureLayoutFlagBitsKHR {

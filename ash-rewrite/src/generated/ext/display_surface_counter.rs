@@ -54,6 +54,96 @@ pub(crate) mod reexport {
         pub supported_surface_counters: crate::vk::SurfaceCounterFlagsEXT,
         pub _marker: ::core::marker::PhantomData<&'a ()>,
     }
+    unsafe impl<'a> crate::TaggedStructure<'a> for SurfaceCapabilities2EXT<'a> {
+        const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::SURFACE_CAPABILITIES_2_EXT;
+    }
+    impl<'a> Default for SurfaceCapabilities2EXT<'a> {
+        fn default() -> Self {
+            Self {
+                s_type: <Self as crate::TaggedStructure>::STRUCTURE_TYPE,
+                p_next: Default::default(),
+                min_image_count: Default::default(),
+                max_image_count: Default::default(),
+                current_extent: Default::default(),
+                min_image_extent: Default::default(),
+                max_image_extent: Default::default(),
+                max_image_array_layers: Default::default(),
+                supported_transforms: Default::default(),
+                current_transform: Default::default(),
+                supported_composite_alpha: Default::default(),
+                supported_usage_flags: Default::default(),
+                supported_surface_counters: Default::default(),
+                _marker: ::core::marker::PhantomData,
+            }
+        }
+    }
+    impl<'a> SurfaceCapabilities2EXT<'a> {
+        pub fn min_image_count(mut self, min_image_count: u32) -> Self {
+            self.min_image_count = min_image_count;
+            self
+        }
+        pub fn max_image_count(mut self, max_image_count: u32) -> Self {
+            self.max_image_count = max_image_count;
+            self
+        }
+        pub fn current_extent(mut self, current_extent: crate::vk::Extent2D) -> Self {
+            self.current_extent = current_extent;
+            self
+        }
+        pub fn min_image_extent(
+            mut self,
+            min_image_extent: crate::vk::Extent2D,
+        ) -> Self {
+            self.min_image_extent = min_image_extent;
+            self
+        }
+        pub fn max_image_extent(
+            mut self,
+            max_image_extent: crate::vk::Extent2D,
+        ) -> Self {
+            self.max_image_extent = max_image_extent;
+            self
+        }
+        pub fn max_image_array_layers(mut self, max_image_array_layers: u32) -> Self {
+            self.max_image_array_layers = max_image_array_layers;
+            self
+        }
+        pub fn supported_transforms(
+            mut self,
+            supported_transforms: crate::vk::SurfaceTransformFlagsKHR,
+        ) -> Self {
+            self.supported_transforms = supported_transforms;
+            self
+        }
+        pub fn current_transform(
+            mut self,
+            current_transform: crate::vk::SurfaceTransformFlagBitsKHR,
+        ) -> Self {
+            self.current_transform = current_transform;
+            self
+        }
+        pub fn supported_composite_alpha(
+            mut self,
+            supported_composite_alpha: crate::vk::CompositeAlphaFlagsKHR,
+        ) -> Self {
+            self.supported_composite_alpha = supported_composite_alpha;
+            self
+        }
+        pub fn supported_usage_flags(
+            mut self,
+            supported_usage_flags: crate::vk::ImageUsageFlags,
+        ) -> Self {
+            self.supported_usage_flags = supported_usage_flags;
+            self
+        }
+        pub fn supported_surface_counters(
+            mut self,
+            supported_surface_counters: crate::vk::SurfaceCounterFlagsEXT,
+        ) -> Self {
+            self.supported_surface_counters = supported_surface_counters;
+            self
+        }
+    }
     ///Provided by [`ext::display_surface_counter`](crate::ext::display_surface_counter)
     impl crate::vk::StructureType {
         pub const SURFACE_CAPABILITIES_2_EXT: Self = Self(1000090000);
@@ -127,7 +217,7 @@ pub(crate) mod reexport {
         }
     }
     #[repr(transparent)]
-    #[derive(Clone, Copy)]
+    #[derive(Clone, Copy, Default)]
     pub struct SurfaceCounterFlagBitsEXT(pub(crate) u32);
     ///Provided by [`ext::display_surface_counter`](crate::ext::display_surface_counter)
     impl SurfaceCounterFlagBitsEXT {

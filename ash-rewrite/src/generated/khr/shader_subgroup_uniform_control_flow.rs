@@ -9,6 +9,34 @@ pub struct PhysicalDeviceShaderSubgroupUniformControlFlowFeaturesKHR<'a> {
     pub shader_subgroup_uniform_control_flow: crate::vk::Bool32,
     pub _marker: ::core::marker::PhantomData<&'a ()>,
 }
+unsafe impl<'a> crate::TaggedStructure<'a>
+for PhysicalDeviceShaderSubgroupUniformControlFlowFeaturesKHR<'a> {
+    const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::PHYSICAL_DEVICE_SHADER_SUBGROUP_UNIFORM_CONTROL_FLOW_FEATURES_KHR;
+}
+unsafe impl<'a> crate::Extends<crate::vk::PhysicalDeviceFeatures2<'_>>
+for PhysicalDeviceShaderSubgroupUniformControlFlowFeaturesKHR<'a> {}
+unsafe impl<'a> crate::Extends<crate::vk::DeviceCreateInfo<'_>>
+for PhysicalDeviceShaderSubgroupUniformControlFlowFeaturesKHR<'a> {}
+impl<'a> Default for PhysicalDeviceShaderSubgroupUniformControlFlowFeaturesKHR<'a> {
+    fn default() -> Self {
+        Self {
+            s_type: <Self as crate::TaggedStructure>::STRUCTURE_TYPE,
+            p_next: Default::default(),
+            shader_subgroup_uniform_control_flow: Default::default(),
+            _marker: ::core::marker::PhantomData,
+        }
+    }
+}
+impl<'a> PhysicalDeviceShaderSubgroupUniformControlFlowFeaturesKHR<'a> {
+    pub fn shader_subgroup_uniform_control_flow(
+        mut self,
+        shader_subgroup_uniform_control_flow: bool,
+    ) -> Self {
+        self.shader_subgroup_uniform_control_flow = shader_subgroup_uniform_control_flow
+            .into();
+        self
+    }
+}
 ///Provided by [`khr::shader_subgroup_uniform_control_flow`](crate::khr::shader_subgroup_uniform_control_flow)
 impl crate::vk::StructureType {
     pub const PHYSICAL_DEVICE_SHADER_SUBGROUP_UNIFORM_CONTROL_FLOW_FEATURES_KHR: Self = Self(

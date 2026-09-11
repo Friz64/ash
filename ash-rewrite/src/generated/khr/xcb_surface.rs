@@ -64,6 +64,38 @@ pub(crate) mod reexport {
         pub window: crate::platform_types::xcb_window_t,
         pub _marker: ::core::marker::PhantomData<&'a ()>,
     }
+    unsafe impl<'a> crate::TaggedStructure<'a> for XcbSurfaceCreateInfoKHR<'a> {
+        const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::XCB_SURFACE_CREATE_INFO_KHR;
+    }
+    impl<'a> Default for XcbSurfaceCreateInfoKHR<'a> {
+        fn default() -> Self {
+            Self {
+                s_type: <Self as crate::TaggedStructure>::STRUCTURE_TYPE,
+                p_next: Default::default(),
+                flags: Default::default(),
+                connection: Default::default(),
+                window: Default::default(),
+                _marker: ::core::marker::PhantomData,
+            }
+        }
+    }
+    impl<'a> XcbSurfaceCreateInfoKHR<'a> {
+        pub fn flags(mut self, flags: crate::vk::XcbSurfaceCreateFlagsKHR) -> Self {
+            self.flags = flags;
+            self
+        }
+        pub fn connection(
+            mut self,
+            connection: &'a mut crate::platform_types::xcb_connection_t,
+        ) -> Self {
+            self.connection = connection;
+            self
+        }
+        pub fn window(mut self, window: crate::platform_types::xcb_window_t) -> Self {
+            self.window = window;
+            self
+        }
+    }
     ///Provided by [`khr::xcb_surface`](crate::khr::xcb_surface)
     impl crate::vk::StructureType {
         pub const XCB_SURFACE_CREATE_INFO_KHR: Self = Self(1000005000);

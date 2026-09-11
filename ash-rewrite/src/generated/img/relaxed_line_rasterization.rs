@@ -9,6 +9,33 @@ pub struct PhysicalDeviceRelaxedLineRasterizationFeaturesIMG<'a> {
     pub relaxed_line_rasterization: crate::vk::Bool32,
     pub _marker: ::core::marker::PhantomData<&'a ()>,
 }
+unsafe impl<'a> crate::TaggedStructure<'a>
+for PhysicalDeviceRelaxedLineRasterizationFeaturesIMG<'a> {
+    const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::PHYSICAL_DEVICE_RELAXED_LINE_RASTERIZATION_FEATURES_IMG;
+}
+unsafe impl<'a> crate::Extends<crate::vk::PhysicalDeviceFeatures2<'_>>
+for PhysicalDeviceRelaxedLineRasterizationFeaturesIMG<'a> {}
+unsafe impl<'a> crate::Extends<crate::vk::DeviceCreateInfo<'_>>
+for PhysicalDeviceRelaxedLineRasterizationFeaturesIMG<'a> {}
+impl<'a> Default for PhysicalDeviceRelaxedLineRasterizationFeaturesIMG<'a> {
+    fn default() -> Self {
+        Self {
+            s_type: <Self as crate::TaggedStructure>::STRUCTURE_TYPE,
+            p_next: Default::default(),
+            relaxed_line_rasterization: Default::default(),
+            _marker: ::core::marker::PhantomData,
+        }
+    }
+}
+impl<'a> PhysicalDeviceRelaxedLineRasterizationFeaturesIMG<'a> {
+    pub fn relaxed_line_rasterization(
+        mut self,
+        relaxed_line_rasterization: bool,
+    ) -> Self {
+        self.relaxed_line_rasterization = relaxed_line_rasterization.into();
+        self
+    }
+}
 ///Provided by [`img::relaxed_line_rasterization`](crate::img::relaxed_line_rasterization)
 impl crate::vk::StructureType {
     pub const PHYSICAL_DEVICE_RELAXED_LINE_RASTERIZATION_FEATURES_IMG: Self = Self(

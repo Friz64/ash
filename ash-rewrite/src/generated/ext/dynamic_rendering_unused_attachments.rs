@@ -9,6 +9,34 @@ pub struct PhysicalDeviceDynamicRenderingUnusedAttachmentsFeaturesEXT<'a> {
     pub dynamic_rendering_unused_attachments: crate::vk::Bool32,
     pub _marker: ::core::marker::PhantomData<&'a ()>,
 }
+unsafe impl<'a> crate::TaggedStructure<'a>
+for PhysicalDeviceDynamicRenderingUnusedAttachmentsFeaturesEXT<'a> {
+    const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::PHYSICAL_DEVICE_DYNAMIC_RENDERING_UNUSED_ATTACHMENTS_FEATURES_EXT;
+}
+unsafe impl<'a> crate::Extends<crate::vk::PhysicalDeviceFeatures2<'_>>
+for PhysicalDeviceDynamicRenderingUnusedAttachmentsFeaturesEXT<'a> {}
+unsafe impl<'a> crate::Extends<crate::vk::DeviceCreateInfo<'_>>
+for PhysicalDeviceDynamicRenderingUnusedAttachmentsFeaturesEXT<'a> {}
+impl<'a> Default for PhysicalDeviceDynamicRenderingUnusedAttachmentsFeaturesEXT<'a> {
+    fn default() -> Self {
+        Self {
+            s_type: <Self as crate::TaggedStructure>::STRUCTURE_TYPE,
+            p_next: Default::default(),
+            dynamic_rendering_unused_attachments: Default::default(),
+            _marker: ::core::marker::PhantomData,
+        }
+    }
+}
+impl<'a> PhysicalDeviceDynamicRenderingUnusedAttachmentsFeaturesEXT<'a> {
+    pub fn dynamic_rendering_unused_attachments(
+        mut self,
+        dynamic_rendering_unused_attachments: bool,
+    ) -> Self {
+        self.dynamic_rendering_unused_attachments = dynamic_rendering_unused_attachments
+            .into();
+        self
+    }
+}
 ///Provided by [`ext::dynamic_rendering_unused_attachments`](crate::ext::dynamic_rendering_unused_attachments)
 impl crate::vk::StructureType {
     pub const PHYSICAL_DEVICE_DYNAMIC_RENDERING_UNUSED_ATTACHMENTS_FEATURES_EXT: Self = Self(

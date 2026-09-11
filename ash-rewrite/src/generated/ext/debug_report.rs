@@ -84,6 +84,40 @@ pub(crate) mod reexport {
         pub p_user_data: *mut core::ffi::c_void,
         pub _marker: ::core::marker::PhantomData<&'a ()>,
     }
+    unsafe impl<'a> crate::TaggedStructure<'a> for DebugReportCallbackCreateInfoEXT<'a> {
+        const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::DEBUG_REPORT_CALLBACK_CREATE_INFO_EXT;
+    }
+    unsafe impl<'a> crate::Extends<crate::vk::InstanceCreateInfo<'_>>
+    for DebugReportCallbackCreateInfoEXT<'a> {}
+    impl<'a> Default for DebugReportCallbackCreateInfoEXT<'a> {
+        fn default() -> Self {
+            Self {
+                s_type: <Self as crate::TaggedStructure>::STRUCTURE_TYPE,
+                p_next: Default::default(),
+                flags: Default::default(),
+                pfn_callback: Default::default(),
+                p_user_data: Default::default(),
+                _marker: ::core::marker::PhantomData,
+            }
+        }
+    }
+    impl<'a> DebugReportCallbackCreateInfoEXT<'a> {
+        pub fn flags(mut self, flags: crate::vk::DebugReportFlagsEXT) -> Self {
+            self.flags = flags;
+            self
+        }
+        pub fn pfn_callback(
+            mut self,
+            pfn_callback: crate::vk::PFN_vkDebugReportCallbackEXT,
+        ) -> Self {
+            self.pfn_callback = pfn_callback;
+            self
+        }
+        pub fn p_user_data(mut self, p_user_data: &'a mut core::ffi::c_void) -> Self {
+            self.p_user_data = p_user_data;
+            self
+        }
+    }
     ///Provided by [`ext::debug_report`](crate::ext::debug_report)
     impl crate::vk::StructureType {
         pub const DEBUG_REPORT_CALLBACK_CREATE_INFO_EXT: Self = Self(1000011000);
@@ -222,7 +256,7 @@ pub(crate) mod reexport {
         }
     }
     #[repr(transparent)]
-    #[derive(Clone, Copy)]
+    #[derive(Clone, Copy, Default)]
     pub struct DebugReportFlagBitsEXT(pub(crate) u32);
     ///Provided by [`ext::debug_report`](crate::ext::debug_report)
     impl DebugReportFlagBitsEXT {

@@ -11,6 +11,47 @@ pub struct PhysicalDeviceShaderBfloat16FeaturesKHR<'a> {
     pub shader_b_float16_cooperative_matrix: crate::vk::Bool32,
     pub _marker: ::core::marker::PhantomData<&'a ()>,
 }
+unsafe impl<'a> crate::TaggedStructure<'a>
+for PhysicalDeviceShaderBfloat16FeaturesKHR<'a> {
+    const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::PHYSICAL_DEVICE_SHADER_BFLOAT16_FEATURES_KHR;
+}
+unsafe impl<'a> crate::Extends<crate::vk::PhysicalDeviceFeatures2<'_>>
+for PhysicalDeviceShaderBfloat16FeaturesKHR<'a> {}
+unsafe impl<'a> crate::Extends<crate::vk::DeviceCreateInfo<'_>>
+for PhysicalDeviceShaderBfloat16FeaturesKHR<'a> {}
+impl<'a> Default for PhysicalDeviceShaderBfloat16FeaturesKHR<'a> {
+    fn default() -> Self {
+        Self {
+            s_type: <Self as crate::TaggedStructure>::STRUCTURE_TYPE,
+            p_next: Default::default(),
+            shader_b_float16_type: Default::default(),
+            shader_b_float16_dot_product: Default::default(),
+            shader_b_float16_cooperative_matrix: Default::default(),
+            _marker: ::core::marker::PhantomData,
+        }
+    }
+}
+impl<'a> PhysicalDeviceShaderBfloat16FeaturesKHR<'a> {
+    pub fn shader_b_float16_type(mut self, shader_b_float16_type: bool) -> Self {
+        self.shader_b_float16_type = shader_b_float16_type.into();
+        self
+    }
+    pub fn shader_b_float16_dot_product(
+        mut self,
+        shader_b_float16_dot_product: bool,
+    ) -> Self {
+        self.shader_b_float16_dot_product = shader_b_float16_dot_product.into();
+        self
+    }
+    pub fn shader_b_float16_cooperative_matrix(
+        mut self,
+        shader_b_float16_cooperative_matrix: bool,
+    ) -> Self {
+        self.shader_b_float16_cooperative_matrix = shader_b_float16_cooperative_matrix
+            .into();
+        self
+    }
+}
 ///Provided by [`khr::shader_bfloat16`](crate::khr::shader_bfloat16)
 impl crate::vk::StructureType {
     pub const PHYSICAL_DEVICE_SHADER_BFLOAT16_FEATURES_KHR: Self = Self(1000141000);

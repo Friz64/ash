@@ -9,6 +9,30 @@ pub struct PhysicalDeviceRayTracingValidationFeaturesNV<'a> {
     pub ray_tracing_validation: crate::vk::Bool32,
     pub _marker: ::core::marker::PhantomData<&'a ()>,
 }
+unsafe impl<'a> crate::TaggedStructure<'a>
+for PhysicalDeviceRayTracingValidationFeaturesNV<'a> {
+    const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::PHYSICAL_DEVICE_RAY_TRACING_VALIDATION_FEATURES_NV;
+}
+unsafe impl<'a> crate::Extends<crate::vk::PhysicalDeviceFeatures2<'_>>
+for PhysicalDeviceRayTracingValidationFeaturesNV<'a> {}
+unsafe impl<'a> crate::Extends<crate::vk::DeviceCreateInfo<'_>>
+for PhysicalDeviceRayTracingValidationFeaturesNV<'a> {}
+impl<'a> Default for PhysicalDeviceRayTracingValidationFeaturesNV<'a> {
+    fn default() -> Self {
+        Self {
+            s_type: <Self as crate::TaggedStructure>::STRUCTURE_TYPE,
+            p_next: Default::default(),
+            ray_tracing_validation: Default::default(),
+            _marker: ::core::marker::PhantomData,
+        }
+    }
+}
+impl<'a> PhysicalDeviceRayTracingValidationFeaturesNV<'a> {
+    pub fn ray_tracing_validation(mut self, ray_tracing_validation: bool) -> Self {
+        self.ray_tracing_validation = ray_tracing_validation.into();
+        self
+    }
+}
 ///Provided by [`nv::ray_tracing_validation`](crate::nv::ray_tracing_validation)
 impl crate::vk::StructureType {
     pub const PHYSICAL_DEVICE_RAY_TRACING_VALIDATION_FEATURES_NV: Self = Self(

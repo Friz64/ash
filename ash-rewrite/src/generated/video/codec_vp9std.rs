@@ -2,13 +2,23 @@
 #![cfg_attr(rustfmt, rustfmt_skip)]
 //!Items provided by `vulkan_video_codec_vp9std`
 #[repr(C)]
-#[derive(Clone, Copy)]
+#[derive(Clone, Copy, Default)]
 pub struct VP9ColorConfigFlags {
     ///- `color_range` @ `0..1`
     pub bitfield0: u32,
 }
+impl VP9ColorConfigFlags {
+    pub fn color_range(mut self, color_range: u32) -> Self {
+        let rest = self.bitfield0 & 0xFFFFFFFE;
+        self.bitfield0 = (color_range & 0x00000001) | rest;
+        self
+    }
+    pub fn get_color_range(&self) -> u32 {
+        self.bitfield0 & 0x00000001
+    }
+}
 #[repr(C)]
-#[derive(Clone, Copy)]
+#[derive(Clone, Copy, Default)]
 pub struct VP9ColorConfig {
     pub flags: crate::vk::VP9ColorConfigFlags,
     pub bit_depth: u8,
@@ -17,12 +27,56 @@ pub struct VP9ColorConfig {
     pub reserved1: u8,
     pub color_space: crate::vk::VP9ColorSpace,
 }
+impl VP9ColorConfig {
+    pub fn flags(mut self, flags: crate::vk::VP9ColorConfigFlags) -> Self {
+        self.flags = flags;
+        self
+    }
+    pub fn bit_depth(mut self, bit_depth: u8) -> Self {
+        self.bit_depth = bit_depth;
+        self
+    }
+    pub fn subsampling_x(mut self, subsampling_x: u8) -> Self {
+        self.subsampling_x = subsampling_x;
+        self
+    }
+    pub fn subsampling_y(mut self, subsampling_y: u8) -> Self {
+        self.subsampling_y = subsampling_y;
+        self
+    }
+    pub fn reserved1(mut self, reserved1: u8) -> Self {
+        self.reserved1 = reserved1;
+        self
+    }
+    pub fn color_space(mut self, color_space: crate::vk::VP9ColorSpace) -> Self {
+        self.color_space = color_space;
+        self
+    }
+}
 #[repr(C)]
-#[derive(Clone, Copy)]
+#[derive(Clone, Copy, Default)]
 pub struct VP9LoopFilterFlags {
     /**- `loop_filter_delta_enabled` @ `0..1`
 - `loop_filter_delta_update` @ `1..2`*/
     pub bitfield0: u32,
+}
+impl VP9LoopFilterFlags {
+    pub fn loop_filter_delta_enabled(mut self, loop_filter_delta_enabled: u32) -> Self {
+        let rest = self.bitfield0 & 0xFFFFFFFE;
+        self.bitfield0 = (loop_filter_delta_enabled & 0x00000001) | rest;
+        self
+    }
+    pub fn get_loop_filter_delta_enabled(&self) -> u32 {
+        self.bitfield0 & 0x00000001
+    }
+    pub fn loop_filter_delta_update(mut self, loop_filter_delta_update: u32) -> Self {
+        let rest = self.bitfield0 & 0xFFFFFFFD;
+        self.bitfield0 = ((loop_filter_delta_update << 1u32) & 0x00000002) | rest;
+        self
+    }
+    pub fn get_loop_filter_delta_update(&self) -> u32 {
+        (self.bitfield0 & 0x00000002) >> 1u32
+    }
 }
 #[repr(C)]
 #[derive(Clone, Copy)]
@@ -36,14 +90,105 @@ pub struct VP9LoopFilter {
     pub loop_filter_mode_deltas: [i8; crate::vk::STD_VIDEO_VP9_LOOP_FILTER_ADJUSTMENTS
         as _],
 }
+impl Default for VP9LoopFilter {
+    fn default() -> Self {
+        Self {
+            flags: Default::default(),
+            loop_filter_level: Default::default(),
+            loop_filter_sharpness: Default::default(),
+            update_ref_delta: Default::default(),
+            loop_filter_ref_deltas: unsafe { core::mem::zeroed() },
+            update_mode_delta: Default::default(),
+            loop_filter_mode_deltas: unsafe { core::mem::zeroed() },
+        }
+    }
+}
+impl VP9LoopFilter {
+    pub fn flags(mut self, flags: crate::vk::VP9LoopFilterFlags) -> Self {
+        self.flags = flags;
+        self
+    }
+    pub fn loop_filter_level(mut self, loop_filter_level: u8) -> Self {
+        self.loop_filter_level = loop_filter_level;
+        self
+    }
+    pub fn loop_filter_sharpness(mut self, loop_filter_sharpness: u8) -> Self {
+        self.loop_filter_sharpness = loop_filter_sharpness;
+        self
+    }
+    pub fn update_ref_delta(mut self, update_ref_delta: u8) -> Self {
+        self.update_ref_delta = update_ref_delta;
+        self
+    }
+    pub fn loop_filter_ref_deltas(
+        mut self,
+        loop_filter_ref_deltas: [i8; crate::vk::STD_VIDEO_VP9_MAX_REF_FRAMES as _],
+    ) -> Self {
+        self.loop_filter_ref_deltas = loop_filter_ref_deltas;
+        self
+    }
+    pub fn update_mode_delta(mut self, update_mode_delta: u8) -> Self {
+        self.update_mode_delta = update_mode_delta;
+        self
+    }
+    pub fn loop_filter_mode_deltas(
+        mut self,
+        loop_filter_mode_deltas: [i8; crate::vk::STD_VIDEO_VP9_LOOP_FILTER_ADJUSTMENTS
+            as _],
+    ) -> Self {
+        self.loop_filter_mode_deltas = loop_filter_mode_deltas;
+        self
+    }
+}
 #[repr(C)]
-#[derive(Clone, Copy)]
+#[derive(Clone, Copy, Default)]
 pub struct VP9SegmentationFlags {
     /**- `segmentation_update_map` @ `0..1`
 - `segmentation_temporal_update` @ `1..2`
 - `segmentation_update_data` @ `2..3`
 - `segmentation_abs_or_delta_update` @ `3..4`*/
     pub bitfield0: u32,
+}
+impl VP9SegmentationFlags {
+    pub fn segmentation_update_map(mut self, segmentation_update_map: u32) -> Self {
+        let rest = self.bitfield0 & 0xFFFFFFFE;
+        self.bitfield0 = (segmentation_update_map & 0x00000001) | rest;
+        self
+    }
+    pub fn get_segmentation_update_map(&self) -> u32 {
+        self.bitfield0 & 0x00000001
+    }
+    pub fn segmentation_temporal_update(
+        mut self,
+        segmentation_temporal_update: u32,
+    ) -> Self {
+        let rest = self.bitfield0 & 0xFFFFFFFD;
+        self.bitfield0 = ((segmentation_temporal_update << 1u32) & 0x00000002) | rest;
+        self
+    }
+    pub fn get_segmentation_temporal_update(&self) -> u32 {
+        (self.bitfield0 & 0x00000002) >> 1u32
+    }
+    pub fn segmentation_update_data(mut self, segmentation_update_data: u32) -> Self {
+        let rest = self.bitfield0 & 0xFFFFFFFB;
+        self.bitfield0 = ((segmentation_update_data << 2u32) & 0x00000004) | rest;
+        self
+    }
+    pub fn get_segmentation_update_data(&self) -> u32 {
+        (self.bitfield0 & 0x00000004) >> 2u32
+    }
+    pub fn segmentation_abs_or_delta_update(
+        mut self,
+        segmentation_abs_or_delta_update: u32,
+    ) -> Self {
+        let rest = self.bitfield0 & 0xFFFFFFF7;
+        self.bitfield0 = ((segmentation_abs_or_delta_update << 3u32) & 0x00000008)
+            | rest;
+        self
+    }
+    pub fn get_segmentation_abs_or_delta_update(&self) -> u32 {
+        (self.bitfield0 & 0x00000008) >> 3u32
+    }
 }
 #[repr(C)]
 #[derive(Clone, Copy)]
@@ -56,6 +201,54 @@ pub struct VP9Segmentation {
     pub feature_enabled: [u8; crate::vk::STD_VIDEO_VP9_MAX_SEGMENTS as _],
     pub feature_data: [[i16; crate::vk::STD_VIDEO_VP9_SEG_LVL_MAX
         as _]; crate::vk::STD_VIDEO_VP9_MAX_SEGMENTS as _],
+}
+impl Default for VP9Segmentation {
+    fn default() -> Self {
+        Self {
+            flags: Default::default(),
+            segmentation_tree_probs: unsafe { core::mem::zeroed() },
+            segmentation_pred_prob: unsafe { core::mem::zeroed() },
+            feature_enabled: unsafe { core::mem::zeroed() },
+            feature_data: unsafe { core::mem::zeroed() },
+        }
+    }
+}
+impl VP9Segmentation {
+    pub fn flags(mut self, flags: crate::vk::VP9SegmentationFlags) -> Self {
+        self.flags = flags;
+        self
+    }
+    pub fn segmentation_tree_probs(
+        mut self,
+        segmentation_tree_probs: [u8; crate::vk::STD_VIDEO_VP9_MAX_SEGMENTATION_TREE_PROBS
+            as _],
+    ) -> Self {
+        self.segmentation_tree_probs = segmentation_tree_probs;
+        self
+    }
+    pub fn segmentation_pred_prob(
+        mut self,
+        segmentation_pred_prob: [u8; crate::vk::STD_VIDEO_VP9_MAX_SEGMENTATION_PRED_PROB
+            as _],
+    ) -> Self {
+        self.segmentation_pred_prob = segmentation_pred_prob;
+        self
+    }
+    pub fn feature_enabled(
+        mut self,
+        feature_enabled: [u8; crate::vk::STD_VIDEO_VP9_MAX_SEGMENTS as _],
+    ) -> Self {
+        self.feature_enabled = feature_enabled;
+        self
+    }
+    pub fn feature_data(
+        mut self,
+        feature_data: [[i16; crate::vk::STD_VIDEO_VP9_SEG_LVL_MAX
+            as _]; crate::vk::STD_VIDEO_VP9_MAX_SEGMENTS as _],
+    ) -> Self {
+        self.feature_data = feature_data;
+        self
+    }
 }
 #[repr(transparent)]
 #[derive(Clone, Copy, PartialEq, Eq, PartialOrd, Ord, Hash, Default)]

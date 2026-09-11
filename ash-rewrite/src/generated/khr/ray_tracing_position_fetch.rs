@@ -9,6 +9,33 @@ pub struct PhysicalDeviceRayTracingPositionFetchFeaturesKHR<'a> {
     pub ray_tracing_position_fetch: crate::vk::Bool32,
     pub _marker: ::core::marker::PhantomData<&'a ()>,
 }
+unsafe impl<'a> crate::TaggedStructure<'a>
+for PhysicalDeviceRayTracingPositionFetchFeaturesKHR<'a> {
+    const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::PHYSICAL_DEVICE_RAY_TRACING_POSITION_FETCH_FEATURES_KHR;
+}
+unsafe impl<'a> crate::Extends<crate::vk::PhysicalDeviceFeatures2<'_>>
+for PhysicalDeviceRayTracingPositionFetchFeaturesKHR<'a> {}
+unsafe impl<'a> crate::Extends<crate::vk::DeviceCreateInfo<'_>>
+for PhysicalDeviceRayTracingPositionFetchFeaturesKHR<'a> {}
+impl<'a> Default for PhysicalDeviceRayTracingPositionFetchFeaturesKHR<'a> {
+    fn default() -> Self {
+        Self {
+            s_type: <Self as crate::TaggedStructure>::STRUCTURE_TYPE,
+            p_next: Default::default(),
+            ray_tracing_position_fetch: Default::default(),
+            _marker: ::core::marker::PhantomData,
+        }
+    }
+}
+impl<'a> PhysicalDeviceRayTracingPositionFetchFeaturesKHR<'a> {
+    pub fn ray_tracing_position_fetch(
+        mut self,
+        ray_tracing_position_fetch: bool,
+    ) -> Self {
+        self.ray_tracing_position_fetch = ray_tracing_position_fetch.into();
+        self
+    }
+}
 ///Provided by [`khr::ray_tracing_position_fetch`](crate::khr::ray_tracing_position_fetch)
 impl crate::vk::StructureType {
     pub const PHYSICAL_DEVICE_RAY_TRACING_POSITION_FETCH_FEATURES_KHR: Self = Self(

@@ -65,6 +65,30 @@ pub(crate) mod reexport {
         pub indirect_copy: crate::vk::Bool32,
         pub _marker: ::core::marker::PhantomData<&'a ()>,
     }
+    unsafe impl<'a> crate::TaggedStructure<'a>
+    for PhysicalDeviceCopyMemoryIndirectFeaturesNV<'a> {
+        const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::PHYSICAL_DEVICE_COPY_MEMORY_INDIRECT_FEATURES_NV;
+    }
+    unsafe impl<'a> crate::Extends<crate::vk::PhysicalDeviceFeatures2<'_>>
+    for PhysicalDeviceCopyMemoryIndirectFeaturesNV<'a> {}
+    unsafe impl<'a> crate::Extends<crate::vk::DeviceCreateInfo<'_>>
+    for PhysicalDeviceCopyMemoryIndirectFeaturesNV<'a> {}
+    impl<'a> Default for PhysicalDeviceCopyMemoryIndirectFeaturesNV<'a> {
+        fn default() -> Self {
+            Self {
+                s_type: <Self as crate::TaggedStructure>::STRUCTURE_TYPE,
+                p_next: Default::default(),
+                indirect_copy: Default::default(),
+                _marker: ::core::marker::PhantomData,
+            }
+        }
+    }
+    impl<'a> PhysicalDeviceCopyMemoryIndirectFeaturesNV<'a> {
+        pub fn indirect_copy(mut self, indirect_copy: bool) -> Self {
+            self.indirect_copy = indirect_copy.into();
+            self
+        }
+    }
     pub type CopyMemoryIndirectCommandNV = crate::vk::CopyMemoryIndirectCommandKHR;
     pub type CopyMemoryToImageIndirectCommandNV = crate::vk::CopyMemoryToImageIndirectCommandKHR;
     pub type PhysicalDeviceCopyMemoryIndirectPropertiesNV<'a> = crate::vk::PhysicalDeviceCopyMemoryIndirectPropertiesKHR<

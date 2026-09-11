@@ -104,6 +104,45 @@ pub(crate) mod reexport {
         pub p_object_name: *const core::ffi::c_char,
         pub _marker: ::core::marker::PhantomData<&'a ()>,
     }
+    unsafe impl<'a> crate::TaggedStructure<'a> for DebugMarkerObjectNameInfoEXT<'a> {
+        const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::DEBUG_MARKER_OBJECT_NAME_INFO_EXT;
+    }
+    impl<'a> Default for DebugMarkerObjectNameInfoEXT<'a> {
+        fn default() -> Self {
+            Self {
+                s_type: <Self as crate::TaggedStructure>::STRUCTURE_TYPE,
+                p_next: Default::default(),
+                object_type: Default::default(),
+                object: Default::default(),
+                p_object_name: Default::default(),
+                _marker: ::core::marker::PhantomData,
+            }
+        }
+    }
+    impl<'a> DebugMarkerObjectNameInfoEXT<'a> {
+        pub fn object_type(
+            mut self,
+            object_type: crate::vk::DebugReportObjectTypeEXT,
+        ) -> Self {
+            self.object_type = object_type;
+            self
+        }
+        pub fn object(mut self, object: u64) -> Self {
+            self.object = object;
+            self
+        }
+        pub fn p_object_name(mut self, p_object_name: &'a core::ffi::CStr) -> Self {
+            self.p_object_name = p_object_name.as_ptr();
+            self
+        }
+        pub unsafe fn p_object_name_as_c_str(&self) -> Option<&core::ffi::CStr> {
+            if self.p_object_name.is_null() {
+                None
+            } else {
+                Some(unsafe { core::ffi::CStr::from_ptr(self.p_object_name) })
+            }
+        }
+    }
     #[repr(C)]
     #[derive(Clone, Copy)]
     pub struct DebugMarkerObjectTagInfoEXT<'a> {
@@ -116,6 +155,49 @@ pub(crate) mod reexport {
         pub p_tag: *const core::ffi::c_void,
         pub _marker: ::core::marker::PhantomData<&'a ()>,
     }
+    unsafe impl<'a> crate::TaggedStructure<'a> for DebugMarkerObjectTagInfoEXT<'a> {
+        const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::DEBUG_MARKER_OBJECT_TAG_INFO_EXT;
+    }
+    impl<'a> Default for DebugMarkerObjectTagInfoEXT<'a> {
+        fn default() -> Self {
+            Self {
+                s_type: <Self as crate::TaggedStructure>::STRUCTURE_TYPE,
+                p_next: Default::default(),
+                object_type: Default::default(),
+                object: Default::default(),
+                tag_name: Default::default(),
+                tag_size: Default::default(),
+                p_tag: Default::default(),
+                _marker: ::core::marker::PhantomData,
+            }
+        }
+    }
+    impl<'a> DebugMarkerObjectTagInfoEXT<'a> {
+        pub fn object_type(
+            mut self,
+            object_type: crate::vk::DebugReportObjectTypeEXT,
+        ) -> Self {
+            self.object_type = object_type;
+            self
+        }
+        pub fn object(mut self, object: u64) -> Self {
+            self.object = object;
+            self
+        }
+        pub fn tag_name(mut self, tag_name: u64) -> Self {
+            self.tag_name = tag_name;
+            self
+        }
+        pub fn tag_size(mut self, tag_size: usize) -> Self {
+            self.tag_size = tag_size;
+            self
+        }
+        pub fn p_tag(mut self, p_tag: &'a [u8]) -> Self {
+            self.tag_size = p_tag.len() as _;
+            self.p_tag = p_tag.as_ptr().cast();
+            self
+        }
+    }
     #[repr(C)]
     #[derive(Clone, Copy)]
     pub struct DebugMarkerMarkerInfoEXT<'a> {
@@ -124,6 +206,37 @@ pub(crate) mod reexport {
         pub p_marker_name: *const core::ffi::c_char,
         pub color: [core::ffi::c_float; 4 as _],
         pub _marker: ::core::marker::PhantomData<&'a ()>,
+    }
+    unsafe impl<'a> crate::TaggedStructure<'a> for DebugMarkerMarkerInfoEXT<'a> {
+        const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::DEBUG_MARKER_MARKER_INFO_EXT;
+    }
+    impl<'a> Default for DebugMarkerMarkerInfoEXT<'a> {
+        fn default() -> Self {
+            Self {
+                s_type: <Self as crate::TaggedStructure>::STRUCTURE_TYPE,
+                p_next: Default::default(),
+                p_marker_name: Default::default(),
+                color: unsafe { core::mem::zeroed() },
+                _marker: ::core::marker::PhantomData,
+            }
+        }
+    }
+    impl<'a> DebugMarkerMarkerInfoEXT<'a> {
+        pub fn p_marker_name(mut self, p_marker_name: &'a core::ffi::CStr) -> Self {
+            self.p_marker_name = p_marker_name.as_ptr();
+            self
+        }
+        pub unsafe fn p_marker_name_as_c_str(&self) -> Option<&core::ffi::CStr> {
+            if self.p_marker_name.is_null() {
+                None
+            } else {
+                Some(unsafe { core::ffi::CStr::from_ptr(self.p_marker_name) })
+            }
+        }
+        pub fn color(mut self, color: [core::ffi::c_float; 4 as _]) -> Self {
+            self.color = color;
+            self
+        }
     }
     ///Provided by [`ext::debug_marker`](crate::ext::debug_marker)
     impl crate::vk::StructureType {

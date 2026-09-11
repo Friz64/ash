@@ -130,6 +130,30 @@ pub(crate) mod reexport {
         pub optical_flow: crate::vk::Bool32,
         pub _marker: ::core::marker::PhantomData<&'a ()>,
     }
+    unsafe impl<'a> crate::TaggedStructure<'a>
+    for PhysicalDeviceOpticalFlowFeaturesNV<'a> {
+        const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::PHYSICAL_DEVICE_OPTICAL_FLOW_FEATURES_NV;
+    }
+    unsafe impl<'a> crate::Extends<crate::vk::PhysicalDeviceFeatures2<'_>>
+    for PhysicalDeviceOpticalFlowFeaturesNV<'a> {}
+    unsafe impl<'a> crate::Extends<crate::vk::DeviceCreateInfo<'_>>
+    for PhysicalDeviceOpticalFlowFeaturesNV<'a> {}
+    impl<'a> Default for PhysicalDeviceOpticalFlowFeaturesNV<'a> {
+        fn default() -> Self {
+            Self {
+                s_type: <Self as crate::TaggedStructure>::STRUCTURE_TYPE,
+                p_next: Default::default(),
+                optical_flow: Default::default(),
+                _marker: ::core::marker::PhantomData,
+            }
+        }
+    }
+    impl<'a> PhysicalDeviceOpticalFlowFeaturesNV<'a> {
+        pub fn optical_flow(mut self, optical_flow: bool) -> Self {
+            self.optical_flow = optical_flow.into();
+            self
+        }
+    }
     #[repr(C)]
     #[derive(Clone, Copy)]
     pub struct PhysicalDeviceOpticalFlowPropertiesNV<'a> {
@@ -148,6 +172,90 @@ pub(crate) mod reexport {
         pub max_num_regions_of_interest: u32,
         pub _marker: ::core::marker::PhantomData<&'a ()>,
     }
+    unsafe impl<'a> crate::TaggedStructure<'a>
+    for PhysicalDeviceOpticalFlowPropertiesNV<'a> {
+        const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::PHYSICAL_DEVICE_OPTICAL_FLOW_PROPERTIES_NV;
+    }
+    unsafe impl<'a> crate::Extends<crate::vk::PhysicalDeviceProperties2<'_>>
+    for PhysicalDeviceOpticalFlowPropertiesNV<'a> {}
+    impl<'a> Default for PhysicalDeviceOpticalFlowPropertiesNV<'a> {
+        fn default() -> Self {
+            Self {
+                s_type: <Self as crate::TaggedStructure>::STRUCTURE_TYPE,
+                p_next: Default::default(),
+                supported_output_grid_sizes: Default::default(),
+                supported_hint_grid_sizes: Default::default(),
+                hint_supported: Default::default(),
+                cost_supported: Default::default(),
+                bidirectional_flow_supported: Default::default(),
+                global_flow_supported: Default::default(),
+                min_width: Default::default(),
+                min_height: Default::default(),
+                max_width: Default::default(),
+                max_height: Default::default(),
+                max_num_regions_of_interest: Default::default(),
+                _marker: ::core::marker::PhantomData,
+            }
+        }
+    }
+    impl<'a> PhysicalDeviceOpticalFlowPropertiesNV<'a> {
+        pub fn supported_output_grid_sizes(
+            mut self,
+            supported_output_grid_sizes: crate::vk::OpticalFlowGridSizeFlagsNV,
+        ) -> Self {
+            self.supported_output_grid_sizes = supported_output_grid_sizes;
+            self
+        }
+        pub fn supported_hint_grid_sizes(
+            mut self,
+            supported_hint_grid_sizes: crate::vk::OpticalFlowGridSizeFlagsNV,
+        ) -> Self {
+            self.supported_hint_grid_sizes = supported_hint_grid_sizes;
+            self
+        }
+        pub fn hint_supported(mut self, hint_supported: bool) -> Self {
+            self.hint_supported = hint_supported.into();
+            self
+        }
+        pub fn cost_supported(mut self, cost_supported: bool) -> Self {
+            self.cost_supported = cost_supported.into();
+            self
+        }
+        pub fn bidirectional_flow_supported(
+            mut self,
+            bidirectional_flow_supported: bool,
+        ) -> Self {
+            self.bidirectional_flow_supported = bidirectional_flow_supported.into();
+            self
+        }
+        pub fn global_flow_supported(mut self, global_flow_supported: bool) -> Self {
+            self.global_flow_supported = global_flow_supported.into();
+            self
+        }
+        pub fn min_width(mut self, min_width: u32) -> Self {
+            self.min_width = min_width;
+            self
+        }
+        pub fn min_height(mut self, min_height: u32) -> Self {
+            self.min_height = min_height;
+            self
+        }
+        pub fn max_width(mut self, max_width: u32) -> Self {
+            self.max_width = max_width;
+            self
+        }
+        pub fn max_height(mut self, max_height: u32) -> Self {
+            self.max_height = max_height;
+            self
+        }
+        pub fn max_num_regions_of_interest(
+            mut self,
+            max_num_regions_of_interest: u32,
+        ) -> Self {
+            self.max_num_regions_of_interest = max_num_regions_of_interest;
+            self
+        }
+    }
     #[repr(C)]
     #[derive(Clone, Copy)]
     pub struct OpticalFlowImageFormatInfoNV<'a> {
@@ -156,6 +264,29 @@ pub(crate) mod reexport {
         pub usage: crate::vk::OpticalFlowUsageFlagsNV,
         pub _marker: ::core::marker::PhantomData<&'a ()>,
     }
+    unsafe impl<'a> crate::TaggedStructure<'a> for OpticalFlowImageFormatInfoNV<'a> {
+        const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::OPTICAL_FLOW_IMAGE_FORMAT_INFO_NV;
+    }
+    unsafe impl<'a> crate::Extends<crate::vk::PhysicalDeviceImageFormatInfo2<'_>>
+    for OpticalFlowImageFormatInfoNV<'a> {}
+    unsafe impl<'a> crate::Extends<crate::vk::ImageCreateInfo<'_>>
+    for OpticalFlowImageFormatInfoNV<'a> {}
+    impl<'a> Default for OpticalFlowImageFormatInfoNV<'a> {
+        fn default() -> Self {
+            Self {
+                s_type: <Self as crate::TaggedStructure>::STRUCTURE_TYPE,
+                p_next: Default::default(),
+                usage: Default::default(),
+                _marker: ::core::marker::PhantomData,
+            }
+        }
+    }
+    impl<'a> OpticalFlowImageFormatInfoNV<'a> {
+        pub fn usage(mut self, usage: crate::vk::OpticalFlowUsageFlagsNV) -> Self {
+            self.usage = usage;
+            self
+        }
+    }
     #[repr(C)]
     #[derive(Clone, Copy)]
     pub struct OpticalFlowImageFormatPropertiesNV<'a> {
@@ -163,6 +294,26 @@ pub(crate) mod reexport {
         pub p_next: *mut core::ffi::c_void,
         pub format: crate::vk::Format,
         pub _marker: ::core::marker::PhantomData<&'a ()>,
+    }
+    unsafe impl<'a> crate::TaggedStructure<'a>
+    for OpticalFlowImageFormatPropertiesNV<'a> {
+        const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::OPTICAL_FLOW_IMAGE_FORMAT_PROPERTIES_NV;
+    }
+    impl<'a> Default for OpticalFlowImageFormatPropertiesNV<'a> {
+        fn default() -> Self {
+            Self {
+                s_type: <Self as crate::TaggedStructure>::STRUCTURE_TYPE,
+                p_next: Default::default(),
+                format: Default::default(),
+                _marker: ::core::marker::PhantomData,
+            }
+        }
+    }
+    impl<'a> OpticalFlowImageFormatPropertiesNV<'a> {
+        pub fn format(mut self, format: crate::vk::Format) -> Self {
+            self.format = format;
+            self
+        }
     }
     #[repr(C)]
     #[derive(Clone, Copy)]
@@ -180,6 +331,80 @@ pub(crate) mod reexport {
         pub flags: crate::vk::OpticalFlowSessionCreateFlagsNV,
         pub _marker: ::core::marker::PhantomData<&'a ()>,
     }
+    unsafe impl<'a> crate::TaggedStructure<'a> for OpticalFlowSessionCreateInfoNV<'a> {
+        const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::OPTICAL_FLOW_SESSION_CREATE_INFO_NV;
+    }
+    impl<'a> Default for OpticalFlowSessionCreateInfoNV<'a> {
+        fn default() -> Self {
+            Self {
+                s_type: <Self as crate::TaggedStructure>::STRUCTURE_TYPE,
+                p_next: Default::default(),
+                width: Default::default(),
+                height: Default::default(),
+                image_format: Default::default(),
+                flow_vector_format: Default::default(),
+                cost_format: Default::default(),
+                output_grid_size: Default::default(),
+                hint_grid_size: Default::default(),
+                performance_level: Default::default(),
+                flags: Default::default(),
+                _marker: ::core::marker::PhantomData,
+            }
+        }
+    }
+    impl<'a> OpticalFlowSessionCreateInfoNV<'a> {
+        pub fn width(mut self, width: u32) -> Self {
+            self.width = width;
+            self
+        }
+        pub fn height(mut self, height: u32) -> Self {
+            self.height = height;
+            self
+        }
+        pub fn image_format(mut self, image_format: crate::vk::Format) -> Self {
+            self.image_format = image_format;
+            self
+        }
+        pub fn flow_vector_format(
+            mut self,
+            flow_vector_format: crate::vk::Format,
+        ) -> Self {
+            self.flow_vector_format = flow_vector_format;
+            self
+        }
+        pub fn cost_format(mut self, cost_format: crate::vk::Format) -> Self {
+            self.cost_format = cost_format;
+            self
+        }
+        pub fn output_grid_size(
+            mut self,
+            output_grid_size: crate::vk::OpticalFlowGridSizeFlagsNV,
+        ) -> Self {
+            self.output_grid_size = output_grid_size;
+            self
+        }
+        pub fn hint_grid_size(
+            mut self,
+            hint_grid_size: crate::vk::OpticalFlowGridSizeFlagsNV,
+        ) -> Self {
+            self.hint_grid_size = hint_grid_size;
+            self
+        }
+        pub fn performance_level(
+            mut self,
+            performance_level: crate::vk::OpticalFlowPerformanceLevelNV,
+        ) -> Self {
+            self.performance_level = performance_level;
+            self
+        }
+        pub fn flags(
+            mut self,
+            flags: crate::vk::OpticalFlowSessionCreateFlagsNV,
+        ) -> Self {
+            self.flags = flags;
+            self
+        }
+    }
     #[repr(C)]
     #[derive(Clone, Copy)]
     pub struct OpticalFlowSessionCreatePrivateDataInfoNV<'a> {
@@ -190,6 +415,38 @@ pub(crate) mod reexport {
         pub p_private_data: *const core::ffi::c_void,
         pub _marker: ::core::marker::PhantomData<&'a ()>,
     }
+    unsafe impl<'a> crate::TaggedStructure<'a>
+    for OpticalFlowSessionCreatePrivateDataInfoNV<'a> {
+        const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::OPTICAL_FLOW_SESSION_CREATE_PRIVATE_DATA_INFO_NV;
+    }
+    unsafe impl<'a> crate::Extends<crate::vk::OpticalFlowSessionCreateInfoNV<'_>>
+    for OpticalFlowSessionCreatePrivateDataInfoNV<'a> {}
+    impl<'a> Default for OpticalFlowSessionCreatePrivateDataInfoNV<'a> {
+        fn default() -> Self {
+            Self {
+                s_type: <Self as crate::TaggedStructure>::STRUCTURE_TYPE,
+                p_next: Default::default(),
+                id: Default::default(),
+                size: Default::default(),
+                p_private_data: Default::default(),
+                _marker: ::core::marker::PhantomData,
+            }
+        }
+    }
+    impl<'a> OpticalFlowSessionCreatePrivateDataInfoNV<'a> {
+        pub fn id(mut self, id: u32) -> Self {
+            self.id = id;
+            self
+        }
+        pub fn size(mut self, size: u32) -> Self {
+            self.size = size;
+            self
+        }
+        pub fn p_private_data(mut self, p_private_data: &'a core::ffi::c_void) -> Self {
+            self.p_private_data = p_private_data;
+            self
+        }
+    }
     #[repr(C)]
     #[derive(Clone, Copy)]
     pub struct OpticalFlowExecuteInfoNV<'a> {
@@ -199,6 +456,36 @@ pub(crate) mod reexport {
         pub region_count: u32,
         pub p_regions: *const crate::vk::Rect2D,
         pub _marker: ::core::marker::PhantomData<&'a ()>,
+    }
+    unsafe impl<'a> crate::TaggedStructure<'a> for OpticalFlowExecuteInfoNV<'a> {
+        const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::OPTICAL_FLOW_EXECUTE_INFO_NV;
+    }
+    impl<'a> Default for OpticalFlowExecuteInfoNV<'a> {
+        fn default() -> Self {
+            Self {
+                s_type: <Self as crate::TaggedStructure>::STRUCTURE_TYPE,
+                p_next: Default::default(),
+                flags: Default::default(),
+                region_count: Default::default(),
+                p_regions: Default::default(),
+                _marker: ::core::marker::PhantomData,
+            }
+        }
+    }
+    impl<'a> OpticalFlowExecuteInfoNV<'a> {
+        pub fn flags(mut self, flags: crate::vk::OpticalFlowExecuteFlagsNV) -> Self {
+            self.flags = flags;
+            self
+        }
+        pub fn region_count(mut self, region_count: u32) -> Self {
+            self.region_count = region_count;
+            self
+        }
+        pub fn p_regions(mut self, p_regions: &'a [crate::vk::Rect2D]) -> Self {
+            self.region_count = p_regions.len() as _;
+            self.p_regions = p_regions.as_ptr();
+            self
+        }
     }
     ///Provided by [`nv::optical_flow`](crate::nv::optical_flow)
     impl crate::vk::Format {
@@ -355,7 +642,7 @@ pub(crate) mod reexport {
         }
     }
     #[repr(transparent)]
-    #[derive(Clone, Copy)]
+    #[derive(Clone, Copy, Default)]
     pub struct OpticalFlowGridSizeFlagBitsNV(pub(crate) u32);
     ///Provided by [`nv::optical_flow`](crate::nv::optical_flow)
     impl OpticalFlowGridSizeFlagBitsNV {
@@ -441,7 +728,7 @@ pub(crate) mod reexport {
         }
     }
     #[repr(transparent)]
-    #[derive(Clone, Copy)]
+    #[derive(Clone, Copy, Default)]
     pub struct OpticalFlowUsageFlagBitsNV(pub(crate) u32);
     ///Provided by [`nv::optical_flow`](crate::nv::optical_flow)
     impl OpticalFlowUsageFlagBitsNV {
@@ -535,7 +822,7 @@ pub(crate) mod reexport {
         }
     }
     #[repr(transparent)]
-    #[derive(Clone, Copy)]
+    #[derive(Clone, Copy, Default)]
     pub struct OpticalFlowSessionCreateFlagBitsNV(pub(crate) u32);
     ///Provided by [`nv::optical_flow`](crate::nv::optical_flow)
     impl OpticalFlowSessionCreateFlagBitsNV {
@@ -616,7 +903,7 @@ pub(crate) mod reexport {
         }
     }
     #[repr(transparent)]
-    #[derive(Clone, Copy)]
+    #[derive(Clone, Copy, Default)]
     pub struct OpticalFlowExecuteFlagBitsNV(pub(crate) u32);
     ///Provided by [`nv::optical_flow`](crate::nv::optical_flow)
     impl OpticalFlowExecuteFlagBitsNV {

@@ -9,6 +9,34 @@ pub struct PhysicalDeviceDataGraphNeuralAcceleratorStatisticsFeaturesARM<'a> {
     pub data_graph_neural_accelerator_statistics: crate::vk::Bool32,
     pub _marker: ::core::marker::PhantomData<&'a ()>,
 }
+unsafe impl<'a> crate::TaggedStructure<'a>
+for PhysicalDeviceDataGraphNeuralAcceleratorStatisticsFeaturesARM<'a> {
+    const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::PHYSICAL_DEVICE_DATA_GRAPH_NEURAL_ACCELERATOR_STATISTICS_FEATURES_ARM;
+}
+unsafe impl<'a> crate::Extends<crate::vk::PhysicalDeviceFeatures2<'_>>
+for PhysicalDeviceDataGraphNeuralAcceleratorStatisticsFeaturesARM<'a> {}
+unsafe impl<'a> crate::Extends<crate::vk::DeviceCreateInfo<'_>>
+for PhysicalDeviceDataGraphNeuralAcceleratorStatisticsFeaturesARM<'a> {}
+impl<'a> Default for PhysicalDeviceDataGraphNeuralAcceleratorStatisticsFeaturesARM<'a> {
+    fn default() -> Self {
+        Self {
+            s_type: <Self as crate::TaggedStructure>::STRUCTURE_TYPE,
+            p_next: Default::default(),
+            data_graph_neural_accelerator_statistics: Default::default(),
+            _marker: ::core::marker::PhantomData,
+        }
+    }
+}
+impl<'a> PhysicalDeviceDataGraphNeuralAcceleratorStatisticsFeaturesARM<'a> {
+    pub fn data_graph_neural_accelerator_statistics(
+        mut self,
+        data_graph_neural_accelerator_statistics: bool,
+    ) -> Self {
+        self.data_graph_neural_accelerator_statistics = data_graph_neural_accelerator_statistics
+            .into();
+        self
+    }
+}
 #[repr(C)]
 #[derive(Clone, Copy)]
 pub struct DataGraphPipelineNeuralStatisticsCreateInfoARM<'a> {
@@ -17,6 +45,28 @@ pub struct DataGraphPipelineNeuralStatisticsCreateInfoARM<'a> {
     pub allow_neural_statistics: crate::vk::Bool32,
     pub _marker: ::core::marker::PhantomData<&'a ()>,
 }
+unsafe impl<'a> crate::TaggedStructure<'a>
+for DataGraphPipelineNeuralStatisticsCreateInfoARM<'a> {
+    const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::DATA_GRAPH_PIPELINE_NEURAL_STATISTICS_CREATE_INFO_ARM;
+}
+unsafe impl<'a> crate::Extends<crate::vk::DataGraphPipelineCreateInfoARM<'_>>
+for DataGraphPipelineNeuralStatisticsCreateInfoARM<'a> {}
+impl<'a> Default for DataGraphPipelineNeuralStatisticsCreateInfoARM<'a> {
+    fn default() -> Self {
+        Self {
+            s_type: <Self as crate::TaggedStructure>::STRUCTURE_TYPE,
+            p_next: Default::default(),
+            allow_neural_statistics: Default::default(),
+            _marker: ::core::marker::PhantomData,
+        }
+    }
+}
+impl<'a> DataGraphPipelineNeuralStatisticsCreateInfoARM<'a> {
+    pub fn allow_neural_statistics(mut self, allow_neural_statistics: bool) -> Self {
+        self.allow_neural_statistics = allow_neural_statistics.into();
+        self
+    }
+}
 #[repr(C)]
 #[derive(Clone, Copy)]
 pub struct DataGraphPipelineSessionNeuralStatisticsCreateInfoARM<'a> {
@@ -24,6 +74,28 @@ pub struct DataGraphPipelineSessionNeuralStatisticsCreateInfoARM<'a> {
     pub p_next: *const core::ffi::c_void,
     pub mode: crate::vk::NeuralAcceleratorStatisticsModeARM,
     pub _marker: ::core::marker::PhantomData<&'a ()>,
+}
+unsafe impl<'a> crate::TaggedStructure<'a>
+for DataGraphPipelineSessionNeuralStatisticsCreateInfoARM<'a> {
+    const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::DATA_GRAPH_PIPELINE_SESSION_NEURAL_STATISTICS_CREATE_INFO_ARM;
+}
+unsafe impl<'a> crate::Extends<crate::vk::DataGraphPipelineSessionCreateInfoARM<'_>>
+for DataGraphPipelineSessionNeuralStatisticsCreateInfoARM<'a> {}
+impl<'a> Default for DataGraphPipelineSessionNeuralStatisticsCreateInfoARM<'a> {
+    fn default() -> Self {
+        Self {
+            s_type: <Self as crate::TaggedStructure>::STRUCTURE_TYPE,
+            p_next: Default::default(),
+            mode: Default::default(),
+            _marker: ::core::marker::PhantomData,
+        }
+    }
+}
+impl<'a> DataGraphPipelineSessionNeuralStatisticsCreateInfoARM<'a> {
+    pub fn mode(mut self, mode: crate::vk::NeuralAcceleratorStatisticsModeARM) -> Self {
+        self.mode = mode;
+        self
+    }
 }
 ///Provided by [`arm::data_graph_neural_accelerator_statistics`](crate::arm::data_graph_neural_accelerator_statistics)
 impl crate::vk::StructureType {

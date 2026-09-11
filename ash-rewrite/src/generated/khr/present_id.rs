@@ -9,6 +9,29 @@ pub struct PhysicalDevicePresentIdFeaturesKHR<'a> {
     pub present_id: crate::vk::Bool32,
     pub _marker: ::core::marker::PhantomData<&'a ()>,
 }
+unsafe impl<'a> crate::TaggedStructure<'a> for PhysicalDevicePresentIdFeaturesKHR<'a> {
+    const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::PHYSICAL_DEVICE_PRESENT_ID_FEATURES_KHR;
+}
+unsafe impl<'a> crate::Extends<crate::vk::PhysicalDeviceFeatures2<'_>>
+for PhysicalDevicePresentIdFeaturesKHR<'a> {}
+unsafe impl<'a> crate::Extends<crate::vk::DeviceCreateInfo<'_>>
+for PhysicalDevicePresentIdFeaturesKHR<'a> {}
+impl<'a> Default for PhysicalDevicePresentIdFeaturesKHR<'a> {
+    fn default() -> Self {
+        Self {
+            s_type: <Self as crate::TaggedStructure>::STRUCTURE_TYPE,
+            p_next: Default::default(),
+            present_id: Default::default(),
+            _marker: ::core::marker::PhantomData,
+        }
+    }
+}
+impl<'a> PhysicalDevicePresentIdFeaturesKHR<'a> {
+    pub fn present_id(mut self, present_id: bool) -> Self {
+        self.present_id = present_id.into();
+        self
+    }
+}
 #[repr(C)]
 #[derive(Clone, Copy)]
 pub struct PresentIdKHR<'a> {
@@ -17,6 +40,32 @@ pub struct PresentIdKHR<'a> {
     pub swapchain_count: u32,
     pub p_present_ids: *const u64,
     pub _marker: ::core::marker::PhantomData<&'a ()>,
+}
+unsafe impl<'a> crate::TaggedStructure<'a> for PresentIdKHR<'a> {
+    const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::PRESENT_ID_KHR;
+}
+unsafe impl<'a> crate::Extends<crate::vk::PresentInfoKHR<'_>> for PresentIdKHR<'a> {}
+impl<'a> Default for PresentIdKHR<'a> {
+    fn default() -> Self {
+        Self {
+            s_type: <Self as crate::TaggedStructure>::STRUCTURE_TYPE,
+            p_next: Default::default(),
+            swapchain_count: Default::default(),
+            p_present_ids: Default::default(),
+            _marker: ::core::marker::PhantomData,
+        }
+    }
+}
+impl<'a> PresentIdKHR<'a> {
+    pub fn swapchain_count(mut self, swapchain_count: u32) -> Self {
+        self.swapchain_count = swapchain_count;
+        self
+    }
+    pub fn p_present_ids(mut self, p_present_ids: &'a [u64]) -> Self {
+        self.swapchain_count = p_present_ids.len() as _;
+        self.p_present_ids = p_present_ids.as_ptr();
+        self
+    }
 }
 ///Provided by [`khr::present_id`](crate::khr::present_id)
 impl crate::vk::StructureType {

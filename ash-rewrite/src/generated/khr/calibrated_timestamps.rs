@@ -82,6 +82,25 @@ pub(crate) mod reexport {
         pub time_domain: crate::vk::TimeDomainKHR,
         pub _marker: ::core::marker::PhantomData<&'a ()>,
     }
+    unsafe impl<'a> crate::TaggedStructure<'a> for CalibratedTimestampInfoKHR<'a> {
+        const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::CALIBRATED_TIMESTAMP_INFO_KHR;
+    }
+    impl<'a> Default for CalibratedTimestampInfoKHR<'a> {
+        fn default() -> Self {
+            Self {
+                s_type: <Self as crate::TaggedStructure>::STRUCTURE_TYPE,
+                p_next: Default::default(),
+                time_domain: Default::default(),
+                _marker: ::core::marker::PhantomData,
+            }
+        }
+    }
+    impl<'a> CalibratedTimestampInfoKHR<'a> {
+        pub fn time_domain(mut self, time_domain: crate::vk::TimeDomainKHR) -> Self {
+            self.time_domain = time_domain;
+            self
+        }
+    }
     ///Provided by [`khr::calibrated_timestamps`](crate::khr::calibrated_timestamps)
     impl crate::vk::StructureType {
         pub const CALIBRATED_TIMESTAMP_INFO_KHR: Self = Self(1000184000);

@@ -61,6 +61,30 @@ pub(crate) mod reexport {
         pub tile_properties: crate::vk::Bool32,
         pub _marker: ::core::marker::PhantomData<&'a ()>,
     }
+    unsafe impl<'a> crate::TaggedStructure<'a>
+    for PhysicalDeviceTilePropertiesFeaturesQCOM<'a> {
+        const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::PHYSICAL_DEVICE_TILE_PROPERTIES_FEATURES_QCOM;
+    }
+    unsafe impl<'a> crate::Extends<crate::vk::PhysicalDeviceFeatures2<'_>>
+    for PhysicalDeviceTilePropertiesFeaturesQCOM<'a> {}
+    unsafe impl<'a> crate::Extends<crate::vk::DeviceCreateInfo<'_>>
+    for PhysicalDeviceTilePropertiesFeaturesQCOM<'a> {}
+    impl<'a> Default for PhysicalDeviceTilePropertiesFeaturesQCOM<'a> {
+        fn default() -> Self {
+            Self {
+                s_type: <Self as crate::TaggedStructure>::STRUCTURE_TYPE,
+                p_next: Default::default(),
+                tile_properties: Default::default(),
+                _marker: ::core::marker::PhantomData,
+            }
+        }
+    }
+    impl<'a> PhysicalDeviceTilePropertiesFeaturesQCOM<'a> {
+        pub fn tile_properties(mut self, tile_properties: bool) -> Self {
+            self.tile_properties = tile_properties.into();
+            self
+        }
+    }
     #[repr(C)]
     #[derive(Clone, Copy)]
     pub struct TilePropertiesQCOM<'a> {
@@ -70,6 +94,35 @@ pub(crate) mod reexport {
         pub apron_size: crate::vk::Extent2D,
         pub origin: crate::vk::Offset2D,
         pub _marker: ::core::marker::PhantomData<&'a ()>,
+    }
+    unsafe impl<'a> crate::TaggedStructure<'a> for TilePropertiesQCOM<'a> {
+        const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::TILE_PROPERTIES_QCOM;
+    }
+    impl<'a> Default for TilePropertiesQCOM<'a> {
+        fn default() -> Self {
+            Self {
+                s_type: <Self as crate::TaggedStructure>::STRUCTURE_TYPE,
+                p_next: Default::default(),
+                tile_size: Default::default(),
+                apron_size: Default::default(),
+                origin: Default::default(),
+                _marker: ::core::marker::PhantomData,
+            }
+        }
+    }
+    impl<'a> TilePropertiesQCOM<'a> {
+        pub fn tile_size(mut self, tile_size: crate::vk::Extent3D) -> Self {
+            self.tile_size = tile_size;
+            self
+        }
+        pub fn apron_size(mut self, apron_size: crate::vk::Extent2D) -> Self {
+            self.apron_size = apron_size;
+            self
+        }
+        pub fn origin(mut self, origin: crate::vk::Offset2D) -> Self {
+            self.origin = origin;
+            self
+        }
     }
     ///Provided by [`qcom::tile_properties`](crate::qcom::tile_properties)
     impl crate::vk::StructureType {

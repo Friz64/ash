@@ -209,6 +209,119 @@ pub(crate) mod reexport {
         pub old_swapchain: crate::vk::SwapchainKHR,
         pub _marker: ::core::marker::PhantomData<&'a ()>,
     }
+    unsafe impl<'a> crate::TaggedStructure<'a> for SwapchainCreateInfoKHR<'a> {
+        const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::SWAPCHAIN_CREATE_INFO_KHR;
+    }
+    impl<'a> Default for SwapchainCreateInfoKHR<'a> {
+        fn default() -> Self {
+            Self {
+                s_type: <Self as crate::TaggedStructure>::STRUCTURE_TYPE,
+                p_next: Default::default(),
+                flags: Default::default(),
+                surface: Default::default(),
+                min_image_count: Default::default(),
+                image_format: Default::default(),
+                image_color_space: Default::default(),
+                image_extent: Default::default(),
+                image_array_layers: Default::default(),
+                image_usage: Default::default(),
+                image_sharing_mode: Default::default(),
+                queue_family_index_count: Default::default(),
+                p_queue_family_indices: Default::default(),
+                pre_transform: Default::default(),
+                composite_alpha: Default::default(),
+                present_mode: Default::default(),
+                clipped: Default::default(),
+                old_swapchain: Default::default(),
+                _marker: ::core::marker::PhantomData,
+            }
+        }
+    }
+    impl<'a> SwapchainCreateInfoKHR<'a> {
+        pub fn flags(mut self, flags: crate::vk::SwapchainCreateFlagsKHR) -> Self {
+            self.flags = flags;
+            self
+        }
+        pub fn surface(mut self, surface: crate::vk::SurfaceKHR) -> Self {
+            self.surface = surface;
+            self
+        }
+        pub fn min_image_count(mut self, min_image_count: u32) -> Self {
+            self.min_image_count = min_image_count;
+            self
+        }
+        pub fn image_format(mut self, image_format: crate::vk::Format) -> Self {
+            self.image_format = image_format;
+            self
+        }
+        pub fn image_color_space(
+            mut self,
+            image_color_space: crate::vk::ColorSpaceKHR,
+        ) -> Self {
+            self.image_color_space = image_color_space;
+            self
+        }
+        pub fn image_extent(mut self, image_extent: crate::vk::Extent2D) -> Self {
+            self.image_extent = image_extent;
+            self
+        }
+        pub fn image_array_layers(mut self, image_array_layers: u32) -> Self {
+            self.image_array_layers = image_array_layers;
+            self
+        }
+        pub fn image_usage(mut self, image_usage: crate::vk::ImageUsageFlags) -> Self {
+            self.image_usage = image_usage;
+            self
+        }
+        pub fn image_sharing_mode(
+            mut self,
+            image_sharing_mode: crate::vk::SharingMode,
+        ) -> Self {
+            self.image_sharing_mode = image_sharing_mode;
+            self
+        }
+        pub fn queue_family_index_count(
+            mut self,
+            queue_family_index_count: u32,
+        ) -> Self {
+            self.queue_family_index_count = queue_family_index_count;
+            self
+        }
+        pub fn p_queue_family_indices(
+            mut self,
+            p_queue_family_indices: &'a [u32],
+        ) -> Self {
+            self.queue_family_index_count = p_queue_family_indices.len() as _;
+            self.p_queue_family_indices = p_queue_family_indices.as_ptr();
+            self
+        }
+        pub fn pre_transform(
+            mut self,
+            pre_transform: crate::vk::SurfaceTransformFlagBitsKHR,
+        ) -> Self {
+            self.pre_transform = pre_transform;
+            self
+        }
+        pub fn composite_alpha(
+            mut self,
+            composite_alpha: crate::vk::CompositeAlphaFlagBitsKHR,
+        ) -> Self {
+            self.composite_alpha = composite_alpha;
+            self
+        }
+        pub fn present_mode(mut self, present_mode: crate::vk::PresentModeKHR) -> Self {
+            self.present_mode = present_mode;
+            self
+        }
+        pub fn clipped(mut self, clipped: bool) -> Self {
+            self.clipped = clipped.into();
+            self
+        }
+        pub fn old_swapchain(mut self, old_swapchain: crate::vk::SwapchainKHR) -> Self {
+            self.old_swapchain = old_swapchain;
+            self
+        }
+    }
     #[repr(C)]
     #[derive(Clone, Copy)]
     pub struct PresentInfoKHR<'a> {
@@ -222,6 +335,60 @@ pub(crate) mod reexport {
         pub p_results: *mut crate::vk::Result,
         pub _marker: ::core::marker::PhantomData<&'a ()>,
     }
+    unsafe impl<'a> crate::TaggedStructure<'a> for PresentInfoKHR<'a> {
+        const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::PRESENT_INFO_KHR;
+    }
+    impl<'a> Default for PresentInfoKHR<'a> {
+        fn default() -> Self {
+            Self {
+                s_type: <Self as crate::TaggedStructure>::STRUCTURE_TYPE,
+                p_next: Default::default(),
+                wait_semaphore_count: Default::default(),
+                p_wait_semaphores: Default::default(),
+                swapchain_count: Default::default(),
+                p_swapchains: Default::default(),
+                p_image_indices: Default::default(),
+                p_results: Default::default(),
+                _marker: ::core::marker::PhantomData,
+            }
+        }
+    }
+    impl<'a> PresentInfoKHR<'a> {
+        pub fn wait_semaphore_count(mut self, wait_semaphore_count: u32) -> Self {
+            self.wait_semaphore_count = wait_semaphore_count;
+            self
+        }
+        pub fn p_wait_semaphores(
+            mut self,
+            p_wait_semaphores: &'a [crate::vk::Semaphore],
+        ) -> Self {
+            self.wait_semaphore_count = p_wait_semaphores.len() as _;
+            self.p_wait_semaphores = p_wait_semaphores.as_ptr();
+            self
+        }
+        pub fn swapchain_count(mut self, swapchain_count: u32) -> Self {
+            self.swapchain_count = swapchain_count;
+            self
+        }
+        pub fn p_swapchains(
+            mut self,
+            p_swapchains: &'a [crate::vk::SwapchainKHR],
+        ) -> Self {
+            self.swapchain_count = p_swapchains.len() as _;
+            self.p_swapchains = p_swapchains.as_ptr();
+            self
+        }
+        pub fn p_image_indices(mut self, p_image_indices: &'a [u32]) -> Self {
+            self.swapchain_count = p_image_indices.len() as _;
+            self.p_image_indices = p_image_indices.as_ptr();
+            self
+        }
+        pub fn p_results(mut self, p_results: &'a mut [crate::vk::Result]) -> Self {
+            self.swapchain_count = p_results.len() as _;
+            self.p_results = p_results.as_mut_ptr();
+            self
+        }
+    }
     #[repr(C)]
     #[derive(Clone, Copy)]
     pub struct DeviceGroupPresentCapabilitiesKHR<'a> {
@@ -231,6 +398,37 @@ pub(crate) mod reexport {
         pub modes: crate::vk::DeviceGroupPresentModeFlagsKHR,
         pub _marker: ::core::marker::PhantomData<&'a ()>,
     }
+    unsafe impl<'a> crate::TaggedStructure<'a>
+    for DeviceGroupPresentCapabilitiesKHR<'a> {
+        const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::DEVICE_GROUP_PRESENT_CAPABILITIES_KHR;
+    }
+    impl<'a> Default for DeviceGroupPresentCapabilitiesKHR<'a> {
+        fn default() -> Self {
+            Self {
+                s_type: <Self as crate::TaggedStructure>::STRUCTURE_TYPE,
+                p_next: Default::default(),
+                present_mask: unsafe { core::mem::zeroed() },
+                modes: Default::default(),
+                _marker: ::core::marker::PhantomData,
+            }
+        }
+    }
+    impl<'a> DeviceGroupPresentCapabilitiesKHR<'a> {
+        pub fn present_mask(
+            mut self,
+            present_mask: [u32; crate::vk::MAX_DEVICE_GROUP_SIZE as _],
+        ) -> Self {
+            self.present_mask = present_mask;
+            self
+        }
+        pub fn modes(
+            mut self,
+            modes: crate::vk::DeviceGroupPresentModeFlagsKHR,
+        ) -> Self {
+            self.modes = modes;
+            self
+        }
+    }
     #[repr(C)]
     #[derive(Clone, Copy)]
     pub struct ImageSwapchainCreateInfoKHR<'a> {
@@ -238,6 +436,27 @@ pub(crate) mod reexport {
         pub p_next: *const core::ffi::c_void,
         pub swapchain: crate::vk::SwapchainKHR,
         pub _marker: ::core::marker::PhantomData<&'a ()>,
+    }
+    unsafe impl<'a> crate::TaggedStructure<'a> for ImageSwapchainCreateInfoKHR<'a> {
+        const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::IMAGE_SWAPCHAIN_CREATE_INFO_KHR;
+    }
+    unsafe impl<'a> crate::Extends<crate::vk::ImageCreateInfo<'_>>
+    for ImageSwapchainCreateInfoKHR<'a> {}
+    impl<'a> Default for ImageSwapchainCreateInfoKHR<'a> {
+        fn default() -> Self {
+            Self {
+                s_type: <Self as crate::TaggedStructure>::STRUCTURE_TYPE,
+                p_next: Default::default(),
+                swapchain: Default::default(),
+                _marker: ::core::marker::PhantomData,
+            }
+        }
+    }
+    impl<'a> ImageSwapchainCreateInfoKHR<'a> {
+        pub fn swapchain(mut self, swapchain: crate::vk::SwapchainKHR) -> Self {
+            self.swapchain = swapchain;
+            self
+        }
     }
     #[repr(C)]
     #[derive(Clone, Copy)]
@@ -247,6 +466,32 @@ pub(crate) mod reexport {
         pub swapchain: crate::vk::SwapchainKHR,
         pub image_index: u32,
         pub _marker: ::core::marker::PhantomData<&'a ()>,
+    }
+    unsafe impl<'a> crate::TaggedStructure<'a> for BindImageMemorySwapchainInfoKHR<'a> {
+        const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::BIND_IMAGE_MEMORY_SWAPCHAIN_INFO_KHR;
+    }
+    unsafe impl<'a> crate::Extends<crate::vk::BindImageMemoryInfo<'_>>
+    for BindImageMemorySwapchainInfoKHR<'a> {}
+    impl<'a> Default for BindImageMemorySwapchainInfoKHR<'a> {
+        fn default() -> Self {
+            Self {
+                s_type: <Self as crate::TaggedStructure>::STRUCTURE_TYPE,
+                p_next: Default::default(),
+                swapchain: Default::default(),
+                image_index: Default::default(),
+                _marker: ::core::marker::PhantomData,
+            }
+        }
+    }
+    impl<'a> BindImageMemorySwapchainInfoKHR<'a> {
+        pub fn swapchain(mut self, swapchain: crate::vk::SwapchainKHR) -> Self {
+            self.swapchain = swapchain;
+            self
+        }
+        pub fn image_index(mut self, image_index: u32) -> Self {
+            self.image_index = image_index;
+            self
+        }
     }
     #[repr(C)]
     #[derive(Clone, Copy)]
@@ -260,6 +505,45 @@ pub(crate) mod reexport {
         pub device_mask: u32,
         pub _marker: ::core::marker::PhantomData<&'a ()>,
     }
+    unsafe impl<'a> crate::TaggedStructure<'a> for AcquireNextImageInfoKHR<'a> {
+        const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::ACQUIRE_NEXT_IMAGE_INFO_KHR;
+    }
+    impl<'a> Default for AcquireNextImageInfoKHR<'a> {
+        fn default() -> Self {
+            Self {
+                s_type: <Self as crate::TaggedStructure>::STRUCTURE_TYPE,
+                p_next: Default::default(),
+                swapchain: Default::default(),
+                timeout: Default::default(),
+                semaphore: Default::default(),
+                fence: Default::default(),
+                device_mask: Default::default(),
+                _marker: ::core::marker::PhantomData,
+            }
+        }
+    }
+    impl<'a> AcquireNextImageInfoKHR<'a> {
+        pub fn swapchain(mut self, swapchain: crate::vk::SwapchainKHR) -> Self {
+            self.swapchain = swapchain;
+            self
+        }
+        pub fn timeout(mut self, timeout: u64) -> Self {
+            self.timeout = timeout;
+            self
+        }
+        pub fn semaphore(mut self, semaphore: crate::vk::Semaphore) -> Self {
+            self.semaphore = semaphore;
+            self
+        }
+        pub fn fence(mut self, fence: crate::vk::Fence) -> Self {
+            self.fence = fence;
+            self
+        }
+        pub fn device_mask(mut self, device_mask: u32) -> Self {
+            self.device_mask = device_mask;
+            self
+        }
+    }
     #[repr(C)]
     #[derive(Clone, Copy)]
     pub struct DeviceGroupPresentInfoKHR<'a> {
@@ -270,6 +554,41 @@ pub(crate) mod reexport {
         pub mode: crate::vk::DeviceGroupPresentModeFlagBitsKHR,
         pub _marker: ::core::marker::PhantomData<&'a ()>,
     }
+    unsafe impl<'a> crate::TaggedStructure<'a> for DeviceGroupPresentInfoKHR<'a> {
+        const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::DEVICE_GROUP_PRESENT_INFO_KHR;
+    }
+    unsafe impl<'a> crate::Extends<crate::vk::PresentInfoKHR<'_>>
+    for DeviceGroupPresentInfoKHR<'a> {}
+    impl<'a> Default for DeviceGroupPresentInfoKHR<'a> {
+        fn default() -> Self {
+            Self {
+                s_type: <Self as crate::TaggedStructure>::STRUCTURE_TYPE,
+                p_next: Default::default(),
+                swapchain_count: Default::default(),
+                p_device_masks: Default::default(),
+                mode: Default::default(),
+                _marker: ::core::marker::PhantomData,
+            }
+        }
+    }
+    impl<'a> DeviceGroupPresentInfoKHR<'a> {
+        pub fn swapchain_count(mut self, swapchain_count: u32) -> Self {
+            self.swapchain_count = swapchain_count;
+            self
+        }
+        pub fn p_device_masks(mut self, p_device_masks: &'a [u32]) -> Self {
+            self.swapchain_count = p_device_masks.len() as _;
+            self.p_device_masks = p_device_masks.as_ptr();
+            self
+        }
+        pub fn mode(
+            mut self,
+            mode: crate::vk::DeviceGroupPresentModeFlagBitsKHR,
+        ) -> Self {
+            self.mode = mode;
+            self
+        }
+    }
     #[repr(C)]
     #[derive(Clone, Copy)]
     pub struct DeviceGroupSwapchainCreateInfoKHR<'a> {
@@ -277,6 +596,31 @@ pub(crate) mod reexport {
         pub p_next: *const core::ffi::c_void,
         pub modes: crate::vk::DeviceGroupPresentModeFlagsKHR,
         pub _marker: ::core::marker::PhantomData<&'a ()>,
+    }
+    unsafe impl<'a> crate::TaggedStructure<'a>
+    for DeviceGroupSwapchainCreateInfoKHR<'a> {
+        const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::DEVICE_GROUP_SWAPCHAIN_CREATE_INFO_KHR;
+    }
+    unsafe impl<'a> crate::Extends<crate::vk::SwapchainCreateInfoKHR<'_>>
+    for DeviceGroupSwapchainCreateInfoKHR<'a> {}
+    impl<'a> Default for DeviceGroupSwapchainCreateInfoKHR<'a> {
+        fn default() -> Self {
+            Self {
+                s_type: <Self as crate::TaggedStructure>::STRUCTURE_TYPE,
+                p_next: Default::default(),
+                modes: Default::default(),
+                _marker: ::core::marker::PhantomData,
+            }
+        }
+    }
+    impl<'a> DeviceGroupSwapchainCreateInfoKHR<'a> {
+        pub fn modes(
+            mut self,
+            modes: crate::vk::DeviceGroupPresentModeFlagsKHR,
+        ) -> Self {
+            self.modes = modes;
+            self
+        }
     }
     ///Provided by [`khr::swapchain`](crate::khr::swapchain)
     impl crate::vk::ImageLayout {
@@ -394,7 +738,7 @@ pub(crate) mod reexport {
         }
     }
     #[repr(transparent)]
-    #[derive(Clone, Copy)]
+    #[derive(Clone, Copy, Default)]
     pub struct SwapchainCreateFlagBitsKHR(pub(crate) u32);
     ///Provided by [`khr::swapchain`](crate::khr::swapchain)
     impl SwapchainCreateFlagBitsKHR {
@@ -477,7 +821,7 @@ pub(crate) mod reexport {
         }
     }
     #[repr(transparent)]
-    #[derive(Clone, Copy)]
+    #[derive(Clone, Copy, Default)]
     pub struct DeviceGroupPresentModeFlagBitsKHR(pub(crate) u32);
     ///Provided by [`khr::swapchain`](crate::khr::swapchain)
     impl DeviceGroupPresentModeFlagBitsKHR {

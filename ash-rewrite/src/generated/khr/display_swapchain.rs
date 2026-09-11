@@ -48,6 +48,37 @@ pub(crate) mod reexport {
         pub persistent: crate::vk::Bool32,
         pub _marker: ::core::marker::PhantomData<&'a ()>,
     }
+    unsafe impl<'a> crate::TaggedStructure<'a> for DisplayPresentInfoKHR<'a> {
+        const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::DISPLAY_PRESENT_INFO_KHR;
+    }
+    unsafe impl<'a> crate::Extends<crate::vk::PresentInfoKHR<'_>>
+    for DisplayPresentInfoKHR<'a> {}
+    impl<'a> Default for DisplayPresentInfoKHR<'a> {
+        fn default() -> Self {
+            Self {
+                s_type: <Self as crate::TaggedStructure>::STRUCTURE_TYPE,
+                p_next: Default::default(),
+                src_rect: Default::default(),
+                dst_rect: Default::default(),
+                persistent: Default::default(),
+                _marker: ::core::marker::PhantomData,
+            }
+        }
+    }
+    impl<'a> DisplayPresentInfoKHR<'a> {
+        pub fn src_rect(mut self, src_rect: crate::vk::Rect2D) -> Self {
+            self.src_rect = src_rect;
+            self
+        }
+        pub fn dst_rect(mut self, dst_rect: crate::vk::Rect2D) -> Self {
+            self.dst_rect = dst_rect;
+            self
+        }
+        pub fn persistent(mut self, persistent: bool) -> Self {
+            self.persistent = persistent.into();
+            self
+        }
+    }
     ///Provided by [`khr::display_swapchain`](crate::khr::display_swapchain)
     impl crate::vk::StructureType {
         pub const DISPLAY_PRESENT_INFO_KHR: Self = Self(1000003000);

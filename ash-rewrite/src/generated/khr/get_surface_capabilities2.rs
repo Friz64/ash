@@ -61,6 +61,25 @@ pub(crate) mod reexport {
         pub surface: crate::vk::SurfaceKHR,
         pub _marker: ::core::marker::PhantomData<&'a ()>,
     }
+    unsafe impl<'a> crate::TaggedStructure<'a> for PhysicalDeviceSurfaceInfo2KHR<'a> {
+        const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::PHYSICAL_DEVICE_SURFACE_INFO_2_KHR;
+    }
+    impl<'a> Default for PhysicalDeviceSurfaceInfo2KHR<'a> {
+        fn default() -> Self {
+            Self {
+                s_type: <Self as crate::TaggedStructure>::STRUCTURE_TYPE,
+                p_next: Default::default(),
+                surface: Default::default(),
+                _marker: ::core::marker::PhantomData,
+            }
+        }
+    }
+    impl<'a> PhysicalDeviceSurfaceInfo2KHR<'a> {
+        pub fn surface(mut self, surface: crate::vk::SurfaceKHR) -> Self {
+            self.surface = surface;
+            self
+        }
+    }
     #[repr(C)]
     #[derive(Clone, Copy)]
     pub struct SurfaceCapabilities2KHR<'a> {
@@ -69,6 +88,28 @@ pub(crate) mod reexport {
         pub surface_capabilities: crate::vk::SurfaceCapabilitiesKHR,
         pub _marker: ::core::marker::PhantomData<&'a ()>,
     }
+    unsafe impl<'a> crate::TaggedStructure<'a> for SurfaceCapabilities2KHR<'a> {
+        const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::SURFACE_CAPABILITIES_2_KHR;
+    }
+    impl<'a> Default for SurfaceCapabilities2KHR<'a> {
+        fn default() -> Self {
+            Self {
+                s_type: <Self as crate::TaggedStructure>::STRUCTURE_TYPE,
+                p_next: Default::default(),
+                surface_capabilities: Default::default(),
+                _marker: ::core::marker::PhantomData,
+            }
+        }
+    }
+    impl<'a> SurfaceCapabilities2KHR<'a> {
+        pub fn surface_capabilities(
+            mut self,
+            surface_capabilities: crate::vk::SurfaceCapabilitiesKHR,
+        ) -> Self {
+            self.surface_capabilities = surface_capabilities;
+            self
+        }
+    }
     #[repr(C)]
     #[derive(Clone, Copy)]
     pub struct SurfaceFormat2KHR<'a> {
@@ -76,6 +117,28 @@ pub(crate) mod reexport {
         pub p_next: *mut core::ffi::c_void,
         pub surface_format: crate::vk::SurfaceFormatKHR,
         pub _marker: ::core::marker::PhantomData<&'a ()>,
+    }
+    unsafe impl<'a> crate::TaggedStructure<'a> for SurfaceFormat2KHR<'a> {
+        const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::SURFACE_FORMAT_2_KHR;
+    }
+    impl<'a> Default for SurfaceFormat2KHR<'a> {
+        fn default() -> Self {
+            Self {
+                s_type: <Self as crate::TaggedStructure>::STRUCTURE_TYPE,
+                p_next: Default::default(),
+                surface_format: Default::default(),
+                _marker: ::core::marker::PhantomData,
+            }
+        }
+    }
+    impl<'a> SurfaceFormat2KHR<'a> {
+        pub fn surface_format(
+            mut self,
+            surface_format: crate::vk::SurfaceFormatKHR,
+        ) -> Self {
+            self.surface_format = surface_format;
+            self
+        }
     }
     ///Provided by [`khr::get_surface_capabilities2`](crate::khr::get_surface_capabilities2)
     impl crate::vk::StructureType {

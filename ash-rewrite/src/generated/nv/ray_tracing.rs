@@ -258,6 +258,46 @@ pub(crate) mod reexport {
         pub intersection_shader: u32,
         pub _marker: ::core::marker::PhantomData<&'a ()>,
     }
+    unsafe impl<'a> crate::TaggedStructure<'a>
+    for RayTracingShaderGroupCreateInfoNV<'a> {
+        const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::RAY_TRACING_SHADER_GROUP_CREATE_INFO_NV;
+    }
+    impl<'a> Default for RayTracingShaderGroupCreateInfoNV<'a> {
+        fn default() -> Self {
+            Self {
+                s_type: <Self as crate::TaggedStructure>::STRUCTURE_TYPE,
+                p_next: Default::default(),
+                _type: Default::default(),
+                general_shader: Default::default(),
+                closest_hit_shader: Default::default(),
+                any_hit_shader: Default::default(),
+                intersection_shader: Default::default(),
+                _marker: ::core::marker::PhantomData,
+            }
+        }
+    }
+    impl<'a> RayTracingShaderGroupCreateInfoNV<'a> {
+        pub fn _type(mut self, _type: crate::vk::RayTracingShaderGroupTypeKHR) -> Self {
+            self._type = _type;
+            self
+        }
+        pub fn general_shader(mut self, general_shader: u32) -> Self {
+            self.general_shader = general_shader;
+            self
+        }
+        pub fn closest_hit_shader(mut self, closest_hit_shader: u32) -> Self {
+            self.closest_hit_shader = closest_hit_shader;
+            self
+        }
+        pub fn any_hit_shader(mut self, any_hit_shader: u32) -> Self {
+            self.any_hit_shader = any_hit_shader;
+            self
+        }
+        pub fn intersection_shader(mut self, intersection_shader: u32) -> Self {
+            self.intersection_shader = intersection_shader;
+            self
+        }
+    }
     #[repr(C)]
     #[derive(Clone, Copy)]
     pub struct RayTracingPipelineCreateInfoNV<'a> {
@@ -273,6 +313,76 @@ pub(crate) mod reexport {
         pub base_pipeline_handle: crate::vk::Pipeline,
         pub base_pipeline_index: i32,
         pub _marker: ::core::marker::PhantomData<&'a ()>,
+    }
+    unsafe impl<'a> crate::TaggedStructure<'a> for RayTracingPipelineCreateInfoNV<'a> {
+        const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::RAY_TRACING_PIPELINE_CREATE_INFO_NV;
+    }
+    impl<'a> Default for RayTracingPipelineCreateInfoNV<'a> {
+        fn default() -> Self {
+            Self {
+                s_type: <Self as crate::TaggedStructure>::STRUCTURE_TYPE,
+                p_next: Default::default(),
+                flags: Default::default(),
+                stage_count: Default::default(),
+                p_stages: Default::default(),
+                group_count: Default::default(),
+                p_groups: Default::default(),
+                max_recursion_depth: Default::default(),
+                layout: Default::default(),
+                base_pipeline_handle: Default::default(),
+                base_pipeline_index: Default::default(),
+                _marker: ::core::marker::PhantomData,
+            }
+        }
+    }
+    impl<'a> RayTracingPipelineCreateInfoNV<'a> {
+        pub fn flags(mut self, flags: crate::vk::PipelineCreateFlags) -> Self {
+            self.flags = flags;
+            self
+        }
+        pub fn stage_count(mut self, stage_count: u32) -> Self {
+            self.stage_count = stage_count;
+            self
+        }
+        pub fn p_stages(
+            mut self,
+            p_stages: &'a [crate::vk::PipelineShaderStageCreateInfo<'a>],
+        ) -> Self {
+            self.stage_count = p_stages.len() as _;
+            self.p_stages = p_stages.as_ptr();
+            self
+        }
+        pub fn group_count(mut self, group_count: u32) -> Self {
+            self.group_count = group_count;
+            self
+        }
+        pub fn p_groups(
+            mut self,
+            p_groups: &'a [crate::vk::RayTracingShaderGroupCreateInfoNV<'a>],
+        ) -> Self {
+            self.group_count = p_groups.len() as _;
+            self.p_groups = p_groups.as_ptr();
+            self
+        }
+        pub fn max_recursion_depth(mut self, max_recursion_depth: u32) -> Self {
+            self.max_recursion_depth = max_recursion_depth;
+            self
+        }
+        pub fn layout(mut self, layout: crate::vk::PipelineLayout) -> Self {
+            self.layout = layout;
+            self
+        }
+        pub fn base_pipeline_handle(
+            mut self,
+            base_pipeline_handle: crate::vk::Pipeline,
+        ) -> Self {
+            self.base_pipeline_handle = base_pipeline_handle;
+            self
+        }
+        pub fn base_pipeline_index(mut self, base_pipeline_index: i32) -> Self {
+            self.base_pipeline_index = base_pipeline_index;
+            self
+        }
     }
     #[repr(C)]
     #[derive(Clone, Copy)]
@@ -292,6 +402,78 @@ pub(crate) mod reexport {
         pub transform_offset: crate::vk::DeviceSize,
         pub _marker: ::core::marker::PhantomData<&'a ()>,
     }
+    unsafe impl<'a> crate::TaggedStructure<'a> for GeometryTrianglesNV<'a> {
+        const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::GEOMETRY_TRIANGLES_NV;
+    }
+    impl<'a> Default for GeometryTrianglesNV<'a> {
+        fn default() -> Self {
+            Self {
+                s_type: <Self as crate::TaggedStructure>::STRUCTURE_TYPE,
+                p_next: Default::default(),
+                vertex_data: Default::default(),
+                vertex_offset: Default::default(),
+                vertex_count: Default::default(),
+                vertex_stride: Default::default(),
+                vertex_format: Default::default(),
+                index_data: Default::default(),
+                index_offset: Default::default(),
+                index_count: Default::default(),
+                index_type: Default::default(),
+                transform_data: Default::default(),
+                transform_offset: Default::default(),
+                _marker: ::core::marker::PhantomData,
+            }
+        }
+    }
+    impl<'a> GeometryTrianglesNV<'a> {
+        pub fn vertex_data(mut self, vertex_data: crate::vk::Buffer) -> Self {
+            self.vertex_data = vertex_data;
+            self
+        }
+        pub fn vertex_offset(mut self, vertex_offset: crate::vk::DeviceSize) -> Self {
+            self.vertex_offset = vertex_offset;
+            self
+        }
+        pub fn vertex_count(mut self, vertex_count: u32) -> Self {
+            self.vertex_count = vertex_count;
+            self
+        }
+        pub fn vertex_stride(mut self, vertex_stride: crate::vk::DeviceSize) -> Self {
+            self.vertex_stride = vertex_stride;
+            self
+        }
+        pub fn vertex_format(mut self, vertex_format: crate::vk::Format) -> Self {
+            self.vertex_format = vertex_format;
+            self
+        }
+        pub fn index_data(mut self, index_data: crate::vk::Buffer) -> Self {
+            self.index_data = index_data;
+            self
+        }
+        pub fn index_offset(mut self, index_offset: crate::vk::DeviceSize) -> Self {
+            self.index_offset = index_offset;
+            self
+        }
+        pub fn index_count(mut self, index_count: u32) -> Self {
+            self.index_count = index_count;
+            self
+        }
+        pub fn index_type(mut self, index_type: crate::vk::IndexType) -> Self {
+            self.index_type = index_type;
+            self
+        }
+        pub fn transform_data(mut self, transform_data: crate::vk::Buffer) -> Self {
+            self.transform_data = transform_data;
+            self
+        }
+        pub fn transform_offset(
+            mut self,
+            transform_offset: crate::vk::DeviceSize,
+        ) -> Self {
+            self.transform_offset = transform_offset;
+            self
+        }
+    }
     #[repr(C)]
     #[derive(Clone, Copy)]
     pub struct GeometryAABBNV<'a> {
@@ -303,12 +485,59 @@ pub(crate) mod reexport {
         pub offset: crate::vk::DeviceSize,
         pub _marker: ::core::marker::PhantomData<&'a ()>,
     }
+    unsafe impl<'a> crate::TaggedStructure<'a> for GeometryAABBNV<'a> {
+        const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::GEOMETRY_AABB_NV;
+    }
+    impl<'a> Default for GeometryAABBNV<'a> {
+        fn default() -> Self {
+            Self {
+                s_type: <Self as crate::TaggedStructure>::STRUCTURE_TYPE,
+                p_next: Default::default(),
+                aabb_data: Default::default(),
+                num_aab_bs: Default::default(),
+                stride: Default::default(),
+                offset: Default::default(),
+                _marker: ::core::marker::PhantomData,
+            }
+        }
+    }
+    impl<'a> GeometryAABBNV<'a> {
+        pub fn aabb_data(mut self, aabb_data: crate::vk::Buffer) -> Self {
+            self.aabb_data = aabb_data;
+            self
+        }
+        pub fn num_aab_bs(mut self, num_aab_bs: u32) -> Self {
+            self.num_aab_bs = num_aab_bs;
+            self
+        }
+        pub fn stride(mut self, stride: u32) -> Self {
+            self.stride = stride;
+            self
+        }
+        pub fn offset(mut self, offset: crate::vk::DeviceSize) -> Self {
+            self.offset = offset;
+            self
+        }
+    }
     #[repr(C)]
-    #[derive(Clone, Copy)]
+    #[derive(Clone, Copy, Default)]
     pub struct GeometryDataNV<'a> {
         pub triangles: crate::vk::GeometryTrianglesNV<'a>,
         pub aabbs: crate::vk::GeometryAABBNV<'a>,
         pub _marker: ::core::marker::PhantomData<&'a ()>,
+    }
+    impl<'a> GeometryDataNV<'a> {
+        pub fn triangles(
+            mut self,
+            triangles: crate::vk::GeometryTrianglesNV<'a>,
+        ) -> Self {
+            self.triangles = triangles;
+            self
+        }
+        pub fn aabbs(mut self, aabbs: crate::vk::GeometryAABBNV<'a>) -> Self {
+            self.aabbs = aabbs;
+            self
+        }
     }
     #[repr(C)]
     #[derive(Clone, Copy)]
@@ -319,6 +548,38 @@ pub(crate) mod reexport {
         pub geometry: crate::vk::GeometryDataNV<'a>,
         pub flags: crate::vk::GeometryFlagsKHR,
         pub _marker: ::core::marker::PhantomData<&'a ()>,
+    }
+    unsafe impl<'a> crate::TaggedStructure<'a> for GeometryNV<'a> {
+        const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::GEOMETRY_NV;
+    }
+    impl<'a> Default for GeometryNV<'a> {
+        fn default() -> Self {
+            Self {
+                s_type: <Self as crate::TaggedStructure>::STRUCTURE_TYPE,
+                p_next: Default::default(),
+                geometry_type: Default::default(),
+                geometry: Default::default(),
+                flags: Default::default(),
+                _marker: ::core::marker::PhantomData,
+            }
+        }
+    }
+    impl<'a> GeometryNV<'a> {
+        pub fn geometry_type(
+            mut self,
+            geometry_type: crate::vk::GeometryTypeKHR,
+        ) -> Self {
+            self.geometry_type = geometry_type;
+            self
+        }
+        pub fn geometry(mut self, geometry: crate::vk::GeometryDataNV<'a>) -> Self {
+            self.geometry = geometry;
+            self
+        }
+        pub fn flags(mut self, flags: crate::vk::GeometryFlagsKHR) -> Self {
+            self.flags = flags;
+            self
+        }
     }
     #[repr(C)]
     #[derive(Clone, Copy)]
@@ -332,6 +593,52 @@ pub(crate) mod reexport {
         pub p_geometries: *const crate::vk::GeometryNV<'a>,
         pub _marker: ::core::marker::PhantomData<&'a ()>,
     }
+    unsafe impl<'a> crate::TaggedStructure<'a> for AccelerationStructureInfoNV<'a> {
+        const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::ACCELERATION_STRUCTURE_INFO_NV;
+    }
+    impl<'a> Default for AccelerationStructureInfoNV<'a> {
+        fn default() -> Self {
+            Self {
+                s_type: <Self as crate::TaggedStructure>::STRUCTURE_TYPE,
+                p_next: Default::default(),
+                _type: Default::default(),
+                flags: Default::default(),
+                instance_count: Default::default(),
+                geometry_count: Default::default(),
+                p_geometries: Default::default(),
+                _marker: ::core::marker::PhantomData,
+            }
+        }
+    }
+    impl<'a> AccelerationStructureInfoNV<'a> {
+        pub fn _type(mut self, _type: crate::vk::AccelerationStructureTypeNV) -> Self {
+            self._type = _type;
+            self
+        }
+        pub fn flags(
+            mut self,
+            flags: crate::vk::BuildAccelerationStructureFlagsKHR,
+        ) -> Self {
+            self.flags = flags;
+            self
+        }
+        pub fn instance_count(mut self, instance_count: u32) -> Self {
+            self.instance_count = instance_count;
+            self
+        }
+        pub fn geometry_count(mut self, geometry_count: u32) -> Self {
+            self.geometry_count = geometry_count;
+            self
+        }
+        pub fn p_geometries(
+            mut self,
+            p_geometries: &'a [crate::vk::GeometryNV<'a>],
+        ) -> Self {
+            self.geometry_count = p_geometries.len() as _;
+            self.p_geometries = p_geometries.as_ptr();
+            self
+        }
+    }
     #[repr(C)]
     #[derive(Clone, Copy)]
     pub struct AccelerationStructureCreateInfoNV<'a> {
@@ -340,6 +647,31 @@ pub(crate) mod reexport {
         pub compacted_size: crate::vk::DeviceSize,
         pub info: crate::vk::AccelerationStructureInfoNV<'a>,
         pub _marker: ::core::marker::PhantomData<&'a ()>,
+    }
+    unsafe impl<'a> crate::TaggedStructure<'a>
+    for AccelerationStructureCreateInfoNV<'a> {
+        const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::ACCELERATION_STRUCTURE_CREATE_INFO_NV;
+    }
+    impl<'a> Default for AccelerationStructureCreateInfoNV<'a> {
+        fn default() -> Self {
+            Self {
+                s_type: <Self as crate::TaggedStructure>::STRUCTURE_TYPE,
+                p_next: Default::default(),
+                compacted_size: Default::default(),
+                info: Default::default(),
+                _marker: ::core::marker::PhantomData,
+            }
+        }
+    }
+    impl<'a> AccelerationStructureCreateInfoNV<'a> {
+        pub fn compacted_size(mut self, compacted_size: crate::vk::DeviceSize) -> Self {
+            self.compacted_size = compacted_size;
+            self
+        }
+        pub fn info(mut self, info: crate::vk::AccelerationStructureInfoNV<'a>) -> Self {
+            self.info = info;
+            self
+        }
     }
     #[repr(C)]
     #[derive(Clone, Copy)]
@@ -353,6 +685,50 @@ pub(crate) mod reexport {
         pub p_device_indices: *const u32,
         pub _marker: ::core::marker::PhantomData<&'a ()>,
     }
+    unsafe impl<'a> crate::TaggedStructure<'a>
+    for BindAccelerationStructureMemoryInfoNV<'a> {
+        const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::BIND_ACCELERATION_STRUCTURE_MEMORY_INFO_NV;
+    }
+    impl<'a> Default for BindAccelerationStructureMemoryInfoNV<'a> {
+        fn default() -> Self {
+            Self {
+                s_type: <Self as crate::TaggedStructure>::STRUCTURE_TYPE,
+                p_next: Default::default(),
+                acceleration_structure: Default::default(),
+                memory: Default::default(),
+                memory_offset: Default::default(),
+                device_index_count: Default::default(),
+                p_device_indices: Default::default(),
+                _marker: ::core::marker::PhantomData,
+            }
+        }
+    }
+    impl<'a> BindAccelerationStructureMemoryInfoNV<'a> {
+        pub fn acceleration_structure(
+            mut self,
+            acceleration_structure: crate::vk::AccelerationStructureNV,
+        ) -> Self {
+            self.acceleration_structure = acceleration_structure;
+            self
+        }
+        pub fn memory(mut self, memory: crate::vk::DeviceMemory) -> Self {
+            self.memory = memory;
+            self
+        }
+        pub fn memory_offset(mut self, memory_offset: crate::vk::DeviceSize) -> Self {
+            self.memory_offset = memory_offset;
+            self
+        }
+        pub fn device_index_count(mut self, device_index_count: u32) -> Self {
+            self.device_index_count = device_index_count;
+            self
+        }
+        pub fn p_device_indices(mut self, p_device_indices: &'a [u32]) -> Self {
+            self.device_index_count = p_device_indices.len() as _;
+            self.p_device_indices = p_device_indices.as_ptr();
+            self
+        }
+    }
     #[repr(C)]
     #[derive(Clone, Copy)]
     pub struct WriteDescriptorSetAccelerationStructureNV<'a> {
@@ -362,6 +738,40 @@ pub(crate) mod reexport {
         pub p_acceleration_structures: *const crate::vk::AccelerationStructureNV,
         pub _marker: ::core::marker::PhantomData<&'a ()>,
     }
+    unsafe impl<'a> crate::TaggedStructure<'a>
+    for WriteDescriptorSetAccelerationStructureNV<'a> {
+        const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::WRITE_DESCRIPTOR_SET_ACCELERATION_STRUCTURE_NV;
+    }
+    unsafe impl<'a> crate::Extends<crate::vk::WriteDescriptorSet<'_>>
+    for WriteDescriptorSetAccelerationStructureNV<'a> {}
+    impl<'a> Default for WriteDescriptorSetAccelerationStructureNV<'a> {
+        fn default() -> Self {
+            Self {
+                s_type: <Self as crate::TaggedStructure>::STRUCTURE_TYPE,
+                p_next: Default::default(),
+                acceleration_structure_count: Default::default(),
+                p_acceleration_structures: Default::default(),
+                _marker: ::core::marker::PhantomData,
+            }
+        }
+    }
+    impl<'a> WriteDescriptorSetAccelerationStructureNV<'a> {
+        pub fn acceleration_structure_count(
+            mut self,
+            acceleration_structure_count: u32,
+        ) -> Self {
+            self.acceleration_structure_count = acceleration_structure_count;
+            self
+        }
+        pub fn p_acceleration_structures(
+            mut self,
+            p_acceleration_structures: &'a [crate::vk::AccelerationStructureNV],
+        ) -> Self {
+            self.acceleration_structure_count = p_acceleration_structures.len() as _;
+            self.p_acceleration_structures = p_acceleration_structures.as_ptr();
+            self
+        }
+    }
     #[repr(C)]
     #[derive(Clone, Copy)]
     pub struct AccelerationStructureMemoryRequirementsInfoNV<'a> {
@@ -370,6 +780,37 @@ pub(crate) mod reexport {
         pub _type: crate::vk::AccelerationStructureMemoryRequirementsTypeNV,
         pub acceleration_structure: crate::vk::AccelerationStructureNV,
         pub _marker: ::core::marker::PhantomData<&'a ()>,
+    }
+    unsafe impl<'a> crate::TaggedStructure<'a>
+    for AccelerationStructureMemoryRequirementsInfoNV<'a> {
+        const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::ACCELERATION_STRUCTURE_MEMORY_REQUIREMENTS_INFO_NV;
+    }
+    impl<'a> Default for AccelerationStructureMemoryRequirementsInfoNV<'a> {
+        fn default() -> Self {
+            Self {
+                s_type: <Self as crate::TaggedStructure>::STRUCTURE_TYPE,
+                p_next: Default::default(),
+                _type: Default::default(),
+                acceleration_structure: Default::default(),
+                _marker: ::core::marker::PhantomData,
+            }
+        }
+    }
+    impl<'a> AccelerationStructureMemoryRequirementsInfoNV<'a> {
+        pub fn _type(
+            mut self,
+            _type: crate::vk::AccelerationStructureMemoryRequirementsTypeNV,
+        ) -> Self {
+            self._type = _type;
+            self
+        }
+        pub fn acceleration_structure(
+            mut self,
+            acceleration_structure: crate::vk::AccelerationStructureNV,
+        ) -> Self {
+            self.acceleration_structure = acceleration_structure;
+            self
+        }
     }
     #[repr(C)]
     #[derive(Clone, Copy)]
@@ -385,6 +826,72 @@ pub(crate) mod reexport {
         pub max_triangle_count: u64,
         pub max_descriptor_set_acceleration_structures: u32,
         pub _marker: ::core::marker::PhantomData<&'a ()>,
+    }
+    unsafe impl<'a> crate::TaggedStructure<'a>
+    for PhysicalDeviceRayTracingPropertiesNV<'a> {
+        const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::PHYSICAL_DEVICE_RAY_TRACING_PROPERTIES_NV;
+    }
+    unsafe impl<'a> crate::Extends<crate::vk::PhysicalDeviceProperties2<'_>>
+    for PhysicalDeviceRayTracingPropertiesNV<'a> {}
+    impl<'a> Default for PhysicalDeviceRayTracingPropertiesNV<'a> {
+        fn default() -> Self {
+            Self {
+                s_type: <Self as crate::TaggedStructure>::STRUCTURE_TYPE,
+                p_next: Default::default(),
+                shader_group_handle_size: Default::default(),
+                max_recursion_depth: Default::default(),
+                max_shader_group_stride: Default::default(),
+                shader_group_base_alignment: Default::default(),
+                max_geometry_count: Default::default(),
+                max_instance_count: Default::default(),
+                max_triangle_count: Default::default(),
+                max_descriptor_set_acceleration_structures: Default::default(),
+                _marker: ::core::marker::PhantomData,
+            }
+        }
+    }
+    impl<'a> PhysicalDeviceRayTracingPropertiesNV<'a> {
+        pub fn shader_group_handle_size(
+            mut self,
+            shader_group_handle_size: u32,
+        ) -> Self {
+            self.shader_group_handle_size = shader_group_handle_size;
+            self
+        }
+        pub fn max_recursion_depth(mut self, max_recursion_depth: u32) -> Self {
+            self.max_recursion_depth = max_recursion_depth;
+            self
+        }
+        pub fn max_shader_group_stride(mut self, max_shader_group_stride: u32) -> Self {
+            self.max_shader_group_stride = max_shader_group_stride;
+            self
+        }
+        pub fn shader_group_base_alignment(
+            mut self,
+            shader_group_base_alignment: u32,
+        ) -> Self {
+            self.shader_group_base_alignment = shader_group_base_alignment;
+            self
+        }
+        pub fn max_geometry_count(mut self, max_geometry_count: u64) -> Self {
+            self.max_geometry_count = max_geometry_count;
+            self
+        }
+        pub fn max_instance_count(mut self, max_instance_count: u64) -> Self {
+            self.max_instance_count = max_instance_count;
+            self
+        }
+        pub fn max_triangle_count(mut self, max_triangle_count: u64) -> Self {
+            self.max_triangle_count = max_triangle_count;
+            self
+        }
+        pub fn max_descriptor_set_acceleration_structures(
+            mut self,
+            max_descriptor_set_acceleration_structures: u32,
+        ) -> Self {
+            self.max_descriptor_set_acceleration_structures = max_descriptor_set_acceleration_structures;
+            self
+        }
     }
     pub type AabbPositionsNV = crate::vk::AabbPositionsKHR;
     pub type TransformMatrixNV = crate::vk::TransformMatrixKHR;

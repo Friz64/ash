@@ -53,11 +53,34 @@ impl DeviceFn {
 }
 pub(crate) mod reexport {
     #[repr(C)]
-    #[derive(Clone, Copy)]
+    #[derive(Clone, Copy, Default)]
     pub struct DeviceFaultAddressInfoKHR {
         pub address_type: crate::vk::DeviceFaultAddressTypeKHR,
         pub reported_address: crate::vk::DeviceAddress,
         pub address_precision: crate::vk::DeviceSize,
+    }
+    impl DeviceFaultAddressInfoKHR {
+        pub fn address_type(
+            mut self,
+            address_type: crate::vk::DeviceFaultAddressTypeKHR,
+        ) -> Self {
+            self.address_type = address_type;
+            self
+        }
+        pub fn reported_address(
+            mut self,
+            reported_address: crate::vk::DeviceAddress,
+        ) -> Self {
+            self.reported_address = reported_address;
+            self
+        }
+        pub fn address_precision(
+            mut self,
+            address_precision: crate::vk::DeviceSize,
+        ) -> Self {
+            self.address_precision = address_precision;
+            self
+        }
     }
     #[repr(C)]
     #[derive(Clone, Copy)]
@@ -65,6 +88,37 @@ pub(crate) mod reexport {
         pub description: [core::ffi::c_char; crate::vk::MAX_DESCRIPTION_SIZE as _],
         pub vendor_fault_code: u64,
         pub vendor_fault_data: u64,
+    }
+    impl Default for DeviceFaultVendorInfoKHR {
+        fn default() -> Self {
+            Self {
+                description: unsafe { core::mem::zeroed() },
+                vendor_fault_code: Default::default(),
+                vendor_fault_data: Default::default(),
+            }
+        }
+    }
+    impl DeviceFaultVendorInfoKHR {
+        pub fn description(
+            mut self,
+            description: &core::ffi::CStr,
+        ) -> core::result::Result<Self, crate::CStrTooLargeForStaticArray> {
+            crate::write_c_str_slice_with_nul(&mut self.description, description)
+                .map(|_| self)
+        }
+        pub fn description_as_c_str(
+            &self,
+        ) -> core::result::Result<&core::ffi::CStr, core::ffi::FromBytesUntilNulError> {
+            crate::wrap_c_str_slice_until_nul(&self.description)
+        }
+        pub fn vendor_fault_code(mut self, vendor_fault_code: u64) -> Self {
+            self.vendor_fault_code = vendor_fault_code;
+            self
+        }
+        pub fn vendor_fault_data(mut self, vendor_fault_data: u64) -> Self {
+            self.vendor_fault_data = vendor_fault_data;
+            self
+        }
     }
     #[repr(C)]
     #[derive(Clone, Copy)]
@@ -79,6 +133,67 @@ pub(crate) mod reexport {
         pub vendor_info: crate::vk::DeviceFaultVendorInfoKHR,
         pub _marker: ::core::marker::PhantomData<&'a ()>,
     }
+    unsafe impl<'a> crate::TaggedStructure<'a> for DeviceFaultInfoKHR<'a> {
+        const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::DEVICE_FAULT_INFO_KHR;
+    }
+    impl<'a> Default for DeviceFaultInfoKHR<'a> {
+        fn default() -> Self {
+            Self {
+                s_type: <Self as crate::TaggedStructure>::STRUCTURE_TYPE,
+                p_next: Default::default(),
+                flags: Default::default(),
+                group_id: Default::default(),
+                description: unsafe { core::mem::zeroed() },
+                fault_address_info: Default::default(),
+                instruction_address_info: Default::default(),
+                vendor_info: Default::default(),
+                _marker: ::core::marker::PhantomData,
+            }
+        }
+    }
+    impl<'a> DeviceFaultInfoKHR<'a> {
+        pub fn flags(mut self, flags: crate::vk::DeviceFaultFlagsKHR) -> Self {
+            self.flags = flags;
+            self
+        }
+        pub fn group_id(mut self, group_id: u64) -> Self {
+            self.group_id = group_id;
+            self
+        }
+        pub fn description(
+            mut self,
+            description: &core::ffi::CStr,
+        ) -> core::result::Result<Self, crate::CStrTooLargeForStaticArray> {
+            crate::write_c_str_slice_with_nul(&mut self.description, description)
+                .map(|_| self)
+        }
+        pub fn description_as_c_str(
+            &self,
+        ) -> core::result::Result<&core::ffi::CStr, core::ffi::FromBytesUntilNulError> {
+            crate::wrap_c_str_slice_until_nul(&self.description)
+        }
+        pub fn fault_address_info(
+            mut self,
+            fault_address_info: crate::vk::DeviceFaultAddressInfoKHR,
+        ) -> Self {
+            self.fault_address_info = fault_address_info;
+            self
+        }
+        pub fn instruction_address_info(
+            mut self,
+            instruction_address_info: crate::vk::DeviceFaultAddressInfoKHR,
+        ) -> Self {
+            self.instruction_address_info = instruction_address_info;
+            self
+        }
+        pub fn vendor_info(
+            mut self,
+            vendor_info: crate::vk::DeviceFaultVendorInfoKHR,
+        ) -> Self {
+            self.vendor_info = vendor_info;
+            self
+        }
+    }
     #[repr(C)]
     #[derive(Clone, Copy)]
     pub struct DeviceFaultDebugInfoKHR<'a> {
@@ -87,6 +202,34 @@ pub(crate) mod reexport {
         pub vendor_binary_size: u32,
         pub p_vendor_binary_data: *mut core::ffi::c_void,
         pub _marker: ::core::marker::PhantomData<&'a ()>,
+    }
+    unsafe impl<'a> crate::TaggedStructure<'a> for DeviceFaultDebugInfoKHR<'a> {
+        const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::DEVICE_FAULT_DEBUG_INFO_KHR;
+    }
+    impl<'a> Default for DeviceFaultDebugInfoKHR<'a> {
+        fn default() -> Self {
+            Self {
+                s_type: <Self as crate::TaggedStructure>::STRUCTURE_TYPE,
+                p_next: Default::default(),
+                vendor_binary_size: Default::default(),
+                p_vendor_binary_data: Default::default(),
+                _marker: ::core::marker::PhantomData,
+            }
+        }
+    }
+    impl<'a> DeviceFaultDebugInfoKHR<'a> {
+        pub fn vendor_binary_size(mut self, vendor_binary_size: u32) -> Self {
+            self.vendor_binary_size = vendor_binary_size;
+            self
+        }
+        pub fn p_vendor_binary_data(
+            mut self,
+            p_vendor_binary_data: &'a mut [u8],
+        ) -> Self {
+            self.vendor_binary_size = p_vendor_binary_data.len() as _;
+            self.p_vendor_binary_data = p_vendor_binary_data.as_mut_ptr().cast();
+            self
+        }
     }
     #[repr(C)]
     #[derive(Clone, Copy)]
@@ -103,6 +246,75 @@ pub(crate) mod reexport {
         pub engine_version: u32,
         pub api_version: u32,
     }
+    impl Default for DeviceFaultVendorBinaryHeaderVersionOneKHR {
+        fn default() -> Self {
+            Self {
+                header_size: Default::default(),
+                header_version: Default::default(),
+                vendor_id: Default::default(),
+                device_id: Default::default(),
+                driver_version: Default::default(),
+                pipeline_cache_uuid: unsafe { core::mem::zeroed() },
+                application_name_offset: Default::default(),
+                application_version: Default::default(),
+                engine_name_offset: Default::default(),
+                engine_version: Default::default(),
+                api_version: Default::default(),
+            }
+        }
+    }
+    impl DeviceFaultVendorBinaryHeaderVersionOneKHR {
+        pub fn header_size(mut self, header_size: u32) -> Self {
+            self.header_size = header_size;
+            self
+        }
+        pub fn header_version(
+            mut self,
+            header_version: crate::vk::DeviceFaultVendorBinaryHeaderVersionKHR,
+        ) -> Self {
+            self.header_version = header_version;
+            self
+        }
+        pub fn vendor_id(mut self, vendor_id: u32) -> Self {
+            self.vendor_id = vendor_id;
+            self
+        }
+        pub fn device_id(mut self, device_id: u32) -> Self {
+            self.device_id = device_id;
+            self
+        }
+        pub fn driver_version(mut self, driver_version: u32) -> Self {
+            self.driver_version = driver_version;
+            self
+        }
+        pub fn pipeline_cache_uuid(
+            mut self,
+            pipeline_cache_uuid: [u8; crate::vk::UUID_SIZE as _],
+        ) -> Self {
+            self.pipeline_cache_uuid = pipeline_cache_uuid;
+            self
+        }
+        pub fn application_name_offset(mut self, application_name_offset: u32) -> Self {
+            self.application_name_offset = application_name_offset;
+            self
+        }
+        pub fn application_version(mut self, application_version: u32) -> Self {
+            self.application_version = application_version;
+            self
+        }
+        pub fn engine_name_offset(mut self, engine_name_offset: u32) -> Self {
+            self.engine_name_offset = engine_name_offset;
+            self
+        }
+        pub fn engine_version(mut self, engine_version: u32) -> Self {
+            self.engine_version = engine_version;
+            self
+        }
+        pub fn api_version(mut self, api_version: u32) -> Self {
+            self.api_version = api_version;
+            self
+        }
+    }
     #[repr(C)]
     #[derive(Clone, Copy)]
     pub struct PhysicalDeviceFaultFeaturesKHR<'a> {
@@ -114,6 +326,54 @@ pub(crate) mod reexport {
         pub device_fault_device_lost_on_masked: crate::vk::Bool32,
         pub _marker: ::core::marker::PhantomData<&'a ()>,
     }
+    unsafe impl<'a> crate::TaggedStructure<'a> for PhysicalDeviceFaultFeaturesKHR<'a> {
+        const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::PHYSICAL_DEVICE_FAULT_FEATURES_KHR;
+    }
+    unsafe impl<'a> crate::Extends<crate::vk::PhysicalDeviceFeatures2<'_>>
+    for PhysicalDeviceFaultFeaturesKHR<'a> {}
+    unsafe impl<'a> crate::Extends<crate::vk::DeviceCreateInfo<'_>>
+    for PhysicalDeviceFaultFeaturesKHR<'a> {}
+    impl<'a> Default for PhysicalDeviceFaultFeaturesKHR<'a> {
+        fn default() -> Self {
+            Self {
+                s_type: <Self as crate::TaggedStructure>::STRUCTURE_TYPE,
+                p_next: Default::default(),
+                device_fault: Default::default(),
+                device_fault_vendor_binary: Default::default(),
+                device_fault_report_masked: Default::default(),
+                device_fault_device_lost_on_masked: Default::default(),
+                _marker: ::core::marker::PhantomData,
+            }
+        }
+    }
+    impl<'a> PhysicalDeviceFaultFeaturesKHR<'a> {
+        pub fn device_fault(mut self, device_fault: bool) -> Self {
+            self.device_fault = device_fault.into();
+            self
+        }
+        pub fn device_fault_vendor_binary(
+            mut self,
+            device_fault_vendor_binary: bool,
+        ) -> Self {
+            self.device_fault_vendor_binary = device_fault_vendor_binary.into();
+            self
+        }
+        pub fn device_fault_report_masked(
+            mut self,
+            device_fault_report_masked: bool,
+        ) -> Self {
+            self.device_fault_report_masked = device_fault_report_masked.into();
+            self
+        }
+        pub fn device_fault_device_lost_on_masked(
+            mut self,
+            device_fault_device_lost_on_masked: bool,
+        ) -> Self {
+            self.device_fault_device_lost_on_masked = device_fault_device_lost_on_masked
+                .into();
+            self
+        }
+    }
     #[repr(C)]
     #[derive(Clone, Copy)]
     pub struct PhysicalDeviceFaultPropertiesKHR<'a> {
@@ -121,6 +381,27 @@ pub(crate) mod reexport {
         pub p_next: *mut core::ffi::c_void,
         pub max_device_fault_count: u32,
         pub _marker: ::core::marker::PhantomData<&'a ()>,
+    }
+    unsafe impl<'a> crate::TaggedStructure<'a> for PhysicalDeviceFaultPropertiesKHR<'a> {
+        const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::PHYSICAL_DEVICE_FAULT_PROPERTIES_KHR;
+    }
+    unsafe impl<'a> crate::Extends<crate::vk::PhysicalDeviceProperties2<'_>>
+    for PhysicalDeviceFaultPropertiesKHR<'a> {}
+    impl<'a> Default for PhysicalDeviceFaultPropertiesKHR<'a> {
+        fn default() -> Self {
+            Self {
+                s_type: <Self as crate::TaggedStructure>::STRUCTURE_TYPE,
+                p_next: Default::default(),
+                max_device_fault_count: Default::default(),
+                _marker: ::core::marker::PhantomData,
+            }
+        }
+    }
+    impl<'a> PhysicalDeviceFaultPropertiesKHR<'a> {
+        pub fn max_device_fault_count(mut self, max_device_fault_count: u32) -> Self {
+            self.max_device_fault_count = max_device_fault_count;
+            self
+        }
     }
     ///Provided by [`khr::device_fault`](crate::khr::device_fault)
     impl crate::vk::StructureType {
@@ -254,7 +535,7 @@ pub(crate) mod reexport {
         }
     }
     #[repr(transparent)]
-    #[derive(Clone, Copy)]
+    #[derive(Clone, Copy, Default)]
     pub struct DeviceFaultFlagBitsKHR(pub(crate) u32);
     ///Provided by [`khr::device_fault`](crate::khr::device_fault)
     impl DeviceFaultFlagBitsKHR {

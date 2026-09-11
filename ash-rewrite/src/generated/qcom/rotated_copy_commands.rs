@@ -9,6 +9,34 @@ pub struct CopyCommandTransformInfoQCOM<'a> {
     pub transform: crate::vk::SurfaceTransformFlagBitsKHR,
     pub _marker: ::core::marker::PhantomData<&'a ()>,
 }
+unsafe impl<'a> crate::TaggedStructure<'a> for CopyCommandTransformInfoQCOM<'a> {
+    const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::COPY_COMMAND_TRANSFORM_INFO_QCOM;
+}
+unsafe impl<'a> crate::Extends<crate::vk::BufferImageCopy2<'_>>
+for CopyCommandTransformInfoQCOM<'a> {}
+unsafe impl<'a> crate::Extends<crate::vk::ImageBlit2<'_>>
+for CopyCommandTransformInfoQCOM<'a> {}
+unsafe impl<'a> crate::Extends<crate::vk::DeviceMemoryImageCopyKHR<'_>>
+for CopyCommandTransformInfoQCOM<'a> {}
+impl<'a> Default for CopyCommandTransformInfoQCOM<'a> {
+    fn default() -> Self {
+        Self {
+            s_type: <Self as crate::TaggedStructure>::STRUCTURE_TYPE,
+            p_next: Default::default(),
+            transform: Default::default(),
+            _marker: ::core::marker::PhantomData,
+        }
+    }
+}
+impl<'a> CopyCommandTransformInfoQCOM<'a> {
+    pub fn transform(
+        mut self,
+        transform: crate::vk::SurfaceTransformFlagBitsKHR,
+    ) -> Self {
+        self.transform = transform;
+        self
+    }
+}
 ///Provided by [`qcom::rotated_copy_commands`](crate::qcom::rotated_copy_commands)
 impl crate::vk::StructureType {
     pub const COPY_COMMAND_TRANSFORM_INFO_QCOM: Self = Self(1000333000);

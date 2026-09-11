@@ -45,6 +45,25 @@ pub(crate) mod reexport {
         pub flags: crate::vk::HeadlessSurfaceCreateFlagsEXT,
         pub _marker: ::core::marker::PhantomData<&'a ()>,
     }
+    unsafe impl<'a> crate::TaggedStructure<'a> for HeadlessSurfaceCreateInfoEXT<'a> {
+        const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::HEADLESS_SURFACE_CREATE_INFO_EXT;
+    }
+    impl<'a> Default for HeadlessSurfaceCreateInfoEXT<'a> {
+        fn default() -> Self {
+            Self {
+                s_type: <Self as crate::TaggedStructure>::STRUCTURE_TYPE,
+                p_next: Default::default(),
+                flags: Default::default(),
+                _marker: ::core::marker::PhantomData,
+            }
+        }
+    }
+    impl<'a> HeadlessSurfaceCreateInfoEXT<'a> {
+        pub fn flags(mut self, flags: crate::vk::HeadlessSurfaceCreateFlagsEXT) -> Self {
+            self.flags = flags;
+            self
+        }
+    }
     ///Provided by [`ext::headless_surface`](crate::ext::headless_surface)
     impl crate::vk::StructureType {
         pub const HEADLESS_SURFACE_CREATE_INFO_EXT: Self = Self(1000256000);

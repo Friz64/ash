@@ -64,6 +64,35 @@ pub(crate) mod reexport {
         pub hwnd: crate::platform_types::HWND,
         pub _marker: ::core::marker::PhantomData<&'a ()>,
     }
+    unsafe impl<'a> crate::TaggedStructure<'a> for Win32SurfaceCreateInfoKHR<'a> {
+        const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::WIN32_SURFACE_CREATE_INFO_KHR;
+    }
+    impl<'a> Default for Win32SurfaceCreateInfoKHR<'a> {
+        fn default() -> Self {
+            Self {
+                s_type: <Self as crate::TaggedStructure>::STRUCTURE_TYPE,
+                p_next: Default::default(),
+                flags: Default::default(),
+                hinstance: Default::default(),
+                hwnd: Default::default(),
+                _marker: ::core::marker::PhantomData,
+            }
+        }
+    }
+    impl<'a> Win32SurfaceCreateInfoKHR<'a> {
+        pub fn flags(mut self, flags: crate::vk::Win32SurfaceCreateFlagsKHR) -> Self {
+            self.flags = flags;
+            self
+        }
+        pub fn hinstance(mut self, hinstance: crate::platform_types::HINSTANCE) -> Self {
+            self.hinstance = hinstance;
+            self
+        }
+        pub fn hwnd(mut self, hwnd: crate::platform_types::HWND) -> Self {
+            self.hwnd = hwnd;
+            self
+        }
+    }
     ///Provided by [`khr::win32_surface`](crate::khr::win32_surface)
     impl crate::vk::StructureType {
         pub const WIN32_SURFACE_CREATE_INFO_KHR: Self = Self(1000009000);

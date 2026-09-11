@@ -9,6 +9,33 @@ pub struct PushConstantBankInfoNV<'a> {
     pub bank: u32,
     pub _marker: ::core::marker::PhantomData<&'a ()>,
 }
+unsafe impl<'a> crate::TaggedStructure<'a> for PushConstantBankInfoNV<'a> {
+    const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::PUSH_CONSTANT_BANK_INFO_NV;
+}
+unsafe impl<'a> crate::Extends<crate::vk::DescriptorSetAndBindingMappingEXT<'_>>
+for PushConstantBankInfoNV<'a> {}
+unsafe impl<'a> crate::Extends<crate::vk::PushDataInfoEXT<'_>>
+for PushConstantBankInfoNV<'a> {}
+unsafe impl<'a> crate::Extends<crate::vk::PushConstantsInfo<'_>>
+for PushConstantBankInfoNV<'a> {}
+unsafe impl<'a> crate::Extends<crate::vk::IndirectCommandsLayoutTokenEXT<'_>>
+for PushConstantBankInfoNV<'a> {}
+impl<'a> Default for PushConstantBankInfoNV<'a> {
+    fn default() -> Self {
+        Self {
+            s_type: <Self as crate::TaggedStructure>::STRUCTURE_TYPE,
+            p_next: Default::default(),
+            bank: Default::default(),
+            _marker: ::core::marker::PhantomData,
+        }
+    }
+}
+impl<'a> PushConstantBankInfoNV<'a> {
+    pub fn bank(mut self, bank: u32) -> Self {
+        self.bank = bank;
+        self
+    }
+}
 #[repr(C)]
 #[derive(Clone, Copy)]
 pub struct PhysicalDevicePushConstantBankFeaturesNV<'a> {
@@ -16,6 +43,30 @@ pub struct PhysicalDevicePushConstantBankFeaturesNV<'a> {
     pub p_next: *mut core::ffi::c_void,
     pub push_constant_bank: crate::vk::Bool32,
     pub _marker: ::core::marker::PhantomData<&'a ()>,
+}
+unsafe impl<'a> crate::TaggedStructure<'a>
+for PhysicalDevicePushConstantBankFeaturesNV<'a> {
+    const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::PHYSICAL_DEVICE_PUSH_CONSTANT_BANK_FEATURES_NV;
+}
+unsafe impl<'a> crate::Extends<crate::vk::PhysicalDeviceFeatures2<'_>>
+for PhysicalDevicePushConstantBankFeaturesNV<'a> {}
+unsafe impl<'a> crate::Extends<crate::vk::DeviceCreateInfo<'_>>
+for PhysicalDevicePushConstantBankFeaturesNV<'a> {}
+impl<'a> Default for PhysicalDevicePushConstantBankFeaturesNV<'a> {
+    fn default() -> Self {
+        Self {
+            s_type: <Self as crate::TaggedStructure>::STRUCTURE_TYPE,
+            p_next: Default::default(),
+            push_constant_bank: Default::default(),
+            _marker: ::core::marker::PhantomData,
+        }
+    }
+}
+impl<'a> PhysicalDevicePushConstantBankFeaturesNV<'a> {
+    pub fn push_constant_bank(mut self, push_constant_bank: bool) -> Self {
+        self.push_constant_bank = push_constant_bank.into();
+        self
+    }
 }
 #[repr(C)]
 #[derive(Clone, Copy)]
@@ -27,6 +78,55 @@ pub struct PhysicalDevicePushConstantBankPropertiesNV<'a> {
     pub max_graphics_push_data_banks: u32,
     pub max_compute_push_data_banks: u32,
     pub _marker: ::core::marker::PhantomData<&'a ()>,
+}
+unsafe impl<'a> crate::TaggedStructure<'a>
+for PhysicalDevicePushConstantBankPropertiesNV<'a> {
+    const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::PHYSICAL_DEVICE_PUSH_CONSTANT_BANK_PROPERTIES_NV;
+}
+unsafe impl<'a> crate::Extends<crate::vk::PhysicalDeviceProperties2<'_>>
+for PhysicalDevicePushConstantBankPropertiesNV<'a> {}
+impl<'a> Default for PhysicalDevicePushConstantBankPropertiesNV<'a> {
+    fn default() -> Self {
+        Self {
+            s_type: <Self as crate::TaggedStructure>::STRUCTURE_TYPE,
+            p_next: Default::default(),
+            max_graphics_push_constant_banks: Default::default(),
+            max_compute_push_constant_banks: Default::default(),
+            max_graphics_push_data_banks: Default::default(),
+            max_compute_push_data_banks: Default::default(),
+            _marker: ::core::marker::PhantomData,
+        }
+    }
+}
+impl<'a> PhysicalDevicePushConstantBankPropertiesNV<'a> {
+    pub fn max_graphics_push_constant_banks(
+        mut self,
+        max_graphics_push_constant_banks: u32,
+    ) -> Self {
+        self.max_graphics_push_constant_banks = max_graphics_push_constant_banks;
+        self
+    }
+    pub fn max_compute_push_constant_banks(
+        mut self,
+        max_compute_push_constant_banks: u32,
+    ) -> Self {
+        self.max_compute_push_constant_banks = max_compute_push_constant_banks;
+        self
+    }
+    pub fn max_graphics_push_data_banks(
+        mut self,
+        max_graphics_push_data_banks: u32,
+    ) -> Self {
+        self.max_graphics_push_data_banks = max_graphics_push_data_banks;
+        self
+    }
+    pub fn max_compute_push_data_banks(
+        mut self,
+        max_compute_push_data_banks: u32,
+    ) -> Self {
+        self.max_compute_push_data_banks = max_compute_push_data_banks;
+        self
+    }
 }
 ///Provided by [`nv::push_constant_bank`](crate::nv::push_constant_bank)
 impl crate::vk::StructureType {

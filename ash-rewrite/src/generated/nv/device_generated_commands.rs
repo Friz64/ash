@@ -125,6 +125,33 @@ pub(crate) mod reexport {
         pub device_generated_commands: crate::vk::Bool32,
         pub _marker: ::core::marker::PhantomData<&'a ()>,
     }
+    unsafe impl<'a> crate::TaggedStructure<'a>
+    for PhysicalDeviceDeviceGeneratedCommandsFeaturesNV<'a> {
+        const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::PHYSICAL_DEVICE_DEVICE_GENERATED_COMMANDS_FEATURES_NV;
+    }
+    unsafe impl<'a> crate::Extends<crate::vk::PhysicalDeviceFeatures2<'_>>
+    for PhysicalDeviceDeviceGeneratedCommandsFeaturesNV<'a> {}
+    unsafe impl<'a> crate::Extends<crate::vk::DeviceCreateInfo<'_>>
+    for PhysicalDeviceDeviceGeneratedCommandsFeaturesNV<'a> {}
+    impl<'a> Default for PhysicalDeviceDeviceGeneratedCommandsFeaturesNV<'a> {
+        fn default() -> Self {
+            Self {
+                s_type: <Self as crate::TaggedStructure>::STRUCTURE_TYPE,
+                p_next: Default::default(),
+                device_generated_commands: Default::default(),
+                _marker: ::core::marker::PhantomData,
+            }
+        }
+    }
+    impl<'a> PhysicalDeviceDeviceGeneratedCommandsFeaturesNV<'a> {
+        pub fn device_generated_commands(
+            mut self,
+            device_generated_commands: bool,
+        ) -> Self {
+            self.device_generated_commands = device_generated_commands.into();
+            self
+        }
+    }
     #[repr(C)]
     #[derive(Clone, Copy)]
     pub struct PhysicalDeviceDeviceGeneratedCommandsPropertiesNV<'a> {
@@ -141,6 +168,95 @@ pub(crate) mod reexport {
         pub min_indirect_commands_buffer_offset_alignment: u32,
         pub _marker: ::core::marker::PhantomData<&'a ()>,
     }
+    unsafe impl<'a> crate::TaggedStructure<'a>
+    for PhysicalDeviceDeviceGeneratedCommandsPropertiesNV<'a> {
+        const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::PHYSICAL_DEVICE_DEVICE_GENERATED_COMMANDS_PROPERTIES_NV;
+    }
+    unsafe impl<'a> crate::Extends<crate::vk::PhysicalDeviceProperties2<'_>>
+    for PhysicalDeviceDeviceGeneratedCommandsPropertiesNV<'a> {}
+    impl<'a> Default for PhysicalDeviceDeviceGeneratedCommandsPropertiesNV<'a> {
+        fn default() -> Self {
+            Self {
+                s_type: <Self as crate::TaggedStructure>::STRUCTURE_TYPE,
+                p_next: Default::default(),
+                max_graphics_shader_group_count: Default::default(),
+                max_indirect_sequence_count: Default::default(),
+                max_indirect_commands_token_count: Default::default(),
+                max_indirect_commands_stream_count: Default::default(),
+                max_indirect_commands_token_offset: Default::default(),
+                max_indirect_commands_stream_stride: Default::default(),
+                min_sequences_count_buffer_offset_alignment: Default::default(),
+                min_sequences_index_buffer_offset_alignment: Default::default(),
+                min_indirect_commands_buffer_offset_alignment: Default::default(),
+                _marker: ::core::marker::PhantomData,
+            }
+        }
+    }
+    impl<'a> PhysicalDeviceDeviceGeneratedCommandsPropertiesNV<'a> {
+        pub fn max_graphics_shader_group_count(
+            mut self,
+            max_graphics_shader_group_count: u32,
+        ) -> Self {
+            self.max_graphics_shader_group_count = max_graphics_shader_group_count;
+            self
+        }
+        pub fn max_indirect_sequence_count(
+            mut self,
+            max_indirect_sequence_count: u32,
+        ) -> Self {
+            self.max_indirect_sequence_count = max_indirect_sequence_count;
+            self
+        }
+        pub fn max_indirect_commands_token_count(
+            mut self,
+            max_indirect_commands_token_count: u32,
+        ) -> Self {
+            self.max_indirect_commands_token_count = max_indirect_commands_token_count;
+            self
+        }
+        pub fn max_indirect_commands_stream_count(
+            mut self,
+            max_indirect_commands_stream_count: u32,
+        ) -> Self {
+            self.max_indirect_commands_stream_count = max_indirect_commands_stream_count;
+            self
+        }
+        pub fn max_indirect_commands_token_offset(
+            mut self,
+            max_indirect_commands_token_offset: u32,
+        ) -> Self {
+            self.max_indirect_commands_token_offset = max_indirect_commands_token_offset;
+            self
+        }
+        pub fn max_indirect_commands_stream_stride(
+            mut self,
+            max_indirect_commands_stream_stride: u32,
+        ) -> Self {
+            self.max_indirect_commands_stream_stride = max_indirect_commands_stream_stride;
+            self
+        }
+        pub fn min_sequences_count_buffer_offset_alignment(
+            mut self,
+            min_sequences_count_buffer_offset_alignment: u32,
+        ) -> Self {
+            self.min_sequences_count_buffer_offset_alignment = min_sequences_count_buffer_offset_alignment;
+            self
+        }
+        pub fn min_sequences_index_buffer_offset_alignment(
+            mut self,
+            min_sequences_index_buffer_offset_alignment: u32,
+        ) -> Self {
+            self.min_sequences_index_buffer_offset_alignment = min_sequences_index_buffer_offset_alignment;
+            self
+        }
+        pub fn min_indirect_commands_buffer_offset_alignment(
+            mut self,
+            min_indirect_commands_buffer_offset_alignment: u32,
+        ) -> Self {
+            self.min_indirect_commands_buffer_offset_alignment = min_indirect_commands_buffer_offset_alignment;
+            self
+        }
+    }
     #[repr(C)]
     #[derive(Clone, Copy)]
     pub struct GraphicsShaderGroupCreateInfoNV<'a> {
@@ -156,6 +272,50 @@ pub(crate) mod reexport {
         >,
         pub _marker: ::core::marker::PhantomData<&'a ()>,
     }
+    unsafe impl<'a> crate::TaggedStructure<'a> for GraphicsShaderGroupCreateInfoNV<'a> {
+        const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::GRAPHICS_SHADER_GROUP_CREATE_INFO_NV;
+    }
+    impl<'a> Default for GraphicsShaderGroupCreateInfoNV<'a> {
+        fn default() -> Self {
+            Self {
+                s_type: <Self as crate::TaggedStructure>::STRUCTURE_TYPE,
+                p_next: Default::default(),
+                stage_count: Default::default(),
+                p_stages: Default::default(),
+                p_vertex_input_state: Default::default(),
+                p_tessellation_state: Default::default(),
+                _marker: ::core::marker::PhantomData,
+            }
+        }
+    }
+    impl<'a> GraphicsShaderGroupCreateInfoNV<'a> {
+        pub fn stage_count(mut self, stage_count: u32) -> Self {
+            self.stage_count = stage_count;
+            self
+        }
+        pub fn p_stages(
+            mut self,
+            p_stages: &'a [crate::vk::PipelineShaderStageCreateInfo<'a>],
+        ) -> Self {
+            self.stage_count = p_stages.len() as _;
+            self.p_stages = p_stages.as_ptr();
+            self
+        }
+        pub fn p_vertex_input_state(
+            mut self,
+            p_vertex_input_state: &'a crate::vk::PipelineVertexInputStateCreateInfo<'a>,
+        ) -> Self {
+            self.p_vertex_input_state = p_vertex_input_state;
+            self
+        }
+        pub fn p_tessellation_state(
+            mut self,
+            p_tessellation_state: &'a crate::vk::PipelineTessellationStateCreateInfo<'a>,
+        ) -> Self {
+            self.p_tessellation_state = p_tessellation_state;
+            self
+        }
+    }
     #[repr(C)]
     #[derive(Clone, Copy)]
     pub struct GraphicsPipelineShaderGroupsCreateInfoNV<'a> {
@@ -167,35 +327,133 @@ pub(crate) mod reexport {
         pub p_pipelines: *const crate::vk::Pipeline,
         pub _marker: ::core::marker::PhantomData<&'a ()>,
     }
+    unsafe impl<'a> crate::TaggedStructure<'a>
+    for GraphicsPipelineShaderGroupsCreateInfoNV<'a> {
+        const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::GRAPHICS_PIPELINE_SHADER_GROUPS_CREATE_INFO_NV;
+    }
+    unsafe impl<'a> crate::Extends<crate::vk::GraphicsPipelineCreateInfo<'_>>
+    for GraphicsPipelineShaderGroupsCreateInfoNV<'a> {}
+    impl<'a> Default for GraphicsPipelineShaderGroupsCreateInfoNV<'a> {
+        fn default() -> Self {
+            Self {
+                s_type: <Self as crate::TaggedStructure>::STRUCTURE_TYPE,
+                p_next: Default::default(),
+                group_count: Default::default(),
+                p_groups: Default::default(),
+                pipeline_count: Default::default(),
+                p_pipelines: Default::default(),
+                _marker: ::core::marker::PhantomData,
+            }
+        }
+    }
+    impl<'a> GraphicsPipelineShaderGroupsCreateInfoNV<'a> {
+        pub fn group_count(mut self, group_count: u32) -> Self {
+            self.group_count = group_count;
+            self
+        }
+        pub fn p_groups(
+            mut self,
+            p_groups: &'a [crate::vk::GraphicsShaderGroupCreateInfoNV<'a>],
+        ) -> Self {
+            self.group_count = p_groups.len() as _;
+            self.p_groups = p_groups.as_ptr();
+            self
+        }
+        pub fn pipeline_count(mut self, pipeline_count: u32) -> Self {
+            self.pipeline_count = pipeline_count;
+            self
+        }
+        pub fn p_pipelines(mut self, p_pipelines: &'a [crate::vk::Pipeline]) -> Self {
+            self.pipeline_count = p_pipelines.len() as _;
+            self.p_pipelines = p_pipelines.as_ptr();
+            self
+        }
+    }
     #[repr(C)]
-    #[derive(Clone, Copy)]
+    #[derive(Clone, Copy, Default)]
     pub struct BindShaderGroupIndirectCommandNV {
         pub group_index: u32,
     }
+    impl BindShaderGroupIndirectCommandNV {
+        pub fn group_index(mut self, group_index: u32) -> Self {
+            self.group_index = group_index;
+            self
+        }
+    }
     #[repr(C)]
-    #[derive(Clone, Copy)]
+    #[derive(Clone, Copy, Default)]
     pub struct BindIndexBufferIndirectCommandNV {
         pub buffer_address: crate::vk::DeviceAddress,
         pub size: u32,
         pub index_type: crate::vk::IndexType,
     }
+    impl BindIndexBufferIndirectCommandNV {
+        pub fn buffer_address(
+            mut self,
+            buffer_address: crate::vk::DeviceAddress,
+        ) -> Self {
+            self.buffer_address = buffer_address;
+            self
+        }
+        pub fn size(mut self, size: u32) -> Self {
+            self.size = size;
+            self
+        }
+        pub fn index_type(mut self, index_type: crate::vk::IndexType) -> Self {
+            self.index_type = index_type;
+            self
+        }
+    }
     #[repr(C)]
-    #[derive(Clone, Copy)]
+    #[derive(Clone, Copy, Default)]
     pub struct BindVertexBufferIndirectCommandNV {
         pub buffer_address: crate::vk::DeviceAddress,
         pub size: u32,
         pub stride: u32,
     }
+    impl BindVertexBufferIndirectCommandNV {
+        pub fn buffer_address(
+            mut self,
+            buffer_address: crate::vk::DeviceAddress,
+        ) -> Self {
+            self.buffer_address = buffer_address;
+            self
+        }
+        pub fn size(mut self, size: u32) -> Self {
+            self.size = size;
+            self
+        }
+        pub fn stride(mut self, stride: u32) -> Self {
+            self.stride = stride;
+            self
+        }
+    }
     #[repr(C)]
-    #[derive(Clone, Copy)]
+    #[derive(Clone, Copy, Default)]
     pub struct SetStateFlagsIndirectCommandNV {
         pub data: u32,
     }
+    impl SetStateFlagsIndirectCommandNV {
+        pub fn data(mut self, data: u32) -> Self {
+            self.data = data;
+            self
+        }
+    }
     #[repr(C)]
-    #[derive(Clone, Copy)]
+    #[derive(Clone, Copy, Default)]
     pub struct IndirectCommandsStreamNV {
         pub buffer: crate::vk::Buffer,
         pub offset: crate::vk::DeviceSize,
+    }
+    impl IndirectCommandsStreamNV {
+        pub fn buffer(mut self, buffer: crate::vk::Buffer) -> Self {
+            self.buffer = buffer;
+            self
+        }
+        pub fn offset(mut self, offset: crate::vk::DeviceSize) -> Self {
+            self.offset = offset;
+            self
+        }
     }
     #[repr(C)]
     #[derive(Clone, Copy)]
@@ -217,6 +475,102 @@ pub(crate) mod reexport {
         pub p_index_type_values: *const u32,
         pub _marker: ::core::marker::PhantomData<&'a ()>,
     }
+    unsafe impl<'a> crate::TaggedStructure<'a> for IndirectCommandsLayoutTokenNV<'a> {
+        const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::INDIRECT_COMMANDS_LAYOUT_TOKEN_NV;
+    }
+    impl<'a> Default for IndirectCommandsLayoutTokenNV<'a> {
+        fn default() -> Self {
+            Self {
+                s_type: <Self as crate::TaggedStructure>::STRUCTURE_TYPE,
+                p_next: Default::default(),
+                token_type: Default::default(),
+                stream: Default::default(),
+                offset: Default::default(),
+                vertex_binding_unit: Default::default(),
+                vertex_dynamic_stride: Default::default(),
+                pushconstant_pipeline_layout: Default::default(),
+                pushconstant_shader_stage_flags: Default::default(),
+                pushconstant_offset: Default::default(),
+                pushconstant_size: Default::default(),
+                indirect_state_flags: Default::default(),
+                index_type_count: Default::default(),
+                p_index_types: Default::default(),
+                p_index_type_values: Default::default(),
+                _marker: ::core::marker::PhantomData,
+            }
+        }
+    }
+    impl<'a> IndirectCommandsLayoutTokenNV<'a> {
+        pub fn token_type(
+            mut self,
+            token_type: crate::vk::IndirectCommandsTokenTypeNV,
+        ) -> Self {
+            self.token_type = token_type;
+            self
+        }
+        pub fn stream(mut self, stream: u32) -> Self {
+            self.stream = stream;
+            self
+        }
+        pub fn offset(mut self, offset: u32) -> Self {
+            self.offset = offset;
+            self
+        }
+        pub fn vertex_binding_unit(mut self, vertex_binding_unit: u32) -> Self {
+            self.vertex_binding_unit = vertex_binding_unit;
+            self
+        }
+        pub fn vertex_dynamic_stride(mut self, vertex_dynamic_stride: bool) -> Self {
+            self.vertex_dynamic_stride = vertex_dynamic_stride.into();
+            self
+        }
+        pub fn pushconstant_pipeline_layout(
+            mut self,
+            pushconstant_pipeline_layout: crate::vk::PipelineLayout,
+        ) -> Self {
+            self.pushconstant_pipeline_layout = pushconstant_pipeline_layout;
+            self
+        }
+        pub fn pushconstant_shader_stage_flags(
+            mut self,
+            pushconstant_shader_stage_flags: crate::vk::ShaderStageFlags,
+        ) -> Self {
+            self.pushconstant_shader_stage_flags = pushconstant_shader_stage_flags;
+            self
+        }
+        pub fn pushconstant_offset(mut self, pushconstant_offset: u32) -> Self {
+            self.pushconstant_offset = pushconstant_offset;
+            self
+        }
+        pub fn pushconstant_size(mut self, pushconstant_size: u32) -> Self {
+            self.pushconstant_size = pushconstant_size;
+            self
+        }
+        pub fn indirect_state_flags(
+            mut self,
+            indirect_state_flags: crate::vk::IndirectStateFlagsNV,
+        ) -> Self {
+            self.indirect_state_flags = indirect_state_flags;
+            self
+        }
+        pub fn index_type_count(mut self, index_type_count: u32) -> Self {
+            self.index_type_count = index_type_count;
+            self
+        }
+        pub fn p_index_types(
+            mut self,
+            p_index_types: &'a [crate::vk::IndexType],
+        ) -> Self {
+            self.index_type_count = p_index_types.len() as _;
+            self.p_index_types = p_index_types.as_ptr();
+            self
+        }
+        pub fn p_index_type_values(mut self, p_index_type_values: &'a [u32]) -> Self {
+            self.index_type_count = p_index_type_values.len() as _;
+            self.p_index_type_values = p_index_type_values.as_ptr();
+            self
+        }
+    }
     #[repr(C)]
     #[derive(Clone, Copy)]
     pub struct IndirectCommandsLayoutCreateInfoNV<'a> {
@@ -229,6 +583,62 @@ pub(crate) mod reexport {
         pub stream_count: u32,
         pub p_stream_strides: *const u32,
         pub _marker: ::core::marker::PhantomData<&'a ()>,
+    }
+    unsafe impl<'a> crate::TaggedStructure<'a>
+    for IndirectCommandsLayoutCreateInfoNV<'a> {
+        const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::INDIRECT_COMMANDS_LAYOUT_CREATE_INFO_NV;
+    }
+    impl<'a> Default for IndirectCommandsLayoutCreateInfoNV<'a> {
+        fn default() -> Self {
+            Self {
+                s_type: <Self as crate::TaggedStructure>::STRUCTURE_TYPE,
+                p_next: Default::default(),
+                flags: Default::default(),
+                pipeline_bind_point: Default::default(),
+                token_count: Default::default(),
+                p_tokens: Default::default(),
+                stream_count: Default::default(),
+                p_stream_strides: Default::default(),
+                _marker: ::core::marker::PhantomData,
+            }
+        }
+    }
+    impl<'a> IndirectCommandsLayoutCreateInfoNV<'a> {
+        pub fn flags(
+            mut self,
+            flags: crate::vk::IndirectCommandsLayoutUsageFlagsNV,
+        ) -> Self {
+            self.flags = flags;
+            self
+        }
+        pub fn pipeline_bind_point(
+            mut self,
+            pipeline_bind_point: crate::vk::PipelineBindPoint,
+        ) -> Self {
+            self.pipeline_bind_point = pipeline_bind_point;
+            self
+        }
+        pub fn token_count(mut self, token_count: u32) -> Self {
+            self.token_count = token_count;
+            self
+        }
+        pub fn p_tokens(
+            mut self,
+            p_tokens: &'a [crate::vk::IndirectCommandsLayoutTokenNV<'a>],
+        ) -> Self {
+            self.token_count = p_tokens.len() as _;
+            self.p_tokens = p_tokens.as_ptr();
+            self
+        }
+        pub fn stream_count(mut self, stream_count: u32) -> Self {
+            self.stream_count = stream_count;
+            self
+        }
+        pub fn p_stream_strides(mut self, p_stream_strides: &'a [u32]) -> Self {
+            self.stream_count = p_stream_strides.len() as _;
+            self.p_stream_strides = p_stream_strides.as_ptr();
+            self
+        }
     }
     #[repr(C)]
     #[derive(Clone, Copy)]
@@ -250,6 +660,116 @@ pub(crate) mod reexport {
         pub sequences_index_offset: crate::vk::DeviceSize,
         pub _marker: ::core::marker::PhantomData<&'a ()>,
     }
+    unsafe impl<'a> crate::TaggedStructure<'a> for GeneratedCommandsInfoNV<'a> {
+        const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::GENERATED_COMMANDS_INFO_NV;
+    }
+    impl<'a> Default for GeneratedCommandsInfoNV<'a> {
+        fn default() -> Self {
+            Self {
+                s_type: <Self as crate::TaggedStructure>::STRUCTURE_TYPE,
+                p_next: Default::default(),
+                pipeline_bind_point: Default::default(),
+                pipeline: Default::default(),
+                indirect_commands_layout: Default::default(),
+                stream_count: Default::default(),
+                p_streams: Default::default(),
+                sequences_count: Default::default(),
+                preprocess_buffer: Default::default(),
+                preprocess_offset: Default::default(),
+                preprocess_size: Default::default(),
+                sequences_count_buffer: Default::default(),
+                sequences_count_offset: Default::default(),
+                sequences_index_buffer: Default::default(),
+                sequences_index_offset: Default::default(),
+                _marker: ::core::marker::PhantomData,
+            }
+        }
+    }
+    impl<'a> GeneratedCommandsInfoNV<'a> {
+        pub fn pipeline_bind_point(
+            mut self,
+            pipeline_bind_point: crate::vk::PipelineBindPoint,
+        ) -> Self {
+            self.pipeline_bind_point = pipeline_bind_point;
+            self
+        }
+        pub fn pipeline(mut self, pipeline: crate::vk::Pipeline) -> Self {
+            self.pipeline = pipeline;
+            self
+        }
+        pub fn indirect_commands_layout(
+            mut self,
+            indirect_commands_layout: crate::vk::IndirectCommandsLayoutNV,
+        ) -> Self {
+            self.indirect_commands_layout = indirect_commands_layout;
+            self
+        }
+        pub fn stream_count(mut self, stream_count: u32) -> Self {
+            self.stream_count = stream_count;
+            self
+        }
+        pub fn p_streams(
+            mut self,
+            p_streams: &'a [crate::vk::IndirectCommandsStreamNV],
+        ) -> Self {
+            self.stream_count = p_streams.len() as _;
+            self.p_streams = p_streams.as_ptr();
+            self
+        }
+        pub fn sequences_count(mut self, sequences_count: u32) -> Self {
+            self.sequences_count = sequences_count;
+            self
+        }
+        pub fn preprocess_buffer(
+            mut self,
+            preprocess_buffer: crate::vk::Buffer,
+        ) -> Self {
+            self.preprocess_buffer = preprocess_buffer;
+            self
+        }
+        pub fn preprocess_offset(
+            mut self,
+            preprocess_offset: crate::vk::DeviceSize,
+        ) -> Self {
+            self.preprocess_offset = preprocess_offset;
+            self
+        }
+        pub fn preprocess_size(
+            mut self,
+            preprocess_size: crate::vk::DeviceSize,
+        ) -> Self {
+            self.preprocess_size = preprocess_size;
+            self
+        }
+        pub fn sequences_count_buffer(
+            mut self,
+            sequences_count_buffer: crate::vk::Buffer,
+        ) -> Self {
+            self.sequences_count_buffer = sequences_count_buffer;
+            self
+        }
+        pub fn sequences_count_offset(
+            mut self,
+            sequences_count_offset: crate::vk::DeviceSize,
+        ) -> Self {
+            self.sequences_count_offset = sequences_count_offset;
+            self
+        }
+        pub fn sequences_index_buffer(
+            mut self,
+            sequences_index_buffer: crate::vk::Buffer,
+        ) -> Self {
+            self.sequences_index_buffer = sequences_index_buffer;
+            self
+        }
+        pub fn sequences_index_offset(
+            mut self,
+            sequences_index_offset: crate::vk::DeviceSize,
+        ) -> Self {
+            self.sequences_index_offset = sequences_index_offset;
+            self
+        }
+    }
     #[repr(C)]
     #[derive(Clone, Copy)]
     pub struct GeneratedCommandsMemoryRequirementsInfoNV<'a> {
@@ -260,6 +780,47 @@ pub(crate) mod reexport {
         pub indirect_commands_layout: crate::vk::IndirectCommandsLayoutNV,
         pub max_sequences_count: u32,
         pub _marker: ::core::marker::PhantomData<&'a ()>,
+    }
+    unsafe impl<'a> crate::TaggedStructure<'a>
+    for GeneratedCommandsMemoryRequirementsInfoNV<'a> {
+        const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::GENERATED_COMMANDS_MEMORY_REQUIREMENTS_INFO_NV;
+    }
+    impl<'a> Default for GeneratedCommandsMemoryRequirementsInfoNV<'a> {
+        fn default() -> Self {
+            Self {
+                s_type: <Self as crate::TaggedStructure>::STRUCTURE_TYPE,
+                p_next: Default::default(),
+                pipeline_bind_point: Default::default(),
+                pipeline: Default::default(),
+                indirect_commands_layout: Default::default(),
+                max_sequences_count: Default::default(),
+                _marker: ::core::marker::PhantomData,
+            }
+        }
+    }
+    impl<'a> GeneratedCommandsMemoryRequirementsInfoNV<'a> {
+        pub fn pipeline_bind_point(
+            mut self,
+            pipeline_bind_point: crate::vk::PipelineBindPoint,
+        ) -> Self {
+            self.pipeline_bind_point = pipeline_bind_point;
+            self
+        }
+        pub fn pipeline(mut self, pipeline: crate::vk::Pipeline) -> Self {
+            self.pipeline = pipeline;
+            self
+        }
+        pub fn indirect_commands_layout(
+            mut self,
+            indirect_commands_layout: crate::vk::IndirectCommandsLayoutNV,
+        ) -> Self {
+            self.indirect_commands_layout = indirect_commands_layout;
+            self
+        }
+        pub fn max_sequences_count(mut self, max_sequences_count: u32) -> Self {
+            self.max_sequences_count = max_sequences_count;
+            self
+        }
     }
     ///Provided by [`nv::device_generated_commands`](crate::nv::device_generated_commands)
     impl crate::vk::StructureType {
@@ -397,7 +958,7 @@ pub(crate) mod reexport {
         }
     }
     #[repr(transparent)]
-    #[derive(Clone, Copy)]
+    #[derive(Clone, Copy, Default)]
     pub struct IndirectCommandsLayoutUsageFlagBitsNV(pub(crate) u32);
     ///Provided by [`nv::device_generated_commands`](crate::nv::device_generated_commands)
     impl IndirectCommandsLayoutUsageFlagBitsNV {
@@ -476,7 +1037,7 @@ pub(crate) mod reexport {
         }
     }
     #[repr(transparent)]
-    #[derive(Clone, Copy)]
+    #[derive(Clone, Copy, Default)]
     pub struct IndirectStateFlagBitsNV(pub(crate) u32);
     ///Provided by [`nv::device_generated_commands`](crate::nv::device_generated_commands)
     impl IndirectStateFlagBitsNV {

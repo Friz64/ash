@@ -38,10 +38,20 @@ impl DeviceFn {
 }
 pub(crate) mod reexport {
     #[repr(C)]
-    #[derive(Clone, Copy)]
+    #[derive(Clone, Copy, Default)]
     pub struct ViewportWScalingNV {
         pub xcoeff: core::ffi::c_float,
         pub ycoeff: core::ffi::c_float,
+    }
+    impl ViewportWScalingNV {
+        pub fn xcoeff(mut self, xcoeff: core::ffi::c_float) -> Self {
+            self.xcoeff = xcoeff;
+            self
+        }
+        pub fn ycoeff(mut self, ycoeff: core::ffi::c_float) -> Self {
+            self.ycoeff = ycoeff;
+            self
+        }
     }
     #[repr(C)]
     #[derive(Clone, Copy)]
@@ -52,6 +62,45 @@ pub(crate) mod reexport {
         pub viewport_count: u32,
         pub p_viewport_w_scalings: *const crate::vk::ViewportWScalingNV,
         pub _marker: ::core::marker::PhantomData<&'a ()>,
+    }
+    unsafe impl<'a> crate::TaggedStructure<'a>
+    for PipelineViewportWScalingStateCreateInfoNV<'a> {
+        const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::PIPELINE_VIEWPORT_W_SCALING_STATE_CREATE_INFO_NV;
+    }
+    unsafe impl<'a> crate::Extends<crate::vk::PipelineViewportStateCreateInfo<'_>>
+    for PipelineViewportWScalingStateCreateInfoNV<'a> {}
+    impl<'a> Default for PipelineViewportWScalingStateCreateInfoNV<'a> {
+        fn default() -> Self {
+            Self {
+                s_type: <Self as crate::TaggedStructure>::STRUCTURE_TYPE,
+                p_next: Default::default(),
+                viewport_w_scaling_enable: Default::default(),
+                viewport_count: Default::default(),
+                p_viewport_w_scalings: Default::default(),
+                _marker: ::core::marker::PhantomData,
+            }
+        }
+    }
+    impl<'a> PipelineViewportWScalingStateCreateInfoNV<'a> {
+        pub fn viewport_w_scaling_enable(
+            mut self,
+            viewport_w_scaling_enable: bool,
+        ) -> Self {
+            self.viewport_w_scaling_enable = viewport_w_scaling_enable.into();
+            self
+        }
+        pub fn viewport_count(mut self, viewport_count: u32) -> Self {
+            self.viewport_count = viewport_count;
+            self
+        }
+        pub fn p_viewport_w_scalings(
+            mut self,
+            p_viewport_w_scalings: &'a [crate::vk::ViewportWScalingNV],
+        ) -> Self {
+            self.viewport_count = p_viewport_w_scalings.len() as _;
+            self.p_viewport_w_scalings = p_viewport_w_scalings.as_ptr();
+            self
+        }
     }
     ///Provided by [`nv::clip_space_w_scaling`](crate::nv::clip_space_w_scaling)
     impl crate::vk::StructureType {

@@ -62,6 +62,30 @@ pub(crate) mod reexport {
         pub memory_decompression: crate::vk::Bool32,
         pub _marker: ::core::marker::PhantomData<&'a ()>,
     }
+    unsafe impl<'a> crate::TaggedStructure<'a>
+    for PhysicalDeviceMemoryDecompressionFeaturesEXT<'a> {
+        const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::PHYSICAL_DEVICE_MEMORY_DECOMPRESSION_FEATURES_EXT;
+    }
+    unsafe impl<'a> crate::Extends<crate::vk::PhysicalDeviceFeatures2<'_>>
+    for PhysicalDeviceMemoryDecompressionFeaturesEXT<'a> {}
+    unsafe impl<'a> crate::Extends<crate::vk::DeviceCreateInfo<'_>>
+    for PhysicalDeviceMemoryDecompressionFeaturesEXT<'a> {}
+    impl<'a> Default for PhysicalDeviceMemoryDecompressionFeaturesEXT<'a> {
+        fn default() -> Self {
+            Self {
+                s_type: <Self as crate::TaggedStructure>::STRUCTURE_TYPE,
+                p_next: Default::default(),
+                memory_decompression: Default::default(),
+                _marker: ::core::marker::PhantomData,
+            }
+        }
+    }
+    impl<'a> PhysicalDeviceMemoryDecompressionFeaturesEXT<'a> {
+        pub fn memory_decompression(mut self, memory_decompression: bool) -> Self {
+            self.memory_decompression = memory_decompression.into();
+            self
+        }
+    }
     #[repr(C)]
     #[derive(Clone, Copy)]
     pub struct PhysicalDeviceMemoryDecompressionPropertiesEXT<'a> {
@@ -71,13 +95,70 @@ pub(crate) mod reexport {
         pub max_decompression_indirect_count: u64,
         pub _marker: ::core::marker::PhantomData<&'a ()>,
     }
+    unsafe impl<'a> crate::TaggedStructure<'a>
+    for PhysicalDeviceMemoryDecompressionPropertiesEXT<'a> {
+        const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::PHYSICAL_DEVICE_MEMORY_DECOMPRESSION_PROPERTIES_EXT;
+    }
+    unsafe impl<'a> crate::Extends<crate::vk::PhysicalDeviceProperties2<'_>>
+    for PhysicalDeviceMemoryDecompressionPropertiesEXT<'a> {}
+    impl<'a> Default for PhysicalDeviceMemoryDecompressionPropertiesEXT<'a> {
+        fn default() -> Self {
+            Self {
+                s_type: <Self as crate::TaggedStructure>::STRUCTURE_TYPE,
+                p_next: Default::default(),
+                decompression_methods: Default::default(),
+                max_decompression_indirect_count: Default::default(),
+                _marker: ::core::marker::PhantomData,
+            }
+        }
+    }
+    impl<'a> PhysicalDeviceMemoryDecompressionPropertiesEXT<'a> {
+        pub fn decompression_methods(
+            mut self,
+            decompression_methods: crate::vk::MemoryDecompressionMethodFlagsEXT,
+        ) -> Self {
+            self.decompression_methods = decompression_methods;
+            self
+        }
+        pub fn max_decompression_indirect_count(
+            mut self,
+            max_decompression_indirect_count: u64,
+        ) -> Self {
+            self.max_decompression_indirect_count = max_decompression_indirect_count;
+            self
+        }
+    }
     #[repr(C)]
-    #[derive(Clone, Copy)]
+    #[derive(Clone, Copy, Default)]
     pub struct DecompressMemoryRegionEXT {
         pub src_address: crate::vk::DeviceAddress,
         pub dst_address: crate::vk::DeviceAddress,
         pub compressed_size: crate::vk::DeviceSize,
         pub decompressed_size: crate::vk::DeviceSize,
+    }
+    impl DecompressMemoryRegionEXT {
+        pub fn src_address(mut self, src_address: crate::vk::DeviceAddress) -> Self {
+            self.src_address = src_address;
+            self
+        }
+        pub fn dst_address(mut self, dst_address: crate::vk::DeviceAddress) -> Self {
+            self.dst_address = dst_address;
+            self
+        }
+        pub fn compressed_size(
+            mut self,
+            compressed_size: crate::vk::DeviceSize,
+        ) -> Self {
+            self.compressed_size = compressed_size;
+            self
+        }
+        pub fn decompressed_size(
+            mut self,
+            decompressed_size: crate::vk::DeviceSize,
+        ) -> Self {
+            self.decompressed_size = decompressed_size;
+            self
+        }
     }
     #[repr(C)]
     #[derive(Clone, Copy)]
@@ -88,6 +169,42 @@ pub(crate) mod reexport {
         pub region_count: u32,
         pub p_regions: *const crate::vk::DecompressMemoryRegionEXT,
         pub _marker: ::core::marker::PhantomData<&'a ()>,
+    }
+    unsafe impl<'a> crate::TaggedStructure<'a> for DecompressMemoryInfoEXT<'a> {
+        const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::DECOMPRESS_MEMORY_INFO_EXT;
+    }
+    impl<'a> Default for DecompressMemoryInfoEXT<'a> {
+        fn default() -> Self {
+            Self {
+                s_type: <Self as crate::TaggedStructure>::STRUCTURE_TYPE,
+                p_next: Default::default(),
+                decompression_method: Default::default(),
+                region_count: Default::default(),
+                p_regions: Default::default(),
+                _marker: ::core::marker::PhantomData,
+            }
+        }
+    }
+    impl<'a> DecompressMemoryInfoEXT<'a> {
+        pub fn decompression_method(
+            mut self,
+            decompression_method: crate::vk::MemoryDecompressionMethodFlagsEXT,
+        ) -> Self {
+            self.decompression_method = decompression_method;
+            self
+        }
+        pub fn region_count(mut self, region_count: u32) -> Self {
+            self.region_count = region_count;
+            self
+        }
+        pub fn p_regions(
+            mut self,
+            p_regions: &'a [crate::vk::DecompressMemoryRegionEXT],
+        ) -> Self {
+            self.region_count = p_regions.len() as _;
+            self.p_regions = p_regions.as_ptr();
+            self
+        }
     }
     ///Provided by [`ext::memory_decompression`](crate::ext::memory_decompression)
     impl crate::vk::StructureType {
@@ -182,7 +299,7 @@ pub(crate) mod reexport {
         }
     }
     #[repr(transparent)]
-    #[derive(Clone, Copy)]
+    #[derive(Clone, Copy, Default)]
     pub struct MemoryDecompressionMethodFlagBitsEXT(pub(crate) u64);
     ///Provided by [`ext::memory_decompression`](crate::ext::memory_decompression)
     impl MemoryDecompressionMethodFlagBitsEXT {

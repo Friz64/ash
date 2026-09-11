@@ -96,6 +96,38 @@ pub(crate) mod reexport {
         pub cooperative_vector_training: crate::vk::Bool32,
         pub _marker: ::core::marker::PhantomData<&'a ()>,
     }
+    unsafe impl<'a> crate::TaggedStructure<'a>
+    for PhysicalDeviceCooperativeVectorFeaturesNV<'a> {
+        const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::PHYSICAL_DEVICE_COOPERATIVE_VECTOR_FEATURES_NV;
+    }
+    unsafe impl<'a> crate::Extends<crate::vk::PhysicalDeviceFeatures2<'_>>
+    for PhysicalDeviceCooperativeVectorFeaturesNV<'a> {}
+    unsafe impl<'a> crate::Extends<crate::vk::DeviceCreateInfo<'_>>
+    for PhysicalDeviceCooperativeVectorFeaturesNV<'a> {}
+    impl<'a> Default for PhysicalDeviceCooperativeVectorFeaturesNV<'a> {
+        fn default() -> Self {
+            Self {
+                s_type: <Self as crate::TaggedStructure>::STRUCTURE_TYPE,
+                p_next: Default::default(),
+                cooperative_vector: Default::default(),
+                cooperative_vector_training: Default::default(),
+                _marker: ::core::marker::PhantomData,
+            }
+        }
+    }
+    impl<'a> PhysicalDeviceCooperativeVectorFeaturesNV<'a> {
+        pub fn cooperative_vector(mut self, cooperative_vector: bool) -> Self {
+            self.cooperative_vector = cooperative_vector.into();
+            self
+        }
+        pub fn cooperative_vector_training(
+            mut self,
+            cooperative_vector_training: bool,
+        ) -> Self {
+            self.cooperative_vector_training = cooperative_vector_training.into();
+            self
+        }
+    }
     #[repr(C)]
     #[derive(Clone, Copy)]
     pub struct CooperativeVectorPropertiesNV<'a> {
@@ -109,6 +141,59 @@ pub(crate) mod reexport {
         pub transpose: crate::vk::Bool32,
         pub _marker: ::core::marker::PhantomData<&'a ()>,
     }
+    unsafe impl<'a> crate::TaggedStructure<'a> for CooperativeVectorPropertiesNV<'a> {
+        const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::COOPERATIVE_VECTOR_PROPERTIES_NV;
+    }
+    impl<'a> Default for CooperativeVectorPropertiesNV<'a> {
+        fn default() -> Self {
+            Self {
+                s_type: <Self as crate::TaggedStructure>::STRUCTURE_TYPE,
+                p_next: Default::default(),
+                input_type: Default::default(),
+                input_interpretation: Default::default(),
+                matrix_interpretation: Default::default(),
+                bias_interpretation: Default::default(),
+                result_type: Default::default(),
+                transpose: Default::default(),
+                _marker: ::core::marker::PhantomData,
+            }
+        }
+    }
+    impl<'a> CooperativeVectorPropertiesNV<'a> {
+        pub fn input_type(mut self, input_type: crate::vk::ComponentTypeKHR) -> Self {
+            self.input_type = input_type;
+            self
+        }
+        pub fn input_interpretation(
+            mut self,
+            input_interpretation: crate::vk::ComponentTypeKHR,
+        ) -> Self {
+            self.input_interpretation = input_interpretation;
+            self
+        }
+        pub fn matrix_interpretation(
+            mut self,
+            matrix_interpretation: crate::vk::ComponentTypeKHR,
+        ) -> Self {
+            self.matrix_interpretation = matrix_interpretation;
+            self
+        }
+        pub fn bias_interpretation(
+            mut self,
+            bias_interpretation: crate::vk::ComponentTypeKHR,
+        ) -> Self {
+            self.bias_interpretation = bias_interpretation;
+            self
+        }
+        pub fn result_type(mut self, result_type: crate::vk::ComponentTypeKHR) -> Self {
+            self.result_type = result_type;
+            self
+        }
+        pub fn transpose(mut self, transpose: bool) -> Self {
+            self.transpose = transpose.into();
+            self
+        }
+    }
     #[repr(C)]
     #[derive(Clone, Copy)]
     pub struct PhysicalDeviceCooperativeVectorPropertiesNV<'a> {
@@ -119,6 +204,57 @@ pub(crate) mod reexport {
         pub cooperative_vector_training_float32_accumulation: crate::vk::Bool32,
         pub max_cooperative_vector_components: u32,
         pub _marker: ::core::marker::PhantomData<&'a ()>,
+    }
+    unsafe impl<'a> crate::TaggedStructure<'a>
+    for PhysicalDeviceCooperativeVectorPropertiesNV<'a> {
+        const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::PHYSICAL_DEVICE_COOPERATIVE_VECTOR_PROPERTIES_NV;
+    }
+    unsafe impl<'a> crate::Extends<crate::vk::PhysicalDeviceProperties2<'_>>
+    for PhysicalDeviceCooperativeVectorPropertiesNV<'a> {}
+    impl<'a> Default for PhysicalDeviceCooperativeVectorPropertiesNV<'a> {
+        fn default() -> Self {
+            Self {
+                s_type: <Self as crate::TaggedStructure>::STRUCTURE_TYPE,
+                p_next: Default::default(),
+                cooperative_vector_supported_stages: Default::default(),
+                cooperative_vector_training_float16_accumulation: Default::default(),
+                cooperative_vector_training_float32_accumulation: Default::default(),
+                max_cooperative_vector_components: Default::default(),
+                _marker: ::core::marker::PhantomData,
+            }
+        }
+    }
+    impl<'a> PhysicalDeviceCooperativeVectorPropertiesNV<'a> {
+        pub fn cooperative_vector_supported_stages(
+            mut self,
+            cooperative_vector_supported_stages: crate::vk::ShaderStageFlags,
+        ) -> Self {
+            self.cooperative_vector_supported_stages = cooperative_vector_supported_stages;
+            self
+        }
+        pub fn cooperative_vector_training_float16_accumulation(
+            mut self,
+            cooperative_vector_training_float16_accumulation: bool,
+        ) -> Self {
+            self.cooperative_vector_training_float16_accumulation = cooperative_vector_training_float16_accumulation
+                .into();
+            self
+        }
+        pub fn cooperative_vector_training_float32_accumulation(
+            mut self,
+            cooperative_vector_training_float32_accumulation: bool,
+        ) -> Self {
+            self.cooperative_vector_training_float32_accumulation = cooperative_vector_training_float32_accumulation
+                .into();
+            self
+        }
+        pub fn max_cooperative_vector_components(
+            mut self,
+            max_cooperative_vector_components: u32,
+        ) -> Self {
+            self.max_cooperative_vector_components = max_cooperative_vector_components;
+            self
+        }
     }
     #[repr(C)]
     #[derive(Clone, Copy)]
@@ -138,6 +274,96 @@ pub(crate) mod reexport {
         pub dst_layout: crate::vk::CooperativeVectorMatrixLayoutNV,
         pub dst_stride: usize,
         pub _marker: ::core::marker::PhantomData<&'a ()>,
+    }
+    unsafe impl<'a> crate::TaggedStructure<'a>
+    for ConvertCooperativeVectorMatrixInfoNV<'a> {
+        const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::CONVERT_COOPERATIVE_VECTOR_MATRIX_INFO_NV;
+    }
+    impl<'a> Default for ConvertCooperativeVectorMatrixInfoNV<'a> {
+        fn default() -> Self {
+            Self {
+                s_type: <Self as crate::TaggedStructure>::STRUCTURE_TYPE,
+                p_next: Default::default(),
+                src_size: Default::default(),
+                src_data: Default::default(),
+                p_dst_size: Default::default(),
+                dst_data: Default::default(),
+                src_component_type: Default::default(),
+                dst_component_type: Default::default(),
+                num_rows: Default::default(),
+                num_columns: Default::default(),
+                src_layout: Default::default(),
+                src_stride: Default::default(),
+                dst_layout: Default::default(),
+                dst_stride: Default::default(),
+                _marker: ::core::marker::PhantomData,
+            }
+        }
+    }
+    impl<'a> ConvertCooperativeVectorMatrixInfoNV<'a> {
+        pub fn src_size(mut self, src_size: usize) -> Self {
+            self.src_size = src_size;
+            self
+        }
+        pub fn src_data(
+            mut self,
+            src_data: crate::vk::DeviceOrHostAddressConstKHR,
+        ) -> Self {
+            self.src_data = src_data;
+            self
+        }
+        pub fn p_dst_size(mut self, p_dst_size: &'a mut usize) -> Self {
+            self.p_dst_size = p_dst_size;
+            self
+        }
+        pub fn dst_data(mut self, dst_data: crate::vk::DeviceOrHostAddressKHR) -> Self {
+            self.dst_data = dst_data;
+            self
+        }
+        pub fn src_component_type(
+            mut self,
+            src_component_type: crate::vk::ComponentTypeKHR,
+        ) -> Self {
+            self.src_component_type = src_component_type;
+            self
+        }
+        pub fn dst_component_type(
+            mut self,
+            dst_component_type: crate::vk::ComponentTypeKHR,
+        ) -> Self {
+            self.dst_component_type = dst_component_type;
+            self
+        }
+        pub fn num_rows(mut self, num_rows: u32) -> Self {
+            self.num_rows = num_rows;
+            self
+        }
+        pub fn num_columns(mut self, num_columns: u32) -> Self {
+            self.num_columns = num_columns;
+            self
+        }
+        pub fn src_layout(
+            mut self,
+            src_layout: crate::vk::CooperativeVectorMatrixLayoutNV,
+        ) -> Self {
+            self.src_layout = src_layout;
+            self
+        }
+        pub fn src_stride(mut self, src_stride: usize) -> Self {
+            self.src_stride = src_stride;
+            self
+        }
+        pub fn dst_layout(
+            mut self,
+            dst_layout: crate::vk::CooperativeVectorMatrixLayoutNV,
+        ) -> Self {
+            self.dst_layout = dst_layout;
+            self
+        }
+        pub fn dst_stride(mut self, dst_stride: usize) -> Self {
+            self.dst_stride = dst_stride;
+            self
+        }
     }
     ///Provided by [`nv::cooperative_vector`](crate::nv::cooperative_vector)
     impl crate::vk::StructureType {

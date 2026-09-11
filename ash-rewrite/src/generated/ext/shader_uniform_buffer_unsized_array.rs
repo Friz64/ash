@@ -9,6 +9,34 @@ pub struct PhysicalDeviceShaderUniformBufferUnsizedArrayFeaturesEXT<'a> {
     pub shader_uniform_buffer_unsized_array: crate::vk::Bool32,
     pub _marker: ::core::marker::PhantomData<&'a ()>,
 }
+unsafe impl<'a> crate::TaggedStructure<'a>
+for PhysicalDeviceShaderUniformBufferUnsizedArrayFeaturesEXT<'a> {
+    const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::PHYSICAL_DEVICE_SHADER_UNIFORM_BUFFER_UNSIZED_ARRAY_FEATURES_EXT;
+}
+unsafe impl<'a> crate::Extends<crate::vk::PhysicalDeviceFeatures2<'_>>
+for PhysicalDeviceShaderUniformBufferUnsizedArrayFeaturesEXT<'a> {}
+unsafe impl<'a> crate::Extends<crate::vk::DeviceCreateInfo<'_>>
+for PhysicalDeviceShaderUniformBufferUnsizedArrayFeaturesEXT<'a> {}
+impl<'a> Default for PhysicalDeviceShaderUniformBufferUnsizedArrayFeaturesEXT<'a> {
+    fn default() -> Self {
+        Self {
+            s_type: <Self as crate::TaggedStructure>::STRUCTURE_TYPE,
+            p_next: Default::default(),
+            shader_uniform_buffer_unsized_array: Default::default(),
+            _marker: ::core::marker::PhantomData,
+        }
+    }
+}
+impl<'a> PhysicalDeviceShaderUniformBufferUnsizedArrayFeaturesEXT<'a> {
+    pub fn shader_uniform_buffer_unsized_array(
+        mut self,
+        shader_uniform_buffer_unsized_array: bool,
+    ) -> Self {
+        self.shader_uniform_buffer_unsized_array = shader_uniform_buffer_unsized_array
+            .into();
+        self
+    }
+}
 ///Provided by [`ext::shader_uniform_buffer_unsized_array`](crate::ext::shader_uniform_buffer_unsized_array)
 impl crate::vk::StructureType {
     pub const PHYSICAL_DEVICE_SHADER_UNIFORM_BUFFER_UNSIZED_ARRAY_FEATURES_EXT: Self = Self(

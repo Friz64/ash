@@ -10,6 +10,38 @@ pub struct PhysicalDeviceUnifiedImageLayoutsFeaturesKHR<'a> {
     pub unified_image_layouts_video: crate::vk::Bool32,
     pub _marker: ::core::marker::PhantomData<&'a ()>,
 }
+unsafe impl<'a> crate::TaggedStructure<'a>
+for PhysicalDeviceUnifiedImageLayoutsFeaturesKHR<'a> {
+    const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::PHYSICAL_DEVICE_UNIFIED_IMAGE_LAYOUTS_FEATURES_KHR;
+}
+unsafe impl<'a> crate::Extends<crate::vk::PhysicalDeviceFeatures2<'_>>
+for PhysicalDeviceUnifiedImageLayoutsFeaturesKHR<'a> {}
+unsafe impl<'a> crate::Extends<crate::vk::DeviceCreateInfo<'_>>
+for PhysicalDeviceUnifiedImageLayoutsFeaturesKHR<'a> {}
+impl<'a> Default for PhysicalDeviceUnifiedImageLayoutsFeaturesKHR<'a> {
+    fn default() -> Self {
+        Self {
+            s_type: <Self as crate::TaggedStructure>::STRUCTURE_TYPE,
+            p_next: Default::default(),
+            unified_image_layouts: Default::default(),
+            unified_image_layouts_video: Default::default(),
+            _marker: ::core::marker::PhantomData,
+        }
+    }
+}
+impl<'a> PhysicalDeviceUnifiedImageLayoutsFeaturesKHR<'a> {
+    pub fn unified_image_layouts(mut self, unified_image_layouts: bool) -> Self {
+        self.unified_image_layouts = unified_image_layouts.into();
+        self
+    }
+    pub fn unified_image_layouts_video(
+        mut self,
+        unified_image_layouts_video: bool,
+    ) -> Self {
+        self.unified_image_layouts_video = unified_image_layouts_video.into();
+        self
+    }
+}
 #[repr(C)]
 #[derive(Clone, Copy)]
 pub struct AttachmentFeedbackLoopInfoEXT<'a> {
@@ -17,6 +49,27 @@ pub struct AttachmentFeedbackLoopInfoEXT<'a> {
     pub p_next: *const core::ffi::c_void,
     pub feedback_loop_enable: crate::vk::Bool32,
     pub _marker: ::core::marker::PhantomData<&'a ()>,
+}
+unsafe impl<'a> crate::TaggedStructure<'a> for AttachmentFeedbackLoopInfoEXT<'a> {
+    const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::ATTACHMENT_FEEDBACK_LOOP_INFO_EXT;
+}
+unsafe impl<'a> crate::Extends<crate::vk::RenderingAttachmentInfo<'_>>
+for AttachmentFeedbackLoopInfoEXT<'a> {}
+impl<'a> Default for AttachmentFeedbackLoopInfoEXT<'a> {
+    fn default() -> Self {
+        Self {
+            s_type: <Self as crate::TaggedStructure>::STRUCTURE_TYPE,
+            p_next: Default::default(),
+            feedback_loop_enable: Default::default(),
+            _marker: ::core::marker::PhantomData,
+        }
+    }
+}
+impl<'a> AttachmentFeedbackLoopInfoEXT<'a> {
+    pub fn feedback_loop_enable(mut self, feedback_loop_enable: bool) -> Self {
+        self.feedback_loop_enable = feedback_loop_enable.into();
+        self
+    }
 }
 ///Provided by [`khr::unified_image_layouts`](crate::khr::unified_image_layouts)
 impl crate::vk::StructureType {

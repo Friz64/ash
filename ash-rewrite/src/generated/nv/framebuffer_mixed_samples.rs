@@ -13,6 +13,64 @@ pub struct PipelineCoverageModulationStateCreateInfoNV<'a> {
     pub p_coverage_modulation_table: *const core::ffi::c_float,
     pub _marker: ::core::marker::PhantomData<&'a ()>,
 }
+unsafe impl<'a> crate::TaggedStructure<'a>
+for PipelineCoverageModulationStateCreateInfoNV<'a> {
+    const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::PIPELINE_COVERAGE_MODULATION_STATE_CREATE_INFO_NV;
+}
+unsafe impl<'a> crate::Extends<crate::vk::PipelineMultisampleStateCreateInfo<'_>>
+for PipelineCoverageModulationStateCreateInfoNV<'a> {}
+impl<'a> Default for PipelineCoverageModulationStateCreateInfoNV<'a> {
+    fn default() -> Self {
+        Self {
+            s_type: <Self as crate::TaggedStructure>::STRUCTURE_TYPE,
+            p_next: Default::default(),
+            flags: Default::default(),
+            coverage_modulation_mode: Default::default(),
+            coverage_modulation_table_enable: Default::default(),
+            coverage_modulation_table_count: Default::default(),
+            p_coverage_modulation_table: Default::default(),
+            _marker: ::core::marker::PhantomData,
+        }
+    }
+}
+impl<'a> PipelineCoverageModulationStateCreateInfoNV<'a> {
+    pub fn flags(
+        mut self,
+        flags: crate::vk::PipelineCoverageModulationStateCreateFlagsNV,
+    ) -> Self {
+        self.flags = flags;
+        self
+    }
+    pub fn coverage_modulation_mode(
+        mut self,
+        coverage_modulation_mode: crate::vk::CoverageModulationModeNV,
+    ) -> Self {
+        self.coverage_modulation_mode = coverage_modulation_mode;
+        self
+    }
+    pub fn coverage_modulation_table_enable(
+        mut self,
+        coverage_modulation_table_enable: bool,
+    ) -> Self {
+        self.coverage_modulation_table_enable = coverage_modulation_table_enable.into();
+        self
+    }
+    pub fn coverage_modulation_table_count(
+        mut self,
+        coverage_modulation_table_count: u32,
+    ) -> Self {
+        self.coverage_modulation_table_count = coverage_modulation_table_count;
+        self
+    }
+    pub fn p_coverage_modulation_table(
+        mut self,
+        p_coverage_modulation_table: &'a [core::ffi::c_float],
+    ) -> Self {
+        self.coverage_modulation_table_count = p_coverage_modulation_table.len() as _;
+        self.p_coverage_modulation_table = p_coverage_modulation_table.as_ptr();
+        self
+    }
+}
 pub type AttachmentSampleCountInfoNV<'a> = crate::vk::AttachmentSampleCountInfoAMD<'a>;
 ///Provided by [`nv::framebuffer_mixed_samples`](crate::nv::framebuffer_mixed_samples)
 impl crate::vk::StructureType {

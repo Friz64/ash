@@ -9,6 +9,29 @@ pub struct PhysicalDeviceCubicClampFeaturesQCOM<'a> {
     pub cubic_range_clamp: crate::vk::Bool32,
     pub _marker: ::core::marker::PhantomData<&'a ()>,
 }
+unsafe impl<'a> crate::TaggedStructure<'a> for PhysicalDeviceCubicClampFeaturesQCOM<'a> {
+    const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::PHYSICAL_DEVICE_CUBIC_CLAMP_FEATURES_QCOM;
+}
+unsafe impl<'a> crate::Extends<crate::vk::PhysicalDeviceFeatures2<'_>>
+for PhysicalDeviceCubicClampFeaturesQCOM<'a> {}
+unsafe impl<'a> crate::Extends<crate::vk::DeviceCreateInfo<'_>>
+for PhysicalDeviceCubicClampFeaturesQCOM<'a> {}
+impl<'a> Default for PhysicalDeviceCubicClampFeaturesQCOM<'a> {
+    fn default() -> Self {
+        Self {
+            s_type: <Self as crate::TaggedStructure>::STRUCTURE_TYPE,
+            p_next: Default::default(),
+            cubic_range_clamp: Default::default(),
+            _marker: ::core::marker::PhantomData,
+        }
+    }
+}
+impl<'a> PhysicalDeviceCubicClampFeaturesQCOM<'a> {
+    pub fn cubic_range_clamp(mut self, cubic_range_clamp: bool) -> Self {
+        self.cubic_range_clamp = cubic_range_clamp.into();
+        self
+    }
+}
 ///Provided by [`qcom::filter_cubic_clamp`](crate::qcom::filter_cubic_clamp)
 impl crate::vk::StructureType {
     pub const PHYSICAL_DEVICE_CUBIC_CLAMP_FEATURES_QCOM: Self = Self(1000521000);

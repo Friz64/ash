@@ -9,6 +9,34 @@ pub struct PhysicalDeviceShaderEarlyAndLateFragmentTestsFeaturesAMD<'a> {
     pub shader_early_and_late_fragment_tests: crate::vk::Bool32,
     pub _marker: ::core::marker::PhantomData<&'a ()>,
 }
+unsafe impl<'a> crate::TaggedStructure<'a>
+for PhysicalDeviceShaderEarlyAndLateFragmentTestsFeaturesAMD<'a> {
+    const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::PHYSICAL_DEVICE_SHADER_EARLY_AND_LATE_FRAGMENT_TESTS_FEATURES_AMD;
+}
+unsafe impl<'a> crate::Extends<crate::vk::PhysicalDeviceFeatures2<'_>>
+for PhysicalDeviceShaderEarlyAndLateFragmentTestsFeaturesAMD<'a> {}
+unsafe impl<'a> crate::Extends<crate::vk::DeviceCreateInfo<'_>>
+for PhysicalDeviceShaderEarlyAndLateFragmentTestsFeaturesAMD<'a> {}
+impl<'a> Default for PhysicalDeviceShaderEarlyAndLateFragmentTestsFeaturesAMD<'a> {
+    fn default() -> Self {
+        Self {
+            s_type: <Self as crate::TaggedStructure>::STRUCTURE_TYPE,
+            p_next: Default::default(),
+            shader_early_and_late_fragment_tests: Default::default(),
+            _marker: ::core::marker::PhantomData,
+        }
+    }
+}
+impl<'a> PhysicalDeviceShaderEarlyAndLateFragmentTestsFeaturesAMD<'a> {
+    pub fn shader_early_and_late_fragment_tests(
+        mut self,
+        shader_early_and_late_fragment_tests: bool,
+    ) -> Self {
+        self.shader_early_and_late_fragment_tests = shader_early_and_late_fragment_tests
+            .into();
+        self
+    }
+}
 ///Provided by [`amd::shader_early_and_late_fragment_tests`](crate::amd::shader_early_and_late_fragment_tests)
 impl crate::vk::StructureType {
     pub const PHYSICAL_DEVICE_SHADER_EARLY_AND_LATE_FRAGMENT_TESTS_FEATURES_AMD: Self = Self(

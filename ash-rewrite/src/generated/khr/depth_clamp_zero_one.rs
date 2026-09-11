@@ -9,6 +9,30 @@ pub struct PhysicalDeviceDepthClampZeroOneFeaturesKHR<'a> {
     pub depth_clamp_zero_one: crate::vk::Bool32,
     pub _marker: ::core::marker::PhantomData<&'a ()>,
 }
+unsafe impl<'a> crate::TaggedStructure<'a>
+for PhysicalDeviceDepthClampZeroOneFeaturesKHR<'a> {
+    const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::PHYSICAL_DEVICE_DEPTH_CLAMP_ZERO_ONE_FEATURES_KHR;
+}
+unsafe impl<'a> crate::Extends<crate::vk::PhysicalDeviceFeatures2<'_>>
+for PhysicalDeviceDepthClampZeroOneFeaturesKHR<'a> {}
+unsafe impl<'a> crate::Extends<crate::vk::DeviceCreateInfo<'_>>
+for PhysicalDeviceDepthClampZeroOneFeaturesKHR<'a> {}
+impl<'a> Default for PhysicalDeviceDepthClampZeroOneFeaturesKHR<'a> {
+    fn default() -> Self {
+        Self {
+            s_type: <Self as crate::TaggedStructure>::STRUCTURE_TYPE,
+            p_next: Default::default(),
+            depth_clamp_zero_one: Default::default(),
+            _marker: ::core::marker::PhantomData,
+        }
+    }
+}
+impl<'a> PhysicalDeviceDepthClampZeroOneFeaturesKHR<'a> {
+    pub fn depth_clamp_zero_one(mut self, depth_clamp_zero_one: bool) -> Self {
+        self.depth_clamp_zero_one = depth_clamp_zero_one.into();
+        self
+    }
+}
 ///Provided by [`khr::depth_clamp_zero_one`](crate::khr::depth_clamp_zero_one)
 impl crate::vk::StructureType {
     pub const PHYSICAL_DEVICE_DEPTH_CLAMP_ZERO_ONE_FEATURES_KHR: Self = Self(1000421000);

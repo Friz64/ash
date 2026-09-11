@@ -43,6 +43,31 @@ pub(crate) mod reexport {
         pub shared_present_supported_usage_flags: crate::vk::ImageUsageFlags,
         pub _marker: ::core::marker::PhantomData<&'a ()>,
     }
+    unsafe impl<'a> crate::TaggedStructure<'a>
+    for SharedPresentSurfaceCapabilitiesKHR<'a> {
+        const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::SHARED_PRESENT_SURFACE_CAPABILITIES_KHR;
+    }
+    unsafe impl<'a> crate::Extends<crate::vk::SurfaceCapabilities2KHR<'_>>
+    for SharedPresentSurfaceCapabilitiesKHR<'a> {}
+    impl<'a> Default for SharedPresentSurfaceCapabilitiesKHR<'a> {
+        fn default() -> Self {
+            Self {
+                s_type: <Self as crate::TaggedStructure>::STRUCTURE_TYPE,
+                p_next: Default::default(),
+                shared_present_supported_usage_flags: Default::default(),
+                _marker: ::core::marker::PhantomData,
+            }
+        }
+    }
+    impl<'a> SharedPresentSurfaceCapabilitiesKHR<'a> {
+        pub fn shared_present_supported_usage_flags(
+            mut self,
+            shared_present_supported_usage_flags: crate::vk::ImageUsageFlags,
+        ) -> Self {
+            self.shared_present_supported_usage_flags = shared_present_supported_usage_flags;
+            self
+        }
+    }
     ///Provided by [`khr::shared_presentable_image`](crate::khr::shared_presentable_image)
     impl crate::vk::ImageLayout {
         pub const SHARED_PRESENT_KHR: Self = Self(1000111000);

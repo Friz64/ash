@@ -44,6 +44,28 @@ pub(crate) mod reexport {
         pub pipeline_identifier: [u8; crate::vk::UUID_SIZE as _],
         pub _marker: ::core::marker::PhantomData<&'a ()>,
     }
+    unsafe impl<'a> crate::TaggedStructure<'a> for PipelinePropertiesIdentifierEXT<'a> {
+        const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::PIPELINE_PROPERTIES_IDENTIFIER_EXT;
+    }
+    impl<'a> Default for PipelinePropertiesIdentifierEXT<'a> {
+        fn default() -> Self {
+            Self {
+                s_type: <Self as crate::TaggedStructure>::STRUCTURE_TYPE,
+                p_next: Default::default(),
+                pipeline_identifier: unsafe { core::mem::zeroed() },
+                _marker: ::core::marker::PhantomData,
+            }
+        }
+    }
+    impl<'a> PipelinePropertiesIdentifierEXT<'a> {
+        pub fn pipeline_identifier(
+            mut self,
+            pipeline_identifier: [u8; crate::vk::UUID_SIZE as _],
+        ) -> Self {
+            self.pipeline_identifier = pipeline_identifier;
+            self
+        }
+    }
     #[repr(C)]
     #[derive(Clone, Copy)]
     pub struct PhysicalDevicePipelinePropertiesFeaturesEXT<'a> {
@@ -51,6 +73,33 @@ pub(crate) mod reexport {
         pub p_next: *mut core::ffi::c_void,
         pub pipeline_properties_identifier: crate::vk::Bool32,
         pub _marker: ::core::marker::PhantomData<&'a ()>,
+    }
+    unsafe impl<'a> crate::TaggedStructure<'a>
+    for PhysicalDevicePipelinePropertiesFeaturesEXT<'a> {
+        const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::PHYSICAL_DEVICE_PIPELINE_PROPERTIES_FEATURES_EXT;
+    }
+    unsafe impl<'a> crate::Extends<crate::vk::PhysicalDeviceFeatures2<'_>>
+    for PhysicalDevicePipelinePropertiesFeaturesEXT<'a> {}
+    unsafe impl<'a> crate::Extends<crate::vk::DeviceCreateInfo<'_>>
+    for PhysicalDevicePipelinePropertiesFeaturesEXT<'a> {}
+    impl<'a> Default for PhysicalDevicePipelinePropertiesFeaturesEXT<'a> {
+        fn default() -> Self {
+            Self {
+                s_type: <Self as crate::TaggedStructure>::STRUCTURE_TYPE,
+                p_next: Default::default(),
+                pipeline_properties_identifier: Default::default(),
+                _marker: ::core::marker::PhantomData,
+            }
+        }
+    }
+    impl<'a> PhysicalDevicePipelinePropertiesFeaturesEXT<'a> {
+        pub fn pipeline_properties_identifier(
+            mut self,
+            pipeline_properties_identifier: bool,
+        ) -> Self {
+            self.pipeline_properties_identifier = pipeline_properties_identifier.into();
+            self
+        }
     }
     pub type PipelineInfoEXT<'a> = crate::vk::PipelineInfoKHR<'a>;
     ///Provided by [`ext::pipeline_properties`](crate::ext::pipeline_properties)

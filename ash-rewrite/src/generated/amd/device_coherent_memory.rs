@@ -9,6 +9,30 @@ pub struct PhysicalDeviceCoherentMemoryFeaturesAMD<'a> {
     pub device_coherent_memory: crate::vk::Bool32,
     pub _marker: ::core::marker::PhantomData<&'a ()>,
 }
+unsafe impl<'a> crate::TaggedStructure<'a>
+for PhysicalDeviceCoherentMemoryFeaturesAMD<'a> {
+    const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::PHYSICAL_DEVICE_COHERENT_MEMORY_FEATURES_AMD;
+}
+unsafe impl<'a> crate::Extends<crate::vk::PhysicalDeviceFeatures2<'_>>
+for PhysicalDeviceCoherentMemoryFeaturesAMD<'a> {}
+unsafe impl<'a> crate::Extends<crate::vk::DeviceCreateInfo<'_>>
+for PhysicalDeviceCoherentMemoryFeaturesAMD<'a> {}
+impl<'a> Default for PhysicalDeviceCoherentMemoryFeaturesAMD<'a> {
+    fn default() -> Self {
+        Self {
+            s_type: <Self as crate::TaggedStructure>::STRUCTURE_TYPE,
+            p_next: Default::default(),
+            device_coherent_memory: Default::default(),
+            _marker: ::core::marker::PhantomData,
+        }
+    }
+}
+impl<'a> PhysicalDeviceCoherentMemoryFeaturesAMD<'a> {
+    pub fn device_coherent_memory(mut self, device_coherent_memory: bool) -> Self {
+        self.device_coherent_memory = device_coherent_memory.into();
+        self
+    }
+}
 ///Provided by [`amd::device_coherent_memory`](crate::amd::device_coherent_memory)
 impl crate::vk::StructureType {
     pub const PHYSICAL_DEVICE_COHERENT_MEMORY_FEATURES_AMD: Self = Self(1000229000);

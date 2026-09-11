@@ -112,6 +112,30 @@ pub(crate) mod reexport {
         pub shader_object: crate::vk::Bool32,
         pub _marker: ::core::marker::PhantomData<&'a ()>,
     }
+    unsafe impl<'a> crate::TaggedStructure<'a>
+    for PhysicalDeviceShaderObjectFeaturesEXT<'a> {
+        const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::PHYSICAL_DEVICE_SHADER_OBJECT_FEATURES_EXT;
+    }
+    unsafe impl<'a> crate::Extends<crate::vk::PhysicalDeviceFeatures2<'_>>
+    for PhysicalDeviceShaderObjectFeaturesEXT<'a> {}
+    unsafe impl<'a> crate::Extends<crate::vk::DeviceCreateInfo<'_>>
+    for PhysicalDeviceShaderObjectFeaturesEXT<'a> {}
+    impl<'a> Default for PhysicalDeviceShaderObjectFeaturesEXT<'a> {
+        fn default() -> Self {
+            Self {
+                s_type: <Self as crate::TaggedStructure>::STRUCTURE_TYPE,
+                p_next: Default::default(),
+                shader_object: Default::default(),
+                _marker: ::core::marker::PhantomData,
+            }
+        }
+    }
+    impl<'a> PhysicalDeviceShaderObjectFeaturesEXT<'a> {
+        pub fn shader_object(mut self, shader_object: bool) -> Self {
+            self.shader_object = shader_object.into();
+            self
+        }
+    }
     #[repr(C)]
     #[derive(Clone, Copy)]
     pub struct PhysicalDeviceShaderObjectPropertiesEXT<'a> {
@@ -120,6 +144,36 @@ pub(crate) mod reexport {
         pub shader_binary_uuid: [u8; crate::vk::UUID_SIZE as _],
         pub shader_binary_version: u32,
         pub _marker: ::core::marker::PhantomData<&'a ()>,
+    }
+    unsafe impl<'a> crate::TaggedStructure<'a>
+    for PhysicalDeviceShaderObjectPropertiesEXT<'a> {
+        const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::PHYSICAL_DEVICE_SHADER_OBJECT_PROPERTIES_EXT;
+    }
+    unsafe impl<'a> crate::Extends<crate::vk::PhysicalDeviceProperties2<'_>>
+    for PhysicalDeviceShaderObjectPropertiesEXT<'a> {}
+    impl<'a> Default for PhysicalDeviceShaderObjectPropertiesEXT<'a> {
+        fn default() -> Self {
+            Self {
+                s_type: <Self as crate::TaggedStructure>::STRUCTURE_TYPE,
+                p_next: Default::default(),
+                shader_binary_uuid: unsafe { core::mem::zeroed() },
+                shader_binary_version: Default::default(),
+                _marker: ::core::marker::PhantomData,
+            }
+        }
+    }
+    impl<'a> PhysicalDeviceShaderObjectPropertiesEXT<'a> {
+        pub fn shader_binary_uuid(
+            mut self,
+            shader_binary_uuid: [u8; crate::vk::UUID_SIZE as _],
+        ) -> Self {
+            self.shader_binary_uuid = shader_binary_uuid;
+            self
+        }
+        pub fn shader_binary_version(mut self, shader_binary_version: u32) -> Self {
+            self.shader_binary_version = shader_binary_version;
+            self
+        }
     }
     #[repr(C)]
     #[derive(Clone, Copy)]
@@ -139,6 +193,102 @@ pub(crate) mod reexport {
         pub p_push_constant_ranges: *const crate::vk::PushConstantRange,
         pub p_specialization_info: *const crate::vk::SpecializationInfo<'a>,
         pub _marker: ::core::marker::PhantomData<&'a ()>,
+    }
+    unsafe impl<'a> crate::TaggedStructure<'a> for ShaderCreateInfoEXT<'a> {
+        const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::SHADER_CREATE_INFO_EXT;
+    }
+    impl<'a> Default for ShaderCreateInfoEXT<'a> {
+        fn default() -> Self {
+            Self {
+                s_type: <Self as crate::TaggedStructure>::STRUCTURE_TYPE,
+                p_next: Default::default(),
+                flags: Default::default(),
+                stage: Default::default(),
+                next_stage: Default::default(),
+                code_type: Default::default(),
+                code_size: Default::default(),
+                p_code: Default::default(),
+                p_name: Default::default(),
+                set_layout_count: Default::default(),
+                p_set_layouts: Default::default(),
+                push_constant_range_count: Default::default(),
+                p_push_constant_ranges: Default::default(),
+                p_specialization_info: Default::default(),
+                _marker: ::core::marker::PhantomData,
+            }
+        }
+    }
+    impl<'a> ShaderCreateInfoEXT<'a> {
+        pub fn flags(mut self, flags: crate::vk::ShaderCreateFlagsEXT) -> Self {
+            self.flags = flags;
+            self
+        }
+        pub fn stage(mut self, stage: crate::vk::ShaderStageFlagBits) -> Self {
+            self.stage = stage;
+            self
+        }
+        pub fn next_stage(mut self, next_stage: crate::vk::ShaderStageFlags) -> Self {
+            self.next_stage = next_stage;
+            self
+        }
+        pub fn code_type(mut self, code_type: crate::vk::ShaderCodeTypeEXT) -> Self {
+            self.code_type = code_type;
+            self
+        }
+        pub fn code_size(mut self, code_size: usize) -> Self {
+            self.code_size = code_size;
+            self
+        }
+        pub fn p_code(mut self, p_code: &'a [u8]) -> Self {
+            self.code_size = p_code.len() as _;
+            self.p_code = p_code.as_ptr().cast();
+            self
+        }
+        pub fn p_name(mut self, p_name: &'a core::ffi::CStr) -> Self {
+            self.p_name = p_name.as_ptr();
+            self
+        }
+        pub unsafe fn p_name_as_c_str(&self) -> Option<&core::ffi::CStr> {
+            if self.p_name.is_null() {
+                None
+            } else {
+                Some(unsafe { core::ffi::CStr::from_ptr(self.p_name) })
+            }
+        }
+        pub fn set_layout_count(mut self, set_layout_count: u32) -> Self {
+            self.set_layout_count = set_layout_count;
+            self
+        }
+        pub fn p_set_layouts(
+            mut self,
+            p_set_layouts: &'a [crate::vk::DescriptorSetLayout],
+        ) -> Self {
+            self.set_layout_count = p_set_layouts.len() as _;
+            self.p_set_layouts = p_set_layouts.as_ptr();
+            self
+        }
+        pub fn push_constant_range_count(
+            mut self,
+            push_constant_range_count: u32,
+        ) -> Self {
+            self.push_constant_range_count = push_constant_range_count;
+            self
+        }
+        pub fn p_push_constant_ranges(
+            mut self,
+            p_push_constant_ranges: &'a [crate::vk::PushConstantRange],
+        ) -> Self {
+            self.push_constant_range_count = p_push_constant_ranges.len() as _;
+            self.p_push_constant_ranges = p_push_constant_ranges.as_ptr();
+            self
+        }
+        pub fn p_specialization_info(
+            mut self,
+            p_specialization_info: &'a crate::vk::SpecializationInfo<'a>,
+        ) -> Self {
+            self.p_specialization_info = p_specialization_info;
+            self
+        }
     }
     pub type ShaderRequiredSubgroupSizeCreateInfoEXT<'a> = crate::vk::PipelineShaderStageRequiredSubgroupSizeCreateInfo<
         'a,
@@ -277,7 +427,7 @@ pub(crate) mod reexport {
         }
     }
     #[repr(transparent)]
-    #[derive(Clone, Copy)]
+    #[derive(Clone, Copy, Default)]
     pub struct ShaderCreateFlagBitsEXT(pub(crate) u32);
     ///Provided by [`ext::shader_object`](crate::ext::shader_object)
     impl ShaderCreateFlagBitsEXT {

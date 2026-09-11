@@ -45,6 +45,48 @@ pub(crate) mod reexport {
         pub buffer_device_address_multi_device: crate::vk::Bool32,
         pub _marker: ::core::marker::PhantomData<&'a ()>,
     }
+    unsafe impl<'a> crate::TaggedStructure<'a>
+    for PhysicalDeviceBufferDeviceAddressFeaturesEXT<'a> {
+        const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::PHYSICAL_DEVICE_BUFFER_DEVICE_ADDRESS_FEATURES_EXT;
+    }
+    unsafe impl<'a> crate::Extends<crate::vk::PhysicalDeviceFeatures2<'_>>
+    for PhysicalDeviceBufferDeviceAddressFeaturesEXT<'a> {}
+    unsafe impl<'a> crate::Extends<crate::vk::DeviceCreateInfo<'_>>
+    for PhysicalDeviceBufferDeviceAddressFeaturesEXT<'a> {}
+    impl<'a> Default for PhysicalDeviceBufferDeviceAddressFeaturesEXT<'a> {
+        fn default() -> Self {
+            Self {
+                s_type: <Self as crate::TaggedStructure>::STRUCTURE_TYPE,
+                p_next: Default::default(),
+                buffer_device_address: Default::default(),
+                buffer_device_address_capture_replay: Default::default(),
+                buffer_device_address_multi_device: Default::default(),
+                _marker: ::core::marker::PhantomData,
+            }
+        }
+    }
+    impl<'a> PhysicalDeviceBufferDeviceAddressFeaturesEXT<'a> {
+        pub fn buffer_device_address(mut self, buffer_device_address: bool) -> Self {
+            self.buffer_device_address = buffer_device_address.into();
+            self
+        }
+        pub fn buffer_device_address_capture_replay(
+            mut self,
+            buffer_device_address_capture_replay: bool,
+        ) -> Self {
+            self.buffer_device_address_capture_replay = buffer_device_address_capture_replay
+                .into();
+            self
+        }
+        pub fn buffer_device_address_multi_device(
+            mut self,
+            buffer_device_address_multi_device: bool,
+        ) -> Self {
+            self.buffer_device_address_multi_device = buffer_device_address_multi_device
+                .into();
+            self
+        }
+    }
     #[repr(C)]
     #[derive(Clone, Copy)]
     pub struct BufferDeviceAddressCreateInfoEXT<'a> {
@@ -52,6 +94,30 @@ pub(crate) mod reexport {
         pub p_next: *const core::ffi::c_void,
         pub device_address: crate::vk::DeviceAddress,
         pub _marker: ::core::marker::PhantomData<&'a ()>,
+    }
+    unsafe impl<'a> crate::TaggedStructure<'a> for BufferDeviceAddressCreateInfoEXT<'a> {
+        const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::BUFFER_DEVICE_ADDRESS_CREATE_INFO_EXT;
+    }
+    unsafe impl<'a> crate::Extends<crate::vk::BufferCreateInfo<'_>>
+    for BufferDeviceAddressCreateInfoEXT<'a> {}
+    impl<'a> Default for BufferDeviceAddressCreateInfoEXT<'a> {
+        fn default() -> Self {
+            Self {
+                s_type: <Self as crate::TaggedStructure>::STRUCTURE_TYPE,
+                p_next: Default::default(),
+                device_address: Default::default(),
+                _marker: ::core::marker::PhantomData,
+            }
+        }
+    }
+    impl<'a> BufferDeviceAddressCreateInfoEXT<'a> {
+        pub fn device_address(
+            mut self,
+            device_address: crate::vk::DeviceAddress,
+        ) -> Self {
+            self.device_address = device_address;
+            self
+        }
     }
     pub type PhysicalDeviceBufferAddressFeaturesEXT<'a> = crate::vk::PhysicalDeviceBufferDeviceAddressFeaturesEXT<
         'a,

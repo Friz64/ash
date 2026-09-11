@@ -65,6 +65,34 @@ pub(crate) mod reexport {
         pub partitioned_acceleration_structure: crate::vk::Bool32,
         pub _marker: ::core::marker::PhantomData<&'a ()>,
     }
+    unsafe impl<'a> crate::TaggedStructure<'a>
+    for PhysicalDevicePartitionedAccelerationStructureFeaturesNV<'a> {
+        const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::PHYSICAL_DEVICE_PARTITIONED_ACCELERATION_STRUCTURE_FEATURES_NV;
+    }
+    unsafe impl<'a> crate::Extends<crate::vk::PhysicalDeviceFeatures2<'_>>
+    for PhysicalDevicePartitionedAccelerationStructureFeaturesNV<'a> {}
+    unsafe impl<'a> crate::Extends<crate::vk::DeviceCreateInfo<'_>>
+    for PhysicalDevicePartitionedAccelerationStructureFeaturesNV<'a> {}
+    impl<'a> Default for PhysicalDevicePartitionedAccelerationStructureFeaturesNV<'a> {
+        fn default() -> Self {
+            Self {
+                s_type: <Self as crate::TaggedStructure>::STRUCTURE_TYPE,
+                p_next: Default::default(),
+                partitioned_acceleration_structure: Default::default(),
+                _marker: ::core::marker::PhantomData,
+            }
+        }
+    }
+    impl<'a> PhysicalDevicePartitionedAccelerationStructureFeaturesNV<'a> {
+        pub fn partitioned_acceleration_structure(
+            mut self,
+            partitioned_acceleration_structure: bool,
+        ) -> Self {
+            self.partitioned_acceleration_structure = partitioned_acceleration_structure
+                .into();
+            self
+        }
+    }
     #[repr(C)]
     #[derive(Clone, Copy)]
     pub struct PhysicalDevicePartitionedAccelerationStructurePropertiesNV<'a> {
@@ -73,12 +101,51 @@ pub(crate) mod reexport {
         pub max_partition_count: u32,
         pub _marker: ::core::marker::PhantomData<&'a ()>,
     }
+    unsafe impl<'a> crate::TaggedStructure<'a>
+    for PhysicalDevicePartitionedAccelerationStructurePropertiesNV<'a> {
+        const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::PHYSICAL_DEVICE_PARTITIONED_ACCELERATION_STRUCTURE_PROPERTIES_NV;
+    }
+    unsafe impl<'a> crate::Extends<crate::vk::PhysicalDeviceProperties2<'_>>
+    for PhysicalDevicePartitionedAccelerationStructurePropertiesNV<'a> {}
+    impl<'a> Default for PhysicalDevicePartitionedAccelerationStructurePropertiesNV<'a> {
+        fn default() -> Self {
+            Self {
+                s_type: <Self as crate::TaggedStructure>::STRUCTURE_TYPE,
+                p_next: Default::default(),
+                max_partition_count: Default::default(),
+                _marker: ::core::marker::PhantomData,
+            }
+        }
+    }
+    impl<'a> PhysicalDevicePartitionedAccelerationStructurePropertiesNV<'a> {
+        pub fn max_partition_count(mut self, max_partition_count: u32) -> Self {
+            self.max_partition_count = max_partition_count;
+            self
+        }
+    }
     #[repr(C)]
-    #[derive(Clone, Copy)]
+    #[derive(Clone, Copy, Default)]
     pub struct BuildPartitionedAccelerationStructureIndirectCommandNV {
         pub op_type: crate::vk::PartitionedAccelerationStructureOpTypeNV,
         pub arg_count: u32,
         pub arg_data: crate::vk::StridedDeviceAddressNV,
+    }
+    impl BuildPartitionedAccelerationStructureIndirectCommandNV {
+        pub fn op_type(
+            mut self,
+            op_type: crate::vk::PartitionedAccelerationStructureOpTypeNV,
+        ) -> Self {
+            self.op_type = op_type;
+            self
+        }
+        pub fn arg_count(mut self, arg_count: u32) -> Self {
+            self.arg_count = arg_count;
+            self
+        }
+        pub fn arg_data(mut self, arg_data: crate::vk::StridedDeviceAddressNV) -> Self {
+            self.arg_data = arg_data;
+            self
+        }
     }
     #[repr(C)]
     #[derive(Clone, Copy)]
@@ -87,6 +154,33 @@ pub(crate) mod reexport {
         pub p_next: *mut core::ffi::c_void,
         pub enable_partition_translation: crate::vk::Bool32,
         pub _marker: ::core::marker::PhantomData<&'a ()>,
+    }
+    unsafe impl<'a> crate::TaggedStructure<'a>
+    for PartitionedAccelerationStructureFlagsNV<'a> {
+        const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::PARTITIONED_ACCELERATION_STRUCTURE_FLAGS_NV;
+    }
+    unsafe impl<
+        'a,
+    > crate::Extends<crate::vk::PartitionedAccelerationStructureInstancesInputNV<'_>>
+    for PartitionedAccelerationStructureFlagsNV<'a> {}
+    impl<'a> Default for PartitionedAccelerationStructureFlagsNV<'a> {
+        fn default() -> Self {
+            Self {
+                s_type: <Self as crate::TaggedStructure>::STRUCTURE_TYPE,
+                p_next: Default::default(),
+                enable_partition_translation: Default::default(),
+                _marker: ::core::marker::PhantomData,
+            }
+        }
+    }
+    impl<'a> PartitionedAccelerationStructureFlagsNV<'a> {
+        pub fn enable_partition_translation(
+            mut self,
+            enable_partition_translation: bool,
+        ) -> Self {
+            self.enable_partition_translation = enable_partition_translation.into();
+            self
+        }
     }
     #[repr(C)]
     #[derive(Clone, Copy)]
@@ -101,18 +195,124 @@ pub(crate) mod reexport {
         pub partition_index: u32,
         pub acceleration_structure: crate::vk::DeviceAddress,
     }
+    impl Default for PartitionedAccelerationStructureWriteInstanceDataNV {
+        fn default() -> Self {
+            Self {
+                transform: Default::default(),
+                explicit_aabb: unsafe { core::mem::zeroed() },
+                instance_id: Default::default(),
+                instance_mask: Default::default(),
+                instance_contribution_to_hit_group_index: Default::default(),
+                instance_flags: Default::default(),
+                instance_index: Default::default(),
+                partition_index: Default::default(),
+                acceleration_structure: Default::default(),
+            }
+        }
+    }
+    impl PartitionedAccelerationStructureWriteInstanceDataNV {
+        pub fn transform(mut self, transform: crate::vk::TransformMatrixKHR) -> Self {
+            self.transform = transform;
+            self
+        }
+        pub fn explicit_aabb(
+            mut self,
+            explicit_aabb: [core::ffi::c_float; 6 as _],
+        ) -> Self {
+            self.explicit_aabb = explicit_aabb;
+            self
+        }
+        pub fn instance_id(mut self, instance_id: u32) -> Self {
+            self.instance_id = instance_id;
+            self
+        }
+        pub fn instance_mask(mut self, instance_mask: u32) -> Self {
+            self.instance_mask = instance_mask;
+            self
+        }
+        pub fn instance_contribution_to_hit_group_index(
+            mut self,
+            instance_contribution_to_hit_group_index: u32,
+        ) -> Self {
+            self.instance_contribution_to_hit_group_index = instance_contribution_to_hit_group_index;
+            self
+        }
+        pub fn instance_flags(
+            mut self,
+            instance_flags: crate::vk::PartitionedAccelerationStructureInstanceFlagsNV,
+        ) -> Self {
+            self.instance_flags = instance_flags;
+            self
+        }
+        pub fn instance_index(mut self, instance_index: u32) -> Self {
+            self.instance_index = instance_index;
+            self
+        }
+        pub fn partition_index(mut self, partition_index: u32) -> Self {
+            self.partition_index = partition_index;
+            self
+        }
+        pub fn acceleration_structure(
+            mut self,
+            acceleration_structure: crate::vk::DeviceAddress,
+        ) -> Self {
+            self.acceleration_structure = acceleration_structure;
+            self
+        }
+    }
     #[repr(C)]
-    #[derive(Clone, Copy)]
+    #[derive(Clone, Copy, Default)]
     pub struct PartitionedAccelerationStructureUpdateInstanceDataNV {
         pub instance_index: u32,
         pub instance_contribution_to_hit_group_index: u32,
         pub acceleration_structure: crate::vk::DeviceAddress,
+    }
+    impl PartitionedAccelerationStructureUpdateInstanceDataNV {
+        pub fn instance_index(mut self, instance_index: u32) -> Self {
+            self.instance_index = instance_index;
+            self
+        }
+        pub fn instance_contribution_to_hit_group_index(
+            mut self,
+            instance_contribution_to_hit_group_index: u32,
+        ) -> Self {
+            self.instance_contribution_to_hit_group_index = instance_contribution_to_hit_group_index;
+            self
+        }
+        pub fn acceleration_structure(
+            mut self,
+            acceleration_structure: crate::vk::DeviceAddress,
+        ) -> Self {
+            self.acceleration_structure = acceleration_structure;
+            self
+        }
     }
     #[repr(C)]
     #[derive(Clone, Copy)]
     pub struct PartitionedAccelerationStructureWritePartitionTranslationDataNV {
         pub partition_index: u32,
         pub partition_translation: [core::ffi::c_float; 3 as _],
+    }
+    impl Default for PartitionedAccelerationStructureWritePartitionTranslationDataNV {
+        fn default() -> Self {
+            Self {
+                partition_index: Default::default(),
+                partition_translation: unsafe { core::mem::zeroed() },
+            }
+        }
+    }
+    impl PartitionedAccelerationStructureWritePartitionTranslationDataNV {
+        pub fn partition_index(mut self, partition_index: u32) -> Self {
+            self.partition_index = partition_index;
+            self
+        }
+        pub fn partition_translation(
+            mut self,
+            partition_translation: [core::ffi::c_float; 3 as _],
+        ) -> Self {
+            self.partition_translation = partition_translation;
+            self
+        }
     }
     #[repr(C)]
     #[derive(Clone, Copy)]
@@ -122,6 +322,40 @@ pub(crate) mod reexport {
         pub acceleration_structure_count: u32,
         pub p_acceleration_structures: *const crate::vk::DeviceAddress,
         pub _marker: ::core::marker::PhantomData<&'a ()>,
+    }
+    unsafe impl<'a> crate::TaggedStructure<'a>
+    for WriteDescriptorSetPartitionedAccelerationStructureNV<'a> {
+        const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::WRITE_DESCRIPTOR_SET_PARTITIONED_ACCELERATION_STRUCTURE_NV;
+    }
+    unsafe impl<'a> crate::Extends<crate::vk::WriteDescriptorSet<'_>>
+    for WriteDescriptorSetPartitionedAccelerationStructureNV<'a> {}
+    impl<'a> Default for WriteDescriptorSetPartitionedAccelerationStructureNV<'a> {
+        fn default() -> Self {
+            Self {
+                s_type: <Self as crate::TaggedStructure>::STRUCTURE_TYPE,
+                p_next: Default::default(),
+                acceleration_structure_count: Default::default(),
+                p_acceleration_structures: Default::default(),
+                _marker: ::core::marker::PhantomData,
+            }
+        }
+    }
+    impl<'a> WriteDescriptorSetPartitionedAccelerationStructureNV<'a> {
+        pub fn acceleration_structure_count(
+            mut self,
+            acceleration_structure_count: u32,
+        ) -> Self {
+            self.acceleration_structure_count = acceleration_structure_count;
+            self
+        }
+        pub fn p_acceleration_structures(
+            mut self,
+            p_acceleration_structures: &'a [crate::vk::DeviceAddress],
+        ) -> Self {
+            self.acceleration_structure_count = p_acceleration_structures.len() as _;
+            self.p_acceleration_structures = p_acceleration_structures.as_ptr();
+            self
+        }
     }
     #[repr(C)]
     #[derive(Clone, Copy)]
@@ -135,6 +369,55 @@ pub(crate) mod reexport {
         pub max_instance_in_global_partition_count: u32,
         pub _marker: ::core::marker::PhantomData<&'a ()>,
     }
+    unsafe impl<'a> crate::TaggedStructure<'a>
+    for PartitionedAccelerationStructureInstancesInputNV<'a> {
+        const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::PARTITIONED_ACCELERATION_STRUCTURE_INSTANCES_INPUT_NV;
+    }
+    impl<'a> Default for PartitionedAccelerationStructureInstancesInputNV<'a> {
+        fn default() -> Self {
+            Self {
+                s_type: <Self as crate::TaggedStructure>::STRUCTURE_TYPE,
+                p_next: Default::default(),
+                flags: Default::default(),
+                instance_count: Default::default(),
+                max_instance_per_partition_count: Default::default(),
+                partition_count: Default::default(),
+                max_instance_in_global_partition_count: Default::default(),
+                _marker: ::core::marker::PhantomData,
+            }
+        }
+    }
+    impl<'a> PartitionedAccelerationStructureInstancesInputNV<'a> {
+        pub fn flags(
+            mut self,
+            flags: crate::vk::BuildAccelerationStructureFlagsKHR,
+        ) -> Self {
+            self.flags = flags;
+            self
+        }
+        pub fn instance_count(mut self, instance_count: u32) -> Self {
+            self.instance_count = instance_count;
+            self
+        }
+        pub fn max_instance_per_partition_count(
+            mut self,
+            max_instance_per_partition_count: u32,
+        ) -> Self {
+            self.max_instance_per_partition_count = max_instance_per_partition_count;
+            self
+        }
+        pub fn partition_count(mut self, partition_count: u32) -> Self {
+            self.partition_count = partition_count;
+            self
+        }
+        pub fn max_instance_in_global_partition_count(
+            mut self,
+            max_instance_in_global_partition_count: u32,
+        ) -> Self {
+            self.max_instance_in_global_partition_count = max_instance_in_global_partition_count;
+            self
+        }
+    }
     #[repr(C)]
     #[derive(Clone, Copy)]
     pub struct BuildPartitionedAccelerationStructureInfoNV<'a> {
@@ -147,6 +430,63 @@ pub(crate) mod reexport {
         pub src_infos: crate::vk::DeviceAddress,
         pub src_infos_count: crate::vk::DeviceAddress,
         pub _marker: ::core::marker::PhantomData<&'a ()>,
+    }
+    unsafe impl<'a> crate::TaggedStructure<'a>
+    for BuildPartitionedAccelerationStructureInfoNV<'a> {
+        const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::BUILD_PARTITIONED_ACCELERATION_STRUCTURE_INFO_NV;
+    }
+    impl<'a> Default for BuildPartitionedAccelerationStructureInfoNV<'a> {
+        fn default() -> Self {
+            Self {
+                s_type: <Self as crate::TaggedStructure>::STRUCTURE_TYPE,
+                p_next: Default::default(),
+                input: Default::default(),
+                src_acceleration_structure_data: Default::default(),
+                dst_acceleration_structure_data: Default::default(),
+                scratch_data: Default::default(),
+                src_infos: Default::default(),
+                src_infos_count: Default::default(),
+                _marker: ::core::marker::PhantomData,
+            }
+        }
+    }
+    impl<'a> BuildPartitionedAccelerationStructureInfoNV<'a> {
+        pub fn input(
+            mut self,
+            input: crate::vk::PartitionedAccelerationStructureInstancesInputNV<'a>,
+        ) -> Self {
+            self.input = input;
+            self
+        }
+        pub fn src_acceleration_structure_data(
+            mut self,
+            src_acceleration_structure_data: crate::vk::DeviceAddress,
+        ) -> Self {
+            self.src_acceleration_structure_data = src_acceleration_structure_data;
+            self
+        }
+        pub fn dst_acceleration_structure_data(
+            mut self,
+            dst_acceleration_structure_data: crate::vk::DeviceAddress,
+        ) -> Self {
+            self.dst_acceleration_structure_data = dst_acceleration_structure_data;
+            self
+        }
+        pub fn scratch_data(mut self, scratch_data: crate::vk::DeviceAddress) -> Self {
+            self.scratch_data = scratch_data;
+            self
+        }
+        pub fn src_infos(mut self, src_infos: crate::vk::DeviceAddress) -> Self {
+            self.src_infos = src_infos;
+            self
+        }
+        pub fn src_infos_count(
+            mut self,
+            src_infos_count: crate::vk::DeviceAddress,
+        ) -> Self {
+            self.src_infos_count = src_infos_count;
+            self
+        }
     }
     ///Provided by [`nv::partitioned_acceleration_structure`](crate::nv::partitioned_acceleration_structure)
     impl crate::vk::DescriptorType {
@@ -275,7 +615,7 @@ pub(crate) mod reexport {
         }
     }
     #[repr(transparent)]
-    #[derive(Clone, Copy)]
+    #[derive(Clone, Copy, Default)]
     pub struct PartitionedAccelerationStructureInstanceFlagBitsNV(pub(crate) u32);
     ///Provided by [`nv::partitioned_acceleration_structure`](crate::nv::partitioned_acceleration_structure)
     impl PartitionedAccelerationStructureInstanceFlagBitsNV {

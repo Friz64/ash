@@ -9,6 +9,33 @@ pub struct PhysicalDeviceShaderMaximalReconvergenceFeaturesKHR<'a> {
     pub shader_maximal_reconvergence: crate::vk::Bool32,
     pub _marker: ::core::marker::PhantomData<&'a ()>,
 }
+unsafe impl<'a> crate::TaggedStructure<'a>
+for PhysicalDeviceShaderMaximalReconvergenceFeaturesKHR<'a> {
+    const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::PHYSICAL_DEVICE_SHADER_MAXIMAL_RECONVERGENCE_FEATURES_KHR;
+}
+unsafe impl<'a> crate::Extends<crate::vk::PhysicalDeviceFeatures2<'_>>
+for PhysicalDeviceShaderMaximalReconvergenceFeaturesKHR<'a> {}
+unsafe impl<'a> crate::Extends<crate::vk::DeviceCreateInfo<'_>>
+for PhysicalDeviceShaderMaximalReconvergenceFeaturesKHR<'a> {}
+impl<'a> Default for PhysicalDeviceShaderMaximalReconvergenceFeaturesKHR<'a> {
+    fn default() -> Self {
+        Self {
+            s_type: <Self as crate::TaggedStructure>::STRUCTURE_TYPE,
+            p_next: Default::default(),
+            shader_maximal_reconvergence: Default::default(),
+            _marker: ::core::marker::PhantomData,
+        }
+    }
+}
+impl<'a> PhysicalDeviceShaderMaximalReconvergenceFeaturesKHR<'a> {
+    pub fn shader_maximal_reconvergence(
+        mut self,
+        shader_maximal_reconvergence: bool,
+    ) -> Self {
+        self.shader_maximal_reconvergence = shader_maximal_reconvergence.into();
+        self
+    }
+}
 ///Provided by [`khr::shader_maximal_reconvergence`](crate::khr::shader_maximal_reconvergence)
 impl crate::vk::StructureType {
     pub const PHYSICAL_DEVICE_SHADER_MAXIMAL_RECONVERGENCE_FEATURES_KHR: Self = Self(
