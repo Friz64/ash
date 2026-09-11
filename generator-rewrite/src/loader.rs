@@ -7,7 +7,7 @@ use analysis::{
     item::{CommandItem, RequireLocation, function::Command},
     lifetime::Lifetime,
     name::{CommandName, TypeName},
-    to_rust::RustTranslator,
+    rust::RustTokens,
 };
 use heck::ToSnekCase;
 use indexmap::IndexMap;
@@ -35,11 +35,11 @@ impl FunctionType {
 
         let first_param = command.params.first().expect("cmds should have params");
         match first_param.decl.ty {
-            Ty::SpecType(name) if name == TypeName::VK_DEVICE => FunctionType::Device,
-            Ty::SpecType(name) if name == TypeName::VK_COMMAND_BUFFER => FunctionType::Device,
-            Ty::SpecType(name) if name == TypeName::VK_QUEUE => FunctionType::Device,
-            Ty::SpecType(name) if name == TypeName::VK_INSTANCE => FunctionType::Instance,
-            Ty::SpecType(name) if name == TypeName::VK_PHYSICAL_DEVICE => FunctionType::Instance,
+            Ty::ApiType(name) if name == TypeName::VK_DEVICE => FunctionType::Device,
+            Ty::ApiType(name) if name == TypeName::VK_COMMAND_BUFFER => FunctionType::Device,
+            Ty::ApiType(name) if name == TypeName::VK_QUEUE => FunctionType::Device,
+            Ty::ApiType(name) if name == TypeName::VK_INSTANCE => FunctionType::Instance,
+            Ty::ApiType(name) if name == TypeName::VK_PHYSICAL_DEVICE => FunctionType::Instance,
             _ => FunctionType::Entry,
         }
     }
@@ -92,7 +92,7 @@ pub fn generate_code(ctx: &Context, codemap: &mut CodeMap) {
         let table = tables.entry((function_type, dest)).or_default();
 
         let field_name = format_ident!("{}", name.prefix_trimmed().to_snek_case());
-        let command_ty = ctx.command_to_rust(name, true);
+        let command_ty = ctx.command_tokens(name, true);
         table.fields.extend(quote! {
             pub #field_name: #command_ty,
         });
@@ -101,12 +101,14 @@ pub fn generate_code(ctx: &Context, codemap: &mut CodeMap) {
         let cstr = Literal::c_string(&CString::new(name.original()).unwrap());
 
         let params = command.params.iter().map(|param| {
-            let ty = param.decl.ty.to_rust(ctx, &Lifetime::placeholder());
+            let ty = (param.decl.ty)
+                .to_rust()
+                .tokens(ctx, &Lifetime::placeholder());
             quote! { _: #ty }
         });
 
         let ret = command.return_type.as_ref().map(|ty| {
-            let rust_ty = ty.to_rust(ctx, &Lifetime::placeholder());
+            let rust_ty = ty.to_rust().tokens(ctx, &Lifetime::placeholder());
             quote! { -> #rust_ty }
         });
 

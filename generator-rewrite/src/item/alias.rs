@@ -6,7 +6,7 @@ use analysis::{
         alias::{CommandAlias, TypeAlias},
     },
     lifetime::Lifetime,
-    to_rust::RustTranslator,
+    rust::RustTokens,
 };
 use quote::{format_ident, quote};
 use tracing::{instrument, trace};
@@ -16,8 +16,8 @@ impl Code for TypeAlias {
     fn code(&self, ctx: &Context) -> CodeMap {
         trace!("generating");
         let lifetime = Lifetime(format_ident!("a"));
-        let name = ctx.type_to_rust(self.name(), false, &lifetime);
-        let alias = ctx.type_to_rust(self.alias, true, &lifetime);
+        let name = ctx.type_tokens(self.name(), false, &lifetime);
+        let alias = ctx.type_tokens(self.alias, true, &lifetime);
 
         let code = quote! {
             pub type #name = #alias;
@@ -31,8 +31,8 @@ impl Code for CommandAlias {
     #[instrument(skip(ctx))]
     fn code(&self, ctx: &Context) -> CodeMap {
         trace!("generating");
-        let name = ctx.command_to_rust(self.name(), false);
-        let alias = ctx.command_to_rust(self.alias, true);
+        let name = ctx.command_tokens(self.name(), false);
+        let alias = ctx.command_tokens(self.alias, true);
         let code = quote! {
             pub type #name = #alias;
         };

@@ -6,7 +6,7 @@ use analysis::{
         function::{Command, FuncPointer},
     },
     lifetime::Lifetime,
-    to_rust::RustTranslator,
+    rust::RustTokens,
 };
 use quote::quote;
 use tracing::{instrument, trace};
@@ -15,13 +15,13 @@ impl Code for FuncPointer {
     #[instrument(skip(ctx))]
     fn code(&self, ctx: &Context) -> CodeMap {
         trace!("generating");
-        let name = ctx.func_pointer_to_rust(self.name(), false);
+        let name = ctx.func_pointer_tokens(self.name(), false);
         let params = self
             .params
             .iter()
-            .map(|decl| decl.to_rust(ctx, &Lifetime::placeholder()));
+            .map(|decl| decl.to_rust().tokens(ctx, &Lifetime::placeholder()));
         let ret = self.return_type.as_ref().map(|ty| {
-            let rust_ty = ty.to_rust(ctx, &Lifetime::placeholder());
+            let rust_ty = ty.to_rust().tokens(ctx, &Lifetime::placeholder());
             quote! { -> #rust_ty }
         });
 
@@ -37,13 +37,13 @@ impl Code for Command {
     #[instrument(skip(ctx))]
     fn code(&self, ctx: &Context) -> CodeMap {
         trace!("generating");
-        let name = ctx.command_to_rust(self.name(), false);
+        let name = ctx.command_tokens(self.name(), false);
         let params = self
             .params
             .iter()
-            .map(|param| param.decl.to_rust(ctx, &Lifetime::placeholder()));
+            .map(|param| param.decl.to_rust().tokens(ctx, &Lifetime::placeholder()));
         let ret = self.return_type.as_ref().map(|ty| {
-            let rust_ty = ty.to_rust(ctx, &Lifetime::placeholder());
+            let rust_ty = ty.to_rust().tokens(ctx, &Lifetime::placeholder());
             quote! { -> #rust_ty }
         });
 

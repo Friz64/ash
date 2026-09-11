@@ -116,7 +116,7 @@ impl Struct {
                 assert_eq!(used_bitwidth, None, "bitfield not fully used");
                 // should exist only once
                 if let Some(value) = member.values
-                    && let Ty::SpecType(ty) = decl.ty
+                    && let Ty::ApiType(ty) = decl.ty
                     && ty == TypeName::VK_STRUCTURE_TYPE
                     && decl.name.original() == "sType"
                 {

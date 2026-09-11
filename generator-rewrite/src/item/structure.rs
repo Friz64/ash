@@ -3,14 +3,14 @@ use core::str::FromStr;
 use super::{Code, Context};
 use crate::output::{CodeMap, Destination};
 use analysis::{
-    decl::{CPrimaryType, Decl, Mutability, RustType, Ty},
+    decl::{CPrimaryType, Decl, Mutability, Ty},
     item::{
         Named,
         structure::{Length, Struct, StructDecl, StructMember, Union},
     },
     lifetime::Lifetime,
     name::TypeName,
-    to_rust::RustTranslator,
+    rust::{RustTokens, RustTy},
 };
 use proc_macro2::{Literal, TokenStream};
 use quote::{format_ident, quote};
@@ -21,7 +21,7 @@ impl Code for Struct {
     fn code(&self, ctx: &Context) -> CodeMap {
         trace!("generating");
         let lifetime = Lifetime(format_ident!("a"));
-        let name = ctx.type_to_rust(self.name(), false, &lifetime);
+        let name = ctx.type_tokens(self.name(), false, &lifetime);
 
         let lifetime_tok = ctx
             .type_has_lifetime(self.name())
@@ -35,7 +35,7 @@ impl Code for Struct {
                     contains_static_array = true
                 }
 
-                let decl = decl.to_rust(ctx, &lifetime);
+                let decl = decl.to_rust().tokens(ctx, &lifetime);
                 quote! { pub #decl }
             }
             StructMember::BitField(ranges) => {
@@ -63,13 +63,13 @@ impl Code for Struct {
         });
 
         let tagged_structure = self.structure_type.as_ref().map(|ty| {
-            let structure_ty = ctx.type_to_rust(TypeName::VK_STRUCTURE_TYPE, true, &lifetime);
-            let ty = ctx.enumerator_to_rust(*ty, TypeName::VK_STRUCTURE_TYPE, true);
+            let structure_ty = ctx.type_tokens(TypeName::VK_STRUCTURE_TYPE, true, &lifetime);
+            let ty = ctx.enumerator_tokens(*ty, TypeName::VK_STRUCTURE_TYPE, true);
             let anon = Lifetime::placeholder();
             let extends = self
                 .extends
                 .iter()
-                .map(|ty| ctx.type_to_rust(*ty, true, &anon));
+                .map(|ty| ctx.type_tokens(*ty, true, &anon));
             quote! {
                 unsafe impl<#lifetime> crate::TaggedStructure<#lifetime> for #name {
                     const STRUCTURE_TYPE: #structure_ty = #ty;
@@ -96,10 +96,10 @@ impl Code for Struct {
         let default = if contains_static_array || tagged_structure.is_some() {
             let defaults = self.members.iter().map(|member| match member {
                 StructMember::Normal(StructDecl { decl, .. }) => {
-                    let field_name = ctx.var_name_to_rust(decl.name);
+                    let field_name = ctx.var_name_token(decl.name);
                     if tagged_structure.is_some()
                         && decl.name.original() == "sType"
-                        && let Ty::SpecType(ty) = &decl.ty
+                        && let Ty::ApiType(ty) = &decl.ty
                         && ty == &TypeName::VK_STRUCTURE_TYPE
                     {
                         quote! { #field_name: <Self as crate::TaggedStructure>::STRUCTURE_TYPE }
@@ -158,7 +158,7 @@ impl Code for Struct {
                     let name = format_ident!("bitfield{bitfield_i}");
                     bitfield_i += 1;
                     itertools::Either::Right(bitfield_ranges.iter().map(move |range| {
-                        let field_name = ctx.var_name_to_rust(range.decl.name);
+                        let field_name = ctx.var_name_token(range.decl.name);
                         let mask = {
                             let top = u32::MAX >> (u32::BITS - range.range.end as u32);
                             let bottom = u32::MAX << (range.range.start);
@@ -213,10 +213,10 @@ fn decl_setter_and_getter(
     ctx: &Context<'_>,
     lifetime: &Lifetime,
 ) -> TokenStream {
-    let field_name = ctx.var_name_to_rust(decl.name);
+    let field_name = ctx.var_name_token(decl.name);
 
     match decl.ty {
-        Ty::SpecType(TypeName::VK_BOOL32) => {
+        Ty::ApiType(TypeName::VK_BOOL32) => {
             quote! {
                 pub fn #field_name(mut self, #field_name: bool) -> Self {
                     self.#field_name = #field_name.into();
@@ -227,7 +227,7 @@ fn decl_setter_and_getter(
         Ty::Ptr(Ty::CPrimary(CPrimaryType::Char), mutability)
             if len.first().is_some_and(|l| l == &Length::NullTerminated) =>
         {
-            let ty = Ty::Ref(&Ty::RustType(RustType::CStr), mutability).to_rust(ctx, lifetime);
+            let ty = RustTy::Ref(Box::new(RustTy::CStr), mutability).tokens(ctx, lifetime);
             let field_name_as_cstr = format_ident!("{field_name}_as_c_str");
             quote! {
                 pub fn #field_name(mut self, #field_name: #ty) -> Self {
@@ -259,7 +259,7 @@ fn decl_setter_and_getter(
             }
         }
         Ty::Array(base, _) if let Some(Length::Member(len_var)) = len.first() => {
-            let len_var = ctx.var_name_to_rust(*len_var);
+            let len_var = ctx.var_name_token(*len_var);
             let field_name_as_slice = format_ident!("{field_name}_as_slice");
             let base_ty = array_base_ty(base, ctx, lifetime, len);
             quote! {
@@ -293,7 +293,7 @@ fn decl_setter_and_getter(
                 }
             };
 
-            let len_var = ctx.var_name_to_rust(*len_var);
+            let len_var = ctx.var_name_token(*len_var);
             let mutability = match mutability {
                 Mutability::Not => quote! {},
                 Mutability::Mut => quote! {mut},
@@ -307,7 +307,7 @@ fn decl_setter_and_getter(
             }
         }
         Ty::Ptr(base, mutability) if len.first().is_none_or(|l| l == &Length::Pointer) => {
-            let ty = Ty::Ref(base, mutability).to_rust(ctx, lifetime);
+            let ty = RustTy::Ref(Box::new(base.to_rust()), mutability).tokens(ctx, lifetime);
             quote! {
                 pub fn #field_name(mut self, #field_name: #ty) -> Self {
                     self.#field_name = #field_name;
@@ -319,7 +319,7 @@ fn decl_setter_and_getter(
             match *custom {
                 _ => {
                     tracing::warn!(?custom, "unhandled custom length");
-                    let ty = decl.ty.to_rust(ctx, lifetime);
+                    let ty = decl.ty.to_rust().tokens(ctx, lifetime);
                     quote! {
                         pub fn #field_name(mut self, #field_name: #ty) -> Self {
                             self.#field_name = #field_name;
@@ -330,7 +330,7 @@ fn decl_setter_and_getter(
             }
         }
         _ => {
-            let ty = decl.ty.to_rust(ctx, lifetime);
+            let ty = decl.ty.to_rust().tokens(ctx, lifetime);
             quote! {
                 pub fn #field_name(mut self, #field_name: #ty) -> Self {
                     self.#field_name = #field_name;
@@ -344,15 +344,14 @@ fn decl_setter_and_getter(
 fn array_base_ty(base: &Ty, ctx: &Context<'_>, lifetime: &Lifetime, len: &[Length]) -> TokenStream {
     match base {
         Ty::Ptr(ty, mutability) if len.get(1).is_some_and(|l| l == &Length::Pointer) => {
-            Ty::Ref(ty, *mutability).to_rust(ctx, lifetime)
+            RustTy::Ref(Box::new(ty.to_rust()), *mutability).tokens(ctx, lifetime)
         }
-        ty @ (Ty::SpecType(_)
-        | Ty::SpecFuncPointer(_)
+        ty @ (Ty::ApiType(_)
+        | Ty::ApiFuncPointer(_)
         | Ty::CPrimary(_)
         | Ty::Array(_, _)
         | Ty::Ptr(_, _)
-        | Ty::Platform(_)) => ty.to_rust(ctx, lifetime),
-        _ => unreachable!("Ty::RustType, Ty::Ref, and Ty::Slice cannot be emitted from a registry"),
+        | Ty::Platform(_)) => ty.to_rust().tokens(ctx, lifetime),
     }
 }
 
@@ -364,8 +363,8 @@ impl Code for Union {
         let lifetime_tok = ctx
             .type_has_lifetime(self.name())
             .then(|| quote! { #lifetime });
-        let name = ctx.type_to_rust(self.name(), false, &lifetime);
-        let members = (self.members.iter()).map(|decl| decl.to_rust(ctx, &lifetime));
+        let name = ctx.type_tokens(self.name(), false, &lifetime);
+        let members = (self.members.iter()).map(|decl| decl.to_rust().tokens(ctx, &lifetime));
 
         let code = quote! {
             #[repr(C)]
