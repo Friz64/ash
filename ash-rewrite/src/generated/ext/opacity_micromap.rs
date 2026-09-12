@@ -626,27 +626,6 @@ pub(crate) mod reexport {
         }
     }
     #[repr(C)]
-    #[derive(Clone, Copy, Default)]
-    pub struct MicromapTriangleEXT {
-        pub data_offset: u32,
-        pub subdivision_level: u16,
-        pub format: u16,
-    }
-    impl MicromapTriangleEXT {
-        pub fn data_offset(mut self, data_offset: u32) -> Self {
-            self.data_offset = data_offset;
-            self
-        }
-        pub fn subdivision_level(mut self, subdivision_level: u16) -> Self {
-            self.subdivision_level = subdivision_level;
-            self
-        }
-        pub fn format(mut self, format: u16) -> Self {
-            self.format = format;
-            self
-        }
-    }
-    #[repr(C)]
     #[derive(Clone, Copy)]
     pub struct PhysicalDeviceOpacityMicromapFeaturesEXT<'a> {
         pub s_type: crate::vk::StructureType,
@@ -822,6 +801,7 @@ pub(crate) mod reexport {
             self
         }
     }
+    pub type MicromapTriangleEXT = crate::vk::MicromapTriangleKHR;
     ///Provided by [`ext::opacity_micromap`](crate::ext::opacity_micromap)
     impl crate::vk::QueryType {
         pub const MICROMAP_SERIALIZATION_SIZE_EXT: Self = Self(1000396000);
@@ -899,42 +879,20 @@ pub(crate) mod reexport {
         }
         pub const BUILD_EXT: Self = Self(0);
     }
-    #[repr(transparent)]
-    #[derive(Clone, Copy, PartialEq, Eq, PartialOrd, Ord, Hash, Default)]
-    #[derive(Debug)]
-    pub struct OpacityMicromapFormatEXT(pub(crate) i32);
     ///Provided by [`ext::opacity_micromap`](crate::ext::opacity_micromap)
-    impl OpacityMicromapFormatEXT {
-        #[inline]
-        pub const fn from_raw(x: i32) -> Self {
-            Self(x)
-        }
-        #[inline]
-        pub const fn as_raw(self) -> i32 {
-            self.0
-        }
-        pub const _2_STATE_EXT: Self = Self(1);
-        pub const _4_STATE_EXT: Self = Self(2);
+    impl crate::vk::OpacityMicromapFormatKHR {
+        pub const _2_STATE_EXT: Self = Self::_2_STATE_KHR;
+        pub const _4_STATE_EXT: Self = Self::_4_STATE_KHR;
     }
-    #[repr(transparent)]
-    #[derive(Clone, Copy, PartialEq, Eq, PartialOrd, Ord, Hash, Default)]
-    #[derive(Debug)]
-    pub struct OpacityMicromapSpecialIndexEXT(pub(crate) i32);
     ///Provided by [`ext::opacity_micromap`](crate::ext::opacity_micromap)
-    impl OpacityMicromapSpecialIndexEXT {
-        #[inline]
-        pub const fn from_raw(x: i32) -> Self {
-            Self(x)
-        }
-        #[inline]
-        pub const fn as_raw(self) -> i32 {
-            self.0
-        }
-        pub const FULLY_TRANSPARENT_EXT: Self = Self(-1);
-        pub const FULLY_OPAQUE_EXT: Self = Self(-2);
-        pub const FULLY_UNKNOWN_TRANSPARENT_EXT: Self = Self(-3);
-        pub const FULLY_UNKNOWN_OPAQUE_EXT: Self = Self(-4);
+    impl crate::vk::OpacityMicromapSpecialIndexKHR {
+        pub const FULLY_TRANSPARENT_EXT: Self = Self::FULLY_TRANSPARENT_KHR;
+        pub const FULLY_OPAQUE_EXT: Self = Self::FULLY_OPAQUE_KHR;
+        pub const FULLY_UNKNOWN_TRANSPARENT_EXT: Self = Self::FULLY_UNKNOWN_TRANSPARENT_KHR;
+        pub const FULLY_UNKNOWN_OPAQUE_EXT: Self = Self::FULLY_UNKNOWN_OPAQUE_KHR;
     }
+    pub type OpacityMicromapFormatEXT = crate::vk::OpacityMicromapFormatKHR;
+    pub type OpacityMicromapSpecialIndexEXT = crate::vk::OpacityMicromapSpecialIndexKHR;
     ///Provided by [`ext::opacity_micromap`](crate::ext::opacity_micromap)
     impl crate::vk::BufferUsageFlagBits {
         pub const MICROMAP_BUILD_INPUT_READ_ONLY_EXT: Self = Self(1 << 23);
@@ -942,17 +900,17 @@ pub(crate) mod reexport {
     }
     ///Provided by [`ext::opacity_micromap`](crate::ext::opacity_micromap)
     impl crate::vk::PipelineCreateFlagBits {
-        pub const RAY_TRACING_OPACITY_MICROMAP_EXT: Self = Self(1 << 24);
+        pub const RAY_TRACING_OPACITY_MICROMAP_EXT: Self = Self::RAY_TRACING_OPACITY_MICROMAP_KHR;
     }
     ///Provided by [`ext::opacity_micromap`](crate::ext::opacity_micromap)
     impl crate::vk::GeometryInstanceFlagBitsKHR {
-        pub const FORCE_OPACITY_MICROMAP_2_STATE_EXT: Self = Self(1 << 4);
-        pub const DISABLE_OPACITY_MICROMAPS_EXT: Self = Self(1 << 5);
+        pub const FORCE_OPACITY_MICROMAP_2_STATE_EXT: Self = Self::FORCE_OPACITY_MICROMAP_2_STATE_KHR;
+        pub const DISABLE_OPACITY_MICROMAPS_EXT: Self = Self::DISABLE_OPACITY_MICROMAPS_KHR;
     }
     ///Provided by [`ext::opacity_micromap`](crate::ext::opacity_micromap)
     impl crate::vk::BuildAccelerationStructureFlagBitsKHR {
-        pub const ALLOW_OPACITY_MICROMAP_UPDATE_EXT: Self = Self(1 << 6);
-        pub const ALLOW_DISABLE_OPACITY_MICROMAPS_EXT: Self = Self(1 << 7);
+        pub const ALLOW_OPACITY_MICROMAP_UPDATE_EXT: Self = Self::ALLOW_OPACITY_MICROMAP_UPDATE_KHR;
+        pub const ALLOW_DISABLE_OPACITY_MICROMAPS_EXT: Self = Self::ALLOW_DISABLE_OPACITY_MICROMAPS_KHR;
         pub const ALLOW_OPACITY_MICROMAP_DATA_UPDATE_EXT: Self = Self(1 << 8);
     }
     ///Provided by [`ext::opacity_micromap`](crate::ext::opacity_micromap)
@@ -1125,6 +1083,15 @@ pub(crate) mod reexport {
     ///Provided by [`ext::opacity_micromap`](crate::ext::opacity_micromap)
     impl MicromapCreateFlagBitsEXT {
         pub const DEVICE_ADDRESS_CAPTURE_REPLAY_EXT: Self = Self(1 << 0);
+    }
+    ///Provided by [`ext::opacity_micromap`](crate::ext::opacity_micromap)
+    impl crate::vk::PipelineCreateFlagBits2 {
+        pub const RAY_TRACING_OPACITY_MICROMAP_EXT: Self = Self::RAY_TRACING_OPACITY_MICROMAP_KHR;
+    }
+    ///Provided by [`ext::opacity_micromap`](crate::ext::opacity_micromap)
+    impl crate::vk::BufferUsageFlagBits2 {
+        pub const MICROMAP_BUILD_INPUT_READ_ONLY_EXT: Self = Self(1 << 23);
+        pub const MICROMAP_STORAGE_EXT: Self = Self(1 << 24);
     }
     #[repr(transparent)]
     #[derive(Eq, PartialEq, Ord, PartialOrd, Clone, Copy, Hash, Default)]

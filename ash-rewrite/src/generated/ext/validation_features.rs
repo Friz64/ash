@@ -21,6 +21,14 @@ unsafe impl<'a> crate::Extends<crate::vk::ShaderModuleCreateInfo<'_>>
 for ValidationFeaturesEXT<'a> {}
 unsafe impl<'a> crate::Extends<crate::vk::ShaderCreateInfoEXT<'_>>
 for ValidationFeaturesEXT<'a> {}
+unsafe impl<'a> crate::Extends<crate::vk::PipelineShaderStageCreateInfo<'_>>
+for ValidationFeaturesEXT<'a> {}
+unsafe impl<'a> crate::Extends<crate::vk::GraphicsPipelineCreateInfo<'_>>
+for ValidationFeaturesEXT<'a> {}
+unsafe impl<'a> crate::Extends<crate::vk::ComputePipelineCreateInfo<'_>>
+for ValidationFeaturesEXT<'a> {}
+unsafe impl<'a> crate::Extends<crate::vk::RayTracingPipelineCreateInfoKHR<'_>>
+for ValidationFeaturesEXT<'a> {}
 impl<'a> Default for ValidationFeaturesEXT<'a> {
     fn default() -> Self {
         Self {

@@ -3238,6 +3238,9 @@ pub(crate) mod reexport {
         pub const RAY_TRACING_SKIP_BUILT_IN_PRIMITIVES_KHR: Self = Self(
             PipelineCreateFlagBits2::RAY_TRACING_SKIP_BUILT_IN_PRIMITIVES_KHR.0,
         );
+        pub const RAY_TRACING_OPACITY_MICROMAP_EXT: Self = Self(
+            PipelineCreateFlagBits2::RAY_TRACING_OPACITY_MICROMAP_EXT.0,
+        );
         pub const RAY_TRACING_ALLOW_SPHERES_AND_LINEAR_SWEPT_SPHERES_NV: Self = Self(
             PipelineCreateFlagBits2::RAY_TRACING_ALLOW_SPHERES_AND_LINEAR_SWEPT_SPHERES_NV
                 .0,
@@ -3313,9 +3316,6 @@ pub(crate) mod reexport {
         pub const RENDERING_FRAGMENT_DENSITY_MAP_ATTACHMENT_EXT: Self = Self(
             PipelineCreateFlagBits2::RENDERING_FRAGMENT_DENSITY_MAP_ATTACHMENT_EXT.0,
         );
-        pub const RAY_TRACING_OPACITY_MICROMAP_EXT: Self = Self(
-            PipelineCreateFlagBits2::RAY_TRACING_OPACITY_MICROMAP_EXT.0,
-        );
         pub const COLOR_ATTACHMENT_FEEDBACK_LOOP_EXT: Self = Self(
             PipelineCreateFlagBits2::COLOR_ATTACHMENT_FEEDBACK_LOOP_EXT.0,
         );
@@ -3348,6 +3348,12 @@ pub(crate) mod reexport {
         );
         pub const PER_LAYER_FRAGMENT_DENSITY_VALVE: Self = Self(
             PipelineCreateFlagBits2::PER_LAYER_FRAGMENT_DENSITY_VALVE.0,
+        );
+        pub const RAY_TRACING_OPACITY_MICROMAP_KHR: Self = Self(
+            PipelineCreateFlagBits2::RAY_TRACING_OPACITY_MICROMAP_KHR.0,
+        );
+        pub const OPACITY_MICROMAP_DISALLOW_MIXED_SPECIAL_INDEX_KHR: Self = Self(
+            PipelineCreateFlagBits2::OPACITY_MICROMAP_DISALLOW_MIXED_SPECIAL_INDEX_KHR.0,
         );
         pub const _64_INDEXING_EXT: Self = Self(
             PipelineCreateFlagBits2::_64_INDEXING_EXT.0,
@@ -3456,6 +3462,12 @@ pub(crate) mod reexport {
         pub const DESCRIPTOR_HEAP_EXT: Self = Self(
             BufferUsageFlagBits2::DESCRIPTOR_HEAP_EXT.0,
         );
+        pub const MICROMAP_BUILD_INPUT_READ_ONLY_EXT: Self = Self(
+            BufferUsageFlagBits2::MICROMAP_BUILD_INPUT_READ_ONLY_EXT.0,
+        );
+        pub const MICROMAP_STORAGE_EXT: Self = Self(
+            BufferUsageFlagBits2::MICROMAP_STORAGE_EXT.0,
+        );
         pub const TRANSFER_SRC_KHR: Self = Self(
             BufferUsageFlagBits2::TRANSFER_SRC_KHR.0,
         );
@@ -3525,12 +3537,6 @@ pub(crate) mod reexport {
         );
         pub const PUSH_DESCRIPTORS_DESCRIPTOR_BUFFER_EXT: Self = Self(
             BufferUsageFlagBits2::PUSH_DESCRIPTORS_DESCRIPTOR_BUFFER_EXT.0,
-        );
-        pub const MICROMAP_BUILD_INPUT_READ_ONLY_EXT: Self = Self(
-            BufferUsageFlagBits2::MICROMAP_BUILD_INPUT_READ_ONLY_EXT.0,
-        );
-        pub const MICROMAP_STORAGE_EXT: Self = Self(
-            BufferUsageFlagBits2::MICROMAP_STORAGE_EXT.0,
         );
         pub const COMPRESSED_DATA_DGF1_AMDX: Self = Self(
             BufferUsageFlagBits2::COMPRESSED_DATA_DGF1_AMDX.0,

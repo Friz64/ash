@@ -4258,6 +4258,9 @@ pub(crate) mod reexport {
     #[derive(Clone, Copy)]
     pub struct PrivateDataSlotCreateFlags(u32);
     impl PrivateDataSlotCreateFlags {
+        pub const BASE_OBJECT_HANDLE_NV: Self = Self(
+            PrivateDataSlotCreateFlagBits::BASE_OBJECT_HANDLE_NV.0,
+        );
         pub const fn empty() -> Self {
             Self(0)
         }
@@ -4321,6 +4324,9 @@ pub(crate) mod reexport {
             Self(!self.0)
         }
     }
+    #[repr(transparent)]
+    #[derive(Clone, Copy, Default)]
+    pub struct PrivateDataSlotCreateFlagBits(pub(crate) u32);
     #[repr(transparent)]
     #[derive(Clone, Copy)]
     pub struct PipelineCreationFeedbackFlags(u32);
@@ -5069,6 +5075,9 @@ pub(crate) mod reexport {
         pub const VIDEO_ENCODE_DPB_KHR: Self = Self(
             FormatFeatureFlagBits2::VIDEO_ENCODE_DPB_KHR.0,
         );
+        pub const BLOCK_MATCHING_SXD_QCOM: Self = Self(
+            FormatFeatureFlagBits2::BLOCK_MATCHING_SXD_QCOM.0,
+        );
         pub const SAMPLED_IMAGE_KHR: Self = Self(
             FormatFeatureFlagBits2::SAMPLED_IMAGE_KHR.0,
         );
@@ -5191,6 +5200,9 @@ pub(crate) mod reexport {
         );
         pub const VIDEO_ENCODE_EMPHASIS_MAP_KHR: Self = Self(
             FormatFeatureFlagBits2::VIDEO_ENCODE_EMPHASIS_MAP_KHR.0,
+        );
+        pub const SAMPLED_IMAGE_FILTER_LINEAR_2D_IMG: Self = Self(
+            FormatFeatureFlagBits2::SAMPLED_IMAGE_FILTER_LINEAR_2D_IMG.0,
         );
         pub const DEPTH_COPY_ON_COMPUTE_QUEUE_KHR: Self = Self(
             FormatFeatureFlagBits2::DEPTH_COPY_ON_COMPUTE_QUEUE_KHR.0,

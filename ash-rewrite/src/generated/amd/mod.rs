@@ -22,5 +22,6 @@ pub mod shader_info;
 pub mod display_native_hdr;
 pub mod buffer_marker;
 pub mod anti_lag;
+pub mod gpa_interface;
 pub mod draw_indirect_count;
 pub mod rasterization_order;

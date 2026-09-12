@@ -89,7 +89,7 @@ impl Code for Struct {
             #tagged_structure
         };
 
-        bitfield_i = 0;
+        let mut bitfield_i = 0;
         let default = if contains_static_array || tagged_structure.is_some() {
             let defaults = self.members.iter().map(|member| match member {
                 StructMember::Normal(StructDecl { decl, .. }) => {

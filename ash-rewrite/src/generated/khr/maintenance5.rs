@@ -151,7 +151,6 @@ pub(crate) mod reexport {
         pub const RAY_TRACING_ALLOW_MOTION_NV: Self = Self(1 << 20);
         pub const RENDERING_FRAGMENT_SHADING_RATE_ATTACHMENT_KHR: Self = Self(1 << 21);
         pub const RENDERING_FRAGMENT_DENSITY_MAP_ATTACHMENT_EXT: Self = Self(1 << 22);
-        pub const RAY_TRACING_OPACITY_MICROMAP_EXT: Self = Self(1 << 24);
         pub const COLOR_ATTACHMENT_FEEDBACK_LOOP_EXT: Self = Self(1 << 25);
         pub const DEPTH_STENCIL_ATTACHMENT_FEEDBACK_LOOP_EXT: Self = Self(1 << 26);
         pub const NO_PROTECTED_ACCESS_EXT: Self = Self::NO_PROTECTED_ACCESS;
@@ -187,8 +186,6 @@ pub(crate) mod reexport {
         pub const SAMPLER_DESCRIPTOR_BUFFER_EXT: Self = Self(1 << 21);
         pub const RESOURCE_DESCRIPTOR_BUFFER_EXT: Self = Self(1 << 22);
         pub const PUSH_DESCRIPTORS_DESCRIPTOR_BUFFER_EXT: Self = Self(1 << 26);
-        pub const MICROMAP_BUILD_INPUT_READ_ONLY_EXT: Self = Self(1 << 23);
-        pub const MICROMAP_STORAGE_EXT: Self = Self(1 << 24);
     }
     ///Provided by [`khr::maintenance5`](crate::khr::maintenance5)
     impl crate::vk::ShaderCreateFlagBitsEXT {

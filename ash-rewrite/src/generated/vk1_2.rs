@@ -4201,6 +4201,9 @@ pub(crate) mod reexport {
         pub const MESA_HONEYKRISP: Self = Self(26);
         pub const VULKAN_SC_EMULATION_ON_VULKAN: Self = Self(27);
         pub const MESA_KOSMICKRISP: Self = Self(28);
+        pub const MESA_GFXSTREAM: Self = Self(29);
+        pub const APE_SOFT: Self = Self(30);
+        pub const RESERVED_31: Self = Self(31);
     }
     #[repr(transparent)]
     #[derive(Clone, Copy, PartialEq, Eq, PartialOrd, Ord, Hash, Default)]

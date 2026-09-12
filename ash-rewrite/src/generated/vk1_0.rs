@@ -9334,6 +9334,7 @@ pub(crate) mod reexport {
         pub const MESA: Self = Self(0x10005);
         pub const POCL: Self = Self(0x10006);
         pub const MOBILEYE: Self = Self(0x10007);
+        pub const APE: Self = Self(0x10008);
     }
     #[repr(transparent)]
     #[derive(Clone, Copy)]
@@ -12163,6 +12164,9 @@ pub(crate) mod reexport {
         );
         pub const PROTECTED_ACCESS_ONLY_EXT: Self = Self(
             PipelineCreateFlagBits::PROTECTED_ACCESS_ONLY_EXT.0,
+        );
+        pub const RAY_TRACING_OPACITY_MICROMAP_KHR: Self = Self(
+            PipelineCreateFlagBits::RAY_TRACING_OPACITY_MICROMAP_KHR.0,
         );
         pub const fn empty() -> Self {
             Self(0)
@@ -16182,7 +16186,7 @@ pub(crate) mod reexport {
         ((version) & 0xFFF)
     }
     pub const API_VERSION_1_0: u32 = crate::vk::make_api_version(0, 1, 0, 0);
-    pub const HEADER_VERSION: u32 = 350;
+    pub const HEADER_VERSION: u32 = 362;
     pub const HEADER_VERSION_COMPLETE: u32 = crate::vk::make_api_version(
         0,
         1,

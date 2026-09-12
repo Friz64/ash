@@ -1558,6 +1558,12 @@ pub(crate) mod reexport {
         pub const DISABLE_OPACITY_MICROMAPS_EXT: Self = Self(
             GeometryInstanceFlagBitsKHR::DISABLE_OPACITY_MICROMAPS_EXT.0,
         );
+        pub const FORCE_OPACITY_MICROMAP_2_STATE_KHR: Self = Self(
+            GeometryInstanceFlagBitsKHR::FORCE_OPACITY_MICROMAP_2_STATE_KHR.0,
+        );
+        pub const DISABLE_OPACITY_MICROMAPS_KHR: Self = Self(
+            GeometryInstanceFlagBitsKHR::DISABLE_OPACITY_MICROMAPS_KHR.0,
+        );
         pub const fn empty() -> Self {
             Self(0)
         }
@@ -1688,6 +1694,15 @@ pub(crate) mod reexport {
         );
         pub const ALLOW_CLUSTER_OPACITY_MICROMAPS_NV: Self = Self(
             BuildAccelerationStructureFlagBitsKHR::ALLOW_CLUSTER_OPACITY_MICROMAPS_NV.0,
+        );
+        pub const ALLOW_OPACITY_MICROMAP_UPDATE_KHR: Self = Self(
+            BuildAccelerationStructureFlagBitsKHR::ALLOW_OPACITY_MICROMAP_UPDATE_KHR.0,
+        );
+        pub const ALLOW_DISABLE_OPACITY_MICROMAPS_KHR: Self = Self(
+            BuildAccelerationStructureFlagBitsKHR::ALLOW_DISABLE_OPACITY_MICROMAPS_KHR.0,
+        );
+        pub const MICROMAP_LOSSY_KHR: Self = Self(
+            BuildAccelerationStructureFlagBitsKHR::MICROMAP_LOSSY_KHR.0,
         );
         pub const fn empty() -> Self {
             Self(0)
