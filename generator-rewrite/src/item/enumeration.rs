@@ -1,10 +1,7 @@
 use super::{Code, Context};
 use crate::output::{CodeMap, Destination};
 use analysis::{
-    item::{
-        Named,
-        enumeration::{Enum, Item, Value},
-    },
+    item::enumeration::{Enum, Item, Value},
     lifetime::Lifetime,
     rust::RustTokens,
     xml::cexpr::CExprItem,
@@ -17,7 +14,7 @@ impl Code for Enum {
     #[instrument(skip(ctx))]
     fn code(&self, ctx: &Context) -> CodeMap {
         trace!("generating");
-        let name = ctx.type_tokens(self.name(), false, &Lifetime::placeholder());
+        let name = ctx.type_tokens(self.name, false, &Lifetime::placeholder());
         let code = quote! {
             #[repr(transparent)]
             #[derive(Clone, Copy, PartialEq, Eq, PartialOrd, Ord, Hash, Default)]

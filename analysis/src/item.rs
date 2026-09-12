@@ -74,8 +74,8 @@ pub(crate) struct RequireMap {
     pub c_macro: HashMap<CMacroName, RequiredBy>,
 }
 
-pub trait Named<T> {
-    fn name(&self) -> T;
+trait NamedType {
+    fn name(&self) -> TypeName;
 }
 
 #[derive(Debug)]
@@ -255,30 +255,34 @@ impl Items {
                 TypeItem::Alias,
             );
 
-            Items::collect_item(
-                &mut items.func_pointers,
-                &library.xml.func_pointers,
-                |xml| FuncPointer::new(&require_map, xml),
+            items.func_pointers.extend(
+                (library.xml.func_pointers.iter())
+                    .filter_map(|xml| FuncPointer::new(&require_map, xml))
+                    .map(|ty| (ty.name, ty)),
             );
 
-            Items::collect_item(&mut items.constants, &library.xml.constants, |xml| {
-                Constant::from_base_constant(&require_map, xml)
-            });
-
-            Items::collect_item(&mut items.cmacros, &library.xml.cmacros, |xml| {
-                CMacro::new(&require_map, xml)
-            });
-
-            items.collect_command(
-                &library.xml.commands,
-                |xml| Command::new(&require_map, xml),
-                CommandItem::Command,
+            items.constants.extend(
+                (library.xml.constants.iter())
+                    .filter_map(|xml| Constant::from_base_constant(&require_map, xml))
+                    .map(|ty| (ty.name, ty)),
             );
 
-            items.collect_command(
-                &library.xml.command_aliases,
-                |xml| CommandAlias::new(&require_map, xml),
-                CommandItem::Alias,
+            items.cmacros.extend(
+                (library.xml.cmacros.iter())
+                    .filter_map(|xml| CMacro::new(&require_map, xml))
+                    .map(|ty| (ty.name, ty)),
+            );
+
+            items.commands.extend(
+                (library.xml.commands.iter())
+                    .filter_map(|xml| Command::new(&require_map, xml))
+                    .map(|cmd| (cmd.name, CommandItem::Command(cmd))),
+            );
+
+            items.commands.extend(
+                (library.xml.command_aliases.iter())
+                    .filter_map(|xml| CommandAlias::new(&require_map, xml))
+                    .map(|cmd| (cmd.name, CommandItem::Alias(cmd))),
             );
         }
 
@@ -312,7 +316,7 @@ impl Items {
 
             for constant in &require.constants {
                 if let Some(constant) = Constant::from_require(required_by, constant) {
-                    items.constants.insert(constant.name(), constant);
+                    items.constants.insert(constant.name, constant);
                 }
             }
         });
@@ -320,7 +324,7 @@ impl Items {
         items
     }
 
-    fn collect_type<'a, X: 'a, T: Named<TypeName>>(
+    fn collect_type<'a, X: 'a, T: NamedType>(
         &mut self,
         xml_src: impl IntoIterator<Item = &'a X>,
         construct: impl FnMut(&X) -> Option<T>,
@@ -332,33 +336,6 @@ impl Items {
                 .filter_map(construct)
                 .map(|ty| (ty.name(), en(ty))),
         )
-    }
-
-    fn collect_command<'a, X: 'a, T: Named<CommandName>>(
-        &mut self,
-        xml_src: impl IntoIterator<Item = &'a X>,
-        construct: impl FnMut(&X) -> Option<T>,
-        en: impl Fn(T) -> CommandItem,
-    ) {
-        self.commands.extend(
-            xml_src
-                .into_iter()
-                .filter_map(construct)
-                .map(|cmd| (cmd.name(), en(cmd))),
-        )
-    }
-
-    fn collect_item<'a, X: 'a, N, T: Named<N>>(
-        target: &mut impl Extend<(N, T)>,
-        xml_src: impl IntoIterator<Item = &'a X>,
-        construct: impl FnMut(&X) -> Option<T>,
-    ) {
-        target.extend(
-            xml_src
-                .into_iter()
-                .filter_map(construct)
-                .map(|ty| (ty.name(), ty)),
-        );
     }
 }
 

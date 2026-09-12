@@ -1,5 +1,5 @@
 use crate::{
-    item::{Named, RequireMap, RequiredBy},
+    item::{NamedType, RequireMap, RequiredBy},
     name::{CommandName, TypeName},
     xml,
 };
@@ -12,7 +12,7 @@ pub struct TypeAlias {
     pub alias: TypeName,
 }
 
-impl Named<TypeName> for TypeAlias {
+impl NamedType for TypeAlias {
     fn name(&self) -> TypeName {
         self.name
     }
@@ -37,12 +37,6 @@ pub struct CommandAlias {
     pub required_by: RequiredBy,
     pub name: CommandName,
     pub alias: CommandName,
-}
-
-impl Named<CommandName> for CommandAlias {
-    fn name(&self) -> CommandName {
-        self.name
-    }
 }
 
 impl CommandAlias {

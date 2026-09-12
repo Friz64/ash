@@ -1,6 +1,6 @@
 use crate::{
     decl::{Decl, Ty},
-    item::{Named, RequireMap, RequiredBy},
+    item::{NamedType, RequireMap, RequiredBy},
     name::{EnumeratorName, TypeName, VariableName},
     xml,
 };
@@ -42,7 +42,7 @@ pub enum Length {
     Custom(&'static str),
 }
 
-impl Named<TypeName> for Struct {
+impl NamedType for Struct {
     fn name(&self) -> TypeName {
         self.name
     }
@@ -143,7 +143,7 @@ pub struct Union {
     pub members: Vec<Decl>,
 }
 
-impl Named<TypeName> for Union {
+impl NamedType for Union {
     fn name(&self) -> TypeName {
         self.name
     }

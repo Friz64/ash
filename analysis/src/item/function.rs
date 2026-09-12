@@ -1,6 +1,6 @@
 use crate::{
     decl::{Decl, Ty},
-    item::{Named, RequireMap, RequiredBy},
+    item::{RequireMap, RequiredBy},
     name::{CommandName, FuncPointerName},
     xml::{self},
 };
@@ -12,12 +12,6 @@ pub struct FuncPointer {
     pub name: FuncPointerName,
     pub params: Vec<Decl>,
     pub return_type: Option<Ty>,
-}
-
-impl Named<FuncPointerName> for FuncPointer {
-    fn name(&self) -> FuncPointerName {
-        self.name
-    }
 }
 
 impl FuncPointer {
@@ -48,12 +42,6 @@ pub struct Command {
     pub name: CommandName,
     pub params: Vec<CommandParam>,
     pub return_type: Option<Ty>,
-}
-
-impl Named<CommandName> for Command {
-    fn name(&self) -> CommandName {
-        self.name
-    }
 }
 
 impl Command {

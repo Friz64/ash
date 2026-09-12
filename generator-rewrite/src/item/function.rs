@@ -1,10 +1,7 @@
 use super::{Code, Context};
 use crate::output::{CodeMap, Destination};
 use analysis::{
-    item::{
-        Named,
-        function::{Command, FuncPointer},
-    },
+    item::function::{Command, FuncPointer},
     lifetime::Lifetime,
     rust::RustTokens,
 };
@@ -15,7 +12,7 @@ impl Code for FuncPointer {
     #[instrument(skip(ctx))]
     fn code(&self, ctx: &Context) -> CodeMap {
         trace!("generating");
-        let name = ctx.func_pointer_tokens(self.name(), false);
+        let name = ctx.func_pointer_tokens(self.name, false);
         let params = self
             .params
             .iter()
@@ -37,7 +34,7 @@ impl Code for Command {
     #[instrument(skip(ctx))]
     fn code(&self, ctx: &Context) -> CodeMap {
         trace!("generating");
-        let name = ctx.command_tokens(self.name(), false);
+        let name = ctx.command_tokens(self.name, false);
         let params = self
             .params
             .iter()

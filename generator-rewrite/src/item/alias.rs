@@ -1,10 +1,7 @@
 use super::{Code, Context};
 use crate::{CodeMap, output::Destination};
 use analysis::{
-    item::{
-        Named,
-        alias::{CommandAlias, TypeAlias},
-    },
+    item::alias::{CommandAlias, TypeAlias},
     lifetime::Lifetime,
     rust::RustTokens,
 };
@@ -16,7 +13,7 @@ impl Code for TypeAlias {
     fn code(&self, ctx: &Context) -> CodeMap {
         trace!("generating");
         let lifetime = Lifetime(format_ident!("a"));
-        let name = ctx.type_tokens(self.name(), false, &lifetime);
+        let name = ctx.type_tokens(self.name, false, &lifetime);
         let alias = ctx.type_tokens(self.alias, true, &lifetime);
 
         let code = quote! {
@@ -31,7 +28,7 @@ impl Code for CommandAlias {
     #[instrument(skip(ctx))]
     fn code(&self, ctx: &Context) -> CodeMap {
         trace!("generating");
-        let name = ctx.command_tokens(self.name(), false);
+        let name = ctx.command_tokens(self.name, false);
         let alias = ctx.command_tokens(self.alias, true);
         let code = quote! {
             pub type #name = #alias;

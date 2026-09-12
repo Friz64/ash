@@ -1,10 +1,6 @@
 use super::{Code, Context};
 use crate::output::{CodeMap, Destination};
-use analysis::{
-    item::{Named, cmacro::CMacro},
-    rust::RustTokens,
-    xml::cexpr::CExprItem,
-};
+use analysis::{item::cmacro::CMacro, rust::RustTokens, xml::cexpr::CExprItem};
 use quote::{format_ident, quote};
 use tracing::{instrument, trace};
 
@@ -13,7 +9,7 @@ impl Code for CMacro {
     fn code(&self, ctx: &Context) -> CodeMap {
         trace!("generating");
 
-        let name = ctx.cmacro_tokens(self.name(), false);
+        let name = ctx.cmacro_tokens(self.name, false);
         let expr = CExprItem::to_rust(self.cexpr.iter(), ctx);
         let code = if self.has_args() {
             quote! {

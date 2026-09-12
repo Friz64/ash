@@ -4,10 +4,7 @@ use super::{Code, Context};
 use crate::output::{CodeMap, Destination};
 use analysis::{
     decl::{CPrimaryType, Decl, Mutability, Ty},
-    item::{
-        Named,
-        structure::{Length, Struct, StructDecl, StructMember, Union},
-    },
+    item::structure::{Length, Struct, StructDecl, StructMember, Union},
     lifetime::Lifetime,
     name::TypeName,
     rust::{RustTokens, RustTy},
@@ -21,10 +18,10 @@ impl Code for Struct {
     fn code(&self, ctx: &Context) -> CodeMap {
         trace!("generating");
         let lifetime = Lifetime(format_ident!("a"));
-        let name = ctx.type_tokens(self.name(), false, &lifetime);
+        let name = ctx.type_tokens(self.name, false, &lifetime);
 
         let lifetime_tok = ctx
-            .type_has_lifetime(self.name())
+            .type_has_lifetime(self.name)
             .then(|| quote! { #lifetime });
         let mut bitfield_i = 0;
 
@@ -54,11 +51,11 @@ impl Code for Struct {
             }
         });
 
-        let lifetime_marker = ctx.type_has_lifetime(self.name()).then(|| {
+        let lifetime_marker = ctx.type_has_lifetime(self.name).then(|| {
             quote! { pub _marker: ::core::marker::PhantomData<& #lifetime ()> }
         });
 
-        let lifetime_marker_val = ctx.type_has_lifetime(self.name()).then(|| {
+        let lifetime_marker_val = ctx.type_has_lifetime(self.name).then(|| {
             quote! { _marker: ::core::marker::PhantomData }
         });
 
@@ -361,9 +358,9 @@ impl Code for Union {
         trace!("generating");
         let lifetime = Lifetime(format_ident!("a"));
         let lifetime_tok = ctx
-            .type_has_lifetime(self.name())
+            .type_has_lifetime(self.name)
             .then(|| quote! { #lifetime });
-        let name = ctx.type_tokens(self.name(), false, &lifetime);
+        let name = ctx.type_tokens(self.name, false, &lifetime);
         let members = (self.members.iter()).map(|decl| decl.to_rust().tokens(ctx, &lifetime));
 
         let code = quote! {
