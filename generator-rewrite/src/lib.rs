@@ -18,10 +18,10 @@ use quote::format_ident;
 use quote::quote;
 use std::{fmt::Display, io, ops::Deref, path::Path};
 use syn::Ident;
-use tracing::debug;
+use tracing::info;
 
 pub fn generate(analysis: &Analysis, output_path: impl AsRef<Path>) -> io::Result<()> {
-    debug!("building codemap");
+    info!("building codemap");
     let mut codemap = CodeMap::default();
 
     let ctx = Context(analysis.result());

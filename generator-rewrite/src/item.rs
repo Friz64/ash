@@ -1,6 +1,6 @@
 use crate::{Context, output::CodeMap};
 use analysis::item::{CommandItem, TypeItem};
-use tracing::debug;
+use tracing::info;
 
 mod alias;
 mod basetype;
@@ -53,7 +53,7 @@ impl CodeMap {
 }
 
 pub fn generate_code(ctx: &Context, codemap: &mut CodeMap) {
-    debug!("generating structures code");
+    info!("generating structures code");
     codemap.extend_from_items(ctx, ctx.items.types.values());
     codemap.extend_from_items(ctx, ctx.items.func_pointers.values());
     codemap.extend_from_items(ctx, ctx.items.commands.values());
