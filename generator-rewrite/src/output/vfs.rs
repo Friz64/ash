@@ -4,7 +4,7 @@ use std::{
     fs, io,
     path::{Path, PathBuf},
 };
-use tracing::{debug, trace};
+use tracing::{info, trace};
 
 fn content(tokens: TokenStream) -> String {
     format!(
@@ -31,7 +31,7 @@ impl VirtualRustFs {
     /// This is nicer than running a `fs::remove_dir_all` and then recreating everything.
     /// Also editors watching a file for changes will react/update correctly.
     pub fn sync_to(self, target: impl AsRef<Path>) -> io::Result<()> {
-        debug!("writing {} files to disk", self.0.len());
+        info!("writing {} files to disk", self.0.len());
 
         let target = target.as_ref();
         fs::create_dir_all(target)?;

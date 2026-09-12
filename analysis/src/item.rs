@@ -30,7 +30,7 @@ use std::{
     iter,
 };
 use tinyvec::{ArrayVec, array_vec};
-use tracing::debug;
+use tracing::info;
 
 #[derive(Debug, Clone, Copy, PartialEq, Eq, Hash)]
 pub struct RequiredBy {
@@ -135,7 +135,7 @@ pub struct Items {
 
 impl Items {
     pub fn collect(libraries: &[&Library]) -> Items {
-        debug!("collecting items");
+        info!("collecting items");
         let mut items = Items::default();
 
         let mut require_map = RequireMap::default();

@@ -15,7 +15,7 @@ use proc_macro2::{Literal, TokenStream};
 use quote::{format_ident, quote};
 use std::ffi::CString;
 use syn::Ident;
-use tracing::debug;
+use tracing::info;
 
 #[derive(Debug, Clone, Copy, Hash, PartialEq, Eq)]
 pub enum FunctionType {
@@ -68,7 +68,7 @@ impl FunctionType {
 }
 
 pub fn generate_code(ctx: &Context, codemap: &mut CodeMap) {
-    debug!("generating loader code");
+    info!("generating loader code");
 
     #[derive(Default)]
     struct Table {
