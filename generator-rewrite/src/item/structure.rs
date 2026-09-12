@@ -4,7 +4,7 @@ use super::{Code, Context};
 use crate::output::{CodeMap, Destination};
 use analysis::{
     decl::{CPrimaryType, Decl, Mutability, Ty},
-    item::structure::{Length, Struct, StructDecl, StructMember, Union},
+    item::structure::{Length, MemberLength, Struct, StructDecl, StructMember, Union},
     lifetime::Lifetime,
     name::TypeName,
     rust::{RustTokens, RustTy},
@@ -206,7 +206,7 @@ impl Code for Struct {
 
 fn decl_setter_and_getter(
     decl: &Decl,
-    len: &[Length],
+    len: &Length,
     ctx: &Context<'_>,
     lifetime: &Lifetime,
 ) -> TokenStream {
@@ -222,7 +222,10 @@ fn decl_setter_and_getter(
             }
         }
         Ty::Ptr(Ty::CPrimary(CPrimaryType::Char), mutability)
-            if len.first().is_some_and(|l| l == &Length::NullTerminated) =>
+            if let Length::Some {
+                null_terminated: true,
+                member: _,
+            } = len =>
         {
             let ty = RustTy::Ref(Box::new(RustTy::CStr), mutability).tokens(ctx, lifetime);
             let field_name_as_cstr = format_ident!("{field_name}_as_c_str");
@@ -242,7 +245,10 @@ fn decl_setter_and_getter(
             }
         }
         Ty::Array(Ty::CPrimary(CPrimaryType::Char), _)
-            if len.first().is_some_and(|l| l == &Length::NullTerminated) =>
+            if let Length::Some {
+                null_terminated: true,
+                member: _,
+            } = len =>
         {
             let field_name_as_cstr = format_ident!("{field_name}_as_c_str");
             quote! {
@@ -255,8 +261,13 @@ fn decl_setter_and_getter(
                 }
             }
         }
-        Ty::Array(base, _) if let Some(Length::Member(len_var)) = len.first() => {
-            let len_var = ctx.var_name_token(*len_var);
+        Ty::Array(base, _)
+            if let Length::Some {
+                null_terminated: _,
+                member: Some(member_length),
+            } = len =>
+        {
+            let len_var = ctx.var_name_token(member_length.var);
             let field_name_as_slice = format_ident!("{field_name}_as_slice");
             let base_ty = array_base_ty(base, ctx, lifetime, len);
             quote! {
@@ -271,7 +282,12 @@ fn decl_setter_and_getter(
                 }
             }
         }
-        Ty::Ptr(base, mutability) if let Some(Length::Member(len_var)) = len.first() => {
+        Ty::Ptr(base, mutability)
+            if let Length::Some {
+                null_terminated: _,
+                member: Some(ref member_length),
+            } = *len =>
+        {
             let mut ptr = match mutability {
                 Mutability::Not => quote! { .as_ptr() },
                 Mutability::Mut => quote! { .as_mut_ptr() },
@@ -283,14 +299,14 @@ fn decl_setter_and_getter(
                 }
                 _ => {
                     let ty = array_base_ty(base, ctx, lifetime, len);
-                    if len.get(1) == Some(&Length::Pointer) {
+                    if member_length.pointer {
                         ptr = quote! { #ptr.cast() }
                     }
                     quote! { [#ty] }
                 }
             };
 
-            let len_var = ctx.var_name_token(*len_var);
+            let len_var = ctx.var_name_token(member_length.var);
             let mutability = match mutability {
                 Mutability::Not => quote! {},
                 Mutability::Mut => quote! {mut},
@@ -303,7 +319,13 @@ fn decl_setter_and_getter(
                 }
             }
         }
-        Ty::Ptr(base, mutability) if len.first().is_none_or(|l| l == &Length::Pointer) => {
+        Ty::Ptr(base, mutability)
+            if let Length::None
+            | Length::Some {
+                null_terminated: _,
+                member: Some(MemberLength { pointer: true, .. }),
+            } = len =>
+        {
             let ty = RustTy::Ref(Box::new(base.to_rust()), mutability).tokens(ctx, lifetime);
             quote! {
                 pub fn #field_name(mut self, #field_name: #ty) -> Self {
@@ -312,20 +334,18 @@ fn decl_setter_and_getter(
                 }
             }
         }
-        Ty::Ptr(base, mutability) if let Some(Length::Custom(custom)) = len.first() => {
-            match *custom {
-                _ => {
-                    tracing::warn!(?custom, "unhandled custom length");
-                    let ty = decl.ty.to_rust().tokens(ctx, lifetime);
-                    quote! {
-                        pub fn #field_name(mut self, #field_name: #ty) -> Self {
-                            self.#field_name = #field_name;
-                            self
-                        }
+        Ty::Ptr(base, mutability) if let Length::Custom(custom) = len => match *custom {
+            _ => {
+                tracing::warn!(?custom, "unhandled custom length");
+                let ty = decl.ty.to_rust().tokens(ctx, lifetime);
+                quote! {
+                    pub fn #field_name(mut self, #field_name: #ty) -> Self {
+                        self.#field_name = #field_name;
+                        self
                     }
                 }
             }
-        }
+        },
         _ => {
             let ty = decl.ty.to_rust().tokens(ctx, lifetime);
             quote! {
@@ -338,9 +358,14 @@ fn decl_setter_and_getter(
     }
 }
 
-fn array_base_ty(base: &Ty, ctx: &Context<'_>, lifetime: &Lifetime, len: &[Length]) -> TokenStream {
+fn array_base_ty(base: &Ty, ctx: &Context<'_>, lifetime: &Lifetime, len: &Length) -> TokenStream {
     match base {
-        Ty::Ptr(ty, mutability) if len.get(1).is_some_and(|l| l == &Length::Pointer) => {
+        Ty::Ptr(ty, mutability)
+            if let Length::Some {
+                null_terminated: _,
+                member: Some(MemberLength { pointer: true, .. }),
+            } = len =>
+        {
             RustTy::Ref(Box::new(ty.to_rust()), *mutability).tokens(ctx, lifetime)
         }
         ty @ (Ty::ApiType(_)

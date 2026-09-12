@@ -28,18 +28,26 @@ pub struct Struct {
     pub members: Vec<StructMember>,
 }
 
-#[derive(Debug)]
-pub struct StructDecl {
-    pub decl: Decl,
-    pub len: Vec<Length>,
+#[derive(Debug, PartialEq, Eq)]
+pub struct MemberLength {
+    pub var: VariableName,
+    pub pointer: bool,
 }
 
 #[derive(Debug, PartialEq, Eq)]
 pub enum Length {
-    Member(VariableName),
-    NullTerminated,
-    Pointer,
+    None,
+    Some {
+        null_terminated: bool,
+        member: Option<MemberLength>,
+    },
     Custom(&'static str),
+}
+
+#[derive(Debug)]
+pub struct StructDecl {
+    pub decl: Decl,
+    pub len: Length,
 }
 
 impl NamedType for Struct {
@@ -66,23 +74,48 @@ impl Struct {
         let mut structure_type = None;
 
         for member in &xml.members {
-            let lens = if member.len.iter().any(|&s| s.starts_with("latexmath:")) {
-                &member.altlen
+            let len_slice = if member.altlen.is_empty() {
+                member.len.as_slice()
             } else {
-                &member.len
+                member.altlen.as_slice()
             };
 
-            let len = lens
-                .iter()
-                .map(|&s| match s {
-                    "null-terminated" => Length::NullTerminated,
-                    "1" => Length::Pointer,
-                    name if xml.members.iter().any(|mem| mem.c_decl.name == name) => {
-                        Length::Member(VariableName::new(name))
-                    }
-                    custom => Length::Custom(custom),
-                })
-                .collect::<Vec<_>>();
+            let len = match len_slice {
+                [] => Length::None,
+                ["null-terminated"] => Length::Some {
+                    null_terminated: true,
+                    member: None,
+                },
+                [custom_len]
+                    if !(xml.members.iter())
+                        .any(|xml_member| &xml_member.c_decl.name == custom_len) =>
+                {
+                    Length::Custom(custom_len)
+                }
+                [name, "null-terminated"] => Length::Some {
+                    null_terminated: true,
+                    member: Some(MemberLength {
+                        var: VariableName::new(name),
+                        pointer: false,
+                    }),
+                },
+                [name] => Length::Some {
+                    member: Some(MemberLength {
+                        var: VariableName::new(name),
+                        pointer: false,
+                    }),
+                    null_terminated: false,
+                },
+                [name, "1"] => Length::Some {
+                    member: Some(MemberLength {
+                        var: VariableName::new(name),
+                        pointer: true,
+                    }),
+                    null_terminated: false,
+                },
+                unknown => panic!("unknown length {unknown:?}"),
+            };
+
             let decl = Decl::from_c(require_map, &member.c_decl);
             if let Some(width) = member.c_decl.bitfield_width {
                 // this is currently the case everywhere,
