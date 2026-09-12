@@ -674,6 +674,9 @@ pub(crate) mod reexport {
         pub const DEFERRED_MEMORY_ALLOCATION_KHR: Self = Self(
             SwapchainCreateFlagBitsKHR::DEFERRED_MEMORY_ALLOCATION_KHR.0,
         );
+        pub const MULTISAMPLED_RENDER_TO_SINGLE_SAMPLED_EXT: Self = Self(
+            SwapchainCreateFlagBitsKHR::MULTISAMPLED_RENDER_TO_SINGLE_SAMPLED_EXT.0,
+        );
         pub const fn empty() -> Self {
             Self(0)
         }

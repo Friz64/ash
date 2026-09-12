@@ -929,6 +929,8 @@ impl H264ProfileIdc {
     pub const BASELINE: Self = Self(66);
     pub const MAIN: Self = Self(77);
     pub const HIGH: Self = Self(100);
+    pub const HIGH_10: Self = Self(110);
+    pub const HIGH_422: Self = Self(122);
     pub const HIGH_444_PREDICTIVE: Self = Self(244);
     pub const INVALID: Self = Self(0x7FFFFFF);
 }

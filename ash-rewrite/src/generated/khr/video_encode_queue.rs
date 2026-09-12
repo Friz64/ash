@@ -1089,6 +1089,27 @@ pub(crate) mod reexport {
         pub const BITSTREAM_HAS_OVERRIDES_KHR: Self = Self(
             VideoEncodeFeedbackFlagBitsKHR::BITSTREAM_HAS_OVERRIDES_KHR.0,
         );
+        pub const AVERAGE_QUANTIZATION_KHR: Self = Self(
+            VideoEncodeFeedbackFlagBitsKHR::AVERAGE_QUANTIZATION_KHR.0,
+        );
+        pub const MIN_QUANTIZATION_KHR: Self = Self(
+            VideoEncodeFeedbackFlagBitsKHR::MIN_QUANTIZATION_KHR.0,
+        );
+        pub const MAX_QUANTIZATION_KHR: Self = Self(
+            VideoEncodeFeedbackFlagBitsKHR::MAX_QUANTIZATION_KHR.0,
+        );
+        pub const INTRA_PIXELS_KHR: Self = Self(
+            VideoEncodeFeedbackFlagBitsKHR::INTRA_PIXELS_KHR.0,
+        );
+        pub const INTER_PIXELS_KHR: Self = Self(
+            VideoEncodeFeedbackFlagBitsKHR::INTER_PIXELS_KHR.0,
+        );
+        pub const SKIPPED_PIXELS_KHR: Self = Self(
+            VideoEncodeFeedbackFlagBitsKHR::SKIPPED_PIXELS_KHR.0,
+        );
+        pub const PICTURE_PARTITION_COUNT_KHR: Self = Self(
+            VideoEncodeFeedbackFlagBitsKHR::PICTURE_PARTITION_COUNT_KHR.0,
+        );
         pub const fn empty() -> Self {
             Self(0)
         }

@@ -84,7 +84,12 @@ impl CDecl<'static> {
                     CTok::lex_into(text(child), &mut c_tokens).unwrap();
                 }
                 NodeType::Element => {
-                    assert_eq!(child.attributes().len(), 0);
+                    let unknown_attributes = child
+                        .attributes()
+                        .filter(|attr| attr.name() != "alias")
+                        .count();
+                    assert_eq!(unknown_attributes, 0);
+
                     let text = || {
                         assert_eq!(child.children().count(), 1);
                         text(child)
@@ -964,8 +969,7 @@ mod tests {
                 .into_boxed_str(),
         );
 
-        let waff3 = Registry::parse(xml_input, LibraryName::Vk, "vulkan");
-        std::fs::write("../target/waff3", format!("{waff3:#?}")).unwrap();
+        Registry::parse(xml_input, LibraryName::Vk, "vulkan");
     }
 
     #[test]
@@ -977,7 +981,6 @@ mod tests {
                 .into_boxed_str(),
         );
 
-        let waff3 = Registry::parse(xml_input, LibraryName::Video, "vulkan");
-        std::fs::write("../target/waff3video", format!("{waff3:#?}")).unwrap();
+        Registry::parse(xml_input, LibraryName::Video, "vulkan");
     }
 }

@@ -106,6 +106,7 @@ pub(crate) mod reexport {
     impl crate::vk::ObjectType {
         pub const PRIVATE_DATA_SLOT_EXT: Self = Self::PRIVATE_DATA_SLOT;
     }
+    pub type PrivateDataSlotCreateFlagBitsEXT = crate::vk::PrivateDataSlotCreateFlagBits;
     pub type PrivateDataSlotCreateFlagsEXT = crate::vk::PrivateDataSlotCreateFlags;
     pub type PrivateDataSlotEXT = crate::vk::PrivateDataSlot;
     pub type PFN_vkCreatePrivateDataSlotEXT = crate::vk::PFN_vkCreatePrivateDataSlot;

@@ -82,6 +82,10 @@ impl crate::vk::ImageCreateFlagBits {
     pub const ALIAS_SINGLE_LAYER_DESCRIPTOR_KHR: Self = Self(1 << 22);
 }
 ///Provided by [`khr::maintenance11`](crate::khr::maintenance11)
+impl crate::vk::ImageCreateFlagBits2KHR {
+    pub const ALIAS_SINGLE_LAYER_DESCRIPTOR_KHR: Self = Self(1 << 22);
+}
+///Provided by [`khr::maintenance11`](crate::khr::maintenance11)
 impl crate::vk::ShaderCreateFlagBitsEXT {
     pub const INDEPENDENT_SETS_KHR: Self = Self(1 << 18);
 }

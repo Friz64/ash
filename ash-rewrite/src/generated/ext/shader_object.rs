@@ -357,6 +357,9 @@ pub(crate) mod reexport {
         pub const INDIRECT_BINDABLE_EXT: Self = Self(
             ShaderCreateFlagBitsEXT::INDIRECT_BINDABLE_EXT.0,
         );
+        pub const OPACITY_MICROMAP_DISALLOW_MIXED_SPECIAL_INDEX_EXT: Self = Self(
+            ShaderCreateFlagBitsEXT::OPACITY_MICROMAP_DISALLOW_MIXED_SPECIAL_INDEX_EXT.0,
+        );
         pub const _64_INDEXING_EXT: Self = Self(
             ShaderCreateFlagBitsEXT::_64_INDEXING_EXT.0,
         );

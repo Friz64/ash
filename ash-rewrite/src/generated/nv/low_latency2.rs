@@ -573,7 +573,7 @@ pub(crate) mod reexport {
         queue: crate::vk::Queue,
         p_queue_type_info: *const crate::vk::OutOfBandQueueTypeInfoNV<'_>,
     );
-    pub const NV_LOW_LATENCY_2_SPEC_VERSION: u32 = 2;
+    pub const NV_LOW_LATENCY_2_SPEC_VERSION: u32 = 3;
     pub const NV_LOW_LATENCY_2_EXTENSION_NAME: &core::ffi::CStr = c"VK_NV_low_latency2";
 }
 pub use reexport::*;

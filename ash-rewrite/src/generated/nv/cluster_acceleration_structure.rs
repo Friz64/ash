@@ -1076,7 +1076,7 @@ pub(crate) mod reexport {
         pub const COMPUTE_SIZES_NV: Self = Self(2);
     }
     ///Provided by [`nv::cluster_acceleration_structure`](crate::nv::cluster_acceleration_structure)
-    impl crate::vk::OpacityMicromapSpecialIndexEXT {
+    impl crate::vk::OpacityMicromapSpecialIndexKHR {
         pub const CLUSTER_GEOMETRY_DISABLE_OPACITY_MICROMAP_NV: Self = Self(-5);
     }
     #[repr(transparent)]

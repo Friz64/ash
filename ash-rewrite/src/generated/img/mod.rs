@@ -3,4 +3,5 @@
 //!Extensions tagged IMG
 pub mod filter_cubic;
 pub mod format_pvrtc;
+pub mod filter_linear_2d;
 pub mod relaxed_line_rasterization;
