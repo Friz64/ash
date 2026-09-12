@@ -1,5 +1,5 @@
 use crate::{
-    item::{Named, RequireMap, RequiredBy},
+    item::{NamedType, RequireMap, RequiredBy},
     name::{EnumeratorName, TypeName},
     xml,
 };
@@ -13,7 +13,7 @@ pub struct Handle {
     pub dispatchable: bool,
 }
 
-impl Named<TypeName> for Handle {
+impl NamedType for Handle {
     fn name(&self) -> TypeName {
         self.name
     }

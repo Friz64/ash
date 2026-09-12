@@ -1,5 +1,5 @@
 use crate::{
-    item::{Named, RequireMap, RequiredBy},
+    item::{NamedType, RequireMap, RequiredBy},
     name::{EnumeratorName, TypeName},
     xml::{self, cexpr::CExprItems},
 };
@@ -35,7 +35,7 @@ pub struct BitMask {
     pub items: IndexMap<EnumeratorName, Item>,
 }
 
-impl Named<TypeName> for BitMask {
+impl NamedType for BitMask {
     fn name(&self) -> TypeName {
         self.bitmask_name
     }

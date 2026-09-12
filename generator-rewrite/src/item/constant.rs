@@ -1,10 +1,7 @@
 use super::{Code, Context};
 use crate::output::{CodeMap, Destination};
 use analysis::{
-    item::{
-        Named,
-        constant::{Constant, ConstantType},
-    },
+    item::constant::{Constant, ConstantType},
     rust::RustTokens,
     xml::cexpr::CExprItem,
 };
@@ -15,7 +12,7 @@ impl Code for Constant {
     #[instrument(skip(ctx))]
     fn code(&self, ctx: &Context) -> CodeMap {
         trace!("generating");
-        let name = ctx.constant_tokens(self.name(), false);
+        let name = ctx.constant_tokens(self.name, false);
 
         let ty = match self.ty {
             ConstantType::Integer(primary_ty) => ctx.primary_type_tokens(primary_ty),

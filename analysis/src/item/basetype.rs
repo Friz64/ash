@@ -1,6 +1,6 @@
 use crate::{
     decl::Ty,
-    item::{Named, RequireMap, RequiredBy},
+    item::{NamedType, RequireMap, RequiredBy},
     name::TypeName,
     xml,
 };
@@ -13,7 +13,7 @@ pub struct BaseType {
     pub ty: Ty,
 }
 
-impl Named<TypeName> for BaseType {
+impl NamedType for BaseType {
     fn name(&self) -> TypeName {
         self.name
     }

@@ -1,5 +1,5 @@
 use crate::{
-    item::{Named, RequireMap, RequiredBy},
+    item::{NamedType, RequireMap, RequiredBy},
     name::{EnumeratorName, TypeName},
     xml::{self, cexpr::CExprItems},
 };
@@ -26,7 +26,7 @@ pub struct Enum {
     pub items: IndexMap<EnumeratorName, Item>,
 }
 
-impl Named<TypeName> for Enum {
+impl NamedType for Enum {
     fn name(&self) -> TypeName {
         self.name
     }

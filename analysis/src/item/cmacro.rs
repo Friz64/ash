@@ -1,5 +1,5 @@
 use crate::{
-    item::{Named, RequireMap, RequiredBy},
+    item::{RequireMap, RequiredBy},
     name::CMacroName,
     xml::{self, cexpr::CExprItems},
 };
@@ -11,12 +11,6 @@ pub struct CMacro {
     pub name: CMacroName,
     pub args: Vec<&'static str>,
     pub cexpr: CExprItems,
-}
-
-impl Named<CMacroName> for CMacro {
-    fn name(&self) -> CMacroName {
-        self.name
-    }
 }
 
 impl CMacro {

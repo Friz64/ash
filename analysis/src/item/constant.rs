@@ -1,6 +1,6 @@
 use crate::{
     decl::CPrimaryType,
-    item::{Named, RequireMap, RequiredBy},
+    item::{RequireMap, RequiredBy},
     name::ConstantName,
     xml::{
         self,
@@ -21,12 +21,6 @@ pub struct Constant {
     pub name: ConstantName,
     pub ty: ConstantType,
     pub value: CExprItems,
-}
-
-impl Named<ConstantName> for Constant {
-    fn name(&self) -> ConstantName {
-        self.name
-    }
 }
 
 impl Constant {

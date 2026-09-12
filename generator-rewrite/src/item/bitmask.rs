@@ -1,10 +1,7 @@
 use super::{Code, Context};
 use crate::output::{CodeMap, Destination};
 use analysis::{
-    item::{
-        Named,
-        bitmask::{BitMask, BitWidth, Item, Value},
-    },
+    item::bitmask::{BitMask, BitWidth, Item, Value},
     lifetime::Lifetime,
     rust::RustTokens,
     xml::cexpr::CExprItem,
@@ -17,7 +14,7 @@ impl Code for BitMask {
     #[instrument(skip(ctx))]
     fn code(&self, ctx: &Context) -> CodeMap {
         trace!("generating");
-        let name = ctx.type_tokens(self.name(), false, &Lifetime::placeholder());
+        let name = ctx.type_tokens(self.bitmask_name, false, &Lifetime::placeholder());
         let base_ty = match self.bitwidth {
             BitWidth::Bits32 => quote! { u32 },
             BitWidth::Bits64 => quote! { u64 },
