@@ -46,7 +46,7 @@ impl Code for Enum {
                     quote! { Self(#literal) }
                 }
                 Value::Expr(cexpr_items) => {
-                    let expr = CExprItem::to_rust(cexpr_items.iter(), ctx);
+                    let expr = CExprItem::tokens(cexpr_items.iter(), ctx);
                     quote! { Self(#expr) }
                 }
                 Value::Alias(enumerator_name) => {

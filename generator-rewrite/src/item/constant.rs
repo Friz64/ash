@@ -19,7 +19,7 @@ impl Code for Constant {
             ConstantType::String => quote! { &core::ffi::CStr },
         };
 
-        let value = CExprItem::to_rust(self.value.iter(), ctx);
+        let value = CExprItem::tokens(self.value.iter(), ctx);
 
         let code = quote! {
             pub const #name: #ty = #value;

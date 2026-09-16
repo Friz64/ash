@@ -3,8 +3,8 @@ use core::str::FromStr;
 use super::{Code, Context};
 use crate::output::{CodeMap, Destination};
 use analysis::{
-    decl::{CPrimaryType, Decl, Mutability, Ty},
-    item::structure::{Length, MemberLength, Struct, StructDecl, StructMember, Union},
+    decl::{CPrimaryType, Mutability, Ty},
+    item::structure::{Length, Member, RegularMember, Struct, Union},
     lifetime::Lifetime,
     name::TypeName,
     rust::{RustTokens, RustTy},
@@ -27,7 +27,7 @@ impl Code for Struct {
 
         let mut contains_static_array = false;
         let members = (self.members.iter()).map(|member| match member {
-            StructMember::Normal(StructDecl { decl, .. }) => {
+            Member::Regular(RegularMember { decl, .. }) => {
                 if let Ty::Array(_, _) = &decl.ty {
                     contains_static_array = true
                 }
@@ -35,7 +35,7 @@ impl Code for Struct {
                 let decl = decl.to_rust().tokens(ctx, &lifetime);
                 quote! { pub #decl }
             }
-            StructMember::BitField(ranges) => {
+            Member::Bitfield(ranges) => {
                 let doc: String = ranges
                     .iter()
                     .map(|part| format!("- `{}` @ `{:?}`\n", part.decl.name.original(), part.range))
@@ -92,7 +92,7 @@ impl Code for Struct {
         let mut bitfield_i = 0;
         let default = if contains_static_array || tagged_structure.is_some() {
             let defaults = self.members.iter().map(|member| match member {
-                StructMember::Normal(StructDecl { decl, .. }) => {
+                Member::Regular(RegularMember { decl, .. }) => {
                     let field_name = ctx.var_name_token(decl.name);
                     if tagged_structure.is_some()
                         && decl.name.original() == "sType"
@@ -106,7 +106,7 @@ impl Code for Struct {
                         quote! { #field_name: Default::default() }
                     }
                 }
-                StructMember::BitField(_) => {
+                Member::Bitfield(_) => {
                     let name = format_ident!("bitfield{bitfield_i}");
                     bitfield_i += 1;
                     quote! { #name: Default::default() }
@@ -142,16 +142,16 @@ impl Code for Struct {
             .members
             .iter()
             .filter(|member| match member {
-                StructMember::Normal(StructDecl { decl, .. }) => {
+                Member::Regular(RegularMember { decl, .. }) => {
                     !matches!(decl.name.original(), "sType" | "pNext")
                 }
                 _ => true,
             })
             .flat_map(|member| match member {
-                StructMember::Normal(StructDecl { decl, len }) => itertools::Either::Left(
-                    core::iter::once(decl_setter_and_getter(decl, len, ctx, &lifetime)),
-                ),
-                StructMember::BitField(bitfield_ranges) => {
+                Member::Regular(member) => itertools::Either::Left(core::iter::once(
+                    setter_and_getter(ctx, member, &lifetime),
+                )),
+                Member::Bitfield(bitfield_ranges) => {
                     let name = format_ident!("bitfield{bitfield_i}");
                     bitfield_i += 1;
                     itertools::Either::Right(bitfield_ranges.iter().map(move |range| {
@@ -204,15 +204,14 @@ impl Code for Struct {
     }
 }
 
-fn decl_setter_and_getter(
-    decl: &Decl,
-    len: &Length,
+fn setter_and_getter(
     ctx: &Context<'_>,
+    member: &RegularMember,
     lifetime: &Lifetime,
 ) -> TokenStream {
-    let field_name = ctx.var_name_token(decl.name);
+    let field_name = ctx.var_name_token(member.decl.name);
 
-    match decl.ty {
+    match member.decl.ty {
         Ty::ApiType(TypeName::VK_BOOL32) => {
             quote! {
                 pub fn #field_name(mut self, #field_name: bool) -> Self {
@@ -222,10 +221,7 @@ fn decl_setter_and_getter(
             }
         }
         Ty::Ptr(Ty::CPrimary(CPrimaryType::Char), mutability)
-            if let Length::Some {
-                null_terminated: true,
-                member: _,
-            } = len =>
+            if member.length_at_depth(0) == Some(Length::NullTerminated) =>
         {
             let ty = RustTy::Ref(Box::new(RustTy::CStr), mutability).tokens(ctx, lifetime);
             let field_name_as_cstr = format_ident!("{field_name}_as_c_str");
@@ -245,10 +241,7 @@ fn decl_setter_and_getter(
             }
         }
         Ty::Array(Ty::CPrimary(CPrimaryType::Char), _)
-            if let Length::Some {
-                null_terminated: true,
-                member: _,
-            } = len =>
+            if member.length_at_depth(0) == Some(Length::NullTerminated) =>
         {
             let field_name_as_cstr = format_ident!("{field_name}_as_c_str");
             quote! {
@@ -261,70 +254,63 @@ fn decl_setter_and_getter(
                 }
             }
         }
-        Ty::Array(base, _)
-            if let Length::Some {
-                null_terminated: _,
-                member: Some(member_length),
-            } = len =>
+        Ty::Array(element_ty, _)
+            if let Some(Length::DefinedByMember(length_member)) = member.length_at_depth(0) =>
         {
-            let len_var = ctx.var_name_token(member_length.var);
+            let length_name = ctx.var_name_token(length_member);
             let field_name_as_slice = format_ident!("{field_name}_as_slice");
-            let base_ty = array_base_ty(base, ctx, lifetime, len);
+            let base_ty = array_element_tokens(ctx, lifetime, member, element_ty);
             quote! {
                 pub fn #field_name(mut self, #field_name: &[#base_ty]) -> Self {
-                    self.#len_var = #field_name.len() as _;
+                    self.#length_name = #field_name.len() as _;
                     self.#field_name[..#field_name.len()].copy_from_slice(#field_name);
                     self
                 }
 
                 pub fn #field_name_as_slice(&self) -> &[#base_ty] {
-                    &self.#field_name[..self.#len_var as _]
+                    &self.#field_name[..self.#length_name as _]
                 }
             }
         }
-        Ty::Ptr(base, mutability)
-            if let Length::Some {
-                null_terminated: _,
-                member: Some(ref member_length),
-            } = *len =>
+        Ty::Ptr(element_ty, mutability)
+            if let Some(Length::DefinedByMember(length_member)) = member.length_at_depth(0) =>
         {
             let mut ptr = match mutability {
                 Mutability::Not => quote! { .as_ptr() },
                 Mutability::Mut => quote! { .as_mut_ptr() },
             };
-            let base_ty = match base {
+            let element_ty_tokens = match element_ty {
                 Ty::CPrimary(CPrimaryType::Void) => {
                     ptr = quote! { #ptr.cast() };
                     quote! { [u8] }
                 }
                 _ => {
-                    let ty = array_base_ty(base, ctx, lifetime, len);
-                    if member_length.pointer {
+                    let ty = array_element_tokens(ctx, lifetime, member, element_ty);
+                    if member.length_at_depth(1) == Some(Length::Count(1)) {
                         ptr = quote! { #ptr.cast() }
                     }
                     quote! { [#ty] }
                 }
             };
 
-            let len_var = ctx.var_name_token(member_length.var);
+            let len_name = ctx.var_name_token(length_member);
             let mutability = match mutability {
                 Mutability::Not => quote! {},
                 Mutability::Mut => quote! {mut},
             };
+
             quote! {
-                pub fn #field_name(mut self, #field_name: &#lifetime #mutability #base_ty) -> Self {
-                    self.#len_var = #field_name.len() as _;
+                pub fn #field_name(mut self, #field_name: &#lifetime #mutability #element_ty_tokens) -> Self {
+                    self.#len_name = #field_name.len() as _;
                     self.#field_name = #field_name #ptr;
                     self
                 }
             }
         }
         Ty::Ptr(base, mutability)
-            if let Length::None
-            | Length::Some {
-                null_terminated: _,
-                member: Some(MemberLength { pointer: true, .. }),
-            } = len =>
+            if member
+                .length_at_depth(0)
+                .is_none_or(|l| l == Length::Count(1)) =>
         {
             let ty = RustTy::Ref(Box::new(base.to_rust()), mutability).tokens(ctx, lifetime);
             quote! {
@@ -334,20 +320,24 @@ fn decl_setter_and_getter(
                 }
             }
         }
-        Ty::Ptr(base, mutability) if let Length::Custom(custom) = len => match *custom {
-            _ => {
-                tracing::warn!(?custom, "unhandled custom length");
-                let ty = decl.ty.to_rust().tokens(ctx, lifetime);
-                quote! {
-                    pub fn #field_name(mut self, #field_name: #ty) -> Self {
-                        self.#field_name = #field_name;
-                        self
+        Ty::Ptr(base, mutability)
+            if let Some(Length::Custom(custom)) = member.length_at_depth(0) =>
+        {
+            match *custom {
+                _ => {
+                    tracing::warn!(?custom, "unhandled custom length");
+                    let ty = member.decl.ty.to_rust().tokens(ctx, lifetime);
+                    quote! {
+                        pub fn #field_name(mut self, #field_name: #ty) -> Self {
+                            self.#field_name = #field_name;
+                            self
+                        }
                     }
                 }
             }
-        },
+        }
         _ => {
-            let ty = decl.ty.to_rust().tokens(ctx, lifetime);
+            let ty = member.decl.ty.to_rust().tokens(ctx, lifetime);
             quote! {
                 pub fn #field_name(mut self, #field_name: #ty) -> Self {
                     self.#field_name = #field_name;
@@ -358,14 +348,14 @@ fn decl_setter_and_getter(
     }
 }
 
-fn array_base_ty(base: &Ty, ctx: &Context<'_>, lifetime: &Lifetime, len: &Length) -> TokenStream {
-    match base {
-        Ty::Ptr(ty, mutability)
-            if let Length::Some {
-                null_terminated: _,
-                member: Some(MemberLength { pointer: true, .. }),
-            } = len =>
-        {
+fn array_element_tokens(
+    ctx: &Context<'_>,
+    lifetime: &Lifetime,
+    member: &RegularMember,
+    element_ty: &Ty,
+) -> TokenStream {
+    match element_ty {
+        Ty::Ptr(ty, mutability) if member.length_at_depth(1) == Some(Length::Count(1)) => {
             RustTy::Ref(Box::new(ty.to_rust()), *mutability).tokens(ctx, lifetime)
         }
         ty @ (Ty::ApiType(_)

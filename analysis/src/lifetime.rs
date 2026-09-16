@@ -8,7 +8,7 @@ use crate::{
     decl::{Decl, Ty},
     item::{
         TypeItem,
-        structure::{StructDecl, StructMember},
+        structure::{Member, RegularMember},
     },
     name::TypeName,
 };
@@ -56,7 +56,7 @@ fn determine_for_type(
                 TypeItem::Struct(item) => item.members.iter().any(|member| {
                     matches!(
                         member,
-                        StructMember::Normal(StructDecl { decl: Decl { ty, .. }, ..})
+                        Member::Regular(RegularMember { decl: Decl { ty, .. }, ..})
                             if determine_for_type(store, types, ty, true)
                     )
                 }),
