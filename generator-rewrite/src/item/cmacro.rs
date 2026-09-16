@@ -10,7 +10,7 @@ impl Code for CMacro {
         trace!("generating");
 
         let name = ctx.cmacro_tokens(self.name, false);
-        let expr = CExprItem::to_rust(self.cexpr.iter(), ctx);
+        let expr = CExprItem::tokens(self.cexpr.iter(), ctx);
         let code = if self.has_args() {
             quote! {
                 pub const #name: u32 = #expr;

@@ -7,16 +7,39 @@ use crate::{
 use std::{cmp::Ordering, ops::Range};
 use tracing::{instrument, trace};
 
+#[derive(Debug, PartialEq, Eq, Clone, Copy)]
+pub enum Length {
+    DefinedByMember(VariableName),
+    NullTerminated,
+    Count(usize),
+    Custom(&'static str),
+}
+
 #[derive(Debug)]
-pub struct BitfieldRange {
+pub struct RegularMember {
+    pub decl: Decl,
+    pub len: Vec<Length>,
+}
+
+impl RegularMember {
+    /// For example, if the type is `const char* const*` (a pointer to an array of string pointers),
+    /// then this returns [`Length::Count`] with the array length at depth 0,
+    /// and [`Length::NullTerminated`] at depth 1.
+    pub fn length_at_depth(&self, depth: usize) -> Option<Length> {
+        self.len.get(depth).copied()
+    }
+}
+
+#[derive(Debug)]
+pub struct BitfieldMemberRange {
     pub decl: Decl,
     pub range: Range<u8>,
 }
 
 #[derive(Debug)]
-pub enum StructMember {
-    Normal(StructDecl),
-    BitField(Vec<BitfieldRange>),
+pub enum Member {
+    Regular(RegularMember),
+    Bitfield(Vec<BitfieldMemberRange>),
 }
 
 #[derive(Debug)]
@@ -25,29 +48,7 @@ pub struct Struct {
     pub name: TypeName,
     pub extends: Vec<TypeName>,
     pub structure_type: Option<EnumeratorName>,
-    pub members: Vec<StructMember>,
-}
-
-#[derive(Debug, PartialEq, Eq)]
-pub struct MemberLength {
-    pub var: VariableName,
-    pub pointer: bool,
-}
-
-#[derive(Debug, PartialEq, Eq)]
-pub enum Length {
-    None,
-    Some {
-        null_terminated: bool,
-        member: Option<MemberLength>,
-    },
-    Custom(&'static str),
-}
-
-#[derive(Debug)]
-pub struct StructDecl {
-    pub decl: Decl,
-    pub len: Length,
+    pub members: Vec<Member>,
 }
 
 impl NamedType for Struct {
@@ -80,41 +81,20 @@ impl Struct {
                 member.altlen.as_slice()
             };
 
-            let len = match len_slice {
-                [] => Length::None,
-                ["null-terminated"] => Length::Some {
-                    null_terminated: true,
-                    member: None,
-                },
-                [custom_len]
-                    if !(xml.members.iter())
-                        .any(|xml_member| &xml_member.c_decl.name == custom_len) =>
-                {
-                    Length::Custom(custom_len)
-                }
-                [name, "null-terminated"] => Length::Some {
-                    null_terminated: true,
-                    member: Some(MemberLength {
-                        var: VariableName::new(name),
-                        pointer: false,
-                    }),
-                },
-                [name] => Length::Some {
-                    member: Some(MemberLength {
-                        var: VariableName::new(name),
-                        pointer: false,
-                    }),
-                    null_terminated: false,
-                },
-                [name, "1"] => Length::Some {
-                    member: Some(MemberLength {
-                        var: VariableName::new(name),
-                        pointer: true,
-                    }),
-                    null_terminated: false,
-                },
-                unknown => panic!("unknown length {unknown:?}"),
-            };
+            let len = len_slice
+                .iter()
+                .map(|&len| {
+                    if len == "null-terminated" {
+                        Length::NullTerminated
+                    } else if (xml.members.iter()).any(|xml_member| xml_member.c_decl.name == len) {
+                        Length::DefinedByMember(VariableName::new(len))
+                    } else if let Ok(count) = len.parse() {
+                        Length::Count(count)
+                    } else {
+                        Length::Custom(len)
+                    }
+                })
+                .collect();
 
             let decl = Decl::from_c(require_map, &member.c_decl);
             if let Some(width) = member.c_decl.bitfield_width {
@@ -124,7 +104,7 @@ impl Struct {
 
                 if used_bitwidth.is_none() {
                     used_bitwidth = Some(0);
-                    members.push(StructMember::BitField(vec![]));
+                    members.push(Member::Bitfield(vec![]));
                 }
 
                 let currently_used_bitwidth = used_bitwidth.as_mut().unwrap();
@@ -139,11 +119,11 @@ impl Struct {
                 }
 
                 if decl.name.original() != "reserved" {
-                    let Some(StructMember::BitField(ranges)) = members.last_mut() else {
+                    let Some(Member::Bitfield(ranges)) = members.last_mut() else {
                         unreachable!()
                     };
 
-                    ranges.push(BitfieldRange { decl, range });
+                    ranges.push(BitfieldMemberRange { decl, range });
                 }
             } else {
                 assert_eq!(used_bitwidth, None, "bitfield not fully used");
@@ -155,7 +135,7 @@ impl Struct {
                 {
                     structure_type = Some(EnumeratorName::new(value));
                 }
-                members.push(StructMember::Normal(StructDecl { decl, len }));
+                members.push(Member::Regular(RegularMember { decl, len }));
             }
         }
 

@@ -154,7 +154,7 @@ impl RustTy {
 }
 
 impl CExprItem {
-    pub fn to_rust(
+    pub fn tokens(
         items: impl Iterator<Item = impl Borrow<CExprItem>>,
         translator: &impl RustTokens,
     ) -> TokenStream {
@@ -180,7 +180,7 @@ impl CExprItem {
                     } else {
                         let args = args
                             .iter()
-                            .map(|arg| CExprItem::to_rust(arg.iter(), translator));
+                            .map(|arg| CExprItem::tokens(arg.iter(), translator));
 
                         quote! { #name( #(#args),* ) }
                     });
