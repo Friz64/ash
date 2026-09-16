@@ -39,6 +39,7 @@ pub struct BitfieldMemberRange {
 #[derive(Debug)]
 pub enum Member {
     Regular(RegularMember),
+    /// In every current case, this member is 32 bits in size.
     Bitfield(Vec<BitfieldMemberRange>),
 }
 

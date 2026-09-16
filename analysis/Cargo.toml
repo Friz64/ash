@@ -7,14 +7,18 @@ edition = "2024"
 roxmltree = "0.21"
 tracing = "0.1"
 indexmap = "2"
-proc-macro2 = { version = "1", default-features = false }
-quote = { version = "1", default-features = false }
-syn = { version = "3", default-features = false, features = [
+proc-macro2 = { version = "1", optional = true, default-features = false }
+quote = { version = "1", optional = true, default-features = false }
+syn = { version = "3", optional = true, default-features = false, features = [
     "parsing",
     "full",
 ] }
 heck = "0.5.0"
 tinyvec = "1.10.0"
+
+[features]
+default = ["rust"]
+rust = ["quote", "syn", "proc-macro2"]
 
 [dev-dependencies]
 tracing-test = "0.2"

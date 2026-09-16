@@ -2,8 +2,7 @@ use super::{Code, Context};
 use crate::output::{CodeMap, Destination};
 use analysis::{
     item::function::{Command, FuncPointer},
-    lifetime::Lifetime,
-    rust::RustTokens,
+    rust::{Lifetime, RustTokens},
 };
 use quote::quote;
 use tracing::{instrument, trace};

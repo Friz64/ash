@@ -2,8 +2,7 @@ use super::{Code, Context};
 use crate::{CodeMap, output::Destination};
 use analysis::{
     item::alias::{CommandAlias, TypeAlias},
-    lifetime::Lifetime,
-    rust::RustTokens,
+    rust::{Lifetime, RustTokens},
 };
 use quote::{format_ident, quote};
 use tracing::{instrument, trace};

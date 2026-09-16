@@ -1,16 +1,31 @@
 use crate::{
     decl::{ArrayLen, CPrimaryType, Decl, Mutability, Ty},
-    lifetime::Lifetime,
     name::{
         CMacroName, CommandName, ConstantName, EnumeratorName, FuncPointerName, TypeName,
         VariableName,
     },
     xml::cexpr::CExprItem,
 };
-use proc_macro2::{Literal, TokenStream};
+use proc_macro2::{Literal, Punct, Spacing, TokenStream};
 use quote::quote;
+use quote::{ToTokens, TokenStreamExt, format_ident};
 use std::{borrow::Borrow, mem};
 use syn::Ident;
+
+pub struct Lifetime(pub Ident);
+
+impl Lifetime {
+    pub fn placeholder() -> Self {
+        Lifetime(format_ident!("_"))
+    }
+}
+
+impl ToTokens for Lifetime {
+    fn to_tokens(&self, tokens: &mut TokenStream) {
+        tokens.append(Punct::new('\'', Spacing::Joint));
+        self.0.to_tokens(tokens);
+    }
+}
 
 #[derive(Debug)]
 pub struct RustDecl {

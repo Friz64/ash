@@ -1,8 +1,5 @@
 use indexmap::IndexMap;
-use proc_macro2::{Punct, Spacing, TokenStream};
-use quote::{ToTokens, TokenStreamExt, format_ident};
 use std::collections::HashMap;
-use syn::Ident;
 
 use crate::{
     decl::{Decl, Ty},
@@ -13,22 +10,7 @@ use crate::{
     name::TypeName,
 };
 
-pub struct Lifetime(pub Ident);
-
-impl Lifetime {
-    pub fn placeholder() -> Self {
-        Lifetime(format_ident!("_"))
-    }
-}
-
-impl ToTokens for Lifetime {
-    fn to_tokens(&self, tokens: &mut TokenStream) {
-        tokens.append(Punct::new('\'', Spacing::Joint));
-        self.0.to_tokens(tokens);
-    }
-}
-
-pub fn lifetime_propagation(types: &IndexMap<TypeName, TypeItem>) -> HashMap<TypeName, bool> {
+pub fn run(types: &IndexMap<TypeName, TypeItem>) -> HashMap<TypeName, bool> {
     let mut store = HashMap::new();
     for &type_name in types.keys() {
         determine_for_type(&mut store, types, &Ty::ApiType(type_name), false);
