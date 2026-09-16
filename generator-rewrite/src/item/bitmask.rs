@@ -2,8 +2,7 @@ use super::{Code, Context};
 use crate::output::{CodeMap, Destination};
 use analysis::{
     item::bitmask::{BitMask, BitWidth, Item, Value},
-    lifetime::Lifetime,
-    rust::RustTokens,
+    rust::{Lifetime, RustTokens},
     xml::cexpr::CExprItem,
 };
 use proc_macro2::{Literal, TokenStream};

@@ -5,9 +5,8 @@ use crate::{
 use analysis::{
     decl::Ty,
     item::{CommandItem, RequireLocation, function::Command},
-    lifetime::Lifetime,
     name::{CommandName, TypeName},
-    rust::RustTokens,
+    rust::{Lifetime, RustTokens},
 };
 use heck::ToSnekCase;
 use indexmap::IndexMap;

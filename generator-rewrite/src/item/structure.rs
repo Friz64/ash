@@ -5,9 +5,8 @@ use crate::output::{CodeMap, Destination};
 use analysis::{
     decl::{CPrimaryType, Mutability, Ty},
     item::structure::{Length, Member, RegularMember, Struct, Union},
-    lifetime::Lifetime,
     name::TypeName,
-    rust::{RustTokens, RustTy},
+    rust::{Lifetime, RustTokens, RustTy},
 };
 use proc_macro2::{Literal, TokenStream};
 use quote::{format_ident, quote};

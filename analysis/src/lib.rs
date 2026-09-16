@@ -1,6 +1,6 @@
 pub mod decl;
 pub mod item;
-pub mod lifetime;
+pub mod lifetime_propagation;
 pub mod name;
 pub mod rust;
 pub mod xml;
@@ -43,7 +43,7 @@ impl Analysis {
             vk,
             video,
             result: AnalysisResult {
-                type_has_lifetime: lifetime::lifetime_propagation(&items.types),
+                type_has_lifetime: lifetime_propagation::run(&items.types),
                 items,
             },
         }

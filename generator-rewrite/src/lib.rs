@@ -5,12 +5,11 @@ mod output;
 use crate::output::CodeMap;
 use analysis::{
     Analysis, AnalysisResult,
-    lifetime::Lifetime,
     name::{
         CMacroName, CommandName, ConstantName, EnumeratorName, FuncPointerName, TypeName,
         VariableName,
     },
-    rust::RustTokens,
+    rust::{Lifetime, RustTokens},
 };
 use heck::{ToShoutySnekCase, ToSnekCase};
 use proc_macro2::TokenStream;

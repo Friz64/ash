@@ -1,6 +1,10 @@
 use super::{Code, Context};
 use crate::output::{CodeMap, Destination};
-use analysis::{item::handle::Handle, lifetime::Lifetime, name::TypeName, rust::RustTokens};
+use analysis::{
+    item::handle::Handle,
+    name::TypeName,
+    rust::{Lifetime, RustTokens},
+};
 use quote::quote;
 use tracing::{instrument, trace};
 
