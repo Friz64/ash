@@ -100,17 +100,17 @@ pub trait RustTokens {
 
 impl RustDecl {
     /// Gives you this declaration in the form of `#name: #ty`.
-    pub fn tokens(&self, translator: &impl RustTokens, lifetime: &Lifetime) -> TokenStream {
-        let name = translator.var_name_token(self.name);
-        let ty = self.ty.tokens(translator, lifetime);
+    pub fn tokens(&self, ctx: &impl RustTokens, lifetime: &Lifetime) -> TokenStream {
+        let name = ctx.var_name_token(self.name);
+        let ty = self.ty.tokens(ctx, lifetime);
         quote! { #name: #ty }
     }
 }
 
 impl ArrayLen {
-    pub fn tokens(&self, translator: &impl RustTokens) -> TokenStream {
+    pub fn tokens(&self, ctx: &impl RustTokens) -> TokenStream {
         match self {
-            ArrayLen::Constant(constant_name) => translator.constant_tokens(*constant_name, true),
+            ArrayLen::Constant(constant_name) => ctx.constant_tokens(*constant_name, true),
             ArrayLen::Literal(value) => {
                 let literal = Literal::u128_unsuffixed(*value);
                 quote::quote! { #literal }
@@ -120,25 +120,25 @@ impl ArrayLen {
 }
 
 impl RustTy {
-    pub fn tokens(&self, translator: &impl RustTokens, lifetime: &Lifetime) -> TokenStream {
+    pub fn tokens(&self, ctx: &impl RustTokens, lifetime: &Lifetime) -> TokenStream {
         match self {
             RustTy::Registry(ty) => match ty {
-                Ty::ApiType(name) => translator.type_tokens(*name, true, lifetime),
-                Ty::ApiFuncPointer(name) => translator.func_pointer_tokens(*name, true),
-                Ty::CPrimary(base_ty) => translator.primary_type_tokens(*base_ty),
-                Ty::Platform(raw) => translator.platform_type_tokens(raw, true),
+                Ty::ApiType(name) => ctx.type_tokens(*name, true, lifetime),
+                Ty::ApiFuncPointer(name) => ctx.func_pointer_tokens(*name, true),
+                Ty::CPrimary(base_ty) => ctx.primary_type_tokens(*base_ty),
+                Ty::Platform(raw) => ctx.platform_type_tokens(raw, true),
                 Ty::Ptr(ty, mutability) => {
                     let mutability = match mutability {
                         Mutability::Not => quote! { const },
                         Mutability::Mut => quote! { mut },
                     };
 
-                    let ty = ty.to_rust().tokens(translator, lifetime);
+                    let ty = ty.to_rust().tokens(ctx, lifetime);
                     quote! { * #mutability #ty }
                 }
                 Ty::Array(ty, array_len) => {
-                    let ty = ty.to_rust().tokens(translator, lifetime);
-                    let array_len = array_len.tokens(translator);
+                    let ty = ty.to_rust().tokens(ctx, lifetime);
+                    let array_len = array_len.tokens(ctx);
                     quote! { [#ty; #array_len as _] }
                 }
             },
@@ -148,7 +148,7 @@ impl RustTy {
                     Mutability::Mut => quote! { mut },
                 };
 
-                let ty = ty.tokens(translator, lifetime);
+                let ty = ty.tokens(ctx, lifetime);
                 quote! { & #lifetime #mutability #ty }
             }
             RustTy::Slice(ty, mutability, len) => {
@@ -157,10 +157,10 @@ impl RustTy {
                     Mutability::Mut => quote! { mut },
                 };
                 let len = len.as_ref().map(|len| {
-                    let len = len.tokens(translator);
+                    let len = len.tokens(ctx);
                     quote! { ; #len}
                 });
-                let ty = ty.tokens(translator, lifetime);
+                let ty = ty.tokens(ctx, lifetime);
                 quote! { & #lifetime #mutability [#ty #len] }
             }
             RustTy::CStr => quote! { core::ffi::CStr },
@@ -171,7 +171,7 @@ impl RustTy {
 impl CExprItem {
     pub fn tokens(
         items: impl Iterator<Item = impl Borrow<CExprItem>>,
-        translator: &impl RustTokens,
+        ctx: &impl RustTokens,
     ) -> TokenStream {
         let mut output = TokenStream::new();
         let mut tmp_s = String::new();
@@ -188,15 +188,12 @@ impl CExprItem {
                 CExprItem::StringLiteral(content) => tmp_s.push_str(&format!("c\"{content}\"")),
                 CExprItem::MacroCall { macro_name, args } => {
                     move_into_tokens(&mut output, &mut tmp_s);
-                    let name = translator.cmacro_tokens(*macro_name, true);
+                    let name = ctx.cmacro_tokens(*macro_name, true);
 
                     output.extend(if args.is_empty() {
                         quote! { #name }
                     } else {
-                        let args = args
-                            .iter()
-                            .map(|arg| CExprItem::tokens(arg.iter(), translator));
-
+                        let args = args.iter().map(|arg| CExprItem::tokens(arg.iter(), ctx));
                         quote! { #name( #(#args),* ) }
                     });
                 }

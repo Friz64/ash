@@ -153,16 +153,16 @@ impl Code for Struct {
                 Member::Bitfield(bitfield_ranges) => {
                     let name = format_ident!("bitfield{bitfield_i}");
                     bitfield_i += 1;
-                    itertools::Either::Right(bitfield_ranges.iter().map(move |range| {
-                        let field_name = ctx.var_name_token(range.decl.name);
+                    itertools::Either::Right(bitfield_ranges.iter().map(move |member| {
+                        let field_name = ctx.var_name_token(member.decl.name);
                         let mask = {
-                            let top = u32::MAX >> (u32::BITS - range.range.end as u32);
-                            let bottom = u32::MAX << (range.range.start);
+                            let top = u32::MAX >> (u32::BITS - member.range.end as u32);
+                            let bottom = u32::MAX << (member.range.start);
                             top & bottom
                         };
                         let mask_tok = Literal::from_str(&format!("0x{mask:08X}")).unwrap();
                         let mask_inv_tok = Literal::from_str(&format!("0x{:08X}", !mask)).unwrap();
-                        let offset = range.range.start as u32;
+                        let offset = member.range.start as u32;
                         let field_shift = if offset != 0 {
                             quote! { (#field_name << #offset)  }
                         } else {
@@ -258,15 +258,18 @@ fn setter_and_getter(
         {
             let length_name = ctx.var_name_token(length_member);
             let field_name_as_slice = format_ident!("{field_name}_as_slice");
-            let base_ty = array_element_tokens(ctx, lifetime, member, element_ty);
+            let slice_ty = array_element_ty(member, element_ty);
+            let slice =
+                RustTy::Slice(Box::new(slice_ty), Mutability::Not, None).tokens(ctx, lifetime);
+
             quote! {
-                pub fn #field_name(mut self, #field_name: &[#base_ty]) -> Self {
+                pub fn #field_name(mut self, #field_name: #slice) -> Self {
                     self.#length_name = #field_name.len() as _;
                     self.#field_name[..#field_name.len()].copy_from_slice(#field_name);
                     self
                 }
 
-                pub fn #field_name_as_slice(&self) -> &[#base_ty] {
+                pub fn #field_name_as_slice(&self) -> #slice {
                     &self.#field_name[..self.#length_name as _]
                 }
             }
@@ -278,28 +281,22 @@ fn setter_and_getter(
                 Mutability::Not => quote! { .as_ptr() },
                 Mutability::Mut => quote! { .as_mut_ptr() },
             };
-            let element_ty_tokens = match element_ty {
-                Ty::CPrimary(CPrimaryType::Void) => {
-                    ptr = quote! { #ptr.cast() };
-                    quote! { [u8] }
+
+            let slice_ty = if let Ty::CPrimary(CPrimaryType::Void) = element_ty {
+                ptr = quote! { #ptr.cast() };
+                Ty::CPrimary(CPrimaryType::UInt8).to_rust()
+            } else {
+                if member.length_at_depth(1) == Some(Length::Count(1)) {
+                    ptr = quote! { #ptr.cast() }
                 }
-                _ => {
-                    let ty = array_element_tokens(ctx, lifetime, member, element_ty);
-                    if member.length_at_depth(1) == Some(Length::Count(1)) {
-                        ptr = quote! { #ptr.cast() }
-                    }
-                    quote! { [#ty] }
-                }
+
+                array_element_ty(member, element_ty)
             };
 
             let len_name = ctx.var_name_token(length_member);
-            let mutability = match mutability {
-                Mutability::Not => quote! {},
-                Mutability::Mut => quote! {mut},
-            };
-
+            let slice = RustTy::Slice(Box::new(slice_ty), mutability, None).tokens(ctx, lifetime);
             quote! {
-                pub fn #field_name(mut self, #field_name: &#lifetime #mutability #element_ty_tokens) -> Self {
+                pub fn #field_name(mut self, #field_name: #slice) -> Self {
                     self.#len_name = #field_name.len() as _;
                     self.#field_name = #field_name #ptr;
                     self
@@ -347,22 +344,17 @@ fn setter_and_getter(
     }
 }
 
-fn array_element_tokens(
-    ctx: &Context<'_>,
-    lifetime: &Lifetime,
-    member: &RegularMember,
-    element_ty: &Ty,
-) -> TokenStream {
+fn array_element_ty(member: &RegularMember, element_ty: &Ty) -> RustTy {
     match element_ty {
         Ty::Ptr(ty, mutability) if member.length_at_depth(1) == Some(Length::Count(1)) => {
-            RustTy::Ref(Box::new(ty.to_rust()), *mutability).tokens(ctx, lifetime)
+            RustTy::Ref(Box::new(ty.to_rust()), *mutability)
         }
         ty @ (Ty::ApiType(_)
         | Ty::ApiFuncPointer(_)
         | Ty::CPrimary(_)
         | Ty::Array(_, _)
         | Ty::Ptr(_, _)
-        | Ty::Platform(_)) => ty.to_rust().tokens(ctx, lifetime),
+        | Ty::Platform(_)) => ty.to_rust(),
     }
 }
 

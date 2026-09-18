@@ -185,12 +185,12 @@ pub(crate) mod reexport {
             self.identifier_size = identifier_size;
             self
         }
-        pub fn identifier(mut self, identifier: &[u8]) -> Self {
+        pub fn identifier(mut self, identifier: &'a [u8]) -> Self {
             self.identifier_size = identifier.len() as _;
             self.identifier[..identifier.len()].copy_from_slice(identifier);
             self
         }
-        pub fn identifier_as_slice(&self) -> &[u8] {
+        pub fn identifier_as_slice(&self) -> &'a [u8] {
             &self.identifier[..self.identifier_size as _]
         }
     }
