@@ -240,7 +240,6 @@ impl Entry {
         }
     }
 
-    #[allow(rustdoc::broken_intra_doc_links)] // "linked" feature might be disabled
     /// <https://registry.khronos.org/vulkan/specs/1.3-extensions/man/html/vkCreateInstance.html>
     ///
     /// # Safety
