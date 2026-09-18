@@ -479,10 +479,6 @@ impl<'a> VideoEncodeAV1SessionParametersCreateInfoKHR<'a> {
         self.p_std_decoder_model_info = std_decoder_model_info;
         self
     }
-    pub fn std_operating_point_count(mut self, std_operating_point_count: u32) -> Self {
-        self.std_operating_point_count = std_operating_point_count;
-        self
-    }
     pub fn std_operating_points(
         mut self,
         std_operating_points: &'a [crate::vk::EncodeAV1OperatingPointInfo],

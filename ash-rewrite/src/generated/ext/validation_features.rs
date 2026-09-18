@@ -44,26 +44,12 @@ impl<'a> Default for ValidationFeaturesEXT<'a> {
     }
 }
 impl<'a> ValidationFeaturesEXT<'a> {
-    pub fn enabled_validation_feature_count(
-        mut self,
-        enabled_validation_feature_count: u32,
-    ) -> Self {
-        self.enabled_validation_feature_count = enabled_validation_feature_count;
-        self
-    }
     pub fn enabled_validation_features(
         mut self,
         enabled_validation_features: &'a [crate::vk::ValidationFeatureEnableEXT],
     ) -> Self {
         self.enabled_validation_feature_count = enabled_validation_features.len() as _;
         self.p_enabled_validation_features = enabled_validation_features.as_ptr();
-        self
-    }
-    pub fn disabled_validation_feature_count(
-        mut self,
-        disabled_validation_feature_count: u32,
-    ) -> Self {
-        self.disabled_validation_feature_count = disabled_validation_feature_count;
         self
     }
     pub fn disabled_validation_features(

@@ -40,10 +40,6 @@ impl<'a> Default for Win32KeyedMutexAcquireReleaseInfoNV<'a> {
     }
 }
 impl<'a> Win32KeyedMutexAcquireReleaseInfoNV<'a> {
-    pub fn acquire_count(mut self, acquire_count: u32) -> Self {
-        self.acquire_count = acquire_count;
-        self
-    }
     pub fn acquire_syncs(
         mut self,
         acquire_syncs: &'a [crate::vk::DeviceMemory],
@@ -63,10 +59,6 @@ impl<'a> Win32KeyedMutexAcquireReleaseInfoNV<'a> {
     ) -> Self {
         self.acquire_count = acquire_timeout_milliseconds.len() as _;
         self.p_acquire_timeout_milliseconds = acquire_timeout_milliseconds.as_ptr();
-        self
-    }
-    pub fn release_count(mut self, release_count: u32) -> Self {
-        self.release_count = release_count;
         self
     }
     pub fn release_syncs(

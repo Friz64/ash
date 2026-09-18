@@ -2795,10 +2795,6 @@ pub(crate) mod reexport {
             self.queue_family_index = queue_family_index;
             self
         }
-        pub fn queue_count(mut self, queue_count: u32) -> Self {
-            self.queue_count = queue_count;
-            self
-        }
         pub fn queue_priorities(
             mut self,
             queue_priorities: &'a [core::ffi::c_float],
@@ -2848,10 +2844,6 @@ pub(crate) mod reexport {
             self.flags = flags;
             self
         }
-        pub fn queue_create_info_count(mut self, queue_create_info_count: u32) -> Self {
-            self.queue_create_info_count = queue_create_info_count;
-            self
-        }
         pub fn queue_create_infos(
             mut self,
             queue_create_infos: &'a [crate::vk::DeviceQueueCreateInfo<'a>],
@@ -2860,20 +2852,12 @@ pub(crate) mod reexport {
             self.p_queue_create_infos = queue_create_infos.as_ptr();
             self
         }
-        pub fn enabled_layer_count(mut self, enabled_layer_count: u32) -> Self {
-            self.enabled_layer_count = enabled_layer_count;
-            self
-        }
         pub fn enabled_layer_names(
             mut self,
             enabled_layer_names: &'a [*const core::ffi::c_char],
         ) -> Self {
             self.enabled_layer_count = enabled_layer_names.len() as _;
             self.pp_enabled_layer_names = enabled_layer_names.as_ptr();
-            self
-        }
-        pub fn enabled_extension_count(mut self, enabled_extension_count: u32) -> Self {
-            self.enabled_extension_count = enabled_extension_count;
             self
         }
         pub fn enabled_extension_names(
@@ -2935,20 +2919,12 @@ pub(crate) mod reexport {
             self.p_application_info = application_info;
             self
         }
-        pub fn enabled_layer_count(mut self, enabled_layer_count: u32) -> Self {
-            self.enabled_layer_count = enabled_layer_count;
-            self
-        }
         pub fn enabled_layer_names(
             mut self,
             enabled_layer_names: &'a [*const core::ffi::c_char],
         ) -> Self {
             self.enabled_layer_count = enabled_layer_names.len() as _;
             self.pp_enabled_layer_names = enabled_layer_names.as_ptr();
-            self
-        }
-        pub fn enabled_extension_count(mut self, enabled_extension_count: u32) -> Self {
-            self.enabled_extension_count = enabled_extension_count;
             self
         }
         pub fn enabled_extension_names(
@@ -3008,10 +2984,6 @@ pub(crate) mod reexport {
         }
     }
     impl PhysicalDeviceMemoryProperties {
-        pub fn memory_type_count(mut self, memory_type_count: u32) -> Self {
-            self.memory_type_count = memory_type_count;
-            self
-        }
         pub fn memory_types(
             mut self,
             memory_types: &'_ [crate::vk::MemoryType],
@@ -3022,10 +2994,6 @@ pub(crate) mod reexport {
         }
         pub fn memory_types_as_slice(&self) -> &'_ [crate::vk::MemoryType] {
             &self.memory_types[..self.memory_type_count as _]
-        }
-        pub fn memory_heap_count(mut self, memory_heap_count: u32) -> Self {
-            self.memory_heap_count = memory_heap_count;
-            self
         }
         pub fn memory_heaps(
             mut self,
@@ -3544,13 +3512,6 @@ pub(crate) mod reexport {
             self.sharing_mode = sharing_mode;
             self
         }
-        pub fn queue_family_index_count(
-            mut self,
-            queue_family_index_count: u32,
-        ) -> Self {
-            self.queue_family_index_count = queue_family_index_count;
-            self
-        }
         pub fn queue_family_indices(mut self, queue_family_indices: &'a [u32]) -> Self {
             self.queue_family_index_count = queue_family_indices.len() as _;
             self.p_queue_family_indices = queue_family_indices.as_ptr();
@@ -3958,13 +3919,6 @@ pub(crate) mod reexport {
             self.sharing_mode = sharing_mode;
             self
         }
-        pub fn queue_family_index_count(
-            mut self,
-            queue_family_index_count: u32,
-        ) -> Self {
-            self.queue_family_index_count = queue_family_index_count;
-            self
-        }
         pub fn queue_family_indices(mut self, queue_family_indices: &'a [u32]) -> Self {
             self.queue_family_index_count = queue_family_indices.len() as _;
             self.p_queue_family_indices = queue_family_indices.as_ptr();
@@ -4170,10 +4124,6 @@ pub(crate) mod reexport {
             self.buffer = buffer;
             self
         }
-        pub fn bind_count(mut self, bind_count: u32) -> Self {
-            self.bind_count = bind_count;
-            self
-        }
         pub fn binds(mut self, binds: &'a [crate::vk::SparseMemoryBind]) -> Self {
             self.bind_count = binds.len() as _;
             self.p_binds = binds.as_ptr();
@@ -4193,10 +4143,6 @@ pub(crate) mod reexport {
             self.image = image;
             self
         }
-        pub fn bind_count(mut self, bind_count: u32) -> Self {
-            self.bind_count = bind_count;
-            self
-        }
         pub fn binds(mut self, binds: &'a [crate::vk::SparseMemoryBind]) -> Self {
             self.bind_count = binds.len() as _;
             self.p_binds = binds.as_ptr();
@@ -4214,10 +4160,6 @@ pub(crate) mod reexport {
     impl<'a> SparseImageMemoryBindInfo<'a> {
         pub fn image(mut self, image: crate::vk::Image) -> Self {
             self.image = image;
-            self
-        }
-        pub fn bind_count(mut self, bind_count: u32) -> Self {
-            self.bind_count = bind_count;
             self
         }
         pub fn binds(mut self, binds: &'a [crate::vk::SparseImageMemoryBind]) -> Self {
@@ -4266,20 +4208,12 @@ pub(crate) mod reexport {
         }
     }
     impl<'a> BindSparseInfo<'a> {
-        pub fn wait_semaphore_count(mut self, wait_semaphore_count: u32) -> Self {
-            self.wait_semaphore_count = wait_semaphore_count;
-            self
-        }
         pub fn wait_semaphores(
             mut self,
             wait_semaphores: &'a [crate::vk::Semaphore],
         ) -> Self {
             self.wait_semaphore_count = wait_semaphores.len() as _;
             self.p_wait_semaphores = wait_semaphores.as_ptr();
-            self
-        }
-        pub fn buffer_bind_count(mut self, buffer_bind_count: u32) -> Self {
-            self.buffer_bind_count = buffer_bind_count;
             self
         }
         pub fn buffer_binds(
@@ -4290,10 +4224,6 @@ pub(crate) mod reexport {
             self.p_buffer_binds = buffer_binds.as_ptr();
             self
         }
-        pub fn image_opaque_bind_count(mut self, image_opaque_bind_count: u32) -> Self {
-            self.image_opaque_bind_count = image_opaque_bind_count;
-            self
-        }
         pub fn image_opaque_binds(
             mut self,
             image_opaque_binds: &'a [crate::vk::SparseImageOpaqueMemoryBindInfo<'a>],
@@ -4302,20 +4232,12 @@ pub(crate) mod reexport {
             self.p_image_opaque_binds = image_opaque_binds.as_ptr();
             self
         }
-        pub fn image_bind_count(mut self, image_bind_count: u32) -> Self {
-            self.image_bind_count = image_bind_count;
-            self
-        }
         pub fn image_binds(
             mut self,
             image_binds: &'a [crate::vk::SparseImageMemoryBindInfo<'a>],
         ) -> Self {
             self.image_bind_count = image_binds.len() as _;
             self.p_image_binds = image_binds.as_ptr();
-            self
-        }
-        pub fn signal_semaphore_count(mut self, signal_semaphore_count: u32) -> Self {
-            self.signal_semaphore_count = signal_semaphore_count;
             self
         }
         pub fn signal_semaphores(
@@ -4522,12 +4444,9 @@ pub(crate) mod reexport {
             self.flags = flags;
             self
         }
-        pub fn code_size(mut self, code_size: usize) -> Self {
-            self.code_size = code_size;
-            self
-        }
-        pub fn code(mut self, code: *const u32) -> Self {
-            self.p_code = code;
+        pub fn code(mut self, code: &'a [u32]) -> Self {
+            self.code_size = code.len() * 4;
+            self.p_code = code.as_ptr();
             self
         }
     }
@@ -4603,10 +4522,6 @@ pub(crate) mod reexport {
             self.flags = flags;
             self
         }
-        pub fn binding_count(mut self, binding_count: u32) -> Self {
-            self.binding_count = binding_count;
-            self
-        }
         pub fn bindings(
             mut self,
             bindings: &'a [crate::vk::DescriptorSetLayoutBinding<'a>],
@@ -4668,10 +4583,6 @@ pub(crate) mod reexport {
             self.max_sets = max_sets;
             self
         }
-        pub fn pool_size_count(mut self, pool_size_count: u32) -> Self {
-            self.pool_size_count = pool_size_count;
-            self
-        }
         pub fn pool_sizes(
             mut self,
             pool_sizes: &'a [crate::vk::DescriptorPoolSize],
@@ -4714,10 +4625,6 @@ pub(crate) mod reexport {
             self.descriptor_pool = descriptor_pool;
             self
         }
-        pub fn descriptor_set_count(mut self, descriptor_set_count: u32) -> Self {
-            self.descriptor_set_count = descriptor_set_count;
-            self
-        }
         pub fn set_layouts(
             mut self,
             set_layouts: &'a [crate::vk::DescriptorSetLayout],
@@ -4758,20 +4665,12 @@ pub(crate) mod reexport {
         pub _marker: ::core::marker::PhantomData<&'a ()>,
     }
     impl<'a> SpecializationInfo<'a> {
-        pub fn map_entry_count(mut self, map_entry_count: u32) -> Self {
-            self.map_entry_count = map_entry_count;
-            self
-        }
         pub fn map_entries(
             mut self,
             map_entries: &'a [crate::vk::SpecializationMapEntry],
         ) -> Self {
             self.map_entry_count = map_entries.len() as _;
             self.p_map_entries = map_entries.as_ptr();
-            self
-        }
-        pub fn data_size(mut self, data_size: usize) -> Self {
-            self.data_size = data_size;
             self
         }
         pub fn data(mut self, data: &'a [u8]) -> Self {
@@ -4986,13 +4885,6 @@ pub(crate) mod reexport {
             self.flags = flags;
             self
         }
-        pub fn vertex_binding_description_count(
-            mut self,
-            vertex_binding_description_count: u32,
-        ) -> Self {
-            self.vertex_binding_description_count = vertex_binding_description_count;
-            self
-        }
         pub fn vertex_binding_descriptions(
             mut self,
             vertex_binding_descriptions: &'a [crate::vk::VertexInputBindingDescription],
@@ -5000,13 +4892,6 @@ pub(crate) mod reexport {
             self.vertex_binding_description_count = vertex_binding_descriptions.len()
                 as _;
             self.p_vertex_binding_descriptions = vertex_binding_descriptions.as_ptr();
-            self
-        }
-        pub fn vertex_attribute_description_count(
-            mut self,
-            vertex_attribute_description_count: u32,
-        ) -> Self {
-            self.vertex_attribute_description_count = vertex_attribute_description_count;
             self
         }
         pub fn vertex_attribute_descriptions(
@@ -5444,10 +5329,6 @@ pub(crate) mod reexport {
             self.logic_op = logic_op;
             self
         }
-        pub fn attachment_count(mut self, attachment_count: u32) -> Self {
-            self.attachment_count = attachment_count;
-            self
-        }
         pub fn attachments(
             mut self,
             attachments: &'a [crate::vk::PipelineColorBlendAttachmentState],
@@ -5495,10 +5376,6 @@ pub(crate) mod reexport {
             flags: crate::vk::PipelineDynamicStateCreateFlags,
         ) -> Self {
             self.flags = flags;
-            self
-        }
-        pub fn dynamic_state_count(mut self, dynamic_state_count: u32) -> Self {
-            self.dynamic_state_count = dynamic_state_count;
             self
         }
         pub fn dynamic_states(
@@ -5712,10 +5589,6 @@ pub(crate) mod reexport {
             self.flags = flags;
             self
         }
-        pub fn stage_count(mut self, stage_count: u32) -> Self {
-            self.stage_count = stage_count;
-            self
-        }
         pub fn stages(
             mut self,
             stages: &'a [crate::vk::PipelineShaderStageCreateInfo<'a>],
@@ -5839,10 +5712,6 @@ pub(crate) mod reexport {
     impl<'a> PipelineCacheCreateInfo<'a> {
         pub fn flags(mut self, flags: crate::vk::PipelineCacheCreateFlags) -> Self {
             self.flags = flags;
-            self
-        }
-        pub fn initial_data_size(mut self, initial_data_size: usize) -> Self {
-            self.initial_data_size = initial_data_size;
             self
         }
         pub fn initial_data(mut self, initial_data: &'a [u8]) -> Self {
@@ -5970,23 +5839,12 @@ pub(crate) mod reexport {
             self.flags = flags;
             self
         }
-        pub fn set_layout_count(mut self, set_layout_count: u32) -> Self {
-            self.set_layout_count = set_layout_count;
-            self
-        }
         pub fn set_layouts(
             mut self,
             set_layouts: &'a [crate::vk::DescriptorSetLayout],
         ) -> Self {
             self.set_layout_count = set_layouts.len() as _;
             self.p_set_layouts = set_layouts.as_ptr();
-            self
-        }
-        pub fn push_constant_range_count(
-            mut self,
-            push_constant_range_count: u32,
-        ) -> Self {
-            self.push_constant_range_count = push_constant_range_count;
             self
         }
         pub fn push_constant_ranges(
@@ -6337,10 +6195,6 @@ pub(crate) mod reexport {
             self.render_area = render_area;
             self
         }
-        pub fn clear_value_count(mut self, clear_value_count: u32) -> Self {
-            self.clear_value_count = clear_value_count;
-            self
-        }
         pub fn clear_values(
             mut self,
             clear_values: &'a [crate::vk::ClearValue],
@@ -6487,20 +6341,12 @@ pub(crate) mod reexport {
             self.pipeline_bind_point = pipeline_bind_point;
             self
         }
-        pub fn input_attachment_count(mut self, input_attachment_count: u32) -> Self {
-            self.input_attachment_count = input_attachment_count;
-            self
-        }
         pub fn input_attachments(
             mut self,
             input_attachments: &'a [crate::vk::AttachmentReference],
         ) -> Self {
             self.input_attachment_count = input_attachments.len() as _;
             self.p_input_attachments = input_attachments.as_ptr();
-            self
-        }
-        pub fn color_attachment_count(mut self, color_attachment_count: u32) -> Self {
-            self.color_attachment_count = color_attachment_count;
             self
         }
         pub fn color_attachments(
@@ -6524,13 +6370,6 @@ pub(crate) mod reexport {
             depth_stencil_attachment: &'a crate::vk::AttachmentReference,
         ) -> Self {
             self.p_depth_stencil_attachment = depth_stencil_attachment;
-            self
-        }
-        pub fn preserve_attachment_count(
-            mut self,
-            preserve_attachment_count: u32,
-        ) -> Self {
-            self.preserve_attachment_count = preserve_attachment_count;
             self
         }
         pub fn preserve_attachments(mut self, preserve_attachments: &'a [u32]) -> Self {
@@ -6633,10 +6472,6 @@ pub(crate) mod reexport {
             self.flags = flags;
             self
         }
-        pub fn attachment_count(mut self, attachment_count: u32) -> Self {
-            self.attachment_count = attachment_count;
-            self
-        }
         pub fn attachments(
             mut self,
             attachments: &'a [crate::vk::AttachmentDescription],
@@ -6645,20 +6480,12 @@ pub(crate) mod reexport {
             self.p_attachments = attachments.as_ptr();
             self
         }
-        pub fn subpass_count(mut self, subpass_count: u32) -> Self {
-            self.subpass_count = subpass_count;
-            self
-        }
         pub fn subpasses(
             mut self,
             subpasses: &'a [crate::vk::SubpassDescription<'a>],
         ) -> Self {
             self.subpass_count = subpasses.len() as _;
             self.p_subpasses = subpasses.as_ptr();
-            self
-        }
-        pub fn dependency_count(mut self, dependency_count: u32) -> Self {
-            self.dependency_count = dependency_count;
             self
         }
         pub fn dependencies(
@@ -8287,10 +8114,6 @@ pub(crate) mod reexport {
         }
     }
     impl<'a> SubmitInfo<'a> {
-        pub fn wait_semaphore_count(mut self, wait_semaphore_count: u32) -> Self {
-            self.wait_semaphore_count = wait_semaphore_count;
-            self
-        }
         pub fn wait_semaphores(
             mut self,
             wait_semaphores: &'a [crate::vk::Semaphore],
@@ -8307,20 +8130,12 @@ pub(crate) mod reexport {
             self.p_wait_dst_stage_mask = wait_dst_stage_mask.as_ptr();
             self
         }
-        pub fn command_buffer_count(mut self, command_buffer_count: u32) -> Self {
-            self.command_buffer_count = command_buffer_count;
-            self
-        }
         pub fn command_buffers(
             mut self,
             command_buffers: &'a [crate::vk::CommandBuffer],
         ) -> Self {
             self.command_buffer_count = command_buffers.len() as _;
             self.p_command_buffers = command_buffers.as_ptr();
-            self
-        }
-        pub fn signal_semaphore_count(mut self, signal_semaphore_count: u32) -> Self {
-            self.signal_semaphore_count = signal_semaphore_count;
             self
         }
         pub fn signal_semaphores(

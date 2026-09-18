@@ -1019,10 +1019,6 @@ pub(crate) mod reexport {
             self.code_type = code_type;
             self
         }
-        pub fn code_size(mut self, code_size: usize) -> Self {
-            self.code_size = code_size;
-            self
-        }
         pub fn code(mut self, code: &'a [u8]) -> Self {
             self.code_size = code.len() as _;
             self.p_code = code.as_ptr().cast();
@@ -1039,23 +1035,12 @@ pub(crate) mod reexport {
                 Some(unsafe { core::ffi::CStr::from_ptr(self.p_name) })
             }
         }
-        pub fn set_layout_count(mut self, set_layout_count: u32) -> Self {
-            self.set_layout_count = set_layout_count;
-            self
-        }
         pub fn set_layouts(
             mut self,
             set_layouts: &'a [crate::vk::DescriptorSetLayout],
         ) -> Self {
             self.set_layout_count = set_layouts.len() as _;
             self.p_set_layouts = set_layouts.as_ptr();
-            self
-        }
-        pub fn push_constant_range_count(
-            mut self,
-            push_constant_range_count: u32,
-        ) -> Self {
-            self.push_constant_range_count = push_constant_range_count;
             self
         }
         pub fn push_constant_ranges(

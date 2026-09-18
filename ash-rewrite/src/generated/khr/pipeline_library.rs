@@ -28,10 +28,6 @@ impl<'a> Default for PipelineLibraryCreateInfoKHR<'a> {
     }
 }
 impl<'a> PipelineLibraryCreateInfoKHR<'a> {
-    pub fn library_count(mut self, library_count: u32) -> Self {
-        self.library_count = library_count;
-        self
-    }
     pub fn libraries(mut self, libraries: &'a [crate::vk::Pipeline]) -> Self {
         self.library_count = libraries.len() as _;
         self.p_libraries = libraries.as_ptr();

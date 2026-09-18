@@ -165,10 +165,6 @@ pub(crate) mod reexport {
             self.discard_rectangle_mode = discard_rectangle_mode;
             self
         }
-        pub fn discard_rectangle_count(mut self, discard_rectangle_count: u32) -> Self {
-            self.discard_rectangle_count = discard_rectangle_count;
-            self
-        }
         pub fn discard_rectangles(
             mut self,
             discard_rectangles: &'a [crate::vk::Rect2D],

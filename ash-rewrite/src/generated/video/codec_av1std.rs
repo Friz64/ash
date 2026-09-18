@@ -710,14 +710,6 @@ impl<'a> AV1TileInfo<'a> {
         self.flags = flags;
         self
     }
-    pub fn tile_cols(mut self, tile_cols: u8) -> Self {
-        self.tile_cols = tile_cols;
-        self
-    }
-    pub fn tile_rows(mut self, tile_rows: u8) -> Self {
-        self.tile_rows = tile_rows;
-        self
-    }
     pub fn context_update_tile_id(mut self, context_update_tile_id: u16) -> Self {
         self.context_update_tile_id = context_update_tile_id;
         self

@@ -52,17 +52,9 @@ impl<'a> FrameBoundaryEXT<'a> {
         self.frame_id = frame_id;
         self
     }
-    pub fn image_count(mut self, image_count: u32) -> Self {
-        self.image_count = image_count;
-        self
-    }
     pub fn images(mut self, images: &'a [crate::vk::Image]) -> Self {
         self.image_count = images.len() as _;
         self.p_images = images.as_ptr();
-        self
-    }
-    pub fn buffer_count(mut self, buffer_count: u32) -> Self {
-        self.buffer_count = buffer_count;
         self
     }
     pub fn buffers(mut self, buffers: &'a [crate::vk::Buffer]) -> Self {
@@ -72,10 +64,6 @@ impl<'a> FrameBoundaryEXT<'a> {
     }
     pub fn tag_name(mut self, tag_name: u64) -> Self {
         self.tag_name = tag_name;
-        self
-    }
-    pub fn tag_size(mut self, tag_size: usize) -> Self {
-        self.tag_size = tag_size;
         self
     }
     pub fn tag(mut self, tag: &'a [u8]) -> Self {

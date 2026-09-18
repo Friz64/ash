@@ -303,10 +303,6 @@ impl<'a> Default for VideoEncodeH265SessionParametersAddInfoKHR<'a> {
     }
 }
 impl<'a> VideoEncodeH265SessionParametersAddInfoKHR<'a> {
-    pub fn std_vps_count(mut self, std_vps_count: u32) -> Self {
-        self.std_vps_count = std_vps_count;
-        self
-    }
     pub fn std_vp_ss(
         mut self,
         std_vp_ss: &'a [crate::vk::H265VideoParameterSet<'a>],
@@ -315,20 +311,12 @@ impl<'a> VideoEncodeH265SessionParametersAddInfoKHR<'a> {
         self.p_std_vp_ss = std_vp_ss.as_ptr();
         self
     }
-    pub fn std_sps_count(mut self, std_sps_count: u32) -> Self {
-        self.std_sps_count = std_sps_count;
-        self
-    }
     pub fn std_sp_ss(
         mut self,
         std_sp_ss: &'a [crate::vk::H265SequenceParameterSet<'a>],
     ) -> Self {
         self.std_sps_count = std_sp_ss.len() as _;
         self.p_std_sp_ss = std_sp_ss.as_ptr();
-        self
-    }
-    pub fn std_pps_count(mut self, std_pps_count: u32) -> Self {
-        self.std_pps_count = std_pps_count;
         self
     }
     pub fn std_pp_ss(
@@ -529,13 +517,6 @@ impl<'a> Default for VideoEncodeH265PictureInfoKHR<'a> {
     }
 }
 impl<'a> VideoEncodeH265PictureInfoKHR<'a> {
-    pub fn nalu_slice_segment_entry_count(
-        mut self,
-        nalu_slice_segment_entry_count: u32,
-    ) -> Self {
-        self.nalu_slice_segment_entry_count = nalu_slice_segment_entry_count;
-        self
-    }
     pub fn nalu_slice_segment_entries(
         mut self,
         nalu_slice_segment_entries: &'a [crate::vk::VideoEncodeH265NaluSliceSegmentInfoKHR<

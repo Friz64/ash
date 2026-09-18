@@ -363,20 +363,12 @@ pub(crate) mod reexport {
             self.flags = flags;
             self
         }
-        pub fn stage_count(mut self, stage_count: u32) -> Self {
-            self.stage_count = stage_count;
-            self
-        }
         pub fn stages(
             mut self,
             stages: &'a [crate::vk::PipelineShaderStageCreateInfo<'a>],
         ) -> Self {
             self.stage_count = stages.len() as _;
             self.p_stages = stages.as_ptr();
-            self
-        }
-        pub fn group_count(mut self, group_count: u32) -> Self {
-            self.group_count = group_count;
             self
         }
         pub fn groups(
@@ -649,10 +641,6 @@ pub(crate) mod reexport {
             self.instance_count = instance_count;
             self
         }
-        pub fn geometry_count(mut self, geometry_count: u32) -> Self {
-            self.geometry_count = geometry_count;
-            self
-        }
         pub fn geometries(
             mut self,
             geometries: &'a [crate::vk::GeometryNV<'a>],
@@ -742,10 +730,6 @@ pub(crate) mod reexport {
             self.memory_offset = memory_offset;
             self
         }
-        pub fn device_index_count(mut self, device_index_count: u32) -> Self {
-            self.device_index_count = device_index_count;
-            self
-        }
         pub fn device_indices(mut self, device_indices: &'a [u32]) -> Self {
             self.device_index_count = device_indices.len() as _;
             self.p_device_indices = device_indices.as_ptr();
@@ -779,13 +763,6 @@ pub(crate) mod reexport {
         }
     }
     impl<'a> WriteDescriptorSetAccelerationStructureNV<'a> {
-        pub fn acceleration_structure_count(
-            mut self,
-            acceleration_structure_count: u32,
-        ) -> Self {
-            self.acceleration_structure_count = acceleration_structure_count;
-            self
-        }
         pub fn acceleration_structures(
             mut self,
             acceleration_structures: &'a [crate::vk::AccelerationStructureNV],

@@ -216,10 +216,6 @@ pub(crate) mod reexport {
             self.decompression_method = decompression_method;
             self
         }
-        pub fn region_count(mut self, region_count: u32) -> Self {
-            self.region_count = region_count;
-            self
-        }
         pub fn regions(
             mut self,
             regions: &'a [crate::vk::DecompressMemoryRegionEXT],

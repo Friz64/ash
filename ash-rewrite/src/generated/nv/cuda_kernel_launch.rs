@@ -165,10 +165,6 @@ pub(crate) mod reexport {
         }
     }
     impl<'a> CudaModuleCreateInfoNV<'a> {
-        pub fn data_size(mut self, data_size: usize) -> Self {
-            self.data_size = data_size;
-            self
-        }
         pub fn data(mut self, data: &'a [u8]) -> Self {
             self.data_size = data.len() as _;
             self.p_data = data.as_ptr().cast();
@@ -291,17 +287,9 @@ pub(crate) mod reexport {
             self.shared_mem_bytes = shared_mem_bytes;
             self
         }
-        pub fn param_count(mut self, param_count: usize) -> Self {
-            self.param_count = param_count;
-            self
-        }
         pub fn params(mut self, params: &'a [*const core::ffi::c_void]) -> Self {
             self.param_count = params.len() as _;
             self.p_params = params.as_ptr();
-            self
-        }
-        pub fn extra_count(mut self, extra_count: usize) -> Self {
-            self.extra_count = extra_count;
             self
         }
         pub fn extras(mut self, extras: &'a [*const core::ffi::c_void]) -> Self {

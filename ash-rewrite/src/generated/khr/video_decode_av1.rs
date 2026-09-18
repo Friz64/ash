@@ -155,10 +155,6 @@ impl<'a> VideoDecodeAV1PictureInfoKHR<'a> {
         self.frame_header_offset = frame_header_offset;
         self
     }
-    pub fn tile_count(mut self, tile_count: u32) -> Self {
-        self.tile_count = tile_count;
-        self
-    }
     pub fn tile_offsets(mut self, tile_offsets: &'a [u32]) -> Self {
         self.tile_count = tile_offsets.len() as _;
         self.p_tile_offsets = tile_offsets.as_ptr();

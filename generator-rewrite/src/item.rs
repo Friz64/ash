@@ -53,10 +53,14 @@ impl CodeMap {
 }
 
 pub fn generate_code(ctx: &Context, codemap: &mut CodeMap) {
-    debug!("generating structures code");
+    debug!("generating types code");
     codemap.extend_from_items(ctx, ctx.items.types.values());
+    debug!("generating function pointers code");
     codemap.extend_from_items(ctx, ctx.items.func_pointers.values());
+    debug!("generating commands code");
     codemap.extend_from_items(ctx, ctx.items.commands.values());
+    debug!("generating constants code");
     codemap.extend_from_items(ctx, ctx.items.constants.values());
+    debug!("generating macros code");
     codemap.extend_from_items(ctx, ctx.items.cmacros.values());
 }

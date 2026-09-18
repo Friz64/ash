@@ -413,18 +413,6 @@ impl<'a> EncodeH264ReferenceListsInfo<'a> {
         self.ref_pic_list1 = ref_pic_list1;
         self
     }
-    pub fn ref_list0_mod_op_count(mut self, ref_list0_mod_op_count: u8) -> Self {
-        self.ref_list0_mod_op_count = ref_list0_mod_op_count;
-        self
-    }
-    pub fn ref_list1_mod_op_count(mut self, ref_list1_mod_op_count: u8) -> Self {
-        self.ref_list1_mod_op_count = ref_list1_mod_op_count;
-        self
-    }
-    pub fn ref_pic_marking_op_count(mut self, ref_pic_marking_op_count: u8) -> Self {
-        self.ref_pic_marking_op_count = ref_pic_marking_op_count;
-        self
-    }
     pub fn reserved1(mut self, reserved1: [u8; 7 as _]) -> Self {
         self.reserved1 = reserved1;
         self

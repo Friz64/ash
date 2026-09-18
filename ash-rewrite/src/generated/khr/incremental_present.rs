@@ -27,10 +27,6 @@ impl<'a> Default for PresentRegionsKHR<'a> {
     }
 }
 impl<'a> PresentRegionsKHR<'a> {
-    pub fn swapchain_count(mut self, swapchain_count: u32) -> Self {
-        self.swapchain_count = swapchain_count;
-        self
-    }
     pub fn regions(mut self, regions: &'a [crate::vk::PresentRegionKHR<'a>]) -> Self {
         self.swapchain_count = regions.len() as _;
         self.p_regions = regions.as_ptr();
@@ -45,10 +41,6 @@ pub struct PresentRegionKHR<'a> {
     pub _marker: ::core::marker::PhantomData<&'a ()>,
 }
 impl<'a> PresentRegionKHR<'a> {
-    pub fn rectangle_count(mut self, rectangle_count: u32) -> Self {
-        self.rectangle_count = rectangle_count;
-        self
-    }
     pub fn rectangles(mut self, rectangles: &'a [crate::vk::RectLayerKHR]) -> Self {
         self.rectangle_count = rectangles.len() as _;
         self.p_rectangles = rectangles.as_ptr();

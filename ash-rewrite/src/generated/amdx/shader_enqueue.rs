@@ -327,10 +327,6 @@ pub(crate) mod reexport {
             self.flags = flags;
             self
         }
-        pub fn stage_count(mut self, stage_count: u32) -> Self {
-            self.stage_count = stage_count;
-            self
-        }
         pub fn stages(
             mut self,
             stages: &'a [crate::vk::PipelineShaderStageCreateInfo<'a>],

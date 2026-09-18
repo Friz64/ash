@@ -381,10 +381,6 @@ pub(crate) mod reexport {
             self.shader_engine_count = shader_engine_count;
             self
         }
-        pub fn perf_block_count(mut self, perf_block_count: u32) -> Self {
-            self.perf_block_count = perf_block_count;
-            self
-        }
         pub fn perf_blocks(
             mut self,
             perf_blocks: &'a mut [crate::vk::GpaPerfBlockPropertiesAMD],
@@ -520,10 +516,6 @@ pub(crate) mod reexport {
             sq_shader_mask: crate::vk::GpaSqShaderStageFlagsAMD,
         ) -> Self {
             self.sq_shader_mask = sq_shader_mask;
-            self
-        }
-        pub fn perf_counter_count(mut self, perf_counter_count: u32) -> Self {
-            self.perf_counter_count = perf_counter_count;
             self
         }
         pub fn perf_counters(

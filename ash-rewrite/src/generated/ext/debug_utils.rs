@@ -345,10 +345,6 @@ pub(crate) mod reexport {
             self.tag_name = tag_name;
             self
         }
-        pub fn tag_size(mut self, tag_size: usize) -> Self {
-            self.tag_size = tag_size;
-            self
-        }
         pub fn tag(mut self, tag: &'a [u8]) -> Self {
             self.tag_size = tag.len() as _;
             self.p_tag = tag.as_ptr().cast();
@@ -534,10 +530,6 @@ pub(crate) mod reexport {
                 Some(unsafe { core::ffi::CStr::from_ptr(self.p_message) })
             }
         }
-        pub fn queue_label_count(mut self, queue_label_count: u32) -> Self {
-            self.queue_label_count = queue_label_count;
-            self
-        }
         pub fn queue_labels(
             mut self,
             queue_labels: &'a [crate::vk::DebugUtilsLabelEXT<'a>],
@@ -546,20 +538,12 @@ pub(crate) mod reexport {
             self.p_queue_labels = queue_labels.as_ptr();
             self
         }
-        pub fn cmd_buf_label_count(mut self, cmd_buf_label_count: u32) -> Self {
-            self.cmd_buf_label_count = cmd_buf_label_count;
-            self
-        }
         pub fn cmd_buf_labels(
             mut self,
             cmd_buf_labels: &'a [crate::vk::DebugUtilsLabelEXT<'a>],
         ) -> Self {
             self.cmd_buf_label_count = cmd_buf_labels.len() as _;
             self.p_cmd_buf_labels = cmd_buf_labels.as_ptr();
-            self
-        }
-        pub fn object_count(mut self, object_count: u32) -> Self {
-            self.object_count = object_count;
             self
         }
         pub fn objects(

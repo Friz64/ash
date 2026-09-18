@@ -668,10 +668,6 @@ pub(crate) mod reexport {
             self.view_mask = view_mask;
             self
         }
-        pub fn color_attachment_count(mut self, color_attachment_count: u32) -> Self {
-            self.color_attachment_count = color_attachment_count;
-            self
-        }
         pub fn color_attachment_formats(
             mut self,
             color_attachment_formats: &'a [crate::vk::Format],
@@ -788,10 +784,6 @@ pub(crate) mod reexport {
         }
     }
     impl<'a> QueueFamilyGlobalPriorityProperties<'a> {
-        pub fn priority_count(mut self, priority_count: u32) -> Self {
-            self.priority_count = priority_count;
-            self
-        }
         pub fn priorities(
             mut self,
             priorities: &'_ [crate::vk::QueueGlobalPriority],
@@ -847,13 +839,6 @@ pub(crate) mod reexport {
         }
     }
     impl<'a> PipelineVertexInputDivisorStateCreateInfo<'a> {
-        pub fn vertex_binding_divisor_count(
-            mut self,
-            vertex_binding_divisor_count: u32,
-        ) -> Self {
-            self.vertex_binding_divisor_count = vertex_binding_divisor_count;
-            self
-        }
         pub fn vertex_binding_divisors(
             mut self,
             vertex_binding_divisors: &'a [crate::vk::VertexInputBindingDivisorDescription],
@@ -1520,20 +1505,12 @@ pub(crate) mod reexport {
             self.default_robustness_images = default_robustness_images;
             self
         }
-        pub fn copy_src_layout_count(mut self, copy_src_layout_count: u32) -> Self {
-            self.copy_src_layout_count = copy_src_layout_count;
-            self
-        }
         pub fn copy_src_layouts(
             mut self,
             copy_src_layouts: &'a mut [crate::vk::ImageLayout],
         ) -> Self {
             self.copy_src_layout_count = copy_src_layouts.len() as _;
             self.p_copy_src_layouts = copy_src_layouts.as_mut_ptr();
-            self
-        }
-        pub fn copy_dst_layout_count(mut self, copy_dst_layout_count: u32) -> Self {
-            self.copy_dst_layout_count = copy_dst_layout_count;
             self
         }
         pub fn copy_dst_layouts(
@@ -1627,20 +1604,12 @@ pub(crate) mod reexport {
         }
     }
     impl<'a> PhysicalDeviceHostImageCopyProperties<'a> {
-        pub fn copy_src_layout_count(mut self, copy_src_layout_count: u32) -> Self {
-            self.copy_src_layout_count = copy_src_layout_count;
-            self
-        }
         pub fn copy_src_layouts(
             mut self,
             copy_src_layouts: &'a mut [crate::vk::ImageLayout],
         ) -> Self {
             self.copy_src_layout_count = copy_src_layouts.len() as _;
             self.p_copy_src_layouts = copy_src_layouts.as_mut_ptr();
-            self
-        }
-        pub fn copy_dst_layout_count(mut self, copy_dst_layout_count: u32) -> Self {
-            self.copy_dst_layout_count = copy_dst_layout_count;
             self
         }
         pub fn copy_dst_layouts(
@@ -1832,10 +1801,6 @@ pub(crate) mod reexport {
             self.dst_image_layout = dst_image_layout;
             self
         }
-        pub fn region_count(mut self, region_count: u32) -> Self {
-            self.region_count = region_count;
-            self
-        }
         pub fn regions(
             mut self,
             regions: &'a [crate::vk::MemoryToImageCopy<'a>],
@@ -1888,10 +1853,6 @@ pub(crate) mod reexport {
             src_image_layout: crate::vk::ImageLayout,
         ) -> Self {
             self.src_image_layout = src_image_layout;
-            self
-        }
-        pub fn region_count(mut self, region_count: u32) -> Self {
-            self.region_count = region_count;
             self
         }
         pub fn regions(
@@ -1961,10 +1922,6 @@ pub(crate) mod reexport {
             dst_image_layout: crate::vk::ImageLayout,
         ) -> Self {
             self.dst_image_layout = dst_image_layout;
-            self
-        }
-        pub fn region_count(mut self, region_count: u32) -> Self {
-            self.region_count = region_count;
             self
         }
         pub fn regions(mut self, regions: &'a [crate::vk::ImageCopy2<'a>]) -> Self {
@@ -2532,20 +2489,12 @@ pub(crate) mod reexport {
             self.first_set = first_set;
             self
         }
-        pub fn descriptor_set_count(mut self, descriptor_set_count: u32) -> Self {
-            self.descriptor_set_count = descriptor_set_count;
-            self
-        }
         pub fn descriptor_sets(
             mut self,
             descriptor_sets: &'a [crate::vk::DescriptorSet],
         ) -> Self {
             self.descriptor_set_count = descriptor_sets.len() as _;
             self.p_descriptor_sets = descriptor_sets.as_ptr();
-            self
-        }
-        pub fn dynamic_offset_count(mut self, dynamic_offset_count: u32) -> Self {
-            self.dynamic_offset_count = dynamic_offset_count;
             self
         }
         pub fn dynamic_offsets(mut self, dynamic_offsets: &'a [u32]) -> Self {
@@ -2596,10 +2545,6 @@ pub(crate) mod reexport {
             self.offset = offset;
             self
         }
-        pub fn size(mut self, size: u32) -> Self {
-            self.size = size;
-            self
-        }
         pub fn values(mut self, values: &'a [u8]) -> Self {
             self.size = values.len() as _;
             self.p_values = values.as_ptr().cast();
@@ -2646,10 +2591,6 @@ pub(crate) mod reexport {
         }
         pub fn set(mut self, set: u32) -> Self {
             self.set = set;
-            self
-        }
-        pub fn descriptor_write_count(mut self, descriptor_write_count: u32) -> Self {
-            self.descriptor_write_count = descriptor_write_count;
             self
         }
         pub fn descriptor_writes(
@@ -2879,10 +2820,6 @@ pub(crate) mod reexport {
         }
     }
     impl<'a> RenderingAttachmentLocationInfo<'a> {
-        pub fn color_attachment_count(mut self, color_attachment_count: u32) -> Self {
-            self.color_attachment_count = color_attachment_count;
-            self
-        }
         pub fn color_attachment_locations(
             mut self,
             color_attachment_locations: &'a [u32],
@@ -2925,10 +2862,6 @@ pub(crate) mod reexport {
         }
     }
     impl<'a> RenderingInputAttachmentIndexInfo<'a> {
-        pub fn color_attachment_count(mut self, color_attachment_count: u32) -> Self {
-            self.color_attachment_count = color_attachment_count;
-            self
-        }
         pub fn color_attachment_input_indices(
             mut self,
             color_attachment_input_indices: &'a [u32],

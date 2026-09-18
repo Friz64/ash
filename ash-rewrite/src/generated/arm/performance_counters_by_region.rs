@@ -268,10 +268,6 @@ pub(crate) mod reexport {
         }
     }
     impl<'a> RenderPassPerformanceCountersByRegionBeginInfoARM<'a> {
-        pub fn counter_address_count(mut self, counter_address_count: u32) -> Self {
-            self.counter_address_count = counter_address_count;
-            self
-        }
         pub fn counter_addresses(
             mut self,
             counter_addresses: &'a [crate::vk::DeviceAddress],
@@ -282,10 +278,6 @@ pub(crate) mod reexport {
         }
         pub fn serialize_regions(mut self, serialize_regions: bool) -> Self {
             self.serialize_regions = serialize_regions.into();
-            self
-        }
-        pub fn counter_index_count(mut self, counter_index_count: u32) -> Self {
-            self.counter_index_count = counter_index_count;
             self
         }
         pub fn counter_indices(mut self, counter_indices: &'a mut [u32]) -> Self {

@@ -32,10 +32,6 @@ impl<'a> Default for AttachmentSampleCountInfoAMD<'a> {
     }
 }
 impl<'a> AttachmentSampleCountInfoAMD<'a> {
-    pub fn color_attachment_count(mut self, color_attachment_count: u32) -> Self {
-        self.color_attachment_count = color_attachment_count;
-        self
-    }
     pub fn color_attachment_samples(
         mut self,
         color_attachment_samples: &'a [crate::vk::SampleCountFlagBits],

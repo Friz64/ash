@@ -204,26 +204,12 @@ pub(crate) mod reexport {
         }
     }
     impl<'a> D3D12FenceSubmitInfoKHR<'a> {
-        pub fn wait_semaphore_values_count(
-            mut self,
-            wait_semaphore_values_count: u32,
-        ) -> Self {
-            self.wait_semaphore_values_count = wait_semaphore_values_count;
-            self
-        }
         pub fn wait_semaphore_values(
             mut self,
             wait_semaphore_values: &'a [u64],
         ) -> Self {
             self.wait_semaphore_values_count = wait_semaphore_values.len() as _;
             self.p_wait_semaphore_values = wait_semaphore_values.as_ptr();
-            self
-        }
-        pub fn signal_semaphore_values_count(
-            mut self,
-            signal_semaphore_values_count: u32,
-        ) -> Self {
-            self.signal_semaphore_values_count = signal_semaphore_values_count;
             self
         }
         pub fn signal_semaphore_values(

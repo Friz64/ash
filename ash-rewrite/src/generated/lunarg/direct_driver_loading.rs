@@ -70,10 +70,6 @@ impl<'a> DirectDriverLoadingListLUNARG<'a> {
         self.mode = mode;
         self
     }
-    pub fn driver_count(mut self, driver_count: u32) -> Self {
-        self.driver_count = driver_count;
-        self
-    }
     pub fn drivers(
         mut self,
         drivers: &'a [crate::vk::DirectDriverLoadingInfoLUNARG<'a>],

@@ -952,10 +952,6 @@ pub(crate) mod reexport {
         }
     }
     impl<'a> WriteDescriptorSetInlineUniformBlock<'a> {
-        pub fn data_size(mut self, data_size: u32) -> Self {
-            self.data_size = data_size;
-            self
-        }
         pub fn data(mut self, data: &'a [u8]) -> Self {
             self.data_size = data.len() as _;
             self.p_data = data.as_ptr().cast();
@@ -1155,13 +1151,6 @@ pub(crate) mod reexport {
             pipeline_creation_feedback: &'a mut crate::vk::PipelineCreationFeedback,
         ) -> Self {
             self.p_pipeline_creation_feedback = pipeline_creation_feedback;
-            self
-        }
-        pub fn pipeline_stage_creation_feedback_count(
-            mut self,
-            pipeline_stage_creation_feedback_count: u32,
-        ) -> Self {
-            self.pipeline_stage_creation_feedback_count = pipeline_stage_creation_feedback_count;
             self
         }
         pub fn pipeline_stage_creation_feedbacks(
@@ -2491,10 +2480,6 @@ pub(crate) mod reexport {
             self.dst_buffer = dst_buffer;
             self
         }
-        pub fn region_count(mut self, region_count: u32) -> Self {
-            self.region_count = region_count;
-            self
-        }
         pub fn regions(mut self, regions: &'a [crate::vk::BufferCopy2<'a>]) -> Self {
             self.region_count = regions.len() as _;
             self.p_regions = regions.as_ptr();
@@ -2553,10 +2538,6 @@ pub(crate) mod reexport {
             dst_image_layout: crate::vk::ImageLayout,
         ) -> Self {
             self.dst_image_layout = dst_image_layout;
-            self
-        }
-        pub fn region_count(mut self, region_count: u32) -> Self {
-            self.region_count = region_count;
             self
         }
         pub fn regions(mut self, regions: &'a [crate::vk::ImageCopy2<'a>]) -> Self {
@@ -2621,10 +2602,6 @@ pub(crate) mod reexport {
             self.dst_image_layout = dst_image_layout;
             self
         }
-        pub fn region_count(mut self, region_count: u32) -> Self {
-            self.region_count = region_count;
-            self
-        }
         pub fn regions(mut self, regions: &'a [crate::vk::ImageBlit2<'a>]) -> Self {
             self.region_count = regions.len() as _;
             self.p_regions = regions.as_ptr();
@@ -2680,10 +2657,6 @@ pub(crate) mod reexport {
             self.dst_image_layout = dst_image_layout;
             self
         }
-        pub fn region_count(mut self, region_count: u32) -> Self {
-            self.region_count = region_count;
-            self
-        }
         pub fn regions(
             mut self,
             regions: &'a [crate::vk::BufferImageCopy2<'a>],
@@ -2736,10 +2709,6 @@ pub(crate) mod reexport {
         }
         pub fn dst_buffer(mut self, dst_buffer: crate::vk::Buffer) -> Self {
             self.dst_buffer = dst_buffer;
-            self
-        }
-        pub fn region_count(mut self, region_count: u32) -> Self {
-            self.region_count = region_count;
             self
         }
         pub fn regions(
@@ -2803,10 +2772,6 @@ pub(crate) mod reexport {
             dst_image_layout: crate::vk::ImageLayout,
         ) -> Self {
             self.dst_image_layout = dst_image_layout;
-            self
-        }
-        pub fn region_count(mut self, region_count: u32) -> Self {
-            self.region_count = region_count;
             self
         }
         pub fn regions(mut self, regions: &'a [crate::vk::ImageResolve2<'a>]) -> Self {
@@ -3133,10 +3098,6 @@ pub(crate) mod reexport {
             self.dependency_flags = dependency_flags;
             self
         }
-        pub fn memory_barrier_count(mut self, memory_barrier_count: u32) -> Self {
-            self.memory_barrier_count = memory_barrier_count;
-            self
-        }
         pub fn memory_barriers(
             mut self,
             memory_barriers: &'a [crate::vk::MemoryBarrier2<'a>],
@@ -3145,26 +3106,12 @@ pub(crate) mod reexport {
             self.p_memory_barriers = memory_barriers.as_ptr();
             self
         }
-        pub fn buffer_memory_barrier_count(
-            mut self,
-            buffer_memory_barrier_count: u32,
-        ) -> Self {
-            self.buffer_memory_barrier_count = buffer_memory_barrier_count;
-            self
-        }
         pub fn buffer_memory_barriers(
             mut self,
             buffer_memory_barriers: &'a [crate::vk::BufferMemoryBarrier2<'a>],
         ) -> Self {
             self.buffer_memory_barrier_count = buffer_memory_barriers.len() as _;
             self.p_buffer_memory_barriers = buffer_memory_barriers.as_ptr();
-            self
-        }
-        pub fn image_memory_barrier_count(
-            mut self,
-            image_memory_barrier_count: u32,
-        ) -> Self {
-            self.image_memory_barrier_count = image_memory_barrier_count;
             self
         }
         pub fn image_memory_barriers(
@@ -3295,13 +3242,6 @@ pub(crate) mod reexport {
             self.flags = flags;
             self
         }
-        pub fn wait_semaphore_info_count(
-            mut self,
-            wait_semaphore_info_count: u32,
-        ) -> Self {
-            self.wait_semaphore_info_count = wait_semaphore_info_count;
-            self
-        }
         pub fn wait_semaphore_infos(
             mut self,
             wait_semaphore_infos: &'a [crate::vk::SemaphoreSubmitInfo<'a>],
@@ -3310,26 +3250,12 @@ pub(crate) mod reexport {
             self.p_wait_semaphore_infos = wait_semaphore_infos.as_ptr();
             self
         }
-        pub fn command_buffer_info_count(
-            mut self,
-            command_buffer_info_count: u32,
-        ) -> Self {
-            self.command_buffer_info_count = command_buffer_info_count;
-            self
-        }
         pub fn command_buffer_infos(
             mut self,
             command_buffer_infos: &'a [crate::vk::CommandBufferSubmitInfo<'a>],
         ) -> Self {
             self.command_buffer_info_count = command_buffer_infos.len() as _;
             self.p_command_buffer_infos = command_buffer_infos.as_ptr();
-            self
-        }
-        pub fn signal_semaphore_info_count(
-            mut self,
-            signal_semaphore_info_count: u32,
-        ) -> Self {
-            self.signal_semaphore_info_count = signal_semaphore_info_count;
             self
         }
         pub fn signal_semaphore_infos(
@@ -3828,10 +3754,6 @@ pub(crate) mod reexport {
             self.view_mask = view_mask;
             self
         }
-        pub fn color_attachment_count(mut self, color_attachment_count: u32) -> Self {
-            self.color_attachment_count = color_attachment_count;
-            self
-        }
         pub fn color_attachment_formats(
             mut self,
             color_attachment_formats: &'a [crate::vk::Format],
@@ -3905,10 +3827,6 @@ pub(crate) mod reexport {
         }
         pub fn view_mask(mut self, view_mask: u32) -> Self {
             self.view_mask = view_mask;
-            self
-        }
-        pub fn color_attachment_count(mut self, color_attachment_count: u32) -> Self {
-            self.color_attachment_count = color_attachment_count;
             self
         }
         pub fn color_attachments(
@@ -4087,10 +4005,6 @@ pub(crate) mod reexport {
         }
         pub fn view_mask(mut self, view_mask: u32) -> Self {
             self.view_mask = view_mask;
-            self
-        }
-        pub fn color_attachment_count(mut self, color_attachment_count: u32) -> Self {
-            self.color_attachment_count = color_attachment_count;
             self
         }
         pub fn color_attachment_formats(

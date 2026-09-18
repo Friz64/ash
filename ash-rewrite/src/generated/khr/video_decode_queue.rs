@@ -193,10 +193,6 @@ pub(crate) mod reexport {
             self.p_setup_reference_slot = setup_reference_slot;
             self
         }
-        pub fn reference_slot_count(mut self, reference_slot_count: u32) -> Self {
-            self.reference_slot_count = reference_slot_count;
-            self
-        }
         pub fn reference_slots(
             mut self,
             reference_slots: &'a [crate::vk::VideoReferenceSlotInfoKHR<'a>],

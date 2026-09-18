@@ -332,10 +332,6 @@ pub(crate) mod reexport {
             self.dst_micromap = dst_micromap;
             self
         }
-        pub fn usage_counts_count(mut self, usage_counts_count: u32) -> Self {
-            self.usage_counts_count = usage_counts_count;
-            self
-        }
         pub fn usage_counts(
             mut self,
             usage_counts: &'a [crate::vk::MicromapUsageEXT],
@@ -463,8 +459,11 @@ pub(crate) mod reexport {
         }
     }
     impl<'a> MicromapVersionInfoEXT<'a> {
-        pub fn version_data(mut self, version_data: *const u8) -> Self {
-            self.p_version_data = version_data;
+        pub fn version_data(
+            mut self,
+            version_data: &'a [u8; 2 * crate::vk::UUID_SIZE as usize],
+        ) -> Self {
+            self.p_version_data = version_data.as_ptr();
             self
         }
     }
@@ -797,10 +796,6 @@ pub(crate) mod reexport {
         }
         pub fn base_triangle(mut self, base_triangle: u32) -> Self {
             self.base_triangle = base_triangle;
-            self
-        }
-        pub fn usage_counts_count(mut self, usage_counts_count: u32) -> Self {
-            self.usage_counts_count = usage_counts_count;
             self
         }
         pub fn usage_counts(

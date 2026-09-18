@@ -66,13 +66,6 @@ impl<'a> Default for MultiviewPerViewRenderAreasRenderPassBeginInfoQCOM<'a> {
     }
 }
 impl<'a> MultiviewPerViewRenderAreasRenderPassBeginInfoQCOM<'a> {
-    pub fn per_view_render_area_count(
-        mut self,
-        per_view_render_area_count: u32,
-    ) -> Self {
-        self.per_view_render_area_count = per_view_render_area_count;
-        self
-    }
     pub fn per_view_render_areas(
         mut self,
         per_view_render_areas: &'a [crate::vk::Rect2D],

@@ -280,10 +280,6 @@ pub(crate) mod reexport {
         }
     }
     impl<'a> SwapchainTimeDomainPropertiesEXT<'a> {
-        pub fn time_domain_count(mut self, time_domain_count: u32) -> Self {
-            self.time_domain_count = time_domain_count;
-            self
-        }
         pub fn time_domains(
             mut self,
             time_domains: &'a mut [crate::vk::TimeDomainKHR],
@@ -390,13 +386,6 @@ pub(crate) mod reexport {
             self.time_domains_counter = time_domains_counter;
             self
         }
-        pub fn presentation_timing_count(
-            mut self,
-            presentation_timing_count: u32,
-        ) -> Self {
-            self.presentation_timing_count = presentation_timing_count;
-            self
-        }
         pub fn presentation_timings(
             mut self,
             presentation_timings: &'a mut [crate::vk::PastPresentationTimingEXT<'a>],
@@ -448,10 +437,6 @@ pub(crate) mod reexport {
             self.target_time = target_time;
             self
         }
-        pub fn present_stage_count(mut self, present_stage_count: u32) -> Self {
-            self.present_stage_count = present_stage_count;
-            self
-        }
         pub fn present_stages(
             mut self,
             present_stages: &'a mut [crate::vk::PresentStageTimeEXT],
@@ -499,10 +484,6 @@ pub(crate) mod reexport {
         }
     }
     impl<'a> PresentTimingsInfoEXT<'a> {
-        pub fn swapchain_count(mut self, swapchain_count: u32) -> Self {
-            self.swapchain_count = swapchain_count;
-            self
-        }
         pub fn timing_infos(
             mut self,
             timing_infos: &'a [crate::vk::PresentTimingInfoEXT<'a>],

@@ -28,10 +28,6 @@ impl<'a> Default for HdrVividDynamicMetadataHUAWEI<'a> {
     }
 }
 impl<'a> HdrVividDynamicMetadataHUAWEI<'a> {
-    pub fn dynamic_metadata_size(mut self, dynamic_metadata_size: usize) -> Self {
-        self.dynamic_metadata_size = dynamic_metadata_size;
-        self
-    }
     pub fn dynamic_metadata(mut self, dynamic_metadata: &'a [u8]) -> Self {
         self.dynamic_metadata_size = dynamic_metadata.len() as _;
         self.p_dynamic_metadata = dynamic_metadata.as_ptr().cast();

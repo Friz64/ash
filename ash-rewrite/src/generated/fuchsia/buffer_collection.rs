@@ -520,10 +520,6 @@ pub(crate) mod reexport {
             self.sysmem_pixel_format = sysmem_pixel_format;
             self
         }
-        pub fn color_space_count(mut self, color_space_count: u32) -> Self {
-            self.color_space_count = color_space_count;
-            self
-        }
         pub fn color_spaces(
             mut self,
             color_spaces: &'a [crate::vk::SysmemColorSpaceFUCHSIA<'a>],
@@ -565,13 +561,6 @@ pub(crate) mod reexport {
         }
     }
     impl<'a> ImageConstraintsInfoFUCHSIA<'a> {
-        pub fn format_constraints_count(
-            mut self,
-            format_constraints_count: u32,
-        ) -> Self {
-            self.format_constraints_count = format_constraints_count;
-            self
-        }
         pub fn format_constraints(
             mut self,
             format_constraints: &'a [crate::vk::ImageFormatConstraintsInfoFUCHSIA<'a>],

@@ -199,10 +199,6 @@ impl<'a> AccelerationStructureTrianglesDisplacementMicromapNV<'a> {
         self.base_triangle = base_triangle;
         self
     }
-    pub fn usage_counts_count(mut self, usage_counts_count: u32) -> Self {
-        self.usage_counts_count = usage_counts_count;
-        self
-    }
     pub fn usage_counts(
         mut self,
         usage_counts: &'a [crate::vk::MicromapUsageEXT],

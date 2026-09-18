@@ -117,10 +117,6 @@ pub(crate) mod reexport {
         }
     }
     impl<'a> PipelineColorWriteCreateInfoEXT<'a> {
-        pub fn attachment_count(mut self, attachment_count: u32) -> Self {
-            self.attachment_count = attachment_count;
-            self
-        }
         pub fn color_write_enables(
             mut self,
             color_write_enables: &'a [crate::vk::Bool32],

@@ -96,13 +96,6 @@ pub(crate) mod reexport {
             self.flags = flags;
             self
         }
-        pub fn compression_control_plane_count(
-            mut self,
-            compression_control_plane_count: u32,
-        ) -> Self {
-            self.compression_control_plane_count = compression_control_plane_count;
-            self
-        }
         pub fn fixed_rate_flags(
             mut self,
             fixed_rate_flags: &'a mut [crate::vk::ImageCompressionFixedRateFlagsEXT],

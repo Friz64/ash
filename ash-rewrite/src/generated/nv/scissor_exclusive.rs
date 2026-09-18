@@ -136,10 +136,6 @@ pub(crate) mod reexport {
         }
     }
     impl<'a> PipelineViewportExclusiveScissorStateCreateInfoNV<'a> {
-        pub fn exclusive_scissor_count(mut self, exclusive_scissor_count: u32) -> Self {
-            self.exclusive_scissor_count = exclusive_scissor_count;
-            self
-        }
         pub fn exclusive_scissors(
             mut self,
             exclusive_scissors: &'a [crate::vk::Rect2D],

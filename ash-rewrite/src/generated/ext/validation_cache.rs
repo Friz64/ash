@@ -140,10 +140,6 @@ pub(crate) mod reexport {
             self.flags = flags;
             self
         }
-        pub fn initial_data_size(mut self, initial_data_size: usize) -> Self {
-            self.initial_data_size = initial_data_size;
-            self
-        }
         pub fn initial_data(mut self, initial_data: &'a [u8]) -> Self {
             self.initial_data_size = initial_data.len() as _;
             self.p_initial_data = initial_data.as_ptr().cast();
