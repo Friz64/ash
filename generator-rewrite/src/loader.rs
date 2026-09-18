@@ -104,45 +104,46 @@ pub fn generate_code(ctx: &Context, codemap: &mut CodeMap) {
         };
 
         let function_type = FunctionType::of_command(command);
-        let mut dest = Destination::new(required_by);
-        dest.reexport = false;
-        let table = tables.entry((function_type, dest)).or_default();
+        for mut dest in Destination::all_locations(required_by) {
+            dest.reexport = false;
+            let table = tables.entry((function_type, dest)).or_default();
 
-        let field_name = format_ident!("{}", name.prefix_trimmed().to_snek_case());
-        let command_ty = ctx.command_tokens(name, true);
-        table.fields.extend(quote! {
-            pub #field_name: #command_ty,
-        });
+            let field_name = format_ident!("{}", name.prefix_trimmed().to_snek_case());
+            let command_ty = ctx.command_tokens(name, true);
+            table.fields.extend(quote! {
+                pub #field_name: #command_ty,
+            });
 
-        let panic_msg = format!("unable to load {}", name.original());
-        let cstr = Literal::c_string(&CString::new(name.original()).unwrap());
+            let panic_msg = format!("unable to load {}", name.original());
+            let cstr = Literal::c_string(&CString::new(name.original()).unwrap());
 
-        let params = command.params.iter().map(|param| {
-            let ty = (param.decl.ty)
-                .to_rust()
-                .tokens(ctx, &Lifetime::placeholder());
-            quote! { _: #ty }
-        });
+            let params = command.params.iter().map(|param| {
+                let ty = (param.decl.ty)
+                    .to_rust()
+                    .tokens(ctx, &Lifetime::placeholder());
+                quote! { _: #ty }
+            });
 
-        let ret = command.return_type.as_ref().map(|ty| {
-            let rust_ty = ty.to_rust().tokens(ctx, &Lifetime::placeholder());
-            quote! { -> #rust_ty }
-        });
+            let ret = command.return_type.as_ref().map(|ty| {
+                let rust_ty = ty.to_rust().tokens(ctx, &Lifetime::placeholder());
+                quote! { -> #rust_ty }
+            });
 
-        table.loaders.extend(quote! {
-            #field_name: unsafe {
-                unsafe extern "system" fn #field_name( #( #params ),* ) #ret {
-                    panic!(#panic_msg)
-                }
+            table.loaders.extend(quote! {
+                #field_name: unsafe {
+                    unsafe extern "system" fn #field_name( #( #params ),* ) #ret {
+                        panic!(#panic_msg)
+                    }
 
-                let val = _f(#cstr);
-                if val.is_null() {
-                    #field_name
-                } else {
-                    ::core::mem::transmute(val)
-                }
-            },
-        });
+                    let val = _f(#cstr);
+                    if val.is_null() {
+                        #field_name
+                    } else {
+                        ::core::mem::transmute(val)
+                    }
+                },
+            });
+        }
     }
 
     for (&(function_type, dest), Table { fields, loaders }) in tables.iter() {

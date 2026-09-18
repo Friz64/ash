@@ -6,6 +6,7 @@ pub struct DeviceFn {
     pub create_descriptor_update_template_khr: crate::vk::PFN_vkCreateDescriptorUpdateTemplateKHR,
     pub destroy_descriptor_update_template_khr: crate::vk::PFN_vkDestroyDescriptorUpdateTemplateKHR,
     pub update_descriptor_set_with_template_khr: crate::vk::PFN_vkUpdateDescriptorSetWithTemplateKHR,
+    pub cmd_push_descriptor_set_with_template_khr: crate::vk::PFN_vkCmdPushDescriptorSetWithTemplateKHR,
 }
 unsafe impl Send for DeviceFn {}
 unsafe impl Sync for DeviceFn {}
@@ -62,6 +63,23 @@ impl DeviceFn {
                 let val = _f(c"vkUpdateDescriptorSetWithTemplateKHR");
                 if val.is_null() {
                     update_descriptor_set_with_template_khr
+                } else {
+                    ::core::mem::transmute(val)
+                }
+            },
+            cmd_push_descriptor_set_with_template_khr: unsafe {
+                unsafe extern "system" fn cmd_push_descriptor_set_with_template_khr(
+                    _: crate::vk::CommandBuffer,
+                    _: crate::vk::DescriptorUpdateTemplate,
+                    _: crate::vk::PipelineLayout,
+                    _: u32,
+                    _: *const core::ffi::c_void,
+                ) {
+                    panic!("unable to load vkCmdPushDescriptorSetWithTemplateKHR")
+                }
+                let val = _f(c"vkCmdPushDescriptorSetWithTemplateKHR");
+                if val.is_null() {
+                    cmd_push_descriptor_set_with_template_khr
                 } else {
                     ::core::mem::transmute(val)
                 }

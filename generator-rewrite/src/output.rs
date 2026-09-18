@@ -25,14 +25,22 @@ pub struct Destination {
 }
 
 impl Destination {
-    pub fn new(required_by: RequiredBy) -> Destination {
+    pub fn primary_location(required_by: RequiredBy) -> Destination {
         Destination {
             library: required_by.library,
-            // TODO: figure out secondary locations
-            // we need to be generating type aliases or smth like that at those...
             location: required_by.primary_location(),
             reexport: true,
         }
+    }
+
+    pub fn all_locations(required_by: RequiredBy) -> impl Iterator<Item = Destination> {
+        (required_by.locations)
+            .into_iter()
+            .map(move |location| Destination {
+                library: required_by.library,
+                location,
+                reexport: true,
+            })
     }
 }
 
@@ -232,11 +240,15 @@ impl CodeMap {
             );
         }
 
-        vfs.write("vk.rs", quote! { 
-            pub use crate::Handle; 
-            pub use crate::TaggedStructure;
-            pub use crate::Extends;
-        });
+        vfs.write(
+            "vk.rs",
+            quote! {
+                pub use crate::Handle;
+                pub use crate::TaggedStructure;
+                pub use crate::Extends;
+            },
+        );
+
         vfs.sync_to(output_path)
     }
 }

@@ -25,7 +25,7 @@ impl Code for FuncPointer {
             pub type #name = Option<unsafe extern "system" fn(#( #params ),*) #ret>;
         };
 
-        CodeMap::new(Destination::new(self.required_by), code)
+        CodeMap::new(Destination::primary_location(self.required_by), code)
     }
 }
 
@@ -47,6 +47,6 @@ impl Code for Command {
             pub type #name = unsafe extern "system" fn(#( #params ),*) #ret;
         };
 
-        CodeMap::new(Destination::new(self.required_by), code)
+        CodeMap::new(Destination::primary_location(self.required_by), code)
     }
 }

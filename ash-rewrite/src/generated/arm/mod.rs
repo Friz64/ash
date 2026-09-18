@@ -13,6 +13,6 @@ pub mod tensors;
 pub mod data_graph;
 pub mod performance_counters_by_region;
 pub mod data_graph_instruction_set_tosa;
-pub mod scheduling_controls;
 pub mod data_graph_optical_flow;
+pub mod scheduling_controls;
 pub mod data_graph_neural_accelerator_statistics;

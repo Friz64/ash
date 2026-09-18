@@ -130,7 +130,7 @@ impl Code for BitMask {
             #bits_code
         };
 
-        let mut codemap = CodeMap::new(Destination::new(self.required_by), code);
+        let mut codemap = CodeMap::new(Destination::primary_location(self.required_by), code);
 
         if let Some(bits_name) = self.bits_name {
             let mut impl_map = CodeMap::default();
@@ -153,7 +153,7 @@ impl Code for BitMask {
                 };
 
                 impl_map.extend(CodeMap::new(
-                    Destination::new(*required_by),
+                    Destination::primary_location(*required_by),
                     quote! { pub const #name: Self = #value; },
                 ));
             }
@@ -161,7 +161,7 @@ impl Code for BitMask {
             for (&dest, impl_tokens) in impl_map.iter() {
                 let name = ctx.type_tokens(
                     bits_name,
-                    dest != Destination::new(self.required_by),
+                    dest != Destination::primary_location(self.required_by),
                     &Lifetime::placeholder(),
                 );
 
