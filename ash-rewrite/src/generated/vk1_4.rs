@@ -771,13 +771,13 @@ pub(crate) mod reexport {
         }
         pub fn priorities(
             mut self,
-            priorities: &[crate::vk::QueueGlobalPriority],
+            priorities: &'a [crate::vk::QueueGlobalPriority],
         ) -> Self {
             self.priority_count = priorities.len() as _;
             self.priorities[..priorities.len()].copy_from_slice(priorities);
             self
         }
-        pub fn priorities_as_slice(&self) -> &[crate::vk::QueueGlobalPriority] {
+        pub fn priorities_as_slice(&self) -> &'a [crate::vk::QueueGlobalPriority] {
             &self.priorities[..self.priority_count as _]
         }
     }
