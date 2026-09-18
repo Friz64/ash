@@ -40,6 +40,28 @@ impl InstanceFn {
     }
 }
 #[derive(Clone)]
+pub struct Instance {
+    pub(crate) fp: InstanceFn,
+    pub(crate) handle: crate::vk::Instance,
+}
+impl Instance {
+    pub fn load(entry: &crate::Entry, instance: &crate::Instance) -> Self {
+        let handle = instance.handle;
+        let fp = InstanceFn::load(|name| unsafe {
+            core::mem::transmute(entry.get_instance_proc_addr(handle, name.as_ptr()))
+        });
+        Self { handle, fp }
+    }
+    #[inline]
+    pub fn fp(&self) -> &InstanceFn {
+        &self.fp
+    }
+    #[inline]
+    pub fn instance(&self) -> crate::vk::Instance {
+        self.handle
+    }
+}
+#[derive(Clone)]
 pub struct DeviceFn {
     pub get_encoded_video_session_parameters_khr: crate::vk::PFN_vkGetEncodedVideoSessionParametersKHR,
     pub cmd_encode_video_khr: crate::vk::PFN_vkCmdEncodeVideoKHR,
@@ -88,6 +110,28 @@ impl DeviceFn {
                 }
             },
         }
+    }
+}
+#[derive(Clone)]
+pub struct Device {
+    pub(crate) fp: DeviceFn,
+    pub(crate) handle: crate::vk::Device,
+}
+impl Device {
+    pub fn load(instance: &crate::Instance, device: &crate::Device) -> Self {
+        let handle = device.handle;
+        let fp = DeviceFn::load(|name| unsafe {
+            core::mem::transmute(instance.get_device_proc_addr(handle, name.as_ptr()))
+        });
+        Self { handle, fp }
+    }
+    #[inline]
+    pub fn fp(&self) -> &DeviceFn {
+        &self.fp
+    }
+    #[inline]
+    pub fn device(&self) -> crate::vk::Device {
+        self.handle
     }
 }
 pub(crate) mod reexport {

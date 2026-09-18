@@ -230,6 +230,28 @@ impl InstanceFnV1_1 {
     }
 }
 #[derive(Clone)]
+pub struct InstanceV1_1 {
+    pub(crate) fp: InstanceFnV1_1,
+    pub(crate) handle: crate::vk::Instance,
+}
+impl InstanceV1_1 {
+    pub fn load(entry: &crate::Entry, instance: &crate::Instance) -> Self {
+        let handle = instance.handle;
+        let fp = InstanceFnV1_1::load(|name| unsafe {
+            core::mem::transmute(entry.get_instance_proc_addr(handle, name.as_ptr()))
+        });
+        Self { handle, fp }
+    }
+    #[inline]
+    pub fn fp(&self) -> &InstanceFnV1_1 {
+        &self.fp
+    }
+    #[inline]
+    pub fn instance(&self) -> crate::vk::Instance {
+        self.handle
+    }
+}
+#[derive(Clone)]
 pub struct DeviceFnV1_1 {
     pub trim_command_pool: crate::vk::PFN_vkTrimCommandPool,
     pub get_device_group_peer_memory_features: crate::vk::PFN_vkGetDeviceGroupPeerMemoryFeatures,
@@ -510,6 +532,28 @@ impl DeviceFnV1_1 {
                 }
             },
         }
+    }
+}
+#[derive(Clone)]
+pub struct DeviceV1_1 {
+    pub(crate) fp: DeviceFnV1_1,
+    pub(crate) handle: crate::vk::Device,
+}
+impl DeviceV1_1 {
+    pub fn load(instance: &crate::Instance, device: &crate::Device) -> Self {
+        let handle = device.handle;
+        let fp = DeviceFnV1_1::load(|name| unsafe {
+            core::mem::transmute(instance.get_device_proc_addr(handle, name.as_ptr()))
+        });
+        Self { handle, fp }
+    }
+    #[inline]
+    pub fn fp(&self) -> &DeviceFnV1_1 {
+        &self.fp
+    }
+    #[inline]
+    pub fn device(&self) -> crate::vk::Device {
+        self.handle
     }
 }
 pub(crate) mod reexport {

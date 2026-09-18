@@ -35,6 +35,28 @@ impl InstanceFn {
         }
     }
 }
+#[derive(Clone)]
+pub struct Instance {
+    pub(crate) fp: InstanceFn,
+    pub(crate) handle: crate::vk::Instance,
+}
+impl Instance {
+    pub fn load(entry: &crate::Entry, instance: &crate::Instance) -> Self {
+        let handle = instance.handle;
+        let fp = InstanceFn::load(|name| unsafe {
+            core::mem::transmute(entry.get_instance_proc_addr(handle, name.as_ptr()))
+        });
+        Self { handle, fp }
+    }
+    #[inline]
+    pub fn fp(&self) -> &InstanceFn {
+        &self.fp
+    }
+    #[inline]
+    pub fn instance(&self) -> crate::vk::Instance {
+        self.handle
+    }
+}
 pub(crate) mod reexport {
     #[repr(C)]
     #[derive(Clone, Copy)]

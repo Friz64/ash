@@ -14,7 +14,7 @@ use proc_macro2::{Literal, TokenStream};
 use quote::{format_ident, quote};
 use std::ffi::CString;
 use syn::Ident;
-use tracing::info;
+use tracing::debug;
 
 #[derive(Debug, Clone, Copy, Hash, PartialEq, Eq)]
 pub enum FunctionType {
@@ -45,7 +45,7 @@ impl FunctionType {
 
     fn table_name(self, dest: Destination) -> Ident {
         match (self, dest.location) {
-            (FunctionType::Static, ..) => format_ident!("StaticFn"),
+            (FunctionType::Static, _) => format_ident!("StaticFn"),
             (FunctionType::Entry, RequireLocation::Core { major, minor }) => {
                 format_ident!("EntryFnV{major}_{minor}")
             }
@@ -64,10 +64,28 @@ impl FunctionType {
             }
         }
     }
+
+    fn loader_name(self, dest: Destination) -> Option<Ident> {
+        match (self, dest.location) {
+            (FunctionType::Static | FunctionType::Entry, _) => None,
+            (FunctionType::Instance, RequireLocation::Core { major, minor }) => {
+                Some(format_ident!("InstanceV{major}_{minor}"))
+            }
+            (FunctionType::Instance, RequireLocation::Extension { .. }) => {
+                Some(format_ident!("Instance"))
+            }
+            (FunctionType::Device, RequireLocation::Core { major, minor }) => {
+                Some(format_ident!("DeviceV{major}_{minor}"))
+            }
+            (FunctionType::Device, RequireLocation::Extension { .. }) => {
+                Some(format_ident!("Device"))
+            }
+        }
+    }
 }
 
 pub fn generate_code(ctx: &Context, codemap: &mut CodeMap) {
-    info!("generating loader code");
+    debug!("generating loader code");
 
     #[derive(Default)]
     struct Table {
@@ -129,6 +147,65 @@ pub fn generate_code(ctx: &Context, codemap: &mut CodeMap) {
 
     for (&(function_type, dest), Table { fields, loaders }) in tables.iter() {
         let table_name = function_type.table_name(dest);
+        let loader_name = function_type.loader_name(dest);
+        let loader_code = match function_type {
+            FunctionType::Instance => Some(quote! {
+                #[derive(Clone)]
+                pub struct #loader_name {
+                    pub(crate) fp: #table_name,
+                    pub(crate) handle: crate::vk::Instance,
+                }
+
+                impl #loader_name {
+                    pub fn load(entry: &crate::Entry, instance: &crate::Instance) -> Self {
+                        let handle = instance.handle;
+                        let fp = #table_name::load(|name| unsafe {
+                            core::mem::transmute(entry.get_instance_proc_addr(handle, name.as_ptr()))
+                        });
+                        Self { handle, fp }
+                    }
+
+                    #[inline]
+                    pub fn fp(&self) -> &#table_name {
+                        &self.fp
+                    }
+
+                    #[inline]
+                    pub fn instance(&self) -> crate::vk::Instance {
+                        self.handle
+                    }
+                }
+            }),
+            FunctionType::Device => Some(quote! {
+                #[derive(Clone)]
+                pub struct #loader_name {
+                    pub(crate) fp: #table_name,
+                    pub(crate) handle: crate::vk::Device,
+                }
+
+                impl #loader_name {
+                    pub fn load(instance: &crate::Instance, device: &crate::Device) -> Self {
+                        let handle = device.handle;
+                        let fp = #table_name::load(|name| unsafe {
+                            core::mem::transmute(instance.get_device_proc_addr(handle, name.as_ptr()))
+                        });
+                        Self { handle, fp }
+                    }
+
+                    #[inline]
+                    pub fn fp(&self) -> &#table_name {
+                        &self.fp
+                    }
+
+                    #[inline]
+                    pub fn device(&self) -> crate::vk::Device {
+                        self.handle
+                    }
+                }
+            }),
+            _ => None,
+        };
+
         let code = quote! {
             #[derive(Clone)]
             pub struct #table_name {
@@ -147,6 +224,8 @@ pub fn generate_code(ctx: &Context, codemap: &mut CodeMap) {
                     Self { #loaders }
                 }
             }
+
+            #loader_code
         };
 
         codemap.extend(CodeMap::new(dest, code));
