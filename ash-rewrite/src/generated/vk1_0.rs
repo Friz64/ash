@@ -2969,13 +2969,13 @@ pub(crate) mod reexport {
         }
         pub fn memory_types(
             mut self,
-            memory_types: &'a [crate::vk::MemoryType],
+            memory_types: &'_ [crate::vk::MemoryType],
         ) -> Self {
             self.memory_type_count = memory_types.len() as _;
             self.memory_types[..memory_types.len()].copy_from_slice(memory_types);
             self
         }
-        pub fn memory_types_as_slice(&self) -> &'a [crate::vk::MemoryType] {
+        pub fn memory_types_as_slice(&self) -> &'_ [crate::vk::MemoryType] {
             &self.memory_types[..self.memory_type_count as _]
         }
         pub fn memory_heap_count(mut self, memory_heap_count: u32) -> Self {
@@ -2984,13 +2984,13 @@ pub(crate) mod reexport {
         }
         pub fn memory_heaps(
             mut self,
-            memory_heaps: &'a [crate::vk::MemoryHeap],
+            memory_heaps: &'_ [crate::vk::MemoryHeap],
         ) -> Self {
             self.memory_heap_count = memory_heaps.len() as _;
             self.memory_heaps[..memory_heaps.len()].copy_from_slice(memory_heaps);
             self
         }
-        pub fn memory_heaps_as_slice(&self) -> &'a [crate::vk::MemoryHeap] {
+        pub fn memory_heaps_as_slice(&self) -> &'_ [crate::vk::MemoryHeap] {
             &self.memory_heaps[..self.memory_heap_count as _]
         }
     }
