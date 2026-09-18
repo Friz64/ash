@@ -3,6 +3,7 @@
 //![Vulkan Manual Page](https://docs.vulkan.org/refpages/latest/refpages/source/VK_ARM_data_graph_optical_flow.html) · Extension `VK_ARM_data_graph_optical_flow`
 #[derive(Clone)]
 pub struct InstanceFn {
+    pub get_physical_device_queue_family_data_graph_engine_operation_properties_arm: crate::vk::PFN_vkGetPhysicalDeviceQueueFamilyDataGraphEngineOperationPropertiesARM,
     pub get_physical_device_queue_family_data_graph_optical_flow_image_formats_arm: crate::vk::PFN_vkGetPhysicalDeviceQueueFamilyDataGraphOpticalFlowImageFormatsARM,
 }
 unsafe impl Send for InstanceFn {}
@@ -17,6 +18,26 @@ impl InstanceFn {
         _f: &mut dyn FnMut(&::core::ffi::CStr) -> *const ::core::ffi::c_void,
     ) -> Self {
         Self {
+            get_physical_device_queue_family_data_graph_engine_operation_properties_arm: unsafe {
+                unsafe extern "system" fn get_physical_device_queue_family_data_graph_engine_operation_properties_arm(
+                    _: crate::vk::PhysicalDevice,
+                    _: u32,
+                    _: *const crate::vk::QueueFamilyDataGraphPropertiesARM<'_>,
+                    _: *mut crate::vk::BaseOutStructure<'_>,
+                ) -> crate::vk::Result {
+                    panic!(
+                        "unable to load vkGetPhysicalDeviceQueueFamilyDataGraphEngineOperationPropertiesARM"
+                    )
+                }
+                let val = _f(
+                    c"vkGetPhysicalDeviceQueueFamilyDataGraphEngineOperationPropertiesARM",
+                );
+                if val.is_null() {
+                    get_physical_device_queue_family_data_graph_engine_operation_properties_arm
+                } else {
+                    ::core::mem::transmute(val)
+                }
+            },
             get_physical_device_queue_family_data_graph_optical_flow_image_formats_arm: unsafe {
                 unsafe extern "system" fn get_physical_device_queue_family_data_graph_optical_flow_image_formats_arm(
                     _: crate::vk::PhysicalDevice,

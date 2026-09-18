@@ -3,6 +3,9 @@
 //![Vulkan Manual Page](https://docs.vulkan.org/refpages/latest/refpages/source/VK_KHR_device_group.html) · Extension `VK_KHR_device_group`
 #[derive(Clone)]
 pub struct DeviceFn {
+    pub get_device_group_present_capabilities_khr: crate::vk::PFN_vkGetDeviceGroupPresentCapabilitiesKHR,
+    pub get_device_group_surface_present_modes_khr: crate::vk::PFN_vkGetDeviceGroupSurfacePresentModesKHR,
+    pub acquire_next_image2_khr: crate::vk::PFN_vkAcquireNextImage2KHR,
     pub get_device_group_peer_memory_features_khr: crate::vk::PFN_vkGetDeviceGroupPeerMemoryFeaturesKHR,
     pub cmd_set_device_mask_khr: crate::vk::PFN_vkCmdSetDeviceMaskKHR,
     pub cmd_dispatch_base_khr: crate::vk::PFN_vkCmdDispatchBaseKHR,
@@ -19,6 +22,50 @@ impl DeviceFn {
         _f: &mut dyn FnMut(&::core::ffi::CStr) -> *const ::core::ffi::c_void,
     ) -> Self {
         Self {
+            get_device_group_present_capabilities_khr: unsafe {
+                unsafe extern "system" fn get_device_group_present_capabilities_khr(
+                    _: crate::vk::Device,
+                    _: *mut crate::vk::DeviceGroupPresentCapabilitiesKHR<'_>,
+                ) -> crate::vk::Result {
+                    panic!("unable to load vkGetDeviceGroupPresentCapabilitiesKHR")
+                }
+                let val = _f(c"vkGetDeviceGroupPresentCapabilitiesKHR");
+                if val.is_null() {
+                    get_device_group_present_capabilities_khr
+                } else {
+                    ::core::mem::transmute(val)
+                }
+            },
+            get_device_group_surface_present_modes_khr: unsafe {
+                unsafe extern "system" fn get_device_group_surface_present_modes_khr(
+                    _: crate::vk::Device,
+                    _: crate::vk::SurfaceKHR,
+                    _: *mut crate::vk::DeviceGroupPresentModeFlagsKHR,
+                ) -> crate::vk::Result {
+                    panic!("unable to load vkGetDeviceGroupSurfacePresentModesKHR")
+                }
+                let val = _f(c"vkGetDeviceGroupSurfacePresentModesKHR");
+                if val.is_null() {
+                    get_device_group_surface_present_modes_khr
+                } else {
+                    ::core::mem::transmute(val)
+                }
+            },
+            acquire_next_image2_khr: unsafe {
+                unsafe extern "system" fn acquire_next_image2_khr(
+                    _: crate::vk::Device,
+                    _: *const crate::vk::AcquireNextImageInfoKHR<'_>,
+                    _: *mut u32,
+                ) -> crate::vk::Result {
+                    panic!("unable to load vkAcquireNextImage2KHR")
+                }
+                let val = _f(c"vkAcquireNextImage2KHR");
+                if val.is_null() {
+                    acquire_next_image2_khr
+                } else {
+                    ::core::mem::transmute(val)
+                }
+            },
             get_device_group_peer_memory_features_khr: unsafe {
                 unsafe extern "system" fn get_device_group_peer_memory_features_khr(
                     _: crate::vk::Device,
@@ -91,6 +138,63 @@ impl Device {
     }
     #[inline]
     pub fn device(&self) -> crate::vk::Device {
+        self.handle
+    }
+}
+#[derive(Clone)]
+pub struct InstanceFn {
+    pub get_physical_device_present_rectangles_khr: crate::vk::PFN_vkGetPhysicalDevicePresentRectanglesKHR,
+}
+unsafe impl Send for InstanceFn {}
+unsafe impl Sync for InstanceFn {}
+impl InstanceFn {
+    pub fn load<F: FnMut(&::core::ffi::CStr) -> *const ::core::ffi::c_void>(
+        mut f: F,
+    ) -> Self {
+        Self::load_erased(&mut f)
+    }
+    fn load_erased(
+        _f: &mut dyn FnMut(&::core::ffi::CStr) -> *const ::core::ffi::c_void,
+    ) -> Self {
+        Self {
+            get_physical_device_present_rectangles_khr: unsafe {
+                unsafe extern "system" fn get_physical_device_present_rectangles_khr(
+                    _: crate::vk::PhysicalDevice,
+                    _: crate::vk::SurfaceKHR,
+                    _: *mut u32,
+                    _: *mut crate::vk::Rect2D,
+                ) -> crate::vk::Result {
+                    panic!("unable to load vkGetPhysicalDevicePresentRectanglesKHR")
+                }
+                let val = _f(c"vkGetPhysicalDevicePresentRectanglesKHR");
+                if val.is_null() {
+                    get_physical_device_present_rectangles_khr
+                } else {
+                    ::core::mem::transmute(val)
+                }
+            },
+        }
+    }
+}
+#[derive(Clone)]
+pub struct Instance {
+    pub(crate) fp: InstanceFn,
+    pub(crate) handle: crate::vk::Instance,
+}
+impl Instance {
+    pub fn load(entry: &crate::Entry, instance: &crate::Instance) -> Self {
+        let handle = instance.handle;
+        let fp = InstanceFn::load(|name| unsafe {
+            core::mem::transmute(entry.get_instance_proc_addr(handle, name.as_ptr()))
+        });
+        Self { handle, fp }
+    }
+    #[inline]
+    pub fn fp(&self) -> &InstanceFn {
+        &self.fp
+    }
+    #[inline]
+    pub fn instance(&self) -> crate::vk::Instance {
         self.handle
     }
 }

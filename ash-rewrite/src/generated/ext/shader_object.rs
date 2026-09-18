@@ -3,11 +3,60 @@
 //![Vulkan Manual Page](https://docs.vulkan.org/refpages/latest/refpages/source/VK_EXT_shader_object.html) · Extension `VK_EXT_shader_object`
 #[derive(Clone)]
 pub struct DeviceFn {
+    pub cmd_set_patch_control_points_ext: crate::vk::PFN_vkCmdSetPatchControlPointsEXT,
+    pub cmd_set_logic_op_ext: crate::vk::PFN_vkCmdSetLogicOpEXT,
+    pub cmd_set_tessellation_domain_origin_ext: crate::vk::PFN_vkCmdSetTessellationDomainOriginEXT,
+    pub cmd_set_depth_clamp_enable_ext: crate::vk::PFN_vkCmdSetDepthClampEnableEXT,
+    pub cmd_set_polygon_mode_ext: crate::vk::PFN_vkCmdSetPolygonModeEXT,
+    pub cmd_set_rasterization_samples_ext: crate::vk::PFN_vkCmdSetRasterizationSamplesEXT,
+    pub cmd_set_sample_mask_ext: crate::vk::PFN_vkCmdSetSampleMaskEXT,
+    pub cmd_set_alpha_to_coverage_enable_ext: crate::vk::PFN_vkCmdSetAlphaToCoverageEnableEXT,
+    pub cmd_set_alpha_to_one_enable_ext: crate::vk::PFN_vkCmdSetAlphaToOneEnableEXT,
+    pub cmd_set_logic_op_enable_ext: crate::vk::PFN_vkCmdSetLogicOpEnableEXT,
+    pub cmd_set_color_blend_enable_ext: crate::vk::PFN_vkCmdSetColorBlendEnableEXT,
+    pub cmd_set_color_blend_equation_ext: crate::vk::PFN_vkCmdSetColorBlendEquationEXT,
+    pub cmd_set_color_write_mask_ext: crate::vk::PFN_vkCmdSetColorWriteMaskEXT,
+    pub cmd_set_rasterization_stream_ext: crate::vk::PFN_vkCmdSetRasterizationStreamEXT,
+    pub cmd_set_conservative_rasterization_mode_ext: crate::vk::PFN_vkCmdSetConservativeRasterizationModeEXT,
+    pub cmd_set_extra_primitive_overestimation_size_ext: crate::vk::PFN_vkCmdSetExtraPrimitiveOverestimationSizeEXT,
+    pub cmd_set_depth_clip_enable_ext: crate::vk::PFN_vkCmdSetDepthClipEnableEXT,
+    pub cmd_set_sample_locations_enable_ext: crate::vk::PFN_vkCmdSetSampleLocationsEnableEXT,
+    pub cmd_set_color_blend_advanced_ext: crate::vk::PFN_vkCmdSetColorBlendAdvancedEXT,
+    pub cmd_set_provoking_vertex_mode_ext: crate::vk::PFN_vkCmdSetProvokingVertexModeEXT,
+    pub cmd_set_line_rasterization_mode_ext: crate::vk::PFN_vkCmdSetLineRasterizationModeEXT,
+    pub cmd_set_line_stipple_enable_ext: crate::vk::PFN_vkCmdSetLineStippleEnableEXT,
+    pub cmd_set_depth_clip_negative_one_to_one_ext: crate::vk::PFN_vkCmdSetDepthClipNegativeOneToOneEXT,
+    pub cmd_set_viewport_w_scaling_enable_nv: crate::vk::PFN_vkCmdSetViewportWScalingEnableNV,
+    pub cmd_set_viewport_swizzle_nv: crate::vk::PFN_vkCmdSetViewportSwizzleNV,
+    pub cmd_set_coverage_to_color_enable_nv: crate::vk::PFN_vkCmdSetCoverageToColorEnableNV,
+    pub cmd_set_coverage_to_color_location_nv: crate::vk::PFN_vkCmdSetCoverageToColorLocationNV,
+    pub cmd_set_coverage_modulation_mode_nv: crate::vk::PFN_vkCmdSetCoverageModulationModeNV,
+    pub cmd_set_coverage_modulation_table_enable_nv: crate::vk::PFN_vkCmdSetCoverageModulationTableEnableNV,
+    pub cmd_set_coverage_modulation_table_nv: crate::vk::PFN_vkCmdSetCoverageModulationTableNV,
+    pub cmd_set_shading_rate_image_enable_nv: crate::vk::PFN_vkCmdSetShadingRateImageEnableNV,
+    pub cmd_set_coverage_reduction_mode_nv: crate::vk::PFN_vkCmdSetCoverageReductionModeNV,
+    pub cmd_set_representative_fragment_test_enable_nv: crate::vk::PFN_vkCmdSetRepresentativeFragmentTestEnableNV,
+    pub cmd_set_vertex_input_ext: crate::vk::PFN_vkCmdSetVertexInputEXT,
     pub create_shaders_ext: crate::vk::PFN_vkCreateShadersEXT,
     pub destroy_shader_ext: crate::vk::PFN_vkDestroyShaderEXT,
     pub get_shader_binary_data_ext: crate::vk::PFN_vkGetShaderBinaryDataEXT,
     pub cmd_bind_shaders_ext: crate::vk::PFN_vkCmdBindShadersEXT,
     pub cmd_set_depth_clamp_range_ext: crate::vk::PFN_vkCmdSetDepthClampRangeEXT,
+    pub cmd_set_cull_mode_ext: crate::vk::PFN_vkCmdSetCullModeEXT,
+    pub cmd_set_front_face_ext: crate::vk::PFN_vkCmdSetFrontFaceEXT,
+    pub cmd_set_primitive_topology_ext: crate::vk::PFN_vkCmdSetPrimitiveTopologyEXT,
+    pub cmd_set_viewport_with_count_ext: crate::vk::PFN_vkCmdSetViewportWithCountEXT,
+    pub cmd_set_scissor_with_count_ext: crate::vk::PFN_vkCmdSetScissorWithCountEXT,
+    pub cmd_bind_vertex_buffers2_ext: crate::vk::PFN_vkCmdBindVertexBuffers2EXT,
+    pub cmd_set_depth_test_enable_ext: crate::vk::PFN_vkCmdSetDepthTestEnableEXT,
+    pub cmd_set_depth_write_enable_ext: crate::vk::PFN_vkCmdSetDepthWriteEnableEXT,
+    pub cmd_set_depth_compare_op_ext: crate::vk::PFN_vkCmdSetDepthCompareOpEXT,
+    pub cmd_set_depth_bounds_test_enable_ext: crate::vk::PFN_vkCmdSetDepthBoundsTestEnableEXT,
+    pub cmd_set_stencil_test_enable_ext: crate::vk::PFN_vkCmdSetStencilTestEnableEXT,
+    pub cmd_set_stencil_op_ext: crate::vk::PFN_vkCmdSetStencilOpEXT,
+    pub cmd_set_rasterizer_discard_enable_ext: crate::vk::PFN_vkCmdSetRasterizerDiscardEnableEXT,
+    pub cmd_set_depth_bias_enable_ext: crate::vk::PFN_vkCmdSetDepthBiasEnableEXT,
+    pub cmd_set_primitive_restart_enable_ext: crate::vk::PFN_vkCmdSetPrimitiveRestartEnableEXT,
 }
 unsafe impl Send for DeviceFn {}
 unsafe impl Sync for DeviceFn {}
@@ -21,6 +70,497 @@ impl DeviceFn {
         _f: &mut dyn FnMut(&::core::ffi::CStr) -> *const ::core::ffi::c_void,
     ) -> Self {
         Self {
+            cmd_set_patch_control_points_ext: unsafe {
+                unsafe extern "system" fn cmd_set_patch_control_points_ext(
+                    _: crate::vk::CommandBuffer,
+                    _: u32,
+                ) {
+                    panic!("unable to load vkCmdSetPatchControlPointsEXT")
+                }
+                let val = _f(c"vkCmdSetPatchControlPointsEXT");
+                if val.is_null() {
+                    cmd_set_patch_control_points_ext
+                } else {
+                    ::core::mem::transmute(val)
+                }
+            },
+            cmd_set_logic_op_ext: unsafe {
+                unsafe extern "system" fn cmd_set_logic_op_ext(
+                    _: crate::vk::CommandBuffer,
+                    _: crate::vk::LogicOp,
+                ) {
+                    panic!("unable to load vkCmdSetLogicOpEXT")
+                }
+                let val = _f(c"vkCmdSetLogicOpEXT");
+                if val.is_null() {
+                    cmd_set_logic_op_ext
+                } else {
+                    ::core::mem::transmute(val)
+                }
+            },
+            cmd_set_tessellation_domain_origin_ext: unsafe {
+                unsafe extern "system" fn cmd_set_tessellation_domain_origin_ext(
+                    _: crate::vk::CommandBuffer,
+                    _: crate::vk::TessellationDomainOrigin,
+                ) {
+                    panic!("unable to load vkCmdSetTessellationDomainOriginEXT")
+                }
+                let val = _f(c"vkCmdSetTessellationDomainOriginEXT");
+                if val.is_null() {
+                    cmd_set_tessellation_domain_origin_ext
+                } else {
+                    ::core::mem::transmute(val)
+                }
+            },
+            cmd_set_depth_clamp_enable_ext: unsafe {
+                unsafe extern "system" fn cmd_set_depth_clamp_enable_ext(
+                    _: crate::vk::CommandBuffer,
+                    _: crate::vk::Bool32,
+                ) {
+                    panic!("unable to load vkCmdSetDepthClampEnableEXT")
+                }
+                let val = _f(c"vkCmdSetDepthClampEnableEXT");
+                if val.is_null() {
+                    cmd_set_depth_clamp_enable_ext
+                } else {
+                    ::core::mem::transmute(val)
+                }
+            },
+            cmd_set_polygon_mode_ext: unsafe {
+                unsafe extern "system" fn cmd_set_polygon_mode_ext(
+                    _: crate::vk::CommandBuffer,
+                    _: crate::vk::PolygonMode,
+                ) {
+                    panic!("unable to load vkCmdSetPolygonModeEXT")
+                }
+                let val = _f(c"vkCmdSetPolygonModeEXT");
+                if val.is_null() {
+                    cmd_set_polygon_mode_ext
+                } else {
+                    ::core::mem::transmute(val)
+                }
+            },
+            cmd_set_rasterization_samples_ext: unsafe {
+                unsafe extern "system" fn cmd_set_rasterization_samples_ext(
+                    _: crate::vk::CommandBuffer,
+                    _: crate::vk::SampleCountFlagBits,
+                ) {
+                    panic!("unable to load vkCmdSetRasterizationSamplesEXT")
+                }
+                let val = _f(c"vkCmdSetRasterizationSamplesEXT");
+                if val.is_null() {
+                    cmd_set_rasterization_samples_ext
+                } else {
+                    ::core::mem::transmute(val)
+                }
+            },
+            cmd_set_sample_mask_ext: unsafe {
+                unsafe extern "system" fn cmd_set_sample_mask_ext(
+                    _: crate::vk::CommandBuffer,
+                    _: crate::vk::SampleCountFlagBits,
+                    _: *const crate::vk::SampleMask,
+                ) {
+                    panic!("unable to load vkCmdSetSampleMaskEXT")
+                }
+                let val = _f(c"vkCmdSetSampleMaskEXT");
+                if val.is_null() {
+                    cmd_set_sample_mask_ext
+                } else {
+                    ::core::mem::transmute(val)
+                }
+            },
+            cmd_set_alpha_to_coverage_enable_ext: unsafe {
+                unsafe extern "system" fn cmd_set_alpha_to_coverage_enable_ext(
+                    _: crate::vk::CommandBuffer,
+                    _: crate::vk::Bool32,
+                ) {
+                    panic!("unable to load vkCmdSetAlphaToCoverageEnableEXT")
+                }
+                let val = _f(c"vkCmdSetAlphaToCoverageEnableEXT");
+                if val.is_null() {
+                    cmd_set_alpha_to_coverage_enable_ext
+                } else {
+                    ::core::mem::transmute(val)
+                }
+            },
+            cmd_set_alpha_to_one_enable_ext: unsafe {
+                unsafe extern "system" fn cmd_set_alpha_to_one_enable_ext(
+                    _: crate::vk::CommandBuffer,
+                    _: crate::vk::Bool32,
+                ) {
+                    panic!("unable to load vkCmdSetAlphaToOneEnableEXT")
+                }
+                let val = _f(c"vkCmdSetAlphaToOneEnableEXT");
+                if val.is_null() {
+                    cmd_set_alpha_to_one_enable_ext
+                } else {
+                    ::core::mem::transmute(val)
+                }
+            },
+            cmd_set_logic_op_enable_ext: unsafe {
+                unsafe extern "system" fn cmd_set_logic_op_enable_ext(
+                    _: crate::vk::CommandBuffer,
+                    _: crate::vk::Bool32,
+                ) {
+                    panic!("unable to load vkCmdSetLogicOpEnableEXT")
+                }
+                let val = _f(c"vkCmdSetLogicOpEnableEXT");
+                if val.is_null() {
+                    cmd_set_logic_op_enable_ext
+                } else {
+                    ::core::mem::transmute(val)
+                }
+            },
+            cmd_set_color_blend_enable_ext: unsafe {
+                unsafe extern "system" fn cmd_set_color_blend_enable_ext(
+                    _: crate::vk::CommandBuffer,
+                    _: u32,
+                    _: u32,
+                    _: *const crate::vk::Bool32,
+                ) {
+                    panic!("unable to load vkCmdSetColorBlendEnableEXT")
+                }
+                let val = _f(c"vkCmdSetColorBlendEnableEXT");
+                if val.is_null() {
+                    cmd_set_color_blend_enable_ext
+                } else {
+                    ::core::mem::transmute(val)
+                }
+            },
+            cmd_set_color_blend_equation_ext: unsafe {
+                unsafe extern "system" fn cmd_set_color_blend_equation_ext(
+                    _: crate::vk::CommandBuffer,
+                    _: u32,
+                    _: u32,
+                    _: *const crate::vk::ColorBlendEquationEXT,
+                ) {
+                    panic!("unable to load vkCmdSetColorBlendEquationEXT")
+                }
+                let val = _f(c"vkCmdSetColorBlendEquationEXT");
+                if val.is_null() {
+                    cmd_set_color_blend_equation_ext
+                } else {
+                    ::core::mem::transmute(val)
+                }
+            },
+            cmd_set_color_write_mask_ext: unsafe {
+                unsafe extern "system" fn cmd_set_color_write_mask_ext(
+                    _: crate::vk::CommandBuffer,
+                    _: u32,
+                    _: u32,
+                    _: *const crate::vk::ColorComponentFlags,
+                ) {
+                    panic!("unable to load vkCmdSetColorWriteMaskEXT")
+                }
+                let val = _f(c"vkCmdSetColorWriteMaskEXT");
+                if val.is_null() {
+                    cmd_set_color_write_mask_ext
+                } else {
+                    ::core::mem::transmute(val)
+                }
+            },
+            cmd_set_rasterization_stream_ext: unsafe {
+                unsafe extern "system" fn cmd_set_rasterization_stream_ext(
+                    _: crate::vk::CommandBuffer,
+                    _: u32,
+                ) {
+                    panic!("unable to load vkCmdSetRasterizationStreamEXT")
+                }
+                let val = _f(c"vkCmdSetRasterizationStreamEXT");
+                if val.is_null() {
+                    cmd_set_rasterization_stream_ext
+                } else {
+                    ::core::mem::transmute(val)
+                }
+            },
+            cmd_set_conservative_rasterization_mode_ext: unsafe {
+                unsafe extern "system" fn cmd_set_conservative_rasterization_mode_ext(
+                    _: crate::vk::CommandBuffer,
+                    _: crate::vk::ConservativeRasterizationModeEXT,
+                ) {
+                    panic!("unable to load vkCmdSetConservativeRasterizationModeEXT")
+                }
+                let val = _f(c"vkCmdSetConservativeRasterizationModeEXT");
+                if val.is_null() {
+                    cmd_set_conservative_rasterization_mode_ext
+                } else {
+                    ::core::mem::transmute(val)
+                }
+            },
+            cmd_set_extra_primitive_overestimation_size_ext: unsafe {
+                unsafe extern "system" fn cmd_set_extra_primitive_overestimation_size_ext(
+                    _: crate::vk::CommandBuffer,
+                    _: core::ffi::c_float,
+                ) {
+                    panic!("unable to load vkCmdSetExtraPrimitiveOverestimationSizeEXT")
+                }
+                let val = _f(c"vkCmdSetExtraPrimitiveOverestimationSizeEXT");
+                if val.is_null() {
+                    cmd_set_extra_primitive_overestimation_size_ext
+                } else {
+                    ::core::mem::transmute(val)
+                }
+            },
+            cmd_set_depth_clip_enable_ext: unsafe {
+                unsafe extern "system" fn cmd_set_depth_clip_enable_ext(
+                    _: crate::vk::CommandBuffer,
+                    _: crate::vk::Bool32,
+                ) {
+                    panic!("unable to load vkCmdSetDepthClipEnableEXT")
+                }
+                let val = _f(c"vkCmdSetDepthClipEnableEXT");
+                if val.is_null() {
+                    cmd_set_depth_clip_enable_ext
+                } else {
+                    ::core::mem::transmute(val)
+                }
+            },
+            cmd_set_sample_locations_enable_ext: unsafe {
+                unsafe extern "system" fn cmd_set_sample_locations_enable_ext(
+                    _: crate::vk::CommandBuffer,
+                    _: crate::vk::Bool32,
+                ) {
+                    panic!("unable to load vkCmdSetSampleLocationsEnableEXT")
+                }
+                let val = _f(c"vkCmdSetSampleLocationsEnableEXT");
+                if val.is_null() {
+                    cmd_set_sample_locations_enable_ext
+                } else {
+                    ::core::mem::transmute(val)
+                }
+            },
+            cmd_set_color_blend_advanced_ext: unsafe {
+                unsafe extern "system" fn cmd_set_color_blend_advanced_ext(
+                    _: crate::vk::CommandBuffer,
+                    _: u32,
+                    _: u32,
+                    _: *const crate::vk::ColorBlendAdvancedEXT,
+                ) {
+                    panic!("unable to load vkCmdSetColorBlendAdvancedEXT")
+                }
+                let val = _f(c"vkCmdSetColorBlendAdvancedEXT");
+                if val.is_null() {
+                    cmd_set_color_blend_advanced_ext
+                } else {
+                    ::core::mem::transmute(val)
+                }
+            },
+            cmd_set_provoking_vertex_mode_ext: unsafe {
+                unsafe extern "system" fn cmd_set_provoking_vertex_mode_ext(
+                    _: crate::vk::CommandBuffer,
+                    _: crate::vk::ProvokingVertexModeEXT,
+                ) {
+                    panic!("unable to load vkCmdSetProvokingVertexModeEXT")
+                }
+                let val = _f(c"vkCmdSetProvokingVertexModeEXT");
+                if val.is_null() {
+                    cmd_set_provoking_vertex_mode_ext
+                } else {
+                    ::core::mem::transmute(val)
+                }
+            },
+            cmd_set_line_rasterization_mode_ext: unsafe {
+                unsafe extern "system" fn cmd_set_line_rasterization_mode_ext(
+                    _: crate::vk::CommandBuffer,
+                    _: crate::vk::LineRasterizationModeEXT,
+                ) {
+                    panic!("unable to load vkCmdSetLineRasterizationModeEXT")
+                }
+                let val = _f(c"vkCmdSetLineRasterizationModeEXT");
+                if val.is_null() {
+                    cmd_set_line_rasterization_mode_ext
+                } else {
+                    ::core::mem::transmute(val)
+                }
+            },
+            cmd_set_line_stipple_enable_ext: unsafe {
+                unsafe extern "system" fn cmd_set_line_stipple_enable_ext(
+                    _: crate::vk::CommandBuffer,
+                    _: crate::vk::Bool32,
+                ) {
+                    panic!("unable to load vkCmdSetLineStippleEnableEXT")
+                }
+                let val = _f(c"vkCmdSetLineStippleEnableEXT");
+                if val.is_null() {
+                    cmd_set_line_stipple_enable_ext
+                } else {
+                    ::core::mem::transmute(val)
+                }
+            },
+            cmd_set_depth_clip_negative_one_to_one_ext: unsafe {
+                unsafe extern "system" fn cmd_set_depth_clip_negative_one_to_one_ext(
+                    _: crate::vk::CommandBuffer,
+                    _: crate::vk::Bool32,
+                ) {
+                    panic!("unable to load vkCmdSetDepthClipNegativeOneToOneEXT")
+                }
+                let val = _f(c"vkCmdSetDepthClipNegativeOneToOneEXT");
+                if val.is_null() {
+                    cmd_set_depth_clip_negative_one_to_one_ext
+                } else {
+                    ::core::mem::transmute(val)
+                }
+            },
+            cmd_set_viewport_w_scaling_enable_nv: unsafe {
+                unsafe extern "system" fn cmd_set_viewport_w_scaling_enable_nv(
+                    _: crate::vk::CommandBuffer,
+                    _: crate::vk::Bool32,
+                ) {
+                    panic!("unable to load vkCmdSetViewportWScalingEnableNV")
+                }
+                let val = _f(c"vkCmdSetViewportWScalingEnableNV");
+                if val.is_null() {
+                    cmd_set_viewport_w_scaling_enable_nv
+                } else {
+                    ::core::mem::transmute(val)
+                }
+            },
+            cmd_set_viewport_swizzle_nv: unsafe {
+                unsafe extern "system" fn cmd_set_viewport_swizzle_nv(
+                    _: crate::vk::CommandBuffer,
+                    _: u32,
+                    _: u32,
+                    _: *const crate::vk::ViewportSwizzleNV,
+                ) {
+                    panic!("unable to load vkCmdSetViewportSwizzleNV")
+                }
+                let val = _f(c"vkCmdSetViewportSwizzleNV");
+                if val.is_null() {
+                    cmd_set_viewport_swizzle_nv
+                } else {
+                    ::core::mem::transmute(val)
+                }
+            },
+            cmd_set_coverage_to_color_enable_nv: unsafe {
+                unsafe extern "system" fn cmd_set_coverage_to_color_enable_nv(
+                    _: crate::vk::CommandBuffer,
+                    _: crate::vk::Bool32,
+                ) {
+                    panic!("unable to load vkCmdSetCoverageToColorEnableNV")
+                }
+                let val = _f(c"vkCmdSetCoverageToColorEnableNV");
+                if val.is_null() {
+                    cmd_set_coverage_to_color_enable_nv
+                } else {
+                    ::core::mem::transmute(val)
+                }
+            },
+            cmd_set_coverage_to_color_location_nv: unsafe {
+                unsafe extern "system" fn cmd_set_coverage_to_color_location_nv(
+                    _: crate::vk::CommandBuffer,
+                    _: u32,
+                ) {
+                    panic!("unable to load vkCmdSetCoverageToColorLocationNV")
+                }
+                let val = _f(c"vkCmdSetCoverageToColorLocationNV");
+                if val.is_null() {
+                    cmd_set_coverage_to_color_location_nv
+                } else {
+                    ::core::mem::transmute(val)
+                }
+            },
+            cmd_set_coverage_modulation_mode_nv: unsafe {
+                unsafe extern "system" fn cmd_set_coverage_modulation_mode_nv(
+                    _: crate::vk::CommandBuffer,
+                    _: crate::vk::CoverageModulationModeNV,
+                ) {
+                    panic!("unable to load vkCmdSetCoverageModulationModeNV")
+                }
+                let val = _f(c"vkCmdSetCoverageModulationModeNV");
+                if val.is_null() {
+                    cmd_set_coverage_modulation_mode_nv
+                } else {
+                    ::core::mem::transmute(val)
+                }
+            },
+            cmd_set_coverage_modulation_table_enable_nv: unsafe {
+                unsafe extern "system" fn cmd_set_coverage_modulation_table_enable_nv(
+                    _: crate::vk::CommandBuffer,
+                    _: crate::vk::Bool32,
+                ) {
+                    panic!("unable to load vkCmdSetCoverageModulationTableEnableNV")
+                }
+                let val = _f(c"vkCmdSetCoverageModulationTableEnableNV");
+                if val.is_null() {
+                    cmd_set_coverage_modulation_table_enable_nv
+                } else {
+                    ::core::mem::transmute(val)
+                }
+            },
+            cmd_set_coverage_modulation_table_nv: unsafe {
+                unsafe extern "system" fn cmd_set_coverage_modulation_table_nv(
+                    _: crate::vk::CommandBuffer,
+                    _: u32,
+                    _: *const core::ffi::c_float,
+                ) {
+                    panic!("unable to load vkCmdSetCoverageModulationTableNV")
+                }
+                let val = _f(c"vkCmdSetCoverageModulationTableNV");
+                if val.is_null() {
+                    cmd_set_coverage_modulation_table_nv
+                } else {
+                    ::core::mem::transmute(val)
+                }
+            },
+            cmd_set_shading_rate_image_enable_nv: unsafe {
+                unsafe extern "system" fn cmd_set_shading_rate_image_enable_nv(
+                    _: crate::vk::CommandBuffer,
+                    _: crate::vk::Bool32,
+                ) {
+                    panic!("unable to load vkCmdSetShadingRateImageEnableNV")
+                }
+                let val = _f(c"vkCmdSetShadingRateImageEnableNV");
+                if val.is_null() {
+                    cmd_set_shading_rate_image_enable_nv
+                } else {
+                    ::core::mem::transmute(val)
+                }
+            },
+            cmd_set_coverage_reduction_mode_nv: unsafe {
+                unsafe extern "system" fn cmd_set_coverage_reduction_mode_nv(
+                    _: crate::vk::CommandBuffer,
+                    _: crate::vk::CoverageReductionModeNV,
+                ) {
+                    panic!("unable to load vkCmdSetCoverageReductionModeNV")
+                }
+                let val = _f(c"vkCmdSetCoverageReductionModeNV");
+                if val.is_null() {
+                    cmd_set_coverage_reduction_mode_nv
+                } else {
+                    ::core::mem::transmute(val)
+                }
+            },
+            cmd_set_representative_fragment_test_enable_nv: unsafe {
+                unsafe extern "system" fn cmd_set_representative_fragment_test_enable_nv(
+                    _: crate::vk::CommandBuffer,
+                    _: crate::vk::Bool32,
+                ) {
+                    panic!("unable to load vkCmdSetRepresentativeFragmentTestEnableNV")
+                }
+                let val = _f(c"vkCmdSetRepresentativeFragmentTestEnableNV");
+                if val.is_null() {
+                    cmd_set_representative_fragment_test_enable_nv
+                } else {
+                    ::core::mem::transmute(val)
+                }
+            },
+            cmd_set_vertex_input_ext: unsafe {
+                unsafe extern "system" fn cmd_set_vertex_input_ext(
+                    _: crate::vk::CommandBuffer,
+                    _: u32,
+                    _: *const crate::vk::VertexInputBindingDescription2EXT<'_>,
+                    _: u32,
+                    _: *const crate::vk::VertexInputAttributeDescription2EXT<'_>,
+                ) {
+                    panic!("unable to load vkCmdSetVertexInputEXT")
+                }
+                let val = _f(c"vkCmdSetVertexInputEXT");
+                if val.is_null() {
+                    cmd_set_vertex_input_ext
+                } else {
+                    ::core::mem::transmute(val)
+                }
+            },
             create_shaders_ext: unsafe {
                 unsafe extern "system" fn create_shaders_ext(
                     _: crate::vk::Device,
@@ -96,6 +636,227 @@ impl DeviceFn {
                 let val = _f(c"vkCmdSetDepthClampRangeEXT");
                 if val.is_null() {
                     cmd_set_depth_clamp_range_ext
+                } else {
+                    ::core::mem::transmute(val)
+                }
+            },
+            cmd_set_cull_mode_ext: unsafe {
+                unsafe extern "system" fn cmd_set_cull_mode_ext(
+                    _: crate::vk::CommandBuffer,
+                    _: crate::vk::CullModeFlags,
+                ) {
+                    panic!("unable to load vkCmdSetCullModeEXT")
+                }
+                let val = _f(c"vkCmdSetCullModeEXT");
+                if val.is_null() {
+                    cmd_set_cull_mode_ext
+                } else {
+                    ::core::mem::transmute(val)
+                }
+            },
+            cmd_set_front_face_ext: unsafe {
+                unsafe extern "system" fn cmd_set_front_face_ext(
+                    _: crate::vk::CommandBuffer,
+                    _: crate::vk::FrontFace,
+                ) {
+                    panic!("unable to load vkCmdSetFrontFaceEXT")
+                }
+                let val = _f(c"vkCmdSetFrontFaceEXT");
+                if val.is_null() {
+                    cmd_set_front_face_ext
+                } else {
+                    ::core::mem::transmute(val)
+                }
+            },
+            cmd_set_primitive_topology_ext: unsafe {
+                unsafe extern "system" fn cmd_set_primitive_topology_ext(
+                    _: crate::vk::CommandBuffer,
+                    _: crate::vk::PrimitiveTopology,
+                ) {
+                    panic!("unable to load vkCmdSetPrimitiveTopologyEXT")
+                }
+                let val = _f(c"vkCmdSetPrimitiveTopologyEXT");
+                if val.is_null() {
+                    cmd_set_primitive_topology_ext
+                } else {
+                    ::core::mem::transmute(val)
+                }
+            },
+            cmd_set_viewport_with_count_ext: unsafe {
+                unsafe extern "system" fn cmd_set_viewport_with_count_ext(
+                    _: crate::vk::CommandBuffer,
+                    _: u32,
+                    _: *const crate::vk::Viewport,
+                ) {
+                    panic!("unable to load vkCmdSetViewportWithCountEXT")
+                }
+                let val = _f(c"vkCmdSetViewportWithCountEXT");
+                if val.is_null() {
+                    cmd_set_viewport_with_count_ext
+                } else {
+                    ::core::mem::transmute(val)
+                }
+            },
+            cmd_set_scissor_with_count_ext: unsafe {
+                unsafe extern "system" fn cmd_set_scissor_with_count_ext(
+                    _: crate::vk::CommandBuffer,
+                    _: u32,
+                    _: *const crate::vk::Rect2D,
+                ) {
+                    panic!("unable to load vkCmdSetScissorWithCountEXT")
+                }
+                let val = _f(c"vkCmdSetScissorWithCountEXT");
+                if val.is_null() {
+                    cmd_set_scissor_with_count_ext
+                } else {
+                    ::core::mem::transmute(val)
+                }
+            },
+            cmd_bind_vertex_buffers2_ext: unsafe {
+                unsafe extern "system" fn cmd_bind_vertex_buffers2_ext(
+                    _: crate::vk::CommandBuffer,
+                    _: u32,
+                    _: u32,
+                    _: *const crate::vk::Buffer,
+                    _: *const crate::vk::DeviceSize,
+                    _: *const crate::vk::DeviceSize,
+                    _: *const crate::vk::DeviceSize,
+                ) {
+                    panic!("unable to load vkCmdBindVertexBuffers2EXT")
+                }
+                let val = _f(c"vkCmdBindVertexBuffers2EXT");
+                if val.is_null() {
+                    cmd_bind_vertex_buffers2_ext
+                } else {
+                    ::core::mem::transmute(val)
+                }
+            },
+            cmd_set_depth_test_enable_ext: unsafe {
+                unsafe extern "system" fn cmd_set_depth_test_enable_ext(
+                    _: crate::vk::CommandBuffer,
+                    _: crate::vk::Bool32,
+                ) {
+                    panic!("unable to load vkCmdSetDepthTestEnableEXT")
+                }
+                let val = _f(c"vkCmdSetDepthTestEnableEXT");
+                if val.is_null() {
+                    cmd_set_depth_test_enable_ext
+                } else {
+                    ::core::mem::transmute(val)
+                }
+            },
+            cmd_set_depth_write_enable_ext: unsafe {
+                unsafe extern "system" fn cmd_set_depth_write_enable_ext(
+                    _: crate::vk::CommandBuffer,
+                    _: crate::vk::Bool32,
+                ) {
+                    panic!("unable to load vkCmdSetDepthWriteEnableEXT")
+                }
+                let val = _f(c"vkCmdSetDepthWriteEnableEXT");
+                if val.is_null() {
+                    cmd_set_depth_write_enable_ext
+                } else {
+                    ::core::mem::transmute(val)
+                }
+            },
+            cmd_set_depth_compare_op_ext: unsafe {
+                unsafe extern "system" fn cmd_set_depth_compare_op_ext(
+                    _: crate::vk::CommandBuffer,
+                    _: crate::vk::CompareOp,
+                ) {
+                    panic!("unable to load vkCmdSetDepthCompareOpEXT")
+                }
+                let val = _f(c"vkCmdSetDepthCompareOpEXT");
+                if val.is_null() {
+                    cmd_set_depth_compare_op_ext
+                } else {
+                    ::core::mem::transmute(val)
+                }
+            },
+            cmd_set_depth_bounds_test_enable_ext: unsafe {
+                unsafe extern "system" fn cmd_set_depth_bounds_test_enable_ext(
+                    _: crate::vk::CommandBuffer,
+                    _: crate::vk::Bool32,
+                ) {
+                    panic!("unable to load vkCmdSetDepthBoundsTestEnableEXT")
+                }
+                let val = _f(c"vkCmdSetDepthBoundsTestEnableEXT");
+                if val.is_null() {
+                    cmd_set_depth_bounds_test_enable_ext
+                } else {
+                    ::core::mem::transmute(val)
+                }
+            },
+            cmd_set_stencil_test_enable_ext: unsafe {
+                unsafe extern "system" fn cmd_set_stencil_test_enable_ext(
+                    _: crate::vk::CommandBuffer,
+                    _: crate::vk::Bool32,
+                ) {
+                    panic!("unable to load vkCmdSetStencilTestEnableEXT")
+                }
+                let val = _f(c"vkCmdSetStencilTestEnableEXT");
+                if val.is_null() {
+                    cmd_set_stencil_test_enable_ext
+                } else {
+                    ::core::mem::transmute(val)
+                }
+            },
+            cmd_set_stencil_op_ext: unsafe {
+                unsafe extern "system" fn cmd_set_stencil_op_ext(
+                    _: crate::vk::CommandBuffer,
+                    _: crate::vk::StencilFaceFlags,
+                    _: crate::vk::StencilOp,
+                    _: crate::vk::StencilOp,
+                    _: crate::vk::StencilOp,
+                    _: crate::vk::CompareOp,
+                ) {
+                    panic!("unable to load vkCmdSetStencilOpEXT")
+                }
+                let val = _f(c"vkCmdSetStencilOpEXT");
+                if val.is_null() {
+                    cmd_set_stencil_op_ext
+                } else {
+                    ::core::mem::transmute(val)
+                }
+            },
+            cmd_set_rasterizer_discard_enable_ext: unsafe {
+                unsafe extern "system" fn cmd_set_rasterizer_discard_enable_ext(
+                    _: crate::vk::CommandBuffer,
+                    _: crate::vk::Bool32,
+                ) {
+                    panic!("unable to load vkCmdSetRasterizerDiscardEnableEXT")
+                }
+                let val = _f(c"vkCmdSetRasterizerDiscardEnableEXT");
+                if val.is_null() {
+                    cmd_set_rasterizer_discard_enable_ext
+                } else {
+                    ::core::mem::transmute(val)
+                }
+            },
+            cmd_set_depth_bias_enable_ext: unsafe {
+                unsafe extern "system" fn cmd_set_depth_bias_enable_ext(
+                    _: crate::vk::CommandBuffer,
+                    _: crate::vk::Bool32,
+                ) {
+                    panic!("unable to load vkCmdSetDepthBiasEnableEXT")
+                }
+                let val = _f(c"vkCmdSetDepthBiasEnableEXT");
+                if val.is_null() {
+                    cmd_set_depth_bias_enable_ext
+                } else {
+                    ::core::mem::transmute(val)
+                }
+            },
+            cmd_set_primitive_restart_enable_ext: unsafe {
+                unsafe extern "system" fn cmd_set_primitive_restart_enable_ext(
+                    _: crate::vk::CommandBuffer,
+                    _: crate::vk::Bool32,
+                ) {
+                    panic!("unable to load vkCmdSetPrimitiveRestartEnableEXT")
+                }
+                let val = _f(c"vkCmdSetPrimitiveRestartEnableEXT");
+                if val.is_null() {
+                    cmd_set_primitive_restart_enable_ext
                 } else {
                     ::core::mem::transmute(val)
                 }

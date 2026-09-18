@@ -22,6 +22,6 @@ impl Code for CMacro {
             }
         };
 
-        CodeMap::new(Destination::new(self.required_by), code)
+        CodeMap::new(Destination::primary_location(self.required_by), code)
     }
 }
