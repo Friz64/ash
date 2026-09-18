@@ -195,10 +195,6 @@ pub(crate) mod reexport {
         }
     }
     impl<'a> PipelineBinaryHandlesInfoKHR<'a> {
-        pub fn pipeline_binary_count(mut self, pipeline_binary_count: u32) -> Self {
-            self.pipeline_binary_count = pipeline_binary_count;
-            self
-        }
         pub fn pipeline_binaries(
             mut self,
             pipeline_binaries: &'a mut [crate::vk::PipelineBinaryKHR],
@@ -216,10 +212,6 @@ pub(crate) mod reexport {
         pub _marker: ::core::marker::PhantomData<&'a ()>,
     }
     impl<'a> PipelineBinaryDataKHR<'a> {
-        pub fn data_size(mut self, data_size: usize) -> Self {
-            self.data_size = data_size;
-            self
-        }
         pub fn data(mut self, data: &'a mut [u8]) -> Self {
             self.data_size = data.len() as _;
             self.p_data = data.as_mut_ptr().cast();
@@ -235,10 +227,6 @@ pub(crate) mod reexport {
         pub _marker: ::core::marker::PhantomData<&'a ()>,
     }
     impl<'a> PipelineBinaryKeysAndDataKHR<'a> {
-        pub fn binary_count(mut self, binary_count: u32) -> Self {
-            self.binary_count = binary_count;
-            self
-        }
         pub fn pipeline_binary_keys(
             mut self,
             pipeline_binary_keys: &'a [crate::vk::PipelineBinaryKeyKHR<'a>],
@@ -322,10 +310,6 @@ pub(crate) mod reexport {
         }
     }
     impl<'a> PipelineBinaryInfoKHR<'a> {
-        pub fn binary_count(mut self, binary_count: u32) -> Self {
-            self.binary_count = binary_count;
-            self
-        }
         pub fn pipeline_binaries(
             mut self,
             pipeline_binaries: &'a [crate::vk::PipelineBinaryKHR],

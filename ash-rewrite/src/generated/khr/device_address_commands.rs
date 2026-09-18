@@ -509,10 +509,6 @@ pub(crate) mod reexport {
         }
     }
     impl<'a> CopyDeviceMemoryInfoKHR<'a> {
-        pub fn region_count(mut self, region_count: u32) -> Self {
-            self.region_count = region_count;
-            self
-        }
         pub fn regions(
             mut self,
             regions: &'a [crate::vk::DeviceMemoryCopyKHR<'a>],
@@ -630,10 +626,6 @@ pub(crate) mod reexport {
             self.image = image;
             self
         }
-        pub fn region_count(mut self, region_count: u32) -> Self {
-            self.region_count = region_count;
-            self
-        }
         pub fn regions(
             mut self,
             regions: &'a [crate::vk::DeviceMemoryImageCopyKHR<'a>],
@@ -669,13 +661,6 @@ pub(crate) mod reexport {
         }
     }
     impl<'a> MemoryRangeBarriersInfoKHR<'a> {
-        pub fn memory_range_barrier_count(
-            mut self,
-            memory_range_barrier_count: u32,
-        ) -> Self {
-            self.memory_range_barrier_count = memory_range_barrier_count;
-            self
-        }
         pub fn memory_range_barriers(
             mut self,
             memory_range_barriers: &'a [crate::vk::MemoryRangeBarrierKHR<'a>],

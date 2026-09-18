@@ -129,20 +129,12 @@ pub(crate) mod reexport {
         }
     }
     impl<'a> QueueFamilyDataGraphTOSAPropertiesARM<'a> {
-        pub fn profile_count(mut self, profile_count: u32) -> Self {
-            self.profile_count = profile_count;
-            self
-        }
         pub fn profiles(
             mut self,
             profiles: &'a [crate::vk::DataGraphTOSANameQualityARM],
         ) -> Self {
             self.profile_count = profiles.len() as _;
             self.p_profiles = profiles.as_ptr();
-            self
-        }
-        pub fn extension_count(mut self, extension_count: u32) -> Self {
-            self.extension_count = extension_count;
             self
         }
         pub fn extensions(

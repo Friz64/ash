@@ -295,10 +295,6 @@ pub(crate) mod reexport {
             self.address = address.as_mut_ptr().cast();
             self
         }
-        pub fn size(mut self, size: usize) -> Self {
-            self.size = size;
-            self
-        }
     }
     #[repr(C)]
     #[derive(Clone, Copy, Default)]
@@ -311,10 +307,6 @@ pub(crate) mod reexport {
         pub fn address(mut self, address: &'a [u8]) -> Self {
             self.size = address.len() as _;
             self.address = address.as_ptr().cast();
-            self
-        }
-        pub fn size(mut self, size: usize) -> Self {
-            self.size = size;
             self
         }
     }
@@ -954,10 +946,6 @@ pub(crate) mod reexport {
         }
     }
     impl<'a> ShaderDescriptorSetAndBindingMappingInfoEXT<'a> {
-        pub fn mapping_count(mut self, mapping_count: u32) -> Self {
-            self.mapping_count = mapping_count;
-            self
-        }
         pub fn mappings(
             mut self,
             mappings: &'a [crate::vk::DescriptorSetAndBindingMappingEXT<'a>],

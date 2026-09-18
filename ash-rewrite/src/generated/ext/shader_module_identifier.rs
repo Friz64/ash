@@ -170,10 +170,6 @@ pub(crate) mod reexport {
         }
     }
     impl<'a> PipelineShaderStageModuleIdentifierCreateInfoEXT<'a> {
-        pub fn identifier_size(mut self, identifier_size: u32) -> Self {
-            self.identifier_size = identifier_size;
-            self
-        }
         pub fn identifier(mut self, identifier: &'a [u8]) -> Self {
             self.identifier_size = identifier.len() as _;
             self.p_identifier = identifier.as_ptr();
@@ -204,10 +200,6 @@ pub(crate) mod reexport {
         }
     }
     impl<'a> ShaderModuleIdentifierEXT<'a> {
-        pub fn identifier_size(mut self, identifier_size: u32) -> Self {
-            self.identifier_size = identifier_size;
-            self
-        }
         pub fn identifier(mut self, identifier: &'_ [u8]) -> Self {
             self.identifier_size = identifier.len() as _;
             self.identifier[..identifier.len()].copy_from_slice(identifier);

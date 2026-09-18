@@ -150,10 +150,6 @@ pub(crate) mod reexport {
             self.custom_resolve = custom_resolve.into();
             self
         }
-        pub fn color_attachment_count(mut self, color_attachment_count: u32) -> Self {
-            self.color_attachment_count = color_attachment_count;
-            self
-        }
         pub fn color_attachment_formats(
             mut self,
             color_attachment_formats: &'a [crate::vk::Format],

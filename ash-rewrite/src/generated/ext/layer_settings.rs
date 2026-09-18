@@ -28,10 +28,6 @@ impl<'a> Default for LayerSettingsCreateInfoEXT<'a> {
     }
 }
 impl<'a> LayerSettingsCreateInfoEXT<'a> {
-    pub fn setting_count(mut self, setting_count: u32) -> Self {
-        self.setting_count = setting_count;
-        self
-    }
     pub fn settings(mut self, settings: &'a [crate::vk::LayerSettingEXT<'a>]) -> Self {
         self.setting_count = settings.len() as _;
         self.p_settings = settings.as_ptr();
@@ -73,10 +69,6 @@ impl<'a> LayerSettingEXT<'a> {
     }
     pub fn _type(mut self, _type: crate::vk::LayerSettingTypeEXT) -> Self {
         self._type = _type;
-        self
-    }
-    pub fn value_count(mut self, value_count: u32) -> Self {
-        self.value_count = value_count;
         self
     }
     pub fn values(mut self, values: &'a [u8]) -> Self {

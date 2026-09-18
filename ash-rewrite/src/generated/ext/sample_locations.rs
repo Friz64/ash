@@ -176,10 +176,6 @@ pub(crate) mod reexport {
             self.sample_location_grid_size = sample_location_grid_size;
             self
         }
-        pub fn sample_locations_count(mut self, sample_locations_count: u32) -> Self {
-            self.sample_locations_count = sample_locations_count;
-            self
-        }
         pub fn sample_locations(
             mut self,
             sample_locations: &'a [crate::vk::SampleLocationEXT],
@@ -264,13 +260,6 @@ pub(crate) mod reexport {
         }
     }
     impl<'a> RenderPassSampleLocationsBeginInfoEXT<'a> {
-        pub fn attachment_initial_sample_locations_count(
-            mut self,
-            attachment_initial_sample_locations_count: u32,
-        ) -> Self {
-            self.attachment_initial_sample_locations_count = attachment_initial_sample_locations_count;
-            self
-        }
         pub fn attachment_initial_sample_locations(
             mut self,
             attachment_initial_sample_locations: &'a [crate::vk::AttachmentSampleLocationsEXT<
@@ -281,13 +270,6 @@ pub(crate) mod reexport {
                 .len() as _;
             self.p_attachment_initial_sample_locations = attachment_initial_sample_locations
                 .as_ptr();
-            self
-        }
-        pub fn post_subpass_sample_locations_count(
-            mut self,
-            post_subpass_sample_locations_count: u32,
-        ) -> Self {
-            self.post_subpass_sample_locations_count = post_subpass_sample_locations_count;
             self
         }
         pub fn post_subpass_sample_locations(

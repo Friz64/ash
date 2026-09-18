@@ -375,10 +375,6 @@ pub(crate) mod reexport {
             self.is_text = is_text.into();
             self
         }
-        pub fn data_size(mut self, data_size: usize) -> Self {
-            self.data_size = data_size;
-            self
-        }
         pub fn data(mut self, data: &'a mut [u8]) -> Self {
             self.data_size = data.len() as _;
             self.p_data = data.as_mut_ptr().cast();

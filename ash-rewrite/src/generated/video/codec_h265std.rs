@@ -1691,13 +1691,6 @@ impl<'a> H265SequenceParameterSet<'a> {
         self.max_transform_hierarchy_depth_intra = max_transform_hierarchy_depth_intra;
         self
     }
-    pub fn num_short_term_ref_pic_sets(
-        mut self,
-        num_short_term_ref_pic_sets: u8,
-    ) -> Self {
-        self.num_short_term_ref_pic_sets = num_short_term_ref_pic_sets;
-        self
-    }
     pub fn num_long_term_ref_pics_sps(mut self, num_long_term_ref_pics_sps: u8) -> Self {
         self.num_long_term_ref_pics_sps = num_long_term_ref_pics_sps;
         self

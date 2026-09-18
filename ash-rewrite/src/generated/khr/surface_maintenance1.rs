@@ -125,10 +125,6 @@ impl<'a> Default for SurfacePresentModeCompatibilityKHR<'a> {
     }
 }
 impl<'a> SurfacePresentModeCompatibilityKHR<'a> {
-    pub fn present_mode_count(mut self, present_mode_count: u32) -> Self {
-        self.present_mode_count = present_mode_count;
-        self
-    }
     pub fn present_modes(
         mut self,
         present_modes: &'a mut [crate::vk::PresentModeKHR],

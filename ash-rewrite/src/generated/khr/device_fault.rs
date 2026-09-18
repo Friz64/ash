@@ -241,10 +241,6 @@ pub(crate) mod reexport {
         }
     }
     impl<'a> DeviceFaultDebugInfoKHR<'a> {
-        pub fn vendor_binary_size(mut self, vendor_binary_size: u32) -> Self {
-            self.vendor_binary_size = vendor_binary_size;
-            self
-        }
         pub fn vendor_binary_data(mut self, vendor_binary_data: &'a mut [u8]) -> Self {
             self.vendor_binary_size = vendor_binary_data.len() as _;
             self.p_vendor_binary_data = vendor_binary_data.as_mut_ptr().cast();

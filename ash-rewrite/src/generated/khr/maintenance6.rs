@@ -180,10 +180,6 @@ pub(crate) mod reexport {
             self.first_set = first_set;
             self
         }
-        pub fn set_count(mut self, set_count: u32) -> Self {
-            self.set_count = set_count;
-            self
-        }
         pub fn buffer_indices(mut self, buffer_indices: &'a [u32]) -> Self {
             self.set_count = buffer_indices.len() as _;
             self.p_buffer_indices = buffer_indices.as_ptr();

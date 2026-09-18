@@ -58,10 +58,6 @@ impl<'a> Default for PresentIdKHR<'a> {
     }
 }
 impl<'a> PresentIdKHR<'a> {
-    pub fn swapchain_count(mut self, swapchain_count: u32) -> Self {
-        self.swapchain_count = swapchain_count;
-        self
-    }
     pub fn present_ids(mut self, present_ids: &'a [u64]) -> Self {
         self.swapchain_count = present_ids.len() as _;
         self.p_present_ids = present_ids.as_ptr();

@@ -92,10 +92,6 @@ impl<'a> Default for DeviceFaultShaderAbortMessageInfoKHR<'a> {
     }
 }
 impl<'a> DeviceFaultShaderAbortMessageInfoKHR<'a> {
-    pub fn message_data_size(mut self, message_data_size: u64) -> Self {
-        self.message_data_size = message_data_size;
-        self
-    }
     pub fn message_data(mut self, message_data: &'a mut [u8]) -> Self {
         self.message_data_size = message_data.len() as _;
         self.p_message_data = message_data.as_mut_ptr().cast();

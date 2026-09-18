@@ -369,10 +369,6 @@ pub(crate) mod reexport {
             self.node_type = node_type;
             self
         }
-        pub fn connection_count(mut self, connection_count: u32) -> Self {
-            self.connection_count = connection_count;
-            self
-        }
         pub fn connections(
             mut self,
             connections: &'a [crate::vk::DataGraphPipelineSingleNodeConnectionARM<'a>],

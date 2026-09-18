@@ -254,10 +254,6 @@ pub(crate) mod reexport {
         }
     }
     impl<'a> GetLatencyMarkerInfoNV<'a> {
-        pub fn timing_count(mut self, timing_count: u32) -> Self {
-            self.timing_count = timing_count;
-            self
-        }
         pub fn timings(
             mut self,
             timings: &'a mut [crate::vk::LatencyTimingsFrameReportNV<'a>],
@@ -503,10 +499,6 @@ pub(crate) mod reexport {
         }
     }
     impl<'a> LatencySurfaceCapabilitiesNV<'a> {
-        pub fn present_mode_count(mut self, present_mode_count: u32) -> Self {
-            self.present_mode_count = present_mode_count;
-            self
-        }
         pub fn present_modes(
             mut self,
             present_modes: &'a mut [crate::vk::PresentModeKHR],

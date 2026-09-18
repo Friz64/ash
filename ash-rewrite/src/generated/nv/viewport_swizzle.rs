@@ -64,10 +64,6 @@ impl<'a> PipelineViewportSwizzleStateCreateInfoNV<'a> {
         self.flags = flags;
         self
     }
-    pub fn viewport_count(mut self, viewport_count: u32) -> Self {
-        self.viewport_count = viewport_count;
-        self
-    }
     pub fn viewport_swizzles(
         mut self,
         viewport_swizzles: &'a [crate::vk::ViewportSwizzleNV],

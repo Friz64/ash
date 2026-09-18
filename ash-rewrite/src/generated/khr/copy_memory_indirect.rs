@@ -226,10 +226,6 @@ pub(crate) mod reexport {
             self.src_copy_flags = src_copy_flags;
             self
         }
-        pub fn copy_count(mut self, copy_count: u32) -> Self {
-            self.copy_count = copy_count;
-            self
-        }
         pub fn copy_address_range(
             mut self,
             copy_address_range: crate::vk::StridedDeviceAddressRangeKHR,

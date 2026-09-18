@@ -144,10 +144,6 @@ pub(crate) mod reexport {
         }
     }
     impl<'a> PresentTimesInfoGOOGLE<'a> {
-        pub fn swapchain_count(mut self, swapchain_count: u32) -> Self {
-            self.swapchain_count = swapchain_count;
-            self
-        }
         pub fn times(mut self, times: &'a [crate::vk::PresentTimeGOOGLE]) -> Self {
             self.swapchain_count = times.len() as _;
             self.p_times = times.as_ptr();

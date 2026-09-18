@@ -116,10 +116,6 @@ pub(crate) mod reexport {
         }
     }
     impl<'a> SwapchainPresentFenceInfoKHR<'a> {
-        pub fn swapchain_count(mut self, swapchain_count: u32) -> Self {
-            self.swapchain_count = swapchain_count;
-            self
-        }
         pub fn fences(mut self, fences: &'a [crate::vk::Fence]) -> Self {
             self.swapchain_count = fences.len() as _;
             self.p_fences = fences.as_ptr();
@@ -153,10 +149,6 @@ pub(crate) mod reexport {
         }
     }
     impl<'a> SwapchainPresentModesCreateInfoKHR<'a> {
-        pub fn present_mode_count(mut self, present_mode_count: u32) -> Self {
-            self.present_mode_count = present_mode_count;
-            self
-        }
         pub fn present_modes(
             mut self,
             present_modes: &'a [crate::vk::PresentModeKHR],
@@ -192,10 +184,6 @@ pub(crate) mod reexport {
         }
     }
     impl<'a> SwapchainPresentModeInfoKHR<'a> {
-        pub fn swapchain_count(mut self, swapchain_count: u32) -> Self {
-            self.swapchain_count = swapchain_count;
-            self
-        }
         pub fn present_modes(
             mut self,
             present_modes: &'a [crate::vk::PresentModeKHR],
@@ -284,10 +272,6 @@ pub(crate) mod reexport {
     impl<'a> ReleaseSwapchainImagesInfoKHR<'a> {
         pub fn swapchain(mut self, swapchain: crate::vk::SwapchainKHR) -> Self {
             self.swapchain = swapchain;
-            self
-        }
-        pub fn image_index_count(mut self, image_index_count: u32) -> Self {
-            self.image_index_count = image_index_count;
             self
         }
         pub fn image_indices(mut self, image_indices: &'a [u32]) -> Self {

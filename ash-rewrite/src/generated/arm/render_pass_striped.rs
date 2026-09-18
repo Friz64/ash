@@ -128,10 +128,6 @@ impl<'a> Default for RenderPassStripeBeginInfoARM<'a> {
     }
 }
 impl<'a> RenderPassStripeBeginInfoARM<'a> {
-    pub fn stripe_info_count(mut self, stripe_info_count: u32) -> Self {
-        self.stripe_info_count = stripe_info_count;
-        self
-    }
     pub fn stripe_infos(
         mut self,
         stripe_infos: &'a [crate::vk::RenderPassStripeInfoARM<'a>],
@@ -167,13 +163,6 @@ impl<'a> Default for RenderPassStripeSubmitInfoARM<'a> {
     }
 }
 impl<'a> RenderPassStripeSubmitInfoARM<'a> {
-    pub fn stripe_semaphore_info_count(
-        mut self,
-        stripe_semaphore_info_count: u32,
-    ) -> Self {
-        self.stripe_semaphore_info_count = stripe_semaphore_info_count;
-        self
-    }
     pub fn stripe_semaphore_infos(
         mut self,
         stripe_semaphore_infos: &'a [crate::vk::SemaphoreSubmitInfo<'a>],

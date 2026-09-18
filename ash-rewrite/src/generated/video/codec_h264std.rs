@@ -654,13 +654,6 @@ impl<'a> H264SequenceParameterSet<'a> {
         self.log2_max_pic_order_cnt_lsb_minus4 = log2_max_pic_order_cnt_lsb_minus4;
         self
     }
-    pub fn num_ref_frames_in_pic_order_cnt_cycle(
-        mut self,
-        num_ref_frames_in_pic_order_cnt_cycle: u8,
-    ) -> Self {
-        self.num_ref_frames_in_pic_order_cnt_cycle = num_ref_frames_in_pic_order_cnt_cycle;
-        self
-    }
     pub fn max_num_ref_frames(mut self, max_num_ref_frames: u8) -> Self {
         self.max_num_ref_frames = max_num_ref_frames;
         self

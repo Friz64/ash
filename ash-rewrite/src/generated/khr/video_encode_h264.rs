@@ -288,20 +288,12 @@ impl<'a> Default for VideoEncodeH264SessionParametersAddInfoKHR<'a> {
     }
 }
 impl<'a> VideoEncodeH264SessionParametersAddInfoKHR<'a> {
-    pub fn std_sps_count(mut self, std_sps_count: u32) -> Self {
-        self.std_sps_count = std_sps_count;
-        self
-    }
     pub fn std_sp_ss(
         mut self,
         std_sp_ss: &'a [crate::vk::H264SequenceParameterSet<'a>],
     ) -> Self {
         self.std_sps_count = std_sp_ss.len() as _;
         self.p_std_sp_ss = std_sp_ss.as_ptr();
-        self
-    }
-    pub fn std_pps_count(mut self, std_pps_count: u32) -> Self {
-        self.std_pps_count = std_pps_count;
         self
     }
     pub fn std_pp_ss(
@@ -510,10 +502,6 @@ impl<'a> Default for VideoEncodeH264PictureInfoKHR<'a> {
     }
 }
 impl<'a> VideoEncodeH264PictureInfoKHR<'a> {
-    pub fn nalu_slice_entry_count(mut self, nalu_slice_entry_count: u32) -> Self {
-        self.nalu_slice_entry_count = nalu_slice_entry_count;
-        self
-    }
     pub fn nalu_slice_entries(
         mut self,
         nalu_slice_entries: &'a [crate::vk::VideoEncodeH264NaluSliceInfoKHR<'a>],

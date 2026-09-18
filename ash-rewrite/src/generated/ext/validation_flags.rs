@@ -28,13 +28,6 @@ impl<'a> Default for ValidationFlagsEXT<'a> {
     }
 }
 impl<'a> ValidationFlagsEXT<'a> {
-    pub fn disabled_validation_check_count(
-        mut self,
-        disabled_validation_check_count: u32,
-    ) -> Self {
-        self.disabled_validation_check_count = disabled_validation_check_count;
-        self
-    }
     pub fn disabled_validation_checks(
         mut self,
         disabled_validation_checks: &'a [crate::vk::ValidationCheckEXT],

@@ -433,10 +433,6 @@ pub(crate) mod reexport {
         }
     }
     impl<'a> GeneratedCommandsShaderInfoEXT<'a> {
-        pub fn shader_count(mut self, shader_count: u32) -> Self {
-            self.shader_count = shader_count;
-            self
-        }
         pub fn shaders(mut self, shaders: &'a [crate::vk::ShaderEXT]) -> Self {
             self.shader_count = shaders.len() as _;
             self.p_shaders = shaders.as_ptr();
@@ -557,10 +553,6 @@ pub(crate) mod reexport {
         }
     }
     impl<'a> IndirectExecutionSetShaderLayoutInfoEXT<'a> {
-        pub fn set_layout_count(mut self, set_layout_count: u32) -> Self {
-            self.set_layout_count = set_layout_count;
-            self
-        }
         pub fn set_layouts(
             mut self,
             set_layouts: &'a [crate::vk::DescriptorSetLayout],
@@ -605,10 +597,6 @@ pub(crate) mod reexport {
         }
     }
     impl<'a> IndirectExecutionSetShaderInfoEXT<'a> {
-        pub fn shader_count(mut self, shader_count: u32) -> Self {
-            self.shader_count = shader_count;
-            self
-        }
         pub fn initial_shaders(
             mut self,
             initial_shaders: &'a [crate::vk::ShaderEXT],
@@ -629,13 +617,6 @@ pub(crate) mod reexport {
         }
         pub fn max_shader_count(mut self, max_shader_count: u32) -> Self {
             self.max_shader_count = max_shader_count;
-            self
-        }
-        pub fn push_constant_range_count(
-            mut self,
-            push_constant_range_count: u32,
-        ) -> Self {
-            self.push_constant_range_count = push_constant_range_count;
             self
         }
         pub fn push_constant_ranges(
@@ -913,10 +894,6 @@ pub(crate) mod reexport {
             pipeline_layout: crate::vk::PipelineLayout,
         ) -> Self {
             self.pipeline_layout = pipeline_layout;
-            self
-        }
-        pub fn token_count(mut self, token_count: u32) -> Self {
-            self.token_count = token_count;
             self
         }
         pub fn tokens(

@@ -545,10 +545,6 @@ pub(crate) mod reexport {
             self.layout = layout;
             self
         }
-        pub fn resource_info_count(mut self, resource_info_count: u32) -> Self {
-            self.resource_info_count = resource_info_count;
-            self
-        }
         pub fn resource_infos(
             mut self,
             resource_infos: &'a [crate::vk::DataGraphPipelineResourceInfoARM<'a>],
@@ -611,10 +607,6 @@ pub(crate) mod reexport {
             specialization_info: &'a crate::vk::SpecializationInfo<'a>,
         ) -> Self {
             self.p_specialization_info = specialization_info;
-            self
-        }
-        pub fn constant_count(mut self, constant_count: u32) -> Self {
-            self.constant_count = constant_count;
             self
         }
         pub fn constants(
@@ -917,10 +909,6 @@ pub(crate) mod reexport {
             self.is_text = is_text.into();
             self
         }
-        pub fn data_size(mut self, data_size: usize) -> Self {
-            self.data_size = data_size;
-            self
-        }
         pub fn data(mut self, data: &'a mut [u8]) -> Self {
             self.data_size = data.len() as _;
             self.p_data = data.as_mut_ptr().cast();
@@ -954,10 +942,6 @@ pub(crate) mod reexport {
         }
     }
     impl<'a> DataGraphPipelineIdentifierCreateInfoARM<'a> {
-        pub fn identifier_size(mut self, identifier_size: u32) -> Self {
-            self.identifier_size = identifier_size;
-            self
-        }
         pub fn identifier(mut self, identifier: &'a [u8]) -> Self {
             self.identifier_size = identifier.len() as _;
             self.p_identifier = identifier.as_ptr();
@@ -1202,10 +1186,6 @@ pub(crate) mod reexport {
         }
     }
     impl<'a> DataGraphProcessingEngineCreateInfoARM<'a> {
-        pub fn processing_engine_count(mut self, processing_engine_count: u32) -> Self {
-            self.processing_engine_count = processing_engine_count;
-            self
-        }
         pub fn processing_engines(
             mut self,
             processing_engines: &'a mut [crate::vk::PhysicalDeviceDataGraphProcessingEngineARM],

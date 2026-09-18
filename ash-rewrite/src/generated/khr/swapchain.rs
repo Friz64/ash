@@ -325,13 +325,6 @@ pub(crate) mod reexport {
             self.image_sharing_mode = image_sharing_mode;
             self
         }
-        pub fn queue_family_index_count(
-            mut self,
-            queue_family_index_count: u32,
-        ) -> Self {
-            self.queue_family_index_count = queue_family_index_count;
-            self
-        }
         pub fn queue_family_indices(mut self, queue_family_indices: &'a [u32]) -> Self {
             self.queue_family_index_count = queue_family_indices.len() as _;
             self.p_queue_family_indices = queue_family_indices.as_ptr();
@@ -396,20 +389,12 @@ pub(crate) mod reexport {
         }
     }
     impl<'a> PresentInfoKHR<'a> {
-        pub fn wait_semaphore_count(mut self, wait_semaphore_count: u32) -> Self {
-            self.wait_semaphore_count = wait_semaphore_count;
-            self
-        }
         pub fn wait_semaphores(
             mut self,
             wait_semaphores: &'a [crate::vk::Semaphore],
         ) -> Self {
             self.wait_semaphore_count = wait_semaphores.len() as _;
             self.p_wait_semaphores = wait_semaphores.as_ptr();
-            self
-        }
-        pub fn swapchain_count(mut self, swapchain_count: u32) -> Self {
-            self.swapchain_count = swapchain_count;
             self
         }
         pub fn swapchains(mut self, swapchains: &'a [crate::vk::SwapchainKHR]) -> Self {
@@ -611,10 +596,6 @@ pub(crate) mod reexport {
         }
     }
     impl<'a> DeviceGroupPresentInfoKHR<'a> {
-        pub fn swapchain_count(mut self, swapchain_count: u32) -> Self {
-            self.swapchain_count = swapchain_count;
-            self
-        }
         pub fn device_masks(mut self, device_masks: &'a [u32]) -> Self {
             self.swapchain_count = device_masks.len() as _;
             self.p_device_masks = device_masks.as_ptr();

@@ -374,10 +374,6 @@ pub(crate) mod reexport {
         }
     }
     impl<'a> VideoProfileListInfoKHR<'a> {
-        pub fn profile_count(mut self, profile_count: u32) -> Self {
-            self.profile_count = profile_count;
-            self
-        }
         pub fn profiles(
             mut self,
             profiles: &'a [crate::vk::VideoProfileInfoKHR<'a>],
@@ -1014,10 +1010,6 @@ pub(crate) mod reexport {
             video_session_parameters: crate::vk::VideoSessionParametersKHR,
         ) -> Self {
             self.video_session_parameters = video_session_parameters;
-            self
-        }
-        pub fn reference_slot_count(mut self, reference_slot_count: u32) -> Self {
-            self.reference_slot_count = reference_slot_count;
             self
         }
         pub fn reference_slots(

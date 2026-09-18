@@ -101,13 +101,6 @@ pub(crate) mod reexport {
         pub _marker: ::core::marker::PhantomData<&'a ()>,
     }
     impl<'a> ShadingRatePaletteNV<'a> {
-        pub fn shading_rate_palette_entry_count(
-            mut self,
-            shading_rate_palette_entry_count: u32,
-        ) -> Self {
-            self.shading_rate_palette_entry_count = shading_rate_palette_entry_count;
-            self
-        }
         pub fn shading_rate_palette_entries(
             mut self,
             shading_rate_palette_entries: &'a [crate::vk::ShadingRatePaletteEntryNV],
@@ -152,10 +145,6 @@ pub(crate) mod reexport {
             shading_rate_image_enable: bool,
         ) -> Self {
             self.shading_rate_image_enable = shading_rate_image_enable.into();
-            self
-        }
-        pub fn viewport_count(mut self, viewport_count: u32) -> Self {
-            self.viewport_count = viewport_count;
             self
         }
         pub fn shading_rate_palettes(
@@ -302,10 +291,6 @@ pub(crate) mod reexport {
             self.sample_count = sample_count;
             self
         }
-        pub fn sample_location_count(mut self, sample_location_count: u32) -> Self {
-            self.sample_location_count = sample_location_count;
-            self
-        }
         pub fn sample_locations(
             mut self,
             sample_locations: &'a [crate::vk::CoarseSampleLocationNV],
@@ -349,13 +334,6 @@ pub(crate) mod reexport {
             sample_order_type: crate::vk::CoarseSampleOrderTypeNV,
         ) -> Self {
             self.sample_order_type = sample_order_type;
-            self
-        }
-        pub fn custom_sample_order_count(
-            mut self,
-            custom_sample_order_count: u32,
-        ) -> Self {
-            self.custom_sample_order_count = custom_sample_order_count;
             self
         }
         pub fn custom_sample_orders(

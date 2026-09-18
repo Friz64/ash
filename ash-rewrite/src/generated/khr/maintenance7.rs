@@ -159,10 +159,6 @@ impl<'a> Default for PhysicalDeviceLayeredApiPropertiesListKHR<'a> {
     }
 }
 impl<'a> PhysicalDeviceLayeredApiPropertiesListKHR<'a> {
-    pub fn layered_api_count(mut self, layered_api_count: u32) -> Self {
-        self.layered_api_count = layered_api_count;
-        self
-    }
     pub fn layered_apis(
         mut self,
         layered_apis: &'a mut [crate::vk::PhysicalDeviceLayeredApiPropertiesKHR<'a>],

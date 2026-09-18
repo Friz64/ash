@@ -1583,26 +1583,14 @@ pub(crate) mod reexport {
         }
     }
     impl<'a> RenderPassMultiviewCreateInfo<'a> {
-        pub fn subpass_count(mut self, subpass_count: u32) -> Self {
-            self.subpass_count = subpass_count;
-            self
-        }
         pub fn view_masks(mut self, view_masks: &'a [u32]) -> Self {
             self.subpass_count = view_masks.len() as _;
             self.p_view_masks = view_masks.as_ptr();
             self
         }
-        pub fn dependency_count(mut self, dependency_count: u32) -> Self {
-            self.dependency_count = dependency_count;
-            self
-        }
         pub fn view_offsets(mut self, view_offsets: &'a [i32]) -> Self {
             self.dependency_count = view_offsets.len() as _;
             self.p_view_offsets = view_offsets.as_ptr();
-            self
-        }
-        pub fn correlation_mask_count(mut self, correlation_mask_count: u32) -> Self {
-            self.correlation_mask_count = correlation_mask_count;
             self
         }
         pub fn correlation_masks(mut self, correlation_masks: &'a [u32]) -> Self {
@@ -1638,10 +1626,6 @@ pub(crate) mod reexport {
         }
     }
     impl<'a> PhysicalDeviceGroupProperties<'a> {
-        pub fn physical_device_count(mut self, physical_device_count: u32) -> Self {
-            self.physical_device_count = physical_device_count;
-            self
-        }
         pub fn physical_devices(
             mut self,
             physical_devices: &'_ [crate::vk::PhysicalDevice],
@@ -1759,10 +1743,6 @@ pub(crate) mod reexport {
         }
     }
     impl<'a> BindBufferMemoryDeviceGroupInfo<'a> {
-        pub fn device_index_count(mut self, device_index_count: u32) -> Self {
-            self.device_index_count = device_index_count;
-            self
-        }
         pub fn device_indices(mut self, device_indices: &'a [u32]) -> Self {
             self.device_index_count = device_indices.len() as _;
             self.p_device_indices = device_indices.as_ptr();
@@ -1838,20 +1818,9 @@ pub(crate) mod reexport {
         }
     }
     impl<'a> BindImageMemoryDeviceGroupInfo<'a> {
-        pub fn device_index_count(mut self, device_index_count: u32) -> Self {
-            self.device_index_count = device_index_count;
-            self
-        }
         pub fn device_indices(mut self, device_indices: &'a [u32]) -> Self {
             self.device_index_count = device_indices.len() as _;
             self.p_device_indices = device_indices.as_ptr();
-            self
-        }
-        pub fn split_instance_bind_region_count(
-            mut self,
-            split_instance_bind_region_count: u32,
-        ) -> Self {
-            self.split_instance_bind_region_count = split_instance_bind_region_count;
             self
         }
         pub fn split_instance_bind_regions(
@@ -1896,13 +1865,6 @@ pub(crate) mod reexport {
     impl<'a> DeviceGroupRenderPassBeginInfo<'a> {
         pub fn device_mask(mut self, device_mask: u32) -> Self {
             self.device_mask = device_mask;
-            self
-        }
-        pub fn device_render_area_count(
-            mut self,
-            device_render_area_count: u32,
-        ) -> Self {
-            self.device_render_area_count = device_render_area_count;
             self
         }
         pub fn device_render_areas(
@@ -1978,10 +1940,6 @@ pub(crate) mod reexport {
         }
     }
     impl<'a> DeviceGroupSubmitInfo<'a> {
-        pub fn wait_semaphore_count(mut self, wait_semaphore_count: u32) -> Self {
-            self.wait_semaphore_count = wait_semaphore_count;
-            self
-        }
         pub fn wait_semaphore_device_indices(
             mut self,
             wait_semaphore_device_indices: &'a [u32],
@@ -1991,20 +1949,12 @@ pub(crate) mod reexport {
                 .as_ptr();
             self
         }
-        pub fn command_buffer_count(mut self, command_buffer_count: u32) -> Self {
-            self.command_buffer_count = command_buffer_count;
-            self
-        }
         pub fn command_buffer_device_masks(
             mut self,
             command_buffer_device_masks: &'a [u32],
         ) -> Self {
             self.command_buffer_count = command_buffer_device_masks.len() as _;
             self.p_command_buffer_device_masks = command_buffer_device_masks.as_ptr();
-            self
-        }
-        pub fn signal_semaphore_count(mut self, signal_semaphore_count: u32) -> Self {
-            self.signal_semaphore_count = signal_semaphore_count;
             self
         }
         pub fn signal_semaphore_device_indices(
@@ -2078,10 +2028,6 @@ pub(crate) mod reexport {
         }
     }
     impl<'a> DeviceGroupDeviceCreateInfo<'a> {
-        pub fn physical_device_count(mut self, physical_device_count: u32) -> Self {
-            self.physical_device_count = physical_device_count;
-            self
-        }
         pub fn physical_devices(
             mut self,
             physical_devices: &'a [crate::vk::PhysicalDevice],
@@ -2174,13 +2120,6 @@ pub(crate) mod reexport {
             self.flags = flags;
             self
         }
-        pub fn descriptor_update_entry_count(
-            mut self,
-            descriptor_update_entry_count: u32,
-        ) -> Self {
-            self.descriptor_update_entry_count = descriptor_update_entry_count;
-            self
-        }
         pub fn descriptor_update_entries(
             mut self,
             descriptor_update_entries: &'a [crate::vk::DescriptorUpdateTemplateEntry],
@@ -2270,10 +2209,6 @@ pub(crate) mod reexport {
         }
     }
     impl<'a> RenderPassInputAttachmentAspectCreateInfo<'a> {
-        pub fn aspect_reference_count(mut self, aspect_reference_count: u32) -> Self {
-            self.aspect_reference_count = aspect_reference_count;
-            self
-        }
         pub fn aspect_references(
             mut self,
             aspect_references: &'a [crate::vk::InputAttachmentAspectReference],

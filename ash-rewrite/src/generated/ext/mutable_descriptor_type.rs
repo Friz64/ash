@@ -42,10 +42,6 @@ pub struct MutableDescriptorTypeListEXT<'a> {
     pub _marker: ::core::marker::PhantomData<&'a ()>,
 }
 impl<'a> MutableDescriptorTypeListEXT<'a> {
-    pub fn descriptor_type_count(mut self, descriptor_type_count: u32) -> Self {
-        self.descriptor_type_count = descriptor_type_count;
-        self
-    }
     pub fn descriptor_types(
         mut self,
         descriptor_types: &'a [crate::vk::DescriptorType],
@@ -85,13 +81,6 @@ impl<'a> Default for MutableDescriptorTypeCreateInfoEXT<'a> {
     }
 }
 impl<'a> MutableDescriptorTypeCreateInfoEXT<'a> {
-    pub fn mutable_descriptor_type_list_count(
-        mut self,
-        mutable_descriptor_type_list_count: u32,
-    ) -> Self {
-        self.mutable_descriptor_type_list_count = mutable_descriptor_type_list_count;
-        self
-    }
     pub fn mutable_descriptor_type_lists(
         mut self,
         mutable_descriptor_type_lists: &'a [crate::vk::MutableDescriptorTypeListEXT<'a>],

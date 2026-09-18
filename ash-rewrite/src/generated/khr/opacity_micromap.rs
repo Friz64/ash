@@ -37,10 +37,6 @@ impl<'a> Default for AccelerationStructureGeometryMicromapDataKHR<'a> {
     }
 }
 impl<'a> AccelerationStructureGeometryMicromapDataKHR<'a> {
-    pub fn usage_counts_count(mut self, usage_counts_count: u32) -> Self {
-        self.usage_counts_count = usage_counts_count;
-        self
-    }
     pub fn usage_counts(
         mut self,
         usage_counts: &'a [crate::vk::MicromapUsageKHR],

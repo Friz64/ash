@@ -364,13 +364,6 @@ pub(crate) mod reexport {
         }
     }
     impl<'a> WriteDescriptorSetPartitionedAccelerationStructureNV<'a> {
-        pub fn acceleration_structure_count(
-            mut self,
-            acceleration_structure_count: u32,
-        ) -> Self {
-            self.acceleration_structure_count = acceleration_structure_count;
-            self
-        }
         pub fn acceleration_structures(
             mut self,
             acceleration_structures: &'a [crate::vk::DeviceAddress],

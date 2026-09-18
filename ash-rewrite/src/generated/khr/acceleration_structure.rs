@@ -342,13 +342,6 @@ pub(crate) mod reexport {
         }
     }
     impl<'a> WriteDescriptorSetAccelerationStructureKHR<'a> {
-        pub fn acceleration_structure_count(
-            mut self,
-            acceleration_structure_count: u32,
-        ) -> Self {
-            self.acceleration_structure_count = acceleration_structure_count;
-            self
-        }
         pub fn acceleration_structures(
             mut self,
             acceleration_structures: &'a [crate::vk::AccelerationStructureKHR],
@@ -774,10 +767,6 @@ pub(crate) mod reexport {
             self.dst_acceleration_structure = dst_acceleration_structure;
             self
         }
-        pub fn geometry_count(mut self, geometry_count: u32) -> Self {
-            self.geometry_count = geometry_count;
-            self
-        }
         pub fn geometries(
             mut self,
             geometries: &'a [crate::vk::AccelerationStructureGeometryKHR<'a>],
@@ -1061,8 +1050,11 @@ pub(crate) mod reexport {
         }
     }
     impl<'a> AccelerationStructureVersionInfoKHR<'a> {
-        pub fn version_data(mut self, version_data: *const u8) -> Self {
-            self.p_version_data = version_data;
+        pub fn version_data(
+            mut self,
+            version_data: &'a [u8; 2 * crate::vk::UUID_SIZE as usize],
+        ) -> Self {
+            self.p_version_data = version_data.as_ptr();
             self
         }
     }

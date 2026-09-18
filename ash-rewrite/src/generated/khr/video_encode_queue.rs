@@ -321,10 +321,6 @@ pub(crate) mod reexport {
             self.p_setup_reference_slot = setup_reference_slot;
             self
         }
-        pub fn reference_slot_count(mut self, reference_slot_count: u32) -> Self {
-            self.reference_slot_count = reference_slot_count;
-            self
-        }
         pub fn reference_slots(
             mut self,
             reference_slots: &'a [crate::vk::VideoReferenceSlotInfoKHR<'a>],
@@ -530,10 +526,6 @@ pub(crate) mod reexport {
             rate_control_mode: crate::vk::VideoEncodeRateControlModeFlagBitsKHR,
         ) -> Self {
             self.rate_control_mode = rate_control_mode;
-            self
-        }
-        pub fn layer_count(mut self, layer_count: u32) -> Self {
-            self.layer_count = layer_count;
             self
         }
         pub fn layers(

@@ -86,13 +86,6 @@ pub(crate) mod reexport {
         }
     }
     impl<'a> DrmFormatModifierPropertiesListEXT<'a> {
-        pub fn drm_format_modifier_count(
-            mut self,
-            drm_format_modifier_count: u32,
-        ) -> Self {
-            self.drm_format_modifier_count = drm_format_modifier_count;
-            self
-        }
         pub fn drm_format_modifier_properties(
             mut self,
             drm_format_modifier_properties: &'a mut [crate::vk::DrmFormatModifierPropertiesEXT],
@@ -169,13 +162,6 @@ pub(crate) mod reexport {
             self.sharing_mode = sharing_mode;
             self
         }
-        pub fn queue_family_index_count(
-            mut self,
-            queue_family_index_count: u32,
-        ) -> Self {
-            self.queue_family_index_count = queue_family_index_count;
-            self
-        }
         pub fn queue_family_indices(mut self, queue_family_indices: &'a [u32]) -> Self {
             self.queue_family_index_count = queue_family_indices.len() as _;
             self.p_queue_family_indices = queue_family_indices.as_ptr();
@@ -209,13 +195,6 @@ pub(crate) mod reexport {
         }
     }
     impl<'a> ImageDrmFormatModifierListCreateInfoEXT<'a> {
-        pub fn drm_format_modifier_count(
-            mut self,
-            drm_format_modifier_count: u32,
-        ) -> Self {
-            self.drm_format_modifier_count = drm_format_modifier_count;
-            self
-        }
         pub fn drm_format_modifiers(mut self, drm_format_modifiers: &'a [u64]) -> Self {
             self.drm_format_modifier_count = drm_format_modifiers.len() as _;
             self.p_drm_format_modifiers = drm_format_modifiers.as_ptr();
@@ -253,13 +232,6 @@ pub(crate) mod reexport {
     impl<'a> ImageDrmFormatModifierExplicitCreateInfoEXT<'a> {
         pub fn drm_format_modifier(mut self, drm_format_modifier: u64) -> Self {
             self.drm_format_modifier = drm_format_modifier;
-            self
-        }
-        pub fn drm_format_modifier_plane_count(
-            mut self,
-            drm_format_modifier_plane_count: u32,
-        ) -> Self {
-            self.drm_format_modifier_plane_count = drm_format_modifier_plane_count;
             self
         }
         pub fn plane_layouts(
@@ -326,13 +298,6 @@ pub(crate) mod reexport {
         }
     }
     impl<'a> DrmFormatModifierPropertiesList2EXT<'a> {
-        pub fn drm_format_modifier_count(
-            mut self,
-            drm_format_modifier_count: u32,
-        ) -> Self {
-            self.drm_format_modifier_count = drm_format_modifier_count;
-            self
-        }
         pub fn drm_format_modifier_properties(
             mut self,
             drm_format_modifier_properties: &'a mut [crate::vk::DrmFormatModifierProperties2EXT],

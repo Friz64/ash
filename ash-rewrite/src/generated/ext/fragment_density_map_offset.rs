@@ -155,13 +155,6 @@ pub(crate) mod reexport {
         }
     }
     impl<'a> RenderPassFragmentDensityMapOffsetEndInfoEXT<'a> {
-        pub fn fragment_density_offset_count(
-            mut self,
-            fragment_density_offset_count: u32,
-        ) -> Self {
-            self.fragment_density_offset_count = fragment_density_offset_count;
-            self
-        }
         pub fn fragment_density_offsets(
             mut self,
             fragment_density_offsets: &'a [crate::vk::Offset2D],

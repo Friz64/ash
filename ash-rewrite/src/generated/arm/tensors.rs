@@ -308,10 +308,6 @@ pub(crate) mod reexport {
             self.format = format;
             self
         }
-        pub fn dimension_count(mut self, dimension_count: u32) -> Self {
-            self.dimension_count = dimension_count;
-            self
-        }
         pub fn dimensions(mut self, dimensions: &'a [i64]) -> Self {
             self.dimension_count = dimensions.len() as _;
             self.p_dimensions = dimensions.as_ptr();
@@ -370,13 +366,6 @@ pub(crate) mod reexport {
         }
         pub fn sharing_mode(mut self, sharing_mode: crate::vk::SharingMode) -> Self {
             self.sharing_mode = sharing_mode;
-            self
-        }
-        pub fn queue_family_index_count(
-            mut self,
-            queue_family_index_count: u32,
-        ) -> Self {
-            self.queue_family_index_count = queue_family_index_count;
             self
         }
         pub fn queue_family_indices(mut self, queue_family_indices: &'a [u32]) -> Self {
@@ -477,10 +466,6 @@ pub(crate) mod reexport {
         }
     }
     impl<'a> WriteDescriptorSetTensorARM<'a> {
-        pub fn tensor_view_count(mut self, tensor_view_count: u32) -> Self {
-            self.tensor_view_count = tensor_view_count;
-            self
-        }
         pub fn tensor_views(
             mut self,
             tensor_views: &'a [crate::vk::TensorViewARM],
@@ -767,13 +752,6 @@ pub(crate) mod reexport {
         }
     }
     impl<'a> TensorDependencyInfoARM<'a> {
-        pub fn tensor_memory_barrier_count(
-            mut self,
-            tensor_memory_barrier_count: u32,
-        ) -> Self {
-            self.tensor_memory_barrier_count = tensor_memory_barrier_count;
-            self
-        }
         pub fn tensor_memory_barriers(
             mut self,
             tensor_memory_barriers: &'a [crate::vk::TensorMemoryBarrierARM<'a>],
@@ -923,10 +901,6 @@ pub(crate) mod reexport {
             self.dst_tensor = dst_tensor;
             self
         }
-        pub fn region_count(mut self, region_count: u32) -> Self {
-            self.region_count = region_count;
-            self
-        }
         pub fn regions(mut self, regions: &'a [crate::vk::TensorCopyARM<'a>]) -> Self {
             self.region_count = regions.len() as _;
             self.p_regions = regions.as_ptr();
@@ -961,10 +935,6 @@ pub(crate) mod reexport {
         }
     }
     impl<'a> TensorCopyARM<'a> {
-        pub fn dimension_count(mut self, dimension_count: u32) -> Self {
-            self.dimension_count = dimension_count;
-            self
-        }
         pub fn src_offset(mut self, src_offset: &'a [u64]) -> Self {
             self.dimension_count = src_offset.len() as _;
             self.p_src_offset = src_offset.as_ptr();
@@ -1212,10 +1182,6 @@ pub(crate) mod reexport {
         }
     }
     impl<'a> FrameBoundaryTensorsARM<'a> {
-        pub fn tensor_count(mut self, tensor_count: u32) -> Self {
-            self.tensor_count = tensor_count;
-            self
-        }
         pub fn tensors(mut self, tensors: &'a [crate::vk::TensorARM]) -> Self {
             self.tensor_count = tensors.len() as _;
             self.p_tensors = tensors.as_ptr();
