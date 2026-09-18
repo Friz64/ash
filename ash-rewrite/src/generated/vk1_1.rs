@@ -1599,14 +1599,14 @@ pub(crate) mod reexport {
         }
         pub fn physical_devices(
             mut self,
-            physical_devices: &'a [crate::vk::PhysicalDevice],
+            physical_devices: &'_ [crate::vk::PhysicalDevice],
         ) -> Self {
             self.physical_device_count = physical_devices.len() as _;
             self.physical_devices[..physical_devices.len()]
                 .copy_from_slice(physical_devices);
             self
         }
-        pub fn physical_devices_as_slice(&self) -> &'a [crate::vk::PhysicalDevice] {
+        pub fn physical_devices_as_slice(&self) -> &'_ [crate::vk::PhysicalDevice] {
             &self.physical_devices[..self.physical_device_count as _]
         }
         pub fn subset_allocation(mut self, subset_allocation: bool) -> Self {

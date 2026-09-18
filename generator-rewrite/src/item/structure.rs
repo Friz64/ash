@@ -259,8 +259,8 @@ fn setter_and_getter(
             let length_name = ctx.var_name_token(length_member);
             let field_name_as_slice = format_ident!("{field_name}_as_slice");
             let slice_ty = array_element_ty(member, element_ty);
-            let slice =
-                RustTy::Slice(Box::new(slice_ty), Mutability::Not, None).tokens(ctx, lifetime);
+            let slice = RustTy::Slice(Box::new(slice_ty), Mutability::Not, None)
+                .tokens(ctx, &Lifetime::placeholder());
 
             quote! {
                 pub fn #field_name(mut self, #field_name: #slice) -> Self {
