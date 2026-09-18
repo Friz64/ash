@@ -245,14 +245,14 @@ fn setter_and_getter(
             if member.length_at_depth(0) == Some(Length::NullTerminated) =>
         {
             let ty = RustTy::Ref(Box::new(RustTy::CStr), mutability).tokens(ctx, lifetime);
-            let field_name_as_cstr = format_ident!("{field_name}_as_c_str");
+            let method_name_as_cstr = format_ident!("{method_name}_as_c_str");
             quote! {
-                pub fn #field_name(mut self, #field_name: #ty) -> Self {
-                    self.#field_name = #field_name.as_ptr();
+                pub fn #method_name(mut self, #method_name: #ty) -> Self {
+                    self.#field_name = #method_name.as_ptr();
                     self
                 }
 
-                pub unsafe fn #field_name_as_cstr(&self) -> Option<&core::ffi::CStr> {
+                pub unsafe fn #method_name_as_cstr(&self) -> Option<&core::ffi::CStr> {
                     if self.#field_name.is_null() {
                         None
                     } else {
@@ -264,13 +264,13 @@ fn setter_and_getter(
         Ty::Array(Ty::CPrimary(CPrimaryType::Char), _)
             if member.length_at_depth(0) == Some(Length::NullTerminated) =>
         {
-            let field_name_as_cstr = format_ident!("{field_name}_as_c_str");
+            let method_name_as_cstr = format_ident!("{method_name}_as_c_str");
             quote! {
-                pub fn #field_name(mut self, #field_name: &core::ffi::CStr) -> core::result::Result<Self, crate::CStrTooLargeForStaticArray> {
-                    crate::write_c_str_slice_with_nul(&mut self.#field_name, #field_name).map(|_| self)
+                pub fn #method_name(mut self, #method_name: &core::ffi::CStr) -> core::result::Result<Self, crate::CStrTooLargeForStaticArray> {
+                    crate::write_c_str_slice_with_nul(&mut self.#field_name, #method_name).map(|_| self)
                 }
 
-                pub fn #field_name_as_cstr(&self) -> core::result::Result<&core::ffi::CStr, core::ffi::FromBytesUntilNulError> {
+                pub fn #method_name_as_cstr(&self) -> core::result::Result<&core::ffi::CStr, core::ffi::FromBytesUntilNulError> {
                     crate::wrap_c_str_slice_until_nul(&self.#field_name)
                 }
             }
@@ -279,19 +279,19 @@ fn setter_and_getter(
             if let Some(Length::DefinedByMember(length_member)) = member.length_at_depth(0) =>
         {
             let length_name = ctx.variable_token(length_member);
-            let field_name_as_slice = format_ident!("{field_name}_as_slice");
+            let method_name_as_slice = format_ident!("{method_name}_as_slice");
             let slice_ty = array_element_ty(member, element_ty);
             let slice = RustTy::Slice(Box::new(slice_ty), Mutability::Not, None)
                 .tokens(ctx, &Lifetime::placeholder());
 
             quote! {
-                pub fn #field_name(mut self, #field_name: #slice) -> Self {
-                    self.#length_name = #field_name.len() as _;
-                    self.#field_name[..#field_name.len()].copy_from_slice(#field_name);
+                pub fn #field_name(mut self, #method_name: #slice) -> Self {
+                    self.#length_name = #method_name.len() as _;
+                    self.#field_name[..#method_name.len()].copy_from_slice(#method_name);
                     self
                 }
 
-                pub fn #field_name_as_slice(&self) -> #slice {
+                pub fn #method_name_as_slice(&self) -> #slice {
                     &self.#field_name[..self.#length_name as _]
                 }
             }
@@ -346,8 +346,8 @@ fn setter_and_getter(
                     tracing::warn!(?custom, "unhandled custom length");
                     let ty = member.decl.ty.to_rust().tokens(ctx, lifetime);
                     quote! {
-                        pub fn #field_name(mut self, #field_name: #ty) -> Self {
-                            self.#field_name = #field_name;
+                        pub fn #method_name(mut self, #method_name: #ty) -> Self {
+                            self.#field_name = #method_name;
                             self
                         }
                     }
@@ -357,8 +357,8 @@ fn setter_and_getter(
         _ => {
             let ty = member.decl.ty.to_rust().tokens(ctx, lifetime);
             quote! {
-                pub fn #field_name(mut self, #field_name: #ty) -> Self {
-                    self.#field_name = #field_name;
+                pub fn #method_name(mut self, #method_name: #ty) -> Self {
+                    self.#field_name = #method_name;
                     self
                 }
             }

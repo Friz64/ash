@@ -246,11 +246,11 @@ pub(crate) mod reexport {
             self.object_handle = object_handle;
             self
         }
-        pub fn p_object_name(mut self, p_object_name: &'a core::ffi::CStr) -> Self {
-            self.p_object_name = p_object_name.as_ptr();
+        pub fn object_name(mut self, object_name: &'a core::ffi::CStr) -> Self {
+            self.p_object_name = object_name.as_ptr();
             self
         }
-        pub unsafe fn p_object_name_as_c_str(&self) -> Option<&core::ffi::CStr> {
+        pub unsafe fn object_name_as_c_str(&self) -> Option<&core::ffi::CStr> {
             if self.p_object_name.is_null() {
                 None
             } else {
@@ -334,11 +334,11 @@ pub(crate) mod reexport {
         }
     }
     impl<'a> DebugUtilsLabelEXT<'a> {
-        pub fn p_label_name(mut self, p_label_name: &'a core::ffi::CStr) -> Self {
-            self.p_label_name = p_label_name.as_ptr();
+        pub fn label_name(mut self, label_name: &'a core::ffi::CStr) -> Self {
+            self.p_label_name = label_name.as_ptr();
             self
         }
-        pub unsafe fn p_label_name_as_c_str(&self) -> Option<&core::ffi::CStr> {
+        pub unsafe fn label_name_as_c_str(&self) -> Option<&core::ffi::CStr> {
             if self.p_label_name.is_null() {
                 None
             } else {
@@ -463,14 +463,11 @@ pub(crate) mod reexport {
             self.flags = flags;
             self
         }
-        pub fn p_message_id_name(
-            mut self,
-            p_message_id_name: &'a core::ffi::CStr,
-        ) -> Self {
-            self.p_message_id_name = p_message_id_name.as_ptr();
+        pub fn message_id_name(mut self, message_id_name: &'a core::ffi::CStr) -> Self {
+            self.p_message_id_name = message_id_name.as_ptr();
             self
         }
-        pub unsafe fn p_message_id_name_as_c_str(&self) -> Option<&core::ffi::CStr> {
+        pub unsafe fn message_id_name_as_c_str(&self) -> Option<&core::ffi::CStr> {
             if self.p_message_id_name.is_null() {
                 None
             } else {
@@ -481,11 +478,11 @@ pub(crate) mod reexport {
             self.message_id_number = message_id_number;
             self
         }
-        pub fn p_message(mut self, p_message: &'a core::ffi::CStr) -> Self {
-            self.p_message = p_message.as_ptr();
+        pub fn message(mut self, message: &'a core::ffi::CStr) -> Self {
+            self.p_message = message.as_ptr();
             self
         }
-        pub unsafe fn p_message_as_c_str(&self) -> Option<&core::ffi::CStr> {
+        pub unsafe fn message_as_c_str(&self) -> Option<&core::ffi::CStr> {
             if self.p_message.is_null() {
                 None
             } else {
