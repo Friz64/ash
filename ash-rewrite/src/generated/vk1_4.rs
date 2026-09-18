@@ -313,6 +313,28 @@ impl DeviceFnV1_4 {
         }
     }
 }
+#[derive(Clone)]
+pub struct DeviceV1_4 {
+    pub(crate) fp: DeviceFnV1_4,
+    pub(crate) handle: crate::vk::Device,
+}
+impl DeviceV1_4 {
+    pub fn load(instance: &crate::Instance, device: &crate::Device) -> Self {
+        let handle = device.handle;
+        let fp = DeviceFnV1_4::load(|name| unsafe {
+            core::mem::transmute(instance.get_device_proc_addr(handle, name.as_ptr()))
+        });
+        Self { handle, fp }
+    }
+    #[inline]
+    pub fn fp(&self) -> &DeviceFnV1_4 {
+        &self.fp
+    }
+    #[inline]
+    pub fn device(&self) -> crate::vk::Device {
+        self.handle
+    }
+}
 pub(crate) mod reexport {
     #[repr(C)]
     #[derive(Clone, Copy)]

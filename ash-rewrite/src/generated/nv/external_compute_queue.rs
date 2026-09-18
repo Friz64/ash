@@ -53,6 +53,28 @@ impl DeviceFn {
     }
 }
 #[derive(Clone)]
+pub struct Device {
+    pub(crate) fp: DeviceFn,
+    pub(crate) handle: crate::vk::Device,
+}
+impl Device {
+    pub fn load(instance: &crate::Instance, device: &crate::Device) -> Self {
+        let handle = device.handle;
+        let fp = DeviceFn::load(|name| unsafe {
+            core::mem::transmute(instance.get_device_proc_addr(handle, name.as_ptr()))
+        });
+        Self { handle, fp }
+    }
+    #[inline]
+    pub fn fp(&self) -> &DeviceFn {
+        &self.fp
+    }
+    #[inline]
+    pub fn device(&self) -> crate::vk::Device {
+        self.handle
+    }
+}
+#[derive(Clone)]
 pub struct EntryFn {
     pub get_external_compute_queue_data_nv: crate::vk::PFN_vkGetExternalComputeQueueDataNV,
 }

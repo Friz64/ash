@@ -1,11 +1,11 @@
 use analysis::Analysis;
 use std::io;
-use tracing::info;
+use tracing::debug;
 
 fn main() -> io::Result<()> {
     tracing_subscriber::fmt::init();
-    info!("running analysis");
+    debug!("running analysis");
     let analysis = Analysis::new("generator-rewrite/Vulkan-Headers");
-    info!("running generator");
+    debug!("running generator");
     generator_rewrite::generate(&analysis, "ash-rewrite/src/generated")
 }

@@ -8,7 +8,7 @@ pub mod xml;
 use crate::name::TypeName;
 use item::Items;
 use std::{collections::HashMap, ffi::OsStr, fs, path::Path};
-use tracing::{error_span, info};
+use tracing::{debug, error_span};
 
 /// Holds the analysis results for easy querying.
 #[derive(Debug)]
@@ -87,10 +87,10 @@ impl Library {
         };
 
         let xml = error_span!("xml", path = %xml_path.display()).in_scope(|| {
-            info!("reading xml");
+            debug!("reading xml");
             // We leak the input string here for convenience, to avoid explicit lifetimes.
             let xml_input = Box::leak(fs::read_to_string(xml_path).unwrap().into_boxed_str());
-            info!("parsing xml");
+            debug!("parsing xml");
             xml::Registry::parse(xml_input, library_name, "vulkan")
         });
 

@@ -293,6 +293,28 @@ impl InstanceFnV1_0 {
     }
 }
 #[derive(Clone)]
+pub struct InstanceV1_0 {
+    pub(crate) fp: InstanceFnV1_0,
+    pub(crate) handle: crate::vk::Instance,
+}
+impl InstanceV1_0 {
+    pub fn load(entry: &crate::Entry, instance: &crate::Instance) -> Self {
+        let handle = instance.handle;
+        let fp = InstanceFnV1_0::load(|name| unsafe {
+            core::mem::transmute(entry.get_instance_proc_addr(handle, name.as_ptr()))
+        });
+        Self { handle, fp }
+    }
+    #[inline]
+    pub fn fp(&self) -> &InstanceFnV1_0 {
+        &self.fp
+    }
+    #[inline]
+    pub fn instance(&self) -> crate::vk::Instance {
+        self.handle
+    }
+}
+#[derive(Clone)]
 pub struct StaticFn {
     pub get_instance_proc_addr: crate::vk::PFN_vkGetInstanceProcAddr,
 }
@@ -2237,6 +2259,28 @@ impl DeviceFnV1_0 {
                 }
             },
         }
+    }
+}
+#[derive(Clone)]
+pub struct DeviceV1_0 {
+    pub(crate) fp: DeviceFnV1_0,
+    pub(crate) handle: crate::vk::Device,
+}
+impl DeviceV1_0 {
+    pub fn load(instance: &crate::Instance, device: &crate::Device) -> Self {
+        let handle = device.handle;
+        let fp = DeviceFnV1_0::load(|name| unsafe {
+            core::mem::transmute(instance.get_device_proc_addr(handle, name.as_ptr()))
+        });
+        Self { handle, fp }
+    }
+    #[inline]
+    pub fn fp(&self) -> &DeviceFnV1_0 {
+        &self.fp
+    }
+    #[inline]
+    pub fn device(&self) -> crate::vk::Device {
+        self.handle
     }
 }
 pub(crate) mod reexport {
