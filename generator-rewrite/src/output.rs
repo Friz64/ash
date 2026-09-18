@@ -50,12 +50,20 @@ struct DestinationPathComponent {
 }
 
 impl Destination {
+    fn original_name(&self) -> String {
+        match self.location {
+            RequireLocation::Core { major, minor } => format!("VK_VERSION_{major}_{minor}"),
+            RequireLocation::Extension { name } => name.into(),
+        }
+    }
+
     fn path_components(&self) -> Vec<DestinationPathComponent> {
+        let original_name = self.original_name();
         match self.location {
             RequireLocation::Core { major, minor } => vec![DestinationPathComponent {
                 module_name: format_ident!("vk{major}_{minor}"),
                 doc_comment: crate::refpage_doc(
-                    &format!("VK_VERSION_{major}_{minor}"),
+                    &original_name,
                     format!("Vulkan version {major}.{minor}"),
                 ),
             }],
@@ -70,7 +78,10 @@ impl Destination {
                         },
                         DestinationPathComponent {
                             module_name: crate::escape_ident(&ext_name.to_snek_case()),
-                            doc_comment: crate::refpage_doc(name, format!("Extension `{name}`")),
+                            doc_comment: crate::refpage_doc(
+                                &original_name,
+                                format!("Extension `{name}`"),
+                            ),
                         },
                     ]
                 }
@@ -137,6 +148,7 @@ impl CodeMap {
         struct SourceFile {
             destination: Destination,
             doc_comment: String,
+            doc_alias: String,
             reexport_content: TokenStream,
             content: TokenStream,
         }
@@ -160,6 +172,7 @@ impl CodeMap {
             let source_file = source_files.entry(path).or_insert_with(|| SourceFile {
                 destination: *destination,
                 doc_comment: doc.into(),
+                doc_alias: destination.original_name(),
                 reexport_content: TokenStream::new(),
                 content: TokenStream::new(),
             });
@@ -197,9 +210,14 @@ impl CodeMap {
         }
 
         for (source_path, source_file) in source_files {
-            let doc = source_file.doc_comment;
-            let content = source_file.content;
-            let mut reexport_content = source_file.reexport_content;
+            let SourceFile {
+                destination,
+                doc_comment,
+                doc_alias,
+                mut reexport_content,
+                content,
+            } = source_file;
+
             if !reexport_content.is_empty() {
                 let mut module = None;
                 if !content.is_empty() {
@@ -210,7 +228,7 @@ impl CodeMap {
                     };
                 }
 
-                let components = source_file.destination.path_components();
+                let components = destination.path_components();
                 let component_idents = components.iter().map(|component| &component.module_name);
                 vfs.write(
                     "vk.rs",
@@ -221,7 +239,8 @@ impl CodeMap {
             vfs.write(
                 source_path,
                 quote! {
-                    #![doc = #doc]
+                    #![doc = #doc_comment]
+                    #![doc(alias = #doc_alias)]
                     #content
                     #reexport_content
                 },
