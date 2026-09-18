@@ -44,12 +44,12 @@ impl<'a> ImageCompressionControlEXT<'a> {
         self.compression_control_plane_count = compression_control_plane_count;
         self
     }
-    pub fn p_fixed_rate_flags(
+    pub fn fixed_rate_flags(
         mut self,
-        p_fixed_rate_flags: &'a mut [crate::vk::ImageCompressionFixedRateFlagsEXT],
+        fixed_rate_flags: &'a mut [crate::vk::ImageCompressionFixedRateFlagsEXT],
     ) -> Self {
-        self.compression_control_plane_count = p_fixed_rate_flags.len() as _;
-        self.p_fixed_rate_flags = p_fixed_rate_flags.as_mut_ptr();
+        self.compression_control_plane_count = fixed_rate_flags.len() as _;
+        self.p_fixed_rate_flags = fixed_rate_flags.as_mut_ptr();
         self
     }
 }

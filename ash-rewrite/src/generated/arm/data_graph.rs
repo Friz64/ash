@@ -383,11 +383,8 @@ pub(crate) mod reexport {
             self.id = id;
             self
         }
-        pub fn p_constant_data(
-            mut self,
-            p_constant_data: &'a core::ffi::c_void,
-        ) -> Self {
-            self.p_constant_data = p_constant_data;
+        pub fn constant_data(mut self, constant_data: &'a core::ffi::c_void) -> Self {
+            self.p_constant_data = constant_data;
             self
         }
     }
@@ -510,12 +507,12 @@ pub(crate) mod reexport {
             self.resource_info_count = resource_info_count;
             self
         }
-        pub fn p_resource_infos(
+        pub fn resource_infos(
             mut self,
-            p_resource_infos: &'a [crate::vk::DataGraphPipelineResourceInfoARM<'a>],
+            resource_infos: &'a [crate::vk::DataGraphPipelineResourceInfoARM<'a>],
         ) -> Self {
-            self.resource_info_count = p_resource_infos.len() as _;
-            self.p_resource_infos = p_resource_infos.as_ptr();
+            self.resource_info_count = resource_infos.len() as _;
+            self.p_resource_infos = resource_infos.as_ptr();
             self
         }
     }
@@ -567,23 +564,23 @@ pub(crate) mod reexport {
                 Some(unsafe { core::ffi::CStr::from_ptr(self.p_name) })
             }
         }
-        pub fn p_specialization_info(
+        pub fn specialization_info(
             mut self,
-            p_specialization_info: &'a crate::vk::SpecializationInfo<'a>,
+            specialization_info: &'a crate::vk::SpecializationInfo<'a>,
         ) -> Self {
-            self.p_specialization_info = p_specialization_info;
+            self.p_specialization_info = specialization_info;
             self
         }
         pub fn constant_count(mut self, constant_count: u32) -> Self {
             self.constant_count = constant_count;
             self
         }
-        pub fn p_constants(
+        pub fn constants(
             mut self,
-            p_constants: &'a [crate::vk::DataGraphPipelineConstantARM<'a>],
+            constants: &'a [crate::vk::DataGraphPipelineConstantARM<'a>],
         ) -> Self {
-            self.constant_count = p_constants.len() as _;
-            self.p_constants = p_constants.as_ptr();
+            self.constant_count = constants.len() as _;
+            self.p_constants = constants.as_ptr();
             self
         }
     }
@@ -882,9 +879,9 @@ pub(crate) mod reexport {
             self.data_size = data_size;
             self
         }
-        pub fn p_data(mut self, p_data: &'a mut [u8]) -> Self {
-            self.data_size = p_data.len() as _;
-            self.p_data = p_data.as_mut_ptr().cast();
+        pub fn data(mut self, data: &'a mut [u8]) -> Self {
+            self.data_size = data.len() as _;
+            self.p_data = data.as_mut_ptr().cast();
             self
         }
     }
@@ -919,9 +916,9 @@ pub(crate) mod reexport {
             self.identifier_size = identifier_size;
             self
         }
-        pub fn p_identifier(mut self, p_identifier: &'a [u8]) -> Self {
-            self.identifier_size = p_identifier.len() as _;
-            self.p_identifier = p_identifier.as_ptr();
+        pub fn identifier(mut self, identifier: &'a [u8]) -> Self {
+            self.identifier_size = identifier.len() as _;
+            self.p_identifier = identifier.as_ptr();
             self
         }
     }
@@ -1167,12 +1164,12 @@ pub(crate) mod reexport {
             self.processing_engine_count = processing_engine_count;
             self
         }
-        pub fn p_processing_engines(
+        pub fn processing_engines(
             mut self,
-            p_processing_engines: &'a mut [crate::vk::PhysicalDeviceDataGraphProcessingEngineARM],
+            processing_engines: &'a mut [crate::vk::PhysicalDeviceDataGraphProcessingEngineARM],
         ) -> Self {
-            self.processing_engine_count = p_processing_engines.len() as _;
-            self.p_processing_engines = p_processing_engines.as_mut_ptr();
+            self.processing_engine_count = processing_engines.len() as _;
+            self.p_processing_engines = processing_engines.as_mut_ptr();
             self
         }
     }

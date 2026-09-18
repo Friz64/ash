@@ -139,12 +139,12 @@ pub(crate) mod reexport {
             self.fragment_density_offset_count = fragment_density_offset_count;
             self
         }
-        pub fn p_fragment_density_offsets(
+        pub fn fragment_density_offsets(
             mut self,
-            p_fragment_density_offsets: &'a [crate::vk::Offset2D],
+            fragment_density_offsets: &'a [crate::vk::Offset2D],
         ) -> Self {
-            self.fragment_density_offset_count = p_fragment_density_offsets.len() as _;
-            self.p_fragment_density_offsets = p_fragment_density_offsets.as_ptr();
+            self.fragment_density_offset_count = fragment_density_offsets.len() as _;
+            self.p_fragment_density_offsets = fragment_density_offsets.as_ptr();
             self
         }
     }

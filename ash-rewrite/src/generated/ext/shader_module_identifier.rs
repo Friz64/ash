@@ -151,9 +151,9 @@ pub(crate) mod reexport {
             self.identifier_size = identifier_size;
             self
         }
-        pub fn p_identifier(mut self, p_identifier: &'a [u8]) -> Self {
-            self.identifier_size = p_identifier.len() as _;
-            self.p_identifier = p_identifier.as_ptr();
+        pub fn identifier(mut self, identifier: &'a [u8]) -> Self {
+            self.identifier_size = identifier.len() as _;
+            self.p_identifier = identifier.as_ptr();
             self
         }
     }

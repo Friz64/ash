@@ -100,11 +100,11 @@ pub(crate) mod reexport {
             self.max_fps = max_fps;
             self
         }
-        pub fn p_presentation_info(
+        pub fn presentation_info(
             mut self,
-            p_presentation_info: &'a crate::vk::AntiLagPresentationInfoAMD<'a>,
+            presentation_info: &'a crate::vk::AntiLagPresentationInfoAMD<'a>,
         ) -> Self {
-            self.p_presentation_info = p_presentation_info;
+            self.p_presentation_info = presentation_info;
             self
         }
     }

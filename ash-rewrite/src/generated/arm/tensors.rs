@@ -267,14 +267,14 @@ pub(crate) mod reexport {
             self.dimension_count = dimension_count;
             self
         }
-        pub fn p_dimensions(mut self, p_dimensions: &'a [i64]) -> Self {
-            self.dimension_count = p_dimensions.len() as _;
-            self.p_dimensions = p_dimensions.as_ptr();
+        pub fn dimensions(mut self, dimensions: &'a [i64]) -> Self {
+            self.dimension_count = dimensions.len() as _;
+            self.p_dimensions = dimensions.as_ptr();
             self
         }
-        pub fn p_strides(mut self, p_strides: &'a [i64]) -> Self {
-            self.dimension_count = p_strides.len() as _;
-            self.p_strides = p_strides.as_ptr();
+        pub fn strides(mut self, strides: &'a [i64]) -> Self {
+            self.dimension_count = strides.len() as _;
+            self.p_strides = strides.as_ptr();
             self
         }
         pub fn usage(mut self, usage: crate::vk::TensorUsageFlagsARM) -> Self {
@@ -316,11 +316,11 @@ pub(crate) mod reexport {
             self.flags = flags;
             self
         }
-        pub fn p_description(
+        pub fn description(
             mut self,
-            p_description: &'a crate::vk::TensorDescriptionARM<'a>,
+            description: &'a crate::vk::TensorDescriptionARM<'a>,
         ) -> Self {
-            self.p_description = p_description;
+            self.p_description = description;
             self
         }
         pub fn sharing_mode(mut self, sharing_mode: crate::vk::SharingMode) -> Self {
@@ -334,12 +334,9 @@ pub(crate) mod reexport {
             self.queue_family_index_count = queue_family_index_count;
             self
         }
-        pub fn p_queue_family_indices(
-            mut self,
-            p_queue_family_indices: &'a [u32],
-        ) -> Self {
-            self.queue_family_index_count = p_queue_family_indices.len() as _;
-            self.p_queue_family_indices = p_queue_family_indices.as_ptr();
+        pub fn queue_family_indices(mut self, queue_family_indices: &'a [u32]) -> Self {
+            self.queue_family_index_count = queue_family_indices.len() as _;
+            self.p_queue_family_indices = queue_family_indices.as_ptr();
             self
         }
     }
@@ -439,12 +436,12 @@ pub(crate) mod reexport {
             self.tensor_view_count = tensor_view_count;
             self
         }
-        pub fn p_tensor_views(
+        pub fn tensor_views(
             mut self,
-            p_tensor_views: &'a [crate::vk::TensorViewARM],
+            tensor_views: &'a [crate::vk::TensorViewARM],
         ) -> Self {
-            self.tensor_view_count = p_tensor_views.len() as _;
-            self.p_tensor_views = p_tensor_views.as_ptr();
+            self.tensor_view_count = tensor_views.len() as _;
+            self.p_tensor_views = tensor_views.as_ptr();
             self
         }
     }
@@ -732,12 +729,12 @@ pub(crate) mod reexport {
             self.tensor_memory_barrier_count = tensor_memory_barrier_count;
             self
         }
-        pub fn p_tensor_memory_barriers(
+        pub fn tensor_memory_barriers(
             mut self,
-            p_tensor_memory_barriers: &'a [crate::vk::TensorMemoryBarrierARM<'a>],
+            tensor_memory_barriers: &'a [crate::vk::TensorMemoryBarrierARM<'a>],
         ) -> Self {
-            self.tensor_memory_barrier_count = p_tensor_memory_barriers.len() as _;
-            self.p_tensor_memory_barriers = p_tensor_memory_barriers.as_ptr();
+            self.tensor_memory_barrier_count = tensor_memory_barriers.len() as _;
+            self.p_tensor_memory_barriers = tensor_memory_barriers.as_ptr();
             self
         }
     }
@@ -837,11 +834,11 @@ pub(crate) mod reexport {
         }
     }
     impl<'a> DeviceTensorMemoryRequirementsARM<'a> {
-        pub fn p_create_info(
+        pub fn create_info(
             mut self,
-            p_create_info: &'a crate::vk::TensorCreateInfoARM<'a>,
+            create_info: &'a crate::vk::TensorCreateInfoARM<'a>,
         ) -> Self {
-            self.p_create_info = p_create_info;
+            self.p_create_info = create_info;
             self
         }
     }
@@ -885,12 +882,9 @@ pub(crate) mod reexport {
             self.region_count = region_count;
             self
         }
-        pub fn p_regions(
-            mut self,
-            p_regions: &'a [crate::vk::TensorCopyARM<'a>],
-        ) -> Self {
-            self.region_count = p_regions.len() as _;
-            self.p_regions = p_regions.as_ptr();
+        pub fn regions(mut self, regions: &'a [crate::vk::TensorCopyARM<'a>]) -> Self {
+            self.region_count = regions.len() as _;
+            self.p_regions = regions.as_ptr();
             self
         }
     }
@@ -926,19 +920,19 @@ pub(crate) mod reexport {
             self.dimension_count = dimension_count;
             self
         }
-        pub fn p_src_offset(mut self, p_src_offset: &'a [u64]) -> Self {
-            self.dimension_count = p_src_offset.len() as _;
-            self.p_src_offset = p_src_offset.as_ptr();
+        pub fn src_offset(mut self, src_offset: &'a [u64]) -> Self {
+            self.dimension_count = src_offset.len() as _;
+            self.p_src_offset = src_offset.as_ptr();
             self
         }
-        pub fn p_dst_offset(mut self, p_dst_offset: &'a [u64]) -> Self {
-            self.dimension_count = p_dst_offset.len() as _;
-            self.p_dst_offset = p_dst_offset.as_ptr();
+        pub fn dst_offset(mut self, dst_offset: &'a [u64]) -> Self {
+            self.dimension_count = dst_offset.len() as _;
+            self.p_dst_offset = dst_offset.as_ptr();
             self
         }
-        pub fn p_extent(mut self, p_extent: &'a [u64]) -> Self {
-            self.dimension_count = p_extent.len() as _;
-            self.p_extent = p_extent.as_ptr();
+        pub fn extent(mut self, extent: &'a [u64]) -> Self {
+            self.dimension_count = extent.len() as _;
+            self.p_extent = extent.as_ptr();
             self
         }
     }
@@ -1177,9 +1171,9 @@ pub(crate) mod reexport {
             self.tensor_count = tensor_count;
             self
         }
-        pub fn p_tensors(mut self, p_tensors: &'a [crate::vk::TensorARM]) -> Self {
-            self.tensor_count = p_tensors.len() as _;
-            self.p_tensors = p_tensors.as_ptr();
+        pub fn tensors(mut self, tensors: &'a [crate::vk::TensorARM]) -> Self {
+            self.tensor_count = tensors.len() as _;
+            self.p_tensors = tensors.as_ptr();
             self
         }
     }
@@ -1214,11 +1208,11 @@ pub(crate) mod reexport {
             self.flags = flags;
             self
         }
-        pub fn p_description(
+        pub fn description(
             mut self,
-            p_description: &'a crate::vk::TensorDescriptionARM<'a>,
+            description: &'a crate::vk::TensorDescriptionARM<'a>,
         ) -> Self {
-            self.p_description = p_description;
+            self.p_description = description;
             self
         }
         pub fn handle_type(

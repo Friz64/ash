@@ -333,12 +333,12 @@ pub(crate) mod reexport {
             self.profile_count = profile_count;
             self
         }
-        pub fn p_profiles(
+        pub fn profiles(
             mut self,
-            p_profiles: &'a [crate::vk::VideoProfileInfoKHR<'a>],
+            profiles: &'a [crate::vk::VideoProfileInfoKHR<'a>],
         ) -> Self {
-            self.profile_count = p_profiles.len() as _;
-            self.p_profiles = p_profiles.as_ptr();
+            self.profile_count = profiles.len() as _;
+            self.p_profiles = profiles.as_ptr();
             self
         }
     }
@@ -748,11 +748,11 @@ pub(crate) mod reexport {
             self.slot_index = slot_index;
             self
         }
-        pub fn p_picture_resource(
+        pub fn picture_resource(
             mut self,
-            p_picture_resource: &'a crate::vk::VideoPictureResourceInfoKHR<'a>,
+            picture_resource: &'a crate::vk::VideoPictureResourceInfoKHR<'a>,
         ) -> Self {
-            self.p_picture_resource = p_picture_resource;
+            self.p_picture_resource = picture_resource;
             self
         }
     }
@@ -802,11 +802,11 @@ pub(crate) mod reexport {
             self.flags = flags;
             self
         }
-        pub fn p_video_profile(
+        pub fn video_profile(
             mut self,
-            p_video_profile: &'a crate::vk::VideoProfileInfoKHR<'a>,
+            video_profile: &'a crate::vk::VideoProfileInfoKHR<'a>,
         ) -> Self {
-            self.p_video_profile = p_video_profile;
+            self.p_video_profile = video_profile;
             self
         }
         pub fn picture_format(mut self, picture_format: crate::vk::Format) -> Self {
@@ -838,11 +838,11 @@ pub(crate) mod reexport {
             self.max_active_reference_pictures = max_active_reference_pictures;
             self
         }
-        pub fn p_std_header_version(
+        pub fn std_header_version(
             mut self,
-            p_std_header_version: &'a crate::vk::ExtensionProperties,
+            std_header_version: &'a crate::vk::ExtensionProperties,
         ) -> Self {
-            self.p_std_header_version = p_std_header_version;
+            self.p_std_header_version = std_header_version;
             self
         }
     }
@@ -975,12 +975,12 @@ pub(crate) mod reexport {
             self.reference_slot_count = reference_slot_count;
             self
         }
-        pub fn p_reference_slots(
+        pub fn reference_slots(
             mut self,
-            p_reference_slots: &'a [crate::vk::VideoReferenceSlotInfoKHR<'a>],
+            reference_slots: &'a [crate::vk::VideoReferenceSlotInfoKHR<'a>],
         ) -> Self {
-            self.reference_slot_count = p_reference_slots.len() as _;
-            self.p_reference_slots = p_reference_slots.as_ptr();
+            self.reference_slot_count = reference_slots.len() as _;
+            self.p_reference_slots = reference_slots.as_ptr();
             self
         }
     }

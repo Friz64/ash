@@ -649,12 +649,12 @@ pub(crate) mod reexport {
             self.color_attachment_count = color_attachment_count;
             self
         }
-        pub fn p_color_attachment_formats(
+        pub fn color_attachment_formats(
             mut self,
-            p_color_attachment_formats: &'a [crate::vk::Format],
+            color_attachment_formats: &'a [crate::vk::Format],
         ) -> Self {
-            self.color_attachment_count = p_color_attachment_formats.len() as _;
-            self.p_color_attachment_formats = p_color_attachment_formats.as_ptr();
+            self.color_attachment_count = color_attachment_formats.len() as _;
+            self.p_color_attachment_formats = color_attachment_formats.as_ptr();
             self
         }
         pub fn depth_attachment_format(
@@ -831,12 +831,12 @@ pub(crate) mod reexport {
             self.vertex_binding_divisor_count = vertex_binding_divisor_count;
             self
         }
-        pub fn p_vertex_binding_divisors(
+        pub fn vertex_binding_divisors(
             mut self,
-            p_vertex_binding_divisors: &'a [crate::vk::VertexInputBindingDivisorDescription],
+            vertex_binding_divisors: &'a [crate::vk::VertexInputBindingDivisorDescription],
         ) -> Self {
-            self.vertex_binding_divisor_count = p_vertex_binding_divisors.len() as _;
-            self.p_vertex_binding_divisors = p_vertex_binding_divisors.as_ptr();
+            self.vertex_binding_divisor_count = vertex_binding_divisors.len() as _;
+            self.p_vertex_binding_divisors = vertex_binding_divisors.as_ptr();
             self
         }
     }
@@ -1501,24 +1501,24 @@ pub(crate) mod reexport {
             self.copy_src_layout_count = copy_src_layout_count;
             self
         }
-        pub fn p_copy_src_layouts(
+        pub fn copy_src_layouts(
             mut self,
-            p_copy_src_layouts: &'a mut [crate::vk::ImageLayout],
+            copy_src_layouts: &'a mut [crate::vk::ImageLayout],
         ) -> Self {
-            self.copy_src_layout_count = p_copy_src_layouts.len() as _;
-            self.p_copy_src_layouts = p_copy_src_layouts.as_mut_ptr();
+            self.copy_src_layout_count = copy_src_layouts.len() as _;
+            self.p_copy_src_layouts = copy_src_layouts.as_mut_ptr();
             self
         }
         pub fn copy_dst_layout_count(mut self, copy_dst_layout_count: u32) -> Self {
             self.copy_dst_layout_count = copy_dst_layout_count;
             self
         }
-        pub fn p_copy_dst_layouts(
+        pub fn copy_dst_layouts(
             mut self,
-            p_copy_dst_layouts: &'a mut [crate::vk::ImageLayout],
+            copy_dst_layouts: &'a mut [crate::vk::ImageLayout],
         ) -> Self {
-            self.copy_dst_layout_count = p_copy_dst_layouts.len() as _;
-            self.p_copy_dst_layouts = p_copy_dst_layouts.as_mut_ptr();
+            self.copy_dst_layout_count = copy_dst_layouts.len() as _;
+            self.p_copy_dst_layouts = copy_dst_layouts.as_mut_ptr();
             self
         }
         pub fn optimal_tiling_layout_uuid(
@@ -1608,24 +1608,24 @@ pub(crate) mod reexport {
             self.copy_src_layout_count = copy_src_layout_count;
             self
         }
-        pub fn p_copy_src_layouts(
+        pub fn copy_src_layouts(
             mut self,
-            p_copy_src_layouts: &'a mut [crate::vk::ImageLayout],
+            copy_src_layouts: &'a mut [crate::vk::ImageLayout],
         ) -> Self {
-            self.copy_src_layout_count = p_copy_src_layouts.len() as _;
-            self.p_copy_src_layouts = p_copy_src_layouts.as_mut_ptr();
+            self.copy_src_layout_count = copy_src_layouts.len() as _;
+            self.p_copy_src_layouts = copy_src_layouts.as_mut_ptr();
             self
         }
         pub fn copy_dst_layout_count(mut self, copy_dst_layout_count: u32) -> Self {
             self.copy_dst_layout_count = copy_dst_layout_count;
             self
         }
-        pub fn p_copy_dst_layouts(
+        pub fn copy_dst_layouts(
             mut self,
-            p_copy_dst_layouts: &'a mut [crate::vk::ImageLayout],
+            copy_dst_layouts: &'a mut [crate::vk::ImageLayout],
         ) -> Self {
-            self.copy_dst_layout_count = p_copy_dst_layouts.len() as _;
-            self.p_copy_dst_layouts = p_copy_dst_layouts.as_mut_ptr();
+            self.copy_dst_layout_count = copy_dst_layouts.len() as _;
+            self.p_copy_dst_layouts = copy_dst_layouts.as_mut_ptr();
             self
         }
         pub fn optimal_tiling_layout_uuid(
@@ -1676,8 +1676,8 @@ pub(crate) mod reexport {
         }
     }
     impl<'a> MemoryToImageCopy<'a> {
-        pub fn p_host_pointer(mut self, p_host_pointer: &'a core::ffi::c_void) -> Self {
-            self.p_host_pointer = p_host_pointer;
+        pub fn host_pointer(mut self, host_pointer: &'a core::ffi::c_void) -> Self {
+            self.p_host_pointer = host_pointer;
             self
         }
         pub fn memory_row_length(mut self, memory_row_length: u32) -> Self {
@@ -1736,11 +1736,8 @@ pub(crate) mod reexport {
         }
     }
     impl<'a> ImageToMemoryCopy<'a> {
-        pub fn p_host_pointer(
-            mut self,
-            p_host_pointer: &'a mut core::ffi::c_void,
-        ) -> Self {
-            self.p_host_pointer = p_host_pointer;
+        pub fn host_pointer(mut self, host_pointer: &'a mut core::ffi::c_void) -> Self {
+            self.p_host_pointer = host_pointer;
             self
         }
         pub fn memory_row_length(mut self, memory_row_length: u32) -> Self {
@@ -1816,12 +1813,12 @@ pub(crate) mod reexport {
             self.region_count = region_count;
             self
         }
-        pub fn p_regions(
+        pub fn regions(
             mut self,
-            p_regions: &'a [crate::vk::MemoryToImageCopy<'a>],
+            regions: &'a [crate::vk::MemoryToImageCopy<'a>],
         ) -> Self {
-            self.region_count = p_regions.len() as _;
-            self.p_regions = p_regions.as_ptr();
+            self.region_count = regions.len() as _;
+            self.p_regions = regions.as_ptr();
             self
         }
     }
@@ -1874,12 +1871,12 @@ pub(crate) mod reexport {
             self.region_count = region_count;
             self
         }
-        pub fn p_regions(
+        pub fn regions(
             mut self,
-            p_regions: &'a [crate::vk::ImageToMemoryCopy<'a>],
+            regions: &'a [crate::vk::ImageToMemoryCopy<'a>],
         ) -> Self {
-            self.region_count = p_regions.len() as _;
-            self.p_regions = p_regions.as_ptr();
+            self.region_count = regions.len() as _;
+            self.p_regions = regions.as_ptr();
             self
         }
     }
@@ -1947,9 +1944,9 @@ pub(crate) mod reexport {
             self.region_count = region_count;
             self
         }
-        pub fn p_regions(mut self, p_regions: &'a [crate::vk::ImageCopy2<'a>]) -> Self {
-            self.region_count = p_regions.len() as _;
-            self.p_regions = p_regions.as_ptr();
+        pub fn regions(mut self, regions: &'a [crate::vk::ImageCopy2<'a>]) -> Self {
+            self.region_count = regions.len() as _;
+            self.p_regions = regions.as_ptr();
             self
         }
     }
@@ -2342,18 +2339,18 @@ pub(crate) mod reexport {
         }
     }
     impl<'a> DeviceImageSubresourceInfo<'a> {
-        pub fn p_create_info(
+        pub fn create_info(
             mut self,
-            p_create_info: &'a crate::vk::ImageCreateInfo<'a>,
+            create_info: &'a crate::vk::ImageCreateInfo<'a>,
         ) -> Self {
-            self.p_create_info = p_create_info;
+            self.p_create_info = create_info;
             self
         }
-        pub fn p_subresource(
+        pub fn subresource(
             mut self,
-            p_subresource: &'a crate::vk::ImageSubresource2<'a>,
+            subresource: &'a crate::vk::ImageSubresource2<'a>,
         ) -> Self {
-            self.p_subresource = p_subresource;
+            self.p_subresource = subresource;
             self
         }
     }
@@ -2461,8 +2458,8 @@ pub(crate) mod reexport {
         }
     }
     impl<'a> BindMemoryStatus<'a> {
-        pub fn p_result(mut self, p_result: &'a mut crate::vk::Result) -> Self {
-            self.p_result = p_result;
+        pub fn result(mut self, result: &'a mut crate::vk::Result) -> Self {
+            self.p_result = result;
             self
         }
     }
@@ -2516,21 +2513,21 @@ pub(crate) mod reexport {
             self.descriptor_set_count = descriptor_set_count;
             self
         }
-        pub fn p_descriptor_sets(
+        pub fn descriptor_sets(
             mut self,
-            p_descriptor_sets: &'a [crate::vk::DescriptorSet],
+            descriptor_sets: &'a [crate::vk::DescriptorSet],
         ) -> Self {
-            self.descriptor_set_count = p_descriptor_sets.len() as _;
-            self.p_descriptor_sets = p_descriptor_sets.as_ptr();
+            self.descriptor_set_count = descriptor_sets.len() as _;
+            self.p_descriptor_sets = descriptor_sets.as_ptr();
             self
         }
         pub fn dynamic_offset_count(mut self, dynamic_offset_count: u32) -> Self {
             self.dynamic_offset_count = dynamic_offset_count;
             self
         }
-        pub fn p_dynamic_offsets(mut self, p_dynamic_offsets: &'a [u32]) -> Self {
-            self.dynamic_offset_count = p_dynamic_offsets.len() as _;
-            self.p_dynamic_offsets = p_dynamic_offsets.as_ptr();
+        pub fn dynamic_offsets(mut self, dynamic_offsets: &'a [u32]) -> Self {
+            self.dynamic_offset_count = dynamic_offsets.len() as _;
+            self.p_dynamic_offsets = dynamic_offsets.as_ptr();
             self
         }
     }
@@ -2580,9 +2577,9 @@ pub(crate) mod reexport {
             self.size = size;
             self
         }
-        pub fn p_values(mut self, p_values: &'a [u8]) -> Self {
-            self.size = p_values.len() as _;
-            self.p_values = p_values.as_ptr().cast();
+        pub fn values(mut self, values: &'a [u8]) -> Self {
+            self.size = values.len() as _;
+            self.p_values = values.as_ptr().cast();
             self
         }
     }
@@ -2632,12 +2629,12 @@ pub(crate) mod reexport {
             self.descriptor_write_count = descriptor_write_count;
             self
         }
-        pub fn p_descriptor_writes(
+        pub fn descriptor_writes(
             mut self,
-            p_descriptor_writes: &'a [crate::vk::WriteDescriptorSet<'a>],
+            descriptor_writes: &'a [crate::vk::WriteDescriptorSet<'a>],
         ) -> Self {
-            self.descriptor_write_count = p_descriptor_writes.len() as _;
-            self.p_descriptor_writes = p_descriptor_writes.as_ptr();
+            self.descriptor_write_count = descriptor_writes.len() as _;
+            self.p_descriptor_writes = descriptor_writes.as_ptr();
             self
         }
     }
@@ -2685,8 +2682,8 @@ pub(crate) mod reexport {
             self.set = set;
             self
         }
-        pub fn p_data(mut self, p_data: &'a core::ffi::c_void) -> Self {
-            self.p_data = p_data;
+        pub fn data(mut self, data: &'a core::ffi::c_void) -> Self {
+            self.p_data = data;
             self
         }
     }
@@ -2863,12 +2860,12 @@ pub(crate) mod reexport {
             self.color_attachment_count = color_attachment_count;
             self
         }
-        pub fn p_color_attachment_locations(
+        pub fn color_attachment_locations(
             mut self,
-            p_color_attachment_locations: &'a [u32],
+            color_attachment_locations: &'a [u32],
         ) -> Self {
-            self.color_attachment_count = p_color_attachment_locations.len() as _;
-            self.p_color_attachment_locations = p_color_attachment_locations.as_ptr();
+            self.color_attachment_count = color_attachment_locations.len() as _;
+            self.p_color_attachment_locations = color_attachment_locations.as_ptr();
             self
         }
     }
@@ -2909,27 +2906,27 @@ pub(crate) mod reexport {
             self.color_attachment_count = color_attachment_count;
             self
         }
-        pub fn p_color_attachment_input_indices(
+        pub fn color_attachment_input_indices(
             mut self,
-            p_color_attachment_input_indices: &'a [u32],
+            color_attachment_input_indices: &'a [u32],
         ) -> Self {
-            self.color_attachment_count = p_color_attachment_input_indices.len() as _;
-            self.p_color_attachment_input_indices = p_color_attachment_input_indices
+            self.color_attachment_count = color_attachment_input_indices.len() as _;
+            self.p_color_attachment_input_indices = color_attachment_input_indices
                 .as_ptr();
             self
         }
-        pub fn p_depth_input_attachment_index(
+        pub fn depth_input_attachment_index(
             mut self,
-            p_depth_input_attachment_index: &'a u32,
+            depth_input_attachment_index: &'a u32,
         ) -> Self {
-            self.p_depth_input_attachment_index = p_depth_input_attachment_index;
+            self.p_depth_input_attachment_index = depth_input_attachment_index;
             self
         }
-        pub fn p_stencil_input_attachment_index(
+        pub fn stencil_input_attachment_index(
             mut self,
-            p_stencil_input_attachment_index: &'a u32,
+            stencil_input_attachment_index: &'a u32,
         ) -> Self {
-            self.p_stencil_input_attachment_index = p_stencil_input_attachment_index;
+            self.p_stencil_input_attachment_index = stencil_input_attachment_index;
             self
         }
     }

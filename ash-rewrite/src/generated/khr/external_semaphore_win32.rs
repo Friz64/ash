@@ -135,11 +135,11 @@ pub(crate) mod reexport {
         }
     }
     impl<'a> ExportSemaphoreWin32HandleInfoKHR<'a> {
-        pub fn p_attributes(
+        pub fn attributes(
             mut self,
-            p_attributes: &'a crate::platform_types::SECURITY_ATTRIBUTES,
+            attributes: &'a crate::platform_types::SECURITY_ATTRIBUTES,
         ) -> Self {
-            self.p_attributes = p_attributes;
+            self.p_attributes = attributes;
             self
         }
         pub fn dw_access(mut self, dw_access: crate::platform_types::DWORD) -> Self {
@@ -188,12 +188,12 @@ pub(crate) mod reexport {
             self.wait_semaphore_values_count = wait_semaphore_values_count;
             self
         }
-        pub fn p_wait_semaphore_values(
+        pub fn wait_semaphore_values(
             mut self,
-            p_wait_semaphore_values: &'a [u64],
+            wait_semaphore_values: &'a [u64],
         ) -> Self {
-            self.wait_semaphore_values_count = p_wait_semaphore_values.len() as _;
-            self.p_wait_semaphore_values = p_wait_semaphore_values.as_ptr();
+            self.wait_semaphore_values_count = wait_semaphore_values.len() as _;
+            self.p_wait_semaphore_values = wait_semaphore_values.as_ptr();
             self
         }
         pub fn signal_semaphore_values_count(
@@ -203,12 +203,12 @@ pub(crate) mod reexport {
             self.signal_semaphore_values_count = signal_semaphore_values_count;
             self
         }
-        pub fn p_signal_semaphore_values(
+        pub fn signal_semaphore_values(
             mut self,
-            p_signal_semaphore_values: &'a [u64],
+            signal_semaphore_values: &'a [u64],
         ) -> Self {
-            self.signal_semaphore_values_count = p_signal_semaphore_values.len() as _;
-            self.p_signal_semaphore_values = p_signal_semaphore_values.as_ptr();
+            self.signal_semaphore_values_count = signal_semaphore_values.len() as _;
+            self.p_signal_semaphore_values = signal_semaphore_values.as_ptr();
             self
         }
     }

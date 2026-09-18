@@ -423,11 +423,11 @@ impl<'a> EncodeH265SliceSegmentHeader<'a> {
         self.reserved1 = reserved1;
         self
     }
-    pub fn p_weight_table(
+    pub fn weight_table(
         mut self,
-        p_weight_table: &'a crate::vk::EncodeH265WeightTable,
+        weight_table: &'a crate::vk::EncodeH265WeightTable,
     ) -> Self {
-        self.p_weight_table = p_weight_table;
+        self.p_weight_table = weight_table;
         self
     }
 }
@@ -708,25 +708,25 @@ impl<'a> EncodeH265PictureInfo<'a> {
         self.reserved1 = reserved1;
         self
     }
-    pub fn p_ref_lists(
+    pub fn ref_lists(
         mut self,
-        p_ref_lists: &'a crate::vk::EncodeH265ReferenceListsInfo,
+        ref_lists: &'a crate::vk::EncodeH265ReferenceListsInfo,
     ) -> Self {
-        self.p_ref_lists = p_ref_lists;
+        self.p_ref_lists = ref_lists;
         self
     }
-    pub fn p_short_term_ref_pic_set(
+    pub fn short_term_ref_pic_set(
         mut self,
-        p_short_term_ref_pic_set: &'a crate::vk::H265ShortTermRefPicSet,
+        short_term_ref_pic_set: &'a crate::vk::H265ShortTermRefPicSet,
     ) -> Self {
-        self.p_short_term_ref_pic_set = p_short_term_ref_pic_set;
+        self.p_short_term_ref_pic_set = short_term_ref_pic_set;
         self
     }
-    pub fn p_long_term_ref_pics(
+    pub fn long_term_ref_pics(
         mut self,
-        p_long_term_ref_pics: &'a crate::vk::EncodeH265LongTermRefPics,
+        long_term_ref_pics: &'a crate::vk::EncodeH265LongTermRefPics,
     ) -> Self {
-        self.p_long_term_ref_pics = p_long_term_ref_pics;
+        self.p_long_term_ref_pics = long_term_ref_pics;
         self
     }
 }

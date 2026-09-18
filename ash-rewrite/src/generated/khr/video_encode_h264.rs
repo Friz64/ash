@@ -291,24 +291,24 @@ impl<'a> VideoEncodeH264SessionParametersAddInfoKHR<'a> {
         self.std_sps_count = std_sps_count;
         self
     }
-    pub fn p_std_sp_ss(
+    pub fn std_sp_ss(
         mut self,
-        p_std_sp_ss: &'a [crate::vk::H264SequenceParameterSet<'a>],
+        std_sp_ss: &'a [crate::vk::H264SequenceParameterSet<'a>],
     ) -> Self {
-        self.std_sps_count = p_std_sp_ss.len() as _;
-        self.p_std_sp_ss = p_std_sp_ss.as_ptr();
+        self.std_sps_count = std_sp_ss.len() as _;
+        self.p_std_sp_ss = std_sp_ss.as_ptr();
         self
     }
     pub fn std_pps_count(mut self, std_pps_count: u32) -> Self {
         self.std_pps_count = std_pps_count;
         self
     }
-    pub fn p_std_pp_ss(
+    pub fn std_pp_ss(
         mut self,
-        p_std_pp_ss: &'a [crate::vk::H264PictureParameterSet<'a>],
+        std_pp_ss: &'a [crate::vk::H264PictureParameterSet<'a>],
     ) -> Self {
-        self.std_pps_count = p_std_pp_ss.len() as _;
-        self.p_std_pp_ss = p_std_pp_ss.as_ptr();
+        self.std_pps_count = std_pp_ss.len() as _;
+        self.p_std_pp_ss = std_pp_ss.as_ptr();
         self
     }
 }
@@ -351,13 +351,13 @@ impl<'a> VideoEncodeH264SessionParametersCreateInfoKHR<'a> {
         self.max_std_pps_count = max_std_pps_count;
         self
     }
-    pub fn p_parameters_add_info(
+    pub fn parameters_add_info(
         mut self,
-        p_parameters_add_info: &'a crate::vk::VideoEncodeH264SessionParametersAddInfoKHR<
+        parameters_add_info: &'a crate::vk::VideoEncodeH264SessionParametersAddInfoKHR<
             'a,
         >,
     ) -> Self {
-        self.p_parameters_add_info = p_parameters_add_info;
+        self.p_parameters_add_info = parameters_add_info;
         self
     }
 }
@@ -471,11 +471,11 @@ impl<'a> Default for VideoEncodeH264DpbSlotInfoKHR<'a> {
     }
 }
 impl<'a> VideoEncodeH264DpbSlotInfoKHR<'a> {
-    pub fn p_std_reference_info(
+    pub fn std_reference_info(
         mut self,
-        p_std_reference_info: &'a crate::vk::EncodeH264ReferenceInfo,
+        std_reference_info: &'a crate::vk::EncodeH264ReferenceInfo,
     ) -> Self {
-        self.p_std_reference_info = p_std_reference_info;
+        self.p_std_reference_info = std_reference_info;
         self
     }
 }
@@ -513,19 +513,19 @@ impl<'a> VideoEncodeH264PictureInfoKHR<'a> {
         self.nalu_slice_entry_count = nalu_slice_entry_count;
         self
     }
-    pub fn p_nalu_slice_entries(
+    pub fn nalu_slice_entries(
         mut self,
-        p_nalu_slice_entries: &'a [crate::vk::VideoEncodeH264NaluSliceInfoKHR<'a>],
+        nalu_slice_entries: &'a [crate::vk::VideoEncodeH264NaluSliceInfoKHR<'a>],
     ) -> Self {
-        self.nalu_slice_entry_count = p_nalu_slice_entries.len() as _;
-        self.p_nalu_slice_entries = p_nalu_slice_entries.as_ptr();
+        self.nalu_slice_entry_count = nalu_slice_entries.len() as _;
+        self.p_nalu_slice_entries = nalu_slice_entries.as_ptr();
         self
     }
-    pub fn p_std_picture_info(
+    pub fn std_picture_info(
         mut self,
-        p_std_picture_info: &'a crate::vk::EncodeH264PictureInfo<'a>,
+        std_picture_info: &'a crate::vk::EncodeH264PictureInfo<'a>,
     ) -> Self {
-        self.p_std_picture_info = p_std_picture_info;
+        self.p_std_picture_info = std_picture_info;
         self
     }
     pub fn generate_prefix_nalu(mut self, generate_prefix_nalu: bool) -> Self {
@@ -595,11 +595,11 @@ impl<'a> VideoEncodeH264NaluSliceInfoKHR<'a> {
         self.constant_qp = constant_qp;
         self
     }
-    pub fn p_std_slice_header(
+    pub fn std_slice_header(
         mut self,
-        p_std_slice_header: &'a crate::vk::EncodeH264SliceHeader<'a>,
+        std_slice_header: &'a crate::vk::EncodeH264SliceHeader<'a>,
     ) -> Self {
-        self.p_std_slice_header = p_std_slice_header;
+        self.p_std_slice_header = std_slice_header;
         self
     }
 }

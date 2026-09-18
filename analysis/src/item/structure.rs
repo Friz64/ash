@@ -18,7 +18,7 @@ pub enum Length {
 #[derive(Debug)]
 pub struct RegularMember {
     pub decl: Decl,
-    pub len: Vec<Length>,
+    pub lengths: Vec<Length>,
 }
 
 impl RegularMember {
@@ -26,7 +26,7 @@ impl RegularMember {
     /// then this returns [`Length::Count`] with the array length at depth 0,
     /// and [`Length::NullTerminated`] at depth 1.
     pub fn length_at_depth(&self, depth: usize) -> Option<Length> {
-        self.len.get(depth).copied()
+        self.lengths.get(depth).copied()
     }
 }
 
@@ -82,7 +82,7 @@ impl Struct {
                 member.altlen.as_slice()
             };
 
-            let len = len_slice
+            let lengths = len_slice
                 .iter()
                 .map(|&len| {
                     if len == "null-terminated" {
@@ -136,7 +136,7 @@ impl Struct {
                 {
                     structure_type = Some(EnumeratorName::new(value));
                 }
-                members.push(Member::Regular(RegularMember { decl, len }));
+                members.push(Member::Regular(RegularMember { decl, lengths }));
             }
         }
 

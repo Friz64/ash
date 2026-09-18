@@ -161,14 +161,14 @@ pub(crate) mod reexport {
             self.set_count = set_count;
             self
         }
-        pub fn p_buffer_indices(mut self, p_buffer_indices: &'a [u32]) -> Self {
-            self.set_count = p_buffer_indices.len() as _;
-            self.p_buffer_indices = p_buffer_indices.as_ptr();
+        pub fn buffer_indices(mut self, buffer_indices: &'a [u32]) -> Self {
+            self.set_count = buffer_indices.len() as _;
+            self.p_buffer_indices = buffer_indices.as_ptr();
             self
         }
-        pub fn p_offsets(mut self, p_offsets: &'a [crate::vk::DeviceSize]) -> Self {
-            self.set_count = p_offsets.len() as _;
-            self.p_offsets = p_offsets.as_ptr();
+        pub fn offsets(mut self, offsets: &'a [crate::vk::DeviceSize]) -> Self {
+            self.set_count = offsets.len() as _;
+            self.p_offsets = offsets.as_ptr();
             self
         }
     }

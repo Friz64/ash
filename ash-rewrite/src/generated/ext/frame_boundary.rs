@@ -55,18 +55,18 @@ impl<'a> FrameBoundaryEXT<'a> {
         self.image_count = image_count;
         self
     }
-    pub fn p_images(mut self, p_images: &'a [crate::vk::Image]) -> Self {
-        self.image_count = p_images.len() as _;
-        self.p_images = p_images.as_ptr();
+    pub fn images(mut self, images: &'a [crate::vk::Image]) -> Self {
+        self.image_count = images.len() as _;
+        self.p_images = images.as_ptr();
         self
     }
     pub fn buffer_count(mut self, buffer_count: u32) -> Self {
         self.buffer_count = buffer_count;
         self
     }
-    pub fn p_buffers(mut self, p_buffers: &'a [crate::vk::Buffer]) -> Self {
-        self.buffer_count = p_buffers.len() as _;
-        self.p_buffers = p_buffers.as_ptr();
+    pub fn buffers(mut self, buffers: &'a [crate::vk::Buffer]) -> Self {
+        self.buffer_count = buffers.len() as _;
+        self.p_buffers = buffers.as_ptr();
         self
     }
     pub fn tag_name(mut self, tag_name: u64) -> Self {
@@ -77,9 +77,9 @@ impl<'a> FrameBoundaryEXT<'a> {
         self.tag_size = tag_size;
         self
     }
-    pub fn p_tag(mut self, p_tag: &'a [u8]) -> Self {
-        self.tag_size = p_tag.len() as _;
-        self.p_tag = p_tag.as_ptr().cast();
+    pub fn tag(mut self, tag: &'a [u8]) -> Self {
+        self.tag_size = tag.len() as _;
+        self.p_tag = tag.as_ptr().cast();
         self
     }
 }

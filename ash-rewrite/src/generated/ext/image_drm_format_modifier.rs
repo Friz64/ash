@@ -70,12 +70,12 @@ pub(crate) mod reexport {
             self.drm_format_modifier_count = drm_format_modifier_count;
             self
         }
-        pub fn p_drm_format_modifier_properties(
+        pub fn drm_format_modifier_properties(
             mut self,
-            p_drm_format_modifier_properties: &'a mut [crate::vk::DrmFormatModifierPropertiesEXT],
+            drm_format_modifier_properties: &'a mut [crate::vk::DrmFormatModifierPropertiesEXT],
         ) -> Self {
-            self.drm_format_modifier_count = p_drm_format_modifier_properties.len() as _;
-            self.p_drm_format_modifier_properties = p_drm_format_modifier_properties
+            self.drm_format_modifier_count = drm_format_modifier_properties.len() as _;
+            self.p_drm_format_modifier_properties = drm_format_modifier_properties
                 .as_mut_ptr();
             self
         }
@@ -153,12 +153,9 @@ pub(crate) mod reexport {
             self.queue_family_index_count = queue_family_index_count;
             self
         }
-        pub fn p_queue_family_indices(
-            mut self,
-            p_queue_family_indices: &'a [u32],
-        ) -> Self {
-            self.queue_family_index_count = p_queue_family_indices.len() as _;
-            self.p_queue_family_indices = p_queue_family_indices.as_ptr();
+        pub fn queue_family_indices(mut self, queue_family_indices: &'a [u32]) -> Self {
+            self.queue_family_index_count = queue_family_indices.len() as _;
+            self.p_queue_family_indices = queue_family_indices.as_ptr();
             self
         }
     }
@@ -196,12 +193,9 @@ pub(crate) mod reexport {
             self.drm_format_modifier_count = drm_format_modifier_count;
             self
         }
-        pub fn p_drm_format_modifiers(
-            mut self,
-            p_drm_format_modifiers: &'a [u64],
-        ) -> Self {
-            self.drm_format_modifier_count = p_drm_format_modifiers.len() as _;
-            self.p_drm_format_modifiers = p_drm_format_modifiers.as_ptr();
+        pub fn drm_format_modifiers(mut self, drm_format_modifiers: &'a [u64]) -> Self {
+            self.drm_format_modifier_count = drm_format_modifiers.len() as _;
+            self.p_drm_format_modifiers = drm_format_modifiers.as_ptr();
             self
         }
     }
@@ -245,12 +239,12 @@ pub(crate) mod reexport {
             self.drm_format_modifier_plane_count = drm_format_modifier_plane_count;
             self
         }
-        pub fn p_plane_layouts(
+        pub fn plane_layouts(
             mut self,
-            p_plane_layouts: &'a [crate::vk::SubresourceLayout],
+            plane_layouts: &'a [crate::vk::SubresourceLayout],
         ) -> Self {
-            self.drm_format_modifier_plane_count = p_plane_layouts.len() as _;
-            self.p_plane_layouts = p_plane_layouts.as_ptr();
+            self.drm_format_modifier_plane_count = plane_layouts.len() as _;
+            self.p_plane_layouts = plane_layouts.as_ptr();
             self
         }
     }
@@ -316,12 +310,12 @@ pub(crate) mod reexport {
             self.drm_format_modifier_count = drm_format_modifier_count;
             self
         }
-        pub fn p_drm_format_modifier_properties(
+        pub fn drm_format_modifier_properties(
             mut self,
-            p_drm_format_modifier_properties: &'a mut [crate::vk::DrmFormatModifierProperties2EXT],
+            drm_format_modifier_properties: &'a mut [crate::vk::DrmFormatModifierProperties2EXT],
         ) -> Self {
-            self.drm_format_modifier_count = p_drm_format_modifier_properties.len() as _;
-            self.p_drm_format_modifier_properties = p_drm_format_modifier_properties
+            self.drm_format_modifier_count = drm_format_modifier_properties.len() as _;
+            self.p_drm_format_modifier_properties = drm_format_modifier_properties
                 .as_mut_ptr();
             self
         }

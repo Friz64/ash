@@ -249,12 +249,12 @@ pub(crate) mod reexport {
             self.counter_address_count = counter_address_count;
             self
         }
-        pub fn p_counter_addresses(
+        pub fn counter_addresses(
             mut self,
-            p_counter_addresses: &'a [crate::vk::DeviceAddress],
+            counter_addresses: &'a [crate::vk::DeviceAddress],
         ) -> Self {
-            self.counter_address_count = p_counter_addresses.len() as _;
-            self.p_counter_addresses = p_counter_addresses.as_ptr();
+            self.counter_address_count = counter_addresses.len() as _;
+            self.p_counter_addresses = counter_addresses.as_ptr();
             self
         }
         pub fn serialize_regions(mut self, serialize_regions: bool) -> Self {
@@ -265,9 +265,9 @@ pub(crate) mod reexport {
             self.counter_index_count = counter_index_count;
             self
         }
-        pub fn p_counter_indices(mut self, p_counter_indices: &'a mut [u32]) -> Self {
-            self.counter_index_count = p_counter_indices.len() as _;
-            self.p_counter_indices = p_counter_indices.as_mut_ptr();
+        pub fn counter_indices(mut self, counter_indices: &'a mut [u32]) -> Self {
+            self.counter_index_count = counter_indices.len() as _;
+            self.p_counter_indices = counter_indices.as_mut_ptr();
             self
         }
     }

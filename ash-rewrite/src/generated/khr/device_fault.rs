@@ -222,12 +222,9 @@ pub(crate) mod reexport {
             self.vendor_binary_size = vendor_binary_size;
             self
         }
-        pub fn p_vendor_binary_data(
-            mut self,
-            p_vendor_binary_data: &'a mut [u8],
-        ) -> Self {
-            self.vendor_binary_size = p_vendor_binary_data.len() as _;
-            self.p_vendor_binary_data = p_vendor_binary_data.as_mut_ptr().cast();
+        pub fn vendor_binary_data(mut self, vendor_binary_data: &'a mut [u8]) -> Self {
+            self.vendor_binary_size = vendor_binary_data.len() as _;
+            self.p_vendor_binary_data = vendor_binary_data.as_mut_ptr().cast();
             self
         }
     }

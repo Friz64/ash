@@ -235,12 +235,12 @@ pub(crate) mod reexport {
             self.timing_count = timing_count;
             self
         }
-        pub fn p_timings(
+        pub fn timings(
             mut self,
-            p_timings: &'a mut [crate::vk::LatencyTimingsFrameReportNV<'a>],
+            timings: &'a mut [crate::vk::LatencyTimingsFrameReportNV<'a>],
         ) -> Self {
-            self.timing_count = p_timings.len() as _;
-            self.p_timings = p_timings.as_mut_ptr();
+            self.timing_count = timings.len() as _;
+            self.p_timings = timings.as_mut_ptr();
             self
         }
     }
@@ -484,12 +484,12 @@ pub(crate) mod reexport {
             self.present_mode_count = present_mode_count;
             self
         }
-        pub fn p_present_modes(
+        pub fn present_modes(
             mut self,
-            p_present_modes: &'a mut [crate::vk::PresentModeKHR],
+            present_modes: &'a mut [crate::vk::PresentModeKHR],
         ) -> Self {
-            self.present_mode_count = p_present_modes.len() as _;
-            self.p_present_modes = p_present_modes.as_mut_ptr();
+            self.present_mode_count = present_modes.len() as _;
+            self.p_present_modes = present_modes.as_mut_ptr();
             self
         }
     }

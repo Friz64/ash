@@ -62,12 +62,12 @@ impl<'a> PipelineCoverageModulationStateCreateInfoNV<'a> {
         self.coverage_modulation_table_count = coverage_modulation_table_count;
         self
     }
-    pub fn p_coverage_modulation_table(
+    pub fn coverage_modulation_table(
         mut self,
-        p_coverage_modulation_table: &'a [core::ffi::c_float],
+        coverage_modulation_table: &'a [core::ffi::c_float],
     ) -> Self {
-        self.coverage_modulation_table_count = p_coverage_modulation_table.len() as _;
-        self.p_coverage_modulation_table = p_coverage_modulation_table.as_ptr();
+        self.coverage_modulation_table_count = coverage_modulation_table.len() as _;
+        self.p_coverage_modulation_table = coverage_modulation_table.as_ptr();
         self
     }
 }

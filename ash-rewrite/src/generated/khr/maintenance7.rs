@@ -162,12 +162,12 @@ impl<'a> PhysicalDeviceLayeredApiPropertiesListKHR<'a> {
         self.layered_api_count = layered_api_count;
         self
     }
-    pub fn p_layered_apis(
+    pub fn layered_apis(
         mut self,
-        p_layered_apis: &'a mut [crate::vk::PhysicalDeviceLayeredApiPropertiesKHR<'a>],
+        layered_apis: &'a mut [crate::vk::PhysicalDeviceLayeredApiPropertiesKHR<'a>],
     ) -> Self {
-        self.layered_api_count = p_layered_apis.len() as _;
-        self.p_layered_apis = p_layered_apis.as_mut_ptr();
+        self.layered_api_count = layered_apis.len() as _;
+        self.p_layered_apis = layered_apis.as_mut_ptr();
         self
     }
 }

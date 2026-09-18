@@ -68,11 +68,11 @@ impl<'a> Default for RenderPassCreationFeedbackCreateInfoEXT<'a> {
     }
 }
 impl<'a> RenderPassCreationFeedbackCreateInfoEXT<'a> {
-    pub fn p_render_pass_feedback(
+    pub fn render_pass_feedback(
         mut self,
-        p_render_pass_feedback: &'a mut crate::vk::RenderPassCreationFeedbackInfoEXT,
+        render_pass_feedback: &'a mut crate::vk::RenderPassCreationFeedbackInfoEXT,
     ) -> Self {
-        self.p_render_pass_feedback = p_render_pass_feedback;
+        self.p_render_pass_feedback = render_pass_feedback;
         self
     }
 }
@@ -142,11 +142,11 @@ impl<'a> Default for RenderPassSubpassFeedbackCreateInfoEXT<'a> {
     }
 }
 impl<'a> RenderPassSubpassFeedbackCreateInfoEXT<'a> {
-    pub fn p_subpass_feedback(
+    pub fn subpass_feedback(
         mut self,
-        p_subpass_feedback: &'a mut crate::vk::RenderPassSubpassFeedbackInfoEXT,
+        subpass_feedback: &'a mut crate::vk::RenderPassSubpassFeedbackInfoEXT,
     ) -> Self {
-        self.p_subpass_feedback = p_subpass_feedback;
+        self.p_subpass_feedback = subpass_feedback;
         self
     }
 }

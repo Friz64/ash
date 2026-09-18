@@ -125,9 +125,9 @@ pub(crate) mod reexport {
             self.swapchain_count = swapchain_count;
             self
         }
-        pub fn p_times(mut self, p_times: &'a [crate::vk::PresentTimeGOOGLE]) -> Self {
-            self.swapchain_count = p_times.len() as _;
-            self.p_times = p_times.as_ptr();
+        pub fn times(mut self, times: &'a [crate::vk::PresentTimeGOOGLE]) -> Self {
+            self.swapchain_count = times.len() as _;
+            self.p_times = times.as_ptr();
             self
         }
     }

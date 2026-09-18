@@ -312,8 +312,8 @@ pub(crate) mod reexport {
             self.src_data = src_data;
             self
         }
-        pub fn p_dst_size(mut self, p_dst_size: &'a mut usize) -> Self {
-            self.p_dst_size = p_dst_size;
+        pub fn dst_size(mut self, dst_size: &'a mut usize) -> Self {
+            self.p_dst_size = dst_size;
             self
         }
         pub fn dst_data(mut self, dst_data: crate::vk::DeviceOrHostAddressKHR) -> Self {

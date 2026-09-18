@@ -342,9 +342,9 @@ pub(crate) mod reexport {
             self.counter_index_count = counter_index_count;
             self
         }
-        pub fn p_counter_indices(mut self, p_counter_indices: &'a [u32]) -> Self {
-            self.counter_index_count = p_counter_indices.len() as _;
-            self.p_counter_indices = p_counter_indices.as_ptr();
+        pub fn counter_indices(mut self, counter_indices: &'a [u32]) -> Self {
+            self.counter_index_count = counter_indices.len() as _;
+            self.p_counter_indices = counter_indices.as_ptr();
             self
         }
     }

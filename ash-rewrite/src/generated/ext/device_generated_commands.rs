@@ -414,9 +414,9 @@ pub(crate) mod reexport {
             self.shader_count = shader_count;
             self
         }
-        pub fn p_shaders(mut self, p_shaders: &'a [crate::vk::ShaderEXT]) -> Self {
-            self.shader_count = p_shaders.len() as _;
-            self.p_shaders = p_shaders.as_ptr();
+        pub fn shaders(mut self, shaders: &'a [crate::vk::ShaderEXT]) -> Self {
+            self.shader_count = shaders.len() as _;
+            self.p_shaders = shaders.as_ptr();
             self
         }
     }
@@ -538,12 +538,12 @@ pub(crate) mod reexport {
             self.set_layout_count = set_layout_count;
             self
         }
-        pub fn p_set_layouts(
+        pub fn set_layouts(
             mut self,
-            p_set_layouts: &'a [crate::vk::DescriptorSetLayout],
+            set_layouts: &'a [crate::vk::DescriptorSetLayout],
         ) -> Self {
-            self.set_layout_count = p_set_layouts.len() as _;
-            self.p_set_layouts = p_set_layouts.as_ptr();
+            self.set_layout_count = set_layouts.len() as _;
+            self.p_set_layouts = set_layouts.as_ptr();
             self
         }
     }
@@ -586,22 +586,22 @@ pub(crate) mod reexport {
             self.shader_count = shader_count;
             self
         }
-        pub fn p_initial_shaders(
+        pub fn initial_shaders(
             mut self,
-            p_initial_shaders: &'a [crate::vk::ShaderEXT],
+            initial_shaders: &'a [crate::vk::ShaderEXT],
         ) -> Self {
-            self.shader_count = p_initial_shaders.len() as _;
-            self.p_initial_shaders = p_initial_shaders.as_ptr();
+            self.shader_count = initial_shaders.len() as _;
+            self.p_initial_shaders = initial_shaders.as_ptr();
             self
         }
-        pub fn p_set_layout_infos(
+        pub fn set_layout_infos(
             mut self,
-            p_set_layout_infos: &'a [crate::vk::IndirectExecutionSetShaderLayoutInfoEXT<
+            set_layout_infos: &'a [crate::vk::IndirectExecutionSetShaderLayoutInfoEXT<
                 'a,
             >],
         ) -> Self {
-            self.shader_count = p_set_layout_infos.len() as _;
-            self.p_set_layout_infos = p_set_layout_infos.as_ptr();
+            self.shader_count = set_layout_infos.len() as _;
+            self.p_set_layout_infos = set_layout_infos.as_ptr();
             self
         }
         pub fn max_shader_count(mut self, max_shader_count: u32) -> Self {
@@ -615,12 +615,12 @@ pub(crate) mod reexport {
             self.push_constant_range_count = push_constant_range_count;
             self
         }
-        pub fn p_push_constant_ranges(
+        pub fn push_constant_ranges(
             mut self,
-            p_push_constant_ranges: &'a [crate::vk::PushConstantRange],
+            push_constant_ranges: &'a [crate::vk::PushConstantRange],
         ) -> Self {
-            self.push_constant_range_count = p_push_constant_ranges.len() as _;
-            self.p_push_constant_ranges = p_push_constant_ranges.as_ptr();
+            self.push_constant_range_count = push_constant_ranges.len() as _;
+            self.p_push_constant_ranges = push_constant_ranges.as_ptr();
             self
         }
     }
@@ -896,12 +896,12 @@ pub(crate) mod reexport {
             self.token_count = token_count;
             self
         }
-        pub fn p_tokens(
+        pub fn tokens(
             mut self,
-            p_tokens: &'a [crate::vk::IndirectCommandsLayoutTokenEXT<'a>],
+            tokens: &'a [crate::vk::IndirectCommandsLayoutTokenEXT<'a>],
         ) -> Self {
-            self.token_count = p_tokens.len() as _;
-            self.p_tokens = p_tokens.as_ptr();
+            self.token_count = tokens.len() as _;
+            self.p_tokens = tokens.as_ptr();
             self
         }
     }

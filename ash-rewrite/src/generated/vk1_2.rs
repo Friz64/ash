@@ -466,12 +466,9 @@ pub(crate) mod reexport {
             self.view_format_count = view_format_count;
             self
         }
-        pub fn p_view_formats(
-            mut self,
-            p_view_formats: &'a [crate::vk::Format],
-        ) -> Self {
-            self.view_format_count = p_view_formats.len() as _;
-            self.p_view_formats = p_view_formats.as_ptr();
+        pub fn view_formats(mut self, view_formats: &'a [crate::vk::Format]) -> Self {
+            self.view_format_count = view_formats.len() as _;
+            self.p_view_formats = view_formats.as_ptr();
             self
         }
     }
@@ -1227,12 +1224,12 @@ pub(crate) mod reexport {
             self.binding_count = binding_count;
             self
         }
-        pub fn p_binding_flags(
+        pub fn binding_flags(
             mut self,
-            p_binding_flags: &'a [crate::vk::DescriptorBindingFlags],
+            binding_flags: &'a [crate::vk::DescriptorBindingFlags],
         ) -> Self {
-            self.binding_count = p_binding_flags.len() as _;
-            self.p_binding_flags = p_binding_flags.as_ptr();
+            self.binding_count = binding_flags.len() as _;
+            self.p_binding_flags = binding_flags.as_ptr();
             self
         }
     }
@@ -1267,9 +1264,9 @@ pub(crate) mod reexport {
             self.descriptor_set_count = descriptor_set_count;
             self
         }
-        pub fn p_descriptor_counts(mut self, p_descriptor_counts: &'a [u32]) -> Self {
-            self.descriptor_set_count = p_descriptor_counts.len() as _;
-            self.p_descriptor_counts = p_descriptor_counts.as_ptr();
+        pub fn descriptor_counts(mut self, descriptor_counts: &'a [u32]) -> Self {
+            self.descriptor_set_count = descriptor_counts.len() as _;
+            self.p_descriptor_counts = descriptor_counts.as_ptr();
             self
         }
     }
@@ -1487,39 +1484,39 @@ pub(crate) mod reexport {
             self.input_attachment_count = input_attachment_count;
             self
         }
-        pub fn p_input_attachments(
+        pub fn input_attachments(
             mut self,
-            p_input_attachments: &'a [crate::vk::AttachmentReference2<'a>],
+            input_attachments: &'a [crate::vk::AttachmentReference2<'a>],
         ) -> Self {
-            self.input_attachment_count = p_input_attachments.len() as _;
-            self.p_input_attachments = p_input_attachments.as_ptr();
+            self.input_attachment_count = input_attachments.len() as _;
+            self.p_input_attachments = input_attachments.as_ptr();
             self
         }
         pub fn color_attachment_count(mut self, color_attachment_count: u32) -> Self {
             self.color_attachment_count = color_attachment_count;
             self
         }
-        pub fn p_color_attachments(
+        pub fn color_attachments(
             mut self,
-            p_color_attachments: &'a [crate::vk::AttachmentReference2<'a>],
+            color_attachments: &'a [crate::vk::AttachmentReference2<'a>],
         ) -> Self {
-            self.color_attachment_count = p_color_attachments.len() as _;
-            self.p_color_attachments = p_color_attachments.as_ptr();
+            self.color_attachment_count = color_attachments.len() as _;
+            self.p_color_attachments = color_attachments.as_ptr();
             self
         }
-        pub fn p_resolve_attachments(
+        pub fn resolve_attachments(
             mut self,
-            p_resolve_attachments: &'a [crate::vk::AttachmentReference2<'a>],
+            resolve_attachments: &'a [crate::vk::AttachmentReference2<'a>],
         ) -> Self {
-            self.color_attachment_count = p_resolve_attachments.len() as _;
-            self.p_resolve_attachments = p_resolve_attachments.as_ptr();
+            self.color_attachment_count = resolve_attachments.len() as _;
+            self.p_resolve_attachments = resolve_attachments.as_ptr();
             self
         }
-        pub fn p_depth_stencil_attachment(
+        pub fn depth_stencil_attachment(
             mut self,
-            p_depth_stencil_attachment: &'a crate::vk::AttachmentReference2<'a>,
+            depth_stencil_attachment: &'a crate::vk::AttachmentReference2<'a>,
         ) -> Self {
-            self.p_depth_stencil_attachment = p_depth_stencil_attachment;
+            self.p_depth_stencil_attachment = depth_stencil_attachment;
             self
         }
         pub fn preserve_attachment_count(
@@ -1529,12 +1526,9 @@ pub(crate) mod reexport {
             self.preserve_attachment_count = preserve_attachment_count;
             self
         }
-        pub fn p_preserve_attachments(
-            mut self,
-            p_preserve_attachments: &'a [u32],
-        ) -> Self {
-            self.preserve_attachment_count = p_preserve_attachments.len() as _;
-            self.p_preserve_attachments = p_preserve_attachments.as_ptr();
+        pub fn preserve_attachments(mut self, preserve_attachments: &'a [u32]) -> Self {
+            self.preserve_attachment_count = preserve_attachments.len() as _;
+            self.p_preserve_attachments = preserve_attachments.as_ptr();
             self
         }
     }
@@ -1668,36 +1662,36 @@ pub(crate) mod reexport {
             self.attachment_count = attachment_count;
             self
         }
-        pub fn p_attachments(
+        pub fn attachments(
             mut self,
-            p_attachments: &'a [crate::vk::AttachmentDescription2<'a>],
+            attachments: &'a [crate::vk::AttachmentDescription2<'a>],
         ) -> Self {
-            self.attachment_count = p_attachments.len() as _;
-            self.p_attachments = p_attachments.as_ptr();
+            self.attachment_count = attachments.len() as _;
+            self.p_attachments = attachments.as_ptr();
             self
         }
         pub fn subpass_count(mut self, subpass_count: u32) -> Self {
             self.subpass_count = subpass_count;
             self
         }
-        pub fn p_subpasses(
+        pub fn subpasses(
             mut self,
-            p_subpasses: &'a [crate::vk::SubpassDescription2<'a>],
+            subpasses: &'a [crate::vk::SubpassDescription2<'a>],
         ) -> Self {
-            self.subpass_count = p_subpasses.len() as _;
-            self.p_subpasses = p_subpasses.as_ptr();
+            self.subpass_count = subpasses.len() as _;
+            self.p_subpasses = subpasses.as_ptr();
             self
         }
         pub fn dependency_count(mut self, dependency_count: u32) -> Self {
             self.dependency_count = dependency_count;
             self
         }
-        pub fn p_dependencies(
+        pub fn dependencies(
             mut self,
-            p_dependencies: &'a [crate::vk::SubpassDependency2<'a>],
+            dependencies: &'a [crate::vk::SubpassDependency2<'a>],
         ) -> Self {
-            self.dependency_count = p_dependencies.len() as _;
-            self.p_dependencies = p_dependencies.as_ptr();
+            self.dependency_count = dependencies.len() as _;
+            self.p_dependencies = dependencies.as_ptr();
             self
         }
         pub fn correlated_view_mask_count(
@@ -1707,12 +1701,12 @@ pub(crate) mod reexport {
             self.correlated_view_mask_count = correlated_view_mask_count;
             self
         }
-        pub fn p_correlated_view_masks(
+        pub fn correlated_view_masks(
             mut self,
-            p_correlated_view_masks: &'a [u32],
+            correlated_view_masks: &'a [u32],
         ) -> Self {
-            self.correlated_view_mask_count = p_correlated_view_masks.len() as _;
-            self.p_correlated_view_masks = p_correlated_view_masks.as_ptr();
+            self.correlated_view_mask_count = correlated_view_masks.len() as _;
+            self.p_correlated_view_masks = correlated_view_masks.as_ptr();
             self
         }
     }
@@ -1907,12 +1901,12 @@ pub(crate) mod reexport {
             self.wait_semaphore_value_count = wait_semaphore_value_count;
             self
         }
-        pub fn p_wait_semaphore_values(
+        pub fn wait_semaphore_values(
             mut self,
-            p_wait_semaphore_values: &'a [u64],
+            wait_semaphore_values: &'a [u64],
         ) -> Self {
-            self.wait_semaphore_value_count = p_wait_semaphore_values.len() as _;
-            self.p_wait_semaphore_values = p_wait_semaphore_values.as_ptr();
+            self.wait_semaphore_value_count = wait_semaphore_values.len() as _;
+            self.p_wait_semaphore_values = wait_semaphore_values.as_ptr();
             self
         }
         pub fn signal_semaphore_value_count(
@@ -1922,12 +1916,12 @@ pub(crate) mod reexport {
             self.signal_semaphore_value_count = signal_semaphore_value_count;
             self
         }
-        pub fn p_signal_semaphore_values(
+        pub fn signal_semaphore_values(
             mut self,
-            p_signal_semaphore_values: &'a [u64],
+            signal_semaphore_values: &'a [u64],
         ) -> Self {
-            self.signal_semaphore_value_count = p_signal_semaphore_values.len() as _;
-            self.p_signal_semaphore_values = p_signal_semaphore_values.as_ptr();
+            self.signal_semaphore_value_count = signal_semaphore_values.len() as _;
+            self.p_signal_semaphore_values = signal_semaphore_values.as_ptr();
             self
         }
     }
@@ -1967,14 +1961,14 @@ pub(crate) mod reexport {
             self.semaphore_count = semaphore_count;
             self
         }
-        pub fn p_semaphores(mut self, p_semaphores: &'a [crate::vk::Semaphore]) -> Self {
-            self.semaphore_count = p_semaphores.len() as _;
-            self.p_semaphores = p_semaphores.as_ptr();
+        pub fn semaphores(mut self, semaphores: &'a [crate::vk::Semaphore]) -> Self {
+            self.semaphore_count = semaphores.len() as _;
+            self.p_semaphores = semaphores.as_ptr();
             self
         }
-        pub fn p_values(mut self, p_values: &'a [u64]) -> Self {
-            self.semaphore_count = p_values.len() as _;
-            self.p_values = p_values.as_ptr();
+        pub fn values(mut self, values: &'a [u64]) -> Self {
+            self.semaphore_count = values.len() as _;
+            self.p_values = values.as_ptr();
             self
         }
     }
@@ -2260,11 +2254,11 @@ pub(crate) mod reexport {
             self.stencil_resolve_mode = stencil_resolve_mode;
             self
         }
-        pub fn p_depth_stencil_resolve_attachment(
+        pub fn depth_stencil_resolve_attachment(
             mut self,
-            p_depth_stencil_resolve_attachment: &'a crate::vk::AttachmentReference2<'a>,
+            depth_stencil_resolve_attachment: &'a crate::vk::AttachmentReference2<'a>,
         ) -> Self {
-            self.p_depth_stencil_resolve_attachment = p_depth_stencil_resolve_attachment;
+            self.p_depth_stencil_resolve_attachment = depth_stencil_resolve_attachment;
             self
         }
     }
@@ -2545,12 +2539,12 @@ pub(crate) mod reexport {
             self.attachment_image_info_count = attachment_image_info_count;
             self
         }
-        pub fn p_attachment_image_infos(
+        pub fn attachment_image_infos(
             mut self,
-            p_attachment_image_infos: &'a [crate::vk::FramebufferAttachmentImageInfo<'a>],
+            attachment_image_infos: &'a [crate::vk::FramebufferAttachmentImageInfo<'a>],
         ) -> Self {
-            self.attachment_image_info_count = p_attachment_image_infos.len() as _;
-            self.p_attachment_image_infos = p_attachment_image_infos.as_ptr();
+            self.attachment_image_info_count = attachment_image_infos.len() as _;
+            self.p_attachment_image_infos = attachment_image_infos.as_ptr();
             self
         }
     }
@@ -2612,12 +2606,9 @@ pub(crate) mod reexport {
             self.view_format_count = view_format_count;
             self
         }
-        pub fn p_view_formats(
-            mut self,
-            p_view_formats: &'a [crate::vk::Format],
-        ) -> Self {
-            self.view_format_count = p_view_formats.len() as _;
-            self.p_view_formats = p_view_formats.as_ptr();
+        pub fn view_formats(mut self, view_formats: &'a [crate::vk::Format]) -> Self {
+            self.view_format_count = view_formats.len() as _;
+            self.p_view_formats = view_formats.as_ptr();
             self
         }
     }
@@ -2651,12 +2642,9 @@ pub(crate) mod reexport {
             self.attachment_count = attachment_count;
             self
         }
-        pub fn p_attachments(
-            mut self,
-            p_attachments: &'a [crate::vk::ImageView],
-        ) -> Self {
-            self.attachment_count = p_attachments.len() as _;
-            self.p_attachments = p_attachments.as_ptr();
+        pub fn attachments(mut self, attachments: &'a [crate::vk::ImageView]) -> Self {
+            self.attachment_count = attachments.len() as _;
+            self.p_attachments = attachments.as_ptr();
             self
         }
     }

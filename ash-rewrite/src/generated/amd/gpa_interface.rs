@@ -362,12 +362,12 @@ pub(crate) mod reexport {
             self.perf_block_count = perf_block_count;
             self
         }
-        pub fn p_perf_blocks(
+        pub fn perf_blocks(
             mut self,
-            p_perf_blocks: &'a mut [crate::vk::GpaPerfBlockPropertiesAMD],
+            perf_blocks: &'a mut [crate::vk::GpaPerfBlockPropertiesAMD],
         ) -> Self {
-            self.perf_block_count = p_perf_blocks.len() as _;
-            self.p_perf_blocks = p_perf_blocks.as_mut_ptr();
+            self.perf_block_count = perf_blocks.len() as _;
+            self.p_perf_blocks = perf_blocks.as_mut_ptr();
             self
         }
     }
@@ -503,12 +503,12 @@ pub(crate) mod reexport {
             self.perf_counter_count = perf_counter_count;
             self
         }
-        pub fn p_perf_counters(
+        pub fn perf_counters(
             mut self,
-            p_perf_counters: &'a [crate::vk::GpaPerfCounterAMD],
+            perf_counters: &'a [crate::vk::GpaPerfCounterAMD],
         ) -> Self {
-            self.perf_counter_count = p_perf_counters.len() as _;
-            self.p_perf_counters = p_perf_counters.as_ptr();
+            self.perf_counter_count = perf_counters.len() as _;
+            self.p_perf_counters = perf_counters.as_ptr();
             self
         }
         pub fn streaming_perf_trace_sample_interval(

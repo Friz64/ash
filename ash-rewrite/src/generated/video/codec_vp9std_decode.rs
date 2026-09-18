@@ -195,22 +195,16 @@ impl<'a> DecodeVP9PictureInfo<'a> {
         self.reserved1 = reserved1;
         self
     }
-    pub fn p_color_config(
-        mut self,
-        p_color_config: &'a crate::vk::VP9ColorConfig,
-    ) -> Self {
-        self.p_color_config = p_color_config;
+    pub fn color_config(mut self, color_config: &'a crate::vk::VP9ColorConfig) -> Self {
+        self.p_color_config = color_config;
         self
     }
-    pub fn p_loop_filter(mut self, p_loop_filter: &'a crate::vk::VP9LoopFilter) -> Self {
-        self.p_loop_filter = p_loop_filter;
+    pub fn loop_filter(mut self, loop_filter: &'a crate::vk::VP9LoopFilter) -> Self {
+        self.p_loop_filter = loop_filter;
         self
     }
-    pub fn p_segmentation(
-        mut self,
-        p_segmentation: &'a crate::vk::VP9Segmentation,
-    ) -> Self {
-        self.p_segmentation = p_segmentation;
+    pub fn segmentation(mut self, segmentation: &'a crate::vk::VP9Segmentation) -> Self {
+        self.p_segmentation = segmentation;
         self
     }
 }

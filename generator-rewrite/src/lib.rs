@@ -49,8 +49,12 @@ pub(crate) fn refpage_doc(target: &str, description: impl Display) -> String {
 }
 
 /// Tries to prepend an underscore in case the name is not a valid identifier
-pub(crate) fn escape_ident(name: &str) -> Ident {
+fn escape_ident(name: &str) -> Ident {
     syn::parse_str(name).unwrap_or_else(|_| format_ident!("_{name}"))
+}
+
+fn variable_token(s: &str) -> Ident {
+    crate::escape_ident(&s.to_snek_case())
 }
 
 #[derive(Debug)]
@@ -64,9 +68,9 @@ impl<'a> Deref for Context<'a> {
     }
 }
 
-impl<'a> RustTokens for Context<'a> {
-    fn var_name_token(&self, name: VariableName) -> Ident {
-        crate::escape_ident(&name.original().to_snek_case())
+impl RustTokens for Context<'_> {
+    fn variable_token(&self, name: VariableName) -> Ident {
+        variable_token(name.original())
     }
 
     fn type_tokens(&self, name: TypeName, qualified: bool, lifetime: &Lifetime) -> TokenStream {

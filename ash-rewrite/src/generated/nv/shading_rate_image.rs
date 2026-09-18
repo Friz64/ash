@@ -85,14 +85,13 @@ pub(crate) mod reexport {
             self.shading_rate_palette_entry_count = shading_rate_palette_entry_count;
             self
         }
-        pub fn p_shading_rate_palette_entries(
+        pub fn shading_rate_palette_entries(
             mut self,
-            p_shading_rate_palette_entries: &'a [crate::vk::ShadingRatePaletteEntryNV],
+            shading_rate_palette_entries: &'a [crate::vk::ShadingRatePaletteEntryNV],
         ) -> Self {
-            self.shading_rate_palette_entry_count = p_shading_rate_palette_entries.len()
+            self.shading_rate_palette_entry_count = shading_rate_palette_entries.len()
                 as _;
-            self.p_shading_rate_palette_entries = p_shading_rate_palette_entries
-                .as_ptr();
+            self.p_shading_rate_palette_entries = shading_rate_palette_entries.as_ptr();
             self
         }
     }
@@ -136,12 +135,12 @@ pub(crate) mod reexport {
             self.viewport_count = viewport_count;
             self
         }
-        pub fn p_shading_rate_palettes(
+        pub fn shading_rate_palettes(
             mut self,
-            p_shading_rate_palettes: &'a [crate::vk::ShadingRatePaletteNV<'a>],
+            shading_rate_palettes: &'a [crate::vk::ShadingRatePaletteNV<'a>],
         ) -> Self {
-            self.viewport_count = p_shading_rate_palettes.len() as _;
-            self.p_shading_rate_palettes = p_shading_rate_palettes.as_ptr();
+            self.viewport_count = shading_rate_palettes.len() as _;
+            self.p_shading_rate_palettes = shading_rate_palettes.as_ptr();
             self
         }
     }
@@ -284,12 +283,12 @@ pub(crate) mod reexport {
             self.sample_location_count = sample_location_count;
             self
         }
-        pub fn p_sample_locations(
+        pub fn sample_locations(
             mut self,
-            p_sample_locations: &'a [crate::vk::CoarseSampleLocationNV],
+            sample_locations: &'a [crate::vk::CoarseSampleLocationNV],
         ) -> Self {
-            self.sample_location_count = p_sample_locations.len() as _;
-            self.p_sample_locations = p_sample_locations.as_ptr();
+            self.sample_location_count = sample_locations.len() as _;
+            self.p_sample_locations = sample_locations.as_ptr();
             self
         }
     }
@@ -336,12 +335,12 @@ pub(crate) mod reexport {
             self.custom_sample_order_count = custom_sample_order_count;
             self
         }
-        pub fn p_custom_sample_orders(
+        pub fn custom_sample_orders(
             mut self,
-            p_custom_sample_orders: &'a [crate::vk::CoarseSampleOrderCustomNV<'a>],
+            custom_sample_orders: &'a [crate::vk::CoarseSampleOrderCustomNV<'a>],
         ) -> Self {
-            self.custom_sample_order_count = p_custom_sample_orders.len() as _;
-            self.p_custom_sample_orders = p_custom_sample_orders.as_ptr();
+            self.custom_sample_order_count = custom_sample_orders.len() as _;
+            self.p_custom_sample_orders = custom_sample_orders.as_ptr();
             self
         }
     }

@@ -261,17 +261,17 @@ pub(crate) mod reexport {
             self.time_domain_count = time_domain_count;
             self
         }
-        pub fn p_time_domains(
+        pub fn time_domains(
             mut self,
-            p_time_domains: &'a mut [crate::vk::TimeDomainKHR],
+            time_domains: &'a mut [crate::vk::TimeDomainKHR],
         ) -> Self {
-            self.time_domain_count = p_time_domains.len() as _;
-            self.p_time_domains = p_time_domains.as_mut_ptr();
+            self.time_domain_count = time_domains.len() as _;
+            self.p_time_domains = time_domains.as_mut_ptr();
             self
         }
-        pub fn p_time_domain_ids(mut self, p_time_domain_ids: &'a mut [u64]) -> Self {
-            self.time_domain_count = p_time_domain_ids.len() as _;
-            self.p_time_domain_ids = p_time_domain_ids.as_mut_ptr();
+        pub fn time_domain_ids(mut self, time_domain_ids: &'a mut [u64]) -> Self {
+            self.time_domain_count = time_domain_ids.len() as _;
+            self.p_time_domain_ids = time_domain_ids.as_mut_ptr();
             self
         }
     }
@@ -374,12 +374,12 @@ pub(crate) mod reexport {
             self.presentation_timing_count = presentation_timing_count;
             self
         }
-        pub fn p_presentation_timings(
+        pub fn presentation_timings(
             mut self,
-            p_presentation_timings: &'a mut [crate::vk::PastPresentationTimingEXT<'a>],
+            presentation_timings: &'a mut [crate::vk::PastPresentationTimingEXT<'a>],
         ) -> Self {
-            self.presentation_timing_count = p_presentation_timings.len() as _;
-            self.p_presentation_timings = p_presentation_timings.as_mut_ptr();
+            self.presentation_timing_count = presentation_timings.len() as _;
+            self.p_presentation_timings = presentation_timings.as_mut_ptr();
             self
         }
     }
@@ -429,12 +429,12 @@ pub(crate) mod reexport {
             self.present_stage_count = present_stage_count;
             self
         }
-        pub fn p_present_stages(
+        pub fn present_stages(
             mut self,
-            p_present_stages: &'a mut [crate::vk::PresentStageTimeEXT],
+            present_stages: &'a mut [crate::vk::PresentStageTimeEXT],
         ) -> Self {
-            self.present_stage_count = p_present_stages.len() as _;
-            self.p_present_stages = p_present_stages.as_mut_ptr();
+            self.present_stage_count = present_stages.len() as _;
+            self.p_present_stages = present_stages.as_mut_ptr();
             self
         }
         pub fn time_domain(mut self, time_domain: crate::vk::TimeDomainKHR) -> Self {
@@ -480,12 +480,12 @@ pub(crate) mod reexport {
             self.swapchain_count = swapchain_count;
             self
         }
-        pub fn p_timing_infos(
+        pub fn timing_infos(
             mut self,
-            p_timing_infos: &'a [crate::vk::PresentTimingInfoEXT<'a>],
+            timing_infos: &'a [crate::vk::PresentTimingInfoEXT<'a>],
         ) -> Self {
-            self.swapchain_count = p_timing_infos.len() as _;
-            self.p_timing_infos = p_timing_infos.as_ptr();
+            self.swapchain_count = timing_infos.len() as _;
+            self.p_timing_infos = timing_infos.as_ptr();
             self
         }
     }

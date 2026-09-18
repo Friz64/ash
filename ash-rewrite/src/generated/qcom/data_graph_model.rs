@@ -79,11 +79,11 @@ impl<'a> Default for DataGraphPipelineBuiltinModelCreateInfoQCOM<'a> {
     }
 }
 impl<'a> DataGraphPipelineBuiltinModelCreateInfoQCOM<'a> {
-    pub fn p_operation(
+    pub fn operation(
         mut self,
-        p_operation: &'a crate::vk::PhysicalDeviceDataGraphOperationSupportARM,
+        operation: &'a crate::vk::PhysicalDeviceDataGraphOperationSupportARM,
     ) -> Self {
-        self.p_operation = p_operation;
+        self.p_operation = operation;
         self
     }
 }

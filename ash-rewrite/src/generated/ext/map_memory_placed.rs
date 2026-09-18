@@ -102,11 +102,8 @@ impl<'a> Default for MemoryMapPlacedInfoEXT<'a> {
     }
 }
 impl<'a> MemoryMapPlacedInfoEXT<'a> {
-    pub fn p_placed_address(
-        mut self,
-        p_placed_address: &'a mut core::ffi::c_void,
-    ) -> Self {
-        self.p_placed_address = p_placed_address;
+    pub fn placed_address(mut self, placed_address: &'a mut core::ffi::c_void) -> Self {
+        self.p_placed_address = placed_address;
         self
     }
 }

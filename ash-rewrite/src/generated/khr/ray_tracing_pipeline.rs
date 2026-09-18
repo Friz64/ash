@@ -205,11 +205,11 @@ pub(crate) mod reexport {
             self.intersection_shader = intersection_shader;
             self
         }
-        pub fn p_shader_group_capture_replay_handle(
+        pub fn shader_group_capture_replay_handle(
             mut self,
-            p_shader_group_capture_replay_handle: &'a core::ffi::c_void,
+            shader_group_capture_replay_handle: &'a core::ffi::c_void,
         ) -> Self {
-            self.p_shader_group_capture_replay_handle = p_shader_group_capture_replay_handle;
+            self.p_shader_group_capture_replay_handle = shader_group_capture_replay_handle;
             self
         }
     }
@@ -267,24 +267,24 @@ pub(crate) mod reexport {
             self.stage_count = stage_count;
             self
         }
-        pub fn p_stages(
+        pub fn stages(
             mut self,
-            p_stages: &'a [crate::vk::PipelineShaderStageCreateInfo<'a>],
+            stages: &'a [crate::vk::PipelineShaderStageCreateInfo<'a>],
         ) -> Self {
-            self.stage_count = p_stages.len() as _;
-            self.p_stages = p_stages.as_ptr();
+            self.stage_count = stages.len() as _;
+            self.p_stages = stages.as_ptr();
             self
         }
         pub fn group_count(mut self, group_count: u32) -> Self {
             self.group_count = group_count;
             self
         }
-        pub fn p_groups(
+        pub fn groups(
             mut self,
-            p_groups: &'a [crate::vk::RayTracingShaderGroupCreateInfoKHR<'a>],
+            groups: &'a [crate::vk::RayTracingShaderGroupCreateInfoKHR<'a>],
         ) -> Self {
-            self.group_count = p_groups.len() as _;
-            self.p_groups = p_groups.as_ptr();
+            self.group_count = groups.len() as _;
+            self.p_groups = groups.as_ptr();
             self
         }
         pub fn max_pipeline_ray_recursion_depth(
@@ -294,27 +294,27 @@ pub(crate) mod reexport {
             self.max_pipeline_ray_recursion_depth = max_pipeline_ray_recursion_depth;
             self
         }
-        pub fn p_library_info(
+        pub fn library_info(
             mut self,
-            p_library_info: &'a crate::vk::PipelineLibraryCreateInfoKHR<'a>,
+            library_info: &'a crate::vk::PipelineLibraryCreateInfoKHR<'a>,
         ) -> Self {
-            self.p_library_info = p_library_info;
+            self.p_library_info = library_info;
             self
         }
-        pub fn p_library_interface(
+        pub fn library_interface(
             mut self,
-            p_library_interface: &'a crate::vk::RayTracingPipelineInterfaceCreateInfoKHR<
+            library_interface: &'a crate::vk::RayTracingPipelineInterfaceCreateInfoKHR<
                 'a,
             >,
         ) -> Self {
-            self.p_library_interface = p_library_interface;
+            self.p_library_interface = library_interface;
             self
         }
-        pub fn p_dynamic_state(
+        pub fn dynamic_state(
             mut self,
-            p_dynamic_state: &'a crate::vk::PipelineDynamicStateCreateInfo<'a>,
+            dynamic_state: &'a crate::vk::PipelineDynamicStateCreateInfo<'a>,
         ) -> Self {
-            self.p_dynamic_state = p_dynamic_state;
+            self.p_dynamic_state = dynamic_state;
             self
         }
         pub fn layout(mut self, layout: crate::vk::PipelineLayout) -> Self {

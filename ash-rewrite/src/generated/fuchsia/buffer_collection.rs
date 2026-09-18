@@ -501,12 +501,12 @@ pub(crate) mod reexport {
             self.color_space_count = color_space_count;
             self
         }
-        pub fn p_color_spaces(
+        pub fn color_spaces(
             mut self,
-            p_color_spaces: &'a [crate::vk::SysmemColorSpaceFUCHSIA<'a>],
+            color_spaces: &'a [crate::vk::SysmemColorSpaceFUCHSIA<'a>],
         ) -> Self {
-            self.color_space_count = p_color_spaces.len() as _;
-            self.p_color_spaces = p_color_spaces.as_ptr();
+            self.color_space_count = color_spaces.len() as _;
+            self.p_color_spaces = color_spaces.as_ptr();
             self
         }
     }
@@ -549,12 +549,12 @@ pub(crate) mod reexport {
             self.format_constraints_count = format_constraints_count;
             self
         }
-        pub fn p_format_constraints(
+        pub fn format_constraints(
             mut self,
-            p_format_constraints: &'a [crate::vk::ImageFormatConstraintsInfoFUCHSIA<'a>],
+            format_constraints: &'a [crate::vk::ImageFormatConstraintsInfoFUCHSIA<'a>],
         ) -> Self {
-            self.format_constraints_count = p_format_constraints.len() as _;
-            self.p_format_constraints = p_format_constraints.as_ptr();
+            self.format_constraints_count = format_constraints.len() as _;
+            self.p_format_constraints = format_constraints.as_ptr();
             self
         }
         pub fn buffer_collection_constraints(

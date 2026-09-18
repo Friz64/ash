@@ -57,7 +57,7 @@ impl Ty {
 }
 
 pub trait RustTokens {
-    fn var_name_token(&self, name: VariableName) -> Ident;
+    fn variable_token(&self, name: VariableName) -> Ident;
 
     fn type_tokens(&self, name: TypeName, qualified: bool, lifetime: &Lifetime) -> TokenStream;
 
@@ -101,7 +101,7 @@ pub trait RustTokens {
 impl RustDecl {
     /// Gives you this declaration in the form of `#name: #ty`.
     pub fn tokens(&self, ctx: &impl RustTokens, lifetime: &Lifetime) -> TokenStream {
-        let name = ctx.var_name_token(self.name);
+        let name = ctx.variable_token(self.name);
         let ty = self.ty.tokens(ctx, lifetime);
         quote! { #name: #ty }
     }

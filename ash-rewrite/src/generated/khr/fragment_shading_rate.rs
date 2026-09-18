@@ -99,11 +99,11 @@ pub(crate) mod reexport {
         }
     }
     impl<'a> FragmentShadingRateAttachmentInfoKHR<'a> {
-        pub fn p_fragment_shading_rate_attachment(
+        pub fn fragment_shading_rate_attachment(
             mut self,
-            p_fragment_shading_rate_attachment: &'a crate::vk::AttachmentReference2<'a>,
+            fragment_shading_rate_attachment: &'a crate::vk::AttachmentReference2<'a>,
         ) -> Self {
-            self.p_fragment_shading_rate_attachment = p_fragment_shading_rate_attachment;
+            self.p_fragment_shading_rate_attachment = fragment_shading_rate_attachment;
             self
         }
         pub fn shading_rate_attachment_texel_size(

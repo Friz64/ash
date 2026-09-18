@@ -195,8 +195,8 @@ pub(crate) mod reexport {
         }
     }
     impl<'a> InitializePerformanceApiInfoINTEL<'a> {
-        pub fn p_user_data(mut self, p_user_data: &'a mut core::ffi::c_void) -> Self {
-            self.p_user_data = p_user_data;
+        pub fn user_data(mut self, user_data: &'a mut core::ffi::c_void) -> Self {
+            self.p_user_data = user_data;
             self
         }
     }

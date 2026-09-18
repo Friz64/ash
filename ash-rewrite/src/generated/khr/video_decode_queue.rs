@@ -163,23 +163,23 @@ pub(crate) mod reexport {
             self.dst_picture_resource = dst_picture_resource;
             self
         }
-        pub fn p_setup_reference_slot(
+        pub fn setup_reference_slot(
             mut self,
-            p_setup_reference_slot: &'a crate::vk::VideoReferenceSlotInfoKHR<'a>,
+            setup_reference_slot: &'a crate::vk::VideoReferenceSlotInfoKHR<'a>,
         ) -> Self {
-            self.p_setup_reference_slot = p_setup_reference_slot;
+            self.p_setup_reference_slot = setup_reference_slot;
             self
         }
         pub fn reference_slot_count(mut self, reference_slot_count: u32) -> Self {
             self.reference_slot_count = reference_slot_count;
             self
         }
-        pub fn p_reference_slots(
+        pub fn reference_slots(
             mut self,
-            p_reference_slots: &'a [crate::vk::VideoReferenceSlotInfoKHR<'a>],
+            reference_slots: &'a [crate::vk::VideoReferenceSlotInfoKHR<'a>],
         ) -> Self {
-            self.reference_slot_count = p_reference_slots.len() as _;
-            self.p_reference_slots = p_reference_slots.as_ptr();
+            self.reference_slot_count = reference_slots.len() as _;
+            self.p_reference_slots = reference_slots.as_ptr();
             self
         }
     }

@@ -73,11 +73,8 @@ impl<'a> CommandBufferInheritanceViewportScissorInfoNV<'a> {
         self.viewport_depth_count = viewport_depth_count;
         self
     }
-    pub fn p_viewport_depths(
-        mut self,
-        p_viewport_depths: &'a crate::vk::Viewport,
-    ) -> Self {
-        self.p_viewport_depths = p_viewport_depths;
+    pub fn viewport_depths(mut self, viewport_depths: &'a crate::vk::Viewport) -> Self {
+        self.p_viewport_depths = viewport_depths;
         self
     }
 }

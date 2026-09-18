@@ -129,22 +129,22 @@ pub(crate) mod reexport {
         }
     }
     impl<'a> PipelineBinaryCreateInfoKHR<'a> {
-        pub fn p_keys_and_data_info(
+        pub fn keys_and_data_info(
             mut self,
-            p_keys_and_data_info: &'a crate::vk::PipelineBinaryKeysAndDataKHR<'a>,
+            keys_and_data_info: &'a crate::vk::PipelineBinaryKeysAndDataKHR<'a>,
         ) -> Self {
-            self.p_keys_and_data_info = p_keys_and_data_info;
+            self.p_keys_and_data_info = keys_and_data_info;
             self
         }
         pub fn pipeline(mut self, pipeline: crate::vk::Pipeline) -> Self {
             self.pipeline = pipeline;
             self
         }
-        pub fn p_pipeline_create_info(
+        pub fn pipeline_create_info(
             mut self,
-            p_pipeline_create_info: &'a crate::vk::PipelineCreateInfoKHR<'a>,
+            pipeline_create_info: &'a crate::vk::PipelineCreateInfoKHR<'a>,
         ) -> Self {
-            self.p_pipeline_create_info = p_pipeline_create_info;
+            self.p_pipeline_create_info = pipeline_create_info;
             self
         }
     }
@@ -176,12 +176,12 @@ pub(crate) mod reexport {
             self.pipeline_binary_count = pipeline_binary_count;
             self
         }
-        pub fn p_pipeline_binaries(
+        pub fn pipeline_binaries(
             mut self,
-            p_pipeline_binaries: &'a mut [crate::vk::PipelineBinaryKHR],
+            pipeline_binaries: &'a mut [crate::vk::PipelineBinaryKHR],
         ) -> Self {
-            self.pipeline_binary_count = p_pipeline_binaries.len() as _;
-            self.p_pipeline_binaries = p_pipeline_binaries.as_mut_ptr();
+            self.pipeline_binary_count = pipeline_binaries.len() as _;
+            self.p_pipeline_binaries = pipeline_binaries.as_mut_ptr();
             self
         }
     }
@@ -197,9 +197,9 @@ pub(crate) mod reexport {
             self.data_size = data_size;
             self
         }
-        pub fn p_data(mut self, p_data: &'a mut [u8]) -> Self {
-            self.data_size = p_data.len() as _;
-            self.p_data = p_data.as_mut_ptr().cast();
+        pub fn data(mut self, data: &'a mut [u8]) -> Self {
+            self.data_size = data.len() as _;
+            self.p_data = data.as_mut_ptr().cast();
             self
         }
     }
@@ -216,20 +216,20 @@ pub(crate) mod reexport {
             self.binary_count = binary_count;
             self
         }
-        pub fn p_pipeline_binary_keys(
+        pub fn pipeline_binary_keys(
             mut self,
-            p_pipeline_binary_keys: &'a [crate::vk::PipelineBinaryKeyKHR<'a>],
+            pipeline_binary_keys: &'a [crate::vk::PipelineBinaryKeyKHR<'a>],
         ) -> Self {
-            self.binary_count = p_pipeline_binary_keys.len() as _;
-            self.p_pipeline_binary_keys = p_pipeline_binary_keys.as_ptr();
+            self.binary_count = pipeline_binary_keys.len() as _;
+            self.p_pipeline_binary_keys = pipeline_binary_keys.as_ptr();
             self
         }
-        pub fn p_pipeline_binary_data(
+        pub fn pipeline_binary_data(
             mut self,
-            p_pipeline_binary_data: &'a [crate::vk::PipelineBinaryDataKHR<'a>],
+            pipeline_binary_data: &'a [crate::vk::PipelineBinaryDataKHR<'a>],
         ) -> Self {
-            self.binary_count = p_pipeline_binary_data.len() as _;
-            self.p_pipeline_binary_data = p_pipeline_binary_data.as_ptr();
+            self.binary_count = pipeline_binary_data.len() as _;
+            self.p_pipeline_binary_data = pipeline_binary_data.as_ptr();
             self
         }
     }
@@ -303,12 +303,12 @@ pub(crate) mod reexport {
             self.binary_count = binary_count;
             self
         }
-        pub fn p_pipeline_binaries(
+        pub fn pipeline_binaries(
             mut self,
-            p_pipeline_binaries: &'a [crate::vk::PipelineBinaryKHR],
+            pipeline_binaries: &'a [crate::vk::PipelineBinaryKHR],
         ) -> Self {
-            self.binary_count = p_pipeline_binaries.len() as _;
-            self.p_pipeline_binaries = p_pipeline_binaries.as_ptr();
+            self.binary_count = pipeline_binaries.len() as _;
+            self.p_pipeline_binaries = pipeline_binaries.as_ptr();
             self
         }
     }

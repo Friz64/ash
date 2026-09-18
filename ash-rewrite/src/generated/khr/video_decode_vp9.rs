@@ -126,11 +126,11 @@ impl<'a> Default for VideoDecodeVP9PictureInfoKHR<'a> {
     }
 }
 impl<'a> VideoDecodeVP9PictureInfoKHR<'a> {
-    pub fn p_std_picture_info(
+    pub fn std_picture_info(
         mut self,
-        p_std_picture_info: &'a crate::vk::DecodeVP9PictureInfo<'a>,
+        std_picture_info: &'a crate::vk::DecodeVP9PictureInfo<'a>,
     ) -> Self {
-        self.p_std_picture_info = p_std_picture_info;
+        self.p_std_picture_info = std_picture_info;
         self
     }
     pub fn reference_name_slot_indices(
