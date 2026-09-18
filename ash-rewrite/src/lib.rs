@@ -143,7 +143,7 @@ pub struct CStrTooLargeForStaticArray {
 
 impl core::error::Error for CStrTooLargeForStaticArray {}
 impl core::fmt::Display for CStrTooLargeForStaticArray {
-    fn fmt(&self, f: &mut std::fmt::Formatter<'_>) -> std::fmt::Result {
+    fn fmt(&self, f: &mut core::fmt::Formatter<'_>) -> core::fmt::Result {
         write!(f, "static `c_char` target array of length `{}` is too small to write a `CStr` (with `NUL`-terminator) of length `{}`", self.static_array_size, self.c_str_size)
     }
 }
@@ -193,5 +193,6 @@ pub use vk1_1::InstanceFnV1_1;
 pub use vk1_2::DeviceFnV1_2;
 pub use vk1_3::DeviceFnV1_3;
 pub use vk1_3::InstanceFnV1_3;
+pub use vk1_4::DeviceFnV1_4;
 
 use self::generated::vk::StructureType;
