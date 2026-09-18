@@ -117,12 +117,12 @@ pub(crate) mod reexport {
             self.exclusive_scissor_count = exclusive_scissor_count;
             self
         }
-        pub fn p_exclusive_scissors(
+        pub fn exclusive_scissors(
             mut self,
-            p_exclusive_scissors: &'a [crate::vk::Rect2D],
+            exclusive_scissors: &'a [crate::vk::Rect2D],
         ) -> Self {
-            self.exclusive_scissor_count = p_exclusive_scissors.len() as _;
-            self.p_exclusive_scissors = p_exclusive_scissors.as_ptr();
+            self.exclusive_scissor_count = exclusive_scissors.len() as _;
+            self.p_exclusive_scissors = exclusive_scissors.as_ptr();
             self
         }
     }

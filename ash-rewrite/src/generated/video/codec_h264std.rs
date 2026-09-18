@@ -329,11 +329,11 @@ impl<'a> H264SequenceParameterSetVui<'a> {
         self.reserved1 = reserved1;
         self
     }
-    pub fn p_hrd_parameters(
+    pub fn hrd_parameters(
         mut self,
-        p_hrd_parameters: &'a crate::vk::H264HrdParameters,
+        hrd_parameters: &'a crate::vk::H264HrdParameters,
     ) -> Self {
-        self.p_hrd_parameters = p_hrd_parameters;
+        self.p_hrd_parameters = hrd_parameters;
         self
     }
 }
@@ -699,23 +699,23 @@ impl<'a> H264SequenceParameterSet<'a> {
         self.reserved2 = reserved2;
         self
     }
-    pub fn p_offset_for_ref_frame(mut self, p_offset_for_ref_frame: &'a [i32]) -> Self {
-        self.num_ref_frames_in_pic_order_cnt_cycle = p_offset_for_ref_frame.len() as _;
-        self.p_offset_for_ref_frame = p_offset_for_ref_frame.as_ptr();
+    pub fn offset_for_ref_frame(mut self, offset_for_ref_frame: &'a [i32]) -> Self {
+        self.num_ref_frames_in_pic_order_cnt_cycle = offset_for_ref_frame.len() as _;
+        self.p_offset_for_ref_frame = offset_for_ref_frame.as_ptr();
         self
     }
-    pub fn p_scaling_lists(
+    pub fn scaling_lists(
         mut self,
-        p_scaling_lists: &'a crate::vk::H264ScalingLists,
+        scaling_lists: &'a crate::vk::H264ScalingLists,
     ) -> Self {
-        self.p_scaling_lists = p_scaling_lists;
+        self.p_scaling_lists = scaling_lists;
         self
     }
-    pub fn p_sequence_parameter_set_vui(
+    pub fn sequence_parameter_set_vui(
         mut self,
-        p_sequence_parameter_set_vui: &'a crate::vk::H264SequenceParameterSetVui<'a>,
+        sequence_parameter_set_vui: &'a crate::vk::H264SequenceParameterSetVui<'a>,
     ) -> Self {
-        self.p_sequence_parameter_set_vui = p_sequence_parameter_set_vui;
+        self.p_sequence_parameter_set_vui = sequence_parameter_set_vui;
         self
     }
 }
@@ -884,11 +884,11 @@ impl<'a> H264PictureParameterSet<'a> {
         self.second_chroma_qp_index_offset = second_chroma_qp_index_offset;
         self
     }
-    pub fn p_scaling_lists(
+    pub fn scaling_lists(
         mut self,
-        p_scaling_lists: &'a crate::vk::H264ScalingLists,
+        scaling_lists: &'a crate::vk::H264ScalingLists,
     ) -> Self {
-        self.p_scaling_lists = p_scaling_lists;
+        self.p_scaling_lists = scaling_lists;
         self
     }
 }

@@ -98,12 +98,12 @@ pub(crate) mod reexport {
             self.attachment_count = attachment_count;
             self
         }
-        pub fn p_color_write_enables(
+        pub fn color_write_enables(
             mut self,
-            p_color_write_enables: &'a [crate::vk::Bool32],
+            color_write_enables: &'a [crate::vk::Bool32],
         ) -> Self {
-            self.attachment_count = p_color_write_enables.len() as _;
-            self.p_color_write_enables = p_color_write_enables.as_ptr();
+            self.attachment_count = color_write_enables.len() as _;
+            self.p_color_write_enables = color_write_enables.as_ptr();
             self
         }
     }

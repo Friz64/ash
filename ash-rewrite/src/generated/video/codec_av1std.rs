@@ -444,15 +444,12 @@ impl<'a> AV1SequenceHeader<'a> {
         self.reserved1 = reserved1;
         self
     }
-    pub fn p_color_config(
-        mut self,
-        p_color_config: &'a crate::vk::AV1ColorConfig,
-    ) -> Self {
-        self.p_color_config = p_color_config;
+    pub fn color_config(mut self, color_config: &'a crate::vk::AV1ColorConfig) -> Self {
+        self.p_color_config = color_config;
         self
     }
-    pub fn p_timing_info(mut self, p_timing_info: &'a crate::vk::AV1TimingInfo) -> Self {
-        self.p_timing_info = p_timing_info;
+    pub fn timing_info(mut self, timing_info: &'a crate::vk::AV1TimingInfo) -> Self {
+        self.p_timing_info = timing_info;
         self
     }
 }
@@ -732,24 +729,24 @@ impl<'a> AV1TileInfo<'a> {
         self.reserved1 = reserved1;
         self
     }
-    pub fn p_mi_col_starts(mut self, p_mi_col_starts: &'a [u16]) -> Self {
-        self.tile_cols = p_mi_col_starts.len() as _;
-        self.p_mi_col_starts = p_mi_col_starts.as_ptr();
+    pub fn mi_col_starts(mut self, mi_col_starts: &'a [u16]) -> Self {
+        self.tile_cols = mi_col_starts.len() as _;
+        self.p_mi_col_starts = mi_col_starts.as_ptr();
         self
     }
-    pub fn p_mi_row_starts(mut self, p_mi_row_starts: &'a [u16]) -> Self {
-        self.tile_rows = p_mi_row_starts.len() as _;
-        self.p_mi_row_starts = p_mi_row_starts.as_ptr();
+    pub fn mi_row_starts(mut self, mi_row_starts: &'a [u16]) -> Self {
+        self.tile_rows = mi_row_starts.len() as _;
+        self.p_mi_row_starts = mi_row_starts.as_ptr();
         self
     }
-    pub fn p_width_in_sbs_minus1(mut self, p_width_in_sbs_minus1: &'a [u16]) -> Self {
-        self.tile_cols = p_width_in_sbs_minus1.len() as _;
-        self.p_width_in_sbs_minus1 = p_width_in_sbs_minus1.as_ptr();
+    pub fn width_in_sbs_minus1(mut self, width_in_sbs_minus1: &'a [u16]) -> Self {
+        self.tile_cols = width_in_sbs_minus1.len() as _;
+        self.p_width_in_sbs_minus1 = width_in_sbs_minus1.as_ptr();
         self
     }
-    pub fn p_height_in_sbs_minus1(mut self, p_height_in_sbs_minus1: &'a [u16]) -> Self {
-        self.tile_rows = p_height_in_sbs_minus1.len() as _;
-        self.p_height_in_sbs_minus1 = p_height_in_sbs_minus1.as_ptr();
+    pub fn height_in_sbs_minus1(mut self, height_in_sbs_minus1: &'a [u16]) -> Self {
+        self.tile_rows = height_in_sbs_minus1.len() as _;
+        self.p_height_in_sbs_minus1 = height_in_sbs_minus1.as_ptr();
         self
     }
 }

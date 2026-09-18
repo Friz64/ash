@@ -529,25 +529,25 @@ impl<'a> H265VideoParameterSet<'a> {
         self.reserved3 = reserved3;
         self
     }
-    pub fn p_dec_pic_buf_mgr(
+    pub fn dec_pic_buf_mgr(
         mut self,
-        p_dec_pic_buf_mgr: &'a crate::vk::H265DecPicBufMgr,
+        dec_pic_buf_mgr: &'a crate::vk::H265DecPicBufMgr,
     ) -> Self {
-        self.p_dec_pic_buf_mgr = p_dec_pic_buf_mgr;
+        self.p_dec_pic_buf_mgr = dec_pic_buf_mgr;
         self
     }
-    pub fn p_hrd_parameters(
+    pub fn hrd_parameters(
         mut self,
-        p_hrd_parameters: &'a crate::vk::H265HrdParameters<'a>,
+        hrd_parameters: &'a crate::vk::H265HrdParameters<'a>,
     ) -> Self {
-        self.p_hrd_parameters = p_hrd_parameters;
+        self.p_hrd_parameters = hrd_parameters;
         self
     }
-    pub fn p_profile_tier_level(
+    pub fn profile_tier_level(
         mut self,
-        p_profile_tier_level: &'a crate::vk::H265ProfileTierLevel,
+        profile_tier_level: &'a crate::vk::H265ProfileTierLevel,
     ) -> Self {
-        self.p_profile_tier_level = p_profile_tier_level;
+        self.p_profile_tier_level = profile_tier_level;
         self
     }
 }
@@ -1164,11 +1164,11 @@ impl<'a> H265SequenceParameterSetVui<'a> {
         self.log2_max_mv_length_vertical = log2_max_mv_length_vertical;
         self
     }
-    pub fn p_hrd_parameters(
+    pub fn hrd_parameters(
         mut self,
-        p_hrd_parameters: &'a crate::vk::H265HrdParameters<'a>,
+        hrd_parameters: &'a crate::vk::H265HrdParameters<'a>,
     ) -> Self {
-        self.p_hrd_parameters = p_hrd_parameters;
+        self.p_hrd_parameters = hrd_parameters;
         self
     }
 }
@@ -1778,54 +1778,54 @@ impl<'a> H265SequenceParameterSet<'a> {
         self.conf_win_bottom_offset = conf_win_bottom_offset;
         self
     }
-    pub fn p_profile_tier_level(
+    pub fn profile_tier_level(
         mut self,
-        p_profile_tier_level: &'a crate::vk::H265ProfileTierLevel,
+        profile_tier_level: &'a crate::vk::H265ProfileTierLevel,
     ) -> Self {
-        self.p_profile_tier_level = p_profile_tier_level;
+        self.p_profile_tier_level = profile_tier_level;
         self
     }
-    pub fn p_dec_pic_buf_mgr(
+    pub fn dec_pic_buf_mgr(
         mut self,
-        p_dec_pic_buf_mgr: &'a crate::vk::H265DecPicBufMgr,
+        dec_pic_buf_mgr: &'a crate::vk::H265DecPicBufMgr,
     ) -> Self {
-        self.p_dec_pic_buf_mgr = p_dec_pic_buf_mgr;
+        self.p_dec_pic_buf_mgr = dec_pic_buf_mgr;
         self
     }
-    pub fn p_scaling_lists(
+    pub fn scaling_lists(
         mut self,
-        p_scaling_lists: &'a crate::vk::H265ScalingLists,
+        scaling_lists: &'a crate::vk::H265ScalingLists,
     ) -> Self {
-        self.p_scaling_lists = p_scaling_lists;
+        self.p_scaling_lists = scaling_lists;
         self
     }
-    pub fn p_short_term_ref_pic_set(
+    pub fn short_term_ref_pic_set(
         mut self,
-        p_short_term_ref_pic_set: &'a [crate::vk::H265ShortTermRefPicSet],
+        short_term_ref_pic_set: &'a [crate::vk::H265ShortTermRefPicSet],
     ) -> Self {
-        self.num_short_term_ref_pic_sets = p_short_term_ref_pic_set.len() as _;
-        self.p_short_term_ref_pic_set = p_short_term_ref_pic_set.as_ptr();
+        self.num_short_term_ref_pic_sets = short_term_ref_pic_set.len() as _;
+        self.p_short_term_ref_pic_set = short_term_ref_pic_set.as_ptr();
         self
     }
-    pub fn p_long_term_ref_pics_sps(
+    pub fn long_term_ref_pics_sps(
         mut self,
-        p_long_term_ref_pics_sps: &'a crate::vk::H265LongTermRefPicsSps,
+        long_term_ref_pics_sps: &'a crate::vk::H265LongTermRefPicsSps,
     ) -> Self {
-        self.p_long_term_ref_pics_sps = p_long_term_ref_pics_sps;
+        self.p_long_term_ref_pics_sps = long_term_ref_pics_sps;
         self
     }
-    pub fn p_sequence_parameter_set_vui(
+    pub fn sequence_parameter_set_vui(
         mut self,
-        p_sequence_parameter_set_vui: &'a crate::vk::H265SequenceParameterSetVui<'a>,
+        sequence_parameter_set_vui: &'a crate::vk::H265SequenceParameterSetVui<'a>,
     ) -> Self {
-        self.p_sequence_parameter_set_vui = p_sequence_parameter_set_vui;
+        self.p_sequence_parameter_set_vui = sequence_parameter_set_vui;
         self
     }
-    pub fn p_predictor_palette_entries(
+    pub fn predictor_palette_entries(
         mut self,
-        p_predictor_palette_entries: &'a crate::vk::H265PredictorPaletteEntries,
+        predictor_palette_entries: &'a crate::vk::H265PredictorPaletteEntries,
     ) -> Self {
-        self.p_predictor_palette_entries = p_predictor_palette_entries;
+        self.p_predictor_palette_entries = predictor_palette_entries;
         self
     }
 }
@@ -2470,18 +2470,18 @@ impl<'a> H265PictureParameterSet<'a> {
         self.reserved3 = reserved3;
         self
     }
-    pub fn p_scaling_lists(
+    pub fn scaling_lists(
         mut self,
-        p_scaling_lists: &'a crate::vk::H265ScalingLists,
+        scaling_lists: &'a crate::vk::H265ScalingLists,
     ) -> Self {
-        self.p_scaling_lists = p_scaling_lists;
+        self.p_scaling_lists = scaling_lists;
         self
     }
-    pub fn p_predictor_palette_entries(
+    pub fn predictor_palette_entries(
         mut self,
-        p_predictor_palette_entries: &'a crate::vk::H265PredictorPaletteEntries,
+        predictor_palette_entries: &'a crate::vk::H265PredictorPaletteEntries,
     ) -> Self {
-        self.p_predictor_palette_entries = p_predictor_palette_entries;
+        self.p_predictor_palette_entries = predictor_palette_entries;
         self
     }
 }

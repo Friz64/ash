@@ -464,30 +464,30 @@ impl<'a> Default for VideoEncodeAV1SessionParametersCreateInfoKHR<'a> {
     }
 }
 impl<'a> VideoEncodeAV1SessionParametersCreateInfoKHR<'a> {
-    pub fn p_std_sequence_header(
+    pub fn std_sequence_header(
         mut self,
-        p_std_sequence_header: &'a crate::vk::AV1SequenceHeader<'a>,
+        std_sequence_header: &'a crate::vk::AV1SequenceHeader<'a>,
     ) -> Self {
-        self.p_std_sequence_header = p_std_sequence_header;
+        self.p_std_sequence_header = std_sequence_header;
         self
     }
-    pub fn p_std_decoder_model_info(
+    pub fn std_decoder_model_info(
         mut self,
-        p_std_decoder_model_info: &'a crate::vk::EncodeAV1DecoderModelInfo,
+        std_decoder_model_info: &'a crate::vk::EncodeAV1DecoderModelInfo,
     ) -> Self {
-        self.p_std_decoder_model_info = p_std_decoder_model_info;
+        self.p_std_decoder_model_info = std_decoder_model_info;
         self
     }
     pub fn std_operating_point_count(mut self, std_operating_point_count: u32) -> Self {
         self.std_operating_point_count = std_operating_point_count;
         self
     }
-    pub fn p_std_operating_points(
+    pub fn std_operating_points(
         mut self,
-        p_std_operating_points: &'a [crate::vk::EncodeAV1OperatingPointInfo],
+        std_operating_points: &'a [crate::vk::EncodeAV1OperatingPointInfo],
     ) -> Self {
-        self.std_operating_point_count = p_std_operating_points.len() as _;
-        self.p_std_operating_points = p_std_operating_points.as_ptr();
+        self.std_operating_point_count = std_operating_points.len() as _;
+        self.p_std_operating_points = std_operating_points.as_ptr();
         self
     }
 }
@@ -515,11 +515,11 @@ impl<'a> Default for VideoEncodeAV1DpbSlotInfoKHR<'a> {
     }
 }
 impl<'a> VideoEncodeAV1DpbSlotInfoKHR<'a> {
-    pub fn p_std_reference_info(
+    pub fn std_reference_info(
         mut self,
-        p_std_reference_info: &'a crate::vk::EncodeAV1ReferenceInfo<'a>,
+        std_reference_info: &'a crate::vk::EncodeAV1ReferenceInfo<'a>,
     ) -> Self {
-        self.p_std_reference_info = p_std_reference_info;
+        self.p_std_reference_info = std_reference_info;
         self
     }
 }
@@ -578,11 +578,11 @@ impl<'a> VideoEncodeAV1PictureInfoKHR<'a> {
         self.constant_q_index = constant_q_index;
         self
     }
-    pub fn p_std_picture_info(
+    pub fn std_picture_info(
         mut self,
-        p_std_picture_info: &'a crate::vk::EncodeAV1PictureInfo<'a>,
+        std_picture_info: &'a crate::vk::EncodeAV1PictureInfo<'a>,
     ) -> Self {
-        self.p_std_picture_info = p_std_picture_info;
+        self.p_std_picture_info = std_picture_info;
         self
     }
     pub fn reference_name_slot_indices(

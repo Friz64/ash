@@ -269,23 +269,23 @@ pub(crate) mod reexport {
             self.src_picture_resource = src_picture_resource;
             self
         }
-        pub fn p_setup_reference_slot(
+        pub fn setup_reference_slot(
             mut self,
-            p_setup_reference_slot: &'a crate::vk::VideoReferenceSlotInfoKHR<'a>,
+            setup_reference_slot: &'a crate::vk::VideoReferenceSlotInfoKHR<'a>,
         ) -> Self {
-            self.p_setup_reference_slot = p_setup_reference_slot;
+            self.p_setup_reference_slot = setup_reference_slot;
             self
         }
         pub fn reference_slot_count(mut self, reference_slot_count: u32) -> Self {
             self.reference_slot_count = reference_slot_count;
             self
         }
-        pub fn p_reference_slots(
+        pub fn reference_slots(
             mut self,
-            p_reference_slots: &'a [crate::vk::VideoReferenceSlotInfoKHR<'a>],
+            reference_slots: &'a [crate::vk::VideoReferenceSlotInfoKHR<'a>],
         ) -> Self {
-            self.reference_slot_count = p_reference_slots.len() as _;
-            self.p_reference_slots = p_reference_slots.as_ptr();
+            self.reference_slot_count = reference_slots.len() as _;
+            self.p_reference_slots = reference_slots.as_ptr();
             self
         }
         pub fn preceding_externally_encoded_bytes(
@@ -385,11 +385,11 @@ pub(crate) mod reexport {
         }
     }
     impl<'a> PhysicalDeviceVideoEncodeQualityLevelInfoKHR<'a> {
-        pub fn p_video_profile(
+        pub fn video_profile(
             mut self,
-            p_video_profile: &'a crate::vk::VideoProfileInfoKHR<'a>,
+            video_profile: &'a crate::vk::VideoProfileInfoKHR<'a>,
         ) -> Self {
-            self.p_video_profile = p_video_profile;
+            self.p_video_profile = video_profile;
             self
         }
         pub fn quality_level(mut self, quality_level: u32) -> Self {
@@ -491,12 +491,12 @@ pub(crate) mod reexport {
             self.layer_count = layer_count;
             self
         }
-        pub fn p_layers(
+        pub fn layers(
             mut self,
-            p_layers: &'a [crate::vk::VideoEncodeRateControlLayerInfoKHR<'a>],
+            layers: &'a [crate::vk::VideoEncodeRateControlLayerInfoKHR<'a>],
         ) -> Self {
-            self.layer_count = p_layers.len() as _;
-            self.p_layers = p_layers.as_ptr();
+            self.layer_count = layers.len() as _;
+            self.p_layers = layers.as_ptr();
             self
         }
         pub fn virtual_buffer_size_in_ms(

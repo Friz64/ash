@@ -110,24 +110,24 @@ pub(crate) mod reexport {
             self.profile_count = profile_count;
             self
         }
-        pub fn p_profiles(
+        pub fn profiles(
             mut self,
-            p_profiles: &'a [crate::vk::DataGraphTOSANameQualityARM],
+            profiles: &'a [crate::vk::DataGraphTOSANameQualityARM],
         ) -> Self {
-            self.profile_count = p_profiles.len() as _;
-            self.p_profiles = p_profiles.as_ptr();
+            self.profile_count = profiles.len() as _;
+            self.p_profiles = profiles.as_ptr();
             self
         }
         pub fn extension_count(mut self, extension_count: u32) -> Self {
             self.extension_count = extension_count;
             self
         }
-        pub fn p_extensions(
+        pub fn extensions(
             mut self,
-            p_extensions: &'a [crate::vk::DataGraphTOSANameQualityARM],
+            extensions: &'a [crate::vk::DataGraphTOSANameQualityARM],
         ) -> Self {
-            self.extension_count = p_extensions.len() as _;
-            self.p_extensions = p_extensions.as_ptr();
+            self.extension_count = extensions.len() as _;
+            self.p_extensions = extensions.as_ptr();
             self
         }
         pub fn level(mut self, level: crate::vk::DataGraphTOSALevelARM) -> Self {

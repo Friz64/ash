@@ -239,9 +239,9 @@ pub(crate) mod reexport {
             self.code_size = code_size;
             self
         }
-        pub fn p_code(mut self, p_code: &'a [u8]) -> Self {
-            self.code_size = p_code.len() as _;
-            self.p_code = p_code.as_ptr().cast();
+        pub fn code(mut self, code: &'a [u8]) -> Self {
+            self.code_size = code.len() as _;
+            self.p_code = code.as_ptr().cast();
             self
         }
         pub fn p_name(mut self, p_name: &'a core::ffi::CStr) -> Self {
@@ -259,12 +259,12 @@ pub(crate) mod reexport {
             self.set_layout_count = set_layout_count;
             self
         }
-        pub fn p_set_layouts(
+        pub fn set_layouts(
             mut self,
-            p_set_layouts: &'a [crate::vk::DescriptorSetLayout],
+            set_layouts: &'a [crate::vk::DescriptorSetLayout],
         ) -> Self {
-            self.set_layout_count = p_set_layouts.len() as _;
-            self.p_set_layouts = p_set_layouts.as_ptr();
+            self.set_layout_count = set_layouts.len() as _;
+            self.p_set_layouts = set_layouts.as_ptr();
             self
         }
         pub fn push_constant_range_count(
@@ -274,19 +274,19 @@ pub(crate) mod reexport {
             self.push_constant_range_count = push_constant_range_count;
             self
         }
-        pub fn p_push_constant_ranges(
+        pub fn push_constant_ranges(
             mut self,
-            p_push_constant_ranges: &'a [crate::vk::PushConstantRange],
+            push_constant_ranges: &'a [crate::vk::PushConstantRange],
         ) -> Self {
-            self.push_constant_range_count = p_push_constant_ranges.len() as _;
-            self.p_push_constant_ranges = p_push_constant_ranges.as_ptr();
+            self.push_constant_range_count = push_constant_ranges.len() as _;
+            self.p_push_constant_ranges = push_constant_ranges.as_ptr();
             self
         }
-        pub fn p_specialization_info(
+        pub fn specialization_info(
             mut self,
-            p_specialization_info: &'a crate::vk::SpecializationInfo<'a>,
+            specialization_info: &'a crate::vk::SpecializationInfo<'a>,
         ) -> Self {
-            self.p_specialization_info = p_specialization_info;
+            self.p_specialization_info = specialization_info;
             self
         }
     }

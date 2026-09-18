@@ -293,26 +293,26 @@ pub(crate) mod reexport {
             self.stage_count = stage_count;
             self
         }
-        pub fn p_stages(
+        pub fn stages(
             mut self,
-            p_stages: &'a [crate::vk::PipelineShaderStageCreateInfo<'a>],
+            stages: &'a [crate::vk::PipelineShaderStageCreateInfo<'a>],
         ) -> Self {
-            self.stage_count = p_stages.len() as _;
-            self.p_stages = p_stages.as_ptr();
+            self.stage_count = stages.len() as _;
+            self.p_stages = stages.as_ptr();
             self
         }
-        pub fn p_vertex_input_state(
+        pub fn vertex_input_state(
             mut self,
-            p_vertex_input_state: &'a crate::vk::PipelineVertexInputStateCreateInfo<'a>,
+            vertex_input_state: &'a crate::vk::PipelineVertexInputStateCreateInfo<'a>,
         ) -> Self {
-            self.p_vertex_input_state = p_vertex_input_state;
+            self.p_vertex_input_state = vertex_input_state;
             self
         }
-        pub fn p_tessellation_state(
+        pub fn tessellation_state(
             mut self,
-            p_tessellation_state: &'a crate::vk::PipelineTessellationStateCreateInfo<'a>,
+            tessellation_state: &'a crate::vk::PipelineTessellationStateCreateInfo<'a>,
         ) -> Self {
-            self.p_tessellation_state = p_tessellation_state;
+            self.p_tessellation_state = tessellation_state;
             self
         }
     }
@@ -351,21 +351,21 @@ pub(crate) mod reexport {
             self.group_count = group_count;
             self
         }
-        pub fn p_groups(
+        pub fn groups(
             mut self,
-            p_groups: &'a [crate::vk::GraphicsShaderGroupCreateInfoNV<'a>],
+            groups: &'a [crate::vk::GraphicsShaderGroupCreateInfoNV<'a>],
         ) -> Self {
-            self.group_count = p_groups.len() as _;
-            self.p_groups = p_groups.as_ptr();
+            self.group_count = groups.len() as _;
+            self.p_groups = groups.as_ptr();
             self
         }
         pub fn pipeline_count(mut self, pipeline_count: u32) -> Self {
             self.pipeline_count = pipeline_count;
             self
         }
-        pub fn p_pipelines(mut self, p_pipelines: &'a [crate::vk::Pipeline]) -> Self {
-            self.pipeline_count = p_pipelines.len() as _;
-            self.p_pipelines = p_pipelines.as_ptr();
+        pub fn pipelines(mut self, pipelines: &'a [crate::vk::Pipeline]) -> Self {
+            self.pipeline_count = pipelines.len() as _;
+            self.p_pipelines = pipelines.as_ptr();
             self
         }
     }
@@ -557,17 +557,14 @@ pub(crate) mod reexport {
             self.index_type_count = index_type_count;
             self
         }
-        pub fn p_index_types(
-            mut self,
-            p_index_types: &'a [crate::vk::IndexType],
-        ) -> Self {
-            self.index_type_count = p_index_types.len() as _;
-            self.p_index_types = p_index_types.as_ptr();
+        pub fn index_types(mut self, index_types: &'a [crate::vk::IndexType]) -> Self {
+            self.index_type_count = index_types.len() as _;
+            self.p_index_types = index_types.as_ptr();
             self
         }
-        pub fn p_index_type_values(mut self, p_index_type_values: &'a [u32]) -> Self {
-            self.index_type_count = p_index_type_values.len() as _;
-            self.p_index_type_values = p_index_type_values.as_ptr();
+        pub fn index_type_values(mut self, index_type_values: &'a [u32]) -> Self {
+            self.index_type_count = index_type_values.len() as _;
+            self.p_index_type_values = index_type_values.as_ptr();
             self
         }
     }
@@ -622,21 +619,21 @@ pub(crate) mod reexport {
             self.token_count = token_count;
             self
         }
-        pub fn p_tokens(
+        pub fn tokens(
             mut self,
-            p_tokens: &'a [crate::vk::IndirectCommandsLayoutTokenNV<'a>],
+            tokens: &'a [crate::vk::IndirectCommandsLayoutTokenNV<'a>],
         ) -> Self {
-            self.token_count = p_tokens.len() as _;
-            self.p_tokens = p_tokens.as_ptr();
+            self.token_count = tokens.len() as _;
+            self.p_tokens = tokens.as_ptr();
             self
         }
         pub fn stream_count(mut self, stream_count: u32) -> Self {
             self.stream_count = stream_count;
             self
         }
-        pub fn p_stream_strides(mut self, p_stream_strides: &'a [u32]) -> Self {
-            self.stream_count = p_stream_strides.len() as _;
-            self.p_stream_strides = p_stream_strides.as_ptr();
+        pub fn stream_strides(mut self, stream_strides: &'a [u32]) -> Self {
+            self.stream_count = stream_strides.len() as _;
+            self.p_stream_strides = stream_strides.as_ptr();
             self
         }
     }
@@ -708,12 +705,12 @@ pub(crate) mod reexport {
             self.stream_count = stream_count;
             self
         }
-        pub fn p_streams(
+        pub fn streams(
             mut self,
-            p_streams: &'a [crate::vk::IndirectCommandsStreamNV],
+            streams: &'a [crate::vk::IndirectCommandsStreamNV],
         ) -> Self {
-            self.stream_count = p_streams.len() as _;
-            self.p_streams = p_streams.as_ptr();
+            self.stream_count = streams.len() as _;
+            self.p_streams = streams.as_ptr();
             self
         }
         pub fn sequences_count(mut self, sequences_count: u32) -> Self {

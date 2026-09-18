@@ -333,8 +333,8 @@ pub(crate) mod reexport {
         }
     }
     impl<'a> ImageDescriptorInfoEXT<'a> {
-        pub fn p_view(mut self, p_view: &'a crate::vk::ImageViewCreateInfo<'a>) -> Self {
-            self.p_view = p_view;
+        pub fn view(mut self, view: &'a crate::vk::ImageViewCreateInfo<'a>) -> Self {
+            self.p_view = view;
             self
         }
         pub fn layout(mut self, layout: crate::vk::ImageLayout) -> Self {
@@ -475,11 +475,11 @@ pub(crate) mod reexport {
             self.heap_array_stride = heap_array_stride;
             self
         }
-        pub fn p_embedded_sampler(
+        pub fn embedded_sampler(
             mut self,
-            p_embedded_sampler: &'a crate::vk::SamplerCreateInfo<'a>,
+            embedded_sampler: &'a crate::vk::SamplerCreateInfo<'a>,
         ) -> Self {
-            self.p_embedded_sampler = p_embedded_sampler;
+            self.p_embedded_sampler = embedded_sampler;
             self
         }
         pub fn sampler_heap_offset(mut self, sampler_heap_offset: u32) -> Self {
@@ -526,11 +526,11 @@ pub(crate) mod reexport {
             self.heap_array_stride = heap_array_stride;
             self
         }
-        pub fn p_embedded_sampler(
+        pub fn embedded_sampler(
             mut self,
-            p_embedded_sampler: &'a crate::vk::SamplerCreateInfo<'a>,
+            embedded_sampler: &'a crate::vk::SamplerCreateInfo<'a>,
         ) -> Self {
-            self.p_embedded_sampler = p_embedded_sampler;
+            self.p_embedded_sampler = embedded_sampler;
             self
         }
         pub fn use_combined_image_sampler_index(
@@ -602,11 +602,11 @@ pub(crate) mod reexport {
             self.heap_array_stride = heap_array_stride;
             self
         }
-        pub fn p_embedded_sampler(
+        pub fn embedded_sampler(
             mut self,
-            p_embedded_sampler: &'a crate::vk::SamplerCreateInfo<'a>,
+            embedded_sampler: &'a crate::vk::SamplerCreateInfo<'a>,
         ) -> Self {
-            self.p_embedded_sampler = p_embedded_sampler;
+            self.p_embedded_sampler = embedded_sampler;
             self
         }
         pub fn use_combined_image_sampler_index(
@@ -676,11 +676,11 @@ pub(crate) mod reexport {
             self.heap_index_stride = heap_index_stride;
             self
         }
-        pub fn p_embedded_sampler(
+        pub fn embedded_sampler(
             mut self,
-            p_embedded_sampler: &'a crate::vk::SamplerCreateInfo<'a>,
+            embedded_sampler: &'a crate::vk::SamplerCreateInfo<'a>,
         ) -> Self {
-            self.p_embedded_sampler = p_embedded_sampler;
+            self.p_embedded_sampler = embedded_sampler;
             self
         }
         pub fn use_combined_image_sampler_index(
@@ -759,11 +759,11 @@ pub(crate) mod reexport {
             self.heap_array_stride = heap_array_stride;
             self
         }
-        pub fn p_embedded_sampler(
+        pub fn embedded_sampler(
             mut self,
-            p_embedded_sampler: &'a crate::vk::SamplerCreateInfo<'a>,
+            embedded_sampler: &'a crate::vk::SamplerCreateInfo<'a>,
         ) -> Self {
-            self.p_embedded_sampler = p_embedded_sampler;
+            self.p_embedded_sampler = embedded_sampler;
             self
         }
         pub fn use_combined_image_sampler_index(
@@ -913,12 +913,12 @@ pub(crate) mod reexport {
             self.mapping_count = mapping_count;
             self
         }
-        pub fn p_mappings(
+        pub fn mappings(
             mut self,
-            p_mappings: &'a [crate::vk::DescriptorSetAndBindingMappingEXT<'a>],
+            mappings: &'a [crate::vk::DescriptorSetAndBindingMappingEXT<'a>],
         ) -> Self {
-            self.mapping_count = p_mappings.len() as _;
-            self.p_mappings = p_mappings.as_ptr();
+            self.mapping_count = mappings.len() as _;
+            self.p_mappings = mappings.as_ptr();
             self
         }
     }
@@ -978,11 +978,11 @@ pub(crate) mod reexport {
         }
     }
     impl<'a> OpaqueCaptureDataCreateInfoEXT<'a> {
-        pub fn p_data(
+        pub fn data(
             mut self,
-            p_data: &'a crate::vk::HostAddressRangeConstEXT<'a>,
+            data: &'a crate::vk::HostAddressRangeConstEXT<'a>,
         ) -> Self {
-            self.p_data = p_data;
+            self.p_data = data;
             self
         }
     }
@@ -1315,18 +1315,18 @@ pub(crate) mod reexport {
         }
     }
     impl<'a> CommandBufferInheritanceDescriptorHeapInfoEXT<'a> {
-        pub fn p_sampler_heap_bind_info(
+        pub fn sampler_heap_bind_info(
             mut self,
-            p_sampler_heap_bind_info: &'a crate::vk::BindHeapInfoEXT<'a>,
+            sampler_heap_bind_info: &'a crate::vk::BindHeapInfoEXT<'a>,
         ) -> Self {
-            self.p_sampler_heap_bind_info = p_sampler_heap_bind_info;
+            self.p_sampler_heap_bind_info = sampler_heap_bind_info;
             self
         }
-        pub fn p_resource_heap_bind_info(
+        pub fn resource_heap_bind_info(
             mut self,
-            p_resource_heap_bind_info: &'a crate::vk::BindHeapInfoEXT<'a>,
+            resource_heap_bind_info: &'a crate::vk::BindHeapInfoEXT<'a>,
         ) -> Self {
-            self.p_resource_heap_bind_info = p_resource_heap_bind_info;
+            self.p_resource_heap_bind_info = resource_heap_bind_info;
             self
         }
     }

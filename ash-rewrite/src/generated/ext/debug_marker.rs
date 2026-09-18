@@ -192,9 +192,9 @@ pub(crate) mod reexport {
             self.tag_size = tag_size;
             self
         }
-        pub fn p_tag(mut self, p_tag: &'a [u8]) -> Self {
-            self.tag_size = p_tag.len() as _;
-            self.p_tag = p_tag.as_ptr().cast();
+        pub fn tag(mut self, tag: &'a [u8]) -> Self {
+            self.tag_size = tag.len() as _;
+            self.p_tag = tag.as_ptr().cast();
             self
         }
     }

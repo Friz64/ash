@@ -97,9 +97,9 @@ pub(crate) mod reexport {
             self.swapchain_count = swapchain_count;
             self
         }
-        pub fn p_fences(mut self, p_fences: &'a [crate::vk::Fence]) -> Self {
-            self.swapchain_count = p_fences.len() as _;
-            self.p_fences = p_fences.as_ptr();
+        pub fn fences(mut self, fences: &'a [crate::vk::Fence]) -> Self {
+            self.swapchain_count = fences.len() as _;
+            self.p_fences = fences.as_ptr();
             self
         }
     }
@@ -134,12 +134,12 @@ pub(crate) mod reexport {
             self.present_mode_count = present_mode_count;
             self
         }
-        pub fn p_present_modes(
+        pub fn present_modes(
             mut self,
-            p_present_modes: &'a [crate::vk::PresentModeKHR],
+            present_modes: &'a [crate::vk::PresentModeKHR],
         ) -> Self {
-            self.present_mode_count = p_present_modes.len() as _;
-            self.p_present_modes = p_present_modes.as_ptr();
+            self.present_mode_count = present_modes.len() as _;
+            self.p_present_modes = present_modes.as_ptr();
             self
         }
     }
@@ -173,12 +173,12 @@ pub(crate) mod reexport {
             self.swapchain_count = swapchain_count;
             self
         }
-        pub fn p_present_modes(
+        pub fn present_modes(
             mut self,
-            p_present_modes: &'a [crate::vk::PresentModeKHR],
+            present_modes: &'a [crate::vk::PresentModeKHR],
         ) -> Self {
-            self.swapchain_count = p_present_modes.len() as _;
-            self.p_present_modes = p_present_modes.as_ptr();
+            self.swapchain_count = present_modes.len() as _;
+            self.p_present_modes = present_modes.as_ptr();
             self
         }
     }
@@ -267,9 +267,9 @@ pub(crate) mod reexport {
             self.image_index_count = image_index_count;
             self
         }
-        pub fn p_image_indices(mut self, p_image_indices: &'a [u32]) -> Self {
-            self.image_index_count = p_image_indices.len() as _;
-            self.p_image_indices = p_image_indices.as_ptr();
+        pub fn image_indices(mut self, image_indices: &'a [u32]) -> Self {
+            self.image_index_count = image_indices.len() as _;
+            self.p_image_indices = image_indices.as_ptr();
             self
         }
     }

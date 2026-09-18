@@ -225,12 +225,12 @@ pub(crate) mod reexport {
             self.dst_image_layout = dst_image_layout;
             self
         }
-        pub fn p_image_subresources(
+        pub fn image_subresources(
             mut self,
-            p_image_subresources: &'a [crate::vk::ImageSubresourceLayers],
+            image_subresources: &'a [crate::vk::ImageSubresourceLayers],
         ) -> Self {
-            self.copy_count = p_image_subresources.len() as _;
-            self.p_image_subresources = p_image_subresources.as_ptr();
+            self.copy_count = image_subresources.len() as _;
+            self.p_image_subresources = image_subresources.as_ptr();
             self
         }
     }

@@ -65,11 +65,8 @@ pub(crate) mod reexport {
             self.flags = flags;
             self
         }
-        pub fn p_layer(
-            mut self,
-            p_layer: &'a crate::platform_types::CAMetalLayer,
-        ) -> Self {
-            self.p_layer = p_layer;
+        pub fn layer(mut self, layer: &'a crate::platform_types::CAMetalLayer) -> Self {
+            self.p_layer = layer;
             self
         }
     }

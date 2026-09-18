@@ -442,8 +442,8 @@ pub(crate) mod reexport {
             self.size = size;
             self
         }
-        pub fn p_private_data(mut self, p_private_data: &'a core::ffi::c_void) -> Self {
-            self.p_private_data = p_private_data;
+        pub fn private_data(mut self, private_data: &'a core::ffi::c_void) -> Self {
+            self.p_private_data = private_data;
             self
         }
     }
@@ -481,9 +481,9 @@ pub(crate) mod reexport {
             self.region_count = region_count;
             self
         }
-        pub fn p_regions(mut self, p_regions: &'a [crate::vk::Rect2D]) -> Self {
-            self.region_count = p_regions.len() as _;
-            self.p_regions = p_regions.as_ptr();
+        pub fn regions(mut self, regions: &'a [crate::vk::Rect2D]) -> Self {
+            self.region_count = regions.len() as _;
+            self.p_regions = regions.as_ptr();
             self
         }
     }

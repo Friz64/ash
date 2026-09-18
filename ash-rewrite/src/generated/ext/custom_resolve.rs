@@ -131,12 +131,12 @@ pub(crate) mod reexport {
             self.color_attachment_count = color_attachment_count;
             self
         }
-        pub fn p_color_attachment_formats(
+        pub fn color_attachment_formats(
             mut self,
-            p_color_attachment_formats: &'a [crate::vk::Format],
+            color_attachment_formats: &'a [crate::vk::Format],
         ) -> Self {
-            self.color_attachment_count = p_color_attachment_formats.len() as _;
-            self.p_color_attachment_formats = p_color_attachment_formats.as_ptr();
+            self.color_attachment_count = color_attachment_formats.len() as _;
+            self.p_color_attachment_formats = color_attachment_formats.as_ptr();
             self
         }
         pub fn depth_attachment_format(

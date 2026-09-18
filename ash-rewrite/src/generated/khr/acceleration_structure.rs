@@ -326,12 +326,12 @@ pub(crate) mod reexport {
             self.acceleration_structure_count = acceleration_structure_count;
             self
         }
-        pub fn p_acceleration_structures(
+        pub fn acceleration_structures(
             mut self,
-            p_acceleration_structures: &'a [crate::vk::AccelerationStructureKHR],
+            acceleration_structures: &'a [crate::vk::AccelerationStructureKHR],
         ) -> Self {
-            self.acceleration_structure_count = p_acceleration_structures.len() as _;
-            self.p_acceleration_structures = p_acceleration_structures.as_ptr();
+            self.acceleration_structure_count = acceleration_structures.len() as _;
+            self.p_acceleration_structures = acceleration_structures.as_ptr();
             self
         }
     }
@@ -755,20 +755,20 @@ pub(crate) mod reexport {
             self.geometry_count = geometry_count;
             self
         }
-        pub fn p_geometries(
+        pub fn geometries(
             mut self,
-            p_geometries: &'a [crate::vk::AccelerationStructureGeometryKHR<'a>],
+            geometries: &'a [crate::vk::AccelerationStructureGeometryKHR<'a>],
         ) -> Self {
-            self.geometry_count = p_geometries.len() as _;
-            self.p_geometries = p_geometries.as_ptr();
+            self.geometry_count = geometries.len() as _;
+            self.p_geometries = geometries.as_ptr();
             self
         }
-        pub fn pp_geometries(
+        pub fn geometries_ptrs(
             mut self,
-            pp_geometries: &'a [&'a crate::vk::AccelerationStructureGeometryKHR<'a>],
+            geometries_ptrs: &'a [&'a crate::vk::AccelerationStructureGeometryKHR<'a>],
         ) -> Self {
-            self.geometry_count = pp_geometries.len() as _;
-            self.pp_geometries = pp_geometries.as_ptr().cast();
+            self.geometry_count = geometries_ptrs.len() as _;
+            self.pp_geometries = geometries_ptrs.as_ptr().cast();
             self
         }
         pub fn scratch_data(

@@ -158,25 +158,25 @@ pub(crate) mod reexport {
         ) -> core::result::Result<&core::ffi::CStr, core::ffi::FromBytesUntilNulError> {
             crate::wrap_c_str_slice_until_nul(&self.description)
         }
-        pub fn p_address_infos(
+        pub fn address_infos(
             mut self,
-            p_address_infos: &'a mut crate::vk::DeviceFaultAddressInfoKHR,
+            address_infos: &'a mut crate::vk::DeviceFaultAddressInfoKHR,
         ) -> Self {
-            self.p_address_infos = p_address_infos;
+            self.p_address_infos = address_infos;
             self
         }
-        pub fn p_vendor_infos(
+        pub fn vendor_infos(
             mut self,
-            p_vendor_infos: &'a mut crate::vk::DeviceFaultVendorInfoKHR,
+            vendor_infos: &'a mut crate::vk::DeviceFaultVendorInfoKHR,
         ) -> Self {
-            self.p_vendor_infos = p_vendor_infos;
+            self.p_vendor_infos = vendor_infos;
             self
         }
-        pub fn p_vendor_binary_data(
+        pub fn vendor_binary_data(
             mut self,
-            p_vendor_binary_data: &'a mut core::ffi::c_void,
+            vendor_binary_data: &'a mut core::ffi::c_void,
         ) -> Self {
-            self.p_vendor_binary_data = p_vendor_binary_data;
+            self.p_vendor_binary_data = vendor_binary_data;
             self
         }
     }

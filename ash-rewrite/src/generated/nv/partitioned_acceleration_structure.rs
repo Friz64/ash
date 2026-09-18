@@ -348,12 +348,12 @@ pub(crate) mod reexport {
             self.acceleration_structure_count = acceleration_structure_count;
             self
         }
-        pub fn p_acceleration_structures(
+        pub fn acceleration_structures(
             mut self,
-            p_acceleration_structures: &'a [crate::vk::DeviceAddress],
+            acceleration_structures: &'a [crate::vk::DeviceAddress],
         ) -> Self {
-            self.acceleration_structure_count = p_acceleration_structures.len() as _;
-            self.p_acceleration_structures = p_acceleration_structures.as_ptr();
+            self.acceleration_structure_count = acceleration_structures.len() as _;
+            self.p_acceleration_structures = acceleration_structures.as_ptr();
             self
         }
     }

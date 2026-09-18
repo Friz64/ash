@@ -308,19 +308,19 @@ pub(crate) mod reexport {
             self.stage_count = stage_count;
             self
         }
-        pub fn p_stages(
+        pub fn stages(
             mut self,
-            p_stages: &'a [crate::vk::PipelineShaderStageCreateInfo<'a>],
+            stages: &'a [crate::vk::PipelineShaderStageCreateInfo<'a>],
         ) -> Self {
-            self.stage_count = p_stages.len() as _;
-            self.p_stages = p_stages.as_ptr();
+            self.stage_count = stages.len() as _;
+            self.p_stages = stages.as_ptr();
             self
         }
-        pub fn p_library_info(
+        pub fn library_info(
             mut self,
-            p_library_info: &'a crate::vk::PipelineLibraryCreateInfoKHR<'a>,
+            library_info: &'a crate::vk::PipelineLibraryCreateInfoKHR<'a>,
         ) -> Self {
-            self.p_library_info = p_library_info;
+            self.p_library_info = library_info;
             self
         }
         pub fn layout(mut self, layout: crate::vk::PipelineLayout) -> Self {

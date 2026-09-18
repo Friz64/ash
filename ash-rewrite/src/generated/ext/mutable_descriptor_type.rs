@@ -45,12 +45,12 @@ impl<'a> MutableDescriptorTypeListEXT<'a> {
         self.descriptor_type_count = descriptor_type_count;
         self
     }
-    pub fn p_descriptor_types(
+    pub fn descriptor_types(
         mut self,
-        p_descriptor_types: &'a [crate::vk::DescriptorType],
+        descriptor_types: &'a [crate::vk::DescriptorType],
     ) -> Self {
-        self.descriptor_type_count = p_descriptor_types.len() as _;
-        self.p_descriptor_types = p_descriptor_types.as_ptr();
+        self.descriptor_type_count = descriptor_types.len() as _;
+        self.p_descriptor_types = descriptor_types.as_ptr();
         self
     }
 }
@@ -91,15 +91,13 @@ impl<'a> MutableDescriptorTypeCreateInfoEXT<'a> {
         self.mutable_descriptor_type_list_count = mutable_descriptor_type_list_count;
         self
     }
-    pub fn p_mutable_descriptor_type_lists(
+    pub fn mutable_descriptor_type_lists(
         mut self,
-        p_mutable_descriptor_type_lists: &'a [crate::vk::MutableDescriptorTypeListEXT<
-            'a,
-        >],
+        mutable_descriptor_type_lists: &'a [crate::vk::MutableDescriptorTypeListEXT<'a>],
     ) -> Self {
-        self.mutable_descriptor_type_list_count = p_mutable_descriptor_type_lists.len()
+        self.mutable_descriptor_type_list_count = mutable_descriptor_type_lists.len()
             as _;
-        self.p_mutable_descriptor_type_lists = p_mutable_descriptor_type_lists.as_ptr();
+        self.p_mutable_descriptor_type_lists = mutable_descriptor_type_lists.as_ptr();
         self
     }
 }

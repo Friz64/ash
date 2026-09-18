@@ -93,12 +93,12 @@ pub(crate) mod reexport {
             self.viewport_count = viewport_count;
             self
         }
-        pub fn p_viewport_w_scalings(
+        pub fn viewport_w_scalings(
             mut self,
-            p_viewport_w_scalings: &'a [crate::vk::ViewportWScalingNV],
+            viewport_w_scalings: &'a [crate::vk::ViewportWScalingNV],
         ) -> Self {
-            self.viewport_count = p_viewport_w_scalings.len() as _;
-            self.p_viewport_w_scalings = p_viewport_w_scalings.as_ptr();
+            self.viewport_count = viewport_w_scalings.len() as _;
+            self.p_viewport_w_scalings = viewport_w_scalings.as_ptr();
             self
         }
     }

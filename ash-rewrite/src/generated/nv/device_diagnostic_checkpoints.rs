@@ -128,11 +128,11 @@ pub(crate) mod reexport {
             self.stage = stage;
             self
         }
-        pub fn p_checkpoint_marker(
+        pub fn checkpoint_marker(
             mut self,
-            p_checkpoint_marker: &'a mut core::ffi::c_void,
+            checkpoint_marker: &'a mut core::ffi::c_void,
         ) -> Self {
-            self.p_checkpoint_marker = p_checkpoint_marker;
+            self.p_checkpoint_marker = checkpoint_marker;
             self
         }
     }
@@ -197,11 +197,11 @@ pub(crate) mod reexport {
             self.stage = stage;
             self
         }
-        pub fn p_checkpoint_marker(
+        pub fn checkpoint_marker(
             mut self,
-            p_checkpoint_marker: &'a mut core::ffi::c_void,
+            checkpoint_marker: &'a mut core::ffi::c_void,
         ) -> Self {
-            self.p_checkpoint_marker = p_checkpoint_marker;
+            self.p_checkpoint_marker = checkpoint_marker;
             self
         }
     }

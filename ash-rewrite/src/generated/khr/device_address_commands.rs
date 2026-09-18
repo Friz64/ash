@@ -490,12 +490,12 @@ pub(crate) mod reexport {
             self.region_count = region_count;
             self
         }
-        pub fn p_regions(
+        pub fn regions(
             mut self,
-            p_regions: &'a [crate::vk::DeviceMemoryCopyKHR<'a>],
+            regions: &'a [crate::vk::DeviceMemoryCopyKHR<'a>],
         ) -> Self {
-            self.region_count = p_regions.len() as _;
-            self.p_regions = p_regions.as_ptr();
+            self.region_count = regions.len() as _;
+            self.p_regions = regions.as_ptr();
             self
         }
     }
@@ -611,12 +611,12 @@ pub(crate) mod reexport {
             self.region_count = region_count;
             self
         }
-        pub fn p_regions(
+        pub fn regions(
             mut self,
-            p_regions: &'a [crate::vk::DeviceMemoryImageCopyKHR<'a>],
+            regions: &'a [crate::vk::DeviceMemoryImageCopyKHR<'a>],
         ) -> Self {
-            self.region_count = p_regions.len() as _;
-            self.p_regions = p_regions.as_ptr();
+            self.region_count = regions.len() as _;
+            self.p_regions = regions.as_ptr();
             self
         }
     }
@@ -653,12 +653,12 @@ pub(crate) mod reexport {
             self.memory_range_barrier_count = memory_range_barrier_count;
             self
         }
-        pub fn p_memory_range_barriers(
+        pub fn memory_range_barriers(
             mut self,
-            p_memory_range_barriers: &'a [crate::vk::MemoryRangeBarrierKHR<'a>],
+            memory_range_barriers: &'a [crate::vk::MemoryRangeBarrierKHR<'a>],
         ) -> Self {
-            self.memory_range_barrier_count = p_memory_range_barriers.len() as _;
-            self.p_memory_range_barriers = p_memory_range_barriers.as_ptr();
+            self.memory_range_barrier_count = memory_range_barriers.len() as _;
+            self.p_memory_range_barriers = memory_range_barriers.as_ptr();
             self
         }
     }

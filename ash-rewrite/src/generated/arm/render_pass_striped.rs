@@ -131,12 +131,12 @@ impl<'a> RenderPassStripeBeginInfoARM<'a> {
         self.stripe_info_count = stripe_info_count;
         self
     }
-    pub fn p_stripe_infos(
+    pub fn stripe_infos(
         mut self,
-        p_stripe_infos: &'a [crate::vk::RenderPassStripeInfoARM<'a>],
+        stripe_infos: &'a [crate::vk::RenderPassStripeInfoARM<'a>],
     ) -> Self {
-        self.stripe_info_count = p_stripe_infos.len() as _;
-        self.p_stripe_infos = p_stripe_infos.as_ptr();
+        self.stripe_info_count = stripe_infos.len() as _;
+        self.p_stripe_infos = stripe_infos.as_ptr();
         self
     }
 }
@@ -173,12 +173,12 @@ impl<'a> RenderPassStripeSubmitInfoARM<'a> {
         self.stripe_semaphore_info_count = stripe_semaphore_info_count;
         self
     }
-    pub fn p_stripe_semaphore_infos(
+    pub fn stripe_semaphore_infos(
         mut self,
-        p_stripe_semaphore_infos: &'a [crate::vk::SemaphoreSubmitInfo<'a>],
+        stripe_semaphore_infos: &'a [crate::vk::SemaphoreSubmitInfo<'a>],
     ) -> Self {
-        self.stripe_semaphore_info_count = p_stripe_semaphore_infos.len() as _;
-        self.p_stripe_semaphore_infos = p_stripe_semaphore_infos.as_ptr();
+        self.stripe_semaphore_info_count = stripe_semaphore_infos.len() as _;
+        self.p_stripe_semaphore_infos = stripe_semaphore_infos.as_ptr();
         self
     }
 }

@@ -344,24 +344,24 @@ pub(crate) mod reexport {
             self.stage_count = stage_count;
             self
         }
-        pub fn p_stages(
+        pub fn stages(
             mut self,
-            p_stages: &'a [crate::vk::PipelineShaderStageCreateInfo<'a>],
+            stages: &'a [crate::vk::PipelineShaderStageCreateInfo<'a>],
         ) -> Self {
-            self.stage_count = p_stages.len() as _;
-            self.p_stages = p_stages.as_ptr();
+            self.stage_count = stages.len() as _;
+            self.p_stages = stages.as_ptr();
             self
         }
         pub fn group_count(mut self, group_count: u32) -> Self {
             self.group_count = group_count;
             self
         }
-        pub fn p_groups(
+        pub fn groups(
             mut self,
-            p_groups: &'a [crate::vk::RayTracingShaderGroupCreateInfoNV<'a>],
+            groups: &'a [crate::vk::RayTracingShaderGroupCreateInfoNV<'a>],
         ) -> Self {
-            self.group_count = p_groups.len() as _;
-            self.p_groups = p_groups.as_ptr();
+            self.group_count = groups.len() as _;
+            self.p_groups = groups.as_ptr();
             self
         }
         pub fn max_recursion_depth(mut self, max_recursion_depth: u32) -> Self {
@@ -630,12 +630,12 @@ pub(crate) mod reexport {
             self.geometry_count = geometry_count;
             self
         }
-        pub fn p_geometries(
+        pub fn geometries(
             mut self,
-            p_geometries: &'a [crate::vk::GeometryNV<'a>],
+            geometries: &'a [crate::vk::GeometryNV<'a>],
         ) -> Self {
-            self.geometry_count = p_geometries.len() as _;
-            self.p_geometries = p_geometries.as_ptr();
+            self.geometry_count = geometries.len() as _;
+            self.p_geometries = geometries.as_ptr();
             self
         }
     }
@@ -723,9 +723,9 @@ pub(crate) mod reexport {
             self.device_index_count = device_index_count;
             self
         }
-        pub fn p_device_indices(mut self, p_device_indices: &'a [u32]) -> Self {
-            self.device_index_count = p_device_indices.len() as _;
-            self.p_device_indices = p_device_indices.as_ptr();
+        pub fn device_indices(mut self, device_indices: &'a [u32]) -> Self {
+            self.device_index_count = device_indices.len() as _;
+            self.p_device_indices = device_indices.as_ptr();
             self
         }
     }
@@ -763,12 +763,12 @@ pub(crate) mod reexport {
             self.acceleration_structure_count = acceleration_structure_count;
             self
         }
-        pub fn p_acceleration_structures(
+        pub fn acceleration_structures(
             mut self,
-            p_acceleration_structures: &'a [crate::vk::AccelerationStructureNV],
+            acceleration_structures: &'a [crate::vk::AccelerationStructureNV],
         ) -> Self {
-            self.acceleration_structure_count = p_acceleration_structures.len() as _;
-            self.p_acceleration_structures = p_acceleration_structures.as_ptr();
+            self.acceleration_structure_count = acceleration_structures.len() as _;
+            self.p_acceleration_structures = acceleration_structures.as_ptr();
             self
         }
     }

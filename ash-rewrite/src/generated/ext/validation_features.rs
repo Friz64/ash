@@ -50,12 +50,12 @@ impl<'a> ValidationFeaturesEXT<'a> {
         self.enabled_validation_feature_count = enabled_validation_feature_count;
         self
     }
-    pub fn p_enabled_validation_features(
+    pub fn enabled_validation_features(
         mut self,
-        p_enabled_validation_features: &'a [crate::vk::ValidationFeatureEnableEXT],
+        enabled_validation_features: &'a [crate::vk::ValidationFeatureEnableEXT],
     ) -> Self {
-        self.enabled_validation_feature_count = p_enabled_validation_features.len() as _;
-        self.p_enabled_validation_features = p_enabled_validation_features.as_ptr();
+        self.enabled_validation_feature_count = enabled_validation_features.len() as _;
+        self.p_enabled_validation_features = enabled_validation_features.as_ptr();
         self
     }
     pub fn disabled_validation_feature_count(
@@ -65,13 +65,12 @@ impl<'a> ValidationFeaturesEXT<'a> {
         self.disabled_validation_feature_count = disabled_validation_feature_count;
         self
     }
-    pub fn p_disabled_validation_features(
+    pub fn disabled_validation_features(
         mut self,
-        p_disabled_validation_features: &'a [crate::vk::ValidationFeatureDisableEXT],
+        disabled_validation_features: &'a [crate::vk::ValidationFeatureDisableEXT],
     ) -> Self {
-        self.disabled_validation_feature_count = p_disabled_validation_features.len()
-            as _;
-        self.p_disabled_validation_features = p_disabled_validation_features.as_ptr();
+        self.disabled_validation_feature_count = disabled_validation_features.len() as _;
+        self.p_disabled_validation_features = disabled_validation_features.as_ptr();
         self
     }
 }

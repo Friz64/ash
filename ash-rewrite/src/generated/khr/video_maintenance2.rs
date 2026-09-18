@@ -60,18 +60,18 @@ impl<'a> Default for VideoDecodeH264InlineSessionParametersInfoKHR<'a> {
     }
 }
 impl<'a> VideoDecodeH264InlineSessionParametersInfoKHR<'a> {
-    pub fn p_std_sps(
+    pub fn std_sps(
         mut self,
-        p_std_sps: &'a crate::vk::H264SequenceParameterSet<'a>,
+        std_sps: &'a crate::vk::H264SequenceParameterSet<'a>,
     ) -> Self {
-        self.p_std_sps = p_std_sps;
+        self.p_std_sps = std_sps;
         self
     }
-    pub fn p_std_pps(
+    pub fn std_pps(
         mut self,
-        p_std_pps: &'a crate::vk::H264PictureParameterSet<'a>,
+        std_pps: &'a crate::vk::H264PictureParameterSet<'a>,
     ) -> Self {
-        self.p_std_pps = p_std_pps;
+        self.p_std_pps = std_pps;
         self
     }
 }
@@ -104,25 +104,22 @@ impl<'a> Default for VideoDecodeH265InlineSessionParametersInfoKHR<'a> {
     }
 }
 impl<'a> VideoDecodeH265InlineSessionParametersInfoKHR<'a> {
-    pub fn p_std_vps(
-        mut self,
-        p_std_vps: &'a crate::vk::H265VideoParameterSet<'a>,
-    ) -> Self {
-        self.p_std_vps = p_std_vps;
+    pub fn std_vps(mut self, std_vps: &'a crate::vk::H265VideoParameterSet<'a>) -> Self {
+        self.p_std_vps = std_vps;
         self
     }
-    pub fn p_std_sps(
+    pub fn std_sps(
         mut self,
-        p_std_sps: &'a crate::vk::H265SequenceParameterSet<'a>,
+        std_sps: &'a crate::vk::H265SequenceParameterSet<'a>,
     ) -> Self {
-        self.p_std_sps = p_std_sps;
+        self.p_std_sps = std_sps;
         self
     }
-    pub fn p_std_pps(
+    pub fn std_pps(
         mut self,
-        p_std_pps: &'a crate::vk::H265PictureParameterSet<'a>,
+        std_pps: &'a crate::vk::H265PictureParameterSet<'a>,
     ) -> Self {
-        self.p_std_pps = p_std_pps;
+        self.p_std_pps = std_pps;
         self
     }
 }
@@ -151,11 +148,11 @@ impl<'a> Default for VideoDecodeAV1InlineSessionParametersInfoKHR<'a> {
     }
 }
 impl<'a> VideoDecodeAV1InlineSessionParametersInfoKHR<'a> {
-    pub fn p_std_sequence_header(
+    pub fn std_sequence_header(
         mut self,
-        p_std_sequence_header: &'a crate::vk::AV1SequenceHeader<'a>,
+        std_sequence_header: &'a crate::vk::AV1SequenceHeader<'a>,
     ) -> Self {
-        self.p_std_sequence_header = p_std_sequence_header;
+        self.p_std_sequence_header = std_sequence_header;
         self
     }
 }

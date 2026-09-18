@@ -329,12 +329,12 @@ pub(crate) mod reexport {
             self.connection_count = connection_count;
             self
         }
-        pub fn p_connections(
+        pub fn connections(
             mut self,
-            p_connections: &'a [crate::vk::DataGraphPipelineSingleNodeConnectionARM<'a>],
+            connections: &'a [crate::vk::DataGraphPipelineSingleNodeConnectionARM<'a>],
         ) -> Self {
-            self.connection_count = p_connections.len() as _;
-            self.p_connections = p_connections.as_ptr();
+            self.connection_count = connections.len() as _;
+            self.p_connections = connections.as_ptr();
             self
         }
     }

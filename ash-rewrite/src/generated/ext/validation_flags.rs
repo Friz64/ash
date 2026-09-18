@@ -34,12 +34,12 @@ impl<'a> ValidationFlagsEXT<'a> {
         self.disabled_validation_check_count = disabled_validation_check_count;
         self
     }
-    pub fn p_disabled_validation_checks(
+    pub fn disabled_validation_checks(
         mut self,
-        p_disabled_validation_checks: &'a [crate::vk::ValidationCheckEXT],
+        disabled_validation_checks: &'a [crate::vk::ValidationCheckEXT],
     ) -> Self {
-        self.disabled_validation_check_count = p_disabled_validation_checks.len() as _;
-        self.p_disabled_validation_checks = p_disabled_validation_checks.as_ptr();
+        self.disabled_validation_check_count = disabled_validation_checks.len() as _;
+        self.p_disabled_validation_checks = disabled_validation_checks.as_ptr();
         self
     }
 }

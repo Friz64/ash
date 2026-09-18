@@ -43,42 +43,42 @@ impl<'a> Win32KeyedMutexAcquireReleaseInfoNV<'a> {
         self.acquire_count = acquire_count;
         self
     }
-    pub fn p_acquire_syncs(
+    pub fn acquire_syncs(
         mut self,
-        p_acquire_syncs: &'a [crate::vk::DeviceMemory],
+        acquire_syncs: &'a [crate::vk::DeviceMemory],
     ) -> Self {
-        self.acquire_count = p_acquire_syncs.len() as _;
-        self.p_acquire_syncs = p_acquire_syncs.as_ptr();
+        self.acquire_count = acquire_syncs.len() as _;
+        self.p_acquire_syncs = acquire_syncs.as_ptr();
         self
     }
-    pub fn p_acquire_keys(mut self, p_acquire_keys: &'a [u64]) -> Self {
-        self.acquire_count = p_acquire_keys.len() as _;
-        self.p_acquire_keys = p_acquire_keys.as_ptr();
+    pub fn acquire_keys(mut self, acquire_keys: &'a [u64]) -> Self {
+        self.acquire_count = acquire_keys.len() as _;
+        self.p_acquire_keys = acquire_keys.as_ptr();
         self
     }
-    pub fn p_acquire_timeout_milliseconds(
+    pub fn acquire_timeout_milliseconds(
         mut self,
-        p_acquire_timeout_milliseconds: &'a [u32],
+        acquire_timeout_milliseconds: &'a [u32],
     ) -> Self {
-        self.acquire_count = p_acquire_timeout_milliseconds.len() as _;
-        self.p_acquire_timeout_milliseconds = p_acquire_timeout_milliseconds.as_ptr();
+        self.acquire_count = acquire_timeout_milliseconds.len() as _;
+        self.p_acquire_timeout_milliseconds = acquire_timeout_milliseconds.as_ptr();
         self
     }
     pub fn release_count(mut self, release_count: u32) -> Self {
         self.release_count = release_count;
         self
     }
-    pub fn p_release_syncs(
+    pub fn release_syncs(
         mut self,
-        p_release_syncs: &'a [crate::vk::DeviceMemory],
+        release_syncs: &'a [crate::vk::DeviceMemory],
     ) -> Self {
-        self.release_count = p_release_syncs.len() as _;
-        self.p_release_syncs = p_release_syncs.as_ptr();
+        self.release_count = release_syncs.len() as _;
+        self.p_release_syncs = release_syncs.as_ptr();
         self
     }
-    pub fn p_release_keys(mut self, p_release_keys: &'a [u64]) -> Self {
-        self.release_count = p_release_keys.len() as _;
-        self.p_release_keys = p_release_keys.as_ptr();
+    pub fn release_keys(mut self, release_keys: &'a [u64]) -> Self {
+        self.release_count = release_keys.len() as _;
+        self.p_release_keys = release_keys.as_ptr();
         self
     }
 }

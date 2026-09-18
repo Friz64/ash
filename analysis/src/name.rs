@@ -15,7 +15,7 @@ impl TypeName {
     pub const VK_STRUCTURE_TYPE: Self = Self::new("VkStructureType");
     pub const VK_BOOL32: Self = Self::new("VkBool32");
 
-    pub const fn new(original: &'static str) -> Self {
+    pub(crate) const fn new(original: &'static str) -> Self {
         Self(original)
     }
 
@@ -45,7 +45,7 @@ impl TypeName {
 pub struct ConstantName(&'static str);
 
 impl ConstantName {
-    pub const fn new(original: &'static str) -> Self {
+    pub(crate) const fn new(original: &'static str) -> Self {
         Self(original)
     }
 
@@ -62,7 +62,7 @@ impl ConstantName {
 pub struct EnumeratorName(&'static str);
 
 impl EnumeratorName {
-    pub const fn new(original: &'static str) -> Self {
+    pub(crate) const fn new(original: &'static str) -> Self {
         Self(original)
     }
 
@@ -96,7 +96,7 @@ impl EnumeratorName {
 pub struct CMacroName(&'static str);
 
 impl CMacroName {
-    pub const fn new(original: &'static str) -> Self {
+    pub(crate) const fn new(original: &'static str) -> Self {
         Self(original)
     }
 
@@ -113,7 +113,7 @@ impl CMacroName {
 pub struct FuncPointerName(&'static str);
 
 impl FuncPointerName {
-    pub const fn new(original: &'static str) -> Self {
+    pub(crate) const fn new(original: &'static str) -> Self {
         Self(original)
     }
 
@@ -133,7 +133,7 @@ impl CommandName {
     pub const VK_GET_INSTANCE_PROC_ADDR: Self = Self::new("vkGetInstanceProcAddr");
     pub const VK_GET_DEVICE_PROC_ADDR: Self = Self::new("vkGetDeviceProcAddr");
 
-    pub const fn new(original: &'static str) -> Self {
+    pub(crate) const fn new(original: &'static str) -> Self {
         Self(original)
     }
 
@@ -150,7 +150,7 @@ impl CommandName {
 pub struct VariableName(&'static str);
 
 impl VariableName {
-    pub const fn new(original: &'static str) -> Self {
+    pub(crate) const fn new(original: &'static str) -> Self {
         Self(original)
     }
 

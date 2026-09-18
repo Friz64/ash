@@ -67,11 +67,11 @@ impl<'a> PipelineViewportDepthClampControlCreateInfoEXT<'a> {
         self.depth_clamp_mode = depth_clamp_mode;
         self
     }
-    pub fn p_depth_clamp_range(
+    pub fn depth_clamp_range(
         mut self,
-        p_depth_clamp_range: &'a crate::vk::DepthClampRangeEXT,
+        depth_clamp_range: &'a crate::vk::DepthClampRangeEXT,
     ) -> Self {
-        self.p_depth_clamp_range = p_depth_clamp_range;
+        self.p_depth_clamp_range = depth_clamp_range;
         self
     }
 }

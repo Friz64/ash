@@ -304,9 +304,9 @@ pub(crate) mod reexport {
             self.tag_size = tag_size;
             self
         }
-        pub fn p_tag(mut self, p_tag: &'a [u8]) -> Self {
-            self.tag_size = p_tag.len() as _;
-            self.p_tag = p_tag.as_ptr().cast();
+        pub fn tag(mut self, tag: &'a [u8]) -> Self {
+            self.tag_size = tag.len() as _;
+            self.p_tag = tag.as_ptr().cast();
             self
         }
     }
@@ -410,8 +410,8 @@ pub(crate) mod reexport {
             self.pfn_user_callback = pfn_user_callback;
             self
         }
-        pub fn p_user_data(mut self, p_user_data: &'a mut core::ffi::c_void) -> Self {
-            self.p_user_data = p_user_data;
+        pub fn user_data(mut self, user_data: &'a mut core::ffi::c_void) -> Self {
+            self.p_user_data = user_data;
             self
         }
     }
@@ -496,36 +496,36 @@ pub(crate) mod reexport {
             self.queue_label_count = queue_label_count;
             self
         }
-        pub fn p_queue_labels(
+        pub fn queue_labels(
             mut self,
-            p_queue_labels: &'a [crate::vk::DebugUtilsLabelEXT<'a>],
+            queue_labels: &'a [crate::vk::DebugUtilsLabelEXT<'a>],
         ) -> Self {
-            self.queue_label_count = p_queue_labels.len() as _;
-            self.p_queue_labels = p_queue_labels.as_ptr();
+            self.queue_label_count = queue_labels.len() as _;
+            self.p_queue_labels = queue_labels.as_ptr();
             self
         }
         pub fn cmd_buf_label_count(mut self, cmd_buf_label_count: u32) -> Self {
             self.cmd_buf_label_count = cmd_buf_label_count;
             self
         }
-        pub fn p_cmd_buf_labels(
+        pub fn cmd_buf_labels(
             mut self,
-            p_cmd_buf_labels: &'a [crate::vk::DebugUtilsLabelEXT<'a>],
+            cmd_buf_labels: &'a [crate::vk::DebugUtilsLabelEXT<'a>],
         ) -> Self {
-            self.cmd_buf_label_count = p_cmd_buf_labels.len() as _;
-            self.p_cmd_buf_labels = p_cmd_buf_labels.as_ptr();
+            self.cmd_buf_label_count = cmd_buf_labels.len() as _;
+            self.p_cmd_buf_labels = cmd_buf_labels.as_ptr();
             self
         }
         pub fn object_count(mut self, object_count: u32) -> Self {
             self.object_count = object_count;
             self
         }
-        pub fn p_objects(
+        pub fn objects(
             mut self,
-            p_objects: &'a [crate::vk::DebugUtilsObjectNameInfoEXT<'a>],
+            objects: &'a [crate::vk::DebugUtilsObjectNameInfoEXT<'a>],
         ) -> Self {
-            self.object_count = p_objects.len() as _;
-            self.p_objects = p_objects.as_ptr();
+            self.object_count = objects.len() as _;
+            self.p_objects = objects.as_ptr();
             self
         }
     }

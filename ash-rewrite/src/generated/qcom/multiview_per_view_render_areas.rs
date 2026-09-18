@@ -72,12 +72,12 @@ impl<'a> MultiviewPerViewRenderAreasRenderPassBeginInfoQCOM<'a> {
         self.per_view_render_area_count = per_view_render_area_count;
         self
     }
-    pub fn p_per_view_render_areas(
+    pub fn per_view_render_areas(
         mut self,
-        p_per_view_render_areas: &'a [crate::vk::Rect2D],
+        per_view_render_areas: &'a [crate::vk::Rect2D],
     ) -> Self {
-        self.per_view_render_area_count = p_per_view_render_areas.len() as _;
-        self.p_per_view_render_areas = p_per_view_render_areas.as_ptr();
+        self.per_view_render_area_count = per_view_render_areas.len() as _;
+        self.p_per_view_render_areas = per_view_render_areas.as_ptr();
         self
     }
 }

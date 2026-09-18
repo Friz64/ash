@@ -31,12 +31,9 @@ impl<'a> LayerSettingsCreateInfoEXT<'a> {
         self.setting_count = setting_count;
         self
     }
-    pub fn p_settings(
-        mut self,
-        p_settings: &'a [crate::vk::LayerSettingEXT<'a>],
-    ) -> Self {
-        self.setting_count = p_settings.len() as _;
-        self.p_settings = p_settings.as_ptr();
+    pub fn settings(mut self, settings: &'a [crate::vk::LayerSettingEXT<'a>]) -> Self {
+        self.setting_count = settings.len() as _;
+        self.p_settings = settings.as_ptr();
         self
     }
 }
@@ -81,9 +78,9 @@ impl<'a> LayerSettingEXT<'a> {
         self.value_count = value_count;
         self
     }
-    pub fn p_values(mut self, p_values: &'a [u8]) -> Self {
-        self.value_count = p_values.len() as _;
-        self.p_values = p_values.as_ptr().cast();
+    pub fn values(mut self, values: &'a [u8]) -> Self {
+        self.value_count = values.len() as _;
+        self.p_values = values.as_ptr().cast();
         self
     }
 }

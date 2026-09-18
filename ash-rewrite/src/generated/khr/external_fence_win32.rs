@@ -133,11 +133,11 @@ pub(crate) mod reexport {
         }
     }
     impl<'a> ExportFenceWin32HandleInfoKHR<'a> {
-        pub fn p_attributes(
+        pub fn attributes(
             mut self,
-            p_attributes: &'a crate::platform_types::SECURITY_ATTRIBUTES,
+            attributes: &'a crate::platform_types::SECURITY_ATTRIBUTES,
         ) -> Self {
-            self.p_attributes = p_attributes;
+            self.p_attributes = attributes;
             self
         }
         pub fn dw_access(mut self, dw_access: crate::platform_types::DWORD) -> Self {

@@ -722,11 +722,11 @@ pub(crate) mod reexport {
         }
     }
     impl<'a> DeviceBufferMemoryRequirements<'a> {
-        pub fn p_create_info(
+        pub fn create_info(
             mut self,
-            p_create_info: &'a crate::vk::BufferCreateInfo<'a>,
+            create_info: &'a crate::vk::BufferCreateInfo<'a>,
         ) -> Self {
-            self.p_create_info = p_create_info;
+            self.p_create_info = create_info;
             self
         }
     }
@@ -754,11 +754,11 @@ pub(crate) mod reexport {
         }
     }
     impl<'a> DeviceImageMemoryRequirements<'a> {
-        pub fn p_create_info(
+        pub fn create_info(
             mut self,
-            p_create_info: &'a crate::vk::ImageCreateInfo<'a>,
+            create_info: &'a crate::vk::ImageCreateInfo<'a>,
         ) -> Self {
-            self.p_create_info = p_create_info;
+            self.p_create_info = create_info;
             self
         }
         pub fn plane_aspect(
@@ -911,9 +911,9 @@ pub(crate) mod reexport {
             self.data_size = data_size;
             self
         }
-        pub fn p_data(mut self, p_data: &'a [u8]) -> Self {
-            self.data_size = p_data.len() as _;
-            self.p_data = p_data.as_ptr().cast();
+        pub fn data(mut self, data: &'a [u8]) -> Self {
+            self.data_size = data.len() as _;
+            self.p_data = data.as_ptr().cast();
             self
         }
     }
@@ -1105,11 +1105,11 @@ pub(crate) mod reexport {
         }
     }
     impl<'a> PipelineCreationFeedbackCreateInfo<'a> {
-        pub fn p_pipeline_creation_feedback(
+        pub fn pipeline_creation_feedback(
             mut self,
-            p_pipeline_creation_feedback: &'a mut crate::vk::PipelineCreationFeedback,
+            pipeline_creation_feedback: &'a mut crate::vk::PipelineCreationFeedback,
         ) -> Self {
-            self.p_pipeline_creation_feedback = p_pipeline_creation_feedback;
+            self.p_pipeline_creation_feedback = pipeline_creation_feedback;
             self
         }
         pub fn pipeline_stage_creation_feedback_count(
@@ -1119,13 +1119,13 @@ pub(crate) mod reexport {
             self.pipeline_stage_creation_feedback_count = pipeline_stage_creation_feedback_count;
             self
         }
-        pub fn p_pipeline_stage_creation_feedbacks(
+        pub fn pipeline_stage_creation_feedbacks(
             mut self,
-            p_pipeline_stage_creation_feedbacks: &'a mut [crate::vk::PipelineCreationFeedback],
+            pipeline_stage_creation_feedbacks: &'a mut [crate::vk::PipelineCreationFeedback],
         ) -> Self {
-            self.pipeline_stage_creation_feedback_count = p_pipeline_stage_creation_feedbacks
+            self.pipeline_stage_creation_feedback_count = pipeline_stage_creation_feedbacks
                 .len() as _;
-            self.p_pipeline_stage_creation_feedbacks = p_pipeline_stage_creation_feedbacks
+            self.p_pipeline_stage_creation_feedbacks = pipeline_stage_creation_feedbacks
                 .as_mut_ptr();
             self
         }
@@ -2450,9 +2450,9 @@ pub(crate) mod reexport {
             self.region_count = region_count;
             self
         }
-        pub fn p_regions(mut self, p_regions: &'a [crate::vk::BufferCopy2<'a>]) -> Self {
-            self.region_count = p_regions.len() as _;
-            self.p_regions = p_regions.as_ptr();
+        pub fn regions(mut self, regions: &'a [crate::vk::BufferCopy2<'a>]) -> Self {
+            self.region_count = regions.len() as _;
+            self.p_regions = regions.as_ptr();
             self
         }
     }
@@ -2514,9 +2514,9 @@ pub(crate) mod reexport {
             self.region_count = region_count;
             self
         }
-        pub fn p_regions(mut self, p_regions: &'a [crate::vk::ImageCopy2<'a>]) -> Self {
-            self.region_count = p_regions.len() as _;
-            self.p_regions = p_regions.as_ptr();
+        pub fn regions(mut self, regions: &'a [crate::vk::ImageCopy2<'a>]) -> Self {
+            self.region_count = regions.len() as _;
+            self.p_regions = regions.as_ptr();
             self
         }
     }
@@ -2580,9 +2580,9 @@ pub(crate) mod reexport {
             self.region_count = region_count;
             self
         }
-        pub fn p_regions(mut self, p_regions: &'a [crate::vk::ImageBlit2<'a>]) -> Self {
-            self.region_count = p_regions.len() as _;
-            self.p_regions = p_regions.as_ptr();
+        pub fn regions(mut self, regions: &'a [crate::vk::ImageBlit2<'a>]) -> Self {
+            self.region_count = regions.len() as _;
+            self.p_regions = regions.as_ptr();
             self
         }
         pub fn filter(mut self, filter: crate::vk::Filter) -> Self {
@@ -2639,12 +2639,12 @@ pub(crate) mod reexport {
             self.region_count = region_count;
             self
         }
-        pub fn p_regions(
+        pub fn regions(
             mut self,
-            p_regions: &'a [crate::vk::BufferImageCopy2<'a>],
+            regions: &'a [crate::vk::BufferImageCopy2<'a>],
         ) -> Self {
-            self.region_count = p_regions.len() as _;
-            self.p_regions = p_regions.as_ptr();
+            self.region_count = regions.len() as _;
+            self.p_regions = regions.as_ptr();
             self
         }
     }
@@ -2697,12 +2697,12 @@ pub(crate) mod reexport {
             self.region_count = region_count;
             self
         }
-        pub fn p_regions(
+        pub fn regions(
             mut self,
-            p_regions: &'a [crate::vk::BufferImageCopy2<'a>],
+            regions: &'a [crate::vk::BufferImageCopy2<'a>],
         ) -> Self {
-            self.region_count = p_regions.len() as _;
-            self.p_regions = p_regions.as_ptr();
+            self.region_count = regions.len() as _;
+            self.p_regions = regions.as_ptr();
             self
         }
     }
@@ -2764,12 +2764,9 @@ pub(crate) mod reexport {
             self.region_count = region_count;
             self
         }
-        pub fn p_regions(
-            mut self,
-            p_regions: &'a [crate::vk::ImageResolve2<'a>],
-        ) -> Self {
-            self.region_count = p_regions.len() as _;
-            self.p_regions = p_regions.as_ptr();
+        pub fn regions(mut self, regions: &'a [crate::vk::ImageResolve2<'a>]) -> Self {
+            self.region_count = regions.len() as _;
+            self.p_regions = regions.as_ptr();
             self
         }
     }
@@ -3095,12 +3092,12 @@ pub(crate) mod reexport {
             self.memory_barrier_count = memory_barrier_count;
             self
         }
-        pub fn p_memory_barriers(
+        pub fn memory_barriers(
             mut self,
-            p_memory_barriers: &'a [crate::vk::MemoryBarrier2<'a>],
+            memory_barriers: &'a [crate::vk::MemoryBarrier2<'a>],
         ) -> Self {
-            self.memory_barrier_count = p_memory_barriers.len() as _;
-            self.p_memory_barriers = p_memory_barriers.as_ptr();
+            self.memory_barrier_count = memory_barriers.len() as _;
+            self.p_memory_barriers = memory_barriers.as_ptr();
             self
         }
         pub fn buffer_memory_barrier_count(
@@ -3110,12 +3107,12 @@ pub(crate) mod reexport {
             self.buffer_memory_barrier_count = buffer_memory_barrier_count;
             self
         }
-        pub fn p_buffer_memory_barriers(
+        pub fn buffer_memory_barriers(
             mut self,
-            p_buffer_memory_barriers: &'a [crate::vk::BufferMemoryBarrier2<'a>],
+            buffer_memory_barriers: &'a [crate::vk::BufferMemoryBarrier2<'a>],
         ) -> Self {
-            self.buffer_memory_barrier_count = p_buffer_memory_barriers.len() as _;
-            self.p_buffer_memory_barriers = p_buffer_memory_barriers.as_ptr();
+            self.buffer_memory_barrier_count = buffer_memory_barriers.len() as _;
+            self.p_buffer_memory_barriers = buffer_memory_barriers.as_ptr();
             self
         }
         pub fn image_memory_barrier_count(
@@ -3125,12 +3122,12 @@ pub(crate) mod reexport {
             self.image_memory_barrier_count = image_memory_barrier_count;
             self
         }
-        pub fn p_image_memory_barriers(
+        pub fn image_memory_barriers(
             mut self,
-            p_image_memory_barriers: &'a [crate::vk::ImageMemoryBarrier2<'a>],
+            image_memory_barriers: &'a [crate::vk::ImageMemoryBarrier2<'a>],
         ) -> Self {
-            self.image_memory_barrier_count = p_image_memory_barriers.len() as _;
-            self.p_image_memory_barriers = p_image_memory_barriers.as_ptr();
+            self.image_memory_barrier_count = image_memory_barriers.len() as _;
+            self.p_image_memory_barriers = image_memory_barriers.as_ptr();
             self
         }
     }
@@ -3260,12 +3257,12 @@ pub(crate) mod reexport {
             self.wait_semaphore_info_count = wait_semaphore_info_count;
             self
         }
-        pub fn p_wait_semaphore_infos(
+        pub fn wait_semaphore_infos(
             mut self,
-            p_wait_semaphore_infos: &'a [crate::vk::SemaphoreSubmitInfo<'a>],
+            wait_semaphore_infos: &'a [crate::vk::SemaphoreSubmitInfo<'a>],
         ) -> Self {
-            self.wait_semaphore_info_count = p_wait_semaphore_infos.len() as _;
-            self.p_wait_semaphore_infos = p_wait_semaphore_infos.as_ptr();
+            self.wait_semaphore_info_count = wait_semaphore_infos.len() as _;
+            self.p_wait_semaphore_infos = wait_semaphore_infos.as_ptr();
             self
         }
         pub fn command_buffer_info_count(
@@ -3275,12 +3272,12 @@ pub(crate) mod reexport {
             self.command_buffer_info_count = command_buffer_info_count;
             self
         }
-        pub fn p_command_buffer_infos(
+        pub fn command_buffer_infos(
             mut self,
-            p_command_buffer_infos: &'a [crate::vk::CommandBufferSubmitInfo<'a>],
+            command_buffer_infos: &'a [crate::vk::CommandBufferSubmitInfo<'a>],
         ) -> Self {
-            self.command_buffer_info_count = p_command_buffer_infos.len() as _;
-            self.p_command_buffer_infos = p_command_buffer_infos.as_ptr();
+            self.command_buffer_info_count = command_buffer_infos.len() as _;
+            self.p_command_buffer_infos = command_buffer_infos.as_ptr();
             self
         }
         pub fn signal_semaphore_info_count(
@@ -3290,12 +3287,12 @@ pub(crate) mod reexport {
             self.signal_semaphore_info_count = signal_semaphore_info_count;
             self
         }
-        pub fn p_signal_semaphore_infos(
+        pub fn signal_semaphore_infos(
             mut self,
-            p_signal_semaphore_infos: &'a [crate::vk::SemaphoreSubmitInfo<'a>],
+            signal_semaphore_infos: &'a [crate::vk::SemaphoreSubmitInfo<'a>],
         ) -> Self {
-            self.signal_semaphore_info_count = p_signal_semaphore_infos.len() as _;
-            self.p_signal_semaphore_infos = p_signal_semaphore_infos.as_ptr();
+            self.signal_semaphore_info_count = signal_semaphore_infos.len() as _;
+            self.p_signal_semaphore_infos = signal_semaphore_infos.as_ptr();
             self
         }
     }
@@ -3790,12 +3787,12 @@ pub(crate) mod reexport {
             self.color_attachment_count = color_attachment_count;
             self
         }
-        pub fn p_color_attachment_formats(
+        pub fn color_attachment_formats(
             mut self,
-            p_color_attachment_formats: &'a [crate::vk::Format],
+            color_attachment_formats: &'a [crate::vk::Format],
         ) -> Self {
-            self.color_attachment_count = p_color_attachment_formats.len() as _;
-            self.p_color_attachment_formats = p_color_attachment_formats.as_ptr();
+            self.color_attachment_count = color_attachment_formats.len() as _;
+            self.p_color_attachment_formats = color_attachment_formats.as_ptr();
             self
         }
         pub fn depth_attachment_format(
@@ -3869,26 +3866,26 @@ pub(crate) mod reexport {
             self.color_attachment_count = color_attachment_count;
             self
         }
-        pub fn p_color_attachments(
+        pub fn color_attachments(
             mut self,
-            p_color_attachments: &'a [crate::vk::RenderingAttachmentInfo<'a>],
+            color_attachments: &'a [crate::vk::RenderingAttachmentInfo<'a>],
         ) -> Self {
-            self.color_attachment_count = p_color_attachments.len() as _;
-            self.p_color_attachments = p_color_attachments.as_ptr();
+            self.color_attachment_count = color_attachments.len() as _;
+            self.p_color_attachments = color_attachments.as_ptr();
             self
         }
-        pub fn p_depth_attachment(
+        pub fn depth_attachment(
             mut self,
-            p_depth_attachment: &'a crate::vk::RenderingAttachmentInfo<'a>,
+            depth_attachment: &'a crate::vk::RenderingAttachmentInfo<'a>,
         ) -> Self {
-            self.p_depth_attachment = p_depth_attachment;
+            self.p_depth_attachment = depth_attachment;
             self
         }
-        pub fn p_stencil_attachment(
+        pub fn stencil_attachment(
             mut self,
-            p_stencil_attachment: &'a crate::vk::RenderingAttachmentInfo<'a>,
+            stencil_attachment: &'a crate::vk::RenderingAttachmentInfo<'a>,
         ) -> Self {
-            self.p_stencil_attachment = p_stencil_attachment;
+            self.p_stencil_attachment = stencil_attachment;
             self
         }
     }
@@ -4051,12 +4048,12 @@ pub(crate) mod reexport {
             self.color_attachment_count = color_attachment_count;
             self
         }
-        pub fn p_color_attachment_formats(
+        pub fn color_attachment_formats(
             mut self,
-            p_color_attachment_formats: &'a [crate::vk::Format],
+            color_attachment_formats: &'a [crate::vk::Format],
         ) -> Self {
-            self.color_attachment_count = p_color_attachment_formats.len() as _;
-            self.p_color_attachment_formats = p_color_attachment_formats.as_ptr();
+            self.color_attachment_count = color_attachment_formats.len() as _;
+            self.p_color_attachment_formats = color_attachment_formats.as_ptr();
             self
         }
         pub fn depth_attachment_format(

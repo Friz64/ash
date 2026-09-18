@@ -92,7 +92,7 @@ impl Code for Struct {
         let default = if contains_static_array || tagged_structure.is_some() {
             let defaults = self.members.iter().map(|member| match member {
                 Member::Regular(RegularMember { decl, .. }) => {
-                    let field_name = ctx.var_name_token(decl.name);
+                    let field_name = ctx.variable_token(decl.name);
                     if tagged_structure.is_some()
                         && decl.name.original() == "sType"
                         && let Ty::ApiType(ty) = &decl.ty
@@ -154,7 +154,7 @@ impl Code for Struct {
                     let name = format_ident!("bitfield{bitfield_i}");
                     bitfield_i += 1;
                     itertools::Either::Right(bitfield_ranges.iter().map(move |member| {
-                        let field_name = ctx.var_name_token(member.decl.name);
+                        let field_name = ctx.variable_token(member.decl.name);
                         let mask = {
                             let top = u32::MAX >> (u32::BITS - member.range.end as u32);
                             let bottom = u32::MAX << (member.range.start);
@@ -208,7 +208,29 @@ fn setter_and_getter(
     member: &RegularMember,
     lifetime: &Lifetime,
 ) -> TokenStream {
-    let field_name = ctx.var_name_token(member.decl.name);
+    let field_name = ctx.variable_token(member.decl.name);
+
+    let mut leading_p_count = 0;
+    for c in member.decl.name.original().chars() {
+        if c == 'p' {
+            leading_p_count += 1;
+        } else if c.is_ascii_uppercase() {
+            break;
+        } else {
+            leading_p_count = 0;
+            break;
+        }
+    }
+
+    let mut method_name = (member.decl.name.original())
+        .strip_prefix(&"p".repeat(leading_p_count))
+        .unwrap()
+        .to_owned();
+    if member.length_at_depth(1) == Some(Length::Count(1)) {
+        method_name += "_ptrs";
+    }
+
+    let method_name = crate::variable_token(&method_name);
 
     match member.decl.ty {
         Ty::ApiType(TypeName::VK_BOOL32) => {
@@ -256,7 +278,7 @@ fn setter_and_getter(
         Ty::Array(element_ty, _)
             if let Some(Length::DefinedByMember(length_member)) = member.length_at_depth(0) =>
         {
-            let length_name = ctx.var_name_token(length_member);
+            let length_name = ctx.variable_token(length_member);
             let field_name_as_slice = format_ident!("{field_name}_as_slice");
             let slice_ty = array_element_ty(member, element_ty);
             let slice = RustTy::Slice(Box::new(slice_ty), Mutability::Not, None)
@@ -293,12 +315,12 @@ fn setter_and_getter(
                 array_element_ty(member, element_ty)
             };
 
-            let len_name = ctx.var_name_token(length_member);
+            let len_name = ctx.variable_token(length_member);
             let slice = RustTy::Slice(Box::new(slice_ty), mutability, None).tokens(ctx, lifetime);
             quote! {
-                pub fn #field_name(mut self, #field_name: #slice) -> Self {
-                    self.#len_name = #field_name.len() as _;
-                    self.#field_name = #field_name #ptr;
+                pub fn #method_name(mut self, #method_name: #slice) -> Self {
+                    self.#len_name = #method_name.len() as _;
+                    self.#field_name = #method_name #ptr;
                     self
                 }
             }
@@ -310,8 +332,8 @@ fn setter_and_getter(
         {
             let ty = RustTy::Ref(Box::new(base.to_rust()), mutability).tokens(ctx, lifetime);
             quote! {
-                pub fn #field_name(mut self, #field_name: #ty) -> Self {
-                    self.#field_name = #field_name;
+                pub fn #method_name(mut self, #method_name: #ty) -> Self {
+                    self.#field_name = #method_name;
                     self
                 }
             }

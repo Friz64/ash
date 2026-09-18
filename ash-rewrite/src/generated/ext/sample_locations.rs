@@ -135,12 +135,12 @@ pub(crate) mod reexport {
             self.sample_locations_count = sample_locations_count;
             self
         }
-        pub fn p_sample_locations(
+        pub fn sample_locations(
             mut self,
-            p_sample_locations: &'a [crate::vk::SampleLocationEXT],
+            sample_locations: &'a [crate::vk::SampleLocationEXT],
         ) -> Self {
-            self.sample_locations_count = p_sample_locations.len() as _;
-            self.p_sample_locations = p_sample_locations.as_ptr();
+            self.sample_locations_count = sample_locations.len() as _;
+            self.p_sample_locations = sample_locations.as_ptr();
             self
         }
     }
@@ -226,15 +226,15 @@ pub(crate) mod reexport {
             self.attachment_initial_sample_locations_count = attachment_initial_sample_locations_count;
             self
         }
-        pub fn p_attachment_initial_sample_locations(
+        pub fn attachment_initial_sample_locations(
             mut self,
-            p_attachment_initial_sample_locations: &'a [crate::vk::AttachmentSampleLocationsEXT<
+            attachment_initial_sample_locations: &'a [crate::vk::AttachmentSampleLocationsEXT<
                 'a,
             >],
         ) -> Self {
-            self.attachment_initial_sample_locations_count = p_attachment_initial_sample_locations
+            self.attachment_initial_sample_locations_count = attachment_initial_sample_locations
                 .len() as _;
-            self.p_attachment_initial_sample_locations = p_attachment_initial_sample_locations
+            self.p_attachment_initial_sample_locations = attachment_initial_sample_locations
                 .as_ptr();
             self
         }
@@ -245,15 +245,13 @@ pub(crate) mod reexport {
             self.post_subpass_sample_locations_count = post_subpass_sample_locations_count;
             self
         }
-        pub fn p_post_subpass_sample_locations(
+        pub fn post_subpass_sample_locations(
             mut self,
-            p_post_subpass_sample_locations: &'a [crate::vk::SubpassSampleLocationsEXT<
-                'a,
-            >],
+            post_subpass_sample_locations: &'a [crate::vk::SubpassSampleLocationsEXT<'a>],
         ) -> Self {
-            self.post_subpass_sample_locations_count = p_post_subpass_sample_locations
+            self.post_subpass_sample_locations_count = post_subpass_sample_locations
                 .len() as _;
-            self.p_post_subpass_sample_locations = p_post_subpass_sample_locations
+            self.p_post_subpass_sample_locations = post_subpass_sample_locations
                 .as_ptr();
             self
         }
