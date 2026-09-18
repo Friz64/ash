@@ -1038,8 +1038,8 @@ pub(crate) mod reexport {
         }
     }
     impl<'a> AccelerationStructureVersionInfoKHR<'a> {
-        pub fn p_version_data(mut self, p_version_data: *const u8) -> Self {
-            self.p_version_data = p_version_data;
+        pub fn version_data(mut self, version_data: *const u8) -> Self {
+            self.p_version_data = version_data;
             self
         }
     }

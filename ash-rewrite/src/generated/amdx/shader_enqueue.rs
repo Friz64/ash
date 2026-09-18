@@ -366,11 +366,11 @@ pub(crate) mod reexport {
         }
     }
     impl<'a> PipelineShaderStageNodeCreateInfoAMDX<'a> {
-        pub fn p_name(mut self, p_name: &'a core::ffi::CStr) -> Self {
-            self.p_name = p_name.as_ptr();
+        pub fn name(mut self, name: &'a core::ffi::CStr) -> Self {
+            self.p_name = name.as_ptr();
             self
         }
-        pub unsafe fn p_name_as_c_str(&self) -> Option<&core::ffi::CStr> {
+        pub unsafe fn name_as_c_str(&self) -> Option<&core::ffi::CStr> {
             if self.p_name.is_null() {
                 None
             } else {

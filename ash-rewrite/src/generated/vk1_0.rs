@@ -2627,14 +2627,14 @@ pub(crate) mod reexport {
         }
     }
     impl<'a> ApplicationInfo<'a> {
-        pub fn p_application_name(
+        pub fn application_name(
             mut self,
-            p_application_name: &'a core::ffi::CStr,
+            application_name: &'a core::ffi::CStr,
         ) -> Self {
-            self.p_application_name = p_application_name.as_ptr();
+            self.p_application_name = application_name.as_ptr();
             self
         }
-        pub unsafe fn p_application_name_as_c_str(&self) -> Option<&core::ffi::CStr> {
+        pub unsafe fn application_name_as_c_str(&self) -> Option<&core::ffi::CStr> {
             if self.p_application_name.is_null() {
                 None
             } else {
@@ -2645,11 +2645,11 @@ pub(crate) mod reexport {
             self.application_version = application_version;
             self
         }
-        pub fn p_engine_name(mut self, p_engine_name: &'a core::ffi::CStr) -> Self {
-            self.p_engine_name = p_engine_name.as_ptr();
+        pub fn engine_name(mut self, engine_name: &'a core::ffi::CStr) -> Self {
+            self.p_engine_name = engine_name.as_ptr();
             self
         }
-        pub unsafe fn p_engine_name_as_c_str(&self) -> Option<&core::ffi::CStr> {
+        pub unsafe fn engine_name_as_c_str(&self) -> Option<&core::ffi::CStr> {
             if self.p_engine_name.is_null() {
                 None
             } else {
@@ -4481,8 +4481,8 @@ pub(crate) mod reexport {
             self.code_size = code_size;
             self
         }
-        pub fn p_code(mut self, p_code: *const u32) -> Self {
-            self.p_code = p_code;
+        pub fn code(mut self, code: *const u32) -> Self {
+            self.p_code = code;
             self
         }
     }
@@ -4780,11 +4780,11 @@ pub(crate) mod reexport {
             self.module = module;
             self
         }
-        pub fn p_name(mut self, p_name: &'a core::ffi::CStr) -> Self {
-            self.p_name = p_name.as_ptr();
+        pub fn name(mut self, name: &'a core::ffi::CStr) -> Self {
+            self.p_name = name.as_ptr();
             self
         }
-        pub unsafe fn p_name_as_c_str(&self) -> Option<&core::ffi::CStr> {
+        pub unsafe fn name_as_c_str(&self) -> Option<&core::ffi::CStr> {
             if self.p_name.is_null() {
                 None
             } else {
@@ -5274,11 +5274,8 @@ pub(crate) mod reexport {
             self.min_sample_shading = min_sample_shading;
             self
         }
-        pub fn p_sample_mask(
-            mut self,
-            p_sample_mask: *const crate::vk::SampleMask,
-        ) -> Self {
-            self.p_sample_mask = p_sample_mask;
+        pub fn sample_mask(mut self, sample_mask: *const crate::vk::SampleMask) -> Self {
+            self.p_sample_mask = sample_mask;
             self
         }
         pub fn alpha_to_coverage_enable(

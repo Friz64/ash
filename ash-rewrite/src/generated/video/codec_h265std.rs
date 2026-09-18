@@ -400,18 +400,18 @@ impl<'a> H265HrdParameters<'a> {
         self.reserved = reserved;
         self
     }
-    pub fn p_sub_layer_hrd_parameters_nal(
+    pub fn sub_layer_hrd_parameters_nal(
         mut self,
-        p_sub_layer_hrd_parameters_nal: *const crate::vk::H265SubLayerHrdParameters,
+        sub_layer_hrd_parameters_nal: *const crate::vk::H265SubLayerHrdParameters,
     ) -> Self {
-        self.p_sub_layer_hrd_parameters_nal = p_sub_layer_hrd_parameters_nal;
+        self.p_sub_layer_hrd_parameters_nal = sub_layer_hrd_parameters_nal;
         self
     }
-    pub fn p_sub_layer_hrd_parameters_vcl(
+    pub fn sub_layer_hrd_parameters_vcl(
         mut self,
-        p_sub_layer_hrd_parameters_vcl: *const crate::vk::H265SubLayerHrdParameters,
+        sub_layer_hrd_parameters_vcl: *const crate::vk::H265SubLayerHrdParameters,
     ) -> Self {
-        self.p_sub_layer_hrd_parameters_vcl = p_sub_layer_hrd_parameters_vcl;
+        self.p_sub_layer_hrd_parameters_vcl = sub_layer_hrd_parameters_vcl;
         self
     }
 }
