@@ -160,11 +160,9 @@ pub(crate) mod reexport {
         pub bit_rate_scale: u8,
         pub cpb_size_scale: u8,
         pub reserved1: u8,
-        pub bit_rate_value_minus1: [u32; crate::vk::STD_VIDEO_H264_CPB_CNT_LIST_SIZE
-            as _],
-        pub cpb_size_value_minus1: [u32; crate::vk::STD_VIDEO_H264_CPB_CNT_LIST_SIZE
-            as _],
-        pub cbr_flag: [u8; crate::vk::STD_VIDEO_H264_CPB_CNT_LIST_SIZE as _],
+        pub bit_rate_value_minus1: [u32; crate::vk::H264_CPB_CNT_LIST_SIZE as _],
+        pub cpb_size_value_minus1: [u32; crate::vk::H264_CPB_CNT_LIST_SIZE as _],
+        pub cbr_flag: [u8; crate::vk::H264_CPB_CNT_LIST_SIZE as _],
         pub initial_cpb_removal_delay_length_minus1: u32,
         pub cpb_removal_delay_length_minus1: u32,
         pub dpb_output_delay_length_minus1: u32,
@@ -206,23 +204,21 @@ pub(crate) mod reexport {
         }
         pub fn bit_rate_value_minus1(
             mut self,
-            bit_rate_value_minus1: [u32; crate::vk::STD_VIDEO_H264_CPB_CNT_LIST_SIZE
-                as _],
+            bit_rate_value_minus1: [u32; crate::vk::H264_CPB_CNT_LIST_SIZE as _],
         ) -> Self {
             self.bit_rate_value_minus1 = bit_rate_value_minus1;
             self
         }
         pub fn cpb_size_value_minus1(
             mut self,
-            cpb_size_value_minus1: [u32; crate::vk::STD_VIDEO_H264_CPB_CNT_LIST_SIZE
-                as _],
+            cpb_size_value_minus1: [u32; crate::vk::H264_CPB_CNT_LIST_SIZE as _],
         ) -> Self {
             self.cpb_size_value_minus1 = cpb_size_value_minus1;
             self
         }
         pub fn cbr_flag(
             mut self,
-            cbr_flag: [u8; crate::vk::STD_VIDEO_H264_CPB_CNT_LIST_SIZE as _],
+            cbr_flag: [u8; crate::vk::H264_CPB_CNT_LIST_SIZE as _],
         ) -> Self {
             self.cbr_flag = cbr_flag;
             self
@@ -538,10 +534,10 @@ pub(crate) mod reexport {
     pub struct H264ScalingLists {
         pub scaling_list_present_mask: u16,
         pub use_default_scaling_matrix_mask: u16,
-        pub scaling_list4x4: [[u8; crate::vk::STD_VIDEO_H264_SCALING_LIST_4X4_NUM_ELEMENTS
-            as _]; crate::vk::STD_VIDEO_H264_SCALING_LIST_4X4_NUM_LISTS as _],
-        pub scaling_list8x8: [[u8; crate::vk::STD_VIDEO_H264_SCALING_LIST_8X8_NUM_ELEMENTS
-            as _]; crate::vk::STD_VIDEO_H264_SCALING_LIST_8X8_NUM_LISTS as _],
+        pub scaling_list4x4: [[u8; crate::vk::H264_SCALING_LIST_4X4_NUM_ELEMENTS
+            as _]; crate::vk::H264_SCALING_LIST_4X4_NUM_LISTS as _],
+        pub scaling_list8x8: [[u8; crate::vk::H264_SCALING_LIST_8X8_NUM_ELEMENTS
+            as _]; crate::vk::H264_SCALING_LIST_8X8_NUM_LISTS as _],
     }
     impl Default for H264ScalingLists {
         fn default() -> Self {
@@ -570,16 +566,16 @@ pub(crate) mod reexport {
         }
         pub fn scaling_list4x4(
             mut self,
-            scaling_list4x4: [[u8; crate::vk::STD_VIDEO_H264_SCALING_LIST_4X4_NUM_ELEMENTS
-                as _]; crate::vk::STD_VIDEO_H264_SCALING_LIST_4X4_NUM_LISTS as _],
+            scaling_list4x4: [[u8; crate::vk::H264_SCALING_LIST_4X4_NUM_ELEMENTS
+                as _]; crate::vk::H264_SCALING_LIST_4X4_NUM_LISTS as _],
         ) -> Self {
             self.scaling_list4x4 = scaling_list4x4;
             self
         }
         pub fn scaling_list8x8(
             mut self,
-            scaling_list8x8: [[u8; crate::vk::STD_VIDEO_H264_SCALING_LIST_8X8_NUM_ELEMENTS
-                as _]; crate::vk::STD_VIDEO_H264_SCALING_LIST_8X8_NUM_LISTS as _],
+            scaling_list8x8: [[u8; crate::vk::H264_SCALING_LIST_8X8_NUM_ELEMENTS
+                as _]; crate::vk::H264_SCALING_LIST_8X8_NUM_LISTS as _],
         ) -> Self {
             self.scaling_list8x8 = scaling_list8x8;
             self
@@ -1213,13 +1209,13 @@ pub(crate) mod reexport {
         pub const PRECODED: Self = Self(6);
         pub const INVALID: Self = Self(0x7FFFFFF);
     }
-    pub const STD_VIDEO_H264_CPB_CNT_LIST_SIZE: u32 = 32;
-    pub const STD_VIDEO_H264_SCALING_LIST_4X4_NUM_LISTS: u32 = 6;
-    pub const STD_VIDEO_H264_SCALING_LIST_4X4_NUM_ELEMENTS: u32 = 16;
-    pub const STD_VIDEO_H264_SCALING_LIST_8X8_NUM_LISTS: u32 = 6;
-    pub const STD_VIDEO_H264_SCALING_LIST_8X8_NUM_ELEMENTS: u32 = 64;
-    pub const STD_VIDEO_H264_MAX_NUM_LIST_REF: u32 = 32;
-    pub const STD_VIDEO_H264_MAX_CHROMA_PLANES: u32 = 2;
-    pub const STD_VIDEO_H264_NO_REFERENCE_PICTURE: u32 = 0xF;
+    pub const H264_CPB_CNT_LIST_SIZE: u32 = 32;
+    pub const H264_SCALING_LIST_4X4_NUM_LISTS: u32 = 6;
+    pub const H264_SCALING_LIST_4X4_NUM_ELEMENTS: u32 = 16;
+    pub const H264_SCALING_LIST_8X8_NUM_LISTS: u32 = 6;
+    pub const H264_SCALING_LIST_8X8_NUM_ELEMENTS: u32 = 64;
+    pub const H264_MAX_NUM_LIST_REF: u32 = 32;
+    pub const H264_MAX_CHROMA_PLANES: u32 = 2;
+    pub const H264_NO_REFERENCE_PICTURE: u32 = 0xF;
 }
 pub use reexport::*;

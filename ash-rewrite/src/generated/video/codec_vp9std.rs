@@ -93,10 +93,9 @@ pub(crate) mod reexport {
         pub loop_filter_level: u8,
         pub loop_filter_sharpness: u8,
         pub update_ref_delta: u8,
-        pub loop_filter_ref_deltas: [i8; crate::vk::STD_VIDEO_VP9_MAX_REF_FRAMES as _],
+        pub loop_filter_ref_deltas: [i8; crate::vk::VP9_MAX_REF_FRAMES as _],
         pub update_mode_delta: u8,
-        pub loop_filter_mode_deltas: [i8; crate::vk::STD_VIDEO_VP9_LOOP_FILTER_ADJUSTMENTS
-            as _],
+        pub loop_filter_mode_deltas: [i8; crate::vk::VP9_LOOP_FILTER_ADJUSTMENTS as _],
     }
     impl Default for VP9LoopFilter {
         fn default() -> Self {
@@ -130,7 +129,7 @@ pub(crate) mod reexport {
         }
         pub fn loop_filter_ref_deltas(
             mut self,
-            loop_filter_ref_deltas: [i8; crate::vk::STD_VIDEO_VP9_MAX_REF_FRAMES as _],
+            loop_filter_ref_deltas: [i8; crate::vk::VP9_MAX_REF_FRAMES as _],
         ) -> Self {
             self.loop_filter_ref_deltas = loop_filter_ref_deltas;
             self
@@ -141,8 +140,7 @@ pub(crate) mod reexport {
         }
         pub fn loop_filter_mode_deltas(
             mut self,
-            loop_filter_mode_deltas: [i8; crate::vk::STD_VIDEO_VP9_LOOP_FILTER_ADJUSTMENTS
-                as _],
+            loop_filter_mode_deltas: [i8; crate::vk::VP9_LOOP_FILTER_ADJUSTMENTS as _],
         ) -> Self {
             self.loop_filter_mode_deltas = loop_filter_mode_deltas;
             self
@@ -206,13 +204,12 @@ pub(crate) mod reexport {
     #[derive(Clone, Copy)]
     pub struct VP9Segmentation {
         pub flags: crate::vk::VP9SegmentationFlags,
-        pub segmentation_tree_probs: [u8; crate::vk::STD_VIDEO_VP9_MAX_SEGMENTATION_TREE_PROBS
+        pub segmentation_tree_probs: [u8; crate::vk::VP9_MAX_SEGMENTATION_TREE_PROBS
             as _],
-        pub segmentation_pred_prob: [u8; crate::vk::STD_VIDEO_VP9_MAX_SEGMENTATION_PRED_PROB
-            as _],
-        pub feature_enabled: [u8; crate::vk::STD_VIDEO_VP9_MAX_SEGMENTS as _],
-        pub feature_data: [[i16; crate::vk::STD_VIDEO_VP9_SEG_LVL_MAX
-            as _]; crate::vk::STD_VIDEO_VP9_MAX_SEGMENTS as _],
+        pub segmentation_pred_prob: [u8; crate::vk::VP9_MAX_SEGMENTATION_PRED_PROB as _],
+        pub feature_enabled: [u8; crate::vk::VP9_MAX_SEGMENTS as _],
+        pub feature_data: [[i16; crate::vk::VP9_SEG_LVL_MAX
+            as _]; crate::vk::VP9_MAX_SEGMENTS as _],
     }
     impl Default for VP9Segmentation {
         fn default() -> Self {
@@ -232,7 +229,7 @@ pub(crate) mod reexport {
         }
         pub fn segmentation_tree_probs(
             mut self,
-            segmentation_tree_probs: [u8; crate::vk::STD_VIDEO_VP9_MAX_SEGMENTATION_TREE_PROBS
+            segmentation_tree_probs: [u8; crate::vk::VP9_MAX_SEGMENTATION_TREE_PROBS
                 as _],
         ) -> Self {
             self.segmentation_tree_probs = segmentation_tree_probs;
@@ -240,23 +237,22 @@ pub(crate) mod reexport {
         }
         pub fn segmentation_pred_prob(
             mut self,
-            segmentation_pred_prob: [u8; crate::vk::STD_VIDEO_VP9_MAX_SEGMENTATION_PRED_PROB
-                as _],
+            segmentation_pred_prob: [u8; crate::vk::VP9_MAX_SEGMENTATION_PRED_PROB as _],
         ) -> Self {
             self.segmentation_pred_prob = segmentation_pred_prob;
             self
         }
         pub fn feature_enabled(
             mut self,
-            feature_enabled: [u8; crate::vk::STD_VIDEO_VP9_MAX_SEGMENTS as _],
+            feature_enabled: [u8; crate::vk::VP9_MAX_SEGMENTS as _],
         ) -> Self {
             self.feature_enabled = feature_enabled;
             self
         }
         pub fn feature_data(
             mut self,
-            feature_data: [[i16; crate::vk::STD_VIDEO_VP9_SEG_LVL_MAX
-                as _]; crate::vk::STD_VIDEO_VP9_MAX_SEGMENTS as _],
+            feature_data: [[i16; crate::vk::VP9_SEG_LVL_MAX
+                as _]; crate::vk::VP9_MAX_SEGMENTS as _],
         ) -> Self {
             self.feature_data = feature_data;
             self
@@ -395,13 +391,13 @@ pub(crate) mod reexport {
         pub const RGB: Self = Self(7);
         pub const INVALID: Self = Self(0x7FFFFFF);
     }
-    pub const STD_VIDEO_VP9_NUM_REF_FRAMES: u32 = 8;
-    pub const STD_VIDEO_VP9_REFS_PER_FRAME: u32 = 3;
-    pub const STD_VIDEO_VP9_MAX_REF_FRAMES: u32 = 4;
-    pub const STD_VIDEO_VP9_LOOP_FILTER_ADJUSTMENTS: u32 = 2;
-    pub const STD_VIDEO_VP9_MAX_SEGMENTS: u32 = 8;
-    pub const STD_VIDEO_VP9_SEG_LVL_MAX: u32 = 4;
-    pub const STD_VIDEO_VP9_MAX_SEGMENTATION_TREE_PROBS: u32 = 7;
-    pub const STD_VIDEO_VP9_MAX_SEGMENTATION_PRED_PROB: u32 = 3;
+    pub const VP9_NUM_REF_FRAMES: u32 = 8;
+    pub const VP9_REFS_PER_FRAME: u32 = 3;
+    pub const VP9_MAX_REF_FRAMES: u32 = 4;
+    pub const VP9_LOOP_FILTER_ADJUSTMENTS: u32 = 2;
+    pub const VP9_MAX_SEGMENTS: u32 = 8;
+    pub const VP9_SEG_LVL_MAX: u32 = 4;
+    pub const VP9_MAX_SEGMENTATION_TREE_PROBS: u32 = 7;
+    pub const VP9_MAX_SEGMENTATION_PRED_PROB: u32 = 3;
 }
 pub use reexport::*;

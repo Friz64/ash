@@ -197,7 +197,7 @@ fn regular_builder(
             method_name += "_ptrs";
         }
 
-        crate::variable_token(&method_name)
+        ctx.variable_token_from_original(&method_name)
     };
 
     let mut skip_override = None;

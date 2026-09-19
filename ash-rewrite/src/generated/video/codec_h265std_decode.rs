@@ -63,12 +63,11 @@ pub(crate) mod reexport {
         pub pic_order_cnt_val: i32,
         pub num_bits_for_st_ref_pic_set_in_slice: u16,
         pub reserved: u16,
-        pub ref_pic_set_st_curr_before: [u8; crate::vk::STD_VIDEO_DECODE_H265_REF_PIC_SET_LIST_SIZE
+        pub ref_pic_set_st_curr_before: [u8; crate::vk::DECODE_H265_REF_PIC_SET_LIST_SIZE
             as _],
-        pub ref_pic_set_st_curr_after: [u8; crate::vk::STD_VIDEO_DECODE_H265_REF_PIC_SET_LIST_SIZE
+        pub ref_pic_set_st_curr_after: [u8; crate::vk::DECODE_H265_REF_PIC_SET_LIST_SIZE
             as _],
-        pub ref_pic_set_lt_curr: [u8; crate::vk::STD_VIDEO_DECODE_H265_REF_PIC_SET_LIST_SIZE
-            as _],
+        pub ref_pic_set_lt_curr: [u8; crate::vk::DECODE_H265_REF_PIC_SET_LIST_SIZE as _],
     }
     impl Default for DecodeH265PictureInfo {
         fn default() -> Self {
@@ -131,7 +130,7 @@ pub(crate) mod reexport {
         }
         pub fn ref_pic_set_st_curr_before(
             mut self,
-            ref_pic_set_st_curr_before: [u8; crate::vk::STD_VIDEO_DECODE_H265_REF_PIC_SET_LIST_SIZE
+            ref_pic_set_st_curr_before: [u8; crate::vk::DECODE_H265_REF_PIC_SET_LIST_SIZE
                 as _],
         ) -> Self {
             self.ref_pic_set_st_curr_before = ref_pic_set_st_curr_before;
@@ -139,7 +138,7 @@ pub(crate) mod reexport {
         }
         pub fn ref_pic_set_st_curr_after(
             mut self,
-            ref_pic_set_st_curr_after: [u8; crate::vk::STD_VIDEO_DECODE_H265_REF_PIC_SET_LIST_SIZE
+            ref_pic_set_st_curr_after: [u8; crate::vk::DECODE_H265_REF_PIC_SET_LIST_SIZE
                 as _],
         ) -> Self {
             self.ref_pic_set_st_curr_after = ref_pic_set_st_curr_after;
@@ -147,8 +146,7 @@ pub(crate) mod reexport {
         }
         pub fn ref_pic_set_lt_curr(
             mut self,
-            ref_pic_set_lt_curr: [u8; crate::vk::STD_VIDEO_DECODE_H265_REF_PIC_SET_LIST_SIZE
-                as _],
+            ref_pic_set_lt_curr: [u8; crate::vk::DECODE_H265_REF_PIC_SET_LIST_SIZE as _],
         ) -> Self {
             self.ref_pic_set_lt_curr = ref_pic_set_lt_curr;
             self
@@ -198,7 +196,7 @@ pub(crate) mod reexport {
             self
         }
     }
-    pub const STD_VIDEO_DECODE_H265_REF_PIC_SET_LIST_SIZE: u32 = 8;
+    pub const DECODE_H265_REF_PIC_SET_LIST_SIZE: u32 = 8;
     pub const STD_VULKAN_VIDEO_CODEC_H265_DECODE_API_VERSION_1_0_0: u32 = crate::vk::make_video_std_version(
         1,
         0,
