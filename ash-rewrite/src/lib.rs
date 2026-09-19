@@ -33,7 +33,7 @@ pub trait Handle: Sized {
     /// # Example
     ///
     /// ```
-    /// # use ash::vk::{Handle, Instance};
+    /// # use ash_rewrite::vk::{Handle, Instance};
     /// let instance = Instance::null();
     /// assert!(instance.is_null());
     /// ```
@@ -65,6 +65,16 @@ impl<T> RawMutPtr<T> for Option<&mut T> {
             Some(inner) => inner,
             None => ptr::null_mut(),
         }
+    }
+}
+
+#[cfg(feature = "std")]
+impl std::error::Error for vk::Result {}
+
+impl core::fmt::Display for vk::Result {
+    fn fmt(&self, f: &mut core::fmt::Formatter<'_>) -> core::fmt::Result {
+        // TODO: don't be lazy and bring back the old functionality in the generator
+        core::fmt::Debug::fmt(self, f)
     }
 }
 
