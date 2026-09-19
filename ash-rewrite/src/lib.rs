@@ -186,7 +186,7 @@ pub(crate) fn wrap_c_str_slice_until_nul(
 }
 
 /// Iterates through the pointer chain. Includes the item that is passed into the function. Stops at
-/// the last [`BaseOutStructure`] that has a null [`BaseOutStructure::p_next`] field.
+/// the last [`vk::BaseOutStructure`] that has a null [`vk::BaseOutStructure::p_next`] field.
 pub(crate) unsafe fn ptr_chain_iter<'a, T: TaggedStructure<'a>>(
     ptr: &mut T,
 ) -> impl Iterator<Item = *mut vk::BaseOutStructure<'_>> {
@@ -204,8 +204,8 @@ pub(crate) unsafe fn ptr_chain_iter<'a, T: TaggedStructure<'a>>(
 
 /// # Safety
 ///
-/// Structures implementing this trait are layout-compatible with [`BaseInStructure`] and
-/// [`BaseOutStructure`]. Such structures have an `s_type` field indicating its type, which must
+/// Structures implementing this trait are layout-compatible with [`vk::BaseInStructure`] and
+/// [`vk::BaseOutStructure`]. Such structures have an `s_type` field indicating its type, which must
 /// always match the value of [`TaggedStructure::STRUCTURE_TYPE`].
 pub unsafe trait TaggedStructure<'a>: Sized {
     const STRUCTURE_TYPE: StructureType;
@@ -242,9 +242,9 @@ pub unsafe trait TaggedStructure<'a>: Sized {
     /// then the chain will look like `A -> D -> E -> B -> C`.
     ///
     /// # Safety
-    /// This function will walk the [`BaseOutStructure::p_next`] chain of `next`, requiring
+    /// This function will walk the [`vk::BaseOutStructure::p_next`] chain of `next`, requiring
     /// all non-`NULL` pointers to point to a valid Vulkan structure starting with the
-    /// [`BaseOutStructure`] layout.
+    /// [`vk::BaseOutStructure`] layout.
     ///
     /// The last struct in this chain (i.e. the one where `p_next` is `NULL`) must be writable
     /// memory, as its `p_next` field will be updated with the value of `self.p_next`.
@@ -275,7 +275,7 @@ pub unsafe trait TaggedStructure<'a>: Sized {
 /// # Safety
 ///
 /// Similar to [`TaggedStructure`], all `unsafe` implementers of this trait must guarantee that
-/// their structure is layout-compatible [`BaseInStructure`] and [`BaseOutStructure`].
+/// their structure is layout-compatible [`vk::BaseInStructure`] and [`vk::BaseOutStructure`].
 ///
 /// [1]: https://registry.khronos.org/vulkan/specs/latest/styleguide.html#extensions-interactions
 pub unsafe trait Extends<B> {}
