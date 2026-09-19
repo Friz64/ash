@@ -2,6 +2,22 @@
 #![cfg_attr(rustfmt, rustfmt_skip)]
 //![Vulkan Manual Page](https://docs.vulkan.org/refpages/latest/refpages/source/VK_ANDROID_external_format_resolve.html) · Extension `VK_ANDROID_external_format_resolve`
 #![doc(alias = "VK_ANDROID_external_format_resolve")]
+///Provided by [`android::external_format_resolve`](crate::android::external_format_resolve)
+impl crate::vk::StructureType {
+    pub const PHYSICAL_DEVICE_EXTERNAL_FORMAT_RESOLVE_FEATURES_ANDROID: Self = Self(
+        1000468000,
+    );
+    pub const PHYSICAL_DEVICE_EXTERNAL_FORMAT_RESOLVE_PROPERTIES_ANDROID: Self = Self(
+        1000468001,
+    );
+    pub const ANDROID_HARDWARE_BUFFER_FORMAT_RESOLVE_PROPERTIES_ANDROID: Self = Self(
+        1000468002,
+    );
+}
+///Provided by [`android::external_format_resolve`](crate::android::external_format_resolve)
+impl crate::vk::ResolveModeFlagBits {
+    pub const EXTERNAL_FORMAT_DOWNSAMPLE_ANDROID: Self = Self(1 << 4);
+}
 pub const SPEC_VERSION: u32 = 1;
 pub const NAME: &core::ffi::CStr = c"VK_ANDROID_external_format_resolve";
 pub(crate) mod reexport {
@@ -121,22 +137,6 @@ pub(crate) mod reexport {
             self.color_attachment_format = color_attachment_format;
             self
         }
-    }
-    ///Provided by [`android::external_format_resolve`](crate::android::external_format_resolve)
-    impl crate::vk::StructureType {
-        pub const PHYSICAL_DEVICE_EXTERNAL_FORMAT_RESOLVE_FEATURES_ANDROID: Self = Self(
-            1000468000,
-        );
-        pub const PHYSICAL_DEVICE_EXTERNAL_FORMAT_RESOLVE_PROPERTIES_ANDROID: Self = Self(
-            1000468001,
-        );
-        pub const ANDROID_HARDWARE_BUFFER_FORMAT_RESOLVE_PROPERTIES_ANDROID: Self = Self(
-            1000468002,
-        );
-    }
-    ///Provided by [`android::external_format_resolve`](crate::android::external_format_resolve)
-    impl crate::vk::ResolveModeFlagBits {
-        pub const EXTERNAL_FORMAT_DOWNSAMPLE_ANDROID: Self = Self(1 << 4);
     }
 }
 pub use reexport::*;

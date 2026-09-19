@@ -2,6 +2,25 @@
 #![cfg_attr(rustfmt, rustfmt_skip)]
 //![Vulkan Manual Page](https://docs.vulkan.org/refpages/latest/refpages/source/VK_KHR_driver_properties.html) · Extension `VK_KHR_driver_properties`
 #![doc(alias = "VK_KHR_driver_properties")]
+///Provided by [`khr::driver_properties`](crate::khr::driver_properties)
+impl crate::vk::StructureType {
+    pub const PHYSICAL_DEVICE_DRIVER_PROPERTIES_KHR: Self = Self::PHYSICAL_DEVICE_DRIVER_PROPERTIES;
+}
+///Provided by [`khr::driver_properties`](crate::khr::driver_properties)
+impl crate::vk::DriverId {
+    pub const AMD_PROPRIETARY_KHR: Self = Self::AMD_PROPRIETARY;
+    pub const AMD_OPEN_SOURCE_KHR: Self = Self::AMD_OPEN_SOURCE;
+    pub const MESA_RADV_KHR: Self = Self::MESA_RADV;
+    pub const NVIDIA_PROPRIETARY_KHR: Self = Self::NVIDIA_PROPRIETARY;
+    pub const INTEL_PROPRIETARY_WINDOWS_KHR: Self = Self::INTEL_PROPRIETARY_WINDOWS;
+    pub const INTEL_OPEN_SOURCE_MESA_KHR: Self = Self::INTEL_OPEN_SOURCE_MESA;
+    pub const IMAGINATION_PROPRIETARY_KHR: Self = Self::IMAGINATION_PROPRIETARY;
+    pub const QUALCOMM_PROPRIETARY_KHR: Self = Self::QUALCOMM_PROPRIETARY;
+    pub const ARM_PROPRIETARY_KHR: Self = Self::ARM_PROPRIETARY;
+    pub const GOOGLE_SWIFTSHADER_KHR: Self = Self::GOOGLE_SWIFTSHADER;
+    pub const GGP_PROPRIETARY_KHR: Self = Self::GGP_PROPRIETARY;
+    pub const BROADCOM_PROPRIETARY_KHR: Self = Self::BROADCOM_PROPRIETARY;
+}
 pub const SPEC_VERSION: u32 = 1;
 pub const NAME: &core::ffi::CStr = c"VK_KHR_driver_properties";
 pub(crate) mod reexport {
@@ -9,25 +28,6 @@ pub(crate) mod reexport {
     pub type PhysicalDeviceDriverPropertiesKHR<'a> = crate::vk::PhysicalDeviceDriverProperties<
         'a,
     >;
-    ///Provided by [`khr::driver_properties`](crate::khr::driver_properties)
-    impl crate::vk::StructureType {
-        pub const PHYSICAL_DEVICE_DRIVER_PROPERTIES_KHR: Self = Self::PHYSICAL_DEVICE_DRIVER_PROPERTIES;
-    }
-    ///Provided by [`khr::driver_properties`](crate::khr::driver_properties)
-    impl crate::vk::DriverId {
-        pub const AMD_PROPRIETARY_KHR: Self = Self::AMD_PROPRIETARY;
-        pub const AMD_OPEN_SOURCE_KHR: Self = Self::AMD_OPEN_SOURCE;
-        pub const MESA_RADV_KHR: Self = Self::MESA_RADV;
-        pub const NVIDIA_PROPRIETARY_KHR: Self = Self::NVIDIA_PROPRIETARY;
-        pub const INTEL_PROPRIETARY_WINDOWS_KHR: Self = Self::INTEL_PROPRIETARY_WINDOWS;
-        pub const INTEL_OPEN_SOURCE_MESA_KHR: Self = Self::INTEL_OPEN_SOURCE_MESA;
-        pub const IMAGINATION_PROPRIETARY_KHR: Self = Self::IMAGINATION_PROPRIETARY;
-        pub const QUALCOMM_PROPRIETARY_KHR: Self = Self::QUALCOMM_PROPRIETARY;
-        pub const ARM_PROPRIETARY_KHR: Self = Self::ARM_PROPRIETARY;
-        pub const GOOGLE_SWIFTSHADER_KHR: Self = Self::GOOGLE_SWIFTSHADER;
-        pub const GGP_PROPRIETARY_KHR: Self = Self::GGP_PROPRIETARY;
-        pub const BROADCOM_PROPRIETARY_KHR: Self = Self::BROADCOM_PROPRIETARY;
-    }
     pub type DriverIdKHR = crate::vk::DriverId;
 }
 pub use reexport::*;

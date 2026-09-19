@@ -2,8 +2,44 @@
 #![cfg_attr(rustfmt, rustfmt_skip)]
 //![Vulkan Manual Page](https://docs.vulkan.org/refpages/latest/refpages/source/VK_EXT_shader_object.html) · Extension `VK_EXT_shader_object`
 #![doc(alias = "VK_EXT_shader_object")]
-pub const SPEC_VERSION: u32 = 1;
-pub const NAME: &core::ffi::CStr = c"VK_EXT_shader_object";
+///Provided by [`ext::shader_object`](crate::ext::shader_object)
+impl crate::vk::StructureType {
+    pub const PHYSICAL_DEVICE_SHADER_OBJECT_FEATURES_EXT: Self = Self(1000482000);
+    pub const PHYSICAL_DEVICE_SHADER_OBJECT_PROPERTIES_EXT: Self = Self(1000482001);
+    pub const SHADER_CREATE_INFO_EXT: Self = Self(1000482002);
+    pub const SHADER_REQUIRED_SUBGROUP_SIZE_CREATE_INFO_EXT: Self = Self::PIPELINE_SHADER_STAGE_REQUIRED_SUBGROUP_SIZE_CREATE_INFO;
+}
+///Provided by [`ext::shader_object`](crate::ext::shader_object)
+impl crate::vk::Result {
+    pub const INCOMPATIBLE_SHADER_BINARY_EXT: Self = Self(1000482000);
+}
+///Provided by [`ext::shader_object`](crate::ext::shader_object)
+impl crate::vk::ObjectType {
+    pub const SHADER_EXT: Self = Self(1000482000);
+}
+///Provided by [`ext::shader_object`](crate::ext::shader_object)
+impl ShaderCodeTypeEXT {
+    #[inline]
+    pub const fn from_raw(x: i32) -> Self {
+        Self(x)
+    }
+    #[inline]
+    pub const fn as_raw(self) -> i32 {
+        self.0
+    }
+    pub const BINARY_EXT: Self = Self(0);
+    pub const SPIRV_EXT: Self = Self(1);
+}
+///Provided by [`ext::shader_object`](crate::ext::shader_object)
+impl ShaderCreateFlagBitsEXT {
+    pub const LINK_STAGE_EXT: Self = Self(1 << 0);
+    pub const ALLOW_VARYING_SUBGROUP_SIZE_EXT: Self = Self(1 << 1);
+    pub const REQUIRE_FULL_SUBGROUPS_EXT: Self = Self(1 << 2);
+    pub const NO_TASK_SHADER_EXT: Self = Self(1 << 3);
+    pub const DISPATCH_BASE_EXT: Self = Self(1 << 4);
+    pub const FRAGMENT_SHADING_RATE_ATTACHMENT_EXT: Self = Self(1 << 5);
+    pub const FRAGMENT_DENSITY_MAP_ATTACHMENT_EXT: Self = Self(1 << 6);
+}
 #[derive(Clone)]
 pub struct DeviceFn {
     pub cmd_set_patch_control_points_ext: crate::vk::PFN_vkCmdSetPatchControlPointsEXT,
@@ -889,6 +925,8 @@ impl Device {
         self.handle
     }
 }
+pub const SPEC_VERSION: u32 = 1;
+pub const NAME: &core::ffi::CStr = c"VK_EXT_shader_object";
 pub(crate) mod reexport {
     #[repr(C)]
     #[derive(Clone, Copy)]
@@ -1064,38 +1102,10 @@ pub(crate) mod reexport {
     pub type ShaderRequiredSubgroupSizeCreateInfoEXT<'a> = crate::vk::PipelineShaderStageRequiredSubgroupSizeCreateInfo<
         'a,
     >;
-    ///Provided by [`ext::shader_object`](crate::ext::shader_object)
-    impl crate::vk::StructureType {
-        pub const PHYSICAL_DEVICE_SHADER_OBJECT_FEATURES_EXT: Self = Self(1000482000);
-        pub const PHYSICAL_DEVICE_SHADER_OBJECT_PROPERTIES_EXT: Self = Self(1000482001);
-        pub const SHADER_CREATE_INFO_EXT: Self = Self(1000482002);
-        pub const SHADER_REQUIRED_SUBGROUP_SIZE_CREATE_INFO_EXT: Self = Self::PIPELINE_SHADER_STAGE_REQUIRED_SUBGROUP_SIZE_CREATE_INFO;
-    }
-    ///Provided by [`ext::shader_object`](crate::ext::shader_object)
-    impl crate::vk::Result {
-        pub const INCOMPATIBLE_SHADER_BINARY_EXT: Self = Self(1000482000);
-    }
-    ///Provided by [`ext::shader_object`](crate::ext::shader_object)
-    impl crate::vk::ObjectType {
-        pub const SHADER_EXT: Self = Self(1000482000);
-    }
     #[repr(transparent)]
     #[derive(Clone, Copy, PartialEq, Eq, PartialOrd, Ord, Hash, Default)]
     #[derive(Debug)]
     pub struct ShaderCodeTypeEXT(pub(crate) i32);
-    ///Provided by [`ext::shader_object`](crate::ext::shader_object)
-    impl ShaderCodeTypeEXT {
-        #[inline]
-        pub const fn from_raw(x: i32) -> Self {
-            Self(x)
-        }
-        #[inline]
-        pub const fn as_raw(self) -> i32 {
-            self.0
-        }
-        pub const BINARY_EXT: Self = Self(0);
-        pub const SPIRV_EXT: Self = Self(1);
-    }
     #[repr(transparent)]
     #[derive(Clone, Copy)]
     pub struct ShaderCreateFlagsEXT(u32);
@@ -1203,16 +1213,6 @@ pub(crate) mod reexport {
     #[repr(transparent)]
     #[derive(Clone, Copy, Default)]
     pub struct ShaderCreateFlagBitsEXT(pub(crate) u32);
-    ///Provided by [`ext::shader_object`](crate::ext::shader_object)
-    impl ShaderCreateFlagBitsEXT {
-        pub const LINK_STAGE_EXT: Self = Self(1 << 0);
-        pub const ALLOW_VARYING_SUBGROUP_SIZE_EXT: Self = Self(1 << 1);
-        pub const REQUIRE_FULL_SUBGROUPS_EXT: Self = Self(1 << 2);
-        pub const NO_TASK_SHADER_EXT: Self = Self(1 << 3);
-        pub const DISPATCH_BASE_EXT: Self = Self(1 << 4);
-        pub const FRAGMENT_SHADING_RATE_ATTACHMENT_EXT: Self = Self(1 << 5);
-        pub const FRAGMENT_DENSITY_MAP_ATTACHMENT_EXT: Self = Self(1 << 6);
-    }
     #[repr(transparent)]
     #[derive(Eq, PartialEq, Ord, PartialOrd, Clone, Copy, Hash, Default)]
     pub struct ShaderEXT(u64);

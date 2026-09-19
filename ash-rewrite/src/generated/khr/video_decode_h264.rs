@@ -2,6 +2,27 @@
 #![cfg_attr(rustfmt, rustfmt_skip)]
 //![Vulkan Manual Page](https://docs.vulkan.org/refpages/latest/refpages/source/VK_KHR_video_decode_h264.html) · Extension `VK_KHR_video_decode_h264`
 #![doc(alias = "VK_KHR_video_decode_h264")]
+///Provided by [`khr::video_decode_h264`](crate::khr::video_decode_h264)
+impl crate::vk::StructureType {
+    pub const VIDEO_DECODE_H264_CAPABILITIES_KHR: Self = Self(1000040000);
+    pub const VIDEO_DECODE_H264_PICTURE_INFO_KHR: Self = Self(1000040001);
+    pub const VIDEO_DECODE_H264_PROFILE_INFO_KHR: Self = Self(1000040003);
+    pub const VIDEO_DECODE_H264_SESSION_PARAMETERS_CREATE_INFO_KHR: Self = Self(
+        1000040004,
+    );
+    pub const VIDEO_DECODE_H264_SESSION_PARAMETERS_ADD_INFO_KHR: Self = Self(1000040005);
+    pub const VIDEO_DECODE_H264_DPB_SLOT_INFO_KHR: Self = Self(1000040006);
+}
+///Provided by [`khr::video_decode_h264`](crate::khr::video_decode_h264)
+impl crate::vk::VideoCodecOperationFlagBitsKHR {
+    pub const DECODE_H264_KHR: Self = Self(1 << 0);
+}
+///Provided by [`khr::video_decode_h264`](crate::khr::video_decode_h264)
+impl VideoDecodeH264PictureLayoutFlagBitsKHR {
+    pub const PROGRESSIVE_KHR: Self = Self(0);
+    pub const INTERLACED_INTERLEAVED_LINES_KHR: Self = Self(1 << 0);
+    pub const INTERLACED_SEPARATE_PLANES_KHR: Self = Self(1 << 1);
+}
 pub const SPEC_VERSION: u32 = 9;
 pub const NAME: &core::ffi::CStr = c"VK_KHR_video_decode_h264";
 pub(crate) mod reexport {
@@ -256,23 +277,6 @@ pub(crate) mod reexport {
             self
         }
     }
-    ///Provided by [`khr::video_decode_h264`](crate::khr::video_decode_h264)
-    impl crate::vk::StructureType {
-        pub const VIDEO_DECODE_H264_CAPABILITIES_KHR: Self = Self(1000040000);
-        pub const VIDEO_DECODE_H264_PICTURE_INFO_KHR: Self = Self(1000040001);
-        pub const VIDEO_DECODE_H264_PROFILE_INFO_KHR: Self = Self(1000040003);
-        pub const VIDEO_DECODE_H264_SESSION_PARAMETERS_CREATE_INFO_KHR: Self = Self(
-            1000040004,
-        );
-        pub const VIDEO_DECODE_H264_SESSION_PARAMETERS_ADD_INFO_KHR: Self = Self(
-            1000040005,
-        );
-        pub const VIDEO_DECODE_H264_DPB_SLOT_INFO_KHR: Self = Self(1000040006);
-    }
-    ///Provided by [`khr::video_decode_h264`](crate::khr::video_decode_h264)
-    impl crate::vk::VideoCodecOperationFlagBitsKHR {
-        pub const DECODE_H264_KHR: Self = Self(1 << 0);
-    }
     #[repr(transparent)]
     #[derive(Clone, Copy)]
     pub struct VideoDecodeH264PictureLayoutFlagsKHR(u32);
@@ -352,11 +356,5 @@ pub(crate) mod reexport {
     #[repr(transparent)]
     #[derive(Clone, Copy, Default)]
     pub struct VideoDecodeH264PictureLayoutFlagBitsKHR(pub(crate) u32);
-    ///Provided by [`khr::video_decode_h264`](crate::khr::video_decode_h264)
-    impl VideoDecodeH264PictureLayoutFlagBitsKHR {
-        pub const PROGRESSIVE_KHR: Self = Self(0);
-        pub const INTERLACED_INTERLEAVED_LINES_KHR: Self = Self(1 << 0);
-        pub const INTERLACED_SEPARATE_PLANES_KHR: Self = Self(1 << 1);
-    }
 }
 pub use reexport::*;

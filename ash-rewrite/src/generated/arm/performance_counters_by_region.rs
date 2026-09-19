@@ -2,8 +2,20 @@
 #![cfg_attr(rustfmt, rustfmt_skip)]
 //![Vulkan Manual Page](https://docs.vulkan.org/refpages/latest/refpages/source/VK_ARM_performance_counters_by_region.html) · Extension `VK_ARM_performance_counters_by_region`
 #![doc(alias = "VK_ARM_performance_counters_by_region")]
-pub const SPEC_VERSION: u32 = 1;
-pub const NAME: &core::ffi::CStr = c"VK_ARM_performance_counters_by_region";
+///Provided by [`arm::performance_counters_by_region`](crate::arm::performance_counters_by_region)
+impl crate::vk::StructureType {
+    pub const PHYSICAL_DEVICE_PERFORMANCE_COUNTERS_BY_REGION_FEATURES_ARM: Self = Self(
+        1000605000,
+    );
+    pub const PHYSICAL_DEVICE_PERFORMANCE_COUNTERS_BY_REGION_PROPERTIES_ARM: Self = Self(
+        1000605001,
+    );
+    pub const PERFORMANCE_COUNTER_ARM: Self = Self(1000605002);
+    pub const PERFORMANCE_COUNTER_DESCRIPTION_ARM: Self = Self(1000605003);
+    pub const RENDER_PASS_PERFORMANCE_COUNTERS_BY_REGION_BEGIN_INFO_ARM: Self = Self(
+        1000605004,
+    );
+}
 #[derive(Clone)]
 pub struct InstanceFn {
     pub enumerate_physical_device_queue_family_performance_counters_by_region_arm: crate::vk::PFN_vkEnumeratePhysicalDeviceQueueFamilyPerformanceCountersByRegionARM,
@@ -66,6 +78,8 @@ impl Instance {
         self.handle
     }
 }
+pub const SPEC_VERSION: u32 = 1;
+pub const NAME: &core::ffi::CStr = c"VK_ARM_performance_counters_by_region";
 pub(crate) mod reexport {
     #[repr(C)]
     #[derive(Clone, Copy)]
@@ -287,20 +301,6 @@ pub(crate) mod reexport {
             self.p_counter_indices = counter_indices.as_mut_ptr();
             self
         }
-    }
-    ///Provided by [`arm::performance_counters_by_region`](crate::arm::performance_counters_by_region)
-    impl crate::vk::StructureType {
-        pub const PHYSICAL_DEVICE_PERFORMANCE_COUNTERS_BY_REGION_FEATURES_ARM: Self = Self(
-            1000605000,
-        );
-        pub const PHYSICAL_DEVICE_PERFORMANCE_COUNTERS_BY_REGION_PROPERTIES_ARM: Self = Self(
-            1000605001,
-        );
-        pub const PERFORMANCE_COUNTER_ARM: Self = Self(1000605002);
-        pub const PERFORMANCE_COUNTER_DESCRIPTION_ARM: Self = Self(1000605003);
-        pub const RENDER_PASS_PERFORMANCE_COUNTERS_BY_REGION_BEGIN_INFO_ARM: Self = Self(
-            1000605004,
-        );
     }
     #[repr(transparent)]
     #[derive(Clone, Copy)]

@@ -2,8 +2,27 @@
 #![cfg_attr(rustfmt, rustfmt_skip)]
 //![Vulkan Manual Page](https://docs.vulkan.org/refpages/latest/refpages/source/VK_QCOM_queue_perf_hint.html) · Extension `VK_QCOM_queue_perf_hint`
 #![doc(alias = "VK_QCOM_queue_perf_hint")]
-pub const SPEC_VERSION: u32 = 1;
-pub const NAME: &core::ffi::CStr = c"VK_QCOM_queue_perf_hint";
+///Provided by [`qcom::queue_perf_hint`](crate::qcom::queue_perf_hint)
+impl crate::vk::StructureType {
+    pub const PERF_HINT_INFO_QCOM: Self = Self(1000302000);
+    pub const PHYSICAL_DEVICE_QUEUE_PERF_HINT_FEATURES_QCOM: Self = Self(1000302001);
+    pub const PHYSICAL_DEVICE_QUEUE_PERF_HINT_PROPERTIES_QCOM: Self = Self(1000302002);
+}
+///Provided by [`qcom::queue_perf_hint`](crate::qcom::queue_perf_hint)
+impl PerfHintTypeQCOM {
+    #[inline]
+    pub const fn from_raw(x: i32) -> Self {
+        Self(x)
+    }
+    #[inline]
+    pub const fn as_raw(self) -> i32 {
+        self.0
+    }
+    pub const DEFAULT_QCOM: Self = Self(0);
+    pub const FREQUENCY_MIN_QCOM: Self = Self(1);
+    pub const FREQUENCY_MAX_QCOM: Self = Self(2);
+    pub const FREQUENCY_SCALED_QCOM: Self = Self(3);
+}
 #[derive(Clone)]
 pub struct DeviceFn {
     pub queue_set_perf_hint_qcom: crate::vk::PFN_vkQueueSetPerfHintQCOM,
@@ -59,6 +78,8 @@ impl Device {
         self.handle
     }
 }
+pub const SPEC_VERSION: u32 = 1;
+pub const NAME: &core::ffi::CStr = c"VK_QCOM_queue_perf_hint";
 pub(crate) mod reexport {
     #[repr(C)]
     #[derive(Clone, Copy)]
@@ -158,33 +179,10 @@ pub(crate) mod reexport {
             self
         }
     }
-    ///Provided by [`qcom::queue_perf_hint`](crate::qcom::queue_perf_hint)
-    impl crate::vk::StructureType {
-        pub const PERF_HINT_INFO_QCOM: Self = Self(1000302000);
-        pub const PHYSICAL_DEVICE_QUEUE_PERF_HINT_FEATURES_QCOM: Self = Self(1000302001);
-        pub const PHYSICAL_DEVICE_QUEUE_PERF_HINT_PROPERTIES_QCOM: Self = Self(
-            1000302002,
-        );
-    }
     #[repr(transparent)]
     #[derive(Clone, Copy, PartialEq, Eq, PartialOrd, Ord, Hash, Default)]
     #[derive(Debug)]
     pub struct PerfHintTypeQCOM(pub(crate) i32);
-    ///Provided by [`qcom::queue_perf_hint`](crate::qcom::queue_perf_hint)
-    impl PerfHintTypeQCOM {
-        #[inline]
-        pub const fn from_raw(x: i32) -> Self {
-            Self(x)
-        }
-        #[inline]
-        pub const fn as_raw(self) -> i32 {
-            self.0
-        }
-        pub const DEFAULT_QCOM: Self = Self(0);
-        pub const FREQUENCY_MIN_QCOM: Self = Self(1);
-        pub const FREQUENCY_MAX_QCOM: Self = Self(2);
-        pub const FREQUENCY_SCALED_QCOM: Self = Self(3);
-    }
     pub type PFN_vkQueueSetPerfHintQCOM = unsafe extern "system" fn(
         queue: crate::vk::Queue,
         p_perf_hint_info: *const crate::vk::PerfHintInfoQCOM<'_>,

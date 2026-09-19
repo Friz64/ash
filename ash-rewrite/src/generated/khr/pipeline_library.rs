@@ -2,6 +2,14 @@
 #![cfg_attr(rustfmt, rustfmt_skip)]
 //![Vulkan Manual Page](https://docs.vulkan.org/refpages/latest/refpages/source/VK_KHR_pipeline_library.html) · Extension `VK_KHR_pipeline_library`
 #![doc(alias = "VK_KHR_pipeline_library")]
+///Provided by [`khr::pipeline_library`](crate::khr::pipeline_library)
+impl crate::vk::StructureType {
+    pub const PIPELINE_LIBRARY_CREATE_INFO_KHR: Self = Self(1000290000);
+}
+///Provided by [`khr::pipeline_library`](crate::khr::pipeline_library)
+impl crate::vk::PipelineCreateFlagBits {
+    pub const LIBRARY_KHR: Self = Self(1 << 11);
+}
 pub const SPEC_VERSION: u32 = 1;
 pub const NAME: &core::ffi::CStr = c"VK_KHR_pipeline_library";
 pub(crate) mod reexport {
@@ -36,14 +44,6 @@ pub(crate) mod reexport {
             self.p_libraries = libraries.as_ptr();
             self
         }
-    }
-    ///Provided by [`khr::pipeline_library`](crate::khr::pipeline_library)
-    impl crate::vk::StructureType {
-        pub const PIPELINE_LIBRARY_CREATE_INFO_KHR: Self = Self(1000290000);
-    }
-    ///Provided by [`khr::pipeline_library`](crate::khr::pipeline_library)
-    impl crate::vk::PipelineCreateFlagBits {
-        pub const LIBRARY_KHR: Self = Self(1 << 11);
     }
 }
 pub use reexport::*;

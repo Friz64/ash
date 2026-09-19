@@ -2,6 +2,29 @@
 #![cfg_attr(rustfmt, rustfmt_skip)]
 //![Vulkan Manual Page](https://docs.vulkan.org/refpages/latest/refpages/source/VK_KHR_maintenance11.html) · Extension `VK_KHR_maintenance11`
 #![doc(alias = "VK_KHR_maintenance11")]
+///Provided by [`khr::maintenance11`](crate::khr::maintenance11)
+impl crate::vk::StructureType {
+    pub const PHYSICAL_DEVICE_MAINTENANCE_11_FEATURES_KHR: Self = Self(1000657000);
+    pub const QUEUE_FAMILY_OPTIMAL_IMAGE_TRANSFER_GRANULARITY_PROPERTIES_KHR: Self = Self(
+        1000657001,
+    );
+}
+///Provided by [`khr::maintenance11`](crate::khr::maintenance11)
+impl crate::vk::PipelineLayoutCreateFlagBits {
+    pub const NO_TASK_SHADER_KHR: Self = Self(1 << 2);
+}
+///Provided by [`khr::maintenance11`](crate::khr::maintenance11)
+impl crate::vk::ImageCreateFlagBits {
+    pub const ALIAS_SINGLE_LAYER_DESCRIPTOR_KHR: Self = Self(1 << 22);
+}
+///Provided by [`khr::maintenance11`](crate::khr::maintenance11)
+impl crate::vk::ImageCreateFlagBits2KHR {
+    pub const ALIAS_SINGLE_LAYER_DESCRIPTOR_KHR: Self = Self(1 << 22);
+}
+///Provided by [`khr::maintenance11`](crate::khr::maintenance11)
+impl crate::vk::ShaderCreateFlagBitsEXT {
+    pub const INDEPENDENT_SETS_KHR: Self = Self(1 << 18);
+}
 pub const SPEC_VERSION: u32 = 1;
 pub const NAME: &core::ffi::CStr = c"VK_KHR_maintenance11";
 pub(crate) mod reexport {
@@ -69,29 +92,6 @@ pub(crate) mod reexport {
             self.optimal_image_transfer_granularity = optimal_image_transfer_granularity;
             self
         }
-    }
-    ///Provided by [`khr::maintenance11`](crate::khr::maintenance11)
-    impl crate::vk::StructureType {
-        pub const PHYSICAL_DEVICE_MAINTENANCE_11_FEATURES_KHR: Self = Self(1000657000);
-        pub const QUEUE_FAMILY_OPTIMAL_IMAGE_TRANSFER_GRANULARITY_PROPERTIES_KHR: Self = Self(
-            1000657001,
-        );
-    }
-    ///Provided by [`khr::maintenance11`](crate::khr::maintenance11)
-    impl crate::vk::PipelineLayoutCreateFlagBits {
-        pub const NO_TASK_SHADER_KHR: Self = Self(1 << 2);
-    }
-    ///Provided by [`khr::maintenance11`](crate::khr::maintenance11)
-    impl crate::vk::ImageCreateFlagBits {
-        pub const ALIAS_SINGLE_LAYER_DESCRIPTOR_KHR: Self = Self(1 << 22);
-    }
-    ///Provided by [`khr::maintenance11`](crate::khr::maintenance11)
-    impl crate::vk::ImageCreateFlagBits2KHR {
-        pub const ALIAS_SINGLE_LAYER_DESCRIPTOR_KHR: Self = Self(1 << 22);
-    }
-    ///Provided by [`khr::maintenance11`](crate::khr::maintenance11)
-    impl crate::vk::ShaderCreateFlagBitsEXT {
-        pub const INDEPENDENT_SETS_KHR: Self = Self(1 << 18);
     }
 }
 pub use reexport::*;

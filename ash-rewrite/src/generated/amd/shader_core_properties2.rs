@@ -2,6 +2,10 @@
 #![cfg_attr(rustfmt, rustfmt_skip)]
 //![Vulkan Manual Page](https://docs.vulkan.org/refpages/latest/refpages/source/VK_AMD_shader_core_properties2.html) · Extension `VK_AMD_shader_core_properties2`
 #![doc(alias = "VK_AMD_shader_core_properties2")]
+///Provided by [`amd::shader_core_properties2`](crate::amd::shader_core_properties2)
+impl crate::vk::StructureType {
+    pub const PHYSICAL_DEVICE_SHADER_CORE_PROPERTIES_2_AMD: Self = Self(1000227000);
+}
 pub const SPEC_VERSION: u32 = 1;
 pub const NAME: &core::ffi::CStr = c"VK_AMD_shader_core_properties2";
 pub(crate) mod reexport {
@@ -46,10 +50,6 @@ pub(crate) mod reexport {
             self.active_compute_unit_count = active_compute_unit_count;
             self
         }
-    }
-    ///Provided by [`amd::shader_core_properties2`](crate::amd::shader_core_properties2)
-    impl crate::vk::StructureType {
-        pub const PHYSICAL_DEVICE_SHADER_CORE_PROPERTIES_2_AMD: Self = Self(1000227000);
     }
     #[repr(transparent)]
     #[derive(Clone, Copy)]

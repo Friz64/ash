@@ -2,6 +2,18 @@
 #![cfg_attr(rustfmt, rustfmt_skip)]
 //![Vulkan Manual Page](https://docs.vulkan.org/refpages/latest/refpages/source/VK_NV_device_diagnostics_config.html) · Extension `VK_NV_device_diagnostics_config`
 #![doc(alias = "VK_NV_device_diagnostics_config")]
+///Provided by [`nv::device_diagnostics_config`](crate::nv::device_diagnostics_config)
+impl crate::vk::StructureType {
+    pub const PHYSICAL_DEVICE_DIAGNOSTICS_CONFIG_FEATURES_NV: Self = Self(1000300000);
+    pub const DEVICE_DIAGNOSTICS_CONFIG_CREATE_INFO_NV: Self = Self(1000300001);
+}
+///Provided by [`nv::device_diagnostics_config`](crate::nv::device_diagnostics_config)
+impl DeviceDiagnosticsConfigFlagBitsNV {
+    pub const ENABLE_SHADER_DEBUG_INFO_NV: Self = Self(1 << 0);
+    pub const ENABLE_RESOURCE_TRACKING_NV: Self = Self(1 << 1);
+    pub const ENABLE_AUTOMATIC_CHECKPOINTS_NV: Self = Self(1 << 2);
+    pub const ENABLE_SHADER_ERROR_REPORTING_NV: Self = Self(1 << 3);
+}
 pub const SPEC_VERSION: u32 = 2;
 pub const NAME: &core::ffi::CStr = c"VK_NV_device_diagnostics_config";
 pub(crate) mod reexport {
@@ -69,13 +81,6 @@ pub(crate) mod reexport {
             self.flags = flags;
             self
         }
-    }
-    ///Provided by [`nv::device_diagnostics_config`](crate::nv::device_diagnostics_config)
-    impl crate::vk::StructureType {
-        pub const PHYSICAL_DEVICE_DIAGNOSTICS_CONFIG_FEATURES_NV: Self = Self(
-            1000300000,
-        );
-        pub const DEVICE_DIAGNOSTICS_CONFIG_CREATE_INFO_NV: Self = Self(1000300001);
     }
     #[repr(transparent)]
     #[derive(Clone, Copy)]
@@ -159,12 +164,5 @@ pub(crate) mod reexport {
     #[repr(transparent)]
     #[derive(Clone, Copy, Default)]
     pub struct DeviceDiagnosticsConfigFlagBitsNV(pub(crate) u32);
-    ///Provided by [`nv::device_diagnostics_config`](crate::nv::device_diagnostics_config)
-    impl DeviceDiagnosticsConfigFlagBitsNV {
-        pub const ENABLE_SHADER_DEBUG_INFO_NV: Self = Self(1 << 0);
-        pub const ENABLE_RESOURCE_TRACKING_NV: Self = Self(1 << 1);
-        pub const ENABLE_AUTOMATIC_CHECKPOINTS_NV: Self = Self(1 << 2);
-        pub const ENABLE_SHADER_ERROR_REPORTING_NV: Self = Self(1 << 3);
-    }
 }
 pub use reexport::*;

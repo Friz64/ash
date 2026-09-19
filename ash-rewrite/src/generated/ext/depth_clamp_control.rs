@@ -2,8 +2,30 @@
 #![cfg_attr(rustfmt, rustfmt_skip)]
 //![Vulkan Manual Page](https://docs.vulkan.org/refpages/latest/refpages/source/VK_EXT_depth_clamp_control.html) · Extension `VK_EXT_depth_clamp_control`
 #![doc(alias = "VK_EXT_depth_clamp_control")]
-pub const SPEC_VERSION: u32 = 1;
-pub const NAME: &core::ffi::CStr = c"VK_EXT_depth_clamp_control";
+///Provided by [`ext::depth_clamp_control`](crate::ext::depth_clamp_control)
+impl crate::vk::StructureType {
+    pub const PHYSICAL_DEVICE_DEPTH_CLAMP_CONTROL_FEATURES_EXT: Self = Self(1000582000);
+    pub const PIPELINE_VIEWPORT_DEPTH_CLAMP_CONTROL_CREATE_INFO_EXT: Self = Self(
+        1000582001,
+    );
+}
+///Provided by [`ext::depth_clamp_control`](crate::ext::depth_clamp_control)
+impl crate::vk::DynamicState {
+    pub const DEPTH_CLAMP_RANGE_EXT: Self = Self(1000582000);
+}
+///Provided by [`ext::depth_clamp_control`](crate::ext::depth_clamp_control)
+impl DepthClampModeEXT {
+    #[inline]
+    pub const fn from_raw(x: i32) -> Self {
+        Self(x)
+    }
+    #[inline]
+    pub const fn as_raw(self) -> i32 {
+        self.0
+    }
+    pub const VIEWPORT_RANGE_EXT: Self = Self(0);
+    pub const USER_DEFINED_RANGE_EXT: Self = Self(1);
+}
 #[derive(Clone)]
 pub struct DeviceFn {
     pub cmd_set_depth_clamp_range_ext: crate::vk::PFN_vkCmdSetDepthClampRangeEXT,
@@ -60,6 +82,8 @@ impl Device {
         self.handle
     }
 }
+pub const SPEC_VERSION: u32 = 1;
+pub const NAME: &core::ffi::CStr = c"VK_EXT_depth_clamp_control";
 pub(crate) mod reexport {
     #[repr(C)]
     #[derive(Clone, Copy)]
@@ -151,35 +175,9 @@ pub(crate) mod reexport {
             self
         }
     }
-    ///Provided by [`ext::depth_clamp_control`](crate::ext::depth_clamp_control)
-    impl crate::vk::StructureType {
-        pub const PHYSICAL_DEVICE_DEPTH_CLAMP_CONTROL_FEATURES_EXT: Self = Self(
-            1000582000,
-        );
-        pub const PIPELINE_VIEWPORT_DEPTH_CLAMP_CONTROL_CREATE_INFO_EXT: Self = Self(
-            1000582001,
-        );
-    }
-    ///Provided by [`ext::depth_clamp_control`](crate::ext::depth_clamp_control)
-    impl crate::vk::DynamicState {
-        pub const DEPTH_CLAMP_RANGE_EXT: Self = Self(1000582000);
-    }
     #[repr(transparent)]
     #[derive(Clone, Copy, PartialEq, Eq, PartialOrd, Ord, Hash, Default)]
     #[derive(Debug)]
     pub struct DepthClampModeEXT(pub(crate) i32);
-    ///Provided by [`ext::depth_clamp_control`](crate::ext::depth_clamp_control)
-    impl DepthClampModeEXT {
-        #[inline]
-        pub const fn from_raw(x: i32) -> Self {
-            Self(x)
-        }
-        #[inline]
-        pub const fn as_raw(self) -> i32 {
-            self.0
-        }
-        pub const VIEWPORT_RANGE_EXT: Self = Self(0);
-        pub const USER_DEFINED_RANGE_EXT: Self = Self(1);
-    }
 }
 pub use reexport::*;

@@ -2,8 +2,23 @@
 #![cfg_attr(rustfmt, rustfmt_skip)]
 //![Vulkan Manual Page](https://docs.vulkan.org/refpages/latest/refpages/source/VK_ARM_scheduling_controls.html) · Extension `VK_ARM_scheduling_controls`
 #![doc(alias = "VK_ARM_scheduling_controls")]
-pub const SPEC_VERSION: u32 = 2;
-pub const NAME: &core::ffi::CStr = c"VK_ARM_scheduling_controls";
+///Provided by [`arm::scheduling_controls`](crate::arm::scheduling_controls)
+impl crate::vk::StructureType {
+    pub const DEVICE_QUEUE_SHADER_CORE_CONTROL_CREATE_INFO_ARM: Self = Self(1000417000);
+    pub const PHYSICAL_DEVICE_SCHEDULING_CONTROLS_FEATURES_ARM: Self = Self(1000417001);
+    pub const PHYSICAL_DEVICE_SCHEDULING_CONTROLS_PROPERTIES_ARM: Self = Self(
+        1000417002,
+    );
+    pub const DISPATCH_PARAMETERS_ARM: Self = Self(1000417003);
+    pub const PHYSICAL_DEVICE_SCHEDULING_CONTROLS_DISPATCH_PARAMETERS_PROPERTIES_ARM: Self = Self(
+        1000417004,
+    );
+}
+///Provided by [`arm::scheduling_controls`](crate::arm::scheduling_controls)
+impl PhysicalDeviceSchedulingControlsFlagBitsARM {
+    pub const SHADER_CORE_COUNT_ARM: Self = Self(1 << 0);
+    pub const DISPATCH_PARAMETERS_ARM: Self = Self(1 << 1);
+}
 #[derive(Clone)]
 pub struct DeviceFn {
     pub cmd_set_dispatch_parameters_arm: crate::vk::PFN_vkCmdSetDispatchParametersARM,
@@ -59,6 +74,8 @@ impl Device {
         self.handle
     }
 }
+pub const SPEC_VERSION: u32 = 2;
+pub const NAME: &core::ffi::CStr = c"VK_ARM_scheduling_controls";
 pub(crate) mod reexport {
     #[repr(C)]
     #[derive(Clone, Copy)]
@@ -254,22 +271,6 @@ pub(crate) mod reexport {
             self
         }
     }
-    ///Provided by [`arm::scheduling_controls`](crate::arm::scheduling_controls)
-    impl crate::vk::StructureType {
-        pub const DEVICE_QUEUE_SHADER_CORE_CONTROL_CREATE_INFO_ARM: Self = Self(
-            1000417000,
-        );
-        pub const PHYSICAL_DEVICE_SCHEDULING_CONTROLS_FEATURES_ARM: Self = Self(
-            1000417001,
-        );
-        pub const PHYSICAL_DEVICE_SCHEDULING_CONTROLS_PROPERTIES_ARM: Self = Self(
-            1000417002,
-        );
-        pub const DISPATCH_PARAMETERS_ARM: Self = Self(1000417003);
-        pub const PHYSICAL_DEVICE_SCHEDULING_CONTROLS_DISPATCH_PARAMETERS_PROPERTIES_ARM: Self = Self(
-            1000417004,
-        );
-    }
     #[repr(transparent)]
     #[derive(Clone, Copy)]
     pub struct PhysicalDeviceSchedulingControlsFlagsARM(u64);
@@ -346,11 +347,6 @@ pub(crate) mod reexport {
     #[repr(transparent)]
     #[derive(Clone, Copy, Default)]
     pub struct PhysicalDeviceSchedulingControlsFlagBitsARM(pub(crate) u64);
-    ///Provided by [`arm::scheduling_controls`](crate::arm::scheduling_controls)
-    impl PhysicalDeviceSchedulingControlsFlagBitsARM {
-        pub const SHADER_CORE_COUNT_ARM: Self = Self(1 << 0);
-        pub const DISPATCH_PARAMETERS_ARM: Self = Self(1 << 1);
-    }
     pub type PFN_vkCmdSetDispatchParametersARM = unsafe extern "system" fn(
         command_buffer: crate::vk::CommandBuffer,
         p_dispatch_parameters: *const crate::vk::DispatchParametersARM<'_>,

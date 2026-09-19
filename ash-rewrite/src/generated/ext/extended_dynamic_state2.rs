@@ -2,8 +2,20 @@
 #![cfg_attr(rustfmt, rustfmt_skip)]
 //![Vulkan Manual Page](https://docs.vulkan.org/refpages/latest/refpages/source/VK_EXT_extended_dynamic_state2.html) · Extension `VK_EXT_extended_dynamic_state2`
 #![doc(alias = "VK_EXT_extended_dynamic_state2")]
-pub const SPEC_VERSION: u32 = 1;
-pub const NAME: &core::ffi::CStr = c"VK_EXT_extended_dynamic_state2";
+///Provided by [`ext::extended_dynamic_state2`](crate::ext::extended_dynamic_state2)
+impl crate::vk::StructureType {
+    pub const PHYSICAL_DEVICE_EXTENDED_DYNAMIC_STATE_2_FEATURES_EXT: Self = Self(
+        1000377000,
+    );
+}
+///Provided by [`ext::extended_dynamic_state2`](crate::ext::extended_dynamic_state2)
+impl crate::vk::DynamicState {
+    pub const PATCH_CONTROL_POINTS_EXT: Self = Self(1000377000);
+    pub const RASTERIZER_DISCARD_ENABLE_EXT: Self = Self::RASTERIZER_DISCARD_ENABLE;
+    pub const DEPTH_BIAS_ENABLE_EXT: Self = Self::DEPTH_BIAS_ENABLE;
+    pub const LOGIC_OP_EXT: Self = Self(1000377003);
+    pub const PRIMITIVE_RESTART_ENABLE_EXT: Self = Self::PRIMITIVE_RESTART_ENABLE;
+}
 #[derive(Clone)]
 pub struct DeviceFn {
     pub cmd_set_patch_control_points_ext: crate::vk::PFN_vkCmdSetPatchControlPointsEXT,
@@ -119,6 +131,8 @@ impl Device {
         self.handle
     }
 }
+pub const SPEC_VERSION: u32 = 1;
+pub const NAME: &core::ffi::CStr = c"VK_EXT_extended_dynamic_state2";
 pub(crate) mod reexport {
     #[repr(C)]
     #[derive(Clone, Copy)]
@@ -171,20 +185,6 @@ pub(crate) mod reexport {
                 .into();
             self
         }
-    }
-    ///Provided by [`ext::extended_dynamic_state2`](crate::ext::extended_dynamic_state2)
-    impl crate::vk::StructureType {
-        pub const PHYSICAL_DEVICE_EXTENDED_DYNAMIC_STATE_2_FEATURES_EXT: Self = Self(
-            1000377000,
-        );
-    }
-    ///Provided by [`ext::extended_dynamic_state2`](crate::ext::extended_dynamic_state2)
-    impl crate::vk::DynamicState {
-        pub const PATCH_CONTROL_POINTS_EXT: Self = Self(1000377000);
-        pub const RASTERIZER_DISCARD_ENABLE_EXT: Self = Self::RASTERIZER_DISCARD_ENABLE;
-        pub const DEPTH_BIAS_ENABLE_EXT: Self = Self::DEPTH_BIAS_ENABLE;
-        pub const LOGIC_OP_EXT: Self = Self(1000377003);
-        pub const PRIMITIVE_RESTART_ENABLE_EXT: Self = Self::PRIMITIVE_RESTART_ENABLE;
     }
     pub type PFN_vkCmdSetPatchControlPointsEXT = unsafe extern "system" fn(
         command_buffer: crate::vk::CommandBuffer,

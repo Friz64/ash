@@ -2,6 +2,15 @@
 #![cfg_attr(rustfmt, rustfmt_skip)]
 //![Vulkan Manual Page](https://docs.vulkan.org/refpages/latest/refpages/source/VK_EXT_legacy_vertex_attributes.html) · Extension `VK_EXT_legacy_vertex_attributes`
 #![doc(alias = "VK_EXT_legacy_vertex_attributes")]
+///Provided by [`ext::legacy_vertex_attributes`](crate::ext::legacy_vertex_attributes)
+impl crate::vk::StructureType {
+    pub const PHYSICAL_DEVICE_LEGACY_VERTEX_ATTRIBUTES_FEATURES_EXT: Self = Self(
+        1000495000,
+    );
+    pub const PHYSICAL_DEVICE_LEGACY_VERTEX_ATTRIBUTES_PROPERTIES_EXT: Self = Self(
+        1000495001,
+    );
+}
 pub const SPEC_VERSION: u32 = 1;
 pub const NAME: &core::ffi::CStr = c"VK_EXT_legacy_vertex_attributes";
 pub(crate) mod reexport {
@@ -72,15 +81,6 @@ pub(crate) mod reexport {
             self.native_unaligned_performance = native_unaligned_performance.into();
             self
         }
-    }
-    ///Provided by [`ext::legacy_vertex_attributes`](crate::ext::legacy_vertex_attributes)
-    impl crate::vk::StructureType {
-        pub const PHYSICAL_DEVICE_LEGACY_VERTEX_ATTRIBUTES_FEATURES_EXT: Self = Self(
-            1000495000,
-        );
-        pub const PHYSICAL_DEVICE_LEGACY_VERTEX_ATTRIBUTES_PROPERTIES_EXT: Self = Self(
-            1000495001,
-        );
     }
 }
 pub use reexport::*;

@@ -2,8 +2,11 @@
 #![cfg_attr(rustfmt, rustfmt_skip)]
 //![Vulkan Manual Page](https://docs.vulkan.org/refpages/latest/refpages/source/VK_NV_copy_memory_indirect.html) · Extension `VK_NV_copy_memory_indirect`
 #![doc(alias = "VK_NV_copy_memory_indirect")]
-pub const SPEC_VERSION: u32 = 1;
-pub const NAME: &core::ffi::CStr = c"VK_NV_copy_memory_indirect";
+///Provided by [`nv::copy_memory_indirect`](crate::nv::copy_memory_indirect)
+impl crate::vk::StructureType {
+    pub const PHYSICAL_DEVICE_COPY_MEMORY_INDIRECT_FEATURES_NV: Self = Self(1000426000);
+    pub const PHYSICAL_DEVICE_COPY_MEMORY_INDIRECT_PROPERTIES_NV: Self = Self::PHYSICAL_DEVICE_COPY_MEMORY_INDIRECT_PROPERTIES_KHR;
+}
 #[derive(Clone)]
 pub struct DeviceFn {
     pub cmd_copy_memory_indirect_nv: crate::vk::PFN_vkCmdCopyMemoryIndirectNV,
@@ -81,6 +84,8 @@ impl Device {
         self.handle
     }
 }
+pub const SPEC_VERSION: u32 = 1;
+pub const NAME: &core::ffi::CStr = c"VK_NV_copy_memory_indirect";
 pub(crate) mod reexport {
     #[repr(C)]
     #[derive(Clone, Copy)]
@@ -119,13 +124,6 @@ pub(crate) mod reexport {
     pub type PhysicalDeviceCopyMemoryIndirectPropertiesNV<'a> = crate::vk::PhysicalDeviceCopyMemoryIndirectPropertiesKHR<
         'a,
     >;
-    ///Provided by [`nv::copy_memory_indirect`](crate::nv::copy_memory_indirect)
-    impl crate::vk::StructureType {
-        pub const PHYSICAL_DEVICE_COPY_MEMORY_INDIRECT_FEATURES_NV: Self = Self(
-            1000426000,
-        );
-        pub const PHYSICAL_DEVICE_COPY_MEMORY_INDIRECT_PROPERTIES_NV: Self = Self::PHYSICAL_DEVICE_COPY_MEMORY_INDIRECT_PROPERTIES_KHR;
-    }
     pub type PFN_vkCmdCopyMemoryIndirectNV = unsafe extern "system" fn(
         command_buffer: crate::vk::CommandBuffer,
         copy_buffer_address: crate::vk::DeviceAddress,

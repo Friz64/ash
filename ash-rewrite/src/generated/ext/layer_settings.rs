@@ -2,6 +2,29 @@
 #![cfg_attr(rustfmt, rustfmt_skip)]
 //![Vulkan Manual Page](https://docs.vulkan.org/refpages/latest/refpages/source/VK_EXT_layer_settings.html) · Extension `VK_EXT_layer_settings`
 #![doc(alias = "VK_EXT_layer_settings")]
+///Provided by [`ext::layer_settings`](crate::ext::layer_settings)
+impl crate::vk::StructureType {
+    pub const LAYER_SETTINGS_CREATE_INFO_EXT: Self = Self(1000496000);
+}
+///Provided by [`ext::layer_settings`](crate::ext::layer_settings)
+impl LayerSettingTypeEXT {
+    #[inline]
+    pub const fn from_raw(x: i32) -> Self {
+        Self(x)
+    }
+    #[inline]
+    pub const fn as_raw(self) -> i32 {
+        self.0
+    }
+    pub const BOOL32_EXT: Self = Self(0);
+    pub const INT32_EXT: Self = Self(1);
+    pub const INT64_EXT: Self = Self(2);
+    pub const UINT32_EXT: Self = Self(3);
+    pub const UINT64_EXT: Self = Self(4);
+    pub const FLOAT32_EXT: Self = Self(5);
+    pub const FLOAT64_EXT: Self = Self(6);
+    pub const STRING_EXT: Self = Self(7);
+}
 pub const SPEC_VERSION: u32 = 2;
 pub const NAME: &core::ffi::CStr = c"VK_EXT_layer_settings";
 pub(crate) mod reexport {
@@ -83,32 +106,9 @@ pub(crate) mod reexport {
             self
         }
     }
-    ///Provided by [`ext::layer_settings`](crate::ext::layer_settings)
-    impl crate::vk::StructureType {
-        pub const LAYER_SETTINGS_CREATE_INFO_EXT: Self = Self(1000496000);
-    }
     #[repr(transparent)]
     #[derive(Clone, Copy, PartialEq, Eq, PartialOrd, Ord, Hash, Default)]
     #[derive(Debug)]
     pub struct LayerSettingTypeEXT(pub(crate) i32);
-    ///Provided by [`ext::layer_settings`](crate::ext::layer_settings)
-    impl LayerSettingTypeEXT {
-        #[inline]
-        pub const fn from_raw(x: i32) -> Self {
-            Self(x)
-        }
-        #[inline]
-        pub const fn as_raw(self) -> i32 {
-            self.0
-        }
-        pub const BOOL32_EXT: Self = Self(0);
-        pub const INT32_EXT: Self = Self(1);
-        pub const INT64_EXT: Self = Self(2);
-        pub const UINT32_EXT: Self = Self(3);
-        pub const UINT64_EXT: Self = Self(4);
-        pub const FLOAT32_EXT: Self = Self(5);
-        pub const FLOAT64_EXT: Self = Self(6);
-        pub const STRING_EXT: Self = Self(7);
-    }
 }
 pub use reexport::*;

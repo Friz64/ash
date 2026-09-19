@@ -2,6 +2,33 @@
 #![cfg_attr(rustfmt, rustfmt_skip)]
 //![Vulkan Manual Page](https://docs.vulkan.org/refpages/latest/refpages/source/VK_KHR_maintenance9.html) · Extension `VK_KHR_maintenance9`
 #![doc(alias = "VK_KHR_maintenance9")]
+///Provided by [`khr::maintenance9`](crate::khr::maintenance9)
+impl crate::vk::StructureType {
+    pub const PHYSICAL_DEVICE_MAINTENANCE_9_FEATURES_KHR: Self = Self(1000584000);
+    pub const PHYSICAL_DEVICE_MAINTENANCE_9_PROPERTIES_KHR: Self = Self(1000584001);
+    pub const QUEUE_FAMILY_OWNERSHIP_TRANSFER_PROPERTIES_KHR: Self = Self(1000584002);
+}
+///Provided by [`khr::maintenance9`](crate::khr::maintenance9)
+impl DefaultVertexAttributeValueKHR {
+    #[inline]
+    pub const fn from_raw(x: i32) -> Self {
+        Self(x)
+    }
+    #[inline]
+    pub const fn as_raw(self) -> i32 {
+        self.0
+    }
+    pub const ZERO_ZERO_ZERO_ZERO_KHR: Self = Self(0);
+    pub const ZERO_ZERO_ZERO_ONE_KHR: Self = Self(1);
+}
+///Provided by [`khr::maintenance9`](crate::khr::maintenance9)
+impl crate::vk::QueryPoolCreateFlagBits {
+    pub const RESET_KHR: Self = Self(1 << 0);
+}
+///Provided by [`khr::maintenance9`](crate::khr::maintenance9)
+impl crate::vk::DependencyFlagBits {
+    pub const ASYMMETRIC_EVENT_KHR: Self = Self(1 << 6);
+}
 pub const SPEC_VERSION: u32 = 1;
 pub const NAME: &core::ffi::CStr = c"VK_KHR_maintenance9";
 pub(crate) mod reexport {
@@ -112,38 +139,9 @@ pub(crate) mod reexport {
             self
         }
     }
-    ///Provided by [`khr::maintenance9`](crate::khr::maintenance9)
-    impl crate::vk::StructureType {
-        pub const PHYSICAL_DEVICE_MAINTENANCE_9_FEATURES_KHR: Self = Self(1000584000);
-        pub const PHYSICAL_DEVICE_MAINTENANCE_9_PROPERTIES_KHR: Self = Self(1000584001);
-        pub const QUEUE_FAMILY_OWNERSHIP_TRANSFER_PROPERTIES_KHR: Self = Self(
-            1000584002,
-        );
-    }
     #[repr(transparent)]
     #[derive(Clone, Copy, PartialEq, Eq, PartialOrd, Ord, Hash, Default)]
     #[derive(Debug)]
     pub struct DefaultVertexAttributeValueKHR(pub(crate) i32);
-    ///Provided by [`khr::maintenance9`](crate::khr::maintenance9)
-    impl DefaultVertexAttributeValueKHR {
-        #[inline]
-        pub const fn from_raw(x: i32) -> Self {
-            Self(x)
-        }
-        #[inline]
-        pub const fn as_raw(self) -> i32 {
-            self.0
-        }
-        pub const ZERO_ZERO_ZERO_ZERO_KHR: Self = Self(0);
-        pub const ZERO_ZERO_ZERO_ONE_KHR: Self = Self(1);
-    }
-    ///Provided by [`khr::maintenance9`](crate::khr::maintenance9)
-    impl crate::vk::QueryPoolCreateFlagBits {
-        pub const RESET_KHR: Self = Self(1 << 0);
-    }
-    ///Provided by [`khr::maintenance9`](crate::khr::maintenance9)
-    impl crate::vk::DependencyFlagBits {
-        pub const ASYMMETRIC_EVENT_KHR: Self = Self(1 << 6);
-    }
 }
 pub use reexport::*;

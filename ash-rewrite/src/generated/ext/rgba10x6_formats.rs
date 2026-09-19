@@ -2,6 +2,10 @@
 #![cfg_attr(rustfmt, rustfmt_skip)]
 //![Vulkan Manual Page](https://docs.vulkan.org/refpages/latest/refpages/source/VK_EXT_rgba10x6_formats.html) · Extension `VK_EXT_rgba10x6_formats`
 #![doc(alias = "VK_EXT_rgba10x6_formats")]
+///Provided by [`ext::rgba10x6_formats`](crate::ext::rgba10x6_formats)
+impl crate::vk::StructureType {
+    pub const PHYSICAL_DEVICE_RGBA10X6_FORMATS_FEATURES_EXT: Self = Self(1000344000);
+}
 pub const SPEC_VERSION: u32 = 1;
 pub const NAME: &core::ffi::CStr = c"VK_EXT_rgba10x6_formats";
 pub(crate) mod reexport {
@@ -40,10 +44,6 @@ pub(crate) mod reexport {
                 .into();
             self
         }
-    }
-    ///Provided by [`ext::rgba10x6_formats`](crate::ext::rgba10x6_formats)
-    impl crate::vk::StructureType {
-        pub const PHYSICAL_DEVICE_RGBA10X6_FORMATS_FEATURES_EXT: Self = Self(1000344000);
     }
 }
 pub use reexport::*;

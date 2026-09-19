@@ -2,8 +2,13 @@
 #![cfg_attr(rustfmt, rustfmt_skip)]
 //![Vulkan Manual Page](https://docs.vulkan.org/refpages/latest/refpages/source/VK_NV_device_diagnostic_checkpoints.html) · Extension `VK_NV_device_diagnostic_checkpoints`
 #![doc(alias = "VK_NV_device_diagnostic_checkpoints")]
-pub const SPEC_VERSION: u32 = 2;
-pub const NAME: &core::ffi::CStr = c"VK_NV_device_diagnostic_checkpoints";
+///Provided by [`nv::device_diagnostic_checkpoints`](crate::nv::device_diagnostic_checkpoints)
+impl crate::vk::StructureType {
+    pub const CHECKPOINT_DATA_NV: Self = Self(1000206000);
+    pub const QUEUE_FAMILY_CHECKPOINT_PROPERTIES_NV: Self = Self(1000206001);
+    pub const QUEUE_FAMILY_CHECKPOINT_PROPERTIES_2_NV: Self = Self(1000314008);
+    pub const CHECKPOINT_DATA_2_NV: Self = Self(1000314009);
+}
 #[derive(Clone)]
 pub struct DeviceFn {
     pub cmd_set_checkpoint_nv: crate::vk::PFN_vkCmdSetCheckpointNV,
@@ -91,6 +96,8 @@ impl Device {
         self.handle
     }
 }
+pub const SPEC_VERSION: u32 = 2;
+pub const NAME: &core::ffi::CStr = c"VK_NV_device_diagnostic_checkpoints";
 pub(crate) mod reexport {
     #[repr(C)]
     #[derive(Clone, Copy)]
@@ -229,13 +236,6 @@ pub(crate) mod reexport {
             self.p_checkpoint_marker = checkpoint_marker;
             self
         }
-    }
-    ///Provided by [`nv::device_diagnostic_checkpoints`](crate::nv::device_diagnostic_checkpoints)
-    impl crate::vk::StructureType {
-        pub const CHECKPOINT_DATA_NV: Self = Self(1000206000);
-        pub const QUEUE_FAMILY_CHECKPOINT_PROPERTIES_NV: Self = Self(1000206001);
-        pub const QUEUE_FAMILY_CHECKPOINT_PROPERTIES_2_NV: Self = Self(1000314008);
-        pub const CHECKPOINT_DATA_2_NV: Self = Self(1000314009);
     }
     pub type PFN_vkCmdSetCheckpointNV = unsafe extern "system" fn(
         command_buffer: crate::vk::CommandBuffer,

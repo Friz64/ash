@@ -2,8 +2,35 @@
 #![cfg_attr(rustfmt, rustfmt_skip)]
 //![Vulkan Manual Page](https://docs.vulkan.org/refpages/latest/refpages/source/VK_FUCHSIA_buffer_collection.html) · Extension `VK_FUCHSIA_buffer_collection`
 #![doc(alias = "VK_FUCHSIA_buffer_collection")]
-pub const SPEC_VERSION: u32 = 2;
-pub const NAME: &core::ffi::CStr = c"VK_FUCHSIA_buffer_collection";
+///Provided by [`fuchsia::buffer_collection`](crate::fuchsia::buffer_collection)
+impl crate::vk::StructureType {
+    pub const BUFFER_COLLECTION_CREATE_INFO_FUCHSIA: Self = Self(1000366000);
+    pub const IMPORT_MEMORY_BUFFER_COLLECTION_FUCHSIA: Self = Self(1000366001);
+    pub const BUFFER_COLLECTION_IMAGE_CREATE_INFO_FUCHSIA: Self = Self(1000366002);
+    pub const BUFFER_COLLECTION_PROPERTIES_FUCHSIA: Self = Self(1000366003);
+    pub const BUFFER_CONSTRAINTS_INFO_FUCHSIA: Self = Self(1000366004);
+    pub const BUFFER_COLLECTION_BUFFER_CREATE_INFO_FUCHSIA: Self = Self(1000366005);
+    pub const IMAGE_CONSTRAINTS_INFO_FUCHSIA: Self = Self(1000366006);
+    pub const IMAGE_FORMAT_CONSTRAINTS_INFO_FUCHSIA: Self = Self(1000366007);
+    pub const SYSMEM_COLOR_SPACE_FUCHSIA: Self = Self(1000366008);
+    pub const BUFFER_COLLECTION_CONSTRAINTS_INFO_FUCHSIA: Self = Self(1000366009);
+}
+///Provided by [`fuchsia::buffer_collection`](crate::fuchsia::buffer_collection)
+impl crate::vk::ObjectType {
+    pub const BUFFER_COLLECTION_FUCHSIA: Self = Self(1000366000);
+}
+///Provided by [`fuchsia::buffer_collection`](crate::fuchsia::buffer_collection)
+impl crate::vk::DebugReportObjectTypeEXT {
+    pub const BUFFER_COLLECTION_FUCHSIA_EXT: Self = Self(1000366000);
+}
+///Provided by [`fuchsia::buffer_collection`](crate::fuchsia::buffer_collection)
+impl ImageConstraintsInfoFlagBitsFUCHSIA {
+    pub const CPU_READ_RARELY_FUCHSIA: Self = Self(1 << 0);
+    pub const CPU_READ_OFTEN_FUCHSIA: Self = Self(1 << 1);
+    pub const CPU_WRITE_RARELY_FUCHSIA: Self = Self(1 << 2);
+    pub const CPU_WRITE_OFTEN_FUCHSIA: Self = Self(1 << 3);
+    pub const PROTECTED_OPTIONAL_FUCHSIA: Self = Self(1 << 4);
+}
 #[derive(Clone)]
 pub struct DeviceFn {
     pub create_buffer_collection_fuchsia: crate::vk::PFN_vkCreateBufferCollectionFUCHSIA,
@@ -127,6 +154,8 @@ impl Device {
         self.handle
     }
 }
+pub const SPEC_VERSION: u32 = 2;
+pub const NAME: &core::ffi::CStr = c"VK_FUCHSIA_buffer_collection";
 pub(crate) mod reexport {
     #[repr(C)]
     #[derive(Clone, Copy)]
@@ -649,27 +678,6 @@ pub(crate) mod reexport {
             self
         }
     }
-    ///Provided by [`fuchsia::buffer_collection`](crate::fuchsia::buffer_collection)
-    impl crate::vk::StructureType {
-        pub const BUFFER_COLLECTION_CREATE_INFO_FUCHSIA: Self = Self(1000366000);
-        pub const IMPORT_MEMORY_BUFFER_COLLECTION_FUCHSIA: Self = Self(1000366001);
-        pub const BUFFER_COLLECTION_IMAGE_CREATE_INFO_FUCHSIA: Self = Self(1000366002);
-        pub const BUFFER_COLLECTION_PROPERTIES_FUCHSIA: Self = Self(1000366003);
-        pub const BUFFER_CONSTRAINTS_INFO_FUCHSIA: Self = Self(1000366004);
-        pub const BUFFER_COLLECTION_BUFFER_CREATE_INFO_FUCHSIA: Self = Self(1000366005);
-        pub const IMAGE_CONSTRAINTS_INFO_FUCHSIA: Self = Self(1000366006);
-        pub const IMAGE_FORMAT_CONSTRAINTS_INFO_FUCHSIA: Self = Self(1000366007);
-        pub const SYSMEM_COLOR_SPACE_FUCHSIA: Self = Self(1000366008);
-        pub const BUFFER_COLLECTION_CONSTRAINTS_INFO_FUCHSIA: Self = Self(1000366009);
-    }
-    ///Provided by [`fuchsia::buffer_collection`](crate::fuchsia::buffer_collection)
-    impl crate::vk::ObjectType {
-        pub const BUFFER_COLLECTION_FUCHSIA: Self = Self(1000366000);
-    }
-    ///Provided by [`fuchsia::buffer_collection`](crate::fuchsia::buffer_collection)
-    impl crate::vk::DebugReportObjectTypeEXT {
-        pub const BUFFER_COLLECTION_FUCHSIA_EXT: Self = Self(1000366000);
-    }
     #[repr(transparent)]
     #[derive(Clone, Copy)]
     pub struct ImageFormatConstraintsFlagsFUCHSIA(u32);
@@ -822,14 +830,6 @@ pub(crate) mod reexport {
     #[repr(transparent)]
     #[derive(Clone, Copy, Default)]
     pub struct ImageConstraintsInfoFlagBitsFUCHSIA(pub(crate) u32);
-    ///Provided by [`fuchsia::buffer_collection`](crate::fuchsia::buffer_collection)
-    impl ImageConstraintsInfoFlagBitsFUCHSIA {
-        pub const CPU_READ_RARELY_FUCHSIA: Self = Self(1 << 0);
-        pub const CPU_READ_OFTEN_FUCHSIA: Self = Self(1 << 1);
-        pub const CPU_WRITE_RARELY_FUCHSIA: Self = Self(1 << 2);
-        pub const CPU_WRITE_OFTEN_FUCHSIA: Self = Self(1 << 3);
-        pub const PROTECTED_OPTIONAL_FUCHSIA: Self = Self(1 << 4);
-    }
     #[repr(transparent)]
     #[derive(Eq, PartialEq, Ord, PartialOrd, Clone, Copy, Hash, Default)]
     pub struct BufferCollectionFUCHSIA(u64);

@@ -2,8 +2,21 @@
 #![cfg_attr(rustfmt, rustfmt_skip)]
 //![Vulkan Manual Page](https://docs.vulkan.org/refpages/latest/refpages/source/VK_ARM_shader_instrumentation.html) · Extension `VK_ARM_shader_instrumentation`
 #![doc(alias = "VK_ARM_shader_instrumentation")]
-pub const SPEC_VERSION: u32 = 1;
-pub const NAME: &core::ffi::CStr = c"VK_ARM_shader_instrumentation";
+///Provided by [`arm::shader_instrumentation`](crate::arm::shader_instrumentation)
+impl crate::vk::StructureType {
+    pub const PHYSICAL_DEVICE_SHADER_INSTRUMENTATION_FEATURES_ARM: Self = Self(
+        1000607000,
+    );
+    pub const PHYSICAL_DEVICE_SHADER_INSTRUMENTATION_PROPERTIES_ARM: Self = Self(
+        1000607001,
+    );
+    pub const SHADER_INSTRUMENTATION_CREATE_INFO_ARM: Self = Self(1000607002);
+    pub const SHADER_INSTRUMENTATION_METRIC_DESCRIPTION_ARM: Self = Self(1000607003);
+}
+///Provided by [`arm::shader_instrumentation`](crate::arm::shader_instrumentation)
+impl crate::vk::ObjectType {
+    pub const SHADER_INSTRUMENTATION_ARM: Self = Self(1000607000);
+}
 #[derive(Clone)]
 pub struct InstanceFn {
     pub enumerate_physical_device_shader_instrumentation_metrics_arm: crate::vk::PFN_vkEnumeratePhysicalDeviceShaderInstrumentationMetricsARM,
@@ -199,6 +212,8 @@ impl Device {
         self.handle
     }
 }
+pub const SPEC_VERSION: u32 = 1;
+pub const NAME: &core::ffi::CStr = c"VK_ARM_shader_instrumentation";
 pub(crate) mod reexport {
     #[repr(C)]
     #[derive(Clone, Copy)]
@@ -366,21 +381,6 @@ pub(crate) mod reexport {
             self.basic_block_index = basic_block_index;
             self
         }
-    }
-    ///Provided by [`arm::shader_instrumentation`](crate::arm::shader_instrumentation)
-    impl crate::vk::StructureType {
-        pub const PHYSICAL_DEVICE_SHADER_INSTRUMENTATION_FEATURES_ARM: Self = Self(
-            1000607000,
-        );
-        pub const PHYSICAL_DEVICE_SHADER_INSTRUMENTATION_PROPERTIES_ARM: Self = Self(
-            1000607001,
-        );
-        pub const SHADER_INSTRUMENTATION_CREATE_INFO_ARM: Self = Self(1000607002);
-        pub const SHADER_INSTRUMENTATION_METRIC_DESCRIPTION_ARM: Self = Self(1000607003);
-    }
-    ///Provided by [`arm::shader_instrumentation`](crate::arm::shader_instrumentation)
-    impl crate::vk::ObjectType {
-        pub const SHADER_INSTRUMENTATION_ARM: Self = Self(1000607000);
     }
     #[repr(transparent)]
     #[derive(Clone, Copy)]

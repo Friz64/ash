@@ -2,8 +2,19 @@
 #![cfg_attr(rustfmt, rustfmt_skip)]
 //![Vulkan Manual Page](https://docs.vulkan.org/refpages/latest/refpages/source/VK_EXT_shader_module_identifier.html) · Extension `VK_EXT_shader_module_identifier`
 #![doc(alias = "VK_EXT_shader_module_identifier")]
-pub const SPEC_VERSION: u32 = 1;
-pub const NAME: &core::ffi::CStr = c"VK_EXT_shader_module_identifier";
+///Provided by [`ext::shader_module_identifier`](crate::ext::shader_module_identifier)
+impl crate::vk::StructureType {
+    pub const PHYSICAL_DEVICE_SHADER_MODULE_IDENTIFIER_FEATURES_EXT: Self = Self(
+        1000462000,
+    );
+    pub const PHYSICAL_DEVICE_SHADER_MODULE_IDENTIFIER_PROPERTIES_EXT: Self = Self(
+        1000462001,
+    );
+    pub const PIPELINE_SHADER_STAGE_MODULE_IDENTIFIER_CREATE_INFO_EXT: Self = Self(
+        1000462002,
+    );
+    pub const SHADER_MODULE_IDENTIFIER_EXT: Self = Self(1000462003);
+}
 #[derive(Clone)]
 pub struct DeviceFn {
     pub get_shader_module_identifier_ext: crate::vk::PFN_vkGetShaderModuleIdentifierEXT,
@@ -76,6 +87,8 @@ impl Device {
         self.handle
     }
 }
+pub const SPEC_VERSION: u32 = 1;
+pub const NAME: &core::ffi::CStr = c"VK_EXT_shader_module_identifier";
 pub(crate) mod reexport {
     #[repr(C)]
     #[derive(Clone, Copy)]
@@ -210,19 +223,6 @@ pub(crate) mod reexport {
         pub fn identifier_as_slice(&self) -> &'_ [u8] {
             &self.identifier[..self.identifier_size as _]
         }
-    }
-    ///Provided by [`ext::shader_module_identifier`](crate::ext::shader_module_identifier)
-    impl crate::vk::StructureType {
-        pub const PHYSICAL_DEVICE_SHADER_MODULE_IDENTIFIER_FEATURES_EXT: Self = Self(
-            1000462000,
-        );
-        pub const PHYSICAL_DEVICE_SHADER_MODULE_IDENTIFIER_PROPERTIES_EXT: Self = Self(
-            1000462001,
-        );
-        pub const PIPELINE_SHADER_STAGE_MODULE_IDENTIFIER_CREATE_INFO_EXT: Self = Self(
-            1000462002,
-        );
-        pub const SHADER_MODULE_IDENTIFIER_EXT: Self = Self(1000462003);
     }
     pub type PFN_vkGetShaderModuleIdentifierEXT = unsafe extern "system" fn(
         device: crate::vk::Device,

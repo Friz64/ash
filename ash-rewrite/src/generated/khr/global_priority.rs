@@ -2,6 +2,23 @@
 #![cfg_attr(rustfmt, rustfmt_skip)]
 //![Vulkan Manual Page](https://docs.vulkan.org/refpages/latest/refpages/source/VK_KHR_global_priority.html) · Extension `VK_KHR_global_priority`
 #![doc(alias = "VK_KHR_global_priority")]
+///Provided by [`khr::global_priority`](crate::khr::global_priority)
+impl crate::vk::StructureType {
+    pub const DEVICE_QUEUE_GLOBAL_PRIORITY_CREATE_INFO_KHR: Self = Self::DEVICE_QUEUE_GLOBAL_PRIORITY_CREATE_INFO;
+    pub const PHYSICAL_DEVICE_GLOBAL_PRIORITY_QUERY_FEATURES_KHR: Self = Self::PHYSICAL_DEVICE_GLOBAL_PRIORITY_QUERY_FEATURES;
+    pub const QUEUE_FAMILY_GLOBAL_PRIORITY_PROPERTIES_KHR: Self = Self::QUEUE_FAMILY_GLOBAL_PRIORITY_PROPERTIES;
+}
+///Provided by [`khr::global_priority`](crate::khr::global_priority)
+impl crate::vk::Result {
+    pub const ERROR_NOT_PERMITTED_KHR: Self = Self::ERROR_NOT_PERMITTED;
+}
+///Provided by [`khr::global_priority`](crate::khr::global_priority)
+impl crate::vk::QueueGlobalPriority {
+    pub const LOW_KHR: Self = Self::LOW;
+    pub const MEDIUM_KHR: Self = Self::MEDIUM;
+    pub const HIGH_KHR: Self = Self::HIGH;
+    pub const REALTIME_KHR: Self = Self::REALTIME;
+}
 pub const SPEC_VERSION: u32 = 1;
 pub const NAME: &core::ffi::CStr = c"VK_KHR_global_priority";
 pub(crate) mod reexport {
@@ -14,23 +31,6 @@ pub(crate) mod reexport {
     pub type QueueFamilyGlobalPriorityPropertiesKHR<'a> = crate::vk::QueueFamilyGlobalPriorityProperties<
         'a,
     >;
-    ///Provided by [`khr::global_priority`](crate::khr::global_priority)
-    impl crate::vk::StructureType {
-        pub const DEVICE_QUEUE_GLOBAL_PRIORITY_CREATE_INFO_KHR: Self = Self::DEVICE_QUEUE_GLOBAL_PRIORITY_CREATE_INFO;
-        pub const PHYSICAL_DEVICE_GLOBAL_PRIORITY_QUERY_FEATURES_KHR: Self = Self::PHYSICAL_DEVICE_GLOBAL_PRIORITY_QUERY_FEATURES;
-        pub const QUEUE_FAMILY_GLOBAL_PRIORITY_PROPERTIES_KHR: Self = Self::QUEUE_FAMILY_GLOBAL_PRIORITY_PROPERTIES;
-    }
-    ///Provided by [`khr::global_priority`](crate::khr::global_priority)
-    impl crate::vk::Result {
-        pub const ERROR_NOT_PERMITTED_KHR: Self = Self::ERROR_NOT_PERMITTED;
-    }
-    ///Provided by [`khr::global_priority`](crate::khr::global_priority)
-    impl crate::vk::QueueGlobalPriority {
-        pub const LOW_KHR: Self = Self::LOW;
-        pub const MEDIUM_KHR: Self = Self::MEDIUM;
-        pub const HIGH_KHR: Self = Self::HIGH;
-        pub const REALTIME_KHR: Self = Self::REALTIME;
-    }
     pub type QueueGlobalPriorityKHR = crate::vk::QueueGlobalPriority;
 }
 pub use reexport::*;

@@ -2,16 +2,13 @@
 #![cfg_attr(rustfmt, rustfmt_skip)]
 //![Vulkan Manual Page](https://docs.vulkan.org/refpages/latest/refpages/source/VK_IMG_filter_cubic.html) · Extension `VK_IMG_filter_cubic`
 #![doc(alias = "VK_IMG_filter_cubic")]
+///Provided by [`img::filter_cubic`](crate::img::filter_cubic)
+impl crate::vk::Filter {
+    pub const CUBIC_IMG: Self = Self::CUBIC_EXT;
+}
+///Provided by [`img::filter_cubic`](crate::img::filter_cubic)
+impl crate::vk::FormatFeatureFlagBits {
+    pub const SAMPLED_IMAGE_FILTER_CUBIC_IMG: Self = Self::SAMPLED_IMAGE_FILTER_CUBIC_EXT;
+}
 pub const SPEC_VERSION: u32 = 1;
 pub const NAME: &core::ffi::CStr = c"VK_IMG_filter_cubic";
-pub(crate) mod reexport {
-    ///Provided by [`img::filter_cubic`](crate::img::filter_cubic)
-    impl crate::vk::Filter {
-        pub const CUBIC_IMG: Self = Self::CUBIC_EXT;
-    }
-    ///Provided by [`img::filter_cubic`](crate::img::filter_cubic)
-    impl crate::vk::FormatFeatureFlagBits {
-        pub const SAMPLED_IMAGE_FILTER_CUBIC_IMG: Self = Self::SAMPLED_IMAGE_FILTER_CUBIC_EXT;
-    }
-}
-pub use reexport::*;

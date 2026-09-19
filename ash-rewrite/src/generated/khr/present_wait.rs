@@ -2,8 +2,10 @@
 #![cfg_attr(rustfmt, rustfmt_skip)]
 //![Vulkan Manual Page](https://docs.vulkan.org/refpages/latest/refpages/source/VK_KHR_present_wait.html) · Extension `VK_KHR_present_wait`
 #![doc(alias = "VK_KHR_present_wait")]
-pub const SPEC_VERSION: u32 = 1;
-pub const NAME: &core::ffi::CStr = c"VK_KHR_present_wait";
+///Provided by [`khr::present_wait`](crate::khr::present_wait)
+impl crate::vk::StructureType {
+    pub const PHYSICAL_DEVICE_PRESENT_WAIT_FEATURES_KHR: Self = Self(1000248000);
+}
 #[derive(Clone)]
 pub struct DeviceFn {
     pub wait_for_present_khr: crate::vk::PFN_vkWaitForPresentKHR,
@@ -61,6 +63,8 @@ impl Device {
         self.handle
     }
 }
+pub const SPEC_VERSION: u32 = 1;
+pub const NAME: &core::ffi::CStr = c"VK_KHR_present_wait";
 pub(crate) mod reexport {
     #[repr(C)]
     #[derive(Clone, Copy)]
@@ -93,10 +97,6 @@ pub(crate) mod reexport {
             self.present_wait = present_wait.into();
             self
         }
-    }
-    ///Provided by [`khr::present_wait`](crate::khr::present_wait)
-    impl crate::vk::StructureType {
-        pub const PHYSICAL_DEVICE_PRESENT_WAIT_FEATURES_KHR: Self = Self(1000248000);
     }
     pub type PFN_vkWaitForPresentKHR = unsafe extern "system" fn(
         device: crate::vk::Device,

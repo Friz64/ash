@@ -2,8 +2,19 @@
 #![cfg_attr(rustfmt, rustfmt_skip)]
 //![Vulkan Manual Page](https://docs.vulkan.org/refpages/latest/refpages/source/VK_KHR_shared_presentable_image.html) · Extension `VK_KHR_shared_presentable_image`
 #![doc(alias = "VK_KHR_shared_presentable_image")]
-pub const SPEC_VERSION: u32 = 1;
-pub const NAME: &core::ffi::CStr = c"VK_KHR_shared_presentable_image";
+///Provided by [`khr::shared_presentable_image`](crate::khr::shared_presentable_image)
+impl crate::vk::ImageLayout {
+    pub const SHARED_PRESENT_KHR: Self = Self(1000111000);
+}
+///Provided by [`khr::shared_presentable_image`](crate::khr::shared_presentable_image)
+impl crate::vk::StructureType {
+    pub const SHARED_PRESENT_SURFACE_CAPABILITIES_KHR: Self = Self(1000111000);
+}
+///Provided by [`khr::shared_presentable_image`](crate::khr::shared_presentable_image)
+impl crate::vk::PresentModeKHR {
+    pub const SHARED_DEMAND_REFRESH_KHR: Self = Self(1000111000);
+    pub const SHARED_CONTINUOUS_REFRESH_KHR: Self = Self(1000111001);
+}
 #[derive(Clone)]
 pub struct DeviceFn {
     pub get_swapchain_status_khr: crate::vk::PFN_vkGetSwapchainStatusKHR,
@@ -59,6 +70,8 @@ impl Device {
         self.handle
     }
 }
+pub const SPEC_VERSION: u32 = 1;
+pub const NAME: &core::ffi::CStr = c"VK_KHR_shared_presentable_image";
 pub(crate) mod reexport {
     #[repr(C)]
     #[derive(Clone, Copy)]
@@ -92,19 +105,6 @@ pub(crate) mod reexport {
             self.shared_present_supported_usage_flags = shared_present_supported_usage_flags;
             self
         }
-    }
-    ///Provided by [`khr::shared_presentable_image`](crate::khr::shared_presentable_image)
-    impl crate::vk::ImageLayout {
-        pub const SHARED_PRESENT_KHR: Self = Self(1000111000);
-    }
-    ///Provided by [`khr::shared_presentable_image`](crate::khr::shared_presentable_image)
-    impl crate::vk::StructureType {
-        pub const SHARED_PRESENT_SURFACE_CAPABILITIES_KHR: Self = Self(1000111000);
-    }
-    ///Provided by [`khr::shared_presentable_image`](crate::khr::shared_presentable_image)
-    impl crate::vk::PresentModeKHR {
-        pub const SHARED_DEMAND_REFRESH_KHR: Self = Self(1000111000);
-        pub const SHARED_CONTINUOUS_REFRESH_KHR: Self = Self(1000111001);
     }
     pub type PFN_vkGetSwapchainStatusKHR = unsafe extern "system" fn(
         device: crate::vk::Device,

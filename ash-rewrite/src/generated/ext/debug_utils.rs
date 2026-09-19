@@ -2,8 +2,31 @@
 #![cfg_attr(rustfmt, rustfmt_skip)]
 //![Vulkan Manual Page](https://docs.vulkan.org/refpages/latest/refpages/source/VK_EXT_debug_utils.html) · Extension `VK_EXT_debug_utils`
 #![doc(alias = "VK_EXT_debug_utils")]
-pub const SPEC_VERSION: u32 = 2;
-pub const NAME: &core::ffi::CStr = c"VK_EXT_debug_utils";
+///Provided by [`ext::debug_utils`](crate::ext::debug_utils)
+impl crate::vk::StructureType {
+    pub const DEBUG_UTILS_OBJECT_NAME_INFO_EXT: Self = Self(1000128000);
+    pub const DEBUG_UTILS_OBJECT_TAG_INFO_EXT: Self = Self(1000128001);
+    pub const DEBUG_UTILS_LABEL_EXT: Self = Self(1000128002);
+    pub const DEBUG_UTILS_MESSENGER_CALLBACK_DATA_EXT: Self = Self(1000128003);
+    pub const DEBUG_UTILS_MESSENGER_CREATE_INFO_EXT: Self = Self(1000128004);
+}
+///Provided by [`ext::debug_utils`](crate::ext::debug_utils)
+impl crate::vk::ObjectType {
+    pub const DEBUG_UTILS_MESSENGER_EXT: Self = Self(1000128000);
+}
+///Provided by [`ext::debug_utils`](crate::ext::debug_utils)
+impl DebugUtilsMessageSeverityFlagBitsEXT {
+    pub const VERBOSE_EXT: Self = Self(1 << 0);
+    pub const INFO_EXT: Self = Self(1 << 4);
+    pub const WARNING_EXT: Self = Self(1 << 8);
+    pub const ERROR_EXT: Self = Self(1 << 12);
+}
+///Provided by [`ext::debug_utils`](crate::ext::debug_utils)
+impl DebugUtilsMessageTypeFlagBitsEXT {
+    pub const GENERAL_EXT: Self = Self(1 << 0);
+    pub const VALIDATION_EXT: Self = Self(1 << 1);
+    pub const PERFORMANCE_EXT: Self = Self(1 << 2);
+}
 #[derive(Clone)]
 pub struct DeviceFn {
     pub set_debug_utils_object_name_ext: crate::vk::PFN_vkSetDebugUtilsObjectNameEXT,
@@ -252,6 +275,8 @@ impl Instance {
         self.handle
     }
 }
+pub const SPEC_VERSION: u32 = 2;
+pub const NAME: &core::ffi::CStr = c"VK_EXT_debug_utils";
 pub(crate) mod reexport {
     #[repr(C)]
     #[derive(Clone, Copy)]
@@ -557,18 +582,6 @@ pub(crate) mod reexport {
             self
         }
     }
-    ///Provided by [`ext::debug_utils`](crate::ext::debug_utils)
-    impl crate::vk::StructureType {
-        pub const DEBUG_UTILS_OBJECT_NAME_INFO_EXT: Self = Self(1000128000);
-        pub const DEBUG_UTILS_OBJECT_TAG_INFO_EXT: Self = Self(1000128001);
-        pub const DEBUG_UTILS_LABEL_EXT: Self = Self(1000128002);
-        pub const DEBUG_UTILS_MESSENGER_CALLBACK_DATA_EXT: Self = Self(1000128003);
-        pub const DEBUG_UTILS_MESSENGER_CREATE_INFO_EXT: Self = Self(1000128004);
-    }
-    ///Provided by [`ext::debug_utils`](crate::ext::debug_utils)
-    impl crate::vk::ObjectType {
-        pub const DEBUG_UTILS_MESSENGER_EXT: Self = Self(1000128000);
-    }
     #[repr(transparent)]
     #[derive(Clone, Copy)]
     pub struct DebugUtilsMessageSeverityFlagsEXT(u32);
@@ -651,13 +664,6 @@ pub(crate) mod reexport {
     #[repr(transparent)]
     #[derive(Clone, Copy, Default)]
     pub struct DebugUtilsMessageSeverityFlagBitsEXT(pub(crate) u32);
-    ///Provided by [`ext::debug_utils`](crate::ext::debug_utils)
-    impl DebugUtilsMessageSeverityFlagBitsEXT {
-        pub const VERBOSE_EXT: Self = Self(1 << 0);
-        pub const INFO_EXT: Self = Self(1 << 4);
-        pub const WARNING_EXT: Self = Self(1 << 8);
-        pub const ERROR_EXT: Self = Self(1 << 12);
-    }
     #[repr(transparent)]
     #[derive(Clone, Copy)]
     pub struct DebugUtilsMessageTypeFlagsEXT(u32);
@@ -740,12 +746,6 @@ pub(crate) mod reexport {
     #[repr(transparent)]
     #[derive(Clone, Copy, Default)]
     pub struct DebugUtilsMessageTypeFlagBitsEXT(pub(crate) u32);
-    ///Provided by [`ext::debug_utils`](crate::ext::debug_utils)
-    impl DebugUtilsMessageTypeFlagBitsEXT {
-        pub const GENERAL_EXT: Self = Self(1 << 0);
-        pub const VALIDATION_EXT: Self = Self(1 << 1);
-        pub const PERFORMANCE_EXT: Self = Self(1 << 2);
-    }
     #[repr(transparent)]
     #[derive(Clone, Copy)]
     pub struct DebugUtilsMessengerCreateFlagsEXT(u32);

@@ -2,6 +2,10 @@
 #![cfg_attr(rustfmt, rustfmt_skip)]
 //![Vulkan Manual Page](https://docs.vulkan.org/refpages/latest/refpages/source/VK_KHR_incremental_present.html) · Extension `VK_KHR_incremental_present`
 #![doc(alias = "VK_KHR_incremental_present")]
+///Provided by [`khr::incremental_present`](crate::khr::incremental_present)
+impl crate::vk::StructureType {
+    pub const PRESENT_REGIONS_KHR: Self = Self(1000084000);
+}
 pub const SPEC_VERSION: u32 = 2;
 pub const NAME: &core::ffi::CStr = c"VK_KHR_incremental_present";
 pub(crate) mod reexport {
@@ -74,10 +78,6 @@ pub(crate) mod reexport {
             self.layer = layer;
             self
         }
-    }
-    ///Provided by [`khr::incremental_present`](crate::khr::incremental_present)
-    impl crate::vk::StructureType {
-        pub const PRESENT_REGIONS_KHR: Self = Self(1000084000);
     }
 }
 pub use reexport::*;

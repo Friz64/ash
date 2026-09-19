@@ -2,8 +2,20 @@
 #![cfg_attr(rustfmt, rustfmt_skip)]
 //![Vulkan Manual Page](https://docs.vulkan.org/refpages/latest/refpages/source/VK_QNX_external_memory_screen_buffer.html) · Extension `VK_QNX_external_memory_screen_buffer`
 #![doc(alias = "VK_QNX_external_memory_screen_buffer")]
-pub const SPEC_VERSION: u32 = 1;
-pub const NAME: &core::ffi::CStr = c"VK_QNX_external_memory_screen_buffer";
+///Provided by [`qnx::external_memory_screen_buffer`](crate::qnx::external_memory_screen_buffer)
+impl crate::vk::StructureType {
+    pub const SCREEN_BUFFER_PROPERTIES_QNX: Self = Self(1000529000);
+    pub const SCREEN_BUFFER_FORMAT_PROPERTIES_QNX: Self = Self(1000529001);
+    pub const IMPORT_SCREEN_BUFFER_INFO_QNX: Self = Self(1000529002);
+    pub const EXTERNAL_FORMAT_QNX: Self = Self(1000529003);
+    pub const PHYSICAL_DEVICE_EXTERNAL_MEMORY_SCREEN_BUFFER_FEATURES_QNX: Self = Self(
+        1000529004,
+    );
+}
+///Provided by [`qnx::external_memory_screen_buffer`](crate::qnx::external_memory_screen_buffer)
+impl crate::vk::ExternalMemoryHandleTypeFlagBits {
+    pub const SCREEN_BUFFER_QNX: Self = Self(1 << 14);
+}
 #[derive(Clone)]
 pub struct DeviceFn {
     pub get_screen_buffer_properties_qnx: crate::vk::PFN_vkGetScreenBufferPropertiesQNX,
@@ -60,6 +72,8 @@ impl Device {
         self.handle
     }
 }
+pub const SPEC_VERSION: u32 = 1;
+pub const NAME: &core::ffi::CStr = c"VK_QNX_external_memory_screen_buffer";
 pub(crate) mod reexport {
     #[repr(C)]
     #[derive(Clone, Copy)]
@@ -286,20 +300,6 @@ pub(crate) mod reexport {
             self.screen_buffer_import = screen_buffer_import.into();
             self
         }
-    }
-    ///Provided by [`qnx::external_memory_screen_buffer`](crate::qnx::external_memory_screen_buffer)
-    impl crate::vk::StructureType {
-        pub const SCREEN_BUFFER_PROPERTIES_QNX: Self = Self(1000529000);
-        pub const SCREEN_BUFFER_FORMAT_PROPERTIES_QNX: Self = Self(1000529001);
-        pub const IMPORT_SCREEN_BUFFER_INFO_QNX: Self = Self(1000529002);
-        pub const EXTERNAL_FORMAT_QNX: Self = Self(1000529003);
-        pub const PHYSICAL_DEVICE_EXTERNAL_MEMORY_SCREEN_BUFFER_FEATURES_QNX: Self = Self(
-            1000529004,
-        );
-    }
-    ///Provided by [`qnx::external_memory_screen_buffer`](crate::qnx::external_memory_screen_buffer)
-    impl crate::vk::ExternalMemoryHandleTypeFlagBits {
-        pub const SCREEN_BUFFER_QNX: Self = Self(1 << 14);
     }
     pub type PFN_vkGetScreenBufferPropertiesQNX = unsafe extern "system" fn(
         device: crate::vk::Device,

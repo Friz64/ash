@@ -2,6 +2,16 @@
 #![cfg_attr(rustfmt, rustfmt_skip)]
 //![Vulkan Manual Page](https://docs.vulkan.org/refpages/latest/refpages/source/VK_NV_private_data_base_handle.html) · Extension `VK_NV_private_data_base_handle`
 #![doc(alias = "VK_NV_private_data_base_handle")]
+///Provided by [`nv::private_data_base_handle`](crate::nv::private_data_base_handle)
+impl crate::vk::StructureType {
+    pub const PHYSICAL_DEVICE_PRIVATE_DATA_BASE_HANDLE_FEATURES_NV: Self = Self(
+        1000707000,
+    );
+}
+///Provided by [`nv::private_data_base_handle`](crate::nv::private_data_base_handle)
+impl crate::vk::PrivateDataSlotCreateFlagBits {
+    pub const BASE_OBJECT_HANDLE_NV: Self = Self(1 << 0);
+}
 pub const SPEC_VERSION: u32 = 1;
 pub const NAME: &core::ffi::CStr = c"VK_NV_private_data_base_handle";
 pub(crate) mod reexport {
@@ -39,16 +49,6 @@ pub(crate) mod reexport {
             self.private_data_base_handle = private_data_base_handle.into();
             self
         }
-    }
-    ///Provided by [`nv::private_data_base_handle`](crate::nv::private_data_base_handle)
-    impl crate::vk::StructureType {
-        pub const PHYSICAL_DEVICE_PRIVATE_DATA_BASE_HANDLE_FEATURES_NV: Self = Self(
-            1000707000,
-        );
-    }
-    ///Provided by [`nv::private_data_base_handle`](crate::nv::private_data_base_handle)
-    impl crate::vk::PrivateDataSlotCreateFlagBits {
-        pub const BASE_OBJECT_HANDLE_NV: Self = Self(1 << 0);
     }
 }
 pub use reexport::*;

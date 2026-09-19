@@ -2,6 +2,15 @@
 #![cfg_attr(rustfmt, rustfmt_skip)]
 //![Vulkan Manual Page](https://docs.vulkan.org/refpages/latest/refpages/source/VK_QCOM_multiview_per_view_render_areas.html) · Extension `VK_QCOM_multiview_per_view_render_areas`
 #![doc(alias = "VK_QCOM_multiview_per_view_render_areas")]
+///Provided by [`qcom::multiview_per_view_render_areas`](crate::qcom::multiview_per_view_render_areas)
+impl crate::vk::StructureType {
+    pub const PHYSICAL_DEVICE_MULTIVIEW_PER_VIEW_RENDER_AREAS_FEATURES_QCOM: Self = Self(
+        1000510000,
+    );
+    pub const MULTIVIEW_PER_VIEW_RENDER_AREAS_RENDER_PASS_BEGIN_INFO_QCOM: Self = Self(
+        1000510001,
+    );
+}
 pub const SPEC_VERSION: u32 = 1;
 pub const NAME: &core::ffi::CStr = c"VK_QCOM_multiview_per_view_render_areas";
 pub(crate) mod reexport {
@@ -78,15 +87,6 @@ pub(crate) mod reexport {
             self.p_per_view_render_areas = per_view_render_areas.as_ptr();
             self
         }
-    }
-    ///Provided by [`qcom::multiview_per_view_render_areas`](crate::qcom::multiview_per_view_render_areas)
-    impl crate::vk::StructureType {
-        pub const PHYSICAL_DEVICE_MULTIVIEW_PER_VIEW_RENDER_AREAS_FEATURES_QCOM: Self = Self(
-            1000510000,
-        );
-        pub const MULTIVIEW_PER_VIEW_RENDER_AREAS_RENDER_PASS_BEGIN_INFO_QCOM: Self = Self(
-            1000510001,
-        );
     }
 }
 pub use reexport::*;

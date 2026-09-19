@@ -2,6 +2,28 @@
 #![cfg_attr(rustfmt, rustfmt_skip)]
 //![Vulkan Manual Page](https://docs.vulkan.org/refpages/latest/refpages/source/VK_EXT_ray_tracing_invocation_reorder.html) · Extension `VK_EXT_ray_tracing_invocation_reorder`
 #![doc(alias = "VK_EXT_ray_tracing_invocation_reorder")]
+///Provided by [`ext::ray_tracing_invocation_reorder`](crate::ext::ray_tracing_invocation_reorder)
+impl crate::vk::StructureType {
+    pub const PHYSICAL_DEVICE_RAY_TRACING_INVOCATION_REORDER_FEATURES_EXT: Self = Self(
+        1000581000,
+    );
+    pub const PHYSICAL_DEVICE_RAY_TRACING_INVOCATION_REORDER_PROPERTIES_EXT: Self = Self(
+        1000581001,
+    );
+}
+///Provided by [`ext::ray_tracing_invocation_reorder`](crate::ext::ray_tracing_invocation_reorder)
+impl RayTracingInvocationReorderModeEXT {
+    #[inline]
+    pub const fn from_raw(x: i32) -> Self {
+        Self(x)
+    }
+    #[inline]
+    pub const fn as_raw(self) -> i32 {
+        self.0
+    }
+    pub const NONE_EXT: Self = Self(0);
+    pub const REORDER_EXT: Self = Self(1);
+}
 pub const SPEC_VERSION: u32 = 2;
 pub const NAME: &core::ffi::CStr = c"VK_EXT_ray_tracing_invocation_reorder";
 pub(crate) mod reexport {
@@ -82,31 +104,9 @@ pub(crate) mod reexport {
             self
         }
     }
-    ///Provided by [`ext::ray_tracing_invocation_reorder`](crate::ext::ray_tracing_invocation_reorder)
-    impl crate::vk::StructureType {
-        pub const PHYSICAL_DEVICE_RAY_TRACING_INVOCATION_REORDER_FEATURES_EXT: Self = Self(
-            1000581000,
-        );
-        pub const PHYSICAL_DEVICE_RAY_TRACING_INVOCATION_REORDER_PROPERTIES_EXT: Self = Self(
-            1000581001,
-        );
-    }
     #[repr(transparent)]
     #[derive(Clone, Copy, PartialEq, Eq, PartialOrd, Ord, Hash, Default)]
     #[derive(Debug)]
     pub struct RayTracingInvocationReorderModeEXT(pub(crate) i32);
-    ///Provided by [`ext::ray_tracing_invocation_reorder`](crate::ext::ray_tracing_invocation_reorder)
-    impl RayTracingInvocationReorderModeEXT {
-        #[inline]
-        pub const fn from_raw(x: i32) -> Self {
-            Self(x)
-        }
-        #[inline]
-        pub const fn as_raw(self) -> i32 {
-            self.0
-        }
-        pub const NONE_EXT: Self = Self(0);
-        pub const REORDER_EXT: Self = Self(1);
-    }
 }
 pub use reexport::*;

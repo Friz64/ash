@@ -2,6 +2,26 @@
 #![cfg_attr(rustfmt, rustfmt_skip)]
 //![Vulkan Manual Page](https://docs.vulkan.org/refpages/latest/refpages/source/VK_NV_framebuffer_mixed_samples.html) · Extension `VK_NV_framebuffer_mixed_samples`
 #![doc(alias = "VK_NV_framebuffer_mixed_samples")]
+///Provided by [`nv::framebuffer_mixed_samples`](crate::nv::framebuffer_mixed_samples)
+impl crate::vk::StructureType {
+    pub const PIPELINE_COVERAGE_MODULATION_STATE_CREATE_INFO_NV: Self = Self(1000152000);
+    pub const ATTACHMENT_SAMPLE_COUNT_INFO_NV: Self = Self::ATTACHMENT_SAMPLE_COUNT_INFO_AMD;
+}
+///Provided by [`nv::framebuffer_mixed_samples`](crate::nv::framebuffer_mixed_samples)
+impl CoverageModulationModeNV {
+    #[inline]
+    pub const fn from_raw(x: i32) -> Self {
+        Self(x)
+    }
+    #[inline]
+    pub const fn as_raw(self) -> i32 {
+        self.0
+    }
+    pub const NONE_NV: Self = Self(0);
+    pub const RGB_NV: Self = Self(1);
+    pub const ALPHA_NV: Self = Self(2);
+    pub const RGBA_NV: Self = Self(3);
+}
 pub const SPEC_VERSION: u32 = 1;
 pub const NAME: &core::ffi::CStr = c"VK_NV_framebuffer_mixed_samples";
 pub(crate) mod reexport {
@@ -72,32 +92,10 @@ pub(crate) mod reexport {
     pub type AttachmentSampleCountInfoNV<'a> = crate::vk::AttachmentSampleCountInfoAMD<
         'a,
     >;
-    ///Provided by [`nv::framebuffer_mixed_samples`](crate::nv::framebuffer_mixed_samples)
-    impl crate::vk::StructureType {
-        pub const PIPELINE_COVERAGE_MODULATION_STATE_CREATE_INFO_NV: Self = Self(
-            1000152000,
-        );
-        pub const ATTACHMENT_SAMPLE_COUNT_INFO_NV: Self = Self::ATTACHMENT_SAMPLE_COUNT_INFO_AMD;
-    }
     #[repr(transparent)]
     #[derive(Clone, Copy, PartialEq, Eq, PartialOrd, Ord, Hash, Default)]
     #[derive(Debug)]
     pub struct CoverageModulationModeNV(pub(crate) i32);
-    ///Provided by [`nv::framebuffer_mixed_samples`](crate::nv::framebuffer_mixed_samples)
-    impl CoverageModulationModeNV {
-        #[inline]
-        pub const fn from_raw(x: i32) -> Self {
-            Self(x)
-        }
-        #[inline]
-        pub const fn as_raw(self) -> i32 {
-            self.0
-        }
-        pub const NONE_NV: Self = Self(0);
-        pub const RGB_NV: Self = Self(1);
-        pub const ALPHA_NV: Self = Self(2);
-        pub const RGBA_NV: Self = Self(3);
-    }
     #[repr(transparent)]
     #[derive(Clone, Copy)]
     pub struct PipelineCoverageModulationStateCreateFlagsNV(u32);

@@ -2,6 +2,12 @@
 #![cfg_attr(rustfmt, rustfmt_skip)]
 //![Vulkan Manual Page](https://docs.vulkan.org/refpages/latest/refpages/source/VK_KHR_shader_maximal_reconvergence.html) · Extension `VK_KHR_shader_maximal_reconvergence`
 #![doc(alias = "VK_KHR_shader_maximal_reconvergence")]
+///Provided by [`khr::shader_maximal_reconvergence`](crate::khr::shader_maximal_reconvergence)
+impl crate::vk::StructureType {
+    pub const PHYSICAL_DEVICE_SHADER_MAXIMAL_RECONVERGENCE_FEATURES_KHR: Self = Self(
+        1000434000,
+    );
+}
 pub const SPEC_VERSION: u32 = 1;
 pub const NAME: &core::ffi::CStr = c"VK_KHR_shader_maximal_reconvergence";
 pub(crate) mod reexport {
@@ -39,12 +45,6 @@ pub(crate) mod reexport {
             self.shader_maximal_reconvergence = shader_maximal_reconvergence.into();
             self
         }
-    }
-    ///Provided by [`khr::shader_maximal_reconvergence`](crate::khr::shader_maximal_reconvergence)
-    impl crate::vk::StructureType {
-        pub const PHYSICAL_DEVICE_SHADER_MAXIMAL_RECONVERGENCE_FEATURES_KHR: Self = Self(
-            1000434000,
-        );
     }
 }
 pub use reexport::*;

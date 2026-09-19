@@ -2,8 +2,24 @@
 #![cfg_attr(rustfmt, rustfmt_skip)]
 //![Vulkan Manual Page](https://docs.vulkan.org/refpages/latest/refpages/source/VK_NV_cuda_kernel_launch.html) · Extension `VK_NV_cuda_kernel_launch`
 #![doc(alias = "VK_NV_cuda_kernel_launch")]
-pub const SPEC_VERSION: u32 = 2;
-pub const NAME: &core::ffi::CStr = c"VK_NV_cuda_kernel_launch";
+///Provided by [`nv::cuda_kernel_launch`](crate::nv::cuda_kernel_launch)
+impl crate::vk::StructureType {
+    pub const CUDA_MODULE_CREATE_INFO_NV: Self = Self(1000307000);
+    pub const CUDA_FUNCTION_CREATE_INFO_NV: Self = Self(1000307001);
+    pub const CUDA_LAUNCH_INFO_NV: Self = Self(1000307002);
+    pub const PHYSICAL_DEVICE_CUDA_KERNEL_LAUNCH_FEATURES_NV: Self = Self(1000307003);
+    pub const PHYSICAL_DEVICE_CUDA_KERNEL_LAUNCH_PROPERTIES_NV: Self = Self(1000307004);
+}
+///Provided by [`nv::cuda_kernel_launch`](crate::nv::cuda_kernel_launch)
+impl crate::vk::ObjectType {
+    pub const CUDA_MODULE_NV: Self = Self(1000307000);
+    pub const CUDA_FUNCTION_NV: Self = Self(1000307001);
+}
+///Provided by [`nv::cuda_kernel_launch`](crate::nv::cuda_kernel_launch)
+impl crate::vk::DebugReportObjectTypeEXT {
+    pub const CUDA_MODULE_NV_EXT: Self = Self(1000307000);
+    pub const CUDA_FUNCTION_NV_EXT: Self = Self(1000307001);
+}
 #[derive(Clone)]
 pub struct DeviceFn {
     pub create_cuda_module_nv: crate::vk::PFN_vkCreateCudaModuleNV,
@@ -142,6 +158,8 @@ impl Device {
         self.handle
     }
 }
+pub const SPEC_VERSION: u32 = 2;
+pub const NAME: &core::ffi::CStr = c"VK_NV_cuda_kernel_launch";
 pub(crate) mod reexport {
     #[repr(C)]
     #[derive(Clone, Copy)]
@@ -376,28 +394,6 @@ pub(crate) mod reexport {
             self.compute_capability_major = compute_capability_major;
             self
         }
-    }
-    ///Provided by [`nv::cuda_kernel_launch`](crate::nv::cuda_kernel_launch)
-    impl crate::vk::StructureType {
-        pub const CUDA_MODULE_CREATE_INFO_NV: Self = Self(1000307000);
-        pub const CUDA_FUNCTION_CREATE_INFO_NV: Self = Self(1000307001);
-        pub const CUDA_LAUNCH_INFO_NV: Self = Self(1000307002);
-        pub const PHYSICAL_DEVICE_CUDA_KERNEL_LAUNCH_FEATURES_NV: Self = Self(
-            1000307003,
-        );
-        pub const PHYSICAL_DEVICE_CUDA_KERNEL_LAUNCH_PROPERTIES_NV: Self = Self(
-            1000307004,
-        );
-    }
-    ///Provided by [`nv::cuda_kernel_launch`](crate::nv::cuda_kernel_launch)
-    impl crate::vk::ObjectType {
-        pub const CUDA_MODULE_NV: Self = Self(1000307000);
-        pub const CUDA_FUNCTION_NV: Self = Self(1000307001);
-    }
-    ///Provided by [`nv::cuda_kernel_launch`](crate::nv::cuda_kernel_launch)
-    impl crate::vk::DebugReportObjectTypeEXT {
-        pub const CUDA_MODULE_NV_EXT: Self = Self(1000307000);
-        pub const CUDA_FUNCTION_NV_EXT: Self = Self(1000307001);
     }
     #[repr(transparent)]
     #[derive(Eq, PartialEq, Ord, PartialOrd, Clone, Copy, Hash, Default)]

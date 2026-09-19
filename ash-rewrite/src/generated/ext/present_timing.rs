@@ -2,8 +2,49 @@
 #![cfg_attr(rustfmt, rustfmt_skip)]
 //![Vulkan Manual Page](https://docs.vulkan.org/refpages/latest/refpages/source/VK_EXT_present_timing.html) · Extension `VK_EXT_present_timing`
 #![doc(alias = "VK_EXT_present_timing")]
-pub const SPEC_VERSION: u32 = 3;
-pub const NAME: &core::ffi::CStr = c"VK_EXT_present_timing";
+///Provided by [`ext::present_timing`](crate::ext::present_timing)
+impl crate::vk::StructureType {
+    pub const PHYSICAL_DEVICE_PRESENT_TIMING_FEATURES_EXT: Self = Self(1000208000);
+    pub const SWAPCHAIN_TIMING_PROPERTIES_EXT: Self = Self(1000208001);
+    pub const SWAPCHAIN_TIME_DOMAIN_PROPERTIES_EXT: Self = Self(1000208002);
+    pub const PRESENT_TIMINGS_INFO_EXT: Self = Self(1000208003);
+    pub const PRESENT_TIMING_INFO_EXT: Self = Self(1000208004);
+    pub const PAST_PRESENTATION_TIMING_INFO_EXT: Self = Self(1000208005);
+    pub const PAST_PRESENTATION_TIMING_PROPERTIES_EXT: Self = Self(1000208006);
+    pub const PAST_PRESENTATION_TIMING_EXT: Self = Self(1000208007);
+    pub const PRESENT_TIMING_SURFACE_CAPABILITIES_EXT: Self = Self(1000208008);
+    pub const SWAPCHAIN_CALIBRATED_TIMESTAMP_INFO_EXT: Self = Self(1000208009);
+}
+///Provided by [`ext::present_timing`](crate::ext::present_timing)
+impl crate::vk::Result {
+    pub const ERROR_PRESENT_TIMING_QUEUE_FULL_EXT: Self = Self(-1000208000);
+}
+///Provided by [`ext::present_timing`](crate::ext::present_timing)
+impl crate::vk::TimeDomainKHR {
+    pub const PRESENT_STAGE_LOCAL_EXT: Self = Self(1000208000);
+    pub const SWAPCHAIN_LOCAL_EXT: Self = Self(1000208001);
+}
+///Provided by [`ext::present_timing`](crate::ext::present_timing)
+impl crate::vk::SwapchainCreateFlagBitsKHR {
+    pub const PRESENT_TIMING_EXT: Self = Self(1 << 9);
+}
+///Provided by [`ext::present_timing`](crate::ext::present_timing)
+impl PresentStageFlagBitsEXT {
+    pub const QUEUE_OPERATIONS_END_EXT: Self = Self(1 << 0);
+    pub const REQUEST_DEQUEUED_EXT: Self = Self(1 << 1);
+    pub const IMAGE_FIRST_PIXEL_OUT_EXT: Self = Self(1 << 2);
+    pub const IMAGE_FIRST_PIXEL_VISIBLE_EXT: Self = Self(1 << 3);
+}
+///Provided by [`ext::present_timing`](crate::ext::present_timing)
+impl PastPresentationTimingFlagBitsEXT {
+    pub const ALLOW_PARTIAL_RESULTS_EXT: Self = Self(1 << 0);
+    pub const ALLOW_OUT_OF_ORDER_RESULTS_EXT: Self = Self(1 << 1);
+}
+///Provided by [`ext::present_timing`](crate::ext::present_timing)
+impl PresentTimingInfoFlagBitsEXT {
+    pub const PRESENT_AT_RELATIVE_TIME_EXT: Self = Self(1 << 0);
+    pub const PRESENT_AT_NEAREST_REFRESH_CYCLE_EXT: Self = Self(1 << 1);
+}
 #[derive(Clone)]
 pub struct DeviceFn {
     pub set_swapchain_present_timing_queue_size_ext: crate::vk::PFN_vkSetSwapchainPresentTimingQueueSizeEXT,
@@ -110,6 +151,8 @@ impl Device {
         self.handle
     }
 }
+pub const SPEC_VERSION: u32 = 3;
+pub const NAME: &core::ffi::CStr = c"VK_EXT_present_timing";
 pub(crate) mod reexport {
     #[repr(C)]
     #[derive(Clone, Copy)]
@@ -597,32 +640,6 @@ pub(crate) mod reexport {
             self
         }
     }
-    ///Provided by [`ext::present_timing`](crate::ext::present_timing)
-    impl crate::vk::StructureType {
-        pub const PHYSICAL_DEVICE_PRESENT_TIMING_FEATURES_EXT: Self = Self(1000208000);
-        pub const SWAPCHAIN_TIMING_PROPERTIES_EXT: Self = Self(1000208001);
-        pub const SWAPCHAIN_TIME_DOMAIN_PROPERTIES_EXT: Self = Self(1000208002);
-        pub const PRESENT_TIMINGS_INFO_EXT: Self = Self(1000208003);
-        pub const PRESENT_TIMING_INFO_EXT: Self = Self(1000208004);
-        pub const PAST_PRESENTATION_TIMING_INFO_EXT: Self = Self(1000208005);
-        pub const PAST_PRESENTATION_TIMING_PROPERTIES_EXT: Self = Self(1000208006);
-        pub const PAST_PRESENTATION_TIMING_EXT: Self = Self(1000208007);
-        pub const PRESENT_TIMING_SURFACE_CAPABILITIES_EXT: Self = Self(1000208008);
-        pub const SWAPCHAIN_CALIBRATED_TIMESTAMP_INFO_EXT: Self = Self(1000208009);
-    }
-    ///Provided by [`ext::present_timing`](crate::ext::present_timing)
-    impl crate::vk::Result {
-        pub const ERROR_PRESENT_TIMING_QUEUE_FULL_EXT: Self = Self(-1000208000);
-    }
-    ///Provided by [`ext::present_timing`](crate::ext::present_timing)
-    impl crate::vk::TimeDomainKHR {
-        pub const PRESENT_STAGE_LOCAL_EXT: Self = Self(1000208000);
-        pub const SWAPCHAIN_LOCAL_EXT: Self = Self(1000208001);
-    }
-    ///Provided by [`ext::present_timing`](crate::ext::present_timing)
-    impl crate::vk::SwapchainCreateFlagBitsKHR {
-        pub const PRESENT_TIMING_EXT: Self = Self(1 << 9);
-    }
     #[repr(transparent)]
     #[derive(Clone, Copy)]
     pub struct PresentStageFlagsEXT(u32);
@@ -705,13 +722,6 @@ pub(crate) mod reexport {
     #[repr(transparent)]
     #[derive(Clone, Copy, Default)]
     pub struct PresentStageFlagBitsEXT(pub(crate) u32);
-    ///Provided by [`ext::present_timing`](crate::ext::present_timing)
-    impl PresentStageFlagBitsEXT {
-        pub const QUEUE_OPERATIONS_END_EXT: Self = Self(1 << 0);
-        pub const REQUEST_DEQUEUED_EXT: Self = Self(1 << 1);
-        pub const IMAGE_FIRST_PIXEL_OUT_EXT: Self = Self(1 << 2);
-        pub const IMAGE_FIRST_PIXEL_VISIBLE_EXT: Self = Self(1 << 3);
-    }
     #[repr(transparent)]
     #[derive(Clone, Copy)]
     pub struct PastPresentationTimingFlagsEXT(u32);
@@ -788,11 +798,6 @@ pub(crate) mod reexport {
     #[repr(transparent)]
     #[derive(Clone, Copy, Default)]
     pub struct PastPresentationTimingFlagBitsEXT(pub(crate) u32);
-    ///Provided by [`ext::present_timing`](crate::ext::present_timing)
-    impl PastPresentationTimingFlagBitsEXT {
-        pub const ALLOW_PARTIAL_RESULTS_EXT: Self = Self(1 << 0);
-        pub const ALLOW_OUT_OF_ORDER_RESULTS_EXT: Self = Self(1 << 1);
-    }
     #[repr(transparent)]
     #[derive(Clone, Copy)]
     pub struct PresentTimingInfoFlagsEXT(u32);
@@ -869,11 +874,6 @@ pub(crate) mod reexport {
     #[repr(transparent)]
     #[derive(Clone, Copy, Default)]
     pub struct PresentTimingInfoFlagBitsEXT(pub(crate) u32);
-    ///Provided by [`ext::present_timing`](crate::ext::present_timing)
-    impl PresentTimingInfoFlagBitsEXT {
-        pub const PRESENT_AT_RELATIVE_TIME_EXT: Self = Self(1 << 0);
-        pub const PRESENT_AT_NEAREST_REFRESH_CYCLE_EXT: Self = Self(1 << 1);
-    }
     pub type PFN_vkSetSwapchainPresentTimingQueueSizeEXT = unsafe extern "system" fn(
         device: crate::vk::Device,
         swapchain: crate::vk::SwapchainKHR,

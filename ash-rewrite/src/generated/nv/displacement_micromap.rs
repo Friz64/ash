@@ -2,6 +2,42 @@
 #![cfg_attr(rustfmt, rustfmt_skip)]
 //![Vulkan Manual Page](https://docs.vulkan.org/refpages/latest/refpages/source/VK_NV_displacement_micromap.html) · Extension `VK_NV_displacement_micromap`
 #![doc(alias = "VK_NV_displacement_micromap")]
+///Provided by [`nv::displacement_micromap`](crate::nv::displacement_micromap)
+impl crate::vk::StructureType {
+    pub const PHYSICAL_DEVICE_DISPLACEMENT_MICROMAP_FEATURES_NV: Self = Self(1000397000);
+    pub const PHYSICAL_DEVICE_DISPLACEMENT_MICROMAP_PROPERTIES_NV: Self = Self(
+        1000397001,
+    );
+    pub const ACCELERATION_STRUCTURE_TRIANGLES_DISPLACEMENT_MICROMAP_NV: Self = Self(
+        1000397002,
+    );
+}
+///Provided by [`nv::displacement_micromap`](crate::nv::displacement_micromap)
+impl crate::vk::MicromapTypeEXT {
+    pub const DISPLACEMENT_MICROMAP_NV: Self = Self(1000397000);
+}
+///Provided by [`nv::displacement_micromap`](crate::nv::displacement_micromap)
+impl DisplacementMicromapFormatNV {
+    #[inline]
+    pub const fn from_raw(x: i32) -> Self {
+        Self(x)
+    }
+    #[inline]
+    pub const fn as_raw(self) -> i32 {
+        self.0
+    }
+    pub const _64_TRIANGLES_64_BYTES_NV: Self = Self(1);
+    pub const _256_TRIANGLES_128_BYTES_NV: Self = Self(2);
+    pub const _1024_TRIANGLES_128_BYTES_NV: Self = Self(3);
+}
+///Provided by [`nv::displacement_micromap`](crate::nv::displacement_micromap)
+impl crate::vk::PipelineCreateFlagBits {
+    pub const RAY_TRACING_DISPLACEMENT_MICROMAP_NV: Self = Self(1 << 28);
+}
+///Provided by [`nv::displacement_micromap`](crate::nv::displacement_micromap)
+impl crate::vk::BuildAccelerationStructureFlagBitsKHR {
+    pub const ALLOW_DISPLACEMENT_MICROMAP_UPDATE_NV: Self = Self(1 << 9);
+}
 pub const SPEC_VERSION: u32 = 2;
 pub const NAME: &core::ffi::CStr = c"VK_NV_displacement_micromap";
 pub(crate) mod reexport {
@@ -223,47 +259,9 @@ pub(crate) mod reexport {
             self
         }
     }
-    ///Provided by [`nv::displacement_micromap`](crate::nv::displacement_micromap)
-    impl crate::vk::StructureType {
-        pub const PHYSICAL_DEVICE_DISPLACEMENT_MICROMAP_FEATURES_NV: Self = Self(
-            1000397000,
-        );
-        pub const PHYSICAL_DEVICE_DISPLACEMENT_MICROMAP_PROPERTIES_NV: Self = Self(
-            1000397001,
-        );
-        pub const ACCELERATION_STRUCTURE_TRIANGLES_DISPLACEMENT_MICROMAP_NV: Self = Self(
-            1000397002,
-        );
-    }
-    ///Provided by [`nv::displacement_micromap`](crate::nv::displacement_micromap)
-    impl crate::vk::MicromapTypeEXT {
-        pub const DISPLACEMENT_MICROMAP_NV: Self = Self(1000397000);
-    }
     #[repr(transparent)]
     #[derive(Clone, Copy, PartialEq, Eq, PartialOrd, Ord, Hash, Default)]
     #[derive(Debug)]
     pub struct DisplacementMicromapFormatNV(pub(crate) i32);
-    ///Provided by [`nv::displacement_micromap`](crate::nv::displacement_micromap)
-    impl DisplacementMicromapFormatNV {
-        #[inline]
-        pub const fn from_raw(x: i32) -> Self {
-            Self(x)
-        }
-        #[inline]
-        pub const fn as_raw(self) -> i32 {
-            self.0
-        }
-        pub const _64_TRIANGLES_64_BYTES_NV: Self = Self(1);
-        pub const _256_TRIANGLES_128_BYTES_NV: Self = Self(2);
-        pub const _1024_TRIANGLES_128_BYTES_NV: Self = Self(3);
-    }
-    ///Provided by [`nv::displacement_micromap`](crate::nv::displacement_micromap)
-    impl crate::vk::PipelineCreateFlagBits {
-        pub const RAY_TRACING_DISPLACEMENT_MICROMAP_NV: Self = Self(1 << 28);
-    }
-    ///Provided by [`nv::displacement_micromap`](crate::nv::displacement_micromap)
-    impl crate::vk::BuildAccelerationStructureFlagBitsKHR {
-        pub const ALLOW_DISPLACEMENT_MICROMAP_UPDATE_NV: Self = Self(1 << 9);
-    }
 }
 pub use reexport::*;

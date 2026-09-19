@@ -2,8 +2,22 @@
 #![cfg_attr(rustfmt, rustfmt_skip)]
 //![Vulkan Manual Page](https://docs.vulkan.org/refpages/latest/refpages/source/VK_ANDROID_external_memory_android_hardware_buffer.html) · Extension `VK_ANDROID_external_memory_android_hardware_buffer`
 #![doc(alias = "VK_ANDROID_external_memory_android_hardware_buffer")]
-pub const SPEC_VERSION: u32 = 5;
-pub const NAME: &core::ffi::CStr = c"VK_ANDROID_external_memory_android_hardware_buffer";
+///Provided by [`android::external_memory_android_hardware_buffer`](crate::android::external_memory_android_hardware_buffer)
+impl crate::vk::StructureType {
+    pub const ANDROID_HARDWARE_BUFFER_USAGE_ANDROID: Self = Self(1000129000);
+    pub const ANDROID_HARDWARE_BUFFER_PROPERTIES_ANDROID: Self = Self(1000129001);
+    pub const ANDROID_HARDWARE_BUFFER_FORMAT_PROPERTIES_ANDROID: Self = Self(1000129002);
+    pub const IMPORT_ANDROID_HARDWARE_BUFFER_INFO_ANDROID: Self = Self(1000129003);
+    pub const MEMORY_GET_ANDROID_HARDWARE_BUFFER_INFO_ANDROID: Self = Self(1000129004);
+    pub const EXTERNAL_FORMAT_ANDROID: Self = Self(1000129005);
+    pub const ANDROID_HARDWARE_BUFFER_FORMAT_PROPERTIES_2_ANDROID: Self = Self(
+        1000129006,
+    );
+}
+///Provided by [`android::external_memory_android_hardware_buffer`](crate::android::external_memory_android_hardware_buffer)
+impl crate::vk::ExternalMemoryHandleTypeFlagBits {
+    pub const ANDROID_HARDWARE_BUFFER_ANDROID: Self = Self(1 << 10);
+}
 #[derive(Clone)]
 pub struct DeviceFn {
     pub get_android_hardware_buffer_properties_android: crate::vk::PFN_vkGetAndroidHardwareBufferPropertiesANDROID,
@@ -76,6 +90,8 @@ impl Device {
         self.handle
     }
 }
+pub const SPEC_VERSION: u32 = 5;
+pub const NAME: &core::ffi::CStr = c"VK_ANDROID_external_memory_android_hardware_buffer";
 pub(crate) mod reexport {
     #[repr(C)]
     #[derive(Clone, Copy)]
@@ -424,26 +440,6 @@ pub(crate) mod reexport {
             self.suggested_y_chroma_offset = suggested_y_chroma_offset;
             self
         }
-    }
-    ///Provided by [`android::external_memory_android_hardware_buffer`](crate::android::external_memory_android_hardware_buffer)
-    impl crate::vk::StructureType {
-        pub const ANDROID_HARDWARE_BUFFER_USAGE_ANDROID: Self = Self(1000129000);
-        pub const ANDROID_HARDWARE_BUFFER_PROPERTIES_ANDROID: Self = Self(1000129001);
-        pub const ANDROID_HARDWARE_BUFFER_FORMAT_PROPERTIES_ANDROID: Self = Self(
-            1000129002,
-        );
-        pub const IMPORT_ANDROID_HARDWARE_BUFFER_INFO_ANDROID: Self = Self(1000129003);
-        pub const MEMORY_GET_ANDROID_HARDWARE_BUFFER_INFO_ANDROID: Self = Self(
-            1000129004,
-        );
-        pub const EXTERNAL_FORMAT_ANDROID: Self = Self(1000129005);
-        pub const ANDROID_HARDWARE_BUFFER_FORMAT_PROPERTIES_2_ANDROID: Self = Self(
-            1000129006,
-        );
-    }
-    ///Provided by [`android::external_memory_android_hardware_buffer`](crate::android::external_memory_android_hardware_buffer)
-    impl crate::vk::ExternalMemoryHandleTypeFlagBits {
-        pub const ANDROID_HARDWARE_BUFFER_ANDROID: Self = Self(1 << 10);
     }
     pub type PFN_vkGetAndroidHardwareBufferPropertiesANDROID = unsafe extern "system" fn(
         device: crate::vk::Device,

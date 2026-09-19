@@ -2,8 +2,107 @@
 #![cfg_attr(rustfmt, rustfmt_skip)]
 //![Vulkan Manual Page](https://docs.vulkan.org/refpages/latest/refpages/source/VK_NV_optical_flow.html) · Extension `VK_NV_optical_flow`
 #![doc(alias = "VK_NV_optical_flow")]
-pub const SPEC_VERSION: u32 = 1;
-pub const NAME: &core::ffi::CStr = c"VK_NV_optical_flow";
+///Provided by [`nv::optical_flow`](crate::nv::optical_flow)
+impl crate::vk::Format {
+    pub const R16G16_SFIXED5_NV: Self = Self(1000464000);
+}
+///Provided by [`nv::optical_flow`](crate::nv::optical_flow)
+impl crate::vk::StructureType {
+    pub const PHYSICAL_DEVICE_OPTICAL_FLOW_FEATURES_NV: Self = Self(1000464000);
+    pub const PHYSICAL_DEVICE_OPTICAL_FLOW_PROPERTIES_NV: Self = Self(1000464001);
+    pub const OPTICAL_FLOW_IMAGE_FORMAT_INFO_NV: Self = Self(1000464002);
+    pub const OPTICAL_FLOW_IMAGE_FORMAT_PROPERTIES_NV: Self = Self(1000464003);
+    pub const OPTICAL_FLOW_SESSION_CREATE_INFO_NV: Self = Self(1000464004);
+    pub const OPTICAL_FLOW_EXECUTE_INFO_NV: Self = Self(1000464005);
+    pub const OPTICAL_FLOW_SESSION_CREATE_PRIVATE_DATA_INFO_NV: Self = Self(1000464010);
+}
+///Provided by [`nv::optical_flow`](crate::nv::optical_flow)
+impl crate::vk::ObjectType {
+    pub const OPTICAL_FLOW_SESSION_NV: Self = Self(1000464000);
+}
+///Provided by [`nv::optical_flow`](crate::nv::optical_flow)
+impl OpticalFlowPerformanceLevelNV {
+    #[inline]
+    pub const fn from_raw(x: i32) -> Self {
+        Self(x)
+    }
+    #[inline]
+    pub const fn as_raw(self) -> i32 {
+        self.0
+    }
+    pub const UNKNOWN_NV: Self = Self(0);
+    pub const SLOW_NV: Self = Self(1);
+    pub const MEDIUM_NV: Self = Self(2);
+    pub const FAST_NV: Self = Self(3);
+}
+///Provided by [`nv::optical_flow`](crate::nv::optical_flow)
+impl OpticalFlowSessionBindingPointNV {
+    #[inline]
+    pub const fn from_raw(x: i32) -> Self {
+        Self(x)
+    }
+    #[inline]
+    pub const fn as_raw(self) -> i32 {
+        self.0
+    }
+    pub const UNKNOWN_NV: Self = Self(0);
+    pub const INPUT_NV: Self = Self(1);
+    pub const REFERENCE_NV: Self = Self(2);
+    pub const HINT_NV: Self = Self(3);
+    pub const FLOW_VECTOR_NV: Self = Self(4);
+    pub const BACKWARD_FLOW_VECTOR_NV: Self = Self(5);
+    pub const COST_NV: Self = Self(6);
+    pub const BACKWARD_COST_NV: Self = Self(7);
+    pub const GLOBAL_FLOW_NV: Self = Self(8);
+}
+///Provided by [`nv::optical_flow`](crate::nv::optical_flow)
+impl crate::vk::QueueFlagBits {
+    pub const OPTICAL_FLOW_NV: Self = Self(1 << 8);
+}
+///Provided by [`nv::optical_flow`](crate::nv::optical_flow)
+impl crate::vk::AccessFlagBits2 {
+    pub const OPTICAL_FLOW_READ_NV: Self = Self(1 << 42);
+    pub const OPTICAL_FLOW_WRITE_NV: Self = Self(1 << 43);
+}
+///Provided by [`nv::optical_flow`](crate::nv::optical_flow)
+impl crate::vk::PipelineStageFlagBits2 {
+    pub const OPTICAL_FLOW_NV: Self = Self(1 << 29);
+}
+///Provided by [`nv::optical_flow`](crate::nv::optical_flow)
+impl crate::vk::FormatFeatureFlagBits2 {
+    pub const OPTICAL_FLOW_IMAGE_NV: Self = Self(1 << 40);
+    pub const OPTICAL_FLOW_VECTOR_NV: Self = Self(1 << 41);
+    pub const OPTICAL_FLOW_COST_NV: Self = Self(1 << 42);
+}
+///Provided by [`nv::optical_flow`](crate::nv::optical_flow)
+impl OpticalFlowGridSizeFlagBitsNV {
+    pub const UNKNOWN_NV: Self = Self(0);
+    pub const _1X1_NV: Self = Self(1 << 0);
+    pub const _2X2_NV: Self = Self(1 << 1);
+    pub const _4X4_NV: Self = Self(1 << 2);
+    pub const _8X8_NV: Self = Self(1 << 3);
+}
+///Provided by [`nv::optical_flow`](crate::nv::optical_flow)
+impl OpticalFlowUsageFlagBitsNV {
+    pub const UNKNOWN_NV: Self = Self(0);
+    pub const INPUT_NV: Self = Self(1 << 0);
+    pub const OUTPUT_NV: Self = Self(1 << 1);
+    pub const HINT_NV: Self = Self(1 << 2);
+    pub const COST_NV: Self = Self(1 << 3);
+    pub const GLOBAL_FLOW_NV: Self = Self(1 << 4);
+}
+///Provided by [`nv::optical_flow`](crate::nv::optical_flow)
+impl OpticalFlowSessionCreateFlagBitsNV {
+    pub const ENABLE_HINT_NV: Self = Self(1 << 0);
+    pub const ENABLE_COST_NV: Self = Self(1 << 1);
+    pub const ENABLE_GLOBAL_FLOW_NV: Self = Self(1 << 2);
+    pub const ALLOW_REGIONS_NV: Self = Self(1 << 3);
+    pub const BOTH_DIRECTIONS_NV: Self = Self(1 << 4);
+}
+///Provided by [`nv::optical_flow`](crate::nv::optical_flow)
+impl OpticalFlowExecuteFlagBitsNV {
+    pub const DISABLE_TEMPORAL_HINTS_NV: Self = Self(1 << 0);
+}
 #[derive(Clone)]
 pub struct InstanceFn {
     pub get_physical_device_optical_flow_image_formats_nv: crate::vk::PFN_vkGetPhysicalDeviceOpticalFlowImageFormatsNV,
@@ -168,6 +267,8 @@ impl Device {
         self.handle
     }
 }
+pub const SPEC_VERSION: u32 = 1;
+pub const NAME: &core::ffi::CStr = c"VK_NV_optical_flow";
 pub(crate) mod reexport {
     #[repr(C)]
     #[derive(Clone, Copy)]
@@ -530,88 +631,14 @@ pub(crate) mod reexport {
             self
         }
     }
-    ///Provided by [`nv::optical_flow`](crate::nv::optical_flow)
-    impl crate::vk::Format {
-        pub const R16G16_SFIXED5_NV: Self = Self(1000464000);
-    }
-    ///Provided by [`nv::optical_flow`](crate::nv::optical_flow)
-    impl crate::vk::StructureType {
-        pub const PHYSICAL_DEVICE_OPTICAL_FLOW_FEATURES_NV: Self = Self(1000464000);
-        pub const PHYSICAL_DEVICE_OPTICAL_FLOW_PROPERTIES_NV: Self = Self(1000464001);
-        pub const OPTICAL_FLOW_IMAGE_FORMAT_INFO_NV: Self = Self(1000464002);
-        pub const OPTICAL_FLOW_IMAGE_FORMAT_PROPERTIES_NV: Self = Self(1000464003);
-        pub const OPTICAL_FLOW_SESSION_CREATE_INFO_NV: Self = Self(1000464004);
-        pub const OPTICAL_FLOW_EXECUTE_INFO_NV: Self = Self(1000464005);
-        pub const OPTICAL_FLOW_SESSION_CREATE_PRIVATE_DATA_INFO_NV: Self = Self(
-            1000464010,
-        );
-    }
-    ///Provided by [`nv::optical_flow`](crate::nv::optical_flow)
-    impl crate::vk::ObjectType {
-        pub const OPTICAL_FLOW_SESSION_NV: Self = Self(1000464000);
-    }
     #[repr(transparent)]
     #[derive(Clone, Copy, PartialEq, Eq, PartialOrd, Ord, Hash, Default)]
     #[derive(Debug)]
     pub struct OpticalFlowPerformanceLevelNV(pub(crate) i32);
-    ///Provided by [`nv::optical_flow`](crate::nv::optical_flow)
-    impl OpticalFlowPerformanceLevelNV {
-        #[inline]
-        pub const fn from_raw(x: i32) -> Self {
-            Self(x)
-        }
-        #[inline]
-        pub const fn as_raw(self) -> i32 {
-            self.0
-        }
-        pub const UNKNOWN_NV: Self = Self(0);
-        pub const SLOW_NV: Self = Self(1);
-        pub const MEDIUM_NV: Self = Self(2);
-        pub const FAST_NV: Self = Self(3);
-    }
     #[repr(transparent)]
     #[derive(Clone, Copy, PartialEq, Eq, PartialOrd, Ord, Hash, Default)]
     #[derive(Debug)]
     pub struct OpticalFlowSessionBindingPointNV(pub(crate) i32);
-    ///Provided by [`nv::optical_flow`](crate::nv::optical_flow)
-    impl OpticalFlowSessionBindingPointNV {
-        #[inline]
-        pub const fn from_raw(x: i32) -> Self {
-            Self(x)
-        }
-        #[inline]
-        pub const fn as_raw(self) -> i32 {
-            self.0
-        }
-        pub const UNKNOWN_NV: Self = Self(0);
-        pub const INPUT_NV: Self = Self(1);
-        pub const REFERENCE_NV: Self = Self(2);
-        pub const HINT_NV: Self = Self(3);
-        pub const FLOW_VECTOR_NV: Self = Self(4);
-        pub const BACKWARD_FLOW_VECTOR_NV: Self = Self(5);
-        pub const COST_NV: Self = Self(6);
-        pub const BACKWARD_COST_NV: Self = Self(7);
-        pub const GLOBAL_FLOW_NV: Self = Self(8);
-    }
-    ///Provided by [`nv::optical_flow`](crate::nv::optical_flow)
-    impl crate::vk::QueueFlagBits {
-        pub const OPTICAL_FLOW_NV: Self = Self(1 << 8);
-    }
-    ///Provided by [`nv::optical_flow`](crate::nv::optical_flow)
-    impl crate::vk::AccessFlagBits2 {
-        pub const OPTICAL_FLOW_READ_NV: Self = Self(1 << 42);
-        pub const OPTICAL_FLOW_WRITE_NV: Self = Self(1 << 43);
-    }
-    ///Provided by [`nv::optical_flow`](crate::nv::optical_flow)
-    impl crate::vk::PipelineStageFlagBits2 {
-        pub const OPTICAL_FLOW_NV: Self = Self(1 << 29);
-    }
-    ///Provided by [`nv::optical_flow`](crate::nv::optical_flow)
-    impl crate::vk::FormatFeatureFlagBits2 {
-        pub const OPTICAL_FLOW_IMAGE_NV: Self = Self(1 << 40);
-        pub const OPTICAL_FLOW_VECTOR_NV: Self = Self(1 << 41);
-        pub const OPTICAL_FLOW_COST_NV: Self = Self(1 << 42);
-    }
     #[repr(transparent)]
     #[derive(Clone, Copy)]
     pub struct OpticalFlowGridSizeFlagsNV(u32);
@@ -687,14 +714,6 @@ pub(crate) mod reexport {
     #[repr(transparent)]
     #[derive(Clone, Copy, Default)]
     pub struct OpticalFlowGridSizeFlagBitsNV(pub(crate) u32);
-    ///Provided by [`nv::optical_flow`](crate::nv::optical_flow)
-    impl OpticalFlowGridSizeFlagBitsNV {
-        pub const UNKNOWN_NV: Self = Self(0);
-        pub const _1X1_NV: Self = Self(1 << 0);
-        pub const _2X2_NV: Self = Self(1 << 1);
-        pub const _4X4_NV: Self = Self(1 << 2);
-        pub const _8X8_NV: Self = Self(1 << 3);
-    }
     #[repr(transparent)]
     #[derive(Clone, Copy)]
     pub struct OpticalFlowUsageFlagsNV(u32);
@@ -773,15 +792,6 @@ pub(crate) mod reexport {
     #[repr(transparent)]
     #[derive(Clone, Copy, Default)]
     pub struct OpticalFlowUsageFlagBitsNV(pub(crate) u32);
-    ///Provided by [`nv::optical_flow`](crate::nv::optical_flow)
-    impl OpticalFlowUsageFlagBitsNV {
-        pub const UNKNOWN_NV: Self = Self(0);
-        pub const INPUT_NV: Self = Self(1 << 0);
-        pub const OUTPUT_NV: Self = Self(1 << 1);
-        pub const HINT_NV: Self = Self(1 << 2);
-        pub const COST_NV: Self = Self(1 << 3);
-        pub const GLOBAL_FLOW_NV: Self = Self(1 << 4);
-    }
     #[repr(transparent)]
     #[derive(Clone, Copy)]
     pub struct OpticalFlowSessionCreateFlagsNV(u32);
@@ -867,14 +877,6 @@ pub(crate) mod reexport {
     #[repr(transparent)]
     #[derive(Clone, Copy, Default)]
     pub struct OpticalFlowSessionCreateFlagBitsNV(pub(crate) u32);
-    ///Provided by [`nv::optical_flow`](crate::nv::optical_flow)
-    impl OpticalFlowSessionCreateFlagBitsNV {
-        pub const ENABLE_HINT_NV: Self = Self(1 << 0);
-        pub const ENABLE_COST_NV: Self = Self(1 << 1);
-        pub const ENABLE_GLOBAL_FLOW_NV: Self = Self(1 << 2);
-        pub const ALLOW_REGIONS_NV: Self = Self(1 << 3);
-        pub const BOTH_DIRECTIONS_NV: Self = Self(1 << 4);
-    }
     #[repr(transparent)]
     #[derive(Clone, Copy)]
     pub struct OpticalFlowExecuteFlagsNV(u32);
@@ -948,10 +950,6 @@ pub(crate) mod reexport {
     #[repr(transparent)]
     #[derive(Clone, Copy, Default)]
     pub struct OpticalFlowExecuteFlagBitsNV(pub(crate) u32);
-    ///Provided by [`nv::optical_flow`](crate::nv::optical_flow)
-    impl OpticalFlowExecuteFlagBitsNV {
-        pub const DISABLE_TEMPORAL_HINTS_NV: Self = Self(1 << 0);
-    }
     #[repr(transparent)]
     #[derive(Eq, PartialEq, Ord, PartialOrd, Clone, Copy, Hash, Default)]
     pub struct OpticalFlowSessionNV(u64);

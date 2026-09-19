@@ -2,15 +2,15 @@
 #![cfg_attr(rustfmt, rustfmt_skip)]
 //![Vulkan Manual Page](https://docs.vulkan.org/refpages/latest/refpages/source/VK_EXT_image_robustness.html) · Extension `VK_EXT_image_robustness`
 #![doc(alias = "VK_EXT_image_robustness")]
+///Provided by [`ext::image_robustness`](crate::ext::image_robustness)
+impl crate::vk::StructureType {
+    pub const PHYSICAL_DEVICE_IMAGE_ROBUSTNESS_FEATURES_EXT: Self = Self::PHYSICAL_DEVICE_IMAGE_ROBUSTNESS_FEATURES;
+}
 pub const SPEC_VERSION: u32 = 1;
 pub const NAME: &core::ffi::CStr = c"VK_EXT_image_robustness";
 pub(crate) mod reexport {
     pub type PhysicalDeviceImageRobustnessFeaturesEXT<'a> = crate::vk::PhysicalDeviceImageRobustnessFeatures<
         'a,
     >;
-    ///Provided by [`ext::image_robustness`](crate::ext::image_robustness)
-    impl crate::vk::StructureType {
-        pub const PHYSICAL_DEVICE_IMAGE_ROBUSTNESS_FEATURES_EXT: Self = Self::PHYSICAL_DEVICE_IMAGE_ROBUSTNESS_FEATURES;
-    }
 }
 pub use reexport::*;

@@ -2,8 +2,108 @@
 #![cfg_attr(rustfmt, rustfmt_skip)]
 //![Vulkan Manual Page](https://docs.vulkan.org/refpages/latest/refpages/source/VK_NV_cluster_acceleration_structure.html) · Extension `VK_NV_cluster_acceleration_structure`
 #![doc(alias = "VK_NV_cluster_acceleration_structure")]
-pub const SPEC_VERSION: u32 = 4;
-pub const NAME: &core::ffi::CStr = c"VK_NV_cluster_acceleration_structure";
+///Provided by [`nv::cluster_acceleration_structure`](crate::nv::cluster_acceleration_structure)
+impl crate::vk::StructureType {
+    pub const PHYSICAL_DEVICE_CLUSTER_ACCELERATION_STRUCTURE_FEATURES_NV: Self = Self(
+        1000569000,
+    );
+    pub const PHYSICAL_DEVICE_CLUSTER_ACCELERATION_STRUCTURE_PROPERTIES_NV: Self = Self(
+        1000569001,
+    );
+    pub const CLUSTER_ACCELERATION_STRUCTURE_CLUSTERS_BOTTOM_LEVEL_INPUT_NV: Self = Self(
+        1000569002,
+    );
+    pub const CLUSTER_ACCELERATION_STRUCTURE_TRIANGLE_CLUSTER_INPUT_NV: Self = Self(
+        1000569003,
+    );
+    pub const CLUSTER_ACCELERATION_STRUCTURE_MOVE_OBJECTS_INPUT_NV: Self = Self(
+        1000569004,
+    );
+    pub const CLUSTER_ACCELERATION_STRUCTURE_INPUT_INFO_NV: Self = Self(1000569005);
+    pub const CLUSTER_ACCELERATION_STRUCTURE_COMMANDS_INFO_NV: Self = Self(1000569006);
+    pub const RAY_TRACING_PIPELINE_CLUSTER_ACCELERATION_STRUCTURE_CREATE_INFO_NV: Self = Self(
+        1000569007,
+    );
+}
+///Provided by [`nv::cluster_acceleration_structure`](crate::nv::cluster_acceleration_structure)
+impl ClusterAccelerationStructureTypeNV {
+    #[inline]
+    pub const fn from_raw(x: i32) -> Self {
+        Self(x)
+    }
+    #[inline]
+    pub const fn as_raw(self) -> i32 {
+        self.0
+    }
+    pub const CLUSTERS_BOTTOM_LEVEL_NV: Self = Self(0);
+    pub const TRIANGLE_CLUSTER_NV: Self = Self(1);
+    pub const TRIANGLE_CLUSTER_TEMPLATE_NV: Self = Self(2);
+}
+///Provided by [`nv::cluster_acceleration_structure`](crate::nv::cluster_acceleration_structure)
+impl ClusterAccelerationStructureOpTypeNV {
+    #[inline]
+    pub const fn from_raw(x: i32) -> Self {
+        Self(x)
+    }
+    #[inline]
+    pub const fn as_raw(self) -> i32 {
+        self.0
+    }
+    pub const MOVE_OBJECTS_NV: Self = Self(0);
+    pub const BUILD_CLUSTERS_BOTTOM_LEVEL_NV: Self = Self(1);
+    pub const BUILD_TRIANGLE_CLUSTER_NV: Self = Self(2);
+    pub const BUILD_TRIANGLE_CLUSTER_TEMPLATE_NV: Self = Self(3);
+    pub const INSTANTIATE_TRIANGLE_CLUSTER_NV: Self = Self(4);
+    pub const GET_CLUSTER_TEMPLATE_INDICES_NV: Self = Self(5);
+}
+///Provided by [`nv::cluster_acceleration_structure`](crate::nv::cluster_acceleration_structure)
+impl ClusterAccelerationStructureOpModeNV {
+    #[inline]
+    pub const fn from_raw(x: i32) -> Self {
+        Self(x)
+    }
+    #[inline]
+    pub const fn as_raw(self) -> i32 {
+        self.0
+    }
+    pub const IMPLICIT_DESTINATIONS_NV: Self = Self(0);
+    pub const EXPLICIT_DESTINATIONS_NV: Self = Self(1);
+    pub const COMPUTE_SIZES_NV: Self = Self(2);
+}
+///Provided by [`nv::cluster_acceleration_structure`](crate::nv::cluster_acceleration_structure)
+impl crate::vk::OpacityMicromapSpecialIndexKHR {
+    pub const CLUSTER_GEOMETRY_DISABLE_OPACITY_MICROMAP_NV: Self = Self(-5);
+}
+///Provided by [`nv::cluster_acceleration_structure`](crate::nv::cluster_acceleration_structure)
+impl ClusterAccelerationStructureGeometryFlagBitsNV {
+    pub const CULL_DISABLE_NV: Self = Self(1 << 0);
+    pub const NO_DUPLICATE_ANYHIT_INVOCATION_NV: Self = Self(1 << 1);
+    pub const OPAQUE_NV: Self = Self(1 << 2);
+}
+///Provided by [`nv::cluster_acceleration_structure`](crate::nv::cluster_acceleration_structure)
+impl ClusterAccelerationStructureClusterFlagBitsNV {
+    pub const ALLOW_DISABLE_OPACITY_MICROMAPS_NV: Self = Self(1 << 0);
+}
+///Provided by [`nv::cluster_acceleration_structure`](crate::nv::cluster_acceleration_structure)
+impl ClusterAccelerationStructureAddressResolutionFlagBitsNV {
+    pub const NONE_NV: Self = Self(0);
+    pub const INDIRECTED_DST_IMPLICIT_DATA_NV: Self = Self(1 << 0);
+    pub const INDIRECTED_SCRATCH_DATA_NV: Self = Self(1 << 1);
+    pub const INDIRECTED_DST_ADDRESS_ARRAY_NV: Self = Self(1 << 2);
+    pub const INDIRECTED_DST_SIZES_ARRAY_NV: Self = Self(1 << 3);
+    pub const INDIRECTED_SRC_INFOS_ARRAY_NV: Self = Self(1 << 4);
+    pub const INDIRECTED_SRC_INFOS_COUNT_NV: Self = Self(1 << 5);
+}
+///Provided by [`nv::cluster_acceleration_structure`](crate::nv::cluster_acceleration_structure)
+impl crate::vk::BuildAccelerationStructureFlagBitsKHR {
+    pub const ALLOW_CLUSTER_OPACITY_MICROMAPS_NV: Self = Self(1 << 12);
+}
+///Provided by [`nv::cluster_acceleration_structure`](crate::nv::cluster_acceleration_structure)
+impl ClusterAccelerationStructureIndexFormatFlagBitsNV {
+    pub const _8BIT_NV: Self = Self(1 << 0);
+    pub const _16BIT_NV: Self = Self(1 << 1);
+    pub const _32BIT_NV: Self = Self(1 << 2);
+}
 #[derive(Clone)]
 pub struct DeviceFn {
     pub get_cluster_acceleration_structure_build_sizes_nv: crate::vk::PFN_vkGetClusterAccelerationStructureBuildSizesNV,
@@ -79,6 +179,8 @@ impl Device {
         self.handle
     }
 }
+pub const SPEC_VERSION: u32 = 4;
+pub const NAME: &core::ffi::CStr = c"VK_NV_cluster_acceleration_structure";
 pub(crate) mod reexport {
     #[repr(C)]
     #[derive(Clone, Copy)]
@@ -1018,92 +1120,18 @@ pub(crate) mod reexport {
             unsafe { core::mem::zeroed() }
         }
     }
-    ///Provided by [`nv::cluster_acceleration_structure`](crate::nv::cluster_acceleration_structure)
-    impl crate::vk::StructureType {
-        pub const PHYSICAL_DEVICE_CLUSTER_ACCELERATION_STRUCTURE_FEATURES_NV: Self = Self(
-            1000569000,
-        );
-        pub const PHYSICAL_DEVICE_CLUSTER_ACCELERATION_STRUCTURE_PROPERTIES_NV: Self = Self(
-            1000569001,
-        );
-        pub const CLUSTER_ACCELERATION_STRUCTURE_CLUSTERS_BOTTOM_LEVEL_INPUT_NV: Self = Self(
-            1000569002,
-        );
-        pub const CLUSTER_ACCELERATION_STRUCTURE_TRIANGLE_CLUSTER_INPUT_NV: Self = Self(
-            1000569003,
-        );
-        pub const CLUSTER_ACCELERATION_STRUCTURE_MOVE_OBJECTS_INPUT_NV: Self = Self(
-            1000569004,
-        );
-        pub const CLUSTER_ACCELERATION_STRUCTURE_INPUT_INFO_NV: Self = Self(1000569005);
-        pub const CLUSTER_ACCELERATION_STRUCTURE_COMMANDS_INFO_NV: Self = Self(
-            1000569006,
-        );
-        pub const RAY_TRACING_PIPELINE_CLUSTER_ACCELERATION_STRUCTURE_CREATE_INFO_NV: Self = Self(
-            1000569007,
-        );
-    }
     #[repr(transparent)]
     #[derive(Clone, Copy, PartialEq, Eq, PartialOrd, Ord, Hash, Default)]
     #[derive(Debug)]
     pub struct ClusterAccelerationStructureTypeNV(pub(crate) i32);
-    ///Provided by [`nv::cluster_acceleration_structure`](crate::nv::cluster_acceleration_structure)
-    impl ClusterAccelerationStructureTypeNV {
-        #[inline]
-        pub const fn from_raw(x: i32) -> Self {
-            Self(x)
-        }
-        #[inline]
-        pub const fn as_raw(self) -> i32 {
-            self.0
-        }
-        pub const CLUSTERS_BOTTOM_LEVEL_NV: Self = Self(0);
-        pub const TRIANGLE_CLUSTER_NV: Self = Self(1);
-        pub const TRIANGLE_CLUSTER_TEMPLATE_NV: Self = Self(2);
-    }
     #[repr(transparent)]
     #[derive(Clone, Copy, PartialEq, Eq, PartialOrd, Ord, Hash, Default)]
     #[derive(Debug)]
     pub struct ClusterAccelerationStructureOpTypeNV(pub(crate) i32);
-    ///Provided by [`nv::cluster_acceleration_structure`](crate::nv::cluster_acceleration_structure)
-    impl ClusterAccelerationStructureOpTypeNV {
-        #[inline]
-        pub const fn from_raw(x: i32) -> Self {
-            Self(x)
-        }
-        #[inline]
-        pub const fn as_raw(self) -> i32 {
-            self.0
-        }
-        pub const MOVE_OBJECTS_NV: Self = Self(0);
-        pub const BUILD_CLUSTERS_BOTTOM_LEVEL_NV: Self = Self(1);
-        pub const BUILD_TRIANGLE_CLUSTER_NV: Self = Self(2);
-        pub const BUILD_TRIANGLE_CLUSTER_TEMPLATE_NV: Self = Self(3);
-        pub const INSTANTIATE_TRIANGLE_CLUSTER_NV: Self = Self(4);
-        pub const GET_CLUSTER_TEMPLATE_INDICES_NV: Self = Self(5);
-    }
     #[repr(transparent)]
     #[derive(Clone, Copy, PartialEq, Eq, PartialOrd, Ord, Hash, Default)]
     #[derive(Debug)]
     pub struct ClusterAccelerationStructureOpModeNV(pub(crate) i32);
-    ///Provided by [`nv::cluster_acceleration_structure`](crate::nv::cluster_acceleration_structure)
-    impl ClusterAccelerationStructureOpModeNV {
-        #[inline]
-        pub const fn from_raw(x: i32) -> Self {
-            Self(x)
-        }
-        #[inline]
-        pub const fn as_raw(self) -> i32 {
-            self.0
-        }
-        pub const IMPLICIT_DESTINATIONS_NV: Self = Self(0);
-        pub const EXPLICIT_DESTINATIONS_NV: Self = Self(1);
-        pub const COMPUTE_SIZES_NV: Self = Self(2);
-    }
-    ///Provided by [`nv::cluster_acceleration_structure`](crate::nv::cluster_acceleration_structure)
-    impl crate::vk::OpacityMicromapSpecialIndexKHR {
-        pub const CLUSTER_GEOMETRY_DISABLE_OPACITY_MICROMAP_NV: Self = Self(-5);
-    }
     #[repr(transparent)]
     #[derive(Clone, Copy)]
     pub struct ClusterAccelerationStructureGeometryFlagsNV(u32);
@@ -1184,12 +1212,6 @@ pub(crate) mod reexport {
     #[repr(transparent)]
     #[derive(Clone, Copy, Default)]
     pub struct ClusterAccelerationStructureGeometryFlagBitsNV(pub(crate) u32);
-    ///Provided by [`nv::cluster_acceleration_structure`](crate::nv::cluster_acceleration_structure)
-    impl ClusterAccelerationStructureGeometryFlagBitsNV {
-        pub const CULL_DISABLE_NV: Self = Self(1 << 0);
-        pub const NO_DUPLICATE_ANYHIT_INVOCATION_NV: Self = Self(1 << 1);
-        pub const OPAQUE_NV: Self = Self(1 << 2);
-    }
     #[repr(transparent)]
     #[derive(Clone, Copy)]
     pub struct ClusterAccelerationStructureClusterFlagsNV(u32);
@@ -1264,10 +1286,6 @@ pub(crate) mod reexport {
     #[repr(transparent)]
     #[derive(Clone, Copy, Default)]
     pub struct ClusterAccelerationStructureClusterFlagBitsNV(pub(crate) u32);
-    ///Provided by [`nv::cluster_acceleration_structure`](crate::nv::cluster_acceleration_structure)
-    impl ClusterAccelerationStructureClusterFlagBitsNV {
-        pub const ALLOW_DISABLE_OPACITY_MICROMAPS_NV: Self = Self(1 << 0);
-    }
     #[repr(transparent)]
     #[derive(Clone, Copy)]
     pub struct ClusterAccelerationStructureAddressResolutionFlagsNV(u32);
@@ -1368,20 +1386,6 @@ pub(crate) mod reexport {
     #[repr(transparent)]
     #[derive(Clone, Copy, Default)]
     pub struct ClusterAccelerationStructureAddressResolutionFlagBitsNV(pub(crate) u32);
-    ///Provided by [`nv::cluster_acceleration_structure`](crate::nv::cluster_acceleration_structure)
-    impl ClusterAccelerationStructureAddressResolutionFlagBitsNV {
-        pub const NONE_NV: Self = Self(0);
-        pub const INDIRECTED_DST_IMPLICIT_DATA_NV: Self = Self(1 << 0);
-        pub const INDIRECTED_SCRATCH_DATA_NV: Self = Self(1 << 1);
-        pub const INDIRECTED_DST_ADDRESS_ARRAY_NV: Self = Self(1 << 2);
-        pub const INDIRECTED_DST_SIZES_ARRAY_NV: Self = Self(1 << 3);
-        pub const INDIRECTED_SRC_INFOS_ARRAY_NV: Self = Self(1 << 4);
-        pub const INDIRECTED_SRC_INFOS_COUNT_NV: Self = Self(1 << 5);
-    }
-    ///Provided by [`nv::cluster_acceleration_structure`](crate::nv::cluster_acceleration_structure)
-    impl crate::vk::BuildAccelerationStructureFlagBitsKHR {
-        pub const ALLOW_CLUSTER_OPACITY_MICROMAPS_NV: Self = Self(1 << 12);
-    }
     #[repr(transparent)]
     #[derive(Clone, Copy)]
     pub struct ClusterAccelerationStructureIndexFormatFlagsNV(u32);
@@ -1461,12 +1465,6 @@ pub(crate) mod reexport {
     #[repr(transparent)]
     #[derive(Clone, Copy, Default)]
     pub struct ClusterAccelerationStructureIndexFormatFlagBitsNV(pub(crate) u32);
-    ///Provided by [`nv::cluster_acceleration_structure`](crate::nv::cluster_acceleration_structure)
-    impl ClusterAccelerationStructureIndexFormatFlagBitsNV {
-        pub const _8BIT_NV: Self = Self(1 << 0);
-        pub const _16BIT_NV: Self = Self(1 << 1);
-        pub const _32BIT_NV: Self = Self(1 << 2);
-    }
     pub type PFN_vkGetClusterAccelerationStructureBuildSizesNV = unsafe extern "system" fn(
         device: crate::vk::Device,
         p_info: *const crate::vk::ClusterAccelerationStructureInputInfoNV<'_>,

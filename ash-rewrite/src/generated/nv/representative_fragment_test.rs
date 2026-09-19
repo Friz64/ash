@@ -2,6 +2,15 @@
 #![cfg_attr(rustfmt, rustfmt_skip)]
 //![Vulkan Manual Page](https://docs.vulkan.org/refpages/latest/refpages/source/VK_NV_representative_fragment_test.html) · Extension `VK_NV_representative_fragment_test`
 #![doc(alias = "VK_NV_representative_fragment_test")]
+///Provided by [`nv::representative_fragment_test`](crate::nv::representative_fragment_test)
+impl crate::vk::StructureType {
+    pub const PHYSICAL_DEVICE_REPRESENTATIVE_FRAGMENT_TEST_FEATURES_NV: Self = Self(
+        1000166000,
+    );
+    pub const PIPELINE_REPRESENTATIVE_FRAGMENT_TEST_STATE_CREATE_INFO_NV: Self = Self(
+        1000166001,
+    );
+}
 pub const SPEC_VERSION: u32 = 2;
 pub const NAME: &core::ffi::CStr = c"VK_NV_representative_fragment_test";
 pub(crate) mod reexport {
@@ -73,15 +82,6 @@ pub(crate) mod reexport {
                 .into();
             self
         }
-    }
-    ///Provided by [`nv::representative_fragment_test`](crate::nv::representative_fragment_test)
-    impl crate::vk::StructureType {
-        pub const PHYSICAL_DEVICE_REPRESENTATIVE_FRAGMENT_TEST_FEATURES_NV: Self = Self(
-            1000166000,
-        );
-        pub const PIPELINE_REPRESENTATIVE_FRAGMENT_TEST_STATE_CREATE_INFO_NV: Self = Self(
-            1000166001,
-        );
     }
 }
 pub use reexport::*;

@@ -2,8 +2,12 @@
 #![cfg_attr(rustfmt, rustfmt_skip)]
 //![Vulkan Manual Page](https://docs.vulkan.org/refpages/latest/refpages/source/VK_KHR_external_fence_win32.html) · Extension `VK_KHR_external_fence_win32`
 #![doc(alias = "VK_KHR_external_fence_win32")]
-pub const SPEC_VERSION: u32 = 1;
-pub const NAME: &core::ffi::CStr = c"VK_KHR_external_fence_win32";
+///Provided by [`khr::external_fence_win32`](crate::khr::external_fence_win32)
+impl crate::vk::StructureType {
+    pub const IMPORT_FENCE_WIN32_HANDLE_INFO_KHR: Self = Self(1000114000);
+    pub const EXPORT_FENCE_WIN32_HANDLE_INFO_KHR: Self = Self(1000114001);
+    pub const FENCE_GET_WIN32_HANDLE_INFO_KHR: Self = Self(1000114002);
+}
 #[derive(Clone)]
 pub struct DeviceFn {
     pub get_fence_win32_handle_khr: crate::vk::PFN_vkGetFenceWin32HandleKHR,
@@ -75,6 +79,8 @@ impl Device {
         self.handle
     }
 }
+pub const SPEC_VERSION: u32 = 1;
+pub const NAME: &core::ffi::CStr = c"VK_KHR_external_fence_win32";
 pub(crate) mod reexport {
     #[repr(C)]
     #[derive(Clone, Copy)]
@@ -209,12 +215,6 @@ pub(crate) mod reexport {
             self.handle_type = handle_type;
             self
         }
-    }
-    ///Provided by [`khr::external_fence_win32`](crate::khr::external_fence_win32)
-    impl crate::vk::StructureType {
-        pub const IMPORT_FENCE_WIN32_HANDLE_INFO_KHR: Self = Self(1000114000);
-        pub const EXPORT_FENCE_WIN32_HANDLE_INFO_KHR: Self = Self(1000114001);
-        pub const FENCE_GET_WIN32_HANDLE_INFO_KHR: Self = Self(1000114002);
     }
     pub type PFN_vkGetFenceWin32HandleKHR = unsafe extern "system" fn(
         device: crate::vk::Device,

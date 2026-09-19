@@ -2,6 +2,16 @@
 #![cfg_attr(rustfmt, rustfmt_skip)]
 //![Vulkan Manual Page](https://docs.vulkan.org/refpages/latest/refpages/source/VK_KHR_internally_synchronized_queues.html) · Extension `VK_KHR_internally_synchronized_queues`
 #![doc(alias = "VK_KHR_internally_synchronized_queues")]
+///Provided by [`khr::internally_synchronized_queues`](crate::khr::internally_synchronized_queues)
+impl crate::vk::StructureType {
+    pub const PHYSICAL_DEVICE_INTERNALLY_SYNCHRONIZED_QUEUES_FEATURES_KHR: Self = Self(
+        1000504000,
+    );
+}
+///Provided by [`khr::internally_synchronized_queues`](crate::khr::internally_synchronized_queues)
+impl crate::vk::DeviceQueueCreateFlagBits {
+    pub const INTERNALLY_SYNCHRONIZED_KHR: Self = Self(1 << 2);
+}
 pub const SPEC_VERSION: u32 = 1;
 pub const NAME: &core::ffi::CStr = c"VK_KHR_internally_synchronized_queues";
 pub(crate) mod reexport {
@@ -39,16 +49,6 @@ pub(crate) mod reexport {
             self.internally_synchronized_queues = internally_synchronized_queues.into();
             self
         }
-    }
-    ///Provided by [`khr::internally_synchronized_queues`](crate::khr::internally_synchronized_queues)
-    impl crate::vk::StructureType {
-        pub const PHYSICAL_DEVICE_INTERNALLY_SYNCHRONIZED_QUEUES_FEATURES_KHR: Self = Self(
-            1000504000,
-        );
-    }
-    ///Provided by [`khr::internally_synchronized_queues`](crate::khr::internally_synchronized_queues)
-    impl crate::vk::DeviceQueueCreateFlagBits {
-        pub const INTERNALLY_SYNCHRONIZED_KHR: Self = Self(1 << 2);
     }
 }
 pub use reexport::*;

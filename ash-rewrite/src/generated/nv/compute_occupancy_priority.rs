@@ -2,8 +2,13 @@
 #![cfg_attr(rustfmt, rustfmt_skip)]
 //![Vulkan Manual Page](https://docs.vulkan.org/refpages/latest/refpages/source/VK_NV_compute_occupancy_priority.html) · Extension `VK_NV_compute_occupancy_priority`
 #![doc(alias = "VK_NV_compute_occupancy_priority")]
-pub const SPEC_VERSION: u32 = 1;
-pub const NAME: &core::ffi::CStr = c"VK_NV_compute_occupancy_priority";
+///Provided by [`nv::compute_occupancy_priority`](crate::nv::compute_occupancy_priority)
+impl crate::vk::StructureType {
+    pub const COMPUTE_OCCUPANCY_PRIORITY_PARAMETERS_NV: Self = Self(1000645000);
+    pub const PHYSICAL_DEVICE_COMPUTE_OCCUPANCY_PRIORITY_FEATURES_NV: Self = Self(
+        1000645001,
+    );
+}
 #[derive(Clone)]
 pub struct DeviceFn {
     pub cmd_set_compute_occupancy_priority_nv: crate::vk::PFN_vkCmdSetComputeOccupancyPriorityNV,
@@ -59,6 +64,8 @@ impl Device {
         self.handle
     }
 }
+pub const SPEC_VERSION: u32 = 1;
+pub const NAME: &core::ffi::CStr = c"VK_NV_compute_occupancy_priority";
 pub(crate) mod reexport {
     #[repr(C)]
     #[derive(Clone, Copy)]
@@ -134,13 +141,6 @@ pub(crate) mod reexport {
             self.compute_occupancy_priority = compute_occupancy_priority.into();
             self
         }
-    }
-    ///Provided by [`nv::compute_occupancy_priority`](crate::nv::compute_occupancy_priority)
-    impl crate::vk::StructureType {
-        pub const COMPUTE_OCCUPANCY_PRIORITY_PARAMETERS_NV: Self = Self(1000645000);
-        pub const PHYSICAL_DEVICE_COMPUTE_OCCUPANCY_PRIORITY_FEATURES_NV: Self = Self(
-            1000645001,
-        );
     }
     pub type PFN_vkCmdSetComputeOccupancyPriorityNV = unsafe extern "system" fn(
         command_buffer: crate::vk::CommandBuffer,

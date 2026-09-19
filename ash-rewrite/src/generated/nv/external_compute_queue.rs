@@ -2,8 +2,19 @@
 #![cfg_attr(rustfmt, rustfmt_skip)]
 //![Vulkan Manual Page](https://docs.vulkan.org/refpages/latest/refpages/source/VK_NV_external_compute_queue.html) · Extension `VK_NV_external_compute_queue`
 #![doc(alias = "VK_NV_external_compute_queue")]
-pub const SPEC_VERSION: u32 = 1;
-pub const NAME: &core::ffi::CStr = c"VK_NV_external_compute_queue";
+///Provided by [`nv::external_compute_queue`](crate::nv::external_compute_queue)
+impl crate::vk::StructureType {
+    pub const EXTERNAL_COMPUTE_QUEUE_DEVICE_CREATE_INFO_NV: Self = Self(1000556000);
+    pub const EXTERNAL_COMPUTE_QUEUE_CREATE_INFO_NV: Self = Self(1000556001);
+    pub const EXTERNAL_COMPUTE_QUEUE_DATA_PARAMS_NV: Self = Self(1000556002);
+    pub const PHYSICAL_DEVICE_EXTERNAL_COMPUTE_QUEUE_PROPERTIES_NV: Self = Self(
+        1000556003,
+    );
+}
+///Provided by [`nv::external_compute_queue`](crate::nv::external_compute_queue)
+impl crate::vk::ObjectType {
+    pub const EXTERNAL_COMPUTE_QUEUE_NV: Self = Self(1000556000);
+}
 #[derive(Clone)]
 pub struct DeviceFn {
     pub create_external_compute_queue_nv: crate::vk::PFN_vkCreateExternalComputeQueueNV,
@@ -111,6 +122,8 @@ impl EntryFn {
         }
     }
 }
+pub const SPEC_VERSION: u32 = 1;
+pub const NAME: &core::ffi::CStr = c"VK_NV_external_compute_queue";
 pub(crate) mod reexport {
     #[repr(C)]
     #[derive(Clone, Copy)]
@@ -234,19 +247,6 @@ pub(crate) mod reexport {
             self.max_external_queues = max_external_queues;
             self
         }
-    }
-    ///Provided by [`nv::external_compute_queue`](crate::nv::external_compute_queue)
-    impl crate::vk::StructureType {
-        pub const EXTERNAL_COMPUTE_QUEUE_DEVICE_CREATE_INFO_NV: Self = Self(1000556000);
-        pub const EXTERNAL_COMPUTE_QUEUE_CREATE_INFO_NV: Self = Self(1000556001);
-        pub const EXTERNAL_COMPUTE_QUEUE_DATA_PARAMS_NV: Self = Self(1000556002);
-        pub const PHYSICAL_DEVICE_EXTERNAL_COMPUTE_QUEUE_PROPERTIES_NV: Self = Self(
-            1000556003,
-        );
-    }
-    ///Provided by [`nv::external_compute_queue`](crate::nv::external_compute_queue)
-    impl crate::vk::ObjectType {
-        pub const EXTERNAL_COMPUTE_QUEUE_NV: Self = Self(1000556000);
     }
     #[repr(transparent)]
     #[derive(Eq, PartialEq, Ord, PartialOrd, Clone, Copy, Hash)]

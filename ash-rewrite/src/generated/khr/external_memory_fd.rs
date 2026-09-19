@@ -2,8 +2,12 @@
 #![cfg_attr(rustfmt, rustfmt_skip)]
 //![Vulkan Manual Page](https://docs.vulkan.org/refpages/latest/refpages/source/VK_KHR_external_memory_fd.html) · Extension `VK_KHR_external_memory_fd`
 #![doc(alias = "VK_KHR_external_memory_fd")]
-pub const SPEC_VERSION: u32 = 1;
-pub const NAME: &core::ffi::CStr = c"VK_KHR_external_memory_fd";
+///Provided by [`khr::external_memory_fd`](crate::khr::external_memory_fd)
+impl crate::vk::StructureType {
+    pub const IMPORT_MEMORY_FD_INFO_KHR: Self = Self(1000074000);
+    pub const MEMORY_FD_PROPERTIES_KHR: Self = Self(1000074001);
+    pub const MEMORY_GET_FD_INFO_KHR: Self = Self(1000074002);
+}
 #[derive(Clone)]
 pub struct DeviceFn {
     pub get_memory_fd_khr: crate::vk::PFN_vkGetMemoryFdKHR,
@@ -77,6 +81,8 @@ impl Device {
         self.handle
     }
 }
+pub const SPEC_VERSION: u32 = 1;
+pub const NAME: &core::ffi::CStr = c"VK_KHR_external_memory_fd";
 pub(crate) mod reexport {
     #[repr(C)]
     #[derive(Clone, Copy)]
@@ -178,12 +184,6 @@ pub(crate) mod reexport {
             self.handle_type = handle_type;
             self
         }
-    }
-    ///Provided by [`khr::external_memory_fd`](crate::khr::external_memory_fd)
-    impl crate::vk::StructureType {
-        pub const IMPORT_MEMORY_FD_INFO_KHR: Self = Self(1000074000);
-        pub const MEMORY_FD_PROPERTIES_KHR: Self = Self(1000074001);
-        pub const MEMORY_GET_FD_INFO_KHR: Self = Self(1000074002);
     }
     pub type PFN_vkGetMemoryFdKHR = unsafe extern "system" fn(
         device: crate::vk::Device,

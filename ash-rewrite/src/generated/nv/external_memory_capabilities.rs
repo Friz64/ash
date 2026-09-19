@@ -2,8 +2,19 @@
 #![cfg_attr(rustfmt, rustfmt_skip)]
 //![Vulkan Manual Page](https://docs.vulkan.org/refpages/latest/refpages/source/VK_NV_external_memory_capabilities.html) · Extension `VK_NV_external_memory_capabilities`
 #![doc(alias = "VK_NV_external_memory_capabilities")]
-pub const SPEC_VERSION: u32 = 1;
-pub const NAME: &core::ffi::CStr = c"VK_NV_external_memory_capabilities";
+///Provided by [`nv::external_memory_capabilities`](crate::nv::external_memory_capabilities)
+impl ExternalMemoryHandleTypeFlagBitsNV {
+    pub const OPAQUE_WIN32_NV: Self = Self(1 << 0);
+    pub const OPAQUE_WIN32_KMT_NV: Self = Self(1 << 1);
+    pub const D3D11_IMAGE_NV: Self = Self(1 << 2);
+    pub const D3D11_IMAGE_KMT_NV: Self = Self(1 << 3);
+}
+///Provided by [`nv::external_memory_capabilities`](crate::nv::external_memory_capabilities)
+impl ExternalMemoryFeatureFlagBitsNV {
+    pub const DEDICATED_ONLY_NV: Self = Self(1 << 0);
+    pub const EXPORTABLE_NV: Self = Self(1 << 1);
+    pub const IMPORTABLE_NV: Self = Self(1 << 2);
+}
 #[derive(Clone)]
 pub struct InstanceFn {
     pub get_physical_device_external_image_format_properties_nv: crate::vk::PFN_vkGetPhysicalDeviceExternalImageFormatPropertiesNV,
@@ -67,6 +78,8 @@ impl Instance {
         self.handle
     }
 }
+pub const SPEC_VERSION: u32 = 1;
+pub const NAME: &core::ffi::CStr = c"VK_NV_external_memory_capabilities";
 pub(crate) mod reexport {
     #[repr(C)]
     #[derive(Clone, Copy, Default)]
@@ -188,13 +201,6 @@ pub(crate) mod reexport {
     #[repr(transparent)]
     #[derive(Clone, Copy, Default)]
     pub struct ExternalMemoryHandleTypeFlagBitsNV(pub(crate) u32);
-    ///Provided by [`nv::external_memory_capabilities`](crate::nv::external_memory_capabilities)
-    impl ExternalMemoryHandleTypeFlagBitsNV {
-        pub const OPAQUE_WIN32_NV: Self = Self(1 << 0);
-        pub const OPAQUE_WIN32_KMT_NV: Self = Self(1 << 1);
-        pub const D3D11_IMAGE_NV: Self = Self(1 << 2);
-        pub const D3D11_IMAGE_KMT_NV: Self = Self(1 << 3);
-    }
     #[repr(transparent)]
     #[derive(Clone, Copy)]
     pub struct ExternalMemoryFeatureFlagsNV(u32);
@@ -274,12 +280,6 @@ pub(crate) mod reexport {
     #[repr(transparent)]
     #[derive(Clone, Copy, Default)]
     pub struct ExternalMemoryFeatureFlagBitsNV(pub(crate) u32);
-    ///Provided by [`nv::external_memory_capabilities`](crate::nv::external_memory_capabilities)
-    impl ExternalMemoryFeatureFlagBitsNV {
-        pub const DEDICATED_ONLY_NV: Self = Self(1 << 0);
-        pub const EXPORTABLE_NV: Self = Self(1 << 1);
-        pub const IMPORTABLE_NV: Self = Self(1 << 2);
-    }
     pub type PFN_vkGetPhysicalDeviceExternalImageFormatPropertiesNV = unsafe extern "system" fn(
         physical_device: crate::vk::PhysicalDevice,
         format: crate::vk::Format,

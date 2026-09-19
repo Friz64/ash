@@ -2,8 +2,14 @@
 #![cfg_attr(rustfmt, rustfmt_skip)]
 //![Vulkan Manual Page](https://docs.vulkan.org/refpages/latest/refpages/source/VK_EXT_display_surface_counter.html) · Extension `VK_EXT_display_surface_counter`
 #![doc(alias = "VK_EXT_display_surface_counter")]
-pub const SPEC_VERSION: u32 = 1;
-pub const NAME: &core::ffi::CStr = c"VK_EXT_display_surface_counter";
+///Provided by [`ext::display_surface_counter`](crate::ext::display_surface_counter)
+impl crate::vk::StructureType {
+    pub const SURFACE_CAPABILITIES_2_EXT: Self = Self(1000090000);
+}
+///Provided by [`ext::display_surface_counter`](crate::ext::display_surface_counter)
+impl SurfaceCounterFlagBitsEXT {
+    pub const VBLANK_EXT: Self = Self(1 << 0);
+}
 #[derive(Clone)]
 pub struct InstanceFn {
     pub get_physical_device_surface_capabilities2_ext: crate::vk::PFN_vkGetPhysicalDeviceSurfaceCapabilities2EXT,
@@ -60,6 +66,8 @@ impl Instance {
         self.handle
     }
 }
+pub const SPEC_VERSION: u32 = 1;
+pub const NAME: &core::ffi::CStr = c"VK_EXT_display_surface_counter";
 pub(crate) mod reexport {
     #[repr(C)]
     #[derive(Clone, Copy)]
@@ -169,10 +177,6 @@ pub(crate) mod reexport {
             self
         }
     }
-    ///Provided by [`ext::display_surface_counter`](crate::ext::display_surface_counter)
-    impl crate::vk::StructureType {
-        pub const SURFACE_CAPABILITIES_2_EXT: Self = Self(1000090000);
-    }
     #[repr(transparent)]
     #[derive(Clone, Copy)]
     pub struct SurfaceCounterFlagsEXT(u32);
@@ -244,10 +248,6 @@ pub(crate) mod reexport {
     #[repr(transparent)]
     #[derive(Clone, Copy, Default)]
     pub struct SurfaceCounterFlagBitsEXT(pub(crate) u32);
-    ///Provided by [`ext::display_surface_counter`](crate::ext::display_surface_counter)
-    impl SurfaceCounterFlagBitsEXT {
-        pub const VBLANK_EXT: Self = Self(1 << 0);
-    }
     pub type PFN_vkGetPhysicalDeviceSurfaceCapabilities2EXT = unsafe extern "system" fn(
         physical_device: crate::vk::PhysicalDevice,
         surface: crate::vk::SurfaceKHR,

@@ -2,6 +2,15 @@
 #![cfg_attr(rustfmt, rustfmt_skip)]
 //![Vulkan Manual Page](https://docs.vulkan.org/refpages/latest/refpages/source/VK_EXT_frame_boundary.html) · Extension `VK_EXT_frame_boundary`
 #![doc(alias = "VK_EXT_frame_boundary")]
+///Provided by [`ext::frame_boundary`](crate::ext::frame_boundary)
+impl crate::vk::StructureType {
+    pub const PHYSICAL_DEVICE_FRAME_BOUNDARY_FEATURES_EXT: Self = Self(1000375000);
+    pub const FRAME_BOUNDARY_EXT: Self = Self(1000375001);
+}
+///Provided by [`ext::frame_boundary`](crate::ext::frame_boundary)
+impl FrameBoundaryFlagBitsEXT {
+    pub const FRAME_END_EXT: Self = Self(1 << 0);
+}
 pub const SPEC_VERSION: u32 = 1;
 pub const NAME: &core::ffi::CStr = c"VK_EXT_frame_boundary";
 pub(crate) mod reexport {
@@ -109,11 +118,6 @@ pub(crate) mod reexport {
             self
         }
     }
-    ///Provided by [`ext::frame_boundary`](crate::ext::frame_boundary)
-    impl crate::vk::StructureType {
-        pub const PHYSICAL_DEVICE_FRAME_BOUNDARY_FEATURES_EXT: Self = Self(1000375000);
-        pub const FRAME_BOUNDARY_EXT: Self = Self(1000375001);
-    }
     #[repr(transparent)]
     #[derive(Clone, Copy)]
     pub struct FrameBoundaryFlagsEXT(u32);
@@ -185,9 +189,5 @@ pub(crate) mod reexport {
     #[repr(transparent)]
     #[derive(Clone, Copy, Default)]
     pub struct FrameBoundaryFlagBitsEXT(pub(crate) u32);
-    ///Provided by [`ext::frame_boundary`](crate::ext::frame_boundary)
-    impl FrameBoundaryFlagBitsEXT {
-        pub const FRAME_END_EXT: Self = Self(1 << 0);
-    }
 }
 pub use reexport::*;

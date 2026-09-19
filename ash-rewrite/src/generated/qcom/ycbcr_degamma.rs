@@ -2,6 +2,13 @@
 #![cfg_attr(rustfmt, rustfmt_skip)]
 //![Vulkan Manual Page](https://docs.vulkan.org/refpages/latest/refpages/source/VK_QCOM_ycbcr_degamma.html) · Extension `VK_QCOM_ycbcr_degamma`
 #![doc(alias = "VK_QCOM_ycbcr_degamma")]
+///Provided by [`qcom::ycbcr_degamma`](crate::qcom::ycbcr_degamma)
+impl crate::vk::StructureType {
+    pub const PHYSICAL_DEVICE_YCBCR_DEGAMMA_FEATURES_QCOM: Self = Self(1000520000);
+    pub const SAMPLER_YCBCR_CONVERSION_YCBCR_DEGAMMA_CREATE_INFO_QCOM: Self = Self(
+        1000520001,
+    );
+}
 pub const SPEC_VERSION: u32 = 1;
 pub const NAME: &core::ffi::CStr = c"VK_QCOM_ycbcr_degamma";
 pub(crate) mod reexport {
@@ -72,13 +79,6 @@ pub(crate) mod reexport {
             self.enable_cb_cr_degamma = enable_cb_cr_degamma.into();
             self
         }
-    }
-    ///Provided by [`qcom::ycbcr_degamma`](crate::qcom::ycbcr_degamma)
-    impl crate::vk::StructureType {
-        pub const PHYSICAL_DEVICE_YCBCR_DEGAMMA_FEATURES_QCOM: Self = Self(1000520000);
-        pub const SAMPLER_YCBCR_CONVERSION_YCBCR_DEGAMMA_CREATE_INFO_QCOM: Self = Self(
-            1000520001,
-        );
     }
 }
 pub use reexport::*;

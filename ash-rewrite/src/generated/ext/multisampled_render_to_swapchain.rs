@@ -2,6 +2,17 @@
 #![cfg_attr(rustfmt, rustfmt_skip)]
 //![Vulkan Manual Page](https://docs.vulkan.org/refpages/latest/refpages/source/VK_EXT_multisampled_render_to_swapchain.html) · Extension `VK_EXT_multisampled_render_to_swapchain`
 #![doc(alias = "VK_EXT_multisampled_render_to_swapchain")]
+///Provided by [`ext::multisampled_render_to_swapchain`](crate::ext::multisampled_render_to_swapchain)
+impl crate::vk::StructureType {
+    pub const PHYSICAL_DEVICE_MULTISAMPLED_RENDER_TO_SWAPCHAIN_FEATURES_EXT: Self = Self(
+        1000616000,
+    );
+    pub const SWAPCHAIN_FLAGS_SURFACE_CAPABILITIES_EXT: Self = Self(1000616001);
+}
+///Provided by [`ext::multisampled_render_to_swapchain`](crate::ext::multisampled_render_to_swapchain)
+impl crate::vk::SwapchainCreateFlagBitsKHR {
+    pub const MULTISAMPLED_RENDER_TO_SINGLE_SAMPLED_EXT: Self = Self(1 << 8);
+}
 pub const SPEC_VERSION: u32 = 1;
 pub const NAME: &core::ffi::CStr = c"VK_EXT_multisampled_render_to_swapchain";
 pub(crate) mod reexport {
@@ -73,17 +84,6 @@ pub(crate) mod reexport {
                 .into();
             self
         }
-    }
-    ///Provided by [`ext::multisampled_render_to_swapchain`](crate::ext::multisampled_render_to_swapchain)
-    impl crate::vk::StructureType {
-        pub const PHYSICAL_DEVICE_MULTISAMPLED_RENDER_TO_SWAPCHAIN_FEATURES_EXT: Self = Self(
-            1000616000,
-        );
-        pub const SWAPCHAIN_FLAGS_SURFACE_CAPABILITIES_EXT: Self = Self(1000616001);
-    }
-    ///Provided by [`ext::multisampled_render_to_swapchain`](crate::ext::multisampled_render_to_swapchain)
-    impl crate::vk::SwapchainCreateFlagBitsKHR {
-        pub const MULTISAMPLED_RENDER_TO_SINGLE_SAMPLED_EXT: Self = Self(1 << 8);
     }
 }
 pub use reexport::*;

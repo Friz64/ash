@@ -2,6 +2,10 @@
 #![cfg_attr(rustfmt, rustfmt_skip)]
 //![Vulkan Manual Page](https://docs.vulkan.org/refpages/latest/refpages/source/VK_EXT_external_memory_acquire_unmodified.html) · Extension `VK_EXT_external_memory_acquire_unmodified`
 #![doc(alias = "VK_EXT_external_memory_acquire_unmodified")]
+///Provided by [`ext::external_memory_acquire_unmodified`](crate::ext::external_memory_acquire_unmodified)
+impl crate::vk::StructureType {
+    pub const EXTERNAL_MEMORY_ACQUIRE_UNMODIFIED_EXT: Self = Self(1000453000);
+}
 pub const SPEC_VERSION: u32 = 1;
 pub const NAME: &core::ffi::CStr = c"VK_EXT_external_memory_acquire_unmodified";
 pub(crate) mod reexport {
@@ -43,10 +47,6 @@ pub(crate) mod reexport {
             self.acquire_unmodified_memory = acquire_unmodified_memory.into();
             self
         }
-    }
-    ///Provided by [`ext::external_memory_acquire_unmodified`](crate::ext::external_memory_acquire_unmodified)
-    impl crate::vk::StructureType {
-        pub const EXTERNAL_MEMORY_ACQUIRE_UNMODIFIED_EXT: Self = Self(1000453000);
     }
 }
 pub use reexport::*;

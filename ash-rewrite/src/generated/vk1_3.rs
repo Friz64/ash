@@ -2,6 +2,282 @@
 #![cfg_attr(rustfmt, rustfmt_skip)]
 //![Vulkan Manual Page](https://docs.vulkan.org/refpages/latest/refpages/source/VK_VERSION_1_3.html) · Vulkan version 1.3
 #![doc(alias = "VK_VERSION_1_3")]
+///Provided by [`vk1_3`](crate::vk1_3)
+impl crate::vk::ImageLayout {
+    pub const READ_ONLY_OPTIMAL: Self = Self(1000314000);
+    pub const ATTACHMENT_OPTIMAL: Self = Self(1000314001);
+}
+///Provided by [`vk1_3`](crate::vk1_3)
+impl crate::vk::AttachmentStoreOp {
+    pub const NONE: Self = Self(1000301000);
+}
+///Provided by [`vk1_3`](crate::vk1_3)
+impl crate::vk::DescriptorType {
+    pub const INLINE_UNIFORM_BLOCK: Self = Self(1000138000);
+}
+///Provided by [`vk1_3`](crate::vk1_3)
+impl crate::vk::Format {
+    pub const G8_B8R8_2PLANE_444_UNORM: Self = Self(1000330000);
+    pub const G10X6_B10X6R10X6_2PLANE_444_UNORM_3PACK16: Self = Self(1000330001);
+    pub const G12X4_B12X4R12X4_2PLANE_444_UNORM_3PACK16: Self = Self(1000330002);
+    pub const G16_B16R16_2PLANE_444_UNORM: Self = Self(1000330003);
+    pub const A4R4G4B4_UNORM_PACK16: Self = Self(1000340000);
+    pub const A4B4G4R4_UNORM_PACK16: Self = Self(1000340001);
+    pub const ASTC_4X4_SFLOAT_BLOCK: Self = Self(1000066000);
+    pub const ASTC_5X4_SFLOAT_BLOCK: Self = Self(1000066001);
+    pub const ASTC_5X5_SFLOAT_BLOCK: Self = Self(1000066002);
+    pub const ASTC_6X5_SFLOAT_BLOCK: Self = Self(1000066003);
+    pub const ASTC_6X6_SFLOAT_BLOCK: Self = Self(1000066004);
+    pub const ASTC_8X5_SFLOAT_BLOCK: Self = Self(1000066005);
+    pub const ASTC_8X6_SFLOAT_BLOCK: Self = Self(1000066006);
+    pub const ASTC_8X8_SFLOAT_BLOCK: Self = Self(1000066007);
+    pub const ASTC_10X5_SFLOAT_BLOCK: Self = Self(1000066008);
+    pub const ASTC_10X6_SFLOAT_BLOCK: Self = Self(1000066009);
+    pub const ASTC_10X8_SFLOAT_BLOCK: Self = Self(1000066010);
+    pub const ASTC_10X10_SFLOAT_BLOCK: Self = Self(1000066011);
+    pub const ASTC_12X10_SFLOAT_BLOCK: Self = Self(1000066012);
+    pub const ASTC_12X12_SFLOAT_BLOCK: Self = Self(1000066013);
+}
+///Provided by [`vk1_3`](crate::vk1_3)
+impl crate::vk::StructureType {
+    pub const PHYSICAL_DEVICE_VULKAN_1_3_FEATURES: Self = Self(53);
+    pub const PHYSICAL_DEVICE_VULKAN_1_3_PROPERTIES: Self = Self(54);
+    pub const PHYSICAL_DEVICE_TOOL_PROPERTIES: Self = Self(1000245000);
+    pub const PHYSICAL_DEVICE_PRIVATE_DATA_FEATURES: Self = Self(1000295000);
+    pub const DEVICE_PRIVATE_DATA_CREATE_INFO: Self = Self(1000295001);
+    pub const PRIVATE_DATA_SLOT_CREATE_INFO: Self = Self(1000295002);
+    pub const MEMORY_BARRIER_2: Self = Self(1000314000);
+    pub const BUFFER_MEMORY_BARRIER_2: Self = Self(1000314001);
+    pub const IMAGE_MEMORY_BARRIER_2: Self = Self(1000314002);
+    pub const DEPENDENCY_INFO: Self = Self(1000314003);
+    pub const SUBMIT_INFO_2: Self = Self(1000314004);
+    pub const SEMAPHORE_SUBMIT_INFO: Self = Self(1000314005);
+    pub const COMMAND_BUFFER_SUBMIT_INFO: Self = Self(1000314006);
+    pub const PHYSICAL_DEVICE_SYNCHRONIZATION_2_FEATURES: Self = Self(1000314007);
+    pub const COPY_BUFFER_INFO_2: Self = Self(1000337000);
+    pub const COPY_IMAGE_INFO_2: Self = Self(1000337001);
+    pub const COPY_BUFFER_TO_IMAGE_INFO_2: Self = Self(1000337002);
+    pub const COPY_IMAGE_TO_BUFFER_INFO_2: Self = Self(1000337003);
+    pub const BUFFER_COPY_2: Self = Self(1000337006);
+    pub const IMAGE_COPY_2: Self = Self(1000337007);
+    pub const BUFFER_IMAGE_COPY_2: Self = Self(1000337009);
+    pub const PHYSICAL_DEVICE_TEXTURE_COMPRESSION_ASTC_HDR_FEATURES: Self = Self(
+        1000066000,
+    );
+    pub const FORMAT_PROPERTIES_3: Self = Self(1000360000);
+    pub const PHYSICAL_DEVICE_MAINTENANCE_4_FEATURES: Self = Self(1000413000);
+    pub const PHYSICAL_DEVICE_MAINTENANCE_4_PROPERTIES: Self = Self(1000413001);
+    pub const DEVICE_BUFFER_MEMORY_REQUIREMENTS: Self = Self(1000413002);
+    pub const DEVICE_IMAGE_MEMORY_REQUIREMENTS: Self = Self(1000413003);
+    pub const PIPELINE_CREATION_FEEDBACK_CREATE_INFO: Self = Self(1000192000);
+    pub const PHYSICAL_DEVICE_SHADER_TERMINATE_INVOCATION_FEATURES: Self = Self(
+        1000215000,
+    );
+    pub const PHYSICAL_DEVICE_SHADER_DEMOTE_TO_HELPER_INVOCATION_FEATURES: Self = Self(
+        1000276000,
+    );
+    pub const PHYSICAL_DEVICE_PIPELINE_CREATION_CACHE_CONTROL_FEATURES: Self = Self(
+        1000297000,
+    );
+    pub const PHYSICAL_DEVICE_ZERO_INITIALIZE_WORKGROUP_MEMORY_FEATURES: Self = Self(
+        1000325000,
+    );
+    pub const PHYSICAL_DEVICE_IMAGE_ROBUSTNESS_FEATURES: Self = Self(1000335000);
+    pub const PHYSICAL_DEVICE_SUBGROUP_SIZE_CONTROL_PROPERTIES: Self = Self(1000225000);
+    pub const PIPELINE_SHADER_STAGE_REQUIRED_SUBGROUP_SIZE_CREATE_INFO: Self = Self(
+        1000225001,
+    );
+    pub const PHYSICAL_DEVICE_SUBGROUP_SIZE_CONTROL_FEATURES: Self = Self(1000225002);
+    pub const PHYSICAL_DEVICE_INLINE_UNIFORM_BLOCK_FEATURES: Self = Self(1000138000);
+    pub const PHYSICAL_DEVICE_INLINE_UNIFORM_BLOCK_PROPERTIES: Self = Self(1000138001);
+    pub const WRITE_DESCRIPTOR_SET_INLINE_UNIFORM_BLOCK: Self = Self(1000138002);
+    pub const DESCRIPTOR_POOL_INLINE_UNIFORM_BLOCK_CREATE_INFO: Self = Self(1000138003);
+    pub const PHYSICAL_DEVICE_SHADER_INTEGER_DOT_PRODUCT_FEATURES: Self = Self(
+        1000280000,
+    );
+    pub const PHYSICAL_DEVICE_SHADER_INTEGER_DOT_PRODUCT_PROPERTIES: Self = Self(
+        1000280001,
+    );
+    pub const PHYSICAL_DEVICE_TEXEL_BUFFER_ALIGNMENT_PROPERTIES: Self = Self(1000281001);
+    pub const BLIT_IMAGE_INFO_2: Self = Self(1000337004);
+    pub const RESOLVE_IMAGE_INFO_2: Self = Self(1000337005);
+    pub const IMAGE_BLIT_2: Self = Self(1000337008);
+    pub const IMAGE_RESOLVE_2: Self = Self(1000337010);
+    pub const RENDERING_INFO: Self = Self(1000044000);
+    pub const RENDERING_ATTACHMENT_INFO: Self = Self(1000044001);
+    pub const PIPELINE_RENDERING_CREATE_INFO: Self = Self(1000044002);
+    pub const PHYSICAL_DEVICE_DYNAMIC_RENDERING_FEATURES: Self = Self(1000044003);
+    pub const COMMAND_BUFFER_INHERITANCE_RENDERING_INFO: Self = Self(1000044004);
+}
+///Provided by [`vk1_3`](crate::vk1_3)
+impl crate::vk::Result {
+    pub const PIPELINE_COMPILE_REQUIRED: Self = Self(1000297000);
+}
+///Provided by [`vk1_3`](crate::vk1_3)
+impl crate::vk::DynamicState {
+    pub const CULL_MODE: Self = Self(1000267000);
+    pub const FRONT_FACE: Self = Self(1000267001);
+    pub const PRIMITIVE_TOPOLOGY: Self = Self(1000267002);
+    pub const VIEWPORT_WITH_COUNT: Self = Self(1000267003);
+    pub const SCISSOR_WITH_COUNT: Self = Self(1000267004);
+    pub const VERTEX_INPUT_BINDING_STRIDE: Self = Self(1000267005);
+    pub const DEPTH_TEST_ENABLE: Self = Self(1000267006);
+    pub const DEPTH_WRITE_ENABLE: Self = Self(1000267007);
+    pub const DEPTH_COMPARE_OP: Self = Self(1000267008);
+    pub const DEPTH_BOUNDS_TEST_ENABLE: Self = Self(1000267009);
+    pub const STENCIL_TEST_ENABLE: Self = Self(1000267010);
+    pub const STENCIL_OP: Self = Self(1000267011);
+    pub const RASTERIZER_DISCARD_ENABLE: Self = Self(1000377001);
+    pub const DEPTH_BIAS_ENABLE: Self = Self(1000377002);
+    pub const PRIMITIVE_RESTART_ENABLE: Self = Self(1000377004);
+}
+///Provided by [`vk1_3`](crate::vk1_3)
+impl crate::vk::ObjectType {
+    pub const PRIVATE_DATA_SLOT: Self = Self(1000295000);
+}
+///Provided by [`vk1_3`](crate::vk1_3)
+impl crate::vk::PipelineCacheCreateFlagBits {
+    pub const EXTERNALLY_SYNCHRONIZED: Self = Self(1 << 0);
+}
+///Provided by [`vk1_3`](crate::vk1_3)
+impl crate::vk::PipelineShaderStageCreateFlagBits {
+    pub const ALLOW_VARYING_SUBGROUP_SIZE: Self = Self(1 << 0);
+    pub const REQUIRE_FULL_SUBGROUPS: Self = Self(1 << 1);
+}
+///Provided by [`vk1_3`](crate::vk1_3)
+impl crate::vk::AccessFlagBits {
+    pub const NONE: Self = Self(0);
+}
+///Provided by [`vk1_3`](crate::vk1_3)
+impl crate::vk::PipelineCreateFlagBits {
+    pub const FAIL_ON_PIPELINE_COMPILE_REQUIRED: Self = Self(1 << 8);
+    pub const EARLY_RETURN_ON_FAILURE: Self = Self(1 << 9);
+}
+///Provided by [`vk1_3`](crate::vk1_3)
+impl crate::vk::EventCreateFlagBits {
+    pub const DEVICE_ONLY: Self = Self(1 << 0);
+}
+///Provided by [`vk1_3`](crate::vk1_3)
+impl crate::vk::ImageAspectFlagBits {
+    pub const NONE: Self = Self(0);
+}
+///Provided by [`vk1_3`](crate::vk1_3)
+impl crate::vk::PipelineStageFlagBits {
+    pub const NONE: Self = Self(0);
+}
+///Provided by [`vk1_3`](crate::vk1_3)
+impl PipelineCreationFeedbackFlagBits {
+    pub const VALID: Self = Self(1 << 0);
+    pub const APPLICATION_PIPELINE_CACHE_HIT: Self = Self(1 << 1);
+    pub const BASE_PIPELINE_ACCELERATION: Self = Self(1 << 2);
+}
+///Provided by [`vk1_3`](crate::vk1_3)
+impl AccessFlagBits2 {
+    pub const NONE: Self = Self(0);
+    pub const INDIRECT_COMMAND_READ: Self = Self(1 << 0);
+    pub const INDEX_READ: Self = Self(1 << 1);
+    pub const VERTEX_ATTRIBUTE_READ: Self = Self(1 << 2);
+    pub const UNIFORM_READ: Self = Self(1 << 3);
+    pub const INPUT_ATTACHMENT_READ: Self = Self(1 << 4);
+    pub const SHADER_READ: Self = Self(1 << 5);
+    pub const SHADER_WRITE: Self = Self(1 << 6);
+    pub const COLOR_ATTACHMENT_READ: Self = Self(1 << 7);
+    pub const COLOR_ATTACHMENT_WRITE: Self = Self(1 << 8);
+    pub const DEPTH_STENCIL_ATTACHMENT_READ: Self = Self(1 << 9);
+    pub const DEPTH_STENCIL_ATTACHMENT_WRITE: Self = Self(1 << 10);
+    pub const TRANSFER_READ: Self = Self(1 << 11);
+    pub const TRANSFER_WRITE: Self = Self(1 << 12);
+    pub const HOST_READ: Self = Self(1 << 13);
+    pub const HOST_WRITE: Self = Self(1 << 14);
+    pub const MEMORY_READ: Self = Self(1 << 15);
+    pub const MEMORY_WRITE: Self = Self(1 << 16);
+    pub const SHADER_SAMPLED_READ: Self = Self(1 << 32);
+    pub const SHADER_STORAGE_READ: Self = Self(1 << 33);
+    pub const SHADER_STORAGE_WRITE: Self = Self(1 << 34);
+}
+///Provided by [`vk1_3`](crate::vk1_3)
+impl PipelineStageFlagBits2 {
+    pub const NONE: Self = Self(0);
+    pub const TOP_OF_PIPE: Self = Self(1 << 0);
+    pub const DRAW_INDIRECT: Self = Self(1 << 1);
+    pub const VERTEX_INPUT: Self = Self(1 << 2);
+    pub const VERTEX_SHADER: Self = Self(1 << 3);
+    pub const TESSELLATION_CONTROL_SHADER: Self = Self(1 << 4);
+    pub const TESSELLATION_EVALUATION_SHADER: Self = Self(1 << 5);
+    pub const GEOMETRY_SHADER: Self = Self(1 << 6);
+    pub const FRAGMENT_SHADER: Self = Self(1 << 7);
+    pub const EARLY_FRAGMENT_TESTS: Self = Self(1 << 8);
+    pub const LATE_FRAGMENT_TESTS: Self = Self(1 << 9);
+    pub const COLOR_ATTACHMENT_OUTPUT: Self = Self(1 << 10);
+    pub const COMPUTE_SHADER: Self = Self(1 << 11);
+    pub const ALL_TRANSFER: Self = Self(1 << 12);
+    pub const TRANSFER: Self = Self::ALL_TRANSFER;
+    pub const BOTTOM_OF_PIPE: Self = Self(1 << 13);
+    pub const HOST: Self = Self(1 << 14);
+    pub const ALL_GRAPHICS: Self = Self(1 << 15);
+    pub const ALL_COMMANDS: Self = Self(1 << 16);
+    pub const COPY: Self = Self(1 << 32);
+    pub const RESOLVE: Self = Self(1 << 33);
+    pub const BLIT: Self = Self(1 << 34);
+    pub const CLEAR: Self = Self(1 << 35);
+    pub const INDEX_INPUT: Self = Self(1 << 36);
+    pub const VERTEX_ATTRIBUTE_INPUT: Self = Self(1 << 37);
+    pub const PRE_RASTERIZATION_SHADERS: Self = Self(1 << 38);
+}
+///Provided by [`vk1_3`](crate::vk1_3)
+impl FormatFeatureFlagBits2 {
+    pub const SAMPLED_IMAGE: Self = Self(1 << 0);
+    pub const STORAGE_IMAGE: Self = Self(1 << 1);
+    pub const STORAGE_IMAGE_ATOMIC: Self = Self(1 << 2);
+    pub const UNIFORM_TEXEL_BUFFER: Self = Self(1 << 3);
+    pub const STORAGE_TEXEL_BUFFER: Self = Self(1 << 4);
+    pub const STORAGE_TEXEL_BUFFER_ATOMIC: Self = Self(1 << 5);
+    pub const VERTEX_BUFFER: Self = Self(1 << 6);
+    pub const COLOR_ATTACHMENT: Self = Self(1 << 7);
+    pub const COLOR_ATTACHMENT_BLEND: Self = Self(1 << 8);
+    pub const DEPTH_STENCIL_ATTACHMENT: Self = Self(1 << 9);
+    pub const BLIT_SRC: Self = Self(1 << 10);
+    pub const BLIT_DST: Self = Self(1 << 11);
+    pub const SAMPLED_IMAGE_FILTER_LINEAR: Self = Self(1 << 12);
+    pub const TRANSFER_SRC: Self = Self(1 << 14);
+    pub const TRANSFER_DST: Self = Self(1 << 15);
+    pub const SAMPLED_IMAGE_FILTER_MINMAX: Self = Self(1 << 16);
+    pub const MIDPOINT_CHROMA_SAMPLES: Self = Self(1 << 17);
+    pub const SAMPLED_IMAGE_YCBCR_CONVERSION_LINEAR_FILTER: Self = Self(1 << 18);
+    pub const SAMPLED_IMAGE_YCBCR_CONVERSION_SEPARATE_RECONSTRUCTION_FILTER: Self = Self(
+        1 << 19,
+    );
+    pub const SAMPLED_IMAGE_YCBCR_CONVERSION_CHROMA_RECONSTRUCTION_EXPLICIT: Self = Self(
+        1 << 20,
+    );
+    pub const SAMPLED_IMAGE_YCBCR_CONVERSION_CHROMA_RECONSTRUCTION_EXPLICIT_FORCEABLE: Self = Self(
+        1 << 21,
+    );
+    pub const DISJOINT: Self = Self(1 << 22);
+    pub const COSITED_CHROMA_SAMPLES: Self = Self(1 << 23);
+    pub const STORAGE_READ_WITHOUT_FORMAT: Self = Self(1 << 31);
+    pub const STORAGE_WRITE_WITHOUT_FORMAT: Self = Self(1 << 32);
+    pub const SAMPLED_IMAGE_DEPTH_COMPARISON: Self = Self(1 << 33);
+    pub const SAMPLED_IMAGE_FILTER_CUBIC: Self = Self(1 << 13);
+}
+///Provided by [`vk1_3`](crate::vk1_3)
+impl RenderingFlagBits {
+    pub const CONTENTS_SECONDARY_COMMAND_BUFFERS: Self = Self(1 << 0);
+    pub const SUSPENDING: Self = Self(1 << 1);
+    pub const RESUMING: Self = Self(1 << 2);
+}
+///Provided by [`vk1_3`](crate::vk1_3)
+impl ToolPurposeFlagBits {
+    pub const VALIDATION: Self = Self(1 << 0);
+    pub const PROFILING: Self = Self(1 << 1);
+    pub const TRACING: Self = Self(1 << 2);
+    pub const ADDITIONAL_FEATURES: Self = Self(1 << 3);
+    pub const MODIFYING_FEATURES: Self = Self(1 << 4);
+}
+///Provided by [`vk1_3`](crate::vk1_3)
+impl SubmitFlagBits {
+    pub const PROTECTED: Self = Self(1 << 0);
+}
 #[derive(Clone)]
 pub struct DeviceFnV1_3 {
     pub get_device_buffer_memory_requirements: crate::vk::PFN_vkGetDeviceBufferMemoryRequirements,
@@ -4037,179 +4313,6 @@ pub(crate) mod reexport {
             self
         }
     }
-    ///Provided by [`vk1_3`](crate::vk1_3)
-    impl crate::vk::ImageLayout {
-        pub const READ_ONLY_OPTIMAL: Self = Self(1000314000);
-        pub const ATTACHMENT_OPTIMAL: Self = Self(1000314001);
-    }
-    ///Provided by [`vk1_3`](crate::vk1_3)
-    impl crate::vk::AttachmentStoreOp {
-        pub const NONE: Self = Self(1000301000);
-    }
-    ///Provided by [`vk1_3`](crate::vk1_3)
-    impl crate::vk::DescriptorType {
-        pub const INLINE_UNIFORM_BLOCK: Self = Self(1000138000);
-    }
-    ///Provided by [`vk1_3`](crate::vk1_3)
-    impl crate::vk::Format {
-        pub const G8_B8R8_2PLANE_444_UNORM: Self = Self(1000330000);
-        pub const G10X6_B10X6R10X6_2PLANE_444_UNORM_3PACK16: Self = Self(1000330001);
-        pub const G12X4_B12X4R12X4_2PLANE_444_UNORM_3PACK16: Self = Self(1000330002);
-        pub const G16_B16R16_2PLANE_444_UNORM: Self = Self(1000330003);
-        pub const A4R4G4B4_UNORM_PACK16: Self = Self(1000340000);
-        pub const A4B4G4R4_UNORM_PACK16: Self = Self(1000340001);
-        pub const ASTC_4X4_SFLOAT_BLOCK: Self = Self(1000066000);
-        pub const ASTC_5X4_SFLOAT_BLOCK: Self = Self(1000066001);
-        pub const ASTC_5X5_SFLOAT_BLOCK: Self = Self(1000066002);
-        pub const ASTC_6X5_SFLOAT_BLOCK: Self = Self(1000066003);
-        pub const ASTC_6X6_SFLOAT_BLOCK: Self = Self(1000066004);
-        pub const ASTC_8X5_SFLOAT_BLOCK: Self = Self(1000066005);
-        pub const ASTC_8X6_SFLOAT_BLOCK: Self = Self(1000066006);
-        pub const ASTC_8X8_SFLOAT_BLOCK: Self = Self(1000066007);
-        pub const ASTC_10X5_SFLOAT_BLOCK: Self = Self(1000066008);
-        pub const ASTC_10X6_SFLOAT_BLOCK: Self = Self(1000066009);
-        pub const ASTC_10X8_SFLOAT_BLOCK: Self = Self(1000066010);
-        pub const ASTC_10X10_SFLOAT_BLOCK: Self = Self(1000066011);
-        pub const ASTC_12X10_SFLOAT_BLOCK: Self = Self(1000066012);
-        pub const ASTC_12X12_SFLOAT_BLOCK: Self = Self(1000066013);
-    }
-    ///Provided by [`vk1_3`](crate::vk1_3)
-    impl crate::vk::StructureType {
-        pub const PHYSICAL_DEVICE_VULKAN_1_3_FEATURES: Self = Self(53);
-        pub const PHYSICAL_DEVICE_VULKAN_1_3_PROPERTIES: Self = Self(54);
-        pub const PHYSICAL_DEVICE_TOOL_PROPERTIES: Self = Self(1000245000);
-        pub const PHYSICAL_DEVICE_PRIVATE_DATA_FEATURES: Self = Self(1000295000);
-        pub const DEVICE_PRIVATE_DATA_CREATE_INFO: Self = Self(1000295001);
-        pub const PRIVATE_DATA_SLOT_CREATE_INFO: Self = Self(1000295002);
-        pub const MEMORY_BARRIER_2: Self = Self(1000314000);
-        pub const BUFFER_MEMORY_BARRIER_2: Self = Self(1000314001);
-        pub const IMAGE_MEMORY_BARRIER_2: Self = Self(1000314002);
-        pub const DEPENDENCY_INFO: Self = Self(1000314003);
-        pub const SUBMIT_INFO_2: Self = Self(1000314004);
-        pub const SEMAPHORE_SUBMIT_INFO: Self = Self(1000314005);
-        pub const COMMAND_BUFFER_SUBMIT_INFO: Self = Self(1000314006);
-        pub const PHYSICAL_DEVICE_SYNCHRONIZATION_2_FEATURES: Self = Self(1000314007);
-        pub const COPY_BUFFER_INFO_2: Self = Self(1000337000);
-        pub const COPY_IMAGE_INFO_2: Self = Self(1000337001);
-        pub const COPY_BUFFER_TO_IMAGE_INFO_2: Self = Self(1000337002);
-        pub const COPY_IMAGE_TO_BUFFER_INFO_2: Self = Self(1000337003);
-        pub const BUFFER_COPY_2: Self = Self(1000337006);
-        pub const IMAGE_COPY_2: Self = Self(1000337007);
-        pub const BUFFER_IMAGE_COPY_2: Self = Self(1000337009);
-        pub const PHYSICAL_DEVICE_TEXTURE_COMPRESSION_ASTC_HDR_FEATURES: Self = Self(
-            1000066000,
-        );
-        pub const FORMAT_PROPERTIES_3: Self = Self(1000360000);
-        pub const PHYSICAL_DEVICE_MAINTENANCE_4_FEATURES: Self = Self(1000413000);
-        pub const PHYSICAL_DEVICE_MAINTENANCE_4_PROPERTIES: Self = Self(1000413001);
-        pub const DEVICE_BUFFER_MEMORY_REQUIREMENTS: Self = Self(1000413002);
-        pub const DEVICE_IMAGE_MEMORY_REQUIREMENTS: Self = Self(1000413003);
-        pub const PIPELINE_CREATION_FEEDBACK_CREATE_INFO: Self = Self(1000192000);
-        pub const PHYSICAL_DEVICE_SHADER_TERMINATE_INVOCATION_FEATURES: Self = Self(
-            1000215000,
-        );
-        pub const PHYSICAL_DEVICE_SHADER_DEMOTE_TO_HELPER_INVOCATION_FEATURES: Self = Self(
-            1000276000,
-        );
-        pub const PHYSICAL_DEVICE_PIPELINE_CREATION_CACHE_CONTROL_FEATURES: Self = Self(
-            1000297000,
-        );
-        pub const PHYSICAL_DEVICE_ZERO_INITIALIZE_WORKGROUP_MEMORY_FEATURES: Self = Self(
-            1000325000,
-        );
-        pub const PHYSICAL_DEVICE_IMAGE_ROBUSTNESS_FEATURES: Self = Self(1000335000);
-        pub const PHYSICAL_DEVICE_SUBGROUP_SIZE_CONTROL_PROPERTIES: Self = Self(
-            1000225000,
-        );
-        pub const PIPELINE_SHADER_STAGE_REQUIRED_SUBGROUP_SIZE_CREATE_INFO: Self = Self(
-            1000225001,
-        );
-        pub const PHYSICAL_DEVICE_SUBGROUP_SIZE_CONTROL_FEATURES: Self = Self(
-            1000225002,
-        );
-        pub const PHYSICAL_DEVICE_INLINE_UNIFORM_BLOCK_FEATURES: Self = Self(1000138000);
-        pub const PHYSICAL_DEVICE_INLINE_UNIFORM_BLOCK_PROPERTIES: Self = Self(
-            1000138001,
-        );
-        pub const WRITE_DESCRIPTOR_SET_INLINE_UNIFORM_BLOCK: Self = Self(1000138002);
-        pub const DESCRIPTOR_POOL_INLINE_UNIFORM_BLOCK_CREATE_INFO: Self = Self(
-            1000138003,
-        );
-        pub const PHYSICAL_DEVICE_SHADER_INTEGER_DOT_PRODUCT_FEATURES: Self = Self(
-            1000280000,
-        );
-        pub const PHYSICAL_DEVICE_SHADER_INTEGER_DOT_PRODUCT_PROPERTIES: Self = Self(
-            1000280001,
-        );
-        pub const PHYSICAL_DEVICE_TEXEL_BUFFER_ALIGNMENT_PROPERTIES: Self = Self(
-            1000281001,
-        );
-        pub const BLIT_IMAGE_INFO_2: Self = Self(1000337004);
-        pub const RESOLVE_IMAGE_INFO_2: Self = Self(1000337005);
-        pub const IMAGE_BLIT_2: Self = Self(1000337008);
-        pub const IMAGE_RESOLVE_2: Self = Self(1000337010);
-        pub const RENDERING_INFO: Self = Self(1000044000);
-        pub const RENDERING_ATTACHMENT_INFO: Self = Self(1000044001);
-        pub const PIPELINE_RENDERING_CREATE_INFO: Self = Self(1000044002);
-        pub const PHYSICAL_DEVICE_DYNAMIC_RENDERING_FEATURES: Self = Self(1000044003);
-        pub const COMMAND_BUFFER_INHERITANCE_RENDERING_INFO: Self = Self(1000044004);
-    }
-    ///Provided by [`vk1_3`](crate::vk1_3)
-    impl crate::vk::Result {
-        pub const PIPELINE_COMPILE_REQUIRED: Self = Self(1000297000);
-    }
-    ///Provided by [`vk1_3`](crate::vk1_3)
-    impl crate::vk::DynamicState {
-        pub const CULL_MODE: Self = Self(1000267000);
-        pub const FRONT_FACE: Self = Self(1000267001);
-        pub const PRIMITIVE_TOPOLOGY: Self = Self(1000267002);
-        pub const VIEWPORT_WITH_COUNT: Self = Self(1000267003);
-        pub const SCISSOR_WITH_COUNT: Self = Self(1000267004);
-        pub const VERTEX_INPUT_BINDING_STRIDE: Self = Self(1000267005);
-        pub const DEPTH_TEST_ENABLE: Self = Self(1000267006);
-        pub const DEPTH_WRITE_ENABLE: Self = Self(1000267007);
-        pub const DEPTH_COMPARE_OP: Self = Self(1000267008);
-        pub const DEPTH_BOUNDS_TEST_ENABLE: Self = Self(1000267009);
-        pub const STENCIL_TEST_ENABLE: Self = Self(1000267010);
-        pub const STENCIL_OP: Self = Self(1000267011);
-        pub const RASTERIZER_DISCARD_ENABLE: Self = Self(1000377001);
-        pub const DEPTH_BIAS_ENABLE: Self = Self(1000377002);
-        pub const PRIMITIVE_RESTART_ENABLE: Self = Self(1000377004);
-    }
-    ///Provided by [`vk1_3`](crate::vk1_3)
-    impl crate::vk::ObjectType {
-        pub const PRIVATE_DATA_SLOT: Self = Self(1000295000);
-    }
-    ///Provided by [`vk1_3`](crate::vk1_3)
-    impl crate::vk::PipelineCacheCreateFlagBits {
-        pub const EXTERNALLY_SYNCHRONIZED: Self = Self(1 << 0);
-    }
-    ///Provided by [`vk1_3`](crate::vk1_3)
-    impl crate::vk::PipelineShaderStageCreateFlagBits {
-        pub const ALLOW_VARYING_SUBGROUP_SIZE: Self = Self(1 << 0);
-        pub const REQUIRE_FULL_SUBGROUPS: Self = Self(1 << 1);
-    }
-    ///Provided by [`vk1_3`](crate::vk1_3)
-    impl crate::vk::AccessFlagBits {
-        pub const NONE: Self = Self(0);
-    }
-    ///Provided by [`vk1_3`](crate::vk1_3)
-    impl crate::vk::PipelineCreateFlagBits {
-        pub const FAIL_ON_PIPELINE_COMPILE_REQUIRED: Self = Self(1 << 8);
-        pub const EARLY_RETURN_ON_FAILURE: Self = Self(1 << 9);
-    }
-    ///Provided by [`vk1_3`](crate::vk1_3)
-    impl crate::vk::EventCreateFlagBits {
-        pub const DEVICE_ONLY: Self = Self(1 << 0);
-    }
-    ///Provided by [`vk1_3`](crate::vk1_3)
-    impl crate::vk::ImageAspectFlagBits {
-        pub const NONE: Self = Self(0);
-    }
-    ///Provided by [`vk1_3`](crate::vk1_3)
-    impl crate::vk::PipelineStageFlagBits {
-        pub const NONE: Self = Self(0);
-    }
     #[repr(transparent)]
     #[derive(Clone, Copy)]
     pub struct PrivateDataSlotCreateFlags(u32);
@@ -4367,12 +4470,6 @@ pub(crate) mod reexport {
     #[repr(transparent)]
     #[derive(Clone, Copy, Default)]
     pub struct PipelineCreationFeedbackFlagBits(pub(crate) u32);
-    ///Provided by [`vk1_3`](crate::vk1_3)
-    impl PipelineCreationFeedbackFlagBits {
-        pub const VALID: Self = Self(1 << 0);
-        pub const APPLICATION_PIPELINE_CACHE_HIT: Self = Self(1 << 1);
-        pub const BASE_PIPELINE_ACCELERATION: Self = Self(1 << 2);
-    }
     #[repr(transparent)]
     #[derive(Clone, Copy)]
     pub struct AccessFlags2(u64);
@@ -4626,30 +4723,6 @@ pub(crate) mod reexport {
     #[repr(transparent)]
     #[derive(Clone, Copy, Default)]
     pub struct AccessFlagBits2(pub(crate) u64);
-    ///Provided by [`vk1_3`](crate::vk1_3)
-    impl AccessFlagBits2 {
-        pub const NONE: Self = Self(0);
-        pub const INDIRECT_COMMAND_READ: Self = Self(1 << 0);
-        pub const INDEX_READ: Self = Self(1 << 1);
-        pub const VERTEX_ATTRIBUTE_READ: Self = Self(1 << 2);
-        pub const UNIFORM_READ: Self = Self(1 << 3);
-        pub const INPUT_ATTACHMENT_READ: Self = Self(1 << 4);
-        pub const SHADER_READ: Self = Self(1 << 5);
-        pub const SHADER_WRITE: Self = Self(1 << 6);
-        pub const COLOR_ATTACHMENT_READ: Self = Self(1 << 7);
-        pub const COLOR_ATTACHMENT_WRITE: Self = Self(1 << 8);
-        pub const DEPTH_STENCIL_ATTACHMENT_READ: Self = Self(1 << 9);
-        pub const DEPTH_STENCIL_ATTACHMENT_WRITE: Self = Self(1 << 10);
-        pub const TRANSFER_READ: Self = Self(1 << 11);
-        pub const TRANSFER_WRITE: Self = Self(1 << 12);
-        pub const HOST_READ: Self = Self(1 << 13);
-        pub const HOST_WRITE: Self = Self(1 << 14);
-        pub const MEMORY_READ: Self = Self(1 << 15);
-        pub const MEMORY_WRITE: Self = Self(1 << 16);
-        pub const SHADER_SAMPLED_READ: Self = Self(1 << 32);
-        pub const SHADER_STORAGE_READ: Self = Self(1 << 33);
-        pub const SHADER_STORAGE_WRITE: Self = Self(1 << 34);
-    }
     #[repr(transparent)]
     #[derive(Clone, Copy)]
     pub struct PipelineStageFlags2(u64);
@@ -4903,35 +4976,6 @@ pub(crate) mod reexport {
     #[repr(transparent)]
     #[derive(Clone, Copy, Default)]
     pub struct PipelineStageFlagBits2(pub(crate) u64);
-    ///Provided by [`vk1_3`](crate::vk1_3)
-    impl PipelineStageFlagBits2 {
-        pub const NONE: Self = Self(0);
-        pub const TOP_OF_PIPE: Self = Self(1 << 0);
-        pub const DRAW_INDIRECT: Self = Self(1 << 1);
-        pub const VERTEX_INPUT: Self = Self(1 << 2);
-        pub const VERTEX_SHADER: Self = Self(1 << 3);
-        pub const TESSELLATION_CONTROL_SHADER: Self = Self(1 << 4);
-        pub const TESSELLATION_EVALUATION_SHADER: Self = Self(1 << 5);
-        pub const GEOMETRY_SHADER: Self = Self(1 << 6);
-        pub const FRAGMENT_SHADER: Self = Self(1 << 7);
-        pub const EARLY_FRAGMENT_TESTS: Self = Self(1 << 8);
-        pub const LATE_FRAGMENT_TESTS: Self = Self(1 << 9);
-        pub const COLOR_ATTACHMENT_OUTPUT: Self = Self(1 << 10);
-        pub const COMPUTE_SHADER: Self = Self(1 << 11);
-        pub const ALL_TRANSFER: Self = Self(1 << 12);
-        pub const TRANSFER: Self = Self::ALL_TRANSFER;
-        pub const BOTTOM_OF_PIPE: Self = Self(1 << 13);
-        pub const HOST: Self = Self(1 << 14);
-        pub const ALL_GRAPHICS: Self = Self(1 << 15);
-        pub const ALL_COMMANDS: Self = Self(1 << 16);
-        pub const COPY: Self = Self(1 << 32);
-        pub const RESOLVE: Self = Self(1 << 33);
-        pub const BLIT: Self = Self(1 << 34);
-        pub const CLEAR: Self = Self(1 << 35);
-        pub const INDEX_INPUT: Self = Self(1 << 36);
-        pub const VERTEX_ATTRIBUTE_INPUT: Self = Self(1 << 37);
-        pub const PRE_RASTERIZATION_SHADERS: Self = Self(1 << 38);
-    }
     #[repr(transparent)]
     #[derive(Clone, Copy)]
     pub struct FormatFeatureFlags2(u64);
@@ -5247,42 +5291,6 @@ pub(crate) mod reexport {
     #[repr(transparent)]
     #[derive(Clone, Copy, Default)]
     pub struct FormatFeatureFlagBits2(pub(crate) u64);
-    ///Provided by [`vk1_3`](crate::vk1_3)
-    impl FormatFeatureFlagBits2 {
-        pub const SAMPLED_IMAGE: Self = Self(1 << 0);
-        pub const STORAGE_IMAGE: Self = Self(1 << 1);
-        pub const STORAGE_IMAGE_ATOMIC: Self = Self(1 << 2);
-        pub const UNIFORM_TEXEL_BUFFER: Self = Self(1 << 3);
-        pub const STORAGE_TEXEL_BUFFER: Self = Self(1 << 4);
-        pub const STORAGE_TEXEL_BUFFER_ATOMIC: Self = Self(1 << 5);
-        pub const VERTEX_BUFFER: Self = Self(1 << 6);
-        pub const COLOR_ATTACHMENT: Self = Self(1 << 7);
-        pub const COLOR_ATTACHMENT_BLEND: Self = Self(1 << 8);
-        pub const DEPTH_STENCIL_ATTACHMENT: Self = Self(1 << 9);
-        pub const BLIT_SRC: Self = Self(1 << 10);
-        pub const BLIT_DST: Self = Self(1 << 11);
-        pub const SAMPLED_IMAGE_FILTER_LINEAR: Self = Self(1 << 12);
-        pub const TRANSFER_SRC: Self = Self(1 << 14);
-        pub const TRANSFER_DST: Self = Self(1 << 15);
-        pub const SAMPLED_IMAGE_FILTER_MINMAX: Self = Self(1 << 16);
-        pub const MIDPOINT_CHROMA_SAMPLES: Self = Self(1 << 17);
-        pub const SAMPLED_IMAGE_YCBCR_CONVERSION_LINEAR_FILTER: Self = Self(1 << 18);
-        pub const SAMPLED_IMAGE_YCBCR_CONVERSION_SEPARATE_RECONSTRUCTION_FILTER: Self = Self(
-            1 << 19,
-        );
-        pub const SAMPLED_IMAGE_YCBCR_CONVERSION_CHROMA_RECONSTRUCTION_EXPLICIT: Self = Self(
-            1 << 20,
-        );
-        pub const SAMPLED_IMAGE_YCBCR_CONVERSION_CHROMA_RECONSTRUCTION_EXPLICIT_FORCEABLE: Self = Self(
-            1 << 21,
-        );
-        pub const DISJOINT: Self = Self(1 << 22);
-        pub const COSITED_CHROMA_SAMPLES: Self = Self(1 << 23);
-        pub const STORAGE_READ_WITHOUT_FORMAT: Self = Self(1 << 31);
-        pub const STORAGE_WRITE_WITHOUT_FORMAT: Self = Self(1 << 32);
-        pub const SAMPLED_IMAGE_DEPTH_COMPARISON: Self = Self(1 << 33);
-        pub const SAMPLED_IMAGE_FILTER_CUBIC: Self = Self(1 << 13);
-    }
     #[repr(transparent)]
     #[derive(Clone, Copy)]
     pub struct RenderingFlags(u32);
@@ -5384,12 +5392,6 @@ pub(crate) mod reexport {
     #[repr(transparent)]
     #[derive(Clone, Copy, Default)]
     pub struct RenderingFlagBits(pub(crate) u32);
-    ///Provided by [`vk1_3`](crate::vk1_3)
-    impl RenderingFlagBits {
-        pub const CONTENTS_SECONDARY_COMMAND_BUFFERS: Self = Self(1 << 0);
-        pub const SUSPENDING: Self = Self(1 << 1);
-        pub const RESUMING: Self = Self(1 << 2);
-    }
     #[repr(transparent)]
     #[derive(Clone, Copy)]
     pub struct ToolPurposeFlags(u32);
@@ -5484,14 +5486,6 @@ pub(crate) mod reexport {
     #[repr(transparent)]
     #[derive(Clone, Copy, Default)]
     pub struct ToolPurposeFlagBits(pub(crate) u32);
-    ///Provided by [`vk1_3`](crate::vk1_3)
-    impl ToolPurposeFlagBits {
-        pub const VALIDATION: Self = Self(1 << 0);
-        pub const PROFILING: Self = Self(1 << 1);
-        pub const TRACING: Self = Self(1 << 2);
-        pub const ADDITIONAL_FEATURES: Self = Self(1 << 3);
-        pub const MODIFYING_FEATURES: Self = Self(1 << 4);
-    }
     #[repr(transparent)]
     #[derive(Clone, Copy)]
     pub struct SubmitFlags(u32);
@@ -5564,10 +5558,6 @@ pub(crate) mod reexport {
     #[repr(transparent)]
     #[derive(Clone, Copy, Default)]
     pub struct SubmitFlagBits(pub(crate) u32);
-    ///Provided by [`vk1_3`](crate::vk1_3)
-    impl SubmitFlagBits {
-        pub const PROTECTED: Self = Self(1 << 0);
-    }
     pub type Flags64 = u64;
     #[repr(transparent)]
     #[derive(Eq, PartialEq, Ord, PartialOrd, Clone, Copy, Hash, Default)]

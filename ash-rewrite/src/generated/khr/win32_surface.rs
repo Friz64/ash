@@ -2,8 +2,10 @@
 #![cfg_attr(rustfmt, rustfmt_skip)]
 //![Vulkan Manual Page](https://docs.vulkan.org/refpages/latest/refpages/source/VK_KHR_win32_surface.html) · Extension `VK_KHR_win32_surface`
 #![doc(alias = "VK_KHR_win32_surface")]
-pub const SPEC_VERSION: u32 = 6;
-pub const NAME: &core::ffi::CStr = c"VK_KHR_win32_surface";
+///Provided by [`khr::win32_surface`](crate::khr::win32_surface)
+impl crate::vk::StructureType {
+    pub const WIN32_SURFACE_CREATE_INFO_KHR: Self = Self(1000009000);
+}
 #[derive(Clone)]
 pub struct InstanceFn {
     pub create_win32_surface_khr: crate::vk::PFN_vkCreateWin32SurfaceKHR,
@@ -78,6 +80,8 @@ impl Instance {
         self.handle
     }
 }
+pub const SPEC_VERSION: u32 = 6;
+pub const NAME: &core::ffi::CStr = c"VK_KHR_win32_surface";
 pub(crate) mod reexport {
     #[repr(C)]
     #[derive(Clone, Copy)]
@@ -117,10 +121,6 @@ pub(crate) mod reexport {
             self.hwnd = hwnd;
             self
         }
-    }
-    ///Provided by [`khr::win32_surface`](crate::khr::win32_surface)
-    impl crate::vk::StructureType {
-        pub const WIN32_SURFACE_CREATE_INFO_KHR: Self = Self(1000009000);
     }
     #[repr(transparent)]
     #[derive(Clone, Copy)]

@@ -2,8 +2,11 @@
 #![cfg_attr(rustfmt, rustfmt_skip)]
 //![Vulkan Manual Page](https://docs.vulkan.org/refpages/latest/refpages/source/VK_NV_external_memory_win32.html) · Extension `VK_NV_external_memory_win32`
 #![doc(alias = "VK_NV_external_memory_win32")]
-pub const SPEC_VERSION: u32 = 1;
-pub const NAME: &core::ffi::CStr = c"VK_NV_external_memory_win32";
+///Provided by [`nv::external_memory_win32`](crate::nv::external_memory_win32)
+impl crate::vk::StructureType {
+    pub const IMPORT_MEMORY_WIN32_HANDLE_INFO_NV: Self = Self(1000057000);
+    pub const EXPORT_MEMORY_WIN32_HANDLE_INFO_NV: Self = Self(1000057001);
+}
 #[derive(Clone)]
 pub struct DeviceFn {
     pub get_memory_win32_handle_nv: crate::vk::PFN_vkGetMemoryWin32HandleNV,
@@ -61,6 +64,8 @@ impl Device {
         self.handle
     }
 }
+pub const SPEC_VERSION: u32 = 1;
+pub const NAME: &core::ffi::CStr = c"VK_NV_external_memory_win32";
 pub(crate) mod reexport {
     #[repr(C)]
     #[derive(Clone, Copy)]
@@ -137,11 +142,6 @@ pub(crate) mod reexport {
             self.dw_access = dw_access;
             self
         }
-    }
-    ///Provided by [`nv::external_memory_win32`](crate::nv::external_memory_win32)
-    impl crate::vk::StructureType {
-        pub const IMPORT_MEMORY_WIN32_HANDLE_INFO_NV: Self = Self(1000057000);
-        pub const EXPORT_MEMORY_WIN32_HANDLE_INFO_NV: Self = Self(1000057001);
     }
     pub type PFN_vkGetMemoryWin32HandleNV = unsafe extern "system" fn(
         device: crate::vk::Device,

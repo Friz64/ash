@@ -2,8 +2,11 @@
 #![cfg_attr(rustfmt, rustfmt_skip)]
 //![Vulkan Manual Page](https://docs.vulkan.org/refpages/latest/refpages/source/VK_KHR_external_semaphore_fd.html) · Extension `VK_KHR_external_semaphore_fd`
 #![doc(alias = "VK_KHR_external_semaphore_fd")]
-pub const SPEC_VERSION: u32 = 1;
-pub const NAME: &core::ffi::CStr = c"VK_KHR_external_semaphore_fd";
+///Provided by [`khr::external_semaphore_fd`](crate::khr::external_semaphore_fd)
+impl crate::vk::StructureType {
+    pub const IMPORT_SEMAPHORE_FD_INFO_KHR: Self = Self(1000079000);
+    pub const SEMAPHORE_GET_FD_INFO_KHR: Self = Self(1000079001);
+}
 #[derive(Clone)]
 pub struct DeviceFn {
     pub get_semaphore_fd_khr: crate::vk::PFN_vkGetSemaphoreFdKHR,
@@ -75,6 +78,8 @@ impl Device {
         self.handle
     }
 }
+pub const SPEC_VERSION: u32 = 1;
+pub const NAME: &core::ffi::CStr = c"VK_KHR_external_semaphore_fd";
 pub(crate) mod reexport {
     #[repr(C)]
     #[derive(Clone, Copy)]
@@ -159,11 +164,6 @@ pub(crate) mod reexport {
             self.handle_type = handle_type;
             self
         }
-    }
-    ///Provided by [`khr::external_semaphore_fd`](crate::khr::external_semaphore_fd)
-    impl crate::vk::StructureType {
-        pub const IMPORT_SEMAPHORE_FD_INFO_KHR: Self = Self(1000079000);
-        pub const SEMAPHORE_GET_FD_INFO_KHR: Self = Self(1000079001);
     }
     pub type PFN_vkGetSemaphoreFdKHR = unsafe extern "system" fn(
         device: crate::vk::Device,

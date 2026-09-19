@@ -2,6 +2,16 @@
 #![cfg_attr(rustfmt, rustfmt_skip)]
 //![Vulkan Manual Page](https://docs.vulkan.org/refpages/latest/refpages/source/VK_KHR_external_memory.html) · Extension `VK_KHR_external_memory`
 #![doc(alias = "VK_KHR_external_memory")]
+///Provided by [`khr::external_memory`](crate::khr::external_memory)
+impl crate::vk::StructureType {
+    pub const EXTERNAL_MEMORY_BUFFER_CREATE_INFO_KHR: Self = Self::EXTERNAL_MEMORY_BUFFER_CREATE_INFO;
+    pub const EXTERNAL_MEMORY_IMAGE_CREATE_INFO_KHR: Self = Self::EXTERNAL_MEMORY_IMAGE_CREATE_INFO;
+    pub const EXPORT_MEMORY_ALLOCATE_INFO_KHR: Self = Self::EXPORT_MEMORY_ALLOCATE_INFO;
+}
+///Provided by [`khr::external_memory`](crate::khr::external_memory)
+impl crate::vk::Result {
+    pub const ERROR_INVALID_EXTERNAL_HANDLE_KHR: Self = Self::ERROR_INVALID_EXTERNAL_HANDLE;
+}
 pub const SPEC_VERSION: u32 = 1;
 pub const NAME: &core::ffi::CStr = c"VK_KHR_external_memory";
 pub(crate) mod reexport {
@@ -12,15 +22,5 @@ pub(crate) mod reexport {
         'a,
     >;
     pub type ExportMemoryAllocateInfoKHR<'a> = crate::vk::ExportMemoryAllocateInfo<'a>;
-    ///Provided by [`khr::external_memory`](crate::khr::external_memory)
-    impl crate::vk::StructureType {
-        pub const EXTERNAL_MEMORY_BUFFER_CREATE_INFO_KHR: Self = Self::EXTERNAL_MEMORY_BUFFER_CREATE_INFO;
-        pub const EXTERNAL_MEMORY_IMAGE_CREATE_INFO_KHR: Self = Self::EXTERNAL_MEMORY_IMAGE_CREATE_INFO;
-        pub const EXPORT_MEMORY_ALLOCATE_INFO_KHR: Self = Self::EXPORT_MEMORY_ALLOCATE_INFO;
-    }
-    ///Provided by [`khr::external_memory`](crate::khr::external_memory)
-    impl crate::vk::Result {
-        pub const ERROR_INVALID_EXTERNAL_HANDLE_KHR: Self = Self::ERROR_INVALID_EXTERNAL_HANDLE;
-    }
 }
 pub use reexport::*;

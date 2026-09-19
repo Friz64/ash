@@ -2,8 +2,11 @@
 #![cfg_attr(rustfmt, rustfmt_skip)]
 //![Vulkan Manual Page](https://docs.vulkan.org/refpages/latest/refpages/source/VK_KHR_external_fence_fd.html) · Extension `VK_KHR_external_fence_fd`
 #![doc(alias = "VK_KHR_external_fence_fd")]
-pub const SPEC_VERSION: u32 = 1;
-pub const NAME: &core::ffi::CStr = c"VK_KHR_external_fence_fd";
+///Provided by [`khr::external_fence_fd`](crate::khr::external_fence_fd)
+impl crate::vk::StructureType {
+    pub const IMPORT_FENCE_FD_INFO_KHR: Self = Self(1000115000);
+    pub const FENCE_GET_FD_INFO_KHR: Self = Self(1000115001);
+}
 #[derive(Clone)]
 pub struct DeviceFn {
     pub get_fence_fd_khr: crate::vk::PFN_vkGetFenceFdKHR,
@@ -75,6 +78,8 @@ impl Device {
         self.handle
     }
 }
+pub const SPEC_VERSION: u32 = 1;
+pub const NAME: &core::ffi::CStr = c"VK_KHR_external_fence_fd";
 pub(crate) mod reexport {
     #[repr(C)]
     #[derive(Clone, Copy)]
@@ -159,11 +164,6 @@ pub(crate) mod reexport {
             self.handle_type = handle_type;
             self
         }
-    }
-    ///Provided by [`khr::external_fence_fd`](crate::khr::external_fence_fd)
-    impl crate::vk::StructureType {
-        pub const IMPORT_FENCE_FD_INFO_KHR: Self = Self(1000115000);
-        pub const FENCE_GET_FD_INFO_KHR: Self = Self(1000115001);
     }
     pub type PFN_vkGetFenceFdKHR = unsafe extern "system" fn(
         device: crate::vk::Device,

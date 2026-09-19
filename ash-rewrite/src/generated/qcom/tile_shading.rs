@@ -2,8 +2,29 @@
 #![cfg_attr(rustfmt, rustfmt_skip)]
 //![Vulkan Manual Page](https://docs.vulkan.org/refpages/latest/refpages/source/VK_QCOM_tile_shading.html) · Extension `VK_QCOM_tile_shading`
 #![doc(alias = "VK_QCOM_tile_shading")]
-pub const SPEC_VERSION: u32 = 2;
-pub const NAME: &core::ffi::CStr = c"VK_QCOM_tile_shading";
+///Provided by [`qcom::tile_shading`](crate::qcom::tile_shading)
+impl crate::vk::StructureType {
+    pub const PHYSICAL_DEVICE_TILE_SHADING_FEATURES_QCOM: Self = Self(1000309000);
+    pub const PHYSICAL_DEVICE_TILE_SHADING_PROPERTIES_QCOM: Self = Self(1000309001);
+    pub const RENDER_PASS_TILE_SHADING_CREATE_INFO_QCOM: Self = Self(1000309002);
+    pub const PER_TILE_BEGIN_INFO_QCOM: Self = Self(1000309003);
+    pub const PER_TILE_END_INFO_QCOM: Self = Self(1000309004);
+    pub const DISPATCH_TILE_INFO_QCOM: Self = Self(1000309005);
+}
+///Provided by [`qcom::tile_shading`](crate::qcom::tile_shading)
+impl crate::vk::SubpassDescriptionFlagBits {
+    pub const TILE_SHADING_APRON_QCOM: Self = Self(1 << 8);
+}
+///Provided by [`qcom::tile_shading`](crate::qcom::tile_shading)
+impl crate::vk::AccessFlagBits2 {
+    pub const SHADER_TILE_ATTACHMENT_READ_QCOM: Self = Self(1 << 51);
+    pub const SHADER_TILE_ATTACHMENT_WRITE_QCOM: Self = Self(1 << 52);
+}
+///Provided by [`qcom::tile_shading`](crate::qcom::tile_shading)
+impl TileShadingRenderPassFlagBitsQCOM {
+    pub const ENABLE_QCOM: Self = Self(1 << 0);
+    pub const PER_TILE_EXECUTION_QCOM: Self = Self(1 << 1);
+}
 #[derive(Clone)]
 pub struct DeviceFn {
     pub cmd_dispatch_tile_qcom: crate::vk::PFN_vkCmdDispatchTileQCOM,
@@ -89,6 +110,8 @@ impl Device {
         self.handle
     }
 }
+pub const SPEC_VERSION: u32 = 2;
+pub const NAME: &core::ffi::CStr = c"VK_QCOM_tile_shading";
 pub(crate) mod reexport {
     #[repr(C)]
     #[derive(Clone, Copy)]
@@ -394,24 +417,6 @@ pub(crate) mod reexport {
         }
     }
     impl<'a> DispatchTileInfoQCOM<'a> {}
-    ///Provided by [`qcom::tile_shading`](crate::qcom::tile_shading)
-    impl crate::vk::StructureType {
-        pub const PHYSICAL_DEVICE_TILE_SHADING_FEATURES_QCOM: Self = Self(1000309000);
-        pub const PHYSICAL_DEVICE_TILE_SHADING_PROPERTIES_QCOM: Self = Self(1000309001);
-        pub const RENDER_PASS_TILE_SHADING_CREATE_INFO_QCOM: Self = Self(1000309002);
-        pub const PER_TILE_BEGIN_INFO_QCOM: Self = Self(1000309003);
-        pub const PER_TILE_END_INFO_QCOM: Self = Self(1000309004);
-        pub const DISPATCH_TILE_INFO_QCOM: Self = Self(1000309005);
-    }
-    ///Provided by [`qcom::tile_shading`](crate::qcom::tile_shading)
-    impl crate::vk::SubpassDescriptionFlagBits {
-        pub const TILE_SHADING_APRON_QCOM: Self = Self(1 << 8);
-    }
-    ///Provided by [`qcom::tile_shading`](crate::qcom::tile_shading)
-    impl crate::vk::AccessFlagBits2 {
-        pub const SHADER_TILE_ATTACHMENT_READ_QCOM: Self = Self(1 << 51);
-        pub const SHADER_TILE_ATTACHMENT_WRITE_QCOM: Self = Self(1 << 52);
-    }
     #[repr(transparent)]
     #[derive(Clone, Copy)]
     pub struct TileShadingRenderPassFlagsQCOM(u32);
@@ -488,11 +493,6 @@ pub(crate) mod reexport {
     #[repr(transparent)]
     #[derive(Clone, Copy, Default)]
     pub struct TileShadingRenderPassFlagBitsQCOM(pub(crate) u32);
-    ///Provided by [`qcom::tile_shading`](crate::qcom::tile_shading)
-    impl TileShadingRenderPassFlagBitsQCOM {
-        pub const ENABLE_QCOM: Self = Self(1 << 0);
-        pub const PER_TILE_EXECUTION_QCOM: Self = Self(1 << 1);
-    }
     pub type PFN_vkCmdDispatchTileQCOM = unsafe extern "system" fn(
         command_buffer: crate::vk::CommandBuffer,
         p_dispatch_tile_info: *const crate::vk::DispatchTileInfoQCOM<'_>,

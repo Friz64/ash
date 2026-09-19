@@ -2,6 +2,15 @@
 #![cfg_attr(rustfmt, rustfmt_skip)]
 //![Vulkan Manual Page](https://docs.vulkan.org/refpages/latest/refpages/source/VK_AMD_device_coherent_memory.html) · Extension `VK_AMD_device_coherent_memory`
 #![doc(alias = "VK_AMD_device_coherent_memory")]
+///Provided by [`amd::device_coherent_memory`](crate::amd::device_coherent_memory)
+impl crate::vk::StructureType {
+    pub const PHYSICAL_DEVICE_COHERENT_MEMORY_FEATURES_AMD: Self = Self(1000229000);
+}
+///Provided by [`amd::device_coherent_memory`](crate::amd::device_coherent_memory)
+impl crate::vk::MemoryPropertyFlagBits {
+    pub const DEVICE_COHERENT_AMD: Self = Self(1 << 6);
+    pub const DEVICE_UNCACHED_AMD: Self = Self(1 << 7);
+}
 pub const SPEC_VERSION: u32 = 1;
 pub const NAME: &core::ffi::CStr = c"VK_AMD_device_coherent_memory";
 pub(crate) mod reexport {
@@ -36,15 +45,6 @@ pub(crate) mod reexport {
             self.device_coherent_memory = device_coherent_memory.into();
             self
         }
-    }
-    ///Provided by [`amd::device_coherent_memory`](crate::amd::device_coherent_memory)
-    impl crate::vk::StructureType {
-        pub const PHYSICAL_DEVICE_COHERENT_MEMORY_FEATURES_AMD: Self = Self(1000229000);
-    }
-    ///Provided by [`amd::device_coherent_memory`](crate::amd::device_coherent_memory)
-    impl crate::vk::MemoryPropertyFlagBits {
-        pub const DEVICE_COHERENT_AMD: Self = Self(1 << 6);
-        pub const DEVICE_UNCACHED_AMD: Self = Self(1 << 7);
     }
 }
 pub use reexport::*;

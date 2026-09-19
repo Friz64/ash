@@ -2,8 +2,19 @@
 #![cfg_attr(rustfmt, rustfmt_skip)]
 //![Vulkan Manual Page](https://docs.vulkan.org/refpages/latest/refpages/source/VK_OHOS_external_memory.html) · Extension `VK_OHOS_external_memory`
 #![doc(alias = "VK_OHOS_external_memory")]
-pub const SPEC_VERSION: u32 = 1;
-pub const NAME: &core::ffi::CStr = c"VK_OHOS_external_memory";
+///Provided by [`ohos::external_memory`](crate::ohos::external_memory)
+impl crate::vk::StructureType {
+    pub const NATIVE_BUFFER_USAGE_OHOS: Self = Self(1000452000);
+    pub const NATIVE_BUFFER_PROPERTIES_OHOS: Self = Self(1000452001);
+    pub const NATIVE_BUFFER_FORMAT_PROPERTIES_OHOS: Self = Self(1000452002);
+    pub const IMPORT_NATIVE_BUFFER_INFO_OHOS: Self = Self(1000452003);
+    pub const MEMORY_GET_NATIVE_BUFFER_INFO_OHOS: Self = Self(1000452004);
+    pub const EXTERNAL_FORMAT_OHOS: Self = Self(1000452005);
+}
+///Provided by [`ohos::external_memory`](crate::ohos::external_memory)
+impl crate::vk::ExternalMemoryHandleTypeFlagBits {
+    pub const OH_NATIVE_BUFFER_OHOS: Self = Self(1 << 15);
+}
 #[derive(Clone)]
 pub struct DeviceFn {
     pub get_native_buffer_properties_ohos: crate::vk::PFN_vkGetNativeBufferPropertiesOHOS,
@@ -76,6 +87,8 @@ impl Device {
         self.handle
     }
 }
+pub const SPEC_VERSION: u32 = 1;
+pub const NAME: &core::ffi::CStr = c"VK_OHOS_external_memory";
 pub(crate) mod reexport {
     #[repr(C)]
     #[derive(Clone, Copy)]
@@ -329,19 +342,6 @@ pub(crate) mod reexport {
             self.external_format = external_format;
             self
         }
-    }
-    ///Provided by [`ohos::external_memory`](crate::ohos::external_memory)
-    impl crate::vk::StructureType {
-        pub const NATIVE_BUFFER_USAGE_OHOS: Self = Self(1000452000);
-        pub const NATIVE_BUFFER_PROPERTIES_OHOS: Self = Self(1000452001);
-        pub const NATIVE_BUFFER_FORMAT_PROPERTIES_OHOS: Self = Self(1000452002);
-        pub const IMPORT_NATIVE_BUFFER_INFO_OHOS: Self = Self(1000452003);
-        pub const MEMORY_GET_NATIVE_BUFFER_INFO_OHOS: Self = Self(1000452004);
-        pub const EXTERNAL_FORMAT_OHOS: Self = Self(1000452005);
-    }
-    ///Provided by [`ohos::external_memory`](crate::ohos::external_memory)
-    impl crate::vk::ExternalMemoryHandleTypeFlagBits {
-        pub const OH_NATIVE_BUFFER_OHOS: Self = Self(1 << 15);
     }
     pub type PFN_vkGetNativeBufferPropertiesOHOS = unsafe extern "system" fn(
         device: crate::vk::Device,

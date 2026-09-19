@@ -2,8 +2,10 @@
 #![cfg_attr(rustfmt, rustfmt_skip)]
 //![Vulkan Manual Page](https://docs.vulkan.org/refpages/latest/refpages/source/VK_GOOGLE_display_timing.html) · Extension `VK_GOOGLE_display_timing`
 #![doc(alias = "VK_GOOGLE_display_timing")]
-pub const SPEC_VERSION: u32 = 1;
-pub const NAME: &core::ffi::CStr = c"VK_GOOGLE_display_timing";
+///Provided by [`google::display_timing`](crate::google::display_timing)
+impl crate::vk::StructureType {
+    pub const PRESENT_TIMES_INFO_GOOGLE: Self = Self(1000092000);
+}
 #[derive(Clone)]
 pub struct DeviceFn {
     pub get_refresh_cycle_duration_google: crate::vk::PFN_vkGetRefreshCycleDurationGOOGLE,
@@ -77,6 +79,8 @@ impl Device {
         self.handle
     }
 }
+pub const SPEC_VERSION: u32 = 1;
+pub const NAME: &core::ffi::CStr = c"VK_GOOGLE_display_timing";
 pub(crate) mod reexport {
     #[repr(C)]
     #[derive(Clone, Copy, Default)]
@@ -167,10 +171,6 @@ pub(crate) mod reexport {
             self.desired_present_time = desired_present_time;
             self
         }
-    }
-    ///Provided by [`google::display_timing`](crate::google::display_timing)
-    impl crate::vk::StructureType {
-        pub const PRESENT_TIMES_INFO_GOOGLE: Self = Self(1000092000);
     }
     pub type PFN_vkGetRefreshCycleDurationGOOGLE = unsafe extern "system" fn(
         device: crate::vk::Device,

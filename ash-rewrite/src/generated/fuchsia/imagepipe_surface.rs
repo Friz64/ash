@@ -2,8 +2,10 @@
 #![cfg_attr(rustfmt, rustfmt_skip)]
 //![Vulkan Manual Page](https://docs.vulkan.org/refpages/latest/refpages/source/VK_FUCHSIA_imagepipe_surface.html) · Extension `VK_FUCHSIA_imagepipe_surface`
 #![doc(alias = "VK_FUCHSIA_imagepipe_surface")]
-pub const SPEC_VERSION: u32 = 1;
-pub const NAME: &core::ffi::CStr = c"VK_FUCHSIA_imagepipe_surface";
+///Provided by [`fuchsia::imagepipe_surface`](crate::fuchsia::imagepipe_surface)
+impl crate::vk::StructureType {
+    pub const IMAGEPIPE_SURFACE_CREATE_INFO_FUCHSIA: Self = Self(1000214000);
+}
 #[derive(Clone)]
 pub struct InstanceFn {
     pub create_image_pipe_surface_fuchsia: crate::vk::PFN_vkCreateImagePipeSurfaceFUCHSIA,
@@ -61,6 +63,8 @@ impl Instance {
         self.handle
     }
 }
+pub const SPEC_VERSION: u32 = 1;
+pub const NAME: &core::ffi::CStr = c"VK_FUCHSIA_imagepipe_surface";
 pub(crate) mod reexport {
     #[repr(C)]
     #[derive(Clone, Copy)]
@@ -101,10 +105,6 @@ pub(crate) mod reexport {
             self.image_pipe_handle = image_pipe_handle;
             self
         }
-    }
-    ///Provided by [`fuchsia::imagepipe_surface`](crate::fuchsia::imagepipe_surface)
-    impl crate::vk::StructureType {
-        pub const IMAGEPIPE_SURFACE_CREATE_INFO_FUCHSIA: Self = Self(1000214000);
     }
     #[repr(transparent)]
     #[derive(Clone, Copy)]

@@ -2,6 +2,15 @@
 #![cfg_attr(rustfmt, rustfmt_skip)]
 //![Vulkan Manual Page](https://docs.vulkan.org/refpages/latest/refpages/source/VK_NV_extended_sparse_address_space.html) · Extension `VK_NV_extended_sparse_address_space`
 #![doc(alias = "VK_NV_extended_sparse_address_space")]
+///Provided by [`nv::extended_sparse_address_space`](crate::nv::extended_sparse_address_space)
+impl crate::vk::StructureType {
+    pub const PHYSICAL_DEVICE_EXTENDED_SPARSE_ADDRESS_SPACE_FEATURES_NV: Self = Self(
+        1000492000,
+    );
+    pub const PHYSICAL_DEVICE_EXTENDED_SPARSE_ADDRESS_SPACE_PROPERTIES_NV: Self = Self(
+        1000492001,
+    );
+}
 pub const SPEC_VERSION: u32 = 1;
 pub const NAME: &core::ffi::CStr = c"VK_NV_extended_sparse_address_space";
 pub(crate) mod reexport {
@@ -90,15 +99,6 @@ pub(crate) mod reexport {
             self.extended_sparse_buffer_usage_flags = extended_sparse_buffer_usage_flags;
             self
         }
-    }
-    ///Provided by [`nv::extended_sparse_address_space`](crate::nv::extended_sparse_address_space)
-    impl crate::vk::StructureType {
-        pub const PHYSICAL_DEVICE_EXTENDED_SPARSE_ADDRESS_SPACE_FEATURES_NV: Self = Self(
-            1000492000,
-        );
-        pub const PHYSICAL_DEVICE_EXTENDED_SPARSE_ADDRESS_SPACE_PROPERTIES_NV: Self = Self(
-            1000492001,
-        );
     }
 }
 pub use reexport::*;

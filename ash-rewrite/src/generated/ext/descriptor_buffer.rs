@@ -2,8 +2,67 @@
 #![cfg_attr(rustfmt, rustfmt_skip)]
 //![Vulkan Manual Page](https://docs.vulkan.org/refpages/latest/refpages/source/VK_EXT_descriptor_buffer.html) · Extension `VK_EXT_descriptor_buffer`
 #![doc(alias = "VK_EXT_descriptor_buffer")]
-pub const SPEC_VERSION: u32 = 1;
-pub const NAME: &core::ffi::CStr = c"VK_EXT_descriptor_buffer";
+///Provided by [`ext::descriptor_buffer`](crate::ext::descriptor_buffer)
+impl crate::vk::StructureType {
+    pub const PHYSICAL_DEVICE_DESCRIPTOR_BUFFER_PROPERTIES_EXT: Self = Self(1000316000);
+    pub const PHYSICAL_DEVICE_DESCRIPTOR_BUFFER_DENSITY_MAP_PROPERTIES_EXT: Self = Self(
+        1000316001,
+    );
+    pub const PHYSICAL_DEVICE_DESCRIPTOR_BUFFER_FEATURES_EXT: Self = Self(1000316002);
+    pub const DESCRIPTOR_ADDRESS_INFO_EXT: Self = Self(1000316003);
+    pub const DESCRIPTOR_GET_INFO_EXT: Self = Self(1000316004);
+    pub const BUFFER_CAPTURE_DESCRIPTOR_DATA_INFO_EXT: Self = Self(1000316005);
+    pub const IMAGE_CAPTURE_DESCRIPTOR_DATA_INFO_EXT: Self = Self(1000316006);
+    pub const IMAGE_VIEW_CAPTURE_DESCRIPTOR_DATA_INFO_EXT: Self = Self(1000316007);
+    pub const SAMPLER_CAPTURE_DESCRIPTOR_DATA_INFO_EXT: Self = Self(1000316008);
+    pub const OPAQUE_CAPTURE_DESCRIPTOR_DATA_CREATE_INFO_EXT: Self = Self(1000316010);
+    pub const DESCRIPTOR_BUFFER_BINDING_INFO_EXT: Self = Self(1000316011);
+    pub const DESCRIPTOR_BUFFER_BINDING_PUSH_DESCRIPTOR_BUFFER_HANDLE_EXT: Self = Self(
+        1000316012,
+    );
+    pub const ACCELERATION_STRUCTURE_CAPTURE_DESCRIPTOR_DATA_INFO_EXT: Self = Self(
+        1000316009,
+    );
+}
+///Provided by [`ext::descriptor_buffer`](crate::ext::descriptor_buffer)
+impl crate::vk::SamplerCreateFlagBits {
+    pub const DESCRIPTOR_BUFFER_CAPTURE_REPLAY_EXT: Self = Self(1 << 3);
+}
+///Provided by [`ext::descriptor_buffer`](crate::ext::descriptor_buffer)
+impl crate::vk::DescriptorSetLayoutCreateFlagBits {
+    pub const DESCRIPTOR_BUFFER_EXT: Self = Self(1 << 4);
+    pub const EMBEDDED_IMMUTABLE_SAMPLERS_EXT: Self = Self(1 << 5);
+}
+///Provided by [`ext::descriptor_buffer`](crate::ext::descriptor_buffer)
+impl crate::vk::BufferUsageFlagBits {
+    pub const SAMPLER_DESCRIPTOR_BUFFER_EXT: Self = Self(1 << 21);
+    pub const RESOURCE_DESCRIPTOR_BUFFER_EXT: Self = Self(1 << 22);
+    pub const PUSH_DESCRIPTORS_DESCRIPTOR_BUFFER_EXT: Self = Self(1 << 26);
+}
+///Provided by [`ext::descriptor_buffer`](crate::ext::descriptor_buffer)
+impl crate::vk::BufferCreateFlagBits {
+    pub const DESCRIPTOR_BUFFER_CAPTURE_REPLAY_EXT: Self = Self(1 << 5);
+}
+///Provided by [`ext::descriptor_buffer`](crate::ext::descriptor_buffer)
+impl crate::vk::ImageCreateFlagBits {
+    pub const DESCRIPTOR_BUFFER_CAPTURE_REPLAY_EXT: Self = Self::DESCRIPTOR_HEAP_CAPTURE_REPLAY_EXT;
+}
+///Provided by [`ext::descriptor_buffer`](crate::ext::descriptor_buffer)
+impl crate::vk::ImageViewCreateFlagBits {
+    pub const DESCRIPTOR_BUFFER_CAPTURE_REPLAY_EXT: Self = Self(1 << 2);
+}
+///Provided by [`ext::descriptor_buffer`](crate::ext::descriptor_buffer)
+impl crate::vk::PipelineCreateFlagBits {
+    pub const DESCRIPTOR_BUFFER_EXT: Self = Self(1 << 29);
+}
+///Provided by [`ext::descriptor_buffer`](crate::ext::descriptor_buffer)
+impl crate::vk::AccelerationStructureCreateFlagBitsKHR {
+    pub const DESCRIPTOR_BUFFER_CAPTURE_REPLAY_EXT: Self = Self(1 << 3);
+}
+///Provided by [`ext::descriptor_buffer`](crate::ext::descriptor_buffer)
+impl crate::vk::AccessFlagBits2 {
+    pub const DESCRIPTOR_BUFFER_READ_EXT: Self = Self(1 << 41);
+}
 #[derive(Clone)]
 pub struct DeviceFn {
     pub get_descriptor_set_layout_size_ext: crate::vk::PFN_vkGetDescriptorSetLayoutSizeEXT,
@@ -233,6 +292,8 @@ impl Device {
         self.handle
     }
 }
+pub const SPEC_VERSION: u32 = 1;
+pub const NAME: &core::ffi::CStr = c"VK_EXT_descriptor_buffer";
 pub(crate) mod reexport {
     #[repr(C)]
     #[derive(Clone, Copy)]
@@ -1006,73 +1067,6 @@ pub(crate) mod reexport {
         fn default() -> Self {
             unsafe { core::mem::zeroed() }
         }
-    }
-    ///Provided by [`ext::descriptor_buffer`](crate::ext::descriptor_buffer)
-    impl crate::vk::StructureType {
-        pub const PHYSICAL_DEVICE_DESCRIPTOR_BUFFER_PROPERTIES_EXT: Self = Self(
-            1000316000,
-        );
-        pub const PHYSICAL_DEVICE_DESCRIPTOR_BUFFER_DENSITY_MAP_PROPERTIES_EXT: Self = Self(
-            1000316001,
-        );
-        pub const PHYSICAL_DEVICE_DESCRIPTOR_BUFFER_FEATURES_EXT: Self = Self(
-            1000316002,
-        );
-        pub const DESCRIPTOR_ADDRESS_INFO_EXT: Self = Self(1000316003);
-        pub const DESCRIPTOR_GET_INFO_EXT: Self = Self(1000316004);
-        pub const BUFFER_CAPTURE_DESCRIPTOR_DATA_INFO_EXT: Self = Self(1000316005);
-        pub const IMAGE_CAPTURE_DESCRIPTOR_DATA_INFO_EXT: Self = Self(1000316006);
-        pub const IMAGE_VIEW_CAPTURE_DESCRIPTOR_DATA_INFO_EXT: Self = Self(1000316007);
-        pub const SAMPLER_CAPTURE_DESCRIPTOR_DATA_INFO_EXT: Self = Self(1000316008);
-        pub const OPAQUE_CAPTURE_DESCRIPTOR_DATA_CREATE_INFO_EXT: Self = Self(
-            1000316010,
-        );
-        pub const DESCRIPTOR_BUFFER_BINDING_INFO_EXT: Self = Self(1000316011);
-        pub const DESCRIPTOR_BUFFER_BINDING_PUSH_DESCRIPTOR_BUFFER_HANDLE_EXT: Self = Self(
-            1000316012,
-        );
-        pub const ACCELERATION_STRUCTURE_CAPTURE_DESCRIPTOR_DATA_INFO_EXT: Self = Self(
-            1000316009,
-        );
-    }
-    ///Provided by [`ext::descriptor_buffer`](crate::ext::descriptor_buffer)
-    impl crate::vk::SamplerCreateFlagBits {
-        pub const DESCRIPTOR_BUFFER_CAPTURE_REPLAY_EXT: Self = Self(1 << 3);
-    }
-    ///Provided by [`ext::descriptor_buffer`](crate::ext::descriptor_buffer)
-    impl crate::vk::DescriptorSetLayoutCreateFlagBits {
-        pub const DESCRIPTOR_BUFFER_EXT: Self = Self(1 << 4);
-        pub const EMBEDDED_IMMUTABLE_SAMPLERS_EXT: Self = Self(1 << 5);
-    }
-    ///Provided by [`ext::descriptor_buffer`](crate::ext::descriptor_buffer)
-    impl crate::vk::BufferUsageFlagBits {
-        pub const SAMPLER_DESCRIPTOR_BUFFER_EXT: Self = Self(1 << 21);
-        pub const RESOURCE_DESCRIPTOR_BUFFER_EXT: Self = Self(1 << 22);
-        pub const PUSH_DESCRIPTORS_DESCRIPTOR_BUFFER_EXT: Self = Self(1 << 26);
-    }
-    ///Provided by [`ext::descriptor_buffer`](crate::ext::descriptor_buffer)
-    impl crate::vk::BufferCreateFlagBits {
-        pub const DESCRIPTOR_BUFFER_CAPTURE_REPLAY_EXT: Self = Self(1 << 5);
-    }
-    ///Provided by [`ext::descriptor_buffer`](crate::ext::descriptor_buffer)
-    impl crate::vk::ImageCreateFlagBits {
-        pub const DESCRIPTOR_BUFFER_CAPTURE_REPLAY_EXT: Self = Self::DESCRIPTOR_HEAP_CAPTURE_REPLAY_EXT;
-    }
-    ///Provided by [`ext::descriptor_buffer`](crate::ext::descriptor_buffer)
-    impl crate::vk::ImageViewCreateFlagBits {
-        pub const DESCRIPTOR_BUFFER_CAPTURE_REPLAY_EXT: Self = Self(1 << 2);
-    }
-    ///Provided by [`ext::descriptor_buffer`](crate::ext::descriptor_buffer)
-    impl crate::vk::PipelineCreateFlagBits {
-        pub const DESCRIPTOR_BUFFER_EXT: Self = Self(1 << 29);
-    }
-    ///Provided by [`ext::descriptor_buffer`](crate::ext::descriptor_buffer)
-    impl crate::vk::AccelerationStructureCreateFlagBitsKHR {
-        pub const DESCRIPTOR_BUFFER_CAPTURE_REPLAY_EXT: Self = Self(1 << 3);
-    }
-    ///Provided by [`ext::descriptor_buffer`](crate::ext::descriptor_buffer)
-    impl crate::vk::AccessFlagBits2 {
-        pub const DESCRIPTOR_BUFFER_READ_EXT: Self = Self(1 << 41);
     }
     pub type PFN_vkGetDescriptorSetLayoutSizeEXT = unsafe extern "system" fn(
         device: crate::vk::Device,

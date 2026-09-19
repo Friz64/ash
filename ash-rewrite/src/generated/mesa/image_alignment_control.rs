@@ -2,6 +2,16 @@
 #![cfg_attr(rustfmt, rustfmt_skip)]
 //![Vulkan Manual Page](https://docs.vulkan.org/refpages/latest/refpages/source/VK_MESA_image_alignment_control.html) · Extension `VK_MESA_image_alignment_control`
 #![doc(alias = "VK_MESA_image_alignment_control")]
+///Provided by [`mesa::image_alignment_control`](crate::mesa::image_alignment_control)
+impl crate::vk::StructureType {
+    pub const PHYSICAL_DEVICE_IMAGE_ALIGNMENT_CONTROL_FEATURES_MESA: Self = Self(
+        1000575000,
+    );
+    pub const PHYSICAL_DEVICE_IMAGE_ALIGNMENT_CONTROL_PROPERTIES_MESA: Self = Self(
+        1000575001,
+    );
+    pub const IMAGE_ALIGNMENT_CONTROL_CREATE_INFO_MESA: Self = Self(1000575002);
+}
 pub const SPEC_VERSION: u32 = 1;
 pub const NAME: &core::ffi::CStr = c"VK_MESA_image_alignment_control";
 pub(crate) mod reexport {
@@ -102,16 +112,6 @@ pub(crate) mod reexport {
             self.maximum_requested_alignment = maximum_requested_alignment;
             self
         }
-    }
-    ///Provided by [`mesa::image_alignment_control`](crate::mesa::image_alignment_control)
-    impl crate::vk::StructureType {
-        pub const PHYSICAL_DEVICE_IMAGE_ALIGNMENT_CONTROL_FEATURES_MESA: Self = Self(
-            1000575000,
-        );
-        pub const PHYSICAL_DEVICE_IMAGE_ALIGNMENT_CONTROL_PROPERTIES_MESA: Self = Self(
-            1000575001,
-        );
-        pub const IMAGE_ALIGNMENT_CONTROL_CREATE_INFO_MESA: Self = Self(1000575002);
     }
 }
 pub use reexport::*;

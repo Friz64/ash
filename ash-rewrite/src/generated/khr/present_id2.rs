@@ -2,6 +2,16 @@
 #![cfg_attr(rustfmt, rustfmt_skip)]
 //![Vulkan Manual Page](https://docs.vulkan.org/refpages/latest/refpages/source/VK_KHR_present_id2.html) · Extension `VK_KHR_present_id2`
 #![doc(alias = "VK_KHR_present_id2")]
+///Provided by [`khr::present_id2`](crate::khr::present_id2)
+impl crate::vk::StructureType {
+    pub const SURFACE_CAPABILITIES_PRESENT_ID_2_KHR: Self = Self(1000479000);
+    pub const PRESENT_ID_2_KHR: Self = Self(1000479001);
+    pub const PHYSICAL_DEVICE_PRESENT_ID_2_FEATURES_KHR: Self = Self(1000479002);
+}
+///Provided by [`khr::present_id2`](crate::khr::present_id2)
+impl crate::vk::SwapchainCreateFlagBitsKHR {
+    pub const PRESENT_ID_2_KHR: Self = Self(1 << 6);
+}
 pub const SPEC_VERSION: u32 = 1;
 pub const NAME: &core::ffi::CStr = c"VK_KHR_present_id2";
 pub(crate) mod reexport {
@@ -96,16 +106,6 @@ pub(crate) mod reexport {
             self.present_id2_supported = present_id2_supported.into();
             self
         }
-    }
-    ///Provided by [`khr::present_id2`](crate::khr::present_id2)
-    impl crate::vk::StructureType {
-        pub const SURFACE_CAPABILITIES_PRESENT_ID_2_KHR: Self = Self(1000479000);
-        pub const PRESENT_ID_2_KHR: Self = Self(1000479001);
-        pub const PHYSICAL_DEVICE_PRESENT_ID_2_FEATURES_KHR: Self = Self(1000479002);
-    }
-    ///Provided by [`khr::present_id2`](crate::khr::present_id2)
-    impl crate::vk::SwapchainCreateFlagBitsKHR {
-        pub const PRESENT_ID_2_KHR: Self = Self(1 << 6);
     }
 }
 pub use reexport::*;

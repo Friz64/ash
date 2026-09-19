@@ -2,6 +2,24 @@
 #![cfg_attr(rustfmt, rustfmt_skip)]
 //![Vulkan Manual Page](https://docs.vulkan.org/refpages/latest/refpages/source/VK_AMD_memory_overallocation_behavior.html) · Extension `VK_AMD_memory_overallocation_behavior`
 #![doc(alias = "VK_AMD_memory_overallocation_behavior")]
+///Provided by [`amd::memory_overallocation_behavior`](crate::amd::memory_overallocation_behavior)
+impl crate::vk::StructureType {
+    pub const DEVICE_MEMORY_OVERALLOCATION_CREATE_INFO_AMD: Self = Self(1000189000);
+}
+///Provided by [`amd::memory_overallocation_behavior`](crate::amd::memory_overallocation_behavior)
+impl MemoryOverallocationBehaviorAMD {
+    #[inline]
+    pub const fn from_raw(x: i32) -> Self {
+        Self(x)
+    }
+    #[inline]
+    pub const fn as_raw(self) -> i32 {
+        self.0
+    }
+    pub const DEFAULT_AMD: Self = Self(0);
+    pub const ALLOWED_AMD: Self = Self(1);
+    pub const DISALLOWED_AMD: Self = Self(2);
+}
 pub const SPEC_VERSION: u32 = 1;
 pub const NAME: &core::ffi::CStr = c"VK_AMD_memory_overallocation_behavior";
 pub(crate) mod reexport {
@@ -38,27 +56,9 @@ pub(crate) mod reexport {
             self
         }
     }
-    ///Provided by [`amd::memory_overallocation_behavior`](crate::amd::memory_overallocation_behavior)
-    impl crate::vk::StructureType {
-        pub const DEVICE_MEMORY_OVERALLOCATION_CREATE_INFO_AMD: Self = Self(1000189000);
-    }
     #[repr(transparent)]
     #[derive(Clone, Copy, PartialEq, Eq, PartialOrd, Ord, Hash, Default)]
     #[derive(Debug)]
     pub struct MemoryOverallocationBehaviorAMD(pub(crate) i32);
-    ///Provided by [`amd::memory_overallocation_behavior`](crate::amd::memory_overallocation_behavior)
-    impl MemoryOverallocationBehaviorAMD {
-        #[inline]
-        pub const fn from_raw(x: i32) -> Self {
-            Self(x)
-        }
-        #[inline]
-        pub const fn as_raw(self) -> i32 {
-            self.0
-        }
-        pub const DEFAULT_AMD: Self = Self(0);
-        pub const ALLOWED_AMD: Self = Self(1);
-        pub const DISALLOWED_AMD: Self = Self(2);
-    }
 }
 pub use reexport::*;

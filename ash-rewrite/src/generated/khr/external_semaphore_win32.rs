@@ -2,8 +2,13 @@
 #![cfg_attr(rustfmt, rustfmt_skip)]
 //![Vulkan Manual Page](https://docs.vulkan.org/refpages/latest/refpages/source/VK_KHR_external_semaphore_win32.html) · Extension `VK_KHR_external_semaphore_win32`
 #![doc(alias = "VK_KHR_external_semaphore_win32")]
-pub const SPEC_VERSION: u32 = 1;
-pub const NAME: &core::ffi::CStr = c"VK_KHR_external_semaphore_win32";
+///Provided by [`khr::external_semaphore_win32`](crate::khr::external_semaphore_win32)
+impl crate::vk::StructureType {
+    pub const IMPORT_SEMAPHORE_WIN32_HANDLE_INFO_KHR: Self = Self(1000078000);
+    pub const EXPORT_SEMAPHORE_WIN32_HANDLE_INFO_KHR: Self = Self(1000078001);
+    pub const D3D12_FENCE_SUBMIT_INFO_KHR: Self = Self(1000078002);
+    pub const SEMAPHORE_GET_WIN32_HANDLE_INFO_KHR: Self = Self(1000078003);
+}
 #[derive(Clone)]
 pub struct DeviceFn {
     pub get_semaphore_win32_handle_khr: crate::vk::PFN_vkGetSemaphoreWin32HandleKHR,
@@ -75,6 +80,8 @@ impl Device {
         self.handle
     }
 }
+pub const SPEC_VERSION: u32 = 1;
+pub const NAME: &core::ffi::CStr = c"VK_KHR_external_semaphore_win32";
 pub(crate) mod reexport {
     #[repr(C)]
     #[derive(Clone, Copy)]
@@ -258,13 +265,6 @@ pub(crate) mod reexport {
             self.handle_type = handle_type;
             self
         }
-    }
-    ///Provided by [`khr::external_semaphore_win32`](crate::khr::external_semaphore_win32)
-    impl crate::vk::StructureType {
-        pub const IMPORT_SEMAPHORE_WIN32_HANDLE_INFO_KHR: Self = Self(1000078000);
-        pub const EXPORT_SEMAPHORE_WIN32_HANDLE_INFO_KHR: Self = Self(1000078001);
-        pub const D3D12_FENCE_SUBMIT_INFO_KHR: Self = Self(1000078002);
-        pub const SEMAPHORE_GET_WIN32_HANDLE_INFO_KHR: Self = Self(1000078003);
     }
     pub type PFN_vkGetSemaphoreWin32HandleKHR = unsafe extern "system" fn(
         device: crate::vk::Device,

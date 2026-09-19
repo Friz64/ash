@@ -2,8 +2,89 @@
 #![cfg_attr(rustfmt, rustfmt_skip)]
 //![Vulkan Manual Page](https://docs.vulkan.org/refpages/latest/refpages/source/VK_INTEL_performance_query.html) · Extension `VK_INTEL_performance_query`
 #![doc(alias = "VK_INTEL_performance_query")]
-pub const SPEC_VERSION: u32 = 2;
-pub const NAME: &core::ffi::CStr = c"VK_INTEL_performance_query";
+///Provided by [`intel::performance_query`](crate::intel::performance_query)
+impl crate::vk::QueryType {
+    pub const PERFORMANCE_QUERY_INTEL: Self = Self(1000210000);
+}
+///Provided by [`intel::performance_query`](crate::intel::performance_query)
+impl crate::vk::StructureType {
+    pub const QUERY_POOL_PERFORMANCE_QUERY_CREATE_INFO_INTEL: Self = Self(1000210000);
+    pub const INITIALIZE_PERFORMANCE_API_INFO_INTEL: Self = Self(1000210001);
+    pub const PERFORMANCE_MARKER_INFO_INTEL: Self = Self(1000210002);
+    pub const PERFORMANCE_STREAM_MARKER_INFO_INTEL: Self = Self(1000210003);
+    pub const PERFORMANCE_OVERRIDE_INFO_INTEL: Self = Self(1000210004);
+    pub const PERFORMANCE_CONFIGURATION_ACQUIRE_INFO_INTEL: Self = Self(1000210005);
+}
+///Provided by [`intel::performance_query`](crate::intel::performance_query)
+impl crate::vk::ObjectType {
+    pub const PERFORMANCE_CONFIGURATION_INTEL: Self = Self(1000210000);
+}
+///Provided by [`intel::performance_query`](crate::intel::performance_query)
+impl PerformanceConfigurationTypeINTEL {
+    #[inline]
+    pub const fn from_raw(x: i32) -> Self {
+        Self(x)
+    }
+    #[inline]
+    pub const fn as_raw(self) -> i32 {
+        self.0
+    }
+    pub const COMMAND_QUEUE_METRICS_DISCOVERY_ACTIVATED_INTEL: Self = Self(0);
+}
+///Provided by [`intel::performance_query`](crate::intel::performance_query)
+impl QueryPoolSamplingModeINTEL {
+    #[inline]
+    pub const fn from_raw(x: i32) -> Self {
+        Self(x)
+    }
+    #[inline]
+    pub const fn as_raw(self) -> i32 {
+        self.0
+    }
+    pub const MANUAL_INTEL: Self = Self(0);
+}
+///Provided by [`intel::performance_query`](crate::intel::performance_query)
+impl PerformanceOverrideTypeINTEL {
+    #[inline]
+    pub const fn from_raw(x: i32) -> Self {
+        Self(x)
+    }
+    #[inline]
+    pub const fn as_raw(self) -> i32 {
+        self.0
+    }
+    pub const NULL_HARDWARE_INTEL: Self = Self(0);
+    pub const FLUSH_GPU_CACHES_INTEL: Self = Self(1);
+}
+///Provided by [`intel::performance_query`](crate::intel::performance_query)
+impl PerformanceParameterTypeINTEL {
+    #[inline]
+    pub const fn from_raw(x: i32) -> Self {
+        Self(x)
+    }
+    #[inline]
+    pub const fn as_raw(self) -> i32 {
+        self.0
+    }
+    pub const HW_COUNTERS_SUPPORTED_INTEL: Self = Self(0);
+    pub const STREAM_MARKER_VALIDS_INTEL: Self = Self(1);
+}
+///Provided by [`intel::performance_query`](crate::intel::performance_query)
+impl PerformanceValueTypeINTEL {
+    #[inline]
+    pub const fn from_raw(x: i32) -> Self {
+        Self(x)
+    }
+    #[inline]
+    pub const fn as_raw(self) -> i32 {
+        self.0
+    }
+    pub const UINT32_INTEL: Self = Self(0);
+    pub const UINT64_INTEL: Self = Self(1);
+    pub const FLOAT_INTEL: Self = Self(2);
+    pub const BOOL_INTEL: Self = Self(3);
+    pub const STRING_INTEL: Self = Self(4);
+}
 #[derive(Clone)]
 pub struct DeviceFn {
     pub initialize_performance_api_intel: crate::vk::PFN_vkInitializePerformanceApiINTEL,
@@ -180,6 +261,8 @@ impl Device {
         self.handle
     }
 }
+pub const SPEC_VERSION: u32 = 2;
+pub const NAME: &core::ffi::CStr = c"VK_INTEL_performance_query";
 pub(crate) mod reexport {
     #[repr(C)]
     #[derive(Clone, Copy, Default)]
@@ -399,111 +482,26 @@ pub(crate) mod reexport {
             unsafe { core::mem::zeroed() }
         }
     }
-    ///Provided by [`intel::performance_query`](crate::intel::performance_query)
-    impl crate::vk::QueryType {
-        pub const PERFORMANCE_QUERY_INTEL: Self = Self(1000210000);
-    }
-    ///Provided by [`intel::performance_query`](crate::intel::performance_query)
-    impl crate::vk::StructureType {
-        pub const QUERY_POOL_PERFORMANCE_QUERY_CREATE_INFO_INTEL: Self = Self(
-            1000210000,
-        );
-        pub const INITIALIZE_PERFORMANCE_API_INFO_INTEL: Self = Self(1000210001);
-        pub const PERFORMANCE_MARKER_INFO_INTEL: Self = Self(1000210002);
-        pub const PERFORMANCE_STREAM_MARKER_INFO_INTEL: Self = Self(1000210003);
-        pub const PERFORMANCE_OVERRIDE_INFO_INTEL: Self = Self(1000210004);
-        pub const PERFORMANCE_CONFIGURATION_ACQUIRE_INFO_INTEL: Self = Self(1000210005);
-    }
-    ///Provided by [`intel::performance_query`](crate::intel::performance_query)
-    impl crate::vk::ObjectType {
-        pub const PERFORMANCE_CONFIGURATION_INTEL: Self = Self(1000210000);
-    }
     #[repr(transparent)]
     #[derive(Clone, Copy, PartialEq, Eq, PartialOrd, Ord, Hash, Default)]
     #[derive(Debug)]
     pub struct PerformanceConfigurationTypeINTEL(pub(crate) i32);
-    ///Provided by [`intel::performance_query`](crate::intel::performance_query)
-    impl PerformanceConfigurationTypeINTEL {
-        #[inline]
-        pub const fn from_raw(x: i32) -> Self {
-            Self(x)
-        }
-        #[inline]
-        pub const fn as_raw(self) -> i32 {
-            self.0
-        }
-        pub const COMMAND_QUEUE_METRICS_DISCOVERY_ACTIVATED_INTEL: Self = Self(0);
-    }
     #[repr(transparent)]
     #[derive(Clone, Copy, PartialEq, Eq, PartialOrd, Ord, Hash, Default)]
     #[derive(Debug)]
     pub struct QueryPoolSamplingModeINTEL(pub(crate) i32);
-    ///Provided by [`intel::performance_query`](crate::intel::performance_query)
-    impl QueryPoolSamplingModeINTEL {
-        #[inline]
-        pub const fn from_raw(x: i32) -> Self {
-            Self(x)
-        }
-        #[inline]
-        pub const fn as_raw(self) -> i32 {
-            self.0
-        }
-        pub const MANUAL_INTEL: Self = Self(0);
-    }
     #[repr(transparent)]
     #[derive(Clone, Copy, PartialEq, Eq, PartialOrd, Ord, Hash, Default)]
     #[derive(Debug)]
     pub struct PerformanceOverrideTypeINTEL(pub(crate) i32);
-    ///Provided by [`intel::performance_query`](crate::intel::performance_query)
-    impl PerformanceOverrideTypeINTEL {
-        #[inline]
-        pub const fn from_raw(x: i32) -> Self {
-            Self(x)
-        }
-        #[inline]
-        pub const fn as_raw(self) -> i32 {
-            self.0
-        }
-        pub const NULL_HARDWARE_INTEL: Self = Self(0);
-        pub const FLUSH_GPU_CACHES_INTEL: Self = Self(1);
-    }
     #[repr(transparent)]
     #[derive(Clone, Copy, PartialEq, Eq, PartialOrd, Ord, Hash, Default)]
     #[derive(Debug)]
     pub struct PerformanceParameterTypeINTEL(pub(crate) i32);
-    ///Provided by [`intel::performance_query`](crate::intel::performance_query)
-    impl PerformanceParameterTypeINTEL {
-        #[inline]
-        pub const fn from_raw(x: i32) -> Self {
-            Self(x)
-        }
-        #[inline]
-        pub const fn as_raw(self) -> i32 {
-            self.0
-        }
-        pub const HW_COUNTERS_SUPPORTED_INTEL: Self = Self(0);
-        pub const STREAM_MARKER_VALIDS_INTEL: Self = Self(1);
-    }
     #[repr(transparent)]
     #[derive(Clone, Copy, PartialEq, Eq, PartialOrd, Ord, Hash, Default)]
     #[derive(Debug)]
     pub struct PerformanceValueTypeINTEL(pub(crate) i32);
-    ///Provided by [`intel::performance_query`](crate::intel::performance_query)
-    impl PerformanceValueTypeINTEL {
-        #[inline]
-        pub const fn from_raw(x: i32) -> Self {
-            Self(x)
-        }
-        #[inline]
-        pub const fn as_raw(self) -> i32 {
-            self.0
-        }
-        pub const UINT32_INTEL: Self = Self(0);
-        pub const UINT64_INTEL: Self = Self(1);
-        pub const FLOAT_INTEL: Self = Self(2);
-        pub const BOOL_INTEL: Self = Self(3);
-        pub const STRING_INTEL: Self = Self(4);
-    }
     #[repr(transparent)]
     #[derive(Eq, PartialEq, Ord, PartialOrd, Clone, Copy, Hash, Default)]
     pub struct PerformanceConfigurationINTEL(u64);

@@ -2,8 +2,11 @@
 #![cfg_attr(rustfmt, rustfmt_skip)]
 //![Vulkan Manual Page](https://docs.vulkan.org/refpages/latest/refpages/source/VK_KHR_maintenance3.html) · Extension `VK_KHR_maintenance3`
 #![doc(alias = "VK_KHR_maintenance3")]
-pub const SPEC_VERSION: u32 = 1;
-pub const NAME: &core::ffi::CStr = c"VK_KHR_maintenance3";
+///Provided by [`khr::maintenance3`](crate::khr::maintenance3)
+impl crate::vk::StructureType {
+    pub const PHYSICAL_DEVICE_MAINTENANCE_3_PROPERTIES_KHR: Self = Self::PHYSICAL_DEVICE_MAINTENANCE_3_PROPERTIES;
+    pub const DESCRIPTOR_SET_LAYOUT_SUPPORT_KHR: Self = Self::DESCRIPTOR_SET_LAYOUT_SUPPORT;
+}
 #[derive(Clone)]
 pub struct DeviceFn {
     pub get_descriptor_set_layout_support_khr: crate::vk::PFN_vkGetDescriptorSetLayoutSupportKHR,
@@ -60,6 +63,8 @@ impl Device {
         self.handle
     }
 }
+pub const SPEC_VERSION: u32 = 1;
+pub const NAME: &core::ffi::CStr = c"VK_KHR_maintenance3";
 pub(crate) mod reexport {
     pub type PhysicalDeviceMaintenance3PropertiesKHR<'a> = crate::vk::PhysicalDeviceMaintenance3Properties<
         'a,
@@ -67,11 +72,6 @@ pub(crate) mod reexport {
     pub type DescriptorSetLayoutSupportKHR<'a> = crate::vk::DescriptorSetLayoutSupport<
         'a,
     >;
-    ///Provided by [`khr::maintenance3`](crate::khr::maintenance3)
-    impl crate::vk::StructureType {
-        pub const PHYSICAL_DEVICE_MAINTENANCE_3_PROPERTIES_KHR: Self = Self::PHYSICAL_DEVICE_MAINTENANCE_3_PROPERTIES;
-        pub const DESCRIPTOR_SET_LAYOUT_SUPPORT_KHR: Self = Self::DESCRIPTOR_SET_LAYOUT_SUPPORT;
-    }
     pub type PFN_vkGetDescriptorSetLayoutSupportKHR = crate::vk::PFN_vkGetDescriptorSetLayoutSupport;
 }
 pub use reexport::*;

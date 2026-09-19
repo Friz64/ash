@@ -2,6 +2,10 @@
 #![cfg_attr(rustfmt, rustfmt_skip)]
 //![Vulkan Manual Page](https://docs.vulkan.org/refpages/latest/refpages/source/VK_AMD_pipeline_compiler_control.html) · Extension `VK_AMD_pipeline_compiler_control`
 #![doc(alias = "VK_AMD_pipeline_compiler_control")]
+///Provided by [`amd::pipeline_compiler_control`](crate::amd::pipeline_compiler_control)
+impl crate::vk::StructureType {
+    pub const PIPELINE_COMPILER_CONTROL_CREATE_INFO_AMD: Self = Self(1000183000);
+}
 pub const SPEC_VERSION: u32 = 1;
 pub const NAME: &core::ffi::CStr = c"VK_AMD_pipeline_compiler_control";
 pub(crate) mod reexport {
@@ -41,10 +45,6 @@ pub(crate) mod reexport {
             self.compiler_control_flags = compiler_control_flags;
             self
         }
-    }
-    ///Provided by [`amd::pipeline_compiler_control`](crate::amd::pipeline_compiler_control)
-    impl crate::vk::StructureType {
-        pub const PIPELINE_COMPILER_CONTROL_CREATE_INFO_AMD: Self = Self(1000183000);
     }
     #[repr(transparent)]
     #[derive(Clone, Copy)]

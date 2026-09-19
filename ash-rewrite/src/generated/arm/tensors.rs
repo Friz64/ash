@@ -2,8 +2,96 @@
 #![cfg_attr(rustfmt, rustfmt_skip)]
 //![Vulkan Manual Page](https://docs.vulkan.org/refpages/latest/refpages/source/VK_ARM_tensors.html) · Extension `VK_ARM_tensors`
 #![doc(alias = "VK_ARM_tensors")]
-pub const SPEC_VERSION: u32 = 2;
-pub const NAME: &core::ffi::CStr = c"VK_ARM_tensors";
+///Provided by [`arm::tensors`](crate::arm::tensors)
+impl crate::vk::ImageLayout {
+    pub const TENSOR_ALIASING_ARM: Self = Self(1000460000);
+}
+///Provided by [`arm::tensors`](crate::arm::tensors)
+impl crate::vk::DescriptorType {
+    pub const TENSOR_ARM: Self = Self(1000460000);
+}
+///Provided by [`arm::tensors`](crate::arm::tensors)
+impl crate::vk::Format {
+    pub const R8_BOOL_ARM: Self = Self(1000460000);
+    pub const R16_SFLOAT_FPENCODING_BFLOAT16_ARM: Self = Self(1000460001);
+    pub const R8_SFLOAT_FPENCODING_FLOAT8E4M3_ARM: Self = Self(1000460002);
+    pub const R8_SFLOAT_FPENCODING_FLOAT8E5M2_ARM: Self = Self(1000460003);
+}
+///Provided by [`arm::tensors`](crate::arm::tensors)
+impl crate::vk::StructureType {
+    pub const TENSOR_CREATE_INFO_ARM: Self = Self(1000460000);
+    pub const TENSOR_VIEW_CREATE_INFO_ARM: Self = Self(1000460001);
+    pub const BIND_TENSOR_MEMORY_INFO_ARM: Self = Self(1000460002);
+    pub const WRITE_DESCRIPTOR_SET_TENSOR_ARM: Self = Self(1000460003);
+    pub const PHYSICAL_DEVICE_TENSOR_PROPERTIES_ARM: Self = Self(1000460004);
+    pub const TENSOR_FORMAT_PROPERTIES_ARM: Self = Self(1000460005);
+    pub const TENSOR_DESCRIPTION_ARM: Self = Self(1000460006);
+    pub const TENSOR_MEMORY_REQUIREMENTS_INFO_ARM: Self = Self(1000460007);
+    pub const TENSOR_MEMORY_BARRIER_ARM: Self = Self(1000460008);
+    pub const PHYSICAL_DEVICE_TENSOR_FEATURES_ARM: Self = Self(1000460009);
+    pub const DEVICE_TENSOR_MEMORY_REQUIREMENTS_ARM: Self = Self(1000460010);
+    pub const COPY_TENSOR_INFO_ARM: Self = Self(1000460011);
+    pub const TENSOR_COPY_ARM: Self = Self(1000460012);
+    pub const TENSOR_DEPENDENCY_INFO_ARM: Self = Self(1000460013);
+    pub const MEMORY_DEDICATED_ALLOCATE_INFO_TENSOR_ARM: Self = Self(1000460014);
+    pub const PHYSICAL_DEVICE_EXTERNAL_TENSOR_INFO_ARM: Self = Self(1000460015);
+    pub const EXTERNAL_TENSOR_PROPERTIES_ARM: Self = Self(1000460016);
+    pub const EXTERNAL_MEMORY_TENSOR_CREATE_INFO_ARM: Self = Self(1000460017);
+    pub const PHYSICAL_DEVICE_DESCRIPTOR_BUFFER_TENSOR_FEATURES_ARM: Self = Self(
+        1000460018,
+    );
+    pub const PHYSICAL_DEVICE_DESCRIPTOR_BUFFER_TENSOR_PROPERTIES_ARM: Self = Self(
+        1000460019,
+    );
+    pub const DESCRIPTOR_GET_TENSOR_INFO_ARM: Self = Self(1000460020);
+    pub const TENSOR_CAPTURE_DESCRIPTOR_DATA_INFO_ARM: Self = Self(1000460021);
+    pub const TENSOR_VIEW_CAPTURE_DESCRIPTOR_DATA_INFO_ARM: Self = Self(1000460022);
+    pub const FRAME_BOUNDARY_TENSORS_ARM: Self = Self(1000460023);
+}
+///Provided by [`arm::tensors`](crate::arm::tensors)
+impl crate::vk::ObjectType {
+    pub const TENSOR_ARM: Self = Self(1000460000);
+    pub const TENSOR_VIEW_ARM: Self = Self(1000460001);
+}
+///Provided by [`arm::tensors`](crate::arm::tensors)
+impl TensorTilingARM {
+    #[inline]
+    pub const fn from_raw(x: i32) -> Self {
+        Self(x)
+    }
+    #[inline]
+    pub const fn as_raw(self) -> i32 {
+        self.0
+    }
+    pub const OPTIMAL_ARM: Self = Self(0);
+    pub const LINEAR_ARM: Self = Self(1);
+}
+///Provided by [`arm::tensors`](crate::arm::tensors)
+impl crate::vk::ImageUsageFlagBits {
+    pub const TENSOR_ALIASING_ARM: Self = Self(1 << 23);
+}
+///Provided by [`arm::tensors`](crate::arm::tensors)
+impl crate::vk::FormatFeatureFlagBits2 {
+    pub const TENSOR_SHADER_ARM: Self = Self(1 << 39);
+    pub const TENSOR_IMAGE_ALIASING_ARM: Self = Self(1 << 43);
+}
+///Provided by [`arm::tensors`](crate::arm::tensors)
+impl TensorCreateFlagBitsARM {
+    pub const MUTABLE_FORMAT_ARM: Self = Self(1 << 0);
+    pub const PROTECTED_ARM: Self = Self(1 << 1);
+    pub const DESCRIPTOR_BUFFER_CAPTURE_REPLAY_ARM: Self = Self(1 << 2);
+}
+///Provided by [`arm::tensors`](crate::arm::tensors)
+impl TensorUsageFlagBitsARM {
+    pub const SHADER_ARM: Self = Self(1 << 1);
+    pub const TRANSFER_SRC_ARM: Self = Self(1 << 2);
+    pub const TRANSFER_DST_ARM: Self = Self(1 << 3);
+    pub const IMAGE_ALIASING_ARM: Self = Self(1 << 4);
+}
+///Provided by [`arm::tensors`](crate::arm::tensors)
+impl crate::vk::TensorViewCreateFlagBitsARM {
+    pub const DESCRIPTOR_BUFFER_CAPTURE_REPLAY_ARM: Self = Self(1 << 0);
+}
 #[derive(Clone)]
 pub struct DeviceFn {
     pub create_tensor_arm: crate::vk::PFN_vkCreateTensorARM,
@@ -265,6 +353,8 @@ impl Instance {
         self.handle
     }
 }
+pub const SPEC_VERSION: u32 = 2;
+pub const NAME: &core::ffi::CStr = c"VK_ARM_tensors";
 pub(crate) mod reexport {
     #[repr(C)]
     #[derive(Clone, Copy)]
@@ -1299,83 +1389,10 @@ pub(crate) mod reexport {
             self
         }
     }
-    ///Provided by [`arm::tensors`](crate::arm::tensors)
-    impl crate::vk::ImageLayout {
-        pub const TENSOR_ALIASING_ARM: Self = Self(1000460000);
-    }
-    ///Provided by [`arm::tensors`](crate::arm::tensors)
-    impl crate::vk::DescriptorType {
-        pub const TENSOR_ARM: Self = Self(1000460000);
-    }
-    ///Provided by [`arm::tensors`](crate::arm::tensors)
-    impl crate::vk::Format {
-        pub const R8_BOOL_ARM: Self = Self(1000460000);
-        pub const R16_SFLOAT_FPENCODING_BFLOAT16_ARM: Self = Self(1000460001);
-        pub const R8_SFLOAT_FPENCODING_FLOAT8E4M3_ARM: Self = Self(1000460002);
-        pub const R8_SFLOAT_FPENCODING_FLOAT8E5M2_ARM: Self = Self(1000460003);
-    }
-    ///Provided by [`arm::tensors`](crate::arm::tensors)
-    impl crate::vk::StructureType {
-        pub const TENSOR_CREATE_INFO_ARM: Self = Self(1000460000);
-        pub const TENSOR_VIEW_CREATE_INFO_ARM: Self = Self(1000460001);
-        pub const BIND_TENSOR_MEMORY_INFO_ARM: Self = Self(1000460002);
-        pub const WRITE_DESCRIPTOR_SET_TENSOR_ARM: Self = Self(1000460003);
-        pub const PHYSICAL_DEVICE_TENSOR_PROPERTIES_ARM: Self = Self(1000460004);
-        pub const TENSOR_FORMAT_PROPERTIES_ARM: Self = Self(1000460005);
-        pub const TENSOR_DESCRIPTION_ARM: Self = Self(1000460006);
-        pub const TENSOR_MEMORY_REQUIREMENTS_INFO_ARM: Self = Self(1000460007);
-        pub const TENSOR_MEMORY_BARRIER_ARM: Self = Self(1000460008);
-        pub const PHYSICAL_DEVICE_TENSOR_FEATURES_ARM: Self = Self(1000460009);
-        pub const DEVICE_TENSOR_MEMORY_REQUIREMENTS_ARM: Self = Self(1000460010);
-        pub const COPY_TENSOR_INFO_ARM: Self = Self(1000460011);
-        pub const TENSOR_COPY_ARM: Self = Self(1000460012);
-        pub const TENSOR_DEPENDENCY_INFO_ARM: Self = Self(1000460013);
-        pub const MEMORY_DEDICATED_ALLOCATE_INFO_TENSOR_ARM: Self = Self(1000460014);
-        pub const PHYSICAL_DEVICE_EXTERNAL_TENSOR_INFO_ARM: Self = Self(1000460015);
-        pub const EXTERNAL_TENSOR_PROPERTIES_ARM: Self = Self(1000460016);
-        pub const EXTERNAL_MEMORY_TENSOR_CREATE_INFO_ARM: Self = Self(1000460017);
-        pub const PHYSICAL_DEVICE_DESCRIPTOR_BUFFER_TENSOR_FEATURES_ARM: Self = Self(
-            1000460018,
-        );
-        pub const PHYSICAL_DEVICE_DESCRIPTOR_BUFFER_TENSOR_PROPERTIES_ARM: Self = Self(
-            1000460019,
-        );
-        pub const DESCRIPTOR_GET_TENSOR_INFO_ARM: Self = Self(1000460020);
-        pub const TENSOR_CAPTURE_DESCRIPTOR_DATA_INFO_ARM: Self = Self(1000460021);
-        pub const TENSOR_VIEW_CAPTURE_DESCRIPTOR_DATA_INFO_ARM: Self = Self(1000460022);
-        pub const FRAME_BOUNDARY_TENSORS_ARM: Self = Self(1000460023);
-    }
-    ///Provided by [`arm::tensors`](crate::arm::tensors)
-    impl crate::vk::ObjectType {
-        pub const TENSOR_ARM: Self = Self(1000460000);
-        pub const TENSOR_VIEW_ARM: Self = Self(1000460001);
-    }
     #[repr(transparent)]
     #[derive(Clone, Copy, PartialEq, Eq, PartialOrd, Ord, Hash, Default)]
     #[derive(Debug)]
     pub struct TensorTilingARM(pub(crate) i32);
-    ///Provided by [`arm::tensors`](crate::arm::tensors)
-    impl TensorTilingARM {
-        #[inline]
-        pub const fn from_raw(x: i32) -> Self {
-            Self(x)
-        }
-        #[inline]
-        pub const fn as_raw(self) -> i32 {
-            self.0
-        }
-        pub const OPTIMAL_ARM: Self = Self(0);
-        pub const LINEAR_ARM: Self = Self(1);
-    }
-    ///Provided by [`arm::tensors`](crate::arm::tensors)
-    impl crate::vk::ImageUsageFlagBits {
-        pub const TENSOR_ALIASING_ARM: Self = Self(1 << 23);
-    }
-    ///Provided by [`arm::tensors`](crate::arm::tensors)
-    impl crate::vk::FormatFeatureFlagBits2 {
-        pub const TENSOR_SHADER_ARM: Self = Self(1 << 39);
-        pub const TENSOR_IMAGE_ALIASING_ARM: Self = Self(1 << 43);
-    }
     #[repr(transparent)]
     #[derive(Clone, Copy)]
     pub struct TensorCreateFlagsARM(u64);
@@ -1456,12 +1473,6 @@ pub(crate) mod reexport {
     #[repr(transparent)]
     #[derive(Clone, Copy, Default)]
     pub struct TensorCreateFlagBitsARM(pub(crate) u64);
-    ///Provided by [`arm::tensors`](crate::arm::tensors)
-    impl TensorCreateFlagBitsARM {
-        pub const MUTABLE_FORMAT_ARM: Self = Self(1 << 0);
-        pub const PROTECTED_ARM: Self = Self(1 << 1);
-        pub const DESCRIPTOR_BUFFER_CAPTURE_REPLAY_ARM: Self = Self(1 << 2);
-    }
     #[repr(transparent)]
     #[derive(Clone, Copy)]
     pub struct TensorUsageFlagsARM(u64);
@@ -1543,17 +1554,6 @@ pub(crate) mod reexport {
     #[repr(transparent)]
     #[derive(Clone, Copy, Default)]
     pub struct TensorUsageFlagBitsARM(pub(crate) u64);
-    ///Provided by [`arm::tensors`](crate::arm::tensors)
-    impl TensorUsageFlagBitsARM {
-        pub const SHADER_ARM: Self = Self(1 << 1);
-        pub const TRANSFER_SRC_ARM: Self = Self(1 << 2);
-        pub const TRANSFER_DST_ARM: Self = Self(1 << 3);
-        pub const IMAGE_ALIASING_ARM: Self = Self(1 << 4);
-    }
-    ///Provided by [`arm::tensors`](crate::arm::tensors)
-    impl crate::vk::TensorViewCreateFlagBitsARM {
-        pub const DESCRIPTOR_BUFFER_CAPTURE_REPLAY_ARM: Self = Self(1 << 0);
-    }
     #[repr(transparent)]
     #[derive(Eq, PartialEq, Ord, PartialOrd, Clone, Copy, Hash, Default)]
     pub struct TensorViewARM(u64);

@@ -2,6 +2,16 @@
 #![cfg_attr(rustfmt, rustfmt_skip)]
 //![Vulkan Manual Page](https://docs.vulkan.org/refpages/latest/refpages/source/VK_EXT_pipeline_creation_feedback.html) · Extension `VK_EXT_pipeline_creation_feedback`
 #![doc(alias = "VK_EXT_pipeline_creation_feedback")]
+///Provided by [`ext::pipeline_creation_feedback`](crate::ext::pipeline_creation_feedback)
+impl crate::vk::StructureType {
+    pub const PIPELINE_CREATION_FEEDBACK_CREATE_INFO_EXT: Self = Self::PIPELINE_CREATION_FEEDBACK_CREATE_INFO;
+}
+///Provided by [`ext::pipeline_creation_feedback`](crate::ext::pipeline_creation_feedback)
+impl crate::vk::PipelineCreationFeedbackFlagBits {
+    pub const VALID_EXT: Self = Self::VALID;
+    pub const APPLICATION_PIPELINE_CACHE_HIT_EXT: Self = Self::APPLICATION_PIPELINE_CACHE_HIT;
+    pub const BASE_PIPELINE_ACCELERATION_EXT: Self = Self::BASE_PIPELINE_ACCELERATION;
+}
 pub const SPEC_VERSION: u32 = 1;
 pub const NAME: &core::ffi::CStr = c"VK_EXT_pipeline_creation_feedback";
 pub(crate) mod reexport {
@@ -9,17 +19,7 @@ pub(crate) mod reexport {
     pub type PipelineCreationFeedbackCreateInfoEXT<'a> = crate::vk::PipelineCreationFeedbackCreateInfo<
         'a,
     >;
-    ///Provided by [`ext::pipeline_creation_feedback`](crate::ext::pipeline_creation_feedback)
-    impl crate::vk::StructureType {
-        pub const PIPELINE_CREATION_FEEDBACK_CREATE_INFO_EXT: Self = Self::PIPELINE_CREATION_FEEDBACK_CREATE_INFO;
-    }
     pub type PipelineCreationFeedbackFlagBitsEXT = crate::vk::PipelineCreationFeedbackFlagBits;
-    ///Provided by [`ext::pipeline_creation_feedback`](crate::ext::pipeline_creation_feedback)
-    impl crate::vk::PipelineCreationFeedbackFlagBits {
-        pub const VALID_EXT: Self = Self::VALID;
-        pub const APPLICATION_PIPELINE_CACHE_HIT_EXT: Self = Self::APPLICATION_PIPELINE_CACHE_HIT;
-        pub const BASE_PIPELINE_ACCELERATION_EXT: Self = Self::BASE_PIPELINE_ACCELERATION;
-    }
     pub type PipelineCreationFeedbackFlagsEXT = crate::vk::PipelineCreationFeedbackFlags;
 }
 pub use reexport::*;

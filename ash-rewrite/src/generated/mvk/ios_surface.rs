@@ -2,8 +2,10 @@
 #![cfg_attr(rustfmt, rustfmt_skip)]
 //![Vulkan Manual Page](https://docs.vulkan.org/refpages/latest/refpages/source/VK_MVK_ios_surface.html) · Extension `VK_MVK_ios_surface`
 #![doc(alias = "VK_MVK_ios_surface")]
-pub const SPEC_VERSION: u32 = 3;
-pub const NAME: &core::ffi::CStr = c"VK_MVK_ios_surface";
+///Provided by [`mvk::ios_surface`](crate::mvk::ios_surface)
+impl crate::vk::StructureType {
+    pub const IOS_SURFACE_CREATE_INFO_MVK: Self = Self(1000122000);
+}
 #[derive(Clone)]
 pub struct InstanceFn {
     pub create_ios_surface_mvk: crate::vk::PFN_vkCreateIOSSurfaceMVK,
@@ -61,6 +63,8 @@ impl Instance {
         self.handle
     }
 }
+pub const SPEC_VERSION: u32 = 3;
+pub const NAME: &core::ffi::CStr = c"VK_MVK_ios_surface";
 pub(crate) mod reexport {
     #[repr(C)]
     #[derive(Clone, Copy)]
@@ -94,10 +98,6 @@ pub(crate) mod reexport {
             self.p_view = view;
             self
         }
-    }
-    ///Provided by [`mvk::ios_surface`](crate::mvk::ios_surface)
-    impl crate::vk::StructureType {
-        pub const IOS_SURFACE_CREATE_INFO_MVK: Self = Self(1000122000);
     }
     #[repr(transparent)]
     #[derive(Clone, Copy)]

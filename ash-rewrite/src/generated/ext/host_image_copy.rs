@@ -2,8 +2,31 @@
 #![cfg_attr(rustfmt, rustfmt_skip)]
 //![Vulkan Manual Page](https://docs.vulkan.org/refpages/latest/refpages/source/VK_EXT_host_image_copy.html) · Extension `VK_EXT_host_image_copy`
 #![doc(alias = "VK_EXT_host_image_copy")]
-pub const SPEC_VERSION: u32 = 1;
-pub const NAME: &core::ffi::CStr = c"VK_EXT_host_image_copy";
+///Provided by [`ext::host_image_copy`](crate::ext::host_image_copy)
+impl crate::vk::StructureType {
+    pub const PHYSICAL_DEVICE_HOST_IMAGE_COPY_FEATURES_EXT: Self = Self::PHYSICAL_DEVICE_HOST_IMAGE_COPY_FEATURES;
+    pub const PHYSICAL_DEVICE_HOST_IMAGE_COPY_PROPERTIES_EXT: Self = Self::PHYSICAL_DEVICE_HOST_IMAGE_COPY_PROPERTIES;
+    pub const MEMORY_TO_IMAGE_COPY_EXT: Self = Self::MEMORY_TO_IMAGE_COPY;
+    pub const IMAGE_TO_MEMORY_COPY_EXT: Self = Self::IMAGE_TO_MEMORY_COPY;
+    pub const COPY_IMAGE_TO_MEMORY_INFO_EXT: Self = Self::COPY_IMAGE_TO_MEMORY_INFO;
+    pub const COPY_MEMORY_TO_IMAGE_INFO_EXT: Self = Self::COPY_MEMORY_TO_IMAGE_INFO;
+    pub const HOST_IMAGE_LAYOUT_TRANSITION_INFO_EXT: Self = Self::HOST_IMAGE_LAYOUT_TRANSITION_INFO;
+    pub const COPY_IMAGE_TO_IMAGE_INFO_EXT: Self = Self::COPY_IMAGE_TO_IMAGE_INFO;
+    pub const SUBRESOURCE_HOST_MEMCPY_SIZE_EXT: Self = Self::SUBRESOURCE_HOST_MEMCPY_SIZE;
+    pub const HOST_IMAGE_COPY_DEVICE_PERFORMANCE_QUERY_EXT: Self = Self::HOST_IMAGE_COPY_DEVICE_PERFORMANCE_QUERY;
+}
+///Provided by [`ext::host_image_copy`](crate::ext::host_image_copy)
+impl crate::vk::ImageUsageFlagBits {
+    pub const HOST_TRANSFER_EXT: Self = Self::HOST_TRANSFER;
+}
+///Provided by [`ext::host_image_copy`](crate::ext::host_image_copy)
+impl crate::vk::FormatFeatureFlagBits2 {
+    pub const HOST_IMAGE_TRANSFER_EXT: Self = Self::HOST_IMAGE_TRANSFER;
+}
+///Provided by [`ext::host_image_copy`](crate::ext::host_image_copy)
+impl crate::vk::HostImageCopyFlagBits {
+    pub const MEMCPY_EXT: Self = Self::MEMCPY;
+}
 #[derive(Clone)]
 pub struct DeviceFn {
     pub copy_memory_to_image_ext: crate::vk::PFN_vkCopyMemoryToImageEXT,
@@ -122,6 +145,8 @@ impl Device {
         self.handle
     }
 }
+pub const SPEC_VERSION: u32 = 1;
+pub const NAME: &core::ffi::CStr = c"VK_EXT_host_image_copy";
 pub(crate) mod reexport {
     pub type PhysicalDeviceHostImageCopyFeaturesEXT<'a> = crate::vk::PhysicalDeviceHostImageCopyFeatures<
         'a,
@@ -143,32 +168,7 @@ pub(crate) mod reexport {
     >;
     pub type ImageSubresource2EXT<'a> = crate::vk::ImageSubresource2<'a>;
     pub type SubresourceLayout2EXT<'a> = crate::vk::SubresourceLayout2<'a>;
-    ///Provided by [`ext::host_image_copy`](crate::ext::host_image_copy)
-    impl crate::vk::StructureType {
-        pub const PHYSICAL_DEVICE_HOST_IMAGE_COPY_FEATURES_EXT: Self = Self::PHYSICAL_DEVICE_HOST_IMAGE_COPY_FEATURES;
-        pub const PHYSICAL_DEVICE_HOST_IMAGE_COPY_PROPERTIES_EXT: Self = Self::PHYSICAL_DEVICE_HOST_IMAGE_COPY_PROPERTIES;
-        pub const MEMORY_TO_IMAGE_COPY_EXT: Self = Self::MEMORY_TO_IMAGE_COPY;
-        pub const IMAGE_TO_MEMORY_COPY_EXT: Self = Self::IMAGE_TO_MEMORY_COPY;
-        pub const COPY_IMAGE_TO_MEMORY_INFO_EXT: Self = Self::COPY_IMAGE_TO_MEMORY_INFO;
-        pub const COPY_MEMORY_TO_IMAGE_INFO_EXT: Self = Self::COPY_MEMORY_TO_IMAGE_INFO;
-        pub const HOST_IMAGE_LAYOUT_TRANSITION_INFO_EXT: Self = Self::HOST_IMAGE_LAYOUT_TRANSITION_INFO;
-        pub const COPY_IMAGE_TO_IMAGE_INFO_EXT: Self = Self::COPY_IMAGE_TO_IMAGE_INFO;
-        pub const SUBRESOURCE_HOST_MEMCPY_SIZE_EXT: Self = Self::SUBRESOURCE_HOST_MEMCPY_SIZE;
-        pub const HOST_IMAGE_COPY_DEVICE_PERFORMANCE_QUERY_EXT: Self = Self::HOST_IMAGE_COPY_DEVICE_PERFORMANCE_QUERY;
-    }
     pub type HostImageCopyFlagBitsEXT = crate::vk::HostImageCopyFlagBits;
-    ///Provided by [`ext::host_image_copy`](crate::ext::host_image_copy)
-    impl crate::vk::ImageUsageFlagBits {
-        pub const HOST_TRANSFER_EXT: Self = Self::HOST_TRANSFER;
-    }
-    ///Provided by [`ext::host_image_copy`](crate::ext::host_image_copy)
-    impl crate::vk::FormatFeatureFlagBits2 {
-        pub const HOST_IMAGE_TRANSFER_EXT: Self = Self::HOST_IMAGE_TRANSFER;
-    }
-    ///Provided by [`ext::host_image_copy`](crate::ext::host_image_copy)
-    impl crate::vk::HostImageCopyFlagBits {
-        pub const MEMCPY_EXT: Self = Self::MEMCPY;
-    }
     pub type HostImageCopyFlagsEXT = crate::vk::HostImageCopyFlags;
     pub type PFN_vkCopyMemoryToImageEXT = crate::vk::PFN_vkCopyMemoryToImage;
     pub type PFN_vkCopyImageToMemoryEXT = crate::vk::PFN_vkCopyImageToMemory;

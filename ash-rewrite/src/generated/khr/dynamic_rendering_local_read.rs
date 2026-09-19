@@ -2,8 +2,16 @@
 #![cfg_attr(rustfmt, rustfmt_skip)]
 //![Vulkan Manual Page](https://docs.vulkan.org/refpages/latest/refpages/source/VK_KHR_dynamic_rendering_local_read.html) · Extension `VK_KHR_dynamic_rendering_local_read`
 #![doc(alias = "VK_KHR_dynamic_rendering_local_read")]
-pub const SPEC_VERSION: u32 = 1;
-pub const NAME: &core::ffi::CStr = c"VK_KHR_dynamic_rendering_local_read";
+///Provided by [`khr::dynamic_rendering_local_read`](crate::khr::dynamic_rendering_local_read)
+impl crate::vk::ImageLayout {
+    pub const RENDERING_LOCAL_READ_KHR: Self = Self::RENDERING_LOCAL_READ;
+}
+///Provided by [`khr::dynamic_rendering_local_read`](crate::khr::dynamic_rendering_local_read)
+impl crate::vk::StructureType {
+    pub const PHYSICAL_DEVICE_DYNAMIC_RENDERING_LOCAL_READ_FEATURES_KHR: Self = Self::PHYSICAL_DEVICE_DYNAMIC_RENDERING_LOCAL_READ_FEATURES;
+    pub const RENDERING_ATTACHMENT_LOCATION_INFO_KHR: Self = Self::RENDERING_ATTACHMENT_LOCATION_INFO;
+    pub const RENDERING_INPUT_ATTACHMENT_INDEX_INFO_KHR: Self = Self::RENDERING_INPUT_ATTACHMENT_INDEX_INFO;
+}
 #[derive(Clone)]
 pub struct DeviceFn {
     pub cmd_set_rendering_attachment_locations_khr: crate::vk::PFN_vkCmdSetRenderingAttachmentLocationsKHR,
@@ -74,6 +82,8 @@ impl Device {
         self.handle
     }
 }
+pub const SPEC_VERSION: u32 = 1;
+pub const NAME: &core::ffi::CStr = c"VK_KHR_dynamic_rendering_local_read";
 pub(crate) mod reexport {
     pub type PhysicalDeviceDynamicRenderingLocalReadFeaturesKHR<'a> = crate::vk::PhysicalDeviceDynamicRenderingLocalReadFeatures<
         'a,
@@ -84,16 +94,6 @@ pub(crate) mod reexport {
     pub type RenderingInputAttachmentIndexInfoKHR<'a> = crate::vk::RenderingInputAttachmentIndexInfo<
         'a,
     >;
-    ///Provided by [`khr::dynamic_rendering_local_read`](crate::khr::dynamic_rendering_local_read)
-    impl crate::vk::ImageLayout {
-        pub const RENDERING_LOCAL_READ_KHR: Self = Self::RENDERING_LOCAL_READ;
-    }
-    ///Provided by [`khr::dynamic_rendering_local_read`](crate::khr::dynamic_rendering_local_read)
-    impl crate::vk::StructureType {
-        pub const PHYSICAL_DEVICE_DYNAMIC_RENDERING_LOCAL_READ_FEATURES_KHR: Self = Self::PHYSICAL_DEVICE_DYNAMIC_RENDERING_LOCAL_READ_FEATURES;
-        pub const RENDERING_ATTACHMENT_LOCATION_INFO_KHR: Self = Self::RENDERING_ATTACHMENT_LOCATION_INFO;
-        pub const RENDERING_INPUT_ATTACHMENT_INDEX_INFO_KHR: Self = Self::RENDERING_INPUT_ATTACHMENT_INDEX_INFO;
-    }
     pub type PFN_vkCmdSetRenderingAttachmentLocationsKHR = crate::vk::PFN_vkCmdSetRenderingAttachmentLocations;
     pub type PFN_vkCmdSetRenderingInputAttachmentIndicesKHR = crate::vk::PFN_vkCmdSetRenderingInputAttachmentIndices;
 }

@@ -2,8 +2,131 @@
 #![cfg_attr(rustfmt, rustfmt_skip)]
 //![Vulkan Manual Page](https://docs.vulkan.org/refpages/latest/refpages/source/VK_AMD_gpa_interface.html) · Extension `VK_AMD_gpa_interface`
 #![doc(alias = "VK_AMD_gpa_interface")]
-pub const SPEC_VERSION: u32 = 1;
-pub const NAME: &core::ffi::CStr = c"VK_AMD_gpa_interface";
+///Provided by [`amd::gpa_interface`](crate::amd::gpa_interface)
+impl crate::vk::StructureType {
+    pub const PHYSICAL_DEVICE_GPA_FEATURES_AMD: Self = Self(1000133000);
+    pub const PHYSICAL_DEVICE_GPA_PROPERTIES_AMD: Self = Self(1000133001);
+    pub const GPA_SAMPLE_BEGIN_INFO_AMD: Self = Self(1000133002);
+    pub const GPA_SESSION_CREATE_INFO_AMD: Self = Self(1000133003);
+    pub const GPA_DEVICE_CLOCK_MODE_INFO_AMD: Self = Self(1000133004);
+    pub const PHYSICAL_DEVICE_GPA_PROPERTIES_2_AMD: Self = Self(1000133005);
+    pub const GPA_DEVICE_GET_CLOCK_INFO_AMD: Self = Self(1000133006);
+}
+///Provided by [`amd::gpa_interface`](crate::amd::gpa_interface)
+impl crate::vk::ObjectType {
+    pub const GPA_SESSION_AMD: Self = Self(1000133000);
+}
+///Provided by [`amd::gpa_interface`](crate::amd::gpa_interface)
+impl GpaPerfBlockAMD {
+    #[inline]
+    pub const fn from_raw(x: i32) -> Self {
+        Self(x)
+    }
+    #[inline]
+    pub const fn as_raw(self) -> i32 {
+        self.0
+    }
+    pub const CPF_AMD: Self = Self(0);
+    pub const IA_AMD: Self = Self(1);
+    pub const VGT_AMD: Self = Self(2);
+    pub const PA_AMD: Self = Self(3);
+    pub const SC_AMD: Self = Self(4);
+    pub const SPI_AMD: Self = Self(5);
+    pub const SQ_AMD: Self = Self(6);
+    pub const SX_AMD: Self = Self(7);
+    pub const TA_AMD: Self = Self(8);
+    pub const TD_AMD: Self = Self(9);
+    pub const TCP_AMD: Self = Self(10);
+    pub const TCC_AMD: Self = Self(11);
+    pub const TCA_AMD: Self = Self(12);
+    pub const DB_AMD: Self = Self(13);
+    pub const CB_AMD: Self = Self(14);
+    pub const GDS_AMD: Self = Self(15);
+    pub const SRBM_AMD: Self = Self(16);
+    pub const GRBM_AMD: Self = Self(17);
+    pub const GRBM_SE_AMD: Self = Self(18);
+    pub const RLC_AMD: Self = Self(19);
+    pub const DMA_AMD: Self = Self(20);
+    pub const MC_AMD: Self = Self(21);
+    pub const CPG_AMD: Self = Self(22);
+    pub const CPC_AMD: Self = Self(23);
+    pub const WD_AMD: Self = Self(24);
+    pub const TCS_AMD: Self = Self(25);
+    pub const ATC_AMD: Self = Self(26);
+    pub const ATC_L2_AMD: Self = Self(27);
+    pub const MC_VM_L2_AMD: Self = Self(28);
+    pub const EA_AMD: Self = Self(29);
+    pub const RPB_AMD: Self = Self(30);
+    pub const RMI_AMD: Self = Self(31);
+    pub const UMCCH_AMD: Self = Self(32);
+    pub const GE_AMD: Self = Self(33);
+    pub const GL1A_AMD: Self = Self(34);
+    pub const GL1C_AMD: Self = Self(35);
+    pub const GL1CG_AMD: Self = Self(36);
+    pub const GL2A_AMD: Self = Self(37);
+    pub const GL2C_AMD: Self = Self(38);
+    pub const CHA_AMD: Self = Self(39);
+    pub const CHC_AMD: Self = Self(40);
+    pub const CHCG_AMD: Self = Self(41);
+    pub const GUS_AMD: Self = Self(42);
+    pub const GCR_AMD: Self = Self(43);
+    pub const PH_AMD: Self = Self(44);
+    pub const UTCL1_AMD: Self = Self(45);
+    pub const GE1_AMD: Self = Self::GE_AMD;
+    pub const GE_DIST_AMD: Self = Self(46);
+    pub const GE_SE_AMD: Self = Self(47);
+    pub const DF_MALL_AMD: Self = Self(48);
+    pub const SQ_WGP_AMD: Self = Self(49);
+    pub const PC_AMD: Self = Self(50);
+    pub const GL1XA_AMD: Self = Self(51);
+    pub const GL1XC_AMD: Self = Self(52);
+    pub const WGS_AMD: Self = Self(53);
+    pub const EACPWD_AMD: Self = Self(54);
+    pub const EASE_AMD: Self = Self(55);
+    pub const RLCUSER_AMD: Self = Self(56);
+    pub const RLCLOCAL_AMD: Self = Self::RLCUSER_AMD;
+}
+///Provided by [`amd::gpa_interface`](crate::amd::gpa_interface)
+impl GpaSampleTypeAMD {
+    #[inline]
+    pub const fn from_raw(x: i32) -> Self {
+        Self(x)
+    }
+    #[inline]
+    pub const fn as_raw(self) -> i32 {
+        self.0
+    }
+    pub const CUMULATIVE_AMD: Self = Self(0);
+    pub const TRACE_AMD: Self = Self(1);
+    pub const TIMING_AMD: Self = Self(2);
+}
+///Provided by [`amd::gpa_interface`](crate::amd::gpa_interface)
+impl GpaDeviceClockModeAMD {
+    #[inline]
+    pub const fn from_raw(x: i32) -> Self {
+        Self(x)
+    }
+    #[inline]
+    pub const fn as_raw(self) -> i32 {
+        self.0
+    }
+    pub const DEFAULT_AMD: Self = Self(0);
+    pub const QUERY_AMD: Self = Self(1);
+    pub const PROFILING_AMD: Self = Self(2);
+    pub const MIN_MEMORY_AMD: Self = Self(3);
+    pub const MIN_ENGINE_AMD: Self = Self(4);
+    pub const PEAK_AMD: Self = Self(5);
+}
+///Provided by [`amd::gpa_interface`](crate::amd::gpa_interface)
+impl GpaSqShaderStageFlagBitsAMD {
+    pub const PS_AMD: Self = Self(1 << 0);
+    pub const VS_AMD: Self = Self(1 << 1);
+    pub const GS_AMD: Self = Self(1 << 2);
+    pub const ES_AMD: Self = Self(1 << 3);
+    pub const HS_AMD: Self = Self(1 << 4);
+    pub const LS_AMD: Self = Self(1 << 5);
+    pub const CS_AMD: Self = Self(1 << 6);
+}
 #[derive(Clone)]
 pub struct DeviceFn {
     pub create_gpa_session_amd: crate::vk::PFN_vkCreateGpaSessionAMD,
@@ -233,6 +356,8 @@ impl Device {
         self.handle
     }
 }
+pub const SPEC_VERSION: u32 = 1;
+pub const NAME: &core::ffi::CStr = c"VK_AMD_gpa_interface";
 pub(crate) mod reexport {
     #[repr(C)]
     #[derive(Clone, Copy, Default)]
@@ -705,133 +830,18 @@ pub(crate) mod reexport {
             self
         }
     }
-    ///Provided by [`amd::gpa_interface`](crate::amd::gpa_interface)
-    impl crate::vk::StructureType {
-        pub const PHYSICAL_DEVICE_GPA_FEATURES_AMD: Self = Self(1000133000);
-        pub const PHYSICAL_DEVICE_GPA_PROPERTIES_AMD: Self = Self(1000133001);
-        pub const GPA_SAMPLE_BEGIN_INFO_AMD: Self = Self(1000133002);
-        pub const GPA_SESSION_CREATE_INFO_AMD: Self = Self(1000133003);
-        pub const GPA_DEVICE_CLOCK_MODE_INFO_AMD: Self = Self(1000133004);
-        pub const PHYSICAL_DEVICE_GPA_PROPERTIES_2_AMD: Self = Self(1000133005);
-        pub const GPA_DEVICE_GET_CLOCK_INFO_AMD: Self = Self(1000133006);
-    }
-    ///Provided by [`amd::gpa_interface`](crate::amd::gpa_interface)
-    impl crate::vk::ObjectType {
-        pub const GPA_SESSION_AMD: Self = Self(1000133000);
-    }
     #[repr(transparent)]
     #[derive(Clone, Copy, PartialEq, Eq, PartialOrd, Ord, Hash, Default)]
     #[derive(Debug)]
     pub struct GpaPerfBlockAMD(pub(crate) i32);
-    ///Provided by [`amd::gpa_interface`](crate::amd::gpa_interface)
-    impl GpaPerfBlockAMD {
-        #[inline]
-        pub const fn from_raw(x: i32) -> Self {
-            Self(x)
-        }
-        #[inline]
-        pub const fn as_raw(self) -> i32 {
-            self.0
-        }
-        pub const CPF_AMD: Self = Self(0);
-        pub const IA_AMD: Self = Self(1);
-        pub const VGT_AMD: Self = Self(2);
-        pub const PA_AMD: Self = Self(3);
-        pub const SC_AMD: Self = Self(4);
-        pub const SPI_AMD: Self = Self(5);
-        pub const SQ_AMD: Self = Self(6);
-        pub const SX_AMD: Self = Self(7);
-        pub const TA_AMD: Self = Self(8);
-        pub const TD_AMD: Self = Self(9);
-        pub const TCP_AMD: Self = Self(10);
-        pub const TCC_AMD: Self = Self(11);
-        pub const TCA_AMD: Self = Self(12);
-        pub const DB_AMD: Self = Self(13);
-        pub const CB_AMD: Self = Self(14);
-        pub const GDS_AMD: Self = Self(15);
-        pub const SRBM_AMD: Self = Self(16);
-        pub const GRBM_AMD: Self = Self(17);
-        pub const GRBM_SE_AMD: Self = Self(18);
-        pub const RLC_AMD: Self = Self(19);
-        pub const DMA_AMD: Self = Self(20);
-        pub const MC_AMD: Self = Self(21);
-        pub const CPG_AMD: Self = Self(22);
-        pub const CPC_AMD: Self = Self(23);
-        pub const WD_AMD: Self = Self(24);
-        pub const TCS_AMD: Self = Self(25);
-        pub const ATC_AMD: Self = Self(26);
-        pub const ATC_L2_AMD: Self = Self(27);
-        pub const MC_VM_L2_AMD: Self = Self(28);
-        pub const EA_AMD: Self = Self(29);
-        pub const RPB_AMD: Self = Self(30);
-        pub const RMI_AMD: Self = Self(31);
-        pub const UMCCH_AMD: Self = Self(32);
-        pub const GE_AMD: Self = Self(33);
-        pub const GL1A_AMD: Self = Self(34);
-        pub const GL1C_AMD: Self = Self(35);
-        pub const GL1CG_AMD: Self = Self(36);
-        pub const GL2A_AMD: Self = Self(37);
-        pub const GL2C_AMD: Self = Self(38);
-        pub const CHA_AMD: Self = Self(39);
-        pub const CHC_AMD: Self = Self(40);
-        pub const CHCG_AMD: Self = Self(41);
-        pub const GUS_AMD: Self = Self(42);
-        pub const GCR_AMD: Self = Self(43);
-        pub const PH_AMD: Self = Self(44);
-        pub const UTCL1_AMD: Self = Self(45);
-        pub const GE1_AMD: Self = Self::GE_AMD;
-        pub const GE_DIST_AMD: Self = Self(46);
-        pub const GE_SE_AMD: Self = Self(47);
-        pub const DF_MALL_AMD: Self = Self(48);
-        pub const SQ_WGP_AMD: Self = Self(49);
-        pub const PC_AMD: Self = Self(50);
-        pub const GL1XA_AMD: Self = Self(51);
-        pub const GL1XC_AMD: Self = Self(52);
-        pub const WGS_AMD: Self = Self(53);
-        pub const EACPWD_AMD: Self = Self(54);
-        pub const EASE_AMD: Self = Self(55);
-        pub const RLCUSER_AMD: Self = Self(56);
-        pub const RLCLOCAL_AMD: Self = Self::RLCUSER_AMD;
-    }
     #[repr(transparent)]
     #[derive(Clone, Copy, PartialEq, Eq, PartialOrd, Ord, Hash, Default)]
     #[derive(Debug)]
     pub struct GpaSampleTypeAMD(pub(crate) i32);
-    ///Provided by [`amd::gpa_interface`](crate::amd::gpa_interface)
-    impl GpaSampleTypeAMD {
-        #[inline]
-        pub const fn from_raw(x: i32) -> Self {
-            Self(x)
-        }
-        #[inline]
-        pub const fn as_raw(self) -> i32 {
-            self.0
-        }
-        pub const CUMULATIVE_AMD: Self = Self(0);
-        pub const TRACE_AMD: Self = Self(1);
-        pub const TIMING_AMD: Self = Self(2);
-    }
     #[repr(transparent)]
     #[derive(Clone, Copy, PartialEq, Eq, PartialOrd, Ord, Hash, Default)]
     #[derive(Debug)]
     pub struct GpaDeviceClockModeAMD(pub(crate) i32);
-    ///Provided by [`amd::gpa_interface`](crate::amd::gpa_interface)
-    impl GpaDeviceClockModeAMD {
-        #[inline]
-        pub const fn from_raw(x: i32) -> Self {
-            Self(x)
-        }
-        #[inline]
-        pub const fn as_raw(self) -> i32 {
-            self.0
-        }
-        pub const DEFAULT_AMD: Self = Self(0);
-        pub const QUERY_AMD: Self = Self(1);
-        pub const PROFILING_AMD: Self = Self(2);
-        pub const MIN_MEMORY_AMD: Self = Self(3);
-        pub const MIN_ENGINE_AMD: Self = Self(4);
-        pub const PEAK_AMD: Self = Self(5);
-    }
     #[repr(transparent)]
     #[derive(Clone, Copy)]
     pub struct GpaSqShaderStageFlagsAMD(u32);
@@ -909,16 +919,6 @@ pub(crate) mod reexport {
     #[repr(transparent)]
     #[derive(Clone, Copy, Default)]
     pub struct GpaSqShaderStageFlagBitsAMD(pub(crate) u32);
-    ///Provided by [`amd::gpa_interface`](crate::amd::gpa_interface)
-    impl GpaSqShaderStageFlagBitsAMD {
-        pub const PS_AMD: Self = Self(1 << 0);
-        pub const VS_AMD: Self = Self(1 << 1);
-        pub const GS_AMD: Self = Self(1 << 2);
-        pub const ES_AMD: Self = Self(1 << 3);
-        pub const HS_AMD: Self = Self(1 << 4);
-        pub const LS_AMD: Self = Self(1 << 5);
-        pub const CS_AMD: Self = Self(1 << 6);
-    }
     #[repr(transparent)]
     #[derive(Clone, Copy)]
     pub struct GpaPerfBlockPropertiesFlagsAMD(u32);

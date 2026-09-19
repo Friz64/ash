@@ -2,8 +2,11 @@
 #![cfg_attr(rustfmt, rustfmt_skip)]
 //![Vulkan Manual Page](https://docs.vulkan.org/refpages/latest/refpages/source/VK_NVX_image_view_handle.html) · Extension `VK_NVX_image_view_handle`
 #![doc(alias = "VK_NVX_image_view_handle")]
-pub const SPEC_VERSION: u32 = 4;
-pub const NAME: &core::ffi::CStr = c"VK_NVX_image_view_handle";
+///Provided by [`nvx::image_view_handle`](crate::nvx::image_view_handle)
+impl crate::vk::StructureType {
+    pub const IMAGE_VIEW_HANDLE_INFO_NVX: Self = Self(1000030000);
+    pub const IMAGE_VIEW_ADDRESS_PROPERTIES_NVX: Self = Self(1000030001);
+}
 #[derive(Clone)]
 pub struct DeviceFn {
     pub get_image_view_handle_nvx: crate::vk::PFN_vkGetImageViewHandleNVX,
@@ -106,6 +109,8 @@ impl Device {
         self.handle
     }
 }
+pub const SPEC_VERSION: u32 = 4;
+pub const NAME: &core::ffi::CStr = c"VK_NVX_image_view_handle";
 pub(crate) mod reexport {
     #[repr(C)]
     #[derive(Clone, Copy)]
@@ -184,11 +189,6 @@ pub(crate) mod reexport {
             self.size = size;
             self
         }
-    }
-    ///Provided by [`nvx::image_view_handle`](crate::nvx::image_view_handle)
-    impl crate::vk::StructureType {
-        pub const IMAGE_VIEW_HANDLE_INFO_NVX: Self = Self(1000030000);
-        pub const IMAGE_VIEW_ADDRESS_PROPERTIES_NVX: Self = Self(1000030001);
     }
     pub type PFN_vkGetImageViewHandleNVX = unsafe extern "system" fn(
         device: crate::vk::Device,

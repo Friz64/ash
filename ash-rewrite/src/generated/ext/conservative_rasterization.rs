@@ -2,6 +2,29 @@
 #![cfg_attr(rustfmt, rustfmt_skip)]
 //![Vulkan Manual Page](https://docs.vulkan.org/refpages/latest/refpages/source/VK_EXT_conservative_rasterization.html) · Extension `VK_EXT_conservative_rasterization`
 #![doc(alias = "VK_EXT_conservative_rasterization")]
+///Provided by [`ext::conservative_rasterization`](crate::ext::conservative_rasterization)
+impl crate::vk::StructureType {
+    pub const PHYSICAL_DEVICE_CONSERVATIVE_RASTERIZATION_PROPERTIES_EXT: Self = Self(
+        1000101000,
+    );
+    pub const PIPELINE_RASTERIZATION_CONSERVATIVE_STATE_CREATE_INFO_EXT: Self = Self(
+        1000101001,
+    );
+}
+///Provided by [`ext::conservative_rasterization`](crate::ext::conservative_rasterization)
+impl ConservativeRasterizationModeEXT {
+    #[inline]
+    pub const fn from_raw(x: i32) -> Self {
+        Self(x)
+    }
+    #[inline]
+    pub const fn as_raw(self) -> i32 {
+        self.0
+    }
+    pub const DISABLED_EXT: Self = Self(0);
+    pub const OVERESTIMATE_EXT: Self = Self(1);
+    pub const UNDERESTIMATE_EXT: Self = Self(2);
+}
 pub const SPEC_VERSION: u32 = 1;
 pub const NAME: &core::ffi::CStr = c"VK_EXT_conservative_rasterization";
 pub(crate) mod reexport {
@@ -165,33 +188,10 @@ pub(crate) mod reexport {
             self
         }
     }
-    ///Provided by [`ext::conservative_rasterization`](crate::ext::conservative_rasterization)
-    impl crate::vk::StructureType {
-        pub const PHYSICAL_DEVICE_CONSERVATIVE_RASTERIZATION_PROPERTIES_EXT: Self = Self(
-            1000101000,
-        );
-        pub const PIPELINE_RASTERIZATION_CONSERVATIVE_STATE_CREATE_INFO_EXT: Self = Self(
-            1000101001,
-        );
-    }
     #[repr(transparent)]
     #[derive(Clone, Copy, PartialEq, Eq, PartialOrd, Ord, Hash, Default)]
     #[derive(Debug)]
     pub struct ConservativeRasterizationModeEXT(pub(crate) i32);
-    ///Provided by [`ext::conservative_rasterization`](crate::ext::conservative_rasterization)
-    impl ConservativeRasterizationModeEXT {
-        #[inline]
-        pub const fn from_raw(x: i32) -> Self {
-            Self(x)
-        }
-        #[inline]
-        pub const fn as_raw(self) -> i32 {
-            self.0
-        }
-        pub const DISABLED_EXT: Self = Self(0);
-        pub const OVERESTIMATE_EXT: Self = Self(1);
-        pub const UNDERESTIMATE_EXT: Self = Self(2);
-    }
     #[repr(transparent)]
     #[derive(Clone, Copy)]
     pub struct PipelineRasterizationConservativeStateCreateFlagsEXT(u32);

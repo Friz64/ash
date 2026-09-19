@@ -2,8 +2,15 @@
 #![cfg_attr(rustfmt, rustfmt_skip)]
 //![Vulkan Manual Page](https://docs.vulkan.org/refpages/latest/refpages/source/VK_AMD_display_native_hdr.html) · Extension `VK_AMD_display_native_hdr`
 #![doc(alias = "VK_AMD_display_native_hdr")]
-pub const SPEC_VERSION: u32 = 1;
-pub const NAME: &core::ffi::CStr = c"VK_AMD_display_native_hdr";
+///Provided by [`amd::display_native_hdr`](crate::amd::display_native_hdr)
+impl crate::vk::StructureType {
+    pub const DISPLAY_NATIVE_HDR_SURFACE_CAPABILITIES_AMD: Self = Self(1000213000);
+    pub const SWAPCHAIN_DISPLAY_NATIVE_HDR_CREATE_INFO_AMD: Self = Self(1000213001);
+}
+///Provided by [`amd::display_native_hdr`](crate::amd::display_native_hdr)
+impl crate::vk::ColorSpaceKHR {
+    pub const DISPLAY_NATIVE_AMD: Self = Self(1000213000);
+}
 #[derive(Clone)]
 pub struct DeviceFn {
     pub set_local_dimming_amd: crate::vk::PFN_vkSetLocalDimmingAMD,
@@ -60,6 +67,8 @@ impl Device {
         self.handle
     }
 }
+pub const SPEC_VERSION: u32 = 1;
+pub const NAME: &core::ffi::CStr = c"VK_AMD_display_native_hdr";
 pub(crate) mod reexport {
     #[repr(C)]
     #[derive(Clone, Copy)]
@@ -120,15 +129,6 @@ pub(crate) mod reexport {
             self.local_dimming_enable = local_dimming_enable.into();
             self
         }
-    }
-    ///Provided by [`amd::display_native_hdr`](crate::amd::display_native_hdr)
-    impl crate::vk::StructureType {
-        pub const DISPLAY_NATIVE_HDR_SURFACE_CAPABILITIES_AMD: Self = Self(1000213000);
-        pub const SWAPCHAIN_DISPLAY_NATIVE_HDR_CREATE_INFO_AMD: Self = Self(1000213001);
-    }
-    ///Provided by [`amd::display_native_hdr`](crate::amd::display_native_hdr)
-    impl crate::vk::ColorSpaceKHR {
-        pub const DISPLAY_NATIVE_AMD: Self = Self(1000213000);
     }
     pub type PFN_vkSetLocalDimmingAMD = unsafe extern "system" fn(
         device: crate::vk::Device,

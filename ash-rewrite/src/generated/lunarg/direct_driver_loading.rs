@@ -2,6 +2,24 @@
 #![cfg_attr(rustfmt, rustfmt_skip)]
 //![Vulkan Manual Page](https://docs.vulkan.org/refpages/latest/refpages/source/VK_LUNARG_direct_driver_loading.html) · Extension `VK_LUNARG_direct_driver_loading`
 #![doc(alias = "VK_LUNARG_direct_driver_loading")]
+///Provided by [`lunarg::direct_driver_loading`](crate::lunarg::direct_driver_loading)
+impl crate::vk::StructureType {
+    pub const DIRECT_DRIVER_LOADING_INFO_LUNARG: Self = Self(1000459000);
+    pub const DIRECT_DRIVER_LOADING_LIST_LUNARG: Self = Self(1000459001);
+}
+///Provided by [`lunarg::direct_driver_loading`](crate::lunarg::direct_driver_loading)
+impl DirectDriverLoadingModeLUNARG {
+    #[inline]
+    pub const fn from_raw(x: i32) -> Self {
+        Self(x)
+    }
+    #[inline]
+    pub const fn as_raw(self) -> i32 {
+        self.0
+    }
+    pub const EXCLUSIVE_LUNARG: Self = Self(0);
+    pub const INCLUSIVE_LUNARG: Self = Self(1);
+}
 pub const SPEC_VERSION: u32 = 1;
 pub const NAME: &core::ffi::CStr = c"VK_LUNARG_direct_driver_loading";
 pub(crate) mod reexport {
@@ -85,28 +103,10 @@ pub(crate) mod reexport {
             self
         }
     }
-    ///Provided by [`lunarg::direct_driver_loading`](crate::lunarg::direct_driver_loading)
-    impl crate::vk::StructureType {
-        pub const DIRECT_DRIVER_LOADING_INFO_LUNARG: Self = Self(1000459000);
-        pub const DIRECT_DRIVER_LOADING_LIST_LUNARG: Self = Self(1000459001);
-    }
     #[repr(transparent)]
     #[derive(Clone, Copy, PartialEq, Eq, PartialOrd, Ord, Hash, Default)]
     #[derive(Debug)]
     pub struct DirectDriverLoadingModeLUNARG(pub(crate) i32);
-    ///Provided by [`lunarg::direct_driver_loading`](crate::lunarg::direct_driver_loading)
-    impl DirectDriverLoadingModeLUNARG {
-        #[inline]
-        pub const fn from_raw(x: i32) -> Self {
-            Self(x)
-        }
-        #[inline]
-        pub const fn as_raw(self) -> i32 {
-            self.0
-        }
-        pub const EXCLUSIVE_LUNARG: Self = Self(0);
-        pub const INCLUSIVE_LUNARG: Self = Self(1);
-    }
     #[repr(transparent)]
     #[derive(Clone, Copy)]
     pub struct DirectDriverLoadingFlagsLUNARG(u32);

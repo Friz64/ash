@@ -2,8 +2,10 @@
 #![cfg_attr(rustfmt, rustfmt_skip)]
 //![Vulkan Manual Page](https://docs.vulkan.org/refpages/latest/refpages/source/VK_NN_vi_surface.html) · Extension `VK_NN_vi_surface`
 #![doc(alias = "VK_NN_vi_surface")]
-pub const SPEC_VERSION: u32 = 1;
-pub const NAME: &core::ffi::CStr = c"VK_NN_vi_surface";
+///Provided by [`nn::vi_surface`](crate::nn::vi_surface)
+impl crate::vk::StructureType {
+    pub const VI_SURFACE_CREATE_INFO_NN: Self = Self(1000062000);
+}
 #[derive(Clone)]
 pub struct InstanceFn {
     pub create_vi_surface_nn: crate::vk::PFN_vkCreateViSurfaceNN,
@@ -61,6 +63,8 @@ impl Instance {
         self.handle
     }
 }
+pub const SPEC_VERSION: u32 = 1;
+pub const NAME: &core::ffi::CStr = c"VK_NN_vi_surface";
 pub(crate) mod reexport {
     #[repr(C)]
     #[derive(Clone, Copy)]
@@ -94,10 +98,6 @@ pub(crate) mod reexport {
             self.window = window;
             self
         }
-    }
-    ///Provided by [`nn::vi_surface`](crate::nn::vi_surface)
-    impl crate::vk::StructureType {
-        pub const VI_SURFACE_CREATE_INFO_NN: Self = Self(1000062000);
     }
     #[repr(transparent)]
     #[derive(Clone, Copy)]

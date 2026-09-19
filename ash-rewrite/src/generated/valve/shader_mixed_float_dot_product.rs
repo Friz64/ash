@@ -2,6 +2,12 @@
 #![cfg_attr(rustfmt, rustfmt_skip)]
 //![Vulkan Manual Page](https://docs.vulkan.org/refpages/latest/refpages/source/VK_VALVE_shader_mixed_float_dot_product.html) · Extension `VK_VALVE_shader_mixed_float_dot_product`
 #![doc(alias = "VK_VALVE_shader_mixed_float_dot_product")]
+///Provided by [`valve::shader_mixed_float_dot_product`](crate::valve::shader_mixed_float_dot_product)
+impl crate::vk::StructureType {
+    pub const PHYSICAL_DEVICE_SHADER_MIXED_FLOAT_DOT_PRODUCT_FEATURES_VALVE: Self = Self(
+        1000673000,
+    );
+}
 pub const SPEC_VERSION: u32 = 1;
 pub const NAME: &core::ffi::CStr = c"VK_VALVE_shader_mixed_float_dot_product";
 pub(crate) mod reexport {
@@ -70,12 +76,6 @@ pub(crate) mod reexport {
                 .into();
             self
         }
-    }
-    ///Provided by [`valve::shader_mixed_float_dot_product`](crate::valve::shader_mixed_float_dot_product)
-    impl crate::vk::StructureType {
-        pub const PHYSICAL_DEVICE_SHADER_MIXED_FLOAT_DOT_PRODUCT_FEATURES_VALVE: Self = Self(
-            1000673000,
-        );
     }
 }
 pub use reexport::*;

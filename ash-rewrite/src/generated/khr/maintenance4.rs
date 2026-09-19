@@ -2,8 +2,17 @@
 #![cfg_attr(rustfmt, rustfmt_skip)]
 //![Vulkan Manual Page](https://docs.vulkan.org/refpages/latest/refpages/source/VK_KHR_maintenance4.html) · Extension `VK_KHR_maintenance4`
 #![doc(alias = "VK_KHR_maintenance4")]
-pub const SPEC_VERSION: u32 = 2;
-pub const NAME: &core::ffi::CStr = c"VK_KHR_maintenance4";
+///Provided by [`khr::maintenance4`](crate::khr::maintenance4)
+impl crate::vk::StructureType {
+    pub const PHYSICAL_DEVICE_MAINTENANCE_4_FEATURES_KHR: Self = Self::PHYSICAL_DEVICE_MAINTENANCE_4_FEATURES;
+    pub const PHYSICAL_DEVICE_MAINTENANCE_4_PROPERTIES_KHR: Self = Self::PHYSICAL_DEVICE_MAINTENANCE_4_PROPERTIES;
+    pub const DEVICE_BUFFER_MEMORY_REQUIREMENTS_KHR: Self = Self::DEVICE_BUFFER_MEMORY_REQUIREMENTS;
+    pub const DEVICE_IMAGE_MEMORY_REQUIREMENTS_KHR: Self = Self::DEVICE_IMAGE_MEMORY_REQUIREMENTS;
+}
+///Provided by [`khr::maintenance4`](crate::khr::maintenance4)
+impl crate::vk::ImageAspectFlagBits {
+    pub const NONE_KHR: Self = Self::NONE;
+}
 #[derive(Clone)]
 pub struct DeviceFn {
     pub get_device_buffer_memory_requirements_khr: crate::vk::PFN_vkGetDeviceBufferMemoryRequirementsKHR,
@@ -93,6 +102,8 @@ impl Device {
         self.handle
     }
 }
+pub const SPEC_VERSION: u32 = 2;
+pub const NAME: &core::ffi::CStr = c"VK_KHR_maintenance4";
 pub(crate) mod reexport {
     pub type DeviceBufferMemoryRequirementsKHR<'a> = crate::vk::DeviceBufferMemoryRequirements<
         'a,
@@ -106,17 +117,6 @@ pub(crate) mod reexport {
     pub type PhysicalDeviceMaintenance4PropertiesKHR<'a> = crate::vk::PhysicalDeviceMaintenance4Properties<
         'a,
     >;
-    ///Provided by [`khr::maintenance4`](crate::khr::maintenance4)
-    impl crate::vk::StructureType {
-        pub const PHYSICAL_DEVICE_MAINTENANCE_4_FEATURES_KHR: Self = Self::PHYSICAL_DEVICE_MAINTENANCE_4_FEATURES;
-        pub const PHYSICAL_DEVICE_MAINTENANCE_4_PROPERTIES_KHR: Self = Self::PHYSICAL_DEVICE_MAINTENANCE_4_PROPERTIES;
-        pub const DEVICE_BUFFER_MEMORY_REQUIREMENTS_KHR: Self = Self::DEVICE_BUFFER_MEMORY_REQUIREMENTS;
-        pub const DEVICE_IMAGE_MEMORY_REQUIREMENTS_KHR: Self = Self::DEVICE_IMAGE_MEMORY_REQUIREMENTS;
-    }
-    ///Provided by [`khr::maintenance4`](crate::khr::maintenance4)
-    impl crate::vk::ImageAspectFlagBits {
-        pub const NONE_KHR: Self = Self::NONE;
-    }
     pub type PFN_vkGetDeviceBufferMemoryRequirementsKHR = crate::vk::PFN_vkGetDeviceBufferMemoryRequirements;
     pub type PFN_vkGetDeviceImageMemoryRequirementsKHR = crate::vk::PFN_vkGetDeviceImageMemoryRequirements;
     pub type PFN_vkGetDeviceImageSparseMemoryRequirementsKHR = crate::vk::PFN_vkGetDeviceImageSparseMemoryRequirements;

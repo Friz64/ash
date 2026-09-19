@@ -2,8 +2,36 @@
 #![cfg_attr(rustfmt, rustfmt_skip)]
 //![Vulkan Manual Page](https://docs.vulkan.org/refpages/latest/refpages/source/VK_KHR_device_address_commands.html) · Extension `VK_KHR_device_address_commands`
 #![doc(alias = "VK_KHR_device_address_commands")]
-pub const SPEC_VERSION: u32 = 1;
-pub const NAME: &core::ffi::CStr = c"VK_KHR_device_address_commands";
+///Provided by [`khr::device_address_commands`](crate::khr::device_address_commands)
+impl crate::vk::StructureType {
+    pub const DEVICE_MEMORY_COPY_KHR: Self = Self(1000318000);
+    pub const COPY_DEVICE_MEMORY_INFO_KHR: Self = Self(1000318001);
+    pub const DEVICE_MEMORY_IMAGE_COPY_KHR: Self = Self(1000318002);
+    pub const COPY_DEVICE_MEMORY_IMAGE_INFO_KHR: Self = Self(1000318003);
+    pub const MEMORY_RANGE_BARRIERS_INFO_KHR: Self = Self(1000318004);
+    pub const MEMORY_RANGE_BARRIER_KHR: Self = Self(1000318005);
+    pub const PHYSICAL_DEVICE_DEVICE_ADDRESS_COMMANDS_FEATURES_KHR: Self = Self(
+        1000318006,
+    );
+    pub const BIND_INDEX_BUFFER_3_INFO_KHR: Self = Self(1000318007);
+    pub const BIND_VERTEX_BUFFER_3_INFO_KHR: Self = Self(1000318008);
+    pub const DRAW_INDIRECT_2_INFO_KHR: Self = Self(1000318009);
+    pub const DRAW_INDIRECT_COUNT_2_INFO_KHR: Self = Self(1000318010);
+    pub const DISPATCH_INDIRECT_2_INFO_KHR: Self = Self(1000318011);
+    pub const CONDITIONAL_RENDERING_BEGIN_INFO_2_EXT: Self = Self(1000318012);
+    pub const BIND_TRANSFORM_FEEDBACK_BUFFER_2_INFO_EXT: Self = Self(1000318013);
+    pub const MEMORY_MARKER_INFO_AMD: Self = Self(1000318014);
+    pub const ACCELERATION_STRUCTURE_CREATE_INFO_2_KHR: Self = Self(1000318015);
+}
+///Provided by [`khr::device_address_commands`](crate::khr::device_address_commands)
+impl AddressCommandFlagBitsKHR {
+    pub const PROTECTED_KHR: Self = Self(1 << 0);
+    pub const FULLY_BOUND_KHR: Self = Self(1 << 1);
+    pub const STORAGE_BUFFER_USAGE_KHR: Self = Self(1 << 2);
+    pub const UNKNOWN_STORAGE_BUFFER_USAGE_KHR: Self = Self(1 << 3);
+    pub const TRANSFORM_FEEDBACK_BUFFER_USAGE_KHR: Self = Self(1 << 4);
+    pub const UNKNOWN_TRANSFORM_FEEDBACK_BUFFER_USAGE_KHR: Self = Self(1 << 5);
+}
 #[derive(Clone)]
 pub struct DeviceFn {
     pub cmd_copy_memory_khr: crate::vk::PFN_vkCmdCopyMemoryKHR,
@@ -398,6 +426,8 @@ impl Device {
         self.handle
     }
 }
+pub const SPEC_VERSION: u32 = 1;
+pub const NAME: &core::ffi::CStr = c"VK_KHR_device_address_commands";
 pub(crate) mod reexport {
     #[repr(C)]
     #[derive(Clone, Copy, Default)]
@@ -1217,27 +1247,6 @@ pub(crate) mod reexport {
             self
         }
     }
-    ///Provided by [`khr::device_address_commands`](crate::khr::device_address_commands)
-    impl crate::vk::StructureType {
-        pub const DEVICE_MEMORY_COPY_KHR: Self = Self(1000318000);
-        pub const COPY_DEVICE_MEMORY_INFO_KHR: Self = Self(1000318001);
-        pub const DEVICE_MEMORY_IMAGE_COPY_KHR: Self = Self(1000318002);
-        pub const COPY_DEVICE_MEMORY_IMAGE_INFO_KHR: Self = Self(1000318003);
-        pub const MEMORY_RANGE_BARRIERS_INFO_KHR: Self = Self(1000318004);
-        pub const MEMORY_RANGE_BARRIER_KHR: Self = Self(1000318005);
-        pub const PHYSICAL_DEVICE_DEVICE_ADDRESS_COMMANDS_FEATURES_KHR: Self = Self(
-            1000318006,
-        );
-        pub const BIND_INDEX_BUFFER_3_INFO_KHR: Self = Self(1000318007);
-        pub const BIND_VERTEX_BUFFER_3_INFO_KHR: Self = Self(1000318008);
-        pub const DRAW_INDIRECT_2_INFO_KHR: Self = Self(1000318009);
-        pub const DRAW_INDIRECT_COUNT_2_INFO_KHR: Self = Self(1000318010);
-        pub const DISPATCH_INDIRECT_2_INFO_KHR: Self = Self(1000318011);
-        pub const CONDITIONAL_RENDERING_BEGIN_INFO_2_EXT: Self = Self(1000318012);
-        pub const BIND_TRANSFORM_FEEDBACK_BUFFER_2_INFO_EXT: Self = Self(1000318013);
-        pub const MEMORY_MARKER_INFO_AMD: Self = Self(1000318014);
-        pub const ACCELERATION_STRUCTURE_CREATE_INFO_2_KHR: Self = Self(1000318015);
-    }
     #[repr(transparent)]
     #[derive(Clone, Copy)]
     pub struct AddressCommandFlagsKHR(u32);
@@ -1324,15 +1333,6 @@ pub(crate) mod reexport {
     #[repr(transparent)]
     #[derive(Clone, Copy, Default)]
     pub struct AddressCommandFlagBitsKHR(pub(crate) u32);
-    ///Provided by [`khr::device_address_commands`](crate::khr::device_address_commands)
-    impl AddressCommandFlagBitsKHR {
-        pub const PROTECTED_KHR: Self = Self(1 << 0);
-        pub const FULLY_BOUND_KHR: Self = Self(1 << 1);
-        pub const STORAGE_BUFFER_USAGE_KHR: Self = Self(1 << 2);
-        pub const UNKNOWN_STORAGE_BUFFER_USAGE_KHR: Self = Self(1 << 3);
-        pub const TRANSFORM_FEEDBACK_BUFFER_USAGE_KHR: Self = Self(1 << 4);
-        pub const UNKNOWN_TRANSFORM_FEEDBACK_BUFFER_USAGE_KHR: Self = Self(1 << 5);
-    }
     pub type PFN_vkCmdCopyMemoryKHR = unsafe extern "system" fn(
         command_buffer: crate::vk::CommandBuffer,
         p_copy_memory_info: *const crate::vk::CopyDeviceMemoryInfoKHR<'_>,

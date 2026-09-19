@@ -2,8 +2,15 @@
 #![cfg_attr(rustfmt, rustfmt_skip)]
 //![Vulkan Manual Page](https://docs.vulkan.org/refpages/latest/refpages/source/VK_EXT_color_write_enable.html) · Extension `VK_EXT_color_write_enable`
 #![doc(alias = "VK_EXT_color_write_enable")]
-pub const SPEC_VERSION: u32 = 1;
-pub const NAME: &core::ffi::CStr = c"VK_EXT_color_write_enable";
+///Provided by [`ext::color_write_enable`](crate::ext::color_write_enable)
+impl crate::vk::StructureType {
+    pub const PHYSICAL_DEVICE_COLOR_WRITE_ENABLE_FEATURES_EXT: Self = Self(1000381000);
+    pub const PIPELINE_COLOR_WRITE_CREATE_INFO_EXT: Self = Self(1000381001);
+}
+///Provided by [`ext::color_write_enable`](crate::ext::color_write_enable)
+impl crate::vk::DynamicState {
+    pub const COLOR_WRITE_ENABLE_EXT: Self = Self(1000381000);
+}
 #[derive(Clone)]
 pub struct DeviceFn {
     pub cmd_set_color_write_enable_ext: crate::vk::PFN_vkCmdSetColorWriteEnableEXT,
@@ -60,6 +67,8 @@ impl Device {
         self.handle
     }
 }
+pub const SPEC_VERSION: u32 = 1;
+pub const NAME: &core::ffi::CStr = c"VK_EXT_color_write_enable";
 pub(crate) mod reexport {
     #[repr(C)]
     #[derive(Clone, Copy)]
@@ -127,17 +136,6 @@ pub(crate) mod reexport {
             self.p_color_write_enables = color_write_enables.as_ptr();
             self
         }
-    }
-    ///Provided by [`ext::color_write_enable`](crate::ext::color_write_enable)
-    impl crate::vk::StructureType {
-        pub const PHYSICAL_DEVICE_COLOR_WRITE_ENABLE_FEATURES_EXT: Self = Self(
-            1000381000,
-        );
-        pub const PIPELINE_COLOR_WRITE_CREATE_INFO_EXT: Self = Self(1000381001);
-    }
-    ///Provided by [`ext::color_write_enable`](crate::ext::color_write_enable)
-    impl crate::vk::DynamicState {
-        pub const COLOR_WRITE_ENABLE_EXT: Self = Self(1000381000);
     }
     pub type PFN_vkCmdSetColorWriteEnableEXT = unsafe extern "system" fn(
         command_buffer: crate::vk::CommandBuffer,

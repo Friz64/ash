@@ -2,8 +2,22 @@
 #![cfg_attr(rustfmt, rustfmt_skip)]
 //![Vulkan Manual Page](https://docs.vulkan.org/refpages/latest/refpages/source/VK_HUAWEI_invocation_mask.html) · Extension `VK_HUAWEI_invocation_mask`
 #![doc(alias = "VK_HUAWEI_invocation_mask")]
-pub const SPEC_VERSION: u32 = 1;
-pub const NAME: &core::ffi::CStr = c"VK_HUAWEI_invocation_mask";
+///Provided by [`huawei::invocation_mask`](crate::huawei::invocation_mask)
+impl crate::vk::StructureType {
+    pub const PHYSICAL_DEVICE_INVOCATION_MASK_FEATURES_HUAWEI: Self = Self(1000370000);
+}
+///Provided by [`huawei::invocation_mask`](crate::huawei::invocation_mask)
+impl crate::vk::ImageUsageFlagBits {
+    pub const INVOCATION_MASK_HUAWEI: Self = Self(1 << 18);
+}
+///Provided by [`huawei::invocation_mask`](crate::huawei::invocation_mask)
+impl crate::vk::AccessFlagBits2 {
+    pub const INVOCATION_MASK_READ_HUAWEI: Self = Self(1 << 39);
+}
+///Provided by [`huawei::invocation_mask`](crate::huawei::invocation_mask)
+impl crate::vk::PipelineStageFlagBits2 {
+    pub const INVOCATION_MASK_HUAWEI: Self = Self(1 << 40);
+}
 #[derive(Clone)]
 pub struct DeviceFn {
     pub cmd_bind_invocation_mask_huawei: crate::vk::PFN_vkCmdBindInvocationMaskHUAWEI,
@@ -60,6 +74,8 @@ impl Device {
         self.handle
     }
 }
+pub const SPEC_VERSION: u32 = 1;
+pub const NAME: &core::ffi::CStr = c"VK_HUAWEI_invocation_mask";
 pub(crate) mod reexport {
     #[repr(C)]
     #[derive(Clone, Copy)]
@@ -92,24 +108,6 @@ pub(crate) mod reexport {
             self.invocation_mask = invocation_mask.into();
             self
         }
-    }
-    ///Provided by [`huawei::invocation_mask`](crate::huawei::invocation_mask)
-    impl crate::vk::StructureType {
-        pub const PHYSICAL_DEVICE_INVOCATION_MASK_FEATURES_HUAWEI: Self = Self(
-            1000370000,
-        );
-    }
-    ///Provided by [`huawei::invocation_mask`](crate::huawei::invocation_mask)
-    impl crate::vk::ImageUsageFlagBits {
-        pub const INVOCATION_MASK_HUAWEI: Self = Self(1 << 18);
-    }
-    ///Provided by [`huawei::invocation_mask`](crate::huawei::invocation_mask)
-    impl crate::vk::AccessFlagBits2 {
-        pub const INVOCATION_MASK_READ_HUAWEI: Self = Self(1 << 39);
-    }
-    ///Provided by [`huawei::invocation_mask`](crate::huawei::invocation_mask)
-    impl crate::vk::PipelineStageFlagBits2 {
-        pub const INVOCATION_MASK_HUAWEI: Self = Self(1 << 40);
     }
     pub type PFN_vkCmdBindInvocationMaskHUAWEI = unsafe extern "system" fn(
         command_buffer: crate::vk::CommandBuffer,

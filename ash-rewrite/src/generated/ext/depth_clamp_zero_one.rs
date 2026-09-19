@@ -2,15 +2,15 @@
 #![cfg_attr(rustfmt, rustfmt_skip)]
 //![Vulkan Manual Page](https://docs.vulkan.org/refpages/latest/refpages/source/VK_EXT_depth_clamp_zero_one.html) · Extension `VK_EXT_depth_clamp_zero_one`
 #![doc(alias = "VK_EXT_depth_clamp_zero_one")]
+///Provided by [`ext::depth_clamp_zero_one`](crate::ext::depth_clamp_zero_one)
+impl crate::vk::StructureType {
+    pub const PHYSICAL_DEVICE_DEPTH_CLAMP_ZERO_ONE_FEATURES_EXT: Self = Self::PHYSICAL_DEVICE_DEPTH_CLAMP_ZERO_ONE_FEATURES_KHR;
+}
 pub const SPEC_VERSION: u32 = 1;
 pub const NAME: &core::ffi::CStr = c"VK_EXT_depth_clamp_zero_one";
 pub(crate) mod reexport {
     pub type PhysicalDeviceDepthClampZeroOneFeaturesEXT<'a> = crate::vk::PhysicalDeviceDepthClampZeroOneFeaturesKHR<
         'a,
     >;
-    ///Provided by [`ext::depth_clamp_zero_one`](crate::ext::depth_clamp_zero_one)
-    impl crate::vk::StructureType {
-        pub const PHYSICAL_DEVICE_DEPTH_CLAMP_ZERO_ONE_FEATURES_EXT: Self = Self::PHYSICAL_DEVICE_DEPTH_CLAMP_ZERO_ONE_FEATURES_KHR;
-    }
 }
 pub use reexport::*;

@@ -2,6 +2,11 @@
 #![cfg_attr(rustfmt, rustfmt_skip)]
 //![Vulkan Manual Page](https://docs.vulkan.org/refpages/latest/refpages/source/VK_SEC_amigo_profiling.html) · Extension `VK_SEC_amigo_profiling`
 #![doc(alias = "VK_SEC_amigo_profiling")]
+///Provided by [`sec::amigo_profiling`](crate::sec::amigo_profiling)
+impl crate::vk::StructureType {
+    pub const PHYSICAL_DEVICE_AMIGO_PROFILING_FEATURES_SEC: Self = Self(1000485000);
+    pub const AMIGO_PROFILING_SUBMIT_INFO_SEC: Self = Self(1000485001);
+}
 pub const SPEC_VERSION: u32 = 1;
 pub const NAME: &core::ffi::CStr = c"VK_SEC_amigo_profiling";
 pub(crate) mod reexport {
@@ -71,11 +76,6 @@ pub(crate) mod reexport {
             self.swap_buffer_timestamp = swap_buffer_timestamp;
             self
         }
-    }
-    ///Provided by [`sec::amigo_profiling`](crate::sec::amigo_profiling)
-    impl crate::vk::StructureType {
-        pub const PHYSICAL_DEVICE_AMIGO_PROFILING_FEATURES_SEC: Self = Self(1000485000);
-        pub const AMIGO_PROFILING_SUBMIT_INFO_SEC: Self = Self(1000485001);
     }
 }
 pub use reexport::*;

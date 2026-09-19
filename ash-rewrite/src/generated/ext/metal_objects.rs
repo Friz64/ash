@@ -2,8 +2,30 @@
 #![cfg_attr(rustfmt, rustfmt_skip)]
 //![Vulkan Manual Page](https://docs.vulkan.org/refpages/latest/refpages/source/VK_EXT_metal_objects.html) · Extension `VK_EXT_metal_objects`
 #![doc(alias = "VK_EXT_metal_objects")]
-pub const SPEC_VERSION: u32 = 2;
-pub const NAME: &core::ffi::CStr = c"VK_EXT_metal_objects";
+///Provided by [`ext::metal_objects`](crate::ext::metal_objects)
+impl crate::vk::StructureType {
+    pub const EXPORT_METAL_OBJECT_CREATE_INFO_EXT: Self = Self(1000311000);
+    pub const EXPORT_METAL_OBJECTS_INFO_EXT: Self = Self(1000311001);
+    pub const EXPORT_METAL_DEVICE_INFO_EXT: Self = Self(1000311002);
+    pub const EXPORT_METAL_COMMAND_QUEUE_INFO_EXT: Self = Self(1000311003);
+    pub const EXPORT_METAL_BUFFER_INFO_EXT: Self = Self(1000311004);
+    pub const IMPORT_METAL_BUFFER_INFO_EXT: Self = Self(1000311005);
+    pub const EXPORT_METAL_TEXTURE_INFO_EXT: Self = Self(1000311006);
+    pub const IMPORT_METAL_TEXTURE_INFO_EXT: Self = Self(1000311007);
+    pub const EXPORT_METAL_IO_SURFACE_INFO_EXT: Self = Self(1000311008);
+    pub const IMPORT_METAL_IO_SURFACE_INFO_EXT: Self = Self(1000311009);
+    pub const EXPORT_METAL_SHARED_EVENT_INFO_EXT: Self = Self(1000311010);
+    pub const IMPORT_METAL_SHARED_EVENT_INFO_EXT: Self = Self(1000311011);
+}
+///Provided by [`ext::metal_objects`](crate::ext::metal_objects)
+impl ExportMetalObjectTypeFlagBitsEXT {
+    pub const METAL_DEVICE_EXT: Self = Self(1 << 0);
+    pub const METAL_COMMAND_QUEUE_EXT: Self = Self(1 << 1);
+    pub const METAL_BUFFER_EXT: Self = Self(1 << 2);
+    pub const METAL_TEXTURE_EXT: Self = Self(1 << 3);
+    pub const METAL_IOSURFACE_EXT: Self = Self(1 << 4);
+    pub const METAL_SHARED_EVENT_EXT: Self = Self(1 << 5);
+}
 #[derive(Clone)]
 pub struct DeviceFn {
     pub export_metal_objects_ext: crate::vk::PFN_vkExportMetalObjectsEXT,
@@ -59,6 +81,8 @@ impl Device {
         self.handle
     }
 }
+pub const SPEC_VERSION: u32 = 2;
+pub const NAME: &core::ffi::CStr = c"VK_EXT_metal_objects";
 pub(crate) mod reexport {
     #[repr(C)]
     #[derive(Clone, Copy)]
@@ -506,21 +530,6 @@ pub(crate) mod reexport {
             self
         }
     }
-    ///Provided by [`ext::metal_objects`](crate::ext::metal_objects)
-    impl crate::vk::StructureType {
-        pub const EXPORT_METAL_OBJECT_CREATE_INFO_EXT: Self = Self(1000311000);
-        pub const EXPORT_METAL_OBJECTS_INFO_EXT: Self = Self(1000311001);
-        pub const EXPORT_METAL_DEVICE_INFO_EXT: Self = Self(1000311002);
-        pub const EXPORT_METAL_COMMAND_QUEUE_INFO_EXT: Self = Self(1000311003);
-        pub const EXPORT_METAL_BUFFER_INFO_EXT: Self = Self(1000311004);
-        pub const IMPORT_METAL_BUFFER_INFO_EXT: Self = Self(1000311005);
-        pub const EXPORT_METAL_TEXTURE_INFO_EXT: Self = Self(1000311006);
-        pub const IMPORT_METAL_TEXTURE_INFO_EXT: Self = Self(1000311007);
-        pub const EXPORT_METAL_IO_SURFACE_INFO_EXT: Self = Self(1000311008);
-        pub const IMPORT_METAL_IO_SURFACE_INFO_EXT: Self = Self(1000311009);
-        pub const EXPORT_METAL_SHARED_EVENT_INFO_EXT: Self = Self(1000311010);
-        pub const IMPORT_METAL_SHARED_EVENT_INFO_EXT: Self = Self(1000311011);
-    }
     #[repr(transparent)]
     #[derive(Clone, Copy)]
     pub struct ExportMetalObjectTypeFlagsEXT(u32);
@@ -609,15 +618,6 @@ pub(crate) mod reexport {
     #[repr(transparent)]
     #[derive(Clone, Copy, Default)]
     pub struct ExportMetalObjectTypeFlagBitsEXT(pub(crate) u32);
-    ///Provided by [`ext::metal_objects`](crate::ext::metal_objects)
-    impl ExportMetalObjectTypeFlagBitsEXT {
-        pub const METAL_DEVICE_EXT: Self = Self(1 << 0);
-        pub const METAL_COMMAND_QUEUE_EXT: Self = Self(1 << 1);
-        pub const METAL_BUFFER_EXT: Self = Self(1 << 2);
-        pub const METAL_TEXTURE_EXT: Self = Self(1 << 3);
-        pub const METAL_IOSURFACE_EXT: Self = Self(1 << 4);
-        pub const METAL_SHARED_EVENT_EXT: Self = Self(1 << 5);
-    }
     pub type PFN_vkExportMetalObjectsEXT = unsafe extern "system" fn(
         device: crate::vk::Device,
         p_metal_objects_info: *mut crate::vk::ExportMetalObjectsInfoEXT<'_>,

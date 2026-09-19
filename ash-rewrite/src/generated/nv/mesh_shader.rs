@@ -2,8 +2,26 @@
 #![cfg_attr(rustfmt, rustfmt_skip)]
 //![Vulkan Manual Page](https://docs.vulkan.org/refpages/latest/refpages/source/VK_NV_mesh_shader.html) · Extension `VK_NV_mesh_shader`
 #![doc(alias = "VK_NV_mesh_shader")]
-pub const SPEC_VERSION: u32 = 1;
-pub const NAME: &core::ffi::CStr = c"VK_NV_mesh_shader";
+///Provided by [`nv::mesh_shader`](crate::nv::mesh_shader)
+impl crate::vk::StructureType {
+    pub const PHYSICAL_DEVICE_MESH_SHADER_FEATURES_NV: Self = Self(1000202000);
+    pub const PHYSICAL_DEVICE_MESH_SHADER_PROPERTIES_NV: Self = Self(1000202001);
+}
+///Provided by [`nv::mesh_shader`](crate::nv::mesh_shader)
+impl crate::vk::IndirectCommandsTokenTypeEXT {
+    pub const DRAW_MESH_TASKS_NV_EXT: Self = Self(1000202002);
+    pub const DRAW_MESH_TASKS_COUNT_NV_EXT: Self = Self(1000202003);
+}
+///Provided by [`nv::mesh_shader`](crate::nv::mesh_shader)
+impl crate::vk::ShaderStageFlagBits {
+    pub const TASK_NV: Self = Self::TASK_EXT;
+    pub const MESH_NV: Self = Self::MESH_EXT;
+}
+///Provided by [`nv::mesh_shader`](crate::nv::mesh_shader)
+impl crate::vk::PipelineStageFlagBits {
+    pub const TASK_SHADER_NV: Self = Self::TASK_SHADER_EXT;
+    pub const MESH_SHADER_NV: Self = Self::MESH_SHADER_EXT;
+}
 #[derive(Clone)]
 pub struct DeviceFn {
     pub cmd_draw_mesh_tasks_nv: crate::vk::PFN_vkCmdDrawMeshTasksNV,
@@ -98,6 +116,8 @@ impl Device {
         self.handle
     }
 }
+pub const SPEC_VERSION: u32 = 1;
+pub const NAME: &core::ffi::CStr = c"VK_NV_mesh_shader";
 pub(crate) mod reexport {
     #[repr(C)]
     #[derive(Clone, Copy)]
@@ -290,26 +310,6 @@ pub(crate) mod reexport {
             self.first_task = first_task;
             self
         }
-    }
-    ///Provided by [`nv::mesh_shader`](crate::nv::mesh_shader)
-    impl crate::vk::StructureType {
-        pub const PHYSICAL_DEVICE_MESH_SHADER_FEATURES_NV: Self = Self(1000202000);
-        pub const PHYSICAL_DEVICE_MESH_SHADER_PROPERTIES_NV: Self = Self(1000202001);
-    }
-    ///Provided by [`nv::mesh_shader`](crate::nv::mesh_shader)
-    impl crate::vk::IndirectCommandsTokenTypeEXT {
-        pub const DRAW_MESH_TASKS_NV_EXT: Self = Self(1000202002);
-        pub const DRAW_MESH_TASKS_COUNT_NV_EXT: Self = Self(1000202003);
-    }
-    ///Provided by [`nv::mesh_shader`](crate::nv::mesh_shader)
-    impl crate::vk::ShaderStageFlagBits {
-        pub const TASK_NV: Self = Self::TASK_EXT;
-        pub const MESH_NV: Self = Self::MESH_EXT;
-    }
-    ///Provided by [`nv::mesh_shader`](crate::nv::mesh_shader)
-    impl crate::vk::PipelineStageFlagBits {
-        pub const TASK_SHADER_NV: Self = Self::TASK_SHADER_EXT;
-        pub const MESH_SHADER_NV: Self = Self::MESH_SHADER_EXT;
     }
     pub type PFN_vkCmdDrawMeshTasksNV = unsafe extern "system" fn(
         command_buffer: crate::vk::CommandBuffer,

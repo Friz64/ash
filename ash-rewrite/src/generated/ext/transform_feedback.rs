@@ -2,8 +2,33 @@
 #![cfg_attr(rustfmt, rustfmt_skip)]
 //![Vulkan Manual Page](https://docs.vulkan.org/refpages/latest/refpages/source/VK_EXT_transform_feedback.html) · Extension `VK_EXT_transform_feedback`
 #![doc(alias = "VK_EXT_transform_feedback")]
-pub const SPEC_VERSION: u32 = 1;
-pub const NAME: &core::ffi::CStr = c"VK_EXT_transform_feedback";
+///Provided by [`ext::transform_feedback`](crate::ext::transform_feedback)
+impl crate::vk::QueryType {
+    pub const TRANSFORM_FEEDBACK_STREAM_EXT: Self = Self(1000028004);
+}
+///Provided by [`ext::transform_feedback`](crate::ext::transform_feedback)
+impl crate::vk::StructureType {
+    pub const PHYSICAL_DEVICE_TRANSFORM_FEEDBACK_FEATURES_EXT: Self = Self(1000028000);
+    pub const PHYSICAL_DEVICE_TRANSFORM_FEEDBACK_PROPERTIES_EXT: Self = Self(1000028001);
+    pub const PIPELINE_RASTERIZATION_STATE_STREAM_CREATE_INFO_EXT: Self = Self(
+        1000028002,
+    );
+}
+///Provided by [`ext::transform_feedback`](crate::ext::transform_feedback)
+impl crate::vk::AccessFlagBits {
+    pub const TRANSFORM_FEEDBACK_WRITE_EXT: Self = Self(1 << 25);
+    pub const TRANSFORM_FEEDBACK_COUNTER_READ_EXT: Self = Self(1 << 26);
+    pub const TRANSFORM_FEEDBACK_COUNTER_WRITE_EXT: Self = Self(1 << 27);
+}
+///Provided by [`ext::transform_feedback`](crate::ext::transform_feedback)
+impl crate::vk::BufferUsageFlagBits {
+    pub const TRANSFORM_FEEDBACK_BUFFER_EXT: Self = Self(1 << 11);
+    pub const TRANSFORM_FEEDBACK_COUNTER_BUFFER_EXT: Self = Self(1 << 12);
+}
+///Provided by [`ext::transform_feedback`](crate::ext::transform_feedback)
+impl crate::vk::PipelineStageFlagBits {
+    pub const TRANSFORM_FEEDBACK_EXT: Self = Self(1 << 24);
+}
 #[derive(Clone)]
 pub struct DeviceFn {
     pub cmd_bind_transform_feedback_buffers_ext: crate::vk::PFN_vkCmdBindTransformFeedbackBuffersEXT,
@@ -154,6 +179,8 @@ impl Device {
         self.handle
     }
 }
+pub const SPEC_VERSION: u32 = 1;
+pub const NAME: &core::ffi::CStr = c"VK_EXT_transform_feedback";
 pub(crate) mod reexport {
     #[repr(C)]
     #[derive(Clone, Copy)]
@@ -344,37 +371,6 @@ pub(crate) mod reexport {
             self.rasterization_stream = rasterization_stream;
             self
         }
-    }
-    ///Provided by [`ext::transform_feedback`](crate::ext::transform_feedback)
-    impl crate::vk::QueryType {
-        pub const TRANSFORM_FEEDBACK_STREAM_EXT: Self = Self(1000028004);
-    }
-    ///Provided by [`ext::transform_feedback`](crate::ext::transform_feedback)
-    impl crate::vk::StructureType {
-        pub const PHYSICAL_DEVICE_TRANSFORM_FEEDBACK_FEATURES_EXT: Self = Self(
-            1000028000,
-        );
-        pub const PHYSICAL_DEVICE_TRANSFORM_FEEDBACK_PROPERTIES_EXT: Self = Self(
-            1000028001,
-        );
-        pub const PIPELINE_RASTERIZATION_STATE_STREAM_CREATE_INFO_EXT: Self = Self(
-            1000028002,
-        );
-    }
-    ///Provided by [`ext::transform_feedback`](crate::ext::transform_feedback)
-    impl crate::vk::AccessFlagBits {
-        pub const TRANSFORM_FEEDBACK_WRITE_EXT: Self = Self(1 << 25);
-        pub const TRANSFORM_FEEDBACK_COUNTER_READ_EXT: Self = Self(1 << 26);
-        pub const TRANSFORM_FEEDBACK_COUNTER_WRITE_EXT: Self = Self(1 << 27);
-    }
-    ///Provided by [`ext::transform_feedback`](crate::ext::transform_feedback)
-    impl crate::vk::BufferUsageFlagBits {
-        pub const TRANSFORM_FEEDBACK_BUFFER_EXT: Self = Self(1 << 11);
-        pub const TRANSFORM_FEEDBACK_COUNTER_BUFFER_EXT: Self = Self(1 << 12);
-    }
-    ///Provided by [`ext::transform_feedback`](crate::ext::transform_feedback)
-    impl crate::vk::PipelineStageFlagBits {
-        pub const TRANSFORM_FEEDBACK_EXT: Self = Self(1 << 24);
     }
     #[repr(transparent)]
     #[derive(Clone, Copy)]

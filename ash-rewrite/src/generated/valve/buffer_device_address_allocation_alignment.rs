@@ -2,6 +2,18 @@
 #![cfg_attr(rustfmt, rustfmt_skip)]
 //![Vulkan Manual Page](https://docs.vulkan.org/refpages/latest/refpages/source/VK_VALVE_buffer_device_address_allocation_alignment.html) · Extension `VK_VALVE_buffer_device_address_allocation_alignment`
 #![doc(alias = "VK_VALVE_buffer_device_address_allocation_alignment")]
+///Provided by [`valve::buffer_device_address_allocation_alignment`](crate::valve::buffer_device_address_allocation_alignment)
+impl crate::vk::StructureType {
+    pub const PHYSICAL_DEVICE_BUFFER_DEVICE_ADDRESS_ALLOCATION_ALIGNMENT_FEATURES_VALVE: Self = Self(
+        1000709000,
+    );
+    pub const PHYSICAL_DEVICE_BUFFER_DEVICE_ADDRESS_ALLOCATION_ALIGNMENT_PROPERTIES_VALVE: Self = Self(
+        1000709001,
+    );
+    pub const BUFFER_DEVICE_ADDRESS_ALIGNMENT_ALLOCATE_INFO_VALVE: Self = Self(
+        1000709002,
+    );
+}
 pub const SPEC_VERSION: u32 = 1;
 pub const NAME: &core::ffi::CStr = c"VK_VALVE_buffer_device_address_allocation_alignment";
 pub(crate) mod reexport {
@@ -107,18 +119,6 @@ pub(crate) mod reexport {
             self.alignment = alignment;
             self
         }
-    }
-    ///Provided by [`valve::buffer_device_address_allocation_alignment`](crate::valve::buffer_device_address_allocation_alignment)
-    impl crate::vk::StructureType {
-        pub const PHYSICAL_DEVICE_BUFFER_DEVICE_ADDRESS_ALLOCATION_ALIGNMENT_FEATURES_VALVE: Self = Self(
-            1000709000,
-        );
-        pub const PHYSICAL_DEVICE_BUFFER_DEVICE_ADDRESS_ALLOCATION_ALIGNMENT_PROPERTIES_VALVE: Self = Self(
-            1000709001,
-        );
-        pub const BUFFER_DEVICE_ADDRESS_ALIGNMENT_ALLOCATE_INFO_VALVE: Self = Self(
-            1000709002,
-        );
     }
 }
 pub use reexport::*;

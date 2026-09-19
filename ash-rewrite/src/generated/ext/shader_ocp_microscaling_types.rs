@@ -2,6 +2,20 @@
 #![cfg_attr(rustfmt, rustfmt_skip)]
 //![Vulkan Manual Page](https://docs.vulkan.org/refpages/latest/refpages/source/VK_EXT_shader_ocp_microscaling_types.html) · Extension `VK_EXT_shader_ocp_microscaling_types`
 #![doc(alias = "VK_EXT_shader_ocp_microscaling_types")]
+///Provided by [`ext::shader_ocp_microscaling_types`](crate::ext::shader_ocp_microscaling_types)
+impl crate::vk::StructureType {
+    pub const PHYSICAL_DEVICE_SHADER_OCP_MICROSCALING_TYPES_FEATURES_EXT: Self = Self(
+        1000672000,
+    );
+}
+///Provided by [`ext::shader_ocp_microscaling_types`](crate::ext::shader_ocp_microscaling_types)
+impl crate::vk::ComponentTypeKHR {
+    pub const FLOAT6_E2M3_EXT: Self = Self(1000672000);
+    pub const FLOAT6_E3M2_EXT: Self = Self(1000672001);
+    pub const FLOAT4_E2M1_EXT: Self = Self(1000672002);
+    pub const FLOAT8_UNSIGNED_E8M0_EXT: Self = Self(1000672003);
+    pub const MXINT8_EXT: Self = Self(1000672004);
+}
 pub const SPEC_VERSION: u32 = 1;
 pub const NAME: &core::ffi::CStr = c"VK_EXT_shader_ocp_microscaling_types";
 pub(crate) mod reexport {
@@ -57,20 +71,6 @@ pub(crate) mod reexport {
             self.shader_mx_int8 = shader_mx_int8.into();
             self
         }
-    }
-    ///Provided by [`ext::shader_ocp_microscaling_types`](crate::ext::shader_ocp_microscaling_types)
-    impl crate::vk::StructureType {
-        pub const PHYSICAL_DEVICE_SHADER_OCP_MICROSCALING_TYPES_FEATURES_EXT: Self = Self(
-            1000672000,
-        );
-    }
-    ///Provided by [`ext::shader_ocp_microscaling_types`](crate::ext::shader_ocp_microscaling_types)
-    impl crate::vk::ComponentTypeKHR {
-        pub const FLOAT6_E2M3_EXT: Self = Self(1000672000);
-        pub const FLOAT6_E3M2_EXT: Self = Self(1000672001);
-        pub const FLOAT4_E2M1_EXT: Self = Self(1000672002);
-        pub const FLOAT8_UNSIGNED_E8M0_EXT: Self = Self(1000672003);
-        pub const MXINT8_EXT: Self = Self(1000672004);
     }
 }
 pub use reexport::*;

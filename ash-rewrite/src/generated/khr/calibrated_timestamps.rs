@@ -2,8 +2,25 @@
 #![cfg_attr(rustfmt, rustfmt_skip)]
 //![Vulkan Manual Page](https://docs.vulkan.org/refpages/latest/refpages/source/VK_KHR_calibrated_timestamps.html) · Extension `VK_KHR_calibrated_timestamps`
 #![doc(alias = "VK_KHR_calibrated_timestamps")]
-pub const SPEC_VERSION: u32 = 1;
-pub const NAME: &core::ffi::CStr = c"VK_KHR_calibrated_timestamps";
+///Provided by [`khr::calibrated_timestamps`](crate::khr::calibrated_timestamps)
+impl crate::vk::StructureType {
+    pub const CALIBRATED_TIMESTAMP_INFO_KHR: Self = Self(1000184000);
+}
+///Provided by [`khr::calibrated_timestamps`](crate::khr::calibrated_timestamps)
+impl TimeDomainKHR {
+    #[inline]
+    pub const fn from_raw(x: i32) -> Self {
+        Self(x)
+    }
+    #[inline]
+    pub const fn as_raw(self) -> i32 {
+        self.0
+    }
+    pub const DEVICE_KHR: Self = Self(0);
+    pub const CLOCK_MONOTONIC_KHR: Self = Self(1);
+    pub const CLOCK_MONOTONIC_RAW_KHR: Self = Self(2);
+    pub const QUERY_PERFORMANCE_COUNTER_KHR: Self = Self(3);
+}
 #[derive(Clone)]
 pub struct InstanceFn {
     pub get_physical_device_calibrateable_time_domains_khr: crate::vk::PFN_vkGetPhysicalDeviceCalibrateableTimeDomainsKHR,
@@ -120,6 +137,8 @@ impl Device {
         self.handle
     }
 }
+pub const SPEC_VERSION: u32 = 1;
+pub const NAME: &core::ffi::CStr = c"VK_KHR_calibrated_timestamps";
 pub(crate) mod reexport {
     #[repr(C)]
     #[derive(Clone, Copy)]
@@ -148,29 +167,10 @@ pub(crate) mod reexport {
             self
         }
     }
-    ///Provided by [`khr::calibrated_timestamps`](crate::khr::calibrated_timestamps)
-    impl crate::vk::StructureType {
-        pub const CALIBRATED_TIMESTAMP_INFO_KHR: Self = Self(1000184000);
-    }
     #[repr(transparent)]
     #[derive(Clone, Copy, PartialEq, Eq, PartialOrd, Ord, Hash, Default)]
     #[derive(Debug)]
     pub struct TimeDomainKHR(pub(crate) i32);
-    ///Provided by [`khr::calibrated_timestamps`](crate::khr::calibrated_timestamps)
-    impl TimeDomainKHR {
-        #[inline]
-        pub const fn from_raw(x: i32) -> Self {
-            Self(x)
-        }
-        #[inline]
-        pub const fn as_raw(self) -> i32 {
-            self.0
-        }
-        pub const DEVICE_KHR: Self = Self(0);
-        pub const CLOCK_MONOTONIC_KHR: Self = Self(1);
-        pub const CLOCK_MONOTONIC_RAW_KHR: Self = Self(2);
-        pub const QUERY_PERFORMANCE_COUNTER_KHR: Self = Self(3);
-    }
     pub type PFN_vkGetPhysicalDeviceCalibrateableTimeDomainsKHR = unsafe extern "system" fn(
         physical_device: crate::vk::PhysicalDevice,
         p_time_domain_count: *mut u32,

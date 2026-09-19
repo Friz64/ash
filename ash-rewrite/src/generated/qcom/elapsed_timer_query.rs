@@ -2,6 +2,14 @@
 #![cfg_attr(rustfmt, rustfmt_skip)]
 //![Vulkan Manual Page](https://docs.vulkan.org/refpages/latest/refpages/source/VK_QCOM_elapsed_timer_query.html) · Extension `VK_QCOM_elapsed_timer_query`
 #![doc(alias = "VK_QCOM_elapsed_timer_query")]
+///Provided by [`qcom::elapsed_timer_query`](crate::qcom::elapsed_timer_query)
+impl crate::vk::QueryType {
+    pub const TIME_ELAPSED_QCOM: Self = Self(1000173000);
+}
+///Provided by [`qcom::elapsed_timer_query`](crate::qcom::elapsed_timer_query)
+impl crate::vk::StructureType {
+    pub const PHYSICAL_DEVICE_ELAPSED_TIMER_QUERY_FEATURES_QCOM: Self = Self(1000173000);
+}
 pub const SPEC_VERSION: u32 = 1;
 pub const NAME: &core::ffi::CStr = c"VK_QCOM_elapsed_timer_query";
 pub(crate) mod reexport {
@@ -36,16 +44,6 @@ pub(crate) mod reexport {
             self.elapsed_timer_query = elapsed_timer_query.into();
             self
         }
-    }
-    ///Provided by [`qcom::elapsed_timer_query`](crate::qcom::elapsed_timer_query)
-    impl crate::vk::QueryType {
-        pub const TIME_ELAPSED_QCOM: Self = Self(1000173000);
-    }
-    ///Provided by [`qcom::elapsed_timer_query`](crate::qcom::elapsed_timer_query)
-    impl crate::vk::StructureType {
-        pub const PHYSICAL_DEVICE_ELAPSED_TIMER_QUERY_FEATURES_QCOM: Self = Self(
-            1000173000,
-        );
     }
 }
 pub use reexport::*;

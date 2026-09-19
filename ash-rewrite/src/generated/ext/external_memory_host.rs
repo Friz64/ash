@@ -2,8 +2,19 @@
 #![cfg_attr(rustfmt, rustfmt_skip)]
 //![Vulkan Manual Page](https://docs.vulkan.org/refpages/latest/refpages/source/VK_EXT_external_memory_host.html) · Extension `VK_EXT_external_memory_host`
 #![doc(alias = "VK_EXT_external_memory_host")]
-pub const SPEC_VERSION: u32 = 1;
-pub const NAME: &core::ffi::CStr = c"VK_EXT_external_memory_host";
+///Provided by [`ext::external_memory_host`](crate::ext::external_memory_host)
+impl crate::vk::StructureType {
+    pub const IMPORT_MEMORY_HOST_POINTER_INFO_EXT: Self = Self(1000178000);
+    pub const MEMORY_HOST_POINTER_PROPERTIES_EXT: Self = Self(1000178001);
+    pub const PHYSICAL_DEVICE_EXTERNAL_MEMORY_HOST_PROPERTIES_EXT: Self = Self(
+        1000178002,
+    );
+}
+///Provided by [`ext::external_memory_host`](crate::ext::external_memory_host)
+impl crate::vk::ExternalMemoryHandleTypeFlagBits {
+    pub const HOST_ALLOCATION_EXT: Self = Self(1 << 7);
+    pub const HOST_MAPPED_FOREIGN_MEMORY_EXT: Self = Self(1 << 8);
+}
 #[derive(Clone)]
 pub struct DeviceFn {
     pub get_memory_host_pointer_properties_ext: crate::vk::PFN_vkGetMemoryHostPointerPropertiesEXT,
@@ -61,6 +72,8 @@ impl Device {
         self.handle
     }
 }
+pub const SPEC_VERSION: u32 = 1;
+pub const NAME: &core::ffi::CStr = c"VK_EXT_external_memory_host";
 pub(crate) mod reexport {
     #[repr(C)]
     #[derive(Clone, Copy)]
@@ -159,19 +172,6 @@ pub(crate) mod reexport {
             self.min_imported_host_pointer_alignment = min_imported_host_pointer_alignment;
             self
         }
-    }
-    ///Provided by [`ext::external_memory_host`](crate::ext::external_memory_host)
-    impl crate::vk::StructureType {
-        pub const IMPORT_MEMORY_HOST_POINTER_INFO_EXT: Self = Self(1000178000);
-        pub const MEMORY_HOST_POINTER_PROPERTIES_EXT: Self = Self(1000178001);
-        pub const PHYSICAL_DEVICE_EXTERNAL_MEMORY_HOST_PROPERTIES_EXT: Self = Self(
-            1000178002,
-        );
-    }
-    ///Provided by [`ext::external_memory_host`](crate::ext::external_memory_host)
-    impl crate::vk::ExternalMemoryHandleTypeFlagBits {
-        pub const HOST_ALLOCATION_EXT: Self = Self(1 << 7);
-        pub const HOST_MAPPED_FOREIGN_MEMORY_EXT: Self = Self(1 << 8);
     }
     pub type PFN_vkGetMemoryHostPointerPropertiesEXT = unsafe extern "system" fn(
         device: crate::vk::Device,

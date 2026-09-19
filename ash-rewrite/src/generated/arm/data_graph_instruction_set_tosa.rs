@@ -2,8 +2,30 @@
 #![cfg_attr(rustfmt, rustfmt_skip)]
 //![Vulkan Manual Page](https://docs.vulkan.org/refpages/latest/refpages/source/VK_ARM_data_graph_instruction_set_tosa.html) · Extension `VK_ARM_data_graph_instruction_set_tosa`
 #![doc(alias = "VK_ARM_data_graph_instruction_set_tosa")]
-pub const SPEC_VERSION: u32 = 1;
-pub const NAME: &core::ffi::CStr = c"VK_ARM_data_graph_instruction_set_tosa";
+///Provided by [`arm::data_graph_instruction_set_tosa`](crate::arm::data_graph_instruction_set_tosa)
+impl crate::vk::StructureType {
+    pub const QUEUE_FAMILY_DATA_GRAPH_TOSA_PROPERTIES_ARM: Self = Self(1000508000);
+}
+///Provided by [`arm::data_graph_instruction_set_tosa`](crate::arm::data_graph_instruction_set_tosa)
+impl DataGraphTOSALevelARM {
+    #[inline]
+    pub const fn from_raw(x: i32) -> Self {
+        Self(x)
+    }
+    #[inline]
+    pub const fn as_raw(self) -> i32 {
+        self.0
+    }
+    pub const NONE_ARM: Self = Self(0);
+    pub const _8K_ARM: Self = Self(1);
+}
+///Provided by [`arm::data_graph_instruction_set_tosa`](crate::arm::data_graph_instruction_set_tosa)
+impl DataGraphTOSAQualityFlagBitsARM {
+    pub const ACCELERATED_ARM: Self = Self(1 << 0);
+    pub const CONFORMANT_ARM: Self = Self(1 << 1);
+    pub const EXPERIMENTAL_ARM: Self = Self(1 << 2);
+    pub const DEPRECATED_ARM: Self = Self(1 << 3);
+}
 #[derive(Clone)]
 pub struct InstanceFn {
     pub get_physical_device_queue_family_data_graph_engine_operation_properties_arm: crate::vk::PFN_vkGetPhysicalDeviceQueueFamilyDataGraphEngineOperationPropertiesARM,
@@ -65,6 +87,8 @@ impl Instance {
         self.handle
     }
 }
+pub const SPEC_VERSION: u32 = 1;
+pub const NAME: &core::ffi::CStr = c"VK_ARM_data_graph_instruction_set_tosa";
 pub(crate) mod reexport {
     #[repr(C)]
     #[derive(Clone, Copy)]
@@ -152,27 +176,10 @@ pub(crate) mod reexport {
             self
         }
     }
-    ///Provided by [`arm::data_graph_instruction_set_tosa`](crate::arm::data_graph_instruction_set_tosa)
-    impl crate::vk::StructureType {
-        pub const QUEUE_FAMILY_DATA_GRAPH_TOSA_PROPERTIES_ARM: Self = Self(1000508000);
-    }
     #[repr(transparent)]
     #[derive(Clone, Copy, PartialEq, Eq, PartialOrd, Ord, Hash, Default)]
     #[derive(Debug)]
     pub struct DataGraphTOSALevelARM(pub(crate) i32);
-    ///Provided by [`arm::data_graph_instruction_set_tosa`](crate::arm::data_graph_instruction_set_tosa)
-    impl DataGraphTOSALevelARM {
-        #[inline]
-        pub const fn from_raw(x: i32) -> Self {
-            Self(x)
-        }
-        #[inline]
-        pub const fn as_raw(self) -> i32 {
-            self.0
-        }
-        pub const NONE_ARM: Self = Self(0);
-        pub const _8K_ARM: Self = Self(1);
-    }
     #[repr(transparent)]
     #[derive(Clone, Copy)]
     pub struct DataGraphTOSAQualityFlagsARM(u32);
@@ -255,13 +262,6 @@ pub(crate) mod reexport {
     #[repr(transparent)]
     #[derive(Clone, Copy, Default)]
     pub struct DataGraphTOSAQualityFlagBitsARM(pub(crate) u32);
-    ///Provided by [`arm::data_graph_instruction_set_tosa`](crate::arm::data_graph_instruction_set_tosa)
-    impl DataGraphTOSAQualityFlagBitsARM {
-        pub const ACCELERATED_ARM: Self = Self(1 << 0);
-        pub const CONFORMANT_ARM: Self = Self(1 << 1);
-        pub const EXPERIMENTAL_ARM: Self = Self(1 << 2);
-        pub const DEPRECATED_ARM: Self = Self(1 << 3);
-    }
     pub type PFN_vkGetPhysicalDeviceQueueFamilyDataGraphEngineOperationPropertiesARM = unsafe extern "system" fn(
         physical_device: crate::vk::PhysicalDevice,
         queue_family_index: u32,

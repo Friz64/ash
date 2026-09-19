@@ -2,6 +2,28 @@
 #![cfg_attr(rustfmt, rustfmt_skip)]
 //![Vulkan Manual Page](https://docs.vulkan.org/refpages/latest/refpages/source/VK_EXT_device_memory_report.html) · Extension `VK_EXT_device_memory_report`
 #![doc(alias = "VK_EXT_device_memory_report")]
+///Provided by [`ext::device_memory_report`](crate::ext::device_memory_report)
+impl crate::vk::StructureType {
+    pub const PHYSICAL_DEVICE_DEVICE_MEMORY_REPORT_FEATURES_EXT: Self = Self(1000284000);
+    pub const DEVICE_DEVICE_MEMORY_REPORT_CREATE_INFO_EXT: Self = Self(1000284001);
+    pub const DEVICE_MEMORY_REPORT_CALLBACK_DATA_EXT: Self = Self(1000284002);
+}
+///Provided by [`ext::device_memory_report`](crate::ext::device_memory_report)
+impl DeviceMemoryReportEventTypeEXT {
+    #[inline]
+    pub const fn from_raw(x: i32) -> Self {
+        Self(x)
+    }
+    #[inline]
+    pub const fn as_raw(self) -> i32 {
+        self.0
+    }
+    pub const ALLOCATE_EXT: Self = Self(0);
+    pub const FREE_EXT: Self = Self(1);
+    pub const IMPORT_EXT: Self = Self(2);
+    pub const UNIMPORT_EXT: Self = Self(3);
+    pub const ALLOCATION_FAILED_EXT: Self = Self(4);
+}
 pub const SPEC_VERSION: u32 = 2;
 pub const NAME: &core::ffi::CStr = c"VK_EXT_device_memory_report";
 pub(crate) mod reexport {
@@ -149,34 +171,10 @@ pub(crate) mod reexport {
             self
         }
     }
-    ///Provided by [`ext::device_memory_report`](crate::ext::device_memory_report)
-    impl crate::vk::StructureType {
-        pub const PHYSICAL_DEVICE_DEVICE_MEMORY_REPORT_FEATURES_EXT: Self = Self(
-            1000284000,
-        );
-        pub const DEVICE_DEVICE_MEMORY_REPORT_CREATE_INFO_EXT: Self = Self(1000284001);
-        pub const DEVICE_MEMORY_REPORT_CALLBACK_DATA_EXT: Self = Self(1000284002);
-    }
     #[repr(transparent)]
     #[derive(Clone, Copy, PartialEq, Eq, PartialOrd, Ord, Hash, Default)]
     #[derive(Debug)]
     pub struct DeviceMemoryReportEventTypeEXT(pub(crate) i32);
-    ///Provided by [`ext::device_memory_report`](crate::ext::device_memory_report)
-    impl DeviceMemoryReportEventTypeEXT {
-        #[inline]
-        pub const fn from_raw(x: i32) -> Self {
-            Self(x)
-        }
-        #[inline]
-        pub const fn as_raw(self) -> i32 {
-            self.0
-        }
-        pub const ALLOCATE_EXT: Self = Self(0);
-        pub const FREE_EXT: Self = Self(1);
-        pub const IMPORT_EXT: Self = Self(2);
-        pub const UNIMPORT_EXT: Self = Self(3);
-        pub const ALLOCATION_FAILED_EXT: Self = Self(4);
-    }
     #[repr(transparent)]
     #[derive(Clone, Copy)]
     pub struct DeviceMemoryReportFlagsEXT(u32);

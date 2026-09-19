@@ -2,6 +2,39 @@
 #![cfg_attr(rustfmt, rustfmt_skip)]
 //![Vulkan Manual Page](https://docs.vulkan.org/refpages/latest/refpages/source/VK_QCOM_data_graph_model.html) · Extension `VK_QCOM_data_graph_model`
 #![doc(alias = "VK_QCOM_data_graph_model")]
+///Provided by [`qcom::data_graph_model`](crate::qcom::data_graph_model)
+impl crate::vk::PipelineCacheHeaderVersion {
+    pub const DATA_GRAPH_QCOM: Self = Self(1000629000);
+}
+///Provided by [`qcom::data_graph_model`](crate::qcom::data_graph_model)
+impl crate::vk::StructureType {
+    pub const PHYSICAL_DEVICE_DATA_GRAPH_MODEL_FEATURES_QCOM: Self = Self(1000629000);
+    pub const DATA_GRAPH_PIPELINE_BUILTIN_MODEL_CREATE_INFO_QCOM: Self = Self(
+        1000629001,
+    );
+}
+///Provided by [`qcom::data_graph_model`](crate::qcom::data_graph_model)
+impl crate::vk::PhysicalDeviceDataGraphProcessingEngineTypeARM {
+    pub const NEURAL_QCOM: Self = Self(1000629000);
+    pub const COMPUTE_QCOM: Self = Self(1000629001);
+}
+///Provided by [`qcom::data_graph_model`](crate::qcom::data_graph_model)
+impl crate::vk::PhysicalDeviceDataGraphOperationTypeARM {
+    pub const NEURAL_MODEL_QCOM: Self = Self(1000629000);
+    pub const BUILTIN_MODEL_QCOM: Self = Self(1000629001);
+}
+///Provided by [`qcom::data_graph_model`](crate::qcom::data_graph_model)
+impl DataGraphModelCacheTypeQCOM {
+    #[inline]
+    pub const fn from_raw(x: i32) -> Self {
+        Self(x)
+    }
+    #[inline]
+    pub const fn as_raw(self) -> i32 {
+        self.0
+    }
+    pub const GENERIC_BINARY_QCOM: Self = Self(0);
+}
 pub const SPEC_VERSION: u32 = 1;
 pub const NAME: &core::ffi::CStr = c"VK_QCOM_data_graph_model";
 pub(crate) mod reexport {
@@ -123,45 +156,10 @@ pub(crate) mod reexport {
             self
         }
     }
-    ///Provided by [`qcom::data_graph_model`](crate::qcom::data_graph_model)
-    impl crate::vk::PipelineCacheHeaderVersion {
-        pub const DATA_GRAPH_QCOM: Self = Self(1000629000);
-    }
-    ///Provided by [`qcom::data_graph_model`](crate::qcom::data_graph_model)
-    impl crate::vk::StructureType {
-        pub const PHYSICAL_DEVICE_DATA_GRAPH_MODEL_FEATURES_QCOM: Self = Self(
-            1000629000,
-        );
-        pub const DATA_GRAPH_PIPELINE_BUILTIN_MODEL_CREATE_INFO_QCOM: Self = Self(
-            1000629001,
-        );
-    }
-    ///Provided by [`qcom::data_graph_model`](crate::qcom::data_graph_model)
-    impl crate::vk::PhysicalDeviceDataGraphProcessingEngineTypeARM {
-        pub const NEURAL_QCOM: Self = Self(1000629000);
-        pub const COMPUTE_QCOM: Self = Self(1000629001);
-    }
-    ///Provided by [`qcom::data_graph_model`](crate::qcom::data_graph_model)
-    impl crate::vk::PhysicalDeviceDataGraphOperationTypeARM {
-        pub const NEURAL_MODEL_QCOM: Self = Self(1000629000);
-        pub const BUILTIN_MODEL_QCOM: Self = Self(1000629001);
-    }
     #[repr(transparent)]
     #[derive(Clone, Copy, PartialEq, Eq, PartialOrd, Ord, Hash, Default)]
     #[derive(Debug)]
     pub struct DataGraphModelCacheTypeQCOM(pub(crate) i32);
-    ///Provided by [`qcom::data_graph_model`](crate::qcom::data_graph_model)
-    impl DataGraphModelCacheTypeQCOM {
-        #[inline]
-        pub const fn from_raw(x: i32) -> Self {
-            Self(x)
-        }
-        #[inline]
-        pub const fn as_raw(self) -> i32 {
-            self.0
-        }
-        pub const GENERIC_BINARY_QCOM: Self = Self(0);
-    }
     pub const DATA_GRAPH_MODEL_TOOLCHAIN_VERSION_LENGTH_QCOM: u32 = 3;
 }
 pub use reexport::*;

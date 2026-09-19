@@ -2,6 +2,19 @@
 #![cfg_attr(rustfmt, rustfmt_skip)]
 //![Vulkan Manual Page](https://docs.vulkan.org/refpages/latest/refpages/source/VK_EXT_fragment_density_map2.html) · Extension `VK_EXT_fragment_density_map2`
 #![doc(alias = "VK_EXT_fragment_density_map2")]
+///Provided by [`ext::fragment_density_map2`](crate::ext::fragment_density_map2)
+impl crate::vk::StructureType {
+    pub const PHYSICAL_DEVICE_FRAGMENT_DENSITY_MAP_2_FEATURES_EXT: Self = Self(
+        1000332000,
+    );
+    pub const PHYSICAL_DEVICE_FRAGMENT_DENSITY_MAP_2_PROPERTIES_EXT: Self = Self(
+        1000332001,
+    );
+}
+///Provided by [`ext::fragment_density_map2`](crate::ext::fragment_density_map2)
+impl crate::vk::ImageViewCreateFlagBits {
+    pub const FRAGMENT_DENSITY_MAP_DEFERRED_EXT: Self = Self(1 << 1);
+}
 pub const SPEC_VERSION: u32 = 1;
 pub const NAME: &core::ffi::CStr = c"VK_EXT_fragment_density_map2";
 pub(crate) mod reexport {
@@ -97,19 +110,6 @@ pub(crate) mod reexport {
             self.max_descriptor_set_subsampled_samplers = max_descriptor_set_subsampled_samplers;
             self
         }
-    }
-    ///Provided by [`ext::fragment_density_map2`](crate::ext::fragment_density_map2)
-    impl crate::vk::StructureType {
-        pub const PHYSICAL_DEVICE_FRAGMENT_DENSITY_MAP_2_FEATURES_EXT: Self = Self(
-            1000332000,
-        );
-        pub const PHYSICAL_DEVICE_FRAGMENT_DENSITY_MAP_2_PROPERTIES_EXT: Self = Self(
-            1000332001,
-        );
-    }
-    ///Provided by [`ext::fragment_density_map2`](crate::ext::fragment_density_map2)
-    impl crate::vk::ImageViewCreateFlagBits {
-        pub const FRAGMENT_DENSITY_MAP_DEFERRED_EXT: Self = Self(1 << 1);
     }
 }
 pub use reexport::*;

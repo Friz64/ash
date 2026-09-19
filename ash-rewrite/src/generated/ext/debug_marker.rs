@@ -2,8 +2,12 @@
 #![cfg_attr(rustfmt, rustfmt_skip)]
 //![Vulkan Manual Page](https://docs.vulkan.org/refpages/latest/refpages/source/VK_EXT_debug_marker.html) · Extension `VK_EXT_debug_marker`
 #![doc(alias = "VK_EXT_debug_marker")]
-pub const SPEC_VERSION: u32 = 4;
-pub const NAME: &core::ffi::CStr = c"VK_EXT_debug_marker";
+///Provided by [`ext::debug_marker`](crate::ext::debug_marker)
+impl crate::vk::StructureType {
+    pub const DEBUG_MARKER_OBJECT_NAME_INFO_EXT: Self = Self(1000022000);
+    pub const DEBUG_MARKER_OBJECT_TAG_INFO_EXT: Self = Self(1000022001);
+    pub const DEBUG_MARKER_MARKER_INFO_EXT: Self = Self(1000022002);
+}
 #[derive(Clone)]
 pub struct DeviceFn {
     pub debug_marker_set_object_name_ext: crate::vk::PFN_vkDebugMarkerSetObjectNameEXT,
@@ -118,6 +122,8 @@ impl Device {
         self.handle
     }
 }
+pub const SPEC_VERSION: u32 = 4;
+pub const NAME: &core::ffi::CStr = c"VK_EXT_debug_marker";
 pub(crate) mod reexport {
     #[repr(C)]
     #[derive(Clone, Copy)]
@@ -258,12 +264,6 @@ pub(crate) mod reexport {
             self.color = color;
             self
         }
-    }
-    ///Provided by [`ext::debug_marker`](crate::ext::debug_marker)
-    impl crate::vk::StructureType {
-        pub const DEBUG_MARKER_OBJECT_NAME_INFO_EXT: Self = Self(1000022000);
-        pub const DEBUG_MARKER_OBJECT_TAG_INFO_EXT: Self = Self(1000022001);
-        pub const DEBUG_MARKER_MARKER_INFO_EXT: Self = Self(1000022002);
     }
     pub type PFN_vkDebugMarkerSetObjectNameEXT = unsafe extern "system" fn(
         device: crate::vk::Device,

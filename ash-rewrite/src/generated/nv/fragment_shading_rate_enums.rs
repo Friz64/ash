@@ -2,8 +2,54 @@
 #![cfg_attr(rustfmt, rustfmt_skip)]
 //![Vulkan Manual Page](https://docs.vulkan.org/refpages/latest/refpages/source/VK_NV_fragment_shading_rate_enums.html) · Extension `VK_NV_fragment_shading_rate_enums`
 #![doc(alias = "VK_NV_fragment_shading_rate_enums")]
-pub const SPEC_VERSION: u32 = 1;
-pub const NAME: &core::ffi::CStr = c"VK_NV_fragment_shading_rate_enums";
+///Provided by [`nv::fragment_shading_rate_enums`](crate::nv::fragment_shading_rate_enums)
+impl crate::vk::StructureType {
+    pub const PHYSICAL_DEVICE_FRAGMENT_SHADING_RATE_ENUMS_PROPERTIES_NV: Self = Self(
+        1000326000,
+    );
+    pub const PHYSICAL_DEVICE_FRAGMENT_SHADING_RATE_ENUMS_FEATURES_NV: Self = Self(
+        1000326001,
+    );
+    pub const PIPELINE_FRAGMENT_SHADING_RATE_ENUM_STATE_CREATE_INFO_NV: Self = Self(
+        1000326002,
+    );
+}
+///Provided by [`nv::fragment_shading_rate_enums`](crate::nv::fragment_shading_rate_enums)
+impl FragmentShadingRateNV {
+    #[inline]
+    pub const fn from_raw(x: i32) -> Self {
+        Self(x)
+    }
+    #[inline]
+    pub const fn as_raw(self) -> i32 {
+        self.0
+    }
+    pub const _1_INVOCATION_PER_PIXEL_NV: Self = Self(0);
+    pub const _1_INVOCATION_PER_1X2_PIXELS_NV: Self = Self(1);
+    pub const _1_INVOCATION_PER_2X1_PIXELS_NV: Self = Self(4);
+    pub const _1_INVOCATION_PER_2X2_PIXELS_NV: Self = Self(5);
+    pub const _1_INVOCATION_PER_2X4_PIXELS_NV: Self = Self(6);
+    pub const _1_INVOCATION_PER_4X2_PIXELS_NV: Self = Self(9);
+    pub const _1_INVOCATION_PER_4X4_PIXELS_NV: Self = Self(10);
+    pub const _2_INVOCATIONS_PER_PIXEL_NV: Self = Self(11);
+    pub const _4_INVOCATIONS_PER_PIXEL_NV: Self = Self(12);
+    pub const _8_INVOCATIONS_PER_PIXEL_NV: Self = Self(13);
+    pub const _16_INVOCATIONS_PER_PIXEL_NV: Self = Self(14);
+    pub const NO_INVOCATIONS_NV: Self = Self(15);
+}
+///Provided by [`nv::fragment_shading_rate_enums`](crate::nv::fragment_shading_rate_enums)
+impl FragmentShadingRateTypeNV {
+    #[inline]
+    pub const fn from_raw(x: i32) -> Self {
+        Self(x)
+    }
+    #[inline]
+    pub const fn as_raw(self) -> i32 {
+        self.0
+    }
+    pub const FRAGMENT_SIZE_NV: Self = Self(0);
+    pub const ENUMS_NV: Self = Self(1);
+}
 #[derive(Clone)]
 pub struct DeviceFn {
     pub cmd_set_fragment_shading_rate_enum_nv: crate::vk::PFN_vkCmdSetFragmentShadingRateEnumNV,
@@ -60,6 +106,8 @@ impl Device {
         self.handle
     }
 }
+pub const SPEC_VERSION: u32 = 1;
+pub const NAME: &core::ffi::CStr = c"VK_NV_fragment_shading_rate_enums";
 pub(crate) mod reexport {
     #[repr(C)]
     #[derive(Clone, Copy)]
@@ -200,62 +248,14 @@ pub(crate) mod reexport {
             self
         }
     }
-    ///Provided by [`nv::fragment_shading_rate_enums`](crate::nv::fragment_shading_rate_enums)
-    impl crate::vk::StructureType {
-        pub const PHYSICAL_DEVICE_FRAGMENT_SHADING_RATE_ENUMS_PROPERTIES_NV: Self = Self(
-            1000326000,
-        );
-        pub const PHYSICAL_DEVICE_FRAGMENT_SHADING_RATE_ENUMS_FEATURES_NV: Self = Self(
-            1000326001,
-        );
-        pub const PIPELINE_FRAGMENT_SHADING_RATE_ENUM_STATE_CREATE_INFO_NV: Self = Self(
-            1000326002,
-        );
-    }
     #[repr(transparent)]
     #[derive(Clone, Copy, PartialEq, Eq, PartialOrd, Ord, Hash, Default)]
     #[derive(Debug)]
     pub struct FragmentShadingRateNV(pub(crate) i32);
-    ///Provided by [`nv::fragment_shading_rate_enums`](crate::nv::fragment_shading_rate_enums)
-    impl FragmentShadingRateNV {
-        #[inline]
-        pub const fn from_raw(x: i32) -> Self {
-            Self(x)
-        }
-        #[inline]
-        pub const fn as_raw(self) -> i32 {
-            self.0
-        }
-        pub const _1_INVOCATION_PER_PIXEL_NV: Self = Self(0);
-        pub const _1_INVOCATION_PER_1X2_PIXELS_NV: Self = Self(1);
-        pub const _1_INVOCATION_PER_2X1_PIXELS_NV: Self = Self(4);
-        pub const _1_INVOCATION_PER_2X2_PIXELS_NV: Self = Self(5);
-        pub const _1_INVOCATION_PER_2X4_PIXELS_NV: Self = Self(6);
-        pub const _1_INVOCATION_PER_4X2_PIXELS_NV: Self = Self(9);
-        pub const _1_INVOCATION_PER_4X4_PIXELS_NV: Self = Self(10);
-        pub const _2_INVOCATIONS_PER_PIXEL_NV: Self = Self(11);
-        pub const _4_INVOCATIONS_PER_PIXEL_NV: Self = Self(12);
-        pub const _8_INVOCATIONS_PER_PIXEL_NV: Self = Self(13);
-        pub const _16_INVOCATIONS_PER_PIXEL_NV: Self = Self(14);
-        pub const NO_INVOCATIONS_NV: Self = Self(15);
-    }
     #[repr(transparent)]
     #[derive(Clone, Copy, PartialEq, Eq, PartialOrd, Ord, Hash, Default)]
     #[derive(Debug)]
     pub struct FragmentShadingRateTypeNV(pub(crate) i32);
-    ///Provided by [`nv::fragment_shading_rate_enums`](crate::nv::fragment_shading_rate_enums)
-    impl FragmentShadingRateTypeNV {
-        #[inline]
-        pub const fn from_raw(x: i32) -> Self {
-            Self(x)
-        }
-        #[inline]
-        pub const fn as_raw(self) -> i32 {
-            self.0
-        }
-        pub const FRAGMENT_SIZE_NV: Self = Self(0);
-        pub const ENUMS_NV: Self = Self(1);
-    }
     pub type PFN_vkCmdSetFragmentShadingRateEnumNV = unsafe extern "system" fn(
         command_buffer: crate::vk::CommandBuffer,
         shading_rate: crate::vk::FragmentShadingRateNV,

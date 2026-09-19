@@ -2,8 +2,27 @@
 #![cfg_attr(rustfmt, rustfmt_skip)]
 //![Vulkan Manual Page](https://docs.vulkan.org/refpages/latest/refpages/source/VK_EXT_validation_cache.html) · Extension `VK_EXT_validation_cache`
 #![doc(alias = "VK_EXT_validation_cache")]
-pub const SPEC_VERSION: u32 = 1;
-pub const NAME: &core::ffi::CStr = c"VK_EXT_validation_cache";
+///Provided by [`ext::validation_cache`](crate::ext::validation_cache)
+impl crate::vk::StructureType {
+    pub const VALIDATION_CACHE_CREATE_INFO_EXT: Self = Self(1000160000);
+    pub const SHADER_MODULE_VALIDATION_CACHE_CREATE_INFO_EXT: Self = Self(1000160001);
+}
+///Provided by [`ext::validation_cache`](crate::ext::validation_cache)
+impl crate::vk::ObjectType {
+    pub const VALIDATION_CACHE_EXT: Self = Self(1000160000);
+}
+///Provided by [`ext::validation_cache`](crate::ext::validation_cache)
+impl ValidationCacheHeaderVersionEXT {
+    #[inline]
+    pub const fn from_raw(x: i32) -> Self {
+        Self(x)
+    }
+    #[inline]
+    pub const fn as_raw(self) -> i32 {
+        self.0
+    }
+    pub const ONE_EXT: Self = Self(1);
+}
 #[derive(Clone)]
 pub struct DeviceFn {
     pub create_validation_cache_ext: crate::vk::PFN_vkCreateValidationCacheEXT,
@@ -111,6 +130,8 @@ impl Device {
         self.handle
     }
 }
+pub const SPEC_VERSION: u32 = 1;
+pub const NAME: &core::ffi::CStr = c"VK_EXT_validation_cache";
 pub(crate) mod reexport {
     #[repr(C)]
     #[derive(Clone, Copy)]
@@ -183,33 +204,10 @@ pub(crate) mod reexport {
             self
         }
     }
-    ///Provided by [`ext::validation_cache`](crate::ext::validation_cache)
-    impl crate::vk::StructureType {
-        pub const VALIDATION_CACHE_CREATE_INFO_EXT: Self = Self(1000160000);
-        pub const SHADER_MODULE_VALIDATION_CACHE_CREATE_INFO_EXT: Self = Self(
-            1000160001,
-        );
-    }
-    ///Provided by [`ext::validation_cache`](crate::ext::validation_cache)
-    impl crate::vk::ObjectType {
-        pub const VALIDATION_CACHE_EXT: Self = Self(1000160000);
-    }
     #[repr(transparent)]
     #[derive(Clone, Copy, PartialEq, Eq, PartialOrd, Ord, Hash, Default)]
     #[derive(Debug)]
     pub struct ValidationCacheHeaderVersionEXT(pub(crate) i32);
-    ///Provided by [`ext::validation_cache`](crate::ext::validation_cache)
-    impl ValidationCacheHeaderVersionEXT {
-        #[inline]
-        pub const fn from_raw(x: i32) -> Self {
-            Self(x)
-        }
-        #[inline]
-        pub const fn as_raw(self) -> i32 {
-            self.0
-        }
-        pub const ONE_EXT: Self = Self(1);
-    }
     #[repr(transparent)]
     #[derive(Clone, Copy)]
     pub struct ValidationCacheCreateFlagsEXT(u32);

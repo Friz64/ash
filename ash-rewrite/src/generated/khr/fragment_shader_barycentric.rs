@@ -2,6 +2,15 @@
 #![cfg_attr(rustfmt, rustfmt_skip)]
 //![Vulkan Manual Page](https://docs.vulkan.org/refpages/latest/refpages/source/VK_KHR_fragment_shader_barycentric.html) · Extension `VK_KHR_fragment_shader_barycentric`
 #![doc(alias = "VK_KHR_fragment_shader_barycentric")]
+///Provided by [`khr::fragment_shader_barycentric`](crate::khr::fragment_shader_barycentric)
+impl crate::vk::StructureType {
+    pub const PHYSICAL_DEVICE_FRAGMENT_SHADER_BARYCENTRIC_FEATURES_KHR: Self = Self(
+        1000203000,
+    );
+    pub const PHYSICAL_DEVICE_FRAGMENT_SHADER_BARYCENTRIC_PROPERTIES_KHR: Self = Self(
+        1000322000,
+    );
+}
 pub const SPEC_VERSION: u32 = 1;
 pub const NAME: &core::ffi::CStr = c"VK_KHR_fragment_shader_barycentric";
 pub(crate) mod reexport {
@@ -73,15 +82,6 @@ pub(crate) mod reexport {
                 .into();
             self
         }
-    }
-    ///Provided by [`khr::fragment_shader_barycentric`](crate::khr::fragment_shader_barycentric)
-    impl crate::vk::StructureType {
-        pub const PHYSICAL_DEVICE_FRAGMENT_SHADER_BARYCENTRIC_FEATURES_KHR: Self = Self(
-            1000203000,
-        );
-        pub const PHYSICAL_DEVICE_FRAGMENT_SHADER_BARYCENTRIC_PROPERTIES_KHR: Self = Self(
-            1000322000,
-        );
     }
 }
 pub use reexport::*;

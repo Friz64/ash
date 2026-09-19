@@ -2,6 +2,18 @@
 #![cfg_attr(rustfmt, rustfmt_skip)]
 //![Vulkan Manual Page](https://docs.vulkan.org/refpages/latest/refpages/source/VK_NVX_multiview_per_view_attributes.html) · Extension `VK_NVX_multiview_per_view_attributes`
 #![doc(alias = "VK_NVX_multiview_per_view_attributes")]
+///Provided by [`nvx::multiview_per_view_attributes`](crate::nvx::multiview_per_view_attributes)
+impl crate::vk::StructureType {
+    pub const PHYSICAL_DEVICE_MULTIVIEW_PER_VIEW_ATTRIBUTES_PROPERTIES_NVX: Self = Self(
+        1000097000,
+    );
+    pub const MULTIVIEW_PER_VIEW_ATTRIBUTES_INFO_NVX: Self = Self(1000044009);
+}
+///Provided by [`nvx::multiview_per_view_attributes`](crate::nvx::multiview_per_view_attributes)
+impl crate::vk::SubpassDescriptionFlagBits {
+    pub const PER_VIEW_ATTRIBUTES_NVX: Self = Self(1 << 0);
+    pub const PER_VIEW_POSITION_X_ONLY_NVX: Self = Self(1 << 1);
+}
 pub const SPEC_VERSION: u32 = 1;
 pub const NAME: &core::ffi::CStr = c"VK_NVX_multiview_per_view_attributes";
 pub(crate) mod reexport {
@@ -82,18 +94,6 @@ pub(crate) mod reexport {
                 .into();
             self
         }
-    }
-    ///Provided by [`nvx::multiview_per_view_attributes`](crate::nvx::multiview_per_view_attributes)
-    impl crate::vk::StructureType {
-        pub const PHYSICAL_DEVICE_MULTIVIEW_PER_VIEW_ATTRIBUTES_PROPERTIES_NVX: Self = Self(
-            1000097000,
-        );
-        pub const MULTIVIEW_PER_VIEW_ATTRIBUTES_INFO_NVX: Self = Self(1000044009);
-    }
-    ///Provided by [`nvx::multiview_per_view_attributes`](crate::nvx::multiview_per_view_attributes)
-    impl crate::vk::SubpassDescriptionFlagBits {
-        pub const PER_VIEW_ATTRIBUTES_NVX: Self = Self(1 << 0);
-        pub const PER_VIEW_POSITION_X_ONLY_NVX: Self = Self(1 << 1);
     }
 }
 pub use reexport::*;

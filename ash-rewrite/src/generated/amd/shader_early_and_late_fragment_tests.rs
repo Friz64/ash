@@ -2,6 +2,12 @@
 #![cfg_attr(rustfmt, rustfmt_skip)]
 //![Vulkan Manual Page](https://docs.vulkan.org/refpages/latest/refpages/source/VK_AMD_shader_early_and_late_fragment_tests.html) · Extension `VK_AMD_shader_early_and_late_fragment_tests`
 #![doc(alias = "VK_AMD_shader_early_and_late_fragment_tests")]
+///Provided by [`amd::shader_early_and_late_fragment_tests`](crate::amd::shader_early_and_late_fragment_tests)
+impl crate::vk::StructureType {
+    pub const PHYSICAL_DEVICE_SHADER_EARLY_AND_LATE_FRAGMENT_TESTS_FEATURES_AMD: Self = Self(
+        1000321000,
+    );
+}
 pub const SPEC_VERSION: u32 = 1;
 pub const NAME: &core::ffi::CStr = c"VK_AMD_shader_early_and_late_fragment_tests";
 pub(crate) mod reexport {
@@ -40,12 +46,6 @@ pub(crate) mod reexport {
                 .into();
             self
         }
-    }
-    ///Provided by [`amd::shader_early_and_late_fragment_tests`](crate::amd::shader_early_and_late_fragment_tests)
-    impl crate::vk::StructureType {
-        pub const PHYSICAL_DEVICE_SHADER_EARLY_AND_LATE_FRAGMENT_TESTS_FEATURES_AMD: Self = Self(
-            1000321000,
-        );
     }
 }
 pub use reexport::*;

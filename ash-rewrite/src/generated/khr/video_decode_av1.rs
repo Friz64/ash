@@ -2,6 +2,20 @@
 #![cfg_attr(rustfmt, rustfmt_skip)]
 //![Vulkan Manual Page](https://docs.vulkan.org/refpages/latest/refpages/source/VK_KHR_video_decode_av1.html) · Extension `VK_KHR_video_decode_av1`
 #![doc(alias = "VK_KHR_video_decode_av1")]
+///Provided by [`khr::video_decode_av1`](crate::khr::video_decode_av1)
+impl crate::vk::StructureType {
+    pub const VIDEO_DECODE_AV1_CAPABILITIES_KHR: Self = Self(1000512000);
+    pub const VIDEO_DECODE_AV1_PICTURE_INFO_KHR: Self = Self(1000512001);
+    pub const VIDEO_DECODE_AV1_PROFILE_INFO_KHR: Self = Self(1000512003);
+    pub const VIDEO_DECODE_AV1_SESSION_PARAMETERS_CREATE_INFO_KHR: Self = Self(
+        1000512004,
+    );
+    pub const VIDEO_DECODE_AV1_DPB_SLOT_INFO_KHR: Self = Self(1000512005);
+}
+///Provided by [`khr::video_decode_av1`](crate::khr::video_decode_av1)
+impl crate::vk::VideoCodecOperationFlagBitsKHR {
+    pub const DECODE_AV1_KHR: Self = Self(1 << 2);
+}
 pub const SPEC_VERSION: u32 = 1;
 pub const NAME: &core::ffi::CStr = c"VK_KHR_video_decode_av1";
 pub(crate) mod reexport {
@@ -200,20 +214,6 @@ pub(crate) mod reexport {
             self.p_std_reference_info = std_reference_info;
             self
         }
-    }
-    ///Provided by [`khr::video_decode_av1`](crate::khr::video_decode_av1)
-    impl crate::vk::StructureType {
-        pub const VIDEO_DECODE_AV1_CAPABILITIES_KHR: Self = Self(1000512000);
-        pub const VIDEO_DECODE_AV1_PICTURE_INFO_KHR: Self = Self(1000512001);
-        pub const VIDEO_DECODE_AV1_PROFILE_INFO_KHR: Self = Self(1000512003);
-        pub const VIDEO_DECODE_AV1_SESSION_PARAMETERS_CREATE_INFO_KHR: Self = Self(
-            1000512004,
-        );
-        pub const VIDEO_DECODE_AV1_DPB_SLOT_INFO_KHR: Self = Self(1000512005);
-    }
-    ///Provided by [`khr::video_decode_av1`](crate::khr::video_decode_av1)
-    impl crate::vk::VideoCodecOperationFlagBitsKHR {
-        pub const DECODE_AV1_KHR: Self = Self(1 << 2);
     }
     pub const MAX_VIDEO_AV1_REFERENCES_PER_FRAME_KHR: u32 = 7;
 }

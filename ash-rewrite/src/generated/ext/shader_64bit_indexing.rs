@@ -2,6 +2,18 @@
 #![cfg_attr(rustfmt, rustfmt_skip)]
 //![Vulkan Manual Page](https://docs.vulkan.org/refpages/latest/refpages/source/VK_EXT_shader_64bit_indexing.html) · Extension `VK_EXT_shader_64bit_indexing`
 #![doc(alias = "VK_EXT_shader_64bit_indexing")]
+///Provided by [`ext::shader_64bit_indexing`](crate::ext::shader_64bit_indexing)
+impl crate::vk::StructureType {
+    pub const PHYSICAL_DEVICE_SHADER_64_INDEXING_FEATURES_EXT: Self = Self(1000627000);
+}
+///Provided by [`ext::shader_64bit_indexing`](crate::ext::shader_64bit_indexing)
+impl crate::vk::PipelineCreateFlagBits2 {
+    pub const _64_INDEXING_EXT: Self = Self(1 << 43);
+}
+///Provided by [`ext::shader_64bit_indexing`](crate::ext::shader_64bit_indexing)
+impl crate::vk::ShaderCreateFlagBitsEXT {
+    pub const _64_INDEXING_EXT: Self = Self(1 << 15);
+}
 pub const SPEC_VERSION: u32 = 1;
 pub const NAME: &core::ffi::CStr = c"VK_EXT_shader_64bit_indexing";
 pub(crate) mod reexport {
@@ -36,20 +48,6 @@ pub(crate) mod reexport {
             self.shader64_bit_indexing = shader64_bit_indexing.into();
             self
         }
-    }
-    ///Provided by [`ext::shader_64bit_indexing`](crate::ext::shader_64bit_indexing)
-    impl crate::vk::StructureType {
-        pub const PHYSICAL_DEVICE_SHADER_64_INDEXING_FEATURES_EXT: Self = Self(
-            1000627000,
-        );
-    }
-    ///Provided by [`ext::shader_64bit_indexing`](crate::ext::shader_64bit_indexing)
-    impl crate::vk::PipelineCreateFlagBits2 {
-        pub const _64_INDEXING_EXT: Self = Self(1 << 43);
-    }
-    ///Provided by [`ext::shader_64bit_indexing`](crate::ext::shader_64bit_indexing)
-    impl crate::vk::ShaderCreateFlagBitsEXT {
-        pub const _64_INDEXING_EXT: Self = Self(1 << 15);
     }
 }
 pub use reexport::*;

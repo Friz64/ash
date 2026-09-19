@@ -2,6 +2,13 @@
 #![cfg_attr(rustfmt, rustfmt_skip)]
 //![Vulkan Manual Page](https://docs.vulkan.org/refpages/latest/refpages/source/VK_EXT_depth_clip_control.html) · Extension `VK_EXT_depth_clip_control`
 #![doc(alias = "VK_EXT_depth_clip_control")]
+///Provided by [`ext::depth_clip_control`](crate::ext::depth_clip_control)
+impl crate::vk::StructureType {
+    pub const PHYSICAL_DEVICE_DEPTH_CLIP_CONTROL_FEATURES_EXT: Self = Self(1000355000);
+    pub const PIPELINE_VIEWPORT_DEPTH_CLIP_CONTROL_CREATE_INFO_EXT: Self = Self(
+        1000355001,
+    );
+}
 pub const SPEC_VERSION: u32 = 1;
 pub const NAME: &core::ffi::CStr = c"VK_EXT_depth_clip_control";
 pub(crate) mod reexport {
@@ -66,15 +73,6 @@ pub(crate) mod reexport {
             self.negative_one_to_one = negative_one_to_one.into();
             self
         }
-    }
-    ///Provided by [`ext::depth_clip_control`](crate::ext::depth_clip_control)
-    impl crate::vk::StructureType {
-        pub const PHYSICAL_DEVICE_DEPTH_CLIP_CONTROL_FEATURES_EXT: Self = Self(
-            1000355000,
-        );
-        pub const PIPELINE_VIEWPORT_DEPTH_CLIP_CONTROL_CREATE_INFO_EXT: Self = Self(
-            1000355001,
-        );
     }
 }
 pub use reexport::*;

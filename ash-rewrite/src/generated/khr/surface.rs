@@ -2,8 +2,61 @@
 #![cfg_attr(rustfmt, rustfmt_skip)]
 //![Vulkan Manual Page](https://docs.vulkan.org/refpages/latest/refpages/source/VK_KHR_surface.html) · Extension `VK_KHR_surface`
 #![doc(alias = "VK_KHR_surface")]
-pub const SPEC_VERSION: u32 = 25;
-pub const NAME: &core::ffi::CStr = c"VK_KHR_surface";
+///Provided by [`khr::surface`](crate::khr::surface)
+impl crate::vk::Result {
+    pub const ERROR_SURFACE_LOST_KHR: Self = Self(-1000000000);
+    pub const ERROR_NATIVE_WINDOW_IN_USE_KHR: Self = Self(-1000000001);
+}
+///Provided by [`khr::surface`](crate::khr::surface)
+impl crate::vk::ObjectType {
+    pub const SURFACE_KHR: Self = Self(1000000000);
+}
+///Provided by [`khr::surface`](crate::khr::surface)
+impl PresentModeKHR {
+    #[inline]
+    pub const fn from_raw(x: i32) -> Self {
+        Self(x)
+    }
+    #[inline]
+    pub const fn as_raw(self) -> i32 {
+        self.0
+    }
+    pub const IMMEDIATE_KHR: Self = Self(0);
+    pub const MAILBOX_KHR: Self = Self(1);
+    pub const FIFO_KHR: Self = Self(2);
+    pub const FIFO_RELAXED_KHR: Self = Self(3);
+}
+///Provided by [`khr::surface`](crate::khr::surface)
+impl ColorSpaceKHR {
+    #[inline]
+    pub const fn from_raw(x: i32) -> Self {
+        Self(x)
+    }
+    #[inline]
+    pub const fn as_raw(self) -> i32 {
+        self.0
+    }
+    pub const SRGB_NONLINEAR_KHR: Self = Self(0);
+}
+///Provided by [`khr::surface`](crate::khr::surface)
+impl CompositeAlphaFlagBitsKHR {
+    pub const OPAQUE_KHR: Self = Self(1 << 0);
+    pub const PRE_MULTIPLIED_KHR: Self = Self(1 << 1);
+    pub const POST_MULTIPLIED_KHR: Self = Self(1 << 2);
+    pub const INHERIT_KHR: Self = Self(1 << 3);
+}
+///Provided by [`khr::surface`](crate::khr::surface)
+impl SurfaceTransformFlagBitsKHR {
+    pub const IDENTITY_KHR: Self = Self(1 << 0);
+    pub const ROTATE_90_KHR: Self = Self(1 << 1);
+    pub const ROTATE_180_KHR: Self = Self(1 << 2);
+    pub const ROTATE_270_KHR: Self = Self(1 << 3);
+    pub const HORIZONTAL_MIRROR_KHR: Self = Self(1 << 4);
+    pub const HORIZONTAL_MIRROR_ROTATE_90_KHR: Self = Self(1 << 5);
+    pub const HORIZONTAL_MIRROR_ROTATE_180_KHR: Self = Self(1 << 6);
+    pub const HORIZONTAL_MIRROR_ROTATE_270_KHR: Self = Self(1 << 7);
+    pub const INHERIT_KHR: Self = Self(1 << 8);
+}
 #[derive(Clone)]
 pub struct InstanceFn {
     pub destroy_surface_khr: crate::vk::PFN_vkDestroySurfaceKHR,
@@ -127,6 +180,8 @@ impl Instance {
         self.handle
     }
 }
+pub const SPEC_VERSION: u32 = 25;
+pub const NAME: &core::ffi::CStr = c"VK_KHR_surface";
 pub(crate) mod reexport {
     #[repr(C)]
     #[derive(Clone, Copy, Default)]
@@ -218,50 +273,14 @@ pub(crate) mod reexport {
             self
         }
     }
-    ///Provided by [`khr::surface`](crate::khr::surface)
-    impl crate::vk::Result {
-        pub const ERROR_SURFACE_LOST_KHR: Self = Self(-1000000000);
-        pub const ERROR_NATIVE_WINDOW_IN_USE_KHR: Self = Self(-1000000001);
-    }
-    ///Provided by [`khr::surface`](crate::khr::surface)
-    impl crate::vk::ObjectType {
-        pub const SURFACE_KHR: Self = Self(1000000000);
-    }
     #[repr(transparent)]
     #[derive(Clone, Copy, PartialEq, Eq, PartialOrd, Ord, Hash, Default)]
     #[derive(Debug)]
     pub struct PresentModeKHR(pub(crate) i32);
-    ///Provided by [`khr::surface`](crate::khr::surface)
-    impl PresentModeKHR {
-        #[inline]
-        pub const fn from_raw(x: i32) -> Self {
-            Self(x)
-        }
-        #[inline]
-        pub const fn as_raw(self) -> i32 {
-            self.0
-        }
-        pub const IMMEDIATE_KHR: Self = Self(0);
-        pub const MAILBOX_KHR: Self = Self(1);
-        pub const FIFO_KHR: Self = Self(2);
-        pub const FIFO_RELAXED_KHR: Self = Self(3);
-    }
     #[repr(transparent)]
     #[derive(Clone, Copy, PartialEq, Eq, PartialOrd, Ord, Hash, Default)]
     #[derive(Debug)]
     pub struct ColorSpaceKHR(pub(crate) i32);
-    ///Provided by [`khr::surface`](crate::khr::surface)
-    impl ColorSpaceKHR {
-        #[inline]
-        pub const fn from_raw(x: i32) -> Self {
-            Self(x)
-        }
-        #[inline]
-        pub const fn as_raw(self) -> i32 {
-            self.0
-        }
-        pub const SRGB_NONLINEAR_KHR: Self = Self(0);
-    }
     #[repr(transparent)]
     #[derive(Clone, Copy)]
     pub struct CompositeAlphaFlagsKHR(u32);
@@ -340,13 +359,6 @@ pub(crate) mod reexport {
     #[repr(transparent)]
     #[derive(Clone, Copy, Default)]
     pub struct CompositeAlphaFlagBitsKHR(pub(crate) u32);
-    ///Provided by [`khr::surface`](crate::khr::surface)
-    impl CompositeAlphaFlagBitsKHR {
-        pub const OPAQUE_KHR: Self = Self(1 << 0);
-        pub const PRE_MULTIPLIED_KHR: Self = Self(1 << 1);
-        pub const POST_MULTIPLIED_KHR: Self = Self(1 << 2);
-        pub const INHERIT_KHR: Self = Self(1 << 3);
-    }
     #[repr(transparent)]
     #[derive(Clone, Copy)]
     pub struct SurfaceTransformFlagsKHR(u32);
@@ -440,18 +452,6 @@ pub(crate) mod reexport {
     #[repr(transparent)]
     #[derive(Clone, Copy, Default)]
     pub struct SurfaceTransformFlagBitsKHR(pub(crate) u32);
-    ///Provided by [`khr::surface`](crate::khr::surface)
-    impl SurfaceTransformFlagBitsKHR {
-        pub const IDENTITY_KHR: Self = Self(1 << 0);
-        pub const ROTATE_90_KHR: Self = Self(1 << 1);
-        pub const ROTATE_180_KHR: Self = Self(1 << 2);
-        pub const ROTATE_270_KHR: Self = Self(1 << 3);
-        pub const HORIZONTAL_MIRROR_KHR: Self = Self(1 << 4);
-        pub const HORIZONTAL_MIRROR_ROTATE_90_KHR: Self = Self(1 << 5);
-        pub const HORIZONTAL_MIRROR_ROTATE_180_KHR: Self = Self(1 << 6);
-        pub const HORIZONTAL_MIRROR_ROTATE_270_KHR: Self = Self(1 << 7);
-        pub const INHERIT_KHR: Self = Self(1 << 8);
-    }
     #[repr(transparent)]
     #[derive(Eq, PartialEq, Ord, PartialOrd, Clone, Copy, Hash, Default)]
     pub struct SurfaceKHR(u64);

@@ -2,6 +2,42 @@
 #![cfg_attr(rustfmt, rustfmt_skip)]
 //![Vulkan Manual Page](https://docs.vulkan.org/refpages/latest/refpages/source/VK_KHR_video_encode_intra_refresh.html) · Extension `VK_KHR_video_encode_intra_refresh`
 #![doc(alias = "VK_KHR_video_encode_intra_refresh")]
+///Provided by [`khr::video_encode_intra_refresh`](crate::khr::video_encode_intra_refresh)
+impl crate::vk::StructureType {
+    pub const VIDEO_ENCODE_INTRA_REFRESH_CAPABILITIES_KHR: Self = Self(1000552000);
+    pub const VIDEO_ENCODE_SESSION_INTRA_REFRESH_CREATE_INFO_KHR: Self = Self(
+        1000552001,
+    );
+    pub const VIDEO_ENCODE_INTRA_REFRESH_INFO_KHR: Self = Self(1000552002);
+    pub const VIDEO_REFERENCE_INTRA_REFRESH_INFO_KHR: Self = Self(1000552003);
+    pub const PHYSICAL_DEVICE_VIDEO_ENCODE_INTRA_REFRESH_FEATURES_KHR: Self = Self(
+        1000552004,
+    );
+}
+///Provided by [`khr::video_encode_intra_refresh`](crate::khr::video_encode_intra_refresh)
+impl crate::vk::VideoEncodeFlagBitsKHR {
+    pub const INTRA_REFRESH_KHR: Self = Self(1 << 2);
+}
+///Provided by [`khr::video_encode_intra_refresh`](crate::khr::video_encode_intra_refresh)
+impl VideoEncodeIntraRefreshModeFlagBitsKHR {
+    pub const NONE_KHR: Self = Self(0);
+    pub const PER_PICTURE_PARTITION_KHR: Self = Self(1 << 0);
+    pub const BLOCK_BASED_KHR: Self = Self(1 << 1);
+    pub const BLOCK_ROW_BASED_KHR: Self = Self(1 << 2);
+    pub const BLOCK_COLUMN_BASED_KHR: Self = Self(1 << 3);
+}
+///Provided by [`khr::video_encode_intra_refresh`](crate::khr::video_encode_intra_refresh)
+impl crate::vk::VideoEncodeH264CapabilityFlagBitsKHR {
+    pub const B_PICTURE_INTRA_REFRESH_KHR: Self = Self(1 << 10);
+}
+///Provided by [`khr::video_encode_intra_refresh`](crate::khr::video_encode_intra_refresh)
+impl crate::vk::VideoEncodeH265CapabilityFlagBitsKHR {
+    pub const B_PICTURE_INTRA_REFRESH_KHR: Self = Self(1 << 11);
+}
+///Provided by [`khr::video_encode_intra_refresh`](crate::khr::video_encode_intra_refresh)
+impl crate::vk::VideoEncodeAV1CapabilityFlagBitsKHR {
+    pub const COMPOUND_PREDICTION_INTRA_REFRESH_KHR: Self = Self(1 << 5);
+}
 pub const SPEC_VERSION: u32 = 1;
 pub const NAME: &core::ffi::CStr = c"VK_KHR_video_encode_intra_refresh";
 pub(crate) mod reexport {
@@ -215,22 +251,6 @@ pub(crate) mod reexport {
             self
         }
     }
-    ///Provided by [`khr::video_encode_intra_refresh`](crate::khr::video_encode_intra_refresh)
-    impl crate::vk::StructureType {
-        pub const VIDEO_ENCODE_INTRA_REFRESH_CAPABILITIES_KHR: Self = Self(1000552000);
-        pub const VIDEO_ENCODE_SESSION_INTRA_REFRESH_CREATE_INFO_KHR: Self = Self(
-            1000552001,
-        );
-        pub const VIDEO_ENCODE_INTRA_REFRESH_INFO_KHR: Self = Self(1000552002);
-        pub const VIDEO_REFERENCE_INTRA_REFRESH_INFO_KHR: Self = Self(1000552003);
-        pub const PHYSICAL_DEVICE_VIDEO_ENCODE_INTRA_REFRESH_FEATURES_KHR: Self = Self(
-            1000552004,
-        );
-    }
-    ///Provided by [`khr::video_encode_intra_refresh`](crate::khr::video_encode_intra_refresh)
-    impl crate::vk::VideoEncodeFlagBitsKHR {
-        pub const INTRA_REFRESH_KHR: Self = Self(1 << 2);
-    }
     #[repr(transparent)]
     #[derive(Clone, Copy)]
     pub struct VideoEncodeIntraRefreshModeFlagsKHR(u32);
@@ -316,25 +336,5 @@ pub(crate) mod reexport {
     #[repr(transparent)]
     #[derive(Clone, Copy, Default)]
     pub struct VideoEncodeIntraRefreshModeFlagBitsKHR(pub(crate) u32);
-    ///Provided by [`khr::video_encode_intra_refresh`](crate::khr::video_encode_intra_refresh)
-    impl VideoEncodeIntraRefreshModeFlagBitsKHR {
-        pub const NONE_KHR: Self = Self(0);
-        pub const PER_PICTURE_PARTITION_KHR: Self = Self(1 << 0);
-        pub const BLOCK_BASED_KHR: Self = Self(1 << 1);
-        pub const BLOCK_ROW_BASED_KHR: Self = Self(1 << 2);
-        pub const BLOCK_COLUMN_BASED_KHR: Self = Self(1 << 3);
-    }
-    ///Provided by [`khr::video_encode_intra_refresh`](crate::khr::video_encode_intra_refresh)
-    impl crate::vk::VideoEncodeH264CapabilityFlagBitsKHR {
-        pub const B_PICTURE_INTRA_REFRESH_KHR: Self = Self(1 << 10);
-    }
-    ///Provided by [`khr::video_encode_intra_refresh`](crate::khr::video_encode_intra_refresh)
-    impl crate::vk::VideoEncodeH265CapabilityFlagBitsKHR {
-        pub const B_PICTURE_INTRA_REFRESH_KHR: Self = Self(1 << 11);
-    }
-    ///Provided by [`khr::video_encode_intra_refresh`](crate::khr::video_encode_intra_refresh)
-    impl crate::vk::VideoEncodeAV1CapabilityFlagBitsKHR {
-        pub const COMPOUND_PREDICTION_INTRA_REFRESH_KHR: Self = Self(1 << 5);
-    }
 }
 pub use reexport::*;

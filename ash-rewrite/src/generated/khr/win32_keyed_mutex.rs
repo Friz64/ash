@@ -2,6 +2,10 @@
 #![cfg_attr(rustfmt, rustfmt_skip)]
 //![Vulkan Manual Page](https://docs.vulkan.org/refpages/latest/refpages/source/VK_KHR_win32_keyed_mutex.html) · Extension `VK_KHR_win32_keyed_mutex`
 #![doc(alias = "VK_KHR_win32_keyed_mutex")]
+///Provided by [`khr::win32_keyed_mutex`](crate::khr::win32_keyed_mutex)
+impl crate::vk::StructureType {
+    pub const WIN32_KEYED_MUTEX_ACQUIRE_RELEASE_INFO_KHR: Self = Self(1000075000);
+}
 pub const SPEC_VERSION: u32 = 1;
 pub const NAME: &core::ffi::CStr = c"VK_KHR_win32_keyed_mutex";
 pub(crate) mod reexport {
@@ -75,10 +79,6 @@ pub(crate) mod reexport {
             self.p_release_keys = release_keys.as_ptr();
             self
         }
-    }
-    ///Provided by [`khr::win32_keyed_mutex`](crate::khr::win32_keyed_mutex)
-    impl crate::vk::StructureType {
-        pub const WIN32_KEYED_MUTEX_ACQUIRE_RELEASE_INFO_KHR: Self = Self(1000075000);
     }
 }
 pub use reexport::*;

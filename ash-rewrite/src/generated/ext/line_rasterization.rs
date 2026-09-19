@@ -2,8 +2,23 @@
 #![cfg_attr(rustfmt, rustfmt_skip)]
 //![Vulkan Manual Page](https://docs.vulkan.org/refpages/latest/refpages/source/VK_EXT_line_rasterization.html) · Extension `VK_EXT_line_rasterization`
 #![doc(alias = "VK_EXT_line_rasterization")]
-pub const SPEC_VERSION: u32 = 1;
-pub const NAME: &core::ffi::CStr = c"VK_EXT_line_rasterization";
+///Provided by [`ext::line_rasterization`](crate::ext::line_rasterization)
+impl crate::vk::StructureType {
+    pub const PHYSICAL_DEVICE_LINE_RASTERIZATION_FEATURES_EXT: Self = Self::PHYSICAL_DEVICE_LINE_RASTERIZATION_FEATURES;
+    pub const PIPELINE_RASTERIZATION_LINE_STATE_CREATE_INFO_EXT: Self = Self::PIPELINE_RASTERIZATION_LINE_STATE_CREATE_INFO;
+    pub const PHYSICAL_DEVICE_LINE_RASTERIZATION_PROPERTIES_EXT: Self = Self::PHYSICAL_DEVICE_LINE_RASTERIZATION_PROPERTIES;
+}
+///Provided by [`ext::line_rasterization`](crate::ext::line_rasterization)
+impl crate::vk::DynamicState {
+    pub const LINE_STIPPLE_EXT: Self = Self::LINE_STIPPLE;
+}
+///Provided by [`ext::line_rasterization`](crate::ext::line_rasterization)
+impl crate::vk::LineRasterizationMode {
+    pub const DEFAULT_EXT: Self = Self::DEFAULT;
+    pub const RECTANGULAR_EXT: Self = Self::RECTANGULAR;
+    pub const BRESENHAM_EXT: Self = Self::BRESENHAM;
+    pub const RECTANGULAR_SMOOTH_EXT: Self = Self::RECTANGULAR_SMOOTH;
+}
 #[derive(Clone)]
 pub struct DeviceFn {
     pub cmd_set_line_stipple_ext: crate::vk::PFN_vkCmdSetLineStippleEXT,
@@ -60,6 +75,8 @@ impl Device {
         self.handle
     }
 }
+pub const SPEC_VERSION: u32 = 1;
+pub const NAME: &core::ffi::CStr = c"VK_EXT_line_rasterization";
 pub(crate) mod reexport {
     pub type PhysicalDeviceLineRasterizationFeaturesEXT<'a> = crate::vk::PhysicalDeviceLineRasterizationFeatures<
         'a,
@@ -70,23 +87,6 @@ pub(crate) mod reexport {
     pub type PipelineRasterizationLineStateCreateInfoEXT<'a> = crate::vk::PipelineRasterizationLineStateCreateInfo<
         'a,
     >;
-    ///Provided by [`ext::line_rasterization`](crate::ext::line_rasterization)
-    impl crate::vk::StructureType {
-        pub const PHYSICAL_DEVICE_LINE_RASTERIZATION_FEATURES_EXT: Self = Self::PHYSICAL_DEVICE_LINE_RASTERIZATION_FEATURES;
-        pub const PIPELINE_RASTERIZATION_LINE_STATE_CREATE_INFO_EXT: Self = Self::PIPELINE_RASTERIZATION_LINE_STATE_CREATE_INFO;
-        pub const PHYSICAL_DEVICE_LINE_RASTERIZATION_PROPERTIES_EXT: Self = Self::PHYSICAL_DEVICE_LINE_RASTERIZATION_PROPERTIES;
-    }
-    ///Provided by [`ext::line_rasterization`](crate::ext::line_rasterization)
-    impl crate::vk::DynamicState {
-        pub const LINE_STIPPLE_EXT: Self = Self::LINE_STIPPLE;
-    }
-    ///Provided by [`ext::line_rasterization`](crate::ext::line_rasterization)
-    impl crate::vk::LineRasterizationMode {
-        pub const DEFAULT_EXT: Self = Self::DEFAULT;
-        pub const RECTANGULAR_EXT: Self = Self::RECTANGULAR;
-        pub const BRESENHAM_EXT: Self = Self::BRESENHAM;
-        pub const RECTANGULAR_SMOOTH_EXT: Self = Self::RECTANGULAR_SMOOTH;
-    }
     pub type LineRasterizationModeEXT = crate::vk::LineRasterizationMode;
     pub type PFN_vkCmdSetLineStippleEXT = crate::vk::PFN_vkCmdSetLineStipple;
 }

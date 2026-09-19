@@ -2,6 +2,57 @@
 #![cfg_attr(rustfmt, rustfmt_skip)]
 //![Vulkan Manual Page](https://docs.vulkan.org/refpages/latest/refpages/source/VK_NV_ray_tracing_linear_swept_spheres.html) · Extension `VK_NV_ray_tracing_linear_swept_spheres`
 #![doc(alias = "VK_NV_ray_tracing_linear_swept_spheres")]
+///Provided by [`nv::ray_tracing_linear_swept_spheres`](crate::nv::ray_tracing_linear_swept_spheres)
+impl crate::vk::StructureType {
+    pub const PHYSICAL_DEVICE_RAY_TRACING_LINEAR_SWEPT_SPHERES_FEATURES_NV: Self = Self(
+        1000429008,
+    );
+    pub const ACCELERATION_STRUCTURE_GEOMETRY_LINEAR_SWEPT_SPHERES_DATA_NV: Self = Self(
+        1000429009,
+    );
+    pub const ACCELERATION_STRUCTURE_GEOMETRY_SPHERES_DATA_NV: Self = Self(1000429010);
+}
+///Provided by [`nv::ray_tracing_linear_swept_spheres`](crate::nv::ray_tracing_linear_swept_spheres)
+impl RayTracingLssIndexingModeNV {
+    #[inline]
+    pub const fn from_raw(x: i32) -> Self {
+        Self(x)
+    }
+    #[inline]
+    pub const fn as_raw(self) -> i32 {
+        self.0
+    }
+    pub const LIST_NV: Self = Self(0);
+    pub const SUCCESSIVE_NV: Self = Self(1);
+}
+///Provided by [`nv::ray_tracing_linear_swept_spheres`](crate::nv::ray_tracing_linear_swept_spheres)
+impl RayTracingLssPrimitiveEndCapsModeNV {
+    #[inline]
+    pub const fn from_raw(x: i32) -> Self {
+        Self(x)
+    }
+    #[inline]
+    pub const fn as_raw(self) -> i32 {
+        self.0
+    }
+    pub const NONE_NV: Self = Self(0);
+    pub const CHAINED_NV: Self = Self(1);
+}
+///Provided by [`nv::ray_tracing_linear_swept_spheres`](crate::nv::ray_tracing_linear_swept_spheres)
+impl crate::vk::GeometryTypeKHR {
+    pub const SPHERES_NV: Self = Self(1000429004);
+    pub const LINEAR_SWEPT_SPHERES_NV: Self = Self(1000429005);
+}
+///Provided by [`nv::ray_tracing_linear_swept_spheres`](crate::nv::ray_tracing_linear_swept_spheres)
+impl crate::vk::FormatFeatureFlagBits2 {
+    pub const ACCELERATION_STRUCTURE_RADIUS_BUFFER_NV: Self = Self(1 << 51);
+}
+///Provided by [`nv::ray_tracing_linear_swept_spheres`](crate::nv::ray_tracing_linear_swept_spheres)
+impl crate::vk::PipelineCreateFlagBits2 {
+    pub const RAY_TRACING_ALLOW_SPHERES_AND_LINEAR_SWEPT_SPHERES_NV: Self = Self(
+        1 << 33,
+    );
+}
 pub const SPEC_VERSION: u32 = 1;
 pub const NAME: &core::ffi::CStr = c"VK_NV_ray_tracing_linear_swept_spheres";
 pub(crate) mod reexport {
@@ -235,66 +286,13 @@ pub(crate) mod reexport {
             self
         }
     }
-    ///Provided by [`nv::ray_tracing_linear_swept_spheres`](crate::nv::ray_tracing_linear_swept_spheres)
-    impl crate::vk::StructureType {
-        pub const PHYSICAL_DEVICE_RAY_TRACING_LINEAR_SWEPT_SPHERES_FEATURES_NV: Self = Self(
-            1000429008,
-        );
-        pub const ACCELERATION_STRUCTURE_GEOMETRY_LINEAR_SWEPT_SPHERES_DATA_NV: Self = Self(
-            1000429009,
-        );
-        pub const ACCELERATION_STRUCTURE_GEOMETRY_SPHERES_DATA_NV: Self = Self(
-            1000429010,
-        );
-    }
     #[repr(transparent)]
     #[derive(Clone, Copy, PartialEq, Eq, PartialOrd, Ord, Hash, Default)]
     #[derive(Debug)]
     pub struct RayTracingLssIndexingModeNV(pub(crate) i32);
-    ///Provided by [`nv::ray_tracing_linear_swept_spheres`](crate::nv::ray_tracing_linear_swept_spheres)
-    impl RayTracingLssIndexingModeNV {
-        #[inline]
-        pub const fn from_raw(x: i32) -> Self {
-            Self(x)
-        }
-        #[inline]
-        pub const fn as_raw(self) -> i32 {
-            self.0
-        }
-        pub const LIST_NV: Self = Self(0);
-        pub const SUCCESSIVE_NV: Self = Self(1);
-    }
     #[repr(transparent)]
     #[derive(Clone, Copy, PartialEq, Eq, PartialOrd, Ord, Hash, Default)]
     #[derive(Debug)]
     pub struct RayTracingLssPrimitiveEndCapsModeNV(pub(crate) i32);
-    ///Provided by [`nv::ray_tracing_linear_swept_spheres`](crate::nv::ray_tracing_linear_swept_spheres)
-    impl RayTracingLssPrimitiveEndCapsModeNV {
-        #[inline]
-        pub const fn from_raw(x: i32) -> Self {
-            Self(x)
-        }
-        #[inline]
-        pub const fn as_raw(self) -> i32 {
-            self.0
-        }
-        pub const NONE_NV: Self = Self(0);
-        pub const CHAINED_NV: Self = Self(1);
-    }
-    ///Provided by [`nv::ray_tracing_linear_swept_spheres`](crate::nv::ray_tracing_linear_swept_spheres)
-    impl crate::vk::GeometryTypeKHR {
-        pub const SPHERES_NV: Self = Self(1000429004);
-        pub const LINEAR_SWEPT_SPHERES_NV: Self = Self(1000429005);
-    }
-    ///Provided by [`nv::ray_tracing_linear_swept_spheres`](crate::nv::ray_tracing_linear_swept_spheres)
-    impl crate::vk::FormatFeatureFlagBits2 {
-        pub const ACCELERATION_STRUCTURE_RADIUS_BUFFER_NV: Self = Self(1 << 51);
-    }
-    ///Provided by [`nv::ray_tracing_linear_swept_spheres`](crate::nv::ray_tracing_linear_swept_spheres)
-    impl crate::vk::PipelineCreateFlagBits2 {
-        pub const RAY_TRACING_ALLOW_SPHERES_AND_LINEAR_SWEPT_SPHERES_NV: Self = Self(
-            1 << 33,
-        );
-    }
 }
 pub use reexport::*;

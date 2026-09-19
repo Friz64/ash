@@ -2,8 +2,32 @@
 #![cfg_attr(rustfmt, rustfmt_skip)]
 //![Vulkan Manual Page](https://docs.vulkan.org/refpages/latest/refpages/source/VK_EXT_conditional_rendering.html) · Extension `VK_EXT_conditional_rendering`
 #![doc(alias = "VK_EXT_conditional_rendering")]
-pub const SPEC_VERSION: u32 = 2;
-pub const NAME: &core::ffi::CStr = c"VK_EXT_conditional_rendering";
+///Provided by [`ext::conditional_rendering`](crate::ext::conditional_rendering)
+impl crate::vk::StructureType {
+    pub const COMMAND_BUFFER_INHERITANCE_CONDITIONAL_RENDERING_INFO_EXT: Self = Self(
+        1000081000,
+    );
+    pub const PHYSICAL_DEVICE_CONDITIONAL_RENDERING_FEATURES_EXT: Self = Self(
+        1000081001,
+    );
+    pub const CONDITIONAL_RENDERING_BEGIN_INFO_EXT: Self = Self(1000081002);
+}
+///Provided by [`ext::conditional_rendering`](crate::ext::conditional_rendering)
+impl crate::vk::AccessFlagBits {
+    pub const CONDITIONAL_RENDERING_READ_EXT: Self = Self(1 << 20);
+}
+///Provided by [`ext::conditional_rendering`](crate::ext::conditional_rendering)
+impl crate::vk::BufferUsageFlagBits {
+    pub const CONDITIONAL_RENDERING_EXT: Self = Self(1 << 9);
+}
+///Provided by [`ext::conditional_rendering`](crate::ext::conditional_rendering)
+impl crate::vk::PipelineStageFlagBits {
+    pub const CONDITIONAL_RENDERING_EXT: Self = Self(1 << 18);
+}
+///Provided by [`ext::conditional_rendering`](crate::ext::conditional_rendering)
+impl ConditionalRenderingFlagBitsEXT {
+    pub const INVERTED_EXT: Self = Self(1 << 0);
+}
 #[derive(Clone)]
 pub struct DeviceFn {
     pub cmd_begin_conditional_rendering_ext: crate::vk::PFN_vkCmdBeginConditionalRenderingEXT,
@@ -73,6 +97,8 @@ impl Device {
         self.handle
     }
 }
+pub const SPEC_VERSION: u32 = 2;
+pub const NAME: &core::ffi::CStr = c"VK_EXT_conditional_rendering";
 pub(crate) mod reexport {
     #[repr(C)]
     #[derive(Clone, Copy)]
@@ -188,28 +214,6 @@ pub(crate) mod reexport {
             self
         }
     }
-    ///Provided by [`ext::conditional_rendering`](crate::ext::conditional_rendering)
-    impl crate::vk::StructureType {
-        pub const COMMAND_BUFFER_INHERITANCE_CONDITIONAL_RENDERING_INFO_EXT: Self = Self(
-            1000081000,
-        );
-        pub const PHYSICAL_DEVICE_CONDITIONAL_RENDERING_FEATURES_EXT: Self = Self(
-            1000081001,
-        );
-        pub const CONDITIONAL_RENDERING_BEGIN_INFO_EXT: Self = Self(1000081002);
-    }
-    ///Provided by [`ext::conditional_rendering`](crate::ext::conditional_rendering)
-    impl crate::vk::AccessFlagBits {
-        pub const CONDITIONAL_RENDERING_READ_EXT: Self = Self(1 << 20);
-    }
-    ///Provided by [`ext::conditional_rendering`](crate::ext::conditional_rendering)
-    impl crate::vk::BufferUsageFlagBits {
-        pub const CONDITIONAL_RENDERING_EXT: Self = Self(1 << 9);
-    }
-    ///Provided by [`ext::conditional_rendering`](crate::ext::conditional_rendering)
-    impl crate::vk::PipelineStageFlagBits {
-        pub const CONDITIONAL_RENDERING_EXT: Self = Self(1 << 18);
-    }
     #[repr(transparent)]
     #[derive(Clone, Copy)]
     pub struct ConditionalRenderingFlagsEXT(u32);
@@ -283,10 +287,6 @@ pub(crate) mod reexport {
     #[repr(transparent)]
     #[derive(Clone, Copy, Default)]
     pub struct ConditionalRenderingFlagBitsEXT(pub(crate) u32);
-    ///Provided by [`ext::conditional_rendering`](crate::ext::conditional_rendering)
-    impl ConditionalRenderingFlagBitsEXT {
-        pub const INVERTED_EXT: Self = Self(1 << 0);
-    }
     pub type PFN_vkCmdBeginConditionalRenderingEXT = unsafe extern "system" fn(
         command_buffer: crate::vk::CommandBuffer,
         p_conditional_rendering_begin: *const crate::vk::ConditionalRenderingBeginInfoEXT<

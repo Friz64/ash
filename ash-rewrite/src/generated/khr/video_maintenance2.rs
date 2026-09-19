@@ -2,6 +2,23 @@
 #![cfg_attr(rustfmt, rustfmt_skip)]
 //![Vulkan Manual Page](https://docs.vulkan.org/refpages/latest/refpages/source/VK_KHR_video_maintenance2.html) · Extension `VK_KHR_video_maintenance2`
 #![doc(alias = "VK_KHR_video_maintenance2")]
+///Provided by [`khr::video_maintenance2`](crate::khr::video_maintenance2)
+impl crate::vk::StructureType {
+    pub const PHYSICAL_DEVICE_VIDEO_MAINTENANCE_2_FEATURES_KHR: Self = Self(1000586000);
+    pub const VIDEO_DECODE_H264_INLINE_SESSION_PARAMETERS_INFO_KHR: Self = Self(
+        1000586001,
+    );
+    pub const VIDEO_DECODE_H265_INLINE_SESSION_PARAMETERS_INFO_KHR: Self = Self(
+        1000586002,
+    );
+    pub const VIDEO_DECODE_AV1_INLINE_SESSION_PARAMETERS_INFO_KHR: Self = Self(
+        1000586003,
+    );
+}
+///Provided by [`khr::video_maintenance2`](crate::khr::video_maintenance2)
+impl crate::vk::VideoSessionCreateFlagBitsKHR {
+    pub const INLINE_SESSION_PARAMETERS_KHR: Self = Self(1 << 5);
+}
 pub const SPEC_VERSION: u32 = 1;
 pub const NAME: &core::ffi::CStr = c"VK_KHR_video_maintenance2";
 pub(crate) mod reexport {
@@ -162,25 +179,6 @@ pub(crate) mod reexport {
             self.p_std_sequence_header = std_sequence_header;
             self
         }
-    }
-    ///Provided by [`khr::video_maintenance2`](crate::khr::video_maintenance2)
-    impl crate::vk::StructureType {
-        pub const PHYSICAL_DEVICE_VIDEO_MAINTENANCE_2_FEATURES_KHR: Self = Self(
-            1000586000,
-        );
-        pub const VIDEO_DECODE_H264_INLINE_SESSION_PARAMETERS_INFO_KHR: Self = Self(
-            1000586001,
-        );
-        pub const VIDEO_DECODE_H265_INLINE_SESSION_PARAMETERS_INFO_KHR: Self = Self(
-            1000586002,
-        );
-        pub const VIDEO_DECODE_AV1_INLINE_SESSION_PARAMETERS_INFO_KHR: Self = Self(
-            1000586003,
-        );
-    }
-    ///Provided by [`khr::video_maintenance2`](crate::khr::video_maintenance2)
-    impl crate::vk::VideoSessionCreateFlagBitsKHR {
-        pub const INLINE_SESSION_PARAMETERS_KHR: Self = Self(1 << 5);
     }
 }
 pub use reexport::*;

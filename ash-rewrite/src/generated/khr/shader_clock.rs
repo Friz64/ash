@@ -2,6 +2,10 @@
 #![cfg_attr(rustfmt, rustfmt_skip)]
 //![Vulkan Manual Page](https://docs.vulkan.org/refpages/latest/refpages/source/VK_KHR_shader_clock.html) · Extension `VK_KHR_shader_clock`
 #![doc(alias = "VK_KHR_shader_clock")]
+///Provided by [`khr::shader_clock`](crate::khr::shader_clock)
+impl crate::vk::StructureType {
+    pub const PHYSICAL_DEVICE_SHADER_CLOCK_FEATURES_KHR: Self = Self(1000181000);
+}
 pub const SPEC_VERSION: u32 = 1;
 pub const NAME: &core::ffi::CStr = c"VK_KHR_shader_clock";
 pub(crate) mod reexport {
@@ -42,10 +46,6 @@ pub(crate) mod reexport {
             self.shader_device_clock = shader_device_clock.into();
             self
         }
-    }
-    ///Provided by [`khr::shader_clock`](crate::khr::shader_clock)
-    impl crate::vk::StructureType {
-        pub const PHYSICAL_DEVICE_SHADER_CLOCK_FEATURES_KHR: Self = Self(1000181000);
     }
 }
 pub use reexport::*;

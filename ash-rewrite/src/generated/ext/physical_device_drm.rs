@@ -2,6 +2,10 @@
 #![cfg_attr(rustfmt, rustfmt_skip)]
 //![Vulkan Manual Page](https://docs.vulkan.org/refpages/latest/refpages/source/VK_EXT_physical_device_drm.html) · Extension `VK_EXT_physical_device_drm`
 #![doc(alias = "VK_EXT_physical_device_drm")]
+///Provided by [`ext::physical_device_drm`](crate::ext::physical_device_drm)
+impl crate::vk::StructureType {
+    pub const PHYSICAL_DEVICE_DRM_PROPERTIES_EXT: Self = Self(1000353000);
+}
 pub const SPEC_VERSION: u32 = 1;
 pub const NAME: &core::ffi::CStr = c"VK_EXT_physical_device_drm";
 pub(crate) mod reexport {
@@ -63,10 +67,6 @@ pub(crate) mod reexport {
             self.render_minor = render_minor;
             self
         }
-    }
-    ///Provided by [`ext::physical_device_drm`](crate::ext::physical_device_drm)
-    impl crate::vk::StructureType {
-        pub const PHYSICAL_DEVICE_DRM_PROPERTIES_EXT: Self = Self(1000353000);
     }
 }
 pub use reexport::*;

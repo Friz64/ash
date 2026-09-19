@@ -2,8 +2,10 @@
 #![cfg_attr(rustfmt, rustfmt_skip)]
 //![Vulkan Manual Page](https://docs.vulkan.org/refpages/latest/refpages/source/VK_OHOS_surface.html) · Extension `VK_OHOS_surface`
 #![doc(alias = "VK_OHOS_surface")]
-pub const SPEC_VERSION: u32 = 1;
-pub const NAME: &core::ffi::CStr = c"VK_OHOS_surface";
+///Provided by [`ohos::surface`](crate::ohos::surface)
+impl crate::vk::StructureType {
+    pub const SURFACE_CREATE_INFO_OHOS: Self = Self(1000685000);
+}
 #[derive(Clone)]
 pub struct InstanceFn {
     pub create_surface_ohos: crate::vk::PFN_vkCreateSurfaceOHOS,
@@ -61,6 +63,8 @@ impl Instance {
         self.handle
     }
 }
+pub const SPEC_VERSION: u32 = 1;
+pub const NAME: &core::ffi::CStr = c"VK_OHOS_surface";
 pub(crate) mod reexport {
     #[repr(C)]
     #[derive(Clone, Copy)]
@@ -97,10 +101,6 @@ pub(crate) mod reexport {
             self.window = window;
             self
         }
-    }
-    ///Provided by [`ohos::surface`](crate::ohos::surface)
-    impl crate::vk::StructureType {
-        pub const SURFACE_CREATE_INFO_OHOS: Self = Self(1000685000);
     }
     #[repr(transparent)]
     #[derive(Clone, Copy)]

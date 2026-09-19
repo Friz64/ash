@@ -2,6 +2,67 @@
 #![cfg_attr(rustfmt, rustfmt_skip)]
 //![Vulkan Manual Page](https://docs.vulkan.org/refpages/latest/refpages/source/VK_KHR_extended_flags.html) · Extension `VK_KHR_extended_flags`
 #![doc(alias = "VK_KHR_extended_flags")]
+///Provided by [`khr::extended_flags`](crate::khr::extended_flags)
+impl crate::vk::StructureType {
+    pub const FORMAT_PROPERTIES_4_KHR: Self = Self(1000668000);
+    pub const IMAGE_CREATE_FLAGS_2_CREATE_INFO_KHR: Self = Self(1000668001);
+    pub const IMAGE_USAGE_FLAGS_2_CREATE_INFO_KHR: Self = Self(1000668002);
+    pub const IMAGE_VIEW_USAGE_2_CREATE_INFO_KHR: Self = Self(1000668003);
+    pub const PHYSICAL_DEVICE_EXTENDED_FLAGS_FEATURES_KHR: Self = Self(1000668004);
+    pub const IMAGE_STENCIL_USAGE_2_CREATE_INFO_KHR: Self = Self(1000668005);
+    pub const SHARED_PRESENT_SURFACE_CAPABILITIES_2_KHR: Self = Self(1000668006);
+}
+///Provided by [`khr::extended_flags`](crate::khr::extended_flags)
+impl ImageUsageFlagBits2KHR {
+    pub const TRANSFER_SRC_KHR: Self = Self(1 << 0);
+    pub const TRANSFER_DST_KHR: Self = Self(1 << 1);
+    pub const SAMPLED_KHR: Self = Self(1 << 2);
+    pub const STORAGE_KHR: Self = Self(1 << 3);
+    pub const COLOR_ATTACHMENT_KHR: Self = Self(1 << 4);
+    pub const DEPTH_STENCIL_ATTACHMENT_KHR: Self = Self(1 << 5);
+    pub const TRANSIENT_ATTACHMENT_KHR: Self = Self(1 << 6);
+    pub const INPUT_ATTACHMENT_KHR: Self = Self(1 << 7);
+    pub const FRAGMENT_SHADING_RATE_ATTACHMENT_KHR: Self = Self(1 << 8);
+    pub const FRAGMENT_DENSITY_MAP_EXT: Self = Self(1 << 9);
+    pub const VIDEO_DECODE_DST_KHR: Self = Self(1 << 10);
+    pub const VIDEO_DECODE_SRC_KHR: Self = Self(1 << 11);
+    pub const VIDEO_DECODE_DPB_KHR: Self = Self(1 << 12);
+    pub const VIDEO_ENCODE_DST_KHR: Self = Self(1 << 13);
+    pub const VIDEO_ENCODE_SRC_KHR: Self = Self(1 << 14);
+    pub const VIDEO_ENCODE_DPB_KHR: Self = Self(1 << 15);
+    pub const INVOCATION_MASK_HUAWEI: Self = Self(1 << 18);
+    pub const ATTACHMENT_FEEDBACK_LOOP_EXT: Self = Self(1 << 19);
+    pub const SAMPLE_WEIGHT_QCOM: Self = Self(1 << 20);
+    pub const SAMPLE_BLOCK_MATCH_QCOM: Self = Self(1 << 21);
+    pub const HOST_TRANSFER_KHR: Self = Self(1 << 22);
+    pub const TENSOR_ALIASING_ARM: Self = Self(1 << 23);
+    pub const VIDEO_ENCODE_QUANTIZATION_DELTA_MAP_KHR: Self = Self(1 << 25);
+    pub const VIDEO_ENCODE_EMPHASIS_MAP_KHR: Self = Self(1 << 26);
+    pub const TILE_MEMORY_QCOM: Self = Self(1 << 27);
+}
+///Provided by [`khr::extended_flags`](crate::khr::extended_flags)
+impl ImageCreateFlagBits2KHR {
+    pub const SPARSE_BINDING_KHR: Self = Self(1 << 0);
+    pub const SPARSE_RESIDENCY_KHR: Self = Self(1 << 1);
+    pub const SPARSE_ALIASED_KHR: Self = Self(1 << 2);
+    pub const MUTABLE_FORMAT_KHR: Self = Self(1 << 3);
+    pub const CUBE_COMPATIBLE_KHR: Self = Self(1 << 4);
+    pub const _2D_ARRAY_COMPATIBLE_KHR: Self = Self(1 << 5);
+    pub const SPLIT_INSTANCE_BIND_REGIONS_KHR: Self = Self(1 << 6);
+    pub const BLOCK_TEXEL_VIEW_COMPATIBLE_KHR: Self = Self(1 << 7);
+    pub const EXTENDED_USAGE_KHR: Self = Self(1 << 8);
+    pub const DISJOINT_KHR: Self = Self(1 << 9);
+    pub const ALIAS_KHR: Self = Self(1 << 10);
+    pub const PROTECTED_KHR: Self = Self(1 << 11);
+    pub const SAMPLE_LOCATIONS_COMPATIBLE_DEPTH_EXT: Self = Self(1 << 12);
+    pub const CORNER_SAMPLED_NV: Self = Self(1 << 13);
+    pub const SUBSAMPLED_EXT: Self = Self(1 << 14);
+    pub const FRAGMENT_DENSITY_MAP_OFFSET_EXT: Self = Self(1 << 15);
+    pub const DESCRIPTOR_BUFFER_CAPTURE_REPLAY_EXT: Self = Self(1 << 16);
+    pub const _2D_VIEW_COMPATIBLE_EXT: Self = Self(1 << 17);
+    pub const MULTISAMPLED_RENDER_TO_SINGLE_SAMPLED_EXT: Self = Self(1 << 18);
+    pub const VIDEO_PROFILE_INDEPENDENT_KHR: Self = Self(1 << 20);
+}
 pub const SPEC_VERSION: u32 = 1;
 pub const NAME: &core::ffi::CStr = c"VK_KHR_extended_flags";
 pub(crate) mod reexport {
@@ -261,16 +322,6 @@ pub(crate) mod reexport {
             self
         }
     }
-    ///Provided by [`khr::extended_flags`](crate::khr::extended_flags)
-    impl crate::vk::StructureType {
-        pub const FORMAT_PROPERTIES_4_KHR: Self = Self(1000668000);
-        pub const IMAGE_CREATE_FLAGS_2_CREATE_INFO_KHR: Self = Self(1000668001);
-        pub const IMAGE_USAGE_FLAGS_2_CREATE_INFO_KHR: Self = Self(1000668002);
-        pub const IMAGE_VIEW_USAGE_2_CREATE_INFO_KHR: Self = Self(1000668003);
-        pub const PHYSICAL_DEVICE_EXTENDED_FLAGS_FEATURES_KHR: Self = Self(1000668004);
-        pub const IMAGE_STENCIL_USAGE_2_CREATE_INFO_KHR: Self = Self(1000668005);
-        pub const SHARED_PRESENT_SURFACE_CAPABILITIES_2_KHR: Self = Self(1000668006);
-    }
     #[repr(transparent)]
     #[derive(Clone, Copy)]
     pub struct FormatFeatureFlags4KHR(u64);
@@ -482,34 +533,6 @@ pub(crate) mod reexport {
     #[repr(transparent)]
     #[derive(Clone, Copy, Default)]
     pub struct ImageUsageFlagBits2KHR(pub(crate) u64);
-    ///Provided by [`khr::extended_flags`](crate::khr::extended_flags)
-    impl ImageUsageFlagBits2KHR {
-        pub const TRANSFER_SRC_KHR: Self = Self(1 << 0);
-        pub const TRANSFER_DST_KHR: Self = Self(1 << 1);
-        pub const SAMPLED_KHR: Self = Self(1 << 2);
-        pub const STORAGE_KHR: Self = Self(1 << 3);
-        pub const COLOR_ATTACHMENT_KHR: Self = Self(1 << 4);
-        pub const DEPTH_STENCIL_ATTACHMENT_KHR: Self = Self(1 << 5);
-        pub const TRANSIENT_ATTACHMENT_KHR: Self = Self(1 << 6);
-        pub const INPUT_ATTACHMENT_KHR: Self = Self(1 << 7);
-        pub const FRAGMENT_SHADING_RATE_ATTACHMENT_KHR: Self = Self(1 << 8);
-        pub const FRAGMENT_DENSITY_MAP_EXT: Self = Self(1 << 9);
-        pub const VIDEO_DECODE_DST_KHR: Self = Self(1 << 10);
-        pub const VIDEO_DECODE_SRC_KHR: Self = Self(1 << 11);
-        pub const VIDEO_DECODE_DPB_KHR: Self = Self(1 << 12);
-        pub const VIDEO_ENCODE_DST_KHR: Self = Self(1 << 13);
-        pub const VIDEO_ENCODE_SRC_KHR: Self = Self(1 << 14);
-        pub const VIDEO_ENCODE_DPB_KHR: Self = Self(1 << 15);
-        pub const INVOCATION_MASK_HUAWEI: Self = Self(1 << 18);
-        pub const ATTACHMENT_FEEDBACK_LOOP_EXT: Self = Self(1 << 19);
-        pub const SAMPLE_WEIGHT_QCOM: Self = Self(1 << 20);
-        pub const SAMPLE_BLOCK_MATCH_QCOM: Self = Self(1 << 21);
-        pub const HOST_TRANSFER_KHR: Self = Self(1 << 22);
-        pub const TENSOR_ALIASING_ARM: Self = Self(1 << 23);
-        pub const VIDEO_ENCODE_QUANTIZATION_DELTA_MAP_KHR: Self = Self(1 << 25);
-        pub const VIDEO_ENCODE_EMPHASIS_MAP_KHR: Self = Self(1 << 26);
-        pub const TILE_MEMORY_QCOM: Self = Self(1 << 27);
-    }
     #[repr(transparent)]
     #[derive(Clone, Copy)]
     pub struct ImageCreateFlags2KHR(u64);
@@ -635,28 +658,5 @@ pub(crate) mod reexport {
     #[repr(transparent)]
     #[derive(Clone, Copy, Default)]
     pub struct ImageCreateFlagBits2KHR(pub(crate) u64);
-    ///Provided by [`khr::extended_flags`](crate::khr::extended_flags)
-    impl ImageCreateFlagBits2KHR {
-        pub const SPARSE_BINDING_KHR: Self = Self(1 << 0);
-        pub const SPARSE_RESIDENCY_KHR: Self = Self(1 << 1);
-        pub const SPARSE_ALIASED_KHR: Self = Self(1 << 2);
-        pub const MUTABLE_FORMAT_KHR: Self = Self(1 << 3);
-        pub const CUBE_COMPATIBLE_KHR: Self = Self(1 << 4);
-        pub const _2D_ARRAY_COMPATIBLE_KHR: Self = Self(1 << 5);
-        pub const SPLIT_INSTANCE_BIND_REGIONS_KHR: Self = Self(1 << 6);
-        pub const BLOCK_TEXEL_VIEW_COMPATIBLE_KHR: Self = Self(1 << 7);
-        pub const EXTENDED_USAGE_KHR: Self = Self(1 << 8);
-        pub const DISJOINT_KHR: Self = Self(1 << 9);
-        pub const ALIAS_KHR: Self = Self(1 << 10);
-        pub const PROTECTED_KHR: Self = Self(1 << 11);
-        pub const SAMPLE_LOCATIONS_COMPATIBLE_DEPTH_EXT: Self = Self(1 << 12);
-        pub const CORNER_SAMPLED_NV: Self = Self(1 << 13);
-        pub const SUBSAMPLED_EXT: Self = Self(1 << 14);
-        pub const FRAGMENT_DENSITY_MAP_OFFSET_EXT: Self = Self(1 << 15);
-        pub const DESCRIPTOR_BUFFER_CAPTURE_REPLAY_EXT: Self = Self(1 << 16);
-        pub const _2D_VIEW_COMPATIBLE_EXT: Self = Self(1 << 17);
-        pub const MULTISAMPLED_RENDER_TO_SINGLE_SAMPLED_EXT: Self = Self(1 << 18);
-        pub const VIDEO_PROFILE_INDEPENDENT_KHR: Self = Self(1 << 20);
-    }
 }
 pub use reexport::*;

@@ -2,6 +2,12 @@
 #![cfg_attr(rustfmt, rustfmt_skip)]
 //![Vulkan Manual Page](https://docs.vulkan.org/refpages/latest/refpages/source/VK_EXT_shader_replicated_composites.html) · Extension `VK_EXT_shader_replicated_composites`
 #![doc(alias = "VK_EXT_shader_replicated_composites")]
+///Provided by [`ext::shader_replicated_composites`](crate::ext::shader_replicated_composites)
+impl crate::vk::StructureType {
+    pub const PHYSICAL_DEVICE_SHADER_REPLICATED_COMPOSITES_FEATURES_EXT: Self = Self(
+        1000564000,
+    );
+}
 pub const SPEC_VERSION: u32 = 1;
 pub const NAME: &core::ffi::CStr = c"VK_EXT_shader_replicated_composites";
 pub(crate) mod reexport {
@@ -39,12 +45,6 @@ pub(crate) mod reexport {
             self.shader_replicated_composites = shader_replicated_composites.into();
             self
         }
-    }
-    ///Provided by [`ext::shader_replicated_composites`](crate::ext::shader_replicated_composites)
-    impl crate::vk::StructureType {
-        pub const PHYSICAL_DEVICE_SHADER_REPLICATED_COMPOSITES_FEATURES_EXT: Self = Self(
-            1000564000,
-        );
     }
 }
 pub use reexport::*;

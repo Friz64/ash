@@ -2,6 +2,89 @@
 #![cfg_attr(rustfmt, rustfmt_skip)]
 //![Vulkan Manual Page](https://docs.vulkan.org/refpages/latest/refpages/source/VK_KHR_video_encode_h265.html) · Extension `VK_KHR_video_encode_h265`
 #![doc(alias = "VK_KHR_video_encode_h265")]
+///Provided by [`khr::video_encode_h265`](crate::khr::video_encode_h265)
+impl crate::vk::StructureType {
+    pub const VIDEO_ENCODE_H265_CAPABILITIES_KHR: Self = Self(1000039000);
+    pub const VIDEO_ENCODE_H265_SESSION_PARAMETERS_CREATE_INFO_KHR: Self = Self(
+        1000039001,
+    );
+    pub const VIDEO_ENCODE_H265_SESSION_PARAMETERS_ADD_INFO_KHR: Self = Self(1000039002);
+    pub const VIDEO_ENCODE_H265_PICTURE_INFO_KHR: Self = Self(1000039003);
+    pub const VIDEO_ENCODE_H265_DPB_SLOT_INFO_KHR: Self = Self(1000039004);
+    pub const VIDEO_ENCODE_H265_NALU_SLICE_SEGMENT_INFO_KHR: Self = Self(1000039005);
+    pub const VIDEO_ENCODE_H265_GOP_REMAINING_FRAME_INFO_KHR: Self = Self(1000039006);
+    pub const VIDEO_ENCODE_H265_PROFILE_INFO_KHR: Self = Self(1000039007);
+    pub const VIDEO_ENCODE_H265_RATE_CONTROL_INFO_KHR: Self = Self(1000039009);
+    pub const VIDEO_ENCODE_H265_RATE_CONTROL_LAYER_INFO_KHR: Self = Self(1000039010);
+    pub const VIDEO_ENCODE_H265_SESSION_CREATE_INFO_KHR: Self = Self(1000039011);
+    pub const VIDEO_ENCODE_H265_QUALITY_LEVEL_PROPERTIES_KHR: Self = Self(1000039012);
+    pub const VIDEO_ENCODE_H265_SESSION_PARAMETERS_GET_INFO_KHR: Self = Self(1000039013);
+    pub const VIDEO_ENCODE_H265_SESSION_PARAMETERS_FEEDBACK_INFO_KHR: Self = Self(
+        1000039014,
+    );
+}
+///Provided by [`khr::video_encode_h265`](crate::khr::video_encode_h265)
+impl crate::vk::VideoCodecOperationFlagBitsKHR {
+    pub const ENCODE_H265_KHR: Self = Self(1 << 17);
+}
+///Provided by [`khr::video_encode_h265`](crate::khr::video_encode_h265)
+impl VideoEncodeH265CapabilityFlagBitsKHR {
+    pub const HRD_COMPLIANCE_KHR: Self = Self(1 << 0);
+    pub const PREDICTION_WEIGHT_TABLE_GENERATED_KHR: Self = Self(1 << 1);
+    pub const ROW_UNALIGNED_SLICE_SEGMENT_KHR: Self = Self(1 << 2);
+    pub const DIFFERENT_SLICE_SEGMENT_TYPE_KHR: Self = Self(1 << 3);
+    pub const B_FRAME_IN_L0_LIST_KHR: Self = Self(1 << 4);
+    pub const B_FRAME_IN_L1_LIST_KHR: Self = Self(1 << 5);
+    pub const PER_PICTURE_TYPE_MIN_MAX_QP_KHR: Self = Self(1 << 6);
+    pub const PER_SLICE_SEGMENT_CONSTANT_QP_KHR: Self = Self(1 << 7);
+    pub const MULTIPLE_TILES_PER_SLICE_SEGMENT_KHR: Self = Self(1 << 8);
+    pub const MULTIPLE_SLICE_SEGMENTS_PER_TILE_KHR: Self = Self(1 << 9);
+}
+///Provided by [`khr::video_encode_h265`](crate::khr::video_encode_h265)
+impl VideoEncodeH265StdFlagBitsKHR {
+    pub const SEPARATE_COLOR_PLANE_FLAG_SET_KHR: Self = Self(1 << 0);
+    pub const SAMPLE_ADAPTIVE_OFFSET_ENABLED_FLAG_SET_KHR: Self = Self(1 << 1);
+    pub const SCALING_LIST_DATA_PRESENT_FLAG_SET_KHR: Self = Self(1 << 2);
+    pub const PCM_ENABLED_FLAG_SET_KHR: Self = Self(1 << 3);
+    pub const SPS_TEMPORAL_MVP_ENABLED_FLAG_SET_KHR: Self = Self(1 << 4);
+    pub const INIT_QP_MINUS26_KHR: Self = Self(1 << 5);
+    pub const WEIGHTED_PRED_FLAG_SET_KHR: Self = Self(1 << 6);
+    pub const WEIGHTED_BIPRED_FLAG_SET_KHR: Self = Self(1 << 7);
+    pub const LOG2_PARALLEL_MERGE_LEVEL_MINUS2_KHR: Self = Self(1 << 8);
+    pub const SIGN_DATA_HIDING_ENABLED_FLAG_SET_KHR: Self = Self(1 << 9);
+    pub const TRANSFORM_SKIP_ENABLED_FLAG_SET_KHR: Self = Self(1 << 10);
+    pub const TRANSFORM_SKIP_ENABLED_FLAG_UNSET_KHR: Self = Self(1 << 11);
+    pub const PPS_SLICE_CHROMA_QP_OFFSETS_PRESENT_FLAG_SET_KHR: Self = Self(1 << 12);
+    pub const TRANSQUANT_BYPASS_ENABLED_FLAG_SET_KHR: Self = Self(1 << 13);
+    pub const CONSTRAINED_INTRA_PRED_FLAG_SET_KHR: Self = Self(1 << 14);
+    pub const ENTROPY_CODING_SYNC_ENABLED_FLAG_SET_KHR: Self = Self(1 << 15);
+    pub const DEBLOCKING_FILTER_OVERRIDE_ENABLED_FLAG_SET_KHR: Self = Self(1 << 16);
+    pub const DEPENDENT_SLICE_SEGMENTS_ENABLED_FLAG_SET_KHR: Self = Self(1 << 17);
+    pub const DEPENDENT_SLICE_SEGMENT_FLAG_SET_KHR: Self = Self(1 << 18);
+    pub const SLICE_QP_DELTA_KHR: Self = Self(1 << 19);
+    pub const DIFFERENT_SLICE_QP_DELTA_KHR: Self = Self(1 << 20);
+}
+///Provided by [`khr::video_encode_h265`](crate::khr::video_encode_h265)
+impl VideoEncodeH265RateControlFlagBitsKHR {
+    pub const ATTEMPT_HRD_COMPLIANCE_KHR: Self = Self(1 << 0);
+    pub const REGULAR_GOP_KHR: Self = Self(1 << 1);
+    pub const REFERENCE_PATTERN_FLAT_KHR: Self = Self(1 << 2);
+    pub const REFERENCE_PATTERN_DYADIC_KHR: Self = Self(1 << 3);
+    pub const TEMPORAL_SUB_LAYER_PATTERN_DYADIC_KHR: Self = Self(1 << 4);
+}
+///Provided by [`khr::video_encode_h265`](crate::khr::video_encode_h265)
+impl VideoEncodeH265CtbSizeFlagBitsKHR {
+    pub const _16_KHR: Self = Self(1 << 0);
+    pub const _32_KHR: Self = Self(1 << 1);
+    pub const _64_KHR: Self = Self(1 << 2);
+}
+///Provided by [`khr::video_encode_h265`](crate::khr::video_encode_h265)
+impl VideoEncodeH265TransformBlockSizeFlagBitsKHR {
+    pub const _4_KHR: Self = Self(1 << 0);
+    pub const _8_KHR: Self = Self(1 << 1);
+    pub const _16_KHR: Self = Self(1 << 2);
+    pub const _32_KHR: Self = Self(1 << 3);
+}
 pub const SPEC_VERSION: u32 = 14;
 pub const NAME: &core::ffi::CStr = c"VK_KHR_video_encode_h265";
 pub(crate) mod reexport {
@@ -871,39 +954,6 @@ pub(crate) mod reexport {
             self
         }
     }
-    ///Provided by [`khr::video_encode_h265`](crate::khr::video_encode_h265)
-    impl crate::vk::StructureType {
-        pub const VIDEO_ENCODE_H265_CAPABILITIES_KHR: Self = Self(1000039000);
-        pub const VIDEO_ENCODE_H265_SESSION_PARAMETERS_CREATE_INFO_KHR: Self = Self(
-            1000039001,
-        );
-        pub const VIDEO_ENCODE_H265_SESSION_PARAMETERS_ADD_INFO_KHR: Self = Self(
-            1000039002,
-        );
-        pub const VIDEO_ENCODE_H265_PICTURE_INFO_KHR: Self = Self(1000039003);
-        pub const VIDEO_ENCODE_H265_DPB_SLOT_INFO_KHR: Self = Self(1000039004);
-        pub const VIDEO_ENCODE_H265_NALU_SLICE_SEGMENT_INFO_KHR: Self = Self(1000039005);
-        pub const VIDEO_ENCODE_H265_GOP_REMAINING_FRAME_INFO_KHR: Self = Self(
-            1000039006,
-        );
-        pub const VIDEO_ENCODE_H265_PROFILE_INFO_KHR: Self = Self(1000039007);
-        pub const VIDEO_ENCODE_H265_RATE_CONTROL_INFO_KHR: Self = Self(1000039009);
-        pub const VIDEO_ENCODE_H265_RATE_CONTROL_LAYER_INFO_KHR: Self = Self(1000039010);
-        pub const VIDEO_ENCODE_H265_SESSION_CREATE_INFO_KHR: Self = Self(1000039011);
-        pub const VIDEO_ENCODE_H265_QUALITY_LEVEL_PROPERTIES_KHR: Self = Self(
-            1000039012,
-        );
-        pub const VIDEO_ENCODE_H265_SESSION_PARAMETERS_GET_INFO_KHR: Self = Self(
-            1000039013,
-        );
-        pub const VIDEO_ENCODE_H265_SESSION_PARAMETERS_FEEDBACK_INFO_KHR: Self = Self(
-            1000039014,
-        );
-    }
-    ///Provided by [`khr::video_encode_h265`](crate::khr::video_encode_h265)
-    impl crate::vk::VideoCodecOperationFlagBitsKHR {
-        pub const ENCODE_H265_KHR: Self = Self(1 << 17);
-    }
     #[repr(transparent)]
     #[derive(Clone, Copy)]
     pub struct VideoEncodeH265CapabilityFlagsKHR(u32);
@@ -1010,19 +1060,6 @@ pub(crate) mod reexport {
     #[repr(transparent)]
     #[derive(Clone, Copy, Default)]
     pub struct VideoEncodeH265CapabilityFlagBitsKHR(pub(crate) u32);
-    ///Provided by [`khr::video_encode_h265`](crate::khr::video_encode_h265)
-    impl VideoEncodeH265CapabilityFlagBitsKHR {
-        pub const HRD_COMPLIANCE_KHR: Self = Self(1 << 0);
-        pub const PREDICTION_WEIGHT_TABLE_GENERATED_KHR: Self = Self(1 << 1);
-        pub const ROW_UNALIGNED_SLICE_SEGMENT_KHR: Self = Self(1 << 2);
-        pub const DIFFERENT_SLICE_SEGMENT_TYPE_KHR: Self = Self(1 << 3);
-        pub const B_FRAME_IN_L0_LIST_KHR: Self = Self(1 << 4);
-        pub const B_FRAME_IN_L1_LIST_KHR: Self = Self(1 << 5);
-        pub const PER_PICTURE_TYPE_MIN_MAX_QP_KHR: Self = Self(1 << 6);
-        pub const PER_SLICE_SEGMENT_CONSTANT_QP_KHR: Self = Self(1 << 7);
-        pub const MULTIPLE_TILES_PER_SLICE_SEGMENT_KHR: Self = Self(1 << 8);
-        pub const MULTIPLE_SLICE_SEGMENTS_PER_TILE_KHR: Self = Self(1 << 9);
-    }
     #[repr(transparent)]
     #[derive(Clone, Copy)]
     pub struct VideoEncodeH265StdFlagsKHR(u32);
@@ -1159,30 +1196,6 @@ pub(crate) mod reexport {
     #[repr(transparent)]
     #[derive(Clone, Copy, Default)]
     pub struct VideoEncodeH265StdFlagBitsKHR(pub(crate) u32);
-    ///Provided by [`khr::video_encode_h265`](crate::khr::video_encode_h265)
-    impl VideoEncodeH265StdFlagBitsKHR {
-        pub const SEPARATE_COLOR_PLANE_FLAG_SET_KHR: Self = Self(1 << 0);
-        pub const SAMPLE_ADAPTIVE_OFFSET_ENABLED_FLAG_SET_KHR: Self = Self(1 << 1);
-        pub const SCALING_LIST_DATA_PRESENT_FLAG_SET_KHR: Self = Self(1 << 2);
-        pub const PCM_ENABLED_FLAG_SET_KHR: Self = Self(1 << 3);
-        pub const SPS_TEMPORAL_MVP_ENABLED_FLAG_SET_KHR: Self = Self(1 << 4);
-        pub const INIT_QP_MINUS26_KHR: Self = Self(1 << 5);
-        pub const WEIGHTED_PRED_FLAG_SET_KHR: Self = Self(1 << 6);
-        pub const WEIGHTED_BIPRED_FLAG_SET_KHR: Self = Self(1 << 7);
-        pub const LOG2_PARALLEL_MERGE_LEVEL_MINUS2_KHR: Self = Self(1 << 8);
-        pub const SIGN_DATA_HIDING_ENABLED_FLAG_SET_KHR: Self = Self(1 << 9);
-        pub const TRANSFORM_SKIP_ENABLED_FLAG_SET_KHR: Self = Self(1 << 10);
-        pub const TRANSFORM_SKIP_ENABLED_FLAG_UNSET_KHR: Self = Self(1 << 11);
-        pub const PPS_SLICE_CHROMA_QP_OFFSETS_PRESENT_FLAG_SET_KHR: Self = Self(1 << 12);
-        pub const TRANSQUANT_BYPASS_ENABLED_FLAG_SET_KHR: Self = Self(1 << 13);
-        pub const CONSTRAINED_INTRA_PRED_FLAG_SET_KHR: Self = Self(1 << 14);
-        pub const ENTROPY_CODING_SYNC_ENABLED_FLAG_SET_KHR: Self = Self(1 << 15);
-        pub const DEBLOCKING_FILTER_OVERRIDE_ENABLED_FLAG_SET_KHR: Self = Self(1 << 16);
-        pub const DEPENDENT_SLICE_SEGMENTS_ENABLED_FLAG_SET_KHR: Self = Self(1 << 17);
-        pub const DEPENDENT_SLICE_SEGMENT_FLAG_SET_KHR: Self = Self(1 << 18);
-        pub const SLICE_QP_DELTA_KHR: Self = Self(1 << 19);
-        pub const DIFFERENT_SLICE_QP_DELTA_KHR: Self = Self(1 << 20);
-    }
     #[repr(transparent)]
     #[derive(Clone, Copy)]
     pub struct VideoEncodeH265RateControlFlagsKHR(u32);
@@ -1269,14 +1282,6 @@ pub(crate) mod reexport {
     #[repr(transparent)]
     #[derive(Clone, Copy, Default)]
     pub struct VideoEncodeH265RateControlFlagBitsKHR(pub(crate) u32);
-    ///Provided by [`khr::video_encode_h265`](crate::khr::video_encode_h265)
-    impl VideoEncodeH265RateControlFlagBitsKHR {
-        pub const ATTEMPT_HRD_COMPLIANCE_KHR: Self = Self(1 << 0);
-        pub const REGULAR_GOP_KHR: Self = Self(1 << 1);
-        pub const REFERENCE_PATTERN_FLAT_KHR: Self = Self(1 << 2);
-        pub const REFERENCE_PATTERN_DYADIC_KHR: Self = Self(1 << 3);
-        pub const TEMPORAL_SUB_LAYER_PATTERN_DYADIC_KHR: Self = Self(1 << 4);
-    }
     #[repr(transparent)]
     #[derive(Clone, Copy)]
     pub struct VideoEncodeH265CtbSizeFlagsKHR(u32);
@@ -1350,12 +1355,6 @@ pub(crate) mod reexport {
     #[repr(transparent)]
     #[derive(Clone, Copy, Default)]
     pub struct VideoEncodeH265CtbSizeFlagBitsKHR(pub(crate) u32);
-    ///Provided by [`khr::video_encode_h265`](crate::khr::video_encode_h265)
-    impl VideoEncodeH265CtbSizeFlagBitsKHR {
-        pub const _16_KHR: Self = Self(1 << 0);
-        pub const _32_KHR: Self = Self(1 << 1);
-        pub const _64_KHR: Self = Self(1 << 2);
-    }
     #[repr(transparent)]
     #[derive(Clone, Copy)]
     pub struct VideoEncodeH265TransformBlockSizeFlagsKHR(u32);
@@ -1438,12 +1437,5 @@ pub(crate) mod reexport {
     #[repr(transparent)]
     #[derive(Clone, Copy, Default)]
     pub struct VideoEncodeH265TransformBlockSizeFlagBitsKHR(pub(crate) u32);
-    ///Provided by [`khr::video_encode_h265`](crate::khr::video_encode_h265)
-    impl VideoEncodeH265TransformBlockSizeFlagBitsKHR {
-        pub const _4_KHR: Self = Self(1 << 0);
-        pub const _8_KHR: Self = Self(1 << 1);
-        pub const _16_KHR: Self = Self(1 << 2);
-        pub const _32_KHR: Self = Self(1 << 3);
-    }
 }
 pub use reexport::*;

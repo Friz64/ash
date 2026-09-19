@@ -2,6 +2,35 @@
 #![cfg_attr(rustfmt, rustfmt_skip)]
 //![Vulkan Manual Page](https://docs.vulkan.org/refpages/latest/refpages/source/VK_AMDX_dense_geometry_format.html) · Extension `VK_AMDX_dense_geometry_format`
 #![doc(alias = "VK_AMDX_dense_geometry_format")]
+///Provided by [`amdx::dense_geometry_format`](crate::amdx::dense_geometry_format)
+impl crate::vk::StructureType {
+    pub const PHYSICAL_DEVICE_DENSE_GEOMETRY_FORMAT_FEATURES_AMDX: Self = Self(
+        1000478000,
+    );
+    pub const ACCELERATION_STRUCTURE_DENSE_GEOMETRY_FORMAT_TRIANGLES_DATA_AMDX: Self = Self(
+        1000478001,
+    );
+}
+///Provided by [`amdx::dense_geometry_format`](crate::amdx::dense_geometry_format)
+impl crate::vk::GeometryTypeKHR {
+    pub const DENSE_GEOMETRY_FORMAT_TRIANGLES_AMDX: Self = Self(1000478000);
+}
+///Provided by [`amdx::dense_geometry_format`](crate::amdx::dense_geometry_format)
+impl CompressedTriangleFormatAMDX {
+    #[inline]
+    pub const fn from_raw(x: i32) -> Self {
+        Self(x)
+    }
+    #[inline]
+    pub const fn as_raw(self) -> i32 {
+        self.0
+    }
+    pub const DGF1_AMDX: Self = Self(0);
+}
+///Provided by [`amdx::dense_geometry_format`](crate::amdx::dense_geometry_format)
+impl crate::vk::BufferUsageFlagBits2 {
+    pub const COMPRESSED_DATA_DGF1_AMDX: Self = Self(1 << 33);
+}
 pub const SPEC_VERSION: u32 = 1;
 pub const NAME: &core::ffi::CStr = c"VK_AMDX_dense_geometry_format";
 pub(crate) mod reexport {
@@ -109,39 +138,10 @@ pub(crate) mod reexport {
             self
         }
     }
-    ///Provided by [`amdx::dense_geometry_format`](crate::amdx::dense_geometry_format)
-    impl crate::vk::StructureType {
-        pub const PHYSICAL_DEVICE_DENSE_GEOMETRY_FORMAT_FEATURES_AMDX: Self = Self(
-            1000478000,
-        );
-        pub const ACCELERATION_STRUCTURE_DENSE_GEOMETRY_FORMAT_TRIANGLES_DATA_AMDX: Self = Self(
-            1000478001,
-        );
-    }
-    ///Provided by [`amdx::dense_geometry_format`](crate::amdx::dense_geometry_format)
-    impl crate::vk::GeometryTypeKHR {
-        pub const DENSE_GEOMETRY_FORMAT_TRIANGLES_AMDX: Self = Self(1000478000);
-    }
     #[repr(transparent)]
     #[derive(Clone, Copy, PartialEq, Eq, PartialOrd, Ord, Hash, Default)]
     #[derive(Debug)]
     pub struct CompressedTriangleFormatAMDX(pub(crate) i32);
-    ///Provided by [`amdx::dense_geometry_format`](crate::amdx::dense_geometry_format)
-    impl CompressedTriangleFormatAMDX {
-        #[inline]
-        pub const fn from_raw(x: i32) -> Self {
-            Self(x)
-        }
-        #[inline]
-        pub const fn as_raw(self) -> i32 {
-            self.0
-        }
-        pub const DGF1_AMDX: Self = Self(0);
-    }
-    ///Provided by [`amdx::dense_geometry_format`](crate::amdx::dense_geometry_format)
-    impl crate::vk::BufferUsageFlagBits2 {
-        pub const COMPRESSED_DATA_DGF1_AMDX: Self = Self(1 << 33);
-    }
     pub const COMPRESSED_TRIANGLE_FORMAT_DGF1_BYTE_ALIGNMENT_AMDX: u32 = 128;
     pub const COMPRESSED_TRIANGLE_FORMAT_DGF1_BYTE_STRIDE_AMDX: u32 = 128;
 }

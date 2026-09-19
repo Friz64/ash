@@ -2,8 +2,11 @@
 #![cfg_attr(rustfmt, rustfmt_skip)]
 //![Vulkan Manual Page](https://docs.vulkan.org/refpages/latest/refpages/source/VK_NV_memory_decompression.html) · Extension `VK_NV_memory_decompression`
 #![doc(alias = "VK_NV_memory_decompression")]
-pub const SPEC_VERSION: u32 = 1;
-pub const NAME: &core::ffi::CStr = c"VK_NV_memory_decompression";
+///Provided by [`nv::memory_decompression`](crate::nv::memory_decompression)
+impl crate::vk::StructureType {
+    pub const PHYSICAL_DEVICE_MEMORY_DECOMPRESSION_FEATURES_NV: Self = Self::PHYSICAL_DEVICE_MEMORY_DECOMPRESSION_FEATURES_EXT;
+    pub const PHYSICAL_DEVICE_MEMORY_DECOMPRESSION_PROPERTIES_NV: Self = Self::PHYSICAL_DEVICE_MEMORY_DECOMPRESSION_PROPERTIES_EXT;
+}
 #[derive(Clone)]
 pub struct DeviceFn {
     pub cmd_decompress_memory_nv: crate::vk::PFN_vkCmdDecompressMemoryNV,
@@ -77,6 +80,8 @@ impl Device {
         self.handle
     }
 }
+pub const SPEC_VERSION: u32 = 1;
+pub const NAME: &core::ffi::CStr = c"VK_NV_memory_decompression";
 pub(crate) mod reexport {
     #[repr(C)]
     #[derive(Clone, Copy, Default)]
@@ -124,11 +129,6 @@ pub(crate) mod reexport {
     pub type PhysicalDeviceMemoryDecompressionPropertiesNV<'a> = crate::vk::PhysicalDeviceMemoryDecompressionPropertiesEXT<
         'a,
     >;
-    ///Provided by [`nv::memory_decompression`](crate::nv::memory_decompression)
-    impl crate::vk::StructureType {
-        pub const PHYSICAL_DEVICE_MEMORY_DECOMPRESSION_FEATURES_NV: Self = Self::PHYSICAL_DEVICE_MEMORY_DECOMPRESSION_FEATURES_EXT;
-        pub const PHYSICAL_DEVICE_MEMORY_DECOMPRESSION_PROPERTIES_NV: Self = Self::PHYSICAL_DEVICE_MEMORY_DECOMPRESSION_PROPERTIES_EXT;
-    }
     pub type MemoryDecompressionMethodFlagBitsNV = crate::vk::MemoryDecompressionMethodFlagBitsEXT;
     pub type MemoryDecompressionMethodFlagsNV = crate::vk::MemoryDecompressionMethodFlagsEXT;
     pub type PFN_vkCmdDecompressMemoryNV = unsafe extern "system" fn(

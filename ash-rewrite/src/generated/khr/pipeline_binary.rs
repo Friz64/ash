@@ -2,8 +2,32 @@
 #![cfg_attr(rustfmt, rustfmt_skip)]
 //![Vulkan Manual Page](https://docs.vulkan.org/refpages/latest/refpages/source/VK_KHR_pipeline_binary.html) · Extension `VK_KHR_pipeline_binary`
 #![doc(alias = "VK_KHR_pipeline_binary")]
-pub const SPEC_VERSION: u32 = 1;
-pub const NAME: &core::ffi::CStr = c"VK_KHR_pipeline_binary";
+///Provided by [`khr::pipeline_binary`](crate::khr::pipeline_binary)
+impl crate::vk::StructureType {
+    pub const PHYSICAL_DEVICE_PIPELINE_BINARY_FEATURES_KHR: Self = Self(1000483000);
+    pub const PIPELINE_BINARY_CREATE_INFO_KHR: Self = Self(1000483001);
+    pub const PIPELINE_BINARY_INFO_KHR: Self = Self(1000483002);
+    pub const PIPELINE_BINARY_KEY_KHR: Self = Self(1000483003);
+    pub const PHYSICAL_DEVICE_PIPELINE_BINARY_PROPERTIES_KHR: Self = Self(1000483004);
+    pub const RELEASE_CAPTURED_PIPELINE_DATA_INFO_KHR: Self = Self(1000483005);
+    pub const PIPELINE_BINARY_DATA_INFO_KHR: Self = Self(1000483006);
+    pub const PIPELINE_CREATE_INFO_KHR: Self = Self(1000483007);
+    pub const DEVICE_PIPELINE_BINARY_INTERNAL_CACHE_CONTROL_KHR: Self = Self(1000483008);
+    pub const PIPELINE_BINARY_HANDLES_INFO_KHR: Self = Self(1000483009);
+}
+///Provided by [`khr::pipeline_binary`](crate::khr::pipeline_binary)
+impl crate::vk::Result {
+    pub const PIPELINE_BINARY_MISSING_KHR: Self = Self(1000483000);
+    pub const ERROR_NOT_ENOUGH_SPACE_KHR: Self = Self(-1000483000);
+}
+///Provided by [`khr::pipeline_binary`](crate::khr::pipeline_binary)
+impl crate::vk::ObjectType {
+    pub const PIPELINE_BINARY_KHR: Self = Self(1000483000);
+}
+///Provided by [`khr::pipeline_binary`](crate::khr::pipeline_binary)
+impl crate::vk::PipelineCreateFlagBits2 {
+    pub const CAPTURE_DATA_KHR: Self = Self(1 << 31);
+}
 #[derive(Clone)]
 pub struct DeviceFn {
     pub create_pipeline_binaries_khr: crate::vk::PFN_vkCreatePipelineBinariesKHR,
@@ -127,6 +151,8 @@ impl Device {
         self.handle
     }
 }
+pub const SPEC_VERSION: u32 = 1;
+pub const NAME: &core::ffi::CStr = c"VK_KHR_pipeline_binary";
 pub(crate) mod reexport {
     #[repr(C)]
     #[derive(Clone, Copy)]
@@ -533,36 +559,6 @@ pub(crate) mod reexport {
                 .into();
             self
         }
-    }
-    ///Provided by [`khr::pipeline_binary`](crate::khr::pipeline_binary)
-    impl crate::vk::StructureType {
-        pub const PHYSICAL_DEVICE_PIPELINE_BINARY_FEATURES_KHR: Self = Self(1000483000);
-        pub const PIPELINE_BINARY_CREATE_INFO_KHR: Self = Self(1000483001);
-        pub const PIPELINE_BINARY_INFO_KHR: Self = Self(1000483002);
-        pub const PIPELINE_BINARY_KEY_KHR: Self = Self(1000483003);
-        pub const PHYSICAL_DEVICE_PIPELINE_BINARY_PROPERTIES_KHR: Self = Self(
-            1000483004,
-        );
-        pub const RELEASE_CAPTURED_PIPELINE_DATA_INFO_KHR: Self = Self(1000483005);
-        pub const PIPELINE_BINARY_DATA_INFO_KHR: Self = Self(1000483006);
-        pub const PIPELINE_CREATE_INFO_KHR: Self = Self(1000483007);
-        pub const DEVICE_PIPELINE_BINARY_INTERNAL_CACHE_CONTROL_KHR: Self = Self(
-            1000483008,
-        );
-        pub const PIPELINE_BINARY_HANDLES_INFO_KHR: Self = Self(1000483009);
-    }
-    ///Provided by [`khr::pipeline_binary`](crate::khr::pipeline_binary)
-    impl crate::vk::Result {
-        pub const PIPELINE_BINARY_MISSING_KHR: Self = Self(1000483000);
-        pub const ERROR_NOT_ENOUGH_SPACE_KHR: Self = Self(-1000483000);
-    }
-    ///Provided by [`khr::pipeline_binary`](crate::khr::pipeline_binary)
-    impl crate::vk::ObjectType {
-        pub const PIPELINE_BINARY_KHR: Self = Self(1000483000);
-    }
-    ///Provided by [`khr::pipeline_binary`](crate::khr::pipeline_binary)
-    impl crate::vk::PipelineCreateFlagBits2 {
-        pub const CAPTURE_DATA_KHR: Self = Self(1 << 31);
     }
     #[repr(transparent)]
     #[derive(Eq, PartialEq, Ord, PartialOrd, Clone, Copy, Hash, Default)]

@@ -2,6 +2,11 @@
 #![cfg_attr(rustfmt, rustfmt_skip)]
 //![Vulkan Manual Page](https://docs.vulkan.org/refpages/latest/refpages/source/VK_EXT_shader_tile_image.html) · Extension `VK_EXT_shader_tile_image`
 #![doc(alias = "VK_EXT_shader_tile_image")]
+///Provided by [`ext::shader_tile_image`](crate::ext::shader_tile_image)
+impl crate::vk::StructureType {
+    pub const PHYSICAL_DEVICE_SHADER_TILE_IMAGE_FEATURES_EXT: Self = Self(1000395000);
+    pub const PHYSICAL_DEVICE_SHADER_TILE_IMAGE_PROPERTIES_EXT: Self = Self(1000395001);
+}
 pub const SPEC_VERSION: u32 = 1;
 pub const NAME: &core::ffi::CStr = c"VK_EXT_shader_tile_image";
 pub(crate) mod reexport {
@@ -114,15 +119,6 @@ pub(crate) mod reexport {
                 .into();
             self
         }
-    }
-    ///Provided by [`ext::shader_tile_image`](crate::ext::shader_tile_image)
-    impl crate::vk::StructureType {
-        pub const PHYSICAL_DEVICE_SHADER_TILE_IMAGE_FEATURES_EXT: Self = Self(
-            1000395000,
-        );
-        pub const PHYSICAL_DEVICE_SHADER_TILE_IMAGE_PROPERTIES_EXT: Self = Self(
-            1000395001,
-        );
     }
 }
 pub use reexport::*;

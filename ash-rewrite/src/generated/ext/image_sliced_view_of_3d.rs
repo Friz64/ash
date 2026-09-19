@@ -2,6 +2,13 @@
 #![cfg_attr(rustfmt, rustfmt_skip)]
 //![Vulkan Manual Page](https://docs.vulkan.org/refpages/latest/refpages/source/VK_EXT_image_sliced_view_of_3d.html) · Extension `VK_EXT_image_sliced_view_of_3d`
 #![doc(alias = "VK_EXT_image_sliced_view_of_3d")]
+///Provided by [`ext::image_sliced_view_of_3d`](crate::ext::image_sliced_view_of_3d)
+impl crate::vk::StructureType {
+    pub const PHYSICAL_DEVICE_IMAGE_SLICED_VIEW_OF_3D_FEATURES_EXT: Self = Self(
+        1000418000,
+    );
+    pub const IMAGE_VIEW_SLICED_CREATE_INFO_EXT: Self = Self(1000418001);
+}
 pub const SPEC_VERSION: u32 = 1;
 pub const NAME: &core::ffi::CStr = c"VK_EXT_image_sliced_view_of_3d";
 pub(crate) mod reexport {
@@ -71,13 +78,6 @@ pub(crate) mod reexport {
             self.image_sliced_view_of3_d = image_sliced_view_of3_d.into();
             self
         }
-    }
-    ///Provided by [`ext::image_sliced_view_of_3d`](crate::ext::image_sliced_view_of_3d)
-    impl crate::vk::StructureType {
-        pub const PHYSICAL_DEVICE_IMAGE_SLICED_VIEW_OF_3D_FEATURES_EXT: Self = Self(
-            1000418000,
-        );
-        pub const IMAGE_VIEW_SLICED_CREATE_INFO_EXT: Self = Self(1000418001);
     }
     pub const REMAINING_3D_SLICES_EXT: u32 = (!0);
 }

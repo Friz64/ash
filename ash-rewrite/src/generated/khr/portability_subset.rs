@@ -2,6 +2,11 @@
 #![cfg_attr(rustfmt, rustfmt_skip)]
 //![Vulkan Manual Page](https://docs.vulkan.org/refpages/latest/refpages/source/VK_KHR_portability_subset.html) · Extension `VK_KHR_portability_subset`
 #![doc(alias = "VK_KHR_portability_subset")]
+///Provided by [`khr::portability_subset`](crate::khr::portability_subset)
+impl crate::vk::StructureType {
+    pub const PHYSICAL_DEVICE_PORTABILITY_SUBSET_FEATURES_KHR: Self = Self(1000163000);
+    pub const PHYSICAL_DEVICE_PORTABILITY_SUBSET_PROPERTIES_KHR: Self = Self(1000163001);
+}
 pub const SPEC_VERSION: u32 = 1;
 pub const NAME: &core::ffi::CStr = c"VK_KHR_portability_subset";
 pub(crate) mod reexport {
@@ -181,15 +186,6 @@ pub(crate) mod reexport {
             self.min_vertex_input_binding_stride_alignment = min_vertex_input_binding_stride_alignment;
             self
         }
-    }
-    ///Provided by [`khr::portability_subset`](crate::khr::portability_subset)
-    impl crate::vk::StructureType {
-        pub const PHYSICAL_DEVICE_PORTABILITY_SUBSET_FEATURES_KHR: Self = Self(
-            1000163000,
-        );
-        pub const PHYSICAL_DEVICE_PORTABILITY_SUBSET_PROPERTIES_KHR: Self = Self(
-            1000163001,
-        );
     }
 }
 pub use reexport::*;

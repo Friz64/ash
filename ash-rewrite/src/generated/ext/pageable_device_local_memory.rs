@@ -2,8 +2,12 @@
 #![cfg_attr(rustfmt, rustfmt_skip)]
 //![Vulkan Manual Page](https://docs.vulkan.org/refpages/latest/refpages/source/VK_EXT_pageable_device_local_memory.html) · Extension `VK_EXT_pageable_device_local_memory`
 #![doc(alias = "VK_EXT_pageable_device_local_memory")]
-pub const SPEC_VERSION: u32 = 1;
-pub const NAME: &core::ffi::CStr = c"VK_EXT_pageable_device_local_memory";
+///Provided by [`ext::pageable_device_local_memory`](crate::ext::pageable_device_local_memory)
+impl crate::vk::StructureType {
+    pub const PHYSICAL_DEVICE_PAGEABLE_DEVICE_LOCAL_MEMORY_FEATURES_EXT: Self = Self(
+        1000412000,
+    );
+}
 #[derive(Clone)]
 pub struct DeviceFn {
     pub set_device_memory_priority_ext: crate::vk::PFN_vkSetDeviceMemoryPriorityEXT,
@@ -60,6 +64,8 @@ impl Device {
         self.handle
     }
 }
+pub const SPEC_VERSION: u32 = 1;
+pub const NAME: &core::ffi::CStr = c"VK_EXT_pageable_device_local_memory";
 pub(crate) mod reexport {
     #[repr(C)]
     #[derive(Clone, Copy)]
@@ -95,12 +101,6 @@ pub(crate) mod reexport {
             self.pageable_device_local_memory = pageable_device_local_memory.into();
             self
         }
-    }
-    ///Provided by [`ext::pageable_device_local_memory`](crate::ext::pageable_device_local_memory)
-    impl crate::vk::StructureType {
-        pub const PHYSICAL_DEVICE_PAGEABLE_DEVICE_LOCAL_MEMORY_FEATURES_EXT: Self = Self(
-            1000412000,
-        );
     }
     pub type PFN_vkSetDeviceMemoryPriorityEXT = unsafe extern "system" fn(
         device: crate::vk::Device,

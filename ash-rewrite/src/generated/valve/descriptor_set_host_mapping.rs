@@ -2,8 +2,14 @@
 #![cfg_attr(rustfmt, rustfmt_skip)]
 //![Vulkan Manual Page](https://docs.vulkan.org/refpages/latest/refpages/source/VK_VALVE_descriptor_set_host_mapping.html) · Extension `VK_VALVE_descriptor_set_host_mapping`
 #![doc(alias = "VK_VALVE_descriptor_set_host_mapping")]
-pub const SPEC_VERSION: u32 = 1;
-pub const NAME: &core::ffi::CStr = c"VK_VALVE_descriptor_set_host_mapping";
+///Provided by [`valve::descriptor_set_host_mapping`](crate::valve::descriptor_set_host_mapping)
+impl crate::vk::StructureType {
+    pub const PHYSICAL_DEVICE_DESCRIPTOR_SET_HOST_MAPPING_FEATURES_VALVE: Self = Self(
+        1000420000,
+    );
+    pub const DESCRIPTOR_SET_BINDING_REFERENCE_VALVE: Self = Self(1000420001);
+    pub const DESCRIPTOR_SET_LAYOUT_HOST_MAPPING_INFO_VALVE: Self = Self(1000420002);
+}
 #[derive(Clone)]
 pub struct DeviceFn {
     pub get_descriptor_set_layout_host_mapping_info_valve: crate::vk::PFN_vkGetDescriptorSetLayoutHostMappingInfoVALVE,
@@ -76,6 +82,8 @@ impl Device {
         self.handle
     }
 }
+pub const SPEC_VERSION: u32 = 1;
+pub const NAME: &core::ffi::CStr = c"VK_VALVE_descriptor_set_host_mapping";
 pub(crate) mod reexport {
     #[repr(C)]
     #[derive(Clone, Copy)]
@@ -182,14 +190,6 @@ pub(crate) mod reexport {
             self.descriptor_size = descriptor_size;
             self
         }
-    }
-    ///Provided by [`valve::descriptor_set_host_mapping`](crate::valve::descriptor_set_host_mapping)
-    impl crate::vk::StructureType {
-        pub const PHYSICAL_DEVICE_DESCRIPTOR_SET_HOST_MAPPING_FEATURES_VALVE: Self = Self(
-            1000420000,
-        );
-        pub const DESCRIPTOR_SET_BINDING_REFERENCE_VALVE: Self = Self(1000420001);
-        pub const DESCRIPTOR_SET_LAYOUT_HOST_MAPPING_INFO_VALVE: Self = Self(1000420002);
     }
     pub type PFN_vkGetDescriptorSetLayoutHostMappingInfoVALVE = unsafe extern "system" fn(
         device: crate::vk::Device,

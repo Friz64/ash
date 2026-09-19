@@ -2,8 +2,31 @@
 #![cfg_attr(rustfmt, rustfmt_skip)]
 //![Vulkan Manual Page](https://docs.vulkan.org/refpages/latest/refpages/source/VK_KHR_ray_tracing_maintenance1.html) · Extension `VK_KHR_ray_tracing_maintenance1`
 #![doc(alias = "VK_KHR_ray_tracing_maintenance1")]
-pub const SPEC_VERSION: u32 = 1;
-pub const NAME: &core::ffi::CStr = c"VK_KHR_ray_tracing_maintenance1";
+///Provided by [`khr::ray_tracing_maintenance1`](crate::khr::ray_tracing_maintenance1)
+impl crate::vk::QueryType {
+    pub const ACCELERATION_STRUCTURE_SERIALIZATION_BOTTOM_LEVEL_POINTERS_KHR: Self = Self(
+        1000386000,
+    );
+    pub const ACCELERATION_STRUCTURE_SIZE_KHR: Self = Self(1000386001);
+}
+///Provided by [`khr::ray_tracing_maintenance1`](crate::khr::ray_tracing_maintenance1)
+impl crate::vk::StructureType {
+    pub const PHYSICAL_DEVICE_RAY_TRACING_MAINTENANCE_1_FEATURES_KHR: Self = Self(
+        1000386000,
+    );
+}
+///Provided by [`khr::ray_tracing_maintenance1`](crate::khr::ray_tracing_maintenance1)
+impl crate::vk::IndirectCommandsTokenTypeEXT {
+    pub const TRACE_RAYS2_EXT: Self = Self(1000386004);
+}
+///Provided by [`khr::ray_tracing_maintenance1`](crate::khr::ray_tracing_maintenance1)
+impl crate::vk::AccessFlagBits2 {
+    pub const SHADER_BINDING_TABLE_READ_KHR: Self = Self(1 << 40);
+}
+///Provided by [`khr::ray_tracing_maintenance1`](crate::khr::ray_tracing_maintenance1)
+impl crate::vk::PipelineStageFlagBits2 {
+    pub const ACCELERATION_STRUCTURE_COPY_KHR: Self = Self(1 << 28);
+}
 #[derive(Clone)]
 pub struct DeviceFn {
     pub cmd_trace_rays_indirect2_khr: crate::vk::PFN_vkCmdTraceRaysIndirect2KHR,
@@ -59,6 +82,8 @@ impl Device {
         self.handle
     }
 }
+pub const SPEC_VERSION: u32 = 1;
+pub const NAME: &core::ffi::CStr = c"VK_KHR_ray_tracing_maintenance1";
 pub(crate) mod reexport {
     #[repr(C)]
     #[derive(Clone, Copy, Default)]
@@ -213,31 +238,6 @@ pub(crate) mod reexport {
                 .into();
             self
         }
-    }
-    ///Provided by [`khr::ray_tracing_maintenance1`](crate::khr::ray_tracing_maintenance1)
-    impl crate::vk::QueryType {
-        pub const ACCELERATION_STRUCTURE_SERIALIZATION_BOTTOM_LEVEL_POINTERS_KHR: Self = Self(
-            1000386000,
-        );
-        pub const ACCELERATION_STRUCTURE_SIZE_KHR: Self = Self(1000386001);
-    }
-    ///Provided by [`khr::ray_tracing_maintenance1`](crate::khr::ray_tracing_maintenance1)
-    impl crate::vk::StructureType {
-        pub const PHYSICAL_DEVICE_RAY_TRACING_MAINTENANCE_1_FEATURES_KHR: Self = Self(
-            1000386000,
-        );
-    }
-    ///Provided by [`khr::ray_tracing_maintenance1`](crate::khr::ray_tracing_maintenance1)
-    impl crate::vk::IndirectCommandsTokenTypeEXT {
-        pub const TRACE_RAYS2_EXT: Self = Self(1000386004);
-    }
-    ///Provided by [`khr::ray_tracing_maintenance1`](crate::khr::ray_tracing_maintenance1)
-    impl crate::vk::AccessFlagBits2 {
-        pub const SHADER_BINDING_TABLE_READ_KHR: Self = Self(1 << 40);
-    }
-    ///Provided by [`khr::ray_tracing_maintenance1`](crate::khr::ray_tracing_maintenance1)
-    impl crate::vk::PipelineStageFlagBits2 {
-        pub const ACCELERATION_STRUCTURE_COPY_KHR: Self = Self(1 << 28);
     }
     pub type PFN_vkCmdTraceRaysIndirect2KHR = unsafe extern "system" fn(
         command_buffer: crate::vk::CommandBuffer,

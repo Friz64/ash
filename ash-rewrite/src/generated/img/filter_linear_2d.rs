@@ -2,12 +2,9 @@
 #![cfg_attr(rustfmt, rustfmt_skip)]
 //![Vulkan Manual Page](https://docs.vulkan.org/refpages/latest/refpages/source/VK_IMG_filter_linear_2d.html) · Extension `VK_IMG_filter_linear_2d`
 #![doc(alias = "VK_IMG_filter_linear_2d")]
+///Provided by [`img::filter_linear_2d`](crate::img::filter_linear_2d)
+impl crate::vk::FormatFeatureFlagBits2 {
+    pub const SAMPLED_IMAGE_FILTER_LINEAR_2D_IMG: Self = Self(1 << 45);
+}
 pub const SPEC_VERSION: u32 = 1;
 pub const NAME: &core::ffi::CStr = c"VK_IMG_filter_linear_2d";
-pub(crate) mod reexport {
-    ///Provided by [`img::filter_linear_2d`](crate::img::filter_linear_2d)
-    impl crate::vk::FormatFeatureFlagBits2 {
-        pub const SAMPLED_IMAGE_FILTER_LINEAR_2D_IMG: Self = Self(1 << 45);
-    }
-}
-pub use reexport::*;

@@ -2,8 +2,30 @@
 #![cfg_attr(rustfmt, rustfmt_skip)]
 //![Vulkan Manual Page](https://docs.vulkan.org/refpages/latest/refpages/source/VK_EXT_discard_rectangles.html) · Extension `VK_EXT_discard_rectangles`
 #![doc(alias = "VK_EXT_discard_rectangles")]
-pub const SPEC_VERSION: u32 = 2;
-pub const NAME: &core::ffi::CStr = c"VK_EXT_discard_rectangles";
+///Provided by [`ext::discard_rectangles`](crate::ext::discard_rectangles)
+impl crate::vk::StructureType {
+    pub const PHYSICAL_DEVICE_DISCARD_RECTANGLE_PROPERTIES_EXT: Self = Self(1000099000);
+    pub const PIPELINE_DISCARD_RECTANGLE_STATE_CREATE_INFO_EXT: Self = Self(1000099001);
+}
+///Provided by [`ext::discard_rectangles`](crate::ext::discard_rectangles)
+impl crate::vk::DynamicState {
+    pub const DISCARD_RECTANGLE_EXT: Self = Self(1000099000);
+    pub const DISCARD_RECTANGLE_ENABLE_EXT: Self = Self(1000099001);
+    pub const DISCARD_RECTANGLE_MODE_EXT: Self = Self(1000099002);
+}
+///Provided by [`ext::discard_rectangles`](crate::ext::discard_rectangles)
+impl DiscardRectangleModeEXT {
+    #[inline]
+    pub const fn from_raw(x: i32) -> Self {
+        Self(x)
+    }
+    #[inline]
+    pub const fn as_raw(self) -> i32 {
+        self.0
+    }
+    pub const INCLUSIVE_EXT: Self = Self(0);
+    pub const EXCLUSIVE_EXT: Self = Self(1);
+}
 #[derive(Clone)]
 pub struct DeviceFn {
     pub cmd_set_discard_rectangle_ext: crate::vk::PFN_vkCmdSetDiscardRectangleEXT,
@@ -91,6 +113,8 @@ impl Device {
         self.handle
     }
 }
+pub const SPEC_VERSION: u32 = 2;
+pub const NAME: &core::ffi::CStr = c"VK_EXT_discard_rectangles";
 pub(crate) mod reexport {
     #[repr(C)]
     #[derive(Clone, Copy)]
@@ -176,38 +200,10 @@ pub(crate) mod reexport {
             self
         }
     }
-    ///Provided by [`ext::discard_rectangles`](crate::ext::discard_rectangles)
-    impl crate::vk::StructureType {
-        pub const PHYSICAL_DEVICE_DISCARD_RECTANGLE_PROPERTIES_EXT: Self = Self(
-            1000099000,
-        );
-        pub const PIPELINE_DISCARD_RECTANGLE_STATE_CREATE_INFO_EXT: Self = Self(
-            1000099001,
-        );
-    }
-    ///Provided by [`ext::discard_rectangles`](crate::ext::discard_rectangles)
-    impl crate::vk::DynamicState {
-        pub const DISCARD_RECTANGLE_EXT: Self = Self(1000099000);
-        pub const DISCARD_RECTANGLE_ENABLE_EXT: Self = Self(1000099001);
-        pub const DISCARD_RECTANGLE_MODE_EXT: Self = Self(1000099002);
-    }
     #[repr(transparent)]
     #[derive(Clone, Copy, PartialEq, Eq, PartialOrd, Ord, Hash, Default)]
     #[derive(Debug)]
     pub struct DiscardRectangleModeEXT(pub(crate) i32);
-    ///Provided by [`ext::discard_rectangles`](crate::ext::discard_rectangles)
-    impl DiscardRectangleModeEXT {
-        #[inline]
-        pub const fn from_raw(x: i32) -> Self {
-            Self(x)
-        }
-        #[inline]
-        pub const fn as_raw(self) -> i32 {
-            self.0
-        }
-        pub const INCLUSIVE_EXT: Self = Self(0);
-        pub const EXCLUSIVE_EXT: Self = Self(1);
-    }
     #[repr(transparent)]
     #[derive(Clone, Copy)]
     pub struct PipelineDiscardRectangleStateCreateFlagsEXT(u32);
