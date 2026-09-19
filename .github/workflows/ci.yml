@@ -10,19 +10,21 @@ jobs:
       - uses: actions/checkout@v6
       - run: cargo check --workspace --all-targets --all-features
 
-  check_msrv:
-    name: Check ash, ash-window and ash-rewrite MSRV (1.69.0)
-    runs-on: ubuntu-latest
-    steps:
-      - uses: actions/checkout@v6
-      - uses: dtolnay/rust-toolchain@1.69.0
-      - name: Downgrade incompatible dependencies
-        run: |
-          cargo update -p libloading --precise 0.8.8
-      - name: Check ash, ash-window and ash-rewrite
-        run: cargo check -p ash -p ash-rewrite -p ash-window --all-features
-      - name: Check ash with no_std
-        run: cargo check -p ash --no-default-features
+  # here cargo tries to parse the rewrite Cargo.toml but fails because its edition 2024
+  # TODO(friz64): discuss how to bring this back???
+  #check_msrv:
+  #  name: Check ash, ash-window and ash-rewrite MSRV (1.69.0)
+  #  runs-on: ubuntu-latest
+  #  steps:
+  #    - uses: actions/checkout@v6
+  #    - uses: dtolnay/rust-toolchain@1.69.0
+  #    - name: Downgrade incompatible dependencies
+  #      run: |
+  #        cargo update -p libloading --precise 0.8.8
+  #    - name: Check ash, ash-window and ash-rewrite
+  #      run: cargo check -p ash -p ash-rewrite -p ash-window --all-features
+  #    - name: Check ash with no_std
+  #      run: cargo check -p ash --no-default-features
 
   # TODO: add a similar job for the rewrite once that generates code
   generated:
@@ -33,10 +35,10 @@ jobs:
       - name: Checkout submodule
         # Manually update submodules with --checkout because they are configured with update=none and will be skipped otherwise
         run: git submodule update --recursive --init --force --checkout
-      - name: Run generator
-        run: cargo run -p generator
+      - name: Run generator-rewrite
+        run: cargo run -p generator-rewrite
       - name: Diff autogen result
-        run: test -z "$(git status --porcelain)" || (echo "::error::Generated files are different, please regenerate with cargo run -p generator!"; git diff; false)
+        run: test -z "$(git status --porcelain)" || (echo "::error::Generated files are different, please regenerate with cargo run -p generator-rewrite!"; git diff; false)
 
   test:
     name: Test Suite

@@ -44,7 +44,7 @@ impl Entry {
     /// # Example
     ///
     /// ```no_run
-    /// use ash::{vk, Entry};
+    /// use ash_rewrite::{vk, Entry};
     /// # fn main() -> Result<(), Box<dyn std::error::Error>> {
     /// let entry = unsafe { Entry::load()? };
     /// let app_info = vk::ApplicationInfo {
@@ -206,9 +206,12 @@ impl Entry {
     /// # Example
     ///
     /// ```no_run
-    /// # use ash::{Entry, vk};
+    /// # use ash_rewrite::{Entry, vk};
     /// # fn main() -> Result<(), Box<dyn std::error::Error>> {
+    /// #[cfg(feature = "linked")]
     /// let entry = Entry::linked();
+    /// #[cfg(feature = "loaded")]
+    /// let entry = unsafe { Entry::load() }?;
     /// match unsafe { entry.try_enumerate_instance_version() }? {
     ///     // Vulkan 1.1+
     ///     Some(version) => {
